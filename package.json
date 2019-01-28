@@ -1,13 +1,13 @@
 {
-  "name": "vue-design-system",
-  "version": "3.5.7",
-  "description": "Vue Design System is an open-source tool for building Design Systems with Vue.js",
-  "author": "viljamis <me@viljamis.com>",
+  "name": "vuematic",
+  "version": "0.0.1",
+  "description": "Design system based on Vue Design System",
+  "author": "ljelewis",
   "main": "dist/system/system.js",
   "files": [
     "dist/system"
   ],
-  "homepage": "https://vueds.com",
+  "homepage": "",
   "private": true,
   "license": "MIT",
   "scripts": {
@@ -25,7 +25,8 @@
     "styleguide:build": "vue-styleguidist build --config ./config/docs.config.js",
     "theo": "theo ./src/tokens/tokens.yml --transform web --format map.scss,scss,raw.json,json --dest ./src/assets/tokens",
     "theo:onchange": "onchange \"./src/tokens/*.yml\" -- npm run theo",
-    "test": "npm-run-all theo unit"
+    "test": "npm-run-all theo unit",
+    "postinstall": "npm-recursive-install --skip-root"
   },
   "husky": {
     "hooks": {
@@ -34,7 +35,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/viljamis/vue-design-system.git"
+    "url": ""
   },
   "keywords": [
     "vue design system",
@@ -112,6 +113,7 @@
     "postcss-loader": "^3.0.0",
     "postcss-safe-parser": "^4.0.1",
     "postcss-url": "^8.0.0",
+    "recursive-install": "^1.4.0",
     "tinycolor2": "^1.4.1",
     "vue": "^2.5.17",
     "vue-lodash": "^2.0.0",
