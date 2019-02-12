@@ -1,0 +1,81 @@
+.step-by-step {
+    background-color: vs-colors(gray-xxlight);
+    padding: vs-padding(sm) vs-padding(sm) vs-padding(sm) vs-padding(lg);
+
+    &__list {
+        list-style-type: none;
+        padding-left: 0;
+
+        &__item {
+            @extend %external-links;
+
+            position: relative;
+            display: inline-block;
+
+            &__number {
+                top: -2px;
+                position: absolute;
+                padding: 2px 0;
+                width: 30px;
+                height: 30px;
+                text-align: center;
+                background: vs-colors(pink);
+                left: -(vs-padding(lg) - 12px);
+                color: vs-colors(white);
+                border-radius: 50%;
+            }
+
+            &__heading {
+                padding-left: 0;
+                font-size: vs-font-size(md);
+            }
+
+            a {
+                display: inline-block;
+                word-break: break-all;
+            }
+
+            &::after {
+                top: 28px;
+                content: '';
+                height: 100%;
+                position: absolute;
+                left: -24px;
+                width: 5px;
+                background: vs-colors(pink);
+            }
+
+            &:last-child {
+                &::after {
+                    display: none;
+                }
+            }
+
+            @include media-breakpoint-up(md) {
+                display: block;
+
+                &__number {
+                    top: -11px;
+                    padding: 12px 0;
+                    width: 50px;
+                    height: 50px;
+                    left: -(vs-padding(lg) + 25px);
+                }
+
+                &::after {
+                    top: 38px;
+                    left: -(vs-padding(lg) + 2px);
+                }
+            }
+        }
+    }
+
+    // change card color depending on auto background color.
+    @at-root main > div > div {
+        &:nth-child(odd) > .background-auto {
+            .step-by-step {
+                background-color: darken(vs-colors(gray-xxlight), 3%);
+            }
+        }
+    }
+}

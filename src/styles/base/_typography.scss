@@ -1,0 +1,52 @@
+::selection {
+    background-color: vs-colors(blue);
+    color: white;
+}
+
+a {
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+// To be used with CMS content from rich text editor fields.
+.user-content {
+    @extend %external-links;
+
+    > :last-child {
+        margin-bottom: 0;
+    }
+
+    a {
+        color: vs-colors(pink);
+        text-decoration: none;
+        border-bottom: 1px solid rgba(vs-colors(black), 0.2);
+
+        &:focus,
+        &:hover {
+            color: vs-colors(black);
+            border-bottom-color: vs-colors(black);
+        }
+
+        &:hover::after {
+            @supports (-webkit-mask-image: url(#)) {
+                background-color: vs-colors(black);
+            }
+
+            @supports (mask-image: url(/)) {
+                background-color: vs-colors(black);
+            }
+        }
+    }
+}
+
+// Create font-size classes from map (.font-size-sm, .font-size-lg etc)
+@each $name, $value in $vs-font-size {
+    .font-size-#{$name} {
+        font-size: $value;
+    }
+}

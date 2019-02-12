@@ -1,0 +1,107 @@
+.vs-list-pagination {
+    width: 100%;
+    text-align: center;
+    user-select: none;
+
+    &,
+    li {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+
+    li {
+        display: inline-block;
+
+        &.disabled a {
+            opacity: 0.3;
+            filter: grayscale(100%);
+            pointer-events: none;
+            transition-duration: 350ms;
+        }
+    }
+
+    a {
+        overflow: hidden;
+        position: relative;
+        display: block;
+        margin: 0 2px;
+        padding: 0 0.5em;
+        height: 2em;
+        line-height: 1.8;
+        min-width: 2em;
+        border-radius: 5px;
+        text-align: center;
+        transition: all 0s;
+
+        &:focus {
+            outline: none;
+        }
+    }
+
+    &__prev a {
+        border: 1px solid vs-colors(gray-mid);
+
+        &:focus,
+        &:hover {
+            border-color: vs-colors(pink);
+            background: vs-colors(pink);
+            color: white;
+        }
+
+        .icon {
+            font-size: 12px;
+        }
+    }
+
+    &__link a {
+        border: 1px solid transparent;
+        color: vs-colors(gray-mid);
+
+        &:focus,
+        &:hover {
+            background: vs-colors(gray-light);
+            color: white;
+        }
+    }
+
+    &__link--active a {
+        &,
+        &:focus,
+        &:hover {
+            border-color: vs-colors(pink);
+            background: vs-colors(pink);
+            color: white;
+        }
+    }
+
+    &__next a {
+        border-color: vs-colors(pink);
+        background: vs-colors(pink);
+        color: white;
+        padding-left: 0.75em;
+        padding-right: 2em;
+
+        &:focus,
+        &:hover {
+            border-color: vs-colors(pink);
+            background: vs-colors(pink);
+            color: white;
+        }
+
+        &:not([href]):not([tabindex]) {
+            color: white;
+        }
+
+        .icon {
+            position: absolute;
+            top: 50%;
+            right: 0.75em;
+            width: 1em;
+            height: 1em;
+            line-height: 1;
+            margin-top: -0.5em;
+            font-size: 12px;
+        }
+    }
+}

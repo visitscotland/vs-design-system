@@ -1,0 +1,43 @@
+.background-tartan {
+    background: transparent url(../../images/background/tartan-light.jpg) repeat 50% 50%;
+
+    .button--tag {
+        background: vs-colors(white);
+
+        &:focus,
+        &:hover {
+            background: vs-colors(gray-xxlight);
+        }
+    }
+}
+
+.background-gray {
+    background-color: darken(vs-colors(gray-xxlight), 2%);
+}
+
+/**
+ * Automatically change background based on nth-child of <main> element.
+ */
+
+// Landing pages
+main > div > div {
+    &:nth-child(odd) > .background-auto {
+        background-color: vs-colors(gray-xxlight);
+    }
+
+    &:nth-child(even) > .background-auto {
+        background-color: vs-colors(white);
+    }
+}
+
+// Page content blocks (e.g. standard article)
+.background-auto-wrapper {
+    .background-auto:nth-child(odd) {
+        background-color: vs-colors(gray-xxlight);
+    }
+
+    .background-auto:nth-child(even) {
+        background-color: vs-colors(white);
+    }
+}
+

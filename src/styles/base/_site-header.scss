@@ -1,0 +1,29 @@
+.site-header {
+    @extend .container;
+
+    &__container {
+        position: relative;
+        height: 85px;
+    }
+
+    .site-logo,
+    .button-menu {
+        position: absolute;
+        top: $grid-gutter-width;
+    }
+
+    .site-logo {
+        height: 80px;
+
+        &__large {
+            fill: vs-colors(purple);
+            color: transparent;
+            height: 40px;
+        }
+    }
+
+    .button-menu {
+        right: 0;
+        top: $grid-gutter-width;
+    }
+}

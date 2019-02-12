@@ -1,0 +1,22 @@
+%external-links {
+    a[target='_blank']::after {
+        content: ' ';
+        display: inline-block;
+        width: 0.66em;
+        height: 0.66em;
+        margin: 0 0.125em;
+        background-image: url(../../images/icons/external-link.svg);
+
+        @supports (-webkit-mask-image: url(#)) {
+            background-color: vs-colors(pink);
+            background-image: none;
+            -webkit-mask-image: url(../../images/icons/external-link.svg);
+        }
+
+        @supports (mask-image: url(/)) {
+            background-color: vs-colors(pink);
+            background-image: none;
+            mask-image: url(../../images/icons/external-link.svg);
+        }
+    }
+}

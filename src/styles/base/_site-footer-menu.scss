@@ -1,0 +1,41 @@
+.site-footer-menu {
+    list-style: none;
+    font-size: $font-size-sm;
+    margin: 0 0 2rem 0;
+    padding: 0;
+
+    .external-links-list {
+        padding: 0;
+        list-style: none;
+    }
+
+    li {
+        margin: 0;
+        padding: 0.3em 0;
+        display: block;
+        border-bottom: 1px solid vs-colors(gray-light);
+    }
+
+    @include media-breakpoint-up(sm) {
+        li {
+            border-bottom: none;
+        }
+    }
+
+    @include media-breakpoint-up(md) {
+        margin: 0;
+
+        li {
+            display: block;
+        }
+    }
+
+    @include media-breakpoint-up(lg) {
+        li {
+            padding: 1em 0;
+            display: inline-block;
+            margin-right: 1em;
+        }
+    }
+}
+

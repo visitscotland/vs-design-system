@@ -1,0 +1,25 @@
+.content-quote {
+    border-left: 5px solid transparent;
+    border-image: url(../../images/background/tartan-light.jpg) 30;
+    color: vs-colors(gray-mid);
+    font-size: vs-font-size(sm);
+    padding: vs-padding(xs) vs-padding(sm);
+
+    p {
+        font-style: italic;
+    }
+
+    footer {
+        color: vs-colors(purple);
+        font-weight: $font-weight-bold;
+        font-size: vs-font-size(xs);
+
+        cite {
+            font-style: normal;
+        }
+    }
+
+    @include media-breakpoint-up(md) {
+        font-size: vs-font-size(lg);
+    }
+}

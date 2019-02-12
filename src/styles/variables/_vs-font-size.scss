@@ -1,0 +1,19 @@
+$vs-font-size: (
+    xxxl:3rem,      //48px
+    xxl: 2rem,      //32px
+    xl:  1.75rem,   //28px
+    lg:  1.5rem,    //24px
+    md:  1.25rem,   //20px
+    sm:  1.125rem,  //18px
+    xs:  1rem,      //16px
+    xxs: 0.875rem   //14px
+);
+
+// SASS function
+@function vs-font-size($key) {
+    @if map-has-key($vs-font-size, $key) {
+        @return map-get($vs-font-size, $key);
+    }
+
+    @error '"#{$key}" was not found.';
+}
