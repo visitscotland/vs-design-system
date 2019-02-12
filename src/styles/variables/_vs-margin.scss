@@ -1,0 +1,14 @@
+$vs-margin: (
+    lg:  $grid-gutter-width * 2,
+    md:  $grid-gutter-width * 1.5,
+    sm:  $grid-gutter-width * 1,
+);
+
+// SASS function
+@function vs-margin($key) {
+    @if map-has-key($vs-margin, $key) {
+        @return map-get($vs-margin, $key);
+    }
+
+    @error '"#{$key}" was not found.';
+}

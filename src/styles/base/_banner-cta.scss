@@ -1,0 +1,77 @@
+/**
+ * Banner CTA template
+ */
+
+.banner-cta {
+    padding: vs-padding(lg) 0;
+
+    @include media-breakpoint-up(lg) {
+        padding: vs-padding(lg) * 2 0;
+    }
+
+    &--white {
+        background-color: vs-colors(white);
+    }
+
+    &--silver {
+        background-color: vs-colors(gray-xxlight);
+    }
+
+    &__image {
+        &--left {
+            img {
+                padding: 0 0 vs-padding(lg);
+            }
+
+            @include media-breakpoint-up(lg) {
+                text-align: right;
+            }
+        }
+
+        &--right {
+            @extend .order-1;
+
+            img {
+                padding: vs-padding(lg) 0 0;
+            }
+        }
+
+        @include media-breakpoint-up(lg) {
+            img {
+                padding: 0 vs-padding(lg);
+            }
+        }
+    }
+
+    &__title,
+    &__subheading,
+    &__content {
+        margin-bottom: vs-margin(sm);
+    }
+
+    &__title {
+        @extend .mb-2;
+
+        line-height: 1;
+        font-size: vs-font-size(xxl);
+    }
+
+    &__subheading {
+        @extend .mb-2;
+
+        font-size: vs-font-size(md);
+        margin: 0;
+    }
+
+    &__content {
+        @extend %external-links;
+
+        color: vs-colors(gray-mid);
+        max-width: 25rem;
+    }
+
+    &__button {
+        min-width: 40%;
+        margin: vs-margin(sm) 5% 0 0;
+    }
+}

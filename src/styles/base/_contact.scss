@@ -1,0 +1,77 @@
+.contact {
+    @extend %card-style-white;
+
+    position: relative;
+    padding: vs-padding(sm);
+    padding-top: 50px;
+    text-align: center;
+
+    @include media-breakpoint-down(sm) {
+        max-width: 400px - 24px;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 3rem;
+    }
+
+    &__image {
+        display: block;
+        width: 100%;
+        margin: 0 auto;
+        padding-bottom: 100%;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: 50% 50%;
+        border-radius: 50%;
+    }
+
+    @include media-breakpoint-down(sm) {
+        padding-top: 70px;
+
+        &__image {
+            position: absolute;
+            top: -130px;
+            left: 50%;
+            margin-left: -60px;
+            width: 120px;
+            height: 120px;
+            padding-bottom: 0;
+        }
+    }
+
+    &__name {
+        font-size: vs-font-size(md);
+    }
+
+    &__jobtitle {
+        margin: 0;
+        color: vs-color(gray-light);
+        font-size: vs-font-size(xxs);
+    }
+
+    &__department {
+        margin-bottom: 0.66em;
+        font-size: vs-font-size(xxs);
+    }
+
+    &__address {
+        p {
+            margin: 0;
+        }
+    }
+
+    @include media-breakpoint-up(md) {
+        text-align: left;
+        padding-top: vs-padding(sm);
+
+        &__image {
+            position: initial;
+            top: auto;
+        }
+    }
+
+    @include media-breakpoint-up(lg) {
+        &__name {
+            font-size: vs-font-size(lg);
+        }
+    }
+}

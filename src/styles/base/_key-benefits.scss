@@ -1,0 +1,37 @@
+.key-benefits-list {
+    list-style: none;
+    padding: 0;
+
+    &__item {
+        display: flex;
+
+        &__icon {
+            color: vs-colors(blue);
+            font-size: vs-font-size(lg);
+            line-height: 1;
+        }
+
+        &__text {
+            @extend %external-links;
+
+            padding-left: 1rem;
+            display: flex;
+            flex-wrap: wrap;
+
+            h4 {
+                font-size: vs-font-size(sm);
+            }
+        }
+
+        @include media-breakpoint-up(md) {
+            &__icon {
+                font-size: 2.5rem;
+            }
+
+            &__text {
+                padding-left: vs-padding(sm);
+                font-size: vs-font-size(sm);
+            }
+        }
+    }
+}

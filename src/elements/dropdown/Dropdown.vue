@@ -1,8 +1,8 @@
 <template>
   <select :id="id" :class="selectClass" @change="handleChange" :value="value">
-    <option v-for="option in options" :value="optionValue(option)">{{
-      optionLabel(option)
-    }}</option>
+    <option v-for="option in options" :value="optionValue(option)">
+      {{ optionLabel(option) }}
+    </option>
   </select>
 </template>
 

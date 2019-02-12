@@ -1,0 +1,101 @@
+.content-introduction {
+    @extend %external-links, .mb-2;
+
+    overflow: hidden;
+
+    &__images {
+        @extend .mb-3;
+
+        position: relative;
+        font-size: vs-font-size(xxs);
+        color: vs-colors(gray-mid);
+
+        &__image-sm {
+            display: none;
+        }
+    }
+
+    &__body {
+        @extend %external-links, .content-article;
+
+        padding-top: 2rem;
+    }
+
+    @include media-breakpoint-up(lg) {
+        &__images {
+            &__image-lg {
+                display: block;
+
+                &__caption {
+                    position: absolute;
+                    top: 100%;
+                    left: 0;
+                    width: 50%;
+                    width: calc(50% - 7px);
+                }
+            }
+
+            &__image-sm {
+                display: block;
+                position: absolute;
+                outline: 7px solid white;
+                bottom: $grid-gutter-width * -3;
+                right: $grid-gutter-width * -1.5;
+                width: 50%;
+
+                &__caption {
+                    position: absolute;
+                    top: 100%;
+                    left: 0;
+                }
+            }
+        }
+
+        &__heading {
+            width: 100%;
+            width: calc(100% + #{$grid-gutter-width * 4});
+            margin: $grid-gutter-width 0 0 $grid-gutter-width * -1;
+            padding: vs-padding(sm) $grid-gutter-width;
+            background: vs-colors(gray-xxlight);
+            letter-spacing: -0.0125em;
+            font-size: vs-font-size(xxl);
+        }
+
+        &__body {
+            padding-top: 5rem;
+        }
+
+        &__text-container {
+            z-index: 1;
+        }
+
+        &__text {
+            font-size: vs-font-size(sm);
+        }
+
+        .banner-cta__button {
+            min-width: 70%;
+        }
+
+        &--news {
+            &__heading {
+                width: 140%;
+                position: relative;
+                right: 40%;
+                top: 0;
+            }
+        }
+    }
+
+    @include media-breakpoint-up(xxl) {
+        &__heading {
+            width: calc(100% + #{$grid-gutter-width * 6});
+            padding: vs-padding(md)  $grid-gutter-width;
+            font-size: vs-font-size(xxxl);
+        }
+
+        &__text {
+            font-size: vs-font-size(md);
+        }
+    }
+}

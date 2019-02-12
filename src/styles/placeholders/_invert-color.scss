@@ -1,0 +1,9 @@
+// Invert text color.
+%invert-color {
+    &,
+    a,
+    a:hover,
+    a:focus {
+        color: vs-colors(white);
+    }
+}

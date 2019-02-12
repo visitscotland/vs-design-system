@@ -1,0 +1,24 @@
+$vs-colors: (
+    black: #1d1d1b,
+    blue: #3082b4,
+    gray-dark: #39393b,
+    gray-mid: #595959,
+    gray-light: #929091,
+    gray-xlight: #e5e5e5,
+    gray-xxlight: #f5f6fa,
+    pink: #af006e,
+    purple: #700e57,
+    yellow: #fcca1b,
+    silver: #f5f6fa,
+    white: #fff
+);
+
+// SASS function
+@function vs-colors($key) {
+    @if map-has-key($vs-colors, $key) {
+        @return map-get($vs-colors, $key);
+    }
+
+    @error '"#{$key}" was not found.';
+}
+

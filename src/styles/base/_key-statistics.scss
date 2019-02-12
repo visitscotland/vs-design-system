@@ -1,0 +1,24 @@
+.key-statistics {
+    &__card {
+        text-align: center;
+
+        &__title {
+            font-size: vs-font-size(lg);
+            font-weight: $font-weight-bold;
+            color: vs-colors(purple);
+
+            @include media-breakpoint-up(md) {
+                font-size: vs-font-size(xxl);
+            }
+        }
+
+        &__image {
+            margin: 0 auto;
+            width: 50%;
+            padding-bottom: 30%;
+            background-position: 50% 50%;
+            background-size: contain;
+            background-repeat: no-repeat;
+        }
+    }
+}

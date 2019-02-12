@@ -1,0 +1,15 @@
+.skip-to-content {
+    outline: 0;
+
+    &__container {
+        background: vs-colors(purple);
+        text-align: center;
+        padding: vs-padding(xs) 0;
+    }
+
+    &__text {
+        color: vs-colors(white);
+        outline: 1px dotted vs-colors(white);
+        padding: 5px;
+    }
+}

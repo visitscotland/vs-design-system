@@ -1,0 +1,75 @@
+$site-logo-svg-size: (
+    sm-width:  66px,
+    sm-height:  100px,
+    lg-width:   554px,
+    lg-height:  100px
+);
+
+.site-logo {
+    display: block;
+
+    svg {
+        display: block;
+        width: 100%;
+        height: auto;
+    }
+
+    &__small {
+        fill: vs-colors(white);
+        color: transparent;
+    }
+
+    &__large {
+        fill: vs-colors(white);
+        color: transparent;
+    }
+
+    // site logo in header
+    &--header {
+        .site-logo__small {
+            fill: vs-colors(purple);
+            display: block;
+            width: 30px;
+        }
+
+        .site-logo__large {
+            fill: vs-colors(purple);
+            width: 200px;
+        }
+
+        @include media-breakpoint-up(lg) {
+            .site-logo__small {
+                display: none;
+            }
+
+            .site-logo__large {
+                width: 220px;
+                display: block;
+            }
+        }
+
+        @include media-breakpoint-up(xl) {
+            .site-logo__large {
+                width: 240px;
+            }
+        }
+    }
+
+    // site logo in footer
+    &--footer {
+        .site-logo__large {
+            width: 180px;
+            height: 32px;
+
+            @include media-breakpoint-up(md) {
+                width: 150px;
+                height: 27px;
+            }
+
+            @include media-breakpoint-up(lg) {
+                width: 180px;
+                height: 32px;
+            }
+        }
+    }
+}

@@ -1,0 +1,6 @@
+.site-base {
+    @extend %invert-color;
+
+    padding: 2rem 0;
+    background: lighten(vs-colors(black), 12%);
+}

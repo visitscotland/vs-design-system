@@ -1,0 +1,79 @@
+/* Features */
+
+$enable-rounded: false;
+$enable-shadows: false;
+$enable-gradients: false;
+$enable-transitions: false;
+
+/* Fonts */
+
+$font-family-sans-serif: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol' !default;
+$font-weight-light: 400;
+$font-weight-normal: 400;
+$font-weight-bold: 600;
+
+// font sizing
+$font-size-lg:   vs-font-size(md);
+$font-size-base: vs-font-size(xs);
+$font-size-sm:   vs-font-size(xxs);
+
+// heading font sizing
+$h1-font-size: vs-font-size(xxxl);
+$h2-font-size: vs-font-size(xxl);
+$h3-font-size: vs-font-size(xl);
+$h4-font-size: vs-font-size(lg);
+$h5-font-size: vs-font-size(md);
+$h6-font-size: vs-font-size(xs);
+
+// headings
+$headings-font-family: $font-family-sans-serif;
+$headings-font-weight: $font-weight-bold;
+
+/* Colors */
+
+$white:  vs-colors(white);
+$black:  vs-colors(black);
+
+$theme-colors: (
+    primary: vs-colors(pink),
+    secondary: vs-colors(purple),
+    success: #28a745,
+    info: #007bff,
+    warning: #ffc107,
+    danger: #dc3545,
+    light:  vs-colors(gray-light),
+    dark: vs-colors(gray-dark)
+);
+
+$body-color: vs-colors(black);
+
+/* Links */
+
+$link-color: vs-colors(pink);
+$link-decoration: none;
+$link-hover-color: vs-colors(black);
+$link-hover-decoration: none;
+
+/* Grid */
+
+$grid-columns:      12;
+$grid-gutter-width: 24px;
+
+$grid-breakpoints: (
+    xs: 0,
+    sm: 576px,
+    md: 768px,
+    lg: 992px,
+    xl: 1200px,
+    xxl:1400px
+);
+
+$container-max-widths: (
+    sm: 540px,
+    md: 720px,
+    lg: 960px,
+    xl: 1140px,
+    xxl:1340px
+);
+
+$form-group-margin-bottom: 2rem;
