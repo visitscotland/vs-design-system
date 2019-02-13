@@ -1,11 +1,27 @@
+@font-face {
+  font-family: "evelethclean-thin";
+  src: url(~@/assets/fonts/eveleth-clean-thin.woff2) format("woff2"),
+    url(~@/assets/fonts/eveleth-clean-thin.woff) format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
 %eveleth-thin {
-    font-family: 'evelethclean-thin', sans-serif, $font-family-sans-serif;
-    font-weight: normal;
-    letter-spacing: -0.03em;
+  font-family: "evelethclean-thin", sans-serif, $font-family-sans-serif;
+  font-weight: normal;
+  letter-spacing: -0.03em;
+}
+
+@font-face {
+  font-family: "evelethclean-regular";
+  src: url(~@/assets/fonts/eveleth-clean-regular.woff2) format("woff2"),
+    url(~@/assets/fonts/eveleth-clean-regular.woff) format("woff");
+  font-weight: normal;
+  font-style: normal;
 }
 
 %eveleth-regular {
-    font-family: 'evelethclean-regular', sans-serif, $font-family-sans-serif;
-    font-weight: normal;
-    letter-spacing: -0.03em;
+  font-family: "evelethclean-regular", sans-serif, $font-family-sans-serif;
+  font-weight: normal;
+  letter-spacing: -0.03em;
 }

@@ -3,521 +3,526 @@ $vs-list-item-enter: 500ms;
 $vs-list-item-enter-step: 75ms;
 
 .cards {
-    margin: 0 $grid-gutter-width * -0.5;
+  margin: 0 $grid-gutter-width * -0.5;
 
-    @include media-breakpoint-up(sm) {
-        display: flex;
-        flex-wrap: wrap;
-    }
+  @include media-breakpoint-up(sm) {
+    display: flex;
+    flex-wrap: wrap;
+  }
 
-    // narrow grid at lg size to prevent cards getting too wide.
-    @include media-breakpoint-only(lg) {
-        max-width: 752px;
-        margin: 0 auto;
+  // narrow grid at lg size to prevent cards getting too wide.
+  @include media-breakpoint-only(lg) {
+    max-width: 752px;
+    margin: 0 auto;
 
-        // don't narrow for masonry.
-        &--masonry {
-            max-width: 100%;
-        }
-    }
-
-    // 4 cards per row
-    &--x4 {
-        .card {
-            @include media-breakpoint-down(sm) {
-                max-width: 400px;
-            }
-
-            @include media-breakpoint-up(sm) {
-                margin-left: 0;
-                margin-right: 0;
-                width: calc(100% / 2);
-            }
-
-            @include media-breakpoint-up(xl) {
-                width: calc(100% / 4);
-            }
-        }
-    }
-
-    // Masonry style layout of cards (see also .card--masonry--link below).
+    // don't narrow for masonry.
     &--masonry {
-        flex-direction: column;
-        align-items: top;
+      max-width: 100%;
+    }
+  }
 
-        .card {
-            width: 100%;
-        }
+  // 4 cards per row
+  &--x4 {
+    .card {
+      @include media-breakpoint-down(sm) {
+        max-width: 400px;
+      }
 
-        @include media-breakpoint-only(md) {
-            .card {
-                width: calc(100% - #{$grid-gutter-width * 3});
+      @include media-breakpoint-up(sm) {
+        margin-left: 0;
+        margin-right: 0;
+        width: calc(100% / 2);
+      }
 
-                &:nth-child(odd) {
-                    left: $grid-gutter-width * 3;
-                }
-            }
-        }
+      @include media-breakpoint-up(xl) {
+        width: calc(100% / 4);
+      }
+    }
+  }
 
-        @include media-breakpoint-up(lg) {
-            flex-direction: row;
+  // Masonry style layout of cards (see also .card--masonry--link below).
+  &--masonry {
+    flex-direction: column;
+    align-items: top;
 
-            .card {
-                width: calc(100% / 2 - #{$grid-gutter-width * 1});
-
-                // masonry "brick work" effect.
-                &:nth-child(1),
-                &:nth-child(2),
-                &:nth-child(5),
-                &:nth-child(6),
-                &:nth-child(9),
-                &:nth-child(10) {
-                    left: $grid-gutter-width * 2;
-                }
-
-                // center the last item if it's an odd number of items.
-                &:nth-child(odd):last-child {
-                    left: 0;
-                    margin-left: auto;
-                    margin-right: auto;
-                }
-            }
-        }
-
-        @include media-breakpoint-up(xl) {
-            .card {
-                width: calc(100% / 2 - #{$grid-gutter-width * 2});
-
-                &:nth-child(1),
-                &:nth-child(2),
-                &:nth-child(5),
-                &:nth-child(6),
-                &:nth-child(9),
-                &:nth-child(10) {
-                    left: $grid-gutter-width * 4;
-                }
-            }
-        }
+    .card {
+      width: 100%;
     }
 
-    //contact list
-    &--contact {
-        @supports (animation: vs-list-items-enter) {
-            .card {
-                opacity: 0;
-                animation: vs-list-items-enter $vs-list-item-enter forwards;
-                animation-delay: $vs-list-item-enter-step * 12;
-                transform: scale3d(1, 1, 1);
+    @include media-breakpoint-only(md) {
+      .card {
+        width: calc(100% - #{$grid-gutter-width * 3});
 
-                @for $i from 1 to 12 {
-                    &:nth-child(#{$i}) {
-                        animation-delay: $vs-list-item-enter-step * $i;
-                    }
-                    $i: $i + 1;
-                }
-            }
+        &:nth-child(odd) {
+          left: $grid-gutter-width * 3;
         }
+      }
     }
+
+    @include media-breakpoint-up(lg) {
+      flex-direction: row;
+
+      .card {
+        width: calc(100% / 2 - #{$grid-gutter-width * 1});
+
+        // masonry "brick work" effect.
+        &:nth-child(1),
+        &:nth-child(2),
+        &:nth-child(5),
+        &:nth-child(6),
+        &:nth-child(9),
+        &:nth-child(10) {
+          left: $grid-gutter-width * 2;
+        }
+
+        // center the last item if it's an odd number of items.
+        &:nth-child(odd):last-child {
+          left: 0;
+          margin-left: auto;
+          margin-right: auto;
+        }
+      }
+    }
+
+    @include media-breakpoint-up(xl) {
+      .card {
+        width: calc(100% / 2 - #{$grid-gutter-width * 2});
+
+        &:nth-child(1),
+        &:nth-child(2),
+        &:nth-child(5),
+        &:nth-child(6),
+        &:nth-child(9),
+        &:nth-child(10) {
+          left: $grid-gutter-width * 4;
+        }
+      }
+    }
+  }
+
+  //contact list
+  &--contact {
+    @supports (animation: vs-list-items-enter) {
+      .card {
+        opacity: 0;
+        animation: vs-list-items-enter $vs-list-item-enter forwards;
+        animation-delay: $vs-list-item-enter-step * 12;
+        transform: scale3d(1, 1, 1);
+
+        @for $i from 1 to 12 {
+          &:nth-child(#{$i}) {
+            animation-delay: $vs-list-item-enter-step * $i;
+          }
+          $i: $i + 1;
+        }
+      }
+    }
+  }
 }
 
 // .card uses flexbox layout to maintain vertical height.
 .card {
+  display: block;
+  position: relative;
+  width: 100%;
+  margin: 0 auto $grid-gutter-width;
+  padding: 0 ($grid-gutter-width * 0.5);
+  user-select: none;
+
+  &__link {
     display: block;
-    position: relative;
-    width: 100%;
-    margin: 0 auto $grid-gutter-width;
-    padding: 0 ($grid-gutter-width * 0.5);
-    user-select: none;
+    color: vs-colors(black);
+    transition: all 175ms;
 
-    &__link {
-        display: block;
-        color: vs-colors(black);
-        transition: all 175ms;
+    &__image {
+      overflow: hidden;
+      position: relative;
+      width: 100%;
+      padding-bottom: 66%;
+      transform: translate3d(1, 1, 1);
 
-        &__image {
-            overflow: hidden;
-            position: relative;
-            width: 100%;
-            padding-bottom: 66%;
-            transform: translate3d(1, 1, 1);
+      &__background {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: vs-colors(gray-mid) url(~@/assets/images/placeholders/news-list-default.jpg)
+          no-repeat 50% 50%;
+        background-size: cover;
+        transition: all 350ms ease-in-out;
+      }
 
-            &__background {
-                position: absolute;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                background: vs-colors(gray-mid) url(../../images/placeholders/news-list-default.jpg) no-repeat 50% 50%;
-                background-size: cover;
-                transition: all 350ms ease-in-out;
-            }
+      &__overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          60deg,
+          lighten(vs-colors(blue), 10%),
+          desaturate(vs-colors(pink), 20%)
+        );
+        opacity: 0;
+        transition: all 350ms ease-in-out;
+      }
+    }
 
-            &__overlay {
-                position: absolute;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                background: linear-gradient(60deg, lighten(vs-colors(blue), 10%), desaturate(vs-colors(pink), 20%));
-                opacity: 0;
-                transition: all 350ms ease-in-out;
-            }
+    &:focus,
+    &:hover {
+      outline-color: vs-colors(pink);
+      box-shadow: 0 3px 7px rgba(vs-colors(black), 0.3);
+
+      .card__link__image {
+        &__background {
+          filter: grayscale(50%);
+          transform: scale3d(1.03, 1.03, 1.03);
+          opacity: 0.8;
         }
 
-        &:focus,
-        &:hover {
-            outline-color: vs-colors(pink);
-            box-shadow: 0 3px 7px rgba(vs-colors(black), 0.3);
+        &__overlay {
+          opacity: 0.5;
+        }
+      }
+    }
 
-            .card__link__image {
-                &__background {
-                    filter: grayscale(50%);
-                    transform: scale3d(1.03, 1.03, 1.03);
-                    opacity: 0.8;
-                }
+    &__content {
+      padding: $grid-gutter-width * 0.75;
+      padding-bottom: 0;
+    }
 
-                &__overlay {
-                    opacity: 0.5;
-                }
-            }
+    &__footer {
+      padding: $grid-gutter-width * 0.75;
+      padding-top: 0;
+
+      &__tags {
+        color: vs-colors(gray-mid);
+        font-size: vs-font-size(xxs);
+      }
+    }
+  }
+
+  @include media-breakpoint-up(sm) {
+    display: flex;
+    flex: 0 1 auto;
+    margin: 0 0 $grid-gutter-width;
+
+    &__link {
+      flex: 0 1 100%;
+      flex-direction: column;
+
+      &__content {
+        flex-grow: 0; // change to 1 to force footer down.
+      }
+    }
+  }
+
+  &--related-documents {
+    .card {
+      &__link {
+        @extend %card-style-white;
+
+        overflow: hidden;
+        border-radius: 0 0 $border-radius-lg $border-radius-lg;
+        color: vs-colors(black);
+
+        &__image {
+          border: 5px solid white;
         }
 
         &__content {
-            padding: $grid-gutter-width * 0.75;
-            padding-bottom: 0;
+          padding-top: $grid-gutter-width * 0.5;
+          padding-bottom: 0;
+
+          &__title {
+            font-size: vs-font-size(lg);
+
+            @include media-breakpoint-only(sm) {
+              font-size: vs-font-size(md);
+            }
+
+            @include media-breakpoint-only(xl) {
+              font-size: vs-font-size(md);
+            }
+          }
         }
 
         &__footer {
-            padding: $grid-gutter-width * 0.75;
-            padding-top: 0;
-
-            &__tags {
-                color: vs-colors(gray-mid);
-                font-size: vs-font-size(xxs);
-            }
+          padding-top: 0;
+          font-size: vs-font-size(xs);
         }
+      }
+    }
+  }
+
+  &--event {
+    .card {
+      &__link {
+        @extend %card-style-white;
+
+        position: relative;
+        border-radius: $border-radius-lg;
+
+        &__content {
+          &__date {
+            position: absolute;
+            top: $grid-gutter-width * 0.5;
+            right: -12px;
+            display: block;
+            width: 64px;
+            height: 64px;
+            padding-top: 0.6em;
+            text-align: center;
+            background: vs-colors(purple);
+            color: white;
+            box-shadow: 0 2px 7px rgba(black, 0.2);
+
+            &__day,
+            &__month {
+              display: block;
+              line-height: 1;
+            }
+
+            &__from {
+              line-height: 0.5;
+              display: block;
+              font-size: vs-font-size(xxs);
+            }
+
+            &__day {
+              font-size: vs-font-size(lg);
+              font-weight: bold;
+            }
+
+            &__month {
+              font-size: vs-font-size(sm);
+            }
+          }
+
+          &__title {
+            @extend .mb-2;
+
+            padding-right: $grid-gutter-width * 1.5;
+            font-size: vs-font-size(lg);
+          }
+
+          &__description {
+            @extend .mb-2;
+
+            padding-right: $grid-gutter-width * 1.5;
+            font-size: vs-font-size(xxs);
+            line-height: 1.3;
+          }
+
+          &__meta {
+            @extend .mb-4;
+
+            font-size: vs-font-size(xxs);
+            color: vs-colors(pink);
+
+            p {
+              margin: 0;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  &--news {
+    .card {
+      &__link {
+        @extend %card-style-white;
+
+        overflow: hidden;
+        border-radius: 0 0 $border-radius-lg $border-radius-lg;
+
+        &__image {
+          border: 5px solid white;
+        }
+
+        &__content {
+          &__date {
+            @extend .mb-2;
+
+            color: vs-colors(gray-mid);
+            font-size: vs-font-size(xxs);
+          }
+
+          &__title {
+            font-size: vs-font-size(lg);
+
+            @include media-breakpoint-only(sm) {
+              font-size: vs-font-size(md);
+            }
+
+            @include media-breakpoint-only(xl) {
+              font-size: vs-font-size(md);
+            }
+          }
+
+          &__summary {
+            @extend .mb-3;
+
+            font-size: vs-font-size(xxs);
+          }
+        }
+      }
+    }
+  }
+
+  &--masonry-link {
+    .card {
+      &__link {
+        @extend %card-style-white;
+
+        position: relative;
+        min-height: 12em;
+        border-radius: 0 $border-radius-lg $border-radius-lg 0;
+        color: vs-colors(black);
+
+        @include media-breakpoint-up(xl) {
+          min-height: 15em;
+        }
+
+        &__image {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 50%;
+          height: 100%;
+          padding-bottom: 0; // reset
+          border: 5px solid white;
+        }
+
+        &__content {
+          padding: $grid-gutter-width * 0.5;
+          padding-left: 50%;
+          padding-left: calc(50% + #{$grid-gutter-width / 2});
+
+          &__title {
+            font-size: vs-font-size(lg);
+          }
+
+          &__summary {
+            font-size: vs-font-size(xxs);
+          }
+
+          @include media-breakpoint-up(xl) {
+            padding-top: $grid-gutter-width * 1;
+
+            &__title {
+              font-size: vs-font-size(xl);
+            }
+
+            &__summary {
+              font-size: vs-font-size(xs);
+            }
+          }
+        }
+      }
     }
 
-    @include media-breakpoint-up(sm) {
+    // swap alignment of image within card.
+    @include media-breakpoint-up(lg) {
+      &:nth-child(2),
+      &:nth-child(3),
+      &:nth-child(6),
+      &:nth-child(7),
+      &:nth-child(10) {
+        .card__link {
+          border-radius: $border-radius-lg 0 0 $border-radius-lg;
+
+          &__image {
+            left: auto;
+            right: 0;
+          }
+
+          &__content {
+            padding-left: $grid-gutter-width * 1;
+            padding-right: 50%;
+            padding-right: calc(50% + #{$grid-gutter-width / 2});
+          }
+        }
+      }
+    }
+  }
+
+  &--contact {
+    .card {
+      margin: 0;
+
+      &__container {
+        @extend %card-style-white;
+
         display: flex;
-        flex: 0 1 auto;
-        margin: 0 0 $grid-gutter-width;
+        flex-basis: 100%;
+        width: 100%;
+        position: relative;
+        padding: 60px vs-padding(sm) vs-padding(sm);
+        margin-top: 80px;
+        margin-left: auto;
+        margin-right: auto;
+        text-align: center;
+        flex-direction: column;
+      }
 
-        &__link {
-            flex: 0 1 100%;
-            flex-direction: column;
+      &__image {
+        background-color: vs-colors(gray-light);
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: 50% 50%;
+        border-radius: 50%;
+        position: absolute;
+        top: -25%;
+        left: calc(50% - 60px);
+        width: 120px;
+        height: 120px;
+        padding-bottom: 0;
+      }
 
-            &__content {
-                flex-grow: 0; // change to 1 to force footer down.
-            }
+      &__name {
+        font-size: vs-font-size(md);
+      }
+
+      &__jobtitle {
+        margin: 0;
+        color: vs-color(gray-light);
+        font-size: vs-font-size(xxs);
+      }
+
+      &__department {
+        margin-bottom: 0.66em;
+        font-size: vs-font-size(xxs);
+        flex-grow: 1;
+      }
+
+      &__address {
+        p {
+          margin: 0;
         }
+      }
     }
 
-    &--related-documents {
-        .card {
-            &__link {
-                @extend %card-style-white;
-
-                overflow: hidden;
-                border-radius: 0 0 $border-radius-lg $border-radius-lg;
-                color: vs-colors(black);
-
-                &__image {
-                    border: 5px solid white;
-                }
-
-                &__content {
-                    padding-top: $grid-gutter-width * 0.5;
-                    padding-bottom: 0;
-
-                    &__title {
-                        font-size: vs-font-size(lg);
-
-                        @include media-breakpoint-only(sm) {
-                            font-size: vs-font-size(md);
-                        }
-
-                        @include media-breakpoint-only(xl) {
-                            font-size: vs-font-size(md);
-                        }
-                    }
-                }
-
-                &__footer {
-                    padding-top: 0;
-                    font-size: vs-font-size(xs);
-                }
-            }
-        }
+    .button {
+      width: 100%;
+      max-width: 300px;
+      margin-left: auto;
+      margin-right: auto;
+      text-align: left;
     }
-
-    &--event {
-        .card {
-            &__link {
-                @extend %card-style-white;
-
-                position: relative;
-                border-radius: $border-radius-lg;
-
-                &__content {
-                    &__date {
-                        position: absolute;
-                        top: $grid-gutter-width * 0.5;
-                        right: -12px;
-                        display: block;
-                        width: 64px;
-                        height: 64px;
-                        padding-top: 0.6em;
-                        text-align: center;
-                        background: vs-colors(purple);
-                        color: white;
-                        box-shadow: 0 2px 7px rgba(black, 0.2);
-
-                        &__day,
-                        &__month {
-                            display: block;
-                            line-height: 1;
-                        }
-
-                        &__from {
-                            line-height: 0.5;
-                            display: block;
-                            font-size: vs-font-size(xxs);
-                        }
-
-                        &__day {
-                            font-size: vs-font-size(lg);
-                            font-weight: bold;
-                        }
-
-                        &__month {
-                            font-size: vs-font-size(sm);
-                        }
-                    }
-
-                    &__title {
-                        @extend .mb-2;
-
-                        padding-right: $grid-gutter-width * 1.5;
-                        font-size: vs-font-size(lg);
-                    }
-
-                    &__description {
-                        @extend .mb-2;
-
-                        padding-right: $grid-gutter-width * 1.5;
-                        font-size: vs-font-size(xxs);
-                        line-height: 1.3;
-                    }
-
-                    &__meta {
-                        @extend .mb-4;
-
-                        font-size: vs-font-size(xxs);
-                        color: vs-colors(pink);
-
-                        p {
-                            margin: 0;
-                        }
-                    }
-                }
-            }
-        }
-    }
-
-    &--news {
-        .card {
-            &__link {
-                @extend %card-style-white;
-
-                overflow: hidden;
-                border-radius: 0 0 $border-radius-lg $border-radius-lg;
-
-                &__image {
-                    border: 5px solid white;
-                }
-
-                &__content {
-                    &__date {
-                        @extend .mb-2;
-
-                        color: vs-colors(gray-mid);
-                        font-size: vs-font-size(xxs);
-                    }
-
-                    &__title {
-                        font-size: vs-font-size(lg);
-
-                        @include media-breakpoint-only(sm) {
-                            font-size: vs-font-size(md);
-                        }
-
-                        @include media-breakpoint-only(xl) {
-                            font-size: vs-font-size(md);
-                        }
-                    }
-
-                    &__summary {
-                        @extend .mb-3;
-
-                        font-size: vs-font-size(xxs);
-                    }
-                }
-            }
-        }
-    }
-
-    &--masonry-link {
-        .card {
-            &__link {
-                @extend %card-style-white;
-
-                position: relative;
-                min-height: 12em;
-                border-radius: 0 $border-radius-lg $border-radius-lg 0;
-                color: vs-colors(black);
-
-                @include media-breakpoint-up(xl) {
-                    min-height: 15em;
-                }
-
-                &__image {
-                    position: absolute;
-                    top: 0;
-                    left: 0;
-                    width: 50%;
-                    height: 100%;
-                    padding-bottom: 0; // reset
-                    border: 5px solid white;
-                }
-
-                &__content {
-                    padding: $grid-gutter-width * 0.5;
-                    padding-left: 50%;
-                    padding-left: calc(50% + #{$grid-gutter-width / 2});
-
-                    &__title {
-                        font-size: vs-font-size(lg);
-                    }
-
-                    &__summary {
-                        font-size: vs-font-size(xxs);
-                    }
-
-                    @include media-breakpoint-up(xl) {
-                        padding-top: $grid-gutter-width * 1;
-
-                        &__title {
-                            font-size: vs-font-size(xl);
-                        }
-
-                        &__summary {
-                            font-size: vs-font-size(xs);
-                        }
-                    }
-                }
-            }
-        }
-
-        // swap alignment of image within card.
-        @include media-breakpoint-up(lg) {
-            &:nth-child(2),
-            &:nth-child(3),
-            &:nth-child(6),
-            &:nth-child(7),
-            &:nth-child(10) {
-                .card__link {
-                    border-radius: $border-radius-lg 0 0 $border-radius-lg;
-
-                    &__image {
-                        left: auto;
-                        right: 0;
-                    }
-
-                    &__content {
-                        padding-left: $grid-gutter-width * 1;
-                        padding-right: 50%;
-                        padding-right: calc(50% + #{$grid-gutter-width / 2});
-                    }
-                }
-            }
-        }
-    }
-
-    &--contact {
-        .card {
-            margin: 0;
-
-            &__container {
-                @extend %card-style-white;
-
-                display: flex;
-                flex-basis: 100%;
-                width: 100%;
-                position: relative;
-                padding: 60px vs-padding(sm) vs-padding(sm);
-                margin-top: 80px;
-                margin-left: auto;
-                margin-right: auto;
-                text-align: center;
-                flex-direction: column;
-            }
-
-            &__image {
-                background-color: vs-colors(gray-light);
-                background-repeat: no-repeat;
-                background-size: cover;
-                background-position: 50% 50%;
-                border-radius: 50%;
-                position: absolute;
-                top: -25%;
-                left: calc(50% - 60px);
-                width: 120px;
-                height: 120px;
-                padding-bottom: 0;
-            }
-
-            &__name {
-                font-size: vs-font-size(md);
-            }
-
-            &__jobtitle {
-                margin: 0;
-                color: vs-color(gray-light);
-                font-size: vs-font-size(xxs);
-            }
-
-            &__department {
-                margin-bottom: 0.66em;
-                font-size: vs-font-size(xxs);
-                flex-grow: 1;
-            }
-
-            &__address {
-                p {
-                    margin: 0;
-                }
-            }
-        }
-
-        .button {
-            width: 100%;
-            max-width: 300px;
-            margin-left: auto;
-            margin-right: auto;
-            text-align: left;
-        }
-    }
+  }
 }
 
 @keyframes vs-list-items-enter {
-    0% {
-        opacity: 0;
-        transform: translateY(10px) scale3d(0.95, 0.95, 0.95);
-    }
+  0% {
+    opacity: 0;
+    transform: translateY(10px) scale3d(0.95, 0.95, 0.95);
+  }
 
-    100% {
-        opacity: 1;
-        transform: translateY(0) scale3d(1, 1, 1);
-    }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale3d(1, 1, 1);
+  }
 }

@@ -10,6 +10,5 @@ WebFont.load({
   },
   custom: {
     families: ["evelethclean-thin", "evelethclean-regular"],
-    urls: [ "/assets/fonts/fonts.css" ]
-  }
+  },
 })
