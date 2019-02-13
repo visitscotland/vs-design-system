@@ -65,7 +65,7 @@ module.exports = {
       },
       {
         test: /\.svg$/,
-        loader: "html-loader",
+        loader: "svg-url-loader",
       },
       {
         test: /\.(mp4|webm|ogg|mp3|wav|flac|aac)(\?.*)?$/,
