@@ -1,7 +1,7 @@
 {
-  "name": "vuematic",
+  "name": "tartan-ds",
   "version": "0.0.1",
-  "description": "Design system based on Vue Design System",
+  "description": "Tartan Design System (VisitScotland)",
   "author": "ljelewis",
   "main": "dist/system/system.js",
   "files": [
