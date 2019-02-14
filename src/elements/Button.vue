@@ -1,6 +1,13 @@
 <template>
-  <component :is="type" :href="href" :type="submit" :class="['button', size, state, variation]">
-    <slot/>
+  <component
+    :is="type"
+    :href="href"
+    :type="typeString"
+    :class="['button', state, variationClass, iconAlignClass]"
+    :disabled="disabled"
+  >
+    <slot /> <i v-if="icon" :class="['icon', 'icon-' + icon]"></i>
+    <i v-if="variation === 'dropdown'" class="icon icon-chevron-down"></i>
   </component>
 </template>
 
@@ -26,17 +33,7 @@ export default {
         return value.match(/(button|a)/)
       },
     },
-    /**
-     * The size of the button. Defaults to medium.
-     * `small, medium, large`
-     */
-    size: {
-      type: String,
-      default: "medium",
-      validator: value => {
-        return value.match(/(small|medium|large)/)
-      },
-    },
+
     /**
      * When setting the button’s type to a link, use this option to give a href.
      */
@@ -48,11 +45,7 @@ export default {
      * Set the button’s type to “submit”.
      */
     submit: {
-      type: String,
-      default: null,
-      validator: value => {
-        return value.match(/(null|submit)/)
-      },
+      type: Boolean,
     },
     /**
      * Manually trigger various states of the button.
@@ -73,101 +66,204 @@ export default {
       type: String,
       default: null,
       validator: value => {
-        return value.match(/(primary|secondary)/)
+        return value.match(/(primary|dropdown|tag|keyline|keyline-white)/)
       },
+    },
+    /**
+     * Whether button is disabled.
+     */
+    disabled: {
+      type: Boolean,
+    },
+    /**
+     * Icon class.
+     *
+     */
+    icon: {
+      type: String,
+      default: null,
+    },
+    /**
+     * Icon left or right.
+     * `left, right`
+     */
+    iconAlign: {
+      type: String,
+      default: null,
+      validator: value => {
+        return value.match(/(left|right)/)
+      },
+    },
+  },
+  computed: {
+    variationClass: function() {
+      return "button--" + (this.variation || "primary")
+    },
+    iconAlignClass: function() {
+      if (this.icon) {
+        return "button--icon-" + (this.iconAlign || "left")
+      }
+
+      return null
+    },
+    typeString: function() {
+      if (this.type === "button") {
+        return this.submit ? "submit" : "button"
+      }
+
+      return null
     },
   },
 }
 </script>
 
 <style lang="scss" scoped>
-.button {
-  @include reset;
-  @include stack-space($space-m);
-  @include inline-space($space-xs);
-  will-change: transform;
-  transition: all 0.2s ease;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  font-weight: $weight-semi-bold;
-  font-size: $size-m;
-  font-family: $font-text;
-  line-height: $line-height-m;
-  text-decoration: none;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  border: 0;
-  box-shadow: inset 0 0 0 2px $color-bleu-de-france;
-  border-radius: $radius-default;
-  background: transparent;
-  color: $color-bleu-de-france;
+%button,
+a.button,
+button.button {
+  display: inline-block;
+  position: relative;
+  padding: 0.5em 1em;
+  border: 2px solid vs-colors(pink);
+  border-radius: 1000px;
+  background: vs-colors(pink);
+  color: white;
+  font-weight: $font-weight-bold;
   cursor: pointer;
-  &:hover,
-  &.hover {
-    color: $color-white;
-    background: $color-bleu-de-france;
-    transform: translateZ(0) scale(1.03);
-  }
-  &:active,
-  &.active {
-    transition: none;
-    background: $color-bleu-de-france-dark;
-    box-shadow: none;
-    color: $color-white;
-    transform: translateZ(0) scale(1);
-  }
+  user-select: none;
 
+  %button:hover,
   &:focus,
+  &:hover,
+  &.hover,
   &.focus {
-    background: $color-bleu-de-france-darker;
+    background: darken(vs-colors(pink), 8%);
+    border-color: darken(vs-colors(pink), 8%);
+    color: white;
+  }
+
+  &:focus {
+    outline: none;
+  }
+
+  &[disabled] {
+    opacity: 0.5;
+    cursor: default;
+    pointer-events: none;
+    filter: grayscale(100%);
+  }
+
+  %button--keyline,
+  &--keyline {
+    background: transparent;
+    color: vs-colors(pink);
+    border-color: vs-colors(pink);
+
+    &:focus,
+    &:hover {
+      background: transparent;
+      color: vs-colors(black);
+      border-color: vs-colors(black);
+    }
+  }
+
+  %button--keyline-white,
+  &--keyline-white {
+    background: transparent;
+    color: white;
+    border-color: white;
+
+    &:focus,
+    &:hover {
+      background: white;
+      color: vs-colors(gray-dark);
+      border-color: white;
+    }
+  }
+
+  %button--icon-left,
+  &--icon-left {
+    padding-left: 2.25em;
+
+    .icon {
+      position: absolute;
+      top: 50%;
+      margin-top: -0.5em;
+      left: 0.75em;
+      line-height: 1;
+    }
+  }
+
+  %button--icon-right,
+  &--icon-right {
+    padding-right: 2.25em;
+
+    .icon {
+      position: absolute;
+      top: 50%;
+      margin-top: -0.5em;
+      right: 0.75em;
+      line-height: 1;
+    }
+  }
+
+  &--dropdown {
+    @extend %button--icon-right;
+
+    border-radius: $border-radius-lg;
+    border-width: 1px;
+    border-color: vs-colors(gray-light);
+    color: vs-colors(gray-mid);
+    background: rgba(vs-colors(white), 0.8);
+
+    &:focus,
+    &:hover {
+      border-color: vs-colors(pink);
+      color: vs-colors(pink);
+      background: rgba(vs-colors(white), 1);
+    }
+  }
+
+  &--tag {
+    border: none;
+    background: vs-colors(gray-xlight);
+    color: vs-colors(black);
+    border-radius: $border-radius;
+
+    &:focus,
+    &:hover {
+      background: darken(vs-colors(gray-xlight), 5%);
+      color: vs-colors(black);
+    }
+  }
+}
+
+.button-menu {
+  @extend %button;
+
+  border-radius: 0;
+  border: 1px solid vs-colors(purple);
+  background: vs-colors(white);
+  color: vs-colors(purple);
+  cursor: pointer;
+
+  &:hover,
+  &:focus {
+    border: 1px solid vs-colors(purple);
+    background: vs-colors(white);
+    color: vs-colors(purple);
     box-shadow: none;
-    color: $color-white;
-    transform: translateZ(0) scale(1);
-    outline: 0;
   }
 
-  // For icons inside buttons
-  .icon {
-    float: right;
-    margin: -#{$space-xs} -#{$space-xs} -#{$space-s} $space-xs/2;
-    color: $color-bleu-de-france;
-  }
-
-  // Various button sizes
-  &.large {
-    @include inset-squish-space($space-s);
-    font-size: $size-l;
-  }
-  &.medium {
-    @include inset-squish-space($space-s);
-    font-size: $size-m;
-  }
-  &.small {
-    @include inset-squish-space($space-xs);
-    font-size: $size-s;
-  }
-
-  // Primary button
-  &.primary {
-    background: $color-bleu-de-france;
-    color: $color-white;
+  &--active,
+  &--active:hover,
+  &--active:focus {
+    border: 1px solid vs-colors(purple);
+    background: vs-colors(purple);
+    color: vs-colors(white);
     box-shadow: none;
-    &:hover,
-    &.hover {
-      background-color: shade($color-bleu-de-france, 12%);
-    }
-    &:active,
-    &.active {
-      background-color: shade($color-bleu-de-france, 20%);
-      transition: none;
-    }
-    &:focus {
-      outline: 0;
-    }
-    .user-is-tabbing &:focus,
-    &.focus {
-    }
+    padding-bottom: vs-padding(md);
+    right: 0;
   }
 }
 </style>
@@ -175,14 +271,39 @@ export default {
 <docs>
   ```jsx
   <div>
-    <Button variation="primary" size="large">Primary Button</Button>
-    <Button variation="primary" size="medium">Medium</Button>
-    <Button variation="primary" size="small">Small</Button>
-    <br />
-    <Button>Default Button</Button>
-    <Button state="hover">:hover</Button>
-    <Button state="active">:active</Button>
-    <Button state="focus">:focus</Button>
+    <div class="row mb-4">
+      <Button variation="primary" class="mr-4">Default</Button>
+
+      <Button variation="dropdown" class="mr-4">variation="dropdown"</Button>
+
+      <Button variation="tag" class="mr-4">variation="tag"</Button>
+
+      <Button variation="keyline" class="mr-4">variation="keyline"</Button>
+
+      <div class="card bg-dark p-2 mt-2 mb-0">
+        <Button variation="keyline-white" class="mr-4">variation="keyline-white"</Button>
+      </div>
+    </div>
+    <div class="row mb-4">
+      <Button icon="arrow-left" class="mr-4">icon="x"</Button>
+
+      <Button icon="arrow-right" icon-align="right" class="mr-4">icon="x" icon-align="right"</Button>
+    </div>
+    <div class="row mb-4">
+      <Button state="hover" class="mr-4">state="hover"</Button>
+
+      <Button state="focus">state="focus"</Button>
+    </div>
+    <div class="row mb-4">
+      <Button disabled class="mr-4">disabled</Button>
+    </div>
+    <div class="row mb-4">
+      <Button type="button" class="mr-4">type="button"</Button>
+      <Button type="a" class="mr-4" href="https://visitscotland.com">type="a"</Button>
+    </div>
+    <div class="row mb-4">
+      <Button submit class="mr-4">submit</Button>
+    </div>
   </div>
   ```
 </docs>
