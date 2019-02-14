@@ -8,7 +8,7 @@ module.exports = {
   /**
    * Name of your design system. Changes both page title and sidebar logo.
    */
-  title: "Vue Design System",
+  title: "Thistle Design System (VisitScotland)",
   /**
    * Most of the styles are defined in /docs/docs.styles.scss
    */
@@ -84,6 +84,13 @@ module.exports = {
         "../docs/components/tokens/Spacing.vue",
         "../docs/components/tokens/All.vue",
       ],
+    },
+    {
+      name: "Logos",
+      content: "../docs/logos.md",
+      sectionDepth: 1,
+      exampleMode: "hide",
+      usageMode: "hide",
     },
     {
       name: "Elements",
