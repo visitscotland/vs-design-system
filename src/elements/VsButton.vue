@@ -18,7 +18,7 @@
  * Primary style should be used only once per view for main call-to-action.
  */
 export default {
-  name: "Button",
+  name: "VsButton",
   status: "prototype",
   release: "3.5.0",
   props: {
@@ -272,37 +272,37 @@ button.button {
   ```jsx
   <div>
     <div class="row mb-4">
-      <Button variation="primary" class="mr-4">Default</Button>
+      <vs-button variation="primary" class="mr-4">Default</vs-button>
 
-      <Button variation="dropdown" class="mr-4">variation="dropdown"</Button>
+      <vs-button variation="dropdown" class="mr-4">variation="dropdown"</vs-button>
 
-      <Button variation="tag" class="mr-4">variation="tag"</Button>
+      <vs-button variation="tag" class="mr-4">variation="tag"</vs-button>
 
-      <Button variation="keyline" class="mr-4">variation="keyline"</Button>
+      <vs-button variation="keyline" class="mr-4">variation="keyline"</vs-button>
 
       <div class="card bg-dark p-2 mt-2 mb-0">
-        <Button variation="keyline-white" class="mr-4">variation="keyline-white"</Button>
+        <vs-button variation="keyline-white" class="mr-4">variation="keyline-white"</vs-button>
       </div>
     </div>
     <div class="row mb-4">
-      <Button icon="arrow-left" class="mr-4">icon="x"</Button>
+      <vs-button icon="arrow-left" class="mr-4">icon="x"</vs-button>
 
-      <Button icon="arrow-right" icon-align="right" class="mr-4">icon="x" icon-align="right"</Button>
+      <vs-button icon="arrow-right" icon-align="right" class="mr-4">icon="x" icon-align="right"</vs-button>
     </div>
     <div class="row mb-4">
-      <Button state="hover" class="mr-4">state="hover"</Button>
+      <vs-button state="hover" class="mr-4">state="hover"</vs-button>
 
-      <Button state="focus">state="focus"</Button>
+      <vs-button state="focus">state="focus"</vs-button>
     </div>
     <div class="row mb-4">
-      <Button disabled class="mr-4">disabled</Button>
+      <vs-button disabled class="mr-4">disabled</vs-button>
     </div>
     <div class="row mb-4">
-      <Button type="button" class="mr-4">type="button"</Button>
-      <Button type="a" class="mr-4" href="https://visitscotland.com">type="a"</Button>
+      <vs-button type="button" class="mr-4">type="button"</vs-button>
+      <vs-button type="a" class="mr-4" href="https://visitscotland.com">type="a"</vs-button>
     </div>
     <div class="row mb-4">
-      <Button submit class="mr-4">submit</Button>
+      <vs-button submit class="mr-4">submit</vs-button>
     </div>
   </div>
   ```

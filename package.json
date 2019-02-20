@@ -1,7 +1,7 @@
 {
-  "name": "tartan-ds",
+  "name": "thistle-ds",
   "version": "0.0.1",
-  "description": "Tartan Design System (VisitScotland)",
+  "description": "Thistle Design System",
   "author": "ljelewis",
   "main": "dist/system/system.js",
   "files": [
