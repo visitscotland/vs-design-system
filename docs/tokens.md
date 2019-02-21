@@ -2,7 +2,7 @@
 
 You’re looking at VisitScotland's <code>design tokens</code>.
 
-## Color Palette
+## Color Palettes
 
 ```
 <color />
