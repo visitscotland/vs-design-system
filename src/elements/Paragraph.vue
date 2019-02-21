@@ -1,7 +1,5 @@
 <template>
-  <component :is="type" :class="['paragraph', variation]">
-    <slot/>
-  </component>
+  <component :is="type" :class="['paragraph', variation]"> <slot /> </component>
 </template>
 
 <script>
@@ -46,7 +44,7 @@ export default {
   font-family: $font-text;
   font-weight: $weight-normal;
   line-height: $line-height-m;
-  color: shade($color-silver, 70%);
+  color: shade($color_silver_surf, 70%);
   a {
     color: $color-bleu-de-france;
     text-decoration: none;

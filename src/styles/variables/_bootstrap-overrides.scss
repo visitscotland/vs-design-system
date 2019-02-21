@@ -7,15 +7,16 @@ $enable-transitions: false;
 
 /* Fonts */
 
-$font-family-sans-serif: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol' !default;
+$font-family-sans-serif: "Source Sans Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+  "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol" !default;
 $font-weight-light: 400;
 $font-weight-normal: 400;
 $font-weight-bold: 600;
 
 // font sizing
-$font-size-lg:   vs-font-size(md);
+$font-size-lg: vs-font-size(md);
 $font-size-base: vs-font-size(xs);
-$font-size-sm:   vs-font-size(xxs);
+$font-size-sm: vs-font-size(xxs);
 
 // heading font sizing
 $h1-font-size: vs-font-size(xxxl);
@@ -31,49 +32,42 @@ $headings-font-weight: $font-weight-bold;
 
 /* Colors */
 
-$white:  vs-colors(white);
-$black:  vs-colors(black);
+$white: $color_white;
+$black: $color_total_eclipse;
 
 $theme-colors: (
-    primary: vs-colors(pink),
-    secondary: vs-colors(purple),
-    success: #28a745,
-    info: #007bff,
-    warning: #ffc107,
-    danger: #dc3545,
-    light:  vs-colors(gray-light),
-    dark: vs-colors(gray-dark)
+  primary: $color_heather_pink,
+  secondary: $color_thistle_purple,
+  success: #28a745,
+  info: #007bff,
+  warning: #ffc107,
+  danger: #dc3545,
+  light: $color_mid_granite,
+  dark: $color_dreich_gray,
 );
 
-$body-color: vs-colors(black);
-
+$body-color: $color_total_eclipse;
 /* Links */
-
-$link-color: vs-colors(pink);
+$link-color: $color_heather_pink;
 $link-decoration: none;
-$link-hover-color: vs-colors(black);
+$link-hover-color: $color_total_eclipse;
 $link-hover-decoration: none;
-
 /* Grid */
-
-$grid-columns:      12;
+$grid-columns: 12;
 $grid-gutter-width: 24px;
-
 $grid-breakpoints: (
-    xs: 0,
-    sm: 576px,
-    md: 768px,
-    lg: 992px,
-    xl: 1200px,
-    xxl:1400px
+  xs: 0,
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px,
+  xxl: 1400px,
 );
-
 $container-max-widths: (
-    sm: 540px,
-    md: 720px,
-    lg: 960px,
-    xl: 1140px,
-    xxl:1340px
+  sm: 540px,
+  md: 720px,
+  lg: 960px,
+  xl: 1140px,
+  xxl: 1340px,
 );
-
 $form-group-margin-bottom: 2rem;

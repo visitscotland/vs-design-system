@@ -1,7 +1,7 @@
 .content-quote {
   border-left: 5px solid transparent;
   border-image: url(~@/assets/images/background/tartan-light.jpg) 30;
-  color: vs-colors(gray-mid);
+  color: $color_dark_granite;
   font-size: vs-font-size(sm);
   padding: vs-padding(xs) vs-padding(sm);
 
@@ -10,7 +10,7 @@
   }
 
   footer {
-    color: vs-colors(purple);
+    color: $color_thistle_purple;
     font-weight: $font-weight-bold;
     font-size: vs-font-size(xs);
 

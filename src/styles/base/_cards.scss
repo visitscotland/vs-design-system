@@ -131,7 +131,7 @@ $vs-list-item-enter-step: 75ms;
 
   &__link {
     display: block;
-    color: vs-colors(black);
+    color: $color_total_eclipse;
     transition: all 175ms;
 
     &__image {
@@ -147,7 +147,7 @@ $vs-list-item-enter-step: 75ms;
         left: 0;
         width: 100%;
         height: 100%;
-        background: vs-colors(gray-mid) url(~@/assets/images/placeholders/news-list-default.jpg)
+        background: $color_dark_granite url(~@/assets/images/placeholders/news-list-default.jpg)
           no-repeat 50% 50%;
         background-size: cover;
         transition: all 350ms ease-in-out;
@@ -161,8 +161,8 @@ $vs-list-item-enter-step: 75ms;
         height: 100%;
         background: linear-gradient(
           60deg,
-          lighten(vs-colors(blue), 10%),
-          desaturate(vs-colors(pink), 20%)
+          lighten($color_skye_blue, 10%),
+          desaturate($color_heather_pink, 20%)
         );
         opacity: 0;
         transition: all 350ms ease-in-out;
@@ -171,8 +171,8 @@ $vs-list-item-enter-step: 75ms;
 
     &:focus,
     &:hover {
-      outline-color: vs-colors(pink);
-      box-shadow: 0 3px 7px rgba(vs-colors(black), 0.3);
+      outline-color: $color_heather_pink;
+      box-shadow: 0 3px 7px rgba($color_total_eclipse, 0.3);
 
       .card__link__image {
         &__background {
@@ -197,7 +197,7 @@ $vs-list-item-enter-step: 75ms;
       padding-top: 0;
 
       &__tags {
-        color: vs-colors(gray-mid);
+        color: $color_dark_granite;
         font-size: vs-font-size(xxs);
       }
     }
@@ -225,7 +225,7 @@ $vs-list-item-enter-step: 75ms;
 
         overflow: hidden;
         border-radius: 0 0 $border-radius-lg $border-radius-lg;
-        color: vs-colors(black);
+        color: $color_total_eclipse;
 
         &__image {
           border: 5px solid white;
@@ -274,7 +274,7 @@ $vs-list-item-enter-step: 75ms;
             height: 64px;
             padding-top: 0.6em;
             text-align: center;
-            background: vs-colors(purple);
+            background: $color_thistle_purple;
             color: white;
             box-shadow: 0 2px 7px rgba(black, 0.2);
 
@@ -319,7 +319,7 @@ $vs-list-item-enter-step: 75ms;
             @extend .mb-4;
 
             font-size: vs-font-size(xxs);
-            color: vs-colors(pink);
+            color: $color_heather_pink;
 
             p {
               margin: 0;
@@ -346,7 +346,7 @@ $vs-list-item-enter-step: 75ms;
           &__date {
             @extend .mb-2;
 
-            color: vs-colors(gray-mid);
+            color: $color_dark_granite;
             font-size: vs-font-size(xxs);
           }
 
@@ -380,7 +380,7 @@ $vs-list-item-enter-step: 75ms;
         position: relative;
         min-height: 12em;
         border-radius: 0 $border-radius-lg $border-radius-lg 0;
-        color: vs-colors(black);
+        color: $color_total_eclipse;
 
         @include media-breakpoint-up(xl) {
           min-height: 15em;
@@ -469,7 +469,7 @@ $vs-list-item-enter-step: 75ms;
       }
 
       &__image {
-        background-color: vs-colors(gray-light);
+        background-color: $color_mid_granite;
         background-repeat: no-repeat;
         background-size: cover;
         background-position: 50% 50%;

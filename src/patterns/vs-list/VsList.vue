@@ -313,7 +313,7 @@ $vs-list-item-enter-step: 75ms;
   &__no-results {
     margin-bottom: 3em;
     padding: 3em;
-    background: rgba(vs-colors(gray-light), 0.075);
+    background: rgba($color_mid_granite, 0.075);
     border-radius: $border-radius;
   }
 
@@ -393,12 +393,12 @@ $vs-list-item-enter-step: 75ms;
   }
 
   &__prev a {
-    border: 1px solid vs-colors(gray-mid);
+    border: 1px solid $color_dark_granite;
 
     &:focus,
     &:hover {
-      border-color: vs-colors(pink);
-      background: vs-colors(pink);
+      border-color: $color_heather_pink;
+      background: $color_heather_pink;
       color: white;
     }
 
@@ -409,11 +409,11 @@ $vs-list-item-enter-step: 75ms;
 
   &__link a {
     border: 1px solid transparent;
-    color: vs-colors(gray-mid);
+    color: $color_dark_granite;
 
     &:focus,
     &:hover {
-      background: vs-colors(gray-light);
+      background: $color_mid_granite;
       color: white;
     }
   }
@@ -422,23 +422,23 @@ $vs-list-item-enter-step: 75ms;
     &,
     &:focus,
     &:hover {
-      border-color: vs-colors(pink);
-      background: vs-colors(pink);
+      border-color: $color_heather_pink;
+      background: $color_heather_pink;
       color: white;
     }
   }
 
   &__next a {
-    border-color: vs-colors(pink);
-    background: vs-colors(pink);
+    border-color: $color_heather_pink;
+    background: $color_heather_pink;
     color: white;
     padding-left: 0.75em;
     padding-right: 2em;
 
     &:focus,
     &:hover {
-      border-color: vs-colors(pink);
-      background: vs-colors(pink);
+      border-color: $color_heather_pink;
+      background: $color_heather_pink;
       color: white;
     }
 

@@ -1,5 +1,5 @@
 <template>
-  <component :is="wrapper" :class="['input', {'input-expand': width === 'expand'}]">
+  <component :is="wrapper" :class="['input', { 'input-expand': width === 'expand' }]">
     <label :for="id" v-if="label">{{ label }}</label>
     <input
       :id="id"
@@ -10,7 +10,7 @@
       :placeholder="placeholder"
       @input="onInput($event.target.value)"
       @focus="onFocus($event.target.value)"
-    >
+    />
   </component>
 </template>
 
@@ -119,7 +119,7 @@ export default {
 
 <style lang="scss" scoped>
 // Design Tokens with local scope
-$color-placeholder: tint($color-silver, 50%);
+$color-placeholder: tint($color_silver_surf, 50%);
 
 .input {
   @include stack-space($space-s);
@@ -188,7 +188,6 @@ $color-placeholder: tint($color-silver, 50%);
   }
 }
 </style>
-
 
 <docs>
   ```jsx

@@ -124,9 +124,9 @@ button.button {
   display: inline-block;
   position: relative;
   padding: 0.5em 1em;
-  border: 2px solid vs-colors(pink);
+  border: 2px solid $color_heather_pink;
   border-radius: 1000px;
-  background: vs-colors(pink);
+  background: $color_heather_pink;
   color: white;
   font-weight: $font-weight-bold;
   cursor: pointer;
@@ -137,8 +137,8 @@ button.button {
   &:hover,
   &.hover,
   &.focus {
-    background: darken(vs-colors(pink), 8%);
-    border-color: darken(vs-colors(pink), 8%);
+    background: darken($color_heather_pink, 8%);
+    border-color: darken($color_heather_pink, 8%);
     color: white;
   }
 
@@ -156,14 +156,14 @@ button.button {
   %button--keyline,
   &--keyline {
     background: transparent;
-    color: vs-colors(pink);
-    border-color: vs-colors(pink);
+    color: $color_heather_pink;
+    border-color: $color_heather_pink;
 
     &:focus,
     &:hover {
       background: transparent;
-      color: vs-colors(black);
-      border-color: vs-colors(black);
+      color: $color_total_eclipse;
+      border-color: $color_total_eclipse;
     }
   }
 
@@ -176,7 +176,7 @@ button.button {
     &:focus,
     &:hover {
       background: white;
-      color: vs-colors(gray-dark);
+      color: $color_dreich_gray;
       border-color: white;
     }
   }
@@ -212,28 +212,28 @@ button.button {
 
     border-radius: $border-radius-lg;
     border-width: 1px;
-    border-color: vs-colors(gray-light);
-    color: vs-colors(gray-mid);
-    background: rgba(vs-colors(white), 0.8);
+    border-color: $color_mid_granite;
+    color: $color_dark_granite;
+    background: rgba($color_white, 0.8);
 
     &:focus,
     &:hover {
-      border-color: vs-colors(pink);
-      color: vs-colors(pink);
-      background: rgba(vs-colors(white), 1);
+      border-color: $color_heather_pink;
+      color: $color_heather_pink;
+      background: rgba($color_white, 1);
     }
   }
 
   &--tag {
     border: none;
-    background: vs-colors(gray-xlight);
-    color: vs-colors(black);
+    background: $color_light_granite;
+    color: $color_total_eclipse;
     border-radius: $border-radius;
 
     &:focus,
     &:hover {
-      background: darken(vs-colors(gray-xlight), 5%);
-      color: vs-colors(black);
+      background: darken($color_light_granite, 5%);
+      color: $color_total_eclipse;
     }
   }
 }
@@ -242,25 +242,25 @@ button.button {
   @extend %button;
 
   border-radius: 0;
-  border: 1px solid vs-colors(purple);
-  background: vs-colors(white);
-  color: vs-colors(purple);
+  border: 1px solid $color_thistle_purple;
+  background: $color_white;
+  color: $color_thistle_purple;
   cursor: pointer;
 
   &:hover,
   &:focus {
-    border: 1px solid vs-colors(purple);
-    background: vs-colors(white);
-    color: vs-colors(purple);
+    border: 1px solid $color_thistle_purple;
+    background: $color_white;
+    color: $color_thistle_purple;
     box-shadow: none;
   }
 
   &--active,
   &--active:hover,
   &--active:focus {
-    border: 1px solid vs-colors(purple);
-    background: vs-colors(purple);
-    color: vs-colors(white);
+    border: 1px solid $color_thistle_purple;
+    background: $color_thistle_purple;
+    color: $color_white;
     box-shadow: none;
     padding-bottom: vs-padding(md);
     right: 0;
