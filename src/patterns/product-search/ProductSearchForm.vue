@@ -151,7 +151,7 @@ export default {
 
 <style lang="scss" scoped>
 input {
-  color: $color-ucla-gold-darker;
+  color: $color_thistle_purple;
 }
 </style>
 
