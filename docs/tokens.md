@@ -2,7 +2,9 @@
 
 You’re looking at VisitScotland's <code>design tokens</code>.
 
-## Color Palettes
+## Colour Palettes
+
+We selected our colour palettes to evoke the natural hues of Scotland.
 
 ```
 <color />
