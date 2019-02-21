@@ -10,7 +10,7 @@
 import { get, find } from "lodash"
 
 export default {
-  name: "Dropdown",
+  name: "VsDropdown",
   props: {
     /**
      * The currently selected value
@@ -58,10 +58,10 @@ export default {
 <docs>
   ```jsx
   <div>
-    <Dropdown
+    <vs-dropdown
       :options="[ { label: 'option 1', value: 1 }, { label: 'option 2', value: 2 } ]"
       :value="null"
-    ></Dropdown>
+    />
   </div>
   ```
 </docs>
