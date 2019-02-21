@@ -158,14 +158,14 @@ h3 {
     span {
       color: $color-rich-black;
       em {
-        color: $color-silver;
+        color: $color_silver_surf;
       }
     }
   }
   span {
     margin-bottom: $space-xs;
     line-height: 1.3;
-    color: $color-silver;
+    color: $color_silver_surf;
     font-size: $size-s;
     width: 100%;
     float: left;

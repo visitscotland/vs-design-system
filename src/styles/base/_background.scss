@@ -2,17 +2,17 @@
   background: transparent url(~@/assets/images/background/tartan-light.jpg) repeat 50% 50%;
 
   .button--tag {
-    background: vs-colors(white);
+    background: $color_white;
 
     &:focus,
     &:hover {
-      background: vs-colors(gray-xxlight);
+      background: $color_very_light_granite;
     }
   }
 }
 
 .background-gray {
-  background-color: darken(vs-colors(gray-xxlight), 2%);
+  background-color: darken($color_very_light_granite, 2%);
 }
 
 /**
@@ -22,21 +22,21 @@
 // Landing pages
 main > div > div {
   &:nth-child(odd) > .background-auto {
-    background-color: vs-colors(gray-xxlight);
+    background-color: $color_very_light_granite;
   }
 
   &:nth-child(even) > .background-auto {
-    background-color: vs-colors(white);
+    background-color: $color_white;
   }
 }
 
 // Page content blocks (e.g. standard article)
 .background-auto-wrapper {
   .background-auto:nth-child(odd) {
-    background-color: vs-colors(gray-xxlight);
+    background-color: $color_very_light_granite;
   }
 
   .background-auto:nth-child(even) {
-    background-color: vs-colors(white);
+    background-color: $color_white;
   }
 }

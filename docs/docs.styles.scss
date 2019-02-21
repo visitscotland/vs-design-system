@@ -16,7 +16,7 @@ $docs-status-ready: #7cb518;
 $docs-breakpoint: 800px;
 $docs-breakpoint-small: 600px;
 $docs-color-heading: rgb(30, 30, 30);
-$docs-color-text: shade($color-silver, 70%);
+$docs-color-text: shade($color_silver_surf, 70%);
 
 /* BASE
 --------------------------------------------- */
@@ -164,7 +164,7 @@ p[class^="rsg--para"] {
     -webkit-font-smoothing: subpixel-antialiased;
     -moz-osx-font-smoothing: auto;
     background: tint($docs-grey, 75%);
-    color: shade($color-silver, 20%);
+    color: shade($color_silver_surf, 20%);
     padding: $space-xx-small;
     border-radius: $radius-default;
     font-size: 87.5%;
@@ -509,17 +509,17 @@ div[class^="rsg--tab"] {
 // Code highlighting elsewhere
 span[class^="rsg--type"],
 code[class^="rsg--code"] {
-  color: $color-silver;
+  color: $color_silver_surf;
 }
 span[class^="rsg--name"] code[class^="rsg--code"],
 code.name {
   font-weight: $weight-bold;
-  color: shade($color-silver, 50%);
+  color: shade($color_silver_surf, 50%);
 }
 span[class^="rsg--type"] code[class^="rsg--code"],
 code.type {
   background: tint($docs-grey, 75%);
-  color: shade($color-silver, 20%);
+  color: shade($color_silver_surf, 20%);
   padding: $space-xx-small;
   border-radius: $radius-default;
 }

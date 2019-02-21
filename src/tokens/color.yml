@@ -28,7 +28,7 @@ aliases:
     value: "#700e57"
   gorse_yellow:
     value: "#fcca1b"
-  silver:
+  silver_surf:
     value: "#f5f6fa"
   white:
     value: "#fff"
@@ -51,23 +51,20 @@ props:
   - name: color_thistle_purple
     value: "{!thistle_purple}"
     category: "Primary palette"
+  - name: color_skye_blue
+    value: "{!skye_blue}"
+    category: "Primary palette"
+
   - name: color_gorse_yellow
     value: "{!gorse_yellow}"
-    category: "Primary palette"
-  - name: color_silver
-    value: "{!silver}"
-    category: "Primary palette"
-  - name: color_white
-    value: "{!white}"
-    category: "Primary palette"
+    category: "Secondary palette"
+  - name: color_silver_surf
+    value: "{!silver_surf}"
+    category: "Secondary palette"
 
   - name: color_total_eclipse
     value: "{!total_eclipse}"
-    category: "Secondary palette"
-  - name: color_skye_blue
-    value: "{!skye_blue}"
-    category: "Secondary palette"
-
+    category: "Grays"
   - name: color_dreich_gray
     value: "{!dreich_gray}"
     category: "Grays"
@@ -82,6 +79,9 @@ props:
     category: "Grays"
   - name: color_very_light_granite
     value: "{!very_light_granite}"
+    category: "Grays"
+  - name: color_white
+    value: "{!white}"
     category: "Grays"
 
   - name: color_vermilion

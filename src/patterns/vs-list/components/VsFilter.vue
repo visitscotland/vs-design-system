@@ -175,7 +175,7 @@ export default {
       height: 0;
       border-style: solid;
       border-width: 0 15px 20px 15px;
-      border-color: transparent transparent vs-colors(gray-xlight) transparent;
+      border-color: transparent transparent $color_light_granite transparent;
       position: absolute;
       top: 1px;
       left: 50%;
@@ -208,7 +208,7 @@ export default {
       border-bottom: 1px solid $gray-300;
       box-shadow: 0 3px 7px rgba(black, 0.16);
       border-radius: $border-radius-lg;
-      border: 1px solid vs-colors(gray-xlight);
+      border: 1px solid $color_light_granite;
       position: absolute;
       top: 20px;
       left: 0;
@@ -224,18 +224,18 @@ export default {
       border: none;
       border-bottom: none;
       background: white;
-      color: vs-colors(gray-mid);
+      color: $color_dark_granite;
       text-align: left;
       cursor: pointer;
       font-size: vs-font-size(xxs);
 
       &:hover {
-        background: darken(vs-colors(gray-xxlight), 2%);
-        color: vs-colors(black);
+        background: darken($color_very_light_granite, 2%);
+        color: $color_total_eclipse;
       }
 
       &:focus {
-        background: vs-colors(gray-xxlight);
+        background: $color_very_light_granite;
         outline: none;
       }
 
@@ -249,7 +249,7 @@ export default {
         width: 1em;
         height: 1em;
         line-height: 1;
-        color: vs-colors(gray-light);
+        color: $color_mid_granite;
       }
     }
   }

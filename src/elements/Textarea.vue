@@ -1,5 +1,5 @@
 <template>
-  <component :is="wrapper" :class="['textarea', {'textarea-expand': width === 'expand'}]">
+  <component :is="wrapper" :class="['textarea', { 'textarea-expand': width === 'expand' }]">
     <label :for="id" v-if="label">{{ label }}</label>
     <textarea
       :id="id"
@@ -107,7 +107,7 @@ export default {
 
 <style lang="scss" scoped>
 // Design Tokens with local scope
-$color-placeholder: tint($color-silver, 50%);
+$color-placeholder: tint($color_silver_surf, 50%);
 
 .textarea {
   @include stack-space($space-s);
@@ -177,7 +177,6 @@ $color-placeholder: tint($color-silver, 50%);
   }
 }
 </style>
-
 
 <docs>
   ```jsx
