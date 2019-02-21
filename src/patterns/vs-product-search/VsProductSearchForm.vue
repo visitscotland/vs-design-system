@@ -14,7 +14,7 @@
                 </label>
 
                 <div class="select-wrap c-search__select-wrap">
-                  <Dropdown
+                  <vs-dropdown
                     :options="productTypes"
                     :updateValue="partial(handleInputChange, 'productType')"
                     :value="values.productType"
@@ -33,7 +33,7 @@
                 }}</label>
 
                 <div class="select-wrap c-search__select-wrap">
-                  <Dropdown
+                  <vs-dropdown
                     :options="regions"
                     :updateValue="partial(handleInputChange, 'location')"
                     :value="values.locations"
@@ -66,11 +66,11 @@
 import { get, find, matchesProperty, partial, isString } from "lodash"
 import Vue from "vue"
 import URI from "urijs"
-import Dropdown from "@lewie/vue-dropdown"
+import VsDropdown from "@lewie/vue-dropdown"
 
 export default {
-  name: "ProductSearchForm",
-  components: { Dropdown },
+  name: "VsProductSearchForm",
+  components: { VsDropdown },
   props: {
     initialProductType: String,
     productTypes: Array,
@@ -158,7 +158,7 @@ input {
 <docs>
   ```jsx
   <div>
-    <ProductSearchForm
+    <vs-product-search-form
       :product-types="[ 
         { 
           text: 'Product type 1', 
