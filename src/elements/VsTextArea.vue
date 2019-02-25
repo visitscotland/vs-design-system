@@ -1,5 +1,5 @@
 <template>
-  <component :is="wrapper" :class="normalisedWrapperClass">
+  <component :is="wrapper" :class="wrapperClass">
     <label :for="id" v-if="label">{{ label }}</label>
     <textarea
       :id="id"
@@ -69,6 +69,7 @@ export default {
      */
     wrapperClass: {
       type: String,
+      default: "form-group",
     },
     /**
      * Unique identifier of the form textarea.
@@ -102,9 +103,6 @@ export default {
       let constructed = !isUndefined(this.inputClass) ? this.inputClass : "form-control"
 
       return this.state ? constructed + " " + this.state : constructed
-    },
-    normalisedWrapperClass() {
-      return isUndefined(this.wrapperClass) ? "form-group" : this.wrapperClass
     },
   },
   methods: {

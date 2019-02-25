@@ -1,13 +1,17 @@
 <template>
-  <select :id="id" :class="selectClass" @change="handleChange" :value="value">
-    <option v-for="option in options" :value="optionValue(option)">
-      {{ optionLabel(option) }}
-    </option>
-  </select>
+  <component :is="wrapper" :class="wrapperClass">
+    <label :for="id" v-if="label">{{ label }}</label>
+    <select :id="id" :class="normalisedInputClass" @change="handleChange" :value="value">
+      <option v-for="option in options" :value="optionValue(option)">
+        {{ optionLabel(option) }}
+      </option>
+    </select>
+  </component>
 </template>
 
 <script>
 import { get, find } from "lodash"
+import isUndefined from "lodash/isUndefined"
 
 export default {
   name: "VsDropdown",
@@ -30,8 +34,49 @@ export default {
     },
     options: Array,
     disabled: Boolean,
-    id: String,
-    selectClass: String,
+    /**
+     * Unique identifier of the select control.
+     */
+    id: {
+      type: String,
+      default: null,
+    },
+    /**
+     * The label of the form textarea.
+     */
+    label: {
+      type: String,
+      default: null,
+    },
+    /**
+     * The base class of the input element (defaults to form-control/form-check-input)
+     */
+    inputClass: {
+      type: String,
+    },
+    /**
+     * The html element name used for the wrapper.
+     * `div, section`
+     */
+    wrapper: {
+      type: String,
+      default: "div",
+      validator: value => {
+        return value.match(/(div|section)/)
+      },
+    },
+    /**
+     * The class of the wrapper element (defaults to form-group/form-check)
+     */
+    wrapperClass: {
+      type: String,
+      default: "form-group",
+    },
+  },
+  computed: {
+    normalisedInputClass() {
+      return isUndefined(this.inputClass) ? "form-control" : this.inputClass
+    },
   },
   methods: {
     optionValue: function(option) {
@@ -59,6 +104,7 @@ export default {
   ```jsx
   <div>
     <vs-dropdown
+      label="choose one"
       :options="[ { label: 'option 1', value: 1 }, { label: 'option 2', value: 2 } ]"
       :value="null"
     />

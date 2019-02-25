@@ -1,72 +1,37 @@
 <template>
-  <div class="row c-search c-search__inline-search gutter-44">
-    <div class="col-xs-12">
-      <form @submit.prevent="submit">
-        <div class="row">
-          <div class="col-sm-2 col-md-3 col-xs-12">
-            <div class="c-search-type">
-              <div class="form-group">
-                <label for="search-type" class="c-search__label c-search__label--for hidden-xs">
-                  {{ text("search_for") }}
-                  <span class="c-search__label--for_sub hidden-sm hidden-md">
-                    {{ text("search_for_sub") }}
-                  </span>
-                </label>
+  <form @submit.prevent="submit" class="row">
+    <vs-dropdown
+      class="col"
+      :label="text('search_for')"
+      :options="productTypes"
+      :updateValue="partial(handleInputChange, 'productType')"
+      :value="values.productType"
+      labelKey="text"
+    />
 
-                <div class="select-wrap c-search__select-wrap">
-                  <vs-dropdown
-                    :options="productTypes"
-                    :updateValue="partial(handleInputChange, 'productType')"
-                    :value="values.productType"
-                    class="c-search__search-type form-control"
-                    labelKey="text"
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-sm-4 col-md-3 col-xs-12">
-            <div class="c-search-location">
-              <div class="form-group">
-                <label for="search-location" class="c-search__label hidden-xs">{{
-                  text("location")
-                }}</label>
-
-                <div class="select-wrap c-search__select-wrap">
-                  <vs-dropdown
-                    :options="regions"
-                    :updateValue="partial(handleInputChange, 'location')"
-                    :value="values.locations"
-                    class="c-search__search-location form-control"
-                  />
-                </div>
-              </div>
-              <span class="c-search__in hidden-xs">{{ text("in") }}</span>
-            </div>
-          </div>
-
-          <div class="col-sm-6 col-xs-12 col-lg-3">
-            <div class="row">
-              <div class="c-search__button-container">
-                <input
-                  type="submit"
-                  class="btn btn-pink c-search__button--submit"
-                  :value="text('search')"
-                />
-              </div>
-            </div>
-          </div>
-        </div>
-      </form>
+    <div class="form-group hidden-xs">
+      <label>&nbsp;</label>
+      <div class="m-2">{{ text("in") }}</div>
     </div>
-  </div>
+
+    <vs-dropdown
+      class="col"
+      :label="text('location')"
+      :options="regions"
+      :updateValue="partial(handleInputChange, 'location')"
+      :value="values.locations"
+    />
+
+    <vs-input class="col" :value="text('search')" type="submit" :label="'\xa0'" />
+  </form>
 </template>
 
 <script>
 import { get, find, matchesProperty, partial, isString } from "lodash"
 import Vue from "vue"
 import URI from "urijs"
-import VsDropdown from "@lewie/vue-dropdown"
+import VsDropdown from "../../elements/vs-dropdown/VsDropdown"
+import VsInput from "../../elements/VsInput"
 
 export default {
   name: "VsProductSearchForm",
@@ -149,11 +114,7 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
-input {
-  color: $color_thistle_purple;
-}
-</style>
+<style lang="scss" scoped></style>
 
 <docs>
   ```jsx
@@ -177,12 +138,12 @@ input {
       ]"
       :copy="{
         search_for: 'Search For',
-        search_for_sub: 'subtitle',
+        search_for_sub: 'products...',
         location: 'Location',
         in: 'In',
         search: 'Do search'
       }"
-      :initial-product-type="product-type-2"
+      initial-product-type="product-type-2"
     />
   </div>
   ```

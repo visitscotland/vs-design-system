@@ -1,6 +1,6 @@
 <template>
   <component :is="wrapper" :class="normalisedWrapperClass">
-    <label :for="id" v-if="label && type !== 'checkbox'">{{ label }}</label>
+    <label :for="id" v-if="showPreLabel">{{ label }}</label>
     <input
       :id="id"
       :disabled="disabled"
@@ -11,7 +11,7 @@
       @input="onInput($event.target.value)"
       @focus="onFocus($event.target.value)"
     />
-    <label :for="id" v-if="label && type === 'checkbox'">{{ label }}</label>
+    <label :for="id" v-if="showPostLabel">{{ label }}</label>
   </component>
 </template>
 
@@ -31,7 +31,7 @@ export default {
       type: String,
       default: "text",
       validator: value => {
-        return value.match(/(text|number|email|checkbox)/)
+        return value.match(/(text|number|email|checkbox|submit)/)
       },
     },
     /**
@@ -133,6 +133,12 @@ export default {
 
       return this.isCheckbox() ? "form-check" : "form-group"
     },
+    showPreLabel() {
+      return this.label && this.type !== "checkbox"
+    },
+    showPostLabel() {
+      return this.label && this.type === "checkbox"
+    },
   },
 }
 </script>
@@ -148,7 +154,7 @@ export default {
     <vs-input label=":hover" state="hover" placeholder="Write your text" />
     <vs-input label=":focus" state="focus" placeholder="Write your text" />
     <vs-input label="[disabled]" disabled value="Write your text" />
-    <vs-input label="check me" type="checkbox" wrapper-class="form-check" />
+    <vs-input label="check me" type="checkbox" />
   </div>
   ```
 </docs>
