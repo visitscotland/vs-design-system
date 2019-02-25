@@ -1,7 +1,5 @@
 <template>
-  <component :is="level" class="heading">
-    <slot/>
-  </component>
+  <component :is="level" class="heading"> <slot /> </component>
 </template>
 
 <script>
@@ -11,7 +9,7 @@
  * Heading element provides an option to change the level of the heading.
  */
 export default {
-  name: "Heading",
+  name: "VsHeading",
   status: "prototype",
   release: "1.0.0",
   props: {
@@ -75,10 +73,10 @@ h6 {
 <docs>
   ```jsx
   <div>
-    <Heading>The quick brown fox</Heading>
-    <Heading level="h2">The quick brown fox</Heading>
-    <Heading level="h3">The quick brown fox</Heading>
-    <Heading level="h4">The quick brown fox</Heading>
+    <vs-heading>The quick brown fox</vs-heading>
+    <vs-heading level="h2">The quick brown fox</vs-heading>
+    <vs-heading level="h3">The quick brown fox</vs-heading>
+    <vs-heading level="h4">The quick brown fox</vs-heading>
   </div>
   ```
 </docs>
