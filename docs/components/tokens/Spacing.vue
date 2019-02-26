@@ -67,7 +67,7 @@ export default {
   width: 100%;
   span {
     margin-left: 5px;
-    color: $color_silver_surf;
+    color: $color_silver;
     user-select: none;
     font-style: normal;
   }

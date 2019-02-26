@@ -102,6 +102,9 @@ props:
   - name: color_cloud
     value: "#E9F3FD"
     category: "Design system palette"
+  - name: color_silver
+    value: "#7F8891"
+    category: "Design system palette"
 global:
   type: color
   category: color

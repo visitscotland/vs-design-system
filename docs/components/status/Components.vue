@@ -198,7 +198,7 @@ export default {
     }
     li {
       margin: 0 $space-m 0 0;
-      color: $color_silver_surf;
+      color: $color_silver;
       font-size: $size-s;
       align-items: center;
       display: flex;
