@@ -1,1 +1,1 @@
-web: npm run build:docs && npm run docs
+web: npm run heroku-docs

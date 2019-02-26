@@ -27,7 +27,8 @@
     "theo:onchange": "onchange \"./src/tokens/*.yml\" -- npm run theo",
     "test": "npm-run-all theo unit",
     "postinstall": "npm-recursive-install --skip-root",
-    "docs": "http-server dist/docs -p $PORT"
+    "heroku-postbuild": "npm run build:docs",
+    "heroku-docs": "http-server dist/docs -p $PORT"
   },
   "husky": {
     "hooks": {
