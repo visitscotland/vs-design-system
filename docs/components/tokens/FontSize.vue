@@ -61,7 +61,7 @@ export default {
     letter-spacing: -0.02em;
     margin-left: 10px;
     font-weight: $weight-normal;
-    color: $color_silver_surf;
+    color: $color_silver;
     user-select: none;
     font-style: normal;
   }
