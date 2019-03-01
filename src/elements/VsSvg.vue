@@ -53,14 +53,14 @@ export default {
   },
   computed: {
     svg() {
-      let template = '<svg style="fill: ' + this.fill + '"'
+      let template = '<svg style="fill: ' + this.fill + '" '
 
       if (this.height !== null && this.height !== undefined) {
-        template += ' height="' + this.height + '"'
+        template += ' height="' + this.height + '" '
       }
 
       if (this.width !== null && this.width !== undefined) {
-        template += ' width="' + this.width + '"'
+        template += ' width="' + this.width + '" '
       }
 
       return req("./" + this.path + ".svg").replace(/^<svg /, template)
