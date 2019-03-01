@@ -42,8 +42,6 @@ export default {
       let categoryName = get(colour, "category")
       let category = find(groups, matchesProperty("name", categoryName))
 
-      console.log(cloneDeep(groups))
-
       if (!category) {
         category = {
           name: categoryName,
@@ -53,18 +51,8 @@ export default {
       }
 
       category.colors.push(colour)
-
-      console.log(cloneDeep(groups))
     })
 
-    // let groups = map(groupBy(colors, 'category'), (colors, category) => {
-    //   return {
-    //     name: category,
-    //     colors: colors
-    //   }
-    // })
-
-    console.log(cloneDeep(groups))
     return {
       tokenGroups: groups,
     }

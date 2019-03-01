@@ -161,6 +161,7 @@ module.exports = {
         },
       ],
     },
+    favicon: "https://www.visitscotland.com/favicon.ico",
   },
   /**
    * Ignore app.vue, tests, and example component.
@@ -210,6 +211,9 @@ module.exports = {
           `${config.styleguideDir}\n`
       )
     )
+  },
+  styleguideComponents: {
+    LogoRenderer: path.join(__dirname, "../docs/components/Logo"),
   },
   /**
    * Configure docs server to redirect asset queries
