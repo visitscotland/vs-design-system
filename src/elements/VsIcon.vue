@@ -1,9 +1,17 @@
 <template>
-  <component :is="type" :aria-label="ariaLabel" :class="['icon', size]" v-html="svg"/>
+  <vs-svg
+    :path="path"
+    :container="type"
+    :aria-label="ariaLabel"
+    :fill="fill"
+    :class="['icon', 'icon-' + size]"
+  />
 </template>
 
 <script>
-const req = require.context("@/assets/icons/", true, /^\.\/.*\.svg$/)
+import VsSvg from "./VsSvg"
+
+const iconPath = "icons/"
 
 /**
  * Icons are used to visually communicate core parts of the product and
@@ -11,9 +19,10 @@ const req = require.context("@/assets/icons/", true, /^\.\/.*\.svg$/)
  * easily understand where they are in the product.
  */
 export default {
-  name: "Icon",
+  name: "VsIcon",
   status: "review",
   release: "1.0.0",
+  components: { VsSvg },
   props: {
     /**
      * The name of the icon to display.
@@ -27,7 +36,6 @@ export default {
      */
     fill: {
       type: String,
-      default: "currentColor",
     },
     /**
      * Descriptive text to be read to screenreaders.
@@ -55,10 +63,10 @@ export default {
       },
     },
   },
-  data() {
-    return {
-      svg: req("./" + this.name + ".svg").replace(/^<svg /, `<svg style="fill: ${this.fill}" `),
-    }
+  computed: {
+    path() {
+      return iconPath + this.name
+    },
   },
 }
 </script>
@@ -72,15 +80,15 @@ export default {
 // We also want to be able to style .icon inside buttons etc.
 .icon {
   @include reset;
-  &.large svg {
+  &.icon-large svg {
     width: $space-l;
     height: $space-l;
   }
-  &.medium svg {
+  &.icon-medium svg {
     width: $space-m;
     height: $space-m;
   }
-  &.small svg {
+  &.icon-small svg {
     width: $space-s;
     height: $space-s;
   }
@@ -90,10 +98,12 @@ export default {
 <docs>
   ```jsx
   <div>
-    <Icon name="ready" aria-label="Component is ready" fill="#7cb518" />
-    <Icon name="review" fill="rgb(255,186,10)" />
-    <Icon name="deprecated" fill="rgb(235,59,36)" />
-    <Icon name="prototype" fill="rgb(37,138,239)" />
+    <vs-icon name="search" aria-label="Look for something" fill="#7cb518" />
+    <vs-icon name="picture" fill="rgb(255,186,10)" />
+    <vs-icon name="youtube" fill="rgb(235,59,36)" />
+    <vs-icon name="email" fill="rgb(37,138,239)" />
+
+
   </div>
   ```
 </docs>
