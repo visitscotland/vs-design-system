@@ -86,6 +86,14 @@ module.exports = {
       ],
     },
     {
+      name: "Icons",
+      content: "../docs/icons.md",
+      sectionDepth: 1,
+      exampleMode: "hide",
+      usageMode: "hide",
+      components: () => ["../docs/components/Icons.vue"],
+    },
+    {
       name: "Logos",
       content: "../docs/logos.md",
       sectionDepth: 1,
