@@ -64,3 +64,10 @@ About to get started with a new design system? I’m an independent designer and
 [Viljami Salminen](https://viljamis.com), [Artem Sapegin](http://sapegin.me), [Rafael Escala](https://github.com/rafaesc), [react-styleguidist contributors](https://github.com/styleguidist/react-styleguidist/graphs/contributors), [vue-styleguidist contributors](https://github.com/vue-styleguidist/vue-styleguidist/graphs/contributors), [Vue.js contributors](https://github.com/vuejs/vue/graphs/contributors), [vue-webpack-boilerplate contributors](https://github.com/vuejs-templates/webpack/graphs/contributors), [Theo contributors](https://github.com/salesforce-ux/theo/graphs/contributors), and [Polaris contributors](https://github.com/Shopify/polaris).
 
 Licensed under the [MIT license](https://github.com/viljamis/vue-design-system/blob/master/LICENSE).
+
+## Ideas for improvement
+
+- Colour accessibility like Atlassian
+- CMS
+- XD/Zeplin integration
+- Sandbox for putting together components free form
