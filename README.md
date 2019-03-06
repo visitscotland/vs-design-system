@@ -71,3 +71,4 @@ Licensed under the [MIT license](https://github.com/viljamis/vue-design-system/b
 - CMS
 - XD/Zeplin integration
 - Sandbox for putting together components free form
+- Icons page listing out all available icons as well as icon options & guidelines
