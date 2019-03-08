@@ -11,11 +11,15 @@ const openBrowser = require("react-dev-utils/openBrowser")
 const setupLogger = require("react-styleguidist/scripts/logger")
 const StyleguidistError = require("react-styleguidist/scripts/utils/error")
 const logger = require("glogg")("rsg")
-const getConfig = require("./get-config")
+const getConfig = require("vue-styleguidist/scripts/config")
 const consts = require("vue-styleguidist/scripts/consts")
+
+const mergeContentfulConfig = require("./merge-contentful-config.js")
 
 const argv = minimist(process.argv.slice(2))
 const command = argv._[0]
+
+const tempOutputPath = "temp/"
 
 // Do not show nasty stack traces for Styleguidist errors
 process.on("uncaughtException", err => {
@@ -45,10 +49,29 @@ const env = command === "build" ? "production" : "development"
 process.env.NODE_ENV = process.env.NODE_ENV || env
 
 // Load style guide config
-let config = getConfig(argv.config, updateConfig)
-  .then(function(mergedConfig) {
-    verbose("Styleguidist config:", config)
+let config
+try {
+  config = getConfig(argv.config, updateConfig)
+} catch (err) {
+  if (err instanceof StyleguidistError) {
+    const link = consts.DOCS_CONFIG + (err.anchor ? `#${err.anchor.toLowerCase()}` : "")
+    printErrorWithLink(
+      err.message,
+      `${err.extra}\n\nLearn how to configure your style guide:`,
+      link
+    )
+    process.exit(1)
+  } else {
+    throw err
+  }
+}
 
+verbose("Styleguidist config:", config)
+
+verbose("Getting remote config....")
+
+mergeContentfulConfig(config, tempOutputPath)
+  .then(function(mergedConfig) {
     console.log(mergedConfig.sections)
 
     switch (command) {
@@ -63,17 +86,7 @@ let config = getConfig(argv.config, updateConfig)
     }
   })
   .catch(function(err) {
-    if (err instanceof StyleguidistError) {
-      const link = consts.DOCS_CONFIG + (err.anchor ? `#${err.anchor.toLowerCase()}` : "")
-      printErrorWithLink(
-        err.message,
-        `${err.extra}\n\nLearn how to configure your style guide:`,
-        link
-      )
-      process.exit(1)
-    } else {
-      throw err
-    }
+    throw err
   })
 
 /**
