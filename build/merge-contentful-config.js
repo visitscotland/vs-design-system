@@ -40,10 +40,7 @@ function addTurnDownRules(turndownService) {
 }
 
 function mergeConfig(instance, srcConfig, options) {
-  const contentfulInstance = _.get(instance, "fields.sections", [])
   const contentfulConfig = extractContentfulConfig(instance, _.get(options, "tempOutputPath"))
-  console.log(instance)
-  console.log(contentfulConfig)
 
   return mergeContentfulConfig(srcConfig, contentfulConfig)
 }
