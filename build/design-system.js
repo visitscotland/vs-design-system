@@ -72,8 +72,6 @@ verbose("Getting remote config....")
 
 mergeContentfulConfig(config, { tempOutputPath })
   .then(function(mergedConfig) {
-    console.log(mergedConfig.sections)
-
     switch (command) {
       case "build":
         commandBuild(mergedConfig)
