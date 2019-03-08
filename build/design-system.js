@@ -70,7 +70,7 @@ verbose("Styleguidist config:", config)
 
 verbose("Getting remote config....")
 
-mergeContentfulConfig(config, tempOutputPath)
+mergeContentfulConfig(config, { tempOutputPath })
   .then(function(mergedConfig) {
     console.log(mergedConfig.sections)
 
