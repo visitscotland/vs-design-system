@@ -55,18 +55,6 @@ function parseContentfulPage(tempOutputPath, page) {
     name: pageName,
     content: "../" + outputPath,
   })
-
-  // return {
-
-  //     description: _.get(page, 'fields.description'),
-  //     sectionDepth: _.get(page, 'fields.sectionDepth'),
-  //     exampleMode: _.get(page, 'fields.exampleMode'),
-  //     usageMode: _.get(page, 'fields.usageMode'),
-  //     usageMode: _.get(page, 'fields.usageMode'),
-  //     usageMode: _.get(page, 'fields.usageMode'),
-  //     usageMode: _.get(page, 'fields.usageMode'),
-  //     usageMode: _.get(page, 'fields.usageMode'),
-  // };
 }
 
 function generateSectionMarkdown(page) {
@@ -82,5 +70,11 @@ function prepOutputDir(tempOutputPath) {
 }
 
 function mergeSectionsConfig(srcConfig, contentfulSections) {
+  contentfulSections.push({
+    name: "Private Components",
+    exampleMode: "hide",
+    usageMode: "hide",
+    components: "../src/**/[_]*.vue",
+  })
   return _.set(srcConfig, "sections", contentfulSections)
 }
