@@ -5,29 +5,28 @@ const _ = require("lodash")
 const fs = require("fs")
 const documentToHtmlString = require("@contentful/rich-text-html-renderer").documentToHtmlString
 const turndownService = new require("turndown")()
+const contentfulConfig = require("../config/contentful.config.js")
 
 const client = contentful.createClient({
   // This is the space ID. A space is like a project folder in Contentful terms
-  space: "xf5qyv95yk3c",
+  space: contentfulConfig.space,
   // This is the access token for this space. Normally you get both ID and the token in the Contentful web app
-  accessToken: "73c1a3252bd526262639b627c11271fc6d561848991ef76ce37453431eeda6f6",
+  accessToken: contentfulConfig.accessToken,
 })
 
 addTurnDownRules(turndownService)
 
-module.exports = function(srcConfig, tempOutputPath) {
+module.exports = function(srcConfig, options) {
+  const tempOutputPath = _.get(options, "tempOutputPath")
+
+  if (!tempOutputPath) {
+  }
+
   prepOutputDir(tempOutputPath)
 
   return client
-    .getEntries({ content_type: "page" })
-    .then(data => {
-      const rawContentfulPages = _.get(data, "items", [])
-      const contentfulSectionsConfig = extractSectionsConfig(rawContentfulPages, tempOutputPath)
-      return mergeSectionsConfig(srcConfig, contentfulSectionsConfig)
-
-      //vue-styleguidist build --config ./config/docs.config.js
-      //vue-styleguidist server --open --config ./config/docs.config.js
-    })
+    .getEntry(contentfulConfig.instance)
+    .then(_.partial(mergeConfig, _, srcConfig, options))
     .catch(console.error)
 }
 
@@ -40,25 +39,55 @@ function addTurnDownRules(turndownService) {
   })
 }
 
-function extractSectionsConfig(rawContentfulPages, tempOutputPath) {
-  return _.map(rawContentfulPages, _.partial(parseContentfulPage, tempOutputPath))
+function mergeConfig(instance, srcConfig, options) {
+  const contentfulInstance = _.get(instance, "fields.sections", [])
+  const contentfulConfig = extractContentfulConfig(instance, _.get(options, "tempOutputPath"))
+  console.log(instance)
+  console.log(contentfulConfig)
+
+  return mergeContentfulConfig(srcConfig, contentfulConfig)
 }
 
-function parseContentfulPage(tempOutputPath, page) {
-  const pageName = _.get(page, "fields.name")
-  const outputPath = tempOutputPath + _.kebabCase(pageName) + ".md"
-  const markDownContent = generateSectionMarkdown(page)
+function extractContentfulConfig(contentfulInstance, tempOutputPath) {
+  return {
+    title: getContentfulFieldValue(contentfulInstance, "title"),
+    sections: extractContentfulInstanceSections(contentfulInstance, tempOutputPath),
+  }
+}
+
+function getContentfulFieldValue(contentfulEntry, fieldPath) {
+  return _.get(contentfulEntry, "fields." + fieldPath)
+}
+
+function extractContentfulInstanceSections(contentfulInstance, tempOutputPath) {
+  let sections = _.map(
+    getContentfulFieldValue(contentfulInstance, "sections"),
+    _.partial(parseContentfulSection, tempOutputPath)
+  )
+
+  sections.push({
+    name: "Private Components",
+    exampleMode: "hide",
+    usageMode: "hide",
+    components: "../src/**/[_]*.vue",
+  })
+
+  return sections
+}
+
+function parseContentfulSection(tempOutputPath, section) {
+  const outputPath = tempOutputPath + _.kebabCase(getContentfulFieldValue(section, "name")) + ".md"
+  const markDownContent = generateSectionMarkdown(section)
 
   fs.writeFileSync(outputPath, markDownContent, "utf8")
 
-  return _.merge({}, _.get(page, "fields", {}), {
-    name: pageName,
+  return _.merge({}, _.get(section, "fields", {}), {
     content: "../" + outputPath,
   })
 }
 
-function generateSectionMarkdown(page) {
-  const htmlContent = documentToHtmlString(_.get(page, "fields.content"))
+function generateSectionMarkdown(section) {
+  const htmlContent = documentToHtmlString(_.get(section, "fields.content"))
 
   return turndownService.turndown(htmlContent)
 }
@@ -69,12 +98,6 @@ function prepOutputDir(tempOutputPath) {
   }
 }
 
-function mergeSectionsConfig(srcConfig, contentfulSections) {
-  contentfulSections.push({
-    name: "Private Components",
-    exampleMode: "hide",
-    usageMode: "hide",
-    components: "../src/**/[_]*.vue",
-  })
-  return _.set(srcConfig, "sections", contentfulSections)
+function mergeContentfulConfig(srcConfig, contentfulConfig) {
+  return _.assign({}, srcConfig, contentfulConfig)
 }
