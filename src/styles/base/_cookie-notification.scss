@@ -1,47 +1,47 @@
 .cookie-notification {
+  display: none;
+  z-index: 3000;
+  width: 100%;
+  background: $color_very_light_granite;
+  box-shadow: 0 3px 6px rgba(rgb(189, 188, 188), 0.05);
+  color: $color_dark_granite;
+
+  &--hide {
     display: none;
-    z-index: 3000;
-    width: 100%;
-    background: vs-colors(gray-xxlight);
-    box-shadow: 0 3px 6px rgba(rgb(189, 188, 188), 0.05);
-    color: vs-colors(gray-mid);
+    height: 0;
+  }
 
-    &--hide {
-        display: none;
-        height: 0;
+  &--show {
+    display: block;
+    padding: vs-padding(xs) 0;
+  }
+
+  &__close-button {
+    color: $color_light_granite;
+    padding: 0;
+    margin: 0;
+    border: none;
+    font-size: vs-font-size(lg);
+    background: transparent;
+    cursor: pointer;
+
+    &:hover,
+    &:focus {
+      color: darken($color_mid_granite, 8%);
     }
+  }
 
-    &--show {
-        display: block;
-        padding: vs-padding(xs) 0;
+  @include media-breakpoint-up(md) {
+    p,
+    h2 {
+      margin-bottom: 0;
     }
+  }
 
-    &__close-button {
-        color: vs-colors(gray-xlight);
-        padding: 0;
-        margin: 0;
-        border: none;
-        font-size: vs-font-size(lg);
-        background: transparent;
-        cursor: pointer;
-
-        &:hover,
-        &:focus {
-            color: darken(vs-colors(gray-light), 8%);
-        }
+  @include media-breakpoint-up(xl) {
+    p,
+    h2 {
+      padding-top: 8px;
     }
-
-    @include media-breakpoint-up(md) {
-        p,
-        h2 {
-            margin-bottom: 0;
-        }
-    }
-
-    @include media-breakpoint-up(xl) {
-        p,
-        h2 {
-            padding-top: 8px;
-        }
-    }
+  }
 }

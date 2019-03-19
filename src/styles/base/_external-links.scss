@@ -1,32 +1,32 @@
 .external-links {
-    &__card {
-        padding: vs-padding(xs) $grid-gutter-width * 0.2;
+  &__card {
+    padding: vs-padding(xs) $grid-gutter-width * 0.2;
 
-        &__content {
-            @extend %card-style-white;
+    &__content {
+      @extend %card-style-white;
 
-            padding: vs-padding(sm);
+      padding: vs-padding(sm);
 
-            &__link {
-                display: block;
-                margin-bottom: 0.75rem;
-                color: vs-colors(pink);
-                line-height: 1.2;
+      &__link {
+        display: block;
+        margin-bottom: 0.75rem;
+        color: $color_heather_pink;
+        line-height: 1.2;
 
-                &:focus,
-                &:hover {
-                    color: vs-colors(black);
-                }
-            }
+        &:focus,
+        &:hover {
+          color: $color_total_eclipse;
         }
+      }
     }
+  }
 
-    // change card color depending on auto background color.
-    @at-root main > div > div {
-        &:nth-child(even) > .background-auto {
-            .external-links__card__content {
-                @extend %card-style-gray;
-            }
-        }
+  // change card color depending on auto background color.
+  @at-root main > div > div {
+    &:nth-child(even) > .background-auto {
+      .external-links__card__content {
+        @extend %card-style-gray;
+      }
     }
+  }
 }

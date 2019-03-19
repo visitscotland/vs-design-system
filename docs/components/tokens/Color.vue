@@ -1,50 +1,60 @@
 <template>
-  <div class="colors">
+  <div>
     <div
-      v-for="(prop, index) in tokens"
-      :key="index"
-      class="color"
-      :class="prop.category"
-      v-if="prop.type === 'color'"
+      v-for="(category, categoryKey) in tokenGroups"
+      :key="categoryKey"
+      class="color-category"
+      :class="['color-category-' + category.name]"
     >
-      <div class="swatch" :style="{ backgroundColor: prop.value }"/>
-      <h3>{{prop.name.replace(/_/g, " ").replace(/color/g, "")}}</h3>
-      <span>
-        <em>RGB:</em>
-        {{prop.value}}
-      </span>
-      <span>
-        <em>SCSS:</em>
-        ${{prop.name.replace(/_/g, "-")}}
-      </span>
+      <h3>{{ category.name }}</h3>
+
+      <div class="colors">
+        <div v-for="(prop, index) in category.colors" :key="index" class="color">
+          <div class="swatch" :style="{ backgroundColor: prop.value }" />
+          <h3>{{ prop.name.replace(/_/g, " ").replace(/color/g, "") }}</h3>
+          <span> <em>RGB:</em> {{ prop.value }} </span>
+          <span> <em>SCSS:</em> ${{ prop.name.replace(/_/g, "-") }} </span>
+        </div>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
 import designTokens from "@/assets/tokens/tokens.raw.json"
-import orderBy from "lodash/orderBy"
 
-/**
- * The color palette comes with 5 different weights for each hue. These hues
- * should be used purposefully to communicate how things function in the
- * interface. Keep in mind that `vermilion` is only used in special cases
- * like destructive actions and error messages. To edit the colors, see
- * [/src/tokens/color.yml](https://github.com/viljamis/vue-design-system/blob/master/src/tokens/color.yml).
- */
+import filter from "lodash/filter"
+import groupBy from "lodash/groupBy"
+import map from "lodash/map"
+import each from "lodash/each"
+import get from "lodash/get"
+import find from "lodash/find"
+import matchesProperty from "lodash/matchesProperty"
+import cloneDeep from "lodash/cloneDeep"
+
 export default {
   name: "Color",
-  methods: {
-    orderData: function(data) {
-      // let byValue = orderBy(data, "value", "asc")
-      let byName = orderBy(data, "name", "asc")
-      let byCategoryAndName = orderBy(byName, "category")
-      return byCategoryAndName
-    },
-  },
   data() {
+    let groups = []
+    let colours = filter(designTokens.props, ["type", "color"])
+
+    each(colours, colour => {
+      let categoryName = get(colour, "category")
+      let category = find(groups, matchesProperty("name", categoryName))
+
+      if (!category) {
+        category = {
+          name: categoryName,
+          colors: [],
+        }
+        groups.push(category)
+      }
+
+      category.colors.push(colour)
+    })
+
     return {
-      tokens: this.orderData(designTokens.props),
+      tokenGroups: groups,
     }
   },
 }
@@ -136,14 +146,14 @@ h3 {
     span {
       color: $color-rich-black;
       em {
-        color: $color-silver;
+        color: $color_silver;
       }
     }
   }
   span {
     margin-bottom: $space-xs;
     line-height: 1.3;
-    color: $color-silver;
+    color: $color_silver;
     font-size: $size-s;
     width: 100%;
     float: left;

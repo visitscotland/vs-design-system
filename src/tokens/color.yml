@@ -8,6 +8,31 @@
 #
 
 aliases:
+  total_eclipse:
+    value: "#1d1d1b"
+  skye_blue:
+    value: "#3082b4"
+  dreich_gray:
+    value: "#39393b"
+  dark_granite:
+    value: "#595959"
+  mid_granite:
+    value: "#929091"
+  light_granite:
+    value: "#e5e5e5"
+  very_light_granite:
+    value: "#f5f6fa"
+  heather_pink:
+    value: "#af006e"
+  thistle_purple:
+    value: "#700e57"
+  gorse_yellow:
+    value: "#fcca1b"
+  silver_surf:
+    value: "#f5f6fa"
+  white:
+    value: "#fff"
+
   vermilion:
     value: "7, 83%"
   ucla_gold:
@@ -18,72 +43,68 @@ aliases:
     value: "210, 100%"
   rich_black:
     value: "#001123"
-  white:
-    value: "#fff"
+
 props:
-  color_vermilion_darker:
-    value: "hsla({!vermilion}, 33%, 1)"
-    category: color_group_1
-  color_vermilion_dark:
-    value: "hsla({!vermilion}, 43%, 1)"
-    category: color_group_1
-  color_vermilion:
-    value: "hsla({!vermilion}, 53%, 1)"
-    category: color_group_1
-  color_vermilion_light:
-    value: "hsla({!vermilion}, 63%, 1)"
-    category: color_group_1
-  color_vermilion_lighter:
-    value: "hsla({!vermilion}, 75%, 1)"
-    category: color_group_1
+  - name: color_heather_pink
+    value: "{!heather_pink}"
+    category: "Primary palette"
+  - name: color_thistle_purple
+    value: "{!thistle_purple}"
+    category: "Primary palette"
+  - name: color_skye_blue
+    value: "{!skye_blue}"
+    category: "Primary palette"
 
-  color_ucla_gold_darker:
-    value: "hsla({!ucla_gold}, 35%, 1)"
-    category: color_group_2
-  color_ucla_gold_dark:
-    value: "hsla({!ucla_gold}, 45%, 1)"
-    category: color_group_2
-  color_ucla_gold:
-    value: "hsla({!ucla_gold}, 52%, 1)"
-    category: color_group_2
-  color_ucla_gold_light:
-    value: "hsla({!ucla_gold}, 65%, 1)"
-    category: color_group_2
-  color_ucla_gold_lighter:
-    value: "hsla({!ucla_gold}, 75%, 1)"
-    category: color_group_2
+  - name: color_gorse_yellow
+    value: "{!gorse_yellow}"
+    category: "Secondary palette"
+  - name: color_silver_surf
+    value: "{!silver_surf}"
+    category: "Secondary palette"
 
-  color_bleu_de_france_darker:
-    value: "hsla({!bleu_de_france}, 34%, 1)"
-    category: color_group_3
-  color_bleu_de_france_dark:
-    value: "hsla({!bleu_de_france}, 44%, 1)"
-    category: color_group_3
-  color_bleu_de_france:
-    value: "hsla({!bleu_de_france}, 54%, 1)"
-    category: color_group_3
-  color_bleu_de_france_light:
-    value: "hsla({!bleu_de_france}, 64%, 1)"
-    category: color_group_3
-  color_bleu_de_france_lighter:
-    value: "hsla({!bleu_de_france}, 74%, 1)"
-    category: color_group_3
-
-  color_oxford_blue:
-    value: "hsla({!oxford_blue}, 15%, 1)"
-    category: color_group_4
-  color_rich_black:
-    value: "{!rich_black}"
-    category: color_group_4
-  color_white:
+  - name: color_total_eclipse
+    value: "{!total_eclipse}"
+    category: "Grays"
+  - name: color_dreich_gray
+    value: "{!dreich_gray}"
+    category: "Grays"
+  - name: color_dark_granite
+    value: "{!dark_granite}"
+    category: "Grays"
+  - name: color_mid_granite
+    value: "{!mid_granite}"
+    category: "Grays"
+  - name: color_light_granite
+    value: "{!light_granite}"
+    category: "Grays"
+  - name: color_very_light_granite
+    value: "{!very_light_granite}"
+    category: "Grays"
+  - name: color_white
     value: "{!white}"
-    category: color_group_4
-  color_silver:
-    value: "#7F8891"
-    category: color_group_4
-  color_cloud:
+    category: "Grays"
+
+  - name: color_vermilion
+    value: "hsla({!vermilion}, 53%, 1)"
+    category: "Design system palette"
+  - name: color_ucla_gold
+    value: "hsla({!ucla_gold}, 52%, 1)"
+    category: "Design system palette"
+  - name: color_bleu_de_france
+    value: "hsla({!bleu_de_france}, 54%, 1)"
+    category: "Design system palette"
+  - name: color_oxford_blue
+    value: "hsla({!oxford_blue}, 15%, 1)"
+    category: "Design system palette"
+  - name: color_rich_black
+    value: "{!rich_black}"
+    category: "Design system palette"
+  - name: color_cloud
     value: "#E9F3FD"
-    category: color_group_4
+    category: "Design system palette"
+  - name: color_silver
+    value: "#7F8891"
+    category: "Design system palette"
 global:
   type: color
   category: color

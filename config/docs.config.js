@@ -6,10 +6,6 @@ const chalk = require("chalk")
 
 module.exports = {
   /**
-   * Name of your design system. Changes both page title and sidebar logo.
-   */
-  title: "Vue Design System",
-  /**
    * Most of the styles are defined in /docs/docs.styles.scss
    */
   version: packageConfig.version,
@@ -47,94 +43,6 @@ module.exports = {
    * Enabling the following option splits sections into separate views.
    */
   pagePerSection: true,
-  sections: [
-    {
-      name: "Getting Started",
-      content: "../docs/getting-started.md",
-      // Needs to be loaded in somewhere as this is also shown in
-      // element, Pattern & Template overviews.
-      components: "../docs/components/status/**/[A-Z]*.vue",
-      sectionDepth: 1,
-      exampleMode: "hide",
-      usageMode: "hide",
-    },
-    {
-      name: "Design Principles",
-      content: "../docs/principles.md",
-      sectionDepth: 1,
-      exampleMode: "hide",
-      usageMode: "hide",
-    },
-    {
-      name: "Voice & Tone",
-      content: "../docs/voice-and-tone.md",
-      sectionDepth: 1,
-      exampleMode: "hide",
-      usageMode: "hide",
-    },
-    {
-      name: "Design Tokens",
-      content: "../docs/tokens.md",
-      sectionDepth: 1,
-      exampleMode: "hide",
-      usageMode: "hide",
-      components: () => [
-        "../docs/components/tokens/Color.vue",
-        "../docs/components/tokens/FontSize.vue",
-        "../docs/components/tokens/Spacing.vue",
-        "../docs/components/tokens/All.vue",
-      ],
-    },
-    {
-      name: "Elements",
-      content: "../docs/elements.md",
-      components: "../src/elements/**/[A-Z]*.vue",
-      exampleMode: "expand",
-      usageMode: "expand",
-      sectionDepth: 2,
-    },
-    {
-      name: "Patterns",
-      content: "../docs/patterns.md",
-      components: "../src/patterns/**/[A-Z]*.vue",
-      exampleMode: "expand",
-      usageMode: "expand",
-      sectionDepth: 2,
-    },
-    {
-      name: "Templates",
-      content: "../docs/templates.md",
-      components: "../src/templates/**/[A-Z]*.vue",
-      exampleMode: "expand",
-      usageMode: "expand",
-      sectionDepth: 2,
-    },
-    {
-      name: "Downloads",
-      content: "../docs/downloads.md",
-      exampleMode: "hide",
-      usageMode: "hide",
-      sectionDepth: 1,
-    },
-    {
-      name: "FAQ",
-      content: "../docs/faq.md",
-      exampleMode: "hide",
-      usageMode: "hide",
-      sectionDepth: 1,
-    },
-    {
-      /**
-       * Private components have to be loaded into the documentation as well,
-       * otherwise anything using them will be broken. We’re loading them in
-       * their own section, which then gets hidden in docs/docs.styles.scss
-       */
-      name: "Private Components",
-      exampleMode: "hide",
-      usageMode: "hide",
-      components: "../src/**/[_]*.vue",
-    },
-  ],
   /**
    * Custom wrapper template for the documentation.
    */
@@ -154,6 +62,7 @@ module.exports = {
         },
       ],
     },
+    favicon: "https://www.visitscotland.com/favicon.ico",
   },
   /**
    * Ignore app.vue, tests, and example component.
@@ -203,6 +112,9 @@ module.exports = {
           `${config.styleguideDir}\n`
       )
     )
+  },
+  styleguideComponents: {
+    LogoRenderer: path.join(__dirname, "../docs/components/Logo"),
   },
   /**
    * Configure docs server to redirect asset queries
