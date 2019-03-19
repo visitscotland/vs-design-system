@@ -3,45 +3,45 @@
  */
 
 .share {
-    background-color: vs-colors(gray-xxlight);
-    border-top: 1px solid vs-colors(gray-xlight);
+  background-color: $color_very_light_granite;
+  border-top: 1px solid $color_light_granite;
 
-    &__list {
-        @extend .list-unstyled, .rounded;
+  &__list {
+    @extend .list-unstyled, .rounded;
 
-        padding: 0.5rem;
-        font-weight: $font-weight-bold;
-        line-height: 1;
-        margin-bottom: 0;
+    padding: 0.5rem;
+    font-weight: $font-weight-bold;
+    line-height: 1;
+    margin-bottom: 0;
 
-        &__text {
-            color: vs-colors(purple);
-        }
-
-        &__link,
-        &__text {
-            display: inline-block;
-            padding-right: 0.6rem;
-            vertical-align: middle;
-        }
-
-        &__link {
-            a {
-                display: inline-block;
-                padding-top: 6px;
-                text-align: center;
-                width: 30px;
-                height: 30px;
-                color: vs-colors(purple);
-                border: 1px solid vs-colors(purple);
-                border-radius: 1000px;
-                font-size: 14px;
-
-                &:focus,
-                &:hover {
-                    color: vs-colors(black);
-                }
-            }
-        }
+    &__text {
+      color: $color_thistle_purple;
     }
+
+    &__link,
+    &__text {
+      display: inline-block;
+      padding-right: 0.6rem;
+      vertical-align: middle;
+    }
+
+    &__link {
+      a {
+        display: inline-block;
+        padding-top: 6px;
+        text-align: center;
+        width: 30px;
+        height: 30px;
+        color: $color_thistle_purple;
+        border: 1px solid $color_thistle_purple;
+        border-radius: 1000px;
+        font-size: 14px;
+
+        &:focus,
+        &:hover {
+          color: $color_total_eclipse;
+        }
+      }
+    }
+  }
 }

@@ -1,7 +1,7 @@
 {
-  "name": "tartan-ds",
+  "name": "thistle-ds",
   "version": "0.0.1",
-  "description": "Tartan Design System (VisitScotland)",
+  "description": "Thistle Design System",
   "author": "ljelewis",
   "main": "dist/system/system.js",
   "files": [
@@ -12,7 +12,8 @@
   "license": "MIT",
   "scripts": {
     "dev": "webpack-dev-server --inline --config ./build/webpack.dev.conf.js",
-    "start": "npm-run-all --parallel styleguide theo:onchange theo dev",
+    "start:all": "npm-run-all --parallel styleguide theo:onchange theo dev",
+    "start": "npm run heroku-docs",
     "unit": "jest --config ./test/unit/jest.conf.js --coverage",
     "build": "npm-run-all theo node:build",
     "build:app": "npm run build",
@@ -21,12 +22,15 @@
     "lint": "eslint '**/*.{js,vue}' --cache",
     "node:build": "node ./build/build.js",
     "node:build:system": "node ./build/build-system.js",
-    "styleguide": "vue-styleguidist server --open --config ./config/docs.config.js",
-    "styleguide:build": "vue-styleguidist build --config ./config/docs.config.js",
+    "styleguide": "node build/design-system.js server --open --config ./config/docs.config.js",
+    "styleguide:build": "node build/design-system.js build --config ./config/docs.config.js",
     "theo": "theo ./src/tokens/tokens.yml --transform web --format map.scss,scss,raw.json,json --dest ./src/assets/tokens",
     "theo:onchange": "onchange \"./src/tokens/*.yml\" -- npm run theo",
     "test": "npm-run-all theo unit",
-    "postinstall": "npm-recursive-install --skip-root"
+    "postinstall": "npm-recursive-install --skip-root",
+    "heroku-postbuild": "npm run build:docs",
+    "heroku-docs": "http-server dist/docs -p $PORT",
+    "serve-docs": "http-server dist/docs"
   },
   "husky": {
     "hooks": {
@@ -108,6 +112,7 @@
   },
   "dependencies": {
     "bootstrap": "^4.2.1",
+    "http-server": "^0.11.1",
     "lodash": "^4.17.11",
     "mini-css-extract-plugin": "^0.4.5",
     "postcss-import": "^12.0.1",
@@ -132,6 +137,7 @@
     "@babel/plugin-transform-runtime": "^7.1.0",
     "@babel/preset-env": "^7.1.6",
     "@babel/register": "^7.0.0",
+    "@contentful/rich-text-html-renderer": "^13.1.0",
     "@vue/test-utils": "^1.0.0-beta.26",
     "autoprefixer": "^9.4.0",
     "babel-core": "^7.0.0-bridge.0",
@@ -141,6 +147,7 @@
     "chalk": "^2.4.1",
     "codemirror": "^5.42.0",
     "compression-webpack-plugin": "^2.0.0",
+    "contentful": "^7.3.0",
     "copy-webpack-plugin": "^4.6.0",
     "css-loader": "^1.0.1",
     "eslint": "^5.9.0",
@@ -173,6 +180,7 @@
     "style-loader": "^0.23.1",
     "terser-webpack-plugin": "^1.1.0",
     "theo": "^8.0.1",
+    "turndown": "^5.0.3",
     "url-loader": "^1.1.2",
     "vue-jest": "^3.0.1",
     "vue-loader": "^15.4.2",
@@ -187,8 +195,8 @@
     "webpack-merge-and-include-globally": "^2.1.7"
   },
   "engines": {
-    "node": ">= 8.6.0",
-    "npm": ">= 3.0.0"
+    "node": ">= 10.11.0",
+    "npm": ">= 6.4.1"
   },
   "browserslist": [
     "> 1%",

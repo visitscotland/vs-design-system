@@ -7,8 +7,7 @@
       v-if="prop.category === 'space'"
       :style="{ lineHeight: prop.value, height: prop.value }"
     >
-      ${{prop.name.replace(/_/g, "-")}}
-      <span>({{prop.value}})</span>
+      ${{ prop.name.replace(/_/g, "-") }} <span>({{ prop.value }})</span>
     </div>
   </div>
 </template>
@@ -68,7 +67,7 @@ export default {
   width: 100%;
   span {
     margin-left: 5px;
-    color: $color-silver;
+    color: $color_silver;
     user-select: none;
     font-style: normal;
   }
