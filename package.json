@@ -23,13 +23,14 @@
     "node:build": "node ./build/build.js",
     "node:build:system": "node ./build/build-system.js",
     "styleguide": "node build/design-system.js server --open --config ./config/docs.config.js",
-    "styleguide:build": "vue-styleguidist build --config ./config/docs.config.js",
+    "styleguide:build": "node build/design-system.js build --config ./config/docs.config.js",
     "theo": "theo ./src/tokens/tokens.yml --transform web --format map.scss,scss,raw.json,json --dest ./src/assets/tokens",
     "theo:onchange": "onchange \"./src/tokens/*.yml\" -- npm run theo",
     "test": "npm-run-all theo unit",
     "postinstall": "npm-recursive-install --skip-root",
     "heroku-postbuild": "npm run build:docs",
-    "heroku-docs": "http-server dist/docs -p $PORT"
+    "heroku-docs": "http-server dist/docs -p $PORT",
+    "serve-docs": "http-server dist/docs"
   },
   "husky": {
     "hooks": {
@@ -194,7 +195,8 @@
     "webpack-merge-and-include-globally": "^2.1.7"
   },
   "engines": {
-    "node": ">= 10.11.0"
+    "node": ">= 10.11.0",
+    "npm": ">= 6.4.1"
   },
   "browserslist": [
     "> 1%",
