@@ -1,164 +1,190 @@
 {
   "aliases": {
+    "silver_surf": {
+      "value": "#f5f6fa"
+    },
+    "white": {
+      "value": "#fff"
+    },
+    "dreich_gray": {
+      "value": "#39393b"
+    },
+    "mid_granite": {
+      "value": "#929091"
+    },
+    "total_eclipse": {
+      "value": "#1d1d1b"
+    },
+    "thistle_purple": {
+      "value": "#700e57"
+    },
+    "very_light_granite": {
+      "value": "#f5f6fa"
+    },
+    "heather_pink": {
+      "value": "#af006e"
+    },
+    "bleu_de_france": {
+      "value": "210, 86%"
+    },
+    "skye_blue": {
+      "value": "#3082b4"
+    },
+    "oxford_blue": {
+      "value": "210, 100%"
+    },
+    "gorse_yellow": {
+      "value": "#fcca1b"
+    },
+    "light_granite": {
+      "value": "#e5e5e5"
+    },
+    "dark_granite": {
+      "value": "#595959"
+    },
     "vermilion": {
       "value": "7, 83%"
     },
     "ucla_gold": {
       "value": "43, 100%"
     },
-    "bleu_de_france": {
-      "value": "210, 86%"
-    },
-    "oxford_blue": {
-      "value": "210, 100%"
-    },
     "rich_black": {
       "value": "#001123"
-    },
-    "white": {
-      "value": "#fff"
     }
   },
   "props": {
-    "color_ucla_gold": {
+    "color_heather_pink": {
       "type": "color",
-      "category": "color_group_2",
-      "value": "rgb(255, 186, 10)",
-      "originalValue": "hsla({!ucla_gold}, 52%, 1)",
-      "name": "color_ucla_gold"
+      "category": "Primary palette",
+      "name": "color_heather_pink",
+      "value": "rgb(175, 0, 110)",
+      "originalValue": "{!heather_pink}"
     },
-    "color_ucla_gold_darker": {
+    "color_thistle_purple": {
       "type": "color",
-      "category": "color_group_2",
-      "value": "rgb(179, 128, 0)",
-      "originalValue": "hsla({!ucla_gold}, 35%, 1)",
-      "name": "color_ucla_gold_darker"
+      "category": "Primary palette",
+      "name": "color_thistle_purple",
+      "value": "rgb(112, 14, 87)",
+      "originalValue": "{!thistle_purple}"
     },
-    "color_vermilion_lighter": {
+    "color_skye_blue": {
       "type": "color",
-      "category": "color_group_1",
-      "value": "rgb(244, 151, 138)",
-      "originalValue": "hsla({!vermilion}, 75%, 1)",
-      "name": "color_vermilion_lighter"
+      "category": "Primary palette",
+      "name": "color_skye_blue",
+      "value": "rgb(48, 130, 180)",
+      "originalValue": "{!skye_blue}"
     },
-    "color_vermilion_darker": {
+    "color_gorse_yellow": {
       "type": "color",
-      "category": "color_group_1",
-      "value": "rgb(154, 31, 14)",
-      "originalValue": "hsla({!vermilion}, 33%, 1)",
-      "name": "color_vermilion_darker"
+      "category": "Secondary palette",
+      "name": "color_gorse_yellow",
+      "value": "rgb(252, 202, 27)",
+      "originalValue": "{!gorse_yellow}"
     },
-    "color_ucla_gold_lighter": {
+    "color_silver_surf": {
       "type": "color",
-      "category": "color_group_2",
-      "value": "rgb(255, 219, 128)",
-      "originalValue": "hsla({!ucla_gold}, 75%, 1)",
-      "name": "color_ucla_gold_lighter"
+      "category": "Secondary palette",
+      "name": "color_silver_surf",
+      "value": "rgb(245, 246, 250)",
+      "originalValue": "{!silver_surf}"
     },
-    "color_bleu_de_france_dark": {
+    "color_total_eclipse": {
       "type": "color",
-      "category": "color_group_3",
-      "value": "rgb(16, 112, 209)",
-      "originalValue": "hsla({!bleu_de_france}, 44%, 1)",
-      "name": "color_bleu_de_france_dark"
+      "category": "Grays",
+      "name": "color_total_eclipse",
+      "value": "rgb(29, 29, 27)",
+      "originalValue": "{!total_eclipse}"
     },
-    "color_bleu_de_france_light": {
+    "color_dreich_gray": {
       "type": "color",
-      "category": "color_group_3",
-      "value": "rgb(84, 163, 242)",
-      "originalValue": "hsla({!bleu_de_france}, 64%, 1)",
-      "name": "color_bleu_de_france_light"
+      "category": "Grays",
+      "name": "color_dreich_gray",
+      "value": "rgb(57, 57, 59)",
+      "originalValue": "{!dreich_gray}"
     },
-    "color_silver": {
+    "color_dark_granite": {
       "type": "color",
-      "category": "color_group_4",
-      "value": "rgb(127, 136, 145)",
-      "originalValue": "#7F8891",
-      "name": "color_silver"
+      "category": "Grays",
+      "name": "color_dark_granite",
+      "value": "rgb(89, 89, 89)",
+      "originalValue": "{!dark_granite}"
+    },
+    "color_mid_granite": {
+      "type": "color",
+      "category": "Grays",
+      "name": "color_mid_granite",
+      "value": "rgb(146, 144, 145)",
+      "originalValue": "{!mid_granite}"
+    },
+    "color_light_granite": {
+      "type": "color",
+      "category": "Grays",
+      "name": "color_light_granite",
+      "value": "rgb(229, 229, 229)",
+      "originalValue": "{!light_granite}"
+    },
+    "color_very_light_granite": {
+      "type": "color",
+      "category": "Grays",
+      "name": "color_very_light_granite",
+      "value": "rgb(245, 246, 250)",
+      "originalValue": "{!very_light_granite}"
     },
     "color_white": {
       "type": "color",
-      "category": "color_group_4",
+      "category": "Grays",
+      "name": "color_white",
       "value": "rgb(255, 255, 255)",
-      "originalValue": "{!white}",
-      "name": "color_white"
-    },
-    "color_bleu_de_france": {
-      "type": "color",
-      "category": "color_group_3",
-      "value": "rgb(37, 138, 239)",
-      "originalValue": "hsla({!bleu_de_france}, 54%, 1)",
-      "name": "color_bleu_de_france"
-    },
-    "color_bleu_de_france_darker": {
-      "type": "color",
-      "category": "color_group_3",
-      "value": "rgb(12, 87, 161)",
-      "originalValue": "hsla({!bleu_de_france}, 34%, 1)",
-      "name": "color_bleu_de_france_darker"
-    },
-    "color_bleu_de_france_lighter": {
-      "type": "color",
-      "category": "color_group_3",
-      "value": "rgb(132, 189, 246)",
-      "originalValue": "hsla({!bleu_de_france}, 74%, 1)",
-      "name": "color_bleu_de_france_lighter"
-    },
-    "color_ucla_gold_dark": {
-      "type": "color",
-      "category": "color_group_2",
-      "value": "rgb(230, 164, 0)",
-      "originalValue": "hsla({!ucla_gold}, 45%, 1)",
-      "name": "color_ucla_gold_dark"
-    },
-    "color_vermilion_light": {
-      "type": "color",
-      "category": "color_group_1",
-      "value": "rgb(239, 101, 82)",
-      "originalValue": "hsla({!vermilion}, 63%, 1)",
-      "name": "color_vermilion_light"
-    },
-    "color_vermilion_dark": {
-      "type": "color",
-      "category": "color_group_1",
-      "value": "rgb(201, 40, 19)",
-      "originalValue": "hsla({!vermilion}, 43%, 1)",
-      "name": "color_vermilion_dark"
-    },
-    "color_ucla_gold_light": {
-      "type": "color",
-      "category": "color_group_2",
-      "value": "rgb(255, 204, 77)",
-      "originalValue": "hsla({!ucla_gold}, 65%, 1)",
-      "name": "color_ucla_gold_light"
-    },
-    "color_rich_black": {
-      "type": "color",
-      "category": "color_group_4",
-      "value": "rgb(0, 17, 35)",
-      "originalValue": "{!rich_black}",
-      "name": "color_rich_black"
-    },
-    "color_cloud": {
-      "type": "color",
-      "category": "color_group_4",
-      "value": "rgb(233, 243, 253)",
-      "originalValue": "#E9F3FD",
-      "name": "color_cloud"
-    },
-    "color_oxford_blue": {
-      "type": "color",
-      "category": "color_group_4",
-      "value": "rgb(0, 38, 77)",
-      "originalValue": "hsla({!oxford_blue}, 15%, 1)",
-      "name": "color_oxford_blue"
+      "originalValue": "{!white}"
     },
     "color_vermilion": {
       "type": "color",
-      "category": "color_group_1",
+      "category": "Design system palette",
+      "name": "color_vermilion",
       "value": "rgb(235, 59, 36)",
-      "originalValue": "hsla({!vermilion}, 53%, 1)",
-      "name": "color_vermilion"
+      "originalValue": "hsla({!vermilion}, 53%, 1)"
+    },
+    "color_ucla_gold": {
+      "type": "color",
+      "category": "Design system palette",
+      "name": "color_ucla_gold",
+      "value": "rgb(255, 186, 10)",
+      "originalValue": "hsla({!ucla_gold}, 52%, 1)"
+    },
+    "color_bleu_de_france": {
+      "type": "color",
+      "category": "Design system palette",
+      "name": "color_bleu_de_france",
+      "value": "rgb(37, 138, 239)",
+      "originalValue": "hsla({!bleu_de_france}, 54%, 1)"
+    },
+    "color_oxford_blue": {
+      "type": "color",
+      "category": "Design system palette",
+      "name": "color_oxford_blue",
+      "value": "rgb(0, 38, 77)",
+      "originalValue": "hsla({!oxford_blue}, 15%, 1)"
+    },
+    "color_rich_black": {
+      "type": "color",
+      "category": "Design system palette",
+      "name": "color_rich_black",
+      "value": "rgb(0, 17, 35)",
+      "originalValue": "{!rich_black}"
+    },
+    "color_cloud": {
+      "type": "color",
+      "category": "Design system palette",
+      "name": "color_cloud",
+      "value": "rgb(233, 243, 253)",
+      "originalValue": "#E9F3FD"
+    },
+    "color_silver": {
+      "type": "color",
+      "category": "Design system palette",
+      "name": "color_silver",
+      "value": "rgb(127, 136, 145)",
+      "originalValue": "#7F8891"
     },
     "size_xxxl": {
       "type": "number",
@@ -212,15 +238,15 @@
     "font_heading": {
       "type": "...",
       "category": "font",
-      "value": "'Fira Sans', Helvetica, Arial, sans-serif",
-      "originalValue": "'Fira Sans', Helvetica, Arial, sans-serif",
+      "value": "'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
+      "originalValue": "'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
       "name": "font_heading"
     },
     "font_text": {
       "type": "...",
       "category": "font",
-      "value": "'Fira Sans', Helvetica, Arial, sans-serif",
-      "originalValue": "'Fira Sans', Helvetica, Arial, sans-serif",
+      "value": "'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
+      "originalValue": "'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
       "name": "font_text"
     },
     "weight_bold": {
