@@ -9,9 +9,11 @@ const path = require("path")
 const chalk = require("chalk")
 const webpack = require("webpack")
 const config = require("../config")
-const webpackConfig = require("./webpack.system.conf")
 
 const spinner = ora("Building Design System...")
+
+let webpackConfig = require("./webpack.system.conf")
+
 spinner.start()
 
 rm(path.join(config.system.assetsRoot, config.system.assetsSubDirectory), err => {

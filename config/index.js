@@ -1,6 +1,7 @@
 "use strict"
 
 const path = require("path")
+const splitComponents = require("../build/split-components")
 
 module.exports = {
   build: {
@@ -42,7 +43,7 @@ module.exports = {
 
     // Paths
     assetsRoot: path.resolve(__dirname, "../dist"),
-    assetsSubDirectory: "system",
+    assetsSubDirectory: splitComponents ? "system-components" : "system",
     assetsPublicPath: "/",
 
     // The system.js library target, supports all
