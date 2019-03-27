@@ -18,8 +18,6 @@ let webpackConfig = require(splitComponents
   ? "./webpack.system-split.conf"
   : "./webpack.system.conf")
 
-console.log(webpackConfig)
-
 spinner.start()
 
 rm(path.join(config.system.assetsRoot, config.system.assetsSubDirectory), err => {
