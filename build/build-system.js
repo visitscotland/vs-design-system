@@ -12,7 +12,13 @@ const config = require("../config")
 
 const spinner = ora("Building Design System...")
 
-let webpackConfig = require("./webpack.system.conf")
+const splitComponents = require("./split-components")
+
+let webpackConfig = require(splitComponents
+  ? "./webpack.system-split.conf"
+  : "./webpack.system.conf")
+
+console.log(webpackConfig)
 
 spinner.start()
 

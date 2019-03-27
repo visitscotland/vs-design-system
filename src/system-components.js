@@ -10,7 +10,9 @@ const upperFirst = require("lodash/upperFirst")
 
 const componentPaths = ["./src/elements/**/*.vue"]
 
-let components = {}
+let components = {
+  coreStyles: "./src/styles/styles.scss",
+}
 
 componentPaths
   .reduce((accumulator, pattern) => {

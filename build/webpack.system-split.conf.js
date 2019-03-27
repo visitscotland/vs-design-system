@@ -1,5 +1,4 @@
 "use strict"
-
 const utils = require("./utils")
 const webpack = require("webpack")
 const path = require("path")
@@ -14,9 +13,12 @@ const SafeParser = require("postcss-safe-parser")
 
 const env = require("../config/prod.env")
 
-baseWebpackConfig.entry = {
-  system: ["./src/system.js"],
-}
+baseWebpackConfig.entry = require("../src/system-components")
+
+// Remove the CSS extract from the base config to prevent duplicate CSS file
+baseWebpackConfig.plugins = baseWebpackConfig.plugins.filter(plugin => {
+  return !(plugin instanceof MiniCssExtractPlugin)
+})
 
 const webpackConfig = merge(baseWebpackConfig, {
   module: {
@@ -29,7 +31,7 @@ const webpackConfig = merge(baseWebpackConfig, {
   devtool: config.build.productionSourceMap ? config.system.devtool : false,
   output: {
     path: config.system.assetsRoot,
-    filename: utils.assetsSystemPath("[name].js"),
+    filename: utils.assetsSystemPath("components/[name]/component.js"),
     library: "[name]",
     libraryTarget: config.system.libraryTarget,
   },
@@ -43,7 +45,7 @@ const webpackConfig = merge(baseWebpackConfig, {
     }),
     // extract css into its own file
     new MiniCssExtractPlugin({
-      filename: utils.assetsSystemPath("[name].css"),
+      filename: utils.assetsSystemPath("components/[name]/component.css"),
     }),
     // Compress extracted CSS. We are using this plugin so that possible
     // duplicated CSS from different components can be deduped.
