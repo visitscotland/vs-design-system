@@ -8,7 +8,12 @@ const path = require("path")
 const camelCase = require("lodash/camelCase")
 const upperFirst = require("lodash/upperFirst")
 
-const componentPaths = ["./src/elements/**/*.vue"]
+const componentPaths = [
+  "./src/elements/**/*.vue",
+  "./src/patterns/**/*.vue",
+  "./src/modules/**/*.vue",
+  "./src/templates/**/*.vue",
+]
 
 let components = {
   coreStyles: "./src/styles/styles.scss",
