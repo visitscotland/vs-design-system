@@ -134,12 +134,7 @@ module.exports = {
             "style-loader",
             "css-loader",
             "postcss-loader",
-            {
-              loader: "sass-loader",
-              options: {
-                implementation: require("sass"),
-              },
-            },
+            "sass-loader",
             {
               loader: "sass-resources-loader",
               options: {
