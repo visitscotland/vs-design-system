@@ -28,6 +28,13 @@ The following commands will build a static version of the documentation at `dist
 - `npm run styleguide:build`
 - `npm run serve-docs`
 
+## Remote docs content
+
+It's possible to get the title and sections (pages) content for the documentation site from a remote API, during build. In order to do so:
+
+- Edit `config/remote.config.js`, specifying URL, params and transforms
+- Run the remote styleguide scripts instead of the regular scripts (`npm run styleguide:remote` and `npm run styleguide:remote:build`)
+
 ## Publishing the documentation to Heroku
 
 If you are new to Heroku, [this guide](https://devcenter.heroku.com/articles/getting-started-with-nodejs) is a good guide to get you started with it.
@@ -38,6 +45,14 @@ The following commands will allow you to publsh the documentation site to a Hero
 - `cd thistle`
 - `heroku create`
 - `git push heroku master`
+
+Pushing to the Heroku remote triggers the following npm scripts in order on the Heroku server:
+
+- build (`npm-run-all theo node:build`)
+- heroku-postbuild (`npm run build:docs:remote`)
+- start (`http-server dist/docs -p $PORT`)
+
+Editing any of those npm scripts will alter what occurs on the Heroku server.
 
 ## Vue Design System
 
