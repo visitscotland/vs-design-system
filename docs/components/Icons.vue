@@ -5,8 +5,6 @@
 <script>
 const allIcons = require.context("@/assets/icons", true, /^\.\/.*\.svg$/)
 
-debugger
-
 export default {
   name: "Icons",
   data() {},

@@ -1,22 +1,38 @@
 const documentToHtmlString = require("@contentful/rich-text-html-renderer").documentToHtmlString
 const _ = require("lodash")
 
-function getContentfulFieldValue(contentfulEntry, fieldPath) {
+function transformRawResponse(raw) {
+  const instance = _.get(raw, "items.0")
+  const relatedEntries = _.get(raw, "includes.Entry")
+
+  return {
+    title: _getContentfulFieldValue(instance, "title"),
+    sections: _extractContentfulEntrySections(instance, relatedEntries),
+  }
+}
+
+function _getContentfulFieldValue(contentfulEntry, fieldPath) {
   return _.get(contentfulEntry, "fields." + fieldPath)
 }
 
-function extractContentfulEntrySections(contentfulEntry, relatedEntries) {
-  return _.map(
-    getContentfulFieldValue(contentfulEntry, "sections"),
-    _.partial(parseContentfulSection, _, relatedEntries)
+function _extractContentfulEntrySections(contentfulEntry, relatedEntries) {
+  return _.filter(
+    _.map(
+      _getContentfulFieldValue(contentfulEntry, "sections"),
+      _.partial(_parseContentfulSection, _, relatedEntries)
+    )
   )
 }
 
-function parseContentfulSection(sectionLinkObj, relatedEntries) {
+function _parseContentfulSection(sectionLinkObj, relatedEntries) {
   const section = _.find(
     relatedEntries,
     _.matchesProperty("sys.id", _.get(sectionLinkObj, "sys.id"))
   )
+
+  if (!section) {
+    return null
+  }
 
   const fields = _.get(section, "fields")
 
@@ -24,15 +40,13 @@ function parseContentfulSection(sectionLinkObj, relatedEntries) {
     fields.content = documentToHtmlString(fields.content)
   }
 
+  if (fields.sections) {
+    fields.sections = _extractContentfulEntrySections(section, relatedEntries)
+  }
+
   return fields
 }
 
-module.exports = function transformRemoteConfig(response) {
-  const instance = _.get(response, "items.0")
-  const relatedEntries = _.get(response, "includes.Entry")
-
-  return {
-    title: getContentfulFieldValue(instance, "title"),
-    sections: extractContentfulEntrySections(instance, relatedEntries),
-  }
+module.exports = {
+  transformRawResponse,
 }

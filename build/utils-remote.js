@@ -13,6 +13,8 @@ const defaultRemoteConfig = {
   tempPath: "./.tmp/",
 }
 
+const turndownService = _getTurndownService()
+
 function _makeRemoteUriFromRemoteConfig(config) {
   const uri = _.get(config, "uriBase")
   let queryString = null
@@ -39,37 +41,37 @@ function _mergeConfig(remoteConfig, srcConfig) {
   return _.assign({}, srcConfig, remoteConfig)
 }
 
-function _processConfigSections(remoteConfig, srcConfig) {
-  const sections = _.get(srcConfig, "sections")
-  let turndownService = null
+function _processSections(parentObject, tempOutputPath) {
+  const sections = _.get(parentObject, "sections")
 
   if (!sections) {
-    return srcConfig
+    return parentObject
   }
 
-  turndownService = _getTurndownService()
+  _prepOutputDir(tempOutputPath)
 
-  _prepOutputDir(remoteConfig)
+  parentObject.sections = _.map(sections, _.partial(_processSection, _, tempOutputPath))
 
-  srcConfig.sections = _processSections(sections, remoteConfig, turndownService)
-
-  return srcConfig
+  return parentObject
 }
 
-function _processSections(sections, remoteConfig, turndownService) {
-  const tempRootPath = _.get(remoteConfig, "tempPath")
-  return _.map(sections, _.partial(_processSection, _, tempRootPath, turndownService))
-}
-
-function _processSection(section, tempRootPath, turndownService) {
-  const outputMarkdownPath = tempRootPath + _makeSectionMarkdownFileName(section)
-  const markDownContent = turndownService.turndown(_.get(section, "content"))
-
-  fs.writeFileSync(outputMarkdownPath, markDownContent, "utf8")
+function _processSection(section, tempOutputPath) {
+  // process child sections first
+  section = _processSections(section, tempOutputPath)
 
   return _.merge({}, section, {
-    content: outputMarkdownPath,
+    content: _processSectionContent(section, tempOutputPath),
   })
+}
+
+function _processSectionContent(section, tempOutputPath) {
+  const outputMarkdownPath = tempOutputPath + _makeSectionMarkdownFileName(section)
+  const htmlContent = _.get(section, "content")
+  const markdownContent = htmlContent ? turndownService.turndown(htmlContent) : ""
+
+  fs.writeFileSync(outputMarkdownPath, markdownContent, "utf8")
+
+  return outputMarkdownPath
 }
 
 function _makeSectionMarkdownFileName(section) {
@@ -89,9 +91,7 @@ function _getTurndownService() {
   return turndownService
 }
 
-function _prepOutputDir(remoteConfig) {
-  const tempOutputPath = _.get(remoteConfig, "tempPath")
-
+function _prepOutputDir(tempOutputPath) {
   if (!fs.existsSync(tempOutputPath)) {
     fs.mkdirSync(tempOutputPath, { recursive: true })
   }
@@ -103,6 +103,21 @@ function _getTransforms(remoteConfig) {
 
 function _applyRemoteConfigDefaults(remoteConfig) {
   return _.defaultsDeep({}, remoteConfig, defaultRemoteConfig)
+}
+
+function _addPrivateComponents(mergedConfig) {
+  if (!_.isArray(mergedConfig.sections)) {
+    mergedConfig.sections = []
+  }
+
+  mergedConfig.sections.push({
+    name: "Private Components",
+    exampleMode: "hide",
+    usageMode: "hide",
+    components: ["./src/**/*.vue", "./docs/components/**/*.vue"],
+  })
+
+  return mergedConfig
 }
 
 function getRemoteConfig(remoteConfig, srcConfig) {
@@ -125,7 +140,8 @@ function getRemoteConfig(remoteConfig, srcConfig) {
     .then(_.ary(_.partial(_.get, _, "data"), 1))
     .then(_.partial(_.reduce, transforms, _applyTransform, _))
     .then(_.partial(_mergeConfig, _, srcConfig))
-    .then(_.partial(_processConfigSections, remoteConfig))
+    .then(_.partial(_processSections, _, _.get(remoteConfig, "tempPath")))
+    .then(_addPrivateComponents)
     .then(function(mergedConfig) {
       spinner.stop()
 
