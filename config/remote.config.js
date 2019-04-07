@@ -1,12 +1,7 @@
-const transformConfig = require("../build/contentful-response-transform")
+const transformConfig = require("../build/remote-response-transform")
 
 module.exports = {
   // enter the correct URI and access_token for Contentful instance
-  uriBase: "https://cdn.contentful.com/spaces/xxxxxxxxxx/environments/master/entries",
-  uriParams: {
-    access_token: "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
-    content_type: "instance",
-    include: 5,
-  },
+  uriBase: "http://localhost:8080/site/api/documents/8578d653-71a3-4a29-b2bc-b9dbd9a2d660",
   transformResponse: transformConfig.transformRawResponse,
 }
