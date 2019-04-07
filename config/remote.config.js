@@ -6,6 +6,7 @@ module.exports = {
   uriParams: {
     access_token: "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
     content_type: "instance",
+    include: 5,
   },
-  transformResponse: transformConfig,
+  transformResponse: transformConfig.transformRawResponse,
 }
