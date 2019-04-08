@@ -8,8 +8,12 @@ const remoteConfig = require("../config/remote.config.js")
 const remoteUtils = require("./utils-remote.js")
 
 const argv = minimist(process.argv.slice(2))
-
 const command = argv._[0]
+
+// Set environment before loading style guide config because user’s webpack config may use it
+const env = command === "build" ? "production" : "development"
+process.env.NODE_ENV = process.env.NODE_ENV || env
+
 const config = getConfig(argv.config)
 
 remoteUtils
@@ -21,6 +25,8 @@ remoteUtils
 
 function run(command, config) {
   const styleguide = styleguidist(config)
+
+  // console.log(config.webpackConfig)
 
   switch (command) {
     case "server":
