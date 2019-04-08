@@ -15,7 +15,7 @@
     "start:all": "npm-run-all --parallel styleguide theo:onchange theo dev",
     "start": "npm run heroku-docs",
     "unit": "jest --config ./test/unit/jest.conf.js --coverage",
-    "build": "npm-run-all theo node:build",
+    "build": "npm-run-all theo styleguide:remote:build",
     "build:app": "npm run build",
     "build:system": "npm-run-all theo node:build:system",
     "build:docs": "npm-run-all theo styleguide:build",
