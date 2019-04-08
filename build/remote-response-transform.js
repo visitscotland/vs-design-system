@@ -1,9 +1,11 @@
 const _ = require("lodash")
 
-function transformRawResponse(raw) {
+let projectName = "myhippoproject"
+
+function transformRawResponse(raw, args) {
   const instance = raw
 
-  console.log("title = " + _getFieldValue(instance, "title"))
+  _setup(args)
 
   return {
     title: _getFieldValue(instance, "title"),
@@ -11,12 +13,20 @@ function transformRawResponse(raw) {
   }
 }
 
+function _setup(args) {
+  projectName = _.get(args, "projectName", projectName)
+}
+
 function _getFieldValue(entry, fieldPath) {
-  return _.get(entry, "items.myhippoproject:" + fieldPath)
+  return _.get(entry, "items." + projectName + ":" + fieldPath)
 }
 
 function _extractEntrySections(entry) {
   return _.filter(_.map(_getFieldValue(entry, "sections"), _.partial(_parseSection)))
+}
+
+function _extractSectionContent(section) {
+  return _getFieldValue(section, "content.content")
 }
 
 function _parseSection(section) {
@@ -24,12 +34,14 @@ function _parseSection(section) {
     return _.last(_.split(key, ":"))
   })
 
+  if (fields.content) {
+    fields.content = _extractSectionContent(section)
+  }
+
   if (fields.sections) {
     fields.sections = _extractEntrySections(section)
   }
-  console.log("---------")
-  console.log(fields)
-  console.log("---------")
+
   return fields
 }
 

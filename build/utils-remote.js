@@ -1,7 +1,7 @@
 #! /usr/bin/env node
 const _ = require("lodash")
 const fs = require("fs")
-const axios = require("axios")
+const requestPromise = require("request-promise-native")
 const Turndown = require("turndown")
 const ora = require("ora")
 const rm = require("rimraf")
@@ -34,7 +34,18 @@ function _makeRemoteUriFromRemoteConfig(config) {
 }
 
 function _applyTransform(apiResponse, transform) {
-  return _.isFunction(transform) ? transform(apiResponse) : apiResponse
+  if (_.isFunction(transform)) {
+    return transform(apiResponse)
+  }
+
+  let func = _.get(transform, "func")
+  let args = _.concat([apiResponse], _.get(transform, "args", []))
+
+  if (!_.isFunction(func)) {
+    return apiResponse
+  }
+
+  return func.apply(null, args)
 }
 
 function _mergeConfig(remoteConfig, srcConfig) {
@@ -82,7 +93,7 @@ function _getTurndownService() {
   const turndownService = new Turndown()
 
   turndownService.addRule("transform-code", {
-    filter: ["code"],
+    filter: ["code", "pre"],
     replacement(content) {
       return "```\n" + content + "\n```"
     },
@@ -133,12 +144,15 @@ function getRemoteConfig(remoteConfig, srcConfig) {
 
   const transforms = _getTransforms(remoteConfig)
 
+  const requestOptions = {
+    uri: uri,
+    json: true,
+  }
+
   spinner.start()
 
-  return axios
-    .get(uri)
-    .then(_.ary(_.partial(_.get, _, "data"), 1))
-    .then(_.partial(_.reduce, transforms, _applyTransform, _))
+  return requestPromise(requestOptions)
+    .then(_.partial(_.reduce, transforms, _applyTransform))
     .then(_.partial(_mergeConfig, _, srcConfig))
     .then(_.partial(_processSections, _, _.get(remoteConfig, "tempPath")))
     .then(_addPrivateComponents)
@@ -146,13 +160,14 @@ function getRemoteConfig(remoteConfig, srcConfig) {
       spinner.stop()
 
       console.log("Remote config merged!")
-
+      console.log(mergedConfig.sections)
       return mergedConfig
     })
     .catch(function(err) {
       spinner.stop()
 
-      console.log("Problem encountered getting remote config: " + err)
+      console.log("Problem encountered getting remote config from " + uri)
+      console.log(err)
 
       // return the original static config on error
       console.log("Ignoring remote config")
