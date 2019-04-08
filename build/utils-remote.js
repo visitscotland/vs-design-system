@@ -154,7 +154,11 @@ function getRemoteConfig(remoteConfig, srcConfig) {
 
       console.log("Problem encountered getting remote config: " + err)
 
-      throw err
+      // return the original static config on error
+      console.log("Ignoring remote config")
+      return srcConfig
+
+      // throw err
     })
 }
 
