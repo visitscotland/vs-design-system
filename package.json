@@ -15,7 +15,7 @@
     "start:all": "npm-run-all --parallel styleguide theo:onchange theo dev",
     "start": "npm run heroku-docs",
     "unit": "jest --config ./test/unit/jest.conf.js --coverage",
-    "build": "npm-run-all theo node:build",
+    "build": "npm-run-all theo styleguide:remote:build",
     "build:app": "npm run build",
     "build:system": "npm-run-all theo node:build:system",
     "build:docs": "npm-run-all theo styleguide:build",
@@ -31,7 +31,6 @@
     "theo:onchange": "onchange \"./src/tokens/*.yml\" -- npm run theo",
     "test": "npm-run-all theo unit",
     "postinstall": "npm-recursive-install --skip-root",
-    "heroku-postbuild": "npm run styleguide:remote:build",
     "heroku-docs": "http-server dist/docs -p $PORT",
     "serve-docs": "http-server dist/docs"
   },
