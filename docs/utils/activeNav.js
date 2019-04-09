@@ -13,6 +13,16 @@ export default {
         })
       }
     },
+    activateItem(linkItem) {
+      linkItem.classList.add("vueds-active")
+
+      // Check for a grandparent nav link item
+      const parent = linkItem.parentNode.parentNode
+
+      if (parent && parent.className.match(/(rsg--item)/)) {
+        this.activateItem(parent)
+      }
+    },
     refreshClickHandlers(element, index, navType) {
       if (this.navClickHandlers[navType][index]) {
         element.removeEventListener("click", this.navClickHandlers[navType][index], false)
@@ -27,13 +37,8 @@ export default {
       } else {
         this.methods.clearActiveLinks()
       }
-      event.target.parentNode.classList.add("vueds-active")
 
-      // When clicking a sub link
-      const parent = event.target.parentNode.parentNode.parentNode
-      if (parent && parent.className.match(/(rsg--item)/)) {
-        parent.classList.add("vueds-active")
-      }
+      this.activateItem(event.target.parentNode)
     },
     init() {
       let currentURL = ""
