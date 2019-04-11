@@ -13,19 +13,32 @@ export default {
         })
       }
     },
+    activateItem(linkItem) {
+      linkItem.classList.add("vueds-active")
+
+      // Check for a grandparent nav link item
+      const parent = linkItem.parentNode.parentNode
+
+      if (parent && parent.className.match(/(rsg--item)/)) {
+        this.activateItem(parent)
+      }
+    },
+    refreshClickHandlers(element, index, navType) {
+      if (this.navClickHandlers[navType][index]) {
+        element.removeEventListener("click", this.navClickHandlers[navType][index], false)
+      }
+
+      this.navClickHandlers[navType][index] = this.click.bind(this)
+      element.addEventListener("click", this.navClickHandlers[navType][index], false)
+    },
     click(event) {
       if (this.clearActiveLinks) {
         this.clearActiveLinks()
       } else {
         this.methods.clearActiveLinks()
       }
-      event.target.parentNode.classList.add("vueds-active")
 
-      // When clicking a sub link
-      const parent = event.target.parentNode.parentNode.parentNode
-      if (parent && parent.className.match(/(rsg--item)/)) {
-        parent.classList.add("vueds-active")
-      }
+      this.activateItem(event.target.parentNode)
     },
     init() {
       let currentURL = ""
@@ -51,6 +64,14 @@ export default {
         const search = sidebar.querySelector("div[class^='rsg--search'] input")
         const self = this
 
+        // init handler object
+        if (!self.navClickHandlers) {
+          self.navClickHandlers = {
+            navLinks: {},
+            subNavLinks: {},
+          }
+        }
+
         if (currentURL) {
           if (currentPage) {
             currentPage.parentNode.classList.add("vueds-active")
@@ -70,16 +91,14 @@ export default {
         // Cleanup
 
         if (navLinks) {
-          ;[].forEach.call(navLinks, function(element) {
-            element.removeEventListener("click", self.click.bind(self), false)
-            element.addEventListener("click", self.click.bind(self), false)
+          ;[].forEach.call(navLinks, function(element, i) {
+            self.refreshClickHandlers(element, i, "navLinks")
           })
         }
 
         if (subNavLinks) {
-          ;[].forEach.call(subNavLinks, function(element) {
-            element.removeEventListener("click", self.click.bind(self), false)
-            element.addEventListener("click", self.click.bind(self), false)
+          ;[].forEach.call(subNavLinks, function(element, i) {
+            self.refreshClickHandlers(element, i, "subNavLinks")
           })
         }
       }
