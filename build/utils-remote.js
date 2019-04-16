@@ -1,12 +1,14 @@
 #! /usr/bin/env node
-const _ = require("lodash")
 const fs = require("fs")
-const requestPromise = require("request-promise-native")
-const Turndown = require("turndown")
-const ora = require("ora")
 const rm = require("rimraf")
 const path = require("path")
 
+const _ = require("lodash")
+const ora = require("ora")
+const requestPromise = require("request-promise-native")
+const Turndown = require("turndown")
+
+const getConfig = require("vue-styleguidist/scripts/config")
 const StyleguidistError = require("react-styleguidist/scripts/utils/error")
 
 const defaultRemoteConfig = {
@@ -14,6 +16,72 @@ const defaultRemoteConfig = {
 }
 
 const turndownService = _getTurndownService()
+
+let remoteConfig = null
+
+function getRemoteConfig(argv) {
+  const localConfig = getConfig(argv.config)
+
+  remoteConfig = _getRemoteConfigProfile(argv)
+
+  if (!remoteConfig) {
+    return Promise.resolve(localConfig)
+  }
+
+  remoteConfig = _applyRemoteConfigDefaults(remoteConfig)
+
+  const uri = _makeRemoteUriFromRemoteConfig(remoteConfig)
+
+  const spinner = ora("Getting remote config from " + uri + "...")
+
+  const transforms = _getTransforms(remoteConfig)
+
+  const requestOptions = {
+    uri: uri,
+    json: true,
+  }
+
+  spinner.start()
+
+  return requestPromise(requestOptions)
+    .then(_.partial(_.reduce, transforms, _applyTransform))
+    .then(_.partial(_mergeConfig, _, localConfig))
+    .then(_.partial(_processSections, _, _.get(remoteConfig, "tempPath")))
+    .then(_addPrivateComponents)
+    .then(function(mergedConfig) {
+      spinner.stop()
+
+      console.log("Remote config merged!")
+
+      return mergedConfig
+    })
+    .catch(function(err) {
+      spinner.stop()
+
+      console.log("Problem encountered getting remote config from " + uri)
+      console.log(err)
+
+      // return the original static config on error
+      console.log("Ignoring remote config")
+      return localConfig
+
+      // throw err
+    })
+}
+
+function cleanup(docsConfig) {
+  const sectionMarkdownFiles = _.map(_.get(docsConfig, "sections"), _makeSectionMarkdownFileName)
+
+  const tempPath = _.get(_applyRemoteConfigDefaults(remoteConfig), "tempPath")
+
+  _.each(sectionMarkdownFiles, function(fileName) {
+    rm(path.join(tempPath, fileName), function(err) {
+      if (err) {
+        console.log("Failed to remove temp markdown file", fileName, ":", err)
+      }
+    })
+  })
+}
 
 function _makeRemoteUriFromRemoteConfig(config) {
   const uri = _.get(config, "uriBase")
@@ -48,8 +116,8 @@ function _applyTransform(apiResponse, transform) {
   return func.apply(null, args)
 }
 
-function _mergeConfig(remoteConfig, srcConfig) {
-  return _.assign({}, srcConfig, remoteConfig)
+function _mergeConfig(remoteConfig, localConfig) {
+  return _.assign({}, localConfig, remoteConfig)
 }
 
 function _processSections(parentObject, tempOutputPath) {
@@ -117,7 +185,7 @@ function _applyRemoteConfigDefaults(remoteConfig) {
 }
 
 function _addPrivateComponents(mergedConfig) {
-  if (!_.isArray(mergedConfig.sections)) {
+  if (!mergedConfig.sections || !_.isArray(mergedConfig.sections)) {
     mergedConfig.sections = []
   }
 
@@ -131,64 +199,12 @@ function _addPrivateComponents(mergedConfig) {
   return mergedConfig
 }
 
-function getRemoteConfig(remoteConfig, srcConfig) {
-  if (!remoteConfig) {
-    return Promise.resolve(srcConfig)
-  }
+function _getRemoteConfigProfile(argv) {
+  const remoteConfigFile = argv["remote-config"]
+  const remoteConfig = remoteConfigFile ? require(remoteConfigFile) : undefined
+  const profileName = argv["remote-profile"]
 
-  remoteConfig = _applyRemoteConfigDefaults(remoteConfig)
-
-  const uri = _makeRemoteUriFromRemoteConfig(remoteConfig)
-
-  const spinner = ora("Getting remote config from " + uri + "...")
-
-  const transforms = _getTransforms(remoteConfig)
-
-  const requestOptions = {
-    uri: uri,
-    json: true,
-  }
-
-  spinner.start()
-
-  return requestPromise(requestOptions)
-    .then(_.partial(_.reduce, transforms, _applyTransform))
-    .then(_.partial(_mergeConfig, _, srcConfig))
-    .then(_.partial(_processSections, _, _.get(remoteConfig, "tempPath")))
-    .then(_addPrivateComponents)
-    .then(function(mergedConfig) {
-      spinner.stop()
-
-      console.log("Remote config merged!")
-      console.log(mergedConfig.sections)
-      return mergedConfig
-    })
-    .catch(function(err) {
-      spinner.stop()
-
-      console.log("Problem encountered getting remote config from " + uri)
-      console.log(err)
-
-      // return the original static config on error
-      console.log("Ignoring remote config")
-      return srcConfig
-
-      // throw err
-    })
-}
-
-function cleanup(remoteConfig, docsConfig) {
-  const sectionMarkdownFiles = _.map(_.get(docsConfig, "sections"), _makeSectionMarkdownFileName)
-
-  const tempPath = _.get(_applyRemoteConfigDefaults(remoteConfig), "tempPath")
-
-  _.each(sectionMarkdownFiles, function(fileName) {
-    rm(path.join(tempPath, fileName), function(err) {
-      if (err) {
-        console.log("Failed to remove temp markdown file", fileName, ":", err)
-      }
-    })
-  })
+  return _.get(remoteConfig, profileName) || _.get(remoteConfig, _.first(_.keys(remoteConfig)))
 }
 
 module.exports = {
