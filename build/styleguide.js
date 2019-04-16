@@ -2,9 +2,6 @@ const minimist = require("minimist")
 const partial = require("lodash/partial")
 
 const styleguidist = require("vue-styleguidist")
-const getConfig = require("vue-styleguidist/scripts/config")
-
-const remoteConfig = require("../config/remote.config.js")
 const remoteUtils = require("./utils-remote.js")
 
 const argv = minimist(process.argv.slice(2))
@@ -12,12 +9,15 @@ const command = argv._[0]
 
 // Set environment before loading style guide config because user’s webpack config may use it
 const env = command === "build" ? "production" : "development"
+
 process.env.NODE_ENV = process.env.NODE_ENV || env
 
-const config = getConfig(argv.config)
+if (!process.env.REMOTE_CONFIG_HIPPO_SPACE) {
+  require("dotenv").config()
+}
 
 remoteUtils
-  .getRemoteConfig(remoteConfig, config)
+  .getRemoteConfig(argv)
   .then(partial(run, command))
   .catch(function(err) {
     console.log("Problem getting remote config:", err)
@@ -25,8 +25,6 @@ remoteUtils
 
 function run(command, config) {
   const styleguide = styleguidist(config)
-
-  // console.log(config.webpackConfig)
 
   switch (command) {
     case "server":
@@ -45,7 +43,7 @@ function buildCallback(err, config, stats) {
     console.log(config.title, "published to", config.styleguideDir)
   }
 
-  remoteUtils.cleanup(remoteConfig, config)
+  remoteUtils.cleanup(config)
 }
 
 function serverCallback(err, config) {
