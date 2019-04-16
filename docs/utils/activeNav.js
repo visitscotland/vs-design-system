@@ -74,11 +74,7 @@ export default {
 
         if (currentURL) {
           if (currentPage) {
-            currentPage.parentNode.classList.add("vueds-active")
-            const parent = currentPage.parentNode.parentNode.parentNode
-            if (parent.className.match(/(rsg--item)/)) {
-              currentPage.parentNode.parentNode.parentNode.classList.add("vueds-active")
-            }
+            this.activateItem(currentPage.parentNode)
           } else if (currentURL === "/" && sidebar.querySelectorAll("a")[0].parentNode) {
             sidebar.querySelectorAll("a")[0].parentNode.classList.add("vueds-active")
           }
