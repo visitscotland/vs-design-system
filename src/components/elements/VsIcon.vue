@@ -74,7 +74,7 @@ export default {
 <style lang="scss">
 // This is here just to provide defaults if the original tokens are removed.
 // Can be removed once you’re ready to start defining your own sizes.
-@import "../../docs/docs.tokens.scss";
+@import "@docs/docs.tokens.scss";
 
 // We don’t want to use scoped since these styles need to cascade down to SVGs.
 // We also want to be able to style .icon inside buttons etc.
