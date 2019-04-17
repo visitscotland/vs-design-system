@@ -1,27 +1,33 @@
 <template>
-  <component :is="type" class="not-found">
+  <component :is="type" class="index">
     <NavBar
-      active="NotFound"
+      active="Index"
       :navItems="[
-        {name: 'Template', component: 'Index', href: '/#/'},
-        {name: 'Documentation', href: 'http://localhost:6060/'}
+        { name: 'Template', component: 'Index', href: '/#/' },
+        { name: 'Documentation', href: 'http://localhost:6060/' },
       ]"
     />
     <Wrapper>
-      <Heading>404 Error</Heading>
-      <Paragraph>Couldn’t find a component that would match the URL you entered. Double check configuration in router/index.js.</Paragraph>
+      <Heading>Vue Design System</Heading>
+      <Paragraph>
+        <a href="https://vueds.com">Vue Design System</a>is an open-source tool for building design
+        systems with Vue.js. It provides you and your team a set of organized tools, patterns &amp;
+        practices. It works as the foundation for your application development.
+      </Paragraph>
     </Wrapper>
   </component>
 </template>
 
 <script>
 /**
- * Shows how to layout and structure an error page.
+ * Shows how to layout and structure a home page.
  */
 export default {
-  name: "NotFound",
+  name: "Index",
+  status: "deprecated",
+  release: "1.0.0",
   metaInfo: {
-    title: "Page Not Found | Vue Design System",
+    title: "Vue Design System",
     htmlAttrs: {
       lang: "en",
     },
@@ -46,7 +52,7 @@ $color-template-background-bottom: shade($color-template-background, 5%);
 $color-template-text: $color-white;
 $color-template-link: $color-bleu-de-france;
 
-.not-found {
+.index {
   @include reset;
   @include inset-space($space-m);
   min-height: $space-xxl * 4;
@@ -61,6 +67,9 @@ $color-template-link: $color-bleu-de-france;
   float: left;
   height: 100%;
   width: 100%;
+  @media #{$media-query-l} {
+    // This is how you’d use design tokens with media queries
+  }
   .heading {
     color: $color-template-text;
   }
@@ -79,11 +88,16 @@ $color-template-link: $color-bleu-de-france;
     left: 50%;
     top: 50%;
   }
+  a {
+    font-family: $font-text;
+    color: $color-bleu-de-france;
+    text-decoration: underline;
+  }
 }
 </style>
 
 <docs>
   ```jsx
-  <NotFound />
+  <Index />
   ```
 </docs>
