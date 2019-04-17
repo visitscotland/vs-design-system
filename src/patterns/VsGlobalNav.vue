@@ -83,7 +83,7 @@ export default {
 
 <style lang="scss" scoped>
 .global-nav {
-  @extend %invert-color;
+  // @extend %invert-color;
 
   background: $color_thistle_purple;
 

@@ -5,27 +5,18 @@
  * CSS in your final, compiled files.
  */
 
-@import "../styles/functions";
-@import "../styles/mixins";
-@import "../styles/spacing";
+@import "./functions";
+@import "./mixins";
+@import "./spacing";
 
 /* Variables */
 
 @import "variables/vs-font-size";
 @import "variables/bootstrap-overrides";
-@import "variables/vs-margin";
-@import "variables/vs-padding";
-
-// /* Mixins */
-
-@import "mixins/between";
 
 // /* Placeholder */
 
-@import "placeholders/card-style";
-@import "placeholders/external-links";
 @import "placeholders/fonts";
-@import "placeholders/invert-color";
 
 // /* Bootstrap */
 
@@ -40,43 +31,11 @@
 @import "~bootstrap/scss/media";
 @import "~bootstrap/scss/tables";
 
-// /* Utilities */
-
-@import "utilities/margin";
-@import "utilities/padding";
-
 // /* Base */
 
-@import "base/typography";
-@import "base/back-to-top";
 @import "base/background";
-@import "base/banner";
-@import "base/banner-cta";
 @import "base/body";
-@import "base/cards";
-@import "base/contact";
-@import "base/cookie-notification";
-@import "base/content-quote";
-@import "base/content-article";
-@import "base/download";
-@import "base/embed-twitter";
-@import "base/event";
-@import "base/external-links";
-@import "base/hamburger";
-@import "base/content-introduction";
-@import "base/key-benefits";
-@import "base/key-statistics";
-@import "base/pagination";
-@import "base/search";
-@import "base/site-mobile-navigation";
-@import "base/site-main-navigation";
 @import "base/site-header";
 @import "base/site-footer";
 @import "base/site-footer-base";
-@import "base/site-footer-icons";
-@import "base/site-footer-menu";
-@import "base/site-logo";
-@import "base/share";
-@import "base/skip-to-content";
-@import "base/step-by-step";
-@import "base/vs-modal-iframe";
+@import "base/typography";
