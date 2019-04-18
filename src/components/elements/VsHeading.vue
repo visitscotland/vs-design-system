@@ -40,7 +40,7 @@ export default {
     font-size: $h1-font-size;
     letter-spacing: $spacing-xs;
     @media #{$media-query-l} {
-      font-size: $size-xxxl;
+      font-size: $font-size-xxxl;
     }
   }
 

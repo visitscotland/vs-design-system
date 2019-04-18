@@ -9,14 +9,8 @@
 @import "./mixins";
 @import "./spacing";
 
-/* Variables */
-
-@import "variables/vs-font-size";
-@import "variables/bootstrap-overrides";
-
-// /* Placeholder */
-
-@import "placeholders/fonts";
+@import "settings/bootstrap-overrides";
+@import "settings/fonts";
 
 // /* Bootstrap */
 
@@ -33,6 +27,6 @@
 
 // /* Base */
 
-@import "base/background";
-@import "base/body";
-@import "base/typography";
+@import "components/background";
+@import "components/body";
+@import "components/typography";

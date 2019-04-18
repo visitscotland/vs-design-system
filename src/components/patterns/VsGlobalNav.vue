@@ -94,7 +94,7 @@ export default {
     text-transform: uppercase;
     margin-right: 0.66em;
     line-height: 2.3;
-    font-size: vs-font-size(xxs);
+    font-size: $font-size-xxs;
     font-weight: $font-weight-normal;
   }
 
