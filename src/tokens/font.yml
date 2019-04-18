@@ -16,7 +16,7 @@ props:
   font_family_text:
     value: "{!font_family_default}"
   font_weight_bold:
-    value: "7000"
+    value: "700"
   font_weight_semi_bold:
     value: "600"
   font_weight_normal:
