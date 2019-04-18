@@ -9,7 +9,7 @@ a {
 }
 
 // Create font-size classes from map (.font-size-sm, .font-size-lg etc)
-@each $name, $value in $vs-font-size {
+@each $name, $value in $font-sizes {
   .font-size-#{$name} {
     font-size: $value;
   }
