@@ -163,8 +163,8 @@
     "size_xxxl": {
       "type": "number",
       "category": "font-size",
-      "value": "64px",
-      "originalValue": "64px",
+      "value": "164px",
+      "originalValue": "164px",
       "name": "size_xxxl"
     },
     "size_xxl": {

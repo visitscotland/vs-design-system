@@ -20,6 +20,7 @@
     "build:system": "npm-run-all theo node:build:system",
     "build:docs": "npm-run-all theo styleguide:build",
     "build:docs:remote": "npm-run-all theo styleguide:remote:build",
+    "docs:remote": "npm-run-all theo styleguide:remote",
     "lint": "eslint '**/*.{js,vue}' --cache",
     "node:build": "node ./build/build.js",
     "node:build:system": "node ./build/build-system.js",
