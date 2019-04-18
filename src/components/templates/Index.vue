@@ -89,7 +89,7 @@ $color-template-link: $color-bleu-de-france;
     top: 50%;
   }
   a {
-    font-family: $font-text;
+    font-family: $font-family-text;
     color: $color-bleu-de-france;
     text-decoration: underline;
   }

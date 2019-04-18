@@ -32,41 +32,50 @@ export default {
 .heading {
   @include reset;
   @include stack-space($space-m);
-  font-family: $font-heading;
+  font-family: $font-family-heading;
   line-height: $line-height-xs;
   color: $color-rich-black;
-  @media #{$media-query-l} {
-    // This is how you’d use design tokens with media queries
+
+  h1#{&} {
+    font-size: $h1-font-size;
+    letter-spacing: $spacing-xs;
+    @media #{$media-query-l} {
+      font-size: $size-xxxl;
+    }
   }
-}
-h1 {
-  letter-spacing: $spacing-xs;
-  font-size: $size-xxl;
-  font-weight: $weight-semi-bold;
-  @media #{$media-query-l} {
-    font-size: $size-xxxl;
+
+  h2#{&} {
+    font-size: $h2-font-size;
+    letter-spacing: $spacing-s;
   }
-}
-h2 {
-  letter-spacing: $spacing-s;
-  font-size: $size-xxl;
-  font-weight: $weight-semi-bold;
-}
-h3 {
-  font-size: $size-xl;
-  font-weight: $weight-semi-bold;
-}
-h4 {
-  font-size: $size-l;
-  font-weight: $weight-semi-bold;
-}
-h5 {
-  font-size: $size-m;
-  font-weight: $weight-normal;
-}
-h6 {
-  font-size: $size-s;
-  font-weight: $weight-normal;
+
+  h3#{&} {
+    font-size: $h3-font-size;
+  }
+
+  h4#{&} {
+    font-size: $h4-font-size;
+  }
+
+  h5#{&} {
+    font-size: $h5-font-size;
+  }
+
+  h6#{&} {
+    font-size: $h6-font-size;
+  }
+
+  h1#{&},
+  h2#{&},
+  h3#{&},
+  h4#{&} {
+    font-weight: $font-weight-semi-bold;
+  }
+
+  h5#{&},
+  h6#{&} {
+    font-weight: $font-weight-normal;
+  }
 }
 </style>
 
