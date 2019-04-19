@@ -11,12 +11,12 @@ $font-size-base: $font-size-xs;
 $font-size-sm: $font-size-xxs;
 
 // heading font sizing
-$h1-font-size: $font-size-xxxl;
-$h2-font-size: $font-size-xxl;
-$h3-font-size: $font-size-xl;
-$h4-font-size: $font-size-lg;
-$h5-font-size: $font-size-md;
-$h6-font-size: $font-size-xs;
+$h1-font-size: $font-size-xxl;
+$h2-font-size: $font-size-xl;
+$h3-font-size: $font-size-lg;
+$h4-font-size: $font-size-md;
+$h5-font-size: $font-size-xs;
+$h6-font-size: $font-size-xxs;
 
 // headings
 $headings-font-family: $font-family-heading;
@@ -48,19 +48,19 @@ $link-hover-decoration: none;
 $grid-columns: 12;
 $grid-gutter-width: 24px;
 $grid-breakpoints: (
-  xs: 0,
-  sm: 576px,
-  md: 768px,
-  lg: 992px,
-  xl: 1200px,
-  xxl: 1400px,
+  xs: $breakpoint-xs,
+  sm: $breakpoint-sm,
+  md: $breakpoint-md,
+  lg: $breakpoint-lg,
+  xl: $breakpoint-xl,
+  xxl: $breakpoint-xxl,
 );
 $container-max-widths: (
-  sm: 540px,
-  md: 720px,
-  lg: 960px,
-  xl: 1140px,
-  xxl: 1340px,
+  sm: $max-container-width-sm,
+  md: $max-container-width-md,
+  lg: $max-container-width-lg,
+  xl: $max-container-width-xl,
+  xxl: $max-container-width-xxl,
 );
 /* Spacing */
 $spacers: (

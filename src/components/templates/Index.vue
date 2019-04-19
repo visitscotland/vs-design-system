@@ -67,9 +67,6 @@ $color-template-link: $color-bleu-de-france;
   float: left;
   height: 100%;
   width: 100%;
-  @media #{$media-query-l} {
-    // This is how you’d use design tokens with media queries
-  }
   .heading {
     color: $color-template-text;
   }
