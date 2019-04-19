@@ -36,44 +36,44 @@ export default {
   line-height: $line-height-xs;
   color: $color-rich-black;
 
-  h1#{&} {
-    font-size: $h1-font-size;
+  @at-root h1#{&} {
+    font-size: $font-size-xxl;
     letter-spacing: $spacing-xs;
-    @media #{$media-query-l} {
+    @include media-breakpoint-up(lg) {
       font-size: $font-size-xxxl;
     }
   }
 
-  h2#{&} {
+  @at-root h2#{&} {
     font-size: $h2-font-size;
     letter-spacing: $spacing-s;
   }
 
-  h3#{&} {
+  @at-root h3#{&} {
     font-size: $h3-font-size;
   }
 
-  h4#{&} {
+  @at-root h4#{&} {
     font-size: $h4-font-size;
   }
 
-  h5#{&} {
+  @at-root h5#{&} {
     font-size: $h5-font-size;
   }
 
-  h6#{&} {
+  @at-root h6#{&} {
     font-size: $h6-font-size;
   }
 
-  h1#{&},
-  h2#{&},
-  h3#{&},
-  h4#{&} {
+  @at-root h1#{&},
+    h2#{&},
+    h3#{&},
+    h4#{&} {
     font-weight: $font-weight-semi-bold;
   }
 
-  h5#{&},
-  h6#{&} {
+  @at-root h5#{&},
+    h6#{&} {
     font-weight: $font-weight-normal;
   }
 }
