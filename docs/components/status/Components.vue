@@ -77,7 +77,7 @@
 <script>
 // If you want to use your own tokens here, change the following line to:
 // import designTokens from "@/assets/tokens/tokens.raw.json"
-import designTokens from "../../docs.tokens.json"
+import designTokens from "../../styles/docs.tokens.json"
 import orderBy from "lodash/orderBy"
 
 export default {
@@ -133,7 +133,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "../../docs.tokens.scss";
+@import "../../styles/docs.tokens.scss";
+@import "../../styles/docs.mixins.scss";
 
 /* STYLES
 --------------------------------------------- */

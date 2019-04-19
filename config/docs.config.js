@@ -6,7 +6,7 @@ const chalk = require("chalk")
 
 module.exports = {
   /**
-   * Most of the styles are defined in /docs/docs.styles.scss
+   * Most of the styles are defined in /docs/styles/docs.styles.scss
    */
   version: packageConfig.version,
   theme: {
@@ -37,7 +37,7 @@ module.exports = {
    */
   require: [
     path.join(__dirname, "../docs/docs.helper.js"),
-    path.join(__dirname, "../docs/docs.styles.scss"),
+    path.join(__dirname, "../docs/styles/docs.styles.scss"),
   ],
   /**
    * Enabling the following option splits sections into separate views.

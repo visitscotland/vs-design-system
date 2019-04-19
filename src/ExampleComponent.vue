@@ -1,8 +1,6 @@
 <template>
   <component :is="type" :class="['example', variation]">
-    <div id="Example-container">
-      <slot/>
-    </div>
+    <div id="Example-container"><slot /></div>
   </component>
 </template>
 
@@ -67,11 +65,11 @@ export default {
  * attribute or class based scoping).
  */
 .example {
-  @include reset;
-  @include stack-space($space-m);
+  // @include reset;
+  @extend .mb-3;
   color: set-text-color($color-rich-black, $color-white);
   @media #{$media-query-m} {
-    @include stack-space($space-xl);
+    @extend .mb-5;
   }
 }
 </style>
