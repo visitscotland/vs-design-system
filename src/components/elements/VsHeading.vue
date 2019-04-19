@@ -30,8 +30,8 @@ export default {
 
 <style lang="scss" scoped>
 .heading {
-  @include reset;
-  @include stack-space($space-m);
+  // @include reset;
+  @extend .mb-3;
   font-family: $font-family-heading;
   line-height: $line-height-xs;
   color: $color-rich-black;

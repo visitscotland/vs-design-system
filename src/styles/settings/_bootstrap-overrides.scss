@@ -5,14 +5,6 @@ $enable-shadows: false;
 $enable-gradients: false;
 $enable-transitions: false;
 
-/* Fonts */
-
-// $font-family-sans-serif: "Source Sans Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-//   "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol" !default;
-// $font-weight-light: 400 !default;
-// $font-weight-normal: 400 !default;
-// $font-weight-bold: 600 !default;
-
 // font sizing
 $font-size-lg: $font-size-md;
 $font-size-base: $font-size-xs;
@@ -70,4 +62,14 @@ $container-max-widths: (
   xl: 1140px,
   xxl: 1340px,
 );
+/* Spacing */
+$spacers: (
+  0: $spacer-0,
+  1: $spacer-1,
+  2: $spacer-2,
+  3: $spacer-3,
+  4: $spacer-4,
+  5: $spacer-5,
+);
+/* Forms */
 $form-group-margin-bottom: 2rem;

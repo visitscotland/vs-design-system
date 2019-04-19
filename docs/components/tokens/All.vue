@@ -11,7 +11,7 @@
       <tbody>
         <tr v-for="(token, index) in tokens" :key="index" class="token">
           <td v-if="token.name">
-            <code class="name">${{token.name.replace(/_/g, "-")}}</code>
+            <code class="name">${{ token.name.replace(/_/g, "-") }}</code>
           </td>
           <td v-else>N/A</td>
           <td v-if="token.value">
@@ -30,10 +30,10 @@
               class="example box-shadow"
               :style="{ boxShadow: token.value }"
             />
-            <code class="type">{{token.value}}</code>
+            <code class="type">{{ token.value }}</code>
           </td>
           <td v-else>N/A</td>
-          <td v-if="token.category">{{token.category}}</td>
+          <td v-if="token.category">{{ token.category }}</td>
           <td v-else>N/A</td>
         </tr>
       </tbody>
@@ -69,7 +69,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "../../docs.tokens.scss";
+@import "../../styles/docs.tokens.scss";
+@import "../../styles/docs.mixins.scss";
 
 /* STYLES
 --------------------------------------------- */

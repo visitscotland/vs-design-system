@@ -3,9 +3,10 @@
  * (the odd formatting hence most of the classes are dynamic)
  */
 
-@import "../src/assets/tokens/tokens.scss";
+@import "../../src/assets/tokens/tokens.scss";
 @import "./docs.tokens.scss";
-@import "../src/styles/styles.scss";
+@import "./docs.mixins.scss";
+@import "../../src/styles/styles.scss";
 
 /* LOCAL DESIGN TOKENS
 --------------------------------------------- */

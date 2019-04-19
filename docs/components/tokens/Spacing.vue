@@ -40,7 +40,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "../../docs.tokens.scss";
+@import "../../styles/docs.tokens.scss";
+@import "../../styles/docs.mixins.scss";
 
 /* STYLES
 --------------------------------------------- */

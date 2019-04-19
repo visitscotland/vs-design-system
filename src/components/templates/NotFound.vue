@@ -50,9 +50,9 @@ $color-template-text: $color-white;
 $color-template-link: $color-bleu-de-france;
 
 .not-found {
-  @include reset;
-  @include inset-space($space-m);
-  min-height: $space-xxl * 4;
+  // @include reset;
+  @extend .p-3;
+  min-height: $spacer-5 * 8;
   background: $color-template-background;
   background: linear-gradient(
     0deg,
@@ -76,7 +76,7 @@ $color-template-link: $color-bleu-de-france;
   .wrapper {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    max-width: $space-xxl * 4.5;
+    // max-width: $space-xxl * 4.5;
     transform: translateX(-50%) translateY(-50%);
     position: absolute;
     left: 50%;
