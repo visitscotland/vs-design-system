@@ -72,7 +72,7 @@ $spacers: (
   5: $spacer-5,
 );
 /* Border Radius */
-$border-radius: 0.25rem;
-$border-radius-lg: 0.3rem;
-$border-radius-sm: 0.2rem;
-$rounded-pill: 50rem;
+$border-radius: $border-radius-default;
+$border-radius-lg: $border-radius-lg;
+$border-radius-sm: $border-radius-sm;
+$rounded-pill: $border-radius-pill;
