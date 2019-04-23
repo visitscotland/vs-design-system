@@ -1,40 +1,36 @@
 <template>
-  <component
-    :is="type"
-    :href="href"
-    :type="typeString"
-    :class="['btn', variationClass, iconAlignClass]"
-    :disabled="disabled"
-  >
-    <slot /> <i v-if="icon" :class="['icon', 'icon-' + icon]"></i>
-    <i v-if="variation === 'dropdown'" class="icon icon-chevron-down"></i>
-  </component>
+  <b-button :variant="variant" :type="type" :href="href" :disabled="disabled"> <slot /> </b-button>
 </template>
 
 <script>
+import BButton from "bootstrap-vue/es/components/button/button"
 /**
  * Buttons are generally used for interface actions. Suitable for all-purpose use.
  * Defaults to appearance that has white background with grey border.
  * Primary style should be used only once per view for main call-to-action.
  */
+
 export default {
   name: "VsButton",
   status: "prototype",
   release: "3.5.0",
+  components: {
+    BButton,
+  },
   props: {
     /**
-     * The html element used for the button.
-     * `button, a`
+     * The type applied to the button.
+     * `button, submit, reset`
      */
     type: {
       type: String,
       default: "button",
       validator: value => {
-        return value.match(/(button|a)/)
+        return value.match(/(button|submit|reset)/)
       },
     },
     /**
-     * When setting the button’s type to a link, use this option to give a href.
+     * Use this option to render the button as an anchor element with the given href.
      */
     href: {
       type: String,
@@ -42,58 +38,14 @@ export default {
     },
     /**
      * Style variation to give additional meaning.
-     * `primary, secondary`
+     * `primary, secondary, success, danger, warning, info, light, dark`
      */
-    variation: {
+    variant: {
       type: String,
       default: null,
       validator: value => {
         return value.match(/(primary|secondary|success|danger|warning|info|light|dark)/)
       },
-    },
-    /**
-     * Whether button is disabled.
-     */
-    disabled: {
-      type: Boolean,
-    },
-    /**
-     * Icon class.
-     *
-     */
-    icon: {
-      type: String,
-      default: null,
-    },
-    /**
-     * Icon left or right.
-     * `left, right`
-     */
-    iconAlign: {
-      type: String,
-      default: null,
-      validator: value => {
-        return value.match(/(left|right)/)
-      },
-    },
-  },
-  computed: {
-    variationClass: function() {
-      return "btn-" + (this.variation || "primary")
-    },
-    iconAlignClass: function() {
-      if (this.icon) {
-        return "button--icon-" + (this.iconAlign || "left")
-      }
-
-      return null
-    },
-    typeString: function() {
-      if (this.type === "button") {
-        return this.submit ? "submit" : "button"
-      }
-
-      return null
     },
   },
 }
@@ -107,30 +59,31 @@ export default {
   ```jsx
   <div>
     <div class="row mb-4">
-      <vs-button variation="primary" class="mr-2">Primary</vs-button>
-      <vs-button variation="secondary" class="mr-2">Secondary</vs-button>
-      <vs-button variation="success" class="mr-2">Success</vs-button>
-      <vs-button variation="danger" class="mr-2">Danger</vs-button>
-      <vs-button variation="warning" class="mr-2">Warning</vs-button>
-      <vs-button variation="info" class="mr-2">Info</vs-button>
-      <vs-button variation="light" class="mr-2">Light</vs-button>
-      <vs-button variation="dark" class="mr-2">Dark</vs-button>
+      <div class="col">
+        <h4>Variants</h4>
+        <vs-button variant="primary" class="mr-2">Primary</vs-button>
+        <vs-button variant="secondary" class="mr-2">Secondary</vs-button>
+        <vs-button variant="success" class="mr-2">Success</vs-button>
+        <vs-button variant="danger" class="mr-2">Danger</vs-button>
+        <vs-button variant="warning" class="mr-2">Warning</vs-button>
+        <vs-button variant="info" class="mr-2">Info</vs-button>
+        <vs-button variant="light" class="mr-2">Light</vs-button>
+        <vs-button variant="dark" class="mr-2">Dark</vs-button>
+      </div>
     </div>
     <div class="row mb-4">
-      <vs-button variation="primary" disabled class="mr-2">Disabled</vs-button>
-      <vs-button type="a" href="www.visitscotland.com" target="_blank">Link</vs-button>
+      <div class="col">
+        <h4>Button type</h4>
+        <vs-button type="button" class="mr-2">Button</vs-button>
+        <vs-button type="reset" class="mr-2">Reset</vs-button>
+        <vs-button type="submit" class="mr-2">Submit</vs-button>
+      </div>
     </div>
     <div class="row mb-4">
-
-    </div>
-    <div class="row mb-4">
-
-    </div>
-    <div class="row mb-4">
-
-    </div>
-    <div class="row mb-4">
-
+      <div class="col">
+        <h4>Link</h4>
+        <vs-button href="https://www.visitscotland.com">Link</vs-button>
+      </div>
     </div>
   </div>
   ```

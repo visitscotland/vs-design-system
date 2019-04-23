@@ -43,13 +43,12 @@ function getBaseConfig() {
   const babelRule = _.find(_.get(baseConfig, "module.rules"), ["loader", "babel-loader"])
 
   if (babelRule) {
+    // insert extra includes and settings to the base config for docs generation
     _.unset(babelRule, "loader")
 
     babelRule.include = _.concat(babelRule.include, webpackBabelRuleIncludes)
     babelRule.use = webpackBabelRuleUse
   }
-
-  console.log(baseConfig.module.rules)
 
   return baseConfig
 }
@@ -147,38 +146,6 @@ module.exports = {
               },
             },
           ],
-        },
-        {
-          test: /\.js$/,
-          include: [
-            // resolve('node_modules/bootstrap-vue'),
-            resolve("node_modules/regexpu-core"),
-            resolve("node_modules/unicode-match-property-ecmascript"),
-            resolve("node_modules/unicode-match-property-value-ecmascript"),
-            resolve("node_modules/buble/node_modules/acorn-jsx"),
-          ],
-          use: {
-            loader: "babel-loader",
-            options: {
-              sourceType: "unambiguous",
-              presets: [
-                [
-                  "@babel/preset-env",
-                  {
-                    useBuiltIns: "usage",
-                    targets: {
-                      ie: "11",
-                      chrome: "71",
-                      firefox: "64",
-                      safari: "11",
-                      edge: "17",
-                    },
-                  },
-                ],
-              ],
-              comments: false,
-            },
-          },
         },
       ],
     },
