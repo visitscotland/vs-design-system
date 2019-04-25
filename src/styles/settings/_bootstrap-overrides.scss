@@ -45,8 +45,10 @@ $link-decoration: none;
 $link-hover-color: $color_total_eclipse;
 $link-hover-decoration: none;
 /* Grid */
-$grid-columns: 12;
-$grid-gutter-width: 24px;
+// These 2 variables are already generated directly from the design tokens by theo
+// so we don't need to set them again here
+// $grid-columns: $grid-columns;
+// $grid-gutter-width: $grid-gutter-width;
 $grid-breakpoints: (
   xs: $breakpoint-xs,
   sm: $breakpoint-sm,
