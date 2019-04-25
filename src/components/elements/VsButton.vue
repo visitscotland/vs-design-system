@@ -1,5 +1,5 @@
 <template>
-  <b-button :variant="variant" :type="type" :href="href" :disabled="disabled"> <slot /> </b-button>
+  <b-button :variant="variant" :type="type" :href="href"> <slot /> </b-button>
 </template>
 
 <script>
