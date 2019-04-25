@@ -16,6 +16,7 @@ imports:
   - ./border-radius.yml
   - ./spacing.yml
   - ./line-height.yml
+  - ./grid-layout.yml
 global:
   type: global
   category: all
