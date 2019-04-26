@@ -13,7 +13,7 @@ import BButton from "bootstrap-vue/es/components/button/button"
 export default {
   name: "VsButton",
   status: "prototype",
-  release: "3.5.0",
+  release: "0.0.1",
   components: {
     BButton,
   },
