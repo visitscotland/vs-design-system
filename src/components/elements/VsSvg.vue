@@ -10,7 +10,8 @@ const req = require.context("@/assets/", true, /^\.\/.*\.svg$/)
  */
 export default {
   name: "VsSvg",
-  status: "review",
+  release: "0.0.1",
+  status: "prototype",
   props: {
     /**
      * The path of the svg to display, relative to /src/assets

@@ -20,8 +20,8 @@ const iconPath = "icons/"
  */
 export default {
   name: "VsIcon",
-  status: "review",
-  release: "1.0.0",
+  status: "prototype",
+  release: "0.0.1",
   components: { VsSvg },
   props: {
     /**
