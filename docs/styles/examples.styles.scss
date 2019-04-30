@@ -1,8 +1,10 @@
 *[class^="rsg--preview"] {
-  .col {
-    background: #ccc;
-    border: 1px solid white;
-    padding: 1rem 2rem;
-    text-align: center;
+  .style-cols {
+    .col {
+      background: #ccc;
+      border: 1px solid white;
+      padding: 1rem 2rem;
+      text-align: center;
+    }
   }
 }

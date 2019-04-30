@@ -1,53 +1,50 @@
 <template>
-  <component :is="type" class="index">
-    <NavBar
-      active="Index"
-      :navItems="[
-        { name: 'Template', component: 'Index', href: '/#/' },
-        { name: 'Documentation', href: 'http://localhost:6060/' },
-      ]"
-    />
-    <Wrapper>
-      <Heading>Vue Design System</Heading>
-      <Paragraph>
-        <a href="https://vueds.com">Vue Design System</a>is an open-source tool for building design
-        systems with Vue.js. It provides you and your team a set of organized tools, patterns &amp;
-        practices. It works as the foundation for your application development.
-      </Paragraph>
-    </Wrapper>
-  </component>
+  <div class="template-example">
+    <section>
+      <img
+        src="https://cimg.visitscotland.com/cms-images/homepage/rest-be-thankful-homepage?size=md"
+      />
+    </section>
+    <vs-container>
+      <vs-row>
+        <vs-col cols="9"> <h1>Example title</h1> </vs-col>
+        <vs-col cols="3">
+          <section><h2>Sub section</h2></section>
+        </vs-col>
+      </vs-row>
+    </vs-container>
+  </div>
 </template>
 
 <script>
+import VsContainer from "../elements/Container"
+import VsRow from "../elements/Row"
+import VsCol from "../elements/Col"
+
 /**
  * The default page template.
  */
 export default {
-  name: "VsDefault",
+  name: "VsExampleTemplate",
   status: "prototype",
   release: "0.0.1",
   metaInfo: {
-    title: "VisitScotland Design System",
+    title: "Template example",
     htmlAttrs: {
       lang: "en",
-    },
-  },
-  props: {
-    /**
-     * The html element name used for the component.
-     */
-    type: {
-      type: String,
-      default: "div",
     },
   },
 }
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.template-example {
+  border: 1px dashed #ccc;
+}
+</style>
 
 <docs>
   ```jsx
-  <Default />
+  <VsExampleTemplate />
   ```
 </docs>
