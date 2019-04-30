@@ -7,9 +7,9 @@ aliases:
   font_family_default:
     value: "'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'"
   font_family_display:
-    value: "'evelethclean-thin', sans-serif, $font-family-sans-serif"
+    value: "'evelethclean-regular', sans-serif, $font-family-sans-serif"
   font_family_display_secondary:
-    value: "'evelethclean-regular', 'evelethclean-thin', sans-serif, $font-family-sans-serif"
+    value: "'evelethclean-thin', 'evelethclean-thin', sans-serif, $font-family-sans-serif"
 props:
   font_family_sans_serif:
     value: "{!font_family_default}"
