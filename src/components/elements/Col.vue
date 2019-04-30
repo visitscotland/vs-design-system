@@ -1,5 +1,5 @@
 <template>
-  <b-col tag="div"> <slot /> </b-col>
+  <b-col tag="div" :cols="cols"> <slot /> </b-col>
 </template>
 
 <script>
@@ -17,6 +17,14 @@ export default {
   components: {
     BCol,
   },
+  props: {
+    /**
+     * The number of columns this component should take up
+     */
+    cols: {
+      type: [String, Number],
+    },
+  },
 }
 </script>
 
@@ -25,7 +33,7 @@ export default {
 <docs>
   ```jsx
 
-  <div>
+  <div class="style-cols">
     <vs-container>
       <vs-row>
         <vs-col>
