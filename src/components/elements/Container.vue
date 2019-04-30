@@ -19,6 +19,7 @@ export default {
   },
   props: {
     fluid: {
+      default: false,
       type: Boolean,
     },
   },
