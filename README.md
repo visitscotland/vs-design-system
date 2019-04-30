@@ -72,6 +72,7 @@ Vue Design System is built on top of [Vue.js](https://vuejs.org), [Vue Styleguid
 
 ## Ideas for improvement
 
+- Add ability to have multiple `<docs>` examples output to component documentation and ability to insert named `<docs>` examples into documentation content
 - Colour accessibility like Atlassian
 - XD/Zeplin integration
 - Icons page listing out all available icons as well as icon options & guidelines
