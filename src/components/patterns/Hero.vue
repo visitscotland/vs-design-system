@@ -12,8 +12,9 @@
         <vs-col>
           <vs-heading
             v-if="displayText"
+            :class="displayHorAlignValue"
             display="3"
-            :style="{ 'margin-top': displayTextY }"
+            :style="{ 'margin-top': displayTextMarginTop }"
             :sub="displayTextSub"
             >{{ displayText }}</vs-heading
           >
@@ -27,10 +28,23 @@
 import VsHeading from "../elements/Heading"
 import { get } from "lodash"
 
+/**
+ * Number of pixels for different height values
+ */
 const heights = {
-  short: "200",
-  medium: "500",
-  tall: "700",
+  short: 200,
+  medium: 500,
+  tall: 700,
+}
+
+/**
+ * Factor for display vertical positioning calculation
+ * at different display positions
+ */
+const displayPositionFactors = {
+  top: 0.25,
+  middle: 0.5,
+  bottom: 0.75,
 }
 
 /**
@@ -82,6 +96,30 @@ export default {
     displayTextSub: {
       type: String,
     },
+
+    /**
+     * Vertical positioning of display text
+     * `top, middle, bottom`
+     */
+    displayVertPosition: {
+      type: String,
+      default: "middle",
+      validator: value => {
+        return value.match(/(top|middle|bottom)/)
+      },
+    },
+
+    /**
+     * Horizontal alignment of display text
+     * `left, center, right`
+     */
+    displayHorAlign: {
+      type: String,
+      default: "center",
+      validator: value => {
+        return value.match(/(left|center|right)/)
+      },
+    },
   },
   computed: {
     backgroundImgStyleValue() {
@@ -97,8 +135,11 @@ export default {
     heightValue() {
       return this.heightPixels + "px"
     },
-    displayTextY() {
-      return this.heightPixels / 2 - 48 + "px"
+    displayTextMarginTop() {
+      return this.heightPixels * get(displayPositionFactors, this.displayVertPosition) - 48 + "px"
+    },
+    displayHorAlignValue() {
+      return "text-" + this.displayHorAlign
     },
   },
 }
@@ -120,10 +161,72 @@ export default {
 
 <docs>
   ```jsx
-  <vs-hero 
-    src="https://cimg.visitscotland.com/cms-images/homepage/rest-be-thankful-homepage?size=lg" 
-    display-text="We love Scotland"
-    display-text-sub="And so will you"
-   />
+  <div>
+    <vs-hero 
+      src="https://cimg.visitscotland.com/cms-images/homepage/rest-be-thankful-homepage?size=lg"
+      display-text="src"
+      display-text-sub="https://cimg.visitscotland.com/..." 
+    />
+    <br />
+    <vs-hero 
+      src="https://cimg.visitscotland.com/cms-images/homepage/rest-be-thankful-homepage?size=lg"
+    />
+    <br />
+
+    <vs-hero 
+      src="https://cimg.visitscotland.com/cms-images/homepage/rest-be-thankful-homepage?size=lg"
+      height="tall"
+      display-text="Height"
+      display-text-sub="tall"
+    />
+    <br />
+    
+
+    <vs-hero 
+      src="https://cimg.visitscotland.com/cms-images/homepage/rest-be-thankful-homepage?size=lg"
+      height="short"
+      display-text="Height"
+      display-text-sub="short"
+    />
+    <br />
+
+    <vs-hero 
+      src="https://cimg.visitscotland.com/cms-images/homepage/rest-be-thankful-homepage?size=lg" 
+      display-text="Display vertical position"
+      display-text-sub="middle (default)"
+    />
+    <br />
+
+    <vs-hero 
+      src="https://cimg.visitscotland.com/cms-images/homepage/rest-be-thankful-homepage?size=lg" 
+      display-text="Display vertical position"
+      display-text-sub="top"
+      display-vert-position="top"
+    />
+    <br />
+  
+    <vs-hero 
+      src="https://cimg.visitscotland.com/cms-images/homepage/rest-be-thankful-homepage?size=lg" 
+      display-text="Display vertical position"
+      display-text-sub="bottom"
+      display-vert-position="bottom"
+    />
+    <br />
+
+    <vs-hero 
+      src="https://cimg.visitscotland.com/cms-images/homepage/rest-be-thankful-homepage?size=lg" 
+      display-text="Display horizontal alignment"
+      display-text-sub="left"
+      display-hor-align="top"
+    />
+    <br />
+
+    <vs-hero 
+      src="https://cimg.visitscotland.com/cms-images/homepage/rest-be-thankful-homepage?size=lg" 
+      display-text="Display horizontal alignment"
+      display-text-sub="right"
+      display-hor-align="right"
+    />
+  </div>
   ```
 </docs>
