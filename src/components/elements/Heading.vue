@@ -1,6 +1,14 @@
 <template>
-  <component :is="level" class="heading" :class="displayClass">
-    <slot /> <small v-if="sub" class="sub-heading d-block">{{ sub }}</small>
+  <component
+    :is="type"
+    class="heading"
+    :class="{
+      ['display-' + display]: display,
+      'display-secondary': displaySecondary,
+      'mt-5': type === 'h1' && !display,
+    }"
+  >
+    <small v-if="sub" class="sub-heading d-block">{{ sub }}</small> <slot />
   </component>
 </template>
 
@@ -20,10 +28,10 @@ export default {
      * `h1, h2, h3, h4, h5, h6`
      */
     level: {
-      type: String,
-      default: "h1",
+      type: [String, Number],
+      default: "1",
       validator: value => {
-        return value.match(/(h1|h2|h3|h4|h5|h6)/)
+        return value.match(/(1|2|3|4|5|6)/)
       },
     },
 
@@ -35,6 +43,13 @@ export default {
     },
 
     /**
+     * Set display heading size
+     */
+    displaySecondary: {
+      type: Boolean,
+    },
+
+    /**
      * The sub-heading text
      */
     sub: {
@@ -42,8 +57,8 @@ export default {
     },
   },
   computed: {
-    displayClass() {
-      return this.display ? "display-" + this.display : null
+    type() {
+      return "h" + this.level
     },
   },
 }
@@ -55,7 +70,7 @@ export default {
   @extend .mb-3;
   font-family: $font-family-heading;
   line-height: $line-height-xs;
-  color: $color-rich-black;
+  color: $color-dreich-gray;
 
   @at-root h1#{&}:not([class*="display"]) {
     font-size: $font-size-xxl;
@@ -82,13 +97,15 @@ export default {
   }
 
   .sub-heading {
+    color: $color-gorse-yellow;
     font-weight: $font-weight-semi-bold;
+    font-size: 60%;
   }
 
   &[class*="display"] {
     font-family: $font-family-display;
 
-    .sub-heading {
+    &.display-secondary {
       font-family: $font-family-display-secondary;
     }
   }
@@ -98,15 +115,15 @@ export default {
 <docs>
   ```jsx
   <div>
-    <vs-heading>The quick brown fox (h1/default)</vs-heading>
+    <vs-heading>The quick brown fox (level 1/default)</vs-heading>
     <br />
-    <vs-heading level="h2">The quick brown fox (h2)</vs-heading>
+    <vs-heading level="2">The quick brown fox (level 2)</vs-heading>
     <br />
-    <vs-heading level="h3">The quick brown fox (h3)</vs-heading>
+    <vs-heading level="3">The quick brown fox (level 3)</vs-heading>
     <br />
-    <vs-heading level="h4">The quick brown fox (h4)</vs-heading>
+    <vs-heading level="4">The quick brown fox (level 4)</vs-heading>
     <br />
-    <vs-heading sub="jumps over the lazy dog">The quick brown fox</vs-heading>
+    <vs-heading sub="Jumps over the lazy dog">The quick brown fox</vs-heading>
     <br />
     <vs-heading display="1">Display 1</vs-heading>
     <br />
@@ -116,7 +133,9 @@ export default {
     <br />
     <vs-heading display="4">Display 4</vs-heading>
     <br />
-    <vs-heading display="4" sub="with subheading">Display 4</vs-heading>
+    <vs-heading display="4" sub="With subheading">Display 4</vs-heading>
+    <br />
+    <vs-heading display="1" display-secondary>Display 1 secondary</vs-heading>
   </div>
   ```
 </docs>

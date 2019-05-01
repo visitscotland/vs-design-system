@@ -1,5 +1,5 @@
 <template>
-  <b-row tag="div">
+  <b-row tag="div" :align-v="alignV">
     <!-- @slot The row's contents go here -->
     <slot />
   </b-row>
@@ -19,6 +19,14 @@ export default {
   release: "0.0.1",
   components: {
     BRow,
+  },
+  props: {
+    alignV: {
+      type: String,
+      validator: value => {
+        return value.match(/(start|center|end)/)
+      },
+    },
   },
 }
 </script>

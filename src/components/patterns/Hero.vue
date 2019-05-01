@@ -4,20 +4,19 @@
     class="hero"
     :style="{
       backgroundImage: backgroundImgStyleValue,
-      height: heightValue,
+      height: heightPixels + 'px',
     }"
   >
     <vs-container>
-      <vs-row>
+      <vs-row :align-v="displayAlignVValue">
         <vs-col>
           <vs-heading
             v-if="displayText"
-            :class="displayHorAlignValue"
+            :class="'text-' + displayAlignH"
             display="3"
-            :style="{ 'margin-top': displayTextMarginTop }"
             :sub="displayTextSub"
-            >{{ displayText }}</vs-heading
-          >
+            >{{ displayText }}
+          </vs-heading>
         </vs-col>
       </vs-row>
     </vs-container>
@@ -41,10 +40,10 @@ const heights = {
  * Factor for display vertical positioning calculation
  * at different display positions
  */
-const displayPositionFactors = {
-  top: 0.25,
-  middle: 0.5,
-  bottom: 0.75,
+const displayAlignVLookup = {
+  top: "start",
+  middle: "center",
+  bottom: "end",
 }
 
 /**
@@ -67,7 +66,7 @@ export default {
     /**
      * The source URL for the hero's image
      */
-    src: {
+    imageSrc: {
       type: String,
     },
 
@@ -98,10 +97,10 @@ export default {
     },
 
     /**
-     * Vertical positioning of display text
+     * Vertical alignment of display text
      * `top, middle, bottom`
      */
-    displayVertPosition: {
+    displayAlignV: {
       type: String,
       default: "middle",
       validator: value => {
@@ -113,7 +112,7 @@ export default {
      * Horizontal alignment of display text
      * `left, center, right`
      */
-    displayHorAlign: {
+    displayAlignH: {
       type: String,
       default: "center",
       validator: value => {
@@ -123,23 +122,17 @@ export default {
   },
   computed: {
     backgroundImgStyleValue() {
-      if (!this.src) {
+      if (!this.imageSrc) {
         return "none"
       }
 
-      return "url('" + this.src + "')"
+      return "url('" + this.imageSrc + "')"
     },
     heightPixels() {
       return get(heights, this.height)
     },
-    heightValue() {
-      return this.heightPixels + "px"
-    },
-    displayTextMarginTop() {
-      return this.heightPixels * get(displayPositionFactors, this.displayVertPosition) - 48 + "px"
-    },
-    displayHorAlignValue() {
-      return "text-" + this.displayHorAlign
+    displayAlignVValue() {
+      return get(displayAlignVLookup, this.displayAlignV)
     },
   },
 }
@@ -148,6 +141,11 @@ export default {
 <style lang="scss" scoped>
 .hero {
   background-size: cover;
+}
+
+.container,
+.row {
+  height: 100%;
 }
 
 /deep/ .heading,
@@ -163,18 +161,18 @@ export default {
   ```jsx
   <div>
     <vs-hero 
-      src="https://cimg.visitscotland.com/cms-images/homepage/rest-be-thankful-homepage?size=lg"
+      image-src="https://cimg.visitscotland.com/cms-images/homepage/rest-be-thankful-homepage?size=lg"
       display-text="src"
       display-text-sub="https://cimg.visitscotland.com/..." 
     />
     <br />
     <vs-hero 
-      src="https://cimg.visitscotland.com/cms-images/homepage/rest-be-thankful-homepage?size=lg"
+      image-src="https://cimg.visitscotland.com/cms-images/homepage/rest-be-thankful-homepage?size=lg"
     />
     <br />
 
     <vs-hero 
-      src="https://cimg.visitscotland.com/cms-images/homepage/rest-be-thankful-homepage?size=lg"
+      image-src="https://cimg.visitscotland.com/cms-images/homepage/rest-be-thankful-homepage?size=lg"
       height="tall"
       display-text="Height"
       display-text-sub="tall"
@@ -183,7 +181,7 @@ export default {
     
 
     <vs-hero 
-      src="https://cimg.visitscotland.com/cms-images/homepage/rest-be-thankful-homepage?size=lg"
+      image-src="https://cimg.visitscotland.com/cms-images/homepage/rest-be-thankful-homepage?size=lg"
       height="short"
       display-text="Height"
       display-text-sub="short"
@@ -191,41 +189,41 @@ export default {
     <br />
 
     <vs-hero 
-      src="https://cimg.visitscotland.com/cms-images/homepage/rest-be-thankful-homepage?size=lg" 
+      image-src="https://cimg.visitscotland.com/cms-images/homepage/rest-be-thankful-homepage?size=lg" 
       display-text="Display vertical position"
       display-text-sub="middle (default)"
     />
     <br />
 
     <vs-hero 
-      src="https://cimg.visitscotland.com/cms-images/homepage/rest-be-thankful-homepage?size=lg" 
+      image-src="https://cimg.visitscotland.com/cms-images/homepage/rest-be-thankful-homepage?size=lg" 
       display-text="Display vertical position"
       display-text-sub="top"
-      display-vert-position="top"
+      display-align-v="top"
     />
     <br />
   
     <vs-hero 
-      src="https://cimg.visitscotland.com/cms-images/homepage/rest-be-thankful-homepage?size=lg" 
+      image-src="https://cimg.visitscotland.com/cms-images/homepage/rest-be-thankful-homepage?size=lg" 
       display-text="Display vertical position"
       display-text-sub="bottom"
-      display-vert-position="bottom"
+      display-align-v="bottom"
     />
     <br />
 
     <vs-hero 
-      src="https://cimg.visitscotland.com/cms-images/homepage/rest-be-thankful-homepage?size=lg" 
+      image-src="https://cimg.visitscotland.com/cms-images/homepage/rest-be-thankful-homepage?size=lg" 
       display-text="Display horizontal alignment"
       display-text-sub="left"
-      display-hor-align="top"
+      display-align-h="top"
     />
     <br />
 
     <vs-hero 
-      src="https://cimg.visitscotland.com/cms-images/homepage/rest-be-thankful-homepage?size=lg" 
+      image-src="https://cimg.visitscotland.com/cms-images/homepage/rest-be-thankful-homepage?size=lg" 
       display-text="Display horizontal alignment"
       display-text-sub="right"
-      display-hor-align="right"
+      display-align-h="right"
     />
   </div>
   ```
