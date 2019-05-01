@@ -84,27 +84,6 @@ props:
     value: "{!white}"
     category: "Grays"
 
-  - name: color_vermilion
-    value: "hsla({!vermilion}, 53%, 1)"
-    category: "Design system palette"
-  - name: color_ucla_gold
-    value: "hsla({!ucla_gold}, 52%, 1)"
-    category: "Design system palette"
-  - name: color_bleu_de_france
-    value: "hsla({!bleu_de_france}, 54%, 1)"
-    category: "Design system palette"
-  - name: color_oxford_blue
-    value: "hsla({!oxford_blue}, 15%, 1)"
-    category: "Design system palette"
-  - name: color_rich_black
-    value: "{!rich_black}"
-    category: "Design system palette"
-  - name: color_cloud
-    value: "#E9F3FD"
-    category: "Design system palette"
-  - name: color_silver
-    value: "#7F8891"
-    category: "Design system palette"
 global:
   type: color
   category: color
