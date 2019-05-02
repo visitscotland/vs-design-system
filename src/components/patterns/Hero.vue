@@ -166,6 +166,7 @@ export default {
       display-text-sub="https://cimg.visitscotland.com/..." 
     />
     <br />
+    
     <vs-hero 
       image-src="https://cimg.visitscotland.com/cms-images/homepage/rest-be-thankful-homepage?size=lg"
     />
@@ -179,7 +180,6 @@ export default {
     />
     <br />
     
-
     <vs-hero 
       image-src="https://cimg.visitscotland.com/cms-images/homepage/rest-be-thankful-homepage?size=lg"
       height="short"

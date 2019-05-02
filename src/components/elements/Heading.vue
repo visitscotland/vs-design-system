@@ -5,7 +5,7 @@
     :class="{
       ['display-' + display]: display,
       'display-secondary': displaySecondary,
-      'mt-5': type === 'h1' && !display,
+      'my-4': type === 'h1',
     }"
   >
     <small v-if="sub" class="sub-heading d-block">{{ sub }}</small> <slot />

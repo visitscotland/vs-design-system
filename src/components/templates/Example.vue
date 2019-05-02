@@ -18,7 +18,7 @@
       <vs-row>
         <vs-col cols="9">
           <vs-article>
-            <vs-content-section article-introduction>
+            <vs-content-section intro>
               <p>
                 Have you ever been on holiday and not enjoyed it because your furry - and, let's
                 face it, quite possibly favourite (!) - family member was left behind at home?
@@ -51,32 +51,30 @@
           </vs-article>
         </vs-col>
         <vs-col cols="3">
-          <aside>
-            <vs-sidebar>
-              <vs-content-section heading="11 pawesome ideas for dog friendly days out">
-                <p>
-                  <a
-                    title="Dog friendly days out"
-                    href="/blog/activities/dog-friendly-days-out-in-scotland/"
-                  >
-                    <img
-                      alt="Casper dog at Dunskey Castle.jpg"
-                      src="https://cimg.visitscotland.com/cms-images/holidays/casper-dunskey?size=sm"
-                    />
-                  </a>
-                </p>
-                <p>
-                  Get more&nbsp;inspiration from this paw-fect selection of
-                  <a
-                    title="Dog friendly days out"
-                    href="/blog/activities/dog-friendly-days-out-in-scotland/"
-                    >activities for you and your pooch</a
-                  >&nbsp;- they've been tried and tested by our four-legged friends over on
-                  Instagram!
-                </p>
-              </vs-content-section>
-            </vs-sidebar>
-          </aside>
+          <vs-sidebar>
+            <vs-content-section type="aside" heading="11 pawesome ideas for dog friendly days out">
+              <p>
+                <!-- <b-link
+                  title="Dog friendly days out"
+                  href="/blog/activities/dog-friendly-days-out-in-scotland/"
+                > -->
+                <vs-img
+                  src="https://cimg.visitscotland.com/cms-images/holidays/casper-dunskey?size=sm"
+                  alt="Casper dog at Dunskey Castle.jpg"
+                  fluid
+                />
+                <!-- </b-link> -->
+              </p>
+              <p>
+                Get more&nbsp;inspiration from this paw-fect selection of
+                <a
+                  title="Dog friendly days out"
+                  href="/blog/activities/dog-friendly-days-out-in-scotland/"
+                  >activities for you and your pooch</a
+                >&nbsp;- they've been tried and tested by our four-legged friends over on Instagram!
+              </p>
+            </vs-content-section>
+          </vs-sidebar>
         </vs-col>
       </vs-row>
     </vs-container>
@@ -88,10 +86,13 @@ import VsContainer from "../elements/Container"
 import VsRow from "../elements/Row"
 import VsCol from "../elements/Col"
 import VsHeading from "../elements/Heading"
+import VsImg from "../elements/Img"
 import VsHero from "../patterns/Hero"
 import VsArticle from "../patterns/Article"
 import VsSidebar from "../patterns/Sidebar"
 import VsContentSection from "../patterns/ContentSection"
+
+import BLink from "bootstrap-vue/es/components/link/link"
 
 /**
  *An example page template.
@@ -106,7 +107,17 @@ export default {
       lang: "en",
     },
   },
-  components: { VsContainer, VsRow, VsCol, VsHero, VsHeading, VsArticle, VsContentSection },
+  components: {
+    VsContainer,
+    VsRow,
+    VsCol,
+    VsImg,
+    VsHero,
+    VsHeading,
+    VsArticle,
+    VsContentSection,
+    BLink,
+  },
 }
 </script>
 
