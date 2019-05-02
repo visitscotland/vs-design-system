@@ -33,9 +33,19 @@ export default {
       type: String,
       required: true,
     },
+
+    /**
+     * If true makes the image responsive, scaling with the parent
+     * up to a max of the native width of the image itself
+     */
     fluid: {
       type: Boolean,
     },
+
+    /**
+     * If true makes the image responsive, scaling with the parent
+     * beyond the native image width if necessary
+     */
     fluidGrow: {
       type: Boolean,
     },
@@ -43,7 +53,9 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+@import "~bootstrap/scss/images";
+</style>
 
 <docs>
   ```jsx
@@ -55,16 +67,30 @@ export default {
           <vs-img 
             src="https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"
             alt="Claire standing stones"
-
+          />
+        </vs-col>
+      </vs-row>
+      <vs-row class="mt-5">
+        <vs-col>
+          <vs-img 
+            src="https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"
+            alt="Claire standing stones"
+            fluid
+          />
+        </vs-col>
+      </vs-row>
+      <vs-row class="mt-5">
+        <vs-col>
+          <vs-img 
+            src="https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"
+            alt="Claire standing stones"
+            fluid-grow
           />
         </vs-col>
       </vs-row>
     </vs-container>
     <br />
-    <vs-img 
-      src="https://cimg.visitscotland.com/cms-images/homepage/new/loch-maree-kinlochewe?size=sm"
-      alt="Loch Maree"
-    />
+
   </div>
 
 

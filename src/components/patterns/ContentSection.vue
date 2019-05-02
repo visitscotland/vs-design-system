@@ -1,9 +1,6 @@
 <template>
-  <section
-    class="content-section"
-    :class="{ 'content-section-introductory': introductory, ['content-section-' + type]: true }"
-  >
-    <vs-heading level="2">{{ heading }}</vs-heading>
+  <section class="content-section" :class="{ lead: intro, ['content-section-' + type]: true }">
+    <vs-heading level="2" v-if="heading">{{ heading }}</vs-heading>
 
     <slot />
   </section>
@@ -27,8 +24,9 @@ export default {
 
     /**
      * Whether or not this section should be styled as introductory content
+     * via .lead class
      */
-    introductory: {
+    intro: {
       type: Boolean,
     },
 
@@ -48,8 +46,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.content-section-introductory {
-  font-weight: bold;
+.content-section-aside {
+  @extend .p-4;
+  @extend .mb-5;
+  background: #eee;
 }
 </style>
 

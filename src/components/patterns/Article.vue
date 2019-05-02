@@ -24,9 +24,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.article {
-  @extend .mt-5;
-}
 /deep/ .heading:first-of-type {
   @extend .mb-5;
 }
