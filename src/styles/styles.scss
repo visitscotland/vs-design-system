@@ -5,8 +5,8 @@
  * CSS in your final, compiled files.
  */
 
-@import "./custom/functions";
-@import "./custom/bootstrap-overrides";
+@import "./functions";
+@import "./bootstrap-overrides";
 
 // /* Bootstrap */
 @import "~bootstrap/scss/functions";
@@ -16,4 +16,4 @@
 @import "~bootstrap/scss/utilities";
 
 // /* Global custom */
-@import "./custom/typography";
+@import "./typography";
