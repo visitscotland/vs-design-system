@@ -5,25 +5,15 @@
  * CSS in your final, compiled files.
  */
 
-@import "./functions";
-@import "settings/bootstrap-overrides";
-@import "settings/fonts";
+@import "./custom/functions";
+@import "./custom/bootstrap-overrides";
 
 // /* Bootstrap */
-
 @import "~bootstrap/scss/functions";
 @import "~bootstrap/scss/variables";
 @import "~bootstrap/scss/mixins";
 @import "~bootstrap/scss/reboot";
-@import "~bootstrap/scss/type";
 @import "~bootstrap/scss/utilities";
-@import "~bootstrap/scss/grid";
-@import "~bootstrap/scss/forms";
-@import "~bootstrap/scss/media";
-@import "~bootstrap/scss/tables";
 
-// /* Base */
-
-@import "components/background";
-@import "components/body";
-@import "components/typography";
+// /* Global custom */
+@import "./custom/typography";
