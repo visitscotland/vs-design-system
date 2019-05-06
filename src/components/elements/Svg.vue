@@ -43,13 +43,13 @@ export default {
      * The height attributeof the svg
      */
     height: {
-      type: Number,
+      type: [Number, String],
     },
     /**
      * The width attributeof the svg
      */
     width: {
-      type: Number,
+      type: [Number, String],
     },
   },
   computed: {
@@ -78,29 +78,29 @@ export default {
     <pre>&lt;vs-svg path="svg/logo" /&gt; </pre>
     <vs-svg path="svg/logo" />
 
-    <hr />
+    <br /><hr /><br />
 
     <pre>height="110"</pre>
     <vs-svg path="svg/logo" height="110" />
 
-    <hr />
+    <br /><hr /><br />
 
     <pre>width="110"</pre>
     <vs-svg path="svg/logo" width="110" />
 
-    <hr />
+    <br /><hr /><br />
 
     <pre>fill="red"</pre>
     <vs-svg path="svg/logo" height="110" fill="red" />
 
-    <hr />
+    <br /><hr /><br />
 
-    <pre>container="heading"</pre>
-    <vs-svg path="svg/logo" height="110" container="heading" />
+    <pre>container="vs-heading"</pre>
+    <vs-svg path="svg/logo" height="110" container="vs-heading" />
 
-    <hr />
+    <br /><hr /><br />
 
-    <pre>container-class="shadow p-5 mb-5 bg-warning rounded"</pre>
+    <pre>container-class="shadow mb-5 bg-warning rounded"</pre>
     <vs-svg path="svg/logo" height="110" container-class="shadow p-5 mb-5 bg-warning rounded" />
   </div>
   ```

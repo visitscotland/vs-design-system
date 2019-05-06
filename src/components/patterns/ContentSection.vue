@@ -7,6 +7,8 @@
 </template>
 
 <script>
+import "../elements/Heading"
+
 /**
  * Section component
  */
@@ -46,6 +48,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "~bootstrap/scss/type";
+@import "~bootstrap/scss/utilities";
+
 .content-section-aside {
   @extend .p-4;
   @extend .mb-5;

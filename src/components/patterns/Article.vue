@@ -23,11 +23,7 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
-/deep/ .heading:first-of-type {
-  @extend .mb-5;
-}
-</style>
+<style lang="scss" scoped></style>
 
 <docs>
   ```jsx
