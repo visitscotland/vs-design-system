@@ -3,7 +3,8 @@
     :is="type"
     class="hero"
     :style="{
-      backgroundImage: backgroundImgStyleValue,
+      backgroundImage: bgdImgStyleValue,
+      backgroundPositionY: imageAlignV,
       height: heightPixels + 'px',
     }"
   >
@@ -71,6 +72,15 @@ export default {
     },
 
     /**
+     * The hero image background position style value
+     *
+     * Valid values according to background-position style
+     */
+    imageAlignV: {
+      type: String,
+    },
+
+    /**
      * Height class of this hero
      * `short, medium, tall`
      */
@@ -121,13 +131,14 @@ export default {
     },
   },
   computed: {
-    backgroundImgStyleValue() {
+    bgdImgStyleValue() {
       if (!this.imageSrc) {
         return "none"
       }
 
       return "url('" + this.imageSrc + "')"
     },
+    bgdPosStyleValue() {},
     heightPixels() {
       return get(heights, this.height)
     },
@@ -227,6 +238,14 @@ export default {
       display-text="Display horizontal alignment"
       display-text-sub="right"
       display-align-h="right"
+    />
+    <br />
+
+    <vs-hero 
+      image-src="https://cimg.visitscotland.com/cms-images/homepage/rest-be-thankful-homepage?size=lg" 
+      display-text="Image vertical position"
+      display-text-sub="20%"
+      image-align-v="20%"
     />
   </div>
   ```
