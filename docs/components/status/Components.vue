@@ -6,7 +6,7 @@
         <p class="mb-0">Ready</p>
       </li>
       <li>
-        <vs-icon name="docs/review" :fill="tokens.color_ucla_gold.value" size="small" />
+        <vs-icon name="docs/review" :fill="tokens.docs_color_gold.value" size="small" />
         <p class="mb-0">Under review</p>
       </li>
       <li>
@@ -51,7 +51,7 @@
             <vs-icon
               v-if="component.status === 'under-review' || component.status === 'review'"
               name="docs/review"
-              :fill="tokens.color_ucla_gold.value"
+              :fill="tokens.docs_color_gold.value"
               size="small"
             />
             <vs-icon

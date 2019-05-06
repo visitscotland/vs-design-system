@@ -11,25 +11,25 @@ $headings-font-weight: $font-weight-bold;
 
 /* Colors */
 
-$white: $color_white;
-$black: $color_total_eclipse;
+$white: $color-white;
+$black: $color-total-eclipse;
 
 $theme-colors: (
-  primary: $color_heather_pink,
-  secondary: $color_thistle_purple,
+  primary: $color-theme-primary,
+  secondary: $color-theme-secondary,
   success: #28a745,
   info: #007bff,
   warning: #ffc107,
   danger: #dc3545,
-  light: $color_mid_granite,
-  dark: $color_dreich_gray,
+  light: $color-mid-granite,
+  dark: $color-dreich-gray,
 );
 
-$body-color: $color_total_eclipse;
+$body-color: $color-total-eclipse;
 /* Links */
-$link-color: $color_heather_pink;
+$link-color: $color-theme-primary;
 $link-decoration: none;
-$link-hover-color: $color_total_eclipse;
+$link-hover-color: $color-total-eclipse;
 $link-hover-decoration: none;
 /* Grid */
 // These 2 variables are already generated directly from the design tokens by theo

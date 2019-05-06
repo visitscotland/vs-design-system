@@ -8,10 +8,19 @@
 #
 
 aliases:
+  murrayfield_navy:
+    value: "#083973"
+  saltire_blue:
+    value: "#005EB8"
+  heather_purple:
+    value: "#900762"
+  sanna_sand:
+    value: "#D7D2CB"
+  single_malt_gold:
+    value: "#E1A245"
+
   total_eclipse:
     value: "#1d1d1b"
-  skye_blue:
-    value: "#3082b4"
   dreich_gray:
     value: "#39393b"
   dark_granite:
@@ -22,44 +31,25 @@ aliases:
     value: "#e5e5e5"
   very_light_granite:
     value: "#f5f6fa"
-  heather_pink:
-    value: "#af006e"
-  thistle_purple:
-    value: "#700e57"
-  gorse_yellow:
-    value: "#fcca1b"
-  silver_surf:
-    value: "#f5f6fa"
   white:
     value: "#fff"
 
-  vermilion:
-    value: "7, 83%"
-  ucla_gold:
-    value: "43, 100%"
-  bleu_de_france:
-    value: "210, 86%"
-  oxford_blue:
-    value: "210, 100%"
-  rich_black:
-    value: "#001123"
-
 props:
-  - name: color_heather_pink
-    value: "{!heather_pink}"
+  - name: color_heather_purple
+    value: "{!heather_purple}"
     category: "Primary palette"
-  - name: color_thistle_purple
-    value: "{!thistle_purple}"
+  - name: color_murrayfield_navy
+    value: "{!murrayfield_navy}"
     category: "Primary palette"
-  - name: color_skye_blue
-    value: "{!skye_blue}"
+  - name: color_saltire_blue
+    value: "{!saltire_blue}"
     category: "Primary palette"
 
-  - name: color_gorse_yellow
-    value: "{!gorse_yellow}"
+  - name: color_single_malt_gold
+    value: "{!single_malt_gold}"
     category: "Secondary palette"
-  - name: color_silver_surf
-    value: "{!silver_surf}"
+  - name: color_sanna_sand
+    value: "{!sanna_sand}"
     category: "Secondary palette"
 
   - name: color_total_eclipse
@@ -84,6 +74,12 @@ props:
     value: "{!white}"
     category: "Grays"
 
+  - name: color_theme_primary
+    value: "{!heather_purple}"
+    category: "Theme colours"
+  - name: color_theme_secondary
+    value: "{!single_malt_gold}"
+    category: "Theme colours"
 global:
   type: color
   category: color
