@@ -2,9 +2,11 @@
   <div class="template-example">
     <vs-hero
       image-src="https://cimg.visitscotland.com/cms-images/holidays/new/camping-beach-dunes-dog?size=md"
+      image-align-v="40%"
       type="section"
       display-text="Example template"
       display-text-sub="2 columns"
+      display-align-v="top"
     />
 
     <vs-container>
