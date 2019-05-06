@@ -65,6 +65,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "~bootstrap/scss/utilities/spacing";
+@import "~bootstrap/scss/utilities/display";
+@import "~bootstrap/scss/type";
+
 .heading {
   // @include reset;
   @extend .mb-3;
@@ -73,10 +77,9 @@ export default {
   color: $color-dreich-gray;
 
   @at-root h1#{&}:not([class*="display"]) {
-    font-size: $font-size-xxl;
     letter-spacing: $spacing-xs;
     @include media-breakpoint-up(lg) {
-      font-size: $font-size-xxxl;
+      font-size: $h1-font-size-lg;
     }
   }
 

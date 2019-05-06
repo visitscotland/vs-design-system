@@ -139,6 +139,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "~bootstrap/scss/utilities/text";
+@import "~bootstrap/scss/utilities/flex";
+
 .hero {
   background-size: cover;
 }
@@ -215,7 +218,7 @@ export default {
       image-src="https://cimg.visitscotland.com/cms-images/homepage/rest-be-thankful-homepage?size=lg" 
       display-text="Display horizontal alignment"
       display-text-sub="left"
-      display-align-h="top"
+      display-align-h="left"
     />
     <br />
 

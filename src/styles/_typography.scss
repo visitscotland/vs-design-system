@@ -1,5 +1,3 @@
-@import "~bootstrap/scss/type";
-
 @font-face {
   font-family: "evelethclean-thin";
   src: url(~@/assets/fonts/eveleth-clean-thin.woff2) format("woff2"),
@@ -14,22 +12,4 @@
     url(~@/assets/fonts/eveleth-clean-regular.woff) format("woff");
   font-weight: normal;
   font-style: normal;
-}
-
-$font-sizes: (
-  xxxl: $font-size-xxxl,
-  xxl: $font-size-xxl,
-  xl: $font-size-xl,
-  lg: $font-size-lg,
-  md: $font-size-md,
-  sm: $font-size-sm,
-  xs: $font-size-xs,
-  xxs: $font-size-xxs,
-);
-
-// Create font-size classes from map (.font-size-sm, .font-size-lg etc)
-@each $name, $value in $font-sizes {
-  .font-size-#{$name} {
-    font-size: $value;
-  }
 }
