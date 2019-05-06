@@ -3,7 +3,7 @@
     "vermilion": {
       "value": "7, 83%"
     },
-    "ucla_gold": {
+    "gold": {
       "value": "43, 100%"
     },
     "bleu_de_france": {
@@ -20,19 +20,19 @@
     }
   },
   "props": {
-    "color_ucla_gold": {
+    "doc_color_gold": {
       "type": "color",
       "category": "color_group_2",
       "value": "rgb(255, 186, 10)",
-      "originalValue": "hsla({!ucla_gold}, 52%, 1)",
-      "name": "color_ucla_gold"
+      "originalValue": "hsla({!gold}, 52%, 1)",
+      "name": "docs_color_gold"
     },
-    "color_ucla_gold_darker": {
+    "docs_color_gold_darker": {
       "type": "color",
       "category": "color_group_2",
       "value": "rgb(179, 128, 0)",
-      "originalValue": "hsla({!ucla_gold}, 35%, 1)",
-      "name": "color_ucla_gold_darker"
+      "originalValue": "hsla({!gold}, 35%, 1)",
+      "name": "docs_color_gold_darker"
     },
     "color_vermilion_lighter": {
       "type": "color",
@@ -48,12 +48,12 @@
       "originalValue": "hsla({!vermilion}, 33%, 1)",
       "name": "color_vermilion_darker"
     },
-    "color_ucla_gold_lighter": {
+    "docs_color_gold_lighter": {
       "type": "color",
       "category": "color_group_2",
       "value": "rgb(255, 219, 128)",
-      "originalValue": "hsla({!ucla_gold}, 75%, 1)",
-      "name": "color_ucla_gold_lighter"
+      "originalValue": "hsla({!gold}, 75%, 1)",
+      "name": "docs_color_gold_lighter"
     },
     "color_bleu_de_france_dark": {
       "type": "color",
@@ -104,12 +104,12 @@
       "originalValue": "hsla({!bleu_de_france}, 74%, 1)",
       "name": "color_bleu_de_france_lighter"
     },
-    "color_ucla_gold_dark": {
+    "docs_color_gold_dark": {
       "type": "color",
       "category": "color_group_2",
       "value": "rgb(230, 164, 0)",
-      "originalValue": "hsla({!ucla_gold}, 45%, 1)",
-      "name": "color_ucla_gold_dark"
+      "originalValue": "hsla({!gold}, 45%, 1)",
+      "name": "docs_color_gold_dark"
     },
     "color_vermilion_light": {
       "type": "color",
@@ -125,12 +125,12 @@
       "originalValue": "hsla({!vermilion}, 43%, 1)",
       "name": "color_vermilion_dark"
     },
-    "color_ucla_gold_light": {
+    "docs_color_gold_light": {
       "type": "color",
       "category": "color_group_2",
       "value": "rgb(255, 204, 77)",
-      "originalValue": "hsla({!ucla_gold}, 65%, 1)",
-      "name": "color_ucla_gold_light"
+      "originalValue": "hsla({!gold}, 65%, 1)",
+      "name": "docs_color_gold_light"
     },
     "color_rich_black": {
       "type": "color",
