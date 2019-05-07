@@ -17,12 +17,12 @@ $black: $color-total-eclipse;
 $theme-colors: (
   primary: $color-theme-primary,
   secondary: $color-theme-secondary,
-  success: #28a745,
-  info: #007bff,
-  warning: #ffc107,
-  danger: #dc3545,
-  light: $color-mid-granite,
-  dark: $color-dreich-gray,
+  success: $color-theme-success,
+  info: $color-theme-info,
+  warning: $color-theme-warning,
+  danger: $color-theme-danger,
+  light: $color-theme-light,
+  dark: $color-theme-dark,
 );
 
 $body-color: $color-total-eclipse;
