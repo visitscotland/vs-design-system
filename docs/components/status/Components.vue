@@ -6,15 +6,15 @@
         <p class="mb-0">Ready</p>
       </li>
       <li>
-        <vs-icon name="docs/review" :fill="tokens.docs_color_gold.value" size="small" />
+        <vs-icon name="docs/review" :fill="getColour('gold')" size="small" />
         <p class="mb-0">Under review</p>
       </li>
       <li>
-        <vs-icon name="docs/deprecated" :fill="tokens.color_vermilion.value" size="small" />
+        <vs-icon name="docs/deprecated" :fill="getColour('vermilion')" size="small" />
         <p class="mb-0">Deprecated</p>
       </li>
       <li>
-        <vs-icon name="docs/prototype" :fill="tokens.color_bleu_de_france.value" size="small" />
+        <vs-icon name="docs/prototype" :fill="getColour('bleu_de_france')" size="small" />
         <p class="mb-0">Prototype</p>
       </li>
       <li>
@@ -51,19 +51,19 @@
             <vs-icon
               v-if="component.status === 'under-review' || component.status === 'review'"
               name="docs/review"
-              :fill="tokens.docs_color_gold.value"
+              :fill="getColour('gold')"
               size="small"
             />
             <vs-icon
               v-if="component.status === 'prototype'"
               name="docs/prototype"
-              :fill="tokens.color_bleu_de_france.value"
+              :fill="getColour('bleu_de_france')"
               size="small"
             />
             <vs-icon
               v-if="component.status === 'deprecated'"
               name="docs/deprecated"
-              :fill="tokens.color_vermilion.value"
+              :fill="getColour('vermilion')"
               size="small"
             />
           </td>
@@ -79,6 +79,7 @@
 // import designTokens from "@/assets/tokens/tokens.raw.json"
 import designTokens from "../../styles/docs.tokens.json"
 import orderBy from "lodash/orderBy"
+import get from "lodash/get"
 
 export default {
   name: "Components",
@@ -121,6 +122,9 @@ export default {
     },
     orderData: function(data) {
       return orderBy(data, "name", "asc")
+    },
+    getColour(colourName) {
+      return get(this.tokens, "docs_color_" + colourName + ".value", "#aaa")
     },
   },
   data() {
