@@ -16,12 +16,14 @@ const env = command === "build" ? "production" : "development"
 
 const spinner = ora("Building design system...")
 
+let config
+
 // Do not show nasty stack traces for Styleguidist errors
 process.on("uncaughtException", err => {
   if (err.code === "EADDRINUSE") {
     console.log(
-      `Another server is running at port ${
-        config.serverPort
+      `Another server is running at ${
+        config ? "port " + config.serverPort : "the port"
       } already. Please stop it or change the default port to continue. You can change the port using the \`serverPort\` option in the styleguide config`
     )
   } else if (err instanceof StyleguidistError) {
@@ -47,7 +49,8 @@ remoteUtils
     console.log(chalk.red("Problem getting remote config:", err))
   })
 
-function run(command, config) {
+function run(command, returnedConfig) {
+  config = returnedConfig
   spinner.start()
 
   const styleguide = styleguidist(config)
