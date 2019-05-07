@@ -1,6 +1,6 @@
 <template>
-  <section class="content-section" :class="{ lead: intro, ['content-section-' + type]: true }">
-    <vs-heading level="2" v-if="heading">{{ heading }}</vs-heading>
+  <section class="content-section" :class="{ lead: lead, ['content-section-' + tag]: true }">
+    <vs-heading level="3" v-if="heading">{{ heading }}</vs-heading>
 
     <slot />
   </section>
@@ -25,22 +25,22 @@ export default {
     },
 
     /**
-     * Whether or not this section should be styled as introductory content
+     * Whether or not this section should be styled as leading content
      * via .lead class
      */
-    intro: {
+    lead: {
       type: Boolean,
     },
 
     /**
-     * The type or location of the section
-     * `article, aside`
+     * The element used for the container
+     * `article, aside, div`
      */
-    type: {
+    tag: {
       type: String,
       default: "article",
       validator: value => {
-        return value.match(/(article|aside)/)
+        return value.match(/(article|aside|div)/)
       },
     },
   },
@@ -51,9 +51,12 @@ export default {
 @import "~bootstrap/scss/type";
 @import "~bootstrap/scss/utilities";
 
+.content-section {
+  @extend .mb-5;
+}
+
 .content-section-aside {
   @extend .p-4;
-  @extend .mb-5;
   background: #eee;
 }
 </style>
@@ -61,7 +64,18 @@ export default {
 <docs>
   ```jsx
   <div>
-  
+    <vs-article>
+      <vs-content-section heading="Article section title">
+        Article section content
+      </vs-content-section>
+    </vs-article>
+    <br /><br />
+    <vs-sidebar>
+      <vs-content-section tag="aside" heading="Aside section title">
+        Aside section content
+      </vs-content-section>
+    </vs-sidebar>
   </div>
+
   ```
 </docs>
