@@ -2,19 +2,19 @@
   <div class="component-status">
     <ul class="status-list">
       <li>
-        <vs-icon name="docs/ready" fill="#7cb518" size="small" />
+        <vs-icon name="docs/ready" fill="#7cb518" size="medium" />
         <p class="mb-0">Ready</p>
       </li>
       <li>
-        <vs-icon name="docs/review" :fill="getColour('gold')" size="small" />
+        <vs-icon name="docs/review" :fill="getColour('gold')" size="medium" />
         <p class="mb-0">Under review</p>
       </li>
       <li>
-        <vs-icon name="docs/deprecated" :fill="getColour('vermilion')" size="small" />
+        <vs-icon name="docs/deprecated" :fill="getColour('vermilion')" size="medium" />
         <p class="mb-0">Deprecated</p>
       </li>
       <li>
-        <vs-icon name="docs/prototype" :fill="getColour('bleu_de_france')" size="small" />
+        <vs-icon name="docs/prototype" :fill="getColour('bleu_de_france')" size="medium" />
         <p class="mb-0">Prototype</p>
       </li>
       <li>
@@ -46,25 +46,25 @@
               v-if="component.status === 'docs/ready'"
               name="ready"
               fill="#7cb518"
-              size="small"
+              size="medium"
             />
             <vs-icon
               v-if="component.status === 'under-review' || component.status === 'review'"
               name="docs/review"
               :fill="getColour('gold')"
-              size="small"
+              size="medium"
             />
             <vs-icon
               v-if="component.status === 'prototype'"
               name="docs/prototype"
               :fill="getColour('bleu_de_france')"
-              size="small"
+              size="medium"
             />
             <vs-icon
               v-if="component.status === 'deprecated'"
               name="docs/deprecated"
               :fill="getColour('vermilion')"
-              size="small"
+              size="medium"
             />
           </td>
           <td v-else>—</td>
@@ -222,9 +222,10 @@ export default {
       }
       svg,
       span {
-        margin: -2px calc(#{$space-s} / 2) 0 0;
+        margin: 0 calc(#{$space-s} / 2) 0 0;
       }
       p {
+        margin-bottom: 0;
         @media (max-width: 1000px) {
           margin: $space-xs;
         }
