@@ -6,7 +6,7 @@
       class="color-category"
       :class="['color-category-' + category.name]"
     >
-      <h3>{{ category.name }}</h3>
+      <h2>{{ category.name }}</h2>
 
       <div class="colors">
         <div v-for="(prop, index) in category.colors" :key="index" class="color">
@@ -66,6 +66,15 @@ export default {
 
 /* STYLES
 --------------------------------------------- */
+
+.color-category {
+  padding: 16px 0;
+  border-bottom: 1px solid $docs-color-cloud;
+
+  &:last-of-type {
+    border-bottom: none;
+  }
+}
 
 .colors {
   margin-top: $space-l;

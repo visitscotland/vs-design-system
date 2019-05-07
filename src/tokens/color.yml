@@ -78,7 +78,7 @@ props:
     value: "{!heather_purple}"
     category: "Theme colours"
   - name: color_theme_secondary
-    value: "{!single_malt_gold}"
+    value: "{!sanna_sand}"
     category: "Theme colours"
   - name: color_theme_success
     value: "#28a745"
@@ -87,7 +87,7 @@ props:
     value: "{!saltire_blue}"
     category: "Theme colours"
   - name: color_theme_warning
-    value: "#ffc107"
+    value: "{!single_malt_gold}"
     category: "Theme colours"
   - name: color_theme_danger
     value: "#dc3545"
