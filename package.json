@@ -1,8 +1,8 @@
 {
-  "name": "thistle-ds",
+  "name": "vs-dotcom-ds",
   "version": "0.0.1",
-  "description": "Thistle Design System",
-  "author": "ljelewis",
+  "description": "visitScotland.com Design System",
+  "author": "lukenofurther",
   "main": "dist/system/system.js",
   "files": [
     "dist/system"
@@ -31,7 +31,6 @@
     "theo": "theo ./src/tokens/tokens.yml --transform web --format map.scss,scss,raw.json,json --dest ./src/assets/tokens",
     "theo:onchange": "onchange \"./src/tokens/*.yml\" -- npm run theo",
     "test": "npm-run-all theo unit",
-    "postinstall": "npm-recursive-install --skip-root",
     "heroku-docs": "http-server dist/docs -p $PORT",
     "serve-docs": "http-server dist/docs"
   },
@@ -123,7 +122,6 @@
     "postcss-loader": "^3.0.0",
     "postcss-safe-parser": "^4.0.1",
     "postcss-url": "^8.0.0",
-    "recursive-install": "^1.4.0",
     "tinycolor2": "^1.4.1",
     "vue": "^2.5.17",
     "vue-lodash": "^2.0.0",
