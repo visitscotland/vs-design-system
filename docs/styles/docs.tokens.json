@@ -20,7 +20,7 @@
     }
   },
   "props": {
-    "doc_color_gold": {
+    "docs_color_gold": {
       "type": "color",
       "category": "color_group_2",
       "value": "rgb(255, 186, 10)",
@@ -34,19 +34,19 @@
       "originalValue": "hsla({!gold}, 35%, 1)",
       "name": "docs_color_gold_darker"
     },
-    "color_vermilion_lighter": {
+    "docs_color_vermilion_lighter": {
       "type": "color",
       "category": "color_group_1",
       "value": "rgb(244, 151, 138)",
       "originalValue": "hsla({!vermilion}, 75%, 1)",
-      "name": "color_vermilion_lighter"
+      "name": "docs_color_vermilion_lighter"
     },
-    "color_vermilion_darker": {
+    "docs_color_vermilion_darker": {
       "type": "color",
       "category": "color_group_1",
       "value": "rgb(154, 31, 14)",
       "originalValue": "hsla({!vermilion}, 33%, 1)",
-      "name": "color_vermilion_darker"
+      "name": "docs_color_vermilion_darker"
     },
     "docs_color_gold_lighter": {
       "type": "color",
@@ -55,54 +55,54 @@
       "originalValue": "hsla({!gold}, 75%, 1)",
       "name": "docs_color_gold_lighter"
     },
-    "color_bleu_de_france_dark": {
+    "docs_color_bleu_de_france_dark": {
       "type": "color",
       "category": "color_group_3",
       "value": "rgb(16, 112, 209)",
       "originalValue": "hsla({!bleu_de_france}, 44%, 1)",
-      "name": "color_bleu_de_france_dark"
+      "name": "docs_color_bleu_de_france_dark"
     },
-    "color_bleu_de_france_light": {
+    "docs_color_bleu_de_france_light": {
       "type": "color",
       "category": "color_group_3",
       "value": "rgb(84, 163, 242)",
       "originalValue": "hsla({!bleu_de_france}, 64%, 1)",
-      "name": "color_bleu_de_france_light"
+      "name": "docs_color_bleu_de_france_light"
     },
-    "color_silver": {
+    "docs_color_silver": {
       "type": "color",
       "category": "color_group_4",
       "value": "rgb(127, 136, 145)",
       "originalValue": "#7F8891",
-      "name": "color_silver"
+      "name": "docs_color_silver"
     },
-    "color_white": {
+    "docs_color_white": {
       "type": "color",
       "category": "color_group_4",
       "value": "rgb(255, 255, 255)",
       "originalValue": "{!white}",
-      "name": "color_white"
+      "name": "docs_color_white"
     },
-    "color_bleu_de_france": {
+    "docs_color_bleu_de_france": {
       "type": "color",
       "category": "color_group_3",
       "value": "rgb(37, 138, 239)",
       "originalValue": "hsla({!bleu_de_france}, 54%, 1)",
-      "name": "color_bleu_de_france"
+      "name": "docs_color_bleu_de_france"
     },
-    "color_bleu_de_france_darker": {
+    "docs_color_bleu_de_france_darker": {
       "type": "color",
       "category": "color_group_3",
       "value": "rgb(12, 87, 161)",
       "originalValue": "hsla({!bleu_de_france}, 34%, 1)",
-      "name": "color_bleu_de_france_darker"
+      "name": "docs_color_bleu_de_france_darker"
     },
-    "color_bleu_de_france_lighter": {
+    "docs_color_bleu_de_france_lighter": {
       "type": "color",
       "category": "color_group_3",
       "value": "rgb(132, 189, 246)",
       "originalValue": "hsla({!bleu_de_france}, 74%, 1)",
-      "name": "color_bleu_de_france_lighter"
+      "name": "docs_color_bleu_de_france_lighter"
     },
     "docs_color_gold_dark": {
       "type": "color",
@@ -111,19 +111,19 @@
       "originalValue": "hsla({!gold}, 45%, 1)",
       "name": "docs_color_gold_dark"
     },
-    "color_vermilion_light": {
+    "docs_color_vermilion_light": {
       "type": "color",
       "category": "color_group_1",
       "value": "rgb(239, 101, 82)",
       "originalValue": "hsla({!vermilion}, 63%, 1)",
-      "name": "color_vermilion_light"
+      "name": "docs_color_vermilion_light"
     },
-    "color_vermilion_dark": {
+    "docs_color_vermilion_dark": {
       "type": "color",
       "category": "color_group_1",
       "value": "rgb(201, 40, 19)",
       "originalValue": "hsla({!vermilion}, 43%, 1)",
-      "name": "color_vermilion_dark"
+      "name": "docs_color_vermilion_dark"
     },
     "docs_color_gold_light": {
       "type": "color",
@@ -132,33 +132,33 @@
       "originalValue": "hsla({!gold}, 65%, 1)",
       "name": "docs_color_gold_light"
     },
-    "color_rich_black": {
+    "docs_color_rich_black": {
       "type": "color",
       "category": "color_group_4",
       "value": "rgb(0, 17, 35)",
       "originalValue": "{!rich_black}",
-      "name": "color_rich_black"
+      "name": "docs_color_rich_black"
     },
-    "color_cloud": {
+    "docs_color_cloud": {
       "type": "color",
       "category": "color_group_4",
       "value": "rgb(233, 243, 253)",
       "originalValue": "#E9F3FD",
-      "name": "color_cloud"
+      "name": "docs_color_cloud"
     },
-    "color_oxford_blue": {
+    "docs_color_oxford_blue": {
       "type": "color",
       "category": "color_group_4",
       "value": "rgb(0, 38, 77)",
       "originalValue": "hsla({!oxford_blue}, 15%, 1)",
-      "name": "color_oxford_blue"
+      "name": "docs_color_oxford_blue"
     },
-    "color_vermilion": {
+    "docs_color_vermilion": {
       "type": "color",
       "category": "color_group_1",
       "value": "rgb(235, 59, 36)",
       "originalValue": "hsla({!vermilion}, 53%, 1)",
-      "name": "color_vermilion"
+      "name": "docs_color_vermilion"
     },
     "size_xxxl": {
       "type": "number",
