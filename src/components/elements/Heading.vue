@@ -100,7 +100,7 @@ export default {
   }
 
   .sub-heading {
-    color: $color-gorse-yellow;
+    color: $color-single-malt-gold;
     font-weight: $font-weight-semi-bold;
     font-size: 60%;
   }

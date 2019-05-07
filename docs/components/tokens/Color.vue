@@ -132,7 +132,7 @@ h3 {
   box-shadow: 0 0 0 1px rgba(63, 63, 68, 0.05), 0 1px 3px 0 rgba(63, 63, 68, 0.15);
   font-size: $size-s;
   font-family: $font-text;
-  color: $color-rich-black;
+  color: $docs-color-rich-black;
   border-radius: $radius-default;
   overflow: hidden;
   text-align: left;
@@ -145,16 +145,16 @@ h3 {
   }
   &:hover {
     span {
-      color: $color-rich-black;
+      color: $docs-color-rich-black;
       em {
-        color: $color_silver;
+        color: $docs-color-silver;
       }
     }
   }
   span {
     margin-bottom: $space-xs;
     line-height: 1.3;
-    color: $color_silver;
+    color: $docs-color-silver;
     font-size: $size-s;
     width: 100%;
     float: left;
