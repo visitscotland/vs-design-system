@@ -80,6 +80,24 @@ props:
   - name: color_theme_secondary
     value: "{!single_malt_gold}"
     category: "Theme colours"
+  - name: color_theme_success
+    value: "#28a745"
+    category: "Theme colours"
+  - name: color_theme_info
+    value: "#007bff"
+    category: "Theme colours"
+  - name: color_theme_warning
+    value: "#ffc107"
+    category: "Theme colours"
+  - name: color_theme_danger
+    value: "#dc3545"
+    category: "Theme colours"
+  - name: color_theme_light
+    value: "{!mid_granite}"
+    category: "Theme colours"
+  - name: color_theme_dark
+    value: "{!dreich_gray}"
+    category: "Theme colours"
 global:
   type: color
   category: color
