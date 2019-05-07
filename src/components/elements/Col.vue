@@ -1,5 +1,5 @@
 <template>
-  <b-col tag="div" :cols="cols"> <slot /> </b-col>
+  <b-col :cols="cols" :tag="tag"> <slot /> </b-col>
 </template>
 
 <script>
@@ -23,6 +23,13 @@ export default {
      */
     cols: {
       type: [String, Number],
+    },
+
+    /**
+     * The html element name used for the component
+     */
+    tag: {
+      type: String,
     },
   },
 }
