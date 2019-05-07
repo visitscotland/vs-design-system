@@ -144,7 +144,7 @@ export default {
   font-family: $font-heading;
   font-weight: $weight-normal;
   line-height: $line-height-xs;
-  color: $color-rich-black;
+  color: $docs-color-rich-black;
   margin-bottom: $space-s;
   font-style: normal;
   @media (max-width: 1000px) {
@@ -157,10 +157,10 @@ export default {
   }
   thead th {
     padding: $space-s;
-    background: $color-cloud;
+    background: $docs-color-cloud;
     font-size: $size-s;
     font-weight: $weight-bold;
-    color: $color-oxford-blue;
+    color: $docs-color-oxford-blue;
     text-transform: uppercase;
     letter-spacing: 1px;
     font-weight: $weight-semi-bold;
@@ -207,7 +207,7 @@ export default {
     }
     li {
       margin: 0 $space-m 0 0;
-      color: $color_silver;
+      color: $docs-color-silver;
       font-size: $size-s;
       align-items: center;
       display: flex;

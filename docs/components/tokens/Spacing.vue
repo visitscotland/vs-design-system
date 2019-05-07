@@ -60,7 +60,7 @@ export default {
   margin-bottom: $space-xs;
   font-size: $size-s;
   font-family: $font-text;
-  color: $color-rich-black;
+  color: $docs-color-rich-black;
   background: tint(#c4cdd5, 85%);
   text-align: center;
   position: relative;
@@ -68,7 +68,7 @@ export default {
   width: 100%;
   span {
     margin-left: 5px;
-    color: $color_silver;
+    color: $docs-color-silver;
     user-select: none;
     font-style: normal;
   }

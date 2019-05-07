@@ -164,7 +164,7 @@ export default {
 
 /deep/ .heading,
 .heading .sub-heading {
-  color: $color-gorse-yellow;
+  color: $color-single-malt-gold;
 }
 /deep/ .heading .sub-heading {
   color: $color-white;
