@@ -96,19 +96,19 @@ export default {
     getComponents: function() {
       let contexts
 
-      if (this.show === "all") {
+      if ((this.show === "all") | "modules") {
         contexts = [
           require.context("@components/elements/", true, /\.vue$/),
           require.context("@components/patterns/", true, /\.vue$/),
-          require.context("@components/modules/", true, /\.vue$/),
+          // require.context("@components/modules/", true, /\.vue$/),
           require.context("@components/templates/", true, /\.vue$/),
         ]
       } else if (this.show === "elements") {
         contexts = [require.context("@components/elements/", true, /\.vue$/)]
       } else if (this.show === "patterns") {
         contexts = [require.context("@components/patterns/", true, /\.vue$/)]
-      } else if (this.show === "modules") {
-        contexts = [require.context("@components/modules/", true, /\.vue$/)]
+        // } else if (this.show === "modules") {
+        //   contexts = [require.context("@components/modules/", true, /\.vue$/)]
       } else if (this.show === "templates") {
         contexts = [require.context("@components/templates/", true, /\.vue$/)]
       }
