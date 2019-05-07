@@ -84,7 +84,7 @@ props:
     value: "#28a745"
     category: "Theme colours"
   - name: color_theme_info
-    value: "#007bff"
+    value: "{!saltire_blue}"
     category: "Theme colours"
   - name: color_theme_warning
     value: "#ffc107"
