@@ -5,6 +5,7 @@ const path = require("path")
 
 const _ = require("lodash")
 const ora = require("ora")
+const chalk = require("chalk")
 const requestPromise = require("request-promise-native")
 const Turndown = require("turndown")
 
@@ -18,6 +19,7 @@ const defaultRemoteConfig = {
 const turndownService = _getTurndownService()
 
 let remoteConfig = null
+let spinner
 
 function getRemoteConfig(argv) {
   const localConfig = getConfig(argv.config)
@@ -32,7 +34,7 @@ function getRemoteConfig(argv) {
 
   const uri = _makeRemoteUriFromRemoteConfig(remoteConfig)
 
-  const spinner = ora("Getting remote config from " + uri + "...")
+  spinner = ora("Getting remote config from " + uri + "...")
 
   const transforms = _getTransforms(remoteConfig)
 
@@ -51,18 +53,18 @@ function getRemoteConfig(argv) {
     .then(function(mergedConfig) {
       spinner.stop()
 
-      console.log("Remote config merged!")
+      console.log(chalk.cyan("Remote config merged!"))
 
       return mergedConfig
     })
     .catch(function(err) {
       spinner.stop()
 
-      console.log("Problem encountered getting remote config from " + uri)
+      console.log(chalk.red("Problem encountered getting remote config from " + uri))
       console.log(err)
 
       // return the original static config on error
-      console.log("Ignoring remote config")
+      console.log(chalk.cyan("Ignoring remote config"))
       return localConfig
 
       // throw err
@@ -77,7 +79,7 @@ function cleanup(docsConfig) {
   _.each(sectionMarkdownFiles, function(fileName) {
     rm(path.join(tempPath, fileName), function(err) {
       if (err) {
-        console.log("Failed to remove temp markdown file", fileName, ":", err)
+        console.log(chalk.red("Cleanup: failed to remove temp markdown file", fileName, ":", err))
       }
     })
   })
