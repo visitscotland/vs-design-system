@@ -20,19 +20,20 @@
     "build:system": "npm-run-all theo node:build:system",
     "build:docs": "npm-run-all theo styleguide:build",
     "build:docs:remote": "npm-run-all theo styleguide:remote:build",
+    "cypress:open": "cypress open",
     "docs:remote": "npm-run-all theo styleguide:remote",
+    "heroku-docs": "http-server dist/docs -p $PORT",
     "lint": "eslint '**/*.{js,vue}' --cache",
     "node:build": "node ./build/build.js",
     "node:build:system": "node ./build/build-system.js",
+    "serve-docs": "http-server dist/docs",
     "styleguide": "vue-styleguidist server --open --config ./config/docs.config.js",
     "styleguide:build": "vue-styleguidist build --config ./config/docs.config.js",
     "styleguide:remote": "node build/styleguide server --config ./config/docs.config.js --remote-config ../config/remote.config.js",
     "styleguide:remote:build": "node build/styleguide build --config ./config/docs.config.js --remote-config ../config/remote.config.js",
-    "theo": "theo ./src/tokens/tokens.yml --transform web --format map.scss,scss,raw.json,json --dest ./src/assets/tokens",
-    "theo:onchange": "onchange \"./src/tokens/*.yml\" -- npm run theo",
     "test": "npm-run-all theo unit",
-    "heroku-docs": "http-server dist/docs -p $PORT",
-    "serve-docs": "http-server dist/docs"
+    "theo": "theo ./src/tokens/tokens.yml --transform web --format map.scss,scss,raw.json,json --dest ./src/assets/tokens",
+    "theo:onchange": "onchange \"./src/tokens/*.yml\" -- npm run theo"
   },
   "husky": {
     "hooks": {
@@ -153,6 +154,7 @@
     "contentful": "^7.3.0",
     "copy-webpack-plugin": "^4.6.0",
     "css-loader": "^1.0.1",
+    "cypress": "^3.2.0",
     "dotenv": "^7.0.0",
     "eslint": "^5.9.0",
     "eslint-plugin-compat": "^2.6.3",
