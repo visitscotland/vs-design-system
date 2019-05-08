@@ -39,7 +39,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "../../docs.tokens.scss";
+@import "../../styles/docs.tokens.scss";
+@import "../../styles/docs.mixins.scss";
 
 /* STYLES
 --------------------------------------------- */
@@ -54,14 +55,14 @@ export default {
   font-family: $font-heading;
   font-weight: $weight-bold;
   line-height: $line-height-xs;
-  color: $color-rich-black;
+  color: $docs-color-rich-black;
   margin-bottom: $space-s;
   font-style: normal;
   span {
     letter-spacing: -0.02em;
     margin-left: 10px;
     font-weight: $weight-normal;
-    color: $color_silver;
+    color: $docs-color-silver;
     user-select: none;
     font-style: normal;
   }

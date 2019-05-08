@@ -2,19 +2,19 @@
   <div class="component-status">
     <ul class="status-list">
       <li>
-        <vs-icon name="docs/ready" fill="#7cb518" size="small" />
+        <vs-icon name="docs/ready" fill="#7cb518" size="medium" />
         <p class="mb-0">Ready</p>
       </li>
       <li>
-        <vs-icon name="docs/review" :fill="tokens.color_ucla_gold.value" size="small" />
+        <vs-icon name="docs/review" :fill="getColour('gold')" size="medium" />
         <p class="mb-0">Under review</p>
       </li>
       <li>
-        <vs-icon name="docs/deprecated" :fill="tokens.color_vermilion.value" size="small" />
+        <vs-icon name="docs/deprecated" :fill="getColour('vermilion')" size="medium" />
         <p class="mb-0">Deprecated</p>
       </li>
       <li>
-        <vs-icon name="docs/prototype" :fill="tokens.color_bleu_de_france.value" size="small" />
+        <vs-icon name="docs/prototype" :fill="getColour('bleu_de_france')" size="medium" />
         <p class="mb-0">Prototype</p>
       </li>
       <li>
@@ -46,25 +46,25 @@
               v-if="component.status === 'docs/ready'"
               name="ready"
               fill="#7cb518"
-              size="small"
+              size="medium"
             />
             <vs-icon
               v-if="component.status === 'under-review' || component.status === 'review'"
               name="docs/review"
-              :fill="tokens.color_ucla_gold.value"
-              size="small"
+              :fill="getColour('gold')"
+              size="medium"
             />
             <vs-icon
               v-if="component.status === 'prototype'"
               name="docs/prototype"
-              :fill="tokens.color_bleu_de_france.value"
-              size="small"
+              :fill="getColour('bleu_de_france')"
+              size="medium"
             />
             <vs-icon
               v-if="component.status === 'deprecated'"
               name="docs/deprecated"
-              :fill="tokens.color_vermilion.value"
-              size="small"
+              :fill="getColour('vermilion')"
+              size="medium"
             />
           </td>
           <td v-else>—</td>
@@ -77,8 +77,9 @@
 <script>
 // If you want to use your own tokens here, change the following line to:
 // import designTokens from "@/assets/tokens/tokens.raw.json"
-import designTokens from "../../docs.tokens.json"
+import designTokens from "../../styles/docs.tokens.json"
 import orderBy from "lodash/orderBy"
+import get from "lodash/get"
 
 export default {
   name: "Components",
@@ -87,7 +88,7 @@ export default {
       type: String,
       default: "all",
       validator: value => {
-        return value.match(/(all|patterns|templates|elements)/)
+        return value.match(/(all|patterns|templates|elements|modules)/)
       },
     },
   },
@@ -95,18 +96,21 @@ export default {
     getComponents: function() {
       let contexts
 
-      if (this.show === "all") {
+      if ((this.show === "all") | "modules") {
         contexts = [
-          require.context("@/elements/", true, /\.vue$/),
-          require.context("@/patterns/", true, /\.vue$/),
-          require.context("@/templates/", true, /\.vue$/),
+          require.context("@components/elements/", true, /\.vue$/),
+          require.context("@components/patterns/", true, /\.vue$/),
+          // require.context("@components/modules/", true, /\.vue$/),
+          require.context("@components/templates/", true, /\.vue$/),
         ]
       } else if (this.show === "elements") {
-        contexts = [require.context("@/elements/", true, /\.vue$/)]
+        contexts = [require.context("@components/elements/", true, /\.vue$/)]
       } else if (this.show === "patterns") {
-        contexts = [require.context("@/patterns/", true, /\.vue$/)]
+        contexts = [require.context("@components/patterns/", true, /\.vue$/)]
+        // } else if (this.show === "modules") {
+        //   contexts = [require.context("@components/modules/", true, /\.vue$/)]
       } else if (this.show === "templates") {
-        contexts = [require.context("@/templates/", true, /\.vue$/)]
+        contexts = [require.context("@components/templates/", true, /\.vue$/)]
       }
 
       const components = []
@@ -119,6 +123,9 @@ export default {
     orderData: function(data) {
       return orderBy(data, "name", "asc")
     },
+    getColour(colourName) {
+      return get(this.tokens, "docs_color_" + colourName + ".value", "#aaa")
+    },
   },
   data() {
     return {
@@ -130,7 +137,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "../../docs.tokens.scss";
+@import "../../styles/docs.tokens.scss";
+@import "../../styles/docs.mixins.scss";
 
 /* STYLES
 --------------------------------------------- */
@@ -140,7 +148,7 @@ export default {
   font-family: $font-heading;
   font-weight: $weight-normal;
   line-height: $line-height-xs;
-  color: $color-rich-black;
+  color: $docs-color-rich-black;
   margin-bottom: $space-s;
   font-style: normal;
   @media (max-width: 1000px) {
@@ -153,10 +161,10 @@ export default {
   }
   thead th {
     padding: $space-s;
-    background: $color-cloud;
+    background: $docs-color-cloud;
     font-size: $size-s;
     font-weight: $weight-bold;
-    color: $color-oxford-blue;
+    color: $docs-color-oxford-blue;
     text-transform: uppercase;
     letter-spacing: 1px;
     font-weight: $weight-semi-bold;
@@ -203,7 +211,7 @@ export default {
     }
     li {
       margin: 0 $space-m 0 0;
-      color: $color_silver;
+      color: $docs-color-silver;
       font-size: $size-s;
       align-items: center;
       display: flex;
@@ -214,9 +222,10 @@ export default {
       }
       svg,
       span {
-        margin: -2px calc(#{$space-s} / 2) 0 0;
+        margin: 0 calc(#{$space-s} / 2) 0 0;
       }
       p {
+        margin-bottom: 0;
         @media (max-width: 1000px) {
           margin: $space-xs;
         }

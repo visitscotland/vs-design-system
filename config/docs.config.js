@@ -1,12 +1,61 @@
+const _ = require("lodash")
 const path = require("path")
 const baseConfig = require("../build/webpack.base.conf.js")
 const merge = require("webpack-merge")
 const packageConfig = require("../package.json")
 const chalk = require("chalk")
 
+const webpackBabelRuleIncludes = [
+  resolve("node_modules/regexpu-core"),
+  resolve("node_modules/unicode-match-property-ecmascript"),
+  resolve("node_modules/unicode-match-property-value-ecmascript"),
+  resolve("node_modules/buble/node_modules/acorn-jsx"),
+]
+
+const webpackBabelRuleUse = {
+  loader: "babel-loader",
+  options: {
+    sourceType: "unambiguous",
+    presets: [
+      [
+        "@babel/preset-env",
+        {
+          useBuiltIns: "usage",
+          targets: {
+            ie: "11",
+            chrome: "71",
+            firefox: "64",
+            safari: "11",
+            edge: "17",
+          },
+        },
+      ],
+    ],
+    comments: false,
+  },
+}
+
+function resolve(dir) {
+  return path.join(__dirname, "..", dir)
+}
+
+function getBaseConfig() {
+  const babelRule = _.find(_.get(baseConfig, "module.rules"), ["loader", "babel-loader"])
+
+  if (babelRule) {
+    // insert extra includes and settings to the base config for docs generation
+    _.unset(babelRule, "loader")
+
+    babelRule.include = _.concat(babelRule.include, webpackBabelRuleIncludes)
+    babelRule.use = webpackBabelRuleUse
+  }
+
+  return baseConfig
+}
+
 module.exports = {
   /**
-   * Most of the styles are defined in /docs/docs.styles.scss
+   * Most of the styles are defined in /docs/styles/docs.styles.scss
    */
   version: packageConfig.version,
   theme: {
@@ -37,7 +86,7 @@ module.exports = {
    */
   require: [
     path.join(__dirname, "../docs/docs.helper.js"),
-    path.join(__dirname, "../docs/docs.styles.scss"),
+    path.join(__dirname, "../docs/styles/docs.styles.scss"),
   ],
   /**
    * Enabling the following option splits sections into separate views.
@@ -76,7 +125,7 @@ module.exports = {
     "**/*.spec.jsx",
     "**/ExampleComponent.vue",
   ],
-  webpackConfig: merge(baseConfig, {
+  webpackConfig: merge(getBaseConfig(), {
     module: {
       rules: [
         {

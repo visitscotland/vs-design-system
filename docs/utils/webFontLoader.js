@@ -5,8 +5,7 @@
 import WebFont from "webfontloader"
 
 WebFont.load({
-  custom: {
-    families: ["evelethclean-thin", "evelethclean-regular"],
-    urls: ["/fonts/fonts.css"],
+  google: {
+    families: ["Fira+Sans:300,400,400i,600,700"],
   },
 })
