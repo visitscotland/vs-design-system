@@ -7,9 +7,10 @@
 
 // Define contexts to require
 const contexts = [
-  require.context("@/elements/", true, /\.vue$/),
-  require.context("@/patterns/", true, /\.vue$/),
-  require.context("@/templates/", true, /\.vue$/),
+  require.context("@components/elements/", true, /\.vue$/),
+  require.context("@components/patterns/", true, /\.vue$/),
+  require.context("@components/modules/", true, /\.vue$/),
+  require.context("@components/templates/", true, /\.vue$/),
 ]
 
 // Define components

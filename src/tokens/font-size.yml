@@ -2,22 +2,25 @@
 # FONT-SIZE TOKENS
 # Use these tokens to set a font-size.
 #
-
+aliases:
+  font_size_base: 1rem
 props:
-  size_xxxl:
-    value: "64px"
-  size_xxl:
-    value: "48px"
-  size_xl:
-    value: "36px"
-  size_l:
-    value: "24px"
-  size_m:
-    value: "16px"
-  size_s:
-    value: "13px"
-  size_xs:
-    value: "11px"
+  - name: font-size-base
+    value: "{!font_size_base}"
+  - name: h1-font-size-lg
+    value: "{!font_size_base} * 3"
+  - name: h1-font-size
+    value: "{!font_size_base} * 2"
+  - name: h2-font-size
+    value: "{!font_size_base} * 1.75"
+  - name: h3-font-size
+    value: "{!font_size_base} * 1.5"
+  - name: h4-font-size
+    value: "{!font_size_base} * 1.25"
+  - name: h5-font-size
+    value: "{!font_size_base}"
+  - name: h6-font-size
+    value: "{!font_size_base} * 0.875"
 global:
   type: number
   category: font-size
