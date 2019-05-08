@@ -1,8 +1,5 @@
 {
   "aliases": {
-    "silver_surf": {
-      "value": "#f5f6fa"
-    },
     "white": {
       "value": "#fff"
     },
@@ -15,26 +12,20 @@
     "total_eclipse": {
       "value": "#1d1d1b"
     },
-    "thistle_purple": {
-      "value": "#700e57"
+    "single_malt_gold": {
+      "value": "#E1A245"
     },
     "very_light_granite": {
       "value": "#f5f6fa"
     },
-    "heather_pink": {
-      "value": "#af006e"
+    "sanna_sand": {
+      "value": "#D7D2CB"
     },
-    "bleu_de_france": {
-      "value": "210, 86%"
+    "saltire_blue": {
+      "value": "#005EB8"
     },
-    "skye_blue": {
-      "value": "#3082b4"
-    },
-    "oxford_blue": {
-      "value": "210, 100%"
-    },
-    "gorse_yellow": {
-      "value": "#fcca1b"
+    "heather_purple": {
+      "value": "#900762"
     },
     "light_granite": {
       "value": "#e5e5e5"
@@ -42,51 +33,57 @@
     "dark_granite": {
       "value": "#595959"
     },
-    "vermilion": {
-      "value": "7, 83%"
+    "murrayfield_navy": {
+      "value": "#083973"
     },
-    "ucla_gold": {
-      "value": "43, 100%"
+    "font_size_base": {
+      "value": "1rem"
     },
-    "rich_black": {
-      "value": "#001123"
+    "font_family_default": {
+      "value": "'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'"
+    },
+    "font_family_display": {
+      "value": "'evelethclean-regular', sans-serif, $font-family-sans-serif"
+    },
+    "font_family_display_secondary": {
+      "value": "'evelethclean-thin', 'evelethclean-thin', sans-serif, $font-family-sans-serif"
     }
   },
   "props": {
-    "color_heather_pink": {
+    "color_heather_purple": {
       "type": "color",
       "category": "Primary palette",
-      "name": "color_heather_pink",
-      "value": "rgb(175, 0, 110)",
-      "originalValue": "{!heather_pink}"
+      "name": "color_heather_purple",
+      "value": "rgb(144, 7, 98)",
+      "originalValue": "{!heather_purple}"
     },
-    "color_thistle_purple": {
+    "color_murrayfield_navy": {
       "type": "color",
       "category": "Primary palette",
-      "name": "color_thistle_purple",
-      "value": "rgb(112, 14, 87)",
-      "originalValue": "{!thistle_purple}"
+      "name": "color_murrayfield_navy",
+      "value": "rgb(8, 57, 115)",
+      "originalValue": "{!murrayfield_navy}"
     },
-    "color_skye_blue": {
+    "color_saltire_blue": {
       "type": "color",
       "category": "Primary palette",
-      "name": "color_skye_blue",
-      "value": "rgb(48, 130, 180)",
-      "originalValue": "{!skye_blue}"
+      "name": "color_saltire_blue",
+      "value": "rgb(0, 94, 184)",
+      "originalValue": "{!saltire_blue}"
     },
-    "color_gorse_yellow": {
+    "color_single_malt_gold": {
       "type": "color",
       "category": "Secondary palette",
-      "name": "color_gorse_yellow",
-      "value": "rgb(252, 202, 27)",
-      "originalValue": "{!gorse_yellow}"
+      "name": "color_single_malt_gold",
+      "value": "rgb(225, 162, 69)",
+      "originalValue": "{!single_malt_gold}"
     },
-    "color_silver_surf": {
+    "color_sanna_sand": {
       "type": "color",
       "category": "Secondary palette",
-      "name": "color_silver_surf",
-      "value": "rgb(245, 246, 250)",
-      "originalValue": "{!silver_surf}"
+      "name": "color_sanna_sand",
+      "value": "rgb(215, 210, 203)",
+      "originalValue": "{!sanna_sand}"
     },
     "color_total_eclipse": {
       "type": "color",
@@ -137,145 +134,173 @@
       "value": "rgb(255, 255, 255)",
       "originalValue": "{!white}"
     },
-    "color_vermilion": {
+    "color_theme_primary": {
       "type": "color",
-      "category": "Design system palette",
-      "name": "color_vermilion",
-      "value": "rgb(235, 59, 36)",
-      "originalValue": "hsla({!vermilion}, 53%, 1)"
+      "category": "Theme colours",
+      "name": "color_theme_primary",
+      "value": "rgb(144, 7, 98)",
+      "originalValue": "{!heather_purple}"
     },
-    "color_ucla_gold": {
+    "color_theme_secondary": {
       "type": "color",
-      "category": "Design system palette",
-      "name": "color_ucla_gold",
-      "value": "rgb(255, 186, 10)",
-      "originalValue": "hsla({!ucla_gold}, 52%, 1)"
+      "category": "Theme colours",
+      "name": "color_theme_secondary",
+      "value": "rgb(215, 210, 203)",
+      "originalValue": "{!sanna_sand}"
     },
-    "color_bleu_de_france": {
+    "color_theme_success": {
       "type": "color",
-      "category": "Design system palette",
-      "name": "color_bleu_de_france",
-      "value": "rgb(37, 138, 239)",
-      "originalValue": "hsla({!bleu_de_france}, 54%, 1)"
+      "category": "Theme colours",
+      "name": "color_theme_success",
+      "value": "rgb(40, 167, 69)",
+      "originalValue": "#28a745"
     },
-    "color_oxford_blue": {
+    "color_theme_info": {
       "type": "color",
-      "category": "Design system palette",
-      "name": "color_oxford_blue",
-      "value": "rgb(0, 38, 77)",
-      "originalValue": "hsla({!oxford_blue}, 15%, 1)"
+      "category": "Theme colours",
+      "name": "color_theme_info",
+      "value": "rgb(0, 94, 184)",
+      "originalValue": "{!saltire_blue}"
     },
-    "color_rich_black": {
+    "color_theme_warning": {
       "type": "color",
-      "category": "Design system palette",
-      "name": "color_rich_black",
-      "value": "rgb(0, 17, 35)",
-      "originalValue": "{!rich_black}"
+      "category": "Theme colours",
+      "name": "color_theme_warning",
+      "value": "rgb(225, 162, 69)",
+      "originalValue": "{!single_malt_gold}"
     },
-    "color_cloud": {
+    "color_theme_danger": {
       "type": "color",
-      "category": "Design system palette",
-      "name": "color_cloud",
-      "value": "rgb(233, 243, 253)",
-      "originalValue": "#E9F3FD"
+      "category": "Theme colours",
+      "name": "color_theme_danger",
+      "value": "rgb(220, 53, 69)",
+      "originalValue": "#dc3545"
     },
-    "color_silver": {
+    "color_theme_light": {
       "type": "color",
-      "category": "Design system palette",
-      "name": "color_silver",
-      "value": "rgb(127, 136, 145)",
-      "originalValue": "#7F8891"
+      "category": "Theme colours",
+      "name": "color_theme_light",
+      "value": "rgb(146, 144, 145)",
+      "originalValue": "{!mid_granite}"
     },
-    "size_xxxl": {
+    "color_theme_dark": {
+      "type": "color",
+      "category": "Theme colours",
+      "name": "color_theme_dark",
+      "value": "rgb(57, 57, 59)",
+      "originalValue": "{!dreich_gray}"
+    },
+    "font-size-base": {
       "type": "number",
       "category": "font-size",
-      "value": "64px",
-      "originalValue": "64px",
-      "name": "size_xxxl"
+      "name": "font-size-base",
+      "value": "1rem",
+      "originalValue": "{!font_size_base}"
     },
-    "size_xxl": {
+    "h1-font-size-lg": {
       "type": "number",
       "category": "font-size",
-      "value": "48px",
-      "originalValue": "48px",
-      "name": "size_xxl"
+      "name": "h1-font-size-lg",
+      "value": "1rem * 3",
+      "originalValue": "{!font_size_base} * 3"
     },
-    "size_xl": {
+    "h1-font-size": {
       "type": "number",
       "category": "font-size",
-      "value": "36px",
-      "originalValue": "36px",
-      "name": "size_xl"
+      "name": "h1-font-size",
+      "value": "1rem * 2",
+      "originalValue": "{!font_size_base} * 2"
     },
-    "size_l": {
+    "h2-font-size": {
       "type": "number",
       "category": "font-size",
-      "value": "24px",
-      "originalValue": "24px",
-      "name": "size_l"
+      "name": "h2-font-size",
+      "value": "1rem * 1.75",
+      "originalValue": "{!font_size_base} * 1.75"
     },
-    "size_m": {
+    "h3-font-size": {
       "type": "number",
       "category": "font-size",
-      "value": "16px",
-      "originalValue": "16px",
-      "name": "size_m"
+      "name": "h3-font-size",
+      "value": "1rem * 1.5",
+      "originalValue": "{!font_size_base} * 1.5"
     },
-    "size_s": {
+    "h4-font-size": {
       "type": "number",
       "category": "font-size",
-      "value": "13px",
-      "originalValue": "13px",
-      "name": "size_s"
+      "name": "h4-font-size",
+      "value": "1rem * 1.25",
+      "originalValue": "{!font_size_base} * 1.25"
     },
-    "size_xs": {
+    "h5-font-size": {
       "type": "number",
       "category": "font-size",
-      "value": "11px",
-      "originalValue": "11px",
-      "name": "size_xs"
+      "name": "h5-font-size",
+      "value": "1rem",
+      "originalValue": "{!font_size_base}"
     },
-    "font_heading": {
+    "h6-font-size": {
+      "type": "number",
+      "category": "font-size",
+      "name": "h6-font-size",
+      "value": "1rem * 0.875",
+      "originalValue": "{!font_size_base} * 0.875"
+    },
+    "font_family_sans_serif": {
       "type": "...",
       "category": "font",
       "value": "'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
-      "originalValue": "'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
-      "name": "font_heading"
+      "originalValue": "{!font_family_default}",
+      "name": "font_family_sans_serif"
     },
-    "font_text": {
+    "font_family_heading": {
       "type": "...",
       "category": "font",
       "value": "'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
-      "originalValue": "'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
-      "name": "font_text"
+      "originalValue": "{!font_family_default}",
+      "name": "font_family_heading"
     },
-    "weight_bold": {
+    "font_family_display": {
+      "type": "...",
+      "category": "font",
+      "value": "'evelethclean-regular', sans-serif, $font-family-sans-serif",
+      "originalValue": "{!font_family_display}",
+      "name": "font_family_display"
+    },
+    "font_family_display_secondary": {
+      "type": "...",
+      "category": "font",
+      "value": "'evelethclean-thin', 'evelethclean-thin', sans-serif, $font-family-sans-serif",
+      "originalValue": "{!font_family_display_secondary}",
+      "name": "font_family_display_secondary"
+    },
+    "font_weight_bold": {
       "type": "...",
       "category": "font",
       "value": "700",
       "originalValue": "700",
-      "name": "weight_bold"
+      "name": "font_weight_bold"
     },
-    "weight_semi_bold": {
+    "font_weight_semi_bold": {
       "type": "...",
       "category": "font",
       "value": "600",
       "originalValue": "600",
-      "name": "weight_semi_bold"
+      "name": "font_weight_semi_bold"
     },
-    "weight_normal": {
+    "font_weight_normal": {
       "type": "...",
       "category": "font",
       "value": "400",
       "originalValue": "400",
-      "name": "weight_normal"
+      "name": "font_weight_normal"
     },
-    "weight_light": {
+    "font_weight_light": {
       "type": "...",
       "category": "font",
       "value": "300",
       "originalValue": "300",
-      "name": "weight_light"
+      "name": "font_weight_light"
     },
     "opacity_disabled": {
       "type": "number",
@@ -326,19 +351,82 @@
       "originalValue": "100",
       "name": "z_index_sticky"
     },
-    "media_query_m": {
-      "type": "...",
-      "category": "media-query",
-      "value": "(min-width: 768px)",
-      "originalValue": "(min-width: 768px)",
-      "name": "media_query_m"
+    "breakpoint_xl": {
+      "type": "number",
+      "category": "sizing",
+      "value": "1200px",
+      "originalValue": "1200px",
+      "name": "breakpoint_xl"
     },
-    "media_query_l": {
-      "type": "...",
-      "category": "media-query",
-      "value": "(min-width: 1024px)",
-      "originalValue": "(min-width: 1024px)",
-      "name": "media_query_l"
+    "breakpoint_md": {
+      "type": "number",
+      "category": "sizing",
+      "value": "768px",
+      "originalValue": "768px",
+      "name": "breakpoint_md"
+    },
+    "max_container_width_xl": {
+      "type": "number",
+      "category": "sizing",
+      "value": "1140px",
+      "originalValue": "1140px",
+      "name": "max_container_width_xl"
+    },
+    "breakpoint_sm": {
+      "type": "number",
+      "category": "sizing",
+      "value": "576px",
+      "originalValue": "576px",
+      "name": "breakpoint_sm"
+    },
+    "breakpoint_lg": {
+      "type": "number",
+      "category": "sizing",
+      "value": "992px",
+      "originalValue": "992px",
+      "name": "breakpoint_lg"
+    },
+    "breakpoint_xs": {
+      "type": "number",
+      "category": "sizing",
+      "value": "0",
+      "originalValue": "0",
+      "name": "breakpoint_xs"
+    },
+    "max_container_width_md": {
+      "type": "number",
+      "category": "sizing",
+      "value": "720px",
+      "originalValue": "720px",
+      "name": "max_container_width_md"
+    },
+    "max_container_width_sm": {
+      "type": "number",
+      "category": "sizing",
+      "value": "540px",
+      "originalValue": "540px",
+      "name": "max_container_width_sm"
+    },
+    "max_container_width_lg": {
+      "type": "number",
+      "category": "sizing",
+      "value": "960px",
+      "originalValue": "960px",
+      "name": "max_container_width_lg"
+    },
+    "max_container_width_xxl": {
+      "type": "number",
+      "category": "sizing",
+      "value": "1340px",
+      "originalValue": "1340px",
+      "name": "max_container_width_xxl"
+    },
+    "breakpoint_xxl": {
+      "type": "number",
+      "category": "sizing",
+      "value": "1400px",
+      "originalValue": "1400px",
+      "name": "breakpoint_xxl"
     },
     "shadow_s": {
       "type": "...",
@@ -382,68 +470,75 @@
       "originalValue": "-1px",
       "name": "spacing_xs"
     },
-    "radius_default": {
+    "border_radius_default": {
       "type": "number",
       "category": "border-radius",
-      "value": "3px",
-      "originalValue": "3px",
-      "name": "radius_default"
+      "value": "0.25rem",
+      "originalValue": "0.25rem",
+      "name": "border_radius_default"
     },
-    "radius_circle": {
+    "border_radius_lg": {
       "type": "number",
       "category": "border-radius",
-      "value": "50%",
-      "originalValue": "50%",
-      "name": "radius_circle"
+      "value": "0.3rem",
+      "originalValue": "0.3rem",
+      "name": "border_radius_lg"
     },
-    "space_xxl": {
+    "border_radius_sm": {
+      "type": "number",
+      "category": "border-radius",
+      "value": "0.2rem",
+      "originalValue": "0.2rem",
+      "name": "border_radius_sm"
+    },
+    "border_radius_pill": {
+      "type": "number",
+      "category": "border-radius",
+      "value": "50rem",
+      "originalValue": "50rem",
+      "name": "border_radius_pill"
+    },
+    "spacer_0": {
       "type": "number",
       "category": "space",
-      "value": "128px",
-      "originalValue": "128px",
-      "name": "space_xxl"
+      "value": "0",
+      "originalValue": "0",
+      "name": "spacer_0"
     },
-    "space_xl": {
+    "spacer_1": {
       "type": "number",
       "category": "space",
-      "value": "64px",
-      "originalValue": "64px",
-      "name": "space_xl"
+      "value": "0.25rem",
+      "originalValue": "0.25rem",
+      "name": "spacer_1"
     },
-    "space_l": {
+    "spacer_2": {
       "type": "number",
       "category": "space",
-      "value": "48px",
-      "originalValue": "48px",
-      "name": "space_l"
+      "value": "0.5rem",
+      "originalValue": "0.5rem",
+      "name": "spacer_2"
     },
-    "space_m": {
+    "spacer_3": {
       "type": "number",
       "category": "space",
-      "value": "24px",
-      "originalValue": "24px",
-      "name": "space_m"
+      "value": "1rem",
+      "originalValue": "1rem",
+      "name": "spacer_3"
     },
-    "space_s": {
+    "spacer_4": {
       "type": "number",
       "category": "space",
-      "value": "16px",
-      "originalValue": "16px",
-      "name": "space_s"
+      "value": "2rem",
+      "originalValue": "2rem",
+      "name": "spacer_4"
     },
-    "space_xs": {
+    "spacer_5": {
       "type": "number",
       "category": "space",
-      "value": "8px",
-      "originalValue": "8px",
-      "name": "space_xs"
-    },
-    "space_xxs": {
-      "type": "number",
-      "category": "space",
-      "value": "4px",
-      "originalValue": "4px",
-      "name": "space_xxs"
+      "value": "4rem",
+      "originalValue": "4rem",
+      "name": "spacer_5"
     },
     "line_height_m": {
       "type": "number",
@@ -465,6 +560,20 @@
       "value": "1",
       "originalValue": "1",
       "name": "line_height_xs"
+    },
+    "grid_columns": {
+      "type": "number",
+      "category": "spacing",
+      "value": "12",
+      "originalValue": "12",
+      "name": "grid_columns"
+    },
+    "grid_gutter_width": {
+      "type": "number",
+      "category": "spacing",
+      "value": "32px",
+      "originalValue": "32px",
+      "name": "grid_gutter_width"
     }
   }
 }

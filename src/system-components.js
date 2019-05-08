@@ -9,14 +9,15 @@ const camelCase = require("lodash/camelCase")
 const upperFirst = require("lodash/upperFirst")
 
 const componentPaths = [
-  "./src/elements/**/*.vue",
-  "./src/patterns/**/*.vue",
-  "./src/modules/**/*.vue",
-  "./src/templates/**/*.vue",
+  "./src/components/elements/**/*.vue",
+  "./src/components/patterns/**/*.vue",
+  "./src/components/modules/**/*.vue",
+  "./src/components/templates/**/*.vue",
 ]
 
 let components = {
-  coreStyles: "./src/styles/styles.scss",
+  // currently core styles only includes the bootstrap reset so leaving that out for now
+  // coreStyles: "./src/styles/styles.scss",
 }
 
 componentPaths
