@@ -13,6 +13,10 @@ const SafeParser = require("postcss-safe-parser")
 
 const env = require("../config/prod.env")
 
+const ManifestPlugin = require("webpack-manifest-plugin")
+
+const generateManifest = require("./split-generate-manifest")
+
 baseWebpackConfig.entry = require("../src/system-components")
 
 // Remove the CSS extract from the base config to prevent duplicate CSS file
@@ -37,6 +41,13 @@ const webpackConfig = merge(baseWebpackConfig, {
   },
   performance: {
     hints: config.system.performanceHints,
+  },
+  optimization: {
+    splitChunks: {
+      chunks: "all",
+      minSize: 0,
+      maxInitialRequests: Infinity,
+    },
   },
   plugins: [
     // http://vuejs.github.io/vue-loader/en/workflow/production.html
@@ -75,6 +86,9 @@ const webpackConfig = merge(baseWebpackConfig, {
         ignore: [".*"],
       },
     ]),
+    new ManifestPlugin({
+      generate: generateManifest,
+    }),
   ],
 })
 
