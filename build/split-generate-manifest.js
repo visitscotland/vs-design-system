@@ -1,4 +1,18 @@
-const { extend, reduce, invoke, mapKeys, map, filter } = require("lodash")
+const {
+  extend,
+  reduce,
+  invoke,
+  mapKeys,
+  flatMap,
+  mapValues,
+  filter,
+  get,
+  uniq,
+  partial,
+  ary,
+  endsWith,
+  remove,
+} = require("lodash")
 
 function extractAllEntriesFromFileDescriptor(FileDescriptor) {
   return reduce(
@@ -16,13 +30,21 @@ function extractEntriesFromOutputFile(outputFile) {
   return entries.length ? mapKeys(entries, "options.name") : {}
 }
 
+function mapComponentEntryFiles(component) {
+  let files = uniq(flatMap(get(component, "chunks"), "files"))
+
+  return {
+    scripts: remove(files, ary(partial(endsWith, partial.placeholder, ".js"), 1)),
+    styles: remove(files, ary(partial(endsWith, partial.placeholder, ".css"), 1)),
+    other: files,
+  }
+}
+
 /**
  * Generates manifest file for split component build
  */
 module.exports = (Object, FileDescriptor) => {
-  let manifest = {}
-
   let componentEntries = extractAllEntriesFromFileDescriptor(FileDescriptor)
 
-  return {}
+  return mapValues(componentEntries, mapComponentEntryFiles)
 }
