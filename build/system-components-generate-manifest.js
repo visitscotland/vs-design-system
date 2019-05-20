@@ -41,7 +41,7 @@ function mapComponentEntryFiles(component) {
 }
 
 /**
- * Generates manifest file for split component build
+ * Generates manifest file for system component build
  */
 module.exports = (Object, FileDescriptor) => {
   let componentEntries = extractAllEntriesFromFileDescriptor(FileDescriptor)

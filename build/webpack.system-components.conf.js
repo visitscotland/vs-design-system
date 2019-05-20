@@ -15,7 +15,7 @@ const env = require("../config/prod.env")
 
 const ManifestPlugin = require("webpack-manifest-plugin")
 
-const generateManifest = require("./split-generate-manifest")
+const generateManifest = require("./system-components-generate-manifest")
 
 baseWebpackConfig.entry = require("../src/system-components")
 
