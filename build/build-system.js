@@ -12,10 +12,23 @@ const config = require("../config")
 
 const spinner = ora("Building Design System...")
 
-const splitComponents = require("./split-components")
+const isComponentsBuild = require("./system-components")
 
-let webpackConfig = require(splitComponents
-  ? "./webpack.system-split.conf"
+const buildCompleteInfo =
+  "  Tip: You can now publish the design system as a private NPM module.\n" +
+  "  Users can import the provided UMD module using:\n\n" +
+  "  import DesignSystem from 'vue-design-system'\n" +
+  "  import 'vue-design-system/dist/system/system.css'\n\n" +
+  "  Vue.use(DesignSystem)\n"
+
+const buildCompleteInfoComponents =
+  "  Tip: You can now use the design system components in other projects by importing the dist/system-components folder.\n\n" +
+  "  The system-components/manifest.json file lists which assets need to be referenced for each component.\n" +
+  "  Once all relevent assets are referenced, add the component to the Vue app by registering it, e.g:\n\n" +
+  "  Vue.component('vs-col', Col.default)\n"
+
+const webpackConfig = require(isComponentsBuild
+  ? "./webpack.system-components.conf"
   : "./webpack.system.conf")
 
 spinner.start()
@@ -41,14 +54,6 @@ rm(path.join(config.system.assetsRoot, config.system.assetsSubDirectory), err =>
     }
 
     console.log(chalk.cyan("  Design System build complete.\n"))
-    console.log(
-      chalk.yellow(
-        "  Tip: You can now publish the design system as a private NPM module.\n" +
-          "  Users can import the provided UMD module using:\n\n" +
-          "  import DesignSystem from 'vue-design-system'\n" +
-          "  import 'vue-design-system/dist/system/system.css'\n\n" +
-          "  Vue.use(DesignSystem)\n"
-      )
-    )
+    console.log(chalk.yellow(isComponentsBuild ? buildCompleteInfoComponents : buildCompleteInfo))
   })
 })
