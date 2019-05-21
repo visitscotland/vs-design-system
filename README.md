@@ -110,7 +110,7 @@ NOTE: It is vs-dotcom-ds because that is this project's name.
 
 This will create a symlink between the target project folder and the local design-system folder. The target project's vs-dotcom-ds dependency will use the local design-system folder directly.
 
-**It is advised to reference the built artefacts in the `dist/system` or `dist/system-components` folders, in which case the design system assets will need to be rebuilt (using `npm run build:system-components` or `npm run build:system` for changes to source files to be propogated into the target project**.
+**It is advised to reference the built artefacts in the `dist/system` or `dist/system-components` folders, in which case the design system assets will need to be rebuilt (using `npm run build:system:components` or `npm run build:system` for changes to source files to be propogated into the target project**.
 
 ## Ideas for improvement
 
