@@ -48,6 +48,7 @@ const webpackConfig = merge(baseWebpackConfig, {
       minSize: 0,
       maxInitialRequests: Infinity,
     },
+    concatenateModules: false,
   },
   plugins: [
     // http://vuejs.github.io/vue-loader/en/workflow/production.html
@@ -65,8 +66,6 @@ const webpackConfig = merge(baseWebpackConfig, {
     }),
     // keep module.id stable when vendor modules does not change
     new webpack.HashedModuleIdsPlugin(),
-    // enable scope hoisting
-    new webpack.optimize.ModuleConcatenationPlugin(),
     // Copy and merge Sass tokens and system utilities as well
     new MergeWebpackPlugin({
       files: {
