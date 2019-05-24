@@ -35,7 +35,10 @@ const webpackConfig = merge(baseWebpackConfig, {
   devtool: config.build.productionSourceMap ? config.system.devtool : false,
   output: {
     path: config.system.assetsRoot,
-    filename: utils.assetsSystemPath("components/[name]/component.js"),
+    filename: utils.assetsSystemPath("components/[name].js"),
+    // This will give the chunks hash names rather than meaningful names
+    // Use this in real production
+    // filename: utils.assetsSystemPath("components/[chunkhash].js"),
     library: "[name]",
     libraryTarget: config.system.libraryTarget,
   },
@@ -57,7 +60,10 @@ const webpackConfig = merge(baseWebpackConfig, {
     }),
     // extract css into its own file
     new MiniCssExtractPlugin({
-      filename: utils.assetsSystemPath("components/[name]/component.css"),
+      filename: utils.assetsSystemPath("components/[name].css"),
+      // This will give the chunks hash names rather than meaningful names
+      // Use this in real production
+      //filename: utils.assetsSystemPath("components/[chunkhash].css"),
     }),
     // Compress extracted CSS. We are using this plugin so that possible
     // duplicated CSS from different components can be deduped.
