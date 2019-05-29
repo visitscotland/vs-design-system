@@ -173,6 +173,7 @@ module.exports = {
   },
   styleguideComponents: {
     LogoRenderer: path.join(__dirname, "../docs/components/Logo"),
+    ExamplesRenderer: path.join(__dirname, "../docs/components/Examples"),
   },
   /**
    * Configure docs server to redirect asset queries
