@@ -1,24 +1,24 @@
 <template>
-  <div class="template-example">
+  <div>
     <vs-hero
       image-src="https://cimg.visitscotland.com/cms-images/holidays/new/camping-beach-dunes-dog?size=md"
       image-align-v="40%"
       type="section"
-      display-text="Example template"
+      display-text="Responsive template"
       display-text-sub="2 columns"
       display-align-v="top"
     />
 
     <vs-container>
       <vs-row>
-        <vs-col cols="9">
-          <vs-heading display="4" level="1" sub="Holidays"
-            >Pet friendly holidays in Scotland</vs-heading
-          >
+        <vs-col lg="8" xl="9">
+          <vs-heading display="4" level="1" sub="Holidays">
+            Pet friendly holidays in Scotland
+          </vs-heading>
         </vs-col>
       </vs-row>
       <vs-row>
-        <vs-article cols="9">
+        <vs-article md="7" lg="8" xl="9">
           <vs-content-section lead>
             <p>
               Have you ever been on holiday and not enjoyed it because your furry - and, let's face
@@ -53,7 +53,7 @@
           </vs-content-section>
         </vs-article>
 
-        <vs-sidebar cols="3">
+        <vs-sidebar md="5" lg="4" xl="3">
           <vs-content-section tag="aside" heading="11 pawesome ideas for dog friendly days out">
             <p>
               <!-- <b-link
@@ -121,12 +121,6 @@ export default {
   },
 }
 </script>
-
-<style lang="scss" scoped>
-.template-example {
-  border: 1px dashed #ccc;
-}
-</style>
 
 <docs>
   ```jsx
