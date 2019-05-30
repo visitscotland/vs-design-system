@@ -1,20 +1,23 @@
 <template>
-  <vs-col-wrapper class="article" :tag="tag" v-bind="breakpointAttrs"> <slot /> </vs-col-wrapper>
+  <component :is="theTag" :tag="isVsCol ? tag : false" v-bind="breakpointAttrs">
+    <slot />
+  </component>
 </template>
 
 <script>
-import VsColWrapper from "../elements/ColWrapper"
 import colsMixin from "../../mixins/cols.js"
+import VsCol from "../elements/Col"
 
 /**
- * The Article component is a wrapper for article content, generally wrapped in content sections
+ * The ColWrapper component is used by components to wrap a the VsCol component
+ * and includes some shared functionality for that scenario
  */
 export default {
-  name: "VsArticle",
+  name: "VsColWrapper",
   status: "prototype",
   release: "0.0.1",
   components: {
-    VsColWrapper,
+    VsCol,
   },
   mixins: [colsMixin],
   props: {
@@ -23,7 +26,24 @@ export default {
      */
     tag: {
       type: String,
-      default: "article",
+      default: "div",
+    },
+  },
+  computed: {
+    /**
+     * Returns the tag name for the component
+     *
+     * If isVsCol returns true then the tag is vs-col,
+     * otherwise it's the value of the tag prop
+     */
+    theTag() {
+      return this.isVsCol ? "vs-col" : this.tag
+    },
+    /**
+     * Returns true if one of the breakpoint props is specified
+     */
+    isVsCol() {
+      return this.cols | this.xs | this.sm | this.md | this.lg | this.xl | this.xxl
     },
   },
 }
@@ -36,12 +56,11 @@ export default {
 
   <vs-container>
     <vs-row>
-      <vs-article sm="10" md="8" lg="6" xl="4" xxl="2">
+      <vs-article cols="6">
         <vs-content-section title="First section" lead>
           <p>This is the lead section of the article. </p>
           
-          <p>This article has breakpoint-specific column widths, meaning it's width is dynamic according to the xs, sm, md, lg, xl and xxl attributes applied to it and the browser width.</p>
-
+          <p>Design traveling WordPress design blogger colorful fun. Clean traveling adventure theme wanderlust wanderlust simple darn wanderlust, adventure adventure webdesign expedition. Traveling simple traveling organized adventure traveling cute organized, colorful fun Travel website.</p>
         </vs-content-section>
         <vs-content-section title="Second section">
           <p>This is the second section of the article.</p>

@@ -1,22 +1,23 @@
 <template>
-  <component :is="theTag" class="sidebar" :tag="cols ? tag : false" :cols="cols">
-    <slot />
-  </component>
+  <vs-col-wrapper class="sidebar" :tag="tag" v-bind="breakpointAttrs"> <slot /> </vs-col-wrapper>
 </template>
 
 <script>
-import VsCol from "../elements/Col"
+import VsColWrapper from "../elements/ColWrapper"
+import colsMixin from "../../mixins/cols.js"
 
 /**
- * Sidebar component
+ * Sidebar component: a wrapper component for sidebar content, generally
+ * wrapped in content sections
  */
 export default {
   name: "VsSidebar",
   status: "prototype",
   release: "0.0.1",
   components: {
-    VsCol,
+    VsColWrapper,
   },
+  mixins: [colsMixin],
   props: {
     /**
      * The html element name used for the component
@@ -24,13 +25,6 @@ export default {
     tag: {
       type: String,
       default: "aside",
-    },
-
-    /**
-     * The number of cols the sidebar should take up
-     */
-    cols: {
-      type: String,
     },
   },
   computed: {
@@ -47,9 +41,9 @@ export default {
   ```jsx
   <vs-container>
     <vs-row>
-      <vs-sidebar cols="6">
+      <vs-sidebar sm="10" md="8" lg="6" xl="4" xxl="2">
         <vs-content-section tag="aside" heading="Heading">
-          Aside section content - sidebar component has cols attribute, therefore rendered as a vs-col
+          Aside section content - sidebar component has some cols attributes, therefore rendered as a vs-col
         </vs-content-section>
       </vs-sidebar>
     </vs-row>
