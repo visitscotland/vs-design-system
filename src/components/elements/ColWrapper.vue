@@ -5,8 +5,11 @@
 </template>
 
 <script>
+import { some, partial, get } from "lodash"
+
 import colsMixin from "../../mixins/cols.js"
 import VsCol from "../elements/Col"
+import breakpoints from "../../utils/breakpoints.bootstrap-vue.config"
 
 /**
  * The ColWrapper component is used by components to wrap a the VsCol component
@@ -43,7 +46,9 @@ export default {
      * Returns true if one of the breakpoint props is specified
      */
     isVsCol() {
-      return this.cols | this.xs | this.sm | this.md | this.lg | this.xl | this.xxl
+      return some(breakpoints, breakpoint => {
+        return get(this, breakpoint)
+      })
     },
   },
 }
@@ -53,25 +58,23 @@ export default {
 
 <docs>
   ```jsx
+  <div>
+    <vs-container>
+      <vs-row>
+        <vs-col-wrapper tag="article" sm="10" lg="8" xxl="6">
+          <p>This vs-col-wrapper component has (breakpoint-specific) col attributes so is rendered as a vs-col component (with an article tag, as specified).</p>
+        </vs-col-wrapper>
+      </vs-row>
 
-  <vs-container>
-    <vs-row>
-      <vs-article cols="6">
-        <vs-content-section title="First section" lead>
-          <p>This is the lead section of the article. </p>
-          
-          <p>Design traveling WordPress design blogger colorful fun. Clean traveling adventure theme wanderlust wanderlust simple darn wanderlust, adventure adventure webdesign expedition. Traveling simple traveling organized adventure traveling cute organized, colorful fun Travel website.</p>
-        </vs-content-section>
-        <vs-content-section title="Second section">
-          <p>This is the second section of the article.</p>
+      <vs-row>
+        <vs-col>
+          <vs-col-wrapper tag="article">
+            <p>This vs-col-wrapper component has no col attributes so is directly rendered as an article component.</p>
+          </vs-col-wrapper>
+        </vs-col>
+      </vs-row>
+    </vs-container>
 
-          <p>Theme whimsical whimsical colorful simple organized darn cute, fun adventure simple organized. Traveler wanderlust modern blogger fun, website wanderlust theme design fun. Design darn colorful whimsical traveling wanderlust whimsical traveler clean, colorful website pretty excursion simple.</p>
-
-          <p>Travel Travel wanderlust adventure colorful traveling modern Travel expedition. Theme Travel expedition expedition cute traveler expedition. Excursion traveling traveling travelblogger darn clean fun. Adventure website pretty WordPress design, design whimsical webdesign expedition whimsical. Design traveling darn website simple website pretty traveler.</p>
-        </vs-content-section>
-      </vs-article>
-    </vs-row>
-  </vs-container>
-
+  </div>
   ```
 </docs>
