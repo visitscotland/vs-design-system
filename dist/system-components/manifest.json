@@ -1,11 +1,11 @@
 {
   "Button": {
     "scripts": [
-      "system-components/components/vendors~Article~Button~Col~Container~ContentSection~Example~Heading~Hero~Icon~Img~Row~Sidebar~Svg.js",
-      "system-components/components/vendors~Article~Button~Col~Container~Example~Img~Row~Sidebar.js",
-      "system-components/components/vendors~Article~Button~Col~Example~Img~Row~Sidebar.js",
-      "system-components/components/vendors~Article~Button~Col~Example~Img~Sidebar.js",
-      "system-components/components/vendors~Button~Container~Example~Hero~Img~Row.js",
+      "system-components/components/vendors~Article~Button~Col~ColWrapper~Container~ContentSection~Example~Heading~Hero~Icon~Img~Row~Sid~82067c22.js",
+      "system-components/components/vendors~Article~Button~Col~ColWrapper~Container~Example~Hero~Img~Row~Sidebar.js",
+      "system-components/components/vendors~Article~Button~Col~ColWrapper~Container~Example~Img~Row~Sidebar.js",
+      "system-components/components/vendors~Article~Button~Col~ColWrapper~Example~Img~Row~Sidebar.js",
+      "system-components/components/vendors~Article~Button~Col~ColWrapper~Example~Img~Sidebar.js",
       "system-components/components/vendors~Button~Container~Example~Img~Row.js",
       "system-components/components/vendors~Button~Example.js",
       "system-components/components/vendors~Button.js",
@@ -18,24 +18,45 @@
   },
   "Col": {
     "scripts": [
-      "system-components/components/vendors~Article~Button~Col~Container~ContentSection~Example~Heading~Hero~Icon~Img~Row~Sidebar~Svg.js",
-      "system-components/components/vendors~Article~Button~Col~Container~Example~Img~Row~Sidebar.js",
-      "system-components/components/vendors~Article~Button~Col~Example~Img~Row~Sidebar.js",
-      "system-components/components/vendors~Article~Button~Col~Example~Img~Sidebar.js",
-      "system-components/components/vendors~Article~Col~Example~Sidebar.js",
-      "system-components/components/Article~Col~Example~Sidebar.js",
+      "system-components/components/vendors~Article~Button~Col~ColWrapper~Container~ContentSection~Example~Heading~Hero~Icon~Img~Row~Sid~82067c22.js",
+      "system-components/components/vendors~Article~Button~Col~ColWrapper~Container~Example~Hero~Img~Row~Sidebar.js",
+      "system-components/components/vendors~Article~Button~Col~ColWrapper~Container~Example~Img~Row~Sidebar.js",
+      "system-components/components/vendors~Article~Button~Col~ColWrapper~Example~Img~Row~Sidebar.js",
+      "system-components/components/vendors~Article~Button~Col~ColWrapper~Example~Img~Sidebar.js",
+      "system-components/components/vendors~Article~Col~ColWrapper~Example~Hero~Sidebar.js",
+      "system-components/components/vendors~Article~Col~ColWrapper~Example~Sidebar.js",
+      "system-components/components/Article~Col~ColWrapper~Example~Sidebar.js",
       "system-components/components/Col.js"
     ],
     "styles": [
-      "system-components/components/Article~Col~Example~Sidebar.css"
+      "system-components/components/Article~Col~ColWrapper~Example~Sidebar.css"
+    ],
+    "other": []
+  },
+  "ColWrapper": {
+    "scripts": [
+      "system-components/components/vendors~Article~Button~Col~ColWrapper~Container~ContentSection~Example~Heading~Hero~Icon~Img~Row~Sid~82067c22.js",
+      "system-components/components/vendors~Article~Button~Col~ColWrapper~Container~Example~Hero~Img~Row~Sidebar.js",
+      "system-components/components/vendors~Article~Button~Col~ColWrapper~Container~Example~Img~Row~Sidebar.js",
+      "system-components/components/vendors~Article~Button~Col~ColWrapper~Example~Img~Row~Sidebar.js",
+      "system-components/components/vendors~Article~Button~Col~ColWrapper~Example~Img~Sidebar.js",
+      "system-components/components/vendors~Article~Col~ColWrapper~Example~Hero~Sidebar.js",
+      "system-components/components/vendors~Article~Col~ColWrapper~Example~Sidebar.js",
+      "system-components/components/Article~Col~ColWrapper~Example~Sidebar.js",
+      "system-components/components/Article~ColWrapper~Example~Sidebar.js",
+      "system-components/components/ColWrapper.js"
+    ],
+    "styles": [
+      "system-components/components/Article~Col~ColWrapper~Example~Sidebar.css",
+      "system-components/components/Article~ColWrapper~Example~Sidebar.css"
     ],
     "other": []
   },
   "Container": {
     "scripts": [
-      "system-components/components/vendors~Article~Button~Col~Container~ContentSection~Example~Heading~Hero~Icon~Img~Row~Sidebar~Svg.js",
-      "system-components/components/vendors~Article~Button~Col~Container~Example~Img~Row~Sidebar.js",
-      "system-components/components/vendors~Button~Container~Example~Hero~Img~Row.js",
+      "system-components/components/vendors~Article~Button~Col~ColWrapper~Container~ContentSection~Example~Heading~Hero~Icon~Img~Row~Sid~82067c22.js",
+      "system-components/components/vendors~Article~Button~Col~ColWrapper~Container~Example~Hero~Img~Row~Sidebar.js",
+      "system-components/components/vendors~Article~Button~Col~ColWrapper~Container~Example~Img~Row~Sidebar.js",
       "system-components/components/vendors~Button~Container~Example~Img~Row.js",
       "system-components/components/vendors~Container~Example.js",
       "system-components/components/Container~Example.js",
@@ -48,7 +69,7 @@
   },
   "Heading": {
     "scripts": [
-      "system-components/components/vendors~Article~Button~Col~Container~ContentSection~Example~Heading~Hero~Icon~Img~Row~Sidebar~Svg.js",
+      "system-components/components/vendors~Article~Button~Col~ColWrapper~Container~ContentSection~Example~Heading~Hero~Icon~Img~Row~Sid~82067c22.js",
       "system-components/components/ContentSection~Example~Heading~Hero.js",
       "system-components/components/Heading.js"
     ],
@@ -59,7 +80,7 @@
   },
   "Icon": {
     "scripts": [
-      "system-components/components/vendors~Article~Button~Col~Container~ContentSection~Example~Heading~Hero~Icon~Img~Row~Sidebar~Svg.js",
+      "system-components/components/vendors~Article~Button~Col~ColWrapper~Container~ContentSection~Example~Heading~Hero~Icon~Img~Row~Sid~82067c22.js",
       "system-components/components/Icon~Svg.js",
       "system-components/components/Icon.js"
     ],
@@ -71,11 +92,11 @@
   },
   "Img": {
     "scripts": [
-      "system-components/components/vendors~Article~Button~Col~Container~ContentSection~Example~Heading~Hero~Icon~Img~Row~Sidebar~Svg.js",
-      "system-components/components/vendors~Article~Button~Col~Container~Example~Img~Row~Sidebar.js",
-      "system-components/components/vendors~Article~Button~Col~Example~Img~Row~Sidebar.js",
-      "system-components/components/vendors~Article~Button~Col~Example~Img~Sidebar.js",
-      "system-components/components/vendors~Button~Container~Example~Hero~Img~Row.js",
+      "system-components/components/vendors~Article~Button~Col~ColWrapper~Container~ContentSection~Example~Heading~Hero~Icon~Img~Row~Sid~82067c22.js",
+      "system-components/components/vendors~Article~Button~Col~ColWrapper~Container~Example~Hero~Img~Row~Sidebar.js",
+      "system-components/components/vendors~Article~Button~Col~ColWrapper~Container~Example~Img~Row~Sidebar.js",
+      "system-components/components/vendors~Article~Button~Col~ColWrapper~Example~Img~Row~Sidebar.js",
+      "system-components/components/vendors~Article~Button~Col~ColWrapper~Example~Img~Sidebar.js",
       "system-components/components/vendors~Button~Container~Example~Img~Row.js",
       "system-components/components/vendors~Example~Img.js",
       "system-components/components/Example~Img.js",
@@ -88,10 +109,10 @@
   },
   "Row": {
     "scripts": [
-      "system-components/components/vendors~Article~Button~Col~Container~ContentSection~Example~Heading~Hero~Icon~Img~Row~Sidebar~Svg.js",
-      "system-components/components/vendors~Article~Button~Col~Container~Example~Img~Row~Sidebar.js",
-      "system-components/components/vendors~Article~Button~Col~Example~Img~Row~Sidebar.js",
-      "system-components/components/vendors~Button~Container~Example~Hero~Img~Row.js",
+      "system-components/components/vendors~Article~Button~Col~ColWrapper~Container~ContentSection~Example~Heading~Hero~Icon~Img~Row~Sid~82067c22.js",
+      "system-components/components/vendors~Article~Button~Col~ColWrapper~Container~Example~Hero~Img~Row~Sidebar.js",
+      "system-components/components/vendors~Article~Button~Col~ColWrapper~Container~Example~Img~Row~Sidebar.js",
+      "system-components/components/vendors~Article~Button~Col~ColWrapper~Example~Img~Row~Sidebar.js",
       "system-components/components/vendors~Button~Container~Example~Img~Row.js",
       "system-components/components/vendors~Example~Row.js",
       "system-components/components/Example~Row.js",
@@ -104,7 +125,7 @@
   },
   "Svg": {
     "scripts": [
-      "system-components/components/vendors~Article~Button~Col~Container~ContentSection~Example~Heading~Hero~Icon~Img~Row~Sidebar~Svg.js",
+      "system-components/components/vendors~Article~Button~Col~ColWrapper~Container~ContentSection~Example~Heading~Hero~Icon~Img~Row~Sid~82067c22.js",
       "system-components/components/Icon~Svg.js",
       "system-components/components/Svg.js"
     ],
@@ -115,24 +136,28 @@
   },
   "Article": {
     "scripts": [
-      "system-components/components/vendors~Article~Button~Col~Container~ContentSection~Example~Heading~Hero~Icon~Img~Row~Sidebar~Svg.js",
-      "system-components/components/vendors~Article~Button~Col~Container~Example~Img~Row~Sidebar.js",
-      "system-components/components/vendors~Article~Button~Col~Example~Img~Row~Sidebar.js",
-      "system-components/components/vendors~Article~Button~Col~Example~Img~Sidebar.js",
-      "system-components/components/vendors~Article~Col~Example~Sidebar.js",
-      "system-components/components/Article~Col~Example~Sidebar.js",
+      "system-components/components/vendors~Article~Button~Col~ColWrapper~Container~ContentSection~Example~Heading~Hero~Icon~Img~Row~Sid~82067c22.js",
+      "system-components/components/vendors~Article~Button~Col~ColWrapper~Container~Example~Hero~Img~Row~Sidebar.js",
+      "system-components/components/vendors~Article~Button~Col~ColWrapper~Container~Example~Img~Row~Sidebar.js",
+      "system-components/components/vendors~Article~Button~Col~ColWrapper~Example~Img~Row~Sidebar.js",
+      "system-components/components/vendors~Article~Button~Col~ColWrapper~Example~Img~Sidebar.js",
+      "system-components/components/vendors~Article~Col~ColWrapper~Example~Hero~Sidebar.js",
+      "system-components/components/vendors~Article~Col~ColWrapper~Example~Sidebar.js",
+      "system-components/components/Article~Col~ColWrapper~Example~Sidebar.js",
+      "system-components/components/Article~ColWrapper~Example~Sidebar.js",
       "system-components/components/Article~Example.js",
       "system-components/components/Article.js"
     ],
     "styles": [
-      "system-components/components/Article~Col~Example~Sidebar.css",
+      "system-components/components/Article~Col~ColWrapper~Example~Sidebar.css",
+      "system-components/components/Article~ColWrapper~Example~Sidebar.css",
       "system-components/components/Article~Example.css"
     ],
     "other": []
   },
   "ContentSection": {
     "scripts": [
-      "system-components/components/vendors~Article~Button~Col~Container~ContentSection~Example~Heading~Hero~Icon~Img~Row~Sidebar~Svg.js",
+      "system-components/components/vendors~Article~Button~Col~ColWrapper~Container~ContentSection~Example~Heading~Hero~Icon~Img~Row~Sid~82067c22.js",
       "system-components/components/ContentSection~Example~Heading~Hero.js",
       "system-components/components/ContentSection~Example.js",
       "system-components/components/ContentSection.js"
@@ -145,9 +170,9 @@
   },
   "Hero": {
     "scripts": [
-      "system-components/components/vendors~Article~Button~Col~Container~ContentSection~Example~Heading~Hero~Icon~Img~Row~Sidebar~Svg.js",
-      "system-components/components/vendors~Button~Container~Example~Hero~Img~Row.js",
-      "system-components/components/vendors~Example~Hero.js",
+      "system-components/components/vendors~Article~Button~Col~ColWrapper~Container~ContentSection~Example~Heading~Hero~Icon~Img~Row~Sid~82067c22.js",
+      "system-components/components/vendors~Article~Button~Col~ColWrapper~Container~Example~Hero~Img~Row~Sidebar.js",
+      "system-components/components/vendors~Article~Col~ColWrapper~Example~Hero~Sidebar.js",
       "system-components/components/ContentSection~Example~Heading~Hero.js",
       "system-components/components/Example~Hero.js",
       "system-components/components/Hero.js"
@@ -160,57 +185,62 @@
   },
   "Sidebar": {
     "scripts": [
-      "system-components/components/vendors~Article~Button~Col~Container~ContentSection~Example~Heading~Hero~Icon~Img~Row~Sidebar~Svg.js",
-      "system-components/components/vendors~Article~Button~Col~Container~Example~Img~Row~Sidebar.js",
-      "system-components/components/vendors~Article~Button~Col~Example~Img~Row~Sidebar.js",
-      "system-components/components/vendors~Article~Button~Col~Example~Img~Sidebar.js",
-      "system-components/components/vendors~Article~Col~Example~Sidebar.js",
-      "system-components/components/Article~Col~Example~Sidebar.js",
+      "system-components/components/vendors~Article~Button~Col~ColWrapper~Container~ContentSection~Example~Heading~Hero~Icon~Img~Row~Sid~82067c22.js",
+      "system-components/components/vendors~Article~Button~Col~ColWrapper~Container~Example~Hero~Img~Row~Sidebar.js",
+      "system-components/components/vendors~Article~Button~Col~ColWrapper~Container~Example~Img~Row~Sidebar.js",
+      "system-components/components/vendors~Article~Button~Col~ColWrapper~Example~Img~Row~Sidebar.js",
+      "system-components/components/vendors~Article~Button~Col~ColWrapper~Example~Img~Sidebar.js",
+      "system-components/components/vendors~Article~Col~ColWrapper~Example~Hero~Sidebar.js",
+      "system-components/components/vendors~Article~Col~ColWrapper~Example~Sidebar.js",
+      "system-components/components/Article~Col~ColWrapper~Example~Sidebar.js",
+      "system-components/components/Article~ColWrapper~Example~Sidebar.js",
       "system-components/components/Example~Sidebar.js",
       "system-components/components/Sidebar.js"
     ],
     "styles": [
-      "system-components/components/Article~Col~Example~Sidebar.css",
+      "system-components/components/Article~Col~ColWrapper~Example~Sidebar.css",
+      "system-components/components/Article~ColWrapper~Example~Sidebar.css",
       "system-components/components/Example~Sidebar.css"
     ],
     "other": []
   },
   "Example": {
     "scripts": [
-      "system-components/components/vendors~Article~Button~Col~Container~ContentSection~Example~Heading~Hero~Icon~Img~Row~Sidebar~Svg.js",
-      "system-components/components/vendors~Article~Button~Col~Container~Example~Img~Row~Sidebar.js",
-      "system-components/components/vendors~Article~Button~Col~Example~Img~Row~Sidebar.js",
-      "system-components/components/vendors~Article~Button~Col~Example~Img~Sidebar.js",
-      "system-components/components/vendors~Button~Container~Example~Hero~Img~Row.js",
+      "system-components/components/vendors~Article~Button~Col~ColWrapper~Container~ContentSection~Example~Heading~Hero~Icon~Img~Row~Sid~82067c22.js",
+      "system-components/components/vendors~Article~Button~Col~ColWrapper~Container~Example~Hero~Img~Row~Sidebar.js",
+      "system-components/components/vendors~Article~Button~Col~ColWrapper~Container~Example~Img~Row~Sidebar.js",
+      "system-components/components/vendors~Article~Button~Col~ColWrapper~Example~Img~Row~Sidebar.js",
+      "system-components/components/vendors~Article~Button~Col~ColWrapper~Example~Img~Sidebar.js",
+      "system-components/components/vendors~Article~Col~ColWrapper~Example~Hero~Sidebar.js",
       "system-components/components/vendors~Button~Container~Example~Img~Row.js",
-      "system-components/components/vendors~Article~Col~Example~Sidebar.js",
-      "system-components/components/vendors~Example~Hero.js",
+      "system-components/components/vendors~Article~Col~ColWrapper~Example~Sidebar.js",
       "system-components/components/vendors~Button~Example.js",
       "system-components/components/vendors~Example~Img.js",
       "system-components/components/vendors~Example~Row.js",
       "system-components/components/vendors~Container~Example.js",
+      "system-components/components/Article~Col~ColWrapper~Example~Sidebar.js",
       "system-components/components/ContentSection~Example~Heading~Hero.js",
-      "system-components/components/Article~Col~Example~Sidebar.js",
+      "system-components/components/Article~ColWrapper~Example~Sidebar.js",
       "system-components/components/ContentSection~Example.js",
       "system-components/components/Example~Hero.js",
       "system-components/components/Example~Row.js",
       "system-components/components/Container~Example.js",
       "system-components/components/Example~Img.js",
-      "system-components/components/Article~Example.js",
       "system-components/components/Example~Sidebar.js",
+      "system-components/components/Article~Example.js",
       "system-components/components/Example.js"
     ],
     "styles": [
+      "system-components/components/Article~Col~ColWrapper~Example~Sidebar.css",
       "system-components/components/ContentSection~Example~Heading~Hero.css",
-      "system-components/components/Article~Col~Example~Sidebar.css",
+      "system-components/components/Article~ColWrapper~Example~Sidebar.css",
       "system-components/components/ContentSection~Example.css",
       "system-components/components/Example~Hero.css",
       "system-components/components/Example~Row.css",
       "system-components/components/Container~Example.css",
       "system-components/components/Example~Img.css",
-      "system-components/components/Article~Example.css",
       "system-components/components/Example~Sidebar.css",
-      "system-components/components/Example.css"
+      "system-components/components/Article~Example.css"
     ],
     "other": []
   }
