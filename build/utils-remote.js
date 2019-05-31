@@ -10,7 +10,7 @@ const requestPromise = require("request-promise-native")
 const Turndown = require("turndown")
 
 const getConfig = require("vue-styleguidist/scripts/config")
-const StyleguidistError = require("react-styleguidist/scripts/utils/error")
+const StyleguidistError = require("react-styleguidist/lib/scripts/utils/error")
 
 const defaultRemoteConfig = {
   tempPath: "./.tmp/",
