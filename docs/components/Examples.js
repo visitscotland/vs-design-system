@@ -2,6 +2,8 @@ import React, { Component } from "react"
 import PropTypes from "prop-types"
 import Styled from "rsg-components/Styled"
 
+import { split, last, get } from "lodash"
+
 const styles = () => ({
   // Just default jss-isolate rules
   root: {},
@@ -25,9 +27,11 @@ export class ExamplesRenderer extends Component {
   }
 
   render() {
+    let key = last(split(get(this.props, "classes.root"), "-"))
+
     let toggleButton = React.createElement(
       "button",
-      { className: "vds-example-toggle", onClick: this.toggleFullWidth, key: 0 },
+      { className: "vds-example-toggle", onClick: this.toggleFullWidth, key: key },
       [(this.state.fullWidth ? "Exit" : "Enter") + " full width view"]
     )
 
