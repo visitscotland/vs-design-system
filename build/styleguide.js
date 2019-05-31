@@ -3,7 +3,7 @@ const partial = require("lodash/partial")
 const chalk = require("chalk")
 const ora = require("ora")
 
-const StyleguidistError = require("react-styleguidist/scripts/utils/error")
+const StyleguidistError = require("react-styleguidist/lib/scripts/utils/error")
 const styleguidist = require("vue-styleguidist")
 
 const remoteUtils = require("./utils-remote.js")
