@@ -5,6 +5,8 @@ const merge = require("webpack-merge")
 const packageConfig = require("../package.json")
 const chalk = require("chalk")
 
+const addChildComponents = require("../build/add-child-components.js")
+
 const webpackBabelRuleIncludes = [
   resolve("node_modules/regexpu-core"),
   resolve("node_modules/unicode-match-property-ecmascript"),
@@ -174,6 +176,13 @@ module.exports = {
   styleguideComponents: {
     LogoRenderer: path.join(__dirname, "../docs/components/Logo"),
     ExamplesRenderer: path.join(__dirname, "../docs/components/Examples"),
+  },
+  propsParser(filePath, source) {
+    return require("vue-docgen-api").parse(filePath, {
+      resolve: baseConfig.resolve,
+      alias: baseConfig.resolve.alias,
+      addScriptHandlers: [addChildComponents.default],
+    })
   },
   /**
    * Configure docs server to redirect asset queries
