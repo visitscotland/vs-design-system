@@ -1,9 +1,13 @@
-// const babelTypes = require("@babel/types")
-const { includes, partial } = require("lodash")
+const { includes, extend, split, head, tail, join, findIndex, get } = require("lodash")
 const { visit } = require("ast-types")
-// import cacher from "./utils/cacher"
+const packageJson = require("../package.json")
 
-exports.default = function parseChildComponents(documentation, componentDefinition, astPath, opt) {
+exports.default = function parseChildComponents(
+  documentation,
+  componentDefinition,
+  astPath,
+  options
+) {
   let componentPath = componentDefinition.get("properties").filter(prop => {
     return prop.node.key.name === "components"
   })
@@ -12,42 +16,90 @@ exports.default = function parseChildComponents(documentation, componentDefiniti
     return
   }
 
-  let childComponentVariableNames = getChildComponentNames(componentPath)
+  let childComponents = getComponentsDetails(
+    astPath,
+    getChildComponentNames(componentPath[0]),
+    options
+  )
 
-  console.log(childComponentVariableNames)
-
-  let childComponents = getComponentsDetails(astPath, childComponentVariableNames)
-
-  console.log(childComponents)
+  documentation.set("childComponents", childComponents)
 }
 
 function getChildComponentNames(componentPath) {
-  return componentPath[0].get("value", "properties").map(prop => prop.value.value.name)
+  return componentPath.get("value", "properties").map(prop => prop.value.value.name)
 }
 
-function getComponentsDetails(astPath, childComponentVariableNames) {
+function getComponentsDetails(astPath, childComponentVariableNames, options) {
   const components = {}
 
-  try {
-    visit(astPath, {
-      visitImportDeclaration: partial(getComponentDetail, components, childComponentVariableNames),
-    })
-  } catch (e) {
-    console.log(e)
-    debugger
-  }
+  visit(astPath, {
+    visitImportDeclaration(importAstPath) {
+      extend(
+        components,
+        getImportComponentDetail(childComponentVariableNames, importAstPath, options)
+      )
 
-  console.log(components)
+      return false
+    },
+  })
 
   return components
 }
 
-function getComponentDetail(components, childComponentVariableNames, importAstPath) {
+function getImportComponentDetail(childComponentVariableNames, importAstPath, options) {
   let variableName = importAstPath.get("specifiers", "0", "local", "name").value
 
-  if (includes(childComponentVariableNames, variableName)) {
-    components[variableName] = importAstPath.get("source", "value").value
+  if (variableName && includes(childComponentVariableNames, variableName)) {
+    return { [variableName]: getComponentImportStatementDetails(importAstPath, options) }
   }
 
   return false
+}
+
+function getComponentImportStatementDetails(importAstPath, options) {
+  let importSource = importAstPath.get("source", "value").value
+  let importPackageDetails = getImportPackageDetails(importSource, importAstPath, options)
+
+  return extend({}, importPackageDetails, {
+    astPath: importAstPath,
+    source: importSource,
+  })
+}
+
+function getImportPackageDetails(importSource, importAstPath, options) {
+  let sourceBits = split(importSource, "/")
+  let packageName = head(sourceBits)
+
+  if (packageName === "." || packageName === "..") {
+    packageName = localPackageName()
+  }
+
+  return {
+    packageName: packageName,
+    relativeSource: packageRelativeSource(sourceBits),
+    link: getImportLink(packageName, sourceBits),
+  }
+}
+
+function getImportLink(packageName, sourceBits) {
+  if (packageName === localPackageName()) {
+    return packageRelativeSource(sourceBits)
+  }
+
+  if (packageName === "bootstrap-vue") {
+    let rootUrl = "https://bootstrap-vue.js.org/docs/components/"
+    let componentIndex = findIndex(sourceBits, bit => bit === "components")
+
+    return rootUrl + (componentIndex === -1 ? "" : "/" + get(sourceBits, componentIndex + 1))
+  }
+
+  return ""
+}
+
+function localPackageName() {
+  return packageJson.name || "local"
+}
+
+function packageRelativeSource(sourceBits) {
+  return join(head(sourceBits === "..") ? sourceBits : tail(sourceBits), "/")
 }
