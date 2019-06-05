@@ -1,4 +1,15 @@
-const { includes, extend, split, head, tail, join, findIndex, get } = require("lodash")
+const {
+  includes,
+  extend,
+  split,
+  head,
+  tail,
+  join,
+  findIndex,
+  get,
+  capitalize,
+  map,
+} = require("lodash")
 const { visit } = require("ast-types")
 const packageJson = require("../package.json")
 
@@ -61,7 +72,6 @@ function getComponentImportStatementDetails(importAstPath, options) {
   let importPackageDetails = getImportPackageDetails(importSource, importAstPath, options)
 
   return extend({}, importPackageDetails, {
-    astPath: importAstPath,
     source: importSource,
   })
 }
@@ -101,5 +111,5 @@ function localPackageName() {
 }
 
 function packageRelativeSource(sourceBits) {
-  return join(head(sourceBits === "..") ? sourceBits : tail(sourceBits), "/")
+  return join(map(head(sourceBits) === ".." ? sourceBits : tail(sourceBits), capitalize), "/")
 }
