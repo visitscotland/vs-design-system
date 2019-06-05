@@ -128,6 +128,12 @@ module.exports = {
     "**/ExampleComponent.vue",
   ],
   webpackConfig: merge(getBaseConfig(), {
+    resolve: {
+      alias: {
+        "rsg-components/ReactComponent/ReactComponentRenderer":
+          "rsg-components-default/ReactComponent/ReactComponentRenderer",
+      },
+    },
     module: {
       rules: [
         {
@@ -176,6 +182,7 @@ module.exports = {
   styleguideComponents: {
     LogoRenderer: path.join(__dirname, "../docs/components/Logo"),
     ExamplesRenderer: path.join(__dirname, "../docs/components/Examples"),
+    ReactComponent: path.join(__dirname, "../docs/components/ReactComponent"),
   },
   propsParser(filePath, source) {
     return require("vue-docgen-api").parse(filePath, {
@@ -184,6 +191,7 @@ module.exports = {
       addScriptHandlers: [addChildComponents.default],
     })
   },
+
   /**
    * Configure docs server to redirect asset queries
    */
