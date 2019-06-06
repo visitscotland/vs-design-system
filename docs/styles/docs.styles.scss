@@ -656,14 +656,20 @@ thead[class^="rsg--thead"] {
 
 /* CHILD COMPONENT LIST */
 
-.child-component-label {
-  @extend .status;
-  position: relative;
-  right: auto;
-  top: auto;
-  cursor: pointer;
-  color: $docs-color-white;
-  background: $docs-color-oxford-blue;
+.child-component-list {
+  margin: 4px 0;
+  span {
+    @extend .status;
+    position: relative;
+    right: auto;
+    top: auto;
+    cursor: pointer;
+    color: $docs-color-white;
+    background: $docs-color-oxford-blue;
+    display: inline-block;
+    margin: 4px 6px 4px 0;
+    text-transform: initial;
+  }
 }
 
 /* HIDDEN STYLEGUIDIST FUNCTIONALITY
