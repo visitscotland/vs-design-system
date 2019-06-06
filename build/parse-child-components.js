@@ -100,7 +100,9 @@ function getImportLink(packageName, sourceBits) {
     let rootUrl = "https://bootstrap-vue.js.org/docs/components/"
     let componentIndex = findIndex(sourceBits, bit => bit === "components")
 
-    return rootUrl + (componentIndex === -1 ? "" : "/" + get(sourceBits, componentIndex + 1))
+    if (componentIndex !== -1) {
+      return rootUrl + (componentIndex === -1 ? "" : "/" + get(sourceBits, componentIndex + 1))
+    }
   }
 
   return ""
