@@ -4,7 +4,7 @@ import { get, set, map, isEmpty, concat, join, dropRight, split, first, tail } f
 import VsgReactComponent from "rsg-components/VsgReactComponent/ReactComponent"
 import { getHashAsArray } from "react-styleguidist/lib/client/utils/handleHash"
 
-import packageConfig from "../../package.json"
+import packageConfig from "../../../package.json"
 
 const CHILD_COMPONENT_DESCRIPTION_PRETEXT =
   "<p>This component utilises the following child components:</p>"
@@ -38,8 +38,8 @@ function renderComponentDescription(originalDescription, childComponents) {
     originalDescription +
     "</p>" +
     CHILD_COMPONENT_DESCRIPTION_PRETEXT +
-    "<div>" +
-    map(childComponents, childComponentLink) +
+    '<div class="child-component-list">' +
+    join(map(childComponents, childComponentLink), "") +
     "</div>" +
     "</div>"
   )
@@ -83,7 +83,7 @@ function childComponentLink(componentDetails, componentName) {
 
 function childComponentLabel(componentDetails, componentName) {
   return (
-    '<span class="child-component-label">' +
+    "<span>" +
     componentName +
     (childComponentIsLocal(componentDetails) ? "" : " (external)") +
     "</span>"
