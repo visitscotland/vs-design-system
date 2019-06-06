@@ -5,7 +5,7 @@ const merge = require("webpack-merge")
 const packageConfig = require("../package.json")
 const chalk = require("chalk")
 
-const addChildComponents = require("../build/add-child-components.js")
+const parseChildComponents = require("../build/parse-child-components.js")
 
 const webpackBabelRuleIncludes = [
   resolve("node_modules/regexpu-core"),
@@ -188,7 +188,7 @@ module.exports = {
     return require("vue-docgen-api").parse(filePath, {
       resolve: baseConfig.resolve,
       alias: baseConfig.resolve.alias,
-      addScriptHandlers: [addChildComponents.default],
+      addScriptHandlers: [parseChildComponents.default],
     })
   },
 
