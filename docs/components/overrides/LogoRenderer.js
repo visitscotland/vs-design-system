@@ -1,8 +1,8 @@
 import React from "react"
 import PropTypes from "prop-types"
 import Styled from "rsg-components/Styled"
-// import logoSvg from "../../src/assets/svg/logo.svg"
-const logoUrl = "https://www.visitscotland.com/static/img/logos/scotland_alba_light.png"
+
+const LOGO_URL = "https://www.visitscotland.com/static/img/logos/scotland_alba_light.png"
 
 const styles = ({ fontFamily, color }) => ({
   title: {
@@ -23,7 +23,7 @@ export function LogoRenderer({ classes, children }) {
   // })
 
   const logoWrapped = React.createElement("img", {
-    src: logoUrl,
+    src: LOGO_URL,
     className: classes.svgWrapper,
     key: "thistle-ds-logo-img",
   })
