@@ -132,6 +132,8 @@ module.exports = {
       alias: {
         "rsg-components/ReactComponent/ReactComponentRenderer":
           "rsg-components-default/ReactComponent/ReactComponentRenderer",
+        "rsg-components/Playground/PlaygroundRenderer":
+          "rsg-components-default/Playground/PlaygroundRenderer",
       },
     },
     module: {
@@ -181,7 +183,7 @@ module.exports = {
   },
   styleguideComponents: {
     LogoRenderer: path.join(__dirname, "../docs/components/overrides/LogoRenderer"),
-    ExamplesRenderer: path.join(__dirname, "../docs/components/Examples"),
+    Playground: path.join(__dirname, "../docs/components/overrides/Playground"),
     ReactComponent: path.join(__dirname, "../docs/components/overrides/ReactComponent"),
   },
   propsParser(filePath, source) {
