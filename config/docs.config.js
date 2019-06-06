@@ -180,9 +180,9 @@ module.exports = {
     )
   },
   styleguideComponents: {
-    LogoRenderer: path.join(__dirname, "../docs/components/Logo"),
+    LogoRenderer: path.join(__dirname, "../docs/components/overrides/LogoRenderer"),
     ExamplesRenderer: path.join(__dirname, "../docs/components/Examples"),
-    ReactComponent: path.join(__dirname, "../docs/components/ReactComponent"),
+    ReactComponent: path.join(__dirname, "../docs/components/overrides/ReactComponent"),
   },
   propsParser(filePath, source) {
     return require("vue-docgen-api").parse(filePath, {
