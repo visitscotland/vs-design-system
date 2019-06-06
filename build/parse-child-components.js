@@ -11,7 +11,7 @@ const {
   map,
 } = require("lodash")
 const { visit } = require("ast-types")
-const packageJson = require("../package.json")
+const { packageName } = require("./utils.js")
 
 exports.default = function parseChildComponents(
   documentation,
@@ -34,6 +34,10 @@ exports.default = function parseChildComponents(
   )
 
   documentation.set("childComponents", childComponents)
+}
+
+function getLocalPackageName() {
+  return packageName || "local"
 }
 
 function getChildComponentNames(componentPath) {
@@ -81,7 +85,7 @@ function getImportPackageDetails(importSource, importAstPath, options) {
   let packageName = head(sourceBits)
 
   if (packageName === "." || packageName === "..") {
-    packageName = localPackageName()
+    packageName = getLocalPackageName()
   }
 
   return {
@@ -92,7 +96,7 @@ function getImportPackageDetails(importSource, importAstPath, options) {
 }
 
 function getImportLink(packageName, sourceBits) {
-  if (packageName === localPackageName()) {
+  if (packageName === getLocalPackageName()) {
     return packageRelativeSource(sourceBits)
   }
 
@@ -106,10 +110,6 @@ function getImportLink(packageName, sourceBits) {
   }
 
   return ""
-}
-
-function localPackageName() {
-  return packageJson.name || "local"
 }
 
 function packageRelativeSource(sourceBits) {
