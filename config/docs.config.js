@@ -182,9 +182,9 @@ module.exports = {
     )
   },
   styleguideComponents: {
-    LogoRenderer: path.join(__dirname, "../docs/components/overrides/LogoRenderer"),
-    Playground: path.join(__dirname, "../docs/components/overrides/Playground"),
-    ReactComponent: path.join(__dirname, "../docs/components/overrides/ReactComponent"),
+    LogoRenderer: path.join(__dirname, "../docs/components/rsg-components/LogoRenderer"),
+    Playground: path.join(__dirname, "../docs/components/rsg-components/Playground"),
+    ReactComponent: path.join(__dirname, "../docs/components/rsg-components/ReactComponent"),
   },
   propsParser(filePath, source) {
     return require("vue-docgen-api").parse(filePath, {
