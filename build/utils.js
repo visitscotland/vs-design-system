@@ -122,3 +122,5 @@ exports.createNotifierCallback = () => {
     })
   }
 }
+
+exports.packageName = packageConfig.name

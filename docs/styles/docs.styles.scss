@@ -654,6 +654,18 @@ thead[class^="rsg--thead"] {
   }
 }
 
+/* CHILD COMPONENT LIST */
+
+.child-component-label {
+  @extend .status;
+  position: relative;
+  right: auto;
+  top: auto;
+  cursor: pointer;
+  color: $docs-color-white;
+  background: $docs-color-oxford-blue;
+}
+
 /* HIDDEN STYLEGUIDIST FUNCTIONALITY
 --------------------------------------------- */
 

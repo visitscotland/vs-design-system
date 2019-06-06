@@ -1,8 +1,10 @@
 import React, { Component } from "react"
 import { get, set, map, isEmpty, concat, join, dropRight, split, first, tail } from "lodash"
-// import RsgReactComponent from 'rsg-components-default/ReactComponent/ReactComponent'
+
 import VsgReactComponent from "rsg-components/VsgReactComponent/ReactComponent"
 import { getHashAsArray } from "react-styleguidist/lib/client/utils/handleHash"
+
+import packageConfig from "../../package.json"
 
 const CHILD_COMPONENT_DESCRIPTION_PRETEXT =
   "<p>This component utilises the following child components:</p>"
@@ -30,26 +32,21 @@ function transformComponentProps(props) {
 }
 
 function renderComponentDescription(originalDescription, childComponents) {
-  // let localComponents = remove(childComponents, matchesProperty())
   return (
     "<div>" +
     "<p>" +
     originalDescription +
     "</p>" +
     CHILD_COMPONENT_DESCRIPTION_PRETEXT +
-    "<ul>" +
-    map(childComponents, renderChildComponentListItem) +
-    "</ul>" +
+    "<div>" +
+    map(childComponents, childComponentLink) +
+    "</div>" +
     "</div>"
   )
 }
 
-function renderChildComponentListItem(componentDetails, componentName) {
-  return "<li>" + childComponentLink(componentDetails, componentName) + "</li>"
-}
-
 function childComponentIsLocal(componentDetails) {
-  return get(componentDetails, "packageName") === get(componentDetails, "packageName")
+  return get(componentDetails, "packageName") === packageConfig.name
 }
 
 function localChildComponentLinkHref(rawHref, componentName) {
@@ -74,12 +71,21 @@ function childComponentLink(componentDetails, componentName) {
   let href = get(componentDetails, "link")
 
   if (!href) {
-    return componentName
+    return childComponentLabel(componentDetails, componentName)
   }
 
   if (childComponentIsLocal(componentDetails)) {
     href = localChildComponentLinkHref(href, componentName)
   }
 
-  return '<a href="' + href + '">' + componentName + "</a>"
+  return '<a href="' + href + '">' + childComponentLabel(componentDetails, componentName) + "</a>"
+}
+
+function childComponentLabel(componentDetails, componentName) {
+  return (
+    '<span class="child-component-label">' +
+    componentName +
+    (childComponentIsLocal(componentDetails) ? "" : " (external)") +
+    "</span>"
+  )
 }
