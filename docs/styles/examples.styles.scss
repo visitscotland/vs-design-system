@@ -12,7 +12,7 @@
   }
 }
 
-*[class^="rsg--root"].vds-example {
+.vds-example {
   position: relative;
 
   &.vds-example-full-screen {
@@ -26,19 +26,20 @@
     background: white;
 
     *[class^="rsg--preview"] {
-      padding: 0;
       border: none;
-      margin: 0;
       border-radius: 0;
       box-shadow: none;
+      // Uncomment these to make wrapped examples edge-to-edge
+      // padding: 0;
+      // margin: 0;
     }
   }
 
   .vds-example-toggle {
     z-index: 102;
     position: absolute;
-    top: 26px;
-    right: 10px;
+    top: 16px;
+    right: 16px;
     border: none;
     background: $docs-color-rich-black;
     color: $docs-color-cloud;
