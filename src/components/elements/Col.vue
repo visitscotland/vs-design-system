@@ -1,13 +1,18 @@
 <template>
-  <b-col :cols="cols" :tag="tag"> <slot /> </b-col>
+  <b-col :tag="tag" v-bind="breakpointAttrs"> <slot /> </b-col>
 </template>
 
 <script>
 import BCol from "bootstrap-vue/es/components/layout/col"
+import colsMixin from "../../mixins/cols.js"
+
 /**
  * Column components are used to organise, align and space sibling blocks of content within row
  * elements. They are always direct children of row elements/components. Our column component
  * utilises <a href="https://bootstrap-vue.js.org/docs/components/layout">the Bootstrap Vue b-col component</a>.
+ *
+ * NOTE: this component uses the cols mixin, which means that it has the following props for defining
+ *
  */
 
 export default {
@@ -17,6 +22,7 @@ export default {
   components: {
     BCol,
   },
+  mixins: [colsMixin],
   props: {
     /**
      * The number of columns this component should take up

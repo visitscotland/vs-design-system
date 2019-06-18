@@ -5,6 +5,8 @@ const merge = require("webpack-merge")
 const packageConfig = require("../package.json")
 const chalk = require("chalk")
 
+const parseChildComponents = require("../build/parse-child-components.js")
+
 const webpackBabelRuleIncludes = [
   resolve("node_modules/regexpu-core"),
   resolve("node_modules/unicode-match-property-ecmascript"),
@@ -126,6 +128,14 @@ module.exports = {
     "**/ExampleComponent.vue",
   ],
   webpackConfig: merge(getBaseConfig(), {
+    resolve: {
+      alias: {
+        "rsg-components/ReactComponent/ReactComponentRenderer":
+          "rsg-components-default/ReactComponent/ReactComponentRenderer",
+        "rsg-components/Playground/PlaygroundRenderer":
+          "rsg-components-default/Playground/PlaygroundRenderer",
+      },
+    },
     module: {
       rules: [
         {
@@ -172,8 +182,18 @@ module.exports = {
     )
   },
   styleguideComponents: {
-    LogoRenderer: path.join(__dirname, "../docs/components/Logo"),
+    LogoRenderer: path.join(__dirname, "../docs/components/rsg-components/LogoRenderer"),
+    Playground: path.join(__dirname, "../docs/components/rsg-components/Playground"),
+    ReactComponent: path.join(__dirname, "../docs/components/rsg-components/ReactComponent"),
   },
+  propsParser(filePath, source) {
+    return require("vue-docgen-api").parse(filePath, {
+      resolve: baseConfig.resolve,
+      alias: baseConfig.resolve.alias,
+      addScriptHandlers: [parseChildComponents.default],
+    })
+  },
+
   /**
    * Configure docs server to redirect asset queries
    */

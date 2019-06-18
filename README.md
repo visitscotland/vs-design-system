@@ -1,34 +1,43 @@
 ![VisitScotland](https://sttc.visitscotland.com/static/img/logos/scotland-alba-logo-500.png)
 
-# VisitScotland Thistle Design System
+# VisitScotland Design System
 
-This is the repository for the VisitScotland Design System, which is built on top of Vue Design System. It works in the same way as Vue Design System, with some changes:
+This is the repository for the **VisitScotland Design System**, which is a heavily modified version of [Vue Design System](https://vueds.com). It works in the same way as Vue Design System, with some changes:
 
-- Running `npm install` does a _recursive_ install, so all sub-packages are also installed.
-- The included components have been removed or modified to suit VisitScotland's needs and have all been namespaced with "Vs".
-- An Svg component has been added.
-- The `npm run stylguide` and `npm run styleguide:build` scripts make a request to the Contentful API to provide section, title and any other key of the docs config. The Contentful output is merged with docs/docs.config.js.
+- The included components have been changed to to suit VisitScotland's needs and have been moved into the `src/components` folder.
+- Build scripts have been added (`npm run docs:remote`, `npm run styleguide:remote` or `npm run styleguide:remote:build`) to build the design system documentation using section content from a remote API.
+- Some bugs in VDS have been fixed.
+- The Color component has been changed to display colours in categories.
+- The system build has been modified to include a "componentised" version of the build ()
 
-## Get Started with the documentation
+## Getting started
 
-The following commands will begin a development instance of the built design system documentation.
+Install the package:
 
-- `git clone https://llewis@bitbucket.visitscotland.com/scm/~llewis/vue-design-system.git thistle`
-- `cd thistle`
+- `git clone https://username@bitbucket.visitscotland.com/scm/vscom/design-system.git`
+- `cd design-system`
 - `npm install`
-- `npm run build`
+
+## Working with the documentation
+
+### Running a local development version of the documentation site
+
+The following commands will begin a development instance of the design system documentation site:
+
+- `npm run build` (ensures token compilation)
 - `npm run styleguide`
 
-## Building the design system documentation
+The documentation site should then be available at localhost:6060. Modifications to source files will trigger a rebuild and refresh of the browser.
+
+### Building a static version of the documentation site
 
 The following commands will build a static version of the documentation at `dist/docs` and serve it using http-server on the default port:
 
-- `npm install`
-- `npm run build`
+- `npm run build` (ensures token compilation)
 - `npm run styleguide:build`
-- `npm run serve-docs`
+- `npm run serve-docs` (starts http-server in target dist folder)
 
-## Remote docs content
+### Populating the documentation site with remote content
 
 It's possible to get the title and sections (pages) content for the documentation site from a remote API, during build. In order to do so:
 
@@ -42,36 +51,66 @@ By default, the build selects the first profile defined in the `config/remote.co
     npm run docs:remote --remote-profile contentful
 ```
 
-## Publishing the documentation to Heroku
+### Publishing the documentation to Heroku
 
 If you are new to Heroku, [this guide](https://devcenter.heroku.com/articles/getting-started-with-nodejs) is a good guide to get you started with it.
 
-The following commands will allow you to publsh the documentation site to a Heroku app.
+The following commands will publsh the documentation site to a Heroku app.
 
-- [Install Heroku locally](https://devcenter.heroku.com/articles/getting-started-with-nodejs#set-up)
-- `cd thistle`
+- [Install and configure Heroku locally](https://devcenter.heroku.com/articles/getting-started-with-nodejs#set-up)
+- `cd design-system`
 - `heroku create`
 - `git push heroku master`
 
 Pushing to the Heroku remote triggers the following npm scripts in order on the Heroku server:
 
-- build (`npm-run-all theo node:build`)
-- heroku-postbuild (`npm run build:docs:remote`)
-- start (`http-server dist/docs -p $PORT`)
+- build
+- heroku-postbuild
+- start
 
-Editing any of those npm scripts will alter what occurs on the Heroku server.
+Editing any of those npm scripts will change what occurs on the Heroku server.
 
-## Vue Design System
+## Using the design system assets in other apps
 
-[![Build status](https://travis-ci.org/viljamis/vue-design-system.svg?branch=master)](https://travis-ci.org/viljamis/vue-design-system/) ![Dependencies status](https://david-dm.org/viljamis/vue-design-system.svg) ![MIT License](https://img.shields.io/badge/license-MIT-blue.svg) [![Gitter](https://badges.gitter.im/gitterHQ/gitter.svg)](https://gitter.im/vueds/Lobby)
+The "system" and "system components" builds will compile artefacts for inclusion of the design system components and styles in other projects.
 
-[**Vue Design System**](https://vueds.com) is an open source tool for building UI Design Systems with [Vue.js](https://vuejs.org). It provides you and your team a set of organized tools, patterns & practices that work as the foundation for your application development.
+### System components build
 
-Vue Design System is built on top of [Vue.js](https://vuejs.org), [Vue Styleguidist](https://github.com/vue-styleguidist/vue-styleguidist), [Webpack](https://webpack.js.org), and [Theo](https://github.com/salesforce-ux/theo) and is aimed for designers and front-end developers who have at least basic knowledge of component based workflows + HTML, SCSS & JavaScript.
+This build creates a set of artefacts that allow for the inclusion of specific components of the design system in other projects. It is the recommended way of including assets from the design system in other projects.
 
-**Made by [@viljamis](https://twitter.com/viljamis) and other contributors. See also [the official website](https://vueds.com) of Vue Design System and [read my article](https://viljamis.com/2018/vue-design-system/) on the processes and workflow I use to get started with a new design system project.**
+- `npm run build:system:components`
 
-[![Screenshot](./docs/preview.gif)](https://vueds.com/)
+This command compiles the tokens (via theo) then compiles the design system assets into discrete chunks and generates a manifest.json file in the `dist/system-components` folder. The manifest.json file lists which of the generated assets are needed to include each component in another project.
+
+To include a component in another project:
+
+- Reference all the relevent assets for the component as listed in the manifest.json
+- Register the component using the [`Vue.component()` function](https://vuejs.org/v2/guide/components-registration.html)
+
+### System build
+
+This is the default Vue Design System build and produces an asset for inclusion of the **whole** design system in another project.
+
+- `npm run build:system`
+
+Detailed instructions for including the design system in this way [are detailed here](https://github.com/viljamis/vue-design-system/wiki/getting-started#using-design-system-as-an-npm-module).
+
+## Developing the design system
+
+The best way to develop the design system is to run a local development instance of the documentation site, as detailed above. Using the
+
+To see how the local, modified version of the design system behaves in a target local project, carry out the following to link the target project's dependency to the local version, rather than the published version, of the design system assets:
+
+- `cd design-system`
+- `yarn link` OR `npm link`
+- `cd ../target-project`
+- `yarn link vs-dotcom-ds` OR `npm link vs-dotcom-ds`
+
+NOTE: It is vs-dotcom-ds because that is this project's name.
+
+This will create a symlink between the target project folder and the local design-system folder. The target project's vs-dotcom-ds dependency will use the local design-system folder directly.
+
+**It is advised to reference the built artefacts in the `dist/system` or `dist/system-components` folders, in which case the design system assets will need to be rebuilt (using `npm run build:system:components` or `npm run build:system` for changes to source files to be propogated into the target project**.
 
 ## Ideas for improvement
 

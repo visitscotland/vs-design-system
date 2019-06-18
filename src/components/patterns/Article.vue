@@ -1,22 +1,22 @@
 <template>
-  <component :is="theTag" class="article" :tag="cols ? tag : false" :cols="cols">
-    <slot />
-  </component>
+  <vs-col-wrapper class="article" :tag="tag" v-bind="breakpointAttrs"> <slot /> </vs-col-wrapper>
 </template>
 
 <script>
-import VsCol from "../elements/Col"
+import VsColWrapper from "../elements/ColWrapper"
+import colsMixin from "../../mixins/cols.js"
 
 /**
- * Article component's contain sections of article content
+ * The Article component is a wrapper for article content, generally wrapped in content sections
  */
 export default {
   name: "VsArticle",
   status: "prototype",
   release: "0.0.1",
   components: {
-    VsCol,
+    VsColWrapper,
   },
+  mixins: [colsMixin],
   props: {
     /**
      * The html element name used for the component
@@ -24,18 +24,6 @@ export default {
     tag: {
       type: String,
       default: "article",
-    },
-
-    /**
-     * The number of cols the sidebar should take up
-     */
-    cols: {
-      type: String,
-    },
-  },
-  computed: {
-    theTag() {
-      return this.cols ? "vs-col" : this.tag
     },
   },
 }
@@ -48,11 +36,12 @@ export default {
 
   <vs-container>
     <vs-row>
-      <vs-article cols="6">
+      <vs-article sm="10" md="8" lg="6" xl="4" xxl="2">
         <vs-content-section title="First section" lead>
           <p>This is the lead section of the article. </p>
           
-          <p>Design traveling WordPress design blogger colorful fun. Clean traveling adventure theme wanderlust wanderlust simple darn wanderlust, adventure adventure webdesign expedition. Traveling simple traveling organized adventure traveling cute organized, colorful fun Travel website.</p>
+          <p>This article has breakpoint-specific column widths, meaning it's width is dynamic according to the xs, sm, md, lg, xl and xxl attributes applied to it and the browser width.</p>
+
         </vs-content-section>
         <vs-content-section title="Second section">
           <p>This is the second section of the article.</p>
