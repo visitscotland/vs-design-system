@@ -1,4 +1,4 @@
 {
-  "integrationFolder": "test/unit/specs/components",
+  "integrationFolder": "src/components",
   "testFiles": "**/*.spec.js"
 }
