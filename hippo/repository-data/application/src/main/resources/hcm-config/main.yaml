@@ -1,0 +1,5 @@
+definitions:
+  namespace:
+    cms:
+      uri: http://www.cms.com/cms/nt/1.0
+      cnd: namespaces/cms.cnd
