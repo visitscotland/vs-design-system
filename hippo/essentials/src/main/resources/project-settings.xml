@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<project>
+  <projectNamespace>cms</projectNamespace>
+  <confirmParams>false</confirmParams>
+  <selectedProjectPackage>com.visitscotland.designsystem</selectedProjectPackage>
+  <selectedBeansPackage>com.visitscotland.designsystem.beans</selectedBeansPackage>
+  <selectedComponentsPackage>com.visitscotland.designsystem.components</selectedComponentsPackage>
+  <selectedRestPackage>com.visitscotland.designsystem.rest</selectedRestPackage>
+  <hstRoot>/hst:cms</hstRoot>
+  <webfileBundleName>site</webfileBundleName>
+  <setupDone>false</setupDone>
+  <useSamples>true</useSamples>
+  <extraTemplates>true</extraTemplates>
+</project>
