@@ -1,9 +1,10 @@
 const mountVue = require("cypress-vue-unit-test")
 const VsButton = require("./Button.vue")
+const { getToken } = require("@cypress/helpers/index.js").default
 
 const template = `
     <div id="app">
-        <vs-button variant="success">hello</vs-button>
+        <vs-button variant="primary">hello</vs-button>
     </div>
   `
 
@@ -22,8 +23,10 @@ const extensions = {
 
 describe("My Vue", () => {
   beforeEach(mountVue(component, { extensions }))
-
   it("renders", () => {
+    const primaryColour = getToken("color_theme_primary")
+
     cy.contains("button", "hello")
+    cy.get("button").should("have.css", "background-color", primaryColour)
   })
 })
