@@ -1,32 +1,24 @@
-const mountVue = require("cypress-vue-unit-test")
-const VsButton = require("./Button.vue")
-const { getToken } = require("@cypress/helpers/index.js").default
-
-const template = `
-    <div id="app">
-        <vs-button variant="primary">hello</vs-button>
-    </div>
-  `
-
-const data = {
-  variant: "success",
-}
-
-const component = {
-  template,
-  data,
-}
-
-const extensions = {
-  components: { "vs-button": VsButton.default },
-}
+const VsButton = require("./Button.vue").default
+const { getToken, vueComponents } = require("@cypress/helpers/index.js").default
+const { partial } = require("lodash")
 
 describe("My Vue", () => {
-  beforeEach(mountVue(component, { extensions }))
+  const data = { type: "button", href: null, variant: "primary" }
+
+  vueComponents.init("vs-button", VsButton, data, "hello")
+
   it("renders", () => {
     const primaryColour = getToken("color_theme_primary")
 
     cy.contains("button", "hello")
     cy.get("button").should("have.css", "background-color", primaryColour)
+  })
+
+  it("changes colour", () => {
+    const secondaryColour = getToken("color_theme_secondary")
+
+    Cypress.vue.variant = "secondary"
+
+    cy.get("button").should("have.css", "background-color", secondaryColour)
   })
 })
