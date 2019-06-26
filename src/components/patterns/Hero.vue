@@ -26,6 +26,9 @@
 
 <script>
 import VsHeading from "../elements/Heading"
+import VsContainer from "../elements/Container"
+import VsRow from "../elements/Row"
+import VsCol from "../elements/Col"
 import { get } from "lodash"
 
 /**
@@ -54,7 +57,7 @@ export default {
   name: "VsHero",
   status: "prototype",
   release: "0.0.1",
-  components: { VsHeading },
+  components: { VsHeading, VsContainer, VsRow, VsCol },
   props: {
     /**
      * The html element name used for the component
@@ -162,11 +165,12 @@ export default {
   height: 100%;
 }
 
-/deep/ .heading,
-.heading .sub-heading {
+/* TODO: fix deep selectors not working with dart sass */
+.hero ::v-deep .heading,
+.hero ::v-deep .heading .sub-heading {
   color: $color-single-malt-gold;
 }
-/deep/ .heading .sub-heading {
+.hero ::v-deep .heading .sub-heading {
   color: $color-white;
 }
 </style>

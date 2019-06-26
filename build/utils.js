@@ -76,6 +76,7 @@ exports.cssLoaders = function(options) {
 
   const sassOptions = {
     style: "compressed",
+    implementation: require("sass"),
   }
 
   // https://vue-loader.vuejs.org/guide/extract-css.html

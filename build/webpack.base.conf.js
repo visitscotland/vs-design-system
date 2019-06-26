@@ -30,6 +30,7 @@ module.exports = {
       "@": resolve("src"),
       "@components": resolve("src/components"),
       "@docs": resolve("docs"),
+      "@cypress": resolve("cypress"),
     },
   },
   module: {
