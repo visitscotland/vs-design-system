@@ -9,7 +9,7 @@
 const contexts = [
   require.context("@components/elements/", true, /\.vue$/),
   require.context("@components/patterns/", true, /\.vue$/),
-  require.context("@components/modules/", true, /\.vue$/),
+  // require.context("@components/modules/", true, /\.vue$/),
   require.context("@components/templates/", true, /\.vue$/),
 ]
 
