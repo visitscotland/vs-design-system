@@ -1,5 +1,5 @@
 <template>
-  <b-button :variant="variant || 'primary'" :type="type" :href="href"> <slot /> </b-button>
+  <b-button :variant="variant || 'primary'" :href="href"> <slot /> </b-button>
 </template>
 
 <script>
@@ -18,17 +18,6 @@ export default {
     BButton,
   },
   props: {
-    /**
-     * The type applied to the button.
-     * `button, submit, reset`
-     */
-    type: {
-      type: String,
-      default: "button",
-      validator: value => {
-        return value.match(/(button|submit|reset)/)
-      },
-    },
     /**
      * Use this option to render the button as an anchor element with the given href.
      */
