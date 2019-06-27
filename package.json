@@ -21,6 +21,7 @@
     "build:system:components": "npm-run-all theo node:build:system:components",
     "build:docs": "npm-run-all theo styleguide:build",
     "build:docs:remote": "npm-run-all theo styleguide:remote:build",
+    "cypress": "npm-run-all theo cypress:open",
     "cypress:open": "cypress open",
     "docs:remote": "npm-run-all theo styleguide:remote",
     "heroku-docs": "http-server dist/docs -p $PORT",
