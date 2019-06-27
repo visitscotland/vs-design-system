@@ -1,9 +1,9 @@
 const mountVue = require("cypress-vue-unit-test")
 
-const { map, zipObject, join } = require("lodash")
+const { map, join, partial, each, clone } = require("lodash")
 
 export default {
-  init: init,
+  init,
 }
 
 function init(tag, definition, data, childContent) {
@@ -20,6 +20,8 @@ function init(tag, definition, data, childContent) {
         </div>
     `
 
+  const initialData = clone(data)
+
   const app = {
     template,
     data,
@@ -29,9 +31,22 @@ function init(tag, definition, data, childContent) {
     components: { [tag]: definition },
   }
 
-  beforeEach(mountVue(app, { extensions }))
+  const mount = mountVue(app, { extensions })
+
+  beforeEach(partial(resetState, initialData))
+
+  beforeEach(mount)
 }
 
 function constructTemplateProp(value, propName) {
   return ":" + propName + '="' + propName + '"'
+}
+
+function resetState(data) {
+  if (!Cypress.vue) {
+    return
+  }
+  each(data, (value, key) => {
+    Cypress.vue[key] = value
+  })
 }
