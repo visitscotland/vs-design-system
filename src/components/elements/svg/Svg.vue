@@ -1,5 +1,5 @@
 <template>
-  <component :is="container" v-html="svg" :class="containerClass" />
+  <svg :fill="fill" :height="height" :width="width">{contents}</svg>
 </template>
 
 <script>
@@ -27,19 +27,6 @@ export default {
       default: "black",
     },
     /**
-     * The html element used to contain the svg.
-     */
-    container: {
-      type: String,
-      default: "div",
-    },
-    /**
-     * The class string to apply to the container
-     */
-    containerClass: {
-      type: String,
-    },
-    /**
      * The height attributeof the svg
      */
     height: {
@@ -54,17 +41,18 @@ export default {
   },
   computed: {
     svg() {
-      let template = '<svg style="fill: ' + this.fill + '" '
+      // let template = '<svg style="fill: ' + this.fill + '" '
 
-      if (this.height !== null && this.height !== undefined) {
-        template += ' height="' + this.height + '" '
-      }
+      // if (this.height !== null && this.height !== undefined) {
+      //   template += ' height="' + this.height + '" '
+      // }
 
-      if (this.width !== null && this.width !== undefined) {
-        template += ' width="' + this.width + '" '
-      }
+      // if (this.width !== null && this.width !== undefined) {
+      //   template += ' width="' + this.width + '" '
+      // }
 
-      return req("./" + this.path + ".svg").replace(/^<svg /, template)
+      // return req("./" + this.path + ".svg").replace(/^<svg /, template)
+      return req("./" + this.path + ".svg")
     },
   },
 }
