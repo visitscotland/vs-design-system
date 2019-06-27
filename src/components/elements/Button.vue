@@ -62,14 +62,6 @@ export default {
     </div>
     <div class="row mb-4">
       <div class="col">
-        <h4>Button type</h4>
-        <vs-button type="button" class="mr-2">Button</vs-button>
-        <vs-button type="reset" class="mr-2">Reset</vs-button>
-        <vs-button type="submit" class="mr-2">Submit</vs-button>
-      </div>
-    </div>
-    <div class="row mb-4">
-      <div class="col">
         <h4>Link</h4>
         <vs-button href="https://www.visitscotland.com">Link</vs-button>
       </div>
