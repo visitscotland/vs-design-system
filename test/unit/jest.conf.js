@@ -8,6 +8,10 @@ module.exports = {
   moduleFileExtensions: ["js", "json", "vue"],
   moduleNameMapper: {
     "^@/(.*)$": "<rootDir>/src/$1",
+    "^@test/(.*)$": "<rootDir>/test/$1",
+    "\\.(jpg|jpeg|png|gif|eot|otf|webp|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$":
+      "<rootDir>/test/unit/mocks/fileMock.js",
+    "\\.svg$": "<rootDir>/test/unit/mocks/svgMock.js",
   },
   transform: {
     "^.+\\.js$": "<rootDir>/node_modules/babel-jest",
@@ -22,7 +26,6 @@ module.exports = {
     "!<rootDir>/cypress/**/*.{js,vue}",
     "!<rootDir>/**/*.spec.js",
     "!<rootDir>/src/main.js",
-    "!<rootDir>/src/router/index.js",
     "!<rootDir>/node_modules/**",
     "!<rootDir>/src/system.js",
     "!<rootDir>/src/system-components.js",
