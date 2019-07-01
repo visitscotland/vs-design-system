@@ -4,7 +4,7 @@
 
 <script>
 import BCol from "bootstrap-vue/es/components/layout/col"
-import colsMixin from "../../mixins/cols.js"
+import colsMixin from "@/mixins/cols.js"
 
 /**
  * Column components are used to organise, align and space sibling blocks of content within row

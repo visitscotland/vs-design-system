@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import VsSvg from "./Svg"
+import VsSvg from "../svg"
 
 const iconPath = "icons/"
 

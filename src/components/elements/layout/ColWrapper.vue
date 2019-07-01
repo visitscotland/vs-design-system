@@ -7,9 +7,9 @@
 <script>
 import { some, partial, get } from "lodash"
 
-import colsMixin from "../../mixins/cols.js"
-import VsCol from "../elements/Col"
-import breakpoints from "../../utils/breakpoints.bootstrap-vue.config"
+import colsMixin from "@/mixins/cols.js"
+import VsCol from "./Col"
+import breakpoints from "@/utils/breakpoints.bootstrap-vue.config"
 
 /**
  * The ColWrapper component is used by components to wrap a the VsCol component
