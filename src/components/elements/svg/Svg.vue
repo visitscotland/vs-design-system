@@ -1,9 +1,10 @@
 <template>
-  <component :is="container" v-html="svg" :class="containerClass" />
+  <svg :is="container" v-bind="attributes">{{ children }}</svg>
 </template>
 
 <script>
-const req = require.context("@/assets/", true, /^\.\/.*\.svg$/)
+import svgContext from "@/utils/svg-context"
+import { first, split, map, partial, zipObject, fromPairs, replace, mapValues } from "lodash"
 
 /**
  * SVGs are used to display vector images
@@ -54,18 +55,18 @@ export default {
   },
   computed: {
     svg() {
-      let template = '<svg style="fill: ' + this.fill + '" '
-
-      if (this.height !== null && this.height !== undefined) {
-        template += ' height="' + this.height + '" '
-      }
-
-      if (this.width !== null && this.width !== undefined) {
-        template += ' width="' + this.width + '" '
-      }
-
-      return req("./" + this.path + ".svg").replace(/^<svg /, template)
+      return svgContext("./" + this.path + ".svg")
     },
+    nativeAttrs() {
+      let tag = first(this.svg.match(/<svg[^>]+.*?>/))
+
+      let attributes = tag.match(/(\S+)=["']?((?:.(?!["']?\s+(?:\S+)=|[>"']))+.)["']?/g)
+      let attributesMap = fromPairs(map(attributes, partial(split, partial.placeholder, "=", 2)))
+
+      return mapValues(attributesMap, partial(replace, partial.placeholder, /"/g, ""))
+    },
+    attributes() {},
+    children() {},
   },
 }
 </script>
