@@ -1,10 +1,25 @@
 <template>
-  <svg :is="container" v-bind="attributes">{{ children }}</svg>
+  <svg v-bind="attributes">{{ children }}</svg>
 </template>
 
 <script>
 import svgContext from "@/utils/svg-context"
-import { first, split, map, partial, zipObject, fromPairs, replace, mapValues } from "lodash"
+import {
+  first,
+  split,
+  map,
+  partial,
+  zipObject,
+  fromPairs,
+  replace,
+  mapValues,
+  extend,
+  has,
+  ary,
+  join,
+  toPairs,
+  nth,
+} from "lodash"
 
 /**
  * SVGs are used to display vector images
@@ -24,20 +39,6 @@ export default {
      * The fill color of the SVG.
      */
     fill: {
-      type: String,
-      default: "black",
-    },
-    /**
-     * The html element used to contain the svg.
-     */
-    container: {
-      type: String,
-      default: "div",
-    },
-    /**
-     * The class string to apply to the container
-     */
-    containerClass: {
       type: String,
     },
     /**
@@ -65,8 +66,46 @@ export default {
 
       return mapValues(attributesMap, partial(replace, partial.placeholder, /"/g, ""))
     },
-    attributes() {},
-    children() {},
+    attributes() {
+      let extraAttributes = {}
+      let styleMap = {}
+
+      if (this.fill) {
+        if (has(this.nativeAttrs, "style")) {
+          styleMap = this.nativeStyleAttrMap
+
+          styleMap.fill = this.fill
+        } else {
+          styleMap = { fill: this.fill }
+        }
+
+        extraAttributes.style = join(
+          map(toPairs(styleMap), partial(join, partial.placeholder, ":")),
+          ";"
+        )
+      }
+
+      if (this.height) {
+        extraAttributes.height = this.height
+      }
+
+      if (this.width) {
+        extraAttributes.width = this.width
+      }
+
+      return extend({}, this.nativeAttrs, extraAttributes)
+    },
+    nativeStyleAttrMap() {
+      let styleArray = map(
+        split(this.nativeAttrs.style, ";"),
+        ary(partial(split, partial.placeholder, ":"), 1)
+      )
+
+      return fromPairs(styleArray)
+    },
+    children() {
+      return nth(this.svg.match(/(<svg[^>]+.*?>)([\s\S]*)(<\/svg>)/), 2)
+    },
   },
 }
 </script>
@@ -94,15 +133,6 @@ export default {
     <pre>fill="red"</pre>
     <vs-svg path="svg/logo" height="110" fill="red" />
 
-    <br /><hr /><br />
-
-    <pre>container="vs-heading"</pre>
-    <vs-svg path="svg/logo" height="110" container="vs-heading" />
-
-    <br /><hr /><br />
-
-    <pre>container-class="shadow mb-5 bg-warning rounded"</pre>
-    <vs-svg path="svg/logo" height="110" container-class="shadow p-5 mb-5 bg-warning rounded" />
   </div>
   ```
 </docs>
