@@ -2,19 +2,19 @@ import Vue from "vue"
 import { extend } from "lodash"
 import { shallowMount } from "@vue/test-utils"
 import VsSvg from "./Svg"
-import mockSvg from "@test/unit/mocks/svgMock.js"
+import mockSvg from "@/utils/__mocks__/svg-mock.js"
+import svgContext from "@/utils/svg-context"
 
+let svgPath
 let wrapper
 let mockNativeAttrs
 let extraAttributes
 
-jest.mock("@/utils/svg-context", () => {
-  return () => {
-    return mockSvg
-  }
-})
+jest.mock("@/utils/svg-context")
 
 beforeEach(() => {
+  jest.clearAllMocks()
+
   mockNativeAttrs = {
     xmlns: "http://www.w3.org/2000/svg",
     id: "svg2",
@@ -27,9 +27,11 @@ beforeEach(() => {
     fill: "rgb(227, 43, 199)",
   }
 
+  svgPath = "whatever"
+
   wrapper = shallowMount(VsSvg, {
-    props: {
-      path: "whatever",
+    propsData: {
+      path: svgPath,
     },
   })
 })
@@ -38,12 +40,16 @@ describe("VsSvg", () => {
   describe("computed: svg", () => {
     it("should return the contents of the svg file", () => {
       expect(wrapper.vm.svg).toBe(mockSvg)
+      expect(svgContext.mock.calls.length).toBe(1)
+      expect(svgContext.mock.calls[0][0]).toBe("./" + svgPath + ".svg")
     })
   })
 
   describe("computed: native attributes", () => {
     it("should return the atributes of the svg in the file", () => {
       expect(wrapper.vm.nativeAttrs).toEqual(mockNativeAttrs)
+      expect(svgContext.mock.calls.length).toBe(1)
+      expect(svgContext.mock.calls[0][0]).toBe("./" + svgPath + ".svg")
     })
   })
 
