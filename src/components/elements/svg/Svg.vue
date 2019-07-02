@@ -1,5 +1,5 @@
 <template>
-  <svg v-bind="attributes">{{ children }}</svg>
+  <svg v-bind="attributes" v-html="children"></svg>
 </template>
 
 <script>
