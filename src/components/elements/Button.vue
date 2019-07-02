@@ -83,6 +83,7 @@ export default {
       <div class="col">
         <h4>Link</h4>
         <vs-button href="https://www.visitscotland.com">Link</vs-button>
+        <vs-button href="https://www.google.com">Another link</vs-button>
       </div>
     </div>
   </div>
