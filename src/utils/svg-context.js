@@ -1,1 +1,1 @@
-export default require.context("@/assets/", true, /^\.\/.*\.svg$/)
+export default require.context("@/assets/svg", true, /^\.\/.*\.svg$/)

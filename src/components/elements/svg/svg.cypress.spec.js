@@ -2,7 +2,7 @@ const VsSvg = require("./Svg.vue").default
 const { vueComponents } = require("@cypress/helpers/index.js").default
 
 describe("Svg component", () => {
-  const data = { path: "svg/logo", height: null, width: null, fill: null }
+  const data = { path: "logo", height: null, width: null, fill: null }
 
   vueComponents.init("vs-svg", VsSvg, data)
 
