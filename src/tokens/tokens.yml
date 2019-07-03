@@ -6,6 +6,7 @@ imports:
   - ./color.yml
   - ./font-size.yml
   - ./font.yml
+  - ./icons.yml
   - ./opacity.yml
   - ./size.yml
   - ./timing.yml
