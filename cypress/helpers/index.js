@@ -1,8 +1,12 @@
-const vueComponents = require("./vue-components").default
-const { getToken, getThemeColours } = require("./tokens").default
+// const vueHelpers = require("./vue").default
+// const { getToken, getThemeColours }
+
+export const vueHelper = require("./vue").default
+
+export const { getToken, getThemeColours } = require("./tokens").default
 
 export default {
   getToken,
   getThemeColours,
-  vueComponents,
+  vueHelper,
 }
