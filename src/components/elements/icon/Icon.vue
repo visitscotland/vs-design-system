@@ -78,8 +78,6 @@ export default {
 // We also want to be able to style .icon inside buttons etc.
 .icon {
   // @include reset;
-  height: 32px;
-  width: 32px;
 }
 </style>
 
