@@ -1,11 +1,10 @@
 <template>
   <vs-svg
     :path="path"
-    :aria-label="ariaLabel"
-    :fill="fill"
-    :class="['icon', 'icon-' + size]"
+    :class="['icon', 'icon-' + size, 'icon-' + name, 'icon-' + variant]"
     :height="dimension"
     :width="dimension"
+    :fill="fill"
   />
 </template>
 
@@ -35,20 +34,17 @@ export default {
      */
     name: {
       required: true,
-      default: "settings",
+      default: "search",
     },
     /**
      * The fill color of the SVG icon.
      */
-    fill: {
+    variant: {
       type: String,
-    },
-    /**
-     * Descriptive text to be read to screenreaders.
-     */
-    ariaLabel: {
-      type: String,
-      default: "icon",
+      default: "default",
+      validator: value => {
+        return value.match(/(default|primary|reverse)/)
+      },
     },
     /**
      * The size of the icon. Defaults to medium.
@@ -69,6 +65,14 @@ export default {
     dimension() {
       return get(designTokens, "props.icon_size_" + this.size + ".value", "32px")
     },
+    fill() {
+      if (!this.variant || this.variant === "default") {
+        return
+      }
+
+      if (this.variant === "primary") {
+      }
+    },
   },
 }
 </script>
@@ -78,6 +82,9 @@ export default {
 // We also want to be able to style .icon inside buttons etc.
 .icon {
   // @include reset;
+  &.icon-primary {
+    fill: $color-theme-primary;
+  }
 }
 </style>
 
