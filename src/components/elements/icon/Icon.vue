@@ -1,10 +1,13 @@
 <template>
   <vs-svg
     :path="path"
-    :class="['icon', 'icon-' + size, 'icon-' + name, 'icon-' + variant]"
-    :height="dimension"
-    :width="dimension"
-    :fill="fill"
+    :class="{
+      icon: true,
+      ['icon-' + size]: true,
+      ['icon-' + name]: true,
+      ['icon-' + variant]: variant,
+      'icon-reverse': reverse,
+    }"
   />
 </template>
 
@@ -41,9 +44,9 @@ export default {
      */
     variant: {
       type: String,
-      default: "default",
+      default: null,
       validator: value => {
-        return value.match(/(default|primary|reverse)/)
+        return value.match(/(primary|secondary|success|danger|warning|info|light|dark)/)
       },
     },
     /**
@@ -57,33 +60,76 @@ export default {
         return value.match(/(xs|sm|md|lg|xl)/)
       },
     },
+    /**
+     * Whether to reverse the icon's background and
+     * fill colours
+     */
+    reverse: {
+      type: Boolean,
+    },
   },
   computed: {
     path() {
       return iconPath + this.name
     },
     dimension() {
-      return get(designTokens, "props.icon_size_" + this.size + ".value", "32px")
-    },
-    fill() {
-      if (!this.variant || this.variant === "default") {
-        return
-      }
-
-      if (this.variant === "primary") {
-      }
+      return get(designTokens, "props.icon_size_" + this.size + ".value", "40px")
     },
   },
 }
 </script>
 
 <style lang="scss" scoped>
-// We don’t want to use scoped since these styles need to cascade down to SVGs.
-// We also want to be able to style .icon inside buttons etc.
+// @include reset;
+
+$sizes: (
+  xs: $icon-size-xs,
+  sm: $icon-size-sm,
+  md: $icon-size-md,
+  lg: $icon-size-lg,
+  xl: $icon-size-xl,
+);
+
+$variants: (
+  primary: $color-theme-primary,
+  secondary: $color-theme-secondary,
+  success: $color-theme-success,
+  danger: $color-theme-danger,
+  warning: $color-theme-warning,
+  info: $color-theme-info,
+  light: $color-theme-light,
+  dark: $color-theme-dark,
+);
+
 .icon {
-  // @include reset;
-  &.icon-primary {
-    fill: $color-theme-primary;
+  fill: $color-black;
+  overflow: visible;
+
+  &.icon-reverse {
+    background-color: $color-black;
+    fill: $color-white;
+  }
+
+  @each $size in map-keys($sizes) {
+    &.icon-#{$size} {
+      $padding: map-get($sizes, $size) / 4;
+      $dimension: map-get($sizes, $size) + ($padding * 2);
+      height: $dimension;
+      width: $dimension;
+      padding: $padding;
+      border-radius: $dimension / 2;
+    }
+  }
+
+  @each $variant in map-keys($variants) {
+    &.icon-#{$variant} {
+      fill: map-get($variants, $variant);
+
+      &.icon-reverse {
+        fill: $color-white;
+        background: map-get($variants, $variant);
+      }
+    }
   }
 }
 </style>
