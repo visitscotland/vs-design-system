@@ -42,7 +42,7 @@ The following commands will build a static version of the documentation at `dist
 It's possible to get the title and sections (pages) content for the documentation site from a remote API, during build. In order to do so:
 
 - Edit `config/remote.config.js`, specifying sets of remote config profiles, each with URL, params and transforms. NOTE: the project already includes profiles for Contentful and Hippo.
-- Set the `REMOTE_CONFIG_CONTENTFUL_SPACE` and `REMOTE_CONFIG_CONTENTFUL_TOKEN` environment variables - by specifying them in a `.env` file in the package root, or manually some other way.
+- Set the `VS_DS_REMOTE_CONFIG_URL` and any other environment variables (e.g. `VS_DS_REMOTE_CONFIG_HIPPO_PROJECT_NAME`) by specifying them in a `.env` file in the package root, or manually some other way.
 - Run the remote styleguide scripts (`npm run docs:remote`, `npm run styleguide:remote` or `npm run styleguide:remote:build`) instead of the regular scripts.
 
 By default, the build selects the first profile defined in the `config/remote.config.js` export. To select a different profile, alter the npm script to pass the name of the desired profile as the --remote-profile arg to the `build/styleguide` script, e.g:

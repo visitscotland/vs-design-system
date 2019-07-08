@@ -58,25 +58,22 @@
 //   }
 // }
 
-const hippoLocal = {
-  uriBase: "http://localhost:8080/site/api/documents/1a0752b4-fda4-4289-9fff-69248c8de2ff",
+const hippo = {
+  uriBase: process.env.VS_DS_REMOTE_CONFIG_URL,
   transformResponse: {
     func: require("../build/remote-response-transform-hippo").transformRawResponse,
     args: [
       {
-        projectName: "myproject",
+        projectName: process.env.VS_DS_REMOTE_CONFIG_HIPPO_PROJECT_NAME,
       },
     ],
   },
 }
 
 const contentful = {
-  uriBase:
-    "https://cdn.contentful.com/spaces/" +
-    process.env.REMOTE_CONFIG_CONTENTFUL_SPACE +
-    "/environments/master/entries",
+  uriBase: process.env.VS_DS_REMOTE_CONFIG_URL,
   uriParams: {
-    access_token: process.env.REMOTE_CONFIG_CONTENTFUL_TOKEN,
+    access_token: process.env.VS_DS_REMOTE_CONFIG_CONTENTFUL_TOKEN,
     content_type: "instance",
     include: 5,
   },
@@ -84,6 +81,6 @@ const contentful = {
 }
 
 module.exports = {
+  hippo,
   contentful,
-  hippoLocal,
 }
