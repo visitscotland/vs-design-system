@@ -24,21 +24,31 @@ describe("Container component", () => {
 
   vueHelper.init("vs-container", VsContainer, props, mockContents)
 
+  beforeEach(() => {
+    cy.document().then(doc => {
+      doc.body.setAttribute("style", "margin:0")
+    })
+  })
+
   it("wraps the contents in a static container", () => {
     cy.contains("div", mockContents).should("have.class", "container")
   })
 
-  it("should render a fixed width container below sm breakpoint", () => {
+  it("should render a 100% width container below sm breakpoint", () => {
     cy.viewport(500, 700)
 
-    cy.document(doc => {
-      debugger
-    })
-
-    cy.contains("div", mockContents).should("have.css", "width", maxWidths.sm)
+    cy.contains("div.container", mockContents).should("have.css", "width", "500px")
   })
 
-  // it("renders the default favourite icon with the correct contents", () => {
-  //   cy.get("svg>path").should("have.attr", "d", paths.favourite)
-  // })
+  each(breakpoints, (breakpointMinWidth, breakpointName) => {
+    it("should render a fixed width container above " + breakpointName + " breakpoint", () => {
+      cy.viewport(pixelStringToInteger(breakpointMinWidth) + 100, 1000)
+
+      cy.contains(".container", mockContents).should("have.css", "width", maxWidths[breakpointName])
+    })
+  })
 })
+
+function pixelStringToInteger(pixelValue) {
+  return parseInt(pixelValue)
+}
