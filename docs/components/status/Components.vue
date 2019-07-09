@@ -2,19 +2,19 @@
   <div class="component-status">
     <ul class="status-list">
       <li>
-        <vs-icon name="docs/ready" fill="#7cb518" size="medium" />
+        <vs-icon name="docs/ready" variant="success" size="xs" />
         <p class="mb-0">Ready</p>
       </li>
       <li>
-        <vs-icon name="docs/review" :fill="getColour('gold')" size="medium" />
+        <vs-icon name="docs/review" variant="warning" size="xs" />
         <p class="mb-0">Under review</p>
       </li>
       <li>
-        <vs-icon name="docs/deprecated" :fill="getColour('vermilion')" size="medium" />
+        <vs-icon name="docs/deprecated" variant="danger" size="xs" />
         <p class="mb-0">Deprecated</p>
       </li>
       <li>
-        <vs-icon name="docs/prototype" :fill="getColour('bleu_de_france')" size="medium" />
+        <vs-icon name="docs/prototype" variant="info" size="xs" />
         <p class="mb-0">Prototype</p>
       </li>
       <li>
@@ -44,27 +44,27 @@
           <td v-if="component.status">
             <vs-icon
               v-if="component.status === 'docs/ready'"
-              name="ready"
-              fill="#7cb518"
-              size="medium"
+              name="docs/ready"
+              variant="success"
+              size="xs"
             />
             <vs-icon
               v-if="component.status === 'under-review' || component.status === 'review'"
               name="docs/review"
-              :fill="getColour('gold')"
-              size="medium"
+              variant="warning"
+              size="xs"
             />
             <vs-icon
               v-if="component.status === 'prototype'"
               name="docs/prototype"
-              :fill="getColour('bleu_de_france')"
-              size="medium"
+              variant="info"
+              size="xs"
             />
             <vs-icon
               v-if="component.status === 'deprecated'"
               name="docs/deprecated"
-              :fill="getColour('vermilion')"
-              size="medium"
+              variant="danger"
+              size="xs"
             />
           </td>
           <td v-else>—</td>

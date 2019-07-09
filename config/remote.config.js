@@ -1,3 +1,5 @@
+const { merge } = require("lodash")
+
 /**
  * Define connection details and response transformations for remote config here
  *
@@ -58,32 +60,42 @@
 //   }
 // }
 
-const hippoLocal = {
-  uriBase: "http://localhost:8080/site/api/documents/1a0752b4-fda4-4289-9fff-69248c8de2ff",
+const commonConfig = {
+  uriBase: process.env.VS_DS_REMOTE_CONFIG_URL,
+
+  /**
+   * These options are passed to the request-promise-native
+   * when making the request for remote config
+   */
+  requestOptions: {
+    strictSSL: false,
+  },
+}
+
+const hippo = merge({}, commonConfig, {
   transformResponse: {
     func: require("../build/remote-response-transform-hippo").transformRawResponse,
     args: [
       {
-        projectName: "myproject",
+        projectName: process.env.VS_DS_REMOTE_CONFIG_HIPPO_PROJECT_NAME,
+        sectionsFieldTitle: process.env.VS_DS_REMOTE_CONFIG_HIPPO_SECTIONS_FIELD_TITLE,
+        sectionsContentFieldTitle:
+          process.env.VS_DS_REMOTE_CONFIG_HIPPO_SECTIONS_CONTENT_FIELD_TITLE,
       },
     ],
   },
-}
+})
 
-const contentful = {
-  uriBase:
-    "https://cdn.contentful.com/spaces/" +
-    process.env.REMOTE_CONFIG_CONTENTFUL_SPACE +
-    "/environments/master/entries",
+const contentful = merge({}, commonConfig, {
   uriParams: {
-    access_token: process.env.REMOTE_CONFIG_CONTENTFUL_TOKEN,
+    access_token: process.env.VS_DS_REMOTE_CONFIG_CONTENTFUL_TOKEN,
     content_type: "instance",
     include: 5,
   },
   transformResponse: require("../build/remote-response-transform-contentful").transformRawResponse,
-}
+})
 
 module.exports = {
+  hippo,
   contentful,
-  hippoLocal,
 }

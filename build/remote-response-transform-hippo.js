@@ -1,6 +1,8 @@
 const _ = require("lodash")
 
 let projectName = "myhippoproject"
+let sectionsFieldTitle = "Sections"
+let sectionsContentFieldTitle = "content"
 
 function transformRawResponse(raw, args) {
   const instance = raw
@@ -15,6 +17,8 @@ function transformRawResponse(raw, args) {
 
 function _setup(args) {
   projectName = _.get(args, "projectName", projectName)
+  sectionsFieldTitle = _.get(args, "sectionsFieldTitle", sectionsFieldTitle)
+  sectionsContentFieldTitle = _.get(args, "sectionsContentFieldTitle", sectionsContentFieldTitle)
 }
 
 function _getFieldValue(entry, fieldPath) {
@@ -22,11 +26,11 @@ function _getFieldValue(entry, fieldPath) {
 }
 
 function _extractEntrySections(entry) {
-  return _.filter(_.map(_getFieldValue(entry, "sections"), _.partial(_parseSection)))
+  return _.filter(_.map(_getFieldValue(entry, sectionsFieldTitle), _.partial(_parseSection)))
 }
 
 function _extractSectionContent(section) {
-  return _getFieldValue(section, "content.content")
+  return _getFieldValue(section, sectionsContentFieldTitle + ".content")
 }
 
 function _parseSection(section) {
@@ -34,11 +38,11 @@ function _parseSection(section) {
     return _.last(_.split(key, ":"))
   })
 
-  if (fields.content) {
+  if (fields[sectionsContentFieldTitle]) {
     fields.content = _extractSectionContent(section)
   }
 
-  if (fields.sections) {
+  if (fields[sectionsFieldTitle]) {
     fields.sections = _extractEntrySections(section)
   }
 
