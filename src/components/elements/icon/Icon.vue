@@ -137,9 +137,39 @@ $variants: (
 <docs>
   ```jsx
   <div>
-    <vs-icon name="search" aria-label="Look for something" fill="#7cb518" />
-    <vs-icon name="favourite" fill="rgb(255,186,10)" />
-    <vs-icon name="user" fill="rgb(235,59,36)" />
+    <div class="row">
+      <div class="col" style="margin-bottom: 10px">
+        <h3>Default</h3>
+        <vs-icon name="search" />
+      </div>
+    </div>
+    
+    <div class="row">
+      <div class="col" style="margin-bottom: 10px">
+        <h3>Variant</h3>
+        <vs-icon name="user" variant="primary" />
+        <vs-icon name="user" variant="secondary" />
+        <vs-icon name="user" variant="success" />
+        <vs-icon name="user" variant="warning" />
+        <vs-icon name="user" variant="danger" />
+        <vs-icon name="user" variant="dark" />
+        <vs-icon name="user" variant="light" />
+      </div>
+    </div>
+    
+    <div class="row">
+      <div class="col" style="margin-bottom: 10px">
+        <h3>Reverse</h3>
+        <vs-icon name="favourite" reverse />
+        <vs-icon name="favourite" reverse variant="primary" />
+        <vs-icon name="favourite" reverse variant="secondary" />
+        <vs-icon name="favourite" reverse variant="success" />
+        <vs-icon name="favourite" reverse variant="warning" />
+        <vs-icon name="favourite" reverse variant="danger" />
+        <vs-icon name="favourite" reverse variant="dark" />
+        <vs-icon name="favourite" reverse variant="light" />
+      </div>
+    </div>
   </div>
   ```
 </docs>
