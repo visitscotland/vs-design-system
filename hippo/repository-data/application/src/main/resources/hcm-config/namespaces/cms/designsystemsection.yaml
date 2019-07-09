@@ -117,26 +117,14 @@ definitions:
           frontend:services: [wicket.id, validator.id]
           /root:
             jcr:primaryType: frontend:plugin
-            extension.left: ${cluster.id}.left
-            extension.right: ${cluster.id}.right
-            plugin.class: org.hippoecm.frontend.editor.layout.TwoColumn
-            wicket.extensions: [extension.left, extension.right]
-          /left:
-            jcr:primaryType: frontend:plugin
-            item: ${cluster.id}.left.item
             plugin.class: org.hippoecm.frontend.service.render.ListViewPlugin
-            wicket.id: ${cluster.id}.left
-          /right:
-            jcr:primaryType: frontend:plugin
-            item: ${cluster.id}.right.item
-            plugin.class: org.hippoecm.frontend.service.render.ListViewPlugin
-            wicket.id: ${cluster.id}.right
+            item: ${cluster.id}.field
           /name:
             jcr:primaryType: frontend:plugin
             caption: Name
             field: name
             plugin.class: org.hippoecm.frontend.editor.plugins.field.PropertyFieldPlugin
-            wicket.id: ${cluster.id}.left.item
+            wicket.id: ${cluster.id}.field
             /cluster.options:
               jcr:primaryType: frontend:pluginconfig
           /Content:
@@ -144,7 +132,7 @@ definitions:
             caption: content
             field: Content
             plugin.class: org.hippoecm.frontend.editor.plugins.field.NodeFieldPlugin
-            wicket.id: ${cluster.id}.left.item
+            wicket.id: ${cluster.id}.field
             /cluster.options:
               jcr:primaryType: frontend:pluginconfig
           /Sections:
@@ -154,7 +142,7 @@ definitions:
             contentPickerType: links
             field: Sections
             plugin.class: org.onehippo.forge.contentblocks.ContentBlocksFieldPlugin
-            wicket.id: ${cluster.id}.left.item
+            wicket.id: ${cluster.id}.field
             hint: ""
             /cluster.options:
               jcr:primaryType: frontend:pluginconfig
@@ -163,7 +151,7 @@ definitions:
             caption: Description
             field: description
             plugin.class: org.hippoecm.frontend.editor.plugins.field.PropertyFieldPlugin
-            wicket.id: ${cluster.id}.left.item
+            wicket.id: ${cluster.id}.field
             /cluster.options:
               jcr:primaryType: frontend:pluginconfig
           /sectionDepth:
@@ -171,7 +159,7 @@ definitions:
             caption: Section Depth
             field: sectionDepth
             plugin.class: org.hippoecm.frontend.editor.plugins.field.PropertyFieldPlugin
-            wicket.id: ${cluster.id}.left.item
+            wicket.id: ${cluster.id}.field
             /cluster.options:
               jcr:primaryType: frontend:pluginconfig
           /components:
@@ -179,7 +167,7 @@ definitions:
             caption: Components
             field: components
             plugin.class: org.hippoecm.frontend.editor.plugins.field.PropertyFieldPlugin
-            wicket.id: ${cluster.id}.left.item
+            wicket.id: ${cluster.id}.field
             /cluster.options:
               jcr:primaryType: frontend:pluginconfig
           /ignore:
@@ -187,7 +175,7 @@ definitions:
             caption: Ignore
             field: ignore
             plugin.class: org.hippoecm.frontend.editor.plugins.field.PropertyFieldPlugin
-            wicket.id: ${cluster.id}.left.item
+            wicket.id: ${cluster.id}.field
             /cluster.options:
               jcr:primaryType: frontend:pluginconfig
           /exampleMode:
@@ -195,7 +183,7 @@ definitions:
             caption: Example Mode
             field: exampleMode
             plugin.class: org.hippoecm.frontend.editor.plugins.field.PropertyFieldPlugin
-            wicket.id: ${cluster.id}.left.item
+            wicket.id: ${cluster.id}.field
             /cluster.options:
               jcr:primaryType: frontend:pluginconfig
               selectable.options: collapse,hide,expand
@@ -204,7 +192,7 @@ definitions:
             caption: Usage Mode
             field: usageMode
             plugin.class: org.hippoecm.frontend.editor.plugins.field.PropertyFieldPlugin
-            wicket.id: ${cluster.id}.left.item
+            wicket.id: ${cluster.id}.field
             /cluster.options:
               jcr:primaryType: frontend:pluginconfig
               selectable.options: collapse,hide,expand
@@ -213,6 +201,6 @@ definitions:
             caption: External URL
             field: href
             plugin.class: org.hippoecm.frontend.editor.plugins.field.PropertyFieldPlugin
-            wicket.id: ${cluster.id}.left.item
+            wicket.id: ${cluster.id}.field
             /cluster.options:
               jcr:primaryType: frontend:pluginconfig
