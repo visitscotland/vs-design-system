@@ -198,16 +198,16 @@ definitions:
             wicket.id: ${cluster.id}.left.item
             /cluster.options:
               jcr:primaryType: frontend:pluginconfig
-              selectable.options: collapse, hide, expand
+              selectable.options: collapse,hide,expand
           /usageMode:
             jcr:primaryType: frontend:plugin
-            caption: usageMode
+            caption: Usage Mode
             field: usageMode
             plugin.class: org.hippoecm.frontend.editor.plugins.field.PropertyFieldPlugin
             wicket.id: ${cluster.id}.left.item
             /cluster.options:
               jcr:primaryType: frontend:pluginconfig
-              selectable.options: collapse, hide, expand
+              selectable.options: collapse,hide,expand
           /href:
             jcr:primaryType: frontend:plugin
             caption: External URL
