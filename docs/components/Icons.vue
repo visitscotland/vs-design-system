@@ -3,7 +3,7 @@
 </template>
 
 <script>
-const allIcons = require.context("@/assets/icons", true, /^\.\/.*\.svg$/)
+const allIcons = require.context("@/assets/svg/icons", true, /^\.\/.*\.svg$/)
 
 export default {
   name: "Icons",

@@ -83,11 +83,9 @@
 </template>
 
 <script>
-import VsContainer from "../elements/Container"
-import VsRow from "../elements/Row"
-import VsCol from "../elements/Col"
-import VsHeading from "../elements/Heading"
-import VsImg from "../elements/Img"
+import { VsContainer, VsRow, VsCol } from "../elements/layout/"
+import VsHeading from "../elements/heading/Heading"
+import VsImg from "../elements/img/Img"
 import VsHero from "../patterns/Hero"
 import VsArticle from "../patterns/Article"
 import VsSidebar from "../patterns/Sidebar"

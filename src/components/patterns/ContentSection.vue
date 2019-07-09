@@ -7,13 +7,14 @@
 </template>
 
 <script>
-import "../elements/Heading"
+import VsHeading from "../elements/heading"
 
 /**
  * Section component
  */
 export default {
   name: "VsContentSection",
+  components: { VsHeading },
   status: "prototype",
   release: "0.0.1",
   props: {
