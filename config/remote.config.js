@@ -1,3 +1,5 @@
+const { merge } = require("lodash")
+
 /**
  * Define connection details and response transformations for remote config here
  *
@@ -58,27 +60,40 @@
 //   }
 // }
 
-const hippo = {
+const commonConfig = {
   uriBase: process.env.VS_DS_REMOTE_CONFIG_URL,
+
+  /**
+   * These options are passed to the request-promise-native
+   * when making the request for remote config
+   */
+  requestOptions: {
+    strictSSL: false,
+  },
+}
+
+const hippo = merge({}, commonConfig, {
   transformResponse: {
     func: require("../build/remote-response-transform-hippo").transformRawResponse,
     args: [
       {
         projectName: process.env.VS_DS_REMOTE_CONFIG_HIPPO_PROJECT_NAME,
+        sectionsFieldTitle: process.env.VS_DS_REMOTE_CONFIG_HIPPO_SECTIONS_FIELD_TITLE,
+        sectionsContentFieldTitle:
+          process.env.VS_DS_REMOTE_CONFIG_HIPPO_SECTIONS_CONTENT_FIELD_TITLE,
       },
     ],
   },
-}
+})
 
-const contentful = {
-  uriBase: process.env.VS_DS_REMOTE_CONFIG_URL,
+const contentful = merge({}, commonConfig, {
   uriParams: {
     access_token: process.env.VS_DS_REMOTE_CONFIG_CONTENTFUL_TOKEN,
     content_type: "instance",
     include: 5,
   },
   transformResponse: require("../build/remote-response-transform-contentful").transformRawResponse,
-}
+})
 
 module.exports = {
   hippo,

@@ -47,6 +47,16 @@ It's possible to get the title and sections (pages) content for the documentatio
 
 By default, the build selects the first profile defined in the `config/remote.config.js` export. To select a different profile, alter the npm script to pass the name of the desired profile as the --remote-profile arg to the `build/styleguide` script, e.g:
 
+Common environment variables for remote config:
+VS_DS_REMOTE_CONFIG_STRICT_SSL
+VS_DS_REMOTE_CONFIG_URL
+
+Environment variables for Hippo and Contentful config:
+VS_DS_REMOTE_CONFIG_HIPPO_SECTIONS_FIELD_TITLE
+VS_DS_REMOTE_CONFIG_HIPPO_SECTIONS_CONTENT_FIELD_TITLE
+VS_DS_REMOTE_CONFIG_HIPPO_PROJECT_NAME
+VS_DS_REMOTE_CONFIG_CONTENTFUL_TOKEN
+
 ```
     npm run docs:remote --remote-profile contentful
 ```
