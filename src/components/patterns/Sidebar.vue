@@ -3,8 +3,8 @@
 </template>
 
 <script>
-import VsColWrapper from "../elements/ColWrapper"
-import colsMixin from "../../mixins/cols.js"
+import { VsColWrapper } from "../elements/layout/"
+import colsMixin from "@/mixins/cols.js"
 
 /**
  * Sidebar component: a wrapper component for sidebar content, generally

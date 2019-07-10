@@ -23,7 +23,3 @@
 //
 // -- This is will overwrite an existing command --
 // Cypress.Commands.overwrite("visit", (originalFn, url, options) => { ... })
-
-import vueComponents from "../helpers/vue-components"
-
-Cypress.Commands.add("initVueComponent", vueComponents.init)

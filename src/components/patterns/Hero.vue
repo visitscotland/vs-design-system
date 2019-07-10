@@ -25,10 +25,8 @@
 </template>
 
 <script>
-import VsHeading from "../elements/Heading"
-import VsContainer from "../elements/Container"
-import VsRow from "../elements/Row"
-import VsCol from "../elements/Col"
+import VsHeading from "../elements/heading"
+import { VsContainer, VsRow, VsCol } from "../elements/layout"
 import { get } from "lodash"
 
 /**

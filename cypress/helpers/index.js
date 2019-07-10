@@ -1,12 +1,12 @@
-import designTokens from "@/assets/tokens/tokens.raw.json"
-import vueComponents from "./vue-components"
-import { get } from "lodash"
+// const vueHelpers = require("./vue").default
+// const { getToken, getThemeColours }
+
+export const vueHelper = require("./vue").default
+
+export const { getToken, getThemeColours } = require("./tokens").default
 
 export default {
   getToken,
-  vueComponents,
-}
-
-function getToken(tokenKey) {
-  return get(designTokens, "props." + tokenKey + ".value")
+  getThemeColours,
+  vueHelper,
 }
