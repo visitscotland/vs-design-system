@@ -257,11 +257,11 @@
 </template>
 
 <script>
-import VsContainer from "../elements/Container"
-import VsHeading from "../elements/Heading"
-import VsRow from "../elements/Row"
-import VsCol from "../elements/Col"
-import VsSvg from "../elements/Svg"
+import VsContainer from "../elements/layout/Container"
+import VsHeading from "../elements/heading/Heading"
+import VsRow from "../elements/layout/Row"
+import VsCol from "../elements/layout/Col"
+import VsSvg from "../elements/svg/Svg"
 
 export default {
   name: "VsHeader",
