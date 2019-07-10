@@ -8,12 +8,16 @@
 #
 
 aliases:
+  gorse_yellow:
+    value: "fcca1b"
   murrayfield_navy:
     value: "#083973"
   saltire_blue:
     value: "#005EB8"
   heather_purple:
-    value: "#900762"
+    value: "#700e57"
+  thistle_pink:
+    value: "#af006e"
   sanna_sand:
     value: "#D7D2CB"
   single_malt_gold:
@@ -38,12 +42,18 @@ props:
   - name: color_heather_purple
     value: "{!heather_purple}"
     category: "Primary palette"
+  - name: color_thistle_pink
+    value: "{!thistle_pink}"
+    category: "Primary palette"
+  - name: color_gorse_yellow
+    value: "{!gorse_yellow}"
+    category: "Primary palette"
   - name: color_murrayfield_navy
     value: "{!murrayfield_navy}"
-    category: "Primary palette"
+    category: "Secondary palette"
   - name: color_saltire_blue
     value: "{!saltire_blue}"
-    category: "Primary palette"
+    category: "Secondary palette"
 
   - name: color_single_malt_gold
     value: "{!single_malt_gold}"
