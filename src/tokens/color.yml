@@ -23,6 +23,8 @@ aliases:
   single_malt_gold:
     value: "#E1A245"
 
+  black:
+    value: "#000"
   total_eclipse:
     value: "#1d1d1b"
   dreich_gray:
@@ -62,6 +64,9 @@ props:
     value: "{!sanna_sand}"
     category: "Secondary palette"
 
+  - name: color_black
+    value: "{!black}"
+    category: "Grays"
   - name: color_total_eclipse
     value: "{!total_eclipse}"
     category: "Grays"

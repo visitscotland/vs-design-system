@@ -18,6 +18,10 @@ const defaultRemoteConfig = {
 
 const turndownService = _getTurndownService()
 
+const defaultRequestOptions = {
+  json: true,
+}
+
 let remoteConfig = null
 let spinner
 
@@ -32,16 +36,11 @@ function getRemoteConfig(argv) {
 
   remoteConfig = _applyRemoteConfigDefaults(remoteConfig)
 
-  const uri = _makeRemoteUriFromRemoteConfig(remoteConfig)
-
-  spinner = ora("Getting remote config from " + uri + "...")
-
   const transforms = _getTransforms(remoteConfig)
 
-  const requestOptions = {
-    uri: uri,
-    json: true,
-  }
+  const requestOptions = _makeRequestOptions(remoteConfig)
+
+  spinner = ora("Getting remote config from " + requestOptions.uri + "...")
 
   spinner.start()
 
@@ -60,7 +59,7 @@ function getRemoteConfig(argv) {
     .catch(function(err) {
       spinner.stop()
 
-      console.log(chalk.red("Problem encountered getting remote config from " + uri))
+      console.log(chalk.red("Problem encountered getting remote config from " + requestOptions.uri))
       console.log(err)
 
       // return the original static config on error
@@ -83,6 +82,14 @@ function cleanup(docsConfig) {
       }
     })
   })
+}
+
+function _makeRequestOptions(remoteConfig) {
+  let options = {
+    uri: _makeRemoteUriFromRemoteConfig(remoteConfig),
+  }
+
+  return _.defaults(options, _.get(remoteConfig, "requestOptions"), defaultRequestOptions)
 }
 
 function _makeRemoteUriFromRemoteConfig(config) {

@@ -2,7 +2,6 @@
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from "vue"
 import App from "@/App"
-import router from "@/router"
 import WebFontLoader from "@/utils/webFontLoader" // eslint-disable-line no-unused-vars
 import Meta from "vue-meta"
 
@@ -17,7 +16,6 @@ Vue.config.productionTip = false
 /* eslint-disable no-new */
 new Vue({
   el: "#app",
-  router,
   template: "<App/>",
   components: { App },
 })
