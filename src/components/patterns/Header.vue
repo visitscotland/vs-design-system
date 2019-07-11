@@ -14,12 +14,13 @@
               <span class="sr-only">Toggle submenu for</span>Our sites
             </button>
             <ul
-              aria-role="menu"
+              aria-role="menubar"
               aria-label="Our Sites"
               class="vs-universal-nav__list"
               data-toggle-pane="universal-nav"
             >
               <li
+                role="none"
                 class="vs-universal-nav__list-item"
                 :class="{ 'vs-universal-nav__list-item--active': link.isActive }"
                 v-for="(link, index) in universalNavLinks"
@@ -43,51 +44,52 @@
               </li>
             </ul>
           </nav>
-          <button class="vs-account__button" @click="toggleLogin()">
-            <vs-svg
-              path="icons/account-avatar"
-              height="10"
-              fill="white"
-              container-class="vs-account__icon-wrapper"
-            />
-            <template v-if="!this.isLoggedIn"
-              >Login</template
-            >
-            <template v-if="this.isLoggedIn"
-              >Log out</template
-            >
-          </button>
-          <div class="vs-language__wrapper" data-toggle-pane="language-list">
-            <button
-              class="vs-language__button"
-              data-toggle-trigger="language-list"
-              @click="triggerToggle('language-list')"
-              aria-haspopup="true"
-              aria-expanded="false"
-            >
-              <span class="vs-language__selected">
-                {{ this.selectedLanguage.abbreviation }}
-                <span class="sr-only"
-                  >{{ this.selectedLanguage.title }} is the currently selected. Click to toggle
-                  language selection.</span
-                >
-              </span>
-              <vs-svg
-                path="icons/chevron-down"
-                height="8"
-                fill="white"
-                container-class="vs-language__icon-wrapper"
-              />
-            </button>
-            <ul class="vs-language__list">
-              <li
-                class="vs-language__list-item"
-                v-for="(link, index) in languageNavLinks"
-                :key="index"
+          <div class="d-flex">
+            <button class="vs-account__button" @click="toggleLogin()">
+              <div class="vs-account__icon-wrapper">
+                <vs-svg path="icons/user" height="10" fill="white" />
+              </div>
+              <template v-if="!this.isLoggedIn"
+                >Login</template
               >
-                <a class="vs-language__link" :href="link.locale">{{ link.title }}</a>
-              </li>
-            </ul>
+              <template v-if="this.isLoggedIn"
+                >Log out</template
+              >
+            </button>
+            <div class="vs-language__wrapper" data-toggle-pane="language-list">
+              <button
+                class="vs-language__button"
+                data-toggle-trigger="language-list"
+                @click="triggerToggle('language-list')"
+                aria-haspopup="true"
+                aria-expanded="false"
+              >
+                <span class="vs-language__selected">
+                  {{ this.selectedLanguage.abbreviation }}
+                  <span class="sr-only"
+                    >{{ this.selectedLanguage.title }} is the currently selected. Click to toggle
+                    language selection.</span
+                  >
+                </span>
+                <div class="vs-language__icon-wrapper">
+                  <vs-svg
+                    path="icons/chevron-down"
+                    height="6"
+                    fill="white"
+                    container-class="vs-language__icon-wrapper"
+                  />
+                </div>
+              </button>
+              <ul class="vs-language__list">
+                <li
+                  class="vs-language__list-item"
+                  v-for="(link, index) in languageNavLinks"
+                  :key="index"
+                >
+                  <a class="vs-language__link" :href="link.locale">{{ link.title }}</a>
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
       </vs-container>
@@ -96,7 +98,10 @@
     <div class="vs-main-nav__wrapper">
       <vs-container>
         <div class="d-flex align-items-stretch justify-content-between">
-          <a href="#" class="vs-main-nav__branding-link"> Scotland <span>Alba</span> </a>
+          <a href="#" class="vs-main-nav__branding-link">
+            <span class="sr-only">VisitScotland Home</span>
+            <vs-svg path="scotland-alba-logo" height="18" />
+          </a>
           <div class="vs-controls__wrapper">
             <button
               class="vs-search__button"
@@ -120,12 +125,9 @@
                 ><span class="sr-only">Current favourites count: </span
                 >{{ this.favourites.length }}</span
               >
-              <vs-svg
-                path="icons/favourites-heart"
-                height="18"
-                fill="#700e57"
-                container-class="vs-favourites__icon-wrapper"
-              />
+              <div class="vs-favourites__icon-wrapper">
+                <vs-svg path="icons/favourite" height="18" fill="#700e57" />
+              </div>
             </button>
             <button
               class="vs-main-nav__button"
@@ -138,121 +140,120 @@
             </button>
           </div>
         </div>
-        <nav aria-label="Main Navigation">
-          <ul class="vs-main-nav__list" data-toggle-pane="main-nav">
-            <li
-              class="vs-main-nav__list-item"
-              v-for="(link, index) in this.mainNavLinks"
-              :key="index"
-            >
-              <template v-if="link.subnav">
-                <button
-                  class="vs-main-nav__button-link"
-                  :aria-haspopup="hasPopup(link)"
-                  :aria-expanded="isExpanded(link)"
-                >
-                  {{ link.title }}
-                  <vs-svg
-                    path="icons/chevron-down"
-                    height="18"
-                    fill="#C6BFBF"
-                    container-class="vs-main-nav__icon-wrapper"
-                  />
-                </button>
-              </template>
-              <template v-if="!link.subnav">
-                <a
-                  class="vs-main-nav__link"
-                  :href="link.href"
-                  :class="{ external: link.isExternal }"
-                  :target="link.isExternal ? '_blank' : false"
-                  :data-di-id="link.trackingID"
-                >
-                  {{ link.title }}
-                </a>
-              </template>
-              <div
-                class="vs-main-nav__dropdown-panel"
-                v-if="hasPopup(link)"
-                :class="{ 'vs-main-nav__dropdown-panel--active': link.isActive }"
-              >
-                <vs-row>
-                  <vs-col v-if="link.subnav">
-                    <ul class="vs-main-nav__list vs-main-nav__list--level2">
-                      <li
-                        class="vs-main-nav__list-item"
-                        v-for="(subnavLevel1, index) in link.subnav"
-                        :key="index"
-                      >
-                        <template v-if="!subnavLevel1.href">
-                          <vs-heading level="3">{{ subnavLevel1.title }}</vs-heading>
-                        </template>
-                        <template v-if="subnavLevel1.href">
-                          <a
-                            class="vs-main-nav__link"
-                            :href="subnavLevel1.href"
-                            :class="{ external: subnavLevel1.isExternal }"
-                            :target="subnavLevel1.isExternal ? '_blank' : false"
-                            :data-di-id="subnavLevel1.trackingID"
-                            >{{ subnavLevel1.title }}</a
-                          >
-                        </template>
-                        <ul
-                          class="vs-main-nav__list vs-main-nav__list--level-3"
-                          v-if="subnavLevel1.subnav"
-                        >
-                          <li
-                            class="vs-main-nav__list-item"
-                            v-for="(subnavLevel2, index) in subnavLevel1.subnav"
-                            :key="index"
-                          >
-                            <a
-                              class="vs-main-nav__link"
-                              :href="subnavLevel2.href"
-                              :class="{ external: subnavLevel2.isExternal }"
-                              :target="subnavLevel2.isExternal ? '_blank' : false"
-                              :data-di-id="subnavLevel2.trackingID"
-                              >{{ subnavLevel2.title }}</a
-                            >
-                          </li>
-                        </ul>
-                      </li>
-                    </ul>
-                  </vs-col>
-                  <vs-col v-if="link.promoPanel">
-                    <vs-heading level="3">{{ link.promoPanel.title }}</vs-heading>
-                    <p>{{ link.promoPanel.description }}</p>
-                    <a
-                      :href="link.promoPanel.href"
-                      :class="{ external: link.promoPanel.isExternal }"
-                      :target="link.promoPanel.isExternal ? '_blank' : false"
-                      :data-di-id="link.promoPanel.trackingID"
-                      >{{ link.promoPanel.buttonText }}</a
-                    >
-                  </vs-col>
-                  <ul class="row" v-if="link.promoList">
-                    <li
-                      class="col"
-                      v-for="(promoItem, index) in link.promoList.promos"
-                      :key="index"
-                      style
-                    >
-                      <a
-                        :href="promoItem.href"
-                        :class="{ external: promoItem.isExternal }"
-                        :target="promoItem.isExternal ? '_blank' : false"
-                        :data-di-id="promoItem.trackingID"
-                        >{{ promoItem.title }}</a
-                      >
-                    </li>
-                  </ul>
-                </vs-row>
-              </div>
-            </li>
-          </ul>
-        </nav>
       </vs-container>
     </div>
+    <vs-container>
+      <nav aria-label="Main Navigation">
+        <ul class="vs-main-nav__list" data-toggle-pane="main-nav">
+          <li
+            class="vs-main-nav__list-item"
+            v-for="(link, index) in this.mainNavLinks"
+            :key="index"
+          >
+            <template v-if="link.subnav">
+              <button
+                class="vs-main-nav__button-link"
+                :aria-haspopup="hasPopup(link)"
+                :aria-expanded="isExpanded(link)"
+              >
+                {{ link.title }}
+                <div class="vs-main-nav__icon-wrapper">
+                  <vs-svg path="icons/chevron-down" height="16" fill="#C6BFBF" />
+                </div>
+              </button>
+            </template>
+            <template v-if="!link.subnav">
+              <a
+                class="vs-main-nav__link"
+                :href="link.href"
+                :class="{ external: link.isExternal }"
+                :target="link.isExternal ? '_blank' : false"
+                :data-di-id="link.trackingID"
+              >
+                {{ link.title }}
+              </a>
+            </template>
+            <div
+              class="vs-main-nav__dropdown-panel"
+              v-if="hasPopup(link)"
+              :class="{ 'vs-main-nav__dropdown-panel--active': link.isActive }"
+            >
+              <vs-row>
+                <vs-col v-if="link.subnav">
+                  <ul class="vs-main-nav__list vs-main-nav__list--level2">
+                    <li
+                      class="vs-main-nav__list-item"
+                      v-for="(subnavLevel1, index) in link.subnav"
+                      :key="index"
+                    >
+                      <template v-if="!subnavLevel1.href">
+                        <vs-heading level="3">{{ subnavLevel1.title }}</vs-heading>
+                      </template>
+                      <template v-if="subnavLevel1.href">
+                        <a
+                          class="vs-main-nav__link"
+                          :href="subnavLevel1.href"
+                          :class="{ external: subnavLevel1.isExternal }"
+                          :target="subnavLevel1.isExternal ? '_blank' : false"
+                          :data-di-id="subnavLevel1.trackingID"
+                          >{{ subnavLevel1.title }}</a
+                        >
+                      </template>
+                      <ul
+                        class="vs-main-nav__list vs-main-nav__list--level-3"
+                        v-if="subnavLevel1.subnav"
+                      >
+                        <li
+                          class="vs-main-nav__list-item"
+                          v-for="(subnavLevel2, index) in subnavLevel1.subnav"
+                          :key="index"
+                        >
+                          <a
+                            class="vs-main-nav__link"
+                            :href="subnavLevel2.href"
+                            :class="{ external: subnavLevel2.isExternal }"
+                            :target="subnavLevel2.isExternal ? '_blank' : false"
+                            :data-di-id="subnavLevel2.trackingID"
+                            >{{ subnavLevel2.title }}</a
+                          >
+                        </li>
+                      </ul>
+                    </li>
+                  </ul>
+                </vs-col>
+                <vs-col v-if="link.promoPanel">
+                  <vs-heading level="3">{{ link.promoPanel.title }}</vs-heading>
+                  <p>{{ link.promoPanel.description }}</p>
+                  <a
+                    :href="link.promoPanel.href"
+                    :class="{ external: link.promoPanel.isExternal }"
+                    :target="link.promoPanel.isExternal ? '_blank' : false"
+                    :data-di-id="link.promoPanel.trackingID"
+                    >{{ link.promoPanel.buttonText }}</a
+                  >
+                </vs-col>
+                <ul class="row" v-if="link.promoList">
+                  <li
+                    class="col"
+                    v-for="(promoItem, index) in link.promoList.promos"
+                    :key="index"
+                    style
+                  >
+                    <a
+                      :href="promoItem.href"
+                      :class="{ external: promoItem.isExternal }"
+                      :target="promoItem.isExternal ? '_blank' : false"
+                      :data-di-id="promoItem.trackingID"
+                      >{{ promoItem.title }}</a
+                    >
+                  </li>
+                </ul>
+              </vs-row>
+            </div>
+          </li>
+        </ul>
+      </nav>
+    </vs-container>
   </component>
 </template>
 
@@ -498,6 +499,7 @@ export default {
     display: flex;
     align-items: center;
     z-index: 5;
+    margin-right: 10px;
   }
 
   &__icon-wrapper {
@@ -577,32 +579,11 @@ export default {
 
 .vs-main-nav {
   &__branding-link {
-    font-family: $font-family-display;
-    font-size: 0.75rem;
-    padding: 13px 16px;
-    margin-left: -16px;
+    align-self: stretch;
+    margin-top: 8px;
 
     &:focus {
       @extend %focus-pink;
-    }
-
-    span {
-      position: relative;
-      display: inline-block;
-      color: $color-mid-granite;
-      padding-left: 5px;
-      margin-left: 5px;
-
-      &::before {
-        background-color: $color-mid-granite;
-        content: "";
-        display: block;
-        height: 12px;
-        left: -3px;
-        position: absolute;
-        top: 3px;
-        width: 2px;
-      }
     }
   }
 
