@@ -1,0 +1,30 @@
+[
+  {
+    "title": "Business Events",
+    "href": "https://businessevents.visitscotland.com",
+    "isExternal": true,
+    "isActive": false,
+    "trackingID": 1
+  },
+  {
+    "title": "Travel Trade",
+    "href": "https://traveltrade.visitscotland.org",
+    "isExternal": true,
+    "isActive": false,
+    "trackingID": 1
+  },
+  {
+    "title": "Media Centre",
+    "href": "http://mediacentre.visitscotland.org",
+    "isExternal": true,
+    "isActive": false,
+    "trackingID": 1
+  },
+  {
+    "title": "Corporate",
+    "href": "https://www.visitscotland.org",
+    "isExternal": true,
+    "isActive": false,
+    "trackingID": 1
+  }
+]

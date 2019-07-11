@@ -1,0 +1,44 @@
+[
+  {
+    "title": "English",
+    "abbreviation": "EN",
+    "locale": "en-en",
+    "trackingID": 1,
+    "isActive": true
+  },
+  {
+    "title": "Deutsch",
+    "abbreviation": "DE",
+    "locale": "de-de",
+    "trackingID": 1,
+    "isActive": false
+  },
+  {
+    "title": "Español",
+    "abbreviation": "ES",
+    "locale": "es-es",
+    "trackingID": 1,
+    "isActive": false
+  },
+  {
+    "title": "Français",
+    "abbreviation": "FR",
+    "locale": "fr-fr",
+    "trackingID": 1,
+    "isActive": false
+  },
+  {
+    "title": "Italiano",
+    "abbreviation": "IT",
+    "locale": "it-it",
+    "trackingID": 1,
+    "isActive": false
+  },
+  {
+    "title": "Nederlands",
+    "abbreviation": "NL",
+    "locale": "nl-nl",
+    "trackingID": 1,
+    "isActive": false
+  }
+]
