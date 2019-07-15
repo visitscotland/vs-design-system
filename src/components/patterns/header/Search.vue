@@ -1,15 +1,16 @@
 <template>
-  <component
-    :is="type"
-    class="vs-search"
-    data-toggle-trigger
-    @click="triggerToggle()"
-    aria-haspopup="true"
-    aria-expanded="false"
-  >
-    <span class="sr-only">Toggle Search</span>
-    <vs-svg path="icons/search" height="18" fill="white" />
-    <form role="search" action="" method="get" class="vs-search__form" data-toggle-pane>
+  <component :is="type" class="vs-search">
+    <button
+      class="vs-search__button"
+      data-toggle-trigger
+      @click="triggerToggle()"
+      aria-haspopup="true"
+      aria-expanded="false"
+    >
+      <span class="sr-only">Toggle Search</span>
+      <vs-svg path="icons/search" height="18" fill="white" />
+    </button>
+    <form role="search" action method="get" class="vs-search__form" data-toggle-pane>
       <label class="vs-search__label">
         <span class="sr-only">Enter a search term</span>
         <vs-svg path="icons/search" height="18" fill="#D0CECF" />
@@ -50,7 +51,7 @@ export default {
       })
     },
     triggerToggle() {
-      let thisTrigger = this.$el
+      let thisTrigger = this.$el.querySelector("[data-toggle-trigger]")
       let thisPane = this.$el.querySelector("[data-toggle-pane]")
       if (thisPane.classList.contains("expanded")) {
         thisPane.classList.remove("expanded")
@@ -69,7 +70,7 @@ export default {
      */
     type: {
       type: String,
-      default: "button",
+      default: "div",
     },
   },
 }
@@ -81,14 +82,17 @@ export default {
 @import "~bootstrap/scss/utilities/flex";
 @import "~bootstrap/scss/utilities/screenreaders";
 @import "styles/placeholders";
+
 .vs-search {
-  @extend %button-reset;
-  @extend %main-nav-button-style;
+  &__button {
+    @extend %button-reset;
+    @extend %main-nav-button-style;
 
-  background-color: $color-thistle-pink;
+    background-color: $color-thistle-pink;
 
-  &:focus {
-    @extend %focus-white;
+    &:focus {
+      @extend %focus-white;
+    }
   }
 
   &__form {
@@ -102,9 +106,10 @@ export default {
     position: absolute;
     top: 40px;
     opacity: 0;
-    transform: translate3d(0, -100%, 0);
+    transform: translate3d(0, -150%, 0);
     transition: all 250ms ease-in-out;
     width: 100%;
+    z-index: 1;
 
     &.expanded {
       opacity: 1;
