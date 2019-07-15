@@ -95,19 +95,7 @@
         <div class="d-flex align-items-stretch justify-content-between">
           <vs-logo />
           <div class="vs-controls__wrapper">
-            <button
-              class="vs-search__button"
-              data-trigger-toggle="search"
-              @click="triggerToggle('search')"
-            >
-              <span class="sr-only">Toggle Search</span>
-              <vs-svg
-                path="icons/search"
-                height="18"
-                fill="white"
-                container-class="vs-search__icon-wrapper"
-              />
-            </button>
+            <vs-search />
             <vs-favourites />
             <vs-main-nav
               :main-navigation-list="[
@@ -1020,19 +1008,6 @@ export default {
     display: flex;
     align-items: stretch;
     margin-right: -16px;
-  }
-}
-
-.vs-search {
-  &__button {
-    @extend %button-reset;
-    @extend %main-nav-button-style;
-
-    background-color: $color-thistle-pink;
-
-    &:focus {
-      @extend %focus-white;
-    }
   }
 }
 </style>
