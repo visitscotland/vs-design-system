@@ -1,283 +1,133 @@
 <template>
-  <component :is="type" class="vs-header">
-    <div class="vs-universal-nav__wrapper">
-      <vs-container>
-        <div class="vs-universal-nav__wrapper--inner">
-          <nav aria-label="Other Sites Navigation">
-            <button
-              class="vs-universal-nav__button"
-              data-toggle-trigger="universal-nav"
-              @click="triggerToggle('universal-nav')"
-              aria-haspopup="true"
-              aria-expanded="false"
-            >
-              <span class="sr-only">Toggle submenu for</span>Our sites
-            </button>
-            <ul
-              aria-role="menubar"
-              aria-label="Our Sites"
-              class="vs-universal-nav__list"
-              data-toggle-pane="universal-nav"
-            >
-              <li
-                role="none"
-                class="vs-universal-nav__list-item"
-                :class="{ 'vs-universal-nav__list-item--active': link.isActive }"
-                v-for="(link, index) in universalNavLinks"
-                :key="index"
-              >
-                <a
-                  class="vs-universal-nav__link"
-                  :href="link.href"
-                  :target="link.isExternal ? '_blank' : false"
-                  :data-di-id="link.trackingID"
-                >
-                  {{ link.title }}
-                  <vs-svg
-                    v-if="link.isExternal"
-                    path="icons/external-link"
-                    height="10"
-                    fill="white"
-                    container-class="vs-external-link__icon-wrapper"
-                  />
-                </a>
-              </li>
-            </ul>
-          </nav>
-          <div class="d-flex">
-            <button class="vs-account__button" @click="toggleLogin()">
-              <div class="vs-account__icon-wrapper">
-                <vs-svg path="icons/user" height="10" fill="white" />
-              </div>
-              <template v-if="!this.isLoggedIn"
-                >Login</template
-              >
-              <template v-if="this.isLoggedIn"
-                >Log out</template
-              >
-            </button>
-            <div class="vs-language__wrapper" data-toggle-pane="language-list">
-              <button
-                class="vs-language__button"
-                data-toggle-trigger="language-list"
-                @click="triggerToggle('language-list')"
-                aria-haspopup="true"
-                aria-expanded="false"
-              >
-                <span class="vs-language__selected">
-                  {{ this.selectedLanguage.abbreviation }}
-                  <span class="sr-only"
-                    >{{ this.selectedLanguage.title }} is the currently selected. Click to toggle
-                    language selection.</span
-                  >
-                </span>
-                <div class="vs-language__icon-wrapper">
-                  <vs-svg
-                    path="icons/chevron-down"
-                    height="6"
-                    fill="white"
-                    container-class="vs-language__icon-wrapper"
-                  />
-                </div>
-              </button>
-              <ul class="vs-language__list">
+  <component :is="type" class="vs-main-nav" :aria-label="name">
+    <button
+      class="vs-main-nav__button"
+      data-toggle-trigger="main-nav"
+      @click="triggerToggle('main-nav')"
+      aria-haspopup="true"
+      aria-expanded="false"
+    >
+      <span class="switch"> <span class="sr-only">Toggle Main Navigation</span> </span>
+    </button>
+    <ul class="vs-main-nav__list" data-toggle-pane="main-nav">
+      <li
+        class="vs-main-nav__list-item"
+        v-for="(link, index) in this.mainNavigationList"
+        :key="index"
+      >
+        <template v-if="link.subnav">
+          <button
+            class="vs-main-nav__button-link"
+            :aria-haspopup="hasPopup(link)"
+            :aria-expanded="isExpanded(link)"
+          >
+            {{ link.title }}
+            <vs-svg path="icons/chevron-down" height="12" fill="#C6BFBF" />
+          </button>
+        </template>
+        <template v-if="!link.subnav">
+          <a
+            class="vs-main-nav__link"
+            :href="link.href"
+            :class="{ external: link.isExternal }"
+            :target="link.isExternal ? '_blank' : false"
+            :data-di-id="link.trackingID"
+            >{{ link.title }}</a
+          >
+        </template>
+        <div
+          class="vs-main-nav__dropdown-panel"
+          v-if="hasPopup(link)"
+          :class="{ 'vs-main-nav__dropdown-panel--active': link.isActive }"
+        >
+          <vs-row>
+            <vs-col v-if="link.subnav">
+              <ul class="vs-main-nav__list vs-main-nav__list--level2">
                 <li
-                  class="vs-language__list-item"
-                  v-for="(link, index) in languageNavLinks"
+                  class="vs-main-nav__list-item"
+                  v-for="(subnavLevel1, index) in link.subnav"
                   :key="index"
                 >
-                  <a class="vs-language__link" :href="link.locale">{{ link.title }}</a>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </vs-container>
-    </div>
-
-    <div class="vs-main-nav__wrapper">
-      <vs-container>
-        <div class="d-flex align-items-stretch justify-content-between">
-          <a href="#" class="vs-main-nav__branding-link">
-            <span class="sr-only">VisitScotland Home</span>
-            <vs-svg path="scotland-alba-logo" height="18" />
-          </a>
-          <div class="vs-controls__wrapper">
-            <button
-              class="vs-search__button"
-              data-trigger-toggle="search"
-              @click="triggerToggle('search')"
-            >
-              <span class="sr-only">Toggle Search</span>
-              <vs-svg
-                path="icons/search"
-                height="18"
-                fill="white"
-                container-class="vs-search__icon-wrapper"
-              />
-            </button>
-            <button
-              class="vs-favourites__button"
-              @click="addToFavourites({ url: 'http://www.visitscotland.com', title: 'Homepage' })"
-            >
-              <span class="sr-only">Add to Favourites</span>
-              <span class="vs-favourites__count" v-if="this.favourites.length"
-                ><span class="sr-only">Current favourites count: </span
-                >{{ this.favourites.length }}</span
-              >
-              <div class="vs-favourites__icon-wrapper">
-                <vs-svg path="icons/favourite" height="18" fill="#700e57" />
-              </div>
-            </button>
-            <button
-              class="vs-main-nav__button"
-              data-toggle-trigger="main-nav"
-              @click="triggerToggle('main-nav')"
-              aria-haspopup="true"
-              aria-expanded="false"
-            >
-              <span class="switch"> <span class="sr-only">Toggle Main Navigation</span> </span>
-            </button>
-          </div>
-        </div>
-      </vs-container>
-    </div>
-    <vs-container>
-      <nav aria-label="Main Navigation">
-        <ul class="vs-main-nav__list" data-toggle-pane="main-nav">
-          <li
-            class="vs-main-nav__list-item"
-            v-for="(link, index) in this.mainNavLinks"
-            :key="index"
-          >
-            <template v-if="link.subnav">
-              <button
-                class="vs-main-nav__button-link"
-                :aria-haspopup="hasPopup(link)"
-                :aria-expanded="isExpanded(link)"
-              >
-                {{ link.title }}
-                <div class="vs-main-nav__icon-wrapper">
-                  <vs-svg path="icons/chevron-down" height="16" fill="#C6BFBF" />
-                </div>
-              </button>
-            </template>
-            <template v-if="!link.subnav">
-              <a
-                class="vs-main-nav__link"
-                :href="link.href"
-                :class="{ external: link.isExternal }"
-                :target="link.isExternal ? '_blank' : false"
-                :data-di-id="link.trackingID"
-              >
-                {{ link.title }}
-              </a>
-            </template>
-            <div
-              class="vs-main-nav__dropdown-panel"
-              v-if="hasPopup(link)"
-              :class="{ 'vs-main-nav__dropdown-panel--active': link.isActive }"
-            >
-              <vs-row>
-                <vs-col v-if="link.subnav">
-                  <ul class="vs-main-nav__list vs-main-nav__list--level2">
+                  <template v-if="!subnavLevel1.href">
+                    <vs-heading level="3">{{ subnavLevel1.title }}</vs-heading>
+                  </template>
+                  <template v-if="subnavLevel1.href">
+                    <a
+                      class="vs-main-nav__link"
+                      :href="subnavLevel1.href"
+                      :class="{ external: subnavLevel1.isExternal }"
+                      :target="subnavLevel1.isExternal ? '_blank' : false"
+                      :data-di-id="subnavLevel1.trackingID"
+                      >{{ subnavLevel1.title }}</a
+                    >
+                  </template>
+                  <ul
+                    class="vs-main-nav__list vs-main-nav__list--level-3"
+                    v-if="subnavLevel1.subnav"
+                  >
                     <li
                       class="vs-main-nav__list-item"
-                      v-for="(subnavLevel1, index) in link.subnav"
+                      v-for="(subnavLevel2, index) in subnavLevel1.subnav"
                       :key="index"
                     >
-                      <template v-if="!subnavLevel1.href">
-                        <vs-heading level="3">{{ subnavLevel1.title }}</vs-heading>
-                      </template>
-                      <template v-if="subnavLevel1.href">
-                        <a
-                          class="vs-main-nav__link"
-                          :href="subnavLevel1.href"
-                          :class="{ external: subnavLevel1.isExternal }"
-                          :target="subnavLevel1.isExternal ? '_blank' : false"
-                          :data-di-id="subnavLevel1.trackingID"
-                          >{{ subnavLevel1.title }}</a
-                        >
-                      </template>
-                      <ul
-                        class="vs-main-nav__list vs-main-nav__list--level-3"
-                        v-if="subnavLevel1.subnav"
+                      <a
+                        class="vs-main-nav__link"
+                        :href="subnavLevel2.href"
+                        :class="{ external: subnavLevel2.isExternal }"
+                        :target="subnavLevel2.isExternal ? '_blank' : false"
+                        :data-di-id="subnavLevel2.trackingID"
+                        >{{ subnavLevel2.title }}</a
                       >
-                        <li
-                          class="vs-main-nav__list-item"
-                          v-for="(subnavLevel2, index) in subnavLevel1.subnav"
-                          :key="index"
-                        >
-                          <a
-                            class="vs-main-nav__link"
-                            :href="subnavLevel2.href"
-                            :class="{ external: subnavLevel2.isExternal }"
-                            :target="subnavLevel2.isExternal ? '_blank' : false"
-                            :data-di-id="subnavLevel2.trackingID"
-                            >{{ subnavLevel2.title }}</a
-                          >
-                        </li>
-                      </ul>
                     </li>
                   </ul>
-                </vs-col>
-                <vs-col v-if="link.promoPanel">
-                  <vs-heading level="3">{{ link.promoPanel.title }}</vs-heading>
-                  <p>{{ link.promoPanel.description }}</p>
-                  <a
-                    :href="link.promoPanel.href"
-                    :class="{ external: link.promoPanel.isExternal }"
-                    :target="link.promoPanel.isExternal ? '_blank' : false"
-                    :data-di-id="link.promoPanel.trackingID"
-                    >{{ link.promoPanel.buttonText }}</a
-                  >
-                </vs-col>
-                <ul class="row" v-if="link.promoList">
-                  <li
-                    class="col"
-                    v-for="(promoItem, index) in link.promoList.promos"
-                    :key="index"
-                    style
-                  >
-                    <a
-                      :href="promoItem.href"
-                      :class="{ external: promoItem.isExternal }"
-                      :target="promoItem.isExternal ? '_blank' : false"
-                      :data-di-id="promoItem.trackingID"
-                      >{{ promoItem.title }}</a
-                    >
-                  </li>
-                </ul>
-              </vs-row>
-            </div>
-          </li>
-        </ul>
-      </nav>
-    </vs-container>
+                </li>
+              </ul>
+            </vs-col>
+            <vs-col v-if="link.promoPanel">
+              <vs-heading level="3">{{ link.promoPanel.title }}</vs-heading>
+              <p>{{ link.promoPanel.description }}</p>
+              <a
+                :href="link.promoPanel.href"
+                :class="{ external: link.promoPanel.isExternal }"
+                :target="link.promoPanel.isExternal ? '_blank' : false"
+                :data-di-id="link.promoPanel.trackingID"
+                >{{ link.promoPanel.buttonText }}</a
+              >
+            </vs-col>
+            <ul class="row" v-if="link.promoList">
+              <li
+                class="col"
+                v-for="(promoItem, index) in link.promoList.promos"
+                :key="index"
+                style
+              >
+                <a
+                  :href="promoItem.href"
+                  :class="{ external: promoItem.isExternal }"
+                  :target="promoItem.isExternal ? '_blank' : false"
+                  :data-di-id="promoItem.trackingID"
+                  >{{ promoItem.title }}</a
+                >
+              </li>
+            </ul>
+          </vs-row>
+        </div>
+      </li>
+    </ul>
   </component>
 </template>
 
 <script>
-import VsContainer from "../elements/layout/Container"
-import VsHeading from "../elements/heading/Heading"
-import VsRow from "../elements/layout/Row"
-import VsCol from "../elements/layout/Col"
-import VsSvg from "../elements/svg/Svg"
+import VsSvg from "../../elements/svg/Svg"
 
 export default {
-  name: "VsHeader",
+  name: "VsMainNav",
   status: "prototype",
   release: "0.0.1",
-  components: { VsContainer, VsRow, VsCol, VsSvg },
+  components: { VsSvg },
   data() {
     return {
-      mainNavLinks: this.mainNavigationList,
-      languageNavLinks: this.languageSelectorList,
-      universalNavLinks: this.universalNavigationList,
-      selectedLanguage: this.languageSelectorList[0],
       mainNavListIsExpanded: false,
-      favourites: [],
-      isLoggedIn: false,
     }
   },
   props: {
@@ -286,30 +136,17 @@ export default {
      */
     type: {
       type: String,
-      default: "header",
-    },
-    universalNavigationList: {
-      type: Array,
-      required: true,
+      default: "nav",
     },
     mainNavigationList: {
       type: Array,
       required: true,
     },
-    languageSelectorList: {
-      type: Array,
-      required: true,
+    name: {
+      type: String,
     },
-  },
-  watch: {
-    favourites(oldValue, newValue) {},
   },
   methods: {
-    addToFavourites(favourite) {
-      if (this.favourites.indexOf(favourite) === -1) {
-        this.favourites.push(favourite)
-      }
-    },
     hasPopup(link) {
       if (
         link.subnav !== undefined ||
@@ -364,241 +201,14 @@ export default {
 @import "~bootstrap/scss/utilities/display";
 @import "~bootstrap/scss/utilities/flex";
 @import "~bootstrap/scss/utilities/screenreaders";
-
-%clip {
-  clip: rect(0, 0, 0, 0);
-}
-
-%clip-reset {
-  clip: none;
-}
-
-%focus-white {
-  outline: none;
-  box-shadow: inset 0 -3px 0 0 $white;
-}
-
-%focus-pink {
-  outline: none;
-  box-shadow: inset 0 -3px 0 0 $color-thistle-pink;
-}
-
-%list-reset {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-}
-
-%button-reset {
-  -webkit-appearance: none;
-  border: none;
-  background: none;
-}
-
-%universal-link {
-  box-shadow: inset 0 0 0 0 transparent;
-  color: #fff;
-  display: block;
-  font-size: 0.75rem;
-  padding: 5px;
-  position: relative;
-  transition: all 250ms ease-in-out;
-
-  &:focus {
-    background-color: lighten($color-heather-purple, 3%);
-    @extend %focus-white;
-  }
-
-  &:hover {
-    background-color: lighten($color-heather-purple, 3%);
-    color: #fff;
-  }
-}
-
-.vs-header {
-  min-height: 600px; // temporary -
-  overflow: hidden;
-  position: relative;
-}
-
-.vs-universal-nav {
-  &__wrapper {
-    background-color: $color-heather-purple;
-    position: relative;
-    z-index: 4;
-
-    &--inner {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-  }
-
-  &__list {
-    @extend %list-reset;
-    background-color: darken($color-heather-purple, 10%);
-    left: 0;
-    opacity: 0;
-    position: absolute;
-    top: 28px;
-    opacity: 0;
-    transform: translate3d(0, -100%, 0);
-    transition: all 250ms ease-in-out;
-    width: 100%;
-
-    &.expanded {
-      opacity: 1;
-      transform: translate3d(0, 0, 0);
-      height: 100vh;
-    }
-  }
-
-  &__list-item {
-    min-height: 20px;
-  }
-
-  &__link {
-    @extend %universal-link;
-    font-size: 1rem;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-    display: none;
-    padding: 20px 16px;
-    width: 100%;
-
-    .vs-universal-nav__list.expanded & {
-      display: block;
-    }
-  }
-
-  &__button {
-    @extend %button-reset;
-    @extend %universal-link;
-    margin-left: -5px;
-    z-index: 5;
-
-    h2 {
-      font-weight: 400;
-      font-size: 0.75rem;
-      margin: 0;
-      color: #fff;
-    }
-  }
-}
-
-.vs-external-link {
-  &__icon-wrapper {
-    display: inline-flex;
-    margin-left: 5px;
-  }
-}
-
-.vs-account {
-  &__button {
-    @extend %button-reset;
-    @extend %universal-link;
-    display: flex;
-    align-items: center;
-    z-index: 5;
-    margin-right: 10px;
-  }
-
-  &__icon-wrapper {
-    margin-right: 3px;
-  }
-}
-
-.vs-language {
-  &__wrapper {
-    display: flex;
-    align-items: center;
-  }
-
-  &__selected {
-    font-weight: 400;
-    font-size: 0.75rem;
-    margin: 0;
-    color: #fff;
-  }
-
-  &__list {
-    @extend %list-reset;
-    background-color: darken($color-heather-purple, 10%);
-    font-size: 1rem;
-    left: 0;
-    opacity: 0;
-    position: absolute;
-    top: 28px;
-    transform: translate3d(0, -100%, 0);
-    transition: all 250ms ease-in-out;
-    width: 100%;
-
-    .vs-language__wrapper.expanded & {
-      opacity: 1;
-      transform: translate3d(0, 0, 0);
-      height: 100vh;
-    }
-  }
-
-  &__list-item {
-    min-height: 20px;
-  }
-
-  &__link {
-    @extend %universal-link;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-    font-size: 1rem;
-    padding: 20px 16px;
-    width: 100%;
-    display: none;
-
-    .vs-language__wrapper.expanded & {
-      display: block;
-    }
-  }
-
-  &__button {
-    @extend %button-reset;
-    @extend %universal-link;
-    margin-right: -5px;
-    display: flex;
-    height: 100%;
-    padding: 5px;
-    z-index: 5;
-  }
-
-  &__icon-wrapper {
-    margin-left: 5px;
-    transition: transform 250ms;
-
-    .vs-language__wrapper.expanded & {
-      transform: rotate(180deg);
-      transform-origin: 50% 50%;
-    }
-  }
-}
+@import "styles/placeholders";
 
 .vs-main-nav {
-  &__branding-link {
-    align-self: stretch;
-    margin-top: 8px;
-
-    &:focus {
-      @extend %focus-pink;
-    }
-  }
-
-  &__wrapper {
-    background-color: $white;
-    box-shadow: 0 8px 6px -6px rgba(0, 0, 0, 0.3);
-    position: relative;
-    z-index: 3;
-  }
+  display: flex;
 
   &__button {
     @extend %button-reset;
-    margin: 0;
-    padding: 20px 14px;
-    margin-right: -16px;
+    @extend %main-nav-button-style;
 
     .switch {
       display: block;
@@ -656,16 +266,19 @@ export default {
   }
 
   &__list {
+    box-shadow: inset 0 8px 6px -6px rgba(0, 0, 0, 0.3);
     @extend %list-reset;
     left: 0;
     position: absolute;
     background-color: $color-white;
     overflow: hidden;
+    top: 40px;
     transform: translateX(100%);
     transition: transform 250ms ease-in-out;
     width: 0;
 
     &.expanded {
+      height: 100vh;
       transform: translateX(0);
       width: 100%;
       z-index: 2;
@@ -683,10 +296,14 @@ export default {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    font-weight: 600;
-    font-size: 1.5rem;
-    border-bottom: 1px solid $color-mid-granite;
+    font-weight: $font-weight-semi-bold;
+    font-size: 1.125rem;
+    border-bottom: 1px solid $color-light-granite;
     padding: 20px 16px 0px 16px;
+
+    &:hover {
+      background-color: $color-light-granite;
+    }
   }
 
   &__dropdown-panel {
@@ -697,124 +314,12 @@ export default {
     }
   }
 }
-
-.vs-controls {
-  &__wrapper {
-    display: flex;
-    align-items: stretch;
-  }
-}
-
-.vs-search {
-  &__button {
-    @extend %button-reset;
-    background-color: $color-thistle-pink;
-    padding: 10px 12px;
-
-    &:focus {
-      @extend %focus-white;
-    }
-  }
-}
-
-.vs-favourites {
-  &__button {
-    @extend %button-reset;
-    padding: 10px 12px;
-    position: relative;
-
-    &:focus {
-      @extend %focus-pink;
-    }
-  }
-
-  &__count {
-    position: absolute;
-    display: block;
-    width: 100%;
-    left: 0;
-  }
-}
 </style>
 
 <docs>
   ```jsx
-  <div>
-    <vs-header
-        :language-selector-list="[
-            {
-                title: 'English',
-                abbreviation: 'EN',
-                locale: 'en-en',
-                trackingID: 1,
-                isActive: true
-            },
-            {
-                title: 'Deutsch',
-                abbreviation: 'DE',
-                locale: 'de-de',
-                trackingID: 1,
-                isActive: false
-            },
-            {
-                title: 'Español',
-                abbreviation: 'ES',
-                locale: 'es-es',
-                trackingID: 1,
-                isActive: false
-            },
-            {
-                title: 'Français',
-                abbreviation: 'FR',
-                locale: 'fr-fr',
-                trackingID: 1,
-                isActive: false
-            },
-            {
-                title: 'Italiano',
-                abbreviation: 'IT',
-                locale: 'it-it',
-                trackingID: 1,
-                isActive: false
-            },
-            {
-                title: 'Nederlands',
-                abbreviation: 'NL',
-                locale: 'nl-nl',
-                trackingID: 1,
-                isActive: false
-            }
-        ]"
-        :universal-navigation-list="[
-            {
-                title: 'Business Events',
-                href: 'https://businessevents.visitscotland.com',
-                isExternal: true,
-                isActive: false,
-                trackingID: 1
-            },
-            {
-                title: 'Travel Trade',
-                href: 'https://traveltrade.visitscotland.org',
-                isExternal: true,
-                isActive: false,
-                trackingID: 1
-            },
-            {
-                title: 'Media Centre',
-                href: 'http://mediacentre.visitscotland.org',
-                isExternal: true,
-                isActive: false,
-                trackingID: 1
-            },
-            {
-                title: 'Corporate',
-                href: 'https://www.visitscotland.org',
-                isExternal: true,
-                isActive: false,
-                trackingID: 1
-            }
-        ]"
+    <vs-main-nav
+        name="Main navigation"
         :main-navigation-list="[
             {
                 title: 'Destinations',
@@ -1621,6 +1126,5 @@ export default {
             }
         ]"
     />
-  </div>
   ```
 </docs>
