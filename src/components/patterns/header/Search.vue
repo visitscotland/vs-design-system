@@ -10,23 +10,25 @@
       <span class="sr-only">Toggle Search</span>
       <vs-svg path="icons/search" height="18" fill="white" />
     </button>
-    <form role="search" action method="get" class="vs-search__form" data-toggle-pane>
-      <label class="vs-search__label">
-        <span class="sr-only">Enter a search term</span>
-        <vs-svg path="icons/search" height="18" fill="#D0CECF" />
-      </label>
-      <input
-        class="vs-search__input"
-        type="search"
-        placeholder="Enter a search term"
-        autocomplete="off"
-      />
-      <button class="vs-search__clear-button">
-        <span class="sr-only">Clear search</span>
-        <vs-svg path="icons/cross" height="18" fill="#D0CECF" />
-      </button>
-      <button class="vs-search__submit-button" type="submit">Go</button>
-    </form>
+    <div class="vs-search__form-wrapper" data-toggle-pane>
+      <form role="search" action method="get" class="vs-search__form">
+        <label class="vs-search__label">
+          <span class="sr-only">Enter a search term</span>
+          <vs-svg path="icons/search" height="18" fill="#D0CECF" />
+        </label>
+        <input
+          class="vs-search__input"
+          type="search"
+          placeholder="Enter a search term"
+          autocomplete="off"
+        />
+        <button class="vs-search__clear-button">
+          <span class="sr-only">Clear search</span>
+          <vs-svg path="icons/cross" height="18" fill="#D0CECF" />
+        </button>
+        <button class="vs-search__submit-button" type="submit">Go</button>
+      </form>
+    </div>
   </component>
 </template>
 
@@ -95,18 +97,17 @@ export default {
     }
   }
 
-  &__form {
+  &__form-wrapper {
     background-color: $color-very-light-granite;
     box-shadow: inset 0 8px 6px -6px rgba(0, 0, 0, 0.3), 0 8px 6px -6px rgba(0, 0, 0, 0.3);
     justify-content: space-between;
-    display: flex;
     padding: 1rem;
     left: 0;
     opacity: 0;
     position: absolute;
     top: 40px;
     opacity: 0;
-    transform: translate3d(0, -150%, 0);
+    transform: translate3d(0, -250%, 0);
     transition: all 250ms ease-in-out;
     width: 100%;
     z-index: 1;
@@ -117,12 +118,19 @@ export default {
     }
   }
 
+  &__form {
+    display: none;
+
+    .expanded & {
+      display: flex;
+    }
+  }
+
   &__input {
     @extend %reset-clear;
     border: none;
     display: block;
-    padding: 7px 30px;
-    margin-right: 5px;
+    padding: 7px;
     width: 100%;
     position: relative;
 
@@ -132,21 +140,23 @@ export default {
   }
 
   &__label {
-    position: absolute;
-    display: block;
-    left: 20px;
-    top: 20px;
-    z-index: 2;
+    background-color: $color-white;
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    margin: 0;
   }
 
   &__clear-button {
     @extend %button-reset;
-    position: absolute;
-    right: 70px;
-    top: 20px;
+    background: $color-white;
+    display: flex;
+    align-items: center;
+    padding: 0 10px;
+    margin-right: 5px;
 
     &:focus {
-      @extend %focus-white;
+      @extend %focus-pink;
     }
   }
 
@@ -157,6 +167,10 @@ export default {
     font-size: 1.125rem;
     font-weight: $font-weight-semi-bold;
     padding: 0 10px;
+
+    &:focus {
+      @extend %focus-white;
+    }
   }
 }
 </style>

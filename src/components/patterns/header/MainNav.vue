@@ -22,7 +22,7 @@
             :aria-expanded="isExpanded(link)"
           >
             {{ link.title }}
-            <vs-svg path="icons/chevron-down" height="12" fill="#C6BFBF" />
+            <vs-svg path="icons/chevron-down" height="10" fill="#C6BFBF" />
           </button>
         </template>
         <template v-if="!link.subnav">
@@ -266,8 +266,8 @@ export default {
   }
 
   &__list {
-    box-shadow: inset 0 8px 6px -6px rgba(0, 0, 0, 0.3);
     @extend %list-reset;
+    box-shadow: inset 0 8px 6px -6px rgba(0, 0, 0, 0.3);
     left: 0;
     position: absolute;
     background-color: $color-white;
@@ -303,6 +303,10 @@ export default {
 
     &:hover {
       background-color: $color-light-granite;
+    }
+
+    &:focus {
+      @extend %focus-pink;
     }
   }
 

@@ -11,7 +11,7 @@
     <vs-svg
       v-if="this.favourites.length"
       path="icons/favourite-filled"
-      height="28"
+      height="20"
       fill="#700e57"
     />
     <vs-svg v-else path="icons/favourite" height="18" fill="#929091" />
@@ -79,10 +79,10 @@ export default {
   &__count {
     color: $color-white;
     display: block;
-    font-size: 0.875rem;
+    font-size: 0.75rem;
     left: 0;
     position: absolute;
-    top: 8px;
+    top: 12px;
     width: 100%;
   }
 }

@@ -105,7 +105,7 @@ export default {
     position: absolute;
     top: 28px;
     opacity: 0;
-    transform: translate3d(0, -100%, 0);
+    transform: translate3d(0, -130%, 0);
     transition: all 250ms ease-in-out;
     width: calc(100% + 2rem);
 
