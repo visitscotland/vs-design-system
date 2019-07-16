@@ -98,6 +98,7 @@
             <vs-search />
             <vs-favourites />
             <vs-main-nav
+              name="Main navigation"
               :main-navigation-list="[
                 {
                   title: 'Destinations',
