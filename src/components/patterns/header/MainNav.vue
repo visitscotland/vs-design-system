@@ -22,7 +22,7 @@
             :aria-expanded="isExpanded(link)"
           >
             {{ link.title }}
-            <vs-svg path="icons/chevron-down" height="10" fill="#C6BFBF" />
+            <vs-svg path="icons/chevron-down" height="10" fill="#929091" />
           </button>
         </template>
         <template v-if="!link.subnav">
@@ -298,7 +298,7 @@ export default {
     justify-content: space-between;
     font-weight: $font-weight-semi-bold;
     font-size: 1.125rem;
-    border-bottom: 1px solid $color-light-granite;
+    border-bottom: 1px solid $color-mid-granite;
     padding: 20px 16px 0px 16px;
     transition: background-color 250ms ease-in-out;
 
