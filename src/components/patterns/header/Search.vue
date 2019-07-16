@@ -14,7 +14,7 @@
       <form role="search" action method="get" class="vs-search__form">
         <label for="search" class="vs-search__label">
           <span class="sr-only">Enter a search term</span>
-          <vs-svg path="icons/search" height="18" fill="#D0CECF" />
+          <vs-svg path="icons/search" height="18" fill="#929091" />
         </label>
         <input
           class="vs-search__input"
@@ -30,7 +30,7 @@
           @click.prevent="clearSearchField()"
         >
           <span class="sr-only">Clear search</span>
-          <vs-svg path="icons/cross" height="18" fill="#D0CECF" />
+          <vs-svg path="icons/cross" height="18" fill="#929091" />
         </button>
         <button class="vs-search__submit-button" type="submit">Go</button>
       </form>
