@@ -172,6 +172,7 @@ export default {
 
 <docs>
   ```jsx
+  <div style="position: relative; height: 100vh;">
     <vs-dropdown
         name="Our sites"
         :dropdown-list="[
@@ -205,5 +206,6 @@ export default {
             }
         ]"
     />
+  </div>
   ```
 </docs>
