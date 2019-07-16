@@ -300,9 +300,10 @@ export default {
     font-size: 1.125rem;
     border-bottom: 1px solid $color-light-granite;
     padding: 20px 16px 0px 16px;
+    transition: background-color 250ms ease-in-out;
 
     &:hover {
-      background-color: $color-light-granite;
+      background-color: $color-very-light-granite;
     }
 
     &:focus {
@@ -322,6 +323,7 @@ export default {
 
 <docs>
   ```jsx
+  <div style="position: relative; height: 100vh;">
     <vs-main-nav
         name="Main navigation"
         :main-navigation-list="[
@@ -1130,5 +1132,6 @@ export default {
             }
         ]"
     />
+  </div>
   ```
 </docs>
