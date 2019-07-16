@@ -976,7 +976,6 @@ export default {
 
 .vs-header {
   min-height: 600px; // temporary -
-  overflow: hidden;
   position: relative;
 }
 

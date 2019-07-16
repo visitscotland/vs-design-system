@@ -3,117 +3,27 @@
     <button
       class="vs-main-nav__button"
       data-toggle-trigger="main-nav"
-      @click="triggerToggle('main-nav')"
+      @click="triggerToggle()"
       aria-haspopup="true"
       aria-expanded="false"
     >
       <span class="switch"> <span class="sr-only">Toggle Main Navigation</span> </span>
     </button>
-    <ul class="vs-main-nav__list" data-toggle-pane="main-nav">
-      <li
-        class="vs-main-nav__list-item"
-        v-for="(link, index) in this.mainNavigationList"
-        :key="index"
+    <transition name="slide-fade">
+      <ul
+        class="vs-main-nav__list vs-main-nav__list--level1"
+        :class="{ expanded: show }"
+        data-toggle-pane
+        v-if="show"
       >
-        <template v-if="link.subnav">
-          <button
-            class="vs-main-nav__button-link"
-            :aria-haspopup="hasPopup(link)"
-            :aria-expanded="isExpanded(link)"
-          >
-            {{ link.title }}
-            <vs-svg path="icons/chevron-down" height="10" fill="#929091" />
-          </button>
-        </template>
-        <template v-if="!link.subnav">
-          <a
-            class="vs-main-nav__link"
-            :href="link.href"
-            :class="{ external: link.isExternal }"
-            :target="link.isExternal ? '_blank' : false"
-            :data-di-id="link.trackingID"
-            >{{ link.title }}</a
-          >
-        </template>
-        <div
-          class="vs-main-nav__dropdown-panel"
-          v-if="hasPopup(link)"
-          :class="{ 'vs-main-nav__dropdown-panel--active': link.isActive }"
-        >
-          <vs-row>
-            <vs-col v-if="link.subnav">
-              <ul class="vs-main-nav__list vs-main-nav__list--level2">
-                <li
-                  class="vs-main-nav__list-item"
-                  v-for="(subnavLevel1, index) in link.subnav"
-                  :key="index"
-                >
-                  <template v-if="!subnavLevel1.href">
-                    <vs-heading level="3">{{ subnavLevel1.title }}</vs-heading>
-                  </template>
-                  <template v-if="subnavLevel1.href">
-                    <a
-                      class="vs-main-nav__link"
-                      :href="subnavLevel1.href"
-                      :class="{ external: subnavLevel1.isExternal }"
-                      :target="subnavLevel1.isExternal ? '_blank' : false"
-                      :data-di-id="subnavLevel1.trackingID"
-                      >{{ subnavLevel1.title }}</a
-                    >
-                  </template>
-                  <ul
-                    class="vs-main-nav__list vs-main-nav__list--level-3"
-                    v-if="subnavLevel1.subnav"
-                  >
-                    <li
-                      class="vs-main-nav__list-item"
-                      v-for="(subnavLevel2, index) in subnavLevel1.subnav"
-                      :key="index"
-                    >
-                      <a
-                        class="vs-main-nav__link"
-                        :href="subnavLevel2.href"
-                        :class="{ external: subnavLevel2.isExternal }"
-                        :target="subnavLevel2.isExternal ? '_blank' : false"
-                        :data-di-id="subnavLevel2.trackingID"
-                        >{{ subnavLevel2.title }}</a
-                      >
-                    </li>
-                  </ul>
-                </li>
-              </ul>
-            </vs-col>
-            <vs-col v-if="link.promoPanel">
-              <vs-heading level="3">{{ link.promoPanel.title }}</vs-heading>
-              <p>{{ link.promoPanel.description }}</p>
-              <a
-                :href="link.promoPanel.href"
-                :class="{ external: link.promoPanel.isExternal }"
-                :target="link.promoPanel.isExternal ? '_blank' : false"
-                :data-di-id="link.promoPanel.trackingID"
-                >{{ link.promoPanel.buttonText }}</a
-              >
-            </vs-col>
-            <ul class="row" v-if="link.promoList">
-              <li
-                class="col"
-                v-for="(promoItem, index) in link.promoList.promos"
-                :key="index"
-                style
-              >
-                <a
-                  :href="promoItem.href"
-                  :class="{ external: promoItem.isExternal }"
-                  :target="promoItem.isExternal ? '_blank' : false"
-                  :data-di-id="promoItem.trackingID"
-                  >{{ promoItem.title }}</a
-                >
-              </li>
-            </ul>
-          </vs-row>
-        </div>
-      </li>
-    </ul>
+        <VsMainNavListItem
+          v-for="(link, index) in this.mainNavigationList"
+          :level="1"
+          :item="link"
+          :key="index"
+        />
+      </ul>
+    </transition>
   </component>
 </template>
 
@@ -128,6 +38,7 @@ export default {
   data() {
     return {
       mainNavListIsExpanded: false,
+      show: false,
     }
   },
   props: {
@@ -147,47 +58,12 @@ export default {
     },
   },
   methods: {
-    hasPopup(link) {
-      if (
-        link.subnav !== undefined ||
-        link.promoPanel !== undefined ||
-        link.promoList !== undefined
-      ) {
-        return true
-      }
-      return false
-    },
-    isExpanded(link) {
-      var hasPopup = this.hasPopup(link)
-      if (link.isActive && hasPopup) {
-        return true
-      }
-      return false
-    },
-    resetMenus() {
-      Array.prototype.forEach.call(this.$el.querySelectorAll("[data-toggle-pane]"), pane => {
-        pane.classList.remove("expanded")
-      })
-      Array.prototype.forEach.call(this.$el.querySelectorAll("[data-toggle-trigger]"), trigger => {
-        trigger.setAttribute("aria-expanded", false)
-      })
-    },
-    toggleLogin() {
-      this.isLoggedIn = !this.isLoggedIn
-      this.resetMenus()
-    },
-    toggleSubmenu(link) {
-      return (link.isActive = !link.isActive)
-    },
-    triggerToggle(selector) {
-      let thisTrigger = this.$el.querySelector('[data-toggle-trigger="' + selector + '"]')
-      let thisPane = this.$el.querySelector('[data-toggle-pane="' + selector + '"]')
-      if (thisPane.classList.contains("expanded")) {
-        thisPane.classList.remove("expanded")
+    triggerToggle() {
+      this.show = !this.show
+      let thisTrigger = this.$el.querySelector("[data-toggle-trigger]")
+      if (!this.show) {
         thisTrigger.setAttribute("aria-expanded", false)
       } else {
-        this.resetMenus()
-        thisPane.classList.add("expanded")
         thisTrigger.setAttribute("aria-expanded", true)
       }
       thisTrigger.blur()
@@ -202,6 +78,7 @@ export default {
 @import "~bootstrap/scss/utilities/flex";
 @import "~bootstrap/scss/utilities/screenreaders";
 @import "styles/placeholders";
+@import "styles/animations";
 
 .vs-main-nav {
   display: flex;
@@ -271,52 +148,9 @@ export default {
     left: 0;
     position: absolute;
     background-color: $color-white;
-    overflow: hidden;
     top: 40px;
-    transform: translateX(100%);
-    transition: transform 250ms ease-in-out;
-    width: 0;
-
-    &.expanded {
-      height: 100vh;
-      transform: translateX(0);
-      width: 100%;
-      z-index: 2;
-    }
-  }
-
-  &__button-link {
-    @extend %button-reset;
     width: 100%;
-  }
-
-  &__button-link,
-  &__link {
-    color: $color-total-eclipse;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    font-weight: $font-weight-semi-bold;
-    font-size: 1.125rem;
-    border-bottom: 1px solid $color-mid-granite;
-    padding: 20px 16px 0px 16px;
-    transition: background-color 250ms ease-in-out;
-
-    &:hover {
-      background-color: $color-very-light-granite;
-    }
-
-    &:focus {
-      @extend %focus-pink;
-    }
-  }
-
-  &__dropdown-panel {
-    display: none;
-
-    &--active {
-      display: block;
-    }
+    z-index: 2;
   }
 }
 </style>
