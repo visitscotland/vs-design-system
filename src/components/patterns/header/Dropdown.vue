@@ -12,27 +12,36 @@
         <vs-svg path="icons/chevron-down" height="5" fill="white" />
       </div>
     </button>
-    <ul aria-role="menubar" :aria-label="name" class="vs-dropdown__list" data-toggle-pane>
-      <li
-        role="none"
-        class="vs-dropdown__list-item"
-        :class="{ 'vs-dropdown__list-item--active': link.isActive }"
-        v-for="(link, index) in dropdownList"
-        :key="index"
+    <transition name="slide-fade">
+      <ul
+        aria-role="menubar"
+        :aria-label="name"
+        class="vs-dropdown__list"
+        :class="{ expanded: show }"
+        data-toggle-pane
+        v-if="show"
       >
-        <a
-          class="vs-dropdown__link"
-          :href="link.href"
-          :target="link.isExternal ? '_blank' : false"
-          :data-di-id="link.trackingID"
+        <li
+          role="none"
+          class="vs-dropdown__list-item"
+          :class="{ 'vs-dropdown__list-item--active': link.isActive }"
+          v-for="(link, index) in dropdownList"
+          :key="index"
         >
-          {{ link.title }}
-          <div v-if="link.isExternal" class="vs-dropdown__external-icon-wrapper">
-            <vs-svg path="icons/external-link" height="10" fill="white" />
-          </div>
-        </a>
-      </li>
-    </ul>
+          <a
+            class="vs-dropdown__link"
+            :href="link.href"
+            :target="link.isExternal ? '_blank' : false"
+            :data-di-id="link.trackingID"
+          >
+            {{ link.title }}
+            <div v-if="link.isExternal" class="vs-dropdown__external-icon-wrapper">
+              <vs-svg path="icons/external-link" height="10" fill="white" />
+            </div>
+          </a>
+        </li>
+      </ul>
+    </transition>
   </component>
 </template>
 
@@ -45,7 +54,9 @@ export default {
   release: "0.0.1",
   components: { VsSvg },
   data() {
-    return {}
+    return {
+      show: false,
+    }
   },
   props: {
     /**
@@ -64,23 +75,12 @@ export default {
     },
   },
   methods: {
-    resetMenus() {
-      Array.prototype.forEach.call(document.querySelectorAll("[data-toggle-pane]"), pane => {
-        pane.classList.remove("expanded")
-      })
-      Array.prototype.forEach.call(document.querySelectorAll("[data-toggle-trigger]"), trigger => {
-        trigger.setAttribute("aria-expanded", false)
-      })
-    },
     triggerToggle() {
+      this.show = !this.show
       let thisTrigger = this.$el.querySelector("[data-toggle-trigger]")
-      let thisPane = this.$el.querySelector("[data-toggle-pane]")
-      if (thisPane.classList.contains("expanded")) {
-        thisPane.classList.remove("expanded")
+      if (!this.show) {
         thisTrigger.setAttribute("aria-expanded", false)
       } else {
-        this.resetMenus()
-        thisPane.classList.add("expanded")
         thisTrigger.setAttribute("aria-expanded", true)
       }
       thisTrigger.blur()
@@ -95,37 +95,26 @@ export default {
 @import "~bootstrap/scss/utilities/flex";
 @import "~bootstrap/scss/utilities/screenreaders";
 @import "styles/placeholders";
+@import "styles/animations";
 
 .vs-dropdown {
   &__list {
     @extend %list-reset;
     background-color: darken($color-heather-purple, 10%);
     left: 0;
-    opacity: 0;
     position: absolute;
     top: 28px;
-    opacity: 0;
-    transform: translate3d(0, -130%, 0);
-    transition: all 250ms ease-in-out;
-    width: calc(100% + 2rem);
-
-    &.expanded {
-      opacity: 1;
-      transform: translate3d(0, 0, 0);
-      height: 100vh;
-    }
-  }
-
-  &__list-item {
-    min-height: 1rem;
+    width: 100%;
+    height: 100vh;
   }
 
   &__link {
+    align-items: center;
     box-shadow: inset 0 0 0 0 transparent;
     font-weight: $font-weight-normal;
     font-size: 1.125rem;
     border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-    display: none;
+    display: flex;
     padding: 20px 1rem;
     width: 100%;
     color: $color-white;
@@ -141,10 +130,6 @@ export default {
     &:hover {
       background-color: $color-thistle-pink;
       color: $color-white;
-    }
-    .vs-dropdown__list.expanded & {
-      display: flex;
-      align-items: center;
     }
   }
 

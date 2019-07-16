@@ -10,31 +10,33 @@
       <span class="sr-only">Toggle Search</span>
       <vs-svg path="icons/search" height="18" fill="white" />
     </button>
-    <div class="vs-search__form-wrapper" data-toggle-pane>
-      <form role="search" action method="get" class="vs-search__form">
-        <label for="search" class="vs-search__label">
-          <span class="sr-only">Enter a search term</span>
-          <vs-svg path="icons/search" height="18" fill="#929091" />
-        </label>
-        <input
-          class="vs-search__input"
-          type="search"
-          placeholder="Enter a search term"
-          autocomplete="off"
-          v-model="searchTerm"
-          id="search"
-        />
-        <button
-          v-if="searchTerm.length"
-          class="vs-search__clear-button"
-          @click.prevent="clearSearchField()"
-        >
-          <span class="sr-only">Clear search</span>
-          <vs-svg path="icons/cross" height="18" fill="#929091" />
-        </button>
-        <button class="vs-search__submit-button" type="submit">Go</button>
-      </form>
-    </div>
+    <transition name="slide-fade">
+      <div class="vs-search__form-wrapper" :class="{ expanded: show }" data-toggle-pane v-if="show">
+        <form role="search" action method="get" class="vs-search__form">
+          <label for="search" class="vs-search__label">
+            <span class="sr-only">Enter a search term</span>
+            <vs-svg path="icons/search" height="18" fill="#929091" />
+          </label>
+          <input
+            class="vs-search__input"
+            type="search"
+            placeholder="Enter a search term"
+            autocomplete="off"
+            v-model="searchTerm"
+            id="search"
+          />
+          <button
+            v-if="searchTerm.length"
+            class="vs-search__clear-button"
+            @click.prevent="clearSearchField()"
+          >
+            <span class="sr-only">Clear search</span>
+            <vs-svg path="icons/cross" height="18" fill="#929091" />
+          </button>
+          <button class="vs-search__submit-button" type="submit">Go</button>
+        </form>
+      </div>
+    </transition>
   </component>
 </template>
 
@@ -49,6 +51,7 @@ export default {
   data() {
     return {
       searchTerm: "",
+      show: false,
     }
   },
   methods: {
@@ -64,14 +67,12 @@ export default {
       })
     },
     triggerToggle() {
+      this.show = !this.show
       let thisTrigger = this.$el.querySelector("[data-toggle-trigger]")
-      let thisPane = this.$el.querySelector("[data-toggle-pane]")
-      if (thisPane.classList.contains("expanded")) {
-        thisPane.classList.remove("expanded")
+      if (!this.show) {
         thisTrigger.setAttribute("aria-expanded", false)
       } else {
         this.resetMenus()
-        thisPane.classList.add("expanded")
         thisTrigger.setAttribute("aria-expanded", true)
       }
       thisTrigger.blur()
@@ -95,6 +96,7 @@ export default {
 @import "~bootstrap/scss/utilities/flex";
 @import "~bootstrap/scss/utilities/screenreaders";
 @import "styles/placeholders";
+@import "styles/animations";
 
 .vs-search {
   &__button {
@@ -109,27 +111,14 @@ export default {
     justify-content: space-between;
     padding: 1rem;
     left: 0;
-    opacity: 0;
     position: absolute;
     top: 40px;
-    opacity: 0;
-    transform: translate3d(0, -250%, 0);
-    transition: all 250ms ease-in-out;
     width: 100%;
     z-index: 1;
-
-    &.expanded {
-      opacity: 1;
-      transform: translate3d(0, 0, 0);
-    }
   }
 
   &__form {
-    display: none;
-
-    .expanded & {
-      display: flex;
-    }
+    display: flex;
   }
 
   &__input {
