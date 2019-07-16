@@ -52,6 +52,20 @@
   margin: 0;
 }
 
+%button-pink {
+  background-color: $color-thistle-pink;
+  color: $color-white;
+  transition: background-color 250ms;
+
+  &:focus {
+    @extend %focus-white;
+  }
+
+  &:hover {
+    background-color: lighten($color-thistle-pink, 5%);
+  }
+}
+
 %main-nav-button-style {
   padding: 8px 10px;
 }

@@ -12,7 +12,7 @@
     </button>
     <div class="vs-search__form-wrapper" data-toggle-pane>
       <form role="search" action method="get" class="vs-search__form">
-        <label class="vs-search__label">
+        <label for="search" class="vs-search__label">
           <span class="sr-only">Enter a search term</span>
           <vs-svg path="icons/search" height="18" fill="#D0CECF" />
         </label>
@@ -21,8 +21,14 @@
           type="search"
           placeholder="Enter a search term"
           autocomplete="off"
+          v-model="searchTerm"
+          id="search"
         />
-        <button class="vs-search__clear-button">
+        <button
+          v-if="searchTerm.length"
+          class="vs-search__clear-button"
+          @click.prevent="clearSearchField()"
+        >
           <span class="sr-only">Clear search</span>
           <vs-svg path="icons/cross" height="18" fill="#D0CECF" />
         </button>
@@ -41,9 +47,14 @@ export default {
   release: "0.0.1",
   components: { VsSvg },
   data() {
-    return {}
+    return {
+      searchTerm: "",
+    }
   },
   methods: {
+    clearSearchField() {
+      this.searchTerm = ""
+    },
     resetMenus() {
       Array.prototype.forEach.call(document.querySelectorAll("[data-toggle-pane]"), pane => {
         pane.classList.remove("expanded")
@@ -88,13 +99,8 @@ export default {
 .vs-search {
   &__button {
     @extend %button-reset;
+    @extend %button-pink;
     @extend %main-nav-button-style;
-
-    background-color: $color-thistle-pink;
-
-    &:focus {
-      @extend %focus-white;
-    }
   }
 
   &__form-wrapper {
@@ -130,7 +136,7 @@ export default {
     @extend %reset-clear;
     border: none;
     display: block;
-    padding: 7px;
+    padding: 7px 7px 7px 0;
     width: 100%;
     position: relative;
 
@@ -153,7 +159,6 @@ export default {
     display: flex;
     align-items: center;
     padding: 0 10px;
-    margin-right: 5px;
 
     &:focus {
       @extend %focus-pink;
@@ -162,23 +167,21 @@ export default {
 
   &__submit-button {
     @extend %button-reset;
-    background-color: $color-thistle-pink;
-    color: $color-white;
+    @extend %button-pink;
     font-size: 1.125rem;
     font-weight: $font-weight-semi-bold;
     padding: 0 10px;
-
-    &:focus {
-      @extend %focus-white;
-    }
+    margin-left: 5px;
   }
 }
 </style>
 
 <docs>
   ```jsx
+  <div style="position: relative; height: 100px;">
     <vs-search
 
     />
+  </div>
   ```
 </docs>
