@@ -46,7 +46,7 @@
 </template>
 
 <script>
-import VsSvg from "../../elements/svg/Svg"
+import VsSvg from "../../../elements/svg/Svg"
 
 export default {
   name: "VsDropdown",
@@ -94,8 +94,8 @@ export default {
 @import "~bootstrap/scss/utilities/display";
 @import "~bootstrap/scss/utilities/flex";
 @import "~bootstrap/scss/utilities/screenreaders";
-@import "styles/placeholders";
-@import "styles/animations";
+@import "../styles/placeholders";
+@import "../styles/animations";
 
 .vs-dropdown {
   &__list {
@@ -124,7 +124,7 @@ export default {
 
     &:focus {
       background-color: $color-thistle-pink;
-      @extend %focus-white;
+      @extend %focus-white-inset;
     }
 
     &:hover {

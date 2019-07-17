@@ -1,5 +1,9 @@
 <template>
-  <component :is="type" class="vs-main-nav__list-item">
+  <component
+    :is="type"
+    class="vs-main-nav__list-item"
+    :class="'vs-main-nav__list-item--level' + level"
+  >
     <button
       v-if="hasPopup(item)"
       class="vs-main-nav__button"
@@ -7,10 +11,13 @@
       data-toggle-trigger
       @click.prevent="triggerToggle()"
       aria-haspopup="true"
-      aria-expanded="false"
+      :aria-expanded="show ? 'true' : 'false'"
     >
       {{ item.title }}
-      <div class="vs-main-nav__icon-wrapper">
+      <div
+        class="vs-main-nav__icon-wrapper vs-main-nav__icon-wrapper--chevron-down"
+        :class="[show ? 'vs-main-nav__icon-wrapper--expanded' : '', level ? 'level' + level : '']"
+      >
         <vs-svg path="icons/chevron-down" height="10" fill="#929091" />
       </div>
     </button>
@@ -23,28 +30,51 @@
       :data-di-id="item.trackingID"
       >{{ item.title }}</a
     >
-    <transition name="slide-fade" v-if="item.subnav">
-      <ul
-        class="vs-main-nav__list"
-        :class="[show ? 'expanded' : '', level ? 'vs-main-nav__list--level' + level : '']"
-        v-if="show"
-      >
-        <VsMainNavListItem
-          v-for="(subnav, index) in item.subnav"
-          :level="2"
-          :item="subnav"
-          :key="index"
-        />
-      </ul>
-    </transition>
-    <transition name="slide-fade" v-if="item.promoPanel">
-      <VsMainNavPromoPanel v-if="show" :item="item.promoPanel" />
+    <transition name="slide-fade" v-if="hasPopup(item)">
+      <div v-if="show">
+        <ul
+          class="vs-main-nav__list"
+          :class="[
+            show ? 'expanded' : '',
+            incrementLevel(level) ? 'vs-main-nav__list--level' + incrementLevel(level) : '',
+          ]"
+        >
+          <li
+            class="vs-main-nav__list-item"
+            :class="'vs-main-nav__list-item--level' + incrementLevel(level)"
+            v-if="item.href !== null"
+          >
+            <a
+              class="vs-main-nav__link vs-main-nav__link--landing-page"
+              :href="item.href"
+              :class="[
+                item.isExternal ? 'external' : '',
+                level ? 'vs-main-nav__link--level' + incrementLevel(level) : '',
+              ]"
+              :target="item.isExternal ? '_blank' : false"
+              :data-di-id="item.trackingID"
+              >See all {{ titleToLowerCase(item.title) }}
+              <div class="vs-main-nav__icon-wrapper vs-main-nav__icon-wrapper--chevron-right">
+                <vs-svg path="icons/chevron-right" height="15" fill="#AF006E" />
+              </div>
+            </a>
+          </li>
+          <VsMainNavListItem
+            v-for="(subnav, index) in item.subnav"
+            :level="incrementLevel(level)"
+            :item="subnav"
+            :key="index"
+          />
+        </ul>
+        <VsMainNavPromoItem v-if="item.promoItem" :item="item.promoItem" />
+        <VsMainNavPromoList v-if="item.promoList" :list="item.promoList" />
+      </div>
     </transition>
   </component>
 </template>
 
 <script>
-import VsSvg from "../../elements/svg/Svg"
+import VsSvg from "../../../elements/svg/Svg"
 
 export default {
   name: "VsMainNavListItem",
@@ -73,20 +103,21 @@ export default {
     },
   },
   methods: {
+    titleToLowerCase(title) {
+      return title.toLowerCase()
+    },
+    incrementLevel(level) {
+      return level + 1
+    },
     triggerToggle() {
       this.show = !this.show
       let thisTrigger = this.$el.querySelector("[data-toggle-trigger]")
-      if (!this.show) {
-        thisTrigger.setAttribute("aria-expanded", false)
-      } else {
-        thisTrigger.setAttribute("aria-expanded", true)
-      }
       thisTrigger.blur()
     },
     hasPopup(item) {
       if (
         item.subnav !== undefined ||
-        item.promoPanel !== undefined ||
+        item.promoItem !== undefined ||
         item.promoList !== undefined
       ) {
         return true
@@ -96,11 +127,6 @@ export default {
     triggerToggle() {
       this.show = !this.show
       let thisTrigger = this.$el.querySelector("[data-toggle-trigger]")
-      if (!this.show) {
-        thisTrigger.setAttribute("aria-expanded", false)
-      } else {
-        thisTrigger.setAttribute("aria-expanded", true)
-      }
       thisTrigger.blur()
     },
   },
@@ -112,37 +138,39 @@ export default {
 @import "~bootstrap/scss/utilities/display";
 @import "~bootstrap/scss/utilities/flex";
 @import "~bootstrap/scss/utilities/screenreaders";
-@import "styles/placeholders";
-@import "styles/animations";
+@import "../styles/placeholders";
+@import "../styles/animations";
 
 .vs-main-nav {
   &__icon-wrapper {
-    margin-left: 5px;
-    transition: transform 250ms;
+    &--chevron-down {
+      margin-left: 5px;
+      transition: transform 250ms;
+    }
 
-    .vs-main-nav__button[aria-expanded="true"] & {
+    &--expanded {
       transform: rotate(180deg);
       transform-origin: 50% 54%;
+
+      &.level1 {
+        svg {
+          fill: #ffffff !important;
+        }
+      }
+    }
+
+    &--chevron-right {
+      margin-top: -3px;
     }
   }
 
   &__list {
     @extend %list-reset;
     background-color: $color-white;
-    width: 100%;
-
-    &--level1 {
-      padding-left: 1rem;
-    }
-
-    &--level2 {
-      padding-left: 1rem;
-    }
   }
 
   &__button {
     @extend %button-reset;
-    width: 100%;
   }
 
   &__button,
@@ -153,40 +181,63 @@ export default {
     justify-content: space-between;
     font-weight: $font-weight-semi-bold;
     font-size: 1.125rem;
-    border-bottom: 1px solid $color-mid-granite;
-    padding: 20px 16px 0px 16px;
-    transition: all 250ms ease-in-out;
-
-    &:hover {
-      background-color: $color-light-granite;
-    }
+    transition: background-color 250ms ease-in-out;
 
     &:focus {
-      background-color: $color-light-granite;
-      @extend %focus-pink;
+      @extend %focus-pink-inset;
     }
 
     &--level1 {
+      box-shadow: 0 1px 0 0 $color-mid-granite;
+      margin: 0 1rem;
+      padding-top: 1.25rem;
+      width: calc(100% - 2rem);
+
       &[aria-expanded="true"] {
         background-color: $color-dark-granite;
         color: $color-white;
+        margin: 0;
+        padding: 0.75rem 1rem;
+        width: 100%;
       }
     }
 
+    &--level2 {
+      box-shadow: 0 1px 0 0 $color-mid-granite;
+      margin: 0 1rem 0 2rem;
+      padding-top: 1.5rem;
+      width: calc(100% - 3rem);
+    }
+
+    &--level3 {
+      margin: 0 1rem 0 3rem;
+      padding-top: 1.5rem;
+      width: calc(100% - 4rem);
+    }
+
+    &--level3,
     &--level2 {
       font-size: 0.875rem;
       font-weight: $font-weight-normal;
 
       &[aria-expanded="true"] {
         color: $color-thistle-pink;
-        border-bottom: 1px solid $color-thistle-pink;
+        box-shadow: 0 1px 0 0 $color-thistle-pink;
         font-weight: $font-weight-semi-bold;
       }
     }
   }
 
   &__link {
-    &--level2 {
+    &--landing-page {
+      box-shadow: 0 1px 0 0 $color-thistle-pink;
+      color: $color-thistle-pink;
+
+      &:hover {
+        color: $color-thistle-pink;
+      }
+    }
+    &--level3 {
       border-bottom: none;
     }
   }

@@ -5,7 +5,7 @@
       data-toggle-trigger="main-nav"
       @click="triggerToggle()"
       aria-haspopup="true"
-      aria-expanded="false"
+      :aria-expanded="show ? 'true' : 'false'"
     >
       <span class="switch"> <span class="sr-only">Toggle Main Navigation</span> </span>
     </button>
@@ -28,7 +28,7 @@
 </template>
 
 <script>
-import VsSvg from "../../elements/svg/Svg"
+import VsSvg from "../../../elements/svg/Svg"
 
 export default {
   name: "VsMainNav",
@@ -61,11 +61,6 @@ export default {
     triggerToggle() {
       this.show = !this.show
       let thisTrigger = this.$el.querySelector("[data-toggle-trigger]")
-      if (!this.show) {
-        thisTrigger.setAttribute("aria-expanded", false)
-      } else {
-        thisTrigger.setAttribute("aria-expanded", true)
-      }
       thisTrigger.blur()
     },
   },
@@ -77,8 +72,8 @@ export default {
 @import "~bootstrap/scss/utilities/display";
 @import "~bootstrap/scss/utilities/flex";
 @import "~bootstrap/scss/utilities/screenreaders";
-@import "styles/placeholders";
-@import "styles/animations";
+@import "../styles/placeholders";
+@import "../styles/animations";
 
 .vs-main-nav {
   display: flex;
@@ -138,7 +133,7 @@ export default {
     }
 
     &:focus {
-      @extend %focus-pink;
+      @extend %focus-pink-inset;
     }
   }
 
@@ -149,6 +144,7 @@ export default {
     position: absolute;
     background-color: $color-white;
     top: 40px;
+    height: 100vh;
     width: 100%;
     z-index: 2;
   }
@@ -681,14 +677,14 @@ export default {
                         ]
                     }
                 ],
-                promoPanel: {
+                promoItem: {
                     title: 'Unusual Accommodation',
                     href: 'https://www.visitscotland.com/accommodation/unusual-places-to-stay/',
                     isExternal: false,
                     isActive: false,
                     buttonText: 'Read more',
                     description: 'Why not stay in a castle, a lighthouse or on a working farm?',
-                    imageLink: 'https://cimg.visitscotland.com/cms-images/navigation/accommodation-rc?size=md'
+                    imageLink: 'https://cimg.visitscotland.com/cms-images/destinations/attractions/gearrannan-blackhouse-village?size=sm'
                 }
             },
             {
@@ -783,7 +779,7 @@ export default {
                         trackingID: 1
                     }
                 ],
-                promoPanel: {
+                promoItem: {
                     title: 'Scotland\u0027s Tallest Peak',
                     href: 'https://www.visitscotland.com/see-do/iconic-scotland/ben-nevis',
                     isExternal: false,
@@ -897,7 +893,7 @@ export default {
                         ]
                     }
                 ],
-                promoPanel: {
+                promoItem: {
                     title: 'VisitScotland iCentres',
                     href: 'https://www.visitscotland.com/about/practical-information/vic/',
                     isExternal: false,

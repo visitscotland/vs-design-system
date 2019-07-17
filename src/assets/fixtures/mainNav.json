@@ -519,14 +519,14 @@
         ]
       }
     ],
-    "promoPanel": {
+    "promoItem": {
       "title": "Unusual Accommodation",
       "href": "https://www.visitscotland.com/accommodation/unusual-places-to-stay/",
       "isExternal": false,
       "isActive": false,
       "buttonText": "Read more",
       "description": "Why not stay in a castle, a lighthouse or on a working farm?",
-      "imageLink": "https://cimg.visitscotland.com/cms-images/navigation/accommodation-rc?size=md"
+      "imageLink": "https://cimg.visitscotland.com/cms-images/accommodation/accommodation-new/glamping-domes-sauchope-holiday-park?size=xs"
     }
   },
   {
@@ -621,7 +621,7 @@
         "trackingID": 1
       }
     ],
-    "promoPanel": {
+    "promoItem": {
       "title": "Scotland\u0027s Tallest Peak",
       "href": "https://www.visitscotland.com/see-do/iconic-scotland/ben-nevis",
       "isExternal": false,
@@ -629,7 +629,7 @@
       "trackingID": 1,
       "buttonText": "Read more",
       "description": "Iconic Ben Nevis needs to be top of your Scottish to-do list.",
-      "imageLink": "https://cimg.visitscotland.com/cms-images/destinations/fort-william/ben-nevis-portrait-1?size=md"
+      "imageLink": "https://cimg.visitscotland.com/cms-images/destinations/fort-william/ben-nevis?size=sm"
     }
   },
   {
@@ -735,7 +735,7 @@
         ]
       }
     ],
-    "promoPanel": {
+    "promoItem": {
       "title": "VisitScotland iCentres",
       "href": "https://www.visitscotland.com/about/practical-information/vic/",
       "isExternal": false,
@@ -743,7 +743,7 @@
       "buttonText": "Read more",
       "trackingID": 1,
       "description": "Expert local knowledge, gifts and inspiration.",
-      "imageLink": "https://cimg.visitscotland.com/cms-images/navigation/travel-rc?size=md"
+      "imageLink": "https://cimg.visitscotland.com/cms-images/about/458950/fort-william-visitscotland-icentre-sign?size=sm"
     }
   },
   {
@@ -752,54 +752,47 @@
     "isExternal": false,
     "isActive": false,
     "trackingID": 1,
-    "promoList": {
-      "buttonText": "See all inspiration",
-      "href": "https://www.visitscotland.com/inspiration",
-      "isExternal": false,
-      "isActive": false,
-      "trackingID": 1,
-      "promos": [
-        {
-          "title": "Romantic",
-          "href": "https://www.visitscotland.com/inspiration/romantic",
-          "isExternal": false,
-          "isActive": false,
-          "trackingID": 1,
-          "imageLink": ""
-        },
-        {
-          "title": "Island hopping",
-          "href": "https://www.visitscotland.com/inpiration/island-hopping",
-          "isExternal": false,
-          "isActive": false,
-          "trackingID": 1,
-          "imageLink": ""
-        },
-        {
-          "title": "Family",
-          "href": "https://www.visitscotland.com/inpiration/family",
-          "isExternal": false,
-          "isActive": false,
-          "trackingID": 1,
-          "imageLink": ""
-        },
-        {
-          "title": "Farm stays",
-          "href": "https://www.visitscotland.com/inpiration/farm-stays",
-          "isExternal": false,
-          "isActive": false,
-          "trackingID": 1,
-          "imageLink": ""
-        },
-        {
-          "title": "Wellness",
-          "href": "https://www.visitscotland.com/inpiration/wellness",
-          "isExternal": false,
-          "isActive": false,
-          "trackingID": 1,
-          "imageLink": ""
-        }
-      ]
-    }
+    "promoList": [
+      {
+        "title": "Romantic",
+        "href": "https://www.visitscotland.com/inspiration/romantic",
+        "isExternal": false,
+        "isActive": false,
+        "trackingID": 1,
+        "imageLink": "https://cimg.visitscotland.com/cms-images/about/couple-beach-south-queensferry-walk?size=sm"
+      },
+      {
+        "title": "Island hopping",
+        "href": "https://www.visitscotland.com/inpiration/island-hopping",
+        "isExternal": false,
+        "isActive": false,
+        "trackingID": 1,
+        "imageLink": "https://cimg.visitscotland.com/cms-images/destinations/argyll-and-the-isles/kiloran-bay?size=sm"
+      },
+      {
+        "title": "Family",
+        "href": "https://www.visitscotland.com/inpiration/family",
+        "isExternal": false,
+        "isActive": false,
+        "trackingID": 1,
+        "imageLink": "https://cimg.visitscotland.com/cms-images/itineraries/loch-insh-family-paddleboarding?size=sm"
+      },
+      {
+        "title": "Farm stays",
+        "href": "https://www.visitscotland.com/inpiration/farm-stays",
+        "isExternal": false,
+        "isActive": false,
+        "trackingID": 1,
+        "imageLink": "https://cimg.visitscotland.com/cms-images/attractions/cattle-grazing-cliffs-westray?size=md"
+      },
+      {
+        "title": "Wellness",
+        "href": "https://www.visitscotland.com/inpiration/wellness",
+        "isExternal": false,
+        "isActive": false,
+        "trackingID": 1,
+        "imageLink": "https://cimg.visitscotland.com/cms-images/holidays/outdoor-spa-gleneagles?size=md"
+      }
+    ]
   }
 ]

@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import VsSvg from "../../elements/svg/Svg"
+import VsSvg from "../../../elements/svg/Svg"
 
 export default {
   name: "VsLogo",
@@ -33,15 +33,15 @@ export default {
 @import "~bootstrap/scss/utilities/display";
 @import "~bootstrap/scss/utilities/flex";
 @import "~bootstrap/scss/utilities/screenreaders";
-@import "styles/placeholders";
+@import "../styles/placeholders";
 
 .vs-logo {
   display: flex;
   align-items: stretch;
-  padding: 10px 5px;
+  padding: 10px 0;
 
   &:focus {
-    @extend %focus-pink;
+    @extend %focus-pink-inset;
   }
 
   svg {
