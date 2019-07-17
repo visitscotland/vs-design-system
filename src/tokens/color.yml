@@ -9,7 +9,7 @@
 
 aliases:
   gorse_yellow:
-    value: "fcca1b"
+    value: "#FCCA1B"
   murrayfield_navy:
     value: "#083973"
   saltire_blue:
@@ -17,12 +17,11 @@ aliases:
   heather_purple:
     value: "#700e57"
   thistle_pink:
-    value: "#af006e"
+    value: "#AF006E"
   sanna_sand:
     value: "#D7D2CB"
   single_malt_gold:
     value: "#E1A245"
-
   black:
     value: "#000"
   total_eclipse:

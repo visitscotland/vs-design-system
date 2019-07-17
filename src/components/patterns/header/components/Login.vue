@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import VsSvg from "../../elements/svg/Svg"
+import VsSvg from "../../../elements/svg/Svg"
 
 export default {
   name: "VsLogin",
@@ -41,7 +41,7 @@ export default {
 @import "~bootstrap/scss/utilities/display";
 @import "~bootstrap/scss/utilities/flex";
 @import "~bootstrap/scss/utilities/screenreaders";
-@import "styles/placeholders";
+@import "../styles/placeholders";
 
 .vs-login {
   @extend %button-reset;

@@ -41,7 +41,7 @@
 </template>
 
 <script>
-import VsSvg from "../../elements/svg/Svg"
+import VsSvg from "../../../elements/svg/Svg"
 
 export default {
   name: "VsSearch",
@@ -95,8 +95,8 @@ export default {
 @import "~bootstrap/scss/utilities/display";
 @import "~bootstrap/scss/utilities/flex";
 @import "~bootstrap/scss/utilities/screenreaders";
-@import "styles/placeholders";
-@import "styles/animations";
+@import "../styles/placeholders";
+@import "../styles/animations";
 
 .vs-search {
   &__button {
@@ -130,7 +130,7 @@ export default {
     position: relative;
 
     &:focus {
-      @extend %focus-pink;
+      @extend %focus-pink-inset;
     }
   }
 
@@ -150,7 +150,7 @@ export default {
     padding: 0 10px;
 
     &:focus {
-      @extend %focus-pink;
+      @extend %focus-pink-inset;
     }
   }
 

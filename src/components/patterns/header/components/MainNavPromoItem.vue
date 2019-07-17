@@ -1,11 +1,11 @@
 <template>
   <component :is="type" class="vs-promo-panel__link" :href="item.href">
-    <span class="vs-promo-panel__span">
-      {{ item.title }}
-      <span class="vs-promo-panel__icon-wrapper">
+    <div class="vs-promo-panel__wrapper">
+      <span class="vs-promo-panel__link-title"> {{ item.title }} </span>
+      <div class="vs-promo-panel__icon-wrapper">
         <vs-svg path="icons/chevron-right" height="10" fill="#FFFFFF" />
-      </span>
-    </span>
+      </div>
+    </div>
     <div class="vs-promo-panel__image-wrapper" v-if="item.imageLink">
       <img
         class="lazyload vs-promo-panel__image"
@@ -19,10 +19,10 @@
 </template>
 
 <script>
-import VsSvg from "../../elements/svg/Svg"
+import VsSvg from "../../../elements/svg/Svg"
 
 export default {
-  name: "VsMainNavPromoPanel",
+  name: "VsMainNavPromoItem",
   status: "prototype",
   release: "0.0.1",
   components: { VsSvg },
@@ -50,56 +50,75 @@ export default {
 @import "~bootstrap/scss/utilities/display";
 @import "~bootstrap/scss/utilities/flex";
 @import "~bootstrap/scss/utilities/screenreaders";
-@import "styles/placeholders";
+@import "../styles/placeholders";
 
 .vs-promo-panel {
   &__link {
-    color: $color-total-eclipse;
     display: block;
     position: relative;
-    overflow: hidden;
     height: 200px;
     width: 100%;
+
+    &:focus {
+      @extend %focus-pink;
+    }
   }
 
-  &__span {
-    position: absolute;
-    bottom: 0;
-    display: flex;
-    align-items: bottom;
-    left: 0;
-    background-color: $color-white;
-    z-index: 1;
-    padding: 1rem;
-    width: 50%;
+  &__link-title {
+    display: inline-flex;
+    color: $color-total-eclipse;
+    font-weight: $font-weight-light;
+    font-size: 1.125rem;
+    line-height: 1.25rem;
+    max-width: calc(100% - 1rem);
   }
 
   &__image,
   &__image-wrapper {
+    background-position: 50% 50%;
+    background-size: cover;
+    height: 200px;
+    left: 50%;
+    object-fit: cover;
     position: absolute;
     top: 50%;
-    left: 50%;
-    width: 100%;
-    height: 100%;
-    background-size: cover;
-    background-position: 50% 50%;
     transform: translate(-50%, -50%);
-    object-fit: cover;
+    width: 100%;
+  }
+
+  &__wrapper {
+    position: absolute;
+    background-color: $color-white;
+    bottom: 0;
+    left: 0;
+    padding: 1rem 2rem 1rem 1rem;
+    width: 50%;
+    z-index: 1;
   }
 
   &__icon-wrapper {
-    background-color: $color-thistle-pink;
-    position: relative;
-    border-radius: 50%;
-    display: block;
-    width: 1rem;
-    height: 1rem;
+    right: 1rem;
+    bottom: 1rem;
+    position: absolute;
+    padding: 10px;
 
     svg {
-      top: 50%;
-      left: 50%;
       position: absolute;
-      transform: translate(-50%, -50%);
+      bottom: 5px;
+      right: 6px;
+    }
+
+    &::before {
+      background-color: $color-thistle-pink;
+      border-radius: 50%;
+      bottom: 0;
+      content: "";
+      display: block;
+      height: 20px;
+      right: 0;
+      position: absolute;
+      width: 20px;
+      bottom: 0;
     }
   }
 }
@@ -107,6 +126,7 @@ export default {
 
 <docs>
   ```jsx
+  <div>
     <vs-main-nav-promo-panel
       item={
           title: 'VisitScotland iCentres',
@@ -119,5 +139,6 @@ export default {
           imageLink: 'https://cimg.visitscotland.com/cms-images/navigation/travel-rc?size=md'
       }
     />
+  </div>
   ```
 </docs>

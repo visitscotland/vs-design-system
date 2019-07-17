@@ -19,7 +19,7 @@
 </template>
 
 <script>
-import VsSvg from "../../elements/svg/Svg"
+import VsSvg from "../../../elements/svg/Svg"
 
 export default {
   name: "VsFavourites",
@@ -64,7 +64,7 @@ export default {
 @import "~bootstrap/scss/utilities/display";
 @import "~bootstrap/scss/utilities/flex";
 @import "~bootstrap/scss/utilities/screenreaders";
-@import "styles/placeholders";
+@import "../styles/placeholders";
 
 .vs-favourites {
   @extend %button-reset;
@@ -73,7 +73,7 @@ export default {
   position: relative;
 
   &:focus {
-    @extend %focus-pink;
+    @extend %focus-pink-inset;
   }
 
   &__count {
