@@ -143,7 +143,8 @@ export default {
 @import "styles/placeholders";
 
 .vs-header {
-  min-height: 1200px; // temporary -
+  min-height: 600px; // temporary -
+  overflow-y: scroll;
   position: relative;
 }
 
