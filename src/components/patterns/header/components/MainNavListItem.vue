@@ -9,7 +9,7 @@
       class="vs-main-nav__button"
       :class="[show ? 'expanded' : '', level ? 'vs-main-nav__button--level' + level : '']"
       data-toggle-trigger
-      @click.prevent="triggerToggle()"
+      @click="triggerToggle()"
       aria-haspopup="true"
       :aria-expanded="show ? 'true' : 'false'"
     >
@@ -103,17 +103,6 @@ export default {
     },
   },
   methods: {
-    titleToLowerCase(title) {
-      return title.toLowerCase()
-    },
-    incrementLevel(level) {
-      return level + 1
-    },
-    triggerToggle() {
-      this.show = !this.show
-      let thisTrigger = this.$el.querySelector("[data-toggle-trigger]")
-      thisTrigger.blur()
-    },
     hasPopup(item) {
       if (
         item.subnav !== undefined ||
@@ -124,9 +113,29 @@ export default {
       }
       return false
     },
+    incrementLevel(level) {
+      return level + 1
+    },
+    titleToLowerCase(title) {
+      return title.toLowerCase()
+    },
     triggerToggle() {
       this.show = !this.show
       let thisTrigger = this.$el.querySelector("[data-toggle-trigger]")
+      let headerWrapper = document.querySelector(".vs-header")
+      if (this.show) {
+        headerWrapper.scrollTo({
+          behavior: "smooth",
+          left: 0,
+          top: thisTrigger.offsetTop + 68,
+        })
+      } else {
+        headerWrapper.scrollTo({
+          behavior: "smooth",
+          left: 0,
+          top: 0,
+        })
+      }
       thisTrigger.blur()
     },
   },
@@ -166,7 +175,6 @@ export default {
 
   &__list {
     @extend %list-reset;
-    background-color: $color-white;
   }
 
   &__button {
@@ -190,14 +198,14 @@ export default {
     &--level1 {
       box-shadow: 0 1px 0 0 $color-mid-granite;
       margin: 0 1rem;
-      padding-top: 1.25rem;
+      padding-top: 1rem;
       width: calc(100% - 2rem);
 
       &[aria-expanded="true"] {
         background-color: $color-dark-granite;
         color: $color-white;
         margin: 0;
-        padding: 0.75rem 1rem;
+        padding: 0.5rem 1rem;
         width: 100%;
       }
     }
@@ -222,7 +230,7 @@ export default {
 
       &[aria-expanded="true"] {
         color: $color-thistle-pink;
-        box-shadow: 0 1px 0 0 $color-thistle-pink;
+        box-shadow: inset 0 -1px 0 0 $color-thistle-pink;
         font-weight: $font-weight-semi-bold;
       }
     }
