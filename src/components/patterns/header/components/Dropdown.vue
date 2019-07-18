@@ -5,7 +5,7 @@
       data-toggle-trigger
       @click="triggerToggle()"
       aria-haspopup="true"
-      aria-expanded="false"
+      :aria-expanded="show ? 'true' : 'false'"
     >
       <span> <span class="sr-only">Toggle submenu for</span>{{ name }} </span>
       <div class="vs-dropdown__icon-wrapper">
@@ -78,11 +78,6 @@ export default {
     triggerToggle() {
       this.show = !this.show
       let thisTrigger = this.$el.querySelector("[data-toggle-trigger]")
-      if (!this.show) {
-        thisTrigger.setAttribute("aria-expanded", false)
-      } else {
-        thisTrigger.setAttribute("aria-expanded", true)
-      }
       thisTrigger.blur()
     },
   },
