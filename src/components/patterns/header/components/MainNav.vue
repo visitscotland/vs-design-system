@@ -59,10 +59,19 @@ export default {
   },
   methods: {
     triggerToggle() {
-      this.show = !this.show
-      let thisTrigger = this.$el.querySelector("[data-toggle-trigger]")
-      thisTrigger.blur()
+      let currentState = this.show
+      this.$root.$emit("resetMenus")
+      if (currentState === false) {
+        this.show = true
+      }
+      this.$el.querySelector("[data-toggle-trigger]").blur()
     },
+    reset() {
+      this.show = false
+    },
+  },
+  mounted() {
+    this.$root.$on("resetMenus", this.reset)
   },
 }
 </script>

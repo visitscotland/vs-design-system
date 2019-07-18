@@ -29,6 +29,7 @@ export default {
   },
   methods: {
     toggleLogin() {
+      this.$root.$emit("resetMenus")
       this.isLoggedIn = !this.isLoggedIn
       this.$el.blur()
     },

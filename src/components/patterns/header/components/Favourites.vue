@@ -50,6 +50,7 @@ export default {
   },
   methods: {
     addToFavourites(favourite) {
+      this.$root.$emit("resetMenus")
       this.$el.blur()
       if (this.favourites.indexOf(favourite) === -1) {
         this.favourites.push(favourite)
