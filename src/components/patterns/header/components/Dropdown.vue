@@ -100,7 +100,7 @@ export default {
 .vs-dropdown {
   &__list {
     @extend %list-reset;
-    background-color: darken($color-heather-purple, 10%);
+    background-color: shade($color-heather-purple, 20%);
     left: 0;
     position: absolute;
     top: 28px;
@@ -110,25 +110,23 @@ export default {
 
   &__link {
     align-items: center;
+    border-bottom: 1px solid tint($color-heather-purple, 5%);
     box-shadow: inset 0 0 0 0 transparent;
-    font-weight: $font-weight-normal;
-    font-size: 1.125rem;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-    display: flex;
-    padding: 20px 1rem;
-    width: 100%;
     color: $color-white;
-    padding: 20px 1rem 0px 1rem;
+    display: flex;
+    font-size: 1.125rem;
+    font-weight: $font-weight-semi-bold;
+    margin: 0 1rem;
+    padding-top: 1rem;
     position: relative;
     transition: all 250ms ease-in-out;
+    width: calc(100% - 2rem);
 
     &:focus {
-      background-color: $color-thistle-pink;
       @extend %focus-white-inset;
     }
 
     &:hover {
-      background-color: $color-thistle-pink;
       color: $color-white;
     }
   }
