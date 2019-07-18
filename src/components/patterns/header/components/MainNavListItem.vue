@@ -53,7 +53,8 @@
               ]"
               :target="item.isExternal ? '_blank' : false"
               :data-di-id="item.trackingID"
-              >See all {{ titleToLowerCase(item.title) }}
+            >
+              See all {{ titleToLowerCase(item.title) }}
               <div class="vs-main-nav__icon-wrapper vs-main-nav__icon-wrapper--chevron-right">
                 <vs-svg path="icons/chevron-right" height="15" fill="#AF006E" />
               </div>
@@ -219,7 +220,7 @@ export default {
 
     &--level3 {
       margin: 0 1rem 0 3rem;
-      padding-top: 1.5rem;
+      padding: 0.75rem 0;
       width: calc(100% - 4rem);
     }
 
