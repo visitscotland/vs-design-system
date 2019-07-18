@@ -70,7 +70,6 @@ export default {
     font-weight: $font-weight-light;
     font-size: 1.125rem;
     line-height: 1.25rem;
-    max-width: calc(100% - 1rem);
   }
 
   &__image,
@@ -91,8 +90,7 @@ export default {
     background-color: $color-white;
     bottom: 0;
     left: 0;
-    padding: 1rem 2rem 1rem 1rem;
-    width: 50%;
+    padding: 1rem 3rem 1rem 1rem;
     z-index: 1;
   }
 
