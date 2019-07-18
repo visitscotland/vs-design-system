@@ -132,6 +132,11 @@ export default {
       default: "header",
     },
   },
+  methods: {
+    resetMenus() {
+      this.$emit("resetMenus")
+    },
+  },
 }
 </script>
 

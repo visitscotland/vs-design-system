@@ -5,7 +5,7 @@
       data-toggle-trigger
       @click="triggerToggle()"
       aria-haspopup="true"
-      aria-expanded="false"
+      :aria-expanded="show ? 'true' : 'false'"
     >
       <span class="sr-only">Toggle Search</span>
       <vs-svg path="icons/search" height="18" fill="white" />
@@ -58,25 +58,20 @@ export default {
     clearSearchField() {
       this.searchTerm = ""
     },
-    resetMenus() {
-      Array.prototype.forEach.call(document.querySelectorAll("[data-toggle-pane]"), pane => {
-        pane.classList.remove("expanded")
-      })
-      Array.prototype.forEach.call(document.querySelectorAll("[data-toggle-trigger]"), trigger => {
-        trigger.setAttribute("aria-expanded", false)
-      })
-    },
     triggerToggle() {
-      this.show = !this.show
-      let thisTrigger = this.$el.querySelector("[data-toggle-trigger]")
-      if (!this.show) {
-        thisTrigger.setAttribute("aria-expanded", false)
-      } else {
-        this.resetMenus()
-        thisTrigger.setAttribute("aria-expanded", true)
+      let currentState = this.show
+      this.$root.$emit("resetMenus")
+      if (currentState === false) {
+        this.show = true
       }
-      thisTrigger.blur()
+      this.$el.querySelector("[data-toggle-trigger]").blur()
     },
+    reset() {
+      this.show = false
+    },
+  },
+  mounted() {
+    this.$root.$on("resetMenus", this.reset)
   },
   props: {
     /**
@@ -169,7 +164,6 @@ export default {
   ```jsx
   <div style="position: relative; height: 100px;">
     <vs-search
-
     />
   </div>
   ```
