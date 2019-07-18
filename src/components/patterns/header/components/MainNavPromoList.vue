@@ -44,6 +44,10 @@ export default {
   &__list {
     @extend %list-reset;
   }
+
+  &__list-item {
+    margin-bottom: 1rem;
+  }
 }
 </style>
 
