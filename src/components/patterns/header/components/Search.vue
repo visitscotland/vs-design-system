@@ -98,6 +98,15 @@ export default {
     @extend %button-reset;
     @extend %button-pink;
     @extend %main-nav-button-style;
+    transition: background-color 250ms ease-in-out;
+
+    &[aria-expanded="true"] {
+      background-color: $color-light-granite;
+
+      svg {
+        fill: $color-mid-granite !important;
+      }
+    }
   }
 
   &__form-wrapper {
