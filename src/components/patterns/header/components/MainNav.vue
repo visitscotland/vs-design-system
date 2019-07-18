@@ -139,14 +139,17 @@ export default {
 
   &__list {
     @extend %list-reset;
-    box-shadow: inset 0 8px 6px -6px rgba(0, 0, 0, 0.3);
     left: 0;
     position: absolute;
-    background-color: $color-white;
     top: 40px;
     height: 100vh;
     width: 100%;
     z-index: 2;
+
+    &--level1 {
+      box-shadow: inset 0 8px 6px -6px rgba(0, 0, 0, 0.3);
+      background-color: $color-white;
+    }
   }
 }
 </style>
