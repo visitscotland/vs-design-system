@@ -7,7 +7,7 @@
       aria-haspopup="true"
       :aria-expanded="show ? 'true' : 'false'"
     >
-      <span> <span class="sr-only">Toggle submenu for</span>{{ name }} </span>
+      <span> <span class="sr-only">Toggle submenu for </span>{{ name }} </span>
       <div class="vs-dropdown__icon-wrapper">
         <vs-svg path="icons/chevron-down" height="5" fill="white" />
       </div>

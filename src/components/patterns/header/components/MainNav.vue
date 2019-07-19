@@ -2,7 +2,7 @@
   <component :is="type" class="vs-main-nav" :aria-label="name">
     <button
       class="vs-main-nav__button"
-      data-toggle-trigger="main-nav"
+      data-toggle-trigger
       @click="triggerToggle()"
       aria-haspopup="true"
       :aria-expanded="show ? 'true' : 'false'"
@@ -29,15 +29,18 @@
 
 <script>
 import VsSvg from "../../../elements/svg/Svg"
+import VsMainNavListItem from "./MainNavListItem"
 
 export default {
   name: "VsMainNav",
   status: "prototype",
   release: "0.0.1",
-  components: { VsSvg },
+  components: {
+    VsSvg,
+    VsMainNavListItem,
+  },
   data() {
     return {
-      mainNavListIsExpanded: false,
       show: false,
     }
   },

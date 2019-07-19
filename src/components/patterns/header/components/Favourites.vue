@@ -1,20 +1,21 @@
 <template>
-  <component
-    :is="type"
-    class="vs-favourites"
-    @click="addToFavourites({ url: 'http://www.visitscotland.com', title: 'Homepage' })"
-  >
-    <span class="sr-only">Add to Favourites</span>
-    <span class="vs-favourites__count" v-if="this.favourites.length">
-      <span class="sr-only">Current favourites count:</span> {{ this.displayCount }}
-    </span>
-    <vs-svg
-      v-if="this.favourites.length"
-      path="icons/favourite-filled"
-      height="20"
-      fill="#700e57"
-    />
-    <vs-svg v-else path="icons/favourite" height="18" fill="#929091" />
+  <component :is="type" class="vs-favourites">
+    <button
+      class="vs-favourites__button"
+      @click="addToFavourites({ url: 'http://www.visitscotland.com', title: 'Homepage' })"
+    >
+      <span class="sr-only">Add to Favourites</span>
+      <span class="vs-favourites__count" v-if="this.favourites.length">
+        <span class="sr-only">Current favourites count:</span> {{ this.displayCount }}
+      </span>
+      <vs-svg
+        v-if="this.favourites.length"
+        path="icons/favourite-filled"
+        height="20"
+        fill="#700e57"
+      />
+      <vs-svg v-else path="icons/favourite" height="18" fill="#929091" />
+    </button>
   </component>
 </template>
 
@@ -37,7 +38,7 @@ export default {
      */
     type: {
       type: String,
-      default: "button",
+      default: "div",
     },
   },
   computed: {
@@ -68,13 +69,15 @@ export default {
 @import "../styles/placeholders";
 
 .vs-favourites {
-  @extend %button-reset;
-  @extend %main-nav-button-style;
+  &__button {
+    @extend %button-reset;
+    @extend %main-nav-button-style;
 
-  position: relative;
+    position: relative;
 
-  &:focus {
-    @extend %focus-pink-inset;
+    &:focus {
+      @extend %focus-pink-inset;
+    }
   }
 
   &__count {
