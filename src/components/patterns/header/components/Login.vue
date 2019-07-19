@@ -1,7 +1,11 @@
 <template>
-  <component :is="type" class="vs-login" @click="toggleLogin()">
-    <div class="vs-login__icon-wrapper"><vs-svg path="icons/user" height="10" fill="white" /></div>
-    <span v-if="this.isLoggedIn">Log out</span> <span v-else>Login</span>
+  <component :is="type" class="vs-login">
+    <div class="vs-login__button" @click="toggleLogin()">
+      <div class="vs-login__icon-wrapper">
+        <vs-svg path="icons/user" height="10" fill="white" />
+      </div>
+      <span v-if="this.isLoggedIn">Log out</span> <span v-else>Login</span>
+    </div>
   </component>
 </template>
 
@@ -24,7 +28,7 @@ export default {
      */
     type: {
       type: String,
-      default: "button",
+      default: "div",
     },
   },
   methods: {
@@ -45,8 +49,10 @@ export default {
 @import "../styles/placeholders";
 
 .vs-login {
-  @extend %button-reset;
-  @extend %uni-nav-button-style;
+  &__button {
+    @extend %button-reset;
+    @extend %uni-nav-button-style;
+  }
 
   &__icon-wrapper {
     display: flex;

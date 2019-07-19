@@ -111,13 +111,36 @@ import VsHeading from "../../elements/heading/Heading"
 import VsRow from "../../elements/layout/Row"
 import VsCol from "../../elements/layout/Col"
 import VsSvg from "../../elements/svg/Svg"
+import VsDropdown from "./components/Dropdown"
+import VsFavourites from "./components/Favourites"
+import VsLogin from "./components/Login"
+import VsLogo from "./components/Logo"
+import VsMainNav from "./components/MainNav"
+import VsMainNavListItem from "./components/MainNavListItem"
+import VsMainNavPromoItem from "./components/MainNavPromoItem"
+import VsMainNavPromoList from "./components/MainNavPromoList"
+import VsSearch from "./components/Search"
+
 import json from "../../../assets/fixtures/mainNav.json"
 
 export default {
   name: "VsHeader",
   status: "prototype",
   release: "0.0.1",
-  components: { VsContainer, VsRow, VsCol, VsSvg },
+  components: {
+    VsCol,
+    VsContainer,
+    VsDropdown,
+    VsFavourites,
+    VsLogin,
+    VsLogo,
+    VsMainNav,
+    VsMainNavListItem,
+    VsMainNavPromoItem,
+    VsRow,
+    VsSearch,
+    VsSvg,
+  },
   data() {
     return {
       sampleData: json,
@@ -149,6 +172,7 @@ export default {
 
 .vs-header {
   min-height: 600px; // temporary -
+  overflow-x: hidden;
   overflow-y: scroll;
   position: relative;
 }
