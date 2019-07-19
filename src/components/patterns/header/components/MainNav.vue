@@ -95,6 +95,7 @@ export default {
       display: block;
       width: 16px;
       height: 2px;
+      left: 0.5rem;
       background-color: $color-mid-granite;
       position: relative;
 

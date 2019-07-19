@@ -182,7 +182,7 @@ export default {
   &__wrapper {
     display: flex;
     align-items: stretch;
-    margin-right: -0.5rem;
+    margin: 0 -1rem 0 1rem;
   }
 }
 </style>
