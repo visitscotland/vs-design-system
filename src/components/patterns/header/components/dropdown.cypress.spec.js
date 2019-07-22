@@ -64,15 +64,12 @@ describe("Dropdown component", () => {
         cy.get('nav[aria-label="Our Sites"]').should("be.visible")
       })
 
-      it("should render button rendering the name prop", () => {
+      it("should render button containing text with the name prop", () => {
         cy.contains("Our Sites").should("be.visible")
       })
 
       it("button should be accompanied by screen reader text", () => {
         cy.contains("Toggle submenu for Our Sites").should("be.visible")
-      })
-
-      it("should have descriptive screen reader text within the button", () => {
         cy.get(".sr-only").should("be.visible")
       })
 
