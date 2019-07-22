@@ -86,7 +86,7 @@ export default {
     font-size: 0.75rem;
     left: 0;
     position: absolute;
-    top: 11px;
+    top: 12px;
     width: 100%;
   }
 }
