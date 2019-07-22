@@ -29,11 +29,11 @@ describe("Main Nav Promo Item component", () => {
       })
 
       it("should render a link element", () => {
-        cy.get(".vs-promo-panel__link").should("be.visible")
+        cy.get(".vs-promo-item__link").should("be.visible")
       })
 
       it("should render an href", () => {
-        cy.get(".vs-promo-panel__link").should(
+        cy.get(".vs-promo-item__link").should(
           "have.attr",
           "href",
           "https://www.visitscotland.com/accommodation/unusual-places-to-stay/"
@@ -45,7 +45,7 @@ describe("Main Nav Promo Item component", () => {
       })
 
       it("should render a promo image", () => {
-        cy.get(".vs-promo-panel__image")
+        cy.get(".vs-promo-item__image")
           .should("be.visible")
           .should(
             "have.attr",
@@ -55,7 +55,7 @@ describe("Main Nav Promo Item component", () => {
       })
 
       it("should render alt text for the promo image that is the same as the title", () => {
-        cy.get(".vs-promo-panel__image").should("have.attr", "alt", "Unusual Accommodation")
+        cy.get(".vs-promo-item__image").should("have.attr", "alt", "Unusual Accommodation")
       })
 
       it("should render an icon", () => {
