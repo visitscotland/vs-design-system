@@ -1,7 +1,8 @@
 <template>
   <component :is="type" class="vs-promo__list">
     <li class="vs-promo__list-item" v-for="(item, index) in list" :key="index">
-      <VsMainNavPromoItem v-if="item" :item="item" />
+      <VsMainNavPromoItem v-if="item && index === 0" :item="item" />
+      <VsMainNavListItem v-if="item && index !== 0" :item="item" :level="2" />
     </li>
   </component>
 </template>
@@ -9,6 +10,7 @@
 <script>
 import VsSvg from "../../../elements/svg/Svg"
 import VsMainNavPromoItem from "./MainNavPromoItem"
+import VsMainNavListItem from "./MainNavListItem"
 
 export default {
   name: "VsMainNavPromoList",
@@ -17,6 +19,7 @@ export default {
   components: {
     VsSvg,
     VsMainNavPromoItem,
+    VsMainNavListItem,
   },
   data() {
     return {}
@@ -47,10 +50,6 @@ export default {
 .vs-promo {
   &__list {
     @extend %list-reset;
-  }
-
-  &__list-item {
-    margin-bottom: 1rem;
   }
 }
 </style>
