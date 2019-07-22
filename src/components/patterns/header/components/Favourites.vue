@@ -2,6 +2,7 @@
   <component :is="type" class="vs-favourites">
     <button
       class="vs-favourites__button"
+      data-favourites-trigger
       @click="addToFavourites({ url: 'http://www.visitscotland.com', title: 'Homepage' })"
     >
       <span class="sr-only">Add to Favourites</span>
@@ -51,11 +52,12 @@ export default {
   },
   methods: {
     addToFavourites(favourite) {
+      let thisTrigger = this.$el.querySelector("[data-favourites-trigger]")
       this.$root.$emit("resetMenus")
-      this.$el.blur()
       if (this.favourites.indexOf(favourite) === -1) {
         this.favourites.push(favourite)
       }
+      thisTrigger.blur()
     },
   },
 }
