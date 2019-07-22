@@ -1,11 +1,11 @@
 <template>
   <component :is="type" class="vs-login">
-    <div class="vs-login__button" @click="toggleLogin()">
+    <button class="vs-login__button" @click="toggleLogin()">
       <div class="vs-login__icon-wrapper">
         <vs-svg path="icons/user" height="10" fill="white" />
       </div>
       <span v-if="this.isLoggedIn">Log out</span> <span v-else>Login</span>
-    </div>
+    </button>
   </component>
 </template>
 
