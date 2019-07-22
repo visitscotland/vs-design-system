@@ -119,7 +119,7 @@ export default {
     color: $color-white;
     display: flex;
     font-size: 1.5rem;
-    font-weight: $font-weight-normal;
+    font-weight: $font-weight-light;
     padding: 0.75rem 1.25rem;
     position: relative;
     transition: all 250ms ease-in-out;
