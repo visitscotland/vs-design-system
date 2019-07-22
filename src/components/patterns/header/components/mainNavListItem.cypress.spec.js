@@ -258,12 +258,13 @@ describe("Main Nav List Item component", () => {
 
       it("the nav levels should rendered within the classes in each dom element", () => {
         cy.get(".vs-main-nav__list-item--level1").should("be.visible")
-        cy.get(".vs-main-nav__button--level1").should("be.visible")
-        cy.get(".vs-main-nav__button--level1").click()
+        cy.get(".vs-main-nav__button--level1")
+          .should("be.visible")
+          .click()
         cy.get(".vs-main-nav__list--level2").should("be.visible")
         cy.get(".vs-main-nav__list-item--level2").should("be.visible")
-        cy.get(".vs-main-nav__button--level2").should("be.visible")
         cy.get(".vs-main-nav__button--level2")
+          .should("be.visible")
           .first()
           .click()
         cy.get(".vs-main-nav__list--level3").should("be.visible")

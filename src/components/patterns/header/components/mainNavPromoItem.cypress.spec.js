@@ -45,12 +45,13 @@ describe("Main Nav Promo Item component", () => {
       })
 
       it("should render a promo image", () => {
-        cy.get(".vs-promo-panel__image").should("be.visible")
-        cy.get(".vs-promo-panel__image").should(
-          "have.attr",
-          "src",
-          "https://cimg.visitscotland.com/cms-images/accommodation/accommodation-new/glamping-domes-sauchope-holiday-park?size=xs"
-        )
+        cy.get(".vs-promo-panel__image")
+          .should("be.visible")
+          .should(
+            "have.attr",
+            "src",
+            "https://cimg.visitscotland.com/cms-images/accommodation/accommodation-new/glamping-domes-sauchope-holiday-park?size=xs"
+          )
       })
 
       it("should render alt text for the promo image that is the same as the title", () => {
