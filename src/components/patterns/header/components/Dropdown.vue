@@ -118,13 +118,12 @@ export default {
     box-shadow: inset 0 0 0 0 transparent;
     color: $color-white;
     display: flex;
-    font-size: 1.125rem;
-    font-weight: $font-weight-semi-bold;
-    margin: 0 1rem;
-    padding-top: 1rem;
+    font-size: 1.5rem;
+    font-weight: $font-weight-normal;
+    padding: 0.75rem 1.25rem;
     position: relative;
     transition: all 250ms ease-in-out;
-    width: calc(100% - 2rem);
+    width: 100%;
 
     &:focus {
       @extend %focus-white-inset;
