@@ -65,8 +65,14 @@ describe("Main Nav Promo List component", () => {
         }
       })
 
-      it("should render a link element", () => {
+      it("should render a list element", () => {
         cy.get(".vs-promo__list").should("be.visible")
+      })
+
+      it("should render list items", () => {
+        cy.get(".vs-promo__list-item")
+          .should("be.visible")
+          .should("have.length", "5")
       })
     })
   })
