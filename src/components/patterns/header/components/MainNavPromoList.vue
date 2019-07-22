@@ -8,12 +8,16 @@
 
 <script>
 import VsSvg from "../../../elements/svg/Svg"
+import VsMainNavPromoItem from "./MainNavPromoItem"
 
 export default {
   name: "VsMainNavPromoList",
   status: "prototype",
   release: "0.0.1",
-  components: { VsSvg },
+  components: {
+    VsSvg,
+    VsMainNavPromoItem,
+  },
   data() {
     return {}
   },
@@ -23,7 +27,7 @@ export default {
      */
     type: {
       type: String,
-      default: "div",
+      default: "ul",
     },
     list: {
       type: Array,
@@ -55,48 +59,48 @@ export default {
   ```jsx
   <div>
     <vs-main-nav-promo-list
-      list=[
-        {
-            title: 'Romantic',
-            href: 'https://www.visitscotland.com/inspiration/romantic',
-            isExternal: false,
-            isActive: false,
-            trackingID: 1,
-            imageLink: ''
-        },
-        {
-            title: 'Island hopping',
-            href: 'https://www.visitscotland.com/inpiration/island-hopping',
-            isExternal: false,
-            isActive: false,
-            trackingID: 1,
-            imageLink: ''
-        },
-        {
-            title: 'Family',
-            href: 'https://www.visitscotland.com/inpiration/family',
-            isExternal: false,
-            isActive: false,
-            trackingID: 1,
-            imageLink: ''
-        },
-        {
-            title: 'Farm stays',
-            href: 'https://www.visitscotland.com/inpiration/farm-stays',
-            isExternal: false,
-            isActive: false,
-            trackingID: 1,
-            imageLink: ''
-        },
-        {
-            title: 'Wellness',
-            href: 'https://www.visitscotland.com/inpiration/wellness',
-            isExternal: false,
-            isActive: false,
-            trackingID: 1,
-            imageLink: ''
-        }
-    ]
+      :list="[
+      {
+        title: 'Romantic',
+        href: 'https://www.visitscotland.com/inspiration/romantic',
+        isExternal: false,
+        isActive: false,
+        trackingID: 1,
+        imageLink: 'https://cimg.visitscotland.com/cms-images/about/couple-beach-south-queensferry-walk?size=sm'
+      },
+      {
+        title: 'Island hopping',
+        href: 'https://www.visitscotland.com/inpiration/island-hopping',
+        isExternal: false,
+        isActive: false,
+        trackingID: 1,
+        imageLink: 'https://cimg.visitscotland.com/cms-images/destinations/argyll-and-the-isles/kiloran-bay?size=sm'
+      },
+      {
+        title: 'Family',
+        href: 'https://www.visitscotland.com/inpiration/family',
+        isExternal: false,
+        isActive: false,
+        trackingID: 1,
+        imageLink: 'https://cimg.visitscotland.com/cms-images/itineraries/loch-insh-family-paddleboarding?size=sm'
+      },
+      {
+        title: 'Farm stays',
+        href: 'https://www.visitscotland.com/inpiration/farm-stays',
+        isExternal: false,
+        isActive: false,
+        trackingID: 1,
+        imageLink: 'https://cimg.visitscotland.com/cms-images/attractions/cattle-grazing-cliffs-westray?size=md'
+      },
+      {
+        title: 'Wellness',
+        href: 'https://www.visitscotland.com/inpiration/wellness',
+        isExternal: false,
+        isActive: false,
+        trackingID: 1,
+        imageLink: 'https://cimg.visitscotland.com/cms-images/holidays/outdoor-spa-gleneagles?size=md'
+      }
+    ]"
     />
   </div>
   ```

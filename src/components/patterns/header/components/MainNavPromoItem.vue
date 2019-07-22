@@ -1,14 +1,14 @@
 <template>
-  <component :is="type" class="vs-promo-panel__link" :href="item.href">
-    <div class="vs-promo-panel__wrapper">
-      <span class="vs-promo-panel__link-title"> {{ item.title }} </span>
-      <div class="vs-promo-panel__icon-wrapper">
+  <component :is="type" class="vs-promo-item__link" :href="item.href">
+    <div class="vs-promo-item__wrapper">
+      <span class="vs-promo-item__link-title"> {{ item.title }} </span>
+      <div class="vs-promo-item__icon-wrapper">
         <vs-svg path="icons/chevron-right" height="10" fill="#FFFFFF" />
       </div>
     </div>
-    <div class="vs-promo-panel__image-wrapper" v-if="item.imageLink">
+    <div class="vs-promo-item__image-wrapper" v-if="item.imageLink">
       <img
-        class="lazyload vs-promo-panel__image"
+        class="lazyload vs-promo-item__image"
         :data-srcset="item.imageLink"
         :data-src="item.imageLink"
         :alt="item.title"
@@ -52,7 +52,7 @@ export default {
 @import "~bootstrap/scss/utilities/screenreaders";
 @import "../styles/placeholders";
 
-.vs-promo-panel {
+.vs-promo-item {
   &__link {
     display: block;
     position: relative;
@@ -125,17 +125,16 @@ export default {
 <docs>
   ```jsx
   <div>
-    <vs-main-nav-promo-panel
-      item={
-          title: 'VisitScotland iCentres',
-          href: 'https://www.visitscotland.com/about/practical-information/vic/',
-          isExternal: false,
-          isActive: false,
-          buttonText: 'Read more',
-          trackingID: 1,
-          description: 'Expert local knowledge, gifts and inspiration.',
-          imageLink: 'https://cimg.visitscotland.com/cms-images/navigation/travel-rc?size=md'
-      }
+    <vs-main-nav-promo-item
+      :item="{
+        title: 'Unusual Accommodation',
+        href: 'https://www.visitscotland.com/accommodation/unusual-places-to-stay/',
+        isExternal: false,
+        isActive: false,
+        buttonText: 'Read more',
+        description: 'Why not stay in a castle, a lighthouse or on a working farm?',
+        imageLink: 'https://cimg.visitscotland.com/cms-images/accommodation/accommodation-new/glamping-domes-sauchope-holiday-park?size=xs'
+    }"
     />
   </div>
   ```
