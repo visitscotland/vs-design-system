@@ -18,7 +18,7 @@
         class="vs-main-nav__icon-wrapper vs-main-nav__icon-wrapper--chevron-down"
         :class="[show ? 'vs-main-nav__icon-wrapper--expanded' : '', level ? 'level' + level : '']"
       >
-        <vs-svg path="icons/chevron-down" height="10" fill="#929091" />
+        <vs-svg path="icons/chevron-down" height="8" fill="#929091" />
       </div>
     </button>
     <a
@@ -55,9 +55,6 @@
               :data-di-id="item.trackingID"
             >
               See all {{ titleToLowerCase(item.title) }}
-              <div class="vs-main-nav__icon-wrapper vs-main-nav__icon-wrapper--chevron-right">
-                <vs-svg path="icons/chevron-right" height="15" fill="#AF006E" />
-              </div>
             </a>
           </li>
           <VsMainNavListItem
@@ -161,12 +158,6 @@ export default {
     &--expanded {
       transform: rotate(180deg);
       transform-origin: 50% 54%;
-
-      &.level1 {
-        svg {
-          fill: #ffffff !important;
-        }
-      }
     }
 
     &--chevron-right {
@@ -184,12 +175,12 @@ export default {
 
   &__button,
   &__link {
+    border-bottom: 1px solid $color-light-granite;
     color: $color-total-eclipse;
     display: flex;
     align-items: center;
     justify-content: space-between;
     font-weight: $font-weight-semi-bold;
-    font-size: 1.125rem;
     transition: background-color 250ms ease-in-out;
 
     &:focus {
@@ -197,49 +188,44 @@ export default {
     }
 
     &--level1 {
-      box-shadow: 0 1px 0 0 $color-mid-granite;
-      margin: 0 1rem;
-      padding-top: 1rem;
-      width: calc(100% - 2rem);
+      font-size: 1.5rem;
+      font-weight: $font-weight-normal;
+      padding: 0.75rem 1.25rem;
+      width: 100%;
 
       &[aria-expanded="true"] {
-        background-color: $color-dark-granite;
-        color: $color-white;
-        margin: 0;
-        padding: 0.5rem 1rem;
-        width: 100%;
+        box-shadow: inset 12px 0 0 0 $color-thistle-pink;
       }
     }
 
     &--level2 {
-      box-shadow: 0 1px 0 0 $color-mid-granite;
-      margin: 0 1rem 0 2rem;
-      padding-top: 1.5rem;
-      width: calc(100% - 3rem);
+      background-color: $color-very-light-granite;
+      box-shadow: inset 12px 0 0 0 $color-light-granite;
+      font-size: 1.25rem;
+      padding: 0.5rem 1.25rem 0.5rem 2rem;
+      width: 100%;
+
+      &[aria-expanded="true"] {
+        box-shadow: inset 12px 0 0 0 $color-thistle-pink;
+      }
     }
 
     &--level3 {
-      margin: 0 1rem 0 3rem;
-      padding: 0.75rem 0;
-      width: calc(100% - 4rem);
+      box-shadow: inset 12px 0 0 0 $color-mid-granite;
+      background-color: $color-light-granite;
+      padding: 0.75rem 1.25rem 0.75rem 4rem;
     }
 
     &--level3,
     &--level2 {
-      font-size: 0.875rem;
       font-weight: $font-weight-normal;
-
-      &[aria-expanded="true"] {
-        color: $color-thistle-pink;
-        box-shadow: inset 0 -1px 0 0 $color-thistle-pink;
-        font-weight: $font-weight-semi-bold;
-      }
     }
   }
 
   &__link {
     &--landing-page {
-      box-shadow: 0 1px 0 0 $color-thistle-pink;
+      background-color: $color-white;
+      box-shadow: inset 12px 0 0 0 $color-very-light-granite;
       color: $color-thistle-pink;
 
       &:hover {
