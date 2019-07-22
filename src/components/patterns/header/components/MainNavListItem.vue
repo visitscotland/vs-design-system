@@ -214,6 +214,10 @@ export default {
       box-shadow: inset 12px 0 0 0 $color-mid-granite;
       background-color: $color-light-granite;
       padding: 0.75rem 1.25rem 0.75rem 4rem;
+
+      .vs-main-nav__list-item--level3:first-of-type & {
+        box-shadow: inset 0 8px 6px -6px rgba(0, 0, 0, 0.1), inset 12px 0 0 0 $color-mid-granite;
+      }
     }
 
     &--level3,
