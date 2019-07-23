@@ -25,13 +25,22 @@
     width: 100%;
     background: white;
 
+    .vueds-tabs,
+    .react-codemirror2 {
+      display: none;
+    }
+
     *[class^="rsg--preview"] {
       border: none;
       border-radius: 0;
       box-shadow: none;
-      // Uncomment these to make wrapped examples edge-to-edge
-      // padding: 0;
-      // margin: 0;
+      padding: 0;
+      margin: 0;
+    }
+
+    .vds-example-toggle {
+      bottom: 16px;
+      top: auto;
     }
   }
 
