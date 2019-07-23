@@ -205,8 +205,8 @@ export default {
     &--level2 {
       background-color: $color-gray-f8;
       box-shadow: inset 0.75rem 0 0 0 $color-gray-e6;
-      font-size: 1.25rem;
-      padding: 0.5rem 1.25rem 0.5rem 2.25rem;
+      font-size: 1.125rem;
+      padding: 0.75rem 1.25rem 0.75rem 2.25rem;
       width: 100%;
 
       &[aria-expanded="true"] {
@@ -217,7 +217,7 @@ export default {
     &--level3 {
       box-shadow: inset 0.75rem 0 0 0 $color-gray-e6;
       background-color: $color-gray-ef;
-      font-size: 1.25rem;
+      font-size: 1.125rem;
       padding: 0.75rem 1.25rem 0.75rem 3.25rem;
 
       .vs-main-nav__list-item--level3:first-of-type & {
