@@ -73,6 +73,7 @@
 
 <script>
 import VsSvg from "../../../elements/svg/Svg"
+import smoothscroll from "smoothscroll-polyfill"
 
 export default {
   name: "VsMainNavListItem",
@@ -136,6 +137,9 @@ export default {
       }
       thisTrigger.blur()
     },
+  },
+  created() {
+    smoothscroll.polyfill()
   },
 }
 </script>
