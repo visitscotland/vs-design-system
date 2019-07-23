@@ -36,6 +36,18 @@ aliases:
     value: "#e5e5e5"
   very_light_granite:
     value: "#f5f6fa"
+  gray_F2:
+    value: "#F2F2F2"
+  gray_F8:
+    value: "#F8F8F8"
+  gray_EF:
+    value: "#EFEFEF"
+  gray_E6:
+    value: "#E6E6E6"
+  gray_72:
+    value: "#727272"
+  gray_38:
+    value: "#383838"
   white:
     value: "#fff"
 
@@ -86,6 +98,24 @@ props:
     category: "Grays"
   - name: color_white
     value: "{!white}"
+    category: "Grays"
+  - name: color_gray_F2
+    value: "{!gray_F2}"
+    category: "Grays"
+  - name: color_gray_F8
+    value: "{!gray_F8}"
+    category: "Grays"
+  - name: color_gray_EF
+    value: "{!gray_EF}"
+    category: "Grays"
+  - name: color_gray_E6
+    value: "{!gray_E6}"
+    category: "Grays"
+  - name: color_gray_72
+    value: "{!gray_72}"
+    category: "Grays"
+  - name: color_gray_38
+    value: "{!gray_38}"
     category: "Grays"
 
   - name: color_theme_primary
