@@ -198,26 +198,27 @@ export default {
       width: 100%;
 
       &[aria-expanded="true"] {
-        box-shadow: inset 12px 0 0 0 $color-thistle-pink;
+        box-shadow: inset 0.75rem 0 0 0 $color-thistle-pink;
       }
     }
 
     &--level2 {
       background-color: $color-gray-f8;
-      box-shadow: inset 12px 0 0 0 $color-gray-e6;
+      box-shadow: inset 0.75rem 0 0 0 $color-gray-e6;
       font-size: 1.25rem;
-      padding: 0.5rem 1.25rem 0.5rem 2rem;
+      padding: 0.5rem 1.25rem 0.5rem 2.25rem;
       width: 100%;
 
       &[aria-expanded="true"] {
-        box-shadow: inset 12px 0 0 0 $color-thistle-pink;
+        box-shadow: inset 0.75rem 0 0 0 $color-thistle-pink;
       }
     }
 
     &--level3 {
-      box-shadow: inset 12px 0 0 0 $color-gray-e6;
+      box-shadow: inset 0.75rem 0 0 0 $color-gray-e6;
       background-color: $color-gray-ef;
-      padding: 0.75rem 1.25rem 0.75rem 4rem;
+      font-size: 1.25rem;
+      padding: 0.75rem 1.25rem 0.75rem 3.25rem;
 
       .vs-main-nav__list-item--level3:first-of-type & {
         box-shadow: inset 0 8px 6px -6px rgba(0, 0, 0, 0.1), inset 12px 0 0 0 $color-gray-e6;
