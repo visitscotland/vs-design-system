@@ -18,7 +18,7 @@
         class="vs-main-nav__icon-wrapper vs-main-nav__icon-wrapper--chevron-down"
         :class="[show ? 'vs-main-nav__icon-wrapper--expanded' : '', level ? 'level' + level : '']"
       >
-        <vs-svg path="icons/chevron-down" height="8" fill="#929091" />
+        <vs-svg path="icons/chevron-down" height="8" fill="#727272" />
       </div>
     </button>
     <a
@@ -179,8 +179,8 @@ export default {
 
   &__button,
   &__link {
-    border-bottom: 1px solid $color-light-granite;
-    color: $color-total-eclipse;
+    border-bottom: 1px solid $color-gray-e6;
+    color: $color-gray-38;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -203,8 +203,8 @@ export default {
     }
 
     &--level2 {
-      background-color: $color-very-light-granite;
-      box-shadow: inset 12px 0 0 0 $color-light-granite;
+      background-color: $color-gray-f8;
+      box-shadow: inset 12px 0 0 0 $color-gray-e6;
       font-size: 1.25rem;
       padding: 0.5rem 1.25rem 0.5rem 2rem;
       width: 100%;
@@ -215,12 +215,12 @@ export default {
     }
 
     &--level3 {
-      box-shadow: inset 12px 0 0 0 $color-mid-granite;
-      background-color: $color-light-granite;
+      box-shadow: inset 12px 0 0 0 $color-gray-e6;
+      background-color: $color-gray-ef;
       padding: 0.75rem 1.25rem 0.75rem 4rem;
 
       .vs-main-nav__list-item--level3:first-of-type & {
-        box-shadow: inset 0 8px 6px -6px rgba(0, 0, 0, 0.1), inset 12px 0 0 0 $color-mid-granite;
+        box-shadow: inset 0 8px 6px -6px rgba(0, 0, 0, 0.1), inset 12px 0 0 0 $color-gray-e6;
       }
     }
 
@@ -233,7 +233,6 @@ export default {
   &__link {
     &--landing-page {
       background-color: $color-white;
-      box-shadow: inset 12px 0 0 0 $color-very-light-granite;
       color: $color-thistle-pink;
 
       &:hover {
