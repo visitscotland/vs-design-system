@@ -53,9 +53,8 @@
               ]"
               :target="item.isExternal ? '_blank' : false"
               :data-di-id="item.trackingID"
+              >See all {{ titleToLowerCase(item.title) }}</a
             >
-              See all {{ titleToLowerCase(item.title) }}
-            </a>
           </li>
           <VsMainNavListItem
             v-for="(subnav, index) in item.subnav"
@@ -179,12 +178,12 @@ export default {
 
   &__button,
   &__link {
+    align-items: center;
     border-bottom: 1px solid $color-gray-e6;
     color: $color-gray-38;
     display: flex;
-    align-items: center;
-    justify-content: space-between;
     font-weight: $font-weight-semi-bold;
+    justify-content: space-between;
     transition: background-color 250ms ease-in-out;
 
     &:focus {
@@ -215,8 +214,8 @@ export default {
     }
 
     &--level3 {
-      box-shadow: inset 0.75rem 0 0 0 $color-gray-e6;
       background-color: $color-gray-ef;
+      box-shadow: inset 0.75rem 0 0 0 $color-gray-e6;
       font-size: 1.125rem;
       padding: 0.75rem 1.25rem 0.75rem 3.25rem;
 
