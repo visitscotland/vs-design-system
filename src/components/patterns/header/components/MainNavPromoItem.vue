@@ -53,6 +53,10 @@ export default {
 @import "../styles/placeholders";
 
 .vs-promo-item {
+  &__wrapper {
+    border-bottom: 1px solid $color-gray-e6;
+  }
+
   &__link {
     display: block;
     position: relative;
