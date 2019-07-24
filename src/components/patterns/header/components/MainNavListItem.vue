@@ -162,10 +162,6 @@ export default {
       transform: rotate(180deg);
       transform-origin: 50% 54%;
     }
-
-    &--chevron-right {
-      margin-top: -3px;
-    }
   }
 
   &__list {
