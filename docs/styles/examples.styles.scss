@@ -10,22 +10,6 @@
       text-align: center;
     }
   }
-  .border-cols {
-    h2 span {
-      display: block;
-      font-size: 1rem;
-      font-weight: $font-weight-normal;
-    }
-    margin-top: 1rem;
-    .col,
-    *[class*="col-"] {
-      border: 1px solid #ccc;
-      div {
-        background-color: #666;
-        height: 3rem;
-      }
-    }
-  }
 }
 
 .vds-example {
