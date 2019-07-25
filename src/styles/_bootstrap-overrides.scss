@@ -65,3 +65,19 @@ $border-radius: $border-radius-default;
 $border-radius-lg: $border-radius-lg;
 $border-radius-sm: $border-radius-sm;
 $rounded-pill: $border-radius-pill;
+// Adjust grid-gutter settings on mobile
+@media (min-width: map-get($grid-breakpoints, xs)) and (max-width: map-get($grid-breakpoints, sm)) {
+  .row > .col,
+  .row > [class*="col-"] {
+    padding-right: 0.375rem;
+    padding-left: 0.375rem;
+  }
+}
+// Adjust grid-gutter settings on extra large screens
+@media (min-width: map-get($grid-breakpoints, xl)) {
+  .row > .col,
+  .row > [class*="col-"] {
+    padding-right: 2rem;
+    padding-left: 2rem;
+  }
+}

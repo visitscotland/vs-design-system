@@ -77,7 +77,35 @@ export default {
     </vs-container>
   </div>
 
-
+  <div class="border-cols">
+    <vs-container>
+      <h2>Grid Gutter examples <span>Best viewed in full-screen mode.</span></h2>
+      <vs-row>
+        <vs-col>
+          <div></div>
+        </vs-col>
+      </vs-row>
+      <vs-row>
+        <vs-col>
+          <div></div>
+        </vs-col>
+        <vs-col>
+          <div></div>
+        </vs-col>
+      </vs-row>
+      <vs-row>
+        <vs-col>
+          <div></div>
+        </vs-col>
+        <vs-col>
+          <div></div>
+        </vs-col>
+        <vs-col>
+          <div></div>
+        </vs-col>
+      </vs-row>
+    </vs-container>
+  </div>
   
   ```
 </docs>
