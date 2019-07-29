@@ -3,89 +3,8 @@
     <div class="vs-universal-nav__wrapper">
       <vs-container>
         <div class="vs-universal-nav__wrapper--inner">
-          <vs-dropdown
-            name="Our sites"
-            :dropdown-list="[
-              {
-                title: 'Business Events',
-                href: 'https://businessevents.visitscotland.com',
-                isExternal: true,
-                isActive: false,
-                trackingID: 1,
-              },
-              {
-                title: 'Travel Trade',
-                href: 'https://traveltrade.visitscotland.org',
-                isExternal: true,
-                isActive: false,
-                trackingID: 1,
-              },
-              {
-                title: 'Media Centre',
-                href: 'http://mediacentre.visitscotland.org',
-                isExternal: true,
-                isActive: false,
-                trackingID: 1,
-              },
-              {
-                title: 'Corporate',
-                href: 'https://www.visitscotland.org',
-                isExternal: true,
-                isActive: false,
-                trackingID: 1,
-              },
-            ]"
-          />
-          <div class="d-flex">
-            <vs-login />
-            <vs-dropdown
-              name="Language"
-              :dropdown-list="[
-                {
-                  title: 'English',
-                  href: 'https://www.visitscotland.com/',
-                  abbreviation: 'EN',
-                  trackingID: 1,
-                  isActive: true,
-                },
-                {
-                  title: 'Deutsch',
-                  href: 'https://www.visitscotland.com/de-de',
-                  abbreviation: 'DE',
-                  trackingID: 1,
-                  isActive: false,
-                },
-                {
-                  title: 'Español',
-                  href: 'https://www.visitscotland.com/es-es',
-                  abbreviation: 'ES',
-                  trackingID: 1,
-                  isActive: false,
-                },
-                {
-                  title: 'Français',
-                  href: 'https://www.visitscotland.com/fr-fr',
-                  abbreviation: 'FR',
-                  trackingID: 1,
-                  isActive: false,
-                },
-                {
-                  title: 'Italiano',
-                  href: 'https://www.visitscotland.com/it-it',
-                  abbreviation: 'IT',
-                  trackingID: 1,
-                  isActive: false,
-                },
-                {
-                  title: 'Nederlands',
-                  href: 'https://www.visitscotland.com/nl-nl',
-                  abbreviation: 'NL',
-                  trackingID: 1,
-                  isActive: false,
-                },
-              ]"
-            />
-          </div>
+          <slot name="ourSites"></slot>
+          <div class="d-flex"><slot name="login"></slot> <slot name="language"></slot></div>
         </div>
       </vs-container>
     </div>
@@ -93,11 +12,9 @@
     <div class="vs-main-nav__wrapper">
       <vs-container>
         <div class="d-flex align-items-stretch justify-content-between">
-          <vs-logo />
+          <slot name="logo"></slot>
           <div class="vs-controls__wrapper">
-            <vs-search />
-            <vs-favourites />
-            <vs-main-nav name="Main navigation" :main-navigation-list="sampleData" />
+            <slot name="search"></slot> <slot name="favourites"></slot> <slot name="mainNav"></slot>
           </div>
         </div>
       </vs-container>
@@ -121,8 +38,6 @@ import VsMainNavPromoItem from "./components/MainNavPromoItem"
 import VsMainNavPromoList from "./components/MainNavPromoList"
 import VsSearch from "./components/Search"
 
-import json from "../../../assets/fixtures/mainNav.json"
-
 export default {
   name: "VsHeader",
   status: "prototype",
@@ -142,9 +57,7 @@ export default {
     VsSvg,
   },
   data() {
-    return {
-      sampleData: json,
-    }
+    return {}
   },
   props: {
     /**
@@ -213,9 +126,36 @@ export default {
 
 <docs>
   ```jsx
+
+  const ourSites = require("../../../assets/fixtures/ourSites.json")
+  const language = require("../../../assets/fixtures/languages.json")
+  const mainNav = require("../../../assets/fixtures/mainNav.json")
+
   <div>
-    <vs-header
-    />
+    <vs-header>
+      <vs-dropdown
+        slot="ourSites"
+        name="Our sites"
+        :dropdown-list="ourSites"
+      />
+      <vs-login
+        slot="login" />
+      <vs-dropdown
+        slot="language"
+        name="Language"
+        :dropdown-list="language"
+      />
+      <vs-logo 
+        slot="logo" />
+      <vs-search
+        slot="search" />
+      <vs-favourites
+        slot="favourites" />
+      <vs-main-nav 
+        slot="mainNav"
+        name="Main navigation" 
+        :main-navigation-list="mainNav" />
+    </vs-header>
   </div>
   ```
 </docs>
