@@ -76,6 +76,6 @@ export default {
       </vs-row>
     </vs-container>
   </div>
-  
+
   ```
 </docs>

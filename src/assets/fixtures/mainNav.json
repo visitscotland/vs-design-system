@@ -526,7 +526,7 @@
       "isActive": false,
       "buttonText": "Read more",
       "description": "Why not stay in a castle, a lighthouse or on a working farm?",
-      "imageLink": "https://cimg.visitscotland.com/cms-images/accommodation/accommodation-new/glamping-domes-sauchope-holiday-park?size=xs"
+      "imageLink": "images/placeholders/list-default.jpg"
     }
   },
   {
@@ -629,7 +629,7 @@
       "trackingID": 1,
       "buttonText": "Read more",
       "description": "Iconic Ben Nevis needs to be top of your Scottish to-do list.",
-      "imageLink": "https://cimg.visitscotland.com/cms-images/destinations/fort-william/ben-nevis?size=sm"
+      "imageLink": "images/placeholders/list-default.jpg"
     }
   },
   {
@@ -743,7 +743,7 @@
       "buttonText": "Read more",
       "trackingID": 1,
       "description": "Expert local knowledge, gifts and inspiration.",
-      "imageLink": "https://cimg.visitscotland.com/cms-images/about/458950/fort-william-visitscotland-icentre-sign?size=sm"
+      "imageLink": "images/placeholders/list-default.jpg"
     }
   },
   {
@@ -759,7 +759,7 @@
         "isExternal": false,
         "isActive": false,
         "trackingID": 1,
-        "imageLink": "https://cimg.visitscotland.com/cms-images/about/couple-beach-south-queensferry-walk?size=sm"
+        "imageLink": "images/placeholders/list-default.jpg"
       },
       {
         "title": "Island hopping",
@@ -767,7 +767,7 @@
         "isExternal": false,
         "isActive": false,
         "trackingID": 1,
-        "imageLink": "https://cimg.visitscotland.com/cms-images/destinations/argyll-and-the-isles/kiloran-bay?size=sm"
+        "imageLink": "images/placeholders/list-default.jpg"
       },
       {
         "title": "Family",
@@ -775,7 +775,7 @@
         "isExternal": false,
         "isActive": false,
         "trackingID": 1,
-        "imageLink": "https://cimg.visitscotland.com/cms-images/itineraries/loch-insh-family-paddleboarding?size=sm"
+        "imageLink": "images/placeholders/list-default.jpg"
       },
       {
         "title": "Farm stays",
@@ -783,7 +783,7 @@
         "isExternal": false,
         "isActive": false,
         "trackingID": 1,
-        "imageLink": "https://cimg.visitscotland.com/cms-images/attractions/cattle-grazing-cliffs-westray?size=md"
+        "imageLink": "images/placeholders/list-default.jpg"
       },
       {
         "title": "Wellness",
@@ -791,7 +791,7 @@
         "isExternal": false,
         "isActive": false,
         "trackingID": 1,
-        "imageLink": "https://cimg.visitscotland.com/cms-images/holidays/outdoor-spa-gleneagles?size=md"
+        "imageLink": "images/placeholders/list-default.jpg"
       }
     ]
   }
