@@ -128,17 +128,12 @@ export default {
 
 <docs>
   ```jsx
+
+  const mainNav = require("../../../../assets/fixtures/mainNav.json")
+  const promoItem = mainNav[2].promoItem
   <div>
     <vs-main-nav-promo-item
-      :item="{
-        title: 'Unusual Accommodation',
-        href: 'https://www.visitscotland.com/accommodation/unusual-places-to-stay/',
-        isExternal: false,
-        isActive: false,
-        buttonText: 'Read more',
-        description: 'Why not stay in a castle, a lighthouse or on a working farm?',
-        imageLink: 'https://cimg.visitscotland.com/cms-images/accommodation/accommodation-new/glamping-domes-sauchope-holiday-park?size=xs'
-    }"
+      :item="promoItem"
     />
   </div>
   ```

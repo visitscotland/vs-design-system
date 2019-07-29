@@ -158,39 +158,12 @@ export default {
 
 <docs>
   ```jsx
-  <div style="position: relative; height: 100vh;">
+  const ourSites = require("../../../../assets/fixtures/ourSites.json")
+
+  <div style="position: relative; height: 100vh; display: flex; justify-content: space-between;">
     <vs-dropdown
         name="Our sites"
-        :dropdown-list="[
-            {
-                title: 'Business Events',
-                href: 'https://businessevents.visitscotland.com',
-                isExternal: true,
-                isActive: false,
-                trackingID: 1
-            },
-            {
-                title: 'Travel Trade',
-                href: 'https://traveltrade.visitscotland.org',
-                isExternal: true,
-                isActive: false,
-                trackingID: 1
-            },
-            {
-                title: 'Media Centre',
-                href: 'http://mediacentre.visitscotland.org',
-                isExternal: true,
-                isActive: false,
-                trackingID: 1
-            },
-            {
-                title: 'Corporate',
-                href: 'https://www.visitscotland.org',
-                isExternal: true,
-                isActive: false,
-                trackingID: 1
-            }
-        ]"
+        :dropdown-list="ourSites"
     />
   </div>
   ```
