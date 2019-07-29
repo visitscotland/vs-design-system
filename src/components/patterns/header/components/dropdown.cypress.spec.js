@@ -1,46 +1,11 @@
 const VsDropdown = require("./Dropdown.vue").default
 const { vueHelper } = require("@cypress/helpers/index.js").default
 const sizes = ["iphone-6", "ipad-2", [1024, 768]]
+const ourSites = require("../../../../assets/fixtures/ourSites.json")
 
 const props = {
   name: "Our Sites",
-  dropdownList: [
-    {
-      title: "Visit Scotland",
-      href: "https://www.visitscotland.com",
-      isExternal: false,
-      isActive: false,
-      trackingID: 1,
-    },
-    {
-      title: "Business Events",
-      href: "https://businessevents.visitscotland.com",
-      isExternal: true,
-      isActive: false,
-      trackingID: 1,
-    },
-    {
-      title: "Travel Trade",
-      href: "https://traveltrade.visitscotland.org",
-      isExternal: true,
-      isActive: false,
-      trackingID: 1,
-    },
-    {
-      title: "Media Centre",
-      href: "http://mediacentre.visitscotland.org",
-      isExternal: true,
-      isActive: false,
-      trackingID: 1,
-    },
-    {
-      title: "Corporate",
-      href: "https://www.visitscotland.org",
-      isExternal: true,
-      isActive: false,
-      trackingID: 1,
-    },
-  ],
+  dropdownList: ourSites,
 }
 
 vueHelper.init("vs-dropdown", VsDropdown, props)

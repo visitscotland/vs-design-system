@@ -1,18 +1,11 @@
 const VsMainNavPromoItem = require("./MainNavPromoItem.vue").default
 const { vueHelper } = require("@cypress/helpers/index.js").default
 const sizes = ["iphone-6", "ipad-2", [1024, 768]]
+const mainNav = require("../../../../assets/fixtures/mainNav.json")
+const promoItem = mainNav[2].promoItem
 
 const props = {
-  item: {
-    title: "Unusual Accommodation",
-    href: "https://www.visitscotland.com/accommodation/unusual-places-to-stay/",
-    isExternal: false,
-    isActive: false,
-    buttonText: "Read more",
-    description: "Why not stay in a castle, a lighthouse or on a working farm?",
-    imageLink:
-      "https://cimg.visitscotland.com/cms-images/accommodation/accommodation-new/glamping-domes-sauchope-holiday-park?size=xs",
-  },
+  item: promoItem,
 }
 
 vueHelper.init("vs-main-nav-promo-item", VsMainNavPromoItem, props)
@@ -36,12 +29,12 @@ describe("Main Nav Promo Item component", () => {
         cy.get(".vs-promo-item__link").should(
           "have.attr",
           "href",
-          "https://www.visitscotland.com/accommodation/unusual-places-to-stay/"
+          "https://www.visitscotland.com/see-do/iconic-scotland/ben-nevis"
         )
       })
 
       it("should render a title", () => {
-        cy.contains("Unusual Accommodation").should("be.visible")
+        cy.contains("Scotland's Tallest Peak").should("be.visible")
       })
 
       it("should render a promo image", () => {
@@ -50,12 +43,12 @@ describe("Main Nav Promo Item component", () => {
           .should(
             "have.attr",
             "src",
-            "https://cimg.visitscotland.com/cms-images/accommodation/accommodation-new/glamping-domes-sauchope-holiday-park?size=xs"
+            "https://cimg.visitscotland.com/cms-images/destinations/fort-william/ben-nevis?size=sm"
           )
       })
 
       it("should render alt text for the promo image that is the same as the title", () => {
-        cy.get(".vs-promo-item__image").should("have.attr", "alt", "Unusual Accommodation")
+        cy.get(".vs-promo-item__image").should("have.attr", "alt", "Scotland's Tallest Peak")
       })
 
       it("should render an icon", () => {
