@@ -23,37 +23,13 @@
 </template>
 
 <script>
-import VsContainer from "../../elements/layout/Container"
-import VsHeading from "../../elements/heading/Heading"
-import VsRow from "../../elements/layout/Row"
-import VsCol from "../../elements/layout/Col"
 import VsSvg from "../../elements/svg/Svg"
-import VsDropdown from "./components/Dropdown"
-import VsFavourites from "./components/Favourites"
-import VsLogin from "./components/Login"
-import VsLogo from "./components/Logo"
-import VsMainNav from "./components/MainNav"
-import VsMainNavListItem from "./components/MainNavListItem"
-import VsMainNavPromoItem from "./components/MainNavPromoItem"
-import VsMainNavPromoList from "./components/MainNavPromoList"
-import VsSearch from "./components/Search"
 
 export default {
   name: "VsHeader",
   status: "prototype",
   release: "0.0.1",
   components: {
-    VsCol,
-    VsContainer,
-    VsDropdown,
-    VsFavourites,
-    VsLogin,
-    VsLogo,
-    VsMainNav,
-    VsMainNavListItem,
-    VsMainNavPromoItem,
-    VsRow,
-    VsSearch,
     VsSvg,
   },
   data() {

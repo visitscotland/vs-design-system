@@ -18,39 +18,6 @@ describe("Header component", () => {
       it("should render a container element", () => {
         cy.get(".vs-header").should("be.visible")
       })
-
-      it("should render two dropdown components", () => {
-        cy.get(".vs-dropdown")
-          .should("be.visible")
-          .should("have.length", "2")
-      })
-
-      it("should render a login component", () => {
-        cy.get(".vs-login__button").should("be.visible")
-      })
-
-      it("should render a logo component", () => {
-        cy.get(".vs-logo").should("be.visible")
-      })
-
-      it("should render a search component", () => {
-        cy.get(".vs-search").should("be.visible")
-      })
-
-      it("should render a favourites component", () => {
-        cy.get(".vs-favourites").should("be.visible")
-      })
-
-      it("should render a main navigation component", () => {
-        cy.get(".vs-main-nav").should("be.visible")
-      })
-
-      it("If a component is open, it should close before another component is triggered", () => {
-        cy.get(".vs-search__button").click()
-        cy.get(".vs-search__form-wrapper").should("be.visible")
-        cy.get(".vs-favourites__button").click()
-        cy.get(".vs-search__form-wrapper").should("not.be.visible")
-      })
     })
   })
 })
