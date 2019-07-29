@@ -105,6 +105,7 @@ export default {
   &__list {
     @extend %list-reset;
     background-color: shade($color-heather-purple, 20%);
+    color: $color-white;
     left: 0;
     position: absolute;
     top: 28px;
