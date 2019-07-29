@@ -1,46 +1,11 @@
 const VsMainNav = require("./MainNav.vue").default
 const { vueHelper } = require("@cypress/helpers/index.js").default
 const sizes = ["iphone-6", "ipad-2", [1024, 768]]
+const mainNav = require("../../../../assets/fixtures/mainNav.json")
 
 const props = {
   name: "Main Navigation",
-  mainNavigationList: [
-    {
-      title: "Destinations",
-      href: "https://www.visitscotland.com/destinations",
-      isExternal: false,
-      isActive: false,
-      trackingID: 1,
-    },
-    {
-      title: "Places to stay",
-      href: "https://www.visitscotland.com/accommodation",
-      isExternal: false,
-      isActive: false,
-      trackingID: 1,
-    },
-    {
-      title: "Things to do",
-      href: "https://www.visitscotland.com/see-do",
-      isExternal: false,
-      isActive: false,
-      trackingID: 1,
-    },
-    {
-      title: "Planning a trip",
-      href: "https://www.visitscotland.com/travel",
-      isExternal: false,
-      isActive: false,
-      trackingID: 1,
-    },
-    {
-      title: "Inspiration",
-      href: "https://www.visitscotland.com/inspiration",
-      isExternal: false,
-      isActive: false,
-      trackingID: 1,
-    },
-  ],
+  mainNavigationList: mainNav,
 }
 
 vueHelper.init("vs-main-nav", VsMainNav, props)
@@ -70,9 +35,13 @@ describe("Main Nav component", () => {
 
       it("should toggle a navigation menu", () => {
         cy.get(".vs-main-nav__list").should("not.be.visible")
-        cy.get("[data-toggle-trigger]").click()
+        cy.get("[data-toggle-trigger]")
+          .first()
+          .click()
         cy.get(".vs-main-nav__list").should("be.visible")
-        cy.get("[data-toggle-trigger]").click()
+        cy.get("[data-toggle-trigger]")
+          .first()
+          .click()
         cy.get(".vs-main-nav__list").should("not.be.visible")
       })
 
