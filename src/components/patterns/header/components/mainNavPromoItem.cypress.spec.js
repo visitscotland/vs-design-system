@@ -40,11 +40,7 @@ describe("Main Nav Promo Item component", () => {
       it("should render a promo image", () => {
         cy.get(".vs-promo-item__image")
           .should("be.visible")
-          .should(
-            "have.attr",
-            "src",
-            "https://cimg.visitscotland.com/cms-images/destinations/fort-william/ben-nevis?size=sm"
-          )
+          .should("have.attr", "src", "images/placeholders/list-default.jpg")
       })
 
       it("should render alt text for the promo image that is the same as the title", () => {
