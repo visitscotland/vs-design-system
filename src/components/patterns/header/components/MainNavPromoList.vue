@@ -56,51 +56,12 @@ export default {
 
 <docs>
   ```jsx
-  <div>
-    <vs-main-nav-promo-list
-      :list="[
-      {
-        title: 'Romantic',
-        href: 'https://www.visitscotland.com/inspiration/romantic',
-        isExternal: false,
-        isActive: false,
-        trackingID: 1,
-        imageLink: 'https://cimg.visitscotland.com/cms-images/about/couple-beach-south-queensferry-walk?size=sm'
-      },
-      {
-        title: 'Island hopping',
-        href: 'https://www.visitscotland.com/inpiration/island-hopping',
-        isExternal: false,
-        isActive: false,
-        trackingID: 1,
-        imageLink: 'https://cimg.visitscotland.com/cms-images/destinations/argyll-and-the-isles/kiloran-bay?size=sm'
-      },
-      {
-        title: 'Family',
-        href: 'https://www.visitscotland.com/inpiration/family',
-        isExternal: false,
-        isActive: false,
-        trackingID: 1,
-        imageLink: 'https://cimg.visitscotland.com/cms-images/itineraries/loch-insh-family-paddleboarding?size=sm'
-      },
-      {
-        title: 'Farm stays',
-        href: 'https://www.visitscotland.com/inpiration/farm-stays',
-        isExternal: false,
-        isActive: false,
-        trackingID: 1,
-        imageLink: 'https://cimg.visitscotland.com/cms-images/attractions/cattle-grazing-cliffs-westray?size=md'
-      },
-      {
-        title: 'Wellness',
-        href: 'https://www.visitscotland.com/inpiration/wellness',
-        isExternal: false,
-        isActive: false,
-        trackingID: 1,
-        imageLink: 'https://cimg.visitscotland.com/cms-images/holidays/outdoor-spa-gleneagles?size=md'
-      }
-    ]"
-    />
-  </div>
+    const mainNav = require("../../../../assets/fixtures/mainNav.json")
+    const promoList = mainNav[4].promoList
+    <div>
+      <vs-main-nav-promo-list
+        :list="promoList"
+      />
+    </div>
   ```
 </docs>
