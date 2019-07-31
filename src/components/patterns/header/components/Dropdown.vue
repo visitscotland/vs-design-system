@@ -2,7 +2,8 @@
   <component :is="type" class="vs-dropdown" :aria-label="name">
     <button
       class="vs-dropdown__button"
-      data-toggle-trigger
+      ref="trigger"
+      data-test-trigger
       @click="triggerToggle()"
       aria-haspopup="true"
       :aria-expanded="show ? 'true' : 'false'"
@@ -16,7 +17,7 @@
       <ul
         aria-role="menubar"
         :aria-label="name"
-        class="vs-dropdown__list"
+        class="vs-dropdown__list list-unstyled"
         :class="{ expanded: show }"
         data-toggle-pane
         v-if="show"
@@ -81,7 +82,7 @@ export default {
       if (currentState === false) {
         this.show = true
       }
-      this.$el.querySelector("[data-toggle-trigger]").blur()
+      this.$refs.trigger.blur()
     },
     reset() {
       this.show = false
@@ -97,62 +98,60 @@ export default {
 @import "~bootstrap/scss/utilities/text";
 @import "~bootstrap/scss/utilities/display";
 @import "~bootstrap/scss/utilities/flex";
+@import "~bootstrap/scss/type";
 @import "~bootstrap/scss/utilities/screenreaders";
 @import "../styles/placeholders";
 @import "../styles/animations";
 
-.vs-dropdown {
-  &__list {
-    @extend %list-reset;
-    background-color: shade($color-heather-purple, 20%);
+.vs-dropdown__list {
+  background-color: shade($color-theme-primary, 20%);
+  color: $color-white;
+  height: 100vh;
+  left: 0;
+  position: absolute;
+  top: 28px;
+  width: 100%;
+}
+
+.vs-dropdown__link {
+  align-items: center;
+  border-bottom: 1px solid tint($color-theme-primary, 5%);
+  box-shadow: inset 0 0 0 0 transparent;
+  color: $color-white;
+  display: flex;
+  font-size: 1.5rem;
+  font-weight: $font-weight-light;
+  padding: 0.75rem 1.25rem;
+  position: relative;
+  transition: all 250ms ease-in-out;
+  width: 100%;
+
+  &:focus {
+    @extend %focus-white-inset;
+  }
+
+  &:hover {
     color: $color-white;
-    left: 0;
-    position: absolute;
-    top: 28px;
-    width: 100%;
-    height: 100vh;
   }
+}
 
-  &__link {
-    align-items: center;
-    border-bottom: 1px solid tint($color-heather-purple, 5%);
-    box-shadow: inset 0 0 0 0 transparent;
-    color: $color-white;
-    display: flex;
-    font-size: 1.5rem;
-    font-weight: $font-weight-light;
-    padding: 0.75rem 1.25rem;
-    position: relative;
-    transition: all 250ms ease-in-out;
-    width: 100%;
+.vs-dropdown__external-icon-wrapper {
+  display: flex;
+  margin-left: 5px;
+}
 
-    &:focus {
-      @extend %focus-white-inset;
-    }
+.vs-dropdown__button {
+  @extend %button-reset;
+  @extend %uni-nav-button-style;
+}
 
-    &:hover {
-      color: $color-white;
-    }
-  }
+.vs-dropdown__icon-wrapper {
+  margin-left: 5px;
+  transition: transform 250ms;
 
-  &__external-icon-wrapper {
-    display: flex;
-    margin-left: 5px;
-  }
-
-  &__button {
-    @extend %button-reset;
-    @extend %uni-nav-button-style;
-  }
-
-  &__icon-wrapper {
-    margin-left: 5px;
-    transition: transform 250ms;
-
-    .vs-dropdown__button[aria-expanded="true"] & {
-      transform: rotate(180deg);
-      transform-origin: 50% 54%;
-    }
+  .vs-dropdown__button[aria-expanded="true"] & {
+    transform: rotate(180deg);
+    transform-origin: 50% 54%;
   }
 }
 </style>
