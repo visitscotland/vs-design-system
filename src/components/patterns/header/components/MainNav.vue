@@ -2,18 +2,18 @@
   <component :is="type" class="vs-main-nav" :aria-label="name">
     <button
       class="vs-main-nav__button"
-      data-toggle-trigger
+      ref="trigger"
+      data-test-trigger
       @click="triggerToggle()"
       aria-haspopup="true"
       :aria-expanded="show ? 'true' : 'false'"
     >
-      <span class="switch"> <span class="sr-only">Toggle Main Navigation</span> </span>
+      <span class="vs-main-nav__switch"> <span class="sr-only">Toggle Main Navigation</span> </span>
     </button>
     <transition name="slide-fade">
       <ul
         class="vs-main-nav__list vs-main-nav__list--level1"
         :class="{ expanded: show }"
-        data-toggle-pane
         v-if="show"
       >
         <VsMainNavListItem
@@ -67,7 +67,7 @@ export default {
       if (currentState === false) {
         this.show = true
       }
-      this.$el.querySelector("[data-toggle-trigger]").blur()
+      this.$refs.trigger.blur()
     },
     reset() {
       this.show = false
@@ -89,80 +89,78 @@ export default {
 
 .vs-main-nav {
   display: flex;
+}
 
-  &__button {
-    @extend %button-reset;
-    @extend %main-nav-button-style;
+.vs-main-nav__button {
+  @extend %button-reset;
+  @extend %main-nav-button-style;
 
-    .switch {
-      display: block;
-      width: 16px;
-      height: 2px;
-      left: 0.5rem;
-      background-color: $color-mid-granite;
-      position: relative;
+  &:focus {
+    @extend %focus-pink-inset;
+  }
+}
 
-      &::before {
-        content: "";
-        display: block;
-        width: 16px;
-        height: 2px;
-        background-color: $color-mid-granite;
-        position: absolute;
-        top: -6px;
-        transition: transform 250ms ease-in-out;
-      }
+.vs-main-nav__switch {
+  background-color: $color-mid-granite;
+  display: block;
+  height: 2px;
+  left: 11px;
+  position: relative;
+  width: 16px;
 
-      &::after {
-        content: "";
-        display: block;
-        width: 16px;
-        height: 2px;
-        background-color: $color-mid-granite;
-        position: absolute;
-        top: 6px;
-        transition: transform 250ms ease-in-out;
-      }
-    }
+  .vs-main-nav__button[aria-expanded="true"] & {
+    background-color: $color-white;
+  }
 
-    &[aria-expanded="true"] {
-      .switch {
-        background-color: $color-white;
+  &::before {
+    background-color: $color-mid-granite;
+    content: "";
+    display: block;
+    height: 2px;
+    position: absolute;
+    top: -6px;
+    transition: transform 250ms ease-in-out;
+    width: 16px;
 
-        &::before {
-          transform: rotate(45deg);
-          top: 0;
-          left: -2px;
-          width: 20px;
-        }
-
-        &::after {
-          transform: rotate(135deg);
-          top: 0;
-          left: -2px;
-          width: 20px;
-        }
-      }
-    }
-
-    &:focus {
-      @extend %focus-pink-inset;
+    .vs-main-nav__button[aria-expanded="true"] & {
+      left: -2px;
+      top: 0;
+      transform: rotate(45deg);
+      width: 20px;
     }
   }
 
-  &__list {
-    @extend %list-reset;
-    left: 0;
+  &::after {
+    background-color: $color-mid-granite;
+    content: "";
+    display: block;
+    height: 2px;
     position: absolute;
-    top: 40px;
-    height: 100vh;
-    width: 100%;
-    z-index: 2;
+    top: 6px;
+    transition: transform 250ms ease-in-out;
+    width: 16px;
 
-    &--level1 {
-      box-shadow: inset 0 8px 6px -6px rgba(0, 0, 0, 0.3);
-      background-color: $color-white;
+    .vs-main-nav__button[aria-expanded="true"] & {
+      left: -2px;
+      top: 0;
+      transform: rotate(135deg);
+      width: 20px;
     }
+  }
+}
+
+.vs-main-nav__list {
+  @extend %list-reset;
+  height: 100vh;
+  left: 0;
+  position: absolute;
+  top: 40px;
+  width: 100%;
+  z-index: 2;
+
+  &--level1 {
+    box-shadow: inset 0 8px 6px -6px rgba(0, 0, 0, 0.3);
+    background-color: $color-white;
   }
 }
 </style>
