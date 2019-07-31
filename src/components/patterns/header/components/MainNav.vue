@@ -16,12 +16,7 @@
         :class="{ expanded: show }"
         v-if="show"
       >
-        <VsMainNavListItem
-          v-for="(link, index) in this.mainNavigationList"
-          :level="1"
-          :item="link"
-          :key="index"
-        />
+        <slot />
       </ul>
     </transition>
   </component>
@@ -51,10 +46,6 @@ export default {
     type: {
       type: String,
       default: "nav",
-    },
-    mainNavigationList: {
-      type: Array,
-      required: true,
     },
     name: {
       type: String,
@@ -167,12 +158,10 @@ export default {
 
 <docs>
   ```jsx
-  const mainNav = require("../../../../assets/fixtures/mainNav.json")
 
   <div style="position: relative; height: 100vh;">
     <vs-main-nav
         name="Main navigation"
-        :main-navigation-list="mainNav"
     />
   </div>
   ```
