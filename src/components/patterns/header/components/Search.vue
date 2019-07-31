@@ -2,7 +2,8 @@
   <component :is="type" class="vs-search">
     <button
       class="vs-search__button"
-      data-toggle-trigger
+      ref="trigger"
+      data-test-trigger
       @click="triggerToggle()"
       aria-haspopup="true"
       :aria-expanded="show ? 'true' : 'false'"
@@ -64,7 +65,7 @@ export default {
       if (currentState === false) {
         this.show = true
       }
-      this.$el.querySelector("[data-toggle-trigger]").blur()
+      this.$refs.trigger.blur()
     },
     reset() {
       this.show = false
@@ -93,82 +94,80 @@ export default {
 @import "../styles/placeholders";
 @import "../styles/animations";
 
-.vs-search {
-  &__button {
-    @extend %button-reset;
-    @extend %button-pink;
-    @extend %main-nav-button-style;
+.vs-search__button {
+  @extend %button-reset;
+  @extend %button-pink;
+  @extend %main-nav-button-style;
+
+  svg {
+    margin-top: -4px;
+  }
+
+  &[aria-expanded="true"] {
+    background-color: $color-light-granite;
 
     svg {
-      margin-top: -4px;
-    }
-
-    &[aria-expanded="true"] {
-      background-color: $color-light-granite;
-
-      svg {
-        fill: $color-mid-granite !important;
-      }
+      fill: $color-mid-granite !important;
     }
   }
+}
 
-  &__form-wrapper {
-    background-color: $color-very-light-granite;
-    box-shadow: inset 0 8px 6px -6px rgba(0, 0, 0, 0.3), 0 8px 6px -6px rgba(0, 0, 0, 0.3);
-    justify-content: space-between;
-    padding: 1rem;
-    left: 0;
-    position: absolute;
-    top: 40px;
-    width: 100%;
-    z-index: 1;
+.vs-search__form-wrapper {
+  background-color: $color-very-light-granite;
+  box-shadow: inset 0 8px 6px -6px rgba(0, 0, 0, 0.3), 0 8px 6px -6px rgba(0, 0, 0, 0.3);
+  justify-content: space-between;
+  padding: 1rem;
+  left: 0;
+  position: absolute;
+  top: 40px;
+  width: 100%;
+  z-index: 1;
+}
+
+.vs-search__form {
+  display: flex;
+}
+
+.vs-search__input {
+  @extend %reset-clear;
+  border: none;
+  display: block;
+  padding: 7px 7px 7px 0;
+  width: 100%;
+  position: relative;
+
+  &:focus {
+    @extend %focus-pink-inset;
   }
+}
 
-  &__form {
-    display: flex;
+.vs-search__label {
+  background-color: $color-white;
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  margin: 0;
+}
+
+.vs-search__clear-button {
+  @extend %button-reset;
+  background: $color-white;
+  display: flex;
+  align-items: center;
+  padding: 0 10px;
+
+  &:focus {
+    @extend %focus-pink-inset;
   }
+}
 
-  &__input {
-    @extend %reset-clear;
-    border: none;
-    display: block;
-    padding: 7px 7px 7px 0;
-    width: 100%;
-    position: relative;
-
-    &:focus {
-      @extend %focus-pink-inset;
-    }
-  }
-
-  &__label {
-    background-color: $color-white;
-    display: flex;
-    align-items: center;
-    padding: 10px;
-    margin: 0;
-  }
-
-  &__clear-button {
-    @extend %button-reset;
-    background: $color-white;
-    display: flex;
-    align-items: center;
-    padding: 0 10px;
-
-    &:focus {
-      @extend %focus-pink-inset;
-    }
-  }
-
-  &__submit-button {
-    @extend %button-reset;
-    @extend %button-pink;
-    font-size: 1.125rem;
-    font-weight: $font-weight-semi-bold;
-    padding: 0 10px;
-    margin-left: 5px;
-  }
+.vs-search__submit-button {
+  @extend %button-reset;
+  @extend %button-pink;
+  font-size: 1.125rem;
+  font-weight: $font-weight-semi-bold;
+  padding: 0 10px;
+  margin-left: 5px;
 }
 </style>
 

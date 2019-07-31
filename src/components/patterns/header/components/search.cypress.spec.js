@@ -35,13 +35,13 @@ describe("Search component", () => {
 
       it("search form area should toggle when search button is click", () => {
         cy.get(".vs-search__form-wrapper").should("not.be.visible")
-        cy.get("[data-toggle-trigger]").click()
+        cy.get("[data-test-trigger]").click()
         cy.get(".vs-search__form-wrapper").should("be.visible")
-        cy.get("[data-toggle-trigger]").click()
+        cy.get("[data-test-trigger]").click()
       })
 
       it("should toggle aria-expanded property on the button", () => {
-        cy.get("[data-toggle-trigger]")
+        cy.get("[data-test-trigger]")
           .should("have.attr", "aria-expanded", "false")
           .click()
           .should("have.attr", "aria-expanded", "true")
@@ -49,7 +49,7 @@ describe("Search component", () => {
 
       context("When the search form is expanded", () => {
         beforeEach(() => {
-          cy.get("[data-toggle-trigger]").click()
+          cy.get("[data-test-trigger]").click()
         })
 
         it("should render a search form", () => {
