@@ -1,8 +1,18 @@
 <template>
   <component :is="type" class="list-unstyled">
     <li class="vs-promo__list-item" v-for="(item, index) in list" :key="index">
-      <VsMainNavPromoItem v-if="item && index === 0" :item="item" />
-      <VsMainNavListItem v-if="item && index !== 0" :item="item" :level="2" />
+      <VsMainNavPromoItem v-if="item && index === last" :item="item" />
+      <VsMainNavListItem
+        v-if="item && index !== last"
+        :level="2"
+        :href="item.href"
+        :is-external="item.isExternal"
+        :title="item.title"
+        :subnav="item.subnav"
+        :promo-list="item.promoList"
+        :promo-item="item.promoItem"
+        :key="index"
+      />
     </li>
   </component>
 </template>
@@ -35,6 +45,11 @@ export default {
     list: {
       type: Array,
       required: true,
+    },
+  },
+  computed: {
+    last() {
+      return Object.keys(this.list).length - 1
     },
   },
 }
