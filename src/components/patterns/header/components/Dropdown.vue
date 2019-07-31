@@ -32,7 +32,7 @@
             class="vs-dropdown__link"
             :href="link.href"
             :target="link.isExternal ? '_blank' : false"
-            :data-di-id="link.trackingID"
+            :data-vs-track="link.trackingID"
           >
             {{ link.title }}
             <div v-if="link.isExternal" class="vs-dropdown__external-icon-wrapper">
