@@ -1,5 +1,5 @@
 <template>
-  <component :is="type" class="vs-promo__list">
+  <component :is="type" class="list-unstyled">
     <li class="vs-promo__list-item" v-for="(item, index) in list" :key="index">
       <VsMainNavPromoItem v-if="item && index === 0" :item="item" />
       <VsMainNavListItem v-if="item && index !== 0" :item="item" :level="2" />
@@ -41,17 +41,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "~bootstrap/scss/utilities/text";
-@import "~bootstrap/scss/utilities/display";
-@import "~bootstrap/scss/utilities/flex";
-@import "~bootstrap/scss/utilities/screenreaders";
-@import "../styles/placeholders";
-
-.vs-promo {
-  &__list {
-    @extend %list-reset;
-  }
-}
+@import "~bootstrap/scss/type";
 </style>
 
 <docs>
