@@ -3,7 +3,7 @@
     <div class="vs-header__wrapper--top position-relative">
       <vs-container>
         <vs-row>
-          <vs-col class="position-static"> <slot name="ourSites"></slot> </vs-col>
+          <vs-col class="position-static"> <slot name="universal-nav"></slot> </vs-col>
           <vs-col class="d-flex justify-content-end position-static">
             <slot name="login"></slot> <slot name="language"></slot>
           </vs-col>
@@ -14,11 +14,11 @@
     <div class="vs-header__wrapper--bottom position-relative">
       <vs-container>
         <vs-row>
-          <vs-col cols="7"> <slot name="logo"></slot> </vs-col>
+          <vs-col cols="7"> <slot name="logo" /> </vs-col>
           <vs-col cols="5" class="d-flex justify-content-end position-static">
             <div class="vs-controls__wrapper d-flex">
-              <slot name="search"></slot> <slot name="favourites"></slot>
-              <slot name="mainNav"></slot>
+              <slot name="search" /> <slot name="favourites" />
+              <vs-main-nav name="Main navigation"> <slot name="main-nav-items" /> </vs-main-nav>
             </div>
           </vs-col>
         </vs-row>
@@ -72,7 +72,8 @@ export default {
 @import "styles/placeholders";
 
 .vs-header {
-  min-height: 600px; // temporary -
+  min-height: 650px; // temporary -
+  height: auto;
   overflow-x: hidden;
   overflow-y: scroll;
   position: relative;
@@ -103,7 +104,7 @@ export default {
   <div>
     <vs-header>
       <vs-dropdown
-        slot="ourSites"
+        slot="universal-nav"
         name="Our sites"
         :dropdown-list="ourSites"
       />
@@ -120,10 +121,50 @@ export default {
         slot="search" />
       <vs-favourites
         slot="favourites" />
-      <vs-main-nav 
-        slot="mainNav"
-        name="Main navigation" 
-        :main-navigation-list="mainNav" />
+        
+      <vs-main-nav-list-item
+        slot="main-nav-items"
+        v-for="(item, index) in mainNav"
+        :level="1"
+        :href="item.href"
+        :is-external="item.isExternal"
+        :title="item.title"
+        :tracking-id="item.trackingID"
+        :subnav="item.subnav"
+        :promo-list="item.promoList"
+        :promo-item="item.promoItem"
+        :key="index"
+      >
+
+        <vs-main-nav-list-item
+          slot="subnav"
+          v-for="(level2, index2) in item.subnav"
+          :level="2"
+          :href="level2.href"
+          :is-external="level2.isExternal"
+          :title="level2.title"
+          :tracking-id="level2.trackingID"
+          :subnav="level2.subnav"
+          :promo-list="level2.promoList"
+          :promo-item="level2.promoItem"
+          :key="index2"
+        >
+          <vs-main-nav-list-item
+            slot="subnav"
+            v-for="(level3, index3) in level2.subnav"
+            :level="3"
+            :href="level3.href"
+            :is-external="level3.isExternal"
+            :title="level3.title"
+            :tracking-id="level3.trackingID"
+            :subnav="level3.subnav"
+            :promo-list="level3.promoList"
+            :promo-item="level3.promoItem"
+            :key="index3"
+          >
+          </vs-main-nav-list-item>
+        </vs-main-nav-list-item>
+      </vs-main-nav-list-item>
     </vs-header>
   </div>
   ```
