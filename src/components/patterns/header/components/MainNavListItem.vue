@@ -7,8 +7,12 @@
     <button
       v-if="hasPopup(item)"
       class="vs-main-nav__button"
-      :class="[show ? 'expanded' : '', level ? 'vs-main-nav__button--level' + level : '']"
-      data-toggle-trigger
+      :class="{
+        expanded: show,
+        ['vs-main-nav__button--level' + level]: level,
+      }"
+      ref="trigger"
+      data-test-trigger
       @click="triggerToggle()"
       aria-haspopup="true"
       :aria-expanded="show ? 'true' : 'false'"
@@ -16,7 +20,10 @@
       {{ item.title }}
       <div
         class="vs-main-nav__icon-wrapper vs-main-nav__icon-wrapper--chevron-down"
-        :class="[show ? 'vs-main-nav__icon-wrapper--expanded' : '', level ? 'level' + level : '']"
+        :class="{
+          'vs-main-nav__icon-wrapper--expanded': show,
+          ['level' + level]: level,
+        }"
       >
         <vs-svg path="icons/chevron-down" height="8" fill="#727272" />
       </div>
@@ -25,23 +32,28 @@
       v-else
       class="vs-main-nav__link"
       :href="item.href"
-      :class="[item.isExternal ? 'external' : '', level ? 'vs-main-nav__link--level' + level : '']"
+      :class="{
+        external: item.isExternal,
+        ['vs-main-nav__link--level' + level]: level,
+      }"
       :target="item.isExternal ? '_blank' : false"
-      :data-di-id="item.trackingID"
+      :data-vs-track="item.trackingID"
       >{{ item.title }}</a
     >
     <transition name="slide-fade" v-if="hasPopup(item)">
       <div v-if="show">
         <ul
           class="vs-main-nav__list"
-          :class="[
-            show ? 'expanded' : '',
-            incrementLevel(level) ? 'vs-main-nav__list--level' + incrementLevel(level) : '',
-          ]"
+          :class="{
+            expanded: show,
+            ['vs-main-nav__list--level' + incrementLevel(level)]: incrementLevel(level),
+          }"
         >
           <li
             class="vs-main-nav__list-item"
-            :class="'vs-main-nav__list-item--level' + incrementLevel(level)"
+            :class="{
+              ['vs-main-nav__list-item--level' + incrementLevel(level)]: incrementLevel(level),
+            }"
             v-if="item.href !== null"
           >
             <a
@@ -52,7 +64,7 @@
                 level ? 'vs-main-nav__link--level' + incrementLevel(level) : '',
               ]"
               :target="item.isExternal ? '_blank' : false"
-              :data-di-id="item.trackingID"
+              :data-vs-track="item.trackingID"
               >See all {{ titleToLowerCase(item.title) }}</a
             >
           </li>
@@ -119,7 +131,7 @@ export default {
     },
     triggerToggle() {
       this.show = !this.show
-      let thisTrigger = this.$el.querySelector("[data-toggle-trigger]")
+      let thisTrigger = this.$refs.trigger
       let headerWrapper = document.querySelector(".vs-header")
       if (this.show) {
         headerWrapper.scrollTo({
