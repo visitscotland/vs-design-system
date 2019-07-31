@@ -35,18 +35,18 @@ describe("Main Nav component", () => {
 
       it("should toggle a navigation menu", () => {
         cy.get(".vs-main-nav__list").should("not.be.visible")
-        cy.get("[data-toggle-trigger]")
+        cy.get("[data-test-trigger]")
           .first()
           .click()
         cy.get(".vs-main-nav__list").should("be.visible")
-        cy.get("[data-toggle-trigger]")
+        cy.get("[data-test-trigger]")
           .first()
           .click()
         cy.get(".vs-main-nav__list").should("not.be.visible")
       })
 
       it("should toggle aria-expanded property on the button", () => {
-        cy.get("[data-toggle-trigger]")
+        cy.get("[data-test-trigger]")
           .should("have.attr", "aria-expanded", "false")
           .click()
           .should("have.attr", "aria-expanded", "true")
@@ -54,7 +54,7 @@ describe("Main Nav component", () => {
 
       it("should display list items when expanded", () => {
         cy.get(".vs-main-nav__list-item").should("not.be.visible")
-        cy.get("[data-toggle-trigger]").click()
+        cy.get("[data-test-trigger]").click()
         cy.get(".vs-main-nav__list-item")
           .should("be.visible")
           .should("have.length", "5")
