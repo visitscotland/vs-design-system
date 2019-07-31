@@ -12,7 +12,7 @@
     </button>
     <transition name="slide-fade">
       <ul
-        class="vs-main-nav__list vs-main-nav__list--level1"
+        class="vs-main-nav__list vs-main-nav__list--level1 list-unstyled"
         :class="{ expanded: show }"
         v-if="show"
       >
@@ -74,6 +74,7 @@ export default {
 @import "~bootstrap/scss/utilities/text";
 @import "~bootstrap/scss/utilities/display";
 @import "~bootstrap/scss/utilities/flex";
+@import "~bootstrap/scss/type";
 @import "~bootstrap/scss/utilities/screenreaders";
 @import "../styles/placeholders";
 @import "../styles/animations";
@@ -141,7 +142,6 @@ export default {
 }
 
 .vs-main-nav__list {
-  @extend %list-reset;
   height: 100vh;
   left: 0;
   position: absolute;
