@@ -22,7 +22,7 @@ describe("Main Nav Promo List component", () => {
       })
 
       it("should render a list element", () => {
-        cy.get(".vs-promo__list").should("be.visible")
+        cy.get("ul").should("be.visible")
       })
 
       it("should render list items", () => {
