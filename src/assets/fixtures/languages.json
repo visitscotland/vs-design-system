@@ -2,42 +2,36 @@
   {
     "title": "English",
     "abbreviation": "EN",
-    "trackingID": "1",
     "isActive": true,
     "href": "https://www.visitscotland.com/"
   },
   {
     "title": "Deutsch",
     "abbreviation": "DE",
-    "trackingID": "1",
     "isActive": false,
     "href": "https://www.visitscotland.com/de-de"
   },
   {
     "title": "Español",
     "abbreviation": "ES",
-    "trackingID": "1",
     "isActive": false,
     "href": "https://www.visitscotland.com/es-es"
   },
   {
     "title": "Français",
     "abbreviation": "FR",
-    "trackingID": "1",
     "isActive": false,
     "href": "https://www.visitscotland.com/fr-fr"
   },
   {
     "title": "Italiano",
     "abbreviation": "IT",
-    "trackingID": "1",
     "isActive": false,
     "href": "https://www.visitscotland.com/it-it"
   },
   {
     "title": "Nederlands",
     "abbreviation": "NL",
-    "trackingID": "1",
     "isActive": false,
     "href": "https://www.visitscotland.com/nl-nl"
   }
