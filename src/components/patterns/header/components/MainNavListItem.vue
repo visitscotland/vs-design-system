@@ -19,7 +19,7 @@
     >
       {{ title }}
       <div
-        class="vs-main-nav__icon-wrapper vs-main-nav__icon-wrapper--chevron-down"
+        class="vs-main-nav__icon-wrapper vs-main-nav__icon-wrapper--spin"
         :class="{
           'vs-main-nav__icon-wrapper--expanded': show,
           ['level' + level]: level,
@@ -43,7 +43,7 @@
     <transition name="slide-fade" v-if="hasChildren">
       <div v-if="show">
         <ul
-          class="vs-main-nav__list"
+          class="list-unstyled"
           :class="{
             expanded: show,
             ['vs-main-nav__list--level' + incrementLevel]: incrementLevel,
@@ -177,96 +177,91 @@ export default {
 @import "~bootstrap/scss/utilities/display";
 @import "~bootstrap/scss/utilities/flex";
 @import "~bootstrap/scss/utilities/screenreaders";
+@import "~bootstrap/scss/type";
 @import "../styles/placeholders";
 @import "../styles/animations";
 
-.vs-main-nav {
-  &__icon-wrapper {
-    &--chevron-down {
-      margin-left: 5px;
-      transition: transform 250ms;
-    }
+.vs-main-nav__icon-wrapper {
+  &--spin {
+    margin-left: 5px;
+    transition: transform 250ms;
+  }
 
-    &--expanded {
-      transform: rotate(180deg);
-      transform-origin: 50% 54%;
+  &--expanded {
+    transform: rotate(180deg);
+    transform-origin: 50% 54%;
+  }
+}
+
+.vs-main-nav__button {
+  @extend %button-reset;
+}
+
+.vs-main-nav__button,
+.vs-main-nav__link {
+  align-items: center;
+  border-bottom: 1px solid $color-gray-e6;
+  color: $color-gray-38;
+  display: flex;
+  font-weight: $font-weight-semi-bold;
+  justify-content: space-between;
+  transition: background-color 250ms ease-in-out;
+
+  &:focus {
+    @extend %focus-pink-inset;
+  }
+
+  &--level1 {
+    font-size: 1.5rem;
+    font-weight: $font-weight-normal;
+    padding: 0.75rem 1.25rem;
+    width: 100%;
+
+    &[aria-expanded="true"] {
+      box-shadow: inset 0.75rem 0 0 0 $color-thistle-pink;
     }
   }
 
-  &__list {
-    @extend %list-reset;
-  }
+  &--level2 {
+    background-color: $color-gray-f8;
+    box-shadow: inset 0.75rem 0 0 0 $color-gray-e6;
+    font-size: 1.125rem;
+    padding: 0.75rem 1.25rem 0.75rem 2.25rem;
+    width: 100%;
 
-  &__button {
-    @extend %button-reset;
-  }
-
-  &__button,
-  &__link {
-    align-items: center;
-    border-bottom: 1px solid $color-gray-e6;
-    color: $color-gray-38;
-    display: flex;
-    font-weight: $font-weight-semi-bold;
-    justify-content: space-between;
-    transition: background-color 250ms ease-in-out;
-
-    &:focus {
-      @extend %focus-pink-inset;
-    }
-
-    &--level1 {
-      font-size: 1.5rem;
-      font-weight: $font-weight-normal;
-      padding: 0.75rem 1.25rem;
-      width: 100%;
-
-      &[aria-expanded="true"] {
-        box-shadow: inset 0.75rem 0 0 0 $color-thistle-pink;
-      }
-    }
-
-    &--level2 {
-      background-color: $color-gray-f8;
-      box-shadow: inset 0.75rem 0 0 0 $color-gray-e6;
-      font-size: 1.125rem;
-      padding: 0.75rem 1.25rem 0.75rem 2.25rem;
-      width: 100%;
-
-      &[aria-expanded="true"] {
-        box-shadow: inset 0.75rem 0 0 0 $color-thistle-pink;
-      }
-    }
-
-    &--level3 {
-      background-color: $color-gray-ef;
-      box-shadow: inset 0.75rem 0 0 0 $color-gray-e6;
-      font-size: 1.125rem;
-      padding: 0.75rem 1.25rem 0.75rem 3.25rem;
-
-      .vs-main-nav__list-item--level3:first-of-type & {
-        box-shadow: inset 0 8px 6px -6px rgba(0, 0, 0, 0.1), inset 12px 0 0 0 $color-gray-e6;
-      }
-    }
-
-    &--level3,
-    &--level2 {
-      font-weight: $font-weight-normal;
+    &[aria-expanded="true"] {
+      box-shadow: inset 0.75rem 0 0 0 $color-thistle-pink;
     }
   }
 
-  &__link {
-    &--landing-page {
-      background-color: $color-white;
+  &--level3 {
+    background-color: $color-gray-ef;
+    box-shadow: inset 0.75rem 0 0 0 $color-gray-e6;
+    font-size: 1.125rem;
+    padding: 0.75rem 1.25rem 0.75rem 3.25rem;
+
+    .vs-main-nav__list-item--level3:first-of-type & {
+      box-shadow: inset 0 8px 6px -6px rgba(0, 0, 0, 0.1), inset 12px 0 0 0 $color-gray-e6;
+    }
+  }
+
+  &--level3,
+  &--level2 {
+    font-weight: $font-weight-normal;
+  }
+}
+
+.vs-main-nav__link {
+  &--landing-page {
+    background-color: $color-white;
+    color: $color-thistle-pink;
+
+    &:hover {
       color: $color-thistle-pink;
-
-      &:hover {
-        color: $color-thistle-pink;
-      }
     }
-    &--level3 {
-      border-bottom: none;
-    }
+  }
+  &--level3 {
+    border-bottom: none;
   }
 }
 </style>
