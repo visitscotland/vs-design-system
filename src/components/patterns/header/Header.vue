@@ -1,35 +1,46 @@
 <template>
   <component :is="type" class="vs-header">
-    <div class="vs-universal-nav__wrapper">
+    <div class="vs-header__wrapper--top position-relative">
       <vs-container>
-        <div class="vs-universal-nav__wrapper--inner">
-          <slot name="ourSites"></slot>
-          <div class="d-flex"><slot name="login"></slot> <slot name="language"></slot></div>
-        </div>
+        <vs-row>
+          <vs-col class="position-static"> <slot name="ourSites"></slot> </vs-col>
+          <vs-col class="d-flex justify-content-end position-static">
+            <slot name="login"></slot> <slot name="language"></slot>
+          </vs-col>
+        </vs-row>
       </vs-container>
     </div>
 
-    <div class="vs-main-nav__wrapper">
+    <div class="vs-header__wrapper--bottom position-relative">
       <vs-container>
-        <div class="d-flex align-items-stretch justify-content-between">
-          <slot name="logo"></slot>
-          <div class="vs-controls__wrapper">
-            <slot name="search"></slot> <slot name="favourites"></slot> <slot name="mainNav"></slot>
-          </div>
-        </div>
+        <vs-row>
+          <vs-col cols="7"> <slot name="logo"></slot> </vs-col>
+          <vs-col cols="5" class="d-flex justify-content-end position-static">
+            <div class="vs-controls__wrapper d-flex">
+              <slot name="search"></slot> <slot name="favourites"></slot>
+              <slot name="mainNav"></slot>
+            </div>
+          </vs-col>
+        </vs-row>
       </vs-container>
     </div>
   </component>
 </template>
 
 <script>
+import VsContainer from "../../elements/layout/Container"
 import VsSvg from "../../elements/svg/Svg"
+import VsRow from "../../elements/layout/Row"
+import VsCol from "../../elements/layout/Col"
 
 export default {
   name: "VsHeader",
   status: "prototype",
   release: "0.0.1",
   components: {
+    VsCol,
+    VsContainer,
+    VsRow,
     VsSvg,
   },
   data() {
@@ -56,6 +67,7 @@ export default {
 @import "~bootstrap/scss/utilities/text";
 @import "~bootstrap/scss/utilities/display";
 @import "~bootstrap/scss/utilities/flex";
+@import "~bootstrap/scss/utilities/position";
 @import "~bootstrap/scss/utilities/screenreaders";
 @import "styles/placeholders";
 
@@ -66,37 +78,18 @@ export default {
   position: relative;
 }
 
-.vs-universal-nav {
-  &__wrapper {
-    background-color: $color-heather-purple;
-    position: relative;
-    width: 100%;
-    z-index: 4;
-
-    &--inner {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin: 0 -5px;
-    }
-  }
+.vs-header__wrapper--top {
+  background-color: $color-theme-primary;
+  z-index: 4;
 }
 
-.vs-main-nav {
-  &__wrapper {
-    background-color: $white;
-    box-shadow: 0 8px 6px -6px rgba(0, 0, 0, 0.3);
-    position: relative;
-    z-index: 3;
-  }
+.vs-header__wrapper--bottom {
+  background-color: $white;
+  box-shadow: 0 8px 6px -6px rgba(0, 0, 0, 0.3);
 }
 
-.vs-controls {
-  &__wrapper {
-    display: flex;
-    align-items: stretch;
-    margin: 0 -1rem 0 1rem;
-  }
+.vs-controls__wrapper {
+  margin-right: -1rem;
 }
 </style>
 
