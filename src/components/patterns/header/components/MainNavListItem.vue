@@ -5,7 +5,7 @@
     :class="'vs-main-nav__list-item--level' + level"
   >
     <button
-      v-if="hasPopup(item)"
+      v-if="hasChildren"
       class="vs-main-nav__button"
       :class="{
         expanded: show,
@@ -17,7 +17,7 @@
       aria-haspopup="true"
       :aria-expanded="show ? 'true' : 'false'"
     >
-      {{ item.title }}
+      {{ title }}
       <div
         class="vs-main-nav__icon-wrapper vs-main-nav__icon-wrapper--chevron-down"
         :class="{
@@ -31,52 +31,47 @@
     <a
       v-else
       class="vs-main-nav__link"
-      :href="item.href"
+      :href="href"
       :class="{
-        external: item.isExternal,
+        external: isExternal,
         ['vs-main-nav__link--level' + level]: level,
       }"
-      :target="item.isExternal ? '_blank' : false"
-      :data-vs-track="item.trackingID"
-      >{{ item.title }}</a
+      :target="isExternal ? '_blank' : false"
+      :data-vs-track="formattedTrackingId"
+      >{{ title }}</a
     >
-    <transition name="slide-fade" v-if="hasPopup(item)">
+    <transition name="slide-fade" v-if="hasChildren">
       <div v-if="show">
         <ul
           class="vs-main-nav__list"
           :class="{
             expanded: show,
-            ['vs-main-nav__list--level' + incrementLevel(level)]: incrementLevel(level),
+            ['vs-main-nav__list--level' + incrementLevel]: incrementLevel,
           }"
         >
           <li
             class="vs-main-nav__list-item"
             :class="{
-              ['vs-main-nav__list-item--level' + incrementLevel(level)]: incrementLevel(level),
+              ['vs-main-nav__list-item--level' + incrementLevel]: incrementLevel,
             }"
-            v-if="item.href !== null"
+            v-if="href !== null"
           >
             <a
               class="vs-main-nav__link vs-main-nav__link--landing-page"
-              :href="item.href"
+              :href="href"
               :class="[
-                item.isExternal ? 'external' : '',
-                level ? 'vs-main-nav__link--level' + incrementLevel(level) : '',
+                isExternal ? 'external' : '',
+                level ? 'vs-main-nav__link--level' + incrementLevel : '',
               ]"
-              :target="item.isExternal ? '_blank' : false"
-              :data-vs-track="item.trackingID"
-              >See all {{ titleToLowerCase(item.title) }}</a
+              :target="isExternal ? '_blank' : false"
+              :data-vs-track="formattedTrackingId"
+              >See all {{ lowerCaseTitle }}</a
             >
           </li>
-          <VsMainNavListItem
-            v-for="(subnav, index) in item.subnav"
-            :level="incrementLevel(level)"
-            :item="subnav"
-            :key="index"
-          />
+          <slot name="subnav" />
         </ul>
-        <VsMainNavPromoItem v-if="item.promoItem" :item="item.promoItem" />
-        <VsMainNavPromoList v-if="item.promoList" :list="item.promoList" />
+        <VsMainNavPromoItem v-if="promoItem" :item="promoItem" />
+        <VsMainNavPromoList v-if="promoList" :list="promoList" />
       </div>
     </transition>
   </component>
@@ -104,31 +99,53 @@ export default {
       type: String,
       default: "li",
     },
-    item: {
-      type: Object,
-      required: true,
+    href: {
+      type: String,
+    },
+    isExternal: {
+      type: Boolean,
+    },
+    trackingId: {
+      type: String,
+    },
+    title: {
+      type: String,
     },
     level: {
       type: Number,
     },
+    subnav: {
+      type: Array,
+    },
+    promoList: {
+      type: Array,
+    },
+    promoItem: {
+      type: Object,
+    },
   },
-  methods: {
-    hasPopup(item) {
+  computed: {
+    formattedTrackingId() {
+      return this.title ? "link.nav." + this.title.toLowerCase().replace(/\s+/g, "-") : ""
+    },
+    lowerCaseTitle() {
+      return this.title ? this.title.toLowerCase() : ""
+    },
+    hasChildren() {
       if (
-        item.subnav !== undefined ||
-        item.promoItem !== undefined ||
-        item.promoList !== undefined
+        this.subnav !== undefined ||
+        this.promoItem !== undefined ||
+        this.promoList !== undefined
       ) {
         return true
       }
       return false
     },
-    incrementLevel(level) {
-      return level + 1
+    incrementLevel() {
+      return this.level + 1
     },
-    titleToLowerCase(title) {
-      return title.toLowerCase()
-    },
+  },
+  methods: {
     triggerToggle() {
       this.show = !this.show
       let thisTrigger = this.$refs.trigger
@@ -263,8 +280,14 @@ export default {
   <div style="position: relative; height: 100vh;">
     <ul style="list-style-type: none; margin: 0; padding: 0;">
       <vs-main-nav-list-item
-          :level="1"
-          :item="listItemOne"
+        :level="1"
+        :href="href"
+        :is-external="isExternal"
+        :title="title"
+        :subnav="subnav"
+        :promo-list="promoList"
+        :promo-item="promoItem"
+        :key="index"
       />
       </ul>
   </div>
