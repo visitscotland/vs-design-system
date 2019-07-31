@@ -2,43 +2,43 @@
   {
     "title": "English",
     "abbreviation": "EN",
-    "locale": "en-en",
-    "trackingID": 1,
-    "isActive": true
+    "trackingID": "1",
+    "isActive": true,
+    "href": "https://www.visitscotland.com/"
   },
   {
     "title": "Deutsch",
     "abbreviation": "DE",
-    "locale": "de-de",
-    "trackingID": 1,
-    "isActive": false
+    "trackingID": "1",
+    "isActive": false,
+    "href": "https://www.visitscotland.com/de-de"
   },
   {
     "title": "Español",
     "abbreviation": "ES",
-    "locale": "es-es",
-    "trackingID": 1,
-    "isActive": false
+    "trackingID": "1",
+    "isActive": false,
+    "href": "https://www.visitscotland.com/es-es"
   },
   {
     "title": "Français",
     "abbreviation": "FR",
-    "locale": "fr-fr",
-    "trackingID": 1,
-    "isActive": false
+    "trackingID": "1",
+    "isActive": false,
+    "href": "https://www.visitscotland.com/fr-fr"
   },
   {
     "title": "Italiano",
     "abbreviation": "IT",
-    "locale": "it-it",
-    "trackingID": 1,
-    "isActive": false
+    "trackingID": "1",
+    "isActive": false,
+    "href": "https://www.visitscotland.com/it-it"
   },
   {
     "title": "Nederlands",
     "abbreviation": "NL",
-    "locale": "nl-nl",
-    "trackingID": 1,
-    "isActive": false
+    "trackingID": "1",
+    "isActive": false,
+    "href": "https://www.visitscotland.com/nl-nl"
   }
 ]
