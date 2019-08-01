@@ -2,11 +2,17 @@ const VsMainNavListItem = require("./MainNavListItem.vue").default
 const { vueHelper } = require("@cypress/helpers/index.js").default
 const sizes = ["iphone-6", "ipad-2", [1024, 768]]
 const mainNav = require("../../../../assets/fixtures/mainNav.json")
-const listItemOne = mainNav[0]
+const item = mainNav[0]
 
 const props = {
-  level: 1,
-  item: listItemOne,
+  level: "1",
+  href: item.href,
+  isExternal: item.isExternal,
+  title: item.title,
+  trackingId: item.trackingID,
+  subnav: item.subnav,
+  promoList: item.promoList,
+  promoItem: item.promoItem,
 }
 
 vueHelper.init("vs-main-nav-list-item", VsMainNavListItem, props)
