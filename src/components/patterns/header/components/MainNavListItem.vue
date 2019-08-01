@@ -105,9 +105,6 @@ export default {
     isExternal: {
       type: Boolean,
     },
-    trackingId: {
-      type: String,
-    },
     title: {
       type: String,
     },
@@ -272,14 +269,13 @@ export default {
   const mainNav = require("../../../../assets/fixtures/mainNav.json")
   const item = mainNav[0]
 
-  <div style="position: relative; height: 100vh;">
+  <div class="vs-header">
     <ul style="list-style-type: none; margin: 0; padding: 0;">
       <vs-main-nav-list-item
         :level="1"
         :href="item.href"
         :is-external="item.isExternal"
         :title="item.title"
-        :tracking-id="item.trackingID"
         :subnav="item.subnav"
         :promo-list="item.promoList"
         :promo-item="item.promoItem"
@@ -291,7 +287,6 @@ export default {
           :href="level2.href"
           :is-external="level2.isExternal"
           :title="level2.title"
-          :tracking-id="level2.trackingID"
           :subnav="level2.subnav"
           :promo-list="level2.promoList"
           :promo-item="level2.promoItem"
@@ -304,7 +299,6 @@ export default {
             :href="level3.href"
             :is-external="level3.isExternal"
             :title="level3.title"
-            :tracking-id="level3.trackingID"
             :subnav="level3.subnav"
             :promo-list="level3.promoList"
             :promo-item="level3.promoItem"
