@@ -270,20 +270,49 @@ export default {
   ```jsx
 
   const mainNav = require("../../../../assets/fixtures/mainNav.json")
-  const listItemOne = mainNav[0]
+  const item = mainNav[0]
 
   <div style="position: relative; height: 100vh;">
     <ul style="list-style-type: none; margin: 0; padding: 0;">
       <vs-main-nav-list-item
         :level="1"
-        :href="href"
-        :is-external="isExternal"
-        :title="title"
-        :subnav="subnav"
-        :promo-list="promoList"
-        :promo-item="promoItem"
-        :key="index"
-      />
+        :href="item.href"
+        :is-external="item.isExternal"
+        :title="item.title"
+        :tracking-id="item.trackingID"
+        :subnav="item.subnav"
+        :promo-list="item.promoList"
+        :promo-item="item.promoItem"
+      >
+      <vs-main-nav-list-item
+          slot="subnav"
+          v-for="(level2, index2) in item.subnav"
+          :level="2"
+          :href="level2.href"
+          :is-external="level2.isExternal"
+          :title="level2.title"
+          :tracking-id="level2.trackingID"
+          :subnav="level2.subnav"
+          :promo-list="level2.promoList"
+          :promo-item="level2.promoItem"
+          :key="index2"
+        >
+          <vs-main-nav-list-item
+            slot="subnav"
+            v-for="(level3, index3) in level2.subnav"
+            :level="3"
+            :href="level3.href"
+            :is-external="level3.isExternal"
+            :title="level3.title"
+            :tracking-id="level3.trackingID"
+            :subnav="level3.subnav"
+            :promo-list="level3.promoList"
+            :promo-item="level3.promoItem"
+            :key="index3"
+          >
+          </vs-main-nav-list-item>
+        </vs-main-nav-list-item>
+      </vs-main-nav-list-item>
       </ul>
   </div>
   ```
