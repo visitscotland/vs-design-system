@@ -1,6 +1,6 @@
 const mountVue = require("cypress-vue-unit-test")
 
-const { partial, each, clone, pickBy } = require("lodash")
+const { partial, each, clone, pickBy, has } = require("lodash")
 
 const PROPS_DATA_KEY_NAME = "componentProps"
 
@@ -9,12 +9,54 @@ export default {
   setProp,
 }
 
-function init(tag, definition, props, childContent) {
+/**
+ *
+ * @param {*} componentName String Name of the component that will be used in templates
+ * @param {*} definition Function | Object 2nd arg of Vue.component
+ * @param {*} props Object Map of props that will be passed to component and can be altered
+ * @param {*} childContent String Tag's child HTML markup
+ * @param {*} extensions Object Passed into mountVue options object
+ *
+ * Cypress usage example:
+ *
+ * const VsMainNavListItem = require("./MainNavListItem.vue").default
+ * const VsMainNavPromoItem = require("./MainNavPromoItem.vue").default
+ *
+ * // These props are added to the component and later updates to them
+ * // in the test causes component updates
+ * const props = {
+ *   level: 1,
+ *   ...
+ * }
+ *
+ * // This content is inserted between the opening and closing tags of
+ * // the component. Any child components (i.e vs-main-nav-promo-item in
+ * // this example) need to be defined in extensions.
+ * const content = `
+ *   Places to stay
+ *       <vs-main-nav-promo-item
+ *         v-slot:sunbnav
+ *         ...
+ *       />
+ * `
+ *
+ * // Here's where to define components, plugins, filters and mixins for global registration
+ * // https://github.com/bahmutov/cypress-vue-unit-test#global-vue-extensions
+ * const extensions = {
+ *   components: { VsMainNavPromoItem },
+ * }
+ *
+ * // 1st arg here defines the component's tag name (i.e. <vs-main-nav-list-item></vs-main-nav-list-item> )
+ * // 2nd arg here is the component object definition itself
+ * vueHelper.init("vs-main-nav-list-item", VsMainNavListItem, props, content, extensions)
+ *
+ */
+function init(componentName, definition, props, childContent, extensions = {}) {
   const template =
     `
         <div id="app">
             <component is="` +
-    tag +
+    componentName +
     `" v-bind="computedProps">` +
     childContent +
     `</component>
@@ -35,9 +77,11 @@ function init(tag, definition, props, childContent) {
     },
   }
 
-  const extensions = {
-    components: { [tag]: definition },
+  if (!has(extensions, "components")) {
+    extensions.components = {}
   }
+
+  extensions.components[componentName] = definition
 
   const mount = mountVue(app, { extensions })
 
