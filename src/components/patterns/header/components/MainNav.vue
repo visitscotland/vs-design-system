@@ -150,19 +150,60 @@ export default {
   z-index: 2;
 
   &--level1 {
-    box-shadow: inset 0 8px 6px -6px rgba(0, 0, 0, 0.3);
     background-color: $color-white;
+    box-shadow: inset 0 8px 6px -6px rgba(0, 0, 0, 0.3);
   }
 }
 </style>
 
 <docs>
   ```jsx
+  const mainNav = require("../../../../assets/fixtures/mainNav.json")
 
-  <div style="position: relative; height: 100vh;">
-    <vs-main-nav
-        name="Main navigation"
-    />
+  <div class="vs-header" style="position: relative; height: 100vh;">
+    <vs-main-nav name="Main navigation"> 
+      <vs-main-nav-list-item
+        v-for="(item, index) in mainNav"
+        :level="1"
+        :href="item.href"
+        :is-external="item.isExternal"
+        :title="item.title"
+        :tracking-id="item.trackingID"
+        :subnav="item.subnav"
+        :promo-list="item.promoList"
+        :promo-item="item.promoItem"
+        :key="index"
+      >
+      <vs-main-nav-list-item
+          slot="subnav"
+          v-for="(level2, index2) in item.subnav"
+          :level="2"
+          :href="level2.href"
+          :is-external="level2.isExternal"
+          :title="level2.title"
+          :tracking-id="level2.trackingID"
+          :subnav="level2.subnav"
+          :promo-list="level2.promoList"
+          :promo-item="level2.promoItem"
+          :key="index2"
+        >
+          <vs-main-nav-list-item
+            slot="subnav"
+            v-for="(level3, index3) in level2.subnav"
+            :level="3"
+            :href="level3.href"
+            :is-external="level3.isExternal"
+            :title="level3.title"
+            :tracking-id="level3.trackingID"
+            :subnav="level3.subnav"
+            :promo-list="level3.promoList"
+            :promo-item="level3.promoItem"
+            :key="index3"
+          >
+          </vs-main-nav-list-item>
+        </vs-main-nav-list-item>
+      </vs-main-nav-list-item>
+    </vs-main-nav>
   </div>
   ```
 </docs>
