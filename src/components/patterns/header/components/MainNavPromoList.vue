@@ -1,7 +1,15 @@
 <template>
   <component :is="type" class="list-unstyled">
     <li class="vs-promo__list-item" v-for="(item, index) in list" :key="index">
-      <VsMainNavPromoItem v-if="item && index === last" :item="item" />
+      <VsMainNavPromoItem
+        v-if="item && index === last"
+        :href="item.href"
+        :is-external="item.isExternal"
+        :title="item.title"
+        :button-text="item.buttonText"
+        :description="item.description"
+        :image-link="item.imageLink"
+      />
       <VsMainNavListItem
         v-if="item && index !== last"
         :level="2"
