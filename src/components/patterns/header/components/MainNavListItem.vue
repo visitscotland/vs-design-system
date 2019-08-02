@@ -46,13 +46,13 @@
           class="list-unstyled"
           :class="{
             expanded: show,
-            ['vs-main-nav__list--level' + incrementLevel]: incrementLevel,
+            ['vs-main-nav__list--level' + level]: level,
           }"
         >
           <li
             class="vs-main-nav__list-item"
             :class="{
-              ['vs-main-nav__list-item--level' + incrementLevel]: incrementLevel,
+              ['vs-main-nav__list-item--level' + level]: level,
             }"
             v-if="href !== null"
           >
@@ -61,7 +61,7 @@
               :href="href"
               :class="[
                 isExternal ? 'external' : '',
-                level ? 'vs-main-nav__link--level' + incrementLevel : '',
+                level ? 'vs-main-nav__link--level' + level : '',
               ]"
               :target="isExternal ? '_blank' : false"
               :data-vs-track="formattedTrackingId"
@@ -70,7 +70,15 @@
           </li>
           <slot name="subnav" />
         </ul>
-        <VsMainNavPromoItem v-if="promoItem" :item="promoItem" />
+        <VsMainNavPromoItem
+          v-if="promoItem"
+          :href="promoItem.href"
+          :is-external="promoItem.isExternal"
+          :title="promoItem.title"
+          :button-text="promoItem.buttonText"
+          :description="promoItem.description"
+          :image-link="promoItem.imageLink"
+        />
         <VsMainNavPromoList v-if="promoList" :list="promoList" />
       </div>
     </transition>
@@ -137,9 +145,6 @@ export default {
         return true
       }
       return false
-    },
-    incrementLevel() {
-      return this.level + 1
     },
   },
   methods: {
