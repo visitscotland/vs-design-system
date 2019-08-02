@@ -46,13 +46,13 @@
           class="list-unstyled"
           :class="{
             expanded: show,
-            ['vs-main-nav__list--level' + level]: level,
+            ['vs-main-nav__list--level' + incrementLevel]: incrementLevel,
           }"
         >
           <li
             class="vs-main-nav__list-item"
             :class="{
-              ['vs-main-nav__list-item--level' + level]: level,
+              ['vs-main-nav__list-item--level' + incrementLevel]: incrementLevel,
             }"
             v-if="href !== null"
           >
@@ -61,7 +61,7 @@
               :href="href"
               :class="[
                 isExternal ? 'external' : '',
-                level ? 'vs-main-nav__link--level' + level : '',
+                level ? 'vs-main-nav__link--level' + incrementLevel : '',
               ]"
               :target="isExternal ? '_blank' : false"
               :data-vs-track="formattedTrackingId"
@@ -145,6 +145,9 @@ export default {
         return true
       }
       return false
+    },
+    incrementLevel() {
+      return this.level + 1
     },
   },
   methods: {
