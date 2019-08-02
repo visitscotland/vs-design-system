@@ -1,18 +1,18 @@
 <template>
-  <component :is="type" class="vs-promo-item__link" :href="item.href">
+  <component :is="type" class="vs-promo-item__link" :href="href">
     <div class="vs-promo-item__wrapper">
-      <span class="vs-promo-item__link-title"> {{ item.title }} </span>
+      <span class="vs-promo-item__link-title">{{ title }}</span>
       <div class="vs-promo-item__icon-wrapper">
         <vs-svg path="icons/chevron-right" height="10" fill="#FFFFFF" />
       </div>
     </div>
-    <div class="vs-promo-item__image-wrapper" v-if="item.imageLink">
+    <div class="vs-promo-item__image-wrapper" v-if="imageLink">
       <img
         class="lazyload vs-promo-item__image"
-        :data-srcset="item.imageLink"
-        :data-src="item.imageLink"
-        :alt="item.title"
-        :src="item.imageLink"
+        :data-srcset="imageLink"
+        :data-src="imageLink"
+        :alt="title"
+        :src="imageLink"
       />
     </div>
   </component>
@@ -37,9 +37,23 @@ export default {
       type: String,
       default: "a",
     },
-    item: {
-      type: Object,
-      required: true,
+    href: {
+      type: String,
+    },
+    isExternal: {
+      type: Boolean,
+    },
+    title: {
+      type: String,
+    },
+    buttonText: {
+      type: String,
+    },
+    description: {
+      type: String,
+    },
+    imageLink: {
+      type: String,
     },
   },
 }
@@ -52,76 +66,74 @@ export default {
 @import "~bootstrap/scss/utilities/screenreaders";
 @import "../styles/placeholders";
 
-.vs-promo-item {
-  &__wrapper {
-    border-bottom: 1px solid $color-gray-e6;
+.vs-promo-item__wrapper {
+  border-bottom: 1px solid $color-gray-e6;
+}
+
+.vs-promo-item__link {
+  display: block;
+  height: 200px;
+  position: relative;
+  width: 100%;
+
+  &:focus {
+    @extend %focus-pink;
   }
+}
 
-  &__link {
-    display: block;
-    position: relative;
-    height: 200px;
-    width: 100%;
+.vs-promo-item__link-title {
+  color: $color-total-eclipse;
+  display: inline-flex;
+  font-size: 1.125rem;
+  font-weight: $font-weight-light;
+  line-height: 1.25rem;
+}
 
-    &:focus {
-      @extend %focus-pink;
-    }
-  }
+.vs-promo-item__image,
+.vs-promo-item__image-wrapper {
+  background-position: 50% 50%;
+  background-size: cover;
+  height: 200px;
+  left: 50%;
+  object-fit: cover;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+}
 
-  &__link-title {
-    display: inline-flex;
-    color: $color-total-eclipse;
-    font-weight: $font-weight-light;
-    font-size: 1.125rem;
-    line-height: 1.25rem;
-  }
+.vs-promo-item__wrapper {
+  background-color: $color-white;
+  bottom: 0;
+  left: 0;
+  padding: 1rem 3rem 1rem 1rem;
+  position: absolute;
+  z-index: 1;
+}
 
-  &__image,
-  &__image-wrapper {
-    background-position: 50% 50%;
-    background-size: cover;
-    height: 200px;
-    left: 50%;
-    object-fit: cover;
+.vs-promo-item__icon-wrapper {
+  bottom: 1rem;
+  padding: 10px;
+  position: absolute;
+  right: 1rem;
+
+  svg {
+    bottom: 5px;
     position: absolute;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    width: 100%;
+    right: 6px;
   }
 
-  &__wrapper {
-    position: absolute;
-    background-color: $color-white;
+  &::before {
+    background-color: $color-thistle-pink;
+    border-radius: 50%;
     bottom: 0;
-    left: 0;
-    padding: 1rem 3rem 1rem 1rem;
-    z-index: 1;
-  }
-
-  &__icon-wrapper {
-    right: 1rem;
-    bottom: 1rem;
+    content: "";
+    display: block;
+    height: 20px;
+    right: 0;
     position: absolute;
-    padding: 10px;
-
-    svg {
-      position: absolute;
-      bottom: 5px;
-      right: 6px;
-    }
-
-    &::before {
-      background-color: $color-thistle-pink;
-      border-radius: 50%;
-      bottom: 0;
-      content: "";
-      display: block;
-      height: 20px;
-      right: 0;
-      position: absolute;
-      width: 20px;
-      bottom: 0;
-    }
+    width: 20px;
+    bottom: 0;
   }
 }
 </style>
@@ -133,7 +145,12 @@ export default {
   const promoItem = mainNav[2].promoItem
   <div>
     <vs-main-nav-promo-item
-      :item="promoItem"
+      :href="promoItem.href"
+      :is-external="promoItem.isExternal"
+      :title="promoItem.title"
+      :button-text="promoItem.buttonText"
+      :description="promoItem.description"
+      :image-link="promoItem.imageLink"
     />
   </div>
   ```
