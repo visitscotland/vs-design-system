@@ -453,7 +453,7 @@
       "isActive": false,
       "buttonText": "Read more",
       "description": "Why not stay in a castle, a lighthouse or on a working farm?",
-      "imageLink": "images/placeholders/list-default.jpg"
+      "imageLink": "https://via.placeholder.com/360x200?text=Image+Placeholder"
     }
   },
   {
@@ -542,7 +542,7 @@
       "isActive": false,
       "buttonText": "Read more",
       "description": "Iconic Ben Nevis needs to be top of your Scottish to-do list.",
-      "imageLink": "images/placeholders/list-default.jpg"
+      "imageLink": "https://via.placeholder.com/360x200?text=Image+Placeholder"
     }
   },
   {
@@ -641,7 +641,7 @@
       "isActive": false,
       "buttonText": "Read more",
       "description": "Expert local knowledge, gifts and inspiration.",
-      "imageLink": "images/placeholders/list-default.jpg"
+      "imageLink": "https://via.placeholder.com/360x200?text=Image+Placeholder"
     }
   },
   {
@@ -655,35 +655,35 @@
         "href": "https://www.visitscotland.com/inspiration/romantic",
         "isExternal": false,
         "isActive": false,
-        "imageLink": "images/placeholders/list-default.jpg"
+        "imageLink": "https://via.placeholder.com/360x200?text=Image+Placeholder"
       },
       {
         "title": "Island hopping",
         "href": "https://www.visitscotland.com/inpiration/island-hopping",
         "isExternal": false,
         "isActive": false,
-        "imageLink": "images/placeholders/list-default.jpg"
+        "imageLink": "https://via.placeholder.com/360x200?text=Image+Placeholder"
       },
       {
         "title": "Family",
         "href": "https://www.visitscotland.com/inpiration/family",
         "isExternal": false,
         "isActive": false,
-        "imageLink": "images/placeholders/list-default.jpg"
+        "imageLink": "https://via.placeholder.com/360x200?text=Image+Placeholder"
       },
       {
         "title": "Farm stays",
         "href": "https://www.visitscotland.com/inpiration/farm-stays",
         "isExternal": false,
         "isActive": false,
-        "imageLink": "images/placeholders/list-default.jpg"
+        "imageLink": "https://via.placeholder.com/360x200?text=Image+Placeholder"
       },
       {
         "title": "Wellness",
         "href": "https://www.visitscotland.com/inpiration/wellness",
         "isExternal": false,
         "isActive": false,
-        "imageLink": "images/placeholders/list-default.jpg"
+        "imageLink": "https://via.placeholder.com/360x200?text=Image+Placeholder"
       }
     ]
   }

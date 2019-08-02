@@ -5,7 +5,12 @@ const mainNav = require("../../../../assets/fixtures/mainNav.json")
 const promoItem = mainNav[2].promoItem
 
 const props = {
-  item: promoItem,
+  href: promoItem.href,
+  isExternal: promoItem.isExternal,
+  title: promoItem.title,
+  buttonText: promoItem.buttonText,
+  description: promoItem.description,
+  imageLink: promoItem.imageLink,
 }
 
 vueHelper.init("vs-main-nav-promo-item", VsMainNavPromoItem, props)
@@ -40,7 +45,7 @@ describe("Main Nav Promo Item component", () => {
       it("should render a promo image", () => {
         cy.get(".vs-promo-item__image")
           .should("be.visible")
-          .should("have.attr", "src", "images/placeholders/list-default.jpg")
+          .should("have.attr", "src", "https://via.placeholder.com/360x200?text=Image+Placeholder")
       })
 
       it("should render alt text for the promo image that is the same as the title", () => {
