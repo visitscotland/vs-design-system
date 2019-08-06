@@ -47,6 +47,6 @@ function getAllIcons() {
 
 <docs>
   ```jsx
-
+    <icons />
   ```
 </docs>
