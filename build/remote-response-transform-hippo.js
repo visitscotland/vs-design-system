@@ -30,7 +30,28 @@ function _extractEntrySections(entry) {
 }
 
 function _extractSectionContent(section) {
-  return _getFieldValue(section, sectionsContentFieldTitle + ".content")
+  let contentObject = _getFieldValue(section, sectionsContentFieldTitle)
+  let raw = _.get(contentObject, "content")
+  let cons = false
+
+  if ((section.name = "Grid")) {
+    cons = true
+  }
+
+  return raw.replace(
+    /data-hippo-link="([^"]*)"/gm,
+    _.partial(_replaceHippoLink, _, _, _.get(contentObject, "links"), cons)
+  )
+}
+
+function _replaceHippoLink(match, linkId, contentLinks, cons) {
+  let srcAttribute = 'src="'
+
+  srcAttribute += _.get(contentLinks, [linkId, "url"], "")
+
+  srcAttribute += '"'
+
+  return srcAttribute
 }
 
 function _parseSection(section) {
