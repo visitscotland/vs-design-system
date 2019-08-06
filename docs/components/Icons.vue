@@ -1,13 +1,30 @@
 <template>
-  <div></div>
+  <div>
+    <pre>{{ icons }}</pre>
+  </div>
 </template>
 
 <script>
-const allIcons = require.context("@/assets/svg/icons", true, /^\.\/.*\.svg$/)
+const allIcons = getAllIcons()
+import VsIcon from "@components/elements/icon/"
+import { trimStart, map, partial, trimEnd } from "lodash"
 
 export default {
   name: "Icons",
-  data() {},
+  components: { VsIcon },
+  data() {
+    return {
+      icons: allIcons,
+    }
+  },
+}
+
+function getAllIcons() {
+  const all = require.context("@/assets/svg/icons", true, /^\.\/.*\.svg$/)
+
+  return map(all.keys(), path => {
+    return trimEnd(trimStart(path, "./"), ".svg")
+  })
 }
 </script>
 
