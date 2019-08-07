@@ -12,7 +12,12 @@
       <vs-svg path="icons/search" height="18" fill="white" />
     </button>
     <transition name="slide-fade">
-      <div class="vs-search__form-wrapper" :class="{ expanded: show }" data-toggle-pane v-if="show">
+      <div
+        class="vs-search__form-wrapper"
+        :class="{ expanded: show }"
+        data-toggle-pane
+        v-show="show"
+      >
         <form role="search" action method="get" class="vs-search__form">
           <label for="search" class="vs-search__label">
             <span class="sr-only">Enter a search term</span>

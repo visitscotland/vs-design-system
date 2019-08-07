@@ -8,7 +8,7 @@
       aria-haspopup="true"
       :aria-expanded="show ? 'true' : 'false'"
     >
-      <span> <span class="sr-only">Toggle submenu for </span>{{ name }} </span>
+      <span> <span class="sr-only">Toggle menu for </span>{{ name }}</span>
       <div class="vs-dropdown__icon-wrapper">
         <vs-svg path="icons/chevron-down" height="5" fill="white" />
       </div>
@@ -20,7 +20,7 @@
         class="vs-dropdown__list list-unstyled"
         :class="{ expanded: show }"
         data-toggle-pane
-        v-if="show"
+        v-show="show"
       >
         <li
           role="none"
@@ -33,7 +33,7 @@
             class="vs-dropdown__link"
             :href="link.href"
             :target="link.isExternal ? '_blank' : false"
-            :data-vs-track="link.trackingID"
+            @keydown="checkKeydown($event, index === last)"
           >
             {{ link.title }}
             <div v-if="link.isExternal" class="vs-dropdown__external-icon-wrapper">
@@ -75,6 +75,11 @@ export default {
       type: String,
     },
   },
+  computed: {
+    last() {
+      return Object.keys(this.dropdownList).length - 1
+    },
+  },
   methods: {
     triggerToggle() {
       let currentState = this.show
@@ -83,6 +88,11 @@ export default {
         this.show = true
       }
       this.$refs.trigger.blur()
+    },
+    checkKeydown($event, isLast) {
+      if ($event.key === "Tab" && !$event.shiftKey && isLast) {
+        this.show = false
+      }
     },
     reset() {
       this.show = false
