@@ -47,6 +47,10 @@ function _extractSectionContent(section) {
 function _replaceHippoLink(match, linkId, contentLinks, cons) {
   let srcAttribute = 'src="'
 
+  /**
+   * NOTE: the replace here rmeoves the port number from the URLs. This solution
+   * needs to be replaced with something more stable via Hippo configuration.
+   */
   srcAttribute += _.get(contentLinks, [linkId, "url"], "").replace(/:[0-9]{4}\//, "/")
 
   srcAttribute += '"'
