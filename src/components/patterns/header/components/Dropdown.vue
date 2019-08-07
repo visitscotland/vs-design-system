@@ -33,6 +33,7 @@
             class="vs-dropdown__link"
             :href="link.href"
             :target="link.isExternal ? '_blank' : false"
+            :data-vs-track="formattedTrackingId(link.title)"
             @keydown="checkKeydown($event, index === last)"
           >
             {{ link.title }}
@@ -81,6 +82,11 @@ export default {
     },
   },
   methods: {
+    formattedTrackingId(title) {
+      var formattedTitle = title.toLowerCase().replace(/\s+/g, "-")
+      var formattedDropdownName = this.name.toLowerCase().replace(/\s+/g, "-")
+      return "link." + formattedDropdownName + "nav." + formattedTitle
+    },
     triggerToggle() {
       let currentState = this.show
       this.$root.$emit("resetMenus")
