@@ -1,5 +1,5 @@
 <template>
-  <component :is="type" class="vs-dropdown" :aria-label="name">
+  <component :is="type" class="vs-dropdown" :aria-label="name" v-click-outside="reset">
     <button
       class="vs-dropdown__button"
       ref="trigger"
@@ -82,10 +82,21 @@ export default {
     },
   },
   methods: {
+    checkKeydown($event, isLast) {
+      if ($event.key === "Tab" && !$event.shiftKey && isLast) {
+        this.show = false
+      }
+    },
     formattedTrackingId(title) {
       var formattedTitle = title.toLowerCase().replace(/\s+/g, "-")
       var formattedDropdownName = this.name.toLowerCase().replace(/\s+/g, "-")
       return "link." + formattedDropdownName + "nav." + formattedTitle
+    },
+    onClose() {
+      this.show = false
+    },
+    reset() {
+      this.show = false
     },
     triggerToggle() {
       let currentState = this.show
@@ -93,15 +104,41 @@ export default {
       if (currentState === false) {
         this.show = true
       }
-      this.$refs.trigger.blur()
     },
-    checkKeydown($event, isLast) {
-      if ($event.key === "Tab" && !$event.shiftKey && isLast) {
-        this.show = false
-      }
-    },
-    reset() {
-      this.show = false
+  },
+  directives: {
+    "click-outside": {
+      bind: function(el, binding, vNode) {
+        // Provided expression must evaluate to a function.
+        if (typeof binding.value !== "function") {
+          const compName = vNode.context.name
+          let warn = `[Vue-click-outside:] provided expression '${
+            binding.expression
+          }' is not a function, but has to be`
+          if (compName) {
+            warn += `Found in component '${compName}'`
+          }
+
+          console.warn(warn)
+        }
+        // Define Handler and cache it on the element
+        const bubble = binding.modifiers.bubble
+        const handler = e => {
+          if (bubble || (!el.contains(e.target) && el !== e.target)) {
+            binding.value(e)
+          }
+        }
+        el.__vueClickOutside__ = handler
+
+        // add Event Listeners
+        document.addEventListener("click", handler)
+      },
+
+      unbind: function(el, binding) {
+        // Remove Event Listeners
+        document.removeEventListener("click", el.__vueClickOutside__)
+        el.__vueClickOutside__ = null
+      },
     },
   },
   mounted() {
@@ -122,11 +159,21 @@ export default {
 .vs-dropdown__list {
   background-color: shade($color-theme-primary, 20%);
   color: $color-white;
-  height: 100vh;
   left: 0;
+  min-width: 200px;
   position: absolute;
   top: 28px;
-  width: 100%;
+  width: auto;
+
+  .vs-dropdown--language & {
+    left: auto;
+    right: 0;
+  }
+
+  @include media-breakpoint-down(md) {
+    height: 100vh;
+    width: 100%;
+  }
 }
 
 .vs-dropdown__link {
