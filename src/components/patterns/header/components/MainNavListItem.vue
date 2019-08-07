@@ -41,7 +41,7 @@
       >{{ title }}</a
     >
     <transition name="slide-fade" v-if="hasChildren">
-      <div v-if="show">
+      <div v-show="show">
         <ul
           class="list-unstyled"
           :class="{

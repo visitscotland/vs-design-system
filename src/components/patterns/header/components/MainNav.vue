@@ -14,7 +14,7 @@
       <ul
         class="vs-main-nav__list vs-main-nav__list--level1 list-unstyled"
         :class="{ expanded: show }"
-        v-if="show"
+        v-show="show"
       >
         <slot />
       </ul>
