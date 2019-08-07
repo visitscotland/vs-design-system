@@ -47,7 +47,7 @@ function _extractSectionContent(section) {
 function _replaceHippoLink(match, linkId, contentLinks, cons) {
   let srcAttribute = 'src="'
 
-  srcAttribute += _.get(contentLinks, [linkId, "url"], "")
+  srcAttribute += _.get(contentLinks, [linkId, "url"], "").replace(/:[0-9]{4}\//, "/")
 
   srcAttribute += '"'
 
