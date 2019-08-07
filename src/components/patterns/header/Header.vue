@@ -72,10 +72,6 @@ export default {
 @import "styles/placeholders";
 
 .vs-header {
-  min-height: 650px; // temporary -
-  height: auto;
-  overflow-x: hidden;
-  overflow-y: scroll;
   position: relative;
 }
 
@@ -101,7 +97,7 @@ export default {
   const language = require("../../../assets/fixtures/languages.json")
   const mainNav = require("../../../assets/fixtures/mainNav.json")
 
-  <div>
+  <div style="overflow-y: scroll; height: 600px;">
     <vs-header>
       <vs-dropdown
         slot="universal-nav"
@@ -113,6 +109,7 @@ export default {
       <vs-dropdown
         slot="language"
         name="Language"
+        class="vs-dropdown--language"
         :dropdown-list="language"
       />
       <vs-logo 
