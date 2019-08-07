@@ -30,7 +30,32 @@ function _extractEntrySections(entry) {
 }
 
 function _extractSectionContent(section) {
-  return _getFieldValue(section, sectionsContentFieldTitle + ".content")
+  let contentObject = _getFieldValue(section, sectionsContentFieldTitle)
+  let raw = _.get(contentObject, "content")
+  let cons = false
+
+  if ((section.name = "Grid")) {
+    cons = true
+  }
+
+  return raw.replace(
+    /data-hippo-link="([^"]*)"/gm,
+    _.partial(_replaceHippoLink, _, _, _.get(contentObject, "links"), cons)
+  )
+}
+
+function _replaceHippoLink(match, linkId, contentLinks, cons) {
+  let srcAttribute = 'src="'
+
+  /**
+   * NOTE: the replace here rmeoves the port number from the URLs. This solution
+   * needs to be replaced with something more stable via Hippo configuration.
+   */
+  srcAttribute += _.get(contentLinks, [linkId, "url"], "").replace(/:[0-9]{4}\//, "/")
+
+  srcAttribute += '"'
+
+  return srcAttribute
 }
 
 function _parseSection(section) {

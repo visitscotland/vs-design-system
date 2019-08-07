@@ -8,6 +8,7 @@ const ora = require("ora")
 const chalk = require("chalk")
 const requestPromise = require("request-promise-native")
 const Turndown = require("turndown")
+const turndownTablesPlugin = require("turndown-plugin-gfm").tables
 
 const getConfig = require("vue-styleguidist/scripts/config")
 const StyleguidistError = require("react-styleguidist/lib/scripts/utils/error")
@@ -168,6 +169,8 @@ function _makeSectionMarkdownFileName(section) {
 
 function _getTurndownService() {
   const turndownService = new Turndown()
+
+  turndownService.use(turndownTablesPlugin)
 
   turndownService.addRule("transform-code", {
     filter: ["code", "pre"],
