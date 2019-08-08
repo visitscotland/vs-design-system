@@ -23,7 +23,7 @@ const iconPath = "icons/"
  * available actions. They can act as wayfinding tools to help users more
  * easily understand where they are in the product.
  *
- * Our icons come in specific sizes - xs, sm, md, lg and xl - and can be any colour,
+ * Our icons come in specific sizes - xxs, xs, sm, md, lg and xl - and can be any colour,
  * including any of the theme colours.
  */
 export default {
@@ -46,7 +46,9 @@ export default {
       type: String,
       default: null,
       validator: value => {
-        return value.match(/(primary|secondary|success|danger|warning|info|light|dark)/)
+        return value.match(
+          /(primary|secondary|success|danger|warning|info|light|dark|reverse-white)/
+        )
       },
     },
     /**
@@ -57,7 +59,7 @@ export default {
       type: String,
       default: "md",
       validator: value => {
-        return value.match(/(xs|sm|md|lg|xl)/)
+        return value.match(/(xxs|xs|sm|md|lg|xl)/)
       },
     },
     /**
@@ -83,6 +85,7 @@ export default {
 // @include reset;
 
 $sizes: (
+  xxs: $icon-size-xxs,
   xs: $icon-size-xs,
   sm: $icon-size-sm,
   md: $icon-size-md,
@@ -99,6 +102,7 @@ $variants: (
   info: $color-theme-info,
   light: $color-theme-light,
   dark: $color-theme-dark,
+  reverse-white: $color-white,
 );
 
 .icon {
@@ -168,6 +172,62 @@ $variants: (
         <vs-icon name="favourite" reverse variant="danger" />
         <vs-icon name="favourite" reverse variant="dark" />
         <vs-icon name="favourite" reverse variant="light" />
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col" style="margin-bottom: 10px">
+        <h3>Size</h3>
+        <ul style="list-style-type: none; margin: 0; padding: 0;">
+          <li>
+            <h2>xxs</h2>
+            <vs-icon name="chevron-down" size="xxs" />
+            <vs-icon name="favourite" size="xxs" />
+            <vs-icon name="search" size="xxs" />
+            <vs-icon name="user" size="xxs" />
+            <vs-icon name="external-link" size="xxs" />
+          </li>
+          <li>
+            <h2>xs</h2>
+            <vs-icon name="chevron-down" size="xs" />
+            <vs-icon name="favourite" size="xs" />
+            <vs-icon name="search" size="xs" />
+            <vs-icon name="user" size="xs" />
+            <vs-icon name="external-link" size="xs" />
+          </li>
+          <li>
+            <h2>sm</h2>
+            <vs-icon name="chevron-down" size="sm" />
+            <vs-icon name="favourite" size="sm" />
+            <vs-icon name="search" size="sm" />
+            <vs-icon name="user" size="sm" />
+            <vs-icon name="external-link" size="sm" />
+          </li>
+          <li>
+            <h2>md</h2>
+            <vs-icon name="chevron-down" size="md" />
+            <vs-icon name="favourite" size="md" />
+            <vs-icon name="search" size="md" />
+            <vs-icon name="user" size="md" />
+            <vs-icon name="external-link" size="md" />
+          </li>
+          <li>
+            <h2>lg</h2>
+            <vs-icon name="chevron-down" size="lg" />
+            <vs-icon name="favourite" size="lg" />
+            <vs-icon name="search" size="lg" />
+            <vs-icon name="user" size="lg" />
+            <vs-icon name="external-link" size="lg" />
+          </li>
+          <li>
+            <h2>xl</h2>
+            <vs-icon name="chevron-down" size="xl" />
+            <vs-icon name="favourite" size="xl" />
+            <vs-icon name="search" size="xl" />
+            <vs-icon name="user" size="xl" />
+            <vs-icon name="external-link" size="xl" />
+          </li>
+        </ul>      
       </div>
     </div>
   </div>
