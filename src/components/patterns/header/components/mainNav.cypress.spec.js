@@ -1,12 +1,46 @@
 const VsMainNav = require("./MainNav.vue").default
 const { vueHelper } = require("@cypress/helpers/index.js").default
 const sizes = ["iphone-6", "ipad-2", [1024, 768]]
+const mainNav = require("../../../../assets/fixtures/mainNav.json")
+const level1 = mainNav[0]
+const level2 = level1.subnav[0]
+const level3 = level2.subnav[0]
 
 const props = {
   name: "Main Navigation",
 }
 
-vueHelper.init("vs-main-nav", VsMainNav, props)
+const content = `
+  <vs-main-nav-list-item
+    slot="subnav"
+    level=1
+    href="${level1.href}"
+    subnav="${level1.subnav}"
+    is-external="${level1.isExternal}"
+    title="${level1.title}"
+  >
+    <vs-main-nav-list-item
+      slot="subnav"
+      level=2
+      href="${level2.href}"
+      subnav="${level2.subnav}"
+      is-external="${level2.isExternal}"
+      title="${level2.title}"
+    >
+      <vs-main-nav-list-item
+        slot="subnav"
+        level=3
+        href="${level3.href}"
+        subnav="${level3.subnav}"
+        is-external="${level3.isExternal}"
+        title="${level3.title}"
+      >
+      </vs-main-nav-list-item>
+    </vs-main-nav-list-item>
+  </vs-main-nav-list-item>
+`
+
+vueHelper.init("vs-main-nav", VsMainNav, props, content)
 
 describe("Main Nav component", () => {
   sizes.forEach(size => {
