@@ -11,11 +11,7 @@
       <span class="vs-main-nav__switch"> <span class="sr-only">Toggle Main Navigation</span> </span>
     </button>
     <transition name="slide-fade">
-      <ul
-        class="vs-main-nav__list vs-main-nav__list--level1 list-unstyled"
-        :class="{ expanded: show }"
-        v-show="show"
-      >
+      <ul class="vs-main-nav__list vs-main-nav__list--level1 list-unstyled" v-show="show">
         <slot />
       </ul>
     </transition>
