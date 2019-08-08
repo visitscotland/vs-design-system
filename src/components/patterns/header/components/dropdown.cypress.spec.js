@@ -34,7 +34,7 @@ describe("Dropdown component", () => {
       })
 
       it("button should be accompanied by screen reader text", () => {
-        cy.contains("Toggle submenu for Our Sites").should("be.visible")
+        cy.contains("Toggle menu for Our Sites").should("be.visible")
         cy.get(".sr-only").should("be.visible")
       })
 
