@@ -10,7 +10,7 @@
     >
       <span> <span class="sr-only">Toggle menu for </span>{{ name }}</span>
       <div class="vs-dropdown__icon-wrapper">
-        <vs-svg path="icons/chevron-down" height="5" fill="white" />
+        <vs-icon name="chevron-down" variant="reverse-white" size="xxs" />
       </div>
     </button>
     <transition name="slide-fade">
@@ -38,7 +38,7 @@
           >
             {{ link.title }}
             <div v-if="link.isExternal" class="vs-dropdown__external-icon-wrapper">
-              <vs-svg path="icons/external-link" height="10" fill="white" />
+              <vs-icon name="external-link" size="xxs" variant="reverse-white" />
             </div>
           </a>
         </li>
@@ -48,13 +48,13 @@
 </template>
 
 <script>
-import VsSvg from "../../../elements/svg/Svg"
+import VsIcon from "../../../elements/icon/Icon"
 
 export default {
   name: "VsDropdown",
   status: "prototype",
   release: "0.0.1",
-  components: { VsSvg },
+  components: { VsIcon },
   data() {
     return {
       show: false,
