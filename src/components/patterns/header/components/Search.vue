@@ -9,7 +9,7 @@
       :aria-expanded="show ? 'true' : 'false'"
     >
       <span class="sr-only">Toggle Search</span>
-      <vs-svg path="icons/search" height="18" fill="white" />
+      <vs-icon name="search" size="sm" variant="reverse-white" />
     </button>
     <transition name="slide-fade">
       <div
@@ -21,7 +21,7 @@
         <form role="search" action method="get" class="vs-search__form">
           <label for="search" class="vs-search__label">
             <span class="sr-only">Enter a search term</span>
-            <vs-svg path="icons/search" height="18" fill="#929091" />
+            <vs-icon name="search" size="sm" variant="primary" />
           </label>
           <input
             class="vs-search__input"
@@ -37,6 +37,7 @@
             @click.prevent="clearSearchField()"
           >
             <span class="sr-only">Clear search</span>
+            <!-- TODO: convert to vs-icon when colours are finalised -->
             <vs-svg path="icons/cross" height="18" fill="#929091" />
           </button>
           <button class="vs-search__submit-button" type="submit">Go</button>
@@ -47,13 +48,13 @@
 </template>
 
 <script>
-import VsSvg from "../../../elements/svg/Svg"
+import VsIcon from "../../../elements/icon/Icon"
 
 export default {
   name: "VsSearch",
   status: "prototype",
   release: "0.0.1",
-  components: { VsSvg },
+  components: { VsIcon },
   data() {
     return {
       searchTerm: "",
@@ -104,10 +105,6 @@ export default {
   @extend %button-pink;
   @extend %main-nav-button-style;
 
-  svg {
-    margin-top: -4px;
-  }
-
   &[aria-expanded="true"] {
     background-color: $color-light-granite;
 
@@ -150,7 +147,6 @@ export default {
   background-color: $color-white;
   display: flex;
   align-items: center;
-  padding: 10px;
   margin: 0;
 }
 
