@@ -2,32 +2,28 @@
   <component :is="type" class="vs-favourites">
     <button
       class="vs-favourites__button"
-      data-favourites-trigger
+      data-test-trigger
+      ref="trigger"
       @click="addToFavourites({ url: 'http://www.visitscotland.com', title: 'Homepage' })"
     >
       <span class="sr-only">Add to Favourites</span>
       <span class="vs-favourites__count" v-if="this.favourites.length">
         <span class="sr-only">Current favourites count:</span> {{ this.displayCount }}
       </span>
-      <vs-svg
-        v-if="this.favourites.length"
-        path="icons/favourite-filled"
-        height="20"
-        fill="#700e57"
-      />
-      <vs-svg v-else path="icons/favourite" height="18" fill="#929091" />
+      <vs-icon v-if="this.favourites.length" name="favourite-filled" size="sm" variant="primary" />
+      <vs-icon v-else name="favourite" size="sm" variant="primary" />
     </button>
   </component>
 </template>
 
 <script>
-import VsSvg from "../../../elements/svg/Svg"
+import VsIcon from "../../../elements/icon/Icon"
 
 export default {
   name: "VsFavourites",
   status: "prototype",
   release: "0.0.1",
-  components: { VsSvg },
+  components: { VsIcon },
   data() {
     return {
       favourites: [],
@@ -52,7 +48,7 @@ export default {
   },
   methods: {
     addToFavourites(favourite) {
-      let thisTrigger = this.$el.querySelector("[data-favourites-trigger]")
+      let thisTrigger = this.$refs.trigger
       this.$root.$emit("resetMenus")
       if (this.favourites.indexOf(favourite) === -1) {
         this.favourites.push(favourite)
@@ -88,7 +84,7 @@ export default {
     font-size: 0.75rem;
     left: 0;
     position: absolute;
-    top: 12px;
+    top: 10px;
     width: 100%;
   }
 }
