@@ -12,8 +12,14 @@
         <div v-for="(prop, index) in category.colors" :key="index" class="color">
           <div class="swatch" :style="{ backgroundColor: prop.value }" />
           <h3>{{ prop.name.replace(/_/g, " ").replace(/color/g, "") }}</h3>
-          <span> <em>RGB:</em> {{ prop.value }} </span>
-          <span> <em>SCSS:</em> ${{ prop.name.replace(/_/g, "-") }} </span>
+          <dl class="docs__dl">
+            <dt>SCSS:</dt>
+            <dd>${{ prop.name.replace(/_/g, "-") }}</dd>
+            <dt>HEX:</dt>
+            <dd>{{ prop.originalValue }}</dd>
+            <dt>RGB:</dt>
+            <dd>{{ prop.value }}</dd>
+          </dl>
         </div>
       </div>
     </div>
@@ -73,6 +79,17 @@ export default {
 
   &:last-of-type {
     border-bottom: none;
+  }
+}
+
+.docs__dl {
+  dt,
+  dd {
+    float: left;
+    margin: 0 5px 5px 0;
+  }
+  dt {
+    clear: both;
   }
 }
 
