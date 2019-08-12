@@ -166,7 +166,7 @@ export default {
 /* TODO: fix deep selectors not working with dart sass */
 .hero ::v-deep .heading,
 .hero ::v-deep .heading .sub-heading {
-  color: $color-single-malt-gold;
+  color: $color-yellow;
 }
 .hero ::v-deep .heading .sub-heading {
   color: $color-white;
