@@ -122,9 +122,40 @@ This will create a symlink between the target project folder and the local desig
 
 **It is advised to reference the built artefacts in the `dist/system` or `dist/system-components` folders, in which case the design system assets will need to be rebuilt (using `npm run build:system:components` or `npm run build:system` for changes to source files to be propogated into the target project**.
 
+## VueX
+
+VueX stores should be added to components as needed and modularised as detailed in the VueX docs. See the VueX example component pattern.
+
+### Accessing the VueX store in components
+
+Example use of getter inside components:
+
+```js
+export default {
+  template: `<span>{{ current }}</span>`,
+  computed: {
+    current() {
+      return this.$store.state["moduleName"].count
+    },
+  },
+}
+```
+
+Example action dispatch:
+
+```js
+export default {
+  template: `<vs-button @click="doThing('message')">Do thing</vs-button>`,
+  methods: {
+    doThing(arg) {
+      return this.$store.dispatch("<moduleName>/doThing", arg)
+    },
+  },
+}
+```
+
 ## Ideas for improvement
 
 - Add ability to have multiple `<docs>` examples output to component documentation and ability to insert named `<docs>` examples into documentation content
 - Colour accessibility like Atlassian
 - XD/Zeplin integration
-- Icons page listing out all available icons as well as icon options & guidelines
