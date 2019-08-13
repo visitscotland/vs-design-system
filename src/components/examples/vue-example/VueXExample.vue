@@ -34,7 +34,7 @@ export default {
       <vs-col tag="vs-vue-x-example-2" cols="3">Increment count</vs-col>
   </vs-row>
     <div style="margin-top:24px">
-      <span>Outside component 1, the count is {{ count }}</span>
+      <span>Outside the components, the count is {{ count }}</span>
     </div>
   </div>
   </template>
