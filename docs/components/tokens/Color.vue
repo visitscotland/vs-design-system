@@ -8,8 +8,8 @@
     >
       <h2>{{ category.name }}</h2>
 
-      <div class="colors">
-        <div v-for="(prop, index) in category.colors" :key="index" class="color">
+      <ul class="colors">
+        <li v-for="(prop, index) in category.colors" :key="index" class="color">
           <div class="swatch" :style="{ backgroundColor: prop.value }">
             <ul class="contrast-indicator__ul">
               <li v-for="(item, index2) in prop.readability" :key="index2">
@@ -27,8 +27,8 @@
             <dt>RGB:</dt>
             <dd>{{ prop.value }}</dd>
           </dl>
-        </div>
-      </div>
+        </li>
+      </ul>
     </div>
   </div>
 </template>
@@ -140,7 +140,7 @@ export default {
     background-color: $black;
     font-size: 0.75rem;
     padding: 0 5px;
-    border-radius: 4px;
+    border-radius: $radius-default;
   }
 
   .whiteLG {
@@ -176,42 +176,17 @@ export default {
 }
 
 .colors {
-  margin-top: $space-l;
-  display: block;
+  display: flex;
+  flex-wrap: wrap;
+  list-style-type: none;
+  justify-content: flex-start;
+  margin: $space-l 0 0;
+  padding: 0;
   width: 100%;
-  @supports (display: grid) {
-    display: grid;
-    max-width: 1200px;
-    align-content: stretch;
-    justify-content: left;
-    grid-template-columns:
-      calc(20% - #{$space-m})
-      calc(20% - #{$space-m})
-      calc(20% - #{$space-m})
-      calc(20% - #{$space-m})
-      calc(20% - #{$space-m});
-    grid-column-gap: $space-m;
-    @media (max-width: 1300px) {
-      grid-template-columns:
-        calc(25% - #{$space-m})
-        calc(25% - #{$space-m})
-        calc(25% - #{$space-m})
-        calc(25% - #{$space-m});
-    }
-    @media (max-width: 1100px) {
-      grid-template-columns:
-        calc(33.333% - #{$space-m})
-        calc(33.333% - #{$space-m})
-        calc(33.333% - #{$space-m});
-    }
-    @media (max-width: 900px) {
-      grid-template-columns:
-        calc(50% - #{$space-m})
-        calc(50% - #{$space-m});
-    }
-    @media (max-width: 400px) {
-      grid-template-columns: 100%;
-    }
+
+  > li {
+    width: 250px;
+    margin-right: $space-s;
   }
 }
 .swatch {
@@ -244,37 +219,8 @@ h3 {
   color: $docs-color-rich-black;
   border-radius: $radius-default;
   overflow: hidden;
-  text-align: left;
-  @supports (display: grid) {
-    width: 100%;
-    float: left;
-  }
-  @media (max-width: 400px) {
-    margin-bottom: $space-m;
-  }
-  &:hover {
-    span {
-      color: $docs-color-rich-black;
-      em {
-        color: $docs-color-silver;
-      }
-    }
-  }
-  span {
-    margin-bottom: $space-xs;
-    line-height: 1.3;
-    color: $docs-color-silver;
-    font-size: $size-s;
-    width: 100%;
-    float: left;
-    em {
-      user-select: none;
-      font-style: normal;
-    }
-  }
 }
 </style>
-
 <docs>
   ```jsx
   <color/>
