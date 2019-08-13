@@ -15,6 +15,8 @@ const componentPaths = [
   "./src/components/templates/**/*.vue",
 ]
 
+const storePattern = "./src/components/**/*.store.js"
+
 let components = {
   // currently core styles only includes the bootstrap reset so leaving that out for now
   // coreStyles: "./src/styles/styles.scss",
@@ -27,5 +29,9 @@ componentPaths
   .forEach(componentPath => {
     components[upperFirst(camelCase(path.basename(componentPath, ".vue")))] = componentPath
   })
+
+glob.sync(storePattern).forEach(storePath => {
+  components["store" + upperFirst(camelCase(path.basename(storePath, ".js")))] = storePath
+})
 
 module.exports = components

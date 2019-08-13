@@ -25,6 +25,10 @@ baseWebpackConfig.plugins = baseWebpackConfig.plugins.filter(plugin => {
 })
 
 const webpackConfig = merge(baseWebpackConfig, {
+  externals: {
+    vue: "Vue",
+    vuex: "Vuex",
+  },
   module: {
     rules: utils.styleLoaders({
       sourceMap: config.system.productionSourceMap,
@@ -51,6 +55,7 @@ const webpackConfig = merge(baseWebpackConfig, {
       minSize: 0,
       maxInitialRequests: Infinity,
     },
+    runtimeChunk: "single",
     concatenateModules: false,
   },
   plugins: [
