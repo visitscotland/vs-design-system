@@ -107,7 +107,7 @@ Detailed instructions for including the design system in this way [are detailed 
 
 ## Developing the design system
 
-The best way to develop the design system is to run a local development instance of the documentation site, as detailed above. Using the
+The best way to develop the design system is to run a local development instance of the documentation site, as detailed above.
 
 To see how the local, modified version of the design system behaves in a target local project, carry out the following to link the target project's dependency to the local version, rather than the published version, of the design system assets:
 
@@ -116,7 +116,7 @@ To see how the local, modified version of the design system behaves in a target 
 - `cd ../target-project`
 - `yarn link vs-dotcom-ds` OR `npm link vs-dotcom-ds`
 
-NOTE: It is vs-dotcom-ds because that is this project's name.
+NOTE: It is `vs-dotcom-ds` because that is this package's name.
 
 This will create a symlink between the target project folder and the local design-system folder. The target project's vs-dotcom-ds dependency will use the local design-system folder directly.
 
@@ -124,35 +124,79 @@ This will create a symlink between the target project folder and the local desig
 
 ## VueX
 
-VueX stores should be added to components as needed and modularised as detailed in the VueX docs. See the VueX example component pattern.
+To include VueX functionality in one or more of your components:
 
-### Accessing the VueX store in components
+- Write a VueX store and then import and include it in the component definition object - this is enough to add the store's functionality to _components rendered in the design system documentation_.
+- _To make the store functionality work in the production (system components) build_ - VueX must be available globally before the components are registered with Vue.
 
-Example use of getter inside components:
+### Writing VueX Stores
+
+See the VueX example component in the `src/components/examples` folder.
+
+VueX stores should be added to components as needed and must be given a file name ending in `store.js` to ensure proper exposure in the system components build.
+
+The stores should be colocalised with the relevant component and _modularised with namespacing_ [as detailed in the VueX docs](https://vuex.vuejs.org/guide/modules.html). The module name should be relevant to the component the store is included in.
+
+Multiple components can use the same store and the state will be shared among them.
+
+```js
+import Vuex from "vuex"
+import Vue from "vue"
+
+Vue.use(Vuex)
+
+export default new Vuex.Store({
+  modules: {
+    example: {
+      namespaced: true,
+      state: {
+        count: 0,
+      },
+      mutations: {
+        increment(state) {
+          state.count++
+        },
+      },
+      actions: {
+        increment(context, message) {
+          context.commit("increment")
+        },
+      },
+    },
+  },
+})
+```
+
+### Accessing VueX stores in components
+
+Example use inside components:
 
 ```js
 export default {
-  template: `<span>{{ current }}</span>`,
+  template: `
+    <div>
+      <span>{{ current }}</span>
+      <vs-button @click="add">Increment</vs-button>
+    </div>
+  `,
   computed: {
     current() {
       return this.$store.state["moduleName"].count
     },
-  },
-}
-```
+    methods: {
+      add(arg) {
+        let arg = this.otherThing
 
-Example action dispatch:
-
-```js
-export default {
-  template: `<vs-button @click="doThing('message')">Do thing</vs-button>`,
-  methods: {
-    doThing(arg) {
-      return this.$store.dispatch("<moduleName>/doThing", arg)
+        return this.$store.dispatch("<moduleName>/increment", arg)
+      },
     },
   },
 }
 ```
+
+### Exposure of stores in the system components build
+
+The system components build treats each store as a module and creates a package for it with the naming convention `store<CapitalisedCamelCasedAndRationalisedFileName>`. So a store with the filename of `example.store.js` will be given a module name of `storeExampleStore` (and will be available in JS as `storeExampleStore.default`).
 
 ## Ideas for improvement
 
@@ -180,3 +224,4 @@ export default {
 - Colours and docs colours
 - Icons
 - Build scripts - description of each and highlight which ones we should be using
+- Setup of Vue and VueX as externals in the system components build
