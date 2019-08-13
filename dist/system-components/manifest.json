@@ -250,52 +250,6 @@
     ],
     "other": []
   },
-  "VueXExample": {
-    "scripts": [
-      "system-components/components/runtime.js",
-      "system-components/components/vendors~Article~Button~Col~ColWrapper~Container~ContentSection~Example~Heading~Hero~Icon~Img~Row~Sid~97ca347a.js",
-      "system-components/components/vendors~Article~Button~Col~ColWrapper~Container~Example~Hero~Img~Row~Sidebar~VueXExample~VueXExample~b234c02c.js",
-      "system-components/components/vendors~Article~Button~Col~ColWrapper~Example~Hero~Img~Row~Sidebar~VueXExample~VueXExample2.js",
-      "system-components/components/vendors~Article~Button~Col~ColWrapper~Example~Hero~Img~Sidebar~VueXExample~VueXExample2.js",
-      "system-components/components/vendors~Article~Button~Container~Example~Hero~Img~Row~Sidebar~VueXExample~VueXExample2.js",
-      "system-components/components/vendors~Article~Col~ColWrapper~Example~Hero~Sidebar~VueXExample~VueXExample2.js",
-      "system-components/components/vendors~Button~Example~VueXExample~VueXExample2.js",
-      "system-components/components/vendors~Button~VueXExample~VueXExample2.js",
-      "system-components/components/vendors~VueXExample~VueXExample2.js",
-      "system-components/components/Button~VueXExample~VueXExample2.js",
-      "system-components/components/VueXExample~VueXExample2~storeExampleStore.js",
-      "system-components/components/VueXExample~VueXExample2.js",
-      "system-components/components/VueXExample.js"
-    ],
-    "styles": [
-      "system-components/components/Button~VueXExample~VueXExample2.css",
-      "system-components/components/VueXExample.css"
-    ],
-    "other": []
-  },
-  "VueXExample2": {
-    "scripts": [
-      "system-components/components/runtime.js",
-      "system-components/components/vendors~Article~Button~Col~ColWrapper~Container~ContentSection~Example~Heading~Hero~Icon~Img~Row~Sid~97ca347a.js",
-      "system-components/components/vendors~Article~Button~Col~ColWrapper~Container~Example~Hero~Img~Row~Sidebar~VueXExample~VueXExample~b234c02c.js",
-      "system-components/components/vendors~Article~Button~Col~ColWrapper~Example~Hero~Img~Row~Sidebar~VueXExample~VueXExample2.js",
-      "system-components/components/vendors~Article~Button~Col~ColWrapper~Example~Hero~Img~Sidebar~VueXExample~VueXExample2.js",
-      "system-components/components/vendors~Article~Button~Container~Example~Hero~Img~Row~Sidebar~VueXExample~VueXExample2.js",
-      "system-components/components/vendors~Article~Col~ColWrapper~Example~Hero~Sidebar~VueXExample~VueXExample2.js",
-      "system-components/components/vendors~Button~Example~VueXExample~VueXExample2.js",
-      "system-components/components/vendors~Button~VueXExample~VueXExample2.js",
-      "system-components/components/vendors~VueXExample~VueXExample2.js",
-      "system-components/components/Button~VueXExample~VueXExample2.js",
-      "system-components/components/VueXExample~VueXExample2~storeExampleStore.js",
-      "system-components/components/VueXExample~VueXExample2.js",
-      "system-components/components/VueXExample2.js"
-    ],
-    "styles": [
-      "system-components/components/Button~VueXExample~VueXExample2.css",
-      "system-components/components/VueXExample2.css"
-    ],
-    "other": []
-  },
   "Example": {
     "scripts": [
       "system-components/components/runtime.js",
@@ -336,6 +290,53 @@
       "system-components/components/Example~Img.css",
       "system-components/components/Example~Sidebar.css",
       "system-components/components/Article~Example.css"
+    ],
+    "other": []
+  },
+  "VueXExample": {
+    "scripts": [
+      "system-components/components/runtime.js",
+      "system-components/components/vendors~Article~Button~Col~ColWrapper~Container~ContentSection~Example~Heading~Hero~Icon~Img~Row~Sid~97ca347a.js",
+      "system-components/components/vendors~Article~Button~Col~ColWrapper~Container~Example~Hero~Img~Row~Sidebar~VueXExample~VueXExample~b234c02c.js",
+      "system-components/components/vendors~Article~Button~Col~ColWrapper~Example~Hero~Img~Row~Sidebar~VueXExample~VueXExample2.js",
+      "system-components/components/vendors~Article~Button~Col~ColWrapper~Example~Hero~Img~Sidebar~VueXExample~VueXExample2.js",
+      "system-components/components/vendors~Article~Button~Container~Example~Hero~Img~Row~Sidebar~VueXExample~VueXExample2.js",
+      "system-components/components/vendors~Article~Col~ColWrapper~Example~Hero~Sidebar~VueXExample~VueXExample2.js",
+      "system-components/components/vendors~Button~Example~VueXExample~VueXExample2.js",
+      "system-components/components/vendors~Button~VueXExample~VueXExample2.js",
+      "system-components/components/vendors~VueXExample~VueXExample2.js",
+      "system-components/components/vendors~VueXExample.js",
+      "system-components/components/Button~VueXExample~VueXExample2.js",
+      "system-components/components/VueXExample~VueXExample2~storeExampleStore.js",
+      "system-components/components/VueXExample~VueXExample2.js",
+      "system-components/components/VueXExample.js"
+    ],
+    "styles": [
+      "system-components/components/Button~VueXExample~VueXExample2.css",
+      "system-components/components/VueXExample.css"
+    ],
+    "other": []
+  },
+  "VueXExample2": {
+    "scripts": [
+      "system-components/components/runtime.js",
+      "system-components/components/vendors~Article~Button~Col~ColWrapper~Container~ContentSection~Example~Heading~Hero~Icon~Img~Row~Sid~97ca347a.js",
+      "system-components/components/vendors~Article~Button~Col~ColWrapper~Container~Example~Hero~Img~Row~Sidebar~VueXExample~VueXExample~b234c02c.js",
+      "system-components/components/vendors~Article~Button~Col~ColWrapper~Example~Hero~Img~Row~Sidebar~VueXExample~VueXExample2.js",
+      "system-components/components/vendors~Article~Button~Col~ColWrapper~Example~Hero~Img~Sidebar~VueXExample~VueXExample2.js",
+      "system-components/components/vendors~Article~Button~Container~Example~Hero~Img~Row~Sidebar~VueXExample~VueXExample2.js",
+      "system-components/components/vendors~Article~Col~ColWrapper~Example~Hero~Sidebar~VueXExample~VueXExample2.js",
+      "system-components/components/vendors~Button~Example~VueXExample~VueXExample2.js",
+      "system-components/components/vendors~Button~VueXExample~VueXExample2.js",
+      "system-components/components/vendors~VueXExample~VueXExample2.js",
+      "system-components/components/Button~VueXExample~VueXExample2.js",
+      "system-components/components/VueXExample~VueXExample2~storeExampleStore.js",
+      "system-components/components/VueXExample~VueXExample2.js",
+      "system-components/components/VueXExample2.js"
+    ],
+    "styles": [
+      "system-components/components/Button~VueXExample~VueXExample2.css",
+      "system-components/components/VueXExample2.css"
     ],
     "other": []
   },

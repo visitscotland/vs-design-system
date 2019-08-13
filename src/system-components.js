@@ -13,6 +13,7 @@ const componentPaths = [
   "./src/components/patterns/**/*.vue",
   "./src/components/modules/**/*.vue",
   "./src/components/templates/**/*.vue",
+  "./src/components/examples/**/*.vue",
 ]
 
 const storePattern = "./src/components/**/*.store.js"
