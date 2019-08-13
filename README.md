@@ -4,11 +4,11 @@
 
 This is the repository for the **VisitScotland Design System**, which is a heavily modified version of [Vue Design System](https://vueds.com). It works in the same way as Vue Design System, with some changes:
 
-- The included components have been changed to to suit VisitScotland's needs and have been moved into the `src/components` folder.
+- The included components have been changed to suit VisitScotland's needs and have been moved into the `src/components` folder.
 - Build scripts have been added (`npm run docs:remote`, `npm run styleguide:remote` or `npm run styleguide:remote:build`) to build the design system documentation using section content from a remote API.
 - Some bugs in VDS have been fixed.
-- The Color component has been changed to display colours in categories.
-- The system build has been modified to include a "componentised" version of the build ()
+- The Color component has been modified.
+- A componentised version of the build has been created and is used as the primary build.
 
 ## Getting started
 
@@ -22,20 +22,25 @@ Install the package:
 
 ### Running a local development version of the documentation site
 
-The following commands will begin a development instance of the design system documentation site:
+The following commands will begin a development instance of the design system documentation site using the config in `config/docs.config.js`. After running the commands, the documentation site should be available at localhost:6060. Modifications to source files will trigger a rebuild and refresh of the browser. However, tokens will not be re-generated automatically on file change.
 
-- `npm run build` (ensures token compilation)
-- `npm run styleguide`
+1. `npm run build` (to ensure token compilation)
+2. `npm run styleguide`
 
-The documentation site should then be available at localhost:6060. Modifications to source files will trigger a rebuild and refresh of the browser.
+Or:
+
+1. `npm run docs:remote` (includes token compilation)
+
+The `npm run styleguide` script builds the design system according to the `config/docs.config.js` only and so will only include **static, local content**. The alternative `npm run docs:remote` (together with proper configuration, as described in the section below) will merge **remote content** into the config from the config file.
 
 ### Building a static version of the documentation site
 
-The following commands will build a static version of the documentation at `dist/docs` and serve it using http-server on the default port:
+The following commands will generate build artefacts for the documentation site into `dist/docs`, using the config in `config/docs.config.js`.
 
-- `npm run build` (ensures token compilation)
-- `npm run styleguide:build`
-- `npm run serve-docs` (starts http-server in target dist folder)
+1. `npm run build:docs` or `npm run build:docs:remote`
+2. `npm run serve-docs` (starts http-server in target dist folder)
+
+Similar to the development instances above, `npm run build:docs` generates a site build according to the config file only, whereas `npm run build:docs:remote` merges **remote content** into the config from the config file (providing there is valid remote configuration, as described below).
 
 ### Populating the documentation site with remote content
 
@@ -43,42 +48,23 @@ It's possible to get the title and sections (pages) content for the documentatio
 
 - Edit `config/remote.config.js`, specifying sets of remote config profiles, each with URL, params and transforms. NOTE: the project already includes profiles for Contentful and Hippo.
 - Set the `VS_DS_REMOTE_CONFIG_URL` and any other environment variables (e.g. `VS_DS_REMOTE_CONFIG_HIPPO_PROJECT_NAME`) by specifying them in a `.env` file in the package root, or manually some other way.
-- Run the remote styleguide scripts (`npm run docs:remote`, `npm run styleguide:remote` or `npm run styleguide:remote:build`) instead of the regular scripts.
-
-By default, the build selects the first profile defined in the `config/remote.config.js` export. To select a different profile, alter the npm script to pass the name of the desired profile as the --remote-profile arg to the `build/styleguide` script, e.g:
+- Run the remote styleguide scripts (`npm run docs:remote` or `npm run styleguide:remote:build`) instead of the regular scripts.
 
 Common environment variables for remote config:
-VS_DS_REMOTE_CONFIG_STRICT_SSL
-VS_DS_REMOTE_CONFIG_URL
+`VS_DS_REMOTE_CONFIG_STRICT_SSL`
+`VS_DS_REMOTE_CONFIG_URL`
 
 Environment variables for Hippo and Contentful config:
-VS_DS_REMOTE_CONFIG_HIPPO_SECTIONS_FIELD_TITLE
-VS_DS_REMOTE_CONFIG_HIPPO_SECTIONS_CONTENT_FIELD_TITLE
-VS_DS_REMOTE_CONFIG_HIPPO_PROJECT_NAME
-VS_DS_REMOTE_CONFIG_CONTENTFUL_TOKEN
+`VS_DS_REMOTE_CONFIG_HIPPO_SECTIONS_FIELD_TITLE`
+`VS_DS_REMOTE_CONFIG_HIPPO_SECTIONS_CONTENT_FIELD_TITLE`
+`VS_DS_REMOTE_CONFIG_HIPPO_PROJECT_NAME`
+`VS_DS_REMOTE_CONFIG_CONTENTFUL_TOKEN`
 
-```
-    npm run docs:remote --remote-profile contentful
-```
+Only the `VS_DS_REMOTE_CONFIG_URL` variable is truly needed. However, some of the other variables will be needed to ensure to specific remote profile is carried out properly.
 
-### Publishing the documentation to Heroku
+By default, the build selects the first profile defined in the `config/remote.config.js` export. To select a different profile, alter the npm script to pass the name of the desired profile as the --remote-profile arg passed to to the script, e.g:
 
-If you are new to Heroku, [this guide](https://devcenter.heroku.com/articles/getting-started-with-nodejs) is a good guide to get you started with it.
-
-The following commands will publsh the documentation site to a Heroku app.
-
-- [Install and configure Heroku locally](https://devcenter.heroku.com/articles/getting-started-with-nodejs#set-up)
-- `cd design-system`
-- `heroku create`
-- `git push heroku master`
-
-Pushing to the Heroku remote triggers the following npm scripts in order on the Heroku server:
-
-- build
-- heroku-postbuild
-- start
-
-Editing any of those npm scripts will change what occurs on the Heroku server.
+`npm run docs:remote --remote-profile contentful`
 
 ## Using the design system assets in other apps
 
@@ -105,7 +91,7 @@ This is the default Vue Design System build and produces an asset for inclusion 
 
 Detailed instructions for including the design system in this way [are detailed here](https://github.com/viljamis/vue-design-system/wiki/getting-started#using-design-system-as-an-npm-module).
 
-## Developing the design system
+## Development workflow
 
 The best way to develop the design system is to run a local development instance of the documentation site, as detailed above.
 
