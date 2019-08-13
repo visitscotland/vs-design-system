@@ -10,7 +10,14 @@
 
       <div class="colors">
         <div v-for="(prop, index) in category.colors" :key="index" class="color">
-          <div class="swatch" :style="{ backgroundColor: prop.value }" />
+          <div class="swatch" :style="{ backgroundColor: prop.value }">
+            <ul class="contrast-indicator__ul">
+              <li v-for="(item, index2) in prop.readability" :key="index2">
+                <p :class="index2">A</p>
+                <p class="result">{{ item }}</p>
+              </li>
+            </ul>
+          </div>
           <h3>{{ prop.name.replace(/_/g, " ").replace(/color/g, "") }}</h3>
           <dl class="docs__dl">
             <dt>SCSS:</dt>
@@ -37,6 +44,7 @@ import get from "lodash/get"
 import find from "lodash/find"
 import matchesProperty from "lodash/matchesProperty"
 import cloneDeep from "lodash/cloneDeep"
+import tinycolor from "tinycolor2"
 
 export default {
   name: "Color",
@@ -47,6 +55,7 @@ export default {
     each(colours, colour => {
       let categoryName = get(colour, "category")
       let category = find(groups, matchesProperty("name", categoryName))
+      colour.readability = this.checkContrast(colour.originalValue)
 
       if (!category) {
         category = {
@@ -62,6 +71,36 @@ export default {
     return {
       tokenGroups: groups,
     }
+  },
+  methods: {
+    checkContrast(originalValue) {
+      let readability = {}
+      readability.blackLG = tinycolor.isReadable("#000000", originalValue, {
+        level: "AA",
+        size: "large",
+      })
+        ? "Pass"
+        : "Fail"
+      readability.blackSM = tinycolor.isReadable("#000000", originalValue, {
+        level: "AA",
+        size: "small",
+      })
+        ? "Pass"
+        : "Fail"
+      readability.whiteLG = tinycolor.isReadable("#ffffff", originalValue, {
+        level: "AA",
+        size: "large",
+      })
+        ? "Pass"
+        : "Fail"
+      readability.whiteSM = tinycolor.isReadable("#ffffff", originalValue, {
+        level: "AA",
+        size: "small",
+      })
+        ? "Pass"
+        : "Fail"
+      return readability
+    },
   },
 }
 </script>
@@ -79,6 +118,49 @@ export default {
 
   &:last-of-type {
     border-bottom: none;
+  }
+}
+
+.contrast-indicator__ul {
+  align-items: flex-end;
+  display: flex;
+  justify-content: space-evenly;
+  list-style-type: none;
+  margin: 0 0 12px;
+  padding: 0 12px;
+  text-align: center;
+  width: 100%;
+
+  p {
+    margin: 0;
+  }
+
+  .result {
+    color: $white;
+    background-color: $black;
+    font-size: 0.75rem;
+    padding: 0 5px;
+    border-radius: 4px;
+  }
+
+  .whiteLG {
+    color: $white;
+    font-size: 18px;
+  }
+
+  .whiteSM {
+    color: $white;
+    font-size: 14px;
+  }
+
+  .blackLG {
+    color: $black;
+    font-size: 18px;
+  }
+
+  .blackSM {
+    color: $black;
+    font-size: 14px;
   }
 }
 
@@ -136,10 +218,11 @@ export default {
   @include stack-space($space-s);
   border-bottom: 1px solid rgba(0, 0, 0, 0.08);
   height: $space-xxl;
+  display: flex;
+  align-items: flex-end;
   margin-left: -#{$space-s};
   margin-top: -#{$space-s};
-  width: calc(100% + #{$space-l});
-  float: left;
+  width: calc(100% + #{$space-s} * 2);
 }
 h3 {
   @include reset;
