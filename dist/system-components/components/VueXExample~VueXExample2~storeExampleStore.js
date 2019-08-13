@@ -1,0 +1,1 @@
+(window.webpackJsonp_name_=window.webpackJsonp_name_||[]).push([[20],{Zk4R:function(n,e,t){"use strict";t.r(e);var a,c=t("WIBD"),o=t.n(c),i=t("i7/w");t.n(i).a.use(o.a),a||(a=new o.a.Store({modules:{example:{namespaced:!0,state:{count:0},mutations:{increment:function(n){n.count++}},actions:{increment:function(n,e){n.commit("increment"),alert(e)}}}}})),e.default=a}}]);

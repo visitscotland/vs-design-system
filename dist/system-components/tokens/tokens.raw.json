@@ -36,6 +36,9 @@
     "murrayfield_navy": {
       "value": "#083973"
     },
+    "black": {
+      "value": "#000"
+    },
     "font_size_base": {
       "value": "1rem"
     },
@@ -84,6 +87,13 @@
       "name": "color_sanna_sand",
       "value": "rgb(215, 210, 203)",
       "originalValue": "{!sanna_sand}"
+    },
+    "color_black": {
+      "type": "color",
+      "category": "Grays",
+      "name": "color_black",
+      "value": "rgb(0, 0, 0)",
+      "originalValue": "{!black}"
     },
     "color_total_eclipse": {
       "type": "color",
@@ -301,6 +311,41 @@
       "value": "300",
       "originalValue": "300",
       "name": "font_weight_light"
+    },
+    "icon_size_xs": {
+      "type": "number",
+      "category": "icons",
+      "value": "16px",
+      "originalValue": "16px",
+      "name": "icon_size_xs"
+    },
+    "icon_size_sm": {
+      "type": "number",
+      "category": "icons",
+      "value": "24px",
+      "originalValue": "24px",
+      "name": "icon_size_sm"
+    },
+    "icon_size_md": {
+      "type": "number",
+      "category": "icons",
+      "value": "40px",
+      "originalValue": "40px",
+      "name": "icon_size_md"
+    },
+    "icon_size_lg": {
+      "type": "number",
+      "category": "icons",
+      "value": "56px",
+      "originalValue": "56px",
+      "name": "icon_size_lg"
+    },
+    "icon_size_xl": {
+      "type": "number",
+      "category": "icons",
+      "value": "72px",
+      "originalValue": "72px",
+      "name": "icon_size_xl"
     },
     "opacity_disabled": {
       "type": "number",
