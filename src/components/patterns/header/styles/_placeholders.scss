@@ -5,12 +5,12 @@
 
 %focus-pink-inset {
   outline: none;
-  box-shadow: inset 0 -3px 0 0 $color-thistle-pink;
+  box-shadow: inset 0 -3px 0 0 $color-pink;
 }
 
 %focus-pink {
   outline: none;
-  box-shadow: 0 3px 0 0 $color-thistle-pink;
+  box-shadow: 0 3px 0 0 $color-pink;
 }
 
 %list-reset {
@@ -50,7 +50,7 @@
 }
 
 %button-pink {
-  background-color: $color-thistle-pink;
+  background-color: $color-pink;
   color: $color-white;
   transition: background-color 250ms;
 
@@ -59,7 +59,7 @@
   }
 
   &:hover {
-    background-color: lighten($color-thistle-pink, 5%);
+    background-color: lighten($color-pink, 5%);
   }
 }
 
@@ -71,7 +71,7 @@
 
 %uni-nav-button-style {
   align-items: center;
-  background-color: $color-heather-purple;
+  background-color: $color-purple;
   box-shadow: inset 0 0 0 0 transparent;
   color: #fff;
   display: flex;
@@ -82,12 +82,12 @@
   z-index: 5;
 
   &:focus {
-    background-color: $color-thistle-pink;
+    background-color: $color-pink;
     @extend %focus-white-inset;
   }
 
   &:hover {
-    background-color: $color-thistle-pink;
+    background-color: $color-pink;
     color: #fff;
   }
 

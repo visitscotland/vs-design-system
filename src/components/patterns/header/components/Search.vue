@@ -106,16 +106,16 @@ export default {
   @extend %main-nav-button-style;
 
   &[aria-expanded="true"] {
-    background-color: $color-light-granite;
+    background-color: $gray-tint-6;
 
     svg {
-      fill: $color-mid-granite !important;
+      fill: $gray-shade-2 !important;
     }
   }
 }
 
 .vs-search__form-wrapper {
-  background-color: $color-very-light-granite;
+  background-color: $gray-tint-8;
   box-shadow: inset 0 8px 6px -6px rgba(0, 0, 0, 0.3), 0 8px 6px -6px rgba(0, 0, 0, 0.3);
   justify-content: space-between;
   padding: 1rem;

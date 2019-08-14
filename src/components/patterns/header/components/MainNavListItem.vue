@@ -25,7 +25,7 @@
           ['level' + level]: level,
         }"
       >
-        <vs-svg path="icons/chevron-down" height="8" fill="#727272" />
+        <vs-icon name="chevron-down" size="xs" variant="dark" />
       </div>
     </button>
     <a
@@ -86,14 +86,14 @@
 </template>
 
 <script>
-import VsSvg from "../../../elements/svg/Svg"
+import VsIcon from "../../../elements/icon/Icon"
 import smoothscroll from "smoothscroll-polyfill"
 
 export default {
   name: "VsMainNavListItem",
   status: "prototype",
   release: "0.0.1",
-  components: { VsSvg },
+  components: { VsIcon },
   data() {
     return {
       show: false,
@@ -205,8 +205,8 @@ export default {
 .vs-main-nav__button,
 .vs-main-nav__link {
   align-items: center;
-  border-bottom: 1px solid $color-gray-e6;
-  color: $color-gray-38;
+  border-bottom: 1px solid $gray-tint-6;
+  color: $color-base-text;
   display: flex;
   font-weight: $font-weight-semi-bold;
   justify-content: space-between;
@@ -223,30 +223,30 @@ export default {
     width: 100%;
 
     &[aria-expanded="true"] {
-      box-shadow: inset 0.75rem 0 0 0 $color-thistle-pink;
+      box-shadow: inset 0.75rem 0 0 0 $color-pink;
     }
   }
 
   &--level2 {
-    background-color: $color-gray-f8;
-    box-shadow: inset 0.75rem 0 0 0 $color-gray-e6;
+    background-color: $gray-tint-8;
+    box-shadow: inset 0.75rem 0 0 0 $gray-tint-8;
     font-size: 1.125rem;
     padding: 0.75rem 1.25rem 0.75rem 2.25rem;
     width: 100%;
 
     &[aria-expanded="true"] {
-      box-shadow: inset 0.75rem 0 0 0 $color-thistle-pink;
+      box-shadow: inset 0.75rem 0 0 0 $color-pink;
     }
   }
 
   &--level3 {
-    background-color: $color-gray-ef;
-    box-shadow: inset 0.75rem 0 0 0 $color-gray-e6;
+    background-color: $gray-tint-8;
+    box-shadow: inset 0.75rem 0 0 0 $gray-tint-8;
     font-size: 1.125rem;
     padding: 0.75rem 1.25rem 0.75rem 3.25rem;
 
     .vs-main-nav__list-item--level3:first-of-type & {
-      box-shadow: inset 0 8px 6px -6px rgba(0, 0, 0, 0.1), inset 12px 0 0 0 $color-gray-e6;
+      box-shadow: inset 0 8px 6px -6px rgba(0, 0, 0, 0.1), inset 12px 0 0 0 $gray-tint-8;
     }
   }
 
@@ -259,10 +259,10 @@ export default {
 .vs-main-nav__link {
   &--landing-page {
     background-color: $color-white;
-    color: $color-thistle-pink;
+    color: $color-pink;
 
     &:hover {
-      color: $color-thistle-pink;
+      color: $color-pink;
     }
   }
   &--level3 {
