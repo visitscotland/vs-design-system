@@ -8,7 +8,8 @@
       aria-haspopup="true"
       :aria-expanded="show ? 'true' : 'false'"
     >
-      <span class="vs-main-nav__switch"> <span class="sr-only">Toggle Main Navigation</span> </span>
+      <span class="sr-only">Toggle Main Navigation</span>
+      <vs-icon name="menu" size="xs" variant="dark" />
     </button>
     <transition name="slide-fade">
       <ul class="vs-main-nav__list vs-main-nav__list--level1 list-unstyled" v-show="show">
@@ -19,7 +20,7 @@
 </template>
 
 <script>
-import VsSvg from "../../../elements/svg/Svg"
+import VsIcon from "../../../elements/icon/Icon"
 import VsMainNavListItem from "./MainNavListItem"
 
 export default {
@@ -27,7 +28,7 @@ export default {
   status: "prototype",
   release: "0.0.1",
   components: {
-    VsSvg,
+    VsIcon,
     VsMainNavListItem,
   },
   data() {
@@ -89,7 +90,7 @@ export default {
 }
 
 .vs-main-nav__switch {
-  background-color: $color-mid-granite;
+  background-color: $gray-shade-2;
   display: block;
   height: 2px;
   left: 11px;
@@ -101,7 +102,7 @@ export default {
   }
 
   &::before {
-    background-color: $color-mid-granite;
+    background-color: $gray-shade-2;
     content: "";
     display: block;
     height: 2px;
@@ -119,7 +120,7 @@ export default {
   }
 
   &::after {
-    background-color: $color-mid-granite;
+    background-color: $gray-shade-2;
     content: "";
     display: block;
     height: 2px;

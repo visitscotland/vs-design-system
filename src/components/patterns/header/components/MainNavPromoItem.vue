@@ -67,7 +67,7 @@ export default {
 @import "../styles/placeholders";
 
 .vs-promo-item__wrapper {
-  border-bottom: 1px solid $color-gray-e6;
+  border-bottom: 1px solid $gray-tint-8;
 }
 
 .vs-promo-item__link {
@@ -82,7 +82,7 @@ export default {
 }
 
 .vs-promo-item__link-title {
-  color: $color-total-eclipse;
+  color: $color-base-text;
   display: inline-flex;
   font-size: 1.125rem;
   font-weight: $font-weight-light;
@@ -124,7 +124,7 @@ export default {
   }
 
   &::before {
-    background-color: $color-thistle-pink;
+    background-color: $color-pink;
     border-radius: 50%;
     bottom: 0;
     content: "";
