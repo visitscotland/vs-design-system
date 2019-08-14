@@ -7,141 +7,245 @@
 # utilize both global & local tokens for colors.
 #
 
-aliases:
-  gorse_yellow:
-    value: "#FCCA1B"
-  murrayfield_navy:
-    value: "#083973"
-  saltire_blue:
-    value: "#005EB8"
-  heather_purple:
-    value: "#700e57"
-  thistle_pink:
-    value: "#AF006E"
-  sanna_sand:
-    value: "#D7D2CB"
-  single_malt_gold:
-    value: "#E1A245"
-  black:
-    value: "#000"
-  total_eclipse:
-    value: "#1d1d1b"
-  dreich_gray:
-    value: "#39393b"
-  dark_granite:
-    value: "#595959"
-  mid_granite:
-    value: "#929091"
-  light_granite:
-    value: "#e5e5e5"
-  very_light_granite:
-    value: "#f5f6fa"
-  gray_F2:
-    value: "#F2F2F2"
-  gray_F8:
-    value: "#F8F8F8"
-  gray_EF:
-    value: "#EFEFEF"
-  gray_E6:
-    value: "#E6E6E6"
-  gray_72:
-    value: "#727272"
-  gray_38:
-    value: "#383838"
-  white:
-    value: "#fff"
-
 props:
-  - name: color_heather_purple
-    value: "{!heather_purple}"
-    category: "Primary palette"
-  - name: color_thistle_pink
-    value: "{!thistle_pink}"
-    category: "Primary palette"
-  - name: color_gorse_yellow
-    value: "{!gorse_yellow}"
-    category: "Primary palette"
-  - name: color_murrayfield_navy
-    value: "{!murrayfield_navy}"
-    category: "Secondary palette"
-  - name: color_saltire_blue
-    value: "{!saltire_blue}"
-    category: "Secondary palette"
+  - name: color_purple
+    value: "#700E57"
+    category: "Primary"
+  - name: color_gray
+    value: "#848484"
+    category: "Primary"
+  - name: color_pink
+    value: "#AF006E"
+    category: "Primary"
+  - name: color_yellow
+    value: "#FCCA1B"
+    category: "Primary"
 
-  - name: color_single_malt_gold
-    value: "{!single_malt_gold}"
-    category: "Secondary palette"
-  - name: color_sanna_sand
-    value: "{!sanna_sand}"
-    category: "Secondary palette"
+  - name: color_secondary_gray
+    value: "#6A6366"
+    category: "Secondary"
 
+  - name: color_base_text
+    value: "#191919"
+    category: "Neutral"
+  - name: color_error
+    value: "#95A5AB"
+    category: "Neutral"
   - name: color_black
-    value: "{!black}"
-    category: "Grays"
-  - name: color_total_eclipse
-    value: "{!total_eclipse}"
-    category: "Grays"
-  - name: color_dreich_gray
-    value: "{!dreich_gray}"
-    category: "Grays"
-  - name: color_dark_granite
-    value: "{!dark_granite}"
-    category: "Grays"
-  - name: color_mid_granite
-    value: "{!mid_granite}"
-    category: "Grays"
-  - name: color_light_granite
-    value: "{!light_granite}"
-    category: "Grays"
-  - name: color_very_light_granite
-    value: "{!very_light_granite}"
-    category: "Grays"
+    value: "#000000"
+    category: "Neutral"
   - name: color_white
-    value: "{!white}"
-    category: "Grays"
-  - name: color_gray_F2
-    value: "{!gray_F2}"
-    category: "Grays"
-  - name: color_gray_F8
-    value: "{!gray_F8}"
-    category: "Grays"
-  - name: color_gray_EF
-    value: "{!gray_EF}"
-    category: "Grays"
-  - name: color_gray_E6
-    value: "{!gray_E6}"
-    category: "Grays"
-  - name: color_gray_72
-    value: "{!gray_72}"
-    category: "Grays"
-  - name: color_gray_38
-    value: "{!gray_38}"
-    category: "Grays"
+    value: "#FFFFFF"
+    category: "Neutral"
 
   - name: color_theme_primary
-    value: "{!heather_purple}"
+    value: "#700E57"
     category: "Theme colours"
   - name: color_theme_secondary
-    value: "{!sanna_sand}"
+    value: "#6A6366"
     category: "Theme colours"
   - name: color_theme_success
-    value: "#28a745"
+    value: "#0E7027"
     category: "Theme colours"
   - name: color_theme_info
-    value: "{!saltire_blue}"
+    value: "#0E2670"
     category: "Theme colours"
   - name: color_theme_warning
-    value: "{!single_malt_gold}"
+    value: "#FCCA1B"
     category: "Theme colours"
   - name: color_theme_danger
-    value: "#dc3545"
+    value: "#AF006E"
     category: "Theme colours"
   - name: color_theme_light
-    value: "{!mid_granite}"
+    value: "#EFEFEF"
     category: "Theme colours"
   - name: color_theme_dark
-    value: "{!dreich_gray}"
+    value: "#191919"
     category: "Theme colours"
+
+  - name: purple_tint_1
+    value: "#853270"
+    category: "Primary Purple Tints"
+  - name: purple_tint_2
+    value: "#9B5689"
+    category: "Primary Purple Tints"
+  - name: purple_tint_3
+    value: "#B07AA3"
+    category: "Primary Purple Tints"
+  - name: purple_tint_4
+    value: "#C69FBC"
+    category: "Primary Purple Tints"
+  - name: purple_tint_5
+    value: "#DBC3D5"
+    category: "Primary Purple Tints"
+  - name: purple_tint_6
+    value: "#F1E7EE"
+    category: "Primary Purple Tints"
+
+  - name: purple_shade_1
+    value: "#5F0C4A"
+    category: "Primary Purple Shades"
+  - name: purple_shade_2
+    value: "#4E0A3D"
+    category: "Primary Purple Shades"
+  - name: purple_shade_3
+    value: "#3E0830"
+    category: "Primary Purple Shades"
+  - name: purple_shade_4
+    value: "#2D0623"
+    category: "Primary Purple Shades"
+  - name: purple_shade_5
+    value: "#1C0416"
+    category: "Primary Purple Shades"
+  - name: purple_shade_6
+    value: "#0B0109"
+    category: "Primary Purple Shades"
+
+  - name: gray_tint_1
+    value: "#939393"
+    category: "Primary Gray Tints"
+  - name: gray_tint_2
+    value: "#A3A3A3"
+    category: "Primary Gray Tints"
+  - name: gray_tint_3
+    value: "#B2B2B2"
+    category: "Primary Gray Tints"
+  - name: gray_tint_4
+    value: "#C1C1C1"
+    category: "Primary Gray Tints"
+  - name: gray_tint_5
+    value: "#D0D0D0"
+    category: "Primary Gray Tints"
+  - name: gray_tint_6
+    value: "#E0E0E0"
+    category: "Primary Gray Tints"
+  - name: gray_tint_7
+    value: "#EFEFEF"
+    category: "Primary Gray Tints"
+  - name: gray_tint_8
+    value: "#FEFEFE"
+    category: "Primary Gray Tints"
+
+  - name: gray_shade_1
+    value: "#757575"
+    category: "Primary Gray Shades"
+  - name: gray_shade_2
+    value: "#666666"
+    category: "Primary Gray Shades"
+  - name: gray_shade_3
+    value: "#565656"
+    category: "Primary Gray Shades"
+  - name: gray_shade_4
+    value: "#474747"
+    category: "Primary Gray Shades"
+  - name: gray_shade_5
+    value: "#383838"
+    category: "Primary Gray Shades"
+  - name: gray_shade_6
+    value: "#292929"
+    category: "Primary Gray Shades"
+  - name: gray_shade_7
+    value: "#191919"
+    category: "Primary Gray Shades"
+  - name: gray_shade_8
+    value: "#0A0A0A"
+    category: "Primary Gray Shades"
+
+  - name: pink_tint_1
+    value: "#BB2684"
+    category: "Primary Pink Tints"
+  - name: pink_tint_2
+    value: "#C74D9A"
+    category: "Primary Pink Tints"
+  - name: pink_tint_3
+    value: "#D373AF"
+    category: "Primary Pink Tints"
+  - name: pink_tint_4
+    value: "#DF99C5"
+    category: "Primary Pink Tints"
+  - name: pink_tint_5
+    value: "#EBBFDB"
+    category: "Primary Pink Tints"
+  - name: pink_tint_6
+    value: "#F7E6F1"
+    category: "Primary Pink Tints"
+
+  - name: pink_shade_1
+    value: "#95005E"
+    category: "Primary Pink Shades"
+  - name: pink_shade_2
+    value: "#7A004D"
+    category: "Primary Pink Shades"
+  - name: pink_shade_3
+    value: "#60003D"
+    category: "Primary Pink Shades"
+  - name: pink_shade_4
+    value: "#46002C"
+    category: "Primary Pink Shades"
+  - name: pink_shade_5
+    value: "#2C001C"
+    category: "Primary Pink Shades"
+  - name: pink_shade_6
+    value: "#11000B"
+    category: "Primary Pink Shades"
+
+  - name: yellow_tint_1
+    value: "#FCD23D"
+    category: "Primary Yellow Tints"
+  - name: yellow_tint_2
+    value: "#FDDA5F"
+    category: "Primary Yellow Tints"
+  - name: yellow_tint_3
+    value: "#FDE282"
+    category: "Primary Yellow Tints"
+  - name: yellow_tint_4
+    value: "#FEEAA4"
+    category: "Primary Yellow Tints"
+  - name: yellow_tint_5
+    value: "#FEF2C6"
+    category: "Primary Yellow Tints"
+  - name: yellow_tint_6
+    value: "#FFFAE8"
+    category: "Primary Yellow Tints"
+
+  - name: secondary_gray_tint_1
+    value: "#807A7D"
+    category: "Secondary Gray Tints"
+  - name: secondary_gray_tint_2
+    value: "#979294"
+    category: "Secondary Gray Tints"
+  - name: secondary_gray_tint_3
+    value: "#ADA9AB"
+    category: "Secondary Gray Tints"
+  - name: secondary_gray_tint_4
+    value: "#C3C1C2"
+    category: "Secondary Gray Tints"
+  - name: secondary_gray_tint_5
+    value: "#DAD8D9"
+    category: "Secondary Gray Tints"
+  - name: secondary_gray_tint_6
+    value: "#F0EFF0"
+    category: "Secondary Gray Tints"
+
+  - name: secondary_gray_shade_1
+    value: "#5A5457"
+    category: "Secondary Gray Shades"
+  - name: secondary_gray_shade_2
+    value: "#4A4547"
+    category: "Secondary Gray Shades"
+  - name: secondary_gray_shade_3
+    value: "#3A3638"
+    category: "Secondary Gray Shades"
+  - name: secondary_gray_shade_4
+    value: "#2A2829"
+    category: "Secondary Gray Shades"
+  - name: secondary_gray_shade_5
+    value: "#1B191A"
+    category: "Secondary Gray Shades"
+  - name: secondary_gray_shade_6
+    value: "#0B0A0A"
+    category: "Secondary Gray Shades"
+
 global:
   type: color
   category: color
