@@ -8,14 +8,27 @@
     >
       <h2>{{ category.name }}</h2>
 
-      <div class="colors">
-        <div v-for="(prop, index) in category.colors" :key="index" class="color">
-          <div class="swatch" :style="{ backgroundColor: prop.value }" />
+      <ul class="colors">
+        <li v-for="(prop, index) in category.colors" :key="index" class="color">
+          <div class="swatch" :style="{ backgroundColor: prop.value }">
+            <ul class="contrast-indicator__ul">
+              <li v-for="(item, index2) in prop.readability" :key="index2">
+                <p :class="index2">A</p>
+                <p class="result">{{ item }}</p>
+              </li>
+            </ul>
+          </div>
           <h3>{{ prop.name.replace(/_/g, " ").replace(/color/g, "") }}</h3>
-          <span> <em>RGB:</em> {{ prop.value }} </span>
-          <span> <em>SCSS:</em> ${{ prop.name.replace(/_/g, "-") }} </span>
-        </div>
-      </div>
+          <dl class="docs__dl">
+            <dt>SCSS:</dt>
+            <dd>${{ prop.name.replace(/_/g, "-") }}</dd>
+            <dt>HEX:</dt>
+            <dd>{{ prop.originalValue }}</dd>
+            <dt>RGB:</dt>
+            <dd>{{ prop.value }}</dd>
+          </dl>
+        </li>
+      </ul>
     </div>
   </div>
 </template>
@@ -31,6 +44,7 @@ import get from "lodash/get"
 import find from "lodash/find"
 import matchesProperty from "lodash/matchesProperty"
 import cloneDeep from "lodash/cloneDeep"
+import tinycolor from "tinycolor2"
 
 export default {
   name: "Color",
@@ -41,6 +55,7 @@ export default {
     each(colours, colour => {
       let categoryName = get(colour, "category")
       let category = find(groups, matchesProperty("name", categoryName))
+      colour.readability = this.checkContrast(colour.originalValue)
 
       if (!category) {
         category = {
@@ -56,6 +71,36 @@ export default {
     return {
       tokenGroups: groups,
     }
+  },
+  methods: {
+    checkContrast(originalValue) {
+      let readability = {}
+      readability.blackLG = tinycolor.isReadable("#000000", originalValue, {
+        level: "AA",
+        size: "large",
+      })
+        ? "Pass"
+        : "Fail"
+      readability.blackSM = tinycolor.isReadable("#000000", originalValue, {
+        level: "AA",
+        size: "small",
+      })
+        ? "Pass"
+        : "Fail"
+      readability.whiteLG = tinycolor.isReadable("#ffffff", originalValue, {
+        level: "AA",
+        size: "large",
+      })
+        ? "Pass"
+        : "Fail"
+      readability.whiteSM = tinycolor.isReadable("#ffffff", originalValue, {
+        level: "AA",
+        size: "small",
+      })
+        ? "Pass"
+        : "Fail"
+      return readability
+    },
   },
 }
 </script>
@@ -76,53 +121,83 @@ export default {
   }
 }
 
-.colors {
-  margin-top: $space-l;
-  display: block;
+.contrast-indicator__ul {
+  align-items: flex-end;
+  display: flex;
+  justify-content: space-evenly;
+  list-style-type: none;
+  margin: 0 0 12px;
+  padding: 0 12px;
+  text-align: center;
   width: 100%;
-  @supports (display: grid) {
-    display: grid;
-    max-width: 1200px;
-    align-content: stretch;
-    justify-content: left;
-    grid-template-columns:
-      calc(20% - #{$space-m})
-      calc(20% - #{$space-m})
-      calc(20% - #{$space-m})
-      calc(20% - #{$space-m})
-      calc(20% - #{$space-m});
-    grid-column-gap: $space-m;
-    @media (max-width: 1300px) {
-      grid-template-columns:
-        calc(25% - #{$space-m})
-        calc(25% - #{$space-m})
-        calc(25% - #{$space-m})
-        calc(25% - #{$space-m});
-    }
-    @media (max-width: 1100px) {
-      grid-template-columns:
-        calc(33.333% - #{$space-m})
-        calc(33.333% - #{$space-m})
-        calc(33.333% - #{$space-m});
-    }
-    @media (max-width: 900px) {
-      grid-template-columns:
-        calc(50% - #{$space-m})
-        calc(50% - #{$space-m});
-    }
-    @media (max-width: 400px) {
-      grid-template-columns: 100%;
-    }
+
+  p {
+    margin: 0;
+  }
+
+  .result {
+    color: $white;
+    background-color: $black;
+    font-size: 0.75rem;
+    padding: 0 5px;
+    border-radius: $radius-default;
+  }
+
+  .whiteLG {
+    color: $white;
+    font-size: 18px;
+  }
+
+  .whiteSM {
+    color: $white;
+    font-size: 14px;
+  }
+
+  .blackLG {
+    color: $black;
+    font-size: 18px;
+  }
+
+  .blackSM {
+    color: $black;
+    font-size: 14px;
+  }
+}
+
+.docs__dl {
+  dt,
+  dd {
+    float: left;
+    margin: 0 5px 5px 0;
+  }
+  dt {
+    clear: both;
+  }
+}
+
+.colors {
+  display: flex;
+  flex-wrap: wrap;
+  list-style-type: none;
+  justify-content: flex-start;
+  margin: $space-l 0 0;
+  padding: 0;
+  width: 100%;
+
+  > li {
+    width: 250px;
+    margin-right: $space-s;
   }
 }
 .swatch {
   @include stack-space($space-s);
   border-bottom: 1px solid rgba(0, 0, 0, 0.08);
   height: $space-xxl;
+  display: flex;
+  align-items: flex-end;
   margin-left: -#{$space-s};
   margin-top: -#{$space-s};
-  width: calc(100% + #{$space-l});
-  float: left;
+  width: calc(100% + #{$space-s} * 2);
 }
 h3 {
   @include reset;
@@ -144,37 +219,8 @@ h3 {
   color: $docs-color-rich-black;
   border-radius: $radius-default;
   overflow: hidden;
-  text-align: left;
-  @supports (display: grid) {
-    width: 100%;
-    float: left;
-  }
-  @media (max-width: 400px) {
-    margin-bottom: $space-m;
-  }
-  &:hover {
-    span {
-      color: $docs-color-rich-black;
-      em {
-        color: $docs-color-silver;
-      }
-    }
-  }
-  span {
-    margin-bottom: $space-xs;
-    line-height: 1.3;
-    color: $docs-color-silver;
-    font-size: $size-s;
-    width: 100%;
-    float: left;
-    em {
-      user-select: none;
-      font-style: normal;
-    }
-  }
 }
 </style>
-
 <docs>
   ```jsx
   <color/>

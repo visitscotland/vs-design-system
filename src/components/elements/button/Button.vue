@@ -47,26 +47,22 @@ export default {
 <docs>
   ```jsx
   <div>
-    <div class="row mb-4">
-      <div class="col">
-        <h4>Variants</h4>
-        <vs-button variant="primary" class="mr-2">Primary</vs-button>
-        <vs-button variant="secondary" class="mr-2">Secondary</vs-button>
-        <vs-button variant="success" class="mr-2">Success</vs-button>
-        <vs-button variant="danger" class="mr-2">Danger</vs-button>
-        <vs-button variant="warning" class="mr-2">Warning</vs-button>
-        <vs-button variant="info" class="mr-2">Info</vs-button>
-        <vs-button variant="light" class="mr-2">Light</vs-button>
-        <vs-button variant="dark" class="mr-2">Dark</vs-button>
-      </div>
-    </div>
-    <div class="row mb-4">
-      <div class="col">
-        <h4>Link</h4>
-        <vs-button href="https://www.visitscotland.com">Link</vs-button>
-        <vs-button href="https://www.google.com">Another link</vs-button>
-      </div>
-    </div>
+    <bs-wrapper class="mb-4">
+      <h4>Variants</h4>
+      <vs-button variant="primary" class="mr-2">Primary</vs-button>
+      <vs-button variant="secondary" class="mr-2">Secondary</vs-button>
+      <vs-button variant="success" class="mr-2">Success</vs-button>
+      <vs-button variant="danger" class="mr-2">Danger</vs-button>
+      <vs-button variant="warning" class="mr-2">Warning</vs-button>
+      <vs-button variant="info" class="mr-2">Info</vs-button>
+      <vs-button variant="light" class="mr-2">Light</vs-button>
+      <vs-button variant="dark" class="mr-2">Dark</vs-button>
+    </bs-wrapper>
+    <bs-wrapper class="mb-4">
+      <h4>Link</h4>
+      <vs-button href="https://www.visitscotland.com">Link</vs-button>
+      <vs-button href="https://www.google.com">Another link</vs-button>
+    </bs-wrapper>
   </div>
   ```
 </docs>

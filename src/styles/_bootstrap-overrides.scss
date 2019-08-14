@@ -12,7 +12,7 @@ $headings-font-weight: $font-weight-bold;
 /* Colors */
 
 $white: $color-white;
-$black: $color-total-eclipse;
+$black: $color-black;
 
 $theme-colors: (
   primary: $color-theme-primary,
@@ -25,11 +25,11 @@ $theme-colors: (
   dark: $color-theme-dark,
 );
 
-$body-color: $color-total-eclipse;
+$body-color: $color-base-text;
 /* Links */
 $link-color: $color-theme-primary;
 $link-decoration: none;
-$link-hover-color: $color-total-eclipse;
+$link-hover-color: $color-base-text;
 $link-hover-decoration: none;
 /* Grid */
 // These 2 variables are already generated directly from the design tokens by theo

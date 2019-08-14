@@ -74,7 +74,7 @@ export default {
   @extend .mb-3;
   font-family: $font-family-heading;
   line-height: $line-height-xs;
-  color: $color-dreich-gray;
+  color: $color-base-text;
 
   @at-root h1#{&}:not([class*="display"]) {
     letter-spacing: $spacing-xs;
@@ -100,7 +100,7 @@ export default {
   }
 
   .sub-heading {
-    color: $color-single-malt-gold;
+    color: $color-yellow;
     font-weight: $font-weight-semi-bold;
     font-size: 60%;
   }
