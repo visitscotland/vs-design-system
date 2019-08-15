@@ -9,7 +9,7 @@
       :aria-expanded="show ? 'true' : 'false'"
     >
       <span class="sr-only">Toggle Main Navigation</span>
-      <vs-icon name="menu" size="xs" variant="dark" />
+      <vs-icon name="menu" size="sm" variant="dark" />
     </button>
     <transition name="slide-fade">
       <ul class="vs-main-nav__list vs-main-nav__list--level1 list-unstyled" v-show="show">
@@ -86,55 +86,6 @@ export default {
 
   &:focus {
     @extend %focus-pink-inset;
-  }
-}
-
-.vs-main-nav__switch {
-  background-color: $gray-shade-2;
-  display: block;
-  height: 2px;
-  left: 11px;
-  position: relative;
-  width: 16px;
-
-  .vs-main-nav__button[aria-expanded="true"] & {
-    background-color: $color-white;
-  }
-
-  &::before {
-    background-color: $gray-shade-2;
-    content: "";
-    display: block;
-    height: 2px;
-    position: absolute;
-    top: -6px;
-    transition: transform 250ms ease-in-out;
-    width: 16px;
-
-    .vs-main-nav__button[aria-expanded="true"] & {
-      left: -2px;
-      top: 0;
-      transform: rotate(45deg);
-      width: 20px;
-    }
-  }
-
-  &::after {
-    background-color: $gray-shade-2;
-    content: "";
-    display: block;
-    height: 2px;
-    position: absolute;
-    top: 6px;
-    transition: transform 250ms ease-in-out;
-    width: 16px;
-
-    .vs-main-nav__button[aria-expanded="true"] & {
-      left: -2px;
-      top: 0;
-      transform: rotate(135deg);
-      width: 20px;
-    }
   }
 }
 
