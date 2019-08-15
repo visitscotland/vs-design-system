@@ -84,10 +84,6 @@ export default {
   background-color: $white;
   box-shadow: 0 8px 6px -6px rgba(0, 0, 0, 0.3);
 }
-
-.vs-controls__wrapper {
-  margin-right: -1rem;
-}
 </style>
 
 <docs>
