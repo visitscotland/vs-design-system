@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import BImg from "bootstrap-vue/es/components/image/img"
+import { BImg } from "bootstrap-vue"
 /**
  * This image component is used to render images in the site. It utilises
  * <a href="https://bootstrap-vue.js.org/docs/components/image">the Bootstrap
