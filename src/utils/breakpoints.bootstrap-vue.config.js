@@ -1,8 +1,9 @@
-import { setConfig } from "bootstrap-vue/es/utils/config.js"
+import Vue from "vue"
+import { BVConfigPlugin } from "bootstrap-vue"
 
 const breakpoints = ["xs", "sm", "md", "lg", "xl", "xxl"]
 
-setConfig({
+Vue.use(BVConfigPlugin, {
   breakpoints: breakpoints,
 })
 
