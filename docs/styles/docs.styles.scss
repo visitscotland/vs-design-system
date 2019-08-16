@@ -41,6 +41,7 @@ div.rsg--root-1 {
 main[class^="rsg--content"] {
   display: block; /* IE11 fix */
   padding: $space-s $space-xl;
+  overflow-x: hidden;
   @media (max-width: #{$docs-breakpoint}) {
     padding: $space-s $space-m;
   }
@@ -189,6 +190,9 @@ p[class^="rsg--para"] {
   }
   pre + & {
     margin-top: $space-s;
+  }
+  img {
+    max-width: 100%;
   }
 }
 
