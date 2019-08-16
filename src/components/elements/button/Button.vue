@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import BButton from "bootstrap-vue/es/components/button/button"
+import { BButton } from "bootstrap-vue"
 /**
  * Buttons are generally used for interface actions. Suitable for all-purpose use.
  * Defaults to appearance that has white background with grey border.
