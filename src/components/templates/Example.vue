@@ -91,7 +91,7 @@ import VsArticle from "../patterns/Article"
 import VsSidebar from "../patterns/Sidebar"
 import VsContentSection from "../patterns/ContentSection"
 
-import BLink from "bootstrap-vue/es/components/link/link"
+import { BLink } from "bootstrap-vue"
 
 /**
  *An example page template.

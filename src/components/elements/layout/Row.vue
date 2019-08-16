@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import BRow from "bootstrap-vue/es/components/layout/row"
+import { BRow } from "bootstrap-vue"
 /**
  * Rows are used to organise content into rows. Their parent must be a container or column
  * element and they must always have column elements as their direct children. Our row component
