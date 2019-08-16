@@ -546,7 +546,7 @@
     }
   },
   {
-    "title": "Planning a trip",
+    "title": "Plan your trip",
     "href": "https://www.visitscotland.com/travel",
     "isExternal": false,
     "isActive": false,
@@ -645,8 +645,8 @@
     }
   },
   {
-    "title": "Inspiration",
-    "href": "https://www.visitscotland.com/inspiration",
+    "title": "Trip ideas",
+    "href": "https://www.visitscotland.com/trip-ideas",
     "isExternal": false,
     "isActive": false,
     "promoList": [
