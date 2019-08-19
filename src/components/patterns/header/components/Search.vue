@@ -2,7 +2,7 @@
   <component :is="type" class="vs-search">
     <button
       class="vs-search__button"
-      ref="searchtrigger"
+      ref="trigger"
       id="searchbutton"
       data-test-trigger
       @click="triggerToggle()"
@@ -27,6 +27,7 @@
           <input
             class="vs-search__input"
             type="search"
+            ref="search"
             placeholder="Enter a search term"
             autocomplete="off"
             v-model="searchTerm"
@@ -41,7 +42,9 @@
             <!-- TODO: convert to vs-icon when colours are finalised -->
             <vs-svg path="icons/cross" height="18" fill="#929091" />
           </button>
-          <button class="vs-search__submit-button" type="submit">Go</button>
+          <button @keydown="checkKeydown($event)" class="vs-search__submit-button" type="submit">
+            Go
+          </button>
         </form>
       </div>
     </transition>
@@ -63,16 +66,25 @@ export default {
     }
   },
   methods: {
+    checkKeydown($event) {
+      if ($event.key === "Tab" && !$event.shiftKey) {
+        this.show = false
+      }
+    },
     clearSearchField() {
       this.searchTerm = ""
     },
     triggerToggle() {
+      this.$refs.trigger.focus()
       let currentState = this.show
       this.$root.$emit("resetMenus")
       if (currentState === false) {
         this.show = true
+        setTimeout(() => {
+          this.$refs.trigger.blur()
+          this.$refs.search.focus()
+        }, 250)
       }
-      this.$refs.searchtrigger.blur()
     },
     reset() {
       this.show = false
