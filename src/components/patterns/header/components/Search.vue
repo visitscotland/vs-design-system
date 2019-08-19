@@ -1,5 +1,5 @@
 <template>
-  <component :is="type" class="vs-search">
+  <component :is="type" class="vs-search" v-click-outside="reset">
     <button
       class="vs-search__button"
       ref="trigger"
@@ -53,6 +53,7 @@
 
 <script>
 import VsIcon from "../../../elements/icon/Icon"
+import { ClickOutside } from "../../../../directives/ClickOutside.js"
 
 export default {
   name: "VsSearch",
@@ -89,6 +90,9 @@ export default {
     reset() {
       this.show = false
     },
+  },
+  directives: {
+    ClickOutside,
   },
   mounted() {
     this.$root.$on("resetMenus", this.reset)
