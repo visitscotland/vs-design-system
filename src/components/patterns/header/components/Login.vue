@@ -1,6 +1,6 @@
 <template>
   <component :is="type" class="vs-login">
-    <button class="vs-login__button" @click="toggleLogin()">
+    <button class="vs-login__button" @click="toggleLogin()" ref="trigger">
       <div class="vs-login__icon-wrapper">
         <vs-svg path="icons/user" height="10" fill="white" />
       </div>
@@ -35,7 +35,7 @@ export default {
     toggleLogin() {
       this.$root.$emit("resetMenus")
       this.isLoggedIn = !this.isLoggedIn
-      this.$el.blur()
+      this.$refs.trigger.blur()
     },
   },
 }

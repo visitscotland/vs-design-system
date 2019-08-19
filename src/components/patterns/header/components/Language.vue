@@ -115,6 +115,7 @@ export default {
       if (currentState === false) {
         this.show = true
       }
+      this.$refs.trigger.blur()
     },
   },
   directives: {
@@ -153,7 +154,7 @@ abbr[title] {
   const languages = require("../../../../assets/fixtures/languages.json")
 
   <div style="position: relative; height: 100vh; display: flex; justify-content: space-between;">
-    <vs-dropdown
+    <vs-language
         name="Languages"
         :dropdown-list="languages"
     />
