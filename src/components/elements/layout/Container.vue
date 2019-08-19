@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import BContainer from "bootstrap-vue/es/components/layout/container"
+import { BContainer } from "bootstrap-vue"
 /**
  * Containers are the primary structural element used to organise page content. Our containers utilise
  * <a href="https://bootstrap-vue.js.org/docs/components/layout">Bootstrap Vue's b-container component</a>,
