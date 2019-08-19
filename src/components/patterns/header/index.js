@@ -6,7 +6,8 @@ import VsFavourites from "./components/Favourites"
 import VsLogo from "./components/Logo"
 import VsMainNav from "./components/MainNav"
 import VsSearch from "./components/Search"
-import VsSkipTo from "./components/SkipTo"
+import VsSkipToContent from "./components/SkipToContent"
+import VsSkipToSearch from "./components/SkipToSearch"
 import VsMainNavListItem from "./components/MainNavListItem"
 import VsMainNavPromoItem from "./components/MainNavPromoItem"
 import VsMainNavPromoList from "./components/MainNavPromoList"
@@ -23,5 +24,6 @@ export {
   VsMainNavPromoList,
   VsMainNavPromoItem,
   VsSearch,
-  VsSkipTo,
+  VsSkipToContent,
+  VsSkipToSearch,
 }

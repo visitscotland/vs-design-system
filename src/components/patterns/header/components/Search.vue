@@ -2,7 +2,8 @@
   <component :is="type" class="vs-search">
     <button
       class="vs-search__button"
-      ref="trigger"
+      ref="searchtrigger"
+      id="searchbutton"
       data-test-trigger
       @click="triggerToggle()"
       aria-haspopup="true"
@@ -71,7 +72,7 @@ export default {
       if (currentState === false) {
         this.show = true
       }
-      this.$refs.trigger.blur()
+      this.$refs.searchtrigger.blur()
     },
     reset() {
       this.show = false

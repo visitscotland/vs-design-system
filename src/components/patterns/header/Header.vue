@@ -1,6 +1,13 @@
 <template>
   <component :is="type" class="vs-header" ref="header">
-    <slot name="skip-to-content"></slot> <slot name="skip-to-search"></slot>
+    <vs-container>
+      <vs-row>
+        <vs-col class="d-inline-flex justify-content-end justify-content-lg-center">
+          <slot name="skip-to-content"></slot> <slot name="skip-to-search"></slot>
+        </vs-col>
+      </vs-row>
+    </vs-container>
+
     <div class="vs-header__wrapper--top position-relative">
       <vs-container>
         <vs-row>
@@ -109,14 +116,14 @@ export default {
 
   <div style="overflow-y: scroll; height: 600px;">
     <vs-header>
-      <vs-skip-to
+      <vs-skip-to-content
         slot="skip-to-content"
-        href="#main"
+        target="main"
         title="Skip to Content"
        />
-       <vs-skip-to
+      <vs-skip-to-search
         slot="skip-to-search"
-        href="#search"
+        target="searchbutton"
         title="Skip to Search"
        />
       <vs-universal-nav
@@ -180,6 +187,16 @@ export default {
         </vs-main-nav-list-item>
       </vs-main-nav-list-item>
     </vs-header>
+    <main id="main">
+      <vs-container>
+        <vs-row>
+          <vs-col>
+            <h1>Main content</h1>
+            <p>Lorem ipsum dolor sit amet.</p>
+          </vs-col>
+        </vs-row>
+      </vs-container>
+    </main>
   </div>
   ```
 </docs>

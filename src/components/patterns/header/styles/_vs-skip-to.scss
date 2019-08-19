@@ -1,0 +1,31 @@
+.vs-skip-to {
+  align-items: center;
+  background-color: $color-base-text;
+  box-shadow: 0 8px 6px -6px rgba(0, 0, 0, 0.3);
+  color: $color-white;
+  display: inline-flex;
+  flex-direction: column;
+  letter-spacing: 2px;
+  padding: 2px 2rem;
+  position: absolute;
+  top: 0;
+  transition: background-color 250ms;
+  z-index: 6;
+
+  span {
+    white-space: nowrap;
+  }
+
+  &:focus {
+    @extend %focus-white-inset;
+  }
+
+  &.sr-only-focusable:focus {
+    position: absolute;
+  }
+
+  &:hover {
+    color: $color-white;
+    background-color: $gray-shade-5;
+  }
+}
