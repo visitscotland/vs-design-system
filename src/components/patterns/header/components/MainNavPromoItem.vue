@@ -3,7 +3,7 @@
     <div class="vs-promo-item__wrapper">
       <span class="vs-promo-item__link-title">{{ title }}</span>
       <div class="vs-promo-item__icon-wrapper">
-        <vs-svg path="icons/chevron-right" height="10" fill="#FFFFFF" />
+        <vs-icon name="reverse-arrow" size="xs" variant="primary" />
       </div>
     </div>
     <div class="vs-promo-item__image-wrapper" v-if="imageLink">
@@ -19,13 +19,13 @@
 </template>
 
 <script>
-import VsSvg from "../../../elements/svg/Svg"
+import VsIcon from "../../../elements/icon/Icon"
 
 export default {
   name: "VsMainNavPromoItem",
   status: "prototype",
   release: "0.0.1",
-  components: { VsSvg },
+  components: { VsIcon },
   data() {
     return {}
   },
@@ -112,29 +112,10 @@ export default {
 }
 
 .vs-promo-item__icon-wrapper {
-  bottom: 1rem;
-  padding: 10px;
+  bottom: 0;
+  padding: 10px 10px 14px 10px;
   position: absolute;
-  right: 1rem;
-
-  svg {
-    bottom: 5px;
-    position: absolute;
-    right: 6px;
-  }
-
-  &::before {
-    background-color: $color-pink;
-    border-radius: 50%;
-    bottom: 0;
-    content: "";
-    display: block;
-    height: 20px;
-    right: 0;
-    position: absolute;
-    width: 20px;
-    bottom: 0;
-  }
+  right: 0;
 }
 </style>
 
