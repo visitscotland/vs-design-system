@@ -52,7 +52,7 @@ import VsIcon from "../../../elements/icon/Icon"
 import { ClickOutside } from "../../../../directives/ClickOutside.js"
 
 export default {
-  name: "VsDropdown",
+  name: "VsUniversalNav",
   status: "prototype",
   release: "0.0.1",
   components: {
@@ -196,7 +196,7 @@ export default {
   const ourSites = require("../../../../assets/fixtures/ourSites.json")
 
   <div style="position: relative; height: 100vh; display: flex; justify-content: space-between;">
-    <vs-dropdown
+    <vs-universal-nav
         name="Our sites"
         :dropdown-list="ourSites"
     />
