@@ -107,6 +107,7 @@ export default {
       if (currentState === false) {
         this.show = true
       }
+      this.$refs.trigger.blur()
     },
   },
   directives: {
