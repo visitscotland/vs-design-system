@@ -36,9 +36,10 @@ export default {
 @import "../styles/placeholders";
 
 .vs-logo {
-  display: flex;
+  display: inline-flex;
   align-items: stretch;
   padding: 10px 0;
+  height: 40px;
 
   &:focus {
     @extend %focus-pink-inset;
