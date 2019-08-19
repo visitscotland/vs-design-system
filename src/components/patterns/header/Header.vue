@@ -1,5 +1,6 @@
 <template>
   <component :is="type" class="vs-header" ref="header">
+    <slot name="skip-to-content"></slot> <slot name="skip-to-search"></slot>
     <div class="vs-header__wrapper--top position-relative">
       <vs-container>
         <vs-row>
@@ -108,7 +109,17 @@ export default {
 
   <div style="overflow-y: scroll; height: 600px;">
     <vs-header>
-      <vs-dropdown
+      <vs-skip-to
+        slot="skip-to-content"
+        href="#main"
+        title="Skip to Content"
+       />
+       <vs-skip-to
+        slot="skip-to-search"
+        href="#search"
+        title="Skip to Search"
+       />
+      <vs-universal-nav
         slot="universal-nav"
         name="Our sites"
         :dropdown-list="ourSites"

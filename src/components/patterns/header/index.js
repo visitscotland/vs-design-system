@@ -1,16 +1,18 @@
 import VsHeader from "./Header"
-import VsDropdown from "./components/Dropdown"
+import VsUniversalNav from "./components/UniversalNav"
+import VsLanguage from "./components/Language"
 import VsLogin from "./components/Login"
 import VsFavourites from "./components/Favourites"
 import VsLogo from "./components/Logo"
 import VsMainNav from "./components/MainNav"
 import VsSearch from "./components/Search"
+import VsSkipTo from "./components/SkipTo"
 import VsMainNavListItem from "./components/MainNavListItem"
 import VsMainNavPromoItem from "./components/MainNavPromoItem"
 import VsMainNavPromoList from "./components/MainNavPromoList"
 
 export {
-  VsDropdown,
+  VsUniversalNav,
   VsLanguage,
   VsFavourites,
   VsHeader,
@@ -21,4 +23,5 @@ export {
   VsMainNavPromoList,
   VsMainNavPromoItem,
   VsSearch,
+  VsSkipTo,
 }
