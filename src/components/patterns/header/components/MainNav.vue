@@ -97,11 +97,6 @@ export default {
   top: 40px;
   width: 100%;
   z-index: 2;
-
-  &--level1 {
-    background-color: $color-white;
-    box-shadow: inset 0 8px 6px -6px rgba(0, 0, 0, 0.3);
-  }
 }
 </style>
 
