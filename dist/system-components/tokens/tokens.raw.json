@@ -1,41 +1,5 @@
 {
   "aliases": {
-    "white": {
-      "value": "#fff"
-    },
-    "dreich_gray": {
-      "value": "#39393b"
-    },
-    "mid_granite": {
-      "value": "#929091"
-    },
-    "total_eclipse": {
-      "value": "#1d1d1b"
-    },
-    "single_malt_gold": {
-      "value": "#E1A245"
-    },
-    "very_light_granite": {
-      "value": "#f5f6fa"
-    },
-    "sanna_sand": {
-      "value": "#D7D2CB"
-    },
-    "saltire_blue": {
-      "value": "#005EB8"
-    },
-    "heather_purple": {
-      "value": "#900762"
-    },
-    "light_granite": {
-      "value": "#e5e5e5"
-    },
-    "dark_granite": {
-      "value": "#595959"
-    },
-    "murrayfield_navy": {
-      "value": "#083973"
-    },
     "font_size_base": {
       "value": "1rem"
     },
@@ -50,145 +14,530 @@
     }
   },
   "props": {
-    "color_heather_purple": {
+    "color_purple": {
       "type": "color",
-      "category": "Primary palette",
-      "name": "color_heather_purple",
-      "value": "rgb(144, 7, 98)",
-      "originalValue": "{!heather_purple}"
+      "category": "Primary",
+      "name": "color_purple",
+      "value": "rgb(112, 14, 87)",
+      "originalValue": "#700E57"
     },
-    "color_murrayfield_navy": {
+    "color_gray": {
       "type": "color",
-      "category": "Primary palette",
-      "name": "color_murrayfield_navy",
-      "value": "rgb(8, 57, 115)",
-      "originalValue": "{!murrayfield_navy}"
+      "category": "Primary",
+      "name": "color_gray",
+      "value": "rgb(132, 132, 132)",
+      "originalValue": "#848484"
     },
-    "color_saltire_blue": {
+    "color_pink": {
       "type": "color",
-      "category": "Primary palette",
-      "name": "color_saltire_blue",
-      "value": "rgb(0, 94, 184)",
-      "originalValue": "{!saltire_blue}"
+      "category": "Primary",
+      "name": "color_pink",
+      "value": "rgb(175, 0, 110)",
+      "originalValue": "#AF006E"
     },
-    "color_single_malt_gold": {
+    "color_yellow": {
       "type": "color",
-      "category": "Secondary palette",
-      "name": "color_single_malt_gold",
-      "value": "rgb(225, 162, 69)",
-      "originalValue": "{!single_malt_gold}"
+      "category": "Primary",
+      "name": "color_yellow",
+      "value": "rgb(252, 202, 27)",
+      "originalValue": "#FCCA1B"
     },
-    "color_sanna_sand": {
+    "color_secondary_gray": {
       "type": "color",
-      "category": "Secondary palette",
-      "name": "color_sanna_sand",
-      "value": "rgb(215, 210, 203)",
-      "originalValue": "{!sanna_sand}"
+      "category": "Secondary",
+      "name": "color_secondary_gray",
+      "value": "rgb(106, 99, 102)",
+      "originalValue": "#6A6366"
     },
-    "color_total_eclipse": {
+    "color_base_text": {
       "type": "color",
-      "category": "Grays",
-      "name": "color_total_eclipse",
-      "value": "rgb(29, 29, 27)",
-      "originalValue": "{!total_eclipse}"
+      "category": "Neutral",
+      "name": "color_base_text",
+      "value": "rgb(25, 25, 25)",
+      "originalValue": "#191919"
     },
-    "color_dreich_gray": {
+    "color_error": {
       "type": "color",
-      "category": "Grays",
-      "name": "color_dreich_gray",
-      "value": "rgb(57, 57, 59)",
-      "originalValue": "{!dreich_gray}"
+      "category": "Neutral",
+      "name": "color_error",
+      "value": "rgb(149, 165, 171)",
+      "originalValue": "#95A5AB"
     },
-    "color_dark_granite": {
+    "color_black": {
       "type": "color",
-      "category": "Grays",
-      "name": "color_dark_granite",
-      "value": "rgb(89, 89, 89)",
-      "originalValue": "{!dark_granite}"
-    },
-    "color_mid_granite": {
-      "type": "color",
-      "category": "Grays",
-      "name": "color_mid_granite",
-      "value": "rgb(146, 144, 145)",
-      "originalValue": "{!mid_granite}"
-    },
-    "color_light_granite": {
-      "type": "color",
-      "category": "Grays",
-      "name": "color_light_granite",
-      "value": "rgb(229, 229, 229)",
-      "originalValue": "{!light_granite}"
-    },
-    "color_very_light_granite": {
-      "type": "color",
-      "category": "Grays",
-      "name": "color_very_light_granite",
-      "value": "rgb(245, 246, 250)",
-      "originalValue": "{!very_light_granite}"
+      "category": "Neutral",
+      "name": "color_black",
+      "value": "rgb(0, 0, 0)",
+      "originalValue": "#000000"
     },
     "color_white": {
       "type": "color",
-      "category": "Grays",
+      "category": "Neutral",
       "name": "color_white",
       "value": "rgb(255, 255, 255)",
-      "originalValue": "{!white}"
+      "originalValue": "#FFFFFF"
     },
     "color_theme_primary": {
       "type": "color",
       "category": "Theme colours",
       "name": "color_theme_primary",
-      "value": "rgb(144, 7, 98)",
-      "originalValue": "{!heather_purple}"
+      "value": "rgb(112, 14, 87)",
+      "originalValue": "#700E57"
     },
     "color_theme_secondary": {
       "type": "color",
       "category": "Theme colours",
       "name": "color_theme_secondary",
-      "value": "rgb(215, 210, 203)",
-      "originalValue": "{!sanna_sand}"
+      "value": "rgb(106, 99, 102)",
+      "originalValue": "#6A6366"
     },
     "color_theme_success": {
       "type": "color",
       "category": "Theme colours",
       "name": "color_theme_success",
-      "value": "rgb(40, 167, 69)",
-      "originalValue": "#28a745"
+      "value": "rgb(14, 112, 39)",
+      "originalValue": "#0E7027"
     },
     "color_theme_info": {
       "type": "color",
       "category": "Theme colours",
       "name": "color_theme_info",
-      "value": "rgb(0, 94, 184)",
-      "originalValue": "{!saltire_blue}"
+      "value": "rgb(14, 38, 112)",
+      "originalValue": "#0E2670"
     },
     "color_theme_warning": {
       "type": "color",
       "category": "Theme colours",
       "name": "color_theme_warning",
-      "value": "rgb(225, 162, 69)",
-      "originalValue": "{!single_malt_gold}"
+      "value": "rgb(252, 202, 27)",
+      "originalValue": "#FCCA1B"
     },
     "color_theme_danger": {
       "type": "color",
       "category": "Theme colours",
       "name": "color_theme_danger",
-      "value": "rgb(220, 53, 69)",
-      "originalValue": "#dc3545"
+      "value": "rgb(175, 0, 110)",
+      "originalValue": "#AF006E"
     },
     "color_theme_light": {
       "type": "color",
       "category": "Theme colours",
       "name": "color_theme_light",
-      "value": "rgb(146, 144, 145)",
-      "originalValue": "{!mid_granite}"
+      "value": "rgb(239, 239, 239)",
+      "originalValue": "#EFEFEF"
     },
     "color_theme_dark": {
       "type": "color",
       "category": "Theme colours",
       "name": "color_theme_dark",
-      "value": "rgb(57, 57, 59)",
-      "originalValue": "{!dreich_gray}"
+      "value": "rgb(25, 25, 25)",
+      "originalValue": "#191919"
+    },
+    "purple_tint_1": {
+      "type": "color",
+      "category": "Primary Purple Tints",
+      "name": "purple_tint_1",
+      "value": "rgb(133, 50, 112)",
+      "originalValue": "#853270"
+    },
+    "purple_tint_2": {
+      "type": "color",
+      "category": "Primary Purple Tints",
+      "name": "purple_tint_2",
+      "value": "rgb(155, 86, 137)",
+      "originalValue": "#9B5689"
+    },
+    "purple_tint_3": {
+      "type": "color",
+      "category": "Primary Purple Tints",
+      "name": "purple_tint_3",
+      "value": "rgb(176, 122, 163)",
+      "originalValue": "#B07AA3"
+    },
+    "purple_tint_4": {
+      "type": "color",
+      "category": "Primary Purple Tints",
+      "name": "purple_tint_4",
+      "value": "rgb(198, 159, 188)",
+      "originalValue": "#C69FBC"
+    },
+    "purple_tint_5": {
+      "type": "color",
+      "category": "Primary Purple Tints",
+      "name": "purple_tint_5",
+      "value": "rgb(219, 195, 213)",
+      "originalValue": "#DBC3D5"
+    },
+    "purple_tint_6": {
+      "type": "color",
+      "category": "Primary Purple Tints",
+      "name": "purple_tint_6",
+      "value": "rgb(241, 231, 238)",
+      "originalValue": "#F1E7EE"
+    },
+    "purple_shade_1": {
+      "type": "color",
+      "category": "Primary Purple Shades",
+      "name": "purple_shade_1",
+      "value": "rgb(95, 12, 74)",
+      "originalValue": "#5F0C4A"
+    },
+    "purple_shade_2": {
+      "type": "color",
+      "category": "Primary Purple Shades",
+      "name": "purple_shade_2",
+      "value": "rgb(78, 10, 61)",
+      "originalValue": "#4E0A3D"
+    },
+    "purple_shade_3": {
+      "type": "color",
+      "category": "Primary Purple Shades",
+      "name": "purple_shade_3",
+      "value": "rgb(62, 8, 48)",
+      "originalValue": "#3E0830"
+    },
+    "purple_shade_4": {
+      "type": "color",
+      "category": "Primary Purple Shades",
+      "name": "purple_shade_4",
+      "value": "rgb(45, 6, 35)",
+      "originalValue": "#2D0623"
+    },
+    "purple_shade_5": {
+      "type": "color",
+      "category": "Primary Purple Shades",
+      "name": "purple_shade_5",
+      "value": "rgb(28, 4, 22)",
+      "originalValue": "#1C0416"
+    },
+    "purple_shade_6": {
+      "type": "color",
+      "category": "Primary Purple Shades",
+      "name": "purple_shade_6",
+      "value": "rgb(11, 1, 9)",
+      "originalValue": "#0B0109"
+    },
+    "gray_tint_1": {
+      "type": "color",
+      "category": "Primary Gray Tints",
+      "name": "gray_tint_1",
+      "value": "rgb(147, 147, 147)",
+      "originalValue": "#939393"
+    },
+    "gray_tint_2": {
+      "type": "color",
+      "category": "Primary Gray Tints",
+      "name": "gray_tint_2",
+      "value": "rgb(163, 163, 163)",
+      "originalValue": "#A3A3A3"
+    },
+    "gray_tint_3": {
+      "type": "color",
+      "category": "Primary Gray Tints",
+      "name": "gray_tint_3",
+      "value": "rgb(178, 178, 178)",
+      "originalValue": "#B2B2B2"
+    },
+    "gray_tint_4": {
+      "type": "color",
+      "category": "Primary Gray Tints",
+      "name": "gray_tint_4",
+      "value": "rgb(193, 193, 193)",
+      "originalValue": "#C1C1C1"
+    },
+    "gray_tint_5": {
+      "type": "color",
+      "category": "Primary Gray Tints",
+      "name": "gray_tint_5",
+      "value": "rgb(208, 208, 208)",
+      "originalValue": "#D0D0D0"
+    },
+    "gray_tint_6": {
+      "type": "color",
+      "category": "Primary Gray Tints",
+      "name": "gray_tint_6",
+      "value": "rgb(224, 224, 224)",
+      "originalValue": "#E0E0E0"
+    },
+    "gray_tint_7": {
+      "type": "color",
+      "category": "Primary Gray Tints",
+      "name": "gray_tint_7",
+      "value": "rgb(239, 239, 239)",
+      "originalValue": "#EFEFEF"
+    },
+    "gray_tint_8": {
+      "type": "color",
+      "category": "Primary Gray Tints",
+      "name": "gray_tint_8",
+      "value": "rgb(254, 254, 254)",
+      "originalValue": "#FEFEFE"
+    },
+    "gray_shade_1": {
+      "type": "color",
+      "category": "Primary Gray Shades",
+      "name": "gray_shade_1",
+      "value": "rgb(117, 117, 117)",
+      "originalValue": "#757575"
+    },
+    "gray_shade_2": {
+      "type": "color",
+      "category": "Primary Gray Shades",
+      "name": "gray_shade_2",
+      "value": "rgb(102, 102, 102)",
+      "originalValue": "#666666"
+    },
+    "gray_shade_3": {
+      "type": "color",
+      "category": "Primary Gray Shades",
+      "name": "gray_shade_3",
+      "value": "rgb(86, 86, 86)",
+      "originalValue": "#565656"
+    },
+    "gray_shade_4": {
+      "type": "color",
+      "category": "Primary Gray Shades",
+      "name": "gray_shade_4",
+      "value": "rgb(71, 71, 71)",
+      "originalValue": "#474747"
+    },
+    "gray_shade_5": {
+      "type": "color",
+      "category": "Primary Gray Shades",
+      "name": "gray_shade_5",
+      "value": "rgb(56, 56, 56)",
+      "originalValue": "#383838"
+    },
+    "gray_shade_6": {
+      "type": "color",
+      "category": "Primary Gray Shades",
+      "name": "gray_shade_6",
+      "value": "rgb(41, 41, 41)",
+      "originalValue": "#292929"
+    },
+    "gray_shade_7": {
+      "type": "color",
+      "category": "Primary Gray Shades",
+      "name": "gray_shade_7",
+      "value": "rgb(25, 25, 25)",
+      "originalValue": "#191919"
+    },
+    "gray_shade_8": {
+      "type": "color",
+      "category": "Primary Gray Shades",
+      "name": "gray_shade_8",
+      "value": "rgb(10, 10, 10)",
+      "originalValue": "#0A0A0A"
+    },
+    "pink_tint_1": {
+      "type": "color",
+      "category": "Primary Pink Tints",
+      "name": "pink_tint_1",
+      "value": "rgb(187, 38, 132)",
+      "originalValue": "#BB2684"
+    },
+    "pink_tint_2": {
+      "type": "color",
+      "category": "Primary Pink Tints",
+      "name": "pink_tint_2",
+      "value": "rgb(199, 77, 154)",
+      "originalValue": "#C74D9A"
+    },
+    "pink_tint_3": {
+      "type": "color",
+      "category": "Primary Pink Tints",
+      "name": "pink_tint_3",
+      "value": "rgb(211, 115, 175)",
+      "originalValue": "#D373AF"
+    },
+    "pink_tint_4": {
+      "type": "color",
+      "category": "Primary Pink Tints",
+      "name": "pink_tint_4",
+      "value": "rgb(223, 153, 197)",
+      "originalValue": "#DF99C5"
+    },
+    "pink_tint_5": {
+      "type": "color",
+      "category": "Primary Pink Tints",
+      "name": "pink_tint_5",
+      "value": "rgb(235, 191, 219)",
+      "originalValue": "#EBBFDB"
+    },
+    "pink_tint_6": {
+      "type": "color",
+      "category": "Primary Pink Tints",
+      "name": "pink_tint_6",
+      "value": "rgb(247, 230, 241)",
+      "originalValue": "#F7E6F1"
+    },
+    "pink_shade_1": {
+      "type": "color",
+      "category": "Primary Pink Shades",
+      "name": "pink_shade_1",
+      "value": "rgb(149, 0, 94)",
+      "originalValue": "#95005E"
+    },
+    "pink_shade_2": {
+      "type": "color",
+      "category": "Primary Pink Shades",
+      "name": "pink_shade_2",
+      "value": "rgb(122, 0, 77)",
+      "originalValue": "#7A004D"
+    },
+    "pink_shade_3": {
+      "type": "color",
+      "category": "Primary Pink Shades",
+      "name": "pink_shade_3",
+      "value": "rgb(96, 0, 61)",
+      "originalValue": "#60003D"
+    },
+    "pink_shade_4": {
+      "type": "color",
+      "category": "Primary Pink Shades",
+      "name": "pink_shade_4",
+      "value": "rgb(70, 0, 44)",
+      "originalValue": "#46002C"
+    },
+    "pink_shade_5": {
+      "type": "color",
+      "category": "Primary Pink Shades",
+      "name": "pink_shade_5",
+      "value": "rgb(44, 0, 28)",
+      "originalValue": "#2C001C"
+    },
+    "pink_shade_6": {
+      "type": "color",
+      "category": "Primary Pink Shades",
+      "name": "pink_shade_6",
+      "value": "rgb(17, 0, 11)",
+      "originalValue": "#11000B"
+    },
+    "yellow_tint_1": {
+      "type": "color",
+      "category": "Primary Yellow Tints",
+      "name": "yellow_tint_1",
+      "value": "rgb(252, 210, 61)",
+      "originalValue": "#FCD23D"
+    },
+    "yellow_tint_2": {
+      "type": "color",
+      "category": "Primary Yellow Tints",
+      "name": "yellow_tint_2",
+      "value": "rgb(253, 218, 95)",
+      "originalValue": "#FDDA5F"
+    },
+    "yellow_tint_3": {
+      "type": "color",
+      "category": "Primary Yellow Tints",
+      "name": "yellow_tint_3",
+      "value": "rgb(253, 226, 130)",
+      "originalValue": "#FDE282"
+    },
+    "yellow_tint_4": {
+      "type": "color",
+      "category": "Primary Yellow Tints",
+      "name": "yellow_tint_4",
+      "value": "rgb(254, 234, 164)",
+      "originalValue": "#FEEAA4"
+    },
+    "yellow_tint_5": {
+      "type": "color",
+      "category": "Primary Yellow Tints",
+      "name": "yellow_tint_5",
+      "value": "rgb(254, 242, 198)",
+      "originalValue": "#FEF2C6"
+    },
+    "yellow_tint_6": {
+      "type": "color",
+      "category": "Primary Yellow Tints",
+      "name": "yellow_tint_6",
+      "value": "rgb(255, 250, 232)",
+      "originalValue": "#FFFAE8"
+    },
+    "secondary_gray_tint_1": {
+      "type": "color",
+      "category": "Secondary Gray Tints",
+      "name": "secondary_gray_tint_1",
+      "value": "rgb(128, 122, 125)",
+      "originalValue": "#807A7D"
+    },
+    "secondary_gray_tint_2": {
+      "type": "color",
+      "category": "Secondary Gray Tints",
+      "name": "secondary_gray_tint_2",
+      "value": "rgb(151, 146, 148)",
+      "originalValue": "#979294"
+    },
+    "secondary_gray_tint_3": {
+      "type": "color",
+      "category": "Secondary Gray Tints",
+      "name": "secondary_gray_tint_3",
+      "value": "rgb(173, 169, 171)",
+      "originalValue": "#ADA9AB"
+    },
+    "secondary_gray_tint_4": {
+      "type": "color",
+      "category": "Secondary Gray Tints",
+      "name": "secondary_gray_tint_4",
+      "value": "rgb(195, 193, 194)",
+      "originalValue": "#C3C1C2"
+    },
+    "secondary_gray_tint_5": {
+      "type": "color",
+      "category": "Secondary Gray Tints",
+      "name": "secondary_gray_tint_5",
+      "value": "rgb(218, 216, 217)",
+      "originalValue": "#DAD8D9"
+    },
+    "secondary_gray_tint_6": {
+      "type": "color",
+      "category": "Secondary Gray Tints",
+      "name": "secondary_gray_tint_6",
+      "value": "rgb(240, 239, 240)",
+      "originalValue": "#F0EFF0"
+    },
+    "secondary_gray_shade_1": {
+      "type": "color",
+      "category": "Secondary Gray Shades",
+      "name": "secondary_gray_shade_1",
+      "value": "rgb(90, 84, 87)",
+      "originalValue": "#5A5457"
+    },
+    "secondary_gray_shade_2": {
+      "type": "color",
+      "category": "Secondary Gray Shades",
+      "name": "secondary_gray_shade_2",
+      "value": "rgb(74, 69, 71)",
+      "originalValue": "#4A4547"
+    },
+    "secondary_gray_shade_3": {
+      "type": "color",
+      "category": "Secondary Gray Shades",
+      "name": "secondary_gray_shade_3",
+      "value": "rgb(58, 54, 56)",
+      "originalValue": "#3A3638"
+    },
+    "secondary_gray_shade_4": {
+      "type": "color",
+      "category": "Secondary Gray Shades",
+      "name": "secondary_gray_shade_4",
+      "value": "rgb(42, 40, 41)",
+      "originalValue": "#2A2829"
+    },
+    "secondary_gray_shade_5": {
+      "type": "color",
+      "category": "Secondary Gray Shades",
+      "name": "secondary_gray_shade_5",
+      "value": "rgb(27, 25, 26)",
+      "originalValue": "#1B191A"
+    },
+    "secondary_gray_shade_6": {
+      "type": "color",
+      "category": "Secondary Gray Shades",
+      "name": "secondary_gray_shade_6",
+      "value": "rgb(11, 10, 10)",
+      "originalValue": "#0B0A0A"
     },
     "font-size-base": {
       "type": "number",
@@ -301,6 +650,41 @@
       "value": "300",
       "originalValue": "300",
       "name": "font_weight_light"
+    },
+    "icon_size_xs": {
+      "type": "number",
+      "category": "icons",
+      "value": "16px",
+      "originalValue": "16px",
+      "name": "icon_size_xs"
+    },
+    "icon_size_sm": {
+      "type": "number",
+      "category": "icons",
+      "value": "24px",
+      "originalValue": "24px",
+      "name": "icon_size_sm"
+    },
+    "icon_size_md": {
+      "type": "number",
+      "category": "icons",
+      "value": "40px",
+      "originalValue": "40px",
+      "name": "icon_size_md"
+    },
+    "icon_size_lg": {
+      "type": "number",
+      "category": "icons",
+      "value": "56px",
+      "originalValue": "56px",
+      "name": "icon_size_lg"
+    },
+    "icon_size_xl": {
+      "type": "number",
+      "category": "icons",
+      "value": "72px",
+      "originalValue": "72px",
+      "name": "icon_size_xl"
     },
     "opacity_disabled": {
       "type": "number",
