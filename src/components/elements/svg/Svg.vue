@@ -116,22 +116,22 @@ export default {
   ```jsx
   <div>
     <pre>&lt;vs-svg path="svg/logo" /&gt; </pre>
-    <vs-svg path="svg/logo" />
+    <vs-svg path="logo" />
 
     <br /><hr /><br />
 
     <pre>height="110"</pre>
-    <vs-svg path="svg/logo" height="110" />
+    <vs-svg path="logo" height="110" />
 
     <br /><hr /><br />
 
     <pre>width="110"</pre>
-    <vs-svg path="svg/logo" width="110" />
+    <vs-svg path="logo" width="110" />
 
     <br /><hr /><br />
 
     <pre>fill="red"</pre>
-    <vs-svg path="svg/logo" height="110" fill="red" />
+    <vs-svg path="logo" height="110" fill="red" />
 
   </div>
   ```
