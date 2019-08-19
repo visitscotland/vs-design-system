@@ -9,7 +9,8 @@
       :aria-expanded="show ? 'true' : 'false'"
     >
       <span class="sr-only">Toggle Main Navigation</span>
-      <vs-icon name="menu" size="sm" variant="dark" />
+      <vs-icon v-if="show" name="menu-close" size="sm" variant="dark" />
+      <vs-icon v-else name="menu" size="sm" variant="dark" />
     </button>
     <transition name="slide-fade">
       <ul class="vs-main-nav__list vs-main-nav__list--level1 list-unstyled" v-show="show">
