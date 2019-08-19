@@ -40,7 +40,7 @@
           >
             <span class="sr-only">Clear search</span>
             <!-- TODO: convert to vs-icon when colours are finalised -->
-            <vs-svg path="icons/cross" height="18" fill="#929091" />
+            <vs-icon name="close" size="xs" variant="light" />
           </button>
           <button @keydown="checkKeydown($event)" class="vs-search__submit-button" type="submit">
             Go
