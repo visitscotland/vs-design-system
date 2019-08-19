@@ -11,6 +11,7 @@ import VsMainNavPromoList from "./components/MainNavPromoList"
 
 export {
   VsDropdown,
+  VsLanguage,
   VsFavourites,
   VsHeader,
   VsLogin,
