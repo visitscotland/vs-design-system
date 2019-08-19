@@ -87,7 +87,6 @@
 
 <script>
 import VsIcon from "../../../elements/icon/Icon"
-import smoothscroll from "smoothscroll-polyfill"
 
 export default {
   name: "VsMainNavListItem",
@@ -154,25 +153,8 @@ export default {
     triggerToggle() {
       this.show = !this.show
       let thisTrigger = this.$refs.trigger
-      let headerWrapper = document.querySelector(".vs-header")
-      if (this.show) {
-        headerWrapper.scrollTo({
-          behavior: "smooth",
-          left: 0,
-          top: thisTrigger.offsetTop + 68,
-        })
-      } else {
-        headerWrapper.scrollTo({
-          behavior: "smooth",
-          left: 0,
-          top: 0,
-        })
-      }
       thisTrigger.blur()
     },
-  },
-  created() {
-    smoothscroll.polyfill()
   },
 }
 </script>
@@ -185,6 +167,29 @@ export default {
 @import "~bootstrap/scss/type";
 @import "../styles/placeholders";
 @import "../styles/animations";
+
+.vs-main-nav__list {
+  height: 100vh;
+  left: 0;
+  position: absolute;
+  top: 40px;
+  width: 100%;
+  z-index: 2;
+
+  &--level1 {
+    background-color: $color-white;
+    box-shadow: inset 0 8px 6px -6px rgba(0, 0, 0, 0.3);
+  }
+
+  &--level2 {
+    background-color: $gray-tint-7;
+  }
+
+  &--level3 {
+    background-color: $gray-tint-7;
+    box-shadow: inset 0 8px 6px -6px rgba(0, 0, 0, 0.3);
+  }
+}
 
 .vs-main-nav__icon-wrapper {
   &--spin {
@@ -209,8 +214,17 @@ export default {
   color: $color-base-text;
   display: flex;
   font-weight: $font-weight-semi-bold;
+  position: relative;
   justify-content: space-between;
   transition: background-color 250ms ease-in-out;
+
+  &::after {
+    content: "";
+    position: absolute;
+    width: 12px;
+    height: 100%;
+    left: 0;
+  }
 
   &:focus {
     @extend %focus-pink-inset;
@@ -222,36 +236,35 @@ export default {
     padding: 0.75rem 1.25rem;
     width: 100%;
 
-    .vs-main-nav__list-item--level3:first-of-type & {
-      background-color: $color-white;
-      box-shadow: inset 0 8px 6px -6px rgba(0, 0, 0, 0.3);
-    }
-
     &[aria-expanded="true"] {
-      box-shadow: inset 0.75rem 0 0 0 $color-pink;
+      &::after {
+        background-color: $color-pink;
+      }
     }
   }
 
   &--level2 {
-    background-color: $gray-tint-7;
-    box-shadow: inset 0.75rem 0 0 0 $gray-tint-6;
     font-size: 1.125rem;
     padding: 0.75rem 1.25rem 0.75rem 2.25rem;
     width: 100%;
 
+    &::after {
+      background-color: $gray-tint-6;
+    }
+
     &[aria-expanded="true"] {
-      box-shadow: inset 0.75rem 0 0 0 $color-pink;
+      &::after {
+        background-color: $color-pink;
+      }
     }
   }
 
   &--level3 {
-    background-color: $gray-tint-7;
-    box-shadow: inset 0.75rem 0 0 0 $gray-tint-6;
     font-size: 1.125rem;
     padding: 0.75rem 1.25rem 0.75rem 3.25rem;
 
-    .vs-main-nav__list-item--level3:first-of-type & {
-      box-shadow: inset 0 8px 6px -6px rgba(0, 0, 0, 0.1), inset 12px 0 0 0 $gray-tint-6;
+    &::after {
+      background-color: $gray-tint-6;
     }
   }
 
