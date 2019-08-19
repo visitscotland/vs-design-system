@@ -222,14 +222,19 @@ export default {
     padding: 0.75rem 1.25rem;
     width: 100%;
 
+    .vs-main-nav__list-item--level3:first-of-type & {
+      background-color: $color-white;
+      box-shadow: inset 0 8px 6px -6px rgba(0, 0, 0, 0.3);
+    }
+
     &[aria-expanded="true"] {
       box-shadow: inset 0.75rem 0 0 0 $color-pink;
     }
   }
 
   &--level2 {
-    background-color: $gray-tint-8;
-    box-shadow: inset 0.75rem 0 0 0 $gray-tint-8;
+    background-color: $gray-tint-7;
+    box-shadow: inset 0.75rem 0 0 0 $gray-tint-6;
     font-size: 1.125rem;
     padding: 0.75rem 1.25rem 0.75rem 2.25rem;
     width: 100%;
@@ -240,13 +245,13 @@ export default {
   }
 
   &--level3 {
-    background-color: $gray-tint-8;
-    box-shadow: inset 0.75rem 0 0 0 $gray-tint-8;
+    background-color: $gray-tint-7;
+    box-shadow: inset 0.75rem 0 0 0 $gray-tint-6;
     font-size: 1.125rem;
     padding: 0.75rem 1.25rem 0.75rem 3.25rem;
 
     .vs-main-nav__list-item--level3:first-of-type & {
-      box-shadow: inset 0 8px 6px -6px rgba(0, 0, 0, 0.1), inset 12px 0 0 0 $gray-tint-8;
+      box-shadow: inset 0 8px 6px -6px rgba(0, 0, 0, 0.1), inset 12px 0 0 0 $gray-tint-6;
     }
   }
 
