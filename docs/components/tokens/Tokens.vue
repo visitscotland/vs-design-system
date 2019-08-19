@@ -198,7 +198,7 @@ export default {
   .example {
     @include inline-space($space-xs);
     border-radius: $radius-default;
-    background: $color-white;
+    background: $docs-color-white;
     box-shadow: $shadow-s-inset, $shadow-s-inset, $shadow-s-inset;
     margin-top: $space-xx-small;
     width: $space-s;
