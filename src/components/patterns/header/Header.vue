@@ -102,7 +102,7 @@ export default {
       />
       <vs-login
         slot="login" />
-      <vs-dropdown
+      <vs-language
         slot="language"
         name="Language"
         class="vs-dropdown--language"
