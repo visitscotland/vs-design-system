@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import BCol from "bootstrap-vue/es/components/layout/col"
+import { BCol } from "bootstrap-vue"
 import colsMixin from "@/mixins/cols.js"
 
 /**

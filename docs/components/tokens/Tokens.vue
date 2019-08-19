@@ -43,7 +43,8 @@
                 class="example box-shadow"
                 :style="{ boxShadow: token.value }"
               />
-              <code class="type">{{ token.value }}</code>
+              <code v-if="token.type === 'color'" class="type">{{ token.originalValue }}</code>
+              <code v-else class="type">{{ token.value }}</code>
             </td>
             <td v-else>N/A</td>
             <td v-if="token.category">{{ token.category }}</td>
