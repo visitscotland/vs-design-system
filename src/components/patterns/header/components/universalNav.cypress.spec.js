@@ -1,4 +1,4 @@
-const VsDropdown = require("./Dropdown.vue").default
+const VsUniversalNav = require("./UniversalNav.vue").default
 const { vueHelper } = require("@cypress/helpers/index.js").default
 const sizes = ["iphone-6", "ipad-2", [1024, 768]]
 const ourSites = require("../../../../assets/fixtures/ourSites.json")
@@ -8,9 +8,9 @@ const props = {
   dropdownList: ourSites,
 }
 
-vueHelper.init("vs-dropdown", VsDropdown, props)
+vueHelper.init("vs-universal-nav", VsUniversalNav, props)
 
-describe("Dropdown component", () => {
+describe("Universal Nav component", () => {
   sizes.forEach(size => {
     context(`${size} resolution`, () => {
       beforeEach(() => {
