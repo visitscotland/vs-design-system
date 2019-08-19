@@ -61,6 +61,9 @@ export default {
     reset() {
       this.show = false
     },
+    setOffsetScroll(offset) {
+      this.$emit("setScrollOffset", offset)
+    },
   },
   mounted() {
     this.$root.$on("resetMenus", this.reset)

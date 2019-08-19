@@ -153,7 +153,15 @@ export default {
     triggerToggle() {
       this.show = !this.show
       let thisTrigger = this.$refs.trigger
+      if (this.show) {
+        this.$parent.$emit("setScrollOffset", thisTrigger.offsetTop)
+      } else {
+        this.$parent.$emit("setScrollOffset", 0)
+      }
       thisTrigger.blur()
+    },
+    setOffsetScroll(offset) {
+      this.$emit("setScrollOffset", offset)
     },
   },
 }

@@ -1,5 +1,5 @@
 <template>
-  <component :is="type" class="vs-header">
+  <component :is="type" class="vs-header" ref="header">
     <div class="vs-header__wrapper--top position-relative">
       <vs-container>
         <vs-row>
@@ -18,7 +18,9 @@
           <vs-col cols="5" class="d-flex justify-content-end position-static">
             <div class="vs-controls__wrapper d-flex">
               <slot name="search" /> <slot name="favourites" />
-              <vs-main-nav name="Main navigation"> <slot name="main-nav-items" /> </vs-main-nav>
+              <vs-main-nav name="Main navigation" @setScrollOffset="setScrollOffset">
+                <slot name="main-nav-items" />
+              </vs-main-nav>
             </div>
           </vs-col>
         </vs-row>
@@ -32,6 +34,7 @@ import VsContainer from "../../elements/layout/Container"
 import VsSvg from "../../elements/svg/Svg"
 import VsRow from "../../elements/layout/Row"
 import VsCol from "../../elements/layout/Col"
+import smoothscroll from "smoothscroll-polyfill"
 
 export default {
   name: "VsHeader",
@@ -59,6 +62,16 @@ export default {
     resetMenus() {
       this.$emit("resetMenus")
     },
+    setScrollOffset(offset) {
+      this.$refs.header.scrollTo({
+        behavior: "smooth",
+        left: 0,
+        top: offset > 0 ? offset + 68 : offset,
+      })
+    },
+  },
+  created() {
+    smoothscroll.polyfill()
   },
 }
 </script>
