@@ -115,12 +115,16 @@ $variants: (
   }
 
   @each $size in map-keys($sizes) {
+    $padding: map-get($sizes, $size) / 4;
+    $dimension: map-get($sizes, $size) + ($padding * 2);
+
     &.icon-#{$size} {
-      $padding: map-get($sizes, $size) / 4;
-      $dimension: map-get($sizes, $size) + ($padding * 2);
       height: $dimension;
       width: $dimension;
       padding: $padding;
+    }
+
+    &.icon-reverse {
       border-radius: $dimension / 2;
     }
   }
