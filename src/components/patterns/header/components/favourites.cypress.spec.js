@@ -37,10 +37,12 @@ describe("Favourites component", () => {
         cy.contains("Current favourites count: 4").should("be.visible")
       })
 
-      it("icon should change colour when the button is clicked", () => {
-        cy.get("svg").should("have.css", "fill", "rgb(146, 144, 145)")
+      it("icon should switch to a filled icon when the button is clicked", () => {
+        cy.get(".icon-favourite").should("be.visible")
+        cy.get(".icon-favourite-filled").should("not.be.visible")
         cy.get(".vs-favourites__button").click()
-        cy.get("svg").should("have.css", "fill", "rgb(112, 14, 87)")
+        cy.get(".icon-favourite").should("not.be.visible")
+        cy.get(".icon-favourite-filled").should("be.visible")
       })
 
       it("icon should render a favourites count when the button is clicked", () => {
