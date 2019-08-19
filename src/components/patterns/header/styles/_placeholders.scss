@@ -13,12 +13,6 @@
   box-shadow: 0 3px 0 0 $color-pink;
 }
 
-%list-reset {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-}
-
 %reset-clear {
   /* clears the 'X' from Internet Explorer */
   &::-ms-clear {
@@ -59,7 +53,7 @@
   }
 
   &:hover {
-    background-color: lighten($color-pink, 5%);
+    background-color: $pink-tint-1;
   }
 }
 
