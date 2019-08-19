@@ -1,9 +1,10 @@
 <template>
-  <b-button :variant="variant || 'primary'" :href="href"> <slot /> </b-button>
+  <b-button :variant="variant || 'primary'" :href="href"><slot /></b-button>
 </template>
 
 <script>
 import { BButton } from "bootstrap-vue"
+
 /**
  * Buttons are generally used for interface actions. Suitable for all-purpose use.
  * Defaults to appearance that has white background with grey border.
@@ -45,24 +46,23 @@ export default {
 </style>
 
 <docs>
-  ```jsx
-  <div>
-    <bs-wrapper class="mb-4">
-      <h4>Variants</h4>
-      <vs-button variant="primary" class="mr-2">Primary</vs-button>
-      <vs-button variant="secondary" class="mr-2">Secondary</vs-button>
-      <vs-button variant="success" class="mr-2">Success</vs-button>
-      <vs-button variant="danger" class="mr-2">Danger</vs-button>
-      <vs-button variant="warning" class="mr-2">Warning</vs-button>
-      <vs-button variant="info" class="mr-2">Info</vs-button>
-      <vs-button variant="light" class="mr-2">Light</vs-button>
-      <vs-button variant="dark" class="mr-2">Dark</vs-button>
-    </bs-wrapper>
-    <bs-wrapper class="mb-4">
-      <h4>Link</h4>
-      <vs-button href="https://www.visitscotland.com">Link</vs-button>
-      <vs-button href="https://www.google.com">Another link</vs-button>
-    </bs-wrapper>
-  </div>
-  ```
+```jsx
+  <bs-wrapper class="mb-4">
+    <h4>Variants</h4>
+    <vs-button variant="primary" class="mr-2">Primary</vs-button>
+    <vs-button variant="secondary" class="mr-2">Secondary</vs-button>
+    <vs-button variant="success" class="mr-2">Success</vs-button>
+    <vs-button variant="danger" class="mr-2">Danger</vs-button>
+    <vs-button variant="warning" class="mr-2">Warning</vs-button>
+    <vs-button variant="info" class="mr-2">Info</vs-button>
+    <vs-button variant="light" class="mr-2">Light</vs-button>
+    <vs-button variant="dark" class="mr-2">Dark</vs-button>
+  </bs-wrapper>
+  <bs-wrapper class="mb-4">
+    <h4>Link</h4>
+    <vs-button href="https://www.visitscotland.com" class="mr-2">Link</vs-button>
+    <vs-button href="https://www.google.com" class="mr-2">Another link</vs-button>
+  </bs-wrapper>
+
+```
 </docs>

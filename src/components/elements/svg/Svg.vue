@@ -115,7 +115,7 @@ export default {
 <docs>
   ```jsx
   <div>
-    <pre>&lt;vs-svg path="logo" /&gt; </pre>
+    <pre>&lt;vs-svg path="svg/logo" /&gt; </pre>
     <vs-svg path="logo" />
 
     <br /><hr /><br />
