@@ -8,7 +8,7 @@
       aria-haspopup="true"
       :aria-expanded="show ? 'true' : 'false'"
     >
-      <span v-if="selectedLanguage">
+      <span v-if="selectedLanguage !== null">
         <span class="sr-only">Currently selected language is </span>
         <abbr :title="selectedLanguage.title">{{ selectedLanguage.abbreviation }}</abbr>
       </span>
@@ -41,9 +41,6 @@
             @keydown="checkKeydown($event, index === last)"
           >
             {{ link.title }}
-            <div v-if="link.isExternal" class="vs-dropdown__external-icon-wrapper">
-              <vs-icon name="external-link" size="xxs" variant="reverse-white" />
-            </div>
           </a>
         </li>
       </ul>
@@ -88,7 +85,8 @@ export default {
       return Object.keys(this.dropdownList).length - 1
     },
     selectedLanguage() {
-      return Object.values(this.dropdownList).isActive
+      let selectedLanguage = this.dropdownList.filter(language => language.isActive)
+      return selectedLanguage[0]
     },
   },
   methods: {
@@ -141,6 +139,12 @@ export default {
 .vs-dropdown--language .vs-dropdown__list {
   left: auto;
   right: 0;
+}
+
+abbr[title] {
+  border-bottom: none;
+  cursor: inherit;
+  text-decoration: none;
 }
 </style>
 
