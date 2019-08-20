@@ -1,5 +1,5 @@
 <template>
-  <component :is="type" class="sr-only sr-only-focusable vs-skip-to" :href="'#' + target">
+  <component :is="type" class="sr-only sr-only-focusable vs-skip-to" href="#main">
     <span>{{ title }}</span>
     <vs-icon name="chevron-down" size="xs" variant="reverse-white" />
   </component>
@@ -26,9 +26,6 @@ export default {
       type: String,
       default: "a",
     },
-    target: {
-      type: String,
-    },
     title: {
       type: String,
     },
@@ -49,7 +46,6 @@ export default {
   ```jsx
   <div style="position: relative; height: 100px;">
     <vs-skip-to-content
-      target="main"
       title="Skip to Content"
     />
   </div>
