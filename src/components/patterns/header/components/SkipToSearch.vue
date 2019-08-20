@@ -20,7 +20,7 @@ export default {
   },
   methods: {
     handleClick() {
-      document.getElementById(this.target).focus()
+      document.getElementById("searchbutton").click()
     },
   },
   props: {
@@ -54,7 +54,6 @@ export default {
   ```jsx
   <div style="position: relative; height: 100px;">
     <vs-skip-to-search
-      target="searchbutton"
       title="Skip to Search"
     />
   </div>
