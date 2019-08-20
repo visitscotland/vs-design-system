@@ -1,104 +1,69 @@
 <template>
-  <component :is="type" class="vs-search" v-click-outside="reset">
-    <button
-      class="vs-search__button"
-      ref="trigger"
-      id="searchbutton"
-      data-test-trigger
-      @click="triggerToggle()"
-      aria-haspopup="true"
-      :aria-expanded="show ? 'true' : 'false'"
-    >
-      <span class="d-md-none sr-only">Toggle Search</span>
-      <vs-icon name="search" size="sm" variant="reverse-white" />
-      <span class="d-none d-md-flex vs-search__search-button-text"
-        ><span class="sr-only">Toggle</span> Search</span
-      >
-    </button>
+  <component :is="type" class="vs-search">
     <transition name="slide-fade">
-      <div
-        class="vs-search__form-wrapper"
-        :class="{ expanded: show }"
-        data-toggle-pane
-        v-show="show"
-      >
-        <form role="search" action method="get" class="vs-search__form">
-          <label for="search" class="vs-search__label">
-            <span class="sr-only">Enter a search term</span>
-            <vs-icon name="search" size="sm" variant="primary" />
-          </label>
-          <input
-            class="vs-search__input"
-            type="search"
-            ref="search"
-            placeholder="Enter a search term"
-            autocomplete="off"
-            v-model="searchTerm"
-            id="search"
-          />
-          <button
-            v-if="searchTerm.length"
-            class="vs-search__clear-button"
-            @click.prevent="clearSearchField()"
-          >
-            <span class="sr-only">Clear search</span>
-            <!-- TODO: convert to vs-icon when colours are finalised -->
-            <vs-icon name="close" size="xs" variant="light" />
-          </button>
-          <button @keydown="checkKeydown($event)" class="vs-search__submit-button" type="submit">
-            Go
-          </button>
-        </form>
-      </div>
+      <b-collapse id="collapse-search" class="vs-search__form-wrapper">
+        <vs-container>
+          <vs-row>
+            <vs-col>
+              <form role="search" action method="get" class="vs-search__form">
+                <label for="searchinput" class="vs-search__label">
+                  <span class="sr-only">Enter a search term</span>
+                  <vs-icon name="search" size="sm" variant="primary" />
+                </label>
+                <input
+                  class="vs-search__input"
+                  type="search"
+                  placeholder="Enter a search term"
+                  autocomplete="off"
+                  v-model="searchTerm"
+                  id="searchinput"
+                />
+                <button
+                  v-if="searchTerm.length"
+                  class="vs-search__clear-button"
+                  @click.prevent="clearSearchField()"
+                >
+                  <span class="sr-only">Clear search</span>
+                  <!-- TODO: convert to vs-icon when colours are finalised -->
+                  <vs-icon name="close" size="xs" variant="light" />
+                </button>
+                <button
+                  @keydown="checkKeydown($event)"
+                  class="vs-search__submit-button"
+                  type="submit"
+                >
+                  Go
+                </button>
+              </form>
+            </vs-col>
+          </vs-row>
+        </vs-container>
+      </b-collapse>
     </transition>
   </component>
 </template>
 
 <script>
 import VsIcon from "../../../elements/icon/Icon"
-import { ClickOutside } from "../../../../directives/ClickOutside.js"
+import { BCollapse } from "bootstrap-vue"
 
 export default {
   name: "VsSearch",
   status: "prototype",
   release: "0.0.1",
-  components: { VsIcon },
+  components: {
+    VsIcon,
+    BCollapse,
+  },
   data() {
     return {
       searchTerm: "",
-      show: false,
     }
   },
   methods: {
-    checkKeydown($event) {
-      if ($event.key === "Tab" && !$event.shiftKey) {
-        this.show = false
-      }
-    },
     clearSearchField() {
       this.searchTerm = ""
     },
-    triggerToggle() {
-      this.$refs.trigger.focus()
-      let currentState = this.show
-      this.$root.$emit("resetMenus")
-      if (currentState === false) {
-        this.show = true
-        setTimeout(() => {
-          this.$refs.trigger.blur()
-          this.$refs.search.focus()
-        }, 250)
-      }
-    },
-    reset() {
-      this.show = false
-    },
-  },
-  directives: {
-    ClickOutside,
-  },
-  mounted() {
-    this.$root.$on("resetMenus", this.reset)
   },
   props: {
     /**
@@ -120,47 +85,14 @@ export default {
 @import "../styles/placeholders";
 @import "../styles/animations";
 
-.vs-search__button {
-  @extend %button-reset;
-  @extend %button-pink;
-  @extend %main-nav-button-style;
-
-  @include media-breakpoint-up(md) {
-    box-shadow: 0 5px 0 0 $color-pink;
-    display: flex;
-    align-items: center;
-    font-size: 1.125rem;
-    font-weight: $font-weight-semi-bold;
-    justify-content: center;
-    padding: 0 1.25rem 0 0.5rem;
-    position: relative;
-    width: auto;
-  }
-
-  &[aria-expanded="true"] {
-    background-color: $gray-tint-6;
-    color: $color-base-text;
-
-    svg {
-      fill: $gray-shade-2 !important;
-    }
-  }
-}
-
 .vs-search__form-wrapper {
   background-color: $gray-tint-7;
   box-shadow: inset 0 8px 6px -6px rgba(0, 0, 0, 0.3), 0 8px 6px -6px rgba(0, 0, 0, 0.3);
   justify-content: space-between;
   padding: 1rem;
   left: 0;
-  position: absolute;
-  top: 40px;
   width: 100%;
   z-index: 1;
-
-  @include media-breakpoint-up(md) {
-    top: 50px;
-  }
 }
 
 .vs-search__form {
