@@ -1,0 +1,97 @@
+<template>
+  <component :is="type" class="vs-search">
+    <button
+      class="vs-search__button"
+      id="searchbutton"
+      v-b-toggle.collapse-search
+      @click="setFocus()"
+    >
+      <span class="d-md-none sr-only">Toggle Search</span>
+      <vs-icon name="search" size="sm" variant="reverse-white" />
+      <span class="d-none d-md-flex vs-search__search-button-text"
+        ><span class="sr-only">Toggle</span> Search</span
+      >
+    </button>
+  </component>
+</template>
+
+<script>
+import VsIcon from "../../../elements/icon/Icon"
+import { VBToggle } from "bootstrap-vue"
+
+export default {
+  name: "VsSearchButton",
+  status: "prototype",
+  release: "0.0.1",
+  components: { VsIcon },
+  data() {
+    return {}
+  },
+  directives: { "b-toggle": VBToggle },
+  methods: {
+    setFocus() {
+      setTimeout(() => {
+        document.getElementById("searchinput").focus()
+      }, 100)
+    },
+  },
+  props: {
+    /**
+     * The html element name used for the component
+     */
+    type: {
+      type: String,
+      default: "div",
+    },
+  },
+}
+</script>
+
+<style lang="scss" scoped>
+@import "~bootstrap/scss/utilities/text";
+@import "~bootstrap/scss/utilities/display";
+@import "~bootstrap/scss/utilities/flex";
+@import "~bootstrap/scss/utilities/screenreaders";
+@import "../styles/placeholders";
+@import "../styles/animations";
+
+.vs-search__button {
+  @extend %button-reset;
+  @extend %button-pink;
+  @extend %main-nav-button-style;
+
+  @include media-breakpoint-up(md) {
+    box-shadow: 0 5px 0 0 $color-pink;
+    display: flex;
+    align-items: center;
+    font-size: 1.125rem;
+    font-weight: $font-weight-semi-bold;
+    justify-content: center;
+    padding: 0 1.25rem 0 0.5rem;
+    position: relative;
+    width: auto;
+  }
+
+  &[aria-expanded="true"] {
+    background-color: $gray-tint-6;
+    color: $color-base-text;
+
+    @include media-breakpoint-up(md) {
+      box-shadow: 0 5px 0 0 $gray-tint-6;
+    }
+
+    svg {
+      fill: $gray-shade-2 !important;
+    }
+  }
+}
+</style>
+
+<docs>
+  ```jsx
+  <div style="position: relative; height: 100px;">
+    <vs-search-button
+    />
+  </div>
+  ```
+</docs>

@@ -25,7 +25,7 @@
           <vs-col cols="7"> <slot name="logo" /> </vs-col>
           <vs-col cols="5" class="d-flex justify-content-end position-static">
             <div class="vs-controls__wrapper d-flex">
-              <slot name="search" /> <slot name="favourites" />
+              <slot name="search-button" /> <slot name="favourites" />
               <vs-main-nav name="Main navigation" @setScrollOffset="setScrollOffset">
                 <slot name="main-nav-items" />
               </vs-main-nav>
@@ -34,6 +34,7 @@
         </vs-row>
       </vs-container>
     </div>
+    <slot name="search" />
   </component>
 </template>
 
@@ -80,6 +81,12 @@ export default {
   },
   created() {
     smoothscroll.polyfill()
+  },
+  mounted() {
+    this.$root.$on("bv::collapse::state", (collapseId, isJustShown) => {
+      console.log("collapseId:", collapseId)
+      console.log("isJustShown:", isJustShown)
+    })
   },
 }
 </script>
@@ -134,12 +141,10 @@ export default {
     <vs-header>
       <vs-skip-to-content
         slot="skip-to-content"
-        target="main"
         title="Skip to Content"
        />
       <vs-skip-to-search
         slot="skip-to-search"
-        target="searchbutton"
         title="Skip to Search"
        />
       <vs-universal-nav
@@ -159,6 +164,8 @@ export default {
       />
       <vs-logo 
         slot="logo" />
+      <vs-search-button
+        slot="search-button" />
       <vs-search
         slot="search" />
       <vs-favourites
