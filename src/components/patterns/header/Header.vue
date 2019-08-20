@@ -132,7 +132,9 @@ export default {
         :dropdown-list="ourSites"
       />
       <vs-login
-        slot="login" />
+        slot="login" 
+        username=""
+        />
       <vs-language
         slot="language"
         name="Language"
@@ -152,6 +154,7 @@ export default {
         :level="1"
         :href="item.href"
         :is-external="item.isExternal"
+        :tracking-id="item.trackingId"
         :title="item.title"
         :subnav="item.subnav"
         :promo-list="item.promoList"
@@ -165,6 +168,7 @@ export default {
           :level="2"
           :href="level2.href"
           :is-external="level2.isExternal"
+          :tracking-id="level2.trackingId"
           :title="level2.title"
           :subnav="level2.subnav"
           :promo-list="level2.promoList"
@@ -178,6 +182,7 @@ export default {
             :href="level3.href"
             :is-external="level3.isExternal"
             :title="level3.title"
+            :tracking-id="level3.trackingId"
             :subnav="level3.subnav"
             :promo-list="level3.promoList"
             :promo-item="level3.promoItem"

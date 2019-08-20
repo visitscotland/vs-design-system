@@ -37,7 +37,7 @@
         ['vs-main-nav__link--level' + level]: level,
       }"
       :target="isExternal ? '_blank' : false"
-      :data-vs-track="formattedTrackingId"
+      :data-vs-track="trackingId"
       >{{ title }}</a
     >
     <transition name="slide-fade" v-if="hasChildren">
@@ -64,7 +64,7 @@
                 level ? 'vs-main-nav__link--level' + incrementLevel : '',
               ]"
               :target="isExternal ? '_blank' : false"
-              :data-vs-track="formattedTrackingId"
+              :data-vs-track="trackingId"
               >See all {{ lowerCaseTitle }}</a
             >
           </li>
@@ -112,6 +112,9 @@ export default {
     isExternal: {
       type: Boolean,
     },
+    trackingId: {
+      type: String,
+    },
     title: {
       type: String,
     },
@@ -129,9 +132,6 @@ export default {
     },
   },
   computed: {
-    formattedTrackingId() {
-      return this.title ? "link.nav." + this.title.toLowerCase().replace(/\s+/g, "-") : ""
-    },
     lowerCaseTitle() {
       return this.title ? this.title.toLowerCase() : ""
     },
