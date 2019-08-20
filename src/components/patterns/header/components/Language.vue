@@ -37,7 +37,7 @@
             class="vs-dropdown__link"
             :href="link.href"
             :target="link.isExternal ? '_blank' : false"
-            :data-vs-track="formattedTrackingId(link.title)"
+            :data-vs-track="link.trackingId"
             @keydown="checkKeydown($event, index === last)"
           >
             {{ link.title }}
@@ -94,11 +94,6 @@ export default {
       if ($event.key === "Tab" && !$event.shiftKey && isLast) {
         this.show = false
       }
-    },
-    formattedTrackingId(title) {
-      var formattedTitle = title.toLowerCase().replace(/\s+/g, "-")
-      var formattedDropdownName = this.name.toLowerCase().replace(/\s+/g, "-")
-      return "link." + formattedDropdownName + "nav." + formattedTitle
     },
     onClose() {
       this.show = false

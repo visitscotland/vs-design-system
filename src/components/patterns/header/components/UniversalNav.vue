@@ -33,7 +33,7 @@
             class="vs-dropdown__link"
             :href="link.href"
             :target="link.isExternal ? '_blank' : false"
-            :data-vs-track="formattedTrackingId(link.title)"
+            :data-vs-track="link.trackingId"
             @keydown="checkKeydown($event, index === last)"
           >
             {{ link.title }}
@@ -90,11 +90,6 @@ export default {
         this.show = false
       }
     },
-    formattedTrackingId(title) {
-      var formattedTitle = title.toLowerCase().replace(/\s+/g, "-")
-      var formattedDropdownName = this.name.toLowerCase().replace(/\s+/g, "-")
-      return "link." + formattedDropdownName + "nav." + formattedTitle
-    },
     onClose() {
       this.show = false
     },
@@ -127,68 +122,7 @@ export default {
 @import "~bootstrap/scss/utilities/screenreaders";
 @import "../styles/placeholders";
 @import "../styles/animations";
-
-.vs-dropdown__list {
-  background-color: shade($color-theme-primary, 20%);
-  color: $color-white;
-  left: 0;
-  min-width: 200px;
-  position: absolute;
-  top: 28px;
-  width: auto;
-
-  .vs-dropdown--language & {
-    left: auto;
-    right: 0;
-  }
-
-  @include media-breakpoint-down(md) {
-    height: 100vh;
-    width: 100%;
-  }
-}
-
-.vs-dropdown__link {
-  align-items: center;
-  border-bottom: 1px solid tint($color-theme-primary, 5%);
-  box-shadow: inset 0 0 0 0 transparent;
-  color: $color-white;
-  display: flex;
-  font-size: 1.5rem;
-  font-weight: $font-weight-light;
-  padding: 0.75rem 1.25rem;
-  position: relative;
-  transition: all 250ms ease-in-out;
-  width: 100%;
-
-  &:focus {
-    @extend %focus-white-inset;
-  }
-
-  &:hover {
-    color: $color-white;
-  }
-}
-
-.vs-dropdown__external-icon-wrapper {
-  display: flex;
-  margin-left: 5px;
-}
-
-.vs-dropdown__button {
-  @extend %button-reset;
-  @extend %uni-nav-button-style;
-}
-
-.vs-dropdown__icon-wrapper {
-  margin-left: 5px;
-  transition: transform 250ms;
-
-  .vs-dropdown__button[aria-expanded="true"] & {
-    transform: rotate(180deg);
-    transform-origin: 50% 54%;
-  }
-}
+@import "../styles/vs-dropdown";
 </style>
 
 <docs>
