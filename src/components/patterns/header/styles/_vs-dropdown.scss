@@ -1,15 +1,17 @@
 .vs-dropdown__list {
   background-color: shade($color-theme-primary, 20%);
   color: $color-white;
+  height: 100vh;
   left: 0;
-  min-width: 200px;
   position: absolute;
   top: 28px;
-  width: auto;
+  width: 100%;
 
-  @include media-breakpoint-down(md) {
-    height: 100vh;
-    width: 100%;
+  @include media-breakpoint-up(md) {
+    top: 38px;
+    height: auto;
+    min-width: 200px;
+    width: auto;
   }
 }
 

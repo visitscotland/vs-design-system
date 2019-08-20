@@ -9,8 +9,11 @@
       aria-haspopup="true"
       :aria-expanded="show ? 'true' : 'false'"
     >
-      <span class="sr-only">Toggle Search</span>
+      <span class="d-md-none sr-only">Toggle Search</span>
       <vs-icon name="search" size="sm" variant="reverse-white" />
+      <span class="d-none d-md-flex vs-search__search-button-text"
+        ><span class="sr-only">Toggle</span> Search</span
+      >
     </button>
     <transition name="slide-fade">
       <div
@@ -122,8 +125,21 @@ export default {
   @extend %button-pink;
   @extend %main-nav-button-style;
 
+  @include media-breakpoint-up(md) {
+    box-shadow: 0 5px 0 0 $color-pink;
+    display: flex;
+    align-items: center;
+    font-size: 1.125rem;
+    font-weight: $font-weight-semi-bold;
+    justify-content: center;
+    padding: 0 1.25rem 0 0.5rem;
+    position: relative;
+    width: auto;
+  }
+
   &[aria-expanded="true"] {
     background-color: $gray-tint-6;
+    color: $color-base-text;
 
     svg {
       fill: $gray-shade-2 !important;
@@ -141,6 +157,10 @@ export default {
   top: 40px;
   width: 100%;
   z-index: 1;
+
+  @include media-breakpoint-up(md) {
+    top: 50px;
+  }
 }
 
 .vs-search__form {

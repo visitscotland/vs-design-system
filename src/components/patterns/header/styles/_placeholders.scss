@@ -61,6 +61,11 @@
   transition: all 250ms ease-in-out;
   height: 40px;
   width: 40px;
+
+  @include media-breakpoint-up(md) {
+    height: 50px;
+    width: 50px;
+  }
 }
 
 %uni-nav-button-style {
@@ -74,6 +79,10 @@
   position: relative;
   transition: all 250ms ease-in-out;
   z-index: 5;
+
+  @include media-breakpoint-up(md) {
+    padding: 10px 5px;
+  }
 
   &:focus {
     background-color: $color-pink;

@@ -41,6 +41,10 @@ export default {
   padding: 10px 0;
   height: 40px;
 
+  @include media-breakpoint-up(md) {
+    height: 50px;
+  }
+
   &:focus {
     @extend %focus-pink-inset;
   }
