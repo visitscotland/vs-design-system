@@ -4,7 +4,11 @@
       <div class="vs-login__icon-wrapper">
         <vs-svg path="icons/user" height="10" fill="white" />
       </div>
-      <span v-if="this.isLoggedIn">Log out</span> <span v-else>Login</span>
+      <span v-if="this.isLoggedIn">
+        <span class="d-lg-none">Log out</span>
+        <span class="d-none d-lg-block vs-login__greeting">Hi {{ username }}... (not you?)</span>
+      </span>
+      <span v-else>Login</span>
     </button>
   </component>
 </template>
@@ -30,6 +34,9 @@ export default {
       type: String,
       default: "div",
     },
+    username: {
+      type: String,
+    },
   },
   methods: {
     toggleLogin() {
@@ -48,16 +55,21 @@ export default {
 @import "~bootstrap/scss/utilities/screenreaders";
 @import "../styles/placeholders";
 
-.vs-login {
-  &__button {
-    @extend %button-reset;
-    @extend %uni-nav-button-style;
-  }
+.vs-login__button {
+  @extend %button-reset;
+  @extend %uni-nav-button-style;
 
-  &__icon-wrapper {
-    display: flex;
-    margin-right: 3px;
+  @include media-breakpoint-up(sm) {
+    margin-right: 1rem;
   }
+}
+.vs-login__icon-wrapper {
+  display: flex;
+  margin-right: 3px;
+}
+
+.vs-login__greeting {
+  white-space: nowrap;
 }
 </style>
 

@@ -11,8 +11,8 @@
     <div class="vs-header__wrapper--top position-relative">
       <vs-container>
         <vs-row>
-          <vs-col class="position-static"> <slot name="universal-nav"></slot> </vs-col>
-          <vs-col class="d-flex justify-content-end position-static">
+          <vs-col class="vs-header__universal-nav-col"> <slot name="universal-nav"></slot> </vs-col>
+          <vs-col class="vs-header__site-controls-col d-flex justify-content-end">
             <slot name="login"></slot> <slot name="language"></slot>
           </vs-col>
         </vs-row>
@@ -104,6 +104,22 @@ export default {
 .vs-header__wrapper--bottom {
   background-color: $white;
   box-shadow: 0 8px 6px -6px rgba(0, 0, 0, 0.3);
+}
+
+.vs-header__universal-nav-col {
+  position: static;
+
+  @include media-breakpoint-up(md) {
+    position: relative;
+  }
+}
+
+.vs-header__site-controls-col {
+  position: static;
+
+  @include media-breakpoint-up(md) {
+    position: relative;
+  }
 }
 </style>
 

@@ -20,7 +20,7 @@ export default {
   },
   methods: {
     handleClick() {
-      document.getElementById(this.target).click()
+      document.getElementById(this.target).focus()
     },
   },
   props: {
