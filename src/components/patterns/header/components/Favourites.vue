@@ -1,33 +1,27 @@
 <template>
   <component :is="type" class="vs-favourites">
-    <button
-      class="vs-favourites__button"
-      data-test-trigger
-      ref="trigger"
-      @click="addToFavourites({ url: 'http://www.visitscotland.com', title: 'Homepage' })"
-    >
-      <span class="sr-only">Add to Favourites</span>
-      <span class="vs-favourites__count" v-if="this.favourites.length">
-        <span class="sr-only">Current favourites count:</span> {{ this.displayCount }}
-      </span>
-      <vs-icon v-if="this.favourites.length" name="favourite-filled" size="sm" variant="primary" />
-      <vs-icon v-else name="favourite" size="sm" variant="primary" />
-    </button>
+    <b-collapse id="collapse-favourites" class="vs-favourites__wrapper">
+      <vs-container>
+        <vs-row>
+          <vs-col> <h4>Favourites List</h4> </vs-col>
+        </vs-row>
+      </vs-container>
+    </b-collapse>
   </component>
 </template>
 
 <script>
-import VsIcon from "../../../elements/icon/Icon"
+import { BCollapse } from "bootstrap-vue"
 
 export default {
   name: "VsFavourites",
   status: "prototype",
   release: "0.0.1",
-  components: { VsIcon },
+  components: {
+    BCollapse,
+  },
   data() {
-    return {
-      favourites: [],
-    }
+    return {}
   },
   props: {
     /**
@@ -36,24 +30,6 @@ export default {
     type: {
       type: String,
       default: "div",
-    },
-  },
-  computed: {
-    displayCount: function() {
-      return this.favourites.length > 99 ? "99+" : this.favourites.length
-    },
-  },
-  watch: {
-    favourites(oldValue, newValue) {},
-  },
-  methods: {
-    addToFavourites(favourite) {
-      let thisTrigger = this.$refs.trigger
-      this.$root.$emit("resetMenus")
-      if (this.favourites.indexOf(favourite) === -1) {
-        this.favourites.push(favourite)
-      }
-      thisTrigger.blur()
     },
   },
 }
@@ -66,34 +42,22 @@ export default {
 @import "~bootstrap/scss/utilities/screenreaders";
 @import "../styles/placeholders";
 
-.vs-favourites {
-  &__button {
-    @extend %button-reset;
-    @extend %main-nav-button-style;
-
-    position: relative;
-
-    &:focus {
-      @extend %focus-pink-inset;
-    }
-  }
-
-  &__count {
-    color: $color-white;
-    display: block;
-    font-size: 0.75rem;
-    left: 0;
-    position: absolute;
-    top: 10px;
-    width: 100%;
-  }
+.vs-favourites__wrapper {
+  background-color: $gray-tint-7;
+  box-shadow: inset 0 8px 6px -6px rgba(0, 0, 0, 0.3), 0 8px 6px -6px rgba(0, 0, 0, 0.3);
+  justify-content: space-between;
+  padding: 1rem;
+  left: 0;
+  width: 100%;
+  z-index: 1;
 }
 </style>
 
 <docs>
   ```jsx
+  <div style="position: relative; height: 100px;">
     <vs-favourites
-
     />
+  </div>
   ```
 </docs>
