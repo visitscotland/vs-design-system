@@ -2,14 +2,14 @@
   <component
     :is="type"
     class="vs-favourites__button"
-    @click.native="increment('Incrementing count from ' + count + ' to ' + (count + 1))"
+    @click="addToFavourites()"
     v-b-toggle.collapse-favourites
   >
     <span class="sr-only">Add to Favourites</span>
-    <span class="vs-favourites__count" v-if="count <= 1">
-      <span class="sr-only">Current favourites count:</span> {{ count }}
+    <span class="vs-favourites__count" v-if="favouritesCount > 0">
+      <span class="sr-only">Current favourites count:</span> {{ favouritesCount }}
     </span>
-    <vs-icon v-if="this.favourites.length" name="favourite-filled" size="sm" variant="primary" />
+    <vs-icon v-if="favouritesCount > 0" name="favourite-filled" size="sm" variant="primary" />
     <vs-icon v-else name="favourite" size="sm" variant="primary" />
   </component>
 </template>
@@ -25,9 +25,7 @@ export default {
   release: "0.0.1",
   components: { VsIcon },
   data() {
-    return {
-      favourites: [],
-    }
+    return {}
   },
   directives: { "b-toggle": VBToggle },
   props: {
@@ -38,17 +36,34 @@ export default {
       type: String,
       default: "button",
     },
+    title: {
+      type: String,
+    },
+    href: {
+      type: String,
+    },
   },
   store,
   computed: {
-    count() {
-      return this.$store.state.favourites.count
+    favouritesCount() {
+      return this.$store.getters["favourites/getFavouritesCount"]
+    },
+    favourites() {
+      return this.$store.getters["favourites/getFavourites"]
+    },
+    favouriteItem() {
+      return {
+        title: this.title,
+        href: this.href,
+      }
     },
   },
   methods: {
-    increment(message) {
-      console.log("increment")
-      this.$store.dispatch("favourites/increment", message)
+    addToFavourites() {
+      var inArray = this.favourites.filter(favourite => favourite.href === this.favouriteItem.href)
+      if (inArray.length === 0) {
+        this.$store.dispatch("favourites/addFavourite", this.favouriteItem)
+      }
     },
   },
 }
@@ -91,8 +106,12 @@ export default {
 
 <docs>
   ```jsx
-    <vs-favourites-button
 
+    const favourite = require("../../../../../assets/fixtures/favourite.json")
+
+    <vs-favourites-button
+      :href="favourite.href"
+      :title="favourite.title"
     />
   ```
 </docs>
