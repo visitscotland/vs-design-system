@@ -1,17 +1,16 @@
 <template>
-  <component :is="type" class="vs-search">
-    <button
-      class="vs-search__button"
-      id="searchbutton"
-      v-b-toggle.collapse-search
-      @click="setFocus()"
-    >
-      <span class="d-md-none sr-only">Toggle Search</span>
-      <vs-icon name="search" size="sm" variant="reverse-white" />
-      <span class="d-none d-md-flex vs-search__search-button-text"
-        ><span class="sr-only">Toggle</span> Search</span
-      >
-    </button>
+  <component
+    :is="type"
+    class="vs-search__button"
+    id="searchbutton"
+    v-b-toggle.collapse-search
+    @click="setFocus()"
+  >
+    <span class="d-md-none sr-only">Toggle Search</span>
+    <vs-icon name="search" size="sm" variant="reverse-white" />
+    <span class="d-none d-md-flex vs-search__search-button-text">
+      <span class="sr-only">Toggle</span> Search
+    </span>
   </component>
 </template>
 
@@ -41,7 +40,7 @@ export default {
      */
     type: {
       type: String,
-      default: "div",
+      default: "button",
     },
   },
 }

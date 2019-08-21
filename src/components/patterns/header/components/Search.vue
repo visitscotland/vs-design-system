@@ -1,45 +1,43 @@
 <template>
   <component :is="type" class="vs-search">
-    <transition name="slide-fade">
-      <b-collapse id="collapse-search" class="vs-search__form-wrapper">
-        <vs-container>
-          <vs-row>
-            <vs-col>
-              <form role="search" action method="get" class="vs-search__form">
-                <label for="searchinput" class="vs-search__label">
-                  <span class="sr-only">Enter a search term</span>
-                  <vs-icon name="search" size="sm" variant="primary" />
-                </label>
-                <input
-                  class="vs-search__input"
-                  type="search"
-                  placeholder="Enter a search term"
-                  autocomplete="off"
-                  v-model="searchTerm"
-                  id="searchinput"
-                />
-                <button
-                  v-if="searchTerm.length"
-                  class="vs-search__clear-button"
-                  @click.prevent="clearSearchField()"
-                >
-                  <span class="sr-only">Clear search</span>
-                  <!-- TODO: convert to vs-icon when colours are finalised -->
-                  <vs-icon name="close" size="xs" variant="light" />
-                </button>
-                <button
-                  @keydown="checkKeydown($event)"
-                  class="vs-search__submit-button"
-                  type="submit"
-                >
-                  Go
-                </button>
-              </form>
-            </vs-col>
-          </vs-row>
-        </vs-container>
-      </b-collapse>
-    </transition>
+    <b-collapse id="collapse-search" class="vs-search__form-wrapper">
+      <vs-container>
+        <vs-row>
+          <vs-col>
+            <form role="search" action method="get" class="vs-search__form">
+              <label for="searchinput" class="vs-search__label">
+                <span class="sr-only">Enter a search term</span>
+                <vs-icon name="search" size="sm" variant="primary" />
+              </label>
+              <input
+                class="vs-search__input"
+                type="search"
+                placeholder="Enter a search term"
+                autocomplete="off"
+                v-model="searchTerm"
+                id="searchinput"
+              />
+              <button
+                v-if="searchTerm.length"
+                class="vs-search__clear-button"
+                @click.prevent="clearSearchField()"
+              >
+                <span class="sr-only">Clear search</span>
+                <!-- TODO: convert to vs-icon when colours are finalised -->
+                <vs-icon name="close" size="xs" variant="light" />
+              </button>
+              <button
+                @keydown="checkKeydown($event)"
+                class="vs-search__submit-button"
+                type="submit"
+              >
+                Go
+              </button>
+            </form>
+          </vs-col>
+        </vs-row>
+      </vs-container>
+    </b-collapse>
   </component>
 </template>
 
@@ -83,7 +81,6 @@ export default {
 @import "~bootstrap/scss/utilities/flex";
 @import "~bootstrap/scss/utilities/screenreaders";
 @import "../styles/placeholders";
-@import "../styles/animations";
 
 .vs-search__form-wrapper {
   background-color: $gray-tint-7;
