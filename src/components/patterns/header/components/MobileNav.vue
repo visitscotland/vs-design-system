@@ -1,36 +1,26 @@
 <template>
-  <component :is="type" class="vs-main-nav" :aria-label="name">
-    <button
-      class="vs-main-nav__button"
-      ref="trigger"
-      data-test-trigger
-      @click="triggerToggle()"
-      aria-haspopup="true"
-      :aria-expanded="show ? 'true' : 'false'"
-    >
-      <span class="sr-only">Toggle Main Navigation</span>
-      <vs-icon v-if="show" name="menu-close" size="sm" variant="dark" />
-      <vs-icon v-else name="menu" size="sm" variant="dark" />
-    </button>
-    <transition name="slide-fade">
-      <ul class="vs-main-nav__list vs-main-nav__list--level1 list-unstyled" v-show="show">
-        <slot />
-      </ul>
-    </transition>
+  <component :is="type">
+    <b-collapse id="collapse-mobile-nav">
+      <nav class="vs-main-nav" :aria-label="name">
+        <ul class="vs-main-nav__list vs-main-nav__list--level1 list-unstyled">
+          <slot />
+        </ul>
+      </nav>
+    </b-collapse>
   </component>
 </template>
 
 <script>
-import VsIcon from "../../../elements/icon/Icon"
 import VsMainNavListItem from "./MainNavListItem"
+import { BCollapse } from "bootstrap-vue"
 
 export default {
-  name: "VsMainNav",
+  name: "VsMobileNav",
   status: "prototype",
   release: "0.0.1",
   components: {
-    VsIcon,
     VsMainNavListItem,
+    BCollapse,
   },
   data() {
     return {
@@ -43,30 +33,11 @@ export default {
      */
     type: {
       type: String,
-      default: "nav",
+      default: "div",
     },
     name: {
       type: String,
     },
-  },
-  methods: {
-    triggerToggle() {
-      let currentState = this.show
-      this.$root.$emit("resetMenus")
-      if (currentState === false) {
-        this.show = true
-      }
-      this.$refs.trigger.blur()
-    },
-    reset() {
-      this.show = false
-    },
-    setOffsetScroll(offset) {
-      this.$emit("setScrollOffset", offset)
-    },
-  },
-  mounted() {
-    this.$root.$on("resetMenus", this.reset)
   },
 }
 </script>
@@ -78,7 +49,6 @@ export default {
 @import "~bootstrap/scss/type";
 @import "~bootstrap/scss/utilities/screenreaders";
 @import "../styles/placeholders";
-@import "../styles/animations";
 
 .vs-main-nav {
   display: flex;
@@ -95,9 +65,6 @@ export default {
 
 .vs-main-nav__list {
   height: 100vh;
-  left: 0;
-  position: absolute;
-  top: 40px;
   width: 100%;
   z-index: 2;
 
@@ -117,7 +84,7 @@ export default {
   const mainNav = require("../../../../assets/fixtures/mainNav.json")
 
   <div class="vs-header" style="position: relative; height: 100vh;">
-    <vs-main-nav name="Main navigation"> 
+    <vs-mobile-nav name="Mobile navigation"> 
       <vs-main-nav-list-item
         v-for="(item, index) in mainNav"
         :level="1"
@@ -159,7 +126,7 @@ export default {
           </vs-main-nav-list-item>
         </vs-main-nav-list-item>
       </vs-main-nav-list-item>
-    </vs-main-nav>
+    </vs-mobile-nav>
   </div>
   ```
 </docs>

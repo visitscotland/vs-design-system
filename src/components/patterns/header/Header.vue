@@ -26,15 +26,16 @@
           <vs-col cols="5" class="d-flex justify-content-end position-static">
             <div class="vs-controls__wrapper d-flex">
               <slot name="search-button" /> <slot name="favourites" />
-              <vs-main-nav name="Main navigation" @setScrollOffset="setScrollOffset">
-                <slot name="main-nav-items" />
-              </vs-main-nav>
+              <slot class="d-md-none" name="mobile-nav-button" />
             </div>
           </vs-col>
         </vs-row>
       </vs-container>
     </div>
     <slot name="search" />
+    <vs-mobile-nav name="Main navigation" @setScrollOffset="setScrollOffset">
+      <slot name="main-nav-items" />
+    </vs-mobile-nav>
   </component>
 </template>
 
@@ -166,8 +167,12 @@ export default {
         slot="logo" />
       <vs-search-button
         slot="search-button" />
+      <vs-mobile-nav-button
+        slot="mobile-nav-button" />
+
       <vs-search
         slot="search" />
+
       <vs-favourites
         slot="favourites" />
         
