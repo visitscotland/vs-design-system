@@ -57,9 +57,14 @@ export default {
     },
   },
   methods: {
+    checkFavouritesLength() {
+      if (this.favourites.length === 0) {
+        this.$root.$emit("bv::toggle::collapse", "collapse-favourites")
+      }
+    },
     deleteFavourite(href) {
-      console.log(href)
       this.$store.dispatch("favourites/deleteFavourite", href)
+      this.checkFavouritesLength()
     },
   },
 }
