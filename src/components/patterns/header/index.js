@@ -2,7 +2,7 @@ import VsHeader from "./Header"
 import VsUniversalNav from "./components/UniversalNav"
 import VsLanguage from "./components/Language"
 import VsLogin from "./components/Login"
-import VsFavourites from "./components/favourites/Favourites"
+import VsFavouritesList from "./components/favourites/FavouritesList"
 import VsFavouritesButton from "./components/favourites/FavouritesButton"
 import VsLogo from "./components/Logo"
 import VsMobileNav from "./components/MobileNav"
@@ -18,7 +18,7 @@ import VsMainNavPromoList from "./components/MainNavPromoList"
 export {
   VsUniversalNav,
   VsLanguage,
-  VsFavourites,
+  VsFavouritesList,
   VsFavouritesButton,
   VsHeader,
   VsLogin,

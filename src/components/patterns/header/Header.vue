@@ -32,7 +32,7 @@
         </vs-row>
       </vs-container>
     </div>
-    <slot name="search" /> <slot name="favourites" />
+    <slot name="search" /> <slot name="favourites-list" />
     <vs-mobile-nav name="Main navigation" @setScrollOffset="setScrollOffset">
       <slot name="main-nav-items" />
     </vs-mobile-nav>
@@ -137,6 +137,7 @@ export default {
   const ourSites = require("../../../assets/fixtures/ourSites.json")
   const language = require("../../../assets/fixtures/languages.json")
   const mainNav = require("../../../assets/fixtures/mainNav.json")
+  const favourite = require("../../../assets/fixtures/favourite.json")
 
   <div style="overflow-y: scroll; height: 600px;">
     <vs-header>
@@ -170,12 +171,14 @@ export default {
       <vs-mobile-nav-button
         slot="mobile-nav-button" />
       <vs-favourites-button
-        slot="favourites-button" />
+        slot="favourites-button"
+        :href="favourite.href"
+        :title="favourite.title" />
 
       <vs-search
         slot="search" />
-      <vs-favourites
-        slot="favourites" />
+      <vs-favourites-list
+        slot="favourites-list" />
       <vs-main-nav-list-item
         slot="main-nav-items"
         v-for="(item, index) in mainNav"
