@@ -2,12 +2,12 @@
   <component
     :is="type"
     class="vs-favourites__button"
+    @click.native="increment('Incrementing count from ' + count + ' to ' + (count + 1))"
     v-b-toggle.collapse-favourites
-    @click="addToFavourites({ url: 'http://www.visitscotland.com', title: 'Homepage' })"
   >
     <span class="sr-only">Add to Favourites</span>
-    <span class="vs-favourites__count" v-if="this.favourites.length">
-      <span class="sr-only">Current favourites count:</span> {{ this.displayCount }}
+    <span class="vs-favourites__count" v-if="count <= 1">
+      <span class="sr-only">Current favourites count:</span> {{ count }}
     </span>
     <vs-icon v-if="this.favourites.length" name="favourite-filled" size="sm" variant="primary" />
     <vs-icon v-else name="favourite" size="sm" variant="primary" />
@@ -15,8 +15,9 @@
 </template>
 
 <script>
-import VsIcon from "../../../elements/icon/Icon"
+import VsIcon from "../../../../elements/icon/Icon"
 import { VBToggle } from "bootstrap-vue"
+import store from "./favourites.store"
 
 export default {
   name: "VsFavouritesButton",
@@ -38,22 +39,16 @@ export default {
       default: "button",
     },
   },
+  store,
   computed: {
-    displayCount: function() {
-      return this.favourites.length > 99 ? "99+" : this.favourites.length
+    count() {
+      return this.$store.state.favourites.count
     },
   },
-  watch: {
-    favourites(oldValue, newValue) {},
-  },
   methods: {
-    addToFavourites(favourite) {
-      let match = this.favourites.map(item => {
-        item.title === favourite.title && item.url === favourite.url
-      })
-      if (match.length === 0) {
-        this.favourites.push(favourite)
-      }
+    increment(message) {
+      console.log("increment")
+      this.$store.dispatch("favourites/increment", message)
     },
   },
 }
@@ -64,7 +59,7 @@ export default {
 @import "~bootstrap/scss/utilities/display";
 @import "~bootstrap/scss/utilities/flex";
 @import "~bootstrap/scss/utilities/screenreaders";
-@import "../styles/placeholders";
+@import "../../styles/placeholders";
 
 .vs-favourites {
   &__button {
@@ -96,7 +91,7 @@ export default {
 
 <docs>
   ```jsx
-    <vs-favourites
+    <vs-favourites-button
 
     />
   ```
