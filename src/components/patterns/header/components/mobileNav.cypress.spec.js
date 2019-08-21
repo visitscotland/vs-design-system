@@ -1,4 +1,4 @@
-const VsMainNav = require("./MainNav.vue").default
+const VsMobileNav = require("./MobileNav.vue").default
 const { vueHelper } = require("@cypress/helpers/index.js").default
 const sizes = ["iphone-6", "ipad-2", [1024, 768]]
 const mainNav = require("../../../../assets/fixtures/mainNav.json")
@@ -7,7 +7,7 @@ const level2 = level1.subnav[0]
 const level3 = level2.subnav[0]
 
 const props = {
-  name: "Main Navigation",
+  name: "Mobile Navigation",
 }
 
 const content = `
@@ -40,9 +40,9 @@ const content = `
   </vs-main-nav-list-item>
 `
 
-vueHelper.init("vs-main-nav", VsMainNav, props, content)
+vueHelper.init("vs-mobile-nav", VsMobileNav, props, content)
 
-describe("Main Nav component", () => {
+describe("Mobile Nav component", () => {
   sizes.forEach(size => {
     context(`${size} resolution`, () => {
       beforeEach(() => {

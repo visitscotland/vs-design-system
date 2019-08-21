@@ -4,7 +4,8 @@ import VsLanguage from "./components/Language"
 import VsLogin from "./components/Login"
 import VsFavourites from "./components/Favourites"
 import VsLogo from "./components/Logo"
-import VsMainNav from "./components/MainNav"
+import VsMobileNav from "./components/MobileNav"
+import VsMobileNavButton from "./components/MobileNavButton"
 import VsSearch from "./components/Search"
 import VsSearchButton from "./components/SearchButton"
 import VsSkipToContent from "./components/SkipToContent"
@@ -20,7 +21,8 @@ export {
   VsHeader,
   VsLogin,
   VsLogo,
-  VsMainNav,
+  VsMobileNav,
+  VsMobileNavButton,
   VsMainNavListItem,
   VsMainNavPromoList,
   VsMainNavPromoItem,
