@@ -3,6 +3,7 @@ import VsUniversalNav from "./components/UniversalNav"
 import VsLanguage from "./components/Language"
 import VsLogin from "./components/Login"
 import VsFavourites from "./components/Favourites"
+import VsFavouritesButton from "./components/FavouritesButton"
 import VsLogo from "./components/Logo"
 import VsMobileNav from "./components/MobileNav"
 import VsMobileNavButton from "./components/MobileNavButton"
@@ -18,6 +19,7 @@ export {
   VsUniversalNav,
   VsLanguage,
   VsFavourites,
+  VsFavouritesButton,
   VsHeader,
   VsLogin,
   VsLogo,

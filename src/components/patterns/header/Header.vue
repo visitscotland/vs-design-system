@@ -25,14 +25,14 @@
           <vs-col cols="7"> <slot name="logo" /> </vs-col>
           <vs-col cols="5" class="d-flex justify-content-end position-static">
             <div class="vs-controls__wrapper d-flex">
-              <slot name="search-button" /> <slot name="favourites" />
+              <slot name="search-button" /> <slot name="favourites-button" />
               <slot class="d-md-none" name="mobile-nav-button" />
             </div>
           </vs-col>
         </vs-row>
       </vs-container>
     </div>
-    <slot name="search" />
+    <slot name="search" /> <slot name="favourites" />
     <vs-mobile-nav name="Main navigation" @setScrollOffset="setScrollOffset">
       <slot name="main-nav-items" />
     </vs-mobile-nav>
@@ -169,13 +169,13 @@ export default {
         slot="search-button" />
       <vs-mobile-nav-button
         slot="mobile-nav-button" />
+      <vs-favourites-button
+        slot="favourites-button" />
 
       <vs-search
         slot="search" />
-
       <vs-favourites
         slot="favourites" />
-        
       <vs-main-nav-list-item
         slot="main-nav-items"
         v-for="(item, index) in mainNav"
