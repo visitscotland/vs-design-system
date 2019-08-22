@@ -22,11 +22,12 @@
     <div class="vs-header__wrapper--bottom position-relative">
       <vs-container>
         <vs-row>
-          <vs-col cols="7"> <slot name="logo" /> </vs-col>
-          <vs-col cols="5" class="d-flex justify-content-end position-static">
+          <vs-col class="d-flex justify-content-between">
+            <slot name="logo" />
+            <div class="d-none d-lg-flex"><slot name="desktop-nav" /></div>
             <div class="vs-controls__wrapper d-flex">
               <slot name="search-button" /> <slot name="favourites-button" />
-              <slot class="d-md-none" name="mobile-nav-button" />
+              <div class="d-lg-none"><slot name="mobile-nav-button" /></div>
             </div>
           </vs-col>
         </vs-row>
@@ -111,7 +112,7 @@ export default {
 
 .vs-header__wrapper--bottom {
   background-color: $white;
-  box-shadow: 0 8px 6px -6px rgba(0, 0, 0, 0.3);
+  @extend %default-box-shadow;
 }
 
 .vs-header__universal-nav-col {
@@ -166,6 +167,19 @@ export default {
       />
       <vs-logo 
         slot="logo" />
+
+      <vs-desktop-nav 
+        slot="desktop-nav" 
+        v-for="(item,index) in mainNav"
+        :level="1"
+        :href="item.href"
+        :is-external="item.isExternal"
+        :tracking-id="item.trackingId"
+        :title="item.title"
+        :subnav="item.subnav"
+        :key="index"
+        />
+
       <vs-search-button
         slot="search-button" />
       <vs-mobile-nav-button
@@ -223,16 +237,6 @@ export default {
         </vs-main-nav-list-item>
       </vs-main-nav-list-item>
     </vs-header>
-    <main id="main">
-      <vs-container>
-        <vs-row>
-          <vs-col>
-            <h1>Main content</h1>
-            <p>Lorem ipsum dolor sit amet.</p>
-          </vs-col>
-        </vs-row>
-      </vs-container>
-    </main>
   </div>
   ```
 </docs>

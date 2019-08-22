@@ -26,7 +26,7 @@
 </template>
 
 <script>
-import VsSvg from "../../../elements/svg/Svg"
+import VsSvg from "../../../../elements/svg/Svg"
 import VsMainNavPromoItem from "./MainNavPromoItem"
 import VsMainNavListItem from "./MainNavListItem"
 
@@ -69,7 +69,7 @@ export default {
 
 <docs>
   ```jsx
-    const mainNav = require("../../../../assets/fixtures/mainNav.json")
+    const mainNav = require("../../../../../assets/fixtures/mainNav.json")
     const promoList = mainNav[4].promoList
     <div>
       <vs-main-nav-promo-list

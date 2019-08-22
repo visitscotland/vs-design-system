@@ -8,7 +8,6 @@
       v-if="hasChildren"
       class="vs-main-nav__button"
       :class="{
-        expanded: show,
         ['vs-main-nav__button--level' + level]: level,
       }"
       ref="trigger"
@@ -45,7 +44,6 @@
         <ul
           class="list-unstyled"
           :class="{
-            expanded: show,
             ['vs-main-nav__list--level' + incrementLevel]: incrementLevel,
           }"
         >
@@ -86,13 +84,15 @@
 </template>
 
 <script>
-import VsIcon from "../../../elements/icon/Icon"
+import VsIcon from "../../../../elements/icon/Icon"
+import { BCollapse, VBToggle } from "bootstrap-vue"
 
 export default {
   name: "VsMainNavListItem",
   status: "prototype",
   release: "0.0.1",
-  components: { VsIcon },
+  components: { VsIcon, BCollapse },
+  directives: { "b-toggle": VBToggle },
   data() {
     return {
       show: false,
@@ -173,8 +173,8 @@ export default {
 @import "~bootstrap/scss/utilities/flex";
 @import "~bootstrap/scss/utilities/screenreaders";
 @import "~bootstrap/scss/type";
-@import "../styles/placeholders";
-@import "../styles/animations";
+@import "../../styles/placeholders";
+@import "../../styles/animations";
 
 .vs-main-nav__list {
   height: 100vh;
@@ -300,7 +300,7 @@ export default {
 <docs>
   ```jsx
 
-  const mainNav = require("../../../../assets/fixtures/mainNav.json")
+  const mainNav = require("../../../../../assets/fixtures/mainNav.json")
   const item = mainNav[0]
 
   <div class="vs-header">

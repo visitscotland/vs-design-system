@@ -43,6 +43,14 @@
   margin: 0;
 }
 
+%default-box-shadow {
+  box-shadow: 0 8px 6px -6px rgba(0, 0, 0, 0.3);
+}
+
+%default-inset-box-shadow {
+  box-shadow: inset 0 8px 6px -6px rgba(0, 0, 0, 0.3);
+}
+
 %button-pink {
   background-color: $color-pink;
   color: $color-white;
@@ -50,10 +58,6 @@
 
   &:focus {
     @extend %focus-white-inset;
-  }
-
-  &:hover {
-    background-color: $pink-tint-1;
   }
 }
 

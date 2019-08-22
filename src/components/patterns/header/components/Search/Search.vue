@@ -42,7 +42,7 @@
 </template>
 
 <script>
-import VsIcon from "../../../elements/icon/Icon"
+import VsIcon from "../../../../elements/icon/Icon"
 import { BCollapse } from "bootstrap-vue"
 
 export default {
@@ -80,7 +80,7 @@ export default {
 @import "~bootstrap/scss/utilities/display";
 @import "~bootstrap/scss/utilities/flex";
 @import "~bootstrap/scss/utilities/screenreaders";
-@import "../styles/placeholders";
+@import "../../styles/placeholders";
 
 .vs-search__form-wrapper {
   background-color: $gray-tint-7;

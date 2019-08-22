@@ -8,11 +8,7 @@
       aria-haspopup="true"
       :aria-expanded="show ? 'true' : 'false'"
     >
-      <span v-if="selectedLanguage !== null">
-        <span class="sr-only">Currently selected language is </span>
-        <abbr :title="selectedLanguage.title">{{ selectedLanguage.abbreviation }}</abbr>
-      </span>
-      <span v-else> <span class="sr-only">Toggle menu for </span>{{ name }}</span>
+      <span> <span class="sr-only">Toggle menu for </span>{{ name }}</span>
       <div class="vs-dropdown__icon-wrapper">
         <vs-icon name="chevron-down" variant="reverse-white" size="xxs" />
       </div>
@@ -41,6 +37,9 @@
             @keydown="checkKeydown($event, index === last)"
           >
             {{ link.title }}
+            <div v-if="link.isExternal" class="vs-dropdown__external-icon-wrapper">
+              <vs-icon name="external-link" size="xxs" variant="reverse-white" />
+            </div>
           </a>
         </li>
       </ul>
@@ -49,11 +48,11 @@
 </template>
 
 <script>
-import VsIcon from "../../../elements/icon/Icon"
-import { ClickOutside } from "../../../../directives/ClickOutside.js"
+import VsIcon from "../../../../elements/icon/Icon"
+import { ClickOutside } from "../../../../../directives/ClickOutside.js"
 
 export default {
-  name: "VsLanguage",
+  name: "VsUniversalNav",
   status: "prototype",
   release: "0.0.1",
   components: {
@@ -84,10 +83,6 @@ export default {
     last() {
       return Object.keys(this.dropdownList).length - 1
     },
-    selectedLanguage() {
-      let selectedLanguage = this.dropdownList.filter(language => language.isActive)
-      return selectedLanguage[0]
-    },
   },
   methods: {
     checkKeydown($event, isLast) {
@@ -100,9 +95,6 @@ export default {
     },
     reset() {
       this.show = false
-    },
-    setSelectedLanguage(language) {
-      this.selectedLanguage = language
     },
     triggerToggle() {
       let currentState = this.show
@@ -128,30 +120,19 @@ export default {
 @import "~bootstrap/scss/utilities/flex";
 @import "~bootstrap/scss/type";
 @import "~bootstrap/scss/utilities/screenreaders";
-@import "../styles/placeholders";
-@import "../styles/animations";
-@import "../styles/vs-dropdown";
-
-.vs-dropdown--language .vs-dropdown__list {
-  left: auto;
-  right: 0;
-}
-
-abbr[title] {
-  border-bottom: none;
-  cursor: inherit;
-  text-decoration: none;
-}
+@import "../../styles/placeholders";
+@import "../../styles/animations";
+@import "../../styles/vs-dropdown";
 </style>
 
 <docs>
   ```jsx
-  const languages = require("../../../../assets/fixtures/languages.json")
+  const ourSites = require("../../../../../assets/fixtures/ourSites.json")
 
   <div style="position: relative; height: 100vh; display: flex; justify-content: space-between;">
-    <vs-language
-        name="Languages"
-        :dropdown-list="languages"
+    <vs-universal-nav
+        name="Our sites"
+        :dropdown-list="ourSites"
     />
   </div>
   ```

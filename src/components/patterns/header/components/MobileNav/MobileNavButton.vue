@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import VsIcon from "../../../elements/icon/Icon"
+import VsIcon from "../../../../elements/icon/Icon"
 import { VBToggle } from "bootstrap-vue"
 
 export default {
@@ -55,13 +55,14 @@ export default {
 @import "~bootstrap/scss/utilities/flex";
 @import "~bootstrap/scss/type";
 @import "~bootstrap/scss/utilities/screenreaders";
-@import "../styles/placeholders";
-@import "../styles/animations";
+@import "../../styles/placeholders";
+@import "../../styles/animations";
 
 .vs-main-nav__button {
   @extend %button-reset;
   @extend %main-nav-button-style;
 
+  &:hover,
   &:focus {
     @extend %focus-pink-inset;
   }

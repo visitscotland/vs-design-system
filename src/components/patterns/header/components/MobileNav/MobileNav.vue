@@ -1,11 +1,19 @@
 <template>
   <component :is="type">
     <b-collapse id="collapse-mobile-nav">
-      <nav class="vs-main-nav" :aria-label="name">
-        <ul class="vs-main-nav__list vs-main-nav__list--level1 list-unstyled">
-          <slot />
-        </ul>
-      </nav>
+      <div class="vs-main-nav__wrapper">
+        <vs-container>
+          <vs-row no-gutters>
+            <vs-col>
+              <nav class="vs-main-nav" :aria-label="name">
+                <ul class="vs-main-nav__list vs-main-nav__list--level1 list-unstyled">
+                  <slot />
+                </ul>
+              </nav>
+            </vs-col>
+          </vs-row>
+        </vs-container>
+      </div>
     </b-collapse>
   </component>
 </template>
@@ -48,10 +56,16 @@ export default {
 @import "~bootstrap/scss/utilities/flex";
 @import "~bootstrap/scss/type";
 @import "~bootstrap/scss/utilities/screenreaders";
-@import "../styles/placeholders";
+@import "../../styles/placeholders";
+
+.vs-main-nav__wrapper {
+  background-color: $color-white;
+  box-shadow: inset 0 8px 6px -6px rgba(0, 0, 0, 0.3);
+}
 
 .vs-main-nav {
   display: flex;
+  margin: 0 -1rem;
 }
 
 .vs-main-nav__button {
@@ -71,17 +85,12 @@ export default {
   @include media-breakpoint-up(md) {
     top: 50px;
   }
-
-  &--level1 {
-    background-color: $color-white;
-    box-shadow: inset 0 8px 6px -6px rgba(0, 0, 0, 0.3);
-  }
 }
 </style>
 
 <docs>
   ```jsx
-  const mainNav = require("../../../../assets/fixtures/mainNav.json")
+  const mainNav = require("../../../../../assets/fixtures/mainNav.json")
 
   <div class="vs-header" style="position: relative; height: 100vh;">
     <vs-mobile-nav name="Mobile navigation"> 

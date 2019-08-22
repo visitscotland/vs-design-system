@@ -15,7 +15,7 @@
 </template>
 
 <script>
-import VsIcon from "../../../elements/icon/Icon"
+import VsIcon from "../../../../elements/icon/Icon"
 import { VBToggle } from "bootstrap-vue"
 
 export default {
@@ -51,36 +51,50 @@ export default {
 @import "~bootstrap/scss/utilities/display";
 @import "~bootstrap/scss/utilities/flex";
 @import "~bootstrap/scss/utilities/screenreaders";
-@import "../styles/placeholders";
-@import "../styles/animations";
+@import "../../styles/placeholders";
+@import "../../styles/animations";
 
 .vs-search__button {
   @extend %button-reset;
-  @extend %button-pink;
   @extend %main-nav-button-style;
 
+  background-color: $color-pink;
+  color: $color-white;
+
+  &:focus {
+    outline: none;
+    box-shadow: inset 0 -3px 0 0 $color-white;
+
+    @include media-breakpoint-up(md) {
+      box-shadow: 0 3px 0 0 $color-white;
+    }
+  }
+
   @include media-breakpoint-up(md) {
+    align-items: center;
     box-shadow: 0 5px 0 0 $color-pink;
     display: flex;
-    align-items: center;
     font-size: 1.125rem;
     font-weight: $font-weight-semi-bold;
     justify-content: center;
     padding: 0 1.25rem 0 0.5rem;
-    position: relative;
     width: auto;
   }
 
   &[aria-expanded="true"] {
-    background-color: $gray-tint-6;
+    background-color: $gray-tint-7;
     color: $color-base-text;
 
     @include media-breakpoint-up(md) {
-      box-shadow: 0 5px 0 0 $gray-tint-6;
+      box-shadow: 0 5px 0 0 $gray-tint-7;
     }
 
     svg {
       fill: $gray-shade-2 !important;
+    }
+
+    &:after {
+      height: 0;
     }
   }
 }

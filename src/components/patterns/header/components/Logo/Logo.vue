@@ -1,20 +1,18 @@
 <template>
-  <component :is="type" class="sr-only sr-only-focusable vs-skip-to" href="#main">
-    <span>{{ title }}</span>
-    <vs-icon name="chevron-down" size="xs" variant="reverse-white" />
+  <component :is="type" class="vs-logo" href="#">
+    <span class="sr-only">VisitScotland Home</span>
+    <vs-svg path="scotland-alba-logo" height="18" />
   </component>
 </template>
 
 <script>
-import VsIcon from "../../../elements/icon/Icon"
+import VsSvg from "../../../../elements/svg/Svg"
 
 export default {
-  name: "VsSkipToContent",
+  name: "VsLogo",
   status: "prototype",
   release: "0.0.1",
-  components: {
-    VsIcon,
-  },
+  components: { VsSvg },
   data() {
     return {}
   },
@@ -26,9 +24,6 @@ export default {
       type: String,
       default: "a",
     },
-    title: {
-      type: String,
-    },
   },
 }
 </script>
@@ -38,16 +33,32 @@ export default {
 @import "~bootstrap/scss/utilities/display";
 @import "~bootstrap/scss/utilities/flex";
 @import "~bootstrap/scss/utilities/screenreaders";
-@import "../styles/placeholders";
-@import "../styles/vs-skip-to";
+@import "../../styles/placeholders";
+
+.vs-logo {
+  display: inline-flex;
+  align-items: stretch;
+  padding: 10px 0;
+  height: 40px;
+
+  @include media-breakpoint-up(md) {
+    height: 50px;
+  }
+
+  &:focus {
+    @extend %focus-pink-inset;
+  }
+
+  svg {
+    align-self: center;
+  }
+}
 </style>
 
 <docs>
   ```jsx
-  <div style="position: relative; height: 100px;">
-    <vs-skip-to-content
-      title="Skip to Content"
+    <vs-logo
+
     />
-  </div>
   ```
 </docs>
