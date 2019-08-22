@@ -1,5 +1,6 @@
 <!doctype html>
 <#include "../include/imports.ftl">
+<#include "../include/vs-dotcom-ds/button.ftl">
 <html lang="en">
   <head>
     <meta charset="utf-8"/>
@@ -7,10 +8,10 @@
     <#if hstRequest.requestContext.cmsRequest>
       <link rel="stylesheet" href="<@hst.webfile  path="/css/cms-request.css"/>" type="text/css"/>
     </#if>
-    <@hst.headContributions categoryExcludes="htmlBodyEnd, scripts" xhtml=true/>
+    <@hst.headContributions categoryExcludes="htmlBodyEnd, scripts, htmlPreAppInit, htmlPostAppInit, htmlAppInit" xhtml=true/>
   </head>
   <body>
-    <div class="container">
+    <div class="container" data-vue-app-init>
       <div class="row">
         <div class="col-md-6 col-md-offset-3">
           <@hst.include ref="top"/>
@@ -22,6 +23,7 @@
         </div>
       </div>
       <div class="row">
+        <vs-button>hello</vs-button>
         <@hst.include ref="main"/>
       </div>
       <div class="row">
@@ -29,5 +31,8 @@
       </div>
     </div>
     <@hst.headContributions categoryIncludes="htmlBodyEnd, scripts" xhtml=true/>
+    <@hst.headContributions categoryIncludes="htmlPreAppInit" xhtml=true/>
+    <@hst.headContributions categoryIncludes="htmlAppInit" xhtml=true/>
+    <@hst.headContributions categoryIncludes="htmlPostAppInit" xhtml=true/>
   </body>
 </html>
