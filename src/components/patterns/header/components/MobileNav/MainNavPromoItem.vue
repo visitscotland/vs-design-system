@@ -19,7 +19,7 @@
 </template>
 
 <script>
-import VsIcon from "../../../elements/icon/Icon"
+import VsIcon from "../../../../elements/icon/Icon"
 
 export default {
   name: "VsMainNavPromoItem",
@@ -64,7 +64,7 @@ export default {
 @import "~bootstrap/scss/utilities/display";
 @import "~bootstrap/scss/utilities/flex";
 @import "~bootstrap/scss/utilities/screenreaders";
-@import "../styles/placeholders";
+@import "../../styles/placeholders";
 
 .vs-promo-item__wrapper {
   border-bottom: 1px solid $gray-tint-8;
@@ -122,7 +122,7 @@ export default {
 <docs>
   ```jsx
 
-  const mainNav = require("../../../../assets/fixtures/mainNav.json")
+  const mainNav = require("../../../../../assets/fixtures/mainNav.json")
   const promoItem = mainNav[2].promoItem
   <div>
     <vs-main-nav-promo-item

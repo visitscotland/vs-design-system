@@ -79,15 +79,18 @@ export default {
 @import "~bootstrap/scss/utilities/screenreaders";
 @import "../../styles/placeholders";
 
+.vs-favourites {
+  position: relative;
+}
+
 .vs-favourites__wrapper {
   background-color: $gray-tint-7;
-  box-shadow: inset 0 8px 6px -6px rgba(0, 0, 0, 0.3), 0 8px 6px -6px rgba(0, 0, 0, 0.3);
+  box-shadow: inset 0 8px 6px -6px rgba(0, 0, 0, 0.1), 0 8px 6px -6px rgba(0, 0, 0, 0.3);
   display: flex;
   justify-content: space-between;
   left: 0;
   padding: 1rem;
   width: 100%;
-  z-index: 1;
 }
 </style>
 

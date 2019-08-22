@@ -83,6 +83,7 @@ export default {
 
     position: relative;
 
+    &:hover,
     &:focus {
       @extend %focus-pink-inset;
     }

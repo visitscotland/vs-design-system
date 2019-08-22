@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import VsIcon from "../../../elements/icon/Icon"
+import VsIcon from "../../../../elements/icon/Icon"
 
 export default {
   name: "VsSkipToSearch",
@@ -46,8 +46,8 @@ export default {
 @import "~bootstrap/scss/utilities/display";
 @import "~bootstrap/scss/utilities/flex";
 @import "~bootstrap/scss/utilities/screenreaders";
-@import "../styles/placeholders";
-@import "../styles/vs-skip-to";
+@import "../../styles/placeholders";
+@import "../../styles/vs-skip-to";
 </style>
 
 <docs>
