@@ -11,9 +11,12 @@
     <div class="vs-header__wrapper--top position-relative">
       <vs-container>
         <vs-row>
-          <vs-col class="vs-header__universal-nav-col"> <slot name="universal-nav"></slot> </vs-col>
-          <vs-col class="vs-header__site-controls-col d-flex justify-content-end">
-            <slot name="login"></slot> <slot name="language"></slot>
+          <vs-col class="d-flex justify-content-between">
+            <div class="d-inline-flex d-lg-none"><slot name="mobile-universal-nav"></slot></div>
+            <div class="d-none d-lg-flex"><slot name="desktop-universal-nav"></slot></div>
+            <div class="d-inline-flex vs-header__site-controls-col justify-content-end">
+              <slot name="login"></slot> <slot name="language"></slot>
+            </div>
           </vs-col>
         </vs-row>
       </vs-container>
@@ -24,7 +27,11 @@
         <vs-row>
           <vs-col class="d-flex justify-content-between">
             <slot name="logo" />
-            <div class="d-none d-lg-flex"><slot name="desktop-nav" /></div>
+            <div class="d-none d-lg-flex">
+              <vs-desktop-nav name="Main navigation">
+                <slot name="desktop-nav-items" />
+              </vs-desktop-nav>
+            </div>
             <div class="vs-controls__wrapper d-flex">
               <slot name="search-button" /> <slot name="favourites-button" />
               <div class="d-lg-none"><slot name="mobile-nav-button" /></div>
@@ -35,7 +42,7 @@
     </div>
     <slot name="search" /> <slot name="favourites-list" />
     <vs-mobile-nav name="Main navigation" @setScrollOffset="setScrollOffset">
-      <slot name="main-nav-items" />
+      <slot name="mobile-nav-items" />
     </vs-mobile-nav>
   </component>
 </template>
@@ -150,8 +157,13 @@ export default {
         slot="skip-to-search"
         title="Skip to Search"
        />
-      <vs-universal-nav
-        slot="universal-nav"
+      <vs-desktop-universal-nav
+        slot="desktop-universal-nav"
+        name="Our sites"
+        :dropdown-list="ourSites"
+      />
+      <vs-mobile-universal-nav
+        slot="mobile-universal-nav"
         name="Our sites"
         :dropdown-list="ourSites"
       />
@@ -168,18 +180,6 @@ export default {
       <vs-logo 
         slot="logo" />
 
-      <vs-desktop-nav 
-        slot="desktop-nav" 
-        v-for="(item,index) in mainNav"
-        :level="1"
-        :href="item.href"
-        :is-external="item.isExternal"
-        :tracking-id="item.trackingId"
-        :title="item.title"
-        :subnav="item.subnav"
-        :key="index"
-        />
-
       <vs-search-button
         slot="search-button" />
       <vs-mobile-nav-button
@@ -193,8 +193,8 @@ export default {
         slot="search" />
       <vs-favourites-list
         slot="favourites-list" />
-      <vs-main-nav-list-item
-        slot="main-nav-items"
+      <vs-mobile-nav-list-item
+        slot="mobile-nav-items"
         v-for="(item, index) in mainNav"
         :level="1"
         :href="item.href"
@@ -207,7 +207,7 @@ export default {
         :key="index"
       >
 
-        <vs-main-nav-list-item
+        <vs-mobile-nav-list-item
           slot="subnav"
           v-for="(level2, index2) in item.subnav"
           :level="2"
@@ -220,7 +220,7 @@ export default {
           :promo-item="level2.promoItem"
           :key="index2"
         >
-          <vs-main-nav-list-item
+          <vs-mobile-nav-list-item
             slot="subnav"
             v-for="(level3, index3) in level2.subnav"
             :level="3"
@@ -233,9 +233,9 @@ export default {
             :promo-item="level3.promoItem"
             :key="index3"
           >
-          </vs-main-nav-list-item>
-        </vs-main-nav-list-item>
-      </vs-main-nav-list-item>
+          </vs-mobile-nav-list-item>
+        </vs-mobile-nav-list-item>
+      </vs-mobile-nav-list-item>
     </vs-header>
   </div>
   ```

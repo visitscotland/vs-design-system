@@ -1,14 +1,14 @@
 <template>
   <component
     :is="type"
-    class="vs-main-nav__list-item"
-    :class="'vs-main-nav__list-item--level' + level"
+    class="vs-mobile-nav__list-item"
+    :class="'vs-mobile-nav__list-item--level' + level"
   >
     <button
       v-if="hasChildren"
-      class="vs-main-nav__button"
+      class="vs-mobile-nav__button"
       :class="{
-        ['vs-main-nav__button--level' + level]: level,
+        ['vs-mobile-nav__button--level' + level]: level,
       }"
       ref="trigger"
       data-test-trigger
@@ -18,9 +18,9 @@
     >
       {{ title }}
       <div
-        class="vs-main-nav__icon-wrapper vs-main-nav__icon-wrapper--spin"
+        class="vs-mobile-nav__icon-wrapper vs-mobile-nav__icon-wrapper--spin"
         :class="{
-          'vs-main-nav__icon-wrapper--expanded': show,
+          'vs-mobile-nav__icon-wrapper--expanded': show,
           ['level' + level]: level,
         }"
       >
@@ -29,11 +29,11 @@
     </button>
     <a
       v-else
-      class="vs-main-nav__link"
+      class="vs-mobile-nav__link"
       :href="href"
       :class="{
         external: isExternal,
-        ['vs-main-nav__link--level' + level]: level,
+        ['vs-mobile-nav__link--level' + level]: level,
       }"
       :target="isExternal ? '_blank' : false"
       :data-vs-track="trackingId"
@@ -44,22 +44,22 @@
         <ul
           class="list-unstyled"
           :class="{
-            ['vs-main-nav__list--level' + incrementLevel]: incrementLevel,
+            ['vs-mobile-nav__list--level' + incrementLevel]: incrementLevel,
           }"
         >
           <li
-            class="vs-main-nav__list-item"
+            class="vs-mobile-nav__list-item"
             :class="{
-              ['vs-main-nav__list-item--level' + incrementLevel]: incrementLevel,
+              ['vs-mobile-nav__list-item--level' + incrementLevel]: incrementLevel,
             }"
             v-if="href !== null"
           >
             <a
-              class="vs-main-nav__link vs-main-nav__link--landing-page"
+              class="vs-mobile-nav__link vs-mobile-nav__link--landing-page"
               :href="href"
               :class="[
                 isExternal ? 'external' : '',
-                level ? 'vs-main-nav__link--level' + incrementLevel : '',
+                level ? 'vs-mobile-nav__link--level' + incrementLevel : '',
               ]"
               :target="isExternal ? '_blank' : false"
               :data-vs-track="trackingId"
@@ -68,7 +68,7 @@
           </li>
           <slot name="subnav" />
         </ul>
-        <VsMainNavPromoItem
+        <VsMobileNavPromoItem
           v-if="promoItem"
           :href="promoItem.href"
           :is-external="promoItem.isExternal"
@@ -77,7 +77,7 @@
           :description="promoItem.description"
           :image-link="promoItem.imageLink"
         />
-        <VsMainNavPromoList v-if="promoList" :list="promoList" />
+        <VsMobileNavPromoList v-if="promoList" :list="promoList" />
       </div>
     </transition>
   </component>
@@ -88,7 +88,7 @@ import VsIcon from "../../../../elements/icon/Icon"
 import { BCollapse, VBToggle } from "bootstrap-vue"
 
 export default {
-  name: "VsMainNavListItem",
+  name: "VsMobileNavListItem",
   status: "prototype",
   release: "0.0.1",
   components: { VsIcon, BCollapse },
@@ -176,7 +176,7 @@ export default {
 @import "../../styles/placeholders";
 @import "../../styles/animations";
 
-.vs-main-nav__list {
+.vs-mobile-nav__list {
   height: 100vh;
   left: 0;
   position: absolute;
@@ -199,7 +199,7 @@ export default {
   }
 }
 
-.vs-main-nav__icon-wrapper {
+.vs-mobile-nav__icon-wrapper {
   &--spin {
     margin-left: 5px;
     transition: transform 250ms;
@@ -211,12 +211,12 @@ export default {
   }
 }
 
-.vs-main-nav__button {
+.vs-mobile-nav__button {
   @extend %button-reset;
 }
 
-.vs-main-nav__button,
-.vs-main-nav__link {
+.vs-mobile-nav__button,
+.vs-mobile-nav__link {
   align-items: center;
   border-bottom: 1px solid $gray-tint-6;
   color: $color-base-text;
@@ -282,7 +282,7 @@ export default {
   }
 }
 
-.vs-main-nav__link {
+.vs-mobile-nav__link {
   &--landing-page {
     background-color: $color-white;
     color: $color-pink;
@@ -305,7 +305,7 @@ export default {
 
   <div class="vs-header">
     <ul style="list-style-type: none; margin: 0; padding: 0;">
-      <vs-main-nav-list-item
+      <vs-mobile-nav-list-item
         :level="1"
         :href="item.href"
         :is-external="item.isExternal"
@@ -314,7 +314,7 @@ export default {
         :promo-list="item.promoList"
         :promo-item="item.promoItem"
       >
-      <vs-main-nav-list-item
+      <vs-mobile-nav-list-item
           slot="subnav"
           v-for="(level2, index2) in item.subnav"
           :level="2"
@@ -326,7 +326,7 @@ export default {
           :promo-item="level2.promoItem"
           :key="index2"
         >
-          <vs-main-nav-list-item
+          <vs-mobile-nav-list-item
             slot="subnav"
             v-for="(level3, index3) in level2.subnav"
             :level="3"
@@ -338,9 +338,9 @@ export default {
             :promo-item="level3.promoItem"
             :key="index3"
           >
-          </vs-main-nav-list-item>
-        </vs-main-nav-list-item>
-      </vs-main-nav-list-item>
+          </vs-mobile-nav-list-item>
+        </vs-mobile-nav-list-item>
+      </vs-mobile-nav-list-item>
       </ul>
   </div>
   ```

@@ -1,7 +1,8 @@
 <template>
   <component :is="type" class="vs-logo" href="#">
     <span class="sr-only">VisitScotland Home</span>
-    <vs-svg path="scotland-alba-logo" height="18" />
+    <span class="d-lg-none"> <vs-svg path="scotland-alba-logo" height="18" /> </span>
+    <span class="d-none d-lg-block"> <vs-svg path="scotland-alba-logo" height="22" /> </span>
   </component>
 </template>
 

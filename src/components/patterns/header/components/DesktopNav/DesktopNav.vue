@@ -1,33 +1,19 @@
 <template>
-  <component :is="type">
-    <b-collapse id="collapse-mobile-nav">
-      <div class="vs-mobile-nav__wrapper">
-        <vs-container>
-          <vs-row no-gutters>
-            <vs-col>
-              <nav class="vs-mobile-nav" :aria-label="name">
-                <ul class="vs-mobile-nav__list vs-mobile-nav__list--level1 list-unstyled">
-                  <slot />
-                </ul>
-              </nav>
-            </vs-col>
-          </vs-row>
-        </vs-container>
-      </div>
-    </b-collapse>
+  <component :is="type" :aria-label="name">
+    <ul class="vs-desktop-nav__list vs-desktop-nav__list--level1 list-unstyled">
+      <slot />
+    </ul>
   </component>
 </template>
 
 <script>
-import VsMobileNavListItem from "./MobileNavListItem"
 import { BCollapse } from "bootstrap-vue"
 
 export default {
-  name: "VsMobileNav",
+  name: "VsDesktopNav",
   status: "prototype",
   release: "0.0.1",
   components: {
-    VsMobileNavListItem,
     BCollapse,
   },
   data() {
@@ -41,7 +27,7 @@ export default {
      */
     type: {
       type: String,
-      default: "div",
+      default: "nav",
     },
     name: {
       type: String,
@@ -57,35 +43,6 @@ export default {
 @import "~bootstrap/scss/type";
 @import "~bootstrap/scss/utilities/screenreaders";
 @import "../../styles/placeholders";
-
-.vs-mobile-nav__wrapper {
-  background-color: $color-white;
-  box-shadow: inset 0 8px 6px -6px rgba(0, 0, 0, 0.3);
-}
-
-.vs-mobile-nav {
-  display: flex;
-  margin: 0 -1rem;
-}
-
-.vs-mobile-nav__button {
-  @extend %button-reset;
-  @extend %main-nav-button-style;
-
-  &:focus {
-    @extend %focus-pink-inset;
-  }
-}
-
-.vs-mobile-nav__list {
-  height: 100vh;
-  width: 100%;
-  z-index: 2;
-
-  @include media-breakpoint-up(md) {
-    top: 50px;
-  }
-}
 </style>
 
 <docs>
@@ -93,8 +50,8 @@ export default {
   const mainNav = require("../../../../../assets/fixtures/mainNav.json")
 
   <div class="vs-header" style="position: relative; height: 100vh;">
-    <vs-mobile-nav name="Mobile navigation"> 
-      <vs-mobile-nav-list-item
+    <vs-desktop-nav name="Desktop navigation"> 
+      <vs-desktop-nav-list-item
         v-for="(item, index) in mainNav"
         :level="1"
         :href="item.href"
@@ -106,7 +63,7 @@ export default {
         :promo-item="item.promoItem"
         :key="index"
       >
-      <vs-mobile-nav-list-item
+      <vs-desktop-nav-list-item
           slot="subnav"
           v-for="(level2, index2) in item.subnav"
           :level="2"
@@ -119,7 +76,7 @@ export default {
           :promo-item="level2.promoItem"
           :key="index2"
         >
-          <vs-mobile-nav-list-item
+          <vs-desktop-nav-list-item
             slot="subnav"
             v-for="(level3, index3) in level2.subnav"
             :level="3"
@@ -132,10 +89,10 @@ export default {
             :promo-item="level3.promoItem"
             :key="index3"
           >
-          </vs-mobile-nav-list-item>
-        </vs-mobile-nav-list-item>
-      </vs-mobile-nav-list-item>
-    </vs-mobile-nav>
+          </vs-desktop-nav-list-item>
+        </vs-desktop-nav-list-item>
+      </vs-desktop-nav-list-item>
+    </vs-desktop-nav>
   </div>
   ```
 </docs>

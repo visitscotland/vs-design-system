@@ -1,16 +1,16 @@
-const VsUniversalNav = require("./UniversalNav.vue").default
+const VsMobileUniversalNav = require("./MobileUniversalNav.vue").default
 const { vueHelper } = require("@cypress/helpers/index.js").default
 const sizes = ["iphone-6", "ipad-2", [1024, 768]]
-const ourSites = require("../../../../assets/fixtures/ourSites.json")
+const ourSites = require("../../../../../assets/fixtures/ourSites.json")
 
 const props = {
   name: "Our Sites",
   dropdownList: ourSites,
 }
 
-vueHelper.init("vs-universal-nav", VsUniversalNav, props)
+vueHelper.init("vs-mobile-universal-nav", VsMobileUniversalNav, props)
 
-describe("Universal Nav component", () => {
+describe("Mobile Universal Nav component", () => {
   sizes.forEach(size => {
     context(`${size} resolution`, () => {
       beforeEach(() => {

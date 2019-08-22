@@ -1,5 +1,6 @@
 import VsHeader from "./Header"
-import VsUniversalNav from "./components/UniversalNav/UniversalNav"
+import VsMobileUniversalNav from "./components/MobileUniversalNav/MobileUniversalNav"
+import VsDesktopUniversalNav from "./components/DesktopUniversalNav/DesktopUniversalNav"
 import VsLanguage from "./components/Language/Language"
 import VsLogin from "./components/Login/Login"
 import VsFavouritesList from "./components/Favourites/FavouritesList"
@@ -11,12 +12,13 @@ import VsSearch from "./components/Search/Search"
 import VsSearchButton from "./components/SearchButton/SearchButton"
 import VsSkipToContent from "./components/SkipToContent/SkipToContent"
 import VsSkipToSearch from "./components/SkipToSearch/SkipToSearch"
-import VsMainNavListItem from "./components/MainNavListItem/MainNavListItem"
-import VsMainNavPromoItem from "./components/MainNavPromoItem/MainNavPromoItem"
-import VsMainNavPromoList from "./components/MainNavPromoList/MainNavPromoList"
+import VsMobileNavListItem from "./components/MobileNavListItem/MobileNavListItem"
+import VsMobileNavPromoItem from "./components/MobileNavPromoItem/MobileNavPromoItem"
+import VsMobileNavPromoList from "./components/MobileNavPromoList/MobileNavPromoList"
 
 export {
-  VsUniversalNav,
+  VsMobileUniversalNav,
+  VsDesktopUniversalNav,
   VsLanguage,
   VsFavouritesList,
   VsFavouritesButton,
@@ -25,9 +27,9 @@ export {
   VsLogo,
   VsMobileNav,
   VsMobileNavButton,
-  VsMainNavListItem,
-  VsMainNavPromoList,
-  VsMainNavPromoItem,
+  VsMobileNavListItem,
+  VsMobileNavPromoList,
+  VsMobileNavPromoItem,
   VsSearch,
   VsSearchButton,
   VsSkipToContent,
