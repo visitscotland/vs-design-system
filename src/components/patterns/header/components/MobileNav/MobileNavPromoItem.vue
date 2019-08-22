@@ -22,7 +22,7 @@
 import VsIcon from "../../../../elements/icon/Icon"
 
 export default {
-  name: "VsMainNavPromoItem",
+  name: "VsMobileNavPromoItem",
   status: "prototype",
   release: "0.0.1",
   components: { VsIcon },
@@ -125,7 +125,7 @@ export default {
   const mainNav = require("../../../../../assets/fixtures/mainNav.json")
   const promoItem = mainNav[2].promoItem
   <div>
-    <vs-main-nav-promo-item
+    <vs-mobile-nav-promo-item
       :href="promoItem.href"
       :is-external="promoItem.isExternal"
       :title="promoItem.title"

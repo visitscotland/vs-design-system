@@ -1,7 +1,7 @@
 <template>
   <component
     :is="type"
-    class="vs-main-nav__button"
+    class="vs-mobile-nav__button"
     id="mobilenavbutton"
     v-b-toggle.collapse-mobile-nav
     @click="handleClick()"
@@ -58,7 +58,7 @@ export default {
 @import "../../styles/placeholders";
 @import "../../styles/animations";
 
-.vs-main-nav__button {
+.vs-mobile-nav__button {
   @extend %button-reset;
   @extend %main-nav-button-style;
 

@@ -52,7 +52,7 @@ import VsIcon from "../../../../elements/icon/Icon"
 import { ClickOutside } from "../../../../../directives/ClickOutside.js"
 
 export default {
-  name: "VsUniversalNav",
+  name: "VsMobileUniversalNav",
   status: "prototype",
   release: "0.0.1",
   components: {
@@ -130,7 +130,7 @@ export default {
   const ourSites = require("../../../../../assets/fixtures/ourSites.json")
 
   <div style="position: relative; height: 100vh; display: flex; justify-content: space-between;">
-    <vs-universal-nav
+    <vs-mobile-universal-nav
         name="Our sites"
         :dropdown-list="ourSites"
     />

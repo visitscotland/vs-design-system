@@ -1,7 +1,7 @@
 <template>
   <component :is="type" class="list-unstyled">
     <li class="vs-promo__list-item" v-for="(item, index) in list" :key="index">
-      <VsMainNavPromoItem
+      <VsMobileNavPromoItem
         v-show="item && index === last"
         :href="item.href"
         :is-external="item.isExternal"
@@ -10,7 +10,7 @@
         :description="item.description"
         :image-link="item.imageLink"
       />
-      <VsMainNavListItem
+      <VsMobileNavListItem
         v-show="item && index !== last"
         :level="2"
         :href="item.href"
@@ -27,17 +27,17 @@
 
 <script>
 import VsSvg from "../../../../elements/svg/Svg"
-import VsMainNavPromoItem from "./MainNavPromoItem"
-import VsMainNavListItem from "./MainNavListItem"
+import VsMobileNavPromoItem from "./MobileNavPromoItem"
+import VsMobileNavListItem from "./MobileNavListItem"
 
 export default {
-  name: "VsMainNavPromoList",
+  name: "VsMobileNavPromoList",
   status: "prototype",
   release: "0.0.1",
   components: {
     VsSvg,
-    VsMainNavPromoItem,
-    VsMainNavListItem,
+    VsMobileNavPromoItem,
+    VsMobileNavListItem,
   },
   data() {
     return {}
@@ -72,7 +72,7 @@ export default {
     const mainNav = require("../../../../../assets/fixtures/mainNav.json")
     const promoList = mainNav[4].promoList
     <div>
-      <vs-main-nav-promo-list
+      <vs-mobile-nav-promo-list
         :list="promoList"
       />
     </div>
