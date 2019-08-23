@@ -10,10 +10,11 @@
     "rimraf": "^3.0.0",
     "schema-utils": "^2.1.0",
     "webpack": "^4.39.2",
-    "webpack-cli": "^3.3.7",
-    "vs-dotcom-ds": "file:../../"
+    "webpack-cli": "^3.3.7"
   },
   "scripts": {
-    "build": "webpack --config webpack.config.js"
-  }
+    "build": "webpack --config webpack.config.js",
+    "preinstall": "npm link ../../"
+  },
+  "dependencies": {}
 }
