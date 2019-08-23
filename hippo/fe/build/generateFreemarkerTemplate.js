@@ -17,14 +17,14 @@ const optionsSchema = {
   },
 }
 
-function generateTemplateContent(componentName, component) {
+function generateTemplateContent(moduleName, mod) {
   let content = ""
 
-  content += '<#include "../imports.ftl">\n' + '<#include "../deps/vue.ftl">\n\n'
+  content += '<#include "../imports.ftl">\n' + '<#include "../vue-app-init.ftl">\n\n'
 
   content =
     reduce(
-      component.styles,
+      mod.styles,
       function(content, path) {
         return content + generateTemplateContentStyle(path)
       },
@@ -32,31 +32,30 @@ function generateTemplateContent(componentName, component) {
     ) + "\n"
 
   content = reduce(
-    component.scripts,
+    mod.scripts,
     function(content, path) {
       return content + generateTemplateContentScript(path)
     },
     content
   )
 
-  if (startsWith(componentName, "store")) {
-    content += generateTemplateContentStoreScript(componentName)
+  if (startsWith(moduleName, "store")) {
+    content += generateTemplateContentStoreScript(moduleName)
   } else {
-    content += generateTemplateContentRegisterScript(componentName)
+    content += generateTemplateContentRegisterScript(moduleName)
   }
 
   return content
 }
 
-function generateTemplateContentStoreScript(componentName) {
-  let scriptText = "vs.stores." + componentName + " = " + componentName + ".default"
+function generateTemplateContentStoreScript(moduleName) {
+  let scriptText = "vs.stores." + moduleName + " = " + moduleName + ".default"
 
   return generateTemplateContentScript(null, scriptText)
 }
 
-function generateTemplateContentRegisterScript(componentName) {
-  let scriptText =
-    "Vue.component('vs-" + kebabCase(componentName) + "', " + componentName + ".default)"
+function generateTemplateContentRegisterScript(moduleName) {
+  let scriptText = "Vue.component('vs-" + kebabCase(moduleName) + "', " + moduleName + ".default)"
 
   return generateTemplateContentScript(null, scriptText)
 }
@@ -102,10 +101,29 @@ function generateTemplateContentWebfilePath(path) {
   return "<@hst.webfile  path='design-system" + trimStart(path, "system-components") + "'/>"
 }
 
-function outputTemplate(component, componentName, targetPath) {
-  let targetFilePath = path.resolve(targetPath, kebabCase(componentName) + ".ftl")
+function outputTemplate(mod, moduleName, targetPath) {
+  let targetFilePath = path.join(
+    targetPath,
+    moduleSubPath(mod, moduleName),
+    moduleFileName(mod, moduleName)
+  )
 
-  fs.writeFileSync(targetFilePath, generateTemplateContent(componentName, component))
+  fs.writeFileSync(targetFilePath, generateTemplateContent(moduleName, mod))
+}
+
+function moduleSubPath(mod, moduleName) {
+  if (startsWith(moduleName, "store")) {
+    return "/stores"
+  }
+
+  return "/components"
+}
+
+function moduleFileName(mod, moduleName) {
+  if (startsWith(moduleName, "store")) {
+    moduleName = trimStart(moduleName, "store")
+  }
+  return kebabCase(moduleName) + ".ftl"
 }
 
 function prepTargetDir(targetPath) {
@@ -114,10 +132,12 @@ function prepTargetDir(targetPath) {
   }
 
   fs.mkdirSync(targetPath, { recursive: true })
+  fs.mkdirSync(path.join(targetPath, "components"))
+  fs.mkdirSync(path.join(targetPath, "stores"))
 }
 
 module.exports = function(manifest, a, b) {
-  const components = JSON.parse(manifest)
+  const modules = JSON.parse(manifest)
   const options = getOptions(this)
   const targetPath = options.targetPath || defaultTargetpath
 
@@ -125,7 +145,7 @@ module.exports = function(manifest, a, b) {
 
   prepTargetDir(targetPath)
 
-  each(components, partial(outputTemplate, partial.placeholder, partial.placeholder, targetPath))
+  each(modules, partial(outputTemplate, partial.placeholder, partial.placeholder, targetPath))
 
   return manifest
 }

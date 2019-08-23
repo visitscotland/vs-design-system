@@ -1,17 +1,18 @@
 const CopyPlugin = require("copy-webpack-plugin")
 const { CleanWebpackPlugin } = require("clean-webpack-plugin")
-const glob = require("glob")
 const path = require("path")
 
 const DEFAULT_SOURCE_PATH = "./node_modules/vs-dotcom-ds/dist/system-components"
 const DEFAULT_OUTPUT_PATH_ROOT = "../repository-data/webfiles/src/main/resources/site/"
 const ASSET_OUTPUT_PATH = "design-system"
 const TEMPLATE_OUTPUT_PATH = "freemarker/include/vs-dotcom-ds"
+const VUE_TEMPLATE_PATH = "./build/templates/vue-app-init.ftl"
 
 module.exports = function(env, argv) {
-  srcPath = path.resolve(argv["src-path"] || DEFAULT_SOURCE_PATH)
-  outputPath = path.resolve(__dirname, argv["output-path"] || DEFAULT_OUTPUT_PATH_ROOT)
-  assetOutputPath = path.join(outputPath, ASSET_OUTPUT_PATH)
+  const srcPath = path.resolve(__dirname, argv["src-path"] || DEFAULT_SOURCE_PATH)
+  const outputPath = path.resolve(__dirname, argv["output-path"] || DEFAULT_OUTPUT_PATH_ROOT)
+  const assetOutputPath = path.join(outputPath, ASSET_OUTPUT_PATH)
+  const templateOutputPath = path.join(outputPath, TEMPLATE_OUTPUT_PATH)
 
   return {
     mode: "production",
@@ -24,6 +25,10 @@ module.exports = function(env, argv) {
         {
           from: srcPath,
           to: assetOutputPath,
+        },
+        {
+          from: path.resolve(__dirname, VUE_TEMPLATE_PATH),
+          to: templateOutputPath,
         },
       ]),
       new CleanWebpackPlugin(),
@@ -45,7 +50,7 @@ module.exports = function(env, argv) {
             {
               loader: path.resolve("./build/generateFreemarkerTemplate.js"),
               options: {
-                targetPath: path.join(outputPath, TEMPLATE_OUTPUT_PATH),
+                targetPath: templateOutputPath,
               },
             },
           ],
