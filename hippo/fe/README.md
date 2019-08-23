@@ -21,11 +21,10 @@ This script does 2 things:
 1. Runs the `build:system:components` script in the root package
 2. Runs this package's webpack build
    - Copies all built assets from the `dist/system-components` folder into the parent Hippo app's webfiles folder for inclusion in the Hippo site
+   - Copies `vue-app-init.ftl` to Freemarker template location
    - Generates Freemarker templates for all Vue components and VueX stores listed in the `manifest.json` file
 
 ### Including components in the Hippo site
-
-/// missing step - including Vue app init
 
 1. Include the Vue freemarker template for the component you want to include
 

@@ -7,14 +7,14 @@
     "clean-webpack-plugin": "^3.0.0",
     "copy-webpack-plugin": "^5.0.4",
     "lodash": "^4.17.15",
-    "npm-run-all": "^4.1.5",
     "rimraf": "^3.0.0",
     "schema-utils": "^2.1.0",
     "webpack": "^4.39.2",
     "webpack-cli": "^3.3.7"
   },
   "scripts": {
-    "build": "npm run --prefix ../.. build:system:components && webpack --config webpack.config.js",
+    "build": "npm run --prefix ../.. build:system:components && npm run build:skip",
+    "build:skip": "webpack --config webpack.config.js",
     "preinstall": "npm link ../../"
   },
   "dependencies": {}
