@@ -1,7 +1,7 @@
 <template>
   <component :is="type" :aria-label="name">
     <ul class="list-unstyled">
-      <slot name="desktop-submenu" />
+      <slot />
     </ul>
   </component>
 </template>
@@ -42,7 +42,6 @@ export default {
   <div class="vs-header" style="position: relative; height: 100vh;">
     <vs-desktop-nav name="Desktop navigation"> 
       <vs-desktop-nav-submenu
-        slot="desktop-submenu"
         v-for="(item, index) in mainNav"
         :level="1"
         :href="item.href"

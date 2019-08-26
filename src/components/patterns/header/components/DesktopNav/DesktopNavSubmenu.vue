@@ -1,6 +1,5 @@
 <template>
   <component :is="type">
-    {{ title }}
     <b-collapse :id="formattedSubnavId" class="vs-desktop-submenu__wrapper">
       <vs-container>
         <vs-row class="justify-content-end">
