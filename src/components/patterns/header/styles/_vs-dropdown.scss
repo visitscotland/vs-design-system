@@ -1,7 +1,8 @@
+@import "mixins";
+
 .vs-dropdown__list {
-  background-color: shade($color-theme-primary, 20%);
+  background-color: $purple-shade-1;
   color: $color-white;
-  height: 100vh;
   left: 0;
   position: absolute;
   top: 28px;
@@ -10,30 +11,31 @@
   @include media-breakpoint-up(md) {
     top: 38px;
     height: auto;
-    min-width: 200px;
+    min-width: 130px;
     width: auto;
   }
 }
 
 .vs-dropdown__link {
   align-items: center;
-  border-bottom: 1px solid tint($color-theme-primary, 5%);
+  border-bottom: 1px solid $purple-tint-1;
   box-shadow: inset 0 0 0 0 transparent;
   color: $color-white;
   display: flex;
-  font-size: 1.5rem;
+  font-size: 0.75rem;
   font-weight: $font-weight-light;
-  padding: 0.75rem 1.25rem;
+  padding: 0.75rem;
   position: relative;
   transition: all 250ms ease-in-out;
   width: 100%;
 
   &:focus {
-    @extend %focus-white-inset;
+    @include focus-box-inset($purple-tint-5, 2px);
   }
 
   &:hover {
     color: $color-white;
+    background-color: $gray-shade-6;
   }
 }
 
