@@ -6,9 +6,9 @@
     v-b-toggle.collapse-search
     @click="setFocus()"
   >
-    <span class="d-md-none sr-only">Toggle Search</span>
+    <span class="d-xl-none sr-only">Toggle Search</span>
     <vs-icon name="search" size="sm" variant="reverse-white" />
-    <span class="d-none d-md-flex vs-search__search-button-text">
+    <span class="d-none d-xl-flex vs-search__search-button-text">
       <span class="sr-only">Toggle</span> Search
     </span>
   </component>
@@ -65,12 +65,16 @@ export default {
     outline: none;
     box-shadow: inset 0 -3px 0 0 $color-white;
 
-    @include media-breakpoint-up(md) {
+    @include media-breakpoint-up(xl) {
       box-shadow: 0 3px 0 0 $color-white;
     }
   }
 
-  @include media-breakpoint-up(md) {
+  @include media-breakpoint-up(sm) {
+    box-shadow: 0 5px 0 0 $color-pink;
+  }
+
+  @include media-breakpoint-up(xl) {
     align-items: center;
     box-shadow: 0 5px 0 0 $color-pink;
     display: flex;
