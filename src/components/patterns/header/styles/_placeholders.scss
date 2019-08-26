@@ -85,7 +85,7 @@
   z-index: 5;
 
   @include media-breakpoint-up(md) {
-    padding: 10px 5px;
+    padding: 10px;
   }
 
   &:focus {
@@ -95,13 +95,13 @@
 
   &:hover {
     background-color: $color-pink;
-    color: #fff;
+    color: $color-white;
   }
 
   span {
     font-weight: 400;
     font-size: 0.75rem;
     display: block;
-    color: #fff;
+    color: $color-white;
   }
 }
