@@ -20,7 +20,7 @@ const optionsSchema = {
 function generateTemplateContent(moduleName, mod) {
   let content = ""
 
-  content += '<#include "../imports.ftl">\n' + '<#include "../vue-app-init.ftl">\n\n'
+  content += '<#include "../../imports.ftl">\n' + '<#include "../vue-app-init.ftl">\n\n'
 
   content =
     reduce(

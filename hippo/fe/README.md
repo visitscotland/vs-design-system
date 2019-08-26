@@ -24,6 +24,12 @@ This script does 2 things:
    - Copies `vue-app-init.ftl` to Freemarker template location
    - Generates Freemarker templates for all Vue components and VueX stores listed in the `manifest.json` file
 
+You can skip step 1 by running the following script:
+
+```
+yarn build:skip
+```
+
 ### Including components in the Hippo site
 
 1. Include the Vue freemarker template for the component you want to include
