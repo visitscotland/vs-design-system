@@ -15,3 +15,7 @@ definitions:
         hst:componentconfigurationid: hst:pages/pagenotfound
         hst:pagetitle: Not Found Page
         hst:refId: pagenotfound
+      /demo:
+        jcr:primaryType: hst:sitemapitem
+        hst:componentconfigurationid: hst:pages/demopage
+        hst:pagetitle: Demo Page

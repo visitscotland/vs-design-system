@@ -1,9 +1,8 @@
 <#include "../include/imports.ftl">
-<#include "../include/vs-dotcom-ds/components/heading.ftl">
 
 <@hst.setBundle basename="essentials.homepage"/>
 <div>
-  <vs-heading sub="this heading is a Vue component"><@fmt.message key="homepage.title" var="title"/>${title?html}</vs-heading>
+  <h1><@fmt.message key="homepage.title" var="title"/>${title?html}</h1>
   <p><@fmt.message key="homepage.text" var="text"/>${text?html}</p>
   <#if !hstRequest.requestContext.cmsRequest>
     <p>
