@@ -25,25 +25,32 @@
     <div class="vs-header__wrapper--bottom position-relative">
       <vs-container>
         <vs-row>
-          <vs-col class="d-flex justify-content-between">
-            <slot name="logo" />
-            <div class="d-none d-lg-flex">
-              <vs-desktop-nav name="Main navigation">
-                <slot name="desktop-nav-items" />
-              </vs-desktop-nav>
-            </div>
-            <div class="vs-controls__wrapper d-flex">
-              <slot name="search-button" /> <slot name="favourites-button" />
-              <div class="d-lg-none"><slot name="mobile-nav-button" /></div>
+          <vs-col>
+            <div class="d-flex justify-content-between">
+              <slot name="logo" />
+              <ul
+                class="vs-desktop-nav__toggle-list d-none d-lg-flex justify-content-around list-unstyled m-0"
+              >
+                <slot name="desktop-nav-toggles" />
+              </ul>
+              <div class="vs-controls__wrapper d-flex">
+                <slot name="search-button" /> <slot name="favourites-button" />
+                <div class="d-lg-none"><slot name="mobile-nav-button" /></div>
+              </div>
             </div>
           </vs-col>
         </vs-row>
       </vs-container>
     </div>
     <slot name="search" /> <slot name="favourites-list" />
-    <vs-mobile-nav name="Main navigation" @setScrollOffset="setScrollOffset">
-      <slot name="mobile-nav-items" />
-    </vs-mobile-nav>
+    <div class="d-none d-lg-block">
+      <vs-desktop-nav name="Main navigation"> <slot name="desktop-submenu" /> </vs-desktop-nav>
+    </div>
+    <div class="d-lg-none">
+      <vs-mobile-nav name="Main navigation" @setScrollOffset="setScrollOffset">
+        <slot name="mobile-nav-items" />
+      </vs-mobile-nav>
+    </div>
   </component>
 </template>
 
@@ -104,9 +111,20 @@ export default {
 @import "~bootstrap/scss/utilities/text";
 @import "~bootstrap/scss/utilities/display";
 @import "~bootstrap/scss/utilities/flex";
+@import "~bootstrap/scss/utilities/spacing";
+@import "~bootstrap/scss/type";
 @import "~bootstrap/scss/utilities/position";
 @import "~bootstrap/scss/utilities/screenreaders";
 @import "styles/placeholders";
+
+.vs-desktop-nav__toggle-list {
+  width: 100%;
+  padding: 0 2rem;
+
+  @include media-breakpoint-up(xl) {
+    padding: 0 5rem;
+  }
+}
 
 .vs-header {
   position: relative;
@@ -147,7 +165,7 @@ export default {
   const mainNav = require("../../../assets/fixtures/mainNav.json")
   const favourite = require("../../../assets/fixtures/favourite.json")
 
-  <div style="overflow-y: scroll; height: 600px;">
+  <div style="overflow-y: scroll; min-height: 600px;">
     <vs-header>
       <vs-skip-to-content
         slot="skip-to-content"
@@ -193,6 +211,65 @@ export default {
         slot="search" />
       <vs-favourites-list
         slot="favourites-list" />
+      
+      <vs-desktop-nav-toggles
+        slot="desktop-nav-toggles"
+        v-for="(item, index) in mainNav"
+        :level="1"
+        :href="item.href"
+        :is-external="item.isExternal"
+        :title="item.title"
+        :subnav="item.subnav"
+        :promo-list="item.promoList"
+        :promo-item="item.promoItem"
+        :key="index"
+        :toggleId="index+1"
+      ></vs-desktop-nav-toggles>
+
+      <vs-desktop-nav-submenu
+        slot="desktop-submenu"
+        v-for="(item, index) in mainNav"
+        :level="1"
+        :href="item.href"
+        :is-external="item.isExternal"
+        :tracking-id="item.trackingId"
+        :title="item.title"
+        :subnav="item.subnav"
+        :promo-list="item.promoList"
+        :promo-item="item.promoItem"
+        :key="index"
+        :subnavId="index+1"
+      >
+        <vs-desktop-nav-list-item
+          slot="subnav"
+          v-for="(level2, index2) in item.subnav"
+          :level="2"
+          :href="level2.href"
+          :is-external="level2.isExternal"
+          :tracking-id="level2.trackingId"
+          :title="level2.title"
+          :subnav="level2.subnav"
+          :promo-list="level2.promoList"
+          :promo-item="level2.promoItem"
+          :key="index2"
+        >
+          <vs-desktop-nav-list-item
+            slot="subnav"
+            v-for="(level3, index3) in level2.subnav"
+            :level="3"
+            :href="level3.href"
+            :is-external="level3.isExternal"
+            :title="level3.title"
+            :tracking-id="level3.trackingId"
+            :subnav="level3.subnav"
+            :promo-list="level3.promoList"
+            :promo-item="level3.promoItem"
+            :key="index3"
+          >
+          </vs-desktop-nav-list-item>
+        </vs-desktop-nav-list-item>
+      </vs-desktop-nav-submenu>
+
       <vs-mobile-nav-list-item
         slot="mobile-nav-items"
         v-for="(item, index) in mainNav"
@@ -206,7 +283,6 @@ export default {
         :promo-item="item.promoItem"
         :key="index"
       >
-
         <vs-mobile-nav-list-item
           slot="subnav"
           v-for="(level2, index2) in item.subnav"
