@@ -85,14 +85,12 @@
 
 <script>
 import VsIcon from "../../../../elements/icon/Icon"
-import { BCollapse, VBToggle } from "bootstrap-vue"
 
 export default {
   name: "VsMobileNavListItem",
   status: "prototype",
   release: "0.0.1",
-  components: { VsIcon, BCollapse },
-  directives: { "b-toggle": VBToggle },
+  components: { VsIcon },
   data() {
     return {
       show: false,
