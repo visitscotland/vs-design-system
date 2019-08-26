@@ -84,7 +84,8 @@ export default {
 
 .vs-search__form-wrapper {
   background-color: $gray-tint-7;
-  box-shadow: inset 0 8px 6px -6px rgba(0, 0, 0, 0.3), 0 8px 6px -6px rgba(0, 0, 0, 0.3);
+  box-shadow: inset 0 8px 6px -6px rgba(0, 0, 0, 0.1), 0 8px 6px -6px rgba(0, 0, 0, 0.3);
+
   justify-content: space-between;
   padding: 1rem;
   left: 0;
