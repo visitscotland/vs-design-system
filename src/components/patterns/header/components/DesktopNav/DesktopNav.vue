@@ -1,25 +1,19 @@
 <template>
   <component :is="type" :aria-label="name">
-    <ul class="vs-desktop-nav__list vs-desktop-nav__list--level1 list-unstyled">
-      <slot />
+    <ul class="list-unstyled">
+      <slot name="desktop-submenu" />
     </ul>
   </component>
 </template>
 
 <script>
-import { BCollapse } from "bootstrap-vue"
-
 export default {
   name: "VsDesktopNav",
   status: "prototype",
   release: "0.0.1",
-  components: {
-    BCollapse,
-  },
+
   data() {
-    return {
-      show: false,
-    }
+    return {}
   },
   props: {
     /**
@@ -38,11 +32,7 @@ export default {
 
 <style lang="scss" scoped>
 @import "~bootstrap/scss/utilities/text";
-@import "~bootstrap/scss/utilities/display";
-@import "~bootstrap/scss/utilities/flex";
 @import "~bootstrap/scss/type";
-@import "~bootstrap/scss/utilities/screenreaders";
-@import "../../styles/placeholders";
 </style>
 
 <docs>
@@ -51,27 +41,29 @@ export default {
 
   <div class="vs-header" style="position: relative; height: 100vh;">
     <vs-desktop-nav name="Desktop navigation"> 
-      <vs-desktop-nav-list-item
+      <vs-desktop-nav-submenu
+        slot="desktop-submenu"
         v-for="(item, index) in mainNav"
         :level="1"
         :href="item.href"
         :is-external="item.isExternal"
+        :tracking-id="item.trackingId"
         :title="item.title"
         :subnav="item.subnav"
-        :tracking-id="item.trackingId"
         :promo-list="item.promoList"
         :promo-item="item.promoItem"
         :key="index"
+        :subnavId="index+1"
       >
-      <vs-desktop-nav-list-item
+        <vs-desktop-nav-list-item
           slot="subnav"
           v-for="(level2, index2) in item.subnav"
           :level="2"
           :href="level2.href"
           :is-external="level2.isExternal"
+          :tracking-id="level2.trackingId"
           :title="level2.title"
           :subnav="level2.subnav"
-          :tracking-id="item.trackingId"
           :promo-list="level2.promoList"
           :promo-item="level2.promoItem"
           :key="index2"
@@ -83,15 +75,15 @@ export default {
             :href="level3.href"
             :is-external="level3.isExternal"
             :title="level3.title"
+            :tracking-id="level3.trackingId"
             :subnav="level3.subnav"
-            :tracking-id="item.trackingId"
             :promo-list="level3.promoList"
             :promo-item="level3.promoItem"
             :key="index3"
           >
           </vs-desktop-nav-list-item>
         </vs-desktop-nav-list-item>
-      </vs-desktop-nav-list-item>
+      </vs-desktop-nav-submenu>
     </vs-desktop-nav>
   </div>
   ```
