@@ -58,6 +58,19 @@ export default {
 @import "~bootstrap/scss/utilities/screenreaders";
 @import "../../styles/placeholders";
 
+.collapse:not(.show) {
+  display: none;
+  opacity: 0;
+}
+
+.collapsing {
+  position: relative;
+  height: 0;
+  overflow: hidden;
+  opacity: 1;
+  transition: all 50ms ease-in-out;
+}
+
 .vs-mobile-nav__wrapper {
   background-color: $color-white;
   box-shadow: inset 0 8px 6px -6px rgba(0, 0, 0, 0.3);
