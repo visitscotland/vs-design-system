@@ -95,24 +95,12 @@ export default {
       })
     },
     collapseOtherMenus(openedId) {
-      var allPaneIds = [
-        "collapseSubnav1",
-        "collapseSubnav2",
-        "collapseSubnav3",
-        "collapseSubnav4",
-        "collapseSubnav5",
-        "collapse-search",
-        "collapse-favourites",
-      ]
-      allPaneIds.map(otherId => {
-        if (otherId !== openedId) {
-          var collapseElement = document.getElementById(otherId)
-          console.log(collapseElement)
-          //console.log(collapseElement.attr('aria-expanded'));
+      var allOpenedPanels = document.querySelectorAll(".collapse.show")
+      allOpenedPanels.forEach(panel => {
+        if (panel.id !== openedId) {
+          this.$root.$emit("bv::toggle::collapse", panel.id)
         }
       })
-
-      //this.$root.$emit('bv::hide::collapse', menuId)
     },
   },
   created() {
