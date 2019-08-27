@@ -2,7 +2,7 @@
   <component
     :is="type"
     class="vs-search__button"
-    id="searchbutton"
+    data-toggle-trigger
     v-b-toggle.collapse-search
     @click="setFocus()"
   >

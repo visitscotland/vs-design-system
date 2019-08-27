@@ -10,6 +10,7 @@
       :class="{
         ['vs-desktop-nav__button--level' + level]: level,
       }"
+      data-toggle-trigger
       v-b-toggle="formattedToggleId"
     >
       {{ title }}
@@ -92,7 +93,7 @@ export default {
       return false
     },
     formattedToggleId() {
-      return "subnav" + this.toggleId
+      return "collapseSubnav" + this.toggleId
     },
   },
 }
