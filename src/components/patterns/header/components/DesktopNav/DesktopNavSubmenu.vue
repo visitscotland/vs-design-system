@@ -2,7 +2,7 @@
   <component :is="type">
     <b-collapse :id="formattedSubnavId" class="vs-desktop-submenu__wrapper">
       <vs-container>
-        <vs-row class="justify-content-end">
+        <vs-row class="mb-3">
           <vs-col>
             <span class="vs-desktop-submenu__header">{{ title }}</span>
           </vs-col>
@@ -122,6 +122,7 @@ export default {
 <style lang="scss" scoped>
 @import "~bootstrap/scss/type";
 @import "~bootstrap/scss/utilities/position";
+@import "~bootstrap/scss/utilities/spacing";
 @import "~bootstrap/scss/utilities/flex";
 @import "~bootstrap/scss/utilities/screenreaders";
 @import "../../styles/placeholders";
@@ -135,22 +136,31 @@ export default {
 
 .vs-desktop-submenu__header {
   color: $gray-shade-2;
-  display: block;
+  display: inline-block;
   font-size: 2rem;
   font-weight: $font-weight-light;
   letter-spacing: 1px;
-  margin-bottom: 1rem;
   text-transform: uppercase;
+}
+
+.vs-desktop-submenu__close-button {
+  @extend %button-reset;
+  display: inline-block;
+  position: absolute;
+  right: 1rem;
+  height: 50px;
+  width: 50px;
 }
 
 .vs-desktop-submenu__landing-page-link {
   color: $color-white;
   background-color: $color-gray;
-  margin-bottom: -rem;
   display: block;
   padding: 0.5rem 1rem;
+  transition: background-color 250ms ease-in-out;
 
   &:hover {
+    background-color: $gray-shade-2;
     color: $color-white;
   }
 }
@@ -164,15 +174,6 @@ export default {
   @include media-breakpoint-up(xl) {
     min-width: 25%;
   }
-}
-
-.vs-desktop-submenu__close-button {
-  @extend %button-reset;
-  position: absolute;
-  height: 50px;
-  width: 50px;
-  top: 5px;
-  right: 1rem;
 }
 </style>
 
