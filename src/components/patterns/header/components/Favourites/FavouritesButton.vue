@@ -2,7 +2,7 @@
   <component
     :is="type"
     class="vs-favourites__button"
-    @click="addToFavourites()"
+    @click="handleClick()"
     v-b-toggle.collapse-favourites
   >
     <span class="sr-only">Add to Favourites</span>
@@ -59,7 +59,7 @@ export default {
     },
   },
   methods: {
-    addToFavourites() {
+    handleClick() {
       var inArray = this.favourites.filter(favourite => favourite.href === this.favouriteItem.href)
       if (inArray.length === 0) {
         this.$store.dispatch("favourites/addFavourite", this.favouriteItem)

@@ -79,16 +79,26 @@ export default {
 @import "~bootstrap/scss/utilities/screenreaders";
 @import "../../styles/placeholders";
 
+.collapse:not(.show) {
+  display: none;
+  opacity: 0;
+}
+
+.collapsing {
+  position: relative;
+  height: 0;
+  overflow: hidden;
+  opacity: 1;
+  transition: all 50ms ease-in-out;
+}
+
 .vs-favourites {
   position: relative;
 }
 
 .vs-favourites__wrapper {
+  @extend %default-inset-box-shadow;
   background-color: $gray-tint-7;
-  box-shadow: inset 0 8px 6px -6px rgba(0, 0, 0, 0.1), 0 8px 6px -6px rgba(0, 0, 0, 0.3);
-  display: flex;
-  justify-content: space-between;
-  left: 0;
   padding: 1rem;
   width: 100%;
 }

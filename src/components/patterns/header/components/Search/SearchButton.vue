@@ -4,6 +4,7 @@
     class="vs-search__button"
     data-toggle-trigger
     v-b-toggle.collapse-search
+    id="search-toggle-trigger"
     @click="setFocus()"
   >
     <span class="d-xl-none sr-only">Toggle Search</span>
