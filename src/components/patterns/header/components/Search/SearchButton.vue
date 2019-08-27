@@ -61,6 +61,7 @@ export default {
 
   background-color: $color-pink;
   color: $color-white;
+  z-index: 1;
 
   &:focus {
     outline: none;
