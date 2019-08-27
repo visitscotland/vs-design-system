@@ -1,8 +1,11 @@
 <template>
   <component
     :is="type"
-    class="vs-desktop-nav__list-item col-4 col-xl-3 pr-4"
-    :class="'vs-desktop-nav__list-item--level' + level"
+    class="vs-desktop-nav__list-item"
+    :class="{
+      ['vs-desktop-nav__list-item--level' + level]: level,
+      ['col-4 col-xl-3 pr-4']: level === 2,
+    }"
   >
     <a
       v-if="href !== null"
@@ -161,6 +164,22 @@ export default {
 
 .vs-desktop-nav__link {
   &--level2 {
+    &:focus {
+      color: $color-pink;
+      outline: none;
+      position: relative;
+
+      &::after {
+        content: "";
+        display: block;
+        background-color: $gray-tint-5;
+        width: 5px;
+        height: 100%;
+        position: absolute;
+        left: -1rem;
+        top: 0;
+      }
+    }
     &:hover {
       color: $color-pink;
     }
