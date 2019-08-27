@@ -148,6 +148,9 @@ export default {
     },
   },
   methods: {
+    reset() {
+      this.show = false
+    },
     triggerToggle() {
       this.show = !this.show
       let thisTrigger = this.$refs.trigger
@@ -161,6 +164,9 @@ export default {
     setOffsetScroll(offset) {
       this.$emit("setScrollOffset", offset)
     },
+  },
+  mounted() {
+    this.$root.$on("resetMenus", this.reset)
   },
 }
 </script>
