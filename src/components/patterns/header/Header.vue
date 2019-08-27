@@ -94,14 +94,35 @@ export default {
         top: offset > 0 ? offset + 68 : offset,
       })
     },
+    collapseOtherMenus(openedId) {
+      var allPaneIds = [
+        "collapseSubnav1",
+        "collapseSubnav2",
+        "collapseSubnav3",
+        "collapseSubnav4",
+        "collapseSubnav5",
+        "collapse-search",
+        "collapse-favourites",
+      ]
+      allPaneIds.map(otherId => {
+        if (otherId !== openedId) {
+          var collapseElement = document.getElementById(otherId)
+          console.log(collapseElement)
+          //console.log(collapseElement.attr('aria-expanded'));
+        }
+      })
+
+      //this.$root.$emit('bv::hide::collapse', menuId)
+    },
   },
   created() {
     smoothscroll.polyfill()
   },
   mounted() {
-    this.$root.$on("bv::collapse::state", (collapseId, isJustShown) => {
-      console.log("collapseId:", collapseId)
-      console.log("isJustShown:", isJustShown)
+    this.$root.$on("bv::collapse::state", (openedId, isOpen) => {
+      if (isOpen) {
+        this.collapseOtherMenus(openedId)
+      }
     })
   },
 }

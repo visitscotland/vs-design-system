@@ -68,13 +68,12 @@
 
 <script>
 import VsIcon from "../../../../elements/icon/Icon"
-import { BCollapse } from "bootstrap-vue"
 
 export default {
   name: "VsDesktopNavListItem",
   status: "prototype",
   release: "0.0.1",
-  components: { VsIcon, BCollapse },
+  components: { VsIcon },
   data() {
     return {}
   },
@@ -168,8 +167,24 @@ export default {
   }
 
   &--level3 {
+    &:focus {
+      color: $color-pink;
+      outline: none;
+      position: relative;
+
+      &::after {
+        content: "";
+        display: block;
+        background-color: $gray-tint-5;
+        width: 5px;
+        height: 100%;
+        position: absolute;
+        left: -1rem;
+        top: 0;
+      }
+    }
     &:hover {
-      @include focus-underline($color-theme-primary, -1px);
+      @include focus-underline($color-pink, -1px);
     }
   }
 }

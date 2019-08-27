@@ -1,13 +1,17 @@
 <template>
   <component :is="type">
-    <b-collapse :id="formattedSubnavId" class="vs-desktop-submenu__wrapper">
+    <b-collapse :id="formattedCollapsePaneId" class="vs-desktop-submenu__wrapper">
       <vs-container>
         <vs-row class="mb-3">
           <vs-col>
             <span class="vs-desktop-submenu__header">{{ title }}</span>
           </vs-col>
           <vs-col class="position-relative">
-            <button class="vs-desktop-submenu__close-button" v-b-toggle="formattedSubnavId">
+            <button
+              :id="formattedCollapseTriggerId"
+              class="vs-desktop-submenu__close-button"
+              v-b-toggle="formattedCollapsePaneId"
+            >
               <span class="sr-only">Close the {{ lowerCaseTitle }} submenu</span>
               <vs-icon name="close" size="xs" variant="dark" />
             </button>
@@ -108,8 +112,11 @@ export default {
     },
   },
   computed: {
-    formattedSubnavId() {
-      return "subnav" + this.subnavId
+    formattedCollapsePaneId() {
+      return "collapseSubnav" + this.subnavId
+    },
+    formattedCollapseTriggerId() {
+      return "collapseButton" + this.subnavId
     },
     lowerCaseTitle() {
       return this.title ? this.title.toLowerCase() : ""
@@ -126,6 +133,7 @@ export default {
 @import "~bootstrap/scss/utilities/flex";
 @import "~bootstrap/scss/utilities/screenreaders";
 @import "../../styles/placeholders";
+@import "../../styles/mixins";
 
 .vs-desktop-submenu__wrapper {
   @extend %default-box-shadow;
@@ -150,11 +158,17 @@ export default {
   right: 1rem;
   height: 50px;
   width: 50px;
+
+  &:hover,
+  &:focus {
+    @include focus-underline($color-pink);
+  }
 }
 
 .vs-desktop-submenu__landing-page-link {
   color: $color-white;
   background-color: $color-gray;
+  font-size: 1.1875rem;
   display: block;
   padding: 0.5rem 1rem;
   transition: background-color 250ms ease-in-out;
