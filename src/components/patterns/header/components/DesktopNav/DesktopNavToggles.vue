@@ -10,8 +10,9 @@
       :class="{
         ['vs-desktop-nav__button--level' + level]: level,
       }"
-      data-toggle-trigger
-      v-b-toggle="formattedToggleId"
+      :id="formattedToggleId"
+      v-b-toggle="formattedCollapsePaneId"
+      @click="setFocus()"
     >
       {{ title }}
     </button>
@@ -92,8 +93,19 @@ export default {
       }
       return false
     },
+    formattedCollapsePaneId() {
+      return "collapse-subnav-" + this.toggleId
+    },
     formattedToggleId() {
-      return "collapseSubnav" + this.toggleId
+      return "collapse-toggle-" + this.toggleId
+    },
+  },
+  methods: {
+    setFocus() {
+      var closeButton = "submenu-close-" + this.toggleId
+      setTimeout(() => {
+        document.getElementById(closeButton).focus()
+      }, 100)
     },
   },
 }
@@ -116,6 +128,7 @@ export default {
   padding: 0 0.5rem;
   position: relative;
 
+  &[aria-expanded="true"],
   &:hover,
   &:focus {
     @extend %focus-pink-inset;

@@ -41,15 +41,15 @@
           </vs-col>
         </vs-row>
       </vs-container>
-    </div>
-    <slot name="search" /> <slot name="favourites-list" />
-    <div class="d-none d-lg-block">
-      <vs-desktop-nav name="Main navigation"> <slot name="desktop-submenu" /> </vs-desktop-nav>
-    </div>
-    <div class="d-lg-none">
-      <vs-mobile-nav name="Main navigation" @setScrollOffset="setScrollOffset">
-        <slot name="mobile-nav-items" />
-      </vs-mobile-nav>
+      <slot name="search" /> <slot name="favourites-list" />
+      <div class="d-none d-lg-block">
+        <vs-desktop-nav name="Main navigation"> <slot name="desktop-submenu" /> </vs-desktop-nav>
+      </div>
+      <div class="d-lg-none">
+        <vs-mobile-nav name="Main navigation" @setScrollOffset="setScrollOffset">
+          <slot name="mobile-nav-items" />
+        </vs-mobile-nav>
+      </div>
     </div>
   </component>
 </template>

@@ -8,9 +8,10 @@
           </vs-col>
           <vs-col class="position-relative">
             <button
-              :id="formattedCollapseTriggerId"
               class="vs-desktop-submenu__close-button"
+              :id="formattedSubmenuCloseId"
               v-b-toggle="formattedCollapsePaneId"
+              @click="setFocusOnToggle()"
             >
               <span class="sr-only">Close the {{ lowerCaseTitle }} submenu</span>
               <vs-icon name="close" size="xs" variant="dark" />
@@ -43,7 +44,10 @@
           <li
             class="vs-desktop-submenu__list-item vs-desktop-submenu__list-item--landing-page-link"
           >
-            <a :href="href" class="vs-desktop-submenu__landing-page-link"
+            <a
+              :href="href"
+              class="vs-desktop-submenu__landing-page-link"
+              @keydown="checkKeydown($event)"
               >See all {{ lowerCaseTitle }}</a
             >
           </li>
@@ -113,16 +117,32 @@ export default {
   },
   computed: {
     formattedCollapsePaneId() {
-      return "collapseSubnav" + this.subnavId
+      return "collapse-subnav-" + this.subnavId
     },
-    formattedCollapseTriggerId() {
-      return "collapseButton" + this.subnavId
+    formattedSubmenuCloseId() {
+      return "submenu-close-" + this.subnavId
     },
     lowerCaseTitle() {
       return this.title ? this.title.toLowerCase() : ""
     },
   },
-  methods: {},
+  methods: {
+    close() {
+      this.setFocusOnToggle()
+      this.$root.$emit("bv::toggle::collapse", this.formattedCollapsePaneId)
+    },
+    checkKeydown($event) {
+      if ($event.key === "Tab" && !$event.shiftKey) {
+        this.close()
+      }
+    },
+    setFocusOnToggle() {
+      var menuToggle = "collapse-toggle-" + this.subnavId
+      setTimeout(() => {
+        document.getElementById(menuToggle).focus()
+      }, 100)
+    },
+  },
 }
 </script>
 
@@ -135,8 +155,21 @@ export default {
 @import "../../styles/placeholders";
 @import "../../styles/mixins";
 
+.collapse:not(.show) {
+  display: none;
+  opacity: 0;
+}
+
+.collapsing {
+  position: relative;
+  height: 0;
+  overflow: hidden;
+  opacity: 1;
+  transition: all 50ms ease-in-out;
+}
+
 .vs-desktop-submenu__wrapper {
-  @extend %default-box-shadow;
+  @extend %default-inset-box-shadow;
   position: relative;
   margin-bottom: 40px;
   padding: 40px 0;

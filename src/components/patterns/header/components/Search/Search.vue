@@ -59,8 +59,22 @@ export default {
     }
   },
   methods: {
+    close() {
+      this.setFocusOnToggle()
+      this.$root.$emit("bv::toggle::collapse", "collapse-search")
+    },
+    checkKeydown($event) {
+      if ($event.key === "Tab" && !$event.shiftKey) {
+        this.close()
+      }
+    },
     clearSearchField() {
       this.searchTerm = ""
+    },
+    setFocusOnToggle() {
+      setTimeout(() => {
+        document.getElementById("search-toggle-trigger").focus()
+      }, 100)
     },
   },
   props: {
@@ -82,15 +96,24 @@ export default {
 @import "~bootstrap/scss/utilities/screenreaders";
 @import "../../styles/placeholders";
 
-.vs-search__form-wrapper {
-  background-color: $gray-tint-7;
-  box-shadow: inset 0 8px 6px -6px rgba(0, 0, 0, 0.1), 0 8px 6px -6px rgba(0, 0, 0, 0.3);
+.collapse:not(.show) {
+  display: none;
+  opacity: 0;
+}
 
-  justify-content: space-between;
+.collapsing {
+  position: relative;
+  height: 0;
+  overflow: hidden;
+  opacity: 1;
+  transition: all 50ms ease-in-out;
+}
+
+.vs-search__form-wrapper {
+  @extend %default-inset-box-shadow;
+  background-color: $gray-tint-7;
   padding: 1rem;
-  left: 0;
   width: 100%;
-  z-index: 1;
 }
 
 .vs-search__form {
