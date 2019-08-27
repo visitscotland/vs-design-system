@@ -3,10 +3,8 @@
     <b-collapse :id="formattedCollapsePaneId" class="vs-desktop-submenu__wrapper">
       <vs-container>
         <vs-row class="mb-3">
-          <vs-col>
-            <span class="vs-desktop-submenu__header">{{ title }}</span>
-          </vs-col>
           <vs-col class="position-relative">
+            <span class="vs-desktop-submenu__header">{{ title }}</span>
             <button
               class="vs-desktop-submenu__close-button"
               :id="formattedSubmenuCloseId"
