@@ -59,12 +59,18 @@ export default {
   methods: {
     checkFavouritesLength() {
       if (this.favourites.length === 0) {
+        this.setFocusOnToggle()
         this.$root.$emit("bv::toggle::collapse", "collapse-favourites")
       }
     },
     deleteFavourite(href) {
       this.$store.dispatch("favourites/deleteFavourite", href)
       this.checkFavouritesLength()
+    },
+    setFocusOnToggle() {
+      setTimeout(() => {
+        document.getElementById("favourites-toggle-trigger").focus()
+      }, 100)
     },
   },
 }

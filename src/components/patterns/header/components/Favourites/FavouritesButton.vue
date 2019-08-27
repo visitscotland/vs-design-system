@@ -3,6 +3,7 @@
     :is="type"
     class="vs-favourites__button"
     @click="handleClick()"
+    id="favourites-toggle-trigger"
     v-b-toggle.collapse-favourites
   >
     <span class="sr-only">Add to Favourites</span>

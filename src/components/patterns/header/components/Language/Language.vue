@@ -1,6 +1,6 @@
 <template>
   <component :is="type" class="vs-dropdown" :aria-label="name">
-    <button class="vs-dropdown__button" v-b-toggle.language-list>
+    <button class="vs-dropdown__button" id="language-toggle-trigger" v-b-toggle.language-list>
       <span v-if="selectedLanguage !== null">
         <span class="sr-only">Currently selected language is </span>
         <abbr :title="selectedLanguage.title">{{ selectedLanguage.abbreviation }}</abbr>
@@ -82,10 +82,16 @@ export default {
       }
     },
     close() {
+      this.setFocusOnToggle()
       this.$root.$emit("bv::toggle::collapse", "language-list")
     },
     setSelectedLanguage(language) {
       this.selectedLanguage = language
+    },
+    setFocusOnToggle() {
+      setTimeout(() => {
+        document.getElementById("language-toggle-trigger").focus()
+      }, 100)
     },
   },
 }
