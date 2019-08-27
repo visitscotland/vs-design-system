@@ -101,6 +101,7 @@ export default {
           this.$root.$emit("bv::toggle::collapse", panel.id)
         }
       })
+      this.$emit("resetMenus")
     },
   },
   created() {
