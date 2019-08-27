@@ -3,6 +3,8 @@ import VsMobileUniversalNav from "./components/MobileUniversalNav/MobileUniversa
 import VsDesktopUniversalNav from "./components/DesktopUniversalNav/DesktopUniversalNav"
 import VsLanguage from "./components/Language/Language"
 import VsLogin from "./components/Login/Login"
+import VsFavouritesList from "./components/Favourites/FavouritesList"
+import VsFavouritesButton from "./components/Favourites/FavouritesButton"
 import VsLogo from "./components/Logo/Logo"
 import VsDesktopNav from "./components/DesktopNav/DesktopNav"
 import VsDesktopNavToggles from "./components/DesktopNav/DesktopNavToggles"
@@ -24,6 +26,8 @@ export {
   VsMobileUniversalNav,
   VsDesktopUniversalNav,
   VsLanguage,
+  VsFavouritesList,
+  VsFavouritesButton,
   VsHeader,
   VsLogin,
   VsLogo,
