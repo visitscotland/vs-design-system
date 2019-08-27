@@ -1,27 +1,13 @@
 <template>
-  <component :is="type" class="vs-dropdown" :aria-label="name" v-click-outside="reset">
-    <button
-      class="vs-dropdown__button"
-      ref="trigger"
-      data-test-trigger
-      @click="triggerToggle()"
-      aria-haspopup="true"
-      :aria-expanded="show ? 'true' : 'false'"
-    >
+  <component :is="type" class="vs-dropdown" :aria-label="name">
+    <button class="vs-dropdown__button" v-b-toggle.collapse-universal-nav>
       <span> <span class="sr-only">Toggle menu for </span>{{ name }}</span>
       <div class="vs-dropdown__icon-wrapper">
         <vs-icon name="chevron-down" variant="reverse-white" size="xxs" />
       </div>
     </button>
-    <transition name="slide-fade">
-      <ul
-        aria-role="menubar"
-        :aria-label="name"
-        class="vs-dropdown__list list-unstyled"
-        :class="{ expanded: show }"
-        data-toggle-pane
-        v-show="show"
-      >
+    <b-collapse id="collapse-universal-nav">
+      <ul aria-role="menubar" :aria-label="name" class="vs-dropdown__list list-unstyled">
         <li
           role="none"
           class="vs-dropdown__list-item"
@@ -43,13 +29,13 @@
           </a>
         </li>
       </ul>
-    </transition>
+    </b-collapse>
   </component>
 </template>
 
 <script>
 import VsIcon from "../../../../elements/icon/Icon"
-import { ClickOutside } from "../../../../../directives/ClickOutside.js"
+import { VBToggle, BCollapse } from "bootstrap-vue"
 
 export default {
   name: "VsMobileUniversalNav",
@@ -57,11 +43,11 @@ export default {
   release: "0.0.1",
   components: {
     VsIcon,
+    BCollapse,
   },
+  directives: { "b-toggle": VBToggle },
   data() {
-    return {
-      show: false,
-    }
+    return {}
   },
   props: {
     /**
@@ -87,29 +73,12 @@ export default {
   methods: {
     checkKeydown($event, isLast) {
       if ($event.key === "Tab" && !$event.shiftKey && isLast) {
-        this.show = false
+        this.close()
       }
     },
-    onClose() {
-      this.show = false
+    close() {
+      this.$root.$emit("bv::toggle::collapse", "collapse-universal-nav")
     },
-    reset() {
-      this.show = false
-    },
-    triggerToggle() {
-      let currentState = this.show
-      this.$root.$emit("resetMenus")
-      if (currentState === false) {
-        this.show = true
-      }
-      this.$refs.trigger.blur()
-    },
-  },
-  directives: {
-    ClickOutside,
-  },
-  mounted() {
-    this.$root.$on("resetMenus", this.reset)
   },
 }
 </script>
