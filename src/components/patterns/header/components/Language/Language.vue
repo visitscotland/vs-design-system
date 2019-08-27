@@ -101,19 +101,6 @@ export default {
 @import "../../styles/animations";
 @import "../../styles/vs-dropdown";
 
-.collapse:not(.show) {
-  display: none;
-  opacity: 0;
-}
-
-.collapsing {
-  position: relative;
-  height: 0;
-  overflow: hidden;
-  opacity: 1;
-  transition: all 50ms ease-in-out;
-}
-
 .vs-dropdown--language .vs-dropdown__list {
   left: auto;
   right: 0;
