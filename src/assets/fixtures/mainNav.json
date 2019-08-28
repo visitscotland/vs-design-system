@@ -316,14 +316,14 @@
         "trackingId": "nav.link.test-tracking-id",
         "subnav": [
           {
-            "title": "Accessible accommodation",
+            "title": "Accessible places to stay",
             "href": "https://www.visitscotland.com/accommodation/accessible",
             "isExternal": false,
             "isActive": false,
             "trackingId": "nav.link.test-tracking-id"
           },
           {
-            "title": "B&Bs and Guesthouses",
+            "title": "B&Bs and guesthouses",
             "href": "https://www.visitscotland.com/accommodation/bandbs-guesthouses",
             "isExternal": false,
             "isActive": false,
@@ -337,29 +337,15 @@
             "trackingId": "nav.link.test-tracking-id"
           },
           {
-            "title": "Caravan holidays and camping in Scotland",
+            "title": "Camping and caravans",
             "href": "https://www.visitscotland.com/accommodation/caravan-camping",
             "isExternal": false,
             "isActive": false,
             "trackingId": "nav.link.test-tracking-id"
           },
           {
-            "title": "Eco accommodation",
+            "title": "Eco-friendly and green",
             "href": "https://www.visitscotland.com/accommodation/eco-green",
-            "isExternal": false,
-            "isActive": false,
-            "trackingId": "nav.link.test-tracking-id"
-          },
-          {
-            "title": "Exclusive use venues",
-            "href": "https://www.visitscotland.com/accommodation/exclusive-use-venues",
-            "isExternal": false,
-            "isActive": false,
-            "trackingId": "nav.link.test-tracking-id"
-          },
-          {
-            "title": "Glamping",
-            "href": "https://www.visitscotland.com/accommodation/caravan-camping/glamping",
             "isExternal": false,
             "isActive": false,
             "trackingId": "nav.link.test-tracking-id"
@@ -372,22 +358,8 @@
             "trackingId": "nav.link.test-tracking-id"
           },
           {
-            "title": "Hotels",
-            "href": "https://www.visitscotland.com/accommodation/hotels",
-            "isExternal": false,
-            "isActive": false,
-            "trackingId": "nav.link.test-tracking-id"
-          },
-          {
-            "title": "Restaurants with rooms and inns",
+            "title": "Inns",
             "href": "https://www.visitscotland.com/accommodation/inns-restaurants-with-rooms",
-            "isExternal": false,
-            "isActive": false,
-            "trackingId": "nav.link.test-tracking-id"
-          },
-          {
-            "title": "Quality assurance",
-            "href": "https://www.visitscotland.com/accommodation/quality-assurance",
             "isExternal": false,
             "isActive": false,
             "trackingId": "nav.link.test-tracking-id"
@@ -398,17 +370,84 @@
             "isExternal": false,
             "isActive": false,
             "trackingId": "nav.link.test-tracking-id"
-          },
+          }
+        ]
+      },
+      {
+        "title": "Hotels",
+        "href": null,
+        "isExternal": false,
+        "isActive": false,
+        "trackingId": "nav.link.test-tracking-id",
+        "subnav": [
           {
-            "title": "Unusual places to stay",
-            "href": "https://www.visitscotland.com/accommodation/unusual-places-to-stay",
+            "title": "Budget hotels",
+            "href": "https://www.visitscotland.com/accommodation/hotels/cheap-budget/",
             "isExternal": false,
             "isActive": false,
             "trackingId": "nav.link.test-tracking-id"
           },
           {
-            "title": "Wedding venues",
-            "href": "https://www.visitscotland.com/accommodation/wedding-venues",
+            "title": "Luxury hotels",
+            "href": "https://www.visitscotland.com/accommodation/hotels/luxury-five-star/",
+            "isExternal": false,
+            "isActive": false,
+            "trackingId": "nav.link.test-tracking-id"
+          }
+        ]
+      },
+      {
+        "title": "Unique places to stay",
+        "href": null,
+        "isExternal": false,
+        "isActive": false,
+        "trackingId": "nav.link.test-tracking-id",
+        "subnav": [
+          {
+            "title": "Boats and boat houses",
+            "href": "https://www.visitscotland.com/accommodation/unusual-places-to-stay/boats-boathouses/",
+            "isExternal": false,
+            "isActive": false,
+            "trackingId": "nav.link.test-tracking-id"
+          },
+          {
+            "title": "Brochs",
+            "href": "https://www.visitscotland.com/accommodation/unusual-places-to-stay/brochs/",
+            "isExternal": false,
+            "isActive": false,
+            "trackingId": "nav.link.test-tracking-id"
+          },
+          {
+            "title": "Castles",
+            "href": "https://www.visitscotland.com/accommodation/unusual-places-to-stay/stay-in-a-castle/",
+            "isExternal": false,
+            "isActive": false,
+            "trackingId": "nav.link.test-tracking-id"
+          },
+          {
+            "title": "Churches",
+            "href": "https://www.visitscotland.com/accommodation/unusual-places-to-stay/churches/",
+            "isExternal": false,
+            "isActive": false,
+            "trackingId": "nav.link.test-tracking-id"
+          },
+          {
+            "title": "Cottages",
+            "href": "https://www.visitscotland.com/accommodation/self-catering/cottage-holidays-accommodation/",
+            "isExternal": false,
+            "isActive": false,
+            "trackingId": "nav.link.test-tracking-id"
+          },
+          {
+            "title": "Country retreats",
+            "href": "https://www.visitscotland.com/accommodation/unusual-places-to-stay/country-retreats/",
+            "isExternal": false,
+            "isActive": false,
+            "trackingId": "nav.link.test-tracking-id"
+          },
+          {
+            "title": "Quirky stays",
+            "href": "https://www.visitscotland.com/accommodation/unusual-places-to-stay/quirky-winter-hideaways/",
             "isExternal": false,
             "isActive": false,
             "trackingId": "nav.link.test-tracking-id"
