@@ -68,7 +68,7 @@ export default {
     box-shadow: inset 0 -3px 0 0 $color-white;
 
     @include media-breakpoint-up(xl) {
-      box-shadow: 0 3px 0 0 $color-white;
+      box-shadow: 0 3px 0 0 $purple-shade-2;
     }
   }
 
