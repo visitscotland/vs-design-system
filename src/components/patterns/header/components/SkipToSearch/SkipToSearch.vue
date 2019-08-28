@@ -20,7 +20,7 @@ export default {
   },
   methods: {
     handleClick() {
-      document.getElementById("searchbutton").click()
+      document.getElementById("search-toggle-trigger").click()
     },
   },
   props: {
