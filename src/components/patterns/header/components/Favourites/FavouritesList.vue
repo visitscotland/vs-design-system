@@ -24,7 +24,11 @@
                 :key="index"
               >
                 <a :href="item.href" class="vs-favourites-list__link mr-3">{{ item.title }}</a>
-                <vs-button variant="light" @click.native="deleteFavourite(item.href)">
+                <vs-button
+                  variant="light"
+                  @click.native="deleteFavourite(item.href)"
+                  @keydown.native="checkKeydown($event, index === last)"
+                >
                   <span class="sr-only">Remove from favourites</span>
                   <vs-icon name="close" size="xs" variant="reverse-white" />
                 </vs-button>
@@ -58,6 +62,9 @@ export default {
     favourites() {
       return this.$store.getters["favourites/getFavourites"]
     },
+    last() {
+      return this.favourites.length - 1
+    },
   },
   props: {
     /**
@@ -75,6 +82,12 @@ export default {
   methods: {
     checkFavouritesLength() {
       if (this.favourites.length === 0) {
+        this.handleClose()
+      }
+    },
+    checkKeydown($event, isLast) {
+      console.log($event, isLast)
+      if ($event.key === "Tab" && !$event.shiftKey && isLast) {
         this.handleClose()
       }
     },
