@@ -68,10 +68,10 @@ export default {
   release: "0.0.1",
   components: {
     BCollapse,
-    VsIcon,
-    VsContainer,
-    VsRow,
     VsCol,
+    VsContainer,
+    VsIcon,
+    VsRow,
   },
   directives: { "b-toggle": VBToggle },
   data() {
@@ -171,9 +171,9 @@ export default {
 }
 
 .vs-desktop-submenu__list {
-  height: 600px;
+  max-height: 600px;
   overflow: hidden;
-  justify-content: flex-start;
+  flex-wrap: wrap;
 }
 
 .vs-desktop-submenu__close-button {
