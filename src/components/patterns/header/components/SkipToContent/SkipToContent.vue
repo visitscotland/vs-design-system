@@ -1,5 +1,5 @@
 <template>
-  <component :is="type" class="sr-only sr-only-focusable vs-skip-to" href="#main">
+  <component :is="type" class="sr-only sr-only-focusable vs-skip-to" @click="handleClick()">
     <span>{{ title }}</span>
     <vs-icon name="chevron-down" size="xs" variant="reverse-white" />
   </component>
@@ -24,10 +24,17 @@ export default {
      */
     type: {
       type: String,
-      default: "a",
+      default: "button",
     },
     title: {
       type: String,
+    },
+  },
+  methods: {
+    handleClick() {
+      var landmarkMain = document.getElementById("main")
+      landmarkMain.tabIndex = -1
+      landmarkMain.focus()
     },
   },
 }
