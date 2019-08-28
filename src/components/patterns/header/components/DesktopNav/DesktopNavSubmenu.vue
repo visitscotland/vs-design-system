@@ -9,6 +9,7 @@
               class="vs-desktop-submenu__close-button"
               :id="formattedSubmenuCloseId"
               v-b-toggle="formattedCollapsePaneId"
+              @keydown="checkKeydownReverse($event)"
               @click="setFocusOnToggle()"
             >
               <span class="sr-only">Close the {{ lowerCaseTitle }} submenu</span>
@@ -45,7 +46,7 @@
             <a
               :href="href"
               class="vs-desktop-submenu__landing-page-link"
-              @keydown="checkKeydown($event)"
+              @keydown="checkKeydownForward($event)"
               >See all {{ lowerCaseTitle }}</a
             >
           </li>
@@ -129,8 +130,13 @@ export default {
       this.setFocusOnToggle()
       this.$root.$emit("bv::toggle::collapse", this.formattedCollapsePaneId)
     },
-    checkKeydown($event) {
+    checkKeydownForward($event) {
       if ($event.key === "Tab" && !$event.shiftKey) {
+        this.close()
+      }
+    },
+    checkKeydownReverse($event) {
+      if ($event.key === "Tab" && $event.shiftKey) {
         this.close()
       }
     },
