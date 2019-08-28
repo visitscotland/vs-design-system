@@ -1,12 +1,10 @@
 .collapse:not(.show) {
   display: none;
-  opacity: 0;
 }
 
 .collapsing {
   position: relative;
   height: 0;
   overflow: hidden;
-  opacity: 1;
-  transition: all 250ms ease;
+  transition: height 100ms ease;
 }

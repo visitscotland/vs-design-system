@@ -156,6 +156,7 @@ export default {
 @import "~bootstrap/scss/utilities/spacing";
 @import "~bootstrap/scss/utilities/flex";
 @import "~bootstrap/scss/utilities/screenreaders";
+@import "../../styles/collapse";
 @import "../../styles/placeholders";
 @import "../../styles/mixins";
 
@@ -176,8 +177,13 @@ export default {
 }
 
 .vs-desktop-submenu__list {
-  max-height: 600px;
+  max-height: 100vh;
+  position: relative;
   flex-wrap: wrap;
+
+  @include media-breakpoint-up(xl) {
+    max-height: 550px;
+  }
 }
 
 .vs-desktop-submenu__close-button {

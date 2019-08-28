@@ -4,7 +4,7 @@
     class="vs-desktop-nav__list-item"
     :class="{
       ['vs-desktop-nav__list-item--level' + level]: level,
-      ['col-4 col-xl-3']: level === 2,
+      ['col-4 col-xl-3 vs-desktop-nav__list--divide-left']: level === 2,
     }"
   >
     <a
@@ -169,6 +169,10 @@ export default {
 .vs-desktop-nav__list {
   &--level3 {
     margin-bottom: 2rem;
+  }
+
+  &--divide-left {
+    box-shadow: -1px 0 0 0 $gray-tint-5;
   }
 }
 
