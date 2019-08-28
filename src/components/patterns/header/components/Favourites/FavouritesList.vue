@@ -86,7 +86,6 @@ export default {
       }
     },
     checkKeydown($event, isLast) {
-      console.log($event, isLast)
       if ($event.key === "Tab" && !$event.shiftKey && isLast) {
         this.handleClose()
       }
@@ -160,9 +159,16 @@ export default {
 
 <docs>
   ```jsx
-  <div style="position: relative; height: 100px;">
-    <vs-favourites-button />
+  
+  const favourite = require("../../../../../assets/fixtures/favourite.json")
+
+  <div style="position: relative; height: 600px;">
+    <vs-favourites-button 
+      :href="favourite.href"
+      :title="favourite.title"
+    />
     <vs-favourites-list
+      
     />
   </div>
   ```

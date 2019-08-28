@@ -105,7 +105,8 @@ export default {
   ```jsx
   const mainNav = require("../../../../../assets/fixtures/mainNav.json")
 
-  <div class="vs-header" style="position: relative; height: 100vh;">
+  <div style="position: relative; height: 600px; overflow-y: scroll; max-width: 400px;">
+    <vs-mobile-nav-button name="Mobile navigation"></vs-mobile-nav-button>
     <vs-mobile-nav name="Mobile navigation"> 
       <vs-mobile-nav-list-item
         v-for="(item, index) in mainNav"
