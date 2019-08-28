@@ -4,7 +4,7 @@
     class="vs-desktop-nav__list-item"
     :class="{
       ['vs-desktop-nav__list-item--level' + level]: level,
-      ['col-4 col-xl-3 pr-4']: level === 2,
+      ['col-4 col-xl-3']: level === 2,
     }"
   >
     <a
@@ -31,22 +31,22 @@
       <ul
         class="list-unstyled"
         :class="{
-          ['vs-mobile-nav__list--level' + incrementLevel]: incrementLevel,
+          ['vs-desktop-nav__list--level' + incrementLevel]: incrementLevel,
         }"
       >
         <li
-          class="vs-mobile-nav__list-item"
+          class="vs-desktop-nav__list-item"
           :class="{
-            ['vs-mobile-nav__list-item--level' + incrementLevel]: incrementLevel,
+            ['vs-desktop-nav__list-item--level' + incrementLevel]: incrementLevel,
           }"
           v-if="href !== null"
         >
           <a
-            class="vs-mobile-nav__link vs-mobile-nav__link--landing-page"
+            class="vs-desktop-nav__link vs-desktop-nav__link--landing-page"
             :href="href"
             :class="[
               isExternal ? 'external' : '',
-              level ? 'vs-mobile-nav__link--level' + incrementLevel : '',
+              level ? 'vs-desktop-nav__link--level' + incrementLevel : '',
             ]"
             :target="isExternal ? '_blank' : false"
             :data-vs-track="trackingId"
@@ -159,6 +159,16 @@ export default {
   &--level3 {
     font-size: 1.0625rem;
     padding: 0.25rem 0;
+  }
+}
+
+.vs-desktop-nav__list-item--header-link {
+  display: block;
+}
+
+.vs-desktop-nav__list {
+  &--level3 {
+    margin-bottom: 2rem;
   }
 }
 
