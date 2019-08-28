@@ -150,7 +150,6 @@ export default {
 @import "~bootstrap/scss/utilities/spacing";
 @import "~bootstrap/scss/utilities/flex";
 @import "~bootstrap/scss/utilities/screenreaders";
-@import "../../styles/collapse";
 @import "../../styles/placeholders";
 @import "../../styles/mixins";
 
@@ -172,7 +171,6 @@ export default {
 
 .vs-desktop-submenu__list {
   max-height: 600px;
-  overflow: hidden;
   flex-wrap: wrap;
 }
 
@@ -197,6 +195,10 @@ export default {
   display: block;
   padding: 0.5rem 1rem;
   transition: background-color 250ms ease-in-out;
+
+  &:focus {
+    background-color: $color-pink;
+  }
 
   &:hover {
     background-color: $gray-shade-2;
