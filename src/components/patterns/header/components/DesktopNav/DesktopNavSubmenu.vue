@@ -178,7 +178,6 @@ export default {
 
 .vs-desktop-submenu__list {
   max-height: 100vh;
-  position: relative;
   flex-wrap: wrap;
 
   @include media-breakpoint-up(xl) {
