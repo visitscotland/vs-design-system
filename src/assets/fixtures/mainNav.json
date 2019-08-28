@@ -251,29 +251,22 @@
         "trackingId": "nav.link.test-tracking-id",
         "subnav": [
           {
-            "title": "Aviemore",
-            "href": "https://www.visitscotland.com/destinations-maps/aviemore",
+            "title": "The Highlands",
+            "href": "https://www.visitscotland.com/destinations-maps/highlands/",
             "isExternal": false,
             "isActive": false,
             "trackingId": "nav.link.test-tracking-id"
           },
           {
-            "title": "Ayr",
-            "href": "https://www.visitscotland.com/info/towns-villages/ayr-p242821",
+            "title": "Ben Nevis",
+            "href": "https://www.visitscotland.com/see-do/iconic-scotland/ben-nevis/",
             "isExternal": true,
             "isActive": false,
             "trackingId": "nav.link.test-tracking-id"
           },
           {
-            "title": "Dumfries",
-            "href": "https://www.visitscotland.com/destinations-maps/dumfries",
-            "isExternal": false,
-            "isActive": false,
-            "trackingId": "nav.link.test-tracking-id"
-          },
-          {
-            "title": "Fort William",
-            "href": "https://www.visitscotland.com/destinations-maps/fort-william",
+            "title": "Loch Ness",
+            "href": "https://www.visitscotland.com/destinations-maps/loch-ness/",
             "isExternal": false,
             "isActive": false,
             "trackingId": "nav.link.test-tracking-id"
@@ -286,64 +279,22 @@
             "trackingId": "nav.link.test-tracking-id"
           },
           {
-            "title": "The Highlands",
-            "href": "https://www.visitscotland.com/destinations-maps/highlands",
+            "title": "Tweed Valley Forest Park",
+            "href": "https://www.visitscotland.com/info/towns-villages/tweed-valley-forest-park-p249141",
             "isExternal": false,
             "isActive": false,
             "trackingId": "nav.link.test-tracking-id"
           },
           {
-            "title": "Kirkwall",
-            "href": "https://www.visitscotland.com/destinations-maps/kirkwall",
+            "title": "Culloden",
+            "href": "https://www.visitscotland.com/info/see-do/culloden-battlefield-p247471",
             "isExternal": false,
             "isActive": false,
             "trackingId": "nav.link.test-tracking-id"
           },
           {
-            "title": "Lerwick",
-            "href": "https://www.visitscotland.com/destinations-maps/lerwick",
-            "isExternal": false,
-            "isActive": false,
-            "trackingId": "nav.link.test-tracking-id"
-          },
-          {
-            "title": "Loch Lomond",
-            "href": "https://www.visitscotland.com/destinations-maps/loch-lomond",
-            "isExternal": false,
-            "isActive": false,
-            "trackingId": "nav.link.test-tracking-id"
-          },
-          {
-            "title": "Loch Ness",
-            "href": "https://www.visitscotland.com/destinations-maps/loch-ness",
-            "isExternal": false,
-            "isActive": false,
-            "trackingId": "nav.link.test-tracking-id"
-          },
-          {
-            "title": "Oban",
-            "href": "https://www.visitscotland.com/destinations-maps/oban",
-            "isExternal": false,
-            "isActive": false,
-            "trackingId": "nav.link.test-tracking-id"
-          },
-          {
-            "title": "Peebles",
-            "href": "https://www.visitscotland.com/destinations-maps/peebles",
-            "isExternal": false,
-            "isActive": false,
-            "trackingId": "nav.link.test-tracking-id"
-          },
-          {
-            "title": "Pitlochry",
-            "href": "https://www.visitscotland.com/destinations-maps/pitlochry",
-            "isExternal": false,
-            "isActive": false,
-            "trackingId": "nav.link.test-tracking-id"
-          },
-          {
-            "title": "St Andrews",
-            "href": "https://www.visitscotland.com/destinations-maps/st-andrews",
+            "title": "Glenfinnan",
+            "href": "https://www.visitscotland.com/info/towns-villages/glenfinnan-p236571",
             "isExternal": false,
             "isActive": false,
             "trackingId": "nav.link.test-tracking-id"
@@ -563,88 +514,178 @@
     "trackingId": "nav.link.test-tracking-id",
     "subnav": [
       {
-        "title": "Ancestry",
-        "href": "https://www.visitscotland.com/see-do/research-your-ancestry",
+        "title": "Things to see and do",
+        "href": null,
         "isExternal": false,
         "isActive": false,
-        "trackingId": "nav.link.test-tracking-id"
+        "trackingId": null,
+        "subnav": [
+          {
+            "title": "Ancestry",
+            "href": "https://www.visitscotland.com/see-do/research-your-ancestry",
+            "isExternal": false,
+            "isActive": false,
+            "trackingId": "nav.link.test-tracking-id"
+          },
+          {
+            "title": "Attractions",
+            "href": "https://www.visitscotland.com/see-do/attractions",
+            "isExternal": false,
+            "isActive": false,
+            "trackingId": "nav.link.test-tracking-id"
+          },
+          {
+            "title": "Castles",
+            "href": "https://www.visitscotland.com/see-do/attractions/castles",
+            "isExternal": false,
+            "isActive": false,
+            "trackingId": "nav.link.test-tracking-id"
+          },
+          {
+            "title": "Events",
+            "href": "https://www.visitscotland.com/see-do/events",
+            "isExternal": false,
+            "isActive": false,
+            "trackingId": "nav.link.test-tracking-id"
+          },
+          {
+            "title": "Film and TV locations",
+            "href": "https://www.visitscotland.com/see-do/attractions/film-tv",
+            "isExternal": false,
+            "isActive": false,
+            "trackingId": "nav.link.test-tracking-id"
+          },
+          {
+            "title": "Food and drink",
+            "href": "https://www.visitscotland.com/see-do/food-drink",
+            "isExternal": false,
+            "isActive": false,
+            "trackingId": "nav.link.test-tracking-id"
+          },
+          {
+            "title": "Islands and island hopping",
+            "href": "https://www.visitscotland.com/see-do/island-hopping",
+            "isExternal": false,
+            "isActive": false,
+            "trackingId": "nav.link.test-tracking-id"
+          },
+          {
+            "title": "Landscapes and nature",
+            "href": "https://www.visitscotland.com/see-do/landscapes-nature",
+            "isExternal": false,
+            "isActive": false,
+            "trackingId": "nav.link.test-tracking-id"
+          }
+        ]
       },
       {
-        "title": "Attractions",
-        "href": "https://www.visitscotland.com/see-do/attractions",
+        "title": "Tours and trails",
+        "href": null,
         "isExternal": false,
         "isActive": false,
-        "trackingId": "nav.link.test-tracking-id"
-      },
-      {
-        "title": "Castles",
-        "href": "https://www.visitscotland.com/see-do/attractions/castles",
-        "isExternal": false,
-        "isActive": false,
-        "trackingId": "nav.link.test-tracking-id"
-      },
-      {
-        "title": "Events",
-        "href": "https://www.visitscotland.com/see-do/events",
-        "isExternal": false,
-        "isActive": false,
-        "trackingId": "nav.link.test-tracking-id"
-      },
-      {
-        "title": "Film and TV locations",
-        "href": "https://www.visitscotland.com/see-do/attractions/film-tv",
-        "isExternal": false,
-        "isActive": false,
-        "trackingId": "nav.link.test-tracking-id"
-      },
-      {
-        "title": "Food and drink",
-        "href": "https://www.visitscotland.com/see-do/food-drink",
-        "isExternal": false,
-        "isActive": false,
-        "trackingId": "nav.link.test-tracking-id"
-      },
-      {
-        "title": "Golf",
-        "href": "https://www.visitscotland.com/see-do/active/golf",
-        "isExternal": false,
-        "isActive": false,
-        "trackingId": "nav.link.test-tracking-id"
-      },
-      {
-        "title": "Islands and island hopping",
-        "href": "https://www.visitscotland.com/see-do/island-hopping",
-        "isExternal": false,
-        "isActive": false,
-        "trackingId": "nav.link.test-tracking-id"
-      },
-      {
-        "title": "Itineraries",
-        "href": "https://www.visitscotland.com/see-do/itineraries",
-        "isExternal": false,
-        "isActive": false,
-        "trackingId": "nav.link.test-tracking-id"
-      },
-      {
-        "title": "Landscapes and nature",
-        "href": "https://www.visitscotland.com/see-do/landscapes-nature",
-        "isExternal": false,
-        "isActive": false,
-        "trackingId": "nav.link.test-tracking-id"
+        "trackingId": null,
+        "subnav": [
+          {
+            "title": "Cycling routes",
+            "href": "https://www.visitscotland.com/see-do/active/cycling/national-routes/map/",
+            "isExternal": false,
+            "isActive": false,
+            "trackingId": "nav.link.test-tracking-id"
+          },
+          {
+            "title": "Itineraries",
+            "href": "https://www.visitscotland.com/see-do/itineraries/",
+            "isExternal": false,
+            "isActive": false,
+            "trackingId": "nav.link.test-tracking-id"
+          },
+          {
+            "title": "Sightseeing tours",
+            "href": "https://www.visitscotland.com/see-do/tours/",
+            "isExternal": false,
+            "isActive": false,
+            "trackingId": "nav.link.test-tracking-id"
+          },
+          {
+            "title": "Trip planner",
+            "href": "https://www.visitscotland.com/see-do/active/horse-riding-pony-trekking/",
+            "isExternal": false,
+            "isActive": false,
+            "trackingId": "nav.link.test-tracking-id"
+          }
+        ]
       },
       {
         "title": "Outdoor activities",
-        "href": "https://www.visitscotland.com/see-do/active",
+        "href": null,
         "isExternal": false,
         "isActive": false,
-        "trackingId": "nav.link.test-tracking-id"
-      },
-      {
-        "title": "Scenic driving routes",
-        "href": "https://www.visitscotland.com/see-do/tours/driving-road-trips",
-        "isExternal": false,
-        "isActive": false,
-        "trackingId": "nav.link.test-tracking-id"
+        "trackingId": null,
+        "subnav": [
+          {
+            "title": "Cycling",
+            "href": "https://www.visitscotland.com/see-do/active/cycling/",
+            "isExternal": false,
+            "isActive": false,
+            "trackingId": "nav.link.test-tracking-id"
+          },
+          {
+            "title": "Golf",
+            "href": "https://www.visitscotland.com/see-do/active/golf/",
+            "isExternal": false,
+            "isActive": false,
+            "trackingId": "nav.link.test-tracking-id"
+          },
+          {
+            "title": "Fishing",
+            "href": "https://www.visitscotland.com/see-do/active/fishing/",
+            "isExternal": false,
+            "isActive": false,
+            "trackingId": "nav.link.test-tracking-id"
+          },
+          {
+            "title": "Horse riding and Pony Trekking",
+            "href": "https://www.visitscotland.com/see-do/active/horse-riding-pony-trekking/",
+            "isExternal": false,
+            "isActive": false,
+            "trackingId": "nav.link.test-tracking-id"
+          },
+          {
+            "title": "Sailing",
+            "href": "https://www.visitscotland.com/see-do/active/sailing/",
+            "isExternal": false,
+            "isActive": false,
+            "trackingId": "nav.link.test-tracking-id"
+          },
+          {
+            "title": "Skiing and Snowsports",
+            "href": "https://www.visitscotland.com/see-do/active/skiing-snowsports/",
+            "isExternal": false,
+            "isActive": false,
+            "trackingId": "nav.link.test-tracking-id"
+          },
+          {
+            "title": "Walking and hiking",
+            "href": "https://www.visitscotland.com/see-do/active/walking/",
+            "isExternal": false,
+            "isActive": false,
+            "trackingId": "nav.link.test-tracking-id"
+          },
+          {
+            "title": "Watersports",
+            "href": "https://www.visitscotland.com/see-do/active/watersports/",
+            "isExternal": false,
+            "isActive": false,
+            "trackingId": "nav.link.test-tracking-id"
+          },
+          {
+            "title": "Wildlife watching",
+            "href": "https://www.visitscotland.com/see-do/wildlife/",
+            "isExternal": false,
+            "isActive": false,
+            "trackingId": "nav.link.test-tracking-id"
+          }
+        ]
       }
     ],
     "promoItem": {
@@ -665,6 +706,80 @@
     "isActive": false,
     "trackingId": "nav.link.test-tracking-id",
     "subnav": [
+      {
+        "title": "Help and support",
+        "href": null,
+        "isExternal": false,
+        "isActive": false,
+        "trackingId": "nav.link.test-tracking-id",
+        "subnav": [
+          {
+            "title": "Travel to Scotland",
+            "href": "#",
+            "isExternal": false,
+            "isActive": false,
+            "trackingId": "nav.link.test-tracking-id"
+          },
+          {
+            "title": "Practical Information",
+            "href": "#",
+            "isExternal": false,
+            "isActive": false,
+            "trackingId": "nav.link.test-tracking-id"
+          },
+          {
+            "title": "Embassies and consulates",
+            "href": "#",
+            "isExternal": false,
+            "isActive": false,
+            "trackingId": "nav.link.test-tracking-id"
+          },
+          {
+            "title": "Passports visas and customs",
+            "href": "#",
+            "isExternal": false,
+            "isActive": false,
+            "trackingId": "nav.link.test-tracking-id"
+          },
+          {
+            "title": "Travel agents (Scots Agents)",
+            "href": "#",
+            "isExternal": false,
+            "isActive": false,
+            "trackingId": "nav.link.test-tracking-id"
+          }
+        ]
+      },
+      {
+        "title": "Tourist information",
+        "href": null,
+        "isExternal": false,
+        "isActive": false,
+        "trackingId": "nav.link.test-tracking-id",
+        "subnav": [
+          {
+            "title": "Brochures and guides",
+            "href": "#",
+            "isExternal": false,
+            "isActive": false,
+            "trackingId": "nav.link.test-tracking-id"
+          },
+          {
+            "title": "VisitScotland iCentres",
+            "href": "#",
+            "isExternal": false,
+            "isActive": false,
+            "trackingId": "nav.link.test-tracking-id"
+          },
+          {
+            "title": "VisitScotland iKNOW advisors",
+            "href": "#",
+            "isExternal": false,
+            "isActive": false,
+            "trackingId": "nav.link.test-tracking-id"
+          }
+        ]
+      },
       {
         "title": "Getting to Scotland",
         "href": null,
