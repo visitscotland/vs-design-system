@@ -7,7 +7,7 @@
     "trackingId": "nav.link.test-tracking-id",
     "subnav": [
       {
-        "title": "Top Destination Searches",
+        "title": "Main cities",
         "href": null,
         "isExternal": false,
         "isActive": false,
@@ -16,34 +16,6 @@
           {
             "title": "Aberdeen",
             "href": "https://www.visitscotland.com/destinations-maps/aberdeen",
-            "isExternal": false,
-            "isActive": false,
-            "trackingId": "nav.link.test-tracking-id"
-          },
-          {
-            "title": "Isle of Arran",
-            "href": "https://www.visitscotland.com/destinations-maps/arran",
-            "isExternal": false,
-            "isActive": false,
-            "trackingId": "nav.link.test-tracking-id"
-          },
-          {
-            "title": "Aviemore",
-            "href": "https://www.visitscotland.com/destinations-maps/aviemore",
-            "isExternal": false,
-            "isActive": false,
-            "trackingId": "nav.link.test-tracking-id"
-          },
-          {
-            "title": "Ayr",
-            "href": "https://www.visitscotland.com/info/towns-villages/ayr-p242821",
-            "isExternal": true,
-            "isActive": false,
-            "trackingId": "nav.link.test-tracking-id"
-          },
-          {
-            "title": "Dumfries",
-            "href": "https://www.visitscotland.com/destinations-maps/dumfries",
             "isExternal": false,
             "isActive": false,
             "trackingId": "nav.link.test-tracking-id"
@@ -63,13 +35,6 @@
             "trackingId": "nav.link.test-tracking-id"
           },
           {
-            "title": "Fort William",
-            "href": "https://www.visitscotland.com/destinations-maps/fort-william",
-            "isExternal": false,
-            "isActive": false,
-            "trackingId": "nav.link.test-tracking-id"
-          },
-          {
             "title": "Glasgow",
             "href": "https://www.visitscotland.com/destinations-maps/glasgow",
             "isExternal": false,
@@ -77,22 +42,38 @@
             "trackingId": "nav.link.test-tracking-id"
           },
           {
-            "title": "Glencoe",
-            "href": "https://www.visitscotland.com/destinations-maps/glencoe",
-            "isExternal": false,
-            "isActive": false,
-            "trackingId": "nav.link.test-tracking-id"
-          },
-          {
-            "title": "Highlands",
-            "href": "https://www.visitscotland.com/destinations-maps/highlands",
-            "isExternal": false,
-            "isActive": false,
-            "trackingId": "nav.link.test-tracking-id"
-          },
-          {
             "title": "Inverness",
             "href": "https://www.visitscotland.com/destinations-maps/inverness",
+            "isExternal": false,
+            "isActive": false,
+            "trackingId": "nav.link.test-tracking-id"
+          },
+          {
+            "title": "Perth",
+            "href": "https://www.visitscotland.com/destinations-maps/perth",
+            "isExternal": false,
+            "isActive": false,
+            "trackingId": "nav.link.test-tracking-id"
+          },
+          {
+            "title": "Stirling",
+            "href": "https://www.visitscotland.com/destinations-maps/stirling",
+            "isExternal": false,
+            "isActive": false,
+            "trackingId": "nav.link.test-tracking-id"
+          }
+        ]
+      },
+      {
+        "title": "Scotland's islands",
+        "href": null,
+        "isExternal": false,
+        "isActive": false,
+        "trackingId": "nav.link.test-tracking-id",
+        "subnav": [
+          {
+            "title": "Isle of Arran",
+            "href": "https://www.visitscotland.com/destinations-maps/arran",
             "isExternal": false,
             "isActive": false,
             "trackingId": "nav.link.test-tracking-id"
@@ -119,43 +100,15 @@
             "trackingId": "nav.link.test-tracking-id"
           },
           {
-            "title": "Kirkwall",
-            "href": "https://www.visitscotland.com/destinations-maps/kirkwall",
+            "title": "Isle of Skye",
+            "href": "https://www.visitscotland.com/destinations-maps/isle-skye",
             "isExternal": false,
             "isActive": false,
             "trackingId": "nav.link.test-tracking-id"
           },
           {
-            "title": "Lerwick",
-            "href": "https://www.visitscotland.com/destinations-maps/lerwick",
-            "isExternal": false,
-            "isActive": false,
-            "trackingId": "nav.link.test-tracking-id"
-          },
-          {
-            "title": "Isle of Lewis, Isle of Harris and Stornoway",
+            "title": "Lewis and Harris",
             "href": "https://www.visitscotland.com/destinations-maps/lewis-harris-stornoway",
-            "isExternal": false,
-            "isActive": false,
-            "trackingId": "nav.link.test-tracking-id"
-          },
-          {
-            "title": "Loch Lomond",
-            "href": "https://www.visitscotland.com/destinations-maps/loch-lomond",
-            "isExternal": false,
-            "isActive": false,
-            "trackingId": "nav.link.test-tracking-id"
-          },
-          {
-            "title": "Loch Ness",
-            "href": "https://www.visitscotland.com/destinations-maps/loch-ness",
-            "isExternal": false,
-            "isActive": false,
-            "trackingId": "nav.link.test-tracking-id"
-          },
-          {
-            "title": "Oban",
-            "href": "https://www.visitscotland.com/destinations-maps/oban",
             "isExternal": false,
             "isActive": false,
             "trackingId": "nav.link.test-tracking-id"
@@ -168,22 +121,8 @@
             "trackingId": "nav.link.test-tracking-id"
           },
           {
-            "title": "Peebles",
-            "href": "https://www.visitscotland.com/destinations-maps/peebles",
-            "isExternal": false,
-            "isActive": false,
-            "trackingId": "nav.link.test-tracking-id"
-          },
-          {
-            "title": "Perth",
-            "href": "https://www.visitscotland.com/destinations-maps/perth",
-            "isExternal": false,
-            "isActive": false,
-            "trackingId": "nav.link.test-tracking-id"
-          },
-          {
-            "title": "Pitlochry",
-            "href": "https://www.visitscotland.com/destinations-maps/pitlochry",
+            "title": "Outer Hebrides",
+            "href": "https://www.visitscotland.com/destinations-maps/outer-hebrides",
             "isExternal": false,
             "isActive": false,
             "trackingId": "nav.link.test-tracking-id"
@@ -194,32 +133,11 @@
             "isExternal": false,
             "isActive": false,
             "trackingId": "nav.link.test-tracking-id"
-          },
-          {
-            "title": "Isle of Skye",
-            "href": "https://www.visitscotland.com/destinations-maps/isle-skye",
-            "isExternal": false,
-            "isActive": false,
-            "trackingId": "nav.link.test-tracking-id"
-          },
-          {
-            "title": "St Andrews",
-            "href": "https://www.visitscotland.com/destinations-maps/st-andrews",
-            "isExternal": false,
-            "isActive": false,
-            "trackingId": "nav.link.test-tracking-id"
-          },
-          {
-            "title": "Stirling",
-            "href": "https://www.visitscotland.com/destinations-maps/stirling",
-            "isExternal": false,
-            "isActive": false,
-            "trackingId": "nav.link.test-tracking-id"
           }
         ]
       },
       {
-        "title": "Explore Scotland\u0027s Regions",
+        "title": "Scotland's regions",
         "href": null,
         "isExternal": false,
         "isActive": false,
@@ -319,6 +237,113 @@
           {
             "title": "Shetland",
             "href": "https://www.visitscotland.com/destinations-maps/shetland",
+            "isExternal": false,
+            "isActive": false,
+            "trackingId": "nav.link.test-tracking-id"
+          }
+        ]
+      },
+      {
+        "title": "Featured attractions",
+        "href": null,
+        "isExternal": false,
+        "isActive": false,
+        "trackingId": "nav.link.test-tracking-id",
+        "subnav": [
+          {
+            "title": "Aviemore",
+            "href": "https://www.visitscotland.com/destinations-maps/aviemore",
+            "isExternal": false,
+            "isActive": false,
+            "trackingId": "nav.link.test-tracking-id"
+          },
+          {
+            "title": "Ayr",
+            "href": "https://www.visitscotland.com/info/towns-villages/ayr-p242821",
+            "isExternal": true,
+            "isActive": false,
+            "trackingId": "nav.link.test-tracking-id"
+          },
+          {
+            "title": "Dumfries",
+            "href": "https://www.visitscotland.com/destinations-maps/dumfries",
+            "isExternal": false,
+            "isActive": false,
+            "trackingId": "nav.link.test-tracking-id"
+          },
+          {
+            "title": "Fort William",
+            "href": "https://www.visitscotland.com/destinations-maps/fort-william",
+            "isExternal": false,
+            "isActive": false,
+            "trackingId": "nav.link.test-tracking-id"
+          },
+          {
+            "title": "Glencoe",
+            "href": "https://www.visitscotland.com/destinations-maps/glencoe",
+            "isExternal": false,
+            "isActive": false,
+            "trackingId": "nav.link.test-tracking-id"
+          },
+          {
+            "title": "The Highlands",
+            "href": "https://www.visitscotland.com/destinations-maps/highlands",
+            "isExternal": false,
+            "isActive": false,
+            "trackingId": "nav.link.test-tracking-id"
+          },
+          {
+            "title": "Kirkwall",
+            "href": "https://www.visitscotland.com/destinations-maps/kirkwall",
+            "isExternal": false,
+            "isActive": false,
+            "trackingId": "nav.link.test-tracking-id"
+          },
+          {
+            "title": "Lerwick",
+            "href": "https://www.visitscotland.com/destinations-maps/lerwick",
+            "isExternal": false,
+            "isActive": false,
+            "trackingId": "nav.link.test-tracking-id"
+          },
+          {
+            "title": "Loch Lomond",
+            "href": "https://www.visitscotland.com/destinations-maps/loch-lomond",
+            "isExternal": false,
+            "isActive": false,
+            "trackingId": "nav.link.test-tracking-id"
+          },
+          {
+            "title": "Loch Ness",
+            "href": "https://www.visitscotland.com/destinations-maps/loch-ness",
+            "isExternal": false,
+            "isActive": false,
+            "trackingId": "nav.link.test-tracking-id"
+          },
+          {
+            "title": "Oban",
+            "href": "https://www.visitscotland.com/destinations-maps/oban",
+            "isExternal": false,
+            "isActive": false,
+            "trackingId": "nav.link.test-tracking-id"
+          },
+          {
+            "title": "Peebles",
+            "href": "https://www.visitscotland.com/destinations-maps/peebles",
+            "isExternal": false,
+            "isActive": false,
+            "trackingId": "nav.link.test-tracking-id"
+          },
+          {
+            "title": "Pitlochry",
+            "href": "https://www.visitscotland.com/destinations-maps/pitlochry",
+            "isExternal": false,
+            "isActive": false,
+            "trackingId": "nav.link.test-tracking-id"
+          },
+          {
+            "title": "St Andrews",
+            "href": "https://www.visitscotland.com/destinations-maps/st-andrews",
             "isExternal": false,
             "isActive": false,
             "trackingId": "nav.link.test-tracking-id"
