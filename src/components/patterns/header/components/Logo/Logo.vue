@@ -40,7 +40,7 @@ export default {
 
 .vs-logo {
   display: inline-flex;
-  align-items: stretch;
+  align-items: center;
   padding: 10px 0;
   height: 40px;
 
