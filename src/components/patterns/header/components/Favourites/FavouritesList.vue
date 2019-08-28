@@ -1,17 +1,29 @@
 <template>
   <component :is="type" class="vs-favourites">
-    <b-collapse id="collapse-favourites" class="vs-favourites__wrapper">
+    <b-collapse id="collapse-favourites" class="vs-favourites-list__wrapper">
       <vs-container>
-        <vs-row>
+        <vs-row class="mb-3">
           <vs-col>
-            <h4>Favourites List</h4>
+            <span class="vs-favourites-list__header">{{ listHeader }}</span>
+            <button
+              class="vs-favourites-list__close-button"
+              id="favourites-close-button"
+              @click="handleClose()"
+            >
+              <span class="sr-only">Close the favourites list</span>
+              <vs-icon name="close" size="xs" variant="dark" />
+            </button>
+          </vs-col>
+        </vs-row>
+        <vs-row>
+          <vs-col cols="4">
             <ul class="list-unstyled">
               <li
                 v-for="(item, index) in favourites"
                 class="d-flex align-items-center"
                 :key="index"
               >
-                <a :href="item.href" class="mr-3">{{ item.title }}</a>
+                <a :href="item.href" class="vs-favourites-list__link mr-3">{{ item.title }}</a>
                 <vs-button variant="light" @click.native="deleteFavourite(item.href)">
                   <span class="sr-only">Remove from favourites</span>
                   <vs-icon name="close" size="xs" variant="reverse-white" />
@@ -55,13 +67,20 @@ export default {
       type: String,
       default: "div",
     },
+    listHeader: {
+      type: String,
+      default: "Favourites list",
+    },
   },
   methods: {
     checkFavouritesLength() {
       if (this.favourites.length === 0) {
-        this.setFocusOnToggle()
-        this.$root.$emit("bv::toggle::collapse", "collapse-favourites")
+        this.handleClose()
       }
+    },
+    handleClose() {
+      this.setFocusOnToggle()
+      this.$root.$emit("bv::toggle::collapse", "collapse-favourites")
     },
     deleteFavourite(href) {
       this.$store.dispatch("favourites/deleteFavourite", href)
@@ -85,16 +104,44 @@ export default {
 @import "~bootstrap/scss/utilities/screenreaders";
 @import "../../styles/collapse";
 @import "../../styles/placeholders";
+@import "../../styles/mixins";
 
 .vs-favourites {
   position: relative;
 }
 
-.vs-favourites__wrapper {
+.vs-favourites-list__close-button {
+  @extend %button-reset;
+  display: inline-block;
+  position: absolute;
+  right: 1rem;
+  height: 50px;
+  width: 50px;
+
+  &:hover,
+  &:focus {
+    @include focus-underline($color-pink);
+  }
+}
+
+.vs-favourites-list__wrapper {
   @extend %default-inset-box-shadow;
   background-color: $gray-tint-7;
-  padding: 1rem;
+  padding: 2.5rem 0;
   width: 100%;
+}
+
+.vs-favourites-list__link {
+  font-size: 1.5rem;
+}
+
+.vs-favourites-list__header {
+  color: #666666;
+  display: inline-block;
+  font-size: 2rem;
+  font-weight: 300;
+  letter-spacing: 1px;
+  text-transform: uppercase;
 }
 </style>
 

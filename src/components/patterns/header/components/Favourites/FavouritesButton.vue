@@ -66,6 +66,11 @@ export default {
         this.$store.dispatch("favourites/addFavourite", this.favouriteItem)
       }
     },
+    setFocusOnToggle() {
+      setTimeout(() => {
+        document.getElementById("favourites-close-button").focus()
+      }, 100)
+    },
   },
 }
 </script>
