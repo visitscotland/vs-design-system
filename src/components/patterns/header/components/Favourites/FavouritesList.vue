@@ -83,20 +83,8 @@ export default {
 @import "~bootstrap/scss/utilities/flex";
 @import "~bootstrap/scss/utilities/spacing";
 @import "~bootstrap/scss/utilities/screenreaders";
+@import "../../styles/collapse";
 @import "../../styles/placeholders";
-
-.collapse:not(.show) {
-  display: none;
-  opacity: 0;
-}
-
-.collapsing {
-  position: relative;
-  height: 0;
-  overflow: hidden;
-  opacity: 1;
-  transition: all 50ms ease-in-out;
-}
 
 .vs-favourites {
   position: relative;
