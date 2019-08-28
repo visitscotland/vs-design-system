@@ -130,7 +130,7 @@ export default {
 
   const mainNav = require("../../../../../assets/fixtures/mainNav.json")
   const promoItem = mainNav[2].promoItem
-  <div>
+  <ul style="list-style-type: none; margin: 0; max-width: 400px;">
     <vs-desktop-nav-promo-item
       :href="promoItem.href"
       :is-external="promoItem.isExternal"
@@ -139,6 +139,6 @@ export default {
       :description="promoItem.description"
       :image-link="promoItem.imageLink"
     />
-  </div>
+  </ul>
   ```
 </docs>

@@ -308,7 +308,7 @@ export default {
   const item = mainNav[0]
 
   <div class="vs-header">
-    <ul style="list-style-type: none; margin: 0; padding: 0;">
+    <ul style="list-style-type: none; margin: 0; padding: 0; max-width: 400px;">
       <vs-mobile-nav-list-item
         :level="1"
         :href="item.href"

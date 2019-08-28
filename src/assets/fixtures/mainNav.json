@@ -552,7 +552,7 @@
       "trackingId": "nav.link.test-tracking-id",
       "buttonText": "Read more",
       "description": "Why not stay in a castle, a lighthouse or on a working farm?",
-      "imageLink": "https://via.placeholder.com/360x200?text=Image+Placeholder"
+      "imageLink": "https://cimg.visitscotland.com/cms-images/destinations/outer-hebrides/isle-of-lewis?size=sm"
     }
   },
   {
@@ -655,7 +655,7 @@
       "trackingId": "nav.link.test-tracking-id",
       "buttonText": "Read more",
       "description": "Iconic Ben Nevis needs to be top of your Scottish to-do list.",
-      "imageLink": "https://via.placeholder.com/360x200?text=Image+Placeholder"
+      "imageLink": "https://cimg.visitscotland.com/cms-images/destinations/outer-hebrides/isle-of-lewis?size=sm"
     }
   },
   {
@@ -769,7 +769,7 @@
       "trackingId": "nav.link.test-tracking-id",
       "buttonText": "Read more",
       "description": "Expert local knowledge, gifts and inspiration.",
-      "imageLink": "https://via.placeholder.com/360x200?text=Image+Placeholder"
+      "imageLink": "https://cimg.visitscotland.com/cms-images/destinations/outer-hebrides/isle-of-lewis?size=sm"
     }
   },
   {
@@ -785,7 +785,7 @@
         "isExternal": false,
         "isActive": false,
         "trackingId": "nav.link.test-tracking-id",
-        "imageLink": "https://via.placeholder.com/360x200?text=Image+Placeholder"
+        "imageLink": "https://cimg.visitscotland.com/cms-images/destinations/outer-hebrides/isle-of-lewis?size=sm"
       },
       {
         "title": "Island hopping",
@@ -793,7 +793,7 @@
         "isExternal": false,
         "isActive": false,
         "trackingId": "nav.link.test-tracking-id",
-        "imageLink": "https://via.placeholder.com/360x200?text=Image+Placeholder"
+        "imageLink": "https://cimg.visitscotland.com/cms-images/destinations/outer-hebrides/isle-of-lewis?size=sm"
       },
       {
         "title": "Family",
@@ -801,7 +801,7 @@
         "isExternal": false,
         "trackingId": "nav.link.test-tracking-id",
         "isActive": false,
-        "imageLink": "https://via.placeholder.com/360x200?text=Image+Placeholder"
+        "imageLink": "https://cimg.visitscotland.com/cms-images/destinations/outer-hebrides/isle-of-lewis?size=sm"
       },
       {
         "title": "Farm stays",
@@ -809,7 +809,7 @@
         "isExternal": false,
         "isActive": false,
         "trackingId": "nav.link.test-tracking-id",
-        "imageLink": "https://via.placeholder.com/360x200?text=Image+Placeholder"
+        "imageLink": "https://cimg.visitscotland.com/cms-images/destinations/outer-hebrides/isle-of-lewis?size=sm"
       },
       {
         "title": "Wellness",
@@ -817,7 +817,7 @@
         "isExternal": false,
         "isActive": false,
         "trackingId": "nav.link.test-tracking-id",
-        "imageLink": "https://via.placeholder.com/360x200?text=Image+Placeholder"
+        "imageLink": "https://cimg.visitscotland.com/cms-images/destinations/outer-hebrides/isle-of-lewis?size=sm"
       }
     ]
   }

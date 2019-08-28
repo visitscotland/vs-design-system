@@ -38,11 +38,25 @@ export default {
 <docs>
   ```jsx
   const mainNav = require("../../../../../assets/fixtures/mainNav.json")
+  const item = mainNav[0]
 
-  <div class="vs-header" style="position: relative; height: 100vh;">
+  <div class="vs-header">
+    <ul style="list-style-type: none; margin: 0; padding: 0; display: flex;">
+      <!--  Only displaying one nav item, as clicking on different
+            different lists emits events controlled by the header component -->
+      <vs-desktop-nav-toggles
+        :level="1"
+        :href="item.href"
+        :is-external="item.isExternal"
+        :title="item.title"
+        :subnav="item.subnav"
+        :promo-list="item.promoList"
+        :promo-item="item.promoItem"
+        :toggleId="1"
+      ></vs-desktop-nav-toggles>
+    </ul>
     <vs-desktop-nav name="Desktop navigation"> 
       <vs-desktop-nav-submenu
-        v-for="(item, index) in mainNav"
         :level="1"
         :href="item.href"
         :is-external="item.isExternal"
@@ -51,8 +65,7 @@ export default {
         :subnav="item.subnav"
         :promo-list="item.promoList"
         :promo-item="item.promoItem"
-        :key="index"
-        :subnavId="index+1"
+        :subnavId="1"
       >
         <vs-desktop-nav-list-item
           slot="subnav"

@@ -230,7 +230,23 @@ export default {
   const mainNav = require("../../../../../assets/fixtures/mainNav.json")
   const item = mainNav[0]
 
-  <ul class="list-unstyled">
+  <div>
+
+    <ul style="display: flex; list-style-type: none; margin: 0;">
+    <vs-desktop-nav-toggles
+      :level="1"
+      :href="item.href"
+      :is-external="item.isExternal"
+      :title="item.title"
+      :subnav="item.subnav"
+      :promo-list="item.promoList"
+      :promo-item="item.promoItem"
+      :toggleId="1"
+    />
+    </ul>
+
+    <ul style="list-style-type: none; margin: 0; padding: 0;">
+
     <vs-desktop-nav-submenu
         :level="1"
         :href="item.href"
@@ -269,5 +285,6 @@ export default {
         </vs-desktop-nav-list-item>
       </vs-desktop-nav-submenu>
   </ul>
+  </div>
   ```
 </docs>

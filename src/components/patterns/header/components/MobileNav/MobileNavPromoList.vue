@@ -71,7 +71,7 @@ export default {
   ```jsx
     const mainNav = require("../../../../../assets/fixtures/mainNav.json")
     const promoList = mainNav[4].promoList
-    <div>
+    <div style="max-width: 400px;">
       <vs-mobile-nav-promo-list
         :list="promoList"
       />
