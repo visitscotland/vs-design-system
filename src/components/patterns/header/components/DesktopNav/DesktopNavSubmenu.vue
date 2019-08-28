@@ -16,7 +16,7 @@
             </button>
           </vs-col>
         </vs-row>
-        <ul class="list-unstyled row">
+        <ul class="list-unstyled row flex-column vs-desktop-submenu__list">
           <slot name="subnav" />
           <VsDesktopNavPromoItem
             v-if="promoItem"
@@ -150,21 +150,9 @@ export default {
 @import "~bootstrap/scss/utilities/spacing";
 @import "~bootstrap/scss/utilities/flex";
 @import "~bootstrap/scss/utilities/screenreaders";
+@import "../../styles/collapse";
 @import "../../styles/placeholders";
 @import "../../styles/mixins";
-
-.collapse:not(.show) {
-  display: none;
-  opacity: 0;
-}
-
-.collapsing {
-  position: relative;
-  height: 0;
-  overflow: hidden;
-  opacity: 1;
-  transition: all 50ms ease-in-out;
-}
 
 .vs-desktop-submenu__wrapper {
   @extend %default-inset-box-shadow;
@@ -180,6 +168,12 @@ export default {
   font-weight: $font-weight-light;
   letter-spacing: 1px;
   text-transform: uppercase;
+}
+
+.vs-desktop-submenu__list {
+  height: 600px;
+  overflow: hidden;
+  justify-content: flex-start;
 }
 
 .vs-desktop-submenu__close-button {
