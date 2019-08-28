@@ -96,6 +96,7 @@ export default {
 @import "~bootstrap/scss/utilities/screenreaders";
 @import "../../styles/collapse";
 @import "../../styles/placeholders";
+@import "../../styles/mixins";
 
 .vs-search__form-wrapper {
   @extend %default-inset-box-shadow;
@@ -117,7 +118,7 @@ export default {
   position: relative;
 
   &:focus {
-    @extend %focus-pink-inset;
+    @include focus-underline($color-pink, -1px);
   }
 }
 
