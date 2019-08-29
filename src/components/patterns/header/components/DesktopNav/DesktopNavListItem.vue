@@ -187,11 +187,12 @@ export default {
         content: "";
         display: block;
         background-color: $gray-tint-5;
-        width: 5px;
         height: 100%;
         position: absolute;
         left: -1rem;
         top: 0;
+        transition: width 250ms ease;
+        width: 5px;
       }
     }
     &:hover {
@@ -200,20 +201,29 @@ export default {
   }
 
   &--level3 {
+    transition: box-shadow 250ms ease;
+
+    &::after {
+      content: "";
+      display: block;
+      height: 0;
+      transition: width 250ms ease, height 250ms ease;
+      width: 0;
+    }
     &:focus {
       color: $color-pink;
       outline: none;
       position: relative;
 
       &::after {
+        background-color: $gray-tint-5;
         content: "";
         display: block;
-        background-color: $gray-tint-5;
-        width: 5px;
         height: 100%;
-        position: absolute;
         left: -1rem;
+        position: absolute;
         top: 0;
+        width: 5px;
       }
     }
     &:hover {
