@@ -187,7 +187,7 @@ export default {
       content: "";
       display: block;
       height: 0;
-      transition: width 250ms ease, height 250ms ease;
+      transition: height 250ms cubic-bezier(0.78, 0.27, 0.36, 0.76);
       width: 0;
     }
     &:focus {
