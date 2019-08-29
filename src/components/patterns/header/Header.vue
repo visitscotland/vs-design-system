@@ -232,6 +232,7 @@ export default {
         :subnav="item.subnav"
         :promo-list="item.promoList"
         :promo-item="item.promoItem"
+        :chart-widgets="item.chartWidgets"
         :key="index"
         :toggleId="index+1"
       ></vs-desktop-nav-toggles>
@@ -247,6 +248,7 @@ export default {
         :subnav="item.subnav"
         :promo-list="item.promoList"
         :promo-item="item.promoItem"
+        :chart-widgets="item.chartWidgets"
         :key="index"
         :subnavId="index+1"
       >
@@ -259,8 +261,6 @@ export default {
           :tracking-id="level2.trackingId"
           :title="level2.title"
           :subnav="level2.subnav"
-          :promo-list="level2.promoList"
-          :promo-item="level2.promoItem"
           :key="index2"
         >
           <vs-desktop-nav-list-item
@@ -272,8 +272,6 @@ export default {
             :title="level3.title"
             :tracking-id="level3.trackingId"
             :subnav="level3.subnav"
-            :promo-list="level3.promoList"
-            :promo-item="level3.promoItem"
             :key="index3"
           >
           </vs-desktop-nav-list-item>

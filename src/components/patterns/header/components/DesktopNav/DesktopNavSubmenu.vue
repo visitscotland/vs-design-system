@@ -40,6 +40,16 @@
               :image-link="item.imageLink"
             />
           </template>
+          <template v-if="chartWidgets">
+            <vs-desktop-nav-chart
+              v-for="(chart, widgetIndex) in chartWidgets"
+              :chart-title="chart.chartTitle"
+              :labels="chart.labels"
+              :datasets="chart.datasets"
+              :options="chart.options"
+              :key="widgetIndex"
+            />
+          </template>
           <li
             class="vs-desktop-submenu__list-item vs-desktop-submenu__list-item--landing-page-link"
           >
@@ -109,6 +119,9 @@ export default {
     },
     promoItem: {
       type: Object,
+    },
+    chartWidgets: {
+      type: Array,
     },
     subnavId: {
       type: Number,
@@ -246,6 +259,7 @@ export default {
       :subnav="item.subnav"
       :promo-list="item.promoList"
       :promo-item="item.promoItem"
+      :chartWidgets="item.chartWidgets"
       :toggleId="1"
     />
     </ul>
@@ -260,6 +274,7 @@ export default {
         :subnav="item.subnav"
         :promo-list="item.promoList"
         :promo-item="item.promoItem"
+        :chartWidgets="item.chartWidgets"
         :subnav-id="1"
       >
       <vs-desktop-nav-list-item
@@ -270,8 +285,6 @@ export default {
           :is-external="level2.isExternal"
           :title="level2.title"
           :subnav="level2.subnav"
-          :promo-list="level2.promoList"
-          :promo-item="level2.promoItem"
           :key="index2"
         >
           <vs-desktop-nav-list-item
@@ -282,8 +295,6 @@ export default {
             :is-external="level3.isExternal"
             :title="level3.title"
             :subnav="level3.subnav"
-            :promo-list="level3.promoList"
-            :promo-item="level3.promoItem"
             :key="index3"
           >
           </vs-desktop-nav-list-item>

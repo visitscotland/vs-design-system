@@ -78,6 +78,9 @@ export default {
     promoItem: {
       type: Object,
     },
+    chartWidgets: {
+      type: Array,
+    },
     toggleId: {
       type: Number,
     },
@@ -87,7 +90,8 @@ export default {
       if (
         this.subnav !== undefined ||
         this.promoItem !== undefined ||
-        this.promoList !== undefined
+        this.promoList !== undefined ||
+        this.chartWidgets !== undefined
       ) {
         return true
       }
@@ -151,6 +155,7 @@ export default {
       :subnav="item.subnav"
       :promo-list="item.promoList"
       :promo-item="item.promoItem"
+      :chart-widgets="item.chartWidgets"
       :toggleId="1"
     />
   </ul>

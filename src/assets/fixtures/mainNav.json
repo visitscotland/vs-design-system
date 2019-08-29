@@ -915,16 +915,83 @@
         ]
       }
     ],
-    "promoItem": {
-      "title": "VisitScotland iCentres",
-      "href": "https://www.visitscotland.com/about/practical-information/vic/",
-      "isExternal": false,
-      "isActive": false,
-      "trackingId": "nav.link.test-tracking-id",
-      "buttonText": "Read more",
-      "description": "Expert local knowledge, gifts and inspiration.",
-      "imageLink": "https://cimg.visitscotland.com/cms-images/destinations/outer-hebrides/isle-of-lewis?size=sm"
-    }
+    "chartWidgets": [
+      {
+        "chartTitle": "Average Temperatures",
+        "labels": [
+          "Jan",
+          "Feb",
+          "Mar",
+          "Apr",
+          "May",
+          "Jun",
+          "Jul",
+          "Aug",
+          "Sep",
+          "Oct",
+          "Nov",
+          "Dec"
+        ],
+        "datasets": [
+          {
+            "label": "Fahrenheit",
+            "backgroundColor": "#700E57",
+            "data": [39, 41, 43, 48, 55, 57, 57, 54, 48, 43, 39]
+          },
+          {
+            "label": "Celcius",
+            "backgroundColor": "#848484",
+            "data": [4, 4, 5, 6, 9, 13, 14, 14, 12, 9, 6, 4]
+          }
+        ]
+      },
+      {
+        "chartTitle": "Average Rainfall",
+        "labels": [
+          "Jan",
+          "Feb",
+          "Mar",
+          "Apr",
+          "May",
+          "Jun",
+          "Jul",
+          "Aug",
+          "Sep",
+          "Oct",
+          "Nov",
+          "Dec"
+        ],
+        "datasets": [
+          {
+            "label": "Aberdeen",
+            "backgroundColor": "#700E57",
+            "data": [70, 50, 70, 60, 60, 70, 60, 70, 70, 90, 80, 80]
+          },
+          {
+            "label": "Glasgow",
+            "backgroundColor": "#848484",
+            "data": [130, 90, 120, 50, 60, 70, 70, 60, 80, 110, 100, 120]
+          },
+          {
+            "label": "Edinburgh",
+            "backgroundColor": "#AF006E",
+            "data": [70, 50, 70, 40, 50, 60, 70, 50, 70, 80, 70, 70]
+          }
+        ],
+        "options": {
+          "scales": {
+            "yAxes": [
+              {
+                "scaleLabel": {
+                  "display": true,
+                  "labelString": "millimetres"
+                }
+              }
+            ]
+          }
+        }
+      }
+    ]
   },
   {
     "title": "Trip ideas",
