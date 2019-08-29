@@ -55,16 +55,6 @@
         </li>
         <slot name="subnav" />
       </ul>
-      <VsDesktopNavPromoItem
-        v-if="promoItem"
-        :href="promoItem.href"
-        :is-external="promoItem.isExternal"
-        :title="promoItem.title"
-        :button-text="promoItem.buttonText"
-        :description="promoItem.description"
-        :image-link="promoItem.imageLink"
-      />
-      <VsDesktopNavPromoItem v-if="promoList" :list="promoList" />
     </div>
   </component>
 </template>
@@ -106,12 +96,6 @@ export default {
     subnav: {
       type: Array,
     },
-    promoList: {
-      type: Array,
-    },
-    promoItem: {
-      type: Object,
-    },
     subnavId: {
       type: Number,
     },
@@ -121,11 +105,7 @@ export default {
       return this.title ? this.title.toLowerCase() : ""
     },
     hasChildren() {
-      if (
-        this.subnav !== undefined ||
-        this.promoItem !== undefined ||
-        this.promoList !== undefined
-      ) {
+      if (this.subnav !== undefined) {
         return true
       }
       return false
@@ -247,8 +227,6 @@ export default {
       :is-external="item.isExternal"
       :title="item.title"
       :subnav="item.subnav"
-      :promo-list="item.promoList"
-      :promo-item="item.promoItem"
       :toggleId="1"
     />
   </ul>
@@ -261,6 +239,7 @@ export default {
         :subnav="item.subnav"
         :promo-list="item.promoList"
         :promo-item="item.promoItem"
+        :widget="item.widget"
         :subnav-id="1"
       >
       <vs-desktop-nav-list-item
@@ -271,8 +250,6 @@ export default {
           :is-external="level2.isExternal"
           :title="level2.title"
           :subnav="level2.subnav"
-          :promo-list="level2.promoList"
-          :promo-item="level2.promoItem"
           :key="index2"
         >
           <vs-desktop-nav-list-item
@@ -283,8 +260,6 @@ export default {
             :is-external="level3.isExternal"
             :title="level3.title"
             :subnav="level3.subnav"
-            :promo-list="level3.promoList"
-            :promo-item="level3.promoItem"
             :key="index3"
           >
           </vs-desktop-nav-list-item>
