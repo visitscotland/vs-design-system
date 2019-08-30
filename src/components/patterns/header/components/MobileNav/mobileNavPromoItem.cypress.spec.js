@@ -1,7 +1,7 @@
 const VsMobileNavPromoItem = require("./MobileNavPromoItem.vue").default
 const { vueHelper } = require("@cypress/helpers/index.js").default
 const sizes = ["iphone-6", "ipad-2", [1024, 768]]
-const mainNav = require("../../../../assets/fixtures/mainNav.json")
+const mainNav = require("../../../../../assets/fixtures/mainNav.json")
 const promoItem = mainNav[2].promoItem
 
 const props = {
@@ -45,7 +45,11 @@ describe("Mobile Nav Promo Item component", () => {
       it("should render a promo image", () => {
         cy.get(".vs-promo-item__image")
           .should("be.visible")
-          .should("have.attr", "src", "https://via.placeholder.com/360x200?text=Image+Placeholder")
+          .should(
+            "have.attr",
+            "src",
+            "https://cimg.visitscotland.com/cms-images/destinations/outer-hebrides/isle-of-lewis?size=sm"
+          )
       })
 
       it("should render alt text for the promo image that is the same as the title", () => {

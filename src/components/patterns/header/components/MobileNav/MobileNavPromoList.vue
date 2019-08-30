@@ -1,27 +1,24 @@
 <template>
   <component :is="type" class="list-unstyled">
-    <li class="vs-promo__list-item" v-for="(item, index) in list" :key="index">
-      <VsMobileNavPromoItem
-        v-show="item && index === last"
-        :href="item.href"
-        :is-external="item.isExternal"
-        :title="item.title"
-        :button-text="item.buttonText"
-        :description="item.description"
-        :image-link="item.imageLink"
-      />
-      <VsMobileNavListItem
-        v-show="item && index !== last"
-        :level="2"
-        :href="item.href"
-        :is-external="item.isExternal"
-        :title="item.title"
-        :subnav="item.subnav"
-        :promo-list="item.promoList"
-        :promo-item="item.promoItem"
-        :key="index"
-      />
-    </li>
+    <VsMobileNavListItem
+      v-for="(item, index) in allButLastPromos"
+      :level="2"
+      :href="item.href"
+      :is-external="item.isExternal"
+      :title="item.title"
+      :subnav="item.subnav"
+      :promo-list="item.promoList"
+      :promo-item="item.promoItem"
+      :key="'listPromos' + index"
+    />
+    <VsMobileNavPromoItem
+      :href="lastPromo.href"
+      :is-external="lastPromo.isExternal"
+      :title="lastPromo.title"
+      :button-text="lastPromo.buttonText"
+      :description="lastPromo.description"
+      :image-link="lastPromo.imageLink"
+    />
   </component>
 </template>
 
@@ -56,8 +53,21 @@ export default {
     },
   },
   computed: {
-    last() {
-      return Object.keys(this.list).length - 1
+    lastPromo() {
+      var lastPromo = this.list.filter((item, index) => {
+        if (index === this.list.length - 1) {
+          return item
+        }
+      })
+      return lastPromo[0]
+    },
+    allButLastPromos() {
+      var allButLast = this.list.filter((item, index) => {
+        if (index !== this.list.length - 1) {
+          return item
+        }
+      })
+      return allButLast
     },
   },
 }

@@ -61,12 +61,15 @@ describe("Mobile Nav List Item component", () => {
 
       it("clicking the button should toggle a submenu", () => {
         cy.get("ul").should("not.be.visible")
-        cy.get(".vs-mobile-nav__button").click()
+        cy.get(".vs-mobile-nav__button")
+          .first()
+          .click()
         cy.get("ul").should("be.visible")
       })
 
       it("clicking the button should toggle the button aria-expanded state", () => {
         cy.get(".vs-mobile-nav__button")
+          .first()
           .should("not.have.attr", "aria-expanded", "true")
           .click()
           .should("have.attr", "aria-expanded", "true")
@@ -74,6 +77,7 @@ describe("Mobile Nav List Item component", () => {
 
       it("a button that opens a submenu should have an aria-haspopup property", () => {
         cy.get(".vs-mobile-nav__button")
+          .first()
           .should("have.attr", "aria-haspopup", "true")
           .click()
           .should("have.attr", "aria-expanded", "true")
@@ -81,15 +85,18 @@ describe("Mobile Nav List Item component", () => {
 
       it("the nav levels should rendered within the classes in each dom element", () => {
         cy.get(".vs-mobile-nav__button--level1")
+          .first()
           .should("be.visible")
           .click()
-        cy.get(".vs-mobile-nav__list-item--level2").should("be.visible")
+        cy.get(".vs-mobile-nav__list-item--level2")
+          .first()
+          .should("be.visible")
         cy.get(".vs-mobile-nav__button--level2")
+          .first()
           .should("be.visible")
           .first()
           .click()
         cy.get(".vs-mobile-nav__list-item--level3").should("be.visible")
-        cy.get(".vs-mobile-nav__link--level3").should("be.visible")
       })
     })
   })

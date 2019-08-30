@@ -1,20 +1,22 @@
 <template>
-  <component :is="type" class="vs-promo-item__link" :href="href">
-    <div class="vs-promo-item__wrapper">
-      <span class="vs-promo-item__link-title">{{ title }}</span>
-      <div class="vs-promo-item__icon-wrapper">
-        <vs-icon name="reverse-arrow" size="xs" variant="primary" />
+  <component :is="type" class="vs-mobile-nav__list-item vs-mobile-nav__list-item--level2">
+    <a class="vs-promo-item__link" :href="href">
+      <div class="vs-promo-item__wrapper">
+        <span class="vs-promo-item__link-title">{{ title }}</span>
+        <div class="vs-promo-item__icon-wrapper">
+          <vs-icon name="reverse-arrow" size="xs" variant="primary" />
+        </div>
       </div>
-    </div>
-    <div class="vs-promo-item__image-wrapper" v-if="imageLink">
-      <img
-        class="lazyload vs-promo-item__image"
-        :data-srcset="imageLink"
-        :data-src="imageLink"
-        :alt="title"
-        :src="imageLink"
-      />
-    </div>
+      <div class="vs-promo-item__image-wrapper" v-if="imageLink">
+        <img
+          class="lazyload vs-promo-item__image"
+          :data-srcset="imageLink"
+          :data-src="imageLink"
+          :alt="title"
+          :src="imageLink"
+        />
+      </div>
+    </a>
   </component>
 </template>
 
@@ -35,7 +37,7 @@ export default {
      */
     type: {
       type: String,
-      default: "a",
+      default: "li",
     },
     href: {
       type: String,
