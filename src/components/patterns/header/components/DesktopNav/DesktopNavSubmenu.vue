@@ -42,12 +42,13 @@
           </template>
           <template v-if="chartWidgets">
             <vs-desktop-nav-chart
-              v-for="(chart, widgetIndex) in chartWidgets"
+              v-for="(chart, index) in chartWidgets"
               :chart-title="chart.chartTitle"
               :labels="chart.labels"
               :datasets="chart.datasets"
               :options="chart.options"
-              :key="widgetIndex"
+              :chartId="'chartId' + index"
+              :key="'chart' + index"
             />
           </template>
           <li
