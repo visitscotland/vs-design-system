@@ -1,7 +1,7 @@
 <template>
-  <component :is="type" class="vs-desktop-nav-chart col-4 col-xl-3">
+  <component :is="type" class="vs-desktop-nav-chart col-4 col-xl-3 divide-left">
     <span class="vs-desktop-nav-chart__header">{{ chartTitle }}</span>
-    <canvas ref="chart" width="400" height="400"></canvas>
+    <canvas :id="chartId" width="400" height="300"></canvas>
   </component>
 </template>
 
@@ -27,6 +27,9 @@ export default {
     chartTitle: {
       type: String,
     },
+    chartId: {
+      type: String,
+    },
     labels: {
       type: Array,
     },
@@ -36,11 +39,9 @@ export default {
   },
   methods: {},
   mounted() {
-    const ctx = this.$refs.chart
+    var ctx = document.getElementById(this.chartId).getContext("2d")
 
-    console.log(this.labels)
-
-    const thisChart = new Chart(ctx, {
+    var thisChart = new Chart(ctx, {
       type: "bar",
       data: {
         labels: this.labels,
@@ -53,9 +54,15 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "../../styles/placeholders";
+
 .vs-desktop-nav-chart__header {
   font-size: 1.5rem;
   margin-bottom: 1rem;
+}
+
+.divide-left {
+  @extend %divide-left;
 }
 </style>
 

@@ -4,7 +4,7 @@
     class="vs-desktop-nav__list-item"
     :class="{
       ['vs-desktop-nav__list-item--level' + level]: level,
-      ['col-4 col-xl-3 vs-desktop-nav__list--divide-left']: level === 2,
+      ['col-4 col-xl-3 divide-left']: level === 2,
     }"
   >
     <a
@@ -124,6 +124,7 @@ export default {
 <style lang="scss" scoped>
 @import "~bootstrap/scss/type";
 @import "~bootstrap/scss/utilities/spacing";
+@import "../../styles/placeholders";
 @import "../../styles/mixins";
 
 .vs-desktop-nav__span,
@@ -146,13 +147,13 @@ export default {
   display: block;
 }
 
+.divide-left {
+  @extend %divide-left;
+}
+
 .vs-desktop-nav__list {
   &--level3 {
     margin-bottom: 2rem;
-  }
-
-  &--divide-left {
-    box-shadow: -1px 0 0 0 $gray-tint-5;
   }
 }
 
