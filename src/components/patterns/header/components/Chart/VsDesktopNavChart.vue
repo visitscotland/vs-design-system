@@ -1,5 +1,5 @@
 <template>
-  <component :is="type" class="vs-desktop-nav-chart col-4 col-xl-3 divide-left">
+  <component :is="type" class="vs-desktop-nav-chart__container col-4 col-xl-3 divide-left">
     <span class="vs-desktop-nav-chart__header">{{ chartTitle }}</span>
     <canvas :id="chartId" width="400" height="300"></canvas>
   </component>
@@ -55,6 +55,10 @@ export default {
 
 <style lang="scss" scoped>
 @import "../../styles/placeholders";
+
+.vs-desktop-nav-chart__container {
+  min-width: 300px;
+}
 
 .vs-desktop-nav-chart__header {
   font-size: 1.5rem;
