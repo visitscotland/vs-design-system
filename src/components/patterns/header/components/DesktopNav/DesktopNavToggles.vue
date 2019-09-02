@@ -146,8 +146,9 @@ export default {
   const mainNav = require("../../../../../assets/fixtures/mainNav.json")
   const item = mainNav[0]
 
-  <ul style="list-style-type: none; margin: 0; padding: 0;">
+  <ul style="display: flex; list-style-type: none; margin: 0; padding: 0;">
     <vs-desktop-nav-toggles
+      v-for="(item, index) in mainNav"
       :level="1"
       :href="item.href"
       :is-external="item.isExternal"
@@ -156,7 +157,8 @@ export default {
       :promo-list="item.promoList"
       :promo-item="item.promoItem"
       :chart-widgets="item.chartWidgets"
-      :toggleId="1"
+      :toggleId="index + 1"
+      :key="index"
     />
   </ul>
   ```
