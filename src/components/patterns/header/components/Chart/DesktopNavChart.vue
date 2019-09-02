@@ -1,7 +1,7 @@
 <template>
   <component :is="type" class="vs-desktop-nav-chart__container col-4 col-xl-3 divide-left">
     <span class="vs-desktop-nav-chart__header">{{ chartTitle }}</span>
-    <canvas :id="chartId" width="400" height="300"></canvas>
+    <canvas :ref="chartId" width="400" height="300"></canvas>
   </component>
 </template>
 
@@ -39,7 +39,7 @@ export default {
   },
   methods: {},
   mounted() {
-    var ctx = document.getElementById(this.chartId).getContext("2d")
+    var ctx = this.$refs[this.chartId].getContext("2d")
 
     var thisChart = new Chart(ctx, {
       type: "bar",
