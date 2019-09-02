@@ -1,4 +1,5 @@
 import VsDesktopNav from "./components/DesktopNav/DesktopNav"
+import VsDesktopNavChart from "./components/Chart/DesktopNavChart"
 import VsDesktopNavListItem from "./components/DesktopNav/DesktopNavListItem"
 import VsDesktopNavPromoItem from "./components/DesktopNavPromoItem/DesktopNavPromoItem"
 import VsDesktopNavPromoList from "./components/DesktopNavPromoList/DesktopNavPromoList"
@@ -21,10 +22,10 @@ import VsSearch from "./components/Search/Search"
 import VsSearchButton from "./components/SearchButton/SearchButton"
 import VsSkipToContent from "./components/SkipToContent/SkipToContent"
 import VsSkipToSearch from "./components/SkipToSearch/SkipToSearch"
-import VsDesktopNavChart from "./components/Chart/DesktopNavChart"
 
 export {
   VsDesktopNav,
+  VsDesktopNavChart,
   VsDesktopNavListItem,
   VsDesktopNavPromoItem,
   VsDesktopNavPromoList,
@@ -47,5 +48,4 @@ export {
   VsSearchButton,
   VsSkipToContent,
   VsSkipToSearch,
-  VsDesktopNavChart,
 }
