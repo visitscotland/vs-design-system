@@ -321,17 +321,6 @@ export default {
         </vs-mobile-nav-list-item>
       </vs-mobile-nav-list-item>
     </vs-header>
-    <main id="main">
-      <vs-container>
-        <vs-row>
-          <vs-col>
-            <vs-heading>Page Title</vs-heading>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-            <a href="#">Test focusable element</a>
-          </vs-col>
-        </vs-row>
-      </vs-container>
-    </main>
   </div>
   ```
 </docs>
