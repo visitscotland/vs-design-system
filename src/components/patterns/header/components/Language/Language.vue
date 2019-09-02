@@ -2,7 +2,7 @@
   <component :is="type" class="vs-dropdown" :aria-label="name">
     <button class="vs-dropdown__button" id="language-toggle-trigger" v-b-toggle.language-list>
       <span v-if="selectedLanguage !== null">
-        <span class="sr-only">Currently selected language is </span>
+        <span class="sr-only">Currently selected language is {{ selectedLanguage.title }}</span>
         <abbr :title="selectedLanguage.title">{{ selectedLanguage.abbreviation }}</abbr>
       </span>
       <span v-else> <span class="sr-only">Toggle menu for </span>{{ name }}</span>
