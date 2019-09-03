@@ -22,21 +22,28 @@ describe("Mobile Nav Promo List component", () => {
       })
 
       it("should render a list element", () => {
-        cy.get("ul").should("be.visible")
+        cy.get('[data-test="mobile-promo-list"]').should("be.visible")
       })
 
-      it("should render list items", () => {
-        cy.get("li")
+      it("should render only the last list items as a promo", () => {
+        cy.get('[data-test="mobile-promo-list-item"]')
           .should("be.visible")
-          .should("have.length", "5")
-      })
-
-      it("should only display the image of the last promo item", () => {
-        cy.get("img").should("have.length", "1")
+          .should("have.length", "1")
+        cy.get('[data-test="mobile-promo-image"]').should("have.length", "1")
+        cy.get("li")
+          .first()
+          .find('[data-test="mobile-promo-image"]')
+          .should("not.be.visible")
         cy.get("li")
           .last()
-          .find("img")
+          .find('[data-test="mobile-promo-image"]')
           .should("be.visible")
+      })
+
+      it("the rest of the list items should render as regular nav items", () => {
+        cy.get('[data-test="mobile-nav-list-item"]')
+          .should("be.visible")
+          .should("have.length", "4")
       })
     })
   })

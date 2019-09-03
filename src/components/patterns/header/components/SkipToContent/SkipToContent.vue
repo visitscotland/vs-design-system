@@ -1,7 +1,17 @@
 <template>
-  <component :is="type" class="sr-only sr-only-focusable vs-skip-to" @click="handleClick()">
-    <span>{{ title }}</span>
-    <vs-icon name="chevron-down" size="xs" variant="reverse-white" />
+  <component
+    data-test="skip-to-content-button"
+    :is="type"
+    class="sr-only sr-only-focusable vs-skip-to"
+    @click="handleClick()"
+  >
+    <span data-test="skip-to-content-text">{{ title }}</span>
+    <vs-icon
+      data-test="skip-to-content-chevron-icon"
+      name="chevron-down"
+      size="xs"
+      variant="reverse-white"
+    />
   </component>
 </template>
 

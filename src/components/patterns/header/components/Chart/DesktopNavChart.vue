@@ -1,7 +1,11 @@
 <template>
-  <component :is="type" class="vs-desktop-nav-chart__container col-4 col-xl-3 divide-left">
-    <span class="vs-desktop-nav-chart__header">{{ chartTitle }}</span>
-    <canvas :ref="chartId" width="400" height="300"></canvas>
+  <component
+    data-test="chart-container"
+    :is="type"
+    class="vs-desktop-nav-chart__container col-4 col-xl-3 divide-left"
+  >
+    <span data-test="chart-header" class="vs-desktop-nav-chart__header">{{ chartTitle }}</span>
+    <canvas data-test="chart-canvas" :ref="chartId" width="400" height="300"></canvas>
   </component>
 </template>
 

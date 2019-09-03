@@ -1,8 +1,14 @@
 <template>
-  <component :is="type" :aria-label="name">
-    <ul class="vs-desktop-universal-nav__list list-unstyled d-flex">
-      <li role="none" v-for="(link, index) in dropdownList" :key="index">
+  <component data-test="universal-nav" :is="type" :aria-label="name">
+    <ul data-test="universal-nav-list" class="vs-desktop-universal-nav__list list-unstyled d-flex">
+      <li
+        data-test="universal-nav-list-item"
+        role="none"
+        v-for="(link, index) in dropdownList"
+        :key="index"
+      >
         <a
+          data-test="universal-nav-link"
           class="vs-desktop-universal-nav__link"
           :href="link.href"
           :target="link.isExternal ? '_blank' : false"

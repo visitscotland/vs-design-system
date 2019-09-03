@@ -1,6 +1,7 @@
 <template>
   <component
     :is="type"
+    data-test="desktop-nav-list-item"
     class="vs-desktop-nav__list-item"
     :class="{
       ['vs-desktop-nav__list-item--level' + level]: level,
@@ -9,6 +10,7 @@
   >
     <a
       v-if="href !== null"
+      data-test="desktop-nav-link"
       class="vs-desktop-nav__link"
       :href="href"
       :class="{
@@ -30,12 +32,14 @@
     <div v-if="hasChildren">
       <ul
         class="list-unstyled"
+        data-test="desktop-nav-submenu-list"
         :class="{
           ['vs-desktop-nav__list--level' + incrementLevel]: incrementLevel,
         }"
       >
         <li
           class="vs-desktop-nav__list-item"
+          data-test="desktop-nav-submenu-list-item"
           :class="{
             ['vs-desktop-nav__list-item--level' + incrementLevel]: incrementLevel,
           }"
@@ -43,6 +47,7 @@
         >
           <a
             class="vs-desktop-nav__link vs-desktop-nav__link--landing-page"
+            data-test="desktop-nav-submenu-link"
             :href="href"
             :class="[
               isExternal ? 'external' : '',

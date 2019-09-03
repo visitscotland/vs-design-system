@@ -1,18 +1,36 @@
 <template>
-  <component :is="type" class="vs-dropdown" :aria-label="name">
-    <button class="vs-dropdown__button" id="language-toggle-trigger" v-b-toggle.language-list>
+  <component data-test="language-nav" :is="type" class="vs-dropdown" :aria-label="name">
+    <button
+      data-test="language-button"
+      class="vs-dropdown__button"
+      id="language-toggle-trigger"
+      v-b-toggle.language-list
+    >
       <span v-if="selectedLanguage !== null">
-        <span class="sr-only">Currently selected language is {{ selectedLanguage.title }}</span>
+        <span data-test="selected-language-screenreader-text" class="sr-only"
+          >Currently selected language is {{ selectedLanguage.title }}</span
+        >
         <abbr :title="selectedLanguage.title">{{ selectedLanguage.abbreviation }}</abbr>
       </span>
       <span v-else> <span class="sr-only">Toggle menu for </span>{{ name }}</span>
-      <div class="vs-dropdown__icon-wrapper">
-        <vs-icon name="chevron-down" variant="reverse-white" size="xxs" />
+      <div data-test="icon-wrapper" class="vs-dropdown__icon-wrapper">
+        <vs-icon
+          data-test="chevron-down-icon"
+          name="chevron-down"
+          variant="reverse-white"
+          size="xxs"
+        />
       </div>
     </button>
     <b-collapse id="language-list">
-      <ul aria-role="menubar" :aria-label="name" class="vs-dropdown__list list-unstyled">
+      <ul
+        data-test="language-dropdown-list"
+        aria-role="menubar"
+        :aria-label="name"
+        class="vs-dropdown__list list-unstyled"
+      >
         <li
+          data-test="language-dropdown-list-item"
           role="none"
           class="vs-dropdown__list-item"
           :class="{ 'vs-dropdown__list-item--active': link.isActive }"
@@ -20,6 +38,7 @@
           :key="index"
         >
           <a
+            data-test="language-dropdown-link"
             class="vs-dropdown__link"
             :href="link.href"
             :target="link.isExternal ? '_blank' : false"

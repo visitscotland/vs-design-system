@@ -1,14 +1,29 @@
 <template>
-  <component :is="type" class="vs-dropdown" :aria-label="name">
-    <button class="vs-dropdown__button" v-b-toggle.collapse-universal-nav>
+  <component data-test="mobile-universal-nav" :is="type" class="vs-dropdown" :aria-label="name">
+    <button
+      data-test="mobile-universal-nav-button"
+      class="vs-dropdown__button"
+      v-b-toggle.collapse-universal-nav
+    >
       <span> <span class="sr-only">Toggle menu for </span>{{ name }}</span>
       <div class="vs-dropdown__icon-wrapper">
-        <vs-icon name="chevron-down" variant="reverse-white" size="xxs" />
+        <vs-icon
+          data-test="mobile-univeral-nav-chevron-icon"
+          name="chevron-down"
+          variant="reverse-white"
+          size="xxs"
+        />
       </div>
     </button>
     <b-collapse id="collapse-universal-nav">
-      <ul aria-role="menubar" :aria-label="name" class="vs-dropdown__list list-unstyled">
+      <ul
+        data-test="mobile-univeral-nav-list"
+        aria-role="menubar"
+        :aria-label="name"
+        class="vs-dropdown__list list-unstyled"
+      >
         <li
+          data-test="mobile-universal-nav-list-item"
           role="none"
           class="vs-dropdown__list-item"
           :class="{ 'vs-dropdown__list-item--active': link.isActive }"
@@ -24,7 +39,12 @@
           >
             {{ link.title }}
             <div v-if="link.isExternal" class="vs-dropdown__external-icon-wrapper">
-              <vs-icon name="external-link" size="xxs" variant="reverse-white" />
+              <vs-icon
+                data-test="mobile-universal-nav-external-link-icon"
+                name="external-link"
+                size="xxs"
+                variant="reverse-white"
+              />
             </div>
           </a>
         </li>

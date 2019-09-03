@@ -1,10 +1,12 @@
 <template>
-  <component :is="type" class="vs-logo" href="#">
-    <span class="sr-only">VisitScotland Home</span>
-    <span class="d-flex align-self-center d-lg-none">
-      <vs-svg path="scotland-alba-logo" height="18" />
+  <component data-test="logo-link" :is="type" class="vs-logo" href="#">
+    <span data-test="logo-screenreader-text" class="sr-only">VisitScotland Home</span>
+    <span data-test="logo-wrapper-mobile" class="d-flex align-self-center d-lg-none">
+      <vs-svg data-test="logo-mobile" path="scotland-alba-logo" height="18" />
     </span>
-    <span class="d-none d-lg-block"> <vs-svg path="scotland-alba-logo" height="22" /> </span>
+    <span data-test="logo-wrapper-desktop" class="d-none d-lg-block">
+      <vs-svg data-test="logo-desktop" path="scotland-alba-logo" height="22" />
+    </span>
   </component>
 </template>
 

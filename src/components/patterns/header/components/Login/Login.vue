@@ -1,14 +1,18 @@
 <template>
-  <component :is="type" class="vs-login">
-    <button class="vs-login__button" @click="toggleLogin()" ref="trigger">
-      <div class="vs-login__icon-wrapper">
-        <vs-svg path="icons/user" height="10" fill="white" />
+  <component data-test="login-container" :is="type" class="vs-login">
+    <button data-test="login-button" class="vs-login__button" @click="toggleLogin()" ref="trigger">
+      <div data-test="login-wrapper" class="vs-login__icon-wrapper">
+        <vs-svg data-test="login-user-icon" path="icons/user" height="10" fill="white" />
       </div>
-      <span v-if="this.isLoggedIn">
-        <span class="d-lg-none">Log out</span>
-        <span class="d-none d-lg-block vs-login__greeting">Hi {{ username }}... (not you?)</span>
-      </span>
-      <span v-else>Login</span>
+      <template v-if="this.isLoggedIn">
+        <span data-test="no-greeting" class="d-lg-none">Log out</span>
+        <span data-test="greeting" class="d-none d-lg-block vs-login__greeting"
+          >Hi {{ username }}... (not you?)</span
+        >
+      </template>
+      <template v-else>
+        <span data-test="not-logged-in">Login</span>
+      </template>
     </button>
   </component>
 </template>

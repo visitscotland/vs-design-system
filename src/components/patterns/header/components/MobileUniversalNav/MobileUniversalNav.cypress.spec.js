@@ -21,48 +21,49 @@ describe("Mobile Universal Nav component", () => {
         }
       })
 
-      it("should render a container element", () => {
-        cy.get(".vs-dropdown").should("be.visible")
+      it("should render a container nav element", () => {
+        cy.get('[data-test="mobile-universal-nav"]').should("be.visible")
       })
 
-      it("should render a nav with an aria-label containing the name prop", () => {
-        cy.get('nav[aria-label="Our Sites"]').should("be.visible")
+      it("the nav should have an aria-label containing the name prop", () => {
+        cy.get('[data-test="mobile-universal-nav"]').should("have.attr", "aria-label", "Our Sites")
       })
 
       it("should render button containing text with the name prop", () => {
-        cy.contains("Our Sites").should("be.visible")
+        cy.get('[data-test="mobile-universal-nav-button"]').should("contain", "Our Sites")
       })
 
       it("button should be accompanied by screen reader text", () => {
-        cy.contains("Toggle menu for Our Sites").should("be.visible")
-        cy.get(".sr-only").should("be.visible")
+        cy.get('[data-test="mobile-universal-nav-button"]')
+          .find(".sr-only")
+          .should("contain", "Toggle menu for")
       })
 
       it("should display an svg icon", () => {
-        cy.get("svg").should("be.visible")
+        cy.get('[data-test="mobile-univeral-nav-chevron-icon"]').should("be.visible")
       })
 
       it("should open and close a dropdown menu", () => {
-        cy.get(".vs-dropdown__list").should("not.be.visible")
-        cy.get(".vs-dropdown__button").click()
-        cy.get(".vs-dropdown__list").should("be.visible")
-        cy.get(".vs-dropdown__button").click()
-        cy.get(".vs-dropdown__list").should("not.be.visible")
+        cy.get('[data-test="mobile-univeral-nav-list"]').should("not.be.visible")
+        cy.get('[data-test="mobile-universal-nav-button"]').click()
+        cy.get('[data-test="mobile-univeral-nav-list"]').should("be.visible")
+        cy.get('[data-test="mobile-universal-nav-button"]').click()
+        cy.get('[data-test="mobile-univeral-nav-list"]').should("not.be.visible")
       })
 
       it("internal links should not display an external link icon", () => {
-        cy.get(".vs-dropdown__button").click()
-        cy.get(".vs-dropdown__list-item")
+        cy.get('[data-test="mobile-universal-nav-button"]').click()
+        cy.get('[data-test="mobile-universal-nav-list-item"]')
           .first()
-          .find(".vs-dropdown__external-icon-wrapper")
+          .find('[data-test="mobile-universal-nav-external-link-icon"]')
           .should("not.be.visible")
       })
 
       it("External links should display an external link icon", () => {
-        cy.get(".vs-dropdown__button").click()
-        cy.get(".vs-dropdown__list-item")
+        cy.get('[data-test="mobile-universal-nav-button"]').click()
+        cy.get('[data-test="mobile-universal-nav-list-item"]')
           .last()
-          .find(".vs-dropdown__external-icon-wrapper")
+          .find('[data-test="mobile-universal-nav-external-link-icon"]')
           .should("be.visible")
       })
     })

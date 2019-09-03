@@ -22,33 +22,36 @@ describe("Language component", () => {
       })
 
       it("should render a nav with an aria-label containing the name prop", () => {
-        cy.get('nav[aria-label="Languages"]').should("be.visible")
+        cy.get('[data-test="language-nav"]').should("have.attr", "aria-label", "Languages")
       })
 
       it("should render a dropdown button", () => {
-        cy.get(".vs-dropdown__button")
+        cy.get('[data-test="language-button"]')
           .should("be.visible")
           .should("have.attr", "aria-expanded", "false")
       })
 
-      it("button should display screenreader text", () => {
-        cy.get(".sr-only").should("contain", "Currently selected language is English")
+      it("button should render screenreader text", () => {
+        cy.get('[data-test="selected-language-screenreader-text"]').should(
+          "contain",
+          "Currently selected language is English"
+        )
       })
 
       it("button should contain an icon wrapper", () => {
-        cy.get(".vs-dropdown__icon-wrapper").should("be.visible")
+        cy.get('[data-test="icon-wrapper"]').should("be.visible")
       })
 
       it("button should have a chevron down icon", () => {
-        cy.get(".icon-chevron-down").should("be.visible")
+        cy.get('[data-test="chevron-down-icon"]').should("be.visible")
       })
 
       it("should display a list when expanded", () => {
-        cy.get(".vs-dropdown__button")
+        cy.get('[data-test="language-button"]')
           .click()
           .should("have.attr", "aria-expanded", "true")
 
-        cy.get(".vs-dropdown__link")
+        cy.get('[data-test="language-dropdown-link"]')
           .should("be.visible")
           .should("have.length", "6")
       })

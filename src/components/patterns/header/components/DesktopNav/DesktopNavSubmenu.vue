@@ -1,6 +1,10 @@
 <template>
-  <component :is="type">
-    <b-collapse :id="formattedCollapsePaneId" class="vs-desktop-submenu__wrapper">
+  <component :is="type" data-test="desktop-nav-submenu">
+    <b-collapse
+      data-test="desktop-nav-submenu-wrapper"
+      :id="formattedCollapsePaneId"
+      class="vs-desktop-submenu__wrapper"
+    >
       <vs-container>
         <vs-row class="mb-3">
           <vs-col class="position-relative">
@@ -17,7 +21,10 @@
             </button>
           </vs-col>
         </vs-row>
-        <ul class="list-unstyled row flex-column vs-desktop-submenu__list">
+        <ul
+          data-test="desktop-nav-submenu-list"
+          class="list-unstyled row flex-column vs-desktop-submenu__list"
+        >
           <slot name="subnav" />
           <VsDesktopNavPromoItem
             v-if="promoItem"
@@ -52,6 +59,7 @@
             />
           </template>
           <li
+            data-test="desktop-nav-submenu-landing-page-link"
             class="vs-desktop-submenu__list-item vs-desktop-submenu__list-item--landing-page-link"
           >
             <a

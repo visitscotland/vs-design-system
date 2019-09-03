@@ -1,11 +1,13 @@
 <template>
   <component
     :is="type"
+    data-test="mobile-nav-list-item"
     class="vs-mobile-nav__list-item"
     :class="'vs-mobile-nav__list-item--level' + level"
   >
     <button
       v-if="hasChildren"
+      data-test="mobile-nav-button"
       class="vs-mobile-nav__button"
       :class="{
         ['vs-mobile-nav__button--level' + level]: level,
@@ -24,7 +26,7 @@
           ['level' + level]: level,
         }"
       >
-        <vs-icon name="chevron-down" size="xs" variant="dark" />
+        <vs-icon data-test="mobile-nav-chevron-svg" name="chevron-down" size="xs" variant="dark" />
       </div>
     </button>
     <a
@@ -42,6 +44,7 @@
     <transition name="slide-fade" v-if="hasChildren">
       <div v-show="show">
         <ul
+          data-test="mobile-submenu-list"
           class="list-unstyled"
           :class="{
             ['vs-mobile-nav__list--level' + incrementLevel]: incrementLevel,
