@@ -52,24 +52,6 @@ describe("Language component", () => {
           .should("be.visible")
           .should("have.length", "6")
       })
-
-      // it("should render list items", () => {
-      //   cy.get("li")
-      //     .should("be.visible")
-      //     .should("have.length", "5")
-      // })
-
-      // it("should render links", () => {
-      //   cy.get("a")
-      //     .should("be.visible")
-      //     .should("have.length", "5")
-      // })
-
-      // it("should render text within the links", () => {
-      //   cy.get("a")
-      //     .first()
-      //     .should("contain", "VisitScotland")
-      // })
     })
   })
 })
