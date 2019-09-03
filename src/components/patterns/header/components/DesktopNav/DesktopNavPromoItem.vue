@@ -1,17 +1,19 @@
 <template>
   <component
     :is="type"
+    data-test="desktop-nav-list-item"
     class="vs-desktop-nav__list-item col-4 col-xl-3 vs-desktop-nav__list-item--level2 mb-3"
   >
-    <a class="vs-promo-item__link" :href="href">
+    <a data-test="promo-link" class="vs-promo-item__link" :href="href">
       <div class="vs-promo-item__wrapper">
         <span class="vs-promo-item__link-title">{{ title }}</span>
         <div class="vs-promo-item__icon-wrapper">
-          <vs-icon name="reverse-arrow" size="xs" variant="primary" />
+          <vs-icon data-test="svg-icon" name="reverse-arrow" size="xs" variant="primary" />
         </div>
       </div>
       <div class="vs-promo-item__image-wrapper" v-if="imageLink">
         <img
+          data-test="promo-image"
           class="lazyload vs-promo-item__image"
           :data-srcset="imageLink"
           :data-src="imageLink"

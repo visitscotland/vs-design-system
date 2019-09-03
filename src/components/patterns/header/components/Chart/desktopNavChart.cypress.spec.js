@@ -27,17 +27,17 @@ describe("Desktop Nav Chart component", () => {
       })
 
       it("should render a container element", () => {
-        cy.get(".vs-desktop-nav-chart__container").should("be.visible")
+        cy.get('[data-test="chart-container"]').should("be.visible")
       })
 
       it("should render a chart title", () => {
-        cy.get(".vs-desktop-nav-chart__header")
+        cy.get('[data-test="chart-header"]')
           .should("be.visible")
           .should("have.text", "Average Temperatures")
       })
 
       it("should render a canvas element with a chartjs class", () => {
-        cy.get("canvas")
+        cy.get('[data-test="chart-canvas"]')
           .should("be.visible")
           .should("have.class", "chartjs-render-monitor")
       })

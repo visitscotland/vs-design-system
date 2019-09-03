@@ -20,19 +20,19 @@ describe("Skip to Search component", () => {
       })
 
       it("should render a button", () => {
-        cy.get("button")
+        cy.get('[data-test="skip-to-search-button"]')
           .should("be.visible")
           .should("have.class", "sr-only sr-only-focusable vs-skip-to")
       })
 
       it("button should render text", () => {
-        cy.get("button").should("contain", "Skip to Search")
+        cy.get('[data-test="skip-to-search-text"]').should("contain", "Skip to Search")
       })
 
       it("button show when it has focus", () => {
-        cy.get(".vs-skip-to")
+        cy.get('[data-test="skip-to-search-button"]')
           .focus()
-          .find("svg")
+          .find('[data-test="skip-to-search-chevron-icon"]')
           .should("be.visible")
       })
     })

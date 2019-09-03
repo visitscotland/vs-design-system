@@ -15,13 +15,35 @@ describe("Logo component", () => {
         }
       })
 
-      it("should render a container element", () => {
-        cy.get(".vs-logo").should("be.visible")
+      it("should render a container link element", () => {
+        cy.get('[data-test="logo-link"]').should("be.visible")
       })
 
-      it("should render an svg icon", () => {
-        cy.get("svg").should("be.visible")
+      it("should render screenreader text", () => {
+        cy.get('[data-test="logo-screenreader-text"]')
+          .should("be.visible")
+          .should("contain", "VisitScotland Home")
       })
+
+      if (size === "iphone-6" || size === "ipad-2") {
+        it("should render an icon wrapper", () => {
+          cy.get('[data-test="logo-wrapper-mobile"]').should("be.visible")
+        })
+        it("should render an svg icon", () => {
+          cy.get('[data-test="logo-mobile"]')
+            .should("be.visible")
+            .should("have.attr", "height", "18")
+        })
+      } else {
+        it("should render a different icon wrapper on desktop", () => {
+          cy.get('[data-test="logo-wrapper-desktop"]').should("be.visible")
+        })
+        it("should render a different svg icon on desktop", () => {
+          cy.get('[data-test="logo-desktop"]')
+            .should("be.visible")
+            .should("have.attr", "height", "22")
+        })
+      }
     })
   })
 })

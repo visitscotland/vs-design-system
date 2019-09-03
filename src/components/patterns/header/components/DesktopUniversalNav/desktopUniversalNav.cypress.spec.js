@@ -22,23 +22,27 @@ describe("Desktop Universal Nav component", () => {
       })
 
       it("should render a nav with an aria-label containing the name prop", () => {
-        cy.get('nav[aria-label="Our Sites"]').should("be.visible")
+        cy.get('[data-test="universal-nav"]').should("have.attr", "aria-label", "Our Sites")
+      })
+
+      it("should render a list", () => {
+        cy.get('[data-test="universal-nav-list"]').should("be.visible")
       })
 
       it("should render list items", () => {
-        cy.get("li")
+        cy.get('[data-test="universal-nav-list-item"]')
           .should("be.visible")
           .should("have.length", "5")
       })
 
       it("should render links", () => {
-        cy.get("a")
+        cy.get('[data-test="universal-nav-link"]')
           .should("be.visible")
           .should("have.length", "5")
       })
 
       it("should render text within the links", () => {
-        cy.get("a")
+        cy.get('[data-test="universal-nav-link"]')
           .first()
           .should("contain", "VisitScotland")
       })

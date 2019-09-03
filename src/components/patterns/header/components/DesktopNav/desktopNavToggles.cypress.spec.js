@@ -29,11 +29,11 @@ describe("Desktop Nav Toggles component", () => {
       })
 
       it("should render a list item", () => {
-        cy.get(".vs-desktop-nav__list-item").should("be.visible")
+        cy.get('[data-test="desktop-nav-list-item"]').should("be.visible")
       })
 
       it("should render a button", () => {
-        cy.get(".vs-desktop-nav__button")
+        cy.get('[data-test="desktop-nav-button"]')
           .should("be.visible")
           .should("have.class", "vs-desktop-nav__button--level1")
           .should("have.attr", "aria-controls", "collapse-subnav-1")

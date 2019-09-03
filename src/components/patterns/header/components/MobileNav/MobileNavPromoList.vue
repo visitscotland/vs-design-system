@@ -1,5 +1,5 @@
 <template>
-  <component :is="type" class="list-unstyled">
+  <component data-test="mobile-promo-list" :is="type" class="list-unstyled">
     <VsMobileNavListItem
       v-for="(item, index) in allButLastPromos"
       :level="2"

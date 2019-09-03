@@ -1,11 +1,13 @@
 <template>
   <component
     :is="type"
+    data-test="desktop-nav-list-item"
     class="vs-desktop-nav__list-item"
     :class="'vs-desktop-nav__list-item--level' + level"
   >
     <button
       v-if="hasChildren"
+      data-test="desktop-nav-button"
       class="vs-desktop-nav__button"
       :class="{
         ['vs-desktop-nav__button--level' + level]: level,

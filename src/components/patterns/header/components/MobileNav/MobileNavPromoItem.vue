@@ -1,14 +1,24 @@
 <template>
-  <component :is="type" class="vs-mobile-nav__list-item vs-mobile-nav__list-item--level2">
-    <a class="vs-promo-item__link" :href="href">
+  <component
+    data-test="mobile-promo-list-item"
+    :is="type"
+    class="vs-mobile-nav__list-item vs-mobile-nav__list-item--level2"
+  >
+    <a data-test="mobile-promo-list-link" class="vs-promo-item__link" :href="href">
       <div class="vs-promo-item__wrapper">
         <span class="vs-promo-item__link-title">{{ title }}</span>
         <div class="vs-promo-item__icon-wrapper">
-          <vs-icon name="reverse-arrow" size="xs" variant="primary" />
+          <vs-icon
+            data-test="mobile-promo-arrow-icon"
+            name="reverse-arrow"
+            size="xs"
+            variant="primary"
+          />
         </div>
       </div>
       <div class="vs-promo-item__image-wrapper" v-if="imageLink">
         <img
+          data-test="mobile-promo-image"
           class="lazyload vs-promo-item__image"
           :data-srcset="imageLink"
           :data-src="imageLink"

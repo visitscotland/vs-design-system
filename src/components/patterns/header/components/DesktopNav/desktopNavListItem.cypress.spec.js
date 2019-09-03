@@ -21,7 +21,7 @@ const content = `
     level: 3
     href: ${level3.href}
     subnav: ${level3.subnav}
-    is-external: ${level3.isExternal}
+    isExternal: ${level3.isExternal}
     title: ${level3.title}
   >
   </vs-desktop-nav-list-item>
@@ -40,7 +40,23 @@ describe("Desktop Nav List Item component", () => {
       })
 
       it("should render a list item", () => {
-        cy.get(".vs-desktop-nav__list-item").should("be.visible")
+        cy.get('[data-test="desktop-nav-list-item"]').should("be.visible")
+      })
+
+      it("should render a link", () => {
+        cy.get('[data-test="desktop-nav-link"]').should("be.visible")
+      })
+
+      it("should render a submenu list", () => {
+        cy.get('[data-test="desktop-nav-submenu-list"]').should("be.visible")
+      })
+
+      it("should render a submenu list item", () => {
+        cy.get('[data-test="desktop-nav-submenu-list-item"]').should("be.visible")
+      })
+
+      it("should render a submenu link", () => {
+        cy.get('[data-test="desktop-nav-submenu-link"]').should("be.visible")
       })
     })
   })

@@ -50,25 +50,25 @@ describe("Mobile Nav List Item component", () => {
       })
 
       it("should render a button if an item has a submenu, promoItems or promoLists", () => {
-        cy.get(".vs-mobile-nav__button").should("be.visible")
+        cy.get('[data-test="mobile-nav-button"]').should("be.visible")
       })
 
       it("button should contain an icon", () => {
-        cy.get(".vs-mobile-nav__button")
-          .find("svg")
+        cy.get('[data-test="mobile-nav-button"]')
+          .find('[data-test="mobile-nav-chevron-svg"]')
           .should("be.visible")
       })
 
       it("clicking the button should toggle a submenu", () => {
-        cy.get("ul").should("not.be.visible")
-        cy.get(".vs-mobile-nav__button")
+        cy.get('[data-test="mobile-submenu-list"]').should("not.be.visible")
+        cy.get('[data-test="mobile-nav-button"]')
           .first()
           .click()
-        cy.get("ul").should("be.visible")
+        cy.get('[data-test="mobile-submenu-list"]').should("be.visible")
       })
 
       it("clicking the button should toggle the button aria-expanded state", () => {
-        cy.get(".vs-mobile-nav__button")
+        cy.get('[data-test="mobile-nav-button"]')
           .first()
           .should("not.have.attr", "aria-expanded", "true")
           .click()
@@ -76,7 +76,7 @@ describe("Mobile Nav List Item component", () => {
       })
 
       it("a button that opens a submenu should have an aria-haspopup property", () => {
-        cy.get(".vs-mobile-nav__button")
+        cy.get('[data-test="mobile-nav-button"]')
           .first()
           .should("have.attr", "aria-haspopup", "true")
           .click()

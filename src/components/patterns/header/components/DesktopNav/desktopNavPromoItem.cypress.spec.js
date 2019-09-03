@@ -27,15 +27,15 @@ describe("Desktop Nav List Item component", () => {
       })
 
       it("should render a list item", () => {
-        cy.get(".vs-desktop-nav__list-item").should("be.visible")
+        cy.get('[data-test="desktop-nav-list-item"]').should("be.visible")
       })
 
       it("should render a link element", () => {
-        cy.get(".vs-promo-item__link").should("be.visible")
+        cy.get('[data-test="promo-link"]').should("be.visible")
       })
 
       it("should render an href", () => {
-        cy.get(".vs-promo-item__link").should(
+        cy.get('[data-test="promo-link"]').should(
           "have.attr",
           "href",
           "https://www.visitscotland.com/see-do/iconic-scotland/ben-nevis"
@@ -43,11 +43,11 @@ describe("Desktop Nav List Item component", () => {
       })
 
       it("should render a title", () => {
-        cy.contains("Scotland's Tallest Peak").should("be.visible")
+        cy.get('[data-test="promo-link"]').should("contain", "Scotland's Tallest Peak")
       })
 
       it("should render a promo image", () => {
-        cy.get(".vs-promo-item__image")
+        cy.get('[data-test="promo-image"]')
           .should("be.visible")
           .should(
             "have.attr",
@@ -57,11 +57,11 @@ describe("Desktop Nav List Item component", () => {
       })
 
       it("should render alt text for the promo image that is the same as the title", () => {
-        cy.get(".vs-promo-item__image").should("have.attr", "alt", "Scotland's Tallest Peak")
+        cy.get('[data-test="promo-image"]').should("have.attr", "alt", "Scotland's Tallest Peak")
       })
 
       it("should render an icon", () => {
-        cy.get("svg").should("be.visible")
+        cy.get('[data-test="svg-icon"]').should("be.visible")
       })
     })
   })
