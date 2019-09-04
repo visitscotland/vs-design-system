@@ -148,7 +148,7 @@ export default {
 }
 
 .vs-favourites-list__header {
-  color: #666666;
+  color: $gray-shade-2;
   display: inline-block;
   font-size: 2rem;
   font-weight: 300;
