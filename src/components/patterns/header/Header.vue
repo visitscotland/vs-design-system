@@ -193,6 +193,7 @@ export default {
       <vs-mobile-universal-nav
         slot="mobile-universal-nav"
         name="Our sites"
+        class="vs-dropdown--mobile-universal-nav"
         :dropdown-list="ourSites"
       />
       <vs-login
