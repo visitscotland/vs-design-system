@@ -83,7 +83,9 @@ export default {
   height: 200px;
   position: relative;
   width: 100%;
+  transition: box-shadow 250ms ease-in-out;
 
+  &:hover,
   &:focus {
     @extend %focus-pink;
   }

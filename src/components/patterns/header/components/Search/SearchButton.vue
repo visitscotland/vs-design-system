@@ -63,6 +63,7 @@ export default {
   color: $color-white;
   z-index: 1;
 
+  &:hover,
   &:focus {
     outline: none;
     box-shadow: inset 0 -3px 0 0 $color-white;

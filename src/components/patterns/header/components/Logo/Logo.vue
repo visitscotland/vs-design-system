@@ -45,11 +45,13 @@ export default {
   align-items: center;
   padding: 10px 0;
   height: 40px;
+  transition: box-shadow 250ms ease-in-out;
 
   @include media-breakpoint-up(md) {
     height: 50px;
   }
 
+  &:hover,
   &:focus {
     @extend %focus-pink-inset;
   }
