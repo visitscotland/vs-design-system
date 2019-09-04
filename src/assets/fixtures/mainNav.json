@@ -943,7 +943,18 @@
             "backgroundColor": "#848484",
             "data": [4, 4, 5, 6, 9, 13, 14, 14, 12, 9, 6, 4]
           }
-        ]
+        ],
+        "options": {
+          "scales": {
+            "yAxes": [
+              {
+                "ticks": {
+                  "beginAtZero": true
+                }
+              }
+            ]
+          }
+        }
       },
       {
         "chartTitle": "Average Rainfall",
@@ -982,9 +993,8 @@
           "scales": {
             "yAxes": [
               {
-                "scaleLabel": {
-                  "display": true,
-                  "labelString": "millimetres"
+                "ticks": {
+                  "beginAtZero": true
                 }
               }
             ]
