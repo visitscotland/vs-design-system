@@ -112,6 +112,12 @@ export default {
 @import "../../styles/placeholders";
 @import "../../styles/animations";
 @import "../../styles/vs-dropdown";
+
+.vs-dropdown--mobile-universal-nav .vs-dropdown__list {
+  @include media-breakpoint-up(md) {
+    left: auto;
+  }
+}
 </style>
 
 <docs>
