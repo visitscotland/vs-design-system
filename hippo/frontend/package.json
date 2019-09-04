@@ -13,9 +13,9 @@
     "webpack-cli": "^3.3.7"
   },
   "scripts": {
-    "build": "npm run --prefix ../.. build:system:components && npm run build:skip",
+    "build": "yarn --cwd ../.. build:system:components && yarn build:skip",
     "build:skip": "webpack --config webpack.config.js",
-    "preinstall": "npm link ../../"
+    "preinstall": "cd ../.. && yarn link && cd hippo/frontend && yarn link vs-dotcom-ds"
   },
   "dependencies": {}
 }
