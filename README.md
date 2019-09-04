@@ -2,13 +2,16 @@
 
 # VisitScotland Design System
 
-This is the repository for the **VisitScotland Design System**, which is a heavily modified version of [Vue Design System](https://vueds.com). It works in the same way as Vue Design System, with some changes:
+This is the repository for the **VisitScotland Design System**, which is an implementation of [Vue Styleguidist](https://vue-styleguidist.github.io/) and was developed using [Vue Design System](https://vueds.com) as a starting point. Most of the original Vue Design System functionality should still work. However, the functionality of this package has been enhanced or modified in several areas:
 
-- The included components have been changed to suit VisitScotland's needs and have been moved into the `src/components` folder.
-- Build scripts have been added (`npm run docs:remote`, `npm run styleguide:remote` or `npm run styleguide:remote:build`) to build the design system documentation using section content from a remote API.
+- The included components have been changed to suit VisitScotland's needs and have been moved into subdirectories in the `src/components` folder.
+- Build scripts have been added (`yarn docs:remote`, `yarn styleguide:remote` or `yarn styleguide:remote:build`) to build the design system documentation using content from a remote API (Bloomreach Hippo CMS or Contentful).
 - Some bugs in VDS have been fixed.
-- The Color component has been modified.
+- The Color component has been enhanced with categories and accessibility checks.
 - A componentised version of the build has been created and is used as the primary build.
+- NPM has been replaced with Yarn package manager.
+- A Bloomreach Hippo CMS app has been added in the folder `hippo`, which acts as the source code for the CMS site to provide content to the design system.
+- The Bloomreach Hippo CMS app includes a `frontend` package that consumes the design system components for demo use in the Hippo CMS site.
 
 ## Getting started
 
@@ -16,7 +19,7 @@ Install the package:
 
 - `git clone https://username@bitbucket.visitscotland.com/scm/vscom/design-system.git`
 - `cd design-system`
-- `npm install`
+- `yarn install`
 
 ## Working with the documentation
 
@@ -24,23 +27,23 @@ Install the package:
 
 The following commands will begin a development instance of the design system documentation site using the config in `config/docs.config.js`. After running the commands, the documentation site should be available at localhost:6060. Modifications to source files will trigger a rebuild and refresh of the browser. However, tokens will not be re-generated automatically on file change.
 
-1. `npm run build` (to ensure token compilation)
-2. `npm run styleguide`
+1. `yarn build` (to ensure token compilation)
+2. `yarn styleguide`
 
 Or:
 
-1. `npm run docs:remote` (includes token compilation)
+1. `yarn docs:remote` (includes token compilation)
 
-The `npm run styleguide` script builds the design system according to the `config/docs.config.js` only and so will only include **static, local content**. The alternative `npm run docs:remote` (together with proper configuration, as described in the section below) will merge **remote content** into the config from the config file.
+The `yarn styleguide` script builds the design system according to the `config/docs.config.js` only and so will only include **static, local content**. The alternative `yarn docs:remote` (together with proper configuration, as described in the section below) will merge **remote content** into the config from the config file.
 
 ### Building a static version of the documentation site
 
 The following commands will generate build artefacts for the documentation site into `dist/docs`, using the config in `config/docs.config.js`.
 
-1. `npm run build:docs` or `npm run build:docs:remote`
-2. `npm run serve-docs` (starts http-server in target dist folder)
+1. `yarn build:docs` or `yarn build:docs:remote`
+2. `yarn serve-docs` (starts http-server in target dist folder)
 
-Similar to the development instances above, `npm run build:docs` generates a site build according to the config file only, whereas `npm run build:docs:remote` merges **remote content** into the config from the config file (providing there is valid remote configuration, as described below).
+Similar to the development instances above, `yarn build:docs` generates a site build according to the config file only, whereas `yarn build:docs:remote` merges **remote content** into the config from the config file (providing there is valid remote configuration, as described below).
 
 ### Populating the documentation site with remote content
 
@@ -48,23 +51,27 @@ It's possible to get the title and sections (pages) content for the documentatio
 
 - Edit `config/remote.config.js`, specifying sets of remote config profiles, each with URL, params and transforms. NOTE: the project already includes profiles for Contentful and Hippo.
 - Set the `VS_DS_REMOTE_CONFIG_URL` and any other environment variables (e.g. `VS_DS_REMOTE_CONFIG_HIPPO_PROJECT_NAME`) by specifying them in a `.env` file in the package root, or manually some other way.
-- Run the remote styleguide scripts (`npm run docs:remote` or `npm run styleguide:remote:build`) instead of the regular scripts.
+- Run the remote styleguide scripts (`yarn docs:remote` or `yarn styleguide:remote:build`) instead of the regular scripts.
 
 Common environment variables for remote config:
-`VS_DS_REMOTE_CONFIG_STRICT_SSL`
+`VS_DS_REMOTE_CONFIG_STRICT_SSL`
+
 `VS_DS_REMOTE_CONFIG_URL`
 
 Environment variables for Hippo and Contentful config:
-`VS_DS_REMOTE_CONFIG_HIPPO_SECTIONS_FIELD_TITLE`
-`VS_DS_REMOTE_CONFIG_HIPPO_SECTIONS_CONTENT_FIELD_TITLE`
-`VS_DS_REMOTE_CONFIG_HIPPO_PROJECT_NAME`
+`VS_DS_REMOTE_CONFIG_HIPPO_SECTIONS_FIELD_TITLE`
+
+`VS_DS_REMOTE_CONFIG_HIPPO_SECTIONS_CONTENT_FIELD_TITLE`
+
+`VS_DS_REMOTE_CONFIG_HIPPO_PROJECT_NAME`
+
 `VS_DS_REMOTE_CONFIG_CONTENTFUL_TOKEN`
 
 Only the `VS_DS_REMOTE_CONFIG_URL` variable is truly needed. However, some of the other variables will be needed to ensure to specific remote profile is carried out properly.
 
 By default, the build selects the first profile defined in the `config/remote.config.js` export. To select a different profile, alter the npm script to pass the name of the desired profile as the --remote-profile arg passed to to the script, e.g:
 
-`npm run docs:remote --remote-profile contentful`
+`yarn docs:remote --remote-profile contentful`
 
 ## Using the design system assets in other apps
 
@@ -74,7 +81,7 @@ The "system" and "system components" builds will compile artefacts for inclusion
 
 This build creates a set of artefacts that allow for the inclusion of specific components of the design system in other projects. It is the recommended way of including assets from the design system in other projects.
 
-- `npm run build:system:components`
+- `yarn build:system:components`
 
 This command compiles the tokens (via theo) then compiles the design system assets into discrete chunks and generates a manifest.json file in the `dist/system-components` folder. The manifest.json file lists which of the generated assets are needed to include each component in another project.
 
@@ -87,7 +94,7 @@ To include a component in another project:
 
 This is the default Vue Design System build and produces an asset for inclusion of the **whole** design system in another project.
 
-- `npm run build:system`
+- `yarn build:system`
 
 Detailed instructions for including the design system in this way [are detailed here](https://github.com/viljamis/vue-design-system/wiki/getting-started#using-design-system-as-an-npm-module).
 
@@ -95,18 +102,18 @@ Detailed instructions for including the design system in this way [are detailed 
 
 The best way to develop the design system is to run a local development instance of the documentation site, as detailed above.
 
-To see how the local, modified version of the design system behaves in a target local project, carry out the following to link the target project's dependency to the local version, rather than the published version, of the design system assets:
+To see how the local, modified version of the design system behaves in a target local project, carry out the following to link the target project's dependency to the local version, rather than the published version, of the design system assets. You will find an example of such an app, which runs these commands during it's install, in this repository at `hippo/frontend`.
 
 - `cd design-system`
-- `yarn link` OR `npm link`
+- `yarn link`
 - `cd ../target-project`
-- `yarn link vs-dotcom-ds` OR `npm link vs-dotcom-ds`
+- `yarn link vs-dotcom-ds`
 
 NOTE: It is `vs-dotcom-ds` because that is this package's name.
 
 This will create a symlink between the target project folder and the local design-system folder. The target project's vs-dotcom-ds dependency will use the local design-system folder directly.
 
-**It is advised to reference the built artefacts in the `dist/system` or `dist/system-components` folders, in which case the design system assets will need to be rebuilt (using `npm run build:system:components` or `npm run build:system` for changes to source files to be propogated into the target project**.
+**It is advised to reference the built artefacts in the `dist/system` or `dist/system-components` folders, in which case the design system assets will need to be rebuilt (using `yarn build:system:components` or `yarn build:system` for changes to source files to be propogated into the target project**.
 
 ## VueX
 
