@@ -15,27 +15,23 @@
             </button>
           </vs-col>
         </vs-row>
-        <vs-row>
-          <vs-col cols="4">
-            <ul class="list-unstyled">
-              <li
-                v-for="(item, index) in favourites"
-                class="d-flex align-items-center"
-                :key="index"
-              >
-                <a :href="item.href" class="vs-favourites-list__link mr-3">{{ item.title }}</a>
-                <vs-button
-                  variant="light"
-                  @click.native="deleteFavourite(item.href)"
-                  @keydown.native="checkKeydown($event, index === last)"
-                >
-                  <span class="sr-only">Remove from favourites</span>
-                  <vs-icon name="close" size="xs" variant="reverse-white" />
-                </vs-button>
-              </li>
-            </ul>
-          </vs-col>
-        </vs-row>
+        <ul class="list-unstyled row">
+          <li
+            v-for="(item, index) in favourites"
+            class="d-flex align-items-center col-md-6 col-xl-4"
+            :key="index"
+          >
+            <a :href="item.href" class="vs-favourites-list__link mr-3">{{ item.title }}</a>
+            <vs-button
+              variant="light"
+              @click.native="deleteFavourite(item.href)"
+              @keydown.native="checkKeydown($event, index === last)"
+            >
+              <span class="sr-only">Remove from favourites</span>
+              <vs-icon name="close" size="xs" variant="reverse-white" />
+            </vs-button>
+          </li>
+        </ul>
       </vs-container>
     </b-collapse>
   </component>
