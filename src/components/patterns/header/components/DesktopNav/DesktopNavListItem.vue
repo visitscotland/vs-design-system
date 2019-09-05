@@ -132,19 +132,80 @@ export default {
 @import "../../styles/placeholders";
 @import "../../styles/mixins";
 
+.divide-left {
+  @extend %divide-left;
+}
+
 .vs-desktop-nav__span,
 .vs-desktop-nav__link {
   color: $gray-shade-2;
   display: block;
 
-  &--level2 {
+  &.vs-desktop-nav__span--level2,
+  &.vs-desktop-nav__link--level2 {
     font-size: 1.5rem;
     margin-bottom: 1rem;
   }
 
-  &--level3 {
+  &.vs-desktop-nav__span--level3,
+  &.vs-desktop-nav__link--level3 {
     font-size: 1.0625rem;
     padding: 0.25rem 0;
+  }
+}
+
+.vs-desktop-nav__link--level2 {
+  &:hover {
+    color: $color-pink;
+  }
+  &:focus {
+    color: $color-pink;
+    outline: none;
+    position: relative;
+
+    &::after {
+      content: "";
+      display: block;
+      background-color: $gray-tint-5;
+      height: 100%;
+      position: absolute;
+      left: -1rem;
+      top: 0;
+      transition: width 250ms ease;
+      width: 5px;
+    }
+  }
+}
+
+.vs-desktop-nav__link--level3 {
+  transition: box-shadow 250ms ease;
+
+  &::after {
+    content: "";
+    display: block;
+    height: 0;
+    transition: height 250ms cubic-bezier(0.78, 0.27, 0.36, 0.76);
+    width: 0;
+  }
+
+  &:focus {
+    color: $color-pink;
+    outline: none;
+    position: relative;
+
+    &::after {
+      background-color: $gray-tint-5;
+      content: "";
+      display: block;
+      height: 100%;
+      left: -1rem;
+      position: absolute;
+      top: 0;
+      width: 5px;
+    }
+  }
+  &:hover {
+    @include focus-underline($color-pink, -1px);
   }
 }
 
@@ -152,70 +213,8 @@ export default {
   display: block;
 }
 
-.divide-left {
-  @extend %divide-left;
-}
-
-.vs-desktop-nav__list {
-  &--level3 {
-    margin-bottom: 2rem;
-  }
-}
-
-.vs-desktop-nav__link {
-  &--level2 {
-    &:focus {
-      color: $color-pink;
-      outline: none;
-      position: relative;
-
-      &::after {
-        content: "";
-        display: block;
-        background-color: $gray-tint-5;
-        height: 100%;
-        position: absolute;
-        left: -1rem;
-        top: 0;
-        transition: width 250ms ease;
-        width: 5px;
-      }
-    }
-    &:hover {
-      color: $color-pink;
-    }
-  }
-
-  &--level3 {
-    transition: box-shadow 250ms ease;
-
-    &::after {
-      content: "";
-      display: block;
-      height: 0;
-      transition: height 250ms cubic-bezier(0.78, 0.27, 0.36, 0.76);
-      width: 0;
-    }
-    &:focus {
-      color: $color-pink;
-      outline: none;
-      position: relative;
-
-      &::after {
-        background-color: $gray-tint-5;
-        content: "";
-        display: block;
-        height: 100%;
-        left: -1rem;
-        position: absolute;
-        top: 0;
-        width: 5px;
-      }
-    }
-    &:hover {
-      @include focus-underline($color-pink, -1px);
-    }
-  }
+.vs-desktop-nav__list--level3 {
+  margin-bottom: 2rem;
 }
 </style>
 

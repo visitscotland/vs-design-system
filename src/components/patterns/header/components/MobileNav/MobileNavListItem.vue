@@ -190,32 +190,30 @@ export default {
   top: 40px;
   width: 100%;
   z-index: 2;
-
-  &--level1 {
-    background-color: $color-white;
-    box-shadow: inset 0 8px 6px -6px rgba(0, 0, 0, 0.3);
-  }
-
-  &--level2 {
-    background-color: $gray-tint-7;
-  }
-
-  &--level3 {
-    background-color: $gray-tint-7;
-    box-shadow: inset 0 8px 6px -6px rgba(0, 0, 0, 0.3);
-  }
 }
 
-.vs-mobile-nav__icon-wrapper {
-  &--spin {
-    margin-left: 5px;
-    transition: transform 250ms;
-  }
+.vs-mobile-nav__list--level1 {
+  background-color: $color-white;
+  box-shadow: inset 0 8px 6px -6px rgba(0, 0, 0, 0.3);
+}
 
-  &--expanded {
-    transform: rotate(180deg);
-    transform-origin: 50% 54%;
-  }
+.vs-mobile-nav__list--level2 {
+  background-color: $gray-tint-7;
+}
+
+.vs-mobile-nav__list--level3 {
+  background-color: $gray-tint-7;
+  box-shadow: inset 0 8px 6px -6px rgba(0, 0, 0, 0.3);
+}
+
+.vs-mobile-nav__icon-wrapper--spin {
+  margin-left: 5px;
+  transition: transform 250ms;
+}
+
+.vs-mobile-nav__icon-wrapper--expanded {
+  transform: rotate(180deg);
+  transform-origin: 50% 54%;
 }
 
 .vs-mobile-nav__button {
@@ -245,7 +243,8 @@ export default {
     @extend %focus-pink-inset;
   }
 
-  &--level1 {
+  &.vs-mobile-nav__button--level1,
+  &.vs-mobile-nav__link--level1 {
     font-size: 1.5rem;
     font-weight: $font-weight-normal;
     padding: 0.75rem 1.25rem;
@@ -258,8 +257,10 @@ export default {
     }
   }
 
-  &--level2 {
+  &.vs-mobile-nav__button--level2,
+  &.vs-mobile-nav__link--level2 {
     font-size: 1.125rem;
+    font-weight: $font-weight-normal;
     padding: 0.75rem 1.25rem 0.75rem 2.25rem;
     width: 100%;
 
@@ -274,33 +275,29 @@ export default {
     }
   }
 
-  &--level3 {
+  &.vs-mobile-nav__button--level3,
+  &.vs-mobile-nav__link--level3 {
     font-size: 1.125rem;
+    font-weight: $font-weight-normal;
     padding: 0.75rem 1.25rem 0.75rem 3.25rem;
 
     &::after {
       background-color: $gray-tint-6;
     }
   }
+}
 
-  &--level3,
-  &--level2 {
-    font-weight: $font-weight-normal;
+.vs-mobile-nav__link--landing-page {
+  background-color: $color-white;
+  color: $color-pink;
+
+  &:hover {
+    color: $color-pink;
   }
 }
 
-.vs-mobile-nav__link {
-  &--landing-page {
-    background-color: $color-white;
-    color: $color-pink;
-
-    &:hover {
-      color: $color-pink;
-    }
-  }
-  &--level3 {
-    border-bottom: none;
-  }
+.vs-mobile-nav__link--level3 {
+  border-bottom: none;
 }
 </style>
 
