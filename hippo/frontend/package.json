@@ -14,8 +14,7 @@
   },
   "scripts": {
     "build": "yarn --cwd ../.. build:system:components && yarn build:skip",
-    "build:skip": "webpack --config webpack.config.js",
-    "preinstall": "cd ../.. && yarn link && cd hippo/frontend && yarn link vs-dotcom-ds"
+    "build:skip": "webpack --config webpack.config.js"
   },
   "dependencies": {}
 }
