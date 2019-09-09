@@ -97,6 +97,7 @@
   "dependencies": {
     "bootstrap": "^4.3.1",
     "bootstrap-vue": "^2.0.0-rc.28",
+    "core-js": "3",
     "http-server": "^0.11.1",
     "lodash": "^4.17.15",
     "mini-css-extract-plugin": "^0.4.5",
@@ -190,8 +191,8 @@
     "webpack-merge-and-include-globally": "^2.1.7"
   },
   "engines": {
-    "node": "= 10.11.0",
-    "npm": "= 6.4.1"
+    "node": "= 10.16.3",
+    "npm": "= 6.9.0"
   },
   "browserslist": [
     "> 1%",
