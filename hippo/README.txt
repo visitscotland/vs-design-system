@@ -1,3 +1,10 @@
+This Hippo instance has 2 purposes:
+
+1. Provides a CMS for the design system content.
+2. Provides a place where the design system components can be demoed in a Hippo site environment.
+
+The remaining text of this readme is the standard Hippo readme.
+
 Running Locally
 ===============
 
