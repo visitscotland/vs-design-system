@@ -205,7 +205,7 @@ The system components build treats each store as a module and creates a package 
 
 The Rendora app in this repo can be used to run a local SSR service for prototyping of the use of SSR to render this repo's Hippo site, which includes Vue components or components from some other frontend framework.
 
-In order to do so, do the following:
+The following instructions list how to get the demo running. These instructions install GO and build Rendora manually. There's also a Docker image for installing and running Rendora running - check the README inside the Rendora folder for details on how to get that to work. It would be replacing steps 2 and 3.
 
 1. Install and build frontend assets
 
