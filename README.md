@@ -201,6 +201,43 @@ export default {
 
 The system components build treats each store as a module and creates a package for it with the naming convention `store<CapitalisedCamelCasedAndRationalisedFileName>`. So a store with the filename of `example.store.js` will be given a module name of `storeExampleStore` (and will be available in JS as `storeExampleStore.default`).
 
+## Rendora POC
+
+The Rendora app in this repo can be used to run a local SSR service for prototyping of the use of SSR to render this repo's Hippo site, which includes Vue components or components from some other frontend framework.
+
+In order to do so, do the following:
+
+1. Install and build frontend assets
+
+- `yarn` (in root directory)
+- `cd hippo/frontend`
+- `yarn`
+- `yarn build`
+
+2. Install Rendora
+
+- Install GO V1.11
+- `cd rendora` (from root directory)
+- `make build`
+- `sudo make install`
+
+3. Run headless Chrome and Rendora
+
+- `google-chrome --headless --remote-debugging-port=9222`
+- `cd rendora` (from root directory)
+- `rendora --config config.yaml`
+
+4. Run Hippo
+
+- `cd hippo` (from root directory)
+- `mvn clean verify`
+- `mvn -Pcargo.run -Dpath.repo=storage`
+
+5. Enjoy that sweet SSR nectar
+
+- Go to [http://localhost:8080/site/demo](http://localhost:8080/site/demo) and view source to see the Vue demo page without SSR
+- Go to [http://localhost:3001/site/demo](http://localhost:3001/site/demo)
+
 ## Ideas for improvement
 
 - Fix deep selectors issue \*
