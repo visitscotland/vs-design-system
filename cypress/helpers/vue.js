@@ -1,6 +1,6 @@
 const mountVue = require("cypress-vue-unit-test")
 
-const { partial, each, clone, pickBy, has } = require("lodash")
+const { partial, each, clone, pickBy, has, get, defaults } = require("lodash")
 
 const PROPS_DATA_KEY_NAME = "componentProps"
 
@@ -13,9 +13,10 @@ export default {
  *
  * @param {*} componentName String Name of the component that will be used in templates
  * @param {*} definition Function | Object 2nd arg of Vue.component
- * @param {*} props Object Map of props that will be passed to component and can be altered
- * @param {*} childContent String Tag's child HTML markup
- * @param {*} extensions Object Passed into mountVue options object
+ * @param {*} options Object
+ *    - props Object Map of props that will be passed to component and can be altered
+ *    - childContent String Tag's child HTML markup
+ *    - extensions Object Passed into mountVue options object
  *
  * Cypress usage example:
  *
@@ -51,21 +52,24 @@ export default {
  * vueHelper.init("vs-main-nav-list-item", VsMainNavListItem, props, content, extensions)
  *
  */
-function init(componentName, definition, props, childContent, extensions = {}) {
+function init(componentName, definition, options) {
   const template =
     `
         <div id="app">
             <component is="` +
     componentName +
     `" v-bind="computedProps">` +
-    childContent +
+    get(options, "childContent") +
     `</component>
         </div>
     `
 
+  let props = get(options, "props")
+  let extensions = get(options, "extensions", {})
+
   const initialProps = clone(props)
 
-  const app = {
+  const app = defaults(get(options, "mergeVue", {}), {
     template,
     data: {
       [PROPS_DATA_KEY_NAME]: props,
@@ -75,13 +79,15 @@ function init(componentName, definition, props, childContent, extensions = {}) {
         return pickBy(this[PROPS_DATA_KEY_NAME])
       },
     },
-  }
+  })
 
   if (!has(extensions, "components")) {
     extensions.components = {}
   }
 
-  extensions.components[componentName] = definition
+  if (definition) {
+    extensions.components[componentName] = definition
+  }
 
   const mount = mountVue(app, { extensions })
 
@@ -94,11 +100,9 @@ function resetProps(props) {
   if (!Cypress.vue) {
     return
   }
-  each(props, (value, propName) => {
-    Cypress.vue.$set(Cypress.vue[PROPS_DATA_KEY_NAME], propName, value)
-  })
+  each(props, setProp)
 }
 
-function setProp(propName, value) {
+function setProp(value, propName) {
   Cypress.vue.$set(Cypress.vue[PROPS_DATA_KEY_NAME], propName, value)
 }
