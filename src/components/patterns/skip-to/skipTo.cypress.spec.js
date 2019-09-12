@@ -87,7 +87,11 @@ describe("Skip To component using HTML Element target", () => {
 
   vueHelper.init("div", null, { childContent, mergeVue })
 
-  it("should give focus to the target element when clicked", () => {
+  it("should give focus to the target element when clicked then emit the activated event", () => {
+    const spy = cy.spy()
+
+    Cypress.vue.$on("activated", spy)
+
     cy.get("button.vs-skip-to")
       .focus()
       .get("*")
@@ -96,7 +100,10 @@ describe("Skip To component using HTML Element target", () => {
     cy.get("button.vs-skip-to")
       .focus()
       .click()
+      .then(() => {
+        cy.get("#" + targetId2).should("have.focus")
 
-    cy.get("#" + targetId2).should("have.focus")
+        expect(spy).to.be.called
+      })
   })
 })
