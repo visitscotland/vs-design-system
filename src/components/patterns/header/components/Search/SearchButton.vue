@@ -1,15 +1,14 @@
 <template>
   <component
     :is="type"
-    class="vs-search__button"
-    data-toggle-trigger
-    v-b-toggle.collapse-search
-    id="search-toggle-trigger"
-    @click="setFocus()"
+    class="vs-site-search__button"
+    ref="self"
+    @click="toggle"
+    :aria-expanded="open"
   >
     <span class="d-xl-none sr-only">Toggle Search</span>
     <vs-icon name="search" size="sm" variant="reverse-white" />
-    <span class="d-none d-xl-flex vs-search__search-button-text">
+    <span class="d-none d-xl-flex vs-site-search__search-button-text">
       <span class="sr-only">Toggle</span> Search
     </span>
   </component>
@@ -17,22 +16,21 @@
 
 <script>
 import VsIcon from "../../../../elements/icon/Icon"
-import { VBToggle } from "bootstrap-vue"
+import siteSearchStore from "./site-search.store"
 
 export default {
   name: "VsSearchButton",
   status: "prototype",
   release: "0.0.1",
   components: { VsIcon },
-  data() {
-    return {}
+  computed: {
+    open() {
+      return siteSearchStore.state.siteSearch.open
+    },
   },
-  directives: { "b-toggle": VBToggle },
   methods: {
-    setFocus() {
-      setTimeout(() => {
-        document.getElementById("searchinput").focus()
-      }, 100)
+    toggle() {
+      siteSearchStore.dispatch("siteSearch/toggle", this.$refs.self)
     },
   },
   props: {
@@ -53,9 +51,8 @@ export default {
 @import "~bootstrap/scss/utilities/flex";
 @import "~bootstrap/scss/utilities/screenreaders";
 @import "../../styles/placeholders";
-@import "../../styles/animations";
 
-.vs-search__button {
+.vs-site-search__button {
   @extend %button-reset;
   @extend %main-nav-button-style;
 
@@ -110,8 +107,7 @@ export default {
 <docs>
   ```jsx
   <div style="position: relative; height: 100px;">
-    <vs-search-button
-    />
+    <vs-search-button />
   </div>
   ```
 </docs>

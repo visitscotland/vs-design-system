@@ -1,8 +1,7 @@
 import VsDesktopNav from "./components/DesktopNav/DesktopNav"
 import VsDesktopNavChart from "./components/Chart/DesktopNavChart"
 import VsDesktopNavListItem from "./components/DesktopNav/DesktopNavListItem"
-import VsDesktopNavPromoItem from "./components/DesktopNavPromoItem/DesktopNavPromoItem"
-import VsDesktopNavPromoList from "./components/DesktopNavPromoList/DesktopNavPromoList"
+import VsDesktopNavPromoItem from "./components/DesktopNav/DesktopNavPromoItem"
 import VsDesktopNavSubmenu from "./components/DesktopNav/DesktopNavSubmenu"
 import VsDesktopNavToggles from "./components/DesktopNav/DesktopNavToggles"
 import VsDesktopUniversalNav from "./components/DesktopUniversalNav/DesktopUniversalNav"
@@ -13,22 +12,18 @@ import VsLanguage from "./components/Language/Language"
 import VsLogin from "./components/Login/Login"
 import VsLogo from "./components/Logo/Logo"
 import VsMobileNav from "./components/MobileNav/MobileNav"
-import VsMobileNavButton from "./components/MobileNavButton/MobileNavButton"
-import VsMobileNavListItem from "./components/MobileNavListItem/MobileNavListItem"
-import VsMobileNavPromoItem from "./components/MobileNavPromoItem/MobileNavPromoItem"
-import VsMobileNavPromoList from "./components/MobileNavPromoList/MobileNavPromoList"
+import VsMobileNavListItem from "./components/MobileNav/MobileNavListItem"
+import VsMobileNavPromoItem from "./components/MobileNav/MobileNavPromoItem"
+import VsMobileNavPromoList from "./components/MobileNav/MobileNavPromoList"
 import VsMobileUniversalNav from "./components/MobileUniversalNav/MobileUniversalNav"
 import VsSearch from "./components/Search/Search"
-import VsSearchButton from "./components/SearchButton/SearchButton"
-import VsSkipToContent from "./components/SkipToContent/SkipToContent"
-import VsSkipToSearch from "./components/SkipToSearch/SkipToSearch"
+import VsSearchButton from "./components/Search/SearchButton"
 
 export {
   VsDesktopNav,
   VsDesktopNavChart,
   VsDesktopNavListItem,
   VsDesktopNavPromoItem,
-  VsDesktopNavPromoList,
   VsDesktopNavSubmenu,
   VsDesktopNavToggles,
   VsDesktopUniversalNav,
@@ -39,13 +34,10 @@ export {
   VsLogin,
   VsLogo,
   VsMobileNav,
-  VsMobileNavButton,
   VsMobileNavListItem,
   VsMobileNavPromoItem,
   VsMobileNavPromoList,
   VsMobileUniversalNav,
   VsSearch,
   VsSearchButton,
-  VsSkipToContent,
-  VsSkipToSearch,
 }

@@ -1,13 +1,5 @@
 <template>
   <component :is="type" class="vs-header" ref="header">
-    <vs-container>
-      <vs-row>
-        <vs-col class="d-inline-flex justify-content-end justify-content-lg-center">
-          <slot name="skip-to-content"></slot> <slot name="skip-to-search"></slot>
-        </vs-col>
-      </vs-row>
-    </vs-container>
-
     <div class="vs-header__wrapper--top position-relative">
       <vs-container>
         <vs-row>
@@ -173,18 +165,20 @@ export default {
   <template>
     <div style="overflow-y: scroll; min-height: 600px;">
       <vs-skip-to
-        tabindex="0"
+        tabindex="1000"
         :target="contentContainer"
       >
         Skip to Content
       </vs-skip-to>
 
-      <vs-header>
+      <vs-skip-to
+        tabindex="1001"
+        @activated="skipToSearch"
+      >
+        Skip to Search
+      </vs-skip-to>
 
-        <vs-skip-to-search
-          slot="skip-to-search"
-          title="Skip to Search"
-        />
+      <vs-header>
         <vs-desktop-universal-nav
           slot="desktop-universal-nav"
           name="Our sites"
@@ -340,6 +334,8 @@ export default {
   const mainNav = require("../../../assets/fixtures/mainNav.json")
   const favourite = require("../../../assets/fixtures/favourite.json")
 
+  import siteSearchStore from "./components/Search/site-search.store"
+
   export default {
     data() {
       return {
@@ -352,6 +348,11 @@ export default {
     },
     mounted() {
       this.contentContainer = document.getElementById("content-container")
+    },
+    methods: {
+      skipToSearch() {
+        siteSearchStore.dispatch("siteSearch/open")
+      }
     }
 
   }
