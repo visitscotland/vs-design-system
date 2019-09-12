@@ -168,160 +168,195 @@ export default {
 </style>
 
 <docs>
-  ```jsx
+  ```vue
+
+  <template>
+    <div style="overflow-y: scroll; min-height: 600px;">
+      <vs-skip-to
+        tabindex="0"
+        :target="contentContainer"
+      >
+        Skip to Content
+      </vs-skip-to>
+
+      <vs-header>
+
+        <vs-skip-to-search
+          slot="skip-to-search"
+          title="Skip to Search"
+        />
+        <vs-desktop-universal-nav
+          slot="desktop-universal-nav"
+          name="Our sites"
+          :dropdown-list="ourSites"
+        />
+        <vs-mobile-universal-nav
+          slot="mobile-universal-nav"
+          name="Our sites"
+          class="vs-dropdown--mobile-universal-nav"
+          :dropdown-list="ourSites"
+        />
+        <vs-login
+          slot="login" 
+          username=""
+          />
+        <vs-language
+          slot="language"
+          name="Language"
+          class="vs-dropdown--language"
+          :dropdown-list="language"
+        />
+        <vs-logo 
+          slot="logo" />
+
+        <vs-search-button
+          slot="search-button" />
+        <vs-mobile-nav-button
+          slot="mobile-nav-button" />
+        <vs-favourites-button
+          slot="favourites-button"
+          :href="favourite.href"
+          :title="favourite.title" />
+
+        <vs-search
+          slot="search" />
+        <vs-favourites-list
+          slot="favourites-list" />
+        
+        <vs-desktop-nav-toggles
+          slot="desktop-nav-toggles"
+          v-for="(item, index) in mainNav"
+          :level="1"
+          :href="item.href"
+          :is-external="item.isExternal"
+          :title="item.title"
+          :subnav="item.subnav"
+          :promo-list="item.promoList"
+          :promo-item="item.promoItem"
+          :chart-widgets="item.chartWidgets"
+          :key="index"
+          :toggleId="index+1"
+        ></vs-desktop-nav-toggles>
+
+        <vs-desktop-nav-submenu
+          slot="desktop-submenu"
+          v-for="(item, index) in mainNav"
+          :level="1"
+          :href="item.href"
+          :is-external="item.isExternal"
+          :tracking-id="item.trackingId"
+          :title="item.title"
+          :subnav="item.subnav"
+          :promo-list="item.promoList"
+          :promo-item="item.promoItem"
+          :chart-widgets="item.chartWidgets"
+          :key="index"
+          :subnavId="index+1"
+        >
+          <vs-desktop-nav-list-item
+            slot="subnav"
+            v-for="(level2, index2) in item.subnav"
+            :level="2"
+            :href="level2.href"
+            :is-external="level2.isExternal"
+            :tracking-id="level2.trackingId"
+            :title="level2.title"
+            :subnav="level2.subnav"
+            :key="index2"
+          >
+            <vs-desktop-nav-list-item
+              slot="subnav"
+              v-for="(level3, index3) in level2.subnav"
+              :level="3"
+              :href="level3.href"
+              :is-external="level3.isExternal"
+              :title="level3.title"
+              :tracking-id="level3.trackingId"
+              :subnav="level3.subnav"
+              :key="index3"
+            >
+            </vs-desktop-nav-list-item>
+          </vs-desktop-nav-list-item>
+        </vs-desktop-nav-submenu>
+
+        <vs-mobile-nav-list-item
+          slot="mobile-nav-items"
+          v-for="(item, index) in mainNav"
+          :level="1"
+          :href="item.href"
+          :is-external="item.isExternal"
+          :tracking-id="item.trackingId"
+          :title="item.title"
+          :subnav="item.subnav"
+          :promo-list="item.promoList"
+          :promo-item="item.promoItem"
+          :key="index"
+        >
+          <vs-mobile-nav-list-item
+            slot="subnav"
+            v-for="(level2, index2) in item.subnav"
+            :level="2"
+            :href="level2.href"
+            :is-external="level2.isExternal"
+            :tracking-id="level2.trackingId"
+            :title="level2.title"
+            :subnav="level2.subnav"
+            :promo-list="level2.promoList"
+            :promo-item="level2.promoItem"
+            :key="index2"
+          >
+            <vs-mobile-nav-list-item
+              slot="subnav"
+              v-for="(level3, index3) in level2.subnav"
+              :level="3"
+              :href="level3.href"
+              :is-external="level3.isExternal"
+              :title="level3.title"
+              :tracking-id="level3.trackingId"
+              :subnav="level3.subnav"
+              :promo-list="level3.promoList"
+              :promo-item="level3.promoItem"
+              :key="index3"
+            >
+            </vs-mobile-nav-list-item>
+          </vs-mobile-nav-list-item>
+        </vs-mobile-nav-list-item>
+      </vs-header>
+
+      <bs-wrapper class="container">
+        <bs-wrapper class="row">
+          <bs-wrapper id="content-container" class="col" tabindex="3000" style="height:1000">
+            Dummy page content
+          </bs-wrapper>
+        </bs-wrapper>
+      </bs-wrapper>
+    </div>
+  </template>
+
+  <script>
 
   const ourSites = require("../../../assets/fixtures/ourSites.json")
   const language = require("../../../assets/fixtures/languages.json")
   const mainNav = require("../../../assets/fixtures/mainNav.json")
   const favourite = require("../../../assets/fixtures/favourite.json")
 
-  <div style="overflow-y: scroll; min-height: 600px;">
-    <vs-header>
-      <vs-skip-to-content
-        slot="skip-to-content"
-        title="Skip to Content"
-       />
-      <vs-skip-to-search
-        slot="skip-to-search"
-        title="Skip to Search"
-       />
-      <vs-desktop-universal-nav
-        slot="desktop-universal-nav"
-        name="Our sites"
-        :dropdown-list="ourSites"
-      />
-      <vs-mobile-universal-nav
-        slot="mobile-universal-nav"
-        name="Our sites"
-        class="vs-dropdown--mobile-universal-nav"
-        :dropdown-list="ourSites"
-      />
-      <vs-login
-        slot="login" 
-        username=""
-        />
-      <vs-language
-        slot="language"
-        name="Language"
-        class="vs-dropdown--language"
-        :dropdown-list="language"
-      />
-      <vs-logo 
-        slot="logo" />
+  export default {
+    data() {
+      return {
+        ourSites,
+        language,
+        mainNav,
+        favourite,
+        contentContainer: null
+      }
+    },
+    mounted() {
+      this.contentContainer = document.getElementById("content-container")
+    }
 
-      <vs-search-button
-        slot="search-button" />
-      <vs-mobile-nav-button
-        slot="mobile-nav-button" />
-      <vs-favourites-button
-        slot="favourites-button"
-        :href="favourite.href"
-        :title="favourite.title" />
+  }
+  </script>
 
-      <vs-search
-        slot="search" />
-      <vs-favourites-list
-        slot="favourites-list" />
-      
-      <vs-desktop-nav-toggles
-        slot="desktop-nav-toggles"
-        v-for="(item, index) in mainNav"
-        :level="1"
-        :href="item.href"
-        :is-external="item.isExternal"
-        :title="item.title"
-        :subnav="item.subnav"
-        :promo-list="item.promoList"
-        :promo-item="item.promoItem"
-        :chart-widgets="item.chartWidgets"
-        :key="index"
-        :toggleId="index+1"
-      ></vs-desktop-nav-toggles>
 
-      <vs-desktop-nav-submenu
-        slot="desktop-submenu"
-        v-for="(item, index) in mainNav"
-        :level="1"
-        :href="item.href"
-        :is-external="item.isExternal"
-        :tracking-id="item.trackingId"
-        :title="item.title"
-        :subnav="item.subnav"
-        :promo-list="item.promoList"
-        :promo-item="item.promoItem"
-        :chart-widgets="item.chartWidgets"
-        :key="index"
-        :subnavId="index+1"
-      >
-        <vs-desktop-nav-list-item
-          slot="subnav"
-          v-for="(level2, index2) in item.subnav"
-          :level="2"
-          :href="level2.href"
-          :is-external="level2.isExternal"
-          :tracking-id="level2.trackingId"
-          :title="level2.title"
-          :subnav="level2.subnav"
-          :key="index2"
-        >
-          <vs-desktop-nav-list-item
-            slot="subnav"
-            v-for="(level3, index3) in level2.subnav"
-            :level="3"
-            :href="level3.href"
-            :is-external="level3.isExternal"
-            :title="level3.title"
-            :tracking-id="level3.trackingId"
-            :subnav="level3.subnav"
-            :key="index3"
-          >
-          </vs-desktop-nav-list-item>
-        </vs-desktop-nav-list-item>
-      </vs-desktop-nav-submenu>
-
-      <vs-mobile-nav-list-item
-        slot="mobile-nav-items"
-        v-for="(item, index) in mainNav"
-        :level="1"
-        :href="item.href"
-        :is-external="item.isExternal"
-        :tracking-id="item.trackingId"
-        :title="item.title"
-        :subnav="item.subnav"
-        :promo-list="item.promoList"
-        :promo-item="item.promoItem"
-        :key="index"
-      >
-        <vs-mobile-nav-list-item
-          slot="subnav"
-          v-for="(level2, index2) in item.subnav"
-          :level="2"
-          :href="level2.href"
-          :is-external="level2.isExternal"
-          :tracking-id="level2.trackingId"
-          :title="level2.title"
-          :subnav="level2.subnav"
-          :promo-list="level2.promoList"
-          :promo-item="level2.promoItem"
-          :key="index2"
-        >
-          <vs-mobile-nav-list-item
-            slot="subnav"
-            v-for="(level3, index3) in level2.subnav"
-            :level="3"
-            :href="level3.href"
-            :is-external="level3.isExternal"
-            :title="level3.title"
-            :tracking-id="level3.trackingId"
-            :subnav="level3.subnav"
-            :promo-list="level3.promoList"
-            :promo-item="level3.promoItem"
-            :key="index3"
-          >
-          </vs-mobile-nav-list-item>
-        </vs-mobile-nav-list-item>
-      </vs-mobile-nav-list-item>
-    </vs-header>
-  </div>
   ```
 </docs>
