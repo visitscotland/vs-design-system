@@ -1,25 +1,30 @@
 <template>
-  <component :is="type" class="vs-search">
-    <b-collapse id="collapse-search" class="vs-search__form-wrapper">
+  <component :is="type" class="vs-site-search">
+    <b-collapse
+      v-model="open"
+      class="vs-site-search__form-wrapper"
+      id="vs-site-search__form-wrapper"
+    >
       <vs-container>
         <vs-row>
           <vs-col>
-            <form role="search" action method="get" class="vs-search__form">
-              <label for="searchinput" class="vs-search__label">
+            <form role="search" action method="get" class="vs-site-search__form">
+              <label for="search-input" class="vs-site-search__label">
                 <span class="sr-only">Enter a search term</span>
                 <vs-icon name="search" size="sm" variant="primary" />
               </label>
               <input
-                class="vs-search__input"
+                class="vs-site-search__input"
                 type="search"
                 placeholder="Enter a search term"
                 autocomplete="off"
                 v-model="searchTerm"
-                id="searchinput"
+                ref="searchInput"
+                id="search-input"
               />
               <button
                 v-if="searchTerm.length"
-                class="vs-search__clear-button"
+                class="vs-site-search__clear-button"
                 @click.prevent="clearSearchField()"
               >
                 <span class="sr-only">Clear search</span>
@@ -28,7 +33,7 @@
               </button>
               <button
                 @keydown="checkKeydown($event)"
-                class="vs-search__submit-button"
+                class="vs-site-search__submit-button"
                 type="submit"
               >
                 Go
@@ -44,6 +49,8 @@
 <script>
 import VsIcon from "../../../../elements/icon/Icon"
 import { BCollapse } from "bootstrap-vue"
+import siteSearchStore from "./site-search.store"
+import { mapGetters } from "vuex"
 
 export default {
   name: "VsSearch",
@@ -56,26 +63,8 @@ export default {
   data() {
     return {
       searchTerm: "",
+      open: false,
     }
-  },
-  methods: {
-    close() {
-      this.setFocusOnToggle()
-      this.$root.$emit("bv::toggle::collapse", "collapse-search")
-    },
-    checkKeydown($event) {
-      if ($event.key === "Tab" && !$event.shiftKey) {
-        this.close()
-      }
-    },
-    clearSearchField() {
-      this.searchTerm = ""
-    },
-    setFocusOnToggle() {
-      setTimeout(() => {
-        document.getElementById("search-toggle-trigger").focus()
-      }, 100)
-    },
   },
   props: {
     /**
@@ -85,6 +74,45 @@ export default {
       type: String,
       default: "div",
     },
+    closeFocusElement: {
+      type: Element,
+      default: null,
+    },
+  },
+  computed: {
+    searchStoreOpen() {
+      return siteSearchStore.state.siteSearch.open
+    },
+  },
+  watch: {
+    searchStoreOpen(newVal, oldVal) {
+      this.open = newVal
+
+      if (this.open) {
+        setTimeout(() => {
+          this.$refs.searchInput.focus()
+        })
+      }
+    },
+  },
+  methods: {
+    close() {
+      // this.setFocusOnToggle()
+      siteSearchStore.dispatch("siteSearch/close", this.closeFocusElement)
+    },
+    checkKeydown($event) {
+      if ($event.key === "Tab" && !$event.shiftKey) {
+        this.close()
+      }
+    },
+    clearSearchField() {
+      this.searchTerm = ""
+    },
+    // setFocusOnToggle() {
+    //   setTimeout(() => {
+    //     document.getElementById("search-toggle-trigger").focus()
+    //   }, 100)
+    // },
   },
 }
 </script>
@@ -98,18 +126,18 @@ export default {
 @import "../../styles/placeholders";
 @import "../../styles/mixins";
 
-.vs-search__form-wrapper {
+.vs-site-search__form-wrapper {
   @extend %default-inset-box-shadow;
   background-color: $gray-tint-7;
   padding: 1rem;
   width: 100%;
 }
 
-.vs-search__form {
+.vs-site-search__form {
   display: flex;
 }
 
-.vs-search__input {
+.vs-site-search__input {
   @extend %reset-clear;
   border: none;
   display: block;
@@ -122,14 +150,14 @@ export default {
   }
 }
 
-.vs-search__label {
+.vs-site-search__label {
   background-color: $color-white;
   display: flex;
   align-items: center;
   margin: 0;
 }
 
-.vs-search__clear-button {
+.vs-site-search__clear-button {
   @extend %button-reset;
   background: $color-white;
   display: flex;
@@ -141,7 +169,7 @@ export default {
   }
 }
 
-.vs-search__submit-button {
+.vs-site-search__submit-button {
   @extend %button-reset;
   @extend %button-pink;
   font-size: 1.125rem;
@@ -154,7 +182,7 @@ export default {
 <docs>
   ```jsx
   <div style="position: relative; height: 100px;">
-    <vs-search
+    <vs-site-search
     />
   </div>
   ```
