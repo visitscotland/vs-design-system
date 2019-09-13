@@ -1,18 +1,18 @@
 <template>
-  <component
-    :is="type"
+  <vs-button
     class="vs-skip-to sr-only sr-only-focusable d-inline-flex p-absolute align-items-center flex-column py-2 px-3"
-    @click.prevent="handle"
+    @click.native.prevent="handle"
     :tabindex="tabindex"
+    variant="dark"
   >
     <slot />
     <vs-icon name="chevron-down" size="xs" variant="reverse-white" />
-  </component>
+  </vs-button>
 </template>
 
 <script>
 import VsIcon from "@components/elements/icon/Icon"
-import { VueComponent } from "Vue"
+import VsButton from "@components/elements/button"
 import { isFunction, get, isNumber } from "lodash"
 
 /**
@@ -27,6 +27,7 @@ export default {
   release: "0.0.1",
   components: {
     VsIcon,
+    VsButton,
   },
   props: {
     /**
@@ -35,13 +36,6 @@ export default {
     tabindex: {
       type: String,
       required: true,
-    },
-    /**
-     * The html element name used for the component
-     */
-    type: {
-      type: String,
-      default: "button",
     },
     /**
      * The target element to skip to. Pass a Vue ref - e.g.
@@ -85,9 +79,7 @@ export default {
 @import "~bootstrap/scss/utilities/spacing";
 
 .vs-skip-to {
-  background-color: $color-base-text;
   box-shadow: 0 8px 6px -6px rgba(0, 0, 0, 0.3);
-  color: $color-white;
   letter-spacing: 2px;
   left: 50%;
   transform: translate(-50%);
@@ -102,11 +94,6 @@ export default {
 
   &.sr-only-focusable:focus {
     position: absolute;
-  }
-
-  &:hover {
-    color: $color-white;
-    background-color: $gray-shade-5;
   }
 }
 </style>
