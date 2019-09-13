@@ -4,9 +4,9 @@ const { each } = require("lodash")
 
 describe("Button component", () => {
   const themeColours = getThemeColours()
-  const data = { variant: null, type: null, href: null }
+  const props = { variant: null, type: null, href: null }
 
-  vueHelper.init("vs-button", VsButton, data, "hello")
+  vueHelper.init("vs-button", VsButton, { props, childContent: "hello" })
 
   it("renders the contents", () => {
     cy.contains("button", "hello")
