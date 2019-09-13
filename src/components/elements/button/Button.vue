@@ -1,5 +1,5 @@
 <template>
-  <b-button :variant="variant || 'primary'" :href="href"><slot /></b-button>
+  <b-button :variant="variant || 'primary'" :href="href" :tabindex="tabindex"><slot /></b-button>
 </template>
 
 <script>
@@ -9,6 +9,11 @@ import { BButton } from "bootstrap-vue"
  * Buttons are generally used for interface actions. Suitable for all-purpose use.
  * Defaults to appearance that has white background with grey border.
  * Primary style should be used only once per view for main call-to-action.
+ *
+ * NOTE: When listening for the @click event you need to use the `native` modifier
+ * in order to listen for the underlying `button`s native event. e.g.
+ *
+ * <vs-button @click.native="handler">Click me</vs-button>
  */
 
 export default {
@@ -23,6 +28,14 @@ export default {
      * Use this option to render the button as an anchor element with the given href.
      */
     href: {
+      type: String,
+      default: null,
+    },
+    /**
+     * Tab index value - this is needed as tabindex attribute is sometimes stripped
+     * from the button on first update with nested components
+     */
+    tabindex: {
       type: String,
       default: null,
     },
@@ -43,6 +56,12 @@ export default {
 
 <style lang="scss" scoped>
 @import "~bootstrap/scss/buttons";
+
+.btn-dark {
+  &:hover {
+    background-color: $gray-shade-5;
+  }
+}
 </style>
 
 <docs>
