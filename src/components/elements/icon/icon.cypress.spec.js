@@ -20,7 +20,7 @@ describe("Icon component", () => {
   let secondaryColour = getToken("color_theme_secondary")
   let whiteColour = getToken("color_white")
 
-  vueHelper.init("vs-icon", VsIcon, props)
+  vueHelper.init("vs-icon", VsIcon, { props })
 
   it("renders the default favourite icon with the appropriate class", () => {
     cy.get("svg")

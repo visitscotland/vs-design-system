@@ -4,7 +4,7 @@ const { vueHelper } = require("@cypress/helpers/index.js").default
 describe("Svg component", () => {
   const props = { path: "logo", height: null, width: null, fill: null }
 
-  vueHelper.init("vs-svg", VsSvg, props)
+  vueHelper.init("vs-svg", VsSvg, { props })
 
   it("renders the logo svg", () => {
     cy.get("svg").should("have.attr", "xmlns", "http://www.w3.org/2000/svg")

@@ -21,7 +21,7 @@ const maxWidths = {
   xxl: getToken("max_container_width_xxl"),
 }
 
-vueHelper.init("vs-container", VsContainer, props, mockContents)
+vueHelper.init("vs-container", VsContainer, { props, childContent: mockContents })
 
 describe("Container component", () => {
   beforeEach(() => {
