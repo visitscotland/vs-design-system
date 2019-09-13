@@ -100,9 +100,11 @@ function resetProps(props) {
   if (!Cypress.vue) {
     return
   }
-  each(props, setProp)
+  each(props, (value, propName) => {
+    setProp(propName, value)
+  })
 }
 
-function setProp(value, propName) {
+function setProp(propName, value) {
   Cypress.vue.$set(Cypress.vue[PROPS_DATA_KEY_NAME], propName, value)
 }
