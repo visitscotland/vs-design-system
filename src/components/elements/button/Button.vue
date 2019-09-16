@@ -57,6 +57,14 @@ export default {
 <style lang="scss" scoped>
 @import "~bootstrap/scss/buttons";
 
+.btn {
+  -webkit-appearance: none;
+  border: none;
+  background: none;
+  padding: 0;
+  margin: 0;
+}
+
 .btn-dark {
   &:hover {
     background-color: $gray-shade-5;
