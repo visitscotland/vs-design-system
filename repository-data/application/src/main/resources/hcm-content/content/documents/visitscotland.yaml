@@ -3,7 +3,7 @@
   jcr:primaryType: hippostd:folder
   jcr:mixinTypes: ['hippo:named', 'hippotranslation:translated', 'mix:referenceable']
   jcr:uuid: 5328fdef-830a-4a85-a98a-323a02227d50
-  hippo:name: www.visitscotland.com CMS Pages
+  hippo:name: www.visitscotland.com Core Site (English)
   hippostd:foldertype: [new-translated-folder, new-document]
   hippotranslation:id: 996bcac5-86cf-49b5-a7a3-16a74863e814
   hippotranslation:locale: en

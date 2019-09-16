@@ -1,0 +1,15 @@
+definitions:
+  config:
+    /hst:hst/hst:configurations/hst:default/hst:sitemap/content:
+      jcr:primaryType: hst:sitemapitem
+      hst:componentconfigurationid: hst:pages/contentlist
+      hst:pagetitle: List of Simple Documents
+      hst:relativecontentpath: content
+      /_any_.html:
+        jcr:primaryType: hst:sitemapitem
+        hst:componentconfigurationid: hst:pages/contentpage
+        hst:relativecontentpath: ${parent}/${1}
+      /_any_:
+        jcr:primaryType: hst:sitemapitem
+        hst:componentconfigurationid: hst:pages/contentlist
+        hst:relativecontentpath: ${parent}/${1}

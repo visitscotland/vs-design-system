@@ -1,6 +1,6 @@
 definitions:
   config:
-    /hst:hst/hst:configurations/visitscotland/hst:pages/contentlist:
+    /hst:hst/hst:configurations/hst:default/hst:pages/contentlist:
       jcr:primaryType: hst:component
       hst:referencecomponent: hst:abstractpages/base
       /main:

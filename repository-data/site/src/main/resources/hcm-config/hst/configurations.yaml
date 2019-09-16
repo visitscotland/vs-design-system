@@ -5,6 +5,19 @@ definitions:
         jcr:primaryType: hst:configuration
         /hst:sitemap:
           jcr:primaryType: hst:sitemap
+          /root:
+            jcr:primaryType: hst:sitemapitem
+            hst:componentconfigurationid: hst:pages/homepage
+            hst:pagetitle: Home Page
+            hst:refId: root
+          /_any_:
+            jcr:primaryType: hst:sitemapitem
+            hst:componentconfigurationid: hst:pages/pagenotfound
+          /pagenotfound:
+            jcr:primaryType: hst:sitemapitem
+            hst:componentconfigurationid: hst:pages/pagenotfound
+            hst:pagetitle: Not Found Page
+            hst:refId: pagenotfound
         /hst:abstractpages:
           jcr:primaryType: hst:pages
         /hst:pages:
@@ -13,12 +26,29 @@ definitions:
           jcr:primaryType: hst:components
         /hst:templates:
           jcr:primaryType: hst:templates
+          /base-layout:
+            jcr:primaryType: hst:template
+            hst:renderpath: webfile:/freemarker/visitscotland/base-layout.ftl
+          /base-top-menu:
+            jcr:primaryType: hst:template
+            hst:renderpath: webfile:/freemarker/visitscotland/base-top-menu.ftl
+          /base-footer:
+            jcr:primaryType: hst:template
+            hst:renderpath: webfile:/freemarker/visitscotland/base-footer.ftl
+          /homepage-main:
+            jcr:primaryType: hst:template
+            hst:renderpath: webfile:/freemarker/visitscotland/homepage-main.ftl
+          /pagenotfound-main:
+            jcr:primaryType: hst:template
+            hst:renderpath: webfile:/freemarker/visitscotland/pagenotfound-main.ftl
         /hst:sitemenus:
           jcr:primaryType: hst:sitemenus
-        /hst:sitemapitemhandlers:
-          jcr:primaryType: hst:sitemapitemhandlers
         /hst:catalog:
           jcr:primaryType: hst:catalog
+          /visitscotland-catalog:
+            jcr:primaryType: hst:containeritempackage
       /visitscotland:
         jcr:primaryType: hst:configuration
         hst:inheritsfrom: [../common]
+      /backup:
+        jcr:primaryType: hst:configuration
