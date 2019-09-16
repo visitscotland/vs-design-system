@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<project>
+  <projectNamespace>visitscotland</projectNamespace>
+  <confirmParams>false</confirmParams>
+  <selectedProjectPackage>com.visitscotland.www</selectedProjectPackage>
+  <selectedBeansPackage>com.visitscotland.www.beans</selectedBeansPackage>
+  <selectedComponentsPackage>com.visitscotland.www.components</selectedComponentsPackage>
+  <selectedRestPackage>com.visitscotland.www.rest</selectedRestPackage>
+  <hstRoot>/hst:visitscotland</hstRoot>
+  <webfileBundleName>site</webfileBundleName>
+  <setupDone>false</setupDone>
+  <useSamples>true</useSamples>
+  <extraTemplates>true</extraTemplates>
+</project>

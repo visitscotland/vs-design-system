@@ -1,0 +1,6 @@
+site: visitscotland
+group: visitscotland
+project: visitscotland
+module:
+  name: visitscotland-repository-data-site-development
+  after: visitscotland-repository-data-site

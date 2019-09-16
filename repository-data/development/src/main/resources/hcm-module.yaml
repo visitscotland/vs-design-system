@@ -1,0 +1,7 @@
+group: 
+  name: visitscotland
+  after: hippo-cms
+project: visitscotland
+module: 
+  name: visitscotland-repository-data-development
+  after: visitscotland-repository-data-application
