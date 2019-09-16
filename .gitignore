@@ -1,0 +1,27 @@
+target/
+
+storage*/
+node_modules/
+*.log
+*.iml
+essentials/overlays/
+
+repository-data/webfiles/coverage/
+*.bundle.map
+*.css.map
+
+
+
+### IDE CONFIGURATION Files
+# Eclipse based IDEs
+.classpath
+.project
+.settings/
+
+# IntelliJ IDEA
+.idea/
+
+#VSCODE
+.vscode/
+
+
