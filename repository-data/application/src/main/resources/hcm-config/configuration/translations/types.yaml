@@ -1,0 +1,32 @@
+definitions:
+  config:
+    /hippo:configuration/hippo:translations/hippo:types/visitscotland:contentdocument:
+      jcr:primaryType: hipposys:resourcebundles
+      /en:
+        jcr:primaryType: hipposys:resourcebundle
+        jcr:name: Simple Document
+        visitscotland:content: Content
+        visitscotland:introduction: Introduction
+        visitscotland:publicationdate: Publication date
+        visitscotland:title: Title
+      /nl:
+        jcr:primaryType: hipposys:resourcebundle
+        jcr:name: Eenvoudig Document
+        visitscotland:content: Inhoud
+        visitscotland:introduction: Introductie
+        visitscotland:publicationdate: Publicatiedatum
+        visitscotland:title: Titel
+      /fr:
+        jcr:primaryType: hipposys:resourcebundle
+        jcr:name: Document simple
+        visitscotland:content: Contenu
+        visitscotland:introduction: Introduction
+        visitscotland:publicationdate: Date de publication
+        visitscotland:title: Titre
+      /de:
+        jcr:primaryType: hipposys:resourcebundle
+        jcr:name: Einfaches Dokument
+        visitscotland:content: Inhalt
+        visitscotland:introduction: Einführung
+        visitscotland:publicationdate: Publikationsdatum
+        visitscotland:title: Titel
