@@ -1,0 +1,14 @@
+definitions:
+  config:
+    /hippo:configuration/hippo:frontend/cms/cms-services/localeProviderService/es:
+      .meta:order-before: nl
+      jcr:primaryType: frontend:pluginconfig
+      country: es
+      language: es
+    /hippo:configuration/hippo:frontend/cms/cms-services/localeProviderService/it:
+      .meta:order-before: nl
+      jcr:primaryType: frontend:pluginconfig
+      country: it
+      language: it
+    /hippo:configuration/hippo:frontend/cms/cms-services/localeProviderService/en:
+      country: gb

@@ -1,0 +1,4 @@
+definitions:
+  config:
+    /hst:hst/hst:configurations/backup/hst:sitemap:
+      jcr:primaryType: hst:sitemap

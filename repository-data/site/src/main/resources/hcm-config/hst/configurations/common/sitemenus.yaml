@@ -1,0 +1,13 @@
+definitions:
+  config:
+    /hst:hst/hst:configurations/common/hst:sitemenus:
+      jcr:primaryType: hst:sitemenus
+      /main:
+        jcr:primaryType: hst:sitemenu
+        hst:lastmodified: 2019-09-17T16:43:06.211+01:00
+        /home:
+          jcr:primaryType: hst:sitemenuitem
+          hst:referencesitemapitem: root
+        /content:
+          jcr:primaryType: hst:sitemenuitem
+          hst:referencesitemapitem: content
