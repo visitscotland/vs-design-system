@@ -1,5 +1,5 @@
 <template>
-  <b-col :tag="tag" v-bind="breakpointAttrs"> <slot /> </b-col>
+  <b-col :tag="tag" v-bind="breakpointAttrs" :order="order"> <slot /> </b-col>
 </template>
 
 <script>
@@ -35,6 +35,10 @@ export default {
      * The html element name used for the component
      */
     tag: {
+      type: String,
+    },
+
+    order: {
       type: String,
     },
   },
