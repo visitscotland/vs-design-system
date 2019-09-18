@@ -26,39 +26,16 @@
                 <slot name="desktop-nav-toggles" />
               </ul>
               <div class="vs-controls__wrapper d-flex">
-                <vs-button
-                  class="vs-header__site-search__toggle-button"
-                  ref="siteSearchButton"
-                  @click.native="toggleSearch"
-                  :aria-expanded="siteSearchIsVisible"
-                >
-                  <span class="d-xl-none sr-only">Toggle Search</span>
-                  <vs-icon name="search" size="sm" variant="reverse-white" />
-                  <span class="d-none d-xl-flex vs-site-search__search-button-text">
-                    <span class="sr-only">Toggle</span> Search
-                  </span>
-                </vs-button>
-                <slot name="favourites-button" />
+                <slot name="header-drawer-toggles" />
                 <div class="d-lg-none"><slot name="mobile-nav-button" /></div>
               </div>
             </div>
           </vs-col>
         </vs-row>
       </vs-container>
-      <b-collapse
-        v-model="drawer.isOpen"
-        class="vs-header__drawer-wrapper"
-        id="vs-header__drawer-wrapper"
-      >
-        <vs-container>
-          <vs-row>
-            <vs-col>
-              <slot name="site-search" v-if="siteSearchIsVisible" />
-              <slot name="favourites-list" v-if="favouritesListIsVisible" />
-            </vs-col>
-          </vs-row>
-        </vs-container>
-      </b-collapse>
+      <vs-header-drawer>
+        <slot name="header-drawer-modules" />
+      </vs-header-drawer>
       <div class="d-none d-lg-block">
         <vs-desktop-nav name="Main navigation"> <slot name="desktop-submenu" /> </vs-desktop-nav>
       </div>
@@ -72,14 +49,16 @@
 </template>
 
 <script>
-import VsContainer from "../../elements/layout/Container"
-import VsSvg from "../../elements/svg/Svg"
-import VsRow from "../../elements/layout/Row"
-import VsCol from "../../elements/layout/Col"
+import VsContainer from "@components/elements/layout/Container"
+import VsSvg from "@components/elements/svg/Svg"
+import VsRow from "@components/elements/layout/Row"
+import VsCol from "@components/elements/layout/Col"
 import smoothscroll from "smoothscroll-polyfill"
 import { BCollapse } from "bootstrap-vue"
 import store, { names as storeNames } from "./header.store"
-import { mapState } from "vuex"
+import VsFavouritesButton2 from "@components/patterns/favourites/FavouritesButton2"
+import VsHeaderDrawer from "./components/Drawer/HeaderDrawer"
+import VsHeaderDrawerToggle from "./components/Drawer/HeaderDrawerToggle"
 
 export default {
   name: "VsHeader2",
@@ -92,6 +71,9 @@ export default {
     VsRow,
     VsSvg,
     BCollapse,
+    VsFavouritesButton2,
+    VsHeaderDrawer,
+    VsHeaderDrawerToggle,
   },
   data() {
     return {
@@ -112,33 +94,21 @@ export default {
       type: String,
       default: "header",
     },
+    favouriteHref: {
+      type: String,
+    },
+    favouriteTitle: {
+      type: String,
+    },
   },
   computed: {
     drawerModule() {
       return store.getters["header/drawer/module"]
     },
-    siteSearchIsVisible() {
-      return store.getters["header/drawer/module"] === this.siteSearchModuleName
-    },
-    siteSearchModuleName() {
-      return this.drawer.moduleNames.siteSearch
-    },
-    favouritesListIsVisible() {
-      return store.getters["header/drawer/module"] === this.favouritesListModuleName
-    },
-    favouritesListModuleName() {
-      return this.drawer.moduleNames.favouritesList
-    },
   },
   watch: {
     drawerModule(newValue) {
       this.drawer.isOpen = !!newValue
-
-      // if (newValue === this.siteSearchModuleName) {
-      //   setTimeout(() => {
-      //     this.$refs.searchInput.focus()
-      //   })
-      // }
     },
   },
   methods: {
@@ -160,19 +130,6 @@ export default {
         }
       })
       this.$emit("resetMenus")
-    },
-    toggleSearch() {
-      if (this.siteSearchIsVisible) {
-        this.closeDrawer()
-      } else {
-        this.showDrawerModule(this.siteSearchModuleName)
-      }
-    },
-    showDrawerModule(moduleName) {
-      store.dispatch("header/drawer/showModule", moduleName)
-    },
-    closeDrawer() {
-      store.dispatch("header/drawer/close")
     },
   },
   created() {
@@ -229,44 +186,6 @@ export default {
     position: relative;
   }
 }
-
-.vs-header__drawer-wrapper {
-  @extend %default-inset-box-shadow;
-  background-color: $gray-tint-7;
-  padding: 1rem;
-  width: 100%;
-}
-
-.vs-header__site-search__toggle-button {
-  background-color: $color-pink;
-  color: $color-white;
-  z-index: 1;
-
-  &:hover,
-  &:focus {
-    outline: none;
-    box-shadow: inset 0 -3px 0 0 $color-white;
-
-    @include media-breakpoint-up(xl) {
-      box-shadow: 0 3px 0 0 $purple-shade-2;
-    }
-  }
-
-  @include media-breakpoint-up(sm) {
-    box-shadow: 0 5px 0 0 $color-pink;
-  }
-
-  @include media-breakpoint-up(xl) {
-    align-items: center;
-    box-shadow: 0 5px 0 0 $color-pink;
-    display: flex;
-    font-size: 1.125rem;
-    font-weight: $font-weight-semi-bold;
-    justify-content: center;
-    padding: 0 1.25rem 0 0.5rem;
-    width: auto;
-  }
-}
 </style>
 
 <docs>
@@ -288,7 +207,10 @@ export default {
         Skip to Search
       </vs-skip-to>
 
-      <vs-header2>
+      <vs-header2
+        :favourite-href="favourite.href"
+        :favourite-title="favourite.title"
+      >
         <vs-desktop-universal-nav
           slot="desktop-universal-nav"
           name="Our sites"
@@ -303,27 +225,43 @@ export default {
         <vs-login
           slot="login" 
           username=""
-          />
+        />
         <vs-language
           slot="language"
           name="Language"
           class="vs-dropdown--language"
           :dropdown-list="language"
         />
-        <vs-logo 
-          slot="logo" />
+        <vs-logo slot="logo" />
 
-        <vs-mobile-nav-button
-          slot="mobile-nav-button" />
+        <vs-mobile-nav-button slot="mobile-nav-button" />
 
-        <vs-favourites-button
-          slot="favourites-button"
-          :href="favourite.href"
-          :title="favourite.title" />
+        <template slot="header-drawer-toggles">
 
-        <vs-site-search slot="site-search" />
-        <vs-favourites-list slot="favourites-list" />
-        
+          <vs-header-drawer-toggle
+            module-name="site-search"
+            type="vs-site-search-toggle-button"
+          />
+
+          <vs-header-drawer-toggle
+            module-name="favourites-list"
+            :href="favourite.href"
+            :title="favourite.title"
+            type="vs-favourites-button2"
+          />
+
+        </template>
+
+        <template slot="header-drawer-modules">
+          <header-drawer-module module-name="site-search">
+            <vs-site-search />
+          </header-drawer-module>
+
+          <header-drawer-module module-name="favourites-list">
+            <vs-favourites-list2/>
+          </header-drawer-module>
+        </template>
+
         <vs-desktop-nav-toggles
           slot="desktop-nav-toggles"
           v-for="(item, index) in mainNav"
@@ -337,7 +275,7 @@ export default {
           :chart-widgets="item.chartWidgets"
           :key="index"
           :toggleId="index+1"
-        ></vs-desktop-nav-toggles>
+        />
 
       </vs-header2>
 

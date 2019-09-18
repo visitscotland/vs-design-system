@@ -1,7 +1,7 @@
 <template>
-  <vs-button class="vs-favourites__button" @click="handleClick()" id="favourites-toggle-trigger">
+  <vs-button class="vs-favourites__button" @click.native="addFavourite" focus-variant="pink-inset">
     <span class="sr-only">Add to Favourites</span>
-    <span class="vs-favourites__count" v-if="favouritesCount > 0">
+    <span class="vs-favourites__button__count" v-if="favouritesCount > 0">
       <span class="sr-only">Current favourites count:</span> {{ favouritesCount }}
     </span>
     <vs-icon v-if="favouritesCount > 0" name="favourite-filled" size="sm" variant="primary" />
@@ -18,9 +18,6 @@ export default {
   status: "prototype",
   release: "0.0.1",
   components: { VsIcon },
-  data() {
-    return {}
-  },
   props: {
     title: {
       type: String,
@@ -29,13 +26,13 @@ export default {
       type: String,
     },
   },
-  store,
+  // store,
   computed: {
     favouritesCount() {
-      return this.$store.getters["favourites/getFavouritesCount"]
+      return store.getters["favourites/getFavouritesCount"]
     },
     favourites() {
-      return this.$store.getters["favourites/getFavourites"]
+      return store.getters["favourites/getFavourites"]
     },
     favouriteItem() {
       return {
@@ -45,16 +42,17 @@ export default {
     },
   },
   methods: {
-    handleClick() {
-      var inArray = this.favourites.filter(favourite => favourite.href === this.favouriteItem.href)
-      if (inArray.length === 0) {
-        this.$store.dispatch("favourites/addFavourite", this.favouriteItem)
+    addFavourite() {
+      if (store.dispatch("favourites/addFavourite", this.favouriteItem)) {
+        this.addFavouriteSuccess()
       }
     },
-    setFocusOnToggle() {
-      setTimeout(() => {
-        document.getElementById("favourites-close-button").focus()
-      }, 100)
+    addFavouriteSuccess() {
+      /**
+       * Emitted when a favourited is successfully added to the
+       * favourites list
+       */
+      this.$emit("favouriteAdded")
     },
   },
 }
@@ -67,31 +65,26 @@ export default {
 @import "~bootstrap/scss/utilities/screenreaders";
 // @import "../../styles/placeholders";
 
-.vs-favourites {
-  &__button {
-    // @extend %button-reset;
-    // @extend %main-nav-button-style;
+.vs-favourites__button {
+  position: relative;
+  width: 40px;
 
-    position: relative;
-
-    &:hover,
-    &:focus {
-      // @extend %focus-pink-inset;
-    }
+  @include media-breakpoint-up(md) {
+    width: 50px;
   }
+}
 
-  &__count {
-    color: $color-white;
-    display: block;
-    font-size: 0.75rem;
-    left: 0;
-    position: absolute;
-    top: 10px;
-    width: 100%;
+.vs-favourites__button__count {
+  color: $color-white;
+  display: block;
+  font-size: 0.75rem;
+  left: 0;
+  position: absolute;
+  top: 10px;
+  width: 100%;
 
-    @include media-breakpoint-up(md) {
-      top: 14px;
-    }
+  @include media-breakpoint-up(md) {
+    top: 14px;
   }
 }
 </style>

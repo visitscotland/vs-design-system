@@ -1,50 +1,36 @@
 <template>
-  <component :is="type" class="vs-site-search">
-    <!-- <b-collapse
-      v-model="open"
-      class="vs-site-search__form-wrapper"
-      id="vs-site-search__form-wrapper"
+  <form role="search" action method="get" class="d-flex" @focus="onFocus" tabindex="-1">
+    <label for="search-input" class="vs-site-search__label">
+      <span class="sr-only">Enter a search term</span>
+      <vs-icon name="search" size="sm" variant="primary" />
+    </label>
+    <input
+      class="vs-site-search__input"
+      type="search"
+      placeholder="Enter a search term"
+      autocomplete="off"
+      v-model="searchTerm"
+      ref="searchInput"
+      id="search-input"
+    />
+    <button
+      v-if="searchTerm.length"
+      class="vs-site-search__clear-button"
+      @click.prevent="clearSearchField()"
     >
-      <vs-container>
-        <vs-row>
-          <vs-col> -->
-    <form role="search" action method="get" class="vs-site-search__form">
-      <label for="search-input" class="vs-site-search__label">
-        <span class="sr-only">Enter a search term</span>
-        <vs-icon name="search" size="sm" variant="primary" />
-      </label>
-      <input
-        class="vs-site-search__input"
-        type="search"
-        placeholder="Enter a search term"
-        autocomplete="off"
-        v-model="searchTerm"
-        ref="searchInput"
-        id="search-input"
-      />
-      <button
-        v-if="searchTerm.length"
-        class="vs-site-search__clear-button"
-        @click.prevent="clearSearchField()"
-      >
-        <span class="sr-only">Clear search</span>
-        <!-- TODO: convert to vs-icon when colours are finalised -->
-        <vs-icon name="close" size="xs" variant="light" />
-      </button>
-      <button @keydown="checkKeydown($event)" class="vs-site-search__submit-button" type="submit">
-        Go
-      </button>
-    </form>
-    <!-- </vs-col>
-        </vs-row>
-      </vs-container>
-    </b-collapse> -->
-  </component>
+      <span class="sr-only">Clear search</span>
+      <!-- TODO: convert to vs-icon when colours are finalised -->
+      <vs-icon name="close" size="xs" variant="light" />
+    </button>
+    <button class="vs-site-search__submit-button" type="submit">
+      Go
+    </button>
+  </form>
 </template>
 
 <script>
 import VsIcon from "@components/elements/icon/Icon"
-import siteSearchStore from "../header/components/Search/site-search.store"
+import headerStore from "../header/"
 
 export default {
   name: "VsSiteSearch",
@@ -56,56 +42,15 @@ export default {
   data() {
     return {
       searchTerm: "",
-      open: false,
     }
   },
-  props: {
-    /**
-     * The html element name used for the component
-     */
-    type: {
-      type: String,
-      default: "div",
-    },
-    closeFocusElement: {
-      type: Element,
-      default: null,
-    },
-  },
-  computed: {
-    searchStoreOpen() {
-      return siteSearchStore.state.siteSearch.open
-    },
-  },
-  watch: {
-    searchStoreOpen(newVal, oldVal) {
-      this.open = newVal
-
-      if (this.open) {
-        setTimeout(() => {
-          this.$refs.searchInput.focus()
-        })
-      }
-    },
-  },
   methods: {
-    close() {
-      // this.setFocusOnToggle()
-      siteSearchStore.dispatch("siteSearch/close", this.closeFocusElement)
-    },
-    checkKeydown($event) {
-      if ($event.key === "Tab" && !$event.shiftKey) {
-        this.close()
-      }
-    },
     clearSearchField() {
       this.searchTerm = ""
     },
-    // setFocusOnToggle() {
-    //   setTimeout(() => {
-    //     document.getElementById("search-toggle-trigger").focus()
-    //   }, 100)
-    // },
+    onFocus() {
+      this.$refs.searchInput.focus()
+    },
   },
 }
 </script>
@@ -118,17 +63,6 @@ export default {
 
 @import "../header/styles/placeholders";
 @import "../header/styles/mixins";
-
-.vs-site-search__form-wrapper {
-  @extend %default-inset-box-shadow;
-  background-color: $gray-tint-7;
-  padding: 1rem;
-  width: 100%;
-}
-
-.vs-site-search__form {
-  display: flex;
-}
 
 .vs-site-search__input {
   @extend %reset-clear;
