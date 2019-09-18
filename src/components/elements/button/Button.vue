@@ -1,5 +1,11 @@
 <template>
-  <b-button :variant="variant || 'primary'" :href="href" :tabindex="tabindex"><slot /></b-button>
+  <b-button
+    :variant="variant || 'primary'"
+    :href="href"
+    :tabindex="tabindex"
+    :class="{ [focusVariantClass]: focusVariantClass }"
+    ><slot
+  /></b-button>
 </template>
 
 <script>
@@ -50,6 +56,22 @@ export default {
         return value.match(/(primary|secondary|success|danger|warning|info|light|dark)/)
       },
     },
+    /**
+     * The style variant when focused.
+     * `pink, pink-inset`
+     */
+    focusVariant: {
+      type: String,
+      default: null,
+      validator: value => {
+        return value.match(/(pink|pink-inset)/)
+      },
+    },
+  },
+  computed: {
+    focusVariantClass() {
+      return this.focusVariant ? "focus-" + this.focusVariant : null
+    },
   },
 }
 </script>
@@ -63,6 +85,32 @@ export default {
   background: none;
   padding: 0;
   margin: 0;
+  transition: all 250ms ease-in-out;
+
+  &:focus,
+  &:hover,
+  &:active {
+    outline: none;
+    box-shadow: inset 0 -3px 0 0 $white;
+  }
+
+  &.focus-pink-inset {
+    &:focus,
+    &:hover,
+    &:active {
+      box-shadow: inset 0 -3px 0 0 $color-pink;
+      background-color: initial;
+    }
+  }
+
+  &.focus-pink {
+    &:focus,
+    &:hover,
+    &:active {
+      background-color: initial;
+      box-shadow: 0 3px 0 0 $color-pink;
+    }
+  }
 }
 
 .btn-dark {
