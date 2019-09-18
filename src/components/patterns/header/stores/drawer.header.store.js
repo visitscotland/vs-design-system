@@ -7,27 +7,30 @@ export const moduleNames = {
 
 export const state = {
   module: null,
+  returnFocusElement: null,
 }
 
 export const getters = {
   module(state) {
     return state.module
   },
+  isCurrentModule: state => moduleName => moduleName === state.module,
 }
 
 export const mutations = {
   close(state) {
     state.module = null
   },
-  switchModule(state, value) {
-    if (!value) {
+  switchModule(state, { moduleName, returnFocusElement }) {
+    if (!moduleName) {
       state.module = null
 
       return true
     }
 
-    if (includes(moduleNames, value)) {
-      state.module = value
+    if (includes(moduleNames, moduleName)) {
+      state.module = moduleName
+      state.returnFocusElement = returnFocusElement
 
       return true
     }
@@ -37,14 +40,20 @@ export const mutations = {
 }
 
 export const actions = {
-  showModule({ commit, dispatch }, moduleName) {
-    return moduleName ? commit("switchModule", moduleName) : dispatch("close")
+  showModule({ commit, dispatch }, { moduleName, returnFocusElement }) {
+    return moduleName
+      ? commit("switchModule", { moduleName, returnFocusElement })
+      : dispatch("close")
   },
-  close(context, focusElement) {
-    context.commit("close")
+  close({ state, commit }, { returnFocusElement } = {}) {
+    commit("close")
 
-    if (isFunction(get(focusElement, "focus"))) {
-      focusElement.focus()
+    if (!returnFocusElement) {
+      returnFocusElement = state.returnFocusElement
+    }
+
+    if (isFunction(get(returnFocusElement, "$el.focus"))) {
+      returnFocusElement.$el.focus()
     }
   },
 }

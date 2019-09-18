@@ -1,5 +1,6 @@
 import Vuex from "vuex"
 import Vue from "vue"
+import { find, matches } from "lodash"
 
 Vue.use(Vuex)
 
@@ -24,17 +25,26 @@ export default new Vuex.Store({
         },
       },
       actions: {
-        addFavourite: (context, payload) => {
-          context.commit("ADD_FAVOURITE", payload)
+        addFavourite: ({ commit, getters }, payload) => {
+          if (getters.getFavourite(payload)) {
+            return false
+          }
+
+          commit("ADD_FAVOURITE", payload)
+
+          return true
         },
         deleteFavourite: (context, payload) => {
-          console.log(payload)
           context.commit("DELETE_FAVOURITE", payload)
         },
       },
       getters: {
         getFavourites: state => state.favourites,
         getFavouritesCount: state => state.favourites.length,
+        getFavourite: state => subject => {
+          return find(state.favourites, matches(subject))
+        },
+        isEmpty: state => state.favourites.length === 0,
       },
     },
   },
