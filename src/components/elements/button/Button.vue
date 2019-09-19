@@ -1,9 +1,13 @@
 <template>
   <b-button
-    :variant="variant || 'primary'"
+    :variant="variant"
     :href="href"
     :tabindex="tabindex"
-    :class="{ [focusVariantClass]: focusVariantClass }"
+    class="d-flex align-items-center justify-content-center"
+    :class="{
+      [focusStyleClass]: focusStyleClass,
+      [focusColourClass]: focusColourClass,
+    }"
     ><slot
   /></b-button>
 </template>
@@ -47,30 +51,45 @@ export default {
     },
     /**
      * Style variation to give additional meaning.
-     * `primary, secondary, success, danger, warning, info, light, dark`
+     * `primary, secondary, success, danger, warning, info, light, dark, transparent`
      */
     variant: {
       type: String,
-      default: null,
+      default: "primary",
       validator: value => {
-        return value.match(/(primary|secondary|success|danger|warning|info|light|dark)/)
+        return value.match(/(primary|secondary|success|danger|warning|info|light|dark|transparent)/)
       },
     },
     /**
-     * The style variant when focused.
-     * `pink, pink-inset`
+     * Alternative style of the emphasis on focus, hover and active.
+     * Default is inset outline.
+     * `underline`
      */
-    focusVariant: {
+    focusStyle: {
       type: String,
       default: null,
       validator: value => {
-        return value.match(/(pink|pink-inset)/)
+        return value.match(/(underline)/)
+      },
+    },
+    /**
+     * Alternative focus colour. Default is light gray.
+     * `pink, white, black`
+     */
+    focusColour: {
+      type: String,
+      default: null,
+      validator: value => {
+        return value.match(/(pink|white|black)/)
       },
     },
   },
   computed: {
-    focusVariantClass() {
-      return this.focusVariant ? "focus-" + this.focusVariant : null
+    focusStyleClass() {
+      return this.focusStyle ? "focus-style-" + this.focusStyle : null
+    },
+    focusColourClass() {
+      return this.focusColour ? "focus-colour-" + this.focusColour : null
     },
   },
 }
@@ -78,37 +97,79 @@ export default {
 
 <style lang="scss" scoped>
 @import "~bootstrap/scss/buttons";
+@import "~bootstrap/scss/utilities/display";
+@import "~bootstrap/scss/utilities/flex";
+
+$focus-y-offset-underline: -3px;
+$focus-spread-default: 3px;
+
+@mixin focus-box-shadow($value) {
+  &:focus,
+  &:hover,
+  &:active {
+    box-shadow: $value;
+  }
+}
 
 .btn {
   -webkit-appearance: none;
   border: none;
-  background: none;
-  padding: 0;
-  margin: 0;
+  outline: none;
+  // background: none;
+  // padding: 0;
+  // margin: 0;
   transition: all 250ms ease-in-out;
 
-  &:focus,
-  &:hover,
-  &:active {
-    outline: none;
-    box-shadow: inset 0 -3px 0 0 $white;
-  }
+  $themes: map-keys($theme-colors);
+  @for $i from 1 through length($themes) {
+    $name: nth($themes, $i);
+    $value: map-get($theme-colors, $name);
 
-  &.focus-pink-inset {
-    &:focus,
-    &:hover,
-    &:active {
-      box-shadow: inset 0 -3px 0 0 $color-pink;
-      background-color: initial;
+    &.btn-#{$name} {
+      &:focus,
+      &:hover,
+      &:active {
+        background-color: $value;
+      }
     }
   }
 
-  &.focus-pink {
+  &.btn-transparent {
+    background-color: transparent;
     &:focus,
     &:hover,
     &:active {
-      background-color: initial;
-      box-shadow: 0 3px 0 0 $color-pink;
+      background-color: transparent;
+    }
+  }
+
+  @include focus-box-shadow(inset 0 0 0 $focus-spread-default $gray-tint-6);
+
+  &.focus-style-underline {
+    @include focus-box-shadow(inset 0 $focus-y-offset-underline 0 0 $gray-tint-6);
+  }
+
+  &.focus-colour-pink {
+    @include focus-box-shadow(inset 0 0 0 $focus-spread-default $color-pink);
+
+    &.focus-style-underline {
+      @include focus-box-shadow(inset 0 $focus-y-offset-underline 0 0 $color-pink);
+    }
+  }
+
+  &.focus-colour-white {
+    @include focus-box-shadow(inset 0 0 0 $focus-spread-default $white);
+
+    &.focus-style-underline {
+      @include focus-box-shadow(inset 0 $focus-y-offset-underline 0 0 $white);
+    }
+  }
+
+  &.focus-colour-black {
+    @include focus-box-shadow(inset 0 0 0 $focus-spread-default $black);
+
+    &.focus-style-underline {
+      @include focus-box-shadow(inset 0 $focus-y-offset-underline 0 0 $black);
     }
   }
 }
@@ -122,22 +183,115 @@ export default {
 
 <docs>
 ```jsx
+<bs-wrapper class="p-4" style="background-color:rgb(210, 210, 210)">
+
   <bs-wrapper class="mb-4">
-    <h4>Variants</h4>
-    <vs-button variant="primary" class="mr-2">Primary</vs-button>
-    <vs-button variant="secondary" class="mr-2">Secondary</vs-button>
-    <vs-button variant="success" class="mr-2">Success</vs-button>
-    <vs-button variant="danger" class="mr-2">Danger</vs-button>
-    <vs-button variant="warning" class="mr-2">Warning</vs-button>
-    <vs-button variant="info" class="mr-2">Info</vs-button>
-    <vs-button variant="light" class="mr-2">Light</vs-button>
-    <vs-button variant="dark" class="mr-2">Dark</vs-button>
-  </bs-wrapper>
-  <bs-wrapper class="mb-4">
-    <h4>Link</h4>
-    <vs-button href="https://www.visitscotland.com" class="mr-2">Link</vs-button>
-    <vs-button href="https://www.google.com" class="mr-2">Another link</vs-button>
+    <h4>Primary variant (default)</h4>
+    <bs-wrapper class="d-flex">
+      <vs-button class="mr-2">Default</vs-button>
+      <vs-button focus-style="underline" class="mr-2">Focus style: underline</vs-button>
+      <vs-button focus-colour="pink" class="mr-2">Focus colour: pink</vs-button>
+      <vs-button focus-colour="white" class="mr-2">Focus colour: white</vs-button>
+      <vs-button focus-colour="black" class="mr-2">Focus colour: black</vs-button>
+    </bs-wrapper>
   </bs-wrapper>
 
+  <bs-wrapper class="mb-4">
+    <h4>Secondary variant</h4>
+    <bs-wrapper class="d-flex">
+      <vs-button variant="secondary" class="mr-2">Default</vs-button>
+      <vs-button variant="secondary" focus-style="underline" class="mr-2">Focus style: underline</vs-button>
+      <vs-button variant="secondary" focus-colour="pink" class="mr-2">Focus colour: pink</vs-button>
+      <vs-button variant="secondary" focus-colour="white" class="mr-2">Focus colour: white</vs-button>
+      <vs-button variant="secondary" focus-colour="black" class="mr-2">Focus colour: black</vs-button>
+    </bs-wrapper>
+  </bs-wrapper>
+
+  <bs-wrapper class="mb-4">
+    <h4>Success variant</h4>
+    <bs-wrapper class="d-flex">
+      <vs-button variant="success" class="mr-2">Default</vs-button>
+      <vs-button variant="success" focus-style="underline" class="mr-2">Focus style: underline</vs-button>
+      <vs-button variant="success" focus-colour="pink" class="mr-2">Focus colour: pink</vs-button>
+      <vs-button variant="success" focus-colour="white" class="mr-2">Focus colour: white</vs-button>
+      <vs-button variant="success" focus-colour="black" class="mr-2">Focus colour: black</vs-button>
+    </bs-wrapper>
+  </bs-wrapper>
+
+  <bs-wrapper class="mb-4">
+    <h4>Danger variant</h4>
+    <bs-wrapper class="d-flex">
+      <vs-button variant="danger" class="mr-2">Default</vs-button>
+      <vs-button variant="danger" focus-style="underline" class="mr-2">Focus style: underline</vs-button>
+      <vs-button variant="danger" focus-colour="pink" class="mr-2">Focus colour: pink</vs-button>
+      <vs-button variant="danger" focus-colour="white" class="mr-2">Focus colour: white</vs-button>
+      <vs-button variant="danger" focus-colour="black" class="mr-2">Focus colour: black</vs-button>
+    </bs-wrapper>
+  </bs-wrapper>
+
+  <bs-wrapper class="mb-4">
+    <h4>Warning variant</h4>
+    <bs-wrapper class="d-flex">
+      <vs-button variant="warning" class="mr-2">Default</vs-button>
+      <vs-button variant="warning" focus-style="underline" class="mr-2">Focus style: underline</vs-button>
+      <vs-button variant="warning" focus-colour="pink" class="mr-2">Focus colour: pink</vs-button>
+      <vs-button variant="warning" focus-colour="white" class="mr-2">Focus colour: white</vs-button>
+      <vs-button variant="warning" focus-colour="black" class="mr-2">Focus colour: black</vs-button>
+    </bs-wrapper>
+  </bs-wrapper>
+
+  <bs-wrapper class="mb-4">
+    <h4>Info variant</h4>
+    <bs-wrapper class="d-flex">
+      <vs-button variant="info" class="mr-2">Default</vs-button>
+      <vs-button variant="info" focus-style="underline" class="mr-2">Focus style: underline</vs-button>
+      <vs-button variant="info" focus-colour="pink" class="mr-2">Focus colour: pink</vs-button>
+      <vs-button variant="info" focus-colour="white" class="mr-2">Focus colour: white</vs-button>
+      <vs-button variant="info" focus-colour="black" class="mr-2">Focus colour: black</vs-button>
+    </bs-wrapper>
+  </bs-wrapper>
+
+  <bs-wrapper class="mb-4">
+    <h4>Light variant</h4>
+    <bs-wrapper class="d-flex">
+      <vs-button variant="light" class="mr-2">Default</vs-button>
+      <vs-button variant="light" focus-style="underline" class="mr-2">Focus style: underline</vs-button>
+      <vs-button variant="light" focus-colour="pink" class="mr-2">Focus colour: pink</vs-button>
+      <vs-button variant="light" focus-colour="white" class="mr-2">Focus colour: white</vs-button>
+      <vs-button variant="light" focus-colour="black" class="mr-2">Focus colour: black</vs-button>
+    </bs-wrapper>
+  </bs-wrapper>
+
+  <bs-wrapper class="mb-4">
+    <h4>Dark variant</h4>
+    <bs-wrapper class="d-flex">
+      <vs-button variant="dark" class="mr-2">Default</vs-button>
+      <vs-button variant="dark" focus-style="underline" class="mr-2">Focus style: underline</vs-button>
+      <vs-button variant="dark" focus-colour="pink" class="mr-2">Focus colour: pink</vs-button>
+      <vs-button variant="dark" focus-colour="white" class="mr-2">Focus colour: white</vs-button>
+      <vs-button variant="dark" focus-colour="black" class="mr-2">Focus colour: black</vs-button>
+    </bs-wrapper>
+  </bs-wrapper>
+
+  <bs-wrapper class="mb-4">
+    <h4>Transparent variant</h4>
+    <bs-wrapper class="d-flex">
+      <vs-button variant="transparent" class="mr-2">Default</vs-button>
+      <vs-button variant="transparent" focus-style="underline" class="mr-2">Focus style: underline</vs-button>
+      <vs-button variant="transparent" focus-colour="pink" class="mr-2">Focus colour: pink</vs-button>
+      <vs-button variant="transparent" focus-colour="white" class="mr-2">Focus colour: white</vs-button>
+      <vs-button variant="transparent" focus-colour="black" class="mr-2">Focus colour: black</vs-button>
+    </bs-wrapper>
+  </bs-wrapper>
+
+  <bs-wrapper class="mb-4">
+    <h4>Links</h4>
+    <bs-wrapper class="d-flex">
+      <vs-button href="https://www.visitscotland.com" class="mr-2">Link</vs-button>
+      <vs-button href="https://www.google.com" class="mr-2">Another link</vs-button>
+    </bs-wrapper>
+  </bs-wrapper>
+
+</bs-wrapper>
 ```
 </docs>
