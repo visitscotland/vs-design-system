@@ -1,5 +1,11 @@
 <template>
-  <vs-button class="vs-favourites__button" @click.native="addFavourite" focus-variant="pink-inset">
+  <vs-button
+    class="vs-favourites__button"
+    @click.native="addFavourite"
+    focus-style="underline"
+    focus-colour="pink"
+    variant="transparent"
+  >
     <span class="sr-only">Add to Favourites</span>
     <span class="vs-favourites__button__count" v-if="favouritesCount > 0">
       <span class="sr-only">Current favourites count:</span> {{ favouritesCount }}
