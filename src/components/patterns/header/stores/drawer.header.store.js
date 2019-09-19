@@ -1,10 +1,5 @@
 import { get, isFunction, includes } from "lodash"
 
-export const moduleNames = {
-  SITE_SEARCH: "site-search",
-  FAVOURITES_LIST: "favourites-list",
-}
-
 export const state = {
   module: null,
   returnFocusElement: null,
@@ -28,12 +23,8 @@ export const mutations = {
       return true
     }
 
-    if (includes(moduleNames, moduleName)) {
-      state.module = moduleName
-      state.returnFocusElement = returnFocusElement
-
-      return true
-    }
+    state.module = moduleName
+    state.returnFocusElement = returnFocusElement
 
     return false
   },

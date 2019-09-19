@@ -78,10 +78,6 @@ export default {
   data() {
     return {
       drawer: {
-        moduleNames: {
-          siteSearch: storeNames.drawer.moduleNames.SITE_SEARCH,
-          favouritesList: storeNames.drawer.moduleNames.FAVOURITES_LIST,
-        },
         isOpen: !!store.getters["header/drawer/module"],
       },
     }
@@ -211,32 +207,45 @@ export default {
         :favourite-href="favourite.href"
         :favourite-title="favourite.title"
       >
-        <vs-desktop-universal-nav
-          slot="desktop-universal-nav"
-          name="Our sites"
-          :dropdown-list="ourSites"
-        />
-        <vs-mobile-universal-nav
-          slot="mobile-universal-nav"
-          name="Our sites"
-          class="vs-dropdown--mobile-universal-nav"
-          :dropdown-list="ourSites"
-        />
-        <vs-login
-          slot="login" 
-          username=""
-        />
-        <vs-language
-          slot="language"
-          name="Language"
-          class="vs-dropdown--language"
-          :dropdown-list="language"
-        />
-        <vs-logo slot="logo" />
 
-        <vs-mobile-nav-button slot="mobile-nav-button" />
+        <template #desktop-universal-nav>
+          <vs-desktop-universal-nav
+            name="Our sites"
+            :dropdown-list="ourSites"
+          />
+        </template>
 
-        <template slot="header-drawer-toggles">
+        <template #mobile-universal-nav>
+          <vs-mobile-universal-nav
+            name="Our sites"
+            class="vs-dropdown--mobile-universal-nav"
+            :dropdown-list="ourSites"
+          />
+        </template>
+
+        <template #login>
+          <vs-login
+            username=""
+          />
+        </template>
+
+        <template #language>
+          <vs-language
+            name="Language"
+            class="vs-dropdown--language"
+            :dropdown-list="language"
+          />
+        </template>
+
+        <template #logo>
+          <vs-logo />
+        </template>
+
+        <template #mobile-nav-button>
+          <vs-mobile-nav-button />
+        </template>
+
+        <template #header-drawer-toggles>
 
           <vs-header-drawer-toggle
             module-name="site-search"
@@ -245,6 +254,7 @@ export default {
 
           <vs-header-drawer-toggle
             module-name="favourites-list"
+            :show-close="true"
             :href="favourite.href"
             :title="favourite.title"
             type="vs-favourites-button2"
@@ -252,30 +262,30 @@ export default {
 
         </template>
 
-        <template slot="header-drawer-modules">
+        <template #header-drawer-modules>
           <header-drawer-module module-name="site-search">
             <vs-site-search />
           </header-drawer-module>
-
-          <header-drawer-module module-name="favourites-list">
+          <header-drawer-module module-name="favourites-list" :show-close="true">
             <vs-favourites-list2/>
           </header-drawer-module>
         </template>
 
-        <vs-desktop-nav-toggles
-          slot="desktop-nav-toggles"
-          v-for="(item, index) in mainNav"
-          :level="1"
-          :href="item.href"
-          :is-external="item.isExternal"
-          :title="item.title"
-          :subnav="item.subnav"
-          :promo-list="item.promoList"
-          :promo-item="item.promoItem"
-          :chart-widgets="item.chartWidgets"
-          :key="index"
-          :toggleId="index+1"
-        />
+        <template #desktop-nav-toggles>
+          <vs-desktop-nav-toggles
+            v-for="(item, index) in mainNav"
+            :level="1"
+            :href="item.href"
+            :is-external="item.isExternal"
+            :title="item.title"
+            :subnav="item.subnav"
+            :promo-list="item.promoList"
+            :promo-item="item.promoItem"
+            :chart-widgets="item.chartWidgets"
+            :key="index"
+            :toggleId="index+1"
+          />
+        </template>
 
       </vs-header2>
 
