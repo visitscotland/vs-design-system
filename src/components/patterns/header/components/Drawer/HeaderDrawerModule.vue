@@ -1,5 +1,5 @@
 <template>
-  <vs-row v-show="isVisible">
+  <vs-row v-show="isVisible" @focus="focusOnContent" tabindex="-1">
     <vs-col cols="1" order="2" v-if="showClose">
       <vs-close-button class="vs-header__drawer__close-button" @click.native="closeDrawer()">
         Close the header drawer
@@ -48,14 +48,15 @@ export default {
     closeDrawer() {
       headerStore.dispatch("header/drawer/close")
     },
+    focusOnContent() {
+      if (isFunction(get(this.$slots, "default[0].componentInstance.$el.focus"))) {
+        this.$slots.default[0].componentInstance.$el.focus()
+      }
+    },
   },
   watch: {
     isVisible(newVal, oldVal) {
-      Vue.nextTick(() => {
-        if (isFunction(get(this.$slots, "default[0].componentInstance.$el.focus"))) {
-          this.$slots.default[0].componentInstance.$el.focus()
-        }
-      })
+      Vue.nextTick(this.focusOnContent)
     },
   },
 }
