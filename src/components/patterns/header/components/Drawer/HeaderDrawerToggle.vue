@@ -4,7 +4,7 @@
     @click.native.prevent="toggleModule"
     ref="self"
     :aria-expanded="moduleIsVisible"
-    v-bind="$attrs"
+    :is-on="moduleIsVisible"
   >
     <slot />
   </component>

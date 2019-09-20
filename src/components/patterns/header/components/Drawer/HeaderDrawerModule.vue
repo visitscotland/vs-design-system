@@ -45,20 +45,17 @@ export default {
     },
   },
   methods: {
-    isBecomingVisible: (newVal, oldVal) => newVal && !oldVal,
     closeDrawer() {
       headerStore.dispatch("header/drawer/close")
     },
   },
   watch: {
     isVisible(newVal, oldVal) {
-      if (this.isBecomingVisible(newVal, oldVal)) {
-        Vue.nextTick(() => {
-          if (isFunction(get(this.$slots, "default[0].componentInstance.$el.focus"))) {
-            this.$slots.default[0].componentInstance.$el.focus()
-          }
-        })
-      }
+      Vue.nextTick(() => {
+        if (isFunction(get(this.$slots, "default[0].componentInstance.$el.focus"))) {
+          this.$slots.default[0].componentInstance.$el.focus()
+        }
+      })
     },
   },
 }
