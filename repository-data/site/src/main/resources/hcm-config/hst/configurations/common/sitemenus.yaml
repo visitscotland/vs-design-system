@@ -11,3 +11,6 @@ definitions:
         /content:
           jcr:primaryType: hst:sitemenuitem
           hst:referencesitemapitem: content
+        /test:
+          jcr:primaryType: hst:sitemenuitem
+          hst:referencesitemapitem: This is a test
