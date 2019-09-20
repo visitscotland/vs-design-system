@@ -5,6 +5,7 @@
     ref="self"
     :aria-expanded="moduleIsVisible"
     :is-on="moduleIsVisible"
+    v-bind="$attrs"
   >
     <slot />
   </component>
