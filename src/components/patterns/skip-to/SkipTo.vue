@@ -1,52 +1,44 @@
 <template>
-  <vs-button
-    class="vs-skip-to sr-only sr-only-focusable d-inline-flex p-absolute align-items-center flex-column py-2 px-3"
-    @click.native.prevent="handle"
-    :tabindex="tabindex"
-    variant="dark"
-  >
+  <vs-skip-to-button @click.native.prevent="skipTo" :tabindex="tabindex">
     <slot />
-    <vs-icon name="chevron-down" size="xs" variant="reverse-white" />
-  </vs-button>
+  </vs-skip-to-button>
 </template>
 
 <script>
-import VsIcon from "@components/elements/icon/Icon"
-import VsButton from "@components/elements/button"
+import VsSkipToButton from "./SkipToButton"
 import { isFunction, get, isNumber } from "lodash"
 
 /**
  * The SkipTo component provides users of assistive
- * technologies with a focusable control that, when
- * activated, moves the focus to a provided target
- * element and/or fires an event handler.
+ * technologies with a focusable control that moves the
+ * focus to a provided target element when activated.
  */
 export default {
   name: "VsSkipTo",
   status: "prototype",
   release: "0.0.1",
   components: {
-    VsIcon,
-    VsButton,
+    VsSkipToButton,
   },
   props: {
     /**
-     * The tabindex attribute for this element
+     * The tabindex attribute for this element. For some reason
+     * tabindex isn't passed to the root element so we must do
+     * that manually.
      */
     tabindex: {
       type: String,
-      required: true,
     },
     /**
-     * The target element to skip to. Pass a Vue ref - e.g.
-     * from this.$refs - or an HTML Element
+     * The target element to skip to: a Vue ref - e.g.
+     * from this.$refs - or a DOM Element.
      */
     target: {
       default: null,
     },
   },
   methods: {
-    handle() {
+    skipTo() {
       let element
 
       if (isFunction(get(this.target, "focus"))) {
@@ -61,42 +53,12 @@ export default {
         }
         element.focus()
       }
-
-      /**
-       * Activated event
-       */
-      this.$emit("activated")
     },
   },
 }
 </script>
 
-<style lang="scss" scoped>
-@import "~bootstrap/scss/utilities/text";
-@import "~bootstrap/scss/utilities/display";
-@import "~bootstrap/scss/utilities/flex";
-@import "~bootstrap/scss/utilities/screenreaders";
-@import "~bootstrap/scss/utilities/spacing";
-
-.vs-skip-to {
-  box-shadow: 0 8px 6px -6px rgba(0, 0, 0, 0.3);
-  letter-spacing: 2px;
-  left: 50%;
-  transform: translate(-50%);
-  top: 0;
-  transition: background-color 250ms;
-  z-index: 6;
-
-  &:focus {
-    outline: none;
-    box-shadow: inset 0 -3px 0 0 $color-base-text;
-  }
-
-  &.sr-only-focusable:focus {
-    position: absolute;
-  }
-}
-</style>
+<style lang="scss" scoped></style>
 
 <docs>
   ```js

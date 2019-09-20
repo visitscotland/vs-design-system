@@ -196,12 +196,13 @@ export default {
         Skip to Content
       </vs-skip-to>
 
-      <vs-skip-to
+      <vs-header-drawer-toggle
+        module-name="site-search"
+        type="vs-skip-to-button"
         tabindex="1001"
-        @activated="skipToSearch"
       >
         Skip to Search
-      </vs-skip-to>
+      </vs-header-drawer-toggle>
 
       <vs-header2
         :favourite-href="favourite.href"
@@ -263,7 +264,7 @@ export default {
         </template>
 
         <template #header-drawer-modules>
-          <header-drawer-module module-name="site-search">
+          <header-drawer-module module-name="site-search" ref="siteSearch">
             <vs-site-search />
           </header-drawer-module>
           <header-drawer-module module-name="favourites-list" :show-close="true">
@@ -315,11 +316,13 @@ export default {
         language,
         mainNav,
         favourite,
-        contentContainer: null
+        contentContainer: null,
+        siteSearchModule: null
       }
     },
     mounted() {
       this.contentContainer = document.getElementById("content-container")
+      this.siteSearchModule = this.$refs.siteSearch
     },
     methods: {
       skipToSearch() {
