@@ -1,5 +1,5 @@
 <template>
-  <vs-row v-if="isVisible">
+  <vs-row v-show="isVisible">
     <vs-col cols="1" order="2" v-if="showClose">
       <vs-close-button class="vs-header__drawer__close-button" @click.native="closeDrawer()">
         Close the header drawer
