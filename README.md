@@ -21,37 +21,43 @@ Install the package:
 - `cd design-system`
 - `yarn install`
 
-## Working with the documentation
+## Working with the design system (documentation) site
 
-### Running a local development version of the documentation site
+This package is able to generate a design system website that documents your components and site in general. There are various builds to either generate and start a local server running the site or generate artefacts for publication of the site elsewhere.
 
-The following commands will begin a development instance of the design system documentation site using the config in `config/docs.config.js`. After running the commands, the documentation site should be available at localhost:6060. Modifications to source files will trigger a rebuild and refresh of the browser. However, tokens will not be re-generated automatically on file change.
+### Running a local development version of the design system
 
-1. `yarn build` (to ensure token compilation)
+The design system site can be generated and served locally using various NPM scripts. All of these scripts use the `config/docs.config.js` to inform the layout and content of the generated site. The following commands will generate the site from this config file and associated local markdown files.
+
+1. `yarn build` (compiles tokens and builds site)
 2. `yarn styleguide`
 
-Or:
+After running those commands the documentation site should be available at [localhost:6060](http://localhost:6060). Modifications to source files will trigger a rebuild and refresh the browser. However, tokens will not be re-generated automatically on file change so this must be done manually.
 
-1. `yarn docs:remote` (includes token compilation)
+An alternative build merges the local `config/docs.config.js` config with content from a remote database to generate the site. This build [requires the relevent remote config and environment variables](#remote-config).
 
-The `yarn styleguide` script builds the design system according to the `config/docs.config.js` only and so will only include **static, local content**. The alternative `yarn docs:remote` (together with proper configuration, as described in the section below) will merge **remote content** into the config from the config file.
+`yarn docs:remote` (includes token compilation)
 
 ### Building a static version of the documentation site
 
-The following commands will generate build artefacts for the documentation site into `dist/docs`, using the config in `config/docs.config.js`.
+The following script generates build artefacts for the documentation site into `dist/docs`, using the config in `config/docs.config.js`:
 
-1. `yarn build:docs` or `yarn build:docs:remote`
-2. `yarn serve-docs` (starts http-server in target dist folder)
+`yarn build:docs`
 
-Similar to the development instances above, `yarn build:docs` generates a site build according to the config file only, whereas `yarn build:docs:remote` merges **remote content** into the config from the config file (providing there is valid remote configuration, as described below).
+To include remote content in that build use this script instead ([along with the relevent remote config](#remote-config)):
 
-### Populating the documentation site with remote content
+`yarn build:docs:remote`
 
-It's possible to get the title and sections (pages) content for the documentation site from a remote API, during build. In order to do so:
+To serve the artefacts use this script, which starts a http-server in the `dist/docs` folder:
 
-- Edit `config/remote.config.js`, specifying sets of remote config profiles, each with URL, params and transforms. NOTE: the project already includes profiles for Contentful and Hippo.
+`yarn serve-docs`
+
+### <a name="remote-config"></a> Configuring the remote build
+
+Some of the builds (`yarn docs:remote` or `yarn styleguide:remote:build`) merge the local `config/docs.config.js` with content from a remote API to generate the design system site. These builds require valid configuration, as follows:
+
+- Edit `config/remote.config.js`, specifying sets of remote config profiles, each with URL, params and transforms. NOTE: the project already includes profiles for Hippo and Contentful.
 - Set the `VS_DS_REMOTE_CONFIG_URL` and any other environment variables (e.g. `VS_DS_REMOTE_CONFIG_HIPPO_PROJECT_NAME`) by specifying them in a `.env` file in the package root, or manually some other way.
-- Run the remote styleguide scripts (`yarn docs:remote` or `yarn styleguide:remote:build`) instead of the regular scripts.
 
 Common environment variables for remote config:
 `VS_DS_REMOTE_CONFIG_STRICT_SSL`
@@ -79,20 +85,24 @@ The "system" and "system components" builds will compile artefacts for inclusion
 
 ### System components build
 
-This build creates a set of artefacts that allow for the inclusion of specific components of the design system in other projects. It is the recommended way of including assets from the design system in other projects.
+**This script is the recommended way of including assets from the design system in other projects.**
+
+This build creates a set of artefacts that allow for the inclusion of specific components of the design system in other projects.
 
 - `yarn build:system:components`
 
-This command compiles the tokens (via theo) then compiles the design system assets into discrete chunks and generates a manifest.json file in the `dist/system-components` folder. The manifest.json file lists which of the generated assets are needed to include each component in another project.
+This script compiles the tokens (via theo) then compiles the design system assets into discrete chunks and generates a manifest.json file in the `dist/system-components` folder. The manifest.json file lists which of the generated assets are needed to include each component in another project.
 
 To include a component in another project:
 
-- Reference all the relevent assets for the component as listed in the manifest.json
-- Register the component using the [`Vue.component()` function](https://vuejs.org/v2/guide/components-registration.html)
+- Reference all the relevent assets for the component as listed in the manifest.json.
+- Register the component using the [`Vue.component()` function](https://vuejs.org/v2/guide/components-registration.html) or locally in another component/app.
+
+NOTE: An example webpack consuming package can be found in the `hippo/frontend` folder.
 
 ### System build
 
-This is the default Vue Design System build and produces an asset for inclusion of the **whole** design system in another project.
+This is the default Vue Design System build and produces a monolithic asset for inclusion of **all parts** of the design system in another project. This script is generally not how we use the design system at VS.
 
 - `yarn build:system`
 
@@ -193,13 +203,10 @@ The system components build treats each store as a module and creates a package 
 
 ## Ideas for improvement
 
-- Move Hippo design system consumer frontend package into design system hippo instance \*
 - Fix deep selectors issue \*
-- Fix full width view problem \*
-- Modify webpack build to expose VueX stores with predictable module names \*
-- Improvement readme with more info (e.g. bootstrap components, sass and utilities, colours and docs colours, icon usage) \*
+- Alter docs to allow inclusion of dynamic full width view in examples \*
+- Improve readme with more info (e.g. bootstrap components, sass and utilities, colours and docs colours, icon usage) \*
 - Improve nested nav sidebar and fix 4th level not being open \*
-- Improve colours page to show tints/shades together with main colours \*
 - Implement permanent solution for inclusion of vue and vue-x dependencies \*
 - Create a dev version of the system-components build \*
 - Change docs:remote (and other?) scripts to use theo:onchange
