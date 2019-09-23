@@ -306,7 +306,7 @@ div[class^="rsg--sidebar"] {
 
   // Sidebar active link
   .vueds-active {
-    ul[class^="rsg--list"] {
+    & > ul[class^="rsg--list"] {
       display: block;
     }
     & > a,
