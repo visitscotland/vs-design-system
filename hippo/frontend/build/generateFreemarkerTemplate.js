@@ -136,7 +136,7 @@ function prepTargetDir(targetPath) {
   fs.mkdirSync(path.join(targetPath, "stores"))
 }
 
-module.exports = function(manifest, a, b) {
+module.exports = function(manifest) {
   const modules = JSON.parse(manifest)
   const options = getOptions(this)
   const targetPath = options.targetPath || defaultTargetpath
