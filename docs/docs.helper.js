@@ -13,12 +13,22 @@ import "codemirror/mode/jsx/jsx"
 Vue.config.productionTip = false
 Vue.mixin(statusLabels)
 
+/**
+ * These should be refactored into proper rsg-components so we don't
+ * have to use this hacky hack. The handlers don't work without
+ * the setTimeout because the React components re-render AFTER
+ * these handlers have updated their targets.
+ */
 document.addEventListener("DOMContentLoaded", () => {
-  filterSearch.methods.init()
-  activeNav.methods.init()
+  setTimeout(function() {
+    filterSearch.methods.init()
+    activeNav.methods.init()
+  })
 })
 
 window.addEventListener("hashchange", () => {
-  filterSearch.methods.init()
-  activeNav.methods.init()
+  setTimeout(function() {
+    filterSearch.methods.init()
+    activeNav.methods.init()
+  })
 })

@@ -304,9 +304,10 @@ div[class^="rsg--sidebar"] {
     }
   }
 
-  // Sidebar active link
+  // Sidebar active link and ancestors
+  li[class*="rsg--isSelected"],
   .vueds-active {
-    ul[class^="rsg--list"] {
+    & > ul[class^="rsg--list"] {
       display: block;
     }
     & > a,
