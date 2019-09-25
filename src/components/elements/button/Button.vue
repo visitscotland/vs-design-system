@@ -51,13 +51,15 @@ export default {
     },
     /**
      * Style variation to give additional meaning.
-     * `primary, secondary, success, danger, warning, info, light, dark, transparent`
+     * `primary, primary-pink, secondary, success, danger, warning, info, light, dark, transparent`
      */
     variant: {
       type: String,
       default: "primary",
       validator: value => {
-        return value.match(/(primary|secondary|success|danger|warning|info|light|dark|transparent)/)
+        return value.match(
+          /(primary|primary-pink|secondary|success|danger|warning|info|light|dark|transparent)/
+        )
       },
     },
     /**
@@ -86,10 +88,10 @@ export default {
   },
   computed: {
     focusStyleClass() {
-      return this.focusStyle ? "focus-style-" + this.focusStyle : null
+      return this.focusStyle ? "btn-focus-style-" + this.focusStyle : null
     },
     focusColourClass() {
-      return this.focusColour ? "focus-colour-" + this.focusColour : null
+      return this.focusColour ? "btn-focus-colour-" + this.focusColour : null
     },
   },
 }
@@ -106,7 +108,8 @@ $focus-spread-default: 3px;
 @mixin focus-box-shadow($value) {
   &:focus,
   &:hover,
-  &:active {
+  &:active,
+  &:focus:active {
     box-shadow: $value;
   }
 }
@@ -115,9 +118,6 @@ $focus-spread-default: 3px;
   -webkit-appearance: none;
   border: none;
   outline: none;
-  // background: none;
-  // padding: 0;
-  // margin: 0;
   transition: all 250ms ease-in-out;
 
   $themes: map-keys($theme-colors);
@@ -145,30 +145,30 @@ $focus-spread-default: 3px;
 
   @include focus-box-shadow(inset 0 0 0 $focus-spread-default $gray-tint-6);
 
-  &.focus-style-underline {
+  &.btn-focus-style-underline {
     @include focus-box-shadow(inset 0 $focus-y-offset-underline 0 0 $gray-tint-6);
   }
 
-  &.focus-colour-pink {
+  &.btn-focus-colour-pink {
     @include focus-box-shadow(inset 0 0 0 $focus-spread-default $color-pink);
 
-    &.focus-style-underline {
+    &.btn-focus-style-underline {
       @include focus-box-shadow(inset 0 $focus-y-offset-underline 0 0 $color-pink);
     }
   }
 
-  &.focus-colour-white {
+  &.btn-focus-colour-white {
     @include focus-box-shadow(inset 0 0 0 $focus-spread-default $white);
 
-    &.focus-style-underline {
+    &.btn-focus-style-underline {
       @include focus-box-shadow(inset 0 $focus-y-offset-underline 0 0 $white);
     }
   }
 
-  &.focus-colour-black {
+  &.btn-focus-colour-black {
     @include focus-box-shadow(inset 0 0 0 $focus-spread-default $black);
 
-    &.focus-style-underline {
+    &.btn-focus-style-underline {
       @include focus-box-shadow(inset 0 $focus-y-offset-underline 0 0 $black);
     }
   }
