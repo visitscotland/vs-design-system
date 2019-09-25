@@ -1,12 +1,13 @@
 <template>
   <vs-row v-show="isVisible" @focus="focusOnContent" tabindex="-1">
     <vs-col cols="1" order="2" v-if="showClose">
-      <vs-close-button class="vs-header__drawer__close-button" @click.native="closeDrawer()">
+      <vs-close-button class="vs-header__drawer__close-button" @click.native="closeDrawer">
         Close the header drawer
       </vs-close-button>
     </vs-col>
     <vs-col>
       <slot />
+      <button @focus="closeDrawer" class="catch-focus__button" />
     </vs-col>
   </vs-row>
 </template>
@@ -65,5 +66,14 @@ export default {
 <style lang="scss" scoped>
 .vs-header__drawer__close-button {
   right: 1em;
+}
+
+.catch-focus__button {
+  width: 0;
+  height: 0;
+  margin: 0;
+  padding: 0;
+  border: none;
+  display: block;
 }
 </style>

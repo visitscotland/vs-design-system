@@ -262,7 +262,7 @@ export default {
         </template>
 
         <template #header-drawer-modules>
-          <header-drawer-module module-name="site-search" ref="siteSearch">
+          <header-drawer-module module-name="site-search" ref="siteSearch" :show-close="true">
             <vs-site-search />
           </header-drawer-module>
           <header-drawer-module module-name="favourites-list" :show-close="true">
