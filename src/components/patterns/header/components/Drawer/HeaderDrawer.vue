@@ -1,12 +1,11 @@
 <template>
   <b-collapse
     v-model="drawer.isOpen"
-    class="vs-header__drawer-wrapper"
+    class="vs-header__drawer-wrapper py-4"
     id="vs-header__drawer-wrapper"
   >
     <vs-container>
       <slot />
-      <button @focus="endFocus" class="catch-focus__button" />
     </vs-container>
   </b-collapse>
 </template>
@@ -58,11 +57,6 @@ export default {
       this.drawer.isOpen = !!newValue
     },
   },
-  methods: {
-    endFocus() {
-      store.dispatch("header/drawer/close")
-    },
-  },
   created() {
     smoothscroll.polyfill()
   },
@@ -70,19 +64,12 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "~bootstrap/scss/utilities/spacing";
+
 .vs-header__drawer-wrapper {
   @extend %default-inset-box-shadow;
   background-color: $gray-tint-7;
-  padding: 2.5rem 0;
   width: 100%;
-}
-
-.catch-focus__button {
-  width: 0;
-  height: 0;
-  margin: 0;
-  padding: 0;
-  border: none;
 }
 
 .collapse:not(.show) {
