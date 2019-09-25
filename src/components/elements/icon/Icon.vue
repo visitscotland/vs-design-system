@@ -6,6 +6,7 @@
       ['icon-' + size]: true,
       ['icon-' + name]: true,
       ['icon-' + variant]: variant,
+      ['icon-padding-' + padding]: padding,
       'icon-reverse': reverse,
     }"
   />
@@ -41,6 +42,7 @@ export default {
     },
     /**
      * The fill color of the SVG icon.
+     * `primary, secondary, success, danger, warning, info, light, dark, reverse-white`
      */
     variant: {
       type: String,
@@ -69,6 +71,18 @@ export default {
     reverse: {
       type: Boolean,
     },
+
+    /**
+     * Amount of padding
+     * `null, 0, 1, 2, 3`
+     */
+    padding: {
+      type: Number,
+      default: 2,
+      validator: value => {
+        return [null, 0, 1, 2, 3].indexOf(value) !== -1
+      },
+    },
   },
   computed: {
     path() {
@@ -83,6 +97,9 @@ export default {
 
 <style lang="scss" scoped>
 // @include reset;
+
+@mixin icon-dimensions($size, $dimension) {
+}
 
 $sizes: (
   xxs: $icon-size-xxs,
@@ -115,17 +132,32 @@ $variants: (
   }
 
   @each $size in map-keys($sizes) {
-    $padding: map-get($sizes, $size) / 4;
-    $dimension: map-get($sizes, $size) + ($padding * 2);
+    $padding-sizes: 1, 2, 3;
+
+    $this-size: map-get($sizes, $size);
 
     &.icon-#{$size} {
-      height: $dimension;
-      width: $dimension;
-      padding: $padding;
-    }
+      height: $this-size;
+      width: $this-size;
+      padding: 0;
 
-    &.icon-reverse {
-      border-radius: $dimension / 2;
+      &.icon-reverse {
+        border-radius: $this-size / 2;
+      }
+      @each $padding-size in $padding-sizes {
+        &.icon-padding-#{$padding-size} {
+          $padding: $this-size * pow(2, $padding-size - 1) / 8;
+          $dimension: $this-size + ($padding * 2);
+
+          height: $dimension;
+          width: $dimension;
+          padding: $padding;
+
+          &.icon-reverse {
+            border-radius: $dimension / 2;
+          }
+        }
+      }
     }
   }
 
@@ -145,15 +177,15 @@ $variants: (
 <docs>
   ```jsx
   <div>
-    <div class="row">
-      <div class="col" style="margin-bottom: 10px">
+    <bs-wrapper class="row mb-5">    
+      <bs-wrapper class="col">
         <h3>Default</h3>
         <vs-icon name="search" />
-      </div>
-    </div>
+      </bs-wrapper>
+    </bs-wrapper>
     
-    <div class="row">
-      <div class="col" style="margin-bottom: 10px">
+    <bs-wrapper class="row mb-5">    
+      <bs-wrapper class="col">
         <h3>Variant</h3>
         <vs-icon name="user" variant="primary" />
         <vs-icon name="user" variant="secondary" />
@@ -162,11 +194,11 @@ $variants: (
         <vs-icon name="user" variant="danger" />
         <vs-icon name="user" variant="dark" />
         <vs-icon name="user" variant="light" />
-      </div>
-    </div>
+      </bs-wrapper>
+    </bs-wrapper>
     
-    <div class="row">
-      <div class="col" style="margin-bottom: 10px">
+    <bs-wrapper class="row mb-5">    
+      <bs-wrapper class="col">
         <h3>Reverse</h3>
         <vs-icon name="favourite" reverse />
         <vs-icon name="favourite" reverse variant="primary" />
@@ -176,64 +208,75 @@ $variants: (
         <vs-icon name="favourite" reverse variant="danger" />
         <vs-icon name="favourite" reverse variant="dark" />
         <vs-icon name="favourite" reverse variant="light" />
-      </div>
-    </div>
+      </bs-wrapper>
+    </bs-wrapper>
 
-    <div class="row">
-      <div class="col" style="margin-bottom: 10px">
+    <bs-wrapper class="row mb-5">    
+      <bs-wrapper class="col">
         <h3>Size</h3>
-        <ul style="list-style-type: none; margin: 0; padding: 0;">
-          <li>
-            <h2>xxs</h2>
-            <vs-icon name="chevron-down" size="xxs" />
+
+        <bs-wrapper class="d-flex">
+          <bs-wrapper class="d-flex flex-column mr-3 align-items-center">
+            <h4>xxs</h4>
             <vs-icon name="favourite" size="xxs" />
-            <vs-icon name="search" size="xxs" />
-            <vs-icon name="user" size="xxs" />
-            <vs-icon name="external-link" size="xxs" />
-          </li>
-          <li>
-            <h2>xs</h2>
-            <vs-icon name="chevron-down" size="xs" />
+          </bs-wrapper>
+
+          <bs-wrapper class="d-flex flex-column mr-3 align-items-center">
+            <h4>xs</h4>
             <vs-icon name="favourite" size="xs" />
-            <vs-icon name="search" size="xs" />
-            <vs-icon name="user" size="xs" />
-            <vs-icon name="external-link" size="xs" />
-          </li>
-          <li>
-            <h2>sm</h2>
-            <vs-icon name="chevron-down" size="sm" />
+          </bs-wrapper>
+          
+          <bs-wrapper class="d-flex flex-column mr-3 align-items-center">
+            <h4>sm</h4>
             <vs-icon name="favourite" size="sm" />
-            <vs-icon name="search" size="sm" />
-            <vs-icon name="user" size="sm" />
-            <vs-icon name="external-link" size="sm" />
-          </li>
-          <li>
-            <h2>md</h2>
-            <vs-icon name="chevron-down" size="md" />
+          </bs-wrapper>
+
+          <bs-wrapper class="d-flex flex-column mr-3 align-items-center">
+            <h4>md</h4>
             <vs-icon name="favourite" size="md" />
-            <vs-icon name="search" size="md" />
-            <vs-icon name="user" size="md" />
-            <vs-icon name="external-link" size="md" />
-          </li>
-          <li>
-            <h2>lg</h2>
-            <vs-icon name="chevron-down" size="lg" />
+          </bs-wrapper>
+          
+          <bs-wrapper class="d-flex flex-column mr-3 align-items-center">
+            <h4>lg</h4>
             <vs-icon name="favourite" size="lg" />
-            <vs-icon name="search" size="lg" />
-            <vs-icon name="user" size="lg" />
-            <vs-icon name="external-link" size="lg" />
-          </li>
-          <li>
-            <h2>xl</h2>
-            <vs-icon name="chevron-down" size="xl" />
+          </bs-wrapper>
+          
+          <bs-wrapper class="d-flex flex-column mr-3 align-items-center">
+            <h4>xl</h4>
             <vs-icon name="favourite" size="xl" />
-            <vs-icon name="search" size="xl" />
-            <vs-icon name="user" size="xl" />
-            <vs-icon name="external-link" size="xl" />
-          </li>
-        </ul>      
-      </div>
-    </div>
+          </bs-wrapper>
+        </bs-wrapper>
+      </bs-wrapper>
+    </bs-wrapper>
+
+    <bs-wrapper class="row mb-5">    
+      <bs-wrapper class="col">
+        <h3>Padding size</h3>
+
+        <bs-wrapper class="d-flex">
+          <bs-wrapper class="d-flex flex-column mr-3 align-items-center">
+            <h4>0</h4>
+            <vs-icon name="favourite" reverse :padding="0" />
+
+          </bs-wrapper>
+
+          <bs-wrapper class="d-flex flex-column mr-3 align-items-center">
+            <h4>1</h4>
+            <vs-icon name="favourite" reverse :padding="1" />
+          </bs-wrapper>
+          
+          <bs-wrapper class="d-flex flex-column mr-3 align-items-center">
+            <h4>2</h4>
+            <vs-icon name="favourite" reverse />
+          </bs-wrapper>
+
+          <bs-wrapper class="d-flex flex-column mr-3 align-items-center">
+            <h4>3</h4>
+            <vs-icon name="favourite" reverse :padding="3" />
+          </bs-wrapper>
+        </bs-wrapper>
+      </bs-wrapper>
+    </bs-wrapper>
   </div>
   ```
 </docs>
