@@ -62,6 +62,9 @@ props:
   - name: color_theme_dark
     value: "#191919"
     category: "Theme colours"
+  - name: color_theme_primary_pink
+    value: "#AF006E"
+    category: "Theme colours"
 
   - name: purple_tint_1
     value: "#853270"

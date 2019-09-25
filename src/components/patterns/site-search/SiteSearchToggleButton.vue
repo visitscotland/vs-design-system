@@ -1,7 +1,7 @@
 <template>
   <vs-button
     class="vs-header__site-search__toggle-button pr-xl-2 py-xl-0 pl-xl-1"
-    :variant="isOn ? 'light' : 'danger'"
+    :variant="isOn ? 'light' : 'primary-pink'"
     focus-style="underline"
     focus-colour="black"
   >
@@ -51,7 +51,6 @@ export default {
   @include media-breakpoint-up(xl) {
     font-size: 1.125rem;
     font-weight: $font-weight-semi-bold;
-    // padding: 0 1.25rem 0 0.5rem;
   }
 }
 </style>
