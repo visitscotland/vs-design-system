@@ -190,7 +190,6 @@ export default {
   <template>
     <div style="overflow-y: scroll; min-height: 600px;">
       <vs-skip-to
-        tabindex="1000"
         :target="contentContainer"
       >
         Skip to Content
@@ -199,7 +198,6 @@ export default {
       <vs-header-drawer-toggle
         module-name="site-search"
         type="vs-skip-to-button"
-        tabindex="1001"
       >
         Skip to Search
       </vs-header-drawer-toggle>

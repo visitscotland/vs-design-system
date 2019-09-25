@@ -14,7 +14,7 @@
 <script>
 import Vue from "vue"
 import headerStore from "../../header.store"
-import { isFunction, get, merge } from "lodash"
+import { isFunction, get } from "lodash"
 import VsCloseButton from "@components/patterns/close-button/CloseButton"
 import VsRow from "@components/elements/layout/Row"
 import VsCol from "@components/elements/layout/Col"
