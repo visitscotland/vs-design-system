@@ -1,6 +1,6 @@
 <template>
   <vs-button
-    class="vs-favourites__button"
+    class="vs-favourites__button p-1 position-relative"
     @click.native="addFavourite"
     focus-style="underline"
     focus-colour="pink"
@@ -68,30 +68,18 @@ export default {
 @import "~bootstrap/scss/utilities/text";
 @import "~bootstrap/scss/utilities/display";
 @import "~bootstrap/scss/utilities/flex";
+@import "~bootstrap/scss/utilities/position";
+@import "~bootstrap/scss/utilities/spacing";
 @import "~bootstrap/scss/utilities/screenreaders";
-// @import "../../styles/placeholders";
-
-.vs-favourites__button {
-  position: relative;
-  width: 40px;
-
-  @include media-breakpoint-up(md) {
-    width: 50px;
-  }
-}
 
 .vs-favourites__button__count {
   color: $color-white;
   display: block;
   font-size: 0.75rem;
-  left: 0;
-  position: absolute;
-  top: 10px;
   width: 100%;
-
-  @include media-breakpoint-up(md) {
-    top: 14px;
-  }
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
 }
 </style>
 

@@ -1,5 +1,5 @@
 <template>
-  <component data-test="logo-link" :is="type" class="vs-logo" href="#">
+  <component data-test="logo-link" :is="type" class="vs-logo p-0 px-1" href="#">
     <span data-test="logo-screenreader-text" class="sr-only">VisitScotland Home</span>
     <span data-test="logo-wrapper-mobile" class="d-flex align-self-center d-lg-none">
       <vs-svg data-test="logo-mobile" path="scotland-alba-logo" height="18" />
@@ -38,18 +38,13 @@ export default {
 @import "~bootstrap/scss/utilities/display";
 @import "~bootstrap/scss/utilities/flex";
 @import "~bootstrap/scss/utilities/screenreaders";
+@import "~bootstrap/scss/utilities/spacing";
 @import "../../styles/placeholders";
 
 .vs-logo {
   display: inline-flex;
   align-items: center;
-  padding: 10px 0;
-  height: 40px;
   transition: box-shadow 250ms ease-in-out;
-
-  @include media-breakpoint-up(md) {
-    height: 50px;
-  }
 
   &:hover,
   &:focus {
