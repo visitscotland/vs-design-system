@@ -1,15 +1,17 @@
 <template>
-  <component
-    :is="type"
-    class="vs-mobile-nav__button"
+  <vs-button
+    class="vs-mobile-nav__button p-1"
     id="mobilenavbutton"
     v-b-toggle.collapse-mobile-nav
-    @click="handleClick()"
+    variant="transparent"
+    focus-style="underline"
+    focus-colour="pink"
+    @click.native="handleClick()"
   >
-    <span class="sr-only">Toggle Main Navigation</span>
+    <span class="sr-only"><slot /></span>
     <vs-icon v-if="show" name="menu-close" size="sm" variant="dark" />
     <vs-icon v-else name="menu" size="sm" variant="dark" />
-  </component>
+  </vs-button>
 </template>
 
 <script>
@@ -38,10 +40,6 @@ export default {
     /**
      * The html element name used for the component
      */
-    type: {
-      type: String,
-      default: "button",
-    },
     name: {
       type: String,
     },
@@ -55,25 +53,16 @@ export default {
 @import "~bootstrap/scss/utilities/flex";
 @import "~bootstrap/scss/type";
 @import "~bootstrap/scss/utilities/screenreaders";
+@import "~bootstrap/scss/utilities/spacing";
 @import "../../styles/placeholders";
 @import "../../styles/animations";
-
-.vs-mobile-nav__button {
-  @extend %button-reset;
-  @extend %main-nav-button-style;
-
-  &:hover,
-  &:focus {
-    @extend %focus-pink-inset;
-  }
-}
 </style>
 
 <docs>
   ```jsx
 
   <div>
-    <vs-mobile-nav-button name="Mobile navigation"></vs-mobile-nav-button>
+    <vs-mobile-nav-button name="Mobile navigation">Toggle Main Navigation</vs-mobile-nav-button>
   </div>
   ```
 </docs>

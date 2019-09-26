@@ -134,6 +134,10 @@ export default {
   padding: 0 0.5rem;
   position: relative;
 
+  @include media-breakpoint-up(xl) {
+    font-size: 1.125rem;
+  }
+
   &[aria-expanded="true"],
   &:hover,
   &:focus {
