@@ -12,9 +12,9 @@
           :key="index"
         >
           <a :href="item.href" class="vs-favourites-list__link mr-3">{{ item.title }}</a>
-          <vs-button variant="light" @click.native.prevent="deleteFavourite(item.href)">
+          <vs-button variant="transparent" @click.native.prevent="deleteFavourite(item.href)">
             <span class="sr-only">Remove from favourites</span>
-            <vs-icon name="close" size="xs" variant="reverse-white" />
+            <vs-icon name="close" size="xs" />
           </vs-button>
         </li>
       </ul>
