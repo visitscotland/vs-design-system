@@ -75,6 +75,8 @@ export default {
 @import "~bootstrap/scss/utilities/flex";
 
 .btn {
+  -webkit-appearance: none;
+
   @include vs-focus;
 
   &.btn-transparent {
