@@ -8,7 +8,7 @@
     @focus="onFocus"
     tabindex="-1"
   >
-    <label for="search-input" class="input-group-prepend">
+    <label for="search-input" class="input-group-prepend mb-0">
       <span class="sr-only">Enter a search term</span>
       <vs-icon name="search" size="sm" variant="primary" />
     </label>
