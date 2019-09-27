@@ -24,6 +24,14 @@ export default {
     BFormInput,
   },
   mixins: [focusStylesMixin],
+  props: {
+    focusStyle: {
+      default: "underline",
+    },
+    focusColour: {
+      default: "pink",
+    },
+  },
 }
 </script>
 
