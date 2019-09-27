@@ -17,10 +17,10 @@
 
 <script>
 import VsIcon from "@components/elements/icon/Icon"
-import store from "./favourites2.store"
+import store from "./favourites.store"
 
 export default {
-  name: "VsFavouritesButton2",
+  name: "VsFavouritesButton",
   status: "prototype",
   release: "0.0.1",
   components: { VsIcon },
@@ -98,7 +98,7 @@ export default {
 <docs>
   ```jsx
 
-    // const favourite = require("../../../../../assets/fixtures/favourite.json")
+    const favourite = require("@/assets/fixtures/favourite.json")
 
     <vs-favourites-button
       :href="favourite.href"
