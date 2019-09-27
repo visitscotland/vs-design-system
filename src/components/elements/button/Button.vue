@@ -8,12 +8,14 @@
       [focusStyleClass]: focusStyleClass,
       [focusColourClass]: focusColourClass,
     }"
-    ><slot
-  /></b-button>
+  >
+    <slot />
+  </b-button>
 </template>
 
 <script>
 import { BButton } from "bootstrap-vue"
+import focusStylesMixin from "@/mixins/focusStyles.js"
 
 /**
  * Buttons are generally used for interface actions. Suitable for all-purpose use.
@@ -33,6 +35,7 @@ export default {
   components: {
     BButton,
   },
+  mixins: [focusStylesMixin],
   props: {
     /**
      * Use this option to render the button as an anchor element with the given href.
@@ -62,37 +65,6 @@ export default {
         )
       },
     },
-    /**
-     * Alternative style of the emphasis on focus, hover and active.
-     * Default is inset outline.
-     * `underline`
-     */
-    focusStyle: {
-      type: String,
-      default: null,
-      validator: value => {
-        return value.match(/(underline)/)
-      },
-    },
-    /**
-     * Alternative focus colour. Default is light gray.
-     * `pink, white, black`
-     */
-    focusColour: {
-      type: String,
-      default: null,
-      validator: value => {
-        return value.match(/(pink|white|black)/)
-      },
-    },
-  },
-  computed: {
-    focusStyleClass() {
-      return this.focusStyle ? "btn-focus-style-" + this.focusStyle : null
-    },
-    focusColourClass() {
-      return this.focusColour ? "btn-focus-colour-" + this.focusColour : null
-    },
   },
 }
 </script>
@@ -102,37 +74,8 @@ export default {
 @import "~bootstrap/scss/utilities/display";
 @import "~bootstrap/scss/utilities/flex";
 
-$focus-y-offset-underline: -3px;
-$focus-spread-default: 3px;
-
-@mixin focus-box-shadow($value) {
-  &:focus,
-  &:hover,
-  &:active,
-  &:focus:active {
-    box-shadow: $value;
-  }
-}
-
 .btn {
-  -webkit-appearance: none;
-  border: none;
-  outline: none;
-  transition: all 250ms ease-in-out;
-
-  $themes: map-keys($theme-colors);
-  @for $i from 1 through length($themes) {
-    $name: nth($themes, $i);
-    $value: map-get($theme-colors, $name);
-
-    &.btn-#{$name} {
-      &:focus,
-      &:hover,
-      &:active {
-        background-color: $value;
-      }
-    }
-  }
+  @include vs-focus;
 
   &.btn-transparent {
     background-color: transparent;
@@ -140,36 +83,6 @@ $focus-spread-default: 3px;
     &:hover,
     &:active {
       background-color: transparent;
-    }
-  }
-
-  @include focus-box-shadow(inset 0 0 0 $focus-spread-default $gray-tint-6);
-
-  &.btn-focus-style-underline {
-    @include focus-box-shadow(inset 0 $focus-y-offset-underline 0 0 $gray-tint-6);
-  }
-
-  &.btn-focus-colour-pink {
-    @include focus-box-shadow(inset 0 0 0 $focus-spread-default $color-pink);
-
-    &.btn-focus-style-underline {
-      @include focus-box-shadow(inset 0 $focus-y-offset-underline 0 0 $color-pink);
-    }
-  }
-
-  &.btn-focus-colour-white {
-    @include focus-box-shadow(inset 0 0 0 $focus-spread-default $white);
-
-    &.btn-focus-style-underline {
-      @include focus-box-shadow(inset 0 $focus-y-offset-underline 0 0 $white);
-    }
-  }
-
-  &.btn-focus-colour-black {
-    @include focus-box-shadow(inset 0 0 0 $focus-spread-default $black);
-
-    &.btn-focus-style-underline {
-      @include focus-box-shadow(inset 0 $focus-y-offset-underline 0 0 $black);
     }
   }
 }
