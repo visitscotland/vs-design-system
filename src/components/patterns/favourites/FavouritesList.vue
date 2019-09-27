@@ -24,10 +24,10 @@
 
 <script>
 import VsIcon from "@components/elements/icon/Icon"
-import favouritesStore from "./favourites2.store"
+import favouritesStore from "./favourites.store"
 
 export default {
-  name: "VsFavouritesList2",
+  name: "VsFavouritesList",
   status: "prototype",
   release: "0.0.1",
   components: {
@@ -89,9 +89,7 @@ export default {
       :href="favourite.href"
       :title="favourite.title"
     />
-    <vs-favourites-list
-      
-    />
+    <vs-favourites-list/>
   </div>
   ```
 </docs>
