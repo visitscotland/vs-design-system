@@ -2,9 +2,10 @@
   <b-form
     inline
     role="search"
-    class="flex-nowrap"
+    class="flex-nowrap align-items-start"
     action
     method="get"
+    :novalidate="true"
     @focus="onFocus"
     tabindex="-1"
   >
@@ -12,15 +13,21 @@
       <span class="sr-only">Enter a search term</span>
       <vs-icon name="search" size="sm" variant="primary" />
     </label>
-    <b-form-input
-      type="search"
-      class="mr-1 flex-grow-1 vs-site-search__input"
-      placeholder="Enter a search term"
-      autocomplete="off"
-      v-model="searchTerm"
-      ref="searchInput"
-      id="search-input"
-    />
+    <div class="flex-grow-1">
+      <vs-form-input
+        type="search"
+        class="mr-1 vs-site-search__input"
+        placeholder="Enter a search term"
+        autocomplete="off"
+        v-model="searchTerm"
+        :state="validation"
+        ref="searchInput"
+        id="search-input"
+      />
+      <b-form-invalid-feedback :state="validation"
+        >Please enter a search term.</b-form-invalid-feedback
+      >
+    </div>
     <vs-button
       v-if="searchTerm.length"
       variant="transparent"
@@ -38,15 +45,15 @@
       :variant="'primary-pink'"
       focus-style="underline"
       focus-colour="white"
+      >Go</vs-button
     >
-      Go
-    </vs-button>
   </b-form>
 </template>
 
 <script>
 import VsIcon from "@components/elements/icon/Icon"
-import { BForm, BInputGroup, BFormInput } from "bootstrap-vue"
+import VsFormInput from "@components/elements/form-input/FormInput"
+import { BForm, BFormInput, BFormInvalidFeedback } from "bootstrap-vue"
 import headerStore from "../header/"
 
 export default {
@@ -56,20 +63,25 @@ export default {
   components: {
     VsIcon,
     BForm,
-    BInputGroup,
-    BFormInput,
+    VsFormInput,
+    BFormInvalidFeedback,
   },
   data() {
     return {
       searchTerm: "",
     }
   },
+  computed: {
+    validation() {
+      return this.searchTerm.length > 1
+    },
+  },
   methods: {
     clearSearchField() {
       this.searchTerm = ""
     },
     onFocus() {
-      this.$refs.searchInput.focus()
+      this.$refs.searchInput.$el.focus()
     },
   },
 }
