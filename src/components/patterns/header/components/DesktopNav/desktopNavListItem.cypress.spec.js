@@ -1,7 +1,7 @@
 const VsDesktopNavListItem = require("./DesktopNavListItem.vue").default
 const { vueHelper } = require("@cypress/helpers/index.js").default
 const sizes = ["iphone-6", "ipad-2", [1024, 768]]
-const mainNav = require("../../../../../assets/fixtures/mainNav.json")
+const mainNav = require("@/assets/fixtures/header/mainNav.json")
 const item = mainNav[0]
 const level2 = item.subnav[0]
 const level3 = level2.subnav[0]
@@ -15,7 +15,7 @@ const props = {
   title: level2.title,
 }
 
-const content = `
+const childContent = `
   <vs-desktop-nav-list-item
     slot: "subnav"
     level: 3
@@ -26,7 +26,7 @@ const content = `
   >
   </vs-desktop-nav-list-item>
 `
-vueHelper.init("vs-desktop-nav-list-item", VsDesktopNavListItem, props, content)
+vueHelper.init("vs-desktop-nav-list-item", VsDesktopNavListItem, { props, childContent })
 
 describe("Desktop Nav List Item component", () => {
   sizes.forEach(size => {

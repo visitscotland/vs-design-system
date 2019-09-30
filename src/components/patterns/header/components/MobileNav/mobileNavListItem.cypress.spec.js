@@ -1,7 +1,7 @@
 const VsMobileNavListItem = require("./MobileNavListItem.vue").default
 const { vueHelper } = require("@cypress/helpers/index.js").default
 const sizes = ["iphone-6", "ipad-2", [1024, 768]]
-const mainNav = require("../../../../../assets/fixtures/mainNav.json")
+const mainNav = require("@/assets/fixtures/header/mainNav.json")
 const item = mainNav[0]
 const level2 = item.subnav[0]
 const level3 = level2.subnav[0]
@@ -16,7 +16,7 @@ const props = {
   promoItem: item.promoItem,
 }
 
-const content = `
+const childContent = `
   <vs-mobile-nav-list-item
     slot="subnav"
     level=2
@@ -36,7 +36,7 @@ const content = `
     </vs-mobile-nav-list-item>
   </vs-mobile-nav-list-item>
 `
-vueHelper.init("vs-mobile-nav-list-item", VsMobileNavListItem, props, content)
+vueHelper.init("vs-mobile-nav-list-item", VsMobileNavListItem, { props, childContent })
 
 describe("Mobile Nav List Item component", () => {
   sizes.forEach(size => {

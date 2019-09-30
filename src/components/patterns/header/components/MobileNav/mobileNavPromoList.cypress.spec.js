@@ -1,14 +1,14 @@
 const VsMobileNavPromoList = require("./MobileNavPromoList.vue").default
 const { vueHelper } = require("@cypress/helpers/index.js").default
 const sizes = ["iphone-6", "ipad-2", [1024, 768]]
-const mainNav = require("../../../../../assets/fixtures/mainNav.json")
+const mainNav = require("@/assets/fixtures/header/mainNav.json")
 const promoList = mainNav[4].promoList
 
 const props = {
   list: promoList,
 }
 
-vueHelper.init("vs-mobile-nav-promo-list", VsMobileNavPromoList, props)
+vueHelper.init("vs-mobile-nav-promo-list", VsMobileNavPromoList, { props })
 
 describe("Mobile Nav Promo List component", () => {
   sizes.forEach(size => {

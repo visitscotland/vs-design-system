@@ -37,8 +37,6 @@ export default {
 
 <docs>
   ```jsx
-  const mainNav = require("../../../../../assets/fixtures/mainNav.json")
-  const item = mainNav[0]
 
   <div class="vs-header">
     <ul style="list-style-type: none; margin: 0; padding: 0; display: flex;">
@@ -46,30 +44,30 @@ export default {
             different lists emits events controlled by the header component -->
       <vs-desktop-nav-toggles
         :level="1"
-        :href="item.href"
-        :is-external="item.isExternal"
-        :title="item.title"
-        :subnav="item.subnav"
-        :promo-list="item.promoList"
-        :promo-item="item.promoItem"
+        :href="header.mainNav[0].href"
+        :is-external="header.mainNav[0].isExternal"
+        :title="header.mainNav[0].title"
+        :subnav="header.mainNav[0].subnav"
+        :promo-list="header.mainNav[0].promoList"
+        :promo-item="header.mainNav[0].promoItem"
         :toggleId="1"
       ></vs-desktop-nav-toggles>
     </ul>
     <vs-desktop-nav name="Desktop navigation"> 
       <vs-desktop-nav-submenu
         :level="1"
-        :href="item.href"
-        :is-external="item.isExternal"
-        :tracking-id="item.trackingId"
-        :title="item.title"
-        :subnav="item.subnav"
-        :promo-list="item.promoList"
-        :promo-item="item.promoItem"
+        :href="header.mainNav[0].href"
+        :is-external="header.mainNav[0].isExternal"
+        :tracking-id="header.mainNav[0].trackingId"
+        :title="header.mainNav[0].title"
+        :subnav="header.mainNav[0].subnav"
+        :promo-list="header.mainNav[0].promoList"
+        :promo-item="header.mainNav[0].promoItem"
         :subnavId="1"
       >
         <vs-desktop-nav-list-item
           slot="subnav"
-          v-for="(level2, index2) in item.subnav"
+          v-for="(level2, index2) in header.mainNav[0].subnav"
           :level="2"
           :href="level2.href"
           :is-external="level2.isExternal"

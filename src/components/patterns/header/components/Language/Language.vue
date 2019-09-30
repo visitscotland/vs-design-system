@@ -140,12 +140,11 @@ abbr[title] {
 
 <docs>
   ```jsx
-  const languages = require("../../../../../assets/fixtures/languages.json")
 
   <div style="position: relative; height: 600px;">
     <vs-language
         name="Languages"
-        :dropdown-list="languages"
+        :dropdown-list="header.language"
     />
   </div>
   ```

@@ -86,8 +86,6 @@ export default {
 <docs>
   ```jsx
 
-    const favourite = require("@/assets/fixtures/favourite.json")
-
     <vs-favourites-button
       :href="favourite.href"
       :title="favourite.title"

@@ -1,14 +1,14 @@
 const VsLanguage = require("./Language.vue").default
 const { vueHelper } = require("@cypress/helpers/index.js").default
 const sizes = ["iphone-6", "ipad-2", [1024, 768]]
-const languages = require("../../../../../assets/fixtures/languages.json")
+const languages = require("@/assets/fixtures/header/languages.json")
 
 const props = {
   name: "Languages",
   dropdownList: languages,
 }
 
-vueHelper.init("vs-language", VsLanguage, props)
+vueHelper.init("vs-language", VsLanguage, { props })
 
 describe("Language component", () => {
   sizes.forEach(size => {

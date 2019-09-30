@@ -39,12 +39,12 @@
             <VsDesktopNavPromoItem
               v-for="(item, index) in promoList"
               :key="index"
-              :href="item.href"
-              :is-external="item.isExternal"
-              :title="item.title"
-              :button-text="item.buttonText"
-              :description="item.description"
-              :image-link="item.imageLink"
+              :href="header.mainNav[0].href"
+              :is-external="header.mainNav[0].isExternal"
+              :title="header.mainNav[0].title"
+              :button-text="header.mainNav[0].buttonText"
+              :description="header.mainNav[0].description"
+              :image-link="header.mainNav[0].imageLink"
             />
           </template>
           <template v-if="chartWidgets">
@@ -254,21 +254,18 @@ export default {
 <docs>
   ```jsx
 
-  const mainNav = require("../../../../../assets/fixtures/mainNav.json")
-  const item = mainNav[0]
-
   <div>
 
     <ul style="display: flex; list-style-type: none; margin: 0;">
     <vs-desktop-nav-toggles
       :level="1"
-      :href="item.href"
-      :is-external="item.isExternal"
-      :title="item.title"
-      :subnav="item.subnav"
-      :promo-list="item.promoList"
-      :promo-item="item.promoItem"
-      :chartWidgets="item.chartWidgets"
+      :href="header.mainNav[0].href"
+      :is-external="header.mainNav[0].isExternal"
+      :title="header.mainNav[0].title"
+      :subnav="header.mainNav[0].subnav"
+      :promo-list="header.mainNav[0].promoList"
+      :promo-item="header.mainNav[0].promoItem"
+      :chartWidgets="header.mainNav[0].chartWidgets"
       :toggleId="1"
     />
     </ul>
@@ -277,18 +274,18 @@ export default {
 
     <vs-desktop-nav-submenu
         :level="1"
-        :href="item.href"
-        :is-external="item.isExternal"
-        :title="item.title"
-        :subnav="item.subnav"
-        :promo-list="item.promoList"
-        :promo-item="item.promoItem"
-        :chartWidgets="item.chartWidgets"
+        :href="header.mainNav[0].href"
+        :is-external="header.mainNav[0].isExternal"
+        :title="header.mainNav[0].title"
+        :subnav="header.mainNav[0].subnav"
+        :promo-list="header.mainNav[0].promoList"
+        :promo-item="header.mainNav[0].promoItem"
+        :chartWidgets="header.mainNav[0].chartWidgets"
         :subnav-id="1"
       >
       <vs-desktop-nav-list-item
           slot="subnav"
-          v-for="(level2, index2) in item.subnav"
+          v-for="(level2, index2) in header.mainNav[0].subnav"
           :level="2"
           :href="level2.href"
           :is-external="level2.isExternal"

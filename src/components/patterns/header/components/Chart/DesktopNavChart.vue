@@ -76,11 +76,10 @@ export default {
 
 <docs>
   ```jsx
-    const mainNav = require("../../../../../assets/fixtures/mainNav.json")
-    const charts = mainNav[3].chartWidgets
+
     <vs-row>
       <vs-desktop-nav-chart
-        v-for="(chart, index) in charts"
+        v-for="(chart, index) in header.mainNav[3].chartWidgets"
         :chart-title="chart.chartTitle"
         :labels="chart.labels"
         :datasets="chart.datasets"

@@ -132,16 +132,14 @@ export default {
 <docs>
   ```jsx
 
-  const mainNav = require("../../../../../assets/fixtures/mainNav.json")
-  const promoItem = mainNav[2].promoItem
   <ul style="list-style-type: none; margin: 0; max-width: 400px;">
     <vs-desktop-nav-promo-item
-      :href="promoItem.href"
-      :is-external="promoItem.isExternal"
-      :title="promoItem.title"
-      :button-text="promoItem.buttonText"
-      :description="promoItem.description"
-      :image-link="promoItem.imageLink"
+      :href="header.mainNav[2].promoItem.href"
+      :is-external="header.mainNav[2].promoItem.isExternal"
+      :title="header.mainNav[2].promoItem.title"
+      :button-text="header.mainNav[2].promoItem.buttonText"
+      :description="header.mainNav[2].promoItem.description"
+      :image-link="header.mainNav[2].promoItem.imageLink"
     />
   </ul>
   ```

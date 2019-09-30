@@ -1,7 +1,7 @@
 const VsMobileNavPromoItem = require("./MobileNavPromoItem.vue").default
 const { vueHelper } = require("@cypress/helpers/index.js").default
 const sizes = ["iphone-6", "ipad-2", [1024, 768]]
-const mainNav = require("../../../../../assets/fixtures/mainNav.json")
+const mainNav = require("@/assets/fixtures/header/mainNav.json")
 const promoItem = mainNav[2].promoItem
 
 const props = {
@@ -13,7 +13,7 @@ const props = {
   imageLink: promoItem.imageLink,
 }
 
-vueHelper.init("vs-mobile-nav-promo-item", VsMobileNavPromoItem, props)
+vueHelper.init("vs-mobile-nav-promo-item", VsMobileNavPromoItem, { props })
 
 describe("Mobile Nav Promo Item component", () => {
   sizes.forEach(size => {

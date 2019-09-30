@@ -199,14 +199,14 @@ export default {
       </vs-header-drawer-toggle>
 
       <vs-header
-        :favourite-href="jjj"
-        :favourite-title="jjj"
+        :favourite-href="header.favourite.href"
+        :favourite-title="header.favourite.title"
       >
 
         <template #desktop-universal-nav>
           <vs-desktop-universal-nav
             name="Our sites"
-            :dropdown-list="ourSites"
+            :dropdown-list="header.ourSites"
           />
         </template>
 
@@ -214,7 +214,7 @@ export default {
           <vs-mobile-universal-nav
             name="Our sites"
             class="vs-dropdown--mobile-universal-nav"
-            :dropdown-list="ourSites"
+            :dropdown-list="header.ourSites"
           />
         </template>
 
@@ -228,7 +228,7 @@ export default {
           <vs-language
             name="Language"
             class="vs-dropdown--language"
-            :dropdown-list="language"
+            :dropdown-list="header.languages"
           />
         </template>
 
@@ -268,7 +268,7 @@ export default {
 
         <template #desktop-nav-toggles>
           <vs-desktop-nav-toggles
-            v-for="(item, index) in mainNav"
+            v-for="(item, index) in header.mainNav"
             :level="1"
             :href="item.href"
             :is-external="item.isExternal"
@@ -296,20 +296,9 @@ export default {
 
   <script>
 
-  const ourSites = require("../../../assets/fixtures/ourSites.json")
-  const language = require("../../../assets/fixtures/languages.json")
-  const mainNav = require("../../../assets/fixtures/mainNav.json")
-  const favourite = require("../../../assets/fixtures/favourite.json")
-
-  import siteSearchStore from "./components/Search/site-search.store"
-
   export default {
     data() {
       return {
-        ourSites,
-        language,
-        mainNav,
-        favourite,
         contentContainer: null,
         siteSearchModule: null
       }
@@ -320,7 +309,6 @@ export default {
     },
     methods: {
       skipToSearch() {
-        siteSearchStore.dispatch("siteSearch/open")
       }
     }
 
