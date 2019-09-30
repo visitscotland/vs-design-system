@@ -27,7 +27,7 @@
               </ul>
               <div class="vs-controls__wrapper d-flex">
                 <slot name="header-drawer-toggles" />
-                <div class="d-lg-none"><slot name="mobile-nav-button" /></div>
+                <div class="d-flex d-lg-none"><slot name="mobile-nav-button" /></div>
               </div>
             </div>
           </vs-col>
@@ -188,7 +188,7 @@ export default {
   ```vue
 
   <template>
-    <div style="overflow-y: scroll; min-height: 600px;">
+    <div>
       <vs-skip-to
         :target="contentContainer"
       >
@@ -241,7 +241,9 @@ export default {
         </template>
 
         <template #mobile-nav-button>
-          <vs-mobile-nav-button />
+          <vs-mobile-nav-button>
+            Toggle Main Navigation
+          </vs-mobile-nav-button>
         </template>
 
         <template #header-drawer-toggles>
@@ -249,7 +251,9 @@ export default {
           <vs-header-drawer-toggle
             module-name="site-search"
             type="vs-site-search-toggle-button"
-          />
+          >
+            Search
+          </vs-header-drawer-toggle>
 
           <vs-header-drawer-toggle
             module-name="favourites-list"

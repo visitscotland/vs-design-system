@@ -25,6 +25,8 @@
     width: 100%;
     background: white;
 
+    *[class^="rsg--tabs"],
+    *[class^="rsg--tab"],
     .vueds-tabs,
     .react-codemirror2 {
       display: none;
