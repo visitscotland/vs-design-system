@@ -81,8 +81,6 @@ export default {
 
 <docs>
   ```jsx
-  
-  const favourite = require("@/assets/fixtures/favourite.json")
 
   <div style="position: relative; height: 600px;">
     <vs-favourites-button 

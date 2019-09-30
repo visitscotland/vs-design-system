@@ -1,7 +1,7 @@
 const VsDesktopNavPromoItem = require("./DesktopNavPromoItem.vue").default
 const { vueHelper } = require("@cypress/helpers/index.js").default
 const sizes = ["iphone-6", "ipad-2", [1024, 768]]
-const mainNav = require("../../../../../assets/fixtures/mainNav.json")
+const mainNav = require("@/assets/fixtures/header/mainNav.json")
 const promoItem = mainNav[2].promoItem
 
 const props = {
@@ -13,7 +13,7 @@ const props = {
   imageLink: promoItem.imageLink,
 }
 
-vueHelper.init("vs-desktop-nav-promo-item", VsDesktopNavPromoItem, props)
+vueHelper.init("vs-desktop-nav-promo-item", VsDesktopNavPromoItem, { props })
 
 describe("Desktop Nav List Item component", () => {
   sizes.forEach(size => {

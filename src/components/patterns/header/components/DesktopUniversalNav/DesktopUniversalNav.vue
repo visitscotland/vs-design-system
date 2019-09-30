@@ -71,12 +71,11 @@ export default {
 
 <docs>
   ```jsx
-  const ourSites = require("../../../../../assets/fixtures/ourSites.json")
 
   <div style="position: relative; height: 100vh; display: flex; justify-content: space-between;">
     <vs-desktop-universal-nav
         name="Our sites"
-        :dropdown-list="ourSites"
+        :dropdown-list="header.ourSites"
     />
   </div>
   ```
