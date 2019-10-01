@@ -9,7 +9,7 @@ export default {
       type: String,
       default: null,
       validator: value => {
-        return value.match(/(underline)/)
+        return value.match(/(underline|outset|inset)/)
       },
     },
     /**
