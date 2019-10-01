@@ -76,6 +76,7 @@ export default {
 
 .btn {
   -webkit-appearance: none;
+  border: none;
 
   @include vs-focus;
 
