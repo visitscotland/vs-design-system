@@ -5,6 +5,8 @@
       [focusStyleClass]: focusStyleClass,
       [focusColourClass]: focusColourClass,
     }"
+    :size="size"
+    v-model="inputVal"
   ></b-form-input>
 </template>
 
@@ -26,20 +28,44 @@ export default {
   mixins: [focusStylesMixin],
   props: {
     focusStyle: {
-      default: "underline",
+      default: "outset",
     },
     focusColour: {
       default: "pink",
+    },
+    size: {
+      default: "sm",
+    },
+    value: {
+      type: String,
+      default: "",
+    },
+  },
+  data() {
+    return {
+      inputVal: this.value,
+    }
+  },
+  watch: {
+    inputVal(newValue) {
+      this.$emit("input", newValue)
+    },
+    value(newValue) {
+      this.inputVal = newValue
     },
   },
 }
 </script>
 
 <style lang="scss" scoped>
-@import "~bootstrap/scss/input-group";
+@import "~bootstrap/scss/forms";
 
 .vs-form-input {
   @include vs-focus;
+
+  &.form-control {
+    border: 2px solid $gray-tint-3;
+  }
 }
 </style>
 
