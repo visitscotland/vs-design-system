@@ -1,5 +1,5 @@
 import Vue from "vue"
-import { cloneDeep, split, initial, trimStart, trimEnd, last, set, merge, camelCase } from "lodash"
+import { cloneDeep, split, initial, trimStart, last, set, merge, camelCase } from "lodash"
 
 const fixtures = require.context("./", true, /^\.\/.*\.json$/)
 
