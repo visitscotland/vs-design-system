@@ -1,7 +1,11 @@
 <template>
   <vs-row v-show="isVisible" @focus="focusOnContent" tabindex="-1">
     <vs-col cols="auto" order="2" v-if="showClose">
-      <vs-close-button class="vs-header__drawer__close-button" @click.native="closeDrawer">
+      <vs-close-button
+        class="vs-header__drawer__close-button"
+        @click.native="closeDrawer"
+        ref="closeButton"
+      >
         Close the header drawer
       </vs-close-button>
     </vs-col>
@@ -28,13 +32,32 @@ export default {
     VsCol,
   },
   props: {
+    /**
+     * Name of the module - used to discover when the module should
+     * be shown according to the drawer header VueX store.
+     */
     moduleName: {
       type: String,
       required: true,
     },
+    /**
+     * Whether or not the close drawer button is shown
+     */
     showClose: {
       type: Boolean,
       default: false,
+    },
+    /**
+     * Determines whether and what gains focus when this module
+     * is opened, i.e. becomes visible.
+     * `false, "content", "close"`
+     */
+    focusOnOpen: {
+      type: [String, Boolean],
+      default: false,
+      validator: value => {
+        return value === false || value.match(/(content|close)/)
+      },
     },
   },
   computed: {
@@ -49,6 +72,13 @@ export default {
     closeDrawer() {
       headerStore.dispatch("header/drawer/close")
     },
+    onBecomeVisible() {
+      if (this.focusOnOpen === "close" && this.showClose) {
+        this.$refs.closeButton.$el.focus()
+      } else if (this.focusOnOpen === "content") {
+        this.focusOnContent()
+      }
+    },
     focusOnContent() {
       if (isFunction(get(this.$slots, "default[0].componentInstance.$el.focus"))) {
         this.$slots.default[0].componentInstance.$el.focus()
@@ -57,7 +87,9 @@ export default {
   },
   watch: {
     isVisible(newVal, oldVal) {
-      Vue.nextTick(this.focusOnContent)
+      if (!oldVal && newVal) {
+        Vue.nextTick(this.onBecomeVisible)
+      }
     },
   },
 }
