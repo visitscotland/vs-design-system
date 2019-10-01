@@ -260,10 +260,19 @@ export default {
         </template>
 
         <template #header-drawer-modules>
-          <header-drawer-module module-name="site-search" ref="siteSearch" :show-close="true">
+          <header-drawer-module 
+            module-name="site-search" 
+            ref="siteSearch" 
+            :show-close="true"
+            focus-on-open="content"
+          >
             <vs-site-search />
           </header-drawer-module>
-          <header-drawer-module module-name="favourites-list" :show-close="true">
+          <header-drawer-module 
+            module-name="favourites-list" 
+            :show-close="true"
+            focus-on-open="close"
+          >
             <vs-favourites-list/>
           </header-drawer-module>
         </template>
