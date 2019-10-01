@@ -199,8 +199,8 @@ export default {
       </vs-header-drawer-toggle>
 
       <vs-header
-        :favourite-href="header.favourite.href"
-        :favourite-title="header.favourite.title"
+        :favourite-href="favourite.href"
+        :favourite-title="favourite.title"
       >
 
         <template #desktop-universal-nav>

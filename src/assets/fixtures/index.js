@@ -5,8 +5,6 @@ const fixtures = require.context("./", true, /^\.\/.*\.json$/)
 
 let data = merge.apply(null, fixtures.keys().map(processFixture))
 
-console.log(cloneDeep(data))
-
 Vue.mixin({
   data() {
     return data
@@ -15,11 +13,6 @@ Vue.mixin({
 
 function processFixture(path) {
   let parts = split(trimStart(path, "./"), "/")
-
-  // temp guard
-  if (parts.length === 1 && parts[0] !== "favourite.json") {
-    return {}
-  }
 
   let keys = [...initial(parts), last(parts).replace(new RegExp(".json$"), "")].map(camelCase)
 
