@@ -8,6 +8,7 @@
       [focusStyleClass]: focusStyleClass,
       [focusColourClass]: focusColourClass,
     }"
+    :size="size"
   >
     <slot />
   </b-button>
@@ -65,6 +66,13 @@ export default {
         )
       },
     },
+    size: {
+      type: String,
+      default: "md",
+      validator: value => {
+        return value.match(/(sm|md|lg)/)
+      },
+    },
   },
 }
 </script>
@@ -74,10 +82,20 @@ export default {
 @import "~bootstrap/scss/utilities/display";
 @import "~bootstrap/scss/utilities/flex";
 
+$variants: (
+  primary: $color-theme-primary,
+  secondary: $color-theme-secondary,
+  success: $color-theme-success,
+  danger: $color-theme-danger,
+  warning: $color-theme-warning,
+  info: $color-theme-info,
+  light: $color-theme-light,
+  dark: $color-theme-dark,
+  reverse-white: $color-white,
+);
+
 .btn {
   -webkit-appearance: none;
-  border: none;
-
   @include vs-focus;
 
   &.btn-transparent {
@@ -86,6 +104,12 @@ export default {
     &:hover,
     &:active {
       background-color: transparent;
+    }
+  }
+
+  @each $variant in map-keys($variants) {
+    &.btn-#{$variant} {
+      border-color: map-get($variants, $variant);
     }
   }
 }
