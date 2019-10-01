@@ -245,7 +245,9 @@ export default {
           <vs-header-drawer-toggle
             module-name="site-search"
             type="vs-site-search-toggle-button"
-          />
+          >
+            Search
+          </vs-header-drawer-toggle>
 
           <vs-header-drawer-toggle
             module-name="favourites-list"
