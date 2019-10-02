@@ -1,6 +1,12 @@
 <template>
   <vs-row v-show="isVisible" @focus="focusOnContent" tabindex="-1">
-    <vs-col cols="auto" order="2" v-if="showClose">
+    <vs-col
+      cols-sm="12"
+      cols-md="auto"
+      order-md="2"
+      class="d-sm-flex justify-sm-content-end"
+      v-if="showClose"
+    >
       <vs-close-button
         class="vs-header__drawer__close-button"
         @click.native="closeDrawer"
@@ -96,6 +102,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "~bootstrap/scss/utilities/flex";
+
 .vs-header__drawer__close-button {
   right: 1em;
 }
