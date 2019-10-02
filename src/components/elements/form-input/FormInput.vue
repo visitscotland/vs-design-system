@@ -6,6 +6,7 @@
       [focusColourClass]: focusColourClass,
     }"
     :size="size"
+    v-bind="$attrs"
     v-model="inputVal"
   ></b-form-input>
 </template>
