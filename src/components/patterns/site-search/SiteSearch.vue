@@ -105,7 +105,7 @@ export default {
   data() {
     return {
       searchTerm: "",
-      validated: false,
+      validated: null,
     }
   },
   computed: {
@@ -123,7 +123,7 @@ export default {
     onSubmit($event) {
       if (!this.isValid) {
         $event.preventDefault()
-        this.validated = true
+        this.validated = false
       }
     },
   },
