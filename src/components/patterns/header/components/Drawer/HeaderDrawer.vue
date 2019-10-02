@@ -14,13 +14,12 @@
 import smoothscroll from "smoothscroll-polyfill"
 import { BCollapse } from "bootstrap-vue"
 import VsContainer from "@components/elements/layout/Container"
-import store, { names as storeNames } from "../../header.store"
+import headerStore from "../../header.store"
 
 export default {
   name: "VsHeaderDrawer",
   status: "prototype",
   release: "0.0.1",
-  store,
   components: {
     VsContainer,
     BCollapse,
@@ -28,7 +27,7 @@ export default {
   data() {
     return {
       drawer: {
-        isOpen: !!store.getters["header/drawer/module"],
+        isOpen: !!headerStore.getters["header/drawer/module"],
       },
     }
   },
@@ -49,7 +48,7 @@ export default {
   },
   computed: {
     drawerModule() {
-      return store.getters["header/drawer/module"]
+      return headerStore.getters["header/drawer/module"]
     },
   },
   watch: {
