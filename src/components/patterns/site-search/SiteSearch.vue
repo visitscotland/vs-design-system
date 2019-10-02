@@ -38,7 +38,7 @@
           variant="transparent"
           type="button"
           focus-colour="pink"
-          @click.native.prevent="clearSearchField()"
+          @click.native.prevent="clearSearchFieldAndFocus()"
         >
           <span class="sr-only">{{ clearButtonText }}</span>
           <vs-icon name="close" size="xs" variant="dark" />
@@ -62,6 +62,8 @@
 <script>
 import VsIcon from "@components/elements/icon/Icon"
 import VsFormInput from "@components/elements/form-input/FormInput"
+import headerStore from "../header/header.store"
+
 import {
   BForm,
   BFormInput,
@@ -70,7 +72,6 @@ import {
   BInputGroupAppend,
   BInputGroupPrepend,
 } from "bootstrap-vue"
-import headerStore from "../header/"
 
 export default {
   name: "VsSiteSearch",
@@ -110,17 +111,30 @@ export default {
     }
   },
   computed: {
+    drawerModule() {
+      return headerStore.getters["header/drawer/module"]
+    },
     isValid() {
       return this.searchTerm.length > 0
+    },
+  },
+  watch: {
+    drawerModule(newValue) {
+      if (newValue !== "site-search") {
+        this.clearSearchField()
+      }
     },
   },
   methods: {
     clearSearchField() {
       this.searchTerm = ""
-      this.focusOnInput()
     },
     focusOnInput() {
       this.$refs.searchInput.$el.focus()
+    },
+    clearSearchFieldAndFocus() {
+      this.clearSearchField()
+      this.focusOnInput()
     },
     onSubmit($event) {
       if (!this.isValid) {
