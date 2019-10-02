@@ -7,7 +7,7 @@
     method="get"
     :novalidate="true"
     :validated="validated"
-    @focus="onFocus"
+    @focus="focusOnInput"
     @submit="onSubmit"
     tabindex="-1"
   >
@@ -24,12 +24,13 @@
         autocomplete="off"
         size="lg"
         v-model="searchTerm"
-        :state="isValid"
+        :state="validated"
         ref="searchInput"
         id="search-input"
+        @input.native="onInput"
       />
 
-      <b-form-invalid-feedback v-if="validated && !isValid" :state="isValid">{{
+      <b-form-invalid-feedback v-if="validated === false" :state="validated">{{
         validationText
       }}</b-form-invalid-feedback>
       <div v-if="searchTerm.length" class="position-absolute vs-search__clear-container">
@@ -110,21 +111,27 @@ export default {
   },
   computed: {
     isValid() {
-      return this.searchTerm.length > 1
+      return this.searchTerm.length > 0
     },
   },
   methods: {
     clearSearchField() {
       this.searchTerm = ""
+      this.focusOnInput()
     },
-    onFocus() {
+    focusOnInput() {
       this.$refs.searchInput.$el.focus()
     },
     onSubmit($event) {
       if (!this.isValid) {
         $event.preventDefault()
         this.validated = false
+      } else {
+        return true
       }
+    },
+    onInput() {
+      this.validated = this.isValid ? null : false
     },
   },
 }
@@ -158,8 +165,7 @@ export default {
 <docs>
   ```jsx
   <div>
-    <vs-site-search
-    />
+    <vs-site-search />
   </div>
   ```
 </docs>
