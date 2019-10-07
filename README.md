@@ -230,6 +230,43 @@ To make fixtures data available for easy inclusion in `docs` block examples, cre
 </docs>
 ```
 
+## Rendora Server-side rendering POC
+
+The Rendora app in this repo can be used to run a local SSR service for prototyping of the use of SSR to render this repo's Hippo site, which includes Vue components or components from some other frontend framework.
+
+The following instructions list how to get the demo running. These instructions install GO and build Rendora manually. There's also a Docker image for installing and running Rendora running - check the README inside the Rendora folder for details on how to get that to work. It would be replacing steps 2 and 3.
+
+1. Install and build frontend assets
+
+- `yarn` (in root directory)
+- `cd hippo/frontend`
+- `yarn`
+- `yarn build`
+
+2. Install Rendora
+
+- Install GO V1.11
+- `cd rendora` (from root directory)
+- `make build`
+- `sudo make install`
+
+3. Run headless Chrome and Rendora
+
+- `google-chrome --headless --remote-debugging-port=9222`
+- `cd rendora` (from root directory)
+- `rendora --config config.yaml`
+
+4. Run Hippo
+
+- `cd hippo` (from root directory)
+- `mvn clean verify`
+- `mvn -Pcargo.run -Dpath.repo=storage`
+
+5. Enjoy that sweet SSR nectar
+
+- Go to [http://localhost:8080/site/demo](http://localhost:8080/site/demo) and view source to see the Vue demo page without SSR
+- Go to [http://localhost:3001/site/demo](http://localhost:3001/site/demo)
+
 ## TODO
 
 - Fix deep selectors issue \*
