@@ -122,6 +122,7 @@ export default {
     drawerModule(newValue) {
       if (newValue !== "site-search") {
         this.clearSearchField()
+        this.resetValidation()
       }
     },
   },
@@ -147,6 +148,9 @@ export default {
     onInput() {
       this.validated = this.isValid ? null : false
     },
+    resetValidation() {
+      this.validated = null
+    }
   },
 }
 </script>
