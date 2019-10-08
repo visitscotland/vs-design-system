@@ -7,20 +7,34 @@ aliases:
 props:
   - name: font-size-base
     value: "{!font_size_base}"
-  - name: h1-font-size-lg
-    value: "{!font_size_base} * 3"
+  - name: font-size-lg
+    value: "{!font_size_base} * 1.25"
+  - name: font-size-sm
+    value: "{!font_size_base} * .875"
   - name: h1-font-size
-    value: "{!font_size_base} * 2"
+    value: "{!font_size_base} * 3.75"
   - name: h2-font-size
     value: "{!font_size_base} * 1.75"
   - name: h3-font-size
-    value: "{!font_size_base} * 1.5"
-  - name: h4-font-size
     value: "{!font_size_base} * 1.25"
+  - name: h4-font-size
+    value: "{!font_size_base}"
   - name: h5-font-size
     value: "{!font_size_base}"
   - name: h6-font-size
+    value: "{!font_size_base}"
+  - name: display1-size
+    value: "{!font_size_base} * 1.875"
+  - name: display2-size
+    value: "{!font_size_base} * 1.5"
+  - name: display3-size
+    value: "{!font_size_base} * 1.125"
+  - name: display4-size
     value: "{!font_size_base} * 0.875"
+  - name: lead-font-size
+    value: "{!font_size_base} * 1.25"
+  - name: small-font-size
+    value: "{!font_size_base} * .875"
 global:
   type: number
   category: font-size
