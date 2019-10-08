@@ -11,6 +11,7 @@
 </template>
 
 <script>
+import { isNumber } from "lodash"
 /**
  * Headings are used as the titles of each major section of a page in the
  * interface. For example, templates generally use headings as their title.
@@ -19,22 +20,22 @@
 export default {
   name: "VsHeading",
   status: "prototype",
-  release: "1.0.0",
+  release: "0.1.0",
   props: {
     /**
      * The heading level used for the heading.
-     * `h1, h2, h3, h4, h5, h6`
+     * `1, 2, 3, 4, 5, 6`
      */
     level: {
       type: [String, Number],
       default: "1",
       validator: value => {
-        return value.match(/(1|2|3|4|5|6)/)
+        return isNumber(value) ? value > 0 && value < 7 : value.match(/(1|2|3|4|5|6)/)
       },
     },
 
     /**
-     * Set the thin font
+     * Use the thin font
      */
     thin: {
       type: Boolean,
@@ -53,32 +54,25 @@ export default {
 @import "~bootstrap/scss/utilities/display";
 @import "~bootstrap/scss/type";
 
+$font-sizes: (
+  1: $h1-font-size,
+  2: $h2-font-size,
+  3: $h3-font-size,
+  4: $h4-font-size,
+  5: $h5-font-size,
+  6: $h6-font-size,
+);
+
 .heading {
-  @at-root h1#{&}:not([class*="display"]) {
-    letter-spacing: $h1-font-size * 0.1;
-    @include media-breakpoint-up(lg) {
-      letter-spacing: $letter-spacing-h1;
+  @each $level, $size in $font-sizes {
+    @at-root h#{$level}#{&} {
+      letter-spacing: $size * 0.1;
+      @if $level == 1 {
+        @include media-breakpoint-up(lg) {
+          letter-spacing: $letter-spacing-h1;
+        }
+      }
     }
-  }
-
-  @at-root h2#{&} {
-    letter-spacing: $h2-font-size * 0.1;
-  }
-
-  @at-root h3#{&} {
-    letter-spacing: $h3-font-size * 0.1;
-  }
-
-  @at-root h4#{&} {
-    letter-spacing: $h4-font-size * 0.1;
-  }
-
-  @at-root h5#{&} {
-    letter-spacing: $h5-font-size * 0.1;
-  }
-
-  @at-root h6#{&} {
-    letter-spacing: $h6-font-size * 0.1;
   }
 
   &.heading--thin {
@@ -90,30 +84,23 @@ export default {
 <docs>
   ```jsx
   <div>
-    <vs-heading>The quick brown fox (level 1/default)</vs-heading>
+    <vs-heading>H1 Heading</vs-heading>
+    <vs-heading thin>H1 Heading</vs-heading>
     <br />
-    <vs-heading level="2">The quick brown fox (level 2)</vs-heading>
+    <vs-heading level="2">H2 Heading</vs-heading>
+    <vs-heading thin level="2">H2 Heading</vs-heading>
     <br />
-    <vs-heading level="3">The quick brown fox (level 3)</vs-heading>
+    <vs-heading level="3">H3 Heading</vs-heading>
+    <vs-heading thin level="3">H3 Heading</vs-heading>
     <br />
-    <vs-heading level="4">The quick brown fox (level 4)</vs-heading>
+    <vs-heading level="4">H4 Heading</vs-heading>
+    <vs-heading thin level="4">H4 Heading</vs-heading>
     <br />
-    <vs-heading level="5">The quick brown fox (level 5)</vs-heading>
+    <vs-heading level="5">H5 Heading</vs-heading>
+    <vs-heading thin level="5">H5 Heading</vs-heading>
     <br />
-    <vs-heading level="6">The quick brown fox (level 6)</vs-heading>
-    <br />
-    <vs-heading thin>The quick brown fox (thin level 1/default)</vs-heading>
-    <br />
-    <vs-heading thin level="2">The quick brown fox (thin level 2/default)</vs-heading>
-    <br />
-    <vs-heading thin level="3">The quick brown fox (thin level 3/default)</vs-heading>
-    <br />
-    <vs-heading thin level="4">The quick brown fox (thin level 4/default)</vs-heading>
-    <br />
-    <vs-heading thin level="5">The quick brown fox (thin level 5/default)</vs-heading>
-    <br />
-    <vs-heading thin level="6">The quick brown fox (thin level 6/default)</vs-heading>
-    <br />
+    <vs-heading level="6">H6 Heading</vs-heading>
+    <vs-heading thin level="6">H6 Heading</vs-heading>
   </div>
   ```
 </docs>
