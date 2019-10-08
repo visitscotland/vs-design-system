@@ -1,10 +1,10 @@
 <template>
   <vs-row v-show="isVisible" @focus="focusOnContent" tabindex="-1">
     <vs-col
-      cols-sm="12"
-      cols-md="auto"
+      cols="12"
+      md="auto"
       order-md="2"
-      class="d-sm-flex justify-sm-content-end"
+      class="d-flex justify-content-end"
       v-if="showClose"
     >
       <vs-close-button
@@ -15,7 +15,10 @@
         Close the header drawer
       </vs-close-button>
     </vs-col>
-    <vs-col>
+    <vs-col
+      md="10"
+      xl="11"
+      >
       <slot />
       <button @focus="closeDrawer" class="catch-focus__button" />
     </vs-col>
@@ -102,6 +105,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "~bootstrap/scss/utilities/display";
 @import "~bootstrap/scss/utilities/flex";
 
 .vs-header__drawer__close-button {
