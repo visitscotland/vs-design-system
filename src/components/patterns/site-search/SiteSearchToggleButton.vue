@@ -33,7 +33,7 @@ export default {
 
 .vs-header__site-search__toggle-button {
   font-size: 1.125rem;
-  font-weight: $font-weight-semi-bold;
+  font-weight: $font-weight-bold;
 }
 </style>
 

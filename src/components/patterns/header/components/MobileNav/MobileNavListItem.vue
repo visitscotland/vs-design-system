@@ -226,7 +226,7 @@ export default {
   border-bottom: 1px solid $gray-tint-6;
   color: $color-base-text;
   display: flex;
-  font-weight: $font-weight-semi-bold;
+  font-weight: $font-weight-bold;
   position: relative;
   justify-content: space-between;
   transition: background-color 250ms ease-in-out;

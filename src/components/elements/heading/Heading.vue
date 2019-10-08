@@ -3,12 +3,10 @@
     :is="type"
     class="heading"
     :class="{
-      ['display-' + display]: display,
-      'display-secondary': displaySecondary,
-      'my-4': type === 'h1',
+      'heading--thin': thin,
     }"
   >
-    <small v-if="sub" class="sub-heading d-block">{{ sub }}</small> <slot />
+    <slot />
   </component>
 </template>
 
@@ -36,24 +34,10 @@ export default {
     },
 
     /**
-     * Set display heading size
+     * Set the thin font
      */
-    display: {
-      type: [String, Number],
-    },
-
-    /**
-     * Set display heading size
-     */
-    displaySecondary: {
+    thin: {
       type: Boolean,
-    },
-
-    /**
-     * The sub-heading text
-     */
-    sub: {
-      type: String,
     },
   },
   computed: {
@@ -70,47 +54,35 @@ export default {
 @import "~bootstrap/scss/type";
 
 .heading {
-  // @include reset;
-  @extend .mb-3;
-  font-family: $font-family-heading;
-  line-height: $line-height-xs;
-  color: $color-base-text;
-
   @at-root h1#{&}:not([class*="display"]) {
-    letter-spacing: $spacing-xs;
+    letter-spacing: $h1-font-size * 0.1;
     @include media-breakpoint-up(lg) {
-      font-size: $h1-font-size-lg;
+      letter-spacing: $letter-spacing-h1;
     }
   }
 
   @at-root h2#{&} {
-    letter-spacing: $spacing-s;
+    letter-spacing: $h2-font-size * 0.1;
   }
 
-  @at-root h1#{&},
-    h2#{&},
-    h3#{&},
-    h4#{&} {
-    font-weight: $font-weight-semi-bold;
+  @at-root h3#{&} {
+    letter-spacing: $h3-font-size * 0.1;
   }
 
-  @at-root h5#{&},
-    h6#{&} {
-    font-weight: $font-weight-normal;
+  @at-root h4#{&} {
+    letter-spacing: $h4-font-size * 0.1;
   }
 
-  .sub-heading {
-    color: $color-yellow;
-    font-weight: $font-weight-semi-bold;
-    font-size: 60%;
+  @at-root h5#{&} {
+    letter-spacing: $h5-font-size * 0.1;
   }
 
-  &[class*="display"] {
-    font-family: $font-family-display;
+  @at-root h6#{&} {
+    letter-spacing: $h6-font-size * 0.1;
+  }
 
-    &.display-secondary {
-      font-family: $font-family-display-secondary;
-    }
+  &.heading--thin {
+    font-family: $headings-font-family-thin;
   }
 }
 </style>
@@ -126,19 +98,22 @@ export default {
     <br />
     <vs-heading level="4">The quick brown fox (level 4)</vs-heading>
     <br />
-    <vs-heading sub="Jumps over the lazy dog">The quick brown fox</vs-heading>
+    <vs-heading level="5">The quick brown fox (level 5)</vs-heading>
     <br />
-    <vs-heading display="1">Display 1</vs-heading>
+    <vs-heading level="6">The quick brown fox (level 6)</vs-heading>
     <br />
-    <vs-heading display="2">Display 2</vs-heading>
+    <vs-heading thin>The quick brown fox (thin level 1/default)</vs-heading>
     <br />
-    <vs-heading display="3">Display 3</vs-heading>
+    <vs-heading thin level="2">The quick brown fox (thin level 2/default)</vs-heading>
     <br />
-    <vs-heading display="4">Display 4</vs-heading>
+    <vs-heading thin level="3">The quick brown fox (thin level 3/default)</vs-heading>
     <br />
-    <vs-heading display="4" sub="With subheading">Display 4</vs-heading>
+    <vs-heading thin level="4">The quick brown fox (thin level 4/default)</vs-heading>
     <br />
-    <vs-heading display="1" display-secondary>Display 1 secondary</vs-heading>
+    <vs-heading thin level="5">The quick brown fox (thin level 5/default)</vs-heading>
+    <br />
+    <vs-heading thin level="6">The quick brown fox (thin level 6/default)</vs-heading>
+    <br />
   </div>
   ```
 </docs>
