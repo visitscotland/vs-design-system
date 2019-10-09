@@ -96,6 +96,7 @@ $variants: (
 
 .btn {
   -webkit-appearance: none;
+  border: none;
   @include vs-focus;
 
   &.btn-transparent {
