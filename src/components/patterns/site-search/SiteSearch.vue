@@ -1,7 +1,7 @@
 <template>
   <b-form
     role="search"
-    class="d-flex align-items-start"
+    class="d-flex align-items-start py-2 py-md-4"
     action
     method="get"
     :novalidate="true"
@@ -36,7 +36,6 @@
         <vs-button
           variant="transparent"
           type="button"
-          focus-colour="pink"
           @click.native.prevent="clearSearchFieldAndFocus()"
         >
           <span class="sr-only">{{ clearButtonText }}</span>
@@ -44,17 +43,15 @@
         </vs-button>
       </div>
     </div>
-    <div class="d-flex">
-      <vs-button
-        type="submit"
-        class="px-md-5"
-        size="lg"
-        :variant="'primary-pink'"
-        focus-style="inset"
-        focus-colour="white"
-        >{{ submitButtonText }}</vs-button
-      >
-    </div>
+    <vs-button
+      type="submit"
+      class="px-md-5"
+      size="lg"
+      :variant="'primary-pink'"
+      focus-style="outset"
+      focus-colour="pink"
+      >{{ submitButtonText }}</vs-button
+    >
   </b-form>
 </template>
 
