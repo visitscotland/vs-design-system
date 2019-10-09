@@ -65,7 +65,8 @@ export default {
   @include vs-focus;
 
   &.form-control {
-    border: 2px solid $gray-tint-3;
+    border: none;
+    box-shadow: inset 0 0 0 2px $gray-tint-3;
   }
 }
 </style>
