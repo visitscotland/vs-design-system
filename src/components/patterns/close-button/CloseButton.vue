@@ -6,7 +6,7 @@
     focus-colour="pink"
   >
     <span class="sr-only"><slot /></span>
-    <vs-icon name="close" size="xs" variant="dark" />
+    <vs-icon name="close" size="sm" variant="dark" />
   </vs-button>
 </template>
 
