@@ -110,7 +110,11 @@ export default {
     setFocus() {
       var closeButton = "submenu-close-" + this.toggleId
       setTimeout(() => {
-        document.getElementById(closeButton).focus()
+        let $closeButton = document.getElementById(closeButton)
+
+        if ($closeButton) {
+          $closeButton.focus()
+        }
       }, 100)
     },
   },
