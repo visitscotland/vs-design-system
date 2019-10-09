@@ -1,6 +1,5 @@
 <template>
   <b-form
-    inline
     role="search"
     class="d-flex align-items-start"
     action
@@ -19,7 +18,7 @@
 
       <vs-form-input
         type="search"
-        class="px-5 vs-site-search__input"
+        class="px-9 vs-site-search__input"
         :placeholder="labelText"
         autocomplete="off"
         size="lg"
