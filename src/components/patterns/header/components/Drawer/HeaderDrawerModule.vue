@@ -4,12 +4,13 @@
       cols="12"
       md="auto"
       order-md="2"
-      class="d-flex justify-content-end"
+      class="d-none d-md-flex justify-content-end align-self-md-start"
       v-if="showClose"
     >
       <vs-close-button
         class="vs-header__drawer__close-button"
         @click.native="closeDrawer"
+        @keydown.native="checkKeydown($event)"
         ref="closeButton"
       >
         Close the header drawer
@@ -91,6 +92,11 @@ export default {
     focusOnContent() {
       if (isFunction(get(this.$slots, "default[0].componentInstance.$el.focus"))) {
         this.$slots.default[0].componentInstance.$el.focus()
+      }
+    },
+    checkKeydown($event) {
+      if ($event.key === "Tab" && $event.shiftKey) {
+        this.closeDrawer()
       }
     },
   },
