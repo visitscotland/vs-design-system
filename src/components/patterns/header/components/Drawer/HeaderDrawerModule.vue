@@ -1,24 +1,23 @@
 <template>
-  <vs-row v-show="isVisible" @focus="focusOnContent" tabindex="-1">
-    <vs-col
-      cols="12"
-      md="auto"
-      order-md="2"
-      class="d-none d-md-flex justify-content-end align-self-md-start"
+  <vs-row class="position-relative" v-show="isVisible" @focus="focusOnContent" tabindex="-1">
+    <div 
       v-if="showClose"
-    >
+      class="d-none d-md-block position-absolute close-button-wrapper">
       <vs-close-button
         class="vs-header__drawer__close-button"
         @click.native="closeDrawer"
         @keydown.native="checkKeydown($event)"
+        
         ref="closeButton"
       >
         Close the header drawer
       </vs-close-button>
-    </vs-col>
+    </div>
     <vs-col
       md="10"
-      xl="11"
+      xl="8"
+      offset-md="1"
+      offset-xl="2"
       >
       <slot />
       <button @focus="closeDrawer" class="catch-focus__button" />
@@ -113,9 +112,11 @@ export default {
 <style lang="scss" scoped>
 @import "~bootstrap/scss/utilities/display";
 @import "~bootstrap/scss/utilities/flex";
+@import "~bootstrap/scss/utilities/position";
 
-.vs-header__drawer__close-button {
-  right: 1em;
+.close-button-wrapper {
+  right: 0;
+  top: 0;
 }
 
 .catch-focus__button {
