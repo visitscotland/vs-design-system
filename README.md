@@ -87,16 +87,18 @@ The "system" and "system components" builds will compile artefacts for inclusion
 
 **This script is the recommended way of including assets from the design system in other projects.**
 
-This build creates a set of artefacts that allow for the inclusion of specific components of the design system in other projects.
+This build creates a set of artefacts that allow for the inclusion of specific components and global site-wide styles of the design system in other projects.
 
 - `yarn build:system:components`
 
-This script compiles the tokens (via theo) then compiles the design system assets into discrete chunks and generates a manifest.json file in the `dist/system-components` folder. The manifest.json file lists which of the generated assets are needed to include each component in another project.
+This script compiles the tokens (via theo) then compiles the design system assets into discrete chunks and generates a manifest.json file in the `dist/system-components` folder. The manifest.json file lists which of the generated assets are needed to include each Vue component and Vue store in another project.
 
 To include a component in another project:
 
 - Reference all the relevent assets for the component as listed in the manifest.json.
 - Register the component using the [`Vue.component()` function](https://vuejs.org/v2/guide/components-registration.html) or locally in another component/app.
+
+The build also creates a globalStyles module that contains any styles that need to applied site-wide, such as the Bootstrap reboot styles. The artefact for that module is output into the components folder along with the other components and stores.
 
 NOTE: An example webpack consuming package can be found in the `hippo/frontend` folder.
 
