@@ -1,10 +1,6 @@
 <template>
   <b-form-input
     class="vs-form-input"
-    :class="{
-      [focusStyleClass]: focusStyleClass,
-      [focusColourClass]: focusColourClass,
-    }"
     :size="size"
     v-bind="$attrs"
     v-model="inputVal"
@@ -13,7 +9,6 @@
 
 <script>
 import { BFormInput } from "bootstrap-vue"
-import focusStylesMixin from "@/mixins/focusStyles.js"
 
 /**
  * TODO: Document usage
@@ -26,14 +21,7 @@ export default {
   components: {
     BFormInput,
   },
-  mixins: [focusStylesMixin],
   props: {
-    focusStyle: {
-      default: "outset",
-    },
-    focusColour: {
-      default: "pink",
-    },
     size: {
       default: "sm",
     },
@@ -62,11 +50,16 @@ export default {
 @import "~bootstrap/scss/forms";
 
 .vs-form-input {
-  @include vs-focus;
-
   &.form-control {
-    border: none;
-    box-shadow: inset 0 0 0 2px $gray-tint-3;
+    border-color: $gray-tint-1;
+
+    &:focus {
+      border-color: $gray-tint-1;
+    }
+
+    &.is-invalid {
+      background-image: none;
+    }
   }
 }
 </style>
@@ -74,7 +67,7 @@ export default {
 <docs>
 ```jsx
 <div>
-  <vs-form-input focus-colour="pink" focus-style="underline" />
+  <vs-form-input />
 </div>
 ```
 </docs>
