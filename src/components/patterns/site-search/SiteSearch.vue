@@ -13,7 +13,7 @@
     <div class="d-flex flex-column flex-grow-1 position-relative">
       <label for="search-input" class="position-absolute vs-site-search__label">
         <span class="sr-only">{{ labelText }}</span>
-        <vs-icon name="search" size="sm" variant="dark" />
+        <vs-icon name="search" size="sm" variant="secondary" />
       </label>
 
       <vs-form-input
@@ -43,15 +43,9 @@
         </vs-button>
       </div>
     </div>
-    <vs-button
-      type="submit"
-      class="px-md-5"
-      size="lg"
-      :variant="'primary-pink'"
-      focus-style="outset"
-      focus-colour="pink"
-      >{{ submitButtonText }}</vs-button
-    >
+    <vs-button type="submit" class="px-md-5" size="lg" :variant="'primary-pink'">{{
+      submitButtonText
+    }}</vs-button>
   </b-form>
 </template>
 
@@ -146,7 +140,7 @@ export default {
     },
     resetValidation() {
       this.validated = null
-    }
+    },
   },
 }
 </script>
@@ -164,6 +158,10 @@ export default {
 
 .vs-site-search__input {
   @extend %reset-clear;
+
+  &::placeholder {
+    padding-left: 10px;
+  }
 }
 
 .vs-site-search__label {
