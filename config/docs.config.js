@@ -159,7 +159,7 @@ module.exports = {
                   path.join(__dirname, "../src/assets/tokens/tokens.scss"),
                   path.join(__dirname, "../src/assets/tokens/tokens.map.scss"),
                   path.join(__dirname, "../src/styles/styles.scss"),
-                  path.join(__dirname, "../src/styles/global.styles.scss"),
+                  path.join(__dirname, "../src/styles/core.styles.scss"),
                 ],
               },
             },

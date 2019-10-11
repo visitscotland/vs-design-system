@@ -19,7 +19,7 @@ const componentPaths = [
 const storePattern = "./src/components/**/*.store.js"
 
 let components = {
-  globalStyles: "./src/styles/global.styles.scss",
+  core: "./src/utils/core.system-components.js",
 }
 
 componentPaths
