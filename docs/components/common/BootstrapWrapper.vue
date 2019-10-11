@@ -30,6 +30,9 @@ export default {
 
 <style lang="scss" scoped>
 @import "../../../node_modules/bootstrap/scss/bootstrap-grid";
+@import "../../../node_modules/bootstrap/scss/card";
+@import "../../../node_modules/bootstrap/scss/utilities/flex";
+@import "../../../node_modules/bootstrap/scss/utilities/text";
 </style>
 
 <docs>

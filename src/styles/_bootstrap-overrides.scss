@@ -5,9 +5,8 @@ $enable-shadows: false;
 $enable-gradients: false;
 $enable-transitions: false;
 
-// headings
-$headings-font-family: $font-family-heading;
-$headings-font-weight: $font-weight-bold;
+// Responsive font sizes
+$enable-responsive-font-sizes: true;
 
 /* Colors */
 
@@ -23,6 +22,7 @@ $theme-colors: (
   danger: $color-theme-danger,
   light: $color-theme-light,
   dark: $color-theme-dark,
+  primary-pink: $color-theme-primary-pink,
 );
 
 $body-color: $color-base-text;
@@ -59,6 +59,10 @@ $spacers: (
   3: $spacer-3,
   4: $spacer-4,
   5: $spacer-5,
+  6: $spacer-6,
+  7: $spacer-7,
+  8: $spacer-8,
+  9: $spacer-9,
 );
 /* Border Radius */
 $border-radius: $border-radius-default;

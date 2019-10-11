@@ -90,6 +90,7 @@ module.exports = {
   require: [
     path.join(__dirname, "../docs/docs.helper.js"),
     path.join(__dirname, "../docs/styles/docs.styles.scss"),
+    path.join(__dirname, "../src/assets/fixtures/index.js"),
   ],
   /**
    * Enabling the following option splits sections into separate views.

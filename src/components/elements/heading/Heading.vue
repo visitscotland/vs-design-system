@@ -3,16 +3,15 @@
     :is="type"
     class="heading"
     :class="{
-      ['display-' + display]: display,
-      'display-secondary': displaySecondary,
-      'my-4': type === 'h1',
+      'heading--thin': thin,
     }"
   >
-    <small v-if="sub" class="sub-heading d-block">{{ sub }}</small> <slot />
+    <slot />
   </component>
 </template>
 
 <script>
+import { isNumber } from "lodash"
 /**
  * Headings are used as the titles of each major section of a page in the
  * interface. For example, templates generally use headings as their title.
@@ -21,39 +20,25 @@
 export default {
   name: "VsHeading",
   status: "prototype",
-  release: "1.0.0",
+  release: "0.1.0",
   props: {
     /**
      * The heading level used for the heading.
-     * `h1, h2, h3, h4, h5, h6`
+     * `1, 2, 3, 4, 5, 6`
      */
     level: {
       type: [String, Number],
       default: "1",
       validator: value => {
-        return value.match(/(1|2|3|4|5|6)/)
+        return isNumber(value) ? value > 0 && value < 7 : value.match(/(1|2|3|4|5|6)/)
       },
     },
 
     /**
-     * Set display heading size
+     * Use the thin font
      */
-    display: {
-      type: [String, Number],
-    },
-
-    /**
-     * Set display heading size
-     */
-    displaySecondary: {
+    thin: {
       type: Boolean,
-    },
-
-    /**
-     * The sub-heading text
-     */
-    sub: {
-      type: String,
     },
   },
   computed: {
@@ -69,48 +54,29 @@ export default {
 @import "~bootstrap/scss/utilities/display";
 @import "~bootstrap/scss/type";
 
+$font-sizes: (
+  1: $h1-font-size,
+  2: $h2-font-size,
+  3: $h3-font-size,
+  4: $h4-font-size,
+  5: $h5-font-size,
+  6: $h6-font-size,
+);
+
 .heading {
-  // @include reset;
-  @extend .mb-3;
-  font-family: $font-family-heading;
-  line-height: $line-height-xs;
-  color: $color-base-text;
-
-  @at-root h1#{&}:not([class*="display"]) {
-    letter-spacing: $spacing-xs;
-    @include media-breakpoint-up(lg) {
-      font-size: $h1-font-size-lg;
+  @each $level, $size in $font-sizes {
+    @at-root h#{$level}#{&} {
+      letter-spacing: $size * 0.1;
+      @if $level == 1 {
+        @include media-breakpoint-up(lg) {
+          letter-spacing: $letter-spacing-h1;
+        }
+      }
     }
   }
 
-  @at-root h2#{&} {
-    letter-spacing: $spacing-s;
-  }
-
-  @at-root h1#{&},
-    h2#{&},
-    h3#{&},
-    h4#{&} {
-    font-weight: $font-weight-semi-bold;
-  }
-
-  @at-root h5#{&},
-    h6#{&} {
-    font-weight: $font-weight-normal;
-  }
-
-  .sub-heading {
-    color: $color-yellow;
-    font-weight: $font-weight-semi-bold;
-    font-size: 60%;
-  }
-
-  &[class*="display"] {
-    font-family: $font-family-display;
-
-    &.display-secondary {
-      font-family: $font-family-display-secondary;
-    }
+  &.heading--thin {
+    font-family: $headings-font-family-thin;
   }
 }
 </style>
@@ -118,27 +84,23 @@ export default {
 <docs>
   ```jsx
   <div>
-    <vs-heading>The quick brown fox (level 1/default)</vs-heading>
+    <vs-heading>H1 Heading</vs-heading>
+    <vs-heading thin>H1 Heading</vs-heading>
     <br />
-    <vs-heading level="2">The quick brown fox (level 2)</vs-heading>
+    <vs-heading level="2">H2 Heading</vs-heading>
+    <vs-heading thin level="2">H2 Heading</vs-heading>
     <br />
-    <vs-heading level="3">The quick brown fox (level 3)</vs-heading>
+    <vs-heading level="3">H3 Heading</vs-heading>
+    <vs-heading thin level="3">H3 Heading</vs-heading>
     <br />
-    <vs-heading level="4">The quick brown fox (level 4)</vs-heading>
+    <vs-heading level="4">H4 Heading</vs-heading>
+    <vs-heading thin level="4">H4 Heading</vs-heading>
     <br />
-    <vs-heading sub="Jumps over the lazy dog">The quick brown fox</vs-heading>
+    <vs-heading level="5">H5 Heading</vs-heading>
+    <vs-heading thin level="5">H5 Heading</vs-heading>
     <br />
-    <vs-heading display="1">Display 1</vs-heading>
-    <br />
-    <vs-heading display="2">Display 2</vs-heading>
-    <br />
-    <vs-heading display="3">Display 3</vs-heading>
-    <br />
-    <vs-heading display="4">Display 4</vs-heading>
-    <br />
-    <vs-heading display="4" sub="With subheading">Display 4</vs-heading>
-    <br />
-    <vs-heading display="1" display-secondary>Display 1 secondary</vs-heading>
+    <vs-heading level="6">H6 Heading</vs-heading>
+    <vs-heading thin level="6">H6 Heading</vs-heading>
   </div>
   ```
 </docs>
