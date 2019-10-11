@@ -45,22 +45,25 @@ props:
     value: "#6A6366"
     category: "Theme colours"
   - name: color_theme_success
-    value: "#0E7027"
+    value: "#1E6101"
     category: "Theme colours"
   - name: color_theme_info
-    value: "#0E2670"
+    value: "#2E5F95"
     category: "Theme colours"
   - name: color_theme_warning
-    value: "#FCCA1B"
+    value: "#7B6210"
     category: "Theme colours"
   - name: color_theme_danger
-    value: "#AF006E"
+    value: "#AE2940"
     category: "Theme colours"
   - name: color_theme_light
     value: "#EFEFEF"
     category: "Theme colours"
   - name: color_theme_dark
     value: "#191919"
+    category: "Theme colours"
+  - name: color_theme_primary_pink
+    value: "#AF006E"
     category: "Theme colours"
 
   - name: purple_tint_1

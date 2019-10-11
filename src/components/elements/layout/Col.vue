@@ -1,18 +1,17 @@
 <template>
-  <b-col :tag="tag" v-bind="breakpointAttrs"> <slot /> </b-col>
+  <b-col v-bind="$attrs"> <slot /> </b-col>
 </template>
 
 <script>
 import { BCol } from "bootstrap-vue"
-import colsMixin from "@/mixins/cols.js"
+import breakpoints from "@/utils/breakpoints.bootstrap-vue.config.js"
 
 /**
  * Column components are used to organise, align and space sibling blocks of content within row
  * elements. They are always direct children of row elements/components. Our column component
- * utilises <a href="https://bootstrap-vue.js.org/docs/components/layout">the Bootstrap Vue b-col component</a>.
+ * utilises <a href="https://bootstrap-vue.js.org/docs/components/layout">the Bootstrap Vue BCol component</a>.
  *
- * NOTE: this component uses the cols mixin, which means that it has the following props for defining
- *
+ * NOTE: this component is a wrapper for the BCol component so any BCol prop can be applied to it.
  */
 
 export default {
@@ -21,22 +20,6 @@ export default {
   release: "0.0.1",
   components: {
     BCol,
-  },
-  mixins: [colsMixin],
-  props: {
-    /**
-     * The number of columns this component should take up
-     */
-    cols: {
-      type: [String, Number],
-    },
-
-    /**
-     * The html element name used for the component
-     */
-    tag: {
-      type: String,
-    },
   },
 }
 </script>
@@ -51,33 +34,20 @@ export default {
   <div class="style-cols">
     <vs-container>
       <vs-row>
-        <vs-col>
-          1 of 1
+        <vs-col cols="6" sm="12">
+          <pre>cols="6" sm="12"</pre>
         </vs-col>
       </vs-row>
       <vs-row>
-        <vs-col>
-          1 of 2
+        <vs-col cols="8" lg="3">
+          <pre>cols="8" lg="3"</pre>
         </vs-col>
         <vs-col>
-          2 of 2
-        </vs-col>
-      </vs-row>
-      <vs-row>
-        <vs-col>
-          1 of 3
-        </vs-col>
-        <vs-col>
-          2 of 3
-        </vs-col>
-        <vs-col>
-          3 of 3
+          <pre>no cols props</pre>
         </vs-col>
       </vs-row>
     </vs-container>
   </div>
 
-
-  
   ```
 </docs>

@@ -1,10 +1,9 @@
 <template>
-  <vs-col-wrapper class="article" :tag="tag" v-bind="breakpointAttrs"> <slot /> </vs-col-wrapper>
+  <vs-col class="article" :tag="tag" v-bind="$attrs"> <slot /> </vs-col>
 </template>
 
 <script>
-import { VsColWrapper } from "../elements/layout"
-import colsMixin from "@/mixins/cols.js"
+import { VsCol } from "../elements/layout"
 
 /**
  * The Article component is a wrapper for article content, generally wrapped in content sections
@@ -14,9 +13,8 @@ export default {
   status: "prototype",
   release: "0.0.1",
   components: {
-    VsColWrapper,
+    VsCol,
   },
-  mixins: [colsMixin],
   props: {
     /**
      * The html element name used for the component
@@ -36,7 +34,7 @@ export default {
 
   <vs-container>
     <vs-row>
-      <vs-article sm="10" md="8" lg="6" xl="4" xxl="2">
+      <vs-article md="12" xl="8" >
         <vs-content-section title="First section" lead>
           <p>This is the lead section of the article. </p>
           
@@ -51,6 +49,13 @@ export default {
           <p>Travel Travel wanderlust adventure colorful traveling modern Travel expedition. Theme Travel expedition expedition cute traveler expedition. Excursion traveling traveling travelblogger darn clean fun. Adventure website pretty WordPress design, design whimsical webdesign expedition whimsical. Design traveling darn website simple website pretty traveler.</p>
         </vs-content-section>
       </vs-article>
+
+      <vs-sidebar>
+        <vs-content-section tag="aside" heading="Aside section title">
+          Sidebar/aside content section
+        </vs-content-section>
+      </vs-sidebar>
+
     </vs-row>
   </vs-container>
 

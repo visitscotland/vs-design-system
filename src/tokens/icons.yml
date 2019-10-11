@@ -4,6 +4,8 @@
 #
 
 props:
+  icon_size_xxs:
+    value: "10px"
   icon_size_xs:
     value: "16px"
   icon_size_sm:
