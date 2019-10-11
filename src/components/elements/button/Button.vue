@@ -4,10 +4,6 @@
     :href="href"
     :tabindex="tabindex"
     class="d-flex align-items-center justify-content-center"
-    :class="{
-      [focusStyleClass]: focusStyleClass,
-      [focusColourClass]: focusColourClass,
-    }"
     :size="size"
   >
     <slot />
@@ -16,7 +12,6 @@
 
 <script>
 import { BButton } from "bootstrap-vue"
-import focusStylesMixin from "@/mixins/focusStyles.js"
 
 /**
  * Buttons are generally used for interface actions. Suitable for all-purpose use.
@@ -36,7 +31,6 @@ export default {
   components: {
     BButton,
   },
-  mixins: [focusStylesMixin],
   props: {
     /**
      * Use this option to render the button as an anchor element with the given href.
@@ -82,157 +76,42 @@ export default {
 @import "~bootstrap/scss/utilities/display";
 @import "~bootstrap/scss/utilities/flex";
 
-$variants: (
-  primary: $color-theme-primary,
-  secondary: $color-theme-secondary,
-  success: $color-theme-success,
-  danger: $color-theme-danger,
-  warning: $color-theme-warning,
-  info: $color-theme-info,
-  light: $color-theme-light,
-  dark: $color-theme-dark,
-  reverse-white: $color-white,
-);
-
 .btn {
-  -webkit-appearance: none;
-  border: none;
-  @include vs-focus;
-
-  &.btn-transparent {
-    background-color: transparent;
-    &:focus,
-    &:hover,
-    &:active {
-      background-color: transparent;
-    }
-  }
-
-  @each $variant in map-keys($variants) {
-    &.btn-#{$variant} {
-      border-color: map-get($variants, $variant);
-    }
-  }
-}
-
-.btn-dark {
-  &:hover {
-    background-color: $gray-shade-5;
-  }
+  transition: $transition-base;
 }
 </style>
 
 <docs>
 ```jsx
-<bs-wrapper class="p-4" style="background-color:rgb(210, 210, 210)">
 
   <bs-wrapper class="mb-4">
-    <h4>Primary variant (default)</h4>
-    <bs-wrapper class="d-flex">
-      <vs-button class="mr-2">Default</vs-button>
-      <vs-button focus-style="underline" class="mr-2">Focus style: underline</vs-button>
-      <vs-button focus-colour="pink" class="mr-2">Focus colour: pink</vs-button>
-      <vs-button focus-colour="white" class="mr-2">Focus colour: white</vs-button>
-      <vs-button focus-colour="black" class="mr-2">Focus colour: black</vs-button>
+    <h4>Variants</h4>
+    <bs-wrapper class="d-flex mb-4">
+      <vs-button class="mr-2">Primary (default)</vs-button>
+      <vs-button variant="secondary" class="mr-2">Secondary</vs-button>
+      <vs-button variant="success" class="mr-2">Success</vs-button>
+      <vs-button variant="danger" class="mr-2">Danger</vs-button>
+      <vs-button variant="warning" class="mr-2">Warning</vs-button>
+      <vs-button variant="info" class="mr-2">Info</vs-button>
+      <vs-button variant="light" class="mr-2">Light</vs-button>
+      <vs-button variant="dark" class="mr-2">Dark</vs-button>
+      <vs-button variant="transparent" class="mr-2">Transparent</vs-button>
+    </bs-wrapper>
+    <h4>Sizes</h4>
+    <bs-wrapper>
+      <vs-button class="mb-2" size="sm">Small</vs-button>
+      <vs-button class="mb-2" size="md">Medium</vs-button>
+      <vs-button class="mb-2" size="lg">Large</vs-button>
     </bs-wrapper>
   </bs-wrapper>
 
   <bs-wrapper class="mb-4">
-    <h4>Secondary variant</h4>
-    <bs-wrapper class="d-flex">
-      <vs-button variant="secondary" class="mr-2">Default</vs-button>
-      <vs-button variant="secondary" focus-style="underline" class="mr-2">Focus style: underline</vs-button>
-      <vs-button variant="secondary" focus-colour="pink" class="mr-2">Focus colour: pink</vs-button>
-      <vs-button variant="secondary" focus-colour="white" class="mr-2">Focus colour: white</vs-button>
-      <vs-button variant="secondary" focus-colour="black" class="mr-2">Focus colour: black</vs-button>
-    </bs-wrapper>
-  </bs-wrapper>
-
-  <bs-wrapper class="mb-4">
-    <h4>Success variant</h4>
-    <bs-wrapper class="d-flex">
-      <vs-button variant="success" class="mr-2">Default</vs-button>
-      <vs-button variant="success" focus-style="underline" class="mr-2">Focus style: underline</vs-button>
-      <vs-button variant="success" focus-colour="pink" class="mr-2">Focus colour: pink</vs-button>
-      <vs-button variant="success" focus-colour="white" class="mr-2">Focus colour: white</vs-button>
-      <vs-button variant="success" focus-colour="black" class="mr-2">Focus colour: black</vs-button>
-    </bs-wrapper>
-  </bs-wrapper>
-
-  <bs-wrapper class="mb-4">
-    <h4>Danger variant</h4>
-    <bs-wrapper class="d-flex">
-      <vs-button variant="danger" class="mr-2">Default</vs-button>
-      <vs-button variant="danger" focus-style="underline" class="mr-2">Focus style: underline</vs-button>
-      <vs-button variant="danger" focus-colour="pink" class="mr-2">Focus colour: pink</vs-button>
-      <vs-button variant="danger" focus-colour="white" class="mr-2">Focus colour: white</vs-button>
-      <vs-button variant="danger" focus-colour="black" class="mr-2">Focus colour: black</vs-button>
-    </bs-wrapper>
-  </bs-wrapper>
-
-  <bs-wrapper class="mb-4">
-    <h4>Warning variant</h4>
-    <bs-wrapper class="d-flex">
-      <vs-button variant="warning" class="mr-2">Default</vs-button>
-      <vs-button variant="warning" focus-style="underline" class="mr-2">Focus style: underline</vs-button>
-      <vs-button variant="warning" focus-colour="pink" class="mr-2">Focus colour: pink</vs-button>
-      <vs-button variant="warning" focus-colour="white" class="mr-2">Focus colour: white</vs-button>
-      <vs-button variant="warning" focus-colour="black" class="mr-2">Focus colour: black</vs-button>
-    </bs-wrapper>
-  </bs-wrapper>
-
-  <bs-wrapper class="mb-4">
-    <h4>Info variant</h4>
-    <bs-wrapper class="d-flex">
-      <vs-button variant="info" class="mr-2">Default</vs-button>
-      <vs-button variant="info" focus-style="underline" class="mr-2">Focus style: underline</vs-button>
-      <vs-button variant="info" focus-colour="pink" class="mr-2">Focus colour: pink</vs-button>
-      <vs-button variant="info" focus-colour="white" class="mr-2">Focus colour: white</vs-button>
-      <vs-button variant="info" focus-colour="black" class="mr-2">Focus colour: black</vs-button>
-    </bs-wrapper>
-  </bs-wrapper>
-
-  <bs-wrapper class="mb-4">
-    <h4>Light variant</h4>
-    <bs-wrapper class="d-flex">
-      <vs-button variant="light" class="mr-2">Default</vs-button>
-      <vs-button variant="light" focus-style="underline" class="mr-2">Focus style: underline</vs-button>
-      <vs-button variant="light" focus-colour="pink" class="mr-2">Focus colour: pink</vs-button>
-      <vs-button variant="light" focus-colour="white" class="mr-2">Focus colour: white</vs-button>
-      <vs-button variant="light" focus-colour="black" class="mr-2">Focus colour: black</vs-button>
-    </bs-wrapper>
-  </bs-wrapper>
-
-  <bs-wrapper class="mb-4">
-    <h4>Dark variant</h4>
-    <bs-wrapper class="d-flex">
-      <vs-button variant="dark" class="mr-2">Default</vs-button>
-      <vs-button variant="dark" focus-style="underline" class="mr-2">Focus style: underline</vs-button>
-      <vs-button variant="dark" focus-colour="pink" class="mr-2">Focus colour: pink</vs-button>
-      <vs-button variant="dark" focus-colour="white" class="mr-2">Focus colour: white</vs-button>
-      <vs-button variant="dark" focus-colour="black" class="mr-2">Focus colour: black</vs-button>
-    </bs-wrapper>
-  </bs-wrapper>
-
-  <bs-wrapper class="mb-4">
-    <h4>Transparent variant</h4>
-    <bs-wrapper class="d-flex">
-      <vs-button variant="transparent" class="mr-2">Default</vs-button>
-      <vs-button variant="transparent" focus-style="underline" class="mr-2">Focus style: underline</vs-button>
-      <vs-button variant="transparent" focus-colour="pink" class="mr-2">Focus colour: pink</vs-button>
-      <vs-button variant="transparent" focus-colour="white" class="mr-2">Focus colour: white</vs-button>
-      <vs-button variant="transparent" focus-colour="black" class="mr-2">Focus colour: black</vs-button>
-    </bs-wrapper>
-  </bs-wrapper>
-
-  <bs-wrapper class="mb-4">
-    <h4>Links</h4>
+    <h4>CTA Links</h4>
     <bs-wrapper class="d-flex">
       <vs-button href="https://www.visitscotland.com" class="mr-2">Link</vs-button>
       <vs-button href="https://www.google.com" class="mr-2">Another link</vs-button>
     </bs-wrapper>
   </bs-wrapper>
 
-</bs-wrapper>
 ```
 </docs>

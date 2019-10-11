@@ -1,12 +1,7 @@
 <template>
-  <vs-button
-    class="vs-close-button"
-    variant="transparent"
-    focus-style="underline"
-    focus-colour="pink"
-  >
+  <vs-button class="vs-close-button" variant="transparent">
     <span class="sr-only"><slot /></span>
-    <vs-icon name="close" size="sm" variant="dark" />
+    <vs-icon name="close" size="xs" variant="secondary" />
   </vs-button>
 </template>
 
