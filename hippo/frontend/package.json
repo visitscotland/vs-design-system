@@ -13,6 +13,7 @@
     "webpack-cli": "^3.3.7"
   },
   "scripts": {
+    "preinstall": "yarn --cwd ../..",
     "build": "yarn --cwd ../.. build:system:components && yarn build:skip",
     "build:skip": "webpack --config webpack.config.js"
   },
