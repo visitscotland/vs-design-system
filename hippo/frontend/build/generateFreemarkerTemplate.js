@@ -98,7 +98,7 @@ function generateTemplateContentHeadContribution(content, category) {
 }
 
 function generateTemplateContentWebfilePath(path) {
-  return "<@hst.webfile  path='design-system" + trimStart(path, "system-components") + "'/>"
+  return "<@hst.webfile  path='design-system/" + path + "'/>"
 }
 
 function outputTemplate(mod, moduleName, targetPath) {

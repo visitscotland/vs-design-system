@@ -98,7 +98,7 @@ const webpackConfig = merge(baseWebpackConfig, {
     ]),
     new ManifestPlugin({
       generate: generateManifest,
-      fileName: "system-components/manifest.json",
+      fileName: "manifest.json",
     }),
   ],
 })

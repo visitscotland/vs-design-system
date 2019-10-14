@@ -14,7 +14,7 @@ module.exports = {
     // Paths
     assetsRoot: path.resolve(__dirname, "../dist"),
     assetsSubDirectory: "assets",
-    assetsPublicPath: "/",
+    assetsPublicPath: "../",
 
     // Source map
     productionSourceMap: false,
@@ -43,7 +43,7 @@ module.exports = {
 
     // Paths
     assetsRoot: path.resolve(__dirname, "../dist"),
-    assetsSubDirectory: isComponentsBuild ? "system-components" : "system",
+    assetsSubDirectory: "./",
     assetsPublicPath: "/",
 
     // The system.js library target, supports all

@@ -7,7 +7,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8"/>
-    <link rel="stylesheet" href="<@hst.webfile  path="/design-system/components/globalStyles.css"/>" type="text/css"/>
+    <link rel="stylesheet" href="<@hst.webfile  path="/design-system/components/core.css"/>" type="text/css"/>
     <#if hstRequest.requestContext.cmsRequest>
       <link rel="stylesheet" href="<@hst.webfile  path="/css/cms-request.css"/>" type="text/css"/>
     </#if>
@@ -26,6 +26,7 @@
       <@hst.include ref="main"/>
       <@hst.include ref="footer"/>
     </div>
+	  <script type="text/javascript" src="<@hst.webfile  path='design-system/components/core.js'/>"></script>
     <@hst.headContributions categoryIncludes="htmlBodyEnd, scripts" xhtml=true/>
     <@hst.headContributions categoryIncludes="htmlAppInit" xhtml=true/>
   </body>
