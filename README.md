@@ -91,14 +91,14 @@ This build creates a set of artefacts that allow for the inclusion of specific c
 
 - `yarn build:system:components`
 
-This script compiles the tokens (via theo) then compiles the design system assets into discrete chunks and generates a manifest.json file in the `dist/system-components` folder. The manifest.json file lists which of the generated assets are needed to include each Vue component and Vue store in another project.
+This script compiles the tokens (via theo) then compiles the design system assets into discrete chunks and generates a manifest.json file in the `dist/` folder. The manifest.json file lists which of the generated assets are needed to include each Vue component and Vue store in another project.
 
 To include a component in another project:
 
 - Reference all the relevent assets for the component as listed in the manifest.json.
 - Register the component using the [`Vue.component()` function](https://vuejs.org/v2/guide/components-registration.html) or locally in another component/app.
 
-The build also creates a globalStyles module that contains any styles that need to applied site-wide, such as the Bootstrap reboot styles. The artefact for that module is output into the components folder along with the other components and stores.
+The build also creates a core module (consisting of core.js and core.css artefacts) that contains any styles that need to applied globally to all components, such as the Bootstrap reboot styles. To add JS to this module, include it in `src/utils/core.system-components.js`, which is the entry file for the core module. This entry file imports `src/styles/core.styles.scss`, so add any global Sass to that file.
 
 NOTE: An example webpack consuming package can be found in the `hippo/frontend` folder.
 
@@ -107,6 +107,8 @@ NOTE: An example webpack consuming package can be found in the `hippo/frontend` 
 This is the default Vue Design System build and produces a monolithic asset for inclusion of **all parts** of the design system in another project. This script is generally not how we use the design system at VS.
 
 - `yarn build:system`
+
+**NOTE: this build is not supported in this package and may not function**
 
 Detailed instructions for including the design system in this way [are detailed here](https://github.com/viljamis/vue-design-system/wiki/getting-started#using-design-system-as-an-npm-module).
 
@@ -125,7 +127,7 @@ NOTE: It is `vs-dotcom-ds` because that is this package's name.
 
 This will create a symlink between the target project folder and the local design-system folder. The target project's vs-dotcom-ds dependency will use the local design-system folder directly.
 
-**It is advised to reference the built artefacts in the `dist/system` or `dist/system-components` folders, in which case the design system assets will need to be rebuilt (using `yarn build:system:components` or `yarn build:system` for changes to source files to be propogated into the target project**.
+**It is advised to reference the built artefacts in the `dist/` folder, in which case the design system assets will need to be rebuilt (using `yarn build:system:components`) for changes to source files to be propogated into the target project**.
 
 ## VueX
 
