@@ -4,9 +4,7 @@ node_modules/
 dist/
 /test/unit/coverage/
 /.tmp
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
+*.log
 .env
 
 # Editor directories and files
