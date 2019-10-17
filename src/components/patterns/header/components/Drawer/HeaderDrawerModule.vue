@@ -1,24 +1,16 @@
 <template>
   <vs-row class="position-relative" v-show="isVisible" @focus="focusOnContent" tabindex="-1">
-    <div 
-      v-if="showClose"
-      class="d-none d-md-block position-absolute close-button-wrapper">
+    <div v-if="showClose" class="d-none d-md-block position-absolute close-button-wrapper">
       <vs-close-button
         class="vs-header__drawer__close-button"
         @click.native="closeDrawer"
         @keydown.native="checkKeydown($event)"
-        
         ref="closeButton"
       >
         Close the header drawer
       </vs-close-button>
     </div>
-    <vs-col
-      md="10"
-      xl="8"
-      offset-md="1"
-      offset-xl="2"
-      >
+    <vs-col md="10" xl="8" offset-md="1" offset-xl="2">
       <slot />
       <button @focus="closeDrawer" class="catch-focus__button" />
     </vs-col>
@@ -27,7 +19,7 @@
 
 <script>
 import Vue from "vue"
-import headerStore from "../../header.store"
+import drawerStore from "./drawer.store"
 import { isFunction, get } from "lodash"
 import VsCloseButton from "@components/patterns/close-button/CloseButton"
 import VsRow from "@components/elements/layout/Row"
@@ -71,7 +63,7 @@ export default {
   },
   computed: {
     isVisible() {
-      return headerStore.getters["header/drawer/isCurrentModule"](this.moduleName)
+      return drawerStore.getters["drawer/isCurrentModule"](this.moduleName)
     },
     hasDefaultSlot() {
       return isFunction(get(this.$scopedSlots, "default"))
@@ -79,7 +71,7 @@ export default {
   },
   methods: {
     closeDrawer() {
-      headerStore.dispatch("header/drawer/close")
+      drawerStore.dispatch("drawer/close")
     },
     onBecomeVisible() {
       if (this.focusOnOpen === "close" && this.showClose) {

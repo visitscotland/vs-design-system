@@ -1,4 +1,8 @@
+import Vuex from "vuex"
+import Vue from "vue"
 import { get, isFunction, includes } from "lodash"
+
+Vue.use(Vuex)
 
 export const state = {
   module: null,
@@ -49,10 +53,14 @@ export const actions = {
   },
 }
 
-export default {
-  namespaced: true,
-  state,
-  getters,
-  mutations,
-  actions,
-}
+export default new Vuex.Store({
+  modules: {
+    drawer: {
+      namespaced: true,
+      state,
+      getters,
+      mutations,
+      actions,
+    },
+  },
+})

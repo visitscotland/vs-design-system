@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import store from "../../header.store"
+import drawerStore from "./drawer.store"
 
 export default {
   name: "VsHeaderDrawerToggle",
@@ -28,15 +28,15 @@ export default {
   },
   computed: {
     moduleIsVisible() {
-      return store.getters["header/drawer/isCurrentModule"](this.moduleName)
+      return drawerStore.getters["drawer/isCurrentModule"](this.moduleName)
     },
   },
   methods: {
     closeDrawer() {
-      store.dispatch("header/drawer/close")
+      drawerStore.dispatch("drawer/close")
     },
     showModule() {
-      store.dispatch("header/drawer/showModule", {
+      drawerStore.dispatch("drawer/showModule", {
         moduleName: this.moduleName,
         returnFocusElement: this.$refs.self,
       })

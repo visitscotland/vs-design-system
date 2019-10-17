@@ -54,7 +54,7 @@ import VsSvg from "@components/elements/svg/Svg"
 import VsRow from "@components/elements/layout/Row"
 import VsCol from "@components/elements/layout/Col"
 import smoothscroll from "smoothscroll-polyfill"
-import store, { names as storeNames } from "./header.store"
+import drawerStore from "./components/Drawer/drawer.store"
 import VsHeaderDrawer from "./components/Drawer/HeaderDrawer"
 import VsHeaderDrawerToggle from "./components/Drawer/HeaderDrawerToggle"
 
@@ -62,7 +62,6 @@ export default {
   name: "VsHeader",
   status: "prototype",
   release: "0.0.1",
-  store,
   components: {
     VsCol,
     VsContainer,
@@ -74,7 +73,7 @@ export default {
   data() {
     return {
       drawer: {
-        isOpen: !!store.getters["header/drawer/module"],
+        isOpen: !!drawerStore.getters["drawer/module"],
       },
     }
   },
@@ -89,7 +88,7 @@ export default {
   },
   computed: {
     drawerModule() {
-      return store.getters["header/drawer/module"]
+      return drawerStore.getters["drawer/module"]
     },
   },
   watch: {
