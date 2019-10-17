@@ -17,7 +17,7 @@ const ManifestPlugin = require("webpack-manifest-plugin")
 
 const generateManifest = require("./system-components-generate-manifest")
 
-baseWebpackConfig.entry = require("../src/system-components")
+baseWebpackConfig.entry = require("../src/utils/entry.system-components.js")
 
 // Remove the CSS extract from the base config to prevent duplicate CSS file
 baseWebpackConfig.plugins = baseWebpackConfig.plugins.filter(plugin => {
@@ -98,7 +98,7 @@ const webpackConfig = merge(baseWebpackConfig, {
     ]),
     new ManifestPlugin({
       generate: generateManifest,
-      fileName: "system-components/manifest.json",
+      fileName: "manifest.json",
     }),
   ],
 })

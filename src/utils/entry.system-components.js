@@ -19,8 +19,7 @@ const componentPaths = [
 const storePattern = "./src/components/**/*.store.js"
 
 let components = {
-  // currently core styles only includes the bootstrap reset so leaving that out for now
-  // coreStyles: "./src/styles/styles.scss",
+  core: "./src/utils/core.system-components.js",
 }
 
 componentPaths

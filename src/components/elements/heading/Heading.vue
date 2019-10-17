@@ -53,6 +53,7 @@ export default {
 @import "~bootstrap/scss/utilities/spacing";
 @import "~bootstrap/scss/utilities/display";
 @import "~bootstrap/scss/type";
+@import "../../../assets/fonts/fonts.css";
 
 $font-sizes: (
   1: $h1-font-size,
