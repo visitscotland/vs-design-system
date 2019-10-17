@@ -15,7 +15,7 @@
 import drawerStore from "./drawer.store"
 
 export default {
-  name: "VsHeaderDrawerToggle",
+  name: "VsDrawerToggle",
   props: {
     type: {
       type: String,

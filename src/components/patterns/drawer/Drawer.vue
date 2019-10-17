@@ -17,7 +17,7 @@ import VsContainer from "@components/elements/layout/Container"
 import drawerStore from "./drawer.store"
 
 export default {
-  name: "VsHeaderDrawer",
+  name: "VsDrawer",
   status: "prototype",
   release: "0.0.1",
   components: {
