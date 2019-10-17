@@ -12,8 +12,6 @@
 </template>
 
 <script>
-import headerStore from "../header/header.store"
-
 export default {
   name: "VsSiteSearchToggleButton",
   props: {

@@ -58,7 +58,7 @@
 <script>
 import VsIcon from "@components/elements/icon/Icon"
 import VsFormInput from "@components/elements/form-input/FormInput"
-import headerStore from "../header/header.store"
+import drawerStore from "../header/components/Drawer/drawer.store"
 
 import {
   BForm,
@@ -108,7 +108,7 @@ export default {
   },
   computed: {
     drawerModule() {
-      return headerStore.getters["header/drawer/module"]
+      return drawerStore.getters["drawer/module"]
     },
     isValid() {
       return this.searchTerm.length > 0
@@ -146,7 +146,7 @@ export default {
     },
     resetValidation() {
       this.validated = null
-    }
+    },
   },
 }
 </script>
