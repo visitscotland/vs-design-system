@@ -33,9 +33,9 @@
           </vs-col>
         </vs-row>
       </vs-container>
-      <vs-header-drawer>
+      <vs-drawer>
         <slot name="header-drawer-modules" />
-      </vs-header-drawer>
+      </vs-drawer>
       <div class="d-none d-lg-block">
         <vs-desktop-nav name="Main navigation"> <slot name="desktop-submenu" /> </vs-desktop-nav>
       </div>
@@ -55,8 +55,7 @@ import VsRow from "@components/elements/layout/Row"
 import VsCol from "@components/elements/layout/Col"
 import smoothscroll from "smoothscroll-polyfill"
 import drawerStore from "./components/Drawer/drawer.store"
-import VsHeaderDrawer from "./components/Drawer/HeaderDrawer"
-import VsHeaderDrawerToggle from "./components/Drawer/HeaderDrawerToggle"
+import VsDrawer from "../drawer/Drawer"
 
 export default {
   name: "VsHeader",
@@ -67,8 +66,7 @@ export default {
     VsContainer,
     VsRow,
     VsSvg,
-    VsHeaderDrawer,
-    VsHeaderDrawerToggle,
+    VsDrawer,
   },
   data() {
     return {
@@ -185,12 +183,12 @@ export default {
         Skip to Content
       </vs-skip-to>
 
-      <vs-header-drawer-toggle
+      <vs-drawer-toggle
         module-name="site-search"
         type="vs-skip-to-button"
       >
         Skip to Search
-      </vs-header-drawer-toggle>
+      </vs-drawer-toggle>
 
       <vs-header>
 
@@ -233,14 +231,14 @@ export default {
 
         <template #header-drawer-toggles>
 
-          <vs-header-drawer-toggle
+          <vs-drawer-toggle
             module-name="site-search"
             type="vs-site-search-toggle-button"
           >
             Search
-          </vs-header-drawer-toggle>
+          </vs-drawer-toggle>
 
-          <vs-header-drawer-toggle
+          <vs-drawer-toggle
             module-name="favourites-list"
             :show-close="true"
             :href="favourite.href"
@@ -251,21 +249,21 @@ export default {
         </template>
 
         <template #header-drawer-modules>
-          <header-drawer-module 
+          <vs-drawer-content 
             module-name="site-search" 
             ref="siteSearch" 
             :show-close="true"
             focus-on-open="content"
           >
             <vs-site-search />
-          </header-drawer-module>
-          <header-drawer-module 
+          </vs-drawer-content>
+          <vs-drawer-content 
             module-name="favourites-list" 
             :show-close="true"
             focus-on-open="close"
           >
             <vs-favourites-list/>
-          </header-drawer-module>
+          </vs-drawer-content>
         </template>
 
         <template #desktop-nav-toggles>

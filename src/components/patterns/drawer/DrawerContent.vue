@@ -2,12 +2,11 @@
   <vs-row class="position-relative" v-show="isVisible" @focus="focusOnContent" tabindex="-1">
     <div v-if="showClose" class="d-none d-md-block position-absolute close-button-wrapper">
       <vs-close-button
-        class="vs-header__drawer__close-button"
         @click.native="closeDrawer"
         @keydown.native="checkKeydown($event)"
         ref="closeButton"
       >
-        Close the header drawer
+        Close this drawer
       </vs-close-button>
     </div>
     <vs-col md="10" xl="8" offset-md="1" offset-xl="2">
@@ -26,7 +25,7 @@ import VsRow from "@components/elements/layout/Row"
 import VsCol from "@components/elements/layout/Col"
 
 export default {
-  name: "HeaderDrawerModule",
+  name: "VsDrawerContent",
   components: {
     VsCloseButton,
     VsRow,
@@ -35,7 +34,7 @@ export default {
   props: {
     /**
      * Name of the module - used to discover when the module should
-     * be shown according to the drawer header VueX store.
+     * be shown according to the drawer VueX store.
      */
     moduleName: {
       type: String,
