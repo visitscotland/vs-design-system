@@ -8,12 +8,11 @@
 @import "./functions";
 @import "./bootstrap-overrides";
 
-// /* Bootstrap */
+/* Bootstrap */
 @import "~bootstrap/scss/functions";
 @import "~bootstrap/scss/variables";
 @import "~bootstrap/scss/mixins";
-// Reboot needs to be removed from here and loaded globally somewhere/somehow to avoid duplication
-@import "~bootstrap/scss/reboot";
 
+/* Local */
 @import "./placeholders";
 @import "./mixins/focus";
