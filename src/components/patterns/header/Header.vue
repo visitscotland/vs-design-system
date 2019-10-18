@@ -33,7 +33,7 @@
           </vs-col>
         </vs-row>
       </vs-container>
-      <vs-drawer>
+      <vs-drawer drawer-key="header-lower">
         <slot name="header-drawer-modules" />
       </vs-drawer>
       <div class="d-none d-lg-block">
@@ -49,12 +49,12 @@
 </template>
 
 <script>
+import smoothscroll from "smoothscroll-polyfill"
+
 import VsContainer from "@components/elements/layout/Container"
 import VsSvg from "@components/elements/svg/Svg"
 import VsRow from "@components/elements/layout/Row"
 import VsCol from "@components/elements/layout/Col"
-import smoothscroll from "smoothscroll-polyfill"
-import drawerStore from "./components/Drawer/drawer.store"
 import VsDrawer from "../drawer/Drawer"
 
 export default {
@@ -68,13 +68,6 @@ export default {
     VsSvg,
     VsDrawer,
   },
-  data() {
-    return {
-      drawer: {
-        isOpen: !!drawerStore.getters["drawer/module"],
-      },
-    }
-  },
   props: {
     /**
      * The html element name used for the component
@@ -82,16 +75,6 @@ export default {
     type: {
       type: String,
       default: "header",
-    },
-  },
-  computed: {
-    drawerModule() {
-      return drawerStore.getters["drawer/module"]
-    },
-  },
-  watch: {
-    drawerModule(newValue) {
-      this.drawer.isOpen = !!newValue
     },
   },
   methods: {
@@ -184,7 +167,8 @@ export default {
       </vs-skip-to>
 
       <vs-drawer-toggle
-        module-name="site-search"
+        content-key="site-search"
+        drawer-key="header-lower"
         type="vs-skip-to-button"
       >
         Skip to Search
@@ -232,14 +216,16 @@ export default {
         <template #header-drawer-toggles>
 
           <vs-drawer-toggle
-            module-name="site-search"
+            drawer-key="header-lower"
+            content-key="site-search"
             type="vs-site-search-toggle-button"
           >
             Search
           </vs-drawer-toggle>
 
           <vs-drawer-toggle
-            module-name="favourites-list"
+            drawer-key="header-lower"
+            content-key="favourites-list"
             :show-close="true"
             :href="favourite.href"
             :title="favourite.title"
@@ -250,7 +236,7 @@ export default {
 
         <template #header-drawer-modules>
           <vs-drawer-content 
-            module-name="site-search" 
+            content-key="site-search" 
             ref="siteSearch" 
             :show-close="true"
             focus-on-open="content"
@@ -258,7 +244,7 @@ export default {
             <vs-site-search />
           </vs-drawer-content>
           <vs-drawer-content 
-            module-name="favourites-list" 
+            content-key="favourites-list" 
             :show-close="true"
             focus-on-open="close"
           >
@@ -391,11 +377,6 @@ export default {
       this.contentContainer = document.getElementById("content-container")
       this.siteSearchModule = this.$refs.siteSearch
     },
-    methods: {
-      skipToSearch() {
-      }
-    }
-
   }
   </script>
 
