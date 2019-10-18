@@ -18,11 +18,17 @@
 
 <script>
 import Vue from "vue"
-import drawerStore from "./drawer.store"
-import { isFunction, get } from "lodash"
+import logger from "@/utils/logger"
+import { isFunction, get, hasIn } from "lodash"
+
 import VsCloseButton from "@components/patterns/close-button/CloseButton"
 import VsRow from "@components/elements/layout/Row"
 import VsCol from "@components/elements/layout/Col"
+import VsDrawer from "./Drawer"
+
+import drawerStore from "./drawer.store"
+import { IS_ACTIVE_CONTENT } from "./drawer.store.getter-types"
+import { CLOSE_DRAWER } from "./drawer.store.action-types"
 
 export default {
   name: "VsDrawerContent",
@@ -33,10 +39,10 @@ export default {
   },
   props: {
     /**
-     * Name of the module - used to discover when the module should
-     * be shown according to the drawer VueX store.
+     * unique key for this content - used to discover when to show
+     * the content according to the drawer VueX store.
      */
-    moduleName: {
+    contentKey: {
       type: String,
       required: true,
     },
@@ -48,8 +54,8 @@ export default {
       default: false,
     },
     /**
-     * Determines whether and what gains focus when this module
-     * is opened, i.e. becomes visible.
+     * Determines whether and what gains focus when this content
+     * becomes visible.
      * `false, "content", "close"`
      */
     focusOnOpen: {
@@ -60,9 +66,12 @@ export default {
       },
     },
   },
+  data() {
+    return { drawerKey: null }
+  },
   computed: {
     isVisible() {
-      return drawerStore.getters["drawer/isCurrentModule"](this.moduleName)
+      return drawerStore.getters["drawer/" + IS_ACTIVE_CONTENT](this.contentKey, this.drawerKey)
     },
     hasDefaultSlot() {
       return isFunction(get(this.$scopedSlots, "default"))
@@ -70,7 +79,15 @@ export default {
   },
   methods: {
     closeDrawer() {
-      drawerStore.dispatch("drawer/close")
+      drawerStore
+        .dispatch("drawer/" + CLOSE_DRAWER, {
+          drawerKey: this.drawerKey,
+        })
+        .then(returnFocusElement => {
+          if (isFunction(get(returnFocusElement, "$el.focus"))) {
+            returnFocusElement.$el.focus()
+          }
+        })
     },
     onBecomeVisible() {
       if (this.focusOnOpen === "close" && this.showClose) {
@@ -89,6 +106,30 @@ export default {
         this.closeDrawer()
       }
     },
+    getParentDrawerKey() {
+      let $current = this.$parent
+      let $parentEl = this.$el.closest("#vs-header__drawer-wrapper")
+      let i = 0
+
+      // TODO: Replace with a non-hacky solution ASAP or if one
+      // doesn't exist, use a prop instead
+      while (i < 500) {
+        if ($current.$parent === undefined) {
+          $current = null
+          break
+        }
+
+        $current = $current.$parent
+
+        if ($current.$options.name === VsDrawer.name) {
+          break
+        }
+
+        i++
+      }
+
+      return get($current, "$options.propsData.drawerKey")
+    },
   },
   watch: {
     isVisible(newVal, oldVal) {
@@ -96,6 +137,15 @@ export default {
         Vue.nextTick(this.onBecomeVisible)
       }
     },
+  },
+  mounted() {
+    let parentDrawerKey = this.getParentDrawerKey()
+
+    if (!parentDrawerKey) {
+      logger.error("VsDrawerContent is not inside a parent VsDrawer")
+    }
+
+    this.drawerKey = parentDrawerKey
   },
 }
 </script>

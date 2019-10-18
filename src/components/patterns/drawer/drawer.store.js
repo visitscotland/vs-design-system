@@ -1,55 +1,106 @@
 import Vuex from "vuex"
 import Vue from "vue"
-import { get, isFunction, includes } from "lodash"
+import { get, set /* , isFunction */ } from "lodash"
+import {
+  GET_ACTIVE_CONTENT,
+  GET_RETURN_FOCUS_ELEMENT,
+  IS_ACTIVE_CONTENT,
+} from "./drawer.store.getter-types"
+import { REGISTER_DRAWER, CLOSE_DRAWER, SHOW_DRAWER_CONTENT } from "./drawer.store.action-types"
 
 Vue.use(Vuex)
 
+const stateTypes = {
+  activeContents: "active_contents",
+  returnFocusElements: "return_focus_elements",
+}
+
+const mutationTypes = {
+  setActiveContent: "setActiveContent",
+  setReturnFocusElement: "setReturnFocusElement",
+  addDrawer: "addDrawer",
+}
+
+/**
+ * This store controls drawer content and visibility. Each drawer
+ * registers itself on creation using the `register` action. When
+ * a drawer's activeContents value is null, it is closed, otherwise
+ * it is open.
+ */
 export const state = {
-  module: null,
-  returnFocusElement: null,
+  /**
+   * Map of currently active content for each drawer. Keys are drawer name/id
+   * and values are content set name/id.
+   */
+  [stateTypes.activeContents]: {},
+
+  /**
+   * Map of return focus elements for each drawer. Keys are drawer name/id
+   * and values are Vue component refs.
+   */
+  [stateTypes.returnFocusElements]: {},
 }
 
 export const getters = {
-  module(state) {
-    return state.module
+  [GET_ACTIVE_CONTENT](state) {
+    return drawerKey => {
+      return get(state[stateTypes.activeContents], drawerKey)
+    }
   },
-  isCurrentModule: state => moduleName => moduleName === state.module,
+  [GET_RETURN_FOCUS_ELEMENT](state) {
+    return drawerKey => {
+      return get(state[stateTypes.returnFocusElements], drawerKey)
+    }
+  },
+  [IS_ACTIVE_CONTENT](state, getters) {
+    return (contentKey, drawerKey) => {
+      return contentKey === getters[GET_ACTIVE_CONTENT](drawerKey)
+    }
+  },
 }
 
 export const mutations = {
-  close(state) {
-    state.module = null
+  [mutationTypes.setActiveContent](state, { drawerKey, contentKey }) {
+    set(state[stateTypes.activeContents], drawerKey, contentKey)
   },
-  switchModule(state, { moduleName, returnFocusElement }) {
-    if (!moduleName) {
-      state.module = null
-
-      return true
-    }
-
-    state.module = moduleName
-    state.returnFocusElement = returnFocusElement
-
-    return false
+  [mutationTypes.setReturnFocusElement](state, { drawerKey, returnFocusElement }) {
+    set(state[stateTypes.returnFocusElements], drawerKey, returnFocusElement)
+  },
+  [mutationTypes.addDrawer](state, { drawerKey }) {
+    Vue.set(state[stateTypes.activeContents], drawerKey, null)
+    Vue.set(state[stateTypes.returnFocusElements], drawerKey, null)
   },
 }
 
 export const actions = {
-  showModule({ commit, dispatch }, { moduleName, returnFocusElement }) {
-    return moduleName
-      ? commit("switchModule", { moduleName, returnFocusElement })
-      : dispatch("close")
+  [REGISTER_DRAWER]({ commit }, { drawerKey }) {
+    commit("addDrawer", { drawerKey })
   },
-  close({ state, commit }, { returnFocusElement } = {}) {
-    commit("close")
+  [SHOW_DRAWER_CONTENT]({ commit }, { drawerKey, contentKey, returnFocusElement }) {
+    return new Promise((resolve, reject) => {
+      if (!drawerKey) {
+        reject("Drawer key missing")
+      }
 
-    if (!returnFocusElement) {
-      returnFocusElement = state.returnFocusElement
-    }
+      commit(mutationTypes.setActiveContent, { drawerKey, contentKey })
+      commit(mutationTypes.setReturnFocusElement, { drawerKey, returnFocusElement })
 
-    if (isFunction(get(returnFocusElement, "$el.focus"))) {
-      returnFocusElement.$el.focus()
-    }
+      resolve()
+    })
+  },
+  [CLOSE_DRAWER]({ getters, commit }, { drawerKey }) {
+    return new Promise((resolve, reject) => {
+      if (!drawerKey) {
+        reject("Drawer key missing")
+      }
+
+      let returnFocusElement = getters[GET_RETURN_FOCUS_ELEMENT](drawerKey)
+
+      commit(mutationTypes.setActiveContent, { drawerKey, contentKey: null })
+      commit(mutationTypes.setReturnFocusElement, { drawerKey, returnFocusElement: null })
+
+      resolve(returnFocusElement)
+    })
   },
 }
 

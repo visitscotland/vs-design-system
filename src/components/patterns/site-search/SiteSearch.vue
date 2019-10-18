@@ -58,7 +58,8 @@
 <script>
 import VsIcon from "@components/elements/icon/Icon"
 import VsFormInput from "@components/elements/form-input/FormInput"
-import drawerStore from "../header/components/Drawer/drawer.store"
+
+import drawerStore from "../drawer/drawer.store"
 
 import {
   BForm,

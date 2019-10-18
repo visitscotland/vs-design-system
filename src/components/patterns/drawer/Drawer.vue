@@ -1,6 +1,6 @@
 <template>
   <b-collapse
-    v-model="drawer.isOpen"
+    v-model="isOpen"
     class="vs-header__drawer-wrapper py-4"
     id="vs-header__drawer-wrapper"
   >
@@ -12,9 +12,13 @@
 
 <script>
 import smoothscroll from "smoothscroll-polyfill"
+
+import drawerStore from "./drawer.store"
+import { REGISTER_DRAWER } from "./drawer.store.action-types"
+import { GET_ACTIVE_CONTENT } from "./drawer.store.getter-types"
+
 import { BCollapse } from "bootstrap-vue"
 import VsContainer from "@components/elements/layout/Container"
-import drawerStore from "./drawer.store"
 
 export default {
   name: "VsDrawer",
@@ -26,35 +30,36 @@ export default {
   },
   data() {
     return {
-      drawer: {
-        isOpen: !!drawerStore.getters["drawer/module"],
-      },
+      isOpen: Boolean(this.activeContent),
     }
   },
   props: {
     /**
-     * The html element name used for the component
+     * The unique identifier for the Drawer instance
      */
-    type: {
+    drawerKey: {
       type: String,
-      default: "header",
-    },
-    favouriteHref: {
-      type: String,
-    },
-    favouriteTitle: {
-      type: String,
+      required: true,
     },
   },
   computed: {
-    drawerModule() {
-      return drawerStore.getters["drawer/module"]
+    activeContent() {
+      return drawerStore.getters["drawer/" + GET_ACTIVE_CONTENT](this.drawerKey)
     },
   },
   watch: {
-    drawerModule(newValue) {
-      this.drawer.isOpen = !!newValue
+    activeContent(newValue) {
+      this.isOpen = Boolean(newValue)
     },
+  },
+  beforeCreate() {
+    /**
+     * We do this on beforeCreate, otherwise the keys in the store will not be
+     * reactive for the computed prop above
+     */
+    drawerStore.dispatch("drawer/" + REGISTER_DRAWER, {
+      drawerKey: this.$options.propsData.drawerKey,
+    })
   },
   created() {
     smoothscroll.polyfill()

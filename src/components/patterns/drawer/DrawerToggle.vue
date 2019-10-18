@@ -1,10 +1,10 @@
 <template>
   <component
     :is="type"
-    @click.native.prevent="toggleModule"
+    @click.native.prevent="toggleContent"
     ref="self"
-    :aria-expanded="moduleIsVisible"
-    :is-on="moduleIsVisible"
+    :aria-expanded="contentIsVisible"
+    :is-on="contentIsVisible"
     v-bind="$attrs"
   >
     <slot />
@@ -13,40 +13,59 @@
 
 <script>
 import drawerStore from "./drawer.store"
+import { IS_ACTIVE_CONTENT } from "./drawer.store.getter-types"
+import { CLOSE_DRAWER, SHOW_DRAWER_CONTENT } from "./drawer.store.action-types"
+
+import VsButton from "@/components/elements/Button"
 
 export default {
   name: "VsDrawerToggle",
+  components: {
+    VsButton,
+  },
   props: {
     type: {
       type: String,
       default: "vs-button",
     },
-    moduleName: {
+    drawerKey: {
+      type: String,
+      required: true,
+    },
+    contentKey: {
       type: String,
       required: true,
     },
   },
   computed: {
-    moduleIsVisible() {
-      return drawerStore.getters["drawer/isCurrentModule"](this.moduleName)
+    contentIsVisible() {
+      return drawerStore.getters["drawer/" + IS_ACTIVE_CONTENT](this.contentKey, this.drawerKey)
     },
   },
   methods: {
     closeDrawer() {
-      drawerStore.dispatch("drawer/close")
+      return drawerStore
+        .dispatch("drawer/" + CLOSE_DRAWER, {
+          drawerKey: this.drawerKey,
+        })
+        .then(this.focusSelf)
     },
-    showModule() {
-      drawerStore.dispatch("drawer/showModule", {
-        moduleName: this.moduleName,
+    showContent() {
+      return drawerStore.dispatch("drawer/" + SHOW_DRAWER_CONTENT, {
+        drawerKey: this.drawerKey,
+        contentKey: this.contentKey,
         returnFocusElement: this.$refs.self,
       })
     },
-    toggleModule() {
-      if (this.moduleIsVisible) {
+    toggleContent() {
+      if (this.contentIsVisible) {
         this.closeDrawer()
       } else {
-        this.showModule()
+        this.showContent()
       }
+    },
+    focusSelf() {
+      this.$refs.self.$el.focus()
     },
   },
 }
