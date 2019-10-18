@@ -234,6 +234,24 @@ To make fixtures data available for easy inclusion in `docs` block examples, cre
 </docs>
 ```
 
+## Logging
+
+This package includes the `vuejs-logger` NPM package, which provides logging capabilities. To use it import the `src/utilities/logger.js` utility and use it as follows.
+
+```js
+import logger from "@/utils/logger"
+
+logger.debug("test", this.a, 123)
+logger.info("test", this.b)
+logger.warn("test")
+logger.error("test")
+logger.fatal("test")
+```
+
+Check the [`vuejs-logger` documentation](https://www.npmjs.com/package/vuejs-logger) for further examples and options. Note that the syntax used in the examples shown here differs from the syntax used in the documentation. Use the syntax shown here to make it more obvious you're using an import.
+
+To change the `vuejs-logger` configuration alter the options object passed to it in `src/utilities/logger.js`.
+
 ## Rendora Server-side rendering POC
 
 The Rendora app in this repo can be used to run a local SSR service for prototyping of the use of SSR to render this repo's Hippo site, which includes Vue components or components from some other frontend framework.
