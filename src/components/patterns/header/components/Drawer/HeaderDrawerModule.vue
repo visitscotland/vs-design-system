@@ -9,6 +9,7 @@
         @click.native="closeDrawer"
         @keydown.native="checkKeydown($event)"
         ref="closeButton"
+        class="align-self-start"
       >
         Close the header drawer
       </vs-close-button>

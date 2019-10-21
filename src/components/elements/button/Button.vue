@@ -92,7 +92,7 @@ export default {
   font-family: $font-family-base;
   font-weight: $font-weight-light;
   transition: $transition-base;
-  letter-spacing: 1px;
+  letter-spacing: 2px;
   position: relative;
   overflow: hidden;
 
