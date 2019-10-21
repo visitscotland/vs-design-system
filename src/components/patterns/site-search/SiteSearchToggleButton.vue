@@ -4,9 +4,8 @@
     :variant="isOn ? 'light' : 'primary-pink'"
     :animate="false"
   >
-    <span class="d-xl-none sr-only"><slot /></span>
     <vs-icon name="search" size="sm" :variant="isOn ? 'secondary' : 'reverse-white'" />
-    <span class="d-none d-xl-flex"><slot /></span>
+    <span class="sr-only-xl-down d-xl-flex"><slot /></span>
   </vs-button>
 </template>
 
