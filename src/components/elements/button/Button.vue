@@ -4,7 +4,11 @@
     :href="href"
     :tabindex="tabindex"
     class="text-uppercase d-flex align-items-center justify-content-center"
+    :class="{
+      [animateClass]: animateClass,
+    }"
     :size="size"
+    v-bind="$attrs"
   >
     <slot />
   </b-button>
@@ -66,6 +70,15 @@ export default {
         return value.match(/(sm|md|lg)/)
       },
     },
+    animate: {
+      type: Boolean,
+      default: true,
+    },
+  },
+  computed: {
+    animateClass() {
+      return this.animate ? "btn-animate" : null
+    },
   },
 }
 </script>
@@ -75,17 +88,6 @@ export default {
 @import "~bootstrap/scss/utilities/display";
 @import "~bootstrap/scss/utilities/flex";
 
-@keyframes ripple {
-  0% {
-    transform: scale(0, 0);
-    opacity: 1;
-  }
-  100% {
-    opacity: 0;
-    transform: scale(100, 100);
-  }
-}
-
 .btn {
   font-family: $font-family-base;
   font-weight: $font-weight-light;
@@ -93,6 +95,30 @@ export default {
   letter-spacing: 1px;
   position: relative;
   overflow: hidden;
+
+  &.btn-light,
+  &.btn-transparent {
+    &:focus {
+      box-shadow: 0 0 0 0.2rem rgba(0, 0, 0, 0.25);
+    }
+
+    &::after {
+      background: rgba(0, 0, 0, 0.2);
+    }
+  }
+}
+
+.btn-animate {
+  @keyframes ripple {
+    0% {
+      transform: scale(0, 0);
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+      transform: scale(100, 100);
+    }
+  }
 
   &::after {
     content: "";
@@ -106,17 +132,6 @@ export default {
     border-radius: 50%;
     transform: scale(1, 1) translate(-50%);
     transform-origin: 50% 50%;
-  }
-
-  &.btn-light,
-  &.btn-transparent {
-    &:focus {
-      box-shadow: 0 0 0 0.2rem rgba(0, 0, 0, 0.25);
-    }
-
-    &::after {
-      background: rgba(0, 0, 0, 0.2);
-    }
   }
 
   &:focus:not(:active)::after {
