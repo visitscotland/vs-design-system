@@ -121,21 +121,21 @@ export default {
   }
 
   &::after {
-    content: "";
-    position: absolute;
-    top: 100%;
-    left: 100%;
-    width: 5px;
-    height: 5px;
     background: rgba(255, 255, 255, 0.3);
-    opacity: 0;
     border-radius: 50%;
-    transform: scale(1, 1) translate(-50%);
+    bottom: 0;
+    content: "";
+    height: 5px;
+    opacity: 0;
+    position: absolute;
+    right: 0;
     transform-origin: 50% 50%;
+    transform: scale(1, 1) translate(-50%);
+    width: 5px;
   }
 
   &:focus:not(:active)::after {
-    animation: ripple 750ms ease-out;
+    animation: ripple 750ms ease-in-out;
   }
 }
 </style>
