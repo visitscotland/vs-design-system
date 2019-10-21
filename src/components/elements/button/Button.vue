@@ -3,7 +3,7 @@
     :variant="variant"
     :href="href"
     :tabindex="tabindex"
-    class="d-flex align-items-center justify-content-center"
+    class="d-inline-flex align-items-center justify-content-center"
     :class="{
       [focusStyleClass]: focusStyleClass,
       [focusColourClass]: focusColourClass,

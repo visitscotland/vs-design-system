@@ -20,6 +20,12 @@ import { GET_ACTIVE_CONTENT } from "./drawer.store.getter-types"
 import { BCollapse } from "bootstrap-vue"
 import VsContainer from "@components/elements/layout/Container"
 
+/**
+ * VsDrawer provides a collapsible container that can contain
+ * multiple sets of content wrapped in VsDrawerContent. Matched
+ * VsToggle components provide the ability to switch between
+ * the sets of content and open/close the drawer.
+ */
 export default {
   name: "VsDrawer",
   status: "prototype",
@@ -89,7 +95,50 @@ export default {
 </style>
 
 <docs>
-  ```vue
+```jsx
+<div>
+  <bs-wrapper class="container">
+    <bs-wrapper class="row mb-4">
+      <bs-wrapper class="col-6 d-flex justify-content-center">
+        <vs-drawer-toggle class="mr-2" drawer-key="drawer-1" content-key="content-1">
+          Toggle<br />drawer 1<br />content 1</vs-drawer-toggle>
+        <vs-drawer-toggle drawer-key="drawer-1" content-key="content-2">
+          Toggle<br />drawer 1<br />content 2</vs-drawer-toggle>
+      </bs-wrapper>
+      <bs-wrapper class="col-6 d-flex justify-content-center">
+        <vs-drawer-toggle class="mr-2" drawer-key="drawer-2" content-key="content-1">
+            Toggle<br />drawer 2<br />content 1</vs-drawer-toggle>
+        <vs-drawer-toggle drawer-key="drawer-2" content-key="content-2">
+          Toggle<br />drawer 2<br />content 2</vs-drawer-toggle>
+      </bs-wrapper>
 
-  ```
+    </bs-wrapper>
+
+    <bs-wrapper class="row">
+      <bs-wrapper class="col-6">
+        <vs-drawer drawer-key="drawer-1">
+          <vs-drawer-content content-key="content-1">
+            DRAWER 1 CONTENT 1
+          </vs-drawer-content>
+          <vs-drawer-content content-key="content-2">
+            DRAWER 1 CONTENT 2
+          </vs-drawer-content>
+        </vs-drawer>
+      </bs-wrapper>
+
+      <bs-wrapper class="col-6">
+        <vs-drawer drawer-key="drawer-2">
+          <vs-drawer-content content-key="content-1">
+            DRAWER 2 CONTENT 1
+          </vs-drawer-content>
+          <vs-drawer-content content-key="content-2">
+            DRAWER 2 CONTENT 2
+          </vs-drawer-content>
+        </vs-drawer>
+      </bs-wrapper>
+
+    </bs-wrapper>
+  </bs-wrapper>
+</div>
+```
 </docs>
