@@ -1,7 +1,7 @@
 <template>
   <b-form
     role="search"
-    class="d-flex vs-site-search-form align-items-start"
+    class="d-flex align-items-start"
     action
     method="get"
     :novalidate="true"
@@ -37,6 +37,7 @@
           type="button"
           class="px-1"
           size="md"
+          :animate="false"
           @click.native.prevent="clearSearchFieldAndFocus()"
         >
           <span class="sr-only-sm-down d-sm-block">{{ clearButtonText }}</span>
@@ -157,16 +158,6 @@ export default {
 @import "~bootstrap/scss/utilities/screenreaders";
 @import "~bootstrap/scss/forms";
 @import "~bootstrap/scss/input-group";
-
-.vs-site-search-form {
-  @include media-breakpoint-up(sm) {
-    padding: 1rem 2rem;
-  }
-
-  @include media-breakpoint-up(md) {
-    padding: 1rem 5rem;
-  }
-}
 
 .vs-site-search__input {
   @extend %reset-clear;
