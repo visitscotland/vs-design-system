@@ -108,7 +108,6 @@ export default {
     },
     getParentDrawerKey() {
       let $current = this.$parent
-      let $parentEl = this.$el.closest("#vs-header__drawer-wrapper")
       let i = 0
 
       // TODO: Replace with a non-hacky solution ASAP or if one

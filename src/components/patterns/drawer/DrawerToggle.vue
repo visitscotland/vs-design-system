@@ -16,7 +16,7 @@ import drawerStore from "./drawer.store"
 import { IS_ACTIVE_CONTENT } from "./drawer.store.getter-types"
 import { CLOSE_DRAWER, SHOW_DRAWER_CONTENT } from "./drawer.store.action-types"
 
-import VsButton from "@/components/elements/Button"
+import VsButton from "@components/elements/button"
 
 export default {
   name: "VsDrawerToggle",
