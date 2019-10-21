@@ -1,5 +1,5 @@
 <template>
-  <vs-button class="vs-close-button" variant="transparent">
+  <vs-button class="vs-close-button" variant="transparent" :animate="false">
     <span class="sr-only"><slot /></span>
     <vs-icon name="close" size="xs" variant="secondary" />
   </vs-button>

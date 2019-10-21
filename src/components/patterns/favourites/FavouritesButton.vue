@@ -2,9 +2,8 @@
   <vs-button
     class="vs-favourites__button p-0 p-sm-1 position-relative"
     @click.native="addFavourite"
-    focus-style="underline"
-    focus-colour="pink"
     variant="transparent"
+    :animate="false"
   >
     <span class="sr-only">Add to Favourites</span>
     <span class="vs-favourites__button__count" v-if="favouritesCount > 0">
