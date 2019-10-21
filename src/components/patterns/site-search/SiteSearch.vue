@@ -11,7 +11,7 @@
     tabindex="-1"
   >
     <div class="d-flex flex-column flex-grow-1 position-relative">
-      <label for="search-input" class="position-absolute vs-site-search__label">
+      <label for="search-input" class="position-absolute vs-site-search__label m-0">
         <span class="sr-only">{{ labelText }}</span>
         <vs-icon name="search" size="sm" variant="secondary" />
       </label>
@@ -21,7 +21,6 @@
         class="px-9 vs-site-search__input"
         :placeholder="labelText"
         autocomplete="off"
-        size="lg"
         v-model="searchTerm"
         :state="validated"
         ref="searchInput"
@@ -32,10 +31,11 @@
       <b-form-invalid-feedback v-if="validated === false" :state="validated">{{
         validationText
       }}</b-form-invalid-feedback>
-      <div v-if="searchTerm.length" class="position-absolute vs-search__clear-container">
+      <div v-if="searchTerm.length" class="position-absolute vs-site-search__clear-container">
         <vs-button
           variant="transparent"
           type="button"
+          class="px-1"
           @click.native.prevent="clearSearchFieldAndFocus()"
         >
           <span class="sr-only">{{ clearButtonText }}</span>
@@ -160,17 +160,23 @@ export default {
   @extend %reset-clear;
 
   &::placeholder {
+    color: transparent;
     padding-left: 10px;
+
+    @include media-breakpoint-up(sm) {
+      color: inherit;
+    }
   }
 }
 
-.vs-site-search__label {
-  padding: 5px;
+.vs-site-search__clear-container {
+  right: 5px;
+  top: 5px;
 }
 
-.vs-search__clear-container {
-  right: 0;
-  padding: 5px;
+.vs-site-search__label {
+  left: 5px;
+  top: 5px;
 }
 </style>
 

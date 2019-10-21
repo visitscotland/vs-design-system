@@ -1,6 +1,6 @@
 <template>
   <vs-button
-    class="vs-favourites__button p-1 position-relative"
+    class="vs-favourites__button p-0 p-sm-1 position-relative"
     @click.native="addFavourite"
     focus-style="underline"
     focus-colour="pink"

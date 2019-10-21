@@ -3,13 +3,12 @@
     :variant="variant"
     :href="href"
     :tabindex="tabindex"
-    class="d-flex align-items-center justify-content-center"
+    class="text-uppercase d-flex align-items-center justify-content-center"
     :size="size"
   >
     <slot />
   </b-button>
 </template>
-
 <script>
 import { BButton } from "bootstrap-vue"
 
@@ -76,8 +75,52 @@ export default {
 @import "~bootstrap/scss/utilities/display";
 @import "~bootstrap/scss/utilities/flex";
 
+@keyframes ripple {
+  0% {
+    transform: scale(0, 0);
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: scale(100, 100);
+  }
+}
+
 .btn {
+  font-family: $font-family-base;
   transition: $transition-base;
+  letter-spacing: 1px;
+  position: relative;
+  overflow: hidden;
+
+  &::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 100%;
+    width: 5px;
+    height: 5px;
+    background: rgba(255, 255, 255, 0.3);
+    opacity: 0;
+    border-radius: 50%;
+    transform: scale(1, 1) translate(-50%);
+    transform-origin: 50% 50%;
+  }
+
+  &.btn-light,
+  &.btn-transparent {
+    &:focus {
+      box-shadow: 0 0 0 0.2rem rgba(0, 0, 0, 0.25);
+    }
+
+    &::after {
+      background: rgba(0, 0, 0, 0.2);
+    }
+  }
+
+  &:focus:not(:active)::after {
+    animation: ripple 750ms ease-out;
+  }
 }
 </style>
 
@@ -86,16 +129,17 @@ export default {
 
   <bs-wrapper class="mb-4">
     <h4>Variants</h4>
-    <bs-wrapper class="d-flex mb-4">
-      <vs-button class="mr-2">Primary (default)</vs-button>
-      <vs-button variant="secondary" class="mr-2">Secondary</vs-button>
-      <vs-button variant="success" class="mr-2">Success</vs-button>
-      <vs-button variant="danger" class="mr-2">Danger</vs-button>
-      <vs-button variant="warning" class="mr-2">Warning</vs-button>
-      <vs-button variant="info" class="mr-2">Info</vs-button>
-      <vs-button variant="light" class="mr-2">Light</vs-button>
-      <vs-button variant="dark" class="mr-2">Dark</vs-button>
-      <vs-button variant="transparent" class="mr-2">Transparent</vs-button>
+    <bs-wrapper class="d-flex flex-wrap mb-4">
+      <vs-button variant="primary" class="m-2">Primary (default)</vs-button>
+      <vs-button variant="primary-pink" class="m-2">Primary Pink</vs-button>
+      <vs-button variant="secondary" class="m-2">Secondary</vs-button>
+      <vs-button variant="success" class="m-2">Success</vs-button>
+      <vs-button variant="danger" class="m-2">Danger</vs-button>
+      <vs-button variant="warning" class="m-2">Warning</vs-button>
+      <vs-button variant="info" class="m-2">Info</vs-button>
+      <vs-button variant="light" class="m-2">Light</vs-button>
+      <vs-button variant="dark" class="m-2">Dark</vs-button>
+      <vs-button variant="transparent" class="m-2">Transparent</vs-button>
     </bs-wrapper>
     <h4>Sizes</h4>
     <bs-wrapper>
