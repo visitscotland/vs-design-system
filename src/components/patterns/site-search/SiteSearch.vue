@@ -36,7 +36,7 @@
           variant="transparent"
           type="button"
           class="px-1"
-          size="md"
+          size="sm"
           :animate="false"
           @click.native.prevent="clearSearchFieldAndFocus()"
         >
@@ -45,7 +45,7 @@
         </vs-button>
       </div>
     </div>
-    <vs-button type="submit" class="px-md-5" size="lg" :variant="'primary-pink'">{{
+    <vs-button type="submit" class="px-md-5" :variant="'primary-pink'">{{
       submitButtonText
     }}</vs-button>
   </b-form>
@@ -174,7 +174,7 @@ export default {
 
 .vs-site-search__clear-container {
   right: 5px;
-  top: 5px;
+  top: 9px;
 }
 
 .vs-site-search__label {

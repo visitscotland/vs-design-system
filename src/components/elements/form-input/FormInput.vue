@@ -23,7 +23,7 @@ export default {
   },
   props: {
     size: {
-      default: "lg",
+      default: "md",
     },
     value: {
       type: String,
