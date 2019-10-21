@@ -33,11 +33,11 @@ export default {
 
 .vs-header__site-search__toggle-button {
   font-size: 1.125rem;
+  font-weight: $font-weight-normal;
+  letter-spacing: 0px;
+  position: relative;
   text-transform: none;
   transition: $transition-base;
-  letter-spacing: 0px;
-  font-weight: $font-weight-bold;
-  position: relative;
 
   @include media-breakpoint-up(sm) {
     &:not(:focus) {
@@ -46,6 +46,10 @@ export default {
 
     &.btn-primary-pink:not(:focus) {
       box-shadow: 0 5px 0 0 $color-pink;
+
+      &:hover {
+        box-shadow: 0 5px 0 0 #890056;
+      }
     }
   }
 }

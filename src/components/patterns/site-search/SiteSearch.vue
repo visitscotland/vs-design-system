@@ -1,7 +1,7 @@
 <template>
   <b-form
     role="search"
-    class="d-flex align-items-start py-2 py-md-4"
+    class="d-flex vs-site-search-form align-items-start"
     action
     method="get"
     :novalidate="true"
@@ -36,10 +36,11 @@
           variant="transparent"
           type="button"
           class="px-1"
+          size="md"
           @click.native.prevent="clearSearchFieldAndFocus()"
         >
-          <span class="sr-only">{{ clearButtonText }}</span>
-          <vs-icon name="close" size="xs" variant="dark" />
+          <span class="sr-only-sm-down d-sm-block">{{ clearButtonText }}</span>
+          <vs-icon class="d-sm-none" name="close" size="xs" variant="dark" />
         </vs-button>
       </div>
     </div>
@@ -83,7 +84,7 @@ export default {
     },
     clearButtonText: {
       type: String,
-      default: "Clear search",
+      default: "Clear",
     },
     submitButtonText: {
       type: String,
@@ -152,9 +153,20 @@ export default {
 @import "~bootstrap/scss/utilities/spacing";
 @import "~bootstrap/scss/utilities/sizing";
 @import "~bootstrap/scss/utilities/position";
+@import "~bootstrap/scss/utilities/visibility";
 @import "~bootstrap/scss/utilities/screenreaders";
 @import "~bootstrap/scss/forms";
 @import "~bootstrap/scss/input-group";
+
+.vs-site-search-form {
+  @include media-breakpoint-up(sm) {
+    padding: 1rem 2rem;
+  }
+
+  @include media-breakpoint-up(md) {
+    padding: 1rem 5rem;
+  }
+}
 
 .vs-site-search__input {
   @extend %reset-clear;
