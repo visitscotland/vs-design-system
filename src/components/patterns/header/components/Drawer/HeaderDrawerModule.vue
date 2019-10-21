@@ -10,7 +10,7 @@
         Close the header drawer
       </vs-close-button>
     </div>
-    <vs-col md="10" xl="8" offset-md="1" offset-xl="2">
+    <vs-col>
       <slot />
       <button @focus="closeDrawer" class="catch-focus__button" />
     </vs-col>
