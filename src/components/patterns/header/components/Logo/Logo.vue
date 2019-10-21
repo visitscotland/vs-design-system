@@ -2,7 +2,7 @@
   <component
     data-test="logo-link"
     :is="type"
-    class="vs-logo d-flex align-items-center mr-3 mr-sm-0"
+    class="vs-logo d-flex align-items-center ml-1 mr-3 ml-sm-2 mr-sm-0"
     href="#"
   >
     <span data-test="logo-screenreader-text" class="sr-only">VisitScotland Home</span>
