@@ -1,6 +1,6 @@
 <template>
   <vs-button
-    class="vs-mobile-nav__button p-1"
+    class="vs-mobile-nav__button p-0 p-sm-1"
     id="mobilenavbutton"
     v-b-toggle.collapse-mobile-nav
     variant="transparent"
