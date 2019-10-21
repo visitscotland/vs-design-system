@@ -88,6 +88,7 @@ export default {
 
 .btn {
   font-family: $font-family-base;
+  font-weight: $font-weight-light;
   transition: $transition-base;
   letter-spacing: 1px;
   position: relative;
