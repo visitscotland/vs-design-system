@@ -1,7 +1,7 @@
 <template>
   <b-form
     role="search"
-    class="d-flex align-items-start"
+    class="d-flex align-items-start py-2 py-md-4"
     action
     method="get"
     :novalidate="true"
