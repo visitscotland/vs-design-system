@@ -4,7 +4,6 @@
 
 <script>
 import { BCol } from "bootstrap-vue"
-import breakpoints from "@/utils/breakpoints.bootstrap-vue.config.js"
 
 /**
  * Column components are used to organise, align and space sibling blocks of content within row
