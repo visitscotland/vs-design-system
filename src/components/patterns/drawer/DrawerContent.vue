@@ -1,15 +1,17 @@
 <template>
   <vs-row class="position-relative" v-show="isVisible" @focus="focusOnContent" tabindex="-1">
-    <div v-if="showClose" class="d-none d-md-block position-absolute close-button-wrapper">
-      <vs-close-button
-        @click.native="closeDrawer"
-        @keydown.native="checkKeydown($event)"
-        ref="closeButton"
-      >
-        Close this drawer
-      </vs-close-button>
-    </div>
-    <vs-col md="10" xl="8" offset-md="1" offset-xl="2">
+    <vs-col order="2">
+      <div v-if="showClose" class="d-none d-md-block position-absolute close-button-wrapper">
+        <vs-close-button
+          @click.native="closeDrawer"
+          @keydown.native="checkKeydown($event)"
+          ref="closeButton"
+        >
+          Close this drawer
+        </vs-close-button>
+      </div>
+    </vs-col>
+    <vs-col :md="md" :xl="xl" offset-md="1" offset-xl="2">
       <slot />
       <button @focus="closeDrawer" class="catch-focus__button" />
     </vs-col>
@@ -30,6 +32,8 @@ import drawerStore from "./drawer.store"
 import { IS_ACTIVE_CONTENT } from "./drawer.store.getter-types"
 import { CLOSE_DRAWER } from "./drawer.store.action-types"
 
+import breakpointsMixin from "@/mixins/breakpointColProps"
+
 export default {
   name: "VsDrawerContent",
   components: {
@@ -37,6 +41,7 @@ export default {
     VsRow,
     VsCol,
   },
+  mixins: [breakpointsMixin],
   props: {
     /**
      * unique key for this content - used to discover when to show
@@ -64,6 +69,12 @@ export default {
       validator: value => {
         return value === false || value.match(/(content|close)/)
       },
+    },
+    md: {
+      default: "10",
+    },
+    xl: {
+      default: "8",
     },
   },
   data() {

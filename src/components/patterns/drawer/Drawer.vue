@@ -4,9 +4,9 @@
     class="vs-header__drawer-wrapper py-4"
     id="vs-header__drawer-wrapper"
   >
-    <vs-container>
+    <component :is="type">
       <slot />
-    </vs-container>
+    </component>
   </b-collapse>
 </template>
 
@@ -46,6 +46,10 @@ export default {
     drawerKey: {
       type: String,
       required: true,
+    },
+    type: {
+      type: String,
+      default: "vs-container",
     },
   },
   computed: {

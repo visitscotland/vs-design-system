@@ -3,15 +3,34 @@
     <div class="vs-header__wrapper--top position-relative">
       <vs-container>
         <vs-row>
-          <vs-col class="d-flex justify-content-between">
-            <div class="d-inline-flex d-lg-none"><slot name="mobile-universal-nav"></slot></div>
-            <div class="d-none d-lg-flex"><slot name="desktop-universal-nav"></slot></div>
+          <vs-col cols="12" class="d-flex justify-content-between">
+            <b-list-group class="d-lg-inline-flex d-none">
+              <slot name="universal-nav" :dummy="{}"></slot>
+            </b-list-group>
+
+            <vs-drawer-toggle
+              class="d-lg-none vs-universal-nav__toggle"
+              content-key="universal-nav"
+              drawer-key="header-upper"
+            >
+              <slot name="universal-nav-toggle">Our sites</slot>
+              <vs-icon name="chevron-down" variant="reverse-white" size="xxs" class="ml-2" />
+            </vs-drawer-toggle>
+
             <div class="d-inline-flex vs-header__site-controls-col justify-content-end">
               <slot name="login"></slot> <slot name="language"></slot>
             </div>
           </vs-col>
+          <vs-col cols="12"> </vs-col>
         </vs-row>
       </vs-container>
+      <vs-drawer drawer-key="header-upper">
+        <vs-drawer-content content-key="universal-nav">
+          <b-list-group class="d-lg-none d-flex">
+            <slot name="universal-nav" :dummy="{}"></slot>
+          </b-list-group>
+        </vs-drawer-content>
+      </vs-drawer>
     </div>
 
     <div class="vs-header__wrapper--bottom position-relative">
@@ -56,6 +75,9 @@ import VsSvg from "@components/elements/svg/Svg"
 import VsRow from "@components/elements/layout/Row"
 import VsCol from "@components/elements/layout/Col"
 import VsDrawer from "../drawer/Drawer"
+import VsDrawerContent from "../drawer/DrawerContent"
+
+import { BListGroup } from "bootstrap-vue"
 
 export default {
   name: "VsHeader",
@@ -67,6 +89,8 @@ export default {
     VsRow,
     VsSvg,
     VsDrawer,
+    VsDrawerContent,
+    BListGroup,
   },
   props: {
     /**
@@ -113,6 +137,10 @@ export default {
 @import "~bootstrap/scss/utilities/position";
 @import "~bootstrap/scss/utilities/screenreaders";
 @import "styles/placeholders";
+
+.vs-universal-nav__toggle {
+  font-size: $font-size-sm;
+}
 
 .vs-desktop-nav__toggle-list {
   width: 100%;
@@ -175,6 +203,19 @@ export default {
       </vs-drawer-toggle>
 
       <vs-header>
+
+        <template #universal-nav>
+          <vs-universal-nav-item
+            v-for="site in header.ourSites"
+            :href="site.href"
+            :external="site.isExternal"
+            :active="site.isActive"
+            :tracking-id="site.trackingId"
+          >
+            {{ site.title }}
+          </vs-universal-nav-item>
+        </template>
+
 
         <template #desktop-universal-nav>
           <vs-desktop-universal-nav

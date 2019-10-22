@@ -10,7 +10,7 @@ props:
   - name: font-size-lg
     value: "{!font_size_base} * 1.25"
   - name: font-size-sm
-    value: "{!font_size_base} * .875"
+    value: "{!font_size_base} * .75"
   - name: h1-font-size
     value: "{!font_size_base} * 3.75"
   - name: h2-font-size
