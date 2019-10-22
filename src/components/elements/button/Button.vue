@@ -142,36 +142,58 @@ export default {
 
 <docs>
 ```jsx
-
-  <bs-wrapper class="mb-4">
+    <h4>Types</h4>
+    <bs-wrapper class="d-flex flex-wrap mb-4">
+      <vs-button class="mr-2 mb-2">Button</vs-button>
+      <vs-button class="mr-2 mb-2" href="https://www.visitscotland.com">Link</vs-button>
+    </bs-wrapper>
     <h4>Variants</h4>
     <bs-wrapper class="d-flex flex-wrap mb-4">
-      <vs-button variant="primary" class="m-2">Primary (default)</vs-button>
-      <vs-button variant="primary-pink" class="m-2">Primary Pink</vs-button>
-      <vs-button variant="secondary" class="m-2">Secondary</vs-button>
-      <vs-button variant="success" class="m-2">Success</vs-button>
-      <vs-button variant="danger" class="m-2">Danger</vs-button>
-      <vs-button variant="warning" class="m-2">Warning</vs-button>
-      <vs-button variant="info" class="m-2">Info</vs-button>
-      <vs-button variant="light" class="m-2">Light</vs-button>
-      <vs-button variant="dark" class="m-2">Dark</vs-button>
-      <vs-button variant="transparent" class="m-2">Transparent</vs-button>
+      <vs-button variant="primary" class="mr-2 mb-2">Primary (default)</vs-button>
+      <vs-button variant="primary-pink" class="mr-2 mb-2">Primary Pink</vs-button>
+      <vs-button variant="secondary" class="mr-2 mb-2">Secondary</vs-button>
+      <vs-button variant="success" class="mr-2 mb-2">Success</vs-button>
+      <vs-button variant="danger" class="mr-2 mb-2">Danger</vs-button>
+      <vs-button variant="warning" class="mr-2 mb-2">Warning</vs-button>
+      <vs-button variant="info" class="mr-2 mb-2">Info</vs-button>
+      <vs-button variant="light" class="mr-2 mb-2">Light</vs-button>
+      <vs-button variant="dark" class="mr-2 mb-2">Dark</vs-button>
+      <vs-button variant="transparent" class="mr-2 mb-2">Transparent</vs-button>
+    </bs-wrapper>
+    <h4>Outline Color Variants</h4>
+    <bs-wrapper class="d-flex flex-wrap mb-4">
+      <vs-button variant="outline-primary" class="mr-2 mb-2">Primary</vs-button>
+      <vs-button variant="outline-primary-pink" class="mr-2 mb-2">Primary Pink</vs-button>
+      <vs-button variant="outline-secondary" class="mr-2 mb-2">Secondary</vs-button>
+      <vs-button variant="outline-success" class="mr-2 mb-2">Success</vs-button>
+      <vs-button variant="outline-danger" class="mr-2 mb-2">Danger</vs-button>
+      <vs-button variant="outline-warning" class="mr-2 mb-2">Warning</vs-button>
+      <vs-button variant="outline-info" class="mr-2 mb-2">Info</vs-button>
+      <vs-button variant="outline-light" class="mr-2 mb-2">Light</vs-button>
+      <vs-button variant="outline-dark" class="mr-2 mb-2">Dark</vs-button>
+      <vs-button variant="outline-transparent" class="mr-2 mb-2">Transparent</vs-button>
     </bs-wrapper>
     <h4>Sizes</h4>
     <bs-wrapper>
-      <vs-button class="mb-2" size="sm">Small</vs-button>
-      <vs-button class="mb-2" size="md">Medium</vs-button>
-      <vs-button class="mb-2" size="lg">Large</vs-button>
+      <vs-button class="mr-2 mb-2" size="sm">Small</vs-button>
+      <vs-button class="mr-2 mb-2" size="md">Medium</vs-button>
+      <vs-button class="mr-2 mb-2" size="lg">Large</vs-button>
+      <vs-button block class="mr-2 mb-2" size="md">Block</vs-button>
     </bs-wrapper>
-  </bs-wrapper>
 
-  <bs-wrapper class="mb-4">
-    <h4>CTA Links</h4>
-    <bs-wrapper class="d-flex">
-      <vs-button href="https://www.visitscotland.com" class="mr-2">Link</vs-button>
-      <vs-button href="https://www.google.com" class="mr-2">Another link</vs-button>
+    <h4>Disabled States</h4>
+    <bs-wrapper class="d-flex flex-wrap mb-4">
+      <vs-button disabled class="mr-2 mb-2" variant="primary" size="md">Disabled primary</vs-button>
+      <vs-button disabled class="mr-2 mb-2" variant="primary-pink" size="md">Disabled secondary</vs-button>
+      <vs-button disabled class="mr-2 mb-2" variant="secondary" size="md">Disabled primary pink</vs-button>
+      <vs-button disabled class="mr-2 mb-2" variant="success" size="md">Disabled success</vs-button>
+      <vs-button disabled class="mr-2 mb-2" variant="danger" size="md">Disabled danger</vs-button>
+      <vs-button disabled class="mr-2 mb-2" variant="warning" size="md">Disabled warning</vs-button>
+      <vs-button disabled class="mr-2 mb-2" variant="info" size="md">Disabled info</vs-button>
+      <vs-button disabled class="mr-2 mb-2" variant="light" size="md">Disabled light</vs-button>
+      <vs-button disabled class="mr-2 mb-2" variant="dark" size="md">Disabled dark</vs-button>
+      <vs-button disabled class="mr-2 mb-2" variant="transparent" size="md">Disabled transparent</vs-button>
     </bs-wrapper>
-  </bs-wrapper>
 
 ```
 </docs>
