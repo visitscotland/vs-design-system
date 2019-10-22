@@ -45,9 +45,7 @@
         </vs-button>
       </div>
     </div>
-    <vs-button type="submit" class="px-md-5" :variant="'primary-pink'">{{
-      submitButtonText
-    }}</vs-button>
+    <vs-button type="submit" class="px-md-5" :variant="primary">{{ submitButtonText }}</vs-button>
   </b-form>
 </template>
 
@@ -164,7 +162,7 @@ export default {
 
   &::placeholder {
     color: transparent;
-    padding-left: 10px;
+    padding-left: 0.625rem;
 
     @include media-breakpoint-up(sm) {
       color: inherit;
@@ -173,8 +171,8 @@ export default {
 }
 
 .vs-site-search__clear-container {
-  right: 5px;
-  top: 9px;
+  right: 0.3125rem;
+  top: 0.75rem;
 }
 
 .vs-site-search__label {
