@@ -7,6 +7,7 @@
     :class="{
       [animateClass]: animateClass,
     }"
+    @click="animateClass ? animateHandler() : null"
     :size="size"
     v-bind="$attrs"
   >
@@ -78,6 +79,14 @@ export default {
       return this.animate ? "btn-animate" : null
     },
   },
+  methods: {
+    animateHandler() {
+      this.$el.classList.add("bubble")
+      setTimeout(() => {
+        this.$el.classList.remove("bubble")
+      }, 1000)
+    },
+  },
 }
 </script>
 
@@ -107,7 +116,7 @@ export default {
 }
 
 .btn-animate {
-  @keyframes ripple {
+  @keyframes bubble {
     0% {
       transform: scale(0, 0);
       opacity: 1;
@@ -132,8 +141,8 @@ export default {
     width: 5px;
   }
 
-  &:focus:not(:active)::after {
-    animation: ripple 500ms ease-in-out;
+  &.bubble::after {
+    animation: bubble 500ms ease-in-out;
   }
 }
 </style>
@@ -146,6 +155,18 @@ export default {
       <vs-button class="mr-2 mb-2" href="https://www.visitscotland.com">Link</vs-button>
     </bs-wrapper>
     <h4>Variants</h4>
+    <bs-wrapper class="d-flex flex-wrap mb-4">
+      <vs-button variant="primary" class="mr-2 mb-2">Primary (default)</vs-button>
+      <vs-button variant="secondary" class="mr-2 mb-2">Secondary</vs-button>
+      <vs-button variant="success" class="mr-2 mb-2">Success</vs-button>
+      <vs-button variant="danger" class="mr-2 mb-2">Danger</vs-button>
+      <vs-button variant="warning" class="mr-2 mb-2">Warning</vs-button>
+      <vs-button variant="info" class="mr-2 mb-2">Info</vs-button>
+      <vs-button variant="light" class="mr-2 mb-2">Light</vs-button>
+      <vs-button variant="dark" class="mr-2 mb-2">Dark</vs-button>
+      <vs-button variant="transparent" class="mr-2 mb-2">Transparent</vs-button>
+    </bs-wrapper>
+    <h4>Active</h4>
     <bs-wrapper class="d-flex flex-wrap mb-4">
       <vs-button variant="primary" class="mr-2 mb-2">Primary (default)</vs-button>
       <vs-button variant="secondary" class="mr-2 mb-2">Secondary</vs-button>
