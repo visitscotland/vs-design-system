@@ -10,7 +10,7 @@
       <span class="sr-only">Current favourites count:</span> {{ favouritesCount }}
     </span>
     <vs-icon v-if="favouritesCount > 0" name="favourite-filled" size="sm" variant="primary" />
-    <vs-icon v-else name="favourite" size="sm" variant="primary" />
+    <vs-icon v-else name="favourite" size="sm" variant="dark" />
   </vs-button>
 </template>
 

@@ -52,15 +52,13 @@ export default {
     },
     /**
      * Style variation to give additional meaning.
-     * `primary, primary-pink, secondary, success, danger, warning, info, light, dark, transparent`
+     * `primary, secondary, success, danger, warning, info, light, dark, transparent`
      */
     variant: {
       type: String,
       default: "primary",
       validator: value => {
-        return value.match(
-          /(primary|primary-pink|secondary|success|danger|warning|info|light|dark|transparent)/
-        )
+        return value.match(/(primary|secondary|success|danger|warning|info|light|dark|transparent)/)
       },
     },
     size: {
@@ -121,7 +119,7 @@ export default {
   }
 
   &::after {
-    background: rgba(255, 255, 255, 0.3);
+    background: rgba(255, 255, 255, 0.1);
     border-radius: 50%;
     bottom: 0;
     content: "";
@@ -135,7 +133,7 @@ export default {
   }
 
   &:focus:not(:active)::after {
-    animation: ripple 750ms ease-in-out;
+    animation: ripple 500ms ease-in-out;
   }
 }
 </style>
@@ -150,7 +148,6 @@ export default {
     <h4>Variants</h4>
     <bs-wrapper class="d-flex flex-wrap mb-4">
       <vs-button variant="primary" class="mr-2 mb-2">Primary (default)</vs-button>
-      <vs-button variant="primary-pink" class="mr-2 mb-2">Primary Pink</vs-button>
       <vs-button variant="secondary" class="mr-2 mb-2">Secondary</vs-button>
       <vs-button variant="success" class="mr-2 mb-2">Success</vs-button>
       <vs-button variant="danger" class="mr-2 mb-2">Danger</vs-button>
@@ -163,7 +160,6 @@ export default {
     <h4>Outline Color Variants</h4>
     <bs-wrapper class="d-flex flex-wrap mb-4">
       <vs-button variant="outline-primary" class="mr-2 mb-2">Primary</vs-button>
-      <vs-button variant="outline-primary-pink" class="mr-2 mb-2">Primary Pink</vs-button>
       <vs-button variant="outline-secondary" class="mr-2 mb-2">Secondary</vs-button>
       <vs-button variant="outline-success" class="mr-2 mb-2">Success</vs-button>
       <vs-button variant="outline-danger" class="mr-2 mb-2">Danger</vs-button>
@@ -184,7 +180,6 @@ export default {
     <h4>Disabled States</h4>
     <bs-wrapper class="d-flex flex-wrap mb-4">
       <vs-button disabled class="mr-2 mb-2" variant="primary" size="md">Disabled primary</vs-button>
-      <vs-button disabled class="mr-2 mb-2" variant="primary-pink" size="md">Disabled secondary</vs-button>
       <vs-button disabled class="mr-2 mb-2" variant="secondary" size="md">Disabled primary pink</vs-button>
       <vs-button disabled class="mr-2 mb-2" variant="success" size="md">Disabled success</vs-button>
       <vs-button disabled class="mr-2 mb-2" variant="danger" size="md">Disabled danger</vs-button>

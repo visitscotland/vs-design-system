@@ -1,7 +1,7 @@
 <template>
   <vs-button
     class="vs-header__site-search__toggle-button p-0 p-sm-1 pr-xl-3"
-    :variant="isOn ? 'light' : 'primary-pink'"
+    :variant="isOn ? 'light' : 'primary'"
     :animate="false"
   >
     <vs-icon name="search" size="sm" :variant="isOn ? 'secondary' : 'reverse-white'" />
@@ -42,8 +42,8 @@ export default {
       box-shadow: 0 8px 0 0 $color-theme-light;
     }
 
-    &.btn-primary-pink:not(:focus) {
-      box-shadow: 0 5px 0 0 $color-pink;
+    &.btn-primary:not(:focus) {
+      box-shadow: 0 5px 0 0 $color-theme-primary;
 
       &:hover {
         box-shadow: 0 5px 0 0 #890056;

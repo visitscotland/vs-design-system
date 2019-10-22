@@ -56,7 +56,7 @@ export default {
 
     &:focus {
       border-color: $gray-tint-1;
-      box-shadow: 0 0 0 0.2rem rgba(187, 38, 132, 0.5); // primary-pink rgb equivalent
+      box-shadow: 0 0 0 0.2rem rgba(187, 38, 132, 0.5); // primary rgb equivalent
     }
 
     &.is-invalid {
