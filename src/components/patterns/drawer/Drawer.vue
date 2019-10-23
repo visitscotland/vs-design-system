@@ -1,12 +1,10 @@
 <template>
-  <b-collapse
-    v-model="isOpen"
-    class="vs-header__drawer-wrapper py-4"
-    id="vs-header__drawer-wrapper"
-  >
-    <component :is="type">
+  <b-collapse v-model="isOpen" class="vs-header__drawer-wrapper" id="vs-header__drawer-wrapper">
+    <vs-container v-if="container">
       <slot />
-    </component>
+    </vs-container>
+
+    <slot v-else />
   </b-collapse>
 </template>
 
@@ -47,9 +45,12 @@ export default {
       type: String,
       required: true,
     },
-    type: {
-      type: String,
-      default: "vs-container",
+    /**
+     * Whether the content is wrapped in a container or not
+     */
+    container: {
+      type: Boolean,
+      default: true,
     },
   },
   computed: {
@@ -79,6 +80,7 @@ export default {
 
 <style lang="scss" scoped>
 @import "~bootstrap/scss/utilities/spacing";
+@import "~bootstrap/scss/utilities/background";
 
 .vs-header__drawer-wrapper {
   @extend %default-inset-box-shadow;

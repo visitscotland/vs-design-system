@@ -9,12 +9,11 @@
             </b-list-group>
 
             <vs-drawer-toggle
-              class="d-lg-none vs-universal-nav__toggle"
+              class="vs-universal-nav--toggle d-lg-none"
               content-key="universal-nav"
               drawer-key="header-upper"
             >
               <slot name="universal-nav-toggle">Our sites</slot>
-              <vs-icon name="chevron-down" variant="reverse-white" size="xxs" class="ml-2" />
             </vs-drawer-toggle>
 
             <div class="d-inline-flex vs-header__site-controls-col justify-content-end">
@@ -24,9 +23,9 @@
           <vs-col cols="12"> </vs-col>
         </vs-row>
       </vs-container>
-      <vs-drawer drawer-key="header-upper">
+      <vs-drawer class="bg-primary" drawer-key="header-upper" :container="false">
         <vs-drawer-content content-key="universal-nav">
-          <b-list-group class="d-lg-none d-flex">
+          <b-list-group class="d-lg-none">
             <slot name="universal-nav" :dummy="{}"></slot>
           </b-list-group>
         </vs-drawer-content>
@@ -52,7 +51,7 @@
           </vs-col>
         </vs-row>
       </vs-container>
-      <vs-drawer drawer-key="header-lower">
+      <vs-drawer drawer-key="header-lower" class="py-4">
         <slot name="header-drawer-modules" />
       </vs-drawer>
       <div class="d-none d-lg-block">
@@ -138,8 +137,8 @@ export default {
 @import "~bootstrap/scss/utilities/screenreaders";
 @import "styles/placeholders";
 
-.vs-universal-nav__toggle {
-  font-size: $font-size-sm;
+.vs-universal-nav--toggle {
+  margin-left: -#{$input-btn-padding-x};
 }
 
 .vs-desktop-nav__toggle-list {
@@ -267,7 +266,6 @@ export default {
           <vs-drawer-toggle
             drawer-key="header-lower"
             content-key="favourites-list"
-            :show-close="true"
             :href="favourite.href"
             :title="favourite.title"
             type="vs-favourites-button"
@@ -279,14 +277,12 @@ export default {
           <vs-drawer-content 
             content-key="site-search" 
             ref="siteSearch" 
-            :show-close="true"
             focus-on-open="content"
           >
             <vs-site-search />
           </vs-drawer-content>
           <vs-drawer-content 
             content-key="favourites-list" 
-            :show-close="true"
             focus-on-open="close"
           >
             <vs-favourites-list/>

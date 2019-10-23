@@ -4,12 +4,12 @@
     :active="active"
     :target="external ? '_blank' : null"
     :data-vs-track="trackingId"
-    class="text-white vs-universal-nav--item text-nowrap text-justify py-1 px-2 align-items-center d-flex"
+    class="vs-universal-nav--item text-white text-nowrap text-justify align-items-center d-flex"
   >
     <slot />
     <vs-icon
       v-if="external"
-      class="d-lg-none"
+      class="d-lg-none ml-1"
       name="external-link"
       size="xxs"
       variant="reverse-white"
@@ -54,8 +54,21 @@ export default {
 
 .vs-universal-nav--item {
   background-color: transparent;
-  font-size: $font-size-sm;
-  border: none;
+
+  @include media-breakpoint-up(lg) {
+    border: none;
+    &:first-of-type {
+      padding-left: 0 !important;
+    }
+  }
+
+  @include media-breakpoint-down(sm) {
+    padding-left: calc((100% - #{$max-container-width-sm} + #{$grid-gutter-width}) / 2);
+  }
+
+  @include media-breakpoint-down(md) {
+    padding-left: calc((100% - #{$max-container-width-md} + #{$grid-gutter-width}) / 2);
+  }
 
   &:hover {
     background-color: $color-theme-primary-pink;
