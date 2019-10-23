@@ -1,7 +1,13 @@
 <template>
-  <vs-row class="position-relative" v-show="isVisible" @focus="focusOnContent" tabindex="-1">
-    <vs-col order="2">
-      <div v-if="showClose" class="d-none d-md-block position-absolute close-button-wrapper">
+  <component
+    :is="wrappingElement"
+    class="position-relative"
+    v-show="isVisible"
+    @focus="focusOnContent"
+    tabindex="-1"
+  >
+    <vs-col order="2" v-if="container">
+      <div class="d-none d-md-block position-absolute close-button-wrapper">
         <vs-close-button
           @click.native="closeDrawer"
           @keydown.native="checkKeydown($event)"
@@ -11,11 +17,22 @@
         </vs-close-button>
       </div>
     </vs-col>
-    <vs-col :md="md" :xl="xl" offset-md="1" offset-xl="2">
+
+    <!-- <vs-col md="11" v-if="container">
       <slot />
       <button @focus="closeDrawer" class="catch-focus__button" />
     </vs-col>
-  </vs-row>
+
+    <div v-else>
+      <slot />
+      <button @focus="closeDrawer" class="catch-focus__button" />
+    </div> -->
+
+    <component :md="container ? 11 : null" :is="container ? 'vs-col' : 'div'">
+      <slot />
+      <button @focus="closeDrawer" class="catch-focus__button" />
+    </component>
+  </component>
 </template>
 
 <script>
@@ -32,8 +49,6 @@ import drawerStore from "./drawer.store"
 import { IS_ACTIVE_CONTENT } from "./drawer.store.getter-types"
 import { CLOSE_DRAWER } from "./drawer.store.action-types"
 
-import breakpointsMixin from "@/mixins/breakpointColProps"
-
 export default {
   name: "VsDrawerContent",
   components: {
@@ -41,7 +56,6 @@ export default {
     VsRow,
     VsCol,
   },
-  mixins: [breakpointsMixin],
   props: {
     /**
      * unique key for this content - used to discover when to show
@@ -70,29 +84,37 @@ export default {
         return value === false || value.match(/(content|close)/)
       },
     },
-    md: {
-      default: "10",
-    },
-    xl: {
-      default: "8",
-    },
   },
   data() {
-    return { drawerKey: null }
+    return {
+      parentDrawer: {},
+    }
   },
   computed: {
     isVisible() {
-      return drawerStore.getters["drawer/" + IS_ACTIVE_CONTENT](this.contentKey, this.drawerKey)
+      return drawerStore.getters["drawer/" + IS_ACTIVE_CONTENT](
+        this.contentKey,
+        this.parentDrawerKey
+      )
     },
     hasDefaultSlot() {
       return isFunction(get(this.$scopedSlots, "default"))
+    },
+    parentDrawerKey() {
+      return get(this.parentDrawer, "$options.propsData.drawerKey")
+    },
+    container() {
+      return get(this.parentDrawer, "$options.propsData.container", false)
+    },
+    wrappingElement() {
+      return this.container ? "vs-row" : "div"
     },
   },
   methods: {
     closeDrawer() {
       drawerStore
         .dispatch("drawer/" + CLOSE_DRAWER, {
-          drawerKey: this.drawerKey,
+          drawerKey: this.parentDrawerKey,
         })
         .then(returnFocusElement => {
           if (isFunction(get(returnFocusElement, "$el.focus"))) {
@@ -117,7 +139,7 @@ export default {
         this.closeDrawer()
       }
     },
-    getParentDrawerKey() {
+    setParentDrawer() {
       let $current = this.$parent
       let i = 0
 
@@ -138,7 +160,7 @@ export default {
         i++
       }
 
-      return get($current, "$options.propsData.drawerKey")
+      this.parentDrawer = $current
     },
   },
   watch: {
@@ -149,13 +171,11 @@ export default {
     },
   },
   mounted() {
-    let parentDrawerKey = this.getParentDrawerKey()
+    this.setParentDrawer()
 
-    if (!parentDrawerKey) {
+    if (!this.$parent) {
       logger.error("VsDrawerContent is not inside a parent VsDrawer")
     }
-
-    this.drawerKey = parentDrawerKey
   },
 }
 </script>
