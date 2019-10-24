@@ -130,8 +130,12 @@ export default {
       }
     },
     focusOnContent() {
-      if (isFunction(get(this.$slots, "default[0].componentInstance.$el.focus"))) {
-        this.$slots.default[0].componentInstance.$el.focus()
+      const slotContent = get(this.$slots, "default[0]")
+
+      let $el = get(slotContent, "elm")
+
+      if (isFunction(get($el, "focus"))) {
+        $el.focus()
       }
     },
     checkKeydown($event) {
