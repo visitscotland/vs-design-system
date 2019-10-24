@@ -84,7 +84,7 @@ export default {
 
 .vs-header__drawer-wrapper {
   @extend %default-inset-box-shadow;
-  background-color: $gray-tint-7;
+  background-color: $color-gray-tint-7;
   width: 100%;
 }
 

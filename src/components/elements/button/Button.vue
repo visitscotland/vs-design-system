@@ -117,7 +117,7 @@ $variants: (
 
 .btn-dark {
   &:hover {
-    background-color: $gray-shade-5;
+    background-color: $color-gray-shade-5;
   }
 }
 </style>
