@@ -4,6 +4,7 @@
     :active="active"
     :target="external ? '_blank' : null"
     :data-vs-track="trackingId"
+    tabindex="0"
     class="vs-universal-nav--item text-white text-nowrap text-justify align-items-center d-flex"
   >
     <slot />
@@ -53,8 +54,7 @@ export default {
 @import "~bootstrap/scss/list-group";
 
 .vs-universal-nav--item {
-  background-color: transparent;
-
+  
   @include media-breakpoint-up(lg) {
     border: none;
     &:first-of-type {
@@ -62,16 +62,27 @@ export default {
     }
   }
 
+  // md and below is the collapsed version
+  @include media-breakpoint-down(md) {
+    background-color: $color-purple-shade-1;
+    border: 1px none $color-purple-tint-3;
+    border-style: solid none;
+    margin-bottom: 0;
+    padding-left: calc((100% - #{$max-container-width-md} + #{$grid-gutter-width}) / 2);
+  }
+
   @include media-breakpoint-down(sm) {
     padding-left: calc((100% - #{$max-container-width-sm} + #{$grid-gutter-width}) / 2);
   }
 
-  @include media-breakpoint-down(md) {
-    padding-left: calc((100% - #{$max-container-width-md} + #{$grid-gutter-width}) / 2);
+  &:hover, &:focus {
+    outline: none;
+    background-color: $color-gray-shade-6;
   }
 
-  &:hover {
-    background-color: $color-theme-primary-pink;
+  &:focus {
+    border-width: 2px;
+    border-color: $color-purple-tint-5;
   }
 }
 </style>

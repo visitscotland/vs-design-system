@@ -23,9 +23,14 @@
           <vs-col cols="12"> </vs-col>
         </vs-row>
       </vs-container>
-      <vs-drawer class="bg-primary" drawer-key="header-upper" :container="false">
-        <vs-drawer-content content-key="universal-nav">
-          <b-list-group class="d-lg-none">
+      <vs-drawer
+        class="bg-primary"
+        drawer-key="header-upper"
+        :container="false"
+      >
+        
+        <vs-drawer-content content-key="universal-nav" focus-on-open="content">
+          <b-list-group class="d-lg-none" v-hand-down-focus tabindex="0">
             <slot name="universal-nav" :dummy="{}"></slot>
           </b-list-group>
         </vs-drawer-content>
@@ -78,6 +83,8 @@ import VsDrawerContent from "../drawer/DrawerContent"
 
 import { BListGroup } from "bootstrap-vue"
 
+import handDownFocus from "@/directives/hand-down-focus"
+
 export default {
   name: "VsHeader",
   status: "prototype",
@@ -99,6 +106,9 @@ export default {
       type: String,
       default: "header",
     },
+  },
+  directives: {
+    handDownFocus
   },
   methods: {
     resetMenus() {
