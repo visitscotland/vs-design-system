@@ -30,7 +30,7 @@
       >
         
         <vs-drawer-content content-key="universal-nav" focus-on-open="content">
-          <b-list-group class="d-lg-none" v-hand-down-focus tabindex="0">
+          <b-list-group class="d-lg-none" v-hand-down-focus tabindex="-1">
             <slot name="universal-nav" :dummy="{}"></slot>
           </b-list-group>
         </vs-drawer-content>
