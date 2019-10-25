@@ -54,7 +54,8 @@ export default {
 @import "~bootstrap/scss/list-group";
 
 .vs-universal-nav--item {
-  
+  background-color: transparent;
+
   @include media-breakpoint-up(lg) {
     border: none;
     &:first-of-type {
@@ -75,7 +76,8 @@ export default {
     padding-left: calc((100% - #{$max-container-width-sm} + #{$grid-gutter-width}) / 2);
   }
 
-  &:hover, &:focus {
+  &:hover,
+  &:focus {
     outline: none;
     background-color: $color-gray-shade-6;
   }
