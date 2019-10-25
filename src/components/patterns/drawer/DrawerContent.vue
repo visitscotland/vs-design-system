@@ -18,16 +18,6 @@
       </div>
     </vs-col>
 
-    <!-- <vs-col md="11" v-if="container">
-      <slot />
-      <button @focus="closeDrawer" class="catch-focus__button" />
-    </vs-col>
-
-    <div v-else>
-      <slot />
-      <button @focus="closeDrawer" class="catch-focus__button" />
-    </div> -->
-
     <component :md="container ? 11 : null" :is="container ? 'vs-col' : 'div'">
       <slot />
       <button @focus="closeDrawer" class="catch-focus__button" />
