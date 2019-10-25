@@ -5,7 +5,7 @@
     :target="external ? '_blank' : null"
     :data-vs-track="trackingId"
     tabindex="0"
-    class="vs-universal-nav--item text-white text-nowrap text-justify align-items-center d-flex"
+    class="vs-universal-nav--item text-white text-nowrap text-justify align-items-center d-flex px-2"
   >
     <slot />
     <vs-icon
@@ -56,13 +56,20 @@ export default {
 .vs-universal-nav--item {
   background-color: transparent;
 
-  @include media-breakpoint-up(lg) {
-    border: none;
-    &:first-of-type {
-      padding-left: 0 !important;
-    }
+  &:hover,
+  &:focus {
+    outline: none;
+    box-shadow: inset 0 -3px 0 0 $white;
+    background-color: $color-gray-shade-6;
   }
 
+  @include media-breakpoint-up(lg) {
+    border: none;
+    font-size: $font-size-sm;
+    &:first-of-type {
+      margin-left: -#{$spacer-2};
+    }
+  }
   // md and below is the collapsed version
   @include media-breakpoint-down(md) {
     background-color: $color-purple-shade-1;
@@ -70,21 +77,15 @@ export default {
     border-style: solid none;
     margin-bottom: 0;
     padding-left: calc((100% - #{$max-container-width-md} + #{$grid-gutter-width}) / 2);
+
+    &:focus {
+      border-width: 2px;
+      border-color: $color-purple-tint-5;
+    }
   }
 
   @include media-breakpoint-down(sm) {
     padding-left: calc((100% - #{$max-container-width-sm} + #{$grid-gutter-width}) / 2);
-  }
-
-  &:hover,
-  &:focus {
-    outline: none;
-    background-color: $color-gray-shade-6;
-  }
-
-  &:focus {
-    border-width: 2px;
-    border-color: $color-purple-tint-5;
   }
 }
 </style>
