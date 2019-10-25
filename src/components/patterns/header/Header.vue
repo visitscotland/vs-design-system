@@ -23,12 +23,7 @@
           <vs-col cols="12"> </vs-col>
         </vs-row>
       </vs-container>
-      <vs-drawer
-        class="bg-primary"
-        drawer-key="header-upper"
-        :container="false"
-      >
-        
+      <vs-drawer class="bg-primary" drawer-key="header-upper" :container="false">
         <vs-drawer-content content-key="universal-nav" focus-on-open="content">
           <b-list-group class="d-lg-none" v-hand-down-focus tabindex="-1">
             <slot name="universal-nav" :dummy="{}"></slot>
@@ -108,7 +103,7 @@ export default {
     },
   },
   directives: {
-    handDownFocus
+    handDownFocus,
   },
   methods: {
     resetMenus() {
@@ -215,7 +210,8 @@ export default {
 
         <template #universal-nav>
           <vs-universal-nav-item
-            v-for="site in header.ourSites"
+            v-for="(site, i) in header.ourSites"
+            :key="i"
             :href="site.href"
             :external="site.isExternal"
             :active="site.isActive"
@@ -223,22 +219,6 @@ export default {
           >
             {{ site.title }}
           </vs-universal-nav-item>
-        </template>
-
-
-        <template #desktop-universal-nav>
-          <vs-desktop-universal-nav
-            name="Our sites"
-            :dropdown-list="header.ourSites"
-          />
-        </template>
-
-        <template #mobile-universal-nav>
-          <vs-mobile-universal-nav
-            name="Our sites"
-            class="vs-dropdown--mobile-universal-nav"
-            :dropdown-list="header.ourSites"
-          />
         </template>
 
         <template #login>
