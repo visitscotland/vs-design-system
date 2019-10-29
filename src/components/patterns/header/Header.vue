@@ -162,6 +162,12 @@ export default {
 .vs-header__wrapper--top {
   background-color: $color-theme-primary;
   z-index: 4;
+
+  @include media-breakpoint-up(lg) {
+    & ::v-deep * {
+      font-size: $font-size-sm;
+    }
+  }
 }
 
 .vs-header__wrapper--bottom {
@@ -222,9 +228,15 @@ export default {
         </template>
 
         <template #login>
-          <vs-login
-            username=""
-          />
+          <vs-login-button>
+            <template v-slot:logged-in>
+              <span class="d-lg-none">Log out</span>
+              <span>Hi Boudicca... (not you?)</span>
+            </template>
+            <template v-slot:logged-out>
+              <span>Login</span>
+            </template>
+          </vs-login-button>
         </template>
 
         <template #language>

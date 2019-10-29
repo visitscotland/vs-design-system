@@ -65,7 +65,7 @@ export default {
 
   @include media-breakpoint-up(lg) {
     border: none;
-    font-size: $font-size-sm;
+
     &:first-of-type {
       margin-left: -#{$spacer-2};
     }
