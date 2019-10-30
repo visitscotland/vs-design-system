@@ -5,7 +5,7 @@
     :target="external ? '_blank' : null"
     :data-vs-track="trackingId"
     tabindex="0"
-    class="vs-universal-nav--item text-white text-nowrap text-justify align-items-center d-flex px-2"
+    class="vs-header--top--nav-item text-white text-nowrap text-justify align-items-center d-flex px-lg-2"
   >
     <slot />
     <vs-icon
@@ -22,7 +22,7 @@
 import { BListGroupItem } from "bootstrap-vue"
 
 export default {
-  name: "VsUniversalNavItem",
+  name: "VsHeaderTopNavItem",
   status: "prototype",
   release: "0.1.0",
   props: {
@@ -53,7 +53,7 @@ export default {
 @import "~bootstrap/scss/utilities/flex";
 @import "~bootstrap/scss/list-group";
 
-.vs-universal-nav--item {
+.vs-header--top--nav-item {
   background-color: transparent;
 
   &:hover,
