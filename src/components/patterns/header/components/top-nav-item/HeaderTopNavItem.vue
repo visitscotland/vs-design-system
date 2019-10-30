@@ -79,8 +79,8 @@ export default {
     padding-left: calc((100% - #{$max-container-width-md} + #{$grid-gutter-width}) / 2);
 
     &:focus {
-      border-width: 2px;
-      border-color: $color-purple-tint-5;
+      border-width: 0;
+      box-shadow: inset 0 -3px 0 0 $white, inset 0 3px 0 0 white;
     }
   }
 
