@@ -24,17 +24,24 @@
                 content-key="language-list"
                 drawer-key="header-upper"
               >
-                <slot name="language-list-toggle">LANG</slot>
+                <slot name="language-list-toggle-label">LANG</slot>
+                <vs-icon
+                  v-if="external"
+                  class="d-lg-none ml-1"
+                  name="chevron-down"
+                  size="xxs"
+                  variant="reverse-white"
+                />
               </vs-drawer-toggle>
 
               <vs-button
                 class="vs-language-list--toggle"
                 @click.native="languageDropdownOpen = !languageDropdownOpen"
               >
-                <slot name="language-list-toggle" :dummy="{}">LANG</slot>
+                <slot name="language-list-toggle-label" :dummy="{}">LANG</slot>
               </vs-button>
 
-              <b-collapse v-model="languageDropdownOpen">
+              <b-collapse v-model="languageDropdownOpen" id="header-language-list-dropdown">
                 <b-list-group :horizontal="false">
                   <slot name="language-list"></slot>
                 </b-list-group>
@@ -96,7 +103,7 @@
 import smoothscroll from "smoothscroll-polyfill"
 
 import VsContainer from "@components/elements/layout/Container"
-import VsSvg from "@components/elements/svg/Svg"
+import VsIcon from "@components/elements/icon/Icon"
 import VsRow from "@components/elements/layout/Row"
 import VsCol from "@components/elements/layout/Col"
 import VsDrawer from "../drawer/Drawer"
@@ -109,14 +116,14 @@ import handDownFocus from "@/directives/hand-down-focus"
 export default {
   name: "VsHeader",
   status: "prototype",
-  release: "0.0.1",
+  release: "0.1.0",
   components: {
     VsCol,
     VsContainer,
     VsRow,
-    VsSvg,
     VsDrawer,
     VsDrawerContent,
+    VsIcon,
     BListGroup,
     BCollapse,
   },
@@ -182,6 +189,17 @@ export default {
 .vs-language-list--toggle {
   @include media-breakpoint-down(md) {
     display: none !important;
+  }
+}
+
+#header-language-list-dropdown ::v-deep {
+  position: absolute;
+  top: 42px;
+  .vs-header--top--nav-item {
+    background-color: $color-theme-primary;
+    &:first-of-type {
+      margin-left: 0;
+    }
   }
 }
 
@@ -278,7 +296,7 @@ export default {
           </vs-login-button>
         </template>
 
-        <template #language-list-toggle>
+        <template #language-list-toggle-label>
           EN
         </template>
 
