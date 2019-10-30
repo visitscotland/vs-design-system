@@ -16,8 +16,29 @@
               <slot name="universal-nav-toggle">Our sites</slot>
             </vs-drawer-toggle>
 
-            <div class="d-inline-flex vs-header__site-controls-col justify-content-end">
-              <slot name="login"></slot> <slot name="language"></slot>
+            <div class="d-inline-flex vs-header__top__right justify-content-end">
+              <slot name="login"></slot>
+
+              <vs-drawer-toggle
+                class="vs-universal-nav--toggle d-lg-none"
+                content-key="language-list"
+                drawer-key="header-upper"
+              >
+                <slot name="language-list-toggle">LANG</slot>
+              </vs-drawer-toggle>
+
+              <vs-button
+                class="vs-language-list--toggle"
+                @click.native="languageDropdownOpen = !languageDropdownOpen"
+              >
+                <slot name="language-list-toggle" :dummy="{}">LANG</slot>
+              </vs-button>
+
+              <b-collapse v-model="languageDropdownOpen">
+                <b-list-group :horizontal="false">
+                  <slot name="language-list"></slot>
+                </b-list-group>
+              </b-collapse>
             </div>
           </vs-col>
           <vs-col cols="12"> </vs-col>
@@ -27,6 +48,11 @@
         <vs-drawer-content content-key="universal-nav" focus-on-open="content">
           <b-list-group class="d-lg-none" v-hand-down-focus tabindex="-1">
             <slot name="universal-nav" :dummy="{}"></slot>
+          </b-list-group>
+        </vs-drawer-content>
+        <vs-drawer-content content-key="language-list" focus-on-open="content">
+          <b-list-group class="d-lg-none" v-hand-down-focus tabindex="-1">
+            <slot name="language-list" :dummy="{}"></slot>
           </b-list-group>
         </vs-drawer-content>
       </vs-drawer>
@@ -76,7 +102,7 @@ import VsCol from "@components/elements/layout/Col"
 import VsDrawer from "../drawer/Drawer"
 import VsDrawerContent from "../drawer/DrawerContent"
 
-import { BListGroup } from "bootstrap-vue"
+import { BListGroup, BCollapse, VBToggle } from "bootstrap-vue"
 
 import handDownFocus from "@/directives/hand-down-focus"
 
@@ -92,6 +118,13 @@ export default {
     VsDrawer,
     VsDrawerContent,
     BListGroup,
+    BCollapse,
+  },
+  directives: { "b-toggle": VBToggle },
+  data() {
+    return {
+      languageDropdownOpen: false,
+    }
   },
   props: {
     /**
@@ -146,6 +179,12 @@ export default {
   margin-left: -#{$input-btn-padding-x};
 }
 
+.vs-language-list--toggle {
+  @include media-breakpoint-down(md) {
+    display: none !important;
+  }
+}
+
 .vs-desktop-nav__toggle-list {
   width: 100%;
   padding: 0 2rem;
@@ -183,7 +222,7 @@ export default {
   }
 }
 
-.vs-header__site-controls-col {
+.vs-header__top__right {
   position: static;
 
   @include media-breakpoint-up(md) {
@@ -215,7 +254,7 @@ export default {
       <vs-header>
 
         <template #universal-nav>
-          <vs-universal-nav-item
+          <vs-header-top-nav-item
             v-for="(site, i) in header.ourSites"
             :key="i"
             :href="site.href"
@@ -224,7 +263,7 @@ export default {
             :tracking-id="site.trackingId"
           >
             {{ site.title }}
-          </vs-universal-nav-item>
+          </vs-header-top-nav-item>
         </template>
 
         <template #login>
@@ -238,6 +277,22 @@ export default {
             </template>
           </vs-login-button>
         </template>
+
+        <template #language-list-toggle>
+          EN
+        </template>
+
+        <template #language-list>
+          <vs-header-top-nav-item
+            v-for="(lang, i) in header.languages"
+            :key="i"
+            :href="lang.href"
+            :active="lang.isActive"
+            :tracking-id="lang.trackingId"
+          >
+            <span>{{ lang.title }}</span>
+          </vs-header-top-nav-item>
+        </template>        
 
         <template #language>
           <vs-language
