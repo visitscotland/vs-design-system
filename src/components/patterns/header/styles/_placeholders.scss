@@ -1,3 +1,26 @@
+%header-nav-item {
+  border: none;
+
+  &:hover,
+  &:focus {
+    outline: none;
+  }
+}
+
+%header-nav-item-top {
+  background-color: transparent;
+
+  &:hover,
+  &:focus {
+    box-shadow: inset 0 -3px 0 0 $white;
+    background-color: $color-gray-shade-6;
+  }
+}
+
+%header-nav-item-top {
+  background-color: transparent;
+}
+
 %focus-white-inset {
   outline: none;
   box-shadow: inset 0 -3px 0 0 $white;

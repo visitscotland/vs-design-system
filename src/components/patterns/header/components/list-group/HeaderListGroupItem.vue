@@ -5,7 +5,7 @@
     :target="external ? '_blank' : null"
     :data-vs-track="trackingId"
     tabindex="0"
-    class="vs-header--top--nav-item text-white text-nowrap text-justify align-items-center d-flex px-lg-2"
+    class="vs-header__list-group-item text-white text-nowrap text-justify align-items-center d-flex px-lg-2"
   >
     <slot />
     <vs-icon
@@ -22,7 +22,7 @@
 import { BListGroupItem } from "bootstrap-vue"
 
 export default {
-  name: "VsHeaderTopNavItem",
+  name: "VsHeaderListGroupItem",
   status: "prototype",
   release: "0.1.0",
   props: {
@@ -52,41 +52,10 @@ export default {
 @import "~bootstrap/scss/utilities/spacing";
 @import "~bootstrap/scss/utilities/flex";
 @import "~bootstrap/scss/list-group";
+@import "../../styles/placeholders";
 
-.vs-header--top--nav-item {
-  background-color: transparent;
-
-  &:hover,
-  &:focus {
-    outline: none;
-    box-shadow: inset 0 -3px 0 0 $white;
-    background-color: $color-gray-shade-6;
-  }
-
-  @include media-breakpoint-up(lg) {
-    border: none;
-
-    &:first-of-type {
-      margin-left: -#{$spacer-2};
-    }
-  }
-  // md and below is the collapsed version
-  @include media-breakpoint-down(md) {
-    background-color: $color-purple-shade-1;
-    border: 1px none $color-purple-tint-3;
-    border-style: solid none;
-    margin-bottom: 0;
-    padding-left: calc((100% - #{$max-container-width-md} + #{$grid-gutter-width}) / 2);
-
-    &:focus {
-      border-width: 0;
-      box-shadow: inset 0 -3px 0 0 $white, inset 0 3px 0 0 white;
-    }
-  }
-
-  @include media-breakpoint-down(sm) {
-    padding-left: calc((100% - #{$max-container-width-sm} + #{$grid-gutter-width}) / 2);
-  }
+.vs-header__list-group-item.list-group-item {
+  @extend %header-nav-item;
 }
 </style>
 
