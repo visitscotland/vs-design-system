@@ -1,71 +1,22 @@
 <template>
-  <component :is="type" class="vs-header" ref="header">
-    <div class="vs-header__wrapper--top position-relative">
+  <component :is="type" class="position-relative" ref="header">
+    <div class="vs-header__top-wrapper bg-primary position-relative">
       <vs-container>
         <vs-row>
           <vs-col cols="12" class="d-flex justify-content-between">
-            <b-list-group class="d-lg-inline-flex d-none">
-              <slot name="universal-nav" :dummy="{}"></slot>
-            </b-list-group>
-
-            <vs-drawer-toggle
-              class="vs-universal-nav--toggle d-lg-none"
-              content-key="universal-nav"
-              drawer-key="header-upper"
-            >
-              <slot name="universal-nav-toggle">Our sites</slot>
-            </vs-drawer-toggle>
-
-            <div class="d-inline-flex vs-header__top__right justify-content-end">
-              <slot name="login"></slot>
-
-              <vs-drawer-toggle
-                class="vs-universal-nav--toggle d-lg-none"
-                content-key="language-list"
-                drawer-key="header-upper"
-              >
-                <slot name="language-list-toggle-label">LANG</slot>
-                <vs-icon
-                  v-if="external"
-                  class="d-lg-none ml-1"
-                  name="chevron-down"
-                  size="xxs"
-                  variant="reverse-white"
-                />
-              </vs-drawer-toggle>
-
-              <vs-button
-                class="vs-language-list--toggle"
-                @click.native="languageDropdownOpen = !languageDropdownOpen"
-              >
-                <slot name="language-list-toggle-label" :dummy="{}">LANG</slot>
-              </vs-button>
-
-              <b-collapse v-model="languageDropdownOpen" id="header-language-list-dropdown">
-                <b-list-group :horizontal="false">
-                  <slot name="language-list"></slot>
-                </b-list-group>
-              </b-collapse>
+            <slot name="top-left" />
+            <div class="d-inline-flex position-static justify-content-end">
+              <slot name="top-right"></slot>
             </div>
           </vs-col>
-          <vs-col cols="12"> </vs-col>
         </vs-row>
       </vs-container>
-      <vs-drawer class="bg-primary" drawer-key="header-upper" :container="false">
-        <vs-drawer-content content-key="universal-nav" focus-on-open="content">
-          <b-list-group class="d-lg-none" v-hand-down-focus tabindex="-1">
-            <slot name="universal-nav" :dummy="{}"></slot>
-          </b-list-group>
-        </vs-drawer-content>
-        <vs-drawer-content content-key="language-list" focus-on-open="content">
-          <b-list-group class="d-lg-none" v-hand-down-focus tabindex="-1">
-            <slot name="language-list" :dummy="{}"></slot>
-          </b-list-group>
-        </vs-drawer-content>
+      <vs-drawer class="bg-primary" drawer-key="header-top" :container="false">
+        <slot name="top-drawer" />
       </vs-drawer>
     </div>
 
-    <div class="vs-header__wrapper--bottom position-relative">
+    <div class="vs-header__bottom-wrapper position-relative bg-white">
       <vs-container>
         <vs-row>
           <vs-col>
@@ -84,8 +35,8 @@
           </vs-col>
         </vs-row>
       </vs-container>
-      <vs-drawer drawer-key="header-lower" class="py-4">
-        <slot name="header-drawer-modules" />
+      <vs-drawer drawer-key="header-bottom" class="py-4">
+        <slot name="bottom-drawer" />
       </vs-drawer>
       <div class="d-none d-lg-block">
         <vs-desktop-nav name="Main navigation"> <slot name="desktop-submenu" /> </vs-desktop-nav>
@@ -182,16 +133,6 @@ export default {
 @import "~bootstrap/scss/utilities/screenreaders";
 @import "styles/placeholders";
 
-.vs-universal-nav--toggle {
-  margin-left: -#{$input-btn-padding-x};
-}
-
-.vs-language-list--toggle {
-  @include media-breakpoint-down(md) {
-    display: none !important;
-  }
-}
-
 #header-language-list-dropdown ::v-deep {
   position: absolute;
   top: 42px;
@@ -212,13 +153,8 @@ export default {
   }
 }
 
-.vs-header {
-  position: relative;
-}
-
-.vs-header__wrapper--top {
-  background-color: $color-theme-primary;
-  z-index: 4;
+.vs-header__top-wrapper {
+  z-index: $zindex-fixed;
 
   @include media-breakpoint-up(lg) {
     & ::v-deep * {
@@ -227,271 +163,12 @@ export default {
   }
 }
 
-.vs-header__wrapper--bottom {
-  background-color: $white;
+.vs-header__bottom-wrapper {
   @extend %default-box-shadow;
-}
-
-.vs-header__universal-nav-col {
-  position: static;
-
-  @include media-breakpoint-up(md) {
-    position: relative;
-  }
-}
-
-.vs-header__top__right {
-  position: static;
-
-  @include media-breakpoint-up(md) {
-    position: relative;
-  }
 }
 </style>
 
 <docs>
-  ```vue
-
-  <template>
-  
-    <div style="overflow-y: scroll; min-height: 600px;">
-      <vs-skip-to
-        :target="contentContainer"
-      >
-        Skip to Content
-      </vs-skip-to>
-
-      <vs-drawer-toggle
-        content-key="site-search"
-        drawer-key="header-lower"
-        type="vs-skip-to-button"
-      >
-        Skip to Search
-      </vs-drawer-toggle>
-
-      <vs-header>
-
-        <template #universal-nav>
-          <vs-header-top-nav-item
-            v-for="(site, i) in header.ourSites"
-            :key="i"
-            :href="site.href"
-            :external="site.isExternal"
-            :active="site.isActive"
-            :tracking-id="site.trackingId"
-          >
-            {{ site.title }}
-          </vs-header-top-nav-item>
-        </template>
-
-        <template #login>
-          <vs-login-button>
-            <template v-slot:logged-in>
-              <span class="d-lg-none">Log out</span>
-              <span>Hi Boudicca... (not you?)</span>
-            </template>
-            <template v-slot:logged-out>
-              <span>Login</span>
-            </template>
-          </vs-login-button>
-        </template>
-
-        <template #language-list-toggle-label>
-          EN
-        </template>
-
-        <template #language-list>
-          <vs-header-top-nav-item
-            v-for="(lang, i) in header.languages"
-            :key="i"
-            :href="lang.href"
-            :active="lang.isActive"
-            :tracking-id="lang.trackingId"
-          >
-            <span>{{ lang.title }}</span>
-          </vs-header-top-nav-item>
-        </template>        
-
-        <template #language>
-          <vs-language
-            name="Language"
-            class="vs-dropdown--language"
-            :dropdown-list="header.languages"
-          />
-        </template>
-
-        <template #logo>
-          <vs-logo />
-        </template>
-
-        <template #mobile-nav-button>
-          <vs-mobile-nav-button />
-        </template>
-
-        <template #header-drawer-toggles>
-
-          <vs-drawer-toggle
-            drawer-key="header-lower"
-            content-key="site-search"
-            type="vs-site-search-toggle-button"
-          >
-            Search
-          </vs-drawer-toggle>
-
-          <vs-drawer-toggle
-            drawer-key="header-lower"
-            content-key="favourites-list"
-            :href="favourite.href"
-            :title="favourite.title"
-            type="vs-favourites-button"
-          />
-
-        </template>
-
-        <template #header-drawer-modules>
-          <vs-drawer-content 
-            content-key="site-search" 
-            ref="siteSearch" 
-            focus-on-open="content"
-          >
-            <vs-site-search />
-          </vs-drawer-content>
-          <vs-drawer-content 
-            content-key="favourites-list" 
-            focus-on-open="close"
-          >
-            <vs-favourites-list/>
-          </vs-drawer-content>
-        </template>
-
-        <template #desktop-nav-toggles>
-          <vs-desktop-nav-toggles
-            v-for="(item, index) in header.mainNav"
-            :level="1"
-            :href="item.href"
-            :is-external="item.isExternal"
-            :title="item.title"
-            :subnav="item.subnav"
-            :promo-list="item.promoList"
-            :promo-item="item.promoItem"
-            :chart-widgets="item.chartWidgets"
-            :key="index"
-            :toggleId="index+1"
-          />
-        </template>
-
-        <vs-desktop-nav-submenu
-          slot="desktop-submenu"
-          v-for="(item, index) in header.mainNav"
-          :level="1"
-          :href="item.href"
-          :is-external="item.isExternal"
-          :tracking-id="item.trackingId"
-          :title="item.title"
-          :subnav="item.subnav"
-          :promo-list="item.promoList"
-          :promo-item="item.promoItem"
-          :chart-widgets="item.chartWidgets"
-          :key="index"
-          :subnavId="index+1"
-        >
-          <vs-desktop-nav-list-item
-            slot="subnav"
-            v-for="(level2, index2) in item.subnav"
-            :level="2"
-            :href="level2.href"
-            :is-external="level2.isExternal"
-            :tracking-id="level2.trackingId"
-            :title="level2.title"
-            :subnav="level2.subnav"
-            :key="index2"
-          >
-            <vs-desktop-nav-list-item
-              slot="subnav"
-              v-for="(level3, index3) in level2.subnav"
-              :level="3"
-              :href="level3.href"
-              :is-external="level3.isExternal"
-              :title="level3.title"
-              :tracking-id="level3.trackingId"
-              :subnav="level3.subnav"
-              :key="index3"
-            >
-            </vs-desktop-nav-list-item>
-          </vs-desktop-nav-list-item>
-        </vs-desktop-nav-submenu>
-
-        <vs-mobile-nav-list-item
-          slot="mobile-nav-items"
-          v-for="(item, index) in header.mainNav"
-          :level="1"
-          :href="item.href"
-          :is-external="item.isExternal"
-          :tracking-id="item.trackingId"
-          :title="item.title"
-          :subnav="item.subnav"
-          :promo-list="item.promoList"
-          :promo-item="item.promoItem"
-          :key="index"
-        >
-          <vs-mobile-nav-list-item
-            slot="subnav"
-            v-for="(level2, index2) in item.subnav"
-            :level="2"
-            :href="level2.href"
-            :is-external="level2.isExternal"
-            :tracking-id="level2.trackingId"
-            :title="level2.title"
-            :subnav="level2.subnav"
-            :promo-list="level2.promoList"
-            :promo-item="level2.promoItem"
-            :key="index2"
-          >
-            <vs-mobile-nav-list-item
-              slot="subnav"
-              v-for="(level3, index3) in level2.subnav"
-              :level="3"
-              :href="level3.href"
-              :is-external="level3.isExternal"
-              :title="level3.title"
-              :tracking-id="level3.trackingId"
-              :subnav="level3.subnav"
-              :promo-list="level3.promoList"
-              :promo-item="level3.promoItem"
-              :key="index3"
-            >
-            </vs-mobile-nav-list-item>
-          </vs-mobile-nav-list-item>
-        </vs-mobile-nav-list-item>
-
-      </vs-header>
-
-      <bs-wrapper class="container">
-        <bs-wrapper class="row">
-          <bs-wrapper id="content-container" class="col" tabindex="3000" style="height:1000">
-            Dummy page content
-          </bs-wrapper>
-        </bs-wrapper>
-      </bs-wrapper>
-    </div>
-  </template>
-
-  <script>
-
-  export default {
-    data() {
-      return {
-        contentContainer: null,
-        siteSearchModule: null
-      }
-    },
-    mounted() {
-      this.contentContainer = document.getElementById("content-container")
-      this.siteSearchModule = this.$refs.siteSearch
-    },
-  }
-  </script>
-
-
+  ```[import](./header.example.vue)
   ```
 </docs>
