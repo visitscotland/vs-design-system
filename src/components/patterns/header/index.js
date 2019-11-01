@@ -6,14 +6,17 @@ import VsDesktopNavSubmenu from "./components/DesktopNav/DesktopNavSubmenu"
 import VsDesktopNavToggles from "./components/DesktopNav/DesktopNavToggles"
 import VsDesktopUniversalNav from "./components/DesktopUniversalNav/DesktopUniversalNav"
 import VsHeader from "./Header"
-import VsLanguage from "./components/Language/Language"
-import VsLogin from "./components/Login/Login"
+import VsHeaderLogin from "./components/Login/Login"
 import VsLogo from "./components/Logo/Logo"
 import VsMobileNav from "./components/MobileNav/MobileNav"
 import VsMobileNavListItem from "./components/MobileNav/MobileNavListItem"
 import VsMobileNavPromoItem from "./components/MobileNav/MobileNavPromoItem"
 import VsMobileNavPromoList from "./components/MobileNav/MobileNavPromoList"
 import VsMobileUniversalNav from "./components/MobileUniversalNav/MobileUniversalNav"
+import VsHeaderDrawerToggle from "./components/drawer-toggle/HeaderDrawerToggle"
+import VsHeaderDropdown from "./components/drawer-toggle/HeaderDropdown"
+import VsHeaderListGroup from "./components/list-group/VsHeaderListGroup"
+import VsHeaderListGroupItem from "./components/list-group/VsHeaderListGroupItem"
 
 export {
   VsDesktopNav,
@@ -24,12 +27,15 @@ export {
   VsDesktopNavToggles,
   VsDesktopUniversalNav,
   VsHeader,
-  VsLanguage,
-  VsLogin,
+  VsHeaderLogin,
   VsLogo,
   VsMobileNav,
   VsMobileNavListItem,
   VsMobileNavPromoItem,
   VsMobileNavPromoList,
   VsMobileUniversalNav,
+  VsHeaderDrawerToggle,
+  VsHeaderDropdown,
+  VsHeaderListGroup,
+  VsHeaderListGroupItem,
 }
