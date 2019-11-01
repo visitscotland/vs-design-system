@@ -20,7 +20,10 @@ export default {
   props: {
     section: {
       type: String,
-      default: "top",
+      default: "bottom",
+      validator: value => {
+        return value.match(/(top|bottom)/)
+      },
     },
   },
   computed: {
