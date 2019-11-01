@@ -52,18 +52,17 @@
           ENG
         </vs-header-drawer-toggle>
 
-        <vs-nav-item-dropdown text="EN" right class="d-none d-lg-block">
+        <vs-header-dropdown text="EN" right class="d-none d-lg-flex" section="top">
           <vs-dropdown-item
-            v-for="(site, i) in header.ourSites"
+            v-for="(lang, i) in header.languages"
             :key="i"
-            :href="site.href"
-            :external="site.isExternal"
-            :active="site.isActive"
-            :tracking-id="site.trackingId"
+            :href="lang.href"
+            :active="lang.isActive"
+            :tracking-id="lang.trackingId"
           >
-            {{ site.title }}
+            {{ lang.title }}
           </vs-dropdown-item>
-        </vs-nav-item-dropdown>
+        </vs-header-dropdown>
       </template>
 
       <template #top-drawer>

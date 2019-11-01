@@ -15,4 +15,5 @@ export default {
 
 <style lang="scss">
 @import "~bootstrap/scss/dropdown";
+@import "~bootstrap-vue/src/components/dropdown/dropdown";
 </style>
