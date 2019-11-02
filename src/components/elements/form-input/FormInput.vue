@@ -68,8 +68,13 @@ export default {
 
 <docs>
 ```jsx
-<div>
-  <vs-form-input />
-</div>
+<bs-wrapper>
+  <label for="small">Small</label>
+  <vs-form-input id="small" class="mb-5" size="sm" />
+  <label for="medium">Medium</label>
+  <vs-form-input id="medium" class="mb-5" size="md" />
+  <label for="large">Large</label>
+  <vs-form-input id="large" class="mb-5" size="lg" />
+</bs-wrapper>
 ```
 </docs>
