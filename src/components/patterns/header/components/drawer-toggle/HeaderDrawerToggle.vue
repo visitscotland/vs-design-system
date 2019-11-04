@@ -1,15 +1,12 @@
 <template>
-  <vs-drawer-toggle
-    v-bind="$attrs"
-    class="vs-header__drawer-toggle"
-    :class="{ 'vs-header__drawer-toggle--top': isTop }"
-  >
+  <vs-drawer-toggle type="vs-header-button" v-bind="$attrs" class="vs-header__drawer-toggle">
     <slot />
   </vs-drawer-toggle>
 </template>
 
 <script>
 import VsDrawerToggle from "@components/patterns/drawer/DrawerToggle"
+import VsHeaderButton from "../button/HeaderButton"
 
 /**
  * This component is used to generate a VsDrawerToggle component with
@@ -19,32 +16,9 @@ export default {
   name: "VsHeaderDrawerToggle",
   components: {
     VsDrawerToggle,
-  },
-  props: {
-    section: {
-      type: String,
-      default: "bottom",
-      validator: value => {
-        return value.match(/(top|bottom)/)
-      },
-    },
-  },
-  computed: {
-    isTop() {
-      return this.section === "top"
-    },
+    VsHeaderButton,
   },
 }
 </script>
 
-<style lang="scss" scoped>
-@import "../../styles/placeholders";
-
-.vs-header__drawer-toggle.vs-drawer-toggle {
-  @extend %header-nav-item;
-
-  &.vs-header__drawer-toggle--top {
-    @extend %header-nav-item-top;
-  }
-}
-</style>
+<style lang="scss" scoped></style>
