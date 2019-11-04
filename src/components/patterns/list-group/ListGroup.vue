@@ -5,6 +5,9 @@
 <script>
 import { BListGroup } from "bootstrap-vue"
 
+/**
+ * Wrapper for the BListGroup component.
+ */
 export default {
   name: "VsListGroup",
   components: {
