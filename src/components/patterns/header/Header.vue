@@ -22,14 +22,21 @@
           <vs-col>
             <div class="d-flex justify-content-between">
               <slot name="logo" />
-              <ul
+              <!-- <ul
                 class="vs-desktop-nav__toggle-list d-none d-lg-flex justify-content-around list-unstyled m-0"
               >
                 <slot name="desktop-nav-toggles" />
-              </ul>
+              </ul> -->
               <div class="vs-controls__wrapper d-flex">
                 <slot name="header-drawer-toggles" />
-                <div class="d-lg-none"><slot name="mobile-nav-button" /></div>
+                <vs-site-nav-mobile-toggle-button
+                  :is-open="mainNavOpen"
+                  class="d-lg-none"
+                  @click.native="toggleMainNav"
+                >
+                  Toggle menu
+                </vs-site-nav-mobile-toggle-button>
+                <!-- <div class="d-lg-none"><slot name="mobile-nav-button" /></div> -->
               </div>
             </div>
           </vs-col>
@@ -38,14 +45,19 @@
       <vs-drawer drawer-key="header-bottom" class="py-4">
         <slot name="bottom-drawer" />
       </vs-drawer>
-      <div class="d-none d-lg-block">
+      <!-- <div class="d-none d-lg-block">
         <vs-desktop-nav name="Main navigation"> <slot name="desktop-submenu" /> </vs-desktop-nav>
-      </div>
-      <div class="d-lg-none">
+      </div> -->
+
+      <vs-site-nav :is-open="mainNavOpen">
+        <slot name="site-navigation" />
+      </vs-site-nav>
+
+      <!-- <div>
         <vs-mobile-nav name="Main navigation" @setScrollOffset="setScrollOffset">
           <slot name="mobile-nav-items" />
         </vs-mobile-nav>
-      </div>
+      </div> -->
     </div>
   </component>
 </template>
@@ -59,6 +71,7 @@ import VsRow from "@components/elements/layout/Row"
 import VsCol from "@components/elements/layout/Col"
 import VsDrawer from "../drawer/Drawer"
 import VsDrawerContent from "../drawer/DrawerContent"
+import { VsSiteNavMobileToggleButton, VsSiteNav } from "./components/site-navigation/"
 
 import { BListGroup, BCollapse, VBToggle } from "bootstrap-vue"
 
@@ -77,11 +90,13 @@ export default {
     VsIcon,
     BListGroup,
     BCollapse,
+    VsSiteNavMobileToggleButton,
+    VsSiteNav,
   },
   directives: { "b-toggle": VBToggle },
   data() {
     return {
-      languageDropdownOpen: false,
+      mainNavOpen: false,
     }
   },
   props: {
@@ -97,6 +112,9 @@ export default {
     handDownFocus,
   },
   methods: {
+    toggleMainNav() {
+      this.mainNavOpen = !this.mainNavOpen
+    },
     resetMenus() {
       this.$emit("resetMenus")
     },
