@@ -24,6 +24,9 @@ export default {
   props: {
     size: {
       default: "md",
+      validator: value => {
+        return value.match(/(sm|md|lg)/)
+      },
     },
     value: {
       type: String,
