@@ -138,7 +138,7 @@ export default {
 
 .vs-desktop-nav__span,
 .vs-desktop-nav__link {
-  color: $gray-shade-2;
+  color: $color-gray-shade-2;
   display: block;
 
   &.vs-desktop-nav__span--level2,
@@ -166,7 +166,7 @@ export default {
     &::after {
       content: "";
       display: block;
-      background-color: $gray-tint-5;
+      background-color: $color-gray-tint-5;
       height: 100%;
       position: absolute;
       left: -1rem;
@@ -194,7 +194,7 @@ export default {
     position: relative;
 
     &::after {
-      background-color: $gray-tint-5;
+      background-color: $color-gray-tint-5;
       content: "";
       display: block;
       height: 100%;

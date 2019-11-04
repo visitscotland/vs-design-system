@@ -72,7 +72,7 @@ export default {
 }
 
 .vs-favourites-list__header {
-  color: $gray-shade-2;
+  color: $color-gray-shade-2;
   font-size: 2rem;
   font-weight: 300;
   letter-spacing: 1px;

@@ -66,7 +66,7 @@ export default {
 
   &.form-control {
     border: none;
-    box-shadow: inset 0 0 0 2px $gray-tint-3;
+    box-shadow: inset 0 0 0 2px $color-gray-tint-3;
   }
 }
 </style>

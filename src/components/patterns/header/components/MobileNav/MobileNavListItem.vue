@@ -198,11 +198,11 @@ export default {
 }
 
 .vs-mobile-nav__list--level2 {
-  background-color: $gray-tint-7;
+  background-color: $color-gray-tint-7;
 }
 
 .vs-mobile-nav__list--level3 {
-  background-color: $gray-tint-7;
+  background-color: $color-gray-tint-7;
   box-shadow: inset 0 8px 6px -6px rgba(0, 0, 0, 0.3);
 }
 
@@ -223,7 +223,7 @@ export default {
 .vs-mobile-nav__button,
 .vs-mobile-nav__link {
   align-items: center;
-  border-bottom: 1px solid $gray-tint-6;
+  border-bottom: 1px solid $color-gray-tint-6;
   color: $color-base-text;
   display: flex;
   font-weight: $font-weight-bold;
@@ -265,7 +265,7 @@ export default {
     width: 100%;
 
     &::after {
-      background-color: $gray-tint-6;
+      background-color: $color-gray-tint-6;
     }
 
     &[aria-expanded="true"] {
@@ -282,7 +282,7 @@ export default {
     padding: 0.75rem 1.25rem 0.75rem 3.25rem;
 
     &::after {
-      background-color: $gray-tint-6;
+      background-color: $color-gray-tint-6;
     }
   }
 }

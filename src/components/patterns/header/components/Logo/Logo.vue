@@ -1,5 +1,5 @@
 <template>
-  <component data-test="logo-link" :is="type" class="vs-logo p-0 px-1" href="#">
+  <component data-test="logo-link" :is="type" class="vs-logo p-0" href="#">
     <span data-test="logo-screenreader-text" class="sr-only">VisitScotland Home</span>
     <span data-test="logo-wrapper-mobile" class="d-flex align-self-center d-lg-none">
       <vs-svg data-test="logo-mobile" path="scotland-alba-logo" height="18" />
