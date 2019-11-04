@@ -67,7 +67,7 @@ export default {
      * becomes visible.
      * `false, "content", "close"`
      */
-    focusOnOpen: {
+    openFocus: {
       type: [String, Boolean],
       default: false,
       validator: value => {
@@ -113,9 +113,9 @@ export default {
         })
     },
     onBecomeVisible() {
-      if (this.focusOnOpen === "close" && this.showClose) {
+      if (this.openFocus === "close" && this.showClose) {
         this.$refs.closeButton.$el.focus()
-      } else if (this.focusOnOpen === "content") {
+      } else if (this.openFocus === "content") {
         this.focusOnContent()
       }
     },

@@ -3,6 +3,7 @@
     v-bind="$attrs"
     class="vs-header__dropdown"
     :class="{ 'vs-header__dropdown--top': isTop }"
+    toggle-class="p-1"
   >
     <slot v-for="(_, name) in $slots" :name="name" :slot="name" />
   </vs-dropdown>
