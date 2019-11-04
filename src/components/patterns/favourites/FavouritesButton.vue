@@ -1,17 +1,16 @@
 <template>
   <vs-button
-    class="vs-favourites__button p-1 position-relative"
+    class="vs-favourites__button p-0 p-sm-1 position-relative"
     @click.native="addFavourite"
-    focus-style="underline"
-    focus-colour="pink"
     variant="transparent"
+    :animate="false"
   >
     <span class="sr-only">Add to Favourites</span>
     <span class="vs-favourites__button__count" v-if="favouritesCount > 0">
       <span class="sr-only">Current favourites count:</span> {{ favouritesCount }}
     </span>
     <vs-icon v-if="favouritesCount > 0" name="favourite-filled" size="sm" variant="primary" />
-    <vs-icon v-else name="favourite" size="sm" variant="primary" />
+    <vs-icon v-else name="favourite" size="sm" variant="dark" />
   </vs-button>
 </template>
 

@@ -1,12 +1,12 @@
 <template>
-  <component data-test="logo-link" :is="type" class="vs-logo p-0" href="#">
+  <component
+    data-test="logo-link"
+    :is="type"
+    class="vs-logo d-flex align-items-center ml-1 mr-3 ml-sm-2 mr-sm-0"
+    href="#"
+  >
     <span data-test="logo-screenreader-text" class="sr-only">VisitScotland Home</span>
-    <span data-test="logo-wrapper-mobile" class="d-flex align-self-center d-lg-none">
-      <vs-svg data-test="logo-mobile" path="scotland-alba-logo" height="18" />
-    </span>
-    <span data-test="logo-wrapper-desktop" class="d-none d-lg-block">
-      <vs-svg data-test="logo-desktop" path="scotland-alba-logo" height="22" />
-    </span>
+    <vs-svg path="visitscotland" width="100%" />
   </component>
 </template>
 
@@ -42,17 +42,19 @@ export default {
 @import "../../styles/placeholders";
 
 .vs-logo {
-  display: inline-flex;
-  align-items: center;
-  transition: box-shadow 250ms ease-in-out;
+  transition: $transition-base;
 
-  &:hover,
-  &:focus {
+  &:focus,
+  &:hover {
     @extend %focus-pink-inset;
   }
 
   svg {
-    align-self: center;
+    max-width: 183px;
+
+    @include media-breakpoint-up(md) {
+      min-width: 183px;
+    }
   }
 }
 </style>

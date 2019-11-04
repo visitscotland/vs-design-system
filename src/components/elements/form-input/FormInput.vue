@@ -1,10 +1,6 @@
 <template>
   <b-form-input
     class="vs-form-input"
-    :class="{
-      [focusStyleClass]: focusStyleClass,
-      [focusColourClass]: focusColourClass,
-    }"
     :size="size"
     v-bind="$attrs"
     v-model="inputVal"
@@ -13,7 +9,6 @@
 
 <script>
 import { BFormInput } from "bootstrap-vue"
-import focusStylesMixin from "@/mixins/focusStyles.js"
 
 /**
  * TODO: Document usage
@@ -26,16 +21,9 @@ export default {
   components: {
     BFormInput,
   },
-  mixins: [focusStylesMixin],
   props: {
-    focusStyle: {
-      default: "outset",
-    },
-    focusColour: {
-      default: "pink",
-    },
     size: {
-      default: "sm",
+      default: "md",
     },
     value: {
       type: String,
@@ -62,19 +50,31 @@ export default {
 @import "~bootstrap/scss/forms";
 
 .vs-form-input {
-  @include vs-focus;
-
   &.form-control {
-    border: none;
-    box-shadow: inset 0 0 0 2px $color-gray-tint-3;
+    border-color: $color-gray-tint-1;
+    transition: $transition-base;
+
+    &:focus {
+      border-color: $color-gray-tint-1;
+      box-shadow: 0 0 0 0.2rem rgba(187, 38, 132, 0.5); // primary rgb equivalent
+    }
+
+    &.is-invalid {
+      background-image: none;
+    }
   }
 }
 </style>
 
 <docs>
 ```jsx
-<div>
-  <vs-form-input focus-colour="pink" focus-style="underline" />
-</div>
+<bs-wrapper>
+  <label for="small">Small</label>
+  <vs-form-input id="small" class="mb-5" size="sm" />
+  <label for="medium">Medium</label>
+  <vs-form-input id="medium" class="mb-5" size="md" />
+  <label for="large">Large</label>
+  <vs-form-input id="large" class="mb-5" size="lg" />
+</bs-wrapper>
 ```
 </docs>

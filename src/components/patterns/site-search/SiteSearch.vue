@@ -11,9 +11,9 @@
     tabindex="-1"
   >
     <div class="d-flex flex-column flex-grow-1 position-relative">
-      <label for="search-input" class="position-absolute vs-site-search__label">
+      <label for="search-input" class="position-absolute vs-site-search__label m-0">
         <span class="sr-only">{{ labelText }}</span>
-        <vs-icon name="search" size="sm" variant="dark" />
+        <vs-icon name="search" size="sm" variant="secondary" />
       </label>
 
       <vs-form-input
@@ -21,7 +21,6 @@
         class="px-9 vs-site-search__input"
         :placeholder="labelText"
         autocomplete="off"
-        size="lg"
         v-model="searchTerm"
         :state="validated"
         ref="searchInput"
@@ -32,26 +31,21 @@
       <b-form-invalid-feedback v-if="validated === false" :state="validated">{{
         validationText
       }}</b-form-invalid-feedback>
-      <div v-if="searchTerm.length" class="position-absolute vs-search__clear-container">
+      <div v-if="searchTerm.length" class="position-absolute vs-site-search__clear-container">
         <vs-button
           variant="transparent"
           type="button"
+          class="px-1"
+          size="sm"
+          :animate="false"
           @click.native.prevent="clearSearchFieldAndFocus()"
         >
-          <span class="sr-only">{{ clearButtonText }}</span>
-          <vs-icon name="close" size="xs" variant="dark" />
+          <span class="sr-only-sm-down d-sm-block">{{ clearButtonText }}</span>
+          <vs-icon class="d-sm-none" name="close" size="xs" variant="dark" />
         </vs-button>
       </div>
     </div>
-    <vs-button
-      type="submit"
-      class="px-md-5"
-      size="lg"
-      :variant="'primary-pink'"
-      focus-style="outset"
-      focus-colour="pink"
-      >{{ submitButtonText }}</vs-button
-    >
+    <vs-button type="submit" class="px-md-5" :variant="primary">{{ submitButtonText }}</vs-button>
   </b-form>
 </template>
 
@@ -90,7 +84,7 @@ export default {
     },
     clearButtonText: {
       type: String,
-      default: "Clear search",
+      default: "Clear",
     },
     submitButtonText: {
       type: String,
@@ -159,21 +153,32 @@ export default {
 @import "~bootstrap/scss/utilities/spacing";
 @import "~bootstrap/scss/utilities/sizing";
 @import "~bootstrap/scss/utilities/position";
+@import "~bootstrap/scss/utilities/visibility";
 @import "~bootstrap/scss/utilities/screenreaders";
 @import "~bootstrap/scss/forms";
 @import "~bootstrap/scss/input-group";
 
 .vs-site-search__input {
   @extend %reset-clear;
+
+  &::placeholder {
+    color: transparent;
+    padding-left: 0.625rem;
+
+    @include media-breakpoint-up(sm) {
+      color: inherit;
+    }
+  }
+}
+
+.vs-site-search__clear-container {
+  right: 0.3125rem;
+  top: 0.75rem;
 }
 
 .vs-site-search__label {
-  padding: 5px;
-}
-
-.vs-search__clear-container {
-  right: 0;
-  padding: 5px;
+  left: 5px;
+  top: 5px;
 }
 </style>
 
