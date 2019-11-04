@@ -105,15 +105,14 @@
         <vs-mobile-nav-button />
       </template> -->
 
-      <template #header-drawer-toggles>
-        <vs-header-drawer-toggle
+      <template #bottom-right>
+        <vs-site-search-toggle-button
           drawer-key="header-bottom"
           content-key="site-search"
-          type="vs-site-search-toggle-button"
           section="bottom"
         >
           Search
-        </vs-header-drawer-toggle>
+        </vs-site-search-toggle-button>
 
         <vs-header-drawer-toggle
           drawer-key="header-bottom"
@@ -150,7 +149,7 @@
         />
       </template>
 
-      <vs-desktop-nav-submenu
+      <!-- <vs-desktop-nav-submenu
         slot="desktop-submenu"
         v-for="(item, index) in header.mainNav"
         :level="1"
@@ -189,7 +188,7 @@
           >
           </vs-desktop-nav-list-item>
         </vs-desktop-nav-list-item>
-      </vs-desktop-nav-submenu>
+      </vs-desktop-nav-submenu> -->
 
       <template #site-navigation>
         <vs-site-nav-item

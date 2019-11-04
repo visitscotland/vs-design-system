@@ -1,9 +1,9 @@
 <template>
   <component :is="type" class="position-relative" ref="header">
-    <div class="vs-header__top-wrapper bg-primary position-relative">
+    <div class="vs-header__top bg-primary position-relative">
       <vs-container>
         <vs-row>
-          <vs-col cols="12" class="d-flex justify-content-between">
+          <vs-col cols="12" class="vs-header__top__main d-flex justify-content-between">
             <slot name="top-left" />
             <div class="d-inline-flex position-static justify-content-end">
               <slot name="top-right"></slot>
@@ -16,29 +16,27 @@
       </vs-drawer>
     </div>
 
-    <div class="vs-header__bottom-wrapper position-relative bg-white">
+    <div class="vs-header__bottom position-relative bg-white">
       <vs-container>
         <vs-row>
-          <vs-col>
-            <div class="d-flex justify-content-between">
-              <slot name="logo" />
-              <!-- <ul
-                class="vs-desktop-nav__toggle-list d-none d-lg-flex justify-content-around list-unstyled m-0"
-              >
-                <slot name="desktop-nav-toggles" />
-              </ul> -->
-              <div class="vs-controls__wrapper d-flex">
-                <slot name="header-drawer-toggles" />
-                <vs-site-nav-mobile-toggle-button
-                  :is-open="mainNavOpen"
-                  class="d-lg-none"
-                  @click.native="toggleMainNav"
-                >
-                  Toggle menu
-                </vs-site-nav-mobile-toggle-button>
-                <!-- <div class="d-lg-none"><slot name="mobile-nav-button" /></div> -->
-              </div>
-            </div>
+          <vs-col cols="7" md="4" lg="3" class="d-flex">
+            <slot name="logo" />
+          </vs-col>
+          <vs-col cols="5" md="8" lg="9" class="d-flex justify-content-end">
+            <!-- <ul
+              class="vs-desktop-nav__toggle-list d-none d-lg-flex justify-content-around list-unstyled m-0"
+            >
+              <slot name="desktop-nav-toggles" />
+            </ul> -->
+            <slot name="bottom-right" />
+            <vs-site-nav-mobile-toggle-button
+              :is-open="mainNavOpen"
+              class="d-lg-none"
+              @click.native="toggleMainNav"
+            >
+              Toggle menu
+            </vs-site-nav-mobile-toggle-button>
+            <!-- <div class="d-lg-none"><slot name="mobile-nav-button" /></div> -->
           </vs-col>
         </vs-row>
       </vs-container>
@@ -151,42 +149,48 @@ export default {
 @import "~bootstrap/scss/utilities/screenreaders";
 @import "styles/placeholders";
 
-#header-language-list-dropdown ::v-deep {
-  position: absolute;
-  top: 42px;
-  .vs-header--top--nav-item {
-    background-color: $color-theme-primary;
-    &:first-of-type {
-      margin-left: 0;
-    }
-  }
-}
+// .vs-desktop-nav__toggle-list {
+//   width: 100%;
+//   padding: 0 2rem;
 
-.vs-desktop-nav__toggle-list {
-  width: 100%;
-  padding: 0 2rem;
+//   @include media-breakpoint-up(xl) {
+//     padding: 0 5rem;
+//   }
+// }
 
-  @include media-breakpoint-up(xl) {
-    padding: 0 5rem;
-  }
-}
-
-.vs-header__top-wrapper {
+.vs-header__top {
   z-index: $zindex-fixed;
-  & ::v-deep * {
-    font-size: $font-size-base;
-    font-weight: 400;
-  }
 
-  @include media-breakpoint-up(lg) {
+  .vs-header__top__main {
+    height: 28px;
+
     & ::v-deep * {
-      font-size: $font-size-sm;
+      font-size: $font-size-base;
+      font-weight: 400;
+    }
+
+    @include media-breakpoint-up(md) {
+      height: 35px;
+    }
+
+    @include media-breakpoint-up(lg) {
+      & ::v-deep * {
+        font-size: $font-size-sm;
+      }
     }
   }
 }
 
-.vs-header__bottom-wrapper {
+.vs-header__bottom {
   @extend %default-box-shadow;
+
+  > .container > .row > *[class*="col"] {
+    height: 40px;
+
+    @include media-breakpoint-up(md) {
+      height: 56px;
+    }
+  }
 }
 </style>
 
