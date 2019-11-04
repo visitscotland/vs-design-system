@@ -159,8 +159,6 @@ export default {
 @import "~bootstrap/scss/input-group";
 
 .vs-site-search__input {
-  @extend %reset-clear;
-
   &::placeholder {
     color: transparent;
     padding-left: 0.625rem;
