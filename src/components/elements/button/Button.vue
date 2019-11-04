@@ -3,7 +3,7 @@
     :variant="variant"
     :href="href"
     :tabindex="tabindex"
-    class="d-flex align-items-center justify-content-center"
+    class="d-inline-flex align-items-center justify-content-center"
     :class="{
       [focusStyleClass]: focusStyleClass,
       [focusColourClass]: focusColourClass,
@@ -117,7 +117,7 @@ $variants: (
 
 .btn-dark {
   &:hover {
-    background-color: $gray-shade-5;
+    background-color: $color-gray-shade-5;
   }
 }
 </style>

@@ -190,7 +190,7 @@ export default {
 }
 
 .vs-desktop-submenu__header {
-  color: $gray-shade-2;
+  color: $color-gray-shade-2;
   display: inline-block;
   font-size: 2rem;
   font-weight: $font-weight-light;
@@ -234,7 +234,7 @@ export default {
   }
 
   &:hover {
-    background-color: $gray-shade-2;
+    background-color: $color-gray-shade-2;
     color: $color-white;
   }
 }

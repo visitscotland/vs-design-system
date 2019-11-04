@@ -131,6 +131,15 @@ This will create a symlink between the target project folder and the local desig
 
 ## VueX
 
+Adhere to [this styleguide](https://docs.vuestorefront.io/guide/vuex/vuex-conventions.html) and the following exceptions and additions when developing Vuex stores:
+
+- Locate all Vuex stores with the components that use them the most.
+- All Vuex stores must be modularised and namespaced.
+- You do not need to include the module name in getters unless your modules are **NOT** namespaced, which they should be (see above).
+- Do not register a store via the `store` key of a Vue component's configuration object. This will alow multiple stores to be.
+- Only use getters and actions in external modules.
+- Define getter and action names in a separate file and import the ones you need into the store and any other consumers.
+
 To include VueX functionality in one or more of your components:
 
 - Write a VueX store and then import and include it in the component definition object - this is enough to add the store's functionality to _components rendered in the design system documentation_.
@@ -142,8 +151,6 @@ See the VueX example component in the `src/components/examples` folder.
 
 VueX stores should be added to components as needed and must be given a file name ending in `store.js` to ensure proper exposure in the system components build.
 
-The stores should be colocalised with the relevant component and _modularised with namespacing_ [as detailed in the VueX docs](https://vuex.vuejs.org/guide/modules.html). The module name should be relevant to the component the store is included in.
-
 Multiple components can use the same store and the state will be shared among them.
 
 ```js
@@ -154,19 +161,27 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   modules: {
-    example: {
+    beans: {
       namespaced: true,
       state: {
-        count: 0,
+        beans: [],
+      },
+      getters: {
+        getBeanCount(state) {
+          return state.beans.length
+        },
+        isBeanAdded: state => beanId => {
+          return includes(state.beans, { id: beanId })
+        },
       },
       mutations: {
-        increment(state) {
-          state.count++
+        addBean(state, newBean) {
+          state.beans.push(newBean)
         },
       },
       actions: {
-        increment(context, message) {
-          context.commit("increment")
+        addBean({ context }, newBean) {
+          context.commit("addBean", newBean)
         },
       },
     },
@@ -179,22 +194,22 @@ export default new Vuex.Store({
 Example use inside components:
 
 ```js
+import beanStore from "./bean-counter.store.js"
+
 export default {
   template: `
     <div>
-      <span>{{ current }}</span>
-      <vs-button @click="add">Increment</vs-button>
+      <span>{{ totalBeans }}</span>
+      <vs-button @click="addBean">Add new bean</vs-button>
     </div>
   `,
   computed: {
-    current() {
-      return this.$store.state["moduleName"].count
+    totalBeans() {
+      return beanStore.getters["beans/getBeanCount"]
     },
     methods: {
-      add(arg) {
-        let arg = this.otherThing
-
-        return this.$store.dispatch("<moduleName>/increment", arg)
+      addBean(arg) {
+        return beanStore.dispatch("beans/addBean", this.newBean)
       },
     },
   },
@@ -233,6 +248,24 @@ To make fixtures data available for easy inclusion in `docs` block examples, cre
   </main-nav>
 </docs>
 ```
+
+## Logging
+
+This package includes the `vuejs-logger` NPM package, which provides logging capabilities. To use it import the `src/utilities/logger.js` utility and use it as follows.
+
+```js
+import logger from "@/utils/logger"
+
+logger.debug("test", this.a, 123)
+logger.info("test", this.b)
+logger.warn("test")
+logger.error("test")
+logger.fatal("test")
+```
+
+Check the [`vuejs-logger` documentation](https://www.npmjs.com/package/vuejs-logger) for further examples and options. Note that the syntax used in the examples shown here differs from the syntax used in the documentation. Use the syntax shown here to make it more obvious you're using an import.
+
+To change the `vuejs-logger` configuration alter the options object passed to it in `src/utilities/logger.js`.
 
 ## Rendora Server-side rendering POC
 
