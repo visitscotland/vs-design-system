@@ -75,7 +75,7 @@ export default {
 @import "../../styles/placeholders";
 
 .vs-promo-item__wrapper {
-  border-bottom: 1px solid $gray-tint-8;
+  border-bottom: 1px solid $color-gray-tint-8;
 }
 
 .vs-promo-item__link {

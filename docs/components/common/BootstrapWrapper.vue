@@ -33,6 +33,7 @@ export default {
 @import "../../../node_modules/bootstrap/scss/card";
 @import "../../../node_modules/bootstrap/scss/utilities/flex";
 @import "../../../node_modules/bootstrap/scss/utilities/text";
+@import "../../../node_modules/bootstrap/scss/utilities/display";
 </style>
 
 <docs>
