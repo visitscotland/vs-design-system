@@ -103,6 +103,12 @@ export default {
   position: relative;
   overflow: hidden;
 
+  .btn-dark {
+    &:hover {
+      background-color: $color-gray-shade-5;
+    }
+  }
+
   &.btn-light,
   &.btn-transparent {
     &:focus {

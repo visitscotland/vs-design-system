@@ -51,11 +51,11 @@ export default {
 
 .vs-form-input {
   &.form-control {
-    border-color: $gray-tint-1;
+    border-color: $color-gray-tint-1;
     transition: $transition-base;
 
     &:focus {
-      border-color: $gray-tint-1;
+      border-color: $color-gray-tint-1;
       box-shadow: 0 0 0 0.2rem rgba(187, 38, 132, 0.5); // primary rgb equivalent
     }
 
