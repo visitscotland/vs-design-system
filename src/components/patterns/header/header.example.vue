@@ -101,9 +101,9 @@
         <vs-logo />
       </template>
 
-      <template #mobile-nav-button>
+      <!-- <template #mobile-nav-button>
         <vs-mobile-nav-button />
-      </template>
+      </template> -->
 
       <template #header-drawer-toggles>
         <vs-header-drawer-toggle
@@ -191,7 +191,52 @@
         </vs-desktop-nav-list-item>
       </vs-desktop-nav-submenu>
 
-      <vs-mobile-nav-list-item
+      <template #site-navigation>
+        <vs-site-nav-item
+          slot="mobile-nav-items"
+          v-for="(item, index) in header.mainNav"
+          :level="1"
+          :href="item.href"
+          :is-external="item.isExternal"
+          :tracking-id="item.trackingId"
+          :title="item.title"
+          :subnav="item.subnav"
+          :promo-list="item.promoList"
+          :promo-item="item.promoItem"
+          :key="index"
+        >
+          <vs-site-nav-item
+            slot="subnav"
+            v-for="(level2, index2) in item.subnav"
+            :level="2"
+            :href="level2.href"
+            :is-external="level2.isExternal"
+            :tracking-id="level2.trackingId"
+            :title="level2.title"
+            :subnav="level2.subnav"
+            :promo-list="level2.promoList"
+            :promo-item="level2.promoItem"
+            :key="index2"
+          >
+            <vs-site-nav-item
+              slot="subnav"
+              v-for="(level3, index3) in level2.subnav"
+              :level="3"
+              :href="level3.href"
+              :is-external="level3.isExternal"
+              :title="level3.title"
+              :tracking-id="level3.trackingId"
+              :subnav="level3.subnav"
+              :promo-list="level3.promoList"
+              :promo-item="level3.promoItem"
+              :key="index3"
+            >
+            </vs-site-nav-item>
+          </vs-site-nav-item>
+        </vs-site-nav-item>
+      </template>
+
+      <!-- <vs-mobile-nav-list-item
         slot="mobile-nav-items"
         v-for="(item, index) in header.mainNav"
         :level="1"
@@ -232,7 +277,7 @@
           >
           </vs-mobile-nav-list-item>
         </vs-mobile-nav-list-item>
-      </vs-mobile-nav-list-item>
+      </vs-mobile-nav-list-item> -->
     </vs-header>
 
     <div class="container">
