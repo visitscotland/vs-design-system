@@ -15,6 +15,9 @@
 import VsSvg from "@components/elements/svg/Svg"
 import VsHeaderButton from "../button/HeaderButton"
 
+/**
+ *  Placeholder component for header login component
+ */
 export default {
   name: "VsHeaderLoginButton",
   status: "prototype",

@@ -13,7 +13,7 @@
 import { VsDropdown } from "@components/patterns/dropdown"
 
 /**
- * Dropdown component for use in the header.
+ * Dropdown component styled for use in the header.
  */
 export default {
   name: "VsHeaderDropdown",
