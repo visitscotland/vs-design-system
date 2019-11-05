@@ -55,14 +55,7 @@ import VsFormInput from "@components/elements/form-input/FormInput"
 
 import drawerStore from "../drawer/drawer.store"
 
-import {
-  BForm,
-  BFormInput,
-  BFormInvalidFeedback,
-  BInputGroup,
-  BInputGroupAppend,
-  BInputGroupPrepend,
-} from "bootstrap-vue"
+import { BForm, BFormInvalidFeedback } from "bootstrap-vue"
 
 export default {
   name: "VsSiteSearch",
@@ -73,23 +66,32 @@ export default {
     BForm,
     VsFormInput,
     BFormInvalidFeedback,
-    BInputGroup,
-    BInputGroupAppend,
-    BInputGroupPrepend,
   },
   props: {
+    /**
+     * Text that renders in form label (sr-only) and input placeholder
+     */
     labelText: {
       type: String,
       default: "Enter a search term",
     },
+    /**
+     * Text that renders inside the clear button once users start typing
+     */
     clearButtonText: {
       type: String,
       default: "Clear",
     },
+    /**
+     * Text that renders inside the submit button
+     */
     submitButtonText: {
       type: String,
       default: "Go",
     },
+    /**
+     * Validation text that renders when an empty form is submitted
+     */
     validationText: {
       type: String,
       default: "Please enter a search term.",
@@ -171,7 +173,11 @@ export default {
 
 .vs-site-search__clear-container {
   right: 0.3125rem;
-  top: 0.75rem;
+  top: 0.5rem;
+
+  @include media-breakpoint-up(sm) {
+    top: 0.75rem;
+  }
 }
 
 .vs-site-search__label {
