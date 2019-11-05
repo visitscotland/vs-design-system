@@ -18,9 +18,7 @@
 import { BButton } from "bootstrap-vue"
 
 /**
- * Buttons are generally used for interface actions. Suitable for all-purpose use.
- * Defaults to appearance that has white background with grey border.
- * Primary style should be used only once per view for main call-to-action.
+ * TODO: Document usage.
  *
  * NOTE: When listening for the @click event you need to use the `native` modifier
  * in order to listen for the underlying `button`s native event. e.g.
@@ -62,6 +60,10 @@ export default {
         return value.match(/(primary|secondary|success|danger|warning|info|light|dark|transparent)/)
       },
     },
+    /**
+     * Style the button size.
+     * `sm, md, lg`
+     */
     size: {
       type: String,
       default: "md",
@@ -69,6 +71,9 @@ export default {
         return value.match(/(sm|md|lg)/)
       },
     },
+    /**
+     * By default, buttons have an animation behaviour on click. To disable, add an animate=false property
+     */
     animate: {
       type: Boolean,
       default: true,
@@ -158,21 +163,10 @@ export default {
     <h4>Types</h4>
     <bs-wrapper class="d-flex flex-wrap mb-4">
       <vs-button class="mr-2 mb-2">Button</vs-button>
+      <vs-button :animate=false class="mr-2 mb-2">Button with no animation</vs-button>
       <vs-button class="mr-2 mb-2" href="https://www.visitscotland.com">Link</vs-button>
     </bs-wrapper>
     <h4>Variants</h4>
-    <bs-wrapper class="d-flex flex-wrap mb-4">
-      <vs-button variant="primary" class="mr-2 mb-2">Primary (default)</vs-button>
-      <vs-button variant="secondary" class="mr-2 mb-2">Secondary</vs-button>
-      <vs-button variant="success" class="mr-2 mb-2">Success</vs-button>
-      <vs-button variant="danger" class="mr-2 mb-2">Danger</vs-button>
-      <vs-button variant="warning" class="mr-2 mb-2">Warning</vs-button>
-      <vs-button variant="info" class="mr-2 mb-2">Info</vs-button>
-      <vs-button variant="light" class="mr-2 mb-2">Light</vs-button>
-      <vs-button variant="dark" class="mr-2 mb-2">Dark</vs-button>
-      <vs-button variant="transparent" class="mr-2 mb-2">Transparent</vs-button>
-    </bs-wrapper>
-    <h4>Active</h4>
     <bs-wrapper class="d-flex flex-wrap mb-4">
       <vs-button variant="primary" class="mr-2 mb-2">Primary (default)</vs-button>
       <vs-button variant="secondary" class="mr-2 mb-2">Secondary</vs-button>
