@@ -4,7 +4,7 @@
       Skip to Content
     </vs-skip-to>
 
-    <vs-drawer-toggle content-key="site-search" drawer-key="header-bottom" type="vs-skip-to-button">
+    <vs-drawer-toggle content-key="site-search" drawer-key="header-bottom" tag="vs-skip-to-button">
       Skip to Search
     </vs-drawer-toggle>
 
@@ -106,20 +106,21 @@
       </template> -->
 
       <template #bottom-right>
-        <vs-site-search-toggle-button
+        <vs-header-drawer-toggle
           drawer-key="header-bottom"
           content-key="site-search"
+          tag="vs-site-search-toggle-button"
           section="bottom"
         >
           Search
-        </vs-site-search-toggle-button>
+        </vs-header-drawer-toggle>
 
         <vs-header-drawer-toggle
           drawer-key="header-bottom"
           content-key="favourites-list"
           :href="favourite.href"
           :title="favourite.title"
-          type="vs-favourites-button"
+          tag="vs-favourites-button"
           section="bottom"
         />
       </template>
