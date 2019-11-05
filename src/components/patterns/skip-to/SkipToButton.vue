@@ -53,7 +53,7 @@ export default {
   transform: translate(-50%);
   top: 0;
   transition: background-color 250ms;
-  z-index: 6;
+  z-index: $zindex-fixed;
 
   &:focus {
     outline: none;

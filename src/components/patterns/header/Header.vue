@@ -40,9 +40,9 @@
           </vs-col>
         </vs-row>
       </vs-container>
-      <vs-site-nav :is-open="mainNavOpen">
+      <!-- <vs-site-nav :is-open="mainNavOpen">
         <slot name="site-navigation" />
-      </vs-site-nav>
+      </vs-site-nav> -->
       <vs-drawer drawer-key="header-bottom" class="py-4">
         <slot name="bottom-drawer" />
       </vs-drawer>
@@ -158,7 +158,7 @@ export default {
 // }
 
 .vs-header__top {
-  z-index: $zindex-fixed;
+  z-index: $zindex-sticky;
 
   .vs-header__top__main {
     height: 28px;
