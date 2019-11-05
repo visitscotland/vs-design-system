@@ -40,16 +40,15 @@
           </vs-col>
         </vs-row>
       </vs-container>
+      <vs-site-nav :is-open="mainNavOpen">
+        <slot name="site-navigation" />
+      </vs-site-nav>
       <vs-drawer drawer-key="header-bottom" class="py-4">
         <slot name="bottom-drawer" />
       </vs-drawer>
       <!-- <div class="d-none d-lg-block">
         <vs-desktop-nav name="Main navigation"> <slot name="desktop-submenu" /> </vs-desktop-nav>
       </div> -->
-
-      <vs-site-nav :is-open="mainNavOpen">
-        <slot name="site-navigation" />
-      </vs-site-nav>
 
       <!-- <div>
         <vs-mobile-nav name="Main navigation" @setScrollOffset="setScrollOffset">
