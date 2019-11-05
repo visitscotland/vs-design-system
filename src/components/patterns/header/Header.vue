@@ -19,10 +19,16 @@
     <div class="vs-header__bottom position-relative bg-white">
       <vs-container>
         <vs-row>
-          <vs-col cols="7" md="4" lg="3" class="d-flex">
+          <vs-col cols="6" md="4" lg="3" class="d-flex">
             <slot name="logo" />
           </vs-col>
-          <vs-col cols="5" md="8" lg="9" class="d-flex justify-content-end">
+          <vs-col lg="7" cols="1" class="position-static">
+            <vs-site-nav-list :level="1" :is-open="mainNavOpen">
+              <slot name="site-navigation" />
+            </vs-site-nav-list>
+          </vs-col>
+
+          <vs-col cols="5" md="7" lg="2" class="d-flex justify-content-end">
             <!-- <ul
               class="vs-desktop-nav__toggle-list d-none d-lg-flex justify-content-around list-unstyled m-0"
             >
@@ -40,7 +46,7 @@
           </vs-col>
         </vs-row>
       </vs-container>
-      <!-- <vs-site-nav :is-open="mainNavOpen">
+      <!-- <vs-site-nav :is-open="mainNavOpen" >
         <slot name="site-navigation" />
       </vs-site-nav> -->
       <vs-drawer drawer-key="header-bottom" class="py-4">
@@ -147,15 +153,6 @@ export default {
 @import "~bootstrap/scss/utilities/position";
 @import "~bootstrap/scss/utilities/screenreaders";
 @import "styles/placeholders";
-
-// .vs-desktop-nav__toggle-list {
-//   width: 100%;
-//   padding: 0 2rem;
-
-//   @include media-breakpoint-up(xl) {
-//     padding: 0 5rem;
-//   }
-// }
 
 .vs-header__top {
   z-index: $zindex-sticky;

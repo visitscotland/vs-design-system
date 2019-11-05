@@ -2,12 +2,15 @@
   <!-- <div> -->
   <!-- <b-collapse id="collapse-mobile-nav"> -->
   <!-- <div class="vs-mobile-nav__wrapper"> -->
-  <vs-container class="vs-site-nav bg-white" :class="{ 'vs-site-nav--open': isOpen }">
+  <vs-container class="vs-site-nav bg-white">
     <vs-row no-gutters>
       <vs-col lg="7" offset-lg="3" type="nav">
-        <ul class="vs-site-nav__list list-unstyled d-lg-flex">
+        <vs-site-nav-list :level="1">
           <slot />
-        </ul>
+        </vs-site-nav-list>
+        <!-- <ul class="vs-site-nav__list list-unstyled d-lg-flex">
+          <slot />
+        </ul> -->
       </vs-col>
     </vs-row>
   </vs-container>
@@ -18,6 +21,8 @@
 
 <script>
 // import { BCollapse } from "bootstrap-vue"
+import VsSiteNavList from "./SiteNavList"
+import { VsCol, VsRow, VsContainer } from "@components/elements/layout"
 
 export default {
   name: "VsSiteNav",
@@ -25,22 +30,26 @@ export default {
   release: "0.1.0",
   components: {
     // BCollapse,
+    VsSiteNavList,
+    VsCol,
+    VsRow,
+    VsContainer,
   },
-  props: {
-    isOpen: {
-      type: Boolean,
-    },
-  },
+  // props: {
+  //   isOpen: {
+  //     type: Boolean,
+  //   },
+  // },
 }
 </script>
 
 <style lang="scss" scoped>
-@import "~bootstrap/scss/utilities/text";
-@import "~bootstrap/scss/utilities/display";
-@import "~bootstrap/scss/utilities/flex";
-@import "~bootstrap/scss/type";
-@import "~bootstrap/scss/utilities/screenreaders";
-@import "../../styles/placeholders";
+// @import "~bootstrap/scss/utilities/text";
+// @import "~bootstrap/scss/utilities/display";
+// @import "~bootstrap/scss/utilities/flex";
+// @import "~bootstrap/scss/type";
+// @import "~bootstrap/scss/utilities/screenreaders";
+// @import "../../styles/placeholders";
 
 // .collapse:not(.show) {
 //   display: none;
@@ -58,13 +67,13 @@ export default {
 .vs-site-nav {
   @extend %default-box-shadow;
 
-  @include media-breakpoint-down(md) {
-    display: none;
-  }
+  // @include media-breakpoint-down(md) {
+  //   display: none;
+  // }
 
-  &.vs-site-nav--open {
-    display: initial;
-  }
+  // &.vs-site-nav--open {
+  //   display: initial;
+  // }
 }
 
 // .vs-mobile-nav {
@@ -81,20 +90,21 @@ export default {
 //   }
 // }
 
-.vs-site-nav__list {
-  height: 100vh;
-  width: 100%;
-  z-index: 2;
+// .vs-site-nav__list {
+//   width: 100%;
+//   z-index: 2;
 
-  @include media-breakpoint-up(lg) {
-    position: absolute;
-    top: -70px;
-  }
+//   @include media-breakpoint-up(lg) {
+//     position: absolute;
+//     top: -56px;
+//     height: 56px;
+//     margin-bottom: 0;
+//   }
 
-  @include media-breakpoint-down(md) {
-    width: auto;
-  }
-}
+//   @include media-breakpoint-down(md) {
+//     width: auto;
+//   }
+// }
 </style>
 
 <docs>

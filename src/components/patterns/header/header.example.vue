@@ -192,48 +192,50 @@
       </vs-desktop-nav-submenu> -->
 
       <template #site-navigation>
-        <vs-site-nav-item
-          slot="mobile-nav-items"
+        <vs-site-nav-list-item
           v-for="(item, index) in header.mainNav"
           :level="1"
           :href="item.href"
           :is-external="item.isExternal"
           :tracking-id="item.trackingId"
-          :title="item.title"
           :subnav="item.subnav"
           :promo-list="item.promoList"
           :promo-item="item.promoItem"
           :key="index"
         >
-          <vs-site-nav-item
-            slot="subnav"
-            v-for="(level2, index2) in item.subnav"
-            :level="2"
-            :href="level2.href"
-            :is-external="level2.isExternal"
-            :tracking-id="level2.trackingId"
-            :title="level2.title"
-            :subnav="level2.subnav"
-            :promo-list="level2.promoList"
-            :promo-item="level2.promoItem"
-            :key="index2"
-          >
-            <vs-site-nav-item
-              slot="subnav"
-              v-for="(level3, index3) in level2.subnav"
-              :level="3"
-              :href="level3.href"
-              :is-external="level3.isExternal"
-              :title="level3.title"
-              :tracking-id="level3.trackingId"
-              :subnav="level3.subnav"
-              :promo-list="level3.promoList"
-              :promo-item="level3.promoItem"
-              :key="index3"
+          {{ item.title }}
+          <template #subnav>
+            <vs-site-nav-list-item
+              v-for="(item2, index2) in item.subnav"
+              :level="2"
+              :href="item2.href"
+              :is-external="item2.isExternal"
+              :tracking-id="item2.trackingId"
+              :subnav="item2.subnav"
+              :promo-list="item2.promoList"
+              :promo-item="item2.promoItem"
+              :key="index2"
             >
-            </vs-site-nav-item>
-          </vs-site-nav-item>
-        </vs-site-nav-item>
+              {{ item2.title }}
+              <template #subnav>
+                <vs-site-nav-list-item
+                  slot="subnav"
+                  v-for="(item3, index3) in item2.subnav"
+                  :level="3"
+                  :href="item3.href"
+                  :is-external="item3.isExternal"
+                  :tracking-id="item3.trackingId"
+                  :subnav="item3.subnav"
+                  :promo-list="item3.promoList"
+                  :promo-item="item3.promoItem"
+                  :key="index3"
+                >
+                  {{ item3.title }}
+                </vs-site-nav-list-item>
+              </template>
+            </vs-site-nav-list-item>
+          </template>
+        </vs-site-nav-list-item>
       </template>
 
       <!-- <vs-mobile-nav-list-item
