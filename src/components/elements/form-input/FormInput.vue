@@ -11,7 +11,8 @@
 import { BFormInput } from "bootstrap-vue"
 
 /**
- * TODO: Document usage
+ * https://bootstrap-vue.js.org/docs/components/form-input
+ * https://getbootstrap.com/docs/4.3/components/forms/
  */
 
 export default {
@@ -22,6 +23,10 @@ export default {
     BFormInput,
   },
   props: {
+    /**
+     * Set the form field size.
+     * `sm, md, lg`
+     */
     size: {
       default: "md",
       validator: value => {
@@ -55,15 +60,11 @@ export default {
 .vs-form-input {
   &.form-control {
     border-color: $color-gray-tint-1;
-    transition: $transition-base;
+    transition: box-shadow 250ms ease;
 
     &:focus {
       border-color: $color-gray-tint-1;
       box-shadow: 0 0 0 0.2rem rgba(187, 38, 132, 0.5); // primary rgb equivalent
-    }
-
-    &.is-invalid {
-      background-image: none;
     }
 
     &[type="search"] {
@@ -77,11 +78,18 @@ export default {
 ```jsx
 <bs-wrapper>
   <label for="small">Small</label>
-  <vs-form-input id="small" class="mb-5" size="sm" />
+  <vs-form-input id="small" placeholder="Enter your name" class="mb-5" size="sm" />
   <label for="medium">Medium (default)</label>
-  <vs-form-input id="medium" class="mb-5" size="md" />
+  <vs-form-input id="medium" placeholder="Enter your name" class="mb-5" size="md" />
   <label for="large">Large</label>
-  <vs-form-input id="large" class="mb-5" size="lg" />
+  <vs-form-input id="large" placeholder="Enter your name" class="mb-5" size="lg" />
+
+  <label for="input-none">No State</label>
+  <vs-form-input id="input-none" :state="null" placeholder="No validation" class="mb-5"/>
+  <label for="input-valid">Valid state</label>
+  <vs-form-input id="input-valid" :state="true" placeholder="Valid" class="mb-5" />
+  <label for="input-invalid">Invalid state</label>
+  <vs-form-input id="input-invalid" :state="false" placeholder="Invalid" class="mb-5" />
 </bs-wrapper>
 ```
 </docs>
