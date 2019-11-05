@@ -1,5 +1,5 @@
 import VsSiteNav from "./SiteNav"
-import VsSiteNavItem from "./SiteNavItem"
+import VsSiteNavListItem from "./SiteNavListItem"
 import VsSiteNavMobileToggleButton from "./SiteNavMobileToggleButton"
 
-export { VsSiteNav, VsSiteNavItem, VsSiteNavMobileToggleButton }
+export { VsSiteNav, VsSiteNavListItem, VsSiteNavMobileToggleButton }

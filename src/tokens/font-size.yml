@@ -35,6 +35,8 @@ props:
     value: "{!font_size_base} * 1.25"
   - name: small-font-size
     value: "{!font_size_base} * .875"
+  - name: nav-lvl1-desktop-font-size
+    value: "{!font_size_base} * 1.125"
 global:
   type: number
   category: font-size

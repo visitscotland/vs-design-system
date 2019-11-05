@@ -7,17 +7,17 @@
     <vs-button
       v-if="hasChildren"
       data-test="site-nav-button"
-      class="vs-site-nav__button d-flex align-items-center"
+      class="vs-site-nav__button d-flex align-items-center px-2"
       :class="{
         ['vs-site-nav__button--level' + level]: level,
       }"
       ref="trigger"
-      data-test-trigger
       @click.native="triggerToggle()"
       aria-haspopup="true"
       :aria-expanded="show ? 'true' : 'false'"
+      :animate="false"
     >
-      {{ title }}
+      <slot />
       <div
         class="vs-mobile-nav__icon-wrapper vs-mobile-nav__icon-wrapper--spin"
         :class="{
@@ -25,7 +25,13 @@
           ['level' + level]: level,
         }"
       >
-        <vs-icon data-test="mobile-nav-chevron-svg" name="chevron-down" size="xs" variant="dark" />
+        <vs-icon
+          data-test="mobile-nav-chevron-svg"
+          name="chevron-down"
+          size="xs"
+          variant="dark"
+          class="d-lg-none"
+        />
       </div>
     </vs-button>
     <a
@@ -38,39 +44,41 @@
       }"
       :target="isExternal ? '_blank' : false"
       :data-vs-track="trackingId"
-      >{{ title }}</a
-    >
+      ><slot
+    /></a>
     <transition name="slide-fade" v-if="hasChildren">
-      <div v-show="show">
-        <ul
-          data-test="mobile-submenu-list"
-          class="list-unstyled"
+      <vs-site-nav-list :level="level + 1" v-show="show">
+        <!-- <div v-show="show"> -->
+        <!-- <ul
+          data-test="sitenav-submenu-list"
+          class="vs-site-nav__list list-unstyled"
           :class="{
             ['vs-mobile-nav__list--level' + incrementLevel]: incrementLevel,
           }"
+        > -->
+        <li
+          class="vs-mobile-nav__list-item"
+          :class="{
+            ['vs-mobile-nav__list-item--level' + incrementLevel]: incrementLevel,
+          }"
+          v-if="href !== null"
         >
-          <li
-            class="vs-mobile-nav__list-item"
-            :class="{
-              ['vs-mobile-nav__list-item--level' + incrementLevel]: incrementLevel,
-            }"
-            v-if="href !== null"
+          <a
+            class="vs-mobile-nav__link vs-mobile-nav__link--landing-page"
+            :href="href"
+            :class="[
+              isExternal ? 'external' : '',
+              level ? 'vs-mobile-nav__link--level' + incrementLevel : '',
+            ]"
+            :target="isExternal ? '_blank' : false"
+            :data-vs-track="trackingId"
+            >See all {{ lowerCaseTitle }}</a
           >
-            <a
-              class="vs-mobile-nav__link vs-mobile-nav__link--landing-page"
-              :href="href"
-              :class="[
-                isExternal ? 'external' : '',
-                level ? 'vs-mobile-nav__link--level' + incrementLevel : '',
-              ]"
-              :target="isExternal ? '_blank' : false"
-              :data-vs-track="trackingId"
-              >See all {{ lowerCaseTitle }}</a
-            >
-          </li>
-          <slot name="subnav" />
-        </ul>
-        <VsMobileNavPromoItem
+        </li>
+        <slot name="subnav" />
+      </vs-site-nav-list>
+      <!-- </ul> -->
+      <!-- <VsMobileNavPromoItem
           v-if="promoItem"
           :href="promoItem.href"
           :is-external="promoItem.isExternal"
@@ -79,8 +87,8 @@
           :description="promoItem.description"
           :image-link="promoItem.imageLink"
         />
-        <VsMobileNavPromoList v-if="promoList" :list="promoList" />
-      </div>
+        <VsMobileNavPromoList v-if="promoList" :list="promoList" /> -->
+      <!-- </div> -->
     </transition>
   </li>
 </template>
@@ -88,12 +96,13 @@
 <script>
 import VsIcon from "@components/elements/icon"
 import VsButton from "@components/elements/button"
+import VsSiteNavList from "./SiteNavList"
 
 export default {
-  name: "VsSiteNavItem",
+  name: "VsSiteNavListItem",
   status: "prototype",
   release: "0.1.0",
-  components: { VsIcon, VsButton },
+  components: { VsIcon, VsButton, VsSiteNavList },
   data() {
     return {
       show: false,
@@ -137,7 +146,7 @@ export default {
       ) {
         return true
       }
-      return false
+      return this.level < 3
     },
     incrementLevel() {
       return this.level + 1
@@ -155,10 +164,7 @@ export default {
       } else {
         this.$parent.$emit("setScrollOffset", 0)
       }
-      thisTrigger.blur()
-    },
-    setOffsetScroll(offset) {
-      this.$emit("setScrollOffset", offset)
+      thisTrigger.$el.blur()
     },
   },
   mounted() {
@@ -179,6 +185,7 @@ export default {
 
 .vs-site-nav__list-item {
   @include media-breakpoint-up(lg) {
+    height: 100%;
   }
 
   .vs-site-nav__button,
@@ -191,6 +198,13 @@ export default {
     transition: background-color 250ms ease-in-out;
 
     @include media-breakpoint-up(lg) {
+      height: 100%;
+      font-size: 18px;
+      background-color: transparent;
+      letter-spacing: 0;
+      text-transform: none !important;
+      white-space: nowrap;
+      border: none;
     }
 
     &.vs-site-nav__button--level1,
