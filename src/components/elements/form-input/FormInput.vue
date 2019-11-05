@@ -24,6 +24,9 @@ export default {
   props: {
     size: {
       default: "md",
+      validator: value => {
+        return value.match(/(sm|md|lg)/)
+      },
     },
     value: {
       type: String,
@@ -62,6 +65,10 @@ export default {
     &.is-invalid {
       background-image: none;
     }
+
+    &[type="search"] {
+      @extend %reset-clear;
+    }
   }
 }
 </style>
@@ -71,7 +78,7 @@ export default {
 <bs-wrapper>
   <label for="small">Small</label>
   <vs-form-input id="small" class="mb-5" size="sm" />
-  <label for="medium">Medium</label>
+  <label for="medium">Medium (default)</label>
   <vs-form-input id="medium" class="mb-5" size="md" />
   <label for="large">Large</label>
   <vs-form-input id="large" class="mb-5" size="lg" />
