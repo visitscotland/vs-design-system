@@ -57,15 +57,18 @@ export default {
 // }
 
 .vs-site-nav__list {
-  width: 100%;
-  display: flex;
+  width: 100vw;
+
+  @include media-breakpoint-up(lg) {
+    width: 100%;
+    display: flex;
+  }
   // z-index: 2;
 
   &.vs-site-nav__list--level1 {
     display: none;
-    position: fixed;
-    width: 100vw;
-    top: 69px;
+    position: absolute;
+    top: 39px;
     left: 0;
     height: 56px;
     margin-bottom: 0;
@@ -75,24 +78,27 @@ export default {
     }
 
     @include media-breakpoint-up(md) {
-      top: 92px;
+      top: 56px;
     }
 
     @include media-breakpoint-up(lg) {
+      position: initial;
+      top: 92px;
       display: flex;
+
       &.vs-site-nav__list--open {
         display: flex;
       }
-      position: initial;
     }
   }
 
   &.vs-site-nav__list--level2 {
     @include media-breakpoint-up(lg) {
-      position: fixed;
-      top: 92px;
+      position: absolute;
+      top: 56px;
       width: 100vw;
       left: 0;
+      box-shadow: inset 0 8px 6px -6px rgba(0, 0, 0, 0.3);
     }
   }
 }
