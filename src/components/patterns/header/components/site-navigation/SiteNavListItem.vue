@@ -79,6 +79,8 @@
 </template>
 
 <script>
+import { isEmpty } from "lodash"
+
 import VsIcon from "@components/elements/icon"
 import VsButton from "@components/elements/button"
 import VsSiteNavList from "./SiteNavList"
@@ -106,17 +108,8 @@ export default {
     title: {
       type: String,
     },
-    // level: {
-    //   type: Number,
-    // },
     subnav: {
       type: Array,
-    },
-    promoList: {
-      type: Array,
-    },
-    promoItem: {
-      type: Object,
     },
   },
   computed: {
@@ -124,14 +117,11 @@ export default {
       return this.title ? this.title.toLowerCase() : ""
     },
     hasChildren() {
-      if (
-        this.subnav !== undefined ||
-        this.promoItem !== undefined ||
-        this.promoList !== undefined
-      ) {
-        return true
+      if (this.level > 2) {
+        return false
       }
-      return this.level < 3
+
+      return !isEmpty(this.$slots.subnav)
     },
     incrementLevel() {
       return this.level + 1
@@ -177,19 +167,16 @@ $character_styles: (
       size: 1.5rem,
       height: 1.875rem,
       spacing: 1.4px,
-      weight: normal,
     ),
     2: (
       size: 1.25rem,
       height: 1.75rem,
       spacing: 1px,
-      weight: normal,
     ),
     3: (
       size: 1.125rem,
       height: 1.375rem,
       spacing: 1px,
-      weight: normal,
     ),
   ),
   desktop: (
@@ -197,19 +184,16 @@ $character_styles: (
       size: 1.5rem,
       height: 1.875rem,
       spacing: 1.4px,
-      weight: normal,
     ),
     2: (
       size: 1.25rem,
       height: 1.75rem,
       spacing: 1px,
-      weight: normal,
     ),
     3: (
       size: 1.125rem,
       height: 1.375rem,
       spacing: 1px,
-      weight: normal,
     ),
   ),
 );

@@ -193,44 +193,37 @@
 
       <template #site-navigation>
         <vs-site-nav-list-item
-          v-for="(item, index) in header.mainNav"
-          :href="item.href"
-          :is-external="item.isExternal"
-          :tracking-id="item.trackingId"
-          :subnav="item.subnav"
-          :promo-list="item.promoList"
-          :promo-item="item.promoItem"
+          v-for="(item1, index) in header.mainNav"
+          :href="item1.href"
+          :tracking-id="item1.trackingId"
+          :subnav="item1.subnav"
           :key="index"
         >
-          {{ item.title }}
-          <template #subnav>
-            <vs-site-nav-list-item
-              v-for="(item2, index2) in item.subnav"
+          {{ item1.title }}
+          <template #subnav v-f="!item1.promo">
+            <component
+              :is="item2.promo ? 'vs-site-nav-list-promo-item' : 'vs-site-nav-list-item'"
+              v-for="(item2, index2) in item1.subnav"
               :href="item2.href"
-              :is-external="item2.isExternal"
               :tracking-id="item2.trackingId"
               :subnav="item2.subnav"
-              :promo-list="item2.promoList"
-              :promo-item="item2.promoItem"
               :key="index2"
+              :image-href="item2.imageHref"
             >
               {{ item2.title }}
-              <template #subnav>
-                <vs-site-nav-list-item
-                  slot="subnav"
+              <template #subnav v-f="!item2.promo">
+                <component
+                  :is="item3.promo ? 'vs-site-nav-list-promo-item' : 'vs-site-nav-list-item'"
                   v-for="(item3, index3) in item2.subnav"
                   :href="item3.href"
-                  :is-external="item3.isExternal"
                   :tracking-id="item3.trackingId"
-                  :subnav="item3.subnav"
-                  :promo-list="item3.promoList"
-                  :promo-item="item3.promoItem"
                   :key="index3"
+                  :image-href="item3.imageHref"
                 >
                   {{ item3.title }}
-                </vs-site-nav-list-item>
+                </component>
               </template>
-            </vs-site-nav-list-item>
+            </component>
           </template>
         </vs-site-nav-list-item>
       </template>
