@@ -41,6 +41,11 @@ export default {
 .vs-header__list-group--top ::v-deep {
   .vs-header__list-group-item.list-group-item {
     @extend %header-nav-item-top;
+
+    @include media-breakpoint-up(md) {
+      padding-bottom: 8px;
+      padding-top: 8px;
+    }
   }
 }
 </style>
