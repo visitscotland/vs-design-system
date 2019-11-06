@@ -16,7 +16,7 @@
           content-key="universal-nav"
           drawer-key="header-top"
         >
-          <slot name="universal-nav-toggle">Our sites</slot>
+          Our sites
         </vs-header-drawer-toggle>
 
         <vs-header-list-group class="d-lg-inline-flex d-none" section="top">
@@ -66,7 +66,7 @@
       </template>
 
       <template #top-drawer>
-        <vs-drawer-content content-key="universal-nav">
+        <vs-drawer-content content-key="universal-nav" open-focus="content">
           <vs-list-group class="d-lg-none" tabindex="-1">
             <vs-drawer-list-item
               v-for="(site, i) in header.ourSites"
@@ -81,7 +81,7 @@
             </vs-drawer-list-item>
           </vs-list-group>
         </vs-drawer-content>
-        <vs-drawer-content content-key="language-list" focus-on-open="content">
+        <vs-drawer-content content-key="language-list" open-focus="content">
           <vs-list-group class="d-lg-none" tabindex="-1">
             <vs-drawer-list-item
               v-for="(lang, i) in header.languages"
@@ -126,10 +126,10 @@
       </template>
 
       <template #bottom-drawer>
-        <vs-drawer-content content-key="site-search" ref="siteSearch" focus-on-open="content">
+        <vs-drawer-content content-key="site-search" ref="siteSearch" open-focus="content">
           <vs-site-search />
         </vs-drawer-content>
-        <vs-drawer-content content-key="favourites-list" focus-on-open="close">
+        <vs-drawer-content content-key="favourites-list" open-focus="close">
           <vs-favourites-list />
         </vs-drawer-content>
       </template>
