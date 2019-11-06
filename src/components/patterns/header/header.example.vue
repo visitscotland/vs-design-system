@@ -194,7 +194,6 @@
       <template #site-navigation>
         <vs-site-nav-list-item
           v-for="(item, index) in header.mainNav"
-          :level="1"
           :href="item.href"
           :is-external="item.isExternal"
           :tracking-id="item.trackingId"
@@ -207,7 +206,6 @@
           <template #subnav>
             <vs-site-nav-list-item
               v-for="(item2, index2) in item.subnav"
-              :level="2"
               :href="item2.href"
               :is-external="item2.isExternal"
               :tracking-id="item2.trackingId"
@@ -221,7 +219,6 @@
                 <vs-site-nav-list-item
                   slot="subnav"
                   v-for="(item3, index3) in item2.subnav"
-                  :level="3"
                   :href="item3.href"
                   :is-external="item3.isExternal"
                   :tracking-id="item3.trackingId"

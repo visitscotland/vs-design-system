@@ -7,15 +7,13 @@
     <vs-button
       v-if="hasChildren"
       data-test="site-nav-button"
-      class="vs-site-nav__button d-flex align-items-center px-2"
-      :class="{
-        ['vs-site-nav__button--level' + level]: level,
-      }"
+      class="vs-site-nav__button align-items-center"
       ref="trigger"
-      @click.native="triggerToggle()"
+      @click.native="triggerToggle"
       aria-haspopup="true"
       :aria-expanded="show ? 'true' : 'false'"
       :animate="false"
+      variant="transparent"
     >
       <slot />
       <div
@@ -34,20 +32,11 @@
         />
       </div>
     </vs-button>
-    <a
-      v-else
-      class="vs-mobile-nav__link"
-      :href="href"
-      :class="{
-        external: isExternal,
-        ['vs-mobile-nav__link--level' + level]: level,
-      }"
-      :target="isExternal ? '_blank' : false"
-      :data-vs-track="trackingId"
-      ><slot
-    /></a>
+    <a v-else class="vs-site-nav__link" :href="href" :data-vs-track="trackingId">
+      <slot />
+    </a>
     <transition name="slide-fade" v-if="hasChildren">
-      <vs-site-nav-list :level="level + 1" v-show="show">
+      <vs-site-nav-list :level="incrementLevel" v-show="show">
         <!-- <div v-show="show"> -->
         <!-- <ul
           data-test="sitenav-submenu-list"
@@ -57,19 +46,15 @@
           }"
         > -->
         <li
-          class="vs-mobile-nav__list-item"
+          class="vs-site-nav__list-item"
           :class="{
-            ['vs-mobile-nav__list-item--level' + incrementLevel]: incrementLevel,
+            ['vs-site-nav__list-item--level' + incrementLevel]: incrementLevel,
           }"
           v-if="href !== null"
         >
           <a
-            class="vs-mobile-nav__link vs-mobile-nav__link--landing-page"
+            class="vs-site-nav__link vs-site-nav__link--landing-page"
             :href="href"
-            :class="[
-              isExternal ? 'external' : '',
-              level ? 'vs-mobile-nav__link--level' + incrementLevel : '',
-            ]"
             :target="isExternal ? '_blank' : false"
             :data-vs-track="trackingId"
             >See all {{ lowerCaseTitle }}</a
@@ -121,9 +106,9 @@ export default {
     title: {
       type: String,
     },
-    level: {
-      type: Number,
-    },
+    // level: {
+    //   type: Number,
+    // },
     subnav: {
       type: Array,
     },
@@ -150,6 +135,9 @@ export default {
     },
     incrementLevel() {
       return this.level + 1
+    },
+    level() {
+      return this.$parent.level
     },
   },
   methods: {
@@ -183,75 +171,154 @@ export default {
 @import "../../styles/placeholders";
 @import "../../styles/animations";
 
+$character_styles: (
+  mobile: (
+    1: (
+      size: 1.5rem,
+      height: 1.875rem,
+      spacing: 1.4px,
+      weight: normal,
+    ),
+    2: (
+      size: 1.25rem,
+      height: 1.75rem,
+      spacing: 1px,
+      weight: normal,
+    ),
+    3: (
+      size: 1.125rem,
+      height: 1.375rem,
+      spacing: 1px,
+      weight: normal,
+    ),
+  ),
+  desktop: (
+    1: (
+      size: 1.5rem,
+      height: 1.875rem,
+      spacing: 1.4px,
+      weight: normal,
+    ),
+    2: (
+      size: 1.25rem,
+      height: 1.75rem,
+      spacing: 1px,
+      weight: normal,
+    ),
+    3: (
+      size: 1.125rem,
+      height: 1.375rem,
+      spacing: 1px,
+      weight: normal,
+    ),
+  ),
+);
+
+@mixin level-character-style($level) {
+  font-size: get-character-style(mobile, $level, size);
+  letter-spacing: get-character-style(mobile, $level, spacing);
+  line-height: get-character-style(mobile, $level, height);
+
+  @include media-breakpoint-up(lg) {
+    font-size: get-character-style(desktop, $level, size);
+    letter-spacing: get-character-style(desktop, $level, spacing);
+    line-height: get-character-style(desktop, $level, height);
+  }
+}
+
+@function get-character-style($viewport, $level, $key) {
+  @return map-deep-get($character_styles, $viewport, $level, $key);
+}
+
 .vs-site-nav__list-item {
+  width: 100vw;
+
   @include media-breakpoint-up(lg) {
     height: 100%;
+    width: auto;
+  }
+
+  .vs-site-nav__link {
+    display: flex;
   }
 
   .vs-site-nav__button,
   .vs-site-nav__link {
+    width: 100%;
+    text-transform: none !important;
+    border: none;
     border-bottom: 1px solid $color-gray-tint-6;
     color: $color-base-text;
     font-weight: $font-weight-bold;
     position: relative;
-    justify-content: space-between;
-    transition: background-color 250ms ease-in-out;
+    justify-content: space-between !important;
+    padding: 0.75rem 1.25rem;
 
     @include media-breakpoint-up(lg) {
       height: 100%;
       font-size: 18px;
-      background-color: transparent;
       letter-spacing: 0;
-      text-transform: none !important;
       white-space: nowrap;
-      border: none;
     }
 
-    &.vs-site-nav__button--level1,
-    &.vs-site-nav__link--level1 {
-      font-size: 1.5rem;
+    &::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 12px;
+      height: 100%;
+      background-color: $color-gray-tint-6;
+      transition: background-color 250ms ease-in-out;
+    }
+
+    &[aria-expanded="true"] {
+      &::after {
+        background-color: $color-pink;
+      }
+    }
+  }
+
+  &.vs-site-nav__list-item--level1 {
+    > .vs-site-nav__button,
+    > .vs-site-nav__link {
+      @include level-character-style(1);
       font-weight: $font-weight-normal;
-      padding: 0.75rem 1.25rem;
-      width: 100%;
+      background-color: $color-white;
 
       @include media-breakpoint-up(lg) {
-        font-size: 1rem;
+        box-shadow: none;
       }
 
-      &[aria-expanded="true"] {
-        &::after {
-          background-color: $color-pink;
-        }
+      &::after:not([aria-expanded="true"]) {
+        background-color: transparent;
       }
     }
+  }
 
-    &.vs-site-nav__button--level2,
-    &.vs-site-nav__link--level2 {
-      font-size: 1.125rem;
-      font-weight: $font-weight-normal;
-      padding: 0.75rem 1.25rem 0.75rem 2.25rem;
-      width: 100%;
-
-      &::after {
-        background-color: $color-gray-tint-6;
-      }
-
-      &[aria-expanded="true"] {
-        &::after {
-          background-color: $color-pink;
-        }
-      }
+  &.vs-site-nav__list-item--level2 {
+    > .vs-site-nav__link {
+      padding-top: 12px;
+      padding-bottom: 12px;
     }
 
-    &.vs-site-nav__button--level3,
-    &.vs-site-nav__link--level3 {
-      font-size: 1.125rem;
-      font-weight: $font-weight-normal;
-      padding: 0.75rem 1.25rem 0.75rem 3.25rem;
+    > .vs-site-nav__button,
+    > .vs-site-nav__link {
+      @include level-character-style(2);
 
-      &::after {
-        background-color: $color-gray-tint-6;
-      }
+      font-weight: $font-weight-normal;
+      padding-left: 2.25rem;
+      width: 100vw;
+    }
+  }
+
+  &.vs-site-nav__list-item--level3 {
+    > .vs-site-nav__button,
+    > .vs-site-nav__link {
+      @include level-character-style(3);
+
+      font-weight: $font-weight-normal;
+      padding-left: 3.25rem;
     }
   }
 }
@@ -265,102 +332,102 @@ export default {
 //   z-index: 2;
 // }
 
-.vs-mobile-nav__list--level1 {
-  background-color: $color-white;
-  box-shadow: inset 0 8px 6px -6px rgba(0, 0, 0, 0.3);
-}
+// .vs-mobile-nav__list--level1 {
+//   background-color: $color-white;
+//   box-shadow: inset 0 8px 6px -6px rgba(0, 0, 0, 0.3);
+// }
 
-.vs-mobile-nav__list--level2 {
-  background-color: $color-gray-tint-7;
-}
+// .vs-mobile-nav__list--level2 {
+//   background-color: $color-gray-tint-7;
+// }
 
-.vs-mobile-nav__list--level3 {
-  background-color: $color-gray-tint-7;
-  box-shadow: inset 0 8px 6px -6px rgba(0, 0, 0, 0.3);
-}
+// .vs-mobile-nav__list--level3 {
+//   background-color: $color-gray-tint-7;
+//   box-shadow: inset 0 8px 6px -6px rgba(0, 0, 0, 0.3);
+// }
 
-.vs-mobile-nav__icon-wrapper--spin {
-  margin-left: 5px;
-  transition: transform 250ms;
-}
+// .vs-mobile-nav__icon-wrapper--spin {
+//   margin-left: 5px;
+//   transition: transform 250ms;
+// }
 
-.vs-mobile-nav__icon-wrapper--expanded {
-  transform: rotate(180deg);
-  transform-origin: 50% 54%;
-}
+// .vs-mobile-nav__icon-wrapper--expanded {
+//   transform: rotate(180deg);
+//   transform-origin: 50% 54%;
+// }
 
-.vs-mobile-nav__button {
-  @extend %button-reset;
-}
+// .vs-mobile-nav__button {
+//   @extend %button-reset;
+// }
 
-.vs-mobile-nav__button,
-.vs-mobile-nav__link {
-  align-items: center;
-  border-bottom: 1px solid $color-gray-tint-6;
-  color: $color-base-text;
-  display: flex;
-  font-weight: $font-weight-bold;
-  position: relative;
-  justify-content: space-between;
-  transition: background-color 250ms ease-in-out;
+// .vs-mobile-nav__button,
+// .vs-mobile-nav__link {
+//   align-items: center;
+//   border-bottom: 1px solid $color-gray-tint-6;
+//   color: $color-base-text;
+//   display: flex;
+//   font-weight: $font-weight-bold;
+//   position: relative;
+//   justify-content: space-between;
+//   transition: background-color 250ms ease-in-out;
 
-  &::after {
-    content: "";
-    position: absolute;
-    width: 12px;
-    height: 100%;
-    left: 0;
-  }
+//   &::after {
+//     content: "";
+//     position: absolute;
+//     width: 12px;
+//     height: 100%;
+//     left: 0;
+//   }
 
-  &:focus {
-    @extend %focus-pink-inset;
-  }
+//   &:focus {
+//     @extend %focus-pink-inset;
+//   }
 
-  &.vs-mobile-nav__button--level1,
-  &.vs-mobile-nav__link--level1 {
-    font-size: 1.5rem;
-    font-weight: $font-weight-normal;
-    padding: 0.75rem 1.25rem;
-    width: 100%;
+//   &.vs-mobile-nav__button--level1,
+//   &.vs-mobile-nav__link--level1 {
+//     font-size: 1.5rem;
+//     font-weight: $font-weight-normal;
+//     padding: 0.75rem 1.25rem;
+//     width: 100%;
 
-    &[aria-expanded="true"] {
-      &::after {
-        background-color: $color-pink;
-      }
-    }
-  }
+//     &[aria-expanded="true"] {
+//       &::after {
+//         background-color: $color-pink;
+//       }
+//     }
+//   }
 
-  &.vs-mobile-nav__button--level2,
-  &.vs-mobile-nav__link--level2 {
-    font-size: 1.125rem;
-    font-weight: $font-weight-normal;
-    padding: 0.75rem 1.25rem 0.75rem 2.25rem;
-    width: 100%;
+//   &.vs-mobile-nav__button--level2,
+//   &.vs-mobile-nav__link--level2 {
+//     font-size: 1.125rem;
+//     font-weight: $font-weight-normal;
+//     padding: 0.75rem 1.25rem 0.75rem 2.25rem;
+//     width: 100%;
 
-    &::after {
-      background-color: $color-gray-tint-6;
-    }
+//     &::after {
+//       background-color: $color-gray-tint-6;
+//     }
 
-    &[aria-expanded="true"] {
-      &::after {
-        background-color: $color-pink;
-      }
-    }
-  }
+//     &[aria-expanded="true"] {
+//       &::after {
+//         background-color: $color-pink;
+//       }
+//     }
+//   }
 
-  &.vs-mobile-nav__button--level3,
-  &.vs-mobile-nav__link--level3 {
-    font-size: 1.125rem;
-    font-weight: $font-weight-normal;
-    padding: 0.75rem 1.25rem 0.75rem 3.25rem;
+//   &.vs-mobile-nav__button--level3,
+//   &.vs-mobile-nav__link--level3 {
+//     font-size: 1.125rem;
+//     font-weight: $font-weight-normal;
+//     padding: 0.75rem 1.25rem 0.75rem 3.25rem;
 
-    &::after {
-      background-color: $color-gray-tint-6;
-    }
-  }
-}
+//     &::after {
+//       background-color: $color-gray-tint-6;
+//     }
+//   }
+// }
 
-.vs-mobile-nav__link--landing-page {
+.vs-site-nav__link--landing-page {
   background-color: $color-white;
   color: $color-pink;
 
@@ -369,9 +436,9 @@ export default {
   }
 }
 
-.vs-mobile-nav__link--level3 {
-  border-bottom: none;
-}
+// .vs-mobile-nav__link--level3 {
+//   border-bottom: none;
+// }
 </style>
 
 <docs>
