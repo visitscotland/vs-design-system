@@ -23,7 +23,7 @@
             <slot name="logo" />
           </vs-col>
           <vs-col lg="7" cols="1" class="position-static">
-            <vs-site-nav-list :level="1" :is-open="mainNavOpen">
+            <vs-site-nav-list :level="1" :is-open="siteNavOpen" ref="siteNav" v-hand-down-focus>
               <slot name="site-navigation" />
             </vs-site-nav-list>
           </vs-col>
@@ -36,7 +36,7 @@
             </ul> -->
             <slot name="bottom-right" />
             <vs-site-nav-mobile-toggle-button
-              :is-open="mainNavOpen"
+              :is-open="siteNavOpen"
               class="d-lg-none"
               @click.native="toggleMainNav"
             >
@@ -46,7 +46,7 @@
           </vs-col>
         </vs-row>
       </vs-container>
-      <!-- <vs-site-nav :is-open="mainNavOpen" >
+      <!-- <vs-site-nav :is-open="siteNavOpen" >
         <slot name="site-navigation" />
       </vs-site-nav> -->
       <vs-drawer drawer-key="header-bottom" class="py-4">
@@ -66,6 +66,7 @@
 </template>
 
 <script>
+import Vue from "vue"
 import smoothscroll from "smoothscroll-polyfill"
 
 import VsContainer from "@components/elements/layout/Container"
@@ -78,7 +79,7 @@ import { VsSiteNavMobileToggleButton, VsSiteNav } from "./components/site-naviga
 
 import { BListGroup, BCollapse, VBToggle } from "bootstrap-vue"
 
-import handDownFocus from "@/directives/hand-down-focus"
+import HandDownFocus from "@/directives/hand-down-focus"
 
 export default {
   name: "VsHeader",
@@ -99,7 +100,7 @@ export default {
   directives: { "b-toggle": VBToggle },
   data() {
     return {
-      mainNavOpen: false,
+      siteNavOpen: false,
     }
   },
   props: {
@@ -112,11 +113,16 @@ export default {
     },
   },
   directives: {
-    handDownFocus,
+    HandDownFocus,
   },
   methods: {
     toggleMainNav() {
-      this.mainNavOpen = !this.mainNavOpen
+      this.siteNavOpen = !this.siteNavOpen
+      console.log("toggle site nav")
+      Vue.nextTick(() => {
+        console.log("toggle site nav next tick")
+        this.$refs.siteNav.$el.focus()
+      })
     },
     resetMenus() {
       this.$emit("resetMenus")

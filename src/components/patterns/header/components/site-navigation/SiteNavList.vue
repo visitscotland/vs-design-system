@@ -5,13 +5,16 @@
       'vs-site-nav__list--open': isOpen,
       ['vs-site-nav__list--level' + level]: true,
     }"
+    v-hand-down-focus="firstNavItem"
   >
     <slot />
   </ul>
 </template>
 
 <script>
-// import { BCollapse } from "bootstrap-vue"
+import { get } from "lodash"
+
+import HandDownFocus from "@/directives/hand-down-focus.js"
 
 /**
  * The nearest ancestor with position relative
@@ -20,8 +23,8 @@ export default {
   name: "VsSiteNavList",
   status: "prototype",
   release: "0.1.0",
-  components: {
-    // BCollapse,
+  directives: {
+    HandDownFocus,
   },
   props: {
     isOpen: {
@@ -31,6 +34,17 @@ export default {
       type: Number,
       required: true,
     },
+  },
+  computed: {
+    firstNavItem() {
+      return get(this.$slots, "default.0")
+    },
+  },
+  created() {
+    console.log("site nav created")
+  },
+  mounted() {
+    console.log("site nav mounted")
   },
 }
 </script>
