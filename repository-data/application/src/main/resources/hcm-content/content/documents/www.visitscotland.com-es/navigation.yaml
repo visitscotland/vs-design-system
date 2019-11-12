@@ -1,0 +1,53 @@
+/content/documents/www.visitscotland.com-es/navigation:
+  jcr:primaryType: hippostd:folder
+  jcr:mixinTypes: ['hippotranslation:translated', 'mix:versionable']
+  jcr:uuid: b7193cf1-6a9c-4b33-87ac-50088c01ec7b
+  hippostd:foldertype: [new-translated-folder, new-document]
+  hippotranslation:id: 63c04b3c-8daa-4f3c-9dd0-337a2c5205bb
+  hippotranslation:locale: es
+  /test---widget:
+    jcr:primaryType: hippo:handle
+    jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
+    jcr:uuid: 520c99a1-780b-4e24-8239-b7b9644705e6
+    hippo:name: Test - Widget
+    hippo:versionHistory: d4fc581c-13dd-4530-85bc-2388a49b9b68
+    /test---widget[1]:
+      jcr:primaryType: visitscotland:Widget
+      jcr:mixinTypes: ['mix:versionable']
+      jcr:uuid: 38dabce5-cff7-4b6e-85e8-93682a49fbae
+      hippo:availability: [preview]
+      hippostd:state: unpublished
+      hippostdpubwf:createdBy: admin
+      hippostdpubwf:creationDate: 2019-11-12T09:16:44.751Z
+      hippostdpubwf:lastModificationDate: 2019-11-12T09:19:28.826Z
+      hippostdpubwf:lastModifiedBy: admin
+      hippotranslation:id: bb520c78-8fff-4be9-98e3-bb5191dc1b72
+      hippotranslation:locale: es
+      visitscotland:component: vs.navigation.featured
+    /test---widget[2]:
+      jcr:primaryType: visitscotland:Widget
+      jcr:mixinTypes: ['mix:referenceable']
+      jcr:uuid: 9da35634-822f-4827-ac24-9507acb2d5f6
+      hippo:availability: []
+      hippostd:state: draft
+      hippostdpubwf:createdBy: admin
+      hippostdpubwf:creationDate: 2019-11-12T09:16:44.751Z
+      hippostdpubwf:lastModificationDate: 2019-11-12T09:19:28.880Z
+      hippostdpubwf:lastModifiedBy: admin
+      hippotranslation:id: bb520c78-8fff-4be9-98e3-bb5191dc1b72
+      hippotranslation:locale: es
+      visitscotland:component: vs.navigation.featured
+    /test---widget[3]:
+      jcr:primaryType: visitscotland:Widget
+      jcr:mixinTypes: ['mix:referenceable']
+      jcr:uuid: ddc411b8-6d82-4885-acb9-bf7bf770d644
+      hippo:availability: [live]
+      hippostd:state: published
+      hippostdpubwf:createdBy: admin
+      hippostdpubwf:creationDate: 2019-11-12T09:16:44.751Z
+      hippostdpubwf:lastModificationDate: 2019-11-12T09:19:28.826Z
+      hippostdpubwf:lastModifiedBy: admin
+      hippostdpubwf:publicationDate: 2019-11-12T11:57:23.940Z
+      hippotranslation:id: bb520c78-8fff-4be9-98e3-bb5191dc1b72
+      hippotranslation:locale: es
+      visitscotland:component: vs.navigation.featured

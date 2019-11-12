@@ -7,6 +7,9 @@
 [visitscotland:basedocument] > hippo:document, hippostd:publishableSummary, hippostdpubwf:document
   orderable
 
+[visitscotland:Widget] > hippostd:relaxed, hippotranslation:translated, visitscotland:basedocument
+  orderable
+
 [visitscotland:contentdocument] > hippostd:relaxed, hippotranslation:translated, visitscotland:basedocument
   orderable
 

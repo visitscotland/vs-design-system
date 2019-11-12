@@ -1,0 +1,3 @@
+/hst:hst/hst:configurations/backup/hst:workspace/hst:sitemenus/main/test:
+  jcr:primaryType: hst:sitemenuitem
+  hst:referencesitemapitem: This is a test
