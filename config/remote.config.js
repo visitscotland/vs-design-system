@@ -68,7 +68,7 @@ const commonConfig = {
    * when making the request for remote config
    */
   requestOptions: {
-    strictSSL: false,
+    strictSSL: process.env.VS_DS_REMOTE_CONFIG_STRICT_SSL !== "false",
   },
 }
 
