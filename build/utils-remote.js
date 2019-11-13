@@ -37,38 +37,40 @@ function getRemoteConfig(argv) {
 
   remoteConfig = _applyRemoteConfigDefaults(remoteConfig)
 
-  const transforms = _getTransforms(remoteConfig)
-
   const requestOptions = _makeRequestOptions(remoteConfig)
 
   spinner = ora("Getting remote config from " + requestOptions.uri + "...")
 
   spinner.start()
 
-  return requestPromise(requestOptions)
-    .then(_.partial(_.reduce, transforms, _applyTransform))
-    .then(_.partial(_mergeConfig, _, localConfig))
-    .then(_.partial(_processSections, _, _.get(remoteConfig, "tempPath")))
-    .then(_addPrivateComponents)
-    .then(function(mergedConfig) {
-      spinner.stop()
+  return (
+    requestPromise(requestOptions)
+      // .then(_.partial(_.reduce, transforms, _applyTransform))
+      .then(_.partial(_mergeConfig, _, localConfig))
+      .then(_.partial(_processSections, _, _.get(remoteConfig, "tempPath")))
+      .then(_addPrivateComponents)
+      .then(function(mergedConfig) {
+        spinner.stop()
 
-      console.log(chalk.cyan("Remote config merged!"))
+        console.log(chalk.cyan("Remote config merged!"))
 
-      return mergedConfig
-    })
-    .catch(function(err) {
-      spinner.stop()
+        return mergedConfig
+      })
+      .catch(function(err) {
+        spinner.stop()
 
-      console.log(chalk.red("Problem encountered getting remote config from " + requestOptions.uri))
-      console.log(err)
+        console.log(
+          chalk.red("Problem encountered getting remote config from " + requestOptions.uri)
+        )
+        console.log(err)
 
-      // return the original static config on error
-      console.log(chalk.cyan("Ignoring remote config"))
-      return localConfig
+        // return the original static config on error
+        console.log(chalk.cyan("Ignoring remote config"))
+        return localConfig
 
-      // throw err
-    })
+        // throw err
+      })
+  )
 }
 
 function cleanup(docsConfig) {
@@ -109,21 +111,6 @@ function _makeRemoteUriFromRemoteConfig(config) {
   )
 
   return uri + (queryString ? "?" + queryString : "")
-}
-
-function _applyTransform(apiResponse, transform) {
-  if (_.isFunction(transform)) {
-    return transform(apiResponse)
-  }
-
-  let func = _.get(transform, "func")
-  let args = _.concat([apiResponse], _.get(transform, "args", []))
-
-  if (!_.isFunction(func)) {
-    return apiResponse
-  }
-
-  return func.apply(null, args)
 }
 
 function _mergeConfig(remoteConfig, localConfig) {
@@ -188,10 +175,6 @@ function _prepOutputDir(tempOutputPath) {
   }
 }
 
-function _getTransforms(remoteConfig) {
-  return _.castArray(_.get(remoteConfig, "transformResponse"))
-}
-
 function _applyRemoteConfigDefaults(remoteConfig) {
   return _.defaultsDeep({}, remoteConfig, defaultRemoteConfig)
 }
@@ -214,9 +197,33 @@ function _addPrivateComponents(mergedConfig) {
 function _getRemoteConfigProfile(argv) {
   const remoteConfigFile = argv["remote-config"]
   const remoteConfig = remoteConfigFile ? require(remoteConfigFile) : undefined
-  const profileName = argv["remote-profile"]
 
-  return _.get(remoteConfig, profileName) || _.get(remoteConfig, _.first(_.keys(remoteConfig)))
+  let profileName = argv["remote-profile"] || process.env.VS_DS_REMOTE_PROFILE
+
+  if (!profileName) {
+    profileName = _.first(_.keys(remoteConfig))
+  } else if (!_.has(remoteConfig, profileName)) {
+    console.log(
+      chalk.red(
+        "Profile " +
+          profileName +
+          " not included in remote config - add the profile to /config/remote.docs.config.js"
+      )
+    )
+    console.log(chalk.cyan("Falling back to first profile in config"))
+
+    profileName = _.first(_.keys(remoteConfig))
+  }
+
+  if (!profileName) {
+    console.log(chalk.red("No remote profile specified."))
+
+    return null
+  }
+
+  console.log(chalk.cyan("Selected remote profile - " + profileName + "."))
+
+  return _.get(remoteConfig, profileName)
 }
 
 module.exports = {
