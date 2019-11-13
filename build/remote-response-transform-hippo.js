@@ -1,13 +1,21 @@
 const _ = require("lodash")
 
+// Specifies the project name stub, which is needed to extract field values
+// Set the VS_DS_REMOTE_CONFIG_HIPPO_PROJECT_NAME environment variable to override
 let projectName = "myhippoproject"
+
+// The case-sensitive title of the sections field in which a document's sub-sections are defined
+// Set the VS_DS_REMOTE_CONFIG_HIPPO_SECTIONS_FIELD_TITLE environment variable to override
 let sectionsFieldTitle = "Sections"
+
+// The case-sensitive title of the content field in which the section document's textual content is stored
+// Set the VS_DS_REMOTE_CONFIG_HIPPO_SECTIONS_CONTENT_FIELD_TITLE environment variable to override
 let sectionsContentFieldTitle = "content"
 
-function transformRawResponse(raw, args) {
+function transformRawResponse(raw) {
   const instance = raw
 
-  _setup(args)
+  _setup()
 
   return {
     title: _getFieldValue(instance, "title"),
@@ -15,10 +23,12 @@ function transformRawResponse(raw, args) {
   }
 }
 
-function _setup(args) {
-  projectName = _.get(args, "projectName", projectName)
-  sectionsFieldTitle = _.get(args, "sectionsFieldTitle", sectionsFieldTitle)
-  sectionsContentFieldTitle = _.get(args, "sectionsContentFieldTitle", sectionsContentFieldTitle)
+function _setup() {
+  projectName = process.env.VS_DS_REMOTE_CONFIG_HIPPO_PROJECT_NAME || projectName
+  sectionsFieldTitle =
+    process.env.VS_DS_REMOTE_CONFIG_HIPPO_SECTIONS_FIELD_TITLE || sectionsFieldTitle
+  sectionsContentFieldTitle =
+    process.env.VS_DS_REMOTE_CONFIG_HIPPO_SECTIONS_CONTENT_FIELD_TITLE || sectionsContentFieldTitle
 }
 
 function _getFieldValue(entry, fieldPath) {
@@ -34,7 +44,7 @@ function _extractSectionContent(section) {
   let raw = _.get(contentObject, "content")
   let cons = false
 
-  if ((section.name = "Grid")) {
+  if (section.name === "Grid") {
     cons = true
   }
 

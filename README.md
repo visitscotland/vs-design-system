@@ -54,30 +54,30 @@ To serve the artefacts use this script, which starts a http-server in the `dist/
 
 ### <a name="remote-config"></a> Configuring the remote build
 
-Some of the builds (`yarn docs:remote` or `yarn styleguide:remote:build`) merge the local `config/docs.config.js` with content from a remote API to generate the design system site. These builds require valid configuration, as follows:
+Some of the builds (`yarn docs:remote`,`yarn styleguide:remote` or `yarn styleguide:remote:build`) merge the local `config/docs.config.js` with content from a remote API to generate the design system site. These builds require valid configuration, as follows:
 
 - Edit `config/remote.docs.config.js`, specifying sets of remote config profiles, each with URL, params and transforms. NOTE: the project already includes profiles for Hippo and Contentful.
 - Set the `VS_DS_REMOTE_CONFIG_URL` and any other environment variables (e.g. `VS_DS_REMOTE_CONFIG_HIPPO_PROJECT_NAME`) by specifying them in a `.env` file in the package root, or manually some other way.
 
 Common environment variables for remote config:
-`VS_DS_REMOTE_CONFIG_STRICT_SSL`
-
-`VS_DS_REMOTE_CONFIG_URL`
+`VS_DS_REMOTE_CONFIG_URL` - sets the URL for the API call
+`VS_DS_REMOTE_CONFIG_STRICT_SSL` - used to set the `strictSSL` value passed to `request-promise-native`, which will be true unless this variable has the value "false"
+`VS_DS_REMOTE_PROFILE` - used to specify which named profile to run
 
 Environment variables for Hippo and Contentful config:
 `VS_DS_REMOTE_CONFIG_HIPPO_SECTIONS_FIELD_TITLE`
-
 `VS_DS_REMOTE_CONFIG_HIPPO_SECTIONS_CONTENT_FIELD_TITLE`
-
 `VS_DS_REMOTE_CONFIG_HIPPO_PROJECT_NAME`
-
 `VS_DS_REMOTE_CONFIG_CONTENTFUL_TOKEN`
 
-Only the `VS_DS_REMOTE_CONFIG_URL` variable is truly needed. However, some of the other variables will be needed to ensure to specific remote profile is carried out properly.
+Only the `VS_DS_REMOTE_CONFIG_URL` variable is truly needed. However, the other variables may need to be set to ensure proper functioning of the profiles.
 
-By default, the build selects the first profile defined in the `config/remote.docs.config.js` export. To select a different profile, alter the npm script to pass the name of the desired profile as the --remote-profile arg passed to to the script, e.g:
+By default, the build selects the first profile defined in the `config/remote.docs.config.js` export object. To select a different profile, do one of the following:
 
-`yarn docs:remote --remote-profile contentful`
+1. Set the `VS_DS_REMOTE_PROFILE` environment variable to the desired profile name
+2. Pass the profile name as the --remote-profile arg when running the package.json script, like so `yarn styleguide:remote --remote-profile contentful`
+
+NOTE: The second method will fail for `yarn docs:remote` because `npm-run-all` will not pass the arg to the `styleguide:remote` script.
 
 ## Using the design system assets in other apps
 
