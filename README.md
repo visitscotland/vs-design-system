@@ -56,7 +56,7 @@ To serve the artefacts use this script, which starts a http-server in the `dist/
 
 Some of the builds (`yarn docs:remote` or `yarn styleguide:remote:build`) merge the local `config/docs.config.js` with content from a remote API to generate the design system site. These builds require valid configuration, as follows:
 
-- Edit `config/remote.config.js`, specifying sets of remote config profiles, each with URL, params and transforms. NOTE: the project already includes profiles for Hippo and Contentful.
+- Edit `config/remote.docs.config.js`, specifying sets of remote config profiles, each with URL, params and transforms. NOTE: the project already includes profiles for Hippo and Contentful.
 - Set the `VS_DS_REMOTE_CONFIG_URL` and any other environment variables (e.g. `VS_DS_REMOTE_CONFIG_HIPPO_PROJECT_NAME`) by specifying them in a `.env` file in the package root, or manually some other way.
 
 Common environment variables for remote config:
@@ -75,7 +75,7 @@ Environment variables for Hippo and Contentful config:
 
 Only the `VS_DS_REMOTE_CONFIG_URL` variable is truly needed. However, some of the other variables will be needed to ensure to specific remote profile is carried out properly.
 
-By default, the build selects the first profile defined in the `config/remote.config.js` export. To select a different profile, alter the npm script to pass the name of the desired profile as the --remote-profile arg passed to to the script, e.g:
+By default, the build selects the first profile defined in the `config/remote.docs.config.js` export. To select a different profile, alter the npm script to pass the name of the desired profile as the --remote-profile arg passed to to the script, e.g:
 
 `yarn docs:remote --remote-profile contentful`
 
