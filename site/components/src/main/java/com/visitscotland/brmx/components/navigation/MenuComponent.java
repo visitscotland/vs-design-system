@@ -1,10 +1,10 @@
-package com.visitscotland.www.components.navigation;
+package com.visitscotland.brmx.components.navigation;
 
 
-import com.visitscotland.www.HippoUtils;
-import com.visitscotland.www.beans.ContentDocument;
-import com.visitscotland.www.beans.Widget;
-import com.visitscotland.www.components.navigation.info.MenuComponentInfo;
+import com.visitscotland.brmx.utils.HippoUtils;
+import com.visitscotland.brmx.beans.ContentDocument;
+import com.visitscotland.brmx.beans.Widget;
+import com.visitscotland.brmx.components.navigation.info.MenuComponentInfo;
 import org.hippoecm.hst.content.beans.standard.HippoBean;
 import org.hippoecm.hst.core.component.HstRequest;
 import org.hippoecm.hst.core.component.HstResponse;

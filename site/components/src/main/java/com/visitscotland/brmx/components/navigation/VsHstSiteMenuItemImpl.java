@@ -1,6 +1,6 @@
-package com.visitscotland.www.components.navigation;
+package com.visitscotland.brmx.components.navigation;
 
-import com.visitscotland.www.beans.Widget;
+import com.visitscotland.brmx.beans.Widget;
 import org.hippoecm.hst.core.linking.HstLink;
 import org.hippoecm.hst.core.request.ResolvedSiteMapItem;
 import org.hippoecm.hst.core.sitemenu.HstSiteMenu;

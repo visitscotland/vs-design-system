@@ -1,4 +1,4 @@
-package com.visitscotland.www.beans;
+package com.visitscotland.brmx.beans;
 
 import org.hippoecm.hst.content.beans.Node;
 import org.hippoecm.hst.content.beans.query.HstQuery;

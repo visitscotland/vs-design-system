@@ -1,4 +1,4 @@
-package com.visitscotland.www.beans;
+package com.visitscotland.brmx.beans;
 /*
  * Copyright 2014-2019 Hippo B.V. (http://www.onehippo.com)
  *

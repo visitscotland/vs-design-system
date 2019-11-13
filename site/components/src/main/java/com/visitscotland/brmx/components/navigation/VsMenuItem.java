@@ -1,7 +1,7 @@
-package com.visitscotland.www.components.navigation;
+package com.visitscotland.brmx.components.navigation;
 
 
-import com.visitscotland.www.beans.Widget;
+import com.visitscotland.brmx.beans.Widget;
 import org.hippoecm.hst.core.sitemenu.HstSiteMenuItem;
 
 public interface VsMenuItem extends HstSiteMenuItem {

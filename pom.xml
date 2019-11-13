@@ -240,6 +240,7 @@
         <docker.db.bind.1>${project.basedir}/target/mysql-data:/var/lib/mysql</docker.db.bind.1>
         <docker.db.bind.2>${project.basedir}/db-bootstrap:/docker-entrypoint-initdb.d</docker.db.bind.2>
 
+        <!--suppress UnresolvedMavenProperty -->
         <docker.brxm.envRun.MYSQL_DB_HOST>${docker.container.db.net.visitscotland-network.ip}</docker.brxm.envRun.MYSQL_DB_HOST>
       </properties>
     </profile>
@@ -254,6 +255,7 @@
         <docker.db.bind.1>${project.basedir}/target/postgres-data:/var/lib/postgresql/data</docker.db.bind.1>
         <docker.db.bind.2>${project.basedir}/db-bootstrap:/docker-entrypoint-initdb.d</docker.db.bind.2>
 
+        <!--suppress UnresolvedMavenProperty -->
         <docker.brxm.envRun.POSTGRES_DB_HOST>${docker.container.db.net.visitscotland-network.ip}</docker.brxm.envRun.POSTGRES_DB_HOST>
       </properties>
     </profile>

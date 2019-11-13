@@ -5,7 +5,7 @@ definitions:
       hst:template: base-layout
       /menu:
         jcr:primaryType: hst:component
-        hst:componentclassname: com.visitscotland.www.components.navigation.MenuComponent
+        hst:componentclassname: com.visitscotland.brmx.components.navigation.MenuComponent
         hst:parameternames: [selectedMenu, level, menu]
         hst:parametervalues: ['on', '1', main]
         hst:template: base-top-menu
