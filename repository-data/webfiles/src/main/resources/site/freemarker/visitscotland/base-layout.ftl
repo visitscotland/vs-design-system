@@ -22,6 +22,7 @@
         </div>
       </div>
       <div class="row">
+        <@hst.include ref="breadcrumb"/>
         <@hst.include ref="main"/>
       </div>
       <div class="row">

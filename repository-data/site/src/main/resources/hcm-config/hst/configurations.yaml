@@ -50,6 +50,9 @@ definitions:
           /pagenotfound-main:
             jcr:primaryType: hst:template
             hst:renderpath: webfile:/freemarker/visitscotland/pagenotfound-main.ftl
+          /breadcrumb:
+            jcr:primaryType: hst:template
+            hst:renderpath: webfile:/freemarker/visitscotland/breadcrumb.ftl
         /hst:catalog:
           jcr:primaryType: hst:catalog
           /visitscotland-catalog:
