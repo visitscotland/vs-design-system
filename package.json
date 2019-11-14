@@ -33,8 +33,8 @@
     "node:build:system:components": "node ./build/build-system.js  --components",
     "styleguide": "vue-styleguidist server --open --config ./config/docs.config.js",
     "styleguide:build": "vue-styleguidist build --config ./config/docs.config.js",
-    "styleguide:remote": "node build/styleguide server --config ./config/docs.config.js --remote-config ../config/remote.config.js",
-    "styleguide:remote:build": "node build/styleguide build --config ./config/docs.config.js --remote-config ../config/remote.config.js",
+    "styleguide:remote": "node build/styleguide server --config ./config/docs.config.js --remote-config ../config/remote.docs.config.js",
+    "styleguide:remote:build": "node build/styleguide build --config ./config/docs.config.js --remote-config ../config/remote.docs.config.js",
     "test": "npm-run-all theo unit",
     "theo": "theo ./src/tokens/tokens.yml --transform web --format map.scss,scss,raw.json,json --dest ./src/assets/tokens",
     "theo:onchange": "onchange \"./src/tokens/*.yml\" -- npm run theo"
