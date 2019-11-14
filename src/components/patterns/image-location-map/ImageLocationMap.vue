@@ -391,7 +391,7 @@ export default {
             :latitude="image.latitude"
             :longitude="image.longitude"
           >
-        </vs-image-location-map>
+          </vs-image-location-map>
       </div>
     </vs-col>
   </vs-row>
