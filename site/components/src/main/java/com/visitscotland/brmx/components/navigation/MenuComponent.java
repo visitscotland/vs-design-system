@@ -67,7 +67,7 @@ public class MenuComponent extends EssentialsMenuComponent {
     }
 
     private boolean isDocumentBased(HstLink link){
-        return link != null & link.getPath() != null && link.getPath().length() > 0;
+        return link != null && link.getPath() != null && link.getPath().length() > 0;
     }
 
 }
