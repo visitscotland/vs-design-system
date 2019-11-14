@@ -27,6 +27,38 @@ definitions:
               jcr:primaryType: hst:sitemapitem
               hst:componentconfigurationid: hst:pages/widget
               hst:relativecontentpath: ${parent}/${1}
+          /destinations-maps:
+            jcr:primaryType: hst:sitemapitem
+            hst:componentconfigurationid: hst:pages/pagenotfound
+            hst:relativecontentpath: site/destinations-maps
+            /_default_:
+              jcr:primaryType: hst:sitemapitem
+              hst:componentconfigurationid: hst:pages/pagenotfound
+              hst:relativecontentpath: ${parent}/${1}
+              /_index_:
+                jcr:primaryType: hst:sitemapitem
+                hst:componentconfigurationid: hst:pages/contentpage
+                hst:relativecontentpath: ${parent}/content
+            /_index_:
+              jcr:primaryType: hst:sitemapitem
+              hst:componentconfigurationid: hst:pages/contentpage
+              hst:relativecontentpath: ${parent}/content
+            /islands:
+              jcr:primaryType: hst:sitemapitem
+              hst:componentconfigurationid: hst:pages/pagenotfound
+              hst:relativecontentpath: ${parent}/islands
+              /_index_:
+                jcr:primaryType: hst:sitemapitem
+                hst:componentconfigurationid: hst:pages/contentpage
+                hst:relativecontentpath: ${parent}/content
+              /_default_:
+                jcr:primaryType: hst:sitemapitem
+                hst:componentconfigurationid: hst:pages/pagenotfound
+                hst:relativecontentpath: ${parent}/${1}
+                /_index_:
+                  jcr:primaryType: hst:sitemapitem
+                  hst:componentconfigurationid: hst:pages/contentpage
+                  hst:relativecontentpath: ${parent}/content
         /hst:abstractpages:
           jcr:primaryType: hst:pages
         /hst:pages:
