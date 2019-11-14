@@ -2,5 +2,5 @@ definitions:
   config:
     /hst:hst/hst:configurations/common/hst:components/breadcrumb:
       jcr:primaryType: hst:component
-      hst:componentclassname: org.onehippo.forge.breadcrumb.components.BreadcrumbComponent
+      hst:componentclassname: com.visitscotland.brmx.components.breadcrumb.VsBreadcrumb
       hst:template: breadcrumb
