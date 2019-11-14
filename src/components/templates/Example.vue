@@ -86,7 +86,7 @@
 import { VsContainer, VsRow, VsCol } from "../elements/layout/"
 import VsHeading from "../elements/heading/Heading"
 import VsImg from "../elements/img/Img"
-import VsHero from "../patterns/Hero"
+import VsHero from "../patterns/hero/Hero"
 import VsArticle from "../patterns/Article"
 import VsSidebar from "../patterns/Sidebar"
 import VsContentSection from "../patterns/ContentSection"
