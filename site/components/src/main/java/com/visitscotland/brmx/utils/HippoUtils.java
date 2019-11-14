@@ -38,6 +38,11 @@ public class HippoUtils {
         return "??"+key+"??";
     }
 
+    public static boolean existsResourceBundleKey(String key, String bundleName, Locale locale){
+        ResourceBundle bundle = getResourceBundle(bundleName, locale);
+        return bundle != null && bundle.containsKey(key);
+    }
+
     /**
      * Return a resource bundle for a specific locale
      *

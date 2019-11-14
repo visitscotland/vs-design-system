@@ -48,13 +48,17 @@ public class MenuComponent extends EssentialsMenuComponent {
                 if (bean instanceof Widget){
                     enhancedMenu.setWidget((Widget) bean);
                 } else if (bean instanceof ContentDocument){
-                    //PageRenderable document
-                    enhancedMenu.setTitle(((ContentDocument) bean).getTitle());
+                    if (HippoUtils.existsResourceBundleKey(menu.getName(),NAVIGATION_BUNDLE, request.getLocale())){
+                        enhancedMenu.setTitle(HippoUtils.getResourceBundle(menu.getName(),NAVIGATION_BUNDLE, request.getLocale()));
+                    } else {
+                        enhancedMenu.setTitle(((ContentDocument) bean).getTitle());
+                    }
                 }
             }
         }
 
         if (enhancedMenu.getTitle() == null){
+
             String value = HippoUtils.getResourceBundle(menu.getName(),NAVIGATION_BUNDLE, request.getLocale());
             enhancedMenu.setTitle(value);
         }
@@ -67,7 +71,7 @@ public class MenuComponent extends EssentialsMenuComponent {
     }
 
     private boolean isDocumentBased(HstLink link){
-        return link != null & link.getPath() != null && link.getPath().length() > 0;
+        return link != null && link.getPath() != null && link.getPath().length() > 0;
     }
 
 }
