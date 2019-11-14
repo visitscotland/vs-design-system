@@ -3,6 +3,7 @@ definitions:
     /hst:hst/hst:configurations:
       /common:
         jcr:primaryType: hst:configuration
+        hst:inheritsfrom: ['../hst:defaults', '../visitscotland/hst:workspace']
         /hst:sitemap:
           jcr:primaryType: hst:sitemap
           /root:
@@ -18,6 +19,14 @@ definitions:
             hst:componentconfigurationid: hst:pages/pagenotfound
             hst:pagetitle: Not Found Page
             hst:refId: pagenotfound
+          /widget:
+            jcr:primaryType: hst:sitemapitem
+            hst:componentconfigurationid: hst:pages/widget
+            hst:relativecontentpath: navigation
+            /_any_:
+              jcr:primaryType: hst:sitemapitem
+              hst:componentconfigurationid: hst:pages/widget
+              hst:relativecontentpath: ${parent}/${1}
         /hst:abstractpages:
           jcr:primaryType: hst:pages
         /hst:pages:
@@ -52,16 +61,16 @@ definitions:
         jcr:primaryType: hst:configuration
       /visitscotland-es:
         jcr:primaryType: hst:configuration
-        hst:inheritsfrom: [../common]
+        hst:inheritsfrom: [../common, '../common/hst:workspace']
       /visitscotland-fr:
         jcr:primaryType: hst:configuration
-        hst:inheritsfrom: [../common]
+        hst:inheritsfrom: [../common, '../common/hst:workspace']
       /visitscotland-de:
         jcr:primaryType: hst:configuration
-        hst:inheritsfrom: [../common]
+        hst:inheritsfrom: [../common, '../common/hst:workspace']
       /visitscotland-nl:
         jcr:primaryType: hst:configuration
-        hst:inheritsfrom: [../common]
+        hst:inheritsfrom: [../common, '../common/hst:workspace']
       /visitscotland-it:
         jcr:primaryType: hst:configuration
-        hst:inheritsfrom: [../common]
+        hst:inheritsfrom: [../common, '../common/hst:workspace']
