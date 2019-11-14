@@ -1,34 +1,44 @@
 <template>
   <figure class="d-flex flex-column">
     <div class="vs-hero__image-wrapper">
-      <img :src="this.imageSrc" :alt="this.altText" />
+      <img :src="this.imageSrc" :alt="this.altText" :data-dml-id="this.dmlId" />
 
       <vs-button
+        variant="transparent"
         class="d-lg-none position-absolute vs-hero__toggle-caption"
-        @click="toggleCaption()"
+        :animate="false"
+        @click.native="toggleCaption"
       >
+        <vs-icon name="information" variant="light" size="sm" />
         <span class="sr-only">{{ this.toggleButtonText }}</span>
       </vs-button>
     </div>
-
-    <figcaption ref="figcaption" class="d-none d-lg-flex" :class="{ 'd-flex': showCaption }">
-      <vs-container class="d-flex">
-        <div>
-          <p class="vs-hero__image-description">{{ this.description }}</p>
-          <p class="vs-hero__image-credit m-0">&copy; {{ this.credit }}</p>
+    <vs-container
+      class="position-relative d-none d-lg-flex vs-hero__caption-wrapper"
+      :class="{ 'd-flex': showCaption }"
+    >
+      <figcaption ref="figcaption">
+        <div class="d-flex justify-content-between">
+          <div>
+            <p class="vs-hero__image-description">{{ this.description }}</p>
+            <p class="vs-hero__image-credit m-0">&copy; {{ this.credit }}</p>
+          </div>
+          <div class="map__wrapper">
+            <vs-image-location-map
+              :latitude="this.latitude"
+              :longitude="this.longitude"
+            ></vs-image-location-map>
+          </div>
         </div>
-        <div class="map__wrapper">
-          <vs-image-location-map :latitude="this.latitude" :longitude="this.longitude">
-          </vs-image-location-map>
-        </div>
-      </vs-container>
-    </figcaption>
+      </figcaption>
+    </vs-container>
   </figure>
 </template>
 
 <script>
-import { VsButton } from "../../elements/button"
-import { VsContainer, VsRow, VsCol } from "../../elements/layout"
+import VsIcon from "@components/elements/icon/Icon"
+import VsButton from "@components/elements/button/Button"
+import { VsContainer, VsRow, VsCol } from "@components/elements/layout"
 import VsImageLocationMap from "@components/patterns/image-location-map/ImageLocationMap"
 
 /**
@@ -38,7 +48,7 @@ export default {
   name: "VsHero",
   status: "prototype",
   release: "0.0.1",
-  components: { VsContainer, VsRow, VsCol, VsImageLocationMap },
+  components: { VsContainer, VsRow, VsCol, VsImageLocationMap, VsButton, VsIcon },
   data() {
     return {
       showCaption: false,
@@ -53,9 +63,9 @@ export default {
     },
 
     /**
-     * The source URL for the hero's image
+     * The image credit
      */
-    imageSrc: {
+    credit: {
       type: String,
     },
 
@@ -67,9 +77,16 @@ export default {
     },
 
     /**
-     * The image credit
+     * The image ID in the Digital Media Library
      */
-    credit: {
+    dmlId: {
+      type: String,
+    },
+
+    /**
+     * The source URL for the hero's image
+     */
+    imageSrc: {
       type: String,
     },
 
@@ -97,8 +114,7 @@ export default {
   },
   methods: {
     toggleCaption() {
-      console.log("test")
-      return this.showCaption !== this.showCaption
+      return (this.showCaption = !this.showCaption)
     },
   },
 }
@@ -113,20 +129,39 @@ export default {
   width: 100px;
 }
 
+.vs-hero__caption-wrapper {
+  @include media-breakpoint-down(lg) {
+    padding: 0;
+    max-width: 100%;
+  }
+}
+
 .vs-hero__toggle-caption {
   bottom: 0;
   right: 0;
-  z-index: 2;
+  padding: 0.325rem;
+
+  &:focus {
+    box-shadow: none;
+  }
 }
 
 figure {
-  border: 1px solid red;
+  position: relative;
 }
 
 .vs-hero__image-wrapper {
   object-fit: cover;
   position: relative;
   overflow: hidden;
+
+  @include media-breakpoint-up(sm) {
+    height: 200px;
+  }
+
+  @include media-breakpoint-up(md) {
+    height: 300px;
+  }
 
   @include media-breakpoint-up(lg) {
     height: 400px;
@@ -136,7 +171,7 @@ figure {
 img {
   width: 100%;
 
-  @include media-breakpoint-up(lg) {
+  @include media-breakpoint-up(sm) {
     position: absolute;
     left: 50%;
     top: 50%;
@@ -153,9 +188,10 @@ figcaption {
   background-color: $color-gray-shade-6;
   color: $color-white;
   padding: $spacer-4;
+  width: 100%;
 
   @include media-breakpoint-up(lg) {
-    bottom: 0;
+    bottom: -1rem;
     max-width: 400px;
     position: absolute;
     right: 0;
@@ -188,6 +224,7 @@ figcaption {
       :latitude="item.latitude"
       :longitude="item.longitude"
       :altText="item.altText"
+      :dmlId="item.dmlId"
     >
     </vs-hero>
   </div>
