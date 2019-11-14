@@ -43,34 +43,29 @@ function getRemoteConfig(argv) {
 
   spinner.start()
 
-  return (
-    requestPromise(requestOptions)
-      // .then(_.partial(_.reduce, transforms, _applyTransform))
-      .then(_.partial(_mergeConfig, _, localConfig))
-      .then(_.partial(_processSections, _, _.get(remoteConfig, "tempPath")))
-      .then(_addPrivateComponents)
-      .then(function(mergedConfig) {
-        spinner.stop()
+  return requestPromise(requestOptions)
+    .then(_.partial(_mergeConfig, _, localConfig))
+    .then(_.partial(_processSections, _, _.get(remoteConfig, "tempPath")))
+    .then(_addPrivateComponents)
+    .then(function(mergedConfig) {
+      spinner.stop()
 
-        console.log(chalk.cyan("Remote config merged!"))
+      console.log(chalk.cyan("Remote config merged!"))
 
-        return mergedConfig
-      })
-      .catch(function(err) {
-        spinner.stop()
+      return mergedConfig
+    })
+    .catch(function(err) {
+      spinner.stop()
 
-        console.log(
-          chalk.red("Problem encountered getting remote config from " + requestOptions.uri)
-        )
-        console.log(err)
+      console.log(chalk.red("Problem encountered getting remote config from " + requestOptions.uri))
+      console.log(err)
 
-        // return the original static config on error
-        console.log(chalk.cyan("Ignoring remote config"))
-        return localConfig
+      // return the original static config on error
+      console.log(chalk.cyan("Ignoring remote config"))
+      return localConfig
 
-        // throw err
-      })
-  )
+      // throw err
+    })
 }
 
 function cleanup(docsConfig) {
