@@ -155,6 +155,10 @@ export default {
 
 .vs-header__top-wrapper {
   z-index: $zindex-fixed;
+  & ::v-deep * {
+    font-size: $font-size-base;
+    font-weight: 400;
+  }
 
   @include media-breakpoint-up(lg) {
     & ::v-deep * {

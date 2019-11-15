@@ -1,5 +1,5 @@
 <template>
-  <vs-button @click.native="isLoggedIn = !isLoggedIn" class="vs-header__login-button">
+  <vs-header-button @click.native="isLoggedIn = !isLoggedIn" class="vs-header__login-button">
     <vs-svg class="mr-1" path="icons/user" height="10" fill="white" />
 
     <template v-if="isLoggedIn">
@@ -8,12 +8,12 @@
     <template v-else>
       <slot name="logged-out-content" />
     </template>
-  </vs-button>
+  </vs-header-button>
 </template>
 
 <script>
 import VsSvg from "@components/elements/svg/Svg"
-import VsButton from "@components/elements/button"
+import VsHeaderButton from "../button/HeaderButton"
 
 /**
  *  Placeholder component for header login component
@@ -22,7 +22,7 @@ export default {
   name: "VsHeaderLoginButton",
   status: "prototype",
   release: "0.1.0",
-  components: { VsSvg, VsButton },
+  components: { VsSvg, VsHeaderButton },
   data() {
     return {
       isLoggedIn: false,
