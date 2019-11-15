@@ -1,13 +1,11 @@
 <template>
   <vs-button
-    class="vs-header__site-search__toggle-button p-1 pr-xl-3"
-    :variant="isOn ? 'light' : 'primary-pink'"
-    focus-style="underline"
-    focus-colour="white"
+    class="vs-header__site-search__toggle-button p-0 p-sm-1 pr-xl-3"
+    :variant="isOn ? 'light' : 'primary'"
+    :animate="false"
   >
-    <span class="d-xl-none sr-only"><slot /></span>
     <vs-icon name="search" size="sm" :variant="isOn ? 'secondary' : 'reverse-white'" />
-    <span class="d-none d-xl-flex"><slot /></span>
+    <span class="sr-only-xl-down d-xl-flex"><slot /></span>
   </vs-button>
 </template>
 
@@ -31,7 +29,25 @@ export default {
 
 .vs-header__site-search__toggle-button {
   font-size: 1.125rem;
-  font-weight: $font-weight-bold;
+  font-weight: $font-weight-normal;
+  letter-spacing: 0px;
+  position: relative;
+  text-transform: none;
+  transition: $transition-base;
+
+  @include media-breakpoint-up(sm) {
+    &:not(:focus) {
+      box-shadow: 0 8px 0 0 $color-theme-light;
+    }
+
+    &.btn-primary:not(:focus) {
+      box-shadow: 0 5px 0 0 $color-theme-primary;
+
+      &:hover {
+        box-shadow: 0 5px 0 0 #890056;
+      }
+    }
+  }
 }
 </style>
 

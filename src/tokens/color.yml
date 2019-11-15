@@ -39,7 +39,7 @@ props:
     category: "Neutral"
 
   - name: color_theme_primary
-    value: "#700E57"
+    value: "#AF006E"
     category: "Theme colours"
   - name: color_theme_secondary
     value: "#6A6366"
@@ -51,7 +51,7 @@ props:
     value: "#2E5F95"
     category: "Theme colours"
   - name: color_theme_warning
-    value: "#7B6210"
+    value: "#FCCA1B"
     category: "Theme colours"
   - name: color_theme_danger
     value: "#AE2940"
@@ -62,8 +62,8 @@ props:
   - name: color_theme_dark
     value: "#191919"
     category: "Theme colours"
-  - name: color_theme_primary_pink
-    value: "#AF006E"
+  - name: color_theme_primary_purple
+    value: "#700E57"
     category: "Theme colours"
 
   - name: color_purple_tint_1

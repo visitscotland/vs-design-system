@@ -22,7 +22,7 @@ $theme-colors: (
   danger: $color-theme-danger,
   light: $color-theme-light,
   dark: $color-theme-dark,
-  primary-pink: $color-theme-primary-pink,
+  primary-purple: $color-theme-primary-purple,
 );
 
 $body-color: $color-base-text;
@@ -69,3 +69,12 @@ $border-radius: $border-radius-default;
 $border-radius-lg: $border-radius-lg;
 $border-radius-sm: $border-radius-sm;
 $rounded-pill: $border-radius-pill;
+
+$input-btn-padding-y-sm: 0.1875rem;
+$btn-padding-x-sm: 1.375rem;
+
+$input-btn-padding-y: 0.75rem;
+$btn-padding-x: 2.5rem;
+
+$input-btn-padding-y-lg: 1rem;
+$btn-padding-x-lg: 3.5rem;
