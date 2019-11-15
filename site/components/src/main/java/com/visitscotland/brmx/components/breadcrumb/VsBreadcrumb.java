@@ -6,15 +6,20 @@ import org.hippoecm.hst.core.component.HstRequest;
 import org.hippoecm.hst.core.component.HstResponse;
 import org.hippoecm.hst.core.request.ComponentConfiguration;
 import org.hippoecm.hst.component.support.bean.BaseHstComponent;
+import org.onehippo.cms7.essentials.components.CommonComponent;
+import org.onehippo.forge.breadcrumb.om.Breadcrumb;
+import org.onehippo.forge.breadcrumb.om.BreadcrumbItem;
 
 import javax.servlet.ServletContext;
 
-public class VsBreadcrumb extends BaseHstComponent {
+public class VsBreadcrumb extends CommonComponent {
 
     private VsBreadCrumbProvider breadcrumbProvider;
 
     public void doBeforeRender(HstRequest request, HstResponse response) throws HstComponentException {
         super.doBeforeRender(request, response);
+
+        request.setAttribute("requestedURI", request.getRequestURI());
         request.setAttribute("breadcrumb", this.breadcrumbProvider.getBreadcrumb(request));
     }
 
