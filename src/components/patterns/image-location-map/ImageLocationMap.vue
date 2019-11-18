@@ -305,7 +305,7 @@
       stroke-width="0.5"
       fill-rule="evenodd"
     />
-    <rect width="75.485" height="105.3498" fill="none" />
+    <rect :width="mapWidth" :height="mapHeight" fill="none" />
     <circle r="4" fill="white" :cx="positionX" :cy="positionY" />
   </svg>
 </template>
@@ -321,10 +321,10 @@ export default {
   data: function() {
     return {
       cornerCoordinates: {
-        NE: 61.00685,
-        NW: 54.535644,
-        SE: -9.411292,
-        SW: 0.600849,
+        NE: 61.3,
+        NW: 54.4,
+        SE: -9.1,
+        SW: 0.4,
       },
       mapWidth: 75,
       mapHeight: 104,
@@ -379,12 +379,17 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+svg {
+  width: 100%;
+  height: 100%;
+}
+</style>
 
 <docs>
   ```jsx
   <vs-row>
-    <vs-col cols="6" sm="4" lg="3" v-for="(image, index) in hero.imageLocationMapExamples">
+    <vs-col cols="6" sm="4" lg="3" xl="2" v-for="(image, index) in hero.imageLocationMapExamples">
       <div class="bg-dark mb-3 p-3 text-center">
         <p class="text-light">{{image.title}}</p>
           <vs-image-location-map
