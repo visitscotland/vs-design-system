@@ -23,7 +23,7 @@
             <p class="vs-hero__image-description">{{ this.description }}</p>
             <p class="vs-hero__image-credit m-0">&copy; {{ this.credit }}</p>
           </div>
-          <div class="map__wrapper">
+          <div class="map__wrapper" v-if="showMap">
             <vs-image-location-map
               :latitude="this.latitude"
               :longitude="this.longitude"
@@ -112,6 +112,12 @@ export default {
       default: "Toggle Caption",
     },
   },
+  computed: {
+    showMap() {
+      // only show the map if longitude and latitude are both set
+      return this.longitude && this.latitude ? true : false
+    },
+  },
   methods: {
     toggleCaption() {
       return (this.showCaption = !this.showCaption)
@@ -121,10 +127,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "~bootstrap/scss/utilities/flex";
-@import "~bootstrap/scss/utilities/position";
-@import "~bootstrap/scss/utilities/spacing";
-
 .map__wrapper {
   width: 100px;
 }
@@ -165,6 +167,10 @@ figure {
 
   @include media-breakpoint-up(lg) {
     height: 400px;
+  }
+
+  @include media-breakpoint-up(xl) {
+    height: 500px;
   }
 }
 
