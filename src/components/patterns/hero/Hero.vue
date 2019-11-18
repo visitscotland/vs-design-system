@@ -14,16 +14,16 @@
       </vs-button>
     </div>
     <vs-container
-      class="position-relative d-none d-lg-flex vs-hero__caption-wrapper"
-      :class="{ 'd-flex': showCaption }"
+      class="position-relative vs-hero__caption-wrapper"
+      :class="[showCaption ? 'd-flex' : 'd-none d-lg-flex']"
     >
       <figcaption ref="figcaption">
-        <div class="d-flex justify-content-between">
-          <div>
+        <div class="row">
+          <div class="col">
             <p class="vs-hero__image-description">{{ this.description }}</p>
             <p class="vs-hero__image-credit m-0">&copy; {{ this.credit }}</p>
           </div>
-          <div class="map__wrapper" v-if="showMap">
+          <div class="col map__wrapper" v-if="showMap">
             <vs-image-location-map
               :latitude="this.latitude"
               :longitude="this.longitude"
@@ -128,6 +128,7 @@ export default {
 
 <style lang="scss" scoped>
 .map__wrapper {
+  max-width: 100px;
   width: 100px;
 }
 
@@ -142,10 +143,6 @@ export default {
   bottom: 0;
   right: 0;
   padding: 0.325rem;
-
-  &:focus {
-    box-shadow: none;
-  }
 }
 
 figure {
@@ -167,10 +164,6 @@ figure {
 
   @include media-breakpoint-up(lg) {
     height: 400px;
-  }
-
-  @include media-breakpoint-up(xl) {
-    height: 500px;
   }
 }
 

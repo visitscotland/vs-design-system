@@ -11,6 +11,15 @@
     "dmlId": "326560"
   },
   {
+    "filename": "duncansby_stacks_2019_05-1",
+    "title": "Duncansby Head",
+    "imageSrc": "fixtures/hero/images/duncansby_stacks_2019_05-1.jpg",
+    "description": "Example of the caption display with coordinates are not provided.",
+    "credit": "VisitScotland / Kenny Lam",
+    "altText": "Sea Stacks at Duncansby Head",
+    "dmlId": "326560"
+  },
+  {
     "filename": "visitscotland_37614740732",
     "title": "Crawick Multiverse",
     "imageSrc": "fixtures/hero/images/visitscotland_37614740732.jpg",
