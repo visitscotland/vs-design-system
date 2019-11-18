@@ -64,13 +64,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "~bootstrap/scss/utilities/text";
-@import "~bootstrap/scss/utilities/display";
-@import "~bootstrap/scss/utilities/flex";
-@import "~bootstrap/scss/utilities/position";
-@import "~bootstrap/scss/utilities/spacing";
-@import "~bootstrap/scss/utilities/screenreaders";
-
 .vs-favourites__button__count {
   color: $color-white;
   display: block;

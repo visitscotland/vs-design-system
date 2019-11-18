@@ -128,7 +128,6 @@ export default {
 
 <style lang="scss" scoped>
 @import "~bootstrap/scss/type";
-@import "~bootstrap/scss/utilities/spacing";
 @import "../../styles/placeholders";
 @import "../../styles/mixins";
 

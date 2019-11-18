@@ -97,8 +97,6 @@ export default {
 
 <style lang="scss" scoped>
 @import "~bootstrap/scss/buttons";
-@import "~bootstrap/scss/utilities/display";
-@import "~bootstrap/scss/utilities/flex";
 
 .btn {
   font-family: $font-family-base;
