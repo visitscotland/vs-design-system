@@ -79,9 +79,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "~bootstrap/scss/utilities/spacing";
-@import "~bootstrap/scss/utilities/background";
-
 .vs-header__drawer-wrapper {
   @extend %default-inset-box-shadow;
   background-color: $color-gray-tint-7;

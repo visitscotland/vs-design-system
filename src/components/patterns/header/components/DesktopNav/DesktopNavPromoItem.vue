@@ -67,11 +67,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "~bootstrap/scss/utilities/text";
-@import "~bootstrap/scss/utilities/display";
-@import "~bootstrap/scss/utilities/flex";
-@import "~bootstrap/scss/utilities/spacing";
-@import "~bootstrap/scss/utilities/screenreaders";
 @import "../../styles/placeholders";
 
 .vs-promo-item__wrapper {
