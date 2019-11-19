@@ -14,21 +14,10 @@ yarn install
 yarn build
 ```
 
-This script does 2 things:
-
-1. Runs the `build:system:components` script in the root package
-2. Runs this package's webpack build, which:
-   - Copies all built assets from the `dist/system-components` folder into the parent Hippo app's webfiles folder (at `/repository-data/webfiles/src/main/resources/site/design-system`) for inclusion in the Hippo site.
+This script runs the webpack build, which:
+   - Copies all built assets from the `node_modules/vs-dotcom-ds/dist/` folder into the parent Hippo app's webfiles folder (at `/repository-data/webfiles/src/main/resources/site/design-system`) for inclusion in the Hippo site.
    - Copies `vue-app-init.ftl` to Freemarker template location (at `/repository-data/webfiles/src/main/resources/site/freemarker/include/vs-dotcom-ds`).
    - Generates Freemarker templates for all Vue components and VueX stores listed in the `manifest.json` file to the `components` and `stores` subfolders, respectively, of the Freemarker template location.
-
-You can skip step 1 by running:
-
-```
-yarn build:skip
-```
-
-This will use the artefacts from a previous `system-components` build of the root package. If you haven't yet done a build, it won't work due to the absence of the entry and source files.
 
 ### Including components in the Hippo site
 
