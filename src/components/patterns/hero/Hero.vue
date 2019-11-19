@@ -18,18 +18,22 @@
       :class="[showCaption ? 'd-flex' : 'd-none d-lg-flex']"
     >
       <figcaption ref="figcaption">
-        <div class="row">
-          <div class="col">
-            <p class="vs-hero__image-description">{{ this.description }}</p>
-            <p class="vs-hero__image-credit m-0">&copy; {{ this.credit }}</p>
-          </div>
-          <div class="col map__wrapper" v-if="showMap">
-            <vs-image-location-map
-              :latitude="this.latitude"
-              :longitude="this.longitude"
-            ></vs-image-location-map>
-          </div>
-        </div>
+        <vs-row>
+          <vs-col>
+            <div class="p-4">
+              <p class="vs-hero__image-description">{{ this.description }}</p>
+              <p class="vs-hero__image-credit m-0">&copy; {{ this.credit }}</p>
+            </div>
+          </vs-col>
+          <vs-col cols="auto" class="pl-0" v-if="showMap">
+            <div class="map__wrapper">
+              <vs-image-location-map
+                :latitude="this.latitude"
+                :longitude="this.longitude"
+              ></vs-image-location-map>
+            </div>
+          </vs-col>
+        </vs-row>
       </figcaption>
     </vs-container>
   </figure>
@@ -150,43 +154,45 @@ figure {
 }
 
 .vs-hero__image-wrapper {
+  height: 140px;
   object-fit: cover;
   position: relative;
   overflow: hidden;
 
   @include media-breakpoint-up(sm) {
-    height: 200px;
+    height: 195px;
   }
 
   @include media-breakpoint-up(md) {
-    height: 300px;
+    height: 333px;
   }
 
   @include media-breakpoint-up(lg) {
     height: 400px;
   }
+
+  @include media-breakpoint-up(xl) {
+    height: 479px;
+  }
 }
 
 img {
+  left: 50%;
+  position: absolute;
+  top: 50%;
   width: 100%;
 
-  @include media-breakpoint-up(sm) {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-
-    -webkit-transform: translate(-50%, -50%);
-    -moz-transform: translate(-50%, -50%);
-    -ms-transform: translate(-50%, -50%);
-    -o-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%);
-  }
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
 }
 
 figcaption {
   background-color: $color-gray-shade-6;
   color: $color-white;
-  padding: $spacer-4;
+
   width: 100%;
 
   @include media-breakpoint-up(lg) {
@@ -202,11 +208,13 @@ figcaption {
 .vs-hero__image-description {
   font-size: 0.875rem;
   font-weight: 500;
+  line-height: 1rem;
 }
 
 .vs-hero__image-credit {
   font-size: 0.875rem;
-  font-weight: $font-weight-normal;
+  font-weight: $font-weight-light;
+  line-height: 1rem;
 }
 </style>
 
