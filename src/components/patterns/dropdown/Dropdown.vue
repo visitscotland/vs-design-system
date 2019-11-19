@@ -40,7 +40,6 @@ export default {
 @import "~bootstrap/scss/dropdown";
 @import "~bootstrap/scss/buttons";
 @import "~bootstrap-vue/src/components/dropdown/dropdown";
-@import "~bootstrap/scss/utilities/spacing";
 
 .vs-dropdown {
   .dropdown-toggle {

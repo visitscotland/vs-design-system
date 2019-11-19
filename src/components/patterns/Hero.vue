@@ -151,9 +151,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "~bootstrap/scss/utilities/text";
-@import "~bootstrap/scss/utilities/flex";
-
 .hero {
   background-size: cover;
 }

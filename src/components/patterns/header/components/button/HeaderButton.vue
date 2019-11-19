@@ -31,7 +31,6 @@ export default {
 
 <style lang="scss" scoped>
 @import "../../styles/placeholders";
-@import "~bootstrap/scss/utilities/spacing";
 
 .vs-header__button {
   @extend %header-nav-item;
