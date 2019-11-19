@@ -182,6 +182,7 @@
         <module>cms</module>
         <module>site</module>
         <module>essentials</module>
+        <module>frontend</module>
       </modules>
     </profile>
 
