@@ -47,10 +47,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "~bootstrap/scss/utilities/display";
-@import "~bootstrap/scss/utilities/text";
-@import "~bootstrap/scss/utilities/spacing";
-@import "~bootstrap/scss/utilities/flex";
 @import "~bootstrap/scss/list-group";
 @import "../../styles/placeholders";
 

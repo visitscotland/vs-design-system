@@ -11,7 +11,4 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
-@import "~bootstrap/scss/utilities/screenreaders";
-@import "~bootstrap/scss/utilities/spacing";
-</style>
+<style lang="scss" scoped></style>
