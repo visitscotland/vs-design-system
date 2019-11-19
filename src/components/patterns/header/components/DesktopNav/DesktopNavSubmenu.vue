@@ -174,10 +174,6 @@ export default {
 
 <style lang="scss" scoped>
 @import "~bootstrap/scss/type";
-@import "~bootstrap/scss/utilities/position";
-@import "~bootstrap/scss/utilities/spacing";
-@import "~bootstrap/scss/utilities/flex";
-@import "~bootstrap/scss/utilities/screenreaders";
 @import "../../styles/collapse";
 @import "../../styles/placeholders";
 @import "../../styles/mixins";

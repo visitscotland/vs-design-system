@@ -22,11 +22,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "~bootstrap/scss/utilities/screenreaders";
-@import "~bootstrap/scss/utilities/flex";
-@import "~bootstrap/scss/utilities/display";
-@import "~bootstrap/scss/utilities/spacing";
-
 .vs-header__site-search__toggle-button {
   font-size: 1.125rem;
   font-weight: $font-weight-normal;
