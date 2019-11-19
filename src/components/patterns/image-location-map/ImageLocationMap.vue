@@ -389,7 +389,7 @@ svg {
 <docs>
   ```jsx
   <vs-row>
-    <vs-col cols="6" sm="4" lg="3" xl="2" v-for="(image, index) in hero.imageLocationMapExamples">
+    <vs-col cols="6" sm="4" lg="3" v-for="(image, index) in hero.imageLocationMapExamples">
       <div class="bg-dark mb-3 p-3 text-center">
         <p class="text-light">{{image.title}}</p>
           <vs-image-location-map
