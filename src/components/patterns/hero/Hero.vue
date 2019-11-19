@@ -1,6 +1,11 @@
 <template>
   <figure class="d-flex flex-column">
-    <div class="vs-hero__image-wrapper">
+    <div
+      class="vs-hero__image-wrapper"
+      :class="[
+        letterbox ? 'vs-hero__image-wrapper--letterbox' : 'vs-hero__image-wrapper--standard',
+      ]"
+    >
       <img :src="this.imageSrc" :alt="this.altText" :data-dml-id="this.dmlId" />
 
       <vs-button
@@ -102,6 +107,13 @@ export default {
     },
 
     /**
+     * Set the hero image shape
+     */
+    letterbox: {
+      type: Boolean,
+    },
+
+    /**
      * The image longitude
      */
     longitude: {
@@ -132,8 +144,8 @@ export default {
 
 <style lang="scss" scoped>
 .map__wrapper {
-  max-width: 100px;
-  width: 100px;
+  max-width: 90px;
+  width: 90px;
 }
 
 .vs-hero__caption-wrapper {
@@ -154,45 +166,75 @@ figure {
 }
 
 .vs-hero__image-wrapper {
-  height: 140px;
   object-fit: cover;
-  position: relative;
   overflow: hidden;
+  position: relative;
 
-  @include media-breakpoint-up(sm) {
-    height: 195px;
-  }
+  img {
+    left: 50%;
+    position: absolute;
+    top: 50%;
+    width: 100%;
 
-  @include media-breakpoint-up(md) {
-    height: 333px;
-  }
-
-  @include media-breakpoint-up(lg) {
-    height: 400px;
-  }
-
-  @include media-breakpoint-up(xl) {
-    height: 479px;
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
   }
 }
 
-img {
-  left: 50%;
-  position: absolute;
-  top: 50%;
-  width: 100%;
+.vs-hero__image-wrapper--standard {
+  height: 25vh;
+  min-height: 200px;
 
-  -webkit-transform: translate(-50%, -50%);
-  -moz-transform: translate(-50%, -50%);
-  -ms-transform: translate(-50%, -50%);
-  -o-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
+  @include media-breakpoint-up(sm) {
+    height: 33vh;
+    min-height: 300px;
+  }
+
+  @include media-breakpoint-up(md) {
+    height: 50vh;
+    min-height: 400px;
+  }
+
+  @include media-breakpoint-up(lg) {
+    height: 50vh;
+  }
+
+  @include media-breakpoint-up(xl) {
+    height: 60vh;
+  }
+}
+
+.vs-hero__image-wrapper--letterbox {
+  height: 20vh;
+  min-height: 140px;
+
+  @include media-breakpoint-up(sm) {
+    height: 25vh;
+    min-height: 195px;
+  }
+
+  @include media-breakpoint-up(md) {
+    height: 33vh;
+    min-height: 258px;
+  }
+
+  @include media-breakpoint-up(lg) {
+    height: 40vh;
+    min-height: 333px;
+  }
+
+  @include media-breakpoint-up(xl) {
+    height: 50vh;
+    min-height: 479px;
+  }
 }
 
 figcaption {
   background-color: $color-gray-shade-6;
   color: $color-white;
-
   width: 100%;
 
   @include media-breakpoint-up(lg) {
@@ -223,15 +265,16 @@ figcaption {
   <div>
     <vs-hero
       v-for="(item, index) in hero.imageExamples"
-      :key="index"
-      :image-src="item.imageSrc"
-      :title="item.title"
-      :description="item.description"
-      :credit="item.credit"
-      :latitude="item.latitude"
-      :longitude="item.longitude"
       :altText="item.altText"
+      :credit="item.credit"
+      :description="item.description"
       :dmlId="item.dmlId"
+      :image-src="item.imageSrc"
+      :key="index"
+      :latitude="item.latitude"
+      :letterbox="true"
+      :longitude="item.longitude"
+      :title="item.title"
     >
     </vs-hero>
   </div>
