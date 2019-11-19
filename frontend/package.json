@@ -1,0 +1,19 @@
+{
+  "name": "vds-hippo-consumer",
+  "version": "0.1.0",
+  "main": "index.js",
+  "license": "MIT",
+  "devDependencies": {
+    "clean-webpack-plugin": "^3.0.0",
+    "copy-webpack-plugin": "^5.0.4",
+    "lodash": "^4.17.15",
+    "rimraf": "^3.0.0",
+    "schema-utils": "^2.1.0",
+    "webpack": "^4.39.2",
+    "webpack-cli": "^3.3.7",
+    "vs-dotcom-ds": "git+https://llewis@bitbucket.visitscotland.com/scm/vscom/design-system.git#feature\/VS-560-ui-meganav-with-build-products"
+  },
+  "scripts": {
+    "build": "webpack --config webpack.config.js"
+  }
+}
