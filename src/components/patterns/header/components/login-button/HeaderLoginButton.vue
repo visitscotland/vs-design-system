@@ -37,7 +37,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "~bootstrap/scss/utilities/spacing";
 @import "../../styles/placeholders";
 
 .vs-header__login-button {
