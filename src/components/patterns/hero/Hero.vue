@@ -277,7 +277,6 @@ figcaption {
       :latitude="item.latitude"
       :letterbox="true"
       :longitude="item.longitude"
-      :title="item.title"
     >
       <img :src="item.imageSrc" :alt="item.altText" :data-dml-id="item.dmlId" />
     </vs-hero>
