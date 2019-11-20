@@ -14,13 +14,16 @@ const optionsSchema = {
     targetPath: {
       type: "string",
     },
+      importsPath: {
+        type: "string",
+      }
   },
 }
 
-function generateTemplateContent(moduleName, mod) {
+function generateTemplateContent(moduleName, mod, importsPath) {
   let content = ""
 
-  content += '<#include "../../imports.ftl">\n' + '<#include "../vue-app-init.ftl">\n\n'
+  content += '<#include "' + importsPath + '">\n' + '<#include "../vue-app-init.ftl">\n\n'
 
   content =
     reduce(
@@ -101,14 +104,14 @@ function generateTemplateContentWebfilePath(path) {
   return "<@hst.webfile  path='design-system/" + path + "'/>"
 }
 
-function outputTemplate(mod, moduleName, targetPath) {
+function outputTemplate(mod, moduleName, targetPath, importsPath) {
   let targetFilePath = path.join(
     targetPath,
     moduleSubPath(mod, moduleName),
     moduleFileName(mod, moduleName)
   )
 
-  fs.writeFileSync(targetFilePath, generateTemplateContent(moduleName, mod))
+  fs.writeFileSync(targetFilePath, generateTemplateContent(moduleName, mod, importsPath))
 }
 
 function moduleSubPath(mod, moduleName) {
@@ -139,13 +142,12 @@ function prepTargetDir(targetPath) {
 module.exports = function(manifest) {
   const modules = JSON.parse(manifest)
   const options = getOptions(this)
-  const targetPath = options.targetPath || defaultTargetpath
 
   validateOptions(optionsSchema, options, "Generate Freemarker Template")
 
-  prepTargetDir(targetPath)
+  prepTargetDir(options.targetPath)
 
-  each(modules, partial(outputTemplate, partial.placeholder, partial.placeholder, targetPath))
+  each(modules, partial(outputTemplate, partial.placeholder, partial.placeholder, options.targetPath, options.importsPath))
 
   return manifest
 }
