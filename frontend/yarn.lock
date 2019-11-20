@@ -3414,9 +3414,9 @@ vm-browserify@^1.0.1:
   resolved "https://registry.yarnpkg.com/vm-browserify/-/vm-browserify-1.1.2.tgz#78641c488b8e6ca91a75f511e7a3b32a86e5dda0"
   integrity sha512-2ham8XPWTONajOR0ohOKOHXkm3+gaBmGut3SRuu75xLd/RRaY6vqgh8NBYYk7+RW3u5AtzPQZG8F10LHkl0lAQ==
 
-"vs-dotcom-ds@git+https://llewis@bitbucket.visitscotland.com/scm/vscom/design-system.git#feature/VS-560-ui-meganav-with-build-products":
+"vs-dotcom-ds@git+https://bitbucket.visitscotland.com/scm/vscom/design-system.git#feature/VS-560-ui-meganav-with-build-products":
   version "0.0.1"
-  resolved "git+https://llewis@bitbucket.visitscotland.com/scm/vscom/design-system.git#3849a22552f40cb7583d8db9134504a4d9bae888"
+  resolved "git+https://bitbucket.visitscotland.com/scm/vscom/design-system.git#3849a22552f40cb7583d8db9134504a4d9bae888"
   dependencies:
     bootstrap "^4.3.1"
     bootstrap-vue "^2.0.0-rc.28"
