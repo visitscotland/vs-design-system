@@ -6,7 +6,7 @@
         letterbox ? 'vs-hero__image-wrapper--letterbox' : 'vs-hero__image-wrapper--standard',
       ]"
     >
-      <img :src="this.imageSrc" :alt="this.altText" :data-dml-id="this.dmlId" />
+      <slot />
 
       <vs-button
         variant="transparent"
@@ -107,10 +107,13 @@ export default {
     },
 
     /**
-     * Set the hero image shape
+     * Set the hero image display shape to letterbox
+     * Letterbox setting is intended for hero images
+     * deeper in the site structure
      */
     letterbox: {
       type: Boolean,
+      default: false,
     },
 
     /**
@@ -144,21 +147,21 @@ export default {
 
 <style lang="scss" scoped>
 .map__wrapper {
-  max-width: 90px;
-  width: 90px;
+  max-width: 80px;
+  width: 80px;
 }
 
 .vs-hero__caption-wrapper {
   @include media-breakpoint-down(lg) {
-    padding: 0;
     max-width: 100%;
+    padding: 0;
   }
 }
 
 .vs-hero__toggle-caption {
   bottom: 0;
-  right: 0;
   padding: 0.325rem;
+  right: 0;
 }
 
 figure {
@@ -276,6 +279,7 @@ figcaption {
       :longitude="item.longitude"
       :title="item.title"
     >
+      <img :src="item.imageSrc" :alt="item.altText" :data-dml-id="item.dmlId" />
     </vs-hero>
   </div>
   ```
