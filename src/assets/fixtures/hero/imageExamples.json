@@ -1,7 +1,6 @@
 [
   {
     "filename": "duncansby_stacks_2019_05-1",
-    "title": "Duncansby Head",
     "imageSrc": "fixtures/hero/images/duncansby_stacks_2019_05-1.jpg",
     "description": "Duncansby Head is the most northeasterly part of the British mainland, including even the famous John o' Groats.",
     "credit": "VisitScotland / Kenny Lam",
@@ -12,7 +11,6 @@
   },
   {
     "filename": "duncansby_stacks_2019_05-1",
-    "title": "Duncansby Head",
     "imageSrc": "fixtures/hero/images/duncansby_stacks_2019_05-1.jpg",
     "description": "Example of the caption display with coordinates are not provided.",
     "credit": "VisitScotland / Kenny Lam",
@@ -21,7 +19,6 @@
   },
   {
     "filename": "visitscotland_37614740732",
-    "title": "Crawick Multiverse",
     "imageSrc": "fixtures/hero/images/visitscotland_37614740732.jpg",
     "description": "Crawick Multiverse Which Is Is An Artland Visitor Attraction and Events Venue In Dumfries and Galloway",
     "credit": "VisitScotland / Kenny Lam",
@@ -32,7 +29,6 @@
   },
   {
     "filename": "visitscotland_26542640145",
-    "title": "Iona Abbey, Isle of Iona",
     "imageSrc": "fixtures/hero/images/visitscotland_26542640145.jpg",
     "description": "Iona Abbey Is Located On The Isle Of Iona The Abbey Was A Focal Point For The Spread Of Christianity Throughout Scotland Since Columba Arrived There In Ad 563",
     "credit": "VisitScotland / Paul Tomkins",
@@ -43,7 +39,6 @@
   },
   {
     "filename": "visitscotland_26418376380",
-    "title": "Horse rider, Aviemore",
     "imageSrc": "fixtures/hero/images/visitscotland_26418376380.jpg",
     "description": "A Woman Rider and Her Horse From The Alvie Stables In A Snow Covered Field, South West Of Aviemore",
     "credit": "VisitScotland / Paul Tomkins",
@@ -54,7 +49,6 @@
   },
   {
     "filename": "visitscotland_26542377599",
-    "title": "Mountain Bikes In The Cairngorm National Park",
     "imageSrc": "fixtures/hero/images/visitscotland_26542377599.jpg",
     "description": "Cyclists On Mountain Bikes In The Cairngorm National Park Near Aviemore",
     "credit": "VisitScotland / Paul Tomkins",
@@ -65,7 +59,6 @@
   },
   {
     "filename": "visitscotland_26542451592",
-    "title": "Ayr Town Centre",
     "imageSrc": "fixtures/hero/images/visitscotland_26542451592.jpg",
     "description": "The New Bridge Across The River Ayr With A View Towards The Town Centre, Ayr, Ayrshire",
     "credit": "VisitScotland / Paul Tomkins",
@@ -76,7 +69,6 @@
   },
   {
     "filename": "visitscotland_26713266864",
-    "title": "Devorgilla Bridge Over The River Nith, Dumfries",
     "imageSrc": "fixtures/hero/images/visitscotland_26713266864.jpg",
     "description": "Devorgilla Bridge Over The River Nith, Dumfries, Dumfries and Galloway",
     "credit": "VisitScotland / Paul Tomkins",
@@ -87,7 +79,6 @@
   },
   {
     "filename": "visitscotland_26784947816",
-    "title": "The city of Aberdeen",
     "imageSrc": "fixtures/hero/images/visitscotland_26784947816.jpg",
     "description": "Looking Over Aberdeen Scotland s Third Largest City; Known As The Granite City Due To The Local Stone Being Used For Many Of The Buildings) To The Harbour and Docks From An Elavated Position",
     "credit": "VisitScotland / Paul Tomkins",
@@ -98,7 +89,6 @@
   },
   {
     "filename": "visitscotland_32052594112",
-    "title": "Jacobite steam train, Glenfinnan Viaduct",
     "imageSrc": "fixtures/hero/images/visitscotland_32052594112.jpg",
     "description": "The Jacobite steam train passing over the Glenfinnan Viaduct at the head of Loch Shiel, Lochaber, Highlands of Scotland",
     "credit": "VisitScotland / Kenny Lam",
@@ -109,7 +99,6 @@
   },
   {
     "filename": "visitscotland_34388234298",
-    "title": "The Clyde Arc",
     "imageSrc": "fixtures/hero/images/visitscotland_34388234298.jpg",
     "description": "The Clyde Arc connects Govan road to the city centre; Glasgow",
     "credit": "VisitScotland / Kenny Lam",
@@ -120,7 +109,6 @@
   },
   {
     "filename": "visitscotland_34816224532",
-    "title": "Cairngorm Ski Resort",
     "imageSrc": "fixtures/hero/images/visitscotland_34816224532.jpg",
     "description": "Cairngorm Ski Resort",
     "credit": "VisitScotland / Kenny Lam",
@@ -131,7 +119,6 @@
   },
   {
     "filename": "visitscotland_35454697538",
-    "title": "Scottish National Gallery",
     "imageSrc": "fixtures/hero/images/visitscotland_35454697538.jpg",
     "description": "Scottish Gallery of Modern Art One with Landform by Charles Jencks in the foregound",
     "credit": "VisitScotland / Kenny Lam",
@@ -142,7 +129,6 @@
   },
   {
     "filename": "visitscotland_37253456690",
-    "title": "The Brig O Doon In Alloway",
     "imageSrc": "fixtures/hero/images/visitscotland_37253456690.jpg",
     "description": "The Brig O Doon In Alloway Made Famous In Robert Burns Poem, Tam O Shanter",
     "credit": "VisitScotland / Kenny Lam",
@@ -153,7 +139,6 @@
   },
   {
     "filename": "visitscotland_37597445464",
-    "title": "Lochranza Castle",
     "imageSrc": "fixtures/hero/images/visitscotland_37597445464.jpg",
     "description": "Lochranza Castle on the Isle of Arran",
     "credit": "Kenny Lam",
@@ -164,7 +149,6 @@
   },
   {
     "filename": "visitscotland_37717747112",
-    "title": "The Royal Edinburgh Military Tattoo",
     "imageSrc": "fixtures/hero/images/visitscotland_37717747112.jpg",
     "description": "The Royal Edinburgh Military Tattoo fireworks display over Edinburgh Castle",
     "credit": "VisitScotland / Kenny Lam",
@@ -175,7 +159,6 @@
   },
   {
     "filename": "visitscotland_38118037179",
-    "title": "The Callanish Standing Stones",
     "imageSrc": "fixtures/hero/images/visitscotland_38118037179.jpg",
     "description": "The Callanish Standing Stones On The Isle Of Lewis",
     "credit": "VisitScotland / Kenny Lam",
@@ -186,7 +169,6 @@
   },
   {
     "filename": "visitscotland_38462263949",
-    "title": "Lochan na h-Achlaise on Rannoch Moor",
     "imageSrc": "fixtures/hero/images/visitscotland_38462263949.jpg",
     "description": "Sunset at Lochan na h-Achlaise on Rannoch Moor",
     "credit": "VisitScotland / Kenny Lam",
