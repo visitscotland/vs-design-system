@@ -45,9 +45,7 @@
             </template>
         </vs-header-login-button>
 
-
-
-    <#include "./header/language-selector.ftl">
+        <#include "./header/language-selector.ftl">
     </template>
 
     <template #top-drawer>
