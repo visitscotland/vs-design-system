@@ -6,17 +6,26 @@
 <#-- @ftlvariable name="hstRequest" type="org.hippoecm.hst.core.component.HstRequest"-->
 <@hst.setBundle basename="universal"/>
 
-<#assign currentLocale=hstRequest.requestContext.resolvedMount.mount.locale>
-<#assign languages = ["en_GB","de_DE","es_ES","fr_FR","it_IT","nl_NL"]>
+<#assign currentLocale=hstRequest.requestContext.resolvedMount.mount.locale?replace("_","-")?lower_case>
+<#assign languages = ["en-gb","de-de","es-es","fr-fr","it-it","nl-nl"]>
 
 
-<vs-header-dropdown text="EN" right class="d-none d-lg-flex" section="top">
+<vs-header-drawer-toggle
+     section="top"
+     class="d-lg-none"
+     content-key="language-list"
+     drawer-key="header-top"
+>
+    <@fmt.message key="${currentLocale}" />
+</vs-header-drawer-toggle>
+
+<vs-header-dropdown text="<@fmt.message key="${currentLocale}" />" right class="d-none d-lg-flex" section="top">
 
     <#list languages as language>
         <#assign langToken =language?replace("_","-")?lower_case>
         <vs-dropdown-item
             key="${langToken}"
-            active="${(currentLocale == language)?c}"
+            active="${(currentLocale == lang)?c}"
             tracking-id="lang.${langToken}"
             href="/site/${langToken}"
         >

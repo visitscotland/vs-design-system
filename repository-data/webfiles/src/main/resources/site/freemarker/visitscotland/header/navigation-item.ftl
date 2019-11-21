@@ -16,10 +16,11 @@
             tracking-id="dummy-tracking-id"
             key="${menuItem.name}"
     >
+
         ${menuItem.title?html}
 
         <#if menuItem.childMenuItems??>
-          <template #subnav>
+          <template #subnav >
             <#list menuItem.childMenuItems as subItem>
                 <@navItem menuItem=subItem/>
             </#list>

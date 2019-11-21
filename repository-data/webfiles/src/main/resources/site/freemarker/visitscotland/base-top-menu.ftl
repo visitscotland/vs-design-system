@@ -45,16 +45,9 @@
             </template>
         </vs-header-login-button>
 
-        <vs-header-drawer-toggle
-                section="top"
-                class="d-lg-none"
-                content-key="language-list"
-                drawer-key="header-top"
-        >
-            ENG
-        </vs-header-drawer-toggle>
 
-    <#include "./header/language-list.ftl">
+
+    <#include "./header/language-selector.ftl">
     </template>
 
     <template #top-drawer>
