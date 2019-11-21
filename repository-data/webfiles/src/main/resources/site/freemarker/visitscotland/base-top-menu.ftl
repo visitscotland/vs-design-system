@@ -1,20 +1,22 @@
 <#include "../include/imports.ftl">
+<#include "./header/navigation-item.ftl">
 
-<#include "../include/vs-dotcom-ds/components/header.ftl">
-<#include "../include/vs-dotcom-ds/components/header-drawer-toggle.ftl">
-<#include "../include/vs-dotcom-ds/components/header-login-button.ftl">
-<#include "../include/vs-dotcom-ds/components/drawer-content.ftl">
-<#include "../include/vs-dotcom-ds/components/list-group.ftl">
-<#include "../include/vs-dotcom-ds/components/logo.ftl">
-<#include "../include/vs-dotcom-ds/components/site-search.ftl">
-<#include "../include/vs-dotcom-ds/components/favourites-list.ftl">
-<#include "../include/vs-dotcom-ds/components/site-search-toggle-button.ftl">
-<#include "../include/vs-dotcom-ds/components/favourites-button.ftl">
-<#include "../include/vs-dotcom-ds/components/header-button.ftl">
-<#include "../include/vs-dotcom-ds/components/site-nav-list-item.ftl">
+<#include "../vs-dotcom-ds/components/header.ftl">
+<#include "../vs-dotcom-ds/components/header-drawer-toggle.ftl">
+<#include "../vs-dotcom-ds/components/header-login-button.ftl">
+<#include "../vs-dotcom-ds/components/drawer-content.ftl">
+<#include "../vs-dotcom-ds/components/list-group.ftl">
+<#include "../vs-dotcom-ds/components/logo.ftl">
+<#include "../vs-dotcom-ds/components/site-search.ftl">
+<#include "../vs-dotcom-ds/components/favourites-list.ftl">
+<#include "../vs-dotcom-ds/components/site-search-toggle-button.ftl">
+<#include "../vs-dotcom-ds/components/favourites-button.ftl">
+<#include "../vs-dotcom-ds/components/header-button.ftl">
+<#include "../vs-dotcom-ds/components/site-nav-list-item.ftl">
 
 <#-- @ftlvariable name="menu" type="org.hippoecm.hst.core.sitemenu.HstSiteMenu" -->
 <#-- @ftlvariable name="editMode" type="java.lang.Boolean"-->
+
 <#if menu??>
 
 <vs-header>
@@ -99,99 +101,15 @@
         </vs-drawer-content>
     </template>
 
-  <#if menu.siteMenuItems??>
+
     <template #site-navigation>
-      <#list enhancedMenu as item>
-
-        <#if item.hstLink??>
-            <#assign href><@hst.link link=item.hstLink/></#assign>
-        <#elseif item.externalLink??>
-            <#assign href>${item.externalLink?replace("\"", "")}</#assign>
-        <#else>
-            <#assign href></#assign>
-        </#if>
-
-          <vs-site-nav-list-item
-                  href="${href}"
-                  tracking-id="dummy-id"
-                  key="${item.name}"
-          >
-              <#--TODO: Remove dummy code to check the widget -->
-              <#if item.widget??>
-
-                  <vs-site-nav-list-promo-item>
-                      Widget (${item.widget.component})
-                  </vs-site-nav-list-promo-item>
-
-              <#else>
-              ${item.title?html}
-              </#if>
-
-          <#if item.childMenuItems??>
-            <template #subnav>
-              <#list item.childMenuItems as itemLevel2>
-
-                <#if itemLevel2.hstLink??>
-                    <#assign hrefLevel2><@hst.link link=itemLevel2.hstLink/></#assign>
-                <#elseif itemLevel2.externalLink??>
-                    <#assign hrefLevel2>${itemLevel2.externalLink?replace("\"", "")}</#assign>
-                <#else>
-                    <#assign hrefLevel2></#assign>
-                </#if>
-
-                <#if itemLevel2.widget??>
-
-                  <vs-site-nav-list-promo-item>
-                      Widget (${item.widget.component})
-                  </vs-site-nav-list-promo-item>
-
-                <#else>
-
-                  <vs-site-nav-list-item
-                          href="${hrefLevel2}"
-                          tracking-id="dummy-tracking-id"
-                          key="${itemLevel2.name}"
-                  >
-
-                      ${itemLevel2.name?html}
-
-                    <#if itemLevel2.childMenuItems??>
-                      <template #subnav>
-                        <#list itemLevel2.childMenuItems as itemLevel3>
-
-                          <#if itemLevel3.hstLink??>
-                              <#assign hrefLevel3><@hst.link link=itemLevel3.hstLink/></#assign>
-                          <#elseif itemLevel3.externalLink??>
-                              <#assign hrefLevel3>${itemLevel3.externalLink?replace("\"", "")}</#assign>
-                          <#else>
-                              <#assign hrefLevel3></#assign>
-                          </#if>
-
-
-                            <vs-site-nav-list-item
-                                    href="${hrefLevel3}"
-                                    tracking-id="dummy-tracking-id"
-                                    key="${itemLevel3.name}"
-                            >
-                                ${itemLevel3.name?html}
-                            </vs-site-nav-list-item>
-                        </#list>
-                      </template>
-                    </#if>
-
-                  </vs-site-nav-list-item>
-
-                </#if>
-
-              </#list>
-            </template>
-          </#if>
-          </vs-site-nav-list-item>
-
-      </#list>
+      <#if menu.siteMenuItems??>
+        <#list enhancedMenu as item>
+          <@navItem menuItem=item/>
+        </#list>
+      </#if>
+      <@hst.cmseditmenu menu=menu/>
     </template>
-  </#if>
-
 </vs-header>
-    <@hst.cmseditmenu menu=menu/>
+
 </#if>

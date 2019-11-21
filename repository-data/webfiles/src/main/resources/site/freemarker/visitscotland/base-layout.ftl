@@ -1,6 +1,6 @@
 <!doctype html>
 <#include "../include/imports.ftl">
-<#include "../include/vs-dotcom-ds/components/button.ftl">
+<#include "../vs-dotcom-ds/components/button.ftl">
 
 <html lang="en">
   <head>
@@ -25,7 +25,6 @@
         </div>
       </div>
       <div class="row">
-        <vs-button theme="secondary">Click me!</vs-button>
         <@hst.include ref="main"/>
       </div>
       <div class="row">

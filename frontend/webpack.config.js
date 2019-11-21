@@ -6,7 +6,7 @@ const DEFAULT_SOURCE_PATH = "./node_modules/vs-dotcom-ds/dist"
 const DEFAULT_OUTPUT_PATH_ROOT = "../repository-data/webfiles/src/main/resources/site/"
 const ASSET_OUTPUT_PATH = "design-system"
 const TEMPLATE_OUTPUT_PATH = "freemarker/vs-dotcom-ds"
-const FTL_IMPORTS_FILE_PATH = "../imports.ftl"
+const FTL_IMPORTS_FILE_PATH = "../../include/imports.ftl"
 const VUE_TEMPLATE_PATH = "./build/templates/vue-app-init.ftl"
 
 module.exports = function(env, argv) {
