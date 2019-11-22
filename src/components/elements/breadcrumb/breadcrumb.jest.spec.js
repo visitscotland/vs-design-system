@@ -9,9 +9,9 @@ describe("VsBreadcrumb", () => {
   })
 
   it("should render a b-breadcrumb", () => {
-    expect(wrapper.is("b-breadcrumb-stub")).toBe(true)
+    expect(wrapper.is("nav")).toBe(true)
     expect(wrapper.html()).toContain(
-      '<b-breadcrumb-stub class="flex-nowrap bg-transparent p-0"></b-breadcrumb-stub>'
+      '<nav aria-label="breadcrumbs"><b-breadcrumb-stub class="flex-nowrap p-0"></b-breadcrumb-stub></nav>'
     )
   })
 })
