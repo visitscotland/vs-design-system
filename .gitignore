@@ -10,7 +10,9 @@ repository-data/webfiles/coverage/
 *.bundle.map
 *.css.map
 
-
+#Generated sources by the frontend build
+repository-data/webfiles/src/main/resources/site/design-system/
+repository-data/webfiles/src/main/resources/site/freemarker/vs-dotcom-ds/
 
 ### IDE CONFIGURATION Files
 # Eclipse based IDEs

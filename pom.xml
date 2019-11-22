@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
-
+  
   <parent>
-    <groupId>org.onehippo.cms7</groupId>
-    <artifactId>hippo-cms7-release</artifactId>
-    <version>13.3.0</version>
+    <groupId>com.visitscotland</groupId>
+    <artifactId>hippo-defaults</artifactId>
+    <version>1.4.0-SNAPSHOT</version>
   </parent>
 
   <name>www.visitscotland.com CMS Pages</name>
@@ -62,15 +62,19 @@
 
     <!--***START temporary override of versions*** -->
     <!-- ***END temporary override of versions*** -->
-
+    <!--TODO define this in parent pom -->
     <essentials.version>13.3.0</essentials.version>
     <jsp-api.version>2.2</jsp-api.version>
     <taglibs.version>1.2.5</taglibs.version>
-
+    
     <development-module-deploy-dir>shared/lib</development-module-deploy-dir>
-
     <hippo.cms.locales>nl,de,fr,es,zh</hippo.cms.locales>
+  
     <buildNumber>${maven.build.timestamp}</buildNumber>
+    <!-- TODO end define -->
+
+    
+    
   </properties>
 
   <repositories>
@@ -182,6 +186,7 @@
         <module>cms</module>
         <module>site</module>
         <module>essentials</module>
+        <module>frontend</module>
       </modules>
     </profile>
 
