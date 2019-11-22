@@ -1,7 +1,6 @@
 .DS_Store
 .eslintcache
 node_modules/
-dist/
 /test/unit/coverage/
 /.tmp
 *.log
