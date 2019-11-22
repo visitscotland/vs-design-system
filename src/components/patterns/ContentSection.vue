@@ -50,6 +50,7 @@ export default {
 
 <style lang="scss" scoped>
 @import "~bootstrap/scss/type";
+@import "~bootstrap/scss/utilities";
 
 .content-section {
   @extend .mb-5;
