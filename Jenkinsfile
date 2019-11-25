@@ -8,6 +8,11 @@ pipeline {
         jdk 'jdk1.8.0'
     }
     stages {
+      stage ('Checkout dependencies') {
+        sh 'mkdir -p dvc'
+        dir('dvc') {
+          checkout resolveScm(source: git('https://bitbucket.visitscotland.com/scm/vscom/design-system.git'), targets: [BRANCH_NAME, 'feature/VS-560-ui-meganav-with-build-products'])
+      }
        stage ('Build Application') {
             steps {
                 sh 'mvn -f pom.xml clean package'
