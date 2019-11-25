@@ -19,7 +19,11 @@ public class VsBreadcrumb extends CommonComponent {
     public void doBeforeRender(HstRequest request, HstResponse response) throws HstComponentException {
         super.doBeforeRender(request, response);
 
+        //Requested URL to identify the current page from the breadcrumb
         request.setAttribute("requestedURI", request.getRequestURI());
+        //Identify if the page is the home page independently from the environment (local, dev, acct, prod) and language
+        request.setAttribute("isHome", "root".equals(request.getRequestContext().getResolvedSiteMapItem().getHstSiteMapItem().getId()));
+        //Breadcrumb Items list
         request.setAttribute("breadcrumb", this.breadcrumbProvider.getBreadcrumb(request));
     }
 
