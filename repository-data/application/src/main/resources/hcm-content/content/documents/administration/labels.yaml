@@ -141,6 +141,55 @@
       hippostdpubwf:publicationDate: 2019-11-07T18:41:07.844Z
       resourcebundle:descriptions: ['', '']
       resourcebundle:id: navigation
-      resourcebundle:keys: [home, content]
-      resourcebundle:messages: [Home, Content]
-      resourcebundle:messages_es: [Inicio, Contenido]
+      resourcebundle:keys: [home, content, more-destinations]
+      resourcebundle:messages: [Home, Content, More Destinations]
+      resourcebundle:messages_es: [Inicio, Contenido, Mas Destinos]
+  /universal:
+    jcr:primaryType: hippo:handle
+    jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
+    jcr:uuid: e19ae6ca-3989-4ac0-ba02-63efc3c5ed52
+    hippo:name: Language List  (Don't translate)
+    hippo:versionHistory: 9ba04c16-1846-49d3-b576-f128889e5938
+    /universal[1]:
+      jcr:primaryType: resourcebundle:resourcebundle
+      jcr:mixinTypes: ['mix:referenceable']
+      jcr:uuid: 05d99bcd-85dd-4226-b666-0e0b9af3b37f
+      hippo:availability: []
+      hippostd:state: draft
+      hippostdpubwf:createdBy: admin
+      hippostdpubwf:creationDate: 2019-11-21T09:28:34.143Z
+      hippostdpubwf:lastModificationDate: 2019-11-21T10:19:26.644Z
+      hippostdpubwf:lastModifiedBy: admin
+      resourcebundle:descriptions: ['', '', '', '', '', '']
+      resourcebundle:id: universal
+      resourcebundle:keys: [en-gb, de-de, es-es, fr-fr, it-it, nl-nl]
+      resourcebundle:messages: [English, Deutsch, Español, Français, Italiano, Nederlands]
+    /universal[2]:
+      jcr:primaryType: resourcebundle:resourcebundle
+      jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
+      jcr:uuid: 5afad203-edab-41a7-bd7a-65c4bff237f9
+      hippo:availability: [preview]
+      hippostd:state: unpublished
+      hippostdpubwf:createdBy: admin
+      hippostdpubwf:creationDate: 2019-11-21T09:28:34.143Z
+      hippostdpubwf:lastModificationDate: 2019-11-21T10:19:24.430Z
+      hippostdpubwf:lastModifiedBy: admin
+      resourcebundle:descriptions: ['', '', '', '', '', '']
+      resourcebundle:id: universal
+      resourcebundle:keys: [en-gb, de-de, es-es, fr-fr, it-it, nl-nl]
+      resourcebundle:messages: [English, Deutsch, Español, Français, Italiano, Nederlands]
+    /universal[3]:
+      jcr:primaryType: resourcebundle:resourcebundle
+      jcr:mixinTypes: ['mix:referenceable']
+      jcr:uuid: ab359c7f-e65c-41f6-8782-69161794a303
+      hippo:availability: [live]
+      hippostd:state: published
+      hippostdpubwf:createdBy: admin
+      hippostdpubwf:creationDate: 2019-11-21T09:28:34.143Z
+      hippostdpubwf:lastModificationDate: 2019-11-21T10:19:24.430Z
+      hippostdpubwf:lastModifiedBy: admin
+      hippostdpubwf:publicationDate: 2019-11-21T10:19:30.082Z
+      resourcebundle:descriptions: ['', '', '', '', '', '']
+      resourcebundle:id: universal
+      resourcebundle:keys: [en-gb, de-de, es-es, fr-fr, it-it, nl-nl]
+      resourcebundle:messages: [English, Deutsch, Español, Français, Italiano, Nederlands]
