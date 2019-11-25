@@ -10,9 +10,10 @@ pipeline {
     stages {
 		stage ('Checkout dependencies') {
 			steps {
+              	
         		sh 'mkdir -p dvc'
         		dir('dvc') {
-                    checkout resolveScm(source: git('https://bitbucket.visitscotland.com/scm/vscom/design-system.git'), targets: [BRANCH_NAME, 'feature/VS-560-ui-meganav-with-build-products'])
+                    git branch: 'feature/VS-560-ui-meganav-with-build-products',credentialsId: '12a55ebf-608d-4b3e-811c-e4ad04f61f43', url: 'https://bitbucket.visitscotland.com/scm/vscom/design-system.git
                 }
 			}
 		}
