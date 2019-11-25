@@ -20,23 +20,26 @@ DOCKERFILE_LOCATION=$DOCKERFILE_PATH/$DOCKERFILE_NAME
 VS_DATESTAMP=`date +%Y%m%d`
 VS_HOST_IP_ADDRESS=`/usr/sbin/ip ad sh  | egrep "global noprefixroute" | awk '{print $2}' | sed -e "s/\/.*$//"`
 
+# set container name
+CONTAINER_NAME=`basename $BRANCH_NAME`
+
 # stop running containers
 echo ""
-echo stopping running containers with name $JOB_BASE_NAME
-for CONTAINER in `docker ps | egrep "$JOB_BASE_NAME" | awk '{print $1}'`; do echo stopping $CONTAINER; docker stop $CONTAINER; done
+echo stopping running containers with name $CONTAINER_NAME
+for CONTAINER in `docker ps | egrep "$CONTAINER_NAME" | awk '{print $1}'`; do echo stopping $CONTAINER; docker stop $CONTAINER; done
 
 # delete stopped containers
 echo ""
-echo deleting containers with name $JOB_BASE_NAME
-docker container ls | egrep "$JOB_BASE_NAME"
-for CONTAINER in `docker container ls | egrep "$JOB_BASE_NAME" | awk '{print $1}'`; do echo deleting $CONTAINER; docker container rm -f $CONTAINER; done; echo EXIT FOR
-docker container rm $JOB_BASE_NAME
+echo deleting containers with name $CONTAINER_NAME
+docker container ls | egrep "$CONTAINER_NAME"
+for CONTAINER in `docker container ls | egrep "$CONTAINER_NAME" | awk '{print $1}'`; do echo deleting $CONTAINER; docker container rm -f $CONTAINER; done; echo EXIT FOR
+docker container rm $CONTAINER_NAME
 
 # delete existing images
 echo ""
-echo deleting any docker images with name $JOB_BASE_NAME
-docker images | egrep "$JOB_BASE_NAME"
-for IMAGE in `docker images | egrep "$JOB_BASE_NAME" | awk '{print $3}'`; do echo deleting $IMAGE; docker image rm -f $IMAGE; done
+echo deleting any docker images with name $CONTAINER_NAME
+docker images | egrep "$CONTAINER_NAME"
+for IMAGE in `docker images | egrep "$CONTAINER_NAME" | awk '{print $3}'`; do echo deleting $IMAGE; docker image rm -f $IMAGE; done
 
 echo ""
 echo "finding a free port to map to the new container's Tomcat port"
@@ -65,24 +68,24 @@ fi
 #echo copying $HIPPO_LATEST to $WORKSPACE/$DOCKERFILE_NAME/target
 #cp $HIPPO_LATEST $WORKSPACE/$DOCKERFILE_NAME/target
 
-#docker build -t $JOB_BASE_NAME .
+#docker build -t $CONTAINER_NAME .
 
 if [ ! "$PORT" = "NULL" ]; then
 sleep 5
 
 echo ""
 echo about to start Docker container with:
-echo docker run -d --name $JOB_BASE_NAME -p $PORT:8080 $DOCKERFILE_NAME /bin/bash -c "/usr/local/bin/vs-mysqld-start && /usr/local/bin/vs-hippo && while [ ! -f /home/hippo/tomcat_8080/logs/hippo-cms.log ]; do echo no log; sleep 2; done; tail -f /home/hippo/tomcat_8080/logs/hippo-cms.log"
-docker run -d --name $JOB_BASE_NAME -p $PORT:8080 $DOCKERFILE_NAME /bin/bash -c "/usr/local/bin/vs-mysqld-start && /usr/local/bin/vs-hippo && while [ ! -f /home/hippo/tomcat_8080/logs/hippo-cms.log ]; do echo no log; sleep 2; done; tail -f /home/hippo/tomcat_8080/logs/hippo-cms.log"
+echo docker run -d --name $CONTAINER_NAME -p $PORT:8080 $DOCKERFILE_NAME /bin/bash -c "/usr/local/bin/vs-mysqld-start && /usr/local/bin/vs-hippo && while [ ! -f /home/hippo/tomcat_8080/logs/hippo-cms.log ]; do echo no log; sleep 2; done; tail -f /home/hippo/tomcat_8080/logs/hippo-cms.log"
+docker run -d --name $CONTAINER_NAME -p $PORT:8080 $DOCKERFILE_NAME /bin/bash -c "/usr/local/bin/vs-mysqld-start && /usr/local/bin/vs-hippo && while [ ! -f /home/hippo/tomcat_8080/logs/hippo-cms.log ]; do echo no log; sleep 2; done; tail -f /home/hippo/tomcat_8080/logs/hippo-cms.log"
 sleep 10
 
 echo ""
-echo about to copy $HIPPO_LATEST to container $JOB_BASE_NAME:/home/hippo
-docker cp $HIPPO_LATEST $JOB_BASE_NAME:/home/hippo
+echo about to copy $HIPPO_LATEST to container $CONTAINER_NAME:/home/hippo
+docker cp $HIPPO_LATEST $CONTAINER_NAME:/home/hippo
 
 echo ""
-echo about to execute "/usr/local/bin/vs-hippo nodb" in container $JOB_BASE_NAME
-docker exec -d $JOB_BASE_NAME /usr/local/bin/vs-hippo nodb
+echo about to execute "/usr/local/bin/vs-hippo nodb" in container $CONTAINER_NAME
+docker exec -d $CONTAINER_NAME /usr/local/bin/vs-hippo nodb
 fi
 
 echo ""
