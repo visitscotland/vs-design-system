@@ -25,7 +25,7 @@ pipeline {
         stage ('Build environment'){
             steps{
                 script{
-                    sh 'sh docker.sh'
+                    sh 'sh ./infrastructure/scripts/docker.sh'
                 }
             }
         }
