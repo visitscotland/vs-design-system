@@ -12,7 +12,7 @@ pipeline {
 			steps {
               	// create a directory for the checkout then run the Git command within that directory, the package.json file must be aware of this location which introduces fragility/cross-dependency, could this be improved?
         		sh 'mkdir -p design-system'
-        		dir('dvc') {
+        		dir('design-system') {
                     //git branch: 'feature/VS-560-ui-meganav-with-build-products', credentialsId: '12a55ebf-608d-4b3e-811c-e4ad04f61f43', url: 'https://bitbucket.visitscotland.com/scm/vscom/design-system.git'
                   	checkout([$class: 'GitSCM', branches: [[name: '*/feature/VS-560-ui-meganav-with-build-products']], doGenerateSubmoduleConfigurations: false, extensions: [[$class: 'SparseCheckoutPaths',  sparseCheckoutPaths:[[$class:'SparseCheckoutPath', path:'dist/']]]], submoduleCfg: [], userRemoteConfigs: [[credentialsId: '12a55ebf-608d-4b3e-811c-e4ad04f61f43',url: 'https://bitbucket.visitscotland.com/scm/vscom/design-system.git']]])
                 }
