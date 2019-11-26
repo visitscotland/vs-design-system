@@ -10,23 +10,25 @@ pipeline {
     stages {
 		stage ('Checkout dependencies') {
 			steps {
-              	
+              	// create a directory for the checkout then run the Git command within that directory, the package.json file must be aware of this location which introduces fragility/cross-dependency, could this be improved?
         		sh 'mkdir -p dvc'
         		dir('dvc') {
-                    git branch: 'feature/VS-560-ui-meganav-with-build-products',credentialsId: '12a55ebf-608d-4b3e-811c-e4ad04f61f43', url: 'https://bitbucket.visitscotland.com/scm/vscom/design-system.git'
+                    git branch: 'feature/VS-560-ui-meganav-with-build-products', credentialsId: '12a55ebf-608d-4b3e-811c-e4ad04f61f43', url: 'https://bitbucket.visitscotland.com/scm/vscom/design-system.git'
                 }
 			}
 		}
-       stage ('Build Application') {
+
+      stage ('Build Application') {
             steps {
                 sh 'mvn -f pom.xml clean package'
             }
             post {
                 success {
                     sh 'mvn install -P !default'
+                	mail bcc: '', body: "<b>Notification</b><br>Project: ${env.JOB_NAME} <br>Build Number: ${env.BUILD_NUMBER} <br> build URL: ${env.BUILD_URL}", cc: '', charset: 'UTF-8', from: '', mimeType: 'text/html', replyTo: '', subject: "SUCCESS CI: Project name -> ${env.JOB_NAME}", to: "gavin.park@visitscotland.com";
                 }
                 failure {
-                    mail bcc: '', body: "<b>Notification</b><br>Project: ${env.JOB_NAME} <br>Build Number: ${env.BUILD_NUMBER} <br> URL de build: ${env.BUILD_URL}", cc: '', charset: 'UTF-8', from: '', mimeType: 'text/html', replyTo: '', subject: "ERROR CI: Project name -> ${env.JOB_NAME}", to: "gavin.park@visitscotland.com";
+                    mail bcc: '', body: "<b>Notification</b><br>Project: ${env.JOB_NAME} <br>Build Number: ${env.BUILD_NUMBER} <br> build URL: ${env.BUILD_URL}", cc: '', charset: 'UTF-8', from: '', mimeType: 'text/html', replyTo: '', subject: "ERROR CI: Project name -> ${env.JOB_NAME}", to: "gavin.park@visitscotland.com";
                 }
             }
         }
@@ -48,9 +50,9 @@ pipeline {
             }
         }
     }
-    post{
-        aborted{
-            script{
+	post{
+		aborted{
+			script{
                 try{
                     sh ' '
                 }catch(err){
