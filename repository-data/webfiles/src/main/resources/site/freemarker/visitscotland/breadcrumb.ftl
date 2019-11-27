@@ -35,7 +35,7 @@
                 <vs-breadcrumb-item
                         key="${item.title}"
                         href="${link}"
-                        <#if${(link?? && link == requestedURI)?string("active","")}
+                        <#if link?? && link == requestedURI >active</#if>
                         text="${item.title?html}"
                 >
                 </vs-breadcrumb-item>
