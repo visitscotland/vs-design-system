@@ -1,1 +1,0 @@
-!function(e,o){"object"==typeof exports&&"object"==typeof module?module.exports=o():"function"==typeof define&&define.amd?define([],o):"object"==typeof exports?exports.MobileNavPromoItem=o():e.MobileNavPromoItem=o()}(window,function(){return(window.webpackJsonp_name_=window.webpackJsonp_name_||[]).push([[104],[],[["qL4D",0,1,4,6,12,14,53]]])});
