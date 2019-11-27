@@ -25,8 +25,8 @@ pipeline {
             }
             post {
                 success {
-                    //sh 'mvn install -P !default'
-                  	sh 'mvn -f pom.xml install -P dist'
+                    sh 'mvn -f pom.xml install -P !default'
+                  	//sh 'mvn -f pom.xml install -P dist'
                 	mail bcc: '', body: "<b>Notification</b><br>Project: ${env.JOB_NAME} <br>Build Number: ${env.BUILD_NUMBER} <br> build URL: ${env.BUILD_URL}", cc: '', charset: 'UTF-8', from: '', mimeType: 'text/html', replyTo: '', subject: "SUCCESS CI: Project name -> ${env.JOB_NAME}", to: "gavin.park@visitscotland.com";
                 }
                 failure {
