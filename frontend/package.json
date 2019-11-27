@@ -11,8 +11,7 @@
     "schema-utils": "^2.1.0",
     "webpack": "^4.39.2",
     "webpack-cli": "^3.3.7",
-//    "vs-dotcom-ds": "git+https://bitbucket.visitscotland.com/scm/vscom/design-system.git#feature\/VS-560-ui-meganav-with-build-products"
-    "vs-dotcom-ds": "git+https://bitbucket.visitscotland.com/scm/vscom/design-system.git#feature\/VS-851-breadcrumb"
+    "vs-dotcom-ds": "git+https://bitbucket.visitscotland.com/scm/vscom/design-system.git#feature\/VS-851-breadcrumb-with-build-products"
   },
   "scripts": {
     "build": "webpack --config webpack.config.js"
