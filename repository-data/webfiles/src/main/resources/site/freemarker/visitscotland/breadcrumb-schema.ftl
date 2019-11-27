@@ -15,7 +15,7 @@
                 "position": 1,
                 {
                     "@id": "<@hst.link siteMapItemRefId="root"/>",
-                    "name": "Home"
+                    "name": "<@fmt.message key="home"/>"
                 }
             }
         <#assign count = 1>
