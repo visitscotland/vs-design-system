@@ -23,8 +23,8 @@ VS_DATESTAMP=`date +%Y%m%d`
 VS_HOST_IP_ADDRESS=`/usr/sbin/ip ad sh  | egrep "global noprefixroute" | awk '{print $2}' | sed -e "s/\/.*$//"`
 
 # set container name
-CONTAINER_NAME=`basename $BRANCH_NAME`
-CONTAINER_NAME_NEW=`echo $JOB_NAME | sed -e "s/\/.*//g"`"_"`basename $BRANCH_NAME`
+#CONTAINER_NAME=`basename $BRANCH_NAME`
+CONTAINER_NAME=`echo $JOB_NAME | sed -e "s/\/.*//g"`"_"`basename $BRANCH_NAME`
 
 set | egrep "CONTAINER"
 
