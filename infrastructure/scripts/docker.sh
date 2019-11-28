@@ -7,8 +7,10 @@ echo ==== RUNNING JENKINS SHELL COMMANDS on $NODE_NAME
 echo ====   NOTE: Most of the commands below could be added to a script in SCM
 echo ====         only the directories and port numbers need to be set in the job definition
 echo ""
-echo ==== selected Jenkins environment variables ====
-set | egrep "BRANCH|BUILD|JENKINS|JOB|WORKSPACE"
+#echo ==== selected Jenkins environment variables ====
+echo ==== ALL Jenkins environment variables ====
+#set | egrep "BRANCH|BUILD|JENKINS|JOB|WORKSPACE"
+set
 echo ====/selected Jenkins environment variables ====
 
 # ==== ADJUSTABLE VARIABLES ====
