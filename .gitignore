@@ -14,6 +14,9 @@ repository-data/webfiles/coverage/
 repository-data/webfiles/src/main/resources/site/design-system/
 repository-data/webfiles/src/main/resources/site/freemarker/vs-dotcom-ds/
 
+#Design System (Hacky integration)
+design-system/
+
 ### IDE CONFIGURATION Files
 # Eclipse based IDEs
 .classpath
