@@ -24,7 +24,7 @@ VS_HOST_IP_ADDRESS=`/usr/sbin/ip ad sh  | egrep "global noprefixroute" | awk '{p
 
 # set container name
 CONTAINER_NAME=`basename $BRANCH_NAME`
-CONTAINER_NAME_NEW=`echo $JOB_NAME | sed -e "s/\/.*\//_/g"`
+CONTAINER_NAME_NEW=`echo $JOB_NAME | sed -e "s/\/.*//g"`"_"`basename $BRANCH_NAME`
 
 set | egrep "CONTAINER"
 
