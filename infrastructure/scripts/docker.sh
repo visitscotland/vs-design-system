@@ -7,10 +7,8 @@ echo ==== RUNNING JENKINS SHELL COMMANDS on $NODE_NAME
 echo ====   NOTE: Most of the commands below could be added to a script in SCM
 echo ====         only the directories and port numbers need to be set in the job definition
 echo ""
-#echo ==== selected Jenkins environment variables ====
-echo ==== ALL Jenkins environment variables ====
-#set | egrep "BRANCH|BUILD|JENKINS|JOB|WORKSPACE"
-set
+echo ==== selected Jenkins environment variables ====
+set | egrep "BRANCH|BUILD|JENKINS|JOB|WORKSPACE"
 echo ====/selected Jenkins environment variables ====
 
 # ==== ADJUSTABLE VARIABLES ====
@@ -21,12 +19,14 @@ DOCKERFILE_NAME=brx13
 DOCKERFILE_LOCATION=$DOCKERFILE_PATH/$DOCKERFILE_NAME
 VS_DATESTAMP=`date +%Y%m%d`
 VS_HOST_IP_ADDRESS=`/usr/sbin/ip ad sh  | egrep "global noprefixroute" | awk '{print $2}' | sed -e "s/\/.*$//"`
+#  == brXM Instance Variables ==
+VS_BRXM_INSTANCE_HTTP_HOST=localhost
+#  == Hosting Environment Variables ==
+VS_PROXY_SERVER_SCHEME=https
+VS_PROXY_SERVER_FQDN=feature.visitscotland.com
 
 # set container name
-#CONTAINER_NAME=`basename $BRANCH_NAME`
-CONTAINER_NAME=`echo $JOB_NAME | sed -e "s/\/.*//g"`"_"`basename $BRANCH_NAME`
-
-set | egrep "CONTAINER"
+CONTAINER_NAME=`basename $BRANCH_NAME`
 
 # stop running containers
 echo ""
@@ -96,7 +96,19 @@ fi
 echo ""
 echo ""
 echo "###############################################################################################################################"
-echo Hippo instance for branch $GIT_BRANCH should now be available on $NODE_NAME $VS_HOST_IP_ADDRESS at:
+echo The site instance for branch $GIT_BRANCH should now be available on $NODE_NAME - $VS_HOST_IP_ADDRESS at:
+echo "$VS_PROXY_SCHEME://$VS_PROXY_HOST/?vs_brxm_host=$VS_HOST_IP_ADDRESS&vs_brxm_port=$PORT&vs_brxm_http_host=$VS_BRXM_INSTANCE_HTTP_HOST"
+echo ""
+echo The CMS for the instance should now be available at:
+echo "$VS_PROXY_SERVER_SCHEME://$VS_PROXY_SERVER_FQDN/cms/?vs_brxm_host=$VS_HOST_IP_ADDRESS&vs_brxm_port=$PORT&vs_brxm_http_host=$VS_BRXM_INSTANCE_HTTP_HOST"
+echo and the Console at:
+echo "$VS_PROXY_SERVER_SCHEME://$VS_PROXY_SERVER_FQDN/cms/console/?vs_brxm_host=$VS_HOST_IP_ADDRESS&vs_brxm_port=$PORT&vs_brxm_http_host=$VS_BRXM_INSTANCE_HTTP_HOST"
+echo ""
+echo To clear the proxy server settings between sessions either close your browser or browse to:
+echo "$VS_PROXY_SERVER_SCHEME://$VS_PROXY_SERVER_FQDN/?vs_brxm_reset"
+echo ""
+echo ""
+echo Fallback access - available only on the Web Development LAN
 echo http://$VS_HOST_IP_ADDRESS:$PORT/cms/
 echo http://$VS_HOST_IP_ADDRESS:$PORT/site/
 echo "###############################################################################################################################"
