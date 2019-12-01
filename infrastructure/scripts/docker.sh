@@ -26,7 +26,9 @@ VS_PROXY_SERVER_SCHEME=https
 VS_PROXY_SERVER_FQDN=feature.visitscotland.com
 
 # set container name
-CONTAINER_NAME=`basename $BRANCH_NAME`
+#CONTAINER_NAME=`basename $BRANCH_NAME`
+CONTAINER_NAME=`echo $JOB_NAME | sed -e "s/\/.*//g"`"_"`basename $BRANCH_NAME`
+set | egrep "CONTAINER"
 
 # stop running containers
 echo ""
