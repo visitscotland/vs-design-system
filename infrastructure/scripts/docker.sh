@@ -98,21 +98,22 @@ fi
 echo ""
 echo ""
 echo "###############################################################################################################################"
-echo The site instance for branch $GIT_BRANCH should now be available on $NODE_NAME - $VS_HOST_IP_ADDRESS at:
-echo $VS_PROXY_SCHEME://$VS_PROXY_HOST/?vs_brxm_host=$VS_HOST_IP_ADDRESS&vs_brxm_port=$PORT&vs_brxm_http_host=$VS_BRXM_INSTANCE_HTTP_HOST
+echo ""
+echo The site instance for branch $GIT_BRANCH should now be available in a few moments on $NODE_NAME - $VS_HOST_IP_ADDRESS at:
+echo "  - $VS_PROXY_SERVER_SCHEME://$VS_PROXY_SERVER_FQDN/?vs_brxm_host=$VS_HOST_IP_ADDRESS&vs_brxm_port=$PORT&vs_brxm_http_host=$VS_BRXM_INSTANCE_HTTP_HOST"
 echo ""
 echo The CMS for the instance should now be available at:
-echo $VS_PROXY_SERVER_SCHEME://$VS_PROXY_SERVER_HOST/cms/?vs_brxm_host=$VS_HOST_IP_ADDRESS&vs_brxm_port=$PORT&vs_brxm_http_host=$VS_BRXM_INSTANCE_HTTP_HOST
+echo "  - $VS_PROXY_SERVER_SCHEME://$VS_PROXY_SERVER_FQDN/cms/?vs_brxm_host=$VS_HOST_IP_ADDRESS&vs_brxm_port=$PORT&vs_brxm_http_host=$VS_BRXM_INSTANCE_HTTP_HOST"
 echo and the Console at:
-echo $VS_PROXY_SERVER_SCHEME://$VS_PROXY_SERVER_HOST/cms/console/?vs_brxm_host=$VS_HOST_IP_ADDRESS&vs_brxm_port=$PORT&vs_brxm_http_host=$VS_BRXM_INSTANCE_HTTP_HOST
+echo "  - $VS_PROXY_SERVER_SCHEME://$VS_PROXY_SERVER_FQDN/cms/console/?vs_brxm_host=$VS_HOST_IP_ADDRESS&vs_brxm_port=$PORT&vs_brxm_http_host=$VS_BRXM_INSTANCE_HTTP_HOST"
 echo ""
 echo To clear the proxy server settings between sessions either close your browser or browse to:
-echo $VS_PROXY_SERVER_SCHEME://$VS_PROXY_SERVER_HOST/?vs_brxm_reset
+echo "  - $VS_PROXY_SERVER_SCHEME://$VS_PROXY_SERVER_FQDN/?vs_brxm_reset"
 echo ""
 echo ""
 echo Fallback access - available only on the Web Development LAN
-echo http://$VS_HOST_IP_ADDRESS:$PORT/cms/
-echo http://$VS_HOST_IP_ADDRESS:$PORT/site/
+echo "  - http://$VS_HOST_IP_ADDRESS:$PORT/cms/"
+echo "  - http://$VS_HOST_IP_ADDRESS:$PORT/site/"
 echo "###############################################################################################################################"
 echo ""
 echo ""
