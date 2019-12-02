@@ -1,16 +1,13 @@
 <template>
   <figure class="d-flex flex-column">
-    <div
-      class="vs-hero__image-wrapper"
-      :class="[
-        letterbox ? 'vs-hero__image-wrapper--letterbox' : 'vs-hero__image-wrapper--standard',
-      ]"
-    >
-      <slot />
+    <div class="vs-hero__image-wrapper">
+      <slot name="image" />
+      <slot name="overlayText" />
 
       <vs-button
         variant="transparent"
         class="d-lg-none position-absolute vs-hero__toggle-caption"
+        v-if="showToggle"
         :animate="false"
         @click.native="toggleCaption"
       >
@@ -18,6 +15,7 @@
         <span class="sr-only">{{ this.toggleButtonText }}</span>
       </vs-button>
     </div>
+
     <vs-container
       class="position-relative vs-hero__caption-wrapper"
       :class="[showCaption ? 'd-flex' : 'd-none d-lg-flex']"
@@ -25,9 +23,11 @@
       <figcaption ref="figcaption">
         <vs-row>
           <vs-col>
-            <div class="p-4">
-              <p class="vs-hero__image-description">{{ this.description }}</p>
-              <p class="vs-hero__image-credit m-0">&copy; {{ this.credit }}</p>
+            <div class="p-4" v-if="this.showCaptionData">
+              <p class="vs-hero__image-description" v-if="this.description">
+                {{ this.description }}
+              </p>
+              <p class="vs-hero__image-credit m-0" v-if="this.credit">&copy; {{ this.credit }}</p>
             </div>
           </vs-col>
           <vs-col cols="auto" class="pl-0" v-if="showMap">
@@ -35,6 +35,7 @@
               <vs-image-location-map
                 :latitude="this.latitude"
                 :longitude="this.longitude"
+                map-outline-color="#191919"
               ></vs-image-location-map>
             </div>
           </vs-col>
@@ -45,6 +46,7 @@
 </template>
 
 <script>
+import { lazysizes } from "lazysizes"
 import VsIcon from "@components/elements/icon/Icon"
 import VsButton from "@components/elements/button/Button"
 import { VsContainer, VsRow, VsCol } from "@components/elements/layout"
@@ -132,6 +134,19 @@ export default {
     },
   },
   computed: {
+    backgroundSet() {
+      return "data-bgset='" + this.imageSrc + " 320w [(max-width: 360px)]')"
+    },
+    backgroundStyle() {
+      return "background-image: url('" + this.imageSrc + "');"
+    },
+    showCaptionData() {
+      return this.description.length || this.credit.length
+    },
+    showToggle() {
+      // only show the image detail toggle button if there's a map or caption data
+      return this.showMap || this.showCaptionData
+    },
     showMap() {
       // only show the map if longitude and latitude are both set
       return this.longitude && this.latitude ? true : false
@@ -168,76 +183,41 @@ figure {
   position: relative;
 }
 
+img {
+  width: 100%;
+  height: auto;
+}
+
 .vs-hero__image-wrapper {
-  object-fit: cover;
-  overflow: hidden;
   position: relative;
-
-  img {
-    left: 50%;
-    position: absolute;
-    top: 50%;
-    width: 100%;
-
-    -webkit-transform: translate(-50%, -50%);
-    -moz-transform: translate(-50%, -50%);
-    -ms-transform: translate(-50%, -50%);
-    -o-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%);
-  }
 }
 
-.vs-hero__image-wrapper--standard {
-  height: 25vh;
-  min-height: 200px;
+.vs-hero__overlay-text {
+  font-family: $headings-font-family;
+  font-size: $display1-size;
+  left: 50%;
+  max-width: 100%;
+  position: absolute;
+  text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  top: 50%;
+  transform: translate(-50%, -50%);
 
   @include media-breakpoint-up(sm) {
-    height: 33vh;
-    min-height: 300px;
+    font-size: $display1-size * 1.5;
   }
 
   @include media-breakpoint-up(md) {
-    height: 50vh;
-    min-height: 400px;
+    font-size: $display1-size * 1.75;
   }
 
   @include media-breakpoint-up(lg) {
-    height: 50vh;
-  }
-
-  @include media-breakpoint-up(xl) {
-    height: 60vh;
-  }
-}
-
-.vs-hero__image-wrapper--letterbox {
-  height: 20vh;
-  min-height: 140px;
-
-  @include media-breakpoint-up(sm) {
-    height: 25vh;
-    min-height: 195px;
-  }
-
-  @include media-breakpoint-up(md) {
-    height: 33vh;
-    min-height: 258px;
-  }
-
-  @include media-breakpoint-up(lg) {
-    height: 40vh;
-    min-height: 333px;
-  }
-
-  @include media-breakpoint-up(xl) {
-    height: 50vh;
-    min-height: 479px;
+    font-size: $display1-size * 2;
   }
 }
 
 figcaption {
-  background-color: $color-gray-shade-6;
-  color: $color-white;
+  background-color: $color-white;
+  color: $color-base-text;
   width: 100%;
 
   @include media-breakpoint-up(lg) {
@@ -265,21 +245,28 @@ figcaption {
 
 <docs>
   ```jsx
-  <div>
     <vs-hero
       v-for="(item, index) in hero.imageExamples"
       :altText="item.altText"
       :credit="item.credit"
       :description="item.description"
-      :dmlId="item.dmlId"
       :image-src="item.imageSrc"
       :key="index"
       :latitude="item.latitude"
-      :letterbox="true"
       :longitude="item.longitude"
     >
-      <img :src="item.imageSrc" :alt="item.altText" :data-dml-id="item.dmlId" />
+    <img 
+      class="lazyload" 
+      :src="item.imageSrc"
+      srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+      :data-srcset="item.imageSrc" 
+      :alt="item.altText"
+      data-sizes="auto"
+      slot="image" />
+      <noscript>
+        <img class="img-fluid" :src="item.imageSrc" alt="item.altText" />
+      </noscript>
+      <span slot="overlayText" class="vs-hero__overlay-text text-light">Scotland</span>
     </vs-hero>
-  </div>
   ```
 </docs>
