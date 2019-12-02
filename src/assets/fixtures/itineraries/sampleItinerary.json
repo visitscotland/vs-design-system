@@ -11,7 +11,7 @@
     "latitude": "56.1896033"
   },
   "h1Heading": "A 4-Day Break in Fife and Dundee for Families with Young Kids",
-  "introduction": "<a href=\"https://www.visitscotland.com/destinations-maps/kingdom-fife/\">Fife</a> and <a href=\"https://www.visitscotland.com/destinations-maps/dundee-angus/\">Dundee & Angus</a> are ideal for a few days away on a quality family break. You could base yourself in a seafront cottage, a self-catering lodge in a country estate, or perhaps a luxury caravan in an amenity-filled holiday park. Think of days playing by the seaside, roaming bridle paths in the countryside, visiting exciting attractions that wee ones will love and soaking up a bit of cosmopolitan culture in the city - you won't be short of ways to have fun on this family holiday!",
+  "introduction": "<p><a href=\"https://www.visitscotland.com/destinations-maps/kingdom-fife/\">Fife</a> and <a href=\"https://www.visitscotland.com/destinations-maps/dundee-angus/\">Dundee & Angus</a> are ideal for a few days away on a quality family break. You could base yourself in a seafront cottage, a self-catering lodge in a country estate, or perhaps a luxury caravan in an amenity-filled holiday park. Think of days playing by the seaside, roaming bridle paths in the countryside, visiting exciting attractions that wee ones will love and soaking up a bit of cosmopolitan culture in the city - you won't be short of ways to have fun on this family holiday!</p>",
   "summaryBox": "Discover the joys of the east coast with a family holiday to remember.",
   "start": "Fife",
   "finish": "Angus",
@@ -32,7 +32,7 @@
         {
           "stopCount": 1,
           "title": "Beach fun at Elie And Earlsferry",
-          "description": "Pack a bucket and spade for sandcastle building, and a towel to dry wet feet after a paddle, and then you are ready to head to the beautiful <a href=\"https://www.visitscotland.com/info/towns-villages/elie-earlsferry-beach-p725111\">Elie Earlsferry Beach</a>. Arches of fine golden sands line the town and are great spots for an hour or two of playing by the shoreline. The award-winning Ship Inn organises beach cricket on Sundays during the summer, and its restaurant is family-friendly with a children's menu option, should you be keen to catch a bite - the sea air is known to induce quite the appetite!",
+          "description": "<p>Pack a bucket and spade for sandcastle building, and a towel to dry wet feet after a paddle, and then you are ready to head to the beautiful <a href=\"https://www.visitscotland.com/info/towns-villages/elie-earlsferry-beach-p725111\">Elie Earlsferry Beach</a>. Arches of fine golden sands line the town and are great spots for an hour or two of playing by the shoreline. The award-winning Ship Inn organises beach cricket on Sundays during the summer, and its restaurant is family-friendly with a children's menu option, should you be keen to catch a bite - the sea air is known to induce quite the appetite!</p>",
           "timeToExplore": "Half a day",
           "pullOut": {
             "title": "",
@@ -51,7 +51,7 @@
           },
           "latitude": "56.18974",
           "longitude": "-2.81868",
-          "facilities": ""
+          "facilities": []
         },
         {
           "stopCount": 2,
@@ -75,7 +75,16 @@
           },
           "latitude": "56.24068",
           "longitude": "-2.76587",
-          "facilities": "parking,accessparkdrop"
+          "facilities": [
+            {
+              "key": "parking",
+              "value": "Parking"
+            },
+            {
+              "key": "accessparkdrop",
+              "value": "Accessible Parking and Dropoff"
+            }
+          ]
         },
         {
           "stopCount": 3,
@@ -99,7 +108,16 @@
           },
           "latitude": "56.27057",
           "longitude": "-2.69826",
-          "facilities": "parking,accessparkdrop"
+          "facilities": [
+            {
+              "key": "parking",
+              "value": "Parking"
+            },
+            {
+              "key": "accessparkdrop",
+              "value": "Accessible Parking and Dropoff"
+            }
+          ]
         },
         {
           "stopCount": 4,
@@ -123,7 +141,7 @@
           },
           "latitude": "56.22448",
           "longitude": "-2.70087",
-          "facilities": ""
+          "facilities": []
         }
       ]
     },
@@ -155,7 +173,20 @@
           },
           "latitude": "56.30453",
           "longitude": "-3.08709",
-          "facilities": "parking,accessparkdrop,dsblaccess"
+          "facilities": [
+            {
+              "key": "parking",
+              "value": "Parking"
+            },
+            {
+              "key": "accessparkdrop",
+              "value": "Accessible Parking and Dropoff"
+            },
+            {
+              "key": "dsblaccess",
+              "value": "Disabled Access"
+            }
+          ]
         },
         {
           "stopCount": 6,
@@ -179,7 +210,12 @@
           },
           "latitude": "56.34276",
           "longitude": "-2.79359",
-          "facilities": "parking"
+          "facilities": [
+            {
+              "key": "parking",
+              "value": "Parking"
+            }
+          ]
         },
         {
           "stopCount": 7,
@@ -203,7 +239,20 @@
           },
           "latitude": "56.34386",
           "longitude": "-2.79972",
-          "facilities": "parking,accessparkdrop,dsblaccess"
+          "facilities": [
+            {
+              "key": "parking",
+              "value": "Parking"
+            },
+            {
+              "key": "accessparkdrop",
+              "value": "Accessible Parking and Dropoff"
+            },
+            {
+              "key": "dsblaccess",
+              "value": "Disabled Access"
+            }
+          ]
         },
         {
           "stopCount": 8,
@@ -227,7 +276,7 @@
           },
           "latitude": "56.33659",
           "longitude": "-2.78282",
-          "facilities": ""
+          "facilities": []
         }
       ]
     },
@@ -259,7 +308,24 @@
           },
           "latitude": "56.46408",
           "longitude": "-2.96349",
-          "facilities": "audioloop,parking,accessparkdrop,dsblaccess"
+          "facilities": [
+            {
+              "key": "audioloop",
+              "value": "Audio Loop"
+            },
+            {
+              "key": "parking",
+              "value": "Parking"
+            },
+            {
+              "key": "accessparkdrop",
+              "value": "Accessible Parking and Dropoff"
+            },
+            {
+              "key": "dsblaccess",
+              "value": "Disabled Access"
+            }
+          ]
         },
         {
           "stopCount": 10,
@@ -283,7 +349,17 @@
           },
           "latitude": "56.4562",
           "longitude": "-2.9703",
-          "facilities": "parking,accessparkdrop"
+
+          "facilities": [
+            {
+              "key": "parking",
+              "value": "Parking"
+            },
+            {
+              "key": "accessparkdrop",
+              "value": "Accessible Parking and Dropoff"
+            }
+          ]
         },
         {
           "stopCount": 11,
@@ -307,7 +383,12 @@
           },
           "latitude": "56.4574",
           "longitude": "-2.9724",
-          "facilities": "accessparkdrop"
+          "facilities": [
+            {
+              "key": "accessparkdrop",
+              "value": "Accessible Parking and Dropoff"
+            }
+          ]
         },
         {
           "stopCount": 12,
@@ -331,7 +412,20 @@
           },
           "latitude": "56.4618",
           "longitude": "-2.9837",
-          "facilities": "parking,accessparkdrop,dsblaccess"
+          "facilities": [
+            {
+              "key": "parking",
+              "value": "Parking"
+            },
+            {
+              "key": "accessparkdrop",
+              "value": "Accessible Parking and Dropoff"
+            },
+            {
+              "key": "dsblaccess",
+              "value": "Disabled Access"
+            }
+          ]
         }
       ]
     },
@@ -363,7 +457,7 @@
           },
           "latitude": "56.740190",
           "longitude": "-2.463880",
-          "facilities": ""
+          "facilities": []
         },
         {
           "stopCount": 14,
@@ -387,7 +481,24 @@
           },
           "latitude": "56.69923",
           "longitude": "-2.49169",
-          "facilities": "audioloop,parking,accessparkdrop,dsblaccess"
+          "facilities": [
+            {
+              "key": "audioloop",
+              "value": "Audio Loop"
+            },
+            {
+              "key": "parking",
+              "value": "Parking"
+            },
+            {
+              "key": "accessparkdrop",
+              "value": "Accessible Parking and Dropoff"
+            },
+            {
+              "key": "dsblaccess",
+              "value": "Disabled Access"
+            }
+          ]
         },
         {
           "stopCount": 15,
@@ -411,7 +522,16 @@
           },
           "latitude": "56.67396",
           "longitude": "-3.00178",
-          "facilities": "accessparkdrop,parking"
+          "facilities": [
+            {
+              "key": "parking",
+              "value": "Parking"
+            },
+            {
+              "key": "accessparkdrop",
+              "value": "Accessible Parking and Dropoff"
+            }
+          ]
         }
       ]
     }
