@@ -3,16 +3,18 @@
   "pageTitle": "A 4-Day Break in Fife and Dundee for Families with Young Kids",
   "metaDescription": "Find ideas for a family holiday in Fife and Dundee with our itinerary, from seaside adventures in Fife to educational experiences in Dundee.",
   "image": {
-    "src": "fixtures/itineraries/images/elie-beach-header.jpg",
-    "altText": "",
+    "imageSrc": "fixtures/itineraries/images/elie-beach-header.jpg",
+    "altText": "Child playing on Elie Beach",
     "description": "Elie beach",
     "credit": "",
-    "longitude": "",
-    "latitude": ""
+    "longitude": "-2.8243733",
+    "latitude": "56.1896033"
   },
   "h1Heading": "A 4-Day Break in Fife and Dundee for Families with Young Kids",
   "introduction": "<a href=\"https://www.visitscotland.com/destinations-maps/kingdom-fife/\">Fife</a> and <a href=\"https://www.visitscotland.com/destinations-maps/dundee-angus/\">Dundee & Angus</a> are ideal for a few days away on a quality family break. You could base yourself in a seafront cottage, a self-catering lodge in a country estate, or perhaps a luxury caravan in an amenity-filled holiday park. Think of days playing by the seaside, roaming bridle paths in the countryside, visiting exciting attractions that wee ones will love and soaking up a bit of cosmopolitan culture in the city - you won't be short of ways to have fun on this family holiday!",
   "summaryBox": "Discover the joys of the east coast with a family holiday to remember.",
+  "start": "Fife",
+  "finish": "Angus",
   "totalDays": 4,
   "totalMiles": 60,
   "totalKM": 96,
@@ -40,12 +42,12 @@
           },
           "href": "https://www.visitscotland.com/info/towns-villages/elie-p239071",
           "image": {
-            "src": "fixtures/itineraries/images/stops/visitscotland_26905578570_633061279.jpg",
-            "altText": "",
-            "description": "",
-            "credit": "",
-            "longitude": "",
-            "latitude": ""
+            "imageSrc": "fixtures/itineraries/images/stops/visitscotland_26905578570_633061279.jpg",
+            "altText": "Test alt text",
+            "description": "Test description",
+            "credit": "Test credit",
+            "longitude": "-2.81868",
+            "latitude": "56.18974"
           },
           "latitude": "56.18974",
           "longitude": "-2.81868",
@@ -64,12 +66,12 @@
           },
           "href": "https://www.visitscotland.com/info/see-do/kellie-castle-garden-p248691",
           "image": {
-            "src": "fixtures/itineraries/images/stops/Kellie_229320466.jpg",
+            "imageSrc": "fixtures/itineraries/images/stops/Kellie_229320466.jpg",
             "altText": "",
             "description": "",
             "credit": "",
-            "longitude": "",
-            "latitude": ""
+            "latitude": "",
+            "longitude": ""
           },
           "latitude": "56.24068",
           "longitude": "-2.76587",
@@ -88,12 +90,12 @@
           },
           "href": "https://www.visitscotland.com/info/see-do/scotlands-secret-bunker-p254671",
           "image": {
-            "src": "fixtures/itineraries/images/stops/Guard%20House_705080941.JPG",
+            "imageSrc": "fixtures/itineraries/images/stops/Guard%20House_705080941.JPG",
             "altText": "",
             "description": "",
             "credit": "",
-            "longitude": "",
-            "latitude": ""
+            "latitude": "",
+            "longitude": ""
           },
           "latitude": "56.27057",
           "longitude": "-2.69826",
@@ -112,12 +114,12 @@
           },
           "href": "https://www.visitscotland.com/info/towns-villages/anstruther-p239041",
           "image": {
-            "src": "fixtures/itineraries/images/stops/visitscotland_26905662152_2042532673.jpg",
+            "imageSrc": "fixtures/itineraries/images/stops/visitscotland_26905662152_2042532673.jpg",
             "altText": "",
             "description": "",
             "credit": "",
-            "longitude": "",
-            "latitude": ""
+            "latitude": "",
+            "longitude": ""
           },
           "latitude": "56.22448",
           "longitude": "-2.70087",
@@ -144,12 +146,12 @@
           },
           "href": "https://www.visitscotland.com/info/see-do/simply-the-best-destination-scottish-deer-centre-p254871",
           "image": {
-            "src": "fixtures/itineraries/images/stops/1070495_730745644.jpg",
+            "imageSrc": "fixtures/itineraries/images/stops/1070495_730745644.jpg",
             "altText": "",
             "description": "",
             "credit": "",
-            "longitude": "",
-            "latitude": ""
+            "latitude": "",
+            "longitude": ""
           },
           "latitude": "56.30453",
           "longitude": "-3.08709",
@@ -168,12 +170,12 @@
           },
           "href": "https://www.visitscotland.com/info/see-do/st-andrews-castle-p248521",
           "image": {
-            "src": "fixtures/itineraries/images/stops/mb300410121.jpg",
+            "imageSrc": "fixtures/itineraries/images/stops/mb300410121.jpg",
             "altText": "",
             "description": "",
             "credit": "",
-            "longitude": "",
-            "latitude": ""
+            "latitude": "",
+            "longitude": ""
           },
           "latitude": "56.34276",
           "longitude": "-2.79359",
@@ -192,12 +194,12 @@
           },
           "href": "https://www.visitscotland.com/info/see-do/st-andrews-aquarium-p255461",
           "image": {
-            "src": "fixtures/itineraries/images/stops/aquarium2015_007_lo_1890704856.jpg",
+            "imageSrc": "fixtures/itineraries/images/stops/aquarium2015_007_lo_1890704856.jpg",
             "altText": "",
             "description": "",
             "credit": "",
-            "longitude": "",
-            "latitude": ""
+            "latitude": "",
+            "longitude": ""
           },
           "latitude": "56.34386",
           "longitude": "-2.79972",
@@ -216,12 +218,12 @@
           },
           "href": "https://www.visitscotland.com/info/towns-villages/st-andrews-east-sands-p315871",
           "image": {
-            "src": "fixtures/itineraries/images/stops/visitscotland_36542901290_1943627313.jpg",
+            "imageSrc": "fixtures/itineraries/images/stops/visitscotland_36542901290_1943627313.jpg",
             "altText": "",
             "description": "",
             "credit": "",
-            "longitude": "",
-            "latitude": ""
+            "latitude": "",
+            "longitude": ""
           },
           "latitude": "56.33659",
           "longitude": "-2.78282",
@@ -248,12 +250,12 @@
           },
           "href": "https://www.visitscotland.com/info/see-do/olympia-p264701",
           "image": {
-            "src": "fixtures/itineraries/images/stops/vs_olympia001_2135987885.jpg",
+            "imageSrc": "fixtures/itineraries/images/stops/vs_olympia001_2135987885.jpg",
             "altText": "",
             "description": "",
             "credit": "",
-            "longitude": "",
-            "latitude": ""
+            "latitude": "",
+            "longitude": ""
           },
           "latitude": "56.46408",
           "longitude": "-2.96349",
@@ -272,12 +274,12 @@
           },
           "href": "https://www.visitscotland.com/info/see-do/rrs-discovery-p246431",
           "image": {
-            "src": "fixtures/itineraries/images/stops/135(1).jpg",
+            "imageSrc": "fixtures/itineraries/images/stops/135(1).jpg",
             "altText": "",
             "description": "",
             "credit": "",
-            "longitude": "",
-            "latitude": ""
+            "latitude": "",
+            "longitude": ""
           },
           "latitude": "56.4562",
           "longitude": "-2.9703",
@@ -296,12 +298,12 @@
           },
           "href": "https://www.visitscotland.com/info/see-do/dundee-science-centre-p247301",
           "image": {
-            "src": "fixtures/itineraries/images/stops/021_Dundee_Science_Centre_AR_1325917410.jpg",
+            "imageSrc": "fixtures/itineraries/images/stops/021_Dundee_Science_Centre_AR_1325917410.jpg",
             "altText": "",
             "description": "",
             "credit": "",
-            "longitude": "",
-            "latitude": ""
+            "latitude": "",
+            "longitude": ""
           },
           "latitude": "56.4574",
           "longitude": "-2.9724",
@@ -320,12 +322,12 @@
           },
           "href": "https://www.visitscotland.com/info/see-do/scotlands-jute-museum-verdant-works-p247361",
           "image": {
-            "src": "fixtures/itineraries/images/stops/vw%20boys%20small.jpg",
+            "imageSrc": "fixtures/itineraries/images/stops/vw%20boys%20small.jpg",
             "altText": "",
             "description": "",
             "credit": "",
-            "longitude": "",
-            "latitude": ""
+            "latitude": "",
+            "longitude": ""
           },
           "latitude": "56.4618",
           "longitude": "-2.9837",
@@ -352,12 +354,12 @@
           },
           "href": "http://www.charleton-farm.co.uk/",
           "image": {
-            "src": "",
+            "imageSrc": "",
             "altText": "",
             "description": "",
             "credit": "",
-            "longitude": "",
-            "latitude": ""
+            "latitude": "",
+            "longitude": ""
           },
           "latitude": "56.740190",
           "longitude": "-2.463880",
@@ -376,12 +378,12 @@
           },
           "href": "https://www.visitscotland.com/info/see-do/scottish-wildlife-trust-montrose-basin-visitor-centre-p251931",
           "image": {
-            "src": "fixtures/itineraries/images/stops/SWT_AMOB_065_Wildlife_Centre_AW_LIM_1275337090.jpg",
+            "imageSrc": "fixtures/itineraries/images/stops/SWT_AMOB_065_Wildlife_Centre_AW_LIM_1275337090.jpg",
             "altText": "",
             "description": "",
             "credit": "",
-            "longitude": "",
-            "latitude": ""
+            "latitude": "",
+            "longitude": ""
           },
           "latitude": "56.69923",
           "longitude": "-2.49169",
@@ -400,12 +402,12 @@
           },
           "href": "https://www.visitscotland.com/info/see-do/jm-barries-birthplace-p250601",
           "image": {
-            "src": "fixtures/itineraries/images/stops/JM-Barrie_372704578.jpg",
+            "imageSrc": "fixtures/itineraries/images/stops/JM-Barrie_372704578.jpg",
             "altText": "",
             "description": "",
             "credit": "",
-            "longitude": "",
-            "latitude": ""
+            "latitude": "",
+            "longitude": ""
           },
           "latitude": "56.67396",
           "longitude": "-3.00178",
@@ -422,7 +424,7 @@
         "description": "Find inspiration & tips for your family holiday in Scotland. Includes information on family-friendly accommodation, attractions, and fun days out for kids.",
         "href": "https://www.visitscotland.com/holidays-breaks/family/",
         "image": {
-          "src": "",
+          "imageSrc": "",
           "altText": "",
           "description": "",
           "credit": "",
@@ -435,7 +437,7 @@
         "description": "Find information about city stays in Scotland, plus stunning locations for countryside breaks from each city, including modes of transport and travel time.",
         "href": "https://www.visitscotland.com/holidays-breaks/weekend-short/country-breaks-city-stays/",
         "image": {
-          "src": "",
+          "imageSrc": "",
           "altText": "",
           "description": "",
           "credit": "",
@@ -448,7 +450,7 @@
         "description": "Discover why the Highlands is one of the best family holiday destinations and follow this exciting 7 day itinerary which kids will love.",
         "href": "https://www.visitscotland.com/holidays-breaks/family/highlands-for-kids/",
         "image": {
-          "src": "",
+          "imageSrc": "",
           "altText": "",
           "description": "",
           "credit": "",
@@ -461,7 +463,7 @@
         "description": "Step back (or drive back!) in time through the last millennium of our country's heritage and experience Scottish castles at their best on Scotland's only Castle Trail.",
         "href": "https://www.visitscotland.com/info/see-do/the-castle-trail-p331231",
         "image": {
-          "src": "",
+          "imageSrc": "",
           "altText": "",
           "description": "",
           "credit": "",
@@ -474,7 +476,7 @@
         "description": "Find outdoor adventures in Scotland that both kids and adults will love, including family-friendly walks, cycle routes, gorge walking and zorbing.",
         "href": "https://www.visitscotland.com/holidays-breaks/family/outdoor-adventures-for-kids/",
         "image": {
-          "src": "",
+          "imageSrc": "",
           "altText": "",
           "description": "",
           "credit": "",
