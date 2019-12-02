@@ -4,7 +4,7 @@
       Skip to Content
     </vs-skip-to>
 
-    <vs-drawer-toggle content-key="site-search" drawer-key="header-bottom" type="vs-skip-to-button">
+    <vs-drawer-toggle content-key="site-search" drawer-key="header-bottom" tag="vs-skip-to-button">
       Skip to Search
     </vs-drawer-toggle>
 
@@ -101,15 +101,15 @@
         <vs-logo />
       </template>
 
-      <template #mobile-nav-button>
+      <!-- <template #mobile-nav-button>
         <vs-mobile-nav-button />
-      </template>
+      </template> -->
 
-      <template #header-drawer-toggles>
+      <template #bottom-right>
         <vs-header-drawer-toggle
           drawer-key="header-bottom"
           content-key="site-search"
-          type="vs-site-search-toggle-button"
+          tag="vs-site-search-toggle-button"
           section="bottom"
         >
           Search
@@ -120,7 +120,7 @@
           content-key="favourites-list"
           :href="favourite.href"
           :title="favourite.title"
-          type="vs-favourites-button"
+          tag="vs-favourites-button"
           section="bottom"
         />
       </template>
@@ -150,7 +150,7 @@
         />
       </template>
 
-      <vs-desktop-nav-submenu
+      <!-- <vs-desktop-nav-submenu
         slot="desktop-submenu"
         v-for="(item, index) in header.mainNav"
         :level="1"
@@ -189,9 +189,46 @@
           >
           </vs-desktop-nav-list-item>
         </vs-desktop-nav-list-item>
-      </vs-desktop-nav-submenu>
+      </vs-desktop-nav-submenu> -->
 
-      <vs-mobile-nav-list-item
+      <template #site-navigation>
+        <vs-site-nav-list-item
+          v-for="(item1, index) in header.mainNav"
+          :href="item1.href"
+          :tracking-id="item1.trackingId"
+          :subnav="item1.subnav"
+          :key="index"
+        >
+          {{ item1.title }}
+          <template #subnav v-f="!item1.promo">
+            <component
+              :is="item2.promo ? 'vs-site-nav-list-promo-item' : 'vs-site-nav-list-item'"
+              v-for="(item2, index2) in item1.subnav"
+              :href="item2.href"
+              :tracking-id="item2.trackingId"
+              :subnav="item2.subnav"
+              :key="index2"
+              :image-href="item2.imageHref"
+            >
+              {{ item2.title }}
+              <template #subnav v-f="!item2.promo">
+                <component
+                  :is="item3.promo ? 'vs-site-nav-list-promo-item' : 'vs-site-nav-list-item'"
+                  v-for="(item3, index3) in item2.subnav"
+                  :href="item3.href"
+                  :tracking-id="item3.trackingId"
+                  :key="index3"
+                  :image-href="item3.imageHref"
+                >
+                  {{ item3.title }}
+                </component>
+              </template>
+            </component>
+          </template>
+        </vs-site-nav-list-item>
+      </template>
+
+      <!-- <vs-mobile-nav-list-item
         slot="mobile-nav-items"
         v-for="(item, index) in header.mainNav"
         :level="1"
@@ -232,7 +269,7 @@
           >
           </vs-mobile-nav-list-item>
         </vs-mobile-nav-list-item>
-      </vs-mobile-nav-list-item>
+      </vs-mobile-nav-list-item> -->
     </vs-header>
 
     <div class="container">

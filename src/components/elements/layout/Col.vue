@@ -16,7 +16,7 @@ import { BCol } from "bootstrap-vue"
 export default {
   name: "VsCol",
   status: "prototype",
-  release: "0.0.1",
+  release: "0.1.0",
   components: {
     BCol,
   },
