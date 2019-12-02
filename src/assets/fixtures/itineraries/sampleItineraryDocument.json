@@ -13,8 +13,11 @@
   "h1Heading": "A 4-Day Break in Fife and Dundee for Families with Young Kids",
   "introduction": "<a href=\"https://www.visitscotland.com/destinations-maps/kingdom-fife/\">Fife</a> and <a href=\"https://www.visitscotland.com/destinations-maps/dundee-angus/\">Dundee & Angus</a> are ideal for a few days away on a quality family break. You could base yourself in a seafront cottage, a self-catering lodge in a country estate, or perhaps a luxury caravan in an amenity-filled holiday park. Think of days playing by the seaside, roaming bridle paths in the countryside, visiting exciting attractions that wee ones will love and soaking up a bit of cosmopolitan culture in the city - you won't be short of ways to have fun on this family holiday!",
   "summaryBox": "Discover the joys of the east coast with a family holiday to remember.",
-  "transportCategory": "Car",
-  "themeCategory": "Families",
+  "totalDays": 4,
+  "totalMiles": 60,
+  "totalKM": 96,
+  "transport": "Car",
+  "theme": "Families",
   "highlights": ["East Neuk of Fife", "St Andrews", "Dundee", "Angus"],
   "areasCovered": ["East"],
   "days": [
