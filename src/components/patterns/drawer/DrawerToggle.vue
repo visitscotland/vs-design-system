@@ -1,6 +1,6 @@
 <template>
   <component
-    :is="type"
+    :is="tag"
     @click.native.prevent="toggleContent"
     ref="self"
     :aria-expanded="contentIsVisible"
@@ -25,7 +25,7 @@ export default {
     VsButton,
   },
   props: {
-    type: {
+    tag: {
       type: String,
       default: "vs-button",
     },
