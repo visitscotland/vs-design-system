@@ -45,7 +45,7 @@
         </vs-button>
       </div>
     </div>
-    <vs-button type="submit" class="px-md-5" :variant="primary">{{ submitButtonText }}</vs-button>
+    <vs-button type="submit" class="px-md-5" variant="primary">{{ submitButtonText }}</vs-button>
   </b-form>
 </template>
 
