@@ -1,25 +1,21 @@
 <template>
-  <vs-row>
-    <vs-col cols="12">
-      <span class="vs-favourites-list__header text-uppercase">{{ listHeader }}</span>
-    </vs-col>
-
-    <vs-col>
-      <ul class="list-unstyled row">
-        <li
-          v-for="(item, index) in favourites"
-          class="d-flex align-items-center  col-md-6 col-xl-4"
-          :key="index"
+  <div v-if="favourites.length">
+    <span class="vs-favourites-list__header text-uppercase">{{ listHeader }}</span>
+    <ul class="list-unstyled">
+      <li v-for="(item, index) in favourites" class="d-flex align-items-center w-100" :key="index">
+        <a :href="item.href" class="vs-favourites-list__link">{{ item.title }}</a>
+        <vs-button
+          class="p-2"
+          :animate="false"
+          variant="transparent"
+          @click.native.prevent="deleteFavourite(item.href)"
         >
-          <a :href="item.href" class="vs-favourites-list__link mr-3">{{ item.title }}</a>
-          <vs-button variant="transparent" @click.native.prevent="deleteFavourite(item.href)">
-            <span class="sr-only">Remove from favourites</span>
-            <vs-icon name="close" size="xs" />
-          </vs-button>
-        </li>
-      </ul>
-    </vs-col>
-  </vs-row>
+          <span class="sr-only">Remove from favourites</span>
+          <vs-icon name="close" size="xs" />
+        </vs-button>
+      </li>
+    </ul>
+  </div>
 </template>
 
 <script>
@@ -78,10 +74,27 @@ export default {
   ```jsx
 
   <div style="position: relative; height: 600px;">
-    <vs-favourites-button 
+    Test Add Favourite Item 1
+    <vs-favourites-add-button 
       :href="favourite.href"
       :title="favourite.title"
-    />
+    >
+    </vs-favourites-add-button>
+    Test Add Favourite Item 2
+     <vs-favourites-add-button 
+      href="http:www.visitscotland.org"
+      title="VisitScotland Corporate Website"
+    >
+    </vs-favourites-add-button>
+    Test Add Favourite Item 3
+     <vs-favourites-add-button 
+      href="https://www.visitscotland.com/destinations-maps/st-andrews/"
+      title="St Andrews"
+    >
+    </vs-favourites-add-button>
+    Favourites Count
+    <vs-favourites-view-button>
+    </vs-favourites-view-button>
     <vs-favourites-list/>
   </div>
   ```

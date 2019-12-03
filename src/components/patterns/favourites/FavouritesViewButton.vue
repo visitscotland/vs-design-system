@@ -1,12 +1,13 @@
 <template>
   <vs-button
-    class="vs-favourites__button p-0 p-sm-1 position-relative"
-    @click.native="addFavourite"
+    class="vs-favourites-view__button p-0 p-sm-1 position-relative"
+    @click.native="openFavourites"
     variant="transparent"
     :animate="false"
+    v-if="favouritesCount > 0"
   >
-    <span class="sr-only">Add to Favourites</span>
-    <span class="vs-favourites__button__count" v-if="favouritesCount > 0">
+    <span class="sr-only">View favourites</span>
+    <span class="vs-favourites-view__button__count" v-if="favouritesCount > 0">
       <span class="sr-only">Current favourites count:</span> {{ favouritesCount }}
     </span>
     <vs-icon v-if="favouritesCount > 0" name="favourite-filled" size="sm" variant="primary" />
@@ -19,18 +20,11 @@ import VsIcon from "@components/elements/icon/Icon"
 import store from "./favourites.store"
 
 export default {
-  name: "VsFavouritesButton",
+  name: "VsFavouritesViewButton",
   status: "prototype",
   release: "0.0.1",
   components: { VsIcon },
-  props: {
-    title: {
-      type: String,
-    },
-    href: {
-      type: String,
-    },
-  },
+  props: {},
   // store,
   computed: {
     favouritesCount() {
@@ -39,32 +33,12 @@ export default {
     favourites() {
       return store.getters["favourites/getFavourites"]
     },
-    favouriteItem() {
-      return {
-        title: this.title,
-        href: this.href,
-      }
-    },
-  },
-  methods: {
-    addFavourite() {
-      if (store.dispatch("favourites/addFavourite", this.favouriteItem)) {
-        this.addFavouriteSuccess()
-      }
-    },
-    addFavouriteSuccess() {
-      /**
-       * Emitted when a favourited is successfully added to the
-       * favourites list
-       */
-      this.$emit("favouriteAdded")
-    },
   },
 }
 </script>
 
 <style lang="scss" scoped>
-.vs-favourites__button__count {
+.vs-favourites-view__button__count {
   color: $color-white;
   display: block;
   font-size: 0.75rem;
@@ -77,10 +51,6 @@ export default {
 
 <docs>
   ```jsx
-
-    <vs-favourites-button
-      :href="favourite.href"
-      :title="favourite.title"
-    />
+    <vs-favourites-view-button />
   ```
 </docs>
