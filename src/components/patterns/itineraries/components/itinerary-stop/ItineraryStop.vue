@@ -3,6 +3,7 @@
     <div class="vs-itinerary-stop__header d-flex align-items-top">
       <vs-icon name="map-marker-solid" variant="secondary-teal" size="md" :padding="0" />
       <slot name="stop-title" />
+      <slot name="stop-favourite" />
     </div>
     <slot name="stop-image" />
     <slot name="stop-description" />
@@ -18,6 +19,7 @@ import { VsContainer, VsRow, VsCol } from "@components/elements/layout"
 import VsItineraryStopImage from "@components/patterns/itineraries/components/itinerary-stop-image/ItineraryStopImage"
 import VsItineraryStopFacility from "@components/patterns/itineraries/components/itinerary-stop-facility/ItineraryStopFacility"
 import VsImageLocationMap from "@components/patterns/image-location-map/ImageLocationMap"
+import VsFavouritesAddButton from "@components/patterns/favourites/FavouritesAddButton"
 
 /**
  * TODO: Document usage.
@@ -34,6 +36,7 @@ export default {
     VsItineraryStopImage,
     VsImageLocationMap,
     VsItineraryStopFacility,
+    VsFavouritesAddButton,
     VsButton,
     VsIcon,
   },
@@ -69,7 +72,7 @@ export default {
 .itinerary-stop__facilities {
   border-top: 1px solid $color-gray-tint-5;
   margin: $spacer-9 -1rem -1rem;
-  padding: 1rem 1rem 0;
+  padding: 1rem;
   text-align: center;
 
   dt {
@@ -92,10 +95,15 @@ export default {
   slot="stop-title"
   level="3" 
   thin 
-  class="vs-itinerary-stop__title ml-4 h4">
+  class="vs-itinerary-stop__title ml-4">
   <span>Stop {{stop.stopCount}}</span>
   {{stop.title}}
 </vs-heading>
+<vs-favourites-add-button
+  slot="stop-favourite"
+    :href="stop.href"
+    :title="stop.title"
+/>
  <vs-itinerary-stop-image
     :altText="stop.image.altText"
     :credit="stop.image.credit"
@@ -122,9 +130,12 @@ export default {
     <dt class="list-inline-item mb-0">Time to explore:</dt>
     <dd class="list-inline-item mb-0">{{stop.timeToExplore}}</dd>
   </dl>
-  <a slot="stop-href" class="text-link"
+  <a slot="stop-href" class="vs-itinerary__stop-link text-uppercase font-weight-bold d-inline-flex align-items-center"
     :href="stop.href"
-  >Find out more</a>
+  >
+    Find out more
+    <vs-icon name="play" variant="primary" size="xxs" :padding=3 />
+  </a>
   <dl v-if="stop.facilities.length" class="itinerary-stop__facilities" slot="stop-facilities">
     <dt>Key facilities</dt>
     <vs-itinerary-stop-facility
