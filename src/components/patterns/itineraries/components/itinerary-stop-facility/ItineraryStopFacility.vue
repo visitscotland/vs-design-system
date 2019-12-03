@@ -45,6 +45,9 @@ export default {
         case "toilet":
           formattedIconName = "toilet"
           break
+        case "wifi":
+          formattedIconName = "wifi"
+          break
         default:
           formattedIconName = ""
       }
@@ -70,15 +73,12 @@ export default {
 
 <docs>
   ```jsx
-  <dl>
-    <dt>Key facilities</dt>
     <vs-itinerary-stop-facility
-        v-for="(facility, facilitiesIndex) in itineraries.sampleItinerary.days[0].stops[2].facilities"
+        v-for="(facility, facilitiesIndex) in facilities.facilities"
         :key="facilitiesIndex"
         :facility="facility"
       >
       {{facility.value}}
     </vs-itinerary-stop-facility>
-  </dl>
   ```
 </docs>
