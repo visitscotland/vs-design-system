@@ -1,6 +1,6 @@
 <template>
-  <li class="vs-itinerary-stop__facility-list-item" :class="facility.key">
-    <vs-icon :name="formattedIconName" variant="light" size="sm" />
+  <li class="vs-itinerary-stop__facility" :class="facility.key">
+    <vs-icon v-if="formattedIconName.length" :name="formattedIconName" variant="dark" size="sm" />
     <slot />
   </li>
 </template>
@@ -12,7 +12,7 @@ import VsIcon from "@components/elements/icon/Icon"
  */
 
 export default {
-  name: "VsItineraryStopFacilityListItem",
+  name: "VsItineraryStopFacility",
   status: "prototype",
   release: "0.0.1",
   components: { VsIcon },
@@ -26,10 +26,10 @@ export default {
       var formattedIconName = ""
       switch (this.facility.key) {
         case "parking":
-          formattedIconName = "parking"
+          formattedIconName = "toilet"
           break
         case "accessparkdrop":
-          formattedIconName = "accessible-parking-dropoff"
+          formattedIconName = "toilet"
           break
         case "dsblaccess":
           formattedIconName = "accessible"
@@ -63,13 +63,13 @@ export default {
 <docs>
   ```jsx
   <ul style="list-style-type: none; padding: 0;">
-  <vs-itinerary-stop-facility-list-item
+  <vs-itinerary-stop-facility
       v-for="(facility, facilitiesIndex) in itineraries.sampleItinerary.days[0].stops[2].facilities"
       :key="facilitiesIndex"
       :facility="facility"
     >
       {{facility.value}}
-    </vs-itinerary-stop-facility-list-item>
+    </vs-itinerary-stop-facility>
   </ul>
   ```
 </docs>

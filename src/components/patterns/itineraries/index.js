@@ -1,6 +1,6 @@
 import VsItinerary from "./Itinerary"
-import VsItineraryStopCard from "./components/itinerary-stop-card/ItineraryStopCard"
+import VsItineraryStop from "./components/itinerary-stop/ItineraryStop"
 import VsItineraryStopImage from "./components/itinerary-stop-image/ItineraryStopImage"
-import VsItineraryStopFacilityListItem from "./components/itinerary-stop-facility-list-item/ItineraryStopFacilityListItem"
+import VsItineraryStopFacility from "./components/itinerary-stop-facility/ItineraryStopFacility"
 
-export { VsItinerary, VsItineraryStopCard, VsItineraryStopImage, VsItineraryStopFacilityListItem }
+export { VsItinerary, VsItineraryStop, VsItineraryStopImage, VsItineraryStopFacility }

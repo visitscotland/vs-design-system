@@ -42,7 +42,7 @@ export default {
     },
     /**
      * The fill color of the SVG icon.
-     * `primary, secondary, success, danger, warning, info, light, dark, reverse-white`
+     * `primary, secondary, success, danger, warning, info, light, dark, reverse-white, primary-purple, secondary-teal`
      */
     variant: {
       type: String,
@@ -120,6 +120,8 @@ $variants: (
   light: $color-theme-light,
   dark: $color-theme-dark,
   reverse-white: $color-white,
+  primary-purple: $color-theme-primary-purple,
+  secondary-teal: $color-theme-secondary-teal,
 );
 
 .icon {

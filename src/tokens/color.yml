@@ -24,6 +24,9 @@ props:
   - name: color_secondary_gray
     value: "#6A6366"
     category: "Secondary"
+  - name: color_secondary_teal
+    value: "#109DA3"
+    category: "Secondary"
 
   - name: color_base_text
     value: "#191919"
@@ -43,6 +46,9 @@ props:
     category: "Theme colours"
   - name: color_theme_secondary
     value: "#6A6366"
+    category: "Theme colours"
+  - name: color_theme_secondary_teal
+    value: "#109DA3"
     category: "Theme colours"
   - name: color_theme_success
     value: "#1E6101"
@@ -248,6 +254,41 @@ props:
   - name: color_secondary_gray_shade_6
     value: "#0B0A0A"
     category: "Secondary Gray Shades"
+
+  - name: color_secondary_teal_tint_1
+    value: "#34ACB1"
+    category: "Secondary Teal Tints"
+  - name: color_secondary_teal_tint_2
+    value: "#58BABF"
+    category: "Secondary Teal Tints"
+  - name: color_secondary_teal_tint_3
+    value: "#7CC9CC"
+    category: "Secondary Teal Tints"
+  - name: color_secondary_teal_tint_4
+    value: "#9FD8DA"
+    category: "Secondary Teal Tints"
+  - name: color_secondary_teal_tint_5
+    value: "#C3E7E8"
+    category: "Secondary Teal Tints"
+  - name: color_secondary_teal_tint_6
+    value: "#E7F5F6"
+    category: "Secondary Teal Tints"
+
+  - name: color_secondary_gray_shade_1
+    value: "#0E858B"
+    category: "Secondary Teal Shades"
+  - name: color_secondary_gray_shade_2
+    value: "#0B6E72"
+    category: "Secondary Teal Shades"
+  - name: color_secondary_gray_shade_3
+    value: "#09565A"
+    category: "Secondary Teal Shades"
+  - name: color_secondary_gray_shade_4
+    value: "#063F41"
+    category: "Secondary Teal Shades"
+  - name: color_secondary_gray_shade_5
+    value: "#042729"
+    category: "Secondary Teal Shades"
 
 global:
   type: color
