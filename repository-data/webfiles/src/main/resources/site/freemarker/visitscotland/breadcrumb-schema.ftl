@@ -13,37 +13,27 @@
             "itemListElement": [{
                 "@type": "ListItem",
                 "position": 1,
-                {
-                    "@id": "<@hst.link siteMapItemRefId="root"/>",
+                "item": {
+                    "@id": "<@hst.link siteMapItemRefId="root" fullyQualified=true/>",
                     "name": "<@fmt.message key="home"/>"
                 }
-            }
         <#assign count = 1>
         <#list breadcrumb.items as item>
             <#-- Avoid duplicated Home element (Document based pages skip this element)-->
             <#if item.link?? &&  item.link.hstSiteMapItem.id?? && item.link.hstSiteMapItem.id != "root">
-
-                <#if item.link??>
-                    <@hst.link var="link" link=item.link/>
-                <#else>
-                    <#-- This assignation removes the link from the breadcrumb -->
-                    <#assign link = requestedURI>
-                </#if>
-
-
-            <#--1(${link}) != 2(${requestedURI})-->
+                <@hst.link var="link" link=item.link fullyQualified=true/>
                 <#assign count = count + 1>
-                ,{
-                    "@type": "ListItem",
-                    "position": ${count},
-                    {
-                        "@id": "${link}",
-                        "name": "${item.title?html}"
-                    }
+            <#-- Keep the indentation -->
+            },{
+                "@type": "ListItem",
+                "position": ${count},
+                "item": {
+                    "@id": "${link}"
+                    "name": "${item.title?html}"
                 }
             </#if>
         </#list>
-            ]
+            }]
         }
 
         </script>
