@@ -118,9 +118,7 @@
         <vs-header-drawer-toggle
           drawer-key="header-bottom"
           content-key="favourites-list"
-          :href="favourite.href"
-          :title="favourite.title"
-          tag="vs-favourites-button"
+          tag="vs-favourites-view-button"
           section="bottom"
         />
       </template>
