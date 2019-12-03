@@ -6,7 +6,7 @@
     "imageSrc": "fixtures/itineraries/images/elie-beach-header.jpg",
     "altText": "Child playing on Elie Beach",
     "description": "Elie beach",
-    "credit": "",
+    "credit": "Test Credit",
     "longitude": "-2.8243733",
     "latitude": "56.1896033"
   },
@@ -18,7 +18,12 @@
   "totalDays": 4,
   "totalMiles": 60,
   "totalKM": 96,
-  "transport": "Car",
+  "transport": [
+    {
+      "key": "car",
+      "value": "Car"
+    }
+  ],
   "theme": "Families",
   "highlights": ["East Neuk of Fife", "St Andrews", "Dundee", "Angus"],
   "areasCovered": ["East"],
@@ -27,7 +32,16 @@
       "count": 1,
       "title": "Exploring the East Neuk of Fife",
       "introduction": "You’ll soon discover that there are plenty of things to do with kids in Fife. The East Neuk takes in the eastern corner of the Fife region, and its collection of pretty fishing settlements and small sandy beaches make it a real gem of an area to explore. Below ground you might also find an underground surprise in the form of Scotland's Secret Bunker, or play fairytale-themed games as you explore the beautiful ground of Kellie Castle.",
-      "transport": ["Car", "Walking"],
+      "transport": [
+        {
+          "key": "car",
+          "value": "Car"
+        },
+        {
+          "key": "walking",
+          "value": "Walking"
+        }
+      ],
       "stops": [
         {
           "stopCount": 1,
@@ -149,7 +163,16 @@
       "count": 2,
       "title": "Animal attractions and beach fun in St Andrews",
       "introduction": "In and around St Andrews, there is lots to see and do - you might even need two days to fit it all in! St Andrews is famed for many things, including being home to one of the country's top universities and sharing the same name as Scotland's patron saint. We know that might not be enough to interest the little ones - but don't worry, the beaches, castle, and wildlife attractions will! There are also some great <a href=\"https://www.visitscotland.com/info/see-do/search-results?prodtypes=acti%2Cattr%2Creta&loc=St+Andrews&locplace=9911&locprox=1&areaproxdist=10&cat=karting&cat=biketours&cat=canoekayak&cat=pwrboatjetski&cat=outgolf&cat=icerinks&cat=climbabseil&cat=fishing&cat=watersports&cat=archery&cat=outcycle&cat=canyoncoastgorg&cat=skishopshire&cat=flying&cat=countrysports&cat=football&cat=outdoorwalk&cat=sailingboating&cat=rugby&cat=other&cat=photo&cat=cookeryschools&cat=fisheries&cat=swimmingpools&cat=indcrafts&cat=fitleisurecen&cat=tenpinbowling&cat=highlandgames&cat=golfpass&cat=mountainbiking&cat=paintblasquest&cat=spahealth&cat=horseriding&cat=multiactivtycen&cat=driveexperience\">activities</a> to try in the area, including horse riding, golf and watersports.",
-      "transport": ["Car", "Walking"],
+      "transport": [
+        {
+          "key": "car",
+          "value": "Car"
+        },
+        {
+          "key": "walking",
+          "value": "Walking"
+        }
+      ],
       "stops": [
         {
           "stopCount": 5,
@@ -284,7 +307,16 @@
       "count": 3,
       "title": "Make Discoveries in Dundee",
       "introduction": "One of Scotland's seven cities, Dundee is packed with a range of brilliant family attractions. Don't be surprised if you can't fit them all into one day! In Dundee, the kids are bound to be inspired by the many great things to see and do. Who knows, they may even find their calling; ground-breaking scientist, pioneering polar explorer or Olympic diver, perhaps?",
-      "transport": ["Car", "Walking"],
+      "transport": [
+        {
+          "key": "car",
+          "value": "Car"
+        },
+        {
+          "key": "walking",
+          "value": "Walking"
+        }
+      ],
       "stops": [
         {
           "stopCount": 9,
@@ -433,7 +465,16 @@
       "count": 4,
       "title": "Ambles in Angus",
       "introduction": "Beautiful Angus is a region of rolling glens and fine coastal communities and offers fantastic opportunities for kids to connect with nature and the countryside. Today, enjoy a slice of rural life on a visit to a fruit farm and spend time getting to know various species of wildlife at a local nature reserve. If you have time, head inland to the pretty burgh of Kirriemuir, nestled at the base of the Angus Glens, to uncover the story of the writer who created Peter Pan.",
-      "transport": ["Car", "Walking"],
+      "transport": [
+        {
+          "key": "car",
+          "value": "Car"
+        },
+        {
+          "key": "walking",
+          "value": "Walking"
+        }
+      ],
       "stops": [
         {
           "stopCount": 13,
