@@ -24,6 +24,7 @@ VS_BRXM_INSTANCE_HTTP_HOST=localhost
 #  == Hosting Environment Variables ==
 VS_PROXY_SERVER_SCHEME=https
 VS_PROXY_SERVER_FQDN=feature.visitscotland.com
+VS_BRXM_PORT_OVERRIDE=8080
 
 # set container name
 #CONTAINER_NAME=`basename $BRANCH_NAME`
@@ -50,7 +51,12 @@ for IMAGE in `docker images | egrep "$CONTAINER_NAME" | awk '{print $3}'`; do ec
 
 echo ""
 echo "finding a free port to map to the new container's Tomcat port"
-PORT=8000; MAXPORT=8099; while [ $PORT -le $MAXPORT ]; do FREE=`netstat -an | egrep "LISTEN *$" | grep $PORT`; if [ "$FREE" = "" ]; then echo $PORT is free; break; fi; PORT=$((PORT+1)); sleep 0; done; if [ $PORT -gt $MAXPORT ]; then echo reached $PORT, no ports are free; PORT=NULL; echo PORT=$PORT; fi
+if [ -z "$VS_BRXM_PORT_OVERRIDE" ]; then
+  PORT=8000; MAXPORT=8099; while [ $PORT -le $MAXPORT ]; do FREE=`netstat -an | egrep "LISTEN *$" | grep $PORT`; if [ "$FREE" = "" ]; then echo $PORT is free; break; fi; PORT=$((PORT+1)); sleep 0; done; if [ $PORT -gt $MAXPORT ]; then echo reached $PORT, no ports are free; PORT=NULL; echo PORT=$PORT; fi
+else
+  echo PORT will be set to $VS_BRXM_PORT_OVERRIDE due to VS_BRXM_PORT_OVERRIDE
+  PORT=$VS_BRXM_PORT_OVERRIDE
+fi
 
 # create dockerfile location in $WORKSPACE
 #cp -R $DOCKERFILE_LOCATION $WORKSPACE
