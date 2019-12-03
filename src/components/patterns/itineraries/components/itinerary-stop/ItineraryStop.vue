@@ -1,12 +1,13 @@
 <template>
-  <component :is="type" class="vs-itinerary__stop-card">
-    <h3>
+  <component :is="type" class="vs-itinerary-stop__list-item">
+    <div class="vs-itinerary-stop__header d-flex align-items-top">
+      <vs-icon name="map-marker-solid" variant="secondary-teal" size="md" padding="0" />
       <slot name="stop-title" />
-    </h3>
+    </div>
     <slot name="stop-image" />
     <slot name="stop-description" />
     <slot name="stop-time-to-explore" />
-    <slot class="vs-itinerary__stop-href" name="stop-href" />
+    <slot class="vs-itinerary-stop-href" name="stop-href" />
     <slot name="stop-facilities" />
   </component>
 </template>
@@ -15,7 +16,7 @@ import VsIcon from "@components/elements/icon/Icon"
 import VsButton from "@components/elements/button/Button"
 import { VsContainer, VsRow, VsCol } from "@components/elements/layout"
 import VsItineraryStopImage from "@components/patterns/itineraries/components/itinerary-stop-image/ItineraryStopImage"
-import VsItineraryStopFacilityListItem from "@components/patterns/itineraries/components/itinerary-stop-facility-list-item/ItineraryStopFacilityListItem"
+import VsItineraryStopFacility from "@components/patterns/itineraries/components/itinerary-stop-facility/ItineraryStopFacility"
 import VsImageLocationMap from "@components/patterns/image-location-map/ImageLocationMap"
 
 /**
@@ -23,7 +24,7 @@ import VsImageLocationMap from "@components/patterns/image-location-map/ImageLoc
  */
 
 export default {
-  name: "VsItineraryStopCard",
+  name: "VsItineraryStop",
   status: "prototype",
   release: "0.0.1",
   components: {
@@ -32,7 +33,7 @@ export default {
     VsCol,
     VsItineraryStopImage,
     VsImageLocationMap,
-    VsItineraryStopFacilityListItem,
+    VsItineraryStopFacility,
     VsButton,
     VsIcon,
   },
@@ -52,25 +53,33 @@ export default {
 
 <style lang="scss" scoped>
 @import "~bootstrap/scss/type";
-h3 {
-  font-weight: $font-weight-light;
 
-  span {
-    font-weight: $font-weight-bold;
-  }
+.vs-itinerary-stop__list-item {
+  border: 1px solid $color-secondary-gray;
+  padding: $spacer-4;
+}
+
+.vs-itinerary-stop__title ::v-deep > span {
+  font-family: $headings-font-family;
+  display: block;
 }
 </style>
 
 <docs>
 ```jsx
-<vs-itinerary-stop-card 
+<ul style="list-style-type: none; padding: 0;">
+<vs-itinerary-stop 
   v-for="(stop, index) in itineraries.sampleItinerary.days[0].stops"
   :key="index"
 >
-  <template slot="stop-title">
-      <span>Stop {{stop.stopCount}}</span>
-      {{stop.title}}
-  </template>
+<vs-heading 
+  slot="stop-title"
+  level="3" 
+  thin 
+  class="vs-itinerary-stop__title ml-1">
+  <span>Stop {{stop.stopCount}}</span>
+  {{stop.title}}
+</vs-heading>
  <vs-itinerary-stop-image
       :altText="stop.image.altText"
       :credit="stop.image.credit"
@@ -101,14 +110,15 @@ h3 {
     :href="stop.href"
   >Find out more</a>
   <ul slot="stop-facilities" class="list-unstyled">
-    <vs-itinerary-stop-facility-list-item
+    <vs-itinerary-stop-facility
       v-for="(facility, facilitiesIndex) in stop.facilities"
       :key="facilitiesIndex"
       :facility="facility"
     >
       {{facility.value}}
-    </vs-itinerary-stop-facility-list-item>
+    </vs-itinerary-stop-facility>
   </ul>
-  </vs-itinerary-stop-card>
+  </vs-itinerary-stop>
+  </ul>
   ```
 </docs>
