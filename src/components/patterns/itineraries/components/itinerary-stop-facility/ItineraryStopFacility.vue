@@ -1,8 +1,10 @@
 <template>
-  <li class="vs-itinerary-stop__facility" :class="facility.key">
-    <vs-icon v-if="formattedIconName.length" :name="formattedIconName" variant="dark" size="sm" />
+  <dd class="itinerary-stop__facilities__dd">
+    <div class="icon-wrapper">
+      <vs-icon v-if="formattedIconName.length" :name="formattedIconName" variant="dark" size="xs" />
+    </div>
     <slot />
-  </li>
+  </dd>
 </template>
 
 <script>
@@ -26,10 +28,10 @@ export default {
       var formattedIconName = ""
       switch (this.facility.key) {
         case "parking":
-          formattedIconName = "toilet"
+          formattedIconName = "park"
           break
         case "accessparkdrop":
-          formattedIconName = "toilet"
+          formattedIconName = "accessible-parking-dropoff"
           break
         case "dsblaccess":
           formattedIconName = "accessible"
@@ -53,23 +55,30 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.vs-breadcrumb-item {
-  color: $color-base-text;
-  font-size: $font-size-base;
-  font-weight: $font-weight-normal;
+.itinerary-stop__facilities__dd {
+  display: inline-table;
+  text-align: center;
+  width: 100px;
+  position: relative;
+
+  .icon-wrapper {
+    display: block;
+    width: 100%;
+  }
 }
 </style>
 
 <docs>
   ```jsx
-  <ul style="list-style-type: none; padding: 0;">
-  <vs-itinerary-stop-facility
-      v-for="(facility, facilitiesIndex) in itineraries.sampleItinerary.days[0].stops[2].facilities"
-      :key="facilitiesIndex"
-      :facility="facility"
-    >
+  <dl>
+    <dt>Key facilities</dt>
+    <vs-itinerary-stop-facility
+        v-for="(facility, facilitiesIndex) in itineraries.sampleItinerary.days[0].stops[2].facilities"
+        :key="facilitiesIndex"
+        :facility="facility"
+      >
       {{facility.value}}
     </vs-itinerary-stop-facility>
-  </ul>
+  </dl>
   ```
 </docs>

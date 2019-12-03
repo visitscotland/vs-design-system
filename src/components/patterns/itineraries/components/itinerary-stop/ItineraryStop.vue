@@ -1,7 +1,7 @@
 <template>
   <component :is="type" class="vs-itinerary-stop__list-item">
     <div class="vs-itinerary-stop__header d-flex align-items-top">
-      <vs-icon name="map-marker-solid" variant="secondary-teal" size="md" padding="0" />
+      <vs-icon name="map-marker-solid" variant="secondary-teal" size="md" :padding="0" />
       <slot name="stop-title" />
     </div>
     <slot name="stop-image" />
@@ -55,19 +55,35 @@ export default {
 @import "~bootstrap/scss/type";
 
 .vs-itinerary-stop__list-item {
-  border: 1px solid $color-secondary-gray;
+  background-color: $color-white;
+  border: 1px solid $color-gray-tint-5;
   padding: $spacer-4;
+  margin-bottom: $spacer-4;
 }
 
 .vs-itinerary-stop__title ::v-deep > span {
   font-family: $headings-font-family;
   display: block;
 }
+
+.itinerary-stop__facilities {
+  border-top: 1px solid $color-gray-tint-5;
+  margin: $spacer-9 -1rem -1rem;
+  padding: 1rem 1rem 0;
+  text-align: center;
+
+  dt {
+    margin-bottom: 1rem;
+    flex-basis: 1;
+    display: block;
+    width: 100%;
+  }
+}
 </style>
 
 <docs>
 ```jsx
-<ul style="list-style-type: none; padding: 0;">
+<ul style="list-style-type: none; padding: 0px;">
 <vs-itinerary-stop 
   v-for="(stop, index) in itineraries.sampleItinerary.days[0].stops"
   :key="index"
@@ -76,40 +92,41 @@ export default {
   slot="stop-title"
   level="3" 
   thin 
-  class="vs-itinerary-stop__title ml-1">
+  class="vs-itinerary-stop__title ml-4 h4">
   <span>Stop {{stop.stopCount}}</span>
   {{stop.title}}
 </vs-heading>
  <vs-itinerary-stop-image
-      :altText="stop.image.altText"
-      :credit="stop.image.credit"
-      :description="stop.image.description"
-      :image-src="stop.image.imageSrc"
-      :latitude="stop.image.latitude"
-      :longitude="stop.image.longitude"
-      slot="stop-image"
-    >
-    <img 
-      class="lazyload" 
-      :src="stop.image.imageSrc"
-      srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
-      :data-srcset="stop.image.imageSrc" 
-      :alt="stop.image.altText"
-      data-sizes="auto"
-      slot="image" />
-      <noscript>
-        <img class="img-fluid" :src="stop.image.imageSrc" alt="item.image.altText" />
-      </noscript>
-    </vs-itinerary-stop-image>
+    :altText="stop.image.altText"
+    :credit="stop.image.credit"
+    :description="stop.image.description"
+    :image-src="stop.image.imageSrc"
+    :latitude="stop.image.latitude"
+    :longitude="stop.image.longitude"
+    slot="stop-image"
+  >
+  <img 
+    class="lazyload" 
+    :src="stop.image.imageSrc"
+    srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+    :data-srcset="stop.image.imageSrc" 
+    :alt="stop.image.altText"
+    data-sizes="auto"
+    slot="image" />
+    <noscript>
+      <img class="img-fluid" :src="stop.image.imageSrc" alt="item.image.altText" />
+    </noscript>
+  </vs-itinerary-stop-image>
   <div slot="stop-description" v-html="stop.description"></div>
-  <dl slot="stop-time-to-explore">
-    <dt>Time to explore:</dt>
-    <dd>{{stop.timeToExplore}}</dd>
+  <dl slot="stop-time-to-explore" class="list-inline my-4 mb-0">
+    <dt class="list-inline-item mb-0">Time to explore:</dt>
+    <dd class="list-inline-item mb-0">{{stop.timeToExplore}}</dd>
   </dl>
-  <a slot="stop-href"
+  <a slot="stop-href" class="text-link"
     :href="stop.href"
   >Find out more</a>
-  <ul slot="stop-facilities" class="list-unstyled">
+  <dl v-if="stop.facilities.length" class="itinerary-stop__facilities" slot="stop-facilities">
+    <dt>Key facilities</dt>
     <vs-itinerary-stop-facility
       v-for="(facility, facilitiesIndex) in stop.facilities"
       :key="facilitiesIndex"
@@ -117,7 +134,7 @@ export default {
     >
       {{facility.value}}
     </vs-itinerary-stop-facility>
-  </ul>
+  </dl>
   </vs-itinerary-stop>
   </ul>
   ```
