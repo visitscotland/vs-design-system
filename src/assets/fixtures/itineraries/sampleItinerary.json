@@ -18,13 +18,14 @@
   "totalDays": 4,
   "totalMiles": 60,
   "totalKM": 96,
-  "transport": [
-    {
-      "key": "car",
-      "value": "Car"
-    }
-  ],
-  "theme": "Families",
+  "transport": {
+    "key": "car",
+    "value": "Car"
+  },
+  "theme": {
+    "key": "child",
+    "value": "Families"
+  },
   "highlights": ["East Neuk of Fife", "St Andrews", "Dundee", "Angus"],
   "areasCovered": ["East"],
   "days": [
