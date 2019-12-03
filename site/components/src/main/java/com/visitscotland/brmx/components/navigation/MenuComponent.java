@@ -47,6 +47,7 @@ public class MenuComponent extends EssentialsMenuComponent {
                 //Widget document
                 if (bean instanceof Widget){
                     enhancedMenu.setWidget((Widget) bean);
+                    // TODO: IF BEAN IS INSTANCE OF BASEDOCUMENT (when Base document properly defined)
                 } else if (bean instanceof ContentDocument){
                     if (HippoUtils.existsResourceBundleKey(menu.getName(),NAVIGATION_BUNDLE, request.getLocale())){
                         enhancedMenu.setTitle(HippoUtils.getResourceBundle(menu.getName(),NAVIGATION_BUNDLE, request.getLocale()));
@@ -58,7 +59,6 @@ public class MenuComponent extends EssentialsMenuComponent {
         }
 
         if (enhancedMenu.getTitle() == null){
-
             String value = HippoUtils.getResourceBundle(menu.getName(),NAVIGATION_BUNDLE, request.getLocale());
             enhancedMenu.setTitle(value);
         }
@@ -69,6 +69,8 @@ public class MenuComponent extends EssentialsMenuComponent {
 
         return enhancedMenu;
     }
+
+
 
     private boolean isDocumentBased(HstLink link){
         return link != null && link.getPath() != null && link.getPath().length() > 0;

@@ -21,7 +21,8 @@
   <version>0.1.0-SNAPSHOT</version>
   <packaging>pom</packaging>
 
-  <!-- 
+
+  <!--
     The below project elements are emptied/overridden as otherwise their metadata would be
     inherited or merged from the parent hippo-cms7-release pom (or its hippo-cms7-project pom).
 
@@ -77,9 +78,9 @@
     <hippo.cms.locales>nl,de,fr,es,zh</hippo.cms.locales>
   
     <buildNumber>${maven.build.timestamp}</buildNumber>
-    <!-- TODO end define -->
 
-    
+    <forge.breadcrumb.version>3.0.0</forge.breadcrumb.version>
+    <!-- TODO end define -->
     
   </properties>
 
@@ -88,6 +89,18 @@
       <id>hippo</id>
       <name>Hippo maven 2 repository.</name>
       <url>https://maven.onehippo.com/maven2/</url>
+    </repository>
+    <repository>
+      <id>hippo-forge</id>
+      <name>Hippo Forge Maven 2 repository.</name>
+      <url>https://maven.onehippo.com/maven2-forge/</url>
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
+      <releases>
+        <updatePolicy>never</updatePolicy>
+      </releases>
+      <layout>default</layout>
     </repository>
   </repositories>
 
