@@ -1,5 +1,4 @@
 <#include "../include/imports.ftl">
-
 <@hst.setBundle basename="navigation"/>
 
 <#-- @ftlvariable name="breadcrumb" type="org.onehippo.forge.breadcrumb.om.Breadcrumb" -->
@@ -35,7 +34,6 @@
         </#list>
             }]
         }
-
         </script>
     </@hst.headContribution>
 </#if>
