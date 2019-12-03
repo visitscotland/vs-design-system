@@ -45,11 +45,14 @@ pipeline {
         }
 
         stage ('Availability notice'){
+// "input" section commented out for now - useful for when there is genuinely a need to pause for an answer
+/*
             input{
                 message "This environment will run until the next push is made the bitbucket repo."
             }
+*/
             steps {
-                sh 'echo "Keeping environment running until the next push to bitbucket."'
+                sh 'echo "This environment will run until the next commit to bitbucket is detected."'
             }
         }
     }
