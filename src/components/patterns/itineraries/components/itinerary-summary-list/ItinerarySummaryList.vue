@@ -34,7 +34,7 @@ export default {
   </vs-itinerary-summary-list-item>
   <vs-itinerary-summary-list-item>
     <strong>Distance <br /><abbr title="miles">mi</abbr>/<abbr title="kilometres">km</abbr></strong>
-    <span>{{itineraries.sampleItinerary.totalMiles}}/{{itineraries.sampleItinerary.totalKM}}</span>
+    <span>{{itineraries.sampleItinerary.totalMiles}}<span class="divider">/</span>{{itineraries.sampleItinerary.totalKM}}</span>
   </vs-itinerary-summary-list-item>
   <vs-itinerary-summary-list-item>
     <strong>Transport</strong>
