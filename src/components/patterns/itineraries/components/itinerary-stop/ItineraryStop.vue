@@ -8,6 +8,7 @@
     <slot name="stop-image" />
     <slot name="stop-description" />
     <slot name="stop-time-to-explore" />
+    <slot name="stop-pullout" />
     <slot class="vs-itinerary-stop-href" name="stop-href" />
     <slot name="stop-facilities" />
   </component>
@@ -18,6 +19,7 @@ import VsButton from "@components/elements/button/Button"
 import { VsContainer, VsRow, VsCol } from "@components/elements/layout"
 import VsItineraryStopImage from "@components/patterns/itineraries/components/itinerary-stop-image/ItineraryStopImage"
 import VsItineraryStopFacility from "@components/patterns/itineraries/components/itinerary-stop-facility/ItineraryStopFacility"
+import VsItineraryStopPullout from "@components/patterns/itineraries/components/itinerary-stop-pullout/ItineraryStopPullout"
 import VsImageLocationMap from "@components/patterns/image-location-map/ImageLocationMap"
 import VsFavouritesToggleButton from "@components/patterns/favourites/FavouritesToggleButton"
 
@@ -34,6 +36,7 @@ export default {
     VsRow,
     VsCol,
     VsItineraryStopImage,
+    VsItineraryStopPullout,
     VsImageLocationMap,
     VsItineraryStopFacility,
     VsFavouritesToggleButton,
@@ -86,7 +89,7 @@ export default {
 ```jsx
 <ul style="list-style-type: none; padding: 0px;">
 <vs-itinerary-stop 
-  v-for="(stop, index) in itineraries.sampleItinerary.days[0].stops"
+  v-for="(stop, index) in itineraries.sampleItinerary.days[3].stops"
   :key="index"
 >
 <vs-heading 
@@ -134,6 +137,13 @@ export default {
     Find out more
     <vs-icon name="play" variant="primary" size="xxs" :padding=3 />
   </a>
+  <vs-itinerary-stop-pullout slot="stop-pullout">
+    <div slot="text">
+      <strong>{{stop.pullOut.title}}</strong>
+      <div v-html="stop.pullOut.description"></div>
+    </div>
+    <vs-svg slot="svg" path="highland-cow" />
+  </vs-itinerary-stop-pullout>
   <dl v-if="stop.facilities.length" class="itinerary-stop__facilities" slot="stop-facilities">
     <dt>Key facilities</dt>
     <vs-itinerary-stop-facility

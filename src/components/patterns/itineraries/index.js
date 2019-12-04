@@ -4,6 +4,7 @@ import VsItineraryStopImage from "./components/itinerary-stop-image/ItinerarySto
 import VsItineraryStopFacility from "./components/itinerary-stop-facility/ItineraryStopFacility"
 import VsItinerarySummaryList from "./components/itinerary-summary-list/ItinerarySummaryList"
 import VsItinerarySummaryListItem from "./components/itinerary-summary-list-item/ItinerarySummaryListItem"
+import VsItineraryStopPullout from "./components/itinerary-stop-pullout/ItineraryStopPullout"
 
 export {
   VsItinerary,
@@ -12,4 +13,5 @@ export {
   VsItineraryStopFacility,
   VsItinerarySummaryList,
   VsItinerarySummaryListItem,
+  VsItineraryStopPullout,
 }
