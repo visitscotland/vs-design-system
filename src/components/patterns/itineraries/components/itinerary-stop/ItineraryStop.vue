@@ -55,8 +55,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "~bootstrap/scss/type";
-
 .vs-itinerary-stop__list-item {
   background-color: $color-white;
   border: 1px solid $color-gray-tint-5;

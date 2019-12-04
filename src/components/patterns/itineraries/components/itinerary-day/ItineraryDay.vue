@@ -65,8 +65,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "~bootstrap/scss/type";
-
 .vs-itinerary-day__list-item {
   border-top: 5px solid $color-base-text;
   padding: $spacer-4;
