@@ -50,11 +50,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "~bootstrap/scss/utilities/text";
-@import "~bootstrap/scss/utilities/display";
-@import "~bootstrap/scss/utilities/flex";
-@import "~bootstrap/scss/type";
-@import "~bootstrap/scss/utilities/screenreaders";
 @import "../../styles/placeholders";
 
 // .collapse:not(.show) {

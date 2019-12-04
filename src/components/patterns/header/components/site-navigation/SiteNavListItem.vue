@@ -130,12 +130,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "~bootstrap/scss/utilities/text";
-@import "~bootstrap/scss/utilities/display";
-@import "~bootstrap/scss/utilities/position";
-@import "~bootstrap/scss/utilities/flex";
-@import "~bootstrap/scss/utilities/screenreaders";
-@import "~bootstrap/scss/type";
 @import "../../styles/placeholders";
 @import "../../styles/animations";
 
