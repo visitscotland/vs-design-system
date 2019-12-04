@@ -31,6 +31,10 @@ export default {
   span {
     font-size: 1.625rem;
     font-family: $headings-font-family;
+
+    &.divider {
+      font-family: $headings-font-family-thin;
+    }
   }
 }
 </style>
@@ -44,7 +48,7 @@ export default {
   </vs-itinerary-summary-list-item>
   <vs-itinerary-summary-list-item>
     <strong>Distance <br /><abbr title="miles">mi</abbr>/<abbr title="kilometres">km</abbr></strong>
-    <span>{{itineraries.sampleItinerary.totalMiles}}/{{itineraries.sampleItinerary.totalKM}}</span>
+    <span>{{itineraries.sampleItinerary.totalMiles}}<span class="divider">/</span>{{itineraries.sampleItinerary.totalKM}}</span>
   </vs-itinerary-summary-list-item>
   <vs-itinerary-summary-list-item>
     <strong>Transport</strong>
