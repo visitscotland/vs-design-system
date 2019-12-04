@@ -42,26 +42,24 @@ export default {
 <docs>
 ```jsx
     <vs-hero
-      v-for="(item, index) in hero.imageExamples"
-      :altText="item.altText"
-      :credit="item.credit"
-      :description="item.description"
-      :image-src="item.imageSrc"
-      :key="index"
-      :latitude="item.latitude"
-      :longitude="item.longitude"
+      :altText="itineraries.sampleItinerary.image.altText"
+      :credit="itineraries.sampleItinerary.image.credit"
+      :description="itineraries.sampleItinerary.image.description"
+      :image-src="itineraries.sampleItinerary.image.imageSrc"
+      :latitude="itineraries.sampleItinerary.image.latitude"
+      :longitude="itineraries.sampleItinerary.image.longitude"
       slot="hero"
     >
     <img 
       class="lazyload" 
-      :src="item.imageSrc"
+      :src="itineraries.sampleItinerary.image.imageSrc"
       srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
-      :data-srcset="item.imageSrc" 
-      :alt="item.altText"
+      :data-srcset="itineraries.sampleItinerary.image.imageSrc" 
+      :alt="itineraries.sampleItinerary.image.altText"
       data-sizes="auto"
       slot="image" />
       <noscript>
-        <img class="img-fluid" :src="item.imageSrc" alt="item.altText" />
+        <img class="img-fluid" :src="itineraries.sampleItinerary.image.imageSrc" alt="item.altText" />
       </noscript>
     </vs-hero>
     <vs-container>
@@ -88,9 +86,9 @@ export default {
         <dd class="list-inline-item">{{itineraries.sampleItinerary.start}}/{{itineraries.sampleItinerary.finish}}</dd>
       </dl>
     </vs-container>
-    <div class="bg-light pb-4">
+    <div class="bg-light py-4">
       <vs-container>
-        <vs-itinerary-summary-list class="mb-9">
+        <vs-itinerary-summary-list>
           <vs-itinerary-summary-list-item>
             <strong>Days</strong>
             <span>{{itineraries.sampleItinerary.totalDays}}</span>
@@ -115,8 +113,7 @@ export default {
           </vs-itinerary-summary-list-item>
         </vs-itinerary-summary-list>
       </vs-container>
-    </div>
-    <div class="bg-light py-4">
+     
       <vs-container>
         <vs-itinerary-highlights-list>
           <dt>Highlights</dt>
@@ -134,13 +131,12 @@ export default {
             {{areaCovered}}
           </dd>
         </vs-itinerary-highlights-list>
-        
       </vs-container>
     </div>
     <ul style="list-style-type: none; padding: 0px;">
       <vs-itinerary-day 
         v-for="(day, index) in itineraries.sampleItinerary.days"
-        :defaultShow="(day.count < 3) ? true : false"
+        :defaultShow="(day.dayCount < 3) ? true : false"
         :key="index"
       >
       <vs-heading 
@@ -148,7 +144,7 @@ export default {
         level="2" 
         thin 
         class="vs-itinerary-day__title">
-        <span>Day {{day.count}}</span>
+        <span>Day {{day.dayCount}}</span>
         {{day.title}}
       </vs-heading>
         
@@ -179,7 +175,7 @@ export default {
             <span>Stop {{stop.stopCount}}</span>
             {{stop.title}}
           </vs-heading>
-          <vs-favourites-add-button
+          <vs-favourites-toggle-button
             slot="stop-favourite"
               :href="stop.href"
               :title="stop.title"
