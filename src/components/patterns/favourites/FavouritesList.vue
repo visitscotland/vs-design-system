@@ -75,23 +75,23 @@ export default {
 
   <div style="position: relative; height: 600px;">
     Test Add Favourite Item 1
-    <vs-favourites-add-button 
+    <vs-favourites-toggle-button 
       :href="favourite.href"
       :title="favourite.title"
     >
-    </vs-favourites-add-button>
+    </vs-favourites-toggle-button>
     Test Add Favourite Item 2
-     <vs-favourites-add-button 
+     <vs-favourites-toggle-button 
       href="http:www.visitscotland.org"
       title="VisitScotland Corporate Website"
     >
-    </vs-favourites-add-button>
+    </vs-favourites-toggle-button>
     Test Add Favourite Item 3
-     <vs-favourites-add-button 
+     <vs-favourites-toggle-button 
       href="https://www.visitscotland.com/destinations-maps/st-andrews/"
       title="St Andrews"
     >
-    </vs-favourites-add-button>
+    </vs-favourites-toggle-button>
     Favourites Count
     <vs-favourites-view-button>
     </vs-favourites-view-button>

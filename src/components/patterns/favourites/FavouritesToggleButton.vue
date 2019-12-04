@@ -1,12 +1,13 @@
 <template>
   <vs-button
-    class="vs-favourites-add__button"
-    @click.native="addFavourite"
+    class="vs-favourites-toggle__button"
+    @click.native="toggleFavourite"
     variant="transparent"
     :animate="false"
     size="sm"
   >
-    <span class="sr-only">Add to Favourites</span>
+    <span class="sr-only" v-if="this.favourited">Remove from Favourites</span>
+    <span class="sr-only" v-else>Add to Favourites</span>
     <vs-icon v-if="favourited" name="favourite-filled" size="md" variant="primary" :padding="0" />
     <vs-icon v-else name="favourite" size="md" variant="dark" :padding="0" />
   </vs-button>
@@ -17,7 +18,7 @@ import VsIcon from "@components/elements/icon/Icon"
 import store from "./favourites.store"
 
 export default {
-  name: "VsFavouritesAddButton",
+  name: "VsFavouritesToggleButton",
   status: "prototype",
   release: "0.0.1",
   components: { VsIcon },
@@ -47,15 +48,19 @@ export default {
     },
   },
   methods: {
-    addFavourite() {
-      store.dispatch("favourites/addFavourite", this.favouriteItem)
+    toggleFavourite() {
+      if (!this.favourited) {
+        store.dispatch("favourites/addFavourite", this.favouriteItem)
+      } else {
+        store.dispatch("favourites/deleteFavourite", this.favouriteItem)
+      }
     },
   },
 }
 </script>
 
 <style lang="scss" scoped>
-.vs-favourites-add__button {
+.vs-favourites-toggle__button {
   display: block;
   position: relative;
   height: 40px;
@@ -67,7 +72,7 @@ export default {
 <docs>
   ```jsx
 
-    <vs-favourites-add-button
+    <vs-favourites-toggle-button
       :href="favourite.href"
       :title="favourite.title"
     />

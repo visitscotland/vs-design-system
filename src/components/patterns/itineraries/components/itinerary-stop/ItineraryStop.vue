@@ -19,7 +19,7 @@ import { VsContainer, VsRow, VsCol } from "@components/elements/layout"
 import VsItineraryStopImage from "@components/patterns/itineraries/components/itinerary-stop-image/ItineraryStopImage"
 import VsItineraryStopFacility from "@components/patterns/itineraries/components/itinerary-stop-facility/ItineraryStopFacility"
 import VsImageLocationMap from "@components/patterns/image-location-map/ImageLocationMap"
-import VsFavouritesAddButton from "@components/patterns/favourites/FavouritesAddButton"
+import VsFavouritesToggleButton from "@components/patterns/favourites/FavouritesToggleButton"
 
 /**
  * TODO: Document usage.
@@ -36,7 +36,7 @@ export default {
     VsItineraryStopImage,
     VsImageLocationMap,
     VsItineraryStopFacility,
-    VsFavouritesAddButton,
+    VsFavouritesToggleButton,
     VsButton,
     VsIcon,
   },
@@ -99,7 +99,7 @@ export default {
   <span>Stop {{stop.stopCount}}</span>
   {{stop.title}}
 </vs-heading>
-<vs-favourites-add-button
+<vs-favourites-toggle-button
   slot="stop-favourite"
     :href="stop.href"
     :title="stop.title"
