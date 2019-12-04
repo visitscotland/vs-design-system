@@ -25,7 +25,6 @@
 <script>
 import VsIcon from "@components/elements/icon/Icon"
 import VsButton from "@components/elements/button/Button"
-import { VsContainer, VsRow, VsCol } from "@components/elements/layout"
 
 /**
  * TODO: Document usage.
@@ -36,9 +35,6 @@ export default {
   status: "prototype",
   release: "0.0.1",
   components: {
-    VsContainer,
-    VsRow,
-    VsCol,
     VsButton,
     VsIcon,
   },
@@ -99,7 +95,7 @@ export default {
 <ul style="list-style-type: none; padding: 0px;">
 <vs-itinerary-day 
   v-for="(day, index) in itineraries.sampleItinerary.days"
-  :defaultShow="(day.count < 3) ? true : false"
+  :defaultShow="(day.dayCount < 3) ? true : false"
   :key="index"
 >
 <vs-heading 
@@ -107,7 +103,7 @@ export default {
   level="2" 
   thin 
   class="vs-itinerary-day__title">
-  <span>Day {{day.count}}</span>
+  <span>Day {{day.dayCount}}</span>
   {{day.title}}
 </vs-heading>
   
