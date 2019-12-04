@@ -137,7 +137,7 @@ export default {
     Find out more
     <vs-icon name="play" variant="primary" size="xxs" :padding=3 />
   </a>
-  <vs-itinerary-stop-pullout slot="stop-pullout">
+  <vs-itinerary-stop-pullout slot="stop-pullout" v-if="stop.pullOut.description.length">
     <div slot="text">
       <strong>{{stop.pullOut.title}}</strong>
       <div v-html="stop.pullOut.description"></div>
