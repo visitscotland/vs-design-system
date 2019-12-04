@@ -61,7 +61,7 @@ export default {
 .itinerary-stop__facilities__dd {
   display: inline-table;
   text-align: center;
-  width: 100px;
+  width: 90px;
   position: relative;
 
   .icon-wrapper {
