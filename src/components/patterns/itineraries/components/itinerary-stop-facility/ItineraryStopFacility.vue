@@ -28,25 +28,25 @@ export default {
       var formattedIconName = ""
       switch (this.facility.key) {
         case "parking":
-          formattedIconName = "park"
+          formattedIconName = "facility-park"
           break
         case "accessparkdrop":
-          formattedIconName = "accessible-parking-dropoff"
+          formattedIconName = "facility-accessparkdrop"
           break
         case "dsblaccess":
-          formattedIconName = "accessible"
+          formattedIconName = "facility-dsblacce"
           break
         case "audioloop":
-          formattedIconName = "hearing-loop"
+          formattedIconName = "facility-audioloop"
           break
         case "petswelcom":
-          formattedIconName = "pet-friendly"
+          formattedIconName = "facility-petswelcom"
           break
         case "toilet":
           formattedIconName = "toilet"
           break
         case "wifi":
-          formattedIconName = "wifi"
+          formattedIconName = "facility-wifi"
           break
         default:
           formattedIconName = ""
