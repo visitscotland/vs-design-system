@@ -4,7 +4,7 @@
       <slot name="image" />
       <vs-button
         variant="transparent"
-        class="d-lg-none position-absolute vs-itinerary-stop-image__toggle-caption"
+        class="position-absolute vs-itinerary-stop-image__toggle-caption"
         v-if="showToggle"
         :animate="false"
         @click.native="toggleCaption"
@@ -16,7 +16,7 @@
 
     <vs-container
       class="position-relative vs-itinerary-stop-image__caption-wrapper"
-      :class="[showCaption ? 'd-flex' : 'd-none d-lg-flex']"
+      :class="[showCaption ? 'd-flex' : 'd-none']"
     >
       <figcaption ref="figcaption">
         <vs-row>
