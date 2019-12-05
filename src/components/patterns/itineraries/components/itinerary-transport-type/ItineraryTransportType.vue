@@ -1,5 +1,11 @@
 <template>
-  <div class="d-flex flex-column-reverse vs-itinerary-summary__item">
+  <div class="vs-itinerary-transport-type">
+    <vs-icon
+      v-if="formattedTransportIconName.length"
+      :name="formattedTransportIconName"
+      variant="dark"
+      size="xs"
+    />
     <slot />
   </div>
 </template>
@@ -58,8 +64,12 @@ export default {
 
 <docs>
   ```jsx
-  <vs-itinerary-transport-type>
-   
+  <vs-itinerary-transport-type
+    v-for="(transport, index) in transport.transport"
+    :key="index"
+    :transport="transport"
+  >
+   {{transport.value}}
   </vs-itinerary-transport-type>
   ```
 </docs>
