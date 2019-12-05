@@ -1,0 +1,4 @@
+/content/gallery/visitscotland/default:
+  jcr:primaryType: hippogallery:stdImageGallery
+  hippostd:foldertype: [new-visitscotland-Image-folder]
+  hippostd:gallerytype: ['visitscotland:Image']

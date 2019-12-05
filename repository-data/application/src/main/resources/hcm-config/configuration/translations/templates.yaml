@@ -5,18 +5,44 @@ definitions:
       new-untranslated-folder: Neuer nicht übersetzter Ordner
       new-content-folder: Neuer Content-Ordner
       new-content-document: Neues Content-Document
+      new-visitscotland-default-image: Neues Bild
+      new-visitscotland-default-folder: Neuer Ordner
+      new-visitscotland-Image-folder: Neuer Ordner
+      new-visitscotland-Image-image: Neues Bild
     /hippo:configuration/hippo:translations/hippo:templates/en:
       new-resource-bundle: new resource bundle
       new-untranslated-folder: new untranslated folder
       new-content-folder: new content folder
       new-content-document: new content document
+      new-visitscotland-default-image: New Image
+      new-visitscotland-default-folder: new folder
+      new-visitscotland-Image-folder: new folder
+      new-visitscotland-Image-image: New Image
     /hippo:configuration/hippo:translations/hippo:templates/fr:
       new-resource-bundle: nouveau resource bundle
       new-untranslated-folder: nouveau dossier non traduit
       new-content-folder: nouveau dossier contenu
       new-content-document: nouveau document contenu
+      new-visitscotland-default-image: Nouvelle image
+      new-visitscotland-default-folder: un nouveau dossier
+      new-visitscotland-Image-folder: un nouveau dossier
+      new-visitscotland-Image-image: Nouvelle image
     /hippo:configuration/hippo:translations/hippo:templates/nl:
       new-resource-bundle: nieuwe resource bundle
       new-untranslated-folder: nieuwe onvertaalde map
       new-content-folder: nieuwe contentmap
       new-content-document: nieuw content document
+      new-visitscotland-default-image: Nieuwe Afbeelding
+      new-visitscotland-default-folder: nieuwe map
+      new-visitscotland-Image-folder: nieuwe map
+      new-visitscotland-Image-image: Nieuwe Afbeelding
+    /hippo:configuration/hippo:translations/hippo:templates/es:
+      new-visitscotland-default-image: Nueva imagen
+      new-visitscotland-default-folder: nueva carpeta
+      new-visitscotland-Image-folder: nueva carpeta
+      new-visitscotland-Image-image: Nueva imagen
+    /hippo:configuration/hippo:translations/hippo:templates/zh:
+      new-visitscotland-default-image: 新图片
+      new-visitscotland-default-folder: 新文件夹
+      new-visitscotland-Image-folder: 新文件夹
+      new-visitscotland-Image-image: 新图片
