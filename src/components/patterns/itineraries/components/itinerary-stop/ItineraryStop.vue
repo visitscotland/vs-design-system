@@ -1,8 +1,10 @@
 <template>
   <component :is="type" class="vs-itinerary-stop__list-item">
-    <div class="vs-itinerary-stop__header d-flex align-items-top">
+    <div class="vs-itinerary-stop__header d-flex justify-content-between align-items-top">
       <vs-icon name="map-marker-solid" variant="secondary-teal" size="md" :padding="0" />
-      <slot name="stop-title" />
+      <div class="flex-fill">
+        <slot name="stop-title" />
+      </div>
       <slot name="stop-favourite" />
     </div>
     <slot name="stop-image" />
