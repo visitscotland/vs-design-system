@@ -42,7 +42,7 @@ export default {
     },
     /**
      * The fill color of the SVG icon.
-     * `primary, secondary, success, danger, warning, info, light, dark, reverse-white`
+     * `primary, secondary, success, danger, warning, info, light, dark, reverse-white, primary-purple, secondary-teal`
      */
     variant: {
       type: String,
@@ -120,6 +120,8 @@ $variants: (
   light: $color-theme-light,
   dark: $color-theme-dark,
   reverse-white: $color-white,
+  primary-purple: $color-theme-primary-purple,
+  secondary-teal: $color-theme-secondary-teal,
 );
 
 .icon {
@@ -191,6 +193,7 @@ $variants: (
         <vs-icon name="user" variant="secondary" />
         <vs-icon name="user" variant="success" />
         <vs-icon name="user" variant="warning" />
+        <vs-icon name="user" variant="info" />
         <vs-icon name="user" variant="danger" />
         <vs-icon name="user" variant="dark" />
         <vs-icon name="user" variant="light" />
@@ -205,6 +208,7 @@ $variants: (
         <vs-icon name="favourite" reverse variant="secondary" />
         <vs-icon name="favourite" reverse variant="success" />
         <vs-icon name="favourite" reverse variant="warning" />
+        <vs-icon name="favourite" reverse variant="info" />
         <vs-icon name="favourite" reverse variant="danger" />
         <vs-icon name="favourite" reverse variant="dark" />
         <vs-icon name="favourite" reverse variant="light" />

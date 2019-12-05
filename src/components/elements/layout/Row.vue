@@ -1,5 +1,5 @@
 <template>
-  <b-row tag="div" v-bind="$attrs">
+  <b-row v-bind="$attrs">
     <!-- @slot The row's contents go here -->
     <slot />
   </b-row>
