@@ -89,7 +89,7 @@ export default {
 
 <docs>
 ```jsx
-<ul style="list-style-type: none; padding: 0px;">
+<ul class="list-unstyled">
 <vs-itinerary-stop 
   v-for="(stop, index) in itineraries.sampleItinerary.days[3].stops"
   :key="index"

@@ -19,8 +19,6 @@ export default {
 <style lang="scss" scoped>
 .itinerary-summary-box__list {
   background-color: $color-yellow;
-  list-style-type: none;
-  margin: 0;
   padding: 0.5rem;
 }
 </style>

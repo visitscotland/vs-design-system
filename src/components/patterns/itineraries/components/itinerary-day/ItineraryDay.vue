@@ -90,7 +90,7 @@ export default {
 
 <docs>
 ```jsx
-<ul style="list-style-type: none; padding: 0px;">
+<ul class="list-unstyled">
 <vs-itinerary-day 
   v-for="(day, index) in itineraries.sampleItinerary.days"
   :defaultShow="(day.dayCount < 3) ? true : false"
