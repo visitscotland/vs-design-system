@@ -1,0 +1,56 @@
+<template>
+  <aside class="vs-related-content bg-dark my-9">
+    <slot name="header" />
+    <vs-row tag="ul" class="list-unstyled">
+      <slot name="cards" />
+    </vs-row>
+  </aside>
+</template>
+
+<script>
+/**
+ * TODO: Document usage
+ */
+
+export default {
+  name: "VsRelatedContentList",
+  status: "prototype",
+  release: "0.0.1",
+}
+</script>
+
+<style lang="scss" scoped>
+.vs-related-content {
+  display: block;
+}
+</style>
+<docs>
+  ```jsx
+<vs-related-content-list>
+  <h2 slot="header" class="text-warning text-center py-7 m-0">Extend Your Trip</h2>
+  <vs-related-content-list-item
+    v-for="(item, index) in relatedcontent.sampleRelatedContent" 
+    :key="index"
+    slot="cards"
+  >
+    <vs-related-content-card>
+      <img 
+        :src="item.image.imageSrc" 
+        :alt="item.image.imageAlt"
+        class="card-img-top" 
+      >
+      <div class="card-body">
+        <h3 class="card-title h5">
+          <a class="stretched-link" :href="item.href">
+            {{item.title}}
+          </a>
+        </h3>
+        <div class="card-text">
+          {{item.description}}
+        </div>
+      </div>
+    </vs-related-content-card>
+  </vs-related-content-list-item>
+</vs-related-content-list>
+  ```
+</docs>
