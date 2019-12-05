@@ -173,7 +173,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "~bootstrap/scss/type";
 @import "../../styles/collapse";
 @import "../../styles/placeholders";
 @import "../../styles/mixins";

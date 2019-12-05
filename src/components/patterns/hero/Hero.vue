@@ -109,16 +109,6 @@ export default {
     },
 
     /**
-     * Set the hero image display shape to letterbox
-     * Letterbox setting is intended for hero images
-     * deeper in the site structure
-     */
-    letterbox: {
-      type: Boolean,
-      default: false,
-    },
-
-    /**
      * The image longitude
      */
     longitude: {
@@ -141,11 +131,11 @@ export default {
       return "background-image: url('" + this.imageSrc + "');"
     },
     showCaptionData() {
-      return this.description.length || this.credit.length
+      return this.description.length || this.credit.length ? true : false
     },
     showToggle() {
       // only show the image detail toggle button if there's a map or caption data
-      return this.showMap || this.showCaptionData
+      return this.description.length || this.credit.length ? true : false
     },
     showMap() {
       // only show the map if longitude and latitude are both set

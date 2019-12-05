@@ -30,9 +30,7 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
-@import "~bootstrap/scss/type";
-</style>
+<style lang="scss" scoped></style>
 
 <docs>
   ```jsx
