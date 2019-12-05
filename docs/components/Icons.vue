@@ -2,7 +2,7 @@
   <card-grid>
     <card v-for="path in icons" v-bind:key="path">
       <vs-icon :name="path" />
-      <h3>{{ iconName(path) }}</h3>
+      <h3 class="h5">{{ iconName(path) }}</h3>
       <pre>{{ path }}</pre>
     </card>
   </card-grid>
@@ -34,7 +34,7 @@ function getAllIcons() {
   const all = require.context("@/assets/svg/icons", true, /^\.\/.*\.svg$/)
 
   return map(all.keys(), key => {
-    return trimEnd(trimStart(key, "./"), ".svg")
+    return trimStart(key, "./").replace(".svg", "")
   })
 }
 </script>
