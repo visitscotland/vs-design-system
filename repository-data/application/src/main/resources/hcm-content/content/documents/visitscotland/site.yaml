@@ -6,3 +6,82 @@
   hippostd:foldertype: [new-translated-folder, new-document]
   hippotranslation:id: a65bff6c-4edf-4d28-b036-84bdee4b4bcd
   hippotranslation:locale: en
+  /destinations-maps:
+    jcr:primaryType: hippostd:folder
+    jcr:mixinTypes: ['hippotranslation:translated', 'mix:versionable']
+    jcr:uuid: 81bb0b87-c15c-475d-bd13-5d9a262a95e5
+    hippostd:foldertype: [new-translated-folder, new-document]
+    hippotranslation:id: 9a465810-0318-447d-af80-28f023b96f0f
+    hippotranslation:locale: en
+    /content:
+      jcr:primaryType: hippo:handle
+      jcr:mixinTypes: ['mix:referenceable']
+      jcr:uuid: 0751c1d3-3024-4d2d-a5e8-38286fee9722
+      /content[1]:
+        jcr:primaryType: visitscotland:Itinerary
+        jcr:mixinTypes: ['mix:referenceable']
+        jcr:uuid: bfc6a747-1993-4871-991c-e203c3dff91c
+        hippo:availability: []
+        hippostd:state: draft
+        hippostdpubwf:createdBy: admin
+        hippostdpubwf:creationDate: 2019-12-06T12:48:04.149Z
+        hippostdpubwf:lastModificationDate: 2019-12-06T12:48:04.150Z
+        hippostdpubwf:lastModifiedBy: admin
+        hippotranslation:id: a3ed9022-e239-493b-952c-18d01ac36640
+        hippotranslation:locale: en
+        visitscotland:areas: ['']
+        visitscotland:breadcrumb: ''
+        visitscotland:distance: 0.0
+        visitscotland:finish: ''
+        visitscotland:heading: Itinerary heading
+        visitscotland:noIndex: false
+        visitscotland:seoNoIndex: ''
+        visitscotland:seoTitle: ''
+        visitscotland:start: ''
+        visitscotland:summary: ''
+        visitscotland:text: ''
+        visitscotland:theme: ''
+        visitscotland:transport: ['']
+        /visitscotland:heroImage:
+          jcr:primaryType: hippogallerypicker:imagelink
+          hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
+          hippo:facets: []
+          hippo:modes: []
+          hippo:values: []
+        /visitscotland:introduction:
+          jcr:primaryType: hippostd:html
+          hippostd:content: <p>Itinerary introduction</p>
+      /content[2]:
+        jcr:primaryType: visitscotland:Itinerary
+        jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
+        jcr:uuid: 54a5dc71-947d-4c5a-958c-9f06bebad234
+        hippo:availability: [preview]
+        hippostd:state: unpublished
+        hippostdpubwf:createdBy: admin
+        hippostdpubwf:creationDate: 2019-12-06T12:48:04.149Z
+        hippostdpubwf:lastModificationDate: 2019-12-06T12:48:30.031Z
+        hippostdpubwf:lastModifiedBy: admin
+        hippotranslation:id: a3ed9022-e239-493b-952c-18d01ac36640
+        hippotranslation:locale: en
+        visitscotland:areas: ['']
+        visitscotland:breadcrumb: ''
+        visitscotland:distance: 0.0
+        visitscotland:finish: ''
+        visitscotland:heading: Itinerary heading
+        visitscotland:noIndex: false
+        visitscotland:seoNoIndex: ''
+        visitscotland:seoTitle: ''
+        visitscotland:start: ''
+        visitscotland:summary: ''
+        visitscotland:text: ''
+        visitscotland:theme: ''
+        visitscotland:transport: ['']
+        /visitscotland:heroImage:
+          jcr:primaryType: hippogallerypicker:imagelink
+          hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
+          hippo:facets: []
+          hippo:modes: []
+          hippo:values: []
+        /visitscotland:introduction:
+          jcr:primaryType: hippostd:html
+          hippostd:content: <p>Itinerary introduction</p>
