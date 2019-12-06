@@ -10,10 +10,11 @@ definitions:
         jcr:uuid: 3228f806-1ad3-45f4-8603-eaa075cbbbd8
         /hipposysedit:nodetype:
           jcr:primaryType: hipposysedit:nodetype
-          jcr:mixinTypes: ['mix:referenceable']
+          jcr:mixinTypes: ['mix:referenceable', 'hipposysedit:remodel']
           jcr:uuid: 46aff681-eb58-429f-bf9c-e61e96ae7d6d
           hipposysedit:node: true
           hipposysedit:supertype: ['visitscotland:Page', 'hippostd:relaxed', 'hippotranslation:translated']
+          hipposysedit:uri: http://www.visitscotland.com/visitscotland/nt/1.0
           /noIndex:
             jcr:primaryType: hipposysedit:field
             hipposysedit:mandatory: false
@@ -89,7 +90,7 @@ definitions:
       /hipposysedit:prototypes:
         jcr:primaryType: hipposysedit:prototypeset
         /hipposysedit:prototype:
-          jcr:primaryType: nt:unstructured
+          jcr:primaryType: visitscotland:Itinerary
           hippostd:holder: holder
           hippostd:state: draft
           hippostdpubwf:createdBy: ''
@@ -101,7 +102,7 @@ definitions:
           visitscotland:heading: ''
           visitscotland:seoTitle: ''
           visitscotland:noIndex: false
-          jcr:mixinTypes: ['hippotranslation:translated', 'hippostd:relaxed']
+          jcr:mixinTypes: ['mix:referenceable']
           visitscotland:finish: ''
           visitscotland:summary: ''
           visitscotland:start: ''
@@ -110,6 +111,9 @@ definitions:
           visitscotland:text: ''
           visitscotland:transport: ['']
           visitscotland:areas: ['']
+          jcr:uuid: abf63e42-aede-48ee-a46e-e75d8e8434fd
+          hippostdpubwf:creationDate: 2019-12-06T11:10:08.311Z
+          hippostdpubwf:lastModificationDate: 2019-12-06T11:10:08.310Z
           /visitscotland:heroImage:
             jcr:primaryType: hippogallerypicker:imagelink
             hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe

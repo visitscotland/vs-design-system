@@ -15,11 +15,6 @@ public class Day extends BaseDocument {
         return getSingleProperty("visitscotland:title");
     }
 
-    @HippoEssentialsGenerated(internalName = "visitscotland:RadioGroup")
-    public String getRadioGroup() {
-        return getSingleProperty("visitscotland:RadioGroup");
-    }
-
     @HippoEssentialsGenerated(internalName = "visitscotland:introduction")
     public HippoHtml getIntroduction() {
         return getHippoHtml("visitscotland:introduction");

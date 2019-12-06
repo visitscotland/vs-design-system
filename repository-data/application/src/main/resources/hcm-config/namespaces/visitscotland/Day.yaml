@@ -11,7 +11,7 @@ definitions:
         /hipposysedit:nodetype:
           jcr:primaryType: hipposysedit:nodetype
           jcr:mixinTypes: ['mix:referenceable', 'hipposysedit:remodel']
-          jcr:uuid: 62fe0476-0e85-430b-b7d1-e13a49806252
+          jcr:uuid: d4addb48-4d54-47a0-ad69-be7bfff25864
           hipposysedit:node: true
           hipposysedit:supertype: ['visitscotland:basedocument', 'hippostd:relaxed',
             'hippotranslation:translated']
@@ -39,14 +39,6 @@ definitions:
             hipposysedit:path: visitscotland:stops
             hipposysedit:type: hippo:compound
             hipposysedit:validators: [contentblocks-validator]
-          /RadioGroup:
-            jcr:primaryType: hipposysedit:field
-            hipposysedit:mandatory: false
-            hipposysedit:multiple: false
-            hipposysedit:ordered: false
-            hipposysedit:path: visitscotland:RadioGroup
-            hipposysedit:primary: false
-            hipposysedit:type: selection:RadioGroup
       /hipposysedit:prototypes:
         jcr:primaryType: hipposysedit:prototypeset
         /hipposysedit:prototype:
@@ -59,10 +51,9 @@ definitions:
           hippotranslation:locale: document-type-locale
           jcr:mixinTypes: ['mix:referenceable']
           visitscotland:title: ''
-          jcr:uuid: 487bde6a-dd6e-4cf5-8631-3dc879cdd5ed
+          jcr:uuid: 8440b951-300e-447b-86bf-1eacc8bbf7b6
           hippostdpubwf:lastModificationDate: 2019-12-05T15:29:52.785Z
           hippostdpubwf:creationDate: 2019-12-05T15:29:52.785Z
-          visitscotland:RadioGroup: ''
           /visitscotland:introduction:
             jcr:primaryType: hippostd:html
             hippostd:content: ''
@@ -103,13 +94,3 @@ definitions:
             wicket.id: ${cluster.id}.field
             /cluster.options:
               jcr:primaryType: frontend:pluginconfig
-          /RadioGroup:
-            jcr:primaryType: frontend:plugin
-            caption: RadioGroup
-            field: RadioGroup
-            plugin.class: org.hippoecm.frontend.editor.plugins.field.PropertyFieldPlugin
-            wicket.id: ${cluster.id}.field
-            hint: ''
-            /cluster.options:
-              jcr:primaryType: frontend:pluginconfig
-              source: /content/documents/administration/options/transports
