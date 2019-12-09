@@ -5,7 +5,7 @@
 
 props:
   letter_spacing_h1:
-    value: "1rem"
+    value: ".5rem"
   spacing_xl:
     value: "2px"
   spacing_l:
