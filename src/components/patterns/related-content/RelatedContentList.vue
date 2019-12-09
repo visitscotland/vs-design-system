@@ -1,13 +1,17 @@
 <template>
-  <aside class="vs-related-content bg-dark my-9">
-    <slot name="header" />
-    <vs-row tag="ul" class="list-unstyled">
-      <slot name="cards" />
-    </vs-row>
+  <aside class="vs-related-content bg-dark my-9 p-4">
+    <vs-container>
+      <slot name="header" />
+      <vs-row tag="ul" class="list-unstyled">
+        <slot name="cards" />
+      </vs-row>
+    </vs-container>
   </aside>
 </template>
 
 <script>
+import { VsContainer, VsRow } from "@components/elements/layout"
+
 /**
  * TODO: Document usage
  */
@@ -16,6 +20,7 @@ export default {
   name: "VsRelatedContentList",
   status: "prototype",
   release: "0.0.1",
+  components: { VsContainer, VsRow },
 }
 </script>
 
