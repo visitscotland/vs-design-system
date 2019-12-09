@@ -65,6 +65,7 @@ $font-sizes: (
   @each $level, $size in $font-sizes {
     @at-root h#{$level}#{&} {
       letter-spacing: $size * 0.1;
+      margin-bottom: $size;
       @if $level == 1 {
         @include media-breakpoint-up(lg) {
           letter-spacing: $letter-spacing-h1;
