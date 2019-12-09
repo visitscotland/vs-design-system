@@ -25,7 +25,7 @@ export default {
   ```jsx
 <vs-related-content-list>
   <vs-related-content-list-item
-    v-for="(item, index) in relatedcontent.sampleRelatedContent" 
+    v-for="(item, index) in relatedContent.relatedContent" 
     :key="index"
     slot="cards"
   >
