@@ -103,36 +103,36 @@ export default {
 
 <docs>
 ```jsx
-<ul class="list-unstyled">
-<vs-itinerary-day 
-  v-for="(day, index) in itineraries.sampleItinerary.days"
-  :defaultShow="(day.dayCount < 3) ? true : false"
-  :key="index"
->
-<vs-heading 
-  slot="day-title"
-  level="2" 
-  thin 
-  class="vs-itinerary-day__title">
-  <span>Day {{day.dayCount}}</span>
-  {{day.title}}
-</vs-heading>
-  
-  <dl v-if="day.dayMiles && day.dayKM" slot="day-distance" class="list-inline text-center">
-    <dt class="list-inline-item mb-0"><abbr title="miles">mi</abbr>/<abbr title="kilometres">km</abbr>:</dt>
-    <dd class="list-inline-item mb-0">{{day.dayMiles}}/{{day.dayKM}}</dd>
-  </dl>
+  <ul class="list-unstyled">
+    <vs-itinerary-day 
+      v-for="(day, index) in itineraries.sampleItinerary.days"
+      :defaultShow="(day.dayCount < 3) ? true : false"
+      :key="index"
+    >
+      <vs-heading 
+        slot="day-title"
+        level="2" 
+        thin 
+        class="vs-itinerary-day__title">
+        <span>Day {{day.dayCount}}</span>
+        {{day.title}}
+      </vs-heading>
+    
+      <dl v-if="day.dayMiles && day.dayKM" slot="day-distance" class="list-inline text-center">
+        <dt class="list-inline-item mb-0"><abbr title="miles">mi</abbr>/<abbr title="kilometres">km</abbr>:</dt>
+        <dd class="list-inline-item mb-0">{{day.dayMiles}}/{{day.dayKM}}</dd>
+      </dl>
 
-  <dl v-if="day.transport.length" class="list-inline text-center" slot="day-transport">
-    <dt class="list-inline-item">Transport:</dt>
-    <dl class="list-inline-item" v-for="(transportType, transportTypeIndex) in day.transport">
-      <vs-icon :name="transportType.key" variant="dark" size="sm" />
-      <span class="sr-only">{{transportType.value}}</span>
-    </dl>
-  </dl>
+      <dl v-if="day.transport.length" class="list-inline text-center" slot="day-transport">
+        <dt class="list-inline-item">Transport:</dt>
+        <dl class="list-inline-item" v-for="(transportType, transportTypeIndex) in day.transport">
+          <vs-icon :name="transportType.key" variant="dark" size="sm" />
+          <span class="sr-only">{{transportType.value}}</span>
+        </dl>
+      </dl>
 
-  <div slot="day-introduction" v-html="day.introduction"></div>
-  </vs-itinerary-day>
+      <div slot="day-introduction" v-html="day.introduction"></div>
+    </vs-itinerary-day>
   </ul>
-  ```
+```
 </docs>
