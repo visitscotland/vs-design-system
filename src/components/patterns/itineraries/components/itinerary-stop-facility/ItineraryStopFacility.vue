@@ -1,7 +1,7 @@
 <template>
   <dd class="itinerary-stop__facilities__dd">
     <div class="icon-wrapper">
-      <vs-icon v-if="formattedIconName.length" :name="formattedIconName" variant="dark" size="xs" />
+      <vs-icon v-if="formattedIconName.length" :name="formattedIconName" variant="dark" size="sm" />
     </div>
     <slot />
   </dd>
