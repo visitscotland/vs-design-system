@@ -28,13 +28,13 @@ export default {
       var formattedIconName = ""
       switch (this.facility.key) {
         case "parking":
-          formattedIconName = "facility-park"
+          formattedIconName = "facility-parking"
           break
         case "accessparkdrop":
           formattedIconName = "facility-accessparkdrop"
           break
         case "dsblaccess":
-          formattedIconName = "facility-dsblacce"
+          formattedIconName = "facility-dsblaccess"
           break
         case "audioloop":
           formattedIconName = "facility-audioloop"
