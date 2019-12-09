@@ -211,12 +211,12 @@ export default {
             <dd class="list-inline-item mb-0">{{stop.timeToExplore}}</dd>
           </dl>
            <vs-itinerary-stop-pullout slot="stop-pullout" v-if="stop.pullOut.description.length">
-    <div slot="text">
-      <strong>{{stop.pullOut.title}}</strong>
-      <div v-html="stop.pullOut.description"></div>
-    </div>
-    <vs-svg slot="svg" path="highland-cow" />
-  </vs-itinerary-stop-pullout>
+            <div slot="text">
+              <strong>{{stop.pullOut.title}}</strong>
+              <div v-html="stop.pullOut.description"></div>
+            </div>
+            <vs-svg slot="svg" path="highland-cow" />
+          </vs-itinerary-stop-pullout>
           <a slot="stop-href" class="vs-itinerary__stop-link text-uppercase font-weight-bold d-inline-flex align-items-center"
             :href="stop.href"
           >
