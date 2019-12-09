@@ -34,7 +34,7 @@ export default {
 <vs-related-content-list>
   <h2 slot="header" class="text-warning text-center py-7 m-0">Extend Your Trip</h2>
   <vs-related-content-list-item
-    v-for="(item, index) in relatedcontent.sampleRelatedContent" 
+    v-for="(item, index) in relatedContent.relatedContent" 
     :key="index"
     slot="cards"
   >
