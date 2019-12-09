@@ -37,7 +37,7 @@ export default {
           formattedTransportIconName = "walk"
           break
         case "bus":
-          formattedTransportIconName = "bus-icon"
+          formattedTransportIconName = "bus"
           break
         case "ferry":
           formattedTransportIconName = "ferry"
