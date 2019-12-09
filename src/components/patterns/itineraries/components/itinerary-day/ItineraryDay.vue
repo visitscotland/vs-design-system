@@ -1,30 +1,34 @@
 <template>
   <component :is="type" class="vs-itinerary-day__list-item">
-    <div class="vs-itinerary-day__header text-center position-relative">
-      <slot name="day-title" />
-      <vs-button
-        class="vs-itinerary-day__toggle-button position-absolute p-0"
-        variant="transparent"
-        :animate="false"
-        @click.native="triggerToggle()"
-        aria-haspopup="true"
-        :aria-expanded="show ? 'true' : 'false'"
-      >
-        <vs-icon v-if="this.show" name="chevron-down" variant="dark" size="xs" :padding="3" />
-        <vs-icon v-else name="chevron-up" variant="dark" size="xs" :padding="3" />
-      </vs-button>
-    </div>
-    <div v-if="this.show">
-      <slot name="day-distance" />
-      <slot name="day-transport" />
-      <slot name="day-introduction" />
-      <slot name="stops" />
-    </div>
+    <vs-container>
+      <div class="vs-itinerary-day__header text-center position-relative">
+        <slot name="day-title" />
+        <vs-button
+          class="vs-itinerary-day__toggle-button position-absolute p-0"
+          variant="transparent"
+          :animate="false"
+          @click.native="triggerToggle()"
+          aria-haspopup="true"
+          :aria-expanded="show ? 'true' : 'false'"
+        >
+          <vs-icon v-if="this.show" name="chevron-down" variant="dark" size="xs" :padding="3" />
+          <vs-icon v-else name="chevron-up" variant="dark" size="xs" :padding="3" />
+        </vs-button>
+      </div>
+      <div v-if="this.show">
+        <slot name="day-distance" />
+        <slot name="day-transport" />
+        <slot name="day-introduction" />
+        <slot name="stops" />
+      </div>
+    </vs-container>
   </component>
 </template>
+
 <script>
 import VsIcon from "@components/elements/icon/Icon"
 import VsButton from "@components/elements/button/Button"
+import { VsContainer } from "@components/elements/layout"
 
 /**
  * TODO: Document usage.
@@ -37,6 +41,7 @@ export default {
   components: {
     VsButton,
     VsIcon,
+    VsContainer,
   },
   data() {
     return {
@@ -67,11 +72,11 @@ export default {
 <style lang="scss" scoped>
 .vs-itinerary-day__list-item {
   border-top: 5px solid $color-base-text;
-  padding: $spacer-4;
+  padding: $spacer-4 0;
   margin-bottom: $spacer-4;
 }
 
-.vs-itinerary-day__title ::v-deep > span {
+.vs-itinerary-day__header ::v-deep .vs-itinerary-day__title > span {
   border-bottom: 1px solid $color-base-text;
   color: $color-theme-secondary-teal;
   display: block;
