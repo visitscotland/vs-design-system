@@ -157,8 +157,11 @@ export default {
         <dl v-if="day.transport.length" class="list-inline text-center" slot="day-transport">
           <dt class="list-inline-item">Transport:</dt>
           <dl class="list-inline-item" v-for="(transportType, transportTypeIndex) in day.transport">
-            <vs-icon :name="transportType.key" variant="dark" size="sm" />
-            <span class="sr-only">{{transportType.value}}</span>
+             <vs-itinerary-transport-type
+                :transportType="transportType"
+              >
+              <span class="sr-only">{{transportType.value}}</span>
+            </vs-itinerary-transport-type>
           </dl>
         </dl>
 
@@ -237,7 +240,7 @@ export default {
   <vs-related-content-list>
     <h2 slot="header" class="text-warning text-center py-7 m-0">Extend Your Trip</h2>
     <vs-related-content-list-item
-      v-for="(item, index) in relatedcontent.sampleRelatedContent" 
+      v-for="(item, index) in relatedContent.relatedContent" 
       :key="index"
       slot="cards"
     >

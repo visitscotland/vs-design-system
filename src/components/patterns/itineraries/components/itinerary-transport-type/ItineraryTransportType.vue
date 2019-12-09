@@ -1,17 +1,22 @@
 <template>
-  <div class="vs-itinerary-transport-type">
+  <span
+    class="vs-itinerary-transport-type position-relative py-1"
+    v-b-tooltip.hover
+    :title="this.transportType.value"
+  >
     <vs-icon
       v-if="formattedTransportIconName.length"
       :name="formattedTransportIconName"
       variant="dark"
-      size="xs"
+      size="sm"
     />
     <slot />
-  </div>
+  </span>
 </template>
 
 <script>
 import VsIcon from "@components/elements/icon/Icon"
+import { VBTooltip } from "bootstrap-vue"
 /**
  * TODO: Document usage
  */
@@ -21,15 +26,16 @@ export default {
   status: "prototype",
   release: "0.0.1",
   components: { VsIcon },
+  directives: { "b-tooltip": VBTooltip },
   props: {
-    transport: {
+    transportType: {
       type: Object,
     },
   },
   computed: {
     formattedTransportIconName() {
       var formattedTransportIconName = ""
-      switch (this.transport.key) {
+      switch (this.transportType.key) {
         case "car":
           formattedTransportIconName = "car"
           break
@@ -65,11 +71,11 @@ export default {
 <docs>
   ```jsx
   <vs-itinerary-transport-type
-    v-for="(transport, index) in transport.transport"
+    v-for="(transportType, index) in transportTypes.transportTypes"
     :key="index"
-    :transport="transport"
+    :transportType="transportType"
   >
-   {{transport.value}}
+   <span class="sr-only">{{transportType.value}}</span>
   </vs-itinerary-transport-type>
   ```
 </docs>

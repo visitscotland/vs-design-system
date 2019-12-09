@@ -90,7 +90,7 @@ export default {
   display: block;
   font-family: $headings-font-family;
   margin-bottom: $spacer-4;
-  padding: $spacer-3;
+  padding: $spacer-3 $spacer-6;
 }
 
 .vs-itinerary-day__toggle-button {
@@ -126,8 +126,9 @@ export default {
       <dl v-if="day.transport.length" class="list-inline text-center" slot="day-transport">
         <dt class="list-inline-item">Transport:</dt>
         <dl class="list-inline-item" v-for="(transportType, transportTypeIndex) in day.transport">
-          <vs-icon :name="transportType.key" variant="dark" size="sm" />
-          <span class="sr-only">{{transportType.value}}</span>
+          <vs-itinerary-transport-type :transportType="transportType">
+            <span class="sr-only">{{transportType.value}}</span>
+          </vs-itinerary-transport-type>
         </dl>
       </dl>
 
