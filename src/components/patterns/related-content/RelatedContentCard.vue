@@ -26,9 +26,8 @@ export default {
   .card-title a {
     color: $color-white;
   }
-  .card-img-top {
-    border-left: 1rem solid transparent;
-    border-right: 1rem solid transparent;
+  .card-body {
+    margin: 0 -1rem;
   }
 }
 </style>
