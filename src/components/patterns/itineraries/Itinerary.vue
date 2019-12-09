@@ -78,14 +78,15 @@ export default {
       >
         {{itineraries.sampleItinerary.h1Heading}}
       </vs-heading>
-      <div v-html="itineraries.sampleItinerary.introduction"></div>
-      <dl class="list-inline">
-        <dt class="list-inline-item">Start / Finish</dt>
-        <dd class="list-inline-item">{{itineraries.sampleItinerary.start}}/{{itineraries.sampleItinerary.finish}}</dd>
-      </dl>
-    </vs-container>
-    <div class="bg-light py-4">
-      <vs-container>
+      <vs-row>
+        <vs-col cols="12" sm="6">
+          <div v-html="itineraries.sampleItinerary.introduction"></div>
+          <dl class="list-inline">
+            <dt class="list-inline-item">Start / Finish</dt>
+            <dd class="list-inline-item">{{itineraries.sampleItinerary.start}}/{{itineraries.sampleItinerary.finish}}</dd>
+          </dl>
+        </vs-col>
+        <vs-col cols="12" sm="6">
         <vs-itinerary-summary-list>
           <vs-itinerary-summary-list-item>
             <strong>Days</strong>
@@ -110,8 +111,10 @@ export default {
             </div>
           </vs-itinerary-summary-list-item>
         </vs-itinerary-summary-list>
-      </vs-container>
-     
+        </vs-col>
+      </vs-row>
+    </vs-container>
+    <div class="bg-light py-4">
       <vs-container>
         <vs-itinerary-highlights-list>
           <dt>Highlights</dt>

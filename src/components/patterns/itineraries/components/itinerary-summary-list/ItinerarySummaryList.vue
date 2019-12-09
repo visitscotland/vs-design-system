@@ -1,5 +1,5 @@
 <template>
-  <vs-row tag="ul" class="itinerary-summary-box__list list-unstyled text-center my-4">
+  <vs-row tag="ul" class="itinerary-summary-box__list list-unstyled text-center my-4 my-sm-1">
     <slot />
   </vs-row>
 </template>
