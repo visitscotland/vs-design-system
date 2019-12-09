@@ -158,7 +158,6 @@ export default {
 
 .vs-hero__caption-wrapper {
   @include media-breakpoint-down(lg) {
-    max-width: 100%;
     padding: 0;
   }
 }
