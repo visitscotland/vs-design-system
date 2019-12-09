@@ -1,5 +1,5 @@
 <template>
-  <vs-row tag="ul" class="itinerary-summary-box__list list-unstyled text-center my-4 my-sm-1">
+  <vs-row tag="ul" class="itinerary-summary-box__list list-unstyled">
     <slot />
   </vs-row>
 </template>
@@ -19,7 +19,6 @@ export default {
 <style lang="scss" scoped>
 .itinerary-summary-box__list {
   background-color: $color-yellow;
-  padding: 0.5rem;
 }
 </style>
 

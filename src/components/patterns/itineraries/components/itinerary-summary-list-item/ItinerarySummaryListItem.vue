@@ -1,5 +1,5 @@
 <template>
-  <vs-col tag="li" cols="6" class="itinerary-summary-list-item p-2">
+  <vs-col tag="li" cols="6" class="itinerary-summary-list-item p-2 text-center">
     <div
       class="itinerary-summary-list-item__wrapper d-flex flex-column-reverse justify-content-between pt-5"
     >
