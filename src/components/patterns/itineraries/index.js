@@ -6,6 +6,7 @@ import VsItinerarySummaryList from "./components/itinerary-summary-list/Itinerar
 import VsItinerarySummaryListItem from "./components/itinerary-summary-list-item/ItinerarySummaryListItem"
 import VsItineraryStopPullout from "./components/itinerary-stop-pullout/ItineraryStopPullout"
 import VsItineraryTransportType from "./components/itinerary-transport-type/ItineraryTransportType"
+import VsItineraryMap from "./components/itinerary-map/ItineraryMap"
 
 export {
   VsItinerary,
@@ -16,4 +17,5 @@ export {
   VsItinerarySummaryListItem,
   VsItineraryStopPullout,
   VsItineraryTransportType,
+  VsItineraryMap,
 }

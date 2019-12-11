@@ -1,9 +1,10 @@
 <template>
-  <div class="vs-itinerary">
+  <component :is="type" class="vs-itinerary">
     <slot />
-  </div>
+  </component>
 </template>
 <script>
+import itinerariesStore from "@components/patterns/itineraries/itineraries.store"
 import VsIcon from "@components/elements/icon/Icon"
 import VsButton from "@components/elements/button/Button"
 import VsHeading from "@components/elements/heading/Heading"
@@ -29,9 +30,34 @@ export default {
     VsButton,
     VsIcon,
   },
-  props: {},
-  computed: {},
-  methods: {},
+  props: {
+    type: {
+      type: String,
+      default: "main",
+    },
+  },
+  itinerariesStore,
+  computed: {
+    stops() {
+      return itinerariesStore.getters["itineraries/getStops"]
+    },
+  },
+  methods: {
+    handleScroll() {
+      console.log("handle scroll")
+      // this.stops.map(stop => {
+      //   if (this.isElementOnScreen(stop.stopCount)) {
+      //     this.setActiveStop(stop)
+      //   }
+      // })
+    },
+  },
+  created() {
+    document.body.addEventListener("scroll", this.handleScroll)
+  },
+  destroyed() {
+    document.body.removeEventListener("scroll", this.handleScroll)
+  },
 }
 </script>
 
@@ -39,6 +65,23 @@ export default {
 
 <docs>
 ```jsx
+
+  const sampleItinerary = require("../../../assets/fixtures/itineraries/sampleItinerary.json")
+  const stops = [];
+  
+  sampleItinerary.days.map(day => {
+    day.stops.map(stop => {
+      return stops.push({
+        title: stop.title,
+        latitude: stop.latitude,
+        longitude: stop.longitude,
+        stopCount: stop.stopCount,
+        imageSrc: stop.image.imageSrc,
+        altText: stop.image.altText
+      });
+    })
+  })
+  <vs-itinerary>
     <vs-hero
       :altText="itineraries.sampleItinerary.image.altText"
       :credit="itineraries.sampleItinerary.image.credit"
@@ -46,7 +89,6 @@ export default {
       :image-src="itineraries.sampleItinerary.image.imageSrc"
       :latitude="itineraries.sampleItinerary.image.latitude"
       :longitude="itineraries.sampleItinerary.image.longitude"
-      slot="hero"
     >
     <img 
       class="lazyload" 
@@ -71,22 +113,18 @@ export default {
           >
         </vs-breadcrumb-item>
       </vs-breadcrumb>
-    </vs-container>
-    <vs-container>
-      <vs-heading
-        level="1"
-      >
-        {{itineraries.sampleItinerary.h1Heading}}
-      </vs-heading>
-      <vs-row>
-        <vs-col cols="12" sm="6">
+      <vs-row class="justify-content-md-between">
+        <vs-col cols="12" sm="6" lg="7" xl="8">
+          <vs-heading level="1">
+            {{itineraries.sampleItinerary.h1Heading}}
+          </vs-heading>
           <div v-html="itineraries.sampleItinerary.introduction"></div>
           <dl class="list-inline">
             <dt class="list-inline-item">Start / Finish</dt>
             <dd class="list-inline-item">{{itineraries.sampleItinerary.start}}/{{itineraries.sampleItinerary.finish}}</dd>
           </dl>
         </vs-col>
-        <vs-col cols="12" sm="6">
+        <vs-col cols="12" sm="6" md="5" lg="4" xl="3">
           <vs-itinerary-summary-list>
             <vs-itinerary-summary-list-item>
               <strong>Days</strong>
@@ -134,109 +172,119 @@ export default {
         </vs-itinerary-highlights-list>
       </vs-container>
     </div>
-    <ul class="list-unstyled">
-      <vs-itinerary-day 
-        v-for="(day, index) in itineraries.sampleItinerary.days"
-        :defaultShow="(day.dayCount < 3) ? true : false"
-        :key="index"
-      >
-      <vs-heading 
-        slot="day-title"
-        level="2" 
-        thin 
-        class="vs-itinerary-day__title">
-        <span>Day {{day.dayCount}}</span>
-        {{day.title}}
-      </vs-heading>
-        
-        <dl v-if="day.dayMiles && day.dayKM" slot="day-distance" class="list-inline mb-0 text-center">
-          <dt class="list-inline-item mb-0"><abbr title="miles">mi</abbr>/<abbr title="kilometres">km</abbr>:</dt>
-          <dd class="list-inline-item mb-0">{{day.dayMiles}}/{{day.dayKM}}</dd>
-        </dl>
-
-        <dl v-if="day.transport.length" class="list-inline text-center" slot="day-transport">
-          <dt class="list-inline-item">Transport:</dt>
-          <dl class="list-inline-item" v-for="(transportType, transportTypeIndex) in day.transport">
-             <vs-itinerary-transport-type
-                :transportType="transportType"
-              >
-              <span class="sr-only">{{transportType.value}}</span>
-            </vs-itinerary-transport-type>
-          </dl>
-        </dl>
-
-        <div slot="day-introduction" v-html="day.introduction"></div>
-        <ul slot="stops" class="mt-9 list-unstyled">
-          <vs-itinerary-stop 
-            v-for="(stop, index) in day.stops"
-            :key="index"
-          >
-          <vs-heading 
-            slot="stop-title"
-            level="3" 
-            thin 
-            class="vs-itinerary-stop__title ml-4">
-            <span>Stop {{stop.stopCount}}</span>
-            {{stop.title}}
-          </vs-heading>
-          <vs-favourites-toggle-button
-            slot="stop-favourite"
-              :href="stop.href"
-              :title="stop.title"
-          />
-          <vs-itinerary-stop-image
-              :altText="stop.image.altText"
-              :credit="stop.image.credit"
-              :description="stop.image.description"
-              :image-src="stop.image.imageSrc"
-              :latitude="stop.image.latitude"
-              :longitude="stop.image.longitude"
-              slot="stop-image"
+    <vs-container>
+      <vs-row class="position-sticky">
+        <vs-col cols="12" lg="6">
+          <ul class="list-unstyled">
+            <vs-itinerary-day 
+              v-for="(day, index) in itineraries.sampleItinerary.days"
+              :defaultShow="(day.dayCount < 3) ? true : false"
+              :key="index"
             >
-          <img 
-            class="lazyload" 
-            :src="stop.image.imageSrc"
-            srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
-            :data-srcset="stop.image.imageSrc" 
-            :alt="stop.image.altText"
-            data-sizes="auto"
-            slot="image" />
-            <noscript>
-              <img class="img-fluid" :src="stop.image.imageSrc" alt="item.image.altText" />
-            </noscript>
-          </vs-itinerary-stop-image>
-          <div slot="stop-description" v-html="stop.description"></div>
-          <dl slot="stop-time-to-explore" class="list-inline my-4 mb-0">
-            <dt class="list-inline-item mb-0">Time to explore:</dt>
-            <dd class="list-inline-item mb-0">{{stop.timeToExplore}}</dd>
-          </dl>
-           <vs-itinerary-stop-pullout slot="stop-pullout" v-if="stop.pullOut.description.length">
-            <div slot="text">
-              <strong>{{stop.pullOut.title}}</strong>
-              <div v-html="stop.pullOut.description"></div>
-            </div>
-            <vs-svg slot="svg" path="highland-cow" />
-          </vs-itinerary-stop-pullout>
-          <a slot="stop-href" class="vs-itinerary__stop-link text-uppercase font-weight-bold d-inline-flex align-items-center"
-            :href="stop.href"
+              <vs-heading 
+                slot="day-title"
+                level="2" 
+                thin
+                class="vs-itinerary-day__title">
+                <span>Day {{day.dayCount}}</span>
+                {{day.title}}
+              </vs-heading>
+                
+              <div slot="day-introduction" v-html="day.introduction"></div>
+              <ul slot="stops" class="mt-9 list-unstyled">
+                <vs-itinerary-stop 
+                  v-for="(stop, index) in day.stops"
+                  :stop="stop"
+                  :key="index"
+                >
+                <vs-heading 
+                  slot="stop-title"
+                  level="3" 
+                  thin 
+                  class="vs-itinerary-stop__title ml-4">
+                  <span 
+                  >Stop {{stop.stopCount}}</span>
+                  {{stop.title}}
+                </vs-heading>
+                <vs-favourites-toggle-button
+                  slot="stop-favourite"
+                  :href="stop.href"
+                  :title="stop.title"
+                />
+                <vs-itinerary-stop-image
+                    :altText="stop.image.altText"
+                    :credit="stop.image.credit"
+                    :description="stop.image.description"
+                    :image-src="stop.image.imageSrc"
+                    :latitude="stop.image.latitude"
+                    :longitude="stop.image.longitude"
+                    slot="stop-image"
+                  >
+                <img 
+                  class="lazyload" 
+                  :src="stop.image.imageSrc"
+                  srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                  :data-srcset="stop.image.imageSrc" 
+                  :alt="stop.image.altText"
+                  data-sizes="auto"
+                  slot="image" />
+                  <noscript>
+                    <img class="img-fluid" :src="stop.image.imageSrc" alt="item.image.altText" />
+                  </noscript>
+                </vs-itinerary-stop-image>
+                <div slot="stop-description" v-html="stop.description"></div>
+                <dl slot="stop-time-to-explore" class="list-inline my-4 mb-0">
+                  <dt class="list-inline-item mb-0">Time to explore:</dt>
+                  <dd class="list-inline-item mb-0">{{stop.timeToExplore}}</dd>
+                </dl>
+                <vs-itinerary-stop-pullout slot="stop-pullout" v-if="stop.pullOut.description.length">
+                  <div slot="text">
+                    <strong>{{stop.pullOut.title}}</strong>
+                    <div v-html="stop.pullOut.description"></div>
+                  </div>
+                  <vs-svg slot="svg" path="highland-cow" />
+                </vs-itinerary-stop-pullout>
+                <a slot="stop-href" class="vs-itinerary__stop-link text-uppercase font-weight-bold d-inline-flex align-items-center"
+                  :href="stop.href"
+                >
+                  Find out more
+                  <vs-icon name="play-filled" variant="primary" size="xxs" :padding=3 />
+                </a>
+                <dl v-if="stop.facilities.length" class="itinerary-stop__facilities" slot="stop-facilities">
+                  <dt>Key facilities</dt>
+                  <vs-itinerary-stop-facility
+                    v-for="(facility, facilitiesIndex) in stop.facilities"
+                    :key="facilitiesIndex"
+                    :facility="facility"
+                  >
+                    {{facility.value}}
+                  </vs-itinerary-stop-facility>
+                </dl>
+                </vs-itinerary-stop>
+              </ul>
+          </vs-itinerary-day>
+          </ul>
+        </vs-col>
+        <vs-col cols="12" lg="6">
+          <vs-itinerary-map
+            access-token="pk.eyJ1IjoidmlzaXRzY290bGFuZC1kZXYiLCJhIjoiY2p4MGZwcmtjMDBlczN5bTBnY3pjeHNubCJ9.d3CJWPvX9FfjfSNAW98Q6w"
+            overview-map-longitude="57.81"
+            overview-map-latitude="-4.13"
+            overview-map-zoom="5"
+            :stops="stops"
+            :labels='{
+                "mapControlsFullscreenOpen": "Show fullscreen",
+                "mapControlsFullscreenClose": "Exit fullscreen",
+                "mapControlsCompass": "Reset angle",
+                "mapControlsZoomIn": "Zoom in",
+                "mapControlsZoomOut": "Zoom out"
+            }'
           >
-            Find out more
-            <vs-icon name="play" variant="primary" size="xxs" :padding=3 />
-          </a>
-          <dl v-if="stop.facilities.length" class="itinerary-stop__facilities" slot="stop-facilities">
-            <dt>Key facilities</dt>
-            <vs-itinerary-stop-facility
-              v-for="(facility, facilitiesIndex) in stop.facilities"
-              :key="facilitiesIndex"
-              :facility="facility"
-            >
-              {{facility.value}}
-            </vs-itinerary-stop-facility>
-          </dl>
-        </vs-itinerary-stop>
-      </ul>
-    </vs-itinerary-day>
-  </ul>
+          </vs-itinerary-map>
+        </vs-col>
+      </vs-row>
+    </vs-container>
+
   <vs-related-content-list>
     <h2 slot="header" class="text-warning text-center py-7 m-0">Extend Your Trip</h2>
     <vs-related-content-list-item
@@ -263,6 +311,7 @@ export default {
       </vs-related-content-card>
     </vs-related-content-list-item>
   </vs-related-content-list>
+</vs-itinerary>
           
   ```
 </docs>
