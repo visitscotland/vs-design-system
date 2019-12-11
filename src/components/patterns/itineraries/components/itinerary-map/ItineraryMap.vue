@@ -1,5 +1,5 @@
 <template>
-  <div class="vs-itinerary__map sticky-top" ref="mapbox"></div>
+  <div class="vs-itinerary__map d-none d-lg-block" ref="mapbox"></div>
 </template>
 
 <script>
@@ -209,8 +209,10 @@ export default {
   height: 100vh;
 
   @include media-breakpoint-up(lg) {
-    width: 50vw;
-    float: right;
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    z-index: 1020;
   }
 
   & ::v-deep {

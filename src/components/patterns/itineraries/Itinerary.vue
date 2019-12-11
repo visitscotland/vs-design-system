@@ -173,24 +173,9 @@ export default {
       </vs-container>
     </div>
     <div class="position-sticky">
-      <vs-itinerary-map
-          access-token="pk.eyJ1IjoidmlzaXRzY290bGFuZC1kZXYiLCJhIjoiY2p4MGZwcmtjMDBlczN5bTBnY3pjeHNubCJ9.d3CJWPvX9FfjfSNAW98Q6w"
-          overview-map-longitude="57.81"
-          overview-map-latitude="-4.13"
-          overview-map-zoom="5"
-          :stops="stops"
-          :labels='{
-              "mapControlsFullscreenOpen": "Show fullscreen",
-              "mapControlsFullscreenClose": "Exit fullscreen",
-              "mapControlsCompass": "Reset angle",
-              "mapControlsZoomIn": "Zoom in",
-              "mapControlsZoomOut": "Zoom out"
-          }'
-        >
-      </vs-itinerary-map>
       <vs-container>
         <vs-row>
-          <vs-col cols="12">
+          <vs-col cols="12" lg="6">
             <ul class="list-unstyled">
               <vs-itinerary-day 
                 v-for="(day, index) in itineraries.sampleItinerary.days"
@@ -206,14 +191,19 @@ export default {
                   {{day.title}}
                 </vs-heading>
 
-                <vs-row align-h="center">
-                  <vs-col cols="12" sm="6" md="5">
-                    <slot name="day-distance" />
-                  </vs-col>
-                  <vs-col cols="12" sm="6" md="5">
-                    <slot name="day-transport" />
-                  </vs-col>
-                </vs-row>
+                <dl v-if="day.dayMiles && day.dayKM" slot="day-distance" class="list-inline text-center">
+                  <dt class="list-inline-item"><abbr title="miles">mi</abbr>/<abbr title="kilometres">km</abbr>:</dt>
+                  <dd class="list-inline-item">{{day.dayMiles}}/{{day.dayKM}}</dd>
+                </dl>
+
+              <dl v-if="day.transport.length" class="list-inline text-center" slot="day-transport">
+                <dt class="list-inline-item">Transport:</dt>
+                <dl class="list-inline-item" v-for="(transportType, transportTypeIndex) in day.transport">
+                  <vs-itinerary-transport-type :transportType="transportType">
+                    <span class="sr-only">{{transportType.value}}</span>
+                  </vs-itinerary-transport-type>
+                </dl>
+              </dl>
                           
                 <div slot="day-introduction" v-html="day.introduction"></div>
                 <ul slot="stops" class="mt-9 list-unstyled">
@@ -231,7 +221,7 @@ export default {
                     >Stop {{stop.stopCount}}</span>
                     {{stop.title}}
                   </vs-heading>
-                  
+
                   <vs-favourites-toggle-button
                     slot="stop-favourite"
                     :href="stop.href"
@@ -290,7 +280,24 @@ export default {
                 </ul>
             </vs-itinerary-day>
             </ul>
-          </vs-col>      
+          </vs-col> 
+          <vs-col cols="12" lg="6">
+            <vs-itinerary-map
+                access-token="pk.eyJ1IjoidmlzaXRzY290bGFuZC1kZXYiLCJhIjoiY2p4MGZwcmtjMDBlczN5bTBnY3pjeHNubCJ9.d3CJWPvX9FfjfSNAW98Q6w"
+                overview-map-longitude="57.81"
+                overview-map-latitude="-4.13"
+                overview-map-zoom="5"
+                :stops="stops"
+                :labels='{
+                    "mapControlsFullscreenOpen": "Show fullscreen",
+                    "mapControlsFullscreenClose": "Exit fullscreen",
+                    "mapControlsCompass": "Reset angle",
+                    "mapControlsZoomIn": "Zoom in",
+                    "mapControlsZoomOut": "Zoom out"
+                }'
+              >
+            </vs-itinerary-map>
+          </vs-col>     
         </vs-row>
       </vs-container>
     </div>
