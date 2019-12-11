@@ -33,6 +33,12 @@ export default {
           style: "mapbox://styles/mapbox/outdoors-v11?optimize=true",
           center: [this.overviewMapLatitude, this.overviewMapLongitude],
           zoom: this.overviewMapZoom,
+          maxBounds: [
+            [-11.697414, 52.801395], // south-west point.
+            [0.651219, 61.395636], // north-east point.
+          ],
+          pitchWithRotate: false,
+          dragRotate: false,
         },
       },
       markers: {},
@@ -70,12 +76,12 @@ export default {
   },
   itinerariesStore,
   computed: {
-    mapPadding: function() {
+    mapPadding: () => {
       return {
-        top: 80,
-        bottom: 80,
-        left: 80,
-        right: 80,
+        top: 100,
+        bottom: 100,
+        left: 100,
+        right: 100,
       }
     },
   },
