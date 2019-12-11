@@ -1,40 +1,38 @@
 <template>
   <component :is="type" class="vs-itinerary-day__list-item">
-    <vs-container>
-      <div class="vs-itinerary-day__header text-center position-relative">
-        <slot name="day-title" />
-        <vs-button
-          class="vs-itinerary-day__toggle-button position-absolute p-0"
-          variant="transparent"
-          :animate="false"
-          @click.native="triggerToggle()"
-          aria-haspopup="true"
-          :aria-expanded="show ? 'true' : 'false'"
-        >
-          <vs-icon v-if="this.show" name="chevron-down" variant="dark" size="xs" :padding="3" />
-          <vs-icon v-else name="chevron-up" variant="dark" size="xs" :padding="3" />
-        </vs-button>
-      </div>
-      <div v-if="this.show">
-        <vs-row align-h="center">
-          <vs-col cols="12" sm="6" md="5">
-            <slot name="day-distance" />
-          </vs-col>
-          <vs-col cols="12" sm="6" md="5">
-            <slot name="day-transport" />
-          </vs-col>
-        </vs-row>
-        <slot name="day-introduction" />
-        <slot name="stops" />
-      </div>
-    </vs-container>
+    <div class="vs-itinerary-day__header text-center position-relative">
+      <slot name="day-title" />
+      <vs-button
+        class="vs-itinerary-day__toggle-button position-absolute p-0"
+        variant="transparent"
+        :animate="false"
+        @click.native="triggerToggle()"
+        aria-haspopup="true"
+        :aria-expanded="show ? 'true' : 'false'"
+      >
+        <vs-icon v-if="this.show" name="chevron-down" variant="dark" size="xs" :padding="3" />
+        <vs-icon v-else name="chevron-up" variant="dark" size="xs" :padding="3" />
+      </vs-button>
+    </div>
+    <div v-show="this.show">
+      <vs-row align-h="center">
+        <vs-col cols="12" sm="6" md="5">
+          <slot name="day-distance" />
+        </vs-col>
+        <vs-col cols="12" sm="6" md="5">
+          <slot name="day-transport" />
+        </vs-col>
+      </vs-row>
+      <slot name="day-introduction" />
+      <slot name="stops" />
+    </div>
   </component>
 </template>
 
 <script>
 import VsIcon from "@components/elements/icon/Icon"
 import VsButton from "@components/elements/button/Button"
-import { VsContainer, VsRow, VsCol } from "@components/elements/layout"
+import { VsRow, VsCol } from "@components/elements/layout"
 
 /**
  * TODO: Document usage.
@@ -47,7 +45,6 @@ export default {
   components: {
     VsButton,
     VsIcon,
-    VsContainer,
     VsRow,
     VsCol,
   },
@@ -69,6 +66,7 @@ export default {
       default: true,
     },
   },
+  computed: {},
   methods: {
     triggerToggle() {
       this.show = !this.show
@@ -79,7 +77,9 @@ export default {
 
 <style lang="scss" scoped>
 .vs-itinerary-day__list-item {
-  border-top: 5px solid $color-base-text;
+  @include media-breakpoint-down(md) {
+    border-top: 5px solid $color-base-text;
+  }
   padding: $spacer-4 0;
   margin-bottom: $spacer-4;
 }
