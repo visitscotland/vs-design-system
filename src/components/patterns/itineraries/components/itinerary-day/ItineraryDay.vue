@@ -15,14 +15,7 @@
       </vs-button>
     </div>
     <div v-show="this.show">
-      <vs-row align-h="center">
-        <vs-col cols="12" sm="6" md="5">
-          <slot name="day-distance" />
-        </vs-col>
-        <vs-col cols="12" sm="6" md="5">
-          <slot name="day-transport" />
-        </vs-col>
-      </vs-row>
+      <slot name="day-transport" />
       <slot name="day-introduction" />
       <slot name="stops" />
     </div>
@@ -118,11 +111,6 @@ export default {
         {{day.title}}
       </vs-heading>
     
-      <dl v-if="day.dayMiles && day.dayKM" slot="day-distance" class="list-inline text-center">
-        <dt class="list-inline-item mb-0"><abbr title="miles">mi</abbr>/<abbr title="kilometres">km</abbr>:</dt>
-        <dd class="list-inline-item mb-0">{{day.dayMiles}}/{{day.dayKM}}</dd>
-      </dl>
-
       <dl v-if="day.transport.length" class="list-inline text-center" slot="day-transport">
         <dt class="list-inline-item">Transport:</dt>
         <dl class="list-inline-item" v-for="(transportType, transportTypeIndex) in day.transport">
