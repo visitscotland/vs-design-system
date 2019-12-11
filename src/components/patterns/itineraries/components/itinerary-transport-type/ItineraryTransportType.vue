@@ -1,6 +1,6 @@
 <template>
   <span
-    class="vs-itinerary-transport-type position-relative py-1"
+    class="vs-itinerary-transport-type d-block position-relative py-1"
     v-b-tooltip.hover
     :title="this.transportType.value"
   >
@@ -70,12 +70,17 @@ export default {
 
 <docs>
   ```jsx
-  <vs-itinerary-transport-type
-    v-for="(transportType, index) in transportTypes.transportTypes"
-    :key="index"
-    :transportType="transportType"
-  >
-   <span class="sr-only">{{transportType.value}}</span>
-  </vs-itinerary-transport-type>
+  <dl class="list-inline">
+    <dt class="list-inline-item">Transport Types:</dt>
+    <dd class="list-inline-item" 
+      v-for="(transportType, transportTypeIndex) in transportTypes.transportTypes"
+      :key="transportTypeIndex"
+      :transportType="transportType"
+    >
+    <vs-itinerary-transport-type :transportType="transportType">
+        <span class="sr-only">{{transportType.value}}</span>
+    </vs-itinerary-transport-type>
+    </dd>
+  </dl>
   ```
 </docs>
