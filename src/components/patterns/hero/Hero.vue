@@ -36,7 +36,7 @@
                 :latitude="this.latitude"
                 :longitude="this.longitude"
                 map-outline-color="#FFFFFF"
-                map-marker-color="#FFFFFF"
+                map-marker-color="#7CC9CC"
               ></vs-image-location-map>
             </div>
           </vs-col>
@@ -171,6 +171,7 @@ export default {
 
 figure {
   position: relative;
+  background-color: $color-theme-dark;
 }
 
 img {
@@ -180,7 +181,7 @@ img {
 
 .vs-hero__image-wrapper {
   position: relative;
-  max-height: 70vh;
+  max-height: 100vh;
   overflow: hidden;
 }
 
