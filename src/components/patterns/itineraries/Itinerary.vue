@@ -205,7 +205,16 @@ export default {
                   <span>Day {{day.dayCount}}</span>
                   {{day.title}}
                 </vs-heading>
-                  
+
+                <vs-row align-h="center">
+                  <vs-col cols="12" sm="6" md="5">
+                    <slot name="day-distance" />
+                  </vs-col>
+                  <vs-col cols="12" sm="6" md="5">
+                    <slot name="day-transport" />
+                  </vs-col>
+                </vs-row>
+                          
                 <div slot="day-introduction" v-html="day.introduction"></div>
                 <ul slot="stops" class="mt-9 list-unstyled">
                   <vs-itinerary-stop 
@@ -222,6 +231,7 @@ export default {
                     >Stop {{stop.stopCount}}</span>
                     {{stop.title}}
                   </vs-heading>
+                  
                   <vs-favourites-toggle-button
                     slot="stop-favourite"
                     :href="stop.href"
