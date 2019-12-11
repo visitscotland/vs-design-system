@@ -35,7 +35,8 @@
               <vs-image-location-map
                 :latitude="this.latitude"
                 :longitude="this.longitude"
-                map-outline-color="#191919"
+                map-outline-color="#FFFFFF"
+                map-marker-color="#FFFFFF"
               ></vs-image-location-map>
             </div>
           </vs-col>
@@ -179,6 +180,8 @@ img {
 
 .vs-hero__image-wrapper {
   position: relative;
+  max-height: 70vh;
+  overflow: hidden;
 }
 
 .vs-hero__overlay-text {
@@ -205,8 +208,8 @@ img {
 }
 
 figcaption {
-  background-color: $color-white;
-  color: $color-base-text;
+  background-color: $color-theme-dark;
+  color: $color-white;
   width: 100%;
 
   @include media-breakpoint-up(lg) {
