@@ -61,7 +61,44 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.vs-itinerary ::v-deep {
+  figcaption {
+    @include media-breakpoint-up(lg) {
+      bottom: 9rem;
+    }
+
+    @include media-breakpoint-up(xl) {
+      bottom: 15rem;
+    }
+  }
+
+  .vs-itineraries__intro-wrapper {
+    @include media-breakpoint-up(lg) {
+      padding: 2.5rem 4rem;
+      background: $color-white;
+      box-shadow: 0 0 1rem rgba(0, 0, 0, 0.2);
+      margin: -12rem 0;
+      position: relative;
+    }
+
+    @include media-breakpoint-up(xl) {
+      margin: -18rem 0;
+    }
+  }
+  .vs-itineraries__highlights-wrapper {
+    padding: 2rem 0;
+
+    @include media-breakpoint-up(lg) {
+      padding: 15rem 0 2rem 0;
+    }
+
+    @include media-breakpoint-up(xl) {
+      padding: 21rem 0 2rem 0;
+    }
+  }
+}
+</style>
 
 <docs>
 ```jsx
@@ -103,56 +140,58 @@ export default {
       </noscript>
     </vs-hero>
     <vs-container>
-      <vs-breadcrumb>
-        <vs-breadcrumb-item 
-          v-for="(item, index) in breadcrumb.breadcrumb"
-          :key="index"
-          :href="item.href"
-          :active="item.active"
-          :text="item.name"
-          >
-        </vs-breadcrumb-item>
-      </vs-breadcrumb>
-      <vs-row class="justify-content-md-between">
-        <vs-col cols="12" sm="6" lg="7" xl="8">
-          <vs-heading level="1">
-            {{itineraries.sampleItinerary.h1Heading}}
-          </vs-heading>
-          <div class="lead" v-html="itineraries.sampleItinerary.introduction"></div>
-          <dl class="list-inline">
-            <dt class="list-inline-item">Start / Finish</dt>
-            <dd class="list-inline-item">{{itineraries.sampleItinerary.start}}/{{itineraries.sampleItinerary.finish}}</dd>
-          </dl>
-        </vs-col>
-        <vs-col cols="12" sm="6" md="5" lg="4" xl="3">
-          <vs-itinerary-summary-list>
-            <vs-itinerary-summary-list-item>
-              <strong>Days</strong>
-              <span>{{itineraries.sampleItinerary.totalDays}}</span>
-            </vs-itinerary-summary-list-item>
-            <vs-itinerary-summary-list-item>
-              <strong>Distance <br /><abbr title="miles">mi</abbr>/<abbr title="kilometres">km</abbr></strong>
-              <span>{{itineraries.sampleItinerary.totalMiles}}<span class="divider">/</span>{{itineraries.sampleItinerary.totalKM}}</span>
-            </vs-itinerary-summary-list-item>
-            <vs-itinerary-summary-list-item>
-              <strong>Transport</strong>
-              <div class="icon-wrapper">
-                <vs-icon :name="itineraries.sampleItinerary.transport.key" variant="dark" size="sm" />
-                {{itineraries.sampleItinerary.transport.value}}
-              </div>
-            </vs-itinerary-summary-list-item>
-            <vs-itinerary-summary-list-item>
-              <strong>Main theme</strong>
-              <div class="icon-wrapper">
-                <vs-icon :name="itineraries.sampleItinerary.theme.key" variant="dark" size="sm" />
-                {{itineraries.sampleItinerary.theme.value}}
-              </div>
-            </vs-itinerary-summary-list-item>
-          </vs-itinerary-summary-list>
-        </vs-col>
-      </vs-row>
+      <div class="vs-itineraries__intro-wrapper">
+        <vs-breadcrumb>
+          <vs-breadcrumb-item 
+            v-for="(item, index) in breadcrumb.breadcrumb"
+            :key="index"
+            :href="item.href"
+            :active="item.active"
+            :text="item.name"
+            >
+          </vs-breadcrumb-item>
+        </vs-breadcrumb>
+        <vs-row class="justify-content-md-between">
+          <vs-col cols="12" sm="6" lg="7">
+            <vs-heading level="1">
+              {{itineraries.sampleItinerary.h1Heading}}
+            </vs-heading>
+            <div class="lead" v-html="itineraries.sampleItinerary.introduction"></div>
+            <dl class="list-inline">
+              <dt class="list-inline-item">Start / Finish</dt>
+              <dd class="list-inline-item">{{itineraries.sampleItinerary.start}}/{{itineraries.sampleItinerary.finish}}</dd>
+            </dl>
+          </vs-col>
+          <vs-col cols="12" sm="6" md="5" lg="4">
+            <vs-itinerary-summary-list>
+              <vs-itinerary-summary-list-item>
+                <strong>Days</strong>
+                <span>{{itineraries.sampleItinerary.totalDays}}</span>
+              </vs-itinerary-summary-list-item>
+              <vs-itinerary-summary-list-item>
+                <strong>Distance <br /><abbr title="miles">mi</abbr>/<abbr title="kilometres">km</abbr></strong>
+                <span>{{itineraries.sampleItinerary.totalMiles}}<span class="divider">/</span>{{itineraries.sampleItinerary.totalKM}}</span>
+              </vs-itinerary-summary-list-item>
+              <vs-itinerary-summary-list-item>
+                <strong>Transport</strong>
+                <div class="icon-wrapper">
+                  <vs-icon :name="itineraries.sampleItinerary.transport.key" variant="dark" size="sm" />
+                  {{itineraries.sampleItinerary.transport.value}}
+                </div>
+              </vs-itinerary-summary-list-item>
+              <vs-itinerary-summary-list-item>
+                <strong>Main theme</strong>
+                <div class="icon-wrapper">
+                  <vs-icon :name="itineraries.sampleItinerary.theme.key" variant="dark" size="sm" />
+                  {{itineraries.sampleItinerary.theme.value}}
+                </div>
+              </vs-itinerary-summary-list-item>
+            </vs-itinerary-summary-list>
+          </vs-col>
+        </vs-row>
+      </div>
     </vs-container>
-    <div class="bg-light py-4">
+    <div class="bg-light vs-itineraries__highlights-wrapper">
       <vs-container>
         <vs-itinerary-highlights-list>
           <dt>Highlights</dt>
