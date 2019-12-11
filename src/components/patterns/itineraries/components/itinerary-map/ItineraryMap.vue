@@ -208,6 +208,11 @@ export default {
 .vs-itinerary__map {
   height: 100vh;
 
+  @include media-breakpoint-up(lg) {
+    width: 50vw;
+    float: right;
+  }
+
   & ::v-deep {
     .vs-itinerary__map-marker.mapboxgl-marker.mapboxgl-marker-anchor-center {
       background-color: $color-theme-secondary-teal;
