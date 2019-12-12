@@ -42,11 +42,6 @@ public class ItineraryContentComponent extends EssentialsContentComponent {
 
         addProducts(request, (Itinerary) request.getAttribute("document"));
 
-        final ValueList citiesValueList =
-                SelectionUtil.getValueListByIdentifier("transports", RequestContextProvider.get());
-        if (citiesValueList != null) {
-            request.setAttribute("transportsMap", SelectionUtil.valueListAsMap(citiesValueList));
-        }
     }
 
     private static String readAll(Reader rd) throws IOException {
