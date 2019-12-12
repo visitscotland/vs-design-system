@@ -4,7 +4,6 @@
   </component>
 </template>
 <script>
-import itinerariesStore from "@components/patterns/itineraries/itineraries.store"
 import VsIcon from "@components/elements/icon/Icon"
 import VsButton from "@components/elements/button/Button"
 import VsHeading from "@components/elements/heading/Heading"
@@ -33,30 +32,8 @@ export default {
   props: {
     type: {
       type: String,
-      default: "main",
+      default: "article",
     },
-  },
-  itinerariesStore,
-  computed: {
-    stops() {
-      return itinerariesStore.getters["itineraries/getStops"]
-    },
-  },
-  methods: {
-    handleScroll() {
-      console.log("handle scroll")
-      // this.stops.map(stop => {
-      //   if (this.isElementOnScreen(stop.stopCount)) {
-      //     this.setActiveStop(stop)
-      //   }
-      // })
-    },
-  },
-  created() {
-    document.body.addEventListener("scroll", this.handleScroll)
-  },
-  destroyed() {
-    document.body.removeEventListener("scroll", this.handleScroll)
   },
 }
 </script>
@@ -70,6 +47,17 @@ export default {
 
     @include media-breakpoint-up(xl) {
       bottom: 15rem;
+    }
+  }
+
+  .vs-itinerary__map {
+    @include media-breakpoint-up(lg) {
+      float: right;
+      position: -webkit-sticky;
+      position: sticky;
+      top: 0;
+      width: 50vw;
+      z-index: 1020;
     }
   }
 
@@ -102,7 +90,6 @@ export default {
 
 <docs>
 ```jsx
-
   const sampleItinerary = require("../../../assets/fixtures/itineraries/sampleItinerary.json")
   const stops = [];
   
@@ -212,9 +199,24 @@ export default {
       </vs-container>
     </div>
     <div class="position-sticky">
+      <vs-itinerary-map
+        access-token="pk.eyJ1IjoidmlzaXRzY290bGFuZC1kZXYiLCJhIjoiY2p4MGZwcmtjMDBlczN5bTBnY3pjeHNubCJ9.d3CJWPvX9FfjfSNAW98Q6w"
+        overview-map-longitude="57.81"
+        overview-map-latitude="-4.13"
+        overview-map-zoom="5"
+        :stops="stops"
+        :labels='{
+            "mapControlsFullscreenOpen": "Show fullscreen",
+            "mapControlsFullscreenClose": "Exit fullscreen",
+            "mapControlsCompass": "Reset angle",
+            "mapControlsZoomIn": "Zoom in",
+            "mapControlsZoomOut": "Zoom out"
+        }'
+        >
+      </vs-itinerary-map>
       <vs-container>
         <vs-row>
-          <vs-col cols="12" lg="6">
+          <vs-col cols="12">
             <ul class="list-unstyled">
               <vs-itinerary-day 
                 v-for="(day, index) in itineraries.sampleItinerary.days"
@@ -319,24 +321,7 @@ export default {
                 </ul>
             </vs-itinerary-day>
             </ul>
-          </vs-col> 
-          <vs-col cols="12" lg="6">
-            <vs-itinerary-map
-                access-token="pk.eyJ1IjoidmlzaXRzY290bGFuZC1kZXYiLCJhIjoiY2p4MGZwcmtjMDBlczN5bTBnY3pjeHNubCJ9.d3CJWPvX9FfjfSNAW98Q6w"
-                overview-map-longitude="57.81"
-                overview-map-latitude="-4.13"
-                overview-map-zoom="5"
-                :stops="stops"
-                :labels='{
-                    "mapControlsFullscreenOpen": "Show fullscreen",
-                    "mapControlsFullscreenClose": "Exit fullscreen",
-                    "mapControlsCompass": "Reset angle",
-                    "mapControlsZoomIn": "Zoom in",
-                    "mapControlsZoomOut": "Zoom out"
-                }'
-              >
-            </vs-itinerary-map>
-          </vs-col>     
+          </vs-col>    
         </vs-row>
       </vs-container>
     </div>
