@@ -1,8 +1,11 @@
 package com.visitscotland.brmx.beans;
 
+import org.hippoecm.hst.content.beans.standard.HippoBean;
 import org.onehippo.cms7.essentials.dashboard.annotations.HippoEssentialsGenerated;
 import org.hippoecm.hst.content.beans.Node;
 import org.hippoecm.hst.content.beans.standard.HippoHtml;
+
+import java.util.List;
 
 /** 
  * TODO: Beanwriter: Failed to create getter for node type: hippo:compound
@@ -28,5 +31,18 @@ public class Stop extends BaseDocument {
     @HippoEssentialsGenerated(internalName = "visitscotland:tips")
     public HippoHtml getTips() {
         return getHippoHtml("visitscotland:tips");
+    }
+
+    public List<?> getProducts() {
+        return getChildBeansByName("visitscotland:product");
+    }
+
+    @HippoEssentialsGenerated(internalName = "visitscotland:product", allowModifications = false)
+    public List<HippoBean> getStop() {
+        return getChildBeansByName("visitscotland:product", HippoBean.class);
+    }
+
+    public HippoBean getStopItem() {
+        return getOnlyChild(getStop());
     }
 }

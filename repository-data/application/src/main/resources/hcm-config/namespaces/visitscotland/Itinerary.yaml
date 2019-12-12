@@ -11,7 +11,7 @@ definitions:
         /hipposysedit:nodetype:
           jcr:primaryType: hipposysedit:nodetype
           jcr:mixinTypes: ['mix:referenceable', 'hipposysedit:remodel']
-          jcr:uuid: 46aff681-eb58-429f-bf9c-e61e96ae7d6d
+          jcr:uuid: 1247b5ac-8f1e-447f-824b-91d9e639394e
           hipposysedit:node: true
           hipposysedit:supertype: ['visitscotland:Page', 'hippostd:relaxed', 'hippotranslation:translated']
           hipposysedit:uri: http://www.visitscotland.com/visitscotland/nt/1.0
@@ -23,14 +23,6 @@ definitions:
             hipposysedit:path: visitscotland:noIndex
             hipposysedit:primary: false
             hipposysedit:type: Boolean
-          /summary:
-            jcr:primaryType: hipposysedit:field
-            hipposysedit:mandatory: false
-            hipposysedit:multiple: false
-            hipposysedit:ordered: false
-            hipposysedit:path: visitscotland:summary
-            hipposysedit:primary: false
-            hipposysedit:type: String
           /start:
             jcr:primaryType: hipposysedit:field
             hipposysedit:mandatory: false
@@ -63,22 +55,22 @@ definitions:
             hipposysedit:path: visitscotland:theme
             hipposysedit:primary: false
             hipposysedit:type: DynamicDropdown
-          /transport:
-            jcr:primaryType: hipposysedit:field
-            hipposysedit:mandatory: false
-            hipposysedit:multiple: true
-            hipposysedit:ordered: false
-            hipposysedit:path: visitscotland:transport
-            hipposysedit:primary: false
-            hipposysedit:type: selection:RadioGroup
           /text:
             jcr:primaryType: hipposysedit:field
             hipposysedit:mandatory: false
             hipposysedit:multiple: false
             hipposysedit:ordered: false
-            hipposysedit:path: visitscotland:text
+            hipposysedit:path: visitscotland:highlights
             hipposysedit:primary: false
             hipposysedit:type: Text
+          /transports:
+            jcr:primaryType: hipposysedit:field
+            hipposysedit:mandatory: false
+            hipposysedit:multiple: true
+            hipposysedit:ordered: false
+            hipposysedit:path: visitscotland:transports
+            hipposysedit:primary: false
+            hipposysedit:type: String
           /areas:
             jcr:primaryType: hipposysedit:field
             hipposysedit:mandatory: false
@@ -86,7 +78,15 @@ definitions:
             hipposysedit:ordered: false
             hipposysedit:path: visitscotland:areas
             hipposysedit:primary: false
-            hipposysedit:type: selection:RadioGroup
+            hipposysedit:type: String
+          /popular:
+            jcr:primaryType: hipposysedit:field
+            hipposysedit:mandatory: false
+            hipposysedit:multiple: false
+            hipposysedit:ordered: false
+            hipposysedit:path: visitscotland:popular
+            hipposysedit:primary: false
+            hipposysedit:type: Boolean
       /hipposysedit:prototypes:
         jcr:primaryType: hipposysedit:prototypeset
         /hipposysedit:prototype:
@@ -104,16 +104,16 @@ definitions:
           visitscotland:noIndex: false
           jcr:mixinTypes: ['mix:referenceable']
           visitscotland:finish: ''
-          visitscotland:summary: ''
           visitscotland:start: ''
           visitscotland:distance: 0.0
           visitscotland:theme: ''
-          visitscotland:text: ''
-          visitscotland:transport: ['']
-          visitscotland:areas: ['']
-          jcr:uuid: abf63e42-aede-48ee-a46e-e75d8e8434fd
+          jcr:uuid: 983d0359-04bb-4986-bc2e-bc8ae823d8fc
           hippostdpubwf:creationDate: 2019-12-06T11:10:08.311Z
           hippostdpubwf:lastModificationDate: 2019-12-06T11:10:08.310Z
+          visitscotland:highlights: ''
+          visitscotland:areas: []
+          visitscotland:transports: []
+          visitscotland:popular: false
           /visitscotland:heroImage:
             jcr:primaryType: hippogallerypicker:imagelink
             hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
@@ -160,6 +160,7 @@ definitions:
             field: heroImage
             plugin.class: org.hippoecm.frontend.editor.plugins.field.NodeFieldPlugin
             wicket.id: ${cluster.id}.left.item
+            hint: ''
             /cluster.options:
               jcr:primaryType: frontend:pluginconfig
           /breadcrumb:
@@ -207,14 +208,6 @@ definitions:
             wicket.id: ${cluster.id}.left.item
             /cluster.options:
               jcr:primaryType: frontend:pluginconfig
-          /summary:
-            jcr:primaryType: frontend:plugin
-            caption: Summary Box
-            field: summary
-            plugin.class: org.hippoecm.frontend.editor.plugins.field.PropertyFieldPlugin
-            wicket.id: ${cluster.id}.left.item
-            /cluster.options:
-              jcr:primaryType: frontend:pluginconfig
           /start:
             jcr:primaryType: frontend:plugin
             caption: Starting point
@@ -240,6 +233,14 @@ definitions:
             wicket.id: ${cluster.id}.left.item
             /cluster.options:
               jcr:primaryType: frontend:pluginconfig
+          /popular:
+            jcr:primaryType: frontend:plugin
+            caption: Popular
+            field: popular
+            plugin.class: org.hippoecm.frontend.editor.plugins.field.PropertyFieldPlugin
+            wicket.id: ${cluster.id}.left.item
+            /cluster.options:
+              jcr:primaryType: frontend:pluginconfig
           /theme:
             jcr:primaryType: frontend:plugin
             caption: Theme
@@ -249,29 +250,39 @@ definitions:
             /cluster.options:
               jcr:primaryType: frontend:pluginconfig
               source: /content/documents/administration/options/themes
-          /transport:
+          /highlights:
             jcr:primaryType: frontend:plugin
-            caption: Transport Means
-            field: transport
+            caption: Highlights
+            field: text
+            hint: Highlights for the itinerary. Pick from 3 to 6 topics.
             plugin.class: org.hippoecm.frontend.editor.plugins.field.PropertyFieldPlugin
+            wicket.id: ${cluster.id}.left.item
+            /cluster.options:
+              jcr:primaryType: frontend:pluginconfig
+          /transports:
+            jcr:primaryType: frontend:plugin
+            caption: Transports
+            field: transports
+            multiselect.type: checkboxes
+            palette.alloworder: false
+            palette.maxrows: '10'
+            plugin.class: org.onehippo.forge.selection.frontend.plugin.DynamicMultiSelectPlugin
+            selectlist.maxrows: '10'
+            valuelist.provider: service.valuelist.default
             wicket.id: ${cluster.id}.left.item
             /cluster.options:
               jcr:primaryType: frontend:pluginconfig
               source: /content/documents/administration/options/transports
-          /text:
-            jcr:primaryType: frontend:plugin
-            caption: Highlights
-            field: text
-            plugin.class: org.hippoecm.frontend.editor.plugins.field.PropertyFieldPlugin
-            wicket.id: ${cluster.id}.left.item
-            hint: Highlights for the itinerary. Pick from 3 to 6 topics.
-            /cluster.options:
-              jcr:primaryType: frontend:pluginconfig
           /areas:
             jcr:primaryType: frontend:plugin
-            caption: Areas Covered
+            caption: Areas
             field: areas
-            plugin.class: org.hippoecm.frontend.editor.plugins.field.PropertyFieldPlugin
+            multiselect.type: checkboxes
+            palette.alloworder: false
+            palette.maxrows: '10'
+            plugin.class: org.onehippo.forge.selection.frontend.plugin.DynamicMultiSelectPlugin
+            selectlist.maxrows: '10'
+            valuelist.provider: service.valuelist.default
             wicket.id: ${cluster.id}.left.item
             /cluster.options:
               jcr:primaryType: frontend:pluginconfig
