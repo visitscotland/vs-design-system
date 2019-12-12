@@ -274,19 +274,19 @@ props:
     value: "#E7F5F6"
     category: "Secondary Teal Tints"
 
-  - name: color_secondary_gray_shade_1
+  - name: color_secondary_teal_shade_1
     value: "#0E858B"
     category: "Secondary Teal Shades"
-  - name: color_secondary_gray_shade_2
+  - name: color_secondary_teal_shade_2
     value: "#0B6E72"
     category: "Secondary Teal Shades"
-  - name: color_secondary_gray_shade_3
+  - name: color_secondary_teal_shade_3
     value: "#09565A"
     category: "Secondary Teal Shades"
-  - name: color_secondary_gray_shade_4
+  - name: color_secondary_teal_shade_4
     value: "#063F41"
     category: "Secondary Teal Shades"
-  - name: color_secondary_gray_shade_5
+  - name: color_secondary_teal_shade_5
     value: "#042729"
     category: "Secondary Teal Shades"
 
