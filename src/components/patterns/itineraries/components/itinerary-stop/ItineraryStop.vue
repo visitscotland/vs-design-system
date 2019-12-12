@@ -1,5 +1,5 @@
 <template>
-  <component :is="type" class="vs-itinerary-stop__list-item">
+  <component :is="type" class="vs-itinerary-stop__list-item" :data-stop="stop.stopCount">
     <div class="vs-itinerary-stop__header d-flex justify-content-between align-items-top">
       <vs-icon name="map-marker-filled" variant="secondary-teal" size="md" :padding="0" />
       <div class="flex-fill">
@@ -53,9 +53,10 @@ export default {
       type: String,
       default: "li",
     },
+    stop: {
+      type: Object,
+    },
   },
-  computed: {},
-  methods: {},
 }
 </script>
 
@@ -92,12 +93,13 @@ export default {
 <ul class="list-unstyled">
 <vs-itinerary-stop 
   v-for="(stop, index) in itineraries.sampleItinerary.days[3].stops"
+  :stop="stop"
   :key="index"
 >
 <vs-heading 
   slot="stop-title"
   level="3" 
-  thin 
+  thin
   class="vs-itinerary-stop__title ml-4">
   <span>Stop {{stop.stopCount}}</span>
   {{stop.title}}
