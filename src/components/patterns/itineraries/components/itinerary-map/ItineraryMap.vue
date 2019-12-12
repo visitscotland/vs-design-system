@@ -19,7 +19,6 @@ export default {
   components: {},
   data() {
     return {
-      activeStop: null,
       geojsonData: {
         type: "FeatureCollection",
         features: [],
@@ -75,6 +74,11 @@ export default {
     },
   },
   itinerariesStore,
+  watch: {
+    activeStop: (newValue, oldValue) => {
+      console.log(newValue, oldValue)
+    },
+  },
   computed: {
     mapPadding: () => {
       return {
@@ -173,6 +177,11 @@ export default {
         this.fitToBounds()
       }
     },
+    isElementOnScreen(stopCount) {
+      var element = document.querySelector("[data-stop='" + stopCount + "']")
+      var bounds = element.getBoundingClientRect()
+      return bounds.top < window.innerHeight && bounds.top > 0
+    },
     lazyloadMapComponent() {
       if (!("IntersectionObserver" in window)) {
         this.initialiseMapComponent()
@@ -187,9 +196,24 @@ export default {
       })
       this.observer.observe(this.$el)
     },
+    onScroll() {
+      this.stops.map(stop => {
+        if (this.isElementOnScreen(stop.stopCount)) {
+          this.setActiveStop(stop.stopCount)
+        }
+      })
+    },
     removeMapPopup() {
       this.popup !== null ? this.popup.remove() : null
       this.popup = null
+    },
+    setActiveStop(stopCount) {
+      console.log(stopCount)
+      if (this.activeStop === stopCount) {
+        return
+      } else {
+        itinerariesStore.dispatch("itineraries/setStopActive", stopCount)
+      }
     },
   },
   created() {
@@ -206,6 +230,11 @@ export default {
   },
   mounted() {
     this.lazyloadMapComponent()
+
+    window.addEventListener("scroll", this.onScroll)
+  },
+  destroyed() {
+    window.removeEventListener("scroll", this.onScroll)
   },
 }
 </script>
@@ -213,13 +242,6 @@ export default {
 <style lang="scss" scoped>
 .vs-itinerary__map {
   height: 100vh;
-
-  @include media-breakpoint-up(lg) {
-    position: -webkit-sticky;
-    position: sticky;
-    top: 0;
-    z-index: 1020;
-  }
 
   & ::v-deep {
     .vs-itinerary__map-marker.mapboxgl-marker.mapboxgl-marker-anchor-center {
