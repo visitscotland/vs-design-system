@@ -4,6 +4,7 @@
       <slot name="day-title" />
       <vs-button
         class="vs-itinerary-day__toggle-button position-absolute p-0"
+        v-if="!this.isDesktop"
         variant="transparent"
         :animate="false"
         @click.native="triggerToggle()"
@@ -14,10 +15,11 @@
         <vs-icon v-else name="chevron-up" variant="dark" size="xs" :padding="3" />
       </vs-button>
     </div>
-    <div v-show="this.show">
+    <div v-show="this.show || this.isDesktop">
       <slot name="day-transport" />
       <slot name="day-introduction" />
       <slot name="stops" />
+      <slot name="nearby-links" />
     </div>
   </component>
 </template>
@@ -44,6 +46,7 @@ export default {
   data() {
     return {
       show: this.defaultShow,
+      isDesktop: window.innerWidth >= 1200 ? true : false,
     }
   },
   props: {
@@ -61,9 +64,18 @@ export default {
   },
   computed: {},
   methods: {
+    onResize() {
+      this.isDesktop = window.innerWidth >= 1200 ? true : false
+    },
     triggerToggle() {
       this.show = !this.show
     },
+  },
+  mounted() {
+    window.addEventListener("resize", this.onResize)
+  },
+  destroyed() {
+    window.removeEventListener("resize", this.onResize)
   },
 }
 </script>
