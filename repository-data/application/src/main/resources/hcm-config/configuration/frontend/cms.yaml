@@ -12,3 +12,7 @@ definitions:
       language: it
     /hippo:configuration/hippo:frontend/cms/cms-services/localeProviderService/en:
       country: gb
+    /hippo:configuration/hippo:frontend/cms/cms-services/imageValidationService:
+      max.file.size: 1M
+      max.width: 1922
+      max.height: 1282

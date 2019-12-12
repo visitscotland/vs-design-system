@@ -33,7 +33,7 @@ definitions:
             hst:relativecontentpath: site/destinations-maps
             /_index_:
               jcr:primaryType: hst:sitemapitem
-              hst:componentconfigurationid: hst:pages/standard-page
+              hst:componentconfigurationid: hst:pages/itinerary-page
               hst:relativecontentpath: ${parent}/content
             /islands:
               jcr:primaryType: hst:sitemapitem
@@ -57,7 +57,7 @@ definitions:
               hst:relativecontentpath: ${parent}/${1}
               /_index_:
                 jcr:primaryType: hst:sitemapitem
-                hst:componentconfigurationid: hst:pages/standard-page
+                hst:componentconfigurationid: hst:pages/itinerary-page
                 hst:relativecontentpath: ${parent}/content
         /hst:abstractpages:
           jcr:primaryType: hst:pages

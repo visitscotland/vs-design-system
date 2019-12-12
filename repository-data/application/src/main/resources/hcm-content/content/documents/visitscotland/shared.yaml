@@ -6,3 +6,345 @@
   hippostd:foldertype: [new-translated-folder, new-document]
   hippotranslation:id: b091be00-dc54-41e0-9354-c4098c03db9e
   hippotranslation:locale: en
+  /itinerary-stops:
+    jcr:primaryType: hippostd:folder
+    jcr:mixinTypes: ['hippo:named', 'hippotranslation:translated', 'mix:versionable']
+    jcr:uuid: 41b800fa-fa6e-40e7-b01f-c248bf66a26a
+    hippo:name: Itinerary stops
+    hippostd:foldertype: [new-translated-folder, new-document]
+    hippotranslation:id: 683a53b0-4162-48f2-9124-d025fabe4f64
+    hippotranslation:locale: en
+    /edinburgh-castle:
+      jcr:primaryType: hippo:handle
+      jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
+      jcr:uuid: 1ead4399-7e30-47dc-9b75-2ea488fb5742
+      hippo:name: Edinburgh castle
+      hippo:versionHistory: 9a4abfb4-36c0-4a7f-a8be-f2c0e3dcfde3
+      /edinburgh-castle[1]:
+        jcr:primaryType: visitscotland:Stop
+        jcr:mixinTypes: ['mix:referenceable']
+        jcr:uuid: e8d45bd4-c666-466b-a6e0-d38aec4ead8f
+        hippo:availability: []
+        hippostd:state: draft
+        hippostdpubwf:createdBy: admin
+        hippostdpubwf:creationDate: 2019-12-10T13:29:39.541Z
+        hippostdpubwf:lastModificationDate: 2019-12-10T17:56:10.379Z
+        hippostdpubwf:lastModifiedBy: admin
+        hippotranslation:id: bd1aa2df-999b-4ed5-af2e-1f9cf0286372
+        hippotranslation:locale: en
+        visitscotland:tipsTitle: Don't miss
+        visitscotland:title: Edinburgh castle
+        /visitscotland:description:
+          jcr:primaryType: hippostd:html
+          hippostd:content: <p>Edinburgh castle is a really nice attraction and this
+            is an example for description</p>
+        /visitscotland:tips:
+          jcr:primaryType: hippostd:html
+          hippostd:content: <p>example pull out infor</p>
+        /visitscotland:product:
+          jcr:primaryType: visitscotland:DMSLink
+          visitscotland:product: '245821'
+          /visitscotland:image:
+            jcr:primaryType: hippogallerypicker:imagelink
+            hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
+            hippo:facets: []
+            hippo:modes: []
+            hippo:values: []
+      /edinburgh-castle[2]:
+        jcr:primaryType: visitscotland:Stop
+        jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
+        jcr:uuid: 2bf55d95-17a5-4f74-81ff-03c2f9b9b87d
+        hippo:availability: [preview]
+        hippostd:state: unpublished
+        hippostdpubwf:createdBy: admin
+        hippostdpubwf:creationDate: 2019-12-10T13:29:39.541Z
+        hippostdpubwf:lastModificationDate: 2019-12-10T17:56:09.992Z
+        hippostdpubwf:lastModifiedBy: admin
+        hippotranslation:id: bd1aa2df-999b-4ed5-af2e-1f9cf0286372
+        hippotranslation:locale: en
+        visitscotland:tipsTitle: Don't miss
+        visitscotland:title: Edinburgh castle
+        /visitscotland:description:
+          jcr:primaryType: hippostd:html
+          hippostd:content: <p>Edinburgh castle is a really nice attraction and this
+            is an example for description</p>
+        /visitscotland:tips:
+          jcr:primaryType: hippostd:html
+          hippostd:content: <p>example pull out infor</p>
+        /visitscotland:product:
+          jcr:primaryType: visitscotland:DMSLink
+          visitscotland:product: '245821'
+          /visitscotland:image:
+            jcr:primaryType: hippogallerypicker:imagelink
+            hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
+            hippo:facets: []
+            hippo:modes: []
+            hippo:values: []
+      /edinburgh-castle[3]:
+        jcr:primaryType: visitscotland:Stop
+        jcr:mixinTypes: ['mix:referenceable']
+        jcr:uuid: 855dc743-6536-4f42-85c7-ec7a9734e835
+        hippo:availability: [live]
+        hippostd:state: published
+        hippostdpubwf:createdBy: admin
+        hippostdpubwf:creationDate: 2019-12-10T13:29:39.541Z
+        hippostdpubwf:lastModificationDate: 2019-12-10T17:56:09.992Z
+        hippostdpubwf:lastModifiedBy: admin
+        hippostdpubwf:publicationDate: 2019-12-11T13:01:18.237Z
+        hippotranslation:id: bd1aa2df-999b-4ed5-af2e-1f9cf0286372
+        hippotranslation:locale: en
+        visitscotland:tipsTitle: Don't miss
+        visitscotland:title: Edinburgh castle
+        /visitscotland:description:
+          jcr:primaryType: hippostd:html
+          hippostd:content: <p>Edinburgh castle is a really nice attraction and this
+            is an example for description</p>
+        /visitscotland:tips:
+          jcr:primaryType: hippostd:html
+          hippostd:content: <p>example pull out infor</p>
+        /visitscotland:product:
+          jcr:primaryType: visitscotland:DMSLink
+          visitscotland:product: '245821'
+          /visitscotland:image:
+            jcr:primaryType: hippogallerypicker:imagelink
+            hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
+            hippo:facets: []
+            hippo:modes: []
+            hippo:values: []
+    /royal-mil-and-grassmarket:
+      jcr:primaryType: hippo:handle
+      jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
+      jcr:uuid: ca56dfe6-f8c8-410f-aa63-ed513fc71385
+      hippo:name: Royal mil and grassmarket
+      hippo:versionHistory: c4d1d7bc-6e74-4821-9f85-f18cebc3c864
+      /royal-mil-and-grassmarket[1]:
+        jcr:primaryType: visitscotland:Stop
+        jcr:mixinTypes: ['mix:referenceable']
+        jcr:uuid: f99a876a-5616-44c4-8150-1e2b2f22c3c9
+        hippo:availability: []
+        hippostd:state: draft
+        hippostdpubwf:createdBy: admin
+        hippostdpubwf:creationDate: 2019-12-11T12:39:11.963Z
+        hippostdpubwf:lastModificationDate: 2019-12-12T12:23:30.877Z
+        hippostdpubwf:lastModifiedBy: admin
+        hippotranslation:id: 9da62445-4ef0-470c-9d9c-ed812d053659
+        hippotranslation:locale: en
+        visitscotland:tipsTitle: Don't miss test title
+        visitscotland:title: OLD TOWN HIDEOUTS
+        /visitscotland:description:
+          jcr:primaryType: hippostd:html
+          hippostd:content: <p>Two old town cafés near the Royal Mile claim that JK
+            Rowling spent endless afternoons in the 1990s gazing out of their windows
+            and dreaming up her magical characters. The Elephant House, with its beautiful
+            views of Edinburgh Castle, has become known as the 'Birthplace of Harry
+            Potter'. Whilst Spoon (in those days known as the Nicholson Café), is
+            a lovely eatery and a great place to collect your creative thoughts. You
+            can also see JK Rowling's handprints set in stone at the Edinburgh City
+            Chambers on the Royal Mile.</p>
+        /visitscotland:tips:
+          jcr:primaryType: hippostd:html
+          hippostd:content: <p>Don't miss test information</p>
+        /visitscotland:product:
+          jcr:primaryType: visitscotland:DMSLink
+          visitscotland:product: '918401'
+          /visitscotland:image:
+            jcr:primaryType: hippogallerypicker:imagelink
+            hippo:docbase: 9fb38865-ca10-4ef4-bcab-a1097cc44487
+            hippo:facets: []
+            hippo:modes: []
+            hippo:values: []
+      /royal-mil-and-grassmarket[2]:
+        jcr:primaryType: visitscotland:Stop
+        jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
+        jcr:uuid: 5124b37d-cf2a-4427-a5f9-db96896937f8
+        hippo:availability: [preview]
+        hippostd:state: unpublished
+        hippostdpubwf:createdBy: admin
+        hippostdpubwf:creationDate: 2019-12-11T12:39:11.963Z
+        hippostdpubwf:lastModificationDate: 2019-12-12T12:23:30.810Z
+        hippostdpubwf:lastModifiedBy: admin
+        hippotranslation:id: 9da62445-4ef0-470c-9d9c-ed812d053659
+        hippotranslation:locale: en
+        visitscotland:tipsTitle: Don't miss test title
+        visitscotland:title: OLD TOWN HIDEOUTS
+        /visitscotland:description:
+          jcr:primaryType: hippostd:html
+          hippostd:content: <p>Two old town cafés near the Royal Mile claim that JK
+            Rowling spent endless afternoons in the 1990s gazing out of their windows
+            and dreaming up her magical characters. The Elephant House, with its beautiful
+            views of Edinburgh Castle, has become known as the 'Birthplace of Harry
+            Potter'. Whilst Spoon (in those days known as the Nicholson Café), is
+            a lovely eatery and a great place to collect your creative thoughts. You
+            can also see JK Rowling's handprints set in stone at the Edinburgh City
+            Chambers on the Royal Mile.</p>
+        /visitscotland:tips:
+          jcr:primaryType: hippostd:html
+          hippostd:content: <p>Don't miss test information</p>
+        /visitscotland:product:
+          jcr:primaryType: visitscotland:DMSLink
+          visitscotland:product: '918401'
+          /visitscotland:image:
+            jcr:primaryType: hippogallerypicker:imagelink
+            hippo:docbase: 9fb38865-ca10-4ef4-bcab-a1097cc44487
+            hippo:facets: []
+            hippo:modes: []
+            hippo:values: []
+      /royal-mil-and-grassmarket[3]:
+        jcr:primaryType: visitscotland:Stop
+        jcr:mixinTypes: ['mix:referenceable']
+        jcr:uuid: af464800-0175-4f8f-b40f-d731bf3a6667
+        hippo:availability: [live]
+        hippostd:state: published
+        hippostdpubwf:createdBy: admin
+        hippostdpubwf:creationDate: 2019-12-11T12:39:11.963Z
+        hippostdpubwf:lastModificationDate: 2019-12-11T13:01:09.264Z
+        hippostdpubwf:lastModifiedBy: admin
+        hippostdpubwf:publicationDate: 2019-12-11T13:01:11.634Z
+        hippotranslation:id: 9da62445-4ef0-470c-9d9c-ed812d053659
+        hippotranslation:locale: en
+        visitscotland:tipsTitle: Don't miss test title
+        visitscotland:title: OLD TOWN HIDEOUTS
+        /visitscotland:description:
+          jcr:primaryType: hippostd:html
+          hippostd:content: <p>Two old town cafés near the Royal Mile claim that JK
+            Rowling spent endless afternoons in the 1990s gazing out of their windows
+            and dreaming up her magical characters. The Elephant House, with its beautiful
+            views of Edinburgh Castle, has become known as the 'Birthplace of Harry
+            Potter'. Whilst Spoon (in those days known as the Nicholson Café), is
+            a lovely eatery and a great place to collect your creative thoughts. You
+            can also see JK Rowling's handprints set in stone at the Edinburgh City
+            Chambers on the Royal Mile.</p>
+        /visitscotland:tips:
+          jcr:primaryType: hippostd:html
+          hippostd:content: <p>Don't miss test information</p>
+        /visitscotland:product:
+          jcr:primaryType: visitscotland:DMSLink
+          visitscotland:product: '918401'
+          /visitscotland:image:
+            jcr:primaryType: hippogallerypicker:imagelink
+            hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
+            hippo:facets: []
+            hippo:modes: []
+            hippo:values: []
+    /greyfriars-kirkyard:
+      jcr:primaryType: hippo:handle
+      jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
+      jcr:uuid: 28abd074-5fc4-4ebc-a424-1d4f9e5cb0e6
+      hippo:name: GREYFRIARS KIRKYARD
+      hippo:versionHistory: 25d74792-9e70-430c-a2da-6430095f0a14
+      /greyfriars-kirkyard[1]:
+        jcr:primaryType: visitscotland:Stop
+        jcr:mixinTypes: ['mix:referenceable']
+        jcr:uuid: 382c1404-85eb-445f-acb5-fb5c333a93e2
+        hippo:availability: []
+        hippostd:holder: admin
+        hippostd:state: draft
+        hippostdpubwf:createdBy: admin
+        hippostdpubwf:creationDate: 2019-12-11T12:40:08.862Z
+        hippostdpubwf:lastModificationDate: 2019-12-12T12:28:39.075Z
+        hippostdpubwf:lastModifiedBy: admin
+        hippotranslation:id: 1bdaaad2-68eb-4493-878c-0961215fe02a
+        hippotranslation:locale: en
+        visitscotland:tipsTitle: testing pull put
+        visitscotland:title: GREYFRIARS KIRKYARD
+        /visitscotland:description:
+          jcr:primaryType: hippostd:html
+          hippostd:content: '<p>Only a short walk away from The Elephant House you''ll
+            find this infamous, spine-tingling graveyard, and burial place of several
+            notable Edinburgh academics and writers of the past. However, also buried
+            here are a few other notable residents: Thomas Riddell, William McGonagall
+            and Elizabeth Moodie. A coincidence? We think not.</p>'
+        /visitscotland:tips:
+          jcr:primaryType: hippostd:html
+          hippostd:content: <p>description pull out</p>
+        /visitscotland:product:
+          jcr:primaryType: visitscotland:ExternalProductLink
+          visitscotland:Link: https://greyfriarskirk.com/
+          visitscotland:timeToExplore: '1'
+          /visitscotland:Coordinates:
+            jcr:primaryType: visitscotland:Coordinates
+            visitscotland:latitude: 55.9467
+            visitscotland:longitude: 3.1923
+          /visitscotland:image:
+            jcr:primaryType: hippogallerypicker:imagelink
+            hippo:docbase: 8d4f5036-64ca-4e5d-aa89-b348ae38b081
+            hippo:facets: []
+            hippo:modes: []
+            hippo:values: []
+      /greyfriars-kirkyard[2]:
+        jcr:primaryType: visitscotland:Stop
+        jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
+        jcr:uuid: a30aa998-e1ec-48ea-9897-faddcff868e9
+        hippo:availability: [preview]
+        hippostd:state: unpublished
+        hippostdpubwf:createdBy: admin
+        hippostdpubwf:creationDate: 2019-12-11T12:40:08.862Z
+        hippostdpubwf:lastModificationDate: 2019-12-12T12:28:39.032Z
+        hippostdpubwf:lastModifiedBy: admin
+        hippotranslation:id: 1bdaaad2-68eb-4493-878c-0961215fe02a
+        hippotranslation:locale: en
+        visitscotland:tipsTitle: testing pull put
+        visitscotland:title: GREYFRIARS KIRKYARD
+        /visitscotland:description:
+          jcr:primaryType: hippostd:html
+          hippostd:content: '<p>Only a short walk away from The Elephant House you''ll
+            find this infamous, spine-tingling graveyard, and burial place of several
+            notable Edinburgh academics and writers of the past. However, also buried
+            here are a few other notable residents: Thomas Riddell, William McGonagall
+            and Elizabeth Moodie. A coincidence? We think not.</p>'
+        /visitscotland:tips:
+          jcr:primaryType: hippostd:html
+          hippostd:content: <p>description pull out</p>
+        /visitscotland:product:
+          jcr:primaryType: visitscotland:ExternalProductLink
+          visitscotland:Link: https://greyfriarskirk.com/
+          visitscotland:timeToExplore: '1'
+          /visitscotland:Coordinates:
+            jcr:primaryType: visitscotland:Coordinates
+            visitscotland:latitude: 55.9467
+            visitscotland:longitude: 3.1923
+          /visitscotland:image:
+            jcr:primaryType: hippogallerypicker:imagelink
+            hippo:docbase: 8d4f5036-64ca-4e5d-aa89-b348ae38b081
+            hippo:facets: []
+            hippo:modes: []
+            hippo:values: []
+      /greyfriars-kirkyard[3]:
+        jcr:primaryType: visitscotland:Stop
+        jcr:mixinTypes: ['mix:referenceable']
+        jcr:uuid: 55b22033-bb49-4c18-a9fc-e65c6a970ed6
+        hippo:availability: [live]
+        hippostd:state: published
+        hippostdpubwf:createdBy: admin
+        hippostdpubwf:creationDate: 2019-12-11T12:40:08.862Z
+        hippostdpubwf:lastModificationDate: 2019-12-12T12:04:07.602Z
+        hippostdpubwf:lastModifiedBy: admin
+        hippostdpubwf:publicationDate: 2019-12-12T12:04:12.263Z
+        hippotranslation:id: 1bdaaad2-68eb-4493-878c-0961215fe02a
+        hippotranslation:locale: en
+        visitscotland:tipsTitle: testing pull put
+        visitscotland:title: GREYFRIARS KIRKYARD
+        /visitscotland:description:
+          jcr:primaryType: hippostd:html
+          hippostd:content: '<p>Only a short walk away from The Elephant House you''ll
+            find this infamous, spine-tingling graveyard, and burial place of several
+            notable Edinburgh academics and writers of the past. However, also buried
+            here are a few other notable residents: Thomas Riddell, William McGonagall
+            and Elizabeth Moodie. A coincidence? We think not.</p>'
+        /visitscotland:tips:
+          jcr:primaryType: hippostd:html
+          hippostd:content: <p>description pull out</p>
+        /visitscotland:product:
+          jcr:primaryType: visitscotland:ExternalProductLink
+          visitscotland:Link: https://greyfriarskirk.com/
+          visitscotland:timeToExplore: '1'
+          /visitscotland:Coordinates:
+            jcr:primaryType: visitscotland:Coordinates
+            visitscotland:latitude: 3.1923
+            visitscotland:longitude: 55.9467
+          /visitscotland:image:
+            jcr:primaryType: hippogallerypicker:imagelink
+            hippo:docbase: 8d4f5036-64ca-4e5d-aa89-b348ae38b081
+            hippo:facets: []
+            hippo:modes: []
+            hippo:values: []
