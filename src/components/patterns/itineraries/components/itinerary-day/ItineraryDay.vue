@@ -62,7 +62,6 @@ export default {
       default: true,
     },
   },
-  computed: {},
   methods: {
     onResize() {
       this.isDesktop = window.innerWidth >= 1200 ? true : false
