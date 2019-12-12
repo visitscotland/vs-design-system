@@ -9,59 +9,44 @@ export default new Vuex.Store({
     itineraries: {
       namespaced: true,
       state: {
-        stops: [],
+        activeStop: null,
+        highlightedStop: null,
       },
       mutations: {
-        ADD_STOP: (state, payload) => {
-          var newStop = {
-            title: payload.title,
-            imageSrc: payload.image.imageSrc,
-            altText: payload.image.altText,
-            stopCount: payload.stopCount,
-            active: false,
-          }
-          state.stops.unshift(newStop)
-        },
-        SET_ALL_STOPS_INACTIVE: state => {
-          state.stops.map(stop => {
-            stop.active = false
-          })
-        },
-        SET_STOP_INACTIVE: (state, payload) => {
-          var index = state.stops.findIndex(stop => stop.stopCount === payload)
-          state.stops[index].active = false
-        },
         SET_STOP_ACTIVE: (state, payload) => {
-          var index = state.stops.findIndex(stop => stop.stopCount === payload)
-          state.stops[index].active = true
+          state.activeStop = payload
+        },
+        SET_STOP_HIGHLIGHTED: (state, payload) => {
+          state.highlightedStop = payload
+        },
+        SET_STOP_UNHIGHLIGHTED: state => {
+          state.highlightedStop = null
         },
       },
       actions: {
-        addStop: ({ commit, getters }, payload) => {
-          if (getters.getStop(payload)) {
+        setStopActive: ({ commit, getters }, payload) => {
+          if (getters.getActiveStop === payload) {
             return false
           }
-
-          commit("ADD_STOP", payload)
+          commit("SET_STOP_ACTIVE", payload)
 
           return true
         },
-        setStopActive: (context, payload) => {
-          context.commit("SET_STOP_ACTIVE", payload)
+        setStopHighlighted: ({ commit, getters }, payload) => {
+          if (getters.getHighlightedStop === payload) {
+            return false
+          }
+          commit("SET_STOP_HIGHLIGHTED", payload)
+
+          return true
         },
-        setStopInactive: (context, payload) => {
-          context.commit("SET_STOP_INACTIVE", payload)
-        },
-        setAllStopsInactive: context => {
-          context.commit("SET_ALL_STOPS_INACTIVE")
+        setStopUnhighlighted: context => {
+          context.commit("SET_STOP_UNHIGHLIGHTED")
         },
       },
       getters: {
-        getStops: state => state.stops,
-        getActiveStop: state => state.stops.filter(stop => stop.active === true),
-        getStop: state => subject => {
-          return find(state.stops, matches(subject))
-        },
+        getActiveStop: state => state.activeStop,
+        getHighlightedStop: state => state.highlightedStop,
       },
     },
   },
