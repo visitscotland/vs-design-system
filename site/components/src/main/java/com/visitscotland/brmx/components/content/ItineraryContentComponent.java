@@ -1,8 +1,7 @@
 package com.visitscotland.brmx.components.content;
 
 
-import com.visitscotland.api.DataService;
-import com.visitscotland.api.DataServiceImpl;
+
 import com.visitscotland.brmx.beans.DMSLink;
 import com.visitscotland.brmx.beans.Day;
 import com.visitscotland.brmx.beans.Itinerary;
@@ -35,11 +34,7 @@ public class ItineraryContentComponent extends EssentialsContentComponent {
     public final String FIRST_STOP_LOCATION = "firstStopLocation";
     public final String LAST_STOP_LOCATION = "lastStopLocation";
 
-    private final DataService dataService;
 
-    public ItineraryContentComponent() {
-        dataService = new DataServiceImpl();
-    }
 
     @Override
     public void doBeforeRender(HstRequest request, HstResponse response) {
