@@ -75,10 +75,12 @@
         </div>
 
 
-            <#list day.stops as stop>
-                <#assign stopsCount++>
-                <@itineraryStop stop=stop number=stopsCount/>
-            </#list>
+             <ul class="list-unstyled">
+                <#list day.stops as stop>
+                    <#assign stopsCount++>
+                    <@itineraryStop stop=stop stopNumber=stopsCount/>
+                </#list>
+             </ul>
         <#if prod.name??>
                  <a  target="_blank" class="glyphicon glyphicon-cutlery" href="https://www.visitscotland.com/info/accommodation/search-results?prodtypes=cate&lat=${latitude}&lng=${longitude}&locprox=2&areaproxdist=1&stay=&endDate=&r1a=2&r1children=0&r1infants=0&r1c=0&avail=off&order=proximityAsc">
                 NEARBY PLACES TO EAT</a>
