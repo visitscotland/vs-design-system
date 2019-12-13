@@ -1,14 +1,14 @@
 <#include "../../include/imports.ftl">
+<#include "itinerary-stop.ftl">
 <@hst.setBundle basename="keyFacilities"/>
 
 <#-- @ftlvariable name="document" type="com.visitscotland.brmx.beans.Itinerary" -->
-<#-- @ftlvariable name="elm" type="com.visitscotland.brmx.beans.Day" -->
-<#-- @ftlvariable name="stop" type="com.visitscotland.brmx.beans.Stop" -->
-<#-- @ftlvariable name="facility" type="com.visitscotland.dataobjects.Facility" -->
+<#-- @ftlvariable name="day" type="com.visitscotland.brmx.beans.Day" -->
+
 
 <style>
     body {
-        background-color: #ffd9b3;
+        background-color: #ffd9b3 !important;
     }
 </style>
 
@@ -57,117 +57,27 @@
      </#if>
 
 
-        <#list document.getDays() as elm>
+        <#list document.getDays() as day>
          <div class="has-edit-button" style="padding-top: 3%">
-             <@hst.manageContent hippobean=elm />
+             <@hst.manageContent hippobean=day />
                 <div style="background:whitesmoke;border-style: solid; border-width: thin; padding:1%">
 
-                <h2>Day ${elm?index+1}: ${elm.title}<#if elm.transports?size gt 0 > <h4>    Transport:</h4>
+                <h2>Day ${day?index+1}: ${day.title}<#if day.transports?size gt 0 > <h4>    Transport:</h4>
                      <ul>
-                        <#list elm.transports as transport>
-                            <li>${transportsMap[transport]}</li>
+                        <#list day.transports as transport>
+                            <li>${transport}</li>
                         </#list>
                     </ul>
                     </#if>
                 </h2>
 
-            <h4><@hst.html hippohtml=elm.introduction/></h4>
+            <h4><@hst.html hippohtml=day.introduction/></h4>
         </div>
 
-            <#list elm.stops as stop>
+
+            <#list day.stops as stop>
                 <#assign stopsCount++>
-                <#assign latitude = "">
-                <#assign longitude = "">
-                <#assign prod = "">
-                <div class="has-edit-button" style="border-style: solid; border-width: thin; padding:1%" >
-                <@hst.manageContent hippobean=stop />
-                <#assign prod = productsMap[stop.stopItem.product]>
-                <#assign latitude = prod.latitude>
-                <#assign longitude = prod.longitude>
-                <#if editMode && !prod?has_content >
-                    <h2 style="color: red">The product does not exist in the DMS, please add a valid DMS id</h2>
-                </#if>
-                <h3 style="padding-top: 1%">Stop ${stopsCount}. ${stop.title}</h3>
-
-                <div class="col-sm-12" style="text-align: center">
-                    <#if stop.stopItem.image??>
-                        <@hst.link var="image" hippobean=stop.getStopItem().image.original/>
-                             <img src="${image}" width="50%" >
-                    <#else>
-                             <img src="${prod.image}" width="50%" >
-                    </#if>
-                </div>
-
-                 <div style="padding-top: 1%"><@hst.html hippohtml=stop.description/></div>
-
-                 <h4> Time to explore: ${stop.stopItem.timeToExplore}</h4>
-             <#--<#if prod.duration??>
-                 <h4> Time to explore: ${stop.products}</h4>
-              </#if>-->
-
-                <#if prod.name??>
-                     <a  target="_blank"  href="https://www.visitscotland.com${prod.url}">
-                    FIND OUT MORE</a>
-                </#if>
-
-
-                <#if stop.tips.content?has_content>
-                    <div style="background: lightpink">
-                        <h3> ${stop.tipsTitle} </h3>
-                        <p> <@hst.html hippohtml=stop.tips/></p>
-                     </div>
-                </#if>
-                     </br>
-                     <p class="glyphicon glyphicon-map-marker" style="padding-top: 1%"> Coordinates: ${prod.latitude},${prod.longitude}</p>
-
-                    <div style="position:relative">
-                        <img
-                                id="image${stopsCount}"
-                                src="https://www.csp.org.uk/sites/default/files/scotlandx.gif"
-                                data-lat-start="60.566850"
-                                data-lat-end="53.622142"
-                                data-lon-start="-7.151292"
-                                data-lon-end="-0.124849"
-                        />
-                        <svg
-                                class="target"
-                                style="position:absolute"
-                                data-lat="${prod.latitude}"
-                                data-lon="${prod.longitude}"
-                                data-image-id="image${stopsCount}"
-                        >
-                            <circle
-                                    r="10"
-                                    fill="green"
-                                    cx="20"
-                                    cy="20"
-                            />
-                        </svg>
-                    </div>
-
-
-                <#if prod.addressLine1??>
-                   </br>
-                    <div class="glyphicon glyphicon-map-marker" style="padding-top: 1%"> ${prod.addressLine1}</div>
-                </#if>
-
-
-                <#if prod.price?? && prod.price!="null" >
-                    </br>
-                    <div class="glyphicon glyphicon-info-sign" style="padding-top: 1%"> ${prod.multiplePrices?then("Prices from","Price")}: ${prod.price}</div>
-                </#if>
-
-
-
-                <#if prod.facilities?has_content >
-                    <h4> Facilities: </h4>
-                         <ul>
-                             <#list prod.facilities?split(",") as facility>
-                                     <li><@fmt.message key="${facility}" /></li>
-                            </#list>
-                         </ul>
-                </#if>
-                </div>
+                <@itineraryStop stop=stop number=stopsCount/>
             </#list>
         <#if prod.name??>
                  <a  target="_blank" class="glyphicon glyphicon-cutlery" href="https://www.visitscotland.com/info/accommodation/search-results?prodtypes=cate&lat=${latitude}&lng=${longitude}&locprox=2&areaproxdist=1&stay=&endDate=&r1a=2&r1children=0&r1infants=0&r1c=0&avail=off&order=proximityAsc">
