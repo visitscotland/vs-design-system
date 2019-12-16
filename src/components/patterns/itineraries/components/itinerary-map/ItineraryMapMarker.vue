@@ -1,29 +1,33 @@
 <template>
-  <vs-button
+  <component
+    :is="type"
     class="vs-itinerary-map-marker"
-    variant="transparent"
-    :animate="false"
-    @click.native="handleClick()"
-    @mouseenter.native="handleMouseEnter()"
-    @mouseleave.native="handleMouseLeave()"
-    @focus.native="handleMouseEnter()"
+    :class="isActiveStop || isHighlighted ? 'active' : ''"
+    @click="handleClick()"
+    @mouseenter="handleMouseEnter()"
+    @mouseleave="handleMouseLeave()"
+    @focus="handleMouseEnter()"
   >
-    <vs-icon
-      name="map-marker-filled"
-      variant="secondary-teal"
-      :size="isActiveStop || isHighlighted ? 'lg' : 'md'"
-      :padding="0"
-    />
-    <span class="vs-itinerary-map-marker__count" :class="{ active: isActiveStop }"
-      ><span class="sr-only">Stop</span>{{ this.stopCount }}</span
-    >
-  </vs-button>
+    <div class="map-marker__wrapper">
+      <vs-icon
+        name="map-marker-filled"
+        :class="isActiveStop || isHighlighted ? 'active' : ''"
+        :variant="isActiveStop || isHighlighted ? 'dark' : 'secondary-teal'"
+        :size="isActiveStop || isHighlighted ? 'lg' : 'md'"
+        :padding="0"
+      />
+      <span
+        class="vs-itinerary-map-marker__count"
+        :class="isActiveStop || isHighlighted ? 'active' : ''"
+        ><span class="sr-only">Stop</span>{{ this.stopCount }}</span
+      >
+    </div>
+  </component>
 </template>
 
 <script>
 import itinerariesStore from "@components/patterns/itineraries/itineraries.store"
 import VsIcon from "@components/elements/icon/Icon"
-import VsButton from "@components/elements/button/Button"
 
 /**
  * TODO: Document usage
@@ -34,7 +38,6 @@ export default {
   status: "prototype",
   release: "0.0.1",
   components: {
-    VsButton,
     VsIcon,
   },
   data() {
@@ -44,6 +47,10 @@ export default {
     }
   },
   props: {
+    type: {
+      type: String,
+      default: "button",
+    },
     stopCount: {
       type: Number,
       required: true,
@@ -70,16 +77,18 @@ export default {
   },
   methods: {
     handleClick() {
+      var element = document.querySelector("[data-stop='" + this.stopCount + "']")
+      if (element !== null) {
+        element.scrollIntoView({ block: "start", behavior: "smooth" })
+      }
+
       return itinerariesStore.dispatch("itineraries/setStopActive", this.stopCount)
     },
     handleMouseEnter() {
       return itinerariesStore.dispatch("itineraries/setStopHighlighted", this.stopCount)
     },
     handleMouseLeave() {
-      return itinerariesStore.dispatch(
-        "itineraries/setStopUnhighlighted",
-        this.isActiveStop ? this.stopCount : null
-      )
+      return itinerariesStore.dispatch("itineraries/setStopHighlighted", null)
     },
     toggleActive() {
       this.isActiveStop = this.currentActiveStop === this.stopCount ? true : false
@@ -93,22 +102,42 @@ export default {
 
 <style lang="scss" scoped>
 .vs-itinerary-map-marker {
+  background: transparent;
+  position: absolute;
+  border: none;
+  display: block;
   font-weight: $font-weight-bold;
   padding: 0;
+
+  &:hover,
+  &:focus,
+  &.active {
+    z-index: 1 !important;
+  }
 }
 
-.vs-itinerary-map-marker > svg {
-  position: relative;
+svg {
+  transition: all 250ms ease;
+}
+
+svg.active {
+  transform: scale(1.2, 1.2);
+  fill: $color-secondary-teal-shade-3 !important;
 }
 
 .vs-itinerary-map-marker__count {
   color: $color-white;
+  display: block;
+  font-size: 1rem;
   position: absolute;
   top: 4px;
+  left: 0;
+  text-align: center;
+  width: 100%;
 
   &.active {
-    font-size: $font-size-lg;
-    z-index: 2;
+    top: 6px;
+    font-size: 2rem;
   }
 }
 </style>
