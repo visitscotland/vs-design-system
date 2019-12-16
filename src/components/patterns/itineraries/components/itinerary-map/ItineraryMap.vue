@@ -6,6 +6,8 @@
 import itinerariesStore from "@components/patterns/itineraries/itineraries.store"
 import mapboxgl from "mapbox-gl"
 import geojsonExtent from "@mapbox/geojson-extent"
+import VsItineraryMapMarker from "@components/patterns/itineraries/components/itinerary-map/ItineraryMapMarker"
+import Vue from "vue"
 require("mapbox-gl/dist/mapbox-gl.css")
 
 /**
@@ -16,7 +18,9 @@ export default {
   name: "VsItineraryMap",
   status: "prototype",
   release: "0.0.1",
-  components: {},
+  components: {
+    VsItineraryMapMarker,
+  },
   data() {
     return {
       geojsonData: {
@@ -40,7 +44,7 @@ export default {
           dragRotate: false,
         },
       },
-      markers: {},
+      markers: [],
       popup: null,
     }
   },
@@ -75,7 +79,7 @@ export default {
   },
   itinerariesStore,
   watch: {
-    activeStop: (newValue, oldValue) => {
+    currentActiveStop: (newValue, oldValue) => {
       console.log(newValue, oldValue)
     },
   },
@@ -87,6 +91,9 @@ export default {
         left: 100,
         right: 100,
       }
+    },
+    currentActiveStop() {
+      return itinerariesStore.getters["itineraries/getActiveStop"]
     },
   },
   methods: {
@@ -120,17 +127,22 @@ export default {
       })
     },
     addMapMarkers() {
-      this.geojsonData.features.forEach(marker => {
-        var el = document.createElement("button")
-        el.innerHTML = '<span class="sr-only">Stop</span>' + marker.properties.stopCount
-        el.className = "vs-itinerary__map-marker"
-        el.addEventListener("mouseenter", e => {
-          this.addMapPopup(marker)
+      this.geojsonData.features.forEach(feature => {
+        let markerComponent = new Vue({
+          ...VsItineraryMapMarker,
+          parent: this,
+          propsData: {
+            stopCount: feature.properties.stopCount,
+          },
         })
-        el.addEventListener("mouseleave", e => {
-          this.removeMapPopup()
-        })
-        new mapboxgl.Marker(el).setLngLat(marker.geometry.coordinates).addTo(this.mapbox.map)
+
+        markerComponent.$mount()
+
+        let mapboxMarker = new mapboxgl.Marker(markerComponent.$el)
+          .setLngLat(feature.geometry.coordinates)
+          .addTo(this.mapbox.map)
+
+        this.markers.push(mapboxMarker)
       })
     },
     addMapPopup(marker) {
@@ -208,8 +220,7 @@ export default {
       this.popup = null
     },
     setActiveStop(stopCount) {
-      console.log(stopCount)
-      if (this.activeStop === stopCount) {
+      if (this.currentActiveStop === stopCount) {
         return
       } else {
         itinerariesStore.dispatch("itineraries/setStopActive", stopCount)
@@ -230,8 +241,10 @@ export default {
   },
   mounted() {
     this.lazyloadMapComponent()
-
-    window.addEventListener("scroll", this.onScroll)
+    var designSystemWrapper = document.querySelector(".vds-example")
+    if (designSystemWrapper === null) {
+      window.addEventListener("scroll", this.onScroll)
+    } else designSystemWrapper.addEventListener("scroll", this.onScroll)
   },
   destroyed() {
     window.removeEventListener("scroll", this.onScroll)
@@ -242,21 +255,9 @@ export default {
 <style lang="scss" scoped>
 .vs-itinerary__map {
   height: 100vh;
+  position: relative;
 
   & ::v-deep {
-    .vs-itinerary__map-marker.mapboxgl-marker.mapboxgl-marker-anchor-center {
-      background-color: $color-theme-secondary-teal;
-      border-radius: 50%;
-      border: 1px solid $color-white;
-      color: $color-white;
-      width: 40px;
-      height: 40px;
-
-      &:hover {
-        z-index: 1;
-      }
-    }
-
     .mapboxgl-popup-content {
       display: flex;
       padding: 0.5rem;
