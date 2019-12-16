@@ -78,11 +78,6 @@ export default {
     },
   },
   itinerariesStore,
-  watch: {
-    currentActiveStop: (newValue, oldValue) => {
-      console.log(newValue, oldValue)
-    },
-  },
   computed: {
     mapPadding: () => {
       return {
@@ -92,7 +87,7 @@ export default {
         right: 100,
       }
     },
-    currentActiveStop() {
+    currentActiveStop: () => {
       return itinerariesStore.getters["itineraries/getActiveStop"]
     },
   },
