@@ -1,5 +1,5 @@
 <template>
-  <div class="vs-itinerary__map d-none d-lg-block" ref="mapbox"></div>
+  <div class="vs-itinerary__map" ref="mapbox"></div>
 </template>
 
 <script>
