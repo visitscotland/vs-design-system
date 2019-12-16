@@ -46,7 +46,7 @@ export default {
     }
 
     @include media-breakpoint-up(xl) {
-      bottom: 15rem;
+      bottom: 160px;
     }
   }
 
@@ -71,7 +71,7 @@ export default {
     }
 
     @include media-breakpoint-up(xl) {
-      margin: -18rem 0;
+      margin: -200px 0;
     }
   }
   .vs-itineraries__highlights-wrapper {
