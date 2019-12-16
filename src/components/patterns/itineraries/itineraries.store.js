@@ -1,6 +1,5 @@
 import Vuex from "vuex"
 import Vue from "vue"
-import { find, matches } from "lodash"
 
 Vue.use(Vuex)
 
@@ -19,9 +18,6 @@ export default new Vuex.Store({
         SET_STOP_HIGHLIGHTED: (state, payload) => {
           state.highlightedStop = payload
         },
-        SET_STOP_UNHIGHLIGHTED: state => {
-          state.highlightedStop = null
-        },
       },
       actions: {
         setStopActive: ({ commit, getters }, payload) => {
@@ -39,9 +35,6 @@ export default new Vuex.Store({
           commit("SET_STOP_HIGHLIGHTED", payload)
 
           return true
-        },
-        setStopUnhighlighted: context => {
-          context.commit("SET_STOP_UNHIGHLIGHTED")
         },
       },
       getters: {
