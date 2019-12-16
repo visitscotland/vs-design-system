@@ -1,15 +1,37 @@
 <template>
-  <component :is="type" class="vs-itinerary">
-    <slot />
+  <component :is="type" class="vs-itinerary" :class="showMap ? 'vs-itinerary--show-map' : ''">
+    <div v-show="this.isDesktop || !this.showMap">
+      <slot name="hero" />
+      <slot name="intro" />
+      <slot name="highlights" />
+    </div>
+    <div class="position-sticky">
+      <div class="fixed-bottom" v-show="!this.isDesktop">
+        <div class="vs-itinerary__map-toggle-container d-flex justify-content-center pb-2">
+          <vs-itinerary-mobile-map-toggle @click.native="toggleShowMap()" />
+        </div>
+      </div>
+      <div class="vs-itinerary__map-container" v-show="this.isDesktop || this.showMap">
+        <slot name="map" />
+      </div>
+      <div class="vs-itinerary__list-container" v-show="this.isDesktop || !this.showMap">
+        <slot name="list" />
+      </div>
+    </div>
+    <div v-show="this.isDesktop || !this.showMap">
+      <slot name="related-content" />
+    </div>
   </component>
 </template>
 <script>
+import itinerariesStore from "@components/patterns/itineraries/itineraries.store"
 import VsIcon from "@components/elements/icon/Icon"
 import VsButton from "@components/elements/button/Button"
 import VsHeading from "@components/elements/heading/Heading"
 import { VsContainer, VsRow, VsCol } from "@components/elements/layout"
 import VsHero from "@components/patterns/hero/Hero"
 import VsImageLocationMap from "@components/patterns/image-location-map/ImageLocationMap"
+import VsItineraryMobileMapToggle from "@components/patterns/itineraries/components/itinerary-mobile-map-toggle/ItineraryMobileMapToggle"
 
 /**
  * TODO: Document usage.
@@ -19,6 +41,12 @@ export default {
   name: "VsItinerary",
   status: "prototype",
   release: "0.0.1",
+  data() {
+    return {
+      showMap: window.innerWidth >= 1200 ? true : false,
+      isDesktop: window.innerWidth >= 1200 ? true : false,
+    }
+  },
   components: {
     VsContainer,
     VsRow,
@@ -26,6 +54,7 @@ export default {
     VsHeading,
     VsHero,
     VsImageLocationMap,
+    VsItineraryMobileMapToggle,
     VsButton,
     VsIcon,
   },
@@ -35,11 +64,46 @@ export default {
       default: "article",
     },
   },
+  computed: {
+    currentActiveStop: () => {
+      return itinerariesStore.getters["itineraries/getActiveStop"]
+    },
+  },
+  methods: {
+    onResize() {
+      this.isDesktop = window.innerWidth >= 1200 ? true : false
+      this.showMap = window.innerWidth >= 1200 ? true : false
+    },
+    toggleShowMap() {
+      this.showMap = !this.showMap
+    },
+  },
+  mounted() {
+    window.addEventListener("resize", this.onResize)
+  },
 }
 </script>
 
 <style lang="scss" scoped>
 .vs-itinerary ::v-deep {
+  &--show-map {
+    @include media-breakpoint-down(lg) {
+      .vs-itinerary__map-container {
+        position: fixed;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        width: 100vw;
+        height: 100vh;
+      }
+    }
+  }
+
+  .vs-itinerary__map-toggle-container {
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 100%);
+  }
+
   figcaption {
     @include media-breakpoint-up(lg) {
       bottom: 9rem;
@@ -50,7 +114,7 @@ export default {
     }
   }
 
-  .vs-itinerary__map {
+  .vs-itinerary__map-container {
     @include media-breakpoint-up(lg) {
       float: right;
       position: -webkit-sticky;
@@ -107,6 +171,7 @@ export default {
   })
   <vs-itinerary>
     <vs-hero
+      slot="hero"
       :altText="itineraries.sampleItinerary.image.altText"
       :credit="itineraries.sampleItinerary.image.credit"
       :description="itineraries.sampleItinerary.image.description"
@@ -126,7 +191,7 @@ export default {
         <img class="img-fluid" :src="itineraries.sampleItinerary.image.imageSrc" alt="item.altText" />
       </noscript>
     </vs-hero>
-    <vs-container>
+    <vs-container slot="intro">
       <div class="vs-itineraries__intro-wrapper">
         <vs-breadcrumb>
           <vs-breadcrumb-item 
@@ -178,7 +243,7 @@ export default {
         </vs-row>
       </div>
     </vs-container>
-    <div class="bg-light vs-itineraries__highlights-wrapper">
+    <div slot="highlights" class="bg-light vs-itineraries__highlights-wrapper">
       <vs-container>
         <vs-itinerary-highlights-list>
           <dt>Highlights</dt>
@@ -198,23 +263,24 @@ export default {
         </vs-itinerary-highlights-list>
       </vs-container>
     </div>
-    <div class="position-sticky">
-      <vs-itinerary-map
-        access-token="pk.eyJ1IjoidmlzaXRzY290bGFuZC1kZXYiLCJhIjoiY2p4MGZwcmtjMDBlczN5bTBnY3pjeHNubCJ9.d3CJWPvX9FfjfSNAW98Q6w"
-        overview-map-longitude="57.81"
-        overview-map-latitude="-4.13"
-        overview-map-zoom="5"
-        :stops="stops"
-        :labels='{
-            "mapControlsFullscreenOpen": "Show fullscreen",
-            "mapControlsFullscreenClose": "Exit fullscreen",
-            "mapControlsCompass": "Reset angle",
-            "mapControlsZoomIn": "Zoom in",
-            "mapControlsZoomOut": "Zoom out"
-        }'
-        >
+    
+    <vs-itinerary-map
+      slot="map"
+      access-token="pk.eyJ1IjoidmlzaXRzY290bGFuZC1kZXYiLCJhIjoiY2p4MGZwcmtjMDBlczN5bTBnY3pjeHNubCJ9.d3CJWPvX9FfjfSNAW98Q6w"
+      overview-map-longitude="57.81"
+      overview-map-latitude="-4.13"
+      overview-map-zoom="5"
+      :stops="stops"
+      :labels='{
+          "mapControlsFullscreenOpen": "Show fullscreen",
+          "mapControlsFullscreenClose": "Exit fullscreen",
+          "mapControlsCompass": "Reset angle",
+          "mapControlsZoomIn": "Zoom in",
+          "mapControlsZoomOut": "Zoom out"
+      }'
+      >
       </vs-itinerary-map>
-      <vs-container>
+      <vs-container slot="list">
         <vs-row>
           <vs-col cols="12">
             <ul class="list-unstyled">
@@ -324,8 +390,7 @@ export default {
           </vs-col>    
         </vs-row>
       </vs-container>
-    </div>
-  <vs-related-content-list>
+  <vs-related-content-list slot="related-content">
     <h2 slot="header" class="text-warning text-center py-7 m-0">Extend Your Trip</h2>
     <vs-related-content-list-item
       v-for="(item, index) in relatedContent.relatedContent" 
