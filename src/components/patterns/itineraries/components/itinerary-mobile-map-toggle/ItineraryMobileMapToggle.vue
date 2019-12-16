@@ -11,7 +11,6 @@
 </template>
 
 <script>
-import itinerariesStore from "@components/patterns/itineraries/itineraries.store"
 import VsIcon from "@components/elements/icon/Icon"
 import VsButton from "@components/elements/button/Button"
 
@@ -38,7 +37,6 @@ export default {
       default: "vs-button",
     },
   },
-  itinerariesStore,
   methods: {
     toggleMap() {
       this.showMap = !this.showMap
