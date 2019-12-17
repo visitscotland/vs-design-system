@@ -19,7 +19,7 @@
       <span
         class="vs-itinerary-map-marker__count"
         :class="isActiveStop || isHighlighted ? 'active' : ''"
-        ><span class="sr-only">Stop</span>{{ this.stopCount }}</span
+        ><span class="sr-only">Stop</span>{{ this.feature.properties.stopCount }}</span
       >
     </div>
   </component>
@@ -51,50 +51,55 @@ export default {
       type: String,
       default: "button",
     },
-    stopCount: {
-      type: Number,
+    feature: {
+      type: Object,
       required: true,
     },
   },
   itinerariesStore,
   watch: {
-    currentActiveStop(newValue, oldValue) {
+    activeStop(newValue) {
       if (newValue) {
         this.toggleActive()
       }
     },
-    currentHighlightedStop(newValue, oldValue) {
+    highlightedStop() {
       this.toggleHighlighted()
     },
   },
   computed: {
-    currentActiveStop() {
+    activeStop() {
       return itinerariesStore.getters["itineraries/getActiveStop"]
     },
-    currentHighlightedStop() {
+    highlightedStop() {
       return itinerariesStore.getters["itineraries/getHighlightedStop"]
     },
   },
   methods: {
     handleClick() {
-      var element = document.querySelector("[data-stop='" + this.stopCount + "']")
+      var element = document.querySelector(
+        "[data-stop='" + this.feature.properties.stopCount + "']"
+      )
       if (element !== null) {
         element.scrollIntoView({ block: "start", behavior: "smooth" })
       }
 
-      return itinerariesStore.dispatch("itineraries/setStopActive", this.stopCount)
+      return itinerariesStore.dispatch(
+        "itineraries/setStopActive",
+        this.feature.properties.stopCount
+      )
     },
     handleMouseEnter() {
-      return itinerariesStore.dispatch("itineraries/setStopHighlighted", this.stopCount)
+      return itinerariesStore.dispatch("itineraries/setStopHighlighted", this.feature)
     },
     handleMouseLeave() {
       return itinerariesStore.dispatch("itineraries/setStopHighlighted", null)
     },
     toggleActive() {
-      this.isActiveStop = this.currentActiveStop === this.stopCount ? true : false
+      this.isActiveStop = this.activeStop === this.feature.properties.stopCount ? true : false
     },
     toggleHighlighted() {
-      this.isHighlighted = this.currentHighlightedStop === this.stopCount ? true : false
+      this.isHighlighted = this.highlightedStop === this.feature ? true : false
     },
   },
 }
@@ -121,7 +126,7 @@ svg {
 }
 
 svg.active {
-  transform: scale(1.2, 1.2);
+  transform: scale(1.2, 1.2) translateY(-10px);
   fill: $color-secondary-teal-shade-3 !important;
 }
 
@@ -132,21 +137,30 @@ svg.active {
   position: absolute;
   top: 4px;
   left: 0;
+  transition: all 250ms ease;
   text-align: center;
   width: 100%;
 
   &.active {
-    top: 6px;
-    font-size: 2rem;
+    font-size: 1.5rem;
+    transform: scale(1.2, 1.2) translateY(-5px);
   }
 }
 </style>
 
 <docs>
   ```jsx
-
-    <vs-itinerary-map-marker :stopCount=1 />
-    <vs-itinerary-map-marker :stopCount=2 />
-    <vs-itinerary-map-marker :stopCount=3 />
+    const sampleGeojsonData = require("../../../../../assets/fixtures/itineraries/sampleItineraryGeojson.json")
+    <vs-row class="py-5">
+      <vs-col>
+        <vs-itinerary-map-marker :feature="sampleGeojsonData.features[0]" />
+      </vs-col>
+      <vs-col>
+        <vs-itinerary-map-marker :feature="sampleGeojsonData.features[1]" />
+      </vs-col>
+      <vs-col>
+        <vs-itinerary-map-marker :feature="sampleGeojsonData.features[2]" />
+      </vs-col>
+    </vs-row>
   ``` 
 </docs>
