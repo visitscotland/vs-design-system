@@ -1,12 +1,14 @@
 <template>
   <component :is="type" class="vs-itinerary" :class="showMap ? 'vs-itinerary--show-map' : ''">
-    <div v-show="this.isDesktop || !this.showMap">
+    <div class="bg-light">
       <slot name="hero" />
-      <slot name="intro" />
+      <div class="vs-itinerary__intro-wrapper--outer">
+        <slot name="intro" />
+      </div>
       <slot name="highlights" />
     </div>
-    <div class="position-sticky">
-      <div class="fixed-bottom" v-show="!this.isDesktop">
+    <div class="position-sticky" data-itineraryMain>
+      <div class="fixed-bottom" v-show="!this.isDesktop && this.withinItineraryMain">
         <div class="vs-itinerary__map-toggle-container d-flex justify-content-center pb-2">
           <vs-itinerary-mobile-map-toggle @click.native="toggleShowMap()" />
         </div>
@@ -18,7 +20,7 @@
         <slot name="list" />
       </div>
     </div>
-    <div v-show="this.isDesktop || !this.showMap">
+    <div>
       <slot name="related-content" />
     </div>
   </component>
@@ -45,6 +47,7 @@ export default {
     return {
       showMap: window.innerWidth >= 1200 ? true : false,
       isDesktop: window.innerWidth >= 1200 ? true : false,
+      withinItineraryMain: false,
     }
   },
   components: {
@@ -74,12 +77,31 @@ export default {
       this.isDesktop = window.innerWidth >= 1200 ? true : false
       this.showMap = window.innerWidth >= 1200 ? true : false
     },
+    onScroll() {
+      var bounding = document.querySelector("[data-itineraryMain]").getBoundingClientRect()
+      var insideStartOfItineraryMain =
+        bounding.top <= (window.innerHeight || document.documentElement.clientHeight) ? true : false
+      var outsideEndOfItineraryMain =
+        bounding.bottom <= (window.innerHeight || document.documentElement.clientHeight)
+          ? true
+          : false
+      this.withinItineraryMain =
+        insideStartOfItineraryMain && !outsideEndOfItineraryMain ? true : false
+    },
     toggleShowMap() {
       this.showMap = !this.showMap
     },
   },
   mounted() {
     window.addEventListener("resize", this.onResize)
+    var designSystemWrapper = document.querySelector(".vds-example")
+    if (designSystemWrapper === null) {
+      window.addEventListener("scroll", this.onScroll)
+    } else designSystemWrapper.addEventListener("scroll", this.onScroll)
+  },
+  destroyed() {
+    window.removeEventListener("resize", this.onResize)
+    window.removeEventListener("scroll", this.onScroll)
   },
 }
 </script>
@@ -125,12 +147,20 @@ export default {
     }
   }
 
-  .vs-itineraries__intro-wrapper {
+  .vs-itinerary__intro-wrapper--outer {
+    background: $color-white;
+    margin-top: -1rem;
     @include media-breakpoint-up(lg) {
-      padding: 2.5rem 4rem;
+      margin: 0;
+      background: none;
+    }
+  }
+  .vs-itinerary__intro-wrapper {
+    @include media-breakpoint-up(lg) {
+      padding: 2rem 4rem;
       background: $color-white;
       box-shadow: 0 0 1rem rgba(0, 0, 0, 0.2);
-      margin: -12rem 0;
+      margin: -150px 0;
       position: relative;
     }
 
@@ -138,7 +168,7 @@ export default {
       margin: -200px 0;
     }
   }
-  .vs-itineraries__highlights-wrapper {
+  .vs-itinerary__highlights-wrapper {
     padding: 2rem 0;
 
     @include media-breakpoint-up(lg) {
@@ -146,7 +176,7 @@ export default {
     }
 
     @include media-breakpoint-up(xl) {
-      padding: 21rem 0 2rem 0;
+      padding: 250px 0 2rem 0;
     }
   }
 }
@@ -192,7 +222,7 @@ export default {
       </noscript>
     </vs-hero>
     <vs-container slot="intro">
-      <div class="vs-itineraries__intro-wrapper">
+      <div class="vs-itinerary__intro-wrapper">
         <vs-breadcrumb>
           <vs-breadcrumb-item 
             v-for="(item, index) in breadcrumb.breadcrumb"
@@ -243,7 +273,7 @@ export default {
         </vs-row>
       </div>
     </vs-container>
-    <div slot="highlights" class="bg-light vs-itineraries__highlights-wrapper">
+    <div slot="highlights" class="vs-itinerary__highlights-wrapper">
       <vs-container>
         <vs-itinerary-highlights-list>
           <dt>Highlights</dt>
