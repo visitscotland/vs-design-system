@@ -108,11 +108,11 @@ export default {
 <style lang="scss" scoped>
 .vs-itinerary-map-marker {
   background: transparent;
-  position: absolute;
   border: none;
   display: block;
   font-weight: $font-weight-bold;
   padding: 0;
+  position: absolute;
 
   &:hover,
   &:focus,
