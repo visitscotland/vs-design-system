@@ -162,8 +162,8 @@
         selection:label: Perthshire
       /selection:listitem[12]:
         jcr:primaryType: selection:listitem
-        selection:key: The Highlands
-        selection:label: highlands
+        selection:key: highlands
+        selection:label: The Highlands
       /selection:listitem[13]:
         jcr:primaryType: selection:listitem
         selection:key: fife

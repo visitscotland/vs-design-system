@@ -65,7 +65,10 @@
     /visitscotland_49386435364-1.jpg:
       jcr:primaryType: visitscotland:Image
       hippo:availability: [live, preview]
+      hippogallery:description: Man looking forward to finish this itinerary
       hippogallery:filename: visitscotland_49386435364 (1).jpg
+      visitscotland:altText: He is also lost
+      visitscotland:credit: VisitScotland Staff
       /hippogallery:thumbnail:
         jcr:primaryType: hippogallery:image
         hippo:filename: visitscotland_49386435364 (1).jpg

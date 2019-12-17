@@ -17,7 +17,7 @@
       jcr:primaryType: hippo:handle
       jcr:mixinTypes: ['hippo:versionInfo', 'mix:referenceable']
       jcr:uuid: 0751c1d3-3024-4d2d-a5e8-38286fee9722
-      hippo:versionHistory: 49ebfb4a-7f18-4b26-b3ad-1571298fca3a
+      hippo:versionHistory: edc60627-768b-4ad6-b639-20ea5c177da9
       /content[1]:
         jcr:primaryType: visitscotland:Itinerary
         jcr:mixinTypes: ['mix:referenceable']
@@ -26,14 +26,14 @@
         hippostd:state: draft
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2019-12-06T12:48:04.149Z
-        hippostdpubwf:lastModificationDate: 2019-12-12T12:17:51.970Z
+        hippostdpubwf:lastModificationDate: 2019-12-16T17:44:17.809Z
         hippostdpubwf:lastModifiedBy: admin
         hippotranslation:id: a3ed9022-e239-493b-952c-18d01ac36640
         hippotranslation:locale: en
-        visitscotland:areas: [The Highlands]
+        visitscotland:areas: [dumfries, highlands]
         visitscotland:breadcrumb: ''
         visitscotland:distance: 10.1
-        visitscotland:finish: ''
+        visitscotland:finish: Portree
         visitscotland:heading: HARRY POTTER FILM AND BOOK LOCATIONS ITINERARY
         visitscotland:highlights: "Glenfinnan Viaduct\r\n\r\nJacobite Steam Train\r\
           \n\r\nGlen Etive\r\n\r\nThe Elephant House"
@@ -43,7 +43,7 @@
           some of the films' most iconic scenes with our 4-day itinerary of Harry
           Potter sites in Scotland.
         visitscotland:seoTitle: Iconic Harry Potter Film Locations - An Itinerary
-        visitscotland:start: ''
+        visitscotland:start: Edinburgh
         visitscotland:summary: ''
         visitscotland:text: "Glenfinnan Viaduct\r\n\r\nJacobite Steam Train\r\n\r\n\
           Glen Etive\r\n\r\nThe Elephant House"
@@ -76,14 +76,14 @@
         hippostd:state: unpublished
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2019-12-06T12:48:04.149Z
-        hippostdpubwf:lastModificationDate: 2019-12-12T12:19:33.052Z
+        hippostdpubwf:lastModificationDate: 2019-12-16T17:44:52.613Z
         hippostdpubwf:lastModifiedBy: admin
         hippotranslation:id: a3ed9022-e239-493b-952c-18d01ac36640
         hippotranslation:locale: en
-        visitscotland:areas: [The Highlands]
+        visitscotland:areas: [dumfries, highlands]
         visitscotland:breadcrumb: ''
         visitscotland:distance: 10.1
-        visitscotland:finish: ''
+        visitscotland:finish: Portree
         visitscotland:heading: HARRY POTTER FILM AND BOOK LOCATIONS ITINERARY
         visitscotland:highlights: "Glenfinnan Viaduct\r\n\r\nJacobite Steam Train\r\
           \n\r\nGlen Etive\r\n\r\nThe Elephant House"
@@ -93,7 +93,7 @@
           some of the films' most iconic scenes with our 4-day itinerary of Harry
           Potter sites in Scotland.
         visitscotland:seoTitle: Iconic Harry Potter Film Locations - An Itinerary
-        visitscotland:start: ''
+        visitscotland:start: Edinburgh
         visitscotland:summary: ''
         visitscotland:text: "Glenfinnan Viaduct\r\n\r\nJacobite Steam Train\r\n\r\n\
           Glen Etive\r\n\r\nThe Elephant House"
@@ -126,15 +126,15 @@
         hippostd:state: published
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2019-12-06T12:48:04.149Z
-        hippostdpubwf:lastModificationDate: 2019-12-12T12:13:47.279Z
+        hippostdpubwf:lastModificationDate: 2019-12-16T17:44:52.613Z
         hippostdpubwf:lastModifiedBy: admin
-        hippostdpubwf:publicationDate: 2019-12-12T12:14:37.338Z
+        hippostdpubwf:publicationDate: 2019-12-16T17:44:54.695Z
         hippotranslation:id: a3ed9022-e239-493b-952c-18d01ac36640
         hippotranslation:locale: en
-        visitscotland:areas: [The Highlands]
+        visitscotland:areas: [dumfries, highlands]
         visitscotland:breadcrumb: ''
         visitscotland:distance: 10.1
-        visitscotland:finish: ''
+        visitscotland:finish: Portree
         visitscotland:heading: HARRY POTTER FILM AND BOOK LOCATIONS ITINERARY
         visitscotland:highlights: "Glenfinnan Viaduct\r\n\r\nJacobite Steam Train\r\
           \n\r\nGlen Etive\r\n\r\nThe Elephant House"
@@ -144,7 +144,7 @@
           some of the films' most iconic scenes with our 4-day itinerary of Harry
           Potter sites in Scotland.
         visitscotland:seoTitle: Iconic Harry Potter Film Locations - An Itinerary
-        visitscotland:start: ''
+        visitscotland:start: Edinburgh
         visitscotland:summary: ''
         visitscotland:text: "Glenfinnan Viaduct\r\n\r\nJacobite Steam Train\r\n\r\n\
           Glen Etive\r\n\r\nThe Elephant House"
@@ -159,18 +159,22 @@
           hippo:values: []
         /visitscotland:introduction:
           jcr:primaryType: hippostd:html
-          hippostd:content: |-
-            <p>It's hard to believe that June 2019 was the 22nd anniversary of JK Rowling publishing her debut novel, Harry Potter and the Philosopher's Stone. In 1997, no one could have predicted the wildly successful book sales and box office smashing blockbusters that would follow.</p>
-
-            <p>Still waiting for your letter to arrive by owl? Don't worry. You can immerse yourself in the wizarding world of Harry Potter by following this spellbinding four-day itinerary.</p>
-
-            <p>Here in Scotland, you can see where Edinburgh-dweller JK Rowling found her inspiration - where the magic all began!</p>
+          hippostd:content: <p>It was in Scotland's capital city that JK Rowling started
+            to plot the adventures of Harry and his friends. With cobbled streets,
+            winding alleys and medieval architecture, the city certainly has a few
+            things in common with the settings from the books and films. She wrote
+            the early chapters in various cafés around the city's Old Town, before
+            coming back to finish off the series from a peaceful suite in The Balmoral
+            Hotel. It is also said that Hogwarts School was styled on Edinburgh’s
+            Fettes College, a private school on the outskirts of Edinburgh’s west
+            end new town. You could also try the <a href="https://www.visitscotland.com/info/tours/wizarding-world-of-edinburgh-03e61189">Wizarding
+            World of Edinburgh</a> tour.</p>
     /edinburgh:
       jcr:primaryType: hippo:handle
       jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
       jcr:uuid: 8ac72449-609b-45aa-b2b6-d3cb81a24139
       hippo:name: Edinburgh
-      hippo:versionHistory: f29f8d11-003e-4baa-92cf-e74886a6e9ea
+      hippo:versionHistory: 2044eff0-a626-4edb-8434-6c29709ed074
       /edinburgh[1]:
         jcr:primaryType: visitscotland:Day
         jcr:mixinTypes: ['mix:referenceable']
@@ -179,11 +183,11 @@
         hippostd:state: draft
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2019-12-10T13:28:39.550Z
-        hippostdpubwf:lastModificationDate: 2019-12-12T12:16:38.380Z
+        hippostdpubwf:lastModificationDate: 2019-12-17T11:37:21.704Z
         hippostdpubwf:lastModifiedBy: admin
         hippotranslation:id: 58eba379-722b-43b6-85c5-a58cffa5d53d
         hippotranslation:locale: en
-        visitscotland:title: Edinburgh
+        visitscotland:title: DMS Stops Day
         visitscotland:transports: [walking, car, train]
         /visitscotland:introduction:
           jcr:primaryType: hippostd:html
@@ -213,11 +217,11 @@
         hippostd:state: unpublished
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2019-12-10T13:28:39.550Z
-        hippostdpubwf:lastModificationDate: 2019-12-12T12:16:42.624Z
+        hippostdpubwf:lastModificationDate: 2019-12-17T11:37:29.399Z
         hippostdpubwf:lastModifiedBy: admin
         hippotranslation:id: 58eba379-722b-43b6-85c5-a58cffa5d53d
         hippotranslation:locale: en
-        visitscotland:title: Edinburgh
+        visitscotland:title: DMS Stops Day
         visitscotland:transports: [walking, car, train]
         /visitscotland:introduction:
           jcr:primaryType: hippostd:html
@@ -247,12 +251,12 @@
         hippostd:state: published
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2019-12-10T13:28:39.550Z
-        hippostdpubwf:lastModificationDate: 2019-12-12T12:16:42.624Z
+        hippostdpubwf:lastModificationDate: 2019-12-17T11:37:29.399Z
         hippostdpubwf:lastModifiedBy: admin
-        hippostdpubwf:publicationDate: 2019-12-12T12:16:47.706Z
+        hippostdpubwf:publicationDate: 2019-12-17T11:48:47.308Z
         hippotranslation:id: 58eba379-722b-43b6-85c5-a58cffa5d53d
         hippotranslation:locale: en
-        visitscotland:title: Edinburgh
+        visitscotland:title: DMS Stops Day
         visitscotland:transports: [walking, car, train]
         /visitscotland:introduction:
           jcr:primaryType: hippostd:html
@@ -279,7 +283,7 @@
       jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
       jcr:uuid: e48273b9-7b42-4456-837f-e014dc069d95
       hippo:name: day 2
-      hippo:versionHistory: 330a5457-8af6-4549-abc4-aeba2388869c
+      hippo:versionHistory: 558c1282-91f5-4b5c-975f-a841c8366733
       /day-2[1]:
         jcr:primaryType: visitscotland:Day
         jcr:mixinTypes: ['mix:referenceable']
@@ -288,15 +292,32 @@
         hippostd:state: draft
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2019-12-12T12:06:04.129Z
-        hippostdpubwf:lastModificationDate: 2019-12-12T12:06:23.090Z
+        hippostdpubwf:lastModificationDate: 2019-12-17T11:46:19.360Z
         hippostdpubwf:lastModifiedBy: admin
         hippotranslation:id: 2af219fa-878e-435f-ae2e-e296a16e21a9
         hippotranslation:locale: en
-        visitscotland:title: ''
-        visitscotland:transports: []
+        visitscotland:title: Dummy Stops
+        visitscotland:transports: [public]
         /visitscotland:introduction:
           jcr:primaryType: hippostd:html
-          hippostd:content: <p>day 2</p>
+          hippostd:content: |-
+            <p>A hash model that wraps a resource bundle. Makes it convenient to store localized content in the data model. It also acts as a method model that will take a resource key and arbitrary number of arguments and will apply MessageFormat with arguments on the string represented by the key.</p>
+
+            <p>Typical usages:</p>
+
+            <ul>
+             <li>bundle.resourceKey will retrieve the object from resource bundle with key resourceKey</li>
+             <li>bundle("patternKey", arg1, arg2, arg3) will retrieve the string from resource bundle with key patternKey, and will use it as a pattern for MessageFormat with arguments arg1, arg2 and arg3</li>
+            </ul>
+        /visitscotland:stops[1]:
+          jcr:primaryType: hippo:mirror
+          hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
+        /visitscotland:stops[2]:
+          jcr:primaryType: hippo:mirror
+          hippo:docbase: 8b215960-87aa-47ae-9c11-8a750be25ad8
+        /visitscotland:stops[3]:
+          jcr:primaryType: hippo:mirror
+          hippo:docbase: 8030a311-a942-40e6-bb89-41dd6fea60df
       /day-2[2]:
         jcr:primaryType: visitscotland:Day
         jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
@@ -305,15 +326,32 @@
         hippostd:state: unpublished
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2019-12-12T12:06:04.129Z
-        hippostdpubwf:lastModificationDate: 2019-12-12T12:06:10.150Z
+        hippostdpubwf:lastModificationDate: 2019-12-17T11:47:47.852Z
         hippostdpubwf:lastModifiedBy: admin
         hippotranslation:id: 2af219fa-878e-435f-ae2e-e296a16e21a9
         hippotranslation:locale: en
-        visitscotland:title: ''
-        visitscotland:transports: []
+        visitscotland:title: Dummy Stops
+        visitscotland:transports: [public]
         /visitscotland:introduction:
           jcr:primaryType: hippostd:html
-          hippostd:content: <p>day 2</p>
+          hippostd:content: |-
+            <p>A hash model that wraps a resource bundle. Makes it convenient to store localized content in the data model. It also acts as a method model that will take a resource key and arbitrary number of arguments and will apply MessageFormat with arguments on the string represented by the key.</p>
+
+            <p>Typical usages:</p>
+
+            <ul>
+             <li>bundle.resourceKey will retrieve the object from resource bundle with key resourceKey</li>
+             <li>bundle("patternKey", arg1, arg2, arg3) will retrieve the string from resource bundle with key patternKey, and will use it as a pattern for MessageFormat with arguments arg1, arg2 and arg3</li>
+            </ul>
+        /visitscotland:stops[1]:
+          jcr:primaryType: hippo:mirror
+          hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
+        /visitscotland:stops[2]:
+          jcr:primaryType: hippo:mirror
+          hippo:docbase: 8b215960-87aa-47ae-9c11-8a750be25ad8
+        /visitscotland:stops[3]:
+          jcr:primaryType: hippo:mirror
+          hippo:docbase: 8030a311-a942-40e6-bb89-41dd6fea60df
       /day-2[3]:
         jcr:primaryType: visitscotland:Day
         jcr:mixinTypes: ['mix:referenceable']
@@ -322,13 +360,30 @@
         hippostd:state: published
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2019-12-12T12:06:04.129Z
-        hippostdpubwf:lastModificationDate: 2019-12-12T12:06:10.150Z
+        hippostdpubwf:lastModificationDate: 2019-12-17T11:47:47.852Z
         hippostdpubwf:lastModifiedBy: admin
-        hippostdpubwf:publicationDate: 2019-12-12T12:07:38.368Z
+        hippostdpubwf:publicationDate: 2019-12-17T11:48:44.920Z
         hippotranslation:id: 2af219fa-878e-435f-ae2e-e296a16e21a9
         hippotranslation:locale: en
-        visitscotland:title: ''
-        visitscotland:transports: []
+        visitscotland:title: Dummy Stops
+        visitscotland:transports: [public]
         /visitscotland:introduction:
           jcr:primaryType: hippostd:html
-          hippostd:content: <p>day 2</p>
+          hippostd:content: |-
+            <p>A hash model that wraps a resource bundle. Makes it convenient to store localized content in the data model. It also acts as a method model that will take a resource key and arbitrary number of arguments and will apply MessageFormat with arguments on the string represented by the key.</p>
+
+            <p>Typical usages:</p>
+
+            <ul>
+             <li>bundle.resourceKey will retrieve the object from resource bundle with key resourceKey</li>
+             <li>bundle("patternKey", arg1, arg2, arg3) will retrieve the string from resource bundle with key patternKey, and will use it as a pattern for MessageFormat with arguments arg1, arg2 and arg3</li>
+            </ul>
+        /visitscotland:stops[1]:
+          jcr:primaryType: hippo:mirror
+          hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
+        /visitscotland:stops[2]:
+          jcr:primaryType: hippo:mirror
+          hippo:docbase: 8b215960-87aa-47ae-9c11-8a750be25ad8
+        /visitscotland:stops[3]:
+          jcr:primaryType: hippo:mirror
+          hippo:docbase: 8030a311-a942-40e6-bb89-41dd6fea60df

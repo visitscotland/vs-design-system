@@ -236,6 +236,8 @@
                                 </dl>
 
                                 <div slot="day-introduction" v-html="day.introduction"></div>
+
+<!-- STOP STARTS HERE -->
                                 <ul slot="stops" class="mt-9 list-unstyled">
                                     <vs-itinerary-stop
                                             v-for="(stop, index) in day.stops"
@@ -308,6 +310,7 @@
                                         </dl>
                                     </vs-itinerary-stop>
                                 </ul>
+<!-- STOP ENDS HERE -->
                             </vs-itinerary-day>
                         </ul>
                     </vs-col>
