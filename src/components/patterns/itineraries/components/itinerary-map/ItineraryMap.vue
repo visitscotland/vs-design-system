@@ -7,7 +7,6 @@ import itinerariesStore from "@components/patterns/itineraries/itineraries.store
 import mapboxgl from "mapbox-gl"
 import geojsonExtent from "@mapbox/geojson-extent"
 import VsItineraryMapMarker from "@components/patterns/itineraries/components/itinerary-map/ItineraryMapMarker"
-import VsItineraryMapPopup from "@components/patterns/itineraries/components/itinerary-map/ItineraryMapPopup"
 import Vue from "vue"
 require("mapbox-gl/dist/mapbox-gl.css")
 
@@ -21,7 +20,6 @@ export default {
   release: "0.0.1",
   components: {
     VsItineraryMapMarker,
-    VsItineraryMapPopup,
   },
   data() {
     return {
@@ -82,7 +80,7 @@ export default {
   itinerariesStore,
   watch: {
     highlightedStopCoordinates() {
-      this.popup.setLngLat(this.highlightedStopCoordinates)
+      this.addMapPopup()
     },
   },
   computed: {
@@ -154,17 +152,27 @@ export default {
       })
     },
     addMapPopup() {
-      let popupComponent = new Vue({
-        ...VsItineraryMapPopup,
-        parent: this,
+      this.removeMapPopup()
+      this.popup = new mapboxgl.Popup({
+        closeButton: false,
+        offset: {
+          top: [0, 20],
+          "top-left": [0, 20],
+          "top-right": [0, 20],
+          bottom: [0, -50],
+          "bottom-left": [0, -50],
+          "bottom-right": [0, -50],
+          left: [30, -20],
+          right: [-30, -20],
+        },
       })
-
-      popupComponent.$mount()
-
-      this.popup = new mapboxgl.Marker(popupComponent.$el, {
-        offset: [0, -45],
-      })
-        .setLngLat([-4.07083, 56.18882])
+        .setLngLat(this.highlightedStopCoordinates)
+        .setHTML(
+          `
+            <img class="vs-itinerary__map-popup-image" src="${this.highlightedStop.properties.imageSrc}" alt="${this.highlightedStop.properties.altText}" />
+            <h4 class="vs-itinerary__map-popup-heading">${this.highlightedStop.properties.title}</h4>
+        `
+        )
         .addTo(this.mapbox.map)
     },
     fitToBounds() {
@@ -182,7 +190,6 @@ export default {
 
       if (this.geojsonData.features.length) {
         this.addMapMarkers()
-        this.addMapPopup()
         this.fitToBounds()
       }
     },
@@ -253,6 +260,24 @@ export default {
 .vs-itinerary__map {
   height: 100vh;
   position: relative;
+
+  & ::v-deep {
+    .mapboxgl-popup-content {
+      display: flex;
+      padding: 0.5rem;
+    }
+
+    .vs-itinerary__map-popup-heading {
+      font-family: $font-family-base;
+      font-size: $font-size-base;
+      font-weight: $font-weight-bold;
+    }
+
+    .vs-itinerary__map-popup-image {
+      width: 105px;
+      margin-right: 1rem;
+    }
+  }
 }
 </style>
 
