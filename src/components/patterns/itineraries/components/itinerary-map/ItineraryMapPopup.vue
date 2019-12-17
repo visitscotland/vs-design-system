@@ -1,7 +1,7 @@
 <template>
-  <div class="vs-itinerary-map-popup">
-    <transition name="vs-map-popup--fade">
-      <div v-if="isVisible" class="vs-itinerary-map-popup__panel">
+  <div class="vs-itinerary__map-popup">
+    <transition name="vs-itinerary__map-popup--fade">
+      <div v-if="isVisible" class="vs-itinerary__map-popup__panel">
         <img
           class="vs-itinerary__map-popup-image"
           :src="feature.properties.imageSrc"
@@ -44,7 +44,7 @@ export default {
 </script>
 
 <style lang="scss">
-.vs-itinerary-map-popup {
+.vs-itinerary__map-popup {
   overflow: visible;
   pointer-events: none;
   z-index: 3 !important;
@@ -61,7 +61,7 @@ export default {
   width: 105px;
 }
 
-.vs-itinerary-map-popup__panel {
+.vs-itinerary__map-popup__panel {
   background: $color-white;
   border-radius: 3px;
   box-shadow: 0 0 12px rgba(black, 0.2);
@@ -91,13 +91,13 @@ export default {
 /**
  * Transitions
  */
-.vs-map-popup--fade-enter-active,
-.vs-map-popup--fade-leave-active {
+.vs-itinerary__map-popup--fade-enter-active,
+.vs-itinerary__map-popup--fade-leave-active {
   transition: all 350ms;
   transform: scale3d(1, 1, 1) translateY(0px);
 }
-.vs-map-popup--fade-enter,
-.vs-map-popup--fade-leave-to {
+.vs-itinerary__map-popup--fade-enter,
+.vs-itinerary__map-popup--fade-leave-to {
   opacity: 0;
   transform: scale3d(0.8, 0.8, 0.8) translateY(20px);
   // transition-delay: 125ms;
