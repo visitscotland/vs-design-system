@@ -33,13 +33,16 @@ export default new Vuex.Store({
             return false
           }
           commit("SET_STOP_HIGHLIGHTED", payload)
-
           return true
         },
       },
       getters: {
         getActiveStop: state => state.activeStop,
         getHighlightedStop: state => state.highlightedStop,
+        getHighlightedStopCoordinates: state =>
+          state.highlightedStop === null
+            ? [-4.07083, 56.18882]
+            : state.highlightedStop.geometry.coordinates,
       },
     },
   },
