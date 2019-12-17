@@ -1,158 +1,240 @@
 <#include "../../include/imports.ftl">
 <#include "itinerary-stop.ftl">
-<@hst.setBundle basename="keyFacilities"/>
 
+<#include "../../vs-dotcom-ds/components/container.ftl">
+<#include "../../vs-dotcom-ds/components/row.ftl">
+<#include "../../vs-dotcom-ds/components/col.ftl">
+
+<#include "../../vs-dotcom-ds/components/itinerary.ftl">
+<#include "../../vs-dotcom-ds/components/hero.ftl">
+<#include "../../vs-dotcom-ds/components/itinerary-summary-list.ftl">
+<#include "../../vs-dotcom-ds/components/itinerary-summary-list-item.ftl">
+<#include "../../vs-dotcom-ds/components/itinerary-highlights-list.ftl">
+
+<#include "../../vs-dotcom-ds/components/itinerary-day.ftl">
+<#include "../../vs-dotcom-ds/components/itinerary-map.ftl">
+<#include "../../vs-dotcom-ds/components/itinerary-map-marker.ftl">
+
+<#-- Implicit Request Objects -->
 <#-- @ftlvariable name="document" type="com.visitscotland.brmx.beans.Itinerary" -->
+<#-- @ftlvariable name="firstStopLocation" type="java.lang.String" -->
+<#-- @ftlvariable name="lastStopLocation" type="java.lang.String" -->
+
+<#-- Template defined objects -->
 <#-- @ftlvariable name="day" type="com.visitscotland.brmx.beans.Day" -->
+<#-- @ftlvariable name="hero" type="com.visitscotland.brmx.beans.Image" -->
+
+<@hst.setBundle basename="itinerary, toomany, keyFacilities"/> <#-- TODO: keyFacilities shouldn't be defined here -->
+
+<#assign heroLat = 0><#-- TODO: "${document.heroImage.latitude}" -->
+<#assign heroLon = 0><#-- TODO: ${document.heroImage.longitude}" -->
+<#assign mainTransport = "">
+<#assign dayNumber = 0>
+<#assign stopNumber = 0>
+<#assign lastStop = 0>
 
 
-<style>
-    body {
-        background-color: #ffd9b3 !important;
-    }
-</style>
-
-<#if document??>
-
-
-    <#assign path>${document.path?substring(33,document.path?index_of("/content/content"))}</#assign>
-    <#assign stopsCount = 0>
-<article class="has-edit-button">
-      <@hst.manageContent hippobean=document documentTemplateQuery="new-document" rootPath="site" defaultPath="${path}" />
-        <h1 style="text-align: center">${document.heading?html}</h1>
-    <@hst.link var="img" hippobean=document.heroImage.original/>
-<#--       https://www.visitscotland.com/info/accommodation/search-results?prodtypes=${document.productType}&locplace=${document.dmslocation}&locprox=0&stay=&endDate=&r1a=2&r1children=0&r1infants=0&r1c=0&avail=off&cat=inn
-       DMS location ${document.dmsLocation}-->
-    <#if document.breadcrumb??>
-          <p><b> Breadcrumb | Breadcrumb | ${document.breadcrumb}</b>  : (${document.class.simpleName})</p>
-    </#if>
-
-        <div class="row">
-            <div class="col-sm-6">
-            <h4> Days: ${document.days?size} </h4>
-                 <#if document.transports?size gt 0 >
-                    <h4>Transport: ${document.transports[0]} </h4>
-                 </#if>
-                 <#if document.distance?? >Distance in miles: ${document.distance}</#if>
-                 <#if document.them?? >Main theme: ${document.theme}</#if>
-            </div>
-
-            <div class="col-sm-6">
-                <img src="${img}" width="100%" style=" float: right;">
-            </div>
-        </div>
-
-     <#if document.introduction??>
-           <h4> <@hst.html hippohtml=document.introduction/> </h4>
-     </#if>
-
-        <h3>Start/Finish : ${firstStopLocation}/${lastStopLocation}</h3>
-
-     <#if document.theme??>
-         <h4 style="background: aliceblue"> Theme Category: ${document.theme} </h4>
-     </#if>
-
-     <#if document.highlights??>
-          <h4 style="background: aliceblue"> HIGHLIGHTS:  ${document.highlights} </h4>
-     </#if>
-
-
-        <#list document.getDays() as day>
-         <div class="has-edit-button" style="padding-top: 3%">
-             <@hst.manageContent hippobean=day />
-                <div style="background:whitesmoke;border-style: solid; border-width: thin; padding:1%">
-
-                <h2>Day ${day?index+1}: ${day.title}<#if day.transports?size gt 0 > <h4>    Transport:</h4>
-                     <ul>
-                        <#list day.transports as transport>
-                            <li>${transport}</li>
-                        </#list>
-                    </ul>
-                    </#if>
-                </h2>
-
-            <h4><@hst.html hippohtml=day.introduction/></h4>
-        </div>
-
-
-             <ul class="list-unstyled">
-                <#list day.stops as stop>
-                    <#assign stopsCount++>
-                    <@itineraryStop stop=stop stopNumber=stopsCount/>
-                </#list>
-             </ul>
-        <#if prod.name??>
-                 <a  target="_blank" class="glyphicon glyphicon-cutlery" href="https://www.visitscotland.com/info/accommodation/search-results?prodtypes=cate&lat=${latitude}&lng=${longitude}&locprox=2&areaproxdist=1&stay=&endDate=&r1a=2&r1children=0&r1infants=0&r1c=0&avail=off&order=proximityAsc">
-                NEARBY PLACES TO EAT</a>
-        </br>
-        <a  target="_blank" class="glyphicon glyphicon-bed" href="https://www.visitscotland.com/info/accommodation/search-results?prodtypes=acco&lat=${latitude}&lng=${longitude}&locprox=2&areaproxdist=1&stay=&endDate=&r1a=2&r1children=0&r1infants=0&r1c=0&avail=off&order=proximityAsc">
-                NEARBY PLACES TO STAY</a>
-        </#if>
-     </div>
-    </#list>
-  </article>
-
-
-<#-- @ftlvariable name="editMode" type="java.lang.Boolean"-->
-<#elseif editMode>
-  <div class="has-edit-button">
-        <img src="<@hst.link path="/images/essentials/catalog-component-icons/simple-content.png" />"> Click to edit Simple Content
-    <@hst.manageContent documentTemplateQuery="new-content-document" parameterName="document" rootPath="content"/>
-  </div>
+<#if document.transports?has_content >
+    <#assign mainTransport = document.transports[0]>
 </#if>
 
 
 
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js" type="text/javascript" charset="utf-8"></script>
-<script type="text/javascript">
-    $( document ).ready(function() {
-        $(".target").each(position_target)
-    })
+<vs-itinerary>
+    <#if document.heroImage??>
+        <@hst.link var="hero" hippobean=document.heroImage.original/>
+    <vs-hero
+            altText="${document.heroImage.altText}"
+            credit="${document.heroImage.credit}"
+            description="${document.heroImage.description}" <#-- TODO: description for the image?? -->
+            image-src="${hero}"
+            latitude="${heroLat}"
+            longitude="${heroLon}"
+    >
+        <img
+                class="lazyload"
+                src="${hero}"
+                srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                data-srcset="${hero}"
+                alt="${document.heroImage.altText}"
+                data-sizes="auto"
+                slot="image" />
+        <noscript>
+            <img class="img-fluid" src="${hero}" alt="${document.heroImage.altText}" />
+        </noscript>
+    </vs-hero>
+    </#if>
+    <vs-container>
+        <div class="vs-itineraries__intro-wrapper">
+            <#-- TODO: BREADCRUMB as part of the main template -->
+            <#--<vs-breadcrumb>-->
+                <#--<vs-breadcrumb-item-->
+                        <#--v-for="(item, index) in breadcrumb.breadcrumb"-->
+                        <#--:key="index"-->
+                        <#--:href="item.href"-->
+                        <#--:active="item.active"-->
+                        <#--:text="item.name"-->
+                <#-->-->
+                <#--</vs-breadcrumb-item>-->
+            <#--</vs-breadcrumb>-->
+            <vs-row class="justify-content-md-between">
+                <vs-col cols="12" sm="6" lg="7">
+                    <vs-heading level="1">
+                        ${document.heading}
+                    </vs-heading>
+                    <div class="lead" > <#-- NOTE: v-html="itinerary.introduction" doesn't work -->
+                        <@hst.html hippohtml=document.introduction/>
+                    </div>
+                    <dl class="list-inline">
+                        <dt class="list-inline-item"><@fmt.message key="start-finish"/></dt>
+                        <dd class="list-inline-item">${firstStopLocation}/${lastStopLocation}</dd><#-- TODO: Starting point == Finishing ==> remove finish and separator -->
+                    </dl>
+                </vs-col>
+                <vs-col cols="12" sm="6" md="5" lg="4">
+                    <vs-itinerary-summary-list>
+                        <vs-itinerary-summary-list-item>
+                            <strong><@fmt.message key="days"/></strong>
+                            <span>${document.days?size}</span>
+                        </vs-itinerary-summary-list-item>
+                        <vs-itinerary-summary-list-item>
+                            <strong><@fmt.message key="distance"/><br /><abbr title="miles"><@fmt.message key="miles-abbreviation"/></abbr>/<abbr title="kilometres"><@fmt.message key="kilometres-abbreviation"/></abbr></strong>
+                            <span>${document.distance}<span class="divider">/</span>${document.distance*1.6}</span><#-- TODO: #{document.distance*1.609344; M2} -->
+                        </vs-itinerary-summary-list-item>
+                        <vs-itinerary-summary-list-item>
+                            <strong><@fmt.message key="transport"/></strong>
+                            <div class="icon-wrapper">
+                                <vs-icon name="${mainTransport}" variant="dark" size="sm" />
+                                <@fmt.message key="${mainTransport}"/>
+                            </div>
+                        </vs-itinerary-summary-list-item>
+                        <vs-itinerary-summary-list-item>
+                            <strong><@fmt.message key="themes"/></strong>
+                            <div class="icon-wrapper">
+                                <#--<vs-icon name="${document.theme}" variant="dark" size="sm" />--> <#-- TODO: Broken component. Defensive programing??? -->
+                                <@fmt.message key="${document.theme}"/>
+                            </div>
+                        </vs-itinerary-summary-list-item>
+                    </vs-itinerary-summary-list>
+                </vs-col>
+            </vs-row>
+        </div>
+    </vs-container>
 
-    function position_target() {
-        let $target = $(this)
-        let $image = getImage($target)
 
-        $target.css({
-            top: calc_y_position($target, $image),
-            left: calc_x_position($target, $image)
-        })
-    }
+    <div class="bg-light vs-itineraries__highlights-wrapper">
+        <vs-container>
+            <vs-itinerary-highlights-list>
+                <dt>Highlights</dt>
+                <dd class="mb-0">
+                    <div style="white-space: pre-wrap">${document.highlights}</div><#-- TODO: Apply pre wrap to the component -->
+                </dd>
+                <dt class="mt-6">Areas Covered</dt>
+                <dd class="mb-0">
+                    <div style="white-space: pre-wrap"><#list document.areas as area><@fmt.message key="${area}"/>${"\n\n"}</#list></div><#-- TODO: Apply pre wrap to the component -->
+                </dd>
+            </vs-itinerary-highlights-list>
+        </vs-container>
+    </div>
 
-    function getTarget() {
-        return $("#target")
-    }
 
-    function getImage($target) {
-        return $("#" + $target.attr("data-image-id"))
-    }
+    <div class="position-sticky">
+        <vs-itinerary-map
+                access-token="pk.eyJ1IjoidmlzaXRzY290bGFuZC1kZXYiLCJhIjoiY2p4MGZwcmtjMDBlczN5bTBnY3pjeHNubCJ9.d3CJWPvX9FfjfSNAW98Q6w"
+                overview-map-longitude="57.81"
+                overview-map-latitude="-4.13"
+                overview-map-zoom="5"
+                :stops="stops"
+                :labels='{
+            "mapControlsFullscreenOpen": "Show fullscreen",
+            "mapControlsFullscreenClose": "Exit fullscreen",
+            "mapControlsCompass": "Reset angle",
+            "mapControlsZoomIn": "Zoom in",
+            "mapControlsZoomOut": "Zoom out"
+        }'
+        >
+        </vs-itinerary-map>
+        <vs-container>
+            <vs-row>
+                <vs-col cols="12">
+                    <ul class="list-unstyled">
+                        <#list document.days as day>
+                            <#assign dayNumber++>
+                        <vs-itinerary-day
+                                defaultShow="(${(dayNumber < 3)?c}"
+                                key="day-${dayNumber}"
+                        >
+                            <vs-heading
+                                    slot="day-title"
+                                    level="2"
+                                    thin
+                                    class="vs-itinerary-day__title">
+                                <span>Día ${dayNumber}</span>
+                                ${day.title}
+                            </vs-heading>
 
-    function calc_y_position($target, $image) {
-        let y_length = $image.height()
-        let y_start = Number($image.attr("data-lat-start"))
+                            <#--<dl v-if="day.dayMiles && day.dayKM" slot="day-distance" class="list-inline text-center">--> <#-- TODO: remove day distance?? -->
+                                <#--<dt class="list-inline-item"><abbr title="miles">mi</abbr>/<abbr title="kilometres">km</abbr>:</dt>-->
+                                <#--<dd class="list-inline-item">{{day.dayMiles}}/{{day.dayKM}}</dd>-->
+                            <#--</dl>-->
 
-        let y_end = Number($image.attr("data-lat-end"))
-        let y_coord = Number($target.attr("data-lat"))
-        let image_y_offset = $image.position().top
+                            <#-- TODO: TRANSPORT FOR THE DAY -->
+                            <#--<dl v-if="day.transport.length" class="list-inline text-center" slot="day-transport">-->
+                                <#--<dt class="list-inline-item">Transport:</dt>-->
+                                <#--<dl class="list-inline-item" v-for="(transportType, transportTypeIndex) in day.transport">-->
+                                    <#--<vs-itinerary-transport-type :transportType="transportType">-->
+                                        <#--<span class="sr-only">{{transportType.value}}</span>-->
+                                    <#--</vs-itinerary-transport-type>-->
+                                <#--</dl>-->
+                            <#--</dl>-->
+                            <#-- TODO: TRANSPORT FOR THE DAY END -->
 
-        return image_y_offset + calc_axis_position(y_start, y_end, y_coord, y_length)
-    }
+                            <div slot="day-introduction"><#-- TODO v-html="day.introduction" doesn't work -->
+                                <@hst.html hippohtml=day.introduction/>
+                            </div>
 
-    function calc_x_position($target, $image) {
+                            <!-- STOP STARTS HERE -->
+                            <ul slot="stops" class="mt-9 list-unstyled">
+                            <#--<ul class="list-unstyled">-->
+                            <#assign lastStop = lastStop + day.stops?size>
+                            <#list day.stops as stop>
+                                <#assign stopNumber++>
+                                <@itineraryStop stop=stop stopNumber=stopNumber lastStop=stopNumber==lastStop/>
+                            </#list>
+                            </ul>
+                            <!-- STOP ENDS HERE -->
+                        </vs-itinerary-day>
+                        </#list>
+                    </ul>
+                </vs-col>
+            </vs-row>
+        </vs-container>
+    </div>
 
-        let x_length = $image.width()
-        let x_start = Number($image.attr("data-lon-start"))
-        let x_end = Number($image.attr("data-lon-end"))
-        let x_coord = Number($target.attr("data-lon"))
-        let image_x_offset = $image.position().top
 
-        return image_x_offset + calc_axis_position(x_start, x_end, x_coord, x_length)
-    }
-
-    function calc_axis_position(scaleStart, scaleEnd, coord, axisLength) {
-        return (coord - scaleStart) * axisLength / (scaleEnd - scaleStart)
-    }
-</script>
-
-<hr/>
-
+    <#--<vs-related-content-list>-->
+        <#--<h2 slot="header" class="text-warning text-center py-7 m-0">Extend Your Trip</h2>-->
+        <#--<vs-related-content-list-item-->
+                <#--v-for="(item, index) in relatedContent.relatedContent"-->
+                <#--:key="index"-->
+                <#--slot="cards"-->
+        <#-->-->
+            <#--<vs-related-content-card>-->
+                <#--<img-->
+                        <#--:src="item.image.imageSrc"-->
+                        <#--:alt="item.image.imageAlt"-->
+                        <#--class="card-img-top"-->
+                <#-->-->
+                <#--<div class="card-body">-->
+                    <#--<h3 class="card-title h5">-->
+                        <#--<a class="stretched-link" :href="item.href">-->
+                            <#--{{item.title}}-->
+                        <#--</a>-->
+                    <#--</h3>-->
+                    <#--<div class="card-text">-->
+                        <#--{{item.description}}-->
+                    <#--</div>-->
+                <#--</div>-->
+            <#--</vs-related-content-card>-->
+        <#--</vs-related-content-list-item>-->
+    <#--</vs-related-content-list>-->
+</vs-itinerary>
