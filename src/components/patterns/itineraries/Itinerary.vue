@@ -1,5 +1,5 @@
 <template>
-  <component :is="type" class="vs-itinerary" :class="showMap ? 'vs-itinerary--show-map' : ''">
+  <component :is="type" class="vs-itinerary">
     <div class="bg-light">
       <slot name="hero" />
       <div class="vs-itinerary__intro-wrapper--outer">
@@ -16,7 +16,7 @@
       <div class="vs-itinerary__map-container" v-show="this.isDesktop || this.showMap">
         <slot name="map" />
       </div>
-      <div class="vs-itinerary__list-container" v-show="this.isDesktop || !this.showMap">
+      <div class="vs-itinerary__list-container">
         <slot name="list" />
       </div>
     </div>
@@ -108,20 +108,6 @@ export default {
 
 <style lang="scss" scoped>
 .vs-itinerary ::v-deep {
-  &--show-map {
-    @include media-breakpoint-down(lg) {
-      .vs-itinerary__map-container {
-        position: fixed;
-        top: 0;
-        left: 0;
-        bottom: 0;
-        right: 0;
-        width: 100vw;
-        height: 100vh;
-      }
-    }
-  }
-
   .vs-itinerary__map-toggle-container {
     background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 100%);
   }
@@ -137,6 +123,16 @@ export default {
   }
 
   .vs-itinerary__map-container {
+    @include media-breakpoint-down(lg) {
+      position: fixed;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: 1020;
+    }
     @include media-breakpoint-up(lg) {
       float: right;
       position: -webkit-sticky;

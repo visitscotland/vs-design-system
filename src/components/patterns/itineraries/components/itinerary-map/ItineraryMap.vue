@@ -114,6 +114,7 @@ export default {
     addMapControls() {
       var nav = new mapboxgl.NavigationControl()
       this.mapbox.map.addControl(nav, "top-right")
+      this.mapbox.map.addControl(new mapboxgl.FullscreenControl())
     },
     addMapFeatures() {
       this.stops.map(stop => {
