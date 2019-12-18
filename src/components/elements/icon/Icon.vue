@@ -4,11 +4,12 @@
     :class="{
       icon: true,
       ['icon-' + size]: true,
-      ['icon-' + name]: true,
+      ['icon-' + formattedName]: true,
       ['icon-' + variant]: variant,
       ['icon-padding-' + padding]: padding,
       'icon-reverse': reverse,
     }"
+    v-bind="$attrs"
   />
 </template>
 
@@ -32,6 +33,88 @@ export default {
   status: "prototype",
   release: "0.1.0",
   components: { VsSvg },
+  data() {
+    return {
+      iconLookup: [
+        {
+          key: "accessparkdrop",
+          value: "facility-accessparkdrop",
+        },
+        {
+          key: "acco",
+          value: "product-accommodation",
+        },
+        {
+          key: "acti",
+          value: "product-activities",
+        },
+        {
+          key: "attr",
+          value: "product-attractions",
+        },
+        {
+          key: "audioloop",
+          value: "facility-audioloop",
+        },
+        {
+          key: "cate",
+          value: "product-food-and-drink",
+        },
+        {
+          key: "cities",
+          value: "city",
+        },
+        {
+          key: "cycling",
+          value: "cycle",
+        },
+        {
+          key: "dsblaccess",
+          value: "facility-dsblaccess",
+        },
+        {
+          key: "even",
+          value: "product-events",
+        },
+        {
+          key: "familyev",
+          value: "family",
+        },
+        {
+          key: "filmev",
+          value: "film-tv",
+        },
+        {
+          key: "parking",
+          value: "facility-parking",
+        },
+        {
+          key: "petswelcom",
+          value: "facility-petswelcom",
+        },
+        {
+          key: "wifi",
+          value: "facility-wifi",
+        },
+        {
+          key: "public",
+          value: "public-transport",
+        },
+        {
+          key: "reta",
+          value: "product-shopping",
+        },
+        {
+          key: "spahealth",
+          value: "wellness",
+        },
+        {
+          key: "walking",
+          value: "walk",
+        },
+      ],
+    }
+  },
   props: {
     /**
      * The name of the icon to display.
@@ -86,10 +169,19 @@ export default {
   },
   computed: {
     path() {
-      return iconPath + this.name
+      return iconPath + this.formattedName
     },
     dimension() {
       return get(designTokens, "props.icon_size_" + this.size + ".value", "40px")
+    },
+    formattedName() {
+      /*
+       * To facilitate more readable icon names and organise / group icons within the design system
+       * there is a lookup for how keys may be passed from the backend
+       */
+      var formattedNameLookup = this.iconLookup.find(({ key }) => key === this.name)
+
+      return formattedNameLookup !== undefined ? formattedNameLookup.value : this.name
     },
   },
 }
