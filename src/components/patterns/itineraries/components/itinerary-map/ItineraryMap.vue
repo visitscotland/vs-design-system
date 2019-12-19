@@ -23,6 +23,7 @@ export default {
   },
   data() {
     return {
+      isDesktop: false,
       geojsonData: {
         type: "FeatureCollection",
         features: [],
@@ -33,7 +34,7 @@ export default {
         rotation: 0,
         config: {
           container: this.$refs.mapbox,
-          style: "mapbox://styles/mapbox/outdoors-v11?optimize=true",
+          style: "mapbox://styles/mapbox/outdoors-v11?optimize=true", // TODO: Ordinance Survey Map Tiles
           center: [parseFloat(this.overviewMapLatitude), parseFloat(this.overviewMapLongitude)],
           zoom: parseInt(this.overviewMapZoom, 10),
           maxBounds: [
@@ -79,27 +80,51 @@ export default {
   },
   itinerariesStore,
   watch: {
+    activeStopCoordinates(newValue) {
+      if (newValue !== null) {
+        // TODO: show popup when stop is active as well as when it's highlighted
+        // This is especially important on mobile when you click on markers
+        this.addMapPopup()
+      }
+    },
     highlightedStopCoordinates() {
       this.addMapPopup()
     },
   },
   computed: {
-    mapPadding: () => {
-      return {
-        top: 100,
-        bottom: 100,
-        left: 100,
-        right: 100,
+    mapPadding() {
+      if (this.isTablet) {
+        return {
+          top: 100,
+          bottom: 100,
+          left: 100,
+          right: 100,
+        }
+      } else {
+        return {
+          top: 50,
+          bottom: 50,
+          left: 50,
+          right: 50,
+        }
       }
     },
-    activeStop: () => {
+    activeStop() {
       return itinerariesStore.getters["itineraries/getActiveStop"]
     },
-    highlightedStop: () => {
+    highlightedStop() {
       return itinerariesStore.getters["itineraries/getHighlightedStop"]
     },
     highlightedStopCoordinates() {
       return itinerariesStore.getters["itineraries/getHighlightedStopCoordinates"]
+    },
+    activeStopCoordinates() {
+      this.geojsonData.features.forEach(feature => {
+        if (feature.properties.stopCount === this.activeStop) {
+          return feature.geometry.coordinates
+        }
+      })
+      return null
     },
   },
   methods: {
@@ -113,6 +138,8 @@ export default {
     },
     addMapControls() {
       var nav = new mapboxgl.NavigationControl()
+      // todo: add map control components or otherwise style the controls as per design
+      // add tooltips to the map control icons
       this.mapbox.map.addControl(nav, "top-right")
       this.mapbox.map.addControl(new mapboxgl.FullscreenControl())
     },
@@ -153,6 +180,10 @@ export default {
       })
     },
     addMapPopup() {
+      var coordinates =
+        this.highlightedStopCoordinates === null
+          ? this.activeStopCoordinates
+          : this.highlightedStopCoordinates
       this.removeMapPopup()
       this.popup = new mapboxgl.Popup({
         closeButton: false,
@@ -167,7 +198,7 @@ export default {
           right: [-30, -20],
         },
       })
-        .setLngLat(this.highlightedStopCoordinates)
+        .setLngLat(coordinates)
         .setHTML(
           `
             <img class="vs-itinerary__map-popup-image" src="${this.highlightedStop.properties.imageSrc}" alt="${this.highlightedStop.properties.altText}" />
@@ -244,14 +275,20 @@ export default {
       failIfMajorPerformanceCaveat: true,
     })
   },
+  onResize() {
+    this.isTablet = window.innerWidth >= 768 ? true : false
+  },
   mounted() {
     this.lazyloadMapComponent()
+    this.isTablet = window.innerWidth >= 768 ? true : false
+    window.addEventListener("resize", this.onResize)
     var designSystemWrapper = document.querySelector(".vds-example")
     if (designSystemWrapper === null) {
       window.addEventListener("scroll", this.onScroll)
     } else designSystemWrapper.addEventListener("scroll", this.onScroll)
   },
   destroyed() {
+    window.removeEventListener("resize", this.onResize)
     window.removeEventListener("scroll", this.onScroll)
   },
 }
@@ -263,6 +300,10 @@ export default {
   position: relative;
 
   & ::v-deep {
+    .mapboxgl-popup {
+      z-index: 999;
+    }
+
     .mapboxgl-popup-content {
       display: flex;
       padding: 0.5rem;

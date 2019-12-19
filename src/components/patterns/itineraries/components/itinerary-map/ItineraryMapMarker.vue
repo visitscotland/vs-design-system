@@ -84,6 +84,10 @@ export default {
         element.scrollIntoView({ block: "start", behavior: "smooth" })
       }
 
+      // TODO: Debounce or set timeout of marker highlights when activating a new stop
+      // this is especially needed on mobile so that a bunch of markers don't highlight in succession
+      // when you click on a stop
+
       return itinerariesStore.dispatch(
         "itineraries/setStopActive",
         this.feature.properties.stopCount

@@ -22,6 +22,8 @@ export default {
   release: "0.0.1",
   components: { VsContainer, VsRow },
 }
+// TODO: layout of list with variable number of cards
+// Do we paginate when more than 4?
 </script>
 
 <style lang="scss" scoped>

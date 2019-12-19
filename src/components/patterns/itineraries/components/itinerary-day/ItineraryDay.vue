@@ -62,6 +62,8 @@ export default {
       default: true,
     },
   },
+  // TODO: add watcher for when stop activated and expand all the days on mobile
+  // so that stops can be scrolled to
   methods: {
     onResize() {
       this.isDesktop = window.innerWidth >= 1200 ? true : false
@@ -124,11 +126,12 @@ export default {
     
       <dl v-if="day.transport.length" class="list-inline text-center" slot="day-transport">
         <dt class="list-inline-item">Transport:</dt>
-        <dl class="list-inline-item" v-for="(transportType, transportTypeIndex) in day.transport">
-          <vs-itinerary-transport-type :transportType="transportType">
+        <dd class="list-inline-item" v-for="(transportType, transportTypeIndex) in day.transport">
+            <vs-tooltip :title="transportType.value">
+              <vs-icon :name="transportType.key" variant="dark" size="sm" />
+            </vs-tooltip>
             <span class="sr-only">{{transportType.value}}</span>
-          </vs-itinerary-transport-type>
-        </dl>
+        </dd>
       </dl>
 
       <div slot="day-introduction" v-html="day.introduction"></div>

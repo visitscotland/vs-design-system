@@ -93,6 +93,8 @@ export default {
     },
   },
   mounted() {
+    // TODO: move the resize and scroll event listeners and functions to the parent Itinerary.vue component
+    // add watchers to listen for changes
     window.addEventListener("resize", this.onResize)
     var designSystemWrapper = document.querySelector(".vds-example")
     if (designSystemWrapper === null) {
@@ -114,7 +116,7 @@ export default {
 
   figcaption {
     @include media-breakpoint-up(lg) {
-      bottom: 9rem;
+      bottom: 110px;
     }
 
     @include media-breakpoint-up(xl) {
@@ -253,7 +255,7 @@ export default {
               <vs-itinerary-summary-list-item>
                 <strong>Transport</strong>
                 <div class="icon-wrapper">
-                  <vs-icon :name="itineraries.sampleItinerary.transport.key" variant="dark" size="sm" />
+                  <vs-icon name="itineraries.sampleItinerary.transport.key" variant="dark" size="sm" />
                   {{itineraries.sampleItinerary.transport.value}}
                 </div>
               </vs-itinerary-summary-list-item>
@@ -289,7 +291,7 @@ export default {
         </vs-itinerary-highlights-list>
       </vs-container>
     </div>
-    
+    <!-- TODO: move mapbox prod and dev keys to an environment variable -->
     <vs-itinerary-map
       slot="map"
       access-token="pk.eyJ1IjoidmlzaXRzY290bGFuZC1kZXYiLCJhIjoiY2p4MGZwcmtjMDBlczN5bTBnY3pjeHNubCJ9.d3CJWPvX9FfjfSNAW98Q6w"
@@ -331,11 +333,12 @@ export default {
 
               <dl v-if="day.transport.length" class="list-inline text-center" slot="day-transport">
                 <dt class="list-inline-item">Transport:</dt>
-                <dl class="list-inline-item" v-for="(transportType, transportTypeIndex) in day.transport">
-                  <vs-itinerary-transport-type :transportType="transportType">
-                    <span class="sr-only">{{transportType.value}}</span>
-                  </vs-itinerary-transport-type>
-                </dl>
+                <dd class="list-inline-item" v-for="(transportType, transportTypeIndex) in day.transport" :key="transportTypeIndex">
+                  <vs-tooltip :title="transportType.value">
+                    <vs-icon :name="transportType.key" variant="dark" size="sm" />
+                  </vs-tooltip>
+                  <span class="sr-only">{{transportType.value}}</span>
+                </dd>
               </dl>
                           
                 <div slot="day-introduction" v-html="day.introduction"></div>
