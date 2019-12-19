@@ -183,6 +183,13 @@ img {
   position: relative;
   max-height: 100vh;
   overflow: hidden;
+
+  @include media-breakpoint-up(xl) {
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Centering y-axis */
+    align-items: center;
+  }
 }
 
 .vs-hero__overlay-text {
