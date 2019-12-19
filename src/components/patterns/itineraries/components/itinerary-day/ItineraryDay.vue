@@ -119,6 +119,18 @@ export default {
         display: block;
         width: 100%;
       }
+
+      dd {
+        display: inline-table;
+        text-align: center;
+        width: 90px;
+        position: relative;
+
+        .icon-wrapper {
+          display: block;
+          width: 100%;
+        }
+      }
     }
   }
 }
