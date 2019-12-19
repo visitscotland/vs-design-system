@@ -88,6 +88,39 @@ export default {
   }
   padding: $spacer-4 0;
   margin-bottom: $spacer-4;
+
+  .vs-itinerary-stop__list-item {
+    background-color: $color-white;
+    border: 1px solid $color-gray-tint-5;
+    padding: $spacer-4;
+    margin-bottom: $spacer-4;
+
+    .flex-fill {
+      max-width: 160px;
+      @media (min-width: 340px) {
+        max-width: none;
+      }
+    }
+
+    .vs-itinerary-stop__title span {
+      font-family: $headings-font-family;
+      display: block;
+    }
+
+    .itinerary-stop__facilities {
+      border-top: 1px solid $color-gray-tint-5;
+      margin: $spacer-9 -1rem -1rem;
+      padding: 1rem;
+      text-align: center;
+
+      dt {
+        margin-bottom: 1rem;
+        flex-basis: 1;
+        display: block;
+        width: 100%;
+      }
+    }
+  }
 }
 
 .vs-itinerary-day__header ::v-deep .vs-itinerary-day__title > span {

@@ -1,27 +1,15 @@
 <template>
-  <component :is="type" class="vs-itinerary">
-    <div class="bg-light">
-      <slot name="hero" />
-      <div class="vs-itinerary__intro-wrapper--outer">
-        <slot name="intro" />
-      </div>
-      <slot name="highlights" />
-    </div>
-    <div class="position-sticky" data-itineraryMain>
-      <div class="fixed-bottom" v-show="!this.isDesktop && this.withinItineraryMain">
-        <div class="vs-itinerary__map-toggle-container d-flex justify-content-center pb-2">
-          <vs-itinerary-mobile-map-toggle @click.native="toggleShowMap()" />
-        </div>
-      </div>
-      <div class="vs-itinerary__map-container" v-show="this.isDesktop || this.showMap">
-        <slot name="map" />
-      </div>
-      <div class="vs-itinerary__list-container">
-        <slot name="list" />
+  <component :is="type" class="vs-itinerary position-sticky" data-itineraryMain>
+    <div class="fixed-bottom" v-show="!this.isDesktop && this.withinItineraryMain">
+      <div class="vs-itinerary__map-toggle-container d-flex justify-content-center pb-2">
+        <vs-itinerary-mobile-map-toggle @click.native="toggleShowMap()" />
       </div>
     </div>
-    <div>
-      <slot name="related-content" />
+    <div class="vs-itinerary__map-container" v-show="this.isDesktop || this.showMap">
+      <slot name="map" />
+    </div>
+    <div class="vs-itinerary__list-container">
+      <slot name="list" />
     </div>
   </component>
 </template>
@@ -31,8 +19,8 @@ import VsIcon from "@components/elements/icon/Icon"
 import VsButton from "@components/elements/button/Button"
 import VsHeading from "@components/elements/heading/Heading"
 import { VsContainer, VsRow, VsCol } from "@components/elements/layout"
-import VsHero from "@components/patterns/hero/Hero"
 import VsImageLocationMap from "@components/patterns/image-location-map/ImageLocationMap"
+import VsImageWithCaption from "@components/patterns/image-with-caption/ImageWithCaption"
 import VsItineraryMobileMapToggle from "@components/patterns/itineraries/components/itinerary-mobile-map-toggle/ItineraryMobileMapToggle"
 
 /**
@@ -55,8 +43,8 @@ export default {
     VsRow,
     VsCol,
     VsHeading,
-    VsHero,
     VsImageLocationMap,
+    VsImageWithCaption,
     VsItineraryMobileMapToggle,
     VsButton,
     VsIcon,
@@ -114,16 +102,6 @@ export default {
     background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 100%);
   }
 
-  figcaption {
-    @include media-breakpoint-up(lg) {
-      bottom: 110px;
-    }
-
-    @include media-breakpoint-up(xl) {
-      bottom: 160px;
-    }
-  }
-
   .vs-itinerary__map-container {
     @include media-breakpoint-down(lg) {
       position: fixed;
@@ -142,39 +120,6 @@ export default {
       top: 0;
       width: 50vw;
       z-index: 1020;
-    }
-  }
-
-  .vs-itinerary__intro-wrapper--outer {
-    background: $color-white;
-    margin-top: -1rem;
-    @include media-breakpoint-up(lg) {
-      margin: 0;
-      background: none;
-    }
-  }
-  .vs-itinerary__intro-wrapper {
-    @include media-breakpoint-up(lg) {
-      padding: 2rem 4rem;
-      background: $color-white;
-      box-shadow: 0 0 1rem rgba(0, 0, 0, 0.2);
-      margin: -150px 0;
-      position: relative;
-    }
-
-    @include media-breakpoint-up(xl) {
-      margin: -200px 0;
-    }
-  }
-  .vs-itinerary__highlights-wrapper {
-    padding: 2rem 0;
-
-    @include media-breakpoint-up(lg) {
-      padding: 15rem 0 2rem 0;
-    }
-
-    @include media-breakpoint-up(xl) {
-      padding: 250px 0 2rem 0;
     }
   }
 }
@@ -197,9 +142,9 @@ export default {
       });
     })
   })
-  <vs-itinerary>
+
+  <vs-page-intro>
     <vs-hero
-      slot="hero"
       :altText="itineraries.sampleItinerary.image.altText"
       :credit="itineraries.sampleItinerary.image.credit"
       :description="itineraries.sampleItinerary.image.description"
@@ -214,13 +159,10 @@ export default {
       :data-srcset="itineraries.sampleItinerary.image.imageSrc" 
       :alt="itineraries.sampleItinerary.image.altText"
       data-sizes="auto"
-      slot="image" />
-      <noscript>
-        <img class="img-fluid" :src="itineraries.sampleItinerary.image.imageSrc" alt="item.altText" />
-      </noscript>
+       />
     </vs-hero>
-    <vs-container slot="intro">
-      <div class="vs-itinerary__intro-wrapper">
+    <vs-container>
+      <div class="vs-page-intro__wrapper--inner">
         <vs-breadcrumb>
           <vs-breadcrumb-item 
             v-for="(item, index) in breadcrumb.breadcrumb"
@@ -243,54 +185,53 @@ export default {
             </dl>
           </vs-col>
           <vs-col cols="12" sm="6" md="5" lg="4">
-            <vs-itinerary-summary-list>
-              <vs-itinerary-summary-list-item>
+            <vs-summary-box-list class="bg-warning">
+              <vs-summary-box-list-item>
                 <strong>Days</strong>
                 <span>{{itineraries.sampleItinerary.totalDays}}</span>
-              </vs-itinerary-summary-list-item>
-              <vs-itinerary-summary-list-item>
+              </vs-summary-box-list-item>
+              <vs-summary-box-list-item>
                 <strong>Distance <br /><abbr title="miles">mi</abbr>/<abbr title="kilometres">km</abbr></strong>
                 <span>{{itineraries.sampleItinerary.totalMiles}}<span class="divider">/</span>{{itineraries.sampleItinerary.totalKM}}</span>
-              </vs-itinerary-summary-list-item>
-              <vs-itinerary-summary-list-item>
+              </vs-summary-box-list-item>
+              <vs-summary-box-list-item>
                 <strong>Transport</strong>
                 <div class="icon-wrapper">
-                  <vs-icon name="itineraries.sampleItinerary.transport.key" variant="dark" size="sm" />
+                  <vs-icon :name="itineraries.sampleItinerary.transport.key" variant="dark" size="sm" />
                   {{itineraries.sampleItinerary.transport.value}}
                 </div>
-              </vs-itinerary-summary-list-item>
-              <vs-itinerary-summary-list-item>
+              </vs-summary-box-list-item>
+              <vs-summary-box-list-item>
                 <strong>Main theme</strong>
                 <div class="icon-wrapper">
                   <vs-icon :name="itineraries.sampleItinerary.theme.key" variant="dark" size="sm" />
                   {{itineraries.sampleItinerary.theme.value}}
                 </div>
-              </vs-itinerary-summary-list-item>
-            </vs-itinerary-summary-list>
+              </vs-summary-box-list-item>
+            </vs-summary-box-list>
           </vs-col>
         </vs-row>
       </div>
-    </vs-container>
-    <div slot="highlights" class="vs-itinerary__highlights-wrapper">
-      <vs-container>
-        <vs-itinerary-highlights-list>
-          <dt>Highlights</dt>
-          <dd 
-            v-for="(highlight, index) in itineraries.sampleItinerary.highlights"
-            class="mb-0"
-          >
-            {{highlight}}
-          </dd>
-          <dt class="mt-6">Areas Covered</dt>
-          <dd 
-            v-for="(areaCovered, index) in itineraries.sampleItinerary.areasCovered"
-            class="mb-0"
-          >
-            {{areaCovered}}
-          </dd>
-        </vs-itinerary-highlights-list>
-      </vs-container>
-    </div>
+     <vs-itinerary-highlights-list>
+      <dt>Highlights</dt>
+      <dd 
+        v-for="(highlight, index) in itineraries.sampleItinerary.highlights"
+        class="mb-0"
+      >
+        {{highlight}}
+      </dd>
+      <dt class="mt-6">Areas Covered</dt>
+      <dd 
+        v-for="(areaCovered, index) in itineraries.sampleItinerary.areasCovered"
+        class="mb-0"
+      >
+        {{areaCovered}}
+      </dd>
+    </vs-itinerary-highlights-list>
+    
+  </vs-container>
+</vs-page-intro>
+  <vs-itinerary>
     <!-- TODO: move mapbox prod and dev keys to an environment variable -->
     <vs-itinerary-map
       slot="map"
@@ -343,13 +284,13 @@ export default {
                           
                 <div slot="day-introduction" v-html="day.introduction"></div>
                 <ul slot="stops" class="mt-9 list-unstyled">
-                  <vs-itinerary-stop 
-                    v-for="(stop, index) in day.stops"
-                    :stop="stop"
-                    :key="index"
-                  >
+                  <li 
+                    v-for="(stop, index) in day.stops" 
+                    class="vs-itinerary-stop__list-item" 
+                    :data-stop="stop.stopCount">
+                    <div class="d-flex justify-content-between align-items-top">
+                    <vs-icon name="map-marker-filled" variant="secondary-teal" size="md" :padding="0" />
                   <vs-heading 
-                    slot="stop-title"
                     level="3" 
                     thin 
                     class="vs-itinerary-stop__title ml-4">
@@ -359,18 +300,17 @@ export default {
                   </vs-heading>
 
                   <vs-favourites-toggle-button
-                    slot="stop-favourite"
                     :href="stop.href"
                     :title="stop.title"
                   />
-                  <vs-itinerary-stop-image
-                      :altText="stop.image.altText"
-                      :credit="stop.image.credit"
-                      :description="stop.image.description"
-                      :image-src="stop.image.imageSrc"
-                      :latitude="stop.image.latitude"
-                      :longitude="stop.image.longitude"
-                      slot="stop-image"
+                  </div>
+                  <vs-image-with-caption
+                    :altText="stop.image.altText"
+                    :credit="stop.image.credit"
+                    :description="stop.image.description"
+                    :image-src="stop.image.imageSrc"
+                    :latitude="stop.image.latitude"
+                    :longitude="stop.image.longitude"
                     >
                   <img 
                     class="lazyload" 
@@ -378,31 +318,27 @@ export default {
                     srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
                     :data-srcset="stop.image.imageSrc" 
                     :alt="stop.image.altText"
-                    data-sizes="auto"
-                    slot="image" />
-                    <noscript>
-                      <img class="img-fluid" :src="stop.image.imageSrc" alt="item.image.altText" />
-                    </noscript>
-                  </vs-itinerary-stop-image>
+                    data-sizes="auto" />
+                  </vs-image-with-caption>
                   <div slot="stop-description" v-html="stop.description"></div>
                   <dl slot="stop-time-to-explore" class="list-inline my-4 mb-0">
                     <dt class="list-inline-item mb-0">Time to explore:</dt>
                     <dd class="list-inline-item mb-0">{{stop.timeToExplore}}</dd>
                   </dl>
                   <vs-itinerary-stop-pullout slot="stop-pullout" v-if="stop.pullOut.description.length">
-                    <div slot="text">
+                    <div>
                       <strong>{{stop.pullOut.title}}</strong>
                       <div v-html="stop.pullOut.description"></div>
                     </div>
-                    <vs-svg slot="svg" path="highland-cow" />
+                    <vs-svg path="highland-cow" />
                   </vs-itinerary-stop-pullout>
-                  <a slot="stop-href" class="vs-itinerary__stop-link text-uppercase font-weight-bold d-inline-flex align-items-center"
+                  <a class="vs-itinerary__stop-link text-uppercase font-weight-bold d-inline-flex align-items-center"
                     :href="stop.href"
                   >
                     Find out more
                     <vs-icon name="play-filled" variant="primary" size="xxs" :padding=3 />
                   </a>
-                  <dl v-if="stop.facilities.length" class="itinerary-stop__facilities" slot="stop-facilities">
+                  <dl v-if="stop.facilities.length" class="itinerary-stop__facilities">
                     <dt>Key facilities</dt>
                     <vs-itinerary-stop-facility
                       v-for="(facility, facilitiesIndex) in stop.facilities"
@@ -412,13 +348,14 @@ export default {
                       {{facility.value}}
                     </vs-itinerary-stop-facility>
                   </dl>
-                  </vs-itinerary-stop>
+                  </li>
                 </ul>
             </vs-itinerary-day>
             </ul>
           </vs-col>    
         </vs-row>
       </vs-container>
+    </vs-itinerary>
   <vs-related-content-list slot="related-content">
     <h2 slot="header" class="text-warning text-center py-7 m-0">Extend Your Trip</h2>
     <vs-related-content-list-item
@@ -445,7 +382,7 @@ export default {
       </vs-related-content-card>
     </vs-related-content-list-item>
   </vs-related-content-list>
-</vs-itinerary>
+
           
   ```
 </docs>
