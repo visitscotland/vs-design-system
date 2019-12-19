@@ -52,7 +52,7 @@ export default {
   props: {
     type: {
       type: String,
-      default: "article",
+      default: "section",
     },
   },
   computed: {
@@ -340,17 +340,15 @@ export default {
                   </a>
                   <dl v-if="stop.facilities.length" class="itinerary-stop__facilities">
                     <dt>Key facilities</dt>
-                    <vs-itinerary-stop-facility
-                      v-for="(facility, facilitiesIndex) in stop.facilities"
-                      :key="facilitiesIndex"
-                      :facility="facility"
-                    >
+                    <dd v-for="(facility, facilitiesIndex) in stop.facilities"
+                      :key="facilitiesIndex">
+                      <vs-icon :name="facility.key" variant="dark" size="sm" />
                       {{facility.value}}
-                    </vs-itinerary-stop-facility>
+                    </dd>
                   </dl>
                   </li>
                 </ul>
-            </vs-itinerary-day>
+              </vs-itinerary-day>
             </ul>
           </vs-col>    
         </vs-row>
