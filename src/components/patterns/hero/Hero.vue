@@ -1,8 +1,7 @@
 <template>
   <figure class="d-flex flex-column">
     <div class="vs-hero__image-wrapper">
-      <slot name="image" />
-      <slot name="overlayText" />
+      <slot />
 
       <vs-button
         variant="transparent"
@@ -221,12 +220,16 @@ figcaption {
   width: 100%;
 
   @include media-breakpoint-up(lg) {
-    bottom: -1rem;
+    bottom: 110px;
     max-width: 400px;
     position: absolute;
     right: 0;
     width: auto;
     z-index: 2;
+  }
+
+  @include media-breakpoint-up(xl) {
+    bottom: 160px;
   }
 }
 
@@ -262,11 +265,8 @@ figcaption {
       :data-srcset="item.imageSrc" 
       :alt="item.altText"
       data-sizes="auto"
-      slot="image" />
-      <noscript>
-        <img class="img-fluid" :src="item.imageSrc" alt="item.altText" />
-      </noscript>
-      <span slot="overlayText" class="vs-hero__overlay-text text-light">Scotland</span>
+       />
+      <span class="vs-hero__overlay-text text-light">Scotland</span>
     </vs-hero>
   ```
 </docs>

@@ -1,10 +1,10 @@
 <template>
   <figure class="d-flex flex-column">
-    <div class="vs-itinerary-stop-image__image-wrapper">
-      <slot name="image" />
+    <div class="vs-image-with-caption__image-wrapper">
+      <slot />
       <vs-button
         variant="transparent"
-        class="position-absolute vs-itinerary-stop-image__toggle-caption"
+        class="position-absolute vs-image-with-caption__toggle-caption"
         v-if="showToggle"
         :animate="false"
         @click.native="toggleCaption"
@@ -15,17 +15,17 @@
     </div>
 
     <vs-container
-      class="position-relative vs-itinerary-stop-image__caption-wrapper"
+      class="position-relative vs-image-with-caption__caption-wrapper"
       :class="[showCaption ? 'd-flex' : 'd-none']"
     >
       <figcaption ref="figcaption">
         <vs-row>
           <vs-col>
             <div class="p-4" v-if="this.showCaptionData">
-              <p class="vs-itinerary-stop-image__image-description" v-if="this.description">
+              <p class="vs-image-with-caption__image-description" v-if="this.description">
                 {{ this.description }}
               </p>
-              <p class="vs-itinerary-stop-image__image-credit m-0" v-if="this.credit">
+              <p class="vs-image-with-caption__image-credit m-0" v-if="this.credit">
                 &copy; {{ this.credit }}
               </p>
             </div>
@@ -56,7 +56,7 @@ import VsImageLocationMap from "@components/patterns/image-location-map/ImageLoc
  * Itinerary Stop image element
  */
 export default {
-  name: "VsItineraryStopImage",
+  name: "VsImageWithCaption",
   status: "prototype",
   release: "0.0.1",
   components: { VsContainer, VsRow, VsCol, VsImageLocationMap, VsButton, VsIcon },
@@ -71,6 +71,7 @@ export default {
      */
     altText: {
       type: String,
+      required: false,
     },
 
     /**
@@ -78,6 +79,7 @@ export default {
      */
     credit: {
       type: String,
+      required: false,
     },
 
     /**
@@ -85,6 +87,7 @@ export default {
      */
     description: {
       type: String,
+      required: false,
     },
 
     /**
@@ -92,6 +95,7 @@ export default {
      */
     dmlId: {
       type: String,
+      required: false,
     },
 
     /**
@@ -99,6 +103,7 @@ export default {
      */
     imageSrc: {
       type: String,
+      required: false,
     },
 
     /**
@@ -106,6 +111,7 @@ export default {
      */
     latitude: {
       type: String,
+      required: false,
     },
 
     /**
@@ -113,6 +119,7 @@ export default {
      */
     longitude: {
       type: String,
+      required: false,
     },
 
     /**
@@ -125,6 +132,8 @@ export default {
   },
   computed: {
     backgroundSet() {
+      // TODO: finish computed property to build a whole data-bgset once
+      // the JAVA image scaling solution is finished.
       return "data-bgset='" + this.imageSrc + " 320w [(max-width: 360px)]')"
     },
     backgroundStyle() {
@@ -138,7 +147,7 @@ export default {
       return this.showMap || this.showCaptionData ? true : false
     },
     showMap() {
-      // only show the map if longitude and latitude are both set
+      // only show the map if longitude and latitude props are both set
       return this.longitude && this.latitude ? true : false
     },
   },
@@ -156,14 +165,14 @@ export default {
   width: 80px;
 }
 
-.vs-itinerary-stop-image__caption-wrapper {
+.vs-image-with-caption__caption-wrapper {
   @include media-breakpoint-down(lg) {
     max-width: 100%;
     padding: 0;
   }
 }
 
-.vs-itinerary-stop-image__toggle-caption {
+.vs-image-with-caption__toggle-caption {
   bottom: 0;
   padding: 0.325rem;
   right: 0;
@@ -178,7 +187,7 @@ img {
   height: auto;
 }
 
-.vs-itinerary-stop-image__image-wrapper {
+.vs-image-with-caption__image-wrapper {
   position: relative;
 }
 
@@ -188,13 +197,13 @@ figcaption {
   width: 100%;
 }
 
-.vs-itinerary-stop-image__image-description {
+.vs-image-with-caption__image-description {
   font-size: 0.875rem;
   font-weight: 500;
   line-height: 1rem;
 }
 
-.vs-itinerary-stop-image__image-credit {
+.vs-image-with-caption__image-credit {
   font-size: 0.875rem;
   font-weight: $font-weight-light;
   line-height: 1rem;
@@ -204,7 +213,7 @@ figcaption {
 <docs>
   
   ```jsx
-    <vs-itinerary-stop-image
+    <vs-image-with-caption
       v-for="(item, index) in itineraries.sampleItinerary.days[0].stops"
       :altText="item.image.altText"
       :credit="item.image.credit"
@@ -220,11 +229,7 @@ figcaption {
       srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
       :data-srcset="item.image.imageSrc" 
       :alt="item.image.altText"
-      data-sizes="auto"
-      slot="image" />
-      <noscript>
-        <img class="img-fluid" :src="item.image.imageSrc" alt="item.image.altText" />
-      </noscript>
-    </vs-itinerary-stop-image>
+      data-sizes="auto" />
+    </vs-image-with-caption>
   ```
 </docs>
