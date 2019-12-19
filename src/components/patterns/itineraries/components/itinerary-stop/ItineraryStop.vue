@@ -1,6 +1,6 @@
 <template>
   <component :is="type" class="vs-itinerary-stop__list-item" :data-stop="stop.stopCount">
-    <div class="vs-itinerary-stop__header d-flex justify-content-between align-items-top">
+    <div class="d-flex justify-content-between align-items-top">
       <vs-icon name="map-marker-filled" variant="secondary-teal" size="md" :padding="0" />
       <div class="flex-fill">
         <slot name="stop-title" />
@@ -61,29 +61,36 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.vs-itinerary-stop__list-item {
+.vs-itinerary-stop__list-item ::v-deep {
   background-color: $color-white;
   border: 1px solid $color-gray-tint-5;
   padding: $spacer-4;
   margin-bottom: $spacer-4;
-}
 
-.vs-itinerary-stop__title ::v-deep > span {
-  font-family: $headings-font-family;
-  display: block;
-}
+  .flex-fill {
+    max-width: 160px;
+    @media (min-width: 340px) {
+      max-width: none;
+    }
+  }
 
-.itinerary-stop__facilities {
-  border-top: 1px solid $color-gray-tint-5;
-  margin: $spacer-9 -1rem -1rem;
-  padding: 1rem;
-  text-align: center;
-
-  dt {
-    margin-bottom: 1rem;
-    flex-basis: 1;
+  .vs-itinerary-stop__title span {
+    font-family: $headings-font-family;
     display: block;
-    width: 100%;
+  }
+
+  .itinerary-stop__facilities {
+    border-top: 1px solid $color-gray-tint-5;
+    margin: $spacer-9 -1rem -1rem;
+    padding: 1rem;
+    text-align: center;
+
+    dt {
+      margin-bottom: 1rem;
+      flex-basis: 1;
+      display: block;
+      width: 100%;
+    }
   }
 }
 </style>
