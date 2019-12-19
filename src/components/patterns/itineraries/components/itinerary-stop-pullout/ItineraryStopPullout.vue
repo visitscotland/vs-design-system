@@ -10,7 +10,6 @@
 </template>
 
 <script>
-import VsSvg from "@components/elements/svg/Svg"
 /**
  * TODO: Document usage
  */
