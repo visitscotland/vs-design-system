@@ -82,66 +82,59 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.vs-itinerary-day__list-item {
+.vs-itinerary-day__list ::v-deep {
   @include media-breakpoint-down(md) {
     border-top: 5px solid $color-base-text;
   }
   padding: $spacer-4 0;
   margin-bottom: $spacer-4;
+}
 
-  .vs-itinerary-stop__list-item {
-    background-color: $color-white;
-    border: 1px solid $color-gray-tint-5;
-    padding: $spacer-4;
-    margin-bottom: $spacer-4;
+.vs-itinerary-day__list-item ::v-deep .vs-itinerary-day__title span {
+  border-bottom: 1px solid $color-base-text;
+  color: $color-theme-secondary-teal;
+  margin-bottom: $spacer-4;
+  padding: $spacer-3 $spacer-6;
+}
 
-    .flex-fill {
-      max-width: 160px;
-      @media (min-width: 340px) {
-        max-width: none;
-      }
+.vs-itinerary-stop__list-item ::v-deep {
+  background-color: $color-white;
+  border: 1px solid $color-gray-tint-5;
+  padding: $spacer-4;
+  margin-bottom: $spacer-4;
+
+  .flex-fill {
+    max-width: 160px;
+    @media (min-width: 340px) {
+      max-width: none;
     }
+  }
 
-    .vs-itinerary-stop__title span {
-      font-family: $headings-font-family;
+  .itinerary-stop__facilities {
+    border-top: 1px solid $color-gray-tint-5;
+    margin: $spacer-9 -1rem -1rem;
+    padding: 1rem;
+    text-align: center;
+
+    dt {
+      margin-bottom: 1rem;
+      flex-basis: 1;
       display: block;
+      width: 100%;
     }
 
-    .itinerary-stop__facilities {
-      border-top: 1px solid $color-gray-tint-5;
-      margin: $spacer-9 -1rem -1rem;
-      padding: 1rem;
+    dd {
+      display: inline-table;
       text-align: center;
+      width: 90px;
+      position: relative;
 
-      dt {
-        margin-bottom: 1rem;
-        flex-basis: 1;
+      .icon-wrapper {
         display: block;
         width: 100%;
       }
-
-      dd {
-        display: inline-table;
-        text-align: center;
-        width: 90px;
-        position: relative;
-
-        .icon-wrapper {
-          display: block;
-          width: 100%;
-        }
-      }
     }
   }
-}
-
-.vs-itinerary-day__header ::v-deep .vs-itinerary-day__title > span {
-  border-bottom: 1px solid $color-base-text;
-  color: $color-theme-secondary-teal;
-  display: block;
-  font-family: $headings-font-family;
-  margin-bottom: $spacer-4;
-  padding: $spacer-3 $spacer-6;
 }
 
 .vs-itinerary-day__toggle-button {
