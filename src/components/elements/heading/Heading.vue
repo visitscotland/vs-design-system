@@ -71,6 +71,11 @@ $font-sizes: (
 
   &.heading--thin {
     font-family: $headings-font-family-thin;
+
+    span {
+      font-family: $headings-font-family;
+      display: block;
+    }
   }
 }
 </style>
