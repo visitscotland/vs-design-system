@@ -5,7 +5,7 @@
   "image": {
     "imageSrc": "fixtures/itineraries/images/elie-beach-header.jpg",
     "altText": "Child playing on Elie Beach",
-    "description": "Elie beach",
+    "caption": "Elie beach",
     "credit": "Test Credit",
     "longitude": "-2.8243733",
     "latitude": "56.1896033"
@@ -59,7 +59,7 @@
           "image": {
             "imageSrc": "fixtures/itineraries/images/stops/visitscotland_26905578570_633061279.jpg",
             "altText": "Test alt text",
-            "description": "Test description",
+            "caption": "Test caption",
             "credit": "Test credit",
             "latitude": "56.18974",
             "longitude": "-2.81868"
@@ -81,7 +81,7 @@
           "image": {
             "imageSrc": "fixtures/itineraries/images/stops/Kellie_229320466.jpg",
             "altText": "",
-            "description": "",
+            "caption": "",
             "credit": "",
             "latitude": "56.24068",
             "longitude": "-2.76587"
@@ -112,7 +112,7 @@
           "image": {
             "imageSrc": "fixtures/itineraries/images/stops/Guard%20House_705080941.JPG",
             "altText": "",
-            "description": "",
+            "caption": "",
             "credit": "",
             "latitude": "56.27057",
             "longitude": "-2.69826"
@@ -143,7 +143,7 @@
           "image": {
             "imageSrc": "fixtures/itineraries/images/stops/visitscotland_26905662152_2042532673.jpg",
             "altText": "",
-            "description": "",
+            "caption": "",
             "credit": "",
             "latitude": "56.22448",
             "longitude": "-2.70087"
@@ -184,7 +184,7 @@
           "image": {
             "imageSrc": "fixtures/itineraries/images/stops/1070495_730745644.jpg",
             "altText": "",
-            "description": "",
+            "caption": "",
             "credit": "",
             "latitude": "56.30453",
             "longitude": "-3.08709"
@@ -219,7 +219,7 @@
           "image": {
             "imageSrc": "fixtures/itineraries/images/stops/mb300410121.jpg",
             "altText": "",
-            "description": "",
+            "caption": "",
             "credit": "",
             "latitude": "",
             "longitude": ""
@@ -246,7 +246,7 @@
           "image": {
             "imageSrc": "fixtures/itineraries/images/stops/aquarium2015_007_lo_1890704856.jpg",
             "altText": "",
-            "description": "",
+            "caption": "",
             "credit": "",
             "latitude": "56.34386",
             "longitude": "-2.79972"
@@ -281,7 +281,7 @@
           "image": {
             "imageSrc": "fixtures/itineraries/images/stops/visitscotland_36542901290_1943627313.jpg",
             "altText": "",
-            "description": "",
+            "caption": "",
             "credit": "",
             "latitude": "56.33659",
             "longitude": "-2.78282"
@@ -322,7 +322,7 @@
           "image": {
             "imageSrc": "fixtures/itineraries/images/stops/vs_olympia001_2135987885.jpg",
             "altText": "",
-            "description": "",
+            "caption": "",
             "credit": "",
             "latitude": "56.46408",
             "longitude": "-2.96349"
@@ -361,7 +361,7 @@
           "image": {
             "imageSrc": "fixtures/itineraries/images/stops/135(1).jpg",
             "altText": "",
-            "description": "",
+            "caption": "",
             "credit": "",
             "latitude": "56.4562",
             "longitude": "-2.9703"
@@ -393,7 +393,7 @@
           "image": {
             "imageSrc": "fixtures/itineraries/images/stops/021_Dundee_Science_Centre_AR_1325917410.jpg",
             "altText": "",
-            "description": "",
+            "caption": "",
             "credit": "",
             "latitude": "56.4574",
             "longitude": "-2.9724"
@@ -420,7 +420,7 @@
           "image": {
             "imageSrc": "fixtures/itineraries/images/stops/vw%20boys%20small.jpg",
             "altText": "",
-            "description": "",
+            "caption": "",
             "credit": "",
             "latitude": "56.4618",
             "longitude": "-2.9837"
@@ -474,7 +474,7 @@
           "image": {
             "imageSrc": "fixtures/itineraries/images/stops/craigies-farm-soft-fruit.jpg",
             "altText": "Charleton Fruit Farm",
-            "description": "Charleton Fruit Farm",
+            "caption": "Charleton Fruit Farm",
             "credit": "",
             "latitude": "56.740190",
             "longitude": "-2.463880"
@@ -496,7 +496,7 @@
           "image": {
             "imageSrc": "fixtures/itineraries/images/stops/SWT_AMOB_065_Wildlife_Centre_AW_LIM_1275337090.jpg",
             "altText": "",
-            "description": "",
+            "caption": "",
             "credit": "",
             "latitude": "56.69923",
             "longitude": "-2.49169"
@@ -535,7 +535,7 @@
           "image": {
             "imageSrc": "fixtures/itineraries/images/stops/JM-Barrie_372704578.jpg",
             "altText": "",
-            "description": "",
+            "caption": "",
             "credit": "",
             "latitude": "56.67396",
             "longitude": "-3.00178"

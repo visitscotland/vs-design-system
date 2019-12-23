@@ -22,8 +22,8 @@
         <vs-row>
           <vs-col>
             <div class="p-4" v-if="this.showCaptionData">
-              <p class="vs-image-with-caption__image-description" v-if="this.description">
-                {{ this.description }}
+              <p class="vs-image-with-caption__image-caption" v-if="this.caption">
+                {{ this.caption }}
               </p>
               <p class="vs-image-with-caption__image-credit m-0" v-if="this.credit">
                 &copy; {{ this.credit }}
@@ -83,9 +83,9 @@ export default {
     },
 
     /**
-     * The description for the image
+     * The caption for the image
      */
-    description: {
+    caption: {
       type: String,
       required: false,
     },
@@ -140,7 +140,7 @@ export default {
       return "background-image: url('" + this.imageSrc + "');"
     },
     showCaptionData() {
-      return this.description.length || this.credit.length ? true : false
+      return this.caption.length || this.credit.length ? true : false
     },
     showToggle() {
       // only show the image detail toggle button if there's a map or caption data
@@ -197,7 +197,7 @@ figcaption {
   width: 100%;
 }
 
-.vs-image-with-caption__image-description {
+.vs-image-with-caption__image-caption {
   font-size: 0.875rem;
   font-weight: 500;
   line-height: 1rem;
@@ -217,7 +217,7 @@ figcaption {
       v-for="(item, index) in itineraries.sampleItinerary.days[0].stops"
       :altText="item.image.altText"
       :credit="item.image.credit"
-      :description="item.image.description"
+      :caption="item.image.caption"
       :image-src="item.image.imageSrc"
       :key="index"
       :latitude="item.image.latitude"
