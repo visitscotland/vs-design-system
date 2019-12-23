@@ -23,8 +23,8 @@
         <vs-row>
           <vs-col>
             <div class="p-4" v-if="this.showCaptionData">
-              <p class="vs-hero__image-description" v-if="this.description">
-                {{ this.description }}
+              <p class="vs-hero__image-caption" v-if="this.caption">
+                {{ this.caption }}
               </p>
               <p class="vs-hero__image-credit m-0" v-if="this.credit">&copy; {{ this.credit }}</p>
             </div>
@@ -81,9 +81,9 @@ export default {
     },
 
     /**
-     * The description for the hero's image
+     * The caption for the hero's image
      */
-    description: {
+    caption: {
       type: String,
     },
 
@@ -131,11 +131,11 @@ export default {
       return "background-image: url('" + this.imageSrc + "');"
     },
     showCaptionData() {
-      return this.description.length || this.credit.length ? true : false
+      return this.caption.length || this.credit.length ? true : false
     },
     showToggle() {
       // only show the image detail toggle button if there's a map or caption data
-      return this.description.length || this.credit.length ? true : false
+      return this.caption.length || this.credit.length ? true : false
     },
     showMap() {
       // only show the map if longitude and latitude are both set
@@ -233,7 +233,7 @@ figcaption {
   }
 }
 
-.vs-hero__image-description {
+.vs-hero__image-caption {
   font-size: 0.875rem;
   font-weight: 500;
   line-height: 1rem;
@@ -252,7 +252,7 @@ figcaption {
       v-for="(item, index) in hero.imageExamples"
       :altText="item.altText"
       :credit="item.credit"
-      :description="item.description"
+      :caption="item.caption"
       :image-src="item.imageSrc"
       :key="index"
       :latitude="item.latitude"

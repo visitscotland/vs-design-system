@@ -146,7 +146,7 @@ export default {
     <vs-hero
       :altText="itineraries.sampleItinerary.image.altText"
       :credit="itineraries.sampleItinerary.image.credit"
-      :description="itineraries.sampleItinerary.image.description"
+      :caption="itineraries.sampleItinerary.image.caption"
       :image-src="itineraries.sampleItinerary.image.imageSrc"
       :latitude="itineraries.sampleItinerary.image.latitude"
       :longitude="itineraries.sampleItinerary.image.longitude"
@@ -304,7 +304,7 @@ export default {
               <vs-image-with-caption
                   :altText="stop.image.altText"
                   :credit="stop.image.credit"
-                  :description="stop.image.description"
+                  :caption="stop.image.caption"
                   :image-src="stop.image.imageSrc"
                   :latitude="stop.image.latitude"
                   :longitude="stop.image.longitude"
