@@ -22,6 +22,9 @@
 <#include "../../vs-dotcom-ds/components/itinerary-highlights-list.ftl">
 <#include "../../vs-dotcom-ds/components/itinerary-stop-pullout.ftl">
 <#include "../../vs-dotcom-ds/components/svg.ftl">
+<#include "../../vs-dotcom-ds/components/related-content-list.ftl">
+<#include "../../vs-dotcom-ds/components/related-content-list-item.ftl">
+<#include "../../vs-dotcom-ds/components/related-content-card.ftl">
 
 <#include "itinerary-stop.ftl">
 
@@ -92,12 +95,12 @@
                         <vs-heading level="1">
                             ${document.heading}
                         </vs-heading>
-                        <div class="lead"> <#-- NOTE: v-html="itinerary.introduction" doesn't work -->
+                        <div class="lead">
                             <@hst.html hippohtml=document.introduction/>
                         </div>
                         <dl class="list-inline">
                             <dt class="list-inline-item"><@fmt.message key="start-finish"/></dt>
-                            <dd class="list-inline-item">${firstStopLocation}/${lastStopLocation}</dd><#-- TODO: Starting point == Finishing ==> remove finish and separator -->
+                            <dd class="list-inline-item">${firstStopLocation} / ${lastStopLocation}</dd>
                         </dl>
                     </vs-col>
                     <vs-col cols="12" sm="6" md="5" lg="4">
@@ -130,8 +133,9 @@
             </div>
             <vs-itinerary-highlights-list>
                 <dt>Highlights</dt>
+                <#-- TODO: each ${document.highlight} should render a new dd element -->
                 <dd class="mb-0">
-                    <div style="white-space: pre-wrap">${document.highlights}</div><#-- TODO: Apply pre wrap to the component -->
+                    <div style="white-space: pre-wrap">${document.highlights}</div>
                 </dd>
                 <dt class="mt-6">Areas Covered</dt>
                 <#list document.areas as area>
@@ -194,14 +198,16 @@
                                 <#assign dayTransport = day.transports[0]>
                                 <dl class="list-inline text-center" slot="day-transport">
                                     <dt class="list-inline-item"><@fmt.message key="transport"/>:</dt>
-                                    <#-- TODO: ITERATE THROUGH LIST OF TRANSPORT TYPES -->
-                                    <dd class="list-inline-item">
-                                        <vs-tooltip title="${day.transports[0]}">
-                                            <vs-icon name="${dayTransport}" variant="dark" size="sm"></vs-icon>
-                                        </vs-tooltip>
-                                        <span class="sr-only">${day.transports[0]}</span>
-                                    </dd>
-                                    <#-- TODO: END DAY TRANPORT LIST ITERATION -->
+                                    <#list day.transports as transport>
+                                        <dd class="list-inline-item">
+                                            <#-- TODO: Tooltip title and sr-only should spit out the transport value, not the key -->
+                                            <vs-tooltip title="${transport}">
+                                                <vs-icon name="${transport}" variant="dark" size="sm"></vs-icon>
+                                            </vs-tooltip>
+                                            <#-- TODO: Tooltip title and sr-only should spit out the transport value, not the key -->
+                                            <span class="sr-only">${transport}</span>
+                                        </dd>
+                                    </#list>
                                 </dl>
                             </#if>
 
@@ -226,30 +232,83 @@
     </vs-itinerary>
 
 
-        <#--<vs-related-content-list>-->
-            <#--<h2 slot="header" class="text-warning text-center py-7 m-0">Extend Your Trip</h2>-->
-            <#--<vs-related-content-list-item-->
-                    <#--v-for="(item, index) in relatedContent.relatedContent"-->
-                    <#--:key="index"-->
-                    <#--slot="cards"-->
-            <#-->-->
-                <#--<vs-related-content-card>-->
-                    <#--<img-->
-                            <#--:src="item.image.imageSrc"-->
-                            <#--:alt="item.image.imageAlt"-->
-                            <#--class="card-img-top"-->
-                    <#-->-->
-                    <#--<div class="card-body">-->
-                        <#--<h3 class="card-title h5">-->
-                            <#--<a class="stretched-link" :href="item.href">-->
-                                <#--{{item.title}}-->
-                            <#--</a>-->
-                        <#--</h3>-->
-                        <#--<div class="card-text">-->
-                            <#--{{item.description}}-->
-                        <#--</div>-->
-                    <#--</div>-->
-                <#--</vs-related-content-card>-->
-            <#--</vs-related-content-list-item>-->
-        <#--</vs-related-content-list>-->
+    <vs-related-content-list>
+        <h2 slot="header" class="text-warning text-center py-7 m-0">Extend Your Trip</h2>
+        <vs-related-content-list-item slot="cards">
+            <vs-related-content-card>
+                <img
+                    src="/site/binaries/content/gallery/visitscotland/default/vector-illustration-of-cartoon-hippos-in-hot-weather-drawing_csp36829792.jpg"
+                    alt="Test Alt Text"
+                    class="card-img-top"
+                />
+                <div class="card-body">
+                    <h3 class="card-title h5">
+                        <a class="stretched-link" href="www.google.com">
+                            Unhappy Hippo 1
+                        </a>
+                    </h3>
+                    <div class="card-text">
+                        Lorem ipsum dolor sit amet. Test description.
+                    </div>
+                </div>
+            </vs-related-content-card>
+        </vs-related-content-list-item>
+        <vs-related-content-list-item slot="cards">
+            <vs-related-content-card>
+                <img
+                    src="/site/binaries/content/gallery/visitscotland/default/vector-illustration-of-cartoon-hippos-in-hot-weather-drawing_csp36829792.jpg"
+                    alt="Test Alt Text"
+                    class="card-img-top"
+                />
+                <div class="card-body">
+                    <h3 class="card-title h5">
+                        <a class="stretched-link" href="www.google.com">
+                            Unhappy Hippo 2
+                        </a>
+                    </h3>
+                    <div class="card-text">
+                        Lorem ipsum dolor sit amet. Test description.
+                    </div>
+                </div>
+            </vs-related-content-card>
+        </vs-related-content-list-item>
+        <vs-related-content-list-item slot="cards">
+            <vs-related-content-card>
+                <img
+                    src="/site/binaries/content/gallery/visitscotland/default/vector-illustration-of-cartoon-hippos-in-hot-weather-drawing_csp36829792.jpg"
+                    alt="Test Alt Text"
+                    class="card-img-top"
+                />
+                <div class="card-body">
+                    <h3 class="card-title h5">
+                        <a class="stretched-link" href="www.google.com">
+                            Unhappy Hippo 3
+                        </a>
+                    </h3>
+                    <div class="card-text">
+                        Lorem ipsum dolor sit amet. Test description.
+                    </div>
+                </div>
+            </vs-related-content-card>
+        </vs-related-content-list-item>
+        <vs-related-content-list-item slot="cards">
+            <vs-related-content-card>
+                <img
+                    src="/site/binaries/content/gallery/visitscotland/default/vector-illustration-of-cartoon-hippos-in-hot-weather-drawing_csp36829792.jpg"
+                    alt="Test Alt Text"
+                    class="card-img-top"
+                />
+                <div class="card-body">
+                    <h3 class="card-title h5">
+                        <a class="stretched-link" href="www.google.com">
+                            Unhappy Hippo 4
+                        </a>
+                    </h3>
+                    <div class="card-text">
+                        Lorem ipsum dolor sit amet. Test description.
+                    </div>
+                </div>
+            </vs-related-content-card>
+        </vs-related-content-list-item>
+    </vs-related-content-list>
 </div>
