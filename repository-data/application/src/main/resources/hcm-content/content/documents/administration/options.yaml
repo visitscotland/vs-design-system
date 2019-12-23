@@ -62,19 +62,19 @@
       hippotranslation:locale: inherited - from query
       /selection:listitem[1]:
         jcr:primaryType: selection:listitem
-        selection:key: wellness
+        selection:key: spahealth
         selection:label: Wellness
       /selection:listitem[2]:
         jcr:primaryType: selection:listitem
         selection:key: castle
-        selection:label: Castle
+        selection:label: Castles
       /selection:listitem[3]:
         jcr:primaryType: selection:listitem
         selection:key: whisky
         selection:label: Whisky
       /selection:listitem[4]:
         jcr:primaryType: selection:listitem
-        selection:key: tv-film
+        selection:key: filmev
         selection:label: TV & Film
       /selection:listitem[5]:
         jcr:primaryType: selection:listitem
@@ -86,7 +86,7 @@
         selection:label: Landscapes
       /selection:listitem[7]:
         jcr:primaryType: selection:listitem
-        selection:key: cities
+        selection:key: city
         selection:label: Cities
       /selection:listitem[8]:
         jcr:primaryType: selection:listitem
@@ -98,12 +98,12 @@
         selection:label: Sightseeing
       /selection:listitem[10]:
         jcr:primaryType: selection:listitem
-        selection:key: Families
-        selection:label: families
+        selection:key: familyev
+        selection:label: Families
       /selection:listitem[11]:
         jcr:primaryType: selection:listitem
-        selection:key: Activities
-        selection:label: activities
+        selection:key: acti
+        selection:label: Activities
   /areas:
     jcr:primaryType: hippo:handle
     jcr:mixinTypes: ['hippo:named', 'mix:referenceable']

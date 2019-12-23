@@ -19,7 +19,7 @@
       jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
       jcr:uuid: 1ead4399-7e30-47dc-9b75-2ea488fb5742
       hippo:name: Edinburgh castle
-      hippo:versionHistory: 9a4abfb4-36c0-4a7f-a8be-f2c0e3dcfde3
+      hippo:versionHistory: b8ae8151-3c8e-4f65-b69e-03ea1bac3ba9
       /edinburgh-castle[1]:
         jcr:primaryType: visitscotland:Stop
         jcr:mixinTypes: ['mix:referenceable']
@@ -28,11 +28,11 @@
         hippostd:state: draft
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2019-12-10T13:29:39.541Z
-        hippostdpubwf:lastModificationDate: 2019-12-10T17:56:10.379Z
+        hippostdpubwf:lastModificationDate: 2019-12-23T12:11:12.135Z
         hippostdpubwf:lastModifiedBy: admin
         hippotranslation:id: bd1aa2df-999b-4ed5-af2e-1f9cf0286372
         hippotranslation:locale: en
-        visitscotland:tipsTitle: Don't miss
+        visitscotland:tipsTitle: Edinburgh Castle - Sample Pullout Title
         visitscotland:title: Edinburgh castle
         /visitscotland:description:
           jcr:primaryType: hippostd:html
@@ -40,7 +40,7 @@
             is an example for description</p>
         /visitscotland:tips:
           jcr:primaryType: hippostd:html
-          hippostd:content: <p>example pull out infor</p>
+          hippostd:content: <p>Edinburgh Castle - Sample Pullout Information</p>
         /visitscotland:product:
           jcr:primaryType: visitscotland:DMSLink
           visitscotland:product: '245821'
@@ -58,11 +58,11 @@
         hippostd:state: unpublished
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2019-12-10T13:29:39.541Z
-        hippostdpubwf:lastModificationDate: 2019-12-10T17:56:09.992Z
+        hippostdpubwf:lastModificationDate: 2019-12-23T12:11:51.236Z
         hippostdpubwf:lastModifiedBy: admin
         hippotranslation:id: bd1aa2df-999b-4ed5-af2e-1f9cf0286372
         hippotranslation:locale: en
-        visitscotland:tipsTitle: Don't miss
+        visitscotland:tipsTitle: Edinburgh Castle - Sample Pullout Title
         visitscotland:title: Edinburgh castle
         /visitscotland:description:
           jcr:primaryType: hippostd:html
@@ -70,7 +70,7 @@
             is an example for description</p>
         /visitscotland:tips:
           jcr:primaryType: hippostd:html
-          hippostd:content: <p>example pull out infor</p>
+          hippostd:content: <p>Edinburgh Castle - Sample Pullout Information</p>
         /visitscotland:product:
           jcr:primaryType: visitscotland:DMSLink
           visitscotland:product: '245821'
@@ -88,12 +88,12 @@
         hippostd:state: published
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2019-12-10T13:29:39.541Z
-        hippostdpubwf:lastModificationDate: 2019-12-10T17:56:09.992Z
+        hippostdpubwf:lastModificationDate: 2019-12-23T12:11:51.236Z
         hippostdpubwf:lastModifiedBy: admin
-        hippostdpubwf:publicationDate: 2019-12-11T13:01:18.237Z
+        hippostdpubwf:publicationDate: 2019-12-23T12:11:54.704Z
         hippotranslation:id: bd1aa2df-999b-4ed5-af2e-1f9cf0286372
         hippotranslation:locale: en
-        visitscotland:tipsTitle: Don't miss
+        visitscotland:tipsTitle: Edinburgh Castle - Sample Pullout Title
         visitscotland:title: Edinburgh castle
         /visitscotland:description:
           jcr:primaryType: hippostd:html
@@ -101,7 +101,7 @@
             is an example for description</p>
         /visitscotland:tips:
           jcr:primaryType: hippostd:html
-          hippostd:content: <p>example pull out infor</p>
+          hippostd:content: <p>Edinburgh Castle - Sample Pullout Information</p>
         /visitscotland:product:
           jcr:primaryType: visitscotland:DMSLink
           visitscotland:product: '245821'
@@ -116,7 +116,7 @@
       jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
       jcr:uuid: ca56dfe6-f8c8-410f-aa63-ed513fc71385
       hippo:name: Royal mil and grassmarket
-      hippo:versionHistory: ea0b01c8-2e00-4d7a-b802-e73a41c5a9cc
+      hippo:versionHistory: c78d4785-6622-45fb-8b61-7279603fea3b
       /royal-mil-and-grassmarket[1]:
         jcr:primaryType: visitscotland:Stop
         jcr:mixinTypes: ['mix:referenceable']
@@ -125,11 +125,11 @@
         hippostd:state: draft
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2019-12-11T12:39:11.963Z
-        hippostdpubwf:lastModificationDate: 2019-12-17T11:33:23.032Z
+        hippostdpubwf:lastModificationDate: 2019-12-23T12:11:58.601Z
         hippostdpubwf:lastModifiedBy: admin
         hippotranslation:id: 9da62445-4ef0-470c-9d9c-ed812d053659
         hippotranslation:locale: en
-        visitscotland:tipsTitle: Don't miss test title
+        visitscotland:tipsTitle: Old Town Hideouts - Sample Pullout Title
         visitscotland:title: OLD TOWN HIDEOUTS
         /visitscotland:description:
           jcr:primaryType: hippostd:html
@@ -143,7 +143,7 @@
             Chambers on the Royal Mile.</p>
         /visitscotland:tips:
           jcr:primaryType: hippostd:html
-          hippostd:content: <p>Don't miss test information</p>
+          hippostd:content: <p>Old Town Hideouts - Sample Pullout Information</p>
         /visitscotland:product:
           jcr:primaryType: visitscotland:DMSLink
           visitscotland:product: '918401'
@@ -161,11 +161,11 @@
         hippostd:state: unpublished
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2019-12-11T12:39:11.963Z
-        hippostdpubwf:lastModificationDate: 2019-12-17T11:33:22.989Z
+        hippostdpubwf:lastModificationDate: 2019-12-23T12:12:31.292Z
         hippostdpubwf:lastModifiedBy: admin
         hippotranslation:id: 9da62445-4ef0-470c-9d9c-ed812d053659
         hippotranslation:locale: en
-        visitscotland:tipsTitle: Don't miss test title
+        visitscotland:tipsTitle: Old Town Hideouts - Sample Pullout Title
         visitscotland:title: OLD TOWN HIDEOUTS
         /visitscotland:description:
           jcr:primaryType: hippostd:html
@@ -179,7 +179,7 @@
             Chambers on the Royal Mile.</p>
         /visitscotland:tips:
           jcr:primaryType: hippostd:html
-          hippostd:content: <p>Don't miss test information</p>
+          hippostd:content: <p>Old Town Hideouts - Sample Pullout Information</p>
         /visitscotland:product:
           jcr:primaryType: visitscotland:DMSLink
           visitscotland:product: '918401'
@@ -197,12 +197,12 @@
         hippostd:state: published
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2019-12-11T12:39:11.963Z
-        hippostdpubwf:lastModificationDate: 2019-12-12T12:23:30.810Z
+        hippostdpubwf:lastModificationDate: 2019-12-23T12:12:31.292Z
         hippostdpubwf:lastModifiedBy: admin
-        hippostdpubwf:publicationDate: 2019-12-16T12:18:12.782Z
+        hippostdpubwf:publicationDate: 2019-12-23T12:12:33.425Z
         hippotranslation:id: 9da62445-4ef0-470c-9d9c-ed812d053659
         hippotranslation:locale: en
-        visitscotland:tipsTitle: Don't miss test title
+        visitscotland:tipsTitle: Old Town Hideouts - Sample Pullout Title
         visitscotland:title: OLD TOWN HIDEOUTS
         /visitscotland:description:
           jcr:primaryType: hippostd:html
@@ -216,7 +216,7 @@
             Chambers on the Royal Mile.</p>
         /visitscotland:tips:
           jcr:primaryType: hippostd:html
-          hippostd:content: <p>Don't miss test information</p>
+          hippostd:content: <p>Old Town Hideouts - Sample Pullout Information</p>
         /visitscotland:product:
           jcr:primaryType: visitscotland:DMSLink
           visitscotland:product: '918401'
@@ -231,7 +231,7 @@
       jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
       jcr:uuid: 28abd074-5fc4-4ebc-a424-1d4f9e5cb0e6
       hippo:name: GREYFRIARS KIRKYARD
-      hippo:versionHistory: 8396e0d1-221e-4bc8-a73a-5efa81c90869
+      hippo:versionHistory: 7c43afca-a0ad-44da-8842-4dcbfcc2a215
       /greyfriars-kirkyard[1]:
         jcr:primaryType: visitscotland:Stop
         jcr:mixinTypes: ['mix:referenceable']
@@ -240,11 +240,11 @@
         hippostd:state: draft
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2019-12-11T12:40:08.862Z
-        hippostdpubwf:lastModificationDate: 2019-12-17T11:32:15.826Z
+        hippostdpubwf:lastModificationDate: 2019-12-23T12:12:36.754Z
         hippostdpubwf:lastModifiedBy: admin
         hippotranslation:id: 1bdaaad2-68eb-4493-878c-0961215fe02a
         hippotranslation:locale: en
-        visitscotland:tipsTitle: testing pull put
+        visitscotland:tipsTitle: Greyfriars Kirkyard - Sample Pullout Title
         visitscotland:title: GREYFRIARS KIRKYARD
         /visitscotland:description:
           jcr:primaryType: hippostd:html
@@ -255,7 +255,7 @@
             and Elizabeth Moodie. A coincidence? We think not.</p>'
         /visitscotland:tips:
           jcr:primaryType: hippostd:html
-          hippostd:content: <p>description pull out</p>
+          hippostd:content: <p>Greyfriars Kirkyard - Sample Pullout Information</p>
         /visitscotland:product:
           jcr:primaryType: visitscotland:ExternalProductLink
           visitscotland:Link: https://greyfriarskirk.com/
@@ -278,11 +278,11 @@
         hippostd:state: unpublished
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2019-12-11T12:40:08.862Z
-        hippostdpubwf:lastModificationDate: 2019-12-12T12:28:39.032Z
+        hippostdpubwf:lastModificationDate: 2019-12-23T12:13:11.014Z
         hippostdpubwf:lastModifiedBy: admin
         hippotranslation:id: 1bdaaad2-68eb-4493-878c-0961215fe02a
         hippotranslation:locale: en
-        visitscotland:tipsTitle: testing pull put
+        visitscotland:tipsTitle: Greyfriars Kirkyard - Sample Pullout Title
         visitscotland:title: GREYFRIARS KIRKYARD
         /visitscotland:description:
           jcr:primaryType: hippostd:html
@@ -293,7 +293,7 @@
             and Elizabeth Moodie. A coincidence? We think not.</p>'
         /visitscotland:tips:
           jcr:primaryType: hippostd:html
-          hippostd:content: <p>description pull out</p>
+          hippostd:content: <p>Greyfriars Kirkyard - Sample Pullout Information</p>
         /visitscotland:product:
           jcr:primaryType: visitscotland:ExternalProductLink
           visitscotland:Link: https://greyfriarskirk.com/
@@ -316,12 +316,12 @@
         hippostd:state: published
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2019-12-11T12:40:08.862Z
-        hippostdpubwf:lastModificationDate: 2019-12-12T12:28:39.032Z
+        hippostdpubwf:lastModificationDate: 2019-12-23T12:13:11.014Z
         hippostdpubwf:lastModifiedBy: admin
-        hippostdpubwf:publicationDate: 2019-12-16T12:18:10.262Z
+        hippostdpubwf:publicationDate: 2019-12-23T12:13:12.624Z
         hippotranslation:id: 1bdaaad2-68eb-4493-878c-0961215fe02a
         hippotranslation:locale: en
-        visitscotland:tipsTitle: testing pull put
+        visitscotland:tipsTitle: Greyfriars Kirkyard - Sample Pullout Title
         visitscotland:title: GREYFRIARS KIRKYARD
         /visitscotland:description:
           jcr:primaryType: hippostd:html
@@ -332,7 +332,7 @@
             and Elizabeth Moodie. A coincidence? We think not.</p>'
         /visitscotland:tips:
           jcr:primaryType: hippostd:html
-          hippostd:content: <p>description pull out</p>
+          hippostd:content: <p>Greyfriars Kirkyard - Sample Pullout Information</p>
         /visitscotland:product:
           jcr:primaryType: visitscotland:ExternalProductLink
           visitscotland:Link: https://greyfriarskirk.com/
@@ -352,13 +352,12 @@
       jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
       jcr:uuid: 8b215960-87aa-47ae-9c11-8a750be25ad8
       hippo:name: Casa Jose
-      hippo:versionHistory: 1b0bb213-a7fc-4666-954e-8b57151470df
+      hippo:versionHistory: cc5eda6a-1dca-4e46-a41d-8ebf041f70d4
       /casa-jose[1]:
         jcr:primaryType: visitscotland:Stop
         jcr:mixinTypes: ['mix:referenceable']
         jcr:uuid: 863c3f82-ab9a-41e1-9919-5407827a8ee9
         hippo:availability: []
-        hippostd:holder: admin
         hippostd:state: draft
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2019-12-16T12:20:46.037Z
@@ -430,9 +429,9 @@
         hippostd:state: published
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2019-12-16T12:20:46.037Z
-        hippostdpubwf:lastModificationDate: 2019-12-16T14:39:43.724Z
+        hippostdpubwf:lastModificationDate: 2019-12-17T11:35:58.829Z
         hippostdpubwf:lastModifiedBy: admin
-        hippostdpubwf:publicationDate: 2019-12-16T14:39:59.130Z
+        hippostdpubwf:publicationDate: 2019-12-23T11:56:54.420Z
         hippotranslation:id: b4f184af-52de-4e48-92ab-33cc5c2519e0
         hippotranslation:locale: en
         visitscotland:tipsTitle: Don't print this
@@ -462,7 +461,7 @@
       jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
       jcr:uuid: 8030a311-a942-40e6-bb89-41dd6fea60df
       hippo:name: Malformed Stop
-      hippo:versionHistory: e01bef15-ed85-4fc3-90aa-64902840198b
+      hippo:versionHistory: e2f3a264-14c5-47da-8352-baffb0f30c43
       /malformed-stop[1]:
         jcr:primaryType: visitscotland:Stop
         jcr:mixinTypes: ['mix:referenceable']
@@ -471,18 +470,18 @@
         hippostd:state: draft
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2019-12-16T12:21:59.073Z
-        hippostdpubwf:lastModificationDate: 2019-12-17T11:36:02.510Z
+        hippostdpubwf:lastModificationDate: 2019-12-23T12:13:32.331Z
         hippostdpubwf:lastModifiedBy: admin
         hippotranslation:id: c98c9973-3626-4ce4-a46a-1ee9aca1839e
         hippotranslation:locale: en
-        visitscotland:tipsTitle: DON'T MISS
+        visitscotland:tipsTitle: Malformed Stop - Sample Pullout Title
         visitscotland:title: This stop does not have a product
         /visitscotland:description:
           jcr:primaryType: hippostd:html
           hippostd:content: <p>NO PRODUCT FOR THIS STOP HAS BEEN DEFINED</p>
         /visitscotland:tips:
           jcr:primaryType: hippostd:html
-          hippostd:content: <p>THE PRODUCT FOR THE STOP</p>
+          hippostd:content: <p>Malformed Stop - Sample Pullout Information</p>
       /malformed-stop[2]:
         jcr:primaryType: visitscotland:Stop
         jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
@@ -491,18 +490,18 @@
         hippostd:state: unpublished
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2019-12-16T12:21:59.073Z
-        hippostdpubwf:lastModificationDate: 2019-12-16T14:41:43.202Z
+        hippostdpubwf:lastModificationDate: 2019-12-23T12:13:51.886Z
         hippostdpubwf:lastModifiedBy: admin
         hippotranslation:id: c98c9973-3626-4ce4-a46a-1ee9aca1839e
         hippotranslation:locale: en
-        visitscotland:tipsTitle: DON'T MISS
+        visitscotland:tipsTitle: Malformed Stop - Sample Pullout Title
         visitscotland:title: This stop does not have a product
         /visitscotland:description:
           jcr:primaryType: hippostd:html
           hippostd:content: <p>NO PRODUCT FOR THIS STOP HAS BEEN DEFINED</p>
         /visitscotland:tips:
           jcr:primaryType: hippostd:html
-          hippostd:content: <p>THE PRODUCT FOR THE STOP</p>
+          hippostd:content: <p>Malformed Stop - Sample Pullout Information</p>
       /malformed-stop[3]:
         jcr:primaryType: visitscotland:Stop
         jcr:mixinTypes: ['mix:referenceable']
@@ -511,16 +510,16 @@
         hippostd:state: published
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2019-12-16T12:21:59.073Z
-        hippostdpubwf:lastModificationDate: 2019-12-16T14:41:43.202Z
+        hippostdpubwf:lastModificationDate: 2019-12-23T12:13:51.886Z
         hippostdpubwf:lastModifiedBy: admin
-        hippostdpubwf:publicationDate: 2019-12-16T14:41:45.591Z
+        hippostdpubwf:publicationDate: 2019-12-23T12:13:53.767Z
         hippotranslation:id: c98c9973-3626-4ce4-a46a-1ee9aca1839e
         hippotranslation:locale: en
-        visitscotland:tipsTitle: DON'T MISS
+        visitscotland:tipsTitle: Malformed Stop - Sample Pullout Title
         visitscotland:title: This stop does not have a product
         /visitscotland:description:
           jcr:primaryType: hippostd:html
           hippostd:content: <p>NO PRODUCT FOR THIS STOP HAS BEEN DEFINED</p>
         /visitscotland:tips:
           jcr:primaryType: hippostd:html
-          hippostd:content: <p>THE PRODUCT FOR THE STOP</p>
+          hippostd:content: <p>Malformed Stop - Sample Pullout Information</p>

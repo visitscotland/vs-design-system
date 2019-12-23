@@ -31,10 +31,37 @@ definitions:
             hipposysedit:path: visitscotland:longitude
             hipposysedit:primary: false
             hipposysedit:type: Double
+        /hipposysedit:nodetype[2]:
+          jcr:primaryType: hipposysedit:nodetype
+          jcr:mixinTypes: ['mix:referenceable']
+          jcr:uuid: 807f1dcf-e54c-4534-9869-93893a08dd66
+          hipposysedit:node: true
+          hipposysedit:supertype: ['hippo:compound', 'hippostd:relaxed']
+          /latitude:
+            jcr:primaryType: hipposysedit:field
+            hipposysedit:mandatory: false
+            hipposysedit:multiple: false
+            hipposysedit:ordered: false
+            hipposysedit:path: visitscotland:latitude
+            hipposysedit:primary: false
+            hipposysedit:type: Double
+          /longitude:
+            jcr:primaryType: hipposysedit:field
+            hipposysedit:mandatory: false
+            hipposysedit:multiple: false
+            hipposysedit:ordered: false
+            hipposysedit:path: visitscotland:longitude
+            hipposysedit:primary: false
+            hipposysedit:type: Double
       /hipposysedit:prototypes:
         jcr:primaryType: hipposysedit:prototypeset
         /hipposysedit:prototype:
           jcr:primaryType: visitscotland:Coordinates
+          visitscotland:latitude: 0.0
+          visitscotland:longitude: 0.0
+        /hipposysedit:prototype[2]:
+          jcr:primaryType: nt:unstructured
+          jcr:mixinTypes: ['hippostd:relaxed']
           visitscotland:latitude: 0.0
           visitscotland:longitude: 0.0
       /editor:templates:

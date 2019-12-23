@@ -1,19 +1,29 @@
 <#include "../../include/imports.ftl">
-<#include "itinerary-stop.ftl">
 
+<#include "../../vs-dotcom-ds/stores/itineraries-store.ftl">
+<#include "../../vs-dotcom-ds/components/page-intro.ftl">
+<#include "../../vs-dotcom-ds/components/hero.ftl">
 <#include "../../vs-dotcom-ds/components/container.ftl">
 <#include "../../vs-dotcom-ds/components/row.ftl">
 <#include "../../vs-dotcom-ds/components/col.ftl">
-
+<#include "../../vs-dotcom-ds/components/icon.ftl">
+<#include "../../vs-dotcom-ds/components/favourites-toggle-button.ftl">
+<#include "../../vs-dotcom-ds/components/image-with-caption.ftl">
+<#include "../../vs-dotcom-ds/components/image-location-map.ftl">
+<#include "../../vs-dotcom-ds/components/button.ftl">
+<#include "../../vs-dotcom-ds/components/heading.ftl">
+<#include "../../vs-dotcom-ds/components/tooltip.ftl">
+<#include "../../vs-dotcom-ds/components/summary-box-list.ftl">
+<#include "../../vs-dotcom-ds/components/summary-box-list-item.ftl">
 <#include "../../vs-dotcom-ds/components/itinerary.ftl">
-<#include "../../vs-dotcom-ds/components/hero.ftl">
-<#include "../../vs-dotcom-ds/components/itinerary-summary-list.ftl">
-<#include "../../vs-dotcom-ds/components/itinerary-summary-list-item.ftl">
-<#include "../../vs-dotcom-ds/components/itinerary-highlights-list.ftl">
-
+<#--  <#include "../../vs-dotcom-ds/components/itinerary-map.ftl">
+<#include "../../vs-dotcom-ds/components/itinerary-map-marker.ftl">  -->
 <#include "../../vs-dotcom-ds/components/itinerary-day.ftl">
-<#include "../../vs-dotcom-ds/components/itinerary-map.ftl">
-<#include "../../vs-dotcom-ds/components/itinerary-map-marker.ftl">
+<#include "../../vs-dotcom-ds/components/itinerary-highlights-list.ftl">
+<#include "../../vs-dotcom-ds/components/itinerary-stop-pullout.ftl">
+<#include "../../vs-dotcom-ds/components/svg.ftl">
+
+<#include "itinerary-stop.ftl">
 
 <#-- Implicit Request Objects -->
 <#-- @ftlvariable name="document" type="com.visitscotland.brmx.beans.Itinerary" -->
@@ -43,32 +53,29 @@
 <div class="has-edit-button">
       <@hst.manageContent hippobean=document documentTemplateQuery="new-document" rootPath="site"  />
 
-    <vs-itinerary>
+    <vs-page-intro>
         <#if document.heroImage??>
             <@hst.link var="hero" hippobean=document.heroImage.original/>
-        <vs-hero
-                altText="${document.heroImage.altText}"
+            <vs-hero
+                alt-text="${document.heroImage.altText}"
                 credit="${document.heroImage.credit}"
-                description="${document.heroImage.description}" <#-- TODO: description for the image?? -->
+                caption="${document.heroImage.caption}"
                 image-src="${hero}"
-                latitude="${heroLat}"
-                longitude="${heroLon}"
-        >
+                latitude="${document.heroImage.coordinates.latitude}"
+                longitude="${document.heroImage.coordinates.longitude}"
+            >
             <img
-                    class="lazyload"
-                    src="${hero}"
-                    srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
-                    data-srcset="${hero}"
-                    alt="${document.heroImage.altText}"
-                    data-sizes="auto"
-                    slot="image" />
-            <noscript>
-                <img class="img-fluid" src="${hero}" alt="${document.heroImage.altText}" />
-            </noscript>
+                class="lazyload"
+                src="${hero}"
+                srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                data-srcset="${hero}"
+                alt="${document.heroImage.altText}"
+                data-sizes="auto"
+                    />
         </vs-hero>
         </#if>
         <vs-container>
-            <div class="vs-itineraries__intro-wrapper">
+            <div class="vs-page-intro__wrapper--inner">
                 <#-- TODO: BREADCRUMB as part of the main template -->
                 <#--<vs-breadcrumb>-->
                     <#--<vs-breadcrumb-item-->
@@ -85,7 +92,7 @@
                         <vs-heading level="1">
                             ${document.heading}
                         </vs-heading>
-                        <div class="lead" > <#-- NOTE: v-html="itinerary.introduction" doesn't work -->
+                        <div class="lead"> <#-- NOTE: v-html="itinerary.introduction" doesn't work -->
                             <@hst.html hippohtml=document.introduction/>
                         </div>
                         <dl class="list-inline">
@@ -94,127 +101,129 @@
                         </dl>
                     </vs-col>
                     <vs-col cols="12" sm="6" md="5" lg="4">
-                        <vs-itinerary-summary-list>
-                            <vs-itinerary-summary-list-item>
+                        <vs-summary-box-list class="bg-warning">
+                            <vs-summary-box-list-item>
                                 <strong><@fmt.message key="days"/></strong>
                                 <span>${document.days?size}</span>
-                            </vs-itinerary-summary-list-item>
-                            <vs-itinerary-summary-list-item>
-                                <strong><@fmt.message key="distance"/><br /><abbr title="miles"><@fmt.message key="miles-abbreviation"/></abbr>/<abbr title="kilometres"><@fmt.message key="kilometres-abbreviation"/></abbr></strong>
-                                <span>${document.distance}<span class="divider">/</span>${document.distance*1.6}</span><#-- TODO: #{document.distance*1.609344; M2} -->
-                            </vs-itinerary-summary-list-item>
-                            <vs-itinerary-summary-list-item>
+                            </vs-summary-box-list-item>
+                            <vs-summary-box-list-item>
+                                <strong><@fmt.message key="distance"/><br /><abbr title="<@fmt.message key="miles"/>"><@fmt.message key="miles-abbreviation"/></abbr>/<abbr title="<@fmt.message key="kilometres"/>"><@fmt.message key="kilometres-abbreviation"/></abbr></strong>
+                                <span>${document.distance?round}<span class="divider">/</span>${document.distance?round*1.6}</span><#-- TODO: #{document.distance*1.609344; M2} talk to team regarding rounding the display-->
+                            </vs-summary-box-list-item>
+                            <vs-summary-box-list-item>
                                 <strong><@fmt.message key="transport"/></strong>
                                 <div class="icon-wrapper">
-                                    <vs-icon name="${mainTransport}" variant="dark" size="sm" />
+                                    <vs-icon name="${mainTransport}" variant="dark" size="sm"></vs-icon>
                                     <@fmt.message key="${mainTransport}"/>
                                 </div>
-                            </vs-itinerary-summary-list-item>
-                            <vs-itinerary-summary-list-item>
+                            </vs-summary-box-list-item>
+                            <vs-summary-box-list-item>
                                 <strong><@fmt.message key="themes"/></strong>
                                 <div class="icon-wrapper">
-                                    <#--<vs-icon name="${document.theme}" variant="dark" size="sm" />--> <#-- TODO: Broken component. Defensive programing??? -->
+                                    <vs-icon name="${document.theme}" variant="dark" size="sm"></vs-icon>
                                     <@fmt.message key="${document.theme}"/>
                                 </div>
-                            </vs-itinerary-summary-list-item>
-                        </vs-itinerary-summary-list>
+                            </vs-summary-box-list-item>
+                        </vs-summary-box-list>
                     </vs-col>
                 </vs-row>
             </div>
+            <vs-itinerary-highlights-list>
+                <dt>Highlights</dt>
+                <dd class="mb-0">
+                    <div style="white-space: pre-wrap">${document.highlights}</div><#-- TODO: Apply pre wrap to the component -->
+                </dd>
+                <dt class="mt-6">Areas Covered</dt>
+                <#list document.areas as area>
+                    <dd class="mb-0">
+                        <@fmt.message key="${area}"/>${"\n"}
+                    </dd>
+                </#list>
+            </vs-itinerary-highlights-list>
         </vs-container>
-
-
-        <div class="bg-light vs-itineraries__highlights-wrapper">
-            <vs-container>
-                <vs-itinerary-highlights-list>
-                    <dt>Highlights</dt>
-                    <dd class="mb-0">
-                        <div style="white-space: pre-wrap">${document.highlights}</div><#-- TODO: Apply pre wrap to the component -->
-                    </dd>
-                    <dt class="mt-6">Areas Covered</dt>
-                    <dd class="mb-0">
-                        <div style="white-space: pre-wrap"><#list document.areas as area><@fmt.message key="${area}"/>${"\n"}</#list></div><#-- TODO: Apply pre wrap to the component -->
-                    </dd>
-                </vs-itinerary-highlights-list>
-            </vs-container>
-        </div>
-
-
-        <div class="position-sticky">
-            <vs-itinerary-map
-                    access-token="pk.eyJ1IjoidmlzaXRzY290bGFuZC1kZXYiLCJhIjoiY2p4MGZwcmtjMDBlczN5bTBnY3pjeHNubCJ9.d3CJWPvX9FfjfSNAW98Q6w"
-                    overview-map-longitude="57.81"
-                    overview-map-latitude="-4.13"
-                    overview-map-zoom="5"
-                    :stops="stops"
-                    :labels='{
-                "mapControlsFullscreenOpen": "Show fullscreen",
-                "mapControlsFullscreenClose": "Exit fullscreen",
-                "mapControlsCompass": "Reset angle",
-                "mapControlsZoomIn": "Zoom in",
-                "mapControlsZoomOut": "Zoom out"
+    </vs-page-intro>
+    <vs-itinerary>
+        <#--<vs-itinerary-map
+            slot="map"
+            access-token="${label('keys', 'mapbox.devkey')?html}"
+            overview-map-longitude="57.81"
+            overview-map-latitude="-4.13"
+            overview-map-zoom="5"
+            :stops='[{
+                title: "Test Title",
+                latitude: "-3.9747177",
+                longitude: "56.1187003",
+                stopCount: "1",
+                imageSrc: "https://via.placeholder.com/150",
+                altText: "Image placeholder"
+            }]'
+            :labels='{
+                mapControlsFullscreenOpen: "Show fullscreen",
+                mapControlsFullscreenClose: "Exit fullscreen",
+                mapControlsCompass: "Reset angle",
+                mapControlsZoomIn: "Zoom in",
+                mapControlsZoomOut: "Zoom out"
             }'
-            >
-            </vs-itinerary-map>
-            <vs-container>
-                <vs-row>
-                    <vs-col cols="12">
-                        <ul class="list-unstyled">
-                            <#list document.days as day>
-                                <#assign dayNumber++>
+        >-->
+        </vs-itinerary-map>
+        <vs-container slot="list">
+            <vs-row>
+                <vs-col cols="12" tag="ul" class="list-unstyled">
+                    <#list document.days as day>
+                        <#assign dayNumber++>
+                        <#assign dayTransport = "">
+                        <vs-itinerary-day :default-show=${(dayNumber < 3)?c}>
+                            <vs-heading
+                                slot="day-title"
+                                level="2"
+                                thin
+                                class="vs-itinerary-day__title">
+                                <span class="text-secondary-teal">Día ${dayNumber}</span>
+                                ${day.title}
+                            </vs-heading>
 
-                            <vs-itinerary-day
-                                    defaultShow="(${(dayNumber < 3)?c}"
-                                    key="day-${dayNumber}"
-                            >
-                                <vs-heading
-                                        slot="day-title"
-                                        level="2"
-                                        thin
-                                        class="vs-itinerary-day__title">
-
-                                    <span>Día ${dayNumber}</span>
-                                    ${day.title}
-                                </vs-heading>
-
-                                <#--<dl v-if="day.dayMiles && day.dayKM" slot="day-distance" class="list-inline text-center">--> <#-- TODO: remove day distance?? -->
-                                    <#--<dt class="list-inline-item"><abbr title="miles">mi</abbr>/<abbr title="kilometres">km</abbr>:</dt>-->
-                                    <#--<dd class="list-inline-item">{{day.dayMiles}}/{{day.dayKM}}</dd>-->
-                                <#--</dl>-->
-
-                                <#-- TODO: TRANSPORT FOR THE DAY -->
-                                <#--<dl v-if="day.transport.length" class="list-inline text-center" slot="day-transport">-->
-                                    <#--<dt class="list-inline-item">Transport:</dt>-->
-                                    <#--<dl class="list-inline-item" v-for="(transportType, transportTypeIndex) in day.transport">-->
-                                        <#--<vs-itinerary-transport-type :transportType="transportType">-->
-                                            <#--<span class="sr-only">{{transportType.value}}</span>-->
-                                        <#--</vs-itinerary-transport-type>-->
-                                    <#--</dl>-->
-                                <#--</dl>-->
-                                <#-- TODO: TRANSPORT FOR THE DAY END -->
-
-                                <div slot="day-introduction" class="has-edit-button"  style="padding-top: 1.6%" ><#-- TODO v-html="day.introduction" doesn't work -->
-                                    <@hst.manageContent hippobean=day />
-                                    <@hst.html hippohtml=day.introduction/>
+                            <vs-summary-box-list-item>
+                                <strong><@fmt.message key="transport"/></strong>
+                                <div class="icon-wrapper">
+                                    <vs-icon name="${mainTransport}" variant="dark" size="sm"></vs-icon>
+                                    <span><@fmt.message key="${mainTransport}"/></span>
                                 </div>
+                            </vs-summary-box-list-item>
 
-                                <!-- STOP STARTS HERE -->
-                                <ul slot="stops" class="mt-9 list-unstyled">
-                                <#--<ul class="list-unstyled">-->
+                            <#if day.transports?has_content>
+                                <#assign dayTransport = day.transports[0]>
+                                <dl class="list-inline text-center" slot="day-transport">
+                                    <dt class="list-inline-item"><@fmt.message key="transport"/>:</dt>
+                                    <#-- TODO: ITERATE THROUGH LIST OF TRANSPORT TYPES -->
+                                    <dd class="list-inline-item">
+                                        <vs-tooltip title="${day.transports[0]}">
+                                            <vs-icon name="${dayTransport}" variant="dark" size="sm"></vs-icon>
+                                        </vs-tooltip>
+                                        <span class="sr-only">${day.transports[0]}</span>
+                                    </dd>
+                                    <#-- TODO: END DAY TRANPORT LIST ITERATION -->
+                                </dl>
+                            </#if>
+
+                            <div slot="day-introduction">
+                                <@hst.html hippohtml=day.introduction/>
+                            </div>
+
+                            <!-- STOP STARTS HERE -->
+                            <ul slot="stops" class="mt-9 list-unstyled">
                                 <#assign lastStop = lastStop + day.stops?size>
                                 <#list day.stops as stop>
                                     <#assign stopNumber++>
-                                    <@itineraryStop stop=stop stopNumber=stopNumber lastStop=stopNumber==lastStop/>
+                                    <@itineraryStop stop=stop stopNumber=stopNumber lastStop=(stopNumber==lastStop)?c/>
                                 </#list>
-                                </ul>
-                                <!-- STOP ENDS HERE -->
-                            </vs-itinerary-day>
-                            </#list>
-                        </ul>
-                    </vs-col>
-                </vs-row>
-            </vs-container>
-        </div>
+                            </ul>
+                            <!-- STOP ENDS HERE -->
+                        </vs-itinerary-day>
+                        </#list>
+                </vs-col>
+            </vs-row>
+        </vs-container>
+    </vs-itinerary>
 
 
         <#--<vs-related-content-list>-->
@@ -243,5 +252,4 @@
                 <#--</vs-related-content-card>-->
             <#--</vs-related-content-list-item>-->
         <#--</vs-related-content-list>-->
-    </vs-itinerary>
 </div>

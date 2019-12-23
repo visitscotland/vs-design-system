@@ -87,6 +87,84 @@ definitions:
             hipposysedit:path: visitscotland:popular
             hipposysedit:primary: false
             hipposysedit:type: Boolean
+        /hipposysedit:nodetype[2]:
+          jcr:primaryType: hipposysedit:nodetype
+          jcr:mixinTypes: ['mix:referenceable']
+          jcr:uuid: 7196d5ad-c49c-40ed-a979-29ddc57bee6b
+          hipposysedit:node: true
+          hipposysedit:supertype: ['visitscotland:Page', 'hippostd:relaxed', 'hippotranslation:translated']
+          /noIndex:
+            jcr:primaryType: hipposysedit:field
+            hipposysedit:mandatory: false
+            hipposysedit:multiple: false
+            hipposysedit:ordered: false
+            hipposysedit:path: visitscotland:noIndex
+            hipposysedit:primary: false
+            hipposysedit:type: Boolean
+          /start:
+            jcr:primaryType: hipposysedit:field
+            hipposysedit:mandatory: false
+            hipposysedit:multiple: false
+            hipposysedit:ordered: false
+            hipposysedit:path: visitscotland:start
+            hipposysedit:primary: false
+            hipposysedit:type: String
+          /finish:
+            jcr:primaryType: hipposysedit:field
+            hipposysedit:mandatory: false
+            hipposysedit:multiple: false
+            hipposysedit:ordered: false
+            hipposysedit:path: visitscotland:finish
+            hipposysedit:primary: false
+            hipposysedit:type: String
+          /distance:
+            jcr:primaryType: hipposysedit:field
+            hipposysedit:mandatory: false
+            hipposysedit:multiple: false
+            hipposysedit:ordered: false
+            hipposysedit:path: visitscotland:distance
+            hipposysedit:primary: false
+            hipposysedit:type: Double
+          /theme:
+            jcr:primaryType: hipposysedit:field
+            hipposysedit:mandatory: false
+            hipposysedit:multiple: false
+            hipposysedit:ordered: false
+            hipposysedit:path: visitscotland:theme
+            hipposysedit:primary: false
+            hipposysedit:type: DynamicDropdown
+          /text:
+            jcr:primaryType: hipposysedit:field
+            hipposysedit:mandatory: false
+            hipposysedit:multiple: false
+            hipposysedit:ordered: false
+            hipposysedit:path: visitscotland:highlights
+            hipposysedit:primary: false
+            hipposysedit:type: Text
+          /transports:
+            jcr:primaryType: hipposysedit:field
+            hipposysedit:mandatory: false
+            hipposysedit:multiple: true
+            hipposysedit:ordered: false
+            hipposysedit:path: visitscotland:transports
+            hipposysedit:primary: false
+            hipposysedit:type: String
+          /areas:
+            jcr:primaryType: hipposysedit:field
+            hipposysedit:mandatory: false
+            hipposysedit:multiple: true
+            hipposysedit:ordered: false
+            hipposysedit:path: visitscotland:areas
+            hipposysedit:primary: false
+            hipposysedit:type: String
+          /popular:
+            jcr:primaryType: hipposysedit:field
+            hipposysedit:mandatory: false
+            hipposysedit:multiple: false
+            hipposysedit:ordered: false
+            hipposysedit:path: visitscotland:popular
+            hipposysedit:primary: false
+            hipposysedit:type: Boolean
       /hipposysedit:prototypes:
         jcr:primaryType: hipposysedit:prototypeset
         /hipposysedit:prototype:
@@ -114,6 +192,41 @@ definitions:
           visitscotland:areas: []
           visitscotland:transports: []
           visitscotland:popular: false
+          /visitscotland:heroImage:
+            jcr:primaryType: hippogallerypicker:imagelink
+            hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
+            hippo:facets: []
+            hippo:modes: []
+            hippo:values: []
+          /visitscotland:introduction:
+            jcr:primaryType: hippostd:html
+            hippostd:content: ''
+        /hipposysedit:prototype[2]:
+          jcr:primaryType: nt:unstructured
+          jcr:mixinTypes: ['hippostd:publishableSummary', 'hippostd:relaxed', 'hippostdpubwf:document',
+            'hippotranslation:translated', 'mix:referenceable']
+          jcr:uuid: f538b970-0af9-4915-b56a-e06944e9cb04
+          hippostd:holder: holder
+          hippostd:state: draft
+          hippostdpubwf:createdBy: ''
+          hippostdpubwf:creationDate: 2019-12-06T11:10:08.311Z
+          hippostdpubwf:lastModificationDate: 2019-12-06T11:10:08.310Z
+          hippostdpubwf:lastModifiedBy: ''
+          hippotranslation:id: document-type-locale-id
+          hippotranslation:locale: document-type-locale
+          visitscotland:areas: []
+          visitscotland:breadcrumb: ''
+          visitscotland:distance: 0.0
+          visitscotland:finish: ''
+          visitscotland:heading: ''
+          visitscotland:highlights: ''
+          visitscotland:noIndex: false
+          visitscotland:popular: false
+          visitscotland:seoNoIndex: ''
+          visitscotland:seoTitle: ''
+          visitscotland:start: ''
+          visitscotland:theme: ''
+          visitscotland:transports: []
           /visitscotland:heroImage:
             jcr:primaryType: hippogallerypicker:imagelink
             hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
@@ -250,6 +363,8 @@ definitions:
             /cluster.options:
               jcr:primaryType: frontend:pluginconfig
               source: /content/documents/administration/options/themes
+              sortBy: ''
+              sortOrder: ''
           /highlights:
             jcr:primaryType: frontend:plugin
             caption: Highlights
