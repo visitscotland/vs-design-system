@@ -13,13 +13,26 @@
 <@hst.setBundle basename="keyFacilities,itinerary"/>
 
 <#-- @ftlvariable name="stop" type="com.visitscotland.brmx.beans.Stop" -->
+<#-- @ftlvariable name="prod" type="com.visitscotland.brmx.beans.mapping.FlatStop" -->
 
 <#macro itineraryStop stop stopNumber lastStop>
 
-    <#assign title = stop.title />
+    <#assign prod = stops[stop.identifier]>
+    <#assign title = prod.title />
+
+    <#if prod.cmsImage??>
+        <#assign image>
+            <@hst.link hippobean=prod.cmsImage.original/>
+        </#assign>
+    <#elseif prod.image??>
+        <#assign image = prod.image.url />
+    <#else >
+        <#assign image = "" />
+    </#if>
+
     <#--<#assign facility = "wifi" />-->
 
-    <#assign stopsCount = stopNumber>
+    <#assign stopsCount = prod.index>
     <#assign latitude = "0.0">
     <#assign longitude = "0.0">
     <#assign href = "">
@@ -30,74 +43,7 @@
     <#assign imgAltText = "">
     <#assign imgCredit = "">
 
-    <#if !stop.stopItem??>
-        <#if editMode>
-        <#-- TODO: Component Warning-message -->
-            <h2 style="color: red">The stop doesn't have any product linked to the stop</h2>
-        </#if>
-    <#elseif stop.stopItem.product??> <#-- DMSLink TODO: CHECK TYPES  -->
-        <#assign prod = productsMap[stop.stopItem.product]>
 
-        <#if prod?has_content >
-            <#assign latitude = prod.latitude>
-            <#assign longitude = prod.longitude>
-            <#assign href = "https://www.visitscotland.com${prod.url}"> <#-- TODO: Depends on the environment -->
-
-            <#-- Override image if defined in the document -->
-            <#if stop.stopItem.image??>
-                <#-- TODO: This image check can be reused if a macro for images is created -->
-                <@hst.link var="image" hippobean=stop.getStopItem().image.original/>
-                <#if stop.getStopItem().image.altText??>
-                    <#assign imgAltText = stop.getStopItem().image.altText>
-                </#if>
-                <#if stop.getStopItem().image.credit??>
-                    <#assign imgCredit = stop.getStopItem().image.credit>
-                </#if>
-
-            <#else>
-                <#assign image = prod.image >
-            </#if>
-
-            <#if prod.addressLine1??>
-                 <#assign address = prod.addressLine1>
-            </#if>
-
-            <#if prod.price?? && prod.price!="null" >
-                <#assign priceText = prod.multiplePrices?then("Prices from","Price") + " : " + prod.price>
-            </#if>
-
-            <#if prod.facilities?has_content >
-                <#assign facilities=prod.facilities>
-            </#if>
-
-        <#elseif editMode>
-        <#-- TODO: Component Warning-message -->
-            <h2 style="color: red">The product id doesn't exist in the DMS</h2>
-        </#if>
-    <#elseif stop.stopItem.link??> <#-- ExternalProductLink TODO: CHECK TYPES -->
-        <#assign href = stop.stopItem.link>
-
-        <#if stop.stopItem.image??>
-        <#-- TODO: This image check can be reused if a macro for images is created -->
-            <@hst.link var="image" hippobean=stop.getStopItem().image.original/>
-            IMG SRC = ${image}
-            <#if stop.getStopItem().image.altText??>
-                <#assign imgAltText = stop.getStopItem().image.altText>
-            </#if>
-            <#if stop.getStopItem().image.credit??>
-                <#assign imgCredit = stop.getStopItem().image.credit>
-            </#if>
-        </#if>
-
-        <#if stop.stopItem.coordinates??>
-            <#assign latitude = stop.stopItem.coordinates.latitude>
-            <#assign longitude = stop.stopItem.coordinates.longitude>
-        </#if>
-
-        <#if stop.stopItem.timeToExplore??>
-            <#assign timeToExplore= stop.stopItem.timeToExplore>
-        </#if>
-    </#if>
 
 <#-- INTEGRATION WITH DS STARTS -->
 <div class="has-edit-button">
@@ -108,7 +54,7 @@
              {
                 "key": "stop-${stopNumber}",
                 "count": "${stopNumber}",
-                "title": "${stop.title}", <#-- There is need to escape single quote characters-->
+                "title": "${title}", <#-- There is need to escape single quote characters-->
                 "href": "${href}",
                 "timeToExplore": "${timeToExplore}",
                 "description": null, <#-- Note: we couln't escape Hippo HTML -->

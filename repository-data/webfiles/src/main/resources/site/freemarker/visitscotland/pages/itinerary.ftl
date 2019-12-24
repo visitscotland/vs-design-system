@@ -33,6 +33,12 @@
 <#assign stopNumber = 0>
 <#assign lastStop = 0>
 
+<#if !firstStopLocation?has_content>
+   <#assign firstStopLocation = document.start>
+</#if>
+<#if !lastStopLocation?has_content>
+    <#assign lastStopLocation = document.finish>
+</#if>
 
 <#if document.transports?has_content >
     <#assign mainTransport = document.transports[0]>
