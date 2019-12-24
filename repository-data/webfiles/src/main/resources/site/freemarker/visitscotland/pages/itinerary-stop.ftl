@@ -3,19 +3,51 @@
 <@hst.setBundle basename="keyFacilities,itinerary"/>
 
 <#-- @ftlvariable name="stop" type="com.visitscotland.brmx.beans.Stop" -->
+<#-- @ftlvariable name="prod" type="com.visitscotland.brmx.beans.mapping.FlatStop" -->
 
 <#macro itineraryStop stop stopNumber lastStop>
     <@hst.manageContent hippobean=stop />
+
+    <#assign prod = stops[stop.identifier]>
+    <#assign title = prod.title />
+
+    <#if prod.cmsImage??>
+        <#assign image>
+            <@hst.link hippobean=prod.cmsImage.original/>
+        </#assign>
+    <#elseif prod.image??>
+        <#assign image = prod.image.url />
+    <#else >
+        <#assign image = "" />
+    </#if>
+
+    <#--<#assign facility = "wifi" />-->
+
+    <#assign stopsCount = prod.index>
+    <#assign latitude = "0.0">
+    <#assign longitude = "0.0">
+    <#assign href = "">
+    <#assign prod = "">
+    <#assign timeToExplore = "">
+    <#assign address = "">
+    <#assign priceText = "">
+    <#assign imgAltText = "">
+    <#assign imgCredit = "">
+
+
+
+<#-- INTEGRATION WITH DS STARTS -->
+<@hst.manageContent hippobean=stop />
 
     <#assign stopItem = stop.getStopItem()>
     <li class="vs-itinerary-stop__list-item" data-stop="${stopNumber}">
       <div class="d-flex justify-content-between align-items-top">
         <vs-icon name="map-marker-filled" variant="secondary-teal" size="md" :padding="0"></vs-icon>
-        <vs-heading 
-          level="3" 
-          thin 
+        <vs-heading
+          level="3"
+          thin
           class="vs-itinerary-stop__title ml-4 flex-fill">
-          <span 
+          <span
           >Stop ${stopNumber}</span>
           ${stop.title}
         </vs-heading>
@@ -33,11 +65,11 @@
           latitude="${stopItem.image.coordinates.latitude}"
           longitude="${stopItem.image.coordinates.longitude}"
           >
-        <img 
-          class="lazyload" 
+        <img
+          class="lazyload"
           src="<@hst.link hippobean=stopItem.image.original/>"
           srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
-          data-srcset="<@hst.link hippobean=stopItem.image.original/>" 
+          data-srcset="<@hst.link hippobean=stopItem.image.original/>"
           alt="${stopItem.image.altText}"
           data-sizes="auto" />
         </vs-image-with-caption>

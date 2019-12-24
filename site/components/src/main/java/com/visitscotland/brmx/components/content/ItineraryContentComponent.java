@@ -2,35 +2,29 @@ package com.visitscotland.brmx.components.content;
 
 
 
-import com.visitscotland.brmx.beans.DMSLink;
-import com.visitscotland.brmx.beans.Day;
-import com.visitscotland.brmx.beans.Itinerary;
-import com.visitscotland.brmx.beans.Stop;
-import org.hippoecm.hst.container.RequestContextProvider;
-import org.hippoecm.hst.content.beans.standard.HippoBean;
+
+import com.visitscotland.brmx.beans.*;
+import com.visitscotland.brmx.beans.mapping.Coordinates;
+import com.visitscotland.brmx.beans.mapping.ExternalImage;
+import com.visitscotland.brmx.beans.mapping.FlatStop;
 import org.hippoecm.hst.core.component.HstRequest;
 import org.hippoecm.hst.core.component.HstResponse;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.onehippo.cms7.essentials.components.EssentialsContentComponent;
-import org.onehippo.forge.selection.hst.contentbean.ValueList;
-import org.onehippo.forge.selection.hst.util.SelectionUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.*;
-import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.LinkedHashMap;
-import java.util.Map;
+import java.util.*;
 
 
 public class ItineraryContentComponent extends EssentialsContentComponent {
 
-    private static final Logger LOG = LoggerFactory.getLogger(ItineraryContentComponent.class);
+    private static final Logger logger = LoggerFactory.getLogger(ItineraryContentComponent.class);
 
-    public final String PRODUCTS_MAP = "productsMap";
-    public final String DOCUMENT_HERO = "documentHero";
+    public final String STOPS_MAP = "stops";
     public final String FIRST_STOP_LOCATION = "firstStopLocation";
     public final String LAST_STOP_LOCATION = "lastStopLocation";
 
@@ -40,61 +34,133 @@ public class ItineraryContentComponent extends EssentialsContentComponent {
     public void doBeforeRender(HstRequest request, HstResponse response) {
         super.doBeforeRender(request, response);
 
-        addProducts(request, (Itinerary) request.getAttribute("document"));
-
+        generateStops(request, (Itinerary) request.getAttribute("document"));
     }
 
-    private static String readAll(Reader rd) throws IOException {
-        StringBuilder sb = new StringBuilder();
-        int cp;
-        while ((cp = rd.read()) != -1) {
-            sb.append((char) cp);
-        }
-        return sb.toString();
-    }
-    private void addProducts(HstRequest request, Itinerary itinerary) {
+    /**
+     *
+     * @param request
+     * @param itinerary
+     */
+    private void generateStops(HstRequest request, Itinerary itinerary){
 
-        Map<String ,JSONObject> products =  new LinkedHashMap<>();
+        final String LOCATION = "locationName";
+        final String URL = "url";
+        final String IMAGE = "image";
+        final String TIME_TO_EXPLORE = "timeToExplore";
+        final String LAT = "latitude";
+        final String LON = "longitude";
+        final String FACILITIES = "facilities";
 
-        String firstStopLocation= itinerary.getStart();
-        String lastStopLocation= "";
+        final Map<String ,FlatStop> products =  new LinkedHashMap<>();
+
+        String firstStopId = null;
+        String lastStopId = null;
+        Integer index = 1;
 
         for (Day day: itinerary.getDays()) {
             for (Stop stop : day.getStops()) {
-                    HippoBean item = stop.getStopItem();
+                FlatStop model = new FlatStop(stop);
+                Coordinates coordinates = new Coordinates();
+                model.setIndex(index++);
+
+                if (stop.getStopItem() instanceof DMSLink){
+                    DMSLink aux = (DMSLink) stop.getStopItem();
+                    List<String> facilities = new ArrayList<>();
+
+                    model.setCmsImage(aux.getImage());
+
+                    //TODO: Confirm next coment
+                    //CONTENT prefix on error messages could mean that content can fix the problem
                     try {
-                    if (item instanceof DMSLink) {
-                        String id = ((DMSLink) item).getProduct();
-                        //TODO Calculate environment
-                            URL url = new URL("https://staging.visitscotland.com/data/product-search/map?prod_id=" + id+ "&locale="+request.getLocale().getLanguage());
-                            BufferedReader br = new BufferedReader(new InputStreamReader(url.openStream()));
 
-                            JSONObject json = new JSONObject(readAll(br));
-                            JSONArray data = (JSONArray) json.get("data");
+                        if (aux.getProduct() == null){
+                            model.setErrorMessage("The product's id  wasn't provided");
+                            logger.warn("CONTENT The product's id  wasn't provided for " + itinerary.getName() + ", Stop " + model.getIndex());
+                        } else {
+                            JSONObject product = getProduct(aux.getProduct(), request.getLocale());
+                            if (product == null){                                model.setErrorMessage("The product id does not exists in the DMS");
+                                logger.warn("CONTENT The product's id  wasn't provided for " + itinerary.getName() + ", Stop " + model.getIndex());
+                            } else {
+                                model.setCta(product.getString(URL));
+                                model.setLocation(product.getString(LOCATION));
 
-                     if(firstStopLocation.isEmpty()){
-                         firstStopLocation= data.getJSONObject(0).getString("locationName");
+                                //TODO: GET TIME TO EXPLORE FROM DMS
+//                                model.setTimeToexplore(product.getString(TIME_TO_EXPLORE));
+                                if (model.getImage() == null){
+                                    ExternalImage img = new ExternalImage();
+                                    img.setUrl(product.getString(IMAGE));
+                                    //TODO: SET ALT-TEXT, CREDITS AND DESCRIPTION
+                                    model.setImage(img);
+                                }
+
+                                coordinates.setLatitude(product.getDouble(LAT));
+                                coordinates.setLatitude(product.getDouble(LON));
+                                model.setCoordinates(coordinates);
+
+                                for (Object facility:  product.getString(FACILITIES).split(",")) {
+                                    facilities.add(facility.toString());
+                                }
+
+                                model.setFacilities(facilities);
+                            }
                         }
-
-                    lastStopLocation= data.getJSONObject(0).getString("locationName");
-
-                    products.put(id, data.getJSONObject(0));
-
+                    } catch (IOException exception) {
+                        model.setErrorMessage("Error while querying the DMS: " + exception.getMessage());
+                        logger.error("Error while querying the DMS for " + itinerary.getName() + ", Stop " + model.getIndex() + ": " + exception.getMessage());
                     }
+                } else if (stop.getStopItem() instanceof ExternalProductLink){
+                    ExternalProductLink aux = (ExternalProductLink) stop.getStopItem();
 
-                    } catch (MalformedURLException e) {
-                        e.printStackTrace();
+                    model.setCmsImage(aux.getImage());
+                    model.setTimeToexplore(aux.getTimeToExplore());
 
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
+                    //TODO defensive Programing?
+                    coordinates.setLatitude(aux.getCoordinates().getLatitude());
+                    coordinates.setLatitude(aux.getCoordinates().getLongitude());
+                    model.setCoordinates(coordinates);
+                }
+
+                lastStopId = model.getIdentifier();
+                if (firstStopId == null){
+                    firstStopId = lastStopId;
+                }
+
+                products.put(model.getIdentifier(), model);
             }
-
-
-            request.setAttribute(FIRST_STOP_LOCATION, firstStopLocation);
-            request.setAttribute(LAST_STOP_LOCATION, !itinerary.getFinish().isEmpty()? itinerary.getFinish():lastStopLocation);
-
-            request.setAttribute(PRODUCTS_MAP, products);
         }
+
+        if (products.size() > 0 ) {
+            request.setAttribute(FIRST_STOP_LOCATION, products.get(firstStopId).getLocation());
+            request.setAttribute(LAST_STOP_LOCATION, products.get(lastStopId).getLocation());
+
+            request.setAttribute(STOPS_MAP, products);
+        }
+    }
+
+
+    private JSONObject getProduct(String productId, Locale locale) throws IOException {
+
+        //TODO Calculate environment. Note: staging doesn't seem to work outside the building with VPM
+        String body = request("https://www.visitscotland.com/data/product-search/map?prod_id=" + productId+ "&locale="+locale.getLanguage());
+        JSONObject json = new JSONObject(body);
+        JSONArray data = (JSONArray) json.get("data");
+
+        return data.getJSONObject(0);
+    }
+
+    /**
+     * Request a page and return the body as String
+     */
+    private static String request(String url) throws IOException {
+        final BufferedReader br = new BufferedReader(new InputStreamReader(new URL(url).openStream()));
+        final StringBuilder sb = new StringBuilder();
+        int cp;
+
+        while ((cp = br.read()) != -1) {
+            sb.append((char) cp);
+        }
+
+        return sb.toString();
     }
 }
