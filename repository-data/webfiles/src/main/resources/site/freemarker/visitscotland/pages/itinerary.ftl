@@ -138,12 +138,12 @@
                 </vs-row>
             </div>
             <vs-itinerary-highlights-list>
-                <dt>Highlights</dt>
+                <dt><@fmt.message key="highlights"/></dt>
                 <#-- TODO: each ${document.highlight} should render a new dd element -->
                 <dd class="mb-0">
                     <div style="white-space: pre-wrap">${document.highlights}</div>
                 </dd>
-                <dt class="mt-6">Areas Covered</dt>
+                <dt class="mt-6"><@fmt.message key="areas-covered"/></dt>
                 <#list document.areas as area>
                     <dd class="mb-0">
                         <@fmt.message key="${area}"/>${"\n"}
@@ -188,7 +188,7 @@
                                 level="2"
                                 thin
                                 class="vs-itinerary-day__title">
-                                <span class="text-secondary-teal">Día ${dayNumber}</span>
+                                <span class="text-secondary-teal"><@fmt.message key="day"/> ${dayNumber}</span>
                                 ${day.title}
                             </vs-heading>
 
