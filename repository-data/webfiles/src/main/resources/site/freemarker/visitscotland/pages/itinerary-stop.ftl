@@ -97,7 +97,7 @@
           </vs-itinerary-stop-pullout>
         </#if>
 
-        <#if prod.facilities?? && prod.facilities?has_content>
+        <#if prod.facilities?? && prod.facilities?size gt 1>
             <dl class="itinerary-stop__facilities">
                 <dt class="list-inline-item"><@fmt.message key="stop.key-facilities"/>:</dt>
                 <#list prod.facilities as facility>
