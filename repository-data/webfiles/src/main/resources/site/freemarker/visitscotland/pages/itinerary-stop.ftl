@@ -6,7 +6,6 @@
 <#-- @ftlvariable name="prod" type="com.visitscotland.brmx.beans.mapping.FlatStop" -->
 
 <#macro itineraryStop stop lastStop>
-    
 
     <#assign prod = stops[stop.identifier]>
     <#assign title = prod.title />
