@@ -188,7 +188,7 @@
                                 level="2"
                                 thin
                                 class="vs-itinerary-day__title">
-                                <span class="text-secondary-teal">Día ${dayNumber}</span>
+                                <span class="text-secondary-teal"><@fmt.message key="day"/> ${dayNumber}</span>
                                 ${day.title}
                             </vs-heading>
 
@@ -226,7 +226,7 @@
                                 <#assign lastStop = lastStop + day.stops?size>
                                 <#list day.stops as stop>
                                     <#assign stopNumber++>
-                                    <@itineraryStop stop=stop stopNumber=stopNumber lastStop=(stopNumber==lastStop)?c/>
+                                    <@itineraryStop stop=stop lastStop=(stopNumber==lastStop)?c/>
                                 </#list>
                             </ul>
                             <!-- STOP ENDS HERE -->
