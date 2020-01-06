@@ -6,7 +6,7 @@
 <#-- @ftlvariable name="prod" type="com.visitscotland.brmx.beans.mapping.FlatStop" -->
 
 <#macro itineraryStop stop lastStop>
-    <@hst.manageContent hippobean=stop />
+    
 
     <#assign prod = stops[stop.identifier]>
     <#assign title = prod.title />
@@ -34,7 +34,8 @@
     <#assign tipsTitle = prod.tipsTitle>
     <#assign tips = prod.tipsBody>
 
-    <li class="vs-itinerary-stop__list-item" data-stop="${stopNumber}">
+    <li class="vs-itinerary-stop__list-item has-edit-button" data-stop="${stopNumber}">
+    <@hst.manageContent hippobean=stop />
       <div class="d-flex justify-content-between align-items-top">
         <vs-icon name="map-marker-filled" variant="secondary-teal" size="md" :padding="0"></vs-icon>
         <vs-heading 
@@ -98,7 +99,7 @@
           </vs-itinerary-stop-pullout>
         </#if>
 
-        <#if prod.facilities?? && prod.facilities?has_content>
+        <#if prod.facilities?? && prod.facilities?size gt 1>
             <dl class="itinerary-stop__facilities">
                 <dt class="list-inline-item"><@fmt.message key="stop.key-facilities"/>:</dt>
                 <#list prod.facilities as facility>
