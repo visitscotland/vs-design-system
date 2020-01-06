@@ -40,8 +40,8 @@
           level="3" 
           thin 
           class="vs-itinerary-stop__title ml-4 flex-fill">
-          <span 
-          >Stop ${stopNumber}</span>
+          <span
+          ><@fmt.message key="stop.title"/> ${stopNumber}</span>
           <#if !stop.stopItem?? && editMode>
             <span class="text-danger">The stop doesn't have any product linked to the stop</span>
           <#else>
