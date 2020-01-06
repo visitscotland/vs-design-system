@@ -8,16 +8,26 @@
     <@hst.manageContent hippobean=stop />
 
     <#assign stopItem = stop.getStopItem()>
+    <#assign prod = "">
+
+    <#if stop.stopItem.product??>
+      <#assign prod = productsMap[stop.stopItem.product]>
+    </#if>
     <li class="vs-itinerary-stop__list-item" data-stop="${stopNumber}">
       <div class="d-flex justify-content-between align-items-top">
         <vs-icon name="map-marker-filled" variant="secondary-teal" size="md" :padding="0"></vs-icon>
+        
         <vs-heading 
           level="3" 
           thin 
           class="vs-itinerary-stop__title ml-4 flex-fill">
           <span 
           >Stop ${stopNumber}</span>
-          ${stop.title}
+          <#if !stop.stopItem?? && editMode>
+            <span class="text-danger">The stop doesn't have any product linked to the stop</span>
+          <#else>
+            ${stop.title}
+          </#if>
         </vs-heading>
         <vs-favourites-toggle-button
           href="stop.href"
