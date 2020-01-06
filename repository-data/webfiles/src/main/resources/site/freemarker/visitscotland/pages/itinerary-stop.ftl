@@ -23,7 +23,7 @@
     <#assign latitude = prod.coordinates.latitude>
     <#assign longitude = prod.coordinates.longitude>
     <#assign href = prod.cta>
-    <#assign timeToExplore = prod.timeToExplore>
+    <#assign timeToExplore = prod.timeToexplore>
     <#assign address = prod.address>
     <#assign priceText = prod.priceText>
     <#assign imgAltText = prod.imgAltText>
