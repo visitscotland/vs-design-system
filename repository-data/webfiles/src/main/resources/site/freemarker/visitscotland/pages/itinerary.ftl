@@ -226,7 +226,7 @@
                                 <#assign lastStop = lastStop + day.stops?size>
                                 <#list day.stops as stop>
                                     <#assign stopNumber++>
-                                    <@itineraryStop stop=stop stopNumber=stopNumber lastStop=(stopNumber==lastStop)?c/>
+                                    <@itineraryStop stop=stop lastStop=(stopNumber==lastStop)?c/>
                                 </#list>
                             </ul>
                             <!-- STOP ENDS HERE -->

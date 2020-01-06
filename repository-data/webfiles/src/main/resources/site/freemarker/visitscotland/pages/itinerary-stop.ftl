@@ -5,7 +5,7 @@
 <#-- @ftlvariable name="stop" type="com.visitscotland.brmx.beans.Stop" -->
 <#-- @ftlvariable name="prod" type="com.visitscotland.brmx.beans.mapping.FlatStop" -->
 
-<#macro itineraryStop stop stopNumber lastStop>
+<#macro itineraryStop stop lastStop>
     <@hst.manageContent hippobean=stop />
 
     <#assign prod = stops[stop.identifier]>
@@ -21,20 +21,20 @@
         <#assign image = "" />
     </#if>
     
-    <#assign stopsCount = prod.index>
+    <#assign stopNumber = prod.index>
     <#assign latitude = prod.coordinates.latitude>
     <#assign longitude = prod.coordinates.longitude>
-    <#assign href = prod.href>
+    <#assign href = prod.cta>
     <#assign timeToExplore = prod.timeToExplore>
     <#assign address = prod.address>
     <#assign priceText = prod.priceText>
     <#assign imgAltText = prod.imgAltText>
     <#assign imgCredit = prod.imgCredit>
     <#assign description = prod.description>
-    <#assign tips = prod.tips>
+    <#assign tipsTitle = prod.tipsTitle>
+    <#assign tips = prod.tipsBody>
 
-    
-    <li class="vs-itinerary-stop__list-item" data-stop="${stopsCount}">
+    <li class="vs-itinerary-stop__list-item" data-stop="${stopNumber}">
       <div class="d-flex justify-content-between align-items-top">
         <vs-icon name="map-marker-filled" variant="secondary-teal" size="md" :padding="0"></vs-icon>
         <vs-heading 
@@ -42,17 +42,19 @@
           thin 
           class="vs-itinerary-stop__title ml-4 flex-fill">
           <span 
-          >Stop ${stopsCount}</span>
+          >Stop ${stopNumber}</span>
           <#if !stop.stopItem?? && editMode>
             <span class="text-danger">The stop doesn't have any product linked to the stop</span>
           <#else>
             ${title}
           </#if>
         </vs-heading>
-        <vs-favourites-toggle-button
-          href="${href}"
-          title="${title}">
-        </vs-favourites-toggle-button>
+         <#if href?? && href?has_content>
+            <vs-favourites-toggle-button
+            href="${href}"
+            title="${title}">
+            </vs-favourites-toggle-button>
+        </#if>
       </div>
       <#if image?? && image?has_content>
         <vs-image-with-caption
@@ -71,48 +73,41 @@
           alt="${imgAltText}"
           data-sizes="auto" />
         </vs-image-with-caption>
-        <!-- 
-        NOTE: Test Image Data Output
-        <dl>
-          <dt>Image altText:</dt>
-          <dd>${imgAltText}</dd>
-          <dt>Image credit:</dt>
-          <dd>${imgCredit}</dd>
-          <dt>Image caption:</dt>
-          <dd>${imgCaption}</dd>
-          <dt>Image latitude:</dt>
-          <dd>${latitude}</dd>
-          <dt>Image longitude:</dt>
-          <dd>${longitude}</dd>
-        </dl>
       </#if>
-      -->
-      <!-- NOTE: this is just to test prod data output
-      <dl>
-        <#list prod?keys as key>
-            <dt>${key}</dt>
-            <dd>${prod[key]}</dd>
-        </#list>
-    </dl>-->
+
+
       <#if description?? && description?has_content>
         <@hst.html hippohtml=description/>
       </#if>
+
         <#if timeToExplore?? && timeToExplore?has_content>
         <dl slot="stop-time-to-explore" class="list-inline my-4 mb-0">
             <dt class="list-inline-item mb-0">Time to explore:</dt>
             <dd class="list-inline-item mb-0">${timeToExplore}</dd>
         </dl>
         </#if>
-        <#if stop.tips?? && stop.tips?has_content>
+        <#if tips?? && tips?has_content>
           <vs-itinerary-stop-pullout>
             <div slot="text">
-              <#if stop.tipsTitle?? && stop.tipsTitle?has_content>
-                <strong>${stop.tipsTitle}</strong>
+              <#if tipsTitle?? && tipsTitle?has_content>
+                <strong>${tipsTitle}</strong>
               </#if>
-              <@hst.html hippohtml=stop.tips/>
+              <@hst.html hippohtml=tips/>
             </div>
             <vs-svg slot="svg" path="highland-cow" />
           </vs-itinerary-stop-pullout>
+        </#if>
+
+        <#if prod.facilities?? && prod.facilities?has_content>
+            <dl class="itinerary-stop__facilities">
+                <dt class="list-inline-item"><@fmt.message key="stop.key-facilities"/>:</dt>
+                <#list prod.facilities as facility>
+                    <dd class="list-inline-item">
+                        <vs-icon name="${facility}" variant="dark" size="sm"></vs-icon>
+                        <span class="d-block"><@fmt.message key="${facility}"/></span>
+                    </dd>
+                </#list>
+            </dl>
         </#if>
 
         <#if lastStop=="true" && longitude?? && longitude?has_content && latitude?? && latitude?has_content>
