@@ -114,6 +114,7 @@ public class ItineraryContentComponent extends EssentialsContentComponent {
 
                     model.setCmsImage(aux.getImage());
                     model.setTimeToexplore(aux.getTimeToExplore());
+                    model.setCta(aux.getLink());
 
                     //TODO defensive Programing?
                     coordinates.setLatitude(aux.getCoordinates().getLatitude());
