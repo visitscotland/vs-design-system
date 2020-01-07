@@ -127,6 +127,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "~bootstrap/scss/type";
 @import "../../styles/placeholders";
 @import "../../styles/mixins";
 
