@@ -97,6 +97,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "~bootstrap/scss/type";
 .vs-itinerary ::v-deep {
   .vs-itinerary__map-toggle-container {
     background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 100%);
@@ -352,7 +353,7 @@ export default {
   </vs-container>
 </vs-itinerary>
 <vs-related-content-list slot="related-content">
-  <h2 slot="header" class="text-warning text-center py-7 m-0">Extend Your Trip</h2>
+  <vs-heading level="2" slot="header" class="text-warning text-center py-7 m-0">Extend Your Trip</vs-heading>
   <vs-related-content-list-item
     v-for="(item, index) in relatedContent.relatedContent" 
     :key="index"
@@ -366,9 +367,9 @@ export default {
       >
       <div class="card-body">
         <h3 class="card-title h5">
-          <a class="stretched-link" :href="item.href">
+          <vs-button class="stretched-link" :href="item.href">
             {{item.title}}
-          </a>
+          </vs-button>
         </h3>
         <div class="card-text">
           {{item.description}}

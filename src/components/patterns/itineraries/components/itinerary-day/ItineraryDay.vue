@@ -82,11 +82,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.vs-itinerary-day__list ::v-deep {
-  @include media-breakpoint-down(md) {
-    border-top: 5px solid $color-base-text;
-  }
-  padding: $spacer-4 0;
+@import "~bootstrap/scss/type";
+
+.vs-itinerary-day__list-item {
+  border-top: 5px solid $color-base-text;
+  padding: $spacer-4;
   margin-bottom: $spacer-4;
 }
 
