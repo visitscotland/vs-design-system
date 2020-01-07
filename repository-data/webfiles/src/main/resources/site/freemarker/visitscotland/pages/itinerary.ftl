@@ -16,8 +16,8 @@
 <#include "../../vs-dotcom-ds/components/summary-box-list.ftl">
 <#include "../../vs-dotcom-ds/components/summary-box-list-item.ftl">
 <#include "../../vs-dotcom-ds/components/itinerary.ftl">
-<#--  <#include "../../vs-dotcom-ds/components/itinerary-map.ftl">
-<#include "../../vs-dotcom-ds/components/itinerary-map-marker.ftl">  -->
+<#include "../../vs-dotcom-ds/components/itinerary-map.ftl">
+<#include "../../vs-dotcom-ds/components/itinerary-map-marker.ftl">
 <#include "../../vs-dotcom-ds/components/itinerary-day.ftl">
 <#include "../../vs-dotcom-ds/components/itinerary-highlights-list.ftl">
 <#include "../../vs-dotcom-ds/components/itinerary-stop-pullout.ftl">
@@ -37,7 +37,7 @@
 <#-- @ftlvariable name="day" type="com.visitscotland.brmx.beans.Day" -->
 <#-- @ftlvariable name="hero" type="com.visitscotland.brmx.beans.Image" -->
 
-<@hst.setBundle basename="itinerary, toomany, keyFacilities"/> <#-- TODO: keyFacilities shouldn't be defined here -->
+<@hst.setBundle basename="itinerary, toomany, keyFacilities, keys"/> <#-- TODO: keyFacilities shouldn't be defined here -->
 
 <#assign heroLat = 0><#-- TODO: "${document.heroImage.latitude}" -->
 <#assign heroLon = 0><#-- TODO: ${document.heroImage.longitude}" -->
@@ -153,17 +153,41 @@
         </vs-container>
     </vs-page-intro>
     <vs-itinerary>
-        <#--<vs-itinerary-map
+        <vs-itinerary-map
             slot="map"
-            access-token="${label('keys', 'mapbox.devkey')?html}"
+            access-token="<@fmt.message key="mapbox.devkey"/>"
             overview-map-longitude="57.81"
             overview-map-latitude="-4.13"
             overview-map-zoom="5"
             :stops='[{
-                title: "Test Title",
-                latitude: "-3.9747177",
-                longitude: "56.1187003",
+                title: "Beach fun at Elie And Earlsferry",
+                latitude: "56.18974",
+                longitude: "-2.81868",
                 stopCount: "1",
+                imageSrc: "https://via.placeholder.com/150",
+                altText: "Image placeholder"
+            },
+            {
+                title: "Kellie Castle and Garden",
+                latitude: "56.24068",
+                longitude: "-2.76587",
+                stopCount: "2",
+                imageSrc: "https://via.placeholder.com/150",
+                altText: "Image placeholder"
+            },
+            {
+                title: "Scotlands Secret Bunker",
+                latitude: "56.27057",
+                longitude: "-2.69826",
+                stopCount: "3",
+                imageSrc: "https://via.placeholder.com/150",
+                altText: "Image placeholder"
+            },
+            {
+                title: "Fish and chips in Anstruther",
+                latitude: "56.22448",
+                longitude: "-2.70087",
+                stopCount: "4",
                 imageSrc: "https://via.placeholder.com/150",
                 altText: "Image placeholder"
             }]'
@@ -174,7 +198,7 @@
                 mapControlsZoomIn: "Zoom in",
                 mapControlsZoomOut: "Zoom out"
             }'
-        >-->
+        >
         </vs-itinerary-map>
         <vs-container slot="list">
             <vs-row>
