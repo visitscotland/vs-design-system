@@ -1,8 +1,5 @@
 package com.visitscotland.brmx.components.content;
 
-
-
-
 import com.visitscotland.brmx.beans.*;
 import com.visitscotland.brmx.beans.mapping.Coordinates;
 import com.visitscotland.brmx.beans.mapping.ExternalImage;
@@ -27,6 +24,7 @@ public class ItineraryContentComponent extends EssentialsContentComponent {
     public final String STOPS_MAP = "stops";
     public final String FIRST_STOP_LOCATION = "firstStopLocation";
     public final String LAST_STOP_LOCATION = "lastStopLocation";
+    public final String ROOT_SITE = "/site/";
 
 
 
@@ -35,6 +33,7 @@ public class ItineraryContentComponent extends EssentialsContentComponent {
         super.doBeforeRender(request, response);
 
         generateStops(request, (Itinerary) request.getAttribute("document"));
+        request.setAttribute("path", getDocumentLocation((Itinerary) request.getAttribute("document")));
     }
 
     /**
@@ -43,6 +42,9 @@ public class ItineraryContentComponent extends EssentialsContentComponent {
      * @param itinerary
      */
     private void generateStops(HstRequest request, Itinerary itinerary){
+
+        String path= itinerary.getPath().substring(itinerary.getPath().indexOf(ROOT_SITE),itinerary.getPath().indexOf("/content/content")).replace(ROOT_SITE,"");
+        request.setAttribute("path", path);
 
         final String LOCATION = "locationName";
         final String URL = "url";
@@ -163,5 +165,13 @@ public class ItineraryContentComponent extends EssentialsContentComponent {
         }
 
         return sb.toString();
+    }
+
+    /**
+     *
+     * @param itinerary
+     */
+    private String getDocumentLocation( Itinerary itinerary) {
+        return itinerary.getPath().substring(itinerary.getPath().indexOf(ROOT_SITE), itinerary.getPath().indexOf("/content/content")).replace(ROOT_SITE, "");
     }
 }

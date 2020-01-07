@@ -60,7 +60,7 @@
 
 
 <div class="has-edit-button">
-      <@hst.manageContent hippobean=document documentTemplateQuery="new-document" rootPath="site"  />
+      <@hst.manageContent hippobean=document documentTemplateQuery="new-document" rootPath="site" defaultPath="${path}" />
 
     <vs-page-intro>
         <#if document.heroImage??>
