@@ -99,7 +99,7 @@
                 <vs-row class="justify-content-md-between">
                     <vs-col cols="12" sm="6" lg="7">
                         <vs-heading level="1">
-                            ${document.heading}
+                            ${document.title}
                         </vs-heading>
                         <div class="lead">
                             <@hst.html hippohtml=document.introduction/>

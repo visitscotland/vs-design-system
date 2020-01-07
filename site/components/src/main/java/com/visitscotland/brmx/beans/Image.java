@@ -18,11 +18,6 @@ public class Image extends HippoGalleryImageSet {
         return getSingleProperty("visitscotland:credit");
     }
 
-    @HippoEssentialsGenerated(internalName = "visitscotland:caption")
-    public String getCaption() {
-        return getSingleProperty("visitscotland:caption");
-    }
-
     @HippoEssentialsGenerated(internalName = "visitscotland:Coordinates")
     public Coordinates getCoordinates() {
         return getBean("visitscotland:Coordinates", Coordinates.class);

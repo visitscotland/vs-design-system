@@ -15,9 +15,10 @@
     hippotranslation:locale: en
     /content:
       jcr:primaryType: hippo:handle
-      jcr:mixinTypes: ['hippo:versionInfo', 'mix:referenceable']
+      jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
       jcr:uuid: 0751c1d3-3024-4d2d-a5e8-38286fee9722
-      hippo:versionHistory: b4ca36b2-818d-44b8-80ec-9980d63aec92
+      hippo:name: Harry potter itinerary
+      hippo:versionHistory: 1579bfff-d813-4eb9-97ad-a5657b645545
       /content[1]:
         jcr:primaryType: visitscotland:Itinerary
         jcr:mixinTypes: ['mix:referenceable']
@@ -34,7 +35,6 @@
         visitscotland:breadcrumb: ''
         visitscotland:distance: 10.1
         visitscotland:finish: Portree
-        visitscotland:heading: HARRY POTTER FILM AND BOOK LOCATIONS ITINERARY
         visitscotland:highlights: "Glenfinnan Viaduct\r\nJacobite Steam Train\r\n\
           Glen Etive\r\nThe Elephant House"
         visitscotland:noIndex: false
@@ -48,6 +48,7 @@
         visitscotland:text: "Glenfinnan Viaduct\r\n\r\nJacobite Steam Train\r\n\r\n\
           Glen Etive\r\n\r\nThe Elephant House"
         visitscotland:theme: filmev
+        visitscotland:title: HARRY POTTER FILM AND BOOK LOCATIONS ITINERARY
         visitscotland:transport: [boat]
         visitscotland:transports: [car, train]
         /visitscotland:heroImage:
@@ -84,7 +85,6 @@
         visitscotland:breadcrumb: ''
         visitscotland:distance: 10.1
         visitscotland:finish: Portree
-        visitscotland:heading: HARRY POTTER FILM AND BOOK LOCATIONS ITINERARY
         visitscotland:highlights: "Glenfinnan Viaduct\r\nJacobite Steam Train\r\n\
           Glen Etive\r\nThe Elephant House"
         visitscotland:noIndex: false
@@ -98,6 +98,7 @@
         visitscotland:text: "Glenfinnan Viaduct\r\n\r\nJacobite Steam Train\r\n\r\n\
           Glen Etive\r\n\r\nThe Elephant House"
         visitscotland:theme: filmev
+        visitscotland:title: HARRY POTTER FILM AND BOOK LOCATIONS ITINERARY
         visitscotland:transport: [boat]
         visitscotland:transports: [car, train]
         /visitscotland:heroImage:
@@ -128,14 +129,13 @@
         hippostdpubwf:creationDate: 2019-12-06T12:48:04.149Z
         hippostdpubwf:lastModificationDate: 2019-12-20T13:12:10.543Z
         hippostdpubwf:lastModifiedBy: admin
-        hippostdpubwf:publicationDate: 2019-12-20T13:12:12.815Z
+        hippostdpubwf:publicationDate: 2020-01-07T18:00:40.856Z
         hippotranslation:id: a3ed9022-e239-493b-952c-18d01ac36640
         hippotranslation:locale: en
         visitscotland:areas: [dumfries, highlands]
         visitscotland:breadcrumb: ''
         visitscotland:distance: 10.1
         visitscotland:finish: Portree
-        visitscotland:heading: HARRY POTTER FILM AND BOOK LOCATIONS ITINERARY
         visitscotland:highlights: "Glenfinnan Viaduct\r\nJacobite Steam Train\r\n\
           Glen Etive\r\nThe Elephant House"
         visitscotland:noIndex: false
@@ -149,6 +149,7 @@
         visitscotland:text: "Glenfinnan Viaduct\r\n\r\nJacobite Steam Train\r\n\r\n\
           Glen Etive\r\n\r\nThe Elephant House"
         visitscotland:theme: filmev
+        visitscotland:title: HARRY POTTER FILM AND BOOK LOCATIONS ITINERARY
         visitscotland:transport: [boat]
         visitscotland:transports: [car, train]
         /visitscotland:heroImage:

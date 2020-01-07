@@ -11,50 +11,10 @@ definitions:
         /hipposysedit:nodetype:
           jcr:primaryType: hipposysedit:nodetype
           jcr:mixinTypes: ['mix:referenceable', 'hipposysedit:remodel']
-          jcr:uuid: 22e9f30a-0331-4b13-97b4-f92718a7f310
-          hipposysedit:node: true
-          hipposysedit:supertype: ['hippo:compound', 'hippostd:relaxed']
-          hipposysedit:uri: http://www.visitscotland.com/visitscotland/nt/1.0
-          /Coordinates:
-            jcr:primaryType: hipposysedit:field
-            hipposysedit:mandatory: false
-            hipposysedit:multiple: false
-            hipposysedit:ordered: false
-            hipposysedit:path: visitscotland:Coordinates
-            hipposysedit:primary: false
-            hipposysedit:type: visitscotland:Coordinates
-            hipposysedit:validators: [required]
-          /Link:
-            jcr:primaryType: hipposysedit:field
-            hipposysedit:mandatory: false
-            hipposysedit:multiple: false
-            hipposysedit:ordered: false
-            hipposysedit:path: visitscotland:Link
-            hipposysedit:primary: false
-            hipposysedit:type: String
-            hipposysedit:validators: [required]
-          /image:
-            jcr:primaryType: hipposysedit:field
-            hipposysedit:mandatory: false
-            hipposysedit:multiple: false
-            hipposysedit:ordered: false
-            hipposysedit:path: visitscotland:image
-            hipposysedit:primary: false
-            hipposysedit:type: hippogallerypicker:imagelink
-          /timeToExplore:
-            jcr:primaryType: hipposysedit:field
-            hipposysedit:mandatory: false
-            hipposysedit:multiple: false
-            hipposysedit:ordered: false
-            hipposysedit:path: visitscotland:timeToExplore
-            hipposysedit:primary: false
-            hipposysedit:type: StaticDropdown
-        /hipposysedit:nodetype[2]:
-          jcr:primaryType: hipposysedit:nodetype
-          jcr:mixinTypes: ['mix:referenceable']
           jcr:uuid: 47b4cd9a-dd5a-4ffd-8052-5470eb3d6b34
           hipposysedit:node: true
           hipposysedit:supertype: ['hippo:compound', 'hippostd:relaxed']
+          hipposysedit:uri: http://www.visitscotland.com/visitscotland/nt/1.0
           /Coordinates:
             jcr:primaryType: hipposysedit:field
             hipposysedit:mandatory: false
@@ -93,21 +53,6 @@ definitions:
         jcr:primaryType: hipposysedit:prototypeset
         /hipposysedit:prototype:
           jcr:primaryType: visitscotland:ExternalProductLink
-          visitscotland:Link: ''
-          visitscotland:timeToExplore: ''
-          /visitscotland:Coordinates:
-            jcr:primaryType: visitscotland:Coordinates
-            visitscotland:latitude: 0.0
-            visitscotland:longitude: 0.0
-          /visitscotland:image:
-            jcr:primaryType: hippogallerypicker:imagelink
-            hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
-            hippo:facets: []
-            hippo:modes: []
-            hippo:values: []
-        /hipposysedit:prototype[2]:
-          jcr:primaryType: nt:unstructured
-          jcr:mixinTypes: ['hippostd:relaxed']
           visitscotland:Link: ''
           /visitscotland:Coordinates:
             jcr:primaryType: visitscotland:Coordinates
