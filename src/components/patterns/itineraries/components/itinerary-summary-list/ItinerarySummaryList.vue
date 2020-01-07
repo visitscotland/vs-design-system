@@ -17,6 +17,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "~bootstrap/scss/type";
+
 .itinerary-summary-box__list {
   background-color: $color-yellow;
   list-style-type: none;
