@@ -8,15 +8,21 @@
 <#macro itineraryStop stop lastStop>
     <#assign prod = stops[stop.identifier]>
     <#assign title = prod.title />
-
-    <#if prod.cmsImage??>
+    <#assign image = "" />
+    <#assign imgAltText = "" />
+    <#assign imgCredit = "" />
+    <#if prod.image.cmsImage??>
         <#assign image>
-            <@hst.link hippobean=prod.cmsImage.original/>
+            <@hst.link hippobean=prod.image.cmsImage.original/>
         </#assign>
-    <#elseif prod.image??>
-        <#assign image = prod.image.url />
+        <#assign imgAltText = prod.image.cmsImage.altText>
+        <#assign imgCredit = prod.image.cmsImage.credit>
+    <#elseif prod.image.externalImage??>
+        <#assign image = prod.image.externalImage />
+        <#assign imgAltText = prod.image.altText>
+        <#assign imgCredit = prod.image.credit>
     <#else>
-        <#assign image = "" />
+
     </#if>
     
     <#assign stopNumber = prod.index>
@@ -26,11 +32,11 @@
     <#assign timeToExplore = prod.timeToexplore>
     <#assign address = prod.address>
     <#assign priceText = prod.priceText>
-    <#assign imgAltText = prod.imgAltText>
-    <#assign imgCredit = prod.imgCredit>
+
     <#assign description = prod.description>
     <#assign tipsTitle = prod.tipsTitle>
     <#assign tips = prod.tipsBody>
+
 
     <li class="vs-itinerary-stop__list-item has-edit-button" data-stop="${stopNumber}">
       <@hst.manageContent hippobean=stop />
@@ -72,7 +78,6 @@
           data-sizes="auto" />
         </vs-image-with-caption>
       </#if>
-
 
       <#if description?? && description?has_content>
         <@hst.html hippohtml=description/>

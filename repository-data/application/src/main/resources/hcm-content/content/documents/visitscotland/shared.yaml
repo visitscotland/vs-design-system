@@ -125,7 +125,7 @@
         hippostd:state: draft
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2019-12-11T12:39:11.963Z
-        hippostdpubwf:lastModificationDate: 2019-12-23T12:11:58.601Z
+        hippostdpubwf:lastModificationDate: 2020-01-08T12:12:43.900Z
         hippostdpubwf:lastModifiedBy: admin
         hippotranslation:id: 9da62445-4ef0-470c-9d9c-ed812d053659
         hippotranslation:locale: en
@@ -143,7 +143,7 @@
             Chambers on the Royal Mile.</p>
         /visitscotland:tips:
           jcr:primaryType: hippostd:html
-          hippostd:content: <p>Old Town Hideouts - Sample Pullout Information</p>
+          hippostd:content: ''
         /visitscotland:product:
           jcr:primaryType: visitscotland:DMSLink
           visitscotland:product: '918401'
@@ -161,7 +161,7 @@
         hippostd:state: unpublished
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2019-12-11T12:39:11.963Z
-        hippostdpubwf:lastModificationDate: 2019-12-23T12:12:31.292Z
+        hippostdpubwf:lastModificationDate: 2020-01-08T09:44:13.108Z
         hippostdpubwf:lastModifiedBy: admin
         hippotranslation:id: 9da62445-4ef0-470c-9d9c-ed812d053659
         hippotranslation:locale: en
@@ -179,7 +179,7 @@
             Chambers on the Royal Mile.</p>
         /visitscotland:tips:
           jcr:primaryType: hippostd:html
-          hippostd:content: <p>Old Town Hideouts - Sample Pullout Information</p>
+          hippostd:content: ''
         /visitscotland:product:
           jcr:primaryType: visitscotland:DMSLink
           visitscotland:product: '918401'
@@ -231,7 +231,7 @@
       jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
       jcr:uuid: 28abd074-5fc4-4ebc-a424-1d4f9e5cb0e6
       hippo:name: GREYFRIARS KIRKYARD
-      hippo:versionHistory: 7c43afca-a0ad-44da-8842-4dcbfcc2a215
+      hippo:versionHistory: c70c7210-ba7c-484e-8d0e-28d070463bfd
       /greyfriars-kirkyard[1]:
         jcr:primaryType: visitscotland:Stop
         jcr:mixinTypes: ['mix:referenceable']
@@ -240,7 +240,7 @@
         hippostd:state: draft
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2019-12-11T12:40:08.862Z
-        hippostdpubwf:lastModificationDate: 2019-12-23T12:12:36.754Z
+        hippostdpubwf:lastModificationDate: 2020-01-08T14:01:54.015Z
         hippostdpubwf:lastModifiedBy: admin
         hippotranslation:id: 1bdaaad2-68eb-4493-878c-0961215fe02a
         hippotranslation:locale: en
@@ -263,7 +263,7 @@
           /visitscotland:Coordinates:
             jcr:primaryType: visitscotland:Coordinates
             visitscotland:latitude: 55.9467
-            visitscotland:longitude: 3.1923
+            visitscotland:longitude: -3.7923
           /visitscotland:image:
             jcr:primaryType: hippogallerypicker:imagelink
             hippo:docbase: 8d4f5036-64ca-4e5d-aa89-b348ae38b081
@@ -278,7 +278,7 @@
         hippostd:state: unpublished
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2019-12-11T12:40:08.862Z
-        hippostdpubwf:lastModificationDate: 2019-12-23T12:13:11.014Z
+        hippostdpubwf:lastModificationDate: 2020-01-08T14:01:50.575Z
         hippostdpubwf:lastModifiedBy: admin
         hippotranslation:id: 1bdaaad2-68eb-4493-878c-0961215fe02a
         hippotranslation:locale: en
@@ -301,7 +301,7 @@
           /visitscotland:Coordinates:
             jcr:primaryType: visitscotland:Coordinates
             visitscotland:latitude: 55.9467
-            visitscotland:longitude: 3.1923
+            visitscotland:longitude: -3.7923
           /visitscotland:image:
             jcr:primaryType: hippogallerypicker:imagelink
             hippo:docbase: 8d4f5036-64ca-4e5d-aa89-b348ae38b081
@@ -316,9 +316,9 @@
         hippostd:state: published
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2019-12-11T12:40:08.862Z
-        hippostdpubwf:lastModificationDate: 2019-12-23T12:13:11.014Z
+        hippostdpubwf:lastModificationDate: 2020-01-08T14:01:50.575Z
         hippostdpubwf:lastModifiedBy: admin
-        hippostdpubwf:publicationDate: 2019-12-23T12:13:12.624Z
+        hippostdpubwf:publicationDate: 2020-01-08T14:01:53.808Z
         hippotranslation:id: 1bdaaad2-68eb-4493-878c-0961215fe02a
         hippotranslation:locale: en
         visitscotland:tipsTitle: Greyfriars Kirkyard - Sample Pullout Title
@@ -340,7 +340,7 @@
           /visitscotland:Coordinates:
             jcr:primaryType: visitscotland:Coordinates
             visitscotland:latitude: 55.9467
-            visitscotland:longitude: 3.1923
+            visitscotland:longitude: -3.7923
           /visitscotland:image:
             jcr:primaryType: hippogallerypicker:imagelink
             hippo:docbase: 8d4f5036-64ca-4e5d-aa89-b348ae38b081
@@ -358,14 +358,15 @@
         jcr:mixinTypes: ['mix:referenceable']
         jcr:uuid: 863c3f82-ab9a-41e1-9919-5407827a8ee9
         hippo:availability: []
+        hippostd:holder: admin
         hippostd:state: draft
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2019-12-16T12:20:46.037Z
-        hippostdpubwf:lastModificationDate: 2019-12-17T11:36:05.915Z
+        hippostdpubwf:lastModificationDate: 2020-01-08T13:54:10.400Z
         hippostdpubwf:lastModifiedBy: admin
         hippotranslation:id: b4f184af-52de-4e48-92ab-33cc5c2519e0
         hippotranslation:locale: en
-        visitscotland:tipsTitle: Don't print this
+        visitscotland:tipsTitle: ''
         visitscotland:title: Casa Jose
         /visitscotland:description:
           jcr:primaryType: hippostd:html
@@ -379,8 +380,8 @@
           visitscotland:timeToExplore: ' 24'
           /visitscotland:Coordinates:
             jcr:primaryType: visitscotland:Coordinates
-            visitscotland:latitude: 57.2
-            visitscotland:longitude: 5.2
+            visitscotland:latitude: 55.9533
+            visitscotland:longitude: -3.1883
           /visitscotland:image:
             jcr:primaryType: hippogallerypicker:imagelink
             hippo:docbase: 1e4be246-297b-4404-8102-80fe1bc0ddf7
@@ -395,11 +396,11 @@
         hippostd:state: unpublished
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2019-12-16T12:20:46.037Z
-        hippostdpubwf:lastModificationDate: 2019-12-17T11:35:58.829Z
+        hippostdpubwf:lastModificationDate: 2020-01-08T13:54:10.322Z
         hippostdpubwf:lastModifiedBy: admin
         hippotranslation:id: b4f184af-52de-4e48-92ab-33cc5c2519e0
         hippotranslation:locale: en
-        visitscotland:tipsTitle: Don't print this
+        visitscotland:tipsTitle: ''
         visitscotland:title: Casa Jose
         /visitscotland:description:
           jcr:primaryType: hippostd:html
@@ -413,8 +414,8 @@
           visitscotland:timeToExplore: ' 24'
           /visitscotland:Coordinates:
             jcr:primaryType: visitscotland:Coordinates
-            visitscotland:latitude: 57.2
-            visitscotland:longitude: 5.2
+            visitscotland:latitude: 55.9533
+            visitscotland:longitude: -3.1883
           /visitscotland:image:
             jcr:primaryType: hippogallerypicker:imagelink
             hippo:docbase: 1e4be246-297b-4404-8102-80fe1bc0ddf7
@@ -461,7 +462,7 @@
       jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
       jcr:uuid: 8030a311-a942-40e6-bb89-41dd6fea60df
       hippo:name: Malformed Stop
-      hippo:versionHistory: e2f3a264-14c5-47da-8352-baffb0f30c43
+      hippo:versionHistory: 528681ff-d615-4307-b8f2-f4246ecfa883
       /malformed-stop[1]:
         jcr:primaryType: visitscotland:Stop
         jcr:mixinTypes: ['mix:referenceable']
@@ -470,12 +471,12 @@
         hippostd:state: draft
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2019-12-16T12:21:59.073Z
-        hippostdpubwf:lastModificationDate: 2019-12-23T12:13:32.331Z
+        hippostdpubwf:lastModificationDate: 2020-01-08T09:35:08.635Z
         hippostdpubwf:lastModifiedBy: admin
         hippotranslation:id: c98c9973-3626-4ce4-a46a-1ee9aca1839e
         hippotranslation:locale: en
         visitscotland:tipsTitle: Malformed Stop - Sample Pullout Title
-        visitscotland:title: This stop does not have a product
+        visitscotland:title: parada 5
         /visitscotland:description:
           jcr:primaryType: hippostd:html
           hippostd:content: <p>NO PRODUCT FOR THIS STOP HAS BEEN DEFINED</p>
@@ -490,12 +491,12 @@
         hippostd:state: unpublished
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2019-12-16T12:21:59.073Z
-        hippostdpubwf:lastModificationDate: 2019-12-23T12:13:51.886Z
+        hippostdpubwf:lastModificationDate: 2020-01-08T09:35:06.048Z
         hippostdpubwf:lastModifiedBy: admin
         hippotranslation:id: c98c9973-3626-4ce4-a46a-1ee9aca1839e
         hippotranslation:locale: en
         visitscotland:tipsTitle: Malformed Stop - Sample Pullout Title
-        visitscotland:title: This stop does not have a product
+        visitscotland:title: parada 5
         /visitscotland:description:
           jcr:primaryType: hippostd:html
           hippostd:content: <p>NO PRODUCT FOR THIS STOP HAS BEEN DEFINED</p>
@@ -510,13 +511,13 @@
         hippostd:state: published
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2019-12-16T12:21:59.073Z
-        hippostdpubwf:lastModificationDate: 2019-12-23T12:13:51.886Z
+        hippostdpubwf:lastModificationDate: 2020-01-08T09:35:06.048Z
         hippostdpubwf:lastModifiedBy: admin
-        hippostdpubwf:publicationDate: 2019-12-23T12:13:53.767Z
+        hippostdpubwf:publicationDate: 2020-01-08T09:35:08.521Z
         hippotranslation:id: c98c9973-3626-4ce4-a46a-1ee9aca1839e
         hippotranslation:locale: en
         visitscotland:tipsTitle: Malformed Stop - Sample Pullout Title
-        visitscotland:title: This stop does not have a product
+        visitscotland:title: parada 5
         /visitscotland:description:
           jcr:primaryType: hippostd:html
           hippostd:content: <p>NO PRODUCT FOR THIS STOP HAS BEEN DEFINED</p>

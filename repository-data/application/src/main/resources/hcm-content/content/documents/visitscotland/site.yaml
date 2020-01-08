@@ -284,7 +284,7 @@
       jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
       jcr:uuid: e48273b9-7b42-4456-837f-e014dc069d95
       hippo:name: day 2
-      hippo:versionHistory: 558c1282-91f5-4b5c-975f-a841c8366733
+      hippo:versionHistory: cadaad50-4de3-4def-b108-703c3eeac28d
       /day-2[1]:
         jcr:primaryType: visitscotland:Day
         jcr:mixinTypes: ['mix:referenceable']
@@ -293,7 +293,7 @@
         hippostd:state: draft
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2019-12-12T12:06:04.129Z
-        hippostdpubwf:lastModificationDate: 2019-12-17T11:46:19.360Z
+        hippostdpubwf:lastModificationDate: 2020-01-08T09:38:25.663Z
         hippostdpubwf:lastModifiedBy: admin
         hippotranslation:id: 2af219fa-878e-435f-ae2e-e296a16e21a9
         hippotranslation:locale: en
@@ -315,10 +315,10 @@
           hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
         /visitscotland:stops[2]:
           jcr:primaryType: hippo:mirror
-          hippo:docbase: 8b215960-87aa-47ae-9c11-8a750be25ad8
+          hippo:docbase: 8030a311-a942-40e6-bb89-41dd6fea60df
         /visitscotland:stops[3]:
           jcr:primaryType: hippo:mirror
-          hippo:docbase: 8030a311-a942-40e6-bb89-41dd6fea60df
+          hippo:docbase: 8b215960-87aa-47ae-9c11-8a750be25ad8
       /day-2[2]:
         jcr:primaryType: visitscotland:Day
         jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
@@ -327,7 +327,7 @@
         hippostd:state: unpublished
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2019-12-12T12:06:04.129Z
-        hippostdpubwf:lastModificationDate: 2019-12-17T11:47:47.852Z
+        hippostdpubwf:lastModificationDate: 2020-01-08T09:38:32.784Z
         hippostdpubwf:lastModifiedBy: admin
         hippotranslation:id: 2af219fa-878e-435f-ae2e-e296a16e21a9
         hippotranslation:locale: en
@@ -349,10 +349,10 @@
           hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
         /visitscotland:stops[2]:
           jcr:primaryType: hippo:mirror
-          hippo:docbase: 8b215960-87aa-47ae-9c11-8a750be25ad8
+          hippo:docbase: 8030a311-a942-40e6-bb89-41dd6fea60df
         /visitscotland:stops[3]:
           jcr:primaryType: hippo:mirror
-          hippo:docbase: 8030a311-a942-40e6-bb89-41dd6fea60df
+          hippo:docbase: 8b215960-87aa-47ae-9c11-8a750be25ad8
       /day-2[3]:
         jcr:primaryType: visitscotland:Day
         jcr:mixinTypes: ['mix:referenceable']
@@ -361,9 +361,9 @@
         hippostd:state: published
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2019-12-12T12:06:04.129Z
-        hippostdpubwf:lastModificationDate: 2019-12-17T11:47:47.852Z
+        hippostdpubwf:lastModificationDate: 2020-01-08T09:38:32.784Z
         hippostdpubwf:lastModifiedBy: admin
-        hippostdpubwf:publicationDate: 2019-12-17T11:48:44.920Z
+        hippostdpubwf:publicationDate: 2020-01-08T09:38:36.678Z
         hippotranslation:id: 2af219fa-878e-435f-ae2e-e296a16e21a9
         hippotranslation:locale: en
         visitscotland:title: Dummy Stops
@@ -384,7 +384,7 @@
           hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
         /visitscotland:stops[2]:
           jcr:primaryType: hippo:mirror
-          hippo:docbase: 8b215960-87aa-47ae-9c11-8a750be25ad8
+          hippo:docbase: 8030a311-a942-40e6-bb89-41dd6fea60df
         /visitscotland:stops[3]:
           jcr:primaryType: hippo:mirror
-          hippo:docbase: 8030a311-a942-40e6-bb89-41dd6fea60df
+          hippo:docbase: 8b215960-87aa-47ae-9c11-8a750be25ad8

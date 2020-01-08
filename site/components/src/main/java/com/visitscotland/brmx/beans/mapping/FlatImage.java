@@ -1,23 +1,30 @@
 package com.visitscotland.brmx.beans.mapping;
 
 import com.visitscotland.brmx.beans.Coordinates;
+import com.visitscotland.brmx.beans.Image;
 
-public class ExternalImage {
-
-    private String url;
+public class FlatImage {
+    private Image cmsImage;
+    private String externalImage;
     private String altText;
     private String credit;
     private String description;
     private Coordinates coordinates;
 
-    public String getUrl() {
-        return url;
+    public String getExternalImage() {
+        return externalImage;
     }
 
-    public void setUrl(String url) {
-        this.url = url;
+    public void setExternalImage(String externalImage) {
+        this.externalImage = externalImage;
+    }
+    public Image getCmsImage() {
+        return cmsImage;
     }
 
+    public void setCmsImage(Image cmsImage) {
+        this.cmsImage = cmsImage;
+    }
     public String getAltText() {
         return altText;
     }

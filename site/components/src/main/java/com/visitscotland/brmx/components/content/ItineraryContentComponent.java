@@ -2,7 +2,7 @@ package com.visitscotland.brmx.components.content;
 
 import com.visitscotland.brmx.beans.*;
 import com.visitscotland.brmx.beans.mapping.Coordinates;
-import com.visitscotland.brmx.beans.mapping.ExternalImage;
+import com.visitscotland.brmx.beans.mapping.FlatImage;
 import com.visitscotland.brmx.beans.mapping.FlatStop;
 import org.hippoecm.hst.core.component.HstRequest;
 import org.hippoecm.hst.core.component.HstResponse;
@@ -65,12 +65,15 @@ public class ItineraryContentComponent extends EssentialsContentComponent {
                 FlatStop model = new FlatStop(stop);
                 Coordinates coordinates = new Coordinates();
                 model.setIndex(index++);
+                FlatImage img = new FlatImage();
 
                 if (stop.getStopItem() instanceof DMSLink){
                     DMSLink aux = (DMSLink) stop.getStopItem();
                     List<String> facilities = new ArrayList<>();
 
-                    model.setCmsImage(aux.getImage());
+                    if (aux.getImage()!=null) {
+                        img.setCmsImage(aux.getImage());
+                    }
 
                     //TODO: Confirm next coment
                     //CONTENT prefix on error messages could mean that content can fix the problem
@@ -84,16 +87,15 @@ public class ItineraryContentComponent extends EssentialsContentComponent {
                             if (product == null){                                model.setErrorMessage("The product id does not exists in the DMS");
                                 logger.warn("CONTENT The product's id  wasn't provided for " + itinerary.getName() + ", Stop " + model.getIndex());
                             } else {
+
                                 model.setCta(product.getString(URL));
                                 model.setLocation(product.getString(LOCATION));
 
                                 //TODO: GET TIME TO EXPLORE FROM DMS
 //                                model.setTimeToexplore(product.getString(TIME_TO_EXPLORE));
-                                if (model.getImage() == null){
-                                    ExternalImage img = new ExternalImage();
-                                    img.setUrl(product.getString(IMAGE));
+                                if (aux.getImage() == null){
+                                    img.setExternalImage(product.getString(IMAGE));
                                     //TODO: SET ALT-TEXT, CREDITS AND DESCRIPTION
-                                    model.setImage(img);
                                 }
 
                                 coordinates.setLatitude(product.getDouble(LAT));
@@ -105,6 +107,7 @@ public class ItineraryContentComponent extends EssentialsContentComponent {
                                 }
 
                                 model.setFacilities(facilities);
+
                             }
                         }
                     } catch (IOException exception) {
@@ -113,22 +116,22 @@ public class ItineraryContentComponent extends EssentialsContentComponent {
                     }
                 } else if (stop.getStopItem() instanceof ExternalProductLink){
                     ExternalProductLink aux = (ExternalProductLink) stop.getStopItem();
-
-                    model.setCmsImage(aux.getImage());
+                    img.setCmsImage(aux.getImage());
                     model.setTimeToexplore(aux.getTimeToExplore());
                     model.setCta(aux.getLink());
 
                     //TODO defensive Programing?
                     coordinates.setLatitude(aux.getCoordinates().getLatitude());
-                    coordinates.setLatitude(aux.getCoordinates().getLongitude());
+                    coordinates.setLongitude(aux.getCoordinates().getLongitude());
                     model.setCoordinates(coordinates);
+
                 }
 
                 lastStopId = model.getIdentifier();
                 if (firstStopId == null){
                     firstStopId = lastStopId;
                 }
-
+                model.setImage(img);
                 products.put(model.getIdentifier(), model);
             }
         }
