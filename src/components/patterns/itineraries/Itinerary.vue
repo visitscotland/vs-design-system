@@ -9,7 +9,9 @@
       <slot name="map" />
     </div>
     <div class="vs-itinerary__list-container">
-      <slot name="list" />
+      <ul slot="stops" class="mt-9 list-unstyled">
+        <slot name="list" />
+      </ul>
     </div>
   </component>
 </template>
@@ -98,6 +100,7 @@ export default {
 
 <style lang="scss" scoped>
 @import "~bootstrap/scss/type";
+
 .vs-itinerary ::v-deep {
   .vs-itinerary__map-toggle-container {
     background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 100%);
@@ -281,8 +284,8 @@ export default {
           </dl>
                     
           <div slot="day-introduction" v-html="day.introduction"></div>
-          <ul slot="stops" class="mt-9 list-unstyled">
             <li 
+              slot="stops"
               v-for="(stop, index) in day.stops" 
               class="vs-itinerary-stop__list-item" 
               :data-stop="stop.stopCount">
@@ -346,7 +349,6 @@ export default {
                 </dd>
               </dl>
             </li>
-          </ul>
         </vs-itinerary-day>
       </vs-col>
     </vs-row>
@@ -366,10 +368,11 @@ export default {
         class="card-img-top" 
       >
       <div class="card-body">
+        <!-- TODO: can't use vs-heading component or vs-button component here as we're trying to use bootstrap stretched link -->
         <h3 class="card-title h5">
-          <vs-button class="stretched-link" :href="item.href">
+          <a class="stretched-link" :href="item.href">
             {{item.title}}
-          </vs-button>
+          </a>
         </h3>
         <div class="card-text">
           {{item.description}}
