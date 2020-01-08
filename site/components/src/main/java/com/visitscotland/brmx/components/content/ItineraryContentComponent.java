@@ -97,7 +97,7 @@ public class ItineraryContentComponent extends EssentialsContentComponent {
                                 }
 
                                 coordinates.setLatitude(product.getDouble(LAT));
-                                coordinates.setLatitude(product.getDouble(LON));
+                                coordinates.setLongitude(product.getDouble(LON));
                                 model.setCoordinates(coordinates);
 
                                 for (Object facility:  product.getString(FACILITIES).split(",")) {
