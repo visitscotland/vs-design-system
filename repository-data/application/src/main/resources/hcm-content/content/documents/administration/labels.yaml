@@ -262,10 +262,11 @@
       jcr:mixinTypes: ['mix:referenceable']
       jcr:uuid: ea358846-0878-416a-9704-4e901c7f1f3b
       hippo:availability: []
+      hippostd:holder: admin
       hippostd:state: draft
       hippostdpubwf:createdBy: admin
       hippostdpubwf:creationDate: 2019-12-16T14:56:24.091Z
-      hippostdpubwf:lastModificationDate: 2020-01-06T16:35:28.581Z
+      hippostdpubwf:lastModificationDate: 2020-01-09T12:45:26.560Z
       hippostdpubwf:lastModifiedBy: admin
       resourcebundle:descriptions: ['', '', '', '', '', '', '', '', '', '', '', '',
         '', '', '', '', '', '']
@@ -274,13 +275,13 @@
         stop.nearby-eat, stop.cta, stop.title, start-finish, days, distance, themes,
         miles-abbreviation, kilometres-abbreviation, transport, day, miles, kilometres,
         highlights, areas-covered]
-      resourcebundle:messages: ['Time to explore:', Key Facilities, Nearby places
-          to stay, Nearby places to eat, Find out more, Stop, Start / Finish, Days,
-        Distance, Main Themes, mi, km, Transport, Day, Miles, Kilometres, Highlights,
-        Areas Covered]
+      resourcebundle:messages: [Time to explore, Key Facilities, Nearby places to
+          stay, Nearby places to eat, Find out more, Stop, Start / Finish, Days, Distance,
+        Main Themes, mi, km, Transport, Day, Miles, Kilometres, Highlights, Areas
+          Covered]
       resourcebundle:messages_de: ['', '', '', '', '', '', '', '', '', '', '', '',
         '', '', '', '', '', '']
-      resourcebundle:messages_es: ['Tiempo recomendado:', Servicios destacados, '¿Dónde
+      resourcebundle:messages_es: [Tiempo recomendado, Servicios destacados, '¿Dónde
           pasar la noche?', '¿Dónde podría cenar y desayunar?', Averigua más informcación,
         Parada, Inicio / Fin, días, Distancia, Temática, mi, km, Transporte, Día,
         Millas, Kilómetros, Destacado, Areas cubiertas]
@@ -362,7 +363,7 @@
     jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
     jcr:uuid: af46ab5b-01a6-4fcd-b1d2-2968f4faa742
     hippo:name: tooMany
-    hippo:versionHistory: 284fa8b9-fc2a-482f-9b8b-73379e1e7356
+    hippo:versionHistory: 8dc38f41-bfd3-4cea-8eb4-54f9c89a7b49
     /toomany[1]:
       jcr:primaryType: resourcebundle:resourcebundle
       jcr:mixinTypes: ['mix:referenceable']
@@ -371,13 +372,13 @@
       hippostd:state: draft
       hippostdpubwf:createdBy: admin
       hippostdpubwf:creationDate: 2019-12-16T17:23:20.370Z
-      hippostdpubwf:lastModificationDate: 2019-12-20T12:19:57.476Z
+      hippostdpubwf:lastModificationDate: 2020-01-09T12:48:42.980Z
       hippostdpubwf:lastModifiedBy: admin
-      resourcebundle:descriptions: ['', '', '', '']
+      resourcebundle:descriptions: ['', '', '', '', '', '']
       resourcebundle:id: toomany
-      resourcebundle:keys: [car, dumfries, highlands, filmev]
+      resourcebundle:keys: [car, dumfries, highlands, filmev, walking, train]
       resourcebundle:messages: [Car, Dumfries & Galloway, The Highlands, TV / Film
-          Stages]
+          Stages, Walking, Train]
     /toomany[2]:
       jcr:primaryType: resourcebundle:resourcebundle
       jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
@@ -386,13 +387,13 @@
       hippostd:state: unpublished
       hippostdpubwf:createdBy: admin
       hippostdpubwf:creationDate: 2019-12-16T17:23:20.370Z
-      hippostdpubwf:lastModificationDate: 2019-12-20T12:21:00.948Z
+      hippostdpubwf:lastModificationDate: 2020-01-08T15:05:01.525Z
       hippostdpubwf:lastModifiedBy: admin
-      resourcebundle:descriptions: ['', '', '', '']
+      resourcebundle:descriptions: ['', '', '', '', '', '']
       resourcebundle:id: toomany
-      resourcebundle:keys: [car, dumfries, highlands, filmev]
+      resourcebundle:keys: [car, dumfries, highlands, filmev, walking, train]
       resourcebundle:messages: [Car, Dumfries & Galloway, The Highlands, TV / Film
-          Stages]
+          Stages, Walking, Train]
     /toomany[3]:
       jcr:primaryType: resourcebundle:resourcebundle
       jcr:mixinTypes: ['mix:referenceable']
@@ -401,14 +402,14 @@
       hippostd:state: published
       hippostdpubwf:createdBy: admin
       hippostdpubwf:creationDate: 2019-12-16T17:23:20.370Z
-      hippostdpubwf:lastModificationDate: 2019-12-20T12:21:00.948Z
+      hippostdpubwf:lastModificationDate: 2020-01-08T15:05:01.525Z
       hippostdpubwf:lastModifiedBy: admin
-      hippostdpubwf:publicationDate: 2019-12-20T12:21:05.525Z
-      resourcebundle:descriptions: ['', '', '', '']
+      hippostdpubwf:publicationDate: 2020-01-08T15:05:04.993Z
+      resourcebundle:descriptions: ['', '', '', '', '', '']
       resourcebundle:id: toomany
-      resourcebundle:keys: [car, dumfries, highlands, filmev]
+      resourcebundle:keys: [car, dumfries, highlands, filmev, walking, train]
       resourcebundle:messages: [Car, Dumfries & Galloway, The Highlands, TV / Film
-          Stages]
+          Stages, Walking, Train]
   /keys:
     jcr:primaryType: hippo:handle
     jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
