@@ -89,7 +89,7 @@
             <dd class="list-inline-item mb-0">${timeToExplore}</dd>
         </dl>
         </#if>
-        <#if tips?? && tips?has_content>
+        <#if ((tipsTitle?? && tipsTitle?has_content) || (prod.tipsBody.content?? &&  prod.tipsBody.content?size gt 1))>
           <vs-itinerary-stop-pullout>
             <div slot="text">
               <#if tipsTitle?? && tipsTitle?has_content>
