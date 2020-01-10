@@ -17,8 +17,8 @@
       jcr:primaryType: hippo:handle
       jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
       jcr:uuid: 0751c1d3-3024-4d2d-a5e8-38286fee9722
-      hippo:name: Harry potter itinerary
-      hippo:versionHistory: 1579bfff-d813-4eb9-97ad-a5657b645545
+      hippo:name: Content
+      hippo:versionHistory: 869a7db3-bb2f-46a2-ac1f-bb39efb3d120
       /content[1]:
         jcr:primaryType: visitscotland:Itinerary
         jcr:mixinTypes: ['mix:referenceable']
@@ -27,23 +27,23 @@
         hippostd:state: draft
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2019-12-06T12:48:04.149Z
-        hippostdpubwf:lastModificationDate: 2019-12-20T13:11:43.297Z
+        hippostdpubwf:lastModificationDate: 2020-01-10T13:18:51.984Z
         hippostdpubwf:lastModifiedBy: admin
         hippotranslation:id: a3ed9022-e239-493b-952c-18d01ac36640
         hippotranslation:locale: en
         visitscotland:areas: [dumfries, highlands]
         visitscotland:breadcrumb: ''
-        visitscotland:distance: 10.1
-        visitscotland:finish: Portree
-        visitscotland:highlights: "Glenfinnan Viaduct\r\nJacobite Steam Train\r\n\
-          Glen Etive\r\nThe Elephant House"
+        visitscotland:distance: 10.4
+        visitscotland:finish: ''
+        visitscotland:highlights: "Glenfinnan Viaduct hdiudiqueqoi\r\nJacobite Steam\
+          \ Train\r\nGlen Etive\r\nThe Elephant House"
         visitscotland:noIndex: false
         visitscotland:popular: false
         visitscotland:seoNoIndex: Follow in the footsteps of Harry Potter! Relive
           some of the films' most iconic scenes with our 4-day itinerary of Harry
           Potter sites in Scotland.
         visitscotland:seoTitle: Iconic Harry Potter Film Locations - An Itinerary
-        visitscotland:start: Edinburgh
+        visitscotland:start: Madrid
         visitscotland:summary: ''
         visitscotland:text: "Glenfinnan Viaduct\r\n\r\nJacobite Steam Train\r\n\r\n\
           Glen Etive\r\n\r\nThe Elephant House"
@@ -61,7 +61,7 @@
           jcr:primaryType: hippostd:html
           hippostd:content: <p>It was in Scotland's capital city that JK Rowling started
             to plot the adventures of Harry and his friends. With cobbled streets,
-            winding alleys and medieval architecture, the city certainly has a few
+            winding alleys and medieval architecture, the city certainly have a few
             things in common with the settings from the books and films. She wrote
             the early chapters in various cafés around the city's Old Town, before
             coming back to finish off the series from a peaceful suite in The Balmoral
@@ -77,23 +77,23 @@
         hippostd:state: unpublished
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2019-12-06T12:48:04.149Z
-        hippostdpubwf:lastModificationDate: 2019-12-20T13:12:10.543Z
+        hippostdpubwf:lastModificationDate: 2020-01-10T13:18:51.807Z
         hippostdpubwf:lastModifiedBy: admin
         hippotranslation:id: a3ed9022-e239-493b-952c-18d01ac36640
         hippotranslation:locale: en
         visitscotland:areas: [dumfries, highlands]
         visitscotland:breadcrumb: ''
-        visitscotland:distance: 10.1
-        visitscotland:finish: Portree
-        visitscotland:highlights: "Glenfinnan Viaduct\r\nJacobite Steam Train\r\n\
-          Glen Etive\r\nThe Elephant House"
+        visitscotland:distance: 10.4
+        visitscotland:finish: ''
+        visitscotland:highlights: "Glenfinnan Viaduct hdiudiqueqoi\r\nJacobite Steam\
+          \ Train\r\nGlen Etive\r\nThe Elephant House"
         visitscotland:noIndex: false
         visitscotland:popular: false
         visitscotland:seoNoIndex: Follow in the footsteps of Harry Potter! Relive
           some of the films' most iconic scenes with our 4-day itinerary of Harry
           Potter sites in Scotland.
         visitscotland:seoTitle: Iconic Harry Potter Film Locations - An Itinerary
-        visitscotland:start: Edinburgh
+        visitscotland:start: Madrid
         visitscotland:summary: ''
         visitscotland:text: "Glenfinnan Viaduct\r\n\r\nJacobite Steam Train\r\n\r\n\
           Glen Etive\r\n\r\nThe Elephant House"
@@ -111,7 +111,7 @@
           jcr:primaryType: hippostd:html
           hippostd:content: <p>It was in Scotland's capital city that JK Rowling started
             to plot the adventures of Harry and his friends. With cobbled streets,
-            winding alleys and medieval architecture, the city certainly has a few
+            winding alleys and medieval architecture, the city certainly have a few
             things in common with the settings from the books and films. She wrote
             the early chapters in various cafés around the city's Old Town, before
             coming back to finish off the series from a peaceful suite in The Balmoral
@@ -127,24 +127,24 @@
         hippostd:state: published
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2019-12-06T12:48:04.149Z
-        hippostdpubwf:lastModificationDate: 2019-12-20T13:12:10.543Z
+        hippostdpubwf:lastModificationDate: 2020-01-10T13:18:51.807Z
         hippostdpubwf:lastModifiedBy: admin
-        hippostdpubwf:publicationDate: 2020-01-07T18:00:40.856Z
+        hippostdpubwf:publicationDate: 2020-01-10T13:45:09.866Z
         hippotranslation:id: a3ed9022-e239-493b-952c-18d01ac36640
         hippotranslation:locale: en
         visitscotland:areas: [dumfries, highlands]
         visitscotland:breadcrumb: ''
-        visitscotland:distance: 10.1
-        visitscotland:finish: Portree
-        visitscotland:highlights: "Glenfinnan Viaduct\r\nJacobite Steam Train\r\n\
-          Glen Etive\r\nThe Elephant House"
+        visitscotland:distance: 10.4
+        visitscotland:finish: ''
+        visitscotland:highlights: "Glenfinnan Viaduct hdiudiqueqoi\r\nJacobite Steam\
+          \ Train\r\nGlen Etive\r\nThe Elephant House"
         visitscotland:noIndex: false
         visitscotland:popular: false
         visitscotland:seoNoIndex: Follow in the footsteps of Harry Potter! Relive
           some of the films' most iconic scenes with our 4-day itinerary of Harry
           Potter sites in Scotland.
         visitscotland:seoTitle: Iconic Harry Potter Film Locations - An Itinerary
-        visitscotland:start: Edinburgh
+        visitscotland:start: Madrid
         visitscotland:summary: ''
         visitscotland:text: "Glenfinnan Viaduct\r\n\r\nJacobite Steam Train\r\n\r\n\
           Glen Etive\r\n\r\nThe Elephant House"
@@ -162,7 +162,7 @@
           jcr:primaryType: hippostd:html
           hippostd:content: <p>It was in Scotland's capital city that JK Rowling started
             to plot the adventures of Harry and his friends. With cobbled streets,
-            winding alleys and medieval architecture, the city certainly has a few
+            winding alleys and medieval architecture, the city certainly have a few
             things in common with the settings from the books and films. She wrote
             the early chapters in various cafés around the city's Old Town, before
             coming back to finish off the series from a peaceful suite in The Balmoral
@@ -284,7 +284,7 @@
       jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
       jcr:uuid: e48273b9-7b42-4456-837f-e014dc069d95
       hippo:name: day 2
-      hippo:versionHistory: cadaad50-4de3-4def-b108-703c3eeac28d
+      hippo:versionHistory: c141a8d1-5cd7-4fe6-a6f1-dd7b02ce7c48
       /day-2[1]:
         jcr:primaryType: visitscotland:Day
         jcr:mixinTypes: ['mix:referenceable']
@@ -293,7 +293,7 @@
         hippostd:state: draft
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2019-12-12T12:06:04.129Z
-        hippostdpubwf:lastModificationDate: 2020-01-08T09:38:25.663Z
+        hippostdpubwf:lastModificationDate: 2020-01-10T13:25:56.988Z
         hippostdpubwf:lastModifiedBy: admin
         hippotranslation:id: 2af219fa-878e-435f-ae2e-e296a16e21a9
         hippotranslation:locale: en
@@ -312,13 +312,13 @@
             </ul>
         /visitscotland:stops[1]:
           jcr:primaryType: hippo:mirror
-          hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
+          hippo:docbase: 8030a311-a942-40e6-bb89-41dd6fea60df
         /visitscotland:stops[2]:
           jcr:primaryType: hippo:mirror
-          hippo:docbase: 8030a311-a942-40e6-bb89-41dd6fea60df
+          hippo:docbase: 8b215960-87aa-47ae-9c11-8a750be25ad8
         /visitscotland:stops[3]:
           jcr:primaryType: hippo:mirror
-          hippo:docbase: 8b215960-87aa-47ae-9c11-8a750be25ad8
+          hippo:docbase: 1ead4399-7e30-47dc-9b75-2ea488fb5742
       /day-2[2]:
         jcr:primaryType: visitscotland:Day
         jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
@@ -327,7 +327,7 @@
         hippostd:state: unpublished
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2019-12-12T12:06:04.129Z
-        hippostdpubwf:lastModificationDate: 2020-01-08T09:38:32.784Z
+        hippostdpubwf:lastModificationDate: 2020-01-10T13:26:06.936Z
         hippostdpubwf:lastModifiedBy: admin
         hippotranslation:id: 2af219fa-878e-435f-ae2e-e296a16e21a9
         hippotranslation:locale: en
@@ -346,13 +346,13 @@
             </ul>
         /visitscotland:stops[1]:
           jcr:primaryType: hippo:mirror
-          hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
+          hippo:docbase: 8030a311-a942-40e6-bb89-41dd6fea60df
         /visitscotland:stops[2]:
           jcr:primaryType: hippo:mirror
-          hippo:docbase: 8030a311-a942-40e6-bb89-41dd6fea60df
+          hippo:docbase: 8b215960-87aa-47ae-9c11-8a750be25ad8
         /visitscotland:stops[3]:
           jcr:primaryType: hippo:mirror
-          hippo:docbase: 8b215960-87aa-47ae-9c11-8a750be25ad8
+          hippo:docbase: 1ead4399-7e30-47dc-9b75-2ea488fb5742
       /day-2[3]:
         jcr:primaryType: visitscotland:Day
         jcr:mixinTypes: ['mix:referenceable']
@@ -361,9 +361,9 @@
         hippostd:state: published
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2019-12-12T12:06:04.129Z
-        hippostdpubwf:lastModificationDate: 2020-01-08T09:38:32.784Z
+        hippostdpubwf:lastModificationDate: 2020-01-10T13:24:47.863Z
         hippostdpubwf:lastModifiedBy: admin
-        hippostdpubwf:publicationDate: 2020-01-08T09:38:36.678Z
+        hippostdpubwf:publicationDate: 2020-01-10T13:24:55.786Z
         hippotranslation:id: 2af219fa-878e-435f-ae2e-e296a16e21a9
         hippotranslation:locale: en
         visitscotland:title: Dummy Stops
@@ -381,10 +381,169 @@
             </ul>
         /visitscotland:stops[1]:
           jcr:primaryType: hippo:mirror
-          hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
+          hippo:docbase: 1ead4399-7e30-47dc-9b75-2ea488fb5742
         /visitscotland:stops[2]:
           jcr:primaryType: hippo:mirror
           hippo:docbase: 8030a311-a942-40e6-bb89-41dd6fea60df
         /visitscotland:stops[3]:
           jcr:primaryType: hippo:mirror
           hippo:docbase: 8b215960-87aa-47ae-9c11-8a750be25ad8
+  /itineraries:
+    jcr:primaryType: hippostd:folder
+    jcr:mixinTypes: ['hippotranslation:translated', 'mix:versionable']
+    jcr:uuid: be6c8c36-afef-4a03-b8c4-2ddaf85b7d37
+    hippostd:foldertype: [new-translated-folder, new-document]
+    hippotranslation:id: 8918a333-e448-4a8a-84c3-c4c9b04fe6bf
+    hippotranslation:locale: en
+    /content:
+      jcr:primaryType: hippo:handle
+      jcr:mixinTypes: ['hippo:named', 'mix:referenceable']
+      jcr:uuid: c7c967ee-c247-4d6c-acbc-614569868b81
+      hippo:name: Content
+      /content[1]:
+        jcr:primaryType: visitscotland:Itinerary
+        jcr:mixinTypes: ['mix:referenceable']
+        jcr:uuid: 388246a6-eb6d-4287-b3b8-6d233d8eae6b
+        hippo:availability: []
+        hippostd:state: draft
+        hippostdpubwf:createdBy: admin
+        hippostdpubwf:creationDate: 2020-01-09T14:21:43.324Z
+        hippostdpubwf:lastModificationDate: 2020-01-09T14:21:43.324Z
+        hippostdpubwf:lastModifiedBy: admin
+        hippotranslation:id: 2873f49a-6388-40cc-9193-b52dc3c02791
+        hippotranslation:locale: en
+        visitscotland:areas: [dundee]
+        visitscotland:breadcrumb: ''
+        visitscotland:distance: 0.0
+        visitscotland:finish: ''
+        visitscotland:highlights: ''
+        visitscotland:noIndex: false
+        visitscotland:popular: true
+        visitscotland:seoNoIndex: ''
+        visitscotland:seoTitle: ''
+        visitscotland:start: ''
+        visitscotland:theme: ''
+        visitscotland:title: 3 days Outlander
+        visitscotland:transports: [walking, train]
+        /visitscotland:heroImage:
+          jcr:primaryType: hippogallerypicker:imagelink
+          hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
+          hippo:facets: []
+          hippo:modes: []
+          hippo:values: []
+        /visitscotland:introduction:
+          jcr:primaryType: hippostd:html
+          hippostd:content: ''
+      /content[2]:
+        jcr:primaryType: visitscotland:Itinerary
+        jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
+        jcr:uuid: 27a4222e-e490-44b5-9e30-e694060471d5
+        hippo:availability: [preview]
+        hippostd:state: unpublished
+        hippostdpubwf:createdBy: admin
+        hippostdpubwf:creationDate: 2020-01-09T14:21:43.324Z
+        hippostdpubwf:lastModificationDate: 2020-01-09T14:22:23.499Z
+        hippostdpubwf:lastModifiedBy: admin
+        hippotranslation:id: 2873f49a-6388-40cc-9193-b52dc3c02791
+        hippotranslation:locale: en
+        visitscotland:areas: [dundee]
+        visitscotland:breadcrumb: ''
+        visitscotland:distance: 0.0
+        visitscotland:finish: ''
+        visitscotland:highlights: ''
+        visitscotland:noIndex: false
+        visitscotland:popular: true
+        visitscotland:seoNoIndex: ''
+        visitscotland:seoTitle: ''
+        visitscotland:start: ''
+        visitscotland:theme: ''
+        visitscotland:title: 3 days Outlander
+        visitscotland:transports: [walking, train]
+        /visitscotland:heroImage:
+          jcr:primaryType: hippogallerypicker:imagelink
+          hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
+          hippo:facets: []
+          hippo:modes: []
+          hippo:values: []
+        /visitscotland:introduction:
+          jcr:primaryType: hippostd:html
+          hippostd:content: ''
+  /itinerary2:
+    jcr:primaryType: hippostd:folder
+    jcr:mixinTypes: ['hippotranslation:translated', 'mix:versionable']
+    jcr:uuid: 41c7bb08-094b-40b3-9fd0-e500e298f055
+    hippostd:foldertype: [new-translated-folder, new-document]
+    hippotranslation:id: f9d289d2-4f24-4936-82ef-6b7e58c0e9e7
+    hippotranslation:locale: en
+    /content:
+      jcr:primaryType: hippo:handle
+      jcr:mixinTypes: ['mix:referenceable']
+      jcr:uuid: 0d96d050-8326-4a9a-8d04-d248ede3ee49
+      /content[1]:
+        jcr:primaryType: visitscotland:Itinerary
+        jcr:mixinTypes: ['mix:referenceable']
+        jcr:uuid: 02b1bdf9-477d-4d67-8794-653798d1f9c0
+        hippo:availability: []
+        hippostd:state: draft
+        hippostdpubwf:createdBy: admin
+        hippostdpubwf:creationDate: 2020-01-09T16:19:50.515Z
+        hippostdpubwf:lastModificationDate: 2020-01-09T16:19:50.515Z
+        hippostdpubwf:lastModifiedBy: admin
+        hippotranslation:id: de1bac1e-a879-4d2f-b51d-9867256cb27d
+        hippotranslation:locale: en
+        visitscotland:areas: []
+        visitscotland:breadcrumb: ''
+        visitscotland:distance: 0.0
+        visitscotland:finish: ''
+        visitscotland:highlights: ''
+        visitscotland:noIndex: false
+        visitscotland:popular: false
+        visitscotland:seoNoIndex: ''
+        visitscotland:seoTitle: ''
+        visitscotland:start: ''
+        visitscotland:theme: ''
+        visitscotland:title: asda
+        visitscotland:transports: []
+        /visitscotland:heroImage:
+          jcr:primaryType: hippogallerypicker:imagelink
+          hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
+          hippo:facets: []
+          hippo:modes: []
+          hippo:values: []
+        /visitscotland:introduction:
+          jcr:primaryType: hippostd:html
+          hippostd:content: ''
+      /content[2]:
+        jcr:primaryType: visitscotland:Itinerary
+        jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
+        jcr:uuid: 4fc0d5c3-63cc-43ee-b6e1-5549856140ce
+        hippo:availability: [preview]
+        hippostd:state: unpublished
+        hippostdpubwf:createdBy: admin
+        hippostdpubwf:creationDate: 2020-01-09T16:19:50.515Z
+        hippostdpubwf:lastModificationDate: 2020-01-09T16:20:07.530Z
+        hippostdpubwf:lastModifiedBy: admin
+        hippotranslation:id: de1bac1e-a879-4d2f-b51d-9867256cb27d
+        hippotranslation:locale: en
+        visitscotland:areas: []
+        visitscotland:breadcrumb: ''
+        visitscotland:distance: 0.0
+        visitscotland:finish: ''
+        visitscotland:highlights: ''
+        visitscotland:noIndex: false
+        visitscotland:popular: false
+        visitscotland:seoNoIndex: ''
+        visitscotland:seoTitle: ''
+        visitscotland:start: ''
+        visitscotland:theme: ''
+        visitscotland:title: asda
+        visitscotland:transports: []
+        /visitscotland:heroImage:
+          jcr:primaryType: hippogallerypicker:imagelink
+          hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
+          hippo:facets: []
+          hippo:modes: []
+          hippo:values: []
+        /visitscotland:introduction:
+          jcr:primaryType: hippostd:html
+          hippostd:content: ''
