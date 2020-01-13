@@ -9,9 +9,7 @@
       <slot name="map" />
     </div>
     <div class="vs-itinerary__list-container">
-      <ul slot="stops" class="mt-9 list-unstyled">
-        <slot name="list" />
-      </ul>
+      <slot name="list" />
     </div>
   </component>
 </template>
@@ -181,6 +179,10 @@ export default {
             <vs-heading level="1">
               {{itineraries.sampleItinerary.h1Heading}}
             </vs-heading>
+          </vs-col>
+        </vs-row>
+        <vs-row class="justify-content-md-between">
+          <vs-col cols="12" sm="6" lg="7">
             <div class="lead" v-html="itineraries.sampleItinerary.introduction"></div>
             <dl class="list-inline">
               <dt class="list-inline-item">Start / Finish</dt>
@@ -283,13 +285,13 @@ export default {
             </dd>
           </dl>
                     
-          <div slot="day-introduction" v-html="day.introduction"></div>
+          <div class="mb-5" slot="day-introduction" v-html="day.introduction"></div>
             <li 
               slot="stops"
               v-for="(stop, index) in day.stops" 
               class="vs-itinerary-stop__list-item" 
               :data-stop="stop.stopCount">
-              <div class="d-flex justify-content-between align-items-top">
+              <div class="d-flex justify-content-start align-items-top">
                 <vs-icon name="map-marker-filled" variant="secondary-teal" size="md" :padding="0" />
                 <vs-heading 
                   level="3" 
@@ -299,11 +301,6 @@ export default {
                   >Stop {{stop.stopCount}}</span>
                   {{stop.title}}
                 </vs-heading>
-
-                <vs-favourites-toggle-button
-                  :href="stop.href"
-                  :title="stop.title"
-                />
               </div>
               <vs-image-with-caption
                   :altText="stop.image.altText"
