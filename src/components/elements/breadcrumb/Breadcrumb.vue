@@ -1,5 +1,5 @@
 <template>
-  <nav aria-label="breadcrumbs" class="mb-8">
+  <nav aria-label="breadcrumbs" class="py-4">
     <b-breadcrumb class="flex-nowrap p-0" v-bind="$attrs">
       <slot />
     </b-breadcrumb>

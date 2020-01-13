@@ -306,7 +306,7 @@
       fill-rule="evenodd"
     />
     <rect :width="mapWidth" :height="mapHeight" fill="none" />
-    <circle r="4" :fill="mapOutlineColor" :cx="positionX" :cy="positionY" />
+    <circle r="4" :fill="mapMarkerColor" :cx="positionX" :cy="positionY" />
   </svg>
 </template>
 
@@ -345,6 +345,10 @@ export default {
       type: String,
     },
     mapOutlineColor: {
+      type: String,
+      default: "#191919",
+    },
+    mapMarkerColor: {
       type: String,
       default: "#191919",
     },
@@ -400,6 +404,7 @@ svg {
             :latitude="image.latitude"
             :longitude="image.longitude"
             map-outline-color="#191919"
+            map-marker-color="#109DA3"
           >
           </vs-image-location-map>
       </div>
