@@ -231,7 +231,7 @@
       jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
       jcr:uuid: 28abd074-5fc4-4ebc-a424-1d4f9e5cb0e6
       hippo:name: GREYFRIARS KIRKYARD
-      hippo:versionHistory: e27f09d6-cf65-4f7c-9ccc-57b1008c817a
+      hippo:versionHistory: 4b01d725-e84b-4de5-8651-759ec85c65b4
       /greyfriars-kirkyard[1]:
         jcr:primaryType: visitscotland:Stop
         jcr:mixinTypes: ['mix:referenceable']
@@ -240,12 +240,12 @@
         hippostd:state: draft
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2019-12-11T12:40:08.862Z
-        hippostdpubwf:lastModificationDate: 2020-01-13T09:50:34.893Z
+        hippostdpubwf:lastModificationDate: 2020-01-13T14:45:09.511Z
         hippostdpubwf:lastModifiedBy: admin
         hippotranslation:id: 1bdaaad2-68eb-4493-878c-0961215fe02a
         hippotranslation:locale: en
         visitscotland:tipsTitle: Pull out title example
-        visitscotland:title: GREYFRIARS KIRKYARD
+        visitscotland:title: Greyfriars Kirkyard
         /visitscotland:description:
           jcr:primaryType: hippostd:html
           hippostd:content: '<p>Only a short walk away from The Elephant House you''ll
@@ -262,8 +262,8 @@
           visitscotland:timeToExplore: '1'
           /visitscotland:Coordinates:
             jcr:primaryType: visitscotland:Coordinates
-            visitscotland:latitude: 55.9467
-            visitscotland:longitude: -3.7923
+            visitscotland:latitude: 55.9471682
+            visitscotland:longitude: -3.1927961
           /visitscotland:image:
             jcr:primaryType: hippogallerypicker:imagelink
             hippo:docbase: 8d4f5036-64ca-4e5d-aa89-b348ae38b081
@@ -278,12 +278,12 @@
         hippostd:state: unpublished
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2019-12-11T12:40:08.862Z
-        hippostdpubwf:lastModificationDate: 2020-01-13T09:50:27.275Z
+        hippostdpubwf:lastModificationDate: 2020-01-13T14:45:53.471Z
         hippostdpubwf:lastModifiedBy: admin
         hippotranslation:id: 1bdaaad2-68eb-4493-878c-0961215fe02a
         hippotranslation:locale: en
         visitscotland:tipsTitle: Pull out title example
-        visitscotland:title: GREYFRIARS KIRKYARD
+        visitscotland:title: Greyfriars Kirkyard
         /visitscotland:description:
           jcr:primaryType: hippostd:html
           hippostd:content: '<p>Only a short walk away from The Elephant House you''ll
@@ -300,8 +300,8 @@
           visitscotland:timeToExplore: '1'
           /visitscotland:Coordinates:
             jcr:primaryType: visitscotland:Coordinates
-            visitscotland:latitude: 55.9467
-            visitscotland:longitude: -3.7923
+            visitscotland:latitude: 55.9471682
+            visitscotland:longitude: -3.1927961
           /visitscotland:image:
             jcr:primaryType: hippogallerypicker:imagelink
             hippo:docbase: 8d4f5036-64ca-4e5d-aa89-b348ae38b081
@@ -316,13 +316,13 @@
         hippostd:state: published
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2019-12-11T12:40:08.862Z
-        hippostdpubwf:lastModificationDate: 2020-01-13T09:50:27.275Z
+        hippostdpubwf:lastModificationDate: 2020-01-13T14:45:53.471Z
         hippostdpubwf:lastModifiedBy: admin
-        hippostdpubwf:publicationDate: 2020-01-13T09:50:34.803Z
+        hippostdpubwf:publicationDate: 2020-01-13T14:45:57.124Z
         hippotranslation:id: 1bdaaad2-68eb-4493-878c-0961215fe02a
         hippotranslation:locale: en
         visitscotland:tipsTitle: Pull out title example
-        visitscotland:title: GREYFRIARS KIRKYARD
+        visitscotland:title: Greyfriars Kirkyard
         /visitscotland:description:
           jcr:primaryType: hippostd:html
           hippostd:content: '<p>Only a short walk away from The Elephant House you''ll
@@ -339,8 +339,8 @@
           visitscotland:timeToExplore: '1'
           /visitscotland:Coordinates:
             jcr:primaryType: visitscotland:Coordinates
-            visitscotland:latitude: 55.9467
-            visitscotland:longitude: -3.7923
+            visitscotland:latitude: 55.9471682
+            visitscotland:longitude: -3.1927961
           /visitscotland:image:
             jcr:primaryType: hippogallerypicker:imagelink
             hippo:docbase: 8d4f5036-64ca-4e5d-aa89-b348ae38b081

@@ -16,10 +16,8 @@
 <#include "../../vs-dotcom-ds/components/summary-box-list.ftl">
 <#include "../../vs-dotcom-ds/components/summary-box-list-item.ftl">
 <#include "../../vs-dotcom-ds/components/itinerary-day.ftl">
-<#include "../../vs-dotcom-ds/components/itinerary-highlights-list.ftl">
 <#include "../../vs-dotcom-ds/components/itinerary.ftl">
-<#include "../../vs-dotcom-ds/components/itinerary-map.ftl">
-<#include "../../vs-dotcom-ds/components/itinerary-map-marker.ftl">
+<#include "../../vs-dotcom-ds/components/itinerary-highlights-list.ftl">
 <#include "../../vs-dotcom-ds/components/svg.ftl">
 <#include "../../vs-dotcom-ds/components/related-content-list.ftl">
 <#include "../../vs-dotcom-ds/components/related-content-list-item.ftl">
@@ -157,9 +155,7 @@
         </vs-container>
     </vs-page-intro>
     <vs-itinerary>
-        <div slot="map">
-            <@itineraryMap days=document.days />
-        </div>
+        <@itineraryMap days=document.days />
         <vs-container slot="list">
             <vs-row>
                 <vs-col cols="12" tag="ul" class="list-unstyled">
