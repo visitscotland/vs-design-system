@@ -66,16 +66,17 @@ $font-sizes: (
   @each $level, $size in $font-sizes {
     @at-root h#{$level}#{&} {
       letter-spacing: $size * 0.1;
-      @if $level == 1 {
-        @include media-breakpoint-up(lg) {
-          letter-spacing: $letter-spacing-h1;
-        }
-      }
+      margin-bottom: $size;
     }
   }
 
   &.heading--thin {
     font-family: $headings-font-family-thin;
+
+    span {
+      font-family: $headings-font-family;
+      display: block;
+    }
   }
 }
 </style>

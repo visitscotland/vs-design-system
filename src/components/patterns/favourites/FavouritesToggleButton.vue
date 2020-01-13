@@ -64,7 +64,7 @@ export default {
   display: block;
   position: relative;
   height: 40px;
-  padding: 0 $spacer-2;
+  padding: 0 10px;
   margin: 0 0 $spacer-2 $spacer-2;
 }
 </style>

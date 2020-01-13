@@ -1,17 +1,13 @@
 import VsItinerary from "./Itinerary"
-import VsItineraryStop from "./components/itinerary-stop/ItineraryStop"
-import VsItineraryStopImage from "./components/itinerary-stop-image/ItineraryStopImage"
-import VsItineraryStopFacility from "./components/itinerary-stop-facility/ItineraryStopFacility"
-import VsItinerarySummaryList from "./components/itinerary-summary-list/ItinerarySummaryList"
-import VsItinerarySummaryListItem from "./components/itinerary-summary-list-item/ItinerarySummaryListItem"
+import VsItineraryDay from "./components/itinerary-day/ItineraryDay"
 import VsItineraryStopPullout from "./components/itinerary-stop-pullout/ItineraryStopPullout"
+import VsItineraryMapMobileToggle from "./components/itinerary-map-mobile-toggle/ItineraryMapMobileToggle"
+import VsItineraryMap from "./components/itinerary-map/ItineraryMap"
 
 export {
   VsItinerary,
-  VsItineraryStop,
-  VsItineraryStopImage,
-  VsItineraryStopFacility,
-  VsItinerarySummaryList,
-  VsItinerarySummaryListItem,
+  VsItineraryDay,
   VsItineraryStopPullout,
+  VsItineraryMapMobileToggle,
+  VsItineraryMap,
 }

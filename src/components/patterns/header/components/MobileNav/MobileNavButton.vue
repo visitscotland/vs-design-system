@@ -10,7 +10,7 @@
   >
     <span class="sr-only"><slot /></span>
     <vs-icon v-if="show" name="close" size="sm" variant="dark" />
-    <vs-icon v-else name="menu" size="sm" variant="dark" />
+    <vs-icon v-else name="bars-mobile-menu" size="sm" variant="dark" />
   </vs-button>
 </template>
 

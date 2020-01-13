@@ -1,8 +1,7 @@
 <template>
   <figure class="d-flex flex-column">
     <div class="vs-hero__image-wrapper">
-      <slot name="image" />
-      <slot name="overlayText" />
+      <slot />
 
       <vs-button
         variant="transparent"
@@ -24,8 +23,8 @@
         <vs-row>
           <vs-col>
             <div class="p-4" v-if="this.showCaptionData">
-              <p class="vs-hero__image-description" v-if="this.description">
-                {{ this.description }}
+              <p class="vs-hero__image-caption" v-if="this.caption">
+                {{ this.caption }}
               </p>
               <p class="vs-hero__image-credit m-0" v-if="this.credit">&copy; {{ this.credit }}</p>
             </div>
@@ -35,7 +34,8 @@
               <vs-image-location-map
                 :latitude="this.latitude"
                 :longitude="this.longitude"
-                map-outline-color="#191919"
+                map-outline-color="#FFFFFF"
+                map-marker-color="#7CC9CC"
               ></vs-image-location-map>
             </div>
           </vs-col>
@@ -81,9 +81,9 @@ export default {
     },
 
     /**
-     * The description for the hero's image
+     * The caption for the hero's image
      */
-    description: {
+    caption: {
       type: String,
     },
 
@@ -131,11 +131,11 @@ export default {
       return "background-image: url('" + this.imageSrc + "');"
     },
     showCaptionData() {
-      return this.description.length || this.credit.length ? true : false
+      return this.caption.length || this.credit.length ? true : false
     },
     showToggle() {
       // only show the image detail toggle button if there's a map or caption data
-      return this.description.length || this.credit.length ? true : false
+      return this.caption.length || this.credit.length ? true : false
     },
     showMap() {
       // only show the map if longitude and latitude are both set
@@ -158,7 +158,6 @@ export default {
 
 .vs-hero__caption-wrapper {
   @include media-breakpoint-down(lg) {
-    max-width: 100%;
     padding: 0;
   }
 }
@@ -171,6 +170,7 @@ export default {
 
 figure {
   position: relative;
+  background-color: $color-theme-dark;
 }
 
 img {
@@ -180,6 +180,15 @@ img {
 
 .vs-hero__image-wrapper {
   position: relative;
+  max-height: 100vh;
+  overflow: hidden;
+
+  @include media-breakpoint-up(xl) {
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Centering y-axis */
+    align-items: center;
+  }
 }
 
 .vs-hero__overlay-text {
@@ -206,21 +215,25 @@ img {
 }
 
 figcaption {
-  background-color: $color-white;
-  color: $color-base-text;
+  background-color: $color-theme-dark;
+  color: $color-white;
   width: 100%;
 
   @include media-breakpoint-up(lg) {
-    bottom: -1rem;
+    bottom: 110px;
     max-width: 400px;
     position: absolute;
     right: 0;
     width: auto;
     z-index: 2;
   }
+
+  @include media-breakpoint-up(xl) {
+    bottom: 160px;
+  }
 }
 
-.vs-hero__image-description {
+.vs-hero__image-caption {
   font-size: 0.875rem;
   font-weight: 500;
   line-height: 1rem;
@@ -239,7 +252,7 @@ figcaption {
       v-for="(item, index) in hero.imageExamples"
       :altText="item.altText"
       :credit="item.credit"
-      :description="item.description"
+      :caption="item.caption"
       :image-src="item.imageSrc"
       :key="index"
       :latitude="item.latitude"
@@ -252,11 +265,8 @@ figcaption {
       :data-srcset="item.imageSrc" 
       :alt="item.altText"
       data-sizes="auto"
-      slot="image" />
-      <noscript>
-        <img class="img-fluid" :src="item.imageSrc" alt="item.altText" />
-      </noscript>
-      <span slot="overlayText" class="vs-hero__overlay-text text-light">Scotland</span>
+       />
+      <span class="vs-hero__overlay-text text-light">Scotland</span>
     </vs-hero>
   ```
 </docs>
