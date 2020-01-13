@@ -125,12 +125,14 @@ export default {
 
     dd {
       display: inline-table;
+      vertical-align: top;
       text-align: center;
       width: 90px;
       position: relative;
 
-      .icon-wrapper {
+      svg {
         display: block;
+        margin: 0 auto;
         width: 100%;
       }
     }
