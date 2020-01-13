@@ -278,13 +278,12 @@
       jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
       jcr:uuid: e48273b9-7b42-4456-837f-e014dc069d95
       hippo:name: day 2
-      hippo:versionHistory: 0a449d55-f9ef-454d-afeb-e90afc2cdfe7
+      hippo:versionHistory: 6e0a7d92-61a8-4523-9922-ee457f2033e1
       /day-2[1]:
         jcr:primaryType: visitscotland:Day
         jcr:mixinTypes: ['mix:referenceable']
         jcr:uuid: 8d068d19-9845-40ea-80fe-4dc7dd0e95f7
         hippo:availability: []
-        hippostd:holder: admin
         hippostd:state: draft
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2019-12-12T12:06:04.129Z
@@ -293,7 +292,8 @@
         hippotranslation:id: 2af219fa-878e-435f-ae2e-e296a16e21a9
         hippotranslation:locale: en
         visitscotland:title: Dummy Stops
-        visitscotland:transports: [public]
+        visitscotland:transports: [cycling, walking, boat, car, bus, train, ferry,
+          public]
         /visitscotland:introduction:
           jcr:primaryType: hippostd:html
           hippostd:content: |-
@@ -322,12 +322,13 @@
         hippostd:state: unpublished
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2019-12-12T12:06:04.129Z
-        hippostdpubwf:lastModificationDate: 2020-01-10T13:26:06.936Z
+        hippostdpubwf:lastModificationDate: 2020-01-13T15:01:02.930Z
         hippostdpubwf:lastModifiedBy: admin
         hippotranslation:id: 2af219fa-878e-435f-ae2e-e296a16e21a9
         hippotranslation:locale: en
         visitscotland:title: Dummy Stops
-        visitscotland:transports: [public]
+        visitscotland:transports: [cycling, walking, boat, car, bus, train, ferry,
+          public]
         /visitscotland:introduction:
           jcr:primaryType: hippostd:html
           hippostd:content: |-
@@ -356,13 +357,14 @@
         hippostd:state: published
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2019-12-12T12:06:04.129Z
-        hippostdpubwf:lastModificationDate: 2020-01-10T13:26:06.936Z
+        hippostdpubwf:lastModificationDate: 2020-01-13T15:01:02.930Z
         hippostdpubwf:lastModifiedBy: admin
-        hippostdpubwf:publicationDate: 2020-01-10T14:29:14.208Z
+        hippostdpubwf:publicationDate: 2020-01-13T15:01:06.597Z
         hippotranslation:id: 2af219fa-878e-435f-ae2e-e296a16e21a9
         hippotranslation:locale: en
         visitscotland:title: Dummy Stops
-        visitscotland:transports: [public]
+        visitscotland:transports: [cycling, walking, boat, car, bus, train, ferry,
+          public]
         /visitscotland:introduction:
           jcr:primaryType: hippostd:html
           hippostd:content: |-

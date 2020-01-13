@@ -362,7 +362,7 @@
     jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
     jcr:uuid: af46ab5b-01a6-4fcd-b1d2-2968f4faa742
     hippo:name: tooMany
-    hippo:versionHistory: 8dc38f41-bfd3-4cea-8eb4-54f9c89a7b49
+    hippo:versionHistory: 75e3a6d2-e2e2-4745-9656-0504d31d5729
     /toomany[1]:
       jcr:primaryType: resourcebundle:resourcebundle
       jcr:mixinTypes: ['mix:referenceable']
@@ -371,13 +371,14 @@
       hippostd:state: draft
       hippostdpubwf:createdBy: admin
       hippostdpubwf:creationDate: 2019-12-16T17:23:20.370Z
-      hippostdpubwf:lastModificationDate: 2020-01-09T12:48:42.980Z
+      hippostdpubwf:lastModificationDate: 2020-01-13T14:57:52.918Z
       hippostdpubwf:lastModifiedBy: admin
-      resourcebundle:descriptions: ['', '', '', '', '', '']
+      resourcebundle:descriptions: ['', '', '', '', '', '', '', '', '', '', '']
       resourcebundle:id: toomany
-      resourcebundle:keys: [car, dumfries, highlands, filmev, walking, train]
+      resourcebundle:keys: [car, dumfries, highlands, filmev, walking, train, bus,
+        boat, public, cycling, ferry]
       resourcebundle:messages: [Car, Dumfries & Galloway, The Highlands, TV / Film
-          Stages, Walking, Train]
+          Stages, Walking, Train, Bus, Boat, Public Transport, Cycling, Ferry]
     /toomany[2]:
       jcr:primaryType: resourcebundle:resourcebundle
       jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
@@ -386,13 +387,14 @@
       hippostd:state: unpublished
       hippostdpubwf:createdBy: admin
       hippostdpubwf:creationDate: 2019-12-16T17:23:20.370Z
-      hippostdpubwf:lastModificationDate: 2020-01-08T15:05:01.525Z
+      hippostdpubwf:lastModificationDate: 2020-01-13T14:59:28.535Z
       hippostdpubwf:lastModifiedBy: admin
-      resourcebundle:descriptions: ['', '', '', '', '', '']
+      resourcebundle:descriptions: ['', '', '', '', '', '', '', '', '', '', '']
       resourcebundle:id: toomany
-      resourcebundle:keys: [car, dumfries, highlands, filmev, walking, train]
+      resourcebundle:keys: [car, dumfries, highlands, filmev, walking, train, bus,
+        boat, public, cycling, ferry]
       resourcebundle:messages: [Car, Dumfries & Galloway, The Highlands, TV / Film
-          Stages, Walking, Train]
+          Stages, Walking, Train, Bus, Boat, Public Transport, Cycling, Ferry]
     /toomany[3]:
       jcr:primaryType: resourcebundle:resourcebundle
       jcr:mixinTypes: ['mix:referenceable']
@@ -401,14 +403,15 @@
       hippostd:state: published
       hippostdpubwf:createdBy: admin
       hippostdpubwf:creationDate: 2019-12-16T17:23:20.370Z
-      hippostdpubwf:lastModificationDate: 2020-01-08T15:05:01.525Z
+      hippostdpubwf:lastModificationDate: 2020-01-13T14:59:28.535Z
       hippostdpubwf:lastModifiedBy: admin
-      hippostdpubwf:publicationDate: 2020-01-08T15:05:04.993Z
-      resourcebundle:descriptions: ['', '', '', '', '', '']
+      hippostdpubwf:publicationDate: 2020-01-13T14:59:32.406Z
+      resourcebundle:descriptions: ['', '', '', '', '', '', '', '', '', '', '']
       resourcebundle:id: toomany
-      resourcebundle:keys: [car, dumfries, highlands, filmev, walking, train]
+      resourcebundle:keys: [car, dumfries, highlands, filmev, walking, train, bus,
+        boat, public, cycling, ferry]
       resourcebundle:messages: [Car, Dumfries & Galloway, The Highlands, TV / Film
-          Stages, Walking, Train]
+          Stages, Walking, Train, Bus, Boat, Public Transport, Cycling, Ferry]
   /keys:
     jcr:primaryType: hippo:handle
     jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
