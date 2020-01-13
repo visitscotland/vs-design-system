@@ -202,7 +202,10 @@ export default {
         .setHTML(
           `
             <img class="vs-itinerary__map-popup-image" src="${this.highlightedStop.properties.imageSrc}" alt="${this.highlightedStop.properties.altText}" />
-            <h4 class="vs-itinerary__map-popup-heading">${this.highlightedStop.properties.title}</h4>
+            <div>
+            <h4 class="vs-itinerary__map-popup-stop-number mb-0">${this.labels.stopLabel} ${this.highlightedStop.properties.stopCount}</h4>
+            <p class="vs-itinerary__map-popup-stop-name">${this.highlightedStop.properties.title}</p>
+            </div>
         `
         )
         .addTo(this.mapbox.map)
@@ -309,10 +312,16 @@ export default {
       padding: 0.5rem;
     }
 
-    .vs-itinerary__map-popup-heading {
+    .vs-itinerary__map-popup-stop-number {
       font-family: $font-family-base;
       font-size: $font-size-base;
       font-weight: $font-weight-bold;
+    }
+
+    .vs-itinerary__map-popup-stop-name {
+      font-family: $font-family-base;
+      font-size: $font-size-base;
+      font-weight: $font-weight-normal;
     }
 
     .vs-itinerary__map-popup-image {
@@ -349,11 +358,13 @@ export default {
       overview-map-zoom="5"
       :stops="stops"
       :labels='{
+          "stopLabel": "Stop",
           "mapControlsFullscreenOpen": "Show fullscreen",
           "mapControlsFullscreenClose": "Exit fullscreen",
           "mapControlsCompass": "Reset angle",
           "mapControlsZoomIn": "Zoom in",
-          "mapControlsZoomOut": "Zoom out"
+          "mapControlsZoomOut": "Zoom out",
+          
       }'
     >
     </vs-itinerary-map>

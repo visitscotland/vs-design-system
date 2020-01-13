@@ -245,6 +245,7 @@ export default {
     overview-map-zoom="5"
     :stops="stops"
     :labels='{
+        "stopLabel": "Stop",
         "mapControlsFullscreenOpen": "Show fullscreen",
         "mapControlsFullscreenClose": "Exit fullscreen",
         "mapControlsCompass": "Reset angle",
