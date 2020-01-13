@@ -17,8 +17,8 @@
       jcr:primaryType: hippo:handle
       jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
       jcr:uuid: 0751c1d3-3024-4d2d-a5e8-38286fee9722
-      hippo:name: Harry potter itinerary
-      hippo:versionHistory: 1579bfff-d813-4eb9-97ad-a5657b645545
+      hippo:name: Content
+      hippo:versionHistory: 8bf53fae-8cf1-4b32-a040-7f36fd3c92ba
       /content[1]:
         jcr:primaryType: visitscotland:Itinerary
         jcr:mixinTypes: ['mix:referenceable']
@@ -27,15 +27,15 @@
         hippostd:state: draft
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2019-12-06T12:48:04.149Z
-        hippostdpubwf:lastModificationDate: 2019-12-20T13:11:43.297Z
+        hippostdpubwf:lastModificationDate: 2020-01-13T09:30:04.836Z
         hippostdpubwf:lastModifiedBy: admin
         hippotranslation:id: a3ed9022-e239-493b-952c-18d01ac36640
         hippotranslation:locale: en
         visitscotland:areas: [dumfries, highlands]
         visitscotland:breadcrumb: ''
-        visitscotland:distance: 10.1
-        visitscotland:finish: Portree
-        visitscotland:highlights: "Glenfinnan Viaduct\r\nJacobite Steam Train\r\n\
+        visitscotland:distance: 10.4
+        visitscotland:finish: Ocean point
+        visitscotland:highlights: "Glenfinnan Viaduct \r\nJacobite Steam Train\r\n\
           Glen Etive\r\nThe Elephant House"
         visitscotland:noIndex: false
         visitscotland:popular: false
@@ -43,8 +43,9 @@
           some of the films' most iconic scenes with our 4-day itinerary of Harry
           Potter sites in Scotland.
         visitscotland:seoTitle: Iconic Harry Potter Film Locations - An Itinerary
-        visitscotland:start: Edinburgh
+        visitscotland:start: Tenerife
         visitscotland:summary: ''
+        visitscotland:teaser: HARRY POTTER FILM AND BOOK LOCATIONS ITINERARY teaser
         visitscotland:text: "Glenfinnan Viaduct\r\n\r\nJacobite Steam Train\r\n\r\n\
           Glen Etive\r\n\r\nThe Elephant House"
         visitscotland:theme: filmev
@@ -61,7 +62,7 @@
           jcr:primaryType: hippostd:html
           hippostd:content: <p>It was in Scotland's capital city that JK Rowling started
             to plot the adventures of Harry and his friends. With cobbled streets,
-            winding alleys and medieval architecture, the city certainly has a few
+            winding alleys and medieval architecture, the city certainly have a few
             things in common with the settings from the books and films. She wrote
             the early chapters in various cafés around the city's Old Town, before
             coming back to finish off the series from a peaceful suite in The Balmoral
@@ -77,15 +78,15 @@
         hippostd:state: unpublished
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2019-12-06T12:48:04.149Z
-        hippostdpubwf:lastModificationDate: 2019-12-20T13:12:10.543Z
+        hippostdpubwf:lastModificationDate: 2020-01-13T09:35:44.376Z
         hippostdpubwf:lastModifiedBy: admin
         hippotranslation:id: a3ed9022-e239-493b-952c-18d01ac36640
         hippotranslation:locale: en
         visitscotland:areas: [dumfries, highlands]
         visitscotland:breadcrumb: ''
-        visitscotland:distance: 10.1
-        visitscotland:finish: Portree
-        visitscotland:highlights: "Glenfinnan Viaduct\r\nJacobite Steam Train\r\n\
+        visitscotland:distance: 10.4
+        visitscotland:finish: Ocean point
+        visitscotland:highlights: "Glenfinnan Viaduct \r\nJacobite Steam Train\r\n\
           Glen Etive\r\nThe Elephant House"
         visitscotland:noIndex: false
         visitscotland:popular: false
@@ -93,8 +94,9 @@
           some of the films' most iconic scenes with our 4-day itinerary of Harry
           Potter sites in Scotland.
         visitscotland:seoTitle: Iconic Harry Potter Film Locations - An Itinerary
-        visitscotland:start: Edinburgh
+        visitscotland:start: Tenerife
         visitscotland:summary: ''
+        visitscotland:teaser: HARRY POTTER FILM AND BOOK LOCATIONS ITINERARY teaser
         visitscotland:text: "Glenfinnan Viaduct\r\n\r\nJacobite Steam Train\r\n\r\n\
           Glen Etive\r\n\r\nThe Elephant House"
         visitscotland:theme: filmev
@@ -111,7 +113,7 @@
           jcr:primaryType: hippostd:html
           hippostd:content: <p>It was in Scotland's capital city that JK Rowling started
             to plot the adventures of Harry and his friends. With cobbled streets,
-            winding alleys and medieval architecture, the city certainly has a few
+            winding alleys and medieval architecture, the city certainly have a few
             things in common with the settings from the books and films. She wrote
             the early chapters in various cafés around the city's Old Town, before
             coming back to finish off the series from a peaceful suite in The Balmoral
@@ -127,16 +129,16 @@
         hippostd:state: published
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2019-12-06T12:48:04.149Z
-        hippostdpubwf:lastModificationDate: 2019-12-20T13:12:10.543Z
+        hippostdpubwf:lastModificationDate: 2020-01-13T09:35:44.376Z
         hippostdpubwf:lastModifiedBy: admin
-        hippostdpubwf:publicationDate: 2020-01-07T18:00:40.856Z
+        hippostdpubwf:publicationDate: 2020-01-13T10:27:30.572Z
         hippotranslation:id: a3ed9022-e239-493b-952c-18d01ac36640
         hippotranslation:locale: en
         visitscotland:areas: [dumfries, highlands]
         visitscotland:breadcrumb: ''
-        visitscotland:distance: 10.1
-        visitscotland:finish: Portree
-        visitscotland:highlights: "Glenfinnan Viaduct\r\nJacobite Steam Train\r\n\
+        visitscotland:distance: 10.4
+        visitscotland:finish: Ocean point
+        visitscotland:highlights: "Glenfinnan Viaduct \r\nJacobite Steam Train\r\n\
           Glen Etive\r\nThe Elephant House"
         visitscotland:noIndex: false
         visitscotland:popular: false
@@ -144,8 +146,9 @@
           some of the films' most iconic scenes with our 4-day itinerary of Harry
           Potter sites in Scotland.
         visitscotland:seoTitle: Iconic Harry Potter Film Locations - An Itinerary
-        visitscotland:start: Edinburgh
+        visitscotland:start: Tenerife
         visitscotland:summary: ''
+        visitscotland:teaser: HARRY POTTER FILM AND BOOK LOCATIONS ITINERARY teaser
         visitscotland:text: "Glenfinnan Viaduct\r\n\r\nJacobite Steam Train\r\n\r\n\
           Glen Etive\r\n\r\nThe Elephant House"
         visitscotland:theme: filmev
@@ -162,7 +165,7 @@
           jcr:primaryType: hippostd:html
           hippostd:content: <p>It was in Scotland's capital city that JK Rowling started
             to plot the adventures of Harry and his friends. With cobbled streets,
-            winding alleys and medieval architecture, the city certainly has a few
+            winding alleys and medieval architecture, the city certainly have a few
             things in common with the settings from the books and films. She wrote
             the early chapters in various cafés around the city's Old Town, before
             coming back to finish off the series from a peaceful suite in The Balmoral
@@ -175,7 +178,7 @@
       jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
       jcr:uuid: 8ac72449-609b-45aa-b2b6-d3cb81a24139
       hippo:name: Edinburgh
-      hippo:versionHistory: 2044eff0-a626-4edb-8434-6c29709ed074
+      hippo:versionHistory: 8fb6ba74-d9fa-46c7-967a-d92b1a9a4f6b
       /edinburgh[1]:
         jcr:primaryType: visitscotland:Day
         jcr:mixinTypes: ['mix:referenceable']
@@ -184,7 +187,7 @@
         hippostd:state: draft
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2019-12-10T13:28:39.550Z
-        hippostdpubwf:lastModificationDate: 2019-12-17T11:37:21.704Z
+        hippostdpubwf:lastModificationDate: 2020-01-10T14:15:09.157Z
         hippostdpubwf:lastModifiedBy: admin
         hippotranslation:id: 58eba379-722b-43b6-85c5-a58cffa5d53d
         hippotranslation:locale: en
@@ -207,9 +210,6 @@
         /visitscotland:stops[2]:
           jcr:primaryType: hippo:mirror
           hippo:docbase: 28abd074-5fc4-4ebc-a424-1d4f9e5cb0e6
-        /visitscotland:stops[3]:
-          jcr:primaryType: hippo:mirror
-          hippo:docbase: 1ead4399-7e30-47dc-9b75-2ea488fb5742
       /edinburgh[2]:
         jcr:primaryType: visitscotland:Day
         jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
@@ -218,7 +218,7 @@
         hippostd:state: unpublished
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2019-12-10T13:28:39.550Z
-        hippostdpubwf:lastModificationDate: 2019-12-17T11:37:29.399Z
+        hippostdpubwf:lastModificationDate: 2020-01-10T14:15:17.517Z
         hippostdpubwf:lastModifiedBy: admin
         hippotranslation:id: 58eba379-722b-43b6-85c5-a58cffa5d53d
         hippotranslation:locale: en
@@ -241,9 +241,6 @@
         /visitscotland:stops[2]:
           jcr:primaryType: hippo:mirror
           hippo:docbase: 28abd074-5fc4-4ebc-a424-1d4f9e5cb0e6
-        /visitscotland:stops[3]:
-          jcr:primaryType: hippo:mirror
-          hippo:docbase: 1ead4399-7e30-47dc-9b75-2ea488fb5742
       /edinburgh[3]:
         jcr:primaryType: visitscotland:Day
         jcr:mixinTypes: ['mix:referenceable']
@@ -252,9 +249,9 @@
         hippostd:state: published
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2019-12-10T13:28:39.550Z
-        hippostdpubwf:lastModificationDate: 2019-12-17T11:37:29.399Z
+        hippostdpubwf:lastModificationDate: 2020-01-10T14:15:17.517Z
         hippostdpubwf:lastModifiedBy: admin
-        hippostdpubwf:publicationDate: 2019-12-17T11:48:47.308Z
+        hippostdpubwf:publicationDate: 2020-01-10T14:29:11.826Z
         hippotranslation:id: 58eba379-722b-43b6-85c5-a58cffa5d53d
         hippotranslation:locale: en
         visitscotland:title: DMS Stops Day
@@ -276,24 +273,22 @@
         /visitscotland:stops[2]:
           jcr:primaryType: hippo:mirror
           hippo:docbase: 28abd074-5fc4-4ebc-a424-1d4f9e5cb0e6
-        /visitscotland:stops[3]:
-          jcr:primaryType: hippo:mirror
-          hippo:docbase: 1ead4399-7e30-47dc-9b75-2ea488fb5742
     /day-2:
       jcr:primaryType: hippo:handle
       jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
       jcr:uuid: e48273b9-7b42-4456-837f-e014dc069d95
       hippo:name: day 2
-      hippo:versionHistory: cadaad50-4de3-4def-b108-703c3eeac28d
+      hippo:versionHistory: 0a449d55-f9ef-454d-afeb-e90afc2cdfe7
       /day-2[1]:
         jcr:primaryType: visitscotland:Day
         jcr:mixinTypes: ['mix:referenceable']
         jcr:uuid: 8d068d19-9845-40ea-80fe-4dc7dd0e95f7
         hippo:availability: []
+        hippostd:holder: admin
         hippostd:state: draft
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2019-12-12T12:06:04.129Z
-        hippostdpubwf:lastModificationDate: 2020-01-08T09:38:25.663Z
+        hippostdpubwf:lastModificationDate: 2020-01-10T14:29:49.857Z
         hippostdpubwf:lastModifiedBy: admin
         hippotranslation:id: 2af219fa-878e-435f-ae2e-e296a16e21a9
         hippotranslation:locale: en
@@ -312,13 +307,13 @@
             </ul>
         /visitscotland:stops[1]:
           jcr:primaryType: hippo:mirror
-          hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
+          hippo:docbase: 8030a311-a942-40e6-bb89-41dd6fea60df
         /visitscotland:stops[2]:
           jcr:primaryType: hippo:mirror
-          hippo:docbase: 8030a311-a942-40e6-bb89-41dd6fea60df
+          hippo:docbase: 8b215960-87aa-47ae-9c11-8a750be25ad8
         /visitscotland:stops[3]:
           jcr:primaryType: hippo:mirror
-          hippo:docbase: 8b215960-87aa-47ae-9c11-8a750be25ad8
+          hippo:docbase: 1ead4399-7e30-47dc-9b75-2ea488fb5742
       /day-2[2]:
         jcr:primaryType: visitscotland:Day
         jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
@@ -327,7 +322,7 @@
         hippostd:state: unpublished
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2019-12-12T12:06:04.129Z
-        hippostdpubwf:lastModificationDate: 2020-01-08T09:38:32.784Z
+        hippostdpubwf:lastModificationDate: 2020-01-10T13:26:06.936Z
         hippostdpubwf:lastModifiedBy: admin
         hippotranslation:id: 2af219fa-878e-435f-ae2e-e296a16e21a9
         hippotranslation:locale: en
@@ -346,13 +341,13 @@
             </ul>
         /visitscotland:stops[1]:
           jcr:primaryType: hippo:mirror
-          hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
+          hippo:docbase: 8030a311-a942-40e6-bb89-41dd6fea60df
         /visitscotland:stops[2]:
           jcr:primaryType: hippo:mirror
-          hippo:docbase: 8030a311-a942-40e6-bb89-41dd6fea60df
+          hippo:docbase: 8b215960-87aa-47ae-9c11-8a750be25ad8
         /visitscotland:stops[3]:
           jcr:primaryType: hippo:mirror
-          hippo:docbase: 8b215960-87aa-47ae-9c11-8a750be25ad8
+          hippo:docbase: 1ead4399-7e30-47dc-9b75-2ea488fb5742
       /day-2[3]:
         jcr:primaryType: visitscotland:Day
         jcr:mixinTypes: ['mix:referenceable']
@@ -361,9 +356,9 @@
         hippostd:state: published
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2019-12-12T12:06:04.129Z
-        hippostdpubwf:lastModificationDate: 2020-01-08T09:38:32.784Z
+        hippostdpubwf:lastModificationDate: 2020-01-10T13:26:06.936Z
         hippostdpubwf:lastModifiedBy: admin
-        hippostdpubwf:publicationDate: 2020-01-08T09:38:36.678Z
+        hippostdpubwf:publicationDate: 2020-01-10T14:29:14.208Z
         hippotranslation:id: 2af219fa-878e-435f-ae2e-e296a16e21a9
         hippotranslation:locale: en
         visitscotland:title: Dummy Stops
@@ -381,10 +376,10 @@
             </ul>
         /visitscotland:stops[1]:
           jcr:primaryType: hippo:mirror
-          hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
+          hippo:docbase: 8030a311-a942-40e6-bb89-41dd6fea60df
         /visitscotland:stops[2]:
           jcr:primaryType: hippo:mirror
-          hippo:docbase: 8030a311-a942-40e6-bb89-41dd6fea60df
+          hippo:docbase: 8b215960-87aa-47ae-9c11-8a750be25ad8
         /visitscotland:stops[3]:
           jcr:primaryType: hippo:mirror
-          hippo:docbase: 8b215960-87aa-47ae-9c11-8a750be25ad8
+          hippo:docbase: 1ead4399-7e30-47dc-9b75-2ea488fb5742

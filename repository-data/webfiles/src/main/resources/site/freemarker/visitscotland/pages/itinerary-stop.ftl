@@ -8,38 +8,21 @@
 
 <#macro itineraryStop stop lastStop>
     <#assign prod = stops[stop.identifier]>
-    <#assign title = prod.title />
     <#assign image = "" />
-    <#assign imgAltText = "" />
-    <#assign imgCredit = "" />
     <#if prod.image.cmsImage??>
         <#assign image>
             <@hst.link hippobean=prod.image.cmsImage.original/>
         </#assign>
-        <#assign imgAltText = prod.image.cmsImage.altText>
-        <#assign imgCredit = prod.image.cmsImage.credit>
     <#elseif prod.image.externalImage??>
         <#assign image = prod.image.externalImage />
-        <#assign imgAltText = prod.image.altText>
-        <#assign imgCredit = prod.image.credit>
     <#else>
 
     </#if>
-    
-    <#assign stopNumber = prod.index>
-    <#assign latitude = prod.coordinates.latitude>
-    <#assign longitude = prod.coordinates.longitude>
     <#assign href = prod.cta>
-    <#assign timeToExplore = prod.timeToexplore>
     <#assign address = prod.address>
     <#assign priceText = prod.priceText>
 
-    <#assign description = prod.description>
-    <#assign tipsTitle = prod.tipsTitle>
-    <#assign tips = prod.tipsBody>
-
-
-    <li class="vs-itinerary-stop__list-item has-edit-button" data-stop="${stopNumber}">
+    <li class="vs-itinerary-stop__list-item has-edit-button" data-stop="${prod.index}">
       <@hst.manageContent hippobean=stop />
       <div class="d-flex justify-content-between align-items-top">
         <vs-icon name="map-marker-filled" variant="secondary-teal" size="md" :padding="0"></vs-icon>
@@ -48,8 +31,8 @@
           thin 
           class="vs-itinerary-stop__title ml-4 flex-fill">
           <span
-          ><@fmt.message key="stop.title"/> ${stopNumber}</span>
-            ${title}
+          ><@fmt.message key="stop.title"/> ${prod.index}</span>
+            ${prod.title}
             <#if !stop.stopItem?? && editMode>
                 <span class="text-danger">The stop doesn't have any product linked to the stop</span>
             </#if>
@@ -57,46 +40,46 @@
          <#if href?? && href?has_content>
             <vs-favourites-toggle-button
             href="${href}"
-            title="${title}">
+            title="${prod.title}">
             </vs-favourites-toggle-button>
         </#if>
       </div>
       <#if image?? && image?has_content>
         <vs-image-with-caption
-          alt-text="${imgAltText}"
-          credit="${imgCredit}"
-          caption="${imgAltText}"
+          alt-text="${prod.image.altText}"
+          credit="${prod.image.credit}"
+          caption="${prod.image.altText}"
           image-src="${image}"
-          latitude="${latitude}"
-          longitude="${longitude}"
+          latitude="${prod.coordinates.latitude}"
+          longitude="${prod.coordinates.longitude}"
           >
         <img 
           class="lazyload" 
           src="${image}"
           srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
           data-srcset="${image}" 
-          alt="${imgAltText}"
+          alt="${prod.image.altText}"
           data-sizes="auto" />
         </vs-image-with-caption>
       </#if>
 
-      <#if description?? && description?has_content>
-        <@hst.html hippohtml=description/>
+      <#if prod.description?? && prod.description?has_content>
+        <@hst.html hippohtml=prod.description/>
       </#if>
 
-        <#if timeToExplore?? && timeToExplore?has_content>
+        <#if prod.timeToexplore?? && prod.timeToexplore?has_content>
         <dl slot="stop-time-to-explore" class="list-inline my-4 mb-0">
-            <dt class="list-inline-item mb-0">Time to explore:</dt>
-            <dd class="list-inline-item mb-0">${timeToExplore}</dd>
+            <dt class="list-inline-item mb-0"><@fmt.message key="stop.timeToExplore"/>:</dt>
+            <dd class="list-inline-item mb-0">${prod.timeToexplore}</dd>
         </dl>
         </#if>
-        <#if ((tipsTitle?? && tipsTitle?has_content) || (prod.tipsBody.content?? &&  prod.tipsBody.content?size gt 1))>
+        <#if ((prod.tipsTitle?? && prod.tipsTitle?has_content) || (prod.tipsBody.content?? &&  prod.tipsBody.content.length() gt 1))>
           <vs-itinerary-stop-pullout>
             <div slot="text">
-              <#if tipsTitle?? && tipsTitle?has_content>
-                <strong>${tipsTitle}</strong>
+              <#if  prod.tipsTitle?? &&  prod.tipsTitle?has_content>
+                <strong>${prod.tipsTitle}</strong>
               </#if>
-              <@hst.html hippohtml=tips/>
+              <@hst.html hippohtml=prod.tipsBody/>
             </div>
             <vs-svg slot="svg" path="highland-cow" />
           </vs-itinerary-stop-pullout>
@@ -114,11 +97,11 @@
             </dl>
         </#if>
 
-        <#if lastStop=="true" && longitude?? && longitude?has_content && latitude?? && latitude?has_content>
+        <#if lastStop=="true" && prod.coordinates.longitude?? && prod.coordinates.longitude?has_content && prod.coordinates.latitude?? && prod.coordinates.latitude?has_content>
           <vs-button
             class="d-inline-flex mb-4"
             variant="outline-primary"
-            href="https://www.visitscotland.com/info/accommodation/search-results?prodtypes=cate&lat=${latitude}&lng=${longitude}&locprox=2&areaproxdist=1&stay=&endDate=&r1a=2&r1children=0&r1infants=0&r1c=0&avail=off&order=proximityAsc"
+            href="https://www.visitscotland.com/info/accommodation/search-results?prodtypes=cate&lat=${prod.coordinates.latitude}&lng=${prod.coordinates.longitude}&locprox=2&areaproxdist=5&stay=&endDate=&r1a=2&r1children=0&r1infants=0&r1c=0&avail=off&order=proximityAsc"
           >
               <vs-icon name="food" variant="primary" size="sm"></vs-icon>
               <@fmt.message key="stop.nearby-eat"/>
@@ -127,7 +110,7 @@
           <vs-button
             class="d-inline-flex"
             variant="outline-primary"
-            href="https://www.visitscotland.com/info/accommodation/search-results?prodtypes=acco&lat=${latitude}&lng=${longitude}&locprox=2&areaproxdist=1&stay=&endDate=&r1a=2&r1children=0&r1infants=0&r1c=0&avail=off&order=proximityAsc"
+            href="https://www.visitscotland.com/info/accommodation/search-results?prodtypes=acco&lat=${prod.coordinates.latitude}&lng=${prod.coordinates.longitude}&locprox=2&areaproxdist=5&stay=&endDate=&r1a=2&r1children=0&r1infants=0&r1c=0&avail=off&order=proximityAsc"
           >
               <vs-icon name="product-accommodation" variant="primary" size="sm"></vs-icon>
               <@fmt.message key="stop.nearby-stay"/>

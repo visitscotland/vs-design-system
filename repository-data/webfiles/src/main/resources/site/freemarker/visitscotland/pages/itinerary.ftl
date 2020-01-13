@@ -46,10 +46,10 @@
 <#assign stopNumber = 0>
 <#assign lastStop = 0>
 
-<#if !firstStopLocation?has_content>
+<#if document.start?has_content>
    <#assign firstStopLocation = document.start>
 </#if>
-<#if !lastStopLocation?has_content>
+<#if document.finish?has_content>
     <#assign lastStopLocation = document.finish>
 </#if>
 
@@ -121,7 +121,7 @@
                             </vs-summary-box-list-item>
                             <vs-summary-box-list-item>
                                 <strong><@fmt.message key="distance"/><br /><abbr title="<@fmt.message key="miles"/>"><@fmt.message key="miles-abbreviation"/></abbr>/<abbr title="<@fmt.message key="kilometres"/>"><@fmt.message key="kilometres-abbreviation"/></abbr></strong>
-                                <span>${document.distance?round}<span class="divider">/</span>${document.distance?round*1.6}</span><#-- TODO: #{document.distance*1.609344; M2} talk to team regarding rounding the display-->
+                                <span>${document.distance}<span class="divider">/</span>${document.distance*1.6}</span><#-- TODO: #{document.distance*1.609344; M2} talk to team regarding rounding the display-->
                             </vs-summary-box-list-item>
                             <vs-summary-box-list-item>
                                 <strong><@fmt.message key="transport"/></strong>
@@ -191,11 +191,11 @@
                                     <#list day.transports as transport>
                                         <dd class="list-inline-item">
                                             <#-- TODO: Tooltip title and sr-only should spit out the transport value, not the key -->
-                                            <vs-tooltip title="${transport}">
+                                            <vs-tooltip title="<@fmt.message key="${transport}"/>">
                                                 <vs-icon name="${transport}" variant="dark" size="sm"></vs-icon>
                                             </vs-tooltip>
                                             <#-- TODO: Tooltip title and sr-only should spit out the transport value, not the key -->
-                                            <span class="sr-only">${transport}</span>
+                                            <span class="sr-only"><@fmt.message key="${transport}"/></span>
                                         </dd>
                                     </#list>
                                 </dl>

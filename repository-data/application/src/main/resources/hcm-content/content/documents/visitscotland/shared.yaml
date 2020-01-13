@@ -28,7 +28,7 @@
         hippostd:state: draft
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2019-12-10T13:29:39.541Z
-        hippostdpubwf:lastModificationDate: 2020-01-07T17:25:46.891Z
+        hippostdpubwf:lastModificationDate: 2020-01-13T09:38:34.420Z
         hippostdpubwf:lastModifiedBy: admin
         hippotranslation:id: bd1aa2df-999b-4ed5-af2e-1f9cf0286372
         hippotranslation:locale: en
@@ -116,7 +116,7 @@
       jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
       jcr:uuid: ca56dfe6-f8c8-410f-aa63-ed513fc71385
       hippo:name: Royal mil and grassmarket
-      hippo:versionHistory: c78d4785-6622-45fb-8b61-7279603fea3b
+      hippo:versionHistory: 2f6f6c0e-eb98-40bf-a2e2-b6ee8152b949
       /royal-mil-and-grassmarket[1]:
         jcr:primaryType: visitscotland:Stop
         jcr:mixinTypes: ['mix:referenceable']
@@ -125,7 +125,7 @@
         hippostd:state: draft
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2019-12-11T12:39:11.963Z
-        hippostdpubwf:lastModificationDate: 2020-01-08T12:12:43.900Z
+        hippostdpubwf:lastModificationDate: 2020-01-10T14:45:23.610Z
         hippostdpubwf:lastModifiedBy: admin
         hippotranslation:id: 9da62445-4ef0-470c-9d9c-ed812d053659
         hippotranslation:locale: en
@@ -197,9 +197,9 @@
         hippostd:state: published
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2019-12-11T12:39:11.963Z
-        hippostdpubwf:lastModificationDate: 2019-12-23T12:12:31.292Z
+        hippostdpubwf:lastModificationDate: 2020-01-08T09:44:13.108Z
         hippostdpubwf:lastModifiedBy: admin
-        hippostdpubwf:publicationDate: 2019-12-23T12:12:33.425Z
+        hippostdpubwf:publicationDate: 2020-01-13T10:27:37.275Z
         hippotranslation:id: 9da62445-4ef0-470c-9d9c-ed812d053659
         hippotranslation:locale: en
         visitscotland:tipsTitle: Old Town Hideouts - Sample Pullout Title
@@ -216,7 +216,7 @@
             Chambers on the Royal Mile.</p>
         /visitscotland:tips:
           jcr:primaryType: hippostd:html
-          hippostd:content: <p>Old Town Hideouts - Sample Pullout Information</p>
+          hippostd:content: ''
         /visitscotland:product:
           jcr:primaryType: visitscotland:DMSLink
           visitscotland:product: '918401'
@@ -231,7 +231,7 @@
       jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
       jcr:uuid: 28abd074-5fc4-4ebc-a424-1d4f9e5cb0e6
       hippo:name: GREYFRIARS KIRKYARD
-      hippo:versionHistory: c70c7210-ba7c-484e-8d0e-28d070463bfd
+      hippo:versionHistory: e27f09d6-cf65-4f7c-9ccc-57b1008c817a
       /greyfriars-kirkyard[1]:
         jcr:primaryType: visitscotland:Stop
         jcr:mixinTypes: ['mix:referenceable']
@@ -240,11 +240,11 @@
         hippostd:state: draft
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2019-12-11T12:40:08.862Z
-        hippostdpubwf:lastModificationDate: 2020-01-08T14:01:54.015Z
+        hippostdpubwf:lastModificationDate: 2020-01-13T09:50:34.893Z
         hippostdpubwf:lastModifiedBy: admin
         hippotranslation:id: 1bdaaad2-68eb-4493-878c-0961215fe02a
         hippotranslation:locale: en
-        visitscotland:tipsTitle: Greyfriars Kirkyard - Sample Pullout Title
+        visitscotland:tipsTitle: Pull out title example
         visitscotland:title: GREYFRIARS KIRKYARD
         /visitscotland:description:
           jcr:primaryType: hippostd:html
@@ -255,7 +255,7 @@
             and Elizabeth Moodie. A coincidence? We think not.</p>'
         /visitscotland:tips:
           jcr:primaryType: hippostd:html
-          hippostd:content: <p>Greyfriars Kirkyard - Sample Pullout Information</p>
+          hippostd:content: <p>Description example for pull out</p>
         /visitscotland:product:
           jcr:primaryType: visitscotland:ExternalProductLink
           visitscotland:Link: https://greyfriarskirk.com/
@@ -278,11 +278,11 @@
         hippostd:state: unpublished
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2019-12-11T12:40:08.862Z
-        hippostdpubwf:lastModificationDate: 2020-01-08T14:01:50.575Z
+        hippostdpubwf:lastModificationDate: 2020-01-13T09:50:27.275Z
         hippostdpubwf:lastModifiedBy: admin
         hippotranslation:id: 1bdaaad2-68eb-4493-878c-0961215fe02a
         hippotranslation:locale: en
-        visitscotland:tipsTitle: Greyfriars Kirkyard - Sample Pullout Title
+        visitscotland:tipsTitle: Pull out title example
         visitscotland:title: GREYFRIARS KIRKYARD
         /visitscotland:description:
           jcr:primaryType: hippostd:html
@@ -293,7 +293,7 @@
             and Elizabeth Moodie. A coincidence? We think not.</p>'
         /visitscotland:tips:
           jcr:primaryType: hippostd:html
-          hippostd:content: <p>Greyfriars Kirkyard - Sample Pullout Information</p>
+          hippostd:content: <p>Description example for pull out</p>
         /visitscotland:product:
           jcr:primaryType: visitscotland:ExternalProductLink
           visitscotland:Link: https://greyfriarskirk.com/
@@ -316,12 +316,12 @@
         hippostd:state: published
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2019-12-11T12:40:08.862Z
-        hippostdpubwf:lastModificationDate: 2020-01-08T14:01:50.575Z
+        hippostdpubwf:lastModificationDate: 2020-01-13T09:50:27.275Z
         hippostdpubwf:lastModifiedBy: admin
-        hippostdpubwf:publicationDate: 2020-01-08T14:01:53.808Z
+        hippostdpubwf:publicationDate: 2020-01-13T09:50:34.803Z
         hippotranslation:id: 1bdaaad2-68eb-4493-878c-0961215fe02a
         hippotranslation:locale: en
-        visitscotland:tipsTitle: Greyfriars Kirkyard - Sample Pullout Title
+        visitscotland:tipsTitle: Pull out title example
         visitscotland:title: GREYFRIARS KIRKYARD
         /visitscotland:description:
           jcr:primaryType: hippostd:html
@@ -332,7 +332,7 @@
             and Elizabeth Moodie. A coincidence? We think not.</p>'
         /visitscotland:tips:
           jcr:primaryType: hippostd:html
-          hippostd:content: <p>Greyfriars Kirkyard - Sample Pullout Information</p>
+          hippostd:content: <p>Description example for pull out</p>
         /visitscotland:product:
           jcr:primaryType: visitscotland:ExternalProductLink
           visitscotland:Link: https://greyfriarskirk.com/
@@ -352,13 +352,12 @@
       jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
       jcr:uuid: 8b215960-87aa-47ae-9c11-8a750be25ad8
       hippo:name: Casa Jose
-      hippo:versionHistory: cc5eda6a-1dca-4e46-a41d-8ebf041f70d4
+      hippo:versionHistory: 73b3a4f2-cd16-4eb4-b1ae-212c823042c0
       /casa-jose[1]:
         jcr:primaryType: visitscotland:Stop
         jcr:mixinTypes: ['mix:referenceable']
         jcr:uuid: 863c3f82-ab9a-41e1-9919-5407827a8ee9
         hippo:availability: []
-        hippostd:holder: admin
         hippostd:state: draft
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2019-12-16T12:20:46.037Z
@@ -430,12 +429,12 @@
         hippostd:state: published
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2019-12-16T12:20:46.037Z
-        hippostdpubwf:lastModificationDate: 2019-12-17T11:35:58.829Z
+        hippostdpubwf:lastModificationDate: 2020-01-08T13:54:10.322Z
         hippostdpubwf:lastModifiedBy: admin
-        hippostdpubwf:publicationDate: 2019-12-23T11:56:54.420Z
+        hippostdpubwf:publicationDate: 2020-01-13T10:27:42.356Z
         hippotranslation:id: b4f184af-52de-4e48-92ab-33cc5c2519e0
         hippotranslation:locale: en
-        visitscotland:tipsTitle: Don't print this
+        visitscotland:tipsTitle: ''
         visitscotland:title: Casa Jose
         /visitscotland:description:
           jcr:primaryType: hippostd:html
@@ -449,8 +448,8 @@
           visitscotland:timeToExplore: ' 24'
           /visitscotland:Coordinates:
             jcr:primaryType: visitscotland:Coordinates
-            visitscotland:latitude: 57.2
-            visitscotland:longitude: 5.2
+            visitscotland:latitude: 55.9533
+            visitscotland:longitude: -3.1883
           /visitscotland:image:
             jcr:primaryType: hippogallerypicker:imagelink
             hippo:docbase: 1e4be246-297b-4404-8102-80fe1bc0ddf7
