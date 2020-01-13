@@ -72,11 +72,11 @@
             <dd class="list-inline-item mb-0">${prod.timeToexplore}</dd>
         </dl>
         </#if>
-        <#if prod.tipsBody?? && prod.tipsBody?has_content>
+        <#if ((prod.tipsTitle?? && prod.tipsTitle?has_content) || (prod.tipsBody.content?? &&  prod.tipsBody.content.length() gt 1))>
           <vs-itinerary-stop-pullout>
             <div slot="text">
               <#if  prod.tipsTitle?? &&  prod.tipsTitle?has_content>
-                <strong>${ prod.tipsTitle}</strong>
+                <strong>${prod.tipsTitle}</strong>
               </#if>
               <@hst.html hippohtml=prod.tipsBody/>
             </div>
