@@ -1,5 +1,5 @@
 <template>
-  <dl class="vs-itinerary__highlights-list py-7">
+  <dl class="vs-itinerary__highlights-list py-7 mb-0">
     <slot />
   </dl>
 </template>
