@@ -15,18 +15,18 @@
 <#include "../../vs-dotcom-ds/components/tooltip.ftl">
 <#include "../../vs-dotcom-ds/components/summary-box-list.ftl">
 <#include "../../vs-dotcom-ds/components/summary-box-list-item.ftl">
+<#include "../../vs-dotcom-ds/components/itinerary-day.ftl">
+<#include "../../vs-dotcom-ds/components/itinerary-highlights-list.ftl">
 <#include "../../vs-dotcom-ds/components/itinerary.ftl">
 <#include "../../vs-dotcom-ds/components/itinerary-map.ftl">
 <#include "../../vs-dotcom-ds/components/itinerary-map-marker.ftl">
-<#include "../../vs-dotcom-ds/components/itinerary-day.ftl">
-<#include "../../vs-dotcom-ds/components/itinerary-highlights-list.ftl">
-<#include "../../vs-dotcom-ds/components/itinerary-stop-pullout.ftl">
 <#include "../../vs-dotcom-ds/components/svg.ftl">
 <#include "../../vs-dotcom-ds/components/related-content-list.ftl">
 <#include "../../vs-dotcom-ds/components/related-content-list-item.ftl">
 <#include "../../vs-dotcom-ds/components/related-content-card.ftl">
 
 <#include "itinerary-stop.ftl">
+<#include "itinerary-map.ftl">
 
 <#-- Implicit Request Objects -->
 <#-- @ftlvariable name="document" type="com.visitscotland.brmx.beans.Itinerary" -->
@@ -101,6 +101,10 @@
                         <vs-heading level="1">
                             ${document.title}
                         </vs-heading>
+                    </vs-col>
+                </vs-row>
+                <vs-row class="justify-content-md-between">
+                    <vs-col cols="12" sm="6" lg="7">
                         <div class="lead">
                             <@hst.html hippohtml=document.introduction/>
                         </div>
@@ -153,53 +157,9 @@
         </vs-container>
     </vs-page-intro>
     <vs-itinerary>
-        <vs-itinerary-map
-            slot="map"
-            access-token="<@fmt.message key="mapbox.devkey"/>"
-            overview-map-longitude="57.81"
-            overview-map-latitude="-4.13"
-            overview-map-zoom="5"
-            :stops='[{
-                title: "Beach fun at Elie And Earlsferry",
-                latitude: "56.18974",
-                longitude: "-2.81868",
-                stopCount: "1",
-                imageSrc: "https://via.placeholder.com/150",
-                altText: "Image placeholder"
-            },
-            {
-                title: "Kellie Castle and Garden",
-                latitude: "56.24068",
-                longitude: "-2.76587",
-                stopCount: "2",
-                imageSrc: "https://via.placeholder.com/150",
-                altText: "Image placeholder"
-            },
-            {
-                title: "Scotlands Secret Bunker",
-                latitude: "56.27057",
-                longitude: "-2.69826",
-                stopCount: "3",
-                imageSrc: "https://via.placeholder.com/150",
-                altText: "Image placeholder"
-            },
-            {
-                title: "Fish and chips in Anstruther",
-                latitude: "56.22448",
-                longitude: "-2.70087",
-                stopCount: "4",
-                imageSrc: "https://via.placeholder.com/150",
-                altText: "Image placeholder"
-            }]'
-            :labels='{
-                mapControlsFullscreenOpen: "Show fullscreen",
-                mapControlsFullscreenClose: "Exit fullscreen",
-                mapControlsCompass: "Reset angle",
-                mapControlsZoomIn: "Zoom in",
-                mapControlsZoomOut: "Zoom out"
-            }'
-        >
-        </vs-itinerary-map>
+        <div slot="map">
+            <@itineraryMap days=document.days />
+        </div>
         <vs-container slot="list">
             <vs-row>
                 <vs-col cols="12" tag="ul" class="list-unstyled">
@@ -255,7 +215,7 @@
                             </ul>
                             <!-- STOP ENDS HERE -->
                         </vs-itinerary-day>
-                        </#list>
+                    </#list>
                 </vs-col>
             </vs-row>
         </vs-container>

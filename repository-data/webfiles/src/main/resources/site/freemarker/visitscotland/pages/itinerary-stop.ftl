@@ -1,4 +1,5 @@
 <#include "../../include/imports.ftl">
+<#include "../../vs-dotcom-ds/components/itinerary-stop-pullout.ftl">
 
 <@hst.setBundle basename="keyFacilities,itinerary"/>
 
