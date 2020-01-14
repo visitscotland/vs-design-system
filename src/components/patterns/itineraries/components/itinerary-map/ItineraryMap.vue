@@ -80,13 +80,6 @@ export default {
   },
   itinerariesStore,
   watch: {
-    activeStopCoordinates(newValue) {
-      if (newValue !== null) {
-        // TODO: show popup when stop is active as well as when it's highlighted
-        // This is especially important on mobile when you click on markers
-        this.addMapPopup()
-      }
-    },
     highlightedStopCoordinates() {
       this.addMapPopup()
     },
@@ -109,22 +102,11 @@ export default {
         }
       }
     },
-    activeStop() {
-      return itinerariesStore.getters["itineraries/getActiveStop"]
-    },
     highlightedStop() {
       return itinerariesStore.getters["itineraries/getHighlightedStop"]
     },
     highlightedStopCoordinates() {
       return itinerariesStore.getters["itineraries/getHighlightedStopCoordinates"]
-    },
-    activeStopCoordinates() {
-      this.geojsonData.features.forEach(feature => {
-        if (feature.properties.stopCount === this.activeStop) {
-          return feature.geometry.coordinates
-        }
-      })
-      return null
     },
   },
   methods: {
@@ -228,11 +210,6 @@ export default {
         this.fitToBounds()
       }
     },
-    isElementOnScreen(stopCount) {
-      var element = document.querySelector("[data-stop='" + stopCount + "']")
-      var bounds = element.getBoundingClientRect()
-      return bounds.top < window.innerHeight && bounds.top > 0
-    },
     lazyloadMapComponent() {
       if (!("IntersectionObserver" in window)) {
         this.initialiseMapComponent()
@@ -247,23 +224,9 @@ export default {
       })
       this.observer.observe(this.$el)
     },
-    onScroll() {
-      this.stops.map(stop => {
-        if (this.isElementOnScreen(stop.stopCount)) {
-          this.setActiveStop(stop.stopCount)
-        }
-      })
-    },
     removeMapPopup() {
       this.popup !== null ? this.popup.remove() : null
       this.popup = null
-    },
-    setActiveStop(stopCount) {
-      if (this.activeStop === stopCount) {
-        return
-      } else {
-        itinerariesStore.dispatch("itineraries/setStopActive", stopCount)
-      }
     },
   },
   created() {
@@ -285,14 +248,9 @@ export default {
     this.lazyloadMapComponent()
     this.isTablet = window.innerWidth >= 768 ? true : false
     window.addEventListener("resize", this.onResize)
-    var designSystemWrapper = document.querySelector(".vds-example")
-    if (designSystemWrapper === null) {
-      window.addEventListener("scroll", this.onScroll)
-    } else designSystemWrapper.addEventListener("scroll", this.onScroll)
   },
   destroyed() {
     window.removeEventListener("resize", this.onResize)
-    window.removeEventListener("scroll", this.onScroll)
   },
 }
 </script>

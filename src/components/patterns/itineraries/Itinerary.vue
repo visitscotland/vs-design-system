@@ -14,7 +14,6 @@
   </component>
 </template>
 <script>
-import itinerariesStore from "@components/patterns/itineraries/itineraries.store"
 import VsIcon from "@components/elements/icon/Icon"
 import VsButton from "@components/elements/button/Button"
 import VsHeading from "@components/elements/heading/Heading"
@@ -24,7 +23,8 @@ import VsImageWithCaption from "@components/patterns/image-with-caption/ImageWit
 import VsItineraryMobileMapToggle from "@components/patterns/itineraries/components/itinerary-mobile-map-toggle/ItineraryMobileMapToggle"
 
 /**
- * TODO: Document usage.
+ * A wrapper component that wraps the itinerary map and list.
+ * It controls display of the mobile map toggle on smaller screens.
  */
 
 export default {
@@ -55,11 +55,6 @@ export default {
       default: "section",
     },
   },
-  computed: {
-    currentActiveStop: () => {
-      return itinerariesStore.getters["itineraries/getActiveStop"]
-    },
-  },
   methods: {
     onResize() {
       this.isDesktop = window.innerWidth >= 1200 ? true : false
@@ -82,14 +77,9 @@ export default {
   },
   mounted() {
     window.addEventListener("resize", this.onResize)
-    var designSystemWrapper = document.querySelector(".vds-example")
-    if (designSystemWrapper === null) {
-      window.addEventListener("scroll", this.onScroll)
-    } else designSystemWrapper.addEventListener("scroll", this.onScroll)
   },
   destroyed() {
     window.removeEventListener("resize", this.onResize)
-    window.removeEventListener("scroll", this.onScroll)
   },
 }
 </script>
@@ -142,97 +132,6 @@ export default {
     })
   })
 
-  <vs-page-intro>
-    <vs-hero
-      :altText="itineraries.sampleItinerary.image.altText"
-      :credit="itineraries.sampleItinerary.image.credit"
-      :caption="itineraries.sampleItinerary.image.caption"
-      :image-src="itineraries.sampleItinerary.image.imageSrc"
-      :latitude="itineraries.sampleItinerary.image.latitude"
-      :longitude="itineraries.sampleItinerary.image.longitude"
-    >
-    <img 
-      class="lazyload" 
-      :src="itineraries.sampleItinerary.image.imageSrc"
-      srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
-      :data-srcset="itineraries.sampleItinerary.image.imageSrc" 
-      :alt="itineraries.sampleItinerary.image.altText"
-      data-sizes="auto"
-       />
-    </vs-hero>
-    <vs-container>
-      <div class="vs-page-intro__wrapper--inner">
-        <vs-breadcrumb>
-          <vs-breadcrumb-item 
-            v-for="(item, index) in breadcrumb.breadcrumb"
-            :key="index"
-            :href="item.href"
-            :active="item.active"
-            :text="item.name"
-            >
-          </vs-breadcrumb-item>
-        </vs-breadcrumb>
-        <vs-row class="justify-content-md-between">
-          <vs-col cols="12" sm="6" lg="7">
-            <vs-heading level="1">
-              {{itineraries.sampleItinerary.h1Heading}}
-            </vs-heading>
-          </vs-col>
-        </vs-row>
-        <vs-row class="justify-content-md-between">
-          <vs-col cols="12" sm="6" lg="7">
-            <div class="lead" v-html="itineraries.sampleItinerary.introduction"></div>
-            <dl class="list-inline">
-              <dt class="list-inline-item">Start / Finish</dt>
-              <dd class="list-inline-item">{{itineraries.sampleItinerary.start}}/{{itineraries.sampleItinerary.finish}}</dd>
-            </dl>
-          </vs-col>
-          <vs-col cols="12" sm="6" md="5" lg="4">
-            <vs-summary-box-list class="bg-warning">
-              <vs-summary-box-list-item>
-                <strong>Days</strong>
-                <span>{{itineraries.sampleItinerary.totalDays}}</span>
-              </vs-summary-box-list-item>
-              <vs-summary-box-list-item>
-                <strong>Distance <br /><abbr title="miles">mi</abbr>/<abbr title="kilometres">km</abbr></strong>
-                <span>{{itineraries.sampleItinerary.totalMiles}}<span class="divider">/</span>{{itineraries.sampleItinerary.totalKM}}</span>
-              </vs-summary-box-list-item>
-              <vs-summary-box-list-item>
-                <strong>Transport</strong>
-                <div class="icon-wrapper">
-                  <vs-icon :name="itineraries.sampleItinerary.transport.key" variant="dark" size="sm" />
-                  {{itineraries.sampleItinerary.transport.value}}
-                </div>
-              </vs-summary-box-list-item>
-              <vs-summary-box-list-item>
-                <strong>Main theme</strong>
-                <div class="icon-wrapper">
-                  <vs-icon :name="itineraries.sampleItinerary.theme.key" variant="dark" size="sm" />
-                  {{itineraries.sampleItinerary.theme.value}}
-                </div>
-              </vs-summary-box-list-item>
-            </vs-summary-box-list>
-          </vs-col>
-        </vs-row>
-      </div>
-     <vs-itinerary-highlights-list>
-      <dt>Highlights</dt>
-      <dd 
-        v-for="(highlight, index) in itineraries.sampleItinerary.highlights"
-        class="mb-0"
-      >
-        {{highlight}}
-      </dd>
-      <dt class="mt-6">Areas Covered</dt>
-      <dd 
-        v-for="(areaCovered, index) in itineraries.sampleItinerary.areasCovered"
-        class="mb-0"
-      >
-        {{areaCovered}}
-      </dd>
-    </vs-itinerary-highlights-list>
-  </vs-container>
-</vs-page-intro>
 <vs-itinerary>
   <!-- TODO: move mapbox prod and dev keys to an environment variable -->
   <vs-itinerary-map
@@ -288,8 +187,7 @@ export default {
             <li 
               slot="stops"
               v-for="(stop, index) in day.stops" 
-              class="vs-itinerary-stop__list-item" 
-              :data-stop="stop.stopCount">
+              class="vs-itinerary-stop__list-item">
               <div class="d-flex justify-content-start align-items-top">
                 <vs-icon name="map-marker-filled" variant="secondary-teal" size="md" :padding="0" />
                 <vs-heading 
@@ -302,13 +200,13 @@ export default {
                 </vs-heading>
               </div>
               <vs-image-with-caption
-                  :altText="stop.image.altText"
-                  :credit="stop.image.credit"
-                  :caption="stop.image.caption"
-                  :image-src="stop.image.imageSrc"
-                  :latitude="stop.image.latitude"
-                  :longitude="stop.image.longitude"
-                  >
+                :altText="stop.image.altText"
+                :credit="stop.image.credit"
+                :caption="stop.image.caption"
+                :image-src="stop.image.imageSrc"
+                :latitude="stop.image.latitude"
+                :longitude="stop.image.longitude"
+                >
                 <img 
                   class="lazyload" 
                   :src="stop.image.imageSrc"
@@ -350,32 +248,5 @@ export default {
     </vs-row>
   </vs-container>
 </vs-itinerary>
-<vs-related-content-list slot="related-content">
-  <vs-heading level="2" slot="header" class="text-warning text-center py-7 m-0">Extend Your Trip</vs-heading>
-  <vs-related-content-list-item
-    v-for="(item, index) in relatedContent.relatedContent" 
-    :key="index"
-    slot="cards"
-  >
-    <vs-related-content-card>
-      <img 
-        :src="item.image.imageSrc" 
-        :alt="item.image.imageAlt"
-        class="card-img-top" 
-      >
-      <div class="card-body">
-        <!-- TODO: can't use vs-heading component or vs-button component here as we're trying to use bootstrap stretched link -->
-        <h3 class="card-title h5">
-          <a class="stretched-link" :href="item.href">
-            {{item.title}}
-          </a>
-        </h3>
-        <div class="card-text">
-          {{item.description}}
-        </div>
-      </div>
-    </vs-related-content-card>
-  </vs-related-content-list-item>
-</vs-related-content-list>
   ```
 </docs>
