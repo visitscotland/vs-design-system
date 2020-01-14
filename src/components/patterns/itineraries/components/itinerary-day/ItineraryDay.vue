@@ -3,13 +3,13 @@
     <div class="vs-itinerary-day__header text-center position-relative">
       <slot name="day-title" />
       <vs-button
+        :animate="false"
+        :aria-expanded="show ? 'true' : 'false'"
+        @click.native="triggerToggle()"
+        aria-haspopup="true"
         class="vs-itinerary-day__toggle-button position-absolute p-0"
         v-if="!this.isDesktop"
         variant="transparent"
-        :animate="false"
-        @click.native="triggerToggle()"
-        aria-haspopup="true"
-        :aria-expanded="show ? 'true' : 'false'"
       >
         <vs-icon v-if="this.show" name="chevron-down" variant="dark" size="xs" :padding="3" />
         <vs-icon v-else name="chevron-up" variant="dark" size="xs" :padding="3" />
