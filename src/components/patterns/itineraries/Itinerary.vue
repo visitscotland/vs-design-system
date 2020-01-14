@@ -81,8 +81,6 @@ export default {
     },
   },
   mounted() {
-    // TODO: move the resize and scroll event listeners and functions to the parent Itinerary.vue component
-    // add watchers to listen for changes
     window.addEventListener("resize", this.onResize)
     var designSystemWrapper = document.querySelector(".vds-example")
     if (designSystemWrapper === null) {
