@@ -30,7 +30,7 @@ import VsButton from "@components/elements/button/Button"
 import { VsRow, VsCol } from "@components/elements/layout"
 
 /**
- * TODO: Document usage.
+ * Itinerary Day list items.
  */
 
 export default {
@@ -57,6 +57,10 @@ export default {
       type: String,
       default: "li",
     },
+    /**
+     * Logic to collapse certain Day list items on mobile by default
+     * (e.g. after Day 1 and 2, collapse the days on mobile)
+     */
     defaultShow: {
       type: Boolean,
       default: true,
