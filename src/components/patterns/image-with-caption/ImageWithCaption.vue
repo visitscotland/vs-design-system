@@ -53,7 +53,7 @@ import { VsContainer, VsRow, VsCol } from "@components/elements/layout"
 import VsImageLocationMap from "@components/patterns/image-location-map/ImageLocationMap"
 
 /**
- * Itinerary Stop image element
+ * Image with toggle to open a caption and image location map
  */
 export default {
   name: "VsImageWithCaption",
@@ -86,14 +86,6 @@ export default {
      * The caption for the image
      */
     caption: {
-      type: String,
-      required: false,
-    },
-
-    /**
-     * The image ID in the Digital Media Library
-     */
-    dmlId: {
       type: String,
       required: false,
     },

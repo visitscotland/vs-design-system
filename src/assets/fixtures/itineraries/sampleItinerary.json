@@ -51,9 +51,9 @@
           "title": "Beach fun at Elie And Earlsferry",
           "description": "<p>Pack a bucket and spade for sandcastle building, and a towel to dry wet feet after a paddle, and then you are ready to head to the beautiful <a href=\"https://www.visitscotland.com/info/towns-villages/elie-earlsferry-beach-p725111\">Elie Earlsferry Beach</a>. Arches of fine golden sands line the town and are great spots for an hour or two of playing by the shoreline. The award-winning Ship Inn organises beach cricket on Sundays during the summer, and its restaurant is family-friendly with a children's menu option, should you be keen to catch a bite - the sea air is known to induce quite the appetite!</p>",
           "timeToExplore": "Half a day",
-          "pullOut": {
-            "title": "",
-            "description": ""
+          "tips": {
+            "tipsTitle": "",
+            "tipsBody": ""
           },
           "href": "https://www.visitscotland.com/info/towns-villages/elie-p239071",
           "image": {
@@ -73,9 +73,9 @@
           "title": "Kellie Castle and Garden",
           "description": "A short drive away lies the enchanting Kellie Castle and Garden, cared for by the National Trust for Scotland (NTS). Kids are bound to love roaming the extensive garden with its nature walks, apple trees, a pond and an adventure playground. The garden is also home to wildlife, so keep your eyes peeled for native critters such as hedgehogs, badgers, birds and bats. Afterwards, you could drive 10 minutes to the pretty village of <a href=\"https://www.visitscotland.com/info/towns-villages/pittenweem-p239051\">Pittenweem</a> to roam the charming streets and see the historic harbour.",
           "timeToExplore": "1 – 2 hours",
-          "pullOut": {
-            "title": "",
-            "description": ""
+          "tips": {
+            "tipsTitle": "",
+            "tipsBody": ""
           },
           "href": "https://www.visitscotland.com/info/see-do/kellie-castle-garden-p248691",
           "image": {
@@ -104,9 +104,9 @@
           "title": "Scotland's Secret Bunker",
           "description": "Alternatively, the allure of the Secret Bunker, hidden beneath an inconspicuous-looking farmhouse, might appeal - what could be more exciting than visiting a place which was once an official government secret? Built during the Cold War, the bunker would have been the command centre should Scotland have every come under the threat of a nuclear attack. Today, you can delve 100 ft below the surface to explore this covert military base and discover its fascinating history.",
           "timeToExplore": "1 – 2 hours",
-          "pullOut": {
-            "title": "",
-            "description": ""
+          "tips": {
+            "tipsTitle": "",
+            "tipsBody": ""
           },
           "href": "https://www.visitscotland.com/info/see-do/scotlands-secret-bunker-p254671",
           "image": {
@@ -135,9 +135,9 @@
           "title": "Fish and chips in Anstruther",
           "description": "No trip to the East Neuk would be complete without enjoying some delicious, piping-hot, fresh fish and chips! Anstruther has a reputation for this moreish fast food which is known the world over. A fish supper is arguably best enjoyed sitting on the pier, watching the boats bobbing in the harbour. The village is also home to the <a href=\"http://www.visitscotland.com/info/see-do/the-scottish-fisheries-museum-p250991\">Scottish Fisheries Museum</a>, where you can learn about the fishing industry in the east of Scotland and its naval history.",
           "timeToExplore": "1 – 2 hours",
-          "pullOut": {
-            "title": "",
-            "description": ""
+          "tips": {
+            "tipsTitle": "",
+            "tipsBody": ""
           },
           "href": "https://www.visitscotland.com/info/towns-villages/anstruther-p239041",
           "image": {
@@ -176,9 +176,9 @@
           "title": "Scottish Deer Centre",
           "description": "Located in Cupar, 13 miles (20 km) from St Andrews, the Scottish Deer Centre is a must for any animal lover. Here you'll find wolves, lynx, Scottish wildcats and a European brown bear, plus 14 species of deer from all around the world. Feed the deer, watch falconry displays, and see otters being fed, and when it's time to really let off steam, hit the adventure playground or race your rivals on the track in pedal karts.",
           "timeToExplore": "1 – 2 hours",
-          "pullOut": {
-            "title": "",
-            "description": ""
+          "tips": {
+            "tipsTitle": "",
+            "tipsBody": ""
           },
           "href": "https://www.visitscotland.com/info/see-do/simply-the-best-destination-scottish-deer-centre-p254871",
           "image": {
@@ -211,9 +211,9 @@
           "title": "St Andrews Castle",
           "description": "When you reach St Andrews, there are some fantastic options to choose from that kids will love. The ruined St Andrews Castle will really capture the imaginations of aspiring knights or princesses-in-the-making. You can peer into the bottle dungeon, cut out of rock, and explore the underground siege mine. Historic Scotland manages both this attraction and <a href=\"https://www.visitscotland.com/info/see-do/st-andrews-cathedral-p248231\">St Andrews Cathedral</a>, and should you want to visit both sites, you can buy a combined ticket.",
           "timeToExplore": "1 – 2 hours",
-          "pullOut": {
-            "title": "",
-            "description": ""
+          "tips": {
+            "tipsTitle": "",
+            "tipsBody": ""
           },
           "href": "https://www.visitscotland.com/info/see-do/st-andrews-castle-p248521",
           "image": {
@@ -238,9 +238,9 @@
           "title": "St Andrews Aquarium",
           "description": "Ready for some marine adventure? Then head to St Andrews Aquarium, where you can come face to face with the fascinating inhabitants of underwater worlds. Amongst the many creatures you can see, the aquarium is home to British sharks, lobsters, lionfish, piranhas, seals and penguins. There are reptiles too, such as poison dart frogs and creepy crawlies. Plus, you can meet the family of comical meerkats! Find out more about the curious creatures of the aquarium at talks and feeding and handling sessions that are held throughout the day.",
           "timeToExplore": "1 – 2 hours",
-          "pullOut": {
-            "title": "",
-            "description": ""
+          "tips": {
+            "tipsTitle": "",
+            "tipsBody": ""
           },
           "href": "https://www.visitscotland.com/info/see-do/st-andrews-aquarium-p255461",
           "image": {
@@ -273,9 +273,9 @@
           "title": "East Sands Beach",
           "description": "Oh, we do like to be beside the seaside! St Andrews is one of Scotland's favourite coastal destinations, with its two brilliant award-winning beaches, <a href=\"https://www.visitscotland.com/info/towns-villages/st-andrews-east-sands-p315871\">East Sands</a> and <a href=\"http://www.visitscotland.com/info/towns-villages/st-andrews-west-sands-p315881\">West Sands</a>. In the summertime, you'll find there are sandcastle building competitions - so again, be sure to bring your bucket and spade! Wee ones will love East Sands, not far from St Andrews Castle. It has a play area close by and is slightly more sheltered than West Sands. Play hopscotch on the sand, explore rock pools, look for pretty shells and interesting pebbles or chase the waves on the shoreline.",
           "timeToExplore": "Half Day",
-          "pullOut": {
-            "title": "",
-            "description": ""
+          "tips": {
+            "tipsTitle": "",
+            "tipsBody": ""
           },
           "href": "https://www.visitscotland.com/info/towns-villages/st-andrews-east-sands-p315871",
           "image": {
@@ -314,9 +314,9 @@
           "title": "Olympia Swimming Pool",
           "description": "For kids who take to water like ducks, the Olympia Swimming Pool offers some of the most awesome aquatic fun in Scotland. There are rapid rivers, wave pools and seated bubble beds in the leisure pool, and the toddler pool has small slides and interactive features to play with. Daredevils will love the four adrenalin-inducing flumes, which have special light effects and clear sections of the chute. Only the most fearless will ride the Cannonball - it has a thrilling 3.8 m drop into the dive pool!",
           "timeToExplore": "Half Day",
-          "pullOut": {
-            "title": "",
-            "description": ""
+          "tips": {
+            "tipsTitle": "",
+            "tipsBody": ""
           },
           "href": "https://www.visitscotland.com/info/see-do/olympia-p264701",
           "image": {
@@ -353,9 +353,9 @@
           "title": "The V&A Dundee & RRS Discovery",
           "description": "Visit the waterfront to see two of Dundee’s top attractions. The <a href=\"https://www.vam.ac.uk/dundee\">V&A Dundee</a> has lots of exciting exhibitions for all ages and is a great place to stop for lunch, with lots of options in the café and restaurant. Just opposite the wonderful museum, hop on board the ship which has travelled to the ends of the earth and back! Captain Scott and his hardy crew reached the then undiscovered polar region of Antarctica in the early 1900s in one of the most significant expeditions to have ever been undertaken. Wander through the ship, see objects that belonged to Scott and his men, and discover their brave tales of seafaring and difficulties in the Antarctic. At this family attraction, there's plenty of engaging things to see and do that kids will really enjoy.",
           "timeToExplore": "1 - 2 Hours",
-          "pullOut": {
-            "title": "",
-            "description": ""
+          "tips": {
+            "tipsTitle": "",
+            "tipsBody": ""
           },
           "href": "https://www.visitscotland.com/info/see-do/rrs-discovery-p246431",
           "image": {
@@ -385,9 +385,9 @@
           "title": "Dundee Science Centre",
           "description": "Eureka! Learning can be lots of fun, especially at the Dundee Science Centre. With dozens of absorbing displays and hands-on exhibits centred on the senses, prepare to get experimental and have your mind expanded. Explore the solar system in the planetarium, transform yourself into a primate, and meet the robots of the Roborealm. There's a programme of live science shows too, brining fascinating topics to life.",
           "timeToExplore": "1 - 2 Hours",
-          "pullOut": {
-            "title": "",
-            "description": ""
+          "tips": {
+            "tipsTitle": "",
+            "tipsBody": ""
           },
           "href": "https://www.visitscotland.com/info/see-do/dundee-science-centre-p247301",
           "image": {
@@ -412,9 +412,9 @@
           "title": "Scotland’s Jute Museum @ Verdant Works",
           "description": "Step back in time to 19th-century Dundee when the city was at the centre of jute industry - it was a time where clunky, dangerous machinery in mills would rattle, and workers worked long hours in unpleasant conditions. Located in a former jute mill, Verdant Works is now full of multimedia displays and interactives for kids. You can discover the fascinating story of manufacturing, how it shaped the city and the stories of the men, women and children who were employed in the mills. Alternatively, <a href=\"http://www.visitscotland.com/info/see-do/the-mcmanus-dundees-art-gallery-museum-p245991\">the McManus, Dundee's Art Gallery & Museum</a>, is a great place to get to grips with local history.",
           "timeToExplore": "1 - 2 Hours",
-          "pullOut": {
-            "title": "",
-            "description": ""
+          "tips": {
+            "tipsTitle": "",
+            "tipsBody": ""
           },
           "href": "https://www.visitscotland.com/info/see-do/scotlands-jute-museum-verdant-works-p247361",
           "image": {
@@ -466,9 +466,9 @@
           "title": "Charleton Fruit Farm",
           "description": "<p>There's nothing quite like getting fresh produce straight from the source, and at Charleton Farm near Montrose, you can pick your own delicious, ripe berries in the warmer months. It's an activity that kids will just love. The farm also has two incredible play zones with trampolines, forts, karts and more. Should you be feeling peckish, head to the café and try Charleton Farm's famous strawberry tarts, perfect with a hot cup of tea!</p>",
           "timeToExplore": "1 - 2 Hours",
-          "pullOut": {
-            "title": "",
-            "description": "<p>The farm is located just one mile (1.6 km) outside of the town of Montrose. Dogs are welcome on a lead.</p>"
+          "tips": {
+            "tipsTitle": "",
+            "tipsBody": "<p>The farm is located just one mile (1.6 km) outside of the town of Montrose. Dogs are welcome on a lead.</p>"
           },
           "href": "http://www.charleton-farm.co.uk/",
           "image": {
@@ -488,9 +488,9 @@
           "title": "Montrose Basin Visitor Centre",
           "description": "Discover some of the wonderful wildlife of Angus at the Montrose Basin Visitor Centre. The Montrose Basin is a local nature reserve which attracts 50,000 migratory birds every year. The centre has binoculars and other equipment for spotting species such as pink-footed geese and Arctic terns, as well as activities and games based around nature, and a programme of special wildlife events which include guided walks. You can also follow trails which lead to hides, should you have some serious bird enthusiasts in your party!",
           "timeToExplore": "1 - 2 Hours",
-          "pullOut": {
-            "title": "",
-            "description": ""
+          "tips": {
+            "tipsTitle": "",
+            "tipsBody": ""
           },
           "href": "https://www.visitscotland.com/info/see-do/scottish-wildlife-trust-montrose-basin-visitor-centre-p251931",
           "image": {
@@ -527,9 +527,9 @@
           "title": "J.M. Barrie's Birthplace",
           "description": "For kids who love magical stories, a trip to the birthplace of the creator of the character Peter Pan is a must. A playwright and novelist, Barrie included 'the boy who wouldn't grow up' in his stories and plays. His tales have since been adapted into animated and live action films that have been loved by generations of children. See the place he was born, spent his childhood and found inspiration back in the mid-1800s. The Neverland Playpark, shaped like a pirate ship, lies north of J.M. Barrie's Birthplace, close to the Victorian <a href=\"https://www.visitscotland.com/info/see-do/kirriemuir-camera-obscura-p1188881\">Kirriemuir Camera Obscura</a>, which was gifted to the town by the author.",
           "timeToExplore": "1 - 2 Hours",
-          "pullOut": {
-            "title": "",
-            "description": ""
+          "tips": {
+            "tipsTitle": "",
+            "tipsBody": ""
           },
           "href": "https://www.visitscotland.com/info/see-do/jm-barries-birthplace-p250601",
           "image": {

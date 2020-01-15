@@ -8,26 +8,14 @@ export default new Vuex.Store({
     itineraries: {
       namespaced: true,
       state: {
-        activeStop: null,
         highlightedStop: null,
       },
       mutations: {
-        SET_STOP_ACTIVE: (state, payload) => {
-          state.activeStop = payload
-        },
         SET_STOP_HIGHLIGHTED: (state, payload) => {
           state.highlightedStop = payload
         },
       },
       actions: {
-        setStopActive: ({ commit, getters }, payload) => {
-          if (getters.getActiveStop === payload) {
-            return false
-          }
-          commit("SET_STOP_ACTIVE", payload)
-
-          return true
-        },
         setStopHighlighted: ({ commit, getters }, payload) => {
           if (getters.getHighlightedStop === payload) {
             return false
@@ -37,7 +25,6 @@ export default new Vuex.Store({
         },
       },
       getters: {
-        getActiveStop: state => state.activeStop,
         getHighlightedStop: state => state.highlightedStop,
         getHighlightedStopCoordinates: state =>
           state.highlightedStop === null

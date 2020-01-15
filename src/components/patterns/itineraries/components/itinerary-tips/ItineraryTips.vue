@@ -1,9 +1,9 @@
 <template>
-  <div class="itinerary-stop-pullout position-relative my-7">
-    <div class="itinerary-stop-pullout__text">
+  <div class="itinerary-tips position-relative my-7">
+    <div class="itinerary-tips__text">
       <slot name="text" />
     </div>
-    <div class="itinerary-stop-pullout__svg position-absolute">
+    <div class="itinerary-tips__svg position-absolute">
       <slot name="svg" />
     </div>
   </div>
@@ -11,11 +11,11 @@
 
 <script>
 /**
- * TODO: Document usage
+ * Itinerary tips that optionally display within an itinerary stop
  */
 
 export default {
-  name: "VsItineraryStopPullout",
+  name: "VsItineraryTips",
   status: "prototype",
   release: "0.0.1",
   components: {},
@@ -24,16 +24,16 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.itinerary-stop-pullout {
+.itinerary-tips {
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
   padding: $spacer-4 $spacer-4 $spacer-4 $spacer-9;
 }
-.itinerary-stop-pullout__text ::v-deep {
+.itinerary-tips__text ::v-deep {
   p:last-of-type {
     margin-bottom: 0;
   }
 }
-.itinerary-stop-pullout__svg {
+.itinerary-tips__svg {
   left: -10px;
   bottom: -5px;
 }
@@ -41,12 +41,12 @@ export default {
 
 <docs>
   ```jsx
-    <vs-itinerary-stop-pullout>
+    <vs-itinerary-tips>
       <div slot="text">
         <strong>Don't miss:</strong>
         <p>Make sure you visit one of the many lovely cafés and restaurants that the city has to offer, or venture out to experience Edinburgh’s lively nightlife in the many bars, clubs and restaurants across the city.</p>
       </div>
       <vs-svg slot="svg" path="highland-cow" />
-    </vs-itinerary-stop-pullout>
+    </vs-itinerary-tips>
   ``` 
 </docs>

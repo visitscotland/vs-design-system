@@ -1,28 +1,26 @@
 <template>
-  <component
-    :is="type"
+  <button
     class="vs-itinerary-map-marker"
-    :class="isActiveStop || isHighlighted ? 'active' : ''"
+    :class="isHighlighted ? 'active' : ''"
     @click="handleClick()"
+    variant="transparent"
     @mouseenter="handleMouseEnter()"
     @mouseleave="handleMouseLeave()"
-    @focus="handleMouseEnter()"
+    @focus="handleClick()"
   >
     <div class="map-marker__wrapper">
       <vs-icon
         name="map-marker-filled"
-        :class="isActiveStop || isHighlighted ? 'active' : ''"
-        :variant="isActiveStop || isHighlighted ? 'dark' : 'secondary-teal'"
-        :size="isActiveStop || isHighlighted ? 'lg' : 'md'"
+        :class="isHighlighted ? 'active' : ''"
+        :variant="isHighlighted ? 'dark' : 'secondary-teal'"
+        :size="isHighlighted ? 'lg' : 'md'"
         :padding="0"
       />
-      <span
-        class="vs-itinerary-map-marker__count"
-        :class="isActiveStop || isHighlighted ? 'active' : ''"
+      <span class="vs-itinerary-map-marker__count" :class="isHighlighted ? 'active' : ''"
         ><span class="sr-only">Stop</span>{{ this.feature.properties.stopCount }}</span
       >
     </div>
-  </component>
+  </button>
 </template>
 
 <script>
@@ -42,15 +40,10 @@ export default {
   },
   data() {
     return {
-      isActiveStop: false,
       isHighlighted: false,
     }
   },
   props: {
-    type: {
-      type: String,
-      default: "button",
-    },
     feature: {
       type: Object,
       required: true,
@@ -58,49 +51,28 @@ export default {
   },
   itinerariesStore,
   watch: {
-    activeStop(newValue) {
-      if (newValue) {
-        this.toggleActive()
-      }
-    },
     highlightedStop() {
       this.toggleHighlighted()
     },
   },
   computed: {
-    activeStop() {
-      return itinerariesStore.getters["itineraries/getActiveStop"]
-    },
     highlightedStop() {
       return itinerariesStore.getters["itineraries/getHighlightedStop"]
     },
   },
   methods: {
     handleClick() {
-      var element = document.querySelector(
-        "[data-stop='" + this.feature.properties.stopCount + "']"
-      )
-      if (element !== null) {
-        element.scrollIntoView({ block: "start", behavior: "smooth" })
+      if (this.highlightedStop === this.feature) {
+        return itinerariesStore.dispatch("itineraries/setStopHighlighted", null)
+      } else {
+        return itinerariesStore.dispatch("itineraries/setStopHighlighted", this.feature)
       }
-
-      // TODO: Debounce or set timeout of marker highlights when activating a new stop
-      // this is especially needed on mobile so that a bunch of markers don't highlight in succession
-      // when you click on a stop
-
-      return itinerariesStore.dispatch(
-        "itineraries/setStopActive",
-        this.feature.properties.stopCount
-      )
     },
     handleMouseEnter() {
       return itinerariesStore.dispatch("itineraries/setStopHighlighted", this.feature)
     },
     handleMouseLeave() {
       return itinerariesStore.dispatch("itineraries/setStopHighlighted", null)
-    },
-    toggleActive() {
-      this.isActiveStop = this.activeStop === this.feature.properties.stopCount ? true : false
     },
     toggleHighlighted() {
       this.isHighlighted = this.highlightedStop === this.feature ? true : false

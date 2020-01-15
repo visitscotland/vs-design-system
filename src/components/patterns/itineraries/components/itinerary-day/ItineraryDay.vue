@@ -3,13 +3,13 @@
     <div class="vs-itinerary-day__header text-center position-relative">
       <slot name="day-title" />
       <vs-button
+        :animate="false"
+        :aria-expanded="show ? 'true' : 'false'"
+        @click.native="triggerToggle()"
+        aria-haspopup="true"
         class="vs-itinerary-day__toggle-button position-absolute p-0"
         v-if="!this.isDesktop"
         variant="transparent"
-        :animate="false"
-        @click.native="triggerToggle()"
-        aria-haspopup="true"
-        :aria-expanded="show ? 'true' : 'false'"
       >
         <vs-icon v-if="this.show" name="chevron-down" variant="dark" size="xs" :padding="3" />
         <vs-icon v-else name="chevron-up" variant="dark" size="xs" :padding="3" />
@@ -30,7 +30,7 @@ import VsButton from "@components/elements/button/Button"
 import { VsRow, VsCol } from "@components/elements/layout"
 
 /**
- * TODO: Document usage.
+ * Itinerary Day list items.
  */
 
 export default {
@@ -57,6 +57,10 @@ export default {
       type: String,
       default: "li",
     },
+    /**
+     * Logic to collapse certain Day list items on mobile by default
+     * (e.g. after Day 1 and 2, collapse the days on mobile)
+     */
     defaultShow: {
       type: Boolean,
       default: true,
@@ -125,12 +129,14 @@ export default {
 
     dd {
       display: inline-table;
+      vertical-align: top;
       text-align: center;
       width: 90px;
       position: relative;
 
-      .icon-wrapper {
+      svg {
         display: block;
+        margin: 0 auto;
         width: 100%;
       }
     }
