@@ -1,5 +1,5 @@
 <#include "../../include/imports.ftl">
-<#include "../../vs-dotcom-ds/components/itinerary-stop-pullout.ftl">
+<#include "../../vs-dotcom-ds/components/itinerary-tips.ftl">
 
 <@hst.setBundle basename="keyFacilities,itinerary"/>
 
@@ -74,7 +74,7 @@
         </dl>
         </#if>
         <#if ((prod.tipsTitle?? && prod.tipsTitle?has_content) || (prod.tipsBody.content?? &&  prod.tipsBody.content.length() gt 1))>
-          <vs-itinerary-stop-pullout>
+          <vs-itinerary-tips>
             <div slot="text">
               <#if  prod.tipsTitle?? &&  prod.tipsTitle?has_content>
                 <strong>${prod.tipsTitle}</strong>
@@ -82,7 +82,7 @@
               <@hst.html hippohtml=prod.tipsBody/>
             </div>
             <vs-svg slot="svg" path="highland-cow" />
-          </vs-itinerary-stop-pullout>
+          </vs-itinerary-tips>
         </#if>
 
         <#if prod.facilities?? && prod.facilities?size gt 1>
