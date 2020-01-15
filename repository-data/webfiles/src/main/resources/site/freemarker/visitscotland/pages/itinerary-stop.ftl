@@ -79,6 +79,10 @@
           </vs-itinerary-tips>
         </#if>
 
+        <#if href?? && href?has_content>
+          <a class="d-block mb-5" href="${href}">Find out more</a>
+        </#if>
+
         <#if prod.facilities?? && prod.facilities?size gt 1>
             <dl class="itinerary-stop__facilities">
                 <dt class="list-inline-item"><@fmt.message key="stop.key-facilities"/>:</dt>
