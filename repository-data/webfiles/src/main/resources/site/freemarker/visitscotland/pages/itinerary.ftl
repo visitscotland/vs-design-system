@@ -118,7 +118,7 @@
                             </vs-summary-box-list-item>
                             <vs-summary-box-list-item>
                                 <strong><@fmt.message key="distance"/><br /><abbr title="<@fmt.message key="miles"/>"><@fmt.message key="miles-abbreviation"/></abbr>/<abbr title="<@fmt.message key="kilometres"/>"><@fmt.message key="kilometres-abbreviation"/></abbr></strong>
-                                <span>${document.distance}<span class="divider">/</span>${document.distance*1.6}</span><#-- TODO: #{document.distance*1.609344; M2} talk to team regarding rounding the display-->
+                                <span>${document.distance?round}<span class="divider">/</span>${(document.distance?round*1.6)?round}</span><#-- TODO: #{document.distance*1.609344; M2} talk to team regarding rounding the display-->
                             </vs-summary-box-list-item>
                             <vs-summary-box-list-item>
                                 <strong><@fmt.message key="transport"/></strong>
