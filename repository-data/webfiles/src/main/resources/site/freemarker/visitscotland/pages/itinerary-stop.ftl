@@ -37,12 +37,6 @@
                 <span class="text-danger">The stop doesn't have any product linked to the stop</span>
             </#if>
         </vs-heading>
-         <#if href?? && href?has_content>
-            <vs-favourites-toggle-button
-            href="${href}"
-            title="${prod.title}">
-            </vs-favourites-toggle-button>
-        </#if>
       </div>
       <#if image?? && image?has_content>
         <vs-image-with-caption

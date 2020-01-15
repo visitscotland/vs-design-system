@@ -7,7 +7,6 @@
 <#include "../../vs-dotcom-ds/components/row.ftl">
 <#include "../../vs-dotcom-ds/components/col.ftl">
 <#include "../../vs-dotcom-ds/components/icon.ftl">
-<#include "../../vs-dotcom-ds/components/favourites-toggle-button.ftl">
 <#include "../../vs-dotcom-ds/components/image-with-caption.ftl">
 <#include "../../vs-dotcom-ds/components/image-location-map.ftl">
 <#include "../../vs-dotcom-ds/components/button.ftl">
