@@ -2,7 +2,7 @@
     <component :is="type" class="vs-itinerary-day__list-item">
         <div class="vs-itinerary-day__header text-center position-relative">
             <vs-heading level="2" thin class="vs-itinerary-day__title">
-                <span>{{ dayLabel }} {{ dayNumber }}</span>
+                <span>{{ dayNumber }}</span>
                 {{ dayTitle }}
             </vs-heading>
             <vs-button
@@ -73,13 +73,6 @@ export default {
         defaultShow: {
             type: Boolean,
             default: true,
-        },
-        /**
-         * Label of the day in the component
-         */
-        dayLabel: {
-            type: String,
-            required: true,
         },
         /**
          * Number of the day in the component
@@ -188,8 +181,7 @@ export default {
 			v-for="(day, index) in itineraries.sampleItinerary.days"
 			:defaultShow="(day.dayCount < 3) ? true : false"
 			:key="index"
-            dayLabel="day"
-            :dayNumber="day.dayCount"
+            :dayNumber="'Day ' + day.dayCount"
             :dayTitle="day.title"
 		>
 			<dl v-if="day.transport.length" class="list-inline text-center" slot="day-transport">
