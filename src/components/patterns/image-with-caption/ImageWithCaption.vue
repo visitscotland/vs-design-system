@@ -8,7 +8,7 @@
                 v-if="showToggle"
                 :animate="false"
                 :aria-expanded="showCaption ? 'true' : 'false'"
-                aria-controls="vs-image-with-caption__caption-wrapper"
+                :aria-controls="'image_' + imageSrc"
                 @click.native="toggleCaption"
             >
                 <vs-icon name="information" variant="light" size="sm" />
@@ -19,7 +19,7 @@
         <vs-container
             class="position-relative vs-image-with-caption__caption-wrapper"
             :class="[showCaption ? 'd-flex' : 'd-none']"
-            id="vs-image-with-caption__caption-wrapper"
+            :id="'image_' + imageSrc"
         >
             <figcaption ref="figcaption">
                 <vs-row>
@@ -209,22 +209,23 @@ figcaption {
   
   ```jsx
     <vs-image-with-caption
-      v-for="(item, index) in itineraries.sampleItinerary.days[0].stops"
-      :altText="item.image.altText"
-      :credit="item.image.credit"
-      :caption="item.image.caption"
-      :image-src="item.image.imageSrc"
-      :key="index"
-      :latitude="item.image.latitude"
-      :longitude="item.image.longitude"
+        v-for="(item, index) in itineraries.sampleItinerary.days[0].stops"
+        :altText="item.image.altText"
+        :credit="item.image.credit"
+        :caption="item.image.caption"
+        :image-src="item.image.imageSrc"
+        :key="index"
+        :latitude="item.image.latitude"
+        :longitude="item.image.longitude"
     >
-    <img 
-      class="lazyload" 
-      :src="item.image.imageSrc"
-      srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
-      :data-srcset="item.image.imageSrc" 
-      :alt="item.image.altText"
-      data-sizes="auto" />
+        <vs-img 
+            class="lazyload" 
+            :src="item.image.imageSrc"
+            srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+            :data-srcset="item.image.imageSrc" 
+            :alt="item.image.altText"
+            data-sizes="auto">
+        </vs-img>
     </vs-image-with-caption>
   ```
 </docs>
