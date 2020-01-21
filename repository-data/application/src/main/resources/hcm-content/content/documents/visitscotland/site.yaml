@@ -24,10 +24,11 @@
         jcr:mixinTypes: ['mix:referenceable']
         jcr:uuid: bfc6a747-1993-4871-991c-e203c3dff91c
         hippo:availability: []
+        hippostd:holder: admin
         hippostd:state: draft
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2019-12-06T12:48:04.149Z
-        hippostdpubwf:lastModificationDate: 2020-01-13T09:30:04.836Z
+        hippostdpubwf:lastModificationDate: 2020-01-21T15:43:58.416Z
         hippostdpubwf:lastModifiedBy: admin
         hippotranslation:id: a3ed9022-e239-493b-952c-18d01ac36640
         hippotranslation:locale: en

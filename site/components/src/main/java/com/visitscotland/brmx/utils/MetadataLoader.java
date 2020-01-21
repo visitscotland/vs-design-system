@@ -17,7 +17,7 @@ public abstract class MetadataLoader {
     private static final Logger logger = null;//LoggerFactory.getLogger(MetadataLoader.class);
 
     //TODO Calculate environment
-    public static final String SITE = "https://www.visitscotland.com"; //ApplicationProperties.getInstance().getString(MAIN_SITE);
+    public static final String SITE = "https://test1.visitscotland.com"; //ApplicationProperties.getInstance().getString(MAIN_SITE);
 
     private static final Map<Locale, List<LocationObject>> metadata = new HashMap<>();
     private static final Set<Locale> locales = new HashSet<>();
@@ -73,9 +73,9 @@ public abstract class MetadataLoader {
      */
     private static String request(Locale locale){
         if (locale == null){
-            return requestPage(String.format("%s/data/locations",SITE));
+            return requestPage(String.format("%s/data/location/list",SITE));
         } else {
-            return requestPage(String.format("%s/data/locations?locale=%s",SITE, locale.getLanguage()));
+            return requestPage(String.format("%s/data/location/list?locale=%s",SITE, locale.getLanguage()));
         }
     }
 

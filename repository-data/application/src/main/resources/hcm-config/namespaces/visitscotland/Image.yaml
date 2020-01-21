@@ -58,15 +58,24 @@ definitions:
             hipposysedit:primary: false
             hipposysedit:type: visitscotland:Coordinates
             hipposysedit:validators: [optional]
+          /location:
+            jcr:primaryType: hipposysedit:field
+            hipposysedit:mandatory: false
+            hipposysedit:multiple: false
+            hipposysedit:ordered: false
+            hipposysedit:path: visitscotland:location
+            hipposysedit:primary: false
+            hipposysedit:type: DynamicDropdown
       /hipposysedit:prototypes:
         jcr:primaryType: hipposysedit:prototypeset
         /hipposysedit:prototype:
           jcr:primaryType: visitscotland:Image
           jcr:mixinTypes: ['mix:referenceable']
-          jcr:uuid: c8eda2bb-3e53-47d8-a306-7300db7dc034
+          jcr:uuid: 6e1949e1-4fcf-4da7-a53e-723cfe88e18e
           hippogallery:description: ''
           visitscotland:altText: ''
           visitscotland:credit: ''
+          visitscotland:location: ''
           /hippogallery:thumbnail:
             jcr:primaryType: hippogallery:image
             jcr:data:
@@ -135,6 +144,16 @@ definitions:
             hint: ''
             /cluster.options:
               jcr:primaryType: frontend:pluginconfig
+          /location:
+            jcr:primaryType: frontend:plugin
+            caption: Location
+            field: location
+            hint: ''
+            plugin.class: org.hippoecm.frontend.editor.plugins.field.PropertyFieldPlugin
+            wicket.id: ${cluster.id}.field
+            /cluster.options:
+              jcr:primaryType: frontend:pluginconfig
+              valuelistProvider: service.locationlist.default
           /Coordinates:
             jcr:primaryType: frontend:plugin
             caption: Coordinates (optional)

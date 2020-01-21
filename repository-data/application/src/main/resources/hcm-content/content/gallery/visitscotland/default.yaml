@@ -83,6 +83,7 @@
       hippogallery:filename: visitscotland_49386435364 (1).jpg
       visitscotland:altText: He is also lost
       visitscotland:credit: VisitScotland Staff
+      visitscotland:location: '4201'
       /hippogallery:thumbnail:
         jcr:primaryType: hippogallery:image
         hippo:filename: visitscotland_49386435364 (1).jpg
