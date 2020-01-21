@@ -1,17 +1,17 @@
 <template>
-  <component :is="type" class="vs-itinerary position-sticky">
-    <div class="fixed-bottom" v-show="!this.isDesktop && this.withinItineraryMain">
-      <div class="vs-itinerary__map-toggle-container d-flex justify-content-center pb-2">
-        <vs-itinerary-mobile-map-toggle @click.native="toggleShowMap()" />
-      </div>
-    </div>
-    <div class="vs-itinerary__map-container" v-show="this.isDesktop || this.showMap">
-      <slot name="map" />
-    </div>
-    <div class="vs-itinerary__list-container">
-      <slot name="list" />
-    </div>
-  </component>
+    <component :is="type" class="vs-itinerary position-sticky">
+        <div class="fixed-bottom" v-show="!this.isDesktop && this.withinItineraryMain">
+            <div class="vs-itinerary__map-toggle-container d-flex justify-content-center pb-2">
+                <vs-itinerary-mobile-map-toggle @click.native="toggleShowMap()" />
+            </div>
+        </div>
+        <div class="vs-itinerary__map-container" v-show="this.isDesktop || this.showMap">
+            <slot name="map" />
+        </div>
+        <div class="vs-itinerary__list-container">
+            <slot name="list" />
+        </div>
+    </component>
 </template>
 <script>
 import VsIcon from "@components/elements/icon/Icon"
@@ -28,59 +28,61 @@ import VsItineraryMobileMapToggle from "@components/patterns/itineraries/compone
  */
 
 export default {
-  name: "VsItinerary",
-  status: "prototype",
-  release: "0.0.1",
-  data() {
-    return {
-      showMap: window.innerWidth >= 1200 ? true : false,
-      isDesktop: window.innerWidth >= 1200 ? true : false,
-      withinItineraryMain: false,
-    }
-  },
-  components: {
-    VsContainer,
-    VsRow,
-    VsCol,
-    VsHeading,
-    VsImageLocationMap,
-    VsImageWithCaption,
-    VsItineraryMobileMapToggle,
-    VsButton,
-    VsIcon,
-  },
-  props: {
-    type: {
-      type: String,
-      default: "section",
+    name: "VsItinerary",
+    status: "prototype",
+    release: "0.0.1",
+    data() {
+        return {
+            showMap: window.innerWidth >= 1200 ? true : false,
+            isDesktop: window.innerWidth >= 1200 ? true : false,
+            withinItineraryMain: false,
+        }
     },
-  },
-  methods: {
-    onResize() {
-      this.isDesktop = window.innerWidth >= 1200 ? true : false
-      this.showMap = window.innerWidth >= 1200 ? true : false
+    components: {
+        VsContainer,
+        VsRow,
+        VsCol,
+        VsHeading,
+        VsImageLocationMap,
+        VsImageWithCaption,
+        VsItineraryMobileMapToggle,
+        VsButton,
+        VsIcon,
     },
-    onScroll() {
-      var bounding = this.$el.getBoundingClientRect()
-      var insideStartOfItineraryMain =
-        bounding.top <= (window.innerHeight || document.documentElement.clientHeight) ? true : false
-      var outsideEndOfItineraryMain =
-        bounding.bottom <= (window.innerHeight || document.documentElement.clientHeight)
-          ? true
-          : false
-      this.withinItineraryMain =
-        insideStartOfItineraryMain && !outsideEndOfItineraryMain ? true : false
+    props: {
+        type: {
+            type: String,
+            default: "section",
+        },
     },
-    toggleShowMap() {
-      this.showMap = !this.showMap
+    methods: {
+        onResize() {
+            this.isDesktop = window.innerWidth >= 1200 ? true : false
+            this.showMap = window.innerWidth >= 1200 ? true : false
+        },
+        onScroll() {
+            var bounding = this.$el.getBoundingClientRect()
+            var insideStartOfItineraryMain =
+                bounding.top <= (window.innerHeight || document.documentElement.clientHeight)
+                    ? true
+                    : false
+            var outsideEndOfItineraryMain =
+                bounding.bottom <= (window.innerHeight || document.documentElement.clientHeight)
+                    ? true
+                    : false
+            this.withinItineraryMain =
+                insideStartOfItineraryMain && !outsideEndOfItineraryMain ? true : false
+        },
+        toggleShowMap() {
+            this.showMap = !this.showMap
+        },
     },
-  },
-  mounted() {
-    window.addEventListener("resize", this.onResize)
-  },
-  destroyed() {
-    window.removeEventListener("resize", this.onResize)
-  },
+    mounted() {
+        window.addEventListener("resize", this.onResize)
+    },
+    destroyed() {
+        window.removeEventListener("resize", this.onResize)
+    },
 }
 </script>
 
@@ -88,29 +90,33 @@ export default {
 @import "~bootstrap/scss/type";
 
 .vs-itinerary ::v-deep {
-  .vs-itinerary__map-toggle-container {
-    background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 100%);
-  }
-
-  .vs-itinerary__map-container {
-    height: 100vh;
-    position: fixed;
-    top: 0;
-    width: 100vw;
-    z-index: 1020;
-
-    @include media-breakpoint-down(lg) {
-      bottom: 0;
-      left: 0;
-      right: 0;
+    .vs-itinerary__map-toggle-container {
+        background: linear-gradient(
+            to bottom,
+            rgba(255, 255, 255, 0) 0%,
+            rgba(255, 255, 255, 1) 100%
+        );
     }
-    @include media-breakpoint-up(lg) {
-      float: right;
-      position: -webkit-sticky;
-      position: sticky;
-      width: 50vw;
+
+    .vs-itinerary__map-container {
+        height: 100vh;
+        position: fixed;
+        top: 0;
+        width: 100vw;
+        z-index: 1020;
+
+        @include media-breakpoint-down(lg) {
+            bottom: 0;
+            left: 0;
+            right: 0;
+        }
+        @include media-breakpoint-up(lg) {
+            float: right;
+            position: -webkit-sticky;
+            position: sticky;
+            width: 50vw;
+        }
     }
-  }
 }
 </style>
 
@@ -168,12 +174,12 @@ export default {
             {{day.title}}
           </vs-heading>
 
-          <dl v-if="day.dayMiles && day.dayKM" slot="day-distance" class="list-inline text-center">
+        <vs-description-list v-if="day.dayMiles && day.dayKM" slot="day-distance" class="list-inline text-center">
             <dt class="list-inline-item"><abbr title="miles">mi</abbr>/<abbr title="kilometres">km</abbr>:</dt>
             <dd class="list-inline-item">{{day.dayMiles}}/{{day.dayKM}}</dd>
-          </dl>
+        </vs-description-list>
 
-          <dl v-if="day.transport.length" class="list-inline text-center" slot="day-transport">
+        <vs-description-list v-if="day.transport.length" class="list-inline text-center" slot="day-transport">
             <dt class="list-inline-item">Transport:</dt>
             <dd class="list-inline-item" v-for="(transportType, transportTypeIndex) in day.transport" :key="transportTypeIndex">
               <vs-tooltip :title="transportType.value">
@@ -181,7 +187,7 @@ export default {
               </vs-tooltip>
               <span class="sr-only">{{transportType.value}}</span>
             </dd>
-          </dl>
+        </vs-description-list>
                     
           <div class="mb-5" slot="day-introduction" v-html="day.introduction"></div>
             <li 
@@ -216,10 +222,10 @@ export default {
                   data-sizes="auto" />
               </vs-image-with-caption>
               <div slot="stop-description" v-html="stop.description"></div>
-              <dl slot="stop-time-to-explore" class="list-inline my-4 mb-0">
+              <vs-description-list slot="stop-time-to-explore" class="list-inline my-4 mb-0">
                 <dt class="list-inline-item mb-0">Time to explore:</dt>
                 <dd class="list-inline-item mb-0">{{stop.timeToExplore}}</dd>
-              </dl>
+              </vs-description-list>
               <vs-itinerary-tips v-if="stop.tips.tipsBody.length || stop.tips.tipsTitle.length">
                 <div slot="text">
                   <strong>{{stop.tips.tipsTitle}}</strong>
@@ -234,14 +240,14 @@ export default {
                 Find out more
                 <vs-icon name="play-filled" variant="primary" size="xxs" :padding=3 />
               </a>
-              <dl v-if="stop.facilities.length" class="itinerary-stop__facilities">
+              <vs-description-list v-if="stop.facilities.length" class="itinerary-stop__facilities">
                 <dt>Key facilities</dt>
                 <dd v-for="(facility, facilitiesIndex) in stop.facilities"
                   :key="facilitiesIndex">
                   <vs-icon :name="facility.key" variant="dark" size="sm" />
                   {{facility.value}}
                 </dd>
-              </dl>
+              </vs-description-list>
             </li>
         </vs-itinerary-day>
       </vs-col>
