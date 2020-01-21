@@ -128,10 +128,10 @@ export default {
             <vs-row align-h="m-between">
                 <vs-col cols="12" sm="7" lg="6" offset-lg="1">
                     <div class="lead" v-html="itineraries.sampleItinerary.introduction"></div>
-                        <dl class="list-inline">
+                        <vs-description-list class="list-inline">
                             <dt class="list-inline-item">Start / Finish</dt>
                             <dd class="list-inline-item">{{itineraries.sampleItinerary.start}}/{{itineraries.sampleItinerary.finish}}</dd>
-                        </dl>
+                        </vs-description-list>
                 </vs-col>
 
                 <vs-col cols="12" sm="5" md="5" lg="3" offset-lg="1">
@@ -166,16 +166,21 @@ export default {
         <vs-container slot="lower" class="py-lg-4">
             <vs-row>
                 <vs-col cols="12" sm="6" lg="7" offset-lg="1">
-                    <vs-description-list
-                        title="Highlights"
-                        :items="itineraries.sampleItinerary.highlights"
-                    >
-                    </vs-description-list>
-
-                    <vs-description-list
-                        title="Areas Covered"
-                        :items="itineraries.sampleItinerary.areasCovered"
-                    >
+                    <vs-description-list class="py-7 mb-0">
+                        <dt class="vs-description-list__title">Highlights</dt>
+                        <dd 
+                            v-for="(highlight, index) in itineraries.sampleItinerary.highlights"
+                            class="mb-0"
+                        >
+                            {{highlight}}
+                        </dd>
+                        <dt class="vs-description-list__title mt-6">Areas Covered</dt>
+                        <dd 
+                            v-for="(areaCovered, index) in itineraries.sampleItinerary.areasCovered"
+                            class="mb-0"
+                        >
+                            {{areaCovered}}
+                        </dd>
                     </vs-description-list>
                 </vs-col>
             </vs-row>
