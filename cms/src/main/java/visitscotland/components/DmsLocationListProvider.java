@@ -71,7 +71,7 @@ public class DmsLocationListProvider extends Plugin implements IValueListProvide
 
             for (int i = 0 ; i < c.length(); i++) {
                 JSONObject obj = c.getJSONObject(i);
-                ListItem list = new ListItem(obj.getString("key") ,obj.getString("name"));
+                ListItem list = new ListItem(obj.getString("name") ,obj.getString("name"));
 
                 valueList.add(list);
             }

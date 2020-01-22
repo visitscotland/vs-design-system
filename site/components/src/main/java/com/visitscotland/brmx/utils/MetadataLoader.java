@@ -72,10 +72,11 @@ public abstract class MetadataLoader {
      * @return HTML fragment according to the type and the locale
      */
     private static String request(Locale locale){
+        //TODO Change the level to add polygon (for destinations pages)
         if (locale == null){
-            return requestPage(String.format("%s/data/location/list",SITE));
+            return requestPage(String.format("%s/data/location/list?level=District&level=Destination",SITE));
         } else {
-            return requestPage(String.format("%s/data/location/list?locale=%s",SITE, locale.getLanguage()));
+            return requestPage(String.format("%s/data/location/list?level=District&level=Destination&locale=%s",SITE, locale.getLanguage()));
         }
     }
 
