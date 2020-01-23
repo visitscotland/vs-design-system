@@ -1,6 +1,6 @@
 <template>
     <div class="text-center vs-summary-box-label">
-        <strong><slot /></strong>
+        <strong>{{ label }}</strong>
     </div>
 </template>
 
@@ -13,7 +13,11 @@ export default {
     status: "prototype",
     release: "0.0.1",
     components: {},
-    props: {},
+    props: {
+        label: {
+            type: String,
+        },
+    },
 }
 </script>
 
@@ -39,7 +43,7 @@ export default {
   
   ```jsx
     <div class="position-relative p-5">
-        <vs-summary-box-label>Distance <br /><abbr title="miles">mi</abbr>/<abbr title="kilometres">km</abbr></vs-summary-box-label>
+        <vs-summary-box-label label="Distance" />
     </div>
   ```
 </docs>

@@ -1,24 +1,23 @@
 <template>
     <div class="text-center vs-summary-box-distance-label">
-        <span class="sr-only">{{ distanceLabel }}</span>
-        <button @click.native="toggleShowMiles(true)" type="button" class="btn btn-link">
-            <abbr :title="milesLabel" :class="isShowingMiles ? 'active' : ''">
-                {{ this.isShowingMiles }}{{ milesAbbr }}
-            </abbr>
-            <span class="sr-only">{{ milesLabel }}</span>
-        </button>
+        <strong class="d-block">{{ distanceLabel }}</strong>
+        <abbr :title="milesLabel">
+            <button @click="handleClick(true)" type="button" :class="showMiles ? 'active' : ''">
+                <span>{{ milesAbbr }}</span>
+            </button>
+        </abbr>
         <span class="separator">/</span>
-        <button @click.native="toggleShowMiles(false)" type="button" class="btn btn-link">
-            <abbr :title="kilometresLabel" :class="isShowingMiles ? '' : 'active'">
-                {{ kilometresAbbr }}
-            </abbr>
-            <span class="sr-only">{{ kilometresLabel }}</span>
-        </button>
+        <abbr :title="kilometresLabel">
+            <button @click="handleClick(false)" type="button" :class="showMiles ? '' : 'active'">
+                <span>{{ kilometresAbbr }}</span>
+            </button>
+        </abbr>
     </div>
 </template>
 
 <script>
 import summaryBoxStore from "@components/patterns/summary-box/summaryBox.store"
+import VsTooltip from "@components/elements/tooltip/Tooltip"
 /**
  * Summary Box Distance Label component includes toggles to change the distance type displayed within the VsSummaryBoxDistance component
  */
@@ -26,7 +25,12 @@ export default {
     name: "VsSummaryBoxDistanceLabel",
     status: "prototype",
     release: "0.0.1",
-    components: {},
+    data() {
+        return {
+            showMiles: true,
+        }
+    },
+    components: { VsTooltip },
     props: {
         distanceLabel: {
             type: String,
@@ -50,31 +54,26 @@ export default {
         },
     },
     watch: {
-        isShowingMiles() {
+        isShowingMiles(newValue, oldValue) {
             this.toggleShowMiles()
         },
     },
     computed: {
         isShowingMiles() {
-            console.log("computed")
             return summaryBoxStore.getters["summaryBox/getShowMiles"]
         },
     },
     summaryBoxStore,
     methods: {
-        toggleShowMiles(value) {
-            if (!this.isShowingMiles === value) {
-                return summaryBoxStore.dispatch("summaryBox/setShowMiles", value)
-            }
-            return
+        handleClick(value) {
+            return summaryBoxStore.dispatch("summaryBox/setShowMiles", value)
         },
-    },
-    mounted() {
-        console.log("mounted")
+        toggleShowMiles() {
+            this.showMiles = this.isShowingMiles
+        },
     },
 }
 </script>
-
 <style lang="scss" scoped>
 .vs-summary-box-distance-label {
     bottom: 5px;
@@ -82,21 +81,27 @@ export default {
     position: absolute;
     width: 100%;
 
-    button {
-        padding: 0;
-        color: $color-base-text;
-    }
-
+    strong,
     abbr {
-        display: block;
         font-size: 0.875rem;
         line-height: 1.125rem;
+        @include media-breakpoint-up(lg) {
+            font-size: 1.125rem;
+        }
+    }
+    button {
+        background: none;
+        border: none;
+        padding: 2px;
         &.active {
             font-weight: $font-weight-bold;
         }
-
-        @include media-breakpoint-up(lg) {
-            font-size: 1.125rem;
+        &:hover {
+            cursor: pointer;
+        }
+        &:focus {
+            box-shadow: 0 0 0 0.2rem rgba(0, 0, 0, 0.25);
+            outline: none;
         }
     }
 }

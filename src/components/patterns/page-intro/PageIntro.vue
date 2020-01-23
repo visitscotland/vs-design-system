@@ -29,9 +29,11 @@ export default {
 
 <style lang="scss" scoped>
 @import "~bootstrap/scss/type";
+
 .vs-page-intro__wrapper--outer {
     background: $color-white;
     margin-top: -1rem;
+
     @include media-breakpoint-up(lg) {
         margin: 0;
         background: none;
@@ -41,13 +43,16 @@ export default {
         margin-right: auto;
         margin-left: auto;
     }
+
     @include media-breakpoint-up(xl) {
         max-width: 1140px;
     }
+
     @include media-breakpoint-up(xxl) {
         max-width: 1340px;
     }
 }
+
 .vs-page-intro__wrapper--inner-bottom {
     background-color: $color-theme-light;
 }
@@ -64,6 +69,7 @@ export default {
         margin: -250px 0 0;
     }
 }
+
 .vs-page-intro ::v-deep figcaption {
     @include media-breakpoint-up(lg) {
         bottom: 200px;
@@ -72,7 +78,7 @@ export default {
 </style>
 
 <docs>
-  
+
   ```jsx
     const sampleItinerary = require("../../../assets/fixtures/itineraries/sampleItinerary.json")
     <vs-page-intro>
@@ -131,30 +137,47 @@ export default {
             </dl>
           </vs-col>
           <vs-col cols="12" md="6" lg="5" xl="4">
-            <vs-summary-box-list textColor="light">
-            <vs-summary-box-list-item>
-                <vs-summary-box-text-only slot="summary-box-text-only">{{itineraries.sampleItinerary.totalDays}}</vs-summary-box-text-only>
-                <vs-summary-box-label slot="summary-box-label">Days</vs-summary-box-label>
-            </vs-summary-box-list-item>
-            <vs-summary-box-list-item>
-                <vs-summary-box-text-only slot="summary-box-text-only">{{itineraries.sampleItinerary.totalMiles}}<span class="divider">/</span>{{itineraries.sampleItinerary.totalKM}}</vs-summary-box-text-only>
-                <vs-summary-box-label slot="summary-box-label">Distance <br /><abbr title="miles">mi</abbr>/<abbr title="kilometres">km</abbr></vs-summary-box-label>
-            </vs-summary-box-list-item>
-            <vs-summary-box-list-item>
-                <vs-summary-box-icon-with-label slot="icon-with-label">
-                    <vs-icon slot="icon" name="cycle" variant="dark" size="md" :padding="0" />
-                    <span slot="label">das Fahrrad</span>
-                </vs-summary-box-icon-with-label>
-                <vs-summary-box-label slot="summary-box-label">Transport</vs-summary-box-label>
-            </vs-summary-box-list-item>
-            <vs-summary-box-list-item>
-                <vs-summary-box-icon-with-label slot="icon-with-label">
-                    <vs-icon slot="icon" name="castle" variant="dark" size="md" :padding="0" />
-                    <span slot="label">das beste von Schottland</span>
-                </vs-summary-box-icon-with-label>
-                <vs-summary-box-label slot="summary-box-label">Main theme</vs-summary-box-label>
-            </vs-summary-box-list-item>
-            </vs-summary-box-list>
+            <vs-summary-box-list>
+                <vs-summary-box-list-item>
+                        <vs-summary-box-display
+                            :text=itineraries.sampleItinerary.totalDays
+                        />
+                        <vs-summary-box-label
+                            label="Days"
+                        />
+                    </vs-summary-box-list-item>
+                    <vs-summary-box-list-item>
+                        <vs-summary-box-distance-display
+                            :miles=itineraries.sampleItinerary.totalMiles
+                            :kilometres=itineraries.sampleItinerary.totalKM
+                        />
+                        <vs-summary-box-distance-label
+                            distance-label="Distance"
+                            kilometres-abbr="km"
+                            kilometres-label="kilometres"
+                            miles-abbr="mi"
+                            miles-label="miles"
+                        />
+                    </vs-summary-box-list-item>
+                    <vs-summary-box-list-item>
+                        <vs-summary-box-icon-with-label
+                            :icon=itineraries.sampleItinerary.transport.key
+                            :label=itineraries.sampleItinerary.transport.value
+                        />
+                        <vs-summary-box-label
+                            label="Transport"
+                        />
+                    </vs-summary-box-list-item>
+                    <vs-summary-box-list-item>
+                        <vs-summary-box-icon-with-label
+                            :icon=itineraries.sampleItinerary.theme.key
+                            :label=itineraries.sampleItinerary.theme.value
+                        />
+                        <vs-summary-box-label
+                            label="Main Theme"
+                        />
+                    </vs-summary-box-list-item>
+                </vs-summary-box-list>
           </vs-col>
         </vs-row>
       </vs-container>
