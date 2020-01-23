@@ -27,6 +27,7 @@ export default {
     bottom: 5px;
     width: 100%;
     left: 0;
+    line-height: 1rem;
 
     strong {
         display: block;

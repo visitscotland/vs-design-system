@@ -5,8 +5,8 @@
         <div class="icon-wrapper text-right">
             <vs-icon slot="icon" :name="icon" variant="dark" size="md" :padding="0" />
         </div>
-        <div class="text-wrapper">
-            {{ label }}
+        <div class="text-wrapper d-block w-auto mx-1">
+            <span>{{ label }}</span>
         </div>
     </div>
 </template>
@@ -33,29 +33,22 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.vs-summary-box-icon-with-label ::v-deep {
+.vs-summary-box-icon-with-label {
     bottom: 35%;
-    p,
-    span {
-        font-size: 0.875rem;
-        line-height: 1rem;
-        display: block;
-        @include media-breakpoint-up(lg) {
-            font-size: 1rem;
-            line-height: 1.25rem;
-        }
-    }
+
     .icon-wrapper {
         width: auto;
         max-width: 40%;
     }
     .text-wrapper {
-        hyphens: auto;
-        margin: 0 5px;
+        font-size: 0.875rem;
+        line-height: 1rem;
         max-width: 50%;
-        overflow-wrap: break-word;
-        width: auto;
         word-wrap: break-word;
+        @include media-breakpoint-up(lg) {
+            font-size: 1rem;
+            line-height: 1.25rem;
+        }
     }
 }
 </style>

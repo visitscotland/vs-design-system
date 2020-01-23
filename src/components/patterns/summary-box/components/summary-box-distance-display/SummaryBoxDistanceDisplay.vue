@@ -1,5 +1,5 @@
 <template>
-    <div class="vs-summary-box-distance-display">
+    <div class="vs-summary-box-distance-display position-absolute d-block text-center w-100">
         <span v-if="isShowingMiles">{{ miles }}</span>
         <span v-else>{{ kilometres }}</span>
     </div>
@@ -16,7 +16,7 @@ export default {
     release: "0.0.1",
     components: {},
     watch: {
-        isShowingMiles(newValue, oldValue) {},
+        isShowingMiles() {},
     },
     computed: {
         isShowingMiles() {
@@ -37,14 +37,10 @@ export default {
 
 <style lang="scss" scoped>
 @import "~bootstrap/scss/type";
-.vs-summary-box-distance-display ::v-deep {
-    display: block;
+.vs-summary-box-distance-display {
     font-family: $headings-font-family;
     font-size: 1.625rem;
-    position: absolute;
-    text-align: center;
     top: 20%;
-    width: 100%;
     @include media-breakpoint-up(lg) {
         font-size: 1.75rem;
     }
