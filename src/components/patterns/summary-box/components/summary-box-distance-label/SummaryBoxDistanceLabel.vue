@@ -1,5 +1,5 @@
 <template>
-    <div class="text-center vs-summary-box-distance-label">
+    <div class="vs-summary-box-distance-label text-center d-block position-absolute w-100">
         <strong class="d-block">{{ distanceLabel }}</strong>
         <abbr :title="milesLabel">
             <button @click="handleClick(true)" type="button" :class="showMiles ? 'active' : ''">
@@ -78,8 +78,9 @@ export default {
     bottom: 5px;
     left: 0;
     line-height: 1rem;
-    position: absolute;
-    width: 100%;
+    @include media-breakpoint-up(lg) {
+        line-height: 1.125rem;
+    }
 
     strong,
     abbr {

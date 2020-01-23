@@ -80,7 +80,7 @@ export default {
                 :label=itineraries.sampleItinerary.theme.value
             />
             <vs-summary-box-label
-                label="Main Theme"
+                label="Main theme"
             />
         </vs-summary-box-list-item>
     </vs-summary-box-list>

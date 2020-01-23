@@ -1,5 +1,5 @@
 <template>
-    <div class="text-center vs-summary-box-label">
+    <div class="text-center vs-summary-box-label d-block position-absolute w-100">
         <strong>{{ label }}</strong>
     </div>
 </template>
@@ -23,9 +23,7 @@ export default {
 
 <style lang="scss" scoped>
 .vs-summary-box-label {
-    position: absolute;
     bottom: 5px;
-    width: 100%;
     left: 0;
     line-height: 1rem;
 

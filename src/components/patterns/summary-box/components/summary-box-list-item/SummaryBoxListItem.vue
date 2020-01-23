@@ -1,5 +1,5 @@
 <template>
-    <li class="box">
+    <li class="vs-summary-box-list-item position-relative">
         <slot />
     </li>
 </template>
@@ -18,21 +18,19 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.box {
-    margin: 0.5rem;
-    position: relative;
-    overflow: hidden;
+.vs-summary-box-list-item {
     flex: 1 0 calc(50% - 1rem);
+    margin: 0.5rem;
     @include media-breakpoint-up(md) {
-        margin: 0.75rem;
         flex: 1 0 calc(50% - 1.5rem);
+        margin: 0.75rem;
     }
 
     &::after {
+        border: 1px solid $color-theme-dark;
         content: "";
         display: block;
         padding-bottom: 100%;
-        border: 1px solid $color-theme-dark;
     }
 }
 </style>

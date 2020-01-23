@@ -37,8 +37,8 @@ export default {
     bottom: 35%;
 
     .icon-wrapper {
-        width: auto;
         max-width: 40%;
+        width: auto;
     }
     .text-wrapper {
         font-size: 0.875rem;
