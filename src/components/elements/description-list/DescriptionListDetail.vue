@@ -1,5 +1,8 @@
 <template>
-    <dd class="vs-description-list__detail" :class="{ 'list-inline-item': inline }">
+    <dd
+        class="vs-description-list__detail"
+        :class="{ 'list-inline-item': inline, 'vs-description-list__detail--styled': !inline }"
+    >
         <slot />
     </dd>
 </template>
@@ -13,14 +16,10 @@ export default {
     name: "VsDescriptionListDetail",
     status: "prototype",
     release: "0.0.1",
-    props: {
-        /**
-         * Option to create inline list
-         */
-        inline: {
-            type: Boolean,
-        },
-    },
+    /**
+     * Injects inline prop provided by DescriptionList
+     */
+    inject: ["inline"],
 }
 </script>
 
@@ -29,5 +28,21 @@ export default {
 
 .vs-description-list__detail {
     margin-bottom: 0;
+}
+
+// Responsive columns to achieve default 2 column list layout
+.vs-description-list__detail--styled {
+    @include make-col(8);
+    @include make-col-offset(4);
+
+    @include media-breakpoint-down(md) {
+        @include make-col(6);
+        @include make-col-offset(6);
+    }
+
+    @include media-breakpoint-down(sm) {
+        @include make-col(12);
+        @include make-col-offset(0);
+    }
 }
 </style>
