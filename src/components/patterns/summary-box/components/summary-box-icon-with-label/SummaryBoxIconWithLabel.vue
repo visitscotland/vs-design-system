@@ -3,15 +3,16 @@
         class="vs-summary-box-icon-with-label d-flex align-items-end position-absolute justify-content-center w-100"
     >
         <div class="icon-wrapper text-right">
-            <slot name="icon" />
+            <vs-icon slot="icon" :name="icon" variant="dark" size="md" :padding="0" />
         </div>
         <div class="text-wrapper">
-            <slot name="label" />
+            {{ label }}
         </div>
     </div>
 </template>
 
 <script>
+import VsIcon from "@components/elements/icon/Icon"
 /**
  * Summary Box Icon With Label
  */
@@ -19,8 +20,15 @@ export default {
     name: "VsSummaryBoxIconWithLabel",
     status: "prototype",
     release: "0.0.1",
-    components: {},
-    props: {},
+    components: { VsIcon },
+    props: {
+        icon: {
+            type: String,
+        },
+        label: {
+            type: String,
+        },
+    },
 }
 </script>
 
@@ -54,9 +62,11 @@ export default {
 <docs>
   
   ```jsx
-    <vs-summary-box-icon-with-label>
-        <vs-icon slot="icon" :name="itineraries.sampleItinerary.transport.key" variant="dark" size="md" padding="0" />
-        <span slot="label">{{itineraries.sampleItinerary.transport.value}}</span>
-    </vs-summary-box-icon-with-label>
+    <div class="position-relative mt-5">
+        <vs-summary-box-icon-with-label
+            :icon=itineraries.sampleItinerary.transport.key
+            :label=itineraries.sampleItinerary.transport.value
+        />
+    </div>
   ```
 </docs>

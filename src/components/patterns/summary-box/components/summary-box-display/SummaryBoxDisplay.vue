@@ -1,25 +1,29 @@
 <template>
-    <div class="vs-summary-box-text-only">
-        <slot />
+    <div class="vs-summary-box-display">
+        <span>{{ text }}</span>
     </div>
 </template>
 
 <script>
 /**
- * Summary Box Text Only
+ * Summary Box Display
  */
 export default {
-    name: "VsSummaryBoxTextOnly",
+    name: "VsSummaryBoxDisplay",
     status: "prototype",
     release: "0.0.1",
     components: {},
-    props: {},
+    props: {
+        text: {
+            type: String,
+        },
+    },
 }
 </script>
 
 <style lang="scss" scoped>
 @import "~bootstrap/scss/type";
-.vs-summary-box-text-only ::v-deep {
+.vs-summary-box-display ::v-deep {
     top: 20%;
     display: block;
     font-family: $headings-font-family;
@@ -39,8 +43,10 @@ export default {
 <docs>
   
   ```jsx
-    <vs-summary-box-text-only>
-        <span>{{itineraries.sampleItinerary.totalMiles}}<span class="divider">/</span>{{itineraries.sampleItinerary.totalKM}}</span>
-    </vs-summary-box-text-only>
+    <div class="py-2">
+        <vs-summary-box-display
+            :text=itineraries.sampleItinerary.totalDays
+        />
+    </div>
   ```
 </docs>

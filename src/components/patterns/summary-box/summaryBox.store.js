@@ -25,7 +25,7 @@ export default new Vuex.Store({
                 },
             },
             getters: {
-                getShowMiles: state => state.ShowMiles,
+                getShowMiles: state => state.showMiles,
             },
         },
     },
