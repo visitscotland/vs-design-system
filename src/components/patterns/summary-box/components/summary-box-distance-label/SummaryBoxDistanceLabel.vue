@@ -2,13 +2,25 @@
     <div class="vs-summary-box-distance-label text-center d-block position-absolute w-100">
         <strong class="d-block">{{ distanceLabel }}</strong>
         <abbr :title="milesLabel">
-            <button @click="handleClick(true)" type="button" :class="showMiles ? 'active' : ''">
+            <button
+                @click="handleClick(true)"
+                type="button"
+                :class="showMiles ? 'active' : ''"
+                :aria-expanded="showMiles ? 'true' : 'false'"
+                :aria-controls="'display_' + milesLabel"
+            >
                 <span>{{ milesAbbr }}</span>
             </button>
         </abbr>
         <span class="separator">/</span>
         <abbr :title="kilometresLabel">
-            <button @click="handleClick(false)" type="button" :class="showMiles ? '' : 'active'">
+            <button
+                @click="handleClick(false)"
+                type="button"
+                :class="showMiles ? '' : 'active'"
+                :aria-expanded="showMiles ? 'false' : 'true'"
+                :aria-controls="'display_' + kilometresLabel"
+            >
                 <span>{{ kilometresAbbr }}</span>
             </button>
         </abbr>
