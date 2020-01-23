@@ -1,5 +1,5 @@
 <template>
-    <div class="vs-summary-box-display d-block text-center w-100">
+    <div class="vs-summary-box-display position-absolute d-block text-center w-100">
         <span>{{ text }}</span>
     </div>
 </template>
@@ -27,7 +27,6 @@ export default {
     top: 20%;
     font-family: $headings-font-family;
     font-size: 1.625rem;
-    position: absolute;
     .divider {
         font-family: $headings-font-family-thin;
     }
