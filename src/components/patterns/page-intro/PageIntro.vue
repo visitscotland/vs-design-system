@@ -150,6 +150,8 @@ export default {
                         <vs-summary-box-distance-display
                             :miles=itineraries.sampleItinerary.totalMiles
                             :kilometres=itineraries.sampleItinerary.totalKM
+                            miles-label="miles"
+                            kilometres-label="kilometres"
                         />
                         <vs-summary-box-distance-label
                             distance-label="Distance"

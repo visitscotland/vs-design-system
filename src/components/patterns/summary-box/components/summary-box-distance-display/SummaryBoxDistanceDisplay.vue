@@ -1,7 +1,7 @@
 <template>
     <div class="vs-summary-box-distance-display position-absolute d-block text-center w-100">
-        <span v-if="isShowingMiles">{{ miles }}</span>
-        <span v-else>{{ kilometres }}</span>
+        <span v-if="isShowingMiles" :id="'display_' + milesLabel">{{ miles }}</span>
+        <span v-else :id="'display_' + kilometresLabel">{{ kilometres }}</span>
     </div>
 </template>
 
@@ -31,6 +31,12 @@ export default {
         kilometres: {
             type: String,
         },
+        milesLabel: {
+            type: String,
+        },
+        kilometresLabel: {
+            type: String,
+        },
     },
 }
 </script>
@@ -54,6 +60,8 @@ export default {
         <vs-summary-box-distance-display
             :miles=itineraries.sampleItinerary.totalMiles
             :kilometres=itineraries.sampleItinerary.totalKM
+            miles-label="miles"
+            kilometres-label="kilometres"
         >
         </vs-summary-box-distance-display>
     </div>

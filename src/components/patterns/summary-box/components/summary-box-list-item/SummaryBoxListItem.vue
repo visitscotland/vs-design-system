@@ -37,7 +37,7 @@ export default {
 
 <docs>
   ```jsx
-    <ul class="list-unstyled" style="width: 200px;">
+    <ul style="width: 200px; list-style-type: none;">
        <vs-summary-box-list-item>
             <vs-summary-box-display
                 :text=itineraries.sampleItinerary.totalDays
