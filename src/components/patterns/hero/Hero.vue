@@ -8,6 +8,8 @@
                 class="d-lg-none position-absolute vs-hero__toggle-caption"
                 v-if="showToggle"
                 :animate="false"
+                :aria-expanded="showCaption ? 'true' : 'false'"
+                :aria-controls="'image_' + imageSrc"
                 @click.native="toggleCaption"
             >
                 <vs-icon name="information" variant="light" size="sm" />
@@ -18,6 +20,7 @@
         <vs-container
             class="position-relative vs-hero__caption-wrapper"
             :class="[showCaption ? 'd-flex' : 'd-none d-lg-flex']"
+            :id="'image_' + imageSrc"
         >
             <figcaption ref="figcaption">
                 <vs-row>
@@ -245,26 +248,29 @@ figcaption {
 </style>
 
 <docs>
-  ```jsx
-    <vs-hero
-      v-for="(item, index) in hero.imageExamples"
-      :altText="item.altText"
-      :credit="item.credit"
-      :caption="item.caption"
-      :image-src="item.imageSrc"
-      :key="index"
-      :latitude="item.latitude"
-      :longitude="item.longitude"
-    >
-    <img 
-      class="lazyload" 
-      :src="item.imageSrc"
-      srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
-      :data-srcset="item.imageSrc" 
-      :alt="item.altText"
-      data-sizes="auto"
-       />
-      <span class="vs-hero__overlay-text text-light">Scotland</span>
-    </vs-hero>
-  ```
+    ```jsx
+        <vs-hero
+            v-for="(item, index) in hero.imageExamples"
+            :altText="item.altText"
+            :credit="item.credit"
+            :caption="item.caption"
+            :image-src="item.imageSrc"
+            :key="index"
+            :latitude="item.latitude"
+            :longitude="item.longitude"
+        >
+            <vs-img
+                class="lazyload" 
+                :src="item.imageSrc"
+                srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                :data-srcset="item.imageSrc" 
+                :alt="item.altText" 
+                data-sizes="auto">
+            </vs-img>
+
+            <span class="vs-hero__overlay-text text-light">
+                Scotland
+            </span>
+        </vs-hero>
+    ```
 </docs>
