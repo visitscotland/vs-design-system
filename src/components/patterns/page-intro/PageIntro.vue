@@ -28,6 +28,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "~bootstrap/scss/type";
 .vs-page-intro__wrapper--outer {
     background: $color-white;
     margin-top: -1rem;
@@ -121,38 +122,38 @@ export default {
             </div>
           </vs-col>
         </vs-row>
-        <vs-row align-h="m-between">
-          <vs-col cols="12" sm="7" lg="6" offset-lg="1">
-            <div class="lead" v-html="itineraries.sampleItinerary.introduction"></div>
+        <vs-row>
+          <vs-col cols="12" md="6" lg="5" xl="6" offset-lg="1">
+            <vs-lead-paragraph v-html="itineraries.sampleItinerary.introduction"></vs-lead-paragraph>
             <dl class="list-inline">
               <dt class="list-inline-item">Start / Finish</dt>
               <dd class="list-inline-item">{{itineraries.sampleItinerary.start}}/{{itineraries.sampleItinerary.finish}}</dd>
             </dl>
           </vs-col>
-          <vs-col cols="12" sm="5" md="5" lg="3" offset-lg="1">
-            <vs-summary-box-list class="bg-warning">
-              <vs-summary-box-list-item>
-                <strong>Days</strong>
-                <span>{{itineraries.sampleItinerary.totalDays}}</span>
-              </vs-summary-box-list-item>
-              <vs-summary-box-list-item>
-                <strong>Distance <br /><abbr title="miles">mi</abbr>/<abbr title="kilometres">km</abbr></strong>
-                <span>{{itineraries.sampleItinerary.totalMiles}}<span class="divider">/</span>{{itineraries.sampleItinerary.totalKM}}</span>
-              </vs-summary-box-list-item>
-              <vs-summary-box-list-item>
-                <strong>Transport</strong>
-                <div class="icon-wrapper">
-                  <vs-icon :name="itineraries.sampleItinerary.transport.key" variant="dark" size="sm" />
-                  {{itineraries.sampleItinerary.transport.value}}
-                </div>
-              </vs-summary-box-list-item>
-              <vs-summary-box-list-item>
-                <strong>Main theme</strong>
-                <div class="icon-wrapper">
-                  <vs-icon :name="itineraries.sampleItinerary.theme.key" variant="dark" size="sm" />
-                  {{itineraries.sampleItinerary.theme.value}}
-                </div>
-              </vs-summary-box-list-item>
+          <vs-col cols="12" md="6" lg="5" xl="4">
+            <vs-summary-box-list textColor="light">
+            <vs-summary-box-list-item>
+                <vs-summary-box-text-only slot="summary-box-text-only">{{itineraries.sampleItinerary.totalDays}}</vs-summary-box-text-only>
+                <vs-summary-box-label slot="summary-box-label">Days</vs-summary-box-label>
+            </vs-summary-box-list-item>
+            <vs-summary-box-list-item>
+                <vs-summary-box-text-only slot="summary-box-text-only">{{itineraries.sampleItinerary.totalMiles}}<span class="divider">/</span>{{itineraries.sampleItinerary.totalKM}}</vs-summary-box-text-only>
+                <vs-summary-box-label slot="summary-box-label">Distance <br /><abbr title="miles">mi</abbr>/<abbr title="kilometres">km</abbr></vs-summary-box-label>
+            </vs-summary-box-list-item>
+            <vs-summary-box-list-item>
+                <vs-summary-box-icon-with-label slot="icon-with-label">
+                    <vs-icon slot="icon" name="cycle" variant="dark" size="md" :padding="0" />
+                    <span slot="label">das Fahrrad</span>
+                </vs-summary-box-icon-with-label>
+                <vs-summary-box-label slot="summary-box-label">Transport</vs-summary-box-label>
+            </vs-summary-box-list-item>
+            <vs-summary-box-list-item>
+                <vs-summary-box-icon-with-label slot="icon-with-label">
+                    <vs-icon slot="icon" name="castle" variant="dark" size="md" :padding="0" />
+                    <span slot="label">das beste von Schottland</span>
+                </vs-summary-box-icon-with-label>
+                <vs-summary-box-label slot="summary-box-label">Main theme</vs-summary-box-label>
+            </vs-summary-box-list-item>
             </vs-summary-box-list>
           </vs-col>
         </vs-row>

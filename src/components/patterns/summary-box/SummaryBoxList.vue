@@ -1,20 +1,20 @@
 <template>
-    <vs-row
-        class="vs-summary-box__list list-unstyled p-3"
-        :background="background"
-        :text="text"
-        :class="{
-            [backgroundColorClass]: backgroundColorClass,
-            [textColorClass]: textColorClass,
-        }"
-        tag="ul"
-    >
-        <slot />
-    </vs-row>
+    <div class="position-wrapper">
+        <ul
+            class="vs-summary-box-list list-unstyled d-flex flex-wrap p-2 p-sm-3"
+            :background="background"
+            :text="text"
+            :class="{
+                [backgroundColorClass]: backgroundColorClass,
+                [textColorClass]: textColorClass,
+            }"
+        >
+            <slot />
+        </ul>
+    </div>
 </template>
 
 <script>
-import { VsRow } from "@components/elements/layout"
 /**
  * Itinerary Stop image element
  */
@@ -22,9 +22,7 @@ export default {
     name: "VsSummaryBoxList",
     status: "prototype",
     release: "0.0.1",
-    components: {
-        VsRow,
-    },
+    components: {},
     props: {
         /**
          * Style the background color.
@@ -64,33 +62,48 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+@import "~bootstrap/scss/type";
+.vs-summary-box-list {
+    @include media-breakpoint-up(lg) {
+        max-width: 400px;
+    }
+}
+.position-wrapper {
+    @include media-breakpoint-up(lg) {
+        position: absolute;
+        top: 0;
+        width: calc(100% - 2rem);
+        z-index: 1000;
+    }
+}
+</style>
 <docs>
   
   ```jsx
-    <vs-summary-box-list background="warning" text="dark">
-        <vs-summary-box-list-item border="dark">
-            <strong>Days</strong>
-            <span>{{itineraries.sampleItinerary.totalDays}}</span>
-        </vs-summary-box-list-item>
-        <vs-summary-box-list-item border="dark">
-            <strong>Distance <br /><abbr title="miles">mi</abbr>/<abbr title="kilometres">km</abbr></strong>
-            <span>{{itineraries.sampleItinerary.totalMiles}}<span class="divider">/</span>{{itineraries.sampleItinerary.totalKM}}</span>
-        </vs-summary-box-list-item>
-        <vs-summary-box-list-item border="dark">
-            <strong>Transport</strong>
-            <div class="icon-wrapper">
-                <vs-icon :name="itineraries.sampleItinerary.transport.key" variant="dark" size="sm" />
-                {{itineraries.sampleItinerary.transport.value}}
-            </div>
-        </vs-summary-box-list-item>
-        <vs-summary-box-list-item borderColor="dark">
-            <strong>Main theme</strong>
-            <div class="icon-wrapper">
-                <vs-icon :name="itineraries.sampleItinerary.theme.key" variant="dark" size="sm" />
-                {{itineraries.sampleItinerary.theme.value}}
-            </div>
-        </vs-summary-box-list-item>
+    <vs-summary-box-list textColor="light">
+      <vs-summary-box-list-item>
+        <vs-summary-box-text-only slot="summary-box-text-only">{{itineraries.sampleItinerary.totalDays}}</vs-summary-box-text-only>
+        <vs-summary-box-label slot="summary-box-label">Days</vs-summary-box-label>
+      </vs-summary-box-list-item>
+      <vs-summary-box-list-item>
+        <vs-summary-box-text-only slot="summary-box-text-only">{{itineraries.sampleItinerary.totalMiles}}<span class="divider">/</span>{{itineraries.sampleItinerary.totalKM}}</vs-summary-box-text-only>
+        <vs-summary-box-label slot="summary-box-label">Distance <br /><abbr title="miles">mi</abbr>/<abbr title="kilometres">km</abbr></vs-summary-box-label>
+      </vs-summary-box-list-item>
+      <vs-summary-box-list-item>
+        <vs-summary-box-icon-with-label slot="icon-with-label">
+            <vs-icon slot="icon" :name="itineraries.sampleItinerary.transport.key" variant="dark" size="md" :padding="0" />
+            <span slot="label">{{itineraries.sampleItinerary.transport.value}}</span>
+        </vs-summary-box-icon-with-label>
+        <vs-summary-box-label slot="summary-box-label">Transport</vs-summary-box-label>
+      </vs-summary-box-list-item>
+      <vs-summary-box-list-item>
+        <vs-summary-box-icon-with-label slot="icon-with-label">
+            <vs-icon slot="icon" :name="itineraries.sampleItinerary.theme.key" variant="dark" size="md" :padding="0" />
+            <span slot="label">{{itineraries.sampleItinerary.theme.value}}</span>
+        </vs-summary-box-icon-with-label>
+        <vs-summary-box-label slot="summary-box-label">Main theme</vs-summary-box-label>
+      </vs-summary-box-list-item>
     </vs-summary-box-list>
   ```
 </docs>
