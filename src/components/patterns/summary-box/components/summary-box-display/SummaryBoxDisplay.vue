@@ -1,5 +1,5 @@
 <template>
-    <div class="vs-summary-box-display">
+    <div class="vs-summary-box-display d-block text-center w-100">
         <span>{{ text }}</span>
     </div>
 </template>
@@ -23,14 +23,11 @@ export default {
 
 <style lang="scss" scoped>
 @import "~bootstrap/scss/type";
-.vs-summary-box-display ::v-deep {
+.vs-summary-box-display {
     top: 20%;
-    display: block;
     font-family: $headings-font-family;
     font-size: 1.625rem;
     position: absolute;
-    text-align: center;
-    width: 100%;
     .divider {
         font-family: $headings-font-family-thin;
     }

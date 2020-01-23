@@ -17,7 +17,6 @@
 
 <script>
 import summaryBoxStore from "@components/patterns/summary-box/summaryBox.store"
-import VsTooltip from "@components/elements/tooltip/Tooltip"
 /**
  * Summary Box Distance Label component includes toggles to change the distance type displayed within the VsSummaryBoxDistance component
  */
@@ -30,7 +29,7 @@ export default {
             showMiles: true,
         }
     },
-    components: { VsTooltip },
+    components: {},
     props: {
         distanceLabel: {
             type: String,
@@ -54,7 +53,7 @@ export default {
         },
     },
     watch: {
-        isShowingMiles(newValue, oldValue) {
+        isShowingMiles() {
             this.toggleShowMiles()
         },
     },
@@ -78,13 +77,13 @@ export default {
 .vs-summary-box-distance-label {
     bottom: 5px;
     left: 0;
+    line-height: 1rem;
     position: absolute;
     width: 100%;
 
     strong,
     abbr {
         font-size: 0.875rem;
-        line-height: 1.125rem;
         @include media-breakpoint-up(lg) {
             font-size: 1.125rem;
         }
@@ -92,7 +91,7 @@ export default {
     button {
         background: none;
         border: none;
-        padding: 2px;
+        padding: 0 2px;
         &.active {
             font-weight: $font-weight-bold;
         }

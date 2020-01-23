@@ -1,14 +1,6 @@
 <template>
     <div class="position-wrapper">
-        <ul
-            class="vs-summary-box-list list-unstyled d-flex flex-wrap p-2 p-sm-3"
-            :background="background"
-            :text="text"
-            :class="{
-                [backgroundColorClass]: backgroundColorClass,
-                [textColorClass]: textColorClass,
-            }"
-        >
+        <ul class="vs-summary-box-list list-unstyled d-flex flex-wrap p-2 p-sm-3">
             <slot />
         </ul>
     </div>
@@ -23,48 +15,14 @@ export default {
     status: "prototype",
     release: "0.0.1",
     components: {},
-    props: {
-        /**
-         * Style the background color.
-         * `primary, secondary, success, danger, warning, info, light, dark, transparent`
-         */
-        background: {
-            type: String,
-            default: "warning",
-            validator: value => {
-                return value.match(
-                    /(primary|secondary|success|danger|warning|info|light|dark|transparent)/
-                )
-            },
-        },
-        /**
-         * Style the text color.
-         * `primary, secondary, success, danger, warning, info, light, dark, transparent`
-         */
-        text: {
-            type: String,
-            default: "dark",
-            validator: value => {
-                return value.match(
-                    /(primary|secondary|success|danger|warning|info|light|dark|transparent)/
-                )
-            },
-        },
-    },
-    computed: {
-        backgroundColorClass() {
-            return "bg-" + this.background
-        },
-        textColorClass() {
-            return "text-" + this.text
-        },
-    },
+    props: {},
 }
 </script>
 
 <style lang="scss" scoped>
 @import "~bootstrap/scss/type";
 .vs-summary-box-list {
+    background-color: $color-yellow;
     width: 350px;
     @include media-breakpoint-up(lg) {
         width: 400px;

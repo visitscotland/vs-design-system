@@ -1,5 +1,5 @@
 <template>
-    <li class="box" :text="border">
+    <li class="box">
         <slot />
     </li>
 </template>
@@ -13,32 +13,7 @@ export default {
     status: "prototype",
     release: "0.0.1",
     components: {},
-    props: {
-        /**
-         * Style the border color.
-         * `primary, secondary, success, danger, warning, info, light, dark, transparent`
-         */
-        border: {
-            type: String,
-            default: "dark",
-            validator: value => {
-                return value.match(
-                    /(primary|secondary|success|danger|warning|info|light|dark|transparent)/
-                )
-            },
-        },
-    },
-    computed: {
-        borderColorClass() {
-            return "border border-" + this.border
-        },
-        widthClass() {
-            return "box-" + this.width
-        },
-    },
-    methods: {
-        toggleShowMiles() {},
-    },
+    props: {},
 }
 </script>
 
@@ -57,13 +32,12 @@ export default {
         content: "";
         display: block;
         padding-bottom: 100%;
-        border: 1px solid black;
+        border: 1px solid $color-theme-dark;
     }
 }
 </style>
 
 <docs>
-  
   ```jsx
     <ul class="list-unstyled" style="width: 200px;">
        <vs-summary-box-list-item>
