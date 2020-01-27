@@ -8,6 +8,7 @@
             <vs-button
                 :animate="false"
                 :aria-expanded="show ? 'true' : 'false'"
+                :aria-controls="'dayPanel_' + dayNumber"
                 @click.native="triggerToggle()"
                 aria-haspopup="true"
                 class="vs-itinerary-day__toggle-button position-absolute p-0"
@@ -24,7 +25,7 @@
                 <vs-icon v-else name="chevron-up" variant="dark" size="xs" :padding="3" />
             </vs-button>
         </div>
-        <div v-show="this.show || this.isDesktop">
+        <div v-show="this.show || this.isDesktop" :id="'dayPanel_' + dayNumber">
             <slot name="day-transport" />
             <slot name="day-introduction" />
             <ul class="list-unstyled">
