@@ -1,5 +1,5 @@
 <template>
-    <component :is="type" class="vs-itinerary position-sticky">
+    <section class="vs-itinerary position-sticky">
         <div class="fixed-bottom" v-show="!this.isDesktop && this.withinItineraryMain">
             <div class="vs-itinerary__map-toggle-container d-flex justify-content-center pb-2">
                 <vs-itinerary-mobile-map-toggle @click.native="toggleShowMap()" />
@@ -8,10 +8,14 @@
         <div class="vs-itinerary__map-container" v-show="this.isDesktop || this.showMap">
             <slot name="map" />
         </div>
-        <div class="vs-itinerary__list-container">
-            <slot name="list" />
-        </div>
-    </component>
+        <vs-container>
+            <vs-row>
+                <vs-col cols="12" tag="ul" class="list-unstyled">
+                    <slot name="list" />
+                </vs-col>
+            </vs-row>
+        </vs-container>
+    </section>
 </template>
 
 <script>
@@ -50,12 +54,7 @@ export default {
         VsButton,
         VsIcon,
     },
-    props: {
-        type: {
-            type: String,
-            default: "section",
-        },
-    },
+    props: {},
     methods: {
         onResize() {
             this.isDesktop = window.innerWidth >= 1200 ? true : false
@@ -159,10 +158,9 @@ export default {
     }'
     >
   </vs-itinerary-map>
-  <vs-container slot="list">
-    <vs-row>
-      <vs-col cols="12" tag="ul" class="list-unstyled">
+
         <vs-itinerary-day 
+            slot="list"
           v-for="(day, index) in itineraries.sampleItinerary.days"
             :defaultShow="(day.dayCount < 3) ? true : false"
             :key="index"
@@ -224,13 +222,8 @@ export default {
                     </div>
                     <vs-svg slot="svg" path="highland-cow" />
                 </vs-itinerary-tips>
-                <a 
-                    class="vs-itinerary__stop-link text-uppercase font-weight-bold d-inline-flex align-items-center"
-                    :href="stop.href"
-                >
-                    Find out more
-                    <vs-icon name="play-filled" variant="primary" size="xxs" :padding=3 />
-                </a>
+                <a class="vs-itinerary__stop-link text-uppercase font-weight-bold" :href="stop.href"
+                >Find out more</a>
                 <dl v-if="stop.facilities.length" class="itinerary-stop__facilities">
                     <dt>Key facilities</dt>
                     <dd v-for="(facility, facilitiesIndex) in stop.facilities"
@@ -242,31 +235,20 @@ export default {
               </div>
               <!-- mimic only showing these links on the last stop of the day -->
               <template v-if="stopIndex == day.stops.length - 1">
-              <vs-itinerary-nearby-links slot="nearby-links">
-                <vs-button
-                    class="d-inline-flex mb-4"
-                    variant="outline-primary"
-                    href="https://www.visitscotland.com"
-                    >
-                    <vs-icon name="food" variant="primary" size="sm"></vs-icon>
+                <vs-itinerary-nearby-links slot="nearby-links">
+                    <vs-button class="d-inline-flex mb-4" variant="outline-primary" href="#">
+                        <vs-icon name="food" variant="primary" size="sm"></vs-icon>
                         Nearby places to eat
                     </vs-button>
                     <br />
-                    <vs-button
-                        class="d-inline-flex"
-                        variant="outline-primary"
-                        href="https://www.visitscotland.com"
-                    >
+                    <vs-button class="d-inline-flex" variant="outline-primary" href="#">
                         <vs-icon name="product-accommodation" variant="primary" size="sm"></vs-icon>
                         Nearby places to stay
                     </vs-button>
-              </vs-itinerary-nearby-links>
-              </template>
-            </vs-itinerary-stop>
-        </vs-itinerary-day>
-      </vs-col>
-    </vs-row>
-  </vs-container>
+                </vs-itinerary-nearby-links>
+            </template>
+        </vs-itinerary-stop>
+    </vs-itinerary-day>
 </vs-itinerary>
   ```
 </docs>
