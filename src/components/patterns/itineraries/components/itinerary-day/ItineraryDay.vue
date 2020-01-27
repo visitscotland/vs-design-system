@@ -1,8 +1,8 @@
 <template>
-    <component :is="type" class="vs-itinerary-day__list-item">
+    <li class="vs-itinerary-day__list-item">
         <div class="vs-itinerary-day__header text-center position-relative">
             <vs-heading level="2" thin class="vs-itinerary-day__title">
-                <span>{{ dayNumber }}</span>
+                <span>{{ dayLabel }} {{ dayNumber }}</span>
                 {{ dayTitle }}
             </vs-heading>
             <vs-button
@@ -30,7 +30,7 @@
             <slot name="stops" />
             <slot name="nearby-links" />
         </div>
-    </component>
+    </li>
 </template>
 
 <script>
@@ -60,19 +60,19 @@ export default {
     },
     props: {
         /**
-         * The html element name used for the component
-         */
-        type: {
-            type: String,
-            default: "li",
-        },
-        /**
          * Logic to collapse certain Day list items on mobile by default
          * (e.g. after Day 1 and 2, collapse the days on mobile)
          */
         defaultShow: {
             type: Boolean,
             default: true,
+        },
+        /**
+         * Label used for the word 'Day'
+         */
+        dayLabel: {
+            type: String,
+            required: true,
         },
         /**
          * Number of the day in the component
@@ -140,8 +140,12 @@ export default {
     .itinerary-stop__facilities {
         border-top: 1px solid $color-gray-tint-5;
         margin: $spacer-9 -1rem -1rem;
-        padding: 1rem;
+        padding: 1rem 0 0;
         text-align: center;
+
+        @include media-breakpoint-up(sm) {
+            margin: $spacer-9 0 0;
+        }
 
         dt {
             margin-bottom: 1rem;
@@ -181,8 +185,10 @@ export default {
 			v-for="(day, index) in itineraries.sampleItinerary.days"
 			:defaultShow="(day.dayCount < 3) ? true : false"
 			:key="index"
-            :dayNumber="'Day ' + day.dayCount"
+            :dayNumber="day.dayCount"
+            dayLabel="Day"
             :dayTitle="day.title"
+           
 		>
 			<dl v-if="day.transport.length" class="list-inline text-center" slot="day-transport">
 				<dt class="list-inline-item">Transport:</dt>
@@ -193,7 +199,6 @@ export default {
 					<span class="sr-only">{{transportType.value}}</span>
 				</dd>
 			</dl>
-
 			<div slot="day-introduction" v-html="day.introduction"></div>
 		</vs-itinerary-day>
 	</ul>
