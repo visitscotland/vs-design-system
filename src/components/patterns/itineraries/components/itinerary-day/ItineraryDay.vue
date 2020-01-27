@@ -27,14 +27,16 @@
         <div v-show="this.show || this.isDesktop">
             <slot name="day-transport" />
             <slot name="day-introduction" />
-            <slot name="stops" />
-            <slot name="nearby-links" />
+            <ul class="list-unstyled">
+                <slot name="stops" />
+            </ul>
         </div>
     </li>
 </template>
 
 <script>
 import VsIcon from "@components/elements/icon/Icon"
+import VsHeading from "@components/elements/heading/Heading"
 import VsButton from "@components/elements/button/Button"
 import { VsRow, VsCol } from "@components/elements/layout"
 
@@ -47,6 +49,7 @@ export default {
     status: "prototype",
     release: "0.0.1",
     components: {
+        VsHeading,
         VsButton,
         VsIcon,
         VsRow,
@@ -89,8 +92,6 @@ export default {
             required: true,
         },
     },
-    // TODO: add watcher for when stop activated and expand all the days on mobile
-    // so that stops can be scrolled to
     methods: {
         onResize() {
             this.isDesktop = window.innerWidth >= 1200 ? true : false
@@ -117,57 +118,11 @@ export default {
     margin-bottom: $spacer-4;
 }
 
-.vs-itinerary-day__list-item ::v-deep .vs-itinerary-day__title span {
+.vs-itinerary-day__title span {
     border-bottom: 1px solid $color-base-text;
     color: $color-theme-secondary-teal;
     margin-bottom: $spacer-4;
     padding: $spacer-3 $spacer-6;
-}
-
-.vs-itinerary-stop__list-item ::v-deep {
-    background-color: $color-white;
-    border: 1px solid $color-gray-tint-5;
-    padding: $spacer-4;
-    margin-bottom: $spacer-4;
-
-    .flex-fill {
-        max-width: 160px;
-        @media (min-width: 340px) {
-            max-width: none;
-        }
-    }
-
-    .itinerary-stop__facilities {
-        border-top: 1px solid $color-gray-tint-5;
-        margin: $spacer-9 -1rem -1rem;
-        padding: 1rem 0 0;
-        text-align: center;
-
-        @include media-breakpoint-up(sm) {
-            margin: $spacer-9 0 0;
-        }
-
-        dt {
-            margin-bottom: 1rem;
-            flex-basis: 1;
-            display: block;
-            width: 100%;
-        }
-
-        dd {
-            display: inline-table;
-            vertical-align: top;
-            text-align: center;
-            width: 90px;
-            position: relative;
-
-            svg {
-                display: block;
-                margin: 0 auto;
-                width: 100%;
-            }
-        }
-    }
 }
 
 .vs-itinerary-day__toggle-button {
@@ -180,7 +135,7 @@ export default {
 
 <docs>
 ```jsx
-	<ul class="list-unstyled">
+	<ul style="list-style-type: none; padding: 0;">
 		<vs-itinerary-day 
 			v-for="(day, index) in itineraries.sampleItinerary.days"
 			:defaultShow="(day.dayCount < 3) ? true : false"

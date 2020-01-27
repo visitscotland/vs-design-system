@@ -1,18 +1,18 @@
 <template>
-  <b-button
-    :variant="variant"
-    :href="href"
-    :tabindex="tabindex"
-    class="text-uppercase d-flex align-items-center justify-content-center"
-    :class="{
-      [animateClass]: animateClass,
-    }"
-    @click="animateClass ? animateHandler() : null"
-    :size="size"
-    v-bind="$attrs"
-  >
-    <slot />
-  </b-button>
+    <b-button
+        :variant="variant"
+        :href="href"
+        :tabindex="tabindex"
+        class="text-uppercase d-flex align-items-center justify-content-center"
+        :class="{
+            [animateClass]: animateClass,
+        }"
+        @click="animateClass ? animateHandler() : null"
+        :size="size"
+        v-bind="$attrs"
+    >
+        <slot />
+    </b-button>
 </template>
 <script>
 import { BButton } from "bootstrap-vue"
@@ -27,71 +27,73 @@ import { BButton } from "bootstrap-vue"
  */
 
 export default {
-  name: "VsButton",
-  status: "prototype",
-  release: "0.0.1",
-  components: {
-    BButton,
-  },
-  props: {
-    /**
-     * Use this option to render the button as an anchor element with the given href.
-     */
-    href: {
-      type: String,
-      default: null,
+    name: "VsButton",
+    status: "prototype",
+    release: "0.0.1",
+    components: {
+        BButton,
     },
-    /**
-     * Tab index value - this is needed as tabindex attribute is sometimes stripped
-     * from the button on first update with nested components
-     */
-    tabindex: {
-      type: String,
-      default: null,
+    props: {
+        /**
+         * Use this option to render the button as an anchor element with the given href.
+         */
+        href: {
+            type: String,
+            default: null,
+        },
+        /**
+         * Tab index value - this is needed as tabindex attribute is sometimes stripped
+         * from the button on first update with nested components
+         */
+        tabindex: {
+            type: String,
+            default: null,
+        },
+        /**
+         * Style variation to give additional meaning.
+         * `primary, secondary, success, danger, warning, info, light, dark, transparent`
+         */
+        variant: {
+            type: String,
+            default: "primary",
+            validator: value => {
+                return value.match(
+                    /(primary|secondary|success|danger|warning|info|light|dark|transparent)/
+                )
+            },
+        },
+        /**
+         * Style the button size.
+         * `sm, md, lg`
+         */
+        size: {
+            type: String,
+            default: "md",
+            validator: value => {
+                return value.match(/(sm|md|lg)/)
+            },
+        },
+        /**
+         * By default, buttons have an animation behaviour on click. To disable, add an animate=false property
+         */
+        animate: {
+            type: Boolean,
+            default: true,
+        },
     },
-    /**
-     * Style variation to give additional meaning.
-     * `primary, secondary, success, danger, warning, info, light, dark, transparent`
-     */
-    variant: {
-      type: String,
-      default: "primary",
-      validator: value => {
-        return value.match(/(primary|secondary|success|danger|warning|info|light|dark|transparent)/)
-      },
+    computed: {
+        animateClass() {
+            return this.animate ? "btn-animate" : null
+        },
     },
-    /**
-     * Style the button size.
-     * `sm, md, lg`
-     */
-    size: {
-      type: String,
-      default: "md",
-      validator: value => {
-        return value.match(/(sm|md|lg)/)
-      },
+    methods: {
+        animateHandler() {
+            this.$el.classList.add("bubble")
+            setTimeout(() => {
+                this.$el.classList.remove("bubble")
+            }, 1000)
+        },
     },
-    /**
-     * By default, buttons have an animation behaviour on click. To disable, add an animate=false property
-     */
-    animate: {
-      type: Boolean,
-      default: true,
-    },
-  },
-  computed: {
-    animateClass() {
-      return this.animate ? "btn-animate" : null
-    },
-  },
-  methods: {
-    animateHandler() {
-      this.$el.classList.add("bubble")
-      setTimeout(() => {
-        this.$el.classList.remove("bubble")
-      }, 1000)
-    },
-  },
 }
 </script>
 
@@ -99,60 +101,70 @@ export default {
 @import "~bootstrap/scss/buttons";
 
 .btn {
-  font-family: $font-family-base;
-  font-weight: $font-weight-light;
-  transition: $transition-base;
-  letter-spacing: 2px;
-  position: relative;
-  overflow: hidden;
+    font-family: $font-family-base;
+    font-weight: $font-weight-light;
+    transition: $transition-base;
+    letter-spacing: 2px;
+    position: relative;
+    overflow: hidden;
 
-  .btn-dark {
-    &:hover {
-      background-color: $color-gray-shade-5;
-    }
-  }
-
-  &.btn-light,
-  &.btn-transparent {
-    &:focus {
-      box-shadow: 0 0 0 0.2rem rgba(0, 0, 0, 0.25);
+    .btn-dark {
+        &:hover {
+            background-color: $color-gray-shade-5;
+        }
     }
 
-    &::after {
-      background: rgba(0, 0, 0, 0.2);
+    &.btn-light,
+    &.btn-transparent {
+        &:focus {
+            box-shadow: 0 0 0 0.2rem rgba(0, 0, 0, 0.25);
+        }
+
+        &::after {
+            background: rgba(0, 0, 0, 0.2);
+        }
     }
-  }
 }
 
 .btn-animate {
-  @keyframes bubble {
-    0% {
-      transform: scale(0, 0);
-      opacity: 1;
+    @keyframes bubble {
+        0% {
+            transform: scale(0, 0);
+            opacity: 1;
+        }
+        100% {
+            opacity: 0;
+            transform: scale(100, 100);
+        }
     }
-    100% {
-      opacity: 0;
-      transform: scale(100, 100);
+
+    &::after {
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 50%;
+        bottom: 0;
+        content: "";
+        height: 5px;
+        opacity: 0;
+        position: absolute;
+        right: 0;
+        transform-origin: 50% 50%;
+        transform: scale(1, 1) translate(-50%);
+        width: 5px;
     }
-  }
 
-  &::after {
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 50%;
-    bottom: 0;
-    content: "";
-    height: 5px;
-    opacity: 0;
-    position: absolute;
-    right: 0;
-    transform-origin: 50% 50%;
-    transform: scale(1, 1) translate(-50%);
-    width: 5px;
-  }
+    &.bubble::after {
+        animation: bubble 500ms ease-in-out;
+    }
 
-  &.bubble::after {
-    animation: bubble 500ms ease-in-out;
-  }
+    svg {
+        transition: fill 250ms;
+    }
+
+    &:hover {
+        svg {
+            fill: inherit;
+        }
+    }
 }
 </style>
 
