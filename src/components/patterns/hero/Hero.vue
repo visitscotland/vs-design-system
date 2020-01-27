@@ -191,8 +191,8 @@ img {
     @include media-breakpoint-up(xl) {
         display: flex;
         flex-direction: column;
-        justify-content: center; /* Centering y-axis */
-        align-items: center;
+        justify-content: top; /* Centering y-axis */
+        align-items: center; /* Centering x-axis */
     }
 }
 
