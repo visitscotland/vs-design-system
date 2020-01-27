@@ -1,17 +1,17 @@
 <template>
-  <component :is="type" class="vs-itinerary position-sticky">
-    <div class="fixed-bottom" v-show="!this.isDesktop && this.withinItineraryMain">
-      <div class="vs-itinerary__map-toggle-container d-flex justify-content-center pb-2">
-        <vs-itinerary-mobile-map-toggle @click.native="toggleShowMap()" />
-      </div>
-    </div>
-    <div class="vs-itinerary__map-container" v-show="this.isDesktop || this.showMap">
-      <slot name="map" />
-    </div>
-    <div class="vs-itinerary__list-container">
-      <slot name="list" />
-    </div>
-  </component>
+    <component :is="type" class="vs-itinerary position-sticky">
+        <div class="fixed-bottom" v-show="!this.isDesktop && this.withinItineraryMain">
+            <div class="vs-itinerary__map-toggle-container d-flex justify-content-center pb-2">
+                <vs-itinerary-mobile-map-toggle @click.native="toggleShowMap()" />
+            </div>
+        </div>
+        <div class="vs-itinerary__map-container" v-show="this.isDesktop || this.showMap">
+            <slot name="map" />
+        </div>
+        <div class="vs-itinerary__list-container">
+            <slot name="list" />
+        </div>
+    </component>
 </template>
 <script>
 import VsIcon from "@components/elements/icon/Icon"
@@ -28,59 +28,61 @@ import VsItineraryMobileMapToggle from "@components/patterns/itineraries/compone
  */
 
 export default {
-  name: "VsItinerary",
-  status: "prototype",
-  release: "0.0.1",
-  data() {
-    return {
-      showMap: window.innerWidth >= 1200 ? true : false,
-      isDesktop: window.innerWidth >= 1200 ? true : false,
-      withinItineraryMain: false,
-    }
-  },
-  components: {
-    VsContainer,
-    VsRow,
-    VsCol,
-    VsHeading,
-    VsImageLocationMap,
-    VsImageWithCaption,
-    VsItineraryMobileMapToggle,
-    VsButton,
-    VsIcon,
-  },
-  props: {
-    type: {
-      type: String,
-      default: "section",
+    name: "VsItinerary",
+    status: "prototype",
+    release: "0.0.1",
+    data() {
+        return {
+            showMap: window.innerWidth >= 1200 ? true : false,
+            isDesktop: window.innerWidth >= 1200 ? true : false,
+            withinItineraryMain: false,
+        }
     },
-  },
-  methods: {
-    onResize() {
-      this.isDesktop = window.innerWidth >= 1200 ? true : false
-      this.showMap = window.innerWidth >= 1200 ? true : false
+    components: {
+        VsContainer,
+        VsRow,
+        VsCol,
+        VsHeading,
+        VsImageLocationMap,
+        VsImageWithCaption,
+        VsItineraryMobileMapToggle,
+        VsButton,
+        VsIcon,
     },
-    onScroll() {
-      var bounding = this.$el.getBoundingClientRect()
-      var insideStartOfItineraryMain =
-        bounding.top <= (window.innerHeight || document.documentElement.clientHeight) ? true : false
-      var outsideEndOfItineraryMain =
-        bounding.bottom <= (window.innerHeight || document.documentElement.clientHeight)
-          ? true
-          : false
-      this.withinItineraryMain =
-        insideStartOfItineraryMain && !outsideEndOfItineraryMain ? true : false
+    props: {
+        type: {
+            type: String,
+            default: "section",
+        },
     },
-    toggleShowMap() {
-      this.showMap = !this.showMap
+    methods: {
+        onResize() {
+            this.isDesktop = window.innerWidth >= 1200 ? true : false
+            this.showMap = window.innerWidth >= 1200 ? true : false
+        },
+        onScroll() {
+            var bounding = this.$el.getBoundingClientRect()
+            var insideStartOfItineraryMain =
+                bounding.top <= (window.innerHeight || document.documentElement.clientHeight)
+                    ? true
+                    : false
+            var outsideEndOfItineraryMain =
+                bounding.bottom <= (window.innerHeight || document.documentElement.clientHeight)
+                    ? true
+                    : false
+            this.withinItineraryMain =
+                insideStartOfItineraryMain && !outsideEndOfItineraryMain ? true : false
+        },
+        toggleShowMap() {
+            this.showMap = !this.showMap
+        },
     },
-  },
-  mounted() {
-    window.addEventListener("resize", this.onResize)
-  },
-  destroyed() {
-    window.removeEventListener("resize", this.onResize)
-  },
+    mounted() {
+        window.addEventListener("resize", this.onResize)
+    },
+    destroyed() {
+        window.removeEventListener("resize", this.onResize)
+    },
 }
 </script>
 
@@ -88,29 +90,33 @@ export default {
 @import "~bootstrap/scss/type";
 
 .vs-itinerary ::v-deep {
-  .vs-itinerary__map-toggle-container {
-    background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 100%);
-  }
-
-  .vs-itinerary__map-container {
-    height: 100vh;
-    position: fixed;
-    top: 0;
-    width: 100vw;
-    z-index: 1020;
-
-    @include media-breakpoint-down(lg) {
-      bottom: 0;
-      left: 0;
-      right: 0;
+    .vs-itinerary__map-toggle-container {
+        background: linear-gradient(
+            to bottom,
+            rgba(255, 255, 255, 0) 0%,
+            rgba(255, 255, 255, 1) 100%
+        );
     }
-    @include media-breakpoint-up(lg) {
-      float: right;
-      position: -webkit-sticky;
-      position: sticky;
-      width: 50vw;
+
+    .vs-itinerary__map-container {
+        height: 100vh;
+        position: fixed;
+        top: 0;
+        width: 100vw;
+        z-index: 1020;
+
+        @include media-breakpoint-down(lg) {
+            bottom: 0;
+            left: 0;
+            right: 0;
+        }
+        @include media-breakpoint-up(lg) {
+            float: right;
+            position: -webkit-sticky;
+            position: sticky;
+            width: 50vw;
+        }
     }
-  }
 }
 </style>
 
@@ -156,8 +162,11 @@ export default {
       <vs-col cols="12" tag="ul" class="list-unstyled">
         <vs-itinerary-day 
           v-for="(day, index) in itineraries.sampleItinerary.days"
-          :defaultShow="(day.dayCount < 3) ? true : false"
-          :key="index"
+            :defaultShow="(day.dayCount < 3) ? true : false"
+            :key="index"
+            :dayNumber="day.dayCount"
+            dayLabel="Day"
+            :dayTitle="day.title"
           >
           <vs-heading 
             slot="day-title"
