@@ -1,5 +1,5 @@
 <template>
-    <div class="vs-itinerary-nearby-links">
+    <div class="vs-itinerary-nearby-links mt-4">
         <slot />
     </div>
 </template>
@@ -38,20 +38,12 @@ export default {
 <docs>
 ```jsx
 	<vs-itinerary-nearby-links>
-        <vs-button
-            class="d-inline-flex mb-4"
-            variant="outline-primary"
-            href="https://www.visitscotland.com"
-        >
-        <vs-icon name="food" variant="primary" size="sm"></vs-icon>
+        <vs-button class="d-inline-flex mb-4" variant="outline-primary" href="#">
+            <vs-icon name="food" variant="primary" size="sm"></vs-icon>
             Nearby places to eat
         </vs-button>
         <br />
-        <vs-button
-            class="d-inline-flex"
-            variant="outline-primary"
-            href="https://www.visitscotland.com"
-        >
+        <vs-button class="d-inline-flex" variant="outline-primary" href="#">
             <vs-icon name="product-accommodation" variant="primary" size="sm"></vs-icon>
             Nearby places to stay
         </vs-button>
