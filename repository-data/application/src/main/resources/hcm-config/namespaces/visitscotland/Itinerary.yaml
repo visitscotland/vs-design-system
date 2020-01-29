@@ -11,7 +11,7 @@ definitions:
         /hipposysedit:nodetype:
           jcr:primaryType: hipposysedit:nodetype
           jcr:mixinTypes: ['mix:referenceable', 'hipposysedit:remodel']
-          jcr:uuid: e6ea4a33-8d8f-48d7-8646-56c24e6c358a
+          jcr:uuid: da8fef9d-e658-4b03-8012-ee8b16ce5148
           hipposysedit:node: true
           hipposysedit:supertype: ['visitscotland:Page', 'hippostd:relaxed', 'hippotranslation:translated']
           hipposysedit:uri: http://www.visitscotland.com/visitscotland/nt/1.0
@@ -95,6 +95,14 @@ definitions:
             hipposysedit:path: visitscotland:teaser
             hipposysedit:primary: false
             hipposysedit:type: String
+          /ProductsSearch:
+            jcr:primaryType: hipposysedit:field
+            hipposysedit:mandatory: false
+            hipposysedit:multiple: false
+            hipposysedit:ordered: false
+            hipposysedit:path: visitscotland:ProductsSearch
+            hipposysedit:primary: false
+            hipposysedit:type: visitscotland:ProductsSearch
       /hipposysedit:prototypes:
         jcr:primaryType: hipposysedit:prototypeset
         /hipposysedit:prototype:
@@ -114,7 +122,7 @@ definitions:
           visitscotland:start: ''
           visitscotland:distance: 0.0
           visitscotland:theme: ''
-          jcr:uuid: 4448efa6-a1b1-410a-a391-8870bd222033
+          jcr:uuid: 8ae13c57-3203-4ee9-9052-355ec8184685
           hippostdpubwf:creationDate: 2019-12-06T11:10:08.311Z
           hippostdpubwf:lastModificationDate: 2019-12-06T11:10:08.310Z
           visitscotland:highlights: ''
@@ -132,6 +140,11 @@ definitions:
           /visitscotland:introduction:
             jcr:primaryType: hippostd:html
             hippostd:content: ''
+          /visitscotland:ProductsSearch:
+            jcr:primaryType: visitscotland:ProductsSearch
+            visitscotland:dmscategories: ''
+            visitscotland:distance: 0
+            visitscotland:location: ''
       /editor:templates:
         jcr:primaryType: editor:templateset
         /_default_:
@@ -307,3 +320,11 @@ definitions:
             /cluster.options:
               jcr:primaryType: frontend:pluginconfig
               source: /content/documents/administration/options/areas
+          /ProductsSearch:
+            jcr:primaryType: frontend:plugin
+            caption: ProductsSearch
+            field: ProductsSearch
+            plugin.class: org.hippoecm.frontend.editor.plugins.field.NodeFieldPlugin
+            wicket.id: ${cluster.id}.left.item
+            /cluster.options:
+              jcr:primaryType: frontend:pluginconfig

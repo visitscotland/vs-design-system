@@ -28,7 +28,7 @@
         hippostd:state: draft
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2019-12-06T12:48:04.149Z
-        hippostdpubwf:lastModificationDate: 2020-01-21T15:43:58.416Z
+        hippostdpubwf:lastModificationDate: 2020-01-23T09:44:36.023Z
         hippostdpubwf:lastModifiedBy: admin
         hippotranslation:id: a3ed9022-e239-493b-952c-18d01ac36640
         hippotranslation:locale: en
@@ -71,6 +71,13 @@
             Fettes College, a private school on the outskirts of Edinburgh’s west
             end new town. You could also try the <a href="https://www.visitscotland.com/info/tours/wizarding-world-of-edinburgh-03e61189">Wizarding
             World of Edinburgh</a> tour.</p>
+        /visitscotland:ProductsSearch:
+          jcr:primaryType: visitscotland:ProductsSearch
+          visitscotland:distance: 0
+          visitscotland:dmsCategories: [guesthouse, yurts, touringpark, hostel]
+          visitscotland:dmscategories: ''
+          visitscotland:location: ''
+          visitscotland:producttype: ''
       /content[2]:
         jcr:primaryType: visitscotland:Itinerary
         jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
@@ -79,7 +86,7 @@
         hippostd:state: unpublished
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2019-12-06T12:48:04.149Z
-        hippostdpubwf:lastModificationDate: 2020-01-13T09:35:44.376Z
+        hippostdpubwf:lastModificationDate: 2020-01-22T15:33:12.894Z
         hippostdpubwf:lastModifiedBy: admin
         hippotranslation:id: a3ed9022-e239-493b-952c-18d01ac36640
         hippotranslation:locale: en
@@ -122,6 +129,10 @@
             Fettes College, a private school on the outskirts of Edinburgh’s west
             end new town. You could also try the <a href="https://www.visitscotland.com/info/tours/wizarding-world-of-edinburgh-03e61189">Wizarding
             World of Edinburgh</a> tour.</p>
+        /visitscotland:ProductsSearch:
+          jcr:primaryType: visitscotland:ProductsSearch
+          visitscotland:dmsCategories: [guesthouse, yurts, touringpark, hostel]
+          visitscotland:dmscategories: ''
       /content[3]:
         jcr:primaryType: visitscotland:Itinerary
         jcr:mixinTypes: ['mix:referenceable']
@@ -386,3 +397,101 @@
         /visitscotland:stops[3]:
           jcr:primaryType: hippo:mirror
           hippo:docbase: 1ead4399-7e30-47dc-9b75-2ea488fb5742
+    /213213:
+      jcr:primaryType: hippo:handle
+      jcr:mixinTypes: ['mix:referenceable']
+      jcr:uuid: 5746b57c-6c6a-4bdd-8303-f89cc8759486
+      /213213[1]:
+        jcr:primaryType: visitscotland:Itinerary
+        jcr:mixinTypes: ['mix:referenceable']
+        jcr:uuid: 0021183e-1b83-4bda-adc7-e555c1f348c2
+        hippo:availability: []
+        hippostd:state: draft
+        hippostdpubwf:createdBy: admin
+        hippostdpubwf:creationDate: 2020-01-22T08:43:22.896Z
+        hippostdpubwf:lastModificationDate: 2020-01-22T15:33:39.547Z
+        hippostdpubwf:lastModifiedBy: admin
+        hippotranslation:id: 256b3f8a-04b6-452c-82c8-1fc20f80c378
+        hippotranslation:locale: en
+        visitscotland:areas: []
+        visitscotland:breadcrumb: ''
+        visitscotland:distance: 0.0
+        visitscotland:dmscategories: ''
+        visitscotland:finish: ''
+        visitscotland:highlights: ''
+        visitscotland:noIndex: false
+        visitscotland:popular: false
+        visitscotland:seoNoIndex: ''
+        visitscotland:seoTitle: ''
+        visitscotland:start: ''
+        visitscotland:teaser: ''
+        visitscotland:theme: ''
+        visitscotland:title: ''
+        visitscotland:transports: []
+        /visitscotland:heroImage:
+          jcr:primaryType: hippogallerypicker:imagelink
+          hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
+          hippo:facets: []
+          hippo:modes: []
+          hippo:values: []
+        /visitscotland:introduction:
+          jcr:primaryType: hippostd:html
+          hippostd:content: ''
+        /visitscotland:ProductsSearch:
+          jcr:primaryType: visitscotland:ProductsSearch
+          visitscotland:distance: 0
+          visitscotland:dmsCategories: [karting, chalet, lodge, canoekayak]
+          visitscotland:dmscategories: ''
+          visitscotland:location: Acharacle
+          visitscotland:producttype: acti,attr,reta
+        /visitscotland:ProductSearch:
+          jcr:primaryType: visitscotland:ProductSearch
+          visitscotland:dmsCategories: ''
+          visitscotland:location: ''
+      /213213[2]:
+        jcr:primaryType: visitscotland:Itinerary
+        jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
+        jcr:uuid: 95982318-8f40-4563-8970-39c3f5d16786
+        hippo:availability: [preview]
+        hippostd:state: unpublished
+        hippostdpubwf:createdBy: admin
+        hippostdpubwf:creationDate: 2020-01-22T08:43:22.896Z
+        hippostdpubwf:lastModificationDate: 2020-01-22T16:30:11.436Z
+        hippostdpubwf:lastModifiedBy: admin
+        hippotranslation:id: 256b3f8a-04b6-452c-82c8-1fc20f80c378
+        hippotranslation:locale: en
+        visitscotland:areas: []
+        visitscotland:breadcrumb: ''
+        visitscotland:distance: 0.0
+        visitscotland:dmscategories: ''
+        visitscotland:finish: ''
+        visitscotland:highlights: ''
+        visitscotland:noIndex: false
+        visitscotland:popular: false
+        visitscotland:seoNoIndex: ''
+        visitscotland:seoTitle: ''
+        visitscotland:start: ''
+        visitscotland:teaser: ''
+        visitscotland:theme: ''
+        visitscotland:title: ''
+        visitscotland:transports: []
+        /visitscotland:heroImage:
+          jcr:primaryType: hippogallerypicker:imagelink
+          hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
+          hippo:facets: []
+          hippo:modes: []
+          hippo:values: []
+        /visitscotland:introduction:
+          jcr:primaryType: hippostd:html
+          hippostd:content: ''
+        /visitscotland:ProductsSearch:
+          jcr:primaryType: visitscotland:ProductsSearch
+          visitscotland:distance: 0
+          visitscotland:dmsCategories: [karting, chalet, lodge, canoekayak]
+          visitscotland:dmscategories: ''
+          visitscotland:location: Acharacle
+          visitscotland:producttype: acti,attr,reta
+        /visitscotland:ProductSearch:
+          jcr:primaryType: visitscotland:ProductSearch
+          visitscotland:dmsCategories: ''
+          visitscotland:location: ''

@@ -28,6 +28,12 @@
 [visitscotland:Itinerary] > hippostd:relaxed, hippotranslation:translated, visitscotland:Page
   orderable
 
+[visitscotland:ProductSearch] > hippo:compound, hippostd:relaxed
+  orderable
+
+[visitscotland:ProductsSearch] > hippo:compound, hippostd:relaxed
+  orderable
+
 [visitscotland:Stop] > hippostd:relaxed, hippotranslation:translated, visitscotland:basedocument
   orderable
 
