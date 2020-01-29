@@ -110,7 +110,6 @@ export default {
             left: 0;
             right: 0;
         }
-
         @include media-breakpoint-up(lg) {
             float: right;
             position: -webkit-sticky;
@@ -169,12 +168,12 @@ export default {
                 :dayTitle="day.title"
             >
 
-          <dl v-if="day.dayMiles && day.dayKM" slot="day-distance" class="list-inline text-center">
+        <vs-description-list v-if="day.dayMiles && day.dayKM" slot="day-distance" class="list-inline text-center">
             <dt class="list-inline-item"><abbr title="miles">mi</abbr>/<abbr title="kilometres">km</abbr>:</dt>
             <dd class="list-inline-item">{{day.dayMiles}}/{{day.dayKM}}</dd>
-          </dl>
+        </vs-description-list>
 
-          <dl v-if="day.transport.length" class="list-inline text-center" slot="day-transport">
+        <vs-description-list v-if="day.transport.length" class="list-inline text-center" slot="day-transport">
             <dt class="list-inline-item">Transport:</dt>
             <dd class="list-inline-item" v-for="(transportType, transportTypeIndex) in day.transport" :key="transportTypeIndex">
                 <vs-tooltip :title="transportType.value">
@@ -182,8 +181,8 @@ export default {
                 </vs-tooltip>
               <span class="sr-only">{{transportType.value}}</span>
             </dd>
-          </dl>
-
+        </vs-description-list>
+                    
           <div class="mb-5" slot="day-introduction" v-html="day.introduction"></div>
             <vs-itinerary-stop 
               slot="stops"

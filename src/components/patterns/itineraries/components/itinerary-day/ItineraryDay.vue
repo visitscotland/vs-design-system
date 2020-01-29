@@ -146,15 +146,16 @@ export default {
             :dayTitle="day.title"
            
 		>
-			<dl v-if="day.transport.length" class="list-inline text-center" slot="day-transport">
-				<dt class="list-inline-item">Transport:</dt>
+            <vs-description-list v-if="day.transport.length" class="list-inline text-center" slot="day-transport">
+                <dt class="list-inline-item">Transport:</dt>
 				<dd class="list-inline-item" v-for="(transportType, transportTypeIndex) in day.transport">
 					<vs-tooltip :title="transportType.value">
 						<vs-icon :name="transportType.key" variant="dark" size="sm" />
 					</vs-tooltip>
 					<span class="sr-only">{{transportType.value}}</span>
 				</dd>
-			</dl>
+            </vs-description-list>
+
 			<div slot="day-introduction" v-html="day.introduction"></div>
 		</vs-itinerary-day>
 	</ul>
