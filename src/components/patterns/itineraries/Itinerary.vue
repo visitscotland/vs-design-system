@@ -79,6 +79,10 @@ export default {
     },
     mounted() {
         window.addEventListener("resize", this.onResize)
+        var designSystemWrapper = document.querySelector(".vds-example")
+        if (designSystemWrapper === null) {
+            window.addEventListener("scroll", this.onScroll)
+        } else designSystemWrapper.addEventListener("scroll", this.onScroll)
     },
     destroyed() {
         window.removeEventListener("resize", this.onResize)
@@ -140,34 +144,32 @@ export default {
 
 <vs-itinerary>
   <!-- TODO: move mapbox prod and dev keys to an environment variable -->
-  <vs-itinerary-map
-    slot="map"
-    access-token="pk.eyJ1IjoidmlzaXRzY290bGFuZC1kZXYiLCJhIjoiY2p4MGZwcmtjMDBlczN5bTBnY3pjeHNubCJ9.d3CJWPvX9FfjfSNAW98Q6w"
-    overview-map-longitude="57.81"
-    overview-map-latitude="-4.13"
-    overview-map-zoom="5"
-    :stops="stops"
-    :labels='{
-        "stopLabel": "Stop",
-        "mapControlsFullscreenOpen": "Show fullscreen",
-        "mapControlsFullscreenClose": "Exit fullscreen",
-        "mapControlsCompass": "Reset angle",
-        "mapControlsZoomIn": "Zoom in",
-        "mapControlsZoomOut": "Zoom out"
-    }'
-    >
-  </vs-itinerary-map>
-
-        <vs-itinerary-day 
-            slot="list"
-            v-for="(day, index) in itineraries.sampleItinerary.days"
-                :defaultShow="(day.dayCount < 3) ? true : false"
-                :key="index"
-                :dayNumber="day.dayCount"
-                dayLabel="Day"
-                :dayTitle="day.title"
-            >
-
+    <vs-itinerary-map
+        slot="map"
+        access-token="pk.eyJ1IjoidmlzaXRzY290bGFuZC1kZXYiLCJhIjoiY2p4MGZwcmtjMDBlczN5bTBnY3pjeHNubCJ9.d3CJWPvX9FfjfSNAW98Q6w"
+        overview-map-longitude="57.81"
+        overview-map-latitude="-4.13"
+        overview-map-zoom="5"
+        :stops="stops"
+        :labels='{
+            "stopLabel": "Stop",
+            "mapControlsFullscreenOpen": "Show fullscreen",
+            "mapControlsFullscreenClose": "Exit fullscreen",
+            "mapControlsCompass": "Reset angle",
+            "mapControlsZoomIn": "Zoom in",
+            "mapControlsZoomOut": "Zoom out"
+        }'
+        >
+    </vs-itinerary-map>
+    <vs-itinerary-day 
+        slot="list"
+        v-for="(day, index) in itineraries.sampleItinerary.days"
+            :defaultShow="(day.dayCount < 3) ? true : false"
+            :key="index"
+            :dayNumber="day.dayCount"
+            dayLabel="Day"
+            :dayTitle="day.title"
+        >
         <vs-description-list v-if="day.dayMiles && day.dayKM" slot="day-distance" class="list-inline text-center">
             <dt class="list-inline-item"><abbr title="miles">mi</abbr>/<abbr title="kilometres">km</abbr>:</dt>
             <dd class="list-inline-item">{{day.dayMiles}}/{{day.dayKM}}</dd>
