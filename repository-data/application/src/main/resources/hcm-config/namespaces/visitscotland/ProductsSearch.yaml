@@ -1,0 +1,170 @@
+definitions:
+  config:
+    /hippo:namespaces/visitscotland/ProductsSearch:
+      jcr:primaryType: hipposysedit:templatetype
+      jcr:mixinTypes: ['editor:editable', 'mix:referenceable']
+      jcr:uuid: df968967-65df-4ec7-bec0-4575309b9db1
+      /hipposysedit:nodetype:
+        jcr:primaryType: hippo:handle
+        jcr:mixinTypes: ['mix:referenceable']
+        jcr:uuid: 2fc5db78-2ea0-43cd-b7d9-e9d680b4895a
+        /hipposysedit:nodetype:
+          jcr:primaryType: hipposysedit:nodetype
+          jcr:mixinTypes: ['mix:referenceable', 'hipposysedit:remodel']
+          jcr:uuid: eb7d7f17-4dc4-4fcd-8dec-b9323f3845c5
+          hipposysedit:node: true
+          hipposysedit:supertype: ['hippo:compound', 'hippostd:relaxed']
+          hipposysedit:uri: http://www.visitscotland.com/visitscotland/nt/1.0
+          /dmscategories:
+            jcr:primaryType: hipposysedit:field
+            hipposysedit:mandatory: false
+            hipposysedit:multiple: true
+            hipposysedit:ordered: false
+            hipposysedit:path: visitscotland:dmscategories
+            hipposysedit:primary: false
+            hipposysedit:type: String
+          /location:
+            jcr:primaryType: hipposysedit:field
+            hipposysedit:mandatory: false
+            hipposysedit:multiple: false
+            hipposysedit:ordered: false
+            hipposysedit:path: visitscotland:location
+            hipposysedit:primary: false
+            hipposysedit:type: DynamicDropdown
+          /long:
+            jcr:primaryType: hipposysedit:field
+            hipposysedit:mandatory: false
+            hipposysedit:multiple: false
+            hipposysedit:ordered: false
+            hipposysedit:path: visitscotland:distance
+            hipposysedit:primary: false
+            hipposysedit:type: Long
+          /producttype:
+            jcr:primaryType: hipposysedit:field
+            hipposysedit:mandatory: false
+            hipposysedit:multiple: false
+            hipposysedit:ordered: false
+            hipposysedit:path: visitscotland:producttype
+            hipposysedit:primary: false
+            hipposysedit:type: DynamicDropdown
+        /hipposysedit:nodetype[2]:
+          jcr:primaryType: hipposysedit:nodetype
+          jcr:mixinTypes: ['mix:referenceable']
+          jcr:uuid: e448cc4e-de9c-4720-b6eb-2a45c6571bf7
+          hipposysedit:node: true
+          hipposysedit:supertype: ['hippo:compound', 'hippostd:relaxed']
+          /dmscategories:
+            jcr:primaryType: hipposysedit:field
+            hipposysedit:mandatory: false
+            hipposysedit:multiple: true
+            hipposysedit:ordered: false
+            hipposysedit:path: visitscotland:dmscategories
+            hipposysedit:primary: false
+            hipposysedit:type: String
+          /location:
+            jcr:primaryType: hipposysedit:field
+            hipposysedit:mandatory: false
+            hipposysedit:multiple: false
+            hipposysedit:ordered: false
+            hipposysedit:path: visitscotland:location
+            hipposysedit:primary: false
+            hipposysedit:type: DynamicDropdown
+          /long:
+            jcr:primaryType: hipposysedit:field
+            hipposysedit:mandatory: false
+            hipposysedit:multiple: false
+            hipposysedit:ordered: false
+            hipposysedit:path: visitscotland:distance
+            hipposysedit:primary: false
+            hipposysedit:type: Long
+          /producttype:
+            jcr:primaryType: hipposysedit:field
+            hipposysedit:mandatory: false
+            hipposysedit:multiple: false
+            hipposysedit:ordered: false
+            hipposysedit:path: visitscotland:producttype
+            hipposysedit:primary: false
+            hipposysedit:type: DynamicDropdown
+      /hipposysedit:prototypes:
+        jcr:primaryType: hipposysedit:prototypeset
+        /hipposysedit:prototype:
+          jcr:primaryType: visitscotland:ProductsSearch
+          visitscotland:dmscategories: ['']
+          visitscotland:location: ''
+          visitscotland:distance: 10
+          visitscotland:producttype: ''
+        /hipposysedit:prototype[2]:
+          jcr:primaryType: nt:unstructured
+          jcr:mixinTypes: ['hippostd:relaxed']
+          visitscotland:distance: 10
+          visitscotland:dmscategories: ['']
+          visitscotland:location: ''
+          visitscotland:producttype: ''
+      /editor:templates:
+        jcr:primaryType: editor:templateset
+        /_default_:
+          jcr:primaryType: frontend:plugincluster
+          frontend:properties: [mode]
+          frontend:references: [wicket.model, model.compareTo, engine, validator.id]
+          frontend:services: [wicket.id, validator.id]
+          /root:
+            jcr:primaryType: frontend:plugin
+            extension.left: ${cluster.id}.left
+            extension.right: ${cluster.id}.right
+            plugin.class: org.hippoecm.frontend.editor.layout.TwoColumn
+            wicket.extensions: [extension.left, extension.right]
+          /left:
+            jcr:primaryType: frontend:plugin
+            item: ${cluster.id}.left.item
+            plugin.class: org.hippoecm.frontend.service.render.ListViewPlugin
+            wicket.id: ${cluster.id}.left
+          /right:
+            jcr:primaryType: frontend:plugin
+            item: ${cluster.id}.right.item
+            plugin.class: org.hippoecm.frontend.service.render.ListViewPlugin
+            wicket.id: ${cluster.id}.right
+          /location:
+            jcr:primaryType: frontend:plugin
+            caption: Location
+            field: location
+            plugin.class: org.hippoecm.frontend.editor.plugins.field.PropertyFieldPlugin
+            wicket.id: ${cluster.id}.left.item
+            hint: ''
+            /cluster.options:
+              jcr:primaryType: frontend:pluginconfig
+              valuelistProvider: service.locationlist.default
+          /distance:
+            jcr:primaryType: frontend:plugin
+            caption: Distance in milles
+            field: long
+            hint: ''
+            plugin.class: org.hippoecm.frontend.editor.plugins.field.PropertyFieldPlugin
+            wicket.id: ${cluster.id}.right.item
+            /cluster.options:
+              jcr:primaryType: frontend:pluginconfig
+          /dmscategorycselector:
+            jcr:primaryType: frontend:plugin
+            caption: DMS category
+            engine: ${engine}
+            example.external.docs.field.name: visitscotland:dmsCategories
+            external.document.service.facade: visitscotland.components.DMSCategoryPicker
+            initial.search.enabled: true
+            mode: ${mode}
+            plugin.class: org.onehippo.forge.exdocpicker.impl.field.ExternalDocumentFieldSelectorPlugin
+            selection.mode: multiple
+            wicket.id: ${cluster.id}.right.item
+            wicket.model: ${wicket.model}
+            page.size: 10
+            icon.style: 'display: none;'
+            /cluster.options:
+              jcr:primaryType: frontend:pluginconfig
+          /producttype:
+            jcr:primaryType: frontend:plugin
+            caption: Product type
+            field: producttype
+            plugin.class: org.hippoecm.frontend.editor.plugins.field.PropertyFieldPlugin
+            wicket.id: ${cluster.id}.left.item
+            /cluster.options:
+              jcr:primaryType: frontend:pluginconfig
+              orientation: vertical
+              source: /content/documents/administration/options/product-search
