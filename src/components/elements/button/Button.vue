@@ -128,9 +128,10 @@ export default {
 
 .btn ::v-deep svg {
     transition: fill 250ms;
-    :hover & {
-        fill: currentColor;
-    }
+}
+
+.btn:hover ::v-deep svg {
+    fill: currentColor;
 }
 
 .btn-animate {
@@ -161,16 +162,6 @@ export default {
 
     &.bubble::after {
         animation: bubble 500ms ease-in-out;
-    }
-
-    svg {
-        transition: fill 250ms;
-    }
-
-    &:hover {
-        svg {
-            fill: inherit;
-        }
     }
 }
 </style>
