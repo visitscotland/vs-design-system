@@ -126,6 +126,13 @@ export default {
     }
 }
 
+.btn ::v-deep svg {
+    transition: fill 250ms;
+    :hover & {
+        fill: currentColor;
+    }
+}
+
 .btn-animate {
     @keyframes bubble {
         0% {
