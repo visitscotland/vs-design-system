@@ -62,19 +62,18 @@ export default {
 
 <style lang="scss" scoped>
 .vs-itinerary-stop {
-    margin-bottom: $spacer-4;
+    margin-bottom: 3.125rem;
     .border {
         background-color: $color-white;
         border: 1px solid $color-gray-tint-5;
         padding: $spacer-4;
     }
 
-    &:last-of-type {
-        .border {
-            padding-bottom: 50px;
-        }
+    @include media-breakpoint-up(sm) {
+        margin-bottom: 6.35rem;
     }
 }
+
 .vs-itinerary-stop ::v-deep {
     .itinerary-stop__facilities {
         border-top: 1px solid $color-gray-tint-5;
