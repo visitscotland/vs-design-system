@@ -1,3 +1,6 @@
+def DS_BRANCH = "develop-with-artefacts"
+def MAIL_TO = "jose.calcines@visitscotland.com, juanluis.hurtado@visitscotland.com"
+
 pipeline {
  options {
     buildDiscarder(logRotator(numToKeepStr: '5'))
@@ -9,13 +12,13 @@ pipeline {
     }
     stages {
 
-		stage ('Checkout dependencies') {
+		stage ('Checkout Design System') {
 			steps {
               	// create a directory for the checkout then run the Git command within that directory, the package.json file must be aware of this location which introduces fragility/cross-dependency, could this be improved?
         		sh 'mkdir -p design-system'
         		dir('design-system') {
                     //git branch: 'feature/VS-560-ui-meganav-with-build-products', credentialsId: '12a55ebf-608d-4b3e-811c-e4ad04f61f43', url: 'https://bitbucket.visitscotland.com/scm/vscom/design-system.git'
-                  	checkout([$class: 'GitSCM', branches: [[name: '*/feature/VS-851-breadcrumb-with-build-products']], doGenerateSubmoduleConfigurations: false, extensions: [[$class: 'SparseCheckoutPaths',  sparseCheckoutPaths:[[$class:'SparseCheckoutPath', path:'dist/']]]], submoduleCfg: [], userRemoteConfigs: [[credentialsId: '12a55ebf-608d-4b3e-811c-e4ad04f61f43',url: 'https://bitbucket.visitscotland.com/scm/vscom/design-system.git']]])
+                  	checkout([$class: 'GitSCM', branches: [[name: '*/develop-with-artefacts']], doGenerateSubmoduleConfigurations: false, extensions: [[$class: 'SparseCheckoutPaths',  sparseCheckoutPaths:[[$class:'SparseCheckoutPath', path:'dist/']]]], submoduleCfg: [], userRemoteConfigs: [[credentialsId: '12a55ebf-608d-4b3e-811c-e4ad04f61f43',url: 'https://bitbucket.visitscotland.com/scm/vscom/design-system.git']]])
                 }
 			}
 		}
@@ -28,10 +31,10 @@ pipeline {
                 success {
                     //sh 'mvn -f pom.xml install -P !default'
                   	sh 'mvn -f pom.xml install -P dist'
-                	mail bcc: '', body: "<b>Notification</b><br>Project: ${env.JOB_NAME} <br>Build Number: ${env.BUILD_NUMBER} <br> build URL: ${env.BUILD_URL}", cc: '', charset: 'UTF-8', from: '', mimeType: 'text/html', replyTo: '', subject: "SUCCESS CI: Project name -> ${env.JOB_NAME}", to: "gavin.park@visitscotland.com";
+                	mail bcc: '', body: "<b>Notification</b><br>Project: ${env.JOB_NAME} <br>Build Number: ${env.BUILD_NUMBER} <br> build URL: ${env.BUILD_URL}", cc: '', charset: 'UTF-8', from: '', mimeType: 'text/html', replyTo: '', subject: "SUCCESS CI: Project name -> ${env.JOB_NAME}", to: "${MAIL_TO}";
                 }
                 failure {
-                    mail bcc: '', body: "<b>Notification</b><br>Project: ${env.JOB_NAME} <br>Build Number: ${env.BUILD_NUMBER} <br> build URL: ${env.BUILD_URL}", cc: '', charset: 'UTF-8', from: '', mimeType: 'text/html', replyTo: '', subject: "ERROR CI: Project name -> ${env.JOB_NAME}", to: "gavin.park@visitscotland.com";
+                    mail bcc: '', body: "<b>Notification</b><br>Project: ${env.JOB_NAME} <br>Build Number: ${env.BUILD_NUMBER} <br> build URL: ${env.BUILD_URL}", cc: '', charset: 'UTF-8', from: '', mimeType: 'text/html', replyTo: '', subject: "ERROR CI: Project name -> ${env.JOB_NAME}", to: "${MAIL_TO}";
                 }
             }
         }
