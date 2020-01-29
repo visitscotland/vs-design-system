@@ -1,9 +1,7 @@
 <template>
-    <vs-container>
-        <vs-row tag="dl" class="vs-description-list" :class="{ 'list-inline': inline }">
-            <slot />
-        </vs-row>
-    </vs-container>
+    <vs-row tag="dl" class="vs-description-list" :class="{ 'list-inline': inline }">
+        <slot />
+    </vs-row>
 </template>
 
 <script>
