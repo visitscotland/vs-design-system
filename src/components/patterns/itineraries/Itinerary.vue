@@ -161,13 +161,13 @@ export default {
 
         <vs-itinerary-day 
             slot="list"
-          v-for="(day, index) in itineraries.sampleItinerary.days"
-            :defaultShow="(day.dayCount < 3) ? true : false"
-            :key="index"
-            :dayNumber="day.dayCount"
-            dayLabel="Day"
-            :dayTitle="day.title"
-          >
+            v-for="(day, index) in itineraries.sampleItinerary.days"
+                :defaultShow="(day.dayCount < 3) ? true : false"
+                :key="index"
+                :dayNumber="day.dayCount"
+                dayLabel="Day"
+                :dayTitle="day.title"
+            >
 
           <dl v-if="day.dayMiles && day.dayKM" slot="day-distance" class="list-inline text-center">
             <dt class="list-inline-item"><abbr title="miles">mi</abbr>/<abbr title="kilometres">km</abbr>:</dt>
@@ -177,9 +177,9 @@ export default {
           <dl v-if="day.transport.length" class="list-inline text-center" slot="day-transport">
             <dt class="list-inline-item">Transport:</dt>
             <dd class="list-inline-item" v-for="(transportType, transportTypeIndex) in day.transport" :key="transportTypeIndex">
-              <vs-tooltip :title="transportType.value">
-                <vs-icon :name="transportType.key" variant="dark" size="sm" />
-              </vs-tooltip>
+                <vs-tooltip :title="transportType.value">
+                    <vs-icon :name="transportType.key" variant="dark" size="sm" />
+                </vs-tooltip>
               <span class="sr-only">{{transportType.value}}</span>
             </dd>
           </dl>
@@ -222,8 +222,7 @@ export default {
                     </div>
                     <vs-svg slot="svg" path="highland-cow" />
                 </vs-itinerary-tips>
-                <a class="vs-itinerary__stop-link text-uppercase font-weight-bold" :href="stop.href"
-                >Find out more</a>
+                <a href="stop.href">Find out more</a>
                 <dl v-if="stop.facilities.length" class="itinerary-stop__facilities">
                     <dt>Key facilities</dt>
                     <dd v-for="(facility, facilitiesIndex) in stop.facilities"
