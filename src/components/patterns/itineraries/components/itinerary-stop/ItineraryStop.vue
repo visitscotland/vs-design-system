@@ -71,6 +71,9 @@ export default {
 
     @include media-breakpoint-up(sm) {
         margin-bottom: 6.35rem;
+        &:last-of-type {
+            margin-bottom: 0;
+        }
     }
 }
 </style>
