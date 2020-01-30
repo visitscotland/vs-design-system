@@ -31,17 +31,9 @@ definitions:
             jcr:primaryType: hst:sitemapitem
             hst:componentconfigurationid: hst:pages/pagenotfound
             hst:relativecontentpath: site/destinations-maps
-            /_default_:
-              jcr:primaryType: hst:sitemapitem
-              hst:componentconfigurationid: hst:pages/pagenotfound
-              hst:relativecontentpath: ${parent}/${1}
-              /_index_:
-                jcr:primaryType: hst:sitemapitem
-                hst:componentconfigurationid: hst:pages/contentpage
-                hst:relativecontentpath: ${parent}/content
             /_index_:
               jcr:primaryType: hst:sitemapitem
-              hst:componentconfigurationid: hst:pages/contentpage
+              hst:componentconfigurationid: hst:pages/itinerary-page
               hst:relativecontentpath: ${parent}/content
             /islands:
               jcr:primaryType: hst:sitemapitem
@@ -59,6 +51,14 @@ definitions:
                   jcr:primaryType: hst:sitemapitem
                   hst:componentconfigurationid: hst:pages/contentpage
                   hst:relativecontentpath: ${parent}/content
+            /_any_:
+              jcr:primaryType: hst:sitemapitem
+              hst:componentconfigurationid: hst:pages/standard-page
+              hst:relativecontentpath: ${parent}/${1}
+              /_index_:
+                jcr:primaryType: hst:sitemapitem
+                hst:componentconfigurationid: hst:pages/itinerary-page
+                hst:relativecontentpath: ${parent}/content
         /hst:abstractpages:
           jcr:primaryType: hst:pages
         /hst:pages:
@@ -85,6 +85,9 @@ definitions:
           /breadcrumb:
             jcr:primaryType: hst:template
             hst:renderpath: webfile:/freemarker/visitscotland/breadcrumb.ftl
+          /itinerary:
+            jcr:primaryType: hst:template
+            hst:renderpath: webfile:/freemarker/visitscotland/pages/itinerary.ftl
         /hst:catalog:
           jcr:primaryType: hst:catalog
           /visitscotland-catalog:

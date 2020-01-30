@@ -38,3 +38,6 @@ definitions:
             jcr:primaryType: hst:mount
             hst:locale: it_IT
             hst:mountpoint: /hst:visitscotland/hst:sites/visitscotland-it
+    /hst:hst/hst:hosts:
+      hst:defaultcontextpath: /site
+      hst:locale: en_GB

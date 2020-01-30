@@ -12,3 +12,22 @@ definitions:
       language: it
     /hippo:configuration/hippo:frontend/cms/cms-services/localeProviderService/en:
       country: gb
+    /hippo:configuration/hippo:frontend/cms/cms-services/imageValidationService:
+      max.file.size: 1M
+      max.width: 1922
+      max.height: 1282
+    /hippo:configuration/hippo:frontend/cms/cms-advanced-search/genericFilters:
+      document.type.namespaces: [visitscotland]
+      document.type.excluded: ['visitscotland:basedocument', 'visitscotland:Page']
+    /hippo:configuration/hippo:frontend/cms/cms-advanced-search/translationColumns:
+      .meta:order-before: titlePropertyFilter
+      jcr:primaryType: frontend:plugin
+      column.id: ${column.id}
+      plugin.class: org.hippoecm.frontend.translation.list.TranslationsColumnProviderPlugin
+    /hippo:configuration/hippo:frontend/cms/cms-advanced-search/titlePropertyFilter:
+      jcr:primaryType: frontend:plugin
+      filterPropertyName: visitscotland:title
+      filterPropertyType: text
+      plugin.class: com.onehippo.cms7.search.frontend.filters.GenericPropertyFilterPlugin
+      wicket.id: ${search.extensions}
+      wicket.model: ${model.search}

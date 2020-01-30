@@ -1,0 +1,178 @@
+/content/documents/administration/options:
+  jcr:primaryType: hippostd:folder
+  jcr:mixinTypes: ['hippo:named', 'mix:versionable']
+  jcr:uuid: 46c176d5-8544-4a2e-8d35-33538d295f43
+  hippo:name: Drop Down Options
+  hippostd:foldertype: [new-resource-bundle, new-untranslated-folder, new-document]
+  /transports:
+    jcr:primaryType: hippo:handle
+    jcr:mixinTypes: ['hippo:named', 'mix:referenceable']
+    jcr:uuid: 678744e4-6091-48e3-99f9-a58ab0316ec7
+    hippo:name: Itineraries - Transports
+    /transports:
+      jcr:primaryType: selection:valuelist
+      jcr:mixinTypes: ['hippotranslation:translated', 'mix:referenceable']
+      jcr:uuid: 0a90d344-d688-4aa3-81dd-0e17747e99e3
+      hippo:availability: [live, preview]
+      hippotranslation:id: 14a6f0dc-bc59-4034-9491-668c4e330a78
+      hippotranslation:locale: inherited - from query
+      /selection:listitem[1]:
+        jcr:primaryType: selection:listitem
+        selection:key: cycling
+        selection:label: Cycling
+      /selection:listitem[2]:
+        jcr:primaryType: selection:listitem
+        selection:key: walking
+        selection:label: Walking
+      /selection:listitem[3]:
+        jcr:primaryType: selection:listitem
+        selection:key: boat
+        selection:label: Boat
+      /selection:listitem[4]:
+        jcr:primaryType: selection:listitem
+        selection:key: car
+        selection:label: Car
+      /selection:listitem[5]:
+        jcr:primaryType: selection:listitem
+        selection:key: bus
+        selection:label: Bus
+      /selection:listitem[6]:
+        jcr:primaryType: selection:listitem
+        selection:key: train
+        selection:label: Train
+      /selection:listitem[7]:
+        jcr:primaryType: selection:listitem
+        selection:key: ferry
+        selection:label: Ferry
+      /selection:listitem[8]:
+        jcr:primaryType: selection:listitem
+        selection:key: public
+        selection:label: Public Transport
+  /themes:
+    jcr:primaryType: hippo:handle
+    jcr:mixinTypes: ['hippo:named', 'mix:referenceable']
+    jcr:uuid: 4e9e77d1-e852-493a-88f3-f41db4041893
+    hippo:name: Itineraries - Themes
+    /themes:
+      jcr:primaryType: selection:valuelist
+      jcr:mixinTypes: ['hippotranslation:translated', 'mix:referenceable']
+      jcr:uuid: 143047c3-d977-4254-9fbb-4d5775837161
+      hippo:availability: [live, preview]
+      hippotranslation:id: 392628a4-e566-4e86-8fcd-12093b3ba87c
+      hippotranslation:locale: inherited - from query
+      /selection:listitem[1]:
+        jcr:primaryType: selection:listitem
+        selection:key: spahealth
+        selection:label: Wellness
+      /selection:listitem[2]:
+        jcr:primaryType: selection:listitem
+        selection:key: castle
+        selection:label: Castles
+      /selection:listitem[3]:
+        jcr:primaryType: selection:listitem
+        selection:key: whisky
+        selection:label: Whisky
+      /selection:listitem[4]:
+        jcr:primaryType: selection:listitem
+        selection:key: filmev
+        selection:label: TV & Film
+      /selection:listitem[5]:
+        jcr:primaryType: selection:listitem
+        selection:key: history
+        selection:label: History
+      /selection:listitem[6]:
+        jcr:primaryType: selection:listitem
+        selection:key: landscapes
+        selection:label: Landscapes
+      /selection:listitem[7]:
+        jcr:primaryType: selection:listitem
+        selection:key: city
+        selection:label: Cities
+      /selection:listitem[8]:
+        jcr:primaryType: selection:listitem
+        selection:key: islands
+        selection:label: Islands
+      /selection:listitem[9]:
+        jcr:primaryType: selection:listitem
+        selection:key: sightseeing
+        selection:label: Sightseeing
+      /selection:listitem[10]:
+        jcr:primaryType: selection:listitem
+        selection:key: familyev
+        selection:label: Families
+      /selection:listitem[11]:
+        jcr:primaryType: selection:listitem
+        selection:key: acti
+        selection:label: Activities
+  /areas:
+    jcr:primaryType: hippo:handle
+    jcr:mixinTypes: ['hippo:named', 'mix:referenceable']
+    jcr:uuid: 9ece825d-6c7a-4e01-9a50-fa0714d49a20
+    hippo:name: Itineraries - Areas
+    /areas:
+      jcr:primaryType: selection:valuelist
+      jcr:mixinTypes: ['hippotranslation:translated', 'mix:referenceable']
+      jcr:uuid: c25a8b13-277a-4184-b2dd-c629aacfc372
+      hippo:availability: [live, preview]
+      hippotranslation:id: 481de6f9-b8cc-4812-aafb-e02a0fd5d2bc
+      hippotranslation:locale: inherited - from query
+      /selection:listitem[1]:
+        jcr:primaryType: selection:listitem
+        selection:key: aberdeen
+        selection:label: Aberdeen & Aberdeenshire
+      /selection:listitem[2]:
+        jcr:primaryType: selection:listitem
+        selection:key: argyll
+        selection:label: Argyll & The Isles
+      /selection:listitem[3]:
+        jcr:primaryType: selection:listitem
+        selection:key: ayrshire
+        selection:label: Ayrshire & Arran
+      /selection:listitem[4]:
+        jcr:primaryType: selection:listitem
+        selection:key: dumfries
+        selection:label: Dumfries & Galloway
+      /selection:listitem[5]:
+        jcr:primaryType: selection:listitem
+        selection:key: dundee
+        selection:label: Dundee & Angus
+      /selection:listitem[6]:
+        jcr:primaryType: selection:listitem
+        selection:key: edinburgh
+        selection:label: Edinburgh & The Lothians
+      /selection:listitem[7]:
+        jcr:primaryType: selection:listitem
+        selection:key: glasgow
+        selection:label: Greater Glasgow And The Clyde Valley
+      /selection:listitem[8]:
+        jcr:primaryType: selection:listitem
+        selection:key: lommond
+        selection:label: Loch Lomond, The Trossachs, Stirling & Forth Valley
+      /selection:listitem[9]:
+        jcr:primaryType: selection:listitem
+        selection:key: orkney
+        selection:label: Orkney
+      /selection:listitem[10]:
+        jcr:primaryType: selection:listitem
+        selection:key: hebrides
+        selection:label: The Outer Hebrides
+      /selection:listitem[11]:
+        jcr:primaryType: selection:listitem
+        selection:key: perthshire
+        selection:label: Perthshire
+      /selection:listitem[12]:
+        jcr:primaryType: selection:listitem
+        selection:key: highlands
+        selection:label: The Highlands
+      /selection:listitem[13]:
+        jcr:primaryType: selection:listitem
+        selection:key: fife
+        selection:label: The Kingdom Of Fife
+      /selection:listitem[14]:
+        jcr:primaryType: selection:listitem
+        selection:key: shetland
+        selection:label: Shetland
+      /selection:listitem[15]:
+        jcr:primaryType: selection:listitem
+        selection:key: borders
+        selection:label: The Scottish Borders

@@ -3,8 +3,32 @@
 <'hippostd'='http://www.onehippo.org/jcr/hippostd/nt/2.0'>
 <'hippostdpubwf'='http://www.onehippo.org/jcr/hippostdpubwf/nt/1.0'>
 <'hippotranslation'='http://www.onehippo.org/jcr/hippotranslation/nt/1.0'>
+<'hippogallery'='http://www.onehippo.org/jcr/hippogallery/nt/2.0'>
+
+[visitscotland:Coordinates] > hippo:compound, hippostd:relaxed
+  orderable
+
+[visitscotland:DMSLink] > hippo:compound, hippostd:relaxed
+  orderable
 
 [visitscotland:basedocument] > hippo:document, hippostd:publishableSummary, hippostdpubwf:document
+  orderable
+
+[visitscotland:Day] > hippostd:relaxed, hippotranslation:translated, visitscotland:basedocument
+  orderable
+
+[visitscotland:ExternalProductLink] > hippo:compound, hippostd:relaxed
+  orderable
+
+[visitscotland:Image] > hippogallery:imageset, hippogallery:relaxed
+
+[visitscotland:Page] > hippostd:relaxed, hippotranslation:translated, visitscotland:basedocument
+  orderable
+
+[visitscotland:Itinerary] > hippostd:relaxed, hippotranslation:translated, visitscotland:Page
+  orderable
+
+[visitscotland:Stop] > hippostd:relaxed, hippotranslation:translated, visitscotland:basedocument
   orderable
 
 [visitscotland:Widget] > hippostd:relaxed, hippotranslation:translated, visitscotland:basedocument
@@ -12,4 +36,6 @@
 
 [visitscotland:contentdocument] > hippostd:relaxed, hippotranslation:translated, visitscotland:basedocument
   orderable
+
+[visitscotland:default] > hippogallery:imageset, hippogallery:relaxed
 

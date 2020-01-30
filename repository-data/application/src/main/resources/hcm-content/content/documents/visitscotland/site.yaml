@@ -6,3 +6,382 @@
   hippostd:foldertype: [new-translated-folder, new-document]
   hippotranslation:id: a65bff6c-4edf-4d28-b036-84bdee4b4bcd
   hippotranslation:locale: en
+  /destinations-maps:
+    jcr:primaryType: hippostd:folder
+    jcr:mixinTypes: ['hippotranslation:translated', 'mix:versionable']
+    jcr:uuid: 81bb0b87-c15c-475d-bd13-5d9a262a95e5
+    hippostd:foldertype: [new-translated-folder, new-document]
+    hippotranslation:id: 9a465810-0318-447d-af80-28f023b96f0f
+    hippotranslation:locale: en
+    /content:
+      jcr:primaryType: hippo:handle
+      jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
+      jcr:uuid: 0751c1d3-3024-4d2d-a5e8-38286fee9722
+      hippo:name: Content
+      hippo:versionHistory: 8bf53fae-8cf1-4b32-a040-7f36fd3c92ba
+      /content[1]:
+        jcr:primaryType: visitscotland:Itinerary
+        jcr:mixinTypes: ['mix:referenceable']
+        jcr:uuid: bfc6a747-1993-4871-991c-e203c3dff91c
+        hippo:availability: []
+        hippostd:state: draft
+        hippostdpubwf:createdBy: admin
+        hippostdpubwf:creationDate: 2019-12-06T12:48:04.149Z
+        hippostdpubwf:lastModificationDate: 2020-01-13T09:30:04.836Z
+        hippostdpubwf:lastModifiedBy: admin
+        hippotranslation:id: a3ed9022-e239-493b-952c-18d01ac36640
+        hippotranslation:locale: en
+        visitscotland:areas: [dumfries, highlands]
+        visitscotland:breadcrumb: ''
+        visitscotland:distance: 10.4
+        visitscotland:finish: Ocean point
+        visitscotland:highlights: "Glenfinnan Viaduct \r\nJacobite Steam Train\r\n\
+          Glen Etive\r\nThe Elephant House"
+        visitscotland:noIndex: false
+        visitscotland:popular: false
+        visitscotland:seoNoIndex: Follow in the footsteps of Harry Potter! Relive
+          some of the films' most iconic scenes with our 4-day itinerary of Harry
+          Potter sites in Scotland.
+        visitscotland:seoTitle: Iconic Harry Potter Film Locations - An Itinerary
+        visitscotland:start: Tenerife
+        visitscotland:summary: ''
+        visitscotland:teaser: HARRY POTTER FILM AND BOOK LOCATIONS ITINERARY teaser
+        visitscotland:text: "Glenfinnan Viaduct\r\n\r\nJacobite Steam Train\r\n\r\n\
+          Glen Etive\r\n\r\nThe Elephant House"
+        visitscotland:theme: filmev
+        visitscotland:title: HARRY POTTER FILM AND BOOK LOCATIONS ITINERARY
+        visitscotland:transport: [boat]
+        visitscotland:transports: [car, train]
+        /visitscotland:heroImage:
+          jcr:primaryType: hippogallerypicker:imagelink
+          hippo:docbase: 8d4f5036-64ca-4e5d-aa89-b348ae38b081
+          hippo:facets: []
+          hippo:modes: []
+          hippo:values: []
+        /visitscotland:introduction:
+          jcr:primaryType: hippostd:html
+          hippostd:content: <p>It was in Scotland's capital city that JK Rowling started
+            to plot the adventures of Harry and his friends. With cobbled streets,
+            winding alleys and medieval architecture, the city certainly have a few
+            things in common with the settings from the books and films. She wrote
+            the early chapters in various cafés around the city's Old Town, before
+            coming back to finish off the series from a peaceful suite in The Balmoral
+            Hotel. It is also said that Hogwarts School was styled on Edinburgh’s
+            Fettes College, a private school on the outskirts of Edinburgh’s west
+            end new town. You could also try the <a href="https://www.visitscotland.com/info/tours/wizarding-world-of-edinburgh-03e61189">Wizarding
+            World of Edinburgh</a> tour.</p>
+      /content[2]:
+        jcr:primaryType: visitscotland:Itinerary
+        jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
+        jcr:uuid: 54a5dc71-947d-4c5a-958c-9f06bebad234
+        hippo:availability: [preview]
+        hippostd:state: unpublished
+        hippostdpubwf:createdBy: admin
+        hippostdpubwf:creationDate: 2019-12-06T12:48:04.149Z
+        hippostdpubwf:lastModificationDate: 2020-01-13T09:35:44.376Z
+        hippostdpubwf:lastModifiedBy: admin
+        hippotranslation:id: a3ed9022-e239-493b-952c-18d01ac36640
+        hippotranslation:locale: en
+        visitscotland:areas: [dumfries, highlands]
+        visitscotland:breadcrumb: ''
+        visitscotland:distance: 10.4
+        visitscotland:finish: Ocean point
+        visitscotland:highlights: "Glenfinnan Viaduct \r\nJacobite Steam Train\r\n\
+          Glen Etive\r\nThe Elephant House"
+        visitscotland:noIndex: false
+        visitscotland:popular: false
+        visitscotland:seoNoIndex: Follow in the footsteps of Harry Potter! Relive
+          some of the films' most iconic scenes with our 4-day itinerary of Harry
+          Potter sites in Scotland.
+        visitscotland:seoTitle: Iconic Harry Potter Film Locations - An Itinerary
+        visitscotland:start: Tenerife
+        visitscotland:summary: ''
+        visitscotland:teaser: HARRY POTTER FILM AND BOOK LOCATIONS ITINERARY teaser
+        visitscotland:text: "Glenfinnan Viaduct\r\n\r\nJacobite Steam Train\r\n\r\n\
+          Glen Etive\r\n\r\nThe Elephant House"
+        visitscotland:theme: filmev
+        visitscotland:title: HARRY POTTER FILM AND BOOK LOCATIONS ITINERARY
+        visitscotland:transport: [boat]
+        visitscotland:transports: [car, train]
+        /visitscotland:heroImage:
+          jcr:primaryType: hippogallerypicker:imagelink
+          hippo:docbase: 8d4f5036-64ca-4e5d-aa89-b348ae38b081
+          hippo:facets: []
+          hippo:modes: []
+          hippo:values: []
+        /visitscotland:introduction:
+          jcr:primaryType: hippostd:html
+          hippostd:content: <p>It was in Scotland's capital city that JK Rowling started
+            to plot the adventures of Harry and his friends. With cobbled streets,
+            winding alleys and medieval architecture, the city certainly have a few
+            things in common with the settings from the books and films. She wrote
+            the early chapters in various cafés around the city's Old Town, before
+            coming back to finish off the series from a peaceful suite in The Balmoral
+            Hotel. It is also said that Hogwarts School was styled on Edinburgh’s
+            Fettes College, a private school on the outskirts of Edinburgh’s west
+            end new town. You could also try the <a href="https://www.visitscotland.com/info/tours/wizarding-world-of-edinburgh-03e61189">Wizarding
+            World of Edinburgh</a> tour.</p>
+      /content[3]:
+        jcr:primaryType: visitscotland:Itinerary
+        jcr:mixinTypes: ['mix:referenceable']
+        jcr:uuid: 2dcf9013-726c-426b-adfb-c27786713726
+        hippo:availability: [live]
+        hippostd:state: published
+        hippostdpubwf:createdBy: admin
+        hippostdpubwf:creationDate: 2019-12-06T12:48:04.149Z
+        hippostdpubwf:lastModificationDate: 2020-01-13T09:35:44.376Z
+        hippostdpubwf:lastModifiedBy: admin
+        hippostdpubwf:publicationDate: 2020-01-13T10:27:30.572Z
+        hippotranslation:id: a3ed9022-e239-493b-952c-18d01ac36640
+        hippotranslation:locale: en
+        visitscotland:areas: [dumfries, highlands]
+        visitscotland:breadcrumb: ''
+        visitscotland:distance: 10.4
+        visitscotland:finish: Ocean point
+        visitscotland:highlights: "Glenfinnan Viaduct \r\nJacobite Steam Train\r\n\
+          Glen Etive\r\nThe Elephant House"
+        visitscotland:noIndex: false
+        visitscotland:popular: false
+        visitscotland:seoNoIndex: Follow in the footsteps of Harry Potter! Relive
+          some of the films' most iconic scenes with our 4-day itinerary of Harry
+          Potter sites in Scotland.
+        visitscotland:seoTitle: Iconic Harry Potter Film Locations - An Itinerary
+        visitscotland:start: Tenerife
+        visitscotland:summary: ''
+        visitscotland:teaser: HARRY POTTER FILM AND BOOK LOCATIONS ITINERARY teaser
+        visitscotland:text: "Glenfinnan Viaduct\r\n\r\nJacobite Steam Train\r\n\r\n\
+          Glen Etive\r\n\r\nThe Elephant House"
+        visitscotland:theme: filmev
+        visitscotland:title: HARRY POTTER FILM AND BOOK LOCATIONS ITINERARY
+        visitscotland:transport: [boat]
+        visitscotland:transports: [car, train]
+        /visitscotland:heroImage:
+          jcr:primaryType: hippogallerypicker:imagelink
+          hippo:docbase: 8d4f5036-64ca-4e5d-aa89-b348ae38b081
+          hippo:facets: []
+          hippo:modes: []
+          hippo:values: []
+        /visitscotland:introduction:
+          jcr:primaryType: hippostd:html
+          hippostd:content: <p>It was in Scotland's capital city that JK Rowling started
+            to plot the adventures of Harry and his friends. With cobbled streets,
+            winding alleys and medieval architecture, the city certainly have a few
+            things in common with the settings from the books and films. She wrote
+            the early chapters in various cafés around the city's Old Town, before
+            coming back to finish off the series from a peaceful suite in The Balmoral
+            Hotel. It is also said that Hogwarts School was styled on Edinburgh’s
+            Fettes College, a private school on the outskirts of Edinburgh’s west
+            end new town. You could also try the <a href="https://www.visitscotland.com/info/tours/wizarding-world-of-edinburgh-03e61189">Wizarding
+            World of Edinburgh</a> tour.</p>
+    /edinburgh:
+      jcr:primaryType: hippo:handle
+      jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
+      jcr:uuid: 8ac72449-609b-45aa-b2b6-d3cb81a24139
+      hippo:name: Edinburgh
+      hippo:versionHistory: 8fb6ba74-d9fa-46c7-967a-d92b1a9a4f6b
+      /edinburgh[1]:
+        jcr:primaryType: visitscotland:Day
+        jcr:mixinTypes: ['mix:referenceable']
+        jcr:uuid: 0ffbb12c-63cd-4459-ba5d-d73822b10120
+        hippo:availability: []
+        hippostd:state: draft
+        hippostdpubwf:createdBy: admin
+        hippostdpubwf:creationDate: 2019-12-10T13:28:39.550Z
+        hippostdpubwf:lastModificationDate: 2020-01-10T14:15:09.157Z
+        hippostdpubwf:lastModifiedBy: admin
+        hippotranslation:id: 58eba379-722b-43b6-85c5-a58cffa5d53d
+        hippotranslation:locale: en
+        visitscotland:title: DMS Stops Day
+        visitscotland:transports: [walking, car, train]
+        /visitscotland:introduction:
+          jcr:primaryType: hippostd:html
+          hippostd:content: <p>It was in Scotland's capital city that JK Rowling started
+            to plot the adventures of Harry and his friends. With cobbled streets,
+            winding alleys and medieval architecture, the city certainly has a few
+            things in common with the settings from the books and films. She wrote
+            the early chapters in various cafés around the city's Old Town, before
+            coming back to finish off the series from a peaceful suite in The Balmoral
+            Hotel. It is also said that Hogwarts School was styled on Edinburgh’s
+            Fettes College, a private school on the outskirts of Edinburgh’s west
+            end new town. You could also try the Wizarding World of Edinburgh tour.</p>
+        /visitscotland:stops[1]:
+          jcr:primaryType: hippo:mirror
+          hippo:docbase: ca56dfe6-f8c8-410f-aa63-ed513fc71385
+        /visitscotland:stops[2]:
+          jcr:primaryType: hippo:mirror
+          hippo:docbase: 28abd074-5fc4-4ebc-a424-1d4f9e5cb0e6
+      /edinburgh[2]:
+        jcr:primaryType: visitscotland:Day
+        jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
+        jcr:uuid: 8faffb50-41aa-4bd3-a841-75166d4ee460
+        hippo:availability: [preview]
+        hippostd:state: unpublished
+        hippostdpubwf:createdBy: admin
+        hippostdpubwf:creationDate: 2019-12-10T13:28:39.550Z
+        hippostdpubwf:lastModificationDate: 2020-01-10T14:15:17.517Z
+        hippostdpubwf:lastModifiedBy: admin
+        hippotranslation:id: 58eba379-722b-43b6-85c5-a58cffa5d53d
+        hippotranslation:locale: en
+        visitscotland:title: DMS Stops Day
+        visitscotland:transports: [walking, car, train]
+        /visitscotland:introduction:
+          jcr:primaryType: hippostd:html
+          hippostd:content: <p>It was in Scotland's capital city that JK Rowling started
+            to plot the adventures of Harry and his friends. With cobbled streets,
+            winding alleys and medieval architecture, the city certainly has a few
+            things in common with the settings from the books and films. She wrote
+            the early chapters in various cafés around the city's Old Town, before
+            coming back to finish off the series from a peaceful suite in The Balmoral
+            Hotel. It is also said that Hogwarts School was styled on Edinburgh’s
+            Fettes College, a private school on the outskirts of Edinburgh’s west
+            end new town. You could also try the Wizarding World of Edinburgh tour.</p>
+        /visitscotland:stops[1]:
+          jcr:primaryType: hippo:mirror
+          hippo:docbase: ca56dfe6-f8c8-410f-aa63-ed513fc71385
+        /visitscotland:stops[2]:
+          jcr:primaryType: hippo:mirror
+          hippo:docbase: 28abd074-5fc4-4ebc-a424-1d4f9e5cb0e6
+      /edinburgh[3]:
+        jcr:primaryType: visitscotland:Day
+        jcr:mixinTypes: ['mix:referenceable']
+        jcr:uuid: ca79ffa1-5ca3-44d8-a2fd-1b2f017c995e
+        hippo:availability: [live]
+        hippostd:state: published
+        hippostdpubwf:createdBy: admin
+        hippostdpubwf:creationDate: 2019-12-10T13:28:39.550Z
+        hippostdpubwf:lastModificationDate: 2020-01-10T14:15:17.517Z
+        hippostdpubwf:lastModifiedBy: admin
+        hippostdpubwf:publicationDate: 2020-01-10T14:29:11.826Z
+        hippotranslation:id: 58eba379-722b-43b6-85c5-a58cffa5d53d
+        hippotranslation:locale: en
+        visitscotland:title: DMS Stops Day
+        visitscotland:transports: [walking, car, train]
+        /visitscotland:introduction:
+          jcr:primaryType: hippostd:html
+          hippostd:content: <p>It was in Scotland's capital city that JK Rowling started
+            to plot the adventures of Harry and his friends. With cobbled streets,
+            winding alleys and medieval architecture, the city certainly has a few
+            things in common with the settings from the books and films. She wrote
+            the early chapters in various cafés around the city's Old Town, before
+            coming back to finish off the series from a peaceful suite in The Balmoral
+            Hotel. It is also said that Hogwarts School was styled on Edinburgh’s
+            Fettes College, a private school on the outskirts of Edinburgh’s west
+            end new town. You could also try the Wizarding World of Edinburgh tour.</p>
+        /visitscotland:stops[1]:
+          jcr:primaryType: hippo:mirror
+          hippo:docbase: ca56dfe6-f8c8-410f-aa63-ed513fc71385
+        /visitscotland:stops[2]:
+          jcr:primaryType: hippo:mirror
+          hippo:docbase: 28abd074-5fc4-4ebc-a424-1d4f9e5cb0e6
+    /day-2:
+      jcr:primaryType: hippo:handle
+      jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
+      jcr:uuid: e48273b9-7b42-4456-837f-e014dc069d95
+      hippo:name: day 2
+      hippo:versionHistory: 6e0a7d92-61a8-4523-9922-ee457f2033e1
+      /day-2[1]:
+        jcr:primaryType: visitscotland:Day
+        jcr:mixinTypes: ['mix:referenceable']
+        jcr:uuid: 8d068d19-9845-40ea-80fe-4dc7dd0e95f7
+        hippo:availability: []
+        hippostd:state: draft
+        hippostdpubwf:createdBy: admin
+        hippostdpubwf:creationDate: 2019-12-12T12:06:04.129Z
+        hippostdpubwf:lastModificationDate: 2020-01-10T14:29:49.857Z
+        hippostdpubwf:lastModifiedBy: admin
+        hippotranslation:id: 2af219fa-878e-435f-ae2e-e296a16e21a9
+        hippotranslation:locale: en
+        visitscotland:title: Dummy Stops
+        visitscotland:transports: [cycling, walking, boat, car, bus, train, ferry,
+          public]
+        /visitscotland:introduction:
+          jcr:primaryType: hippostd:html
+          hippostd:content: |-
+            <p>A hash model that wraps a resource bundle. Makes it convenient to store localized content in the data model. It also acts as a method model that will take a resource key and arbitrary number of arguments and will apply MessageFormat with arguments on the string represented by the key.</p>
+
+            <p>Typical usages:</p>
+
+            <ul>
+             <li>bundle.resourceKey will retrieve the object from resource bundle with key resourceKey</li>
+             <li>bundle("patternKey", arg1, arg2, arg3) will retrieve the string from resource bundle with key patternKey, and will use it as a pattern for MessageFormat with arguments arg1, arg2 and arg3</li>
+            </ul>
+        /visitscotland:stops[1]:
+          jcr:primaryType: hippo:mirror
+          hippo:docbase: 8030a311-a942-40e6-bb89-41dd6fea60df
+        /visitscotland:stops[2]:
+          jcr:primaryType: hippo:mirror
+          hippo:docbase: 8b215960-87aa-47ae-9c11-8a750be25ad8
+        /visitscotland:stops[3]:
+          jcr:primaryType: hippo:mirror
+          hippo:docbase: 1ead4399-7e30-47dc-9b75-2ea488fb5742
+      /day-2[2]:
+        jcr:primaryType: visitscotland:Day
+        jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
+        jcr:uuid: 31bac8af-c240-4a3c-b982-f0006a5f111e
+        hippo:availability: [preview]
+        hippostd:state: unpublished
+        hippostdpubwf:createdBy: admin
+        hippostdpubwf:creationDate: 2019-12-12T12:06:04.129Z
+        hippostdpubwf:lastModificationDate: 2020-01-13T15:01:02.930Z
+        hippostdpubwf:lastModifiedBy: admin
+        hippotranslation:id: 2af219fa-878e-435f-ae2e-e296a16e21a9
+        hippotranslation:locale: en
+        visitscotland:title: Dummy Stops
+        visitscotland:transports: [cycling, walking, boat, car, bus, train, ferry,
+          public]
+        /visitscotland:introduction:
+          jcr:primaryType: hippostd:html
+          hippostd:content: |-
+            <p>A hash model that wraps a resource bundle. Makes it convenient to store localized content in the data model. It also acts as a method model that will take a resource key and arbitrary number of arguments and will apply MessageFormat with arguments on the string represented by the key.</p>
+
+            <p>Typical usages:</p>
+
+            <ul>
+             <li>bundle.resourceKey will retrieve the object from resource bundle with key resourceKey</li>
+             <li>bundle("patternKey", arg1, arg2, arg3) will retrieve the string from resource bundle with key patternKey, and will use it as a pattern for MessageFormat with arguments arg1, arg2 and arg3</li>
+            </ul>
+        /visitscotland:stops[1]:
+          jcr:primaryType: hippo:mirror
+          hippo:docbase: 8030a311-a942-40e6-bb89-41dd6fea60df
+        /visitscotland:stops[2]:
+          jcr:primaryType: hippo:mirror
+          hippo:docbase: 8b215960-87aa-47ae-9c11-8a750be25ad8
+        /visitscotland:stops[3]:
+          jcr:primaryType: hippo:mirror
+          hippo:docbase: 1ead4399-7e30-47dc-9b75-2ea488fb5742
+      /day-2[3]:
+        jcr:primaryType: visitscotland:Day
+        jcr:mixinTypes: ['mix:referenceable']
+        jcr:uuid: 29a330bf-91ba-413d-9f7c-76dd55cc5b82
+        hippo:availability: [live]
+        hippostd:state: published
+        hippostdpubwf:createdBy: admin
+        hippostdpubwf:creationDate: 2019-12-12T12:06:04.129Z
+        hippostdpubwf:lastModificationDate: 2020-01-13T15:01:02.930Z
+        hippostdpubwf:lastModifiedBy: admin
+        hippostdpubwf:publicationDate: 2020-01-13T15:01:06.597Z
+        hippotranslation:id: 2af219fa-878e-435f-ae2e-e296a16e21a9
+        hippotranslation:locale: en
+        visitscotland:title: Dummy Stops
+        visitscotland:transports: [cycling, walking, boat, car, bus, train, ferry,
+          public]
+        /visitscotland:introduction:
+          jcr:primaryType: hippostd:html
+          hippostd:content: |-
+            <p>A hash model that wraps a resource bundle. Makes it convenient to store localized content in the data model. It also acts as a method model that will take a resource key and arbitrary number of arguments and will apply MessageFormat with arguments on the string represented by the key.</p>
+
+            <p>Typical usages:</p>
+
+            <ul>
+             <li>bundle.resourceKey will retrieve the object from resource bundle with key resourceKey</li>
+             <li>bundle("patternKey", arg1, arg2, arg3) will retrieve the string from resource bundle with key patternKey, and will use it as a pattern for MessageFormat with arguments arg1, arg2 and arg3</li>
+            </ul>
+        /visitscotland:stops[1]:
+          jcr:primaryType: hippo:mirror
+          hippo:docbase: 8030a311-a942-40e6-bb89-41dd6fea60df
+        /visitscotland:stops[2]:
+          jcr:primaryType: hippo:mirror
+          hippo:docbase: 8b215960-87aa-47ae-9c11-8a750be25ad8
+        /visitscotland:stops[3]:
+          jcr:primaryType: hippo:mirror
+          hippo:docbase: 1ead4399-7e30-47dc-9b75-2ea488fb5742

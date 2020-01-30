@@ -1,0 +1,4 @@
+/hst:hst/hst:configurations/visitscotland/hst:workspace/hst:sitemenus/main/destinations-maps:
+  jcr:primaryType: hst:sitemenuitem
+  hst:referencesitemapitem: destinations-maps
+  hst:repobased: false

@@ -1,0 +1,108 @@
+/content/gallery/visitscotland/default:
+  jcr:primaryType: hippogallery:stdImageGallery
+  hippostd:foldertype: [new-visitscotland-Image-folder]
+  hippostd:gallerytype: ['visitscotland:Image']
+  /vector-illustration-of-cartoon-hippos-in-hot-weather-drawing_csp36829792.jpg:
+    jcr:primaryType: hippo:handle
+    jcr:mixinTypes: ['mix:referenceable']
+    jcr:uuid: 1e4be246-297b-4404-8102-80fe1bc0ddf7
+    /vector-illustration-of-cartoon-hippos-in-hot-weather-drawing_csp36829792.jpg:
+      jcr:primaryType: visitscotland:Image
+      hippo:availability: [live, preview]
+      hippogallery:description: Test Hippo Image Caption
+      hippogallery:filename: vector-illustration-of-cartoon-hippos-in-hot-weather-drawing_csp36829792.jpg
+      visitscotland:altText: Test Hippo Image Alt Text
+      visitscotland:credit: Test Hippo Image Credit
+      /hippogallery:thumbnail:
+        jcr:primaryType: hippogallery:image
+        hippo:filename: vector-illustration-of-cartoon-hippos-in-hot-weather-drawing_csp36829792.jpg
+        hippogallery:height: 40
+        hippogallery:width: 60
+        jcr:data:
+          type: binary
+          resource: /content/gallery/visitscotland/default/vector-illustration-of-cartoon-hippos-in-hot-weather-drawing_csp36829792.jpg/vector-illustration-of-cartoon-hippos-in-hot-weather-drawing_csp36829792.jpg/thumbnail/thumbnail.jpg
+        jcr:lastModified: 2019-12-10T15:49:45.047Z
+        jcr:mimeType: image/jpeg
+      /hippogallery:original:
+        jcr:primaryType: hippogallery:image
+        hippogallery:height: 194
+        hippogallery:width: 288
+        jcr:data:
+          type: binary
+          resource: /content/gallery/visitscotland/default/vector-illustration-of-cartoon-hippos-in-hot-weather-drawing_csp36829792.jpg/vector-illustration-of-cartoon-hippos-in-hot-weather-drawing_csp36829792.jpg/original/original.jpg
+        jcr:lastModified: 2019-12-10T15:49:45.047Z
+        jcr:mimeType: image/jpeg
+      /visitscotland:Coordinates:
+        jcr:primaryType: visitscotland:Coordinates
+        visitscotland:latitude: 55.8553807
+        visitscotland:longitude: -4.3725403
+  /fraserburgh---davron-hotel-6.jpg:
+    jcr:primaryType: hippo:handle
+    jcr:mixinTypes: ['hippo:named', 'mix:referenceable']
+    jcr:uuid: 9fb38865-ca10-4ef4-bcab-a1097cc44487
+    hippo:name: Fraserburgh - Davron Hotel (6).jpg
+    /fraserburgh---davron-hotel-6.jpg:
+      jcr:primaryType: visitscotland:Image
+      hippo:availability: [live, preview]
+      hippogallery:description: Test Davron Hotel Image Caption
+      hippogallery:filename: Fraserburgh - Davron Hotel (6).jpg
+      visitscotland:altText: Test Davron Hotel Image Alt Text
+      visitscotland:credit: Test Davron Hotel Image Credits
+      /hippogallery:thumbnail:
+        jcr:primaryType: hippogallery:image
+        hippo:filename: Fraserburgh - Davron Hotel (6).jpg
+        hippogallery:height: 40
+        hippogallery:width: 60
+        jcr:data:
+          type: binary
+          resource: /content/gallery/visitscotland/default/fraserburgh---davron-hotel-6.jpg/fraserburgh---davron-hotel-6.jpg/thumbnail/thumbnail.jpg
+        jcr:lastModified: 2019-12-11T11:31:30.522Z
+        jcr:mimeType: image/jpeg
+      /hippogallery:original:
+        jcr:primaryType: hippogallery:image
+        hippogallery:height: 1281
+        hippogallery:width: 1920
+        jcr:data:
+          type: binary
+          resource: /content/gallery/visitscotland/default/fraserburgh---davron-hotel-6.jpg/fraserburgh---davron-hotel-6.jpg/original/original.jpg
+        jcr:lastModified: 2019-12-11T11:31:30.522Z
+        jcr:mimeType: image/jpeg
+      /visitscotland:Coordinates:
+        jcr:primaryType: visitscotland:Coordinates
+        visitscotland:latitude: 55.95055
+        visitscotland:longitude: -3.18555
+  /visitscotland_49386435364-1.jpg:
+    jcr:primaryType: hippo:handle
+    jcr:mixinTypes: ['hippo:named', 'mix:referenceable']
+    jcr:uuid: 8d4f5036-64ca-4e5d-aa89-b348ae38b081
+    hippo:name: visitscotland_49386435364 (1).jpg
+    /visitscotland_49386435364-1.jpg:
+      jcr:primaryType: visitscotland:Image
+      hippo:availability: [live, preview]
+      hippogallery:description: Man looking forward to finish this itinerary
+      hippogallery:filename: visitscotland_49386435364 (1).jpg
+      visitscotland:altText: He is also lost
+      visitscotland:credit: VisitScotland Staff
+      /hippogallery:thumbnail:
+        jcr:primaryType: hippogallery:image
+        hippo:filename: visitscotland_49386435364 (1).jpg
+        hippogallery:height: 40
+        hippogallery:width: 60
+        jcr:data:
+          type: binary
+          resource: /content/gallery/visitscotland/default/visitscotland_49386435364-1.jpg/visitscotland_49386435364-1.jpg/thumbnail/thumbnail.jpg
+        jcr:lastModified: 2019-12-11T11:31:44.652Z
+        jcr:mimeType: image/jpeg
+      /hippogallery:original:
+        jcr:primaryType: hippogallery:image
+        hippogallery:height: 1281
+        hippogallery:width: 1920
+        jcr:data:
+          type: binary
+          resource: /content/gallery/visitscotland/default/visitscotland_49386435364-1.jpg/visitscotland_49386435364-1.jpg/original/original.jpg
+        jcr:lastModified: 2019-12-11T11:31:44.652Z
+        jcr:mimeType: image/jpeg
+      /visitscotland:Coordinates:
+        jcr:primaryType: visitscotland:Coordinates
+        visitscotland:latitude: 57.8348853
+        visitscotland:longitude: -3.6335832

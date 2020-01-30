@@ -2,6 +2,7 @@ definitions:
   config:
     /hippo:configuration/hippo:modules/webfiles/hippo:moduleconfig:
       watchedModules: [repository-data/webfiles]
+      maxFileLengthKb: 4000
     /hippo:configuration/hippo:domains/hippofolders/readonly:
       hipposys:groups:
         operation: add
