@@ -10,7 +10,7 @@
         </div>
         <vs-container>
             <vs-row>
-                <vs-col cols="12" tag="ul" class="list-unstyled">
+                <vs-col cols="12" tag="ul" class="list-unstyled p-0">
                     <slot name="list" />
                 </vs-col>
             </vs-row>
@@ -118,9 +118,10 @@ export default {
         }
         @include media-breakpoint-up(lg) {
             float: right;
+            margin-left: 6.25rem;
             position: -webkit-sticky;
             position: sticky;
-            width: 50vw;
+            width: 45vw;
         }
     }
 }
@@ -238,17 +239,14 @@ export default {
               </div>
               <!-- mimic only showing these links on the last stop of the day -->
               <template v-if="stopIndex == day.stops.length - 1">
-                <vs-itinerary-nearby-links slot="nearby-links">
-                    <vs-button class="d-inline-flex mb-4" variant="outline-primary" href="#">
-                        <vs-icon name="food" variant="primary" size="sm"></vs-icon>
+                <div slot="nearby-links" class="py-3 d-inline-block">
+                    <vs-button-with-icon class="mb-3" variant="outline-primary" href="#" icon="food">
                         Nearby places to eat
-                    </vs-button>
-                    <br />
-                    <vs-button class="d-inline-flex" variant="outline-primary" href="#">
-                        <vs-icon name="product-accommodation" variant="primary" size="sm"></vs-icon>
+                    </vs-button-with-icon>
+                    <vs-button-with-icon variant="outline-primary" href="#" icon="product-accommodation">
                         Nearby places to stay
-                    </vs-button>
-                </vs-itinerary-nearby-links>
+                    </vs-button-with-icon>
+                </div>
             </template>
         </vs-itinerary-stop>
     </vs-itinerary-day>
