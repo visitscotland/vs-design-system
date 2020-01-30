@@ -18,16 +18,6 @@ public class Page extends BaseDocument {
         return getSingleProperty("visitscotland:breadcrumb");
     }
 
-    @HippoEssentialsGenerated(internalName = "visitscotland:noIndex")
-    public Boolean getNoIndex() {
-        return getSingleProperty("visitscotland:noIndex");
-    }
-
-    @HippoEssentialsGenerated(internalName = "visitscotland:seoNoIndex")
-    public String getSeoNoIndex() {
-        return getSingleProperty("visitscotland:seoNoIndex");
-    }
-
     @HippoEssentialsGenerated(internalName = "visitscotland:heroImage")
     public Image getHeroImage() {
         return getLinkedBean("visitscotland:heroImage", Image.class);
@@ -41,5 +31,15 @@ public class Page extends BaseDocument {
     @HippoEssentialsGenerated(internalName = "visitscotland:title")
     public String getTitle() {
         return getSingleProperty("visitscotland:title");
+    }
+
+    @HippoEssentialsGenerated(internalName = "visitscotland:seoNoIndex")
+    public Boolean getSeoNoIndex() {
+        return getSingleProperty("visitscotland:seoNoIndex");
+    }
+
+    @HippoEssentialsGenerated(internalName = "visitscotland:seoDescription")
+    public String getSeoDescription() {
+        return getSingleProperty("visitscotland:seoDescription");
     }
 }
