@@ -73,40 +73,6 @@ export default {
         margin-bottom: 6.35rem;
     }
 }
-
-.vs-itinerary-stop ::v-deep {
-    .itinerary-stop__facilities {
-        border-top: 1px solid $color-gray-tint-5;
-        margin: $spacer-4 -1rem -1rem;
-        padding: 1rem 0 0;
-        text-align: center;
-
-        @include media-breakpoint-up(sm) {
-            margin: $spacer-4 0 0;
-        }
-
-        dt {
-            margin-bottom: 1rem;
-            flex-basis: 1;
-            display: block;
-            width: 100%;
-        }
-
-        dd {
-            display: inline-table;
-            vertical-align: top;
-            text-align: center;
-            width: 90px;
-            position: relative;
-
-            svg {
-                display: block;
-                margin: 0 auto;
-                width: 100%;
-            }
-        }
-    }
-}
 </style>
 
 <docs>
