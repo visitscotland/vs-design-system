@@ -214,10 +214,10 @@ export default {
                     data-sizes="auto" />
                 </vs-image-with-caption>
                 <div v-html="stop.description"></div>
-                <dl class="list-inline my-4 mb-0">
-                    <dt class="list-inline-item mb-0">Time to explore:</dt>
-                    <dd class="list-inline-item mb-0">{{stop.timeToExplore}}</dd>
-                </dl>
+                <vs-description-list class="my-4 mb-0 justify-content-start" inline>
+                    <vs-description-list-term class="mb-0 mr-0 col-auto">Time to explore</vs-description-list-term>
+                    <vs-description-list-detail class="mb-0 col-auto px-0">{{stop.timeToExplore}}</vs-description-list-detail>
+                </vs-description-list>
                 <vs-itinerary-tips v-if="stop.tips.tipsBody.length || stop.tips.tipsTitle.length">
                     <div slot="text">
                     <strong>{{stop.tips.tipsTitle}}</strong>
@@ -226,14 +226,15 @@ export default {
                     <vs-svg slot="svg" path="highland-cow" />
                 </vs-itinerary-tips>
                 <a href="stop.href">Find out more</a>
-                <dl v-if="stop.facilities.length" class="itinerary-stop__facilities">
-                    <dt>Key facilities</dt>
-                    <dd v-for="(facility, facilitiesIndex) in stop.facilities"
-                    :key="facilitiesIndex">
-                    <vs-icon :name="facility.key" variant="dark" size="sm" />
-                    {{facility.value}}
-                    </dd>
-                </dl>
+                <vs-icon-description-list v-if="stop.facilities.length">
+                    <vs-icon-description-list-term>Key facilities</vs-icon-description-list-term>
+                    <vs-icon-description-list-detail 
+                        v-for="(facility, facilitiesIndex) in stop.facilities"
+                        :key="facilitiesIndex"
+                        :label="facility.value"
+                        :icon="facility.key"
+                        />
+                </vs-icon-description-list>
               </div>
               <!-- mimic only showing these links on the last stop of the day -->
               <template v-if="stopIndex == day.stops.length - 1">
