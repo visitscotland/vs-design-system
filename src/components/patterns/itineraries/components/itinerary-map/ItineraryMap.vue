@@ -183,12 +183,12 @@ export default {
                     .setLngLat(this.highlightedStopCoordinates)
                     .setHTML(
                         `
-            <img class="vs-itinerary__map-popup-image" src="${this.highlightedStop.properties.imageSrc}" alt="${this.highlightedStop.properties.altText}" />
-            <div>
-            <h4 class="vs-itinerary__map-popup-stop-number mb-0">${this.labels.stopLabel} ${this.highlightedStop.properties.stopCount}</h4>
-            <p class="vs-itinerary__map-popup-stop-name">${this.highlightedStop.properties.title}</p>
-            </div>
-        `
+                            <img class="vs-itinerary__map-popup-image" src="${this.highlightedStop.properties.imageSrc}" alt="${this.highlightedStop.properties.altText}" />
+                            <div>
+                            <h4 class="vs-itinerary__map-popup-stop-number mb-0">${this.labels.stopLabel} ${this.highlightedStop.properties.stopCount}</h4>
+                            <p class="vs-itinerary__map-popup-stop-name">${this.highlightedStop.properties.title}</p>
+                            </div>
+                        `
                     )
                     .addTo(this.mapbox.map)
             }
