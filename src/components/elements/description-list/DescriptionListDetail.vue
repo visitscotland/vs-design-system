@@ -1,13 +1,17 @@
 <template>
-    <dd
+    <vs-col
+        tag="dd"
         class="vs-description-list__detail"
         :class="{ 'list-inline-item': inline, 'vs-description-list__detail--styled': !inline }"
     >
-        <slot />
-    </dd>
+        <div class="position-relative">
+            <slot />
+        </div>
+    </vs-col>
 </template>
 
 <script>
+import { VsCol } from "@components/elements/layout"
 /**
  * TODO: Document usage
  */
@@ -16,6 +20,9 @@ export default {
     name: "VsDescriptionListDetail",
     status: "prototype",
     release: "0.0.1",
+    components: {
+        VsCol,
+    },
     /**
      * Injects inline prop provided by DescriptionList
      */

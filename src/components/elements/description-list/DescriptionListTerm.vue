@@ -1,13 +1,15 @@
 <template>
-    <dt
+    <vs-col
+        tag="dt"
         class="vs-description-list__term"
         :class="{ 'list-inline-item': inline, 'vs-description-list__term--styled': !inline }"
     >
         <slot />
-    </dt>
+    </vs-col>
 </template>
 
 <script>
+import { VsCol } from "@components/elements/layout"
 /**
  * TODO: Document usage
  */
@@ -16,6 +18,9 @@ export default {
     name: "VsDescriptionListTerm",
     status: "prototype",
     release: "0.0.1",
+    components: {
+        VsCol,
+    },
     /**
      * Injects inline prop provided by DescriptionList
      */
@@ -39,7 +44,6 @@ export default {
         @include media-breakpoint-down(sm) {
             border-bottom: 1px solid $color-gray-tint-5;
             margin-bottom: $spacer-2;
-            padding: $spacer-1 0;
             @include make-col(12);
         }
     }
