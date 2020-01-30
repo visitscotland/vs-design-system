@@ -25,7 +25,7 @@ VS_BRXM_INSTANCE_HTTP_HOST=localhost
 VS_PROXY_SERVER_SCHEME=https
 VS_PROXY_SERVER_FQDN=feature.visitscotland.com
 # the next variable "VS_BRXM_PORT_OVERRIDE" should only be used by operations for debug purposes, an available port will be found and used later in this script
-VS_BRXM_PORT_OVERRIDE=8080
+#VS_BRXM_PORT_OVERRIDE=8080
 # ====/ADJUSTABLE VARIABLES ====
 
 # set container name from branch name - removing / characters
