@@ -11,7 +11,7 @@ import java.io.InputStream;
 import java.net.URL;
 import java.util.*;
 
-public abstract class MetadataLoader {
+public abstract class LocationLoader {
 
     //TODO Log messages
     private static final Logger logger = null;//LoggerFactory.getLogger(MetadataLoader.class);
@@ -36,9 +36,20 @@ public abstract class MetadataLoader {
         loadSources();
     }
 
+    public static LocationObject getLocation(String location){
+
+        for (LocationObject obj : metadata.get(Locale.UK)){
+            if (obj.getName().equals(location)){
+                return obj;
+            }
+        }
+
+        return null;
+    }
+
     private static void loadSources() {
         boolean firstRun = locales.size() == 0;
-        synchronized (MetadataLoader.class) {
+        synchronized (LocationLoader.class) {
 
             for (Locale loc: getLocales()){
                 metadata.put(loc, getData(loc, metadata.get(loc)));
@@ -74,9 +85,9 @@ public abstract class MetadataLoader {
     private static String request(Locale locale){
         //TODO Change the level to add polygon (for destinations pages)
         if (locale == null){
-            return requestPage(String.format("%s/data/location/list?level=District&level=Destination",SITE));
+            return requestPage(String.format("%s/data/location/list?full&level=District&level=Destination",SITE));
         } else {
-            return requestPage(String.format("%s/data/location/list?level=District&level=Destination&locale=%s",SITE, locale.getLanguage()));
+            return requestPage(String.format("%s/data/location/list?full&level=District&level=Destination&locale=%s",SITE, locale.getLanguage()));
         }
     }
 

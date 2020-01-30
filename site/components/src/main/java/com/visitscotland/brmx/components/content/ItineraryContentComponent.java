@@ -1,9 +1,11 @@
 package com.visitscotland.brmx.components.content;
 
 import com.visitscotland.brmx.beans.*;
+import com.visitscotland.brmx.beans.dms.LocationObject;
 import com.visitscotland.brmx.beans.mapping.Coordinates;
 import com.visitscotland.brmx.beans.mapping.FlatImage;
 import com.visitscotland.brmx.beans.mapping.FlatStop;
+import com.visitscotland.brmx.utils.LocationLoader;
 import org.hippoecm.hst.core.component.HstRequest;
 import org.hippoecm.hst.core.component.HstResponse;
 import org.json.JSONArray;
@@ -24,7 +26,10 @@ public class ItineraryContentComponent extends EssentialsContentComponent {
     public final String STOPS_MAP = "stops";
     public final String FIRST_STOP_LOCATION = "firstStopLocation";
     public final String LAST_STOP_LOCATION = "lastStopLocation";
-    public final String ROOT_SITE = "/site/";
+    public final String HERO_COORDINATES = "heroCoordinates";
+
+
+    private final String ROOT_SITE = "/site/";
 
 
 
@@ -33,7 +38,21 @@ public class ItineraryContentComponent extends EssentialsContentComponent {
         super.doBeforeRender(request, response);
 
         generateStops(request, (Itinerary) request.getAttribute("document"));
+        setCoordinates(request, (Itinerary) request.getAttribute("document"));
         request.setAttribute("path", getDocumentLocation((Itinerary) request.getAttribute("document")));
+    }
+
+    private void setCoordinates(HstRequest request, Itinerary itinerary) {
+        //TODO: HARDCODED
+        LocationObject location = LocationLoader.getLocation("Edinburgh");
+//        LocationObject location = LocationLoader.getLocation(itinerary.getHeroImage().getLocation());
+
+        if (location != null){
+            Coordinates coordinates = new Coordinates();
+            coordinates.setLatitude(location.getLatitude());
+            coordinates.setLongitude(location.getLongitude());
+            request.setAttribute(HERO_COORDINATES, coordinates);
+        }
     }
 
     /**
@@ -55,6 +74,9 @@ public class ItineraryContentComponent extends EssentialsContentComponent {
         final String FACILITIES = "facilities";
 
         final Map<String ,FlatStop> products =  new LinkedHashMap<>();
+
+
+
 
         String firstStopId = null;
         String lastStopId = null;

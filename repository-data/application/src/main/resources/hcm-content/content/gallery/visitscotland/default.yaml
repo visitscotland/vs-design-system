@@ -9,10 +9,11 @@
     /vector-illustration-of-cartoon-hippos-in-hot-weather-drawing_csp36829792.jpg:
       jcr:primaryType: visitscotland:Image
       hippo:availability: [live, preview]
-      hippogallery:description: Test Hippo Image Caption
+      hippogallery:description: ''
       hippogallery:filename: vector-illustration-of-cartoon-hippos-in-hot-weather-drawing_csp36829792.jpg
-      visitscotland:altText: Test Hippo Image Alt Text
-      visitscotland:credit: Test Hippo Image Credit
+      visitscotland:altText: ''
+      visitscotland:credit: ''
+      visitscotland:location: ''
       /hippogallery:thumbnail:
         jcr:primaryType: hippogallery:image
         hippo:filename: vector-illustration-of-cartoon-hippos-in-hot-weather-drawing_csp36829792.jpg
@@ -32,10 +33,6 @@
           resource: /content/gallery/visitscotland/default/vector-illustration-of-cartoon-hippos-in-hot-weather-drawing_csp36829792.jpg/vector-illustration-of-cartoon-hippos-in-hot-weather-drawing_csp36829792.jpg/original/original.jpg
         jcr:lastModified: 2019-12-10T15:49:45.047Z
         jcr:mimeType: image/jpeg
-      /visitscotland:Coordinates:
-        jcr:primaryType: visitscotland:Coordinates
-        visitscotland:latitude: 55.8553807
-        visitscotland:longitude: -4.3725403
   /fraserburgh---davron-hotel-6.jpg:
     jcr:primaryType: hippo:handle
     jcr:mixinTypes: ['hippo:named', 'mix:referenceable']
@@ -44,10 +41,11 @@
     /fraserburgh---davron-hotel-6.jpg:
       jcr:primaryType: visitscotland:Image
       hippo:availability: [live, preview]
-      hippogallery:description: Test Davron Hotel Image Caption
+      hippogallery:description: ''
       hippogallery:filename: Fraserburgh - Davron Hotel (6).jpg
-      visitscotland:altText: Test Davron Hotel Image Alt Text
-      visitscotland:credit: Test Davron Hotel Image Credits
+      visitscotland:altText: ''
+      visitscotland:credit: ''
+      visitscotland:location: ''
       /hippogallery:thumbnail:
         jcr:primaryType: hippogallery:image
         hippo:filename: Fraserburgh - Davron Hotel (6).jpg
@@ -67,10 +65,6 @@
           resource: /content/gallery/visitscotland/default/fraserburgh---davron-hotel-6.jpg/fraserburgh---davron-hotel-6.jpg/original/original.jpg
         jcr:lastModified: 2019-12-11T11:31:30.522Z
         jcr:mimeType: image/jpeg
-      /visitscotland:Coordinates:
-        jcr:primaryType: visitscotland:Coordinates
-        visitscotland:latitude: 55.95055
-        visitscotland:longitude: -3.18555
   /visitscotland_49386435364-1.jpg:
     jcr:primaryType: hippo:handle
     jcr:mixinTypes: ['hippo:named', 'mix:referenceable']
@@ -83,7 +77,6 @@
       hippogallery:filename: visitscotland_49386435364 (1).jpg
       visitscotland:altText: He is also lost
       visitscotland:credit: VisitScotland Staff
-      visitscotland:location: Barrhill
       /hippogallery:thumbnail:
         jcr:primaryType: hippogallery:image
         hippo:filename: visitscotland_49386435364 (1).jpg
@@ -103,7 +96,3 @@
           resource: /content/gallery/visitscotland/default/visitscotland_49386435364-1.jpg/visitscotland_49386435364-1.jpg/original/original.jpg
         jcr:lastModified: 2019-12-11T11:31:44.652Z
         jcr:mimeType: image/jpeg
-      /visitscotland:Coordinates:
-        jcr:primaryType: visitscotland:Coordinates
-        visitscotland:latitude: 57.8348853
-        visitscotland:longitude: -3.6335832

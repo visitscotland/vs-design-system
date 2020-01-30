@@ -127,7 +127,7 @@ definitions:
         /hipposysedit:prototype:
           jcr:primaryType: visitscotland:Image
           jcr:mixinTypes: ['mix:referenceable']
-          jcr:uuid: 07ff5ee0-b1a9-41da-ab72-df9dcc4ecc52
+          jcr:uuid: 54da720d-08eb-48f6-a690-ba26462c9f2d
           hippogallery:description: ''
           visitscotland:altText: ''
           visitscotland:credit: ''
@@ -158,7 +158,7 @@ definitions:
         /hipposysedit:prototype[2]:
           jcr:primaryType: nt:unstructured
           jcr:mixinTypes: ['hippogallery:relaxed', 'mix:referenceable']
-          jcr:uuid: 4d584df2-46ed-454e-9e08-67ab46b2cdac
+          jcr:uuid: 702b72ee-1383-4c89-892c-bde42764e859
           hippogallery:description: ''
           visitscotland:altText: ''
           visitscotland:credit: ''

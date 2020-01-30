@@ -27,4 +27,5 @@ public class Image extends HippoGalleryImageSet {
     public String getLocation() {
         return getSingleProperty("visitscotland:location");
     }
+
 }
