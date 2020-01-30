@@ -26,6 +26,7 @@ public abstract class LocationLoader {
         if (locales.size() == 0){
             locales.add(Locale.forLanguageTag("fr-fr"));
             locales.add(Locale.forLanguageTag("es-es"));
+            locales.add(null);
         }
 
         return locales;
@@ -38,7 +39,7 @@ public abstract class LocationLoader {
 
     public static LocationObject getLocation(String location){
 
-        for (LocationObject obj : metadata.get(Locale.UK)){
+        for (LocationObject obj : metadata.get(null)){
             if (obj.getName().equals(location)){
                 return obj;
             }

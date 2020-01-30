@@ -13,7 +13,7 @@
       hippogallery:filename: vector-illustration-of-cartoon-hippos-in-hot-weather-drawing_csp36829792.jpg
       visitscotland:altText: ''
       visitscotland:credit: ''
-      visitscotland:location: ''
+      visitscotland:location: Thurso
       /hippogallery:thumbnail:
         jcr:primaryType: hippogallery:image
         hippo:filename: vector-illustration-of-cartoon-hippos-in-hot-weather-drawing_csp36829792.jpg
@@ -45,7 +45,7 @@
       hippogallery:filename: Fraserburgh - Davron Hotel (6).jpg
       visitscotland:altText: ''
       visitscotland:credit: ''
-      visitscotland:location: ''
+      visitscotland:location: Edinburgh
       /hippogallery:thumbnail:
         jcr:primaryType: hippogallery:image
         hippo:filename: Fraserburgh - Davron Hotel (6).jpg
@@ -77,6 +77,7 @@
       hippogallery:filename: visitscotland_49386435364 (1).jpg
       visitscotland:altText: He is also lost
       visitscotland:credit: VisitScotland Staff
+      visitscotland:location: Aberdeen
       /hippogallery:thumbnail:
         jcr:primaryType: hippogallery:image
         hippo:filename: visitscotland_49386435364 (1).jpg

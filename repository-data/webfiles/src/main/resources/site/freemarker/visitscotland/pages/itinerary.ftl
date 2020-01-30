@@ -55,8 +55,6 @@
     <#assign mainTransport = document.transports[0]>
 </#if>
 
-
-
 <div class="has-edit-button">
       <@hst.manageContent hippobean=document documentTemplateQuery="new-document" rootPath="site" defaultPath="${path}" />
 
@@ -68,8 +66,8 @@
                 credit="${document.heroImage.credit}"
                 caption="${document.heroImage.caption}"
                 image-src="${hero}"
-                latitude="${document.heroImage.coordinates.latitude}"
-                longitude="${document.heroImage.coordinates.longitude}"
+                latitude="${heroCoordinates.latitude}"
+                longitude="${heroCoordinates.longitude}"
             >
             <img
                 class="lazyload"

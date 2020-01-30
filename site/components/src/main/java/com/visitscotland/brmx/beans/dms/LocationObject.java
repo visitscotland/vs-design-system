@@ -24,10 +24,14 @@ public class LocationObject implements Comparable<LocationObject> {
 
     @Deprecated
     public LocationObject(String id, String key, String name, String type) {
-        this(id, key,name,type, null, null, null);
+        this(id, key,name,type, null, null, null, null);
     }
 
-    public LocationObject(String id, String key, String name, String type, Double latitude, Double longitude, List<String> children) {
+    public LocationObject(){
+
+    }
+
+    public LocationObject(String id, String key, String name, String type, Double latitude, Double longitude, List<String> children, Set<String> types) {
         this.id = id;
         this.key = key;
         this.name = name;
@@ -35,6 +39,7 @@ public class LocationObject implements Comparable<LocationObject> {
         this.latitude = latitude;
         this.longitude = longitude;
         this.children = children;
+        this.types = types;
     }
 
     public String getId() {
