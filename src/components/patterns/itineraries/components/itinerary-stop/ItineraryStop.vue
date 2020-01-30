@@ -77,12 +77,12 @@ export default {
 .vs-itinerary-stop ::v-deep {
     .itinerary-stop__facilities {
         border-top: 1px solid $color-gray-tint-5;
-        margin: $spacer-9 -1rem -1rem;
-        padding: 1rem 0;
+        margin: $spacer-4 -1rem -1rem;
+        padding: 1rem 0 0;
         text-align: center;
 
         @include media-breakpoint-up(sm) {
-            margin: $spacer-9 0 0;
+            margin: $spacer-4 0 0;
         }
 
         dt {
