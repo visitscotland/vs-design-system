@@ -78,6 +78,8 @@ export default {
         },
     },
     mounted() {
+        /* Design System wrapper affects page scroll detection, so temporary fix is to
+        have a condition checking for design system wrapper. */
         window.addEventListener("resize", this.onResize)
         var designSystemWrapper = document.querySelector(".vds-example")
         if (designSystemWrapper === null) {
@@ -171,18 +173,18 @@ export default {
             :dayTitle="day.title"
         >
         <vs-description-list v-if="day.dayMiles && day.dayKM" slot="day-distance" class="list-inline text-center">
-            <dt class="list-inline-item"><abbr title="miles">mi</abbr>/<abbr title="kilometres">km</abbr>:</dt>
-            <dd class="list-inline-item">{{day.dayMiles}}/{{day.dayKM}}</dd>
+            <vs-description-list-term class="list-inline-item"><abbr title="miles">mi</abbr>/<abbr title="kilometres">km</abbr></vs-description-list-term>
+            <vs-description-list-detail class="list-inline-item">{{day.dayMiles}}/{{day.dayKM}}</vs-description-list-detail>
         </vs-description-list>
 
-        <vs-description-list v-if="day.transport.length" class="list-inline text-center" slot="day-transport">
-            <dt class="list-inline-item">Transport:</dt>
-            <dd class="list-inline-item" v-for="(transportType, transportTypeIndex) in day.transport" :key="transportTypeIndex">
+        <vs-description-list v-if="day.transport.length" class="text-center justify-content-center align-items-center" slot="day-transport" inline>
+            <vs-description-list-term class="col-auto px-0">Transport</vs-description-list-term>
+            <vs-description-list-detail class="col-auto m-0 px-0" v-for="(transportType, transportTypeIndex) in day.transport" :key="transportTypeIndex">
                 <vs-tooltip :title="transportType.value">
                     <vs-icon :name="transportType.key" variant="dark" size="sm" />
                 </vs-tooltip>
               <span class="sr-only">{{transportType.value}}</span>
-            </dd>
+            </vs-description-list-detail>
         </vs-description-list>
                     
           <div class="mb-5" slot="day-introduction" v-html="day.introduction"></div>
