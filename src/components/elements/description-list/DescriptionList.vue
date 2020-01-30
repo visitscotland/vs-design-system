@@ -5,6 +5,7 @@
 </template>
 
 <script>
+import { VsRow } from "@components/elements/layout"
 /**
  * A description list can be used where there is a list of terms and descriptions.
  *
@@ -16,6 +17,9 @@ export default {
     name: "VsDescriptionList",
     status: "prototype",
     release: "0.0.1",
+    components: {
+        VsRow,
+    },
     props: {
         /**
          * Option to create inline list
