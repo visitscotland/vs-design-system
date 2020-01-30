@@ -1,4 +1,0 @@
-definitions:
-  config:
-    /hst:platform/hst:hosts/dev-localhost-2:
-      jcr:primaryType: hst:virtualhostgroup
