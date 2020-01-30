@@ -16,7 +16,7 @@ definitions:
           hipposysedit:supertype: ['visitscotland:basedocument', 'hippostd:relaxed',
             'hippotranslation:translated']
           hipposysedit:uri: http://www.visitscotland.com/visitscotland/nt/1.0
-          /title:
+          /tipsTitle:
             jcr:primaryType: hipposysedit:field
             hipposysedit:mandatory: false
             hipposysedit:multiple: false
@@ -47,7 +47,7 @@ definitions:
             hipposysedit:path: visitscotland:product
             hipposysedit:type: hippo:compound
             hipposysedit:validators: [contentblocks-validator]
-          /string:
+          /title:
             jcr:primaryType: hipposysedit:field
             hipposysedit:mandatory: false
             hipposysedit:multiple: false
@@ -91,7 +91,7 @@ definitions:
           /title:
             jcr:primaryType: frontend:plugin
             caption: Title
-            field: string
+            field: title
             plugin.class: org.hippoecm.frontend.editor.plugins.field.PropertyFieldPlugin
             wicket.id: ${cluster.id}.field
             /cluster.options:
@@ -119,7 +119,7 @@ definitions:
           /tipsTitle:
             jcr:primaryType: frontend:plugin
             caption: Pull Out Title
-            field: title
+            field: tipsTitle
             hint: ''
             plugin.class: org.hippoecm.frontend.editor.plugins.field.PropertyFieldPlugin
             wicket.id: ${cluster.id}.field

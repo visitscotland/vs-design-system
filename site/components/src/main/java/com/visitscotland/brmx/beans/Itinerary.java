@@ -50,9 +50,4 @@ public class Itinerary extends Page {
     public Boolean getPopular() {
         return getSingleProperty("visitscotland:popular");
     }
-
-    @HippoEssentialsGenerated(internalName = "visitscotland:teaser")
-    public String getTeaser() {
-        return getSingleProperty("visitscotland:teaser");
-    }
 }

@@ -42,4 +42,6 @@ public class Page extends BaseDocument {
     public String getSeoDescription() {
         return getSingleProperty("visitscotland:seoDescription");
     }
+
+
 }
