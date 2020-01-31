@@ -79,27 +79,24 @@ public class DMSCategoryPicker implements ExternalDocumentServiceFacade<JSONObje
     public ExternalDocumentCollection<JSONObject> searchExternalDocuments(ExternalDocumentServiceContext context,
                                                                           String queryString) {
         final String fieldName = context.getPluginConfig().getString(PRODUCT_TYPE);
-
-
         try {
+            List<String> productTypes = Arrays.asList(context.getContextModel().getNode().getProperty(fieldName).getValue().getString().split("\\s*,\\s*"));
+            if (!productTypes.get(0).isEmpty()) {
+                List<CategoryGroup> catGroups = new ArrayList<>();
 
-            String productType= context.getContextModel().getNode().getProperty(fieldName).getValue().getString();
-            List<String> items = Arrays.asList(productType.split("\\s*,\\s*"));
-            List<CategoryGroup> catGroups = new ArrayList<>();
-
-            for (String productT : items){
-                catGroups.addAll( metadata.getCategoryGroupsForType(ProductTypes.byId(productT)));
-            }
-
-            if (catGroups != null) {
-                JSONArray subCategory  = new JSONArray();
-                for (CategoryGroup cat : catGroups) {
-                    subCategory.addAll(JSONArray.fromObject(cat.getCategories()));
+                for (String productType : productTypes) {
+                    catGroups.addAll(metadata.getCategoryGroupsForType(ProductTypes.byId(productType)));
                 }
-                docArray = subCategory;
+
+                if (catGroups != null) {
+                    JSONArray subCategory = new JSONArray();
+                    for (CategoryGroup cat : catGroups) {
+                        subCategory.addAll(JSONArray.fromObject(cat.getCategories()));
+                    }
+                    docArray = subCategory;
+                }
+
             }
-
-
         } catch (RepositoryException e) {
             e.printStackTrace();
         }

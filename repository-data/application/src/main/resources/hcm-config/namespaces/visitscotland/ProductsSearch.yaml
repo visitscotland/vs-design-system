@@ -11,10 +11,48 @@ definitions:
         /hipposysedit:nodetype:
           jcr:primaryType: hipposysedit:nodetype
           jcr:mixinTypes: ['mix:referenceable', 'hipposysedit:remodel']
-          jcr:uuid: e448cc4e-de9c-4720-b6eb-2a45c6571bf7
+          jcr:uuid: 04086652-4511-43aa-968a-5a52a32af851
           hipposysedit:node: true
           hipposysedit:supertype: ['hippo:compound', 'hippostd:relaxed']
           hipposysedit:uri: http://www.visitscotland.com/visitscotland/nt/1.0
+          /dmscategories:
+            jcr:primaryType: hipposysedit:field
+            hipposysedit:mandatory: false
+            hipposysedit:multiple: true
+            hipposysedit:ordered: false
+            hipposysedit:path: visitscotland:dmscategories
+            hipposysedit:primary: false
+            hipposysedit:type: String
+          /location:
+            jcr:primaryType: hipposysedit:field
+            hipposysedit:mandatory: false
+            hipposysedit:multiple: false
+            hipposysedit:ordered: false
+            hipposysedit:path: visitscotland:location
+            hipposysedit:primary: false
+            hipposysedit:type: DynamicDropdown
+          /long:
+            jcr:primaryType: hipposysedit:field
+            hipposysedit:mandatory: false
+            hipposysedit:multiple: false
+            hipposysedit:ordered: false
+            hipposysedit:path: visitscotland:distance
+            hipposysedit:primary: false
+            hipposysedit:type: Long
+          /producttype:
+            jcr:primaryType: hipposysedit:field
+            hipposysedit:mandatory: false
+            hipposysedit:multiple: false
+            hipposysedit:ordered: false
+            hipposysedit:path: visitscotland:producttype
+            hipposysedit:primary: false
+            hipposysedit:type: DynamicDropdown
+        /hipposysedit:nodetype[2]:
+          jcr:primaryType: hipposysedit:nodetype
+          jcr:mixinTypes: ['mix:referenceable']
+          jcr:uuid: 63e8efce-75e1-4335-9dc3-81fffe44d39e
+          hipposysedit:node: true
+          hipposysedit:supertype: ['hippo:compound', 'hippostd:relaxed']
           /dmscategories:
             jcr:primaryType: hipposysedit:field
             hipposysedit:mandatory: false
@@ -53,7 +91,14 @@ definitions:
           jcr:primaryType: visitscotland:ProductsSearch
           visitscotland:dmscategories: ['']
           visitscotland:location: ''
-          visitscotland:distance: 8
+          visitscotland:distance:
+          visitscotland:producttype: ''
+        /hipposysedit:prototype[2]:
+          jcr:primaryType: nt:unstructured
+          jcr:mixinTypes: ['hippostd:relaxed']
+          visitscotland:distance:
+          visitscotland:dmscategories: ['']
+          visitscotland:location: ''
           visitscotland:producttype: ''
       /editor:templates:
         jcr:primaryType: editor:templateset
@@ -110,7 +155,7 @@ definitions:
             selection.mode: multiple
             wicket.id: ${cluster.id}.right.item
             wicket.model: ${wicket.model}
-            page.size: 10
+            page.size: 8
             icon.style: 'display: none;'
             /cluster.options:
               jcr:primaryType: frontend:pluginconfig
