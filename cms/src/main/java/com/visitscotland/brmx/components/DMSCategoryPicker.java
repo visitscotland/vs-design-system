@@ -28,7 +28,7 @@ import java.io.IOException;
 import java.io.Reader;
 import java.util.*;
 
-
+// TODO: refactor
 public class DMSCategoryPicker implements ExternalDocumentServiceFacade<JSONObject> {
 
     /**
@@ -49,10 +49,11 @@ public class DMSCategoryPicker implements ExternalDocumentServiceFacade<JSONObje
     public DMSCategoryPicker() {
         try {
             docArray = new JSONArray();
-
+            // TODO: create an exposed endpoint to get categories (similar to locations)
             DataService dsi = new DataServiceImpl();
             metadata = dsi.getMetatdata();
             List<ProductTypes> searchTypes = new ArrayList<>();
+            // TODO: define which productTypes content team wants
             searchTypes.add(ProductTypes.ACCOMMODATION);
             searchTypes.add(ProductTypes.ACTIVITY);
             searchTypes.add(ProductTypes.ATTRACTION);
