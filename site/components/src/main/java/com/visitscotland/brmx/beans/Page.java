@@ -43,5 +43,8 @@ public class Page extends BaseDocument {
         return getSingleProperty("visitscotland:seoDescription");
     }
 
-
+    @HippoEssentialsGenerated(internalName = "visitscotland:teaser")
+    public String getTeaser() {
+        return getSingleProperty("visitscotland:teaser");
+    }
 }

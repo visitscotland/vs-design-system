@@ -231,7 +231,7 @@
       jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
       jcr:uuid: 28abd074-5fc4-4ebc-a424-1d4f9e5cb0e6
       hippo:name: GREYFRIARS KIRKYARD
-      hippo:versionHistory: 4b01d725-e84b-4de5-8651-759ec85c65b4
+      hippo:versionHistory: ca7cf1d2-105c-4a16-9dfb-cdcb03186f4e
       /greyfriars-kirkyard[1]:
         jcr:primaryType: visitscotland:Stop
         jcr:mixinTypes: ['mix:referenceable']
@@ -240,7 +240,7 @@
         hippostd:state: draft
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2019-12-11T12:40:08.862Z
-        hippostdpubwf:lastModificationDate: 2020-01-13T15:00:11.589Z
+        hippostdpubwf:lastModificationDate: 2020-01-31T15:25:07.658Z
         hippostdpubwf:lastModifiedBy: admin
         hippotranslation:id: 1bdaaad2-68eb-4493-878c-0961215fe02a
         hippotranslation:locale: en
@@ -257,19 +257,25 @@
           jcr:primaryType: hippostd:html
           hippostd:content: <p>Description example for pull out</p>
         /visitscotland:product:
-          jcr:primaryType: visitscotland:ExternalLink
-          visitscotland:Link: https://greyfriarskirk.com/
-          visitscotland:timeToExplore: '1'
+          jcr:primaryType: visitscotland:ItineraryExternalLink
+          visitscotland:timeToExplore: ' 24'
+          /visitscotland:ExternalLink:
+            jcr:primaryType: visitscotland:ExternalLink
+            visitscotland:Link: https://greyfriarskirk.com/visit/kirkyard/
+            /visitscotland:Coordinates:
+              jcr:primaryType: visitscotland:Coordinates
+              visitscotland:latitude: 0.0
+              visitscotland:longitude: 0.0
+            /visitscotland:image:
+              jcr:primaryType: hippogallerypicker:imagelink
+              hippo:docbase: 9fb38865-ca10-4ef4-bcab-a1097cc44487
+              hippo:facets: []
+              hippo:modes: []
+              hippo:values: []
           /visitscotland:Coordinates:
             jcr:primaryType: visitscotland:Coordinates
-            visitscotland:latitude: 55.9471682
-            visitscotland:longitude: -3.1927961
-          /visitscotland:image:
-            jcr:primaryType: hippogallerypicker:imagelink
-            hippo:docbase: 8d4f5036-64ca-4e5d-aa89-b348ae38b081
-            hippo:facets: []
-            hippo:modes: []
-            hippo:values: []
+            visitscotland:latitude: 57.144481250000005
+            visitscotland:longitude: -2.1929624999999997
       /greyfriars-kirkyard[2]:
         jcr:primaryType: visitscotland:Stop
         jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
@@ -278,7 +284,7 @@
         hippostd:state: unpublished
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2019-12-11T12:40:08.862Z
-        hippostdpubwf:lastModificationDate: 2020-01-13T14:45:53.471Z
+        hippostdpubwf:lastModificationDate: 2020-01-31T15:26:42.991Z
         hippostdpubwf:lastModifiedBy: admin
         hippotranslation:id: 1bdaaad2-68eb-4493-878c-0961215fe02a
         hippotranslation:locale: en
@@ -295,19 +301,25 @@
           jcr:primaryType: hippostd:html
           hippostd:content: <p>Description example for pull out</p>
         /visitscotland:product:
-          jcr:primaryType: visitscotland:ExternalLink
-          visitscotland:Link: https://greyfriarskirk.com/
-          visitscotland:timeToExplore: '1'
+          jcr:primaryType: visitscotland:ItineraryExternalLink
+          visitscotland:timeToExplore: ' 24'
+          /visitscotland:ExternalLink:
+            jcr:primaryType: visitscotland:ExternalLink
+            visitscotland:Link: https://greyfriarskirk.com/visit/kirkyard/
+            /visitscotland:Coordinates:
+              jcr:primaryType: visitscotland:Coordinates
+              visitscotland:latitude: 0.0
+              visitscotland:longitude: 0.0
+            /visitscotland:image:
+              jcr:primaryType: hippogallerypicker:imagelink
+              hippo:docbase: 9fb38865-ca10-4ef4-bcab-a1097cc44487
+              hippo:facets: []
+              hippo:modes: []
+              hippo:values: []
           /visitscotland:Coordinates:
             jcr:primaryType: visitscotland:Coordinates
-            visitscotland:latitude: 55.9471682
-            visitscotland:longitude: -3.1927961
-          /visitscotland:image:
-            jcr:primaryType: hippogallerypicker:imagelink
-            hippo:docbase: 8d4f5036-64ca-4e5d-aa89-b348ae38b081
-            hippo:facets: []
-            hippo:modes: []
-            hippo:values: []
+            visitscotland:latitude: 57.144481250000005
+            visitscotland:longitude: -2.1929624999999997
       /greyfriars-kirkyard[3]:
         jcr:primaryType: visitscotland:Stop
         jcr:mixinTypes: ['mix:referenceable']
@@ -316,9 +328,9 @@
         hippostd:state: published
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2019-12-11T12:40:08.862Z
-        hippostdpubwf:lastModificationDate: 2020-01-13T14:45:53.471Z
+        hippostdpubwf:lastModificationDate: 2020-01-31T15:26:42.991Z
         hippostdpubwf:lastModifiedBy: admin
-        hippostdpubwf:publicationDate: 2020-01-13T14:45:57.124Z
+        hippostdpubwf:publicationDate: 2020-01-31T15:26:49.424Z
         hippotranslation:id: 1bdaaad2-68eb-4493-878c-0961215fe02a
         hippotranslation:locale: en
         visitscotland:tipsTitle: Pull out title example
@@ -334,25 +346,31 @@
           jcr:primaryType: hippostd:html
           hippostd:content: <p>Description example for pull out</p>
         /visitscotland:product:
-          jcr:primaryType: visitscotland:ExternalLink
-          visitscotland:Link: https://greyfriarskirk.com/
-          visitscotland:timeToExplore: '1'
+          jcr:primaryType: visitscotland:ItineraryExternalLink
+          visitscotland:timeToExplore: ' 24'
+          /visitscotland:ExternalLink:
+            jcr:primaryType: visitscotland:ExternalLink
+            visitscotland:Link: https://greyfriarskirk.com/visit/kirkyard/
+            /visitscotland:Coordinates:
+              jcr:primaryType: visitscotland:Coordinates
+              visitscotland:latitude: 0.0
+              visitscotland:longitude: 0.0
+            /visitscotland:image:
+              jcr:primaryType: hippogallerypicker:imagelink
+              hippo:docbase: 9fb38865-ca10-4ef4-bcab-a1097cc44487
+              hippo:facets: []
+              hippo:modes: []
+              hippo:values: []
           /visitscotland:Coordinates:
             jcr:primaryType: visitscotland:Coordinates
-            visitscotland:latitude: 55.9471682
-            visitscotland:longitude: -3.1927961
-          /visitscotland:image:
-            jcr:primaryType: hippogallerypicker:imagelink
-            hippo:docbase: 8d4f5036-64ca-4e5d-aa89-b348ae38b081
-            hippo:facets: []
-            hippo:modes: []
-            hippo:values: []
+            visitscotland:latitude: 57.144481250000005
+            visitscotland:longitude: -2.1929624999999997
     /casa-jose:
       jcr:primaryType: hippo:handle
       jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
       jcr:uuid: 8b215960-87aa-47ae-9c11-8a750be25ad8
       hippo:name: Casa Jose
-      hippo:versionHistory: 73b3a4f2-cd16-4eb4-b1ae-212c823042c0
+      hippo:versionHistory: e5aa8d91-2fa9-4fe2-a24e-e7fd49ba3c15
       /casa-jose[1]:
         jcr:primaryType: visitscotland:Stop
         jcr:mixinTypes: ['mix:referenceable']
@@ -361,7 +379,7 @@
         hippostd:state: draft
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2019-12-16T12:20:46.037Z
-        hippostdpubwf:lastModificationDate: 2020-01-08T13:54:10.400Z
+        hippostdpubwf:lastModificationDate: 2020-01-31T15:26:51.449Z
         hippostdpubwf:lastModifiedBy: admin
         hippotranslation:id: b4f184af-52de-4e48-92ab-33cc5c2519e0
         hippotranslation:locale: en
@@ -374,19 +392,25 @@
           jcr:primaryType: hippostd:html
           hippostd:content: ''
         /visitscotland:product:
-          jcr:primaryType: visitscotland:ExternalLink
-          visitscotland:Link: https://www.visitscotland.com/es-es
-          visitscotland:timeToExplore: ' 24'
+          jcr:primaryType: visitscotland:ItineraryExternalLink
+          visitscotland:timeToExplore: '1'
+          /visitscotland:ExternalLink:
+            jcr:primaryType: visitscotland:ExternalLink
+            visitscotland:Link: http://la-casa-restaurant.co.uk/
+            /visitscotland:Coordinates:
+              jcr:primaryType: visitscotland:Coordinates
+              visitscotland:latitude: 0.0
+              visitscotland:longitude: 0.0
+            /visitscotland:image:
+              jcr:primaryType: hippogallerypicker:imagelink
+              hippo:docbase: 8d4f5036-64ca-4e5d-aa89-b348ae38b081
+              hippo:facets: []
+              hippo:modes: []
+              hippo:values: []
           /visitscotland:Coordinates:
             jcr:primaryType: visitscotland:Coordinates
-            visitscotland:latitude: 55.9533
-            visitscotland:longitude: -3.1883
-          /visitscotland:image:
-            jcr:primaryType: hippogallerypicker:imagelink
-            hippo:docbase: 1e4be246-297b-4404-8102-80fe1bc0ddf7
-            hippo:facets: []
-            hippo:modes: []
-            hippo:values: []
+            visitscotland:latitude: 56.94939333333334
+            visitscotland:longitude: -4.824278333333333
       /casa-jose[2]:
         jcr:primaryType: visitscotland:Stop
         jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
@@ -395,7 +419,7 @@
         hippostd:state: unpublished
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2019-12-16T12:20:46.037Z
-        hippostdpubwf:lastModificationDate: 2020-01-08T13:54:10.322Z
+        hippostdpubwf:lastModificationDate: 2020-01-31T15:28:07.880Z
         hippostdpubwf:lastModifiedBy: admin
         hippotranslation:id: b4f184af-52de-4e48-92ab-33cc5c2519e0
         hippotranslation:locale: en
@@ -408,19 +432,25 @@
           jcr:primaryType: hippostd:html
           hippostd:content: ''
         /visitscotland:product:
-          jcr:primaryType: visitscotland:ExternalLink
-          visitscotland:Link: https://www.visitscotland.com/es-es
-          visitscotland:timeToExplore: ' 24'
+          jcr:primaryType: visitscotland:ItineraryExternalLink
+          visitscotland:timeToExplore: '1'
+          /visitscotland:ExternalLink:
+            jcr:primaryType: visitscotland:ExternalLink
+            visitscotland:Link: http://la-casa-restaurant.co.uk/
+            /visitscotland:Coordinates:
+              jcr:primaryType: visitscotland:Coordinates
+              visitscotland:latitude: 0.0
+              visitscotland:longitude: 0.0
+            /visitscotland:image:
+              jcr:primaryType: hippogallerypicker:imagelink
+              hippo:docbase: 8d4f5036-64ca-4e5d-aa89-b348ae38b081
+              hippo:facets: []
+              hippo:modes: []
+              hippo:values: []
           /visitscotland:Coordinates:
             jcr:primaryType: visitscotland:Coordinates
-            visitscotland:latitude: 55.9533
-            visitscotland:longitude: -3.1883
-          /visitscotland:image:
-            jcr:primaryType: hippogallerypicker:imagelink
-            hippo:docbase: 1e4be246-297b-4404-8102-80fe1bc0ddf7
-            hippo:facets: []
-            hippo:modes: []
-            hippo:values: []
+            visitscotland:latitude: 56.94939333333334
+            visitscotland:longitude: -4.824278333333333
       /casa-jose[3]:
         jcr:primaryType: visitscotland:Stop
         jcr:mixinTypes: ['mix:referenceable']
@@ -429,9 +459,9 @@
         hippostd:state: published
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2019-12-16T12:20:46.037Z
-        hippostdpubwf:lastModificationDate: 2020-01-08T13:54:10.322Z
+        hippostdpubwf:lastModificationDate: 2020-01-31T15:28:07.880Z
         hippostdpubwf:lastModifiedBy: admin
-        hippostdpubwf:publicationDate: 2020-01-13T10:27:42.356Z
+        hippostdpubwf:publicationDate: 2020-01-31T15:28:12.064Z
         hippotranslation:id: b4f184af-52de-4e48-92ab-33cc5c2519e0
         hippotranslation:locale: en
         visitscotland:tipsTitle: ''
@@ -443,19 +473,25 @@
           jcr:primaryType: hippostd:html
           hippostd:content: ''
         /visitscotland:product:
-          jcr:primaryType: visitscotland:ExternalLink
-          visitscotland:Link: https://www.visitscotland.com/es-es
-          visitscotland:timeToExplore: ' 24'
+          jcr:primaryType: visitscotland:ItineraryExternalLink
+          visitscotland:timeToExplore: '1'
+          /visitscotland:ExternalLink:
+            jcr:primaryType: visitscotland:ExternalLink
+            visitscotland:Link: http://la-casa-restaurant.co.uk/
+            /visitscotland:Coordinates:
+              jcr:primaryType: visitscotland:Coordinates
+              visitscotland:latitude: 0.0
+              visitscotland:longitude: 0.0
+            /visitscotland:image:
+              jcr:primaryType: hippogallerypicker:imagelink
+              hippo:docbase: 8d4f5036-64ca-4e5d-aa89-b348ae38b081
+              hippo:facets: []
+              hippo:modes: []
+              hippo:values: []
           /visitscotland:Coordinates:
             jcr:primaryType: visitscotland:Coordinates
-            visitscotland:latitude: 55.9533
-            visitscotland:longitude: -3.1883
-          /visitscotland:image:
-            jcr:primaryType: hippogallerypicker:imagelink
-            hippo:docbase: 1e4be246-297b-4404-8102-80fe1bc0ddf7
-            hippo:facets: []
-            hippo:modes: []
-            hippo:values: []
+            visitscotland:latitude: 56.94939333333334
+            visitscotland:longitude: -4.824278333333333
     /malformed-stop:
       jcr:primaryType: hippo:handle
       jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']

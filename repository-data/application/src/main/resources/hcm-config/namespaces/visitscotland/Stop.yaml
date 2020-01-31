@@ -108,7 +108,7 @@ definitions:
           /product:
             jcr:primaryType: frontend:plugin
             caption: Product
-            compoundList: visitscotland:DMSLink,visitscotland:ExternalLink
+            compoundList: visitscotland:DMSLink,visitscotland:ItineraryExternalLink
             contentPickerType: links
             field: product
             plugin.class: org.onehippo.forge.contentblocks.ContentBlocksFieldPlugin

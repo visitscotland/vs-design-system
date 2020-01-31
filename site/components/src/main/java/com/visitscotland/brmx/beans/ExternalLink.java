@@ -14,16 +14,6 @@ public class ExternalLink extends HippoCompound {
         return getSingleProperty("visitscotland:Link");
     }
 
-    @HippoEssentialsGenerated(internalName = "visitscotland:timeToExplore")
-    public String getTimeToExplore() {
-        return getSingleProperty("visitscotland:timeToExplore");
-    }
-
-    @HippoEssentialsGenerated(internalName = "visitscotland:Coordinates")
-    public Coordinates getCoordinates() {
-        return getBean("visitscotland:Coordinates", Coordinates.class);
-    }
-
     @HippoEssentialsGenerated(internalName = "visitscotland:image")
     public Image getImage() {
         return getLinkedBean("visitscotland:image", Image.class);
