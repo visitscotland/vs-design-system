@@ -6,9 +6,9 @@ import org.hippoecm.hst.content.beans.standard.HippoCompound;
 import com.visitscotland.brmx.beans.Coordinates;
 import com.visitscotland.brmx.beans.Image;
 
-@HippoEssentialsGenerated(internalName = "visitscotland:ExternalProductLink")
-@Node(jcrType = "visitscotland:ExternalProductLink")
-public class ExternalProductLink extends HippoCompound {
+@HippoEssentialsGenerated(internalName = "visitscotland:ExternalLink")
+@Node(jcrType = "visitscotland:ExternalLink")
+public class ExternalLink extends HippoCompound {
     @HippoEssentialsGenerated(internalName = "visitscotland:Link")
     public String getLink() {
         return getSingleProperty("visitscotland:Link");

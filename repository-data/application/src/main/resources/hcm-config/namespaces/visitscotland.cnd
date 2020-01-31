@@ -17,7 +17,7 @@
 [visitscotland:Day] > hippostd:relaxed, hippotranslation:translated, visitscotland:basedocument
   orderable
 
-[visitscotland:ExternalProductLink] > hippo:compound, hippostd:relaxed
+[visitscotland:ExternalLink] > hippo:compound, hippostd:relaxed
   orderable
 
 [visitscotland:Image] > hippogallery:imageset, hippogallery:relaxed

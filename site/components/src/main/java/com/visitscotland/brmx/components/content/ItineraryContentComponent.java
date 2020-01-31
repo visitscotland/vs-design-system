@@ -114,8 +114,8 @@ public class ItineraryContentComponent extends EssentialsContentComponent {
                         model.setErrorMessage("Error while querying the DMS: " + exception.getMessage());
                         logger.error("Error while querying the DMS for " + itinerary.getName() + ", Stop " + model.getIndex() + ": " + exception.getMessage());
                     }
-                } else if (stop.getStopItem() instanceof ExternalProductLink){
-                    ExternalProductLink aux = (ExternalProductLink) stop.getStopItem();
+                } else if (stop.getStopItem() instanceof ExternalLink){
+                    ExternalLink aux = (ExternalLink) stop.getStopItem();
                     img.setCmsImage(aux.getImage());
                     model.setTimeToexplore(aux.getTimeToExplore());
                     model.setCta(aux.getLink());

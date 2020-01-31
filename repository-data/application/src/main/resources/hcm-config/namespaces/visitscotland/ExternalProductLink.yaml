@@ -1,6 +1,6 @@
 definitions:
   config:
-    /hippo:namespaces/visitscotland/ExternalProductLink:
+    /hippo:namespaces/visitscotland/ExternalLink:
       jcr:primaryType: hipposysedit:templatetype
       jcr:mixinTypes: ['editor:editable', 'mix:referenceable']
       jcr:uuid: 4cf69536-c2bf-4b14-ac10-6aa5b5a16a3c
@@ -52,7 +52,7 @@ definitions:
       /hipposysedit:prototypes:
         jcr:primaryType: hipposysedit:prototypeset
         /hipposysedit:prototype:
-          jcr:primaryType: visitscotland:ExternalProductLink
+          jcr:primaryType: visitscotland:ExternalLink
           visitscotland:Link: ''
           /visitscotland:Coordinates:
             jcr:primaryType: visitscotland:Coordinates

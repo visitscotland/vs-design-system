@@ -257,7 +257,7 @@
           jcr:primaryType: hippostd:html
           hippostd:content: <p>Description example for pull out</p>
         /visitscotland:product:
-          jcr:primaryType: visitscotland:ExternalProductLink
+          jcr:primaryType: visitscotland:ExternalLink
           visitscotland:Link: https://greyfriarskirk.com/
           visitscotland:timeToExplore: '1'
           /visitscotland:Coordinates:
@@ -295,7 +295,7 @@
           jcr:primaryType: hippostd:html
           hippostd:content: <p>Description example for pull out</p>
         /visitscotland:product:
-          jcr:primaryType: visitscotland:ExternalProductLink
+          jcr:primaryType: visitscotland:ExternalLink
           visitscotland:Link: https://greyfriarskirk.com/
           visitscotland:timeToExplore: '1'
           /visitscotland:Coordinates:
@@ -334,7 +334,7 @@
           jcr:primaryType: hippostd:html
           hippostd:content: <p>Description example for pull out</p>
         /visitscotland:product:
-          jcr:primaryType: visitscotland:ExternalProductLink
+          jcr:primaryType: visitscotland:ExternalLink
           visitscotland:Link: https://greyfriarskirk.com/
           visitscotland:timeToExplore: '1'
           /visitscotland:Coordinates:
@@ -374,7 +374,7 @@
           jcr:primaryType: hippostd:html
           hippostd:content: ''
         /visitscotland:product:
-          jcr:primaryType: visitscotland:ExternalProductLink
+          jcr:primaryType: visitscotland:ExternalLink
           visitscotland:Link: https://www.visitscotland.com/es-es
           visitscotland:timeToExplore: ' 24'
           /visitscotland:Coordinates:
@@ -408,7 +408,7 @@
           jcr:primaryType: hippostd:html
           hippostd:content: ''
         /visitscotland:product:
-          jcr:primaryType: visitscotland:ExternalProductLink
+          jcr:primaryType: visitscotland:ExternalLink
           visitscotland:Link: https://www.visitscotland.com/es-es
           visitscotland:timeToExplore: ' 24'
           /visitscotland:Coordinates:
@@ -443,7 +443,7 @@
           jcr:primaryType: hippostd:html
           hippostd:content: ''
         /visitscotland:product:
-          jcr:primaryType: visitscotland:ExternalProductLink
+          jcr:primaryType: visitscotland:ExternalLink
           visitscotland:Link: https://www.visitscotland.com/es-es
           visitscotland:timeToExplore: ' 24'
           /visitscotland:Coordinates:
