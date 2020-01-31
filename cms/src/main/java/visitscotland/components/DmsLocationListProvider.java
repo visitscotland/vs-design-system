@@ -59,6 +59,7 @@ public class DmsLocationListProvider extends Plugin implements IValueListProvide
         }
 
     public ValueList getValueList(String name, Locale locale) {
+        // TODO: use getLocationsByLevel("DISTRICT", "DESTINATION")
         ValueListLocation valueList = new ValueListLocation();
         try {
             URL url = new URL("https://test1.visitscotland.com/data/location/list?level=District&level=Destination");

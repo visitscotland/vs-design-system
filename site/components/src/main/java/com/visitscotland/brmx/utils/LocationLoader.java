@@ -20,8 +20,6 @@ public abstract class LocationLoader {
 
     private static final Map<String, String> locationToId = new HashMap<>();
 
-
-
     static {
         init();
     }
@@ -36,7 +34,35 @@ public abstract class LocationLoader {
 
     }
 
+    /**
+     *
+     * @param levels
+     * @return
+     */
+    public static List<LocationObject> getLocationsByLevel(String... levels){
+        List<LocationObject> locationList = new ArrayList<>();
+        for (LocationObject obj : locations.get(null).values()){
+            for (String level : levels){
+                if (obj.getTypes().contains(level)){
+                    locationList.add(obj);
+                    break;
+                }
+            }
+        }
+        if (locationList.size() == 0){
+            logger.warn("No objects matched with the types. It is possible that the types weren't loaded from the endpoint.");
+        }
 
+        return  locationList;
+    }
+
+    private static void clear(){
+        locationToId.clear();
+        locations.clear();
+    }
+    /**
+     * Initialize maps
+     */
     private static void init() {
         synchronized (LocationLoader.class) {
             if (locationToId.size() == 0) {
@@ -136,6 +162,9 @@ public abstract class LocationLoader {
         ObjectMapper jsonMapper = new ObjectMapper();
 
         System.out.println("Edinburgh for ES = " + LocationLoader.getLocation("Edinburgh", Locale.forLanguageTag("es-es")).getName());
+
+        System.out.println("DIST AND DEST =" +  getLocationsByLevel("DISTRICT", "DESTINATION").size());
+        System.out.println();
 
         System.out.println("-- END --->");
         System.out.println(locations.get(Locale.forLanguageTag("es-es")).size());
