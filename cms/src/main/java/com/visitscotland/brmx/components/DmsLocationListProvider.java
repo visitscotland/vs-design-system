@@ -5,6 +5,8 @@ package com.visitscotland.brmx.components;
 // (powered by Fernflower decompiler)
 //
 
+
+import com.visitscotland.brmx.beans.dms.LocationObject;
 import org.hippoecm.frontend.plugin.IPluginContext;
 import org.hippoecm.frontend.plugin.Plugin;
 import org.hippoecm.frontend.plugin.config.IPluginConfig;
@@ -17,6 +19,7 @@ import org.onehippo.forge.selection.frontend.provider.IValueListProvider;
 import org.onehippo.forge.selection.frontend.utils.JcrUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import com.visitscotland.brmx.utils.*;
 import com.visitscotland.brmx.model.ValueListLocation;
 
 import javax.jcr.Session;
@@ -61,25 +64,12 @@ public class DmsLocationListProvider extends Plugin implements IValueListProvide
 
     public ValueList getValueList(String name, Locale locale) {
         // TODO: use getLocationsByLevel("DISTRICT", "DESTINATION")
+        List<LocationObject> locations = LocationLoader.getLocationsByLevel("DISTRICT", "DESTINATION");
         ValueListLocation valueList = new ValueListLocation();
-        try {
-            URL url = new URL("https://test1.visitscotland.com/data/location/list?level=District&level=Destination");
-            BufferedReader br = new BufferedReader(new InputStreamReader(url.openStream()));
 
-            String jsonText = readAll(br);
-            JSONObject json = new JSONObject(jsonText);
-
-            JSONArray c = json.getJSONArray("data");
-
-            for (int i = 0 ; i < c.length(); i++) {
-                JSONObject obj = c.getJSONObject(i);
-                ListItem list = new ListItem(obj.getString("name") ,obj.getString("name"));
-
-                valueList.add(list);
-            }
-
-        } catch (Exception ex) {
-            ex.printStackTrace();
+        for (LocationObject location: locations) {
+            ListItem list = new ListItem(location.getName(),location.getName());
+            valueList.add(list);
         }
         return valueList;
     }
