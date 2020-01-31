@@ -1,4 +1,4 @@
-package visitscotland.components;
+package com.visitscotland.brmx.components;
 
 //
 // Source code recreated from a .class file by IntelliJ IDEA
@@ -17,7 +17,7 @@ import org.onehippo.forge.selection.frontend.provider.IValueListProvider;
 import org.onehippo.forge.selection.frontend.utils.JcrUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import visitscotland.model.ValueListLocation;
+import com.visitscotland.brmx.model.ValueListLocation;
 
 import javax.jcr.Session;
 import java.io.BufferedReader;
@@ -36,6 +36,7 @@ public class DmsLocationListProvider extends Plugin implements IValueListProvide
     @Deprecated
     private static final String CONFIG_SOURCE = "source";
     private static final Logger log = LoggerFactory.getLogger(DmsLocationListProvider.class);
+    public static final String PRODUCT_TYPE = "dms.product.type";
 
     public DmsLocationListProvider(IPluginContext context, IPluginConfig config) {
         super(context, config);

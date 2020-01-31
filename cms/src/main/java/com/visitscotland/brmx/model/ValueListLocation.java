@@ -1,4 +1,4 @@
-package visitscotland.model;
+package com.visitscotland.brmx.model;
 
 import org.onehippo.forge.selection.frontend.model.ListItem;
 import org.onehippo.forge.selection.frontend.model.ValueList;

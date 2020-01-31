@@ -77,7 +77,7 @@
       hippogallery:filename: visitscotland_49386435364 (1).jpg
       visitscotland:altText: He is also lost
       visitscotland:credit: VisitScotland Staff
-      visitscotland:location: Aberdeen
+      visitscotland:location: Skye
       /hippogallery:thumbnail:
         jcr:primaryType: hippogallery:image
         hippo:filename: visitscotland_49386435364 (1).jpg

@@ -66,68 +66,12 @@ definitions:
             hipposysedit:path: visitscotland:location
             hipposysedit:primary: false
             hipposysedit:type: DynamicDropdown
-        /hipposysedit:nodetype[2]:
-          jcr:primaryType: hipposysedit:nodetype
-          hipposysedit:node: true
-          hipposysedit:supertype: ['hippogallery:imageset', 'hippogallery:relaxed']
-          /filename:
-            jcr:primaryType: hipposysedit:field
-            hipposysedit:path: hippogallery:filename
-            hipposysedit:type: String
-          /description:
-            jcr:primaryType: hipposysedit:field
-            hipposysedit:path: hippogallery:description
-            hipposysedit:type: String
-          /thumbnail:
-            jcr:primaryType: hipposysedit:field
-            hipposysedit:autocreated: true
-            hipposysedit:mandatory: true
-            hipposysedit:path: hippogallery:thumbnail
-            hipposysedit:primary: true
-            hipposysedit:type: hippogallery:image
-          /original:
-            jcr:primaryType: hipposysedit:field
-            hipposysedit:path: hippogallery:original
-            hipposysedit:type: hippogallery:image
-          /altText:
-            jcr:primaryType: hipposysedit:field
-            hipposysedit:mandatory: false
-            hipposysedit:multiple: false
-            hipposysedit:ordered: false
-            hipposysedit:path: visitscotland:altText
-            hipposysedit:primary: false
-            hipposysedit:type: String
-          /credit:
-            jcr:primaryType: hipposysedit:field
-            hipposysedit:mandatory: false
-            hipposysedit:multiple: false
-            hipposysedit:ordered: false
-            hipposysedit:path: visitscotland:credit
-            hipposysedit:primary: false
-            hipposysedit:type: String
-          /Coordinates:
-            jcr:primaryType: hipposysedit:field
-            hipposysedit:mandatory: false
-            hipposysedit:multiple: false
-            hipposysedit:ordered: false
-            hipposysedit:path: visitscotland:Coordinates
-            hipposysedit:primary: false
-            hipposysedit:type: visitscotland:Coordinates
-            hipposysedit:validators: [optional]
-          /location:
-            jcr:primaryType: hipposysedit:field
-            hipposysedit:mandatory: false
-            hipposysedit:multiple: false
-            hipposysedit:ordered: false
-            hipposysedit:path: visitscotland:location
-            hipposysedit:primary: false
-            hipposysedit:type: DynamicDropdown
       /hipposysedit:prototypes:
         jcr:primaryType: hipposysedit:prototypeset
         /hipposysedit:prototype:
           jcr:primaryType: visitscotland:Image
           jcr:mixinTypes: ['mix:referenceable']
-          jcr:uuid: 54da720d-08eb-48f6-a690-ba26462c9f2d
+          jcr:uuid: 7db5a88a-71eb-45fb-a9f4-949e261c627a
           hippogallery:description: ''
           visitscotland:altText: ''
           visitscotland:credit: ''
@@ -155,37 +99,6 @@ definitions:
             jcr:primaryType: visitscotland:Coordinates
             visitscotland:latitude: 0.0
             visitscotland:longitude: 0.0
-        /hipposysedit:prototype[2]:
-          jcr:primaryType: nt:unstructured
-          jcr:mixinTypes: ['hippogallery:relaxed', 'mix:referenceable']
-          jcr:uuid: 702b72ee-1383-4c89-892c-bde42764e859
-          hippogallery:description: ''
-          visitscotland:altText: ''
-          visitscotland:credit: ''
-          visitscotland:location: ''
-          /hippogallery:original:
-            jcr:primaryType: hippogallery:image
-            hippogallery:height: 0
-            hippogallery:width: 0
-            jcr:data:
-              type: binary
-              resource: /namespaces/visitscotland/Image/prototypes/prototype[2]/original/original.gif
-            jcr:lastModified: 1970-01-01T00:00:00Z
-            jcr:mimeType: image/gif
-          /visitscotland:Coordinates:
-            jcr:primaryType: visitscotland:Coordinates
-            visitscotland:latitude: 0.0
-            visitscotland:longitude: 0.0
-          /hippogallery:thumbnail:
-            jcr:primaryType: hippogallery:image
-            hippogallery:height: 94
-            hippogallery:width: 94
-            jcr:data:
-              type: binary
-              resource: /namespaces/visitscotland/Image/prototypes/prototype[2]/thumbnail/thumbnail.jpg
-            jcr:encoding: UTF-8
-            jcr:lastModified: 2008-03-26T12:03:00+01:00
-            jcr:mimeType: image/jpeg
       /editor:templates:
         jcr:primaryType: editor:templateset
         /_default_:

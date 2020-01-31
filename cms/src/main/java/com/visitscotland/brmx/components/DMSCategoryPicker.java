@@ -1,4 +1,4 @@
-package visitscotland.components;
+package com.visitscotland.brmx.components;
 
 //
 // Source code recreated from a .class file by IntelliJ IDEA
@@ -26,10 +26,7 @@ import javax.jcr.RepositoryException;
 import javax.jcr.Value;
 import java.io.IOException;
 import java.io.Reader;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Locale;
+import java.util.*;
 
 
 public class DMSCategoryPicker implements ExternalDocumentServiceFacade<JSONObject> {
@@ -38,7 +35,7 @@ public class DMSCategoryPicker implements ExternalDocumentServiceFacade<JSONObje
      * Plugin parameter name for physical document field name (JCR property name).
      */
     public static final String PARAM_EXTERNAL_DOCS_FIELD_NAME = "example.external.docs.field.name";
-    public static final String PRODUCT_TYPE = "productype.field.name";
+    public static final String PRODUCT_TYPE = "dms.productype";
     public static final String MULTIPLE_SELECTION = "selection.mode";
 
     private static final long serialVersionUID = 1L;
@@ -87,7 +84,13 @@ public class DMSCategoryPicker implements ExternalDocumentServiceFacade<JSONObje
         try {
 
             String productType= context.getContextModel().getNode().getProperty(fieldName).getValue().getString();
-            List<CategoryGroup> catGroups = metadata.getCategoryGroupsForType(ProductTypes.byId(productType));
+            List<String> items = Arrays.asList(productType.split("\\s*,\\s*"));
+            List<CategoryGroup> catGroups = new ArrayList<>();
+
+            for (String productT : items){
+                catGroups.addAll( metadata.getCategoryGroupsForType(ProductTypes.byId(productT)));
+            }
+
             if (catGroups != null) {
                 JSONArray subCategory  = new JSONArray();
                 for (CategoryGroup cat : catGroups) {
