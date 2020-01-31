@@ -31,6 +31,7 @@
 <#-- @ftlvariable name="lastStopLocation" type="java.lang.String" -->
 <#-- @ftlvariable name="heroCoordinates" type="com.visitscotland.brmx.beans.mapping.Coordinates" -->
 
+
 <#-- Template defined objects -->
 <#-- @ftlvariable name="day" type="com.visitscotland.brmx.beans.Day" -->
 <#-- @ftlvariable name="hero" type="com.visitscotland.brmx.beans.Image" -->
@@ -52,6 +53,8 @@
 <#if document.transports?has_content >
     <#assign mainTransport = document.transports[0]>
 </#if>
+
+
 
 <div class="has-edit-button">
       <@hst.manageContent hippobean=document documentTemplateQuery="new-document" rootPath="site" defaultPath="${path}" />

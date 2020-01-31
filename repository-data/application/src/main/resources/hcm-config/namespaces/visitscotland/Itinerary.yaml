@@ -11,18 +11,10 @@ definitions:
         /hipposysedit:nodetype:
           jcr:primaryType: hipposysedit:nodetype
           jcr:mixinTypes: ['mix:referenceable', 'hipposysedit:remodel']
-          jcr:uuid: 9f193062-7103-431d-9861-741e37f748fa
+          jcr:uuid: e6ea4a33-8d8f-48d7-8646-56c24e6c358a
           hipposysedit:node: true
           hipposysedit:supertype: ['visitscotland:Page', 'hippostd:relaxed', 'hippotranslation:translated']
           hipposysedit:uri: http://www.visitscotland.com/visitscotland/nt/1.0
-          /noIndex:
-            jcr:primaryType: hipposysedit:field
-            hipposysedit:mandatory: false
-            hipposysedit:multiple: false
-            hipposysedit:ordered: false
-            hipposysedit:path: visitscotland:noIndex
-            hipposysedit:primary: false
-            hipposysedit:type: Boolean
           /start:
             jcr:primaryType: hipposysedit:field
             hipposysedit:mandatory: false
@@ -87,14 +79,6 @@ definitions:
             hipposysedit:path: visitscotland:popular
             hipposysedit:primary: false
             hipposysedit:type: Boolean
-          /teaser:
-            jcr:primaryType: hipposysedit:field
-            hipposysedit:mandatory: false
-            hipposysedit:multiple: false
-            hipposysedit:ordered: false
-            hipposysedit:path: visitscotland:teaser
-            hipposysedit:primary: false
-            hipposysedit:type: String
       /hipposysedit:prototypes:
         jcr:primaryType: hipposysedit:prototypeset
         /hipposysedit:prototype:
@@ -106,15 +90,15 @@ definitions:
           hippotranslation:id: document-type-locale-id
           hippotranslation:locale: document-type-locale
           visitscotland:breadcrumb: ''
-          visitscotland:seoNoIndex: ''
+          visitscotland:seoDescription: ''
           visitscotland:seoTitle: ''
-          visitscotland:noIndex: false
+          visitscotland:seoNoIndex: false
           jcr:mixinTypes: ['mix:referenceable']
           visitscotland:finish: ''
           visitscotland:start: ''
           visitscotland:distance: 0.0
           visitscotland:theme: ''
-          jcr:uuid: e9e887b6-a189-4eb4-9e57-7b795dcaa760
+          jcr:uuid: 4448efa6-a1b1-410a-a391-8870bd222033
           hippostdpubwf:creationDate: 2019-12-06T11:10:08.311Z
           hippostdpubwf:lastModificationDate: 2019-12-06T11:10:08.310Z
           visitscotland:highlights: ''
@@ -167,7 +151,7 @@ definitions:
           /title:
             jcr:primaryType: frontend:plugin
             caption: Heading
-            field: heading
+            field: title
             hint: ''
             plugin.class: org.hippoecm.frontend.editor.plugins.field.PropertyFieldPlugin
             wicket.id: ${cluster.id}.left.item
@@ -187,25 +171,6 @@ definitions:
             caption: Meta Title (SEO)
             field: seoTitle
             hint: Provided by SEO
-            plugin.class: org.hippoecm.frontend.editor.plugins.field.PropertyFieldPlugin
-            wicket.id: ${cluster.id}.right.item
-            /cluster.options:
-              jcr:primaryType: frontend:pluginconfig
-          /seoNoIndex:
-            jcr:primaryType: frontend:plugin
-            caption: Meta Description (SEO)
-            field: seoNoIndex
-            hint: Provided by SEO
-            plugin.class: org.hippoecm.frontend.editor.plugins.field.PropertyFieldPlugin
-            wicket.id: ${cluster.id}.right.item
-            /cluster.options:
-              jcr:primaryType: frontend:pluginconfig
-          /noIndex:
-            jcr:primaryType: frontend:plugin
-            caption: Do not index (SEO)
-            field: noIndex
-            hint: Prevents the page to be indexed by Search Engines. Do not alter
-              unless it is advised by SEO
             plugin.class: org.hippoecm.frontend.editor.plugins.field.PropertyFieldPlugin
             wicket.id: ${cluster.id}.right.item
             /cluster.options:
@@ -293,6 +258,25 @@ definitions:
             /cluster.options:
               jcr:primaryType: frontend:pluginconfig
               source: /content/documents/administration/options/transports
+          /seoDescription:
+            jcr:primaryType: frontend:plugin
+            caption: Meta Description (SEO)
+            field: seoDescription
+            hint: Provided by SEO
+            plugin.class: org.hippoecm.frontend.editor.plugins.field.PropertyFieldPlugin
+            wicket.id: ${cluster.id}.right.item
+            /cluster.options:
+              jcr:primaryType: frontend:pluginconfig
+          /seoNoIndex:
+            jcr:primaryType: frontend:plugin
+            caption: Do not index (SEO)
+            field: seoNoIndex
+            hint: Prevents the page to be indexed by Search Engines. Do not alter
+              unless it is advised by SEO
+            plugin.class: org.hippoecm.frontend.editor.plugins.field.PropertyFieldPlugin
+            wicket.id: ${cluster.id}.right.item
+            /cluster.options:
+              jcr:primaryType: frontend:pluginconfig
           /areas:
             jcr:primaryType: frontend:plugin
             caption: Areas

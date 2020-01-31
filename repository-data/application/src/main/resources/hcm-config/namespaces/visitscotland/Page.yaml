@@ -11,7 +11,7 @@ definitions:
         /hipposysedit:nodetype:
           jcr:primaryType: hipposysedit:nodetype
           jcr:mixinTypes: ['mix:referenceable', 'hipposysedit:remodel']
-          jcr:uuid: db714f00-bbd3-44ba-8b54-71f3b94bd6ff
+          jcr:uuid: b8208b8b-9fdd-4ab8-993b-c99badd7d8c9
           hipposysedit:node: true
           hipposysedit:supertype: ['visitscotland:basedocument', 'hippostd:relaxed',
             'hippotranslation:translated']
@@ -40,14 +40,6 @@ definitions:
             hipposysedit:path: visitscotland:breadcrumb
             hipposysedit:primary: false
             hipposysedit:type: String
-          /boolean:
-            jcr:primaryType: hipposysedit:field
-            hipposysedit:mandatory: false
-            hipposysedit:multiple: false
-            hipposysedit:ordered: false
-            hipposysedit:path: visitscotland:noIndex
-            hipposysedit:primary: false
-            hipposysedit:type: Boolean
           /seoNoIndex:
             jcr:primaryType: hipposysedit:field
             hipposysedit:mandatory: false
@@ -55,8 +47,16 @@ definitions:
             hipposysedit:ordered: false
             hipposysedit:path: visitscotland:seoNoIndex
             hipposysedit:primary: false
+            hipposysedit:type: Boolean
+          /seoDescription:
+            jcr:primaryType: hipposysedit:field
+            hipposysedit:mandatory: false
+            hipposysedit:multiple: false
+            hipposysedit:ordered: false
+            hipposysedit:path: visitscotland:seoDescription
+            hipposysedit:primary: false
             hipposysedit:type: String
-          /heading:
+          /title:
             jcr:primaryType: hipposysedit:field
             hipposysedit:mandatory: false
             hipposysedit:multiple: false
@@ -72,6 +72,14 @@ definitions:
             hipposysedit:path: visitscotland:introduction
             hipposysedit:primary: false
             hipposysedit:type: hippostd:html
+          /teaser:
+            jcr:primaryType: hipposysedit:field
+            hipposysedit:mandatory: false
+            hipposysedit:multiple: false
+            hipposysedit:ordered: false
+            hipposysedit:path: visitscotland:teaser
+            hipposysedit:primary: false
+            hipposysedit:type: String
       /hipposysedit:prototypes:
         jcr:primaryType: hipposysedit:prototypeset
         /hipposysedit:prototype:
@@ -85,13 +93,13 @@ definitions:
           jcr:mixinTypes: ['mix:referenceable']
           visitscotland:seoTitle: ''
           visitscotland:breadcrumb: ''
-          visitscotland:boolean: false
-          visitscotland:seoNoIndex: ''
+          visitscotland:seoNoIndex: false
+          visitscotland:seoDescription: ''
           visitscotland:title: ''
-          jcr:uuid: f35ce299-38b5-4a02-bd6f-f3eed7c4bf88
+          jcr:uuid: 5ad0b5e0-c517-4632-8723-22e7a0d7971d
           hippostdpubwf:lastModificationDate: 2019-12-05T16:05:38.470Z
           hippostdpubwf:creationDate: 2019-12-05T16:05:38.470Z
-          visitscotland:noIndex: false
+          visitscotland:teaser: ''
           /visitscotland:heroImage:
             jcr:primaryType: hippogallerypicker:imagelink
             hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
@@ -150,31 +158,32 @@ definitions:
             hint: Provided by SEO
             /cluster.options:
               jcr:primaryType: frontend:pluginconfig
-          /seoNoIndex:
+          /seoDescription:
             jcr:primaryType: frontend:plugin
             caption: Meta Description (SEO)
-            field: seoNoIndex
+            field: seoDescription
             hint: Provided by SEO
             plugin.class: org.hippoecm.frontend.editor.plugins.field.PropertyFieldPlugin
             wicket.id: ${cluster.id}.right.item
             /cluster.options:
               jcr:primaryType: frontend:pluginconfig
-          /boolean:
+          /seoNoIndex:
             jcr:primaryType: frontend:plugin
             caption: Do not index (SEO)
-            field: boolean
+            field: seoNoIndex
             plugin.class: org.hippoecm.frontend.editor.plugins.field.PropertyFieldPlugin
             wicket.id: ${cluster.id}.right.item
             hint: Prevents the page to be indexed by Search Engines. Do not alter
               unless it is advised by SEO
             /cluster.options:
               jcr:primaryType: frontend:pluginconfig
-          /heading:
+          /title:
             jcr:primaryType: frontend:plugin
             caption: Heading
-            field: heading
+            field: title
             plugin.class: org.hippoecm.frontend.editor.plugins.field.PropertyFieldPlugin
             wicket.id: ${cluster.id}.left.item
+            hint: ''
             /cluster.options:
               jcr:primaryType: frontend:pluginconfig
           /introduction:
@@ -182,6 +191,14 @@ definitions:
             caption: Introduction
             field: introduction
             plugin.class: org.hippoecm.frontend.editor.plugins.field.NodeFieldPlugin
+            wicket.id: ${cluster.id}.left.item
+            /cluster.options:
+              jcr:primaryType: frontend:pluginconfig
+          /teaser:
+            jcr:primaryType: frontend:plugin
+            caption: Teaser
+            field: teaser
+            plugin.class: org.hippoecm.frontend.editor.plugins.field.PropertyFieldPlugin
             wicket.id: ${cluster.id}.left.item
             /cluster.options:
               jcr:primaryType: frontend:pluginconfig
