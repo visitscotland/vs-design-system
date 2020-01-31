@@ -33,6 +33,5 @@ definitions:
       wicket.model: ${model.search}
     /hippo:configuration/hippo:frontend/cms/cms-services/DmsLocationListProvider:
       jcr:primaryType: frontend:plugin
-      plugin.class: visitscotland.components.DmsLocationListProvider
+      plugin.class: com.visitscotland.brmx.components.DmsLocationListProvider
       valuelist.provider: service.locationlist.default
-

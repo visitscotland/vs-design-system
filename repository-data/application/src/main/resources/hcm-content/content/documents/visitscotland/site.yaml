@@ -18,17 +18,74 @@
       jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
       jcr:uuid: 0751c1d3-3024-4d2d-a5e8-38286fee9722
       hippo:name: Content
-      hippo:versionHistory: 8bf53fae-8cf1-4b32-a040-7f36fd3c92ba
+      hippo:versionHistory: 10822c95-f9a8-48c8-8546-4bd983433a2e
       /content[1]:
         jcr:primaryType: visitscotland:Itinerary
         jcr:mixinTypes: ['mix:referenceable']
         jcr:uuid: bfc6a747-1993-4871-991c-e203c3dff91c
         hippo:availability: []
-        hippostd:holder: admin
         hippostd:state: draft
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2019-12-06T12:48:04.149Z
-        hippostdpubwf:lastModificationDate: 2020-01-23T09:44:36.023Z
+        hippostdpubwf:lastModificationDate: 2020-01-31T08:41:54.659Z
+        hippostdpubwf:lastModifiedBy: admin
+        hippotranslation:id: a3ed9022-e239-493b-952c-18d01ac36640
+        hippotranslation:locale: en
+        visitscotland:areas: [dumfries, highlands]
+        visitscotland:breadcrumb: ''
+        visitscotland:distance: 10.4
+        visitscotland:finish: Ocean point
+        visitscotland:highlights: "Glenfinnan Viaduct \r\nJacobite Steam Train\r\n\
+          Glen Etive\r\nThe Elephant House"
+        visitscotland:noIndex: false
+        visitscotland:popular: false
+        visitscotland:seoNoIndex: Follow in the footsteps of Harry Potter! Relive
+          some of the films' most iconic scenes with our 4-day itinerary of Harry
+          Potter sites in Scotland.
+        visitscotland:seoTitle: Iconic Harry Potter Film Locations - An Itinerary
+        visitscotland:start: Tenerife
+        visitscotland:summary: ''
+        visitscotland:teaser: HARRY POTTER FILM AND BOOK LOCATIONS ITINERARY teaser
+        visitscotland:text: "Glenfinnan Viaduct\r\n\r\nJacobite Steam Train\r\n\r\n\
+          Glen Etive\r\n\r\nThe Elephant House"
+        visitscotland:theme: filmev
+        visitscotland:title: HARRY POTTER FILM AND BOOK LOCATIONS ITINERARY
+        visitscotland:transport: [boat]
+        visitscotland:transports: [car, train]
+        /visitscotland:heroImage:
+          jcr:primaryType: hippogallerypicker:imagelink
+          hippo:docbase: 8d4f5036-64ca-4e5d-aa89-b348ae38b081
+          hippo:facets: []
+          hippo:modes: []
+          hippo:values: []
+        /visitscotland:introduction:
+          jcr:primaryType: hippostd:html
+          hippostd:content: <p>It was in Scotland's capital city that JK Rowling started
+            to plot the adventures of Harry and his friends. With cobbled streets,
+            winding alleys and medieval architecture, the city certainly have a few
+            things in common with the settings from the books and films. She wrote
+            the early chapters in various cafés around the city's Old Town, before
+            coming back to finish off the series from a peaceful suite in The Balmoral
+            Hotel. It is also said that Hogwarts School was styled on Edinburgh’s
+            Fettes College, a private school on the outskirts of Edinburgh’s west
+            end new town. You could also try the <a href="https://www.visitscotland.com/info/tours/wizarding-world-of-edinburgh-03e61189">Wizarding
+            World of Edinburgh</a> tour.</p>
+        /visitscotland:ProductsSearch:
+          jcr:primaryType: visitscotland:ProductsSearch
+          visitscotland:distance: 0
+          visitscotland:dmsCategories: []
+          visitscotland:dmscategories: ''
+          visitscotland:location: Wormit
+          visitscotland:producttype: acco
+      /content[2]:
+        jcr:primaryType: visitscotland:Itinerary
+        jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
+        jcr:uuid: 54a5dc71-947d-4c5a-958c-9f06bebad234
+        hippo:availability: [preview]
+        hippostd:state: unpublished
+        hippostdpubwf:createdBy: admin
+        hippostdpubwf:creationDate: 2019-12-06T12:48:04.149Z
+        hippostdpubwf:lastModificationDate: 2020-01-30T17:00:41.657Z
         hippostdpubwf:lastModifiedBy: admin
         hippotranslation:id: a3ed9022-e239-493b-952c-18d01ac36640
         hippotranslation:locale: en
@@ -78,16 +135,17 @@
           visitscotland:dmscategories: ''
           visitscotland:location: ''
           visitscotland:producttype: ''
-      /content[2]:
+      /content[3]:
         jcr:primaryType: visitscotland:Itinerary
-        jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
-        jcr:uuid: 54a5dc71-947d-4c5a-958c-9f06bebad234
-        hippo:availability: [preview]
-        hippostd:state: unpublished
+        jcr:mixinTypes: ['mix:referenceable']
+        jcr:uuid: 2dcf9013-726c-426b-adfb-c27786713726
+        hippo:availability: [live]
+        hippostd:state: published
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2019-12-06T12:48:04.149Z
-        hippostdpubwf:lastModificationDate: 2020-01-22T15:33:12.894Z
+        hippostdpubwf:lastModificationDate: 2020-01-30T17:00:41.657Z
         hippostdpubwf:lastModifiedBy: admin
+        hippostdpubwf:publicationDate: 2020-01-30T17:01:52.503Z
         hippotranslation:id: a3ed9022-e239-493b-952c-18d01ac36640
         hippotranslation:locale: en
         visitscotland:areas: [dumfries, highlands]
@@ -131,60 +189,11 @@
             World of Edinburgh</a> tour.</p>
         /visitscotland:ProductsSearch:
           jcr:primaryType: visitscotland:ProductsSearch
+          visitscotland:distance: 0
           visitscotland:dmsCategories: [guesthouse, yurts, touringpark, hostel]
           visitscotland:dmscategories: ''
-      /content[3]:
-        jcr:primaryType: visitscotland:Itinerary
-        jcr:mixinTypes: ['mix:referenceable']
-        jcr:uuid: 2dcf9013-726c-426b-adfb-c27786713726
-        hippo:availability: [live]
-        hippostd:state: published
-        hippostdpubwf:createdBy: admin
-        hippostdpubwf:creationDate: 2019-12-06T12:48:04.149Z
-        hippostdpubwf:lastModificationDate: 2020-01-13T09:35:44.376Z
-        hippostdpubwf:lastModifiedBy: admin
-        hippostdpubwf:publicationDate: 2020-01-13T10:27:30.572Z
-        hippotranslation:id: a3ed9022-e239-493b-952c-18d01ac36640
-        hippotranslation:locale: en
-        visitscotland:areas: [dumfries, highlands]
-        visitscotland:breadcrumb: ''
-        visitscotland:distance: 10.4
-        visitscotland:finish: Ocean point
-        visitscotland:highlights: "Glenfinnan Viaduct \r\nJacobite Steam Train\r\n\
-          Glen Etive\r\nThe Elephant House"
-        visitscotland:noIndex: false
-        visitscotland:popular: false
-        visitscotland:seoNoIndex: Follow in the footsteps of Harry Potter! Relive
-          some of the films' most iconic scenes with our 4-day itinerary of Harry
-          Potter sites in Scotland.
-        visitscotland:seoTitle: Iconic Harry Potter Film Locations - An Itinerary
-        visitscotland:start: Tenerife
-        visitscotland:summary: ''
-        visitscotland:teaser: HARRY POTTER FILM AND BOOK LOCATIONS ITINERARY teaser
-        visitscotland:text: "Glenfinnan Viaduct\r\n\r\nJacobite Steam Train\r\n\r\n\
-          Glen Etive\r\n\r\nThe Elephant House"
-        visitscotland:theme: filmev
-        visitscotland:title: HARRY POTTER FILM AND BOOK LOCATIONS ITINERARY
-        visitscotland:transport: [boat]
-        visitscotland:transports: [car, train]
-        /visitscotland:heroImage:
-          jcr:primaryType: hippogallerypicker:imagelink
-          hippo:docbase: 8d4f5036-64ca-4e5d-aa89-b348ae38b081
-          hippo:facets: []
-          hippo:modes: []
-          hippo:values: []
-        /visitscotland:introduction:
-          jcr:primaryType: hippostd:html
-          hippostd:content: <p>It was in Scotland's capital city that JK Rowling started
-            to plot the adventures of Harry and his friends. With cobbled streets,
-            winding alleys and medieval architecture, the city certainly have a few
-            things in common with the settings from the books and films. She wrote
-            the early chapters in various cafés around the city's Old Town, before
-            coming back to finish off the series from a peaceful suite in The Balmoral
-            Hotel. It is also said that Hogwarts School was styled on Edinburgh’s
-            Fettes College, a private school on the outskirts of Edinburgh’s west
-            end new town. You could also try the <a href="https://www.visitscotland.com/info/tours/wizarding-world-of-edinburgh-03e61189">Wizarding
-            World of Edinburgh</a> tour.</p>
+          visitscotland:location: ''
+          visitscotland:producttype: ''
     /edinburgh:
       jcr:primaryType: hippo:handle
       jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
@@ -397,101 +406,3 @@
         /visitscotland:stops[3]:
           jcr:primaryType: hippo:mirror
           hippo:docbase: 1ead4399-7e30-47dc-9b75-2ea488fb5742
-    /213213:
-      jcr:primaryType: hippo:handle
-      jcr:mixinTypes: ['mix:referenceable']
-      jcr:uuid: 5746b57c-6c6a-4bdd-8303-f89cc8759486
-      /213213[1]:
-        jcr:primaryType: visitscotland:Itinerary
-        jcr:mixinTypes: ['mix:referenceable']
-        jcr:uuid: 0021183e-1b83-4bda-adc7-e555c1f348c2
-        hippo:availability: []
-        hippostd:state: draft
-        hippostdpubwf:createdBy: admin
-        hippostdpubwf:creationDate: 2020-01-22T08:43:22.896Z
-        hippostdpubwf:lastModificationDate: 2020-01-22T15:33:39.547Z
-        hippostdpubwf:lastModifiedBy: admin
-        hippotranslation:id: 256b3f8a-04b6-452c-82c8-1fc20f80c378
-        hippotranslation:locale: en
-        visitscotland:areas: []
-        visitscotland:breadcrumb: ''
-        visitscotland:distance: 0.0
-        visitscotland:dmscategories: ''
-        visitscotland:finish: ''
-        visitscotland:highlights: ''
-        visitscotland:noIndex: false
-        visitscotland:popular: false
-        visitscotland:seoNoIndex: ''
-        visitscotland:seoTitle: ''
-        visitscotland:start: ''
-        visitscotland:teaser: ''
-        visitscotland:theme: ''
-        visitscotland:title: ''
-        visitscotland:transports: []
-        /visitscotland:heroImage:
-          jcr:primaryType: hippogallerypicker:imagelink
-          hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
-          hippo:facets: []
-          hippo:modes: []
-          hippo:values: []
-        /visitscotland:introduction:
-          jcr:primaryType: hippostd:html
-          hippostd:content: ''
-        /visitscotland:ProductsSearch:
-          jcr:primaryType: visitscotland:ProductsSearch
-          visitscotland:distance: 0
-          visitscotland:dmsCategories: [karting, chalet, lodge, canoekayak]
-          visitscotland:dmscategories: ''
-          visitscotland:location: Acharacle
-          visitscotland:producttype: acti,attr,reta
-        /visitscotland:ProductSearch:
-          jcr:primaryType: visitscotland:ProductSearch
-          visitscotland:dmsCategories: ''
-          visitscotland:location: ''
-      /213213[2]:
-        jcr:primaryType: visitscotland:Itinerary
-        jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
-        jcr:uuid: 95982318-8f40-4563-8970-39c3f5d16786
-        hippo:availability: [preview]
-        hippostd:state: unpublished
-        hippostdpubwf:createdBy: admin
-        hippostdpubwf:creationDate: 2020-01-22T08:43:22.896Z
-        hippostdpubwf:lastModificationDate: 2020-01-22T16:30:11.436Z
-        hippostdpubwf:lastModifiedBy: admin
-        hippotranslation:id: 256b3f8a-04b6-452c-82c8-1fc20f80c378
-        hippotranslation:locale: en
-        visitscotland:areas: []
-        visitscotland:breadcrumb: ''
-        visitscotland:distance: 0.0
-        visitscotland:dmscategories: ''
-        visitscotland:finish: ''
-        visitscotland:highlights: ''
-        visitscotland:noIndex: false
-        visitscotland:popular: false
-        visitscotland:seoNoIndex: ''
-        visitscotland:seoTitle: ''
-        visitscotland:start: ''
-        visitscotland:teaser: ''
-        visitscotland:theme: ''
-        visitscotland:title: ''
-        visitscotland:transports: []
-        /visitscotland:heroImage:
-          jcr:primaryType: hippogallerypicker:imagelink
-          hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
-          hippo:facets: []
-          hippo:modes: []
-          hippo:values: []
-        /visitscotland:introduction:
-          jcr:primaryType: hippostd:html
-          hippostd:content: ''
-        /visitscotland:ProductsSearch:
-          jcr:primaryType: visitscotland:ProductsSearch
-          visitscotland:distance: 0
-          visitscotland:dmsCategories: [karting, chalet, lodge, canoekayak]
-          visitscotland:dmscategories: ''
-          visitscotland:location: Acharacle
-          visitscotland:producttype: acti,attr,reta
-        /visitscotland:ProductSearch:
-          jcr:primaryType: visitscotland:ProductSearch
-          visitscotland:dmsCategories: ''
-          visitscotland:location: ''
