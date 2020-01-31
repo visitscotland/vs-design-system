@@ -152,22 +152,4 @@ public abstract class LocationLoader {
         }
         return locations;
     }
-
-    public static void main(String[] args) {
-        System.out.println("-- INIT");
-        init();
-        System.out.println("-- LOAD");
-        String data = request(Locale.forLanguageTag("es-es"));
-
-        ObjectMapper jsonMapper = new ObjectMapper();
-
-        System.out.println("Edinburgh for ES = " + LocationLoader.getLocation("Edinburgh", Locale.forLanguageTag("es-es")).getName());
-
-        System.out.println("DIST AND DEST =" +  getLocationsByLevel("DISTRICT", "DESTINATION").size());
-        System.out.println();
-
-        System.out.println("-- END --->");
-        System.out.println(locations.get(Locale.forLanguageTag("es-es")).size());
-        System.out.println("-- END");
-    }
 }
