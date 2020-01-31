@@ -37,8 +37,6 @@
 
 <@hst.setBundle basename="itinerary, toomany, keyFacilities, keys"/> <#-- TODO: keyFacilities shouldn't be defined here -->
 
-<#assign heroLat = 0><#-- TODO: "${document.heroImage.latitude}" -->
-<#assign heroLon = 0><#-- TODO: ${document.heroImage.longitude}" -->
 <#assign mainTransport = "">
 <#assign dayNumber = 0>
 <#assign stopNumber = 0>

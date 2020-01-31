@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.visitscotland.brmx.beans.dms.LocationObject;
 import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -13,67 +14,57 @@ import java.util.*;
 
 public abstract class LocationLoader {
 
-    //TODO Log messages
-    private static final Logger logger = null;//LoggerFactory.getLogger(MetadataLoader.class);
+    private static final Logger logger = null; //LoggerFactory.getLogger(LocationLoader.class.getName());
 
-    //TODO Calculate environment
-    public static final String SITE = "https://test1.visitscotland.com"; //ApplicationProperties.getInstance().getString(MAIN_SITE);
+    private static final Map<Locale, Map<String, LocationObject>> locations = new HashMap<>();
 
-    private static final Map<Locale, List<LocationObject>> metadata = new HashMap<>();
-    private static final Set<Locale> locales = new HashSet<>();
+    private static final Map<String, String> locationToId = new HashMap<>();
 
-    private static Collection<Locale> getLocales(){
-        if (locales.size() == 0){
-            locales.add(Locale.forLanguageTag("fr-fr"));
-            locales.add(Locale.forLanguageTag("es-es"));
-            locales.add(null);
-        }
 
-        return locales;
-    }
 
     static {
-        //TODO: This is a bad practice. Turn into a Autorefreshable class (similar to vs-dms-products)
-        loadSources();
+        init();
     }
 
-    public static LocationObject getLocation(String location){
+    public static LocationObject getLocation(String location, Locale locale){
 
-        for (LocationObject obj : metadata.get(null)){
-            if (obj.getName().equals(location)){
-                return obj;
-            }
+        if (Properties.locales.contains(locale)){
+            return locations.get(locale).get(locationToId.get(location));
+        } else {
+            return locations.get(null).get(locationToId.get(location));
         }
 
-        return null;
     }
 
-    private static void loadSources() {
-        boolean firstRun = locales.size() == 0;
+
+    private static void init() {
         synchronized (LocationLoader.class) {
+            if (locationToId.size() == 0) {
+                for (Locale locale : Properties.locales) {
+                    try {
+                        List<LocationObject> locationList = deserialize(request(locale));
+                        Map<String, LocationObject> locationsMap = new HashMap<>();
 
-            for (Locale loc: getLocales()){
-                metadata.put(loc, getData(loc, metadata.get(loc)));
-            }
+                        //if the locationToId map is empty and the locale is null. Both lists are populated simultaneously
+                        if (locationToId.size() == 0 && locale == null) {
+                            for (LocationObject location : locationList) {
+                                locationToId.put(location.getName(), location.getId());
+                                locationsMap.put(location.getId(), location);
+                            }
+                        } else {
+                            for (LocationObject location : locationList) {
+                                locationsMap.put(location.getId(), location);
+                            }
+                        }
 
+                        locations.put(locale, locationsMap);
 
-
-            if (firstRun){
-//                logger.info("Header and footer cached from {}. The resources will be reloaded every {} seconds", SITE, 600);
-            } else {
-//                logger.info("Header and footer reloaded successfully");
+                    } catch (IOException e) {
+                        logger.warn("Location List couldn't been loaded for the locale {}", locale);
+                    }
+                }
             }
         }
-    }
-
-    public static List<LocationObject> getData(Locale locale, List<LocationObject> currentValue){
-        try {
-            return deserialize(request(locale));
-        } catch (IOException e){
-//            logger.warn("Metadata couldn't been loaded");
-        }
-
-        return currentValue;
     }
 
     /**
@@ -86,9 +77,9 @@ public abstract class LocationLoader {
     private static String request(Locale locale){
         //TODO Change the level to add polygon (for destinations pages)
         if (locale == null){
-            return requestPage(String.format("%s/data/location/list?full&level=District&level=Destination",SITE));
+            return requestPage(String.format("%s/data/location/list?full",Properties.VS_DMS_PRODUCTS));
         } else {
-            return requestPage(String.format("%s/data/location/list?full&level=District&level=Destination&locale=%s",SITE, locale.getLanguage()));
+            return requestPage(String.format("%s/data/location/list?full&locale=%s",Properties.VS_DMS_PRODUCTS, locale.getLanguage()));
         }
     }
 
@@ -109,12 +100,18 @@ public abstract class LocationLoader {
             }
             return sb.toString();
         } catch (Exception e){
-//            logger.error("Error while loading {}: {}", url, e.getMessage(), e);
+            logger.error("Error while loading {}: {}", url, e.getMessage(), e);
             e.printStackTrace();
             return null;
         }
     }
 
+    /**
+     * Deserialize the List of elements in a list of Locations
+     * @param data
+     * @return
+     * @throws IOException
+     */
     private static List<LocationObject> deserialize(String data) throws IOException {
         ObjectMapper jsonMapper = new ObjectMapper();
         JsonNode dataObject = jsonMapper.readTree(data);
@@ -132,31 +129,16 @@ public abstract class LocationLoader {
 
     public static void main(String[] args) {
         System.out.println("-- INIT");
-        loadSources();
+        init();
         System.out.println("-- LOAD");
         String data = request(Locale.forLanguageTag("es-es"));
 
         ObjectMapper jsonMapper = new ObjectMapper();
 
-        try {
-
-            System.out.println("-- DESERIALIZING LIST");
-            JsonNode dataObject = jsonMapper.readTree(data);
-            ArrayNode array = (ArrayNode) dataObject.get("data");
-
-
-            for (JsonNode elm : array) {
-                System.out.println("ELM 1 = " + elm.toString());
-
-                System.out.println(jsonMapper.readValue(elm.toString(), LocationObject.class));
-
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        System.out.println("Edinburgh for ES = " + LocationLoader.getLocation("Edinburgh", Locale.forLanguageTag("es-es")).getName());
 
         System.out.println("-- END --->");
-        System.out.println(metadata.get(Locale.forLanguageTag("es-es")).size());
+        System.out.println(locations.get(Locale.forLanguageTag("es-es")).size());
         System.out.println("-- END");
     }
 }

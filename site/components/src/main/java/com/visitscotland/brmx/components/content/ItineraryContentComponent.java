@@ -45,7 +45,7 @@ public class ItineraryContentComponent extends EssentialsContentComponent {
     private void setCoordinates(HstRequest request, Itinerary itinerary) {
         //TODO: HARDCODED
 //        LocationObject location = LocationLoader.getLocation("Edinburgh");
-        LocationObject location = LocationLoader.getLocation(itinerary.getHeroImage().getLocation());
+        LocationObject location = LocationLoader.getLocation(itinerary.getHeroImage().getLocation(), request.getLocale());
 
         if (location != null){
             Coordinates coordinates = new Coordinates();
