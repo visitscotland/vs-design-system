@@ -7,6 +7,7 @@
 <#include "../../vs-dotcom-ds/components/row.ftl">
 <#include "../../vs-dotcom-ds/components/col.ftl">
 <#include "../../vs-dotcom-ds/components/icon.ftl">
+<#include "../../vs-dotcom-ds/components/lead-paragraph.ftl">
 <#include "../../vs-dotcom-ds/components/image-with-caption.ftl">
 <#include "../../vs-dotcom-ds/components/image-location-map.ftl">
 <#include "../../vs-dotcom-ds/components/button.ftl">
@@ -14,13 +15,17 @@
 <#include "../../vs-dotcom-ds/components/tooltip.ftl">
 <#include "../../vs-dotcom-ds/components/summary-box-list.ftl">
 <#include "../../vs-dotcom-ds/components/summary-box-list-item.ftl">
+<#include "../../vs-dotcom-ds/components/summary-box-display.ftl">
+<#include "../../vs-dotcom-ds/components/summary-box-label.ftl">
+<#include "../../vs-dotcom-ds/components/summary-box-distance-display.ftl">
+<#include "../../vs-dotcom-ds/components/summary-box-distance-label.ftl">
+<#include "../../vs-dotcom-ds/components/summary-box-icon-with-label.ftl">
+<#include "../../vs-dotcom-ds/components/description-list.ftl">
+<#include "../../vs-dotcom-ds/components/description-list-term.ftl">
+<#include "../../vs-dotcom-ds/components/description-list-detail.ftl">
 <#include "../../vs-dotcom-ds/components/itinerary-day.ftl">
 <#include "../../vs-dotcom-ds/components/itinerary.ftl">
-<#include "../../vs-dotcom-ds/components/itinerary-highlights-list.ftl">
 <#include "../../vs-dotcom-ds/components/svg.ftl">
-<#include "../../vs-dotcom-ds/components/related-content-list.ftl">
-<#include "../../vs-dotcom-ds/components/related-content-list-item.ftl">
-<#include "../../vs-dotcom-ds/components/related-content-card.ftl">
 
 <#include "itinerary-stop.ftl">
 <#include "itinerary-map.ftl">
@@ -63,6 +68,7 @@
         <#if document.heroImage??>
             <@hst.link var="hero" hippobean=document.heroImage.original/>
             <vs-hero
+                slot="hero"
                 alt-text="${document.heroImage.altText}"
                 credit="${document.heroImage.credit}"
                 caption="${document.heroImage.caption}"
@@ -70,230 +76,164 @@
                 latitude="${document.heroImage.coordinates.latitude}"
                 longitude="${document.heroImage.coordinates.longitude}"
             >
-            <img
-                class="lazyload"
-                src="${hero}"
-                srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
-                data-srcset="${hero}"
-                alt="${document.heroImage.altText}"
-                data-sizes="auto"
-                    />
-        </vs-hero>
+                <img
+                    class="lazyload"
+                    src="${hero}"
+                    srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                    data-srcset="${hero}"
+                    alt="${document.heroImage.altText}"
+                    data-sizes="auto"
+                        />
+            </vs-hero>
         </#if>
-        <vs-container>
-            <div class="vs-page-intro__wrapper--inner">
+        <vs-container slot="upper" class="py-lg-4">
+            <vs-row class="justify-content-md-between">
+                <vs-col cols="12" lg="8" offset-lg="1">
                 <#-- TODO: BREADCRUMB as part of the main template -->
-                <#--<vs-breadcrumb>-->
-                    <#--<vs-breadcrumb-item-->
-                            <#--v-for="(item, index) in breadcrumb.breadcrumb"-->
-                            <#--:key="index"-->
-                            <#--:href="item.href"-->
-                            <#--:active="item.active"-->
-                            <#--:text="item.name"-->
-                    <#-->-->
-                    <#--</vs-breadcrumb-item>-->
-                <#--</vs-breadcrumb>-->
-                <vs-row class="justify-content-md-between">
-                    <vs-col cols="12" sm="6" lg="7">
-                        <vs-heading level="1">
-                            ${document.title}
-                        </vs-heading>
-                    </vs-col>
-                </vs-row>
-                <vs-row class="justify-content-md-between">
-                    <vs-col cols="12" sm="6" lg="7">
-                        <div class="lead">
-                            <@hst.html hippohtml=document.introduction/>
-                        </div>
-                        <dl class="list-inline">
-                            <dt class="list-inline-item"><@fmt.message key="start-finish"/></dt>
-                            <dd class="list-inline-item">${firstStopLocation} / ${lastStopLocation}</dd>
-                        </dl>
-                    </vs-col>
-                    <vs-col cols="12" sm="6" md="5" lg="4">
-                        <vs-summary-box-list class="bg-warning">
-                            <vs-summary-box-list-item>
-                                <strong><@fmt.message key="days"/></strong>
-                                <span>${document.days?size}</span>
-                            </vs-summary-box-list-item>
-                            <vs-summary-box-list-item>
-                                <strong><@fmt.message key="distance"/><br /><abbr title="<@fmt.message key="miles"/>"><@fmt.message key="miles-abbreviation"/></abbr>/<abbr title="<@fmt.message key="kilometres"/>"><@fmt.message key="kilometres-abbreviation"/></abbr></strong>
-                                <span>${document.distance?round}<span class="divider">/</span>${(document.distance?round*1.6)?round}</span><#-- TODO: #{document.distance*1.609344; M2} talk to team regarding rounding the display-->
-                            </vs-summary-box-list-item>
-                            <vs-summary-box-list-item>
-                                <strong><@fmt.message key="transport"/></strong>
-                                <div class="icon-wrapper">
-                                    <vs-icon name="${mainTransport}" variant="dark" size="sm"></vs-icon>
-                                    <@fmt.message key="${mainTransport}"/>
-                                </div>
-                            </vs-summary-box-list-item>
-                            <vs-summary-box-list-item>
-                                <strong><@fmt.message key="themes"/></strong>
-                                <div class="icon-wrapper">
-                                    <vs-icon name="${document.theme}" variant="dark" size="sm"></vs-icon>
-                                    <@fmt.message key="${document.theme}"/>
-                                </div>
-                            </vs-summary-box-list-item>
-                        </vs-summary-box-list>
-                    </vs-col>
-                </vs-row>
-            </div>
-            <vs-itinerary-highlights-list>
-                <dt><@fmt.message key="highlights"/></dt>
-                <#-- TODO: each ${document.highlight} should render a new dd element -->
-                <dd class="mb-0">
-                    <div style="white-space: pre-wrap">${document.highlights}</div>
-                </dd>
-                <dt class="mt-6"><@fmt.message key="areas-covered"/></dt>
-                <#list document.areas as area>
-                    <dd class="mb-0">
-                        <@fmt.message key="${area}"/>${"\n"}
-                    </dd>
-                </#list>
-            </vs-itinerary-highlights-list>
+                <#--<vs-breadcrumb>
+                    <vs-breadcrumb-item
+                        v-for="(item, index) in breadcrumb.breadcrumb"
+                        :key="index"
+                        :href="item.href"
+                        :active="item.active"
+                        :text="item.name"
+                    >
+                    </vs-breadcrumb-item>
+                </vs-breadcrumb>-->
+                </vs-col>
+            </vs-row>
+            <vs-row>
+                <vs-col cols="10" lg="8" offset-lg="1">
+                    <vs-heading level="1">
+                        ${document.title}
+                    </vs-heading>
+                </vs-col>
+                <vs-col cols="2">
+                    <div class="d-flex justify-content-center justify-content-sm-end">
+                        <!-- TODO - Below icon is FPO. Replace with icon with text component and a share component -->
+                        <vs-icon name="share" variant="dark" size="sm" />
+                    </div>
+                </vs-col>
+            </vs-row>
+            <vs-row>
+                <vs-col cols="12" md="6" lg="5" xl="6" offset-lg="1">
+                    <vs-lead-paragraph>
+                        <@hst.html hippohtml=document.introduction/>
+                    </vs-lead-paragraph>
+                    <dl class="list-inline">
+                        <dt class="list-inline-item"><@fmt.message key="start-finish"/></dt>
+                        <dd class="list-inline-item">${firstStopLocation} / ${lastStopLocation}</dd>
+                    </dl>
+                </vs-col>
+                <vs-col cols="12" md="6" lg="5" xl="4">
+                    <vs-summary-box-list>
+                        <vs-summary-box-list-item>
+                            <vs-summary-box-display text="${document.days?size}"/></vs-summary-box-display>
+                            <vs-summary-box-label label="<@fmt.message key="days"/>"></vs-summary-box-label>
+                        </vs-summary-box-list-item>
+                        <vs-summary-box-list-item>
+                            <vs-summary-box-distance-display
+                                miles="${(document.distance?round)?round}"
+                                kilometres="${(document.distance?round*1.6)?round}"
+                                miles-label="<@fmt.message key="miles"/>"
+                                kilometres-label="<@fmt.message key="kilometres"/>">
+                            </vs-summary-box-distance-display>
+                            <vs-summary-box-distance-label
+                                distance-label="<@fmt.message key="distance"/>"
+                                kilometres-abbr="<@fmt.message key="kilometres-abbreviation"/>"
+                                kilometres-label="<@fmt.message key="kilometres"/>"
+                                miles-abbr="<@fmt.message key="miles-abbreviation"/>"
+                                miles-label="<@fmt.message key="miles"/>">
+                            </vs-summary-box-distance-label>
+                        </vs-summary-box-list-item>
+                              <vs-summary-box-list-item>
+                            <vs-summary-box-icon-with-label
+                                icon="${mainTransport}"
+                                label="<@fmt.message key="${mainTransport}"/>">
+                            </vs-summary-box-icon-with-label>
+                            <vs-summary-box-label 
+                                label="<@fmt.message key="transport"/>">
+                            </vs-summary-box-label>
+                        </vs-summary-box-list-item>
+                        <vs-summary-box-list-item>
+                            <vs-summary-box-icon-with-label
+                                icon="${document.theme}"
+                                label="<@fmt.message key="${document.theme}"/>">
+                            </vs-summary-box-icon-with-label>
+                            <vs-summary-box-label label="<@fmt.message key="themes"/>"></vs-summary-box-label>
+                        </vs-summary-box-list-item>
+                    </vs-summary-box-list>
+                </vs-col>
+            </vs-row>
+        </vs-container>
+        <vs-container slot="lower">
+            <vs-row>
+                <vs-col cols="12" lg="11" offset-lg="1">
+                    <vs-description-list class="mb-6">
+                        <vs-description-list-term>
+                            <@fmt.message key="highlights"/>
+                        </vs-description-list-term>
+                        <#-- TODO: each ${document.highlight} should render a new dd element -->
+                        <vs-description-list-detail>
+                            <div style="white-space: pre-wrap">${document.highlights}</div>
+                        </vs-description-list-detail>
+                    </vs-description-list>
+                    <vs-description-list class="mb-8">
+                        <vs-description-list-term>
+                            <@fmt.message key="areas-covered"/>
+                        </vs-description-list-term>
+                        <#list document.areas as area>
+                            <vs-description-list-detail>
+                                <@fmt.message key="${area}"/>${"\n"}
+                            </vs-description-list-detail>
+                        </#list>
+                    </vs-description-list>
+                </vs-col>
+            </vs-row>
         </vs-container>
     </vs-page-intro>
     <vs-itinerary>
         <@itineraryMap days=document.days />
-        <vs-container slot="list">
-            <vs-row>
-                <vs-col cols="12" tag="ul" class="list-unstyled">
-                    <#list document.days as day>
-                        <#assign dayNumber++>
-                        <#assign dayTransport = "">
-                        <vs-itinerary-day :default-show=${(dayNumber < 3)?c}>
-                            <vs-heading
-                                slot="day-title"
-                                level="2"
-                                thin
-                                class="vs-itinerary-day__title">
-                                <span class="text-secondary-teal"><@fmt.message key="day"/> ${dayNumber}</span>
-                                ${day.title}
-                            </vs-heading>
+        <#list document.days as day>
+            <#assign dayNumber++>
+            <#assign dayTransport = "">
+            <vs-itinerary-day 
+                slot="list"
+                :default-show="${(dayNumber < 3)?c}"
+                day-number="${dayNumber}"
+                day-label="<@fmt.message key="day"/>"
+                day-title="${day.title}"
+                >
+                <#if day.transports?has_content>
+                    <#assign dayTransport = day.transports[0]>
+                    <vs-description-list class="text-center justify-content-center align-items-center" slot="day-transport">
+                        <!-- Note - can't use vs-description-list-term and vs-description-list-detail here as font style and layout are different -->
+                        <dt class="list-inline-item"><@fmt.message key="transport"/>:</dt>
+                        <#list day.transports as transport>
+                            <dd class="list-inline-item">
+                                <#-- TODO: Tooltip title and sr-only should spit out the transport value, not the key -->
+                                <vs-tooltip title="<@fmt.message key="${transport}"/>">
+                                    <vs-icon name="${transport}" variant="dark" size="sm"></vs-icon>
+                                </vs-tooltip>
+                                <#-- TODO: Tooltip title and sr-only should spit out the transport value, not the key -->
+                                <span class="sr-only"><@fmt.message key="${transport}"/></span>
+                            </dd>
+                        </#list>
+                    </vs-description-list>
+                </#if>
 
-                            <vs-summary-box-list-item>
-                                <strong><@fmt.message key="transport"/></strong>
-                                <div class="icon-wrapper">
-                                    <vs-icon name="${mainTransport}" variant="dark" size="sm"></vs-icon>
-                                    <span><@fmt.message key="${mainTransport}"/></span>
-                                </div>
-                            </vs-summary-box-list-item>
+                <div slot="day-introduction">
+                    <@hst.html hippohtml=day.introduction/>
+                </div>
 
-                            <#if day.transports?has_content>
-                                <#assign dayTransport = day.transports[0]>
-                                <dl class="list-inline text-center" slot="day-transport">
-                                    <dt class="list-inline-item"><@fmt.message key="transport"/>:</dt>
-                                    <#list day.transports as transport>
-                                        <dd class="list-inline-item">
-                                            <#-- TODO: Tooltip title and sr-only should spit out the transport value, not the key -->
-                                            <vs-tooltip title="<@fmt.message key="${transport}"/>">
-                                                <vs-icon name="${transport}" variant="dark" size="sm"></vs-icon>
-                                            </vs-tooltip>
-                                            <#-- TODO: Tooltip title and sr-only should spit out the transport value, not the key -->
-                                            <span class="sr-only"><@fmt.message key="${transport}"/></span>
-                                        </dd>
-                                    </#list>
-                                </dl>
-                            </#if>
-
-                            <div slot="day-introduction">
-                                <@hst.html hippohtml=day.introduction/>
-                            </div>
-
-                            <!-- STOP STARTS HERE -->
-                            <ul slot="stops" class="mt-9 list-unstyled">
-                                <#assign lastStop = lastStop + day.stops?size>
-                                <#list day.stops as stop>
-                                    <#assign stopNumber++>
-                                    <@itineraryStop stop=stop lastStop=(stopNumber==lastStop)?c/>
-                                </#list>
-                            </ul>
-                            <!-- STOP ENDS HERE -->
-                        </vs-itinerary-day>
-                    </#list>
-                </vs-col>
-            </vs-row>
-        </vs-container>
+                <!-- STOP STARTS HERE -->
+                <#assign lastStop = lastStop + day.stops?size>
+                <#list day.stops as stop>
+                    <#assign stopNumber++>
+                    <@itineraryStop stop=stop lastStop=(stopNumber==lastStop)?c/>
+                </#list>
+                <!-- STOP ENDS HERE -->
+            </vs-itinerary-day>
+        </#list>
     </vs-itinerary>
-
-
-    <vs-related-content-list>
-        <h2 slot="header" class="text-warning text-center py-7 m-0">Extend Your Trip</h2>
-        <vs-related-content-list-item slot="cards">
-            <vs-related-content-card>
-                <img
-                    src="/site/binaries/content/gallery/visitscotland/default/vector-illustration-of-cartoon-hippos-in-hot-weather-drawing_csp36829792.jpg"
-                    alt="Test Alt Text"
-                    class="card-img-top"
-                />
-                <div class="card-body">
-                    <h3 class="card-title h5">
-                        <a class="stretched-link" href="www.google.com">
-                            Unhappy Hippo 1
-                        </a>
-                    </h3>
-                    <div class="card-text">
-                        Lorem ipsum dolor sit amet. Test description.
-                    </div>
-                </div>
-            </vs-related-content-card>
-        </vs-related-content-list-item>
-        <vs-related-content-list-item slot="cards">
-            <vs-related-content-card>
-                <img
-                    src="/site/binaries/content/gallery/visitscotland/default/vector-illustration-of-cartoon-hippos-in-hot-weather-drawing_csp36829792.jpg"
-                    alt="Test Alt Text"
-                    class="card-img-top"
-                />
-                <div class="card-body">
-                    <h3 class="card-title h5">
-                        <a class="stretched-link" href="www.google.com">
-                            Unhappy Hippo 2
-                        </a>
-                    </h3>
-                    <div class="card-text">
-                        Lorem ipsum dolor sit amet. Test description.
-                    </div>
-                </div>
-            </vs-related-content-card>
-        </vs-related-content-list-item>
-        <vs-related-content-list-item slot="cards">
-            <vs-related-content-card>
-                <img
-                    src="/site/binaries/content/gallery/visitscotland/default/vector-illustration-of-cartoon-hippos-in-hot-weather-drawing_csp36829792.jpg"
-                    alt="Test Alt Text"
-                    class="card-img-top"
-                />
-                <div class="card-body">
-                    <h3 class="card-title h5">
-                        <a class="stretched-link" href="www.google.com">
-                            Unhappy Hippo 3
-                        </a>
-                    </h3>
-                    <div class="card-text">
-                        Lorem ipsum dolor sit amet. Test description.
-                    </div>
-                </div>
-            </vs-related-content-card>
-        </vs-related-content-list-item>
-        <vs-related-content-list-item slot="cards">
-            <vs-related-content-card>
-                <img
-                    src="/site/binaries/content/gallery/visitscotland/default/vector-illustration-of-cartoon-hippos-in-hot-weather-drawing_csp36829792.jpg"
-                    alt="Test Alt Text"
-                    class="card-img-top"
-                />
-                <div class="card-body">
-                    <h3 class="card-title h5">
-                        <a class="stretched-link" href="www.google.com">
-                            Unhappy Hippo 4
-                        </a>
-                    </h3>
-                    <div class="card-text">
-                        Lorem ipsum dolor sit amet. Test description.
-                    </div>
-                </div>
-            </vs-related-content-card>
-        </vs-related-content-list-item>
-    </vs-related-content-list>
 </div>
