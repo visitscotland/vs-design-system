@@ -14,16 +14,16 @@ $white: $color-white;
 $black: $color-black;
 
 $theme-colors: (
-  primary: $color-theme-primary,
-  secondary: $color-theme-secondary,
-  success: $color-theme-success,
-  info: $color-theme-info,
-  warning: $color-theme-warning,
-  danger: $color-theme-danger,
-  light: $color-theme-light,
-  dark: $color-theme-dark,
-  primary-purple: $color-theme-primary-purple,
-  secondary-teal: $color-theme-secondary-teal,
+    primary: $color-theme-primary,
+    secondary: $color-theme-secondary,
+    success: $color-theme-success,
+    info: $color-theme-info,
+    warning: $color-theme-warning,
+    danger: $color-theme-danger,
+    light: $color-theme-light,
+    dark: $color-theme-dark,
+    primary-purple: $color-theme-primary-purple,
+    secondary-teal: $color-theme-secondary-teal,
 );
 
 $body-color: $color-base-text;
@@ -38,32 +38,32 @@ $link-hover-decoration: none;
 // $grid-columns: $grid-columns;
 // $grid-gutter-width: $grid-gutter-width;
 $grid-breakpoints: (
-  xs: $breakpoint-xs,
-  sm: $breakpoint-sm,
-  md: $breakpoint-md,
-  lg: $breakpoint-lg,
-  xl: $breakpoint-xl,
-  xxl: $breakpoint-xxl,
+    xs: $breakpoint-xs,
+    sm: $breakpoint-sm,
+    md: $breakpoint-md,
+    lg: $breakpoint-lg,
+    xl: $breakpoint-xl,
+    xxl: $breakpoint-xxl,
 );
 $container-max-widths: (
-  sm: $max-container-width-sm,
-  md: $max-container-width-md,
-  lg: $max-container-width-lg,
-  xl: $max-container-width-xl,
-  xxl: $max-container-width-xxl,
+    sm: $max-container-width-sm,
+    md: $max-container-width-md,
+    lg: $max-container-width-lg,
+    xl: $max-container-width-xl,
+    xxl: $max-container-width-xxl,
 );
 /* Spacing */
 $spacers: (
-  0: $spacer-0,
-  1: $spacer-1,
-  2: $spacer-2,
-  3: $spacer-3,
-  4: $spacer-4,
-  5: $spacer-5,
-  6: $spacer-6,
-  7: $spacer-7,
-  8: $spacer-8,
-  9: $spacer-9,
+    0: $spacer-0,
+    1: $spacer-1,
+    2: $spacer-2,
+    3: $spacer-3,
+    4: $spacer-4,
+    5: $spacer-5,
+    6: $spacer-6,
+    7: $spacer-7,
+    8: $spacer-8,
+    9: $spacer-9,
 );
 /* Border Radius */
 $border-radius: $border-radius-default;
@@ -91,3 +91,9 @@ $breadcrumb-active-color: $color-base-text;
 $breadcrumb-divider: quote("|");
 
 $breadcrumb-border-radius: 0;
+
+// Links
+//
+// Style anchor elements.
+
+$link-decoration: underline;

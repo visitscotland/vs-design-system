@@ -104,6 +104,7 @@ export default {
     font-family: $font-family-base;
     font-weight: $font-weight-light;
     transition: $transition-base;
+    text-decoration: none;
     letter-spacing: 2px;
     position: relative;
     overflow: hidden;
