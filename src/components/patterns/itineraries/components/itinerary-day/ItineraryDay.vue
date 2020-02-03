@@ -146,7 +146,7 @@ export default {
             :dayTitle="day.title"
            
 		>
-            <vs-description-list v-if="day.transport.length" class="list-inline text-center" slot="day-transport">
+            <vs-description-list v-if="day.transport.length" class="text-center justify-content-center align-items-center" slot="day-transport">
                 <dt class="list-inline-item">Transport:</dt>
 				<dd class="list-inline-item" v-for="(transportType, transportTypeIndex) in day.transport">
 					<vs-tooltip :title="transportType.value">
