@@ -31,10 +31,9 @@
         stop-number="${prod.index}"
         stop-label="<@fmt.message key="stop.title"/>"
         stop-title="${prod.title}"
-        class="has-edit-button"
 		>
-        <@hst.manageContent hippobean=stop />
-        <div slot="stop-details">
+        <div slot="stop-details" class="has-edit-button">
+            <@hst.manageContent hippobean=stop />
             <#if !stop.stopItem?? && editMode>
                 <span class="text-danger">The stop doesn't have any product linked to the stop</span>
             </#if>
