@@ -256,7 +256,7 @@
     jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
     jcr:uuid: a0e18f5d-09d2-47b9-83d6-c41eed3d6539
     hippo:name: Page - Itinerary
-    hippo:versionHistory: 37386fec-9f26-4e0e-8e42-83f01a8e18ae
+    hippo:versionHistory: c975e18e-8f9d-4343-b683-e0f5ea24e129
     /itinerary[1]:
       jcr:primaryType: resourcebundle:resourcebundle
       jcr:mixinTypes: ['mix:referenceable']
@@ -265,7 +265,7 @@
       hippostd:state: draft
       hippostdpubwf:createdBy: admin
       hippostdpubwf:creationDate: 2019-12-16T14:56:24.091Z
-      hippostdpubwf:lastModificationDate: 2020-02-04T09:05:24.396Z
+      hippostdpubwf:lastModificationDate: 2020-02-04T09:08:31.668Z
       hippostdpubwf:lastModifiedBy: admin
       resourcebundle:descriptions: ['', '', '', '', '', '', '', '', '', '', '', '',
         '', '', '', '', '', '']
@@ -331,9 +331,9 @@
       hippostd:state: published
       hippostdpubwf:createdBy: admin
       hippostdpubwf:creationDate: 2019-12-16T14:56:24.091Z
-      hippostdpubwf:lastModificationDate: 2020-01-06T16:35:56.421Z
+      hippostdpubwf:lastModificationDate: 2020-02-04T09:06:13.302Z
       hippostdpubwf:lastModifiedBy: admin
-      hippostdpubwf:publicationDate: 2020-01-06T16:35:57.996Z
+      hippostdpubwf:publicationDate: 2020-02-04T09:08:43.909Z
       resourcebundle:descriptions: ['', '', '', '', '', '', '', '', '', '', '', '',
         '', '', '', '', '', '']
       resourcebundle:id: itinerary
@@ -341,13 +341,13 @@
         stop.nearby-eat, stop.cta, stop.title, start-finish, days, distance, themes,
         miles-abbreviation, kilometres-abbreviation, transport, day, miles, kilometres,
         highlights, areas-covered]
-      resourcebundle:messages: ['Time to explore:', Key Facilities, Nearby places
-          to stay, Nearby places to eat, Find out more, Stop, Start / Finish, Days,
-        Distance, Main Themes, mi, km, Transport, Day, Miles, Kilometres, Highlights,
-        Areas Covered]
+      resourcebundle:messages: [Time to explore, Key Facilities, Nearby places to
+          stay, Nearby places to eat, Find out more, Stop, Start / Finish, Days, Distance,
+        Main Themes, mi, km, Transport, Day, Miles, Kilometres, Highlights, Areas
+          Covered]
       resourcebundle:messages_de: ['', '', '', '', '', '', '', '', '', '', '', '',
         '', '', '', '', '', '']
-      resourcebundle:messages_es: ['Tiempo recomendado:', Servicios destacados, '¿Dónde
+      resourcebundle:messages_es: [Tiempo recomendado, Servicios destacados, '¿Dónde
           pasar la noche?', '¿Dónde podría cenar y desayunar?', Averigua más informcación,
         Parada, Inicio / Fin, días, Distancia, Temática, mi, km, Transporte, Día,
         Millas, Kilómetros, Destacado, Areas cubiertas]
