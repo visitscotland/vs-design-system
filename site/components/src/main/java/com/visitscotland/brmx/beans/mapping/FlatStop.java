@@ -1,9 +1,7 @@
 package com.visitscotland.brmx.beans.mapping;
 
-import com.visitscotland.brmx.beans.Image;
 import com.visitscotland.brmx.beans.Stop;
 import org.hippoecm.hst.content.beans.standard.HippoHtml;
-import org.json.JSONObject;
 
 import java.util.List;
 
@@ -14,8 +12,7 @@ public class FlatStop {
     private Integer index;
     private String title;
     private HippoHtml description;
-    private Image cmsImage;
-    private ExternalImage image;
+    private FlatImage image;
     private String timeToexplore;
     private String tipsTitle;
     private String cta;
@@ -71,19 +68,11 @@ public class FlatStop {
         this.description = description;
     }
 
-    public Image getCmsImage() {
-        return cmsImage;
-    }
-
-    public void setCmsImage(Image cmsImage) {
-        this.cmsImage = cmsImage;
-    }
-
-    public ExternalImage getImage() {
+    public FlatImage getImage() {
         return image;
     }
 
-    public void setImage(ExternalImage image) {
+    public void setImage(FlatImage image) {
         this.image = image;
     }
 

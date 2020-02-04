@@ -1,130 +1,109 @@
 <#include "../../include/imports.ftl">
+<#include "../../vs-dotcom-ds/components/button-with-icon.ftl">
+<#include "../../vs-dotcom-ds/components/itinerary-tips.ftl">
+<#include "../../vs-dotcom-ds/components/itinerary-stop.ftl">
+<#include "../../vs-dotcom-ds/components/image-with-caption.ftl">
+<#include "../../vs-dotcom-ds/components/icon-description-list.ftl">
+<#include "../../vs-dotcom-ds/components/icon-description-list-term.ftl">
+<#include "../../vs-dotcom-ds/components/icon-description-list-detail.ftl">
 
 <@hst.setBundle basename="keyFacilities,itinerary"/>
 
 <#-- @ftlvariable name="stop" type="com.visitscotland.brmx.beans.Stop" -->
 <#-- @ftlvariable name="prod" type="com.visitscotland.brmx.beans.mapping.FlatStop" -->
 
-<#macro itineraryStop stop stopNumber lastStop>
-    <@hst.manageContent hippobean=stop />
-
+<#macro itineraryStop stop lastStop>
     <#assign prod = stops[stop.identifier]>
-    <#assign title = prod.title />
-
-    <#if prod.cmsImage??>
+    <#assign image = "" />
+    <#if prod.image.cmsImage??>
         <#assign image>
-            <@hst.link hippobean=prod.cmsImage.original/>
+            <@hst.link hippobean=prod.image.cmsImage.original/>
         </#assign>
-    <#elseif prod.image??>
-        <#assign image = prod.image.url />
-    <#else >
-        <#assign image = "" />
+    <#elseif prod.image.externalImage??>
+        <#assign image = prod.image.externalImage />
+    <#else>
     </#if>
+    <#assign href = prod.cta>
+    <#assign address = prod.address>
+    <#assign priceText = prod.priceText>
+    <vs-itinerary-stop 
+        slot="stops"
+        stop-number="${prod.index}"
+        stop-label="<@fmt.message key="stop.title"/>"
+        stop-title="${prod.title}"
+        class="has-edit-button"
+		>
+        <@hst.manageContent hippobean=stop />
+        <div slot="stop-details">
+            <#if !stop.stopItem?? && editMode>
+                <span class="text-danger">The stop doesn't have any product linked to the stop</span>
+            </#if>
+            <#if image?? && image?has_content>
+                <vs-image-with-caption
+                    alt-text="${prod.image.altText}"
+                    credit="${prod.image.credit}"
+                    caption="${prod.image.altText}"
+                    image-src="${image}"
+                    latitude="${prod.coordinates.latitude}"
+                    longitude="${prod.coordinates.longitude}"
+                    >
+                <img 
+                    class="lazyload" 
+                    src="${image}"
+                    srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                    data-srcset="${image}" 
+                    alt="${prod.image.altText}"
+                    data-sizes="auto" />
+                </vs-image-with-caption>
+            </#if>
 
-    <#--<#assign facility = "wifi" />-->
+            <#if prod.description?? && prod.description?has_content>
+                <@hst.html hippohtml=prod.description/>
+            </#if>
 
-    <#assign stopsCount = prod.index>
-    <#assign latitude = "0.0">
-    <#assign longitude = "0.0">
-    <#assign href = "">
-    <#assign prod = "">
-    <#assign timeToExplore = "">
-    <#assign address = "">
-    <#assign priceText = "">
-    <#assign imgAltText = "">
-    <#assign imgCredit = "">
+            <#if prod.timeToexplore?? && prod.timeToexplore?has_content>
+            <vs-description-list class="my-4 mb-0 justify-content-start" inline>
+                <vs-description-list-term class="mb-0 mr-0 col-auto"><@fmt.message key="stop.timeToExplore"/></vs-description-list-term>
+                <vs-description-list-detail class="mb-0 col-auto px-0">${prod.timeToexplore}</vs-description-list-detail>
+            </vs-description-list>
+            </#if>
+            <#if ((prod.tipsTitle?? && prod.tipsTitle?has_content) || (prod.tipsBody.content?? &&  prod.tipsBody.content.length() gt 1))>
+                <vs-itinerary-tips>
+                    <div slot="text">
+                    <#if  prod.tipsTitle?? &&  prod.tipsTitle?has_content>
+                        <strong>${prod.tipsTitle}</strong>
+                    </#if>
+                    <@hst.html hippohtml=prod.tipsBody/>
+                    </div>
+                    <vs-svg slot="svg" path="highland-cow" />
+                </vs-itinerary-tips>
+            </#if>
 
+            <#if href?? && href?has_content>
+                <a class="d-block" href="${href}">Find out more</a>
+            </#if>
 
-
-<#-- INTEGRATION WITH DS STARTS -->
-<@hst.manageContent hippobean=stop />
-
-    <#assign stopItem = stop.getStopItem()>
-    <li class="vs-itinerary-stop__list-item" data-stop="${stopNumber}">
-      <div class="d-flex justify-content-between align-items-top">
-        <vs-icon name="map-marker-filled" variant="secondary-teal" size="md" :padding="0"></vs-icon>
-        <vs-heading
-          level="3"
-          thin
-          class="vs-itinerary-stop__title ml-4 flex-fill">
-          <span
-          >Stop ${stopNumber}</span>
-          ${stop.title}
-        </vs-heading>
-        <vs-favourites-toggle-button
-          href="stop.href"
-          title="stop.title">
-        </vs-favourites-toggle-button>
+            <#if prod.facilities?? && prod.facilities?size gt 1>
+                <vs-icon-description-list>
+                    <vs-icon-description-list-term><@fmt.message key="stop.key-facilities"/></vs-icon-description-list-term>
+                    <#list prod.facilities as facility>
+                        <vs-icon-description-list-detail 
+                            icon="${facility}"
+                            label="<@fmt.message key="${facility}"/>">
+                        </vs-icon-description-list-detail>
+                    </#list>
+                </vs-icon-description-list>
+            </#if>
       </div>
-      <#if stopItem.image??>
-        <vs-image-with-caption
-          altText="${stopItem.image.altText}"
-          credit="${stopItem.image.credit}"
-          caption="${stopItem.image.caption}"
-          image-src="<@hst.link hippobean=stopItem.image.original/>"
-          latitude="${stopItem.image.coordinates.latitude}"
-          longitude="${stopItem.image.coordinates.longitude}"
-          >
-        <img
-          class="lazyload"
-          src="<@hst.link hippobean=stopItem.image.original/>"
-          srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
-          data-srcset="<@hst.link hippobean=stopItem.image.original/>"
-          alt="${stopItem.image.altText}"
-          data-sizes="auto" />
-        </vs-image-with-caption>
-        <dl>
-          <dt>Image altText:</dt>
-          <dd>${stopItem.image.altText}</dd>
-          <dt>Image credit:</dt>
-          <dd>${stopItem.image.credit}</dd>
-          <dt>Image caption:</dt>
-          <dd>${stopItem.image.caption}</dd>
-          <dt>Image latitude:</dt>
-          <dd>${stopItem.image.coordinates.latitude}</dd>
-          <dt>Image longitude:</dt>
-          <dd>${stopItem.image.coordinates.longitude}</dd>
-        </dl>
-      </#if>
-      <#if stop.description?? && stop.description?has_content>
-        <@hst.html hippohtml=stop.description/>
-      </#if>
-        <#if stopItem?? && stopItem.timeToExplore??>
-        <dl slot="stop-time-to-explore" class="list-inline my-4 mb-0">
-            <dt class="list-inline-item mb-0">Time to explore:</dt>
-            <dd class="list-inline-item mb-0">${stopItem.timeToExplore}</dd>
-        </dl>
-        </#if>
-        <#if stop.tips?? && stop.tips?has_content>
-          <vs-itinerary-stop-pullout>
-            <div slot="text">
-              <#if stop.tipsTitle?? && stop.tipsTitle?has_content>
-                <strong>${stop.tipsTitle}</strong>
-              </#if>
-              <@hst.html hippohtml=stop.tips/>
+        <#if lastStop=="true" && prod.coordinates.longitude?? && prod.coordinates.longitude?has_content && prod.coordinates.latitude?? && prod.coordinates.latitude?has_content>
+            <div slot="nearby-links" class="py-3 d-inline-block">
+                <vs-button-with-icon class="mb-3" variant="outline-primary" href="https://www.visitscotland.com/info/accommodation/search-results?prodtypes=cate&lat=${prod.coordinates.latitude}&lng=${prod.coordinates.longitude}&locprox=2&areaproxdist=5&stay=&endDate=&r1a=2&r1children=0&r1infants=0&r1c=0&avail=off&order=proximityAsc" icon="food">
+                    <@fmt.message key="stop.nearby-eat"/>
+                </vs-button-with-icon>
+                <vs-button-with-icon variant="outline-primary" href="https://www.visitscotland.com/info/accommodation/search-results?prodtypes=acco&lat=${prod.coordinates.latitude}&lng=${prod.coordinates.longitude}&locprox=2&areaproxdist=5&stay=&endDate=&r1a=2&r1children=0&r1infants=0&r1c=0&avail=off&order=proximityAsc" icon="product-accommodation">
+                    <@fmt.message key="stop.nearby-stay"/>
+                </vs-button-with-icon>
             </div>
-            <vs-svg slot="svg" path="highland-cow" />
-          </vs-itinerary-stop-pullout>
         </#if>
-
-        <#if lastStop=="true">
-          <vs-button
-            class="d-inline-flex mb-4"
-            variant="outline-primary"
-            href="https://www.visitscotland.com/info/accommodation/search-results?prodtypes=cate&lat=${latitude}&lng=${longitude}&locprox=2&areaproxdist=1&stay=&endDate=&r1a=2&r1children=0&r1infants=0&r1c=0&avail=off&order=proximityAsc"
-          >
-              <vs-icon name="food" variant="primary" size="sm"></vs-icon>
-              <@fmt.message key="stop.nearby-eat"/>
-          </vs-button>
-          <br />
-          <vs-button
-            class="d-inline-flex"
-            variant="outline-primary"
-            href="https://www.visitscotland.com/info/accommodation/search-results?prodtypes=acco&lat=${latitude}&lng=${longitude}&locprox=2&areaproxdist=1&stay=&endDate=&r1a=2&r1children=0&r1infants=0&r1c=0&avail=off&order=proximityAsc"
-          >
-              <vs-icon name="product-accommodation" variant="primary" size="sm"></vs-icon>
-              <@fmt.message key="stop.nearby-stay"/>
-          </vs-button>
-      </#if>
-    </li>
+    </vs-itinerary-stop>
 </#macro>

@@ -25,10 +25,9 @@
           <@hst.include ref="menu"/>
         </div>
       </div>
-      <div class="row">
-        <@hst.include ref="breadcrumb"/>
+      <main id="main">
         <@hst.include ref="main"/>
-      </div>
+      </main>
       <div class="row">
         <@hst.include ref="footer"/>
       </div>

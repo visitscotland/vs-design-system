@@ -61,7 +61,7 @@ definitions:
             hipposysedit:mandatory: false
             hipposysedit:multiple: false
             hipposysedit:ordered: false
-            hipposysedit:path: visitscotland:heading
+            hipposysedit:path: visitscotland:title
             hipposysedit:primary: false
             hipposysedit:type: String
           /introduction:
@@ -87,7 +87,7 @@ definitions:
           visitscotland:breadcrumb: ''
           visitscotland:boolean: false
           visitscotland:seoNoIndex: ''
-          visitscotland:heading: ''
+          visitscotland:title: ''
           jcr:uuid: f35ce299-38b5-4a02-bd6f-f3eed7c4bf88
           hippostdpubwf:lastModificationDate: 2019-12-05T16:05:38.470Z
           hippostdpubwf:creationDate: 2019-12-05T16:05:38.470Z

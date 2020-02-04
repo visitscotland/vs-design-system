@@ -28,11 +28,6 @@ public class Page extends BaseDocument {
         return getSingleProperty("visitscotland:seoNoIndex");
     }
 
-    @HippoEssentialsGenerated(internalName = "visitscotland:heading")
-    public String getHeading() {
-        return getSingleProperty("visitscotland:heading");
-    }
-
     @HippoEssentialsGenerated(internalName = "visitscotland:heroImage")
     public Image getHeroImage() {
         return getLinkedBean("visitscotland:heroImage", Image.class);
@@ -41,5 +36,10 @@ public class Page extends BaseDocument {
     @HippoEssentialsGenerated(internalName = "visitscotland:introduction")
     public HippoHtml getIntroduction() {
         return getHippoHtml("visitscotland:introduction");
+    }
+
+    @HippoEssentialsGenerated(internalName = "visitscotland:title")
+    public String getTitle() {
+        return getSingleProperty("visitscotland:title");
     }
 }
