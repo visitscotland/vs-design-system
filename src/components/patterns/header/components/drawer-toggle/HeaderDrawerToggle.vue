@@ -1,7 +1,7 @@
 <template>
-  <vs-drawer-toggle type="vs-header-button" v-bind="$attrs" class="vs-header__drawer-toggle">
-    <slot />
-  </vs-drawer-toggle>
+    <vs-drawer-toggle :tag="tag" v-bind="$attrs" class="vs-header__drawer-toggle">
+        <slot />
+    </vs-drawer-toggle>
 </template>
 
 <script>
@@ -13,11 +13,17 @@ import VsHeaderButton from "../button/HeaderButton"
  * the relevant styles for inclusion in VsHeader.
  */
 export default {
-  name: "VsHeaderDrawerToggle",
-  components: {
-    VsDrawerToggle,
-    VsHeaderButton,
-  },
+    name: "VsHeaderDrawerToggle",
+    components: {
+        VsDrawerToggle,
+        VsHeaderButton,
+    },
+    props: {
+        tag: {
+            type: String,
+            default: "vs-header-button",
+        },
+    },
 }
 </script>
 

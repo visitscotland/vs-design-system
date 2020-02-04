@@ -1,5 +1,5 @@
 <template>
-  <b-col v-bind="$attrs"> <slot /> </b-col>
+    <b-col v-bind="$attrs"> <slot /> </b-col>
 </template>
 
 <script>
@@ -14,12 +14,12 @@ import { BCol } from "bootstrap-vue"
  */
 
 export default {
-  name: "VsCol",
-  status: "prototype",
-  release: "0.0.1",
-  components: {
-    BCol,
-  },
+    name: "VsCol",
+    status: "prototype",
+    release: "0.1.0",
+    components: {
+        BCol,
+    },
 }
 </script>
 

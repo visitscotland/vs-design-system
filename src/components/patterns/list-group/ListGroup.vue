@@ -1,5 +1,5 @@
 <template>
-  <b-list-group v-bind="$attrs" v-hand-down-focus><slot /></b-list-group>
+    <b-list-group v-bind="$attrs" v-hand-down-focus><slot /></b-list-group>
 </template>
 
 <script>
@@ -10,13 +10,13 @@ import HandDownFocus from "@/directives/hand-down-focus"
  * Wrapper for the BListGroup component.
  */
 export default {
-  name: "VsListGroup",
-  components: {
-    BListGroup,
-  },
-  directives: {
-    HandDownFocus,
-  },
+    name: "VsListGroup",
+    components: {
+        BListGroup,
+    },
+    directives: {
+        HandDownFocus,
+    },
 }
 </script>
 
@@ -26,5 +26,5 @@ export default {
 
 <docs>
   ```js
-
+  ```
 </docs>

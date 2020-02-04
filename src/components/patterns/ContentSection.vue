@@ -1,9 +1,9 @@
 <template>
-  <section class="content-section" :class="{ lead: lead, ['content-section-' + tag]: true }">
-    <vs-heading level="3" v-if="heading">{{ heading }}</vs-heading>
+    <section class="content-section" :class="{ lead: lead, ['content-section-' + tag]: true }">
+        <vs-heading level="3" v-if="heading">{{ heading }}</vs-heading>
 
-    <slot />
-  </section>
+        <slot />
+    </section>
 </template>
 
 <script>
@@ -13,51 +13,52 @@ import VsHeading from "../elements/heading"
  * Section component
  */
 export default {
-  name: "VsContentSection",
-  components: { VsHeading },
-  status: "prototype",
-  release: "0.0.1",
-  props: {
-    /**
-     * Section heading
-     */
-    heading: {
-      type: String,
-    },
+    name: "VsContentSection",
+    components: { VsHeading },
+    status: "prototype",
+    release: "0.0.1",
+    props: {
+        /**
+         * Section heading
+         */
+        heading: {
+            type: String,
+        },
 
-    /**
-     * Whether or not this section should be styled as leading content
-     * via .lead class
-     */
-    lead: {
-      type: Boolean,
-    },
+        /**
+         * Whether or not this section should be styled as leading content
+         * via .lead class
+         */
+        lead: {
+            type: Boolean,
+        },
 
-    /**
-     * The element used for the container
-     * `article, aside, div`
-     */
-    tag: {
-      type: String,
-      default: "article",
-      validator: value => {
-        return value.match(/(article|aside|div)/)
-      },
+        /**
+         * The element used for the container
+         * `article, aside, div`
+         */
+        tag: {
+            type: String,
+            default: "article",
+            validator: value => {
+                return value.match(/(article|aside|div)/)
+            },
+        },
     },
-  },
 }
 </script>
 
 <style lang="scss" scoped>
 @import "~bootstrap/scss/type";
+@import "~bootstrap/scss/utilities";
 
 .content-section {
-  @extend .mb-5;
+    @extend .mb-5;
 }
 
 .content-section-aside {
-  @extend .p-4;
-  background: #eee;
+    @extend .p-4;
+    background: #eee;
 }
 </style>
 

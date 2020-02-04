@@ -1,5 +1,5 @@
 <template>
-  <b-container tag="div" :fluid="fluid"><slot /></b-container>
+    <b-container tag="div" v-bind="$attrs"><slot /></b-container>
 </template>
 
 <script>
@@ -11,18 +11,12 @@ import { BContainer } from "bootstrap-vue"
  */
 
 export default {
-  name: "VsContainer",
-  status: "prototype",
-  release: "0.0.1",
-  components: {
-    BContainer,
-  },
-  props: {
-    fluid: {
-      default: false,
-      type: Boolean,
+    name: "VsContainer",
+    status: "prototype",
+    release: "0.1.0",
+    components: {
+        BContainer,
     },
-  },
 }
 </script>
 
