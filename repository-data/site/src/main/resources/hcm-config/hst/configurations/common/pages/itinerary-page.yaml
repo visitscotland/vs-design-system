@@ -7,3 +7,6 @@ definitions:
         jcr:primaryType: hst:component
         hst:componentclassname: com.visitscotland.brmx.components.content.ItineraryContentComponent
         hst:template: itinerary
+        /breadcrumb:
+          jcr:primaryType: hst:component
+          hst:referencecomponent: hst:components/breadcrumb

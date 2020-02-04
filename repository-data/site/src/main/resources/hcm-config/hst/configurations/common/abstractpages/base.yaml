@@ -3,6 +3,7 @@ definitions:
     /hst:hst/hst:configurations/common/hst:abstractpages/base:
       jcr:primaryType: hst:component
       hst:template: base-layout
+      hst:referencecomponent: hst:components/breadcrumb
       /menu:
         jcr:primaryType: hst:component
         hst:componentclassname: com.visitscotland.brmx.components.navigation.MenuComponent
