@@ -29,6 +29,7 @@
 
 <#include "itinerary-stop.ftl">
 <#include "itinerary-map.ftl">
+<#include "../breadcrumb-macro.ftl">
 
 <#-- Implicit Request Objects -->
 <#-- @ftlvariable name="document" type="com.visitscotland.brmx.beans.Itinerary" -->
@@ -38,6 +39,7 @@
 <#-- Template defined objects -->
 <#-- @ftlvariable name="day" type="com.visitscotland.brmx.beans.Day" -->
 <#-- @ftlvariable name="hero" type="com.visitscotland.brmx.beans.Image" -->
+
 
 <@hst.setBundle basename="itinerary, toomany, keyFacilities, keys"/> <#-- TODO: keyFacilities shouldn't be defined here -->
 
