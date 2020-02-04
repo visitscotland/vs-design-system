@@ -90,16 +90,7 @@
             <vs-row class="justify-content-md-between">
                 <vs-col cols="12" lg="8" offset-lg="1">
                 <#-- TODO: BREADCRUMB as part of the main template -->
-                <#--<vs-breadcrumb>
-                    <vs-breadcrumb-item
-                        v-for="(item, index) in breadcrumb.breadcrumb"
-                        :key="index"
-                        :href="item.href"
-                        :active="item.active"
-                        :text="item.name"
-                    >
-                    </vs-breadcrumb-item>
-                </vs-breadcrumb>-->
+                 <@hst.include ref="breadcrumb"/>
                 </vs-col>
             </vs-row>
             <vs-row>
