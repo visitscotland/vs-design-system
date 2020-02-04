@@ -1,15 +1,16 @@
 <template>
-  <vs-svg
-    :path="path"
-    :class="{
-      icon: true,
-      ['icon-' + size]: true,
-      ['icon-' + name]: true,
-      ['icon-' + variant]: variant,
-      ['icon-padding-' + padding]: padding,
-      'icon-reverse': reverse,
-    }"
-  />
+    <vs-svg
+        :path="path"
+        :class="{
+            icon: true,
+            ['icon-' + size]: true,
+            ['icon-' + formattedName]: true,
+            ['icon-' + variant]: variant,
+            ['icon-padding-' + padding]: padding,
+            'icon-reverse': reverse,
+        }"
+        v-bind="$attrs"
+    />
 </template>
 
 <script>
@@ -28,70 +29,161 @@ const iconPath = "icons/"
  * including any of the theme colours.
  */
 export default {
-  name: "VsIcon",
-  status: "prototype",
-  release: "0.1.0",
-  components: { VsSvg },
-  props: {
-    /**
-     * The name of the icon to display.
-     */
-    name: {
-      required: true,
-      default: "search",
+    name: "VsIcon",
+    status: "prototype",
+    release: "0.1.0",
+    components: { VsSvg },
+    data() {
+        return {
+            iconLookup: [
+                {
+                    key: "accessparkdrop",
+                    value: "facility-accessparkdrop",
+                },
+                {
+                    key: "acco",
+                    value: "product-accommodation",
+                },
+                {
+                    key: "acti",
+                    value: "product-activities",
+                },
+                {
+                    key: "attr",
+                    value: "product-attractions",
+                },
+                {
+                    key: "audioloop",
+                    value: "facility-audioloop",
+                },
+                {
+                    key: "cate",
+                    value: "product-food-and-drink",
+                },
+                {
+                    key: "cities",
+                    value: "city",
+                },
+                {
+                    key: "cycling",
+                    value: "cycle",
+                },
+                {
+                    key: "dsblaccess",
+                    value: "facility-dsblaccess",
+                },
+                {
+                    key: "even",
+                    value: "product-events",
+                },
+                {
+                    key: "familyev",
+                    value: "family",
+                },
+                {
+                    key: "filmev",
+                    value: "film-tv",
+                },
+                {
+                    key: "parking",
+                    value: "facility-parking",
+                },
+                {
+                    key: "petswelcom",
+                    value: "facility-petswelcom",
+                },
+                {
+                    key: "wifi",
+                    value: "facility-wifi",
+                },
+                {
+                    key: "public",
+                    value: "public-transport",
+                },
+                {
+                    key: "reta",
+                    value: "product-shopping",
+                },
+                {
+                    key: "spahealth",
+                    value: "wellness",
+                },
+                {
+                    key: "walking",
+                    value: "walk",
+                },
+            ],
+        }
     },
-    /**
-     * The fill color of the SVG icon.
-     * `primary, secondary, success, danger, warning, info, light, dark, reverse-white`
-     */
-    variant: {
-      type: String,
-      default: null,
-      validator: value => {
-        return value.match(
-          /(primary|secondary|success|danger|warning|info|light|dark|reverse-white)/
-        )
-      },
-    },
-    /**
-     * The size of the icon. Defaults to medium.
-     * `small, medium, large`
-     */
-    size: {
-      type: String,
-      default: "md",
-      validator: value => {
-        return value.match(/(xxs|xs|sm|md|lg|xl)/)
-      },
-    },
-    /**
-     * Whether to reverse the icon's background and
-     * fill colours
-     */
-    reverse: {
-      type: Boolean,
-    },
+    props: {
+        /**
+         * The name of the icon to display.
+         */
+        name: {
+            required: true,
+            default: "search",
+        },
+        /**
+         * The fill color of the SVG icon.
+         * `primary, secondary, success, danger, warning, info, light, dark, reverse-white, primary-purple, secondary-teal`
+         */
+        variant: {
+            type: String,
+            default: null,
+            validator: value => {
+                return value.match(
+                    /(primary|secondary|success|danger|warning|info|light|dark|reverse-white)/
+                )
+            },
+        },
+        /**
+         * The size of the icon. Defaults to medium.
+         * `small, medium, large`
+         */
+        size: {
+            type: String,
+            default: "md",
+            validator: value => {
+                return value.match(/(xxs|xs|sm|md|lg|xl)/)
+            },
+        },
+        /**
+         * Whether to reverse the icon's background and
+         * fill colours
+         */
+        reverse: {
+            type: Boolean,
+        },
 
-    /**
-     * Amount of padding
-     * `null, 0, 1, 2, 3`
-     */
-    padding: {
-      type: Number,
-      default: 2,
-      validator: value => {
-        return [null, 0, 1, 2, 3].indexOf(value) !== -1
-      },
+        /**
+         * Amount of padding
+         * `null, 0, 1, 2, 3`
+         */
+        padding: {
+            type: Number,
+            default: 2,
+            validator: value => {
+                return [null, 0, 1, 2, 3].indexOf(value) !== -1
+            },
+        },
     },
-  },
-  computed: {
-    path() {
-      return iconPath + this.name
+    computed: {
+        path() {
+            return iconPath + this.formattedName
+        },
+        dimension() {
+            return get(designTokens, "props.icon_size_" + this.size + ".value", "40px")
+        },
+        formattedName() {
+            /*
+             * To facilitate more readable icon names and organise / group icons within the design system
+             * there is a lookup for how keys may be passed from the backend
+             */
+            var formattedNameLookup = this.iconLookup.find(({ key }) => key === this.name)
+
+            return formattedNameLookup !== undefined ? formattedNameLookup.value : this.name
+        },
     },
-    dimension() {
-      return get(designTokens, "props.icon_size_" + this.size + ".value", "40px")
-    },
-  },
 }
 </script>
 
@@ -102,75 +194,77 @@ export default {
 }
 
 $sizes: (
-  xxs: $icon-size-xxs,
-  xs: $icon-size-xs,
-  sm: $icon-size-sm,
-  md: $icon-size-md,
-  lg: $icon-size-lg,
-  xl: $icon-size-xl,
+    xxs: $icon-size-xxs,
+    xs: $icon-size-xs,
+    sm: $icon-size-sm,
+    md: $icon-size-md,
+    lg: $icon-size-lg,
+    xl: $icon-size-xl,
 );
 
 $variants: (
-  primary: $color-theme-primary,
-  secondary: $color-theme-secondary,
-  success: $color-theme-success,
-  danger: $color-theme-danger,
-  warning: $color-theme-warning,
-  info: $color-theme-info,
-  light: $color-theme-light,
-  dark: $color-theme-dark,
-  reverse-white: $color-white,
+    primary: $color-theme-primary,
+    secondary: $color-theme-secondary,
+    success: $color-theme-success,
+    danger: $color-theme-danger,
+    warning: $color-theme-warning,
+    info: $color-theme-info,
+    light: $color-theme-light,
+    dark: $color-theme-dark,
+    reverse-white: $color-white,
+    primary-purple: $color-theme-primary-purple,
+    secondary-teal: $color-theme-secondary-teal,
 );
 
 .icon {
-  fill: $color-black;
-  overflow: visible;
+    fill: $color-black;
+    overflow: visible;
 
-  &.icon-reverse {
-    background-color: $color-black;
-    fill: $color-white;
-  }
-
-  @each $size in map-keys($sizes) {
-    $padding-sizes: 1, 2, 3;
-
-    $this-size: map-get($sizes, $size);
-
-    &.icon-#{$size} {
-      height: $this-size;
-      width: $this-size;
-      padding: 0;
-
-      &.icon-reverse {
-        border-radius: $this-size / 2;
-      }
-      @each $padding-size in $padding-sizes {
-        &.icon-padding-#{$padding-size} {
-          $padding: $this-size * pow(2, $padding-size - 1) / 8;
-          $dimension: $this-size + ($padding * 2);
-
-          height: $dimension;
-          width: $dimension;
-          padding: $padding;
-
-          &.icon-reverse {
-            border-radius: $dimension / 2;
-          }
-        }
-      }
-    }
-  }
-
-  @each $variant in map-keys($variants) {
-    &.icon-#{$variant} {
-      fill: map-get($variants, $variant);
-
-      &.icon-reverse {
+    &.icon-reverse {
+        background-color: $color-black;
         fill: $color-white;
-        background: map-get($variants, $variant);
-      }
     }
-  }
+
+    @each $size in map-keys($sizes) {
+        $padding-sizes: 1, 2, 3;
+
+        $this-size: map-get($sizes, $size);
+
+        &.icon-#{$size} {
+            height: $this-size;
+            width: $this-size;
+            padding: 0;
+
+            &.icon-reverse {
+                border-radius: $this-size / 2;
+            }
+            @each $padding-size in $padding-sizes {
+                &.icon-padding-#{$padding-size} {
+                    $padding: $this-size * pow(2, $padding-size - 1) / 8;
+                    $dimension: $this-size + ($padding * 2);
+
+                    height: $dimension;
+                    width: $dimension;
+                    padding: $padding;
+
+                    &.icon-reverse {
+                        border-radius: $dimension / 2;
+                    }
+                }
+            }
+        }
+    }
+
+    @each $variant in map-keys($variants) {
+        &.icon-#{$variant} {
+            fill: map-get($variants, $variant);
+
+            &.icon-reverse {
+                fill: $color-white;
+                background: map-get($variants, $variant);
+            }
+        }
+    }
 }
 </style>
 
@@ -191,6 +285,7 @@ $variants: (
         <vs-icon name="user" variant="secondary" />
         <vs-icon name="user" variant="success" />
         <vs-icon name="user" variant="warning" />
+        <vs-icon name="user" variant="info" />
         <vs-icon name="user" variant="danger" />
         <vs-icon name="user" variant="dark" />
         <vs-icon name="user" variant="light" />
@@ -205,6 +300,7 @@ $variants: (
         <vs-icon name="favourite" reverse variant="secondary" />
         <vs-icon name="favourite" reverse variant="success" />
         <vs-icon name="favourite" reverse variant="warning" />
+        <vs-icon name="favourite" reverse variant="info" />
         <vs-icon name="favourite" reverse variant="danger" />
         <vs-icon name="favourite" reverse variant="dark" />
         <vs-icon name="favourite" reverse variant="light" />

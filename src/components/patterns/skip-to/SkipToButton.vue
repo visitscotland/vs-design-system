@@ -1,13 +1,13 @@
 <template>
-  <vs-button
-    class="vs-skip-to sr-only sr-only-focusable d-inline-flex p-absolute align-items-center flex-column py-2 px-3"
-    variant="dark"
-    :tabindex="tabindex"
-    :animate="false"
-  >
-    <slot />
-    <vs-icon name="chevron-down" size="xs" variant="reverse-white" />
-  </vs-button>
+    <vs-button
+        class="vs-skip-to sr-only sr-only-focusable d-inline-flex p-absolute align-items-center flex-column py-2 px-3"
+        variant="dark"
+        :tabindex="tabindex"
+        :animate="false"
+    >
+        <slot />
+        <vs-icon name="chevron-down" size="xs" variant="reverse-white" />
+    </vs-button>
 </template>
 
 <script>
@@ -20,44 +20,44 @@ import VsButton from "@components/elements/button"
  * control.
  */
 export default {
-  name: "VsSkipToButton",
-  status: "prototype",
-  release: "0.0.1",
-  components: {
-    VsIcon,
-    VsButton,
-  },
-  props: {
-    /**
-     * The tabindex attribute for this element. For some reason
-     * tabindex isn't passed to the root element so we must do
-     * that manually.
-     */
-    tabindex: {
-      type: String,
+    name: "VsSkipToButton",
+    status: "prototype",
+    release: "0.0.1",
+    components: {
+        VsIcon,
+        VsButton,
     },
-  },
+    props: {
+        /**
+         * The tabindex attribute for this element. For some reason
+         * tabindex isn't passed to the root element so we must do
+         * that manually.
+         */
+        tabindex: {
+            type: String,
+        },
+    },
 }
 </script>
 
 <style lang="scss" scoped>
 .vs-skip-to {
-  box-shadow: 0 8px 6px -6px rgba(0, 0, 0, 0.3);
-  letter-spacing: 2px;
-  left: 50%;
-  transform: translate(-50%);
-  top: 0;
-  transition: background-color 250ms;
-  z-index: 6;
+    box-shadow: 0 8px 6px -6px rgba(0, 0, 0, 0.3);
+    letter-spacing: 2px;
+    left: 50%;
+    transform: translate(-50%);
+    top: 0;
+    transition: background-color 250ms;
+    z-index: $zindex-fixed;
 
-  &:focus {
-    outline: none;
-    box-shadow: inset 0 -3px 0 0 $color-base-text;
-  }
+    &:focus {
+        outline: none;
+        box-shadow: inset 0 -3px 0 0 $color-base-text;
+    }
 
-  &.sr-only-focusable:focus {
-    position: absolute;
-  }
+    &.sr-only-focusable:focus {
+        position: absolute;
+    }
 }
 </style>
 
