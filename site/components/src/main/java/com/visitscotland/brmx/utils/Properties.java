@@ -18,4 +18,6 @@ public class Properties {
 
     //TODO Calculate environment
     public static final String VS_DMS_PRODUCTS = "https://test1.visitscotland.com";
+
+
 }
