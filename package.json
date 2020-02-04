@@ -69,7 +69,7 @@
     "rules": {
       "indent": [
         "error",
-        2
+        4
       ],
       "vue/no-unused-vars": "error",
       "quotes": [
