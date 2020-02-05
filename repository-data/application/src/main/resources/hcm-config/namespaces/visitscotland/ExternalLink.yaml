@@ -11,7 +11,7 @@ definitions:
         /hipposysedit:nodetype:
           jcr:primaryType: hipposysedit:nodetype
           jcr:mixinTypes: ['mix:referenceable', 'hipposysedit:remodel']
-          jcr:uuid: e9c88734-bb0d-40ab-b914-d70c2bf32052
+          jcr:uuid: edbb62e9-f322-4f95-8dbf-4542a9d8e36f
           hipposysedit:node: true
           hipposysedit:supertype: ['hippo:compound', 'hippostd:relaxed']
           hipposysedit:uri: http://www.visitscotland.com/visitscotland/nt/1.0
@@ -20,7 +20,7 @@ definitions:
             hipposysedit:mandatory: false
             hipposysedit:multiple: false
             hipposysedit:ordered: false
-            hipposysedit:path: visitscotland:Link
+            hipposysedit:path: visitscotland:links
             hipposysedit:primary: false
             hipposysedit:type: String
             hipposysedit:validators: [required]
@@ -36,7 +36,7 @@ definitions:
         jcr:primaryType: hipposysedit:prototypeset
         /hipposysedit:prototype:
           jcr:primaryType: visitscotland:ExternalLink
-          visitscotland:Link: ''
+          visitscotland:links: ''
           /visitscotland:image:
             jcr:primaryType: hippogallerypicker:imagelink
             hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
@@ -54,7 +54,7 @@ definitions:
             jcr:primaryType: frontend:plugin
             item: ${cluster.id}.field
             plugin.class: org.hippoecm.frontend.service.render.ListViewPlugin
-          /Link:
+          /links:
             jcr:primaryType: frontend:plugin
             caption: Link
             field: Link

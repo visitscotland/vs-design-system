@@ -237,10 +237,11 @@
         jcr:mixinTypes: ['mix:referenceable']
         jcr:uuid: 382c1404-85eb-445f-acb5-fb5c333a93e2
         hippo:availability: []
+        hippostd:holder: admin
         hippostd:state: draft
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2019-12-11T12:40:08.862Z
-        hippostdpubwf:lastModificationDate: 2020-01-31T15:25:07.658Z
+        hippostdpubwf:lastModificationDate: 2020-02-05T08:40:03.577Z
         hippostdpubwf:lastModifiedBy: admin
         hippotranslation:id: 1bdaaad2-68eb-4493-878c-0961215fe02a
         hippotranslation:locale: en
@@ -276,6 +277,12 @@
             jcr:primaryType: visitscotland:Coordinates
             visitscotland:latitude: 57.144481250000005
             visitscotland:longitude: -2.1929624999999997
+          /visitscotland:image:
+            jcr:primaryType: hippogallerypicker:imagelink
+            hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
+            hippo:facets: []
+            hippo:modes: []
+            hippo:values: []
       /greyfriars-kirkyard[2]:
         jcr:primaryType: visitscotland:Stop
         jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
@@ -376,10 +383,11 @@
         jcr:mixinTypes: ['mix:referenceable']
         jcr:uuid: 863c3f82-ab9a-41e1-9919-5407827a8ee9
         hippo:availability: []
+        hippostd:holder: admin
         hippostd:state: draft
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2019-12-16T12:20:46.037Z
-        hippostdpubwf:lastModificationDate: 2020-01-31T15:26:51.449Z
+        hippostdpubwf:lastModificationDate: 2020-02-05T08:40:10.005Z
         hippostdpubwf:lastModifiedBy: admin
         hippotranslation:id: b4f184af-52de-4e48-92ab-33cc5c2519e0
         hippotranslation:locale: en
@@ -411,6 +419,12 @@
             jcr:primaryType: visitscotland:Coordinates
             visitscotland:latitude: 56.94939333333334
             visitscotland:longitude: -4.824278333333333
+          /visitscotland:image:
+            jcr:primaryType: hippogallerypicker:imagelink
+            hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
+            hippo:facets: []
+            hippo:modes: []
+            hippo:values: []
       /casa-jose[2]:
         jcr:primaryType: visitscotland:Stop
         jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
