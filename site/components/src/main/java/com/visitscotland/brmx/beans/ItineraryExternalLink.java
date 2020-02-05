@@ -5,15 +5,11 @@ import org.hippoecm.hst.content.beans.Node;
 import org.hippoecm.hst.content.beans.standard.HippoCompound;
 import com.visitscotland.brmx.beans.ExternalLink;
 import com.visitscotland.brmx.beans.Coordinates;
+import com.visitscotland.brmx.beans.Image;
 
 @HippoEssentialsGenerated(internalName = "visitscotland:ItineraryExternalLink")
 @Node(jcrType = "visitscotland:ItineraryExternalLink")
 public class ItineraryExternalLink extends HippoCompound {
-    @HippoEssentialsGenerated(internalName = "visitscotland:ExternalLink")
-    public ExternalLink getExternalLink() {
-        return getBean("visitscotland:ExternalLink", ExternalLink.class);
-    }
-
     @HippoEssentialsGenerated(internalName = "visitscotland:Coordinates")
     public Coordinates getCoordinates() {
         return getBean("visitscotland:Coordinates", Coordinates.class);
@@ -22,5 +18,15 @@ public class ItineraryExternalLink extends HippoCompound {
     @HippoEssentialsGenerated(internalName = "visitscotland:timeToExplore")
     public String getTimeToExplore() {
         return getSingleProperty("visitscotland:timeToExplore");
+    }
+
+    @HippoEssentialsGenerated(internalName = "visitscotland:link")
+    public String getLink() {
+        return getSingleProperty("visitscotland:link");
+    }
+
+    @HippoEssentialsGenerated(internalName = "visitscotland:image")
+    public Image getImage() {
+        return getLinkedBean("visitscotland:image", Image.class);
     }
 }
