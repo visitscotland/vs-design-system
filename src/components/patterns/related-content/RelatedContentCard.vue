@@ -1,7 +1,7 @@
 <template>
-  <div class="vs-related-content__card card bg-dark">
-    <slot />
-  </div>
+    <div class="vs-related-content__card card bg-dark">
+        <slot />
+    </div>
 </template>
 
 <script>
@@ -10,10 +10,10 @@
  */
 
 export default {
-  name: "VsRelatedContentCard",
-  status: "prototype",
-  release: "0.0.1",
-  components: {},
+    name: "VsRelatedContentCard",
+    status: "prototype",
+    release: "0.0.1",
+    components: {},
 }
 </script>
 
@@ -21,14 +21,14 @@ export default {
 @import "~bootstrap/scss/card";
 
 .vs-related-content__card {
-  border: none;
-  .card-body,
-  .card-title a {
-    color: $color-white;
-  }
-  .card-body {
-    margin: 0 -1rem;
-  }
+    border: none;
+    .card-body,
+    .card-title a {
+        color: $color-white;
+    }
+    .card-body {
+        margin: 0 -1rem;
+    }
 }
 </style>
 

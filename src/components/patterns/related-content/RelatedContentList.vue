@@ -1,12 +1,12 @@
 <template>
-  <aside class="vs-related-content bg-dark my-9 p-4">
-    <vs-container>
-      <slot name="header" />
-      <vs-row tag="ul" class="list-unstyled">
-        <slot name="cards" />
-      </vs-row>
-    </vs-container>
-  </aside>
+    <aside class="vs-related-content bg-dark my-9 p-4">
+        <vs-container>
+            <slot name="header" />
+            <vs-row tag="ul" class="list-unstyled">
+                <slot name="cards" />
+            </vs-row>
+        </vs-container>
+    </aside>
 </template>
 
 <script>
@@ -17,10 +17,10 @@ import { VsContainer, VsRow } from "@components/elements/layout"
  */
 
 export default {
-  name: "VsRelatedContentList",
-  status: "prototype",
-  release: "0.0.1",
-  components: { VsContainer, VsRow },
+    name: "VsRelatedContentList",
+    status: "prototype",
+    release: "0.0.1",
+    components: { VsContainer, VsRow },
 }
 // TODO: layout of list with variable number of cards
 // Do we paginate when more than 4?
@@ -28,7 +28,7 @@ export default {
 
 <style lang="scss" scoped>
 .vs-related-content {
-  display: block;
+    display: block;
 }
 </style>
 <docs>

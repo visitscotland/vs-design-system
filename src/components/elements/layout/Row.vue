@@ -1,8 +1,8 @@
 <template>
-  <b-row v-bind="$attrs">
-    <!-- @slot The row's contents go here -->
-    <slot />
-  </b-row>
+    <b-row v-bind="$attrs">
+        <!-- @slot The row's contents go here -->
+        <slot />
+    </b-row>
 </template>
 
 <script>
@@ -14,12 +14,12 @@ import { BRow } from "bootstrap-vue"
  */
 
 export default {
-  name: "VsRow",
-  status: "prototype",
-  release: "0.0.1",
-  components: {
-    BRow,
-  },
+    name: "VsRow",
+    status: "prototype",
+    release: "0.0.1",
+    components: {
+        BRow,
+    },
 }
 </script>
 
