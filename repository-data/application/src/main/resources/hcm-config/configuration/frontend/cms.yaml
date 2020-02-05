@@ -31,7 +31,14 @@ definitions:
       plugin.class: com.onehippo.cms7.search.frontend.filters.GenericPropertyFilterPlugin
       wicket.id: ${search.extensions}
       wicket.model: ${model.search}
-    /hippo:configuration/hippo:frontend/cms/cms-services/DmsLocationListProvider:
+    /hippo:configuration/hippo:frontend/cms/cms-services/DmsImageLocationListProvider:
+      .meta:order-before: DmsDestinationLocationListProvider
       jcr:primaryType: frontend:plugin
       plugin.class: com.visitscotland.brmx.components.DmsLocationListProvider
-      valuelist.provider: service.locationlist.default
+      valuelist.provider: service.locationlist.image
+      location.levels: [DISTRICT, DESTINATION]
+    /hippo:configuration/hippo:frontend/cms/cms-services/DmsDestinationLocationListProvider:
+      jcr:primaryType: frontend:plugin
+      plugin.class: com.visitscotland.brmx.components.DmsLocationListProvider
+      valuelist.provider: service.locationlist.destination
+      location.levels: [REGION, DESTINATION]

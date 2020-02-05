@@ -53,6 +53,8 @@ public abstract class LocationLoader {
             logger.warn("No objects matched with the types. It is possible that the types weren't loaded from the endpoint.");
         }
 
+        Collections.sort(locationList, Comparator.comparing(LocationObject::getName));
+
         return  locationList;
     }
 

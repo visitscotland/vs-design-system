@@ -1,11 +1,5 @@
 package com.visitscotland.brmx.components;
 
-//
-// Source code recreated from a .class file by IntelliJ IDEA
-// (powered by Fernflower decompiler)
-//
-
-
 import com.visitscotland.brmx.beans.dms.LocationObject;
 import org.hippoecm.frontend.plugin.IPluginContext;
 import org.hippoecm.frontend.plugin.Plugin;
@@ -21,27 +15,30 @@ import com.visitscotland.brmx.utils.*;
 import com.visitscotland.brmx.model.ValueListLocation;
 
 import javax.jcr.Session;
-import java.io.IOException;
-import java.io.Reader;
 import java.util.List;
 import java.util.Locale;
 
-
+/**
+ * /cms/console/?1&path=/hippo:configuration/hippo:frontend/cms/cms-services/DmsImageLocationListProvider
+ */
 public class DmsLocationListProvider extends Plugin implements IValueListProvider {
 
+    private static final Logger logger = LoggerFactory.getLogger(DmsLocationListProvider.class);
 
-    /** @deprecated */
-    @Deprecated
-    private static final String CONFIG_SOURCE = "source";
-    private static final Logger log = LoggerFactory.getLogger(DmsLocationListProvider.class);
-    public static final String PRODUCT_TYPE = "dms.product.type";
+    private final static String PROVIDER = "valuelist.provider";
+    private static final String LEVELS = "location.levels";
+    private static final String SOURCE = "source";
+
+    private final String[] levels;
 
     public DmsLocationListProvider(IPluginContext context, IPluginConfig config) {
         super(context, config);
-        String name = config.getString("valuelist.provider", "service.dmsvaluelist.default");
+        levels = config.getStringArray(LEVELS);
+        String name = config.getString(PROVIDER);
+
         context.registerService(this, name);
-        if (log.isDebugEnabled()) {
-            log.debug(this.getClass().getName() + " registered under " + name);
+        if (logger.isDebugEnabled()) {
+            logger.debug(this.getClass().getName() + " registered under " + name);
         }
     }
 
@@ -49,16 +46,16 @@ public class DmsLocationListProvider extends Plugin implements IValueListProvide
         if (config == null) {
             throw new IllegalArgumentException("Argument 'config' may not be null");
         } else {
-            return this.getValueList(config.getString("source"));
+            return this.getValueList(config.getString(SOURCE));
         }
     }
 
-     public ValueList getValueList(String name) {
-        return this.getValueList(name, (Locale)null);
-        }
+    public ValueList getValueList(String name) {
+       return this.getValueList(name, null);
+    }
 
     public ValueList getValueList(String name, Locale locale) {
-        List<LocationObject> locations = LocationLoader.getLocationsByLevel("DISTRICT", "DESTINATION");
+        List<LocationObject> locations = LocationLoader.getLocationsByLevel(levels);
         ValueListLocation valueList = new ValueListLocation();
 
         for (LocationObject location: locations) {
@@ -69,11 +66,11 @@ public class DmsLocationListProvider extends Plugin implements IValueListProvide
     }
 
     public List<String> getValueListNames() {
-            return JcrUtils.getValueListNames(this.obtainSession());
+        return JcrUtils.getValueListNames(obtainSession());
     }
 
     protected Session obtainSession() {
-        UserSession userSession = (UserSession)org.apache.wicket.Session.get();
+        UserSession userSession = (UserSession) org.apache.wicket.Session.get();
         return userSession.getJcrSession();
     }
 }

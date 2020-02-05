@@ -133,7 +133,14 @@ public class ItineraryContentComponent extends EssentialsContentComponent {
                     }
                 } else if (stop.getStopItem() instanceof ExternalProductLink){
                     ExternalProductLink aux = (ExternalProductLink) stop.getStopItem();
-                    img.setCmsImage(aux.getImage());
+
+                    if (aux.getImage() != null) {
+                        img.setCmsImage(aux.getImage());
+                        img.setAltText(aux.getImage().getAltText());
+                        img.setCredit(aux.getImage().getCredit());
+                        img.setDescription(aux.getImage().getDescription());
+                    }
+
                     model.setTimeToexplore(aux.getTimeToExplore());
                     model.setCta(aux.getLink());
 
