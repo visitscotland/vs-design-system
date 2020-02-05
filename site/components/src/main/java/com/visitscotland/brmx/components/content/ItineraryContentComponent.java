@@ -144,6 +144,7 @@ public class ItineraryContentComponent extends EssentialsContentComponent {
                     model.setTimeToexplore(aux.getTimeToExplore());
                     model.setCta(aux.getLink());
 
+
                     if (aux.getCoordinates() != null) {
                         coordinates.setLatitude(aux.getCoordinates().getLatitude());
                         coordinates.setLongitude(aux.getCoordinates().getLongitude());
