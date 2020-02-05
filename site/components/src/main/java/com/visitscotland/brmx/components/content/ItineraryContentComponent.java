@@ -1,9 +1,12 @@
 package com.visitscotland.brmx.components.content;
 
 import com.visitscotland.brmx.beans.*;
+import com.visitscotland.brmx.beans.dms.LocationObject;
 import com.visitscotland.brmx.beans.mapping.Coordinates;
 import com.visitscotland.brmx.beans.mapping.FlatImage;
 import com.visitscotland.brmx.beans.mapping.FlatStop;
+import com.visitscotland.brmx.utils.LocationLoader;
+import com.visitscotland.brmx.utils.Properties;
 import org.hippoecm.hst.core.component.HstRequest;
 import org.hippoecm.hst.core.component.HstResponse;
 import org.json.JSONArray;
@@ -24,7 +27,10 @@ public class ItineraryContentComponent extends EssentialsContentComponent {
     public final String STOPS_MAP = "stops";
     public final String FIRST_STOP_LOCATION = "firstStopLocation";
     public final String LAST_STOP_LOCATION = "lastStopLocation";
-    public final String ROOT_SITE = "/site/";
+    public final String HERO_COORDINATES = "heroCoordinates";
+
+
+    private final String ROOT_SITE = "/site/";
 
 
 
@@ -33,7 +39,19 @@ public class ItineraryContentComponent extends EssentialsContentComponent {
         super.doBeforeRender(request, response);
 
         generateStops(request, (Itinerary) request.getAttribute("document"));
+        setCoordinates(request, (Itinerary) request.getAttribute("document"));
         request.setAttribute("path", getDocumentLocation((Itinerary) request.getAttribute("document")));
+    }
+
+    private void setCoordinates(HstRequest request, Itinerary itinerary) {
+        LocationObject location = LocationLoader.getLocation(itinerary.getHeroImage().getLocation(), request.getLocale());
+
+        if (location != null){
+            Coordinates coordinates = new Coordinates();
+            coordinates.setLatitude(location.getLatitude());
+            coordinates.setLongitude(location.getLongitude());
+            request.setAttribute(HERO_COORDINATES, coordinates);
+        }
     }
 
     /**
@@ -75,8 +93,7 @@ public class ItineraryContentComponent extends EssentialsContentComponent {
                         img.setCmsImage(aux.getImage());
                     }
 
-                    //TODO: Confirm next coment
-                    //CONTENT prefix on error messages could mean that content can fix the problem
+                    //CONTENT prefix on error messages could means that the problem can be fixed by altering the content.
                     try {
 
                         if (aux.getProduct() == null){
@@ -116,14 +133,23 @@ public class ItineraryContentComponent extends EssentialsContentComponent {
                     }
                 } else if (stop.getStopItem() instanceof ExternalProductLink){
                     ExternalProductLink aux = (ExternalProductLink) stop.getStopItem();
-                    img.setCmsImage(aux.getImage());
+
+                    if (aux.getImage() != null) {
+                        img.setCmsImage(aux.getImage());
+                        img.setAltText(aux.getImage().getAltText());
+                        img.setCredit(aux.getImage().getCredit());
+                        img.setDescription(aux.getImage().getDescription());
+                    }
+
                     model.setTimeToexplore(aux.getTimeToExplore());
                     model.setCta(aux.getLink());
 
-                    //TODO defensive Programing?
-                    coordinates.setLatitude(aux.getCoordinates().getLatitude());
-                    coordinates.setLongitude(aux.getCoordinates().getLongitude());
-                    model.setCoordinates(coordinates);
+
+                    if (aux.getCoordinates() != null) {
+                        coordinates.setLatitude(aux.getCoordinates().getLatitude());
+                        coordinates.setLongitude(aux.getCoordinates().getLongitude());
+                        model.setCoordinates(coordinates);
+                    }
 
                 }
 
@@ -147,8 +173,7 @@ public class ItineraryContentComponent extends EssentialsContentComponent {
 
     private JSONObject getProduct(String productId, Locale locale) throws IOException {
 
-        //TODO Calculate environment. Note: staging doesn't seem to work outside the building with VPM
-        String body = request("https://www.visitscotland.com/data/product-search/map?prod_id=" + productId+ "&locale="+locale.getLanguage());
+        String body = request(Properties.VS_DMS_PRODUCTS + "/data/product-search/map?prod_id=" + productId+ "&locale="+locale.getLanguage());
         JSONObject json = new JSONObject(body);
         JSONArray data = (JSONArray) json.get("data");
 

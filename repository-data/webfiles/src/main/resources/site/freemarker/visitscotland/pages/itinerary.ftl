@@ -35,6 +35,8 @@
 <#-- @ftlvariable name="document" type="com.visitscotland.brmx.beans.Itinerary" -->
 <#-- @ftlvariable name="firstStopLocation" type="java.lang.String" -->
 <#-- @ftlvariable name="lastStopLocation" type="java.lang.String" -->
+<#-- @ftlvariable name="heroCoordinates" type="com.visitscotland.brmx.beans.mapping.Coordinates" -->
+
 
 <#-- Template defined objects -->
 <#-- @ftlvariable name="day" type="com.visitscotland.brmx.beans.Day" -->
@@ -43,8 +45,6 @@
 
 <@hst.setBundle basename="itinerary, toomany, keyFacilities, keys"/> <#-- TODO: keyFacilities shouldn't be defined here -->
 
-<#assign heroLat = 0><#-- TODO: "${document.heroImage.latitude}" -->
-<#assign heroLon = 0><#-- TODO: ${document.heroImage.longitude}" -->
 <#assign mainTransport = "">
 <#assign dayNumber = 0>
 <#assign stopNumber = 0>
@@ -75,8 +75,8 @@
                 credit="${document.heroImage.credit}"
                 caption="${document.heroImage.caption}"
                 image-src="${hero}"
-                latitude="${document.heroImage.coordinates.latitude}"
-                longitude="${document.heroImage.coordinates.longitude}"
+                latitude="${heroCoordinates.latitude}"
+                longitude="${heroCoordinates.longitude}"
             >
                 <img
                     class="lazyload"

@@ -76,7 +76,7 @@
     
     <development-module-deploy-dir>shared/lib</development-module-deploy-dir>
     <hippo.cms.locales>nl,de,fr,es,zh</hippo.cms.locales>
-  
+    <forge.exdocpickerbase.version>6.0.0</forge.exdocpickerbase.version>
     <buildNumber>${maven.build.timestamp}</buildNumber>
 
     <forge.breadcrumb.version>3.0.0</forge.breadcrumb.version>
@@ -113,6 +113,11 @@
         <scope>provided</scope>
       </dependency>
 
+      <dependency>
+        <groupId>org.onehippo.forge.exdocpickerbase</groupId>
+        <artifactId>exdocpickerbase-field</artifactId>
+        <version>${forge.exdocpickerbase.version}</version>
+      </dependency>
       <!-- other predefined runtime scope versioned dependencies -->
       <dependency>
         <groupId>org.apache.taglibs</groupId>

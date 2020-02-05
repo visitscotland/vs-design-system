@@ -18,7 +18,7 @@
       jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
       jcr:uuid: 0751c1d3-3024-4d2d-a5e8-38286fee9722
       hippo:name: Content
-      hippo:versionHistory: 8bf53fae-8cf1-4b32-a040-7f36fd3c92ba
+      hippo:versionHistory: 10822c95-f9a8-48c8-8546-4bd983433a2e
       /content[1]:
         jcr:primaryType: visitscotland:Itinerary
         jcr:mixinTypes: ['mix:referenceable']
@@ -27,7 +27,7 @@
         hippostd:state: draft
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2019-12-06T12:48:04.149Z
-        hippostdpubwf:lastModificationDate: 2020-01-13T09:30:04.836Z
+        hippostdpubwf:lastModificationDate: 2020-01-31T08:41:54.659Z
         hippostdpubwf:lastModifiedBy: admin
         hippotranslation:id: a3ed9022-e239-493b-952c-18d01ac36640
         hippotranslation:locale: en
@@ -37,15 +37,12 @@
         visitscotland:finish: Ocean point
         visitscotland:highlights: "Glenfinnan Viaduct \r\nJacobite Steam Train\r\n\
           Glen Etive\r\nThe Elephant House"
-        visitscotland:noIndex: false
         visitscotland:popular: false
-        visitscotland:seoNoIndex: Follow in the footsteps of Harry Potter! Relive
-          some of the films' most iconic scenes with our 4-day itinerary of Harry
-          Potter sites in Scotland.
+        visitscotland:seoDescription: ''
+        visitscotland:seoNoIndex: false
         visitscotland:seoTitle: Iconic Harry Potter Film Locations - An Itinerary
         visitscotland:start: Tenerife
         visitscotland:summary: ''
-        visitscotland:teaser: HARRY POTTER FILM AND BOOK LOCATIONS ITINERARY teaser
         visitscotland:text: "Glenfinnan Viaduct\r\n\r\nJacobite Steam Train\r\n\r\n\
           Glen Etive\r\n\r\nThe Elephant House"
         visitscotland:theme: filmev
@@ -70,6 +67,13 @@
             Fettes College, a private school on the outskirts of Edinburgh’s west
             end new town. You could also try the <a href="https://www.visitscotland.com/info/tours/wizarding-world-of-edinburgh-03e61189">Wizarding
             World of Edinburgh</a> tour.</p>
+        /visitscotland:ProductsSearch:
+          jcr:primaryType: visitscotland:ProductsSearch
+          visitscotland:distance: 0
+          visitscotland:dmsCategories: []
+          visitscotland:dmscategories: ''
+          visitscotland:location: Wormit
+          visitscotland:producttype: acco
       /content[2]:
         jcr:primaryType: visitscotland:Itinerary
         jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
@@ -78,7 +82,7 @@
         hippostd:state: unpublished
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2019-12-06T12:48:04.149Z
-        hippostdpubwf:lastModificationDate: 2020-01-13T09:35:44.376Z
+        hippostdpubwf:lastModificationDate: 2020-01-30T17:00:41.657Z
         hippostdpubwf:lastModifiedBy: admin
         hippotranslation:id: a3ed9022-e239-493b-952c-18d01ac36640
         hippotranslation:locale: en
@@ -88,15 +92,12 @@
         visitscotland:finish: Ocean point
         visitscotland:highlights: "Glenfinnan Viaduct \r\nJacobite Steam Train\r\n\
           Glen Etive\r\nThe Elephant House"
-        visitscotland:noIndex: false
         visitscotland:popular: false
-        visitscotland:seoNoIndex: Follow in the footsteps of Harry Potter! Relive
-          some of the films' most iconic scenes with our 4-day itinerary of Harry
-          Potter sites in Scotland.
+        visitscotland:seoDescription: ''
+        visitscotland:seoNoIndex: false
         visitscotland:seoTitle: Iconic Harry Potter Film Locations - An Itinerary
         visitscotland:start: Tenerife
         visitscotland:summary: ''
-        visitscotland:teaser: HARRY POTTER FILM AND BOOK LOCATIONS ITINERARY teaser
         visitscotland:text: "Glenfinnan Viaduct\r\n\r\nJacobite Steam Train\r\n\r\n\
           Glen Etive\r\n\r\nThe Elephant House"
         visitscotland:theme: filmev
@@ -121,6 +122,13 @@
             Fettes College, a private school on the outskirts of Edinburgh’s west
             end new town. You could also try the <a href="https://www.visitscotland.com/info/tours/wizarding-world-of-edinburgh-03e61189">Wizarding
             World of Edinburgh</a> tour.</p>
+        /visitscotland:ProductsSearch:
+          jcr:primaryType: visitscotland:ProductsSearch
+          visitscotland:distance: 0
+          visitscotland:dmsCategories: [guesthouse, yurts, touringpark, hostel]
+          visitscotland:dmscategories: ''
+          visitscotland:location: ''
+          visitscotland:producttype: ''
       /content[3]:
         jcr:primaryType: visitscotland:Itinerary
         jcr:mixinTypes: ['mix:referenceable']
@@ -129,9 +137,9 @@
         hippostd:state: published
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2019-12-06T12:48:04.149Z
-        hippostdpubwf:lastModificationDate: 2020-01-13T09:35:44.376Z
+        hippostdpubwf:lastModificationDate: 2020-01-30T17:00:41.657Z
         hippostdpubwf:lastModifiedBy: admin
-        hippostdpubwf:publicationDate: 2020-01-13T10:27:30.572Z
+        hippostdpubwf:publicationDate: 2020-01-30T17:01:52.503Z
         hippotranslation:id: a3ed9022-e239-493b-952c-18d01ac36640
         hippotranslation:locale: en
         visitscotland:areas: [dumfries, highlands]
@@ -140,15 +148,12 @@
         visitscotland:finish: Ocean point
         visitscotland:highlights: "Glenfinnan Viaduct \r\nJacobite Steam Train\r\n\
           Glen Etive\r\nThe Elephant House"
-        visitscotland:noIndex: false
         visitscotland:popular: false
-        visitscotland:seoNoIndex: Follow in the footsteps of Harry Potter! Relive
-          some of the films' most iconic scenes with our 4-day itinerary of Harry
-          Potter sites in Scotland.
+        visitscotland:seoDescription: ''
+        visitscotland:seoNoIndex: false
         visitscotland:seoTitle: Iconic Harry Potter Film Locations - An Itinerary
         visitscotland:start: Tenerife
         visitscotland:summary: ''
-        visitscotland:teaser: HARRY POTTER FILM AND BOOK LOCATIONS ITINERARY teaser
         visitscotland:text: "Glenfinnan Viaduct\r\n\r\nJacobite Steam Train\r\n\r\n\
           Glen Etive\r\n\r\nThe Elephant House"
         visitscotland:theme: filmev
@@ -173,6 +178,13 @@
             Fettes College, a private school on the outskirts of Edinburgh’s west
             end new town. You could also try the <a href="https://www.visitscotland.com/info/tours/wizarding-world-of-edinburgh-03e61189">Wizarding
             World of Edinburgh</a> tour.</p>
+        /visitscotland:ProductsSearch:
+          jcr:primaryType: visitscotland:ProductsSearch
+          visitscotland:distance: 0
+          visitscotland:dmsCategories: [guesthouse, yurts, touringpark, hostel]
+          visitscotland:dmscategories: ''
+          visitscotland:location: ''
+          visitscotland:producttype: ''
     /edinburgh:
       jcr:primaryType: hippo:handle
       jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
@@ -287,7 +299,7 @@
         hippostd:state: draft
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2019-12-12T12:06:04.129Z
-        hippostdpubwf:lastModificationDate: 2020-01-10T14:29:49.857Z
+        hippostdpubwf:lastModificationDate: 2020-01-30T12:30:03.802Z
         hippostdpubwf:lastModifiedBy: admin
         hippotranslation:id: 2af219fa-878e-435f-ae2e-e296a16e21a9
         hippotranslation:locale: en
