@@ -24,10 +24,11 @@
         jcr:mixinTypes: ['mix:referenceable']
         jcr:uuid: bfc6a747-1993-4871-991c-e203c3dff91c
         hippo:availability: []
+        hippostd:holder: admin
         hippostd:state: draft
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2019-12-06T12:48:04.149Z
-        hippostdpubwf:lastModificationDate: 2020-01-31T08:41:54.659Z
+        hippostdpubwf:lastModificationDate: 2020-02-05T16:29:29.287Z
         hippostdpubwf:lastModifiedBy: admin
         hippotranslation:id: a3ed9022-e239-493b-952c-18d01ac36640
         hippotranslation:locale: en
@@ -43,6 +44,7 @@
         visitscotland:seoTitle: Iconic Harry Potter Film Locations - An Itinerary
         visitscotland:start: Tenerife
         visitscotland:summary: ''
+        visitscotland:teaser: ''
         visitscotland:text: "Glenfinnan Viaduct\r\n\r\nJacobite Steam Train\r\n\r\n\
           Glen Etive\r\n\r\nThe Elephant House"
         visitscotland:theme: filmev
@@ -70,10 +72,10 @@
         /visitscotland:ProductsSearch:
           jcr:primaryType: visitscotland:ProductsSearch
           visitscotland:distance: 0
-          visitscotland:dmsCategories: []
+          visitscotland:dmsCategories: [guesthouse, yurts, touringpark, hostel]
           visitscotland:dmscategories: ''
-          visitscotland:location: Wormit
-          visitscotland:producttype: acco
+          visitscotland:location: ''
+          visitscotland:producttype: ''
       /content[2]:
         jcr:primaryType: visitscotland:Itinerary
         jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
@@ -82,7 +84,7 @@
         hippostd:state: unpublished
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2019-12-06T12:48:04.149Z
-        hippostdpubwf:lastModificationDate: 2020-01-30T17:00:41.657Z
+        hippostdpubwf:lastModificationDate: 2020-02-05T16:26:46.285Z
         hippostdpubwf:lastModifiedBy: admin
         hippotranslation:id: a3ed9022-e239-493b-952c-18d01ac36640
         hippotranslation:locale: en
@@ -98,6 +100,7 @@
         visitscotland:seoTitle: Iconic Harry Potter Film Locations - An Itinerary
         visitscotland:start: Tenerife
         visitscotland:summary: ''
+        visitscotland:teaser: ''
         visitscotland:text: "Glenfinnan Viaduct\r\n\r\nJacobite Steam Train\r\n\r\n\
           Glen Etive\r\n\r\nThe Elephant House"
         visitscotland:theme: filmev
