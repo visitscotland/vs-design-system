@@ -37,9 +37,8 @@ definitions:
         jcr:primaryType: hipposysedit:prototypeset
         /hipposysedit:prototype:
           jcr:primaryType: visitscotland:default
-          jcr:mixinTypes: ['mix:versionable', 'mix:referenceable']
-          jcr:uuid: ef228cc7-6ff6-4d76-ab7c-f58c5ce702ea
-          hippogallery:description: ''
+          jcr:mixinTypes: ['mix:versionable']
+          jcr:uuid: e5fd9608-1463-49df-885b-1185097e0491
           /hippogallery:thumbnail:
             jcr:primaryType: hippogallery:image
             jcr:data:
