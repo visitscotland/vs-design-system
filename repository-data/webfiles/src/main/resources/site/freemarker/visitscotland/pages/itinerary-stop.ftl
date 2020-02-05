@@ -38,7 +38,7 @@
                 <span class="text-danger">The stop doesn't have any product linked to the stop</span>
             </div>
         </vs-itinerary-stop>
-    <#else>
+    <#elseif stop.stopItem??>
     <vs-itinerary-stop 
         slot="stops"
         stop-number="${prod.index}"
