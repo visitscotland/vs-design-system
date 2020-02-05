@@ -22,4 +22,10 @@ public class Image extends HippoGalleryImageSet {
     public Coordinates getCoordinates() {
         return getBean("visitscotland:Coordinates", Coordinates.class);
     }
+
+    @HippoEssentialsGenerated(internalName = "visitscotland:location")
+    public String getLocation() {
+        return getSingleProperty("visitscotland:location");
+    }
+
 }

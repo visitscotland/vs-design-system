@@ -18,7 +18,7 @@
       jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
       jcr:uuid: 0751c1d3-3024-4d2d-a5e8-38286fee9722
       hippo:name: Content
-      hippo:versionHistory: 1607e7ee-9a44-4d3f-a803-9a1e8ca2471f
+      hippo:versionHistory: 10822c95-f9a8-48c8-8546-4bd983433a2e
       /content[1]:
         jcr:primaryType: visitscotland:Itinerary
         jcr:mixinTypes: ['mix:referenceable']
@@ -27,7 +27,7 @@
         hippostd:state: draft
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2019-12-06T12:48:04.149Z
-        hippostdpubwf:lastModificationDate: 2020-01-30T12:59:27.146Z
+        hippostdpubwf:lastModificationDate: 2020-01-31T08:41:54.659Z
         hippostdpubwf:lastModifiedBy: admin
         hippotranslation:id: a3ed9022-e239-493b-952c-18d01ac36640
         hippotranslation:locale: en
@@ -67,6 +67,13 @@
             Fettes College, a private school on the outskirts of Edinburgh’s west
             end new town. You could also try the <a href="https://www.visitscotland.com/info/tours/wizarding-world-of-edinburgh-03e61189">Wizarding
             World of Edinburgh</a> tour.</p>
+        /visitscotland:ProductsSearch:
+          jcr:primaryType: visitscotland:ProductsSearch
+          visitscotland:distance: 0
+          visitscotland:dmsCategories: []
+          visitscotland:dmscategories: ''
+          visitscotland:location: Wormit
+          visitscotland:producttype: acco
       /content[2]:
         jcr:primaryType: visitscotland:Itinerary
         jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
@@ -75,7 +82,7 @@
         hippostd:state: unpublished
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2019-12-06T12:48:04.149Z
-        hippostdpubwf:lastModificationDate: 2020-01-30T13:08:55.928Z
+        hippostdpubwf:lastModificationDate: 2020-01-30T17:00:41.657Z
         hippostdpubwf:lastModifiedBy: admin
         hippotranslation:id: a3ed9022-e239-493b-952c-18d01ac36640
         hippotranslation:locale: en
@@ -115,6 +122,13 @@
             Fettes College, a private school on the outskirts of Edinburgh’s west
             end new town. You could also try the <a href="https://www.visitscotland.com/info/tours/wizarding-world-of-edinburgh-03e61189">Wizarding
             World of Edinburgh</a> tour.</p>
+        /visitscotland:ProductsSearch:
+          jcr:primaryType: visitscotland:ProductsSearch
+          visitscotland:distance: 0
+          visitscotland:dmsCategories: [guesthouse, yurts, touringpark, hostel]
+          visitscotland:dmscategories: ''
+          visitscotland:location: ''
+          visitscotland:producttype: ''
       /content[3]:
         jcr:primaryType: visitscotland:Itinerary
         jcr:mixinTypes: ['mix:referenceable']
@@ -123,9 +137,9 @@
         hippostd:state: published
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2019-12-06T12:48:04.149Z
-        hippostdpubwf:lastModificationDate: 2020-01-30T13:08:55.928Z
+        hippostdpubwf:lastModificationDate: 2020-01-30T17:00:41.657Z
         hippostdpubwf:lastModifiedBy: admin
-        hippostdpubwf:publicationDate: 2020-01-30T13:08:58.891Z
+        hippostdpubwf:publicationDate: 2020-01-30T17:01:52.503Z
         hippotranslation:id: a3ed9022-e239-493b-952c-18d01ac36640
         hippotranslation:locale: en
         visitscotland:areas: [dumfries, highlands]
@@ -164,6 +178,13 @@
             Fettes College, a private school on the outskirts of Edinburgh’s west
             end new town. You could also try the <a href="https://www.visitscotland.com/info/tours/wizarding-world-of-edinburgh-03e61189">Wizarding
             World of Edinburgh</a> tour.</p>
+        /visitscotland:ProductsSearch:
+          jcr:primaryType: visitscotland:ProductsSearch
+          visitscotland:distance: 0
+          visitscotland:dmsCategories: [guesthouse, yurts, touringpark, hostel]
+          visitscotland:dmscategories: ''
+          visitscotland:location: ''
+          visitscotland:producttype: ''
     /edinburgh:
       jcr:primaryType: hippo:handle
       jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']

@@ -53,5 +53,9 @@
       <groupId>com.onehippo.cms7</groupId>
       <artifactId>hippo-addon-advanced-search-repository</artifactId>
     </dependency>
+    <dependency>
+      <groupId>org.onehippo.forge.exdocpickerbase</groupId>
+      <artifactId>exdocpickerbase-field</artifactId>
+    </dependency>
   </dependencies>
 </project>

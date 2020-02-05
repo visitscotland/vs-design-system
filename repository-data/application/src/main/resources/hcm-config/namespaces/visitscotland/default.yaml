@@ -37,15 +37,19 @@ definitions:
         jcr:primaryType: hipposysedit:prototypeset
         /hipposysedit:prototype:
           jcr:primaryType: visitscotland:default
-          jcr:mixinTypes: ['mix:versionable']
-          jcr:uuid: e5fd9608-1463-49df-885b-1185097e0491
+          jcr:mixinTypes: ['mix:referenceable']
+          jcr:uuid: 95123e83-3830-4b66-b90e-5b2ead43a5bb
+          hippogallery:description: ''
           /hippogallery:thumbnail:
             jcr:primaryType: hippogallery:image
             jcr:data:
               type: binary
-              resource: /namespaces/visitscotland/default/prototypes/prototype/thumbnail/thumbnail.gif
-            jcr:lastModified: 1970-01-01T00:00:00Z
-            jcr:mimeType: image/gif
+              resource: /namespaces/visitscotland/default/prototypes/prototype/thumbnail/thumbnail.jpg
+            jcr:lastModified: 2008-03-26T12:03:00+01:00
+            jcr:mimeType: image/jpeg
+            jcr:encoding: UTF-8
+            hippogallery:height: 94
+            hippogallery:width: 94
           /hippogallery:original:
             jcr:primaryType: hippogallery:image
             hippogallery:height: 0
