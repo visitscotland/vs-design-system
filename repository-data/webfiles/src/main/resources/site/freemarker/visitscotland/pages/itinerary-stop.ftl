@@ -26,18 +26,28 @@
     <#assign href = prod.cta>
     <#assign address = prod.address>
     <#assign priceText = prod.priceText>
+    <#if !stop.stopItem?? && editMode>
+        <vs-itinerary-stop 
+            slot="stops"
+            stop-number="${prod.index}"
+            stop-label="<@fmt.message key="stop.title"/>"
+            stop-title="${prod.title}"
+            >
+            <div slot="stop-details" class="has-edit-button">
+                <@hst.manageContent hippobean=stop />
+                <span class="text-danger">The stop doesn't have any product linked to the stop</span>
+            </div>
+        </vs-itinerary-stop>
+    <#elseif stop.stopItem??>
     <vs-itinerary-stop 
         slot="stops"
         stop-number="${prod.index}"
         stop-label="<@fmt.message key="stop.title"/>"
         stop-title="${prod.title}"
-        class="has-edit-button"
 		>
-        <@hst.manageContent hippobean=stop />
-        <div slot="stop-details">
-            <#if !stop.stopItem?? && editMode>
-                <span class="text-danger">The stop doesn't have any product linked to the stop</span>
-            </#if>
+        <div slot="stop-details" class="has-edit-button">
+            <@hst.manageContent hippobean=stop />
+            
             <#if image?? && image?has_content>
                 <vs-image-with-caption
                     alt-text="${prod.image.altText}"
@@ -106,4 +116,5 @@
             </div>
         </#if>
     </vs-itinerary-stop>
+    </#if>
 </#macro>

@@ -240,7 +240,7 @@
         hippostd:state: draft
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2019-12-11T12:40:08.862Z
-        hippostdpubwf:lastModificationDate: 2020-01-13T15:00:11.589Z
+        hippostdpubwf:lastModificationDate: 2020-02-04T11:51:15.926Z
         hippostdpubwf:lastModifiedBy: admin
         hippotranslation:id: 1bdaaad2-68eb-4493-878c-0961215fe02a
         hippotranslation:locale: en
@@ -467,10 +467,11 @@
         jcr:mixinTypes: ['mix:referenceable']
         jcr:uuid: 9418de97-4e61-4658-9c86-05b32184113c
         hippo:availability: []
+        hippostd:holder: admin
         hippostd:state: draft
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2019-12-16T12:21:59.073Z
-        hippostdpubwf:lastModificationDate: 2020-01-08T09:35:08.635Z
+        hippostdpubwf:lastModificationDate: 2020-02-05T08:49:33.156Z
         hippostdpubwf:lastModifiedBy: admin
         hippotranslation:id: c98c9973-3626-4ce4-a46a-1ee9aca1839e
         hippotranslation:locale: en

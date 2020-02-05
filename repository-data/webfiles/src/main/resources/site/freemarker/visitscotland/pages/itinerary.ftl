@@ -73,7 +73,7 @@
                 slot="hero"
                 alt-text="${document.heroImage.altText}"
                 credit="${document.heroImage.credit}"
-                caption="${document.heroImage.caption}"
+                caption="${document.heroImage.description}"
                 image-src="${hero}"
                 latitude="${heroCoordinates.latitude}"
                 longitude="${heroCoordinates.longitude}"
@@ -200,7 +200,10 @@
                 <#if day.transports?has_content>
                     <#assign dayTransport = day.transports[0]>
                     <vs-description-list class="text-center justify-content-center align-items-center" slot="day-transport">
-                        <!-- Note - can't use vs-description-list-term and vs-description-list-detail here as font style and layout are different -->
+                        <#-- 
+                            Note - can't use vs-description-list-term and vs-description-list-detail 
+                            here yet as font style and layout are different 
+                        -->
                         <dt class="list-inline-item"><@fmt.message key="transport"/>:</dt>
                         <#list day.transports as transport>
                             <dd class="list-inline-item">
