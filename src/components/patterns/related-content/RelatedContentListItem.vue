@@ -1,7 +1,7 @@
 <template>
-  <vs-col tag="li" cols="12" sm="6" lg="3" class="vs-related-content__list-item">
-    <slot />
-  </vs-col>
+    <vs-col tag="li" cols="12" sm="6" lg="3" class="vs-related-content__list-item">
+        <slot />
+    </vs-col>
 </template>
 
 <script>
@@ -12,10 +12,10 @@ import { VsCol } from "@components/elements/layout"
  */
 
 export default {
-  name: "VsRelatedContentListItem",
-  status: "prototype",
-  release: "0.0.1",
-  components: { VsCol },
+    name: "VsRelatedContentListItem",
+    status: "prototype",
+    release: "0.0.1",
+    components: { VsCol },
 }
 </script>
 

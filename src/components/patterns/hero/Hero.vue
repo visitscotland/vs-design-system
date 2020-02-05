@@ -1,12 +1,12 @@
 <template>
     <figure class="d-flex flex-column">
-        <div class="vs-hero__image-wrapper">
+        <div class="vs-hero__image-wrapper" role="document">
             <slot />
 
             <vs-button
                 variant="transparent"
                 class="d-lg-none position-absolute vs-hero__toggle-caption"
-                v-if="showToggle"
+                v-if="showCaption"
                 :animate="false"
                 :aria-expanded="showCaption ? 'true' : 'false'"
                 :aria-controls="'image_' + imageSrc"
@@ -35,7 +35,7 @@
                         </div>
                     </vs-col>
                     <vs-col cols="auto" class="pl-0" v-if="showMap">
-                        <div class="map__wrapper">
+                        <div class="map__wrapper" role="document">
                             <vs-image-location-map
                                 :latitude="this.latitude"
                                 :longitude="this.longitude"
@@ -51,7 +51,6 @@
 </template>
 
 <script>
-import { lazysizes } from "lazysizes"
 import VsIcon from "@components/elements/icon/Icon"
 import VsButton from "@components/elements/button/Button"
 import { VsContainer, VsRow, VsCol } from "@components/elements/layout"
@@ -83,6 +82,7 @@ export default {
          */
         credit: {
             type: String,
+            default: null,
         },
 
         /**
@@ -90,6 +90,7 @@ export default {
          */
         caption: {
             type: String,
+            default: null,
         },
 
         /**
@@ -136,20 +137,20 @@ export default {
             return "background-image: url('" + this.imageSrc + "');"
         },
         showCaptionData() {
-            return this.caption.length || this.credit.length ? true : false
+            return (this.caption && this.caption.length) || (this.credit && this.credit.length)
         },
         showToggle() {
             // only show the image detail toggle button if there's a map or caption data
-            return this.caption.length || this.credit.length ? true : false
+            return this.showCaptionData()
         },
         showMap() {
             // only show the map if longitude and latitude are both set
-            return this.longitude && this.latitude ? true : false
+            return this.longitude && this.latitude
         },
     },
     methods: {
         toggleCaption() {
-            return (this.showCaption = !this.showCaption)
+            return !this.showCaption
         },
     },
 }
@@ -260,11 +261,11 @@ figcaption {
             :longitude="item.longitude"
         >
             <vs-img
-                class="lazyload" 
+                class="lazyload"
                 :src="item.imageSrc"
                 srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
-                :data-srcset="item.imageSrc" 
-                :alt="item.altText" 
+                :data-srcset="item.imageSrc"
+                :alt="item.altText"
                 data-sizes="auto">
             </vs-img>
 

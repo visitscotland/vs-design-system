@@ -1,9 +1,9 @@
 <template>
-  <nav aria-label="breadcrumbs" class="py-4">
-    <b-breadcrumb class="flex-nowrap p-0" v-bind="$attrs">
-      <slot />
-    </b-breadcrumb>
-  </nav>
+    <nav aria-label="breadcrumbs" class="py-4">
+        <b-breadcrumb class="flex-nowrap p-0" v-bind="$attrs">
+            <slot />
+        </b-breadcrumb>
+    </nav>
 </template>
 
 <script>
@@ -14,17 +14,17 @@ import { BBreadcrumb } from "bootstrap-vue"
  */
 
 export default {
-  name: "VsBreadcrumb",
-  status: "prototype",
-  release: "0.0.1",
-  components: {
-    BBreadcrumb,
-  },
-  props: {
-    items: {
-      type: Array,
+    name: "VsBreadcrumb",
+    status: "prototype",
+    release: "0.0.1",
+    components: {
+        BBreadcrumb,
     },
-  },
+    props: {
+        items: {
+            type: Array,
+        },
+    },
 }
 </script>
 

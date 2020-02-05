@@ -1,7 +1,7 @@
 <template>
-  <span class="vs-tooltip d-inline-block position-relative" v-b-tooltip.hover :title="this.title">
-    <slot />
-  </span>
+    <span class="vs-tooltip d-inline-block position-relative" v-b-tooltip.hover :title="this.title">
+        <slot />
+    </span>
 </template>
 
 <script>
@@ -11,15 +11,15 @@ import { VBTooltip } from "bootstrap-vue"
  */
 
 export default {
-  name: "VsTooltip",
-  status: "prototype",
-  release: "0.0.1",
-  directives: { "b-tooltip": VBTooltip },
-  props: {
-    title: {
-      type: String,
+    name: "VsTooltip",
+    status: "prototype",
+    release: "0.0.1",
+    directives: { "b-tooltip": VBTooltip },
+    props: {
+        title: {
+            type: String,
+        },
     },
-  },
 }
 </script>
 

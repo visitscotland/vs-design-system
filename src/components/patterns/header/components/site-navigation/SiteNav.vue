@@ -1,13 +1,13 @@
 <template>
-  <vs-container class="vs-site-nav bg-white" v-hand-down-focus="firstNavItem">
-    <vs-row no-gutters>
-      <vs-col lg="7" offset-lg="3" type="nav">
-        <vs-site-nav-list :level="1">
-          <slot />
-        </vs-site-nav-list>
-      </vs-col>
-    </vs-row>
-  </vs-container>
+    <vs-container class="vs-site-nav bg-white" v-hand-down-focus="firstNavItem">
+        <vs-row no-gutters>
+            <vs-col lg="7" offset-lg="3" type="nav">
+                <vs-site-nav-list :level="1">
+                    <slot />
+                </vs-site-nav-list>
+            </vs-col>
+        </vs-row>
+    </vs-container>
 </template>
 
 <script>
@@ -17,30 +17,30 @@ import { VsCol, VsRow, VsContainer } from "@components/elements/layout"
 import HandDownFocus from "@/directives/hand-down-focus.js"
 
 export default {
-  name: "VsSiteNav",
-  status: "prototype",
-  release: "0.1.0",
-  components: {
-    VsSiteNavList,
-    VsCol,
-    VsRow,
-    VsContainer,
-  },
-  directives: {
-    HandDownFocus,
-  },
-  computed: {
-    firstNavItem() {
-      console.log(this.$slots.default)
-      debugger
+    name: "VsSiteNav",
+    status: "prototype",
+    release: "0.1.0",
+    components: {
+        VsSiteNavList,
+        VsCol,
+        VsRow,
+        VsContainer,
     },
-  },
+    directives: {
+        HandDownFocus,
+    },
+    computed: {
+        firstNavItem() {
+            console.log(this.$slots.default)
+            debugger
+        },
+    },
 }
 </script>
 
 <style lang="scss" scoped>
 .vs-site-nav {
-  @extend %default-box-shadow;
+    @extend %default-box-shadow;
 }
 </style>
 
