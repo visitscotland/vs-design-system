@@ -1,26 +1,26 @@
 <template>
-  <vs-site-nav-list-item
-    data-test="site-promo-list-item"
-    class="vs-site-nav__list-promo-item position-relative"
-    v-bind="$attrs"
-    :style="backgroundImgStyle"
-    :class="{
-      'vs-site-nav__list-promo-item--image': isFirstSiblingWithImage,
-    }"
-  >
-    <div class="vs-site-nav__list-promo-item-image-copy">
-      <slot />
+    <vs-site-nav-list-item
+        data-test="site-promo-list-item"
+        class="vs-site-nav__list-promo-item position-relative"
+        v-bind="$attrs"
+        :style="backgroundImgStyle"
+        :class="{
+            'vs-site-nav__list-promo-item--image': isFirstSiblingWithImage,
+        }"
+    >
+        <div class="vs-site-nav__list-promo-item-image-copy">
+            <slot />
 
-      <vs-icon
-        v-if="isFirstSiblingWithImage"
-        data-test="mobile-promo-arrow-icon"
-        name="reverse-arrow"
-        size="sm"
-        variant="primary"
-        :padding="0"
-      />
-    </div>
-  </vs-site-nav-list-item>
+            <vs-icon
+                v-if="isFirstSiblingWithImage"
+                data-test="mobile-promo-arrow-icon"
+                name="reverse-arrow"
+                size="sm"
+                variant="primary"
+                :padding="0"
+            />
+        </div>
+    </vs-site-nav-list-item>
 </template>
 
 <script>
@@ -30,40 +30,40 @@ import VsIcon from "@components/elements/icon"
 import VsSiteNavListItem from "./SiteNavListItem"
 
 export default {
-  name: "VsSiteNavListPromoItem",
-  status: "prototype",
-  release: "0.1.0",
-  components: { VsIcon, VsSiteNavListItem },
-  props: {
-    imageHref: {
-      type: String,
+    name: "VsSiteNavListPromoItem",
+    status: "prototype",
+    release: "0.1.0",
+    components: { VsIcon, VsSiteNavListItem },
+    props: {
+        imageHref: {
+            type: String,
+        },
     },
-  },
-  computed: {
-    level() {
-      return this.$parent.level
-    },
-    backgroundImgStyle() {
-      if (!this.isFirstSiblingWithImage) {
-        return false
-      }
+    computed: {
+        level() {
+            return this.$parent.level
+        },
+        backgroundImgStyle() {
+            if (!this.isFirstSiblingWithImage) {
+                return false
+            }
 
-      return {
-        backgroundImage: "url(" + this.imageHref + ")",
-      }
-    },
-    isFirstSiblingWithImage() {
-      if (!this.imageHref) {
-        return false
-      }
+            return {
+                backgroundImage: "url(" + this.imageHref + ")",
+            }
+        },
+        isFirstSiblingWithImage() {
+            if (!this.imageHref) {
+                return false
+            }
 
-      const firstSibling = find(this.$parent.$children, child => {
-        return child.$options.name === this.$options.name && child.imageHref
-      })
+            const firstSibling = find(this.$parent.$children, child => {
+                return child.$options.name === this.$options.name && child.imageHref
+            })
 
-      return this._uid === get(firstSibling, "_uid")
+            return this._uid === get(firstSibling, "_uid")
+        },
     },
-  },
 }
 </script>
 
@@ -75,53 +75,53 @@ export default {
 @import "../../styles/placeholders";
 
 .vs-site-nav__list-promo-item {
-  &.vs-site-nav__list-promo-item--image ::v-deep {
-    height: 168px;
-    background-position: 50% 50%;
-    background-size: cover;
-    align-items: flex-end;
+    &.vs-site-nav__list-promo-item--image ::v-deep {
+        height: 168px;
+        background-position: 50% 50%;
+        background-size: cover;
+        align-items: flex-end;
 
-    .vs-site-nav__link {
-      height: 100%;
-      padding: 0;
-      align-items: flex-end;
+        .vs-site-nav__link {
+            height: 100%;
+            padding: 0;
+            align-items: flex-end;
 
-      &:after {
-        display: none;
-      }
+            &:after {
+                display: none;
+            }
+        }
+
+        .vs-site-nav__list-promo-item-image-copy {
+            height: 75px;
+            padding: 0.5rem;
+            padding-right: 2rem;
+            line-height: 22px;
+            font-size: 1.125rem;
+            font-weight: lighter;
+            background-color: white;
+            position: relative;
+
+            .icon {
+                position: absolute;
+                right: 10px;
+                bottom: 10px;
+            }
+        }
     }
 
-    .vs-site-nav__list-promo-item-image-copy {
-      height: 75px;
-      padding: 0.5rem;
-      padding-right: 2rem;
-      line-height: 22px;
-      font-size: 1.125rem;
-      font-weight: lighter;
-      background-color: white;
-      position: relative;
+    // .vs-site-nav__list-item {
+    //   display: block;
+    // }
 
-      .icon {
-        position: absolute;
-        right: 10px;
-        bottom: 10px;
-      }
-    }
-  }
-
-  // .vs-site-nav__list-item {
-  //   display: block;
-  // }
-
-  // .vs-site-nav__list-promo-item-image {
-  //   position: absolute;
-  //   top: 0;
-  //   right: 0;
-  //   bottom: 0;
-  //   left: 0;
-  //   background-size: cover;
-  //   object-fit: cover;
-  // }
+    // .vs-site-nav__list-promo-item-image {
+    //   position: absolute;
+    //   top: 0;
+    //   right: 0;
+    //   bottom: 0;
+    //   left: 0;
+    //   background-size: cover;
+    //   object-fit: cover;
+    // }
 }
 
 // .vs-promo-item__link {

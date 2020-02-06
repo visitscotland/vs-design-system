@@ -8,12 +8,12 @@ import { get, isFunction } from "lodash"
  */
 
 export default function(el, binding) {
-  console.log("hand down focus: " + el.classList[0])
-  el.onfocus = () => {
-    console.log("focus: " + el.classList[0])
-    const $target = binding.value || get(el, "childNodes[0]")
-    if (isFunction($target.focus)) {
-      $target.focus()
+    console.log("hand down focus: " + el.classList[0])
+    el.onfocus = () => {
+        console.log("focus: " + el.classList[0])
+        const $target = binding.value || get(el, "childNodes[0]")
+        if (isFunction($target.focus)) {
+            $target.focus()
+        }
     }
-  }
 }

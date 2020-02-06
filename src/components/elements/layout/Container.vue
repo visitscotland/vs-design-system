@@ -1,5 +1,5 @@
 <template>
-  <b-container tag="div" v-bind="$attrs"><slot /></b-container>
+    <b-container tag="div" v-bind="$attrs"><slot /></b-container>
 </template>
 
 <script>
@@ -11,12 +11,12 @@ import { BContainer } from "bootstrap-vue"
  */
 
 export default {
-  name: "VsContainer",
-  status: "prototype",
-  release: "0.1.0",
-  components: {
-    BContainer,
-  },
+    name: "VsContainer",
+    status: "prototype",
+    release: "0.1.0",
+    components: {
+        BContainer,
+    },
 }
 </script>
 
