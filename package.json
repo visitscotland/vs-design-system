@@ -63,12 +63,13 @@
     ],
     "env": {
       "browser": true,
-      "node": true
+      "node": true,
+      "jest": true
     },
     "rules": {
       "indent": [
         "error",
-        2
+        4
       ],
       "vue/no-unused-vars": "error",
       "quotes": [
@@ -95,6 +96,7 @@
     }
   },
   "dependencies": {
+    "babel-plugin-macros": "^2.8.0",
     "bootstrap": "^4.3.1",
     "bootstrap-vue": "^2.0.0-rc.28",
     "core-js": "3",
@@ -167,6 +169,7 @@
     "pretty-quick": "^1.8.0",
     "request": "^2.88.0",
     "request-promise-native": "^1.0.7",
+    "require-context.macro": "^1.2.2",
     "rimraf": "^2.6.0",
     "sass": "^1.22.0",
     "sass-loader": "^7.1.0",
@@ -208,5 +211,12 @@
     "not BlackBerry > 0",
     "not OperaMini all",
     "not OperaMobile > 0"
-  ]
+  ],
+  "jest": {
+    "testPathIgnorePatterns": [
+      ".test",
+      "node_modules"
+    ],
+    "jest.pathToJest": "node node_modules/jest/bin/jest.js"
+  }
 }

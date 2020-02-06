@@ -1,13 +1,13 @@
 <template>
-  <component
-    :is="type"
-    class="heading"
-    :class="{
-      'heading--thin': thin,
-    }"
-  >
-    <slot />
-  </component>
+    <component
+        :is="type"
+        class="heading"
+        :class="{
+            'heading--thin': thin,
+        }"
+    >
+        <slot />
+    </component>
 </template>
 
 <script>
@@ -18,34 +18,34 @@ import { isNumber } from "lodash"
  * Heading element provides an option to change the level of the heading.
  */
 export default {
-  name: "VsHeading",
-  status: "prototype",
-  release: "0.1.0",
-  props: {
-    /**
-     * The heading level used for the heading.
-     * `1, 2, 3, 4, 5, 6`
-     */
-    level: {
-      type: [String, Number],
-      default: "1",
-      validator: value => {
-        return isNumber(value) ? value > 0 && value < 7 : value.match(/(1|2|3|4|5|6)/)
-      },
-    },
+    name: "VsHeading",
+    status: "prototype",
+    release: "0.1.0",
+    props: {
+        /**
+         * The heading level used for the heading.
+         * `1, 2, 3, 4, 5, 6`
+         */
+        level: {
+            type: [String, Number],
+            default: "1",
+            validator: value => {
+                return isNumber(value) ? value > 0 && value < 7 : value.match(/(1|2|3|4|5|6)/)
+            },
+        },
 
-    /**
-     * Use the thin font
-     */
-    thin: {
-      type: Boolean,
+        /**
+         * Use the thin font
+         */
+        thin: {
+            type: Boolean,
+        },
     },
-  },
-  computed: {
-    type() {
-      return "h" + this.level
+    computed: {
+        type() {
+            return "h" + this.level
+        },
     },
-  },
 }
 </script>
 
@@ -54,30 +54,30 @@ export default {
 @import "../../../assets/fonts/fonts.css";
 
 $font-sizes: (
-  1: $h1-font-size,
-  2: $h2-font-size,
-  3: $h3-font-size,
-  4: $h4-font-size,
-  5: $h5-font-size,
-  6: $h6-font-size,
+    1: $h1-font-size,
+    2: $h2-font-size,
+    3: $h3-font-size,
+    4: $h4-font-size,
+    5: $h5-font-size,
+    6: $h6-font-size,
 );
 
 .heading {
-  @each $level, $size in $font-sizes {
-    @at-root h#{$level}#{&} {
-      letter-spacing: $size * 0.1;
-      margin-bottom: $size;
+    @each $level, $size in $font-sizes {
+        @at-root h#{$level}#{&} {
+            letter-spacing: $size * 0.1;
+            margin-bottom: $size;
+        }
     }
-  }
 
-  &.heading--thin {
-    font-family: $headings-font-family-thin;
+    &.heading--thin {
+        font-family: $headings-font-family-thin;
 
-    span {
-      font-family: $headings-font-family;
-      display: block;
+        span {
+            font-family: $headings-font-family;
+            display: block;
+        }
     }
-  }
 }
 </style>
 

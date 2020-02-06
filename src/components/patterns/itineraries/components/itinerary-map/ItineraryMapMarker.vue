@@ -1,26 +1,26 @@
 <template>
-  <button
-    class="vs-itinerary-map-marker"
-    :class="isHighlighted ? 'active' : ''"
-    @click="handleClick()"
-    variant="transparent"
-    @mouseenter="handleMouseEnter()"
-    @mouseleave="handleMouseLeave()"
-    @focus="handleClick()"
-  >
-    <div class="map-marker__wrapper">
-      <vs-icon
-        name="map-marker-filled"
+    <button
+        class="vs-itinerary-map-marker"
         :class="isHighlighted ? 'active' : ''"
-        :variant="isHighlighted ? 'dark' : 'secondary-teal'"
-        :size="isHighlighted ? 'lg' : 'md'"
-        :padding="0"
-      />
-      <span class="vs-itinerary-map-marker__count" :class="isHighlighted ? 'active' : ''"
-        ><span class="sr-only">Stop</span>{{ this.feature.properties.stopCount }}</span
-      >
-    </div>
-  </button>
+        @click="handleClick()"
+        variant="transparent"
+        @mouseenter="handleMouseEnter()"
+        @mouseleave="handleMouseLeave()"
+        @focus="handleClick()"
+    >
+        <div class="map-marker__wrapper">
+            <vs-icon
+                name="map-marker-filled"
+                :class="isHighlighted ? 'active' : ''"
+                :variant="isHighlighted ? 'dark' : 'secondary-teal'"
+                :size="isHighlighted ? 'lg' : 'md'"
+                :padding="0"
+            />
+            <span class="vs-itinerary-map-marker__count" :class="isHighlighted ? 'active' : ''"
+                ><span class="sr-only">Stop</span>{{ this.feature.properties.stopCount }}</span
+            >
+        </div>
+    </button>
 </template>
 
 <script>
@@ -32,95 +32,95 @@ import VsIcon from "@components/elements/icon/Icon"
  */
 
 export default {
-  name: "VsItineraryMapMarker",
-  status: "prototype",
-  release: "0.0.1",
-  components: {
-    VsIcon,
-  },
-  data() {
-    return {
-      isHighlighted: false,
-    }
-  },
-  props: {
-    feature: {
-      type: Object,
-      required: true,
+    name: "VsItineraryMapMarker",
+    status: "prototype",
+    release: "0.0.1",
+    components: {
+        VsIcon,
     },
-  },
-  itinerariesStore,
-  watch: {
-    highlightedStop() {
-      this.toggleHighlighted()
+    data() {
+        return {
+            isHighlighted: false,
+        }
     },
-  },
-  computed: {
-    highlightedStop() {
-      return itinerariesStore.getters["itineraries/getHighlightedStop"]
+    props: {
+        feature: {
+            type: Object,
+            required: true,
+        },
     },
-  },
-  methods: {
-    handleClick() {
-      if (this.highlightedStop === this.feature) {
-        return itinerariesStore.dispatch("itineraries/setStopHighlighted", null)
-      } else {
-        return itinerariesStore.dispatch("itineraries/setStopHighlighted", this.feature)
-      }
+    itinerariesStore,
+    watch: {
+        highlightedStop() {
+            this.toggleHighlighted()
+        },
     },
-    handleMouseEnter() {
-      return itinerariesStore.dispatch("itineraries/setStopHighlighted", this.feature)
+    computed: {
+        highlightedStop() {
+            return itinerariesStore.getters["itineraries/getHighlightedStop"]
+        },
     },
-    handleMouseLeave() {
-      return itinerariesStore.dispatch("itineraries/setStopHighlighted", null)
+    methods: {
+        handleClick() {
+            if (this.highlightedStop === this.feature) {
+                return itinerariesStore.dispatch("itineraries/setStopHighlighted", null)
+            } else {
+                return itinerariesStore.dispatch("itineraries/setStopHighlighted", this.feature)
+            }
+        },
+        handleMouseEnter() {
+            return itinerariesStore.dispatch("itineraries/setStopHighlighted", this.feature)
+        },
+        handleMouseLeave() {
+            return itinerariesStore.dispatch("itineraries/setStopHighlighted", null)
+        },
+        toggleHighlighted() {
+            this.isHighlighted = this.highlightedStop === this.feature ? true : false
+        },
     },
-    toggleHighlighted() {
-      this.isHighlighted = this.highlightedStop === this.feature ? true : false
-    },
-  },
 }
 </script>
 
 <style lang="scss" scoped>
 .vs-itinerary-map-marker {
-  background: transparent;
-  border: none;
-  display: block;
-  font-weight: $font-weight-bold;
-  padding: 0;
-  position: absolute;
+    background: transparent;
+    border: none;
+    display: block;
+    font-weight: $font-weight-bold;
+    padding: 0;
+    position: absolute;
 
-  &:hover,
-  &:focus,
-  &.active {
-    z-index: 1 !important;
-  }
+    &:hover,
+    &:focus,
+    &.active {
+        z-index: 1 !important;
+    }
 }
 
 svg {
-  transition: all 250ms ease;
+    transition: all 250ms ease;
 }
 
 svg.active {
-  transform: scale(1.2, 1.2) translateY(-10px);
-  fill: $color-secondary-teal-shade-3 !important;
+    transform: scale(1.2, 1.2) translateY(-10px);
+    fill: $color-secondary-teal-shade-3 !important;
 }
 
 .vs-itinerary-map-marker__count {
-  color: $color-white;
-  display: block;
-  font-size: 1rem;
-  position: absolute;
-  top: 4px;
-  left: 0;
-  transition: all 250ms ease;
-  text-align: center;
-  width: 100%;
+    color: $color-white;
+    display: block;
+    font-size: 1rem;
+    position: absolute;
+    top: 4px;
+    left: 0;
+    transition: all 250ms ease;
+    text-align: center;
+    width: 100%;
 
-  &.active {
-    font-size: 1.5rem;
-    transform: scale(1.2, 1.2) translateY(-5px);
-  }
+    &.active {
+        font-size: 1.5rem;
+        transform: scale(1.2, 1.2) translateY(-5px);
+    }
 }
 </style>
 

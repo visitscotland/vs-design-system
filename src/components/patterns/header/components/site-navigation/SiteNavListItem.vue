@@ -1,60 +1,60 @@
 <template>
-  <li
-    data-test="site-nav-list-item"
-    class="vs-site-nav__list-item"
-    :class="'vs-site-nav__list-item--level' + level"
-  >
-    <vs-button
-      v-if="hasChildren"
-      data-test="site-nav-button"
-      class="vs-site-nav__button align-items-center"
-      ref="trigger"
-      @click.native="triggerToggle"
-      aria-haspopup="true"
-      :aria-expanded="show ? 'true' : 'false'"
-      :animate="false"
-      variant="transparent"
+    <li
+        data-test="site-nav-list-item"
+        class="vs-site-nav__list-item"
+        :class="'vs-site-nav__list-item--level' + level"
     >
-      <slot />
-      <div
-        class="vs-mobile-nav__icon-wrapper vs-mobile-nav__icon-wrapper--spin"
-        :class="{
-          'vs-mobile-nav__icon-wrapper--expanded': show,
-          ['level' + level]: level,
-        }"
-      >
-        <vs-icon
-          data-test="mobile-nav-chevron-svg"
-          name="chevron-down"
-          size="xs"
-          variant="dark"
-          class="d-lg-none"
-        />
-      </div>
-    </vs-button>
-    <a v-else class="vs-site-nav__link" :href="href" :data-vs-track="trackingId">
-      <slot />
-    </a>
-    <transition name="slide-fade" v-if="hasChildren">
-      <vs-site-nav-list :level="incrementLevel" v-show="show">
-        <li
-          class="vs-site-nav__list-item"
-          :class="{
-            ['vs-site-nav__list-item--level' + incrementLevel]: incrementLevel,
-          }"
-          v-if="href !== null"
+        <vs-button
+            v-if="hasChildren"
+            data-test="site-nav-button"
+            class="vs-site-nav__button align-items-center"
+            ref="trigger"
+            @click.native="triggerToggle"
+            aria-haspopup="true"
+            :aria-expanded="show ? 'true' : 'false'"
+            :animate="false"
+            variant="transparent"
         >
-          <a
-            class="vs-site-nav__link vs-site-nav__link--landing-page"
-            :href="href"
-            :data-vs-track="trackingId"
-            >See all {{ lowerCaseContent }}</a
-          >
-        </li>
-        <slot name="subnav" />
-      </vs-site-nav-list>
-    </transition>
-  </li>
+            <slot />
+            <div
+                class="vs-mobile-nav__icon-wrapper vs-mobile-nav__icon-wrapper--spin"
+                :class="{
+                    'vs-mobile-nav__icon-wrapper--expanded': show,
+                    ['level' + level]: level,
+                }"
+            >
+                <vs-icon
+                    data-test="mobile-nav-chevron-svg"
+                    name="chevron-down"
+                    size="xs"
+                    variant="dark"
+                    class="d-lg-none"
+                />
+            </div>
+        </vs-button>
+        <a v-else class="vs-site-nav__link" :href="href" :data-vs-track="trackingId">
+            <slot />
+        </a>
+        <transition name="slide-fade" v-if="hasChildren">
+            <vs-site-nav-list :level="incrementLevel" v-show="show">
+                <li
+                    class="vs-site-nav__list-item"
+                    :class="{
+                        ['vs-site-nav__list-item--level' + incrementLevel]: incrementLevel,
+                    }"
+                    v-if="href !== null"
+                >
+                    <a
+                        class="vs-site-nav__link vs-site-nav__link--landing-page"
+                        :href="href"
+                        :data-vs-track="trackingId"
+                        >See all {{ lowerCaseContent }}</a
+                    >
+                </li>
+                <slot name="subnav" />
+            </vs-site-nav-list>
+        </transition>
+    </li>
 </template>
 
 <script>
@@ -65,67 +65,67 @@ import VsButton from "@components/elements/button"
 import VsSiteNavList from "./SiteNavList"
 
 export default {
-  name: "VsSiteNavListItem",
-  status: "prototype",
-  release: "0.1.0",
-  components: { VsIcon, VsButton, VsSiteNavList },
-  data() {
-    return {
-      show: false,
-    }
-  },
-  props: {
-    href: {
-      type: String,
+    name: "VsSiteNavListItem",
+    status: "prototype",
+    release: "0.1.0",
+    components: { VsIcon, VsButton, VsSiteNavList },
+    data() {
+        return {
+            show: false,
+        }
     },
-    trackingId: {
-      type: String,
+    props: {
+        href: {
+            type: String,
+        },
+        trackingId: {
+            type: String,
+        },
+        title: {
+            type: String,
+        },
+        subnav: {
+            type: Array,
+        },
     },
-    title: {
-      type: String,
-    },
-    subnav: {
-      type: Array,
-    },
-  },
-  computed: {
-    lowerCaseContent() {
-      const defaultContent = get(this.$slots, "default.0.text")
+    computed: {
+        lowerCaseContent() {
+            const defaultContent = get(this.$slots, "default.0.text")
 
-      return isString(defaultContent) ? defaultContent.toLowerCase() : ""
-    },
-    hasChildren() {
-      if (this.level > 2) {
-        return false
-      }
+            return isString(defaultContent) ? defaultContent.toLowerCase() : ""
+        },
+        hasChildren() {
+            if (this.level > 2) {
+                return false
+            }
 
-      return !isEmpty(this.$slots.subnav)
+            return !isEmpty(this.$slots.subnav)
+        },
+        incrementLevel() {
+            return this.level + 1
+        },
+        level() {
+            return this.$parent.level
+        },
     },
-    incrementLevel() {
-      return this.level + 1
+    methods: {
+        reset() {
+            this.show = false
+        },
+        triggerToggle() {
+            this.show = !this.show
+            let thisTrigger = this.$refs.trigger
+            if (this.show) {
+                this.$parent.$emit("setScrollOffset", thisTrigger.offsetTop)
+            } else {
+                this.$parent.$emit("setScrollOffset", 0)
+            }
+            thisTrigger.$el.blur()
+        },
     },
-    level() {
-      return this.$parent.level
+    mounted() {
+        this.$root.$on("resetMenus", this.reset)
     },
-  },
-  methods: {
-    reset() {
-      this.show = false
-    },
-    triggerToggle() {
-      this.show = !this.show
-      let thisTrigger = this.$refs.trigger
-      if (this.show) {
-        this.$parent.$emit("setScrollOffset", thisTrigger.offsetTop)
-      } else {
-        this.$parent.$emit("setScrollOffset", 0)
-      }
-      thisTrigger.$el.blur()
-    },
-  },
-  mounted() {
-    this.$root.$on("resetMenus", this.reset)
-  },
 }
 </script>
 
@@ -135,164 +135,164 @@ export default {
 @import "../../styles/animations";
 
 $character_styles: (
-  mobile: (
-    1: (
-      size: 1.5rem,
-      height: 1.875rem,
-      spacing: 1.4px,
+    mobile: (
+        1: (
+            size: 1.5rem,
+            height: 1.875rem,
+            spacing: 1.4px,
+        ),
+        2: (
+            size: 1.25rem,
+            height: 1.75rem,
+            spacing: 1px,
+        ),
+        3: (
+            size: 1.125rem,
+            height: 1.375rem,
+            spacing: 1px,
+        ),
     ),
-    2: (
-      size: 1.25rem,
-      height: 1.75rem,
-      spacing: 1px,
+    desktop: (
+        1: (
+            size: 1.5rem,
+            height: 1.875rem,
+            spacing: 1.4px,
+        ),
+        2: (
+            size: 1.25rem,
+            height: 1.75rem,
+            spacing: 1px,
+        ),
+        3: (
+            size: 1.125rem,
+            height: 1.375rem,
+            spacing: 1px,
+        ),
     ),
-    3: (
-      size: 1.125rem,
-      height: 1.375rem,
-      spacing: 1px,
-    ),
-  ),
-  desktop: (
-    1: (
-      size: 1.5rem,
-      height: 1.875rem,
-      spacing: 1.4px,
-    ),
-    2: (
-      size: 1.25rem,
-      height: 1.75rem,
-      spacing: 1px,
-    ),
-    3: (
-      size: 1.125rem,
-      height: 1.375rem,
-      spacing: 1px,
-    ),
-  ),
 );
 
 @mixin level-character-style($level) {
-  font-size: get-character-style(mobile, $level, size);
-  letter-spacing: get-character-style(mobile, $level, spacing);
-  line-height: get-character-style(mobile, $level, height);
+    font-size: get-character-style(mobile, $level, size);
+    letter-spacing: get-character-style(mobile, $level, spacing);
+    line-height: get-character-style(mobile, $level, height);
 
-  @include media-breakpoint-up(lg) {
-    font-size: get-character-style(desktop, $level, size);
-    letter-spacing: get-character-style(desktop, $level, spacing);
-    line-height: get-character-style(desktop, $level, height);
-  }
+    @include media-breakpoint-up(lg) {
+        font-size: get-character-style(desktop, $level, size);
+        letter-spacing: get-character-style(desktop, $level, spacing);
+        line-height: get-character-style(desktop, $level, height);
+    }
 }
 
 @function get-character-style($viewport, $level, $key) {
-  @return map-deep-get($character_styles, $viewport, $level, $key);
+    @return map-deep-get($character_styles, $viewport, $level, $key);
 }
 
 .vs-site-nav__list-item {
-  width: 100vw;
-
-  @include media-breakpoint-up(lg) {
-    height: 100%;
-    width: auto;
-  }
-
-  .vs-site-nav__link {
-    display: flex;
-  }
-
-  .vs-site-nav__button,
-  .vs-site-nav__link {
-    width: 100%;
-    text-transform: none !important;
-    border: none;
-    border-bottom: 1px solid $color-gray-tint-6;
-    color: $color-base-text;
-    font-weight: $font-weight-bold;
-    position: relative;
-    justify-content: space-between !important;
-    padding: 0.75rem 1.25rem;
+    width: 100vw;
 
     @include media-breakpoint-up(lg) {
-      height: 100%;
-      font-size: 18px;
-      letter-spacing: 0;
-      white-space: nowrap;
+        height: 100%;
+        width: auto;
     }
 
-    &:focus {
-      box-shadow: none;
-      outline: none;
-      border-bottom-color: $color-theme-primary;
+    .vs-site-nav__link {
+        display: flex;
     }
 
-    &::after {
-      content: "";
-      position: absolute;
-      left: 0;
-      top: 0;
-      width: 12px;
-      height: 100%;
-      background-color: $color-gray-tint-6;
-      transition: background-color 250ms ease-in-out;
+    .vs-site-nav__button,
+    .vs-site-nav__link {
+        width: 100%;
+        text-transform: none !important;
+        border: none;
+        border-bottom: 1px solid $color-gray-tint-6;
+        color: $color-base-text;
+        font-weight: $font-weight-bold;
+        position: relative;
+        justify-content: space-between !important;
+        padding: 0.75rem 1.25rem;
+
+        @include media-breakpoint-up(lg) {
+            height: 100%;
+            font-size: 18px;
+            letter-spacing: 0;
+            white-space: nowrap;
+        }
+
+        &:focus {
+            box-shadow: none;
+            outline: none;
+            border-bottom-color: $color-theme-primary;
+        }
+
+        &::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 12px;
+            height: 100%;
+            background-color: $color-gray-tint-6;
+            transition: background-color 250ms ease-in-out;
+        }
+
+        &[aria-expanded="true"] {
+            &::after {
+                background-color: $color-pink;
+            }
+        }
     }
 
-    &[aria-expanded="true"] {
-      &::after {
-        background-color: $color-pink;
-      }
-    }
-  }
+    &.vs-site-nav__list-item--level1 {
+        > .vs-site-nav__button,
+        > .vs-site-nav__link {
+            @include level-character-style(1);
+            font-weight: $font-weight-normal;
+            background-color: $color-white;
 
-  &.vs-site-nav__list-item--level1 {
-    > .vs-site-nav__button,
-    > .vs-site-nav__link {
-      @include level-character-style(1);
-      font-weight: $font-weight-normal;
-      background-color: $color-white;
+            @include media-breakpoint-up(lg) {
+                box-shadow: none;
+            }
 
-      @include media-breakpoint-up(lg) {
-        box-shadow: none;
-      }
-
-      &:not([aria-expanded="true"]):after {
-        background-color: transparent;
-      }
-    }
-  }
-
-  &.vs-site-nav__list-item--level2 {
-    > .vs-site-nav__link {
-      padding-top: 12px;
-      padding-bottom: 12px;
+            &:not([aria-expanded="true"]):after {
+                background-color: transparent;
+            }
+        }
     }
 
-    > .vs-site-nav__button,
-    > .vs-site-nav__link {
-      @include level-character-style(2);
+    &.vs-site-nav__list-item--level2 {
+        > .vs-site-nav__link {
+            padding-top: 12px;
+            padding-bottom: 12px;
+        }
 
-      font-weight: $font-weight-normal;
-      padding-left: 2.25rem;
-      width: 100vw;
+        > .vs-site-nav__button,
+        > .vs-site-nav__link {
+            @include level-character-style(2);
+
+            font-weight: $font-weight-normal;
+            padding-left: 2.25rem;
+            width: 100vw;
+        }
     }
-  }
 
-  &.vs-site-nav__list-item--level3 {
-    > .vs-site-nav__button,
-    > .vs-site-nav__link {
-      @include level-character-style(3);
+    &.vs-site-nav__list-item--level3 {
+        > .vs-site-nav__button,
+        > .vs-site-nav__link {
+            @include level-character-style(3);
 
-      font-weight: $font-weight-normal;
-      padding-left: 3.25rem;
+            font-weight: $font-weight-normal;
+            padding-left: 3.25rem;
+        }
     }
-  }
 }
 
 .vs-site-nav__link--landing-page {
-  background-color: $color-white;
-  color: $color-pink;
-
-  &:hover {
+    background-color: $color-white;
     color: $color-pink;
-  }
+
+    &:hover {
+        color: $color-pink;
+    }
 }
 </style>
 
