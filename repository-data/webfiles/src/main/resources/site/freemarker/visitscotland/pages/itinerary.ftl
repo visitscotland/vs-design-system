@@ -207,11 +207,9 @@
                         <dt class="list-inline-item"><@fmt.message key="transport"/>:</dt>
                         <#list day.transports as transport>
                             <dd class="list-inline-item">
-                                <#-- TODO: Tooltip title and sr-only should spit out the transport value, not the key -->
                                 <vs-tooltip title="<@fmt.message key="${transport}"/>">
                                     <vs-icon name="${transport}" variant="dark" size="sm"></vs-icon>
                                 </vs-tooltip>
-                                <#-- TODO: Tooltip title and sr-only should spit out the transport value, not the key -->
                                 <span class="sr-only"><@fmt.message key="${transport}"/></span>
                             </dd>
                         </#list>
