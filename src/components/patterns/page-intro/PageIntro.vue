@@ -6,7 +6,7 @@
                 <div class="vs-page-intro__wrapper--inner-top">
                     <slot name="upper" />
                 </div>
-                <div class="vs-page-intro__wrapper--inner-bottom">
+                <div class="vs-page-intro__wrapper--inner-bottom py-9">
                     <slot name="lower" />
                 </div>
             </div>
@@ -139,12 +139,8 @@ export default {
           <vs-col cols="12" md="6" lg="5" xl="4">
             <vs-summary-box-list>
                 <vs-summary-box-list-item>
-                        <vs-summary-box-display
-                            :text=itineraries.sampleItinerary.totalDays
-                        />
-                        <vs-summary-box-label
-                            label="Days"
-                        />
+                    <vs-summary-box-display :text=itineraries.sampleItinerary.totalDays />
+                    <vs-summary-box-label label="Days" />
                     </vs-summary-box-list-item>
                     <vs-summary-box-list-item>
                         <vs-summary-box-distance-display
@@ -166,42 +162,38 @@ export default {
                             :icon=itineraries.sampleItinerary.transport.key
                             :label=itineraries.sampleItinerary.transport.value
                         />
-                        <vs-summary-box-label
-                            label="Transport"
-                        />
+                        <vs-summary-box-label label="Transport" />
                     </vs-summary-box-list-item>
                     <vs-summary-box-list-item>
                         <vs-summary-box-icon-with-label
                             :icon=itineraries.sampleItinerary.theme.key
                             :label=itineraries.sampleItinerary.theme.value
                         />
-                        <vs-summary-box-label
-                            label="Main theme"
-                        />
+                        <vs-summary-box-label label="Main theme" />
                     </vs-summary-box-list-item>
                 </vs-summary-box-list>
           </vs-col>
         </vs-row>
       </vs-container>
-      <vs-container slot="lower" class="py-lg-4">
-        <vs-row>
-          <vs-col cols="12" sm="6" lg="7" offset-lg="1">
-            <vs-itinerary-highlights-list>
-              <dt>Highlights</dt>
-              <dd 
-                v-for="(highlight, index) in itineraries.sampleItinerary.highlights"
-                class="mb-0"
-              >
-                {{highlight}}
-              </dd>
-              <dt class="mt-6">Areas Covered</dt>
-              <dd 
-                v-for="(areaCovered, index) in itineraries.sampleItinerary.areasCovered"
-                class="mb-0"
-              >
-                {{areaCovered}}
-              </dd>
-            </vs-itinerary-highlights-list>
+      <vs-container slot="lower">
+         <vs-row>
+          <vs-col cols="12" lg="11" offset-lg="1">
+            <vs-description-list class="mb-6">
+                <vs-description-list-term>Highlights</vs-description-list-term>
+                <vs-description-list-detail 
+                    v-for="(highlight, index) in itineraries.sampleItinerary.highlights"
+                >
+                    {{highlight}}
+                </vs-description-list-detail>
+            </vs-description-list>
+            <vs-description-list class="mb-8">
+                <vs-description-list-term>Areas Covered</vs-description-list-term>
+                    <vs-description-list-detail 
+                        v-for="(areaCovered, index) in itineraries.sampleItinerary.areasCovered"
+                    >
+                    {{areaCovered}}
+                </vs-description-list-detail>
+            </vs-description-list>
           </vs-col>
         </vs-row>
       </vs-container>
