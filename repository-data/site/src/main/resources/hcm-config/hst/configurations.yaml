@@ -51,13 +51,39 @@ definitions:
                   jcr:primaryType: hst:sitemapitem
                   hst:componentconfigurationid: hst:pages/contentpage
                   hst:relativecontentpath: ${parent}/content
-            /_any_:
+            /_default_:
               jcr:primaryType: hst:sitemapitem
               hst:componentconfigurationid: hst:pages/standard-page
               hst:relativecontentpath: ${parent}/${1}
               /_index_:
                 jcr:primaryType: hst:sitemapitem
                 hst:componentconfigurationid: hst:pages/itinerary-page
+                hst:relativecontentpath: ${parent}/content
+              /_any_:
+                jcr:primaryType: hst:sitemapitem
+                hst:componentconfigurationid: hst:pages/standard-page
+                hst:relativecontentpath: ${parent}/${1}
+                /_index_:
+                  jcr:primaryType: hst:sitemapitem
+                  hst:componentconfigurationid: hst:pages/itinerary-page
+                  hst:relativecontentpath: ${parent}/content
+          /see-do:
+            jcr:primaryType: hst:sitemapitem
+            hst:componentconfigurationid: hst:pages/pagenotfound
+            hst:relativecontentpath: site/see-do
+            /_index_:
+              jcr:primaryType: hst:sitemapitem
+              hst:componentconfigurationid: hst:pages/pagenotfound
+              hst:relativecontentpath: ${parent}/content
+            /_any_:
+              jcr:primaryType: hst:sitemapitem
+              hst:componentconfigurationid: hst:pages/pagenotfound
+              hst:relativecontentpath: ${parent}/${1}
+              /_index_:
+                jcr:primaryType: hst:sitemapitem
+                hst:componentconfigurationid: hst:pages/pagenotfound
+                hst:componentconfigurationmappingnames: ['visitscotland:Itinerary']
+                hst:componentconfigurationmappingvalues: ['hst:pages/itinerary-page']
                 hst:relativecontentpath: ${parent}/content
         /hst:abstractpages:
           jcr:primaryType: hst:pages
