@@ -165,35 +165,33 @@ export default {
             })
         },
         addMapPopup() {
-            var coordinates =
-                this.highlightedStopCoordinates === null
-                    ? this.activeStopCoordinates
-                    : this.highlightedStopCoordinates
             this.removeMapPopup()
-            this.popup = new mapboxgl.Popup({
-                closeButton: false,
-                offset: {
-                    top: [0, 20],
-                    "top-left": [0, 20],
-                    "top-right": [0, 20],
-                    bottom: [0, -50],
-                    "bottom-left": [0, -50],
-                    "bottom-right": [0, -50],
-                    left: [30, -20],
-                    right: [-30, -20],
-                },
-            })
-                .setLngLat(coordinates)
-                .setHTML(
-                    `
-            <img class="vs-itinerary__map-popup-image" src="${this.highlightedStop.properties.imageSrc}" alt="${this.highlightedStop.properties.altText}" />
-            <div>
-            <h4 class="vs-itinerary__map-popup-stop-number mb-0">${this.labels.stopLabel} ${this.highlightedStop.properties.stopCount}</h4>
-            <p class="vs-itinerary__map-popup-stop-name">${this.highlightedStop.properties.title}</p>
-            </div>
-        `
-                )
-                .addTo(this.mapbox.map)
+            if (this.highlightedStopCoordinates !== null && this.highlightedStop !== null) {
+                this.popup = new mapboxgl.Popup({
+                    closeButton: false,
+                    offset: {
+                        top: [0, 20],
+                        "top-left": [0, 20],
+                        "top-right": [0, 20],
+                        bottom: [0, -50],
+                        "bottom-left": [0, -50],
+                        "bottom-right": [0, -50],
+                        left: [30, -20],
+                        right: [-30, -20],
+                    },
+                })
+                    .setLngLat(this.highlightedStopCoordinates)
+                    .setHTML(
+                        `
+                            <img class="vs-itinerary__map-popup-image" src="${this.highlightedStop.properties.imageSrc}" alt="${this.highlightedStop.properties.altText}" />
+                            <div>
+                            <h4 class="vs-itinerary__map-popup-stop-number mb-0">${this.labels.stopLabel} ${this.highlightedStop.properties.stopCount}</h4>
+                            <p class="vs-itinerary__map-popup-stop-name">${this.highlightedStop.properties.title}</p>
+                            </div>
+                        `
+                    )
+                    .addTo(this.mapbox.map)
+            }
         },
         fitToBounds() {
             this.mapbox.map.fitBounds(geojsonExtent(this.geojsonData), {

@@ -91,7 +91,6 @@ export default {
 
 .vs-breadcrumb-item a {
     color: $color-base-text;
-    text-decoration: underline;
 }
 
 .vs-breadcrumb-item:last-child {

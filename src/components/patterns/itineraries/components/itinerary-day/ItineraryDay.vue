@@ -1,13 +1,14 @@
 <template>
-    <component :is="type" class="vs-itinerary-day__list-item">
+    <li class="vs-itinerary-day__list-item">
         <div class="vs-itinerary-day__header text-center position-relative">
             <vs-heading level="2" thin class="vs-itinerary-day__title">
-                <span>{{ dayNumber }}</span>
+                <span>{{ dayLabel }} {{ dayNumber }}</span>
                 {{ dayTitle }}
             </vs-heading>
             <vs-button
                 :animate="false"
                 :aria-expanded="show ? 'true' : 'false'"
+                :aria-controls="'dayPanel_' + dayNumber"
                 @click.native="triggerToggle()"
                 aria-haspopup="true"
                 class="vs-itinerary-day__toggle-button position-absolute p-0"
@@ -24,17 +25,19 @@
                 <vs-icon v-else name="chevron-up" variant="dark" size="xs" :padding="3" />
             </vs-button>
         </div>
-        <div v-show="this.show || this.isDesktop">
+        <div v-show="this.show || this.isDesktop" :id="'dayPanel_' + dayNumber">
             <slot name="day-transport" />
             <slot name="day-introduction" />
-            <slot name="stops" />
-            <slot name="nearby-links" />
+            <ul class="list-unstyled">
+                <slot name="stops" />
+            </ul>
         </div>
-    </component>
+    </li>
 </template>
 
 <script>
 import VsIcon from "@components/elements/icon/Icon"
+import VsHeading from "@components/elements/heading/Heading"
 import VsButton from "@components/elements/button/Button"
 import { VsRow, VsCol } from "@components/elements/layout"
 
@@ -47,6 +50,7 @@ export default {
     status: "prototype",
     release: "0.0.1",
     components: {
+        VsHeading,
         VsButton,
         VsIcon,
         VsRow,
@@ -60,19 +64,19 @@ export default {
     },
     props: {
         /**
-         * The html element name used for the component
-         */
-        type: {
-            type: String,
-            default: "li",
-        },
-        /**
          * Logic to collapse certain Day list items on mobile by default
          * (e.g. after Day 1 and 2, collapse the days on mobile)
          */
         defaultShow: {
             type: Boolean,
             default: true,
+        },
+        /**
+         * Label used for the word 'Day'
+         */
+        dayLabel: {
+            type: String,
+            required: true,
         },
         /**
          * Number of the day in the component
@@ -89,8 +93,6 @@ export default {
             required: true,
         },
     },
-    // TODO: add watcher for when stop activated and expand all the days on mobile
-    // so that stops can be scrolled to
     methods: {
         onResize() {
             this.isDesktop = window.innerWidth >= 1200 ? true : false
@@ -117,53 +119,11 @@ export default {
     margin-bottom: $spacer-4;
 }
 
-.vs-itinerary-day__list-item ::v-deep .vs-itinerary-day__title span {
+.vs-itinerary-day__title span {
     border-bottom: 1px solid $color-base-text;
     color: $color-theme-secondary-teal;
     margin-bottom: $spacer-4;
     padding: $spacer-3 $spacer-6;
-}
-
-.vs-itinerary-stop__list-item ::v-deep {
-    background-color: $color-white;
-    border: 1px solid $color-gray-tint-5;
-    padding: $spacer-4;
-    margin-bottom: $spacer-4;
-
-    .flex-fill {
-        max-width: 160px;
-        @media (min-width: 340px) {
-            max-width: none;
-        }
-    }
-
-    .itinerary-stop__facilities {
-        border-top: 1px solid $color-gray-tint-5;
-        margin: $spacer-9 -1rem -1rem;
-        padding: 1rem;
-        text-align: center;
-
-        dt {
-            margin-bottom: 1rem;
-            flex-basis: 1;
-            display: block;
-            width: 100%;
-        }
-
-        dd {
-            display: inline-table;
-            vertical-align: top;
-            text-align: center;
-            width: 90px;
-            position: relative;
-
-            svg {
-                display: block;
-                margin: 0 auto;
-                width: 100%;
-            }
-        }
-    }
 }
 
 .vs-itinerary-day__toggle-button {
@@ -176,15 +136,17 @@ export default {
 
 <docs>
 ```jsx
-	<ul class="list-unstyled">
+	<ul style="list-style-type: none; padding: 0;">
 		<vs-itinerary-day 
 			v-for="(day, index) in itineraries.sampleItinerary.days"
 			:defaultShow="(day.dayCount < 3) ? true : false"
 			:key="index"
-            :dayNumber="'Day ' + day.dayCount"
+            :dayNumber="day.dayCount"
+            dayLabel="Day"
             :dayTitle="day.title"
+           
 		>
-            <vs-description-list v-if="day.transport.length" class="list-inline text-center" slot="day-transport">
+            <vs-description-list v-if="day.transport.length" class="text-center justify-content-center align-items-center" slot="day-transport">
                 <dt class="list-inline-item">Transport:</dt>
 				<dd class="list-inline-item" v-for="(transportType, transportTypeIndex) in day.transport">
 					<vs-tooltip :title="transportType.value">
