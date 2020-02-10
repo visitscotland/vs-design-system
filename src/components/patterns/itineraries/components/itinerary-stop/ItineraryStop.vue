@@ -2,7 +2,15 @@
     <li class="vs-itinerary-stop">
         <div class="border">
             <div class="d-flex justify-content-start align-items-top">
-                <vs-icon name="map-marker-filled" variant="secondary-teal" size="md" :padding="0" />
+                <div class="position-relative">
+                    <vs-icon
+                        name="map-marker-filled"
+                        variant="secondary-teal"
+                        size="md"
+                        :padding="0"
+                    />
+                    <span class="map-marker__count" aria-hidden="true">{{ stopNumber }}</span>
+                </div>
                 <vs-heading level="3" thin class="vs-itinerary-stop__title ml-4">
                     <span>{{ stopLabel }} {{ stopNumber }}</span>
                     {{ stopTitle }}
@@ -74,6 +82,17 @@ export default {
         &:last-of-type {
             margin-bottom: 0;
         }
+    }
+    .map-marker__count {
+        color: $color-white;
+        font-family: $headings-font-family;
+        font-size: 1rem;
+        display: block;
+        position: absolute;
+        top: 4px;
+        left: 0;
+        text-align: center;
+        width: 100%;
     }
 }
 </style>
