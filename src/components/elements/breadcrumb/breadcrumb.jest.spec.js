@@ -11,7 +11,7 @@ describe("VsBreadcrumb", () => {
     it("should render a b-breadcrumb", () => {
         expect(wrapper.is("nav")).toBe(true)
         expect(wrapper.html()).toContain(
-            '<nav aria-label="breadcrumbs"><b-breadcrumb-stub class="flex-nowrap p-0"></b-breadcrumb-stub></nav>'
+            '<nav aria-label="breadcrumbs" class="py-4"><b-breadcrumb-stub class="flex-nowrap p-0"></b-breadcrumb-stub></nav>'
         )
     })
 })

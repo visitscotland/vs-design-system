@@ -215,6 +215,7 @@ export default {
                     data-sizes="auto" />
                 </vs-image-with-caption>
                 <div v-html="stop.description"></div>
+                <a href="stop.href">Find out more</a>
                 <vs-description-list class="my-4 mb-0 justify-content-start" inline>
                     <vs-description-list-term class="mb-0 mr-0 col-auto">Time to explore</vs-description-list-term>
                     <vs-description-list-detail class="mb-0 col-auto px-0">{{stop.timeToExplore}}</vs-description-list-detail>
@@ -226,7 +227,6 @@ export default {
                     </div>
                     <vs-svg slot="svg" path="highland-cow" />
                 </vs-itinerary-tips>
-                <a href="stop.href">Find out more</a>
                 <vs-icon-description-list v-if="stop.facilities.length">
                     <vs-icon-description-list-term>Key facilities</vs-icon-description-list-term>
                     <vs-icon-description-list-detail 

@@ -110,6 +110,7 @@ svg.active {
     color: $color-white;
     display: block;
     font-size: 1rem;
+    font-family: $headings-font-family;
     position: absolute;
     top: 4px;
     left: 0;
