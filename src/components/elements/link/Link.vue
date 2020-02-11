@@ -1,7 +1,7 @@
 <template>
     <b-link
         class="vs-link"
-        :class="{ 'vs-link--external': external }"
+        :class="[variant, { 'vs-link--external': external }]"
         :href="href"
         :target="external ? '_blank' : '_self'"
     >
@@ -41,16 +41,55 @@ export default {
             type: Boolean,
             default: false,
         },
+        /**
+         * Option to choose a pre-defined style variant
+         */
+        variant: {
+            type: String,
+            default: "primary",
+        },
     },
 }
 </script>
 
 <style lang="scss" scoped>
 .vs-link {
-    &.vs-link--external:hover {
-        & ::v-deep {
+    &.primary {
+        color: $color_pink;
+
+        &:hover {
+            color: $color-gray-shade-7;
+        }
+
+        &.vs-link--external {
             .icon {
-                fill: $color-gray-shade-7;
+                fill: $color_pink;
+            }
+
+            &:hover {
+                .icon {
+                    fill: $color-gray-shade-7;
+                }
+            }
+        }
+    }
+
+    &.dark {
+        color: $color_yellow;
+
+        &:hover {
+            color: $color_white;
+        }
+
+        &.vs-link--external {
+            .icon {
+                fill: $color_yellow;
+            }
+
+            &:hover {
+                .icon {
+                    fill: $color_white;
+                }
             }
         }
     }
@@ -65,6 +104,14 @@ export default {
 
     <vs-link class="ml-6 mb-2" external href="https://www.visitscotland.com">
         External Link
+    </vs-link>
+
+    <vs-link variant="dark" class="ml-6 mb-2" href="#foo">
+        Dark Link
+    </vs-link>
+
+    <vs-link variant="dark" external class="ml-6 mb-2" href="#foo">
+        External Dark Link
     </vs-link>
 ```
 </docs>
