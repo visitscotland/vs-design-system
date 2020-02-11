@@ -1,34 +1,33 @@
 <template>
     <div class="vs-summary-box-distance-label text-center d-block position-absolute w-100">
         <strong class="d-block">{{ distanceLabel }}</strong>
-        <abbr :title="milesLabel">
-            <button
-                @click="handleClick(true)"
-                type="button"
+        <div class="d-flex justify-content-center align-items-center">
+            <vs-button
+                @click.native="handleClick(true)"
                 :class="showMiles ? 'active' : ''"
                 :aria-expanded="showMiles ? 'true' : 'false'"
-                :aria-controls="'display_' + milesLabel"
+                variant="transparent"
+                aria-controls="display_miles"
             >
-                <span>{{ milesAbbr }}</span>
-            </button>
-        </abbr>
-        <span class="separator">/</span>
-        <abbr :title="kilometresLabel">
-            <button
-                @click="handleClick(false)"
-                type="button"
+                <abbr :title="milesLabel">{{ milesAbbr }}</abbr>
+            </vs-button>
+            <span class="separator">/</span>
+            <vs-button
+                @click.native="handleClick(false)"
                 :class="showMiles ? '' : 'active'"
                 :aria-expanded="showMiles ? 'false' : 'true'"
-                :aria-controls="'display_' + kilometresLabel"
+                variant="transparent"
+                aria-controls="display_kilometres"
             >
-                <span>{{ kilometresAbbr }}</span>
-            </button>
-        </abbr>
+                <abbr :title="kilometresLabel">{{ kilometresAbbr }}</abbr>
+            </vs-button>
+        </div>
     </div>
 </template>
 
 <script>
 import summaryBoxStore from "@components/patterns/summary-box/summaryBox.store"
+import VsButton from "@components/elements/button/Button"
 /**
  * Summary Box Distance Label component includes toggles to change the distance type displayed within the VsSummaryBoxDistance component
  */
@@ -41,7 +40,9 @@ export default {
             showMiles: true,
         }
     },
-    components: {},
+    components: {
+        VsButton,
+    },
     props: {
         distanceLabel: {
             type: String,
@@ -95,25 +96,21 @@ export default {
     }
 
     strong,
-    abbr {
+    .btn {
         font-size: 0.875rem;
         @include media-breakpoint-up(lg) {
             font-size: 1.125rem;
         }
     }
-    button {
-        background: none;
-        border: none;
+    .btn {
         padding: 0 2px;
+        text-transform: initial !important;
+        letter-spacing: initial !important;
+        text-decoration: underline;
+
         &.active {
             font-weight: $font-weight-bold;
-        }
-        &:hover {
-            cursor: pointer;
-        }
-        &:focus {
-            box-shadow: 0 0 0 0.2rem rgba(0, 0, 0, 0.25);
-            outline: none;
+            text-decoration: underline;
         }
     }
 }

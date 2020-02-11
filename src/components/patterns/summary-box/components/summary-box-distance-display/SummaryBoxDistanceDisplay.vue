@@ -1,7 +1,7 @@
 <template>
     <div class="vs-summary-box-distance-display position-absolute d-block text-center w-100">
-        <span v-if="isShowingMiles" :id="'display_' + milesLabel">{{ miles }}</span>
-        <span v-else :id="'display_' + kilometresLabel">{{ kilometres }}</span>
+        <span v-if="isShowingMiles" id="display_miles">{{ miles }}</span>
+        <span v-else id="display_kilometres">{{ kilometres }}</span>
     </div>
 </template>
 
