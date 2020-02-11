@@ -7,7 +7,7 @@
     <artifactId>visitscotland</artifactId>
     <version>0.1.0-SNAPSHOT</version>
   </parent>
-  <artifactId>visitscotland-frontend</artifactId>
+  <artifactId>visitscotland-ui-integration</artifactId>
   <packaging>war</packaging>
   <name>www.visitscotland.com CMS Pages Frontend</name>
   <description>www.visitscotland.com CMS Pages Frontend</description>
