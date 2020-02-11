@@ -1,0 +1,6 @@
+group:
+  name: cms
+  after: hippo-cms
+project: cms
+module:
+  name: cms-repository-data-application
