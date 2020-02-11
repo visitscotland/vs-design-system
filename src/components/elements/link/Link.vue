@@ -47,6 +47,9 @@ export default {
         variant: {
             type: String,
             default: "primary",
+            validator: value => {
+                return value.match(/(primary|dark)/)
+            },
         },
     },
 }
