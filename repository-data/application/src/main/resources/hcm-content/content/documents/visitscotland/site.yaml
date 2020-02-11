@@ -890,7 +890,7 @@
           jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
           jcr:uuid: 625c91fd-9d62-43c3-acc5-3ba2b2dbbf2e
           hippo:name: Content
-          hippo:versionHistory: 622222df-81b5-43fc-aa6d-606d389555c9
+          hippo:versionHistory: 344d8be4-256e-4f36-9045-468bee7b4c3c
           /content[1]:
             jcr:primaryType: visitscotland:Itinerary
             jcr:mixinTypes: ['mix:versionable']
@@ -899,12 +899,12 @@
             hippostd:state: unpublished
             hippostdpubwf:createdBy: admin
             hippostdpubwf:creationDate: 2019-12-06T12:48:04.149Z
-            hippostdpubwf:lastModificationDate: 2020-02-06T14:39:52.052Z
+            hippostdpubwf:lastModificationDate: 2020-02-10T10:24:23.222Z
             hippostdpubwf:lastModifiedBy: admin
             hippotranslation:id: 22252bfa-9bd2-44c3-a030-35efe606ca1f
             hippotranslation:locale: en
             visitscotland:areas: [dumfries, highlands]
-            visitscotland:breadcrumb: ''
+            visitscotland:breadcrumb: Itinerario 3
             visitscotland:distance: 10.4
             visitscotland:finish: Ocean point
             visitscotland:highlights: "Glenfinnan Viaduct \r\nJacobite Steam Train\r\
@@ -919,7 +919,8 @@
             visitscotland:text: "Glenfinnan Viaduct\r\n\r\nJacobite Steam Train\r\n\
               \r\nGlen Etive\r\n\r\nThe Elephant House"
             visitscotland:theme: filmev
-            visitscotland:title: HARRY POTTER FILM AND BOOK LOCATIONS ITINERARY
+            visitscotland:title: This is a super longer heading text for the itinerary
+              so It would be better to use the navigation text
             visitscotland:transport: [boat]
             visitscotland:transports: [car, train]
             /visitscotland:heroImage:
@@ -938,6 +939,10 @@
                 <p><a href="content">Itinerary number 2</a></p>
 
                 <p><a href="content_1">Itinerary Destination</a></p>
+
+                <p><a href="content_2">This itinerary</a></p>
+
+                <p>&nbsp;</p>
               /content:
                 jcr:primaryType: hippo:facetselect
                 hippo:docbase: 666454dd-da50-422c-97cb-69fa3fa0e430
@@ -947,6 +952,12 @@
               /content_1:
                 jcr:primaryType: hippo:facetselect
                 hippo:docbase: 0751c1d3-3024-4d2d-a5e8-38286fee9722
+                hippo:facets: []
+                hippo:modes: []
+                hippo:values: []
+              /content_2:
+                jcr:primaryType: hippo:facetselect
+                hippo:docbase: 625c91fd-9d62-43c3-acc5-3ba2b2dbbf2e
                 hippo:facets: []
                 hippo:modes: []
                 hippo:values: []
@@ -965,13 +976,13 @@
             hippostd:state: published
             hippostdpubwf:createdBy: admin
             hippostdpubwf:creationDate: 2019-12-06T12:48:04.149Z
-            hippostdpubwf:lastModificationDate: 2020-02-06T14:39:52.052Z
+            hippostdpubwf:lastModificationDate: 2020-02-10T10:24:23.222Z
             hippostdpubwf:lastModifiedBy: admin
-            hippostdpubwf:publicationDate: 2020-02-07T15:13:47.387Z
+            hippostdpubwf:publicationDate: 2020-02-10T10:24:30.858Z
             hippotranslation:id: 22252bfa-9bd2-44c3-a030-35efe606ca1f
             hippotranslation:locale: en
             visitscotland:areas: [dumfries, highlands]
-            visitscotland:breadcrumb: ''
+            visitscotland:breadcrumb: Itinerario 3
             visitscotland:distance: 10.4
             visitscotland:finish: Ocean point
             visitscotland:highlights: "Glenfinnan Viaduct \r\nJacobite Steam Train\r\
@@ -986,7 +997,8 @@
             visitscotland:text: "Glenfinnan Viaduct\r\n\r\nJacobite Steam Train\r\n\
               \r\nGlen Etive\r\n\r\nThe Elephant House"
             visitscotland:theme: filmev
-            visitscotland:title: HARRY POTTER FILM AND BOOK LOCATIONS ITINERARY
+            visitscotland:title: This is a super longer heading text for the itinerary
+              so It would be better to use the navigation text
             visitscotland:transport: [boat]
             visitscotland:transports: [car, train]
             /visitscotland:heroImage:
@@ -1005,6 +1017,10 @@
                 <p><a href="content">Itinerary number 2</a></p>
 
                 <p><a href="content_1">Itinerary Destination</a></p>
+
+                <p><a href="content_2">This itinerary</a></p>
+
+                <p>&nbsp;</p>
               /content:
                 jcr:primaryType: hippo:facetselect
                 hippo:docbase: 666454dd-da50-422c-97cb-69fa3fa0e430
@@ -1014,6 +1030,89 @@
               /content_1:
                 jcr:primaryType: hippo:facetselect
                 hippo:docbase: 0751c1d3-3024-4d2d-a5e8-38286fee9722
+                hippo:facets: []
+                hippo:modes: []
+                hippo:values: []
+              /content_2:
+                jcr:primaryType: hippo:facetselect
+                hippo:docbase: 625c91fd-9d62-43c3-acc5-3ba2b2dbbf2e
+                hippo:facets: []
+                hippo:modes: []
+                hippo:values: []
+            /visitscotland:ProductsSearch:
+              jcr:primaryType: visitscotland:ProductsSearch
+              visitscotland:distance: 0
+              visitscotland:dmsCategories: [guesthouse, yurts, touringpark, hostel]
+              visitscotland:dmscategories: ''
+              visitscotland:location: ''
+              visitscotland:producttype: ''
+          /content[3]:
+            jcr:primaryType: visitscotland:Itinerary
+            jcr:mixinTypes: ['mix:referenceable']
+            jcr:uuid: 1ebb92dd-7d75-45ee-b866-b509ab35044b
+            hippo:availability: []
+            hippostd:state: draft
+            hippostdpubwf:createdBy: admin
+            hippostdpubwf:creationDate: 2019-12-06T12:48:04.149Z
+            hippostdpubwf:lastModificationDate: 2020-02-10T10:23:50.994Z
+            hippostdpubwf:lastModifiedBy: admin
+            hippotranslation:id: 22252bfa-9bd2-44c3-a030-35efe606ca1f
+            hippotranslation:locale: en
+            visitscotland:areas: [dumfries, highlands]
+            visitscotland:breadcrumb: Itinerario 3
+            visitscotland:distance: 10.4
+            visitscotland:finish: Ocean point
+            visitscotland:highlights: "Glenfinnan Viaduct \r\nJacobite Steam Train\r\
+              \nGlen Etive\r\nThe Elephant House"
+            visitscotland:popular: false
+            visitscotland:seoDescription: ''
+            visitscotland:seoNoIndex: false
+            visitscotland:seoTitle: Iconic Harry Potter Film Locations - An Itinerary
+            visitscotland:start: Tenerife
+            visitscotland:summary: ''
+            visitscotland:teaser: ''
+            visitscotland:text: "Glenfinnan Viaduct\r\n\r\nJacobite Steam Train\r\n\
+              \r\nGlen Etive\r\n\r\nThe Elephant House"
+            visitscotland:theme: filmev
+            visitscotland:title: This is a super longer heading text for the itinerary
+              so It would be better to use the navigation text
+            visitscotland:transport: [boat]
+            visitscotland:transports: [car, train]
+            /visitscotland:heroImage:
+              jcr:primaryType: hippogallerypicker:imagelink
+              hippo:docbase: 8d4f5036-64ca-4e5d-aa89-b348ae38b081
+              hippo:facets: []
+              hippo:modes: []
+              hippo:values: []
+            /visitscotland:introduction:
+              jcr:primaryType: hippostd:html
+              hippostd:content: |-
+                <p>It was in Scotland's capital city that JK Rowling started to plot the adventures of Harry and his friends. With cobbled streets, winding alleys and medieval architecture, the city certainly have a few things in common with the settings from the books and films. She wrote the early chapters in various cafés around the city's Old Town, before coming back to finish off the series from a peaceful suite in The Balmoral Hotel. It is also said that Hogwarts School was styled on Edinburgh’s Fettes College, a private school on the outskirts of Edinburgh’s west end new town. You could also try the <a href="https://www.visitscotland.com/info/tours/wizarding-world-of-edinburgh-03e61189">Wizarding World of Edinburgh</a> tour.</p>
+
+                <p>&nbsp;</p>
+
+                <p><a href="content">Itinerary number 2</a></p>
+
+                <p><a href="content_1">Itinerary Destination</a></p>
+
+                <p><a href="content_2">This itinerary</a></p>
+
+                <p>&nbsp;</p>
+              /content:
+                jcr:primaryType: hippo:facetselect
+                hippo:docbase: 666454dd-da50-422c-97cb-69fa3fa0e430
+                hippo:facets: []
+                hippo:modes: []
+                hippo:values: []
+              /content_1:
+                jcr:primaryType: hippo:facetselect
+                hippo:docbase: 0751c1d3-3024-4d2d-a5e8-38286fee9722
+                hippo:facets: []
+                hippo:modes: []
+                hippo:values: []
+              /content_2:
+                jcr:primaryType: hippo:facetselect
+                hippo:docbase: 625c91fd-9d62-43c3-acc5-3ba2b2dbbf2e
                 hippo:facets: []
                 hippo:modes: []
                 hippo:values: []
@@ -1233,7 +1332,7 @@
       jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
       jcr:uuid: eff721bc-5cd1-45d7-be74-87ffbf212da1
       hippo:name: Content (copy 2)
-      hippo:versionHistory: 5a9b91f0-14cf-4741-8a9b-c1b27bb5cee9
+      hippo:versionHistory: 07cc88d2-36f8-4846-99ae-f151e1b0d8ad
       /content[1]:
         jcr:primaryType: visitscotland:Itinerary
         jcr:mixinTypes: ['mix:versionable']
@@ -1242,7 +1341,7 @@
         hippostd:state: unpublished
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2019-12-06T12:48:04.149Z
-        hippostdpubwf:lastModificationDate: 2020-02-05T16:26:46.285Z
+        hippostdpubwf:lastModificationDate: 2020-02-10T10:06:55.877Z
         hippostdpubwf:lastModifiedBy: admin
         hippotranslation:id: 098393ad-11e3-42ec-9368-e9c22f9e98c4
         hippotranslation:locale: en
@@ -1262,7 +1361,8 @@
         visitscotland:text: "Glenfinnan Viaduct\r\n\r\nJacobite Steam Train\r\n\r\n\
           Glen Etive\r\n\r\nThe Elephant House"
         visitscotland:theme: filmev
-        visitscotland:title: HARRY POTTER FILM AND BOOK LOCATIONS ITINERARY
+        visitscotland:title: See and do Itinerary landing page (copy of Harry Potter's
+          Itienerary)
         visitscotland:transport: [boat]
         visitscotland:transports: [car, train]
         /visitscotland:heroImage:
@@ -1298,9 +1398,9 @@
         hippostd:state: published
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2019-12-06T12:48:04.149Z
-        hippostdpubwf:lastModificationDate: 2020-02-05T16:26:46.285Z
+        hippostdpubwf:lastModificationDate: 2020-02-10T10:06:55.877Z
         hippostdpubwf:lastModifiedBy: admin
-        hippostdpubwf:publicationDate: 2020-02-06T14:30:54.627Z
+        hippostdpubwf:publicationDate: 2020-02-10T10:07:04.949Z
         hippotranslation:id: 098393ad-11e3-42ec-9368-e9c22f9e98c4
         hippotranslation:locale: en
         visitscotland:areas: [dumfries, highlands]
@@ -1319,7 +1419,65 @@
         visitscotland:text: "Glenfinnan Viaduct\r\n\r\nJacobite Steam Train\r\n\r\n\
           Glen Etive\r\n\r\nThe Elephant House"
         visitscotland:theme: filmev
-        visitscotland:title: HARRY POTTER FILM AND BOOK LOCATIONS ITINERARY
+        visitscotland:title: See and do Itinerary landing page (copy of Harry Potter's
+          Itienerary)
+        visitscotland:transport: [boat]
+        visitscotland:transports: [car, train]
+        /visitscotland:heroImage:
+          jcr:primaryType: hippogallerypicker:imagelink
+          hippo:docbase: 8d4f5036-64ca-4e5d-aa89-b348ae38b081
+          hippo:facets: []
+          hippo:modes: []
+          hippo:values: []
+        /visitscotland:introduction:
+          jcr:primaryType: hippostd:html
+          hippostd:content: <p>It was in Scotland's capital city that JK Rowling started
+            to plot the adventures of Harry and his friends. With cobbled streets,
+            winding alleys and medieval architecture, the city certainly have a few
+            things in common with the settings from the books and films. She wrote
+            the early chapters in various cafés around the city's Old Town, before
+            coming back to finish off the series from a peaceful suite in The Balmoral
+            Hotel. It is also said that Hogwarts School was styled on Edinburgh’s
+            Fettes College, a private school on the outskirts of Edinburgh’s west
+            end new town. You could also try the <a href="https://www.visitscotland.com/info/tours/wizarding-world-of-edinburgh-03e61189">Wizarding
+            World of Edinburgh</a> tour.</p>
+        /visitscotland:ProductsSearch:
+          jcr:primaryType: visitscotland:ProductsSearch
+          visitscotland:distance: 0
+          visitscotland:dmsCategories: [guesthouse, yurts, touringpark, hostel]
+          visitscotland:dmscategories: ''
+          visitscotland:location: ''
+          visitscotland:producttype: ''
+      /content[3]:
+        jcr:primaryType: visitscotland:Itinerary
+        jcr:mixinTypes: ['mix:referenceable']
+        jcr:uuid: 80a30a1f-04fc-4b41-ada7-21187d744a75
+        hippo:availability: []
+        hippostd:state: draft
+        hippostdpubwf:createdBy: admin
+        hippostdpubwf:creationDate: 2019-12-06T12:48:04.149Z
+        hippostdpubwf:lastModificationDate: 2020-02-10T10:05:46.224Z
+        hippostdpubwf:lastModifiedBy: admin
+        hippotranslation:id: 098393ad-11e3-42ec-9368-e9c22f9e98c4
+        hippotranslation:locale: en
+        visitscotland:areas: [dumfries, highlands]
+        visitscotland:breadcrumb: ''
+        visitscotland:distance: 10.4
+        visitscotland:finish: Ocean point
+        visitscotland:highlights: "Glenfinnan Viaduct \r\nJacobite Steam Train\r\n\
+          Glen Etive\r\nThe Elephant House"
+        visitscotland:popular: false
+        visitscotland:seoDescription: ''
+        visitscotland:seoNoIndex: false
+        visitscotland:seoTitle: Iconic Harry Potter Film Locations - An Itinerary
+        visitscotland:start: Tenerife
+        visitscotland:summary: ''
+        visitscotland:teaser: ''
+        visitscotland:text: "Glenfinnan Viaduct\r\n\r\nJacobite Steam Train\r\n\r\n\
+          Glen Etive\r\n\r\nThe Elephant House"
+        visitscotland:theme: filmev
+        visitscotland:title: See and do Itinerary landing page (copy of Harry Potter's
+          Itienerary)
         visitscotland:transport: [boat]
         visitscotland:transports: [car, train]
         /visitscotland:heroImage:

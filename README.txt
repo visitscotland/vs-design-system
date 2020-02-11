@@ -6,12 +6,12 @@ Running Locally
 VisitScotland Configuration
 
     For a complete build:
-        mvn clean verify
-        mvn -P cargo.run
+        `mvn clean verify`
+        `mvn -P cargo.run`
 
     Quick run for backend development
         `mvn clean verify -P '!fed-build'`
-        mvn -P cargo.run
+        `mvn -P cargo.run`
 
     Quick run for frond end development (TO BE CHECKED)
 
