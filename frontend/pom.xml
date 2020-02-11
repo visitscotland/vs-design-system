@@ -7,11 +7,10 @@
     <artifactId>visitscotland</artifactId>
     <version>0.1.0-SNAPSHOT</version>
   </parent>
-  <artifactId>visitscotland-ui-integration</artifactId>
+  <artifactId>visitscotland-frontend</artifactId>
   <packaging>war</packaging>
-  <name>www.visitscotland.com UI Integration</name>
-  <description>www.visitscotland.com - Copy the required components to webfiles and Generate the FreeMarker templates for the view components</description>
-  
+  <name>www.visitscotland.com CMS Pages Frontend</name>
+  <description>www.visitscotland.com CMS Pages Frontend</description>
   
   <profiles>
     <profile>
@@ -73,5 +72,5 @@
       </build>
     </profile>
   </profiles>
-  
+
 </project>
