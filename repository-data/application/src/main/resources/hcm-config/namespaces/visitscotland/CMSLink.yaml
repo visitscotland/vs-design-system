@@ -1,17 +1,17 @@
 definitions:
   config:
-    /hippo:namespaces/visitscotland/DMSLink:
+    /hippo:namespaces/visitscotland/CMSLink:
       jcr:primaryType: hipposysedit:templatetype
       jcr:mixinTypes: ['editor:editable', 'mix:referenceable']
-      jcr:uuid: 95426599-59b5-427a-b5e8-4122a6d79c6e
+      jcr:uuid: 8549c097-86d4-47c7-8ab6-45536b74d694
       /hipposysedit:nodetype:
         jcr:primaryType: hippo:handle
         jcr:mixinTypes: ['mix:referenceable']
-        jcr:uuid: ac536a09-1ebe-437d-8b3b-fa97125d711a
+        jcr:uuid: 42c4ee77-18e8-4152-b7a4-4a3cda9b421f
         /hipposysedit:nodetype:
           jcr:primaryType: hipposysedit:nodetype
           jcr:mixinTypes: ['mix:referenceable', 'hipposysedit:remodel']
-          jcr:uuid: 34fd9814-3720-4450-a278-fb9ac79bccaf
+          jcr:uuid: e6855d7f-2faa-4fc7-abde-c930cb494237
           hipposysedit:node: true
           hipposysedit:supertype: ['hippo:compound', 'hippostd:relaxed']
           hipposysedit:uri: http://www.visitscotland.com/visitscotland/nt/1.0
@@ -23,14 +23,14 @@ definitions:
             hipposysedit:path: visitscotland:image
             hipposysedit:primary: false
             hipposysedit:type: hippogallerypicker:imagelink
-          /product:
+          /link:
             jcr:primaryType: hipposysedit:field
             hipposysedit:mandatory: false
             hipposysedit:multiple: false
             hipposysedit:ordered: false
-            hipposysedit:path: visitscotland:product
+            hipposysedit:path: visitscotland:link
             hipposysedit:primary: false
-            hipposysedit:type: String
+            hipposysedit:type: hippo:mirror
           /label:
             jcr:primaryType: hipposysedit:field
             hipposysedit:mandatory: false
@@ -42,8 +42,7 @@ definitions:
       /hipposysedit:prototypes:
         jcr:primaryType: hipposysedit:prototypeset
         /hipposysedit:prototype:
-          jcr:primaryType: visitscotland:DMSLink
-          visitscotland:product: ''
+          jcr:primaryType: visitscotland:CMSLink
           visitscotland:label: ''
           /visitscotland:image:
             jcr:primaryType: hippogallerypicker:imagelink
@@ -51,6 +50,9 @@ definitions:
             hippo:facets: []
             hippo:modes: []
             hippo:values: []
+          /visitscotland:link:
+            jcr:primaryType: hippo:mirror
+            hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
       /editor:templates:
         jcr:primaryType: editor:templateset
         /_default_:
@@ -74,21 +76,11 @@ definitions:
             item: ${cluster.id}.right.item
             plugin.class: org.hippoecm.frontend.service.render.ListViewPlugin
             wicket.id: ${cluster.id}.right
-          /image:
+          /link:
             jcr:primaryType: frontend:plugin
-            caption: Override Image
-            field: image
+            caption: CMS Link
+            field: link
             plugin.class: org.hippoecm.frontend.editor.plugins.field.NodeFieldPlugin
-            wicket.id: ${cluster.id}.right.item
-            hint: ''
-            /cluster.options:
-              jcr:primaryType: frontend:pluginconfig
-          /product:
-            jcr:primaryType: frontend:plugin
-            caption: Product  ID
-            field: product
-            hint: ''
-            plugin.class: org.hippoecm.frontend.editor.plugins.field.PropertyFieldPlugin
             wicket.id: ${cluster.id}.left.item
             /cluster.options:
               jcr:primaryType: frontend:pluginconfig
@@ -99,5 +91,14 @@ definitions:
             hint: ''
             plugin.class: org.hippoecm.frontend.editor.plugins.field.PropertyFieldPlugin
             wicket.id: ${cluster.id}.left.item
+            /cluster.options:
+              jcr:primaryType: frontend:pluginconfig
+          /image:
+            jcr:primaryType: frontend:plugin
+            caption: Image
+            field: image
+            hint: ''
+            plugin.class: org.hippoecm.frontend.editor.plugins.field.NodeFieldPlugin
+            wicket.id: ${cluster.id}.right.item
             /cluster.options:
               jcr:primaryType: frontend:pluginconfig

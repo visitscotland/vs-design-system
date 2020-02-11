@@ -17,4 +17,9 @@ public class DMSLink extends HippoCompound {
     public Image getImage() {
         return getLinkedBean("visitscotland:image", Image.class);
     }
+
+    @HippoEssentialsGenerated(internalName = "visitscotland:label")
+    public String getLabel() {
+        return getSingleProperty("visitscotland:label");
+    }
 }
