@@ -2,10 +2,13 @@
 <#include "../../vs-dotcom-ds/components/button-with-icon.ftl">
 <#include "../../vs-dotcom-ds/components/itinerary-tips.ftl">
 <#include "../../vs-dotcom-ds/components/itinerary-stop.ftl">
+<#include "../../vs-dotcom-ds/components/itinerary-nearby-links-wrapper.ftl">
 <#include "../../vs-dotcom-ds/components/image-with-caption.ftl">
 <#include "../../vs-dotcom-ds/components/icon-description-list.ftl">
+<#include "../../vs-dotcom-ds/components/img.ftl">
 <#include "../../vs-dotcom-ds/components/icon-description-list-term.ftl">
 <#include "../../vs-dotcom-ds/components/icon-description-list-detail.ftl">
+<#include "../../vs-dotcom-ds/components/link.ftl">
 
 <@hst.setBundle basename="keyFacilities,itinerary"/>
 
@@ -57,18 +60,26 @@
                     latitude="${prod.coordinates.latitude}"
                     longitude="${prod.coordinates.longitude}"
                     >
-                <img 
+                <vs-img 
                     class="lazyload" 
                     src="${image}"
                     srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
                     data-srcset="${image}" 
                     alt="${prod.image.altText}"
-                    data-sizes="auto" />
+                    data-sizes="auto">
+                </vs-img>
                 </vs-image-with-caption>
             </#if>
 
             <#if prod.description?? && prod.description?has_content>
                 <@hst.html hippohtml=prod.description/>
+            </#if>
+
+            <#if href?? && href?has_content>
+            <!-- TODO: add logic to apply external param where needed
+                button text should be dynamic and come from CMS once
+                the document type is updated -->
+                <vs-link href="${href}">Find out more</vs-link>
             </#if>
 
             <#if prod.timeToexplore?? && prod.timeToexplore?has_content>
@@ -89,10 +100,6 @@
                 </vs-itinerary-tips>
             </#if>
 
-            <#if href?? && href?has_content>
-                <a class="d-block" href="${href}">Find out more</a>
-            </#if>
-
             <#if prod.facilities?? && prod.facilities?size gt 1>
                 <vs-icon-description-list>
                     <vs-icon-description-list-term><@fmt.message key="stop.key-facilities"/></vs-icon-description-list-term>
@@ -106,14 +113,14 @@
             </#if>
       </div>
         <#if lastStop=="true" && prod.coordinates.longitude?? && prod.coordinates.longitude?has_content && prod.coordinates.latitude?? && prod.coordinates.latitude?has_content>
-            <div slot="nearby-links" class="py-3 d-inline-block">
+            <vs-itinerary-nearby-links-wrapper slot="nearby-links">
                 <vs-button-with-icon class="mb-3" variant="outline-primary" href="https://www.visitscotland.com/info/accommodation/search-results?prodtypes=cate&lat=${prod.coordinates.latitude}&lng=${prod.coordinates.longitude}&locprox=2&areaproxdist=5&stay=&endDate=&r1a=2&r1children=0&r1infants=0&r1c=0&avail=off&order=proximityAsc" icon="food">
                     <@fmt.message key="stop.nearby-eat"/>
                 </vs-button-with-icon>
                 <vs-button-with-icon variant="outline-primary" href="https://www.visitscotland.com/info/accommodation/search-results?prodtypes=acco&lat=${prod.coordinates.latitude}&lng=${prod.coordinates.longitude}&locprox=2&areaproxdist=5&stay=&endDate=&r1a=2&r1children=0&r1infants=0&r1c=0&avail=off&order=proximityAsc" icon="product-accommodation">
                     <@fmt.message key="stop.nearby-stay"/>
                 </vs-button-with-icon>
-            </div>
+            </vs-itinerary-nearby-links-wrapper>
         </#if>
     </vs-itinerary-stop>
     </#if>
