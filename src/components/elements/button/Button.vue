@@ -6,6 +6,7 @@
         class="text-uppercase d-flex align-items-center justify-content-center"
         :class="{
             [animateClass]: animateClass,
+            [backgroundClass]: backgroundClass,
         }"
         @click="animateClass ? animateHandler() : null"
         :size="size"
@@ -63,6 +64,20 @@ export default {
             },
         },
         /**
+         * Background property used primarily for overrides.
+         * Normally we use the above variant properties for applying background color, but
+         * in cases where outline buttons are used and default transparent state needs to be
+         * overridden, this background property can be applied
+         * `white`
+         */
+        background: {
+            type: String,
+            default: null,
+            validator: value => {
+                return value.match(/(white)/)
+            },
+        },
+        /**
          * Style the button size.
          * `sm, md, lg`
          */
@@ -84,6 +99,9 @@ export default {
     computed: {
         animateClass() {
             return this.animate ? "btn-animate" : null
+        },
+        backgroundClass() {
+            return this.background ? ["btn-bg-" + this.background] : null
         },
     },
     methods: {
@@ -115,7 +133,7 @@ export default {
         }
     }
 
-    &.white-background:not(:hover) {
+    &.btn-bg-white:not(:hover) {
         background-color: $color-white;
     }
 
@@ -191,9 +209,11 @@ export default {
       <vs-button variant="outline-danger" class="mr-2 mb-2">Danger</vs-button>
       <vs-button variant="outline-warning" class="mr-2 mb-2">Warning</vs-button>
       <vs-button variant="outline-info" class="mr-2 mb-2">Info</vs-button>
-      <vs-button variant="outline-light" class="mr-2 mb-2">Light</vs-button>
       <vs-button variant="outline-dark" class="mr-2 mb-2">Dark</vs-button>
-      <vs-button variant="outline-transparent" class="mr-2 mb-2">Transparent</vs-button>
+    </bs-wrapper>
+    <h4>Outline Color Variants - override transparent background</h4>
+    <bs-wrapper class="d-flex flex-wrap mb-4 bg-dark p-3">
+      <vs-button background="white" variant="outline-primary" class="mr-2 mb-2">Primary</vs-button>
     </bs-wrapper>
     <h4>Sizes</h4>
     <bs-wrapper>
