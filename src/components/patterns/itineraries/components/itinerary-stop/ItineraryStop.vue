@@ -71,7 +71,17 @@ export default {
 <style lang="scss" scoped>
 .vs-itinerary-stop {
     margin-bottom: 3.125rem;
+
+    &:last-of-type {
+        margin-bottom: 0;
+
+        .border {
+            padding-bottom: $spacer-8;
+        }
+    }
+
     .border {
+        position: relative;
         background-color: $color-white;
         border: 1px solid $color-gray-tint-5;
         padding: $spacer-4;
