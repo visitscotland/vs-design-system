@@ -324,7 +324,7 @@ export default {
                     data-sizes="auto" />
                 </vs-image-with-caption>
                 <div v-html="stop.description"></div>
-                <vs-link external href="stop.href">
+                <vs-link href="stop.href">
                     Find out more
                 </vs-link>
                 <vs-description-list class="my-4 mb-0 justify-content-start" inline>
@@ -351,10 +351,10 @@ export default {
               <!-- mimic only showing these links on the last stop of the day -->
               <template v-if="stopIndex == day.stops.length - 1">
                 <vs-itinerary-nearby-links-wrapper slot="nearby-links">
-                    <vs-button-with-icon class="mb-3" variant="outline-primary" href="#" icon="food">
+                    <vs-button-with-icon class="mb-3" background="white" variant="outline-primary" href="#" icon="food">
                         Nearby places to eat
                     </vs-button-with-icon>
-                    <vs-button-with-icon variant="outline-primary" href="#" icon="product-accommodation">
+                    <vs-button-with-icon background="white" variant="outline-primary" href="#" icon="product-accommodation">
                         Nearby places to stay
                     </vs-button-with-icon>
                 </vs-itinerary-nearby-links-wrapper>
