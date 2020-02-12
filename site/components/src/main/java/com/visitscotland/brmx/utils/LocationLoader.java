@@ -14,7 +14,7 @@ import java.util.*;
 
 public abstract class LocationLoader {
 
-    private static final Logger logger = null; //LoggerFactory.getLogger(LocationLoader.class.getName());
+    private static final Logger logger = LoggerFactory.getLogger(LocationLoader.class.getName());
 
     private static final Map<Locale, Map<String, LocationObject>> locations = new HashMap<>();
 
