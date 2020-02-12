@@ -27,7 +27,7 @@
                 "@type": "ListItem",
                 "position": ${count},
                 "item": {
-                    "@id": "${link}"
+                    "@id": "${link}",
                     "name": "${item.title?html}"
                 }
             </#if>
