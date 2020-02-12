@@ -115,6 +115,13 @@ export default {
         }
     }
 
+    &.btn-outline-primary {
+        background-color: $color-white;
+        &:hover {
+            background-color: $color-theme-primary;
+        }
+    }
+
     &.btn-light,
     &.btn-transparent {
         &:focus {
