@@ -37,9 +37,8 @@ definitions:
         jcr:primaryType: hipposysedit:prototypeset
         /hipposysedit:prototype:
           jcr:primaryType: visitscotland:default
-          jcr:mixinTypes: ['mix:referenceable']
-          jcr:uuid: 95123e83-3830-4b66-b90e-5b2ead43a5bb
-          hippogallery:description: ''
+          jcr:mixinTypes: ['mix:versionable']
+          jcr:uuid: e5fd9608-1463-49df-885b-1185097e0491
           /hippogallery:thumbnail:
             jcr:primaryType: hippogallery:image
             jcr:data:
@@ -93,6 +92,9 @@ definitions:
             field: thumbnail
             plugin.class: org.hippoecm.frontend.editor.plugins.field.NodeFieldPlugin
             wicket.id: ${cluster.id}.field
+            hint: ''
+            /cluster.options:
+              jcr:primaryType: frontend:pluginconfig
           /original:
             jcr:primaryType: frontend:plugin
             caption: original
