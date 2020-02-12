@@ -115,11 +115,8 @@ export default {
         }
     }
 
-    &.btn-outline-primary {
+    &.white-background:not(:hover) {
         background-color: $color-white;
-        &:hover {
-            background-color: $color-theme-primary;
-        }
     }
 
     &.btn-light,
