@@ -1,30 +1,29 @@
 /content/documents/visitscotland/site:
   .meta:order-before: shared
   jcr:primaryType: hippostd:folder
-  jcr:mixinTypes: ['hippotranslation:translated', 'mix:versionable']
+  jcr:mixinTypes: ["hippotranslation:translated", "mix:versionable"]
   jcr:uuid: e8d415ec-a08a-478c-bb98-2605a2854e47
   hippostd:foldertype: [new-translated-folder, new-document]
   hippotranslation:id: a65bff6c-4edf-4d28-b036-84bdee4b4bcd
   hippotranslation:locale: en
   /destinations-maps:
     jcr:primaryType: hippostd:folder
-    jcr:mixinTypes: ['hippotranslation:translated', 'mix:versionable']
+    jcr:mixinTypes: ["hippotranslation:translated", "mix:versionable"]
     jcr:uuid: 81bb0b87-c15c-475d-bd13-5d9a262a95e5
     hippostd:foldertype: [new-translated-folder, new-document]
     hippotranslation:id: 9a465810-0318-447d-af80-28f023b96f0f
     hippotranslation:locale: en
     /content:
       jcr:primaryType: hippo:handle
-      jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
+      jcr:mixinTypes: ["hippo:named", "hippo:versionInfo", "mix:referenceable"]
       jcr:uuid: 0751c1d3-3024-4d2d-a5e8-38286fee9722
       hippo:name: Content
       hippo:versionHistory: 10822c95-f9a8-48c8-8546-4bd983433a2e
       /content[1]:
         jcr:primaryType: visitscotland:Itinerary
-        jcr:mixinTypes: ['mix:referenceable']
+        jcr:mixinTypes: ["mix:referenceable"]
         jcr:uuid: bfc6a747-1993-4871-991c-e203c3dff91c
         hippo:availability: []
-        hippostd:holder: admin
         hippostd:state: draft
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2019-12-06T12:48:04.149Z
@@ -33,19 +32,21 @@
         hippotranslation:id: a3ed9022-e239-493b-952c-18d01ac36640
         hippotranslation:locale: en
         visitscotland:areas: [dumfries, highlands]
-        visitscotland:breadcrumb: ''
+        visitscotland:breadcrumb: ""
         visitscotland:distance: 10.4
         visitscotland:finish: Ocean point
-        visitscotland:highlights: "Glenfinnan Viaduct \r\nJacobite Steam Train\r\n\
+        visitscotland:highlights:
+          "Glenfinnan Viaduct \r\nJacobite Steam Train\r\n\
           Glen Etive\r\nThe Elephant House"
         visitscotland:popular: false
-        visitscotland:seoDescription: ''
+        visitscotland:seoDescription: ""
         visitscotland:seoNoIndex: false
         visitscotland:seoTitle: Iconic Harry Potter Film Locations - An Itinerary
         visitscotland:start: Tenerife
-        visitscotland:summary: ''
-        visitscotland:teaser: ''
-        visitscotland:text: "Glenfinnan Viaduct\r\n\r\nJacobite Steam Train\r\n\r\n\
+        visitscotland:summary: ""
+        visitscotland:teaser: ""
+        visitscotland:text:
+          "Glenfinnan Viaduct\r\n\r\nJacobite Steam Train\r\n\r\n\
           Glen Etive\r\n\r\nThe Elephant House"
         visitscotland:theme: filmev
         visitscotland:title: HARRY POTTER FILM AND BOOK LOCATIONS ITINERARY
@@ -59,7 +60,8 @@
           hippo:values: []
         /visitscotland:introduction:
           jcr:primaryType: hippostd:html
-          hippostd:content: <p>It was in Scotland's capital city that JK Rowling started
+          hippostd:content:
+            <p>It was in Scotland's capital city that JK Rowling started
             to plot the adventures of Harry and his friends. With cobbled streets,
             winding alleys and medieval architecture, the city certainly have a few
             things in common with the settings from the books and films. She wrote
@@ -73,12 +75,12 @@
           jcr:primaryType: visitscotland:ProductsSearch
           visitscotland:distance: 0
           visitscotland:dmsCategories: [guesthouse, yurts, touringpark, hostel]
-          visitscotland:dmscategories: ''
-          visitscotland:location: ''
-          visitscotland:producttype: ''
+          visitscotland:dmscategories: ""
+          visitscotland:location: ""
+          visitscotland:producttype: ""
       /content[2]:
         jcr:primaryType: visitscotland:Itinerary
-        jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
+        jcr:mixinTypes: ["mix:referenceable", "mix:versionable"]
         jcr:uuid: 54a5dc71-947d-4c5a-958c-9f06bebad234
         hippo:availability: [preview]
         hippostd:state: unpublished
@@ -89,19 +91,21 @@
         hippotranslation:id: a3ed9022-e239-493b-952c-18d01ac36640
         hippotranslation:locale: en
         visitscotland:areas: [dumfries, highlands]
-        visitscotland:breadcrumb: ''
+        visitscotland:breadcrumb: ""
         visitscotland:distance: 10.4
         visitscotland:finish: Ocean point
-        visitscotland:highlights: "Glenfinnan Viaduct \r\nJacobite Steam Train\r\n\
+        visitscotland:highlights:
+          "Glenfinnan Viaduct \r\nJacobite Steam Train\r\n\
           Glen Etive\r\nThe Elephant House"
         visitscotland:popular: false
-        visitscotland:seoDescription: ''
+        visitscotland:seoDescription: ""
         visitscotland:seoNoIndex: false
         visitscotland:seoTitle: Iconic Harry Potter Film Locations - An Itinerary
         visitscotland:start: Tenerife
-        visitscotland:summary: ''
-        visitscotland:teaser: ''
-        visitscotland:text: "Glenfinnan Viaduct\r\n\r\nJacobite Steam Train\r\n\r\n\
+        visitscotland:summary: ""
+        visitscotland:teaser: ""
+        visitscotland:text:
+          "Glenfinnan Viaduct\r\n\r\nJacobite Steam Train\r\n\r\n\
           Glen Etive\r\n\r\nThe Elephant House"
         visitscotland:theme: filmev
         visitscotland:title: HARRY POTTER FILM AND BOOK LOCATIONS ITINERARY
@@ -115,7 +119,8 @@
           hippo:values: []
         /visitscotland:introduction:
           jcr:primaryType: hippostd:html
-          hippostd:content: <p>It was in Scotland's capital city that JK Rowling started
+          hippostd:content:
+            <p>It was in Scotland's capital city that JK Rowling started
             to plot the adventures of Harry and his friends. With cobbled streets,
             winding alleys and medieval architecture, the city certainly have a few
             things in common with the settings from the books and films. She wrote
@@ -129,12 +134,12 @@
           jcr:primaryType: visitscotland:ProductsSearch
           visitscotland:distance: 0
           visitscotland:dmsCategories: [guesthouse, yurts, touringpark, hostel]
-          visitscotland:dmscategories: ''
-          visitscotland:location: ''
-          visitscotland:producttype: ''
+          visitscotland:dmscategories: ""
+          visitscotland:location: ""
+          visitscotland:producttype: ""
       /content[3]:
         jcr:primaryType: visitscotland:Itinerary
-        jcr:mixinTypes: ['mix:referenceable']
+        jcr:mixinTypes: ["mix:referenceable"]
         jcr:uuid: 2dcf9013-726c-426b-adfb-c27786713726
         hippo:availability: [live]
         hippostd:state: published
@@ -146,18 +151,20 @@
         hippotranslation:id: a3ed9022-e239-493b-952c-18d01ac36640
         hippotranslation:locale: en
         visitscotland:areas: [dumfries, highlands]
-        visitscotland:breadcrumb: ''
+        visitscotland:breadcrumb: ""
         visitscotland:distance: 10.4
         visitscotland:finish: Ocean point
-        visitscotland:highlights: "Glenfinnan Viaduct \r\nJacobite Steam Train\r\n\
+        visitscotland:highlights:
+          "Glenfinnan Viaduct \r\nJacobite Steam Train\r\n\
           Glen Etive\r\nThe Elephant House"
         visitscotland:popular: false
-        visitscotland:seoDescription: ''
+        visitscotland:seoDescription: ""
         visitscotland:seoNoIndex: false
         visitscotland:seoTitle: Iconic Harry Potter Film Locations - An Itinerary
         visitscotland:start: Tenerife
-        visitscotland:summary: ''
-        visitscotland:text: "Glenfinnan Viaduct\r\n\r\nJacobite Steam Train\r\n\r\n\
+        visitscotland:summary: ""
+        visitscotland:text:
+          "Glenfinnan Viaduct\r\n\r\nJacobite Steam Train\r\n\r\n\
           Glen Etive\r\n\r\nThe Elephant House"
         visitscotland:theme: filmev
         visitscotland:title: HARRY POTTER FILM AND BOOK LOCATIONS ITINERARY
@@ -171,7 +178,8 @@
           hippo:values: []
         /visitscotland:introduction:
           jcr:primaryType: hippostd:html
-          hippostd:content: <p>It was in Scotland's capital city that JK Rowling started
+          hippostd:content:
+            <p>It was in Scotland's capital city that JK Rowling started
             to plot the adventures of Harry and his friends. With cobbled streets,
             winding alleys and medieval architecture, the city certainly have a few
             things in common with the settings from the books and films. She wrote
@@ -185,18 +193,18 @@
           jcr:primaryType: visitscotland:ProductsSearch
           visitscotland:distance: 0
           visitscotland:dmsCategories: [guesthouse, yurts, touringpark, hostel]
-          visitscotland:dmscategories: ''
-          visitscotland:location: ''
-          visitscotland:producttype: ''
+          visitscotland:dmscategories: ""
+          visitscotland:location: ""
+          visitscotland:producttype: ""
     /edinburgh:
       jcr:primaryType: hippo:handle
-      jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
+      jcr:mixinTypes: ["hippo:named", "hippo:versionInfo", "mix:referenceable"]
       jcr:uuid: 8ac72449-609b-45aa-b2b6-d3cb81a24139
       hippo:name: Edinburgh
       hippo:versionHistory: 8fb6ba74-d9fa-46c7-967a-d92b1a9a4f6b
       /edinburgh[1]:
         jcr:primaryType: visitscotland:Day
-        jcr:mixinTypes: ['mix:referenceable']
+        jcr:mixinTypes: ["mix:referenceable"]
         jcr:uuid: 0ffbb12c-63cd-4459-ba5d-d73822b10120
         hippo:availability: []
         hippostd:state: draft
@@ -210,7 +218,8 @@
         visitscotland:transports: [walking, car, train]
         /visitscotland:introduction:
           jcr:primaryType: hippostd:html
-          hippostd:content: <p>It was in Scotland's capital city that JK Rowling started
+          hippostd:content:
+            <p>It was in Scotland's capital city that JK Rowling started
             to plot the adventures of Harry and his friends. With cobbled streets,
             winding alleys and medieval architecture, the city certainly has a few
             things in common with the settings from the books and films. She wrote
@@ -227,7 +236,7 @@
           hippo:docbase: 28abd074-5fc4-4ebc-a424-1d4f9e5cb0e6
       /edinburgh[2]:
         jcr:primaryType: visitscotland:Day
-        jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
+        jcr:mixinTypes: ["mix:referenceable", "mix:versionable"]
         jcr:uuid: 8faffb50-41aa-4bd3-a841-75166d4ee460
         hippo:availability: [preview]
         hippostd:state: unpublished
@@ -241,7 +250,8 @@
         visitscotland:transports: [walking, car, train]
         /visitscotland:introduction:
           jcr:primaryType: hippostd:html
-          hippostd:content: <p>It was in Scotland's capital city that JK Rowling started
+          hippostd:content:
+            <p>It was in Scotland's capital city that JK Rowling started
             to plot the adventures of Harry and his friends. With cobbled streets,
             winding alleys and medieval architecture, the city certainly has a few
             things in common with the settings from the books and films. She wrote
@@ -258,7 +268,7 @@
           hippo:docbase: 28abd074-5fc4-4ebc-a424-1d4f9e5cb0e6
       /edinburgh[3]:
         jcr:primaryType: visitscotland:Day
-        jcr:mixinTypes: ['mix:referenceable']
+        jcr:mixinTypes: ["mix:referenceable"]
         jcr:uuid: ca79ffa1-5ca3-44d8-a2fd-1b2f017c995e
         hippo:availability: [live]
         hippostd:state: published
@@ -273,7 +283,8 @@
         visitscotland:transports: [walking, car, train]
         /visitscotland:introduction:
           jcr:primaryType: hippostd:html
-          hippostd:content: <p>It was in Scotland's capital city that JK Rowling started
+          hippostd:content:
+            <p>It was in Scotland's capital city that JK Rowling started
             to plot the adventures of Harry and his friends. With cobbled streets,
             winding alleys and medieval architecture, the city certainly has a few
             things in common with the settings from the books and films. She wrote
@@ -290,13 +301,13 @@
           hippo:docbase: 28abd074-5fc4-4ebc-a424-1d4f9e5cb0e6
     /day-2:
       jcr:primaryType: hippo:handle
-      jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
+      jcr:mixinTypes: ["hippo:named", "hippo:versionInfo", "mix:referenceable"]
       jcr:uuid: e48273b9-7b42-4456-837f-e014dc069d95
       hippo:name: day 2
       hippo:versionHistory: 6e0a7d92-61a8-4523-9922-ee457f2033e1
       /day-2[1]:
         jcr:primaryType: visitscotland:Day
-        jcr:mixinTypes: ['mix:referenceable']
+        jcr:mixinTypes: ["mix:referenceable"]
         jcr:uuid: 8d068d19-9845-40ea-80fe-4dc7dd0e95f7
         hippo:availability: []
         hippostd:state: draft
@@ -307,8 +318,8 @@
         hippotranslation:id: 2af219fa-878e-435f-ae2e-e296a16e21a9
         hippotranslation:locale: en
         visitscotland:title: Dummy Stops
-        visitscotland:transports: [cycling, walking, boat, car, bus, train, ferry,
-          public]
+        visitscotland:transports:
+          [cycling, walking, boat, car, bus, train, ferry, public]
         /visitscotland:introduction:
           jcr:primaryType: hippostd:html
           hippostd:content: |-
@@ -331,7 +342,7 @@
           hippo:docbase: 1ead4399-7e30-47dc-9b75-2ea488fb5742
       /day-2[2]:
         jcr:primaryType: visitscotland:Day
-        jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
+        jcr:mixinTypes: ["mix:referenceable", "mix:versionable"]
         jcr:uuid: 31bac8af-c240-4a3c-b982-f0006a5f111e
         hippo:availability: [preview]
         hippostd:state: unpublished
@@ -342,8 +353,8 @@
         hippotranslation:id: 2af219fa-878e-435f-ae2e-e296a16e21a9
         hippotranslation:locale: en
         visitscotland:title: Dummy Stops
-        visitscotland:transports: [cycling, walking, boat, car, bus, train, ferry,
-          public]
+        visitscotland:transports:
+          [cycling, walking, boat, car, bus, train, ferry, public]
         /visitscotland:introduction:
           jcr:primaryType: hippostd:html
           hippostd:content: |-
@@ -366,7 +377,7 @@
           hippo:docbase: 1ead4399-7e30-47dc-9b75-2ea488fb5742
       /day-2[3]:
         jcr:primaryType: visitscotland:Day
-        jcr:mixinTypes: ['mix:referenceable']
+        jcr:mixinTypes: ["mix:referenceable"]
         jcr:uuid: 29a330bf-91ba-413d-9f7c-76dd55cc5b82
         hippo:availability: [live]
         hippostd:state: published
@@ -378,8 +389,8 @@
         hippotranslation:id: 2af219fa-878e-435f-ae2e-e296a16e21a9
         hippotranslation:locale: en
         visitscotland:title: Dummy Stops
-        visitscotland:transports: [cycling, walking, boat, car, bus, train, ferry,
-          public]
+        visitscotland:transports:
+          [cycling, walking, boat, car, bus, train, ferry, public]
         /visitscotland:introduction:
           jcr:primaryType: hippostd:html
           hippostd:content: |-
