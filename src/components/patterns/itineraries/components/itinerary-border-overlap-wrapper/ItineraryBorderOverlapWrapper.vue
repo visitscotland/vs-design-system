@@ -1,6 +1,6 @@
 <template>
     <div
-        class="vs-itinerary-nearby-links__wrapper d-flex d-sm-inline-flex flex-column justify-content-start border-left"
+        class="vs-itinerary-border-overlap__wrapper d-flex d-sm-inline-flex flex-column justify-content-start border-left"
     >
         <slot />
     </div>
@@ -11,7 +11,7 @@
  * Wraps the nearby links at the bottom of each day and applies border styling
  */
 export default {
-    name: "VsItineraryNearbyLinksWrapper",
+    name: "VsItineraryBorderOverlapWrapper",
     status: "prototype",
     release: "0.0.1",
     components: {},
@@ -20,7 +20,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.vs-itinerary-nearby-links__wrapper {
+.vs-itinerary-border-overlap__wrapper {
     min-height: 200px;
     margin-left: 2.5rem;
 
@@ -42,13 +42,13 @@ export default {
 <docs>
   
   ```jsx
-    <vs-itinerary-nearby-links-wrapper>
-        <vs-button-with-icon class="mb-3" variant="outline-primary" href="#" icon="food">
+    <vs-itinerary-border-overlap-wrapper>
+        <vs-button-with-icon class="mb-3" background="white" variant="outline-primary" href="#" icon="food">
             Nearby places to eat
         </vs-button-with-icon>
-        <vs-button-with-icon variant="outline-primary" href="#" icon="product-accommodation">
+        <vs-button-with-icon background="white" variant="outline-primary" href="#" icon="product-accommodation">
             Nearby places to stay
         </vs-button-with-icon>
-    </vs-itinerary-nearby-links-wrapper>
+    </vs-itinerary-border-overlap-wrapper>
   ```
 </docs>
