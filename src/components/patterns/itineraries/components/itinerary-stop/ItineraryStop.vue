@@ -160,15 +160,15 @@ export default {
                 </vs-icon-description-list>
               </div>
             <!-- mimic only showing these links on the last stop of the day -->
-              <template v-if="index == itineraries.sampleItinerary.days[0].stops.length - 1">
-                <vs-itinerary-nearby-links-wrapper slot="nearby-links">
+            <template v-if="index == itineraries.sampleItinerary.days[0].stops.length - 1">
+                <vs-itinerary-border-overlap-wrapper slot="nearby-links">
                     <vs-button-with-icon class="mb-3" background="white" variant="outline-primary" href="#" icon="food">
                         Nearby places to eat
                     </vs-button-with-icon>
                     <vs-button-with-icon background="white" variant="outline-primary" href="#" icon="product-accommodation">
                         Nearby places to stay
                     </vs-button-with-icon>
-                </vs-itinerary-nearby-links-wrapper>
+                </vs-itinerary-border-overlap-wrapper>
             </template>
 		</vs-itinerary-stop>
 	</ul>
