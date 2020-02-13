@@ -14,7 +14,7 @@ import java.util.*;
 
 public abstract class LocationLoader {
 
-    private static final Logger logger = null; //LoggerFactory.getLogger(LocationLoader.class.getName());
+    private static final Logger logger = LoggerFactory.getLogger(LocationLoader.class.getName());
 
     private static final Map<Locale, Map<String, LocationObject>> locations = new HashMap<>();
 
@@ -68,10 +68,10 @@ public abstract class LocationLoader {
     private static void init() {
         synchronized (LocationLoader.class) {
             if (locationToId.size() == 0) {
+                Map<String, LocationObject> locationsMap = new HashMap<>();
                 for (Locale locale : Properties.locales) {
                     try {
                         List<LocationObject> locationList = deserialize(request(locale));
-                        Map<String, LocationObject> locationsMap = new HashMap<>();
 
                         //if the locationToId map is empty and the locale is null. Both lists are populated simultaneously
                         if (locationToId.size() == 0 && locale == null) {
@@ -85,11 +85,13 @@ public abstract class LocationLoader {
                             }
                         }
 
-                        locations.put(locale, locationsMap);
-
                     } catch (IOException e) {
                         logger.warn("Location List couldn't been loaded for the locale {}", locale);
+                    } catch (Exception e) {
+                        logger.error("Unexpected exception ", e);
                     }
+
+                    locations.put(locale, locationsMap);
                 }
             }
         }
