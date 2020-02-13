@@ -114,10 +114,10 @@
       </div>
         <#if lastStop=="true" && prod.coordinates.longitude?? && prod.coordinates.longitude?has_content && prod.coordinates.latitude?? && prod.coordinates.latitude?has_content>
             <vs-itinerary-nearby-links-wrapper slot="nearby-links">
-                <vs-button-with-icon class="mb-3" variant="outline-primary" href="https://www.visitscotland.com/info/accommodation/search-results?prodtypes=cate&lat=${prod.coordinates.latitude}&lng=${prod.coordinates.longitude}&locprox=2&areaproxdist=5&stay=&endDate=&r1a=2&r1children=0&r1infants=0&r1c=0&avail=off&order=proximityAsc" icon="food">
+                <vs-button-with-icon class="mb-3" background="white" variant="outline-primary" href="https://www.visitscotland.com/info/accommodation/search-results?prodtypes=cate&lat=${prod.coordinates.latitude}&lng=${prod.coordinates.longitude}&locprox=2&areaproxdist=5&stay=&endDate=&r1a=2&r1children=0&r1infants=0&r1c=0&avail=off&order=proximityAsc" icon="food">
                     <@fmt.message key="stop.nearby-eat"/>
                 </vs-button-with-icon>
-                <vs-button-with-icon variant="outline-primary" href="https://www.visitscotland.com/info/accommodation/search-results?prodtypes=acco&lat=${prod.coordinates.latitude}&lng=${prod.coordinates.longitude}&locprox=2&areaproxdist=5&stay=&endDate=&r1a=2&r1children=0&r1infants=0&r1c=0&avail=off&order=proximityAsc" icon="product-accommodation">
+                <vs-button-with-icon background="white" variant="outline-primary" href="https://www.visitscotland.com/info/accommodation/search-results?prodtypes=acco&lat=${prod.coordinates.latitude}&lng=${prod.coordinates.longitude}&locprox=2&areaproxdist=5&stay=&endDate=&r1a=2&r1children=0&r1infants=0&r1c=0&avail=off&order=proximityAsc" icon="product-accommodation">
                     <@fmt.message key="stop.nearby-stay"/>
                 </vs-button-with-icon>
             </vs-itinerary-nearby-links-wrapper>
