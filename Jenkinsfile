@@ -12,7 +12,7 @@ pipeline {
         jdk 'jdk1.8.0'
     }
     stages {
-
+/*
 		stage ('Checkout Design System') {
 			steps {
               	// create a directory for the checkout then run the Git command within that directory, the package.json file must be aware of this location which introduces fragility/cross-dependency, could this be improved?
@@ -23,7 +23,7 @@ pipeline {
                 }
 			}
 		}
-
+*/
       stage ('Build Application') {
             steps {
                 sh 'mvn -f pom.xml clean package'
