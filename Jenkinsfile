@@ -1,5 +1,5 @@
 def DS_BRANCH = "feature/VS-955-ui-itineraries-itinerary-stops-changes-built-products"
-def MAIL_TO = "jose.calcines@visitscotland.com, juanluis.hurtado@visitscotland.com"
+def MAIL_TO = "jose.calcines@visitscotland.com, juanluis.hurtado@visitscotland.com, webops@visitscotland.net"
 
 
 pipeline {
@@ -13,6 +13,7 @@ pipeline {
     }
     stages {
 
+// 'Checkout Design System' stage now commented out as it's no longer required since VS-1081 - please merge this change as required but leave the block for reference
 //		stage ('Checkout Design System') {
 //			steps {
 //              	// create a directory for the checkout then run the Git command within that directory, the package.json file must be aware of this location which introduces fragility/cross-dependency, could this be improved?
