@@ -12,6 +12,7 @@
 <#include "../../vs-dotcom-ds/components/image-location-map.ftl">
 <#include "../../vs-dotcom-ds/components/button.ftl">
 <#include "../../vs-dotcom-ds/components/heading.ftl">
+<#include "../../vs-dotcom-ds/components/img.ftl">
 <#include "../../vs-dotcom-ds/components/tooltip.ftl">
 <#include "../../vs-dotcom-ds/components/summary-box-list.ftl">
 <#include "../../vs-dotcom-ds/components/summary-box-list-item.ftl">
@@ -78,7 +79,7 @@
                 latitude="${heroCoordinates.latitude}"
                 longitude="${heroCoordinates.longitude}"
             >
-                <img
+                <vs-img
                     class="lazyload"
                     src="${hero}"
                     srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
