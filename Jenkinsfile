@@ -13,7 +13,7 @@ pipeline {
     }
     stages {
 
-// 'Checkout Design System' stage now commented out as it's no longer required since VS-1081 - please merge this change as required but leave the block for reference
+// "Checkout Design System" stage now commented out as it's no longer required since VS-1081 - please merge this change as required but leave the block for reference
 //		stage ('Checkout Design System') {
 //			steps {
 //              	// create a directory for the checkout then run the Git command within that directory, the package.json file must be aware of this location which introduces fragility/cross-dependency, could this be improved?
@@ -50,8 +50,8 @@ pipeline {
         }
 
         stage ('Availability notice'){
-// "input" section commented out for now - useful for when there is genuinely a need to pause for an answer
 
+// "input" section commented out for now - useful for when there is genuinely a need to pause for an answer
 //            input{
 //                message "This environment will run until the next push is made the bitbucket repo."
 //            }
