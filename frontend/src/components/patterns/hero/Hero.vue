@@ -4,15 +4,15 @@
             <slot />
 
             <vs-button
-                variant="transparent"
+                variant="outline-transparent"
                 class="d-lg-none position-absolute vs-hero__toggle-caption"
-                v-if="showCaption"
+                v-if="showToggle"
                 :animate="false"
                 :aria-expanded="showCaption ? 'true' : 'false'"
                 :aria-controls="'image_' + imageSrc"
                 @click.native="toggleCaption"
             >
-                <vs-icon name="information" variant="light" size="sm" />
+                <vs-svg path="image-toggle" height="24" width="24" />
                 <span class="sr-only">{{ this.toggleButtonText }}</span>
             </vs-button>
         </div>
@@ -22,7 +22,7 @@
             :class="[showCaption ? 'd-flex' : 'd-none d-lg-flex']"
             :id="'image_' + imageSrc"
         >
-            <figcaption ref="figcaption">
+            <figcaption ref="figcaption" v-if="this.showCaptionData || this.showMap">
                 <vs-row>
                     <vs-col>
                         <div class="p-4" v-if="this.showCaptionData">
@@ -35,7 +35,7 @@
                         </div>
                     </vs-col>
                     <vs-col cols="auto" class="pl-0" v-if="showMap">
-                        <div class="map__wrapper" role="document">
+                        <div class="map__wrapper">
                             <vs-image-location-map
                                 :latitude="this.latitude"
                                 :longitude="this.longitude"
@@ -51,7 +51,7 @@
 </template>
 
 <script>
-import VsIcon from "@components/elements/icon/Icon"
+import VsSvg from "@components/elements/svg/Svg"
 import VsButton from "@components/elements/button/Button"
 import { VsContainer, VsRow, VsCol } from "@components/elements/layout"
 import VsImageLocationMap from "@components/patterns/image-location-map/ImageLocationMap"
@@ -63,7 +63,7 @@ export default {
     name: "VsHero",
     status: "prototype",
     release: "0.0.1",
-    components: { VsContainer, VsRow, VsCol, VsImageLocationMap, VsButton, VsIcon },
+    components: { VsContainer, VsRow, VsCol, VsImageLocationMap, VsButton, VsSvg },
     data() {
         return {
             showCaption: false,
@@ -82,7 +82,7 @@ export default {
          */
         credit: {
             type: String,
-            default: null,
+            default: "",
         },
 
         /**
@@ -90,14 +90,7 @@ export default {
          */
         caption: {
             type: String,
-            default: null,
-        },
-
-        /**
-         * The image ID in the Digital Media Library
-         */
-        dmlId: {
-            type: String,
+            default: "",
         },
 
         /**
@@ -112,6 +105,7 @@ export default {
          */
         latitude: {
             type: String,
+            default: "",
         },
 
         /**
@@ -119,6 +113,7 @@ export default {
          */
         longitude: {
             type: String,
+            default: "",
         },
 
         /**
@@ -130,27 +125,21 @@ export default {
         },
     },
     computed: {
-        backgroundSet() {
-            return "data-bgset='" + this.imageSrc + " 320w [(max-width: 360px)]')"
-        },
-        backgroundStyle() {
-            return "background-image: url('" + this.imageSrc + "');"
-        },
         showCaptionData() {
-            return (this.caption && this.caption.length) || (this.credit && this.credit.length)
+            return this.caption.length || this.credit.length
         },
         showToggle() {
-            // only show the image detail toggle button if there's a map or caption data
-            return this.showCaptionData()
+            // only show the image caption toggle button if there's a map or caption data
+            return this.showCaptionData || this.showMap
         },
         showMap() {
             // only show the map if longitude and latitude are both set
-            return this.longitude && this.latitude
+            return this.longitude.length && this.latitude.length
         },
     },
     methods: {
         toggleCaption() {
-            return !this.showCaption
+            return (this.showCaption = !this.showCaption)
         },
     },
 }
@@ -169,9 +158,10 @@ export default {
 }
 
 .vs-hero__toggle-caption {
-    bottom: 0;
-    padding: 0.325rem;
-    right: 0;
+    bottom: 0.5rem;
+    padding: 0;
+    right: 0.5rem;
+    border-radius: 50%;
 }
 
 figure {
@@ -249,29 +239,26 @@ figcaption {
 </style>
 
 <docs>
-    ```jsx
-        <vs-hero
-            v-for="(item, index) in hero.imageExamples"
-            :altText="item.altText"
-            :credit="item.credit"
-            :caption="item.caption"
-            :image-src="item.imageSrc"
-            :key="index"
-            :latitude="item.latitude"
-            :longitude="item.longitude"
-        >
-            <vs-img
-                class="lazyload"
-                :src="item.imageSrc"
-                srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
-                :data-srcset="item.imageSrc"
-                :alt="item.altText"
-                data-sizes="auto">
-            </vs-img>
-
-            <span class="vs-hero__overlay-text text-light">
-                Scotland
-            </span>
-        </vs-hero>
-    ```
+  ```jsx
+    <vs-hero
+      v-for="(item, index) in hero.imageExamples"
+      :altText="item.altText"
+      :credit="item.credit"
+      :caption="item.caption"
+      :image-src="item.imageSrc"
+      :key="index"
+      :latitude="item.latitude"
+      :longitude="item.longitude"
+    >
+    <vs-img
+        class="lazyload"
+        :src="item.imageSrc"
+        srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+        :data-srcset="item.imageSrc"
+        :alt="item.altText"
+        data-sizes="auto">
+    </vs-img>
+      <span class="vs-hero__overlay-text text-light">Scotland</span>
+    </vs-hero>
+  ```
 </docs>
