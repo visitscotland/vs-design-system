@@ -12,7 +12,7 @@ set | egrep "BRANCH|BUILD|JENKINS|JOB|WORKSPACE"
 echo ====/selected Jenkins environment variables ====
 
 # ==== ADJUSTABLE VARIABLES ====
-# we need to update these to set only if they're not set already, that way the Dev can override in the job template
+# gp:to-do we need to update these to set only if they're not set already, that way the Dev can override in the Jenkinsfile
 #  == Tomcat Variables ==
 DOCKERFILE_PATH=/home/jenkins/vs-dockerfile/
 DOCKERFILE_NAME=brx13
@@ -24,9 +24,11 @@ VS_BRXM_INSTANCE_HTTP_HOST=localhost
 #  == Hosting Environment Variables ==
 VS_PROXY_SERVER_SCHEME=https
 VS_PROXY_SERVER_FQDN=feature.visitscotland.com
+# the next variable "VS_BRXM_PORT_OVERRIDE" should only be used by operations for debug purposes, an available port will be found and used later in this script
+#VS_BRXM_PORT_OVERRIDE=8080
+# ====/ADJUSTABLE VARIABLES ====
 
-# set container name
-#CONTAINER_NAME=`basename $BRANCH_NAME`
+# set container name from branch name - removing / characters
 CONTAINER_NAME=`echo $JOB_NAME | sed -e "s/\/.*//g"`"_"`basename $BRANCH_NAME`
 set | egrep "CONTAINER"
 
@@ -48,9 +50,15 @@ echo deleting any docker images with name $CONTAINER_NAME
 docker images | egrep "$CONTAINER_NAME"
 for IMAGE in `docker images | egrep "$CONTAINER_NAME" | awk '{print $3}'`; do echo deleting $IMAGE; docker image rm -f $IMAGE; done
 
+# gp:to-do even if override is set we must still check to ensure it's free, move the while loop to after the if block and just add PORT/MAXPORT values into the if. If the override port if in use the job must fail
 echo ""
 echo "finding a free port to map to the new container's Tomcat port"
-PORT=8000; MAXPORT=8099; while [ $PORT -le $MAXPORT ]; do FREE=`netstat -an | egrep "LISTEN *$" | grep $PORT`; if [ "$FREE" = "" ]; then echo $PORT is free; break; fi; PORT=$((PORT+1)); sleep 0; done; if [ $PORT -gt $MAXPORT ]; then echo reached $PORT, no ports are free; PORT=NULL; echo PORT=$PORT; fi
+if [ -z "$VS_BRXM_PORT_OVERRIDE" ]; then
+  PORT=8000; MAXPORT=8099; while [ $PORT -le $MAXPORT ]; do FREE=`netstat -an | egrep "LISTEN *$" | grep $PORT`; if [ "$FREE" = "" ]; then echo $PORT is free; break; fi; PORT=$((PORT+1)); sleep 0; done; if [ $PORT -gt $MAXPORT ]; then echo reached $PORT, no ports are free; PORT=NULL; echo PORT=$PORT; fi
+else
+  echo PORT will be set to $VS_BRXM_PORT_OVERRIDE due to VS_BRXM_PORT_OVERRIDE
+  PORT=$VS_BRXM_PORT_OVERRIDE
+fi
 
 # create dockerfile location in $WORKSPACE
 #cp -R $DOCKERFILE_LOCATION $WORKSPACE
@@ -117,4 +125,4 @@ echo "  - http://$VS_HOST_IP_ADDRESS:$PORT/site/"
 echo "###############################################################################################################################"
 echo ""
 echo ""
-# should really tidy
+# gp:to-do should really tidy
