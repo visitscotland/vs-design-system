@@ -1,14 +1,15 @@
 /content/documents/visitscotland/shared:
   .meta:order-before: navigation
   jcr:primaryType: hippostd:folder
-  jcr:mixinTypes: ['hippotranslation:translated', 'mix:versionable']
+  jcr:mixinTypes: ["hippotranslation:translated", "mix:versionable"]
   jcr:uuid: 3cc08987-f496-4981-ab2b-07c0e36ca2b7
   hippostd:foldertype: [new-translated-folder, new-document]
   hippotranslation:id: b091be00-dc54-41e0-9354-c4098c03db9e
   hippotranslation:locale: en
   /itinerary-stops:
     jcr:primaryType: hippostd:folder
-    jcr:mixinTypes: ['hippo:named', 'hippotranslation:translated', 'mix:versionable']
+    jcr:mixinTypes:
+      ["hippo:named", "hippotranslation:translated", "mix:versionable"]
     jcr:uuid: 41b800fa-fa6e-40e7-b01f-c248bf66a26a
     hippo:name: Itinerary stops
     hippostd:foldertype: [new-translated-folder, new-document]
@@ -16,13 +17,13 @@
     hippotranslation:locale: en
     /edinburgh-castle:
       jcr:primaryType: hippo:handle
-      jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
+      jcr:mixinTypes: ["hippo:named", "hippo:versionInfo", "mix:referenceable"]
       jcr:uuid: 1ead4399-7e30-47dc-9b75-2ea488fb5742
       hippo:name: Edinburgh castle
       hippo:versionHistory: b8ae8151-3c8e-4f65-b69e-03ea1bac3ba9
       /edinburgh-castle[1]:
         jcr:primaryType: visitscotland:Stop
-        jcr:mixinTypes: ['mix:referenceable']
+        jcr:mixinTypes: ["mix:referenceable"]
         jcr:uuid: e8d45bd4-c666-466b-a6e0-d38aec4ead8f
         hippo:availability: []
         hippostd:state: draft
@@ -36,14 +37,15 @@
         visitscotland:title: Edinburgh castle
         /visitscotland:description:
           jcr:primaryType: hippostd:html
-          hippostd:content: <p>Edinburgh castle is a really nice attraction and this
+          hippostd:content:
+            <p>Edinburgh castle is a really nice attraction and this
             is an example for description</p>
         /visitscotland:tips:
           jcr:primaryType: hippostd:html
           hippostd:content: <p>Edinburgh Castle - Sample Pullout Information</p>
         /visitscotland:product:
           jcr:primaryType: visitscotland:DMSLink
-          visitscotland:product: '245821'
+          visitscotland:product: "245821"
           /visitscotland:image:
             jcr:primaryType: hippogallerypicker:imagelink
             hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
@@ -52,7 +54,7 @@
             hippo:values: []
       /edinburgh-castle[2]:
         jcr:primaryType: visitscotland:Stop
-        jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
+        jcr:mixinTypes: ["mix:referenceable", "mix:versionable"]
         jcr:uuid: 2bf55d95-17a5-4f74-81ff-03c2f9b9b87d
         hippo:availability: [preview]
         hippostd:state: unpublished
@@ -66,14 +68,15 @@
         visitscotland:title: Edinburgh castle
         /visitscotland:description:
           jcr:primaryType: hippostd:html
-          hippostd:content: <p>Edinburgh castle is a really nice attraction and this
+          hippostd:content:
+            <p>Edinburgh castle is a really nice attraction and this
             is an example for description</p>
         /visitscotland:tips:
           jcr:primaryType: hippostd:html
           hippostd:content: <p>Edinburgh Castle - Sample Pullout Information</p>
         /visitscotland:product:
           jcr:primaryType: visitscotland:DMSLink
-          visitscotland:product: '245821'
+          visitscotland:product: "245821"
           /visitscotland:image:
             jcr:primaryType: hippogallerypicker:imagelink
             hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
@@ -82,7 +85,7 @@
             hippo:values: []
       /edinburgh-castle[3]:
         jcr:primaryType: visitscotland:Stop
-        jcr:mixinTypes: ['mix:referenceable']
+        jcr:mixinTypes: ["mix:referenceable"]
         jcr:uuid: 855dc743-6536-4f42-85c7-ec7a9734e835
         hippo:availability: [live]
         hippostd:state: published
@@ -97,14 +100,15 @@
         visitscotland:title: Edinburgh castle
         /visitscotland:description:
           jcr:primaryType: hippostd:html
-          hippostd:content: <p>Edinburgh castle is a really nice attraction and this
+          hippostd:content:
+            <p>Edinburgh castle is a really nice attraction and this
             is an example for description</p>
         /visitscotland:tips:
           jcr:primaryType: hippostd:html
           hippostd:content: <p>Edinburgh Castle - Sample Pullout Information</p>
         /visitscotland:product:
           jcr:primaryType: visitscotland:DMSLink
-          visitscotland:product: '245821'
+          visitscotland:product: "245821"
           /visitscotland:image:
             jcr:primaryType: hippogallerypicker:imagelink
             hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
@@ -113,13 +117,13 @@
             hippo:values: []
     /royal-mil-and-grassmarket:
       jcr:primaryType: hippo:handle
-      jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
+      jcr:mixinTypes: ["hippo:named", "hippo:versionInfo", "mix:referenceable"]
       jcr:uuid: ca56dfe6-f8c8-410f-aa63-ed513fc71385
       hippo:name: Royal mil and grassmarket
       hippo:versionHistory: 2f6f6c0e-eb98-40bf-a2e2-b6ee8152b949
       /royal-mil-and-grassmarket[1]:
         jcr:primaryType: visitscotland:Stop
-        jcr:mixinTypes: ['mix:referenceable']
+        jcr:mixinTypes: ["mix:referenceable"]
         jcr:uuid: f99a876a-5616-44c4-8150-1e2b2f22c3c9
         hippo:availability: []
         hippostd:state: draft
@@ -133,7 +137,8 @@
         visitscotland:title: OLD TOWN HIDEOUTS
         /visitscotland:description:
           jcr:primaryType: hippostd:html
-          hippostd:content: <p>Two old town cafés near the Royal Mile claim that JK
+          hippostd:content:
+            <p>Two old town cafés near the Royal Mile claim that JK
             Rowling spent endless afternoons in the 1990s gazing out of their windows
             and dreaming up her magical characters. The Elephant House, with its beautiful
             views of Edinburgh Castle, has become known as the 'Birthplace of Harry
@@ -143,10 +148,10 @@
             Chambers on the Royal Mile.</p>
         /visitscotland:tips:
           jcr:primaryType: hippostd:html
-          hippostd:content: ''
+          hippostd:content: ""
         /visitscotland:product:
           jcr:primaryType: visitscotland:DMSLink
-          visitscotland:product: '918401'
+          visitscotland:product: "918401"
           /visitscotland:image:
             jcr:primaryType: hippogallerypicker:imagelink
             hippo:docbase: 9fb38865-ca10-4ef4-bcab-a1097cc44487
@@ -155,7 +160,7 @@
             hippo:values: []
       /royal-mil-and-grassmarket[2]:
         jcr:primaryType: visitscotland:Stop
-        jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
+        jcr:mixinTypes: ["mix:referenceable", "mix:versionable"]
         jcr:uuid: 5124b37d-cf2a-4427-a5f9-db96896937f8
         hippo:availability: [preview]
         hippostd:state: unpublished
@@ -169,7 +174,8 @@
         visitscotland:title: OLD TOWN HIDEOUTS
         /visitscotland:description:
           jcr:primaryType: hippostd:html
-          hippostd:content: <p>Two old town cafés near the Royal Mile claim that JK
+          hippostd:content:
+            <p>Two old town cafés near the Royal Mile claim that JK
             Rowling spent endless afternoons in the 1990s gazing out of their windows
             and dreaming up her magical characters. The Elephant House, with its beautiful
             views of Edinburgh Castle, has become known as the 'Birthplace of Harry
@@ -179,10 +185,10 @@
             Chambers on the Royal Mile.</p>
         /visitscotland:tips:
           jcr:primaryType: hippostd:html
-          hippostd:content: ''
+          hippostd:content: ""
         /visitscotland:product:
           jcr:primaryType: visitscotland:DMSLink
-          visitscotland:product: '918401'
+          visitscotland:product: "918401"
           /visitscotland:image:
             jcr:primaryType: hippogallerypicker:imagelink
             hippo:docbase: 9fb38865-ca10-4ef4-bcab-a1097cc44487
@@ -191,7 +197,7 @@
             hippo:values: []
       /royal-mil-and-grassmarket[3]:
         jcr:primaryType: visitscotland:Stop
-        jcr:mixinTypes: ['mix:referenceable']
+        jcr:mixinTypes: ["mix:referenceable"]
         jcr:uuid: af464800-0175-4f8f-b40f-d731bf3a6667
         hippo:availability: [live]
         hippostd:state: published
@@ -206,7 +212,8 @@
         visitscotland:title: OLD TOWN HIDEOUTS
         /visitscotland:description:
           jcr:primaryType: hippostd:html
-          hippostd:content: <p>Two old town cafés near the Royal Mile claim that JK
+          hippostd:content:
+            <p>Two old town cafés near the Royal Mile claim that JK
             Rowling spent endless afternoons in the 1990s gazing out of their windows
             and dreaming up her magical characters. The Elephant House, with its beautiful
             views of Edinburgh Castle, has become known as the 'Birthplace of Harry
@@ -216,10 +223,10 @@
             Chambers on the Royal Mile.</p>
         /visitscotland:tips:
           jcr:primaryType: hippostd:html
-          hippostd:content: ''
+          hippostd:content: ""
         /visitscotland:product:
           jcr:primaryType: visitscotland:DMSLink
-          visitscotland:product: '918401'
+          visitscotland:product: "918401"
           /visitscotland:image:
             jcr:primaryType: hippogallerypicker:imagelink
             hippo:docbase: 9fb38865-ca10-4ef4-bcab-a1097cc44487
@@ -228,13 +235,13 @@
             hippo:values: []
     /greyfriars-kirkyard:
       jcr:primaryType: hippo:handle
-      jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
+      jcr:mixinTypes: ["hippo:named", "hippo:versionInfo", "mix:referenceable"]
       jcr:uuid: 28abd074-5fc4-4ebc-a424-1d4f9e5cb0e6
       hippo:name: GREYFRIARS KIRKYARD
       hippo:versionHistory: ca7cf1d2-105c-4a16-9dfb-cdcb03186f4e
       /greyfriars-kirkyard[1]:
         jcr:primaryType: visitscotland:Stop
-        jcr:mixinTypes: ['mix:referenceable']
+        jcr:mixinTypes: ["mix:referenceable"]
         jcr:uuid: 382c1404-85eb-445f-acb5-fb5c333a93e2
         hippo:availability: []
         hippostd:holder: admin
@@ -249,17 +256,18 @@
         visitscotland:title: Greyfriars Kirkyard
         /visitscotland:description:
           jcr:primaryType: hippostd:html
-          hippostd:content: '<p>Only a short walk away from The Elephant House you''ll
+          hippostd:content:
+            "<p>Only a short walk away from The Elephant House you'll
             find this infamous, spine-tingling graveyard, and burial place of several
             notable Edinburgh academics and writers of the past. However, also buried
             here are a few other notable residents: Thomas Riddell, William McGonagall
-            and Elizabeth Moodie. A coincidence? We think not.</p>'
+            and Elizabeth Moodie. A coincidence? We think not.</p>"
         /visitscotland:tips:
           jcr:primaryType: hippostd:html
           hippostd:content: <p>Description example for pull out</p>
         /visitscotland:product:
           jcr:primaryType: visitscotland:ItineraryExternalLink
-          visitscotland:timeToExplore: ' 24'
+          visitscotland:timeToExplore: " 24"
           /visitscotland:ExternalLink:
             jcr:primaryType: visitscotland:ExternalLink
             visitscotland:Link: https://greyfriarskirk.com/visit/kirkyard/
@@ -285,7 +293,7 @@
             hippo:values: []
       /greyfriars-kirkyard[2]:
         jcr:primaryType: visitscotland:Stop
-        jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
+        jcr:mixinTypes: ["mix:referenceable", "mix:versionable"]
         jcr:uuid: a30aa998-e1ec-48ea-9897-faddcff868e9
         hippo:availability: [preview]
         hippostd:state: unpublished
@@ -299,17 +307,18 @@
         visitscotland:title: Greyfriars Kirkyard
         /visitscotland:description:
           jcr:primaryType: hippostd:html
-          hippostd:content: '<p>Only a short walk away from The Elephant House you''ll
+          hippostd:content:
+            "<p>Only a short walk away from The Elephant House you'll
             find this infamous, spine-tingling graveyard, and burial place of several
             notable Edinburgh academics and writers of the past. However, also buried
             here are a few other notable residents: Thomas Riddell, William McGonagall
-            and Elizabeth Moodie. A coincidence? We think not.</p>'
+            and Elizabeth Moodie. A coincidence? We think not.</p>"
         /visitscotland:tips:
           jcr:primaryType: hippostd:html
           hippostd:content: <p>Description example for pull out</p>
         /visitscotland:product:
           jcr:primaryType: visitscotland:ItineraryExternalLink
-          visitscotland:timeToExplore: ' 24'
+          visitscotland:timeToExplore: " 24"
           /visitscotland:ExternalLink:
             jcr:primaryType: visitscotland:ExternalLink
             visitscotland:Link: https://greyfriarskirk.com/visit/kirkyard/
@@ -329,7 +338,7 @@
             visitscotland:longitude: -2.1929624999999997
       /greyfriars-kirkyard[3]:
         jcr:primaryType: visitscotland:Stop
-        jcr:mixinTypes: ['mix:referenceable']
+        jcr:mixinTypes: ["mix:referenceable"]
         jcr:uuid: 55b22033-bb49-4c18-a9fc-e65c6a970ed6
         hippo:availability: [live]
         hippostd:state: published
@@ -344,17 +353,18 @@
         visitscotland:title: Greyfriars Kirkyard
         /visitscotland:description:
           jcr:primaryType: hippostd:html
-          hippostd:content: '<p>Only a short walk away from The Elephant House you''ll
+          hippostd:content:
+            "<p>Only a short walk away from The Elephant House you'll
             find this infamous, spine-tingling graveyard, and burial place of several
             notable Edinburgh academics and writers of the past. However, also buried
             here are a few other notable residents: Thomas Riddell, William McGonagall
-            and Elizabeth Moodie. A coincidence? We think not.</p>'
+            and Elizabeth Moodie. A coincidence? We think not.</p>"
         /visitscotland:tips:
           jcr:primaryType: hippostd:html
           hippostd:content: <p>Description example for pull out</p>
         /visitscotland:product:
           jcr:primaryType: visitscotland:ItineraryExternalLink
-          visitscotland:timeToExplore: ' 24'
+          visitscotland:timeToExplore: " 24"
           /visitscotland:ExternalLink:
             jcr:primaryType: visitscotland:ExternalLink
             visitscotland:Link: https://greyfriarskirk.com/visit/kirkyard/
@@ -374,13 +384,13 @@
             visitscotland:longitude: -2.1929624999999997
     /casa-jose:
       jcr:primaryType: hippo:handle
-      jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
+      jcr:mixinTypes: ["hippo:named", "hippo:versionInfo", "mix:referenceable"]
       jcr:uuid: 8b215960-87aa-47ae-9c11-8a750be25ad8
       hippo:name: Casa Jose
       hippo:versionHistory: e5aa8d91-2fa9-4fe2-a24e-e7fd49ba3c15
       /casa-jose[1]:
         jcr:primaryType: visitscotland:Stop
-        jcr:mixinTypes: ['mix:referenceable']
+        jcr:mixinTypes: ["mix:referenceable"]
         jcr:uuid: 863c3f82-ab9a-41e1-9919-5407827a8ee9
         hippo:availability: []
         hippostd:holder: admin
@@ -391,17 +401,17 @@
         hippostdpubwf:lastModifiedBy: admin
         hippotranslation:id: b4f184af-52de-4e48-92ab-33cc5c2519e0
         hippotranslation:locale: en
-        visitscotland:tipsTitle: ''
+        visitscotland:tipsTitle: ""
         visitscotland:title: Casa Jose
         /visitscotland:description:
           jcr:primaryType: hippostd:html
           hippostd:content: <p>Short description</p>
         /visitscotland:tips:
           jcr:primaryType: hippostd:html
-          hippostd:content: ''
+          hippostd:content: ""
         /visitscotland:product:
           jcr:primaryType: visitscotland:ItineraryExternalLink
-          visitscotland:timeToExplore: '1'
+          visitscotland:timeToExplore: "1"
           /visitscotland:ExternalLink:
             jcr:primaryType: visitscotland:ExternalLink
             visitscotland:Link: http://la-casa-restaurant.co.uk/
@@ -427,7 +437,7 @@
             hippo:values: []
       /casa-jose[2]:
         jcr:primaryType: visitscotland:Stop
-        jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
+        jcr:mixinTypes: ["mix:referenceable", "mix:versionable"]
         jcr:uuid: 19707bf3-babe-4384-b44e-de9d4a131b57
         hippo:availability: [preview]
         hippostd:state: unpublished
@@ -437,17 +447,17 @@
         hippostdpubwf:lastModifiedBy: admin
         hippotranslation:id: b4f184af-52de-4e48-92ab-33cc5c2519e0
         hippotranslation:locale: en
-        visitscotland:tipsTitle: ''
+        visitscotland:tipsTitle: ""
         visitscotland:title: Casa Jose
         /visitscotland:description:
           jcr:primaryType: hippostd:html
           hippostd:content: <p>Short description</p>
         /visitscotland:tips:
           jcr:primaryType: hippostd:html
-          hippostd:content: ''
+          hippostd:content: ""
         /visitscotland:product:
           jcr:primaryType: visitscotland:ItineraryExternalLink
-          visitscotland:timeToExplore: '1'
+          visitscotland:timeToExplore: "1"
           /visitscotland:ExternalLink:
             jcr:primaryType: visitscotland:ExternalLink
             visitscotland:Link: http://la-casa-restaurant.co.uk/
@@ -467,7 +477,7 @@
             visitscotland:longitude: -4.824278333333333
       /casa-jose[3]:
         jcr:primaryType: visitscotland:Stop
-        jcr:mixinTypes: ['mix:referenceable']
+        jcr:mixinTypes: ["mix:referenceable"]
         jcr:uuid: e5abe271-18bf-4002-b84c-57fa68852a5f
         hippo:availability: [live]
         hippostd:state: published
@@ -478,17 +488,17 @@
         hippostdpubwf:publicationDate: 2020-01-31T15:28:12.064Z
         hippotranslation:id: b4f184af-52de-4e48-92ab-33cc5c2519e0
         hippotranslation:locale: en
-        visitscotland:tipsTitle: ''
+        visitscotland:tipsTitle: ""
         visitscotland:title: Casa Jose
         /visitscotland:description:
           jcr:primaryType: hippostd:html
           hippostd:content: <p>Short description</p>
         /visitscotland:tips:
           jcr:primaryType: hippostd:html
-          hippostd:content: ''
+          hippostd:content: ""
         /visitscotland:product:
           jcr:primaryType: visitscotland:ItineraryExternalLink
-          visitscotland:timeToExplore: '1'
+          visitscotland:timeToExplore: "1"
           /visitscotland:ExternalLink:
             jcr:primaryType: visitscotland:ExternalLink
             visitscotland:Link: http://la-casa-restaurant.co.uk/
@@ -508,13 +518,13 @@
             visitscotland:longitude: -4.824278333333333
     /malformed-stop:
       jcr:primaryType: hippo:handle
-      jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
+      jcr:mixinTypes: ["hippo:named", "hippo:versionInfo", "mix:referenceable"]
       jcr:uuid: 8030a311-a942-40e6-bb89-41dd6fea60df
       hippo:name: Malformed Stop
       hippo:versionHistory: 528681ff-d615-4307-b8f2-f4246ecfa883
       /malformed-stop[1]:
         jcr:primaryType: visitscotland:Stop
-        jcr:mixinTypes: ['mix:referenceable']
+        jcr:mixinTypes: ["mix:referenceable"]
         jcr:uuid: 9418de97-4e61-4658-9c86-05b32184113c
         hippo:availability: []
         hippostd:state: draft
@@ -534,7 +544,7 @@
           hippostd:content: <p>Malformed Stop - Sample Pullout Information</p>
       /malformed-stop[2]:
         jcr:primaryType: visitscotland:Stop
-        jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
+        jcr:mixinTypes: ["mix:referenceable", "mix:versionable"]
         jcr:uuid: 5d9eb4ff-640d-4d09-a351-40192e0c34fb
         hippo:availability: [preview]
         hippostd:state: unpublished
@@ -554,7 +564,7 @@
           hippostd:content: <p>Malformed Stop - Sample Pullout Information</p>
       /malformed-stop[3]:
         jcr:primaryType: visitscotland:Stop
-        jcr:mixinTypes: ['mix:referenceable']
+        jcr:mixinTypes: ["mix:referenceable"]
         jcr:uuid: 6ed22bbe-9e6c-4b4f-9c56-23423c8dbdd2
         hippo:availability: [live]
         hippostd:state: published
