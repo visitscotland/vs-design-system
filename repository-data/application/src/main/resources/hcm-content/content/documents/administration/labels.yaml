@@ -97,7 +97,7 @@
     jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
     jcr:uuid: 8ee40201-fbb6-42dc-81b2-bfe329ba5bf2
     hippo:name: Navigation
-    hippo:versionHistory: 8d1ec310-6daf-488e-8227-18cf988088cd
+    hippo:versionHistory: ef17b169-613d-408f-b5d8-5895217b768e
     /navigation[1]:
       jcr:primaryType: resourcebundle:resourcebundle
       jcr:mixinTypes: ['mix:referenceable']
@@ -106,13 +106,14 @@
       hippostd:state: draft
       hippostdpubwf:createdBy: admin
       hippostdpubwf:creationDate: 2019-11-07T18:38:44.678Z
-      hippostdpubwf:lastModificationDate: 2019-11-07T18:40:46.860Z
+      hippostdpubwf:lastModificationDate: 2020-02-06T17:42:45.495Z
       hippostdpubwf:lastModifiedBy: admin
-      resourcebundle:descriptions: ['', '']
+      resourcebundle:descriptions: ['', '', '', '']
       resourcebundle:id: navigation
-      resourcebundle:keys: [home, content]
-      resourcebundle:messages: [Home, Content]
-      resourcebundle:messages_es: [Inicio, Contenido]
+      resourcebundle:keys: [home, content, see-do, destination-map]
+      resourcebundle:messages: [Home, Content, Things to see and do, Map of destinations]
+      resourcebundle:messages_es: [Inicio, Contenido, Cosas Varias (Para hacer o ver),
+        Destinos para güiris]
     /navigation[2]:
       jcr:primaryType: resourcebundle:resourcebundle
       jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
@@ -121,13 +122,14 @@
       hippostd:state: unpublished
       hippostdpubwf:createdBy: admin
       hippostdpubwf:creationDate: 2019-11-07T18:38:44.678Z
-      hippostdpubwf:lastModificationDate: 2019-11-07T18:41:05.813Z
+      hippostdpubwf:lastModificationDate: 2020-02-06T17:45:16.657Z
       hippostdpubwf:lastModifiedBy: admin
-      resourcebundle:descriptions: ['', '']
+      resourcebundle:descriptions: ['', '', '', '']
       resourcebundle:id: navigation
-      resourcebundle:keys: [home, content]
-      resourcebundle:messages: [Home, Content]
-      resourcebundle:messages_es: [Inicio, Contenido]
+      resourcebundle:keys: [home, content, see-do, destination-map]
+      resourcebundle:messages: [Home, Content, Things to see and do, Map of destinations]
+      resourcebundle:messages_es: [Inicio, Contenido, Cosas Varias (Para hacer o ver),
+        Destinos para güiris]
     /navigation[3]:
       jcr:primaryType: resourcebundle:resourcebundle
       jcr:mixinTypes: ['mix:referenceable']
@@ -136,14 +138,15 @@
       hippostd:state: published
       hippostdpubwf:createdBy: admin
       hippostdpubwf:creationDate: 2019-11-07T18:38:44.678Z
-      hippostdpubwf:lastModificationDate: 2019-11-07T18:41:05.813Z
+      hippostdpubwf:lastModificationDate: 2020-02-06T17:45:16.657Z
       hippostdpubwf:lastModifiedBy: admin
-      hippostdpubwf:publicationDate: 2019-11-07T18:41:07.844Z
-      resourcebundle:descriptions: ['', '']
+      hippostdpubwf:publicationDate: 2020-02-06T17:45:18.822Z
+      resourcebundle:descriptions: ['', '', '', '']
       resourcebundle:id: navigation
-      resourcebundle:keys: [home, content, more-destinations]
-      resourcebundle:messages: [Home, Content, More Destinations]
-      resourcebundle:messages_es: [Inicio, Contenido, Mas Destinos]
+      resourcebundle:keys: [home, content, see-do, destination-map]
+      resourcebundle:messages: [Home, Content, Things to see and do, Map of destinations]
+      resourcebundle:messages_es: [Inicio, Contenido, Cosas Varias (Para hacer o ver),
+        Destinos para güiris]
   /universal:
     jcr:primaryType: hippo:handle
     jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
