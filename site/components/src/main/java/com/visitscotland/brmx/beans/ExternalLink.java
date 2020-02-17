@@ -9,11 +9,6 @@ import com.visitscotland.brmx.beans.Image;
 @HippoEssentialsGenerated(internalName = "visitscotland:ExternalLink")
 @Node(jcrType = "visitscotland:ExternalLink")
 public class ExternalLink extends HippoCompound {
-    @HippoEssentialsGenerated(internalName = "visitscotland:image")
-    public Image getImage() {
-        return getLinkedBean("visitscotland:image", Image.class);
-    }
-
     @HippoEssentialsGenerated(internalName = "visitscotland:link")
     public String getLink() {
         return getSingleProperty("visitscotland:link");

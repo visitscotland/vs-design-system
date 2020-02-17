@@ -14,11 +14,6 @@ public class CMSLink extends HippoCompound {
         return getSingleProperty("visitscotland:label");
     }
 
-    @HippoEssentialsGenerated(internalName = "visitscotland:image")
-    public Image getImage() {
-        return getLinkedBean("visitscotland:image", Image.class);
-    }
-
     @HippoEssentialsGenerated(internalName = "visitscotland:link")
     public HippoBean getLink() {
         return getLinkedBean("visitscotland:link", HippoBean.class);

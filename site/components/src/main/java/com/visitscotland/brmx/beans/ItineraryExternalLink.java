@@ -20,13 +20,8 @@ public class ItineraryExternalLink extends HippoCompound {
         return getSingleProperty("visitscotland:timeToExplore");
     }
 
-    @HippoEssentialsGenerated(internalName = "visitscotland:link")
-    public String getLink() {
-        return getSingleProperty("visitscotland:link");
-    }
-
-    @HippoEssentialsGenerated(internalName = "visitscotland:image")
-    public Image getImage() {
-        return getLinkedBean("visitscotland:image", Image.class);
+    @HippoEssentialsGenerated(internalName = "visitscotland:ExternalLink")
+    public ExternalLink getExternalLink() {
+        return getBean("visitscotland:ExternalLink", ExternalLink.class);
     }
 }

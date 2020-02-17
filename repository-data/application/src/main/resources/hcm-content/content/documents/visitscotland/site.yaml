@@ -18,7 +18,7 @@
       jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
       jcr:uuid: 0751c1d3-3024-4d2d-a5e8-38286fee9722
       hippo:name: Content
-      hippo:versionHistory: 10822c95-f9a8-48c8-8546-4bd983433a2e
+      hippo:versionHistory: 81acea25-6778-49eb-9451-147ea123570e
       /content[1]:
         jcr:primaryType: visitscotland:Itinerary
         jcr:mixinTypes: ['mix:referenceable']
@@ -27,7 +27,7 @@
         hippostd:state: draft
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2019-12-06T12:48:04.149Z
-        hippostdpubwf:lastModificationDate: 2020-02-05T16:29:29.287Z
+        hippostdpubwf:lastModificationDate: 2020-02-14T15:52:20.862Z
         hippostdpubwf:lastModifiedBy: admin
         hippotranslation:id: a3ed9022-e239-493b-952c-18d01ac36640
         hippotranslation:locale: en
@@ -139,9 +139,9 @@
         hippostd:state: published
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2019-12-06T12:48:04.149Z
-        hippostdpubwf:lastModificationDate: 2020-01-30T17:00:41.657Z
+        hippostdpubwf:lastModificationDate: 2020-02-05T16:26:46.285Z
         hippostdpubwf:lastModifiedBy: admin
-        hippostdpubwf:publicationDate: 2020-01-30T17:01:52.503Z
+        hippostdpubwf:publicationDate: 2020-02-17T10:23:15.718Z
         hippotranslation:id: a3ed9022-e239-493b-952c-18d01ac36640
         hippotranslation:locale: en
         visitscotland:areas: [dumfries, highlands]
@@ -156,6 +156,7 @@
         visitscotland:seoTitle: Iconic Harry Potter Film Locations - An Itinerary
         visitscotland:start: Tenerife
         visitscotland:summary: ''
+        visitscotland:teaser: ''
         visitscotland:text: "Glenfinnan Viaduct\r\n\r\nJacobite Steam Train\r\n\r\n\
           Glen Etive\r\n\r\nThe Elephant House"
         visitscotland:theme: filmev
@@ -201,7 +202,7 @@
         hippostd:state: draft
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2019-12-10T13:28:39.550Z
-        hippostdpubwf:lastModificationDate: 2020-01-10T14:15:09.157Z
+        hippostdpubwf:lastModificationDate: 2020-02-14T15:52:27.579Z
         hippostdpubwf:lastModifiedBy: admin
         hippotranslation:id: 58eba379-722b-43b6-85c5-a58cffa5d53d
         hippotranslation:locale: en
