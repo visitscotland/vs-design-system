@@ -1,37 +1,46 @@
-import { mount } from "@vue/test-utils"
+import { shallowMount } from "@vue/test-utils"
 import VsHero from "./Hero"
 
-// Need to use full mount function as the component renders
-// the Hero image and a caption div with Icon Component, if caption is present
-const factoryMount = propsData => {
-    return mount(VsHero, {
+const factoryShallowMount = propsData => {
+    return shallowMount(VsHero, {
         propsData: {
-            caption: "This is a test caption",
-            credit: "Kenny Lam &copy; VisitScotland 2020",
             ...propsData,
         },
     })
 }
 
 describe("VsHero", () => {
-    it("should render a container with a caption and credit when both are provided", () => {
-        const wrapper = factoryMount()
-        expect(wrapper.classes()).toContain("d-flex", "flex-column")
+    it("should render a caption when is provided", () => {
+        const wrapper = factoryShallowMount({ caption: "Test caption" })
+        expect(wrapper.html()).toContain('<p class="vs-hero__image-caption">')
+        expect(wrapper.html()).toContain("Test caption")
     })
-    it("should render a container when no caption nor credit is provided", () => {
-        const caption = null
-        const credit = null
-        const wrapper = factoryMount({ propsData: { caption: caption, credit: credit } })
-        expect(wrapper.classes()).toContain("d-flex", "flex-column")
+    it("should render a credit and copyright symbol when a credit is provided", () => {
+        const wrapper = factoryShallowMount({ credit: "Test credit" })
+        expect(wrapper.html()).toContain('<p class="vs-hero__image-credit m-0">')
+        expect(wrapper.html()).toContain("© Test credit")
     })
-    it("should render a container with a caption when credit is not provided", () => {
-        const credit = null
-        const wrapper = factoryMount({ propsData: { credit: credit } })
-        expect(wrapper.classes()).toContain("d-flex", "flex-column")
+    it("should render a map when when a longitude and latitude are provided", () => {
+        const wrapper = factoryShallowMount({ longitude: "11.11111", latitude: "11.11111" })
+        expect(wrapper.html()).toContain('class="map__wrapper"')
+        expect(wrapper.html()).toContain(
+            '<vs-image-location-map-stub latitude="11.11111" longitude="11.11111" mapoutlinecolor="#FFFFFF" mapmarkercolor="#7CC9CC"></vs-image-location-map-stub>'
+        )
     })
-    it("should render a container with a credit only when caption is not provided", () => {
-        const caption = null
-        const wrapper = factoryMount({ propsData: { caption: caption } })
-        expect(wrapper.classes()).toContain("d-flex", "flex-column")
+    it("should *not* render a map when when only a longitude is provided", () => {
+        const wrapper = factoryShallowMount({ longitude: "11.11111" })
+        expect(wrapper.html()).not.toContain('class="map__wrapper"')
+    })
+    it("should *not* render a map when when only a latitude is provided", () => {
+        const wrapper = factoryShallowMount({ latitude: "11.11111" })
+        expect(wrapper.html()).not.toContain('class="map__wrapper"')
+    })
+    it("should *not* render a figcaption when neither a credit, a caption nor coordinates are provided", () => {
+        const wrapper = factoryShallowMount({})
+        expect(wrapper.html()).not.toContain("<figcaption>")
+    })
+    it("should *not* render a caption toggle button when neither a credit, a caption nor coordinates are provided", () => {
+        const wrapper = factoryShallowMount({})
+        expect(wrapper.html()).not.toContain("vs-button-stub")
     })
 })
