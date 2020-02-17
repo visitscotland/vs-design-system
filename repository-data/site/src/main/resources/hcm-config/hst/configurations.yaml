@@ -3,7 +3,7 @@ definitions:
     /hst:hst/hst:configurations:
       /common:
         jcr:primaryType: hst:configuration
-        hst:inheritsfrom: ["../hst:defaults", "../visitscotland/hst:workspace"]
+        hst:inheritsfrom: ['../hst:defaults', '../visitscotland/hst:workspace']
         /hst:sitemap:
           jcr:primaryType: hst:sitemap
           /root:
@@ -182,16 +182,16 @@ definitions:
         jcr:primaryType: hst:configuration
       /visitscotland-es:
         jcr:primaryType: hst:configuration
-        hst:inheritsfrom: [../common, "../common/hst:workspace"]
+        hst:inheritsfrom: [../common, '../common/hst:workspace']
       /visitscotland-fr:
         jcr:primaryType: hst:configuration
-        hst:inheritsfrom: [../common, "../common/hst:workspace"]
+        hst:inheritsfrom: [../common, '../common/hst:workspace']
       /visitscotland-de:
         jcr:primaryType: hst:configuration
-        hst:inheritsfrom: [../common, "../common/hst:workspace"]
+        hst:inheritsfrom: [../common, '../common/hst:workspace']
       /visitscotland-nl:
         jcr:primaryType: hst:configuration
-        hst:inheritsfrom: [../common, "../common/hst:workspace"]
+        hst:inheritsfrom: [../common, '../common/hst:workspace']
       /visitscotland-it:
         jcr:primaryType: hst:configuration
-        hst:inheritsfrom: [../common, "../common/hst:workspace"]
+        hst:inheritsfrom: [../common, '../common/hst:workspace']
