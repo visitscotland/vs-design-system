@@ -67,6 +67,7 @@ export default {
         <vs-description-list-term>Areas Covered</vs-description-list-term>
         <vs-description-list-detail 
             v-for="(areaCovered, index) in itineraries.sampleItinerary.areasCovered"
+            key="index"
         >
             {{areaCovered}}
         </vs-description-list-detail>
