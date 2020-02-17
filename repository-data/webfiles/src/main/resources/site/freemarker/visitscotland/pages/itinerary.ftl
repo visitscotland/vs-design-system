@@ -12,6 +12,7 @@
 <#include "../../vs-dotcom-ds/components/image-location-map.ftl">
 <#include "../../vs-dotcom-ds/components/button.ftl">
 <#include "../../vs-dotcom-ds/components/heading.ftl">
+<#include "../../vs-dotcom-ds/components/img.ftl">
 <#include "../../vs-dotcom-ds/components/tooltip.ftl">
 <#include "../../vs-dotcom-ds/components/summary-box-list.ftl">
 <#include "../../vs-dotcom-ds/components/summary-box-list-item.ftl">
@@ -73,12 +74,12 @@
                 slot="hero"
                 alt-text="${document.heroImage.altText}"
                 credit="${document.heroImage.credit}"
-                caption="${document.heroImage.caption}"
+                caption="${document.heroImage.description}"
                 image-src="${hero}"
                 latitude="${heroCoordinates.latitude}"
                 longitude="${heroCoordinates.longitude}"
             >
-                <img
+                <vs-img
                     class="lazyload"
                     src="${hero}"
                     srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
@@ -200,15 +201,16 @@
                 <#if day.transports?has_content>
                     <#assign dayTransport = day.transports[0]>
                     <vs-description-list class="text-center justify-content-center align-items-center" slot="day-transport">
-                        <!-- Note - can't use vs-description-list-term and vs-description-list-detail here as font style and layout are different -->
+                        <#-- 
+                            Note - can't use vs-description-list-term and vs-description-list-detail 
+                            here yet as font style and layout are different 
+                        -->
                         <dt class="list-inline-item"><@fmt.message key="transport"/>:</dt>
                         <#list day.transports as transport>
                             <dd class="list-inline-item">
-                                <#-- TODO: Tooltip title and sr-only should spit out the transport value, not the key -->
                                 <vs-tooltip title="<@fmt.message key="${transport}"/>">
                                     <vs-icon name="${transport}" variant="dark" size="sm"></vs-icon>
                                 </vs-tooltip>
-                                <#-- TODO: Tooltip title and sr-only should spit out the transport value, not the key -->
                                 <span class="sr-only"><@fmt.message key="${transport}"/></span>
                             </dd>
                         </#list>
