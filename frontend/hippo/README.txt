@@ -8,6 +8,18 @@ The remaining text of this readme is the standard Hippo readme.
 Running Locally
 ===============
 
+VisitScotland Configuration
+
+    For a complete build:
+        `mvn clean verify`
+        `mvn -P cargo.run`
+
+    Quick run for backend development
+        `mvn clean verify -P '!fed-build'`
+        `mvn -P cargo.run`
+
+    Quick run for frond end development (TO BE CHECKED)
+
 This project uses the Maven Cargo plugin to run Essentials, the CMS and site locally in Tomcat.
 From the project root folder, execute:
 
