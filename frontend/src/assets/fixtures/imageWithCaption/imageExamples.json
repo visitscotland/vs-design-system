@@ -1,0 +1,18 @@
+[
+    {
+        "imageSrc": "fixtures/imagewithcaption/images/castle-trail.jpg",
+        "altText": "Castle Trail",
+        "caption": "Castle Trail",
+        "credit": "VisitScotland / Kenny Lam",
+        "longitude": "",
+        "latitude": ""
+    },
+    {
+        "imageSrc": "fixtures/imagewithcaption/images/city-country-breaks.jpg",
+        "altText": "City Country Breaks",
+        "caption": "City Country Breaks",
+        "credit": "VisitScotland / Kenny Lam",
+        "longitude": "",
+        "latitude": ""
+    }
+]

@@ -1,0 +1,1 @@
+export { VsImageWithCaption } from "./ImageWithCaption"

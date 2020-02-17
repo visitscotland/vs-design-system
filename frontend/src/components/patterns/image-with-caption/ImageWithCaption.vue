@@ -135,7 +135,10 @@ export default {
             return "background-image: url('" + this.imageSrc + "');"
         },
         showCaptionData() {
-            return this.caption.length || this.credit.length ? true : false
+            console.log(this.caption)
+            if (this.caption) {
+                return this.caption.length || this.credit.length ? true : false
+            }
         },
         showToggle() {
             // only show the image detail toggle button if there's a map or caption data
@@ -209,23 +212,26 @@ figcaption {
   
   ```jsx
     <vs-image-with-caption
-        v-for="(item, index) in itineraries.sampleItinerary.days[0].stops"
-        :altText="item.image.altText"
-        :credit="item.image.credit"
-        :caption="item.image.caption"
-        :image-src="item.image.imageSrc"
+        v-for="(item, index) in imageWithCaption.imageExamples"
+        :altText="item.altText"
+        :credit="item.credit"
+        :caption="item.caption"
+        :image-src="item.imageSrc"
         :key="index"
-        :latitude="item.image.latitude"
-        :longitude="item.image.longitude"
+        :latitude="item.latitude"
+        :longitude="item.longitude"
+        style="max-width:500px"
     >
         <vs-img 
             class="lazyload" 
-            :src="item.image.imageSrc"
+            :src="item.imageSrc"
             srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
-            :data-srcset="item.image.imageSrc" 
-            :alt="item.image.altText"
+            :data-srcset="item.imageSrc" 
+            :alt="item.altText"
             data-sizes="auto">
+            
         </vs-img>
     </vs-image-with-caption>
+
   ```
 </docs>
