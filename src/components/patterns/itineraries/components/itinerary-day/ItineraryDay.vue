@@ -115,8 +115,13 @@ export default {
 
 .vs-itinerary-day__list-item {
     border-top: 5px solid $color-base-text;
-    padding: $spacer-4;
-    margin-bottom: $spacer-4;
+    padding: $spacer-4 $spacer-4 0;
+
+    @include media-breakpoint-up(lg) {
+        &:first-of-type {
+            border-top: none;
+        }
+    }
 }
 
 .vs-itinerary-day__title span {
