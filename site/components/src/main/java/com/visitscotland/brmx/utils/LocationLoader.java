@@ -12,6 +12,7 @@ import java.io.InputStream;
 import java.net.URL;
 import java.util.*;
 
+//TODO Test?
 public abstract class LocationLoader {
 
     private static final Logger logger = LoggerFactory.getLogger(LocationLoader.class.getName());

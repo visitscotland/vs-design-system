@@ -8,7 +8,6 @@ import java.util.*;
 public class Properties {
 
     //TODO: Load the list from the list of locations defined in the CMS. Bear in mind that a default location (null) is required
-
     public static final List<Locale> locales = Arrays.asList(null,
             Locale.forLanguageTag("es-es"),
             Locale.forLanguageTag("fr-fr"),
