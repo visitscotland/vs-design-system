@@ -1,5 +1,5 @@
 def DS_BRANCH = "feature/VS-955-ui-itineraries-itinerary-stops-changes-built-products"
-def MAIL_TO = "jose.calcines@visitscotland.com, juanluis.hurtado@visitscotland.com"
+def MAIL_TO = "jose.calcines@visitscotland.com, juanluis.hurtado@visitscotland.com, webops@visitscotland.net"
 
 
 pipeline {
@@ -13,16 +13,17 @@ pipeline {
     }
     stages {
 
-		stage ('Checkout Design System') {
-			steps {
-              	// create a directory for the checkout then run the Git command within that directory, the package.json file must be aware of this location which introduces fragility/cross-dependency, could this be improved?
-        		sh 'mkdir -p design-system'
-        		dir('design-system') {
-                    //git branch: '${DS_BRANCH}', credentialsId: '12a55ebf-608d-4b3e-811c-e4ad04f61f43', url: 'https://bitbucket.visitscotland.com/scm/vscom/design-system.git'
-                  	checkout([$class: 'GitSCM', branches: [[name: "*/${DS_BRANCH}"]], doGenerateSubmoduleConfigurations: false, extensions: [[$class: 'SparseCheckoutPaths', sparseCheckoutPaths:[[$class:'SparseCheckoutPath', path:'dist/']]]], submoduleCfg: [], userRemoteConfigs: [[credentialsId: '12a55ebf-608d-4b3e-811c-e4ad04f61f43',url: 'https://bitbucket.visitscotland.com/scm/vscom/design-system.git']]])
-                }
-			}
-		}
+// "Checkout Design System" stage now commented out as it's no longer required since VS-1081 - please merge this change as required but leave the block for reference
+//		stage ('Checkout Design System') {
+//			steps {
+//              	// create a directory for the checkout then run the Git command within that directory, the package.json file must be aware of this location which introduces fragility/cross-dependency, could this be improved?
+//        		sh 'mkdir -p design-system'
+//        		dir('design-system') {
+//                    //git branch: '${DS_BRANCH}', credentialsId: '12a55ebf-608d-4b3e-811c-e4ad04f61f43', url: 'https://bitbucket.visitscotland.com/scm/vscom/design-system.git'
+//                  	checkout([$class: 'GitSCM', branches: [[name: "*/${DS_BRANCH}"]], doGenerateSubmoduleConfigurations: false, extensions: [[$class: 'SparseCheckoutPaths', sparseCheckoutPaths:[[$class:'SparseCheckoutPath', path:'dist/']]]], submoduleCfg: [], userRemoteConfigs: [[credentialsId: '12a55ebf-608d-4b3e-811c-e4ad04f61f43',url: 'https://bitbucket.visitscotland.com/scm/vscom/design-system.git']]])
+//                }
+//			}
+//		}
 
       stage ('Build Application') {
             steps {
@@ -49,12 +50,12 @@ pipeline {
         }
 
         stage ('Availability notice'){
+
 // "input" section commented out for now - useful for when there is genuinely a need to pause for an answer
-/*
-            input{
-                message "This environment will run until the next push is made the bitbucket repo."
-            }
-*/
+//            input{
+//                message "This environment will run until the next push is made the bitbucket repo."
+//            }
+
             steps {
                 sh 'echo "This environment will run until the next commit to bitbucket is detected."'
             }

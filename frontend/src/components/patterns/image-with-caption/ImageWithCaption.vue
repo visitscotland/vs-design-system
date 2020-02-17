@@ -3,7 +3,7 @@
         <div class="vs-image-with-caption__image-wrapper">
             <slot />
             <vs-button
-                variant="transparent"
+                variant="outline-transparent"
                 class="position-absolute vs-image-with-caption__toggle-caption"
                 v-if="showToggle"
                 :animate="false"
@@ -11,8 +11,7 @@
                 :aria-controls="'image_' + imageSrc"
                 @click.native="toggleCaption"
             >
-                <vs-icon name="information" variant="light" size="sm" />
-                <span class="sr-only">{{ this.toggleButtonText }}</span>
+                <vs-svg path="image-toggle" height="24" width="24" />
             </vs-button>
         </div>
 
@@ -50,7 +49,7 @@
 
 <script>
 import { lazysizes } from "lazysizes"
-import VsIcon from "@components/elements/icon/Icon"
+import VsSvg from "@components/elements/svg/Svg"
 import VsButton from "@components/elements/button/Button"
 import { VsContainer, VsRow, VsCol } from "@components/elements/layout"
 import VsImageLocationMap from "@components/patterns/image-location-map/ImageLocationMap"
@@ -62,7 +61,7 @@ export default {
     name: "VsImageWithCaption",
     status: "prototype",
     release: "0.0.1",
-    components: { VsContainer, VsRow, VsCol, VsImageLocationMap, VsButton, VsIcon },
+    components: { VsContainer, VsRow, VsCol, VsImageLocationMap, VsButton, VsSvg },
     data() {
         return {
             showCaption: false,
@@ -171,9 +170,10 @@ export default {
 }
 
 .vs-image-with-caption__toggle-caption {
-    bottom: 0;
-    padding: 0.325rem;
-    right: 0;
+    bottom: 0.5rem;
+    padding: 0;
+    right: 0.5rem;
+    border-radius: 50%;
 }
 
 figure {
