@@ -86,21 +86,21 @@ public class ItineraryContentComponent extends EssentialsContentComponent {
                 FlatImage img = new FlatImage();
 
                 if (stop.getStopItem() instanceof DMSLink){
-                    DMSLink aux = (DMSLink) stop.getStopItem();
+                    DMSLink dmsLink = (DMSLink) stop.getStopItem();
                     List<String> facilities = new ArrayList<>();
 
-                    if (aux.getImage()!=null) {
-                        img.setCmsImage(aux.getImage());
+                    if (stop.getImage()!=null) {
+                        img.setCmsImage(stop.getImage());
                     }
 
                     //CONTENT prefix on error messages could means that the problem can be fixed by altering the content.
                     try {
 
-                        if (aux.getProduct() == null){
+                        if (dmsLink.getProduct() == null){
                             model.setErrorMessage("The product's id  wasn't provided");
                             logger.warn("CONTENT The product's id  wasn't provided for " + itinerary.getName() + ", Stop " + model.getIndex());
                         } else {
-                            JSONObject product = getProduct(aux.getProduct(), request.getLocale());
+                            JSONObject product = getProduct(dmsLink.getProduct(), request.getLocale());
                             if (product == null){                                model.setErrorMessage("The product id does not exists in the DMS");
                                 logger.warn("CONTENT The product's id  wasn't provided for " + itinerary.getName() + ", Stop " + model.getIndex());
                             } else {
@@ -110,7 +110,7 @@ public class ItineraryContentComponent extends EssentialsContentComponent {
 
                                 //TODO: GET TIME TO EXPLORE FROM DMS
 //                                model.setTimeToexplore(product.getString(TIME_TO_EXPLORE));
-                                if (aux.getImage() == null){
+                                if (stop.getImage() == null){
                                     img.setExternalImage(product.getString(IMAGE));
                                     //TODO: SET ALT-TEXT, CREDITS AND DESCRIPTION
                                 }
@@ -132,22 +132,22 @@ public class ItineraryContentComponent extends EssentialsContentComponent {
                         logger.error("Error while querying the DMS for " + itinerary.getName() + ", Stop " + model.getIndex() + ": " + exception.getMessage());
                     }
                 } else if (stop.getStopItem() instanceof ItineraryExternalLink){
-                    ItineraryExternalLink aux = (ItineraryExternalLink) stop.getStopItem();
+                    ItineraryExternalLink externalLink = (ItineraryExternalLink) stop.getStopItem();
 
-                    if (aux.getImage() != null) {
-                        img.setCmsImage(aux.getImage());
-                        img.setAltText(aux.getImage().getAltText());
-                        img.setCredit(aux.getImage().getCredit());
-                        img.setDescription(aux.getImage().getDescription());
+                    if (stop.getImage() != null) {
+                        img.setCmsImage(stop.getImage());
+                        img.setAltText(stop.getImage().getAltText());
+                        img.setCredit(stop.getImage().getCredit());
+                        img.setDescription(stop.getImage().getDescription());
                     }
 
-                    model.setTimeToexplore(aux.getTimeToExplore());
-                    model.setCta(aux.getLink());
+                    model.setTimeToexplore(externalLink.getTimeToExplore());
+                    model.setCta(externalLink.getExternalLink().getLink());
 
 
-                    if (aux.getCoordinates() != null) {
-                        coordinates.setLatitude(aux.getCoordinates().getLatitude());
-                        coordinates.setLongitude(aux.getCoordinates().getLongitude());
+                    if (externalLink.getCoordinates() != null) {
+                        coordinates.setLatitude(externalLink.getCoordinates().getLatitude());
+                        coordinates.setLongitude(externalLink.getCoordinates().getLongitude());
                         model.setCoordinates(coordinates);
                     }
 
