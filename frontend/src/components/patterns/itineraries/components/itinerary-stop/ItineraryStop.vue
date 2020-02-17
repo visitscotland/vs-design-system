@@ -71,7 +71,17 @@ export default {
 <style lang="scss" scoped>
 .vs-itinerary-stop {
     margin-bottom: 3.125rem;
+
+    &:last-of-type {
+        margin-bottom: 0;
+
+        .border {
+            padding-bottom: $spacer-8;
+        }
+    }
+
     .border {
+        position: relative;
         background-color: $color-white;
         border: 1px solid $color-gray-tint-5;
         padding: $spacer-4;
@@ -107,6 +117,59 @@ export default {
             stopLabel="Stop"
             :stopTitle="stop.title"
 		>
+            <div slot="stop-details">
+                <vs-image-with-caption
+                    :altText="stop.image.altText"
+                    :credit="stop.image.credit"
+                    :caption="stop.image.caption"
+                    :image-src="stop.image.imageSrc"
+                    :latitude="stop.image.latitude"
+                    :longitude="stop.image.longitude"
+                    >
+                    <img 
+                    class="lazyload" 
+                    :src="stop.image.imageSrc"
+                    srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                    :data-srcset="stop.image.imageSrc" 
+                    :alt="stop.image.altText"
+                    data-sizes="auto" />
+                </vs-image-with-caption>
+                <div v-html="stop.description"></div>
+                <vs-link href="stop.href">
+                    Find out more
+                </vs-link>
+                <vs-description-list class="my-4 mb-0 justify-content-start" inline>
+                    <vs-description-list-term class="mb-0 mr-0 col-auto">Time to explore</vs-description-list-term>
+                    <vs-description-list-detail class="mb-0 col-auto px-0">{{stop.timeToExplore}}</vs-description-list-detail>
+                </vs-description-list>
+                <vs-itinerary-tips v-if="stop.tips.tipsBody.length || stop.tips.tipsTitle.length">
+                    <div slot="text">
+                    <strong>{{stop.tips.tipsTitle}}</strong>
+                    <div v-html="stop.tips.tipsBody"></div>
+                    </div>
+                    <vs-svg slot="svg" path="highland-cow" />
+                </vs-itinerary-tips>
+                <vs-icon-description-list v-if="stop.facilities.length">
+                    <vs-icon-description-list-term>Key facilities</vs-icon-description-list-term>
+                    <vs-icon-description-list-detail 
+                        v-for="(facility, facilitiesIndex) in stop.facilities"
+                        :key="facilitiesIndex"
+                        :label="facility.value"
+                        :icon="facility.key"
+                        />
+                </vs-icon-description-list>
+              </div>
+            <!-- mimic only showing these links on the last stop of the day -->
+            <template v-if="index == itineraries.sampleItinerary.days[0].stops.length - 1">
+                <vs-itinerary-border-overlap-wrapper slot="nearby-links">
+                    <vs-button-with-icon class="mb-3" background="white" variant="outline-primary" href="#" icon="food">
+                        Nearby places to eat
+                    </vs-button-with-icon>
+                    <vs-button-with-icon background="white" variant="outline-primary" href="#" icon="product-accommodation">
+                        Nearby places to stay
+                    </vs-button-with-icon>
+                </vs-itinerary-border-overlap-wrapper>
+            </template>
 		</vs-itinerary-stop>
 	</ul>
 ```

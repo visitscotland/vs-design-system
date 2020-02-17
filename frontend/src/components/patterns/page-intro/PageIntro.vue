@@ -60,7 +60,6 @@ export default {
 .vs-page-intro ::v-deep .vs-page-intro__wrapper--inner {
     @include media-breakpoint-up(lg) {
         background: $color-white;
-        box-shadow: 0 0 1rem rgba(0, 0, 0, 0.2);
         margin: -250px 0 0;
         position: relative;
     }
@@ -190,6 +189,7 @@ export default {
                 <vs-description-list-term>Areas Covered</vs-description-list-term>
                     <vs-description-list-detail 
                         v-for="(areaCovered, index) in itineraries.sampleItinerary.areasCovered"
+                        key="index"
                     >
                     {{areaCovered}}
                 </vs-description-list-detail>
