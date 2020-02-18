@@ -30,7 +30,6 @@
 
 <#include "itinerary-stop.ftl">
 <#include "itinerary-map.ftl">
-<#include "../breadcrumb-macro.ftl">
 
 <#-- Implicit Request Objects -->
 <#-- @ftlvariable name="document" type="com.visitscotland.brmx.beans.Itinerary" -->

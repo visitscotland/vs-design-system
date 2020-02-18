@@ -29,7 +29,7 @@
     <#assign href = prod.cta!>
 
     <#if !stop.stopItem?? && editMode>
-        <vs-itinerary-stop 
+        <vs-itinerary-stop
             slot="stops"
             stop-number="${prod.index}"
             stop-label="<@fmt.message key="stop.title"/>"
@@ -88,13 +88,15 @@
                     <vs-description-list-detail class="mb-0 col-auto px-0">${prod.timeToexplore}</vs-description-list-detail>
                 </vs-description-list>
                 </#if>
-                <#if ((prod.tipsTitle?? && prod.tipsTitle?has_content) || (prod.tipsBody.content?? &&  prod.tipsBody.content.length() gt 1))>
+
+                <#if (prod.tipsTitle?? && prod.tipsTitle?has_content) || (prod.tipsBody?? && prod.tipsBody.content?? && (prod.tipsBody.content?length gt 1))>
                     <vs-itinerary-tips>
                         <div slot="text">
                         <#if  prod.tipsTitle?? &&  prod.tipsTitle?has_content>
                             <strong>${prod.tipsTitle}</strong>
                         </#if>
-                        <@hst.html hippohtml=prod.tipsBody/>
+                                <@hst.html hippohtml=prod.tipsBody/>
+
                         </div>
                         <vs-svg slot="svg" path="highland-cow" />
                     </vs-itinerary-tips>
