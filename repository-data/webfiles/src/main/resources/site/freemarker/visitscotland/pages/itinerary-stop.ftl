@@ -26,9 +26,8 @@
         <#assign image = prod.image.externalImage />
     <#else>
     </#if>
-    <#assign href = prod.cta>
-    <#assign address = prod.address>
-    <#assign priceText = prod.priceText>
+    <#assign href = prod.cta!>
+
     <#if !stop.stopItem?? && editMode>
         <vs-itinerary-stop 
             slot="stops"
@@ -53,9 +52,9 @@
             
             <#if image?? && image?has_content>
                 <vs-image-with-caption
-                    alt-text="${prod.image.altText}"
-                    credit="${prod.image.credit}"
-                    caption="${prod.image.altText}"
+                    alt-text="${(prod.image.altText)!'No image'}"
+                    credit="${(prod.image.credit)!'No credit'}"
+                    caption="${(prod.image.altText)!''}"
                     image-src="${image}"
                     latitude="${prod.coordinates.latitude}"
                     longitude="${prod.coordinates.longitude}"
@@ -65,7 +64,7 @@
                     src="${image}"
                     srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
                     data-srcset="${image}" 
-                    alt="${prod.image.altText}"
+                    alt="${(prod.image.altText)!'No image'}"
                     data-sizes="auto">
                 </vs-img>
                 </vs-image-with-caption>

@@ -76,8 +76,8 @@
                 credit="${document.heroImage.credit}"
                 caption="${document.heroImage.description}"
                 image-src="${hero}"
-                latitude="${heroCoordinates.latitude}"
-                longitude="${heroCoordinates.longitude}"
+                latitude="${(heroCoordinates.latitude)!''}"
+                longitude="${(heroCoordinates.longitude)!''}"
             >
                 <vs-img
                     class="lazyload"
