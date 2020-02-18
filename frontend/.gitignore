@@ -1,0 +1,20 @@
+.DS_Store
+.eslintcache
+node_modules/
+dist/
+/test/unit/coverage/
+/.tmp
+*.log
+.env
+
+# Editor directories and files
+.idea
+.vscode
+.settings/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+
+# Ignore compiled tokens
+src/assets/tokens/

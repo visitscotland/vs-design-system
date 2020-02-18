@@ -259,6 +259,7 @@
           hippostd:content: <p>Description example for pull out</p>
         /visitscotland:product:
           jcr:primaryType: visitscotland:ItineraryExternalLink
+          visitscotland:link: ''
           visitscotland:timeToExplore: ' 24'
           /visitscotland:ExternalLink:
             jcr:primaryType: visitscotland:ExternalLink
@@ -401,6 +402,7 @@
           hippostd:content: ''
         /visitscotland:product:
           jcr:primaryType: visitscotland:ItineraryExternalLink
+          visitscotland:link: ''
           visitscotland:timeToExplore: '1'
           /visitscotland:ExternalLink:
             jcr:primaryType: visitscotland:ExternalLink
