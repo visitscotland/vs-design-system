@@ -17,7 +17,7 @@
 
 <#macro itineraryStop stop lastStop>
     <#assign prod = stops[stop.identifier]>
-    <#assign image = "" />
+
     <#if prod.image.cmsImage??>
         <#assign image>
             <@hst.link hippobean=prod.image.cmsImage.original/>
@@ -25,6 +25,7 @@
     <#elseif prod.image.externalImage??>
         <#assign image = prod.image.externalImage />
     <#else>
+        <#assign image = "" />
     </#if>
     <#assign href = prod.cta!>
 
