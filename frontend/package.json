@@ -43,11 +43,6 @@
     "lint:vue:all:fix": "eslint \"src/**/*.{js,vue}\" --fix",
     "lint:vue:all:scss": "stylelint \"src/**/*.{vue,scss}\""
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "pretty-quick --staged --pattern */frontend"
-    }
-  },
   "repository": {
     "type": "git",
     "url": ""
