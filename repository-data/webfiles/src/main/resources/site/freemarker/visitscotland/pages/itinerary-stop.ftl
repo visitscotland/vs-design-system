@@ -70,7 +70,7 @@
                 </vs-image-with-caption>
             </#if>
 
-            <#if prod.description?? && prod.description?has_content>
+            <#if prod?? && prod.description?? && prod.description?has_content>
                 <@hst.html hippohtml=prod.description/>
             </#if>
 
@@ -81,34 +81,36 @@
                 <vs-link href="${href}">Find out more</vs-link>
             </#if>
 
-            <#if prod.timeToexplore?? && prod.timeToexplore?has_content>
-            <vs-description-list class="my-4 mb-0 justify-content-start" inline>
-                <vs-description-list-term class="mb-0 mr-0 col-auto"><@fmt.message key="stop.timeToExplore"/></vs-description-list-term>
-                <vs-description-list-detail class="mb-0 col-auto px-0">${prod.timeToexplore}</vs-description-list-detail>
-            </vs-description-list>
-            </#if>
-            <#if ((prod.tipsTitle?? && prod.tipsTitle?has_content) || (prod.tipsBody.content?? &&  prod.tipsBody.content.length() gt 1))>
-                <vs-itinerary-tips>
-                    <div slot="text">
-                    <#if  prod.tipsTitle?? &&  prod.tipsTitle?has_content>
-                        <strong>${prod.tipsTitle}</strong>
-                    </#if>
-                    <@hst.html hippohtml=prod.tipsBody/>
-                    </div>
-                    <vs-svg slot="svg" path="highland-cow" />
-                </vs-itinerary-tips>
-            </#if>
+            <#if prod??>
+                <#if prod.timeToexplore?? && prod.timeToexplore?has_content>
+                <vs-description-list class="my-4 mb-0 justify-content-start" inline>
+                    <vs-description-list-term class="mb-0 mr-0 col-auto"><@fmt.message key="stop.timeToExplore"/></vs-description-list-term>
+                    <vs-description-list-detail class="mb-0 col-auto px-0">${prod.timeToexplore}</vs-description-list-detail>
+                </vs-description-list>
+                </#if>
+                <#if ((prod.tipsTitle?? && prod.tipsTitle?has_content) || (prod.tipsBody.content?? &&  prod.tipsBody.content.length() gt 1))>
+                    <vs-itinerary-tips>
+                        <div slot="text">
+                        <#if  prod.tipsTitle?? &&  prod.tipsTitle?has_content>
+                            <strong>${prod.tipsTitle}</strong>
+                        </#if>
+                        <@hst.html hippohtml=prod.tipsBody/>
+                        </div>
+                        <vs-svg slot="svg" path="highland-cow" />
+                    </vs-itinerary-tips>
+                </#if>
 
-            <#if prod.facilities?? && prod.facilities?size gt 1>
-                <vs-icon-description-list>
-                    <vs-icon-description-list-term><@fmt.message key="stop.key-facilities"/></vs-icon-description-list-term>
-                    <#list prod.facilities as facility>
-                        <vs-icon-description-list-detail 
-                            icon="${facility}"
-                            label="<@fmt.message key="${facility}"/>">
-                        </vs-icon-description-list-detail>
-                    </#list>
-                </vs-icon-description-list>
+                <#if prod.facilities?? && prod.facilities?size gt 1>
+                    <vs-icon-description-list>
+                        <vs-icon-description-list-term><@fmt.message key="stop.key-facilities"/></vs-icon-description-list-term>
+                        <#list prod.facilities as facility>
+                            <vs-icon-description-list-detail 
+                                icon="${facility}"
+                                label="<@fmt.message key="${facility}"/>">
+                            </vs-icon-description-list-detail>
+                        </#list>
+                    </vs-icon-description-list>
+                </#if>
             </#if>
       </div>
         <#if lastStop=="true" && prod.coordinates.longitude?? && prod.coordinates.longitude?has_content && prod.coordinates.latitude?? && prod.coordinates.latitude?has_content>
