@@ -1,0 +1,6 @@
+site: cms
+group: cms
+project: cms
+module:
+  name: cms-repository-data-site-development
+  after: cms-repository-data-site

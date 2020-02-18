@@ -1,0 +1,23 @@
+#
+# GLOBAL: DESIGN TOKENS
+#
+
+imports:
+  - ./color.yml
+  - ./font-size.yml
+  - ./font.yml
+  - ./icons.yml
+  - ./opacity.yml
+  - ./size.yml
+  - ./timing.yml
+  - ./z-index.yml
+  - ./breakpoints.yml
+  - ./box-shadow.yml
+  - ./letter-spacing.yml
+  - ./border-radius.yml
+  - ./spacing.yml
+  - ./line-height.yml
+  - ./grid-layout.yml
+global:
+  type: global
+  category: all
