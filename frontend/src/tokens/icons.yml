@@ -1,0 +1,21 @@
+#
+# MEDIA QUERY TOKENS
+# Use these tokens to set media query width ranges.
+#
+
+props:
+  icon_size_xxs:
+    value: "10px"
+  icon_size_xs:
+    value: "16px"
+  icon_size_sm:
+    value: "24px"
+  icon_size_md:
+    value: "40px"
+  icon_size_lg:
+    value: "56px"
+  icon_size_xl:
+    value: "72px"
+global:
+  type: number
+  category: icons
