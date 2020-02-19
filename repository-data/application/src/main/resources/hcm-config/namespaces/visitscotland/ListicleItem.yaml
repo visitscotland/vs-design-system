@@ -11,7 +11,7 @@ definitions:
         /hipposysedit:nodetype:
           jcr:primaryType: hipposysedit:nodetype
           jcr:mixinTypes: ['mix:referenceable', 'hipposysedit:remodel']
-          jcr:uuid: 77e7a328-c6f2-4063-9097-451a78c75d1e
+          jcr:uuid: e39e7a3a-20c6-4315-897c-0fe6b77e954c
           hipposysedit:node: true
           hipposysedit:supertype: ['visitscotland:basedocument', 'hippostd:relaxed',
             'hippotranslation:translated']
@@ -54,7 +54,7 @@ definitions:
             hipposysedit:ordered: true
             hipposysedit:path: visitscotland:product
             hipposysedit:type: hippo:compound
-            hipposysedit:validators: [contentblocks-validator]
+            hipposysedit:validators: [contentblocks-validator, required]
           /extraLinks:
             jcr:primaryType: hipposysedit:field
             hipposysedit:multiple: true
@@ -75,7 +75,7 @@ definitions:
           jcr:mixinTypes: ['mix:referenceable']
           visitscotland:title: ''
           visitscotland:subtitle: ''
-          jcr:uuid: fcf2a6fc-ec76-406f-a92f-9849e2df1f25
+          jcr:uuid: e69d6e7a-1e7d-458f-9cdc-c2cd8f9fb3d5
           hippostdpubwf:lastModificationDate: 2020-02-11T16:18:17.876Z
           hippostdpubwf:creationDate: 2020-02-11T16:18:17.876Z
           /visitscotland:description:
@@ -135,6 +135,7 @@ definitions:
             field: product
             plugin.class: org.onehippo.forge.contentblocks.ContentBlocksFieldPlugin
             wicket.id: ${cluster.id}.field
+            hint: ''
             /cluster.options:
               jcr:primaryType: frontend:pluginconfig
               maxitems: 1

@@ -1,119 +1,36 @@
 package com.visitscotland.brmx.beans.mapping;
 
-import com.visitscotland.brmx.beans.Stop;
-import org.hippoecm.hst.content.beans.standard.HippoHtml;
+public class FlatLink {
 
-import java.util.List;
 
-public class FlatStop {
+    private String label;
+    private String link;
 
-    private String identifier;
-
-    private Integer index;
-    private String title;
-    private HippoHtml description;
-    private FlatImage image;
-    private String timeToexplore;
-    private String tipsTitle;
-    private String cta;
-    private HippoHtml tipsBody;
-    private List<String> facilities;
-    private String location;
-
-    private Coordinates coordinates;
     private String errorMessage;
 
-    public FlatStop(){
+    public FlatLink(){
 
     }
 
-    public FlatStop(Stop stop){
-        this.identifier = stop.getIdentifier();
-
-        this.title = stop.getTitle();
-        this.description = stop.getDescription();
-        this.tipsTitle = stop.getTipsTitle();
-        this.tipsBody = stop.getTips();
+    public FlatLink(String label, String link) {
+        this.label = label;
+        this.link = link;
     }
 
-    public String getIdentifier() {
-        return identifier;
+    public String getLabel() {
+        return label;
     }
 
-    public void setIdentifier(String identifier) {
-        this.identifier = identifier;
+    public void setLabel(String label) {
+        this.label = label;
     }
 
-    public Integer getIndex() {
-        return index;
+    public String getLink() {
+        return link;
     }
 
-    public void setIndex(Integer index) {
-        this.index = index;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public HippoHtml getDescription() {
-        return description;
-    }
-
-    public void setDescription(HippoHtml description) {
-        this.description = description;
-    }
-
-    public FlatImage getImage() {
-        return image;
-    }
-
-    public void setImage(FlatImage image) {
-        this.image = image;
-    }
-
-    public String getTimeToexplore() {
-        return timeToexplore;
-    }
-
-    public void setTimeToexplore(String timeToexplore) {
-        this.timeToexplore = timeToexplore;
-    }
-
-    public String getTipsTitle() {
-        return tipsTitle;
-    }
-
-    public void setTipsTitle(String tipsTitle) {
-        this.tipsTitle = tipsTitle;
-    }
-
-    public HippoHtml getTipsBody() {
-        return tipsBody;
-    }
-
-    public void setTipsBody(HippoHtml tipsBody) {
-        this.tipsBody = tipsBody;
-    }
-
-    public List<String> getFacilities() {
-        return facilities;
-    }
-
-    public void setFacilities(List<String> facilities) {
-        this.facilities = facilities;
-    }
-
-    public Coordinates getCoordinates() {
-        return coordinates;
-    }
-
-    public void setCoordinates(Coordinates coordinates) {
-        this.coordinates = coordinates;
+    public void setLink(String link) {
+        this.link = link;
     }
 
     public String getErrorMessage() {
@@ -122,21 +39,5 @@ public class FlatStop {
 
     public void setErrorMessage(String errorMessage) {
         this.errorMessage = errorMessage;
-    }
-
-    public String getCta() {
-        return cta;
-    }
-
-    public void setCta(String cta) {
-        this.cta = cta;
-    }
-
-    public String getLocation() {
-        return location;
-    }
-
-    public void setLocation(String location) {
-        this.location = location;
     }
 }

@@ -28,11 +28,7 @@ public class ItineraryContentComponent extends EssentialsContentComponent {
     public final String FIRST_STOP_LOCATION = "firstStopLocation";
     public final String LAST_STOP_LOCATION = "lastStopLocation";
     public final String HERO_COORDINATES = "heroCoordinates";
-
-
     private final String ROOT_SITE = "/site/";
-
-
 
     @Override
     public void doBeforeRender(HstRequest request, HstResponse response) {

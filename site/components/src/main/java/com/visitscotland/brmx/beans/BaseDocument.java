@@ -90,6 +90,7 @@ public class BaseDocument extends HippoDocument {
         try {
             it = getNode().getParent().getParent().getNodes();
         } catch (RepositoryException e) {
+            //TODO fix the error message
             logError("Error tryin", node, e);
             return documents;
         }
@@ -104,6 +105,7 @@ public class BaseDocument extends HippoDocument {
 
                     Object aux = getObjectConverter().getObject(bean.getNode());
                     //The document is added if the type matches
+                    //TODO  aux.getClass().isAssignableFrom(typeClass) does not work for listicles, review what is missing in listicles
                     if (aux != null && aux.getClass().isAssignableFrom(typeClass)){
                         documents.add((T) aux);
                     }

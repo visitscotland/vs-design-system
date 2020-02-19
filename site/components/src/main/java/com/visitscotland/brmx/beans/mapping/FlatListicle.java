@@ -1,39 +1,35 @@
 package com.visitscotland.brmx.beans.mapping;
 
-import com.visitscotland.brmx.beans.Stop;
+import com.visitscotland.brmx.beans.ListicleItem;
 import org.hippoecm.hst.content.beans.standard.HippoHtml;
 
 import java.util.List;
 
-public class FlatStop {
+public class FlatListicle {
 
     private String identifier;
 
     private Integer index;
     private String title;
+    private String subTitle;
     private HippoHtml description;
     private FlatImage image;
-    private String timeToexplore;
-    private String tipsTitle;
-    private String cta;
-    private HippoHtml tipsBody;
     private List<String> facilities;
     private String location;
+    //TODO links instead ctaLinks
+    private List<FlatLink> ctaLinks;
 
-    private Coordinates coordinates;
     private String errorMessage;
 
-    public FlatStop(){
+    public FlatListicle(){
 
     }
 
-    public FlatStop(Stop stop){
-        this.identifier = stop.getIdentifier();
+    public FlatListicle(ListicleItem item){
+        this.identifier = item.getIdentifier();
 
-        this.title = stop.getTitle();
-        this.description = stop.getDescription();
-        this.tipsTitle = stop.getTipsTitle();
-        this.tipsBody = stop.getTips();
+        this.title = item.getTitle();
+        this.description = item.getDescription();
     }
 
     public String getIdentifier() {
@@ -76,44 +72,12 @@ public class FlatStop {
         this.image = image;
     }
 
-    public String getTimeToexplore() {
-        return timeToexplore;
-    }
-
-    public void setTimeToexplore(String timeToexplore) {
-        this.timeToexplore = timeToexplore;
-    }
-
-    public String getTipsTitle() {
-        return tipsTitle;
-    }
-
-    public void setTipsTitle(String tipsTitle) {
-        this.tipsTitle = tipsTitle;
-    }
-
-    public HippoHtml getTipsBody() {
-        return tipsBody;
-    }
-
-    public void setTipsBody(HippoHtml tipsBody) {
-        this.tipsBody = tipsBody;
-    }
-
     public List<String> getFacilities() {
         return facilities;
     }
 
     public void setFacilities(List<String> facilities) {
         this.facilities = facilities;
-    }
-
-    public Coordinates getCoordinates() {
-        return coordinates;
-    }
-
-    public void setCoordinates(Coordinates coordinates) {
-        this.coordinates = coordinates;
     }
 
     public String getErrorMessage() {
@@ -124,13 +88,6 @@ public class FlatStop {
         this.errorMessage = errorMessage;
     }
 
-    public String getCta() {
-        return cta;
-    }
-
-    public void setCta(String cta) {
-        this.cta = cta;
-    }
 
     public String getLocation() {
         return location;
@@ -138,5 +95,22 @@ public class FlatStop {
 
     public void setLocation(String location) {
         this.location = location;
+    }
+
+    public String getSubTitle() {
+        return subTitle;
+    }
+
+    public void setSubTitle(String subTitle) {
+        this.subTitle = subTitle;
+    }
+
+
+    public List<FlatLink> getCtaLinks() {
+        return ctaLinks;
+    }
+
+    public void setCtaLinks(List<FlatLink> ctaLinks) {
+        this.ctaLinks = ctaLinks;
     }
 }

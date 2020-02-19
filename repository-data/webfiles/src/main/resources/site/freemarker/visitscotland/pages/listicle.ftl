@@ -2,6 +2,8 @@
 
 This is a listicle! Yay!!
 
+
+   <img src="${image}" width="50%" >
 <#if message??>
     Also ${message}
 <#else>

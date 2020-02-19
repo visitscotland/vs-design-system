@@ -1505,3 +1505,231 @@
           visitscotland:dmscategories: ''
           visitscotland:location: ''
           visitscotland:producttype: ''
+    /listicle-example1:
+      jcr:primaryType: hippostd:folder
+      jcr:mixinTypes: ['hippo:named', 'hippotranslation:translated', 'mix:versionable']
+      jcr:uuid: 66ec82b7-2ac4-4884-9075-7397f1c187d7
+      hippo:name: Listicle Example1
+      hippostd:foldertype: [new-translated-folder, new-document]
+      hippotranslation:id: 3ce1f0f4-fea8-462e-87eb-ab6ba69e3a55
+      hippotranslation:locale: en
+      /content:
+        jcr:primaryType: hippo:handle
+        jcr:mixinTypes: ['hippo:named', 'mix:referenceable']
+        jcr:uuid: 60cb24d4-3c08-404d-8e5b-af17f8f84399
+        hippo:name: listicle1
+        /content[1]:
+          jcr:primaryType: visitscotland:Listicle
+          jcr:mixinTypes: ['mix:referenceable']
+          jcr:uuid: 32208662-46bd-4510-8676-de12cd369494
+          hippo:availability: []
+          hippostd:state: draft
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2020-02-17T14:53:41.942Z
+          hippostdpubwf:lastModificationDate: 2020-02-18T17:26:04.270Z
+          hippostdpubwf:lastModifiedBy: admin
+          hippotranslation:id: 64f17f6e-7a50-4d35-95e1-4a0d712091a2
+          hippotranslation:locale: en
+          visitscotland:breadcrumb: ''
+          visitscotland:seoDescription: test meta description
+          visitscotland:seoNoIndex: false
+          visitscotland:seoTitle: test meta title
+          visitscotland:teaser: test teaser
+          visitscotland:title: test heading
+          /visitscotland:heroImage:
+            jcr:primaryType: hippogallerypicker:imagelink
+            hippo:docbase: 8d4f5036-64ca-4e5d-aa89-b348ae38b081
+            hippo:facets: []
+            hippo:modes: []
+            hippo:values: []
+          /visitscotland:introduction:
+            jcr:primaryType: hippostd:html
+            hippostd:content: <p>test intro</p>
+        /content[2]:
+          jcr:primaryType: visitscotland:Listicle
+          jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
+          jcr:uuid: 4d3581a1-1a22-4bbb-bb8c-610016bbcc61
+          hippo:availability: [preview]
+          hippostd:state: unpublished
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2020-02-17T14:53:41.942Z
+          hippostdpubwf:lastModificationDate: 2020-02-18T11:24:11.394Z
+          hippostdpubwf:lastModifiedBy: admin
+          hippotranslation:id: 64f17f6e-7a50-4d35-95e1-4a0d712091a2
+          hippotranslation:locale: en
+          visitscotland:breadcrumb: ''
+          visitscotland:seoDescription: test meta description
+          visitscotland:seoNoIndex: false
+          visitscotland:seoTitle: test meta title
+          visitscotland:teaser: test teaser
+          visitscotland:title: test heading
+          /visitscotland:heroImage:
+            jcr:primaryType: hippogallerypicker:imagelink
+            hippo:docbase: 8d4f5036-64ca-4e5d-aa89-b348ae38b081
+            hippo:facets: []
+            hippo:modes: []
+            hippo:values: []
+          /visitscotland:introduction:
+            jcr:primaryType: hippostd:html
+            hippostd:content: <p>test intro</p>
+      /first-item:
+        jcr:primaryType: hippo:handle
+        jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
+        jcr:uuid: 0ffcc95f-b3ce-4c63-9e5c-7c25df6c05ac
+        hippo:name: first item
+        hippo:versionHistory: c075f95b-a384-4186-a7ff-80ba3335c1db
+        /first-item[1]:
+          jcr:primaryType: visitscotland:ListicleItem
+          jcr:mixinTypes: ['mix:referenceable']
+          jcr:uuid: bd58edf2-f585-4ca5-b2f2-28f5ad5b7090
+          hippo:availability: []
+          hippostd:holder: admin
+          hippostd:state: draft
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2020-02-18T11:23:15.099Z
+          hippostdpubwf:lastModificationDate: 2020-02-19T16:33:33.800Z
+          hippostdpubwf:lastModifiedBy: admin
+          hippotranslation:id: 7d29e165-ac72-45b9-b149-696a909836ce
+          hippotranslation:locale: en
+          visitscotland:subtitle: Edinburgh
+          visitscotland:title: Firs item
+          /visitscotland:description:
+            jcr:primaryType: hippostd:html
+            hippostd:content: <p>test description</p>
+          /visitscotland:image:
+            jcr:primaryType: visitscotland:InstagramImage
+            visitscotland:caption: test instagram caption
+            visitscotland:id: B7i9Ne7gsUR
+            visitscotland:string: BhhN3PZHq2Z
+          /visitscotland:product:
+            jcr:primaryType: visitscotland:ProductSearchLink
+            visitscotland:label: ''
+            /visitscotland:search:
+              jcr:primaryType: visitscotland:ProductsSearch
+              visitscotland:distance: 20
+              visitscotland:dmsCategories: [farmhouse, campingpark, bandb]
+              visitscotland:dmscategories: ['']
+              visitscotland:location: ''
+              visitscotland:producttype: acco
+        /first-item[2]:
+          jcr:primaryType: visitscotland:ListicleItem
+          jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
+          jcr:uuid: 8a15c0af-8005-4280-a849-26320c7d6530
+          hippo:availability: [preview]
+          hippostd:state: unpublished
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2020-02-18T11:23:15.099Z
+          hippostdpubwf:lastModificationDate: 2020-02-19T15:01:20.857Z
+          hippostdpubwf:lastModifiedBy: admin
+          hippotranslation:id: 7d29e165-ac72-45b9-b149-696a909836ce
+          hippotranslation:locale: en
+          visitscotland:subtitle: Edinburgh
+          visitscotland:title: Firs item
+          /visitscotland:description:
+            jcr:primaryType: hippostd:html
+            hippostd:content: <p>test description</p>
+          /visitscotland:image:
+            jcr:primaryType: visitscotland:InstagramImage
+            visitscotland:caption: test instagram caption
+            visitscotland:id: B7i9Ne7gsUR
+            visitscotland:string: BhhN3PZHq2Z
+          /visitscotland:product:
+            jcr:primaryType: visitscotland:ProductSearchLink
+            visitscotland:label: ''
+            /visitscotland:search:
+              jcr:primaryType: visitscotland:ProductsSearch
+              visitscotland:distance: 20
+              visitscotland:dmsCategories: [farmhouse, campingpark, bandb]
+              visitscotland:dmscategories: ['']
+              visitscotland:location: ''
+              visitscotland:producttype: acco
+        /first-item[3]:
+          jcr:primaryType: visitscotland:ListicleItem
+          jcr:mixinTypes: ['mix:referenceable']
+          jcr:uuid: 17856fac-fcbe-409b-9665-154073dc75e5
+          hippo:availability: [live]
+          hippostd:state: published
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2020-02-18T11:23:15.099Z
+          hippostdpubwf:lastModificationDate: 2020-02-18T17:26:18.579Z
+          hippostdpubwf:lastModifiedBy: admin
+          hippostdpubwf:publicationDate: 2020-02-18T17:26:23.649Z
+          hippotranslation:id: 7d29e165-ac72-45b9-b149-696a909836ce
+          hippotranslation:locale: en
+          visitscotland:subtitle: Edinburgh
+          visitscotland:title: Firs item
+          /visitscotland:description:
+            jcr:primaryType: hippostd:html
+            hippostd:content: <p>test description</p>
+          /visitscotland:image:
+            jcr:primaryType: visitscotland:InstagramImage
+            visitscotland:id: B7i9Ne7gsUR
+          /visitscotland:product:
+            jcr:primaryType: visitscotland:ProductSearchLink
+            visitscotland:label: ''
+            /visitscotland:search:
+              jcr:primaryType: visitscotland:ProductsSearch
+              visitscotland:distance: 20
+              visitscotland:dmsCategories: [farmhouse, campingpark, bandb]
+              visitscotland:dmscategories: ['']
+              visitscotland:location: ''
+              visitscotland:producttype: acco
+      /second-item:
+        jcr:primaryType: hippo:handle
+        jcr:mixinTypes: ['hippo:named', 'mix:referenceable']
+        jcr:uuid: cb9f7d63-5e39-4df6-b981-bec51894088b
+        hippo:name: second item
+        /second-item[1]:
+          jcr:primaryType: visitscotland:ListicleItem
+          jcr:mixinTypes: ['mix:referenceable']
+          jcr:uuid: d8e9f51d-8127-4b19-b41d-725f4bc91fdb
+          hippo:availability: []
+          hippostd:state: draft
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2020-02-18T16:07:54.341Z
+          hippostdpubwf:lastModificationDate: 2020-02-18T17:48:14.953Z
+          hippostdpubwf:lastModifiedBy: admin
+          hippotranslation:id: ff29a7a7-2344-450e-b526-d26e904d69fb
+          hippotranslation:locale: en
+          visitscotland:subtitle: ''
+          visitscotland:title: Second item
+          /visitscotland:description:
+            jcr:primaryType: hippostd:html
+            hippostd:content: ''
+          /visitscotland:image:
+            jcr:primaryType: hippogallerypicker:imagelink
+            hippo:docbase: 8d4f5036-64ca-4e5d-aa89-b348ae38b081
+            hippo:facets: []
+            hippo:modes: []
+            hippo:values: []
+          /visitscotland:product:
+            jcr:primaryType: visitscotland:DMSLink
+            visitscotland:label: Label for the dms
+            visitscotland:product: '257961'
+        /second-item[2]:
+          jcr:primaryType: visitscotland:ListicleItem
+          jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
+          jcr:uuid: 6f71196c-6b94-4bfa-ae0f-04f58b399a76
+          hippo:availability: [preview]
+          hippostd:state: unpublished
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2020-02-18T16:07:54.341Z
+          hippostdpubwf:lastModificationDate: 2020-02-18T16:08:28.514Z
+          hippostdpubwf:lastModifiedBy: admin
+          hippotranslation:id: ff29a7a7-2344-450e-b526-d26e904d69fb
+          hippotranslation:locale: en
+          visitscotland:subtitle: ''
+          visitscotland:title: Second item
+          /visitscotland:description:
+            jcr:primaryType: hippostd:html
+            hippostd:content: ''
+          /visitscotland:image:
+            jcr:primaryType: hippogallerypicker:imagelink
+            hippo:docbase: 8d4f5036-64ca-4e5d-aa89-b348ae38b081
+            hippo:facets: []
+            hippo:modes: []
+            hippo:values: []
+          /visitscotland:product:
+            jcr:primaryType: visitscotland:DMSLink
+            visitscotland:label: Label for the dms
+            visitscotland:product: '257961'

@@ -66,12 +66,20 @@ definitions:
             hipposysedit:path: visitscotland:location
             hipposysedit:primary: false
             hipposysedit:type: DynamicDropdown
+          /Coordinates_:
+            jcr:primaryType: hipposysedit:field
+            hipposysedit:mandatory: false
+            hipposysedit:multiple: false
+            hipposysedit:ordered: false
+            hipposysedit:path: visitscotland:coordinates
+            hipposysedit:primary: false
+            hipposysedit:type: visitscotland:Coordinates
       /hipposysedit:prototypes:
         jcr:primaryType: hipposysedit:prototypeset
         /hipposysedit:prototype:
           jcr:primaryType: visitscotland:Image
           jcr:mixinTypes: ['mix:referenceable']
-          jcr:uuid: 931b315f-38a7-4fe3-8b66-43bcd3bf1b7e
+          jcr:uuid: fdd4d66e-b8f1-4fca-ab75-39abc3183942
           hippogallery:description: ''
           visitscotland:altText: ''
           visitscotland:credit: ''
@@ -96,6 +104,10 @@ definitions:
             jcr:lastModified: 1970-01-01T00:00:00Z
             jcr:mimeType: image/gif
           /visitscotland:Coordinates:
+            jcr:primaryType: visitscotland:Coordinates
+            visitscotland:latitude: 0.0
+            visitscotland:longitude: 0.0
+          /visitscotland:coordinates:
             jcr:primaryType: visitscotland:Coordinates
             visitscotland:latitude: 0.0
             visitscotland:longitude: 0.0
@@ -155,15 +167,6 @@ definitions:
               jcr:primaryType: frontend:pluginconfig
               valuelistProvider: service.locationlist.image
               source: ''
-          /Coordinates:
-            jcr:primaryType: frontend:plugin
-            caption: Coordinates (optional)
-            field: Coordinates
-            hint: Used to display a map inside an image caption
-            plugin.class: org.hippoecm.frontend.editor.plugins.field.NodeFieldPlugin
-            wicket.id: ${cluster.id}.field
-            /cluster.options:
-              jcr:primaryType: frontend:pluginconfig
           /thumbnail:
             jcr:primaryType: frontend:plugin
             caption: thumbnail
@@ -176,6 +179,16 @@ definitions:
             jcr:primaryType: frontend:plugin
             caption: original
             field: original
+            plugin.class: org.hippoecm.frontend.editor.plugins.field.NodeFieldPlugin
+            wicket.id: ${cluster.id}.field
+            hint: ''
+            /cluster.options:
+              jcr:primaryType: frontend:pluginconfig
+          /coordinates:
+            jcr:primaryType: frontend:plugin
+            caption: Coordinates (optional)
+            field: Coordinates_
+            hint: ''
             plugin.class: org.hippoecm.frontend.editor.plugins.field.NodeFieldPlugin
             wicket.id: ${cluster.id}.field
             /cluster.options:

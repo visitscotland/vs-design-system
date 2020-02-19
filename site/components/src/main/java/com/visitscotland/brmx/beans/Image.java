@@ -2,7 +2,6 @@ package com.visitscotland.brmx.beans;
 
 import org.onehippo.cms7.essentials.dashboard.annotations.HippoEssentialsGenerated;
 import org.hippoecm.hst.content.beans.Node;
-import com.visitscotland.brmx.beans.Coordinates;
 import org.hippoecm.hst.content.beans.standard.HippoGalleryImageSet;
 
 @HippoEssentialsGenerated(internalName = "visitscotland:Image")
@@ -18,14 +17,13 @@ public class Image extends HippoGalleryImageSet {
         return getSingleProperty("visitscotland:credit");
     }
 
-    @HippoEssentialsGenerated(internalName = "visitscotland:Coordinates")
-    public Coordinates getCoordinates() {
-        return getBean("visitscotland:Coordinates", Coordinates.class);
-    }
-
     @HippoEssentialsGenerated(internalName = "visitscotland:location")
     public String getLocation() {
         return getSingleProperty("visitscotland:location");
     }
 
+    @HippoEssentialsGenerated(internalName = "visitscotland:coordinates")
+    public Coordinates getCoordinates() {
+        return getBean("visitscotland:coordinates", Coordinates.class);
+    }
 }
