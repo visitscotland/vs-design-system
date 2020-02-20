@@ -43,7 +43,7 @@
 <#-- @ftlvariable name="hero" type="com.visitscotland.brmx.beans.Image" -->
 
 
-<@hst.setBundle basename="itinerary, toomany, keyFacilities, keys"/> <#-- TODO: keyFacilities shouldn't be defined here -->
+<#--  <@hst.setBundle basename="itinerary, toomany, keyFacilities, keys"/> TODO: keyFacilities shouldn't be defined here  -->
 
 <#assign mainTransport = "">
 <#assign dayNumber = 0>
@@ -60,8 +60,6 @@
 <#if document.transports?has_content >
     <#assign mainTransport = document.transports[0]>
 </#if>
-
-
 
 <div class="has-edit-button">
       <@hst.manageContent hippobean=document documentTemplateQuery="new-document" rootPath="site" defaultPath="${path}" />
@@ -114,7 +112,7 @@
                         <@hst.html hippohtml=document.introduction/>
                     </vs-lead-paragraph>
                     <dl class="list-inline">
-                        <dt class="list-inline-item"><@fmt.message key="start-finish"/></dt>
+                        <dt class="list-inline-item">${label("itinerary", "start-finish")}</dt>
                         <dd class="list-inline-item">${firstStopLocation} / ${lastStopLocation}</dd>
                     </dl>
                 </vs-col>
@@ -122,38 +120,38 @@
                     <vs-summary-box-list>
                         <vs-summary-box-list-item>
                             <vs-summary-box-display text="${document.days?size}"/></vs-summary-box-display>
-                            <vs-summary-box-label label="<@fmt.message key="days"/>"></vs-summary-box-label>
+                            <vs-summary-box-label label="${label('itinerary', 'days')}"></vs-summary-box-label>
                         </vs-summary-box-list-item>
                         <vs-summary-box-list-item>
                             <vs-summary-box-distance-display
                                 miles="${(document.distance?round)?round}"
                                 kilometres="${(document.distance?round*1.6)?round}"
-                                miles-label="<@fmt.message key="miles"/>"
-                                kilometres-label="<@fmt.message key="kilometres"/>">
+                                miles-label="${label("itinerary", "miles")}"
+                                kilometres-label="${label("itinerary", "kilometres")}">
                             </vs-summary-box-distance-display>
                             <vs-summary-box-distance-label
-                                distance-label="<@fmt.message key="distance"/>"
-                                kilometres-abbr="<@fmt.message key="kilometres-abbreviation"/>"
-                                kilometres-label="<@fmt.message key="kilometres"/>"
-                                miles-abbr="<@fmt.message key="miles-abbreviation"/>"
-                                miles-label="<@fmt.message key="miles"/>">
+                                distance-label="${label("itinerary", "distance")}"
+                                kilometres-abbr="${label("itinerary", "kilometres-abbreviation")}"
+                                kilometres-label="${label("itinerary", "kilometres")}"
+                                miles-abbr="${label("itinerary", "miles-abbreviation")}"
+                                miles-label="${label("itinerary", "miles")}">
                             </vs-summary-box-distance-label>
                         </vs-summary-box-list-item>
                               <vs-summary-box-list-item>
                             <vs-summary-box-icon-with-label
                                 icon="${mainTransport}"
-                                label="<@fmt.message key="${mainTransport}"/>">
+                                label="${label("toomany", "${mainTransport}")}">
                             </vs-summary-box-icon-with-label>
                             <vs-summary-box-label 
-                                label="<@fmt.message key="transport"/>">
+                                label="${label("itinerary", "transport")}">
                             </vs-summary-box-label>
                         </vs-summary-box-list-item>
                         <vs-summary-box-list-item>
                             <vs-summary-box-icon-with-label
                                 icon="${document.theme}"
-                                label="<@fmt.message key="${document.theme}"/>">
+                                label="${label("toomany", "${document.theme}")}">
                             </vs-summary-box-icon-with-label>
-                            <vs-summary-box-label label="<@fmt.message key="themes"/>"></vs-summary-box-label>
+                            <vs-summary-box-label label="${label("itinerary", "themes")}"></vs-summary-box-label>
                         </vs-summary-box-list-item>
                     </vs-summary-box-list>
                 </vs-col>
@@ -164,7 +162,7 @@
                 <vs-col cols="12" lg="11" offset-lg="1">
                     <vs-description-list class="mb-6">
                         <vs-description-list-term>
-                            <@fmt.message key="highlights"/>
+                            ${label("itinerary", "highlights")}
                         </vs-description-list-term>
                         <#-- TODO: each ${document.highlight} should render a new dd element -->
                         <vs-description-list-detail>
@@ -173,11 +171,11 @@
                     </vs-description-list>
                     <vs-description-list class="mb-8">
                         <vs-description-list-term>
-                            <@fmt.message key="areas-covered"/>
+                            ${label("itinerary", "areas-covered")}
                         </vs-description-list-term>
                         <#list document.areas as area>
                             <vs-description-list-detail>
-                                <@fmt.message key="${area}"/>${"\n"}
+                                ${label("toomany", "${area}")}${"\n"}
                             </vs-description-list-detail>
                         </#list>
                     </vs-description-list>
@@ -194,7 +192,7 @@
                 slot="list"
                 :default-show="${(dayNumber < 3)?c}"
                 day-number="${dayNumber}"
-                day-label="<@fmt.message key="day"/>"
+                day-label="${label("itinerary", "day")}"
                 day-title="${day.title}"
                 >
                 <#if day.transports?has_content>
@@ -204,13 +202,13 @@
                             Note - can't use vs-description-list-term and vs-description-list-detail 
                             here yet as font style and layout are different 
                         -->
-                        <dt class="list-inline-item"><@fmt.message key="transport"/>:</dt>
+                        <dt class="list-inline-item">${label("itinerary", "transport")}:</dt>
                         <#list day.transports as transport>
                             <dd class="list-inline-item">
-                                <vs-tooltip title="<@fmt.message key="${transport}"/>">
+                                <vs-tooltip title="${label("itinerary", "${transport}")}">
                                     <vs-icon name="${transport}" variant="dark" size="sm"></vs-icon>
                                 </vs-tooltip>
-                                <span class="sr-only"><@fmt.message key="${transport}"/></span>
+                                <span class="sr-only">${label("itinerary", "${transport}")}</span>
                             </dd>
                         </#list>
                     </vs-description-list>
