@@ -19,6 +19,3 @@ definitions:
         /container:
           jcr:primaryType: hst:containercomponentreference
           hst:referencecomponent: base/footer
-      /breadcrumb:
-        jcr:primaryType: hst:component
-        hst:referencecomponent: hst:components/breadcrumb

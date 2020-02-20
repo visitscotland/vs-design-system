@@ -42,7 +42,11 @@ public class VsBreadCrumbProvider extends BreadcrumbProvider {
     protected BreadcrumbItem getBreadcrumbItem(HstRequest request, HstSiteMenuItem menuItem) {
         if (menuItem.resolveToSiteMapItem() != null) {
             HippoBean bean = getComponent().getBeanForResolvedSiteMapItem(request, menuItem.resolveToSiteMapItem());
-            return new BreadcrumbItem(menuItem.getHstLink(), getBreadcrumbText(bean));
+            if (bean != null) {
+                return new BreadcrumbItem(menuItem.getHstLink(), getBreadcrumbText(bean));
+            } else {
+                return null;
+            }
         } else {
             //If this warning message is logged and it is required that a menu item appears in the breadcrumb even though it
             //is not backed from a document, I'd be useful to use the logic of enhancedmenu.
