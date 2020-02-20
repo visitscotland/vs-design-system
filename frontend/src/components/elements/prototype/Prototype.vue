@@ -1,5 +1,5 @@
 <template>
-	<div class="vs-prototype">
+	<div class="vs-prototype p-0 m-0">
 		<slot />
 	</div>
 </template>
@@ -22,8 +22,6 @@
 
 <style lang="scss" scoped>
 .vs-prototype {
-	margin: 0;
-	padding: 0;
 	opacity: 30%;
 
 	& > * {
