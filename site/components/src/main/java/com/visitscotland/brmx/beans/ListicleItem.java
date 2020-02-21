@@ -27,21 +27,26 @@ public class ListicleItem extends BaseDocument {
         return getHippoHtml("visitscotland:description");
     }
 
-    @HippoEssentialsGenerated(internalName = "visitscotland:product", allowModifications = false)
-    public List<HippoBean> getItem() {
-        return getChildBeansByName("visitscotland:product", HippoBean.class);
+    @HippoEssentialsGenerated(internalName = "visitscotland:products", allowModifications = false)
+    public List<HippoBean> getProducts() {
+        return getChildBeansByName("visitscotland:products", HippoBean.class);
     }
 
     public HippoBean getListicleItem() {
-        return getOnlyChild(getItem());
+        return getOnlyChild(getProducts());
     }
 
-    @HippoEssentialsGenerated(internalName = "visitscotland:image", allowModifications = false)
-    public List<HippoBean> getImage() {
-        return getChildBeansByName("visitscotland:image", HippoBean.class);
+    @HippoEssentialsGenerated(internalName = "visitscotland:images", allowModifications = false)
+    public List<HippoBean> getImages() {
+        return getChildBeansByName("visitscotland:images", HippoBean.class);
     }
 
     public HippoBean getListicleItemImage() {
-        return getOnlyChild(getImage());
+        return getOnlyChild(getImages());
+    }
+
+    @HippoEssentialsGenerated(internalName = "visitscotland:extraLinks", allowModifications = false)
+    public List<HippoBean> getExtraLinks() {
+        return getChildBeansByName("visitscotland:extraLinks", HippoBean.class);
     }
 }
