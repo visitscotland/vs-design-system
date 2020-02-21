@@ -106,9 +106,9 @@ public class BaseDocument extends HippoDocument {
                     Object aux = getObjectConverter().getObject(bean.getNode());
                     //The document is added if the type matches
                     //TODO  aux.getClass().isAssignableFrom(typeClass) does not work for listicles, review what is missing in listicles
-                    if (aux != null && aux.getClass().isAssignableFrom(typeClass)){
+                    //if (aux != null && aux.getClass().isAssignableFrom(typeClass)){
                         documents.add((T) aux);
-                    }
+                    //}
                 }
             } catch (QueryException | RepositoryException | NullPointerException | ObjectBeanManagerException e) {
                 logError("The following node is corrupted", node, e);

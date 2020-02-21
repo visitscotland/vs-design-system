@@ -65,6 +65,10 @@
           resource: /content/gallery/visitscotland/default/fraserburgh---davron-hotel-6.jpg/fraserburgh---davron-hotel-6.jpg/original/original.jpg
         jcr:lastModified: 2019-12-11T11:31:30.522Z
         jcr:mimeType: image/jpeg
+      /visitscotland:coordinates:
+        jcr:primaryType: visitscotland:Coordinates
+        visitscotland:latitude: 0.0
+        visitscotland:longitude: 0.0
   /visitscotland_49386435364-1.jpg:
     jcr:primaryType: hippo:handle
     jcr:mixinTypes: ['hippo:named', 'mix:referenceable']

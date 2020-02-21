@@ -56,18 +56,29 @@ public class ListicleContentComponent extends EssentialsContentComponent {
                     InstagramImage instagramLink = (InstagramImage) listicleItem.getListicleItemImage();
                     try {
                         //TODO add instagram ID to the url
-                        URL instagramInformation = new URL("https://api.instagram.com/oembed/?url=http://instagr.am/p/B7i9Ne7gsUR&hidecaption=true");
+                        URL instagramInformation = new URL("https://api.instagram.com/oembed/?url=http://instagr.am/p/"+instagramLink.getId());
 
-                        JSONObject json = new JSONObject(request(instagramInformation.toString()));
-                        //TODO create a constructor to fill the image for listicle and itineraries and check if author alwasy come form instagram
-                        image.setCredit(json.getString("author_name"));
-                        image.setExternalImage("https://www.instagram.com/p/"+instagramLink.getId()+"/media");
-                        image.setDescription(instagramLink.getCaption());
-                        model.setImage(image);
+                        String response = request(instagramInformation.toString());
+                        if (response!=null){
+                            JSONObject json = new JSONObject();
+                            //TODO create a constructor to fill the image for listicle and itineraries and check if author alwasy come form instagram
+                            image.setCredit(json.getString("author_name"));
+                            //TODO use String.format ?
+                            image.setExternalImage("https://www.instagram.com/p/"+instagramLink.getId()+"/media");
+                            image.setDescription(instagramLink.getCaption());
+                            model.setImage(image);
+                        }
+                        else{
+                            model.setErrorMessage("The Instagram id is not valid");
+                            //TODO use commonUtils and change the message
+                            logger.warn("CONTENT The product's id  wasn't provided for " + listicleItem.getName() + ", Stop " + model.getIndex());
+                        }
 
                     } catch (IOException e) {
+                        //TODO change the message
                         model.setErrorMessage("Error while querying the DMS: " + e.getMessage());
-                        logger.error("Error while querying the DMS for " + listicle.getName() + ", Listicle item " + model.getIndex() + ": " + e.getMessage());
+                        //TODO use commonUtils and change the message
+                        logger.error("instagram error");
 
                     }
                 }else{
@@ -95,6 +106,7 @@ public class ListicleContentComponent extends EssentialsContentComponent {
                         product = getProduct(dmsLink.getProduct(), request.getLocale());
                     } catch (IOException e) {
                         model.setErrorMessage("Error while querying the DMS: " + e.getMessage());
+                        //TODO use CommonUtils
                         logger.error("Error while querying the DMS for " + listicle.getName() + ", Listicle item " + model.getIndex() + ": " + e.getMessage());
 
                     }
@@ -106,7 +118,6 @@ public class ListicleContentComponent extends EssentialsContentComponent {
                         List<String> facilities = new ArrayList<>();
                         FlatLink cta = new FlatLink(dmsLink.getLabel(), product.getString(URL));
                         links.add(cta);
-                        model.setCtaLinks(links);
 
                         model.setLocation(product.getString(LOCATION));
 
@@ -131,27 +142,26 @@ public class ListicleContentComponent extends EssentialsContentComponent {
                         String productType= productSearchLink.getSearch().getProducttype();
                         String[] categories= productSearchLink.getSearch().getDmscategories();
                         Long distance= productSearchLink.getSearch().getDistance();
-
-                       /* model.setCta(psLink);
-                        model.setCtaLabel(productSearchLink.getLabel());*/
-
+                        FlatLink cta = new FlatLink(productSearchLink.getLabel(), productSearchLink.getLabel());
+                        links.add(cta);
                     }else{
                         if (listicleItem.getListicleItem() instanceof ExternalLink){
                             ExternalLink externalLink = (ExternalLink) listicleItem.getListicleItem();
-                      /*      model.setCtaLabel(externalLink.getLabel());
-                            model.setCta(externalLink.getLink());*/
+                            FlatLink cta = new FlatLink(externalLink.getLabel(), externalLink.getLabel());
+                            links.add(cta);
                         }
                         else{
                             if (listicleItem.getListicleItem() instanceof CMSLink){
                                 CMSLink cmsLink = (CMSLink) listicleItem.getListicleItem();
-                                /*model.setCtaLabel(cmsLink.getLabel());*/
+                                FlatLink cta = new FlatLink(cmsLink.getLabel(), cmsLink.getLabel());
+                                links.add(cta);
                             }
 
                         }
                     }
 
                 }
-
+                model.setCtaLinks(links);
             }
 
             }
@@ -159,7 +169,7 @@ public class ListicleContentComponent extends EssentialsContentComponent {
 
     //TODO this method has already been defined in ItinerariesContentComponet - refactor, utils class?
     private JSONObject getProduct(String productId, Locale locale) throws IOException {
-
+        //TODO use String.format ?
         String body = request(Properties.VS_DMS_PRODUCTS + "/data/product-search/map?prod_id=" + productId+ "&locale="+locale.getLanguage());
         JSONObject json = new JSONObject(body);
         JSONArray data = (JSONArray) json.get("data");
@@ -172,14 +182,18 @@ public class ListicleContentComponent extends EssentialsContentComponent {
      */
     //TODO this method has already been defined in ItinerariesContentComponet - refactor, utils class?
     private static String request(String url) throws IOException {
-        final BufferedReader br = new BufferedReader(new InputStreamReader(new URL(url).openStream()));
-        final StringBuilder sb = new StringBuilder();
-        int cp;
+        if (HstResponse.SC_OK == ((HttpURLConnection) new URL(url).openConnection()).getResponseCode()){
+            final BufferedReader br = new BufferedReader(new InputStreamReader(new URL(url).openStream()));
+            final StringBuilder sb = new StringBuilder();
+            int cp;
 
-        while ((cp = br.read()) != -1) {
-            sb.append((char) cp);
+            while ((cp = br.read()) != -1) {
+                sb.append((char) cp);
+            }
+
+            return sb.toString();
         }
+        return null;
 
-        return sb.toString();
     }
 }

@@ -1526,11 +1526,12 @@
           hippostd:state: draft
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2020-02-17T14:53:41.942Z
-          hippostdpubwf:lastModificationDate: 2020-02-18T17:26:04.270Z
+          hippostdpubwf:lastModificationDate: 2020-02-20T16:20:38.005Z
           hippostdpubwf:lastModifiedBy: admin
           hippotranslation:id: 64f17f6e-7a50-4d35-95e1-4a0d712091a2
           hippotranslation:locale: en
           visitscotland:breadcrumb: ''
+          visitscotland:descOrder: false
           visitscotland:seoDescription: test meta description
           visitscotland:seoNoIndex: false
           visitscotland:seoTitle: test meta title
@@ -1553,11 +1554,12 @@
           hippostd:state: unpublished
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2020-02-17T14:53:41.942Z
-          hippostdpubwf:lastModificationDate: 2020-02-18T11:24:11.394Z
+          hippostdpubwf:lastModificationDate: 2020-02-20T16:37:36.181Z
           hippostdpubwf:lastModifiedBy: admin
           hippotranslation:id: 64f17f6e-7a50-4d35-95e1-4a0d712091a2
           hippotranslation:locale: en
           visitscotland:breadcrumb: ''
+          visitscotland:descOrder: false
           visitscotland:seoDescription: test meta description
           visitscotland:seoNoIndex: false
           visitscotland:seoTitle: test meta title
@@ -1572,22 +1574,80 @@
           /visitscotland:introduction:
             jcr:primaryType: hippostd:html
             hippostd:content: <p>test intro</p>
+      /validinstagrampost:
+        jcr:primaryType: hippo:handle
+        jcr:mixinTypes: ['hippo:named', 'mix:referenceable']
+        jcr:uuid: bb08526c-b865-4374-a792-9e57b8f1260c
+        hippo:name: validInstagramPost
+        /validinstagrampost[1]:
+          jcr:primaryType: visitscotland:ListicleItem
+          jcr:mixinTypes: ['mix:referenceable']
+          jcr:uuid: 3f08051e-3a7f-4c03-bf5d-8c9c26a3de4b
+          hippo:availability: []
+          hippostd:state: draft
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2020-02-20T17:54:35.094Z
+          hippostdpubwf:lastModificationDate: 2020-02-20T17:54:35.094Z
+          hippostdpubwf:lastModifiedBy: admin
+          hippotranslation:id: 73a719e9-f4d9-42ce-90cf-b55763508189
+          hippotranslation:locale: en
+          visitscotland:subtitle: ''
+          visitscotland:title: Nice cow
+          /visitscotland:description:
+            jcr:primaryType: hippostd:html
+            hippostd:content: ''
+          /visitscotland:image:
+            jcr:primaryType: visitscotland:InstagramImage
+            visitscotland:caption: Nice cow
+            visitscotland:id: B8uEbusnHK2
+          /visitscotland:product:
+            jcr:primaryType: visitscotland:CMSLink
+            visitscotland:label: ''
+            /visitscotland:link:
+              jcr:primaryType: hippo:mirror
+              hippo:docbase: 0751c1d3-3024-4d2d-a5e8-38286fee9722
+        /validinstagrampost[2]:
+          jcr:primaryType: visitscotland:ListicleItem
+          jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
+          jcr:uuid: f2828e92-69dc-4cca-9faf-cda7871fa64b
+          hippo:availability: [preview]
+          hippostd:state: unpublished
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2020-02-20T17:54:35.094Z
+          hippostdpubwf:lastModificationDate: 2020-02-20T17:59:47.913Z
+          hippostdpubwf:lastModifiedBy: admin
+          hippotranslation:id: 73a719e9-f4d9-42ce-90cf-b55763508189
+          hippotranslation:locale: en
+          visitscotland:subtitle: ''
+          visitscotland:title: Nice cow
+          /visitscotland:description:
+            jcr:primaryType: hippostd:html
+            hippostd:content: ''
+          /visitscotland:image:
+            jcr:primaryType: visitscotland:InstagramImage
+            visitscotland:caption: Nice cow
+            visitscotland:id: B8uEbusnHK2
+          /visitscotland:product:
+            jcr:primaryType: visitscotland:CMSLink
+            visitscotland:label: ''
+            /visitscotland:link:
+              jcr:primaryType: hippo:mirror
+              hippo:docbase: 0751c1d3-3024-4d2d-a5e8-38286fee9722
       /first-item:
         jcr:primaryType: hippo:handle
         jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
         jcr:uuid: 0ffcc95f-b3ce-4c63-9e5c-7c25df6c05ac
         hippo:name: first item
-        hippo:versionHistory: c075f95b-a384-4186-a7ff-80ba3335c1db
+        hippo:versionHistory: 6097eec4-c965-4bae-940b-f1bdc52e334a
         /first-item[1]:
           jcr:primaryType: visitscotland:ListicleItem
           jcr:mixinTypes: ['mix:referenceable']
           jcr:uuid: bd58edf2-f585-4ca5-b2f2-28f5ad5b7090
           hippo:availability: []
-          hippostd:holder: admin
           hippostd:state: draft
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2020-02-18T11:23:15.099Z
-          hippostdpubwf:lastModificationDate: 2020-02-19T16:33:33.800Z
+          hippostdpubwf:lastModificationDate: 2020-02-20T17:52:57.355Z
           hippostdpubwf:lastModifiedBy: admin
           hippotranslation:id: 7d29e165-ac72-45b9-b149-696a909836ce
           hippotranslation:locale: en
@@ -1598,8 +1658,8 @@
             hippostd:content: <p>test description</p>
           /visitscotland:image:
             jcr:primaryType: visitscotland:InstagramImage
-            visitscotland:caption: test instagram caption
-            visitscotland:id: B7i9Ne7gsUR
+            visitscotland:caption: This instagram post is private
+            visitscotland:id: B8xhSoMn6kroo4u7KiPKAEYm5aas8OV_QPyyBc0
             visitscotland:string: BhhN3PZHq2Z
           /visitscotland:product:
             jcr:primaryType: visitscotland:ProductSearchLink
@@ -1607,10 +1667,11 @@
             /visitscotland:search:
               jcr:primaryType: visitscotland:ProductsSearch
               visitscotland:distance: 20
-              visitscotland:dmsCategories: [farmhouse, campingpark, bandb]
+              visitscotland:dmsCategories: [farmhouse, campingpark, bandb, yurts,
+                guesthouse]
               visitscotland:dmscategories: ['']
               visitscotland:location: ''
-              visitscotland:producttype: acco
+              visitscotland:producttype: even
         /first-item[2]:
           jcr:primaryType: visitscotland:ListicleItem
           jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
@@ -1619,7 +1680,7 @@
           hippostd:state: unpublished
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2020-02-18T11:23:15.099Z
-          hippostdpubwf:lastModificationDate: 2020-02-19T15:01:20.857Z
+          hippostdpubwf:lastModificationDate: 2020-02-20T17:53:10.090Z
           hippostdpubwf:lastModifiedBy: admin
           hippotranslation:id: 7d29e165-ac72-45b9-b149-696a909836ce
           hippotranslation:locale: en
@@ -1630,8 +1691,8 @@
             hippostd:content: <p>test description</p>
           /visitscotland:image:
             jcr:primaryType: visitscotland:InstagramImage
-            visitscotland:caption: test instagram caption
-            visitscotland:id: B7i9Ne7gsUR
+            visitscotland:caption: This instagram post is private
+            visitscotland:id: B8xhSoMn6kroo4u7KiPKAEYm5aas8OV_QPyyBc0
             visitscotland:string: BhhN3PZHq2Z
           /visitscotland:product:
             jcr:primaryType: visitscotland:ProductSearchLink
@@ -1639,10 +1700,11 @@
             /visitscotland:search:
               jcr:primaryType: visitscotland:ProductsSearch
               visitscotland:distance: 20
-              visitscotland:dmsCategories: [farmhouse, campingpark, bandb]
+              visitscotland:dmsCategories: [farmhouse, campingpark, bandb, yurts,
+                guesthouse]
               visitscotland:dmscategories: ['']
               visitscotland:location: ''
-              visitscotland:producttype: acco
+              visitscotland:producttype: even
         /first-item[3]:
           jcr:primaryType: visitscotland:ListicleItem
           jcr:mixinTypes: ['mix:referenceable']
@@ -1651,9 +1713,9 @@
           hippostd:state: published
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2020-02-18T11:23:15.099Z
-          hippostdpubwf:lastModificationDate: 2020-02-18T17:26:18.579Z
+          hippostdpubwf:lastModificationDate: 2020-02-20T17:53:10.090Z
           hippostdpubwf:lastModifiedBy: admin
-          hippostdpubwf:publicationDate: 2020-02-18T17:26:23.649Z
+          hippostdpubwf:publicationDate: 2020-02-20T17:53:26.359Z
           hippotranslation:id: 7d29e165-ac72-45b9-b149-696a909836ce
           hippotranslation:locale: en
           visitscotland:subtitle: Edinburgh
@@ -1663,17 +1725,20 @@
             hippostd:content: <p>test description</p>
           /visitscotland:image:
             jcr:primaryType: visitscotland:InstagramImage
-            visitscotland:id: B7i9Ne7gsUR
+            visitscotland:caption: This instagram post is private
+            visitscotland:id: B8xhSoMn6kroo4u7KiPKAEYm5aas8OV_QPyyBc0
+            visitscotland:string: BhhN3PZHq2Z
           /visitscotland:product:
             jcr:primaryType: visitscotland:ProductSearchLink
             visitscotland:label: ''
             /visitscotland:search:
               jcr:primaryType: visitscotland:ProductsSearch
               visitscotland:distance: 20
-              visitscotland:dmsCategories: [farmhouse, campingpark, bandb]
+              visitscotland:dmsCategories: [farmhouse, campingpark, bandb, yurts,
+                guesthouse]
               visitscotland:dmscategories: ['']
               visitscotland:location: ''
-              visitscotland:producttype: acco
+              visitscotland:producttype: even
       /second-item:
         jcr:primaryType: hippo:handle
         jcr:mixinTypes: ['hippo:named', 'mix:referenceable']

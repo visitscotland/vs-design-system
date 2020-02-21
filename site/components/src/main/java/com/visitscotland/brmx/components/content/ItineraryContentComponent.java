@@ -94,10 +94,13 @@ public class ItineraryContentComponent extends EssentialsContentComponent {
 
                         if (dmsLink.getProduct() == null){
                             model.setErrorMessage("The product's id  wasn't provided");
+                            //TODO use CommonUtils
                             logger.warn("CONTENT The product's id  wasn't provided for " + itinerary.getName() + ", Stop " + model.getIndex());
                         } else {
                             JSONObject product = getProduct(dmsLink.getProduct(), request.getLocale());
-                            if (product == null){                                model.setErrorMessage("The product id does not exists in the DMS");
+                            if (product == null){
+                                model.setErrorMessage("The product id does not exists in the DMS");
+                                //TODO use CommonUtils
                                 logger.warn("CONTENT The product's id  wasn't provided for " + itinerary.getName() + ", Stop " + model.getIndex());
                             } else {
 
