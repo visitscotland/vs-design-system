@@ -1515,9 +1515,10 @@
       hippotranslation:locale: en
       /content:
         jcr:primaryType: hippo:handle
-        jcr:mixinTypes: ['hippo:named', 'mix:referenceable']
+        jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
         jcr:uuid: 60cb24d4-3c08-404d-8e5b-af17f8f84399
         hippo:name: listicle1
+        hippo:versionHistory: fd1fddd5-587c-433a-9ce0-bc1cfabbd2cd
         /content[1]:
           jcr:primaryType: visitscotland:Listicle
           jcr:mixinTypes: ['mix:referenceable']
@@ -1574,11 +1575,41 @@
           /visitscotland:introduction:
             jcr:primaryType: hippostd:html
             hippostd:content: <p>test intro</p>
+        /content[3]:
+          jcr:primaryType: visitscotland:Listicle
+          jcr:mixinTypes: ['mix:referenceable']
+          jcr:uuid: d4dd1960-580e-4cb2-856f-ad1071d1265b
+          hippo:availability: [live]
+          hippostd:state: published
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2020-02-17T14:53:41.942Z
+          hippostdpubwf:lastModificationDate: 2020-02-20T16:37:36.181Z
+          hippostdpubwf:lastModifiedBy: admin
+          hippostdpubwf:publicationDate: 2020-02-21T15:37:04.655Z
+          hippotranslation:id: 64f17f6e-7a50-4d35-95e1-4a0d712091a2
+          hippotranslation:locale: en
+          visitscotland:breadcrumb: ''
+          visitscotland:descOrder: false
+          visitscotland:seoDescription: test meta description
+          visitscotland:seoNoIndex: false
+          visitscotland:seoTitle: test meta title
+          visitscotland:teaser: test teaser
+          visitscotland:title: test heading
+          /visitscotland:heroImage:
+            jcr:primaryType: hippogallerypicker:imagelink
+            hippo:docbase: 8d4f5036-64ca-4e5d-aa89-b348ae38b081
+            hippo:facets: []
+            hippo:modes: []
+            hippo:values: []
+          /visitscotland:introduction:
+            jcr:primaryType: hippostd:html
+            hippostd:content: <p>test intro</p>
       /validinstagrampost:
         jcr:primaryType: hippo:handle
-        jcr:mixinTypes: ['hippo:named', 'mix:referenceable']
+        jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
         jcr:uuid: bb08526c-b865-4374-a792-9e57b8f1260c
         hippo:name: validInstagramPost
+        hippo:versionHistory: 657a0581-e4d0-40e3-beab-7dbbc1d11568
         /validinstagrampost[1]:
           jcr:primaryType: visitscotland:ListicleItem
           jcr:mixinTypes: ['mix:referenceable']
@@ -1633,12 +1664,40 @@
             /visitscotland:link:
               jcr:primaryType: hippo:mirror
               hippo:docbase: 0751c1d3-3024-4d2d-a5e8-38286fee9722
+        /validinstagrampost[3]:
+          jcr:primaryType: visitscotland:ListicleItem
+          jcr:mixinTypes: ['mix:referenceable']
+          jcr:uuid: fa641d57-790c-4dd4-bd22-e1a68c62fb40
+          hippo:availability: [live]
+          hippostd:state: published
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2020-02-20T17:54:35.094Z
+          hippostdpubwf:lastModificationDate: 2020-02-20T17:59:47.913Z
+          hippostdpubwf:lastModifiedBy: admin
+          hippostdpubwf:publicationDate: 2020-02-21T15:37:12.075Z
+          hippotranslation:id: 73a719e9-f4d9-42ce-90cf-b55763508189
+          hippotranslation:locale: en
+          visitscotland:subtitle: ''
+          visitscotland:title: Nice cow
+          /visitscotland:description:
+            jcr:primaryType: hippostd:html
+            hippostd:content: ''
+          /visitscotland:image:
+            jcr:primaryType: visitscotland:InstagramImage
+            visitscotland:caption: Nice cow
+            visitscotland:id: B8uEbusnHK2
+          /visitscotland:product:
+            jcr:primaryType: visitscotland:CMSLink
+            visitscotland:label: ''
+            /visitscotland:link:
+              jcr:primaryType: hippo:mirror
+              hippo:docbase: 0751c1d3-3024-4d2d-a5e8-38286fee9722
       /first-item:
         jcr:primaryType: hippo:handle
         jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
         jcr:uuid: 0ffcc95f-b3ce-4c63-9e5c-7c25df6c05ac
         hippo:name: first item
-        hippo:versionHistory: 6097eec4-c965-4bae-940b-f1bdc52e334a
+        hippo:versionHistory: 6fc0864d-55f8-47cc-b7f3-ea4183471baa
         /first-item[1]:
           jcr:primaryType: visitscotland:ListicleItem
           jcr:mixinTypes: ['mix:referenceable']
@@ -1647,7 +1706,7 @@
           hippostd:state: draft
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2020-02-18T11:23:15.099Z
-          hippostdpubwf:lastModificationDate: 2020-02-20T17:52:57.355Z
+          hippostdpubwf:lastModificationDate: 2020-02-21T16:02:11.639Z
           hippostdpubwf:lastModifiedBy: admin
           hippotranslation:id: 7d29e165-ac72-45b9-b149-696a909836ce
           hippotranslation:locale: en
@@ -1672,6 +1731,19 @@
               visitscotland:dmscategories: ['']
               visitscotland:location: ''
               visitscotland:producttype: even
+          /visitscotland:images:
+            jcr:primaryType: visitscotland:InstagramImage
+            visitscotland:caption: '#scotland is amazing! Tag #thisisscotland to get
+              featured © @cpt.seabass'
+            visitscotland:id: B8zYzOpnb0G
+          /visitscotland:products:
+            jcr:primaryType: visitscotland:DMSLink
+            visitscotland:label: Edinburgh castle
+            visitscotland:product: '245821'
+          /visitscotland:extraLinks:
+            jcr:primaryType: visitscotland:DMSLink
+            visitscotland:label: Castillo de Edimburgo
+            visitscotland:product: '245821'
         /first-item[2]:
           jcr:primaryType: visitscotland:ListicleItem
           jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
@@ -1680,7 +1752,7 @@
           hippostd:state: unpublished
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2020-02-18T11:23:15.099Z
-          hippostdpubwf:lastModificationDate: 2020-02-20T17:53:10.090Z
+          hippostdpubwf:lastModificationDate: 2020-02-21T16:06:05.257Z
           hippostdpubwf:lastModifiedBy: admin
           hippotranslation:id: 7d29e165-ac72-45b9-b149-696a909836ce
           hippotranslation:locale: en
@@ -1705,6 +1777,19 @@
               visitscotland:dmscategories: ['']
               visitscotland:location: ''
               visitscotland:producttype: even
+          /visitscotland:images:
+            jcr:primaryType: visitscotland:InstagramImage
+            visitscotland:caption: '#scotland is amazing! Tag #thisisscotland to get
+              featured © @cpt.seabass'
+            visitscotland:id: B8zYzOpnb0G
+          /visitscotland:products:
+            jcr:primaryType: visitscotland:DMSLink
+            visitscotland:label: Edinburgh castle
+            visitscotland:product: '245821'
+          /visitscotland:extraLinks:
+            jcr:primaryType: visitscotland:DMSLink
+            visitscotland:label: Castillo de Edimburgo
+            visitscotland:product: '245821'
         /first-item[3]:
           jcr:primaryType: visitscotland:ListicleItem
           jcr:mixinTypes: ['mix:referenceable']
@@ -1713,9 +1798,9 @@
           hippostd:state: published
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2020-02-18T11:23:15.099Z
-          hippostdpubwf:lastModificationDate: 2020-02-20T17:53:10.090Z
+          hippostdpubwf:lastModificationDate: 2020-02-21T16:06:05.257Z
           hippostdpubwf:lastModifiedBy: admin
-          hippostdpubwf:publicationDate: 2020-02-20T17:53:26.359Z
+          hippostdpubwf:publicationDate: 2020-02-21T16:06:13.663Z
           hippotranslation:id: 7d29e165-ac72-45b9-b149-696a909836ce
           hippotranslation:locale: en
           visitscotland:subtitle: Edinburgh
@@ -1739,6 +1824,19 @@
               visitscotland:dmscategories: ['']
               visitscotland:location: ''
               visitscotland:producttype: even
+          /visitscotland:images:
+            jcr:primaryType: visitscotland:InstagramImage
+            visitscotland:caption: '#scotland is amazing! Tag #thisisscotland to get
+              featured © @cpt.seabass'
+            visitscotland:id: B8zYzOpnb0G
+          /visitscotland:products:
+            jcr:primaryType: visitscotland:DMSLink
+            visitscotland:label: Edinburgh castle
+            visitscotland:product: '245821'
+          /visitscotland:extraLinks:
+            jcr:primaryType: visitscotland:DMSLink
+            visitscotland:label: Castillo de Edimburgo
+            visitscotland:product: '245821'
       /second-item:
         jcr:primaryType: hippo:handle
         jcr:mixinTypes: ['hippo:named', 'mix:referenceable']

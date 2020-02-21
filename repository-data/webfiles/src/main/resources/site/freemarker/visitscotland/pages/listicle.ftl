@@ -73,7 +73,7 @@ NO HERO WILL BE ALLOWED IN THIS REALM!
 
         <#if prod.image.cmsImage??>
             <#assign image>
-                <@hst.href hippobean=prod.image.cmsImage.original/>
+                <@hst.link hippobean=prod.image.cmsImage.original/>
             </#assign>
         <#elseif prod.image.externalImage??>
             <#assign image = prod.image.externalImage />
@@ -106,7 +106,7 @@ NO HERO WILL BE ALLOWED IN THIS REALM!
                     </#if>
 
                     <#list item.ctaLinks as cta>
-                        <vs-href href="${cta.href}">Find out more</vs-href>
+
                     </#list>
 
 
