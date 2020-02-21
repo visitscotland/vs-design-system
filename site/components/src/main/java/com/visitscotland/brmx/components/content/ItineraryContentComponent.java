@@ -5,6 +5,7 @@ import com.visitscotland.brmx.beans.dms.LocationObject;
 import com.visitscotland.brmx.beans.mapping.Coordinates;
 import com.visitscotland.brmx.beans.mapping.FlatImage;
 import com.visitscotland.brmx.beans.mapping.FlatStop;
+import com.visitscotland.brmx.utils.CommonUtils;
 import com.visitscotland.brmx.utils.LocationLoader;
 import com.visitscotland.brmx.utils.Properties;
 import org.hippoecm.hst.core.component.HstRequest;
@@ -93,15 +94,13 @@ public class ItineraryContentComponent extends EssentialsContentComponent {
                     try {
 
                         if (dmsLink.getProduct() == null){
-                            model.setErrorMessage("The product's id  wasn't provided");
-                            //TODO use CommonUtils
-                            logger.warn("CONTENT The product's id  wasn't provided for " + itinerary.getName() + ", Stop " + model.getIndex());
+                            model.setErrorMessage("The product's id  was not provided");
+                            logger.warn(CommonUtils.contentIssue("The product's id  was not provided for {}, Stop {}", itinerary.getName(), model.getIndex()));
                         } else {
-                            JSONObject product = getProduct(dmsLink.getProduct(), request.getLocale());
+                            JSONObject product = CommonUtils.getProduct(dmsLink.getProduct(), request.getLocale());
                             if (product == null){
                                 model.setErrorMessage("The product id does not exists in the DMS");
-                                //TODO use CommonUtils
-                                logger.warn("CONTENT The product's id  wasn't provided for " + itinerary.getName() + ", Stop " + model.getIndex());
+                                logger.warn(CommonUtils.contentIssue("The product id does not exists in the DMS for {}, Stop {}", itinerary.getName(), model.getIndex()));
                             } else {
 
                                 model.setCta(product.getString(URL));
@@ -167,31 +166,6 @@ public class ItineraryContentComponent extends EssentialsContentComponent {
 
             request.setAttribute(STOPS_MAP, products);
         }
-    }
-
-
-    private JSONObject getProduct(String productId, Locale locale) throws IOException {
-
-        String body = request(Properties.VS_DMS_PRODUCTS + "/data/product-search/map?prod_id=" + productId+ "&locale="+locale.getLanguage());
-        JSONObject json = new JSONObject(body);
-        JSONArray data = (JSONArray) json.get("data");
-
-        return data.getJSONObject(0);
-    }
-
-    /**
-     * Request a page and return the body as String
-     */
-    private static String request(String url) throws IOException {
-        final BufferedReader br = new BufferedReader(new InputStreamReader(new URL(url).openStream()));
-        final StringBuilder sb = new StringBuilder();
-        int cp;
-
-        while ((cp = br.read()) != -1) {
-            sb.append((char) cp);
-        }
-
-        return sb.toString();
     }
 
     /**

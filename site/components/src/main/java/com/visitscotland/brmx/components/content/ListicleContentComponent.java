@@ -4,6 +4,7 @@ import com.visitscotland.brmx.beans.*;
 import com.visitscotland.brmx.beans.mapping.FlatImage;
 import com.visitscotland.brmx.beans.mapping.FlatLink;
 import com.visitscotland.brmx.beans.mapping.FlatListicle;
+import com.visitscotland.brmx.utils.CommonUtils;
 import com.visitscotland.brmx.utils.Properties;
 import org.hippoecm.hst.core.component.HstRequest;
 import org.hippoecm.hst.core.component.HstResponse;
@@ -49,70 +50,61 @@ public class ListicleContentComponent extends EssentialsContentComponent {
         //TODO:separate image, main product and optional cta in different methods ?
         for (ListicleItem listicleItem : listicle.getItems()) {
             FlatListicle model = new FlatListicle(listicleItem);
-            FlatImage image = new FlatImage();
             List<FlatLink> links = new ArrayList<>();
+
+            //Set the image
             if (listicleItem.getListicleItemImage()!=null){
                 if (listicleItem.getListicleItemImage() instanceof InstagramImage){
                     InstagramImage instagramLink = (InstagramImage) listicleItem.getListicleItemImage();
                     try {
-                        //TODO add instagram ID to the url
                         URL instagramInformation = new URL("https://api.instagram.com/oembed/?url=http://instagr.am/p/"+instagramLink.getId());
 
-                        String response = request(instagramInformation.toString());
+                        String response = CommonUtils.request(instagramInformation.toString());
                         if (response!=null){
-                            JSONObject json = new JSONObject();
-                            //TODO create a constructor to fill the image for listicle and itineraries and check if author alwasy come form instagram
-                            image.setCredit(json.getString("author_name"));
-                            //TODO use String.format ?
-                            image.setExternalImage("https://www.instagram.com/p/"+instagramLink.getId()+"/media");
-                            image.setDescription(instagramLink.getCaption());
-                            model.setImage(image);
-                        }
-                        else{
+                            JSONObject json = new JSONObject(response);
+                            String credit = json.has("author_name")?json.getString("author_name"):"";
+                            String link = "https://www.instagram.com/p/"+instagramLink.getId()+"/media";
+                            model.setImage(new FlatImage(link, instagramLink.getCaption(), credit, instagramLink.getCaption(), FlatImage.Source.INSTAGRAM));
+                        } else {
                             model.setErrorMessage("The Instagram id is not valid");
-                            //TODO use commonUtils and change the message
-                            logger.warn("CONTENT The product's id  wasn't provided for " + listicleItem.getName() + ", Stop " + model.getIndex());
+                            logger.warn(CommonUtils.contentIssue("The Instagram id {} is not valid, Listicle = {} - {}",
+                                    instagramLink.getId(), listicle.getPath(), listicleItem.getTitle()));
                         }
 
                     } catch (IOException e) {
-                        //TODO change the message
-                        model.setErrorMessage("Error while querying the DMS: " + e.getMessage());
-                        //TODO use commonUtils and change the message
-                        logger.error("instagram error");
-
+                        model.setErrorMessage("Error while accessing Instagram: " + e.getMessage());
+                        logger.error("Error while accessing Instagram", e);
                     }
                 }else{
                     if (listicleItem.getListicleItemImage() instanceof Image){
                         Image cmsImage = (Image)listicleItem.getListicleItemImage();
                         if (cmsImage != null) {
-                            //TODO create a method to fill the image for listicle and itineraries
-                            image.setCmsImage(cmsImage);
-                            image.setAltText(cmsImage.getAltText());
-                            image.setCredit(cmsImage.getCredit());
-                            image.setDescription(cmsImage.getDescription());
-                            model.setImage(image);
+                            FlatImage image = new FlatImage();
+
+                            model.setImage(new FlatImage(cmsImage, cmsImage.getAltText(), cmsImage.getCredit(), cmsImage.getDescription()));
                         }
                     }
                 }
              }
 
-             //main product
+             //Set the main product
             if (listicleItem.getListicleItem()!=null){
                 //TODO create a case?
                 if (listicleItem.getListicleItem() instanceof DMSLink){
                     DMSLink dmsLink = (DMSLink) listicleItem.getListicleItem();
                     JSONObject product = null;
                     try {
-                        product = getProduct(dmsLink.getProduct(), request.getLocale());
+                        product = CommonUtils.getProduct(dmsLink.getProduct(), request.getLocale());
                     } catch (IOException e) {
                         model.setErrorMessage("Error while querying the DMS: " + e.getMessage());
-                        //TODO use CommonUtils
-                        logger.error("Error while querying the DMS for " + listicle.getName() + ", Listicle item " + model.getIndex() + ": " + e.getMessage());
+                        logger.error(String.format("Error while querying the DMS for {}, Listicle item {}: {}",
+                                listicle.getName(), model.getIndex(), e.getMessage()));
 
                     }
                     if (product == null){
                         model.setErrorMessage("The product id does not exists in the DMS");
-                        logger.warn("CONTENT The product's id  wasn't provided for " + listicleItem.getName() + ", Stop " + model.getIndex());
+                        logger.warn(CommonUtils.contentIssue("The product's id  wasn't provided for {}, Listicle = {} - {}",
+                                dmsLink.getProduct(), listicle.getPath(), listicleItem.getTitle()));
                     } else {
 
                         List<String> facilities = new ArrayList<>();
@@ -121,18 +113,18 @@ public class ListicleContentComponent extends EssentialsContentComponent {
 
                         model.setLocation(product.getString(LOCATION));
 
-                      if (image!=null){
+                      if (model.getImage()!=null){
+                          FlatImage image = new FlatImage();
                           image.setExternalImage(product.getString(IMAGE));
                           //TODO: SET ALT-TEXT, CREDITS AND DESCRIPTION
+                          model.setImage(image);
                       }
-
 
                         for (Object facility:  product.getString(FACILITIES).split(",")) {
                             facilities.add(facility.toString());
                         }
 
                         model.setFacilities(facilities);
-
                     }
                 }else{
                     if (listicleItem.getListicleItem() instanceof ProductSearchLink){
@@ -166,34 +158,4 @@ public class ListicleContentComponent extends EssentialsContentComponent {
 
             }
         }
-
-    //TODO this method has already been defined in ItinerariesContentComponet - refactor, utils class?
-    private JSONObject getProduct(String productId, Locale locale) throws IOException {
-        //TODO use String.format ?
-        String body = request(Properties.VS_DMS_PRODUCTS + "/data/product-search/map?prod_id=" + productId+ "&locale="+locale.getLanguage());
-        JSONObject json = new JSONObject(body);
-        JSONArray data = (JSONArray) json.get("data");
-
-        return data.getJSONObject(0);
-        }
-
-    /**
-     * Request a page and return the body as String
-     */
-    //TODO this method has already been defined in ItinerariesContentComponet - refactor, utils class?
-    private static String request(String url) throws IOException {
-        if (HstResponse.SC_OK == ((HttpURLConnection) new URL(url).openConnection()).getResponseCode()){
-            final BufferedReader br = new BufferedReader(new InputStreamReader(new URL(url).openStream()));
-            final StringBuilder sb = new StringBuilder();
-            int cp;
-
-            while ((cp = br.read()) != -1) {
-                sb.append((char) cp);
-            }
-
-            return sb.toString();
-        }
-        return null;
-
-    }
 }
