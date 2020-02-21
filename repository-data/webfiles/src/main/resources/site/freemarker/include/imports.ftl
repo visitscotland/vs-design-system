@@ -2,3 +2,5 @@
 <#assign fmt=JspTaglibs ["http://java.sun.com/jsp/jstl/fmt"] >
 
 <@hst.defineObjects />
+
+<#include "./helpers.ftl">

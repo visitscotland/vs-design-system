@@ -24,7 +24,7 @@
                     <#assign image = prod.image.externalImage />
                 <#else>
                 </#if>
-                <#if prod.coordinates.latitude?? && prod.coordinates.latitude?has_content && prod.coordinates.longitude?? && prod.coordinates.longitude?has_content>
+                <#if prod.coordinates?? && prod.coordinates.latitude?? && prod.coordinates.latitude?has_content && prod.coordinates.longitude?? && prod.coordinates.longitude?has_content>
                 {
                     title: "${prod.title}",
                     latitude: "${prod.coordinates.latitude}",

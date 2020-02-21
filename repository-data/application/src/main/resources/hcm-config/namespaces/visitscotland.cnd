@@ -31,6 +31,9 @@
 [visitscotland:ItineraryExternalLink] > hippo:compound, hippostd:relaxed
   orderable
 
+[visitscotland:Listicle] > hippostd:relaxed, hippotranslation:translated, visitscotland:Page
+  orderable
+
 [visitscotland:ProductsSearch] > hippo:compound, hippostd:relaxed
   orderable
 
