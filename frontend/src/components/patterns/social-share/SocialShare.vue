@@ -1,6 +1,6 @@
 <template>
     <vs-prototype>
-        <vs-icon name="share" />
+        <vs-icon name="share" variant="dark" size="sm" />
     </vs-prototype>
 </template>
 
