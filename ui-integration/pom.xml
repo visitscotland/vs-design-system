@@ -9,7 +9,7 @@
   </parent>
   <artifactId>visitscotland-ui-integration</artifactId>
   <packaging>war</packaging>
-  <name>www.visitscotland.com UI Integration</name>
+  <name>www.visitscotland.com CMS Pages UI Integration</name>
   <description>www.visitscotland.com - Copy the required components to webfiles and Generate the FreeMarker templates for the view components</description>
   
   
