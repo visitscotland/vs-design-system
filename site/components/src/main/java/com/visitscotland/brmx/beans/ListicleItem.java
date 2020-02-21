@@ -1,6 +1,7 @@
 package com.visitscotland.brmx.beans;
 
 import org.hippoecm.hst.content.beans.standard.HippoBean;
+import org.hippoecm.hst.content.beans.standard.HippoCompound;
 import org.onehippo.cms7.essentials.dashboard.annotations.HippoEssentialsGenerated;
 import org.hippoecm.hst.content.beans.Node;
 import org.hippoecm.hst.content.beans.standard.HippoHtml;
@@ -28,11 +29,11 @@ public class ListicleItem extends BaseDocument {
     }
 
     @HippoEssentialsGenerated(internalName = "visitscotland:products", allowModifications = false)
-    public List<HippoBean> getProducts() {
-        return getChildBeansByName("visitscotland:products", HippoBean.class);
+    public List<HippoCompound> getProducts() {
+        return getChildBeansByName("visitscotland:products", HippoCompound.class);
     }
 
-    public HippoBean getListicleItem() {
+    public HippoCompound getListicleItem() {
         return getOnlyChild(getProducts());
     }
 
@@ -46,7 +47,7 @@ public class ListicleItem extends BaseDocument {
     }
 
     @HippoEssentialsGenerated(internalName = "visitscotland:extraLinks", allowModifications = false)
-    public List<HippoBean> getExtraLinks() {
-        return getChildBeansByName("visitscotland:extraLinks", HippoBean.class);
+    public List<HippoCompound> getExtraLinks() {
+        return getChildBeansByName("visitscotland:extraLinks", HippoCompound.class);
     }
 }

@@ -4,7 +4,7 @@ public class FlatLink {
 
 
     private String label;
-    private String link;
+    private String href;
 
     private String errorMessage;
 
@@ -14,7 +14,7 @@ public class FlatLink {
 
     public FlatLink(String label, String link) {
         this.label = label;
-        this.link = link;
+        this.href = link;
     }
 
     public String getLabel() {
@@ -25,12 +25,12 @@ public class FlatLink {
         this.label = label;
     }
 
-    public String getLink() {
-        return link;
+    public String getHref() {
+        return href;
     }
 
-    public void setLink(String link) {
-        this.link = link;
+    public void setHref(String href) {
+        this.href = href;
     }
 
     public String getErrorMessage() {

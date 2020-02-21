@@ -1,5 +1,6 @@
 package com.visitscotland.brmx.utils;
 
+import com.visitscotland.utils.DataServiceUtils;
 import org.hippoecm.hst.core.component.HstResponse;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -30,18 +31,17 @@ public class CommonUtils {
      * @throws IOException
      */
     public static JSONObject getProduct(String productId, Locale locale) throws IOException {
-        String dmsUrl = Properties.VS_DMS_PRODUCTS + "/data/product-search/map?prod_id=" + productId;
-        if (locale != null) {
-            dmsUrl += "&locale=" + locale.getLanguage();
-        }
+        if (!CommonUtils.isEmpty(productId)) {
+            String dmsUrl = Properties.VS_DMS_PRODUCTS + "/data/product-search/map?prod_id=" + productId;
+            if (locale != null) {
+                dmsUrl += "&locale=" + locale.getLanguage();
+            }
 
-        String body = request(dmsUrl);
+            JSONObject json = new JSONObject(request(dmsUrl));
 
-        JSONObject json = new JSONObject(body);
-
-        if (json.has("data")) {
-            JSONArray data = (JSONArray) json.get("data");
-            return data.getJSONObject(0);
+            if (json.has("data") && ((JSONArray)json.get("data")).length() > 0) {
+                return ((JSONArray) json.get("data")).getJSONObject(0);
+            }
         }
         return null;
     }

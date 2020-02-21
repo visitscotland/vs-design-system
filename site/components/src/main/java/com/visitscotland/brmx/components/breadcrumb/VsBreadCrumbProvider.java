@@ -46,9 +46,9 @@ public class VsBreadCrumbProvider extends BreadcrumbProvider {
         } else {
             //If this warning message is logged and it is required that a menu item appears in the breadcrumb even though it
             //is not backed from a document, I'd be useful to use the logic of enhancedmenu.
-            logger.warn (CommonUtils.contentIssue("The menu Item {} does point to a document.", menuItem.getName()));
+            logger.warn (CommonUtils.contentIssue("The menu Item %s does point to a document.", menuItem.getName()));
             //The following error message flags a possible issue and a solution. If the implementation is required please remove the log message.
-            logger.warn (CommonUtils.contentIssue("If previous message is not an unexpected issue, some logic migh", menuItem.getName()));
+            logger.warn (CommonUtils.contentIssue("If previous message is not an unexpected issue, some logic might", menuItem.getName()));
             return new BreadcrumbItem(menuItem.getHstLink(), menuItem.getName());
         }
     }
@@ -111,7 +111,7 @@ public class VsBreadCrumbProvider extends BreadcrumbProvider {
             } else if (!CommonUtils.isEmpty(page.getTitle())){
                 return page.getTitle();
             }
-            logger.warn (CommonUtils.contentIssue("The document {} does not have a title so breadcrumb is showing its title ({})", bean.getDisplayName(), bean.getPath()));
+            logger.warn (CommonUtils.contentIssue("The document %s does not have a title so breadcrumb is showing its title (%s)", bean.getDisplayName(), bean.getPath()));
         }
 
         return bean.getDisplayName();
