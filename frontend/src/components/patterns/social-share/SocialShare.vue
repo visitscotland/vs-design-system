@@ -10,7 +10,8 @@ import VsPrototype from "@components/elements/prototype/Prototype.vue"
 
 /**
  * This is a placeholder component for now.
- * Functionalities and styles still need to be coded.
+ * 
+ * This component will allow users to share content to social media channels. Functionalities and styles still need to be coded.
  */
 export default {
     name: "VsSocialShare",
