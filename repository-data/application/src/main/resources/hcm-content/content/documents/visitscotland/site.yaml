@@ -533,7 +533,7 @@
           hippostd:state: draft
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2019-12-06T12:48:04.149Z
-          hippostdpubwf:lastModificationDate: 2020-02-25T12:56:42.404Z
+          hippostdpubwf:lastModificationDate: 2020-02-25T13:24:51.277Z
           hippostdpubwf:lastModifiedBy: admin
           hippotranslation:id: 56cf92c8-5887-4146-ad53-eaa062f4e07a
           hippotranslation:locale: en
@@ -595,12 +595,12 @@
           hippostd:state: unpublished
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2019-12-10T13:28:39.550Z
-          hippostdpubwf:lastModificationDate: 2020-01-10T14:15:17.517Z
+          hippostdpubwf:lastModificationDate: 2020-02-25T16:27:16.059Z
           hippostdpubwf:lastModifiedBy: admin
           hippotranslation:id: 533c98b2-c2cd-491f-929a-ea2c4a491bb2
           hippotranslation:locale: en
           visitscotland:title: DMS Stops Day
-          visitscotland:transports: [walking, car, train]
+          visitscotland:transports: [car, train, walking]
           /visitscotland:introduction:
             jcr:primaryType: hippostd:html
             hippostd:content: <p>It was in Scotland's capital city that JK Rowling
@@ -657,7 +657,6 @@
           jcr:mixinTypes: ['mix:referenceable']
           jcr:uuid: cb346653-a08c-4851-81ae-4960b66ad718
           hippo:availability: []
-          hippostd:holder: admin
           hippostd:state: draft
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2019-12-10T13:28:39.550Z
@@ -666,7 +665,7 @@
           hippotranslation:id: 533c98b2-c2cd-491f-929a-ea2c4a491bb2
           hippotranslation:locale: en
           visitscotland:title: DMS Stops Day
-          visitscotland:transports: [walking, car, train]
+          visitscotland:transports: [car, train, walking]
           /visitscotland:introduction:
             jcr:primaryType: hippostd:html
             hippostd:content: <p>It was in Scotland's capital city that JK Rowling
