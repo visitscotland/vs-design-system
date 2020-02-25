@@ -212,6 +212,7 @@
         <module>site</module>
         <module>essentials</module>
         <module>frontend</module>
+        <module>ui-integration</module>
       </modules>
     </profile>
 

@@ -1,0 +1,62 @@
+@import "./docs.tokens.scss";
+
+*[class*="rsg--preview"] {
+  .style-cols {
+    .col,
+    *[class*="col-"] {
+      background: #ccc;
+      border: 1px solid white;
+      padding: 1rem 2rem;
+      text-align: center;
+    }
+  }
+}
+
+.vds-example {
+  position: relative;
+
+  &.vds-example-full-screen {
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    overflow-y: scroll;
+    z-index: 101;
+    width: 100%;
+    background: white;
+
+    *[class^="rsg--tabs"],
+    *[class^="rsg--tab"],
+    .vueds-tabs,
+    .react-codemirror2 {
+      display: none;
+    }
+
+    *[class^="rsg--preview"] {
+      border: none;
+      border-radius: 0;
+      box-shadow: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .vds-example-toggle {
+      bottom: 16px;
+      top: auto;
+    }
+  }
+
+  .vds-example-toggle {
+    z-index: 102;
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    border: none;
+    background: $docs-color-rich-black;
+    color: $docs-color-cloud;
+
+    &:hover {
+      background: $docs-color-oxford-blue;
+    }
+  }
+}
