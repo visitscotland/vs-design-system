@@ -18,9 +18,9 @@
       <activation>
         <activeByDefault>true</activeByDefault>
       </activation>
-  
+      
       <build>
-    
+        
         <plugins>
           <plugin>
             <groupId>com.github.eirslett</groupId>
@@ -28,7 +28,7 @@
             <!-- Use the latest released version:
             https://repo1.maven.org/maven2/com/github/eirslett/frontend-maven-plugin/ -->
             <version>1.8.0</version>
-        
+            
             <configuration>
               <installDirectory>target</installDirectory>
               <workingDirectory>target</workingDirectory>
@@ -36,7 +36,7 @@
               <yarnVersion>v1.21.1</yarnVersion>
               <!--<npmVersion>v6.9.0</npmVersion>-->
             </configuration>
-        
+            
             <executions>
               <execution>
                 <id>Install node.js and yarn</id>
@@ -44,26 +44,21 @@
                   <goal>install-node-and-yarn</goal>
                 </goals>
               </execution>
-          
+              
               <execution>
                 <id>Run yarn install (Get dependencies)</id>
                 <goals>
                   <goal>yarn</goal>
                 </goals>
-                <configuration>
-                  <!-- Note that force argument refreshed the design system dependency every time it is built-->
-                  <!-- This argument might not be necesary once we define the release process for front end artifacts -->
-                  <arguments>install --force</arguments>
-                </configuration>
               </execution>
-          
+              
               <execution>
                 <id>Run yarn build (Run Webpack build)</id>
                 <goals>
                   <goal>yarn</goal>
                 </goals>
                 <configuration>
-                  <arguments>build</arguments>
+                  <arguments>build:system:components</arguments>
                 </configuration>
               </execution>
             </executions>
@@ -72,5 +67,5 @@
       </build>
     </profile>
   </profiles>
- 
+
 </project>
