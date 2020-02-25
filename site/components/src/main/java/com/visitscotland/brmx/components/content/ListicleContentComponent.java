@@ -110,7 +110,7 @@ public class ListicleContentComponent extends EssentialsContentComponent {
                             List<String> facilities = new ArrayList<>();
                             model.setLocation(product.getString(LOCATION));
 
-                            if (model.getImage() != null) {
+                            if (model.getImage() == null) {
                                 FlatImage image = new FlatImage();
                                 image.setExternalImage(product.getString(IMAGE));
                                 //TODO: SET ALT-TEXT, CREDITS AND DESCRIPTION

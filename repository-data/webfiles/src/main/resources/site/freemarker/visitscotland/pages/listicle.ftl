@@ -27,6 +27,16 @@
 <#include "../../vs-dotcom-ds/components/itinerary-day.ftl">
 <#include "../../vs-dotcom-ds/components/itinerary.ftl">
 <#include "../../vs-dotcom-ds/components/svg.ftl">
+<#include "../../vs-dotcom-ds/components/button-with-icon.ftl">
+<#include "../../vs-dotcom-ds/components/itinerary-tips.ftl">
+<#include "../../vs-dotcom-ds/components/itinerary-stop.ftl">
+<#include "../../vs-dotcom-ds/components/itinerary-border-overlap-wrapper.ftl">
+<#include "../../vs-dotcom-ds/components/image-with-caption.ftl">
+<#include "../../vs-dotcom-ds/components/icon-description-list.ftl">
+<#include "../../vs-dotcom-ds/components/img.ftl">
+<#include "../../vs-dotcom-ds/components/icon-description-list-term.ftl">
+<#include "../../vs-dotcom-ds/components/icon-description-list-detail.ftl">
+<#include "../../vs-dotcom-ds/components/link.ftl">
 
 
 <#-- Implicit Request Objects -->
@@ -69,54 +79,68 @@ NO HERO WILL BE ALLOWED IN THIS REALM!
         </vs-row>
 
     <#assign i = 0>
-    <#list document.items as item>
+    <#list items as item>
 
-        <#if prod.image.cmsImage??>
-            <#assign image>
-                <@hst.link hippobean=prod.image.cmsImage.original/>
-            </#assign>
-        <#elseif prod.image.externalImage??>
-            <#assign image = prod.image.externalImage />
-        <#else>
-            <#assign image = "" />
+        <#assign image = ""/>
+        <#if item.image??>
+            <#if item.image.cmsImage??>
+                <#assign image>
+                    <@hst.link hippobean=item.image.cmsImage.original/>
+                </#assign>
+            <#elseif item.image.externalImage??>
+                <#assign image = item.image.externalImage />
+            </#if>
         </#if>
+
         <#assign i = i +1>
 
         <vs-row class="justify-content-md-between">
             <vs-col cols="12" lg="8" offset-lg="1">
                 <div>
                     <vs-heading level="2"> ${i}. ${item.title}</vs-heading>
-                    ${item.subTitle}
-                    <img src="${image}" width="50%" >
-                    <#-- TODO: Copy minimap -->
-                    ${item.subTitle}
-
-                    <@hst.html hippohtml=item.description/>
-
-                    <#if item.facilities?? && item.facilities?size gt 1>
-                        <vs-icon-description-list>
-                            <vs-icon-description-list-term><@fmt.message key="stop.key-facilities"/></vs-icon-description-list-term>
-                            <#list item.facilities as facility>
-                                <vs-icon-description-list-detail
-                                        icon="${facility}"
-                                        label="<@fmt.message key="${facility}"/>">
-                                </vs-icon-description-list-detail>
-                            </#list>
-                        </vs-icon-description-list>
-                    </#if>
-
-                    <#list item.ctaLinks as cta>
-
-                    </#list>
-
-
+                    <#if item.subtitle??>${item.subTitle} </#if>
                 </div>
             </vs-col>
         </vs-row>
-
+        <vs-row class="justify-content-md-between">
+            <vs-col cols="12" lg="8" offset-lg="1">
+                <div>
+                    <img src="${image}" width="50%" >
+                    <#-- TODO: Copy minimap -->
+                </div>
+            </vs-col>
+        </vs-row>
+        <vs-row class="justify-content-md-between">
+            <vs-col cols="12" lg="8" offset-lg="1">
+                <div>
+                    <@hst.html hippohtml=item.description/>
+                </div>
+            </vs-col>
+        </vs-row>
+        <vs-row class="justify-content-md-between">
+            <vs-col cols="12" lg="8" offset-lg="1">
+                <div>
+                    <#if item.facilities?? && item.facilities?size gt 1>
+                        There are ${item.facilities?size} facilities</br>
+                        <#list item.facilities as facility>
+                            facility = ${facility}</br>
+                        </#list>
+                    </#if>
+                </div>
+            </vs-col>
+        </vs-row>
+        <vs-row class="justify-content-md-between">
+            <vs-col cols="12" lg="8" offset-lg="1">
+                <div>
+                    <#list item.ctaLinks as cta>
+                        <a href="${cta.link}">GO TO: ${label}</a>
+                        <vs-link href="${cta.link}">GO TO: ${label}</vs-link>
+                    </#list>
+                </div>
+            </vs-col>
+        </vs-row>
     </#list>
     </vs-container>
-
 </vs-page-intro>
 This is a listicle! Yay!!
 
