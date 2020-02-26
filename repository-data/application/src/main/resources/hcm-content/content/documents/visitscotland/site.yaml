@@ -18,7 +18,7 @@
       jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
       jcr:uuid: 0751c1d3-3024-4d2d-a5e8-38286fee9722
       hippo:name: Content
-      hippo:versionHistory: 10822c95-f9a8-48c8-8546-4bd983433a2e
+      hippo:versionHistory: 470dafa6-3b3a-495e-bbaf-1e06d12ebf7a
       /content[1]:
         jcr:primaryType: visitscotland:Itinerary
         jcr:mixinTypes: ['mix:referenceable']
@@ -27,11 +27,11 @@
         hippostd:state: draft
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2019-12-06T12:48:04.149Z
-        hippostdpubwf:lastModificationDate: 2020-02-25T12:53:07.286Z
+        hippostdpubwf:lastModificationDate: 2020-02-26T09:16:59.329Z
         hippostdpubwf:lastModifiedBy: admin
         hippotranslation:id: a3ed9022-e239-493b-952c-18d01ac36640
         hippotranslation:locale: en
-        visitscotland:areas: []
+        visitscotland:areas: [east]
         visitscotland:breadcrumb: ''
         visitscotland:distance: 10.4
         visitscotland:finish: Ocean point
@@ -83,11 +83,11 @@
         hippostd:state: unpublished
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2019-12-06T12:48:04.149Z
-        hippostdpubwf:lastModificationDate: 2020-02-05T16:26:46.285Z
+        hippostdpubwf:lastModificationDate: 2020-02-26T09:17:06.323Z
         hippostdpubwf:lastModifiedBy: admin
         hippotranslation:id: a3ed9022-e239-493b-952c-18d01ac36640
         hippotranslation:locale: en
-        visitscotland:areas: [dumfries, highlands]
+        visitscotland:areas: [east]
         visitscotland:breadcrumb: ''
         visitscotland:distance: 10.4
         visitscotland:finish: Ocean point
@@ -139,12 +139,12 @@
         hippostd:state: published
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2019-12-06T12:48:04.149Z
-        hippostdpubwf:lastModificationDate: 2020-01-30T17:00:41.657Z
+        hippostdpubwf:lastModificationDate: 2020-02-26T09:17:06.323Z
         hippostdpubwf:lastModifiedBy: admin
-        hippostdpubwf:publicationDate: 2020-01-30T17:01:52.503Z
+        hippostdpubwf:publicationDate: 2020-02-26T09:17:08.559Z
         hippotranslation:id: a3ed9022-e239-493b-952c-18d01ac36640
         hippotranslation:locale: en
-        visitscotland:areas: [dumfries, highlands]
+        visitscotland:areas: [east]
         visitscotland:breadcrumb: ''
         visitscotland:distance: 10.4
         visitscotland:finish: Ocean point
@@ -156,6 +156,7 @@
         visitscotland:seoTitle: Iconic Harry Potter Film Locations - An Itinerary
         visitscotland:start: Tenerife
         visitscotland:summary: ''
+        visitscotland:teaser: ''
         visitscotland:text: "Glenfinnan Viaduct\r\n\r\nJacobite Steam Train\r\n\r\n\
           Glen Etive\r\n\r\nThe Elephant House"
         visitscotland:theme: filmev
@@ -533,7 +534,7 @@
           hippostd:state: draft
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2019-12-06T12:48:04.149Z
-          hippostdpubwf:lastModificationDate: 2020-02-25T13:24:51.277Z
+          hippostdpubwf:lastModificationDate: 2020-02-26T10:01:19.651Z
           hippostdpubwf:lastModifiedBy: admin
           hippotranslation:id: 56cf92c8-5887-4146-ad53-eaa062f4e07a
           hippotranslation:locale: en
@@ -586,7 +587,7 @@
         jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
         jcr:uuid: 806448db-18e1-4a25-81c3-777a76f530d2
         hippo:name: Edinburgh
-        hippo:versionHistory: 89b3ea83-ee90-42f4-8fde-8d436ec92905
+        hippo:versionHistory: d2141a6a-292f-4529-8ea1-56b8bdbe95f5
         /edinburgh[1]:
           jcr:primaryType: visitscotland:Day
           jcr:mixinTypes: ['mix:versionable']
@@ -627,13 +628,13 @@
           hippostd:state: published
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2019-12-10T13:28:39.550Z
-          hippostdpubwf:lastModificationDate: 2020-01-10T14:15:17.517Z
+          hippostdpubwf:lastModificationDate: 2020-02-25T16:27:16.059Z
           hippostdpubwf:lastModifiedBy: admin
-          hippostdpubwf:publicationDate: 2020-02-17T18:04:05.174Z
+          hippostdpubwf:publicationDate: 2020-02-26T09:16:50.626Z
           hippotranslation:id: 533c98b2-c2cd-491f-929a-ea2c4a491bb2
           hippotranslation:locale: en
           visitscotland:title: DMS Stops Day
-          visitscotland:transports: [walking, car, train]
+          visitscotland:transports: [car, train, walking]
           /visitscotland:introduction:
             jcr:primaryType: hippostd:html
             hippostd:content: <p>It was in Scotland's capital city that JK Rowling

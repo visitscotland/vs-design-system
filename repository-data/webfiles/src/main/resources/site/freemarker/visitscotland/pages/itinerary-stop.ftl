@@ -26,7 +26,7 @@
     <#else>
         <#assign image = "" />
     </#if>
-    <#assign href = prod.cta!>
+    <#assign href = prod.ctaLink.link!>
 
     <#if !stop.stopItem?? && editMode>
         <vs-itinerary-stop
@@ -76,7 +76,7 @@
 
                 <#if href?? && href?has_content>
                     <vs-link href="${href}">
-                        ${label("essentials.global", "button.find-out-more")}
+                        ${prod.ctaLink.label}
                     </vs-link>
                 </#if>
 
