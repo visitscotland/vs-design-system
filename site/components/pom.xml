@@ -55,6 +55,13 @@
       <artifactId>json</artifactId>
       <version>20160810</version>
     </dependency>
+  
+    <dependency>
+      <groupId>com.visitscotland</groupId>
+      <artifactId>data-service-api</artifactId>
+      <version>${data-service-api.version}</version>
+    </dependency>
+    
 
 
   </dependencies>
