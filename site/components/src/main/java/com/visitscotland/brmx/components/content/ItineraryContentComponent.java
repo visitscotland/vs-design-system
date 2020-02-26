@@ -4,8 +4,10 @@ import com.visitscotland.brmx.beans.*;
 import com.visitscotland.brmx.beans.dms.LocationObject;
 import com.visitscotland.brmx.beans.mapping.Coordinates;
 import com.visitscotland.brmx.beans.mapping.FlatImage;
+import com.visitscotland.brmx.beans.mapping.FlatLink;
 import com.visitscotland.brmx.beans.mapping.FlatStop;
 import com.visitscotland.brmx.utils.CommonUtils;
+import com.visitscotland.brmx.utils.HippoUtils;
 import com.visitscotland.brmx.utils.LocationLoader;
 import com.visitscotland.brmx.utils.Properties;
 import org.hippoecm.hst.core.component.HstRequest;
@@ -103,7 +105,8 @@ public class ItineraryContentComponent extends EssentialsContentComponent {
                                 logger.warn(CommonUtils.contentIssue("The product id does not exists in the DMS for %s, Stop %s", itinerary.getName(), model.getIndex()));
                             } else {
 
-                                model.setCta(product.getString(URL));
+                                FlatLink ctaLink = new FlatLink(this.getCtaLabel(dmsLink.getLabel(),request.getLocale()),product.getString(URL));
+                                model.setCtaLink(ctaLink);
                                 model.setLocation(product.getString(LOCATION));
 
                                 //TODO: GET TIME TO EXPLORE FROM DMS
@@ -140,7 +143,9 @@ public class ItineraryContentComponent extends EssentialsContentComponent {
                     }
 
                     model.setTimeToexplore(externalLink.getTimeToExplore());
-                    model.setCta(externalLink.getExternalLink().getLink());
+
+                    FlatLink ctaLink = new FlatLink(this.getCtaLabel( externalLink.getExternalLink().getLabel(), request.getLocale()), externalLink.getExternalLink().getLink());
+                    model.setCtaLink(ctaLink);
 
 
                     if (externalLink.getCoordinates() != null) {
@@ -174,5 +179,19 @@ public class ItineraryContentComponent extends EssentialsContentComponent {
      */
     private String getDocumentLocation( Itinerary itinerary) {
         return itinerary.getPath().substring(itinerary.getPath().indexOf(ROOT_SITE), itinerary.getPath().indexOf("/content/content")).replace(ROOT_SITE, "");
+    }
+
+
+    /**
+     *
+     * @param manualCta
+     */
+    private String getCtaLabel (String manualCta, Locale locale){
+        if (!CommonUtils.isEmpty(manualCta)){
+            return  manualCta;
+        }else{
+            return  HippoUtils.getResourceBundle("button.find-out-more","essentials.global",locale);
+        }
+
     }
 }

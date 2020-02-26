@@ -11,7 +11,7 @@ definitions:
         /hipposysedit:nodetype:
           jcr:primaryType: hipposysedit:nodetype
           jcr:mixinTypes: ['mix:referenceable', 'hipposysedit:remodel']
-          jcr:uuid: 65ca3976-b64d-43f1-8ba1-56bb6c681c0c
+          jcr:uuid: 0dafef2d-2006-497e-a6d2-9f1531c20272
           hipposysedit:node: true
           hipposysedit:supertype: ['visitscotland:Page', 'hippostd:relaxed', 'hippotranslation:translated']
           hipposysedit:uri: http://www.visitscotland.com/visitscotland/nt/1.0
@@ -98,7 +98,7 @@ definitions:
           visitscotland:start: ''
           visitscotland:distance: 0.0
           visitscotland:theme: ''
-          jcr:uuid: 7f3f0b0a-5761-4100-ba21-b90cae292f22
+          jcr:uuid: 07e25557-eec1-49f9-9504-4bf597d8a4f8
           hippostdpubwf:creationDate: 2019-12-06T11:10:08.311Z
           hippostdpubwf:lastModificationDate: 2019-12-06T11:10:08.310Z
           visitscotland:highlights: ''
@@ -148,6 +148,35 @@ definitions:
             hint: ''
             /cluster.options:
               jcr:primaryType: frontend:pluginconfig
+          /seoTitle:
+            jcr:primaryType: frontend:plugin
+            caption: Meta Title (SEO)
+            field: seoTitle
+            hint: Provided by SEO
+            plugin.class: org.hippoecm.frontend.editor.plugins.field.PropertyFieldPlugin
+            wicket.id: ${cluster.id}.left.item
+            /cluster.options:
+              jcr:primaryType: frontend:pluginconfig
+          /theme:
+            jcr:primaryType: frontend:plugin
+            caption: Theme
+            field: theme
+            plugin.class: org.hippoecm.frontend.editor.plugins.field.PropertyFieldPlugin
+            wicket.id: ${cluster.id}.right.item
+            /cluster.options:
+              jcr:primaryType: frontend:pluginconfig
+              source: /content/documents/administration/options/themes
+              sortBy: ''
+              sortOrder: ''
+          /seoDescription:
+            jcr:primaryType: frontend:plugin
+            caption: Meta Description (SEO)
+            field: seoDescription
+            hint: Provided by SEO
+            plugin.class: org.hippoecm.frontend.editor.plugins.field.PropertyFieldPlugin
+            wicket.id: ${cluster.id}.left.item
+            /cluster.options:
+              jcr:primaryType: frontend:pluginconfig
           /title:
             jcr:primaryType: frontend:plugin
             caption: Heading
@@ -155,24 +184,6 @@ definitions:
             hint: ''
             plugin.class: org.hippoecm.frontend.editor.plugins.field.PropertyFieldPlugin
             wicket.id: ${cluster.id}.left.item
-            /cluster.options:
-              jcr:primaryType: frontend:pluginconfig
-          /breadcrumb:
-            jcr:primaryType: frontend:plugin
-            caption: Navigation Text (Breadcrumbs)
-            field: breadcrumb
-            hint: Override just when the title is too long  for SEO
-            plugin.class: org.hippoecm.frontend.editor.plugins.field.PropertyFieldPlugin
-            wicket.id: ${cluster.id}.right.item
-            /cluster.options:
-              jcr:primaryType: frontend:pluginconfig
-          /seoTitle:
-            jcr:primaryType: frontend:plugin
-            caption: Meta Title (SEO)
-            field: seoTitle
-            hint: Provided by SEO
-            plugin.class: org.hippoecm.frontend.editor.plugins.field.PropertyFieldPlugin
-            wicket.id: ${cluster.id}.right.item
             /cluster.options:
               jcr:primaryType: frontend:pluginconfig
           /teaser:
@@ -207,43 +218,6 @@ definitions:
             wicket.id: ${cluster.id}.left.item
             /cluster.options:
               jcr:primaryType: frontend:pluginconfig
-          /distance:
-            jcr:primaryType: frontend:plugin
-            caption: Distance (in miles)
-            field: distance
-            hint: Length of the itinerary in Miles
-            plugin.class: org.hippoecm.frontend.editor.plugins.field.PropertyFieldPlugin
-            wicket.id: ${cluster.id}.left.item
-            /cluster.options:
-              jcr:primaryType: frontend:pluginconfig
-          /popular:
-            jcr:primaryType: frontend:plugin
-            caption: Popular
-            field: popular
-            plugin.class: org.hippoecm.frontend.editor.plugins.field.PropertyFieldPlugin
-            wicket.id: ${cluster.id}.left.item
-            /cluster.options:
-              jcr:primaryType: frontend:pluginconfig
-          /theme:
-            jcr:primaryType: frontend:plugin
-            caption: Theme
-            field: theme
-            plugin.class: org.hippoecm.frontend.editor.plugins.field.PropertyFieldPlugin
-            wicket.id: ${cluster.id}.left.item
-            /cluster.options:
-              jcr:primaryType: frontend:pluginconfig
-              source: /content/documents/administration/options/themes
-              sortBy: ''
-              sortOrder: ''
-          /highlights:
-            jcr:primaryType: frontend:plugin
-            caption: Highlights
-            field: text
-            hint: Highlights for the itinerary. Pick from 3 to 6 topics.
-            plugin.class: org.hippoecm.frontend.editor.plugins.field.PropertyFieldPlugin
-            wicket.id: ${cluster.id}.left.item
-            /cluster.options:
-              jcr:primaryType: frontend:pluginconfig
           /transports:
             jcr:primaryType: frontend:plugin
             caption: Transports
@@ -254,15 +228,55 @@ definitions:
             plugin.class: org.onehippo.forge.selection.frontend.plugin.DynamicMultiSelectPlugin
             selectlist.maxrows: '10'
             valuelist.provider: service.valuelist.default
-            wicket.id: ${cluster.id}.left.item
+            wicket.id: ${cluster.id}.right.item
             /cluster.options:
               jcr:primaryType: frontend:pluginconfig
               source: /content/documents/administration/options/transports
-          /seoDescription:
+          /areas:
             jcr:primaryType: frontend:plugin
-            caption: Meta Description (SEO)
-            field: seoDescription
-            hint: Provided by SEO
+            caption: Areas
+            field: areas
+            multiselect.type: checkboxes
+            palette.alloworder: false
+            palette.maxrows: '10'
+            plugin.class: org.onehippo.forge.selection.frontend.plugin.DynamicMultiSelectPlugin
+            selectlist.maxrows: '10'
+            valuelist.provider: service.valuelist.default
+            wicket.id: ${cluster.id}.right.item
+            /cluster.options:
+              jcr:primaryType: frontend:pluginconfig
+              source: /content/documents/administration/options/areas
+          /distance:
+            jcr:primaryType: frontend:plugin
+            caption: Distance (in miles)
+            field: distance
+            hint: Length of the itinerary in Miles
+            plugin.class: org.hippoecm.frontend.editor.plugins.field.PropertyFieldPlugin
+            wicket.id: ${cluster.id}.left.item
+            /cluster.options:
+              jcr:primaryType: frontend:pluginconfig
+          /highlights:
+            jcr:primaryType: frontend:plugin
+            caption: Highlights
+            field: text
+            hint: Highlights for the itinerary. Introduce 1 line per Highlight
+            plugin.class: org.hippoecm.frontend.editor.plugins.field.PropertyFieldPlugin
+            wicket.id: ${cluster.id}.left.item
+            /cluster.options:
+              jcr:primaryType: frontend:pluginconfig
+          /popular:
+            jcr:primaryType: frontend:plugin
+            caption: Popular
+            field: popular
+            plugin.class: org.hippoecm.frontend.editor.plugins.field.PropertyFieldPlugin
+            wicket.id: ${cluster.id}.right.item
+            /cluster.options:
+              jcr:primaryType: frontend:pluginconfig
+          /breadcrumb:
+            jcr:primaryType: frontend:plugin
+            caption: Navigation Text (Breadcrumbs)
+            field: breadcrumb
+            hint: Override just when the title is too long  for SEO
             plugin.class: org.hippoecm.frontend.editor.plugins.field.PropertyFieldPlugin
             wicket.id: ${cluster.id}.right.item
             /cluster.options:
@@ -277,17 +291,3 @@ definitions:
             wicket.id: ${cluster.id}.right.item
             /cluster.options:
               jcr:primaryType: frontend:pluginconfig
-          /areas:
-            jcr:primaryType: frontend:plugin
-            caption: Areas
-            field: areas
-            multiselect.type: checkboxes
-            palette.alloworder: false
-            palette.maxrows: '10'
-            plugin.class: org.onehippo.forge.selection.frontend.plugin.DynamicMultiSelectPlugin
-            selectlist.maxrows: '10'
-            valuelist.provider: service.valuelist.default
-            wicket.id: ${cluster.id}.left.item
-            /cluster.options:
-              jcr:primaryType: frontend:pluginconfig
-              source: /content/documents/administration/options/areas

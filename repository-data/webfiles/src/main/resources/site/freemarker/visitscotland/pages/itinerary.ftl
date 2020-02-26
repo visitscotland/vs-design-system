@@ -37,13 +37,9 @@
 <#-- @ftlvariable name="lastStopLocation" type="java.lang.String" -->
 <#-- @ftlvariable name="heroCoordinates" type="com.visitscotland.brmx.beans.mapping.Coordinates" -->
 
-
 <#-- Template defined objects -->
 <#-- @ftlvariable name="day" type="com.visitscotland.brmx.beans.Day" -->
 <#-- @ftlvariable name="hero" type="com.visitscotland.brmx.beans.Image" -->
-
-
-<#--  <@hst.setBundle basename="itinerary, toomany, keyFacilities, keys"/> TODO: keyFacilities shouldn't be defined here  -->
 
 <#assign mainTransport = "">
 <#assign dayNumber = 0>
@@ -140,7 +136,7 @@
                               <vs-summary-box-list-item>
                             <vs-summary-box-icon-with-label
                                 icon="${mainTransport}"
-                                label="${label("toomany", "${mainTransport}")}">
+                                label="${label("transports", "${mainTransport}")}">
                             </vs-summary-box-icon-with-label>
                             <vs-summary-box-label 
                                 label="${label("itinerary", "transport")}">
@@ -149,9 +145,9 @@
                         <vs-summary-box-list-item>
                             <vs-summary-box-icon-with-label
                                 icon="${document.theme}"
-                                label="${label("toomany", "${document.theme}")}">
+                                label="${label("themes", "${document.theme}")}">
                             </vs-summary-box-icon-with-label>
-                            <vs-summary-box-label label="${label("itinerary", "themes")}"></vs-summary-box-label>
+                            <vs-summary-box-label label="${label("itinerary", "theme")}"></vs-summary-box-label>
                         </vs-summary-box-list-item>
                     </vs-summary-box-list>
                 </vs-col>
@@ -175,7 +171,7 @@
                         </vs-description-list-term>
                         <#list document.areas as area>
                             <vs-description-list-detail>
-                                ${label("toomany", "${area}")}${"\n"}
+                                ${label("areas", "${area}")}${"\n"}
                             </vs-description-list-detail>
                         </#list>
                     </vs-description-list>

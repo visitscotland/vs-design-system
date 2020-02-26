@@ -123,7 +123,7 @@
       jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
       jcr:uuid: ca56dfe6-f8c8-410f-aa63-ed513fc71385
       hippo:name: Royal mil and grassmarket
-      hippo:versionHistory: 0443a91d-9687-4788-8194-fb06e9f0d730
+      hippo:versionHistory: ae0b5566-6e76-4621-88a1-a494cb471b2f
       /royal-mil-and-grassmarket[1]:
         jcr:primaryType: visitscotland:Stop
         jcr:mixinTypes: ['mix:referenceable']
@@ -132,7 +132,7 @@
         hippostd:state: draft
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2019-12-11T12:39:11.963Z
-        hippostdpubwf:lastModificationDate: 2020-02-17T10:20:41.184Z
+        hippostdpubwf:lastModificationDate: 2020-02-26T09:21:59.033Z
         hippostdpubwf:lastModifiedBy: admin
         hippotranslation:id: 9da62445-4ef0-470c-9d9c-ed812d053659
         hippotranslation:locale: en
@@ -153,7 +153,7 @@
           hippostd:content: ''
         /visitscotland:product:
           jcr:primaryType: visitscotland:DMSLink
-          visitscotland:label: ''
+          visitscotland:label: Read more about royal mille
           visitscotland:product: '918401'
           /visitscotland:image:
             jcr:primaryType: hippogallerypicker:imagelink
@@ -175,7 +175,7 @@
         hippostd:state: unpublished
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2019-12-11T12:39:11.963Z
-        hippostdpubwf:lastModificationDate: 2020-02-17T10:22:34.825Z
+        hippostdpubwf:lastModificationDate: 2020-02-26T09:57:10.240Z
         hippostdpubwf:lastModifiedBy: admin
         hippotranslation:id: 9da62445-4ef0-470c-9d9c-ed812d053659
         hippotranslation:locale: en
@@ -196,7 +196,7 @@
           hippostd:content: ''
         /visitscotland:product:
           jcr:primaryType: visitscotland:DMSLink
-          visitscotland:label: ''
+          visitscotland:label: Read more about royal mille
           visitscotland:product: '918401'
           /visitscotland:image:
             jcr:primaryType: hippogallerypicker:imagelink
@@ -218,9 +218,9 @@
         hippostd:state: published
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2019-12-11T12:39:11.963Z
-        hippostdpubwf:lastModificationDate: 2020-02-17T10:22:34.825Z
+        hippostdpubwf:lastModificationDate: 2020-02-26T09:57:10.240Z
         hippostdpubwf:lastModifiedBy: admin
-        hippostdpubwf:publicationDate: 2020-02-17T10:23:20.242Z
+        hippostdpubwf:publicationDate: 2020-02-26T09:57:16.121Z
         hippotranslation:id: 9da62445-4ef0-470c-9d9c-ed812d053659
         hippotranslation:locale: en
         visitscotland:tipsTitle: Old Town Hideouts - Sample Pullout Title
@@ -240,7 +240,7 @@
           hippostd:content: ''
         /visitscotland:product:
           jcr:primaryType: visitscotland:DMSLink
-          visitscotland:label: ''
+          visitscotland:label: Read more about royal mille
           visitscotland:product: '918401'
           /visitscotland:image:
             jcr:primaryType: hippogallerypicker:imagelink
