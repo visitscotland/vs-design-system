@@ -26,6 +26,7 @@ import { VsContainer, VsRow, VsCol } from "@components/elements/layout"
 import VsImageLocationMap from "@components/patterns/image-location-map/ImageLocationMap"
 import VsImageWithCaption from "@components/patterns/image-with-caption/ImageWithCaption"
 import VsItineraryMobileMapToggle from "@components/patterns/itineraries/components/itinerary-mobile-map-toggle/ItineraryMobileMapToggle"
+import VsSocialShare from "@components/patterns/social-share/SocialShare.vue"
 
 /**
  * A wrapper component that wraps the itinerary map and list.
@@ -53,6 +54,7 @@ export default {
         VsItineraryMobileMapToggle,
         VsButton,
         VsIcon,
+        VsSocialShare
     },
     props: {},
     methods: {
@@ -179,7 +181,7 @@ export default {
           <vs-col cols="2">
             <div class="d-flex justify-content-center justify-content-sm-end">
               <!-- TODO - Below icon is FPO. Replace with icon with text component and a share component -->
-              <vs-icon name="share" variant="dark" size="sm" />
+              <vs-social-share />
             </div>
           </vs-col>
         </vs-row>
