@@ -6,11 +6,11 @@
   hippostd:foldertype: [new-translated-folder, new-document]
   hippotranslation:id: b091be00-dc54-41e0-9354-c4098c03db9e
   hippotranslation:locale: en
-  /itinerary-stops:
+  /itinerary-stops-test:
     jcr:primaryType: hippostd:folder
     jcr:mixinTypes: ['hippo:named', 'hippotranslation:translated', 'mix:versionable']
     jcr:uuid: 41b800fa-fa6e-40e7-b01f-c248bf66a26a
-    hippo:name: Itinerary stops
+    hippo:name: Itinerary stops (Devs)
     hippostd:foldertype: [new-translated-folder, new-document]
     hippotranslation:id: 683a53b0-4162-48f2-9124-d025fabe4f64
     hippotranslation:locale: en
@@ -575,3 +575,11 @@
         /visitscotland:tips:
           jcr:primaryType: hippostd:html
           hippostd:content: <p>Malformed Stop - Sample Pullout Information</p>
+  /itinerary-stops:
+    jcr:primaryType: hippostd:folder
+    jcr:mixinTypes: ['hippo:named', 'hippotranslation:translated', 'mix:versionable']
+    jcr:uuid: e028b867-eed7-4193-a333-1af2cd9c8f7c
+    hippo:name: Itinerary Stops (Content)
+    hippostd:foldertype: [new-translated-folder, new-document]
+    hippotranslation:id: f2a062c1-35c1-4eb5-be2a-d0d2abad988f
+    hippotranslation:locale: en
