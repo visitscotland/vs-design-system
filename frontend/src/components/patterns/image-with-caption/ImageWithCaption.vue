@@ -1,14 +1,14 @@
 <template>
-    <figure class="d-flex flex-column">
-        <div class="vs-image-with-caption__image-wrapper">
+    <figure class="vs-image-with-caption">
+        <div class="vs-image-with-caption__image-wrapper position-relative">
             <slot />
+
             <vs-button
                 variant="outline-transparent"
-                class="position-absolute vs-image-with-caption__toggle-caption"
-                v-if="showToggle"
+                class="position-absolute vs-image-with-caption__toggle-caption-btn"
                 :animate="false"
-                :aria-expanded="showCaption ? 'true' : 'false'"
                 :aria-controls="'image_' + imageSrc"
+                :aria-expanded="showCaption ? 'true' : 'false'"
                 @click.native="toggleCaption"
             >
                 <vs-svg path="image-toggle" height="24" width="24" />
@@ -16,14 +16,14 @@
         </div>
 
         <vs-container
-            class="position-relative vs-image-with-caption__caption-wrapper"
-            :class="[showCaption ? 'd-flex' : 'd-none']"
+            :class="{ 'd-block': this.showCaption }"
+            class="vs-image-with-caption__caption-wrapper position-relative"
             :id="'image_' + imageSrc"
         >
-            <figcaption ref="figcaption">
+            <figcaption ref="figcaption" v-if="showCaptionData">
                 <vs-row>
                     <vs-col>
-                        <div class="p-4" v-if="this.showCaptionData">
+                        <div class="p-4">
                             <p class="vs-image-with-caption__image-caption" v-if="this.caption">
                                 {{ this.caption }}
                             </p>
@@ -37,7 +37,8 @@
                             <vs-image-location-map
                                 :latitude="this.latitude"
                                 :longitude="this.longitude"
-                                map-outline-color="#191919"
+                                map-outline-color="#ffffff"
+                                map-marker-color="#7CC9CC"
                             ></vs-image-location-map>
                         </div>
                     </vs-col>
@@ -123,28 +124,23 @@ export default {
             type: String,
             default: "Toggle Caption",
         },
+
+        /**
+         * Option to choose which variant to show
+         */
+        variant: {
+            type: String,
+            default: "fullwidth",
+            validator: value => {
+                return value.match(/(fullwidth|large)/)
+            },
+        },
     },
     computed: {
-        backgroundSet() {
-            // TODO: finish computed property to build a whole data-bgset once
-            // the JAVA image scaling solution is finished.
-            return "data-bgset='" + this.imageSrc + " 320w [(max-width: 360px)]')"
-        },
-        backgroundStyle() {
-            return "background-image: url('" + this.imageSrc + "');"
-        },
         showCaptionData() {
-            console.log(this.caption)
-            if (this.caption) {
-                return this.caption.length || this.credit.length ? true : false
-            }
-        },
-        showToggle() {
-            // only show the image detail toggle button if there's a map or caption data
-            return this.showMap || this.showCaptionData ? true : false
+            return this.caption || this.credit ? true : false
         },
         showMap() {
-            // only show the map if longitude and latitude props are both set
             return this.longitude && this.latitude ? true : false
         },
     },
@@ -157,54 +153,66 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.map__wrapper {
-    max-width: 80px;
-    width: 80px;
-}
-
-.vs-image-with-caption__caption-wrapper {
-    @include media-breakpoint-down(lg) {
-        max-width: 100%;
-        padding: 0;
-    }
-}
-
-.vs-image-with-caption__toggle-caption {
-    bottom: 0.5rem;
-    padding: 0;
-    right: 0.5rem;
-    border-radius: 50%;
-}
-
-figure {
-    position: relative;
-}
-
 img {
     width: 100%;
     height: auto;
 }
 
-.vs-image-with-caption__image-wrapper {
-    position: relative;
+.map__wrapper {
+    max-width: 80px;
+    width: 80px;
 }
 
-figcaption {
-    background-color: $color-white;
-    color: $color-base-text;
-    width: 100%;
+.vs-image-with-caption__toggle-caption-btn {
+    bottom: 0.5rem;
+    padding: 0;
+    right: 0.5rem;
+    border-radius: 50%;
+    display: block;
+
+    @include media-breakpoint-up(sm) {
+        display: none;
+    }
 }
 
-.vs-image-with-caption__image-caption {
-    font-size: 0.875rem;
-    font-weight: 500;
-    line-height: 1rem;
-}
+.vs-image-with-caption__caption-wrapper {
+    display: none;
 
-.vs-image-with-caption__image-credit {
-    font-size: 0.875rem;
-    font-weight: $font-weight-light;
-    line-height: 1rem;
+    @include media-breakpoint-up(sm) {
+            display: block;
+        }
+
+    @include media-breakpoint-down(lg) {
+        max-width: 100%;
+        padding: 0;
+    }
+
+    figcaption {
+        background-color: $color-theme-dark;
+        color: $color-white;
+        width: 100%;        
+
+        @include media-breakpoint-up(sm) {
+            bottom: 0;
+            max-width: 400px;
+            position: absolute;
+            right: 1rem;
+            width: auto;
+            z-index: 2;
+        }
+    }
+
+    .vs-image-with-caption__image-caption {
+        font-size: 0.875rem;
+        font-weight: 500;
+        line-height: 1rem;
+    }
+
+    .vs-image-with-caption__image-credit {
+        font-size: 0.875rem;
+        font-weight: $font-weight-light;
+        line-height: 1rem;
+    }
 }
 </style>
 
