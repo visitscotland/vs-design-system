@@ -5,6 +5,9 @@
 <'hippotranslation'='http://www.onehippo.org/jcr/hippotranslation/nt/1.0'>
 <'hippogallery'='http://www.onehippo.org/jcr/hippogallery/nt/2.0'>
 
+[visitscotland:CMSLink] > hippo:compound, hippostd:relaxed
+  orderable
+
 [visitscotland:Coordinates] > hippo:compound, hippostd:relaxed
   orderable
 
@@ -22,6 +25,9 @@
 
 [visitscotland:Image] > hippogallery:imageset, hippogallery:relaxed
 
+[visitscotland:InstagramImage] > hippo:compound, hippostd:relaxed
+  orderable
+
 [visitscotland:Page] > hippostd:relaxed, hippotranslation:translated, visitscotland:basedocument
   orderable
 
@@ -32,6 +38,12 @@
   orderable
 
 [visitscotland:Listicle] > hippostd:relaxed, hippotranslation:translated, visitscotland:Page
+  orderable
+
+[visitscotland:ListicleItem] > hippostd:relaxed, hippotranslation:translated, visitscotland:basedocument
+  orderable
+
+[visitscotland:ProductSearchLink] > hippo:compound, hippostd:relaxed
   orderable
 
 [visitscotland:ProductsSearch] > hippo:compound, hippostd:relaxed
