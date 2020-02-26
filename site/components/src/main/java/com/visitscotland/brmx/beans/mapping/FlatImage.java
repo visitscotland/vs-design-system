@@ -4,12 +4,36 @@ import com.visitscotland.brmx.beans.Coordinates;
 import com.visitscotland.brmx.beans.Image;
 
 public class FlatImage {
+
+    public enum Source {
+        INSTAGRAM
+    }
     private Image cmsImage;
     private String externalImage;
     private String altText;
     private String credit;
     private String description;
     private Coordinates coordinates;
+    private Source source;
+
+    public FlatImage(){
+
+    }
+
+    public FlatImage(Image cmsImage, String altText, String credit, String description) {
+        this.cmsImage = cmsImage;
+        this.altText = altText;
+        this.credit = credit;
+        this.description = description;
+    }
+
+    public FlatImage(String externalImage, String altText, String credit, String description, Source source) {
+        this.externalImage = externalImage;
+        this.altText = altText;
+        this.credit = credit;
+        this.description = description;
+        this.source = source;
+    }
 
     public String getExternalImage() {
         return externalImage;

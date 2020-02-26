@@ -15,7 +15,7 @@ public class FlatStop {
     private FlatImage image;
     private String timeToexplore;
     private String tipsTitle;
-    private String cta;
+    private FlatLink ctaLink;
     private HippoHtml tipsBody;
     private List<String> facilities;
     private String location;
@@ -124,12 +124,12 @@ public class FlatStop {
         this.errorMessage = errorMessage;
     }
 
-    public String getCta() {
-        return cta;
+    public FlatLink getCtaLink() {
+        return ctaLink;
     }
 
-    public void setCta(String cta) {
-        this.cta = cta;
+    public void setCtaLink(FlatLink ctaLink) {
+        this.ctaLink = ctaLink;
     }
 
     public String getLocation() {

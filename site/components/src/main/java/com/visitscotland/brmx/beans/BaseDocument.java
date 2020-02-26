@@ -70,7 +70,7 @@ public class BaseDocument extends HippoDocument {
         return nodes;
     }
 
-    public HippoBean getOnlyChild(List<HippoBean> children){
+    public <T> T getOnlyChild(List<T> children){
         if (children.size() == 0) {
             return null;
         } else if (children.size() == 1) {
@@ -90,22 +90,25 @@ public class BaseDocument extends HippoDocument {
         try {
             it = getNode().getParent().getParent().getNodes();
         } catch (RepositoryException e) {
-            logError("Error tryin", node, e);
+            logError("Error trying to connect to the repository", node, e);
             return documents;
         }
 
         while (it.hasNext()) {
             javax.jcr.Node jcrNode = it.nextNode();
             try {
-                String primaryType = jcrNode.getNodes().nextNode().getProperty(DOCUMENT_TYPE).getString();
-                if (documentType.equals(primaryType)) {
-                    HippoBean bean = RequestContextProvider.get().getQueryManager()
-                            .createQuery(jcrNode).execute().getHippoBeans().nextHippoBean();
+                if (jcrNode.getNodes().getSize() > 0) {
+                    String primaryType = jcrNode.getNodes().nextNode().getProperty(DOCUMENT_TYPE).getString();
+                    if (documentType.equals(primaryType)) {
+                        HippoBean bean = RequestContextProvider.get().getQueryManager()
+                                .createQuery(jcrNode).execute().getHippoBeans().nextHippoBean();
 
-                    Object aux = getObjectConverter().getObject(bean.getNode());
-                    //The document is added if the type matches
-                    if (aux != null && aux.getClass().isAssignableFrom(typeClass)){
-                        documents.add((T) aux);
+                        Object aux = getObjectConverter().getObject(bean.getNode());
+                        //The document is added if the type matches
+                        //TODO we need some kind of tests
+                        if (aux != null && aux.getClass().isAssignableFrom(typeClass)) {
+                            documents.add((T) aux);
+                        }
                     }
                 }
             } catch (QueryException | RepositoryException | NullPointerException | ObjectBeanManagerException e) {

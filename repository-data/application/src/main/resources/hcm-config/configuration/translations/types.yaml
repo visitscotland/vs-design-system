@@ -30,3 +30,5 @@ definitions:
         visitscotland:introduction: Einführung
         visitscotland:publicationdate: Publikationsdatum
         visitscotland:title: Titel
+    /hippo:configuration/hippo:translations/hippo:types/visitscotland:Image:
+      jcr:primaryType: hipposys:resourcebundles

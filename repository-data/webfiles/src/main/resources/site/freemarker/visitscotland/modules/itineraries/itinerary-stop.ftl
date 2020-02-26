@@ -26,7 +26,7 @@
     <#else>
         <#assign image = "" />
     </#if>
-    <#assign href = prod.cta!>
+    <#assign href = prod.ctaLink.link!>
 
     <#if !stop.stopItem?? && editMode>
         <vs-itinerary-stop
@@ -76,14 +76,14 @@
 
                 <#if href?? && href?has_content>
                     <vs-link href="${href}">
-                        ${label("essentials.global", "button.find-out-more")}
+                        ${prod.ctaLink.label}
                     </vs-link>
                 </#if>
 
                 <#if prod??>
                     <#if prod.timeToexplore?? && prod.timeToexplore?has_content>
                     <vs-description-list class="my-4 mb-0 justify-content-start" inline>
-                        <vs-description-list-term class="mb-0 mr-0 col-auto">${label("itinerary", "stop.stop.time-to-explore")}</vs-description-list-term>
+                        <vs-description-list-term class="mb-0 mr-0 col-auto">${label("itinerary", "stop.time-to-explore")}</vs-description-list-term>
                         <vs-description-list-detail class="mb-0 col-auto px-0">${prod.timeToexplore}</vs-description-list-detail>
                     </vs-description-list>
                     </#if>

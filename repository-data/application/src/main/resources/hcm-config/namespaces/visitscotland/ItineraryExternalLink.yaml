@@ -11,7 +11,7 @@ definitions:
         /hipposysedit:nodetype:
           jcr:primaryType: hipposysedit:nodetype
           jcr:mixinTypes: ['mix:referenceable', 'hipposysedit:remodel']
-          jcr:uuid: a857e1c3-9941-4998-9458-17ecf49b4763
+          jcr:uuid: 276c1177-1fc5-4264-8628-d32fa4cae921
           hipposysedit:node: true
           hipposysedit:supertype: ['hippo:compound', 'hippostd:relaxed']
           hipposysedit:uri: http://www.visitscotland.com/visitscotland/nt/1.0
@@ -32,38 +32,26 @@ definitions:
             hipposysedit:primary: false
             hipposysedit:type: visitscotland:Coordinates
             hipposysedit:validators: [required]
-          /image:
+          /ExternalLink:
             jcr:primaryType: hipposysedit:field
             hipposysedit:mandatory: false
             hipposysedit:multiple: false
             hipposysedit:ordered: false
-            hipposysedit:path: visitscotland:image
+            hipposysedit:path: visitscotland:ExternalLink
             hipposysedit:primary: false
-            hipposysedit:type: hippogallerypicker:imagelink
-          /link:
-            jcr:primaryType: hipposysedit:field
-            hipposysedit:mandatory: false
-            hipposysedit:multiple: false
-            hipposysedit:ordered: false
-            hipposysedit:path: visitscotland:link
-            hipposysedit:primary: false
-            hipposysedit:type: String
-            hipposysedit:validators: [required]
+            hipposysedit:type: visitscotland:ExternalLink
       /hipposysedit:prototypes:
         jcr:primaryType: hipposysedit:prototypeset
         /hipposysedit:prototype:
           jcr:primaryType: visitscotland:ItineraryExternalLink
-          visitscotland:link: ''
           /visitscotland:Coordinates:
             jcr:primaryType: visitscotland:Coordinates
             visitscotland:latitude: 0.0
             visitscotland:longitude: 0.0
-          /visitscotland:image:
-            jcr:primaryType: hippogallerypicker:imagelink
-            hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
-            hippo:facets: []
-            hippo:modes: []
-            hippo:values: []
+          /visitscotland:ExternalLink:
+            jcr:primaryType: visitscotland:ExternalLink
+            visitscotland:label: ''
+            visitscotland:link: ''
       /editor:templates:
         jcr:primaryType: editor:templateset
         /_default_:
@@ -96,19 +84,10 @@ definitions:
             hint: ''
             /cluster.options:
               jcr:primaryType: frontend:pluginconfig
-          /link:
+          /ExternalLink:
             jcr:primaryType: frontend:plugin
-            caption: Link
-            field: link
-            hint: Link to an external website, blog, Tours or Ebooks
-            plugin.class: org.hippoecm.frontend.editor.plugins.field.PropertyFieldPlugin
-            wicket.id: ${cluster.id}.left.item
-            /cluster.options:
-              jcr:primaryType: frontend:pluginconfig
-          /image:
-            jcr:primaryType: frontend:plugin
-            caption: Image
-            field: image
+            caption: ExternalLink
+            field: ExternalLink
             plugin.class: org.hippoecm.frontend.editor.plugins.field.NodeFieldPlugin
             wicket.id: ${cluster.id}.left.item
             hint: ''

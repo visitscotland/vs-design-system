@@ -18,36 +18,36 @@
       hippotranslation:locale: inherited - from query
       /selection:listitem[1]:
         jcr:primaryType: selection:listitem
-        selection:key: cycling
-        selection:label: Cycling
-      /selection:listitem[2]:
-        jcr:primaryType: selection:listitem
-        selection:key: walking
-        selection:label: Walking
-      /selection:listitem[3]:
-        jcr:primaryType: selection:listitem
         selection:key: boat
         selection:label: Boat
-      /selection:listitem[4]:
-        jcr:primaryType: selection:listitem
-        selection:key: car
-        selection:label: Car
-      /selection:listitem[5]:
+      /selection:listitem[2]:
         jcr:primaryType: selection:listitem
         selection:key: bus
         selection:label: Bus
-      /selection:listitem[6]:
+      /selection:listitem[3]:
         jcr:primaryType: selection:listitem
-        selection:key: train
-        selection:label: Train
-      /selection:listitem[7]:
+        selection:key: car
+        selection:label: Car
+      /selection:listitem[4]:
+        jcr:primaryType: selection:listitem
+        selection:key: cycling
+        selection:label: Cycling
+      /selection:listitem[5]:
         jcr:primaryType: selection:listitem
         selection:key: ferry
         selection:label: Ferry
-      /selection:listitem[8]:
+      /selection:listitem[6]:
         jcr:primaryType: selection:listitem
         selection:key: public
         selection:label: Public Transport
+      /selection:listitem[7]:
+        jcr:primaryType: selection:listitem
+        selection:key: train
+        selection:label: Train
+      /selection:listitem[8]:
+        jcr:primaryType: selection:listitem
+        selection:key: walking
+        selection:label: Walking
   /themes:
     jcr:primaryType: hippo:handle
     jcr:mixinTypes: ['hippo:named', 'mix:referenceable']
@@ -62,48 +62,48 @@
       hippotranslation:locale: inherited - from query
       /selection:listitem[1]:
         jcr:primaryType: selection:listitem
-        selection:key: spahealth
-        selection:label: Wellness
+        selection:key: acti
+        selection:label: Activities
       /selection:listitem[2]:
         jcr:primaryType: selection:listitem
         selection:key: castle
         selection:label: Castles
       /selection:listitem[3]:
         jcr:primaryType: selection:listitem
-        selection:key: whisky
-        selection:label: Whisky
+        selection:key: city
+        selection:label: Cities
       /selection:listitem[4]:
         jcr:primaryType: selection:listitem
-        selection:key: filmev
-        selection:label: TV & Film
+        selection:key: familyev
+        selection:label: Families
       /selection:listitem[5]:
         jcr:primaryType: selection:listitem
         selection:key: history
         selection:label: History
       /selection:listitem[6]:
         jcr:primaryType: selection:listitem
-        selection:key: landscapes
-        selection:label: Landscapes
-      /selection:listitem[7]:
-        jcr:primaryType: selection:listitem
-        selection:key: city
-        selection:label: Cities
-      /selection:listitem[8]:
-        jcr:primaryType: selection:listitem
         selection:key: islands
         selection:label: Islands
-      /selection:listitem[9]:
+      /selection:listitem[7]:
+        jcr:primaryType: selection:listitem
+        selection:key: landscapes
+        selection:label: Landscapes
+      /selection:listitem[8]:
         jcr:primaryType: selection:listitem
         selection:key: sightseeing
         selection:label: Sightseeing
+      /selection:listitem[9]:
+        jcr:primaryType: selection:listitem
+        selection:key: filmev
+        selection:label: TV & Film
       /selection:listitem[10]:
         jcr:primaryType: selection:listitem
-        selection:key: familyev
-        selection:label: Families
+        selection:key: spahealth
+        selection:label: Wellness
       /selection:listitem[11]:
         jcr:primaryType: selection:listitem
-        selection:key: acti
-        selection:label: Activities
+        selection:key: whisky
+        selection:label: Whisky
   /areas:
     jcr:primaryType: hippo:handle
     jcr:mixinTypes: ['hippo:named', 'mix:referenceable']
@@ -118,64 +118,24 @@
       hippotranslation:locale: inherited - from query
       /selection:listitem[1]:
         jcr:primaryType: selection:listitem
-        selection:key: aberdeen
-        selection:label: Aberdeen & Aberdeenshire
+        selection:key: all
+        selection:label: All
       /selection:listitem[2]:
         jcr:primaryType: selection:listitem
-        selection:key: argyll
-        selection:label: Argyll & The Isles
+        selection:key: east
+        selection:label: East
       /selection:listitem[3]:
         jcr:primaryType: selection:listitem
-        selection:key: ayrshire
-        selection:label: Ayrshire & Arran
+        selection:key: north
+        selection:label: North
       /selection:listitem[4]:
         jcr:primaryType: selection:listitem
-        selection:key: dumfries
-        selection:label: Dumfries & Galloway
+        selection:key: south
+        selection:label: South
       /selection:listitem[5]:
         jcr:primaryType: selection:listitem
-        selection:key: dundee
-        selection:label: Dundee & Angus
-      /selection:listitem[6]:
-        jcr:primaryType: selection:listitem
-        selection:key: edinburgh
-        selection:label: Edinburgh & The Lothians
-      /selection:listitem[7]:
-        jcr:primaryType: selection:listitem
-        selection:key: glasgow
-        selection:label: Greater Glasgow And The Clyde Valley
-      /selection:listitem[8]:
-        jcr:primaryType: selection:listitem
-        selection:key: lommond
-        selection:label: Loch Lomond, The Trossachs, Stirling & Forth Valley
-      /selection:listitem[9]:
-        jcr:primaryType: selection:listitem
-        selection:key: orkney
-        selection:label: Orkney
-      /selection:listitem[10]:
-        jcr:primaryType: selection:listitem
-        selection:key: hebrides
-        selection:label: The Outer Hebrides
-      /selection:listitem[11]:
-        jcr:primaryType: selection:listitem
-        selection:key: perthshire
-        selection:label: Perthshire
-      /selection:listitem[12]:
-        jcr:primaryType: selection:listitem
-        selection:key: highlands
-        selection:label: The Highlands
-      /selection:listitem[13]:
-        jcr:primaryType: selection:listitem
-        selection:key: fife
-        selection:label: The Kingdom Of Fife
-      /selection:listitem[14]:
-        jcr:primaryType: selection:listitem
-        selection:key: shetland
-        selection:label: Shetland
-      /selection:listitem[15]:
-        jcr:primaryType: selection:listitem
-        selection:key: borders
-        selection:label: The Scottish Borders
+        selection:key: west
+        selection:label: West
   /product-search:
     jcr:primaryType: hippo:handle
     jcr:mixinTypes: ['hippo:named', 'mix:referenceable']

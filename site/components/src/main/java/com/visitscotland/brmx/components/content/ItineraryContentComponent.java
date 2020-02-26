@@ -4,7 +4,10 @@ import com.visitscotland.brmx.beans.*;
 import com.visitscotland.brmx.beans.dms.LocationObject;
 import com.visitscotland.brmx.beans.mapping.Coordinates;
 import com.visitscotland.brmx.beans.mapping.FlatImage;
+import com.visitscotland.brmx.beans.mapping.FlatLink;
 import com.visitscotland.brmx.beans.mapping.FlatStop;
+import com.visitscotland.brmx.utils.CommonUtils;
+import com.visitscotland.brmx.utils.HippoUtils;
 import com.visitscotland.brmx.utils.LocationLoader;
 import com.visitscotland.brmx.utils.Properties;
 import org.hippoecm.hst.core.component.HstRequest;
@@ -28,11 +31,7 @@ public class ItineraryContentComponent extends EssentialsContentComponent {
     public final String FIRST_STOP_LOCATION = "firstStopLocation";
     public final String LAST_STOP_LOCATION = "lastStopLocation";
     public final String HERO_COORDINATES = "heroCoordinates";
-
-
     private final String ROOT_SITE = "/site/";
-
-
 
     @Override
     public void doBeforeRender(HstRequest request, HstResponse response) {
@@ -86,31 +85,33 @@ public class ItineraryContentComponent extends EssentialsContentComponent {
                 FlatImage img = new FlatImage();
 
                 if (stop.getStopItem() instanceof DMSLink){
-                    DMSLink aux = (DMSLink) stop.getStopItem();
+                    DMSLink dmsLink = (DMSLink) stop.getStopItem();
                     List<String> facilities = new ArrayList<>();
 
-                    if (aux.getImage()!=null) {
-                        img.setCmsImage(aux.getImage());
+                    if (stop.getImage()!=null) {
+                        img.setCmsImage(stop.getImage());
                     }
 
                     //CONTENT prefix on error messages could means that the problem can be fixed by altering the content.
                     try {
 
-                        if (aux.getProduct() == null){
-                            model.setErrorMessage("The product's id  wasn't provided");
-                            logger.warn("CONTENT The product's id  wasn't provided for " + itinerary.getName() + ", Stop " + model.getIndex());
+                        if (dmsLink.getProduct() == null){
+                            model.setErrorMessage("The product's id  was not provided");
+                            logger.warn(CommonUtils.contentIssue("The product's id  was not provided for %s, Stop %s", itinerary.getName(), model.getIndex()));
                         } else {
-                            JSONObject product = getProduct(aux.getProduct(), request.getLocale());
-                            if (product == null){                                model.setErrorMessage("The product id does not exists in the DMS");
-                                logger.warn("CONTENT The product's id  wasn't provided for " + itinerary.getName() + ", Stop " + model.getIndex());
+                            JSONObject product = CommonUtils.getProduct(dmsLink.getProduct(), request.getLocale());
+                            if (product == null){
+                                model.setErrorMessage("The product id does not exists in the DMS");
+                                logger.warn(CommonUtils.contentIssue("The product id does not exists in the DMS for %s, Stop %s", itinerary.getName(), model.getIndex()));
                             } else {
 
-                                model.setCta(product.getString(URL));
+                                FlatLink ctaLink = new FlatLink(this.getCtaLabel(dmsLink.getLabel(),request.getLocale()),product.getString(URL));
+                                model.setCtaLink(ctaLink);
                                 model.setLocation(product.getString(LOCATION));
 
                                 //TODO: GET TIME TO EXPLORE FROM DMS
 //                                model.setTimeToexplore(product.getString(TIME_TO_EXPLORE));
-                                if (aux.getImage() == null){
+                                if (stop.getImage() == null){
                                     img.setExternalImage(product.getString(IMAGE));
                                     //TODO: SET ALT-TEXT, CREDITS AND DESCRIPTION
                                 }
@@ -132,22 +133,24 @@ public class ItineraryContentComponent extends EssentialsContentComponent {
                         logger.error("Error while querying the DMS for " + itinerary.getName() + ", Stop " + model.getIndex() + ": " + exception.getMessage());
                     }
                 } else if (stop.getStopItem() instanceof ItineraryExternalLink){
-                    ItineraryExternalLink aux = (ItineraryExternalLink) stop.getStopItem();
+                    ItineraryExternalLink externalLink = (ItineraryExternalLink) stop.getStopItem();
 
-                    if (aux.getImage() != null) {
-                        img.setCmsImage(aux.getImage());
-                        img.setAltText(aux.getImage().getAltText());
-                        img.setCredit(aux.getImage().getCredit());
-                        img.setDescription(aux.getImage().getDescription());
+                    if (stop.getImage() != null) {
+                        img.setCmsImage(stop.getImage());
+                        img.setAltText(stop.getImage().getAltText());
+                        img.setCredit(stop.getImage().getCredit());
+                        img.setDescription(stop.getImage().getDescription());
                     }
 
-                    model.setTimeToexplore(aux.getTimeToExplore());
-                    model.setCta(aux.getLink());
+                    model.setTimeToexplore(externalLink.getTimeToExplore());
+
+                    FlatLink ctaLink = new FlatLink(this.getCtaLabel( externalLink.getExternalLink().getLabel(), request.getLocale()), externalLink.getExternalLink().getLink());
+                    model.setCtaLink(ctaLink);
 
 
-                    if (aux.getCoordinates() != null) {
-                        coordinates.setLatitude(aux.getCoordinates().getLatitude());
-                        coordinates.setLongitude(aux.getCoordinates().getLongitude());
+                    if (externalLink.getCoordinates() != null) {
+                        coordinates.setLatitude(externalLink.getCoordinates().getLatitude());
+                        coordinates.setLongitude(externalLink.getCoordinates().getLongitude());
                         model.setCoordinates(coordinates);
                     }
 
@@ -170,36 +173,25 @@ public class ItineraryContentComponent extends EssentialsContentComponent {
         }
     }
 
-
-    private JSONObject getProduct(String productId, Locale locale) throws IOException {
-
-        String body = request(Properties.VS_DMS_PRODUCTS + "/data/product-search/map?prod_id=" + productId+ "&locale="+locale.getLanguage());
-        JSONObject json = new JSONObject(body);
-        JSONArray data = (JSONArray) json.get("data");
-
-        return data.getJSONObject(0);
-    }
-
-    /**
-     * Request a page and return the body as String
-     */
-    private static String request(String url) throws IOException {
-        final BufferedReader br = new BufferedReader(new InputStreamReader(new URL(url).openStream()));
-        final StringBuilder sb = new StringBuilder();
-        int cp;
-
-        while ((cp = br.read()) != -1) {
-            sb.append((char) cp);
-        }
-
-        return sb.toString();
-    }
-
     /**
      *
      * @param itinerary
      */
     private String getDocumentLocation( Itinerary itinerary) {
         return itinerary.getPath().substring(itinerary.getPath().indexOf(ROOT_SITE), itinerary.getPath().indexOf("/content/content")).replace(ROOT_SITE, "");
+    }
+
+
+    /**
+     *
+     * @param manualCta
+     */
+    private String getCtaLabel (String manualCta, Locale locale){
+        if (!CommonUtils.isEmpty(manualCta)){
+            return  manualCta;
+        }else{
+            return  HippoUtils.getResourceBundle("button.find-out-more","essentials.global",locale);
+        }
+
     }
 }

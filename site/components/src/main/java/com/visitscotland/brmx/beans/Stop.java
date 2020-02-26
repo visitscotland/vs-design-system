@@ -4,8 +4,8 @@ import org.hippoecm.hst.content.beans.standard.HippoBean;
 import org.onehippo.cms7.essentials.dashboard.annotations.HippoEssentialsGenerated;
 import org.hippoecm.hst.content.beans.Node;
 import org.hippoecm.hst.content.beans.standard.HippoHtml;
-
 import java.util.List;
+import com.visitscotland.brmx.beans.Image;
 
 /** 
  * TODO: Beanwriter: Failed to create getter for node type: hippo:compound
@@ -44,5 +44,10 @@ public class Stop extends BaseDocument {
 
     public HippoBean getStopItem() {
         return getOnlyChild(getStop());
+    }
+
+    @HippoEssentialsGenerated(internalName = "visitscotland:image")
+    public Image getImage() {
+        return getLinkedBean("visitscotland:image", Image.class);
     }
 }

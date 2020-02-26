@@ -16,7 +16,7 @@ public class Properties {
             Locale.forLanguageTag("it-it"));
 
     //TODO Calculate environment
-    public static final String VS_DMS_PRODUCTS = "https://test1.visitscotland.com";
+    public static final String VS_DMS_PRODUCTS = "http://172.28.81.65:8089";
 
 
 }
