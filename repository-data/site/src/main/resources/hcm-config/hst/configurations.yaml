@@ -149,28 +149,28 @@ definitions:
           jcr:primaryType: hst:templates
           /base-layout:
             jcr:primaryType: hst:template
-            hst:renderpath: webfile:/freemarker/visitscotland/base-layout.ftl
+            hst:renderpath: webfile:/freemarker/visitscotland/base/base-layout.ftl
           /base-top-menu:
             jcr:primaryType: hst:template
-            hst:renderpath: webfile:/freemarker/visitscotland/base-top-menu.ftl
+            hst:renderpath: webfile:/freemarker/visitscotland/base/base-top-menu.ftl
           /base-footer:
             jcr:primaryType: hst:template
-            hst:renderpath: webfile:/freemarker/visitscotland/base-footer.ftl
+            hst:renderpath: webfile:/freemarker/visitscotland/base/base-footer.ftl
           /homepage-main:
             jcr:primaryType: hst:template
-            hst:renderpath: webfile:/freemarker/visitscotland/homepage-main.ftl
+            hst:renderpath: webfile:/freemarker/visitscotland/pages/homepage-main.ftl
           /pagenotfound-main:
             jcr:primaryType: hst:template
-            hst:renderpath: webfile:/freemarker/visitscotland/pagenotfound-main.ftl
+            hst:renderpath: webfile:/freemarker/visitscotland/pages/pagenotfound-main.ftl
           /breadcrumb:
             jcr:primaryType: hst:template
-            hst:renderpath: webfile:/freemarker/visitscotland/breadcrumb.ftl
+            hst:renderpath: webfile:/freemarker/visitscotland/base/breadcrumb.ftl
           /itinerary:
             jcr:primaryType: hst:template
-            hst:renderpath: webfile:/freemarker/visitscotland/pages/itinerary.ftl
+            hst:renderpath: webfile:/freemarker/visitscotland/pages/itinerary-main.ftl
           /listicle:
             jcr:primaryType: hst:template
-            hst:renderpath: webfile:/freemarker/visitscotland/pages/listicle.ftl
+            hst:renderpath: webfile:/freemarker/visitscotland/pages/listicle-main.ftl
         /hst:catalog:
           jcr:primaryType: hst:catalog
           /visitscotland-catalog:
