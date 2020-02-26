@@ -25,8 +25,8 @@
 ```jsx
 	<vs-rich-text-wrapper>
 		<h3>Heading Example</h3>
-			Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis <a href="#foo">eget</a> ante urna.<br> Pellentesque aliquam faucibus enim fermentum fringilla. Vivamus ultrices dictum justo ac porta.
-			Quisque mattis <b>tortor</b> dapibus tellus aliquet, finibus lacinia felis pulvinar.</br>
+			Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis <a href="#foo">eget</a> ante urna.<br/> Pellentesque aliquam faucibus enim fermentum fringilla. Vivamus ultrices dictum justo ac porta.
+			Quisque mattis <b>tortor</b> dapibus tellus aliquet, finibus lacinia felis pulvinar.
 	</vs-rich-text-wrapper>
 ```
 </docs>
