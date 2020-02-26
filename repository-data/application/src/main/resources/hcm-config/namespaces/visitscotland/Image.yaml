@@ -49,15 +49,6 @@ definitions:
             hipposysedit:path: visitscotland:credit
             hipposysedit:primary: false
             hipposysedit:type: String
-          /Coordinates:
-            jcr:primaryType: hipposysedit:field
-            hipposysedit:mandatory: false
-            hipposysedit:multiple: false
-            hipposysedit:ordered: false
-            hipposysedit:path: visitscotland:Coordinates
-            hipposysedit:primary: false
-            hipposysedit:type: visitscotland:Coordinates
-            hipposysedit:validators: [optional]
           /location:
             jcr:primaryType: hipposysedit:field
             hipposysedit:mandatory: false
@@ -66,20 +57,12 @@ definitions:
             hipposysedit:path: visitscotland:location
             hipposysedit:primary: false
             hipposysedit:type: DynamicDropdown
-          /Coordinates_:
-            jcr:primaryType: hipposysedit:field
-            hipposysedit:mandatory: false
-            hipposysedit:multiple: false
-            hipposysedit:ordered: false
-            hipposysedit:path: visitscotland:coordinates
-            hipposysedit:primary: false
-            hipposysedit:type: visitscotland:Coordinates
       /hipposysedit:prototypes:
         jcr:primaryType: hipposysedit:prototypeset
         /hipposysedit:prototype:
           jcr:primaryType: visitscotland:Image
           jcr:mixinTypes: ['mix:referenceable']
-          jcr:uuid: fdd4d66e-b8f1-4fca-ab75-39abc3183942
+          jcr:uuid: fcd675b1-3226-4f40-8974-24ec22312da2
           hippogallery:description: ''
           visitscotland:altText: ''
           visitscotland:credit: ''
@@ -103,14 +86,6 @@ definitions:
               resource: /namespaces/visitscotland/Image/prototypes/prototype/original/original.gif
             jcr:lastModified: 1970-01-01T00:00:00Z
             jcr:mimeType: image/gif
-          /visitscotland:Coordinates:
-            jcr:primaryType: visitscotland:Coordinates
-            visitscotland:latitude: 0.0
-            visitscotland:longitude: 0.0
-          /visitscotland:coordinates:
-            jcr:primaryType: visitscotland:Coordinates
-            visitscotland:latitude: 0.0
-            visitscotland:longitude: 0.0
       /editor:templates:
         jcr:primaryType: editor:templateset
         /_default_:
@@ -182,14 +157,5 @@ definitions:
             plugin.class: org.hippoecm.frontend.editor.plugins.field.NodeFieldPlugin
             wicket.id: ${cluster.id}.field
             hint: ''
-            /cluster.options:
-              jcr:primaryType: frontend:pluginconfig
-          /coordinates:
-            jcr:primaryType: frontend:plugin
-            caption: Coordinates (optional)
-            field: Coordinates_
-            hint: ''
-            plugin.class: org.hippoecm.frontend.editor.plugins.field.NodeFieldPlugin
-            wicket.id: ${cluster.id}.field
             /cluster.options:
               jcr:primaryType: frontend:pluginconfig

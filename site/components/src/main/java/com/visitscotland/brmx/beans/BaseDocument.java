@@ -90,7 +90,6 @@ public class BaseDocument extends HippoDocument {
         try {
             it = getNode().getParent().getParent().getNodes();
         } catch (RepositoryException e) {
-            //TODO fix the error message
             logError("Error trying to connect to the repository", node, e);
             return documents;
         }
@@ -106,7 +105,7 @@ public class BaseDocument extends HippoDocument {
 
                         Object aux = getObjectConverter().getObject(bean.getNode());
                         //The document is added if the type matches
-                        //TODO we need some kind of
+                        //TODO we need some kind of tests
                         if (aux != null && aux.getClass().isAssignableFrom(typeClass)) {
                             documents.add((T) aux);
                         }

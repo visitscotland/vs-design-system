@@ -21,9 +21,4 @@ public class Image extends HippoGalleryImageSet {
     public String getLocation() {
         return getSingleProperty("visitscotland:location");
     }
-
-    @HippoEssentialsGenerated(internalName = "visitscotland:coordinates")
-    public Coordinates getCoordinates() {
-        return getBean("visitscotland:coordinates", Coordinates.class);
-    }
 }
