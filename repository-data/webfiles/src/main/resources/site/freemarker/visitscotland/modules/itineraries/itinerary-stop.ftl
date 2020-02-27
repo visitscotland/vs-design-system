@@ -1,15 +1,15 @@
-<#include "../../include/imports.ftl">
+<#include "../../../include/imports.ftl">
 
-<#include "../../vs-dotcom-ds/components/button-with-icon.ftl">
-<#include "../../vs-dotcom-ds/components/itinerary-tips.ftl">
-<#include "../../vs-dotcom-ds/components/itinerary-stop.ftl">
-<#include "../../vs-dotcom-ds/components/itinerary-border-overlap-wrapper.ftl">
-<#include "../../vs-dotcom-ds/components/image-with-caption.ftl">
-<#include "../../vs-dotcom-ds/components/icon-description-list.ftl">
-<#include "../../vs-dotcom-ds/components/img.ftl">
-<#include "../../vs-dotcom-ds/components/icon-description-list-term.ftl">
-<#include "../../vs-dotcom-ds/components/icon-description-list-detail.ftl">
-<#include "../../vs-dotcom-ds/components/link.ftl">
+<#include "../../../vs-dotcom-ds/components/button-with-icon.ftl">
+<#include "../../../vs-dotcom-ds/components/itinerary-tips.ftl">
+<#include "../../../vs-dotcom-ds/components/itinerary-stop.ftl">
+<#include "../../../vs-dotcom-ds/components/itinerary-border-overlap-wrapper.ftl">
+<#include "../../../vs-dotcom-ds/components/image-with-caption.ftl">
+<#include "../../../vs-dotcom-ds/components/icon-description-list.ftl">
+<#include "../../../vs-dotcom-ds/components/img.ftl">
+<#include "../../../vs-dotcom-ds/components/icon-description-list-term.ftl">
+<#include "../../../vs-dotcom-ds/components/icon-description-list-detail.ftl">
+<#include "../../../vs-dotcom-ds/components/link.ftl">
 
 <#-- @ftlvariable name="stop" type="com.visitscotland.brmx.beans.Stop" -->
 <#-- @ftlvariable name="prod" type="com.visitscotland.brmx.beans.mapping.FlatStop" -->
