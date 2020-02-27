@@ -14,8 +14,8 @@ definitions:
       country: gb
     /hippo:configuration/hippo:frontend/cms/cms-services/imageValidationService:
       max.file.size: 1M
-      max.width: 1922
-      max.height: 1282
+      max.width: 2048
+      max.height: 1536
     /hippo:configuration/hippo:frontend/cms/cms-advanced-search/genericFilters:
       document.type.namespaces: [visitscotland]
       document.type.excluded: ['visitscotland:basedocument', 'visitscotland:Page']
