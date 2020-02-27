@@ -839,11 +839,10 @@
           jcr:mixinTypes: ['mix:referenceable']
           jcr:uuid: ed5a3817-71a7-4d9a-8853-d03a74a8d3c4
           hippo:availability: []
-          hippostd:holder: admin
           hippostd:state: draft
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2020-02-27T11:25:05.174Z
-          hippostdpubwf:lastModificationDate: 2020-02-27T16:52:15.813Z
+          hippostdpubwf:lastModificationDate: 2020-02-27T17:11:25.857Z
           hippostdpubwf:lastModifiedBy: admin
           hippotranslation:id: cd365da6-83d9-4b3b-8a16-b53c89fba5e4
           hippotranslation:locale: en
