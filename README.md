@@ -10,7 +10,7 @@ Alternatively, developers might prefer to run a quicker version were UI packages
 Please, note that the full run is advised every time the branch is changed or when front end changes 
 are expected.
 
-    mvn clean verify -P '!fed-build'
+    mvn clean verify -P !fed-build
     mvn -P cargo.run
 
 BloomReach Instruction (Legacy)
