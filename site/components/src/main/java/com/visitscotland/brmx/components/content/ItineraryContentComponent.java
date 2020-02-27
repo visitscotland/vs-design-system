@@ -9,17 +9,14 @@ import com.visitscotland.brmx.beans.mapping.FlatStop;
 import com.visitscotland.brmx.utils.CommonUtils;
 import com.visitscotland.brmx.utils.HippoUtils;
 import com.visitscotland.brmx.utils.LocationLoader;
-import com.visitscotland.brmx.utils.Properties;
 import org.hippoecm.hst.core.component.HstRequest;
 import org.hippoecm.hst.core.component.HstResponse;
-import org.json.JSONArray;
 import org.json.JSONObject;
 import org.onehippo.cms7.essentials.components.EssentialsContentComponent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.*;
-import java.net.URL;
 import java.util.*;
 
 

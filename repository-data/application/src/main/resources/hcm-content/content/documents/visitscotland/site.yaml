@@ -762,3 +762,134 @@
           /visitscotland:stops[3]:
             jcr:primaryType: hippo:mirror
             hippo:docbase: 1ead4399-7e30-47dc-9b75-2ea488fb5742
+    /listicle:
+      jcr:primaryType: hippostd:folder
+      jcr:mixinTypes: ['hippotranslation:translated', 'mix:versionable']
+      jcr:uuid: 4762b4cf-7c0f-4cd2-abd0-119914b86b1e
+      hippostd:foldertype: [new-translated-folder, new-document]
+      hippotranslation:id: 0f676aa8-136c-4030-8024-f04a99f5f2a4
+      hippotranslation:locale: en
+      /content:
+        jcr:primaryType: hippo:handle
+        jcr:mixinTypes: ['mix:referenceable']
+        jcr:uuid: cf518b3b-2028-4515-9d4f-b319b03eb365
+        /content[1]:
+          jcr:primaryType: visitscotland:Listicle
+          jcr:mixinTypes: ['mix:referenceable']
+          jcr:uuid: be9cd121-59d4-4f8d-a805-14b31738a218
+          hippo:availability: []
+          hippostd:state: draft
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2020-02-27T11:24:42.399Z
+          hippostdpubwf:lastModificationDate: 2020-02-27T11:24:42.399Z
+          hippostdpubwf:lastModifiedBy: admin
+          hippotranslation:id: 10892825-8d15-4400-8cca-173671c13ce0
+          hippotranslation:locale: en
+          visitscotland:breadcrumb: ''
+          visitscotland:descOrder: false
+          visitscotland:seoDescription: ''
+          visitscotland:seoNoIndex: false
+          visitscotland:seoTitle: ''
+          visitscotland:teaser: ''
+          visitscotland:title: ''
+          /visitscotland:heroImage:
+            jcr:primaryType: hippogallerypicker:imagelink
+            hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
+            hippo:facets: []
+            hippo:modes: []
+            hippo:values: []
+          /visitscotland:introduction:
+            jcr:primaryType: hippostd:html
+            hippostd:content: ''
+        /content[2]:
+          jcr:primaryType: visitscotland:Listicle
+          jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
+          jcr:uuid: 64e2a550-e1a8-4c98-a88e-3809136794d1
+          hippo:availability: [preview]
+          hippostd:state: unpublished
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2020-02-27T11:24:42.399Z
+          hippostdpubwf:lastModificationDate: 2020-02-27T11:27:00.255Z
+          hippostdpubwf:lastModifiedBy: admin
+          hippotranslation:id: 10892825-8d15-4400-8cca-173671c13ce0
+          hippotranslation:locale: en
+          visitscotland:breadcrumb: ''
+          visitscotland:descOrder: false
+          visitscotland:seoDescription: ''
+          visitscotland:seoNoIndex: false
+          visitscotland:seoTitle: ''
+          visitscotland:teaser: ''
+          visitscotland:title: ''
+          /visitscotland:heroImage:
+            jcr:primaryType: hippogallerypicker:imagelink
+            hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
+            hippo:facets: []
+            hippo:modes: []
+            hippo:values: []
+          /visitscotland:introduction:
+            jcr:primaryType: hippostd:html
+            hippostd:content: ''
+      /list-1:
+        jcr:primaryType: hippo:handle
+        jcr:mixinTypes: ['hippo:named', 'mix:referenceable']
+        jcr:uuid: ad1cf935-c55e-44d1-aba4-ab0e047c6bbf
+        hippo:name: list 1
+        /list-1[1]:
+          jcr:primaryType: visitscotland:ListicleItem
+          jcr:mixinTypes: ['mix:referenceable']
+          jcr:uuid: ed5a3817-71a7-4d9a-8853-d03a74a8d3c4
+          hippo:availability: []
+          hippostd:holder: admin
+          hippostd:state: draft
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2020-02-27T11:25:05.174Z
+          hippostdpubwf:lastModificationDate: 2020-02-27T16:52:15.813Z
+          hippostdpubwf:lastModifiedBy: admin
+          hippotranslation:id: cd365da6-83d9-4b3b-8a16-b53c89fba5e4
+          hippotranslation:locale: en
+          visitscotland:subtitle: ''
+          visitscotland:title: Camera Obscura
+          /visitscotland:description:
+            jcr:primaryType: hippostd:html
+            hippostd:content: ''
+          /visitscotland:products:
+            jcr:primaryType: visitscotland:ProductSearchLink
+            visitscotland:label: ''
+            /visitscotland:search:
+              jcr:primaryType: visitscotland:ProductsSearch
+              visitscotland:distance: 0
+              visitscotland:dmsAwards: [stanationalwinner, qag2s]
+              visitscotland:dmsCategories: [horseracing, pwrboatjetski, biketours]
+              visitscotland:dmsFacilities: [intbanktrn, cash]
+              visitscotland:dmscategories: ['']
+              visitscotland:location: ''
+              visitscotland:producttype: acti,attr,reta
+        /list-1[2]:
+          jcr:primaryType: visitscotland:ListicleItem
+          jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
+          jcr:uuid: 88a05d0b-8dc9-46b7-8d9f-a9e992df6bce
+          hippo:availability: [preview]
+          hippostd:state: unpublished
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2020-02-27T11:25:05.174Z
+          hippostdpubwf:lastModificationDate: 2020-02-27T13:57:17.103Z
+          hippostdpubwf:lastModifiedBy: admin
+          hippotranslation:id: cd365da6-83d9-4b3b-8a16-b53c89fba5e4
+          hippotranslation:locale: en
+          visitscotland:subtitle: ''
+          visitscotland:title: Camera Obscura
+          /visitscotland:description:
+            jcr:primaryType: hippostd:html
+            hippostd:content: ''
+          /visitscotland:products:
+            jcr:primaryType: visitscotland:ProductSearchLink
+            visitscotland:label: ''
+            /visitscotland:search:
+              jcr:primaryType: visitscotland:ProductsSearch
+              visitscotland:distance: 0
+              visitscotland:dmsAwards: [stanationalwinner, qag2s]
+              visitscotland:dmsCategories: [horseracing, pwrboatjetski, biketours]
+              visitscotland:dmsFacilities: [intbanktrn, cash]
+              visitscotland:dmscategories: ['']
+              visitscotland:location: ''
+              visitscotland:producttype: acti,attr,reta

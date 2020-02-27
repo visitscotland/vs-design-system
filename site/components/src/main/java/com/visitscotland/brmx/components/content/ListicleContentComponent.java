@@ -171,8 +171,9 @@ public class ListicleContentComponent extends EssentialsContentComponent {
             String psLink = "";
             //TODO build the PSR url for the CTA in a reusable class
             String productType = productSearchLink.getSearch().getProducttype();
-            String[] categories = productSearchLink.getSearch().getDmscategories();
-            Long distance = productSearchLink.getSearch().getDistance();
+            String[] categories = productSearchLink.getSearch().getDmsCategories();
+            String[] facilities = productSearchLink.getSearch().getDmsFacilities();
+            String[] awards = productSearchLink.getSearch().getDmsAwards();
             return  new FlatLink(productSearchLink.getLabel(), productSearchLink.getLabel());
 
         } else if (item instanceof ExternalLink) {
