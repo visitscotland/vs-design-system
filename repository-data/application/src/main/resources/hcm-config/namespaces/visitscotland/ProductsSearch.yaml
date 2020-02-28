@@ -11,40 +11,10 @@ definitions:
         /hipposysedit:nodetype:
           jcr:primaryType: hipposysedit:nodetype
           jcr:mixinTypes: ['mix:referenceable', 'hipposysedit:remodel']
-          jcr:uuid: 5cf67d05-8827-4920-bfeb-2e8798abf87a
+          jcr:uuid: c48e7688-6936-47be-b061-8d6e95f8fb71
           hipposysedit:node: true
           hipposysedit:supertype: ['hippo:compound', 'hippostd:relaxed']
           hipposysedit:uri: http://www.visitscotland.com/visitscotland/nt/1.0
-          /location:
-            jcr:primaryType: hipposysedit:field
-            hipposysedit:mandatory: false
-            hipposysedit:multiple: false
-            hipposysedit:ordered: false
-            hipposysedit:path: visitscotland:location
-            hipposysedit:primary: false
-            hipposysedit:type: DynamicDropdown
-          /long:
-            jcr:primaryType: hipposysedit:field
-            hipposysedit:mandatory: false
-            hipposysedit:multiple: false
-            hipposysedit:ordered: false
-            hipposysedit:path: visitscotland:distance
-            hipposysedit:primary: false
-            hipposysedit:type: Long
-          /producttype:
-            jcr:primaryType: hipposysedit:field
-            hipposysedit:mandatory: false
-            hipposysedit:multiple: false
-            hipposysedit:ordered: false
-            hipposysedit:path: visitscotland:producttype
-            hipposysedit:primary: false
-            hipposysedit:type: DynamicDropdown
-        /hipposysedit:nodetype[2]:
-          jcr:primaryType: hipposysedit:nodetype
-          jcr:mixinTypes: ['mix:referenceable']
-          jcr:uuid: 65cf6adb-c310-4b0c-ad72-d88bd3200abb
-          hipposysedit:node: true
-          hipposysedit:supertype: ['hippo:compound', 'hippostd:relaxed']
           /location:
             jcr:primaryType: hipposysedit:field
             hipposysedit:mandatory: false
@@ -65,12 +35,6 @@ definitions:
         jcr:primaryType: hipposysedit:prototypeset
         /hipposysedit:prototype:
           jcr:primaryType: visitscotland:ProductsSearch
-          visitscotland:location: ''
-          visitscotland:producttype: ''
-          visitscotland:distance: 0
-        /hipposysedit:prototype[2]:
-          jcr:primaryType: nt:unstructured
-          jcr:mixinTypes: ['hippostd:relaxed']
           visitscotland:location: ''
           visitscotland:producttype: ''
           visitscotland:dmsCategories: []
@@ -108,7 +72,7 @@ definitions:
             hint: ''
             /cluster.options:
               jcr:primaryType: frontend:pluginconfig
-              valuelistProvider: service.locationlist.default
+              valuelistProvider: service.locationlist.image
           /producttype:
             jcr:primaryType: frontend:plugin
             caption: Product type

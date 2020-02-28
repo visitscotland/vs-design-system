@@ -693,7 +693,7 @@
           hippostd:state: draft
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2020-02-27T13:17:22.069Z
-          hippostdpubwf:lastModificationDate: 2020-02-27T13:28:30.444Z
+          hippostdpubwf:lastModificationDate: 2020-02-28T09:29:27.990Z
           hippostdpubwf:lastModifiedBy: admin
           hippotranslation:id: 7d4f9ca4-76eb-40a1-a793-29efa7f1ae68
           hippotranslation:locale: en
@@ -768,7 +768,7 @@
           hippostd:state: draft
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2020-02-27T13:19:13.009Z
-          hippostdpubwf:lastModificationDate: 2020-02-27T13:23:50.281Z
+          hippostdpubwf:lastModificationDate: 2020-02-28T09:31:56.009Z
           hippostdpubwf:lastModifiedBy: admin
           hippotranslation:id: aa4d5cb3-9313-4d6a-9741-225c19c36f20
           hippotranslation:locale: en
@@ -776,16 +776,38 @@
           visitscotland:title: National Museum of Scotland
           /visitscotland:description:
             jcr:primaryType: hippostd:html
-            hippostd:content: <p>Set on Edinburgh's Chambers Street, <a href="https://www.visitscotland.com/info/see-do/national-museum-of-scotland-p246591"
-              title="National Museum of Scotland">National Museum of Scotland</a>
-              is a treasure trove of ancient artefacts and precious objects. It's
-              the most popular attraction in the UK outside of London and offers a
-              great, year-round programme of temporary exhibitions. Don't miss the
-              10 recently opened galleries covering science, design and fashion.</p>
+            hippostd:content: <p>The&nbsp;<strong>National Museum of Scotland</strong>&nbsp;in&nbsp;<a
+              href="https://en.wikipedia.org/wiki/Edinburgh" title="Edinburgh">Edinburgh</a>,
+              Scotland, was formed in 2006 with the merger of the new&nbsp;<strong>Museum
+              of Scotland</strong>, with collections relating to Scottish&nbsp;<a
+              href="https://en.wikipedia.org/wiki/Antiquities" title="Antiquities">antiquities</a>,&nbsp;<a
+              href="https://en.wikipedia.org/wiki/Culture_of_Scotland" title="Culture
+              of Scotland">culture</a>&nbsp;and&nbsp;<a href="https://en.wikipedia.org/wiki/History_of_Scotland"
+              title="History of Scotland">history</a>, and the adjacent&nbsp;<strong>Royal
+              Scottish Museum</strong>&nbsp;(so renamed in 1904), with collections
+              covering science and technology,&nbsp;<a href="https://en.wikipedia.org/wiki/Natural_history"
+              title="Natural history">natural history</a>, and world cultures. The
+              two connected buildings stand beside each other on&nbsp;<a href="https://en.wikipedia.org/wiki/Chambers_Street_(Edinburgh)"
+              title="Chambers Street (Edinburgh)">Chambers Street</a>, by the intersection
+              with the&nbsp;<a href="https://en.wikipedia.org/wiki/George_IV_Bridge"
+              title="George IV Bridge">George IV Bridge</a>, in central Edinburgh.
+              The museum is part of&nbsp;<a href="https://en.wikipedia.org/wiki/National_Museums_Scotland"
+              title="National Museums Scotland">National Museums Scotland</a>. Admission
+              is free.</p>
           /visitscotland:products:
             jcr:primaryType: visitscotland:DMSLink
             visitscotland:label: Visit the Museum
             visitscotland:product: '246591'
+          /visitscotland:extraLinks:
+            jcr:primaryType: visitscotland:ProductSearchLink
+            visitscotland:label: ''
+            /visitscotland:search:
+              jcr:primaryType: visitscotland:ProductsSearch
+              visitscotland:distance: 0
+              visitscotland:dmsCategories: [museums]
+              visitscotland:dmscategories: ['']
+              visitscotland:location: Edimburgo
+              visitscotland:producttype: acti,attr,reta
         /national-museum-of-scotland[2]:
           jcr:primaryType: visitscotland:ListicleItem
           jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
@@ -794,7 +816,7 @@
           hippostd:state: unpublished
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2020-02-27T13:19:13.009Z
-          hippostdpubwf:lastModificationDate: 2020-02-27T13:24:07.920Z
+          hippostdpubwf:lastModificationDate: 2020-02-28T09:31:40.691Z
           hippostdpubwf:lastModifiedBy: admin
           hippotranslation:id: aa4d5cb3-9313-4d6a-9741-225c19c36f20
           hippotranslation:locale: en
@@ -802,16 +824,38 @@
           visitscotland:title: National Museum of Scotland
           /visitscotland:description:
             jcr:primaryType: hippostd:html
-            hippostd:content: <p>Set on Edinburgh's Chambers Street, <a href="https://www.visitscotland.com/info/see-do/national-museum-of-scotland-p246591"
-              title="National Museum of Scotland">National Museum of Scotland</a>
-              is a treasure trove of ancient artefacts and precious objects. It's
-              the most popular attraction in the UK outside of London and offers a
-              great, year-round programme of temporary exhibitions. Don't miss the
-              10 recently opened galleries covering science, design and fashion.</p>
+            hippostd:content: <p>The&nbsp;<strong>National Museum of Scotland</strong>&nbsp;in&nbsp;<a
+              href="https://en.wikipedia.org/wiki/Edinburgh" title="Edinburgh">Edinburgh</a>,
+              Scotland, was formed in 2006 with the merger of the new&nbsp;<strong>Museum
+              of Scotland</strong>, with collections relating to Scottish&nbsp;<a
+              href="https://en.wikipedia.org/wiki/Antiquities" title="Antiquities">antiquities</a>,&nbsp;<a
+              href="https://en.wikipedia.org/wiki/Culture_of_Scotland" title="Culture
+              of Scotland">culture</a>&nbsp;and&nbsp;<a href="https://en.wikipedia.org/wiki/History_of_Scotland"
+              title="History of Scotland">history</a>, and the adjacent&nbsp;<strong>Royal
+              Scottish Museum</strong>&nbsp;(so renamed in 1904), with collections
+              covering science and technology,&nbsp;<a href="https://en.wikipedia.org/wiki/Natural_history"
+              title="Natural history">natural history</a>, and world cultures. The
+              two connected buildings stand beside each other on&nbsp;<a href="https://en.wikipedia.org/wiki/Chambers_Street_(Edinburgh)"
+              title="Chambers Street (Edinburgh)">Chambers Street</a>, by the intersection
+              with the&nbsp;<a href="https://en.wikipedia.org/wiki/George_IV_Bridge"
+              title="George IV Bridge">George IV Bridge</a>, in central Edinburgh.
+              The museum is part of&nbsp;<a href="https://en.wikipedia.org/wiki/National_Museums_Scotland"
+              title="National Museums Scotland">National Museums Scotland</a>. Admission
+              is free.</p>
           /visitscotland:products:
             jcr:primaryType: visitscotland:DMSLink
             visitscotland:label: Visit the Museum
             visitscotland:product: '246591'
+          /visitscotland:extraLinks:
+            jcr:primaryType: visitscotland:ProductSearchLink
+            visitscotland:label: ''
+            /visitscotland:search:
+              jcr:primaryType: visitscotland:ProductsSearch
+              visitscotland:distance: 0
+              visitscotland:dmsCategories: [museums]
+              visitscotland:dmscategories: ['']
+              visitscotland:location: Edimburgo
+              visitscotland:producttype: acti,attr,reta
       /edinburgh-castle:
         jcr:primaryType: hippo:handle
         jcr:mixinTypes: ['hippo:named', 'mix:referenceable']

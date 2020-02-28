@@ -131,7 +131,11 @@
     /visitscotland_43424542162.jpg:
       jcr:primaryType: visitscotland:Image
       hippo:availability: [live, preview]
+      hippogallery:description: ''
       hippogallery:filename: visitscotland_43424542162.jpg
+      visitscotland:altText: ''
+      visitscotland:credit: ''
+      visitscotland:location: Abernyte
       /hippogallery:thumbnail:
         jcr:primaryType: hippogallery:image
         hippo:filename: visitscotland_43424542162.jpg
