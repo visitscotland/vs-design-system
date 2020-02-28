@@ -1,11 +1,23 @@
 [
     {
         "imageSrc": "fixtures/imagewithcaption/images/castle-trail.jpg",
-        "altText": "Castle Trail",
-        "caption": "Castle Trail",
+        "altText": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vel lectus vel, scelerisque lacinia velit.",
+        "caption": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vel lectus vel, scelerisque lacinia velit.",
         "credit": "VisitScotland / Kenny Lam",
         "longitude": "-3.4392176",
-        "latitude": "56.0608055"
+        "latitude": "56.0608055",
+        "variant": "large",
+        "isSmall": false
+    },
+    {
+        "imageSrc": "fixtures/imagewithcaption/images/castle-trail.jpg",
+        "altText": "The castle trail",
+        "caption": "The castle trail",
+        "credit": "VisitScotland / Kenny Lam",
+        "longitude": "-3.4392176",
+        "latitude": "56.0608055",
+        "variant": "large",
+        "isSmall": false
     },
     {
         "imageSrc": "fixtures/imagewithcaption/images/city-country-breaks.jpg",
@@ -13,6 +25,38 @@
         "caption": "City Country Breaks",
         "credit": "VisitScotland / Kenny Lam",
         "longitude": "",
-        "latitude": ""
+        "latitude": "",
+        "variant": "large",
+        "isSmall": false
+    },
+    {
+        "imageSrc": "fixtures/imagewithcaption/images/city-country-breaks.jpg",
+        "altText": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vel lectus vel, scelerisque lacinia velit.",
+        "caption": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vel lectus vel, scelerisque lacinia velit.",
+        "credit": "VisitScotland / Kenny Lam",
+        "longitude": "",
+        "latitude": "",
+        "variant": "large",
+        "isSmall": false
+    },
+    {
+        "imageSrc": "fixtures/imagewithcaption/images/city-country-breaks.jpg",
+        "altText": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vel lectus vel, scelerisque lacinia velit.",
+        "caption": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vel lectus vel, scelerisque lacinia velit.",
+        "credit": "VisitScotland / Kenny Lam",
+        "longitude": "",
+        "latitude": "",
+        "variant": "fullwidth",
+        "isSmall": true
+    },
+    {
+        "imageSrc": "fixtures/imagewithcaption/images/city-country-breaks.jpg",
+        "altText": "City Country Breaks",
+        "caption": "City Country Breaks",
+        "credit": "VisitScotland / Kenny Lam",
+        "longitude": "",
+        "latitude": "",
+        "variant": "fullwidth",
+        "isSmall": false
     }
 ]

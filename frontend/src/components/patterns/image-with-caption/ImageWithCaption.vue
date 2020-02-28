@@ -6,6 +6,7 @@
             <vs-button
                 variant="outline-transparent"
                 class="position-absolute vs-image-with-caption__toggle-caption-btn"
+                :class="{ 'd-block': this.closedDefaultCaption }"
                 :animate="false"
                 :aria-controls="'image_' + imageSrc"
                 :aria-expanded="showCaption ? 'true' : 'false'"
@@ -15,25 +16,33 @@
             </vs-button>
         </div>
 
-        <vs-container
-            :class="{ 'd-block': this.showCaption }"
+        <div
+            :class="{ 'd-block': this.showCaption, 'd-none': this.closedDefaultCaption }"
             class="vs-image-with-caption__caption-wrapper position-relative"
             :id="'image_' + imageSrc"
         >
-            <figcaption ref="figcaption" v-if="showCaptionData">
+            <figcaption
+                ref="figcaption"
+                :class="
+                    this.variant == 'large'
+                        ? 'vs-image-with-caption__large-caption'
+                        : 'vs-image-with-caption__fullwidth-caption'
+                "
+                v-if="showCaptionData"
+            >
                 <vs-row>
                     <vs-col>
                         <div class="p-4">
                             <p class="vs-image-with-caption__image-caption" v-if="this.caption">
                                 {{ this.caption }}
                             </p>
-                            <p class="vs-image-with-caption__image-credit m-0" v-if="this.credit">
+                            <p class="vs-image-with-caption__image-credit" v-if="this.credit">
                                 &copy; {{ this.credit }}
                             </p>
                         </div>
                     </vs-col>
                     <vs-col cols="auto" class="pl-0" v-if="showMap">
-                        <div class="map__wrapper">
+                        <div class="pt-2 pb-2 pr-4">
                             <vs-image-location-map
                                 :latitude="this.latitude"
                                 :longitude="this.longitude"
@@ -44,7 +53,7 @@
                     </vs-col>
                 </vs-row>
             </figcaption>
-        </vs-container>
+        </div>
     </figure>
 </template>
 
@@ -63,7 +72,7 @@ export default {
     status: "prototype",
     release: "0.0.1",
     components: { VsContainer, VsRow, VsCol, VsImageLocationMap, VsButton, VsSvg },
-    data() {
+     data() {
         return {
             showCaption: false,
         }
@@ -135,6 +144,14 @@ export default {
                 return value.match(/(fullwidth|large)/)
             },
         },
+
+        /**
+         * Chooses to show caption open by default or not: used when images are smaller than 300px
+         */
+        closedDefaultCaption: {
+            type: Boolean,
+            default: false,
+        }
     },
     computed: {
         showCaptionData() {
@@ -158,11 +175,6 @@ img {
     height: auto;
 }
 
-.map__wrapper {
-    max-width: 80px;
-    width: 80px;
-}
-
 .vs-image-with-caption__toggle-caption-btn {
     bottom: 0.5rem;
     padding: 0;
@@ -179,8 +191,8 @@ img {
     display: none;
 
     @include media-breakpoint-up(sm) {
-            display: block;
-        }
+        display: block;
+    }
 
     @include media-breakpoint-down(lg) {
         max-width: 100%;
@@ -188,30 +200,46 @@ img {
     }
 
     figcaption {
-        background-color: $color-theme-dark;
+        background-color: $color-gray-shade-6;
         color: $color-white;
-        width: 100%;        
 
-        @include media-breakpoint-up(sm) {
-            bottom: 0;
-            max-width: 400px;
-            position: absolute;
-            right: 1rem;
-            width: auto;
-            z-index: 2;
+        .vs-image-with-caption__image-caption,
+        .vs-image-with-caption__image-credit {
+            font-size: 0.875rem;
+            line-height: 1.2;
         }
-    }
 
-    .vs-image-with-caption__image-caption {
-        font-size: 0.875rem;
-        font-weight: 500;
-        line-height: 1rem;
-    }
+        .vs-image-with-caption__image-caption {
+            font-weight: 500;
+        }
 
-    .vs-image-with-caption__image-credit {
-        font-size: 0.875rem;
-        font-weight: $font-weight-light;
-        line-height: 1rem;
+        .vs-image-with-caption__image-credit {
+            font-weight: 100;
+            margin-bottom: $spacer-0;
+        }
+
+        &.vs-image-with-caption__large-caption {
+            width: 330px;
+
+            @include media-breakpoint-up(sm) {
+                bottom: 0;
+                position: absolute;
+                right: 1rem;
+                z-index: 2;
+            }
+
+            .vs-image-with-caption__image-caption {
+                margin-bottom: $spacer-8;
+            }
+        }
+
+        &.vs-image-with-caption__fullwidth-caption {
+            width: 100%;
+
+             .vs-image-with-caption__image-caption {
+                margin-bottom: $spacer-2;
+            }
+        }
     }
 }
 </style>
@@ -229,6 +257,8 @@ img {
         :latitude="item.latitude"
         :longitude="item.longitude"
         style="max-width:500px"
+        :variant="item.variant"
+        :closedDefaultCaption="item.isSmall"
     >
         <vs-img 
             class="lazyload" 
