@@ -35,7 +35,7 @@ definitions:
       /hipposysedit:prototypes:
         jcr:primaryType: hipposysedit:prototypeset
         /hipposysedit:prototype:
-          jcr:primaryType: visitscotland:ProductSearchLinkdos
+          jcr:primaryType: visitscotland:ProductSearchLink
           visitscotland:label: ''
           /visitscotland:search:
             jcr:primaryType: visitscotland:ProductsSearch
