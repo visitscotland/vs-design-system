@@ -69,8 +69,8 @@ public abstract class LocationLoader {
     private static void init() {
         synchronized (LocationLoader.class) {
             if (locationToId.size() == 0) {
-                Map<String, LocationObject> locationsMap = new HashMap<>();
                 for (Locale locale : Properties.locales) {
+                    Map<String, LocationObject> locationsMap = new HashMap<>();
                     try {
                         List<LocationObject> locationList = deserialize(request(locale));
 
@@ -121,7 +121,8 @@ public abstract class LocationLoader {
      *
      * @return HTML Fragment
      */
-    private static String requestPage(String url) {
+    private static String
+    requestPage(String url) {
         StringBuilder sb = new StringBuilder();
         try {
             InputStream is = new URL(url).openStream();
@@ -157,4 +158,5 @@ public abstract class LocationLoader {
         }
         return locations;
     }
+
 }

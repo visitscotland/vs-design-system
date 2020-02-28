@@ -45,7 +45,7 @@
       hippogallery:filename: Fraserburgh - Davron Hotel (6).jpg
       visitscotland:altText: ''
       visitscotland:credit: ''
-      visitscotland:location: Leith
+      visitscotland:location: Largs
       /hippogallery:thumbnail:
         jcr:primaryType: hippogallery:image
         hippo:filename: Fraserburgh - Davron Hotel (6).jpg
@@ -77,7 +77,7 @@
       hippogallery:filename: visitscotland_49386435364 (1).jpg
       visitscotland:altText: He is also lost
       visitscotland:credit: VisitScotland Staff
-      visitscotland:location: Shetland
+      visitscotland:location: Glasgow
       /hippogallery:thumbnail:
         jcr:primaryType: hippogallery:image
         hippo:filename: visitscotland_49386435364 (1).jpg
@@ -104,7 +104,11 @@
     /visitscotland_42559983584.jpg:
       jcr:primaryType: visitscotland:Image
       hippo:availability: [live, preview]
+      hippogallery:description: ''
       hippogallery:filename: visitscotland_42559983584.jpg
+      visitscotland:altText: ''
+      visitscotland:credit: ''
+      visitscotland:location: Edinburgh - City Centre
       /hippogallery:thumbnail:
         jcr:primaryType: hippogallery:image
         hippo:filename: visitscotland_42559983584.jpg
