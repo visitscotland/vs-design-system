@@ -15,6 +15,7 @@ public class FlatImage {
     private String description;
     private Coordinates coordinates;
     private Source source;
+    private String postUrl;
 
     public FlatImage(){
 
@@ -27,12 +28,13 @@ public class FlatImage {
         this.description = description;
     }
 
-    public FlatImage(String externalImage, String altText, String credit, String description, Source source) {
+    public FlatImage(String externalImage, String altText, String credit, String description, Source source, String postUrl) {
         this.externalImage = externalImage;
         this.altText = altText;
         this.credit = credit;
         this.description = description;
         this.source = source;
+        this.postUrl = postUrl;
     }
 
     public String getExternalImage() {
@@ -79,5 +81,21 @@ public class FlatImage {
 
     public void setCoordinates(Coordinates coordinates) {
         this.coordinates = coordinates;
+    }
+
+    public Source getSource() {
+        return source;
+    }
+
+    public void setSource(Source source) {
+        this.source = source;
+    }
+
+    public String getPostUrl() {
+        return postUrl;
+    }
+
+    public void setPostUrl(String postUrl) {
+        this.postUrl = postUrl;
     }
 }

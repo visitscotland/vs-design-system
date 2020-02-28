@@ -70,8 +70,10 @@ public class ListicleContentComponent extends EssentialsContentComponent {
                         if (response != null) {
                             JSONObject json = new JSONObject(response);
                             String credit = json.has("author_name") ? json.getString("author_name") : "";
-                            String link = "https://www.instagram.com/p/" + instagramLink.getId() + "/media";
-                            model.setImage(new FlatImage(link, instagramLink.getCaption(), credit, instagramLink.getCaption(), FlatImage.Source.INSTAGRAM));
+                            String link = "https://www.instagram.com/p/" + instagramLink.getId();
+                            //TODO: This causes a 301 (redirect). Find the way of fixing this.
+                            String image = "https://www.instagram.com/p/" + instagramLink.getId() + "/media";
+                            model.setImage(new FlatImage(image, instagramLink.getCaption(), credit, instagramLink.getCaption(), FlatImage.Source.INSTAGRAM, link));
                         } else {
                             model.setErrorMessage("The Instagram id is not valid");
                             logger.warn(CommonUtils.contentIssue("The Instagram id %s is not valid, Listicle = %s - %s",

@@ -1,7 +1,7 @@
-<#include "../include/imports.ftl">
+<#include "../../include/imports.ftl">
 <#include "breadcrumb-schema.ftl">
-<#include "../vs-dotcom-ds/components/breadcrumb.ftl">
-<#include "../vs-dotcom-ds/components/breadcrumb-item.ftl">
+<#include "../../vs-dotcom-ds/components/breadcrumb.ftl">
+<#include "../../vs-dotcom-ds/components/breadcrumb-item.ftl">
 
 <@hst.setBundle basename="navigation"/>
 
