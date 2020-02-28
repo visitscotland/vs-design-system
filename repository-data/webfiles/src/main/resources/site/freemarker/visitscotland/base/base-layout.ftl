@@ -1,5 +1,5 @@
 <!doctype html>
-<#include "../include/imports.ftl">
+<#include "../../include/imports.ftl">
 <#--<#include "../vs-dotcom-ds/components/button.ftl">-->
 
 <html lang="en">
