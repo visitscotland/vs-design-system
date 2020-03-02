@@ -108,7 +108,7 @@
             </vs-row>
             <vs-row>
                 <vs-col cols="12" md="6" lg="5" xl="6" offset-lg="1">
-                    <vs-rich-text-wrapper>
+                    <vs-rich-text-wrapper variant="lead">
                         <@hst.html hippohtml=document.introduction/>
                     </vs-rich-text-wrapper>
                     <dl class="list-inline">
