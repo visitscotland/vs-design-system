@@ -55,6 +55,7 @@ public class DmsLocationListProvider extends Plugin implements IValueListProvide
     }
 
     public ValueList getValueList(String name, Locale locale) {
+
         List<LocationObject> locations = LocationLoader.getLocationsByLevel(levels);
         ValueListLocation valueList = new ValueListLocation();
 

@@ -8,7 +8,7 @@
 <#macro itineraryMap days>
     <vs-itinerary-map
         slot="map"
-        access-token="<@fmt.message key="mapbox.devkey"/>"
+        access-token= ${label("keys", "mapbox.devkey")}
         overview-map-longitude="57.81"
         overview-map-latitude="-4.13"
         overview-map-zoom="5"
@@ -37,12 +37,12 @@
             </#list>
         </#list>]'
         :labels='{
-            stopLabel: "<@fmt.message key="stop.title"/>",
-            mapControlsFullscreenOpen: "Show fullscreen",
-            mapControlsFullscreenClose: "Exit fullscreen",
-            mapControlsCompass: "Reset angle",
-            mapControlsZoomIn: "Zoom in",
-            mapControlsZoomOut: "Zoom out"
+            stopLabel: "${label("itinerary", "stop.title")}",
+            mapControlsFullscreenOpen:"${label("map", "map.fullscreen")}",
+            mapControlsFullscreenClose: "${label("map", "map.exitfullscreen")}",
+            mapControlsCompass: "${label("map", "map.reset")}",
+            mapControlsZoomIn: "${label("map", "map.zoomin")}",
+            mapControlsZoomOut: "${label("map", "map.zoomout")}"
         }'
     >
     </vs-itinerary-map>

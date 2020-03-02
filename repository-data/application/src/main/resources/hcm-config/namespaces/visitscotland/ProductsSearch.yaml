@@ -11,7 +11,7 @@ definitions:
         /hipposysedit:nodetype:
           jcr:primaryType: hipposysedit:nodetype
           jcr:mixinTypes: ['mix:referenceable', 'hipposysedit:remodel']
-          jcr:uuid: fbb16275-debf-4a4a-85ee-de8f95683d11
+          jcr:uuid: d8e181ef-60eb-41a3-afe4-c24573a9d038
           hipposysedit:node: true
           hipposysedit:supertype: ['hippo:compound', 'hippostd:relaxed']
           hipposysedit:uri: http://www.visitscotland.com/visitscotland/nt/1.0
@@ -28,18 +28,27 @@ definitions:
             hipposysedit:mandatory: false
             hipposysedit:multiple: false
             hipposysedit:ordered: false
-            hipposysedit:path: visitscotland:producttype
+            hipposysedit:path: visitscotland:productType
             hipposysedit:primary: false
             hipposysedit:type: DynamicDropdown
+          /officialrating:
+            jcr:primaryType: hipposysedit:field
+            hipposysedit:mandatory: false
+            hipposysedit:multiple: true
+            hipposysedit:ordered: false
+            hipposysedit:path: visitscotland:officialrating
+            hipposysedit:primary: false
+            hipposysedit:type: String
       /hipposysedit:prototypes:
         jcr:primaryType: hipposysedit:prototypeset
         /hipposysedit:prototype:
           jcr:primaryType: visitscotland:ProductsSearch
           visitscotland:location: ''
-          visitscotland:producttype: ''
           visitscotland:dmsCategories: []
           visitscotland:dmsAwards: []
           visitscotland:dmsFacilities: []
+          visitscotland:officialrating: []
+          visitscotland:productType: ''
       /editor:templates:
         jcr:primaryType: editor:templateset
         /_default_:
@@ -72,11 +81,12 @@ definitions:
             hint: ''
             /cluster.options:
               jcr:primaryType: frontend:pluginconfig
-              valuelistProvider: service.locationlist.image
-          /producttype:
+              valuelistProvider: service.locationlist.psr
+          /productType:
             jcr:primaryType: frontend:plugin
-            caption: Product type
+            caption: Product Type
             field: producttype
+            hint: ''
             plugin.class: org.hippoecm.frontend.editor.plugins.field.PropertyFieldPlugin
             wicket.id: ${cluster.id}.right.item
             /cluster.options:
@@ -134,3 +144,17 @@ definitions:
             icon.style: 'display: none;'
             /cluster.options:
               jcr:primaryType: frontend:pluginconfig
+          /officialrating:
+            jcr:primaryType: frontend:plugin
+            caption: Official rating
+            field: officialrating
+            multiselect.type: checkboxes
+            palette.alloworder: false
+            palette.maxrows: '10'
+            plugin.class: org.onehippo.forge.selection.frontend.plugin.DynamicMultiSelectPlugin
+            selectlist.maxrows: '10'
+            valuelist.provider: service.valuelist.default
+            wicket.id: ${cluster.id}.left.item
+            /cluster.options:
+              jcr:primaryType: frontend:pluginconfig
+              source: /content/documents/administration/options/official-rating

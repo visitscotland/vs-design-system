@@ -2,7 +2,6 @@ package com.visitscotland.brmx.utils;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.visitscotland.brmx.beans.dms.LocationObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -43,11 +42,15 @@ public abstract class LocationLoader {
     public static List<LocationObject> getLocationsByLevel(String... levels){
         List<LocationObject> locationList = new ArrayList<>();
         for (LocationObject obj : locations.get(null).values()){
-            for (String level : levels){
-                if (obj.getTypes().contains(level)){
-                    locationList.add(obj);
-                    break;
+            if (levels!=null && levels.length>0){
+                for (String level : levels){
+                    if (obj.getTypes().contains(level)){
+                        locationList.add(obj);
+                        break;
+                    }
                 }
+            }else{
+                locationList.add(obj);
             }
         }
         if (locationList.size() == 0){
@@ -121,8 +124,7 @@ public abstract class LocationLoader {
      *
      * @return HTML Fragment
      */
-    private static String
-    requestPage(String url) {
+    private static String requestPage(String url) {
         StringBuilder sb = new StringBuilder();
         try {
             InputStream is = new URL(url).openStream();
@@ -158,5 +160,4 @@ public abstract class LocationLoader {
         }
         return locations;
     }
-
 }
