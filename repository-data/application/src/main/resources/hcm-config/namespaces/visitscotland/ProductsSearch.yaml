@@ -11,10 +11,32 @@ definitions:
         /hipposysedit:nodetype:
           jcr:primaryType: hipposysedit:nodetype
           jcr:mixinTypes: ['mix:referenceable', 'hipposysedit:remodel']
-          jcr:uuid: fbb16275-debf-4a4a-85ee-de8f95683d11
+          jcr:uuid: 9a3654d2-b0d5-4ed3-a36b-49b123d78dba
           hipposysedit:node: true
           hipposysedit:supertype: ['hippo:compound', 'hippostd:relaxed']
           hipposysedit:uri: http://www.visitscotland.com/visitscotland/nt/1.0
+          /location:
+            jcr:primaryType: hipposysedit:field
+            hipposysedit:mandatory: false
+            hipposysedit:multiple: false
+            hipposysedit:ordered: false
+            hipposysedit:path: visitscotland:location
+            hipposysedit:primary: false
+            hipposysedit:type: DynamicDropdown
+          /producttype:
+            jcr:primaryType: hipposysedit:field
+            hipposysedit:mandatory: false
+            hipposysedit:multiple: false
+            hipposysedit:ordered: false
+            hipposysedit:path: visitscotland:producttype
+            hipposysedit:primary: false
+            hipposysedit:type: DynamicDropdown
+        /hipposysedit:nodetype[2]:
+          jcr:primaryType: hipposysedit:nodetype
+          jcr:mixinTypes: ['mix:referenceable']
+          jcr:uuid: 2bcfa36b-081a-4bf4-9f6f-d52f0e16ef01
+          hipposysedit:node: true
+          hipposysedit:supertype: ['hippo:compound', 'hippostd:relaxed']
           /location:
             jcr:primaryType: hipposysedit:field
             hipposysedit:mandatory: false
@@ -40,6 +62,14 @@ definitions:
           visitscotland:dmsCategories: []
           visitscotland:dmsAwards: []
           visitscotland:dmsFacilities: []
+        /hipposysedit:prototype[2]:
+          jcr:primaryType: nt:unstructured
+          jcr:mixinTypes: ['hippostd:relaxed']
+          visitscotland:dmsAwards: []
+          visitscotland:dmsCategories: []
+          visitscotland:dmsFacilities: []
+          visitscotland:location: Elie
+          visitscotland:producttype: ''
       /editor:templates:
         jcr:primaryType: editor:templateset
         /_default_:
@@ -72,7 +102,7 @@ definitions:
             hint: ''
             /cluster.options:
               jcr:primaryType: frontend:pluginconfig
-              valuelistProvider: service.locationlist.image
+              valuelistProvider: service.locationlist.psr
           /producttype:
             jcr:primaryType: frontend:plugin
             caption: Product type

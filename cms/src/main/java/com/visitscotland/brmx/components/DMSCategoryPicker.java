@@ -8,27 +8,19 @@ package com.visitscotland.brmx.components;
 import com.visitscotland.api.DataService;
 import com.visitscotland.api.DataServiceImpl;
 import com.visitscotland.dataobjects.CategoryGroup;
-import com.visitscotland.dataobjects.MetadataSearch;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 import org.apache.commons.lang.StringUtils;
-import org.hippoecm.repository.HippoStdNodeType;
 import org.onehippo.forge.exdocpicker.api.ExternalDocumentCollection;
 import org.onehippo.forge.exdocpicker.api.ExternalDocumentServiceContext;
-import org.onehippo.forge.exdocpicker.api.ExternalDocumentServiceFacade;
 import org.onehippo.forge.exdocpicker.impl.SimpleExternalDocumentCollection;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import vs.ase.dms.ProductTypes;
 
-import javax.jcr.Node;
 import javax.jcr.RepositoryException;
-import javax.jcr.Value;
-import java.io.IOException;
-import java.io.Reader;
 import java.util.*;
 
-// TODO: refactor
 public class DMSCategoryPicker extends AbstractDMSPicker{
 
     /**

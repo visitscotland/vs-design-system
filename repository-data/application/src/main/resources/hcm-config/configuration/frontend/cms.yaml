@@ -42,3 +42,8 @@ definitions:
       plugin.class: com.visitscotland.brmx.components.DmsLocationListProvider
       valuelist.provider: service.locationlist.destination
       location.levels: [REGION, DESTINATION]
+    /hippo:configuration/hippo:frontend/cms/cms-services/DmsProductSearchLocationListProvider:
+      jcr:primaryType: frontend:plugin
+      location.levels: []
+      plugin.class: com.visitscotland.brmx.components.DmsLocationListProvider
+      valuelist.provider: service.locationlist.psr

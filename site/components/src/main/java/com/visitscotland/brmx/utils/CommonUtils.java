@@ -1,7 +1,5 @@
 package com.visitscotland.brmx.utils;
 
-import com.visitscotland.utils.DataServiceUtils;
-import org.hippoecm.hst.core.component.HstResponse;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
