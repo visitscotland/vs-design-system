@@ -7,7 +7,7 @@
 <#include "../../vs-dotcom-ds/components/row.ftl">
 <#include "../../vs-dotcom-ds/components/col.ftl">
 <#include "../../vs-dotcom-ds/components/icon.ftl">
-<#include "../../vs-dotcom-ds/components/lead-paragraph.ftl">
+<#include "../../vs-dotcom-ds/components/rich-text-wrapper.ftl">
 <#include "../../vs-dotcom-ds/components/image-with-caption.ftl">
 <#include "../../vs-dotcom-ds/components/image-location-map.ftl">
 <#include "../../vs-dotcom-ds/components/button.ftl">
@@ -108,9 +108,9 @@
             </vs-row>
             <vs-row>
                 <vs-col cols="12" md="6" lg="5" xl="6" offset-lg="1">
-                    <vs-lead-paragraph>
+                    <vs-rich-text-wrapper>
                         <@hst.html hippohtml=document.introduction/>
-                    </vs-lead-paragraph>
+                    </vs-rich-text-wrapper>
                     <dl class="list-inline">
                         <dt class="list-inline-item">${label("itinerary", "start-finish")}</dt>
                         <dd class="list-inline-item">${firstStopLocation} / ${lastStopLocation}</dd>

@@ -187,7 +187,7 @@ export default {
         </vs-row>
         <vs-row>
           <vs-col cols="12" md="6" lg="5" xl="6" offset-lg="1">
-            <vs-lead-paragraph v-html="itineraries.sampleItinerary.introduction"></vs-lead-paragraph>
+            <vs-rich-text-wrapper v-html="itineraries.sampleItinerary.introduction"></vs-rich-text-wrapper>
             <dl class="list-inline">
               <dt class="list-inline-item">Start / Finish</dt>
               <dd class="list-inline-item">{{itineraries.sampleItinerary.start}}/{{itineraries.sampleItinerary.finish}}</dd>
