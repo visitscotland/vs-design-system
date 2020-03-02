@@ -7,7 +7,7 @@ package com.visitscotland.brmx.components;
 
 import com.visitscotland.api.DataService;
 import com.visitscotland.api.DataServiceImpl;
-import com.visitscotland.dataobjects.CategoryGroup;
+import com.visitscotland.dataobjects.FacilityGroup;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 import org.apache.commons.lang.StringUtils;
@@ -21,17 +21,18 @@ import vs.ase.dms.ProductTypes;
 import javax.jcr.RepositoryException;
 import java.util.*;
 
-public class DMSCategoryPicker extends AbstractDMSPicker{
+public class DMSFacilityPicker extends AbstractDMSPicker {
 
     /**
      * Plugin parameter name for physical document field name (JCR property name).
      */
+
     private static final long serialVersionUID = 1L;
 
-    private static Logger log = LoggerFactory.getLogger(DMSCategoryPicker.class);
+    private static Logger log = LoggerFactory.getLogger(DMSFacilityPicker.class);
 
 
-    public DMSCategoryPicker() {
+    public DMSFacilityPicker() {
         try {
             docArray = new JSONArray();
             // TODO: create an exposed endpoint to get categories (similar to locations)
@@ -47,10 +48,10 @@ public class DMSCategoryPicker extends AbstractDMSPicker{
             searchTypes.add(ProductTypes.FOOD_DRINK);
 
             for (ProductTypes productTypes : searchTypes) {
-                List<CategoryGroup> catGroups = metadata.getCategoryGroupsForType(productTypes);
-                if (catGroups != null) {
-                    for (CategoryGroup cat : catGroups) {
-                        docArray.addAll(JSONArray.fromObject(cat.getCategories()));
+                List<FacilityGroup> facGroups = metadata.getFacilityGroupsForType(productTypes);
+                if (facGroups != null) {
+                    for (FacilityGroup cat : facGroups) {
+                        docArray.addAll(JSONArray.fromObject(cat.getFacilities()));
                     }
                 }
             }
@@ -68,16 +69,16 @@ public class DMSCategoryPicker extends AbstractDMSPicker{
         try {
             List<String> productTypes = Arrays.asList(context.getContextModel().getNode().getProperty(fieldName).getValue().getString().split("\\s*,\\s*"));
             if (!productTypes.get(0).isEmpty()) {
-                List<CategoryGroup> catGroups = new ArrayList<>();
+                List<FacilityGroup> facGroups = new ArrayList<>();
 
                 for (String productType : productTypes) {
-                    catGroups.addAll(metadata.getCategoryGroupsForType(ProductTypes.byId(productType)));
+                    facGroups.addAll(metadata.getFacilityGroupsForType(ProductTypes.byId(productType)));
                 }
 
-                if (catGroups != null) {
+                if (facGroups != null) {
                     JSONArray subCategory = new JSONArray();
-                    for (CategoryGroup cat : catGroups) {
-                        subCategory.addAll(JSONArray.fromObject(cat.getCategories()));
+                    for (FacilityGroup fac : facGroups) {
+                        subCategory.addAll(JSONArray.fromObject(fac.getFacilities()));
                     }
                     docArray = subCategory;
                 }
@@ -98,7 +99,5 @@ public class DMSCategoryPicker extends AbstractDMSPicker{
 
         return docCollection;
     }
-
-
 
 }

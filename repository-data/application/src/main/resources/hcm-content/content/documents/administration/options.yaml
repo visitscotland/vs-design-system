@@ -164,3 +164,35 @@
         jcr:primaryType: selection:listitem
         selection:key: cate
         selection:label: Restaurant
+  /official-rating:
+    jcr:primaryType: hippo:handle
+    jcr:mixinTypes: ['hippo:named', 'mix:referenceable']
+    jcr:uuid: 6151b510-17fb-45bf-a926-fb2ba3689590
+    hippo:name: Product Search - Official Rating
+    /official-rating:
+      jcr:primaryType: selection:valuelist
+      jcr:mixinTypes: ['hippotranslation:translated', 'mix:referenceable']
+      jcr:uuid: 1968b720-0492-4b95-b0df-0f5a773aab42
+      hippo:availability: [live, preview]
+      hippotranslation:id: d0271ffd-3a1d-4bd2-8c7f-4f7ee9d83fe8
+      hippotranslation:locale: inherited - from query
+      /selection:listitem[1]:
+        jcr:primaryType: selection:listitem
+        selection:key: '5'
+        selection:label: 5 Stars
+      /selection:listitem[2]:
+        jcr:primaryType: selection:listitem
+        selection:key: '4'
+        selection:label: 4 Stars
+      /selection:listitem[3]:
+        jcr:primaryType: selection:listitem
+        selection:key: '3'
+        selection:label: 3 Stars
+      /selection:listitem[4]:
+        jcr:primaryType: selection:listitem
+        selection:key: '2'
+        selection:label: 2 Stars
+      /selection:listitem[5]:
+        jcr:primaryType: selection:listitem
+        selection:key: '1'
+        selection:label: 1 Star
