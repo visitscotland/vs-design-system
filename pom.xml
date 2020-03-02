@@ -11,7 +11,7 @@
   <parent>
     <groupId>com.onehippo.cms7</groupId>
     <artifactId>hippo-cms7-enterprise-release</artifactId>
-    <version>13.3.0</version>
+    <version>13.4.1</version>
   </parent>
 
   <name>www.visitscotland.com CMS Pages</name>
@@ -70,7 +70,7 @@
     <!--***START temporary override of versions*** -->
     <!-- ***END temporary override of versions*** -->
     <!--TODO define this in parent pom -->
-    <essentials.version>13.3.0</essentials.version>
+    <essentials.version>13.4.1</essentials.version>
     <jsp-api.version>2.2</jsp-api.version>
     <taglibs.version>1.2.5</taglibs.version>
     <data-service-api.version>1.2.0-SNAPSHOT</data-service-api.version>
@@ -206,13 +206,14 @@
         </property>
       </activation>
       <modules>
+        <module>frontend</module>
+        <module>ui-integration</module>
+        
         <module>cms-dependencies</module>
         <module>repository-data</module>
         <module>cms</module>
         <module>site</module>
         <module>essentials</module>
-        <module>frontend</module>
-        <module>ui-integration</module>
       </modules>
     </profile>
 
