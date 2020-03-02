@@ -294,7 +294,6 @@
       jcr:mixinTypes: ['mix:referenceable']
       jcr:uuid: 3c4a8cb5-fb88-40cc-9e4c-8ea5ac59f10b
       hippo:availability: []
-      hippostd:holder: admin
       hippostd:state: draft
       hippostdpubwf:createdBy: admin
       hippostdpubwf:creationDate: 2019-12-20T14:35:30.322Z
@@ -350,7 +349,6 @@
         jcr:mixinTypes: ['mix:referenceable']
         jcr:uuid: ea358846-0878-416a-9704-4e901c7f1f3b
         hippo:availability: []
-        hippostd:holder: admin
         hippostd:state: draft
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2019-12-16T14:56:24.091Z
@@ -388,7 +386,7 @@
         hippostd:state: unpublished
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2019-12-16T14:56:24.091Z
-        hippostdpubwf:lastModificationDate: 2020-02-25T16:34:56.209Z
+        hippostdpubwf:lastModificationDate: 2020-03-02T11:44:48.863Z
         hippostdpubwf:lastModifiedBy: admin
         resourcebundle:descriptions: ['', '', '', '', '', '', '', '', '', '', '',
           '', '', '', '', '', '', '', '', '']
@@ -398,7 +396,7 @@
           kilometres-abbreviation, transport, day, miles, kilometres, highlights,
           areas-covered, stop.no-stop, stop.time-to-explore, theme]
         resourcebundle:messages: [Key Facilities, Nearby places to stay, Nearby places
-            to eat, Find out more, Stops, Start / Finish, Days, Distance, Main Themes,
+            to eat, Find out more, Stop, Start / Finish, Days, Distance, Main Themes,
           mi, km, Transport, Day, Miles, Kilometres, Highlights, Areas Covered, The
             stop doesn't have any product linked to the stop, Time to explore, Main
             Theme]

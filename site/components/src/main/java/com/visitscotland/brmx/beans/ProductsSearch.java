@@ -31,4 +31,9 @@ public class ProductsSearch extends HippoCompound {
     public String[] getDmsAwards() {
         return getMultipleProperty("visitscotland:dmsAwards");
     }
+
+    @HippoEssentialsGenerated(internalName = "visitscotland:officialrating")
+    public String[] getOfficialrating() {
+        return getMultipleProperty("visitscotland:officialrating");
+    }
 }

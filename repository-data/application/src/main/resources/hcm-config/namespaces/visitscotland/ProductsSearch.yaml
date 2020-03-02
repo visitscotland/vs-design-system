@@ -11,7 +11,7 @@ definitions:
         /hipposysedit:nodetype:
           jcr:primaryType: hipposysedit:nodetype
           jcr:mixinTypes: ['mix:referenceable', 'hipposysedit:remodel']
-          jcr:uuid: 9a3654d2-b0d5-4ed3-a36b-49b123d78dba
+          jcr:uuid: 888a44ca-1d40-4223-b149-a1d1985bf867
           hipposysedit:node: true
           hipposysedit:supertype: ['hippo:compound', 'hippostd:relaxed']
           hipposysedit:uri: http://www.visitscotland.com/visitscotland/nt/1.0
@@ -31,28 +31,14 @@ definitions:
             hipposysedit:path: visitscotland:producttype
             hipposysedit:primary: false
             hipposysedit:type: DynamicDropdown
-        /hipposysedit:nodetype[2]:
-          jcr:primaryType: hipposysedit:nodetype
-          jcr:mixinTypes: ['mix:referenceable']
-          jcr:uuid: 2bcfa36b-081a-4bf4-9f6f-d52f0e16ef01
-          hipposysedit:node: true
-          hipposysedit:supertype: ['hippo:compound', 'hippostd:relaxed']
-          /location:
+          /officialrating:
             jcr:primaryType: hipposysedit:field
             hipposysedit:mandatory: false
-            hipposysedit:multiple: false
+            hipposysedit:multiple: true
             hipposysedit:ordered: false
-            hipposysedit:path: visitscotland:location
+            hipposysedit:path: visitscotland:officialrating
             hipposysedit:primary: false
-            hipposysedit:type: DynamicDropdown
-          /producttype:
-            jcr:primaryType: hipposysedit:field
-            hipposysedit:mandatory: false
-            hipposysedit:multiple: false
-            hipposysedit:ordered: false
-            hipposysedit:path: visitscotland:producttype
-            hipposysedit:primary: false
-            hipposysedit:type: DynamicDropdown
+            hipposysedit:type: String
       /hipposysedit:prototypes:
         jcr:primaryType: hipposysedit:prototypeset
         /hipposysedit:prototype:
@@ -62,14 +48,7 @@ definitions:
           visitscotland:dmsCategories: []
           visitscotland:dmsAwards: []
           visitscotland:dmsFacilities: []
-        /hipposysedit:prototype[2]:
-          jcr:primaryType: nt:unstructured
-          jcr:mixinTypes: ['hippostd:relaxed']
-          visitscotland:dmsAwards: []
-          visitscotland:dmsCategories: []
-          visitscotland:dmsFacilities: []
-          visitscotland:location: Elie
-          visitscotland:producttype: ''
+          visitscotland:officialrating: []
       /editor:templates:
         jcr:primaryType: editor:templateset
         /_default_:
@@ -164,3 +143,17 @@ definitions:
             icon.style: 'display: none;'
             /cluster.options:
               jcr:primaryType: frontend:pluginconfig
+          /officialrating:
+            jcr:primaryType: frontend:plugin
+            caption: Official rating
+            field: officialrating
+            multiselect.type: checkboxes
+            palette.alloworder: false
+            palette.maxrows: '10'
+            plugin.class: org.onehippo.forge.selection.frontend.plugin.DynamicMultiSelectPlugin
+            selectlist.maxrows: '10'
+            valuelist.provider: service.valuelist.default
+            wicket.id: ${cluster.id}.left.item
+            /cluster.options:
+              jcr:primaryType: frontend:pluginconfig
+              source: /content/documents/administration/options/official-rating

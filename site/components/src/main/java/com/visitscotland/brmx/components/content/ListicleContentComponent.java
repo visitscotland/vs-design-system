@@ -176,6 +176,7 @@ public class ListicleContentComponent extends EssentialsContentComponent {
             String[] categories = productSearchLink.getSearch().getDmsCategories();
             String[] facilities = productSearchLink.getSearch().getDmsFacilities();
             String[] awards = productSearchLink.getSearch().getDmsAwards();
+            String[] stars = productSearchLink.getSearch().getOfficialrating();
             return  new FlatLink(productSearchLink.getLabel(), productSearchLink.getLabel());
 
         } else if (item instanceof ExternalLink) {
