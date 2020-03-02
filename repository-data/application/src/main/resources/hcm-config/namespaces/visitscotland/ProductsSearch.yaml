@@ -11,7 +11,7 @@ definitions:
         /hipposysedit:nodetype:
           jcr:primaryType: hipposysedit:nodetype
           jcr:mixinTypes: ['mix:referenceable', 'hipposysedit:remodel']
-          jcr:uuid: 888a44ca-1d40-4223-b149-a1d1985bf867
+          jcr:uuid: d8e181ef-60eb-41a3-afe4-c24573a9d038
           hipposysedit:node: true
           hipposysedit:supertype: ['hippo:compound', 'hippostd:relaxed']
           hipposysedit:uri: http://www.visitscotland.com/visitscotland/nt/1.0
@@ -28,7 +28,7 @@ definitions:
             hipposysedit:mandatory: false
             hipposysedit:multiple: false
             hipposysedit:ordered: false
-            hipposysedit:path: visitscotland:producttype
+            hipposysedit:path: visitscotland:productType
             hipposysedit:primary: false
             hipposysedit:type: DynamicDropdown
           /officialrating:
@@ -44,11 +44,11 @@ definitions:
         /hipposysedit:prototype:
           jcr:primaryType: visitscotland:ProductsSearch
           visitscotland:location: ''
-          visitscotland:producttype: ''
           visitscotland:dmsCategories: []
           visitscotland:dmsAwards: []
           visitscotland:dmsFacilities: []
           visitscotland:officialrating: []
+          visitscotland:productType: ''
       /editor:templates:
         jcr:primaryType: editor:templateset
         /_default_:
@@ -82,10 +82,11 @@ definitions:
             /cluster.options:
               jcr:primaryType: frontend:pluginconfig
               valuelistProvider: service.locationlist.psr
-          /producttype:
+          /productType:
             jcr:primaryType: frontend:plugin
-            caption: Product type
+            caption: Product Type
             field: producttype
+            hint: ''
             plugin.class: org.hippoecm.frontend.editor.plugins.field.PropertyFieldPlugin
             wicket.id: ${cluster.id}.right.item
             /cluster.options:
