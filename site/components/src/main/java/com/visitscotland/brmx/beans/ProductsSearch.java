@@ -12,21 +12,23 @@ public class ProductsSearch extends HippoCompound {
         return getSingleProperty("visitscotland:location");
     }
 
-       @HippoEssentialsGenerated(internalName = "visitscotland:producttype")
+    @HippoEssentialsGenerated(internalName = "visitscotland:producttype")
     public String getProducttype() {
         return getSingleProperty("visitscotland:producttype");
     }
 
-
+    @HippoEssentialsGenerated(internalName = "visitscotland:dmsCategories", allowModifications = false)
     public String[] getDmsCategories() {
         return getMultipleProperty("visitscotland:dmsCategories");
     }
-    public String[] getDmsFacilities() {
 
+    @HippoEssentialsGenerated(internalName = "visitscotland:dmsFacilities", allowModifications = false)
+    public String[] getDmsFacilities() {
         return getMultipleProperty("visitscotland:dmsFacilities");
     }
-    public String[] getDmsAwards() {
 
+    @HippoEssentialsGenerated(internalName = "visitscotland:dmsAwards", allowModifications = false)
+    public String[] getDmsAwards() {
         return getMultipleProperty("visitscotland:dmsAwards");
     }
 }
