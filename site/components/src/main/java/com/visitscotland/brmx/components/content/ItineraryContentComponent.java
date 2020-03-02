@@ -141,8 +141,10 @@ public class ItineraryContentComponent extends EssentialsContentComponent {
 
                     model.setTimeToexplore(externalLink.getTimeToExplore());
 
-                    FlatLink ctaLink = new FlatLink(this.getCtaLabel( externalLink.getExternalLink().getLabel(), request.getLocale()), externalLink.getExternalLink().getLink());
-                    model.setCtaLink(ctaLink);
+                    if (externalLink.getExternalLink() != null) {
+                        FlatLink ctaLink = new FlatLink(this.getCtaLabel(externalLink.getExternalLink().getLabel(), request.getLocale()), externalLink.getExternalLink().getLink());
+                        model.setCtaLink(ctaLink);
+                    };
 
 
                     if (externalLink.getCoordinates() != null) {
