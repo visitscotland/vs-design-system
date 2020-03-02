@@ -11,18 +11,10 @@ definitions:
         /hipposysedit:nodetype:
           jcr:primaryType: hipposysedit:nodetype
           jcr:mixinTypes: ['mix:referenceable', 'hipposysedit:remodel']
-          jcr:uuid: 5cf67d05-8827-4920-bfeb-2e8798abf87a
+          jcr:uuid: d8e181ef-60eb-41a3-afe4-c24573a9d038
           hipposysedit:node: true
           hipposysedit:supertype: ['hippo:compound', 'hippostd:relaxed']
           hipposysedit:uri: http://www.visitscotland.com/visitscotland/nt/1.0
-          /dmscategories:
-            jcr:primaryType: hipposysedit:field
-            hipposysedit:mandatory: false
-            hipposysedit:multiple: true
-            hipposysedit:ordered: false
-            hipposysedit:path: visitscotland:dmscategories
-            hipposysedit:primary: false
-            hipposysedit:type: String
           /location:
             jcr:primaryType: hipposysedit:field
             hipposysedit:mandatory: false
@@ -31,75 +23,32 @@ definitions:
             hipposysedit:path: visitscotland:location
             hipposysedit:primary: false
             hipposysedit:type: DynamicDropdown
-          /long:
-            jcr:primaryType: hipposysedit:field
-            hipposysedit:mandatory: false
-            hipposysedit:multiple: false
-            hipposysedit:ordered: false
-            hipposysedit:path: visitscotland:distance
-            hipposysedit:primary: false
-            hipposysedit:type: Long
           /producttype:
             jcr:primaryType: hipposysedit:field
             hipposysedit:mandatory: false
             hipposysedit:multiple: false
             hipposysedit:ordered: false
-            hipposysedit:path: visitscotland:producttype
+            hipposysedit:path: visitscotland:productType
             hipposysedit:primary: false
             hipposysedit:type: DynamicDropdown
-        /hipposysedit:nodetype[2]:
-          jcr:primaryType: hipposysedit:nodetype
-          jcr:mixinTypes: ['mix:referenceable']
-          jcr:uuid: 65cf6adb-c310-4b0c-ad72-d88bd3200abb
-          hipposysedit:node: true
-          hipposysedit:supertype: ['hippo:compound', 'hippostd:relaxed']
-          /dmscategories:
+          /officialrating:
             jcr:primaryType: hipposysedit:field
             hipposysedit:mandatory: false
             hipposysedit:multiple: true
             hipposysedit:ordered: false
-            hipposysedit:path: visitscotland:dmscategories
+            hipposysedit:path: visitscotland:officialrating
             hipposysedit:primary: false
             hipposysedit:type: String
-          /location:
-            jcr:primaryType: hipposysedit:field
-            hipposysedit:mandatory: false
-            hipposysedit:multiple: false
-            hipposysedit:ordered: false
-            hipposysedit:path: visitscotland:location
-            hipposysedit:primary: false
-            hipposysedit:type: DynamicDropdown
-          /long:
-            jcr:primaryType: hipposysedit:field
-            hipposysedit:mandatory: false
-            hipposysedit:multiple: false
-            hipposysedit:ordered: false
-            hipposysedit:path: visitscotland:distance
-            hipposysedit:primary: false
-            hipposysedit:type: Long
-          /producttype:
-            jcr:primaryType: hipposysedit:field
-            hipposysedit:mandatory: false
-            hipposysedit:multiple: false
-            hipposysedit:ordered: false
-            hipposysedit:path: visitscotland:producttype
-            hipposysedit:primary: false
-            hipposysedit:type: DynamicDropdown
       /hipposysedit:prototypes:
         jcr:primaryType: hipposysedit:prototypeset
         /hipposysedit:prototype:
           jcr:primaryType: visitscotland:ProductsSearch
-          visitscotland:dmscategories: ['']
           visitscotland:location: ''
-          visitscotland:producttype: ''
-          visitscotland:distance: 0
-        /hipposysedit:prototype[2]:
-          jcr:primaryType: nt:unstructured
-          jcr:mixinTypes: ['hippostd:relaxed']
-          visitscotland:distance: 0
-          visitscotland:dmscategories: ['']
-          visitscotland:location: ''
-          visitscotland:producttype: ''
+          visitscotland:dmsCategories: []
+          visitscotland:dmsAwards: []
+          visitscotland:dmsFacilities: []
+          visitscotland:officialrating: []
+          visitscotland:productType: ''
       /editor:templates:
         jcr:primaryType: editor:templateset
         /_default_:
@@ -132,16 +81,18 @@ definitions:
             hint: ''
             /cluster.options:
               jcr:primaryType: frontend:pluginconfig
-              valuelistProvider: service.locationlist.default
-          /distance:
+              valuelistProvider: service.locationlist.psr
+          /productType:
             jcr:primaryType: frontend:plugin
-            caption: Distance in milles
-            field: long
+            caption: Product Type
+            field: producttype
             hint: ''
             plugin.class: org.hippoecm.frontend.editor.plugins.field.PropertyFieldPlugin
             wicket.id: ${cluster.id}.right.item
             /cluster.options:
               jcr:primaryType: frontend:pluginconfig
+              orientation: vertical
+              source: /content/documents/administration/options/product-search
           /dmscategorycselector:
             jcr:primaryType: frontend:plugin
             caption: DMS category
@@ -153,19 +104,57 @@ definitions:
             mode: ${mode}
             plugin.class: org.onehippo.forge.exdocpicker.impl.field.ExternalDocumentFieldSelectorPlugin
             selection.mode: multiple
+            wicket.id: ${cluster.id}.left.item
+            wicket.model: ${wicket.model}
+            page.size: 8
+            icon.style: 'display: none;'
+            /cluster.options:
+              jcr:primaryType: frontend:pluginconfig
+          /dmsfacilitycselector:
+            jcr:primaryType: frontend:plugin
+            caption: DMS facility
+            engine: ${engine}
+            dms.productype: visitscotland:producttype
+            example.external.docs.field.name: visitscotland:dmsFacilities
+            external.document.service.facade: com.visitscotland.brmx.components.DMSFacilityPicker
+            initial.search.enabled: true
+            mode: ${mode}
+            plugin.class: org.onehippo.forge.exdocpicker.impl.field.ExternalDocumentFieldSelectorPlugin
+            selection.mode: multiple
             wicket.id: ${cluster.id}.right.item
             wicket.model: ${wicket.model}
             page.size: 8
             icon.style: 'display: none;'
             /cluster.options:
               jcr:primaryType: frontend:pluginconfig
-          /producttype:
+          /dmsawardcselector:
             jcr:primaryType: frontend:plugin
-            caption: Product type
-            field: producttype
-            plugin.class: org.hippoecm.frontend.editor.plugins.field.PropertyFieldPlugin
+            caption: DMS awards
+            engine: ${engine}
+            dms.productype: visitscotland:producttype
+            example.external.docs.field.name: visitscotland:dmsAwards
+            external.document.service.facade: com.visitscotland.brmx.components.DMSAwardPicker
+            initial.search.enabled: true
+            mode: ${mode}
+            plugin.class: org.onehippo.forge.exdocpicker.impl.field.ExternalDocumentFieldSelectorPlugin
+            selection.mode: multiple
+            wicket.id: ${cluster.id}.right.item
+            wicket.model: ${wicket.model}
+            page.size: 8
+            icon.style: 'display: none;'
+            /cluster.options:
+              jcr:primaryType: frontend:pluginconfig
+          /officialrating:
+            jcr:primaryType: frontend:plugin
+            caption: Official rating
+            field: officialrating
+            multiselect.type: checkboxes
+            palette.alloworder: false
+            palette.maxrows: '10'
+            plugin.class: org.onehippo.forge.selection.frontend.plugin.DynamicMultiSelectPlugin
+            selectlist.maxrows: '10'
+            valuelist.provider: service.valuelist.default
             wicket.id: ${cluster.id}.left.item
             /cluster.options:
               jcr:primaryType: frontend:pluginconfig
-              orientation: vertical
-              source: /content/documents/administration/options/product-search
+              source: /content/documents/administration/options/official-rating

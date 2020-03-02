@@ -40,7 +40,13 @@
         </vs-col>
     </vs-row>
 
-    <#assign i = 0>
+        <#if document.descOrder>
+            <#assign i = items?size + 1>
+        <#else >
+            <#assign i = 0>
+        </#if>
+
+
     <#list items as item>
 
         <#assign image = ""/>
@@ -54,12 +60,17 @@
             </#if>
         </#if>
 
-        <#assign i = i +1>
+        <#if document.descOrder>
+            <#assign i = i - 1>
+        <#else >
+            <#assign i = i + 1>
+        </#if>
+
 
         <vs-row class="justify-content-md-between">
             <vs-col cols="12" lg="8" offset-lg="1">
                 <div>
-                    <vs-heading level="2"> ${i}. ${item.title}</vs-heading>
+                    <vs-heading level="2"> ${i}.${item.title}</vs-heading>
                     <#if item.subtitle??>${item.subTitle} </#if>
                 </div>
             </vs-col>
@@ -67,8 +78,11 @@
         <vs-row class="justify-content-md-between">
             <vs-col cols="12" lg="8" offset-lg="1">
                 <div>
-                    <img src="${image}" width="50%" >
-                    <#-- TODO: Copy minimap -->
+                    <img src="${image}"  width="50%" >
+                    <#if item.image.postUrl??>
+                        <vs-link href="${item.image.postUrl}">See the post</vs-link>
+                    </#if>
+
                 </div>
             </vs-col>
         </vs-row>
@@ -95,8 +109,7 @@
             <vs-col cols="12" lg="8" offset-lg="1">
                 <div>
                     <#list item.ctaLinks as cta>
-                        <a href="${cta.link}">GO TO: ${label}</a>
-                        <vs-link href="${cta.link}">GO TO: ${label}</vs-link>
+                        <vs-link href="${cta.link}">GO TO: ${cta.label}</vs-link>
                     </#list>
                 </div>
             </vs-col>

@@ -232,110 +232,7 @@
       jcr:uuid: 28abd074-5fc4-4ebc-a424-1d4f9e5cb0e6
       hippo:name: GREYFRIARS KIRKYARD
       hippo:versionHistory: ca7cf1d2-105c-4a16-9dfb-cdcb03186f4e
-      /greyfriars-kirkyard[1]:
-        jcr:primaryType: visitscotland:Stop
-        jcr:mixinTypes: ['mix:referenceable']
-        jcr:uuid: 382c1404-85eb-445f-acb5-fb5c333a93e2
-        hippo:availability: []
-        hippostd:holder: admin
-        hippostd:state: draft
-        hippostdpubwf:createdBy: admin
-        hippostdpubwf:creationDate: 2019-12-11T12:40:08.862Z
-        hippostdpubwf:lastModificationDate: 2020-02-05T08:40:03.577Z
-        hippostdpubwf:lastModifiedBy: admin
-        hippotranslation:id: 1bdaaad2-68eb-4493-878c-0961215fe02a
-        hippotranslation:locale: en
-        visitscotland:tipsTitle: Pull out title example
-        visitscotland:title: Greyfriars Kirkyard
-        /visitscotland:description:
-          jcr:primaryType: hippostd:html
-          hippostd:content: '<p>Only a short walk away from The Elephant House you''ll
-            find this infamous, spine-tingling graveyard, and burial place of several
-            notable Edinburgh academics and writers of the past. However, also buried
-            here are a few other notable residents: Thomas Riddell, William McGonagall
-            and Elizabeth Moodie. A coincidence? We think not.</p>'
-        /visitscotland:tips:
-          jcr:primaryType: hippostd:html
-          hippostd:content: <p>Description example for pull out</p>
-        /visitscotland:product:
-          jcr:primaryType: visitscotland:ItineraryExternalLink
-          visitscotland:link: ''
-          visitscotland:timeToExplore: ' 24'
-          /visitscotland:ExternalLink:
-            jcr:primaryType: visitscotland:ExternalLink
-            visitscotland:Link: https://greyfriarskirk.com/visit/kirkyard/
-            visitscotland:label: ''
-            /visitscotland:Coordinates:
-              jcr:primaryType: visitscotland:Coordinates
-              visitscotland:latitude: 0.0
-              visitscotland:longitude: 0.0
-            /visitscotland:image:
-              jcr:primaryType: hippogallerypicker:imagelink
-              hippo:docbase: 9fb38865-ca10-4ef4-bcab-a1097cc44487
-              hippo:facets: []
-              hippo:modes: []
-              hippo:values: []
-          /visitscotland:Coordinates:
-            jcr:primaryType: visitscotland:Coordinates
-            visitscotland:latitude: 57.144481250000005
-            visitscotland:longitude: -2.1929624999999997
-          /visitscotland:image:
-            jcr:primaryType: hippogallerypicker:imagelink
-            hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
-            hippo:facets: []
-            hippo:modes: []
-            hippo:values: []
-        /visitscotland:image:
-          jcr:primaryType: hippogallerypicker:imagelink
-          hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
-          hippo:facets: []
-          hippo:modes: []
-          hippo:values: []
-      /greyfriars-kirkyard[2]:
-        jcr:primaryType: visitscotland:Stop
-        jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
-        jcr:uuid: a30aa998-e1ec-48ea-9897-faddcff868e9
-        hippo:availability: [preview]
-        hippostd:state: unpublished
-        hippostdpubwf:createdBy: admin
-        hippostdpubwf:creationDate: 2019-12-11T12:40:08.862Z
-        hippostdpubwf:lastModificationDate: 2020-01-31T15:26:42.991Z
-        hippostdpubwf:lastModifiedBy: admin
-        hippotranslation:id: 1bdaaad2-68eb-4493-878c-0961215fe02a
-        hippotranslation:locale: en
-        visitscotland:tipsTitle: Pull out title example
-        visitscotland:title: Greyfriars Kirkyard
-        /visitscotland:description:
-          jcr:primaryType: hippostd:html
-          hippostd:content: '<p>Only a short walk away from The Elephant House you''ll
-            find this infamous, spine-tingling graveyard, and burial place of several
-            notable Edinburgh academics and writers of the past. However, also buried
-            here are a few other notable residents: Thomas Riddell, William McGonagall
-            and Elizabeth Moodie. A coincidence? We think not.</p>'
-        /visitscotland:tips:
-          jcr:primaryType: hippostd:html
-          hippostd:content: <p>Description example for pull out</p>
-        /visitscotland:product:
-          jcr:primaryType: visitscotland:ItineraryExternalLink
-          visitscotland:timeToExplore: ' 24'
-          /visitscotland:ExternalLink:
-            jcr:primaryType: visitscotland:ExternalLink
-            visitscotland:Link: https://greyfriarskirk.com/visit/kirkyard/
-            /visitscotland:Coordinates:
-              jcr:primaryType: visitscotland:Coordinates
-              visitscotland:latitude: 0.0
-              visitscotland:longitude: 0.0
-            /visitscotland:image:
-              jcr:primaryType: hippogallerypicker:imagelink
-              hippo:docbase: 9fb38865-ca10-4ef4-bcab-a1097cc44487
-              hippo:facets: []
-              hippo:modes: []
-              hippo:values: []
-          /visitscotland:Coordinates:
-            jcr:primaryType: visitscotland:Coordinates
-            visitscotland:latitude: 57.144481250000005
-            visitscotland:longitude: -2.1929624999999997
-      /greyfriars-kirkyard[3]:
+      /greyfriars-kirkyard:
         jcr:primaryType: visitscotland:Stop
         jcr:mixinTypes: ['mix:referenceable']
         jcr:uuid: 55b22033-bb49-4c18-a9fc-e65c6a970ed6
@@ -363,19 +260,6 @@
         /visitscotland:product:
           jcr:primaryType: visitscotland:ItineraryExternalLink
           visitscotland:timeToExplore: ' 24'
-          /visitscotland:ExternalLink:
-            jcr:primaryType: visitscotland:ExternalLink
-            visitscotland:Link: https://greyfriarskirk.com/visit/kirkyard/
-            /visitscotland:Coordinates:
-              jcr:primaryType: visitscotland:Coordinates
-              visitscotland:latitude: 0.0
-              visitscotland:longitude: 0.0
-            /visitscotland:image:
-              jcr:primaryType: hippogallerypicker:imagelink
-              hippo:docbase: 9fb38865-ca10-4ef4-bcab-a1097cc44487
-              hippo:facets: []
-              hippo:modes: []
-              hippo:values: []
           /visitscotland:Coordinates:
             jcr:primaryType: visitscotland:Coordinates
             visitscotland:latitude: 57.144481250000005
@@ -386,102 +270,7 @@
       jcr:uuid: 8b215960-87aa-47ae-9c11-8a750be25ad8
       hippo:name: Casa Jose
       hippo:versionHistory: e5aa8d91-2fa9-4fe2-a24e-e7fd49ba3c15
-      /casa-jose[1]:
-        jcr:primaryType: visitscotland:Stop
-        jcr:mixinTypes: ['mix:referenceable']
-        jcr:uuid: 863c3f82-ab9a-41e1-9919-5407827a8ee9
-        hippo:availability: []
-        hippostd:holder: admin
-        hippostd:state: draft
-        hippostdpubwf:createdBy: admin
-        hippostdpubwf:creationDate: 2019-12-16T12:20:46.037Z
-        hippostdpubwf:lastModificationDate: 2020-02-05T08:40:10.005Z
-        hippostdpubwf:lastModifiedBy: admin
-        hippotranslation:id: b4f184af-52de-4e48-92ab-33cc5c2519e0
-        hippotranslation:locale: en
-        visitscotland:tipsTitle: ''
-        visitscotland:title: Casa Jose
-        /visitscotland:description:
-          jcr:primaryType: hippostd:html
-          hippostd:content: <p>Short description</p>
-        /visitscotland:tips:
-          jcr:primaryType: hippostd:html
-          hippostd:content: ''
-        /visitscotland:product:
-          jcr:primaryType: visitscotland:ItineraryExternalLink
-          visitscotland:link: ''
-          visitscotland:timeToExplore: '1'
-          /visitscotland:ExternalLink:
-            jcr:primaryType: visitscotland:ExternalLink
-            visitscotland:Link: http://la-casa-restaurant.co.uk/
-            visitscotland:label: ''
-            /visitscotland:Coordinates:
-              jcr:primaryType: visitscotland:Coordinates
-              visitscotland:latitude: 0.0
-              visitscotland:longitude: 0.0
-            /visitscotland:image:
-              jcr:primaryType: hippogallerypicker:imagelink
-              hippo:docbase: 8d4f5036-64ca-4e5d-aa89-b348ae38b081
-              hippo:facets: []
-              hippo:modes: []
-              hippo:values: []
-          /visitscotland:Coordinates:
-            jcr:primaryType: visitscotland:Coordinates
-            visitscotland:latitude: 56.94939333333334
-            visitscotland:longitude: -4.824278333333333
-          /visitscotland:image:
-            jcr:primaryType: hippogallerypicker:imagelink
-            hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
-            hippo:facets: []
-            hippo:modes: []
-            hippo:values: []
-        /visitscotland:image:
-          jcr:primaryType: hippogallerypicker:imagelink
-          hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
-          hippo:facets: []
-          hippo:modes: []
-          hippo:values: []
-      /casa-jose[2]:
-        jcr:primaryType: visitscotland:Stop
-        jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
-        jcr:uuid: 19707bf3-babe-4384-b44e-de9d4a131b57
-        hippo:availability: [preview]
-        hippostd:state: unpublished
-        hippostdpubwf:createdBy: admin
-        hippostdpubwf:creationDate: 2019-12-16T12:20:46.037Z
-        hippostdpubwf:lastModificationDate: 2020-01-31T15:28:07.880Z
-        hippostdpubwf:lastModifiedBy: admin
-        hippotranslation:id: b4f184af-52de-4e48-92ab-33cc5c2519e0
-        hippotranslation:locale: en
-        visitscotland:tipsTitle: ''
-        visitscotland:title: Casa Jose
-        /visitscotland:description:
-          jcr:primaryType: hippostd:html
-          hippostd:content: <p>Short description</p>
-        /visitscotland:tips:
-          jcr:primaryType: hippostd:html
-          hippostd:content: ''
-        /visitscotland:product:
-          jcr:primaryType: visitscotland:ItineraryExternalLink
-          visitscotland:timeToExplore: '1'
-          /visitscotland:ExternalLink:
-            jcr:primaryType: visitscotland:ExternalLink
-            visitscotland:Link: http://la-casa-restaurant.co.uk/
-            /visitscotland:Coordinates:
-              jcr:primaryType: visitscotland:Coordinates
-              visitscotland:latitude: 0.0
-              visitscotland:longitude: 0.0
-            /visitscotland:image:
-              jcr:primaryType: hippogallerypicker:imagelink
-              hippo:docbase: 8d4f5036-64ca-4e5d-aa89-b348ae38b081
-              hippo:facets: []
-              hippo:modes: []
-              hippo:values: []
-          /visitscotland:Coordinates:
-            jcr:primaryType: visitscotland:Coordinates
-            visitscotland:latitude: 56.94939333333334
-            visitscotland:longitude: -4.824278333333333
-      /casa-jose[3]:
+      /casa-jose:
         jcr:primaryType: visitscotland:Stop
         jcr:mixinTypes: ['mix:referenceable']
         jcr:uuid: e5abe271-18bf-4002-b84c-57fa68852a5f
@@ -505,19 +294,6 @@
         /visitscotland:product:
           jcr:primaryType: visitscotland:ItineraryExternalLink
           visitscotland:timeToExplore: '1'
-          /visitscotland:ExternalLink:
-            jcr:primaryType: visitscotland:ExternalLink
-            visitscotland:Link: http://la-casa-restaurant.co.uk/
-            /visitscotland:Coordinates:
-              jcr:primaryType: visitscotland:Coordinates
-              visitscotland:latitude: 0.0
-              visitscotland:longitude: 0.0
-            /visitscotland:image:
-              jcr:primaryType: hippogallerypicker:imagelink
-              hippo:docbase: 8d4f5036-64ca-4e5d-aa89-b348ae38b081
-              hippo:facets: []
-              hippo:modes: []
-              hippo:values: []
           /visitscotland:Coordinates:
             jcr:primaryType: visitscotland:Coordinates
             visitscotland:latitude: 56.94939333333334
@@ -608,7 +384,6 @@
         jcr:mixinTypes: ['mix:referenceable']
         jcr:uuid: 11322dcd-095f-49bd-ac82-59cc972b246f
         hippo:availability: []
-        hippostd:holder: admin
         hippostd:state: draft
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2020-02-07T09:55:38.073Z
