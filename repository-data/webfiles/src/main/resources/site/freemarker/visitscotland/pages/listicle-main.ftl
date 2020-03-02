@@ -40,79 +40,82 @@
         </vs-col>
     </vs-row>
 
-        <#if document.descOrder>
-            <#assign i = items?size + 1>
-        <#else >
-            <#assign i = 0>
-        </#if>
+    <#if document.descOrder>
+        <#assign i = items?size + 1>
+    <#else>
+        <#assign i = 0>
+    </#if>
 
+    <ol>
 
-    <#list items as item>
+        <#list items as item>
 
-        <#assign image = ""/>
-        <#if item.image??>
-            <#if item.image.cmsImage??>
-                <#assign image>
-                    <@hst.link hippobean=item.image.cmsImage.original/>
-                </#assign>
-            <#elseif item.image.externalImage??>
-                <#assign image = item.image.externalImage />
+            <#assign image = ""/>
+            <#if item.image??>
+                <#if item.image.cmsImage??>
+                    <#assign image>
+                        <@hst.link hippobean=item.image.cmsImage.original/>
+                    </#assign>
+                <#elseif item.image.externalImage??>
+                    <#assign image = item.image.externalImage />
+                </#if>
             </#if>
-        </#if>
 
-        <#if document.descOrder>
-            <#assign i = i - 1>
-        <#else >
-            <#assign i = i + 1>
-        </#if>
+            <#if document.descOrder>
+                <#assign i = i - 1>
+            <#else >
+                <#assign i = i + 1>
+            </#if>
 
+            <vs-row class="justify-content-md-between">
+                <vs-col cols="12" lg="8" offset-lg="1">
+                    <div>
+                        <vs-heading level="2"> ${i}.${item.title}</vs-heading>
+                        <#if item.subtitle??>${item.subTitle} </#if>
+                    </div>
+                </vs-col>
+            </vs-row>
+            <vs-row class="justify-content-md-between">
+                <vs-col cols="12" lg="8" offset-lg="1">
+                    <div>
+                        <img src="${image}"  width="50%" >
+                        <#if item.image.postUrl??>
+                            <vs-link href="${item.image.postUrl}">See the post</vs-link>
+                        </#if>
 
-        <vs-row class="justify-content-md-between">
-            <vs-col cols="12" lg="8" offset-lg="1">
-                <div>
-                    <vs-heading level="2"> ${i}.${item.title}</vs-heading>
-                    <#if item.subtitle??>${item.subTitle} </#if>
-                </div>
-            </vs-col>
-        </vs-row>
-        <vs-row class="justify-content-md-between">
-            <vs-col cols="12" lg="8" offset-lg="1">
-                <div>
-                    <img src="${image}"  width="50%" >
-                    <#if item.image.postUrl??>
-                        <vs-link href="${item.image.postUrl}">See the post</vs-link>
-                    </#if>
-
-                </div>
-            </vs-col>
-        </vs-row>
-        <vs-row class="justify-content-md-between">
-            <vs-col cols="12" lg="8" offset-lg="1">
-                <div>
-                    <@hst.html hippohtml=item.description/>
-                </div>
-            </vs-col>
-        </vs-row>
-        <vs-row class="justify-content-md-between">
-            <vs-col cols="12" lg="8" offset-lg="1">
-                <div>
-                    <#if item.facilities?? && item.facilities?size gt 1>
-                        There are ${item.facilities?size} facilities</br>
-                        <#list item.facilities as facility>
-                            facility = ${facility}</br>
+                    </div>
+                </vs-col>
+            </vs-row>
+            <vs-row class="justify-content-md-between">
+                <vs-col cols="12" lg="8" offset-lg="1">
+                    <div>
+                        <@hst.html hippohtml=item.description/>
+                    </div>
+                </vs-col>
+            </vs-row>
+            <vs-row class="justify-content-md-between">
+                <vs-col cols="12" lg="8" offset-lg="1">
+                    <div>
+                        <#if item.facilities?? && item.facilities?size gt 1>
+                            There are ${item.facilities?size} facilities</br>
+                            <#list item.facilities as facility>
+                                facility = ${facility}</br>
+                            </#list>
+                        </#if>
+                    </div>
+                </vs-col>
+            </vs-row>
+            <vs-row class="justify-content-md-between">
+                <vs-col cols="12" lg="8" offset-lg="1">
+                    <div>
+                        <#list item.ctaLinks as cta>
+                            <vs-link href="${cta.link}">GO TO: ${cta.label}</vs-link>
                         </#list>
-                    </#if>
-                </div>
-            </vs-col>
-        </vs-row>
-        <vs-row class="justify-content-md-between">
-            <vs-col cols="12" lg="8" offset-lg="1">
-                <div>
-                    <#list item.ctaLinks as cta>
-                        <vs-link href="${cta.link}">GO TO: ${cta.label}</vs-link>
-                    </#list>
-                </div>
-            </vs-col>
-        </vs-row>
-    </#list>
+                    </div>
+                </vs-col>
+            </vs-row>
+
+        </#list>
+
+    </ol>
 </vs-container>
