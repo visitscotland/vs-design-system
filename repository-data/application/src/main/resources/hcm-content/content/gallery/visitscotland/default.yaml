@@ -151,3 +151,31 @@
           resource: /content/gallery/visitscotland/default/visitscotland_43424542162.jpg/visitscotland_43424542162.jpg/original/original.jpg
         jcr:lastModified: 2020-02-26T08:55:15.951Z
         jcr:mimeType: image/jpeg
+  /royal-botanic-garden.jpg:
+    jcr:primaryType: hippo:handle
+    jcr:mixinTypes: ['hippo:named', 'mix:referenceable']
+    jcr:uuid: ecede5a4-326c-4ce5-b9be-bcdf32c3f2c2
+    hippo:name: Royal Botanic Garden.jpg
+    /royal-botanic-garden.jpg:
+      jcr:primaryType: visitscotland:Image
+      hippo:availability: [live, preview]
+      hippogallery:filename: Royal Botanic Garden.jpg
+      /hippogallery:thumbnail:
+        jcr:primaryType: hippogallery:image
+        hippo:filename: Royal Botanic Garden.jpg
+        hippogallery:height: 45
+        hippogallery:width: 60
+        jcr:data:
+          type: binary
+          resource: /content/gallery/visitscotland/default/royal-botanic-garden.jpg/royal-botanic-garden.jpg/thumbnail/thumbnail.jpg
+        jcr:lastModified: 2020-03-03T10:26:48.136Z
+        jcr:mimeType: image/jpeg
+      /hippogallery:original:
+        jcr:primaryType: hippogallery:image
+        hippogallery:height: 1536
+        hippogallery:width: 2048
+        jcr:data:
+          type: binary
+          resource: /content/gallery/visitscotland/default/royal-botanic-garden.jpg/royal-botanic-garden.jpg/original/original.jpg
+        jcr:lastModified: 2020-03-03T10:26:48.136Z
+        jcr:mimeType: image/jpeg
