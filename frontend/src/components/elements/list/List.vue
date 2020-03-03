@@ -14,10 +14,6 @@
 </template>
 
 <script>
-import Vue from 'vue';
-
-window.Vue = Vue;
-
 /**
  * Generic List Component that can be used for any kind of list needed given the right properties.
  * 
@@ -71,33 +67,33 @@ export default {
 ```jsx
 	<h3>Unstyled Inline</h3>
 	<vs-list type="ul" variant="unstyled inline">
-		<li class="mr-7">Test</li>
-		<li class="mr-7">Test</li>
-		<li class="mr-7">Test</li>
+		<vs-list-item class="mr-7">Test</vs-list-item>
+		<vs-list-item class="mr-7">Test</vs-list-item>
+		<vs-list-item class="mr-7">Test</vs-list-item>
 	</vs-list>
 
 	<h3>Inline</h3>
 	<vs-list type="ul" variant="inline">
-		<li class="mr-7">Test</li>
-		<li class="mr-7">Test</li>
-		<li class="mr-7">Test</li>
+		<vs-list-item class="mr-7">Test</vs-list-item>
+		<vs-list-item class="mr-7">Test</vs-list-item>
+		<vs-list-item class="mr-7">Test</vs-list-item>
 	</vs-list>
 
 	<h3>Unstyled</h3>
 	<vs-list type="ul" variant="unstyled">
-		<li class="mr-7">Test</li>
-		<li class="mr-7">Test</li>
-		<li class="mr-7">Test</li>
+		<vs-list-item class="mr-7">Test</vs-list-item>
+		<vs-list-item class="mr-7">Test</vs-list-item>
+		<vs-list-item class="mr-7">Test</vs-list-item>
 	</vs-list>
 
 	<h3>Unordered List</h3>
 	<vs-list type="ul" >
-		<li>Test</li>
+		<vs-list-item>Test</vs-list-item>
 	</vs-list>
 
 	<h3>Ordered List</h3>
 	<vs-list type="ol" >
-		<li>Test</li>
+		<vs-list-item>Test</vs-list-item>
 	</vs-list>
 ```
 </docs>
