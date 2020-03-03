@@ -40,7 +40,7 @@
 }
 
 .lead ::v-deep {
-	line-height: 1.75rem;
+	line-height: $line-height-lead;
 }
 </style>
 
