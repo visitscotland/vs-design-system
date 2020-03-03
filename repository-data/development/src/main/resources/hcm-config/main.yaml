@@ -9,16 +9,22 @@ definitions:
         value: ['repository-data/development', 'repository-data/site-development:visitscotland']
     /hippo:configuration/hippo:groups/author:
       hipposys:members:
+        .meta:category: system
+        .meta:add-new-system-values: true
         operation: add
         type: string
         value: [author]
     /hippo:configuration/hippo:groups/editor:
       hipposys:members:
+        .meta:category: system
+        .meta:add-new-system-values: true
         operation: add
         type: string
         value: [editor]
     /hippo:configuration/hippo:groups/webmaster:
       hipposys:members:
+        .meta:category: system
+        .meta:add-new-system-values: true
         operation: add
         type: string
         value: [editor]
