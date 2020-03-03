@@ -4,6 +4,8 @@
 #
 
 props:
+  line_height_lead:
+    value: "1.75"
   line_height_m:
     value: "1.6"
   line_height_s:
