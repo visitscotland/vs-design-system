@@ -8,12 +8,6 @@
     <version>2.0.0-SNAPSHOT</version>
   </parent>
   
-  <!--<parent>-->
-    <!--<groupId>com.onehippo.cms7</groupId>-->
-    <!--<artifactId>hippo-cms7-enterprise-release</artifactId>-->
-    <!--<version>14.1.0</version>-->
-  <!--</parent>-->
-
   <name>www.visitscotland.com CMS Pages</name>
   <description>www.visitscotland.com CMS Pages</description>
   <groupId>com.visitscotland</groupId>
@@ -26,17 +20,10 @@
     <!--***START temporary override of versions*** -->
     <!-- ***END temporary override of versions*** -->
     <!--TODO define this in parent pom -->
-    <essentials.version>14.1.0</essentials.version>
-    <jsp-api.version>2.2</jsp-api.version>
-    <taglibs.version>1.2.5</taglibs.version>
-    <h2.database.version>1.4.199</h2.database.version>
+   
     <data-service-api.version>1.2.0-SNAPSHOT</data-service-api.version>
     
-    <development-module-deploy-dir>shared/lib</development-module-deploy-dir>
-    <hippo.cms.locales>nl,de,fr,es,zh</hippo.cms.locales>
     <forge.exdocpickerbase.version>6.0.0</forge.exdocpickerbase.version>
-    <buildNumber>${maven.build.timestamp}</buildNumber>
-    
     <forge.breadcrumb.version>3.0.0</forge.breadcrumb.version>
     <!-- TODO end define -->
   
