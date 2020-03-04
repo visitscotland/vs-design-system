@@ -38,6 +38,6 @@ public class FlatLink {
     }
 
     public void setErrorMessage(String errorMessage) {
-        this.errorMessage = errorMessage;
+        this.errorMessage = errorMessage.toUpperCase();
     }
 }

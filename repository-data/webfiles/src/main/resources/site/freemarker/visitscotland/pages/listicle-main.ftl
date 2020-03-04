@@ -38,6 +38,9 @@
 <#include "../../vs-dotcom-ds/components/icon-description-list-detail.ftl">
 <#include "../../vs-dotcom-ds/components/link.ftl">
 
+<#include "../modules/listicles/listicle-item.ftl">
+
+
 
 <#-- Implicit Request Objects -->
 <#-- @ftlvariable name="document" type="com.visitscotland.brmx.beans.Listicle" -->
@@ -45,8 +48,6 @@
 
 <#-- @ftlvariable name="item" type="com.visitscotland.brmx.beans.mapping.FlatListicle" -->
 <#-- @ftlvariable name="cta" type="com.visitscotland.brmx.beans.mapping.FlatLink" -->
-
-NO HERO WILL BE ALLOWED IN THIS REALM!
 
 <vs-page-intro>
     <vs-container slot="upper" class="py-lg-4">
@@ -105,53 +106,55 @@ NO HERO WILL BE ALLOWED IN THIS REALM!
         </#if>
 
 
-        <vs-row class="justify-content-md-between">
-            <vs-col cols="12" lg="8" offset-lg="1">
-                <div>
-                    <vs-heading level="2"> ${i}.${item.title}</vs-heading>
-                    <#if item.subtitle??>${item.subTitle} </#if>
-                </div>
-            </vs-col>
-        </vs-row>
-        <vs-row class="justify-content-md-between">
-            <vs-col cols="12" lg="8" offset-lg="1">
-                <div>
-                    <img src="${image}"  width="50%" >
-                    <#if item.image.postUrl??>
-                        <vs-link href="${item.image.postUrl}">See the post</vs-link>
-                    </#if>
+        <@listicleItem item=item index=i />
 
-                </div>
-            </vs-col>
-        </vs-row>
-        <vs-row class="justify-content-md-between">
-            <vs-col cols="12" lg="8" offset-lg="1">
-                <div>
-                    <@hst.html hippohtml=item.description/>
-                </div>
-            </vs-col>
-        </vs-row>
-        <vs-row class="justify-content-md-between">
-            <vs-col cols="12" lg="8" offset-lg="1">
-                <div>
-                    <#if item.facilities?? && item.facilities?size gt 1>
-                        There are ${item.facilities?size} facilities</br>
-                        <#list item.facilities as facility>
-                            facility = ${facility}</br>
-                        </#list>
-                    </#if>
-                </div>
-            </vs-col>
-        </vs-row>
-        <vs-row class="justify-content-md-between">
-            <vs-col cols="12" lg="8" offset-lg="1">
-                <div>
-                    <#list item.ctaLinks as cta>
-                        <vs-link href="${cta.link}">GO TO: ${cta.label}</vs-link>
-                    </#list>
-                </div>
-            </vs-col>
-        </vs-row>
+        <#--<vs-row class="justify-content-md-between">-->
+            <#--<vs-col cols="12" lg="8" offset-lg="1">-->
+                <#--<div>-->
+                    <#--<vs-heading level="2"> ${i}.${item.title}</vs-heading>-->
+                    <#--<#if item.subtitle??>${item.subTitle} </#if>-->
+                <#--</div>-->
+            <#--</vs-col>-->
+        <#--</vs-row>-->
+        <#--<vs-row class="justify-content-md-between">-->
+            <#--<vs-col cols="12" lg="8" offset-lg="1">-->
+                <#--<div>-->
+                    <#--<img src="${image}"  width="50%" >-->
+                    <#--<#if item.image.postUrl??>-->
+                        <#--<vs-link href="${item.image.postUrl}">See the post</vs-link>-->
+                    <#--</#if>-->
+
+                <#--</div>-->
+            <#--</vs-col>-->
+        <#--</vs-row>-->
+        <#--<vs-row class="justify-content-md-between">-->
+            <#--<vs-col cols="12" lg="8" offset-lg="1">-->
+                <#--<div>-->
+                    <#--<@hst.html hippohtml=item.description/>-->
+                <#--</div>-->
+            <#--</vs-col>-->
+        <#--</vs-row>-->
+        <#--<vs-row class="justify-content-md-between">-->
+            <#--<vs-col cols="12" lg="8" offset-lg="1">-->
+                <#--<div>-->
+                    <#--<#if item.facilities?? && item.facilities?size gt 1>-->
+                        <#--There are ${item.facilities?size} facilities</br>-->
+                        <#--<#list item.facilities as facility>-->
+                            <#--facility = ${facility}</br>-->
+                        <#--</#list>-->
+                    <#--</#if>-->
+                <#--</div>-->
+            <#--</vs-col>-->
+        <#--</vs-row>-->
+        <#--<vs-row class="justify-content-md-between">-->
+            <#--<vs-col cols="12" lg="8" offset-lg="1">-->
+                <#--<div>-->
+                    <#--<#list item.ctaLinks as cta>-->
+                        <#--<vs-link href="${cta.link}">GO TO: ${cta.label}</vs-link>-->
+                    <#--</#list>-->
+                <#--</div>-->
+            <#--</vs-col>-->
+        <#--</vs-row>-->
     </#list>
     </vs-container>
 </vs-page-intro>
