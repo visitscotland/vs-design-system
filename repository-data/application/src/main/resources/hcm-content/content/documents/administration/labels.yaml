@@ -364,7 +364,7 @@
       hippostd:state: draft
       hippostdpubwf:createdBy: admin
       hippostdpubwf:creationDate: 2019-12-20T14:35:30.322Z
-      hippostdpubwf:lastModificationDate: 2019-12-20T14:35:30.322Z
+      hippostdpubwf:lastModificationDate: 2020-03-02T09:59:10.751Z
       hippostdpubwf:lastModifiedBy: admin
       resourcebundle:descriptions: [""]
       resourcebundle:id: keys
@@ -425,7 +425,7 @@
         hippostd:state: draft
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2019-12-16T14:56:24.091Z
-        hippostdpubwf:lastModificationDate: 2020-02-25T16:32:53.161Z
+        hippostdpubwf:lastModificationDate: 2020-03-02T10:08:46.224Z
         hippostdpubwf:lastModifiedBy: admin
         resourcebundle:descriptions: ['', '', '', '', '', '', '', '', '', '', '',
           '', '', '', '', '', '', '', '', '']
@@ -435,7 +435,7 @@
           kilometres-abbreviation, transport, day, miles, kilometres, highlights,
           areas-covered, stop.no-stop, stop.time-to-explore, theme]
         resourcebundle:messages: [Key Facilities, Nearby places to stay, Nearby places
-            to eat, Find out more, Stops, Start / Finish, Days, Distance, Main Themes,
+            to eat, Find out more, Stop, Start / Finish, Days, Distance, Main Themes,
           mi, km, Transport, Day, Miles, Kilometres, Highlights, Areas Covered, The
             stop doesn't have any product linked to the stop, Time to explore, Main
             Theme]
@@ -459,7 +459,7 @@
         hippostd:state: unpublished
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2019-12-16T14:56:24.091Z
-        hippostdpubwf:lastModificationDate: 2020-02-25T16:34:56.209Z
+        hippostdpubwf:lastModificationDate: 2020-03-02T11:44:48.863Z
         hippostdpubwf:lastModifiedBy: admin
         resourcebundle:descriptions: ['', '', '', '', '', '', '', '', '', '', '',
           '', '', '', '', '', '', '', '', '']
@@ -469,7 +469,7 @@
           kilometres-abbreviation, transport, day, miles, kilometres, highlights,
           areas-covered, stop.no-stop, stop.time-to-explore, theme]
         resourcebundle:messages: [Key Facilities, Nearby places to stay, Nearby places
-            to eat, Find out more, Stops, Start / Finish, Days, Distance, Main Themes,
+            to eat, Find out more, Stop, Start / Finish, Days, Distance, Main Themes,
           mi, km, Transport, Day, Miles, Kilometres, Highlights, Areas Covered, The
             stop doesn't have any product linked to the stop, Time to explore, Main
             Theme]
@@ -676,3 +676,64 @@
           sightseeing, filmev, spahealth, whisky]
         resourcebundle:messages: [Activities, Castles, Cities, Families, History,
           Islands, Landscapes, Sightseeing, TV & Film, Wellness, Whisky]
+  /maps:
+    jcr:primaryType: hippostd:folder
+    jcr:mixinTypes: ['hippo:named', 'mix:versionable']
+    jcr:uuid: c8c3411f-0b44-42b7-badc-abd3a82ea10b
+    hippo:name: Maps
+    hippostd:foldertype: [new-resource-bundle, new-untranslated-folder]
+    /map-controls:
+      jcr:primaryType: hippo:handle
+      jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
+      jcr:uuid: edf81313-2871-4d50-bd11-c347d5350959
+      hippo:name: Map-Controls
+      hippo:versionHistory: ba6cfc7f-c8de-4426-ab09-ea2e6dc38272
+      /map-controls[1]:
+        jcr:primaryType: resourcebundle:resourcebundle
+        jcr:mixinTypes: ['mix:referenceable']
+        jcr:uuid: 003d578d-a032-4e02-a90d-8e91eb482f3d
+        hippo:availability: []
+        hippostd:state: draft
+        hippostdpubwf:createdBy: admin
+        hippostdpubwf:creationDate: 2020-03-02T10:09:34.350Z
+        hippostdpubwf:lastModificationDate: 2020-03-02T10:19:31.543Z
+        hippostdpubwf:lastModifiedBy: admin
+        resourcebundle:descriptions: ['', '', '', '', '']
+        resourcebundle:id: map
+        resourcebundle:keys: [map.fullscreen, map.exitfullscreen, map.reset, map.zoomin,
+          map.zoomout]
+        resourcebundle:messages: [Show fullscreen, Exit fullscreen, Reset angle, Zoom
+            in, Zoom out]
+      /map-controls[2]:
+        jcr:primaryType: resourcebundle:resourcebundle
+        jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
+        jcr:uuid: 1ae6bb07-2a58-4bd4-945e-be50c578261b
+        hippo:availability: [preview]
+        hippostd:state: unpublished
+        hippostdpubwf:createdBy: admin
+        hippostdpubwf:creationDate: 2020-03-02T10:09:34.350Z
+        hippostdpubwf:lastModificationDate: 2020-03-02T10:12:21.866Z
+        hippostdpubwf:lastModifiedBy: admin
+        resourcebundle:descriptions: ['', '', '', '', '']
+        resourcebundle:id: map
+        resourcebundle:keys: [map.fullscreen, map.exitfullscreen, map.reset, map.zoomin,
+          map.zoomout]
+        resourcebundle:messages: [Show fullscreen, Exit fullscreen, Reset angle, Zoom
+            in, Zoom out]
+      /map-controls[3]:
+        jcr:primaryType: resourcebundle:resourcebundle
+        jcr:mixinTypes: ['mix:referenceable']
+        jcr:uuid: ca3a099c-636b-4ffa-ba4f-533ae78eba19
+        hippo:availability: [live]
+        hippostd:state: published
+        hippostdpubwf:createdBy: admin
+        hippostdpubwf:creationDate: 2020-03-02T10:09:34.350Z
+        hippostdpubwf:lastModificationDate: 2020-03-02T10:12:21.866Z
+        hippostdpubwf:lastModifiedBy: admin
+        hippostdpubwf:publicationDate: 2020-03-02T10:19:49.566Z
+        resourcebundle:descriptions: ['', '', '', '', '']
+        resourcebundle:id: map
+        resourcebundle:keys: [map.fullscreen, map.exitfullscreen, map.reset, map.zoomin,
+          map.zoomout]
+        resourcebundle:messages: [Show fullscreen, Exit fullscreen, Reset angle, Zoom
+            in, Zoom out]

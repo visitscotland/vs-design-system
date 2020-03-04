@@ -62,7 +62,7 @@ definitions:
         /hipposysedit:prototype:
           jcr:primaryType: visitscotland:Image
           jcr:mixinTypes: ['mix:referenceable']
-          jcr:uuid: fcd675b1-3226-4f40-8974-24ec22312da2
+          jcr:uuid: b20bc000-77d1-4410-9597-008bb0c23166
           hippogallery:description: ''
           visitscotland:altText: ''
           visitscotland:credit: ''

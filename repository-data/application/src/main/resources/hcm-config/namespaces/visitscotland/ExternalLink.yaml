@@ -11,7 +11,7 @@ definitions:
         /hipposysedit:nodetype:
           jcr:primaryType: hipposysedit:nodetype
           jcr:mixinTypes: ['mix:referenceable', 'hipposysedit:remodel']
-          jcr:uuid: 4326fdf2-27e4-458c-82f3-268d242ab12e
+          jcr:uuid: 5865ad49-5aaa-48ed-b5a2-0c5d5e7564c6
           hipposysedit:node: true
           hipposysedit:supertype: ['hippo:compound', 'hippostd:relaxed']
           hipposysedit:uri: http://www.visitscotland.com/visitscotland/nt/1.0
@@ -60,7 +60,7 @@ definitions:
               jcr:primaryType: frontend:pluginconfig
           /label:
             jcr:primaryType: frontend:plugin
-            caption: Label
+            caption: CTA text
             field: label
             plugin.class: org.hippoecm.frontend.editor.plugins.field.PropertyFieldPlugin
             wicket.id: ${cluster.id}.field
