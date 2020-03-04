@@ -1,6 +1,6 @@
 <template>
-    <figure class="vs-image-with-caption">
-        <div class="vs-image-with-caption__image-wrapper position-relative">
+    <figure class="vs-image-with-caption position-relative">
+        <div class="vs-image-with-caption__image-wrapper">
             <slot />
 
             <vs-button
@@ -12,13 +12,14 @@
                 :aria-expanded="showCaption ? 'true' : 'false'"
                 @click.native="toggleCaption"
             >
-                <vs-svg path="image-toggle" height="24" width="24" />
+                <vs-svg v-if="!showCaption" path="image-toggle" height="24" width="24" />
+                <vs-icon v-if="showCaption" name="close-circle" variant="light" size="sm" :padding="0"/>   
             </vs-button>
         </div>
 
         <div
             :class="{ 'd-block': this.showCaption, 'd-none': this.closedDefaultCaption }"
-            class="vs-image-with-caption__caption-wrapper position-relative"
+            class="vs-image-with-caption__caption-wrapper"
             :id="'image_' + imageSrc"
         >
             <figcaption
@@ -28,10 +29,13 @@
                         ? 'vs-image-with-caption__large-caption'
                         : 'vs-image-with-caption__fullwidth-caption'
                 "
+                class="d-flex d-sm-block"
                 v-if="showCaptionData"
             >
-                <vs-row>
-                    <vs-col>
+                <vs-row class="justify-content-center justify-content-sm-start">
+                    <vs-col 
+                    class="order-2 order-sm-1" 
+                    :class="[!showMap ? 'align-self-center' : '']">
                         <div class="p-4">
                             <p class="vs-image-with-caption__image-caption" v-if="this.caption">
                                 {{ this.caption }}
@@ -41,8 +45,8 @@
                             </p>
                         </div>
                     </vs-col>
-                    <vs-col cols="auto" class="pl-0" v-if="showMap">
-                        <div class="pt-2 pb-2 pr-4">
+                    <vs-col class="col-12 col-sm-auto order-1 order-sm-2 pl-sm-0 align-self-end align-self-sm-start" v-if="showMap">
+                        <div class="map-wrapper pt-3 pt-sm-2 pb-sm-2 pr-sm-4 mx-auto">
                             <vs-image-location-map
                                 :latitude="this.latitude"
                                 :longitude="this.longitude"
@@ -72,7 +76,7 @@ export default {
     status: "prototype",
     release: "0.0.1",
     components: { VsContainer, VsRow, VsCol, VsImageLocationMap, VsButton, VsSvg },
-     data() {
+    data() {
         return {
             showCaption: false,
         }
@@ -181,6 +185,7 @@ img {
     right: 0.5rem;
     border-radius: 50%;
     display: block;
+    z-index: 3;
 
     @include media-breakpoint-up(sm) {
         display: none;
@@ -219,24 +224,52 @@ img {
         }
 
         &.vs-image-with-caption__large-caption {
-            width: 330px;
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 2;
+            text-align: center;
 
-            @include media-breakpoint-up(sm) {
-                bottom: 0;
-                position: absolute;
-                right: 1rem;
-                z-index: 2;
+            > .row {
+                margin: 0 auto;
             }
 
             .vs-image-with-caption__image-caption {
-                margin-bottom: $spacer-8;
+                margin-bottom: $spacer-2;
+            }
+
+            .map-wrapper {
+                max-width: 60px;
+            }
+
+            @include media-breakpoint-up(sm) {
+                bottom: 0;
+                right: 1rem;
+                top: auto;
+                width: 330px;
+                height: auto;
+                text-align: left;
+
+                > .row {
+                    margin: 0 -16px;
+                }
+
+                .vs-image-with-caption__image-caption {
+                    margin-bottom: $spacer-8;
+                }
+
+                .map-wrapper {
+                    max-width: 80px;
+                }
             }
         }
 
         &.vs-image-with-caption__fullwidth-caption {
             width: 100%;
 
-             .vs-image-with-caption__image-caption {
+            .vs-image-with-caption__image-caption {
                 margin-bottom: $spacer-2;
             }
         }
