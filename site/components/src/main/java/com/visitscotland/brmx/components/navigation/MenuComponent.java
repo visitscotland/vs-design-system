@@ -33,6 +33,14 @@ public class MenuComponent extends EssentialsMenuComponent {
         }
 
         request.setModel("enhancedMenu", enhancedMenu);
+
+        if (System.getenv().containsKey("BRANCH_NAME")){
+            String branch = System.getenv("BRANCH_NAME");
+            //TODO: We might want to add more information to the header
+            request.setModel("branch", branch);
+        }
+
+
     }
 
     private VsHstSiteMenuItemImpl exploreMenu(HstRequest request, VsHstSiteMenuItemImpl parent, HstSiteMenuItem menu){

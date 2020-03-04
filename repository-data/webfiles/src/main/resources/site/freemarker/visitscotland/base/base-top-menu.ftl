@@ -5,6 +5,9 @@
 <#-- @ftlvariable name="editMode" type="java.lang.Boolean"-->
 <#if enhancedMenu??>
 <div class="has-edit-button">
+    <#if branch??>
+        <span>This feature environment is pointing to ${branch}</span>
+    </#if>
     <ul class="nav nav-pills">
       <#list enhancedMenu as item>
         <#if !item.hstLink?? && !item.externalLink??>
@@ -22,7 +25,7 @@
             <#if item.widget??>
                 <li><a style="background: lightcyan;">Widget (${item.widget.component})</a></li>
             <#elseif  item.selected || item.expanded>
-            <li class="active"><a href="${href}">${item.title?html}</a></li>
+                <li class="active"><a href="${href}">${item.title?html}</a></li>
             <#else>
             <li><a href="${href}">${item.title?html}</a></li>
             </#if>
