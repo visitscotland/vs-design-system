@@ -11,7 +11,7 @@ definitions:
         /hipposysedit:nodetype:
           jcr:primaryType: hipposysedit:nodetype
           jcr:mixinTypes: ['mix:referenceable', 'hipposysedit:remodel']
-          jcr:uuid: e39e7a3a-20c6-4315-897c-0fe6b77e954c
+          jcr:uuid: 79395869-72c5-4564-a453-5baa001c2d9d
           hipposysedit:node: true
           hipposysedit:supertype: ['visitscotland:basedocument', 'hippostd:relaxed',
             'hippotranslation:translated']
@@ -75,7 +75,7 @@ definitions:
           jcr:mixinTypes: ['mix:referenceable']
           visitscotland:title: ''
           visitscotland:subtitle: ''
-          jcr:uuid: e69d6e7a-1e7d-458f-9cdc-c2cd8f9fb3d5
+          jcr:uuid: 81418177-6e91-4677-8975-1e2f7d16604a
           hippostdpubwf:lastModificationDate: 2020-02-11T16:18:17.876Z
           hippostdpubwf:creationDate: 2020-02-11T16:18:17.876Z
           /visitscotland:description:
@@ -116,14 +116,15 @@ definitions:
             wicket.id: ${cluster.id}.field
             /cluster.options:
               jcr:primaryType: frontend:pluginconfig
-          /extraLinks:
+          /images:
             jcr:primaryType: frontend:plugin
-            caption: Optional CTA
-            compoundList: visitscotland:CMSLink,visitscotland:DMSLink,visitscotland:ExternalLink,visitscotland:ProductSearchLink
+            caption: Image
+            compoundList: hippogallerypicker:imagelink,visitscotland:InstagramImage
             contentPickerType: links
-            field: extraLinks
+            field: images
             plugin.class: org.onehippo.forge.contentblocks.ContentBlocksFieldPlugin
             wicket.id: ${cluster.id}.field
+            hint: ''
             /cluster.options:
               jcr:primaryType: frontend:pluginconfig
               maxitems: 1
@@ -138,12 +139,12 @@ definitions:
             /cluster.options:
               jcr:primaryType: frontend:pluginconfig
               maxitems: 1
-          /images:
+          /extraLinks:
             jcr:primaryType: frontend:plugin
-            caption: Image
-            compoundList: hippogallerypicker:imagelink,visitscotland:InstagramImage
+            caption: Optional CTA
+            compoundList: visitscotland:CMSLink,visitscotland:DMSLink,visitscotland:ExternalLink,visitscotland:ProductSearchLink
             contentPickerType: links
-            field: images
+            field: extraLinks
             plugin.class: org.onehippo.forge.contentblocks.ContentBlocksFieldPlugin
             wicket.id: ${cluster.id}.field
             /cluster.options:

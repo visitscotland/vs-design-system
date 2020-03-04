@@ -2,7 +2,6 @@ package com.visitscotland.brmx.utils;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.visitscotland.brmx.beans.dms.LocationObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -43,11 +42,15 @@ public abstract class LocationLoader {
     public static List<LocationObject> getLocationsByLevel(String... levels){
         List<LocationObject> locationList = new ArrayList<>();
         for (LocationObject obj : locations.get(null).values()){
-            for (String level : levels){
-                if (obj.getTypes().contains(level)){
-                    locationList.add(obj);
-                    break;
+            if (levels!=null && levels.length>0){
+                for (String level : levels){
+                    if (obj.getTypes().contains(level)){
+                        locationList.add(obj);
+                        break;
+                    }
                 }
+            }else{
+                locationList.add(obj);
             }
         }
         if (locationList.size() == 0){
@@ -69,8 +72,8 @@ public abstract class LocationLoader {
     private static void init() {
         synchronized (LocationLoader.class) {
             if (locationToId.size() == 0) {
-                Map<String, LocationObject> locationsMap = new HashMap<>();
                 for (Locale locale : Properties.locales) {
+                    Map<String, LocationObject> locationsMap = new HashMap<>();
                     try {
                         List<LocationObject> locationList = deserialize(request(locale));
 

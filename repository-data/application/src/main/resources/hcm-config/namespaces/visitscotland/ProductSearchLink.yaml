@@ -3,15 +3,15 @@ definitions:
     /hippo:namespaces/visitscotland/ProductSearchLink:
       jcr:primaryType: hipposysedit:templatetype
       jcr:mixinTypes: ['editor:editable', 'mix:referenceable']
-      jcr:uuid: 7bc317d3-fd71-4f05-9d5d-251f2983c55c
+      jcr:uuid: db2d408f-4535-4bd1-b0ae-c21f39a51107
       /hipposysedit:nodetype:
         jcr:primaryType: hippo:handle
         jcr:mixinTypes: ['mix:referenceable']
-        jcr:uuid: 0daafa2a-fa25-489f-8ca8-7cff6d104260
+        jcr:uuid: a56809be-6350-495d-94ef-ce60b3c66cd4
         /hipposysedit:nodetype:
           jcr:primaryType: hipposysedit:nodetype
           jcr:mixinTypes: ['mix:referenceable', 'hipposysedit:remodel']
-          jcr:uuid: d85551d7-f9d9-4145-9fe8-981a6b44f43a
+          jcr:uuid: 9bbcddc0-bddd-487d-96d2-7220ea3cae6f
           hipposysedit:node: true
           hipposysedit:supertype: ['hippo:compound', 'hippostd:relaxed']
           hipposysedit:uri: http://www.visitscotland.com/visitscotland/nt/1.0
@@ -31,6 +31,7 @@ definitions:
             hipposysedit:path: visitscotland:label
             hipposysedit:primary: false
             hipposysedit:type: String
+            hipposysedit:validators: [required]
       /hipposysedit:prototypes:
         jcr:primaryType: hipposysedit:prototypeset
         /hipposysedit:prototype:
@@ -38,8 +39,9 @@ definitions:
           visitscotland:label: ''
           /visitscotland:search:
             jcr:primaryType: visitscotland:ProductsSearch
-            visitscotland:distance: 0
-            visitscotland:dmscategories: ['']
+            visitscotland:dmsAwards: []
+            visitscotland:dmsCategories: []
+            visitscotland:dmsFacilities: []
             visitscotland:location: ''
             visitscotland:producttype: ''
       /editor:templates:
@@ -51,35 +53,22 @@ definitions:
           frontend:services: [wicket.id, validator.id]
           /root:
             jcr:primaryType: frontend:plugin
-            extension.left: ${cluster.id}.left
-            extension.right: ${cluster.id}.right
-            plugin.class: org.hippoecm.frontend.editor.layout.TwoColumn
-            wicket.extensions: [extension.left, extension.right]
-          /left:
-            jcr:primaryType: frontend:plugin
-            item: ${cluster.id}.left.item
+            item: ${cluster.id}.field
             plugin.class: org.hippoecm.frontend.service.render.ListViewPlugin
-            wicket.id: ${cluster.id}.left
-          /right:
-            jcr:primaryType: frontend:plugin
-            item: ${cluster.id}.right.item
-            plugin.class: org.hippoecm.frontend.service.render.ListViewPlugin
-            wicket.id: ${cluster.id}.right
-          /label:
-            jcr:primaryType: frontend:plugin
-            caption: Label
-            field: label
-            hint: ''
-            plugin.class: org.hippoecm.frontend.editor.plugins.field.PropertyFieldPlugin
-            wicket.id: ${cluster.id}.left.item
-            /cluster.options:
-              jcr:primaryType: frontend:pluginconfig
           /search:
             jcr:primaryType: frontend:plugin
             caption: ProductsSearch
             field: search
             plugin.class: org.hippoecm.frontend.editor.plugins.field.NodeFieldPlugin
-            wicket.id: ${cluster.id}.left.item
+            wicket.id: ${cluster.id}.field
+            /cluster.options:
+              jcr:primaryType: frontend:pluginconfig
+          /label:
+            jcr:primaryType: frontend:plugin
+            caption: CTA text
+            field: label
             hint: ''
+            plugin.class: org.hippoecm.frontend.editor.plugins.field.PropertyFieldPlugin
+            wicket.id: ${cluster.id}.field
             /cluster.options:
               jcr:primaryType: frontend:pluginconfig
