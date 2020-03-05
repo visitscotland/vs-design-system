@@ -5,6 +5,7 @@ package com.visitscotland.brmx.components;
 // (powered by Fernflower decompiler)
 //
 
+import com.visitscotland.brmx.components.content.ListicleContentComponent;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 import org.apache.commons.lang.StringUtils;
@@ -25,7 +26,7 @@ public class DMSCategoryPicker extends AbstractDMSPicker{
      */
     private static final long serialVersionUID = 1L;
 
-    private static Logger log = LoggerFactory.getLogger(DMSCategoryPicker.class);
+    private static final Logger logger = LoggerFactory.getLogger(DMSCategoryPicker.class);
 
     private static final String TYPE = "category";
 
@@ -47,7 +48,7 @@ public class DMSCategoryPicker extends AbstractDMSPicker{
                 docArray=subCategory;
             }
         } catch (RepositoryException | IOException e) {
-            e.printStackTrace();
+            logger.error("Error while getting DMS categories", e);
         }
 
         ExternalDocumentCollection<JSONObject> docCollection =new SimpleExternalDocumentCollection<JSONObject>();

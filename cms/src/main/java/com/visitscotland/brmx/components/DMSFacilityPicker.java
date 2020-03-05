@@ -26,7 +26,7 @@ public class DMSFacilityPicker extends AbstractDMSPicker {
 
     private static final long serialVersionUID = 1L;
 
-    private static Logger log = LoggerFactory.getLogger(DMSFacilityPicker.class);
+    private static Logger logger = LoggerFactory.getLogger(DMSFacilityPicker.class);
 
     private static final String TYPE = "facility";
 
@@ -48,7 +48,7 @@ public class DMSFacilityPicker extends AbstractDMSPicker {
 
             }
         } catch (RepositoryException | IOException e) {
-            e.printStackTrace();
+            logger.error("Error while getting DMS categories", e);
         }
 
         ExternalDocumentCollection<JSONObject> docCollection =  new SimpleExternalDocumentCollection<JSONObject>();

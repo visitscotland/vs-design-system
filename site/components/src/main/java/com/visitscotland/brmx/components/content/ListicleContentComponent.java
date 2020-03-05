@@ -88,7 +88,6 @@ public class ListicleContentComponent extends EssentialsContentComponent {
                         Image cmsImage = (Image) listicleItem.getListicleItemImage();
                         if (cmsImage != null) {
                             FlatImage image = new FlatImage();
-
                             model.setImage(new FlatImage(cmsImage, cmsImage.getAltText(), cmsImage.getCredit(), cmsImage.getDescription()));
                         }
                     }
