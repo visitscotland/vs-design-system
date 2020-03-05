@@ -1,15 +1,15 @@
 package com.visitscotland.brmx.components.content;
 
 import com.visitscotland.brmx.beans.*;
+
 import com.visitscotland.brmx.beans.mapping.FlatImage;
 import com.visitscotland.brmx.beans.mapping.FlatLink;
 import com.visitscotland.brmx.beans.mapping.FlatListicle;
+import com.visitscotland.brmx.beans.mapping.Coordinates;
 import com.visitscotland.brmx.utils.CommonUtils;
-import com.visitscotland.brmx.utils.Properties;
 import org.hippoecm.hst.content.beans.standard.HippoCompound;
 import org.hippoecm.hst.core.component.HstRequest;
 import org.hippoecm.hst.core.component.HstResponse;
-import org.json.JSONArray;
 import org.json.JSONObject;
 import org.onehippo.cms7.essentials.components.EssentialsContentComponent;
 import org.slf4j.Logger;
@@ -19,7 +19,6 @@ import java.net.*;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
 public class ListicleContentComponent extends EssentialsContentComponent {
 
@@ -117,6 +116,11 @@ public class ListicleContentComponent extends EssentialsContentComponent {
                                 image.setExternalImage(product.getString(IMAGE));
                                 //TODO: SET ALT-TEXT, CREDITS AND DESCRIPTION
                                 model.setImage(image);
+                            }else{
+                                if (model.getImage().getSource().equals(FlatImage.Source.INSTAGRAM)){
+                                    Coordinates coordinates = new Coordinates(product.getDouble("latitude"),product.getDouble("longitude"));
+                                    model.getImage().setCoordinates(coordinates);
+                                }
                             }
 
                             for (Object facility : product.getString(FACILITIES).split(",")) {

@@ -94,12 +94,12 @@ public class ItineraryContentComponent extends EssentialsContentComponent {
 
                         if (dmsLink.getProduct() == null){
                             model.setErrorMessage("The product's id  was not provided");
-                            logger.warn(CommonUtils.contentIssue("The product's id  was not provided for %s, Stop %s", itinerary.getName(), model.getIndex()));
+                            logger.warn(CommonUtils.contentIssue("The product's id was not provided for %s, Stop %s", itinerary.getName(), model.getIndex()));
                         } else {
                             JSONObject product = CommonUtils.getProduct(dmsLink.getProduct(), request.getLocale());
                             if (product == null){
-                                model.setErrorMessage("The product id does not exists in the DMS");
-                                logger.warn(CommonUtils.contentIssue("The product id does not exists in the DMS for %s, Stop %s", itinerary.getName(), model.getIndex()));
+                                model.setErrorMessage("The product id does not exist in the DMS");
+                                logger.warn(CommonUtils.contentIssue("The product id does not exist in the DMS for %s, Stop %s", itinerary.getName(), model.getIndex()));
                             } else {
 
                                 FlatLink ctaLink = new FlatLink(this.getCtaLabel(dmsLink.getLabel(),request.getLocale()),product.getString(URL));
@@ -153,6 +153,9 @@ public class ItineraryContentComponent extends EssentialsContentComponent {
                         model.setCoordinates(coordinates);
                     }
 
+                }else{
+                    model.setErrorMessage("The product's id  was not provided");
+                    logger.warn(CommonUtils.contentIssue("The product's id  was not provided for %s, Stop %s", itinerary.getName(), model.getIndex()));
                 }
 
                 lastStopId = model.getIdentifier();

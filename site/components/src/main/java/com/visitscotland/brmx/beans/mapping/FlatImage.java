@@ -1,6 +1,6 @@
 package com.visitscotland.brmx.beans.mapping;
 
-import com.visitscotland.brmx.beans.Coordinates;
+
 import com.visitscotland.brmx.beans.Image;
 
 public class FlatImage {
