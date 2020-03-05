@@ -21,14 +21,12 @@ import org.onehippo.forge.exdocpicker.impl.SimpleExternalDocumentCollection;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import net.sf.json.JSONObject;
-import vs.ase.dms.AwardTypes;
 import vs.ase.dms.ProductTypes;
 
 import javax.jcr.Node;
 import javax.jcr.RepositoryException;
 import javax.jcr.Value;
 import java.io.IOException;
-import java.net.URL;
 import java.util.*;
 
 

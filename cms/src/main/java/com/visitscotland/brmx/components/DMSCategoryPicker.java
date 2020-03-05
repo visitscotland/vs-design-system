@@ -5,7 +5,6 @@ package com.visitscotland.brmx.components;
 // (powered by Fernflower decompiler)
 //
 
-import com.visitscotland.brmx.components.content.ListicleContentComponent;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 import org.apache.commons.lang.StringUtils;
