@@ -111,9 +111,9 @@ public abstract class LocationLoader {
     private static String request(Locale locale){
         //TODO Change the level to add polygon (for destinations pages)
         if (locale == null){
-            return requestPage(String.format("%s/data/location/list?full",Properties.VS_DMS_PRODUCTS));
+            return requestPage(String.format("%s/data/meta/location/list?full",Properties.VS_DMS_PRODUCTS));
         } else {
-            return requestPage(String.format("%s/data/location/list?full&locale=%s",Properties.VS_DMS_PRODUCTS, locale.getLanguage()));
+            return requestPage(String.format("%s/data/meta/location/list?full&locale=%s",Properties.VS_DMS_PRODUCTS, locale.getLanguage()));
         }
     }
 
