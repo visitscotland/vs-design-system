@@ -222,21 +222,21 @@ public abstract class AbstractDMSPicker implements ExternalDocumentServiceFacade
             case TYPE_AWARD:
                 List<Award> awards = new ArrayList<>();
                 for (JsonNode elm: dataObject.get("data")){
-                    Award category = new Award(elm.get("id").toString(),elm.get("name").toString(),null,null);
+                    Award category = new Award(elm.get("id").asText(),elm.get("name").asText(),null,null);
                     awards.add(category);
                 }
                 return awards;
             case TYPE_FACILITY:
                 Set<Facility> facilities = new TreeSet<>();
                 for (JsonNode elm: dataObject.get("data")){
-                    Facility facility = new Facility(elm.get("id").toString(),elm.get("name").toString(),null);
+                    Facility facility = new Facility(elm.get("id").asText(),elm.get("name").asText(),null);
                     facilities.add(facility);
                 }
                 return facilities;
             case TYPE_CATEGORY:
                 Set<Category> categories = new TreeSet<>();
                 for (JsonNode elm: dataObject.get("data")){
-                    Category category = new Category(elm.get("id").toString(),elm.get("name").toString());
+                    Category category = new Category(elm.get("id").asText(),elm.get("name").asText());
                     categories.add(category);
                 }
                 return categories;
