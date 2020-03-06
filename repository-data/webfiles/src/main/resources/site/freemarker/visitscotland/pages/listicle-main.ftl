@@ -23,6 +23,9 @@
 <#-- @ftlvariable name="item" type="com.visitscotland.brmx.beans.mapping.FlatListicle" -->
 <#-- @ftlvariable name="cta" type="com.visitscotland.brmx.beans.mapping.FlatLink" -->
 
+<div class="has-edit-button">
+      <@hst.manageContent hippobean=document documentTemplateQuery="new-document" rootPath="site" defaultPath="${path}" />
+</div>
 <vs-container slot="upper" class="py-lg-4">
 	<vs-row class="justify-content-md-between">
 		<vs-col cols="12" lg="8" offset-lg="1">
