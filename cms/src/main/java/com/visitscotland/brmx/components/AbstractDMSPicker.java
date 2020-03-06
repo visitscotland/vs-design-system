@@ -31,7 +31,6 @@ public abstract class AbstractDMSPicker implements ExternalDocumentServiceFacade
 
     private static final String PARAM_EXTERNAL_DOCS_FIELD_NAME = "example.external.docs.field.name";
 
-    private static final String TYPE_AWARD = "award";
 
     private JSONArray docArray;
 
@@ -155,14 +154,12 @@ public abstract class AbstractDMSPicker implements ExternalDocumentServiceFacade
 
     protected List<String> productTypesForPSR(String productType){
         List<String> searchTypes = new ArrayList<>();
-        if (!productType.equalsIgnoreCase(TYPE_AWARD)) {
-            searchTypes.add(ProductTypes.ACCOMMODATION.getId());
-            searchTypes.add(ProductTypes.ACTIVITY.getId());
-            searchTypes.add(ProductTypes.ATTRACTION.getId());
-            searchTypes.add(ProductTypes.EVENT.getId());
-            searchTypes.add(ProductTypes.SHOPPING.getId());
-            searchTypes.add(ProductTypes.FOOD_DRINK.getId());
-        }
+        searchTypes.add(ProductTypes.ACCOMMODATION.getId());
+        searchTypes.add(ProductTypes.ACTIVITY.getId());
+        searchTypes.add(ProductTypes.ATTRACTION.getId());
+        searchTypes.add(ProductTypes.EVENT.getId());
+        searchTypes.add(ProductTypes.SHOPPING.getId());
+        searchTypes.add(ProductTypes.FOOD_DRINK.getId());
         return searchTypes;
     }
 
