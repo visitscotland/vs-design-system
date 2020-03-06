@@ -53,7 +53,7 @@
           visitscotland:teaser: ''
           visitscotland:text: "Glenfinnan Viaduct\r\n\r\nJacobite Steam Train\r\n\r\
             \nGlen Etive\r\n\r\nThe Elephant House"
-          visitscotland:theme: filmev
+          visitscotland:theme: whisky
           visitscotland:title: HARRY POTTER FILM AND BOOK LOCATIONS ITINERARY
           visitscotland:transport: [boat]
           visitscotland:transports: [car, train]
@@ -111,6 +111,62 @@
           visitscotland:text: "Glenfinnan Viaduct\r\n\r\nJacobite Steam Train\r\n\r\
             \nGlen Etive\r\n\r\nThe Elephant House"
           visitscotland:theme: filmev
+          visitscotland:title: HARRY POTTER FILM AND BOOK LOCATIONS ITINERARY
+          visitscotland:transport: [boat]
+          visitscotland:transports: [car, train]
+          /visitscotland:heroImage:
+            jcr:primaryType: hippogallerypicker:imagelink
+            hippo:docbase: 8d4f5036-64ca-4e5d-aa89-b348ae38b081
+            hippo:facets: []
+            hippo:modes: []
+            hippo:values: []
+          /visitscotland:introduction:
+            jcr:primaryType: hippostd:html
+            hippostd:content: <p>It was in Scotland's capital city that JK Rowling
+              started to plot the adventures of Harry and his friends. With cobbled
+              streets, winding alleys and medieval architecture, the city certainly
+              have a few things in common with the settings from the books and films.
+              She wrote the early chapters in various cafés around the city's Old
+              Town, before coming back to finish off the series from a peaceful suite
+              in The Balmoral Hotel. It is also said that Hogwarts School was styled
+              on Edinburgh’s Fettes College, a private school on the outskirts of
+              Edinburgh’s west end new town. You could also try the <a href="https://www.visitscotland.com/info/tours/wizarding-world-of-edinburgh-03e61189">Wizarding
+              World of Edinburgh</a> tour.</p>
+          /visitscotland:ProductsSearch:
+            jcr:primaryType: visitscotland:ProductsSearch
+            visitscotland:distance: 0
+            visitscotland:dmsCategories: [guesthouse, yurts, touringpark, hostel]
+            visitscotland:dmscategories: ''
+            visitscotland:location: ''
+            visitscotland:producttype: ''
+        /content[3]:
+          jcr:primaryType: visitscotland:Itinerary
+          jcr:mixinTypes: ['mix:referenceable']
+          jcr:uuid: 86f914ec-6463-40c0-926e-e232fed12ed5
+          hippo:availability: []
+          hippostd:state: draft
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2019-12-06T12:48:04.149Z
+          hippostdpubwf:lastModificationDate: 2020-03-03T09:20:37.811Z
+          hippostdpubwf:lastModifiedBy: admin
+          hippotranslation:id: 56cf92c8-5887-4146-ad53-eaa062f4e07a
+          hippotranslation:locale: en
+          visitscotland:areas: []
+          visitscotland:breadcrumb: ''
+          visitscotland:distance: 10.4
+          visitscotland:finish: Ocean point
+          visitscotland:highlights: "Glenfinnan Viaduct \r\nJacobite Steam Train\r\
+            \nGlen Etive\r\nThe Elephant House"
+          visitscotland:popular: false
+          visitscotland:seoDescription: ''
+          visitscotland:seoNoIndex: false
+          visitscotland:seoTitle: Iconic Harry Potter Film Locations - An Itinerary
+          visitscotland:start: Tenerife
+          visitscotland:summary: ''
+          visitscotland:teaser: ''
+          visitscotland:text: "Glenfinnan Viaduct\r\n\r\nJacobite Steam Train\r\n\r\
+            \nGlen Etive\r\n\r\nThe Elephant House"
+          visitscotland:theme: whisky
           visitscotland:title: HARRY POTTER FILM AND BOOK LOCATIONS ITINERARY
           visitscotland:transport: [boat]
           visitscotland:transports: [car, train]
@@ -343,224 +399,12 @@
           /visitscotland:stops[3]:
             jcr:primaryType: hippo:mirror
             hippo:docbase: 1ead4399-7e30-47dc-9b75-2ea488fb5742
-    /day-2:
-      jcr:primaryType: hippo:handle
-      jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
-      jcr:uuid: e48273b9-7b42-4456-837f-e014dc069d95
-      hippo:name: day 2
-      hippo:versionHistory: 6e0a7d92-61a8-4523-9922-ee457f2033e1
-      /day-2[1]:
-        jcr:primaryType: visitscotland:Day
-        jcr:mixinTypes: ['mix:referenceable']
-        jcr:uuid: 8d068d19-9845-40ea-80fe-4dc7dd0e95f7
-        hippo:availability: []
-        hippostd:state: draft
-        hippostdpubwf:createdBy: admin
-        hippostdpubwf:creationDate: 2019-12-12T12:06:04.129Z
-        hippostdpubwf:lastModificationDate: 2020-01-30T12:30:03.802Z
-        hippostdpubwf:lastModifiedBy: admin
-        hippotranslation:id: 2af219fa-878e-435f-ae2e-e296a16e21a9
-        hippotranslation:locale: en
-        visitscotland:title: Dummy Stops
-        visitscotland:transports: [cycling, walking, boat, car, bus, train, ferry,
-          public]
-        /visitscotland:introduction:
-          jcr:primaryType: hippostd:html
-          hippostd:content: |-
-            <p>A hash model that wraps a resource bundle. Makes it convenient to store localized content in the data model. It also acts as a method model that will take a resource key and arbitrary number of arguments and will apply MessageFormat with arguments on the string represented by the key.</p>
-
-            <p>Typical usages:</p>
-
-            <ul>
-             <li>bundle.resourceKey will retrieve the object from resource bundle with key resourceKey</li>
-             <li>bundle("patternKey", arg1, arg2, arg3) will retrieve the string from resource bundle with key patternKey, and will use it as a pattern for MessageFormat with arguments arg1, arg2 and arg3</li>
-            </ul>
-        /visitscotland:stops[1]:
-          jcr:primaryType: hippo:mirror
-          hippo:docbase: 8030a311-a942-40e6-bb89-41dd6fea60df
-        /visitscotland:stops[2]:
-          jcr:primaryType: hippo:mirror
-          hippo:docbase: 8b215960-87aa-47ae-9c11-8a750be25ad8
-        /visitscotland:stops[3]:
-          jcr:primaryType: hippo:mirror
-          hippo:docbase: 1ead4399-7e30-47dc-9b75-2ea488fb5742
-      /day-2[2]:
-        jcr:primaryType: visitscotland:Day
-        jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
-        jcr:uuid: 31bac8af-c240-4a3c-b982-f0006a5f111e
-        hippo:availability: [preview]
-        hippostd:state: unpublished
-        hippostdpubwf:createdBy: admin
-        hippostdpubwf:creationDate: 2019-12-12T12:06:04.129Z
-        hippostdpubwf:lastModificationDate: 2020-01-13T15:01:02.930Z
-        hippostdpubwf:lastModifiedBy: admin
-        hippotranslation:id: 2af219fa-878e-435f-ae2e-e296a16e21a9
-        hippotranslation:locale: en
-        visitscotland:title: Dummy Stops
-        visitscotland:transports: [cycling, walking, boat, car, bus, train, ferry,
-          public]
-        /visitscotland:introduction:
-          jcr:primaryType: hippostd:html
-          hippostd:content: |-
-            <p>A hash model that wraps a resource bundle. Makes it convenient to store localized content in the data model. It also acts as a method model that will take a resource key and arbitrary number of arguments and will apply MessageFormat with arguments on the string represented by the key.</p>
-
-            <p>Typical usages:</p>
-
-            <ul>
-             <li>bundle.resourceKey will retrieve the object from resource bundle with key resourceKey</li>
-             <li>bundle("patternKey", arg1, arg2, arg3) will retrieve the string from resource bundle with key patternKey, and will use it as a pattern for MessageFormat with arguments arg1, arg2 and arg3</li>
-            </ul>
-        /visitscotland:stops[1]:
-          jcr:primaryType: hippo:mirror
-          hippo:docbase: 8030a311-a942-40e6-bb89-41dd6fea60df
-        /visitscotland:stops[2]:
-          jcr:primaryType: hippo:mirror
-          hippo:docbase: 8b215960-87aa-47ae-9c11-8a750be25ad8
-        /visitscotland:stops[3]:
-          jcr:primaryType: hippo:mirror
-          hippo:docbase: 1ead4399-7e30-47dc-9b75-2ea488fb5742
-      /day-2[3]:
-        jcr:primaryType: visitscotland:Day
-        jcr:mixinTypes: ['mix:referenceable']
-        jcr:uuid: 29a330bf-91ba-413d-9f7c-76dd55cc5b82
-        hippo:availability: [live]
-        hippostd:state: published
-        hippostdpubwf:createdBy: admin
-        hippostdpubwf:creationDate: 2019-12-12T12:06:04.129Z
-        hippostdpubwf:lastModificationDate: 2020-01-13T15:01:02.930Z
-        hippostdpubwf:lastModifiedBy: admin
-        hippostdpubwf:publicationDate: 2020-01-13T15:01:06.597Z
-        hippotranslation:id: 2af219fa-878e-435f-ae2e-e296a16e21a9
-        hippotranslation:locale: en
-        visitscotland:title: Dummy Stops
-        visitscotland:transports: [cycling, walking, boat, car, bus, train, ferry,
-          public]
-        /visitscotland:introduction:
-          jcr:primaryType: hippostd:html
-          hippostd:content: |-
-            <p>A hash model that wraps a resource bundle. Makes it convenient to store localized content in the data model. It also acts as a method model that will take a resource key and arbitrary number of arguments and will apply MessageFormat with arguments on the string represented by the key.</p>
-
-            <p>Typical usages:</p>
-
-            <ul>
-             <li>bundle.resourceKey will retrieve the object from resource bundle with key resourceKey</li>
-             <li>bundle("patternKey", arg1, arg2, arg3) will retrieve the string from resource bundle with key patternKey, and will use it as a pattern for MessageFormat with arguments arg1, arg2 and arg3</li>
-            </ul>
-        /visitscotland:stops[1]:
-          jcr:primaryType: hippo:mirror
-          hippo:docbase: 8030a311-a942-40e6-bb89-41dd6fea60df
-        /visitscotland:stops[2]:
-          jcr:primaryType: hippo:mirror
-          hippo:docbase: 8b215960-87aa-47ae-9c11-8a750be25ad8
-        /visitscotland:stops[3]:
-          jcr:primaryType: hippo:mirror
-          hippo:docbase: 1ead4399-7e30-47dc-9b75-2ea488fb5742
-    /edinburgh:
-      jcr:primaryType: hippo:handle
-      jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
-      jcr:uuid: 8ac72449-609b-45aa-b2b6-d3cb81a24139
-      hippo:name: Edinburgh
-      hippo:versionHistory: 8fb6ba74-d9fa-46c7-967a-d92b1a9a4f6b
-      /edinburgh[1]:
-        jcr:primaryType: visitscotland:Day
-        jcr:mixinTypes: ['mix:referenceable']
-        jcr:uuid: 0ffbb12c-63cd-4459-ba5d-d73822b10120
-        hippo:availability: []
-        hippostd:state: draft
-        hippostdpubwf:createdBy: admin
-        hippostdpubwf:creationDate: 2019-12-10T13:28:39.550Z
-        hippostdpubwf:lastModificationDate: 2020-01-10T14:15:09.157Z
-        hippostdpubwf:lastModifiedBy: admin
-        hippotranslation:id: 58eba379-722b-43b6-85c5-a58cffa5d53d
-        hippotranslation:locale: en
-        visitscotland:title: DMS Stops Day
-        visitscotland:transports: [walking, car, train]
-        /visitscotland:introduction:
-          jcr:primaryType: hippostd:html
-          hippostd:content: <p>It was in Scotland's capital city that JK Rowling started
-            to plot the adventures of Harry and his friends. With cobbled streets,
-            winding alleys and medieval architecture, the city certainly has a few
-            things in common with the settings from the books and films. She wrote
-            the early chapters in various cafés around the city's Old Town, before
-            coming back to finish off the series from a peaceful suite in The Balmoral
-            Hotel. It is also said that Hogwarts School was styled on Edinburgh’s
-            Fettes College, a private school on the outskirts of Edinburgh’s west
-            end new town. You could also try the Wizarding World of Edinburgh tour.</p>
-        /visitscotland:stops[1]:
-          jcr:primaryType: hippo:mirror
-          hippo:docbase: ca56dfe6-f8c8-410f-aa63-ed513fc71385
-        /visitscotland:stops[2]:
-          jcr:primaryType: hippo:mirror
-          hippo:docbase: 28abd074-5fc4-4ebc-a424-1d4f9e5cb0e6
-      /edinburgh[2]:
-        jcr:primaryType: visitscotland:Day
-        jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
-        jcr:uuid: 8faffb50-41aa-4bd3-a841-75166d4ee460
-        hippo:availability: [preview]
-        hippostd:state: unpublished
-        hippostdpubwf:createdBy: admin
-        hippostdpubwf:creationDate: 2019-12-10T13:28:39.550Z
-        hippostdpubwf:lastModificationDate: 2020-01-10T14:15:17.517Z
-        hippostdpubwf:lastModifiedBy: admin
-        hippotranslation:id: 58eba379-722b-43b6-85c5-a58cffa5d53d
-        hippotranslation:locale: en
-        visitscotland:title: DMS Stops Day
-        visitscotland:transports: [walking, car, train]
-        /visitscotland:introduction:
-          jcr:primaryType: hippostd:html
-          hippostd:content: <p>It was in Scotland's capital city that JK Rowling started
-            to plot the adventures of Harry and his friends. With cobbled streets,
-            winding alleys and medieval architecture, the city certainly has a few
-            things in common with the settings from the books and films. She wrote
-            the early chapters in various cafés around the city's Old Town, before
-            coming back to finish off the series from a peaceful suite in The Balmoral
-            Hotel. It is also said that Hogwarts School was styled on Edinburgh’s
-            Fettes College, a private school on the outskirts of Edinburgh’s west
-            end new town. You could also try the Wizarding World of Edinburgh tour.</p>
-        /visitscotland:stops[1]:
-          jcr:primaryType: hippo:mirror
-          hippo:docbase: ca56dfe6-f8c8-410f-aa63-ed513fc71385
-        /visitscotland:stops[2]:
-          jcr:primaryType: hippo:mirror
-          hippo:docbase: 28abd074-5fc4-4ebc-a424-1d4f9e5cb0e6
-      /edinburgh[3]:
-        jcr:primaryType: visitscotland:Day
-        jcr:mixinTypes: ['mix:referenceable']
-        jcr:uuid: ca79ffa1-5ca3-44d8-a2fd-1b2f017c995e
-        hippo:availability: [live]
-        hippostd:state: published
-        hippostdpubwf:createdBy: admin
-        hippostdpubwf:creationDate: 2019-12-10T13:28:39.550Z
-        hippostdpubwf:lastModificationDate: 2020-01-10T14:15:17.517Z
-        hippostdpubwf:lastModifiedBy: admin
-        hippostdpubwf:publicationDate: 2020-01-10T14:29:11.826Z
-        hippotranslation:id: 58eba379-722b-43b6-85c5-a58cffa5d53d
-        hippotranslation:locale: en
-        visitscotland:title: DMS Stops Day
-        visitscotland:transports: [walking, car, train]
-        /visitscotland:introduction:
-          jcr:primaryType: hippostd:html
-          hippostd:content: <p>It was in Scotland's capital city that JK Rowling started
-            to plot the adventures of Harry and his friends. With cobbled streets,
-            winding alleys and medieval architecture, the city certainly has a few
-            things in common with the settings from the books and films. She wrote
-            the early chapters in various cafés around the city's Old Town, before
-            coming back to finish off the series from a peaceful suite in The Balmoral
-            Hotel. It is also said that Hogwarts School was styled on Edinburgh’s
-            Fettes College, a private school on the outskirts of Edinburgh’s west
-            end new town. You could also try the Wizarding World of Edinburgh tour.</p>
-        /visitscotland:stops[1]:
-          jcr:primaryType: hippo:mirror
-          hippo:docbase: ca56dfe6-f8c8-410f-aa63-ed513fc71385
-        /visitscotland:stops[2]:
-          jcr:primaryType: hippo:mirror
-          hippo:docbase: 28abd074-5fc4-4ebc-a424-1d4f9e5cb0e6
     /content:
       jcr:primaryType: hippo:handle
       jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
       jcr:uuid: 0751c1d3-3024-4d2d-a5e8-38286fee9722
       hippo:name: Content
-      hippo:versionHistory: be0e4c4d-28b8-4739-be61-0f615357af59
+      hippo:versionHistory: 54f8976a-7924-4945-ad7c-7c0e290897f9
       /content[1]:
         jcr:primaryType: visitscotland:Itinerary
         jcr:mixinTypes: ['mix:referenceable']
@@ -569,47 +413,71 @@
         hippostd:state: draft
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2019-12-06T12:48:04.149Z
-        hippostdpubwf:lastModificationDate: 2020-02-26T12:10:42.470Z
+        hippostdpubwf:lastModificationDate: 2020-03-03T12:10:00.174Z
         hippostdpubwf:lastModifiedBy: admin
         hippotranslation:id: a3ed9022-e239-493b-952c-18d01ac36640
         hippotranslation:locale: en
-        visitscotland:areas: [dumfries, highlands]
+        visitscotland:areas: []
         visitscotland:breadcrumb: Development Area
-        visitscotland:distance: 10.4
-        visitscotland:finish: Ocean point
-        visitscotland:highlights: "Glenfinnan Viaduct \r\nJacobite Steam Train\r\n\
-          Glen Etive\r\nThe Elephant House"
+        visitscotland:distance: 3.718
+        visitscotland:finish: Spain
+        visitscotland:highlights: ''
         visitscotland:popular: false
         visitscotland:seoDescription: ''
         visitscotland:seoNoIndex: false
-        visitscotland:seoTitle: Iconic Harry Potter Film Locations - An Itinerary
-        visitscotland:start: Tenerife
+        visitscotland:seoTitle: A bunch of useful links for developers
+        visitscotland:start: Scotland
         visitscotland:summary: ''
-        visitscotland:teaser: ''
+        visitscotland:teaser: Do not dare to link to this page!!!
         visitscotland:text: "Glenfinnan Viaduct\r\n\r\nJacobite Steam Train\r\n\r\n\
           Glen Etive\r\n\r\nThe Elephant House"
-        visitscotland:theme: filmev
-        visitscotland:title: HARRY POTTER FILM AND BOOK LOCATIONS ITINERARY
+        visitscotland:theme: whisky
+        visitscotland:title: A bunch of useful links for developers
         visitscotland:transport: [boat]
         visitscotland:transports: [car, train]
         /visitscotland:heroImage:
           jcr:primaryType: hippogallerypicker:imagelink
-          hippo:docbase: 8d4f5036-64ca-4e5d-aa89-b348ae38b081
+          hippo:docbase: 1e4be246-297b-4404-8102-80fe1bc0ddf7
           hippo:facets: []
           hippo:modes: []
           hippo:values: []
         /visitscotland:introduction:
           jcr:primaryType: hippostd:html
-          hippostd:content: <p>It was in Scotland's capital city that JK Rowling started
-            to plot the adventures of Harry and his friends. With cobbled streets,
-            winding alleys and medieval architecture, the city certainly have a few
-            things in common with the settings from the books and films. She wrote
-            the early chapters in various cafés around the city's Old Town, before
-            coming back to finish off the series from a peaceful suite in The Balmoral
-            Hotel. It is also said that Hogwarts School was styled on Edinburgh’s
-            Fettes College, a private school on the outskirts of Edinburgh’s west
-            end new town. You could also try the <a href="https://www.visitscotland.com/info/tours/wizarding-world-of-edinburgh-03e61189">Wizarding
-            World of Edinburgh</a> tour.</p>
+          hippostd:content: |-
+            <p>Itineraries:</p>
+
+            <ul>
+             <li><a href="content_3">Broken Itinerary</a></li>
+             <li><a href="content_2">Victoria Heritage</a></li>
+             <li><a href="content_1">Outlander</a></li>
+             <li><a href="content">Short break</a></li>
+            </ul>
+
+            <p>&nbsp;</p>
+          /content:
+            jcr:primaryType: hippo:facetselect
+            hippo:docbase: 4d302e29-93dd-4157-9df9-bbd741bb12a0
+            hippo:facets: []
+            hippo:modes: []
+            hippo:values: []
+          /content_1:
+            jcr:primaryType: hippo:facetselect
+            hippo:docbase: 3158d2f5-5f70-407a-be69-a7f7061c0d11
+            hippo:facets: []
+            hippo:modes: []
+            hippo:values: []
+          /content_2:
+            jcr:primaryType: hippo:facetselect
+            hippo:docbase: e16bdb89-c271-46f1-851f-2d2b82d631d4
+            hippo:facets: []
+            hippo:modes: []
+            hippo:values: []
+          /content_3:
+            jcr:primaryType: hippo:facetselect
+            hippo:docbase: 8b4a3c11-8b84-4aa0-bccf-f407d18c1c44
+            hippo:facets: []
+            hippo:modes: []
+            hippo:values: []
         /visitscotland:ProductsSearch:
           jcr:primaryType: visitscotland:ProductsSearch
           visitscotland:distance: 0
@@ -625,47 +493,71 @@
         hippostd:state: unpublished
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2019-12-06T12:48:04.149Z
-        hippostdpubwf:lastModificationDate: 2020-02-26T12:10:58.599Z
+        hippostdpubwf:lastModificationDate: 2020-03-03T12:08:07.990Z
         hippostdpubwf:lastModifiedBy: admin
         hippotranslation:id: a3ed9022-e239-493b-952c-18d01ac36640
         hippotranslation:locale: en
-        visitscotland:areas: [dumfries, highlands]
+        visitscotland:areas: []
         visitscotland:breadcrumb: Development Area
-        visitscotland:distance: 10.4
-        visitscotland:finish: Ocean point
-        visitscotland:highlights: "Glenfinnan Viaduct \r\nJacobite Steam Train\r\n\
-          Glen Etive\r\nThe Elephant House"
+        visitscotland:distance: 3.718
+        visitscotland:finish: Spain
+        visitscotland:highlights: ''
         visitscotland:popular: false
         visitscotland:seoDescription: ''
         visitscotland:seoNoIndex: false
-        visitscotland:seoTitle: Iconic Harry Potter Film Locations - An Itinerary
-        visitscotland:start: Tenerife
+        visitscotland:seoTitle: A bunch of useful links for developers
+        visitscotland:start: Scotland
         visitscotland:summary: ''
-        visitscotland:teaser: ''
+        visitscotland:teaser: Do not dare to link to this page!!!
         visitscotland:text: "Glenfinnan Viaduct\r\n\r\nJacobite Steam Train\r\n\r\n\
           Glen Etive\r\n\r\nThe Elephant House"
-        visitscotland:theme: filmev
-        visitscotland:title: HARRY POTTER FILM AND BOOK LOCATIONS ITINERARY
+        visitscotland:theme: whisky
+        visitscotland:title: A bunch of useful links for developers
         visitscotland:transport: [boat]
         visitscotland:transports: [car, train]
         /visitscotland:heroImage:
           jcr:primaryType: hippogallerypicker:imagelink
-          hippo:docbase: 8d4f5036-64ca-4e5d-aa89-b348ae38b081
+          hippo:docbase: 1e4be246-297b-4404-8102-80fe1bc0ddf7
           hippo:facets: []
           hippo:modes: []
           hippo:values: []
         /visitscotland:introduction:
           jcr:primaryType: hippostd:html
-          hippostd:content: <p>It was in Scotland's capital city that JK Rowling started
-            to plot the adventures of Harry and his friends. With cobbled streets,
-            winding alleys and medieval architecture, the city certainly have a few
-            things in common with the settings from the books and films. She wrote
-            the early chapters in various cafés around the city's Old Town, before
-            coming back to finish off the series from a peaceful suite in The Balmoral
-            Hotel. It is also said that Hogwarts School was styled on Edinburgh’s
-            Fettes College, a private school on the outskirts of Edinburgh’s west
-            end new town. You could also try the <a href="https://www.visitscotland.com/info/tours/wizarding-world-of-edinburgh-03e61189">Wizarding
-            World of Edinburgh</a> tour.</p>
+          hippostd:content: |-
+            <p>Itineraries:</p>
+
+            <ul>
+             <li><a href="content_3">Broken Itinerary</a></li>
+             <li><a href="content_2">Victoria Heritage</a></li>
+             <li><a href="content_1">Outlander</a></li>
+             <li><a href="content">Short break</a></li>
+            </ul>
+
+            <p>&nbsp;</p>
+          /content:
+            jcr:primaryType: hippo:facetselect
+            hippo:docbase: 4d302e29-93dd-4157-9df9-bbd741bb12a0
+            hippo:facets: []
+            hippo:modes: []
+            hippo:values: []
+          /content_1:
+            jcr:primaryType: hippo:facetselect
+            hippo:docbase: 3158d2f5-5f70-407a-be69-a7f7061c0d11
+            hippo:facets: []
+            hippo:modes: []
+            hippo:values: []
+          /content_2:
+            jcr:primaryType: hippo:facetselect
+            hippo:docbase: e16bdb89-c271-46f1-851f-2d2b82d631d4
+            hippo:facets: []
+            hippo:modes: []
+            hippo:values: []
+          /content_3:
+            jcr:primaryType: hippo:facetselect
+            hippo:docbase: 8b4a3c11-8b84-4aa0-bccf-f407d18c1c44
+            hippo:facets: []
+            hippo:modes: []
+            hippo:values: []
         /visitscotland:ProductsSearch:
           jcr:primaryType: visitscotland:ProductsSearch
           visitscotland:distance: 0
@@ -681,48 +573,72 @@
         hippostd:state: published
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2019-12-06T12:48:04.149Z
-        hippostdpubwf:lastModificationDate: 2020-02-26T12:10:58.599Z
+        hippostdpubwf:lastModificationDate: 2020-03-03T12:08:07.990Z
         hippostdpubwf:lastModifiedBy: admin
-        hippostdpubwf:publicationDate: 2020-02-26T12:11:01.623Z
+        hippostdpubwf:publicationDate: 2020-03-03T12:10:00.020Z
         hippotranslation:id: a3ed9022-e239-493b-952c-18d01ac36640
         hippotranslation:locale: en
-        visitscotland:areas: [dumfries, highlands]
+        visitscotland:areas: []
         visitscotland:breadcrumb: Development Area
-        visitscotland:distance: 10.4
-        visitscotland:finish: Ocean point
-        visitscotland:highlights: "Glenfinnan Viaduct \r\nJacobite Steam Train\r\n\
-          Glen Etive\r\nThe Elephant House"
+        visitscotland:distance: 3.718
+        visitscotland:finish: Spain
+        visitscotland:highlights: ''
         visitscotland:popular: false
         visitscotland:seoDescription: ''
         visitscotland:seoNoIndex: false
-        visitscotland:seoTitle: Iconic Harry Potter Film Locations - An Itinerary
-        visitscotland:start: Tenerife
+        visitscotland:seoTitle: A bunch of useful links for developers
+        visitscotland:start: Scotland
         visitscotland:summary: ''
-        visitscotland:teaser: ''
+        visitscotland:teaser: Do not dare to link to this page!!!
         visitscotland:text: "Glenfinnan Viaduct\r\n\r\nJacobite Steam Train\r\n\r\n\
           Glen Etive\r\n\r\nThe Elephant House"
-        visitscotland:theme: filmev
-        visitscotland:title: HARRY POTTER FILM AND BOOK LOCATIONS ITINERARY
+        visitscotland:theme: whisky
+        visitscotland:title: A bunch of useful links for developers
         visitscotland:transport: [boat]
         visitscotland:transports: [car, train]
         /visitscotland:heroImage:
           jcr:primaryType: hippogallerypicker:imagelink
-          hippo:docbase: 8d4f5036-64ca-4e5d-aa89-b348ae38b081
+          hippo:docbase: 1e4be246-297b-4404-8102-80fe1bc0ddf7
           hippo:facets: []
           hippo:modes: []
           hippo:values: []
         /visitscotland:introduction:
           jcr:primaryType: hippostd:html
-          hippostd:content: <p>It was in Scotland's capital city that JK Rowling started
-            to plot the adventures of Harry and his friends. With cobbled streets,
-            winding alleys and medieval architecture, the city certainly have a few
-            things in common with the settings from the books and films. She wrote
-            the early chapters in various cafés around the city's Old Town, before
-            coming back to finish off the series from a peaceful suite in The Balmoral
-            Hotel. It is also said that Hogwarts School was styled on Edinburgh’s
-            Fettes College, a private school on the outskirts of Edinburgh’s west
-            end new town. You could also try the <a href="https://www.visitscotland.com/info/tours/wizarding-world-of-edinburgh-03e61189">Wizarding
-            World of Edinburgh</a> tour.</p>
+          hippostd:content: |-
+            <p>Itineraries:</p>
+
+            <ul>
+             <li><a href="content_3">Broken Itinerary</a></li>
+             <li><a href="content_2">Victoria Heritage</a></li>
+             <li><a href="content_1">Outlander</a></li>
+             <li><a href="content">Short break</a></li>
+            </ul>
+
+            <p>&nbsp;</p>
+          /content:
+            jcr:primaryType: hippo:facetselect
+            hippo:docbase: 4d302e29-93dd-4157-9df9-bbd741bb12a0
+            hippo:facets: []
+            hippo:modes: []
+            hippo:values: []
+          /content_1:
+            jcr:primaryType: hippo:facetselect
+            hippo:docbase: 3158d2f5-5f70-407a-be69-a7f7061c0d11
+            hippo:facets: []
+            hippo:modes: []
+            hippo:values: []
+          /content_2:
+            jcr:primaryType: hippo:facetselect
+            hippo:docbase: e16bdb89-c271-46f1-851f-2d2b82d631d4
+            hippo:facets: []
+            hippo:modes: []
+            hippo:values: []
+          /content_3:
+            jcr:primaryType: hippo:facetselect
+            hippo:docbase: 8b4a3c11-8b84-4aa0-bccf-f407d18c1c44
+            hippo:facets: []
+            hippo:modes: []
+            hippo:values: []
         /visitscotland:ProductsSearch:
           jcr:primaryType: visitscotland:ProductsSearch
           visitscotland:distance: 0
@@ -739,8 +655,9 @@
       hippotranslation:locale: en
       /content:
         jcr:primaryType: hippo:handle
-        jcr:mixinTypes: ['mix:referenceable']
+        jcr:mixinTypes: ['hippo:versionInfo', 'mix:referenceable']
         jcr:uuid: cbc8477d-1deb-4153-b663-12212905b472
+        hippo:versionHistory: 47b7b8e2-2dfe-4487-9c8c-df80f86b078d
         /content[1]:
           jcr:primaryType: visitscotland:Listicle
           jcr:mixinTypes: ['mix:referenceable']
@@ -786,6 +703,42 @@
           hippostdpubwf:creationDate: 2020-02-27T13:17:22.069Z
           hippostdpubwf:lastModificationDate: 2020-02-27T13:31:45.987Z
           hippostdpubwf:lastModifiedBy: admin
+          hippotranslation:id: 7d4f9ca4-76eb-40a1-a793-29efa7f1ae68
+          hippotranslation:locale: en
+          visitscotland:breadcrumb: ''
+          visitscotland:descOrder: true
+          visitscotland:seoDescription: ''
+          visitscotland:seoNoIndex: false
+          visitscotland:seoTitle: ''
+          visitscotland:teaser: If you're looking for the best things to do in Scotland,
+            then look no further. We've got iconic castles, incredible museums, beautiful
+            gardens and much more in this list of top tourist attractions in Scotland.
+          visitscotland:title: ''
+          /visitscotland:heroImage:
+            jcr:primaryType: hippogallerypicker:imagelink
+            hippo:docbase: 9fb38865-ca10-4ef4-bcab-a1097cc44487
+            hippo:facets: []
+            hippo:modes: []
+            hippo:values: []
+          /visitscotland:introduction:
+            jcr:primaryType: hippostd:html
+            hippostd:content: <p>Take a look below at the top 20 and see how many
+              you've visited and make a plan to tick the others off your list. Plus,
+              what else would you recommend? Hop over to our <a href="https://community.visitscotland.com/"
+              title="iKnow Community" target="_blank">iKnow Scotland Community</a>
+              to share your tips and pick up a couple more for your next break or
+              day out in Scotland.</p>
+        /content[3]:
+          jcr:primaryType: visitscotland:Listicle
+          jcr:mixinTypes: ['mix:referenceable']
+          jcr:uuid: f728ebb9-35d9-44fc-8dc9-9c47003ff8e2
+          hippo:availability: [live]
+          hippostd:state: published
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2020-02-27T13:17:22.069Z
+          hippostdpubwf:lastModificationDate: 2020-02-27T13:31:45.987Z
+          hippostdpubwf:lastModifiedBy: admin
+          hippostdpubwf:publicationDate: 2020-03-03T10:19:15.683Z
           hippotranslation:id: 7d4f9ca4-76eb-40a1-a793-29efa7f1ae68
           hippotranslation:locale: en
           visitscotland:breadcrumb: ''
@@ -1032,6 +985,326 @@
             jcr:primaryType: visitscotland:InstagramImage
             visitscotland:caption: Robert Burns visits the Gallery
             visitscotland:id: B7vTqg4gZsR
+    /editor-role-test:
+      jcr:primaryType: hippostd:folder
+      jcr:mixinTypes: ['hippotranslation:translated', 'mix:versionable']
+      jcr:uuid: 05742a81-0064-469b-9524-ec7d89a05ea4
+      hippostd:foldertype: [new-translated-folder, new-document]
+      hippotranslation:id: 469d3328-97dd-4610-8b47-a31764600003
+      hippotranslation:locale: en
+      /content:
+        jcr:primaryType: hippo:handle
+        jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
+        jcr:uuid: 919640ca-873e-4cd9-9788-a45babcb6b32
+        hippo:name: Editor document
+        hippo:versionHistory: 0ec8b5b0-07a8-419b-8cb6-7f889cfdf554
+        /content[1]:
+          jcr:primaryType: visitscotland:Listicle
+          jcr:mixinTypes: ['mix:referenceable']
+          jcr:uuid: 0d14421d-f8ca-4581-ab98-3e80f3617086
+          hippo:availability: []
+          hippostd:state: draft
+          hippostdpubwf:createdBy: editor
+          hippostdpubwf:creationDate: 2020-03-03T10:17:30.071Z
+          hippostdpubwf:lastModificationDate: 2020-03-03T10:27:19.865Z
+          hippostdpubwf:lastModifiedBy: author
+          hippotranslation:id: 88016789-f46b-4bf5-9442-89dd28f5f82a
+          hippotranslation:locale: en
+          visitscotland:breadcrumb: ''
+          visitscotland:descOrder: false
+          visitscotland:seoDescription: Document
+          visitscotland:seoNoIndex: false
+          visitscotland:seoTitle: Editor
+          visitscotland:teaser: Come and see the editor document
+          visitscotland:title: Editor document
+          /visitscotland:heroImage:
+            jcr:primaryType: hippogallerypicker:imagelink
+            hippo:docbase: 1e4be246-297b-4404-8102-80fe1bc0ddf7
+            hippo:facets: []
+            hippo:modes: []
+            hippo:values: []
+          /visitscotland:introduction:
+            jcr:primaryType: hippostd:html
+            hippostd:content: <p>Editors can create a publish documents!! The thing
+              they cannot do is to modify document types</p>
+        /content[2]:
+          jcr:primaryType: visitscotland:Listicle
+          jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
+          jcr:uuid: e0667b2b-b3cd-45c3-80e1-1f5afc04b1fc
+          hippo:availability: [preview]
+          hippostd:state: unpublished
+          hippostdpubwf:createdBy: editor
+          hippostdpubwf:creationDate: 2020-03-03T10:17:30.071Z
+          hippostdpubwf:lastModificationDate: 2020-03-03T10:28:44.129Z
+          hippostdpubwf:lastModifiedBy: author
+          hippotranslation:id: 88016789-f46b-4bf5-9442-89dd28f5f82a
+          hippotranslation:locale: en
+          visitscotland:breadcrumb: ''
+          visitscotland:descOrder: false
+          visitscotland:seoDescription: Document
+          visitscotland:seoNoIndex: false
+          visitscotland:seoTitle: Editor
+          visitscotland:teaser: Come and see the editor document
+          visitscotland:title: Editor document
+          /visitscotland:heroImage:
+            jcr:primaryType: hippogallerypicker:imagelink
+            hippo:docbase: 1e4be246-297b-4404-8102-80fe1bc0ddf7
+            hippo:facets: []
+            hippo:modes: []
+            hippo:values: []
+          /visitscotland:introduction:
+            jcr:primaryType: hippostd:html
+            hippostd:content: <p>Editors can create a publish documents!! The thing
+              they cannot do is to modify document types</p>
+        /content[3]:
+          jcr:primaryType: visitscotland:Listicle
+          jcr:mixinTypes: ['mix:referenceable']
+          jcr:uuid: c4e57e9b-d5fe-41c1-ade1-1299df92dbb3
+          hippo:availability: [live]
+          hippostd:state: published
+          hippostdpubwf:createdBy: editor
+          hippostdpubwf:creationDate: 2020-03-03T10:17:30.071Z
+          hippostdpubwf:lastModificationDate: 2020-03-03T10:28:44.129Z
+          hippostdpubwf:lastModifiedBy: author
+          hippostdpubwf:publicationDate: 2020-03-03T10:30:30.031Z
+          hippotranslation:id: 88016789-f46b-4bf5-9442-89dd28f5f82a
+          hippotranslation:locale: en
+          visitscotland:breadcrumb: ''
+          visitscotland:descOrder: false
+          visitscotland:seoDescription: Document
+          visitscotland:seoNoIndex: false
+          visitscotland:seoTitle: Editor
+          visitscotland:teaser: Come and see the editor document
+          visitscotland:title: Editor document
+          /visitscotland:heroImage:
+            jcr:primaryType: hippogallerypicker:imagelink
+            hippo:docbase: 1e4be246-297b-4404-8102-80fe1bc0ddf7
+            hippo:facets: []
+            hippo:modes: []
+            hippo:values: []
+          /visitscotland:introduction:
+            jcr:primaryType: hippostd:html
+            hippostd:content: <p>Editors can create a publish documents!! The thing
+              they cannot do is to modify document types</p>
+      /national-museum-of-scotland-copy:
+        jcr:primaryType: hippo:handle
+        jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
+        jcr:uuid: 10dc586b-a9f0-449d-bcd3-02f86a91d4fd
+        hippo:name: National Museum of Scotland (copy)
+        hippo:versionHistory: 2628fc03-3811-4eb8-a646-a92cb42624a0
+        /national-museum-of-scotland-copy[1]:
+          jcr:primaryType: visitscotland:ListicleItem
+          jcr:mixinTypes: ['mix:versionable']
+          jcr:uuid: 7b3a1ac7-799b-4f62-a22a-b70bd913030f
+          hippo:availability: [preview]
+          hippostd:state: unpublished
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2020-02-27T13:19:13.009Z
+          hippostdpubwf:lastModificationDate: 2020-02-27T13:24:07.920Z
+          hippostdpubwf:lastModifiedBy: admin
+          hippotranslation:id: 285a2362-ef2d-4295-b130-abf5b488fa57
+          hippotranslation:locale: en
+          visitscotland:subtitle: ''
+          visitscotland:title: National Museum of Scotland
+          /visitscotland:description:
+            jcr:primaryType: hippostd:html
+            hippostd:content: <p>Set on Edinburgh's Chambers Street, <a href="https://www.visitscotland.com/info/see-do/national-museum-of-scotland-p246591"
+              title="National Museum of Scotland">National Museum of Scotland</a>
+              is a treasure trove of ancient artefacts and precious objects. It's
+              the most popular attraction in the UK outside of London and offers a
+              great, year-round programme of temporary exhibitions. Don't miss the
+              10 recently opened galleries covering science, design and fashion.</p>
+          /visitscotland:products:
+            jcr:primaryType: visitscotland:DMSLink
+            visitscotland:label: Visit the Museum
+            visitscotland:product: '246591'
+        /national-museum-of-scotland-copy[2]:
+          jcr:primaryType: visitscotland:ListicleItem
+          jcr:mixinTypes: ['mix:referenceable']
+          jcr:uuid: 5552f969-a33e-4e1f-862f-c4866a4dc70d
+          hippo:availability: [live]
+          hippostd:state: published
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2020-02-27T13:19:13.009Z
+          hippostdpubwf:lastModificationDate: 2020-02-27T13:24:07.920Z
+          hippostdpubwf:lastModifiedBy: admin
+          hippostdpubwf:publicationDate: 2020-03-03T10:21:35.453Z
+          hippotranslation:id: 285a2362-ef2d-4295-b130-abf5b488fa57
+          hippotranslation:locale: en
+          visitscotland:subtitle: ''
+          visitscotland:title: National Museum of Scotland
+          /visitscotland:description:
+            jcr:primaryType: hippostd:html
+            hippostd:content: <p>Set on Edinburgh's Chambers Street, <a href="https://www.visitscotland.com/info/see-do/national-museum-of-scotland-p246591"
+              title="National Museum of Scotland">National Museum of Scotland</a>
+              is a treasure trove of ancient artefacts and precious objects. It's
+              the most popular attraction in the UK outside of London and offers a
+              great, year-round programme of temporary exhibitions. Don't miss the
+              10 recently opened galleries covering science, design and fashion.</p>
+          /visitscotland:products:
+            jcr:primaryType: visitscotland:DMSLink
+            visitscotland:label: Visit the Museum
+            visitscotland:product: '246591'
+    /author-role-test:
+      jcr:primaryType: hippostd:folder
+      jcr:mixinTypes: ['hippotranslation:translated', 'mix:versionable']
+      jcr:uuid: ee376136-a08c-488e-a8cb-07ddfea88e89
+      hippostd:foldertype: [new-translated-folder, new-document]
+      hippotranslation:id: ef835409-d53f-4ea8-9b3f-23c4af8cce26
+      hippotranslation:locale: en
+      /content:
+        jcr:primaryType: hippo:handle
+        jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
+        jcr:uuid: 25280d0c-c70e-4a46-bb98-c189da231dc9
+        hippo:name: author listicle
+        hippo:versionHistory: ec660e5b-d237-494c-b222-89c173a2a809
+        /content[1]:
+          jcr:primaryType: visitscotland:Listicle
+          jcr:mixinTypes: ['mix:referenceable']
+          jcr:uuid: d7b1d396-68b3-4358-aae6-0ce756d84adb
+          hippo:availability: []
+          hippostd:state: draft
+          hippostdpubwf:createdBy: author
+          hippostdpubwf:creationDate: 2020-03-03T10:23:49.651Z
+          hippostdpubwf:lastModificationDate: 2020-03-03T10:25:23.546Z
+          hippostdpubwf:lastModifiedBy: author
+          hippotranslation:id: 05eebe95-732f-4f22-a1af-525589cdec77
+          hippotranslation:locale: en
+          visitscotland:breadcrumb: ''
+          visitscotland:descOrder: false
+          visitscotland:seoDescription: ''
+          visitscotland:seoNoIndex: false
+          visitscotland:seoTitle: ''
+          visitscotland:teaser: Come and see it!
+          visitscotland:title: Author listicle
+          /visitscotland:heroImage:
+            jcr:primaryType: hippogallerypicker:imagelink
+            hippo:docbase: 1e4be246-297b-4404-8102-80fe1bc0ddf7
+            hippo:facets: []
+            hippo:modes: []
+            hippo:values: []
+          /visitscotland:introduction:
+            jcr:primaryType: hippostd:html
+            hippostd:content: <p>Authors can not publish documents straight away.
+              They need to request a review for the publication.</p>
+        /content[2]:
+          jcr:primaryType: visitscotland:Listicle
+          jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
+          jcr:uuid: 2e8a30ca-0808-476a-a78e-0910e3e45cab
+          hippo:availability: [preview]
+          hippostd:state: unpublished
+          hippostdpubwf:createdBy: author
+          hippostdpubwf:creationDate: 2020-03-03T10:23:49.651Z
+          hippostdpubwf:lastModificationDate: 2020-03-03T10:26:08.874Z
+          hippostdpubwf:lastModifiedBy: author
+          hippotranslation:id: 05eebe95-732f-4f22-a1af-525589cdec77
+          hippotranslation:locale: en
+          visitscotland:breadcrumb: ''
+          visitscotland:descOrder: false
+          visitscotland:seoDescription: ''
+          visitscotland:seoNoIndex: false
+          visitscotland:seoTitle: ''
+          visitscotland:teaser: Come and see it!
+          visitscotland:title: Author listicle
+          /visitscotland:heroImage:
+            jcr:primaryType: hippogallerypicker:imagelink
+            hippo:docbase: 1e4be246-297b-4404-8102-80fe1bc0ddf7
+            hippo:facets: []
+            hippo:modes: []
+            hippo:values: []
+          /visitscotland:introduction:
+            jcr:primaryType: hippostd:html
+            hippostd:content: <p>Authors can not publish documents straight away.
+              They need to request a review for the publication.</p>
+        /content[3]:
+          jcr:primaryType: visitscotland:Listicle
+          jcr:mixinTypes: ['mix:referenceable']
+          jcr:uuid: 5bac918b-3acb-472f-a894-8259695c557a
+          hippo:availability: [live]
+          hippostd:state: published
+          hippostdpubwf:createdBy: author
+          hippostdpubwf:creationDate: 2020-03-03T10:23:49.651Z
+          hippostdpubwf:lastModificationDate: 2020-03-03T10:26:08.874Z
+          hippostdpubwf:lastModifiedBy: author
+          hippostdpubwf:publicationDate: 2020-03-03T10:30:24.538Z
+          hippotranslation:id: 05eebe95-732f-4f22-a1af-525589cdec77
+          hippotranslation:locale: en
+          visitscotland:breadcrumb: ''
+          visitscotland:descOrder: false
+          visitscotland:seoDescription: ''
+          visitscotland:seoNoIndex: false
+          visitscotland:seoTitle: ''
+          visitscotland:teaser: Come and see it!
+          visitscotland:title: Author listicle
+          /visitscotland:heroImage:
+            jcr:primaryType: hippogallerypicker:imagelink
+            hippo:docbase: 1e4be246-297b-4404-8102-80fe1bc0ddf7
+            hippo:facets: []
+            hippo:modes: []
+            hippo:values: []
+          /visitscotland:introduction:
+            jcr:primaryType: hippostd:html
+            hippostd:content: <p>Authors can not publish documents straight away.
+              They need to request a review for the publication.</p>
+      /national-museum-of-scotland-copy-2:
+        jcr:primaryType: hippo:handle
+        jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
+        jcr:uuid: 6af40b39-9990-42f6-8c54-72ef81c317de
+        hippo:name: National Museum of Scotland (copy 2)
+        hippo:versionHistory: 93b2aa46-7576-417c-be6f-015584f82fc4
+        /national-museum-of-scotland-copy-2[1]:
+          jcr:primaryType: visitscotland:ListicleItem
+          jcr:mixinTypes: ['mix:versionable']
+          jcr:uuid: 3f30e727-394c-4ddf-a91b-bfc209d8246f
+          hippo:availability: [preview]
+          hippostd:state: unpublished
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2020-02-27T13:19:13.009Z
+          hippostdpubwf:lastModificationDate: 2020-02-27T13:24:07.920Z
+          hippostdpubwf:lastModifiedBy: admin
+          hippotranslation:id: c600b839-423b-41fd-9640-96ddb965e4c8
+          hippotranslation:locale: en
+          visitscotland:subtitle: ''
+          visitscotland:title: National Museum of Scotland
+          /visitscotland:description:
+            jcr:primaryType: hippostd:html
+            hippostd:content: <p>Set on Edinburgh's Chambers Street, <a href="https://www.visitscotland.com/info/see-do/national-museum-of-scotland-p246591"
+              title="National Museum of Scotland">National Museum of Scotland</a>
+              is a treasure trove of ancient artefacts and precious objects. It's
+              the most popular attraction in the UK outside of London and offers a
+              great, year-round programme of temporary exhibitions. Don't miss the
+              10 recently opened galleries covering science, design and fashion.</p>
+          /visitscotland:products:
+            jcr:primaryType: visitscotland:DMSLink
+            visitscotland:label: Visit the Museum
+            visitscotland:product: '246591'
+        /national-museum-of-scotland-copy-2[2]:
+          jcr:primaryType: visitscotland:ListicleItem
+          jcr:mixinTypes: ['mix:referenceable']
+          jcr:uuid: 3f924d23-fddd-44c2-bc70-49161e0dfdb3
+          hippo:availability: [live]
+          hippostd:state: published
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2020-02-27T13:19:13.009Z
+          hippostdpubwf:lastModificationDate: 2020-02-27T13:24:07.920Z
+          hippostdpubwf:lastModifiedBy: admin
+          hippostdpubwf:publicationDate: 2020-03-03T10:30:17.499Z
+          hippotranslation:id: c600b839-423b-41fd-9640-96ddb965e4c8
+          hippotranslation:locale: en
+          visitscotland:subtitle: ''
+          visitscotland:title: National Museum of Scotland
+          /visitscotland:description:
+            jcr:primaryType: hippostd:html
+            hippostd:content: <p>Set on Edinburgh's Chambers Street, <a href="https://www.visitscotland.com/info/see-do/national-museum-of-scotland-p246591"
+              title="National Museum of Scotland">National Museum of Scotland</a>
+              is a treasure trove of ancient artefacts and precious objects. It's
+              the most popular attraction in the UK outside of London and offers a
+              great, year-round programme of temporary exhibitions. Don't miss the
+              10 recently opened galleries covering science, design and fashion.</p>
+          /visitscotland:products:
+            jcr:primaryType: visitscotland:DMSLink
+            visitscotland:label: Visit the Museum
+            visitscotland:product: '246591'
   /destinations-maps:
     jcr:primaryType: hippostd:folder
     jcr:mixinTypes: ['hippotranslation:translated', 'mix:versionable']
@@ -1646,7 +1919,7 @@
           hippostd:state: draft
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2020-02-10T09:29:33.787Z
-          hippostdpubwf:lastModificationDate: 2020-02-25T16:46:04.092Z
+          hippostdpubwf:lastModificationDate: 2020-03-03T12:25:16.023Z
           hippostdpubwf:lastModifiedBy: admin
           hippotranslation:id: 8edb81ab-7546-4417-8ad2-10cc31d5ecf6
           hippotranslation:locale: en

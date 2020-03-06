@@ -2,88 +2,38 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
   
-  <!--<parent>-->
-    <!--<groupId>com.visitscotland</groupId>-->
-    <!--<artifactId>hippo-defaults</artifactId>-->
-    <!--<version>1.4.0-SNAPSHOT</version>-->
-  <!--</parent>-->
-  
   <parent>
-    <groupId>com.onehippo.cms7</groupId>
-    <artifactId>hippo-cms7-enterprise-release</artifactId>
-    <version>13.3.0</version>
+    <groupId>com.visitscotland</groupId>
+    <artifactId>hippo-defaults</artifactId>
+    <version>2.0.0-SNAPSHOT</version>
   </parent>
-
+  
   <name>www.visitscotland.com CMS Pages</name>
   <description>www.visitscotland.com CMS Pages</description>
   <groupId>com.visitscotland</groupId>
   <artifactId>visitscotland</artifactId>
   <version>0.1.0-SNAPSHOT</version>
   <packaging>pom</packaging>
-
-
-  <!--
-    The below project elements are emptied/overridden as otherwise their metadata would be
-    inherited or merged from the parent hippo-cms7-release pom (or its hippo-cms7-project pom).
-
-    DO NOT remove these tags but instead fill them in appropriately as needed, 
-    UNLESS the inherited values are valid for your project.
-  -->
-  <url/>
-  <inceptionYear/>
-  <organization/>
-  <licenses>
-    <license/>
-  </licenses>
-  <mailingLists>
-    <mailingList/>
-  </mailingLists>
-  <developers>
-    <developer/>
-  </developers>
-  <contributors>
-    <contributor/>
-  </contributors>
-  <issueManagement/>
-  <!--
-  <scm>
-    <connection/>
-    <developerConnection/>
-    <url/>
-  </scm>
-  -->
-  <ciManagement/>
-  <distributionManagement>
-    <repository>
-      <id>-</id>
-      <url>-</url>
-    </repository>
-    <snapshotRepository>
-      <id>-</id>
-      <url>-</url>
-    </snapshotRepository>
-  </distributionManagement>
-  <!-- End of emptied/overridden metadata from parent hippo-cms7-release pom. -->
-
+  
   <properties>
-
+    
     <!--***START temporary override of versions*** -->
     <!-- ***END temporary override of versions*** -->
     <!--TODO define this in parent pom -->
-    <essentials.version>13.3.0</essentials.version>
-    <jsp-api.version>2.2</jsp-api.version>
-    <taglibs.version>1.2.5</taglibs.version>
+   
     <data-service-api.version>1.2.0-SNAPSHOT</data-service-api.version>
     
-    <development-module-deploy-dir>shared/lib</development-module-deploy-dir>
-    <hippo.cms.locales>nl,de,fr,es,zh</hippo.cms.locales>
     <forge.exdocpickerbase.version>6.0.0</forge.exdocpickerbase.version>
-    <buildNumber>${maven.build.timestamp}</buildNumber>
-
     <forge.breadcrumb.version>3.0.0</forge.breadcrumb.version>
     <!-- TODO end define -->
-    
+  
   </properties>
+  
+  <inceptionYear>2019</inceptionYear>
+  
+  <developers>
+    <developer/>
+  </developers>
 
   <repositories>
     <repository>
@@ -206,13 +156,14 @@
         </property>
       </activation>
       <modules>
+        <module>frontend</module>
+        <module>ui-integration</module>
+        
         <module>cms-dependencies</module>
         <module>repository-data</module>
         <module>cms</module>
         <module>site</module>
         <module>essentials</module>
-        <module>frontend</module>
-        <module>ui-integration</module>
       </modules>
     </profile>
 
