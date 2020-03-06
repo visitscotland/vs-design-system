@@ -38,7 +38,7 @@
         >
             <div slot="stop-details" class="has-edit-button">
                 <@hst.manageContent hippobean=stop />
-                <h3 class="text-danger">${prod.errorMessage}</h3>
+                <h3 class="text-danger">${prod.errorMessage?upper_case}</h3>
             </div>
         </vs-itinerary-stop>
     <#elseif stop.stopItem??>
@@ -51,7 +51,7 @@
             <div slot="stop-details" class="has-edit-button">
                 <@hst.manageContent hippobean=stop />
                 <#if prod.errorMessage?? && editMode>
-                      <h3 class="text-danger">${prod.errorMessage}</h3>
+                      <h3 class="text-danger">${prod.errorMessage?upper_case}</h3>
                 </#if>
                 <#if image?? && image?has_content>
                     <vs-image-with-caption
