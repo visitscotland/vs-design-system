@@ -1,6 +1,6 @@
 /content/documents/administration/labels:
   jcr:primaryType: hippostd:folder
-  jcr:mixinTypes: ["mix:referenceable"]
+  jcr:mixinTypes: ['mix:referenceable']
   jcr:uuid: bbe9c718-d5e8-4e56-8cab-5c3bf3f64209
   hippostd:foldertype: [new-resource-bundle, new-untranslated-folder]
   /global:
@@ -11,7 +11,7 @@
     hippo:versionHistory: d8644a3e-75d8-4279-8b27-f9adf4b22f0d
     /global[1]:
       jcr:primaryType: resourcebundle:resourcebundle
-      jcr:mixinTypes: ["mix:referenceable"]
+      jcr:mixinTypes: ['mix:referenceable']
       jcr:uuid: 3d72b51b-02e2-41e0-98f8-fe564afa818f
       hippo:availability: [live]
       hippostd:state: published
@@ -54,12 +54,12 @@
       resourcebundle:messages: [©2019, Find out more, No image title]
   /homepage:
     jcr:primaryType: hippo:handle
-    jcr:mixinTypes: ["hippo:named", "mix:referenceable"]
+    jcr:mixinTypes: ['hippo:named', 'mix:referenceable']
     jcr:uuid: 021bf36d-294e-4a4b-9028-68c7f2b8dd05
     hippo:name: Homepage
     /homepage:
       jcr:primaryType: resourcebundle:resourcebundle
-      jcr:mixinTypes: ["mix:referenceable"]
+      jcr:mixinTypes: ['mix:referenceable']
       jcr:uuid: f4613ee0-6506-49ce-8c38-9d56eddcfc2f
       hippo:availability: [live, preview]
       hippostd:state: published
@@ -68,29 +68,23 @@
       hippostdpubwf:lastModificationDate: 2014-08-21T17:11:53.242+02:00
       hippostdpubwf:lastModifiedBy: admin
       hippostdpubwf:publicationDate: 2014-08-21T17:11:55.239+02:00
-      resourcebundle:descriptions: [
-          Title displayed on homepage.,
-          Text displayed on
-          homepage.,
-        ]
+      resourcebundle:descriptions: [Title displayed on homepage., Text displayed on
+          homepage.]
       resourcebundle:id: essentials.homepage
       resourcebundle:keys: [homepage.title, homepage.text]
-      resourcebundle:messages: [
-          Home Page,
-          "Every website comes with its own styling
+      resourcebundle:messages: [Home Page, 'Every website comes with its own styling
           requirements. The BloomReach setup application can therefore not address
           site styling. Instead, the generated pages use minimal styling to render
           the content. It is the task of the project developer to adjust the front-end
-          to the site's needs.",
-        ]
+          to the site''s needs.']
   /pagenotfound:
     jcr:primaryType: hippo:handle
-    jcr:mixinTypes: ["hippo:named", "mix:referenceable"]
+    jcr:mixinTypes: ['hippo:named', 'mix:referenceable']
     jcr:uuid: f6e761dc-a2fb-4de3-b8aa-c97fc351f2a6
     hippo:name: Page not found
     /pagenotfound:
       jcr:primaryType: resourcebundle:resourcebundle
-      jcr:mixinTypes: ["mix:referenceable"]
+      jcr:mixinTypes: ['mix:referenceable']
       jcr:uuid: f0ccc2a7-a744-4f0c-86e9-a3f12332e2e8
       hippo:availability: [live, preview]
       hippostd:state: published
@@ -99,26 +93,20 @@
       hippostdpubwf:lastModificationDate: 2014-08-21T17:11:53.242+02:00
       hippostdpubwf:lastModifiedBy: admin
       hippostdpubwf:publicationDate: 2014-08-21T17:11:55.239+02:00
-      resourcebundle:descriptions: [
-          Title displayed when page is not found.,
-          Text
-          displayed when page is not found.,
-        ]
+      resourcebundle:descriptions: [Title displayed when page is not found., Text
+          displayed when page is not found.]
       resourcebundle:id: essentials.pagenotfound
       resourcebundle:keys: [pagenotfound.title, pagenotfound.text]
-      resourcebundle:messages: [
-          Page not found (404),
-          "The page you requested was
-          not found. - [This text can be edited here: http://localhost:8080/cms/?1&path=/content/documents/administration/labels/pagenotfound]",
-        ]
+      resourcebundle:messages: [Page not found (404), 'The page you requested was
+          not found. - [This text can be edited here: http://localhost:8080/cms/?1&path=/content/documents/administration/labels/pagenotfound]']
   /pagination:
     jcr:primaryType: hippo:handle
-    jcr:mixinTypes: ["hippo:named", "mix:referenceable"]
+    jcr:mixinTypes: ['hippo:named', 'mix:referenceable']
     jcr:uuid: 98de750c-9b17-426b-89f8-c893b3ce0526
     hippo:name: Pagination
     /pagination:
       jcr:primaryType: resourcebundle:resourcebundle
-      jcr:mixinTypes: ["mix:referenceable"]
+      jcr:mixinTypes: ['mix:referenceable']
       jcr:uuid: cfaaf1cf-c5a2-485f-8df5-5537a8975274
       hippo:availability: [live, preview]
       hippostd:state: published
@@ -127,25 +115,21 @@
       hippostdpubwf:lastModificationDate: 2014-08-21T17:03:32.811+02:00
       hippostdpubwf:lastModifiedBy: admin
       hippostdpubwf:publicationDate: 2014-08-21T17:06:47.420+02:00
-      resourcebundle:descriptions: [
-          "Used in the indication, how many results were
-          found. The label is appended to the number of results.",
-          Label used for
-          the link to the previous page.,
-          Label used for the link to the next page.,
-        ]
+      resourcebundle:descriptions: ['Used in the indication, how many results were
+          found. The label is appended to the number of results.', Label used for
+          the link to the previous page., Label used for the link to the next page.]
       resourcebundle:id: essentials.pagination
       resourcebundle:keys: [results.indication, page.previous, page.next]
       resourcebundle:messages: [document(s), previous, next]
   /universal:
     jcr:primaryType: hippo:handle
-    jcr:mixinTypes: ["hippo:named", "hippo:versionInfo", "mix:referenceable"]
+    jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
     jcr:uuid: e19ae6ca-3989-4ac0-ba02-63efc3c5ed52
     hippo:name: Language List  (Don't translate)
     hippo:versionHistory: 9ba04c16-1846-49d3-b576-f128889e5938
     /universal[1]:
       jcr:primaryType: resourcebundle:resourcebundle
-      jcr:mixinTypes: ["mix:referenceable"]
+      jcr:mixinTypes: ['mix:referenceable']
       jcr:uuid: 05d99bcd-85dd-4226-b666-0e0b9af3b37f
       hippo:availability: []
       hippostd:state: draft
@@ -153,14 +137,13 @@
       hippostdpubwf:creationDate: 2019-11-21T09:28:34.143Z
       hippostdpubwf:lastModificationDate: 2019-11-21T10:19:26.644Z
       hippostdpubwf:lastModifiedBy: admin
-      resourcebundle:descriptions: ["", "", "", "", "", ""]
+      resourcebundle:descriptions: ['', '', '', '', '', '']
       resourcebundle:id: universal
       resourcebundle:keys: [en-gb, de-de, es-es, fr-fr, it-it, nl-nl]
-      resourcebundle:messages:
-        [English, Deutsch, Español, Français, Italiano, Nederlands]
+      resourcebundle:messages: [English, Deutsch, Español, Français, Italiano, Nederlands]
     /universal[2]:
       jcr:primaryType: resourcebundle:resourcebundle
-      jcr:mixinTypes: ["mix:referenceable", "mix:versionable"]
+      jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
       jcr:uuid: 5afad203-edab-41a7-bd7a-65c4bff237f9
       hippo:availability: [preview]
       hippostd:state: unpublished
@@ -168,14 +151,13 @@
       hippostdpubwf:creationDate: 2019-11-21T09:28:34.143Z
       hippostdpubwf:lastModificationDate: 2019-11-21T10:19:24.430Z
       hippostdpubwf:lastModifiedBy: admin
-      resourcebundle:descriptions: ["", "", "", "", "", ""]
+      resourcebundle:descriptions: ['', '', '', '', '', '']
       resourcebundle:id: universal
       resourcebundle:keys: [en-gb, de-de, es-es, fr-fr, it-it, nl-nl]
-      resourcebundle:messages:
-        [English, Deutsch, Español, Français, Italiano, Nederlands]
+      resourcebundle:messages: [English, Deutsch, Español, Français, Italiano, Nederlands]
     /universal[3]:
       jcr:primaryType: resourcebundle:resourcebundle
-      jcr:mixinTypes: ["mix:referenceable"]
+      jcr:mixinTypes: ['mix:referenceable']
       jcr:uuid: ab359c7f-e65c-41f6-8782-69161794a303
       hippo:availability: [live]
       hippostd:state: published
@@ -184,20 +166,19 @@
       hippostdpubwf:lastModificationDate: 2019-11-21T10:19:24.430Z
       hippostdpubwf:lastModifiedBy: admin
       hippostdpubwf:publicationDate: 2019-11-21T10:19:30.082Z
-      resourcebundle:descriptions: ["", "", "", "", "", ""]
+      resourcebundle:descriptions: ['', '', '', '', '', '']
       resourcebundle:id: universal
       resourcebundle:keys: [en-gb, de-de, es-es, fr-fr, it-it, nl-nl]
-      resourcebundle:messages:
-        [English, Deutsch, Español, Français, Italiano, Nederlands]
+      resourcebundle:messages: [English, Deutsch, Español, Français, Italiano, Nederlands]
   /facilities:
     jcr:primaryType: hippo:handle
-    jcr:mixinTypes: ["hippo:named", "hippo:versionInfo", "mix:referenceable"]
+    jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
     jcr:uuid: 3f818f8b-6d82-4b54-bd70-fc01c306160e
     hippo:name: Key Facilities
     hippo:versionHistory: 1821c8b6-2f96-4ea6-b8ea-6af03b065763
     /facilities[1]:
       jcr:primaryType: resourcebundle:resourcebundle
-      jcr:mixinTypes: ["mix:referenceable"]
+      jcr:mixinTypes: ['mix:referenceable']
       jcr:uuid: f8aa7f4b-46c3-422b-b8de-cd49f1891cc3
       hippo:availability: []
       hippostd:state: draft
@@ -205,31 +186,16 @@
       hippostdpubwf:creationDate: 2019-12-10T15:56:35.849Z
       hippostdpubwf:lastModificationDate: 2020-02-20T11:41:27.692Z
       hippostdpubwf:lastModifiedBy: admin
-      resourcebundle:descriptions: ["", "", "", "", "", ""]
+      resourcebundle:descriptions: ['', '', '', '', '', '']
       resourcebundle:id: keyFacilities
-      resourcebundle:keys:
-        [petswelcom, wifi, parking, dsblaccess, audioloop, accessparkdrop]
-      resourcebundle:messages:
-        [
-          Pets welcome,
-          WiFi,
-          Parking,
-          Level access,
-          Audio loop,
-          Accessible parking or drop-off point,
-        ]
-      resourcebundle:messages_es: [
-          Mascotas,
-          "",
-          Aparcamiento,
-          Nivel de acceso,
-          Bucle
-          magnetico,
-          Aparcamiento accesible o punto de entrega,
-        ]
+      resourcebundle:keys: [petswelcom, wifi, parking, dsblaccess, audioloop, accessparkdrop]
+      resourcebundle:messages: [Pets welcome, WiFi, Parking, Level access, Audio loop,
+        Accessible parking or drop-off point]
+      resourcebundle:messages_es: [Mascotas, '', Aparcamiento, Nivel de acceso, Bucle
+          magnetico, Aparcamiento accesible o punto de entrega]
     /facilities[2]:
       jcr:primaryType: resourcebundle:resourcebundle
-      jcr:mixinTypes: ["mix:referenceable", "mix:versionable"]
+      jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
       jcr:uuid: ef902ce5-8441-4611-8c8e-8bc7bf6c2d50
       hippo:availability: [preview]
       hippostd:state: unpublished
@@ -237,31 +203,16 @@
       hippostdpubwf:creationDate: 2019-12-10T15:56:35.849Z
       hippostdpubwf:lastModificationDate: 2019-12-20T12:22:13.121Z
       hippostdpubwf:lastModifiedBy: admin
-      resourcebundle:descriptions: ["", "", "", "", "", ""]
+      resourcebundle:descriptions: ['', '', '', '', '', '']
       resourcebundle:id: keyFacilities
-      resourcebundle:keys:
-        [petswelcom, wifi, parking, dsblaccess, audioloop, accessparkdrop]
-      resourcebundle:messages:
-        [
-          Pets welcome,
-          WiFi,
-          Parking,
-          Level access,
-          Audio loop,
-          Accessible parking or drop-off point,
-        ]
-      resourcebundle:messages_es: [
-          Mascotas,
-          "",
-          Aparcamiento,
-          Nivel de acceso,
-          Bucle
-          magnetico,
-          Aparcamiento accesible o punto de entrega,
-        ]
+      resourcebundle:keys: [petswelcom, wifi, parking, dsblaccess, audioloop, accessparkdrop]
+      resourcebundle:messages: [Pets welcome, WiFi, Parking, Level access, Audio loop,
+        Accessible parking or drop-off point]
+      resourcebundle:messages_es: [Mascotas, '', Aparcamiento, Nivel de acceso, Bucle
+          magnetico, Aparcamiento accesible o punto de entrega]
     /facilities[3]:
       jcr:primaryType: resourcebundle:resourcebundle
-      jcr:mixinTypes: ["mix:referenceable"]
+      jcr:mixinTypes: ['mix:referenceable']
       jcr:uuid: 1497ca65-1c63-4f20-9d0f-6a9f0d00448d
       hippo:availability: [live]
       hippostd:state: published
@@ -279,13 +230,13 @@
           magnetico, Aparcamiento accesible o punto de entrega]
   /keys:
     jcr:primaryType: hippo:handle
-    jcr:mixinTypes: ["hippo:named", "hippo:versionInfo", "mix:referenceable"]
+    jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
     jcr:uuid: 6ea33f18-325f-419f-9380-8dcc147d3aed
     hippo:name: Keys
     hippo:versionHistory: 24566d50-1c4e-438d-844f-bdd8678c2402
     /keys[1]:
       jcr:primaryType: resourcebundle:resourcebundle
-      jcr:mixinTypes: ["mix:referenceable"]
+      jcr:mixinTypes: ['mix:referenceable']
       jcr:uuid: 3c4a8cb5-fb88-40cc-9e4c-8ea5ac59f10b
       hippo:availability: []
       hippostd:state: draft
@@ -293,16 +244,13 @@
       hippostdpubwf:creationDate: 2019-12-20T14:35:30.322Z
       hippostdpubwf:lastModificationDate: 2020-03-02T09:59:10.751Z
       hippostdpubwf:lastModifiedBy: admin
-      resourcebundle:descriptions: [""]
+      resourcebundle:descriptions: ['']
       resourcebundle:id: keys
       resourcebundle:keys: [mapbox.devkey]
-      resourcebundle:messages:
-        [
-          pk.eyJ1IjoidmlzaXRzY290bGFuZC1kZXYiLCJhIjoiY2p4MGZwcmtjMDBlczN5bTBnY3pjeHNubCJ9.d3CJWPvX9FfjfSNAW98Q6w,
-        ]
+      resourcebundle:messages: [pk.eyJ1IjoidmlzaXRzY290bGFuZC1kZXYiLCJhIjoiY2p4MGZwcmtjMDBlczN5bTBnY3pjeHNubCJ9.d3CJWPvX9FfjfSNAW98Q6w]
     /keys[2]:
       jcr:primaryType: resourcebundle:resourcebundle
-      jcr:mixinTypes: ["mix:referenceable", "mix:versionable"]
+      jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
       jcr:uuid: 0621cd76-6bdf-47c2-8374-2abe31b24afc
       hippo:availability: [preview]
       hippostd:state: unpublished
@@ -310,16 +258,13 @@
       hippostdpubwf:creationDate: 2019-12-20T14:35:30.322Z
       hippostdpubwf:lastModificationDate: 2019-12-20T14:36:06.011Z
       hippostdpubwf:lastModifiedBy: admin
-      resourcebundle:descriptions: [""]
+      resourcebundle:descriptions: ['']
       resourcebundle:id: keys
       resourcebundle:keys: [mapbox.devkey]
-      resourcebundle:messages:
-        [
-          pk.eyJ1IjoidmlzaXRzY290bGFuZC1kZXYiLCJhIjoiY2p4MGZwcmtjMDBlczN5bTBnY3pjeHNubCJ9.d3CJWPvX9FfjfSNAW98Q6w,
-        ]
+      resourcebundle:messages: [pk.eyJ1IjoidmlzaXRzY290bGFuZC1kZXYiLCJhIjoiY2p4MGZwcmtjMDBlczN5bTBnY3pjeHNubCJ9.d3CJWPvX9FfjfSNAW98Q6w]
     /keys[3]:
       jcr:primaryType: resourcebundle:resourcebundle
-      jcr:mixinTypes: ["mix:referenceable"]
+      jcr:mixinTypes: ['mix:referenceable']
       jcr:uuid: 38cb13a7-181e-4ba6-b030-6d93f1cbf87d
       hippo:availability: [live]
       hippostd:state: published
@@ -328,7 +273,7 @@
       hippostdpubwf:lastModificationDate: 2019-12-20T14:36:06.011Z
       hippostdpubwf:lastModifiedBy: admin
       hippostdpubwf:publicationDate: 2019-12-20T14:36:08.398Z
-      resourcebundle:descriptions: [""]
+      resourcebundle:descriptions: ['']
       resourcebundle:id: keys
       resourcebundle:keys: [mapbox.devkey]
       resourcebundle:messages: [pk.eyJ1IjoidmlzaXRzY290bGFuZC1kZXYiLCJhIjoiY2p4MGZwcmtjMDBlczN5bTBnY3pjeHNubCJ9.d3CJWPvX9FfjfSNAW98Q6w]
