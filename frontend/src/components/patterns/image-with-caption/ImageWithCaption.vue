@@ -183,7 +183,6 @@ img {
     bottom: 0.5rem;
     padding: 0;
     right: 0.5rem;
-    border-radius: 50%;
     line-height: 1;
     z-index: 3;
 }
