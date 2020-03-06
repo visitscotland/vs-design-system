@@ -26,7 +26,16 @@
 
 			<!-- BODY -->
 			<div>
-				<vs-image-with-caption v-bind="image" />
+				<vs-image-with-caption v-bind="image">
+					<img 
+						class="lazyload" 
+						:src="image.imageSrc"
+						srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+						:data-srcset="image.imageSrc" 
+						:alt="image.altText"
+						data-sizes="auto"
+					/>
+				</vs-image-with-caption>
 
 				<div class="content">
 					
