@@ -777,7 +777,7 @@
           hippostd:state: draft
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2020-02-27T13:19:13.009Z
-          hippostdpubwf:lastModificationDate: 2020-02-28T16:09:10.492Z
+          hippostdpubwf:lastModificationDate: 2020-03-05T21:45:25.921Z
           hippostdpubwf:lastModifiedBy: admin
           hippotranslation:id: aa4d5cb3-9313-4d6a-9741-225c19c36f20
           hippotranslation:locale: en
@@ -812,10 +812,12 @@
             visitscotland:label: Find out more museums in edinburgh
             /visitscotland:search:
               jcr:primaryType: visitscotland:ProductsSearch
-              visitscotland:dmsAwards: [qaexperiencinggaelic, qac]
-              visitscotland:dmsCategories: [museums]
-              visitscotland:dmsFacilities: [roomserv, picnicarea, brekinc]
+              visitscotland:dmsAwards: [qaiknowscotland]
+              visitscotland:dmsCategories: [bothy, bandb]
+              visitscotland:dmsFacilities: [petswelcom]
               visitscotland:location: Edinburgh
+              visitscotland:officialrating: ['3', '2']
+              visitscotland:productType: acco
               visitscotland:producttype: acti,attr,reta
         /national-museum-of-scotland[2]:
           jcr:primaryType: visitscotland:ListicleItem
@@ -825,7 +827,7 @@
           hippostd:state: unpublished
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2020-02-27T13:19:13.009Z
-          hippostdpubwf:lastModificationDate: 2020-02-28T17:23:54.635Z
+          hippostdpubwf:lastModificationDate: 2020-03-05T21:52:28.556Z
           hippostdpubwf:lastModifiedBy: admin
           hippotranslation:id: aa4d5cb3-9313-4d6a-9741-225c19c36f20
           hippotranslation:locale: en
@@ -860,10 +862,12 @@
             visitscotland:label: Find out more museums in edinburgh
             /visitscotland:search:
               jcr:primaryType: visitscotland:ProductsSearch
-              visitscotland:dmsAwards: [qaexperiencinggaelic, qac]
-              visitscotland:dmsCategories: [museums]
-              visitscotland:dmsFacilities: [roomserv, picnicarea, brekinc]
+              visitscotland:dmsAwards: [qaiknowscotland]
+              visitscotland:dmsCategories: [bothy, bandb]
+              visitscotland:dmsFacilities: [petswelcom]
               visitscotland:location: Edinburgh
+              visitscotland:officialrating: ['3', '2']
+              visitscotland:productType: acco
               visitscotland:producttype: acti,attr,reta
       /edinburgh-castle:
         jcr:primaryType: hippo:handle

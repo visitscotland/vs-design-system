@@ -1,15 +1,15 @@
 package com.visitscotland.brmx.components.content;
 
 import com.visitscotland.brmx.beans.*;
+
 import com.visitscotland.brmx.beans.mapping.FlatImage;
 import com.visitscotland.brmx.beans.mapping.FlatLink;
 import com.visitscotland.brmx.beans.mapping.FlatListicle;
+import com.visitscotland.brmx.beans.mapping.Coordinates;
 import com.visitscotland.brmx.utils.CommonUtils;
-import com.visitscotland.brmx.utils.Properties;
 import org.hippoecm.hst.content.beans.standard.HippoCompound;
 import org.hippoecm.hst.core.component.HstRequest;
 import org.hippoecm.hst.core.component.HstResponse;
-import org.json.JSONArray;
 import org.json.JSONObject;
 import org.onehippo.cms7.essentials.components.EssentialsContentComponent;
 import org.slf4j.Logger;
@@ -19,7 +19,6 @@ import java.net.*;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
 public class ListicleContentComponent extends EssentialsContentComponent {
 
@@ -89,7 +88,6 @@ public class ListicleContentComponent extends EssentialsContentComponent {
                         Image cmsImage = (Image) listicleItem.getListicleItemImage();
                         if (cmsImage != null) {
                             FlatImage image = new FlatImage();
-
                             model.setImage(new FlatImage(cmsImage, cmsImage.getAltText(), cmsImage.getCredit(), cmsImage.getDescription()));
                         }
                     }
@@ -117,6 +115,11 @@ public class ListicleContentComponent extends EssentialsContentComponent {
                                 image.setExternalImage(product.getString(IMAGE));
                                 //TODO: SET ALT-TEXT, CREDITS AND DESCRIPTION
                                 model.setImage(image);
+                            }else{
+                                if (model.getImage().getSource().equals(FlatImage.Source.INSTAGRAM)){
+                                    Coordinates coordinates = new Coordinates(product.getDouble("latitude"),product.getDouble("longitude"));
+                                    model.getImage().setCoordinates(coordinates);
+                                }
                             }
 
                             for (Object facility : product.getString(FACILITIES).split(",")) {
@@ -170,14 +173,38 @@ public class ListicleContentComponent extends EssentialsContentComponent {
             }
         } else if (item instanceof ProductSearchLink) {
             ProductSearchLink productSearchLink = (ProductSearchLink) item;
-            String psLink = "";
             //TODO build the PSR url for the CTA in a reusable class
             String productType = productSearchLink.getSearch().getProductType();
-            String[] categories = productSearchLink.getSearch().getDmsCategories();
-            String[] facilities = productSearchLink.getSearch().getDmsFacilities();
-            String[] awards = productSearchLink.getSearch().getDmsAwards();
-            String[] stars = productSearchLink.getSearch().getOfficialrating();
-            return  new FlatLink(productSearchLink.getLabel(), productSearchLink.getLabel());
+            String categoriesParameter="";
+            String facilitiesParameter="";
+            String awardssParameter="";
+            String starsParameter="";
+            if (productSearchLink.getSearch().getDmsCategories()!=null){
+                for (String category : productSearchLink.getSearch().getDmsCategories()){
+                    categoriesParameter=categoriesParameter+"&cat="+category;
+                 }
+            }
+            if (productSearchLink.getSearch().getDmsFacilities()!=null){
+                for (String fac : productSearchLink.getSearch().getDmsFacilities()){
+                    facilitiesParameter=facilitiesParameter+"&fac_id="+fac;
+                }
+            }
+            if (productSearchLink.getSearch().getDmsAwards()!=null){
+                for (String aw : productSearchLink.getSearch().getDmsAwards()){
+                    awardssParameter=awardssParameter+"&src_awards__0="+aw;
+                }
+            }
+            if (productSearchLink.getSearch().getOfficialrating()!=null){
+                for (String star : productSearchLink.getSearch().getOfficialrating()){
+                    starsParameter=starsParameter+"&grade="+star;
+                }
+            }
+
+            String psr = "www.visitscotland.com/info/accommodation/search-results?locplace="
+                    +productSearchLink.getSearch().getLocation()+"&locprox=0&prodtypes="
+                    +productType+categoriesParameter.replace("\"","")+facilitiesParameter+awardssParameter+starsParameter;
+
+            return  new FlatLink(productSearchLink.getLabel(), psr);
 
         } else if (item instanceof ExternalLink) {
             ExternalLink externalLink = (ExternalLink) item;

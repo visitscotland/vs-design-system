@@ -85,7 +85,7 @@ public class FlatListicle {
     }
 
     public void setErrorMessage(String errorMessage) {
-        this.errorMessage = errorMessage;
+        this.errorMessage = errorMessage.toUpperCase();
     }
 
 

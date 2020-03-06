@@ -39,6 +39,36 @@ definitions:
             hipposysedit:path: visitscotland:officialrating
             hipposysedit:primary: false
             hipposysedit:type: String
+        /hipposysedit:nodetype[2]:
+          jcr:primaryType: hipposysedit:nodetype
+          jcr:mixinTypes: ['mix:referenceable']
+          jcr:uuid: 57b0bddc-fa04-40b6-917e-94560eb83fe8
+          hipposysedit:node: true
+          hipposysedit:supertype: ['hippo:compound', 'hippostd:relaxed']
+          /location:
+            jcr:primaryType: hipposysedit:field
+            hipposysedit:mandatory: false
+            hipposysedit:multiple: false
+            hipposysedit:ordered: false
+            hipposysedit:path: visitscotland:location
+            hipposysedit:primary: false
+            hipposysedit:type: DynamicDropdown
+          /producttype:
+            jcr:primaryType: hipposysedit:field
+            hipposysedit:mandatory: false
+            hipposysedit:multiple: false
+            hipposysedit:ordered: false
+            hipposysedit:path: visitscotland:productType
+            hipposysedit:primary: false
+            hipposysedit:type: DynamicDropdown
+          /officialrating:
+            jcr:primaryType: hipposysedit:field
+            hipposysedit:mandatory: false
+            hipposysedit:multiple: true
+            hipposysedit:ordered: false
+            hipposysedit:path: visitscotland:officialrating
+            hipposysedit:primary: false
+            hipposysedit:type: String
       /hipposysedit:prototypes:
         jcr:primaryType: hipposysedit:prototypeset
         /hipposysedit:prototype:
@@ -47,6 +77,15 @@ definitions:
           visitscotland:dmsCategories: []
           visitscotland:dmsAwards: []
           visitscotland:dmsFacilities: []
+          visitscotland:officialrating: []
+          visitscotland:productType: ''
+        /hipposysedit:prototype[2]:
+          jcr:primaryType: nt:unstructured
+          jcr:mixinTypes: ['hippostd:relaxed']
+          visitscotland:dmsAwards: []
+          visitscotland:dmsCategories: []
+          visitscotland:dmsFacilities: []
+          visitscotland:location: ''
           visitscotland:officialrating: []
           visitscotland:productType: ''
       /editor:templates:
@@ -97,7 +136,7 @@ definitions:
             jcr:primaryType: frontend:plugin
             caption: DMS category
             engine: ${engine}
-            dms.productype: visitscotland:producttype
+            dms.productype: visitscotland:productType
             example.external.docs.field.name: visitscotland:dmsCategories
             external.document.service.facade: com.visitscotland.brmx.components.DMSCategoryPicker
             initial.search.enabled: true
@@ -114,7 +153,7 @@ definitions:
             jcr:primaryType: frontend:plugin
             caption: DMS facility
             engine: ${engine}
-            dms.productype: visitscotland:producttype
+            dms.productype: visitscotland:productType
             example.external.docs.field.name: visitscotland:dmsFacilities
             external.document.service.facade: com.visitscotland.brmx.components.DMSFacilityPicker
             initial.search.enabled: true
@@ -131,7 +170,7 @@ definitions:
             jcr:primaryType: frontend:plugin
             caption: DMS awards
             engine: ${engine}
-            dms.productype: visitscotland:producttype
+            dms.productype: visitscotland:productType
             example.external.docs.field.name: visitscotland:dmsAwards
             external.document.service.facade: com.visitscotland.brmx.components.DMSAwardPicker
             initial.search.enabled: true
