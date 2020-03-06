@@ -10,8 +10,10 @@ import org.apache.commons.lang.StringUtils;
 import org.onehippo.forge.exdocpicker.api.ExternalDocumentCollection;
 import org.onehippo.forge.exdocpicker.api.ExternalDocumentServiceContext;
 import org.onehippo.forge.exdocpicker.impl.SimpleExternalDocumentCollection;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import vs.ase.dms.ProductTypes;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class DMSAwardPicker extends AbstractDMSPicker {
 
@@ -21,9 +23,7 @@ public class DMSAwardPicker extends AbstractDMSPicker {
 
     private static final long serialVersionUID = 1L;
 
-    private static Logger log = LoggerFactory.getLogger(DMSAwardPicker.class);
     private static final String TYPE = "award";
-
 
     public DMSAwardPicker() {
         super (TYPE);
@@ -33,8 +33,8 @@ public class DMSAwardPicker extends AbstractDMSPicker {
     public ExternalDocumentCollection<JSONObject> searchExternalDocuments(ExternalDocumentServiceContext context, String queryString) {
 
         ExternalDocumentCollection<JSONObject> docCollection = new SimpleExternalDocumentCollection<JSONObject>();
-        for (int i = 0; i < docArray.size(); i++) {
-            JSONObject doc = docArray.getJSONObject(i);
+        for (int i = 0; i < getDocArray().size(); i++) {
+            JSONObject doc = getDocArray().getJSONObject(i);
             if (StringUtils.contains(doc.getString("name").toLowerCase(), queryString.toLowerCase())) {
                 docCollection.add(doc);
             }
@@ -42,5 +42,11 @@ public class DMSAwardPicker extends AbstractDMSPicker {
 
         return docCollection;
     }
+
+    @Override
+    protected List<String> productTypesForPSR(String productType){
+        return new ArrayList<>();
+    }
+
 
 }

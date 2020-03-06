@@ -28,6 +28,8 @@ public class DMSFacilityPicker extends AbstractDMSPicker {
 
     private static Logger logger = LoggerFactory.getLogger(DMSFacilityPicker.class);
 
+    private static final String PRODUCT_TYPE = "dms.productype";
+
     private static final String TYPE = "facility";
 
     public DMSFacilityPicker() {
@@ -42,9 +44,9 @@ public class DMSFacilityPicker extends AbstractDMSPicker {
             if (!productTypes.get(0).isEmpty()) {
                 JSONArray subCategory = new JSONArray();
 
-                subCategory.addAll(JSONArray.fromObject(deserialize(TYPE,request(TYPE,null, productTypes))));
+                subCategory.addAll(JSONArray.fromObject(deserialize(request(TYPE,null, productTypes))));
 
-                docArray=subCategory;
+                setDocArray(subCategory);
 
             }
         } catch (RepositoryException | IOException e) {
@@ -52,8 +54,8 @@ public class DMSFacilityPicker extends AbstractDMSPicker {
         }
 
         ExternalDocumentCollection<JSONObject> docCollection =  new SimpleExternalDocumentCollection<JSONObject>();
-        for (int i = 0; i < docArray.size(); i++) {
-            JSONObject doc = docArray.getJSONObject(i);
+        for (int i = 0; i < getDocArray().size(); i++) {
+            JSONObject doc = getDocArray().getJSONObject(i);
             if (StringUtils.contains(doc.getString("name").toLowerCase(), queryString.toLowerCase())) {
                 docCollection.add(doc);
             }
