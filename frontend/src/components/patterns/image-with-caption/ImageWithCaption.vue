@@ -16,21 +16,23 @@
 
             <vs-button
                 variant="outline-transparent"
-                class="position-absolute vs-image-with-caption__toggle-caption-btn"
+                class="vs-image-with-caption__toggle-caption-btn position-absolute d-block d-sm-none"
                 :class="{ 'd-block': this.closedDefaultCaption }"
                 :animate="false"
                 :aria-controls="'image_' + imageSrc"
                 :aria-expanded="showCaption ? 'true' : 'false'"
                 @click.native="toggleCaption"
             >
-                <vs-svg v-if="!showCaption" path="image-toggle" height="24" width="24" />
+                
+
+                <slot v-if="!showCaption" name="toggle-icon" />
                 <vs-icon v-if="showCaption" name="close-circle" variant="light" size="sm" :padding="0" />
             </vs-button>
         </div>
 
         <div
             :class="{ 'd-block': this.showCaption, 'd-none': this.closedDefaultCaption }"
-            class="vs-image-with-caption__caption-wrapper"
+            class="vs-image-with-caption__caption-wrapper d-none d-sm-block"
             :id="'image_' + imageSrc"
         >
             <figcaption
@@ -182,21 +184,11 @@ img {
     padding: 0;
     right: 0.5rem;
     border-radius: 50%;
-    display: block;
     line-height: 1;
     z-index: 3;
-
-    @include media-breakpoint-up(sm) {
-        display: none;
-    }
 }
 
 .vs-image-with-caption__caption-wrapper {
-    display: none;
-
-    @include media-breakpoint-up(sm) {
-        display: block;
-    }
 
     @include media-breakpoint-down(lg) {
         max-width: 100%;
@@ -300,6 +292,13 @@ img {
             data-sizes="auto">
         </vs-img>
 
+        <vs-svg 
+            slot="toggle-icon" 
+            path="image-toggle" 
+            height="24" 
+            width="24" 
+        />
+
         <span slot="caption">
             {{ item.caption }}
         </span>
@@ -327,6 +326,13 @@ img {
             :alt="item.altText"
             data-sizes="auto">
         </vs-img>
+
+        <vs-svg 
+            slot="toggle-icon" 
+            path="image-toggle" 
+            height="24" 
+            width="24" 
+        />
 
         <span slot="caption">
             {{ item.caption }}
@@ -356,6 +362,14 @@ img {
             :alt="item.altText"
             data-sizes="auto">
         </vs-img>
+
+        <vs-icon 
+            slot="toggle-icon" 
+            name="instagram" 
+            variant="light" 
+            size="sm" 
+            :padding="0" 
+        />
 
         <span slot="caption">
             {{ item.caption }}
