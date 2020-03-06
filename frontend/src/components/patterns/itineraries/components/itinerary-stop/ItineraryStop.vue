@@ -120,19 +120,32 @@ export default {
             <div slot="stop-details">
                 <vs-image-with-caption
                     :altText="stop.image.altText"
-                    :credit="stop.image.credit"
-                    :caption="stop.image.caption"
                     :image-src="stop.image.imageSrc"
-                    :latitude="stop.image.latitude"
-                    :longitude="stop.image.longitude"
-                    >
-                    <img 
-                    class="lazyload" 
-                    :src="stop.image.imageSrc"
-                    srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
-                    :data-srcset="stop.image.imageSrc" 
-                    :alt="stop.image.altText"
-                    data-sizes="auto" />
+                    variant="fullwidth"
+                >
+                    <vs-img 
+                        class="lazyload" 
+                        :src="stop.image.imageSrc"
+                        srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                        :data-srcset="stop.image.imageSrc" 
+                        :alt="stop.image.altText"
+                        data-sizes="auto">
+                    </vs-img>
+
+                    <vs-svg 
+                        slot="toggle-icon" 
+                        path="image-toggle" 
+                        height="24" 
+                        width="24" 
+                    />
+
+                    <span slot="caption">
+                        {{ stop.image.caption }}
+                    </span>
+
+                    <span slot="credit">
+                        &copy; {{ stop.image.credit }}
+                    </span>
                 </vs-image-with-caption>
                 <div v-html="stop.description"></div>
                 <vs-link href="stop.href">
