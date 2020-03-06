@@ -4,17 +4,8 @@
 
 			<!-- HEADER -->
             <div class="d-flex justify-content-start align-items-top">
-				<!-- This could be a Card Header component -->
                 <div class="position-relative">
-                    <div
-						:class="{ count__bg: !icon }"
-					>
-						<vs-icon v-if="icon"
-							:name="icon"
-							variant="secondary-teal"
-							size="md"
-							:padding="0"
-						/>
+                    <div class="count__bg">
                     	<span class="count" aria-hidden="true">{{ index }}</span>
                     </div>
                 </div>
@@ -26,21 +17,26 @@
 
 			<!-- BODY -->
 			<div>
-				<vs-image-with-caption v-bind="image">
-					<img 
-						class="lazyload" 
-						:src="image.imageSrc"
-						srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
-						:data-srcset="image.imageSrc" 
-						:alt="image.altText"
-						data-sizes="auto"
-					/>
-				</vs-image-with-caption>
+
+				<slot name="stop-details" >
+					<div>
+						<vs-image-with-caption v-bind="computedImage">
+							<img 
+								class="lazyload" 
+								:src="computedImage.imageSrc"
+								srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+								:data-srcset="computedImage.imageSrc" 
+								:alt="computedImage.altText"
+								data-sizes="auto"
+							/>
+						</vs-image-with-caption>
+					</div>
+				</slot>
 
 				<div class="content">
 					
 					<div class="intro">
-						<p v-html="intro"></p>
+						<slot name="description"></slot>
 
 						<vs-link
 							v-for="link in links"
@@ -63,7 +59,6 @@
 </template>
 
 <script>
-import VsIcon from "@components/elements/icon/Icon"
 import VsHeading from "@components/elements/heading/Heading"
 import VsDescriptionList from "@components/elements/description-list/DescriptionList"
 import VsFacilitiesList from "@components/elements/facilities-list/FacilitiesList"
@@ -74,16 +69,14 @@ export default {
     release: "0.0.1",
     components: {
         VsHeading,
-		VsIcon,
 		VsFacilitiesList
-    },
+	},
+	computed: {
+		computedImage: function() {
+			return JSON.parse(this.image)
+		}
+	},
     props: {
-        /**
-         * Label used for the word 'Stop'
-         */
-        icon: {
-            type: String,
-        },
         intro: {
             type: String
 		},
@@ -97,14 +90,14 @@ export default {
 			type: String
 		},
 		image: {
-			type: Object
+			type: String
 		},
 		facilitiesList: {
 			type: Array
 		},
 		links: {
 			type: Array
-		}
+		},
     }
 }
 </script>
@@ -195,15 +188,15 @@ h3.heading {
 		index: 1,
         name: "The Standing Stones of Stenness",
         place: "Orkney Islands",
-        "image": {
-			source: "image",
+        "image": `{
+			"source": "image",
 			"imageSrc": "fixtures/itineraries/images/elie-beach-header.jpg",
 			"altText": "Child playing on Elie Beach",
 			"caption": "Elie beach",
 			"credit": "Test Credit",
 			"longitude": "-2.8243733",
 			"latitude": "56.1896033"
-		},
+		}`,
         intro: `
             See how the Viking fir experienced rain<br/><br/>
 
