@@ -24,7 +24,7 @@ import VsIcon from "@components/elements/icon/Icon"
 /**
  * Links are used to point the user to locations in the same page, documents, emails, or any kind of URL.
  *
- * Can tell the user when he is being sent to any external site.
+ * External links will show an external icon. 
  */
 
 export default {
