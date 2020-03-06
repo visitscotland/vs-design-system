@@ -121,7 +121,7 @@ public class FlatStop {
     }
 
     public void setErrorMessage(String errorMessage) {
-        this.errorMessage = errorMessage.toUpperCase();
+        this.errorMessage = errorMessage;
     }
 
     public FlatLink getCtaLink() {

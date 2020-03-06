@@ -120,8 +120,8 @@
                         </vs-summary-box-list-item>
                         <vs-summary-box-list-item>
                             <vs-summary-box-distance-display
-                                miles="${(document.distance?round)?round}"
-                                kilometres="${(document.distance?round*1.6)?round}"
+                                miles="${(document.distance)}"
+                                kilometres="${(document.distance*1.6)}"
                                 miles-label="${label("itinerary", "miles")}"
                                 kilometres-label="${label("itinerary", "kilometres")}">
                             </vs-summary-box-distance-display>

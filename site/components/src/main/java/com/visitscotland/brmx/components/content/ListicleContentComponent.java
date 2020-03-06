@@ -31,6 +31,7 @@ public class ListicleContentComponent extends EssentialsContentComponent {
     public void doBeforeRender(HstRequest request, HstResponse response) {
         super.doBeforeRender(request, response);
         generateItems(request, getDocument(request));
+        request.setAttribute("path", getDocumentLocation((Listicle) request.getAttribute("document")));
     }
 
     protected Listicle getDocument(HstRequest request) {
@@ -217,4 +218,9 @@ public class ListicleContentComponent extends EssentialsContentComponent {
 
         return null;
     }
+
+    private String getDocumentLocation( Listicle listicle) {
+        return listicle.getPath().substring(listicle.getPath().indexOf(ROOT_SITE), listicle.getPath().indexOf("/content/content")).replace(ROOT_SITE, "");
+    }
+
 }

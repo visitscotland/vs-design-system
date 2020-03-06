@@ -27,12 +27,13 @@ public class DMSCategoryPicker extends AbstractDMSPicker{
 
     private static final Logger logger = LoggerFactory.getLogger(DMSCategoryPicker.class);
 
+    private static final String PRODUCT_TYPE = "dms.productype";
+
     private static final String TYPE = "category";
 
     public DMSCategoryPicker() {
         super (TYPE);
     }
-
 
     @Override
     public ExternalDocumentCollection<JSONObject> searchExternalDocuments(ExternalDocumentServiceContext context, String queryString) {
@@ -42,17 +43,17 @@ public class DMSCategoryPicker extends AbstractDMSPicker{
             if (!productTypes.get(0).isEmpty()) {
                 JSONArray subCategory = new JSONArray();
 
-                subCategory.addAll(JSONArray.fromObject(deserialize(TYPE,request(TYPE,null, productTypes))));
+                subCategory.addAll(JSONArray.fromObject(deserialize(request(TYPE,null, productTypes))));
 
-                docArray=subCategory;
+                setDocArray(subCategory);
             }
         } catch (RepositoryException | IOException e) {
             logger.error("Error while getting DMS categories", e);
         }
 
         ExternalDocumentCollection<JSONObject> docCollection =new SimpleExternalDocumentCollection<JSONObject>();
-        for (int i = 0; i < docArray.size(); i++) {
-            JSONObject doc = docArray.getJSONObject(i);
+        for (int i = 0; i < getDocArray().size(); i++) {
+            JSONObject doc = getDocArray().getJSONObject(i);
             if (StringUtils.contains(doc.getString("name").toLowerCase(), queryString.toLowerCase())) {
                 docCollection.add(doc);
             }
