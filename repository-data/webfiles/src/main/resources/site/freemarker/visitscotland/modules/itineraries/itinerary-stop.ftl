@@ -26,8 +26,6 @@
     <#else>
         <#assign image = "" />
     </#if>
-    <#-- TODO: The following generates an error something (i.e. /site/dev-test/itinerary/content) -->
-    <#assign href = prod.ctaLink.link!>
 
     <#if !stop.stopItem?? && editMode>
         <vs-itinerary-stop
@@ -75,8 +73,8 @@
                     <@hst.html hippohtml=prod.description/>
                 </#if>
 
-                <#if href?? && href?has_content>
-                    <vs-link href="${href}">
+                <#if prod.ctaLink?? && prod.ctaLink.link?? && prod.ctaLink.link?has_content>
+                    <vs-link href="${prod.ctaLink.link}">
                         ${prod.ctaLink.label}
                     </vs-link>
                 </#if>
