@@ -86,7 +86,10 @@
 			"longitude": "-2.8243733",
 			"latitude": "56.1896033"
 		}'>
-
+    <#-- TODO This code should go inside the card , just before the title to make it more obvious-->
+		<#if item.errorMessage?? && editMode>
+              <h3 class="text-danger">${item.errorMessage?upper_case}</h3>
+       	</#if>
 		<vs-row class="justify-content-md-between">
 			<vs-listicle-item
 				intro="${(listicle_item.description)}"
