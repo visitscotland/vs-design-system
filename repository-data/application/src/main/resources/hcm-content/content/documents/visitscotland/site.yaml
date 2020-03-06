@@ -266,6 +266,38 @@
           /visitscotland:stops[2]:
             jcr:primaryType: hippo:mirror
             hippo:docbase: 28abd074-5fc4-4ebc-a424-1d4f9e5cb0e6
+        /edinburgh[3]:
+          jcr:primaryType: visitscotland:Day
+          jcr:mixinTypes: ['mix:referenceable']
+          jcr:uuid: 1d990574-0974-47c6-8a69-8122541783ac
+          hippo:availability: []
+          hippostd:state: draft
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2019-12-10T13:28:39.550Z
+          hippostdpubwf:lastModificationDate: 2020-03-06T12:22:00.068Z
+          hippostdpubwf:lastModifiedBy: admin
+          hippotranslation:id: 533c98b2-c2cd-491f-929a-ea2c4a491bb2
+          hippotranslation:locale: en
+          visitscotland:title: DMS Stops Day
+          visitscotland:transports: [walking, car, train]
+          /visitscotland:introduction:
+            jcr:primaryType: hippostd:html
+            hippostd:content: <p>It was in Scotland's capital city that JK Rowling
+              started to plot the adventures of Harry and his friends. With cobbled
+              streets, winding alleys and medieval architecture, the city certainly
+              has a few things in common with the settings from the books and films.
+              She wrote the early chapters in various cafés around the city's Old
+              Town, before coming back to finish off the series from a peaceful suite
+              in The Balmoral Hotel. It is also said that Hogwarts School was styled
+              on Edinburgh’s Fettes College, a private school on the outskirts of
+              Edinburgh’s west end new town. You could also try the Wizarding World
+              of Edinburgh tour.</p>
+          /visitscotland:stops[1]:
+            jcr:primaryType: hippo:mirror
+            hippo:docbase: ca56dfe6-f8c8-410f-aa63-ed513fc71385
+          /visitscotland:stops[2]:
+            jcr:primaryType: hippo:mirror
+            hippo:docbase: 28abd074-5fc4-4ebc-a424-1d4f9e5cb0e6
       /day-2:
         jcr:primaryType: hippo:handle
         jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
@@ -721,11 +753,11 @@
           hippostd:state: draft
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2020-02-27T13:19:13.009Z
-          hippostdpubwf:lastModificationDate: 2020-03-05T21:45:25.921Z
+          hippostdpubwf:lastModificationDate: 2020-03-06T12:31:28.389Z
           hippostdpubwf:lastModifiedBy: admin
           hippotranslation:id: aa4d5cb3-9313-4d6a-9741-225c19c36f20
           hippotranslation:locale: en
-          visitscotland:subtitle: ''
+          visitscotland:subtitle: Edinburgh
           visitscotland:title: National Museum of Scotland
           /visitscotland:description:
             jcr:primaryType: hippostd:html
@@ -771,11 +803,11 @@
           hippostd:state: unpublished
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2020-02-27T13:19:13.009Z
-          hippostdpubwf:lastModificationDate: 2020-03-05T21:52:28.556Z
+          hippostdpubwf:lastModificationDate: 2020-03-06T12:31:14.847Z
           hippostdpubwf:lastModifiedBy: admin
           hippotranslation:id: aa4d5cb3-9313-4d6a-9741-225c19c36f20
           hippotranslation:locale: en
-          visitscotland:subtitle: ''
+          visitscotland:subtitle: Edinburgh
           visitscotland:title: National Museum of Scotland
           /visitscotland:description:
             jcr:primaryType: hippostd:html

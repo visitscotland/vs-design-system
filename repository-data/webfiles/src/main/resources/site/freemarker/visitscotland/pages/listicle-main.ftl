@@ -1,3 +1,4 @@
+<#ftl output_format="XML">
 <#include "../../include/imports.ftl">
 
 <#include "../../vs-dotcom-ds/components/container.ftl">
@@ -11,6 +12,7 @@
 <#include "../../vs-dotcom-ds/components/link.ftl">
 
 <#include "../modules/listicles/listicle-item.ftl">
+<#include "../../vs-dotcom-ds/components/listicle-item.ftl">
 
 
 
@@ -33,8 +35,7 @@
 		</vs-col>
 		<vs-col cols="2">
 			<div class="d-flex justify-content-center justify-content-sm-end">
-				<!-- TODO - Below icon is FPO. Replace with icon with text component and a share component -->
-				<vs-icon name="share" variant="dark" size="sm" />
+				<vs-social-share />
 			</div>
 		</vs-col>
 	</vs-row>
@@ -63,51 +64,42 @@
 			<#assign i = i + 1>
 		</#if>
 
-		<vs-row class="justify-content-md-between">
-			<vs-col cols="12" lg="8" offset-lg="1">
-				<div>
-					<vs-heading level="2"> ${i}.${item.title}</vs-heading>
-					<#if item.subtitle??>${item.subTitle} </#if>
-				</div>
-			</vs-col>
-		</vs-row>
-		<vs-row class="justify-content-md-between">
-				<div>
-					<img src="${image}"  width="50%" >
-					<#if item.image.postUrl??>
-						<vs-link href="${item.image.postUrl}">See the post</vs-link>
-					</#if>
+		<#assign itemDescription>
+			<@hst.html hippohtml=item.description />
+		</#assign>
 
-				</div>
-			</vs-col>
-		</vs-row>
+		<#assign listicle_item = {
+			"name": "${item.title}",
+			"subTitle": "${item.subTitle!''}",
+			"description": 'Description Test'
+		}>
+
+		<#assign listicle_image = '{
+			"source": "image",
+			"imageSrc": "http://localhost:8080/site/_cmsinternal/binaries/content/gallery/visitscotland/default/visitscotland_49386435364-1.jpg",
+			"altText": "Child playing on Elie Beach",
+			"caption": "Elie beach",
+			"credit": "Test Credit",
+			"longitude": "-2.8243733",
+			"latitude": "56.1896033"
+		}'>
+
 		<vs-row class="justify-content-md-between">
-			<vs-col cols="12" lg="8" offset-lg="1">
-				<div>
-					<@hst.html hippohtml=item.description/>
-				</div>
-			</vs-col>
-		</vs-row>
-		<vs-row class="justify-content-md-between">
-			<vs-col cols="12" lg="8" offset-lg="1">
-				<div>
-					<#if item.facilities?? && item.facilities?size gt 1>
-						There are ${item.facilities?size} facilities</br>
-						<#list item.facilities as facility>
-							facility = ${facility}</br>
-						</#list>
-					</#if>
-				</div>
-			</vs-col>
-		</vs-row>
-		<vs-row class="justify-content-md-between">
-			<vs-col cols="12" lg="8" offset-lg="1">
-				<div>
-					<#list item.ctaLinks as cta>
-						<vs-link href="${cta.link}">GO TO: ${cta.label}</vs-link>
-					</#list>
-				</div>
-			</vs-col>
+			<vs-listicle-item
+				intro="${(listicle_item.description)}"
+				index=1
+				name="${(listicle_item.name)}"
+				place="${(listicle_item.subTitle)}"
+				image='${listicle_image}'
+				hasEditButton
+				errorMessage="${errorMessage}"
+			>
+				<template v-slot:description>
+					<div>
+						<@hst.html hippohtml=item.description />
+					</div>
+				</template>
+			</vs-listicle-item>
 		</vs-row>
 
 	</#list>
