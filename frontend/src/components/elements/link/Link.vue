@@ -6,7 +6,14 @@
         :target="external ? '_blank' : '_self'"
     >
         <slot />
-        <vs-icon v-if="external" name="external-link" variant="primary" size="xs" :padding="0" class="ml-1" />
+        <vs-icon
+            v-if="external"
+            name="external-link"
+            variant="primary"
+            size="xs"
+            :padding="0"
+            class="ml-1"
+        />
     </b-link>
 </template>
 
@@ -16,7 +23,7 @@ import VsIcon from "@components/elements/icon/Icon"
 
 /**
  * Links are used to point the user to locations in the same page, documents, emails, or any kind of URL.
- * 
+ *
  * Can tell the user when he is being sent to any external site.
  */
 
@@ -60,32 +67,29 @@ export default {
 
 <style lang="scss" scoped>
 .vs-link {
+    &.primary {
+        color: $color_pink;
 
-	padding: .2rem .25rem;
-    
-	&.primary {
-		color: $color_pink;
+        .icon {
+            fill: $color_pink;
+        }
 
-		.icon {
-			fill: $color_pink;
-		}
+        &:focus {
+            outline: 2px solid $color_pink;
+        }
+    }
 
-		&:focus {
-			outline: 2px solid $color_pink;
-		}
-	}
+    &.dark {
+        color: $color_yellow;
 
-	&.dark {
-		color: $color_yellow;
+        .icon {
+            fill: $color_yellow;
+        }
 
-		.icon {
-			fill: $color_yellow;
-		}
-
-		&:focus {
-			outline: 2px solid $color_yellow;
-		}
-	}
+        &:focus {
+            outline: 2px solid $color_yellow;
+        }
+    }
 }
 </style>
 
@@ -115,18 +119,17 @@ export default {
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus efficitur pretium ultricies. Phasellus placerat tellus gravida, laoreet velit vitae, interdum ante.
                 Praesent quis urna <vs-link href="#foo">Link</vs-link> finibus, efficitur arcu vel, fermentum dui. Praesent laoreet leo non felis porttitor, eu tempor tellus lobortis. 
                 Nunc consectetur ornare laoreet. Curabitur <vs-link external href="https://www.visitscotland.com">External Link</vs-link> ut sagittis quam. 
-                Praesent in quam ornare, ultricies odio vitae, <vs-link variant="dark" href="#foo">Dark Link</vs-link> aliquam nisl. Curabitur et elit facilisis, egestas felis sed, dignissim eros.
-                Curabitur aliquam et lorem et accumsan. <vs-link variant="dark" external href="#foo">External Dark Link</vs-link> Fusce rutrum vel ex in posuere. Ut luctus odio eu leo rutrum vestibulum. 
-                Nulla tortor ligula, consequat ac feugiat et, porta id eros.
+                Praesent in quam ornare, ultricies odio vitae, aliquam nisl. Curabitur et elit facilisis, egestas felis sed, dignissim eros.
+                Curabitur aliquam et lorem et accumsan. Fusce rutrum vel ex in posuere. Ut luctus odio eu leo rutrum vestibulum. 
             </p>
         </bs-wrapper>
 
-        <bs-wrapper class="d-flex flex-wrap mb-4">
+        <bs-wrapper class="d-flex flex-wrap mb-4 p-6" style="background-color: #191919; color: white">
             <h3>Lead Paragraph (18px)</h3>
             <VsLeadParagraph>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus efficitur pretium ultricies. Phasellus placerat tellus gravida, laoreet velit vitae, interdum ante.
-                Praesent quis urna <vs-link href="#foo">Link</vs-link> finibus, efficitur arcu vel, fermentum dui. Praesent laoreet leo non felis porttitor, eu tempor tellus lobortis. 
-                Nunc consectetur ornare laoreet. Curabitur <vs-link external href="https://www.visitscotland.com">External Link</vs-link> ut sagittis quam. 
+                Praesent quis urna finibus, efficitur arcu vel, fermentum dui. Praesent laoreet leo non felis porttitor, eu tempor tellus lobortis. 
+                Nunc consectetur ornare laoreet.
                 Praesent in quam ornare, ultricies odio vitae, <vs-link variant="dark" href="#foo">Dark Link</vs-link> aliquam nisl. Curabitur et elit facilisis, egestas felis sed, dignissim eros.
                 Curabitur aliquam et lorem et accumsan. <vs-link variant="dark" external href="#foo">External Dark Link</vs-link> Fusce rutrum vel ex in posuere. Ut luctus odio eu leo rutrum vestibulum. 
                 Nulla tortor ligula, consequat ac feugiat et, porta id eros.
