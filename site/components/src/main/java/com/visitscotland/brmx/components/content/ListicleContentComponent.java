@@ -2,9 +2,7 @@ package com.visitscotland.brmx.components.content;
 
 import com.visitscotland.brmx.beans.*;
 
-import com.visitscotland.brmx.beans.mapping.FlatImage;
-import com.visitscotland.brmx.beans.mapping.FlatLink;
-import com.visitscotland.brmx.beans.mapping.FlatListicle;
+import com.visitscotland.brmx.beans.mapping.*;
 import com.visitscotland.brmx.beans.mapping.Coordinates;
 import com.visitscotland.brmx.utils.CommonUtils;
 import org.hippoecm.hst.content.beans.standard.HippoCompound;
@@ -18,13 +16,14 @@ import org.slf4j.LoggerFactory;
 import java.net.*;
 import java.io.*;
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 public class ListicleContentComponent extends EssentialsContentComponent {
 
     private static final Logger logger = LoggerFactory.getLogger(ListicleContentComponent.class);
     private final String ROOT_SITE = "/site/";
-
     private final String LISTICLE_ITEMS = "items";
 
     @Override
@@ -51,8 +50,8 @@ public class ListicleContentComponent extends EssentialsContentComponent {
         final String URL = "url";
         final String FACILITIES = "facilities";
         final String IMAGE = "image";
+        final Map<String ,FlatListicle> items =  new LinkedHashMap<>();
 
-        List<FlatListicle> items = new ArrayList<>();
 
         //TODO:separate image, main product and optional cta in different methods ?
         for (ListicleItem listicleItem : listicle.getItems()) {
@@ -114,6 +113,8 @@ public class ListicleContentComponent extends EssentialsContentComponent {
                             if (model.getImage() == null) {
                                 FlatImage image = new FlatImage();
                                 image.setExternalImage(product.getString(IMAGE));
+                                Coordinates coordinates = new Coordinates(product.getDouble("latitude"),product.getDouble("longitude"));
+                                image.setCoordinates(coordinates);
                                 //TODO: SET ALT-TEXT, CREDITS AND DESCRIPTION
                                 model.setImage(image);
                             }else{
@@ -144,7 +145,7 @@ public class ListicleContentComponent extends EssentialsContentComponent {
             }
 
             model.setCtaLinks(links);
-            items.add(model);
+            items.put(model.getIdentifier(), model);
         }
 
         request.setAttribute(LISTICLE_ITEMS, items);
