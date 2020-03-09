@@ -1,7 +1,8 @@
 <template>
-    <figure 
+    <figure
         class="vs-image-with-caption position-relative"
-        :style="this.variant == 'large' ? 'margin-bottom: 4rem' : ''">
+        :style="this.variant == 'large' ? 'margin-bottom: 4rem' : ''"
+    >
         <div class="vs-image-with-caption__image-wrapper">
             <!-- @slot Contains the media to be shown. Defaults to an image.  -->
             <slot>
@@ -30,7 +31,13 @@
                 <slot v-if="!showCaption" name="toggle-icon">
                     <vs-svg path="image-toggle" height="24" width="24" />
                 </slot>
-                <vs-icon v-if="showCaption" name="close-circle" variant="light" size="sm" :padding="0" />
+                <vs-icon
+                    v-if="showCaption"
+                    name="close-circle"
+                    variant="light"
+                    size="sm"
+                    :padding="0"
+                />
             </vs-button>
         </div>
 
@@ -216,7 +223,8 @@ img {
             margin-bottom: $spacer-0;
         }
 
-        &.vs-image-with-caption__large-caption {
+        &.vs-image-with-caption__large-caption,
+        &.vs-image-with-caption__fullwidth-caption {
             position: absolute;
             top: 0;
             right: 0;
@@ -236,7 +244,9 @@ img {
             .map-wrapper {
                 max-width: 60px;
             }
+        }
 
+        &.vs-image-with-caption__large-caption {
             @include media-breakpoint-up(sm) {
                 bottom: -48px;
                 right: 1rem;
@@ -260,10 +270,15 @@ img {
         }
 
         &.vs-image-with-caption__fullwidth-caption {
-            width: 100%;
+            @include media-breakpoint-up(sm) {
+                position: relative;
+                width: 100%;
+                height: auto;
+                text-align: left;
 
-            .vs-image-with-caption__image-caption {
-                margin-bottom: $spacer-2;
+                > .row {
+                    margin: 0 -16px;
+                }
             }
         }
     }
