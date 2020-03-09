@@ -45,6 +45,8 @@ public class ListicleContentComponent extends EssentialsContentComponent {
         request.setAttribute("path", path);
 
         final String LOCATION = "locationName";
+        final String LATITUDE = "latitude";
+        final String LONGITUDE = "longitude";
         final String FACILITIES = "facilities";
         final String IMAGE = "image";
         final Map<String ,FlatListicle> items =  new LinkedHashMap<>();
@@ -110,13 +112,13 @@ public class ListicleContentComponent extends EssentialsContentComponent {
                             if (model.getImage() == null) {
                                 FlatImage image = new FlatImage();
                                 image.setExternalImage(product.getString(IMAGE));
-                                Coordinates coordinates = new Coordinates(product.getDouble("latitude"),product.getDouble("longitude"));
+                                Coordinates coordinates = new Coordinates(product.getDouble(LATITUDE),product.getDouble(LONGITUDE));
                                 image.setCoordinates(coordinates);
                                 //TODO: SET ALT-TEXT, CREDITS AND DESCRIPTION
                                 model.setImage(image);
                             }else{
                                 if (model.getImage().getSource().equals(FlatImage.Source.INSTAGRAM)){
-                                    Coordinates coordinates = new Coordinates(product.getDouble("latitude"),product.getDouble("longitude"));
+                                    Coordinates coordinates = new Coordinates(product.getDouble(LATITUDE),product.getDouble(LONGITUDE));
                                     model.getImage().setCoordinates(coordinates);
                                 }
                             }
