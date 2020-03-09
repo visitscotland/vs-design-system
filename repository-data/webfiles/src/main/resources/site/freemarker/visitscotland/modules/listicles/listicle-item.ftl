@@ -40,7 +40,7 @@
 	<vs-listicle-item
 		index="${i}"
 		title="${item.title}"
-		subTitle="${item.subTitle}"
+		sub-title="${item.subTitle}"
 	>
 
 		<div slot="hippo-details" class="has-edit-button">
@@ -56,8 +56,8 @@
 				credit="${(item.image.credit)!'No credit'}"
 				caption="${(item.image.altText)!''}"
 				image-src="${image}"
-				latitude="${item.image.coordinates.latitude}"
-				longitude="${item.image.coordinates.longitude}"
+				latitude="${(item.image.coordinates.latitude)!''}"
+				longitude="${(item.image.coordinates.longitude)!''}"
 			>
 				<vs-img
 					class="lazyload"
@@ -72,10 +72,14 @@
 
 		<div slot="description-slot">
 			<@hst.html hippohtml=item.description />
-			<#list item.ctaLinks as cta>
-				<vs-link href="${cta.link}">${cta.label}</vs-link>
-									</br>
-			</#list>
+			<#if  item.ctaLinks?has_content>
+				<#list item.ctaLinks as cta>
+					<#if  cta?has_content>
+						<vs-link href="${cta.link}">${cta.label}</vs-link>
+						</br>
+					</#if>
+				</#list>
+			</#if>
 		</div>
 
 		<#if item.facilities?? && item.facilities?size gt 1>
