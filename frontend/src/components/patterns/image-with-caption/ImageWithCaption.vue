@@ -1,5 +1,7 @@
 <template>
-    <figure class="vs-image-with-caption position-relative">
+    <figure 
+        class="vs-image-with-caption position-relative"
+        :style="this.variant == 'large' ? 'margin-bottom: 4rem' : ''">
         <div class="vs-image-with-caption__image-wrapper">
             <!-- @slot Contains the media to be shown. Defaults to an image.  -->
             <slot>
@@ -281,7 +283,7 @@ img {
         :latitude="item.latitude"
         :longitude="item.longitude"
         variant="large"
-        style="max-width:700px; margin-bottom: 5rem;"
+        style="max-width:700px"
     >
         <vs-img 
             class="lazyload" 
@@ -301,7 +303,7 @@ img {
         </span>
     </vs-image-with-caption>
 
-    <h3 class="mt-9">Fullwidth Caption Style</h3>
+    <h3 style="margin-top: 7rem;">Fullwidth Caption Style</h3>
     <vs-image-with-caption
         v-for="(item, index) in imageWithCaption.imageExamples.fullwidth"
         :altText="item.altText"
@@ -329,7 +331,7 @@ img {
         </span>
     </vs-image-with-caption>
 
-    <h3 class="mt-9">Social images</h3>
+    <h3 style="margin-top: 5rem;">Social images</h3>
     <vs-image-with-caption
         v-for="(item, index) in imageWithCaption.imageExamples.social"
         :altText="item.altText"
@@ -338,7 +340,7 @@ img {
         :latitude="item.latitude"
         :longitude="item.longitude"
         :variant="item.variant"
-        style="max-width:700px; margin-bottom: 4rem;"
+        style="max-width:700px"
     >
         <vs-img 
             class="lazyload" 
