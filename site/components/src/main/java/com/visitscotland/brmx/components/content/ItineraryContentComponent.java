@@ -34,12 +34,12 @@ public class ItineraryContentComponent extends PageContentComponent<Itinerary> {
     public void doBeforeRender(HstRequest request, HstResponse response) {
         super.doBeforeRender(request, response);
 
-        generateStops(request, (Itinerary) request.getAttribute("document"));
-        setCoordinates(request, (Itinerary) request.getAttribute("document"));
+        generateStops(request);
+        setCoordinates(request);
     }
 
-    private void setCoordinates(HstRequest request, Itinerary itinerary) {
-        LocationObject location = LocationLoader.getLocation(itinerary.getHeroImage().getLocation(), request.getLocale());
+    private void setCoordinates(HstRequest request) {
+        LocationObject location = LocationLoader.getLocation(getDocument(request).getHeroImage().getLocation(), request.getLocale());
 
         if (location != null){
             Coordinates coordinates = new Coordinates();
@@ -52,9 +52,10 @@ public class ItineraryContentComponent extends PageContentComponent<Itinerary> {
     /**
      *
      * @param request
-     * @param itinerary
      */
-    private void generateStops(HstRequest request, Itinerary itinerary){
+    private void generateStops(HstRequest request){
+
+        final Itinerary itinerary = getDocument(request);
 
         final String LOCATION = "locationName";
         final String URL = "url";
