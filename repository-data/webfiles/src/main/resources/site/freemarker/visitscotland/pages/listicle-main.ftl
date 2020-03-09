@@ -55,8 +55,8 @@
 				<#assign i = 0>
 			</#if>
 
-			<#list items as item>
-				<@listicleItem item=item descOrder=document.descOrder/>
+			<#list document.items as listItem>
+				<@listicleItem listItem=listItem descOrder=document.descOrder/>
 			</#list>
 		</ol>
 
