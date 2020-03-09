@@ -10,7 +10,7 @@
                     	<span class="count" aria-hidden="true">{{ index }}</span>
                     </div>
                 </div>
-                <vs-heading level="3" thin class="heading">
+                <vs-heading level="3" thin>
                     <span>{{ title }}</span>
                     {{ subTitle }}
                 </vs-heading>
@@ -24,14 +24,6 @@
 					
 					<div class="intro">
 						<slot name="description-slot" />
-
-						<vs-link
-							v-if="ctaLink"
-							:href="ctaLink"
-							class="cta"
-						>
-							{{ ctaLabel }}
-						</vs-link>
 					</div>
 
 					<slot name="facilities-slot" class="facilities" />
@@ -57,7 +49,7 @@ export default {
 	},
     props: {
     	index: {
-    		type: Number
+    		type: String
 		},
     	title: {
     		type: String
@@ -133,6 +125,7 @@ h3.heading {
 
 	.intro {
 		overflow-wrap: break-word;
+		margin-bottom: 1rem;
 		
 		@include media-breakpoint-up(md) {
 			margin-right: 1rem;
