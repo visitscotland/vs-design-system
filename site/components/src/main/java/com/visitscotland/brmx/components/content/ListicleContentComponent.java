@@ -6,6 +6,7 @@ import com.visitscotland.brmx.beans.mapping.*;
 import com.visitscotland.brmx.beans.mapping.Coordinates;
 import com.visitscotland.brmx.utils.CommonUtils;
 import com.visitscotland.brmx.utils.HippoUtils;
+import com.visitscotland.brmx.utils.Properties;
 import org.hippoecm.hst.content.beans.standard.HippoCompound;
 import org.hippoecm.hst.core.component.HstRequest;
 import org.hippoecm.hst.core.component.HstResponse;
@@ -18,32 +19,24 @@ import java.net.*;
 import java.io.*;
 import java.util.*;
 
-public class ListicleContentComponent extends EssentialsContentComponent {
+public class ListicleContentComponent extends PageContentComponent<Listicle> {
 
     private static final Logger logger = LoggerFactory.getLogger(ListicleContentComponent.class);
-    private final String ROOT_SITE = "/site/";
+
     private final String LISTICLE_ITEMS = "items";
 
     @Override
     public void doBeforeRender(HstRequest request, HstResponse response) {
         super.doBeforeRender(request, response);
+
         generateItems(request, getDocument(request));
-        request.setAttribute("path", getDocumentLocation((Listicle) request.getAttribute("document")));
     }
-
-    protected Listicle getDocument(HstRequest request) {
-        return (Listicle) request.getAttribute("document");
-    }
-
 
     /**
      * @param request
      * @param listicle
      */
     private void generateItems(HstRequest request, Listicle listicle) {
-        String path = listicle.getPath().substring(listicle.getPath().indexOf(ROOT_SITE), listicle.getPath().indexOf("/content/content")).replace(ROOT_SITE, "");
-        request.setAttribute("path", path);
-
         final String LOCATION = "locationName";
         final String LATITUDE = "latitude";
         final String LONGITUDE = "longitude";
@@ -130,7 +123,7 @@ public class ListicleContentComponent extends EssentialsContentComponent {
                         }
                     } catch (IOException e) {
                         model.setErrorMessage("Error while querying the DMS: " + e.getMessage());
-                        logger.error(String.format("Error while querying the DMS for {}, Listicle item {}: {}",
+                        logger.error(String.format("Error while querying the DMS for %s, Listicle item %s: 5s",
                                 listicle.getName(), model.getIndex(), e.getMessage()));
                     }
                 }
@@ -157,21 +150,21 @@ public class ListicleContentComponent extends EssentialsContentComponent {
      * @return
      */
     private FlatLink createLink(HstRequest request, HippoCompound item) {
-        final FlatLink cta;
         final String URL = "url";
+
         if (item instanceof DMSLink) {
             DMSLink dmsLink = (DMSLink) item;
             try {
                 JSONObject product = CommonUtils.getProduct(dmsLink.getProduct(), request.getLocale());
                 if (product == null) {
-                    logger.warn(CommonUtils.contentIssue("There is no product with the id '{}', ({}) ",
+                    logger.warn(CommonUtils.contentIssue("There is no product with the id '%s', (%s) ",
                             dmsLink.getProduct(), getDocument(request).getPath()));
                 } else {
                     //TODO build the link for the DMS product properly
-                    return new FlatLink(this.getCtaLabel(dmsLink.getLabel(), request.getLocale()), "http://172.28.81.65:8089"+product.getString(URL));
+                    return new FlatLink(this.getCtaLabel(dmsLink.getLabel(), request.getLocale()), Properties.VS_DMS_PRODUCTS+product.getString(URL));
                 }
             } catch (IOException e) {
-                logger.error(String.format("Error while querying the DMS for '{}', ({})",
+                logger.error(String.format("Error while querying the DMS for '%s', (%s)",
                         dmsLink.getProduct(), getDocument(request).getPath()));
             }
         } else if (item instanceof ProductSearchLink) {
@@ -203,7 +196,7 @@ public class ListicleContentComponent extends EssentialsContentComponent {
                 }
             }
 
-            String psr = "http://172.28.81.65:8089/info/accommodation/search-results?debug&locplace="
+            String psr = Properties.VS_DMS_PRODUCTS + "/info/accommodation/search-results?debug&locplace="
                     +productSearchLink.getSearch().getLocation()+"&locprox=0&prodtypes="
                     +productType+categoriesParameter+facilitiesParameter+awardssParameter+starsParameter;
 
@@ -219,10 +212,6 @@ public class ListicleContentComponent extends EssentialsContentComponent {
         }
 
         return null;
-    }
-
-    private String getDocumentLocation( Listicle listicle) {
-        return listicle.getPath().substring(listicle.getPath().indexOf(ROOT_SITE), listicle.getPath().indexOf("/content/content")).replace(ROOT_SITE, "");
     }
 
     /**

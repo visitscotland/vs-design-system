@@ -12,7 +12,7 @@ import com.visitscotland.brmx.utils.LocationLoader;
 import org.hippoecm.hst.core.component.HstRequest;
 import org.hippoecm.hst.core.component.HstResponse;
 import org.json.JSONObject;
-import org.onehippo.cms7.essentials.components.EssentialsContentComponent;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -20,7 +20,7 @@ import java.io.*;
 import java.util.*;
 
 
-public class ItineraryContentComponent extends EssentialsContentComponent {
+public class ItineraryContentComponent extends PageContentComponent<Itinerary> {
 
     private static final Logger logger = LoggerFactory.getLogger(ItineraryContentComponent.class);
 
@@ -36,7 +36,6 @@ public class ItineraryContentComponent extends EssentialsContentComponent {
 
         generateStops(request, (Itinerary) request.getAttribute("document"));
         setCoordinates(request, (Itinerary) request.getAttribute("document"));
-        request.setAttribute("path", getDocumentLocation((Itinerary) request.getAttribute("document")));
     }
 
     private void setCoordinates(HstRequest request, Itinerary itinerary) {
@@ -56,9 +55,6 @@ public class ItineraryContentComponent extends EssentialsContentComponent {
      * @param itinerary
      */
     private void generateStops(HstRequest request, Itinerary itinerary){
-
-        String path= itinerary.getPath().substring(itinerary.getPath().indexOf(ROOT_SITE),itinerary.getPath().indexOf("/content/content")).replace(ROOT_SITE,"");
-        request.setAttribute("path", path);
 
         final String LOCATION = "locationName";
         final String URL = "url";
@@ -173,15 +169,6 @@ public class ItineraryContentComponent extends EssentialsContentComponent {
             request.setAttribute(STOPS_MAP, products);
         }
     }
-
-    /**
-     *
-     * @param itinerary
-     */
-    private String getDocumentLocation( Itinerary itinerary) {
-        return itinerary.getPath().substring(itinerary.getPath().indexOf(ROOT_SITE), itinerary.getPath().indexOf("/content/content")).replace(ROOT_SITE, "");
-    }
-
 
     /**
      *
