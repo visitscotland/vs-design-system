@@ -1,49 +1,87 @@
 <template>
-    <figure class="d-flex flex-column">
+    <figure class="vs-image-with-caption position-relative">
         <div class="vs-image-with-caption__image-wrapper">
-            <slot />
+            <!-- @slot Contains the media to be shown. Defaults to an image.  -->
+            <slot>
+                <vs-img
+                    v-if="imageSrc"
+                    class="lazyload"
+                    :src="imageSrc"
+                    srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                    :data-srcset="imageSrc"
+                    :alt="altText"
+                    data-sizes="auto"
+                >
+                </vs-img>
+            </slot>
+
             <vs-button
                 variant="outline-transparent"
-                class="position-absolute vs-image-with-caption__toggle-caption"
-                v-if="showToggle"
+                class="vs-image-with-caption__toggle-caption-btn position-absolute d-block d-sm-none"
+                :class="{ 'd-block': this.closedDefaultCaption }"
                 :animate="false"
-                :aria-expanded="showCaption ? 'true' : 'false'"
                 :aria-controls="'image_' + imageSrc"
+                :aria-expanded="showCaption ? 'true' : 'false'"
                 @click.native="toggleCaption"
             >
-                <vs-svg path="image-toggle" height="24" width="24" />
+                <!-- @slot Contains the icon for the toggle button. Defaults to info icon. -->
+                <slot v-if="!showCaption" name="toggle-icon">
+                    <vs-svg path="image-toggle" height="24" width="24" />
+                </slot>
+                <vs-icon v-if="showCaption" name="close-circle" variant="light" size="sm" :padding="0" />
             </vs-button>
         </div>
 
-        <vs-container
-            class="position-relative vs-image-with-caption__caption-wrapper"
-            :class="[showCaption ? 'd-flex' : 'd-none']"
+        <div
+            :class="{ 'd-block': this.showCaption, 'd-none': this.closedDefaultCaption }"
+            class="vs-image-with-caption__caption-wrapper d-none d-sm-block"
             :id="'image_' + imageSrc"
         >
-            <figcaption ref="figcaption">
-                <vs-row>
-                    <vs-col>
-                        <div class="p-4" v-if="this.showCaptionData">
-                            <p class="vs-image-with-caption__image-caption" v-if="this.caption">
-                                {{ this.caption }}
+            <figcaption
+                ref="figcaption"
+                :class="
+                    this.variant == 'large'
+                        ? 'vs-image-with-caption__large-caption'
+                        : 'vs-image-with-caption__fullwidth-caption'
+                "
+                class="d-flex d-sm-block"
+            >
+                <vs-row class="justify-content-center justify-content-sm-start">
+                    <vs-col
+                        class="order-2 order-sm-1"
+                        :class="[!showMap ? 'align-self-center' : '']"
+                    >
+                        <div :class="this.variant == 'large' ? 'p-4' : 'p-3 pr-8'">
+                            <p class="vs-image-with-caption__image-caption">
+                                <!-- @slot Put the caption here -->
+                                <slot name="caption" />
                             </p>
-                            <p class="vs-image-with-caption__image-credit m-0" v-if="this.credit">
-                                &copy; {{ this.credit }}
+
+                            <p class="vs-image-with-caption__image-credit">
+                                <!-- @slot Put the credit here  -->
+                                <slot name="credit" />
                             </p>
+
+                            <!-- @slot Put the social credit link here -->
+                            <slot name="social-link" />
                         </div>
                     </vs-col>
-                    <vs-col cols="auto" class="pl-0" v-if="showMap">
-                        <div class="map__wrapper">
+                    <vs-col
+                        class="col-12 col-sm-auto order-1 order-sm-2 pl-sm-0 align-self-end align-self-sm-start"
+                        v-if="showMap && variant != 'fullwidth'"
+                    >
+                        <div class="map-wrapper pt-3 pt-sm-2 pb-sm-2 pr-sm-4 mx-auto">
                             <vs-image-location-map
                                 :latitude="this.latitude"
                                 :longitude="this.longitude"
-                                map-outline-color="#191919"
+                                map-outline-color="#ffffff"
+                                map-marker-color="#7CC9CC"
                             ></vs-image-location-map>
                         </div>
                     </vs-col>
                 </vs-row>
             </figcaption>
-        </vs-container>
+        </div>
     </figure>
 </template>
 
@@ -73,23 +111,14 @@ export default {
          */
         altText: {
             type: String,
-            required: false,
         },
 
         /**
-         * The image credit
+         * Chooses to show caption open by default or not: used when images are smaller than 300px
          */
-        credit: {
-            type: String,
-            required: false,
-        },
-
-        /**
-         * The caption for the image
-         */
-        caption: {
-            type: String,
-            required: false,
+        closedDefaultCaption: {
+            type: Boolean,
+            default: false,
         },
 
         /**
@@ -97,7 +126,6 @@ export default {
          */
         imageSrc: {
             type: String,
-            required: false,
         },
 
         /**
@@ -105,7 +133,6 @@ export default {
          */
         latitude: {
             type: String,
-            required: false,
         },
 
         /**
@@ -113,7 +140,6 @@ export default {
          */
         longitude: {
             type: String,
-            required: false,
         },
 
         /**
@@ -123,25 +149,21 @@ export default {
             type: String,
             default: "Toggle Caption",
         },
+
+        /**
+         * Option to choose which variant to show
+         * `fullwidth, large`
+         */
+        variant: {
+            type: String,
+            default: "fullwidth",
+            validator: value => {
+                return value.match(/(fullwidth|large)/)
+            },
+        },
     },
     computed: {
-        backgroundSet() {
-            // TODO: finish computed property to build a whole data-bgset once
-            // the JAVA image scaling solution is finished.
-            return "data-bgset='" + this.imageSrc + " 320w [(max-width: 360px)]')"
-        },
-        backgroundStyle() {
-            return "background-image: url('" + this.imageSrc + "');"
-        },
-        showCaptionData() {
-            return this.caption.length || this.credit.length ? true : false
-        },
-        showToggle() {
-            // only show the image detail toggle button if there's a map or caption data
-            return this.showMap || this.showCaptionData ? true : false
-        },
         showMap() {
-            // only show the map if longitude and latitude props are both set
             return this.longitude && this.latitude ? true : false
         },
     },
@@ -154,9 +176,17 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.map__wrapper {
-    max-width: 80px;
-    width: 80px;
+img {
+    width: 100%;
+    height: auto;
+}
+
+.vs-image-with-caption__toggle-caption-btn {
+    bottom: 0.5rem;
+    padding: 0;
+    right: 0.5rem;
+    line-height: 1;
+    z-index: 3;
 }
 
 .vs-image-with-caption__caption-wrapper {
@@ -164,68 +194,181 @@ export default {
         max-width: 100%;
         padding: 0;
     }
-}
 
-.vs-image-with-caption__toggle-caption {
-    bottom: 0.5rem;
-    padding: 0;
-    right: 0.5rem;
-    border-radius: 50%;
-}
+    figcaption {
+        background-color: $color-gray-shade-6;
+        color: $color-white;
 
-figure {
-    position: relative;
-}
+        .vs-image-with-caption__image-caption,
+        .vs-image-with-caption__image-credit {
+            font-size: $small-font-size;
+            line-height: 1.2;
+        }
 
-img {
-    width: 100%;
-    height: auto;
-}
+        .vs-image-with-caption__image-caption {
+            font-weight: 500;
+        }
 
-.vs-image-with-caption__image-wrapper {
-    position: relative;
-}
+        .vs-image-with-caption__image-credit {
+            font-weight: $font-weight-light;
+            margin-bottom: $spacer-0;
+        }
 
-figcaption {
-    background-color: $color-white;
-    color: $color-base-text;
-    width: 100%;
-}
+        &.vs-image-with-caption__large-caption {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 2;
+            text-align: center;
 
-.vs-image-with-caption__image-caption {
-    font-size: 0.875rem;
-    font-weight: 500;
-    line-height: 1rem;
-}
+            > .row {
+                margin: 0 auto;
+            }
 
-.vs-image-with-caption__image-credit {
-    font-size: 0.875rem;
-    font-weight: $font-weight-light;
-    line-height: 1rem;
+            .vs-image-with-caption__image-caption {
+                margin-bottom: $spacer-2;
+            }
+
+            .map-wrapper {
+                max-width: 60px;
+            }
+
+            @include media-breakpoint-up(sm) {
+                bottom: -48px;
+                right: 1rem;
+                top: auto;
+                width: 330px;
+                height: auto;
+                text-align: left;
+
+                > .row {
+                    margin: 0 -16px;
+                }
+
+                .vs-image-with-caption__image-caption {
+                    margin-bottom: $spacer-8;
+                }
+
+                .map-wrapper {
+                    max-width: 74px;
+                }
+            }
+        }
+
+        &.vs-image-with-caption__fullwidth-caption {
+            width: 100%;
+
+            .vs-image-with-caption__image-caption {
+                margin-bottom: $spacer-2;
+            }
+        }
+    }
 }
 </style>
 
 <docs>
   
   ```jsx
+
+    <h3>Large Caption Style</h3>
     <vs-image-with-caption
-        v-for="(item, index) in itineraries.sampleItinerary.days[0].stops"
-        :altText="item.image.altText"
-        :credit="item.image.credit"
-        :caption="item.image.caption"
-        :image-src="item.image.imageSrc"
-        :key="index"
-        :latitude="item.image.latitude"
-        :longitude="item.image.longitude"
+        v-for="(item, index) in imageWithCaption.imageExamples.large"
+        :altText="item.altText"
+        :image-src="item.imageSrc"
+        :key="`large-${index}`"
+        :latitude="item.latitude"
+        :longitude="item.longitude"
+        variant="large"
+        style="max-width:700px; margin-bottom: 5rem;"
     >
         <vs-img 
             class="lazyload" 
-            :src="item.image.imageSrc"
+            :src="item.imageSrc"
             srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
-            :data-srcset="item.image.imageSrc" 
-            :alt="item.image.altText"
+            :data-srcset="item.imageSrc" 
+            :alt="item.altText"
             data-sizes="auto">
         </vs-img>
+
+        <span slot="caption">
+            {{ item.caption }}
+        </span>
+
+        <span slot="credit">
+            &copy; {{ item.credit }}
+        </span>
     </vs-image-with-caption>
+
+    <h3 class="mt-9">Fullwidth Caption Style</h3>
+    <vs-image-with-caption
+        v-for="(item, index) in imageWithCaption.imageExamples.fullwidth"
+        :altText="item.altText"
+        :closedDefaultCaption="item.isSmall"
+        :image-src="item.imageSrc"
+        :key="`fullwidth-${index}`"
+        variant="fullwidth"
+        style="max-width:700px"
+    >
+        <vs-img 
+            class="lazyload" 
+            :src="item.imageSrc"
+            srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+            :data-srcset="item.imageSrc" 
+            :alt="item.altText"
+            data-sizes="auto">
+        </vs-img>
+
+        <span slot="caption">
+            {{ item.caption }}
+        </span>
+
+        <span slot="credit">
+            &copy; {{ item.credit }}
+        </span>
+    </vs-image-with-caption>
+
+    <h3 class="mt-9">Social images</h3>
+    <vs-image-with-caption
+        v-for="(item, index) in imageWithCaption.imageExamples.social"
+        :altText="item.altText"
+        :image-src="item.imageSrc"
+        :key="`social-${index}`"
+        :latitude="item.latitude"
+        :longitude="item.longitude"
+        :variant="item.variant"
+        style="max-width:700px; margin-bottom: 4rem;"
+    >
+        <vs-img 
+            class="lazyload" 
+            :src="item.imageSrc"
+            srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+            :data-srcset="item.imageSrc" 
+            :alt="item.altText"
+            data-sizes="auto">
+        </vs-img>
+
+        <vs-icon 
+            slot="toggle-icon" 
+            name="instagram" 
+            variant="light" 
+            size="sm" 
+            :padding="0" 
+        />
+
+        <span slot="caption">
+            {{ item.caption }}
+        </span>
+
+        <VsSocialCreditLink 
+            slot="social-link"
+            :credit="item.credit"
+            :socialPostUrl="item.socialPostUrl"
+            :source="item.source" 
+        >
+        </VsSocialCreditLink>
+    </vs-image-with-caption>
+
   ```
 </docs>
