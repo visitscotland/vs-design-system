@@ -35,10 +35,10 @@ export default {
 
         /**
          * Where the image came from
+         * `instagram`
          */
         source: {
             type: String,
-            required: false,
             validator: value => {
                 return value.match(/(instagram)/)
             },
@@ -50,7 +50,7 @@ export default {
 <style lang="scss" scoped>
 .social-credit {
     line-height: 1;
-    
+
     .social-credit__link {
         color: $color-white !important;
         font-weight: $font-weight-light;
