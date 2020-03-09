@@ -12,13 +12,15 @@
 <#include "../../../vs-dotcom-ds/components/link.ftl">
 
 
-<#macro listicleItem item descOrder>
+<#macro listicleItem listItem descOrder>
 <#-- @ftlvariable name="document" type="com.visitscotland.brmx.beans.Listicle" -->
 <#-- @ftlvariable name="heroCoordinates" type="com.visitscotland.brmx.beans.mapping.Coordinates" -->
 
+<#-- @ftlvariable name="listItem" type="com.visitscotland.brmx.beans.ListicleItem" -->
 <#-- @ftlvariable name="item" type="com.visitscotland.brmx.beans.mapping.FlatListicle" -->
 <#-- @ftlvariable name="cta" type="com.visitscotland.brmx.beans.mapping.FlatLink" -->
 
+	<#assign item = items[listItem.identifier]>
     <#if descOrder>
         <#assign i = i - 1>
     <#else >
@@ -38,13 +40,11 @@
 	<vs-listicle-item
 		index="${i}"
 		title="${item.title}"
-		subTitle="${item.subtitle}"
-		ctaLink="${cta.link}"
-		ctaLabel="${cta.label}"
+		subTitle="${item.subTitle}"
 	>
 
 		<div slot="hippo-details" class="has-edit-button">
-			<@hst.manageContent hippobean=item />
+			<@hst.manageContent hippobean=listItem />
 			<#if item.errorMessage?? && editMode>
 				<h1 class="text-danger">${item.errorMessage?upper_case}</h1>
 			</#if>
@@ -56,8 +56,8 @@
 				credit="${(item.image.credit)!'No credit'}"
 				caption="${(item.image.altText)!''}"
 				image-src="${image}"
-				latitude="${item.coordinates.latitude}"
-				longitude="${item.coordinates.longitude}"
+				latitude="${item.image.coordinates.latitude}"
+				longitude="${item.image.coordinates.longitude}"
 			>
 				<vs-img
 					class="lazyload"
@@ -72,6 +72,10 @@
 
 		<div slot="description-slot">
 			<@hst.html hippohtml=item.description />
+			<#list item.ctaLinks as cta>
+				<vs-link href="${cta.link}">${cta.label}</vs-link>
+									</br>
+			</#list>
 		</div>
 
 		<#if item.facilities?? && item.facilities?size gt 1>

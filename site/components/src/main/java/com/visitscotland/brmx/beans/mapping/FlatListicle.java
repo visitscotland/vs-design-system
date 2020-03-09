@@ -27,8 +27,8 @@ public class FlatListicle {
 
     public FlatListicle(ListicleItem item){
         this.identifier = item.getIdentifier();
-
         this.title = item.getTitle();
+        this.subTitle = item.getSubtitle();
         this.description = item.getDescription();
     }
 

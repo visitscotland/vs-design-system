@@ -5,6 +5,7 @@ import com.visitscotland.brmx.beans.*;
 import com.visitscotland.brmx.beans.mapping.*;
 import com.visitscotland.brmx.beans.mapping.Coordinates;
 import com.visitscotland.brmx.utils.CommonUtils;
+import com.visitscotland.brmx.utils.HippoUtils;
 import org.hippoecm.hst.content.beans.standard.HippoCompound;
 import org.hippoecm.hst.core.component.HstRequest;
 import org.hippoecm.hst.core.component.HstResponse;
@@ -15,10 +16,7 @@ import org.slf4j.LoggerFactory;
 
 import java.net.*;
 import java.io.*;
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class ListicleContentComponent extends EssentialsContentComponent {
 
@@ -47,7 +45,6 @@ public class ListicleContentComponent extends EssentialsContentComponent {
         request.setAttribute("path", path);
 
         final String LOCATION = "locationName";
-        final String URL = "url";
         final String FACILITIES = "facilities";
         final String IMAGE = "image";
         final Map<String ,FlatListicle> items =  new LinkedHashMap<>();
@@ -159,6 +156,7 @@ public class ListicleContentComponent extends EssentialsContentComponent {
      */
     private FlatLink createLink(HstRequest request, HippoCompound item) {
         final FlatLink cta;
+        final String URL = "url";
         if (item instanceof DMSLink) {
             DMSLink dmsLink = (DMSLink) item;
             try {
@@ -167,7 +165,8 @@ public class ListicleContentComponent extends EssentialsContentComponent {
                     logger.warn(CommonUtils.contentIssue("There is no product with the id '{}', ({}) ",
                             dmsLink.getProduct(), getDocument(request).getPath()));
                 } else {
-                    return new FlatLink(dmsLink.getLabel(), product.getString("url"));
+                    //TODO build the link for the DMS product properly
+                    return new FlatLink(this.getCtaLabel(dmsLink.getLabel(), request.getLocale()), "http://172.28.81.65:8089"+product.getString(URL));
                 }
             } catch (IOException e) {
                 logger.error(String.format("Error while querying the DMS for '{}', ({})",
@@ -202,19 +201,19 @@ public class ListicleContentComponent extends EssentialsContentComponent {
                 }
             }
 
-            String psr = "www.visitscotland.com/info/accommodation/search-results?locplace="
+            String psr = "http://172.28.81.65:8089/info/accommodation/search-results?debug&locplace="
                     +productSearchLink.getSearch().getLocation()+"&locprox=0&prodtypes="
-                    +productType+categoriesParameter.replace("\"","")+facilitiesParameter+awardssParameter+starsParameter;
+                    +productType+categoriesParameter+facilitiesParameter+awardssParameter+starsParameter;
 
-            return  new FlatLink(productSearchLink.getLabel(), psr);
+            return  new FlatLink(this.getCtaLabel(productSearchLink.getLabel(), request.getLocale()), psr);
 
         } else if (item instanceof ExternalLink) {
             ExternalLink externalLink = (ExternalLink) item;
-            return new FlatLink(externalLink.getLabel(), externalLink.getLabel());
+            return new FlatLink(this.getCtaLabel(externalLink.getLabel(), request.getLocale()), externalLink.getLabel());
 
         } else if (item instanceof CMSLink) {
             CMSLink cmsLink = (CMSLink) item;
-            return new FlatLink(cmsLink.getLabel(), cmsLink.getLabel());
+            return new FlatLink(this.getCtaLabel(cmsLink.getLabel(), request.getLocale()), cmsLink.getLabel());
         }
 
         return null;
@@ -222,6 +221,20 @@ public class ListicleContentComponent extends EssentialsContentComponent {
 
     private String getDocumentLocation( Listicle listicle) {
         return listicle.getPath().substring(listicle.getPath().indexOf(ROOT_SITE), listicle.getPath().indexOf("/content/content")).replace(ROOT_SITE, "");
+    }
+
+    /**
+     *
+     * @param manualCta
+     */
+    //TODO move to utils?
+    private String getCtaLabel (String manualCta, Locale locale){
+        if (!CommonUtils.isEmpty(manualCta)){
+            return  manualCta;
+        }else{
+            return  HippoUtils.getResourceBundle("button.find-out-more","essentials.global",locale);
+        }
+
     }
 
 }
