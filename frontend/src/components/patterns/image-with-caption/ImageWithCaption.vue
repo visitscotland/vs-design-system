@@ -1,6 +1,7 @@
 <template>
     <figure class="vs-image-with-caption position-relative">
         <div class="vs-image-with-caption__image-wrapper">
+            <!-- @slot Contains the media to be shown. Defaults to an image.  -->
             <slot>
                 <vs-img
                     v-if="imageSrc"
@@ -23,9 +24,10 @@
                 :aria-expanded="showCaption ? 'true' : 'false'"
                 @click.native="toggleCaption"
             >
-                
-
-                <slot v-if="!showCaption" name="toggle-icon" />
+                <!-- @slot Contains the icon for the toggle button. Defaults to info icon. -->
+                <slot v-if="!showCaption" name="toggle-icon">
+                    <vs-svg path="image-toggle" height="24" width="24" />
+                </slot>
                 <vs-icon v-if="showCaption" name="close-circle" variant="light" size="sm" :padding="0" />
             </vs-button>
         </div>
@@ -51,13 +53,16 @@
                     >
                         <div :class="this.variant == 'large' ? 'p-4' : 'p-3 pr-8'">
                             <p class="vs-image-with-caption__image-caption">
+                                <!-- @slot Put the caption here -->
                                 <slot name="caption" />
                             </p>
 
                             <p class="vs-image-with-caption__image-credit">
+                                <!-- @slot Put the credit here  -->
                                 <slot name="credit" />
                             </p>
 
+                            <!-- @slot Put the social credit link here -->
                             <slot name="social-link" />
                         </div>
                     </vs-col>
@@ -106,7 +111,6 @@ export default {
          */
         altText: {
             type: String,
-            required: false,
         },
 
         /**
@@ -122,7 +126,6 @@ export default {
          */
         imageSrc: {
             type: String,
-            required: false,
         },
 
         /**
@@ -130,7 +133,6 @@ export default {
          */
         latitude: {
             type: String,
-            required: false,
         },
 
         /**
@@ -138,7 +140,6 @@ export default {
          */
         longitude: {
             type: String,
-            required: false,
         },
 
         /**
@@ -151,6 +152,7 @@ export default {
 
         /**
          * Option to choose which variant to show
+         * `fullwidth, large`
          */
         variant: {
             type: String,
@@ -188,7 +190,6 @@ img {
 }
 
 .vs-image-with-caption__caption-wrapper {
-
     @include media-breakpoint-down(lg) {
         max-width: 100%;
         padding: 0;
@@ -291,13 +292,6 @@ img {
             data-sizes="auto">
         </vs-img>
 
-        <vs-svg 
-            slot="toggle-icon" 
-            path="image-toggle" 
-            height="24" 
-            width="24" 
-        />
-
         <span slot="caption">
             {{ item.caption }}
         </span>
@@ -325,13 +319,6 @@ img {
             :alt="item.altText"
             data-sizes="auto">
         </vs-img>
-
-        <vs-svg 
-            slot="toggle-icon" 
-            path="image-toggle" 
-            height="24" 
-            width="24" 
-        />
 
         <span slot="caption">
             {{ item.caption }}
