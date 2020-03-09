@@ -25,7 +25,7 @@
         jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
         jcr:uuid: 8b4a3c11-8b84-4aa0-bccf-f407d18c1c44
         hippo:name: Content
-        hippo:versionHistory: 6294945f-0e5c-4f47-88ae-2faf8cf10534
+        hippo:versionHistory: 87645b57-b557-4d1e-870d-34341f2b6259
         /content[1]:
           jcr:primaryType: visitscotland:Itinerary
           jcr:mixinTypes: ['mix:versionable']
@@ -90,12 +90,12 @@
           hippostd:state: published
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2019-12-06T12:48:04.149Z
-          hippostdpubwf:lastModificationDate: 2020-02-05T16:26:46.285Z
+          hippostdpubwf:lastModificationDate: 2020-02-28T16:33:31.479Z
           hippostdpubwf:lastModifiedBy: admin
-          hippostdpubwf:publicationDate: 2020-02-28T16:30:03.755Z
+          hippostdpubwf:publicationDate: 2020-03-09T09:54:15.967Z
           hippotranslation:id: 56cf92c8-5887-4146-ad53-eaa062f4e07a
           hippotranslation:locale: en
-          visitscotland:areas: [dumfries, highlands]
+          visitscotland:areas: [east, north]
           visitscotland:breadcrumb: ''
           visitscotland:distance: 10.4
           visitscotland:finish: Ocean point
@@ -110,7 +110,7 @@
           visitscotland:teaser: ''
           visitscotland:text: "Glenfinnan Viaduct\r\n\r\nJacobite Steam Train\r\n\r\
             \nGlen Etive\r\n\r\nThe Elephant House"
-          visitscotland:theme: filmev
+          visitscotland:theme: whisky
           visitscotland:title: HARRY POTTER FILM AND BOOK LOCATIONS ITINERARY
           visitscotland:transport: [boat]
           visitscotland:transports: [car, train]
@@ -200,7 +200,7 @@
         jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
         jcr:uuid: 806448db-18e1-4a25-81c3-777a76f530d2
         hippo:name: Edinburgh
-        hippo:versionHistory: 89b3ea83-ee90-42f4-8fde-8d436ec92905
+        hippo:versionHistory: caca1605-f444-4d9f-bfd8-8ecdcc64fe38
         /edinburgh[1]:
           jcr:primaryType: visitscotland:Day
           jcr:mixinTypes: ['mix:versionable']
@@ -209,12 +209,12 @@
           hippostd:state: unpublished
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2019-12-10T13:28:39.550Z
-          hippostdpubwf:lastModificationDate: 2020-01-10T14:15:17.517Z
+          hippostdpubwf:lastModificationDate: 2020-03-09T09:37:59.763Z
           hippostdpubwf:lastModifiedBy: admin
           hippotranslation:id: 533c98b2-c2cd-491f-929a-ea2c4a491bb2
           hippotranslation:locale: en
           visitscotland:title: DMS Stops Day
-          visitscotland:transports: [walking, car, train]
+          visitscotland:transports: [car, train, walking]
           /visitscotland:introduction:
             jcr:primaryType: hippostd:html
             hippostd:content: <p>It was in Scotland's capital city that JK Rowling
@@ -229,8 +229,11 @@
               of Edinburgh tour.</p>
           /visitscotland:stops[1]:
             jcr:primaryType: hippo:mirror
-            hippo:docbase: ca56dfe6-f8c8-410f-aa63-ed513fc71385
+            hippo:docbase: fb585bd7-188e-4430-a332-bf0fbc337d23
           /visitscotland:stops[2]:
+            jcr:primaryType: hippo:mirror
+            hippo:docbase: ca56dfe6-f8c8-410f-aa63-ed513fc71385
+          /visitscotland:stops[3]:
             jcr:primaryType: hippo:mirror
             hippo:docbase: 28abd074-5fc4-4ebc-a424-1d4f9e5cb0e6
         /edinburgh[2]:
@@ -241,13 +244,13 @@
           hippostd:state: published
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2019-12-10T13:28:39.550Z
-          hippostdpubwf:lastModificationDate: 2020-01-10T14:15:17.517Z
+          hippostdpubwf:lastModificationDate: 2020-03-09T09:37:59.763Z
           hippostdpubwf:lastModifiedBy: admin
-          hippostdpubwf:publicationDate: 2020-02-17T18:04:05.174Z
+          hippostdpubwf:publicationDate: 2020-03-09T09:54:09.720Z
           hippotranslation:id: 533c98b2-c2cd-491f-929a-ea2c4a491bb2
           hippotranslation:locale: en
           visitscotland:title: DMS Stops Day
-          visitscotland:transports: [walking, car, train]
+          visitscotland:transports: [car, train, walking]
           /visitscotland:introduction:
             jcr:primaryType: hippostd:html
             hippostd:content: <p>It was in Scotland's capital city that JK Rowling
@@ -262,8 +265,11 @@
               of Edinburgh tour.</p>
           /visitscotland:stops[1]:
             jcr:primaryType: hippo:mirror
-            hippo:docbase: ca56dfe6-f8c8-410f-aa63-ed513fc71385
+            hippo:docbase: fb585bd7-188e-4430-a332-bf0fbc337d23
           /visitscotland:stops[2]:
+            jcr:primaryType: hippo:mirror
+            hippo:docbase: ca56dfe6-f8c8-410f-aa63-ed513fc71385
+          /visitscotland:stops[3]:
             jcr:primaryType: hippo:mirror
             hippo:docbase: 28abd074-5fc4-4ebc-a424-1d4f9e5cb0e6
         /edinburgh[3]:
@@ -274,12 +280,12 @@
           hippostd:state: draft
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2019-12-10T13:28:39.550Z
-          hippostdpubwf:lastModificationDate: 2020-03-06T12:22:00.068Z
+          hippostdpubwf:lastModificationDate: 2020-03-09T09:37:59.809Z
           hippostdpubwf:lastModifiedBy: admin
           hippotranslation:id: 533c98b2-c2cd-491f-929a-ea2c4a491bb2
           hippotranslation:locale: en
           visitscotland:title: DMS Stops Day
-          visitscotland:transports: [walking, car, train]
+          visitscotland:transports: [car, train, walking]
           /visitscotland:introduction:
             jcr:primaryType: hippostd:html
             hippostd:content: <p>It was in Scotland's capital city that JK Rowling
@@ -294,8 +300,11 @@
               of Edinburgh tour.</p>
           /visitscotland:stops[1]:
             jcr:primaryType: hippo:mirror
-            hippo:docbase: ca56dfe6-f8c8-410f-aa63-ed513fc71385
+            hippo:docbase: fb585bd7-188e-4430-a332-bf0fbc337d23
           /visitscotland:stops[2]:
+            jcr:primaryType: hippo:mirror
+            hippo:docbase: ca56dfe6-f8c8-410f-aa63-ed513fc71385
+          /visitscotland:stops[3]:
             jcr:primaryType: hippo:mirror
             hippo:docbase: 28abd074-5fc4-4ebc-a424-1d4f9e5cb0e6
       /day-2:
@@ -380,7 +389,7 @@
       jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
       jcr:uuid: 0751c1d3-3024-4d2d-a5e8-38286fee9722
       hippo:name: Content
-      hippo:versionHistory: 54f8976a-7924-4945-ad7c-7c0e290897f9
+      hippo:versionHistory: 8be54d8b-57eb-4a39-b2be-382f23dfa708
       /content[1]:
         jcr:primaryType: visitscotland:Itinerary
         jcr:mixinTypes: ['mix:referenceable']
@@ -389,7 +398,7 @@
         hippostd:state: draft
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2019-12-06T12:48:04.149Z
-        hippostdpubwf:lastModificationDate: 2020-03-03T12:10:00.174Z
+        hippostdpubwf:lastModificationDate: 2020-03-09T09:02:43.295Z
         hippostdpubwf:lastModifiedBy: admin
         hippotranslation:id: a3ed9022-e239-493b-952c-18d01ac36640
         hippotranslation:locale: en
@@ -429,6 +438,12 @@
              <li><a href="content">Short break</a></li>
             </ul>
 
+            <p>Listicles:</p>
+
+            <ul>
+             <li><a href="content_4">Demo Listicle</a></li>
+            </ul>
+
             <p>&nbsp;</p>
           /content:
             jcr:primaryType: hippo:facetselect
@@ -451,6 +466,12 @@
           /content_3:
             jcr:primaryType: hippo:facetselect
             hippo:docbase: 8b4a3c11-8b84-4aa0-bccf-f407d18c1c44
+            hippo:facets: []
+            hippo:modes: []
+            hippo:values: []
+          /content_4:
+            jcr:primaryType: hippo:facetselect
+            hippo:docbase: cbc8477d-1deb-4153-b663-12212905b472
             hippo:facets: []
             hippo:modes: []
             hippo:values: []
@@ -469,7 +490,7 @@
         hippostd:state: unpublished
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2019-12-06T12:48:04.149Z
-        hippostdpubwf:lastModificationDate: 2020-03-03T12:08:07.990Z
+        hippostdpubwf:lastModificationDate: 2020-03-09T09:02:43.034Z
         hippostdpubwf:lastModifiedBy: admin
         hippotranslation:id: a3ed9022-e239-493b-952c-18d01ac36640
         hippotranslation:locale: en
@@ -509,6 +530,12 @@
              <li><a href="content">Short break</a></li>
             </ul>
 
+            <p>Listicles:</p>
+
+            <ul>
+             <li><a href="content_4">Demo Listicle</a></li>
+            </ul>
+
             <p>&nbsp;</p>
           /content:
             jcr:primaryType: hippo:facetselect
@@ -531,6 +558,12 @@
           /content_3:
             jcr:primaryType: hippo:facetselect
             hippo:docbase: 8b4a3c11-8b84-4aa0-bccf-f407d18c1c44
+            hippo:facets: []
+            hippo:modes: []
+            hippo:values: []
+          /content_4:
+            jcr:primaryType: hippo:facetselect
+            hippo:docbase: cbc8477d-1deb-4153-b663-12212905b472
             hippo:facets: []
             hippo:modes: []
             hippo:values: []
@@ -549,9 +582,9 @@
         hippostd:state: published
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2019-12-06T12:48:04.149Z
-        hippostdpubwf:lastModificationDate: 2020-03-03T12:08:07.990Z
+        hippostdpubwf:lastModificationDate: 2020-03-09T09:02:43.034Z
         hippostdpubwf:lastModifiedBy: admin
-        hippostdpubwf:publicationDate: 2020-03-03T12:10:00.020Z
+        hippostdpubwf:publicationDate: 2020-03-09T09:03:29.502Z
         hippotranslation:id: a3ed9022-e239-493b-952c-18d01ac36640
         hippotranslation:locale: en
         visitscotland:areas: []
@@ -590,6 +623,12 @@
              <li><a href="content">Short break</a></li>
             </ul>
 
+            <p>Listicles:</p>
+
+            <ul>
+             <li><a href="content_4">Demo Listicle</a></li>
+            </ul>
+
             <p>&nbsp;</p>
           /content:
             jcr:primaryType: hippo:facetselect
@@ -612,6 +651,12 @@
           /content_3:
             jcr:primaryType: hippo:facetselect
             hippo:docbase: 8b4a3c11-8b84-4aa0-bccf-f407d18c1c44
+            hippo:facets: []
+            hippo:modes: []
+            hippo:values: []
+          /content_4:
+            jcr:primaryType: hippo:facetselect
+            hippo:docbase: cbc8477d-1deb-4153-b663-12212905b472
             hippo:facets: []
             hippo:modes: []
             hippo:values: []
@@ -633,7 +678,7 @@
         jcr:primaryType: hippo:handle
         jcr:mixinTypes: ['hippo:versionInfo', 'mix:referenceable']
         jcr:uuid: cbc8477d-1deb-4153-b663-12212905b472
-        hippo:versionHistory: 47b7b8e2-2dfe-4487-9c8c-df80f86b078d
+        hippo:versionHistory: 9ce501e3-acf3-4f7e-8675-00c8543949ac
         /content[1]:
           jcr:primaryType: visitscotland:Listicle
           jcr:mixinTypes: ['mix:referenceable']
@@ -642,7 +687,7 @@
           hippostd:state: draft
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2020-02-27T13:17:22.069Z
-          hippostdpubwf:lastModificationDate: 2020-03-06T11:29:16.025Z
+          hippostdpubwf:lastModificationDate: 2020-03-09T09:13:14.113Z
           hippostdpubwf:lastModifiedBy: admin
           hippotranslation:id: 7d4f9ca4-76eb-40a1-a793-29efa7f1ae68
           hippotranslation:locale: en
@@ -712,9 +757,9 @@
           hippostd:state: published
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2020-02-27T13:17:22.069Z
-          hippostdpubwf:lastModificationDate: 2020-02-27T13:31:45.987Z
+          hippostdpubwf:lastModificationDate: 2020-03-06T11:29:15.918Z
           hippostdpubwf:lastModifiedBy: admin
-          hippostdpubwf:publicationDate: 2020-03-03T10:19:15.683Z
+          hippostdpubwf:publicationDate: 2020-03-09T11:40:13.528Z
           hippotranslation:id: 7d4f9ca4-76eb-40a1-a793-29efa7f1ae68
           hippotranslation:locale: en
           visitscotland:breadcrumb: ''
@@ -725,7 +770,7 @@
           visitscotland:teaser: If you're looking for the best things to do in Scotland,
             then look no further. We've got iconic castles, incredible museums, beautiful
             gardens and much more in this list of top tourist attractions in Scotland.
-          visitscotland:title: ''
+          visitscotland:title: Listicle Header
           /visitscotland:heroImage:
             jcr:primaryType: hippogallerypicker:imagelink
             hippo:docbase: 9fb38865-ca10-4ef4-bcab-a1097cc44487
@@ -753,7 +798,7 @@
           hippostd:state: draft
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2020-02-27T13:19:13.009Z
-          hippostdpubwf:lastModificationDate: 2020-03-06T12:31:28.389Z
+          hippostdpubwf:lastModificationDate: 2020-03-09T09:09:05.384Z
           hippostdpubwf:lastModifiedBy: admin
           hippotranslation:id: aa4d5cb3-9313-4d6a-9741-225c19c36f20
           hippotranslation:locale: en
@@ -795,6 +840,12 @@
               visitscotland:officialrating: ['3', '2']
               visitscotland:productType: acco
               visitscotland:producttype: acti,attr,reta
+          /visitscotland:images:
+            jcr:primaryType: hippogallerypicker:imagelink
+            hippo:docbase: 8d4f5036-64ca-4e5d-aa89-b348ae38b081
+            hippo:facets: []
+            hippo:modes: []
+            hippo:values: []
         /national-museum-of-scotland[2]:
           jcr:primaryType: visitscotland:ListicleItem
           jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
@@ -803,7 +854,7 @@
           hippostd:state: unpublished
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2020-02-27T13:19:13.009Z
-          hippostdpubwf:lastModificationDate: 2020-03-06T12:31:14.847Z
+          hippostdpubwf:lastModificationDate: 2020-03-09T09:09:05.269Z
           hippostdpubwf:lastModifiedBy: admin
           hippotranslation:id: aa4d5cb3-9313-4d6a-9741-225c19c36f20
           hippotranslation:locale: en
@@ -845,6 +896,12 @@
               visitscotland:officialrating: ['3', '2']
               visitscotland:productType: acco
               visitscotland:producttype: acti,attr,reta
+          /visitscotland:images:
+            jcr:primaryType: hippogallerypicker:imagelink
+            hippo:docbase: 8d4f5036-64ca-4e5d-aa89-b348ae38b081
+            hippo:facets: []
+            hippo:modes: []
+            hippo:values: []
       /edinburgh-castle:
         jcr:primaryType: hippo:handle
         jcr:mixinTypes: ['hippo:named', 'mix:referenceable']
@@ -965,6 +1022,109 @@
             jcr:primaryType: visitscotland:InstagramImage
             visitscotland:caption: Robert Burns visits the Gallery
             visitscotland:id: B7vTqg4gZsR
+      /casa-juan:
+        jcr:primaryType: hippo:handle
+        jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
+        jcr:uuid: 21cccacf-b2bc-4cf7-aff9-bf57f49d3f6a
+        hippo:name: Casa Juan
+        hippo:versionHistory: 0dd7da3c-e7b6-4b79-b38b-925ef5d70a8a
+        /casa-juan[1]:
+          jcr:primaryType: visitscotland:ListicleItem
+          jcr:mixinTypes: ['mix:referenceable']
+          jcr:uuid: 0779c1d9-dc09-4ca8-89d5-bcd42fa5bf25
+          hippo:availability: []
+          hippostd:state: draft
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2020-03-09T11:34:38.209Z
+          hippostdpubwf:lastModificationDate: 2020-03-09T11:39:46.158Z
+          hippostdpubwf:lastModifiedBy: admin
+          hippotranslation:id: e25d65b7-e98c-4b82-a822-fcf4d266d1b5
+          hippotranslation:locale: en
+          visitscotland:subtitle: ''
+          visitscotland:title: Casa Juan
+          /visitscotland:description:
+            jcr:primaryType: hippostd:html
+            hippostd:content: |-
+              <p>Do you want to feel like a software engineer?</p>
+
+              <p>Just come to Juan Luis home and live like one!&nbsp;</p>
+
+              <p>Disclaimer: Note that you might start talking in Spanish</p>
+          /visitscotland:products:
+            jcr:primaryType: visitscotland:ExternalLink
+            visitscotland:label: ''
+            visitscotland:link: https://casajuanluis.es
+          /visitscotland:images:
+            jcr:primaryType: hippogallerypicker:imagelink
+            hippo:docbase: 1e4be246-297b-4404-8102-80fe1bc0ddf7
+            hippo:facets: []
+            hippo:modes: []
+            hippo:values: []
+        /casa-juan[2]:
+          jcr:primaryType: visitscotland:ListicleItem
+          jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
+          jcr:uuid: 471ed3f9-b764-431d-b3d5-0f2abdc5b86b
+          hippo:availability: [preview]
+          hippostd:state: unpublished
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2020-03-09T11:34:38.209Z
+          hippostdpubwf:lastModificationDate: 2020-03-09T11:40:09.223Z
+          hippostdpubwf:lastModifiedBy: admin
+          hippotranslation:id: e25d65b7-e98c-4b82-a822-fcf4d266d1b5
+          hippotranslation:locale: en
+          visitscotland:subtitle: ''
+          visitscotland:title: Casa Juan
+          /visitscotland:description:
+            jcr:primaryType: hippostd:html
+            hippostd:content: |-
+              <p>Do you want to feel like a software engineer?</p>
+
+              <p>Just come to Juan Luis home and live like one!&nbsp;</p>
+
+              <p>Disclaimer: Note that you might start talking in Spanish</p>
+          /visitscotland:products:
+            jcr:primaryType: visitscotland:ExternalLink
+            visitscotland:label: ''
+            visitscotland:link: https://casajuanluis.es
+          /visitscotland:images:
+            jcr:primaryType: hippogallerypicker:imagelink
+            hippo:docbase: 1e4be246-297b-4404-8102-80fe1bc0ddf7
+            hippo:facets: []
+            hippo:modes: []
+            hippo:values: []
+        /casa-juan[3]:
+          jcr:primaryType: visitscotland:ListicleItem
+          jcr:mixinTypes: ['mix:referenceable']
+          jcr:uuid: 20d1c3f9-50c7-44e1-80a1-397032089afb
+          hippo:availability: [live]
+          hippostd:state: published
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2020-03-09T11:34:38.209Z
+          hippostdpubwf:lastModificationDate: 2020-03-09T11:40:09.223Z
+          hippostdpubwf:lastModifiedBy: admin
+          hippostdpubwf:publicationDate: 2020-03-09T11:41:16.414Z
+          hippotranslation:id: e25d65b7-e98c-4b82-a822-fcf4d266d1b5
+          hippotranslation:locale: en
+          visitscotland:subtitle: ''
+          visitscotland:title: Casa Juan
+          /visitscotland:description:
+            jcr:primaryType: hippostd:html
+            hippostd:content: |-
+              <p>Do you want to feel like a software engineer?</p>
+
+              <p>Just come to Juan Luis home and live like one!&nbsp;</p>
+
+              <p>Disclaimer: Note that you might start talking in Spanish</p>
+          /visitscotland:products:
+            jcr:primaryType: visitscotland:ExternalLink
+            visitscotland:label: ''
+            visitscotland:link: https://casajuanluis.es
+          /visitscotland:images:
+            jcr:primaryType: hippogallerypicker:imagelink
+            hippo:docbase: 1e4be246-297b-4404-8102-80fe1bc0ddf7
+            hippo:facets: []
+            hippo:modes: []
+            hippo:values: []
     /editor-role-test:
       jcr:primaryType: hippostd:folder
       jcr:mixinTypes: ['hippotranslation:translated', 'mix:versionable']
