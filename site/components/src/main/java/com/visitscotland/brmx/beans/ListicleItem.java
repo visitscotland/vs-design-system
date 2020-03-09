@@ -1,10 +1,15 @@
 package com.visitscotland.brmx.beans;
 
+import org.hippoecm.hst.container.RequestContextProvider;
+import org.hippoecm.hst.content.beans.query.exceptions.QueryException;
 import org.hippoecm.hst.content.beans.standard.HippoBean;
 import org.hippoecm.hst.content.beans.standard.HippoCompound;
+import org.hippoecm.hst.content.beans.standard.HippoFacetSelect;
 import org.onehippo.cms7.essentials.dashboard.annotations.HippoEssentialsGenerated;
 import org.hippoecm.hst.content.beans.Node;
 import org.hippoecm.hst.content.beans.standard.HippoHtml;
+
+import javax.jcr.RepositoryException;
 import java.util.List;
 
 /** 
@@ -43,7 +48,18 @@ public class ListicleItem extends BaseDocument {
     }
 
     public HippoBean getListicleItemImage() {
-        return getOnlyChild(getImages());
+        HippoBean image = getOnlyChild(getImages());
+        if (image instanceof HippoFacetSelect) {
+            try {
+                //TODO: This is a workaround to an issue found in the CMS when a content block is composed of Image Links
+                return RequestContextProvider.get().getQueryManager()
+                        .createQuery(RequestContextProvider.get().getSession().getNodeByIdentifier(
+                                image.getSingleProperty("hippo:docbase"))).execute().getHippoBeans().nextHippoBean();
+            } catch (QueryException | RepositoryException e) {
+                e.printStackTrace();
+            }
+        }
+        return image;
     }
 
     @HippoEssentialsGenerated(internalName = "visitscotland:extraLinks", allowModifications = false)

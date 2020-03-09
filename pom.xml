@@ -22,6 +22,7 @@
     <!--TODO define this in parent pom -->
    
     <data-service-api.version>1.2.0-SNAPSHOT</data-service-api.version>
+    <commons-lan3.version>3.8.1</commons-lan3.version>
     
     <forge.exdocpickerbase.version>6.0.0</forge.exdocpickerbase.version>
     <forge.breadcrumb.version>3.0.0</forge.breadcrumb.version>
@@ -90,7 +91,7 @@
         <artifactId>freemarker</artifactId>
         <version>${freemarker.version}</version>
       </dependency>
-
+  
     </dependencies>
   </dependencyManagement>
 
