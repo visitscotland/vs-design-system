@@ -45,6 +45,8 @@ public class ListicleContentComponent extends EssentialsContentComponent {
         request.setAttribute("path", path);
 
         final String LOCATION = "locationName";
+        final String LATITUDE = "latitude";
+        final String LONGITUDE = "longitude";
         final String FACILITIES = "facilities";
         final String IMAGE = "image";
         final Map<String ,FlatListicle> items =  new LinkedHashMap<>();
@@ -68,7 +70,8 @@ public class ListicleContentComponent extends EssentialsContentComponent {
                             String credit = json.has("author_name") ? json.getString("author_name") : "";
                             String link = "https://www.instagram.com/p/" + instagramLink.getId();
                             //TODO: This causes a 301 (redirect). Find the way of fixing this.
-                            String image = "https://www.instagram.com/p/" + instagramLink.getId() + "/media";
+                            //TODO size for Instagram is large for the showcase but we need to fix that large for desktop, medium tablet and small mobile
+                            String image = "https://www.instagram.com/p/" + instagramLink.getId() + "/media?size=l";
                             model.setImage(new FlatImage(image, instagramLink.getCaption(), credit, instagramLink.getCaption(), FlatImage.Source.INSTAGRAM, link));
                         } else {
                             model.setErrorMessage("The Instagram id is not valid");
@@ -110,13 +113,13 @@ public class ListicleContentComponent extends EssentialsContentComponent {
                             if (model.getImage() == null) {
                                 FlatImage image = new FlatImage();
                                 image.setExternalImage(product.getString(IMAGE));
-                                Coordinates coordinates = new Coordinates(product.getDouble("latitude"),product.getDouble("longitude"));
+                                Coordinates coordinates = new Coordinates(product.getDouble(LATITUDE),product.getDouble(LONGITUDE));
                                 image.setCoordinates(coordinates);
                                 //TODO: SET ALT-TEXT, CREDITS AND DESCRIPTION
                                 model.setImage(image);
                             }else{
                                 if (model.getImage().getSource().equals(FlatImage.Source.INSTAGRAM)){
-                                    Coordinates coordinates = new Coordinates(product.getDouble("latitude"),product.getDouble("longitude"));
+                                    Coordinates coordinates = new Coordinates(product.getDouble(LATITUDE),product.getDouble(LONGITUDE));
                                     model.getImage().setCoordinates(coordinates);
                                 }
                             }
