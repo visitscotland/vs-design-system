@@ -18,14 +18,17 @@
 
 			<!-- BODY -->
 			<div>
+				<!-- @slot Contains the image to be shown.  -->
 				<slot name="image-slot" />
 
 				<div class="content">
 					
 					<div class="intro">
+						<!-- @slot Contains the description to be shown.  -->
 						<slot name="description-slot" />
 					</div>
 
+					<!-- @slot Contains the facilities list to be shown.  -->
 					<slot name="facilities-slot" class="facilities" />
 
 				</div>
@@ -37,30 +40,31 @@
 <script>
 import VsHeading from "@components/elements/heading/Heading"
 import VsDescriptionList from "@components/elements/description-list/DescriptionList"
-import VsFacilitiesList from "@components/elements/facilities-list/FacilitiesList"
 
 export default {
     name: "VsListicleItem",
     status: "prototype",
     release: "0.0.1",
     components: {
-        VsHeading,
-		VsFacilitiesList
+        VsHeading
 	},
     props: {
+		/**
+		 * The index value for the listicle item to be shown on the header
+		 */
     	index: {
     		type: String
 		},
+		/**
+		 * The listicle item title
+		 */
     	title: {
     		type: String
 		},
+		/**
+		 * The listicle item subtitle
+		 */
 		subTitle: {
-    		type: String
-		},
-		ctaLink: {
-    		type: String
-		},
-		ctaLabel: {
     		type: String
 		}
     }
@@ -70,36 +74,36 @@ export default {
 <style lang="scss" scoped>
 
 .vs-listicle-item {
-	margin: 5rem 0;
+	margin: $spacer-11 0;
 }
 
 .count {
 	color: $color-white;
 	font-family: $headings-font-family;
-	font-size: 30px;
+	font-size: $h1-font-size;
 	display: block;
 	text-align: center;
 	width: 100%;
 	border-bottom: 2px solid white;
+}
 
-	&__bg {
-		background: $color_secondary_teal;
-		padding: 1rem 2rem;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-	}
+.count__bg {
+	background: $color_secondary_teal;
+	padding: $spacer-4 $spacer-8;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
 
 .border {
-	padding: 1rem;
+	padding: $spacer-4;
 
 	@include media-breakpoint-up(md) {
-		padding: 2rem;
+		padding: spacer-8;
 	}
 
 	@include media-breakpoint-up(xl) {
-		padding: 5rem;
+		padding: $spacer-11;
 	}
 }
 
@@ -107,8 +111,8 @@ h3.heading {
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
-	margin-left: .5rem;
-	margin-bottom: 2rem;
+	margin-left: $spacer-2;
+	margin-bottom: $spacer-8;
 
 	@include media-breakpoint-up(md) {
 		margin-bottom: 0;
@@ -125,10 +129,10 @@ h3.heading {
 
 	.intro {
 		overflow-wrap: break-word;
-		margin-bottom: 1rem;
+		margin-bottom: $spacer-4;
 		
 		@include media-breakpoint-up(md) {
-			margin-right: 1rem;
+			margin-right: $spacer-4;
 		}
 	}
 
@@ -149,12 +153,12 @@ h3.heading {
 			border: initial;
 			border-left: 1px solid $color-gray-tint-5;
 			margin-top: 0;
-			padding: 2rem;
+			padding: $spacer-8;
 			width: auto;
 		}
 
 		.vs-icon-description-list {
-			font-size: 14px;
+			font-size: $h6-font-size;
 			line-height: 16px;
 			border: 0;
 			display: grid;
@@ -174,7 +178,7 @@ h3.heading {
 
 			& ::v-deep dd {
 				justify-self: center;
-				padding: 0 1rem;
+				padding: 0 $spacer-4;
 				display: inline-block;
 			}
 		}
@@ -190,7 +194,7 @@ h3.heading {
 		<vs-listicle-item 
 			v-for="(item, index) in listicles.sampleListicle"
 			key="index"
-			:index="index+1"
+			index="1"
 			:title="item.title"
 			:subTitle="item.subTitle"
 			ctaLink=""
@@ -198,21 +202,29 @@ h3.heading {
 		>
 			<div slot="image-slot">
 				<vs-image-with-caption
-                    :altText="item.image.altText"
-                    :credit="item.image.credit"
-                    :caption="item.image.caption"
-                    :image-src="item.image.imageSrc"
-                    :latitude="item.image.latitude"
-                    :longitude="item.image.longitude"
+					:altText="item.image.altText"
+					:image-src="item.image.imageSrc"
+					:latitude="item.image.latitude"
+					:longitude="item.image.longitude"
+					variant="large"
 				>
-                    <img 
-                    class="lazyload" 
-                    :src="item.image.imageSrc"
-                    srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
-                    :data-srcset="item.image.imageSrc" 
-                    :alt="item.image.altText"
-                    data-sizes="auto" />
-                </vs-image-with-caption>
+					<vs-img 
+						class="lazyload" 
+						:src="item.image.imageSrc"
+						srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+						:data-srcset="item.image.imageSrc" 
+						:alt="item.image.altText"
+						data-sizes="auto">
+					</vs-img>
+
+					<span slot="caption">
+						{{ item.image.caption }}
+					</span>
+
+					<span slot="credit">
+						&copy; {{ item.image.credit }}
+					</span>
+				</vs-image-with-caption>
 			</div>
 
 			<div slot="description-slot">
