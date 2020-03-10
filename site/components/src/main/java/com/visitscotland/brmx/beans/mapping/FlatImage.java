@@ -6,7 +6,7 @@ import com.visitscotland.brmx.beans.Image;
 public class FlatImage {
 
     public enum Source {
-        INSTAGRAM
+        INSTAGRAM;
 
         @Override
         public String toString() {
