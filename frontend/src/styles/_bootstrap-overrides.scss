@@ -1,15 +1,15 @@
 /* Features */
-
 $enable-rounded: false;
 $enable-shadows: false;
 $enable-gradients: false;
 $enable-transitions: false;
 
+
 // Responsive font sizes
 $enable-responsive-font-sizes: true;
 
-/* Colors */
 
+/* Colors */
 $white: $color-white;
 $black: $color-black;
 
@@ -27,12 +27,17 @@ $theme-colors: (
 );
 
 $body-color: $color-base-text;
+
+
 /* Links */
 $link-color: $color-theme-primary;
 $link-decoration: none;
 $link-hover-color: $color-base-text;
 $link-hover-decoration: none;
+
+
 /* Grid */
+
 // These 2 variables are already generated directly from the design tokens by theo
 // so we don't need to set them again here
 // $grid-columns: $grid-columns;
@@ -52,6 +57,8 @@ $container-max-widths: (
     xl: $max-container-width-xl,
     xxl: $max-container-width-xxl,
 );
+
+
 /* Spacing */
 $spacers: (
     0: $spacer-0,
@@ -64,7 +71,12 @@ $spacers: (
     7: $spacer-7,
     8: $spacer-8,
     9: $spacer-9,
+    10: $spacer-10,
+    11: $spacer-11,
+    12: $spacer-12,
 );
+
+
 /* Border Radius */
 $border-radius: $border-radius-default;
 $border-radius-lg: $border-radius-lg;
@@ -80,8 +92,8 @@ $btn-padding-x: 2.5rem;
 $input-btn-padding-y-lg: 1rem;
 $btn-padding-x-lg: 3.5rem;
 
-// Breadcrumbs
 
+/* Breadcrumbs */
 $breadcrumb-padding-y: 0;
 $breadcrumb-padding-x: 0;
 
@@ -92,12 +104,13 @@ $breadcrumb-divider: quote("|");
 
 $breadcrumb-border-radius: 0;
 
-// Links
-//
-// Style anchor elements.
 
+/* Links */
 $link-decoration: underline;
 
-// Typography
 
+/* Typography */
 $lead-font-weight: 400;
+$semibold-font-weight: 500;
+
+$standard-line-height: 1.2;
