@@ -23,7 +23,9 @@
             "altText": "Outdoor adventures for kids",
             "caption": "Outdoor adventures for kids",
             "credit": "VisitScotland / Kenny Lam",
-            "isSmall": false
+            "isSmall": false,
+            "longitude": "-3.0246368",
+            "latitude": "56.6718876"
         }
     ],
     "small": [
