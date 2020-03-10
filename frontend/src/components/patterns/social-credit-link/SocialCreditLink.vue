@@ -1,7 +1,7 @@
 <template>
     <div class="social-credit">
-        <vs-icon v-if="source" :name="this.source" variant="light" size="xs" :padding="1" />
-        <vs-link class="social-credit__link" :href="this.socialPostUrl" external>
+        <vs-icon v-if="source" :name="source" variant="light" size="xs" :padding="1" />
+        <vs-link class="social-credit__link" :href="socialPostUrl" external>
             {{ this.credit }}
         </vs-link>
     </div>
@@ -49,7 +49,7 @@ export default {
 
 <style lang="scss" scoped>
 .social-credit {
-    line-height: 1;
+    line-height: $line_height_xs;
 
     .social-credit__link {
         color: $color-white !important;
