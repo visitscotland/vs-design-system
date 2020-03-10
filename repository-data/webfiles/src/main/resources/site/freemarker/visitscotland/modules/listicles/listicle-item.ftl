@@ -62,7 +62,7 @@
 					variant="large"
 				>
 					<span slot="caption">
-						${(item.image.altText)!''}
+						${(item.image.description)!''}
 					</span>
 					
 					<#if !item.image.source?has_content && item.image.credit?has_content>
