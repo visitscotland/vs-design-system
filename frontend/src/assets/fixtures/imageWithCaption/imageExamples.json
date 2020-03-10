@@ -19,18 +19,20 @@
     ],
     "fullwidth": [
         {
-            "imageSrc": "fixtures/imagewithcaption/images/dundee-science-centre.jpg",
-            "altText": "Dundee Science Centre",
-            "caption": "Dundee Science Centre",
-            "credit": "VisitScotland / Kenny Lam",
-            "isSmall": true
-        },
-        {
             "imageSrc": "fixtures/imagewithcaption/images/outdoor-adventures-kids.jpg",
             "altText": "Outdoor adventures for kids",
             "caption": "Outdoor adventures for kids",
             "credit": "VisitScotland / Kenny Lam",
             "isSmall": false
+        }
+    ],
+    "small": [
+        {
+            "imageSrc": "fixtures/imagewithcaption/images/dundee-science-centre.jpg",
+            "altText": "Dundee Science Centre",
+            "caption": "Dundee Science Centre",
+            "credit": "VisitScotland / Kenny Lam",
+            "isSmall": true
         }
     ],
     "social": [
