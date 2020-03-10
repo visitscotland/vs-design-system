@@ -70,7 +70,8 @@ public class ListicleContentComponent extends EssentialsContentComponent {
                             String credit = json.has("author_name") ? json.getString("author_name") : "";
                             String link = "https://www.instagram.com/p/" + instagramLink.getId();
                             //TODO: This causes a 301 (redirect). Find the way of fixing this.
-                            String image = "https://www.instagram.com/p/" + instagramLink.getId() + "/media";
+                            //TODO size for Instagram is large for the showcase but we need to fix that large for desktop, medium tablet and small mobile
+                            String image = "https://www.instagram.com/p/" + instagramLink.getId() + "/media?size=l";
                             model.setImage(new FlatImage(image, instagramLink.getCaption(), credit, instagramLink.getCaption(), FlatImage.Source.INSTAGRAM, link));
                         } else {
                             model.setErrorMessage("The Instagram id is not valid");
