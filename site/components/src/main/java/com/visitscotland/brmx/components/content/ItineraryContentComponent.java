@@ -170,17 +170,4 @@ public class ItineraryContentComponent extends PageContentComponent<Itinerary> {
             request.setAttribute(STOPS_MAP, products);
         }
     }
-
-    /**
-     *
-     * @param manualCta
-     */
-    private String getCtaLabel (String manualCta, Locale locale){
-        if (!CommonUtils.isEmpty(manualCta)){
-            return  manualCta;
-        }else{
-            return  HippoUtils.getResourceBundle("button.find-out-more","essentials.global",locale);
-        }
-
-    }
 }

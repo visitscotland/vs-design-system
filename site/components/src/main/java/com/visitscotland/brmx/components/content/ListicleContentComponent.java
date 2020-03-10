@@ -213,19 +213,4 @@ public class ListicleContentComponent extends PageContentComponent<Listicle> {
 
         return null;
     }
-
-    /**
-     *
-     * @param manualCta
-     */
-    //TODO move to utils?
-    private String getCtaLabel (String manualCta, Locale locale){
-        if (!CommonUtils.isEmpty(manualCta)){
-            return  manualCta;
-        }else{
-            return  HippoUtils.getResourceBundle("button.find-out-more","essentials.global",locale);
-        }
-
-    }
-
 }
