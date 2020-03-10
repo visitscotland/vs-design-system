@@ -55,7 +55,7 @@ export default {
         color: $color-white !important;
         font-weight: $font-weight-light;
         font-size: $small-font-size;
-        line-height: 1.2;
+        line-height: $standard-line-height;
         margin-bottom: $spacer-0;
 
         &:hover,
@@ -64,7 +64,7 @@ export default {
         }
 
         &:focus {
-            font-weight: 500 !important;
+            font-weight: $semibold-font-weight !important;
             outline: 0 !important;
         }
 
