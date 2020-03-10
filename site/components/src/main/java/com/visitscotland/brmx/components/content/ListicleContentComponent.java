@@ -1,15 +1,16 @@
 package com.visitscotland.brmx.components.content;
 
 import com.visitscotland.brmx.beans.*;
-import com.visitscotland.brmx.beans.mapping.FlatImage;
-import com.visitscotland.brmx.beans.mapping.FlatLink;
-import com.visitscotland.brmx.beans.mapping.FlatListicle;
+
+import com.visitscotland.brmx.beans.dms.LocationObject;
+import com.visitscotland.brmx.beans.mapping.*;
+import com.visitscotland.brmx.beans.mapping.Coordinates;
 import com.visitscotland.brmx.utils.CommonUtils;
-import com.visitscotland.brmx.utils.Properties;
+import com.visitscotland.brmx.utils.HippoUtils;
+import com.visitscotland.brmx.utils.LocationLoader;
 import org.hippoecm.hst.content.beans.standard.HippoCompound;
 import org.hippoecm.hst.core.component.HstRequest;
 import org.hippoecm.hst.core.component.HstResponse;
-import org.json.JSONArray;
 import org.json.JSONObject;
 import org.onehippo.cms7.essentials.components.EssentialsContentComponent;
 import org.slf4j.Logger;
@@ -17,21 +18,19 @@ import org.slf4j.LoggerFactory;
 
 import java.net.*;
 import java.io.*;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Locale;
+import java.util.*;
 
 public class ListicleContentComponent extends EssentialsContentComponent {
 
     private static final Logger logger = LoggerFactory.getLogger(ListicleContentComponent.class);
     private final String ROOT_SITE = "/site/";
-
     private final String LISTICLE_ITEMS = "items";
 
     @Override
     public void doBeforeRender(HstRequest request, HstResponse response) {
         super.doBeforeRender(request, response);
         generateItems(request, getDocument(request));
+        request.setAttribute("path", getDocumentLocation((Listicle) request.getAttribute("document")));
     }
 
     protected Listicle getDocument(HstRequest request) {
@@ -48,11 +47,12 @@ public class ListicleContentComponent extends EssentialsContentComponent {
         request.setAttribute("path", path);
 
         final String LOCATION = "locationName";
-        final String URL = "url";
+        final String LATITUDE = "latitude";
+        final String LONGITUDE = "longitude";
         final String FACILITIES = "facilities";
         final String IMAGE = "image";
+        final Map<String ,FlatListicle> items =  new LinkedHashMap<>();
 
-        List<FlatListicle> items = new ArrayList<>();
 
         //TODO:separate image, main product and optional cta in different methods ?
         for (ListicleItem listicleItem : listicle.getItems()) {
@@ -72,7 +72,8 @@ public class ListicleContentComponent extends EssentialsContentComponent {
                             String credit = json.has("author_name") ? json.getString("author_name") : "";
                             String link = "https://www.instagram.com/p/" + instagramLink.getId();
                             //TODO: This causes a 301 (redirect). Find the way of fixing this.
-                            String image = "https://www.instagram.com/p/" + instagramLink.getId() + "/media";
+                            //TODO size for Instagram is large for the showcase but we need to fix that large for desktop, medium tablet and small mobile
+                            String image = "https://www.instagram.com/p/" + instagramLink.getId() + "/media?size=l";
                             model.setImage(new FlatImage(image, instagramLink.getCaption(), credit, instagramLink.getCaption(), FlatImage.Source.INSTAGRAM, link));
                         } else {
                             model.setErrorMessage("The Instagram id is not valid");
@@ -88,9 +89,10 @@ public class ListicleContentComponent extends EssentialsContentComponent {
                     if (listicleItem.getListicleItemImage() instanceof Image) {
                         Image cmsImage = (Image) listicleItem.getListicleItemImage();
                         if (cmsImage != null) {
-                            FlatImage image = new FlatImage();
-
-                            model.setImage(new FlatImage(cmsImage, cmsImage.getAltText(), cmsImage.getCredit(), cmsImage.getDescription()));
+                            FlatImage image = new FlatImage(cmsImage, cmsImage.getAltText(), cmsImage.getCredit(), cmsImage.getDescription());
+                            LocationObject location = LocationLoader.getLocation(cmsImage.getLocation(), request.getLocale());
+                            image.setCoordinates(new Coordinates(location.getLatitude(),location.getLongitude()));
+                            model.setImage(image);
                         }
                     }
                 }
@@ -115,8 +117,15 @@ public class ListicleContentComponent extends EssentialsContentComponent {
                             if (model.getImage() == null) {
                                 FlatImage image = new FlatImage();
                                 image.setExternalImage(product.getString(IMAGE));
+                                Coordinates coordinates = new Coordinates(product.getDouble(LATITUDE),product.getDouble(LONGITUDE));
+                                image.setCoordinates(coordinates);
                                 //TODO: SET ALT-TEXT, CREDITS AND DESCRIPTION
                                 model.setImage(image);
+                            }else{
+                                if (model.getImage().getSource().equals(FlatImage.Source.INSTAGRAM)){
+                                    Coordinates coordinates = new Coordinates(product.getDouble(LATITUDE),product.getDouble(LONGITUDE));
+                                    model.getImage().setCoordinates(coordinates);
+                                }
                             }
 
                             for (Object facility : product.getString(FACILITIES).split(",")) {
@@ -140,7 +149,7 @@ public class ListicleContentComponent extends EssentialsContentComponent {
             }
 
             model.setCtaLinks(links);
-            items.add(model);
+            items.put(model.getIdentifier(), model);
         }
 
         request.setAttribute(LISTICLE_ITEMS, items);
@@ -154,6 +163,7 @@ public class ListicleContentComponent extends EssentialsContentComponent {
      */
     private FlatLink createLink(HstRequest request, HippoCompound item) {
         final FlatLink cta;
+        final String URL = "url";
         if (item instanceof DMSLink) {
             DMSLink dmsLink = (DMSLink) item;
             try {
@@ -162,7 +172,8 @@ public class ListicleContentComponent extends EssentialsContentComponent {
                     logger.warn(CommonUtils.contentIssue("There is no product with the id '{}', ({}) ",
                             dmsLink.getProduct(), getDocument(request).getPath()));
                 } else {
-                    return new FlatLink(dmsLink.getLabel(), product.getString("url"));
+                    //TODO build the link for the DMS product properly
+                    return new FlatLink(this.getCtaLabel(dmsLink.getLabel(), request.getLocale()), "http://172.28.81.65:8089"+product.getString(URL));
                 }
             } catch (IOException e) {
                 logger.error(String.format("Error while querying the DMS for '{}', ({})",
@@ -170,24 +181,67 @@ public class ListicleContentComponent extends EssentialsContentComponent {
             }
         } else if (item instanceof ProductSearchLink) {
             ProductSearchLink productSearchLink = (ProductSearchLink) item;
-            String psLink = "";
             //TODO build the PSR url for the CTA in a reusable class
             String productType = productSearchLink.getSearch().getProductType();
-            String[] categories = productSearchLink.getSearch().getDmsCategories();
-            String[] facilities = productSearchLink.getSearch().getDmsFacilities();
-            String[] awards = productSearchLink.getSearch().getDmsAwards();
-            String[] stars = productSearchLink.getSearch().getOfficialrating();
-            return  new FlatLink(productSearchLink.getLabel(), productSearchLink.getLabel());
+            String categoriesParameter="";
+            String facilitiesParameter="";
+            String awardssParameter="";
+            String starsParameter="";
+            if (productSearchLink.getSearch().getDmsCategories()!=null){
+                for (String category : productSearchLink.getSearch().getDmsCategories()){
+                    categoriesParameter=categoriesParameter+"&cat="+category;
+                 }
+            }
+            if (productSearchLink.getSearch().getDmsFacilities()!=null){
+                for (String fac : productSearchLink.getSearch().getDmsFacilities()){
+                    facilitiesParameter=facilitiesParameter+"&fac_id="+fac;
+                }
+            }
+            if (productSearchLink.getSearch().getDmsAwards()!=null){
+                for (String aw : productSearchLink.getSearch().getDmsAwards()){
+                    awardssParameter=awardssParameter+"&src_awards__0="+aw;
+                }
+            }
+            if (productSearchLink.getSearch().getOfficialrating()!=null){
+                for (String star : productSearchLink.getSearch().getOfficialrating()){
+                    starsParameter=starsParameter+"&grade="+star;
+                }
+            }
+
+            String psr = "http://172.28.81.65:8089/info/accommodation/search-results?debug&locplace="
+                    +productSearchLink.getSearch().getLocation()+"&locprox=0&prodtypes="
+                    +productType+categoriesParameter+facilitiesParameter+awardssParameter+starsParameter;
+
+            return  new FlatLink(this.getCtaLabel(productSearchLink.getLabel(), request.getLocale()), psr);
 
         } else if (item instanceof ExternalLink) {
             ExternalLink externalLink = (ExternalLink) item;
-            return new FlatLink(externalLink.getLabel(), externalLink.getLabel());
+            return new FlatLink(this.getCtaLabel(externalLink.getLabel(), request.getLocale()), externalLink.getLabel());
 
         } else if (item instanceof CMSLink) {
             CMSLink cmsLink = (CMSLink) item;
-            return new FlatLink(cmsLink.getLabel(), cmsLink.getLabel());
+            return new FlatLink(this.getCtaLabel(cmsLink.getLabel(), request.getLocale()), cmsLink.getLabel());
         }
 
         return null;
     }
+
+    private String getDocumentLocation( Listicle listicle) {
+        return listicle.getPath().substring(listicle.getPath().indexOf(ROOT_SITE), listicle.getPath().indexOf("/content/content")).replace(ROOT_SITE, "");
+    }
+
+    /**
+     *
+     * @param manualCta
+     */
+    //TODO move to utils?
+    private String getCtaLabel (String manualCta, Locale locale){
+        if (!CommonUtils.isEmpty(manualCta)){
+            return  manualCta;
+        }else{
+            return  HippoUtils.getResourceBundle("button.find-out-more","essentials.global",locale);
+        }
+
+    }
+
 }

@@ -11,10 +11,12 @@
 <#include "../../../vs-dotcom-ds/components/icon-description-list-detail.ftl">
 <#include "../../../vs-dotcom-ds/components/link.ftl">
 
+
+
+<#macro itineraryStop stop lastStop>
 <#-- @ftlvariable name="stop" type="com.visitscotland.brmx.beans.Stop" -->
 <#-- @ftlvariable name="prod" type="com.visitscotland.brmx.beans.mapping.FlatStop" -->
 
-<#macro itineraryStop stop lastStop>
     <#assign prod = stops[stop.identifier]>
 
     <#if prod.image.cmsImage??>
@@ -36,11 +38,11 @@
         >
             <div slot="stop-details" class="has-edit-button">
                 <@hst.manageContent hippobean=stop />
-                <span class="text-danger">${label("itinerary", "stop.no-stop")}</span>
+                <h3 class="text-danger">${prod.errorMessage?upper_case}</h3>
             </div>
         </vs-itinerary-stop>
     <#elseif stop.stopItem??>
-        <vs-itinerary-stop 
+        <vs-itinerary-stop
             slot="stops"
             stop-number="${prod.index}"
             stop-label="${label('itinerary', 'stop.title')}"
@@ -48,7 +50,9 @@
         >
             <div slot="stop-details" class="has-edit-button">
                 <@hst.manageContent hippobean=stop />
-                
+                <#if prod.errorMessage?? && editMode>
+                      <h3 class="text-danger">${prod.errorMessage?upper_case}</h3>
+                </#if>
                 <#if image?? && image?has_content>
                     <vs-image-with-caption
                         alt-text="${(prod.image.altText)!'${label("essentials.global", "default.alt-text")}'}"
@@ -58,11 +62,11 @@
                         latitude="${prod.coordinates.latitude}"
                         longitude="${prod.coordinates.longitude}"
                         >
-                    <vs-img 
-                        class="lazyload" 
+                    <vs-img
+                        class="lazyload"
                         src="${image}"
                         srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
-                        data-srcset="${image}" 
+                        data-srcset="${image}"
                         alt="${(prod.image.altText)!'${label("essentials.global", "default.alt-text")}'}"
                         data-sizes="auto">
                     </vs-img>
@@ -104,7 +108,7 @@
                         <vs-icon-description-list>
                             <vs-icon-description-list-term>${label("itinerary", "stop.key-facilities")}</vs-icon-description-list-term>
                             <#list prod.facilities as facility>
-                                <vs-icon-description-list-detail 
+                                <vs-icon-description-list-detail
                                     icon="${facility}"
                                     label="${label("keyFacilities", "${facility}")}">
                                 </vs-icon-description-list-detail>

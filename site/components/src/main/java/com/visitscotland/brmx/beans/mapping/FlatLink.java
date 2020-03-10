@@ -6,8 +6,6 @@ public class FlatLink {
     private String label;
     private String link;
 
-    private String errorMessage;
-
     public FlatLink(){
 
     }
@@ -31,13 +29,5 @@ public class FlatLink {
 
     public void setLink(String link) {
         this.link = link;
-    }
-
-    public String getErrorMessage() {
-        return errorMessage;
-    }
-
-    public void setErrorMessage(String errorMessage) {
-        this.errorMessage = errorMessage;
     }
 }

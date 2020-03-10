@@ -269,8 +269,8 @@
       jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
       jcr:uuid: 8b215960-87aa-47ae-9c11-8a750be25ad8
       hippo:name: Casa Jose
-      hippo:versionHistory: e5aa8d91-2fa9-4fe2-a24e-e7fd49ba3c15
-      /casa-jose:
+      hippo:versionHistory: 3a650a49-e26e-41cf-82ee-e0764966cda2
+      /casa-jose[1]:
         jcr:primaryType: visitscotland:Stop
         jcr:mixinTypes: ['mix:referenceable']
         jcr:uuid: e5abe271-18bf-4002-b84c-57fa68852a5f
@@ -278,9 +278,9 @@
         hippostd:state: published
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2019-12-16T12:20:46.037Z
-        hippostdpubwf:lastModificationDate: 2020-01-31T15:28:07.880Z
+        hippostdpubwf:lastModificationDate: 2020-03-09T13:38:58.432Z
         hippostdpubwf:lastModifiedBy: admin
-        hippostdpubwf:publicationDate: 2020-01-31T15:28:12.064Z
+        hippostdpubwf:publicationDate: 2020-03-09T13:39:03.368Z
         hippotranslation:id: b4f184af-52de-4e48-92ab-33cc5c2519e0
         hippotranslation:locale: en
         visitscotland:tipsTitle: ''
@@ -298,6 +298,90 @@
             jcr:primaryType: visitscotland:Coordinates
             visitscotland:latitude: 56.94939333333334
             visitscotland:longitude: -4.824278333333333
+          /visitscotland:ExternalLink:
+            jcr:primaryType: visitscotland:ExternalLink
+            visitscotland:label: ''
+            visitscotland:link: https://ebooks.visitscotland.com/ghosts-myths-legends/
+        /visitscotland:image:
+          jcr:primaryType: hippogallerypicker:imagelink
+          hippo:docbase: 1e4be246-297b-4404-8102-80fe1bc0ddf7
+          hippo:facets: []
+          hippo:modes: []
+          hippo:values: []
+      /casa-jose[2]:
+        jcr:primaryType: visitscotland:Stop
+        jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
+        jcr:uuid: 54055f6f-e7ec-49bb-8653-cc8ca24baf44
+        hippo:availability: [preview]
+        hippostd:state: unpublished
+        hippostdpubwf:createdBy: admin
+        hippostdpubwf:creationDate: 2019-12-16T12:20:46.037Z
+        hippostdpubwf:lastModificationDate: 2020-03-09T13:38:58.432Z
+        hippostdpubwf:lastModifiedBy: admin
+        hippotranslation:id: b4f184af-52de-4e48-92ab-33cc5c2519e0
+        hippotranslation:locale: en
+        visitscotland:tipsTitle: ''
+        visitscotland:title: Casa Jose
+        /visitscotland:description:
+          jcr:primaryType: hippostd:html
+          hippostd:content: <p>Short description</p>
+        /visitscotland:tips:
+          jcr:primaryType: hippostd:html
+          hippostd:content: ''
+        /visitscotland:product:
+          jcr:primaryType: visitscotland:ItineraryExternalLink
+          visitscotland:timeToExplore: '1'
+          /visitscotland:Coordinates:
+            jcr:primaryType: visitscotland:Coordinates
+            visitscotland:latitude: 56.94939333333334
+            visitscotland:longitude: -4.824278333333333
+          /visitscotland:ExternalLink:
+            jcr:primaryType: visitscotland:ExternalLink
+            visitscotland:label: ''
+            visitscotland:link: https://ebooks.visitscotland.com/ghosts-myths-legends/
+        /visitscotland:image:
+          jcr:primaryType: hippogallerypicker:imagelink
+          hippo:docbase: 1e4be246-297b-4404-8102-80fe1bc0ddf7
+          hippo:facets: []
+          hippo:modes: []
+          hippo:values: []
+      /casa-jose[3]:
+        jcr:primaryType: visitscotland:Stop
+        jcr:mixinTypes: ['mix:referenceable']
+        jcr:uuid: af4ea7ee-b843-4f1f-96d5-c4e30e8500e8
+        hippo:availability: []
+        hippostd:state: draft
+        hippostdpubwf:createdBy: admin
+        hippostdpubwf:creationDate: 2019-12-16T12:20:46.037Z
+        hippostdpubwf:lastModificationDate: 2020-03-09T13:38:58.570Z
+        hippostdpubwf:lastModifiedBy: admin
+        hippotranslation:id: b4f184af-52de-4e48-92ab-33cc5c2519e0
+        hippotranslation:locale: en
+        visitscotland:tipsTitle: ''
+        visitscotland:title: Casa Jose
+        /visitscotland:description:
+          jcr:primaryType: hippostd:html
+          hippostd:content: <p>Short description</p>
+        /visitscotland:tips:
+          jcr:primaryType: hippostd:html
+          hippostd:content: ''
+        /visitscotland:product:
+          jcr:primaryType: visitscotland:ItineraryExternalLink
+          visitscotland:timeToExplore: '1'
+          /visitscotland:Coordinates:
+            jcr:primaryType: visitscotland:Coordinates
+            visitscotland:latitude: 56.94939333333334
+            visitscotland:longitude: -4.824278333333333
+          /visitscotland:ExternalLink:
+            jcr:primaryType: visitscotland:ExternalLink
+            visitscotland:label: ''
+            visitscotland:link: https://ebooks.visitscotland.com/ghosts-myths-legends/
+        /visitscotland:image:
+          jcr:primaryType: hippogallerypicker:imagelink
+          hippo:docbase: 1e4be246-297b-4404-8102-80fe1bc0ddf7
+          hippo:facets: []
+          hippo:modes: []
+          hippo:values: []
     /malformed-stop:
       jcr:primaryType: hippo:handle
       jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
@@ -365,6 +449,130 @@
         /visitscotland:tips:
           jcr:primaryType: hippostd:html
           hippostd:content: <p>Malformed Stop - Sample Pullout Information</p>
+    /test-version-14:
+      jcr:primaryType: hippo:handle
+      jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
+      jcr:uuid: fb585bd7-188e-4430-a332-bf0fbc337d23
+      hippo:name: Test version 14
+      hippo:versionHistory: 822c5439-3224-431f-9d2d-4ca65bddfa5c
+      /test-version-14[1]:
+        jcr:primaryType: visitscotland:Stop
+        jcr:mixinTypes: ['mix:referenceable']
+        jcr:uuid: 52f8be5e-6474-4f25-ad02-b11af333f5ef
+        hippo:availability: []
+        hippostd:state: draft
+        hippostdpubwf:createdBy: admin
+        hippostdpubwf:creationDate: 2020-03-09T09:35:33.720Z
+        hippostdpubwf:lastModificationDate: 2020-03-09T09:54:45.579Z
+        hippostdpubwf:lastModifiedBy: admin
+        hippotranslation:id: 4e1f4d01-d817-4ca4-8733-8dc82c52888b
+        hippotranslation:locale: en
+        visitscotland:tipsTitle: ''
+        visitscotland:title: First upgrade problem found!!
+        /visitscotland:description:
+          jcr:primaryType: hippostd:html
+          hippostd:content: |-
+            <p>The upgrade to version 14 has introduced some problems with images.</p>
+
+            <p>This is just a test to check the issue</p>
+        /visitscotland:tips:
+          jcr:primaryType: hippostd:html
+          hippostd:content: ''
+        /visitscotland:image:
+          jcr:primaryType: hippogallerypicker:imagelink
+          hippo:docbase: 1e4be246-297b-4404-8102-80fe1bc0ddf7
+          hippo:facets: []
+          hippo:modes: []
+          hippo:values: []
+        /visitscotland:product:
+          jcr:primaryType: visitscotland:ItineraryExternalLink
+          /visitscotland:Coordinates:
+            jcr:primaryType: visitscotland:Coordinates
+            visitscotland:latitude: 0.0
+            visitscotland:longitude: 0.0
+          /visitscotland:ExternalLink:
+            jcr:primaryType: visitscotland:ExternalLink
+            visitscotland:label: ''
+            visitscotland:link: http://www.visitscotland.com
+      /test-version-14[2]:
+        jcr:primaryType: visitscotland:Stop
+        jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
+        jcr:uuid: e1e036ac-d364-4817-86d4-6e7ef2be57af
+        hippo:availability: [preview]
+        hippostd:state: unpublished
+        hippostdpubwf:createdBy: admin
+        hippostdpubwf:creationDate: 2020-03-09T09:35:33.720Z
+        hippostdpubwf:lastModificationDate: 2020-03-09T10:55:49.638Z
+        hippostdpubwf:lastModifiedBy: admin
+        hippotranslation:id: 4e1f4d01-d817-4ca4-8733-8dc82c52888b
+        hippotranslation:locale: en
+        visitscotland:tipsTitle: ''
+        visitscotland:title: First upgrade problem found!!
+        /visitscotland:description:
+          jcr:primaryType: hippostd:html
+          hippostd:content: |-
+            <p>The upgrade to version 14 has introduced some problems with images.</p>
+
+            <p>This is just a test to check the issue</p>
+        /visitscotland:tips:
+          jcr:primaryType: hippostd:html
+          hippostd:content: ''
+        /visitscotland:image:
+          jcr:primaryType: hippogallerypicker:imagelink
+          hippo:docbase: 1e4be246-297b-4404-8102-80fe1bc0ddf7
+          hippo:facets: []
+          hippo:modes: []
+          hippo:values: []
+        /visitscotland:product:
+          jcr:primaryType: visitscotland:ItineraryExternalLink
+          /visitscotland:Coordinates:
+            jcr:primaryType: visitscotland:Coordinates
+            visitscotland:latitude: 0.0
+            visitscotland:longitude: 0.0
+          /visitscotland:ExternalLink:
+            jcr:primaryType: visitscotland:ExternalLink
+            visitscotland:label: ''
+            visitscotland:link: http://www.visitscotland.com
+      /test-version-14[3]:
+        jcr:primaryType: visitscotland:Stop
+        jcr:mixinTypes: ['mix:referenceable']
+        jcr:uuid: 209c74b2-6332-408b-a061-f8a106ecea68
+        hippo:availability: [live]
+        hippostd:state: published
+        hippostdpubwf:createdBy: admin
+        hippostdpubwf:creationDate: 2020-03-09T09:35:33.720Z
+        hippostdpubwf:lastModificationDate: 2020-03-09T10:55:49.638Z
+        hippostdpubwf:lastModifiedBy: admin
+        hippostdpubwf:publicationDate: 2020-03-09T13:39:10.032Z
+        hippotranslation:id: 4e1f4d01-d817-4ca4-8733-8dc82c52888b
+        hippotranslation:locale: en
+        visitscotland:tipsTitle: ''
+        visitscotland:title: First upgrade problem found!!
+        /visitscotland:description:
+          jcr:primaryType: hippostd:html
+          hippostd:content: |-
+            <p>The upgrade to version 14 has introduced some problems with images.</p>
+
+            <p>This is just a test to check the issue</p>
+        /visitscotland:tips:
+          jcr:primaryType: hippostd:html
+          hippostd:content: ''
+        /visitscotland:image:
+          jcr:primaryType: hippogallerypicker:imagelink
+          hippo:docbase: 1e4be246-297b-4404-8102-80fe1bc0ddf7
+          hippo:facets: []
+          hippo:modes: []
+          hippo:values: []
+        /visitscotland:product:
+          jcr:primaryType: visitscotland:ItineraryExternalLink
+          /visitscotland:Coordinates:
+            jcr:primaryType: visitscotland:Coordinates
+            visitscotland:latitude: 0.0
+            visitscotland:longitude: 0.0
+          /visitscotland:ExternalLink:
+            jcr:primaryType: visitscotland:ExternalLink
+            visitscotland:label: ''
+            visitscotland:link: http://www.visitscotland.com
   /itinerary-stops:
     jcr:primaryType: hippostd:folder
     jcr:mixinTypes: ['hippo:named', 'hippotranslation:translated', 'mix:versionable']

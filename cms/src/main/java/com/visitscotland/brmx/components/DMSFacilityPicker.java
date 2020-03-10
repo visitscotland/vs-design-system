@@ -5,9 +5,6 @@ package com.visitscotland.brmx.components;
 // (powered by Fernflower decompiler)
 //
 
-import com.visitscotland.api.DataService;
-import com.visitscotland.api.DataServiceImpl;
-import com.visitscotland.dataobjects.FacilityGroup;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 import org.apache.commons.lang.StringUtils;
@@ -16,9 +13,9 @@ import org.onehippo.forge.exdocpicker.api.ExternalDocumentServiceContext;
 import org.onehippo.forge.exdocpicker.impl.SimpleExternalDocumentCollection;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import vs.ase.dms.ProductTypes;
 
 import javax.jcr.RepositoryException;
+import java.io.IOException;
 import java.util.*;
 
 public class DMSFacilityPicker extends AbstractDMSPicker {
@@ -29,69 +26,36 @@ public class DMSFacilityPicker extends AbstractDMSPicker {
 
     private static final long serialVersionUID = 1L;
 
-    private static Logger log = LoggerFactory.getLogger(DMSFacilityPicker.class);
+    private static Logger logger = LoggerFactory.getLogger(DMSFacilityPicker.class);
 
+    private static final String PRODUCT_TYPE = "dms.productype";
+
+    private static final String TYPE = "facility";
 
     public DMSFacilityPicker() {
-        try {
-            docArray = new JSONArray();
-            // TODO: create an exposed endpoint to get categories (similar to locations)
-            DataService dsi = new DataServiceImpl();
-            metadata = dsi.getMetatdata();
-            List<ProductTypes> searchTypes = new ArrayList<>();
-            // TODO: define which productTypes content team wants
-            searchTypes.add(ProductTypes.ACCOMMODATION);
-            searchTypes.add(ProductTypes.ACTIVITY);
-            searchTypes.add(ProductTypes.ATTRACTION);
-            searchTypes.add(ProductTypes.EVENT);
-            searchTypes.add(ProductTypes.SHOPPING);
-            searchTypes.add(ProductTypes.FOOD_DRINK);
-
-            for (ProductTypes productTypes : searchTypes) {
-                List<FacilityGroup> facGroups = metadata.getFacilityGroupsForType(productTypes);
-                if (facGroups != null) {
-                    for (FacilityGroup cat : facGroups) {
-                        docArray.addAll(JSONArray.fromObject(cat.getFacilities()));
-                    }
-                }
-            }
-
-        } catch (Exception e) {
-            log.error("Failed to load JSON data.", e);
-        }
-
+        super (TYPE);
     }
 
     @Override
-    public ExternalDocumentCollection<JSONObject> searchExternalDocuments(ExternalDocumentServiceContext context,
-                                                                          String queryString) {
+    public ExternalDocumentCollection<JSONObject> searchExternalDocuments(ExternalDocumentServiceContext context,String queryString) {
         final String fieldName = context.getPluginConfig().getString(PRODUCT_TYPE);
         try {
             List<String> productTypes = Arrays.asList(context.getContextModel().getNode().getProperty(fieldName).getValue().getString().split("\\s*,\\s*"));
             if (!productTypes.get(0).isEmpty()) {
-                List<FacilityGroup> facGroups = new ArrayList<>();
+                JSONArray subCategory = new JSONArray();
 
-                for (String productType : productTypes) {
-                    facGroups.addAll(metadata.getFacilityGroupsForType(ProductTypes.byId(productType)));
-                }
+                subCategory.addAll(JSONArray.fromObject(deserialize(request(TYPE,null, productTypes))));
 
-                if (facGroups != null) {
-                    JSONArray subCategory = new JSONArray();
-                    for (FacilityGroup fac : facGroups) {
-                        subCategory.addAll(JSONArray.fromObject(fac.getFacilities()));
-                    }
-                    docArray = subCategory;
-                }
+                setDocArray(subCategory);
 
             }
-        } catch (RepositoryException e) {
-            e.printStackTrace();
+        } catch (RepositoryException | IOException e) {
+            logger.error("Error while getting DMS categories", e);
         }
 
-        ExternalDocumentCollection<JSONObject> docCollection =
-                new SimpleExternalDocumentCollection<JSONObject>();
-        for (int i = 0; i < docArray.size(); i++) {
-            JSONObject doc = docArray.getJSONObject(i);
+        ExternalDocumentCollection<JSONObject> docCollection =  new SimpleExternalDocumentCollection<JSONObject>();
+        for (int i = 0; i < getDocArray().size(); i++) {
+            JSONObject doc = getDocArray().getJSONObject(i);
             if (StringUtils.contains(doc.getString("name").toLowerCase(), queryString.toLowerCase())) {
                 docCollection.add(doc);
             }
@@ -99,5 +63,6 @@ public class DMSFacilityPicker extends AbstractDMSPicker {
 
         return docCollection;
     }
+
 
 }
