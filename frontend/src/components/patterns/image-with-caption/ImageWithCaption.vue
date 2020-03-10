@@ -1,8 +1,5 @@
 <template>
-    <figure
-        class="vs-image-with-caption position-relative"
-        :style="this.variant === 'large' ? 'margin-bottom: 4rem' : ''"
-    >
+    <figure class="vs-image-with-caption position-relative" :class="isLargeCaption ? 'mb-10' : ''">
         <div class="vs-image-with-caption__image-wrapper">
             <!-- @slot Contains the media to be shown. Defaults to an image.  -->
             <slot>
@@ -21,7 +18,7 @@
             <vs-button
                 variant="outline-transparent"
                 class="vs-image-with-caption__toggle-caption-btn position-absolute"
-                :class="{ 'd-block': this.closedDefaultCaption }"
+                :class="{ 'd-block': closedDefaultCaption }"
                 :animate="false"
                 :aria-controls="'image_' + imageSrc"
                 :aria-expanded="showCaption ? 'true' : 'false'"
@@ -42,14 +39,14 @@
         </div>
 
         <div
-            :class="{ 'd-block': this.showCaption, 'd-none': this.closedDefaultCaption }"
+            :class="{ 'd-block': showCaption, 'd-none': closedDefaultCaption }"
             class="vs-image-with-caption__caption-wrapper"
             :id="'image_' + imageSrc"
         >
             <figcaption
                 ref="figcaption"
                 :class="
-                    this.variant == 'large'
+                    isLargeCaption
                         ? 'vs-image-with-caption__large-caption'
                         : 'vs-image-with-caption__fullwidth-caption'
                 "
@@ -60,7 +57,7 @@
                         class="order-2 order-sm-1"
                         :class="[!showMap ? 'align-self-center' : '']"
                     >
-                        <div :class="this.variant == 'large' ? 'p-4' : 'p-3 pr-8'">
+                        <div :class="isLargeCaption ? 'p-4' : 'p-3 pr-8'">
                             <p class="vs-image-with-caption__image-caption">
                                 <!-- @slot Put the caption here -->
                                 <slot name="caption" />
@@ -77,12 +74,12 @@
                     </vs-col>
                     <vs-col
                         class="col-12 col-sm-auto order-1 order-sm-2 pl-sm-0 align-self-end align-self-sm-start"
-                        v-if="showMap && variant !== 'fullwidth'"
+                        v-if="showMap && variant !== isLargeCaption"
                     >
                         <div class="map-wrapper pt-3 pt-sm-2 pb-sm-2 pr-sm-4 mx-auto">
                             <vs-image-location-map
-                                :latitude="this.latitude"
-                                :longitude="this.longitude"
+                                :latitude="latitude"
+                                :longitude="longitude"
                                 :map-outline-color="tokens.color_white"
                                 :map-marker-color="tokens.color_secondary_teal_tint_3"
                             ></vs-image-location-map>
@@ -177,6 +174,9 @@ export default {
         showMap() {
             return this.longitude && this.latitude ? true : false
         },
+        isLargeCaption() {
+            return this.variant === "large" ? true : false
+        },
     },
     methods: {
         toggleCaption() {
@@ -224,11 +224,11 @@ img {
         .vs-image-with-caption__image-caption,
         .vs-image-with-caption__image-credit {
             font-size: $small-font-size;
-            line-height: 1.2;
+            line-height: $standard-line-height;
         }
 
         .vs-image-with-caption__image-caption {
-            font-weight: 500;
+            font-weight: $semibold-font-weight;
         }
 
         .vs-image-with-caption__image-credit {
