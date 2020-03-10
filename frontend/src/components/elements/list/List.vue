@@ -1,16 +1,14 @@
 <template>
-	<div
+	<component
+        :is="ordered ? 'ol' : 'ul'"
 		class="vs-list"
-		:class="variant"
+		:class="{
+			unstyled,
+			inline
+		}"
 	>
-		<ul v-if="type === 'ul'">
-			<slot/>
-		</ul>
-
-		<ol v-else-if="type === 'ol'">
-			<slot/>
-		</ol>
-	</div>
+		<slot />
+	</component>
 </template>
 
 <script>
@@ -24,26 +22,26 @@ export default {
     release: "0.0.1",
 	props: {
         /**
-         * Option to choose the kind of list needed
-         * `ul, ol`
+         * Option to choose the kind of list needed (ordered | unordered)
          */
-        type: {
-            type: String,
-			default: "ul",
-            validator: value => {
-                return value.match(/(ul|ol)/)
-            },
+        ordered: {
+            type: Boolean,
+			default: false
 		},
 		/**
-         * Option to choose the style of list needed, more than one can be chosen
-         * `unstyled, inline`
+         * Option to add/remove bullet points
          */
-        variant: {
-			type: String,
-			validator: value => {
-                return value.match(/(unstyled|inline)/)
-            },
-        },
+        unstyled: {
+            type: Boolean,
+			default: false
+		},
+		/**
+         * Option to set the list as inline or normal
+         */
+        inline: {
+            type: Boolean,
+			default: false
+		},
 	},
 }
 </script>
@@ -51,13 +49,11 @@ export default {
 <style lang="scss" scoped>
 	.vs-list {
 		
-		&.unstyled > ul,
-		&.unstyled > li {
+		&.unstyled {
 			list-style: none;
 		}
 
-		&.inline > ul,
-		&.inline > li {
+		&.inline {
 			display: flex;
 		}
 	}
@@ -65,35 +61,37 @@ export default {
 
 <docs>
 ```jsx
-	<h3>Unstyled Inline</h3>
-	<vs-list type="ul" variant="unstyled inline">
-		<vs-list-item class="mr-7">Test</vs-list-item>
-		<vs-list-item class="mr-7">Test</vs-list-item>
-		<vs-list-item class="mr-7">Test</vs-list-item>
+	<h3>Default</h3>
+	<vs-list>
+		<li class="mr-7">Test</li>
+		<li class="mr-7">Test</li>
+		<li class="mr-7">Test</li>
 	</vs-list>
 
 	<h3>Inline</h3>
-	<vs-list type="ul" variant="inline">
-		<vs-list-item class="mr-7">Test</vs-list-item>
-		<vs-list-item class="mr-7">Test</vs-list-item>
-		<vs-list-item class="mr-7">Test</vs-list-item>
+	<vs-list inline>
+		<li class="mr-7">Test</li>
+		<li class="mr-7">Test</li>
+		<li class="mr-7">Test</li>
+	</vs-list>
+
+	<h3>Inline Unstyled</h3>
+	<vs-list unstyled inline>
+		<li class="mr-7">Test</li>
+		<li class="mr-7">Test</li>
+		<li class="mr-7">Test</li>
 	</vs-list>
 
 	<h3>Unstyled</h3>
-	<vs-list type="ul" variant="unstyled">
-		<vs-list-item class="mr-7">Test</vs-list-item>
-		<vs-list-item class="mr-7">Test</vs-list-item>
-		<vs-list-item class="mr-7">Test</vs-list-item>
-	</vs-list>
-
-	<h3>Unordered List</h3>
-	<vs-list type="ul" >
-		<vs-list-item>Test</vs-list-item>
+	<vs-list unstyled>
+		<li class="mr-7">Test</li>
+		<li class="mr-7">Test</li>
+		<li class="mr-7">Test</li>
 	</vs-list>
 
 	<h3>Ordered List</h3>
-	<vs-list type="ol" >
-		<vs-list-item>Test</vs-list-item>
+	<vs-list ordered>
+		<li>Test</li>
 	</vs-list>
 ```
 </docs>
