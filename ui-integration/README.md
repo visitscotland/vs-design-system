@@ -11,13 +11,23 @@ yarn install
 ### Updating assets and templates
 
 ```
+yarn update
+```
+
+Run this script to update the built frontend assets and generated freemarkers that are added to the Hippo webfiles folder. The script:
+
+- Runs the `yarn build:system:components` script in the `frontend` package then
+- Runs the `yarn build` script in this package (see below for details)
+
+```
 yarn build
 ```
 
-This script runs the webpack build, which:
+This script runs the webpack build of this package, which:
    - Copies all built assets from the `node_modules/vs-dotcom-ds/dist/` folder into the parent Hippo app's webfiles folder (at `/repository-data/webfiles/src/main/resources/site/design-system`) for inclusion in the Hippo site.
    - Copies `vue-app-init.ftl` to Freemarker template location (at `/repository-data/webfiles/src/main/resources/site/freemarker/include/vs-dotcom-ds`).
    - Generates Freemarker templates for all Vue components and VueX stores listed in the `manifest.json` file to the `components` and `stores` subfolders, respectively, of the Freemarker template location.
+
 
 ### Including components in the Hippo site
 
