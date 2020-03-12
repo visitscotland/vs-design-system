@@ -6,14 +6,12 @@ import com.visitscotland.brmx.beans.dms.LocationObject;
 import com.visitscotland.brmx.beans.mapping.*;
 import com.visitscotland.brmx.beans.mapping.Coordinates;
 import com.visitscotland.brmx.utils.CommonUtils;
-import com.visitscotland.brmx.utils.HippoUtils;
 import com.visitscotland.brmx.utils.Properties;
 import com.visitscotland.brmx.utils.LocationLoader;
 import org.hippoecm.hst.content.beans.standard.HippoCompound;
 import org.hippoecm.hst.core.component.HstRequest;
 import org.hippoecm.hst.core.component.HstResponse;
 import org.json.JSONObject;
-import org.onehippo.cms7.essentials.components.EssentialsContentComponent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
