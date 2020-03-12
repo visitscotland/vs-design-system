@@ -2,11 +2,13 @@ package com.visitscotland.brmx.components.content;
 
 import com.visitscotland.brmx.beans.*;
 
+import com.visitscotland.brmx.beans.dms.LocationObject;
 import com.visitscotland.brmx.beans.mapping.*;
 import com.visitscotland.brmx.beans.mapping.Coordinates;
 import com.visitscotland.brmx.utils.CommonUtils;
 import com.visitscotland.brmx.utils.HippoUtils;
 import com.visitscotland.brmx.utils.Properties;
+import com.visitscotland.brmx.utils.LocationLoader;
 import org.hippoecm.hst.content.beans.standard.HippoCompound;
 import org.hippoecm.hst.core.component.HstRequest;
 import org.hippoecm.hst.core.component.HstResponse;
@@ -63,7 +65,8 @@ public class ListicleContentComponent extends PageContentComponent<Listicle> {
                             String credit = json.has("author_name") ? json.getString("author_name") : "";
                             String link = "https://www.instagram.com/p/" + instagramLink.getId();
                             //TODO: This causes a 301 (redirect). Find the way of fixing this.
-                            String image = "https://www.instagram.com/p/" + instagramLink.getId() + "/media";
+                            //TODO size for Instagram is large for the showcase but we need to fix that large for desktop, medium tablet and small mobile
+                            String image = "https://www.instagram.com/p/" + instagramLink.getId() + "/media?size=l";
                             model.setImage(new FlatImage(image, instagramLink.getCaption(), credit, instagramLink.getCaption(), FlatImage.Source.INSTAGRAM, link));
                         } else {
                             model.setErrorMessage("The Instagram id is not valid");
@@ -79,8 +82,10 @@ public class ListicleContentComponent extends PageContentComponent<Listicle> {
                     if (listicleItem.getListicleItemImage() instanceof Image) {
                         Image cmsImage = (Image) listicleItem.getListicleItemImage();
                         if (cmsImage != null) {
-                            FlatImage image = new FlatImage();
-                            model.setImage(new FlatImage(cmsImage, cmsImage.getAltText(), cmsImage.getCredit(), cmsImage.getDescription()));
+                            FlatImage image = new FlatImage(cmsImage, cmsImage.getAltText(), cmsImage.getCredit(), cmsImage.getDescription());
+                            LocationObject location = LocationLoader.getLocation(cmsImage.getLocation(), request.getLocale());
+                            image.setCoordinates(new Coordinates(location.getLatitude(),location.getLongitude()));
+                            model.setImage(image);
                         }
                     }
                 }
