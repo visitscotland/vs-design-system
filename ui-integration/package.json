@@ -13,6 +13,8 @@
     "webpack-cli": "^3.3.7"
   },
   "scripts": {
-    "build": "webpack --config webpack.config.js"
+    "build": "webpack --config webpack.config.js",
+    "frontend": "yarn --cwd ../frontend/ build:system:components ",
+    "update": "yarn frontend && yarn build"
   }
 }
