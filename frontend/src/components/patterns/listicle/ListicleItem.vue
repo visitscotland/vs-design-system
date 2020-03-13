@@ -1,18 +1,21 @@
 <template>
-    <li class="vs-listicle-item">
-        <div class="border">
+    <li class="vs-listicle-item border">
+        
 			<slot name="hippo-details" />
 
 			<!-- HEADER -->
-            <div class="d-flex justify-content-start align-items-top">
+            <div class="border-bottom border-white d-flex justify-content-start align-items-top">
                 <div class="position-relative">
                     <div class="count__bg">
                     	<span class="count" aria-hidden="true">{{ index }}</span>
                     </div>
                 </div>
-                <vs-heading level="3" thin>
-                    <span>{{ title }}</span>
-                    {{ subTitle }}
+                <vs-heading level="3">
+                    {{ title }}
+
+                    <template slot="sub-heading">
+                        {{subTitle}}
+                    </template>
                 </vs-heading>
             </div>
 
@@ -33,7 +36,6 @@
 
 				</div>
 			</div>
-        </div>
     </li>
 </template>
 
@@ -74,117 +76,118 @@ export default {
 <style lang="scss" scoped>
 
 .vs-listicle-item {
-	margin: $spacer-11 0;
+    margin: $spacer-11 0;
+    
+    .count {
+        color: $color-white;
+        font-family: $headings-font-family;
+        font-size: $display1-size;
+        line-height: 1.4;
+        display: block;
+        text-align: center;
+        width: 100%;
+        border-bottom: 1px solid $color-white;
+    }
+
+    .count__bg {
+        background: $color_secondary_teal;
+        padding: $spacer-3 $spacer-7;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    &.border {
+        padding: $spacer-4;
+
+        @include media-breakpoint-up(md) {
+            padding: spacer-8;
+        }
+
+        @include media-breakpoint-up(xl) {
+            padding: $spacer-11;
+        }
+    }
+
+    h3.heading {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        margin-left: $spacer-2;
+        margin-bottom: $spacer-8;
+
+        @include media-breakpoint-up(md) {
+            margin-bottom: 0;
+        }
+    }
+
+    .content {
+        display: flex;
+        flex-direction: column;
+
+        @include media-breakpoint-up(md) {
+            flex-direction: initial;
+        }
+
+        .intro {
+            overflow-wrap: break-word;
+            margin-bottom: $spacer-4;
+            
+            @include media-breakpoint-up(md) {
+                margin-right: $spacer-4;
+            }
+        }
+
+        a.cta {
+            display: block;
+        }
+
+        .facilities {
+            border-top: 1px solid $color-gray-tint-5;
+
+
+            @include media-breakpoint-down(xs) {
+                min-width: calc(100% + 2rem);
+                margin-left: -1rem;
+            }
+
+            @include media-breakpoint-up(md) {
+                border: initial;
+                border-left: 1px solid $color-gray-tint-5;
+                margin-top: 0;
+                padding: $spacer-8;
+                width: auto;
+            }
+
+            .vs-icon-description-list {
+                font-size: $h6-font-size;
+                line-height: 16px;
+                border: 0;
+                display: grid;
+                width: max-content;
+                grid-template-columns: 1fr 1fr 1fr;
+                margin: 0 auto;
+                align-self: center;
+                justify-self: center;
+
+                @include media-breakpoint-up(sm) {
+                    padding: 2rem 0;
+                }
+
+                @include media-breakpoint-up(md) {
+                    padding: 0;
+                }
+
+                & ::v-deep dd {
+                    justify-self: center;
+                    padding: 0 $spacer-4;
+                    display: inline-block;
+                }
+            }
+        }
+    }
+
 }
-
-.count {
-	color: $color-white;
-	font-family: $headings-font-family;
-	font-size: $h1-font-size;
-	display: block;
-	text-align: center;
-	width: 100%;
-	border-bottom: 2px solid white;
-}
-
-.count__bg {
-	background: $color_secondary_teal;
-	padding: $spacer-4 $spacer-8;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-}
-
-.border {
-	padding: $spacer-4;
-
-	@include media-breakpoint-up(md) {
-		padding: spacer-8;
-	}
-
-	@include media-breakpoint-up(xl) {
-		padding: $spacer-11;
-	}
-}
-
-h3.heading {
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	margin-left: $spacer-2;
-	margin-bottom: $spacer-8;
-
-	@include media-breakpoint-up(md) {
-		margin-bottom: 0;
-	}
-}
-
-.content {
-	display: flex;
-	flex-direction: column;
-
-	@include media-breakpoint-up(md) {
-		flex-direction: initial;
-	}
-
-	.intro {
-		overflow-wrap: break-word;
-		margin-bottom: $spacer-4;
-		
-		@include media-breakpoint-up(md) {
-			margin-right: $spacer-4;
-		}
-	}
-
-	a.cta {
-		display: block;
-	}
-
-	.facilities {
-		border-top: 1px solid $color-gray-tint-5;
-
-
-		@include media-breakpoint-down(xs) {
-			min-width: calc(100% + 2rem);
-			margin-left: -1rem;
-		}
-
-		@include media-breakpoint-up(md) {
-			border: initial;
-			border-left: 1px solid $color-gray-tint-5;
-			margin-top: 0;
-			padding: $spacer-8;
-			width: auto;
-		}
-
-		.vs-icon-description-list {
-			font-size: $h6-font-size;
-			line-height: 16px;
-			border: 0;
-			display: grid;
-			width: max-content;
-			grid-template-columns: 1fr 1fr 1fr;
-			margin: 0 auto;
-			align-self: center;
-			justify-self: center;
-
-			@include media-breakpoint-up(sm) {
-				padding: 2rem 0;
-			}
-
-			@include media-breakpoint-up(md) {
-				padding: 0;
-			}
-
-			& ::v-deep dd {
-				justify-self: center;
-				padding: 0 $spacer-4;
-				display: inline-block;
-			}
-		}
-	}
-}
-
 </style>
 
 <docs>
