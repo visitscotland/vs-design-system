@@ -12,7 +12,7 @@ import com.visitscotland.brmx.utils.LocationLoader;
 import org.hippoecm.hst.core.component.HstRequest;
 import org.hippoecm.hst.core.component.HstResponse;
 import org.json.JSONObject;
-import org.onehippo.cms7.essentials.components.EssentialsContentComponent;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -20,7 +20,7 @@ import java.io.*;
 import java.util.*;
 
 
-public class ItineraryContentComponent extends EssentialsContentComponent {
+public class ItineraryContentComponent extends PageContentComponent<Itinerary> {
 
     private static final Logger logger = LoggerFactory.getLogger(ItineraryContentComponent.class);
 
@@ -34,13 +34,12 @@ public class ItineraryContentComponent extends EssentialsContentComponent {
     public void doBeforeRender(HstRequest request, HstResponse response) {
         super.doBeforeRender(request, response);
 
-        generateStops(request, (Itinerary) request.getAttribute("document"));
-        setCoordinates(request, (Itinerary) request.getAttribute("document"));
-        request.setAttribute("path", getDocumentLocation((Itinerary) request.getAttribute("document")));
+        generateStops(request);
+        setCoordinates(request);
     }
 
-    private void setCoordinates(HstRequest request, Itinerary itinerary) {
-        LocationObject location = LocationLoader.getLocation(itinerary.getHeroImage().getLocation(), request.getLocale());
+    private void setCoordinates(HstRequest request) {
+        LocationObject location = LocationLoader.getLocation(getDocument(request).getHeroImage().getLocation(), request.getLocale());
 
         if (location != null){
             Coordinates coordinates = new Coordinates();
@@ -53,12 +52,10 @@ public class ItineraryContentComponent extends EssentialsContentComponent {
     /**
      *
      * @param request
-     * @param itinerary
      */
-    private void generateStops(HstRequest request, Itinerary itinerary){
+    private void generateStops(HstRequest request){
 
-        String path= itinerary.getPath().substring(itinerary.getPath().indexOf(ROOT_SITE),itinerary.getPath().indexOf("/content/content")).replace(ROOT_SITE,"");
-        request.setAttribute("path", path);
+        final Itinerary itinerary = getDocument(request);
 
         final String LOCATION = "locationName";
         final String URL = "url";
@@ -172,27 +169,5 @@ public class ItineraryContentComponent extends EssentialsContentComponent {
 
             request.setAttribute(STOPS_MAP, products);
         }
-    }
-
-    /**
-     *
-     * @param itinerary
-     */
-    private String getDocumentLocation( Itinerary itinerary) {
-        return itinerary.getPath().substring(itinerary.getPath().indexOf(ROOT_SITE), itinerary.getPath().indexOf("/content/content")).replace(ROOT_SITE, "");
-    }
-
-
-    /**
-     *
-     * @param manualCta
-     */
-    private String getCtaLabel (String manualCta, Locale locale){
-        if (!CommonUtils.isEmpty(manualCta)){
-            return  manualCta;
-        }else{
-            return  HippoUtils.getResourceBundle("button.find-out-more","essentials.global",locale);
-        }
-
     }
 }
