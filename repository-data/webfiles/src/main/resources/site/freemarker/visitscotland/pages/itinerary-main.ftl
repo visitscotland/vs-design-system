@@ -202,10 +202,10 @@
                         <dt class="list-inline-item">${label("itinerary", "transport")}:</dt>
                         <#list day.transports as transport>
                             <dd class="list-inline-item">
-                                <vs-tooltip title="${label("itinerary", "${transport}")}">
+                                <vs-tooltip title="${label("transports", "${transport}")}">
                                     <vs-icon name="${transport}" variant="dark" size="sm"></vs-icon>
                                 </vs-tooltip>
-                                <span class="sr-only">${label("itinerary", "${transport}")}</span>
+                                <span class="sr-only">${label("transports", "${transport}")}</span>
                             </dd>
                         </#list>
                     </vs-description-list>
