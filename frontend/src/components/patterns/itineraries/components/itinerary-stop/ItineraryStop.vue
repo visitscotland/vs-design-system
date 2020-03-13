@@ -11,9 +11,13 @@
                     />
                     <span class="map-marker__count" aria-hidden="true">{{ stopNumber }}</span>
                 </div>
-                <vs-heading level="3" thin class="vs-itinerary-stop__title ml-4">
-                    <span>{{ stopLabel }} {{ stopNumber }}</span>
-                    {{ stopTitle }}
+              
+                <vs-heading level="3" class="vs-itinerary-stop__title ml-4">
+                    {{ stopLabel }} {{ stopNumber }}
+
+                    <template slot="sub-heading">
+                        {{ stopTitle }}
+                    </template>
                 </vs-heading>
             </div>
             <slot name="stop-details" />

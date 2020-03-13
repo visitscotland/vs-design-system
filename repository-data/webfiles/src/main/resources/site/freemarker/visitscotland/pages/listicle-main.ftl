@@ -10,6 +10,7 @@
 <#include "../../vs-dotcom-ds/components/heading.ftl">
 <#include "../../vs-dotcom-ds/components/img.ftl">
 <#include "../../vs-dotcom-ds/components/link.ftl">
+<#include "../../vs-dotcom-ds/components/rich-text-wrapper.ftl">
 
 <#include "../modules/listicles/listicle-item.ftl">
 <#include "../../vs-dotcom-ds/components/listicle-item.ftl">
@@ -44,7 +45,7 @@
 		</vs-row>
 		<vs-row class="justify-content-md-between">
 			<vs-col cols="12" lg="8" offset-lg="1">
-				<@hst.html hippohtml=document.introduction/>
+                <vs-rich-text-wrapper variant="lead"><@hst.html hippohtml=document.introduction/></vs-rich-text-wrapper>
 			</vs-col>
 		</vs-row>
 
