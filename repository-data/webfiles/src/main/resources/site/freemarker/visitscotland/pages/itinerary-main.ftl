@@ -36,6 +36,7 @@
 <#-- @ftlvariable name="firstStopLocation" type="java.lang.String" -->
 <#-- @ftlvariable name="lastStopLocation" type="java.lang.String" -->
 <#-- @ftlvariable name="heroCoordinates" type="com.visitscotland.brmx.beans.mapping.Coordinates" -->
+<#-- @ftlvariable name="ProductSearchBuilder" type="com.visitscotland.brmx.utils.ProductSearchBuilder" -->
 
 <#-- Template defined objects -->
 <#-- @ftlvariable name="day" type="com.visitscotland.brmx.beans.Day" -->

@@ -384,6 +384,80 @@
           /visitscotland:stops[3]:
             jcr:primaryType: hippo:mirror
             hippo:docbase: 1ead4399-7e30-47dc-9b75-2ea488fb5742
+        /day-2[3]:
+          jcr:primaryType: visitscotland:Day
+          jcr:mixinTypes: ['mix:referenceable']
+          jcr:uuid: c8a4446d-bb38-4015-b717-ccec05865079
+          hippo:availability: []
+          hippostd:state: draft
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2019-12-12T12:06:04.129Z
+          hippostdpubwf:lastModificationDate: 2020-03-09T16:07:20.742Z
+          hippostdpubwf:lastModifiedBy: admin
+          hippotranslation:id: 15cbbb74-c06a-427e-88f8-a4fff306f9ba
+          hippotranslation:locale: en
+          visitscotland:title: Dummy Stops
+          visitscotland:transports: [boat, bus, car, cycling, ferry, public, train,
+            walking]
+          /visitscotland:introduction:
+            jcr:primaryType: hippostd:html
+            hippostd:content: |-
+              <p>A hash model that wraps a resource bundle. Makes it convenient to store localized content in the data model. It also acts as a method model that will take a resource key and arbitrary number of arguments and will apply MessageFormat with arguments on the string represented by the key.</p>
+
+              <p>Typical usages:</p>
+
+              <ul>
+               <li>bundle.resourceKey will retrieve the object from resource bundle with key resourceKey</li>
+               <li>bundle("patternKey", arg1, arg2, arg3) will retrieve the string from resource bundle with key patternKey, and will use it as a pattern for MessageFormat with arguments arg1, arg2 and arg3</li>
+              </ul>
+          /visitscotland:stops[1]:
+            jcr:primaryType: hippo:mirror
+            hippo:docbase: 8030a311-a942-40e6-bb89-41dd6fea60df
+          /visitscotland:stops[2]:
+            jcr:primaryType: hippo:mirror
+            hippo:docbase: 8b215960-87aa-47ae-9c11-8a750be25ad8
+          /visitscotland:stops[3]:
+            jcr:primaryType: hippo:mirror
+            hippo:docbase: 1ead4399-7e30-47dc-9b75-2ea488fb5742
+      /a-new-day:
+        jcr:primaryType: hippo:handle
+        jcr:mixinTypes: ['hippo:named', 'mix:referenceable']
+        jcr:uuid: 2dafb326-df46-45f7-92e5-31a42587c9e8
+        hippo:name: A new day
+        /a-new-day[1]:
+          jcr:primaryType: visitscotland:Day
+          jcr:mixinTypes: ['mix:referenceable']
+          jcr:uuid: a6c27a7d-ba42-4d5e-88cc-a3f6be13c0cd
+          hippo:availability: []
+          hippostd:state: draft
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2020-03-09T15:58:39.934Z
+          hippostdpubwf:lastModificationDate: 2020-03-09T15:59:11.660Z
+          hippostdpubwf:lastModifiedBy: admin
+          hippotranslation:id: 7dc84084-2479-45e2-a294-86f94ea4b742
+          hippotranslation:locale: en
+          visitscotland:title: This is a complete new day
+          visitscotland:transports: []
+          /visitscotland:introduction:
+            jcr:primaryType: hippostd:html
+            hippostd:content: <p>complete new day</p>
+        /a-new-day[2]:
+          jcr:primaryType: visitscotland:Day
+          jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
+          jcr:uuid: 74b90613-3c5a-420c-bc97-3de0064a3638
+          hippo:availability: [preview]
+          hippostd:state: unpublished
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2020-03-09T15:58:39.934Z
+          hippostdpubwf:lastModificationDate: 2020-03-09T15:59:09.741Z
+          hippostdpubwf:lastModifiedBy: admin
+          hippotranslation:id: 7dc84084-2479-45e2-a294-86f94ea4b742
+          hippotranslation:locale: en
+          visitscotland:title: This is a complete new day
+          visitscotland:transports: []
+          /visitscotland:introduction:
+            jcr:primaryType: hippostd:html
+            hippostd:content: <p>complete new day</p>
     /content:
       jcr:primaryType: hippo:handle
       jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
@@ -799,7 +873,7 @@
           hippostd:state: draft
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2020-02-27T13:19:13.009Z
-          hippostdpubwf:lastModificationDate: 2020-03-06T12:31:28.389Z
+          hippostdpubwf:lastModificationDate: 2020-03-09T16:14:46.856Z
           hippostdpubwf:lastModifiedBy: admin
           hippotranslation:id: aa4d5cb3-9313-4d6a-9741-225c19c36f20
           hippotranslation:locale: en
@@ -843,7 +917,7 @@
               visitscotland:producttype: acti,attr,reta
           /visitscotland:images:
             jcr:primaryType: hippogallerypicker:imagelink
-            hippo:docbase: 8d4f5036-64ca-4e5d-aa89-b348ae38b081
+            hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
             hippo:facets: []
             hippo:modes: []
             hippo:values: []
@@ -950,9 +1024,10 @@
               visitscotland:producttype: acti,attr,reta
       /edinburgh-castle:
         jcr:primaryType: hippo:handle
-        jcr:mixinTypes: ['hippo:named', 'mix:referenceable']
+        jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
         jcr:uuid: f86e10db-c111-4855-8e85-9952ca6efe8d
         hippo:name: Edinburgh Castle
+        hippo:versionHistory: b285fadc-b3e3-4b67-ad6b-bc35342e7feb
         /edinburgh-castle[1]:
           jcr:primaryType: visitscotland:ListicleItem
           jcr:mixinTypes: ['mix:referenceable']
@@ -1003,11 +1078,38 @@
             jcr:primaryType: visitscotland:DMSLink
             visitscotland:label: Edinburgh castle
             visitscotland:product: '245821'
+        /edinburgh-castle[3]:
+          jcr:primaryType: visitscotland:ListicleItem
+          jcr:mixinTypes: ['mix:referenceable']
+          jcr:uuid: c42d6d9d-a46a-4993-94f9-1203c953c4d5
+          hippo:availability: [live]
+          hippostd:state: published
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2020-02-27T13:21:08.257Z
+          hippostdpubwf:lastModificationDate: 2020-03-09T09:50:44.970Z
+          hippostdpubwf:lastModifiedBy: admin
+          hippostdpubwf:publicationDate: 2020-03-09T15:25:14.198Z
+          hippotranslation:id: 25df6d19-f276-49c9-b0e7-5a76254666fe
+          hippotranslation:locale: en
+          visitscotland:subtitle: ''
+          visitscotland:title: Edinburgh Castle
+          /visitscotland:description:
+            jcr:primaryType: hippostd:html
+            hippostd:content: <p><a href="https://www.visitscotland.com/info/see-do/edinburgh-castle-p245821"
+              title="Edinburgh Castle">Edinburgh Castle</a> is a true icon of Scotland
+              and has dominated the skyline of the capital for centuries. Unusually,
+              it's set atop of an extinct volcano. It takes the title of Scotland's
+              most-visited paid-for attraction.</p>
+          /visitscotland:products:
+            jcr:primaryType: visitscotland:DMSLink
+            visitscotland:label: Edinburgh castle
+            visitscotland:product: '245821'
       /scottish-national-gallery:
         jcr:primaryType: hippo:handle
-        jcr:mixinTypes: ['hippo:named', 'mix:referenceable']
+        jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
         jcr:uuid: 6e561976-738b-450a-95e0-b1ba4787b530
         hippo:name: Scottish National Gallery
+        hippo:versionHistory: 6478f29d-2322-4c26-900f-78d0895b7c49
         /scottish-national-gallery[1]:
           jcr:primaryType: visitscotland:ListicleItem
           jcr:mixinTypes: ['mix:referenceable']
@@ -1068,12 +1170,43 @@
             jcr:primaryType: visitscotland:InstagramImage
             visitscotland:caption: Robert Burns visits the Gallery
             visitscotland:id: B7vTqg4gZsR
+        /scottish-national-gallery[3]:
+          jcr:primaryType: visitscotland:ListicleItem
+          jcr:mixinTypes: ['mix:referenceable']
+          jcr:uuid: 2da32a0e-65c9-435b-a482-03f2cd347c45
+          hippo:availability: [live]
+          hippostd:state: published
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2020-02-27T13:22:47.621Z
+          hippostdpubwf:lastModificationDate: 2020-02-27T13:40:43.373Z
+          hippostdpubwf:lastModifiedBy: admin
+          hippostdpubwf:publicationDate: 2020-03-09T15:25:09.963Z
+          hippotranslation:id: d064dde7-8e4a-42d5-a8cb-c42dba495b3f
+          hippotranslation:locale: en
+          visitscotland:subtitle: ''
+          visitscotland:title: Scottish National Gallery
+          /visitscotland:description:
+            jcr:primaryType: hippostd:html
+            hippostd:content: <p><a href="https://www.visitscotland.com/info/see-do/scottish-national-gallery-p246151"
+              title="Scottish National Gallery">Scottish National Gallery</a> houses
+              Scotland's national collection of fine art from the early Renaissance
+              to the end of the 19th century. The walls are adorned with masterpieces,
+              from Raphael, Velázquez and Vermeer to Monet, Cézanne and Van Gogh,
+              as well as works of Scottish artists.</p>
+          /visitscotland:products:
+            jcr:primaryType: visitscotland:DMSLink
+            visitscotland:label: Come to the Great Scottish National Gallery
+            visitscotland:product: '246151'
+          /visitscotland:images:
+            jcr:primaryType: visitscotland:InstagramImage
+            visitscotland:caption: Robert Burns visits the Gallery
+            visitscotland:id: B7vTqg4gZsR
       /casa-juan:
         jcr:primaryType: hippo:handle
         jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
         jcr:uuid: 21cccacf-b2bc-4cf7-aff9-bf57f49d3f6a
         hippo:name: Casa Juan
-        hippo:versionHistory: 0dd7da3c-e7b6-4b79-b38b-925ef5d70a8a
+        hippo:versionHistory: cc419ddb-8f85-4dca-8d12-7ef730f4d8eb
         /casa-juan[1]:
           jcr:primaryType: visitscotland:ListicleItem
           jcr:mixinTypes: ['mix:referenceable']
@@ -1082,7 +1215,7 @@
           hippostd:state: draft
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2020-03-09T11:34:38.209Z
-          hippostdpubwf:lastModificationDate: 2020-03-09T11:39:46.158Z
+          hippostdpubwf:lastModificationDate: 2020-03-13T14:39:04.467Z
           hippostdpubwf:lastModifiedBy: admin
           hippotranslation:id: e25d65b7-e98c-4b82-a822-fcf4d266d1b5
           hippotranslation:locale: en
@@ -1106,6 +1239,18 @@
             hippo:facets: []
             hippo:modes: []
             hippo:values: []
+          /visitscotland:extraLinks:
+            jcr:primaryType: visitscotland:ProductSearchLink
+            visitscotland:label: Recommended alternative accommodations
+            /visitscotland:search:
+              jcr:primaryType: visitscotland:ProductsSearch
+              visitscotland:dmsAwards: [qapetswelcome]
+              visitscotland:dmsCategories: [bandb, budgethotel]
+              visitscotland:dmsFacilities: [privbathrm, petswelcom]
+              visitscotland:location: Edinburgh - City Centre
+              visitscotland:officialrating: ['5', '4']
+              visitscotland:productType: acco
+              visitscotland:producttype: ''
         /casa-juan[2]:
           jcr:primaryType: visitscotland:ListicleItem
           jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
@@ -1114,7 +1259,7 @@
           hippostd:state: unpublished
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2020-03-09T11:34:38.209Z
-          hippostdpubwf:lastModificationDate: 2020-03-09T11:40:09.223Z
+          hippostdpubwf:lastModificationDate: 2020-03-13T14:42:28.150Z
           hippostdpubwf:lastModifiedBy: admin
           hippotranslation:id: e25d65b7-e98c-4b82-a822-fcf4d266d1b5
           hippotranslation:locale: en
@@ -1138,6 +1283,18 @@
             hippo:facets: []
             hippo:modes: []
             hippo:values: []
+          /visitscotland:extraLinks:
+            jcr:primaryType: visitscotland:ProductSearchLink
+            visitscotland:label: Recommended alternative accommodations
+            /visitscotland:search:
+              jcr:primaryType: visitscotland:ProductsSearch
+              visitscotland:dmsAwards: [qapetswelcome]
+              visitscotland:dmsCategories: [bandb, budgethotel]
+              visitscotland:dmsFacilities: [privbathrm, petswelcom]
+              visitscotland:location: Edinburgh - City Centre
+              visitscotland:officialrating: ['5', '4']
+              visitscotland:productType: acco
+              visitscotland:producttype: ''
         /casa-juan[3]:
           jcr:primaryType: visitscotland:ListicleItem
           jcr:mixinTypes: ['mix:referenceable']
@@ -1146,9 +1303,9 @@
           hippostd:state: published
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2020-03-09T11:34:38.209Z
-          hippostdpubwf:lastModificationDate: 2020-03-09T11:40:09.223Z
+          hippostdpubwf:lastModificationDate: 2020-03-13T14:42:28.150Z
           hippostdpubwf:lastModifiedBy: admin
-          hippostdpubwf:publicationDate: 2020-03-09T11:41:16.414Z
+          hippostdpubwf:publicationDate: 2020-03-13T14:42:32.848Z
           hippotranslation:id: e25d65b7-e98c-4b82-a822-fcf4d266d1b5
           hippotranslation:locale: en
           visitscotland:subtitle: ''
@@ -1171,6 +1328,18 @@
             hippo:facets: []
             hippo:modes: []
             hippo:values: []
+          /visitscotland:extraLinks:
+            jcr:primaryType: visitscotland:ProductSearchLink
+            visitscotland:label: Recommended alternative accommodations
+            /visitscotland:search:
+              jcr:primaryType: visitscotland:ProductsSearch
+              visitscotland:dmsAwards: [qapetswelcome]
+              visitscotland:dmsCategories: [bandb, budgethotel]
+              visitscotland:dmsFacilities: [privbathrm, petswelcom]
+              visitscotland:location: Edinburgh - City Centre
+              visitscotland:officialrating: ['5', '4']
+              visitscotland:productType: acco
+              visitscotland:producttype: ''
       /trip-ideas:
         jcr:primaryType: hippostd:folder
         jcr:mixinTypes: ['hippo:named', 'hippotranslation:translated', 'mix:versionable']

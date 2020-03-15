@@ -6,6 +6,7 @@ import com.visitscotland.brmx.beans.dms.LocationObject;
 import com.visitscotland.brmx.beans.mapping.*;
 import com.visitscotland.brmx.beans.mapping.Coordinates;
 import com.visitscotland.brmx.utils.CommonUtils;
+import com.visitscotland.brmx.utils.ProductSearchBuilder;
 import com.visitscotland.brmx.utils.Properties;
 import com.visitscotland.brmx.utils.LocationLoader;
 import org.hippoecm.hst.content.beans.standard.HippoCompound;
@@ -42,7 +43,7 @@ public class ListicleContentComponent extends PageContentComponent<Listicle> {
         final String LONGITUDE = "longitude";
         final String FACILITIES = "facilities";
         final String IMAGE = "image";
-        final Map<String ,FlatListicle> items =  new LinkedHashMap<>();
+        final Map<String, FlatListicle> items = new LinkedHashMap<>();
 
 
         //TODO:separate image, main product and optional cta in different methods ?
@@ -82,7 +83,7 @@ public class ListicleContentComponent extends PageContentComponent<Listicle> {
                         if (cmsImage != null) {
                             FlatImage image = new FlatImage(cmsImage, cmsImage.getAltText(), cmsImage.getCredit(), cmsImage.getDescription());
                             LocationObject location = LocationLoader.getLocation(cmsImage.getLocation(), request.getLocale());
-                            image.setCoordinates(new Coordinates(location.getLatitude(),location.getLongitude()));
+                            image.setCoordinates(new Coordinates(location.getLatitude(), location.getLongitude()));
                             model.setImage(image);
                         }
                     }
@@ -108,13 +109,13 @@ public class ListicleContentComponent extends PageContentComponent<Listicle> {
                             if (model.getImage() == null) {
                                 FlatImage image = new FlatImage();
                                 image.setExternalImage(product.getString(IMAGE));
-                                Coordinates coordinates = new Coordinates(product.getDouble(LATITUDE),product.getDouble(LONGITUDE));
+                                Coordinates coordinates = new Coordinates(product.getDouble(LATITUDE), product.getDouble(LONGITUDE));
                                 image.setCoordinates(coordinates);
                                 //TODO: SET ALT-TEXT, CREDITS AND DESCRIPTION
                                 model.setImage(image);
-                            }else{
-                                if (model.getImage().getSource().equals(FlatImage.Source.INSTAGRAM)){
-                                    Coordinates coordinates = new Coordinates(product.getDouble(LATITUDE),product.getDouble(LONGITUDE));
+                            } else {
+                                if (model.getImage().getSource().equals(FlatImage.Source.INSTAGRAM)) {
+                                    Coordinates coordinates = new Coordinates(product.getDouble(LATITUDE), product.getDouble(LONGITUDE));
                                     model.getImage().setCoordinates(coordinates);
                                 }
                             }
@@ -135,7 +136,7 @@ public class ListicleContentComponent extends PageContentComponent<Listicle> {
             }
 
             //Set Extra Links
-            for (HippoCompound compound: listicleItem.getExtraLinks()) {
+            for (HippoCompound compound : listicleItem.getExtraLinks()) {
                 links.add(createLink(request, compound));
             }
 
@@ -147,7 +148,6 @@ public class ListicleContentComponent extends PageContentComponent<Listicle> {
     }
 
     /**
-     *
      * @param request
      * @param item
      * @return
@@ -164,7 +164,7 @@ public class ListicleContentComponent extends PageContentComponent<Listicle> {
                             dmsLink.getProduct(), getDocument(request).getPath()));
                 } else {
                     //TODO build the link for the DMS product properly
-                    return new FlatLink(this.getCtaLabel(dmsLink.getLabel(), request.getLocale()), Properties.VS_DMS_PRODUCTS+product.getString(URL));
+                    return new FlatLink(this.getCtaLabel(dmsLink.getLabel(), request.getLocale()), Properties.VS_DMS_SERVICE + product.getString(URL));
                 }
             } catch (IOException e) {
                 logger.error(String.format("Error while querying the DMS for '%s', (%s)",
@@ -172,38 +172,10 @@ public class ListicleContentComponent extends PageContentComponent<Listicle> {
             }
         } else if (item instanceof ProductSearchLink) {
             ProductSearchLink productSearchLink = (ProductSearchLink) item;
-            //TODO build the PSR url for the CTA in a reusable class
-            String productType = productSearchLink.getSearch().getProductType();
-            String categoriesParameter="";
-            String facilitiesParameter="";
-            String awardssParameter="";
-            String starsParameter="";
-            if (productSearchLink.getSearch().getDmsCategories()!=null){
-                for (String category : productSearchLink.getSearch().getDmsCategories()){
-                    categoriesParameter=categoriesParameter+"&cat="+category;
-                 }
-            }
-            if (productSearchLink.getSearch().getDmsFacilities()!=null){
-                for (String fac : productSearchLink.getSearch().getDmsFacilities()){
-                    facilitiesParameter=facilitiesParameter+"&fac_id="+fac;
-                }
-            }
-            if (productSearchLink.getSearch().getDmsAwards()!=null){
-                for (String aw : productSearchLink.getSearch().getDmsAwards()){
-                    awardssParameter=awardssParameter+"&src_awards__0="+aw;
-                }
-            }
-            if (productSearchLink.getSearch().getOfficialrating()!=null){
-                for (String star : productSearchLink.getSearch().getOfficialrating()){
-                    starsParameter=starsParameter+"&grade="+star;
-                }
-            }
+            ProductSearchBuilder psb = new ProductSearchBuilder()
+                    .createProductSearch(productSearchLink.getSearch()).locale(request.getLocale());
 
-            String psr = Properties.VS_DMS_PRODUCTS + "/info/accommodation/search-results?debug&locplace="
-                    +productSearchLink.getSearch().getLocation()+"&locprox=0&prodtypes="
-                    +productType+categoriesParameter+facilitiesParameter+awardssParameter+starsParameter;
-
-            return  new FlatLink(this.getCtaLabel(productSearchLink.getLabel(), request.getLocale()), psr);
+            return new FlatLink(this.getCtaLabel(productSearchLink.getLabel(), request.getLocale()), psb.build());
 
         } else if (item instanceof ExternalLink) {
             ExternalLink externalLink = (ExternalLink) item;

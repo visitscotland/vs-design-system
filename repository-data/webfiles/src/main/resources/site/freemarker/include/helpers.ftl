@@ -9,3 +9,13 @@
     <@fmt.message var="message" key="${key}" />
     <#return message>
 </#function>
+
+<#function productSearch locale productType lat lon proximity>
+    <#--TODO: proximity as optional-->
+    <#return ProductSearchBuilder.newInstance().createProductSearch(productType).proximity(proximity).coordinates(lat, lon).build()>
+</#function>
+
+<#--TODO: polimorphism-->
+<#--<#function productSearch locale productType location >-->
+    <#--<#return ProductSearchBuilder.newInstance().createProductSearch(productType).locale(locale).location(location).build()>-->
+<#--</#function>-->
