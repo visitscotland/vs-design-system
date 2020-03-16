@@ -405,13 +405,7 @@ img {
             data-sizes="auto">
         </vs-img>
 
-        <vs-icon 
-            slot="toggle-icon" 
-            name="instagram" 
-            variant="light" 
-            size="sm" 
-            :padding="0" 
-        />
+        <vs-svg slot="toggle-icon" path="instagram-bg" height="24" width="24" />
 
         <span slot="caption">
             {{ item.caption }}
