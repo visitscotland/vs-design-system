@@ -82,16 +82,22 @@ export default {
         color: $color-white;
         font-family: $headings-font-family;
         font-size: $display1-size;
-        line-height: 1.4;
+        line-height: $line-height-xs;
         display: block;
         text-align: center;
         width: 100%;
-        border-bottom: 1px solid $color-white;
+
+        &:after{
+            content: "";
+            border-bottom: 1px solid $color-white;
+            display: block;
+            margin-top: $spacer-1;
+        }
     }
 
     .count__bg {
         background: $color_secondary_teal;
-        padding: $spacer-3 $spacer-7;
+        padding: $spacer-4 $spacer-7;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -101,7 +107,7 @@ export default {
         padding: $spacer-4;
 
         @include media-breakpoint-up(md) {
-            padding: spacer-8;
+            padding: $spacer-8;
         }
 
         @include media-breakpoint-up(xl) {
@@ -114,7 +120,7 @@ export default {
         flex-direction: column;
         justify-content: center;
         margin-left: $spacer-2;
-        margin-bottom: $spacer-8;
+        margin-bottom: $spacer-5;
 
         @include media-breakpoint-up(md) {
             margin-bottom: 0;
