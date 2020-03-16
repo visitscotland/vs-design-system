@@ -1,5 +1,5 @@
 <template>
-    <figure class="vs-image-with-caption position-relative" :class="isLargeCaption ? 'mb-10' : ''">
+    <figure class="vs-image-with-caption position-relative">
         <div class="vs-image-with-caption__image-wrapper">
             <!-- @slot Contains the media to be shown. Defaults to an image.  -->
             <slot>
@@ -262,7 +262,6 @@ img {
         &.vs-image-with-caption__large-caption {
             @include media-breakpoint-up(sm) {
                 bottom: -48px;
-                right: 1rem;
                 top: auto;
                 width: 330px;
                 height: auto;

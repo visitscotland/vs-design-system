@@ -4,7 +4,7 @@
 			<slot name="hippo-details" />
 
 			<!-- HEADER -->
-            <div class="border-bottom border-white d-flex justify-content-start align-items-top">
+            <div class="d-flex justify-content-start align-items-top border-bottom border-white ">
                 <div class="position-relative">
                     <div class="count__bg">
                     	<span class="count" aria-hidden="true">{{ index }}</span>
@@ -20,22 +20,22 @@
             </div>
 
 			<!-- BODY -->
-			<div>
-				<!-- @slot Contains the image to be shown.  -->
-				<slot name="image-slot" />
+            <div>
+            <!-- @slot Contains the image to be shown.  -->
+            <slot name="image-slot" />
+            
+                <div class="content">
 
-				<div class="content">
-					
-					<div class="intro">
-						<!-- @slot Contains the description to be shown.  -->
-						<slot name="description-slot" />
-					</div>
+                    <div class="intro">
+                        <!-- @slot Contains the description to be shown.  -->
+                        <slot name="description-slot" />
+                    </div>
 
-					<!-- @slot Contains the facilities list to be shown.  -->
-					<slot name="facilities-slot" class="facilities" />
-
-				</div>
-			</div>
+                    <!-- @slot Contains the facilities list to be shown.  -->
+                    <slot name="facilities-slot" class="facilities" />
+                    
+                </div>
+            </div>
     </li>
 </template>
 
@@ -110,8 +110,12 @@ export default {
             padding: $spacer-8;
         }
 
+        @include media-breakpoint-up(lg) {
+            padding: $spacer-9;
+        }
+
         @include media-breakpoint-up(xl) {
-            padding: $spacer-11;
+            padding: $spacer-12;
         }
     }
 
@@ -137,9 +141,15 @@ export default {
 
         .intro {
             overflow-wrap: break-word;
+            margin-top: $spacer-2;
             margin-bottom: $spacer-4;
+
+             @include media-breakpoint-up(sm) {
+               margin-top: $spacer-9;
+            }
             
             @include media-breakpoint-up(md) {
+                margin-top: $spacer-3;
                 margin-right: $spacer-4;
             }
         }
@@ -160,8 +170,8 @@ export default {
             @include media-breakpoint-up(md) {
                 border: initial;
                 border-left: 1px solid $color-gray-tint-5;
-                margin-top: 0;
-                padding: $spacer-8;
+                margin-top: $spacer-11;
+                padding: 0 $spacer-8;
                 width: auto;
             }
 
