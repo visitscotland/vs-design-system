@@ -33,7 +33,7 @@
 
                     <!-- @slot Contains the facilities list to be shown.  -->
                     <slot name="facilities-slot" class="facilities" />
-                    
+
                 </div>
             </div>
     </li>
@@ -91,13 +91,15 @@ export default {
             content: "";
             border-bottom: 1px solid $color-white;
             display: block;
+            margin: $spacer-1 $spacer-6 0;
             margin-top: $spacer-1;
         }
     }
 
     .count__bg {
         background: $color_secondary_teal;
-        padding: $spacer-4 $spacer-7;
+        height: 67px;
+        width: 67px;
         display: flex;
         align-items: center;
         justify-content: center;
