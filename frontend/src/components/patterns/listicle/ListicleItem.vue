@@ -76,7 +76,7 @@ export default {
 <style lang="scss" scoped>
 
 .vs-listicle-item {
-    margin: $spacer-11 0;
+    margin-bottom: $spacer-12;
     
     .count {
         color: $color-white;
@@ -252,16 +252,91 @@ export default {
 				<p data-v-0abaabb3="">The&nbsp;<strong data-v-0abaabb3="">National Museum of Scotland</strong>&nbsp;in&nbsp;<a data-v-0abaabb3="" href="https://en.wikipedia.org/wiki/Edinburgh" title="Edinburgh" target="_blank">Edinburgh</a>, Scotland, was formed in 2006 with the merger of the new&nbsp;<strong data-v-0abaabb3="">Museum of Scotland</strong>, with collections relating to Scottish&nbsp;<a data-v-0abaabb3="" href="https://en.wikipedia.org/wiki/Antiquities" title="Antiquities" target="_blank">antiquities</a>,&nbsp;<a data-v-0abaabb3="" href="https://en.wikipedia.org/wiki/Culture_of_Scotland" title="Culture of Scotland" target="_blank">culture</a>&nbsp;and&nbsp;<a data-v-0abaabb3="" href="https://en.wikipedia.org/wiki/History_of_Scotland" title="History of Scotland" target="_blank">history</a>, and the adjacent&nbsp;<strong data-v-0abaabb3="">Royal Scottish Museum</strong>&nbsp;(so renamed in 1904), with collections covering science and technology,&nbsp;<a data-v-0abaabb3="" href="https://en.wikipedia.org/wiki/Natural_history" title="Natural history" target="_blank">natural history</a>, and world cultures. The two connected buildings stand beside each other on&nbsp;<a data-v-0abaabb3="" href="https://en.wikipedia.org/wiki/Chambers_Street_(Edinburgh)" title="Chambers Street (Edinburgh)" target="_blank">Chambers Street</a>, by the intersection with the&nbsp;<a data-v-0abaabb3="" href="https://en.wikipedia.org/wiki/George_IV_Bridge" title="George IV Bridge" target="_blank">George IV Bridge</a>, in central Edinburgh. The museum is part of&nbsp;<a data-v-0abaabb3="" href="https://en.wikipedia.org/wiki/National_Museums_Scotland" title="National Museums Scotland" target="_blank">National Museums Scotland</a>. Admission is free.</p>
 			</div>
 
-			<div slot="facilities-slot" class="facilities">
-				<vs-icon-description-list v-if="item.facilities.length">
-                    <vs-icon-description-list-detail 
-                        v-for="(facility, facilitiesIndex) in item.facilities"
-                        :key="facilitiesIndex"
-                        :label="facility.value"
-                        :icon="facility.key"
-                        />
-                </vs-icon-description-list>
+			
+		</vs-listicle-item">
+        <vs-listicle-item 
+			v-for="(item, index) in listicles.sampleListicle"
+			key="index"
+			index="1"
+			:title="item.title"
+			:subTitle="item.subTitle"
+			ctaLink=""
+			:ctaLabel="item.ctaLabel"
+		>
+			<div slot="image-slot">
+				<vs-image-with-caption
+					:altText="item.image.altText"
+					:image-src="item.image.imageSrc"
+					:latitude="item.image.latitude"
+					:longitude="item.image.longitude"
+					variant="large"
+				>
+					<vs-img 
+						class="lazyload" 
+						:src="item.image.imageSrc"
+						srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+						:data-srcset="item.image.imageSrc" 
+						:alt="item.image.altText"
+						data-sizes="auto">
+					</vs-img>
+
+					<span slot="caption">
+						{{ item.image.caption }}
+					</span>
+
+					<span slot="credit">
+						&copy; {{ item.image.credit }}
+					</span>
+				</vs-image-with-caption>
 			</div>
+
+			<div slot="description-slot">
+				<p data-v-0abaabb3="">The&nbsp;<strong data-v-0abaabb3="">National Museum of Scotland</strong>&nbsp;in&nbsp;<a data-v-0abaabb3="" href="https://en.wikipedia.org/wiki/Edinburgh" title="Edinburgh" target="_blank">Edinburgh</a>, Scotland, was formed in 2006 with the merger of the new&nbsp;<strong data-v-0abaabb3="">Museum of Scotland</strong>, with collections relating to Scottish&nbsp;<a data-v-0abaabb3="" href="https://en.wikipedia.org/wiki/Antiquities" title="Antiquities" target="_blank">antiquities</a>,&nbsp;<a data-v-0abaabb3="" href="https://en.wikipedia.org/wiki/Culture_of_Scotland" title="Culture of Scotland" target="_blank">culture</a>&nbsp;and&nbsp;<a data-v-0abaabb3="" href="https://en.wikipedia.org/wiki/History_of_Scotland" title="History of Scotland" target="_blank">history</a>, and the adjacent&nbsp;<strong data-v-0abaabb3="">Royal Scottish Museum</strong>&nbsp;(so renamed in 1904), with collections covering science and technology,&nbsp;<a data-v-0abaabb3="" href="https://en.wikipedia.org/wiki/Natural_history" title="Natural history" target="_blank">natural history</a>, and world cultures. The two connected buildings stand beside each other on&nbsp;<a data-v-0abaabb3="" href="https://en.wikipedia.org/wiki/Chambers_Street_(Edinburgh)" title="Chambers Street (Edinburgh)" target="_blank">Chambers Street</a>, by the intersection with the&nbsp;<a data-v-0abaabb3="" href="https://en.wikipedia.org/wiki/George_IV_Bridge" title="George IV Bridge" target="_blank">George IV Bridge</a>, in central Edinburgh. The museum is part of&nbsp;<a data-v-0abaabb3="" href="https://en.wikipedia.org/wiki/National_Museums_Scotland" title="National Museums Scotland" target="_blank">National Museums Scotland</a>. Admission is free.</p>
+			</div>
+
+			
+		</vs-listicle-item">
+        <vs-listicle-item 
+			v-for="(item, index) in listicles.sampleListicle"
+			key="index"
+			index="1"
+			:title="item.title"
+			:subTitle="item.subTitle"
+			ctaLink=""
+			:ctaLabel="item.ctaLabel"
+		>
+			<div slot="image-slot">
+				<vs-image-with-caption
+					:altText="item.image.altText"
+					:image-src="item.image.imageSrc"
+					:latitude="item.image.latitude"
+					:longitude="item.image.longitude"
+					variant="large"
+				>
+					<vs-img 
+						class="lazyload" 
+						:src="item.image.imageSrc"
+						srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+						:data-srcset="item.image.imageSrc" 
+						:alt="item.image.altText"
+						data-sizes="auto">
+					</vs-img>
+
+					<span slot="caption">
+						{{ item.image.caption }}
+					</span>
+
+					<span slot="credit">
+						&copy; {{ item.image.credit }}
+					</span>
+				</vs-image-with-caption>
+			</div>
+
+			<div slot="description-slot">
+				<p data-v-0abaabb3="">The&nbsp;<strong data-v-0abaabb3="">National Museum of Scotland</strong>&nbsp;in&nbsp;<a data-v-0abaabb3="" href="https://en.wikipedia.org/wiki/Edinburgh" title="Edinburgh" target="_blank">Edinburgh</a>, Scotland, was formed in 2006 with the merger of the new&nbsp;<strong data-v-0abaabb3="">Museum of Scotland</strong>, with collections relating to Scottish&nbsp;<a data-v-0abaabb3="" href="https://en.wikipedia.org/wiki/Antiquities" title="Antiquities" target="_blank">antiquities</a>,&nbsp;<a data-v-0abaabb3="" href="https://en.wikipedia.org/wiki/Culture_of_Scotland" title="Culture of Scotland" target="_blank">culture</a>&nbsp;and&nbsp;<a data-v-0abaabb3="" href="https://en.wikipedia.org/wiki/History_of_Scotland" title="History of Scotland" target="_blank">history</a>, and the adjacent&nbsp;<strong data-v-0abaabb3="">Royal Scottish Museum</strong>&nbsp;(so renamed in 1904), with collections covering science and technology,&nbsp;<a data-v-0abaabb3="" href="https://en.wikipedia.org/wiki/Natural_history" title="Natural history" target="_blank">natural history</a>, and world cultures. The two connected buildings stand beside each other on&nbsp;<a data-v-0abaabb3="" href="https://en.wikipedia.org/wiki/Chambers_Street_(Edinburgh)" title="Chambers Street (Edinburgh)" target="_blank">Chambers Street</a>, by the intersection with the&nbsp;<a data-v-0abaabb3="" href="https://en.wikipedia.org/wiki/George_IV_Bridge" title="George IV Bridge" target="_blank">George IV Bridge</a>, in central Edinburgh. The museum is part of&nbsp;<a data-v-0abaabb3="" href="https://en.wikipedia.org/wiki/National_Museums_Scotland" title="National Museums Scotland" target="_blank">National Museums Scotland</a>. Admission is free.</p>
+			</div>
+
+			
 		</vs-listicle-item">
 	</ul>
 ```
