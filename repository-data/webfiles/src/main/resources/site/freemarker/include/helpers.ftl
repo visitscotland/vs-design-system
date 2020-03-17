@@ -17,5 +17,5 @@
 
 <#--TODO: polimorphism-->
 <#--<#function productSearch locale productType location >-->
-    <#--<#return ProductSearchBuilder.newInstance().createProductSearch(productType).locale(locale).location(location).build()>-->
+    <#--<#return ProductSearchBuilder.newInstance().productType(productType).locale(locale).location(location).build()>-->
 <#--</#function>-->

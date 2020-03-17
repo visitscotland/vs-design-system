@@ -1,7 +1,10 @@
 package com.visitscotland.brmx.utils;
 
 import com.visitscotland.brmx.beans.ProductsSearch;
+import com.visitscotland.brmx.beans.dms.LocationObject;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.*;
 
 /**
@@ -22,7 +25,7 @@ public class ProductSearchBuilder {
             this.type = type;
         }
 
-        static ProductType fromType(String type){
+        static ProductType fromValue(String type){
             for (ProductType pt: values()){
                 if (pt.type.equals(type)){
                     return pt;
@@ -32,9 +35,34 @@ public class ProductSearchBuilder {
         }
     }
 
-    static final String PRODUCT_SEARCH = "/info/%s/search-results?&prodtypes=%s";
+    enum Order {
+        DISTANCE("proximityAsc"), NONE(null);
 
-    static final String LOCATION = "locplace";
+        final String value;
+
+        Order  (String value){
+            this.value = value;
+        }
+
+        static Order fromValue(String value){
+            try {
+                 Order order = valueOf(value);
+                 if (order != null){
+                     return order;
+                 }
+            } catch (Exception e){
+                //logger.warn ("Incorrect value for Order + ", value)
+            }
+            return Order.NONE;
+        }
+    }
+
+    static final String PRODUCT_SEARCH = "/info/%s/search-results?&prodtypes=%s";
+    static final String NO_AVAILABILITY_PARAM = "avail=off";
+
+    static final String LOCATION_NAME = "loc";
+    static final String LOCATION_PLACE = "locplace";
+    static final String LOCATION_POLYGON = "locpoly";
     static final String CATEGORY = "cat";
     static final String AWARD = "src_awards__0";
     static final String FACILITY = "fac_id";
@@ -43,15 +71,17 @@ public class ProductSearchBuilder {
     static final String LONGITUDE = "lng";
     static final String PROXIMITY_LOCATION = "locprox";
     static final String PROXIMITY_PIN = "areaproxdist";
+    static final String ORDER = "order";
 
     private String host = Properties.VS_DMS_SERVICE;
 
-    private Integer proximity = 0;
+    private Integer proximity = 10;
     private String url;
     private String location;
     private Double longitude;
     private Double latitude;
     private Locale locale;
+    private Order order = Order.NONE;
 
     private Set<String> categories = new TreeSet<>();
     private Set<String> awards = new TreeSet<>();
@@ -92,20 +122,28 @@ public class ProductSearchBuilder {
         return this;
     }
 
-    public ProductSearchBuilder createProductSearch(String type){
+    public ProductSearchBuilder productType(String type){
         if  (url!=null){
             throw new RuntimeException("A different query has been defined");
-        } else if (ProductType.fromType(type) == null){
+        } else if (ProductType.fromValue(type) == null){
             throw new RuntimeException(String.format("The type %s has not been defined", type));
         }
+        ProductType pt = ProductType.fromValue(type);
 
-        url =  String.format(PRODUCT_SEARCH, ProductType.fromType(type).path, type);
+        //TODO: dejar de ser un chungo y hacer las cosas bien que ya tenemos una edad
+        //TODO test;
+        url =  String.format(PRODUCT_SEARCH, pt.path, type);
+
+        if (pt == ProductType.ACCOMMODATION){
+            url += "&" + NO_AVAILABILITY_PARAM;
+        }
         return this;
     }
 
-    public ProductSearchBuilder createProductSearch(ProductsSearch ps){
+    public ProductSearchBuilder productType(ProductsSearch ps){
         if (ps.getProductType() != null) {
-            ProductSearchBuilder psb = new ProductSearchBuilder().createProductSearch(ps.getProductType());
+            ProductSearchBuilder psb = new ProductSearchBuilder();
+            psb.productType(ps.getProductType());
             psb.location(ps.getLocation());
             psb.category(ps.getDmsCategories());
             psb.facility(ps.getDmsFacilities());
@@ -183,6 +221,12 @@ public class ProductSearchBuilder {
         return this;
     }
 
+    //TODO test
+    public ProductSearchBuilder sortBy(String order){
+        this.order = Order.fromValue(order);
+        return this;
+    }
+
     private boolean valid(String s){
         return  s != null && s.trim().length() > 0 && !s.contains("&");
     }
@@ -203,15 +247,20 @@ public class ProductSearchBuilder {
         String compose = host + url;
 
         if (location != null) {
-            compose = addParam(compose, LOCATION, LocationLoader.getLocation(location, locale).getName());
+            LocationObject loc = LocationLoader.getLocation(location, locale);
+
+            compose = addParam(compose, "POLYGON".equals(loc.getType())?LOCATION_POLYGON: LOCATION_PLACE, loc.getId());
             compose = addParam(compose, PROXIMITY_LOCATION, proximity.toString());
+
+            try {
+                compose = addParam(compose, LOCATION_NAME, URLEncoder.encode(loc.getName(), "UTF-8"));
+            } catch (UnsupportedEncodingException e){
+                //TODO logger.error("Unexpected UnsupportedEncodingException for UTF-8",e)
+            }
         } else if (latitude != null && longitude != null){
             compose = addParam(compose, LATITUDE, latitude.toString());
             compose = addParam(compose, LONGITUDE, longitude.toString());
             compose = addParam(compose, PROXIMITY_PIN, proximity.toString());
-        } else {
-            //TODO: Should we default to Scotland?
-            throw new RuntimeException("No location defined");
         }
 
 
@@ -219,6 +268,8 @@ public class ProductSearchBuilder {
         compose = addParam(compose, AWARD, awards);
         compose = addParam(compose, FACILITY, facilities);
         compose = addParam(compose, RATING, ratings);
+
+        compose = addParam(compose, ORDER, order.value);
 
 
         return compose;

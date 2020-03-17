@@ -173,7 +173,7 @@ public class ListicleContentComponent extends PageContentComponent<Listicle> {
         } else if (item instanceof ProductSearchLink) {
             ProductSearchLink productSearchLink = (ProductSearchLink) item;
             ProductSearchBuilder psb = new ProductSearchBuilder()
-                    .createProductSearch(productSearchLink.getSearch()).locale(request.getLocale());
+                    .productType(productSearchLink.getSearch()).locale(request.getLocale());
 
             return new FlatLink(this.getCtaLabel(productSearchLink.getLabel(), request.getLocale()), psb.build());
 
