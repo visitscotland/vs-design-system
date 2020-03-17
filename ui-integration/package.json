@@ -13,10 +13,10 @@
     "webpack-cli": "^3.3.7"
   },
   "scripts": {
-    "install:local": "yarn --cwd ../frontend/",
+    "preinstall": "yarn install:frontend",
     "install:frontend": "yarn --cwd ../frontend/",
-    "build:local": "webpack --config webpack.config.js",
     "build:frontend": "yarn --cwd ../frontend/ build:system:components ",
-    "build": "yarn install:frontend && yarn build:frontend && yarn build:local"
+    "build:integrate": "webpack --config webpack.config.js",
+    "build": "yarn build:frontend && yarn build:integrate"
   }
 }
