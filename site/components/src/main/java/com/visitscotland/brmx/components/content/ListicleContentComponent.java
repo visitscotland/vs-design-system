@@ -113,7 +113,7 @@ public class ListicleContentComponent extends PageContentComponent<Listicle> {
                                 //TODO: SET ALT-TEXT, CREDITS AND DESCRIPTION
                                 model.setImage(image);
                             }else{
-                                if (model.getImage().getSource().equals(FlatImage.Source.INSTAGRAM)){
+                                if (model.getImage().getSource()!=null && model.getImage().getSource().equals(FlatImage.Source.INSTAGRAM)){
                                     Coordinates coordinates = new Coordinates(product.getDouble(LATITUDE),product.getDouble(LONGITUDE));
                                     model.getImage().setCoordinates(coordinates);
                                 }
