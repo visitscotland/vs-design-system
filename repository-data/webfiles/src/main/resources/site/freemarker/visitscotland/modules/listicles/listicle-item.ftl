@@ -52,7 +52,7 @@
 		</div>
 
 		<#if image?has_content>
-			<div slot="image-slot">
+			<div slot="image-slot" class="mb-9">
 				<vs-image-with-caption
 					alt-text="${(item.image.altText)!'${label("essentials.global", "default.alt-text")}'}"
 					alt="${(item.image.altText)!'${label("essentials.global", "default.alt-text")}'}"
