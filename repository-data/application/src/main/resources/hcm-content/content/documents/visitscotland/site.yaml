@@ -669,8 +669,9 @@
           visitscotland:producttype: ''
     /listicle:
       jcr:primaryType: hippostd:folder
-      jcr:mixinTypes: ['hippotranslation:translated', 'mix:versionable']
+      jcr:mixinTypes: ['hippo:named', 'hippotranslation:translated', 'mix:versionable']
       jcr:uuid: 561f1f1d-d7b4-436e-b99f-5c870657699b
+      hippo:name: listicle
       hippostd:foldertype: [new-translated-folder, new-document]
       hippotranslation:id: 923a38ca-d08f-4c71-be60-76ef9ee33f4f
       hippotranslation:locale: en
@@ -687,7 +688,7 @@
           hippostd:state: draft
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2020-02-27T13:17:22.069Z
-          hippostdpubwf:lastModificationDate: 2020-03-09T13:15:46.073Z
+          hippostdpubwf:lastModificationDate: 2020-03-17T11:17:36.062Z
           hippostdpubwf:lastModifiedBy: admin
           hippotranslation:id: 7d4f9ca4-76eb-40a1-a793-29efa7f1ae68
           hippotranslation:locale: en
@@ -950,9 +951,10 @@
               visitscotland:producttype: acti,attr,reta
       /edinburgh-castle:
         jcr:primaryType: hippo:handle
-        jcr:mixinTypes: ['hippo:named', 'mix:referenceable']
+        jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
         jcr:uuid: f86e10db-c111-4855-8e85-9952ca6efe8d
         hippo:name: Edinburgh Castle
+        hippo:versionHistory: 8eb0fd1f-9abc-40db-8a96-9e5fb166976f
         /edinburgh-castle[1]:
           jcr:primaryType: visitscotland:ListicleItem
           jcr:mixinTypes: ['mix:referenceable']
@@ -1003,11 +1005,38 @@
             jcr:primaryType: visitscotland:DMSLink
             visitscotland:label: Edinburgh castle
             visitscotland:product: '245821'
+        /edinburgh-castle[3]:
+          jcr:primaryType: visitscotland:ListicleItem
+          jcr:mixinTypes: ['mix:referenceable']
+          jcr:uuid: c2fa6984-fd6e-4e8f-90c9-63367d936a8d
+          hippo:availability: [live]
+          hippostd:state: published
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2020-02-27T13:21:08.257Z
+          hippostdpubwf:lastModificationDate: 2020-03-09T09:50:44.970Z
+          hippostdpubwf:lastModifiedBy: admin
+          hippostdpubwf:publicationDate: 2020-03-12T11:34:40.837Z
+          hippotranslation:id: 25df6d19-f276-49c9-b0e7-5a76254666fe
+          hippotranslation:locale: en
+          visitscotland:subtitle: ''
+          visitscotland:title: Edinburgh Castle
+          /visitscotland:description:
+            jcr:primaryType: hippostd:html
+            hippostd:content: <p><a href="https://www.visitscotland.com/info/see-do/edinburgh-castle-p245821"
+              title="Edinburgh Castle">Edinburgh Castle</a> is a true icon of Scotland
+              and has dominated the skyline of the capital for centuries. Unusually,
+              it's set atop of an extinct volcano. It takes the title of Scotland's
+              most-visited paid-for attraction.</p>
+          /visitscotland:products:
+            jcr:primaryType: visitscotland:DMSLink
+            visitscotland:label: Edinburgh castle
+            visitscotland:product: '245821'
       /scottish-national-gallery:
         jcr:primaryType: hippo:handle
-        jcr:mixinTypes: ['hippo:named', 'mix:referenceable']
+        jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
         jcr:uuid: 6e561976-738b-450a-95e0-b1ba4787b530
         hippo:name: Scottish National Gallery
+        hippo:versionHistory: 0bebcb05-8873-4382-a150-b259787dab8e
         /scottish-national-gallery[1]:
           jcr:primaryType: visitscotland:ListicleItem
           jcr:mixinTypes: ['mix:referenceable']
@@ -1048,6 +1077,37 @@
           hippostdpubwf:creationDate: 2020-02-27T13:22:47.621Z
           hippostdpubwf:lastModificationDate: 2020-02-27T13:40:43.373Z
           hippostdpubwf:lastModifiedBy: admin
+          hippotranslation:id: d064dde7-8e4a-42d5-a8cb-c42dba495b3f
+          hippotranslation:locale: en
+          visitscotland:subtitle: ''
+          visitscotland:title: Scottish National Gallery
+          /visitscotland:description:
+            jcr:primaryType: hippostd:html
+            hippostd:content: <p><a href="https://www.visitscotland.com/info/see-do/scottish-national-gallery-p246151"
+              title="Scottish National Gallery">Scottish National Gallery</a> houses
+              Scotland's national collection of fine art from the early Renaissance
+              to the end of the 19th century. The walls are adorned with masterpieces,
+              from Raphael, Velázquez and Vermeer to Monet, Cézanne and Van Gogh,
+              as well as works of Scottish artists.</p>
+          /visitscotland:products:
+            jcr:primaryType: visitscotland:DMSLink
+            visitscotland:label: Come to the Great Scottish National Gallery
+            visitscotland:product: '246151'
+          /visitscotland:images:
+            jcr:primaryType: visitscotland:InstagramImage
+            visitscotland:caption: Robert Burns visits the Gallery
+            visitscotland:id: B7vTqg4gZsR
+        /scottish-national-gallery[3]:
+          jcr:primaryType: visitscotland:ListicleItem
+          jcr:mixinTypes: ['mix:referenceable']
+          jcr:uuid: 8dd43fec-59a8-473b-84c1-0e755ffffab7
+          hippo:availability: [live]
+          hippostd:state: published
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2020-02-27T13:22:47.621Z
+          hippostdpubwf:lastModificationDate: 2020-02-27T13:40:43.373Z
+          hippostdpubwf:lastModifiedBy: admin
+          hippostdpubwf:publicationDate: 2020-03-12T11:34:42.574Z
           hippotranslation:id: d064dde7-8e4a-42d5-a8cb-c42dba495b3f
           hippotranslation:locale: en
           visitscotland:subtitle: ''
@@ -2743,3 +2803,219 @@
           /visitscotland:stops[3]:
             jcr:primaryType: hippo:mirror
             hippo:docbase: dd98ed46-1531-4bbf-b47f-394ebca903f5
+    /12-iconic-scottish-views:
+      jcr:primaryType: hippostd:folder
+      jcr:mixinTypes: ['hippo:named', 'hippotranslation:translated', 'mix:versionable']
+      jcr:uuid: a8a60383-ca47-4dba-9671-d8654609fcf7
+      hippo:name: 12 Iconic Scottish Views
+      hippostd:foldertype: [new-translated-folder, new-document]
+      hippotranslation:id: 7f14fd94-0c5b-4c48-a82f-e5d55dbc31f1
+      hippotranslation:locale: en
+      /content:
+        jcr:primaryType: hippo:handle
+        jcr:mixinTypes: ['hippo:versionInfo', 'mix:referenceable']
+        jcr:uuid: 17a3588b-6cee-439b-acd8-186ceb2067aa
+        hippo:versionHistory: e80820ff-2627-4a45-a185-d74023d238e5
+        /content[1]:
+          jcr:primaryType: visitscotland:Listicle
+          jcr:mixinTypes: ['mix:referenceable']
+          jcr:uuid: e9f9e393-b112-43fe-a08b-828f062d4a3e
+          hippo:availability: []
+          hippostd:state: draft
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2020-03-17T11:17:48.546Z
+          hippostdpubwf:lastModificationDate: 2020-03-17T11:23:27.330Z
+          hippostdpubwf:lastModifiedBy: admin
+          hippotranslation:id: aced74d3-03f8-4ed2-9592-dd31975f29cf
+          hippotranslation:locale: en
+          visitscotland:breadcrumb: ''
+          visitscotland:descOrder: false
+          visitscotland:seoDescription: Find some of the most beautiful places in
+            Scotland, including iconic viewpoints and lesser known gems, alongside
+            advice on how to get there.
+          visitscotland:seoNoIndex: false
+          visitscotland:seoTitle: 12 Iconic Scottish Views
+          visitscotland:teaser: Find some of the most beautiful places in Scotland,
+            including iconic viewpoints and lesser known gems, alongside advice on
+            how to get there.
+          visitscotland:title: 12 Iconic Scottish Views
+          /visitscotland:heroImage:
+            jcr:primaryType: hippogallerypicker:imagelink
+            hippo:docbase: 878bc413-07fe-4c1a-9df6-55514c250a16
+            hippo:facets: []
+            hippo:modes: []
+            hippo:values: []
+          /visitscotland:introduction:
+            jcr:primaryType: hippostd:html
+            hippostd:content: |-
+              <p>Looking for the most beautiful places to see in Scotland? Want iconic Scottish views and places where you can appreciate the jaw dropping Scottish landscapes in all their glory? We can help!</p>
+
+              <p>These 12 viewpoints are a mixture of well-known hot spots that offer some of the best views in Scotland - and lesser-known gems where you'll definitely want to stop and drink in the amazing Scottish scenery.</p>
+        /content[2]:
+          jcr:primaryType: visitscotland:Listicle
+          jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
+          jcr:uuid: d4149aca-4d04-461e-a518-596b99bd5120
+          hippo:availability: [preview]
+          hippostd:state: unpublished
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2020-03-17T11:17:48.546Z
+          hippostdpubwf:lastModificationDate: 2020-03-17T11:23:27.233Z
+          hippostdpubwf:lastModifiedBy: admin
+          hippotranslation:id: aced74d3-03f8-4ed2-9592-dd31975f29cf
+          hippotranslation:locale: en
+          visitscotland:breadcrumb: ''
+          visitscotland:descOrder: false
+          visitscotland:seoDescription: Find some of the most beautiful places in
+            Scotland, including iconic viewpoints and lesser known gems, alongside
+            advice on how to get there.
+          visitscotland:seoNoIndex: false
+          visitscotland:seoTitle: 12 Iconic Scottish Views
+          visitscotland:teaser: Find some of the most beautiful places in Scotland,
+            including iconic viewpoints and lesser known gems, alongside advice on
+            how to get there.
+          visitscotland:title: 12 Iconic Scottish Views
+          /visitscotland:heroImage:
+            jcr:primaryType: hippogallerypicker:imagelink
+            hippo:docbase: 878bc413-07fe-4c1a-9df6-55514c250a16
+            hippo:facets: []
+            hippo:modes: []
+            hippo:values: []
+          /visitscotland:introduction:
+            jcr:primaryType: hippostd:html
+            hippostd:content: |-
+              <p>Looking for the most beautiful places to see in Scotland? Want iconic Scottish views and places where you can appreciate the jaw dropping Scottish landscapes in all their glory? We can help!</p>
+
+              <p>These 12 viewpoints are a mixture of well-known hot spots that offer some of the best views in Scotland - and lesser-known gems where you'll definitely want to stop and drink in the amazing Scottish scenery.</p>
+        /content[3]:
+          jcr:primaryType: visitscotland:Listicle
+          jcr:mixinTypes: ['mix:referenceable']
+          jcr:uuid: 35621165-abfa-4629-9591-55a8bd71066c
+          hippo:availability: [live]
+          hippostd:state: published
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2020-03-17T11:17:48.546Z
+          hippostdpubwf:lastModificationDate: 2020-03-17T11:23:27.233Z
+          hippostdpubwf:lastModifiedBy: admin
+          hippostdpubwf:publicationDate: 2020-03-17T11:23:30.429Z
+          hippotranslation:id: aced74d3-03f8-4ed2-9592-dd31975f29cf
+          hippotranslation:locale: en
+          visitscotland:breadcrumb: ''
+          visitscotland:descOrder: false
+          visitscotland:seoDescription: Find some of the most beautiful places in
+            Scotland, including iconic viewpoints and lesser known gems, alongside
+            advice on how to get there.
+          visitscotland:seoNoIndex: false
+          visitscotland:seoTitle: 12 Iconic Scottish Views
+          visitscotland:teaser: Find some of the most beautiful places in Scotland,
+            including iconic viewpoints and lesser known gems, alongside advice on
+            how to get there.
+          visitscotland:title: 12 Iconic Scottish Views
+          /visitscotland:heroImage:
+            jcr:primaryType: hippogallerypicker:imagelink
+            hippo:docbase: 878bc413-07fe-4c1a-9df6-55514c250a16
+            hippo:facets: []
+            hippo:modes: []
+            hippo:values: []
+          /visitscotland:introduction:
+            jcr:primaryType: hippostd:html
+            hippostd:content: |-
+              <p>Looking for the most beautiful places to see in Scotland? Want iconic Scottish views and places where you can appreciate the jaw dropping Scottish landscapes in all their glory? We can help!</p>
+
+              <p>These 12 viewpoints are a mixture of well-known hot spots that offer some of the best views in Scotland - and lesser-known gems where you'll definitely want to stop and drink in the amazing Scottish scenery.</p>
+      /scotts-view-scottish-borders:
+        jcr:primaryType: hippo:handle
+        jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
+        jcr:uuid: 8ebe58c3-71a8-4c3a-b427-b14f94f80a78
+        hippo:name: Scott's View Scottish Borders
+        hippo:versionHistory: 9c2abd1d-a224-4981-a121-a8aa098c39e0
+        /scotts-view-scottish-borders[1]:
+          jcr:primaryType: visitscotland:ListicleItem
+          jcr:mixinTypes: ['mix:referenceable']
+          jcr:uuid: fe7c91d7-c98f-459f-b82f-51bb77c36840
+          hippo:availability: []
+          hippostd:state: draft
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2020-03-17T11:26:00.217Z
+          hippostdpubwf:lastModificationDate: 2020-03-17T13:19:54.970Z
+          hippostdpubwf:lastModifiedBy: admin
+          hippotranslation:id: b5a43011-6ee7-495c-862c-49cacb71d3eb
+          hippotranslation:locale: en
+          visitscotland:subtitle: Scottish Borders
+          visitscotland:title: Scott's View
+          /visitscotland:description:
+            jcr:primaryType: hippostd:html
+            hippostd:content: |-
+              <p>Soak up the peaceful vista at Sir Walter Scott's favourite viewpoint. Things to look out for include the fast-flowing River Tweed, famous for its underwater residents - huge wild salmon - and the prominent Eildon Hills, which are all that remain of an ancient volcano. Iron Age people and Romans once lived on top of these hills.</p>
+
+              <p>How to get there: Follow the B6356 to the viewpoint, near Bemersyde.</p>
+          /visitscotland:products:
+            jcr:primaryType: visitscotland:DMSLink
+            visitscotland:label: Discover more
+            visitscotland:product: '1420761'
+          /visitscotland:images:
+            jcr:primaryType: hippogallerypicker:imagelink
+            hippo:docbase: f0fe0f26-489b-4a2e-b6c5-605df1abbdcb
+            hippo:facets: []
+            hippo:modes: []
+            hippo:values: []
+        /scotts-view-scottish-borders[2]:
+          jcr:primaryType: visitscotland:ListicleItem
+          jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
+          jcr:uuid: aa71e0a7-1fc9-4d12-9110-76fb8840ea06
+          hippo:availability: [preview]
+          hippostd:state: unpublished
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2020-03-17T11:26:00.217Z
+          hippostdpubwf:lastModificationDate: 2020-03-17T13:19:54.877Z
+          hippostdpubwf:lastModifiedBy: admin
+          hippotranslation:id: b5a43011-6ee7-495c-862c-49cacb71d3eb
+          hippotranslation:locale: en
+          visitscotland:subtitle: Scottish Borders
+          visitscotland:title: Scott's View
+          /visitscotland:description:
+            jcr:primaryType: hippostd:html
+            hippostd:content: |-
+              <p>Soak up the peaceful vista at Sir Walter Scott's favourite viewpoint. Things to look out for include the fast-flowing River Tweed, famous for its underwater residents - huge wild salmon - and the prominent Eildon Hills, which are all that remain of an ancient volcano. Iron Age people and Romans once lived on top of these hills.</p>
+
+              <p>How to get there: Follow the B6356 to the viewpoint, near Bemersyde.</p>
+          /visitscotland:products:
+            jcr:primaryType: visitscotland:DMSLink
+            visitscotland:label: Discover more
+            visitscotland:product: '1420761'
+          /visitscotland:images:
+            jcr:primaryType: hippogallerypicker:imagelink
+            hippo:docbase: f0fe0f26-489b-4a2e-b6c5-605df1abbdcb
+            hippo:facets: []
+            hippo:modes: []
+            hippo:values: []
+        /scotts-view-scottish-borders[3]:
+          jcr:primaryType: visitscotland:ListicleItem
+          jcr:mixinTypes: ['mix:referenceable']
+          jcr:uuid: 13bdf56b-df9d-4b4b-b1ca-af366391214c
+          hippo:availability: [live]
+          hippostd:state: published
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2020-03-17T11:26:00.217Z
+          hippostdpubwf:lastModificationDate: 2020-03-17T13:19:54.877Z
+          hippostdpubwf:lastModifiedBy: admin
+          hippostdpubwf:publicationDate: 2020-03-17T13:19:58.245Z
+          hippotranslation:id: b5a43011-6ee7-495c-862c-49cacb71d3eb
+          hippotranslation:locale: en
+          visitscotland:subtitle: Scottish Borders
+          visitscotland:title: Scott's View
+          /visitscotland:description:
+            jcr:primaryType: hippostd:html
+            hippostd:content: |-
+              <p>Soak up the peaceful vista at Sir Walter Scott's favourite viewpoint. Things to look out for include the fast-flowing River Tweed, famous for its underwater residents - huge wild salmon - and the prominent Eildon Hills, which are all that remain of an ancient volcano. Iron Age people and Romans once lived on top of these hills.</p>
+
+              <p>How to get there: Follow the B6356 to the viewpoint, near Bemersyde.</p>
+          /visitscotland:products:
+            jcr:primaryType: visitscotland:DMSLink
+            visitscotland:label: Discover more
+            visitscotland:product: '1420761'
+          /visitscotland:images:
+            jcr:primaryType: hippogallerypicker:imagelink
+            hippo:docbase: f0fe0f26-489b-4a2e-b6c5-605df1abbdcb
+            hippo:facets: []
+            hippo:modes: []
+            hippo:values: []

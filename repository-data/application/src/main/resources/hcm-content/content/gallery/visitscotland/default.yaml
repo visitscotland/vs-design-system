@@ -187,3 +187,62 @@
           resource: /content/gallery/visitscotland/default/royal-botanic-garden.jpg/royal-botanic-garden.jpg/original/original.jpg
         jcr:lastModified: 2020-03-03T10:26:48.136Z
         jcr:mimeType: image/jpeg
+  /header-iconicviewpoints.jpg:
+    jcr:primaryType: hippo:handle
+    jcr:mixinTypes: ['mix:referenceable']
+    jcr:uuid: 878bc413-07fe-4c1a-9df6-55514c250a16
+    /header-iconicviewpoints.jpg:
+      jcr:primaryType: visitscotland:Image
+      hippo:availability: [live, preview]
+      hippogallery:description: Bealach na Bà, Applecross
+      hippogallery:filename: header-iconicviewpoints.jpg
+      visitscotland:altText: ''
+      visitscotland:credit: Kenny Lam
+      visitscotland:location: Applecross
+      /hippogallery:thumbnail:
+        jcr:primaryType: hippogallery:image
+        hippo:filename: header-iconicviewpoints.jpg
+        hippogallery:height: 23
+        hippogallery:width: 60
+        jcr:data:
+          type: binary
+          resource: /content/gallery/visitscotland/default/header-iconicviewpoints.jpg/header-iconicviewpoints.jpg/thumbnail/thumbnail.jpg
+        jcr:lastModified: 2020-03-17T11:21:33.976Z
+        jcr:mimeType: image/jpeg
+      /hippogallery:original:
+        jcr:primaryType: hippogallery:image
+        hippogallery:height: 800
+        hippogallery:width: 2048
+        jcr:data:
+          type: binary
+          resource: /content/gallery/visitscotland/default/header-iconicviewpoints.jpg/header-iconicviewpoints.jpg/original/original.jpg
+        jcr:lastModified: 2020-03-17T11:21:33.976Z
+        jcr:mimeType: image/jpeg
+  /scotts--view-lothar-stobbe-instagram-lairdsphotography.jpg:
+    jcr:primaryType: hippo:handle
+    jcr:mixinTypes: ['hippo:named', 'mix:referenceable']
+    jcr:uuid: f0fe0f26-489b-4a2e-b6c5-605df1abbdcb
+    hippo:name: Scotts--view-lothar-stobbe-instagram-lairdsphotography.jpg
+    /scotts--view-lothar-stobbe-instagram-lairdsphotography.jpg:
+      jcr:primaryType: visitscotland:Image
+      hippo:availability: [live, preview]
+      hippogallery:filename: Scotts--view-lothar-stobbe-instagram-lairdsphotography.jpg
+      /hippogallery:thumbnail:
+        jcr:primaryType: hippogallery:image
+        hippo:filename: Scotts--view-lothar-stobbe-instagram-lairdsphotography.jpg
+        hippogallery:height: 40
+        hippogallery:width: 60
+        jcr:data:
+          type: binary
+          resource: /content/gallery/visitscotland/default/scotts--view-lothar-stobbe-instagram-lairdsphotography.jpg/scotts--view-lothar-stobbe-instagram-lairdsphotography.jpg/thumbnail/thumbnail.jpg
+        jcr:lastModified: 2020-03-17T11:33:58.272Z
+        jcr:mimeType: image/jpeg
+      /hippogallery:original:
+        jcr:primaryType: hippogallery:image
+        hippogallery:height: 400
+        hippogallery:width: 600
+        jcr:data:
+          type: binary
+          resource: /content/gallery/visitscotland/default/scotts--view-lothar-stobbe-instagram-lairdsphotography.jpg/scotts--view-lothar-stobbe-instagram-lairdsphotography.jpg/original/original.jpg
+        jcr:lastModified: 2020-03-17T11:33:58.272Z
+        jcr:mimeType: image/jpeg

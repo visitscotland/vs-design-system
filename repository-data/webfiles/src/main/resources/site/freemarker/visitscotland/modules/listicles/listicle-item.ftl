@@ -72,7 +72,12 @@
 					</#if>
 
 					<#if item.image.source?has_content>
-						<vs-svg slot="toggle-icon" path="instagram-bg" height="24" width="24" />
+						<vs-icon
+							slot="toggle-icon"
+							name="${item.image.source}"
+							variant="light"
+							size="sm"
+						></vs-icon>
 
 						<vs-social-credit-link
 							slot="social-link"
