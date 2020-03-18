@@ -52,7 +52,7 @@
 		</div>
 
 		<#if image?has_content>
-			<div slot="image-slot" class="mb-9">
+			<div slot="image-slot">
 				<vs-image-with-caption
 					alt-text="${(item.image.altText)!'${label("essentials.global", "default.alt-text")}'}"
 					alt="${(item.image.altText)!'${label("essentials.global", "default.alt-text")}'}"
@@ -104,7 +104,7 @@
 		</div>
 
 		<#if item.facilities?? && item.facilities?size gt 1>
-			<div slot="facilities-slot" class="facilities">
+			<div slot="facilities-slot">
 				<vs-icon-description-list>
 					<#list item.facilities as facility>
 						<vs-icon-description-list-detail

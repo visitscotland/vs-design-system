@@ -21,8 +21,8 @@
 
 			<!-- BODY -->
             <div>
-            <!-- @slot Contains the image to be shown.  -->
-            <slot name="image-slot" />
+                <!-- @slot Contains the image to be shown.  -->
+                <slot name="image-slot" />
             
                 <div class="content">
 
@@ -30,10 +30,11 @@
                         <!-- @slot Contains the description to be shown.  -->
                         <slot name="description-slot" />
                     </div>
-
-                    <!-- @slot Contains the facilities list to be shown.  -->
-                    <slot name="facilities-slot" class="facilities" />
-
+                    
+                    <div class="facilities border-top">
+                        <!-- @slot Contains the facilities list to be shown.  -->
+                        <slot name="facilities-slot"  />
+                    </div>
                 </div>
             </div>
     </li>
@@ -161,16 +162,13 @@ export default {
         }
 
         .facilities {
-            border-top: 1px solid $color-gray-tint-5;
-
-
             @include media-breakpoint-down(xs) {
                 min-width: calc(100% + 2rem);
                 margin-left: -1rem;
             }
 
             @include media-breakpoint-up(md) {
-                border: initial;
+                border-top: 0!important;
                 border-left: 1px solid $color-gray-tint-5;
                 margin-top: $spacer-11;
                 padding: 0 $spacer-8;
@@ -336,7 +334,30 @@ export default {
 				<p data-v-0abaabb3="">The&nbsp;<strong data-v-0abaabb3="">National Museum of Scotland</strong>&nbsp;in&nbsp;<a data-v-0abaabb3="" href="https://en.wikipedia.org/wiki/Edinburgh" title="Edinburgh" target="_blank">Edinburgh</a>, Scotland, was formed in 2006 with the merger of the new&nbsp;<strong data-v-0abaabb3="">Museum of Scotland</strong>, with collections relating to Scottish&nbsp;<a data-v-0abaabb3="" href="https://en.wikipedia.org/wiki/Antiquities" title="Antiquities" target="_blank">antiquities</a>,&nbsp;<a data-v-0abaabb3="" href="https://en.wikipedia.org/wiki/Culture_of_Scotland" title="Culture of Scotland" target="_blank">culture</a>&nbsp;and&nbsp;<a data-v-0abaabb3="" href="https://en.wikipedia.org/wiki/History_of_Scotland" title="History of Scotland" target="_blank">history</a>, and the adjacent&nbsp;<strong data-v-0abaabb3="">Royal Scottish Museum</strong>&nbsp;(so renamed in 1904), with collections covering science and technology,&nbsp;<a data-v-0abaabb3="" href="https://en.wikipedia.org/wiki/Natural_history" title="Natural history" target="_blank">natural history</a>, and world cultures. The two connected buildings stand beside each other on&nbsp;<a data-v-0abaabb3="" href="https://en.wikipedia.org/wiki/Chambers_Street_(Edinburgh)" title="Chambers Street (Edinburgh)" target="_blank">Chambers Street</a>, by the intersection with the&nbsp;<a data-v-0abaabb3="" href="https://en.wikipedia.org/wiki/George_IV_Bridge" title="George IV Bridge" target="_blank">George IV Bridge</a>, in central Edinburgh. The museum is part of&nbsp;<a data-v-0abaabb3="" href="https://en.wikipedia.org/wiki/National_Museums_Scotland" title="National Museums Scotland" target="_blank">National Museums Scotland</a>. Admission is free.</p>
 			</div>
 
-			
+			<div slot="facilities-slot">
+				<vs-icon-description-list>
+                    <vs-icon-description-list-detail
+                        icon="facility-petswelcom"
+                        label="Pets Welcome">
+                    </vs-icon-description-list-detail>
+                    <vs-icon-description-list-detail
+                        icon="facility-dsblaccess"
+                        label="Wheelchair Access">
+                    </vs-icon-description-list-detail>
+                    <vs-icon-description-list-detail
+                        icon="facility-accessparkdrop"
+                        label="Access Parking">
+                    </vs-icon-description-list-detail>
+                    <vs-icon-description-list-detail
+                        icon="facility-audioloop"
+                        label="Hearing Loop">
+                    </vs-icon-description-list-detail>
+                    <vs-icon-description-list-detail
+                        icon="facility-wifi"
+                        label="WiFi">
+                    </vs-icon-description-list-detail>
+				</vs-icon-description-list>
+			</div>
 		</vs-listicle-item">
 	</ul>
 ```
