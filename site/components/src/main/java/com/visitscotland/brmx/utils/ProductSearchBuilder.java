@@ -2,6 +2,8 @@ package com.visitscotland.brmx.utils;
 
 import com.visitscotland.brmx.beans.ProductsSearch;
 import com.visitscotland.brmx.beans.dms.LocationObject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
@@ -12,7 +14,9 @@ import java.util.*;
  */
 public class ProductSearchBuilder {
 
-    //TODO The only allowed type is accomodation, define rest of them and refactor enum
+    private static final Logger logger = LoggerFactory.getLogger(ProductSearchBuilder.class.getName());
+
+    //TODO The only allowed type is accommodation, define rest of them and refactor enum
     enum ProductType {
         ACCOMMODATION("accommodation", "acco"),
         RESTAURANTS("food-drink", "cate");
@@ -57,8 +61,8 @@ public class ProductSearchBuilder {
         }
     }
 
-    static final String PRODUCT_SEARCH = "/info/%s/search-results?&prodtypes=%s";
-    static final String NO_AVAILABILITY_PARAM = "avail=off";
+    static final String PRODUCT_SEARCH = "%s/info/%s/search-results?&prodtypes=%s";
+    static final String AVAILABILITY = "avail=off";
 
     static final String LOCATION_NAME = "loc";
     static final String LOCATION_PLACE = "locplace";
@@ -75,6 +79,7 @@ public class ProductSearchBuilder {
 
     private String host = Properties.VS_DMS_SERVICE;
 
+    private ProductType type;
     private Integer proximity = 10;
     private String url;
     private String location;
@@ -123,20 +128,11 @@ public class ProductSearchBuilder {
     }
 
     public ProductSearchBuilder productType(String type){
-        if  (url!=null){
-            throw new RuntimeException("A different query has been defined");
-        } else if (ProductType.fromValue(type) == null){
-            throw new RuntimeException(String.format("The type %s has not been defined", type));
-        }
         ProductType pt = ProductType.fromValue(type);
-
-        //TODO: dejar de ser un chungo y hacer las cosas bien que ya tenemos una edad
-        //TODO test;
-        url =  String.format(PRODUCT_SEARCH, pt.path, type);
-
-        if (pt == ProductType.ACCOMMODATION){
-            url += "&" + NO_AVAILABILITY_PARAM;
+        if (ProductType.fromValue(type) != null){
+            this.type = pt;
         }
+
         return this;
     }
 
@@ -236,16 +232,25 @@ public class ProductSearchBuilder {
     }
 
     /**
-     * Builds the URL
+     * Builds the URL based on the configuration defined.
+     *
+     * It will return an exception if
+     *
      * @return
      */
     public String build(){
-        if (url == null){
-            throw new RuntimeException("the main query has not been defined");
+        if (type == null){
+            throw new RuntimeException(String.format("The type %s has not been defined", type));
         }
 
-        String compose = host + url;
+        String compose =  String.format(PRODUCT_SEARCH, host==null?"":host, type.path, type.type);
 
+        //Accommotions MUST deactivate avalavility search
+        if (type == ProductType.ACCOMMODATION){
+            compose = addParam(compose, AVAILABILITY, "off");
+        }
+
+        //The list of parameters is different if a location is provided from latitude and longitude
         if (location != null) {
             LocationObject loc = LocationLoader.getLocation(location, locale);
 
@@ -255,7 +260,7 @@ public class ProductSearchBuilder {
             try {
                 compose = addParam(compose, LOCATION_NAME, URLEncoder.encode(loc.getName(), "UTF-8"));
             } catch (UnsupportedEncodingException e){
-                //TODO logger.error("Unexpected UnsupportedEncodingException for UTF-8",e)
+                logger.error("Unexpected UnsupportedEncodingException for UTF-8",e);
             }
         } else if (latitude != null && longitude != null){
             compose = addParam(compose, LATITUDE, latitude.toString());
@@ -263,35 +268,53 @@ public class ProductSearchBuilder {
             compose = addParam(compose, PROXIMITY_PIN, proximity.toString());
         }
 
-
+        //Add categories, awards, facilities and rating
         compose = addParam(compose, CATEGORY, categories);
         compose = addParam(compose, AWARD, awards);
         compose = addParam(compose, FACILITY, facilities);
         compose = addParam(compose, RATING, ratings);
 
+        //Sort the list
         compose = addParam(compose, ORDER, order.value);
-
 
         return compose;
     }
 
-    private String addParam(String compose, String param, String var){
-        if (var == null) {
-            return compose;
-        } else if (compose.endsWith("?")){
-            return compose + param + "=" + var;
+    /**
+     * Add one parameter to a url, provided the parameter has a value
+     *
+     * @param url URL where the parameter will be added to
+     * @param param name of the parameter to be added
+     * @param value value of the parameter
+     *
+     * @return composed URL with the parameter
+     */
+    private String addParam(String url, String param, String value){
+        if (value == null) {
+            return url;
+        } else if (url.endsWith("?")){
+            return url + param + "=" + value;
         } else {
-            return compose + "&" + param + "=" + var;
+            return url + "&" + param + "=" + value;
         }
     }
 
-    private String addParam(String compose, String param, Collection<String> vars){
-        if (vars == null || vars.size() == 0) {
-            return compose;
+    /**
+     * Add a parameter with multiple values to a url, provided the parameter has at least one value
+     *
+     * @param url URL where the parameter will be added to
+     * @param param name of the parameter to be added
+     * @param values list of values for the parameter
+     *
+     * @return composed URL with the parameter
+     */
+    private String addParam(String url, String param, Collection<String> values){
+        if (values == null || values.size() == 0) {
+            return url;
         } else {
-            String aux = compose;
+            String aux = url;
 
-            for (String var: vars){
+            for (String var: values){
                 if (aux.endsWith("?")){
                     aux += param + "=" + var;
                 } else {

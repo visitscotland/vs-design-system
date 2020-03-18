@@ -34,8 +34,8 @@ public class ProductSearchTest {
         String url = new ProductSearchBuilder().productType(TYPE.type).build();
 
         Assert.assertTrue(
-                String.format("The Generated URL is expected to contain " + PRODUCT_SEARCH + " (%s) ", TYPE.path, TYPE.type, url),
-                url.contains(String.format(PRODUCT_SEARCH, TYPE.path, TYPE.type)));
+                String.format("The Generated URL is expected to contain " + PRODUCT_SEARCH + " (%s) ", Properties.VS_DMS_SERVICE, TYPE.path, TYPE.type, url),
+                url.contains(String.format(PRODUCT_SEARCH, Properties.VS_DMS_SERVICE, TYPE.path, TYPE.type)));
         validate(url);
     }
 
@@ -45,8 +45,8 @@ public class ProductSearchTest {
         String url = new ProductSearchBuilder().productType(TYPE.type).build();
 
         Assert.assertTrue(
-                String.format("The Generated URL is expected to contain %s (%s) ", NO_AVAILABILITY_PARAM, url),
-                url.contains(NO_AVAILABILITY_PARAM));
+                String.format("The Generated URL is expected to contain the parameter %s (%s) ", AVAILABILITY, url),
+                url.contains(AVAILABILITY));
         validate(url);
     }
 
@@ -302,14 +302,23 @@ public class ProductSearchTest {
 
     //TODO Create test-utils?
     private void validate(String url) {
+        //The following is true just for Product Search
+        //At least one question mark
+        Assert.assertTrue(String.format("The url should not contain spaces (%s)", url),
+                url.contains("?")
+        );
+        //No more than one question mark
         Assert.assertEquals(String.format("Only one question mark is expected (%s)", url),
                 1, url.chars().filter(ch -> ch == '?').count()
         );
+        //Starts with http, https (fully qualified) or  / (domain related)
         Assert.assertTrue(String.format("The url should starts with http[s] or / (%s)", url),
                 url.startsWith("/") || url.startsWith("http")
         );
+        //No space character in it
         Assert.assertFalse(String.format("The url should not contain spaces (%s)", url),
                 url.contains(" ")
         );
+
     }
 }
