@@ -12,7 +12,7 @@
 
 <#function productSearch locale productType lat lon proximity>
     <#--TODO: proximity as optional-->
-    <#return ProductSearchBuilder.newInstance().createProductSearch(productType).proximity(proximity).coordinates(lat, lon).build()>
+    <#return ProductSearchBuilder.newInstance().productType(productType).proximity(proximity).coordinates(lat, lon).build()>
 </#function>
 
 <#--TODO: polimorphism-->
