@@ -10,7 +10,7 @@ const chalk = require("chalk")
 const webpack = require("webpack")
 const config = require("../config")
 
-const spinner = ora("Building Design System...")
+const spinner = ora("Building frontend components...")
 
 const isComponentsBuild = require("./system-components")
 
