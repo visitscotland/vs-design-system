@@ -82,7 +82,9 @@ public class ListicleContentComponent extends PageContentComponent<Listicle> {
                         if (cmsImage != null) {
                             FlatImage image = new FlatImage(cmsImage, cmsImage.getAltText(), cmsImage.getCredit(), cmsImage.getDescription());
                             LocationObject location = LocationLoader.getLocation(cmsImage.getLocation(), request.getLocale());
-                            image.setCoordinates(new Coordinates(location.getLatitude(),location.getLongitude()));
+                            if (location!=null) {
+                                image.setCoordinates(new Coordinates(location.getLatitude(), location.getLongitude()));
+                            }
                             model.setImage(image);
                         }
                     }
@@ -113,7 +115,7 @@ public class ListicleContentComponent extends PageContentComponent<Listicle> {
                                 //TODO: SET ALT-TEXT, CREDITS AND DESCRIPTION
                                 model.setImage(image);
                             }else{
-                                if (model.getImage().getSource().equals(FlatImage.Source.INSTAGRAM)){
+                                if (model.getImage().getCoordinates()==null){
                                     Coordinates coordinates = new Coordinates(product.getDouble(LATITUDE),product.getDouble(LONGITUDE));
                                     model.getImage().setCoordinates(coordinates);
                                 }
