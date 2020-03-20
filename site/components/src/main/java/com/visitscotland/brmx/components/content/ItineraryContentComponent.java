@@ -7,10 +7,10 @@ import com.visitscotland.brmx.beans.mapping.FlatImage;
 import com.visitscotland.brmx.beans.mapping.FlatLink;
 import com.visitscotland.brmx.beans.mapping.FlatStop;
 import com.visitscotland.brmx.utils.CommonUtils;
-import com.visitscotland.brmx.utils.HippoUtils;
 import com.visitscotland.brmx.utils.LocationLoader;
 import org.hippoecm.hst.core.component.HstRequest;
 import org.hippoecm.hst.core.component.HstResponse;
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import org.slf4j.Logger;
@@ -56,14 +56,17 @@ public class ItineraryContentComponent extends PageContentComponent<Itinerary> {
     private void generateStops(HstRequest request){
 
         final Itinerary itinerary = getDocument(request);
-
-        final String LOCATION = "locationName";
+        final String ADDRESS = "address";
+        final String LOCATION = "city";
         final String URL = "url";
-        final String IMAGE = "image";
         final String TIME_TO_EXPLORE = "timeToExplore";
         final String LAT = "latitude";
         final String LON = "longitude";
-        final String FACILITIES = "facilities";
+        final String FACILITIES = "keyFacilities";
+        final String IMAGE = "images";
+        final String MEDIA = "mediaUrl";
+        final String CREDIT = "copyright";
+        final String ALT_TEXT = "altText";
 
         final Map<String ,FlatStop> products =  new LinkedHashMap<>();
 
@@ -80,7 +83,7 @@ public class ItineraryContentComponent extends PageContentComponent<Itinerary> {
 
                 if (stop.getStopItem() instanceof DMSLink){
                     DMSLink dmsLink = (DMSLink) stop.getStopItem();
-                    List<String> facilities = new ArrayList<>();
+                    List<JSONObject> facilities = new ArrayList<>();
 
                     if (stop.getImage()!=null) {
                         img.setCmsImage(stop.getImage());
@@ -101,24 +104,37 @@ public class ItineraryContentComponent extends PageContentComponent<Itinerary> {
 
                                 FlatLink ctaLink = new FlatLink(this.getCtaLabel(dmsLink.getLabel(),request.getLocale()),product.getString(URL));
                                 model.setCtaLink(ctaLink);
-                                model.setLocation(product.getString(LOCATION));
+                                if (product.has(ADDRESS)){
+                                    JSONObject address =product.getJSONObject(ADDRESS);
+                                    model.setAddress(address);
+                                    String location = address.has(LOCATION)?address.getString(LOCATION):null;
+                                    model.setLocation(location);
+                                }
+                                //model.setLocation(product.getString(LOCATION));
 
-                                //TODO: GET TIME TO EXPLORE FROM DMS
-//                                model.setTimeToexplore(product.getString(TIME_TO_EXPLORE));
+                                model.setTimeToexplore(product.has(TIME_TO_EXPLORE)? product.getString(TIME_TO_EXPLORE):null);
                                 if (stop.getImage() == null){
-                                    img.setExternalImage(product.getString(IMAGE));
-                                    //TODO: SET ALT-TEXT, CREDITS AND DESCRIPTION
+                                    JSONArray dmsImageList = product.getJSONArray(IMAGE);
+                                    JSONObject dmsImage = dmsImageList.getJSONObject(0);
+                                    img.setExternalImage(dmsImage.has(MEDIA)?dmsImage.getString(MEDIA):null);
+                                    img.setCredit(dmsImage.has(CREDIT)?dmsImage.getString(CREDIT):null);
+                                    img.setDescription(dmsImage.has(ALT_TEXT)?dmsImage.getString(ALT_TEXT):null);
+                                    img.setAltText(dmsImage.has(ALT_TEXT)?dmsImage.getString(ALT_TEXT):null);
                                 }
 
                                 coordinates.setLatitude(product.getDouble(LAT));
                                 coordinates.setLongitude(product.getDouble(LON));
                                 model.setCoordinates(coordinates);
 
-                                for (Object facility:  product.getString(FACILITIES).split(",")) {
-                                    facilities.add(facility.toString());
+                                if (product.has(FACILITIES)){
+                                    JSONArray keyFacilitiesList = product.getJSONArray(FACILITIES);
+                                    if (keyFacilitiesList!=null){
+                                        for (int i = 0; i < keyFacilitiesList.length(); i++) {
+                                            facilities.add(keyFacilitiesList.getJSONObject(i));
+                                        }
+                                    }
+                                    model.setFacilities(facilities);
                                 }
-
-                                model.setFacilities(facilities);
 
                             }
                         }

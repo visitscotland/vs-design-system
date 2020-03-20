@@ -109,8 +109,8 @@
                             <vs-icon-description-list-term>${label("itinerary", "stop.key-facilities")}</vs-icon-description-list-term>
                             <#list prod.facilities as facility>
                                 <vs-icon-description-list-detail
-                                    icon="${facility}"
-                                    label="${label("keyFacilities", "${facility}")}">
+                                    icon="${facility.id}"
+                                    label="${facility.name}">
                                 </vs-icon-description-list-detail>
                             </#list>
                         </vs-icon-description-list>

@@ -2,7 +2,6 @@ package com.visitscotland.brmx.components.content;
 
 import com.visitscotland.brmx.beans.*;
 
-import com.visitscotland.brmx.beans.dms.FacilityObject;
 import com.visitscotland.brmx.beans.dms.LocationObject;
 import com.visitscotland.brmx.beans.mapping.*;
 import com.visitscotland.brmx.beans.mapping.Coordinates;
@@ -110,10 +109,14 @@ public class ListicleContentComponent extends PageContentComponent<Listicle> {
                                     dmsLink.getProduct(), listicle.getPath(), listicleItem.getTitle()));
                         } else {
 
-                            List<FacilityObject> facilities = new ArrayList<>();
+                            List<JSONObject> facilities = new ArrayList<>();
                             if (product.has(ADDRESS)){
                                 JSONObject address =product.getJSONObject(ADDRESS);
-                                model.setLocation(address.getString(LOCATION));
+                                String location = address.has(LOCATION)?address.getString(LOCATION):null;
+                                model.setLocation(location);
+                                if (listicleItem.getSubtitle() == null || listicleItem.getSubtitle().isEmpty()) {
+                                    model.setSubTitle(location);
+                                }
                             }
 
                             if (model.getImage() == null &&  product.has(IMAGE)) {
@@ -141,14 +144,12 @@ public class ListicleContentComponent extends PageContentComponent<Listicle> {
                                 JSONArray keyFacilitiesList = product.getJSONArray(FACILITIES);
                                 if (keyFacilitiesList!=null){
                                     for (int i = 0; i < keyFacilitiesList.length(); i++) {
-                                        facilities.add(new FacilityObject( keyFacilitiesList.getJSONObject(i).getString("id"),keyFacilitiesList.getJSONObject(i).getString("name")));
+                                        facilities.add(keyFacilitiesList.getJSONObject(i));
                                      }
                                  }
                                 model.setFacilities(facilities);
                             }
-                            if (model.getSubTitle()==null) {
-                                model.setSubTitle(model.getLocation());
-                            }
+
                         }
                     } catch (IOException e) {
                         model.setErrorMessage("Error while querying the DMS: " + e.getMessage());
