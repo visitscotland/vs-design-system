@@ -55,8 +55,8 @@ public class ProductSearchTest {
         String url =  new ProductSearchBuilder().productTypes(TYPE).build();
 
         Assert.assertTrue(
-                String.format("The Generated URL is expected to contain the url path %s ", PATH_DEFAULT),
-                url.contains(PATH_DEFAULT));
+                String.format("The Generated URL is expected to contain the url path %s ", PATH_SEE_DO),
+                url.contains(PATH_SEE_DO));
     }
 
     private void checkLocationAvailability() {

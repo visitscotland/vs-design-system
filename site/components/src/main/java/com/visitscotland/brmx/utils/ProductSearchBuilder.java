@@ -57,14 +57,14 @@ public class ProductSearchBuilder {
     static final String ORDER = "order";
 
     //TODO This path should come from DMS?
-    static final String PATH_DEFAULT = "see-do";
+    static final String PATH_SEE_DO = "see-do";
     static final String PATH_ACCOMMODATION = "accommodation";
     static final String PATH_FOOD_DRINK = "food-drink";
     static final String PATH_EVENTS = "events";
 
     private String host = Properties.VS_DMS_SERVICE;
 
-    private List<String> productTypes = new ArrayList<>();
+    private String productTypes;
     private String path;
     private Integer proximity;
     private String location;
@@ -80,7 +80,6 @@ public class ProductSearchBuilder {
 
     public ProductSearchBuilder(){
         this.proximity = DEFAULT_PROXIMITY;
-        this.path = PATH_DEFAULT;
         this.order = Order.NONE;
     }
 
@@ -113,24 +112,27 @@ public class ProductSearchBuilder {
         return this;
     }
 
-    //TODO: This linking between types and paths should come from the DMS?
-    private void productType(String type){
-        if ("acco".equals(type)) {
+    private void path(String types){
+        if (types.equals("acco")) {
             path = PATH_ACCOMMODATION;
-        } else if ("cate".equals(type)) {
+        } else if (types.equals("cate")) {
             path = PATH_FOOD_DRINK;
-        } else if ("even".equals(type)){
+        } else if (types.equals("even")){
             path = PATH_EVENTS;
+        } else {
+            //Note: if category is not acti,attr,reta (in that other) the category "Thing to see and do" is not selected on the Product Search
+            path = PATH_SEE_DO;
         }
     }
 
-    public ProductSearchBuilder productTypes(String... types){
-        if (types != null) {
-            for (String type : types) {
-                productTypes.add(type);
-                productType(type);
-            }
+    public ProductSearchBuilder productTypes(String types){
+        try {
+            this.productTypes = URLEncoder.encode(types, "UTF-8");
+            path(types);
+        } catch (UnsupportedEncodingException e){
+            logger.error(String.format("Unexpected UnsupportedEncodingException for UTF-8 with the types %s", types),e);
         }
+
         return this;
     }
 
@@ -237,7 +239,7 @@ public class ProductSearchBuilder {
      * @return
      */
     public String build(){
-        if (productTypes.size() == 0){
+        if (productTypes == null){
             throw new RuntimeException(String.format("No types have been defined for this search"));
         }
 
