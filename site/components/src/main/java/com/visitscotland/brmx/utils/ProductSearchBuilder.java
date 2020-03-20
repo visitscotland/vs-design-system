@@ -137,7 +137,7 @@ public class ProductSearchBuilder {
     public ProductSearchBuilder productType(ProductsSearch ps){
         if (ps.getProductType() != null) {
             ProductSearchBuilder psb = new ProductSearchBuilder();
-            psb.productTypes(ps.getProductType().split(","));
+            psb.productTypes(ps.getProductType());
             psb.location(ps.getLocation());
             psb.category(ps.getDmsCategories());
             psb.facility(ps.getDmsFacilities());
