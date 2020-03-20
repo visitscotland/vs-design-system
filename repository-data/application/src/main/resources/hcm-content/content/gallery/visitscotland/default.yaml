@@ -187,3 +187,159 @@
           resource: /content/gallery/visitscotland/default/royal-botanic-garden.jpg/royal-botanic-garden.jpg/original/original.jpg
         jcr:lastModified: 2020-03-03T10:26:48.136Z
         jcr:mimeType: image/jpeg
+  /header-iconicviewpoints.jpg:
+    jcr:primaryType: hippo:handle
+    jcr:mixinTypes: ['mix:referenceable']
+    jcr:uuid: 878bc413-07fe-4c1a-9df6-55514c250a16
+    /header-iconicviewpoints.jpg:
+      jcr:primaryType: visitscotland:Image
+      hippo:availability: [live, preview]
+      hippogallery:description: Bealach na Bà, Applecross
+      hippogallery:filename: header-iconicviewpoints.jpg
+      visitscotland:altText: ''
+      visitscotland:credit: Kenny Lam
+      visitscotland:location: Applecross
+      /hippogallery:thumbnail:
+        jcr:primaryType: hippogallery:image
+        hippo:filename: header-iconicviewpoints.jpg
+        hippogallery:height: 23
+        hippogallery:width: 60
+        jcr:data:
+          type: binary
+          resource: /content/gallery/visitscotland/default/header-iconicviewpoints.jpg/header-iconicviewpoints.jpg/thumbnail/thumbnail.jpg
+        jcr:lastModified: 2020-03-17T11:21:33.976Z
+        jcr:mimeType: image/jpeg
+      /hippogallery:original:
+        jcr:primaryType: hippogallery:image
+        hippogallery:height: 800
+        hippogallery:width: 2048
+        jcr:data:
+          type: binary
+          resource: /content/gallery/visitscotland/default/header-iconicviewpoints.jpg/header-iconicviewpoints.jpg/original/original.jpg
+        jcr:lastModified: 2020-03-17T11:21:33.976Z
+        jcr:mimeType: image/jpeg
+  /scotts--view-lothar-stobbe-instagram-lairdsphotography.jpg:
+    jcr:primaryType: hippo:handle
+    jcr:mixinTypes: ['hippo:named', 'mix:referenceable']
+    jcr:uuid: f0fe0f26-489b-4a2e-b6c5-605df1abbdcb
+    hippo:name: Scotts--view-lothar-stobbe-instagram-lairdsphotography.jpg
+    /scotts--view-lothar-stobbe-instagram-lairdsphotography.jpg:
+      jcr:primaryType: visitscotland:Image
+      hippo:availability: [live, preview]
+      hippogallery:description: Scott's view
+      hippogallery:filename: Scotts--view-lothar-stobbe-instagram-lairdsphotography.jpg
+      visitscotland:altText: Scott's view
+      visitscotland:credit: Kenny Lam
+      visitscotland:location: St Boswells
+      /hippogallery:thumbnail:
+        jcr:primaryType: hippogallery:image
+        hippo:filename: Scotts--view-lothar-stobbe-instagram-lairdsphotography.jpg
+        hippogallery:height: 40
+        hippogallery:width: 60
+        jcr:data:
+          type: binary
+          resource: /content/gallery/visitscotland/default/scotts--view-lothar-stobbe-instagram-lairdsphotography.jpg/scotts--view-lothar-stobbe-instagram-lairdsphotography.jpg/thumbnail/thumbnail.jpg
+        jcr:lastModified: 2020-03-17T11:33:58.272Z
+        jcr:mimeType: image/jpeg
+      /hippogallery:original:
+        jcr:primaryType: hippogallery:image
+        hippogallery:height: 400
+        hippogallery:width: 600
+        jcr:data:
+          type: binary
+          resource: /content/gallery/visitscotland/default/scotts--view-lothar-stobbe-instagram-lairdsphotography.jpg/scotts--view-lothar-stobbe-instagram-lairdsphotography.jpg/original/original.jpg
+        jcr:lastModified: 2020-03-17T11:33:58.272Z
+        jcr:mimeType: image/jpeg
+  /visitscotland_45481867372_196547586.jpg:
+    jcr:primaryType: hippo:handle
+    jcr:mixinTypes: ['mix:referenceable']
+    jcr:uuid: d607431a-46f7-4ed1-a288-de6458bbdc97
+    /visitscotland_45481867372_196547586.jpg:
+      jcr:primaryType: visitscotland:Image
+      hippo:availability: [live, preview]
+      hippogallery:description: Forth Rail Bridge
+      hippogallery:filename: visitscotland_45481867372_196547586.jpg
+      visitscotland:altText: Forth Bridge
+      visitscotland:credit: Kenny Lam
+      visitscotland:location: South Queensferry
+      /hippogallery:thumbnail:
+        jcr:primaryType: hippogallery:image
+        hippo:filename: visitscotland_45481867372_196547586.jpg
+        hippogallery:height: 40
+        hippogallery:width: 60
+        jcr:data:
+          type: binary
+          resource: /content/gallery/visitscotland/default/visitscotland_45481867372_196547586.jpg/visitscotland_45481867372_196547586.jpg/thumbnail/thumbnail.jpg
+        jcr:lastModified: 2020-03-17T14:17:35.697Z
+        jcr:mimeType: image/jpeg
+      /hippogallery:original:
+        jcr:primaryType: hippogallery:image
+        hippogallery:height: 700
+        hippogallery:width: 1050
+        jcr:data:
+          type: binary
+          resource: /content/gallery/visitscotland/default/visitscotland_45481867372_196547586.jpg/visitscotland_45481867372_196547586.jpg/original/original.jpg
+        jcr:lastModified: 2020-03-17T14:17:35.697Z
+        jcr:mimeType: image/jpeg
+  /visitscotland_38861233477.jpg:
+    jcr:primaryType: hippo:handle
+    jcr:mixinTypes: ['mix:referenceable']
+    jcr:uuid: eb9d41bd-8fdc-4166-8126-1133d5fad9aa
+    /visitscotland_38861233477.jpg:
+      jcr:primaryType: visitscotland:Image
+      hippo:availability: [live, preview]
+      hippogallery:description: Queen's View, Loch Tummel
+      hippogallery:filename: visitscotland_38861233477.jpg
+      visitscotland:altText: Queen's View, Loch Tummel
+      visitscotland:credit: Kenny Lam
+      visitscotland:location: Perth
+      /hippogallery:thumbnail:
+        jcr:primaryType: hippogallery:image
+        hippo:filename: visitscotland_38861233477.jpg
+        hippogallery:height: 38
+        hippogallery:width: 60
+        jcr:data:
+          type: binary
+          resource: /content/gallery/visitscotland/default/visitscotland_38861233477.jpg/visitscotland_38861233477.jpg/thumbnail/thumbnail.jpg
+        jcr:lastModified: 2020-03-17T14:33:18.088Z
+        jcr:mimeType: image/jpeg
+      /hippogallery:original:
+        jcr:primaryType: hippogallery:image
+        hippogallery:height: 1218
+        hippogallery:width: 1920
+        jcr:data:
+          type: binary
+          resource: /content/gallery/visitscotland/default/visitscotland_38861233477.jpg/visitscotland_38861233477.jpg/original/original.jpg
+        jcr:lastModified: 2020-03-17T14:33:18.088Z
+        jcr:mimeType: image/jpeg
+  /visitscotland_38116659689.jpg:
+    jcr:primaryType: hippo:handle
+    jcr:mixinTypes: ['mix:referenceable']
+    jcr:uuid: aecf0250-aae9-42d9-bc08-34d80ec9b49c
+    /visitscotland_38116659689.jpg:
+      jcr:primaryType: visitscotland:Image
+      hippo:availability: [live, preview]
+      hippogallery:description: Bow Fiddle Rock, Moray
+      hippogallery:filename: visitscotland_38116659689.jpg
+      visitscotland:altText: Bow Fiddle Rock, Moray
+      visitscotland:credit: Kenny Lam
+      visitscotland:location: Moray Firth
+      /hippogallery:thumbnail:
+        jcr:primaryType: hippogallery:image
+        hippo:filename: visitscotland_38116659689.jpg
+        hippogallery:height: 39
+        hippogallery:width: 60
+        jcr:data:
+          type: binary
+          resource: /content/gallery/visitscotland/default/visitscotland_38116659689.jpg/visitscotland_38116659689.jpg/thumbnail/thumbnail.jpg
+        jcr:lastModified: 2020-03-17T14:41:29.262Z
+        jcr:mimeType: image/jpeg
+      /hippogallery:original:
+        jcr:primaryType: hippogallery:image
+        hippogallery:height: 533
+        hippogallery:width: 800
+        jcr:data:
+          type: binary
+          resource: /content/gallery/visitscotland/default/visitscotland_38116659689.jpg/visitscotland_38116659689.jpg/original/original.jpg
+        jcr:lastModified: 2020-03-17T14:41:29.262Z
+        jcr:mimeType: image/jpeg

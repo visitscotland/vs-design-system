@@ -6,15 +6,13 @@
 <#include "../../vs-dotcom-ds/components/col.ftl">
 <#include "../../vs-dotcom-ds/components/icon.ftl">
 <#include "../../vs-dotcom-ds/components/social-share.ftl">
-<#include "../../vs-dotcom-ds/components/lead-paragraph.ftl">
 <#include "../../vs-dotcom-ds/components/heading.ftl">
 <#include "../../vs-dotcom-ds/components/img.ftl">
 <#include "../../vs-dotcom-ds/components/link.ftl">
+<#include "../../vs-dotcom-ds/components/rich-text-wrapper.ftl">
 
 <#include "../modules/listicles/listicle-item.ftl">
 <#include "../../vs-dotcom-ds/components/listicle-item.ftl">
-
-
 
 <#-- Implicit Request Objects -->
 <#-- @ftlvariable name="document" type="com.visitscotland.brmx.beans.Listicle" -->
@@ -26,14 +24,15 @@
 <div class="has-edit-button">
 	<@hst.manageContent hippobean=document documentTemplateQuery="new-document" rootPath="site" defaultPath="${path}" />
 
-		<vs-container slot="upper" class="py-lg-4">
+	<vs-container slot="upper" class="py-lg-4">
 		<vs-row class="justify-content-md-between">
-			<vs-col cols="12" lg="8" offset-lg="1">
+			<vs-col cols="12" lg="8">
 				<@hst.include ref="breadcrumb"/>
 			</vs-col>
 		</vs-row>
+
 		<vs-row class="justify-content-md-between">
-			<vs-col cols="10" lg="8" offset-lg="1">
+			<vs-col cols="10" lg="8">
 				<vs-heading level="1">${document.title}</vs-heading>
 			</vs-col>
 			<vs-col cols="2">
@@ -42,9 +41,10 @@
 				</div>
 			</vs-col>
 		</vs-row>
-		<vs-row class="justify-content-md-between">
-			<vs-col cols="12" lg="8" offset-lg="1">
-				<@hst.html hippohtml=document.introduction/>
+
+		<vs-row class="justify-content-md-between mb-6">
+			<vs-col cols="12" lg="8">
+                <vs-rich-text-wrapper variant="lead"><@hst.html hippohtml=document.introduction/></vs-rich-text-wrapper>
 			</vs-col>
 		</vs-row>
 
@@ -61,5 +61,4 @@
 		</ol>
 
 	</vs-container>
-
 </div>

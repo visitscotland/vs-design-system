@@ -104,7 +104,7 @@
 		</div>
 
 		<#if item.facilities?? && item.facilities?size gt 1>
-			<div slot="facilities-slot" class="facilities">
+			<div slot="facilities-slot">
 				<vs-icon-description-list>
 					<#list item.facilities as facility>
 						<vs-icon-description-list-detail
