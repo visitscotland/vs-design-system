@@ -49,9 +49,6 @@
 			<#if item.errorMessage?? && editMode>
 				<h1 class="text-danger">${item.errorMessage?upper_case}</h1>
 			</#if>
-			${item.address.line1}
-			${item.address.line2}
-
 		</div>
 
 		<#if image?has_content>
