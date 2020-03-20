@@ -425,5 +425,11 @@
     </profile>
 
   </profiles>
+  
+  <scm>
+    <connection>scm:git:https://bitbucket.visitscotland.com/scm/com/visitscotland-2019.git</connection>
+    <developerConnection/>
+    <url/>
+  </scm>
 
 </project>

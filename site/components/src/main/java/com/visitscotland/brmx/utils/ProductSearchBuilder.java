@@ -16,29 +16,6 @@ public class ProductSearchBuilder {
 
     private static final Logger logger = LoggerFactory.getLogger(ProductSearchBuilder.class.getName());
 
-    //TODO The only allowed type is accommodation, define rest of them and refactor enum
-    enum ProductType {
-        ACCOMMODATION("accommodation", "acco"),
-        RESTAURANTS("food-drink", "cate");
-
-        final String path;
-        final String type;
-
-        ProductType (String path, String type){
-            this.path = path;
-            this.type = type;
-        }
-
-        static ProductType fromValue(String type){
-            for (ProductType pt: values()){
-                if (pt.type.equals(type)){
-                    return pt;
-                }
-            }
-            return null;
-        }
-    }
-
     enum Order {
         DISTANCE("proximityAsc"), NONE(null);
 
@@ -61,9 +38,11 @@ public class ProductSearchBuilder {
         }
     }
 
-    static final String PRODUCT_SEARCH = "%s/info/%s/search-results?&prodtypes=%s";
-    static final String AVAILABILITY = "avail=off";
+    static final String PRODUCT_SEARCH = "%s/info/%s/search-results?";
+    static final String AVAILABILITY = "avail";
+    static final Integer DEFAULT_PROXIMITY = 10;
 
+    static final String PRODUCT_TYPE = "prodtypes";
     static final String LOCATION_NAME = "loc";
     static final String LOCATION_PLACE = "locplace";
     static final String LOCATION_POLYGON = "locpoly";
@@ -77,25 +56,32 @@ public class ProductSearchBuilder {
     static final String PROXIMITY_PIN = "areaproxdist";
     static final String ORDER = "order";
 
+    //TODO This path should come from DMS?
+    static final String PATH_DEFAULT = "see-do";
+    static final String PATH_ACCOMMODATION = "accommodation";
+    static final String PATH_FOOD_DRINK = "food-drink";
+    static final String PATH_EVENTS = "events";
+
     private String host = Properties.VS_DMS_SERVICE;
 
-    private ProductType type;
-    private Integer proximity = 10;
-    private String url;
+    private List<String> productTypes = new ArrayList<>();
+    private String path;
+    private Integer proximity;
     private String location;
     private Double longitude;
     private Double latitude;
     private Locale locale;
-    private Order order = Order.NONE;
+    private Order order;
 
     private Set<String> categories = new TreeSet<>();
     private Set<String> awards = new TreeSet<>();
     private Set<String> facilities = new TreeSet<>();
     private Set<String> ratings = new TreeSet<>();
 
-
     public ProductSearchBuilder(){
-
+        this.proximity = DEFAULT_PROXIMITY;
+        this.path = PATH_DEFAULT;
+        this.order = Order.NONE;
     }
 
     /**
@@ -127,19 +113,31 @@ public class ProductSearchBuilder {
         return this;
     }
 
-    public ProductSearchBuilder productType(String type){
-        ProductType pt = ProductType.fromValue(type);
-        if (ProductType.fromValue(type) != null){
-            this.type = pt;
+    //TODO: This linking between types and paths should come from the DMS?
+    private void productType(String type){
+        if ("acco".equals(type)) {
+            path = PATH_ACCOMMODATION;
+        } else if ("cate".equals(type)) {
+            path = PATH_FOOD_DRINK;
+        } else if ("even".equals(type)){
+            path = PATH_EVENTS;
         }
+    }
 
+    public ProductSearchBuilder productTypes(String... types){
+        if (types != null) {
+            for (String type : types) {
+                productTypes.add(type);
+                productType(type);
+            }
+        }
         return this;
     }
 
     public ProductSearchBuilder productType(ProductsSearch ps){
         if (ps.getProductType() != null) {
             ProductSearchBuilder psb = new ProductSearchBuilder();
-            psb.productType(ps.getProductType());
+            psb.productTypes(ps.getProductType().split(","));
             psb.location(ps.getLocation());
             psb.category(ps.getDmsCategories());
             psb.facility(ps.getDmsFacilities());
@@ -203,7 +201,7 @@ public class ProductSearchBuilder {
     }
 
     public ProductSearchBuilder proximity(Number proximity){
-        if (validNumber(proximity)){
+        if (validNumber(proximity) && proximity.intValue() > 0){
             this.proximity = proximity.intValue();
         }
         return this;
@@ -239,43 +237,44 @@ public class ProductSearchBuilder {
      * @return
      */
     public String build(){
-        if (type == null){
-            throw new RuntimeException(String.format("The type %s has not been defined", type));
+        if (productTypes.size() == 0){
+            throw new RuntimeException(String.format("No types have been defined for this search"));
         }
 
-        String compose =  String.format(PRODUCT_SEARCH, host==null?"":host, type.path, type.type);
+        String compose =  String.format(PRODUCT_SEARCH, host==null?"":host, path);
 
-        //Accommotions MUST deactivate avalavility search
-        if (type == ProductType.ACCOMMODATION){
-            compose = addParam(compose, AVAILABILITY, "off");
+        compose = addParams(compose, PRODUCT_TYPE, productTypes);
+        //Accommotions MUST deactivate availavility search
+        if (path.equals(PATH_ACCOMMODATION)) {
+            compose = addParams(compose, AVAILABILITY, "off");
         }
 
         //The list of parameters is different if a location is provided from latitude and longitude
         if (location != null) {
             LocationObject loc = LocationLoader.getLocation(location, locale);
 
-            compose = addParam(compose, "POLYGON".equals(loc.getType())?LOCATION_POLYGON: LOCATION_PLACE, loc.getId());
-            compose = addParam(compose, PROXIMITY_LOCATION, proximity.toString());
+            compose = addParams(compose, "POLYGON".equals(loc.getType())?LOCATION_POLYGON: LOCATION_PLACE, loc.getId());
+            compose = addParams(compose, PROXIMITY_LOCATION, proximity.toString());
 
             try {
-                compose = addParam(compose, LOCATION_NAME, URLEncoder.encode(loc.getName(), "UTF-8"));
+                compose = addParams(compose, LOCATION_NAME, URLEncoder.encode(loc.getName(), "UTF-8"));
             } catch (UnsupportedEncodingException e){
                 logger.error("Unexpected UnsupportedEncodingException for UTF-8",e);
             }
         } else if (latitude != null && longitude != null){
-            compose = addParam(compose, LATITUDE, latitude.toString());
-            compose = addParam(compose, LONGITUDE, longitude.toString());
-            compose = addParam(compose, PROXIMITY_PIN, proximity.toString());
+            compose = addParams(compose, LATITUDE, latitude.toString());
+            compose = addParams(compose, LONGITUDE, longitude.toString());
+            compose = addParams(compose, PROXIMITY_PIN, proximity.toString());
         }
 
         //Add categories, awards, facilities and rating
-        compose = addParam(compose, CATEGORY, categories);
-        compose = addParam(compose, AWARD, awards);
-        compose = addParam(compose, FACILITY, facilities);
-        compose = addParam(compose, RATING, ratings);
+        compose = addParams(compose, CATEGORY, categories);
+        compose = addParams(compose, AWARD, awards);
+        compose = addParams(compose, FACILITY, facilities);
+        compose = addParams(compose, RATING, ratings);
 
         //Sort the list
-        compose = addParam(compose, ORDER, order.value);
+        compose = addParams(compose, ORDER, order.value);
 
         return compose;
     }
@@ -289,7 +288,7 @@ public class ProductSearchBuilder {
      *
      * @return composed URL with the parameter
      */
-    private String addParam(String url, String param, String value){
+    private String addParams(String url, String param, String value){
         if (value == null) {
             return url;
         } else if (url.endsWith("?")){
@@ -308,7 +307,7 @@ public class ProductSearchBuilder {
      *
      * @return composed URL with the parameter
      */
-    private String addParam(String url, String param, Collection<String> values){
+    private String addParams(String url, String param, Collection<String> values){
         if (values == null || values.size() == 0) {
             return url;
         } else {

@@ -9,19 +9,19 @@ import java.util.Locale;
 
 public class ProductSearchTest {
 
-    private final static String DEFAULT_LOCATION = "Edinburgh";
+    private final static String DEFAULT_TYPE = "cate";
 
     //TODO when LocationLoader is not available
 
     @Test(expected = Exception.class)
-    public void noQuery() {
+    public void noProductType() {
         new ProductSearchBuilder().build();
         Assert.fail("An exception is expected when no query is defined");
     }
 
     @Test
     public void basic() {
-        String url = new ProductSearchBuilder().productType(ProductType.ACCOMMODATION.type)
+        String url = new ProductSearchBuilder().productTypes(DEFAULT_TYPE)
                 .build();
 
         Assert.assertTrue("A basic URL couldn't be build", url != null && !url.isEmpty());
@@ -30,19 +30,18 @@ public class ProductSearchTest {
 
     @Test()
     public void productSearch() {
-        final ProductType TYPE = ProductType.ACCOMMODATION;
-        String url = new ProductSearchBuilder().productType(TYPE.type).build();
+
+        String url = new ProductSearchBuilder().productTypes("cate").build();
 
         Assert.assertTrue(
-                String.format("The Generated URL is expected to contain " + PRODUCT_SEARCH + " (%s) ", Properties.VS_DMS_SERVICE, TYPE.path, TYPE.type, url),
-                url.contains(String.format(PRODUCT_SEARCH, Properties.VS_DMS_SERVICE, TYPE.path, TYPE.type)));
+                String.format("The Generated URL is expected to contain " + PRODUCT_SEARCH + " (%s) ", Properties.VS_DMS_SERVICE, PATH_FOOD_DRINK, url),
+                url.contains(String.format(PRODUCT_SEARCH, Properties.VS_DMS_SERVICE, PATH_FOOD_DRINK)));
         validate(url);
     }
 
     @Test()
     public void productSearchAccommodation() {
-        final ProductType TYPE = ProductType.ACCOMMODATION;
-        String url = new ProductSearchBuilder().productType(TYPE.type).build();
+        String url = new ProductSearchBuilder().productTypes("acco").build();
 
         Assert.assertTrue(
                 String.format("The Generated URL is expected to contain the parameter %s (%s) ", AVAILABILITY, url),
@@ -50,17 +49,21 @@ public class ProductSearchTest {
         validate(url);
     }
 
-    @Test(expected = Exception.class)
-    public void productSearchWrongType() {
+    @Test
+    public void productSearchUndefinedType() {
         final String TYPE = "test";
-        new ProductSearchBuilder().productType(TYPE).build();
+        String url =  new ProductSearchBuilder().productTypes(TYPE).build();
 
-        Assert.fail(String.format("An invalid type (%s) it is not supposed to work", TYPE));
+        Assert.assertTrue(
+                String.format("The Generated URL is expected to contain the url path %s ", PATH_DEFAULT),
+                url.contains(PATH_DEFAULT));
     }
 
     private void checkLocationAvailability() {
-        if (LocationLoader.getLocation(DEFAULT_LOCATION, null) == null) {
-            Assert.fail("LocationLoader might not be working or the location " + DEFAULT_LOCATION + " no longer exists");
+        final String LOCATION = "Edinburgh";
+
+        if (LocationLoader.getLocation(LOCATION, null) == null) {
+            Assert.fail("LocationLoader might not be working or the location " + LOCATION + " no longer exists");
         }
     }
 
@@ -70,7 +73,7 @@ public class ProductSearchTest {
 
         checkLocationAvailability();
 
-        String url = new ProductSearchBuilder().productType(ProductType.ACCOMMODATION.type)
+        String url = new ProductSearchBuilder().productTypes(DEFAULT_TYPE)
                 .location(LOCATION)
                 .build();
         Assert.assertTrue(
@@ -85,7 +88,7 @@ public class ProductSearchTest {
 
         checkLocationAvailability();
 
-        String url = new ProductSearchBuilder().productType(ProductType.ACCOMMODATION.type)
+        String url = new ProductSearchBuilder().productTypes(DEFAULT_TYPE)
                 .location(LOCATION)
                 .build();
         Assert.assertTrue(
@@ -101,7 +104,7 @@ public class ProductSearchTest {
 
         checkLocationAvailability();
 
-        String url = new ProductSearchBuilder().productType(ProductType.ACCOMMODATION.type)
+        String url = new ProductSearchBuilder().productTypes(DEFAULT_TYPE)
                 .location(LOCATION)
                 .locale(Locale.forLanguageTag("es-es"))
                 .build();
@@ -115,7 +118,7 @@ public class ProductSearchTest {
     public void category() {
         String url;
 
-        url = new ProductSearchBuilder().productType(ProductType.ACCOMMODATION.type)
+        url = new ProductSearchBuilder().productTypes(DEFAULT_TYPE)
                 .category("cat1")
                 .build();
         Assert.assertTrue(
@@ -123,7 +126,7 @@ public class ProductSearchTest {
                 url.contains(CATEGORY + "=cat1"));
         validate(url);
 
-        url = new ProductSearchBuilder().productType(ProductType.ACCOMMODATION.type)
+        url = new ProductSearchBuilder().productTypes(DEFAULT_TYPE)
                 .category("cat1")
                 .category("cat2")
                 .build();
@@ -132,7 +135,7 @@ public class ProductSearchTest {
                 url.contains(CATEGORY + "=cat1") && url.contains(CATEGORY + "=cat2"));
         validate(url);
 
-        url = new ProductSearchBuilder().productType(ProductType.ACCOMMODATION.type)
+        url = new ProductSearchBuilder().productTypes(DEFAULT_TYPE)
                 .category("")
                 .category(null)
                 .category(" \t \n ")
@@ -148,7 +151,7 @@ public class ProductSearchTest {
     public void awards() {
         String url;
 
-        url = new ProductSearchBuilder().productType(ProductType.ACCOMMODATION.type)
+        url = new ProductSearchBuilder().productTypes(DEFAULT_TYPE)
                 .award("1")
                 .build();
         Assert.assertTrue(
@@ -156,7 +159,7 @@ public class ProductSearchTest {
                 url.contains(AWARD + "=1"));
         validate(url);
 
-        url = new ProductSearchBuilder().productType(ProductType.ACCOMMODATION.type)
+        url = new ProductSearchBuilder().productTypes(DEFAULT_TYPE)
                 .award("1")
                 .award("2")
                 .build();
@@ -165,7 +168,7 @@ public class ProductSearchTest {
                 url.contains(AWARD + "=1") && url.contains(AWARD + "=2"));
         validate(url);
 
-        url = new ProductSearchBuilder().productType(ProductType.ACCOMMODATION.type)
+        url = new ProductSearchBuilder().productTypes(DEFAULT_TYPE)
                 .award("")
                 .award(null)
                 .award(" \t \n ")
@@ -182,7 +185,7 @@ public class ProductSearchTest {
     public void facilities() {
         String url;
 
-        url = new ProductSearchBuilder().productType(ProductType.ACCOMMODATION.type)
+        url = new ProductSearchBuilder().productTypes(DEFAULT_TYPE)
                 .facility("1")
                 .build();
         Assert.assertTrue(
@@ -190,7 +193,7 @@ public class ProductSearchTest {
                 url.contains(FACILITY + "=1"));
         validate(url);
 
-        url = new ProductSearchBuilder().productType(ProductType.ACCOMMODATION.type)
+        url = new ProductSearchBuilder().productTypes(DEFAULT_TYPE)
                 .facility("1")
                 .facility("2")
                 .build();
@@ -199,7 +202,7 @@ public class ProductSearchTest {
                 url.contains(FACILITY + "=1") && url.contains(FACILITY + "=2"));
         validate(url);
 
-        url = new ProductSearchBuilder().productType(ProductType.ACCOMMODATION.type)
+        url = new ProductSearchBuilder().productTypes(DEFAULT_TYPE)
                 .facility("")
                 .facility(null)
                 .facility(" \t \n ")
@@ -216,7 +219,7 @@ public class ProductSearchTest {
     public void rating() {
         String url;
 
-        url = new ProductSearchBuilder().productType(ProductType.ACCOMMODATION.type)
+        url = new ProductSearchBuilder().productTypes(DEFAULT_TYPE)
                 .rating("1")
                 .build();
         Assert.assertTrue(
@@ -224,7 +227,7 @@ public class ProductSearchTest {
                 url.contains(RATING + "=1"));
         validate(url);
 
-        url = new ProductSearchBuilder().productType(ProductType.ACCOMMODATION.type)
+        url = new ProductSearchBuilder().productTypes(DEFAULT_TYPE)
                 .rating("1")
                 .rating("2")
                 .build();
@@ -233,7 +236,7 @@ public class ProductSearchTest {
                 url.contains(RATING + "=1") && url.contains(RATING + "=2"));
         validate(url);
 
-        url = new ProductSearchBuilder().productType(ProductType.ACCOMMODATION.type)
+        url = new ProductSearchBuilder().productTypes(DEFAULT_TYPE)
                 .rating("")
                 .rating(null)
                 .rating(" \t \n ")
@@ -250,7 +253,7 @@ public class ProductSearchTest {
     public void order() {
         String url;
 
-        url = new ProductSearchBuilder().productType(ProductType.ACCOMMODATION.type)
+        url = new ProductSearchBuilder().productTypes(DEFAULT_TYPE)
                 .sortBy("DISTANCE")
                 .build();
         Assert.assertTrue(
@@ -258,7 +261,7 @@ public class ProductSearchTest {
                 url.contains(ORDER + "="));
         validate(url);
 
-        url = new ProductSearchBuilder().productType(ProductType.ACCOMMODATION.type)
+        url = new ProductSearchBuilder().productTypes(DEFAULT_TYPE)
                 .sortBy("NONE")
                 .build();
         Assert.assertFalse(
@@ -266,7 +269,7 @@ public class ProductSearchTest {
                 url.contains(ORDER + "="));
         validate(url);
 
-        url = new ProductSearchBuilder().productType(ProductType.ACCOMMODATION.type)
+        url = new ProductSearchBuilder().productTypes(DEFAULT_TYPE)
                 .sortBy("SOMETHING THAT DOES NOT EXISTS")
                 .build();
         Assert.assertFalse(
@@ -274,7 +277,7 @@ public class ProductSearchTest {
                 url.contains(ORDER + "="));
         validate(url);
 
-        url = new ProductSearchBuilder().productType(ProductType.ACCOMMODATION.type)
+        url = new ProductSearchBuilder().productTypes(DEFAULT_TYPE)
                 .sortBy(null)
                 .build();
         Assert.assertFalse(
@@ -287,12 +290,50 @@ public class ProductSearchTest {
 
     @Test
     public void proximity() {
-        //TODO
+        final String LOCATION = "Edinburgh";
+        final Integer PROXIMITY = 6;
+
+
+        String url;
+        url = new ProductSearchBuilder().productTypes(DEFAULT_TYPE)
+                .location(LOCATION)
+                .proximity(PROXIMITY)
+                .sortBy(null)
+                .build();
+        Assert.assertTrue(
+                String.format("The Generated URL is expected to have no order (%s) ", url),
+                url.contains(PROXIMITY_LOCATION + "=" + PROXIMITY));
+
+        url = new ProductSearchBuilder().productTypes(DEFAULT_TYPE)
+                .location(LOCATION)
+                .proximity(null)
+                .sortBy(null)
+                .build();
+        Assert.assertTrue(
+                String.format("The Generated URL is expected to have no order (%s) ", url),
+                url.contains(PROXIMITY_LOCATION + "=" + DEFAULT_PROXIMITY));
+
+        url = new ProductSearchBuilder().productTypes(DEFAULT_TYPE)
+                .location(LOCATION)
+                .proximity(0)
+                .sortBy(null)
+                .build();
+        Assert.assertTrue(
+                String.format("The Generated URL is expected to have no order (%s) ", url),
+                url.contains(PROXIMITY_LOCATION + "=" + DEFAULT_PROXIMITY));
+
+        validate(url);
     }
 
     @Test
     public void coordinates() {
-        //TODO
+        String url = new ProductSearchBuilder().productTypes(DEFAULT_TYPE)
+                .sortBy(null)
+                .build();
+        Assert.assertFalse(
+                String.format("The Generated URL is expected to have no order (%s) ", url),
+                url.contains(ORDER + "="));
+        validate(url);
     }
 
     @Test
