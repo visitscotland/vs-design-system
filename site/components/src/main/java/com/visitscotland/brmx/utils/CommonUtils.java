@@ -30,15 +30,15 @@ public class CommonUtils {
      */
     public static JSONObject getProduct(String productId, Locale locale) throws IOException {
         if (!CommonUtils.isEmpty(productId)) {
-            String dmsUrl = Properties.VS_DMS_PRODUCTS + "/data/product-search/map?prod_id=" + productId;
+            String dmsUrl = Properties.VS_DMS_PRODUCTS + "/data/products/card?id=" + productId;
             if (locale != null) {
                 dmsUrl += "&locale=" + locale.getLanguage();
             }
 
             JSONObject json = new JSONObject(request(dmsUrl));
 
-            if (json.has("data") && ((JSONArray)json.get("data")).length() > 0) {
-                return ((JSONArray) json.get("data")).getJSONObject(0);
+            if (json.has("data")) {
+                return json.getJSONObject("data");
             }
         }
         return null;

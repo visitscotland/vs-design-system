@@ -1,6 +1,7 @@
 package com.visitscotland.brmx.beans.mapping;
 
 import com.visitscotland.brmx.beans.ListicleItem;
+import com.visitscotland.brmx.beans.dms.FacilityObject;
 import org.hippoecm.hst.content.beans.standard.HippoHtml;
 
 import java.util.List;
@@ -14,10 +15,9 @@ public class FlatListicle {
     private String subTitle;
     private HippoHtml description;
     private FlatImage image;
-    private List<String> facilities;
+    private List<FacilityObject> facilities;
     private String location;
-    //TODO links instead ctaLinks
-    private List<FlatLink> ctaLinks;
+    private List<FlatLink> links;
 
     private String errorMessage;
 
@@ -72,11 +72,11 @@ public class FlatListicle {
         this.image = image;
     }
 
-    public List<String> getFacilities() {
+    public List<FacilityObject> getFacilities() {
         return facilities;
     }
 
-    public void setFacilities(List<String> facilities) {
+    public void setFacilities(List<FacilityObject> facilities) {
         this.facilities = facilities;
     }
 
@@ -106,11 +106,11 @@ public class FlatListicle {
     }
 
 
-    public List<FlatLink> getCtaLinks() {
-        return ctaLinks;
+    public List<FlatLink> getLinks() {
+        return links;
     }
 
-    public void setCtaLinks(List<FlatLink> ctaLinks) {
-        this.ctaLinks = ctaLinks;
+    public void setLinks(List<FlatLink> links) {
+        this.links = links;
     }
 }

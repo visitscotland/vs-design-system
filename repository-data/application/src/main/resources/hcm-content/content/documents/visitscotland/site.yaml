@@ -1339,7 +1339,7 @@
               hippostd:state: draft
               hippostdpubwf:createdBy: admin
               hippostdpubwf:creationDate: 2020-03-09T13:19:06.773Z
-              hippostdpubwf:lastModificationDate: 2020-03-09T13:31:14.554Z
+              hippostdpubwf:lastModificationDate: 2020-03-20T11:22:11.109Z
               hippostdpubwf:lastModifiedBy: admin
               hippotranslation:id: 9e77ff30-3fd2-439b-9824-6e96435dcc68
               hippotranslation:locale: en
@@ -1358,21 +1358,21 @@
                   of the country you could have a peaceful stay in the Old Fisherman's
                   Cottage at Ballantrae in Ayrshire.</p>
               /visitscotland:products:
+                jcr:primaryType: visitscotland:DMSLink
+                visitscotland:label: ''
+                visitscotland:product: '260181'
+              /visitscotland:extraLinks:
                 jcr:primaryType: visitscotland:ProductSearchLink
-                visitscotland:label: Find more cottages by the sea
+                visitscotland:label: Find more options in this page
                 /visitscotland:search:
                   jcr:primaryType: visitscotland:ProductsSearch
-                  visitscotland:dmsAwards: []
-                  visitscotland:dmsCategories: [selfcatering, cottage]
-                  visitscotland:dmsFacilities: [coastal]
-                  visitscotland:location: ''
-                  visitscotland:officialrating: []
+                  visitscotland:dmsAwards: [qac, qachildrenwelcome]
+                  visitscotland:dmsCategories: [boathouse]
+                  visitscotland:dmsFacilities: [aircon]
+                  visitscotland:location: Aberdeen
+                  visitscotland:officialrating: ['2']
                   visitscotland:productType: acco
                   visitscotland:producttype: ''
-              /visitscotland:images:
-                jcr:primaryType: visitscotland:InstagramImage
-                visitscotland:caption: ''
-                visitscotland:id: B9e-FxRoiXn
             /harbour-side-fishermens-cottages[2]:
               jcr:primaryType: visitscotland:ListicleItem
               jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
@@ -1381,7 +1381,7 @@
               hippostd:state: unpublished
               hippostdpubwf:createdBy: admin
               hippostdpubwf:creationDate: 2020-03-09T13:19:06.773Z
-              hippostdpubwf:lastModificationDate: 2020-03-09T13:31:14.520Z
+              hippostdpubwf:lastModificationDate: 2020-03-20T11:23:04.073Z
               hippostdpubwf:lastModifiedBy: admin
               hippotranslation:id: 9e77ff30-3fd2-439b-9824-6e96435dcc68
               hippotranslation:locale: en
@@ -1400,21 +1400,72 @@
                   of the country you could have a peaceful stay in the Old Fisherman's
                   Cottage at Ballantrae in Ayrshire.</p>
               /visitscotland:products:
+                jcr:primaryType: visitscotland:DMSLink
+                visitscotland:label: ''
+                visitscotland:product: '260181'
+              /visitscotland:extraLinks:
                 jcr:primaryType: visitscotland:ProductSearchLink
-                visitscotland:label: Find more cottages by the sea
+                visitscotland:label: Find more options in this page
                 /visitscotland:search:
                   jcr:primaryType: visitscotland:ProductsSearch
-                  visitscotland:dmsAwards: []
-                  visitscotland:dmsCategories: [selfcatering, cottage]
-                  visitscotland:dmsFacilities: [coastal]
-                  visitscotland:location: ''
-                  visitscotland:officialrating: []
+                  visitscotland:dmsAwards: [qac, qachildrenwelcome]
+                  visitscotland:dmsCategories: [boathouse]
+                  visitscotland:dmsFacilities: [aircon]
+                  visitscotland:location: Aberdeen
+                  visitscotland:officialrating: ['2']
                   visitscotland:productType: acco
                   visitscotland:producttype: ''
-              /visitscotland:images:
-                jcr:primaryType: visitscotland:InstagramImage
-                visitscotland:caption: ''
-                visitscotland:id: B9e-FxRoiXn
+          /the-black-watch-castle--museum:
+            jcr:primaryType: hippo:handle
+            jcr:mixinTypes: ['hippo:named', 'mix:referenceable']
+            jcr:uuid: 9a4881b2-3444-43f8-99f5-af28a3a93bd6
+            hippo:name: The Black Watch Castle & Museum
+            /the-black-watch-castle--museum[1]:
+              jcr:primaryType: visitscotland:ListicleItem
+              jcr:mixinTypes: ['mix:referenceable']
+              jcr:uuid: bc3f5a75-4cae-4390-88e2-67a032b2630a
+              hippo:availability: []
+              hippostd:state: draft
+              hippostdpubwf:createdBy: admin
+              hippostdpubwf:creationDate: 2020-03-20T11:44:21.296Z
+              hippostdpubwf:lastModificationDate: 2020-03-20T11:45:49.339Z
+              hippostdpubwf:lastModifiedBy: admin
+              hippotranslation:id: 7b3c5b8a-6929-4ac7-bdea-25fa3d1d9d64
+              hippotranslation:locale: en
+              visitscotland:subtitle: ''
+              visitscotland:title: The Black Watch Castle & Museum
+              /visitscotland:description:
+                jcr:primaryType: hippostd:html
+                hippostd:content: <p>The Black Watch Castle &amp; Museum tells the
+                  story of Scotland's elite military regiment whose history stretches
+                  back almost three centuries</p>
+              /visitscotland:products:
+                jcr:primaryType: visitscotland:DMSLink
+                visitscotland:label: Discover more about it
+                visitscotland:product: '251351'
+            /the-black-watch-castle--museum[2]:
+              jcr:primaryType: visitscotland:ListicleItem
+              jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
+              jcr:uuid: 18ce65c4-11ec-400c-93ff-ee8b6fef5e4d
+              hippo:availability: [preview]
+              hippostd:state: unpublished
+              hippostdpubwf:createdBy: admin
+              hippostdpubwf:creationDate: 2020-03-20T11:44:21.296Z
+              hippostdpubwf:lastModificationDate: 2020-03-20T11:45:49.313Z
+              hippostdpubwf:lastModifiedBy: admin
+              hippotranslation:id: 7b3c5b8a-6929-4ac7-bdea-25fa3d1d9d64
+              hippotranslation:locale: en
+              visitscotland:subtitle: ''
+              visitscotland:title: The Black Watch Castle & Museum
+              /visitscotland:description:
+                jcr:primaryType: hippostd:html
+                hippostd:content: <p>The Black Watch Castle &amp; Museum tells the
+                  story of Scotland's elite military regiment whose history stretches
+                  back almost three centuries</p>
+              /visitscotland:products:
+                jcr:primaryType: visitscotland:DMSLink
+                visitscotland:label: Discover more about it
+                visitscotland:product: '251351'
     /editor-role-test:
       jcr:primaryType: hippostd:folder
       jcr:mixinTypes: ['hippotranslation:translated', 'mix:versionable']

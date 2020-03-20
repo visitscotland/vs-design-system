@@ -93,9 +93,9 @@
 
 		<div slot="description-slot">
 			<@hst.html hippohtml=item.description />
-			<#if  item.ctaLinks?has_content>
-				<#list item.ctaLinks as cta>
-					<#if  cta?has_content>
+			<#if item.links?has_content>
+				<#list item.links as cta>
+					<#if cta?has_content>
 						<vs-link href="${cta.link}">${cta.label}</vs-link>
 						</br>
 					</#if>
@@ -108,8 +108,8 @@
 				<vs-icon-description-list>
 					<#list item.facilities as facility>
 						<vs-icon-description-list-detail
-							icon="${facility}"
-							label="${label("keyFacilities", "${facility}")}">
+							icon="${facility.id}"
+							label="${facility.name}">
 						</vs-icon-description-list-detail>
 					</#list>
 				</vs-icon-description-list>
