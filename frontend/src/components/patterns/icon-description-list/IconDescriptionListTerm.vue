@@ -21,6 +21,6 @@ export default {
 .vs-icon-description-list__term {
     font-size: $h4-font-size;
     font-weight: $lead-font-weight;
-    margin-bottom: $spacer-5;
+    margin: $spacer-5 0;
 }
 </style>
