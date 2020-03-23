@@ -19,9 +19,8 @@ export default {
 
 <style lang="scss" scoped>
 .vs-icon-description-list__term {
-    margin-bottom: 1rem;
-    flex-basis: 1;
-    display: block;
-    width: 100%;
+    font-size: $h4-font-size;
+    font-weight: $lead-font-weight;
+    margin-bottom: $spacer-5;
 }
 </style>
