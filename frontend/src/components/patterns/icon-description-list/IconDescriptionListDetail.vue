@@ -42,11 +42,13 @@ export default {
 
 <style lang="scss" scoped>
 .vs-icon-description-list__detail {
+    position: relative;
     display: inline-table;
     vertical-align: top;
     text-align: center;
     width: 90px;
-    position: relative;
+    margin-bottom: $spacer-4;
+    padding: 0 $spacer-1;
 
     svg {
         display: block;

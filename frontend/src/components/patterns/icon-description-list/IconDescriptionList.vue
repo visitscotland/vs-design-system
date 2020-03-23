@@ -1,5 +1,6 @@
 <template>
-    <dl class="vs-icon-description-list">
+    <dl class="vs-icon-description-list mb-0">
+        <vs-icon-description-list-term v-if="title">{{ title }}</vs-icon-description-list-term>
         <slot />
     </dl>
 </template>
@@ -14,27 +15,28 @@ export default {
     name: "VsIconDescriptionList",
     status: "prototype",
     release: "0.0.1",
-    props: {},
+    props: {
+        /**
+         * The title for the icon list
+         */
+        title: {
+            type: String,
+        },
+    },
 }
 </script>
 
 <style lang="scss" scoped>
 .vs-icon-description-list {
-    border-top: 1px solid $color-gray-tint-5;
-    margin: $spacer-4 -1rem -1rem;
-    padding: 1rem 0 0;
     text-align: center;
-
-    @include media-breakpoint-up(sm) {
-        margin: $spacer-4 0 0;
-    }
+    font-size: $h6-font-size;
+    line-height: $standard-line-height;
 }
 </style>
 
 <docs>
   ```jsx
-    <vs-icon-description-list>
-        <vs-icon-description-list-term>Key facilities</vs-icon-description-list-term>
+    <vs-icon-description-list title="Key Facilities">
         <vs-icon-description-list-detail 
             icon="facility-wifi"
             label="WiFi"
