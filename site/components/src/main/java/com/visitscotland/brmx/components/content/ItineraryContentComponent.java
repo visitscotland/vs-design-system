@@ -60,9 +60,12 @@ public class ItineraryContentComponent extends PageContentComponent<Itinerary> {
         final String LOCATION = "city";
         final String URL = "url";
         final String TIME_TO_EXPLORE = "timeToExplore";
+        final String PRICE = "price";
         final String LAT = "latitude";
         final String LON = "longitude";
         final String FACILITIES = "keyFacilities";
+        final String OPENING = "opening";
+        final String DAYS = "days";
         final String IMAGE = "images";
         final String MEDIA = "mediaUrl";
         final String CREDIT = "copyright";
@@ -83,8 +86,6 @@ public class ItineraryContentComponent extends PageContentComponent<Itinerary> {
 
                 if (stop.getStopItem() instanceof DMSLink){
                     DMSLink dmsLink = (DMSLink) stop.getStopItem();
-                    List<JSONObject> facilities = new ArrayList<>();
-
                     if (stop.getImage()!=null) {
                         img.setCmsImage(stop.getImage());
                     }
@@ -113,6 +114,7 @@ public class ItineraryContentComponent extends PageContentComponent<Itinerary> {
                                 //model.setLocation(product.getString(LOCATION));
 
                                 model.setTimeToexplore(product.has(TIME_TO_EXPLORE)? product.getString(TIME_TO_EXPLORE):null);
+                                model.setPrice(product.has(PRICE)? product.getString(PRICE):null);
                                 if (stop.getImage() == null){
                                     JSONArray dmsImageList = product.getJSONArray(IMAGE);
                                     JSONObject dmsImage = dmsImageList.getJSONObject(0);
@@ -127,6 +129,7 @@ public class ItineraryContentComponent extends PageContentComponent<Itinerary> {
                                 model.setCoordinates(coordinates);
 
                                 if (product.has(FACILITIES)){
+                                    List<JSONObject> facilities = new ArrayList<>();
                                     JSONArray keyFacilitiesList = product.getJSONArray(FACILITIES);
                                     if (keyFacilitiesList!=null){
                                         for (int i = 0; i < keyFacilitiesList.length(); i++) {
@@ -134,6 +137,20 @@ public class ItineraryContentComponent extends PageContentComponent<Itinerary> {
                                         }
                                     }
                                     model.setFacilities(facilities);
+                                }
+
+                                if (product.has(OPENING)){
+                                    JSONObject opening = product.getJSONObject(OPENING);
+                                    if (opening.has(DAYS)){
+                                        List<JSONObject> openingsDays = new ArrayList<>();
+                                        JSONArray openingList = opening.getJSONArray(DAYS);
+                                        if (openingList!=null){
+                                            for (int i = 0; i < openingList.length(); i++) {
+                                                openingsDays.add(openingList.getJSONObject(i));
+                                            }
+                                        }
+                                        model.setOpenings(openingsDays);
+                                    }
                                 }
 
                             }

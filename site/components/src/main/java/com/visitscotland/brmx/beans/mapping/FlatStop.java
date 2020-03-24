@@ -19,8 +19,10 @@ public class FlatStop {
     private FlatLink ctaLink;
     private HippoHtml tipsBody;
     private List<JSONObject> facilities;
+    private List<JSONObject> openings;
     private JSONObject address;
     private String location;
+    private String price;
 
     private Coordinates coordinates;
     private String errorMessage;
@@ -110,6 +112,14 @@ public class FlatStop {
         this.facilities = facilities;
     }
 
+    public List<JSONObject> getOpenings() {
+        return openings;
+    }
+
+    public void setOpenings(List<JSONObject> openings) {
+        this.openings = openings;
+    }
+
     public Coordinates getCoordinates() {
         return coordinates;
     }
@@ -148,5 +158,15 @@ public class FlatStop {
 
     public void setLocation(String location) {
         this.location = location;
+    }
+
+
+
+    public String getPrice() {
+        return price;
+    }
+
+    public void setPrice(String price) {
+        this.price = price;
     }
 }
