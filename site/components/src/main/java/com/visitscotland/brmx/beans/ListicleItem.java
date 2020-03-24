@@ -47,6 +47,11 @@ public class ListicleItem extends BaseDocument {
         return getChildBeansByName("visitscotland:images", HippoBean.class);
     }
 
+    /**
+     * The method return an bean of the allowed types or null.
+     *
+     * Allowed types are InstagramImage and Image (Image Link)
+     */
     public HippoBean getListicleItemImage() {
         HippoBean image = getOnlyChild(getImages());
         if (image instanceof HippoFacetSelect) {
