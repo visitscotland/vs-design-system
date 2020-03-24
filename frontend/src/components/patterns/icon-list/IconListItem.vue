@@ -1,21 +1,21 @@
 <template>
-    <dd class="vs-icon-description-list__detail">
+    <li class="vs-icon-list__item">
         <vs-icon :name="icon" variant="dark" size="sm" />
         {{ label }}
-    </dd>
+    </li>
 </template>
 
 <script>
 import VsIcon from "@components/elements/icon/Icon"
 
 /**
- * An icon description list detail is a child component used within icon description list components.
+ * An icon list item is a child component used within icon list components.
  * The component takes in an icon name and label that should be displayed under the icon as props.
  * They're displayed with an inline-table layout setting.
  */
 
 export default {
-    name: "VsIconDescriptionListDetail",
+    name: "VsIconListItem",
     status: "prototype",
     release: "0.0.1",
     components: {
@@ -41,7 +41,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.vs-icon-description-list__detail {
+.vs-icon-list__item {
     position: relative;
     display: inline-table;
     vertical-align: top;
@@ -49,6 +49,8 @@ export default {
     width: 90px;
     margin-bottom: $spacer-4;
     padding: 0 $spacer-1;
+    font-size: $h6-font-size;
+    line-height: $standard-line-height;
 
     svg {
         display: block;
