@@ -30,7 +30,7 @@ public class CommonUtils {
      */
     public static JSONObject getProduct(String productId, Locale locale) throws IOException {
         if (!CommonUtils.isEmpty(productId)) {
-            String dmsUrl = Properties.VS_DMS_PRODUCTS + "/data/products/card?id=" + productId;
+            String dmsUrl = Properties.VS_DMS_SERVICE + "/data/products/card?id=" + productId;
             if (locale != null) {
                 dmsUrl += "&locale=" + locale.getLanguage();
             }

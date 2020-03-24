@@ -183,9 +183,9 @@ public abstract class AbstractDMSPicker implements ExternalDocumentServiceFacade
         }
 
         if (locale == null){
-            return  CommonUtils.request(String.format("%s/data/meta/%s/list%s", Properties.VS_DMS_PRODUCTS, productType, parameters));
+            return  CommonUtils.request(String.format("%s/data/meta/%s/list%s", Properties.VS_DMS_SERVICE, productType, parameters));
         } else {
-            return  CommonUtils.request(String.format("%s/data/meta/%s/list%s&locale=%s", Properties.VS_DMS_PRODUCTS, productType, parameters, locale.getLanguage()));
+            return  CommonUtils.request(String.format("%s/data/meta/%s/list%s&locale=%s", Properties.VS_DMS_SERVICE, productType, parameters, locale.getLanguage()));
         }
     }
 

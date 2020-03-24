@@ -3,4 +3,5 @@
 
 <@hst.defineObjects />
 
+<#assign locale = hstRequest.requestContext.resolvedMount.mount.locale?replace("_","-")?lower_case>
 <#include "./helpers.ftl">
