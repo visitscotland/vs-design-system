@@ -110,10 +110,8 @@ export default {
     }
 
     & ::v-deep {
-        .vs-icon-description-list {
+        .vs-icon-list {
             border-top: 1px solid $color-gray-tint-5;
-
-        
         }
     }
 }
@@ -174,14 +172,14 @@ export default {
                     </div>
                     <vs-svg slot="svg" path="highland-cow" />
                 </vs-itinerary-tips>
-                <vs-icon-description-list v-if="stop.facilities.length" title="Key facilities">
-                    <vs-icon-description-list-detail 
+                <vs-icon-list v-if="stop.facilities.length" title="Key facilities">
+                    <vs-icon-list-item 
                         v-for="(facility, facilitiesIndex) in stop.facilities"
                         :key="facilitiesIndex"
                         :label="facility.value"
                         :icon="facility.key"
                         />
-                </vs-icon-description-list>
+                </vs-icon-list>
               </div>
             <!-- mimic only showing these links on the last stop of the day -->
             <template v-if="index == itineraries.sampleItinerary.days[0].stops.length - 1">
