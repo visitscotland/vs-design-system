@@ -1,18 +1,20 @@
 <template>
-    <dl class="vs-icon-description-list mb-0">
-        <vs-icon-description-list-term v-if="title">{{ title }}</vs-icon-description-list-term>
-        <slot />
-    </dl>
+    <div class="vs-icon-list">
+        <div class="vs-icon-list__title" v-if="title">{{ title }}</div>
+        <ul class="vs-icon-list__list mb-0 pl-0">
+            <slot />
+        </ul>
+    </div>
 </template>
 
 <script>
 /**
- * An icon description list can be used where there is a list of terms and descriptions with icons.
+ * An icon list can be used where there is a list icons with a caption with optional heading.
  * An example use is to create a list of key facilities for a product.
  */
 
 export default {
-    name: "VsIconDescriptionList",
+    name: "VsIconList",
     status: "prototype",
     release: "0.0.1",
     props: {
@@ -27,40 +29,50 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.vs-icon-description-list {
+.vs-icon-list {
     text-align: center;
-    font-size: $h6-font-size;
-    line-height: $standard-line-height;
+
+    .vs-icon-list__title {
+        font-size: $h4-font-size;
+        font-weight: $lead-font-weight;
+        margin: $spacer-5 0;
+    }
+
+    .vs-icon-list__list {
+        display: inline-block;
+        margin: 0 auto;
+        text-align: left;
+    }
 }
 </style>
 
 <docs>
   ```jsx
-    <vs-icon-description-list title="Key Facilities">
-        <vs-icon-description-list-detail 
+    <vs-icon-list title="Key Facilities">
+        <vs-icon-list-item
             icon="facility-wifi"
             label="WiFi"
         />
-        <vs-icon-description-list-detail 
+        <vs-icon-list-item
             icon="facility-petswelcom"
             label="Pets Welcome"
         />
-        <vs-icon-description-list-detail 
+        <vs-icon-list-item
             icon="facility-parking"
             label="Parking"
         />
-        <vs-icon-description-list-detail 
+        <vs-icon-list-item
             icon="facility-dsblaccess"
             label="Level Access"
         />
-        <vs-icon-description-list-detail 
+        <vs-icon-list-item
             icon="facility-audioloop"
             label="Hearing Loop"
         />
-        <vs-icon-description-list-detail 
+        <vs-icon-list-item
             icon="facility-accessparkdrop"
             label="Accessible Parking or Drop-off Point"
         />
-    </vs-icon-description-list>
+    </vs-icon-list>
   ```
 </docs>
