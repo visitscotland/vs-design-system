@@ -14,6 +14,19 @@ const webpackBabelRuleIncludes = [
   resolve("node_modules/buble/node_modules/acorn-jsx"),
 ]
 
+const transpileDependencies = [
+	'regexpu-core',
+	'strip-ansi',
+	'ansi-regex',
+  'ansi-styles',
+  'camelcase',
+	'react-dev-utils',
+	'chalk',
+	'unicode-match-property-ecmascript',
+	'unicode-match-property-value-ecmascript',
+	'acorn-jsx',
+]
+
 const webpackBabelRuleUse = {
   loader: "babel-loader",
   options: {
@@ -142,6 +155,7 @@ module.exports = {
       rules: [
         {
           test: /\.(css?|scss|sass)(\?.*)?$/,
+     
           use: [
             "style-loader",
             "css-loader",
@@ -165,6 +179,34 @@ module.exports = {
             },
           ],
         },
+        {
+					test: /\.js$/,
+					exclude: modulePath =>
+						(/node_modules/.test(modulePath) ||
+							/packages[\\/]vue-styleguidist[\\/]lib/.test(modulePath)) &&
+						!transpileDependencies.some(mod =>
+							new RegExp(`node_modules[\\\\/]${mod}[\\\\/]`).test(modulePath)
+						),
+					use: {
+						loader: 'babel-loader',
+						options: {
+							sourceType: 'unambiguous',
+							presets: [
+								[
+									'@babel/preset-env',
+									{
+										useBuiltIns: 'usage',
+										corejs: 3,
+										targets: {
+											ie: '11'
+										}
+									}
+								]
+							],
+							comments: false
+						}
+					}
+				},
       ],
     },
   }),
