@@ -52,6 +52,7 @@ function getBaseConfig() {
     babelRule.include = _.concat(babelRule.include, webpackBabelRuleIncludes)
     babelRule.use = webpackBabelRuleUse
   }
+  
   return baseConfig
 }
 
