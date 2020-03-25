@@ -1,5 +1,11 @@
 package com.visitscotland.brmx.components.content;
 
+import com.graphhopper.GHRequest;
+import com.graphhopper.GHResponse;
+import com.graphhopper.GraphHopper;
+import com.graphhopper.reader.osm.GraphHopperOSM;
+import com.graphhopper.routing.util.EncodingManager;
+import com.graphhopper.util.Parameters;
 import com.visitscotland.brmx.beans.*;
 import com.visitscotland.brmx.beans.dms.LocationObject;
 import com.visitscotland.brmx.beans.mapping.Coordinates;
@@ -108,20 +114,17 @@ public class ItineraryContentComponent extends PageContentComponent<Itinerary> {
                                 if (product.has(ADDRESS)){
                                     JSONObject address =product.getJSONObject(ADDRESS);
                                     model.setAddress(address);
-                                    String location = address.has(LOCATION)?address.getString(LOCATION):null;
-                                    model.setLocation(location);
+                                    model.setLocation( address.has(LOCATION)?address.getString(LOCATION):null);
                                 }
-                                //model.setLocation(product.getString(LOCATION));
 
                                 model.setTimeToexplore(product.has(TIME_TO_EXPLORE)? product.getString(TIME_TO_EXPLORE):null);
                                 model.setPrice(product.has(PRICE)? product.getString(PRICE):null);
                                 if (stop.getImage() == null){
-                                    JSONArray dmsImageList = product.getJSONArray(IMAGE);
-                                    JSONObject dmsImage = dmsImageList.getJSONObject(0);
+                                    JSONObject dmsImage = product.getJSONArray(IMAGE).getJSONObject(0);
                                     img.setExternalImage(dmsImage.has(MEDIA)?dmsImage.getString(MEDIA):null);
                                     img.setCredit(dmsImage.has(CREDIT)?dmsImage.getString(CREDIT):null);
-                                    img.setDescription(dmsImage.has(ALT_TEXT)?dmsImage.getString(ALT_TEXT):null);
-                                    img.setAltText(dmsImage.has(ALT_TEXT)?dmsImage.getString(ALT_TEXT):null);
+                                    img.setDescription(dmsImage.has(ALT_TEXT)?dmsImage.getString(ALT_TEXT):product.getString("name"));
+                                    img.setAltText(img.getDescription());
                                 }
 
                                 coordinates.setLatitude(product.getDouble(LAT));

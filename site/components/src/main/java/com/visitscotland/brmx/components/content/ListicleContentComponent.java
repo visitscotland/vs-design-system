@@ -130,8 +130,8 @@ public class ListicleContentComponent extends PageContentComponent<Listicle> {
                                 JSONObject dmsImage = dmsImageList.getJSONObject(0);
                                 image.setExternalImage(dmsImage.has(MEDIA)?dmsImage.getString(MEDIA):null);
                                 image.setCredit(dmsImage.has(CREDIT)?dmsImage.getString(CREDIT):null);
-                                image.setDescription(dmsImage.has(ALT_TEXT)?dmsImage.getString(ALT_TEXT):null);
-                                image.setAltText(dmsImage.has(ALT_TEXT)?dmsImage.getString(ALT_TEXT):null);
+                                image.setDescription(dmsImage.has(ALT_TEXT)?dmsImage.getString(ALT_TEXT):product.getString("name"));
+                                image.setAltText(image.getDescription());
 
                                 model.setImage(image);
                             }else{

@@ -33,8 +33,8 @@
         <vs-itinerary-stop
             slot="stops"
             stop-number="${prod.index}"
-            stop-label="${label('itinerary', 'stop.title')}"
-            stop-title="${prod.title}"
+            stop-label="${prod.title}"
+            stop-title="${prod.location}"
         >
             <div slot="stop-details" class="has-edit-button">
                 <@hst.manageContent hippobean=stop />
@@ -45,8 +45,8 @@
         <vs-itinerary-stop
             slot="stops"
             stop-number="${prod.index}"
-            stop-label="${label('itinerary', 'stop.title')}"
-            stop-title="${prod.title}"
+            stop-label="${prod.title}"
+            stop-title="${prod.location}"
         >
             <div slot="stop-details" class="has-edit-button">
                 <@hst.manageContent hippobean=stop />
