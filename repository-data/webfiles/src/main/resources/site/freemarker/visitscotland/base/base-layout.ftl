@@ -7,12 +7,13 @@
         <meta charset="utf-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="<@hst.webfile  path="/design-system/components/core.css"/>" type="text/css"/>
-        <#--TODO: REMOVE BOOTSTRAP WHEN THE DESIGN SYSTEM WERE FULLY INTEGRATED-->
-        <#--  <link rel="stylesheet" href="<@hst.webfile  path="/css/bootstrap.css"/>" type="text/css"/>  -->
+
+        <@hst.headContributions categoryIncludes="seo" xhtml=true/>
+
         <#if hstRequest.requestContext.channelManagerPreviewRequest>
             <link rel="stylesheet" href="<@hst.webfile  path="/css/cms-request.css"/>" type="text/css"/>
         </#if>
-        <@hst.headContributions categoryExcludes="htmlBodyEnd, scripts, htmlAppInit" xhtml=true/>
+        <@hst.headContributions categoryExcludes="seo, htmlBodyEnd, scripts, htmlAppInit" xhtml=true/>
     </head>
     <body>
         <div class="container" data-vue-app-init>
