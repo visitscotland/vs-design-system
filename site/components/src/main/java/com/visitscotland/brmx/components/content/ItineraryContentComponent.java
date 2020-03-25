@@ -1,11 +1,6 @@
 package com.visitscotland.brmx.components.content;
 
-import com.graphhopper.GHRequest;
-import com.graphhopper.GHResponse;
-import com.graphhopper.GraphHopper;
-import com.graphhopper.reader.osm.GraphHopperOSM;
-import com.graphhopper.routing.util.EncodingManager;
-import com.graphhopper.util.Parameters;
+
 import com.visitscotland.brmx.beans.*;
 import com.visitscotland.brmx.beans.dms.LocationObject;
 import com.visitscotland.brmx.beans.mapping.Coordinates;
@@ -59,7 +54,7 @@ public class ItineraryContentComponent extends PageContentComponent<Itinerary> {
      *
      * @param request
      */
-    private void generateStops(HstRequest request){
+    private void generateStops(HstRequest request)  {
 
         final Itinerary itinerary = getDocument(request);
         final String ADDRESS = "address";
@@ -70,7 +65,7 @@ public class ItineraryContentComponent extends PageContentComponent<Itinerary> {
         final String LAT = "latitude";
         final String LON = "longitude";
         final String FACILITIES = "keyFacilities";
-        final String OPENING = "opening";
+        final String OPENING = "todayOpeningTime";
         final String DAYS = "days";
         final String IMAGE = "images";
         final String MEDIA = "mediaUrl";
@@ -144,16 +139,8 @@ public class ItineraryContentComponent extends PageContentComponent<Itinerary> {
 
                                 if (product.has(OPENING)){
                                     JSONObject opening = product.getJSONObject(OPENING);
-                                    if (opening.has(DAYS)){
-                                        List<JSONObject> openingsDays = new ArrayList<>();
-                                        JSONArray openingList = opening.getJSONArray(DAYS);
-                                        if (openingList!=null){
-                                            for (int i = 0; i < openingList.length(); i++) {
-                                                openingsDays.add(openingList.getJSONObject(i));
-                                            }
-                                        }
-                                        model.setOpenings(openingsDays);
-                                    }
+                                    //TODO adjust to designs when ready
+                                    model.setOpen(opening.getString("day")+": "+opening.getString("startTime") +"-"+ opening.getString("endTime"));
                                 }
 
                             }
