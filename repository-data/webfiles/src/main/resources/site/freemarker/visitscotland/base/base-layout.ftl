@@ -9,11 +9,12 @@
         <link rel="stylesheet" href="<@hst.webfile  path="/design-system/components/core.css"/>" type="text/css"/>
 
         <@hst.headContributions categoryIncludes="seo" xhtml=true/>
+        <@hst.headContributions categoryIncludes="opengraph" xhtml=true/>
 
         <#if hstRequest.requestContext.channelManagerPreviewRequest>
             <link rel="stylesheet" href="<@hst.webfile  path="/css/cms-request.css"/>" type="text/css"/>
         </#if>
-        <@hst.headContributions categoryExcludes="seo, htmlBodyEnd, scripts, htmlAppInit" xhtml=true/>
+        <@hst.headContributions categoryExcludes="seo, opengraph, htmlBodyEnd, scripts, htmlAppInit" xhtml=true/>
     </head>
     <body>
         <div class="container" data-vue-app-init>

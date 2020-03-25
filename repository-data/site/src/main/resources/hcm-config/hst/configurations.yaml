@@ -236,7 +236,7 @@ definitions:
             hst:renderpath: webfile:/freemarker/visitscotland/pages/pagenotfound-main.ftl
           /breadcrumb:
             jcr:primaryType: hst:template
-            hst:renderpath: webfile:/freemarker/visitscotland/base/breadcrumb.ftl
+            hst:renderpath: webfile:/freemarker/visitscotland/modules/breadcrumb/breadcrumb.ftl
           /itinerary:
             jcr:primaryType: hst:template
             hst:renderpath: webfile:/freemarker/visitscotland/pages/itinerary-main.ftl

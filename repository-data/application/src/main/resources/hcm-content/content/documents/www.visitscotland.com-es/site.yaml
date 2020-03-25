@@ -26,7 +26,7 @@
         hippostd:state: unpublished
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2019-12-06T12:48:04.149Z
-        hippostdpubwf:lastModificationDate: 2020-03-24T18:05:32.530Z
+        hippostdpubwf:lastModificationDate: 2020-03-25T09:19:47.226Z
         hippostdpubwf:lastModifiedBy: admin
         hippotranslation:id: a3ed9022-e239-493b-952c-18d01ac36640
         hippotranslation:locale: es
@@ -36,7 +36,8 @@
         visitscotland:finish: Spain
         visitscotland:highlights: ''
         visitscotland:popular: false
-        visitscotland:seoDescription: ''
+        visitscotland:seoDescription: El único propósito de esta campo es validar
+          que hice bien la implementación de SEO.
         visitscotland:seoNoIndex: false
         visitscotland:seoTitle: Un montón de enlaces útiles para desarrolladores
         visitscotland:start: Scotland
@@ -118,7 +119,7 @@
         hippostd:state: draft
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2019-12-06T12:48:04.149Z
-        hippostdpubwf:lastModificationDate: 2020-03-24T18:05:32.617Z
+        hippostdpubwf:lastModificationDate: 2020-03-25T09:19:47.289Z
         hippostdpubwf:lastModifiedBy: admin
         hippotranslation:id: a3ed9022-e239-493b-952c-18d01ac36640
         hippotranslation:locale: es
@@ -128,7 +129,8 @@
         visitscotland:finish: Spain
         visitscotland:highlights: ''
         visitscotland:popular: false
-        visitscotland:seoDescription: ''
+        visitscotland:seoDescription: El único propósito de esta campo es validar
+          que hice bien la implementación de SEO.
         visitscotland:seoNoIndex: false
         visitscotland:seoTitle: Un montón de enlaces útiles para desarrolladores
         visitscotland:start: Scotland
@@ -210,9 +212,9 @@
         hippostd:state: published
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2019-12-06T12:48:04.149Z
-        hippostdpubwf:lastModificationDate: 2020-03-24T18:05:32.530Z
+        hippostdpubwf:lastModificationDate: 2020-03-25T09:19:47.226Z
         hippostdpubwf:lastModifiedBy: admin
-        hippostdpubwf:publicationDate: 2020-03-24T18:05:47.719Z
+        hippostdpubwf:publicationDate: 2020-03-25T09:19:50.899Z
         hippotranslation:id: a3ed9022-e239-493b-952c-18d01ac36640
         hippotranslation:locale: es
         visitscotland:areas: []
@@ -221,7 +223,8 @@
         visitscotland:finish: Spain
         visitscotland:highlights: ''
         visitscotland:popular: false
-        visitscotland:seoDescription: ''
+        visitscotland:seoDescription: El único propósito de esta campo es validar
+          que hice bien la implementación de SEO.
         visitscotland:seoNoIndex: false
         visitscotland:seoTitle: Un montón de enlaces útiles para desarrolladores
         visitscotland:start: Scotland

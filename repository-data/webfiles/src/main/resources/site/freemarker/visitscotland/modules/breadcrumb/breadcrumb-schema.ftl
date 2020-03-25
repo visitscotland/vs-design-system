@@ -1,26 +1,13 @@
-<#include "../../include/imports.ftl">
+<#include "../../../include/imports.ftl">
 <@hst.setBundle basename="navigation"/>
 
 <#-- @ftlvariable name="breadcrumb" type="org.onehippo.forge.breadcrumb.om.Breadcrumb" -->
-
-<#-- TODO REFACTOR -->
-<@hst.headContribution category="seo">
-    <#-- canonical tag has -->
-    <link rel="canonical" href="<@hst.link hippobean=document canonical=true fullyQualified=true/>" />
-</@hst.headContribution>
-
-<#-- TODO REFACTOR -->
-<#if document.availableTranslations.translations?size gt 1>
-    <#list document.availableTranslations.translations as translation>
-        <@hst.headContribution category="seo">
-            <link rel="alternate" href="<@hst.link hippobean=translation fullyQualified=true/>"  hreflang="${translation.localeString}"/>
-        </@hst.headContribution>
-    </#list>
-</#if>
+<#-- @ftlvariable name="requestedURI" type="java.lang.String" -->
+<#-- @ftlvariable name="isHome" type="java.lang.Boolean" -->
+<#-- @ftlvariable name="document" type="com.visitscotland.brmx.beans.Page" -->
 
 <#if breadcrumb?? && breadcrumb.items??>
     <@hst.headContribution category="seo">
-
         <script type="application/ld+json">
         {
             "@context": "https://schema.org",
