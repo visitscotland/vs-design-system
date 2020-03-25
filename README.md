@@ -6,12 +6,17 @@ From the project root folder, execute:
     mvn clean verify
     mvn -P cargo.run
 
-Alternatively, developers might prefer to run a quicker version were UI packages are not built.
+Alternatively, developers might prefer to run a quicker version where UI packages are not built.
 Please, note that the full run is advised every time the branch is changed or when front end changes 
 are expected.
 
-    mvn clean verify -P !fed-build
-    mvn -P cargo.run
+    mvn verify -P !fed-build -D skipTests && mvn -P cargo.run
+    
+Front end developers can also benefit of a quick run by running the following command which only
+build the front end packages and the UI integration.
+
+    mvn verify -P fed-build -D skipTests && mvn -P cargo.run
+
 
 BloomReach Instruction (Legacy)
 ===============================
