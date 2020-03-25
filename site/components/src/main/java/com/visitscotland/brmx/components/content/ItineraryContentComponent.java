@@ -66,7 +66,8 @@ public class ItineraryContentComponent extends PageContentComponent<Itinerary> {
         final String LON = "longitude";
         final String FACILITIES = "keyFacilities";
         final String OPENING = "todayOpeningTime";
-        final String DAYS = "days";
+        final String START_TIME = "startTime";
+        final String END_TIME = "endTime";
         final String IMAGE = "images";
         final String MEDIA = "mediaUrl";
         final String CREDIT = "copyright";
@@ -139,8 +140,11 @@ public class ItineraryContentComponent extends PageContentComponent<Itinerary> {
 
                                 if (product.has(OPENING)){
                                     JSONObject opening = product.getJSONObject(OPENING);
-                                    //TODO adjust to designs when ready
-                                    model.setOpen(opening.getString("day")+": "+opening.getString("startTime") +"-"+ opening.getString("endTime"));
+                                    //TODO adjust the message to designs when ready
+                                    if ((opening.has(START_TIME)) && (opening.has(END_TIME))) {
+                                        model.setOpen(opening.getString("day") + ": " + opening.getString("startTime") + "-" + opening.getString("endTime"));
+                                    }
+                                    //TODO "* Please check openings times" create this message on the ftl with the anchor
                                 }
 
                             }
