@@ -29,7 +29,6 @@ public class ItineraryContentComponent extends PageContentComponent<Itinerary> {
     public final String FIRST_STOP_LOCATION = "firstStopLocation";
     public final String LAST_STOP_LOCATION = "lastStopLocation";
     public final String HERO_COORDINATES = "heroCoordinates";
-    private final String ROOT_SITE = "/site/";
 
     @Override
     public void doBeforeRender(HstRequest request, HstResponse response) {
@@ -52,7 +51,7 @@ public class ItineraryContentComponent extends PageContentComponent<Itinerary> {
 
     /**
      *
-     * @param request
+     * @param request HstRequest
      */
     private void generateStops(HstRequest request)  {
 
@@ -68,16 +67,13 @@ public class ItineraryContentComponent extends PageContentComponent<Itinerary> {
         final String OPENING = "todayOpeningTime";
         final String START_TIME = "startTime";
         final String END_TIME = "endTime";
-        final String IMAGE = "images";
-        final String MEDIA = "mediaUrl";
-        final String CREDIT = "copyright";
-        final String ALT_TEXT = "altText";
+
 
         final Map<String ,FlatStop> products =  new LinkedHashMap<>();
 
         String firstStopId = null;
         String lastStopId = null;
-        Integer index = 1;
+        int index = 1;
 
         for (Day day: itinerary.getDays()) {
             for (Stop stop : day.getStops()) {
@@ -115,12 +111,9 @@ public class ItineraryContentComponent extends PageContentComponent<Itinerary> {
 
                                 model.setTimeToexplore(product.has(TIME_TO_EXPLORE)? product.getString(TIME_TO_EXPLORE):null);
                                 model.setPrice(product.has(PRICE)? product.getString(PRICE):null);
-                                if (stop.getImage() == null){
-                                    JSONObject dmsImage = product.getJSONArray(IMAGE).getJSONObject(0);
-                                    img.setExternalImage(dmsImage.has(MEDIA)?dmsImage.getString(MEDIA):null);
-                                    img.setCredit(dmsImage.has(CREDIT)?dmsImage.getString(CREDIT):null);
-                                    img.setDescription(dmsImage.has(ALT_TEXT)?dmsImage.getString(ALT_TEXT):product.getString("name"));
-                                    img.setAltText(img.getDescription());
+
+                                if (stop.getImage() == null ){
+                                    img = getImageDMS(product);
                                 }
 
                                 coordinates.setLatitude(product.getDouble(LAT));

@@ -25,8 +25,6 @@ public class ListicleContentComponent extends PageContentComponent<Listicle> {
 
     private static final Logger logger = LoggerFactory.getLogger(ListicleContentComponent.class);
 
-    private final String LISTICLE_ITEMS = "items";
-
     @Override
     public void doBeforeRender(HstRequest request, HstResponse response) {
         super.doBeforeRender(request, response);
@@ -35,8 +33,8 @@ public class ListicleContentComponent extends PageContentComponent<Listicle> {
     }
 
     /**
-     * @param request
-     * @param listicle
+     * @param request HstRequest
+     * @param listicle lkisticle document
      */
     private void generateItems(HstRequest request, Listicle listicle) {
         final String ADDRESS = "address";
@@ -44,10 +42,6 @@ public class ListicleContentComponent extends PageContentComponent<Listicle> {
         final String LATITUDE = "latitude";
         final String LONGITUDE = "longitude";
         final String FACILITIES = "keyFacilities";
-        final String IMAGE = "images";
-        final String MEDIA = "mediaUrl";
-        final String CREDIT = "copyright";
-        final String ALT_TEXT = "altText";
         final Map<String ,FlatListicle> items =  new LinkedHashMap<>();
 
 
@@ -101,7 +95,7 @@ public class ListicleContentComponent extends PageContentComponent<Listicle> {
             if (listicleItem.getListicleItem() != null) {
                 if (listicleItem.getListicleItem() instanceof DMSLink) {
                     DMSLink dmsLink = (DMSLink) listicleItem.getListicleItem();
-                    JSONObject product = null;
+                    JSONObject product;
                     try {
                         product = CommonUtils.getProduct(dmsLink.getProduct(), request.getLocale());
                         if (product == null) {
@@ -121,17 +115,11 @@ public class ListicleContentComponent extends PageContentComponent<Listicle> {
                             }
 
                             if (model.getImage() == null &&  product.has(IMAGE)) {
-                                FlatImage image = new FlatImage();
+                                FlatImage image = getImageDMS(product);
                                 if (product.has(LATITUDE) && product.has(LONGITUDE)){
                                     Coordinates coordinates = new Coordinates(product.getDouble(LATITUDE), product.getDouble(LONGITUDE));
                                     image.setCoordinates(coordinates);
                                 }
-                                JSONArray dmsImageList = product.getJSONArray(IMAGE);
-                                JSONObject dmsImage = dmsImageList.getJSONObject(0);
-                                image.setExternalImage(dmsImage.has(MEDIA)?dmsImage.getString(MEDIA):null);
-                                image.setCredit(dmsImage.has(CREDIT)?dmsImage.getString(CREDIT):null);
-                                image.setDescription(dmsImage.has(ALT_TEXT)?dmsImage.getString(ALT_TEXT):product.getString("name"));
-                                image.setAltText(image.getDescription());
 
                                 model.setImage(image);
                             }else{
@@ -171,13 +159,14 @@ public class ListicleContentComponent extends PageContentComponent<Listicle> {
             items.put(model.getIdentifier(), model);
         }
 
+        String LISTICLE_ITEMS = "items";
         request.setAttribute(LISTICLE_ITEMS, items);
     }
 
     /**
-     * @param request
-     * @param item
-     * @return
+     * @param request HstRequest
+     * @param item Compounf for DMSLink, PSRLink , External Link or CMS linl
+     * @return FlatLink
      */
     private FlatLink createLink(HstRequest request, HippoCompound item) {
         final String URL = "url";
