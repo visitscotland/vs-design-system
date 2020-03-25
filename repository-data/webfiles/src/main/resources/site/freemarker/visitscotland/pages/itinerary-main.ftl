@@ -1,3 +1,4 @@
+<#compress>
 <#include "../../include/imports.ftl">
 
 <#include "../../vs-dotcom-ds/stores/itineraries-store.ftl">
@@ -56,7 +57,7 @@
 <#if document.transports?has_content >
     <#assign mainTransport = document.transports[0]>
 </#if>
-
+</#compress>
 <div class="has-edit-button">
       <@hst.manageContent hippobean=document documentTemplateQuery="new-document" rootPath="site" defaultPath="${path}" />
 

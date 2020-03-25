@@ -1,3 +1,4 @@
+<#compress>
 <#include "../../include/imports.ftl">
 <#include "breadcrumb-schema.ftl">
 <#include "../../vs-dotcom-ds/components/breadcrumb.ftl">
@@ -6,9 +7,8 @@
 <@hst.setBundle basename="navigation"/>
 
 <#-- @ftlvariable name="breadcrumb" type="org.onehippo.forge.breadcrumb.om.Breadcrumb" -->
-
+</#compress>
 <#if breadcrumb?? && breadcrumb.items??>
-
     <vs-breadcrumb>
         <vs-breadcrumb-item
                 key="home"
