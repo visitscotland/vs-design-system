@@ -14,7 +14,6 @@ const webpackBabelRuleIncludes = [
   resolve("node_modules/buble/node_modules/acorn-jsx"),
 ]
 
-
 const webpackBabelRuleUse = {
   loader: "babel-loader",
   options: {
@@ -52,7 +51,6 @@ function getBaseConfig() {
 
     babelRule.include = _.concat(babelRule.include, webpackBabelRuleIncludes)
     babelRule.use = webpackBabelRuleUse
-
   }
   return baseConfig
 }
@@ -143,7 +141,6 @@ module.exports = {
       rules: [
         {
           test: /\.(css?|scss|sass)(\?.*)?$/,
-     
           use: [
             "style-loader",
             "css-loader",
@@ -167,7 +164,6 @@ module.exports = {
             },
           ],
         },
-     
       ],
     },
   }),
