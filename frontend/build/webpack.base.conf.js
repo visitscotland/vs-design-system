@@ -5,6 +5,20 @@ const config = require("../config")
 const MiniCssExtractPlugin = require("mini-css-extract-plugin")
 const { VueLoaderPlugin } = require("vue-loader")
 
+const transpileDependencies = [
+	'regexpu-core',
+	'strip-ansi',
+	'ansi-regex',
+	'ansi-styles',
+	'camelcase',
+	'react-dev-utils',
+	'chalk',
+	'unicode-match-property-ecmascript',
+	'unicode-match-property-value-ecmascript',
+	'acorn-jsx',
+]
+
+
 function resolve(dir) {
   return path.join(__dirname, "..", dir)
 }
@@ -50,13 +64,31 @@ module.exports = {
       },
       {
         test: /\.js$/,
-        loader: "babel-loader",
-        include: [
-          resolve("docs"),
-          resolve("src"),
-          resolve("test"),
-          resolve("node_modules/webpack-dev-server/client"),
-        ],
+        exclude: modulePath =>
+          (/node_modules/.test(modulePath) ||
+            /packages[\\/]vue-styleguidist[\\/]lib/.test(modulePath)) &&
+          !transpileDependencies.some(mod =>
+            new RegExp(`node_modules[\\\\/]${mod}[\\\\/]`).test(modulePath)
+          ),
+        use: {
+          loader: 'babel-loader',
+          options: {
+            sourceType: 'unambiguous',
+            presets: [
+              [
+                '@babel/preset-env',
+                {
+                  useBuiltIns: 'usage',
+                  corejs: 3,
+                  targets: {
+                    ie: '11'
+                  }
+                }
+              ]
+            ],
+            comments: false
+          }
+        }
       },
       {
         test: /\.(png|jpe?g|gif)(\?.*)?$/,
