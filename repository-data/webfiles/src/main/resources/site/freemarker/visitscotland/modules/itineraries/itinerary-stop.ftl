@@ -83,6 +83,17 @@
                     </vs-link>
                 </#if>
 
+                  <#--TODO Include Address, Address fields allow null and the fields are:
+                    ${prod.address.line1}
+                    ${prod.address.line2}
+                    ${prod.address.line3}
+                    ${prod.address.city}
+                    ${prod.address.postCode} -->
+
+                    <#--TODO show open times the field is:
+                       ${prod.open} -->
+                    <#--TODO show price the field is:
+                       ${prod.price} -->
                 <#if prod??>
                     <#if prod.timeToexplore?? && prod.timeToexplore?has_content>
                     <vs-description-list class="my-4 mb-0 justify-content-start" inline>

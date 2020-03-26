@@ -109,7 +109,9 @@ public class ItineraryContentComponent extends PageContentComponent<Itinerary> {
                                     model.setLocation( address.has(LOCATION)?address.getString(LOCATION):null);
                                 }
 
+                                //TODO we need to add hour or hours to the field
                                 model.setTimeToexplore(product.has(TIME_TO_EXPLORE)? product.getString(TIME_TO_EXPLORE):null);
+                                //TODO adjust the price to the design (From or just price)
                                 model.setPrice(product.has(PRICE)? product.getString(PRICE):null);
 
                                 if (stop.getImage() == null ){
