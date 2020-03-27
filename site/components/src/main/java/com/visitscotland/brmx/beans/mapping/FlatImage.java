@@ -52,10 +52,10 @@ public class FlatImage {
     }
 
     public FlatImage(JSONObject dmsImage, String productName) {
-            this.externalImage = (dmsImage.has(MEDIA) ? dmsImage.getString(MEDIA) : null);
-            this.credit = (dmsImage.has(CREDIT) ? dmsImage.getString(CREDIT) : null);
-            this.description = (dmsImage.has(ALT_TEXT) ? dmsImage.getString(ALT_TEXT) : productName);
-            this.altText = this.description;
+        this.externalImage = (dmsImage.has(MEDIA) ? dmsImage.getString(MEDIA) : null);
+        this.credit = (dmsImage.has(CREDIT) ? dmsImage.getString(CREDIT) : null);
+        this.description = (dmsImage.has(ALT_TEXT) ? dmsImage.getString(ALT_TEXT) : productName);
+        this.altText = this.description;
     }
 
     public String getExternalImage() {
