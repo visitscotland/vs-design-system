@@ -263,7 +263,7 @@ img {
             @include media-breakpoint-up(sm) {
                 bottom: -48px;
                 top: auto;
-                width: 330px;
+                width: 310px;
                 height: auto;
                 text-align: left;
 
