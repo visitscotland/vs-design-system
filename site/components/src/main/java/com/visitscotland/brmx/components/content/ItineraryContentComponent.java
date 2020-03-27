@@ -178,6 +178,9 @@ public class ItineraryContentComponent extends PageContentComponent<Itinerary> {
                     logger.warn(CommonUtils.contentIssue("The product's id  was not provided for %s, Stop %s", itinerary.getName(), model.getIndex()));
                 }
 
+                if ((stop.getTips()!= null && !stop.getTips().getContent().isEmpty()) && (stop.getTipsTitle() == null || stop.getTipsTitle().isEmpty())){
+                    model.setErrorMessage("Tips title is required to show tips");
+                }
                 lastStopId = model.getIdentifier();
                 if (firstStopId == null){
                     firstStopId = lastStopId;
