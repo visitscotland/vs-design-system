@@ -33,8 +33,8 @@
         <vs-itinerary-stop
             slot="stops"
             stop-number="${prod.index}"
-            stop-label="${label('itinerary', 'stop.title')}"
-            stop-title="${prod.title}"
+            stop-label="${prod.title}"
+            stop-title="${prod.location}"
         >
             <div slot="stop-details" class="has-edit-button">
                 <@hst.manageContent hippobean=stop />
@@ -45,8 +45,8 @@
         <vs-itinerary-stop
             slot="stops"
             stop-number="${prod.index}"
-            stop-label="${label('itinerary', 'stop.title')}"
-            stop-title="${prod.title}"
+            stop-label="${prod.title}"
+            stop-title="${prod.location}"
         >
             <div slot="stop-details" class="has-edit-button">
                 <@hst.manageContent hippobean=stop />
@@ -83,6 +83,17 @@
                     </vs-link>
                 </#if>
 
+                  <#--TODO Include Address, Address fields allow null and the fields are:
+                    ${prod.address.line1}
+                    ${prod.address.line2}
+                    ${prod.address.line3}
+                    ${prod.address.city}
+                    ${prod.address.postCode} -->
+
+                    <#--TODO show open times the field is:
+                       ${prod.open} -->
+                    <#--TODO show price the field is:
+                       ${prod.price} -->
                 <#if prod??>
                     <#if prod.timeToexplore?? && prod.timeToexplore?has_content>
                     <vs-description-list class="my-4 mb-0 justify-content-start" inline>
@@ -109,8 +120,8 @@
                             <vs-icon-description-list-term>${label("itinerary", "stop.key-facilities")}</vs-icon-description-list-term>
                             <#list prod.facilities as facility>
                                 <vs-icon-description-list-detail
-                                    icon="${facility}"
-                                    label="${label("keyFacilities", "${facility}")}">
+                                    icon="${facility.id}"
+                                    label="${facility.name}">
                                 </vs-icon-description-list-detail>
                             </#list>
                         </vs-icon-description-list>

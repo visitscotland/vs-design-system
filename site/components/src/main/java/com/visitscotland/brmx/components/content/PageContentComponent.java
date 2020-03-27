@@ -23,7 +23,6 @@ public class PageContentComponent<TYPE extends Page> extends EssentialsContentCo
     public final String DOCUMENT = "document";
     public final String EDIT_PATH = "path";
 
-
     @Override
     public void doBeforeRender(HstRequest request, HstResponse response) {
         super.doBeforeRender(request, response);
