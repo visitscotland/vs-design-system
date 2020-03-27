@@ -30,7 +30,7 @@ export default {
             required: true,
         },
         /**
-         * The icon name
+         * The icon name will be passed to the vs-icon component to select which icon is rendered
          */
         icon: {
             type: String,
@@ -55,7 +55,6 @@ export default {
     svg {
         display: block;
         margin: 0 auto;
-        width: 100%;
     }
 }
 </style>
