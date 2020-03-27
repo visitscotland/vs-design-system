@@ -11,7 +11,7 @@ definitions:
         /hipposysedit:nodetype:
           jcr:primaryType: hipposysedit:nodetype
           jcr:mixinTypes: ['mix:referenceable', 'hipposysedit:remodel']
-          jcr:uuid: 5e08d834-288f-4d16-b661-76c8fb9aae96
+          jcr:uuid: adfc23e1-2d3f-46ac-99fb-5e6090c29e09
           hipposysedit:node: true
           hipposysedit:supertype: ['visitscotland:Page', 'hippostd:relaxed', 'hippotranslation:translated']
           hipposysedit:uri: http://www.visitscotland.com/visitscotland/nt/1.0
@@ -23,20 +23,22 @@ definitions:
             hipposysedit:path: visitscotland:descOrder
             hipposysedit:primary: false
             hipposysedit:type: Boolean
-        /hipposysedit:nodetype[2]:
-          jcr:primaryType: hipposysedit:nodetype
-          jcr:mixinTypes: ['mix:referenceable']
-          jcr:uuid: adfc23e1-2d3f-46ac-99fb-5e6090c29e09
-          hipposysedit:node: true
-          hipposysedit:supertype: ['visitscotland:Page', 'hippostd:relaxed', 'hippotranslation:translated']
-          /descOrder:
+          /summaryTitle:
             jcr:primaryType: hipposysedit:field
             hipposysedit:mandatory: false
             hipposysedit:multiple: false
             hipposysedit:ordered: false
-            hipposysedit:path: visitscotland:descOrder
+            hipposysedit:path: visitscotland:summaryTitle
             hipposysedit:primary: false
-            hipposysedit:type: Boolean
+            hipposysedit:type: String
+          /summary:
+            jcr:primaryType: hipposysedit:field
+            hipposysedit:mandatory: false
+            hipposysedit:multiple: false
+            hipposysedit:ordered: false
+            hipposysedit:path: visitscotland:summary
+            hipposysedit:primary: false
+            hipposysedit:type: hippostd:html
       /hipposysedit:prototypes:
         jcr:primaryType: hipposysedit:prototypeset
         /hipposysedit:prototype:
@@ -54,10 +56,11 @@ definitions:
           visitscotland:title: ''
           visitscotland:seoTitle: ''
           jcr:mixinTypes: ['mix:referenceable']
-          jcr:uuid: 2e202376-1cd0-46c7-93af-493376e06232
+          jcr:uuid: beb1b7a6-464b-4369-9b24-d0335d03d91f
           hippostdpubwf:lastModificationDate: 2020-02-11T09:30:21.383Z
           hippostdpubwf:creationDate: 2020-02-11T09:30:21.383Z
           visitscotland:descOrder: false
+          visitscotland:summaryTitle: ''
           /visitscotland:heroImage:
             jcr:primaryType: hippogallerypicker:imagelink
             hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
@@ -67,33 +70,7 @@ definitions:
           /visitscotland:introduction:
             jcr:primaryType: hippostd:html
             hippostd:content: ''
-        /hipposysedit:prototype[2]:
-          jcr:primaryType: nt:unstructured
-          jcr:mixinTypes: ['hippostd:publishableSummary', 'hippostd:relaxed', 'hippostdpubwf:document',
-            'hippotranslation:translated', 'mix:referenceable']
-          jcr:uuid: 8a542565-4035-4732-ae0b-27d7bc67bacb
-          hippostd:holder: holder
-          hippostd:state: draft
-          hippostdpubwf:createdBy: ''
-          hippostdpubwf:creationDate: 2020-02-11T09:30:21.383Z
-          hippostdpubwf:lastModificationDate: 2020-02-11T09:30:21.383Z
-          hippostdpubwf:lastModifiedBy: ''
-          hippotranslation:id: document-type-locale-id
-          hippotranslation:locale: document-type-locale
-          visitscotland:breadcrumb: ''
-          visitscotland:descOrder: false
-          visitscotland:seoDescription: ''
-          visitscotland:seoNoIndex: false
-          visitscotland:seoTitle: ''
-          visitscotland:teaser: ''
-          visitscotland:title: ''
-          /visitscotland:heroImage:
-            jcr:primaryType: hippogallerypicker:imagelink
-            hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
-            hippo:facets: []
-            hippo:modes: []
-            hippo:values: []
-          /visitscotland:introduction:
+          /visitscotland:summary:
             jcr:primaryType: hippostd:html
             hippostd:content: ''
       /editor:templates:
@@ -196,5 +173,22 @@ definitions:
               unless it is advised by SEO
             plugin.class: org.hippoecm.frontend.editor.plugins.field.PropertyFieldPlugin
             wicket.id: ${cluster.id}.right.item
+            /cluster.options:
+              jcr:primaryType: frontend:pluginconfig
+          /summaryTitle:
+            jcr:primaryType: frontend:plugin
+            caption: Summary title
+            field: summaryTitle
+            hint: ''
+            plugin.class: org.hippoecm.frontend.editor.plugins.field.PropertyFieldPlugin
+            wicket.id: ${cluster.id}.left.item
+            /cluster.options:
+              jcr:primaryType: frontend:pluginconfig
+          /summary:
+            jcr:primaryType: frontend:plugin
+            caption: Summary
+            field: summary
+            plugin.class: org.hippoecm.frontend.editor.plugins.field.NodeFieldPlugin
+            wicket.id: ${cluster.id}.left.item
             /cluster.options:
               jcr:primaryType: frontend:pluginconfig
