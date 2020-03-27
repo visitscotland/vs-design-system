@@ -1,0 +1,106 @@
+/content/documents/administration/labels/itinerary/itineraries:
+  jcr:primaryType: hippo:handle
+  jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
+  jcr:uuid: a0e18f5d-09d2-47b9-83d6-c41eed3d6539
+  hippo:name: Page - Itinerary
+  hippo:versionHistory: c16f39c6-d03d-4c41-8992-db32e330c92b
+  /itineraries[1]:
+    jcr:primaryType: resourcebundle:resourcebundle
+    jcr:mixinTypes: ['mix:referenceable']
+    jcr:uuid: ea358846-0878-416a-9704-4e901c7f1f3b
+    hippo:availability: []
+    hippostd:state: draft
+    hippostdpubwf:createdBy: admin
+    hippostdpubwf:creationDate: 2019-12-16T14:56:24.091Z
+    hippostdpubwf:lastModificationDate: 2020-03-02T10:08:46.224Z
+    hippostdpubwf:lastModifiedBy: admin
+    resourcebundle:descriptions: ['', '', '', '', '', '', '', '', '', '', '', '',
+      '', '', '', '', '', '', '', '']
+    resourcebundle:id: itinerary
+    resourcebundle:keys: [stop.key-facilities, stop.nearby-stay, stop.nearby-eat,
+      stop.cta, stop.title, start-finish, days, distance, themes, miles-abbreviation,
+      kilometres-abbreviation, transport, day, miles, kilometres, highlights, areas-covered,
+      stop.no-stop, stop.time-to-explore, theme]
+    resourcebundle:messages: [Key Facilities, Nearby places to stay, Nearby places
+        to eat, Find out more, Stop, Start / Finish, Days, Distance, Main Themes,
+      mi, km, Transport, Day, Miles, Kilometres, Highlights, Areas Covered, The stop
+        doesn't have any product linked to the stop, Time to explore, Main Theme]
+    resourcebundle:messages_de: ['', '', '', '', '', '', '', '', '', '', '', '', '',
+      '', '', '', '', '', '', '']
+    resourcebundle:messages_es: [Servicios destacados, '¿Dónde pasar la noche?', '¿Dónde
+        podría cenar y desayunar?', Averigua más informcación, Parada, Inicio / Fin,
+      días, Distancia, Temática, mi, km, Transporte, Día, Millas, Kilómetros, Destacado,
+      Areas cubiertas, '', Tiempo recomendado, '']
+    resourcebundle:messages_fr: ['', '', '', '', '', '', '', '', '', '', '', '', '',
+      '', '', '', '', '', '', '']
+    resourcebundle:messages_it: ['', '', '', '', '', '', '', '', '', '', '', '', '',
+      '', '', '', '', '', '', '']
+    resourcebundle:messages_nl: ['', '', '', '', '', '', '', '', '', '', '', '', '',
+      '', '', '', '', '', '', '']
+  /itineraries[2]:
+    jcr:primaryType: resourcebundle:resourcebundle
+    jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
+    jcr:uuid: b3144d11-efb4-4d90-a314-d2e71536b0a4
+    hippo:availability: [preview]
+    hippostd:state: unpublished
+    hippostdpubwf:createdBy: admin
+    hippostdpubwf:creationDate: 2019-12-16T14:56:24.091Z
+    hippostdpubwf:lastModificationDate: 2020-03-02T11:44:48.863Z
+    hippostdpubwf:lastModifiedBy: admin
+    resourcebundle:descriptions: ['', '', '', '', '', '', '', '', '', '', '', '',
+      '', '', '', '', '', '', '', '']
+    resourcebundle:id: itinerary
+    resourcebundle:keys: [stop.key-facilities, stop.nearby-stay, stop.nearby-eat,
+      stop.cta, stop.title, start-finish, days, distance, themes, miles-abbreviation,
+      kilometres-abbreviation, transport, day, miles, kilometres, highlights, areas-covered,
+      stop.no-stop, stop.time-to-explore, theme]
+    resourcebundle:messages: [Key Facilities, Nearby places to stay, Nearby places
+        to eat, Find out more, Stop, Start / Finish, Days, Distance, Main Themes,
+      mi, km, Transport, Day, Miles, Kilometres, Highlights, Areas Covered, The stop
+        doesn't have any product linked to the stop, Time to explore, Main Theme]
+    resourcebundle:messages_de: ['', '', '', '', '', '', '', '', '', '', '', '', '',
+      '', '', '', '', '', '', '']
+    resourcebundle:messages_es: [Servicios destacados, '¿Dónde pasar la noche?', '¿Dónde
+        podría cenar y desayunar?', Averigua más informcación, Parada, Inicio / Fin,
+      días, Distancia, Temática, mi, km, Transporte, Día, Millas, Kilómetros, Destacado,
+      Areas cubiertas, '', Tiempo recomendado, '']
+    resourcebundle:messages_fr: ['', '', '', '', '', '', '', '', '', '', '', '', '',
+      '', '', '', '', '', '', '']
+    resourcebundle:messages_it: ['', '', '', '', '', '', '', '', '', '', '', '', '',
+      '', '', '', '', '', '', '']
+    resourcebundle:messages_nl: ['', '', '', '', '', '', '', '', '', '', '', '', '',
+      '', '', '', '', '', '', '']
+  /itineraries[3]:
+    jcr:primaryType: resourcebundle:resourcebundle
+    jcr:mixinTypes: ['mix:referenceable']
+    jcr:uuid: 48c9e37e-b6ed-4274-9a5b-4c4a7c9c5206
+    hippo:availability: [live]
+    hippostd:state: published
+    hippostdpubwf:createdBy: admin
+    hippostdpubwf:creationDate: 2019-12-16T14:56:24.091Z
+    hippostdpubwf:lastModificationDate: 2020-03-02T11:44:48.863Z
+    hippostdpubwf:lastModifiedBy: admin
+    hippostdpubwf:publicationDate: 2020-03-27T16:16:39.334Z
+    resourcebundle:descriptions: ['', '', '', '', '', '', '', '', '', '', '', '',
+      '', '', '', '', '', '', '', '']
+    resourcebundle:id: itinerary
+    resourcebundle:keys: [stop.key-facilities, stop.nearby-stay, stop.nearby-eat,
+      stop.cta, stop.title, start-finish, days, distance, themes, miles-abbreviation,
+      kilometres-abbreviation, transport, day, miles, kilometres, highlights, areas-covered,
+      stop.no-stop, stop.time-to-explore, theme]
+    resourcebundle:messages: [Key Facilities, Nearby places to stay, Nearby places
+        to eat, Find out more, Stop, Start / Finish, Days, Distance, Main Themes,
+      mi, km, Transport, Day, Miles, Kilometres, Highlights, Areas Covered, The stop
+        doesn't have any product linked to the stop, Time to explore, Main Theme]
+    resourcebundle:messages_de: ['', '', '', '', '', '', '', '', '', '', '', '', '',
+      '', '', '', '', '', '', '']
+    resourcebundle:messages_es: [Servicios destacados, '¿Dónde pasar la noche?', '¿Dónde
+        podría cenar y desayunar?', Averigua más informcación, Parada, Inicio / Fin,
+      días, Distancia, Temática, mi, km, Transporte, Día, Millas, Kilómetros, Destacado,
+      Areas cubiertas, '', Tiempo recomendado, '']
+    resourcebundle:messages_fr: ['', '', '', '', '', '', '', '', '', '', '', '', '',
+      '', '', '', '', '', '', '']
+    resourcebundle:messages_it: ['', '', '', '', '', '', '', '', '', '', '', '', '',
+      '', '', '', '', '', '', '']
+    resourcebundle:messages_nl: ['', '', '', '', '', '', '', '', '', '', '', '', '',
+      '', '', '', '', '', '', '']
