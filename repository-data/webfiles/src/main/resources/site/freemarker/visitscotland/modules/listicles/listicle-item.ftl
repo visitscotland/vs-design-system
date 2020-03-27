@@ -105,12 +105,13 @@
 		</div>
 
         <#if item.facilities?? && item.facilities?size gt 1>
+        
 			<div slot="facilities-slot">
 				<vs-icon-list title="${label('keyFacilities', 'keyfacilitiestitle')}">
 					<#list item.facilities as facility>
 						<vs-icon-list-item
-							icon="${facility}"
-							label="${label("keyFacilities", "${facility}")}">
+							icon="${facility.id}"
+							label="${facility.name}">
 						</vs-icon-list-item>
 					</#list>
 				</vs-icon-list>
