@@ -42,6 +42,8 @@ public class ListicleContentComponent extends PageContentComponent<Listicle> {
         final String LATITUDE = "latitude";
         final String LONGITUDE = "longitude";
         final String FACILITIES = "keyFacilities";
+        final String NAME = "name";
+        final String IMAGE = "images";
         final Map<String ,FlatListicle> items =  new LinkedHashMap<>();
 
 
@@ -115,7 +117,8 @@ public class ListicleContentComponent extends PageContentComponent<Listicle> {
                             }
 
                             if (model.getImage() == null &&  product.has(IMAGE)) {
-                                FlatImage image = getImageDMS(product);
+                                JSONArray dmsImageList = product.getJSONArray(IMAGE);
+                                FlatImage image = new FlatImage( dmsImageList.getJSONObject(0),product.getString(NAME));
                                 if (product.has(LATITUDE) && product.has(LONGITUDE)){
                                     Coordinates coordinates = new Coordinates(product.getDouble(LATITUDE), product.getDouble(LONGITUDE));
                                     image.setCoordinates(coordinates);

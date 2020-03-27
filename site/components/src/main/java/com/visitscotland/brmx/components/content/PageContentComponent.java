@@ -1,7 +1,6 @@
 package com.visitscotland.brmx.components.content;
 
 import com.visitscotland.brmx.beans.*;
-import com.visitscotland.brmx.beans.mapping.FlatImage;
 import com.visitscotland.brmx.utils.CommonUtils;
 import com.visitscotland.brmx.utils.HippoUtils;
 import com.visitscotland.brmx.utils.ProductSearchBuilder;
@@ -10,8 +9,6 @@ import freemarker.template.TemplateHashModel;
 import freemarker.template.TemplateModelException;
 import org.hippoecm.hst.core.component.HstRequest;
 import org.hippoecm.hst.core.component.HstResponse;
-import org.json.JSONArray;
-import org.json.JSONObject;
 import org.onehippo.cms7.essentials.components.EssentialsContentComponent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -25,13 +22,6 @@ public class PageContentComponent<TYPE extends Page> extends EssentialsContentCo
 
     public final String DOCUMENT = "document";
     public final String EDIT_PATH = "path";
-
-    final String IMAGE = "images";
-    final String MEDIA = "mediaUrl";
-    final String NAME = "name";
-    final String CREDIT = "copyright";
-    final String ALT_TEXT = "altText";
-
 
     @Override
     public void doBeforeRender(HstRequest request, HstResponse response) {
@@ -103,29 +93,4 @@ public class PageContentComponent<TYPE extends Page> extends EssentialsContentCo
             return HippoUtils.getResourceBundle("button.find-out-more", "essentials.global", locale);
         }
     }
-
-    /**
-     * Returns the image information from the DMS.     *
-     *
-     * @param product DMS product
-     *
-     * @return FlatImage
-     */
-
-    protected FlatImage getImageDMS(JSONObject product) {
-        FlatImage image = new FlatImage();
-        if (product.has(IMAGE)) {
-            JSONArray dmsImageList = product.getJSONArray(IMAGE);
-            JSONObject dmsImage = dmsImageList.getJSONObject(0);
-            image.setExternalImage(dmsImage.has(MEDIA) ? dmsImage.getString(MEDIA) : null);
-            image.setCredit(dmsImage.has(CREDIT) ? dmsImage.getString(CREDIT) : null);
-            image.setDescription(dmsImage.has(ALT_TEXT) ? dmsImage.getString(ALT_TEXT) : product.getString(NAME));
-            image.setAltText(image.getDescription());
-        }
-
-        return image;
-
-    }
-
-
 }

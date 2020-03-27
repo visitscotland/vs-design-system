@@ -61,13 +61,14 @@ public class ItineraryContentComponent extends PageContentComponent<Itinerary> {
         final String URL = "url";
         final String TIME_TO_EXPLORE = "timeToExplore";
         final String PRICE = "price";
+        final String NAME = "name";
         final String LAT = "latitude";
         final String LON = "longitude";
         final String FACILITIES = "keyFacilities";
         final String OPENING = "todayOpeningTime";
         final String START_TIME = "startTime";
         final String END_TIME = "endTime";
-
+        final String IMAGE = "images";
 
         final Map<String ,FlatStop> products =  new LinkedHashMap<>();
 
@@ -80,12 +81,12 @@ public class ItineraryContentComponent extends PageContentComponent<Itinerary> {
                 FlatStop model = new FlatStop(stop);
                 Coordinates coordinates = new Coordinates();
                 model.setIndex(index++);
-                FlatImage img = new FlatImage();
+                FlatImage img = null;
 
                 if (stop.getStopItem() instanceof DMSLink){
                     DMSLink dmsLink = (DMSLink) stop.getStopItem();
                     if (stop.getImage()!=null) {
-                        img.setCmsImage(stop.getImage());
+                        img = new FlatImage(stop.getImage());
                     }
 
                     //CONTENT prefix on error messages could means that the problem can be fixed by altering the content.
@@ -114,8 +115,9 @@ public class ItineraryContentComponent extends PageContentComponent<Itinerary> {
                                 //TODO adjust the price to the design (From or just price)
                                 model.setPrice(product.has(PRICE)? product.getString(PRICE):null);
 
-                                if (stop.getImage() == null ){
-                                    img = getImageDMS(product);
+                                if (stop.getImage() == null && product.has(IMAGE) ){
+                                    JSONArray dmsImageList = product.getJSONArray(IMAGE);
+                                    img = new FlatImage( dmsImageList.getJSONObject(0),product.getString(NAME));
                                 }
 
                                 coordinates.setLatitude(product.getDouble(LAT));
