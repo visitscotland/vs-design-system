@@ -384,6 +384,80 @@
           /visitscotland:stops[3]:
             jcr:primaryType: hippo:mirror
             hippo:docbase: 1ead4399-7e30-47dc-9b75-2ea488fb5742
+        /day-2[3]:
+          jcr:primaryType: visitscotland:Day
+          jcr:mixinTypes: ['mix:referenceable']
+          jcr:uuid: c8a4446d-bb38-4015-b717-ccec05865079
+          hippo:availability: []
+          hippostd:state: draft
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2019-12-12T12:06:04.129Z
+          hippostdpubwf:lastModificationDate: 2020-03-09T16:07:20.742Z
+          hippostdpubwf:lastModifiedBy: admin
+          hippotranslation:id: 15cbbb74-c06a-427e-88f8-a4fff306f9ba
+          hippotranslation:locale: en
+          visitscotland:title: Dummy Stops
+          visitscotland:transports: [boat, bus, car, cycling, ferry, public, train,
+            walking]
+          /visitscotland:introduction:
+            jcr:primaryType: hippostd:html
+            hippostd:content: |-
+              <p>A hash model that wraps a resource bundle. Makes it convenient to store localized content in the data model. It also acts as a method model that will take a resource key and arbitrary number of arguments and will apply MessageFormat with arguments on the string represented by the key.</p>
+
+              <p>Typical usages:</p>
+
+              <ul>
+               <li>bundle.resourceKey will retrieve the object from resource bundle with key resourceKey</li>
+               <li>bundle("patternKey", arg1, arg2, arg3) will retrieve the string from resource bundle with key patternKey, and will use it as a pattern for MessageFormat with arguments arg1, arg2 and arg3</li>
+              </ul>
+          /visitscotland:stops[1]:
+            jcr:primaryType: hippo:mirror
+            hippo:docbase: 8030a311-a942-40e6-bb89-41dd6fea60df
+          /visitscotland:stops[2]:
+            jcr:primaryType: hippo:mirror
+            hippo:docbase: 8b215960-87aa-47ae-9c11-8a750be25ad8
+          /visitscotland:stops[3]:
+            jcr:primaryType: hippo:mirror
+            hippo:docbase: 1ead4399-7e30-47dc-9b75-2ea488fb5742
+      /a-new-day:
+        jcr:primaryType: hippo:handle
+        jcr:mixinTypes: ['hippo:named', 'mix:referenceable']
+        jcr:uuid: 2dafb326-df46-45f7-92e5-31a42587c9e8
+        hippo:name: A new day
+        /a-new-day[1]:
+          jcr:primaryType: visitscotland:Day
+          jcr:mixinTypes: ['mix:referenceable']
+          jcr:uuid: a6c27a7d-ba42-4d5e-88cc-a3f6be13c0cd
+          hippo:availability: []
+          hippostd:state: draft
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2020-03-09T15:58:39.934Z
+          hippostdpubwf:lastModificationDate: 2020-03-09T15:59:11.660Z
+          hippostdpubwf:lastModifiedBy: admin
+          hippotranslation:id: 7dc84084-2479-45e2-a294-86f94ea4b742
+          hippotranslation:locale: en
+          visitscotland:title: This is a complete new day
+          visitscotland:transports: []
+          /visitscotland:introduction:
+            jcr:primaryType: hippostd:html
+            hippostd:content: <p>complete new day</p>
+        /a-new-day[2]:
+          jcr:primaryType: visitscotland:Day
+          jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
+          jcr:uuid: 74b90613-3c5a-420c-bc97-3de0064a3638
+          hippo:availability: [preview]
+          hippostd:state: unpublished
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2020-03-09T15:58:39.934Z
+          hippostdpubwf:lastModificationDate: 2020-03-09T15:59:09.741Z
+          hippostdpubwf:lastModifiedBy: admin
+          hippotranslation:id: 7dc84084-2479-45e2-a294-86f94ea4b742
+          hippotranslation:locale: en
+          visitscotland:title: This is a complete new day
+          visitscotland:transports: []
+          /visitscotland:introduction:
+            jcr:primaryType: hippostd:html
+            hippostd:content: <p>complete new day</p>
     /content:
       jcr:primaryType: hippo:handle
       jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
@@ -669,8 +743,9 @@
           visitscotland:producttype: ''
     /listicle:
       jcr:primaryType: hippostd:folder
-      jcr:mixinTypes: ['hippotranslation:translated', 'mix:versionable']
+      jcr:mixinTypes: ['hippo:named', 'hippotranslation:translated', 'mix:versionable']
       jcr:uuid: 561f1f1d-d7b4-436e-b99f-5c870657699b
+      hippo:name: listicle
       hippostd:foldertype: [new-translated-folder, new-document]
       hippotranslation:id: 923a38ca-d08f-4c71-be60-76ef9ee33f4f
       hippotranslation:locale: en
@@ -687,7 +762,7 @@
           hippostd:state: draft
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2020-02-27T13:17:22.069Z
-          hippostdpubwf:lastModificationDate: 2020-03-09T13:15:46.073Z
+          hippostdpubwf:lastModificationDate: 2020-03-17T11:17:36.062Z
           hippostdpubwf:lastModifiedBy: admin
           hippotranslation:id: 7d4f9ca4-76eb-40a1-a793-29efa7f1ae68
           hippotranslation:locale: en
@@ -799,7 +874,7 @@
           hippostd:state: draft
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2020-02-27T13:19:13.009Z
-          hippostdpubwf:lastModificationDate: 2020-03-06T12:31:28.389Z
+          hippostdpubwf:lastModificationDate: 2020-03-09T16:14:46.856Z
           hippostdpubwf:lastModifiedBy: admin
           hippotranslation:id: aa4d5cb3-9313-4d6a-9741-225c19c36f20
           hippotranslation:locale: en
@@ -843,7 +918,7 @@
               visitscotland:producttype: acti,attr,reta
           /visitscotland:images:
             jcr:primaryType: hippogallerypicker:imagelink
-            hippo:docbase: 8d4f5036-64ca-4e5d-aa89-b348ae38b081
+            hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
             hippo:facets: []
             hippo:modes: []
             hippo:values: []
@@ -950,7 +1025,7 @@
               visitscotland:producttype: acti,attr,reta
       /edinburgh-castle:
         jcr:primaryType: hippo:handle
-        jcr:mixinTypes: ['hippo:named', 'mix:referenceable']
+        jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
         jcr:uuid: f86e10db-c111-4855-8e85-9952ca6efe8d
         hippo:name: Edinburgh Castle
         /edinburgh-castle[1]:
@@ -1003,9 +1078,61 @@
             jcr:primaryType: visitscotland:DMSLink
             visitscotland:label: Edinburgh castle
             visitscotland:product: '245821'
+        /edinburgh-castle[3]:
+          jcr:primaryType: visitscotland:ListicleItem
+          jcr:mixinTypes: ['mix:referenceable']
+          jcr:uuid: c42d6d9d-a46a-4993-94f9-1203c953c4d5
+          hippo:availability: [live]
+          hippostd:state: published
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2020-02-27T13:21:08.257Z
+          hippostdpubwf:lastModificationDate: 2020-03-09T09:50:44.970Z
+          hippostdpubwf:lastModifiedBy: admin
+          hippostdpubwf:publicationDate: 2020-03-09T15:25:14.198Z
+          hippotranslation:id: 25df6d19-f276-49c9-b0e7-5a76254666fe
+          hippotranslation:locale: en
+          visitscotland:subtitle: ''
+          visitscotland:title: Edinburgh Castle
+          /visitscotland:description:
+            jcr:primaryType: hippostd:html
+            hippostd:content: <p><a href="https://www.visitscotland.com/info/see-do/edinburgh-castle-p245821"
+              title="Edinburgh Castle">Edinburgh Castle</a> is a true icon of Scotland
+              and has dominated the skyline of the capital for centuries. Unusually,
+              it's set atop of an extinct volcano. It takes the title of Scotland's
+              most-visited paid-for attraction.</p>
+          /visitscotland:products:
+            jcr:primaryType: visitscotland:DMSLink
+            visitscotland:label: Edinburgh castle
+            visitscotland:product: '245821'
+        /edinburgh-castle[3]:
+          jcr:primaryType: visitscotland:ListicleItem
+          jcr:mixinTypes: ['mix:referenceable']
+          jcr:uuid: c2fa6984-fd6e-4e8f-90c9-63367d936a8d
+          hippo:availability: [live]
+          hippostd:state: published
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2020-02-27T13:21:08.257Z
+          hippostdpubwf:lastModificationDate: 2020-03-09T09:50:44.970Z
+          hippostdpubwf:lastModifiedBy: admin
+          hippostdpubwf:publicationDate: 2020-03-12T11:34:40.837Z
+          hippotranslation:id: 25df6d19-f276-49c9-b0e7-5a76254666fe
+          hippotranslation:locale: en
+          visitscotland:subtitle: ''
+          visitscotland:title: Edinburgh Castle
+          /visitscotland:description:
+            jcr:primaryType: hippostd:html
+            hippostd:content: <p><a href="https://www.visitscotland.com/info/see-do/edinburgh-castle-p245821"
+              title="Edinburgh Castle">Edinburgh Castle</a> is a true icon of Scotland
+              and has dominated the skyline of the capital for centuries. Unusually,
+              it's set atop of an extinct volcano. It takes the title of Scotland's
+              most-visited paid-for attraction.</p>
+          /visitscotland:products:
+            jcr:primaryType: visitscotland:DMSLink
+            visitscotland:label: Edinburgh castle
+            visitscotland:product: '245821'
       /scottish-national-gallery:
         jcr:primaryType: hippo:handle
-        jcr:mixinTypes: ['hippo:named', 'mix:referenceable']
+        jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
         jcr:uuid: 6e561976-738b-450a-95e0-b1ba4787b530
         hippo:name: Scottish National Gallery
         /scottish-national-gallery[1]:
@@ -1068,12 +1195,74 @@
             jcr:primaryType: visitscotland:InstagramImage
             visitscotland:caption: Robert Burns visits the Gallery
             visitscotland:id: B7vTqg4gZsR
+        /scottish-national-gallery[3]:
+          jcr:primaryType: visitscotland:ListicleItem
+          jcr:mixinTypes: ['mix:referenceable']
+          jcr:uuid: 8dd43fec-59a8-473b-84c1-0e755ffffab7
+          hippo:availability: [live]
+          hippostd:state: published
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2020-02-27T13:22:47.621Z
+          hippostdpubwf:lastModificationDate: 2020-02-27T13:40:43.373Z
+          hippostdpubwf:lastModifiedBy: admin
+          hippostdpubwf:publicationDate: 2020-03-12T11:34:42.574Z
+          hippotranslation:id: d064dde7-8e4a-42d5-a8cb-c42dba495b3f
+          hippotranslation:locale: en
+          visitscotland:subtitle: ''
+          visitscotland:title: Scottish National Gallery
+          /visitscotland:description:
+            jcr:primaryType: hippostd:html
+            hippostd:content: <p><a href="https://www.visitscotland.com/info/see-do/scottish-national-gallery-p246151"
+              title="Scottish National Gallery">Scottish National Gallery</a> houses
+              Scotland's national collection of fine art from the early Renaissance
+              to the end of the 19th century. The walls are adorned with masterpieces,
+              from Raphael, Velázquez and Vermeer to Monet, Cézanne and Van Gogh,
+              as well as works of Scottish artists.</p>
+          /visitscotland:products:
+            jcr:primaryType: visitscotland:DMSLink
+            visitscotland:label: Come to the Great Scottish National Gallery
+            visitscotland:product: '246151'
+          /visitscotland:images:
+            jcr:primaryType: visitscotland:InstagramImage
+            visitscotland:caption: Robert Burns visits the Gallery
+            visitscotland:id: B7vTqg4gZsR
+        /scottish-national-gallery[3]:
+          jcr:primaryType: visitscotland:ListicleItem
+          jcr:mixinTypes: ['mix:referenceable']
+          jcr:uuid: 2da32a0e-65c9-435b-a482-03f2cd347c45
+          hippo:availability: [live]
+          hippostd:state: published
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2020-02-27T13:22:47.621Z
+          hippostdpubwf:lastModificationDate: 2020-02-27T13:40:43.373Z
+          hippostdpubwf:lastModifiedBy: admin
+          hippostdpubwf:publicationDate: 2020-03-09T15:25:09.963Z
+          hippotranslation:id: d064dde7-8e4a-42d5-a8cb-c42dba495b3f
+          hippotranslation:locale: en
+          visitscotland:subtitle: ''
+          visitscotland:title: Scottish National Gallery
+          /visitscotland:description:
+            jcr:primaryType: hippostd:html
+            hippostd:content: <p><a href="https://www.visitscotland.com/info/see-do/scottish-national-gallery-p246151"
+              title="Scottish National Gallery">Scottish National Gallery</a> houses
+              Scotland's national collection of fine art from the early Renaissance
+              to the end of the 19th century. The walls are adorned with masterpieces,
+              from Raphael, Velázquez and Vermeer to Monet, Cézanne and Van Gogh,
+              as well as works of Scottish artists.</p>
+          /visitscotland:products:
+            jcr:primaryType: visitscotland:DMSLink
+            visitscotland:label: Come to the Great Scottish National Gallery
+            visitscotland:product: '246151'
+          /visitscotland:images:
+            jcr:primaryType: visitscotland:InstagramImage
+            visitscotland:caption: Robert Burns visits the Gallery
+            visitscotland:id: B7vTqg4gZsR
       /casa-juan:
         jcr:primaryType: hippo:handle
         jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
         jcr:uuid: 21cccacf-b2bc-4cf7-aff9-bf57f49d3f6a
         hippo:name: Casa Juan
-        hippo:versionHistory: 0dd7da3c-e7b6-4b79-b38b-925ef5d70a8a
+        hippo:versionHistory: cc419ddb-8f85-4dca-8d12-7ef730f4d8eb
         /casa-juan[1]:
           jcr:primaryType: visitscotland:ListicleItem
           jcr:mixinTypes: ['mix:referenceable']
@@ -1082,7 +1271,7 @@
           hippostd:state: draft
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2020-03-09T11:34:38.209Z
-          hippostdpubwf:lastModificationDate: 2020-03-09T11:39:46.158Z
+          hippostdpubwf:lastModificationDate: 2020-03-13T14:39:04.467Z
           hippostdpubwf:lastModifiedBy: admin
           hippotranslation:id: e25d65b7-e98c-4b82-a822-fcf4d266d1b5
           hippotranslation:locale: en
@@ -1106,6 +1295,18 @@
             hippo:facets: []
             hippo:modes: []
             hippo:values: []
+          /visitscotland:extraLinks:
+            jcr:primaryType: visitscotland:ProductSearchLink
+            visitscotland:label: Recommended alternative accommodations
+            /visitscotland:search:
+              jcr:primaryType: visitscotland:ProductsSearch
+              visitscotland:dmsAwards: [qapetswelcome]
+              visitscotland:dmsCategories: [bandb, budgethotel]
+              visitscotland:dmsFacilities: [privbathrm, petswelcom]
+              visitscotland:location: Edinburgh - City Centre
+              visitscotland:officialrating: ['5', '4']
+              visitscotland:productType: acco
+              visitscotland:producttype: ''
         /casa-juan[2]:
           jcr:primaryType: visitscotland:ListicleItem
           jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
@@ -1114,7 +1315,7 @@
           hippostd:state: unpublished
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2020-03-09T11:34:38.209Z
-          hippostdpubwf:lastModificationDate: 2020-03-09T11:40:09.223Z
+          hippostdpubwf:lastModificationDate: 2020-03-13T14:42:28.150Z
           hippostdpubwf:lastModifiedBy: admin
           hippotranslation:id: e25d65b7-e98c-4b82-a822-fcf4d266d1b5
           hippotranslation:locale: en
@@ -1138,6 +1339,18 @@
             hippo:facets: []
             hippo:modes: []
             hippo:values: []
+          /visitscotland:extraLinks:
+            jcr:primaryType: visitscotland:ProductSearchLink
+            visitscotland:label: Recommended alternative accommodations
+            /visitscotland:search:
+              jcr:primaryType: visitscotland:ProductsSearch
+              visitscotland:dmsAwards: [qapetswelcome]
+              visitscotland:dmsCategories: [bandb, budgethotel]
+              visitscotland:dmsFacilities: [privbathrm, petswelcom]
+              visitscotland:location: Edinburgh - City Centre
+              visitscotland:officialrating: ['5', '4']
+              visitscotland:productType: acco
+              visitscotland:producttype: ''
         /casa-juan[3]:
           jcr:primaryType: visitscotland:ListicleItem
           jcr:mixinTypes: ['mix:referenceable']
@@ -1146,9 +1359,9 @@
           hippostd:state: published
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2020-03-09T11:34:38.209Z
-          hippostdpubwf:lastModificationDate: 2020-03-09T11:40:09.223Z
+          hippostdpubwf:lastModificationDate: 2020-03-13T14:42:28.150Z
           hippostdpubwf:lastModifiedBy: admin
-          hippostdpubwf:publicationDate: 2020-03-09T11:41:16.414Z
+          hippostdpubwf:publicationDate: 2020-03-13T14:42:32.848Z
           hippotranslation:id: e25d65b7-e98c-4b82-a822-fcf4d266d1b5
           hippotranslation:locale: en
           visitscotland:subtitle: ''
@@ -1171,6 +1384,18 @@
             hippo:facets: []
             hippo:modes: []
             hippo:values: []
+          /visitscotland:extraLinks:
+            jcr:primaryType: visitscotland:ProductSearchLink
+            visitscotland:label: Recommended alternative accommodations
+            /visitscotland:search:
+              jcr:primaryType: visitscotland:ProductsSearch
+              visitscotland:dmsAwards: [qapetswelcome]
+              visitscotland:dmsCategories: [bandb, budgethotel]
+              visitscotland:dmsFacilities: [privbathrm, petswelcom]
+              visitscotland:location: Edinburgh - City Centre
+              visitscotland:officialrating: ['5', '4']
+              visitscotland:productType: acco
+              visitscotland:producttype: ''
       /trip-ideas:
         jcr:primaryType: hippostd:folder
         jcr:mixinTypes: ['hippo:named', 'hippotranslation:translated', 'mix:versionable']
@@ -1279,7 +1504,7 @@
               hippostd:state: draft
               hippostdpubwf:createdBy: admin
               hippostdpubwf:creationDate: 2020-03-09T13:19:06.773Z
-              hippostdpubwf:lastModificationDate: 2020-03-09T13:31:14.554Z
+              hippostdpubwf:lastModificationDate: 2020-03-20T11:22:11.109Z
               hippostdpubwf:lastModifiedBy: admin
               hippotranslation:id: 9e77ff30-3fd2-439b-9824-6e96435dcc68
               hippotranslation:locale: en
@@ -1298,21 +1523,21 @@
                   of the country you could have a peaceful stay in the Old Fisherman's
                   Cottage at Ballantrae in Ayrshire.</p>
               /visitscotland:products:
+                jcr:primaryType: visitscotland:DMSLink
+                visitscotland:label: ''
+                visitscotland:product: '260181'
+              /visitscotland:extraLinks:
                 jcr:primaryType: visitscotland:ProductSearchLink
-                visitscotland:label: Find more cottages by the sea
+                visitscotland:label: Find more options in this page
                 /visitscotland:search:
                   jcr:primaryType: visitscotland:ProductsSearch
-                  visitscotland:dmsAwards: []
-                  visitscotland:dmsCategories: [selfcatering, cottage]
-                  visitscotland:dmsFacilities: [coastal]
-                  visitscotland:location: ''
-                  visitscotland:officialrating: []
+                  visitscotland:dmsAwards: [qac, qachildrenwelcome]
+                  visitscotland:dmsCategories: [boathouse]
+                  visitscotland:dmsFacilities: [aircon]
+                  visitscotland:location: Aberdeen
+                  visitscotland:officialrating: ['2']
                   visitscotland:productType: acco
                   visitscotland:producttype: ''
-              /visitscotland:images:
-                jcr:primaryType: visitscotland:InstagramImage
-                visitscotland:caption: ''
-                visitscotland:id: B9e-FxRoiXn
             /harbour-side-fishermens-cottages[2]:
               jcr:primaryType: visitscotland:ListicleItem
               jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
@@ -1321,7 +1546,7 @@
               hippostd:state: unpublished
               hippostdpubwf:createdBy: admin
               hippostdpubwf:creationDate: 2020-03-09T13:19:06.773Z
-              hippostdpubwf:lastModificationDate: 2020-03-09T13:31:14.520Z
+              hippostdpubwf:lastModificationDate: 2020-03-20T11:23:04.073Z
               hippostdpubwf:lastModifiedBy: admin
               hippotranslation:id: 9e77ff30-3fd2-439b-9824-6e96435dcc68
               hippotranslation:locale: en
@@ -1340,21 +1565,72 @@
                   of the country you could have a peaceful stay in the Old Fisherman's
                   Cottage at Ballantrae in Ayrshire.</p>
               /visitscotland:products:
+                jcr:primaryType: visitscotland:DMSLink
+                visitscotland:label: ''
+                visitscotland:product: '260181'
+              /visitscotland:extraLinks:
                 jcr:primaryType: visitscotland:ProductSearchLink
-                visitscotland:label: Find more cottages by the sea
+                visitscotland:label: Find more options in this page
                 /visitscotland:search:
                   jcr:primaryType: visitscotland:ProductsSearch
-                  visitscotland:dmsAwards: []
-                  visitscotland:dmsCategories: [selfcatering, cottage]
-                  visitscotland:dmsFacilities: [coastal]
-                  visitscotland:location: ''
-                  visitscotland:officialrating: []
+                  visitscotland:dmsAwards: [qac, qachildrenwelcome]
+                  visitscotland:dmsCategories: [boathouse]
+                  visitscotland:dmsFacilities: [aircon]
+                  visitscotland:location: Aberdeen
+                  visitscotland:officialrating: ['2']
                   visitscotland:productType: acco
                   visitscotland:producttype: ''
-              /visitscotland:images:
-                jcr:primaryType: visitscotland:InstagramImage
-                visitscotland:caption: ''
-                visitscotland:id: B9e-FxRoiXn
+          /the-black-watch-castle--museum:
+            jcr:primaryType: hippo:handle
+            jcr:mixinTypes: ['hippo:named', 'mix:referenceable']
+            jcr:uuid: 9a4881b2-3444-43f8-99f5-af28a3a93bd6
+            hippo:name: The Black Watch Castle & Museum
+            /the-black-watch-castle--museum[1]:
+              jcr:primaryType: visitscotland:ListicleItem
+              jcr:mixinTypes: ['mix:referenceable']
+              jcr:uuid: bc3f5a75-4cae-4390-88e2-67a032b2630a
+              hippo:availability: []
+              hippostd:state: draft
+              hippostdpubwf:createdBy: admin
+              hippostdpubwf:creationDate: 2020-03-20T11:44:21.296Z
+              hippostdpubwf:lastModificationDate: 2020-03-20T11:45:49.339Z
+              hippostdpubwf:lastModifiedBy: admin
+              hippotranslation:id: 7b3c5b8a-6929-4ac7-bdea-25fa3d1d9d64
+              hippotranslation:locale: en
+              visitscotland:subtitle: ''
+              visitscotland:title: The Black Watch Castle & Museum
+              /visitscotland:description:
+                jcr:primaryType: hippostd:html
+                hippostd:content: <p>The Black Watch Castle &amp; Museum tells the
+                  story of Scotland's elite military regiment whose history stretches
+                  back almost three centuries</p>
+              /visitscotland:products:
+                jcr:primaryType: visitscotland:DMSLink
+                visitscotland:label: Discover more about it
+                visitscotland:product: '251351'
+            /the-black-watch-castle--museum[2]:
+              jcr:primaryType: visitscotland:ListicleItem
+              jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
+              jcr:uuid: 18ce65c4-11ec-400c-93ff-ee8b6fef5e4d
+              hippo:availability: [preview]
+              hippostd:state: unpublished
+              hippostdpubwf:createdBy: admin
+              hippostdpubwf:creationDate: 2020-03-20T11:44:21.296Z
+              hippostdpubwf:lastModificationDate: 2020-03-20T11:45:49.313Z
+              hippostdpubwf:lastModifiedBy: admin
+              hippotranslation:id: 7b3c5b8a-6929-4ac7-bdea-25fa3d1d9d64
+              hippotranslation:locale: en
+              visitscotland:subtitle: ''
+              visitscotland:title: The Black Watch Castle & Museum
+              /visitscotland:description:
+                jcr:primaryType: hippostd:html
+                hippostd:content: <p>The Black Watch Castle &amp; Museum tells the
+                  story of Scotland's elite military regiment whose history stretches
+                  back almost three centuries</p>
+              /visitscotland:products:
+                jcr:primaryType: visitscotland:DMSLink
+                visitscotland:label: Discover more about it
+                visitscotland:product: '251351'
     /editor-role-test:
       jcr:primaryType: hippostd:folder
       jcr:mixinTypes: ['hippotranslation:translated', 'mix:versionable']
@@ -2743,3 +3019,1304 @@
           /visitscotland:stops[3]:
             jcr:primaryType: hippo:mirror
             hippo:docbase: dd98ed46-1531-4bbf-b47f-394ebca903f5
+    /12-iconic-scottish-views:
+      jcr:primaryType: hippostd:folder
+      jcr:mixinTypes: ['hippo:named', 'hippotranslation:translated', 'mix:versionable']
+      jcr:uuid: a8a60383-ca47-4dba-9671-d8654609fcf7
+      hippo:name: 12 Iconic Scottish Views
+      hippostd:foldertype: [new-translated-folder, new-document]
+      hippotranslation:id: 7f14fd94-0c5b-4c48-a82f-e5d55dbc31f1
+      hippotranslation:locale: en
+      /content:
+        jcr:primaryType: hippo:handle
+        jcr:mixinTypes: ['hippo:versionInfo', 'mix:referenceable']
+        jcr:uuid: 17a3588b-6cee-439b-acd8-186ceb2067aa
+        hippo:versionHistory: e80820ff-2627-4a45-a185-d74023d238e5
+        /content[1]:
+          jcr:primaryType: visitscotland:Listicle
+          jcr:mixinTypes: ['mix:referenceable']
+          jcr:uuid: e9f9e393-b112-43fe-a08b-828f062d4a3e
+          hippo:availability: []
+          hippostd:state: draft
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2020-03-17T11:17:48.546Z
+          hippostdpubwf:lastModificationDate: 2020-03-17T11:23:27.330Z
+          hippostdpubwf:lastModifiedBy: admin
+          hippotranslation:id: aced74d3-03f8-4ed2-9592-dd31975f29cf
+          hippotranslation:locale: en
+          visitscotland:breadcrumb: ''
+          visitscotland:descOrder: false
+          visitscotland:seoDescription: Find some of the most beautiful places in
+            Scotland, including iconic viewpoints and lesser known gems, alongside
+            advice on how to get there.
+          visitscotland:seoNoIndex: false
+          visitscotland:seoTitle: 12 Iconic Scottish Views
+          visitscotland:teaser: Find some of the most beautiful places in Scotland,
+            including iconic viewpoints and lesser known gems, alongside advice on
+            how to get there.
+          visitscotland:title: 12 Iconic Scottish Views
+          /visitscotland:heroImage:
+            jcr:primaryType: hippogallerypicker:imagelink
+            hippo:docbase: 878bc413-07fe-4c1a-9df6-55514c250a16
+            hippo:facets: []
+            hippo:modes: []
+            hippo:values: []
+          /visitscotland:introduction:
+            jcr:primaryType: hippostd:html
+            hippostd:content: |-
+              <p>Looking for the most beautiful places to see in Scotland? Want iconic Scottish views and places where you can appreciate the jaw dropping Scottish landscapes in all their glory? We can help!</p>
+
+              <p>These 12 viewpoints are a mixture of well-known hot spots that offer some of the best views in Scotland - and lesser-known gems where you'll definitely want to stop and drink in the amazing Scottish scenery.</p>
+        /content[2]:
+          jcr:primaryType: visitscotland:Listicle
+          jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
+          jcr:uuid: d4149aca-4d04-461e-a518-596b99bd5120
+          hippo:availability: [preview]
+          hippostd:state: unpublished
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2020-03-17T11:17:48.546Z
+          hippostdpubwf:lastModificationDate: 2020-03-17T11:23:27.233Z
+          hippostdpubwf:lastModifiedBy: admin
+          hippotranslation:id: aced74d3-03f8-4ed2-9592-dd31975f29cf
+          hippotranslation:locale: en
+          visitscotland:breadcrumb: ''
+          visitscotland:descOrder: false
+          visitscotland:seoDescription: Find some of the most beautiful places in
+            Scotland, including iconic viewpoints and lesser known gems, alongside
+            advice on how to get there.
+          visitscotland:seoNoIndex: false
+          visitscotland:seoTitle: 12 Iconic Scottish Views
+          visitscotland:teaser: Find some of the most beautiful places in Scotland,
+            including iconic viewpoints and lesser known gems, alongside advice on
+            how to get there.
+          visitscotland:title: 12 Iconic Scottish Views
+          /visitscotland:heroImage:
+            jcr:primaryType: hippogallerypicker:imagelink
+            hippo:docbase: 878bc413-07fe-4c1a-9df6-55514c250a16
+            hippo:facets: []
+            hippo:modes: []
+            hippo:values: []
+          /visitscotland:introduction:
+            jcr:primaryType: hippostd:html
+            hippostd:content: |-
+              <p>Looking for the most beautiful places to see in Scotland? Want iconic Scottish views and places where you can appreciate the jaw dropping Scottish landscapes in all their glory? We can help!</p>
+
+              <p>These 12 viewpoints are a mixture of well-known hot spots that offer some of the best views in Scotland - and lesser-known gems where you'll definitely want to stop and drink in the amazing Scottish scenery.</p>
+        /content[3]:
+          jcr:primaryType: visitscotland:Listicle
+          jcr:mixinTypes: ['mix:referenceable']
+          jcr:uuid: 35621165-abfa-4629-9591-55a8bd71066c
+          hippo:availability: [live]
+          hippostd:state: published
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2020-03-17T11:17:48.546Z
+          hippostdpubwf:lastModificationDate: 2020-03-17T11:23:27.233Z
+          hippostdpubwf:lastModifiedBy: admin
+          hippostdpubwf:publicationDate: 2020-03-17T11:23:30.429Z
+          hippotranslation:id: aced74d3-03f8-4ed2-9592-dd31975f29cf
+          hippotranslation:locale: en
+          visitscotland:breadcrumb: ''
+          visitscotland:descOrder: false
+          visitscotland:seoDescription: Find some of the most beautiful places in
+            Scotland, including iconic viewpoints and lesser known gems, alongside
+            advice on how to get there.
+          visitscotland:seoNoIndex: false
+          visitscotland:seoTitle: 12 Iconic Scottish Views
+          visitscotland:teaser: Find some of the most beautiful places in Scotland,
+            including iconic viewpoints and lesser known gems, alongside advice on
+            how to get there.
+          visitscotland:title: 12 Iconic Scottish Views
+          /visitscotland:heroImage:
+            jcr:primaryType: hippogallerypicker:imagelink
+            hippo:docbase: 878bc413-07fe-4c1a-9df6-55514c250a16
+            hippo:facets: []
+            hippo:modes: []
+            hippo:values: []
+          /visitscotland:introduction:
+            jcr:primaryType: hippostd:html
+            hippostd:content: |-
+              <p>Looking for the most beautiful places to see in Scotland? Want iconic Scottish views and places where you can appreciate the jaw dropping Scottish landscapes in all their glory? We can help!</p>
+
+              <p>These 12 viewpoints are a mixture of well-known hot spots that offer some of the best views in Scotland - and lesser-known gems where you'll definitely want to stop and drink in the amazing Scottish scenery.</p>
+      /scotts-view-scottish-borders:
+        jcr:primaryType: hippo:handle
+        jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
+        jcr:uuid: 8ebe58c3-71a8-4c3a-b427-b14f94f80a78
+        hippo:name: Scott's View Scottish Borders
+        hippo:versionHistory: cbdf9d19-c67e-4810-aab1-afe1282f4f6e
+        /scotts-view-scottish-borders[1]:
+          jcr:primaryType: visitscotland:ListicleItem
+          jcr:mixinTypes: ['mix:referenceable']
+          jcr:uuid: fe7c91d7-c98f-459f-b82f-51bb77c36840
+          hippo:availability: []
+          hippostd:state: draft
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2020-03-17T11:26:00.217Z
+          hippostdpubwf:lastModificationDate: 2020-03-17T14:07:20.538Z
+          hippostdpubwf:lastModifiedBy: admin
+          hippotranslation:id: b5a43011-6ee7-495c-862c-49cacb71d3eb
+          hippotranslation:locale: en
+          visitscotland:subtitle: Scottish Borders
+          visitscotland:title: Scott's View
+          /visitscotland:description:
+            jcr:primaryType: hippostd:html
+            hippostd:content: |-
+              <p>Soak up the peaceful vista at Sir Walter Scott's favourite viewpoint. Things to look out for include the fast-flowing River Tweed, famous for its underwater residents - huge wild salmon - and the prominent Eildon Hills, which are all that remain of an ancient volcano. Iron Age people and Romans once lived on top of these hills.</p>
+
+              <p>How to get there: Follow the B6356 to the viewpoint, near Bemersyde.</p>
+          /visitscotland:products:
+            jcr:primaryType: visitscotland:DMSLink
+            visitscotland:label: Discover more about Scott's view
+            visitscotland:product: '1420761'
+          /visitscotland:images:
+            jcr:primaryType: hippogallerypicker:imagelink
+            hippo:docbase: f0fe0f26-489b-4a2e-b6c5-605df1abbdcb
+            hippo:facets: []
+            hippo:modes: []
+            hippo:values: []
+        /scotts-view-scottish-borders[2]:
+          jcr:primaryType: visitscotland:ListicleItem
+          jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
+          jcr:uuid: aa71e0a7-1fc9-4d12-9110-76fb8840ea06
+          hippo:availability: [preview]
+          hippostd:state: unpublished
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2020-03-17T11:26:00.217Z
+          hippostdpubwf:lastModificationDate: 2020-03-17T14:07:19.549Z
+          hippostdpubwf:lastModifiedBy: admin
+          hippotranslation:id: b5a43011-6ee7-495c-862c-49cacb71d3eb
+          hippotranslation:locale: en
+          visitscotland:subtitle: Scottish Borders
+          visitscotland:title: Scott's View
+          /visitscotland:description:
+            jcr:primaryType: hippostd:html
+            hippostd:content: |-
+              <p>Soak up the peaceful vista at Sir Walter Scott's favourite viewpoint. Things to look out for include the fast-flowing River Tweed, famous for its underwater residents - huge wild salmon - and the prominent Eildon Hills, which are all that remain of an ancient volcano. Iron Age people and Romans once lived on top of these hills.</p>
+
+              <p>How to get there: Follow the B6356 to the viewpoint, near Bemersyde.</p>
+          /visitscotland:products:
+            jcr:primaryType: visitscotland:DMSLink
+            visitscotland:label: Discover more about Scott's view
+            visitscotland:product: '1420761'
+          /visitscotland:images:
+            jcr:primaryType: hippogallerypicker:imagelink
+            hippo:docbase: f0fe0f26-489b-4a2e-b6c5-605df1abbdcb
+            hippo:facets: []
+            hippo:modes: []
+            hippo:values: []
+        /scotts-view-scottish-borders[3]:
+          jcr:primaryType: visitscotland:ListicleItem
+          jcr:mixinTypes: ['mix:referenceable']
+          jcr:uuid: 13bdf56b-df9d-4b4b-b1ca-af366391214c
+          hippo:availability: [live]
+          hippostd:state: published
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2020-03-17T11:26:00.217Z
+          hippostdpubwf:lastModificationDate: 2020-03-17T14:07:19.549Z
+          hippostdpubwf:lastModifiedBy: admin
+          hippostdpubwf:publicationDate: 2020-03-17T14:07:22.450Z
+          hippotranslation:id: b5a43011-6ee7-495c-862c-49cacb71d3eb
+          hippotranslation:locale: en
+          visitscotland:subtitle: Scottish Borders
+          visitscotland:title: Scott's View
+          /visitscotland:description:
+            jcr:primaryType: hippostd:html
+            hippostd:content: |-
+              <p>Soak up the peaceful vista at Sir Walter Scott's favourite viewpoint. Things to look out for include the fast-flowing River Tweed, famous for its underwater residents - huge wild salmon - and the prominent Eildon Hills, which are all that remain of an ancient volcano. Iron Age people and Romans once lived on top of these hills.</p>
+
+              <p>How to get there: Follow the B6356 to the viewpoint, near Bemersyde.</p>
+          /visitscotland:products:
+            jcr:primaryType: visitscotland:DMSLink
+            visitscotland:label: Discover more about Scott's view
+            visitscotland:product: '1420761'
+          /visitscotland:images:
+            jcr:primaryType: hippogallerypicker:imagelink
+            hippo:docbase: f0fe0f26-489b-4a2e-b6c5-605df1abbdcb
+            hippo:facets: []
+            hippo:modes: []
+            hippo:values: []
+      /isle-of-arran-from-ayr-beach:
+        jcr:primaryType: hippo:handle
+        jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
+        jcr:uuid: 9081956a-5d14-4478-8c8a-5591e7334d48
+        hippo:name: Isle of Arran from Ayr Beach
+        hippo:versionHistory: 27af78e8-fc70-4479-b94b-9ed762925b08
+        /isle-of-arran-from-ayr-beach[1]:
+          jcr:primaryType: visitscotland:ListicleItem
+          jcr:mixinTypes: ['mix:referenceable']
+          jcr:uuid: cb02d960-4f4c-4a65-9535-2d4013f419a3
+          hippo:availability: []
+          hippostd:state: draft
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2020-03-17T13:44:28.926Z
+          hippostdpubwf:lastModificationDate: 2020-03-17T14:06:59.179Z
+          hippostdpubwf:lastModifiedBy: admin
+          hippotranslation:id: a223577b-73c9-4ec4-883b-7e17edfe075f
+          hippotranslation:locale: en
+          visitscotland:subtitle: Ayr
+          visitscotland:title: Isle of Arran from Ayr beach
+          /visitscotland:description:
+            jcr:primaryType: hippostd:html
+            hippostd:content: |-
+              <p>Stroll along the soft sands of Ayr beach and enjoy the same view that Victorian families once marvelled at. See Arran rising up out the sea from across the water and look out for distinctive Ailsa Craig, an ancient volcanic plug in the Firth of Clyde that is home to 36,000 pairs of gannets (that's 72,000 gannets in total!).</p>
+
+              <p>How to get there: Stroll along Ayr beach.</p>
+          /visitscotland:products:
+            jcr:primaryType: visitscotland:DMSLink
+            visitscotland:label: Find out more about Ayr beach
+            visitscotland:product: '727241'
+          /visitscotland:extraLinks:
+            jcr:primaryType: visitscotland:CMSLink
+            visitscotland:label: Discover more things to do on the stunning Isle of
+              Arran
+            /visitscotland:link:
+              jcr:primaryType: hippo:mirror
+              hippo:docbase: 8b4a3c11-8b84-4aa0-bccf-f407d18c1c44
+        /isle-of-arran-from-ayr-beach[2]:
+          jcr:primaryType: visitscotland:ListicleItem
+          jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
+          jcr:uuid: 804bb98e-a55a-4e7b-aee9-a46f528f7082
+          hippo:availability: [preview]
+          hippostd:state: unpublished
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2020-03-17T13:44:28.926Z
+          hippostdpubwf:lastModificationDate: 2020-03-17T14:06:23.423Z
+          hippostdpubwf:lastModifiedBy: admin
+          hippotranslation:id: a223577b-73c9-4ec4-883b-7e17edfe075f
+          hippotranslation:locale: en
+          visitscotland:subtitle: Ayr
+          visitscotland:title: Isle of Arran from Ayr beach
+          /visitscotland:description:
+            jcr:primaryType: hippostd:html
+            hippostd:content: |-
+              <p>Stroll along the soft sands of Ayr beach and enjoy the same view that Victorian families once marvelled at. See Arran rising up out the sea from across the water and look out for distinctive Ailsa Craig, an ancient volcanic plug in the Firth of Clyde that is home to 36,000 pairs of gannets (that's 72,000 gannets in total!).</p>
+
+              <p>How to get there: Stroll along Ayr beach.</p>
+          /visitscotland:products:
+            jcr:primaryType: visitscotland:DMSLink
+            visitscotland:label: Find out more about Ayr beach
+            visitscotland:product: '727241'
+          /visitscotland:extraLinks:
+            jcr:primaryType: visitscotland:CMSLink
+            visitscotland:label: Discover more things to do on the stunning Isle of
+              Arran
+            /visitscotland:link:
+              jcr:primaryType: hippo:mirror
+              hippo:docbase: 8b4a3c11-8b84-4aa0-bccf-f407d18c1c44
+        /isle-of-arran-from-ayr-beach[3]:
+          jcr:primaryType: visitscotland:ListicleItem
+          jcr:mixinTypes: ['mix:referenceable']
+          jcr:uuid: 2e089bf8-a34e-4bd2-bfe2-e2e9d6511913
+          hippo:availability: [live]
+          hippostd:state: published
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2020-03-17T13:44:28.926Z
+          hippostdpubwf:lastModificationDate: 2020-03-17T14:06:23.423Z
+          hippostdpubwf:lastModifiedBy: admin
+          hippostdpubwf:publicationDate: 2020-03-17T14:06:25.577Z
+          hippotranslation:id: a223577b-73c9-4ec4-883b-7e17edfe075f
+          hippotranslation:locale: en
+          visitscotland:subtitle: Ayr
+          visitscotland:title: Isle of Arran from Ayr beach
+          /visitscotland:description:
+            jcr:primaryType: hippostd:html
+            hippostd:content: |-
+              <p>Stroll along the soft sands of Ayr beach and enjoy the same view that Victorian families once marvelled at. See Arran rising up out the sea from across the water and look out for distinctive Ailsa Craig, an ancient volcanic plug in the Firth of Clyde that is home to 36,000 pairs of gannets (that's 72,000 gannets in total!).</p>
+
+              <p>How to get there: Stroll along Ayr beach.</p>
+          /visitscotland:products:
+            jcr:primaryType: visitscotland:DMSLink
+            visitscotland:label: Find out more about Ayr beach
+            visitscotland:product: '727241'
+          /visitscotland:extraLinks:
+            jcr:primaryType: visitscotland:CMSLink
+            visitscotland:label: Discover more things to do on the stunning Isle of
+              Arran
+            /visitscotland:link:
+              jcr:primaryType: hippo:mirror
+              hippo:docbase: 8b4a3c11-8b84-4aa0-bccf-f407d18c1c44
+      /edinburgh-castle-from-the-vennel:
+        jcr:primaryType: hippo:handle
+        jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
+        jcr:uuid: 73299104-7187-4665-b8f6-89921a4a82ad
+        hippo:name: Edinburgh Castle from the Vennel
+        hippo:versionHistory: 85ce2095-565f-457a-9e45-38a3d0da44e3
+        /edinburgh-castle-from-the-vennel[1]:
+          jcr:primaryType: visitscotland:ListicleItem
+          jcr:mixinTypes: ['mix:referenceable']
+          jcr:uuid: 33fcd729-9098-4806-a945-27c3862910a4
+          hippo:availability: []
+          hippostd:state: draft
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2020-03-17T13:52:21.421Z
+          hippostdpubwf:lastModificationDate: 2020-03-17T14:07:25.842Z
+          hippostdpubwf:lastModifiedBy: admin
+          hippotranslation:id: f322cbcb-774f-4131-892f-f1122d6d86b5
+          hippotranslation:locale: en
+          visitscotland:subtitle: Edinburgh
+          visitscotland:title: Edinburgh Castle from the Vennel
+          /visitscotland:description:
+            jcr:primaryType: hippostd:html
+            hippostd:content: |-
+              <p>Edinburgh Castle, but not quite how we're used to seeing it! Towering over Edinburgh atop Castle Rock, there are countless places in Scotland's capital to admire the castle in all its glory. One of our favourite views is this lesser known gem - from the top of the steps at the historic Vennel, just off the Grassmarket.</p>
+
+              <p>How to get there: Walk to the west side of the Grassmarket and climb the steps up the Vennel, located opposite King's Stables Road. When you reach the top, turn around, and voila! One of the best views of Edinburgh Castle you can get.</p>
+          /visitscotland:products:
+            jcr:primaryType: visitscotland:DMSLink
+            visitscotland:label: ''
+            visitscotland:product: '245821'
+          /visitscotland:extraLinks:
+            jcr:primaryType: visitscotland:CMSLink
+            visitscotland:label: Get more inspiration for a fabulous city break in
+              Edinburgh.
+            /visitscotland:link:
+              jcr:primaryType: hippo:mirror
+              hippo:docbase: 8b4a3c11-8b84-4aa0-bccf-f407d18c1c44
+          /visitscotland:images:
+            jcr:primaryType: visitscotland:InstagramImage
+            visitscotland:caption: Edinburgh Castle from The Vennel
+            visitscotland:id: BqAeZwED2qn
+        /edinburgh-castle-from-the-vennel[2]:
+          jcr:primaryType: visitscotland:ListicleItem
+          jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
+          jcr:uuid: 739247de-d63d-4db0-b01b-3d17e4440c14
+          hippo:availability: [preview]
+          hippostd:state: unpublished
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2020-03-17T13:52:21.421Z
+          hippostdpubwf:lastModificationDate: 2020-03-17T14:04:47.690Z
+          hippostdpubwf:lastModifiedBy: admin
+          hippotranslation:id: f322cbcb-774f-4131-892f-f1122d6d86b5
+          hippotranslation:locale: en
+          visitscotland:subtitle: Edinburgh
+          visitscotland:title: Edinburgh Castle from the Vennel
+          /visitscotland:description:
+            jcr:primaryType: hippostd:html
+            hippostd:content: |-
+              <p>Edinburgh Castle, but not quite how we're used to seeing it! Towering over Edinburgh atop Castle Rock, there are countless places in Scotland's capital to admire the castle in all its glory. One of our favourite views is this lesser known gem - from the top of the steps at the historic Vennel, just off the Grassmarket.</p>
+
+              <p>How to get there: Walk to the west side of the Grassmarket and climb the steps up the Vennel, located opposite King's Stables Road. When you reach the top, turn around, and voila! One of the best views of Edinburgh Castle you can get.</p>
+          /visitscotland:products:
+            jcr:primaryType: visitscotland:DMSLink
+            visitscotland:label: ''
+            visitscotland:product: '245821'
+          /visitscotland:extraLinks:
+            jcr:primaryType: visitscotland:CMSLink
+            visitscotland:label: Get more inspiration for a fabulous city break in
+              Edinburgh.
+            /visitscotland:link:
+              jcr:primaryType: hippo:mirror
+              hippo:docbase: 8b4a3c11-8b84-4aa0-bccf-f407d18c1c44
+          /visitscotland:images:
+            jcr:primaryType: visitscotland:InstagramImage
+            visitscotland:caption: Edinburgh Castle from The Vennel
+            visitscotland:id: BqAeZwED2qn
+        /edinburgh-castle-from-the-vennel[3]:
+          jcr:primaryType: visitscotland:ListicleItem
+          jcr:mixinTypes: ['mix:referenceable']
+          jcr:uuid: fef107e3-f37a-4f41-94c1-6dd4ecc0f327
+          hippo:availability: [live]
+          hippostd:state: published
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2020-03-17T13:52:21.421Z
+          hippostdpubwf:lastModificationDate: 2020-03-17T14:04:47.690Z
+          hippostdpubwf:lastModifiedBy: admin
+          hippostdpubwf:publicationDate: 2020-03-17T14:04:50.180Z
+          hippotranslation:id: f322cbcb-774f-4131-892f-f1122d6d86b5
+          hippotranslation:locale: en
+          visitscotland:subtitle: Edinburgh
+          visitscotland:title: Edinburgh Castle from the Vennel
+          /visitscotland:description:
+            jcr:primaryType: hippostd:html
+            hippostd:content: |-
+              <p>Edinburgh Castle, but not quite how we're used to seeing it! Towering over Edinburgh atop Castle Rock, there are countless places in Scotland's capital to admire the castle in all its glory. One of our favourite views is this lesser known gem - from the top of the steps at the historic Vennel, just off the Grassmarket.</p>
+
+              <p>How to get there: Walk to the west side of the Grassmarket and climb the steps up the Vennel, located opposite King's Stables Road. When you reach the top, turn around, and voila! One of the best views of Edinburgh Castle you can get.</p>
+          /visitscotland:products:
+            jcr:primaryType: visitscotland:DMSLink
+            visitscotland:label: ''
+            visitscotland:product: '245821'
+          /visitscotland:extraLinks:
+            jcr:primaryType: visitscotland:CMSLink
+            visitscotland:label: Get more inspiration for a fabulous city break in
+              Edinburgh.
+            /visitscotland:link:
+              jcr:primaryType: hippo:mirror
+              hippo:docbase: 8b4a3c11-8b84-4aa0-bccf-f407d18c1c44
+          /visitscotland:images:
+            jcr:primaryType: visitscotland:InstagramImage
+            visitscotland:caption: Edinburgh Castle from The Vennel
+            visitscotland:id: BqAeZwED2qn
+      /forth-bridge-north-queensferry:
+        jcr:primaryType: hippo:handle
+        jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
+        jcr:uuid: 10e91799-71b8-4a4a-a0dd-4878d31669c5
+        hippo:name: Forth Bridge, North Queensferry
+        hippo:versionHistory: 87d6e444-d15a-4430-adb9-b78b86f6df82
+        /forth-bridge-north-queensferry[1]:
+          jcr:primaryType: visitscotland:ListicleItem
+          jcr:mixinTypes: ['mix:referenceable']
+          jcr:uuid: 43224aa3-4089-4c73-8402-8601bfe09fe4
+          hippo:availability: []
+          hippostd:state: draft
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2020-03-17T14:15:54.539Z
+          hippostdpubwf:lastModificationDate: 2020-03-17T14:19:17.653Z
+          hippostdpubwf:lastModifiedBy: admin
+          hippotranslation:id: 3c8175a2-1914-4870-8ee9-1b18ffe4277c
+          hippotranslation:locale: en
+          visitscotland:subtitle: North Queensferry
+          visitscotland:title: Forth Bridge
+          /visitscotland:description:
+            jcr:primaryType: hippostd:html
+            hippostd:content: |-
+              <p>A truly impressive feat of engineering and a UNESCO World Heritage Site, this is a bridge you can't help but stop and admire. The Forth Bridge was opened in 1890 and stretches for 2.5 km between the towns of North and South Queensferry. Further west you'll also see the Forth Road Bridge (opened in 1964) and the Queensferry Crossing (2017) - three bridges that span three centuries.</p>
+
+              <p>How to get there: Head to the Albert Hotel in North Queensferry. This viewpoint is from Main Street, looking past Battery Road, just outside the hotel. See more UNESCO World Heritage Sites in Scotland.</p>
+          /visitscotland:products:
+            jcr:primaryType: visitscotland:DMSLink
+            visitscotland:label: ''
+            visitscotland:product: '243711'
+          /visitscotland:images:
+            jcr:primaryType: hippogallerypicker:imagelink
+            hippo:docbase: d607431a-46f7-4ed1-a288-de6458bbdc97
+            hippo:facets: []
+            hippo:modes: []
+            hippo:values: []
+        /forth-bridge-north-queensferry[2]:
+          jcr:primaryType: visitscotland:ListicleItem
+          jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
+          jcr:uuid: 2b829094-aef9-4e0d-838f-57b40f70d7b9
+          hippo:availability: [preview]
+          hippostd:state: unpublished
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2020-03-17T14:15:54.539Z
+          hippostdpubwf:lastModificationDate: 2020-03-17T14:19:04.915Z
+          hippostdpubwf:lastModifiedBy: admin
+          hippotranslation:id: 3c8175a2-1914-4870-8ee9-1b18ffe4277c
+          hippotranslation:locale: en
+          visitscotland:subtitle: North Queensferry
+          visitscotland:title: Forth Bridge
+          /visitscotland:description:
+            jcr:primaryType: hippostd:html
+            hippostd:content: |-
+              <p>A truly impressive feat of engineering and a UNESCO World Heritage Site, this is a bridge you can't help but stop and admire. The Forth Bridge was opened in 1890 and stretches for 2.5 km between the towns of North and South Queensferry. Further west you'll also see the Forth Road Bridge (opened in 1964) and the Queensferry Crossing (2017) - three bridges that span three centuries.</p>
+
+              <p>How to get there: Head to the Albert Hotel in North Queensferry. This viewpoint is from Main Street, looking past Battery Road, just outside the hotel. See more UNESCO World Heritage Sites in Scotland.</p>
+          /visitscotland:products:
+            jcr:primaryType: visitscotland:DMSLink
+            visitscotland:label: ''
+            visitscotland:product: '243711'
+          /visitscotland:images:
+            jcr:primaryType: hippogallerypicker:imagelink
+            hippo:docbase: d607431a-46f7-4ed1-a288-de6458bbdc97
+            hippo:facets: []
+            hippo:modes: []
+            hippo:values: []
+        /forth-bridge-north-queensferry[3]:
+          jcr:primaryType: visitscotland:ListicleItem
+          jcr:mixinTypes: ['mix:referenceable']
+          jcr:uuid: 20da49c0-d202-4449-ab02-bf5ba4db92a1
+          hippo:availability: [live]
+          hippostd:state: published
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2020-03-17T14:15:54.539Z
+          hippostdpubwf:lastModificationDate: 2020-03-17T14:19:04.915Z
+          hippostdpubwf:lastModifiedBy: admin
+          hippostdpubwf:publicationDate: 2020-03-17T14:19:06.371Z
+          hippotranslation:id: 3c8175a2-1914-4870-8ee9-1b18ffe4277c
+          hippotranslation:locale: en
+          visitscotland:subtitle: North Queensferry
+          visitscotland:title: Forth Bridge
+          /visitscotland:description:
+            jcr:primaryType: hippostd:html
+            hippostd:content: |-
+              <p>A truly impressive feat of engineering and a UNESCO World Heritage Site, this is a bridge you can't help but stop and admire. The Forth Bridge was opened in 1890 and stretches for 2.5 km between the towns of North and South Queensferry. Further west you'll also see the Forth Road Bridge (opened in 1964) and the Queensferry Crossing (2017) - three bridges that span three centuries.</p>
+
+              <p>How to get there: Head to the Albert Hotel in North Queensferry. This viewpoint is from Main Street, looking past Battery Road, just outside the hotel. See more UNESCO World Heritage Sites in Scotland.</p>
+          /visitscotland:products:
+            jcr:primaryType: visitscotland:DMSLink
+            visitscotland:label: ''
+            visitscotland:product: '243711'
+          /visitscotland:images:
+            jcr:primaryType: hippogallerypicker:imagelink
+            hippo:docbase: d607431a-46f7-4ed1-a288-de6458bbdc97
+            hippo:facets: []
+            hippo:modes: []
+            hippo:values: []
+      /loch-katrine-from-ben-aan:
+        jcr:primaryType: hippo:handle
+        jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
+        jcr:uuid: c2f82616-192f-4307-81b0-b4945d1daaed
+        hippo:name: Loch Katrine from Ben A'an
+        hippo:versionHistory: df34d10d-50df-436c-a04c-7080f2ec9194
+        /loch-katrine-from-ben-aan[1]:
+          jcr:primaryType: visitscotland:ListicleItem
+          jcr:mixinTypes: ['mix:referenceable']
+          jcr:uuid: 4fea78aa-220f-47af-955c-0942eec32a19
+          hippo:availability: []
+          hippostd:state: draft
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2020-03-17T14:21:47.263Z
+          hippostdpubwf:lastModificationDate: 2020-03-17T14:21:47.263Z
+          hippostdpubwf:lastModifiedBy: admin
+          hippotranslation:id: e5ed7831-d7d0-472c-8472-8896aad7c8bf
+          hippotranslation:locale: en
+          visitscotland:subtitle: Loch Lomond, Stirling, The Trossachs & The Forth
+            Valley
+          visitscotland:title: Loch Katrine from Ben A'an
+          /visitscotland:description:
+            jcr:primaryType: hippostd:html
+            hippostd:content: |-
+              <p>Standing at 1,491 ft (454 m), Ben A'an is one of Scotland's most popular hills to climb and for good reason - just look at that view! The hill's pointed peak offers stunning views across Loch Lomond &amp; The Trossachs National Park, with Loch Katrine stretched out below you. Look out for the Steamship Sir Walter Scott gliding on the sparkling water.</p>
+
+              <p>Advice from the photographer: 'This is the classic view from the very summit, looking down Loch Katrine. You are only rewarded with this view when you get right to the top (the route up is on the opposite side of the hill) but what a reward!'</p>
+
+              <p>How to get there: Follow the A821 to the Forestry Commission car park at the foot of Ben A'an.</p>
+          /visitscotland:images:
+            jcr:primaryType: visitscotland:InstagramImage
+            visitscotland:caption: Loch Katrine from Ben A'an
+            visitscotland:id: B9KJD_HpRfO
+          /visitscotland:extraLinks:
+            jcr:primaryType: visitscotland:CMSLink
+            visitscotland:label: See more things to do around the iconic Loch Lomond
+            /visitscotland:link:
+              jcr:primaryType: hippo:mirror
+              hippo:docbase: 8b4a3c11-8b84-4aa0-bccf-f407d18c1c44
+        /loch-katrine-from-ben-aan[2]:
+          jcr:primaryType: visitscotland:ListicleItem
+          jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
+          jcr:uuid: b0824f76-ae89-4106-af47-a2628fc4c4b8
+          hippo:availability: [preview]
+          hippostd:state: unpublished
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2020-03-17T14:21:47.263Z
+          hippostdpubwf:lastModificationDate: 2020-03-17T14:26:05.769Z
+          hippostdpubwf:lastModifiedBy: admin
+          hippotranslation:id: e5ed7831-d7d0-472c-8472-8896aad7c8bf
+          hippotranslation:locale: en
+          visitscotland:subtitle: Loch Lomond, Stirling, The Trossachs & The Forth
+            Valley
+          visitscotland:title: Loch Katrine from Ben A'an
+          /visitscotland:description:
+            jcr:primaryType: hippostd:html
+            hippostd:content: |-
+              <p>Standing at 1,491 ft (454 m), Ben A'an is one of Scotland's most popular hills to climb and for good reason - just look at that view! The hill's pointed peak offers stunning views across Loch Lomond &amp; The Trossachs National Park, with Loch Katrine stretched out below you. Look out for the Steamship Sir Walter Scott gliding on the sparkling water.</p>
+
+              <p>Advice from the photographer: 'This is the classic view from the very summit, looking down Loch Katrine. You are only rewarded with this view when you get right to the top (the route up is on the opposite side of the hill) but what a reward!'</p>
+
+              <p>How to get there: Follow the A821 to the Forestry Commission car park at the foot of Ben A'an.</p>
+          /visitscotland:images:
+            jcr:primaryType: visitscotland:InstagramImage
+            visitscotland:caption: Loch Katrine from Ben A'an
+            visitscotland:id: B9KJD_HpRfO
+          /visitscotland:extraLinks:
+            jcr:primaryType: visitscotland:CMSLink
+            visitscotland:label: See more things to do around the iconic Loch Lomond
+            /visitscotland:link:
+              jcr:primaryType: hippo:mirror
+              hippo:docbase: 8b4a3c11-8b84-4aa0-bccf-f407d18c1c44
+        /loch-katrine-from-ben-aan[3]:
+          jcr:primaryType: visitscotland:ListicleItem
+          jcr:mixinTypes: ['mix:referenceable']
+          jcr:uuid: 37319313-ba81-46db-83a8-8f84fd1f1170
+          hippo:availability: [live]
+          hippostd:state: published
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2020-03-17T14:21:47.263Z
+          hippostdpubwf:lastModificationDate: 2020-03-17T14:26:05.769Z
+          hippostdpubwf:lastModifiedBy: admin
+          hippostdpubwf:publicationDate: 2020-03-17T14:26:07.362Z
+          hippotranslation:id: e5ed7831-d7d0-472c-8472-8896aad7c8bf
+          hippotranslation:locale: en
+          visitscotland:subtitle: Loch Lomond, Stirling, The Trossachs & The Forth
+            Valley
+          visitscotland:title: Loch Katrine from Ben A'an
+          /visitscotland:description:
+            jcr:primaryType: hippostd:html
+            hippostd:content: |-
+              <p>Standing at 1,491 ft (454 m), Ben A'an is one of Scotland's most popular hills to climb and for good reason - just look at that view! The hill's pointed peak offers stunning views across Loch Lomond &amp; The Trossachs National Park, with Loch Katrine stretched out below you. Look out for the Steamship Sir Walter Scott gliding on the sparkling water.</p>
+
+              <p>Advice from the photographer: 'This is the classic view from the very summit, looking down Loch Katrine. You are only rewarded with this view when you get right to the top (the route up is on the opposite side of the hill) but what a reward!'</p>
+
+              <p>How to get there: Follow the A821 to the Forestry Commission car park at the foot of Ben A'an.</p>
+          /visitscotland:images:
+            jcr:primaryType: visitscotland:InstagramImage
+            visitscotland:caption: Loch Katrine from Ben A'an
+            visitscotland:id: B9KJD_HpRfO
+          /visitscotland:extraLinks:
+            jcr:primaryType: visitscotland:CMSLink
+            visitscotland:label: See more things to do around the iconic Loch Lomond
+            /visitscotland:link:
+              jcr:primaryType: hippo:mirror
+              hippo:docbase: 8b4a3c11-8b84-4aa0-bccf-f407d18c1c44
+      /queens-view-perthshire:
+        jcr:primaryType: hippo:handle
+        jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
+        jcr:uuid: 4aaa8022-5afe-4b30-8d9a-a2e358a05515
+        hippo:name: Queen's View, Perthshire
+        hippo:versionHistory: f02b7e11-804a-4e29-a56e-8fb3bdb7f26d
+        /queens-view-perthshire[1]:
+          jcr:primaryType: visitscotland:ListicleItem
+          jcr:mixinTypes: ['mix:referenceable']
+          jcr:uuid: 49f2b99d-2d00-484b-97ca-819bf1d08e48
+          hippo:availability: []
+          hippostd:state: draft
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2020-03-17T14:29:28.032Z
+          hippostdpubwf:lastModificationDate: 2020-03-17T14:34:39.180Z
+          hippostdpubwf:lastModifiedBy: admin
+          hippotranslation:id: 08234810-1faa-4913-8cc3-9ebe0681b3b9
+          hippotranslation:locale: en
+          visitscotland:subtitle: Perthshire
+          visitscotland:title: Queen's View
+          /visitscotland:description:
+            jcr:primaryType: hippostd:html
+            hippostd:content: |-
+              <p>Overlooking gleaming Loch Tummel, Queen's View has been popular for centuries. When Queen Victoria visited this spot in 1866 she assumed that it had been named after her, but many believe it was named after King Robert the Bruce's first wife, Queen Isabella. Cast your eyes out in the distance to see the towering Munro, Schiehallion, overlooking the west end of the loch.</p>
+
+              <p>How to get there: Follow the B8019 to the <a href="https://forestryandland.gov.scot/visit/forest-parks/tay-forest-park/queens-view-visitor-centre" target="_blank">Queen's View Visitor Centre</a>, at the east side of Loch Tummel and the Tay Forest Park.</p>
+          /visitscotland:images:
+            jcr:primaryType: hippogallerypicker:imagelink
+            hippo:docbase: eb9d41bd-8fdc-4166-8126-1133d5fad9aa
+            hippo:facets: []
+            hippo:modes: []
+            hippo:values: []
+          /visitscotland:extraLinks:
+            jcr:primaryType: visitscotland:CMSLink
+            visitscotland:label: Discover more highlights in the Scottish heartlands
+              of Perthshire
+            /visitscotland:link:
+              jcr:primaryType: hippo:mirror
+              hippo:docbase: 8b4a3c11-8b84-4aa0-bccf-f407d18c1c44
+        /queens-view-perthshire[2]:
+          jcr:primaryType: visitscotland:ListicleItem
+          jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
+          jcr:uuid: 4dba2666-2e74-470c-ba79-5487a50845f1
+          hippo:availability: [preview]
+          hippostd:state: unpublished
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2020-03-17T14:29:28.032Z
+          hippostdpubwf:lastModificationDate: 2020-03-17T14:34:47.644Z
+          hippostdpubwf:lastModifiedBy: admin
+          hippotranslation:id: 08234810-1faa-4913-8cc3-9ebe0681b3b9
+          hippotranslation:locale: en
+          visitscotland:subtitle: Perthshire
+          visitscotland:title: Queen's View
+          /visitscotland:description:
+            jcr:primaryType: hippostd:html
+            hippostd:content: |-
+              <p>Overlooking gleaming Loch Tummel, Queen's View has been popular for centuries. When Queen Victoria visited this spot in 1866 she assumed that it had been named after her, but many believe it was named after King Robert the Bruce's first wife, Queen Isabella. Cast your eyes out in the distance to see the towering Munro, Schiehallion, overlooking the west end of the loch.</p>
+
+              <p>How to get there: Follow the B8019 to the <a href="https://forestryandland.gov.scot/visit/forest-parks/tay-forest-park/queens-view-visitor-centre" target="_blank">Queen's View Visitor Centre</a>, at the east side of Loch Tummel and the Tay Forest Park.</p>
+          /visitscotland:images:
+            jcr:primaryType: hippogallerypicker:imagelink
+            hippo:docbase: eb9d41bd-8fdc-4166-8126-1133d5fad9aa
+            hippo:facets: []
+            hippo:modes: []
+            hippo:values: []
+          /visitscotland:extraLinks:
+            jcr:primaryType: visitscotland:CMSLink
+            visitscotland:label: Discover more highlights in the Scottish heartlands
+              of Perthshire
+            /visitscotland:link:
+              jcr:primaryType: hippo:mirror
+              hippo:docbase: 8b4a3c11-8b84-4aa0-bccf-f407d18c1c44
+        /queens-view-perthshire[3]:
+          jcr:primaryType: visitscotland:ListicleItem
+          jcr:mixinTypes: ['mix:referenceable']
+          jcr:uuid: a08c4c67-6222-44b2-8844-ec33a09b59fc
+          hippo:availability: [live]
+          hippostd:state: published
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2020-03-17T14:29:28.032Z
+          hippostdpubwf:lastModificationDate: 2020-03-17T14:34:47.644Z
+          hippostdpubwf:lastModifiedBy: admin
+          hippostdpubwf:publicationDate: 2020-03-17T14:34:48.922Z
+          hippotranslation:id: 08234810-1faa-4913-8cc3-9ebe0681b3b9
+          hippotranslation:locale: en
+          visitscotland:subtitle: Perthshire
+          visitscotland:title: Queen's View
+          /visitscotland:description:
+            jcr:primaryType: hippostd:html
+            hippostd:content: |-
+              <p>Overlooking gleaming Loch Tummel, Queen's View has been popular for centuries. When Queen Victoria visited this spot in 1866 she assumed that it had been named after her, but many believe it was named after King Robert the Bruce's first wife, Queen Isabella. Cast your eyes out in the distance to see the towering Munro, Schiehallion, overlooking the west end of the loch.</p>
+
+              <p>How to get there: Follow the B8019 to the <a href="https://forestryandland.gov.scot/visit/forest-parks/tay-forest-park/queens-view-visitor-centre" target="_blank">Queen's View Visitor Centre</a>, at the east side of Loch Tummel and the Tay Forest Park.</p>
+          /visitscotland:images:
+            jcr:primaryType: hippogallerypicker:imagelink
+            hippo:docbase: eb9d41bd-8fdc-4166-8126-1133d5fad9aa
+            hippo:facets: []
+            hippo:modes: []
+            hippo:values: []
+          /visitscotland:extraLinks:
+            jcr:primaryType: visitscotland:CMSLink
+            visitscotland:label: Discover more highlights in the Scottish heartlands
+              of Perthshire
+            /visitscotland:link:
+              jcr:primaryType: hippo:mirror
+              hippo:docbase: 8b4a3c11-8b84-4aa0-bccf-f407d18c1c44
+      /glenfinnan-viaduct-and-loch-shiel-highlands:
+        jcr:primaryType: hippo:handle
+        jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
+        jcr:uuid: 14915bbd-5e55-4fab-ae5d-5d6ce9e9ef87
+        hippo:name: Glenfinnan Viaduct and Loch Shiel, Highlands
+        hippo:versionHistory: 58039339-fac7-49f6-9ef2-bc120cffee96
+        /glenfinnan-viaduct-and-loch-shiel-highlands[1]:
+          jcr:primaryType: visitscotland:ListicleItem
+          jcr:mixinTypes: ['mix:referenceable']
+          jcr:uuid: 9a375283-2532-4d4e-9bd4-870fe6f470b6
+          hippo:availability: []
+          hippostd:state: draft
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2020-03-17T14:35:17.001Z
+          hippostdpubwf:lastModificationDate: 2020-03-17T14:36:42.251Z
+          hippostdpubwf:lastModifiedBy: admin
+          hippotranslation:id: 6df55976-5d22-4567-b4bc-56a6900d3cb7
+          hippotranslation:locale: en
+          visitscotland:subtitle: Highlands
+          visitscotland:title: Glenfinnan Viaduct and Loch Shiel
+          /visitscotland:description:
+            jcr:primaryType: hippostd:html
+            hippostd:content: |-
+              <p>One of Scotland's most instantly recognisable attractions, the Glenfinnan Viaduct was finished in 1901 and has famously starred in several of the Harry Potter movies. There are plenty of places to enjoy views of the viaduct and beautiful Loch Shiel - including the lovely Glenfinnan Viaduct Trail - but this lesser known vantage point is from the lower slopes of towering Beinn an Tuim.</p>
+
+              <p>How to get there: Follow the A830 to the Glenfinnan Viaduct car park.</p>
+
+              <p><em>Advice from the photographer to follow the route: 'From the car park, walk for 10 mins along the road to the viaduct then cross the wooden bridge over the River Finnan. Follow the track to the top of the viaduct (a popular spot for photographs). From here there is no path, I took to the hillside and made my way through thick grass and bracken and headed for the transmitter on the hill. I passed Lochan na Carnaich, views of Ben Nevis and Loch Eil were beautiful. The ground then became very rough and boggy so my pace slowed down. I continued higher until I had a full view of the viaduct and stopped to take many photos. Be aware though, Glenfinnan is an estate [so shooting parties may be out during the stalking season]. It's best to contact the estate to check if there's any stalking'. Find contact details for Glenfinnan Estate.</em></p>
+          /visitscotland:products:
+            jcr:primaryType: visitscotland:DMSLink
+            visitscotland:label: Get more information from the Glenfinnan Monument
+              & Visitor Centre.
+            visitscotland:product: '246521'
+        /glenfinnan-viaduct-and-loch-shiel-highlands[2]:
+          jcr:primaryType: visitscotland:ListicleItem
+          jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
+          jcr:uuid: 1ea0f042-afa2-4970-80a8-3d99dcc7f5e2
+          hippo:availability: [preview]
+          hippostd:state: unpublished
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2020-03-17T14:35:17.001Z
+          hippostdpubwf:lastModificationDate: 2020-03-17T14:37:08.814Z
+          hippostdpubwf:lastModifiedBy: admin
+          hippotranslation:id: 6df55976-5d22-4567-b4bc-56a6900d3cb7
+          hippotranslation:locale: en
+          visitscotland:subtitle: Highlands
+          visitscotland:title: Glenfinnan Viaduct and Loch Shiel
+          /visitscotland:description:
+            jcr:primaryType: hippostd:html
+            hippostd:content: |-
+              <p>One of Scotland's most instantly recognisable attractions, the Glenfinnan Viaduct was finished in 1901 and has famously starred in several of the Harry Potter movies. There are plenty of places to enjoy views of the viaduct and beautiful Loch Shiel - including the lovely Glenfinnan Viaduct Trail - but this lesser known vantage point is from the lower slopes of towering Beinn an Tuim.</p>
+
+              <p>How to get there: Follow the A830 to the Glenfinnan Viaduct car park.</p>
+
+              <p><em>Advice from the photographer to follow the route: 'From the car park, walk for 10 mins along the road to the viaduct then cross the wooden bridge over the River Finnan. Follow the track to the top of the viaduct (a popular spot for photographs). From here there is no path, I took to the hillside and made my way through thick grass and bracken and headed for the transmitter on the hill. I passed Lochan na Carnaich, views of Ben Nevis and Loch Eil were beautiful. The ground then became very rough and boggy so my pace slowed down. I continued higher until I had a full view of the viaduct and stopped to take many photos. Be aware though, Glenfinnan is an estate [so shooting parties may be out during the stalking season]. It's best to contact the estate to check if there's any stalking'. Find contact details for Glenfinnan Estate.</em></p>
+          /visitscotland:products:
+            jcr:primaryType: visitscotland:DMSLink
+            visitscotland:label: Get more information from the Glenfinnan Monument
+              & Visitor Centre.
+            visitscotland:product: '246521'
+        /glenfinnan-viaduct-and-loch-shiel-highlands[3]:
+          jcr:primaryType: visitscotland:ListicleItem
+          jcr:mixinTypes: ['mix:referenceable']
+          jcr:uuid: d75bae15-98e5-46b4-894d-f1dd8568b863
+          hippo:availability: [live]
+          hippostd:state: published
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2020-03-17T14:35:17.001Z
+          hippostdpubwf:lastModificationDate: 2020-03-17T14:37:08.814Z
+          hippostdpubwf:lastModifiedBy: admin
+          hippostdpubwf:publicationDate: 2020-03-17T14:37:10.158Z
+          hippotranslation:id: 6df55976-5d22-4567-b4bc-56a6900d3cb7
+          hippotranslation:locale: en
+          visitscotland:subtitle: Highlands
+          visitscotland:title: Glenfinnan Viaduct and Loch Shiel
+          /visitscotland:description:
+            jcr:primaryType: hippostd:html
+            hippostd:content: |-
+              <p>One of Scotland's most instantly recognisable attractions, the Glenfinnan Viaduct was finished in 1901 and has famously starred in several of the Harry Potter movies. There are plenty of places to enjoy views of the viaduct and beautiful Loch Shiel - including the lovely Glenfinnan Viaduct Trail - but this lesser known vantage point is from the lower slopes of towering Beinn an Tuim.</p>
+
+              <p>How to get there: Follow the A830 to the Glenfinnan Viaduct car park.</p>
+
+              <p><em>Advice from the photographer to follow the route: 'From the car park, walk for 10 mins along the road to the viaduct then cross the wooden bridge over the River Finnan. Follow the track to the top of the viaduct (a popular spot for photographs). From here there is no path, I took to the hillside and made my way through thick grass and bracken and headed for the transmitter on the hill. I passed Lochan na Carnaich, views of Ben Nevis and Loch Eil were beautiful. The ground then became very rough and boggy so my pace slowed down. I continued higher until I had a full view of the viaduct and stopped to take many photos. Be aware though, Glenfinnan is an estate [so shooting parties may be out during the stalking season]. It's best to contact the estate to check if there's any stalking'. Find contact details for Glenfinnan Estate.</em></p>
+          /visitscotland:products:
+            jcr:primaryType: visitscotland:DMSLink
+            visitscotland:label: Get more information from the Glenfinnan Monument
+              & Visitor Centre.
+            visitscotland:product: '246521'
+      /isle-of-barra:
+        jcr:primaryType: hippo:handle
+        jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
+        jcr:uuid: 1bb6c0f9-68f8-4a19-8aef-b8e72c0b0e2d
+        hippo:name: Isle of Barra
+        hippo:versionHistory: aed95914-589a-4497-873b-33e3002ff676
+        /isle-of-barra[1]:
+          jcr:primaryType: visitscotland:ListicleItem
+          jcr:mixinTypes: ['mix:referenceable']
+          jcr:uuid: 8f071acd-b8c0-4e31-ab2c-57ec647d4e58
+          hippo:availability: []
+          hippostd:state: draft
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2020-03-17T14:37:45.338Z
+          hippostdpubwf:lastModificationDate: 2020-03-17T14:37:45.338Z
+          hippostdpubwf:lastModifiedBy: admin
+          hippotranslation:id: 07ac2f4d-26fa-4b6c-a557-9b4d5482f60e
+          hippotranslation:locale: en
+          visitscotland:subtitle: ''
+          visitscotland:title: Isle of Barra
+          /visitscotland:description:
+            jcr:primaryType: hippostd:html
+            hippostd:content: '<p>Not everyone will arrive in Barra by plane - you
+              can also catch the ferry from Oban and South Uist or drive from Vatersay
+              - but the view from above is simply incredible. Marvel at the crystal
+              clear waters and paradise island just before you touch down on Traigh
+              Mhòr beach - the world''s only beach runway for scheduled flights. An
+              unforgettable experience. How to get there: book your flight from Glasgow
+              to Barra Airport.</p>'
+          /visitscotland:products:
+            jcr:primaryType: visitscotland:DMSLink
+            visitscotland:label: ''
+            visitscotland:product: '238701'
+        /isle-of-barra[2]:
+          jcr:primaryType: visitscotland:ListicleItem
+          jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
+          jcr:uuid: 7cdfe22c-a102-4b95-9825-f32fcd01cabf
+          hippo:availability: [preview]
+          hippostd:state: unpublished
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2020-03-17T14:37:45.338Z
+          hippostdpubwf:lastModificationDate: 2020-03-17T14:38:08.679Z
+          hippostdpubwf:lastModifiedBy: admin
+          hippotranslation:id: 07ac2f4d-26fa-4b6c-a557-9b4d5482f60e
+          hippotranslation:locale: en
+          visitscotland:subtitle: ''
+          visitscotland:title: Isle of Barra
+          /visitscotland:description:
+            jcr:primaryType: hippostd:html
+            hippostd:content: '<p>Not everyone will arrive in Barra by plane - you
+              can also catch the ferry from Oban and South Uist or drive from Vatersay
+              - but the view from above is simply incredible. Marvel at the crystal
+              clear waters and paradise island just before you touch down on Traigh
+              Mhòr beach - the world''s only beach runway for scheduled flights. An
+              unforgettable experience. How to get there: book your flight from Glasgow
+              to Barra Airport.</p>'
+          /visitscotland:products:
+            jcr:primaryType: visitscotland:DMSLink
+            visitscotland:label: ''
+            visitscotland:product: '238701'
+        /isle-of-barra[3]:
+          jcr:primaryType: visitscotland:ListicleItem
+          jcr:mixinTypes: ['mix:referenceable']
+          jcr:uuid: 1010583a-b853-45f3-a5da-8c0c6aa5ca5a
+          hippo:availability: [live]
+          hippostd:state: published
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2020-03-17T14:37:45.338Z
+          hippostdpubwf:lastModificationDate: 2020-03-17T14:38:08.679Z
+          hippostdpubwf:lastModifiedBy: admin
+          hippostdpubwf:publicationDate: 2020-03-17T14:38:09.897Z
+          hippotranslation:id: 07ac2f4d-26fa-4b6c-a557-9b4d5482f60e
+          hippotranslation:locale: en
+          visitscotland:subtitle: ''
+          visitscotland:title: Isle of Barra
+          /visitscotland:description:
+            jcr:primaryType: hippostd:html
+            hippostd:content: '<p>Not everyone will arrive in Barra by plane - you
+              can also catch the ferry from Oban and South Uist or drive from Vatersay
+              - but the view from above is simply incredible. Marvel at the crystal
+              clear waters and paradise island just before you touch down on Traigh
+              Mhòr beach - the world''s only beach runway for scheduled flights. An
+              unforgettable experience. How to get there: book your flight from Glasgow
+              to Barra Airport.</p>'
+          /visitscotland:products:
+            jcr:primaryType: visitscotland:DMSLink
+            visitscotland:label: ''
+            visitscotland:product: '238701'
+      /bow-fiddle-rock-moray:
+        jcr:primaryType: hippo:handle
+        jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
+        jcr:uuid: 5ca0af89-71ce-4fa9-90fe-6a3d548d73c4
+        hippo:name: Bow Fiddle Rock, Moray
+        hippo:versionHistory: 75d8325f-36df-4335-a58a-87ab0c7caaf9
+        /bow-fiddle-rock-moray[1]:
+          jcr:primaryType: visitscotland:ListicleItem
+          jcr:mixinTypes: ['mix:referenceable']
+          jcr:uuid: 70a7e390-ca99-4f43-9f57-5c4fede9e7aa
+          hippo:availability: []
+          hippostd:state: draft
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2020-03-17T14:39:58.282Z
+          hippostdpubwf:lastModificationDate: 2020-03-17T14:39:58.282Z
+          hippostdpubwf:lastModifiedBy: admin
+          hippotranslation:id: e2e53cb6-3c68-4037-bb25-9b0d0cd69133
+          hippotranslation:locale: en
+          visitscotland:subtitle: Moray
+          visitscotland:title: Bow Fiddle Rock
+          /visitscotland:description:
+            jcr:primaryType: hippostd:html
+            hippostd:content: |-
+              <p>Resembling the tip of a bow, Bow Fiddle Rock juts out of the sea on the stunning coastline between Portknockie and Cullen. Made up of a hard rock called Cullen quartzite, Bow Fiddle Rock's distinctive sloped sides were caused by the impact of two ancient continents colliding hundreds of millions of years ago.</p>
+
+              <p><em>Advice from the photographer: 'A rare occurrence takes place for around a week twice a year. If you visit during May and August you may be lucky enough to catch the sun rising through the arch of the Bow Fiddle Rock!'.</em></p>
+
+              <p>How to get there: the fastest route to Bow Fiddle Rock is from Portknockie. If you have more time the 2.5 hour Cullen Bay and Portknockie Circuit begins at Cullen and follows the dramatic coastline to Portknockie, passing Bow Fiddle Rock along the way.</p>
+
+              <p>Get more inspiration for a trip to the Moray Firth coast, one of the best places for sea life spotting.</p>
+          /visitscotland:images:
+            jcr:primaryType: hippogallerypicker:imagelink
+            hippo:docbase: aecf0250-aae9-42d9-bc08-34d80ec9b49c
+            hippo:facets: []
+            hippo:modes: []
+            hippo:values: []
+        /bow-fiddle-rock-moray[2]:
+          jcr:primaryType: visitscotland:ListicleItem
+          jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
+          jcr:uuid: b3899172-f317-4c04-b84d-e5404ce53439
+          hippo:availability: [preview]
+          hippostd:state: unpublished
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2020-03-17T14:39:58.282Z
+          hippostdpubwf:lastModificationDate: 2020-03-17T14:42:29.902Z
+          hippostdpubwf:lastModifiedBy: admin
+          hippotranslation:id: e2e53cb6-3c68-4037-bb25-9b0d0cd69133
+          hippotranslation:locale: en
+          visitscotland:subtitle: Moray
+          visitscotland:title: Bow Fiddle Rock
+          /visitscotland:description:
+            jcr:primaryType: hippostd:html
+            hippostd:content: |-
+              <p>Resembling the tip of a bow, Bow Fiddle Rock juts out of the sea on the stunning coastline between Portknockie and Cullen. Made up of a hard rock called Cullen quartzite, Bow Fiddle Rock's distinctive sloped sides were caused by the impact of two ancient continents colliding hundreds of millions of years ago.</p>
+
+              <p><em>Advice from the photographer: 'A rare occurrence takes place for around a week twice a year. If you visit during May and August you may be lucky enough to catch the sun rising through the arch of the Bow Fiddle Rock!'.</em></p>
+
+              <p>How to get there: the fastest route to Bow Fiddle Rock is from Portknockie. If you have more time the 2.5 hour Cullen Bay and Portknockie Circuit begins at Cullen and follows the dramatic coastline to Portknockie, passing Bow Fiddle Rock along the way.</p>
+
+              <p>Get more inspiration for a trip to the Moray Firth coast, one of the best places for sea life spotting.</p>
+          /visitscotland:images:
+            jcr:primaryType: hippogallerypicker:imagelink
+            hippo:docbase: aecf0250-aae9-42d9-bc08-34d80ec9b49c
+            hippo:facets: []
+            hippo:modes: []
+            hippo:values: []
+        /bow-fiddle-rock-moray[3]:
+          jcr:primaryType: visitscotland:ListicleItem
+          jcr:mixinTypes: ['mix:referenceable']
+          jcr:uuid: ac282f29-14c0-45ff-85cc-39ace4c88d65
+          hippo:availability: [live]
+          hippostd:state: published
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2020-03-17T14:39:58.282Z
+          hippostdpubwf:lastModificationDate: 2020-03-17T14:42:29.902Z
+          hippostdpubwf:lastModifiedBy: admin
+          hippostdpubwf:publicationDate: 2020-03-17T14:42:31.297Z
+          hippotranslation:id: e2e53cb6-3c68-4037-bb25-9b0d0cd69133
+          hippotranslation:locale: en
+          visitscotland:subtitle: Moray
+          visitscotland:title: Bow Fiddle Rock
+          /visitscotland:description:
+            jcr:primaryType: hippostd:html
+            hippostd:content: |-
+              <p>Resembling the tip of a bow, Bow Fiddle Rock juts out of the sea on the stunning coastline between Portknockie and Cullen. Made up of a hard rock called Cullen quartzite, Bow Fiddle Rock's distinctive sloped sides were caused by the impact of two ancient continents colliding hundreds of millions of years ago.</p>
+
+              <p><em>Advice from the photographer: 'A rare occurrence takes place for around a week twice a year. If you visit during May and August you may be lucky enough to catch the sun rising through the arch of the Bow Fiddle Rock!'.</em></p>
+
+              <p>How to get there: the fastest route to Bow Fiddle Rock is from Portknockie. If you have more time the 2.5 hour Cullen Bay and Portknockie Circuit begins at Cullen and follows the dramatic coastline to Portknockie, passing Bow Fiddle Rock along the way.</p>
+
+              <p>Get more inspiration for a trip to the Moray Firth coast, one of the best places for sea life spotting.</p>
+          /visitscotland:images:
+            jcr:primaryType: hippogallerypicker:imagelink
+            hippo:docbase: aecf0250-aae9-42d9-bc08-34d80ec9b49c
+            hippo:facets: []
+            hippo:modes: []
+            hippo:values: []
+      /bealach-na-ba-highlands:
+        jcr:primaryType: hippo:handle
+        jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
+        jcr:uuid: da8f4fac-3c69-45e1-9c3a-6cc1b36110d9
+        hippo:name: Bealach na Bà, Highlands
+        hippo:versionHistory: 890d051e-98af-4fef-9588-07b7ee891f5a
+        /bealach-na-ba-highlands[1]:
+          jcr:primaryType: visitscotland:ListicleItem
+          jcr:mixinTypes: ['mix:referenceable']
+          jcr:uuid: 6534ffca-24df-473e-9f90-46e83b819637
+          hippo:availability: []
+          hippostd:state: draft
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2020-03-17T14:42:58.009Z
+          hippostdpubwf:lastModificationDate: 2020-03-17T14:44:18.265Z
+          hippostdpubwf:lastModifiedBy: admin
+          hippotranslation:id: be5314ff-512f-4e59-b544-5a4dc83d1af0
+          hippotranslation:locale: en
+          visitscotland:subtitle: Highlands
+          visitscotland:title: Bealach na Bà
+          /visitscotland:description:
+            jcr:primaryType: hippostd:html
+            hippostd:content: |-
+              <p>At the top of one of Scotland's most famous roads lies this stunning viewpoint. The hairpin bends and breathtaking heights of the Bealach na Bà make it an unforgettable road to drive, and when you get to the top - at a height of 2,053 ft (625.7 m) - you're rewarded with this jaw dropping view of the Cuillin Ridge on the Isle of Skye. Look out for the Outer Hebrides in the distance on clear days too.</p>
+
+              <p>How to get there: Follow the Bealach na Bà from Tornapress to Applecross. Pull off the road when you reach the large parking area at the top of the bealach. Jump out your car and enjoy the view.</p>
+          /visitscotland:images:
+            jcr:primaryType: visitscotland:InstagramImage
+            visitscotland:caption: Bealach na Bà
+            visitscotland:id: B9yjAExnPyX
+          /visitscotland:extraLinks:
+            jcr:primaryType: visitscotland:CMSLink
+            visitscotland:label: Discover more things to do in the epic Scottish Highlands
+            /visitscotland:link:
+              jcr:primaryType: hippo:mirror
+              hippo:docbase: 8b4a3c11-8b84-4aa0-bccf-f407d18c1c44
+        /bealach-na-ba-highlands[2]:
+          jcr:primaryType: visitscotland:ListicleItem
+          jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
+          jcr:uuid: fc543154-843b-49b0-b6a3-ec52022059f9
+          hippo:availability: [preview]
+          hippostd:state: unpublished
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2020-03-17T14:42:58.009Z
+          hippostdpubwf:lastModificationDate: 2020-03-17T14:44:27.480Z
+          hippostdpubwf:lastModifiedBy: admin
+          hippotranslation:id: be5314ff-512f-4e59-b544-5a4dc83d1af0
+          hippotranslation:locale: en
+          visitscotland:subtitle: Highlands
+          visitscotland:title: Bealach na Bà
+          /visitscotland:description:
+            jcr:primaryType: hippostd:html
+            hippostd:content: |-
+              <p>At the top of one of Scotland's most famous roads lies this stunning viewpoint. The hairpin bends and breathtaking heights of the Bealach na Bà make it an unforgettable road to drive, and when you get to the top - at a height of 2,053 ft (625.7 m) - you're rewarded with this jaw dropping view of the Cuillin Ridge on the Isle of Skye. Look out for the Outer Hebrides in the distance on clear days too.</p>
+
+              <p>How to get there: Follow the Bealach na Bà from Tornapress to Applecross. Pull off the road when you reach the large parking area at the top of the bealach. Jump out your car and enjoy the view.</p>
+          /visitscotland:images:
+            jcr:primaryType: visitscotland:InstagramImage
+            visitscotland:caption: Bealach na Bà
+            visitscotland:id: B9yjAExnPyX
+          /visitscotland:extraLinks:
+            jcr:primaryType: visitscotland:CMSLink
+            visitscotland:label: Discover more things to do in the epic Scottish Highlands
+            /visitscotland:link:
+              jcr:primaryType: hippo:mirror
+              hippo:docbase: 8b4a3c11-8b84-4aa0-bccf-f407d18c1c44
+        /bealach-na-ba-highlands[3]:
+          jcr:primaryType: visitscotland:ListicleItem
+          jcr:mixinTypes: ['mix:referenceable']
+          jcr:uuid: 4fa44d67-96e7-49fb-a2b2-904d32a76b7c
+          hippo:availability: [live]
+          hippostd:state: published
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2020-03-17T14:42:58.009Z
+          hippostdpubwf:lastModificationDate: 2020-03-17T14:44:27.480Z
+          hippostdpubwf:lastModifiedBy: admin
+          hippostdpubwf:publicationDate: 2020-03-17T14:44:28.726Z
+          hippotranslation:id: be5314ff-512f-4e59-b544-5a4dc83d1af0
+          hippotranslation:locale: en
+          visitscotland:subtitle: Highlands
+          visitscotland:title: Bealach na Bà
+          /visitscotland:description:
+            jcr:primaryType: hippostd:html
+            hippostd:content: |-
+              <p>At the top of one of Scotland's most famous roads lies this stunning viewpoint. The hairpin bends and breathtaking heights of the Bealach na Bà make it an unforgettable road to drive, and when you get to the top - at a height of 2,053 ft (625.7 m) - you're rewarded with this jaw dropping view of the Cuillin Ridge on the Isle of Skye. Look out for the Outer Hebrides in the distance on clear days too.</p>
+
+              <p>How to get there: Follow the Bealach na Bà from Tornapress to Applecross. Pull off the road when you reach the large parking area at the top of the bealach. Jump out your car and enjoy the view.</p>
+          /visitscotland:images:
+            jcr:primaryType: visitscotland:InstagramImage
+            visitscotland:caption: Bealach na Bà
+            visitscotland:id: B9yjAExnPyX
+          /visitscotland:extraLinks:
+            jcr:primaryType: visitscotland:CMSLink
+            visitscotland:label: Discover more things to do in the epic Scottish Highlands
+            /visitscotland:link:
+              jcr:primaryType: hippo:mirror
+              hippo:docbase: 8b4a3c11-8b84-4aa0-bccf-f407d18c1c44
+      /loch-maree-from-glen-docherty-nc500-highlands:
+        jcr:primaryType: hippo:handle
+        jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
+        jcr:uuid: f4c485f6-d6b5-4661-8d68-26953a6f78a3
+        hippo:name: Loch Maree from Glen Docherty, NC500, Highlands
+        hippo:versionHistory: c8f41758-6536-4f8e-a368-3583c477fc9f
+        /loch-maree-from-glen-docherty-nc500-highlands[1]:
+          jcr:primaryType: visitscotland:ListicleItem
+          jcr:mixinTypes: ['mix:referenceable']
+          jcr:uuid: 7f981fdf-49e5-4f02-b34e-e4cbf72002cc
+          hippo:availability: []
+          hippostd:state: draft
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2020-03-17T14:44:40.323Z
+          hippostdpubwf:lastModificationDate: 2020-03-17T14:46:33.876Z
+          hippostdpubwf:lastModifiedBy: admin
+          hippotranslation:id: 1afadbad-6d9c-42f6-99ff-52d74ddf3918
+          hippotranslation:locale: en
+          visitscotland:subtitle: Highlands
+          visitscotland:title: Loch Maree from Glen Docherty, NC500
+          /visitscotland:description:
+            jcr:primaryType: hippostd:html
+            hippostd:content: |-
+              <p>The winding road to Kinlochewe offers one of the most iconic views on the North Coast 500. Looking down Glen Docherty, you'll catch your first sight of stunning Loch Maree, a magnificent fresh water loch dotted with more than 60 islands which contain some of the last fragments of the ancient Caledonian Pine Forest. At the lochside look out for beautiful black-throated divers slipping under the water.</p>
+
+              <p>How to get there: Follow the A832 from Achnasheen to Kinlochewe. The viewpoint is about 1.5 miles from Kinlochewe on the right-hand side of the road as you travel from Achnasheen.</p>
+          /visitscotland:images:
+            jcr:primaryType: visitscotland:InstagramImage
+            visitscotland:caption: Loch Maree
+            visitscotland:id: B1CFgrgnUph
+          /visitscotland:extraLinks:
+            jcr:primaryType: visitscotland:CMSLink
+            visitscotland:label: Discover more about North Coast 500
+            /visitscotland:link:
+              jcr:primaryType: hippo:mirror
+              hippo:docbase: 8b4a3c11-8b84-4aa0-bccf-f407d18c1c44
+        /loch-maree-from-glen-docherty-nc500-highlands[2]:
+          jcr:primaryType: visitscotland:ListicleItem
+          jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
+          jcr:uuid: 6f459c44-0a62-4e4e-bf8e-b1a66f973c16
+          hippo:availability: [preview]
+          hippostd:state: unpublished
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2020-03-17T14:44:40.323Z
+          hippostdpubwf:lastModificationDate: 2020-03-17T14:46:15.541Z
+          hippostdpubwf:lastModifiedBy: admin
+          hippotranslation:id: 1afadbad-6d9c-42f6-99ff-52d74ddf3918
+          hippotranslation:locale: en
+          visitscotland:subtitle: Highlands
+          visitscotland:title: Loch Maree from Glen Docherty, NC500
+          /visitscotland:description:
+            jcr:primaryType: hippostd:html
+            hippostd:content: |-
+              <p>The winding road to Kinlochewe offers one of the most iconic views on the North Coast 500. Looking down Glen Docherty, you'll catch your first sight of stunning Loch Maree, a magnificent fresh water loch dotted with more than 60 islands which contain some of the last fragments of the ancient Caledonian Pine Forest. At the lochside look out for beautiful black-throated divers slipping under the water.</p>
+
+              <p>How to get there: Follow the A832 from Achnasheen to Kinlochewe. The viewpoint is about 1.5 miles from Kinlochewe on the right-hand side of the road as you travel from Achnasheen.</p>
+          /visitscotland:images:
+            jcr:primaryType: visitscotland:InstagramImage
+            visitscotland:caption: Loch Maree
+            visitscotland:id: B1CFgrgnUph
+          /visitscotland:extraLinks:
+            jcr:primaryType: visitscotland:CMSLink
+            visitscotland:label: Discover more about North Coast 500
+            /visitscotland:link:
+              jcr:primaryType: hippo:mirror
+              hippo:docbase: 8b4a3c11-8b84-4aa0-bccf-f407d18c1c44
+        /loch-maree-from-glen-docherty-nc500-highlands[3]:
+          jcr:primaryType: visitscotland:ListicleItem
+          jcr:mixinTypes: ['mix:referenceable']
+          jcr:uuid: 753400fa-931f-46a2-979f-c31366bf2f9b
+          hippo:availability: [live]
+          hippostd:state: published
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2020-03-17T14:44:40.323Z
+          hippostdpubwf:lastModificationDate: 2020-03-17T14:46:15.541Z
+          hippostdpubwf:lastModifiedBy: admin
+          hippostdpubwf:publicationDate: 2020-03-17T14:46:16.981Z
+          hippotranslation:id: 1afadbad-6d9c-42f6-99ff-52d74ddf3918
+          hippotranslation:locale: en
+          visitscotland:subtitle: Highlands
+          visitscotland:title: Loch Maree from Glen Docherty, NC500
+          /visitscotland:description:
+            jcr:primaryType: hippostd:html
+            hippostd:content: |-
+              <p>The winding road to Kinlochewe offers one of the most iconic views on the North Coast 500. Looking down Glen Docherty, you'll catch your first sight of stunning Loch Maree, a magnificent fresh water loch dotted with more than 60 islands which contain some of the last fragments of the ancient Caledonian Pine Forest. At the lochside look out for beautiful black-throated divers slipping under the water.</p>
+
+              <p>How to get there: Follow the A832 from Achnasheen to Kinlochewe. The viewpoint is about 1.5 miles from Kinlochewe on the right-hand side of the road as you travel from Achnasheen.</p>
+          /visitscotland:images:
+            jcr:primaryType: visitscotland:InstagramImage
+            visitscotland:caption: Loch Maree
+            visitscotland:id: B1CFgrgnUph
+          /visitscotland:extraLinks:
+            jcr:primaryType: visitscotland:CMSLink
+            visitscotland:label: Discover more about North Coast 500
+            /visitscotland:link:
+              jcr:primaryType: hippo:mirror
+              hippo:docbase: 8b4a3c11-8b84-4aa0-bccf-f407d18c1c44
+      /sumburgh-head-shetland:
+        jcr:primaryType: hippo:handle
+        jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
+        jcr:uuid: 0d89b75f-32bc-4f4e-93f0-b1514be23a0d
+        hippo:name: Sumburgh Head, Shetland
+        hippo:versionHistory: f68489cf-f5a8-4bff-99f9-eacc3287c03a
+        /sumburgh-head-shetland[1]:
+          jcr:primaryType: visitscotland:ListicleItem
+          jcr:mixinTypes: ['mix:referenceable']
+          jcr:uuid: 6b27fa64-b559-4216-88b4-ea0f64fe53e6
+          hippo:availability: []
+          hippostd:state: draft
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2020-03-17T14:46:45.172Z
+          hippostdpubwf:lastModificationDate: 2020-03-17T14:46:45.172Z
+          hippostdpubwf:lastModifiedBy: admin
+          hippotranslation:id: 3a46d97d-2a76-4c61-b139-742c4e58cc22
+          hippotranslation:locale: en
+          visitscotland:subtitle: Shetland
+          visitscotland:title: Sumburgh Head
+          /visitscotland:description:
+            jcr:primaryType: hippostd:html
+            hippostd:content: |-
+              <p>Shining its beacon from the perilous cliffs of Sumburgh Head, Sumburgh Head Lighthouse is perched 91 m above sea level and boasts incredible views out across the North Sea. Constructed in 1821, the lighthouse was designed by the renowned lighthouse architect Robert Stevenson (grandfather of author Robert Louis Stevenson). Marvel at the huge colonies of seabirds, including gannets and puffins.</p>
+
+              <p>How to get there: Fly from Edinburgh, Glasgow or Aberdeen to Sumburgh or catch the ferry from Aberdeen or Orkney to Lerwick.</p>
+          /visitscotland:images:
+            jcr:primaryType: visitscotland:InstagramImage
+            visitscotland:caption: Sumburgh Head
+            visitscotland:id: BIVXxuqhviq
+          /visitscotland:extraLinks:
+            jcr:primaryType: visitscotland:CMSLink
+            visitscotland:label: See more things to do in Shetland
+            /visitscotland:link:
+              jcr:primaryType: hippo:mirror
+              hippo:docbase: 8b4a3c11-8b84-4aa0-bccf-f407d18c1c44
+        /sumburgh-head-shetland[2]:
+          jcr:primaryType: visitscotland:ListicleItem
+          jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
+          jcr:uuid: a6e2ab22-4b6c-4809-b2e2-b990e5353eab
+          hippo:availability: [preview]
+          hippostd:state: unpublished
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2020-03-17T14:46:45.172Z
+          hippostdpubwf:lastModificationDate: 2020-03-17T14:47:58.457Z
+          hippostdpubwf:lastModifiedBy: admin
+          hippotranslation:id: 3a46d97d-2a76-4c61-b139-742c4e58cc22
+          hippotranslation:locale: en
+          visitscotland:subtitle: Shetland
+          visitscotland:title: Sumburgh Head
+          /visitscotland:description:
+            jcr:primaryType: hippostd:html
+            hippostd:content: |-
+              <p>Shining its beacon from the perilous cliffs of Sumburgh Head, Sumburgh Head Lighthouse is perched 91 m above sea level and boasts incredible views out across the North Sea. Constructed in 1821, the lighthouse was designed by the renowned lighthouse architect Robert Stevenson (grandfather of author Robert Louis Stevenson). Marvel at the huge colonies of seabirds, including gannets and puffins.</p>
+
+              <p>How to get there: Fly from Edinburgh, Glasgow or Aberdeen to Sumburgh or catch the ferry from Aberdeen or Orkney to Lerwick.</p>
+          /visitscotland:images:
+            jcr:primaryType: visitscotland:InstagramImage
+            visitscotland:caption: Sumburgh Head
+            visitscotland:id: BIVXxuqhviq
+          /visitscotland:extraLinks:
+            jcr:primaryType: visitscotland:CMSLink
+            visitscotland:label: See more things to do in Shetland
+            /visitscotland:link:
+              jcr:primaryType: hippo:mirror
+              hippo:docbase: 8b4a3c11-8b84-4aa0-bccf-f407d18c1c44
+        /sumburgh-head-shetland[3]:
+          jcr:primaryType: visitscotland:ListicleItem
+          jcr:mixinTypes: ['mix:referenceable']
+          jcr:uuid: 116aa47b-02a4-4446-8e1d-6467841e1a95
+          hippo:availability: [live]
+          hippostd:state: published
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2020-03-17T14:46:45.172Z
+          hippostdpubwf:lastModificationDate: 2020-03-17T14:47:58.457Z
+          hippostdpubwf:lastModifiedBy: admin
+          hippostdpubwf:publicationDate: 2020-03-17T14:47:59.700Z
+          hippotranslation:id: 3a46d97d-2a76-4c61-b139-742c4e58cc22
+          hippotranslation:locale: en
+          visitscotland:subtitle: Shetland
+          visitscotland:title: Sumburgh Head
+          /visitscotland:description:
+            jcr:primaryType: hippostd:html
+            hippostd:content: |-
+              <p>Shining its beacon from the perilous cliffs of Sumburgh Head, Sumburgh Head Lighthouse is perched 91 m above sea level and boasts incredible views out across the North Sea. Constructed in 1821, the lighthouse was designed by the renowned lighthouse architect Robert Stevenson (grandfather of author Robert Louis Stevenson). Marvel at the huge colonies of seabirds, including gannets and puffins.</p>
+
+              <p>How to get there: Fly from Edinburgh, Glasgow or Aberdeen to Sumburgh or catch the ferry from Aberdeen or Orkney to Lerwick.</p>
+          /visitscotland:images:
+            jcr:primaryType: visitscotland:InstagramImage
+            visitscotland:caption: Sumburgh Head
+            visitscotland:id: BIVXxuqhviq
+          /visitscotland:extraLinks:
+            jcr:primaryType: visitscotland:CMSLink
+            visitscotland:label: See more things to do in Shetland
+            /visitscotland:link:
+              jcr:primaryType: hippo:mirror
+              hippo:docbase: 8b4a3c11-8b84-4aa0-bccf-f407d18c1c44

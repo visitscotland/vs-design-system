@@ -1,5 +1,6 @@
 package com.visitscotland.brmx.components.content;
 
+
 import com.visitscotland.brmx.beans.*;
 import com.visitscotland.brmx.beans.dms.LocationObject;
 import com.visitscotland.brmx.beans.mapping.Coordinates;
@@ -7,10 +8,10 @@ import com.visitscotland.brmx.beans.mapping.FlatImage;
 import com.visitscotland.brmx.beans.mapping.FlatLink;
 import com.visitscotland.brmx.beans.mapping.FlatStop;
 import com.visitscotland.brmx.utils.CommonUtils;
-import com.visitscotland.brmx.utils.HippoUtils;
 import com.visitscotland.brmx.utils.LocationLoader;
 import org.hippoecm.hst.core.component.HstRequest;
 import org.hippoecm.hst.core.component.HstResponse;
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import org.slf4j.Logger;
@@ -28,7 +29,6 @@ public class ItineraryContentComponent extends PageContentComponent<Itinerary> {
     public final String FIRST_STOP_LOCATION = "firstStopLocation";
     public final String LAST_STOP_LOCATION = "lastStopLocation";
     public final String HERO_COORDINATES = "heroCoordinates";
-    private final String ROOT_SITE = "/site/";
 
     @Override
     public void doBeforeRender(HstRequest request, HstResponse response) {
@@ -51,39 +51,42 @@ public class ItineraryContentComponent extends PageContentComponent<Itinerary> {
 
     /**
      *
-     * @param request
+     * @param request HstRequest
      */
-    private void generateStops(HstRequest request){
+    private void generateStops(HstRequest request)  {
 
         final Itinerary itinerary = getDocument(request);
-
-        final String LOCATION = "locationName";
+        final String ADDRESS = "address";
+        final String LOCATION = "city";
         final String URL = "url";
-        final String IMAGE = "image";
         final String TIME_TO_EXPLORE = "timeToExplore";
+        final String PRICE = "price";
+        final String NAME = "name";
         final String LAT = "latitude";
         final String LON = "longitude";
-        final String FACILITIES = "facilities";
+        final String FACILITIES = "keyFacilities";
+        final String OPENING = "todayOpeningTime";
+        final String START_TIME = "startTime";
+        final String END_TIME = "endTime";
+        final String IMAGE = "images";
 
         final Map<String ,FlatStop> products =  new LinkedHashMap<>();
 
         String firstStopId = null;
         String lastStopId = null;
-        Integer index = 1;
+        int index = 1;
 
         for (Day day: itinerary.getDays()) {
             for (Stop stop : day.getStops()) {
                 FlatStop model = new FlatStop(stop);
                 Coordinates coordinates = new Coordinates();
                 model.setIndex(index++);
-                FlatImage img = new FlatImage();
+                FlatImage img = null;
 
                 if (stop.getStopItem() instanceof DMSLink){
                     DMSLink dmsLink = (DMSLink) stop.getStopItem();
-                    List<String> facilities = new ArrayList<>();
-
                     if (stop.getImage()!=null) {
-                        img.setCmsImage(stop.getImage());
+                        img = new FlatImage(stop.getImage());
                     }
 
                     //CONTENT prefix on error messages could means that the problem can be fixed by altering the content.
@@ -101,24 +104,45 @@ public class ItineraryContentComponent extends PageContentComponent<Itinerary> {
 
                                 FlatLink ctaLink = new FlatLink(this.getCtaLabel(dmsLink.getLabel(),request.getLocale()),product.getString(URL));
                                 model.setCtaLink(ctaLink);
-                                model.setLocation(product.getString(LOCATION));
+                                if (product.has(ADDRESS)){
+                                    JSONObject address =product.getJSONObject(ADDRESS);
+                                    model.setAddress(address);
+                                    model.setLocation( address.has(LOCATION)?address.getString(LOCATION):null);
+                                }
 
-                                //TODO: GET TIME TO EXPLORE FROM DMS
-//                                model.setTimeToexplore(product.getString(TIME_TO_EXPLORE));
-                                if (stop.getImage() == null){
-                                    img.setExternalImage(product.getString(IMAGE));
-                                    //TODO: SET ALT-TEXT, CREDITS AND DESCRIPTION
+                                //TODO we need to add hour or hours to the field
+                                model.setTimeToexplore(product.has(TIME_TO_EXPLORE)? product.getString(TIME_TO_EXPLORE):null);
+                                //TODO adjust the price to the design (From or just price)
+                                model.setPrice(product.has(PRICE)? product.getString(PRICE):null);
+
+                                if (stop.getImage() == null && product.has(IMAGE) ){
+                                    JSONArray dmsImageList = product.getJSONArray(IMAGE);
+                                    img = new FlatImage( dmsImageList.getJSONObject(0),product.getString(NAME));
                                 }
 
                                 coordinates.setLatitude(product.getDouble(LAT));
                                 coordinates.setLongitude(product.getDouble(LON));
                                 model.setCoordinates(coordinates);
 
-                                for (Object facility:  product.getString(FACILITIES).split(",")) {
-                                    facilities.add(facility.toString());
+                                if (product.has(FACILITIES)){
+                                    List<JSONObject> facilities = new ArrayList<>();
+                                    JSONArray keyFacilitiesList = product.getJSONArray(FACILITIES);
+                                    if (keyFacilitiesList!=null){
+                                        for (int i = 0; i < keyFacilitiesList.length(); i++) {
+                                            facilities.add(keyFacilitiesList.getJSONObject(i));
+                                        }
+                                    }
+                                    model.setFacilities(facilities);
                                 }
 
-                                model.setFacilities(facilities);
+                                if (product.has(OPENING)){
+                                    JSONObject opening = product.getJSONObject(OPENING);
+                                    //TODO adjust the message to designs when ready
+                                    if ((opening.has(START_TIME)) && (opening.has(END_TIME))) {
+                                        model.setOpen(opening.getString("day") + ": " + opening.getString("startTime") + "-" + opening.getString("endTime"));
+                                    }
+                                    //TODO "* Please check openings times" create this message on the ftl with the anchor
+                                }
 
                             }
                         }
@@ -154,6 +178,9 @@ public class ItineraryContentComponent extends PageContentComponent<Itinerary> {
                     logger.warn(CommonUtils.contentIssue("The product's id  was not provided for %s, Stop %s", itinerary.getName(), model.getIndex()));
                 }
 
+                if ((stop.getTips()!= null && !stop.getTips().getContent().isEmpty()) && (stop.getTipsTitle() == null || stop.getTipsTitle().isEmpty())){
+                    model.setErrorMessage("Tips title is required to show tips");
+                }
                 lastStopId = model.getIdentifier();
                 if (firstStopId == null){
                     firstStopId = lastStopId;

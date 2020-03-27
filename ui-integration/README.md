@@ -4,22 +4,28 @@ This package is an example webpack build that consumes the component library ass
 
 ```
 yarn install
+
+// OR
+
+yarn
 ```
+
+This script installs this package's dependencies, as well as the sibling frontend package's dependencies.
 
 ## Use
 
-### Updating assets and templates
+### Building frontend assets and generating freemarker templates
 
 ```
 yarn build
 ```
 
-This script runs the webpack build, which:
-   - Copies all built assets from the `node_modules/vs-dotcom-ds/dist/` folder into the parent Hippo app's webfiles folder (at `/repository-data/webfiles/src/main/resources/site/design-system`) for inclusion in the Hippo site.
-   - Copies `vue-app-init.ftl` to Freemarker template location (at `/repository-data/webfiles/src/main/resources/site/freemarker/include/vs-dotcom-ds`).
-   - Generates Freemarker templates for all Vue components and VueX stores listed in the `manifest.json` file to the `components` and `stores` subfolders, respectively, of the Freemarker template location.
+This script executes the `frontend` package's `yarn build:system:components` build, before running the webpack build of this package, which:
+   - Copies all assets built by the `frontend`'s components build (contained in the `node_modules/vs-dotcom-ds/dist/` folder) into the parent Hippo app's webfiles folder (at `/repository-data/webfiles/src/main/resources/site/design-system`) for inclusion in the Hippo site.
+   - Copies `vue-app-init.ftl` to Hippo Freemarker template directory (at `/repository-data/webfiles/src/main/resources/site/freemarker/include/vs-dotcom-ds`).
+   - Generates Freemarker templates for all Vue components and VueX stores listed in the `manifest.json` file to the `components` and `stores` subfolders, respectively, of the Freemarker template directory.
 
-### Including components in the Hippo site
+### Using the frontend components in the Hippo site
 
 1. Include the Vue freemarker template for the component you want to include
 

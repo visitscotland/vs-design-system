@@ -11,9 +11,13 @@
                     />
                     <span class="map-marker__count" aria-hidden="true">{{ stopNumber }}</span>
                 </div>
-                <vs-heading level="3" thin class="vs-itinerary-stop__title ml-4">
-                    <span>{{ stopLabel }} {{ stopNumber }}</span>
-                    {{ stopTitle }}
+
+                <vs-heading level="3" class="vs-itinerary-stop__title ml-4">
+                    {{ stopLabel }} {{ stopNumber }}
+
+                    <template slot="sub-heading">
+                        {{ stopTitle }}
+                    </template>
                 </vs-heading>
             </div>
             <slot name="stop-details" />
@@ -104,6 +108,12 @@ export default {
         text-align: center;
         width: 100%;
     }
+
+    & ::v-deep {
+        .vs-icon-list {
+            border-top: 1px solid $color-gray-tint-5;
+        }
+    }
 }
 </style>
 
@@ -162,15 +172,14 @@ export default {
                     </div>
                     <vs-svg slot="svg" path="highland-cow" />
                 </vs-itinerary-tips>
-                <vs-icon-description-list v-if="stop.facilities.length">
-                    <vs-icon-description-list-term>Key facilities</vs-icon-description-list-term>
-                    <vs-icon-description-list-detail 
+                <vs-icon-list v-if="stop.facilities.length" title="Key facilities">
+                    <vs-icon-list-item 
                         v-for="(facility, facilitiesIndex) in stop.facilities"
                         :key="facilitiesIndex"
                         :label="facility.value"
                         :icon="facility.key"
                         />
-                </vs-icon-description-list>
+                </vs-icon-list>
               </div>
             <!-- mimic only showing these links on the last stop of the day -->
             <template v-if="index == itineraries.sampleItinerary.days[0].stops.length - 1">

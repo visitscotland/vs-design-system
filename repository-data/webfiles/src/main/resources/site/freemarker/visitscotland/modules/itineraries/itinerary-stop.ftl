@@ -33,8 +33,8 @@
         <vs-itinerary-stop
             slot="stops"
             stop-number="${prod.index}"
-            stop-label="${label('itinerary', 'stop.title')}"
-            stop-title="${prod.title}"
+            stop-label="${prod.title}"
+            stop-title="${prod.location}"
         >
             <div slot="stop-details" class="has-edit-button">
                 <@hst.manageContent hippobean=stop />
@@ -45,8 +45,8 @@
         <vs-itinerary-stop
             slot="stops"
             stop-number="${prod.index}"
-            stop-label="${label('itinerary', 'stop.title')}"
-            stop-title="${prod.title}"
+            stop-label="${prod.title}"
+            stop-title="${prod.location}"
         >
             <div slot="stop-details" class="has-edit-button">
                 <@hst.manageContent hippobean=stop />
@@ -83,6 +83,17 @@
                     </vs-link>
                 </#if>
 
+                  <#--TODO Include Address, Address fields allow null and the fields are:
+                    ${prod.address.line1}
+                    ${prod.address.line2}
+                    ${prod.address.line3}
+                    ${prod.address.city}
+                    ${prod.address.postCode} -->
+
+                    <#--TODO show open times the field is:
+                       ${prod.open} -->
+                    <#--TODO show price the field is:
+                       ${prod.price} -->
                 <#if prod??>
                     <#if prod.timeToexplore?? && prod.timeToexplore?has_content>
                     <vs-description-list class="my-4 mb-0 justify-content-start" inline>
@@ -91,14 +102,11 @@
                     </vs-description-list>
                     </#if>
 
-                    <#if (prod.tipsTitle?? && prod.tipsTitle?has_content) || (prod.tipsBody?? && prod.tipsBody.content?? && (prod.tipsBody.content?length gt 1))>
+                    <#if (prod.tipsTitle?? && prod.tipsTitle?has_content)>
                         <vs-itinerary-tips>
                             <div slot="text">
-                            <#if  prod.tipsTitle?? &&  prod.tipsTitle?has_content>
                                 <strong>${prod.tipsTitle}</strong>
-                            </#if>
-                                    <@hst.html hippohtml=prod.tipsBody/>
-
+                                <@hst.html hippohtml=prod.tipsBody/>
                             </div>
                             <vs-svg slot="svg" path="highland-cow" />
                         </vs-itinerary-tips>
@@ -109,8 +117,8 @@
                             <vs-icon-description-list-term>${label("itinerary", "stop.key-facilities")}</vs-icon-description-list-term>
                             <#list prod.facilities as facility>
                                 <vs-icon-description-list-detail
-                                    icon="${facility}"
-                                    label="${label("keyFacilities", "${facility}")}">
+                                    icon="${facility.id}"
+                                    label="${facility.name}">
                                 </vs-icon-description-list-detail>
                             </#list>
                         </vs-icon-description-list>
@@ -119,10 +127,12 @@
         </div>
             <#if lastStop=="true" && prod.coordinates.longitude?? && prod.coordinates.longitude?has_content && prod.coordinates.latitude?? && prod.coordinates.latitude?has_content>
                 <vs-itinerary-border-overlap-wrapper slot="nearby-links">
-                    <vs-button-with-icon class="mb-3" background="white" variant="outline-primary" href="https://www.visitscotland.com/info/accommodation/search-results?prodtypes=cate&lat=${prod.coordinates.latitude}&lng=${prod.coordinates.longitude}&locprox=2&areaproxdist=5&stay=&endDate=&r1a=2&r1children=0&r1infants=0&r1c=0&avail=off&order=proximityAsc" icon="food">
+                    <vs-button-with-icon class="mb-3" background="white" variant="outline-primary" icon="food"
+                                         href=" ${productSearch(locale, "cate", prod.coordinates.latitude, prod.coordinates.longitude, 5)}" >
                         ${label("itinerary", "stop.nearby-eat")}
                     </vs-button-with-icon>
-                    <vs-button-with-icon background="white" variant="outline-primary" href="https://www.visitscotland.com/info/accommodation/search-results?prodtypes=acco&lat=${prod.coordinates.latitude}&lng=${prod.coordinates.longitude}&locprox=2&areaproxdist=5&stay=&endDate=&r1a=2&r1children=0&r1infants=0&r1c=0&avail=off&order=proximityAsc" icon="product-accommodation">
+                    <vs-button-with-icon background="white" variant="outline-primary" icon="product-accommodation"
+                                         href=" ${productSearch(locale, "acco", prod.coordinates.latitude, prod.coordinates.longitude, 5)}" >
                         ${label("itinerary", "stop.nearby-stay")}
                     </vs-button-with-icon>
                 </vs-itinerary-border-overlap-wrapper>

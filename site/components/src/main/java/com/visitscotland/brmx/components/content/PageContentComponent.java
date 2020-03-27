@@ -3,6 +3,10 @@ package com.visitscotland.brmx.components.content;
 import com.visitscotland.brmx.beans.*;
 import com.visitscotland.brmx.utils.CommonUtils;
 import com.visitscotland.brmx.utils.HippoUtils;
+import com.visitscotland.brmx.utils.ProductSearchBuilder;
+import freemarker.ext.beans.BeansWrapper;
+import freemarker.template.TemplateHashModel;
+import freemarker.template.TemplateModelException;
 import org.hippoecm.hst.core.component.HstRequest;
 import org.hippoecm.hst.core.component.HstResponse;
 import org.onehippo.cms7.essentials.components.EssentialsContentComponent;
@@ -19,12 +23,23 @@ public class PageContentComponent<TYPE extends Page> extends EssentialsContentCo
     public final String DOCUMENT = "document";
     public final String EDIT_PATH = "path";
 
-
     @Override
     public void doBeforeRender(HstRequest request, HstResponse response) {
         super.doBeforeRender(request, response);
 
         addDocumentPath(request);
+        addProductSearchBuilder(request);
+    }
+
+    public void addProductSearchBuilder(HstRequest request){
+        BeansWrapper wrapper = BeansWrapper.getDefaultInstance();
+        TemplateHashModel staticModels = wrapper.getStaticModels();
+        try {
+            TemplateHashModel psb = (TemplateHashModel) staticModels.get(ProductSearchBuilder.class.getCanonicalName());
+            request.setAttribute("ProductSearchBuilder", psb);
+        } catch (TemplateModelException e) {
+            logger.error("Product Search Builder is not available for the Page", e);
+        }
     }
 
     /**

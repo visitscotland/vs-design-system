@@ -7,6 +7,10 @@
         }"
     >
         <slot />
+
+        <span class="heading__sub-heading">
+            <slot name="sub-heading" />
+        </span>
     </component>
 </template>
 
@@ -62,7 +66,14 @@ $font-sizes: (
     6: $h6-font-size,
 );
 
+/* Update font sizes */
+$sub-font-sizes: (
+    3: $h3-sub-font-size,
+);
+
 .heading {
+    font-family: $headings-font-family;
+
     @each $level, $size in $font-sizes {
         @at-root h#{$level}#{&} {
             letter-spacing: $size * 0.1;
@@ -72,10 +83,18 @@ $font-sizes: (
 
     &.heading--thin {
         font-family: $headings-font-family-thin;
+    }
 
-        span {
-            font-family: $headings-font-family;
-            display: block;
+    .heading__sub-heading {
+        font-family: $headings-font-family-thin;
+        display: block;
+
+        @each $level, $size in $sub-font-sizes {
+            @at-root h#{$level}#{&} {
+                letter-spacing: $size * 0.1;
+                font-size: $size;
+                margin-top: $size * 0.25;
+            }
         }
     }
 }
@@ -83,24 +102,30 @@ $font-sizes: (
 
 <docs>
   ```jsx
-  <div>
+  <div>  
     <vs-heading>H1 Heading</vs-heading>
-    <vs-heading thin>H1 Heading</vs-heading>
+    <vs-heading thin>H1 Heading Thin</vs-heading>
     <br />
     <vs-heading level="2">H2 Heading</vs-heading>
-    <vs-heading thin level="2">H2 Heading</vs-heading>
+    <vs-heading thin level="2">H2 Heading  Thin</vs-heading>
     <br />
     <vs-heading level="3">H3 Heading</vs-heading>
-    <vs-heading thin level="3">H3 Heading</vs-heading>
+    <vs-heading thin level="3">H3 Heading Thin</vs-heading>
     <br />
     <vs-heading level="4">H4 Heading</vs-heading>
-    <vs-heading thin level="4">H4 Heading</vs-heading>
+    <vs-heading thin level="4">H4 Heading Thin</vs-heading>
     <br />
     <vs-heading level="5">H5 Heading</vs-heading>
-    <vs-heading thin level="5">H5 Heading</vs-heading>
+    <vs-heading thin level="5">H5 Heading Thin</vs-heading>
     <br />
     <vs-heading level="6">H6 Heading</vs-heading>
-    <vs-heading thin level="6">H6 Heading</vs-heading>
+    <vs-heading thin level="6">H6 Heading Thin</vs-heading>
+
+    <vs-heading level="3" class="mt-9">
+        H3 Heading With Subtitle
+        <span slot="sub-heading">This Is a Subtitle</span>   
+    </vs-heading>
   </div>
+
   ```
 </docs>
