@@ -1,6 +1,6 @@
 <template>
     <li class="vs-icon-list__item">
-        <vs-icon :name="icon" variant="dark" size="sm" />
+        <vs-icon :name="icon" variant="dark" size="sm" class="d-block mx-auto" />
         {{ label }}
     </li>
 </template>
@@ -42,19 +42,12 @@ export default {
 
 <style lang="scss" scoped>
 .vs-icon-list__item {
-    position: relative;
     display: inline-table;
-    vertical-align: top;
     text-align: center;
     width: 90px;
     margin-bottom: $spacer-4;
     padding: 0 $spacer-1;
     font-size: $h6-font-size;
     line-height: $standard-line-height;
-
-    svg {
-        display: block;
-        margin: 0 auto;
-    }
 }
 </style>
