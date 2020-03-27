@@ -1,0 +1,61 @@
+/content/documents/administration/labels/facilities:
+  jcr:primaryType: hippo:handle
+  jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
+  jcr:uuid: 3f818f8b-6d82-4b54-bd70-fc01c306160e
+  hippo:name: Key Facilities
+  hippo:versionHistory: 3fb71609-4bdd-4472-9c84-01896b48b926
+  /facilities[1]:
+    jcr:primaryType: resourcebundle:resourcebundle
+    jcr:mixinTypes: ['mix:referenceable']
+    jcr:uuid: f8aa7f4b-46c3-422b-b8de-cd49f1891cc3
+    hippo:availability: []
+    hippostd:state: draft
+    hippostdpubwf:createdBy: admin
+    hippostdpubwf:creationDate: 2019-12-10T15:56:35.849Z
+    hippostdpubwf:lastModificationDate: 2020-03-26T16:50:45.110Z
+    hippostdpubwf:lastModifiedBy: admin
+    resourcebundle:descriptions: ['', '', '', '', '', '', '', '']
+    resourcebundle:id: keyFacilities
+    resourcebundle:keys: [petswelcom, wifi, parking, dsblaccess, audioloop, accessparkdrop,
+      key-facilities-title, keyfacilitiestitle]
+    resourcebundle:messages: [Pets welcome, WiFi, Parking, Level access, Audio loop,
+      Accessible parking or drop-off point, Key facilities, Key facilities]
+    resourcebundle:messages_es: [Mascotas, '', Aparcamiento, Nivel de acceso, Bucle
+        magnetico, Aparcamiento accesible o punto de entrega, '', '']
+  /facilities[2]:
+    jcr:primaryType: resourcebundle:resourcebundle
+    jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
+    jcr:uuid: ef902ce5-8441-4611-8c8e-8bc7bf6c2d50
+    hippo:availability: [preview]
+    hippostd:state: unpublished
+    hippostdpubwf:createdBy: admin
+    hippostdpubwf:creationDate: 2019-12-10T15:56:35.849Z
+    hippostdpubwf:lastModificationDate: 2020-03-26T16:52:26.462Z
+    hippostdpubwf:lastModifiedBy: admin
+    resourcebundle:descriptions: ['', '', '', '', '', '', '', '']
+    resourcebundle:id: keyFacilities
+    resourcebundle:keys: [petswelcom, wifi, parking, dsblaccess, audioloop, accessparkdrop,
+      key-facilities-title, keyfacilitiestitle]
+    resourcebundle:messages: [Pets welcome, WiFi, Parking, Level access, Audio loop,
+      Accessible parking or drop-off point, Key facilities, Key facilities]
+    resourcebundle:messages_es: [Mascotas, '', Aparcamiento, Nivel de acceso, Bucle
+        magnetico, Aparcamiento accesible o punto de entrega, '', '']
+  /facilities[3]:
+    jcr:primaryType: resourcebundle:resourcebundle
+    jcr:mixinTypes: ['mix:referenceable']
+    jcr:uuid: 1497ca65-1c63-4f20-9d0f-6a9f0d00448d
+    hippo:availability: [live]
+    hippostd:state: published
+    hippostdpubwf:createdBy: admin
+    hippostdpubwf:creationDate: 2019-12-10T15:56:35.849Z
+    hippostdpubwf:lastModificationDate: 2020-03-26T16:52:26.462Z
+    hippostdpubwf:lastModifiedBy: admin
+    hippostdpubwf:publicationDate: 2020-03-26T16:52:28.357Z
+    resourcebundle:descriptions: ['', '', '', '', '', '', '', '']
+    resourcebundle:id: keyFacilities
+    resourcebundle:keys: [petswelcom, wifi, parking, dsblaccess, audioloop, accessparkdrop,
+      key-facilities-title, keyfacilitiestitle]
+    resourcebundle:messages: [Pets welcome, WiFi, Parking, Level access, Audio loop,
+      Accessible parking or drop-off point, Key facilities, Key facilities]
+    resourcebundle:messages_es: [Mascotas, '', Aparcamiento, Nivel de acceso, Bucle
+        magnetico, Aparcamiento accesible o punto de entrega, '', '']
