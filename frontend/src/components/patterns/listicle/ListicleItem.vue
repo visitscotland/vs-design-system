@@ -264,16 +264,24 @@ export default {
                         label="Wheelchair Access">
                     </vs-icon-list-item>
                     <vs-icon-list-item
-                        icon="facility-accessparkdrop"
-                        label="Accessible Parking or Drop-off Point">
-                    </vs-icon-list-item>
-                    <vs-icon-list-item
                         icon="facility-audioloop"
                         label="Hearing Loop">
                     </vs-icon-list-item>
                     <vs-icon-list-item
                         icon="facility-wifi"
                         label="WiFi">
+                    </vs-icon-list-item>
+                    <vs-icon-list-item
+                        icon="facility-publictlt"
+                        label="Public Toilets">
+                    </vs-icon-list-item>
+                    <vs-icon-list-item
+                        icon="facility-giftshop"
+                        label="Gift Shop">
+                    </vs-icon-list-item>
+                    <vs-icon-list-item
+                        icon="facility-accessparkdrop"
+                        label="Accessible Parking or Drop-off Point">
                     </vs-icon-list-item>
 				</vs-icon-list>
 			</div>
