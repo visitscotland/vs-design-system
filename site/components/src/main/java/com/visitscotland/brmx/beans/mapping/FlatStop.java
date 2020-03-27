@@ -2,6 +2,7 @@ package com.visitscotland.brmx.beans.mapping;
 
 import com.visitscotland.brmx.beans.Stop;
 import org.hippoecm.hst.content.beans.standard.HippoHtml;
+import org.json.JSONObject;
 
 import java.util.List;
 
@@ -17,17 +18,20 @@ public class FlatStop {
     private String tipsTitle;
     private FlatLink ctaLink;
     private HippoHtml tipsBody;
-    private List<String> facilities;
+    private List<JSONObject> facilities;
+    private JSONObject address;
     private String location;
+    private String price;
+    private String open;
 
     private Coordinates coordinates;
     private String errorMessage;
 
-    public FlatStop(){
+    public FlatStop() {
 
     }
 
-    public FlatStop(Stop stop){
+    public FlatStop(Stop stop) {
         this.identifier = stop.getIdentifier();
 
         this.title = stop.getTitle();
@@ -100,11 +104,11 @@ public class FlatStop {
         this.tipsBody = tipsBody;
     }
 
-    public List<String> getFacilities() {
+    public List<JSONObject> getFacilities() {
         return facilities;
     }
 
-    public void setFacilities(List<String> facilities) {
+    public void setFacilities(List<JSONObject> facilities) {
         this.facilities = facilities;
     }
 
@@ -132,11 +136,35 @@ public class FlatStop {
         this.ctaLink = ctaLink;
     }
 
+    public JSONObject getAddress() {
+        return address;
+    }
+
+    public void setAddress(JSONObject address) {
+        this.address = address;
+    }
+
     public String getLocation() {
         return location;
     }
 
     public void setLocation(String location) {
         this.location = location;
+    }
+
+    public String getPrice() {
+        return price;
+    }
+
+    public void setPrice(String price) {
+        this.price = price;
+    }
+
+    public String getOpen() {
+        return open;
+    }
+
+    public void setOpen(String open) {
+        this.open = open;
     }
 }
