@@ -54,7 +54,7 @@ export default {
         VsItineraryMobileMapToggle,
         VsButton,
         VsIcon,
-        VsSocialShare
+        VsSocialShare,
     },
     props: {},
     methods: {
@@ -356,15 +356,14 @@ export default {
                     </div>
                     <vs-svg slot="svg" path="highland-cow" />
                 </vs-itinerary-tips>
-                <vs-icon-description-list v-if="stop.facilities.length">
-                    <vs-icon-description-list-term>Key facilities</vs-icon-description-list-term>
-                    <vs-icon-description-list-detail 
+                <vs-icon-list v-if="stop.facilities.length" title="Key facilities">
+                    <vs-icon-list-item 
                         v-for="(facility, facilitiesIndex) in stop.facilities"
                         :key="facilitiesIndex"
                         :label="facility.value"
                         :icon="facility.key"
                         />
-                </vs-icon-description-list>
+                </vs-icon-list>
               </div>
               <!-- mimic only showing these links on the last stop of the day -->
               <template v-if="stopIndex == day.stops.length - 1">
