@@ -7,13 +7,16 @@ import org.hippoecm.hst.content.beans.standard.HippoCompound;
 @HippoEssentialsGenerated(internalName = "visitscotland:Coordinates")
 @Node(jcrType = "visitscotland:Coordinates")
 public class Coordinates extends HippoCompound {
+    public static final String LATITUDE = "visitscotland:latitude";
+    public static final String LONGITUDE = "visitscotland:longitude";
+
     @HippoEssentialsGenerated(internalName = "visitscotland:latitude")
     public Double getLatitude() {
-        return getSingleProperty("visitscotland:latitude");
+        return getSingleProperty(LATITUDE);
     }
 
     @HippoEssentialsGenerated(internalName = "visitscotland:longitude")
     public Double getLongitude() {
-        return getSingleProperty("visitscotland:longitude");
+        return getSingleProperty(LONGITUDE);
     }
 }

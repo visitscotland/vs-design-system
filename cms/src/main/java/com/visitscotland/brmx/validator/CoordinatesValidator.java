@@ -1,5 +1,6 @@
 package com.visitscotland.brmx.validator;
 
+import com.visitscotland.brmx.beans.Coordinates;
 import org.onehippo.cms.services.validation.api.ValidationContext;
 import org.onehippo.cms.services.validation.api.ValidationContextException;
 import org.onehippo.cms.services.validation.api.Validator;
@@ -10,7 +11,9 @@ import javax.jcr.RepositoryException;
 import java.util.Optional;
 
 /**
- * visitscotland:scotland-coordinates-validator
+ * jcr:Name = visitscotland:scotland-coordinates-validator
+ *
+ * @author jose.calcines
  */
 public class CoordinatesValidator implements Validator<Node> {
 
@@ -44,9 +47,9 @@ public class CoordinatesValidator implements Validator<Node> {
 
     public Optional<Violation> validate(final ValidationContext context, final Node document) {
         try {
-            if (document.hasProperty("visitscotland:latitude") || document.hasProperty("visitscotland:longitude")) {
-                double lat = document.getProperty("visitscotland:latitude").getDouble();
-                double lon = document.getProperty("visitscotland:longitude").getDouble();
+            if (document.hasProperty(Coordinates.LATITUDE) || document.hasProperty(Coordinates.LONGITUDE)) {
+                double lat = document.getProperty(Coordinates.LATITUDE).getDouble();
+                double lon = document.getProperty(Coordinates.LONGITUDE).getDouble();
                 if (north < lat || lat < south || east < lon || lon < west) {
                     return Optional.of(context.createViolation());
                 }
