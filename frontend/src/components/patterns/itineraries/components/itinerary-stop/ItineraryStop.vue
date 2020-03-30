@@ -112,6 +112,11 @@ export default {
     & ::v-deep {
         .vs-icon-list {
             border-top: 1px solid $color-gray-tint-5;
+            margin-top: $spacer-4;
+
+            .vs-icon-list__title {
+                margin-top: $spacer-4;
+            }
         }
     }
 }
