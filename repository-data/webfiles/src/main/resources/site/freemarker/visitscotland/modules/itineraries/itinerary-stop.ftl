@@ -102,14 +102,11 @@
                     </vs-description-list>
                     </#if>
 
-                    <#if (prod.tipsTitle?? && prod.tipsTitle?has_content) || (prod.tipsBody?? && prod.tipsBody.content?? && (prod.tipsBody.content?length gt 1))>
+                    <#if (prod.tipsTitle?? && prod.tipsTitle?has_content)>
                         <vs-itinerary-tips>
                             <div slot="text">
-                            <#if  prod.tipsTitle?? &&  prod.tipsTitle?has_content>
                                 <strong>${prod.tipsTitle}</strong>
-                            </#if>
-                                    <@hst.html hippohtml=prod.tipsBody/>
-
+                                <@hst.html hippohtml=prod.tipsBody/>
                             </div>
                             <vs-svg slot="svg" path="highland-cow" />
                         </vs-itinerary-tips>
