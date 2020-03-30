@@ -34,7 +34,7 @@ public class ListicleContentComponent extends PageContentComponent<Listicle> {
 
     /**
      * @param request HstRequest
-     * @param listicle lkisticle document
+     * @param listicle listicle document
      */
     private void generateItems(HstRequest request, Listicle listicle) {
         final String ADDRESS = "address";
@@ -49,6 +49,7 @@ public class ListicleContentComponent extends PageContentComponent<Listicle> {
 
         //TODO:separate image, main product and optional cta in different methods ?
         for (ListicleItem listicleItem : listicle.getItems()) {
+            List<String> errors = new ArrayList<>();
             FlatListicle model = new FlatListicle(listicleItem);
             List<FlatLink> links = new ArrayList<>();
 
@@ -69,13 +70,13 @@ public class ListicleContentComponent extends PageContentComponent<Listicle> {
                             String image = "https://www.instagram.com/p/" + instagramLink.getId() + "/media?size=l";
                             model.setImage(new FlatImage(image, instagramLink.getCaption(), credit, instagramLink.getCaption(), FlatImage.Source.INSTAGRAM, link));
                         } else {
-                            model.setErrorMessage("The Instagram id is not valid");
+                            errors.add("The Instagram id is not valid");
                             logger.warn(CommonUtils.contentIssue("The Instagram id %s is not valid, Listicle = %s - %s",
                                     instagramLink.getId(), listicle.getPath(), listicleItem.getTitle()));
                         }
 
                     } catch (IOException e) {
-                        model.setErrorMessage("Error while accessing Instagram: " + e.getMessage());
+                        errors.add("Error while accessing Instagram: " + e.getMessage());
                         logger.error("Error while accessing Instagram", e);
                     }
                 } else {
@@ -101,7 +102,7 @@ public class ListicleContentComponent extends PageContentComponent<Listicle> {
                     try {
                         product = CommonUtils.getProduct(dmsLink.getProduct(), request.getLocale());
                         if (product == null) {
-                            model.setErrorMessage("The product id does not exists in the DMS");
+                            errors.add("The product id does not exists in the DMS");
                             logger.warn(CommonUtils.contentIssue("The product's id  wasn't provided for %s, Listicle = %s - %s",
                                     dmsLink.getProduct(), listicle.getPath(), listicleItem.getTitle()));
                         } else {
@@ -144,7 +145,7 @@ public class ListicleContentComponent extends PageContentComponent<Listicle> {
 
                         }
                     } catch (IOException e) {
-                        model.setErrorMessage("Error while querying the DMS: " + e.getMessage());
+                        errors.add("Error while querying the DMS: " + e.getMessage());
                         logger.error(String.format("Error while querying the DMS for %s, Listicle item %s: 5s",
                                 listicle.getName(), model.getIndex(), e.getMessage()));
                     }
@@ -159,6 +160,7 @@ public class ListicleContentComponent extends PageContentComponent<Listicle> {
             }
 
             model.setLinks(links);
+            model.setErrorMessage(errors);
             items.put(model.getIdentifier(), model);
         }
 

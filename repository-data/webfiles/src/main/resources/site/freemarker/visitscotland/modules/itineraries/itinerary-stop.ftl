@@ -38,7 +38,11 @@
         >
             <div slot="stop-details" class="has-edit-button">
                 <@hst.manageContent hippobean=stop />
-                <h3 class="text-danger">${prod.errorMessage?upper_case}</h3>
+                <#if prod.errorMessage?? && prod.errorMessage?size gt 0>
+                    <#list prod.errorMessage as error>
+                        <h1 class="text-danger">${error?upper_case}</h1>
+                    </#list>
+                </#if>
             </div>
         </vs-itinerary-stop>
     <#elseif stop.stopItem??>
@@ -50,8 +54,10 @@
         >
             <div slot="stop-details" class="has-edit-button">
                 <@hst.manageContent hippobean=stop />
-                <#if prod.errorMessage?? && editMode>
-                      <h3 class="text-danger">${prod.errorMessage?upper_case}</h3>
+                <#if prod.errorMessage?? && prod.errorMessage?size gt 0 && editMode>
+                    <#list prod.errorMessage as error>
+                        <h1 class="text-danger">${error?upper_case}</h1>
+                    </#list>
                 </#if>
                 <#if image?? && image?has_content>
                     <vs-image-with-caption
@@ -82,7 +88,6 @@
                         ${prod.ctaLink.label}
                     </vs-link>
                 </#if>
-
                   <#--TODO Include Address, Address fields allow null and the fields are:
                     ${prod.address.line1}
                     ${prod.address.line2}
@@ -91,7 +96,13 @@
                     ${prod.address.postCode} -->
 
                     <#--TODO show open times the field is:
-                       ${prod.open} -->
+                    ${prod.open}-->
+                    </br>
+                     <#if prod.openLink?? && prod.openLink.link?? && prod.openLink.link?has_content>
+                        <vs-link href="${prod.openLink.link}">
+                            ${prod.openLink.label}
+                        </vs-link>
+                     </#if>
                     <#--TODO show price the field is:
                        ${prod.price} -->
                 <#if prod??>

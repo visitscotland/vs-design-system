@@ -1081,32 +1081,6 @@
         /edinburgh-castle[3]:
           jcr:primaryType: visitscotland:ListicleItem
           jcr:mixinTypes: ['mix:referenceable']
-          jcr:uuid: c42d6d9d-a46a-4993-94f9-1203c953c4d5
-          hippo:availability: [live]
-          hippostd:state: published
-          hippostdpubwf:createdBy: admin
-          hippostdpubwf:creationDate: 2020-02-27T13:21:08.257Z
-          hippostdpubwf:lastModificationDate: 2020-03-09T09:50:44.970Z
-          hippostdpubwf:lastModifiedBy: admin
-          hippostdpubwf:publicationDate: 2020-03-09T15:25:14.198Z
-          hippotranslation:id: 25df6d19-f276-49c9-b0e7-5a76254666fe
-          hippotranslation:locale: en
-          visitscotland:subtitle: ''
-          visitscotland:title: Edinburgh Castle
-          /visitscotland:description:
-            jcr:primaryType: hippostd:html
-            hippostd:content: <p><a href="https://www.visitscotland.com/info/see-do/edinburgh-castle-p245821"
-              title="Edinburgh Castle">Edinburgh Castle</a> is a true icon of Scotland
-              and has dominated the skyline of the capital for centuries. Unusually,
-              it's set atop of an extinct volcano. It takes the title of Scotland's
-              most-visited paid-for attraction.</p>
-          /visitscotland:products:
-            jcr:primaryType: visitscotland:DMSLink
-            visitscotland:label: Edinburgh castle
-            visitscotland:product: '245821'
-        /edinburgh-castle[3]:
-          jcr:primaryType: visitscotland:ListicleItem
-          jcr:mixinTypes: ['mix:referenceable']
           jcr:uuid: c2fa6984-fd6e-4e8f-90c9-63367d936a8d
           hippo:availability: [live]
           hippostd:state: published
@@ -1175,37 +1149,6 @@
           hippostdpubwf:creationDate: 2020-02-27T13:22:47.621Z
           hippostdpubwf:lastModificationDate: 2020-02-27T13:40:43.373Z
           hippostdpubwf:lastModifiedBy: admin
-          hippotranslation:id: d064dde7-8e4a-42d5-a8cb-c42dba495b3f
-          hippotranslation:locale: en
-          visitscotland:subtitle: ''
-          visitscotland:title: Scottish National Gallery
-          /visitscotland:description:
-            jcr:primaryType: hippostd:html
-            hippostd:content: <p><a href="https://www.visitscotland.com/info/see-do/scottish-national-gallery-p246151"
-              title="Scottish National Gallery">Scottish National Gallery</a> houses
-              Scotland's national collection of fine art from the early Renaissance
-              to the end of the 19th century. The walls are adorned with masterpieces,
-              from Raphael, Velázquez and Vermeer to Monet, Cézanne and Van Gogh,
-              as well as works of Scottish artists.</p>
-          /visitscotland:products:
-            jcr:primaryType: visitscotland:DMSLink
-            visitscotland:label: Come to the Great Scottish National Gallery
-            visitscotland:product: '246151'
-          /visitscotland:images:
-            jcr:primaryType: visitscotland:InstagramImage
-            visitscotland:caption: Robert Burns visits the Gallery
-            visitscotland:id: B7vTqg4gZsR
-        /scottish-national-gallery[3]:
-          jcr:primaryType: visitscotland:ListicleItem
-          jcr:mixinTypes: ['mix:referenceable']
-          jcr:uuid: 8dd43fec-59a8-473b-84c1-0e755ffffab7
-          hippo:availability: [live]
-          hippostd:state: published
-          hippostdpubwf:createdBy: admin
-          hippostdpubwf:creationDate: 2020-02-27T13:22:47.621Z
-          hippostdpubwf:lastModificationDate: 2020-02-27T13:40:43.373Z
-          hippostdpubwf:lastModifiedBy: admin
-          hippostdpubwf:publicationDate: 2020-03-12T11:34:42.574Z
           hippotranslation:id: d064dde7-8e4a-42d5-a8cb-c42dba495b3f
           hippotranslation:locale: en
           visitscotland:subtitle: ''
@@ -1978,7 +1921,7 @@
         jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
         jcr:uuid: e16bdb89-c271-46f1-851f-2d2b82d631d4
         hippo:name: Victorian Heritage Trail
-        hippo:versionHistory: 80bbe3c9-ce3c-4b0f-a0ba-b8b6529dd656
+        hippo:versionHistory: 14209e3d-ae74-486b-8a5e-a8868c2a899e
         /content[1]:
           jcr:primaryType: visitscotland:Itinerary
           jcr:mixinTypes: ['mix:referenceable']
@@ -1987,7 +1930,7 @@
           hippostd:state: draft
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2020-02-07T12:52:15.063Z
-          hippostdpubwf:lastModificationDate: 2020-03-09T13:13:57.003Z
+          hippostdpubwf:lastModificationDate: 2020-03-30T13:12:48.324+01:00
           hippostdpubwf:lastModifiedBy: admin
           hippotranslation:id: 80ddd0f7-26c8-4514-bc5b-1504204eaec4
           hippotranslation:locale: en
@@ -2029,7 +1972,7 @@
           hippostd:state: unpublished
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2020-02-07T12:52:15.063Z
-          hippostdpubwf:lastModificationDate: 2020-03-09T13:13:56.961Z
+          hippostdpubwf:lastModificationDate: 2020-03-30T13:12:56.405+01:00
           hippostdpubwf:lastModifiedBy: admin
           hippotranslation:id: 80ddd0f7-26c8-4514-bc5b-1504204eaec4
           hippotranslation:locale: en
@@ -2071,9 +2014,9 @@
           hippostd:state: published
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2020-02-07T12:52:15.063Z
-          hippostdpubwf:lastModificationDate: 2020-03-09T13:13:56.961Z
+          hippostdpubwf:lastModificationDate: 2020-03-30T13:12:56.405+01:00
           hippostdpubwf:lastModifiedBy: admin
-          hippostdpubwf:publicationDate: 2020-03-09T13:14:02.119Z
+          hippostdpubwf:publicationDate: 2020-03-30T13:13:01.766+01:00
           hippotranslation:id: 80ddd0f7-26c8-4514-bc5b-1504204eaec4
           hippotranslation:locale: en
           visitscotland:areas: [north]

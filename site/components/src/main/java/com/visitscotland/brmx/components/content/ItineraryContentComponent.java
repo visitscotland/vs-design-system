@@ -8,6 +8,7 @@ import com.visitscotland.brmx.beans.mapping.FlatImage;
 import com.visitscotland.brmx.beans.mapping.FlatLink;
 import com.visitscotland.brmx.beans.mapping.FlatStop;
 import com.visitscotland.brmx.utils.CommonUtils;
+import com.visitscotland.brmx.utils.HippoUtils;
 import com.visitscotland.brmx.utils.LocationLoader;
 import org.hippoecm.hst.core.component.HstRequest;
 import org.hippoecm.hst.core.component.HstResponse;
@@ -78,6 +79,7 @@ public class ItineraryContentComponent extends PageContentComponent<Itinerary> {
 
         for (Day day: itinerary.getDays()) {
             for (Stop stop : day.getStops()) {
+                List<String> errors = new ArrayList<>();
                 FlatStop model = new FlatStop(stop);
                 Coordinates coordinates = new Coordinates();
                 model.setIndex(index++);
@@ -93,12 +95,12 @@ public class ItineraryContentComponent extends PageContentComponent<Itinerary> {
                     try {
 
                         if (dmsLink.getProduct() == null){
-                            model.setErrorMessage("The product's id  was not provided");
+                           errors.add("The product's id  was not provided");
                             logger.warn(CommonUtils.contentIssue("The product's id was not provided for %s, Stop %s", itinerary.getName(), model.getIndex()));
                         } else {
                             JSONObject product = CommonUtils.getProduct(dmsLink.getProduct(), request.getLocale());
                             if (product == null){
-                                model.setErrorMessage("The product id does not exist in the DMS");
+                                errors.add("The product id does not exist in the DMS");
                                 logger.warn(CommonUtils.contentIssue("The product id does not exist in the DMS for %s, Stop %s", itinerary.getName(), model.getIndex()));
                             } else {
 
@@ -138,6 +140,9 @@ public class ItineraryContentComponent extends PageContentComponent<Itinerary> {
                                 if (product.has(OPENING)){
                                     JSONObject opening = product.getJSONObject(OPENING);
                                     //TODO adjust the message to designs when ready
+                                    model.setOpenLink(
+                                            new FlatLink(HippoUtils.getResourceBundle("stop.opening", "itinerary",
+                                                    request.getLocale()),ctaLink.getLink()+"#opening"));
                                     if ((opening.has(START_TIME)) && (opening.has(END_TIME))) {
                                         model.setOpen(opening.getString("day") + ": " + opening.getString("startTime") + "-" + opening.getString("endTime"));
                                     }
@@ -147,7 +152,7 @@ public class ItineraryContentComponent extends PageContentComponent<Itinerary> {
                             }
                         }
                     } catch (IOException exception) {
-                        model.setErrorMessage("Error while querying the DMS: " + exception.getMessage());
+                        errors.add("Error while querying the DMS: " + exception.getMessage());
                         logger.error("Error while querying the DMS for " + itinerary.getName() + ", Stop " + model.getIndex() + ": " + exception.getMessage());
                     }
                 } else if (stop.getStopItem() instanceof ItineraryExternalLink){
@@ -174,18 +179,19 @@ public class ItineraryContentComponent extends PageContentComponent<Itinerary> {
                     }
 
                 }else{
-                    model.setErrorMessage("The product's id  was not provided");
+                    errors.add("The product's id  was not provided");
                     logger.warn(CommonUtils.contentIssue("The product's id  was not provided for %s, Stop %s", itinerary.getName(), model.getIndex()));
                 }
 
                 if ((stop.getTips()!= null && !stop.getTips().getContent().isEmpty()) && (stop.getTipsTitle() == null || stop.getTipsTitle().isEmpty())){
-                    model.setErrorMessage("Tips title is required to show tips");
+                    errors.add("Tips title is required to show tips");
                 }
                 lastStopId = model.getIdentifier();
                 if (firstStopId == null){
                     firstStopId = lastStopId;
                 }
                 model.setImage(img);
+                model.setErrorMessage(errors);
                 products.put(model.getIdentifier(), model);
             }
         }
