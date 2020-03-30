@@ -389,7 +389,6 @@
           jcr:mixinTypes: ['mix:referenceable']
           jcr:uuid: c8a4446d-bb38-4015-b717-ccec05865079
           hippo:availability: []
-          hippostd:holder: admin
           hippostd:state: draft
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2019-12-12T12:06:04.129Z
@@ -398,8 +397,8 @@
           hippotranslation:id: 15cbbb74-c06a-427e-88f8-a4fff306f9ba
           hippotranslation:locale: en
           visitscotland:title: Dummy Stops
-          visitscotland:transports: [cycling, walking, boat, car, bus, train, ferry,
-            public]
+          visitscotland:transports: [boat, bus, car, cycling, ferry, public, train,
+            walking]
           /visitscotland:introduction:
             jcr:primaryType: hippostd:html
             hippostd:content: |-
@@ -1109,14 +1108,6 @@
         hippostd:foldertype: [new-translated-folder, new-document]
         hippotranslation:id: dce2e37b-d8ad-4f1e-a499-b7ca4677a223
         hippotranslation:locale: en
-        /family:
-          jcr:primaryType: hippostd:folder
-          jcr:mixinTypes: ['hippo:named', 'hippotranslation:translated', 'mix:versionable']
-          jcr:uuid: ea5463fa-56a3-4d86-ad2e-7225eea465d8
-          hippo:name: Family
-          hippostd:foldertype: [new-translated-folder, new-document]
-          hippotranslation:id: 63f9342b-5617-4fb0-8963-78d0e683c0c5
-          hippotranslation:locale: en
         /weekend-short-breaks:
           jcr:primaryType: hippostd:folder
           jcr:mixinTypes: ['hippo:named', 'hippotranslation:translated', 'mix:versionable']
@@ -1138,7 +1129,7 @@
               hippostd:state: draft
               hippostdpubwf:createdBy: admin
               hippostdpubwf:creationDate: 2020-03-09T13:18:03.936Z
-              hippostdpubwf:lastModificationDate: 2020-03-09T13:19:08.708Z
+              hippostdpubwf:lastModificationDate: 2020-03-30T17:08:57.999+01:00
               hippostdpubwf:lastModifiedBy: admin
               hippotranslation:id: 97546e89-0d3f-4b72-816b-fd23247d9c2c
               hippotranslation:locale: en
@@ -1149,6 +1140,7 @@
                 holidays and harbour-side cottages.
               visitscotland:seoNoIndex: false
               visitscotland:seoTitle: Short Calming Escapes By The Water
+              visitscotland:summaryTitle: ''
               visitscotland:teaser: ''
               visitscotland:title: Short Calming Escapes By The Water
               /visitscotland:heroImage:
@@ -1163,6 +1155,9 @@
                   <p>When it comes to places to stay, Scotland has some fantastic options; but there really is something extra special about a waterside location. If it's a coastal break you fancy, you'll find wonderful holiday cottages on seafronts, near beaches and shorelines. Or you can stay at the edge of an inland loch or sea loch, by a canal, and should you actually fancy staying on the water, there are great choices when it comes to boating and sailing holidays.</p>
 
                   <p>Here are just a few ideas for some lovely waterside locations and accommodation suggestions for holidays on or by the water, perfect for a relaxing break.</p>
+              /visitscotland:summary:
+                jcr:primaryType: hippostd:html
+                hippostd:content: ''
             /content[2]:
               jcr:primaryType: visitscotland:Listicle
               jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
@@ -1171,7 +1166,7 @@
               hippostd:state: unpublished
               hippostdpubwf:createdBy: admin
               hippostdpubwf:creationDate: 2020-03-09T13:18:03.936Z
-              hippostdpubwf:lastModificationDate: 2020-03-09T13:19:21.552Z
+              hippostdpubwf:lastModificationDate: 2020-03-30T17:09:26.082+01:00
               hippostdpubwf:lastModifiedBy: admin
               hippotranslation:id: 97546e89-0d3f-4b72-816b-fd23247d9c2c
               hippotranslation:locale: en
@@ -1182,6 +1177,7 @@
                 holidays and harbour-side cottages.
               visitscotland:seoNoIndex: false
               visitscotland:seoTitle: Short Calming Escapes By The Water
+              visitscotland:summaryTitle: ''
               visitscotland:teaser: ''
               visitscotland:title: Short Calming Escapes By The Water
               /visitscotland:heroImage:
@@ -1196,6 +1192,9 @@
                   <p>When it comes to places to stay, Scotland has some fantastic options; but there really is something extra special about a waterside location. If it's a coastal break you fancy, you'll find wonderful holiday cottages on seafronts, near beaches and shorelines. Or you can stay at the edge of an inland loch or sea loch, by a canal, and should you actually fancy staying on the water, there are great choices when it comes to boating and sailing holidays.</p>
 
                   <p>Here are just a few ideas for some lovely waterside locations and accommodation suggestions for holidays on or by the water, perfect for a relaxing break.</p>
+              /visitscotland:summary:
+                jcr:primaryType: hippostd:html
+                hippostd:content: ''
           /harbour-side-fishermens-cottages:
             jcr:primaryType: hippo:handle
             jcr:mixinTypes: ['hippo:named', 'mix:referenceable']
@@ -1683,7 +1682,7 @@
         jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
         jcr:uuid: e16bdb89-c271-46f1-851f-2d2b82d631d4
         hippo:name: Victorian Heritage Trail
-        hippo:versionHistory: 86d902c4-4c74-4499-a24e-1d5c49600c91
+        hippo:versionHistory: 9e9bfdf6-f4a1-4b62-a6d8-b336e38060b5
         /content[1]:
           jcr:primaryType: visitscotland:Itinerary
           jcr:mixinTypes: ['mix:referenceable']
@@ -1692,7 +1691,7 @@
           hippostd:state: draft
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2020-02-07T12:52:15.063Z
-          hippostdpubwf:lastModificationDate: 2020-03-30T14:16:39.397+01:00
+          hippostdpubwf:lastModificationDate: 2020-03-30T17:47:43.614+01:00
           hippostdpubwf:lastModifiedBy: admin
           hippotranslation:id: 80ddd0f7-26c8-4514-bc5b-1504204eaec4
           hippotranslation:locale: en
@@ -1734,7 +1733,7 @@
           hippostd:state: unpublished
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2020-02-07T12:52:15.063Z
-          hippostdpubwf:lastModificationDate: 2020-03-30T14:16:53.301+01:00
+          hippostdpubwf:lastModificationDate: 2020-03-30T17:47:34.677+01:00
           hippostdpubwf:lastModifiedBy: admin
           hippotranslation:id: 80ddd0f7-26c8-4514-bc5b-1504204eaec4
           hippotranslation:locale: en
@@ -1776,9 +1775,9 @@
           hippostd:state: published
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2020-02-07T12:52:15.063Z
-          hippostdpubwf:lastModificationDate: 2020-03-30T14:16:53.301+01:00
+          hippostdpubwf:lastModificationDate: 2020-03-30T17:47:34.677+01:00
           hippostdpubwf:lastModifiedBy: admin
-          hippostdpubwf:publicationDate: 2020-03-30T14:16:58.672+01:00
+          hippostdpubwf:publicationDate: 2020-03-30T17:47:43.250+01:00
           hippotranslation:id: 80ddd0f7-26c8-4514-bc5b-1504204eaec4
           hippotranslation:locale: en
           visitscotland:areas: [north]

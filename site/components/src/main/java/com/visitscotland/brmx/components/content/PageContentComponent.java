@@ -13,6 +13,8 @@ import org.onehippo.cms7.essentials.components.EssentialsContentComponent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 
 
@@ -92,5 +94,24 @@ public class PageContentComponent<TYPE extends Page> extends EssentialsContentCo
         } else {
             return HippoUtils.getResourceBundle("button.find-out-more", "essentials.global", locale);
         }
+    }
+
+
+    protected List<String> desiredFieldsAlert (Page item){
+        List<String> response =  new ArrayList<>();
+        if (item.getTeaser() == null || item.getTeaser().isEmpty()) {
+            response.add("Teaser field should be provided");
+            logger.warn(CommonUtils.contentIssue("The teaser has not been provided for = %s",item.getPath()));
+        }
+        if (item.getSeoTitle() == null || item.getSeoTitle().isEmpty()) {
+            response.add("SEO title field is required");
+            logger.warn(CommonUtils.contentIssue("The SEO title has not been provided for = %s",item.getPath()));
+        }
+        if (item.getSeoDescription() == null || item.getSeoDescription().isEmpty()) {
+            response.add("SEO description field is required");
+            logger.warn(CommonUtils.contentIssue("The SEO description has not been provided for = %s",item.getPath()));
+        }
+
+        return response;
     }
 }

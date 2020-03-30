@@ -37,6 +37,8 @@ public class ListicleContentComponent extends PageContentComponent<Listicle> {
      * @param listicle listicle document
      */
     private void generateItems(HstRequest request, Listicle listicle) {
+        final String LISTICLE_ITEMS = "items";
+        final String LISTICLE_ALERTS = "alerts";
         final String ADDRESS = "address";
         final String LOCATION = "city";
         final String LATITUDE = "latitude";
@@ -46,6 +48,10 @@ public class ListicleContentComponent extends PageContentComponent<Listicle> {
         final String IMAGE = "images";
         final Map<String ,FlatListicle> items =  new LinkedHashMap<>();
 
+        List<String> listicleAlerts = this.desiredFieldsAlert(listicle);
+        if (listicleAlerts.size()>0){
+            request.setAttribute(LISTICLE_ALERTS, listicleAlerts);
+        }
 
         //TODO:separate image, main product and optional cta in different methods ?
         for (ListicleItem listicleItem : listicle.getItems()) {
@@ -164,13 +170,13 @@ public class ListicleContentComponent extends PageContentComponent<Listicle> {
             items.put(model.getIdentifier(), model);
         }
 
-        String LISTICLE_ITEMS = "items";
+
         request.setAttribute(LISTICLE_ITEMS, items);
     }
 
     /**
      * @param request HstRequest
-     * @param item Compounf for DMSLink, PSRLink , External Link or CMS linl
+     * @param item Compound for DMSLink, PSRLink , External Link or CMS link
      * @return FlatLink
      */
     private FlatLink createLink(HstRequest request, HippoCompound item) {

@@ -57,6 +57,7 @@ public class ItineraryContentComponent extends PageContentComponent<Itinerary> {
     private void generateStops(HstRequest request)  {
 
         final Itinerary itinerary = getDocument(request);
+        final String ITINERARY_ALERTS = "alerts";
         final String ADDRESS = "address";
         final String LOCATION = "city";
         final String URL = "url";
@@ -75,6 +76,11 @@ public class ItineraryContentComponent extends PageContentComponent<Itinerary> {
         final String OPENING_PROVISIONAL = "provivisional";
 
         final Map<String ,FlatStop> products =  new LinkedHashMap<>();
+
+        List<String> itineraryAlerts = this.desiredFieldsAlert(itinerary);
+        if (itineraryAlerts.size()>0){
+            request.setAttribute(ITINERARY_ALERTS, itineraryAlerts);
+        }
 
         String firstStopId = null;
         String lastStopId = null;
