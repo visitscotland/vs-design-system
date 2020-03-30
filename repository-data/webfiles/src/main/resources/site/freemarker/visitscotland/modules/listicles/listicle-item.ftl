@@ -13,6 +13,7 @@
 <#include "../../../vs-dotcom-ds/components/social-credit-link.ftl">
 
 <#include "../key-facilities.ftl">
+<#include "../image-with-caption.ftl">
 
 <#macro listicleItem listItem descOrder>
 <#-- @ftlvariable name="document" type="com.visitscotland.brmx.beans.Listicle" -->
@@ -53,41 +54,7 @@
 
 		<#if image?has_content>
 			<div slot="image-slot">
-				<vs-image-with-caption
-					alt-text="${(item.image.altText)!'${label("essentials.global", "default.alt-text")}'}"
-					alt="${(item.image.altText)!'${label("essentials.global", "default.alt-text")}'}"
-					image-src="${image}"
-					latitude="${(item.image.coordinates.latitude)!''}"
-					longitude="${(item.image.coordinates.longitude)!''}"
-					variant="large"
-				>
-					<span slot="caption">
-						${(item.image.description)!''}
-					</span>
-					
-					<#if !item.image.source?has_content && item.image.credit?has_content>
-						<span slot="credit">
-							&copy; ${item.image.credit}
-						</span>
-					</#if>
-
-					<#if item.image.source?has_content>
-						<vs-icon
-							slot="toggle-icon"
-							name="${item.image.source}"
-							variant="light"
-							size="sm"
-						></vs-icon>
-
-						<vs-social-credit-link
-							slot="social-link"
-							credit="${(item.image.credit)!'No credit'}"
-							social-post-url="${item.image.postUrl}"
-							source="${item.image.source}"
-						></vs-social-credit-link>
-					</#if>
-
-				</vs-image-with-caption>
+                <@imageWithCaption imageSrc=image imageDetails=item.image variant="large"/>
 			</div>
 		</#if>
 
