@@ -44,7 +44,6 @@
 		title="${item.title}"
 		sub-title="${item.subTitle}"
 	>
-
 		<div slot="hippo-details" class="has-edit-button">
 			<@hst.manageContent hippobean=listItem />
 			<#if item.errorMessage?? && editMode>
@@ -61,7 +60,7 @@
 		<div slot="description-slot">
 			<@hst.html hippohtml=item.description />
 
-			<#if  item.ctaLinks?has_content>
+			<#if item.ctaLinks?has_content>
 				<#list item.ctaLinks as cta>
 					<#if cta?has_content>
                         <div class="mb-2">
