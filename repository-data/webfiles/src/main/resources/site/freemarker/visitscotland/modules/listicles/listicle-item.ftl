@@ -12,6 +12,7 @@
 <#include "../../../vs-dotcom-ds/components/link.ftl">
 <#include "../../../vs-dotcom-ds/components/social-credit-link.ftl">
 
+<#include "../key-facilities.ftl">
 
 <#macro listicleItem listItem descOrder>
 <#-- @ftlvariable name="document" type="com.visitscotland.brmx.beans.Listicle" -->
@@ -105,16 +106,8 @@
 		</div>
 
         <#if item.facilities?? && item.facilities?size gt 1>
-        
 			<div slot="facilities-slot">
-				<vs-icon-list title="${label('keyFacilities', 'keyfacilitiestitle')}">
-					<#list item.facilities as facility>
-						<vs-icon-list-item
-							icon="${facility.id}"
-							label="${facility.name}">
-						</vs-icon-list-item>
-					</#list>
-				</vs-icon-list>
+				<@keyFacilities facilitiesList=item.facilities />
 			</div>
 		</#if>
 	</vs-listicle-item>

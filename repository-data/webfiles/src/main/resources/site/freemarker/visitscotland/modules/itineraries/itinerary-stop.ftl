@@ -5,13 +5,10 @@
 <#include "../../../vs-dotcom-ds/components/itinerary-stop.ftl">
 <#include "../../../vs-dotcom-ds/components/itinerary-border-overlap-wrapper.ftl">
 <#include "../../../vs-dotcom-ds/components/image-with-caption.ftl">
-<#include "../../../vs-dotcom-ds/components/icon-description-list.ftl">
+<#include "../../../vs-dotcom-ds/components/icon-list.ftl">
+<#include "../../../vs-dotcom-ds/components/icon-list-item.ftl">
 <#include "../../../vs-dotcom-ds/components/img.ftl">
-<#include "../../../vs-dotcom-ds/components/icon-description-list-term.ftl">
-<#include "../../../vs-dotcom-ds/components/icon-description-list-detail.ftl">
 <#include "../../../vs-dotcom-ds/components/link.ftl">
-
-
 
 <#macro itineraryStop stop lastStop>
 <#-- @ftlvariable name="stop" type="com.visitscotland.brmx.beans.Stop" -->
@@ -113,26 +110,23 @@
                     </#if>
 
                     <#if prod.facilities?? && prod.facilities?size gt 1>
-                        <vs-icon-description-list>
-                            <vs-icon-description-list-term>${label("itinerary", "stop.key-facilities")}</vs-icon-description-list-term>
+                        <vs-icon-list title="${label('keyFacilities', 'keyfacilitiestitle')}" class="pt-4">
                             <#list prod.facilities as facility>
-                                <vs-icon-description-list-detail
+                                <vs-icon-list-item
                                     icon="${facility.id}"
                                     label="${facility.name}">
-                                </vs-icon-description-list-detail>
+                                </vs-icon-list-item>
                             </#list>
-                        </vs-icon-description-list>
+                        </vs-icon-list>
                     </#if>
                 </#if>
         </div>
             <#if lastStop=="true" && prod.coordinates.longitude?? && prod.coordinates.longitude?has_content && prod.coordinates.latitude?? && prod.coordinates.latitude?has_content>
                 <vs-itinerary-border-overlap-wrapper slot="nearby-links">
-                    <vs-button-with-icon class="mb-3" background="white" variant="outline-primary" icon="food"
-                                         href=" ${productSearch(locale, "cate", prod.coordinates.latitude, prod.coordinates.longitude, 5)}" >
+                    <vs-button-with-icon class="mb-3" background="white" variant="outline-primary" icon="food" href=" ${productSearch(locale, "cate", prod.coordinates.latitude, prod.coordinates.longitude, 5)}" >
                         ${label("itinerary", "stop.nearby-eat")}
                     </vs-button-with-icon>
-                    <vs-button-with-icon background="white" variant="outline-primary" icon="product-accommodation"
-                                         href=" ${productSearch(locale, "acco", prod.coordinates.latitude, prod.coordinates.longitude, 5)}" >
+                    <vs-button-with-icon background="white" variant="outline-primary" icon="product-accommodation" href=" ${productSearch(locale, "acco", prod.coordinates.latitude, prod.coordinates.longitude, 5)}" >
                         ${label("itinerary", "stop.nearby-stay")}
                     </vs-button-with-icon>
                 </vs-itinerary-border-overlap-wrapper>
