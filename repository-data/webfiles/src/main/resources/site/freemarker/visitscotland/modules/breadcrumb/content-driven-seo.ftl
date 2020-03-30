@@ -2,13 +2,13 @@
 
 <#-- @ftlvariable name="document" type="com.visitscotland.brmx.beans.Page" -->
 
-<#-- TODO REFACTOR -->
+<#-- CANONICAL TAG -->
 <@hst.headContribution category="seo">
 <#-- canonical tag has -->
     <link rel="canonical" href="<@hst.link hippobean=document canonical=true fullyQualified=true/>" />
 </@hst.headContribution>
 
-<#-- TODO REFACTOR -->
+<#-- HREFLANG TAG -->
 <#if document.availableTranslations.translations?size gt 1>
     <#list document.availableTranslations.translations as translation>
         <@hst.headContribution category="seo">
@@ -17,15 +17,18 @@
     </#list>
 </#if>
 
-<#-- TODO REFACTOR -->
-<@hst.headContribution category="seo">
-    <meta name="description" content="${document.seoDescription}" />
-</@hst.headContribution>
+<#-- TITLE TAG -->
 <@hst.headContribution category="seo">
     <title>${document.title}</title>
 </@hst.headContribution>
 
-<#-- TODO REFACTOR. Note seo fields are not available from the base layout-->
+<#-- META DESCRIPTION TAG -->
+<@hst.headContribution category="seo">
+    <meta name="description" content="${document.seoDescription}" />
+</@hst.headContribution>
+
+
+<#-- OPEN GRAPH MARKUP  -->
 <@hst.link var="ogImage" hippobean=document.heroImage.original fullyQualified=true/>
 <@hst.headContribution category="opengraph">
     <meta property="og:title" content="${document.seoTitle}" />
