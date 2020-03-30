@@ -1,0 +1,13 @@
+definitions:
+  config:
+    /hippo:configuration/hippo:modules/validation/hippo:moduleconfig/visitscotland:scotland-coordinates-validator:
+      jcr:primaryType: hipposys:moduleconfig
+      extreme.east: '-0.7'
+      extreme.north: '60.9'
+      extreme.south: '54.6'
+      extreme.west: '-13.7'
+      hipposys:className: com.visitscotland.brmx.validator.CoordinatesValidator
+    /hippo:configuration/hippo:modules/validation/hippo:moduleconfig/visitscotland:url-validator:
+      jcr:primaryType: hipposys:moduleconfig
+      hipposys:className: org.onehippo.cms.services.validation.validator.RegExpValidator
+      regexp.pattern: \b(https?|/):/(/[-a-zA-Z0-9:.]*)*([\?]([-a-zA-Z0-9+@#/%=~_|])*)?
