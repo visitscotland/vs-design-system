@@ -389,16 +389,17 @@
           jcr:mixinTypes: ['mix:referenceable']
           jcr:uuid: c8a4446d-bb38-4015-b717-ccec05865079
           hippo:availability: []
+          hippostd:holder: admin
           hippostd:state: draft
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2019-12-12T12:06:04.129Z
-          hippostdpubwf:lastModificationDate: 2020-03-09T16:07:20.742Z
+          hippostdpubwf:lastModificationDate: 2020-03-30T15:50:05.840+01:00
           hippostdpubwf:lastModifiedBy: admin
           hippotranslation:id: 15cbbb74-c06a-427e-88f8-a4fff306f9ba
           hippotranslation:locale: en
           visitscotland:title: Dummy Stops
-          visitscotland:transports: [boat, bus, car, cycling, ferry, public, train,
-            walking]
+          visitscotland:transports: [cycling, walking, boat, car, bus, train, ferry,
+            public]
           /visitscotland:introduction:
             jcr:primaryType: hippostd:html
             hippostd:content: |-
@@ -412,52 +413,10 @@
               </ul>
           /visitscotland:stops[1]:
             jcr:primaryType: hippo:mirror
-            hippo:docbase: 8030a311-a942-40e6-bb89-41dd6fea60df
+            hippo:docbase: 8b215960-87aa-47ae-9c11-8a750be25ad8
           /visitscotland:stops[2]:
             jcr:primaryType: hippo:mirror
-            hippo:docbase: 8b215960-87aa-47ae-9c11-8a750be25ad8
-          /visitscotland:stops[3]:
-            jcr:primaryType: hippo:mirror
             hippo:docbase: 1ead4399-7e30-47dc-9b75-2ea488fb5742
-      /a-new-day:
-        jcr:primaryType: hippo:handle
-        jcr:mixinTypes: ['hippo:named', 'mix:referenceable']
-        jcr:uuid: 2dafb326-df46-45f7-92e5-31a42587c9e8
-        hippo:name: A new day
-        /a-new-day[1]:
-          jcr:primaryType: visitscotland:Day
-          jcr:mixinTypes: ['mix:referenceable']
-          jcr:uuid: a6c27a7d-ba42-4d5e-88cc-a3f6be13c0cd
-          hippo:availability: []
-          hippostd:state: draft
-          hippostdpubwf:createdBy: admin
-          hippostdpubwf:creationDate: 2020-03-09T15:58:39.934Z
-          hippostdpubwf:lastModificationDate: 2020-03-09T15:59:11.660Z
-          hippostdpubwf:lastModifiedBy: admin
-          hippotranslation:id: 7dc84084-2479-45e2-a294-86f94ea4b742
-          hippotranslation:locale: en
-          visitscotland:title: This is a complete new day
-          visitscotland:transports: []
-          /visitscotland:introduction:
-            jcr:primaryType: hippostd:html
-            hippostd:content: <p>complete new day</p>
-        /a-new-day[2]:
-          jcr:primaryType: visitscotland:Day
-          jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
-          jcr:uuid: 74b90613-3c5a-420c-bc97-3de0064a3638
-          hippo:availability: [preview]
-          hippostd:state: unpublished
-          hippostdpubwf:createdBy: admin
-          hippostdpubwf:creationDate: 2020-03-09T15:58:39.934Z
-          hippostdpubwf:lastModificationDate: 2020-03-09T15:59:09.741Z
-          hippostdpubwf:lastModifiedBy: admin
-          hippotranslation:id: 7dc84084-2479-45e2-a294-86f94ea4b742
-          hippotranslation:locale: en
-          visitscotland:title: This is a complete new day
-          visitscotland:transports: []
-          /visitscotland:introduction:
-            jcr:primaryType: hippostd:html
-            hippostd:content: <p>complete new day</p>
     /content:
       jcr:primaryType: hippo:handle
       jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
@@ -751,9 +710,10 @@
       hippotranslation:locale: en
       /content:
         jcr:primaryType: hippo:handle
-        jcr:mixinTypes: ['hippo:versionInfo', 'mix:referenceable']
+        jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
         jcr:uuid: cbc8477d-1deb-4153-b663-12212905b472
-        hippo:versionHistory: 05d29dc7-b9f2-4fc5-b093-b66fb7493189
+        hippo:name: Listicle example for developers
+        hippo:versionHistory: 04e3c2c7-befa-473e-a3aa-f971c9b87ef6
         /content[1]:
           jcr:primaryType: visitscotland:Listicle
           jcr:mixinTypes: ['mix:referenceable']
@@ -762,15 +722,16 @@
           hippostd:state: draft
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2020-02-27T13:17:22.069Z
-          hippostdpubwf:lastModificationDate: 2020-03-17T11:17:36.062Z
+          hippostdpubwf:lastModificationDate: 2020-03-30T15:46:40.487+01:00
           hippostdpubwf:lastModifiedBy: admin
           hippotranslation:id: 7d4f9ca4-76eb-40a1-a793-29efa7f1ae68
           hippotranslation:locale: en
           visitscotland:breadcrumb: listicle
-          visitscotland:descOrder: true
+          visitscotland:descOrder: false
           visitscotland:seoDescription: ''
           visitscotland:seoNoIndex: false
           visitscotland:seoTitle: ''
+          visitscotland:summaryTitle: ''
           visitscotland:teaser: If you're looking for the best things to do in Scotland,
             then look no further. We've got iconic castles, incredible museums, beautiful
             gardens and much more in this list of top tourist attractions in Scotland.
@@ -789,6 +750,9 @@
               title="iKnow Community" target="_blank">iKnow Scotland Community</a>
               to share your tips and pick up a couple more for your next break or
               day out in Scotland.</p>
+          /visitscotland:summary:
+            jcr:primaryType: hippostd:html
+            hippostd:content: ''
         /content[2]:
           jcr:primaryType: visitscotland:Listicle
           jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
@@ -797,15 +761,16 @@
           hippostd:state: unpublished
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2020-02-27T13:17:22.069Z
-          hippostdpubwf:lastModificationDate: 2020-03-09T13:15:45.121Z
+          hippostdpubwf:lastModificationDate: 2020-03-30T14:44:59.491+01:00
           hippostdpubwf:lastModifiedBy: admin
           hippotranslation:id: 7d4f9ca4-76eb-40a1-a793-29efa7f1ae68
           hippotranslation:locale: en
           visitscotland:breadcrumb: listicle
-          visitscotland:descOrder: true
+          visitscotland:descOrder: false
           visitscotland:seoDescription: ''
           visitscotland:seoNoIndex: false
           visitscotland:seoTitle: ''
+          visitscotland:summaryTitle: ''
           visitscotland:teaser: If you're looking for the best things to do in Scotland,
             then look no further. We've got iconic castles, incredible museums, beautiful
             gardens and much more in this list of top tourist attractions in Scotland.
@@ -824,6 +789,9 @@
               title="iKnow Community" target="_blank">iKnow Scotland Community</a>
               to share your tips and pick up a couple more for your next break or
               day out in Scotland.</p>
+          /visitscotland:summary:
+            jcr:primaryType: hippostd:html
+            hippostd:content: ''
         /content[3]:
           jcr:primaryType: visitscotland:Listicle
           jcr:mixinTypes: ['mix:referenceable']
@@ -832,16 +800,17 @@
           hippostd:state: published
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2020-02-27T13:17:22.069Z
-          hippostdpubwf:lastModificationDate: 2020-03-09T13:15:45.121Z
+          hippostdpubwf:lastModificationDate: 2020-03-30T14:44:59.491+01:00
           hippostdpubwf:lastModifiedBy: admin
-          hippostdpubwf:publicationDate: 2020-03-09T13:16:02.107Z
+          hippostdpubwf:publicationDate: 2020-03-30T15:47:09.865+01:00
           hippotranslation:id: 7d4f9ca4-76eb-40a1-a793-29efa7f1ae68
           hippotranslation:locale: en
           visitscotland:breadcrumb: listicle
-          visitscotland:descOrder: true
+          visitscotland:descOrder: false
           visitscotland:seoDescription: ''
           visitscotland:seoNoIndex: false
           visitscotland:seoTitle: ''
+          visitscotland:summaryTitle: ''
           visitscotland:teaser: If you're looking for the best things to do in Scotland,
             then look no further. We've got iconic castles, incredible museums, beautiful
             gardens and much more in this list of top tourist attractions in Scotland.
@@ -860,174 +829,106 @@
               title="iKnow Community" target="_blank">iKnow Scotland Community</a>
               to share your tips and pick up a couple more for your next break or
               day out in Scotland.</p>
+          /visitscotland:summary:
+            jcr:primaryType: hippostd:html
+            hippostd:content: ''
       /national-museum-of-scotland:
         jcr:primaryType: hippo:handle
         jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
-        jcr:uuid: 7cd612c4-97e7-4f01-8a52-a9a3160c7667
+        jcr:uuid: ead8d839-b377-47a4-80d0-8db068aa4238
         hippo:name: National Museum of Scotland
-        hippo:versionHistory: c243c4ea-931a-4739-83b9-fa8c835ac2ac
+        hippo:versionHistory: a7876fa1-b829-4386-8b73-69e7b576e9be
         /national-museum-of-scotland[1]:
           jcr:primaryType: visitscotland:ListicleItem
           jcr:mixinTypes: ['mix:referenceable']
-          jcr:uuid: 82182c16-1713-4f61-b250-8fc26a21aeea
+          jcr:uuid: 928abd4d-f3d8-47b5-b382-97e44e51b347
           hippo:availability: []
           hippostd:state: draft
           hippostdpubwf:createdBy: admin
-          hippostdpubwf:creationDate: 2020-02-27T13:19:13.009Z
-          hippostdpubwf:lastModificationDate: 2020-03-09T16:14:46.856Z
+          hippostdpubwf:creationDate: 2020-03-30T14:46:39.631+01:00
+          hippostdpubwf:lastModificationDate: 2020-03-30T15:47:19.870+01:00
           hippostdpubwf:lastModifiedBy: admin
-          hippotranslation:id: aa4d5cb3-9313-4d6a-9741-225c19c36f20
+          hippotranslation:id: ec9e89f9-6bbe-4b0b-9402-c70a1e5ca466
           hippotranslation:locale: en
-          visitscotland:subtitle: Edinburgh
-          visitscotland:title: National Museum of Scotland
+          visitscotland:subtitle: ''
+          visitscotland:title: NATIONAL MUSEUM OF SCOTLAND
           /visitscotland:description:
             jcr:primaryType: hippostd:html
-            hippostd:content: <p>The&nbsp;<strong>National Museum of Scotland</strong>&nbsp;in&nbsp;<a
-              href="https://en.wikipedia.org/wiki/Edinburgh" title="Edinburgh">Edinburgh</a>,
-              Scotland, was formed in 2006 with the merger of the new&nbsp;<strong>Museum
-              of Scotland</strong>, with collections relating to Scottish&nbsp;<a
-              href="https://en.wikipedia.org/wiki/Antiquities" title="Antiquities">antiquities</a>,&nbsp;<a
-              href="https://en.wikipedia.org/wiki/Culture_of_Scotland" title="Culture
-              of Scotland">culture</a>&nbsp;and&nbsp;<a href="https://en.wikipedia.org/wiki/History_of_Scotland"
-              title="History of Scotland">history</a>, and the adjacent&nbsp;<strong>Royal
-              Scottish Museum</strong>&nbsp;(so renamed in 1904), with collections
-              covering science and technology,&nbsp;<a href="https://en.wikipedia.org/wiki/Natural_history"
-              title="Natural history">natural history</a>, and world cultures. The
-              two connected buildings stand beside each other on&nbsp;<a href="https://en.wikipedia.org/wiki/Chambers_Street_(Edinburgh)"
-              title="Chambers Street (Edinburgh)">Chambers Street</a>, by the intersection
-              with the&nbsp;<a href="https://en.wikipedia.org/wiki/George_IV_Bridge"
-              title="George IV Bridge">George IV Bridge</a>, in central Edinburgh.
-              The museum is part of&nbsp;<a href="https://en.wikipedia.org/wiki/National_Museums_Scotland"
-              title="National Museums Scotland">National Museums Scotland</a>. Admission
-              is free.</p>
+            hippostd:content: |-
+              <p>The National Museum of Scotland is one of the Top 10 UK visitor attractions, and in the Top 20 of the most visited museums and galleries in the world.</p>
+
+              <p>Fresh from a £47 million redevelopment, the museum houses a spectacular array of over 20,000 fascinating artefacts. Our magnificently diverse collections will take you on an inspirational journey through the history of Scotland, the wonders of nature, world cultures and the excitement of science and discovery – all under one roof.</p>
+
+              <p>We are closed on Christmas Day - 25th December.</p>
+
+              <p>Explore this attraction with the&nbsp;<a rel="nofollow" href="https://www.visitscotland.com/app/">ScotlandVR app</a>.</p>
           /visitscotland:products:
             jcr:primaryType: visitscotland:DMSLink
-            visitscotland:label: ''
+            visitscotland:label: Discover the musseum.
             visitscotland:product: '246591'
-          /visitscotland:extraLinks:
-            jcr:primaryType: visitscotland:ProductSearchLink
-            visitscotland:label: Discover more museums in edinburgh
-            /visitscotland:search:
-              jcr:primaryType: visitscotland:ProductsSearch
-              visitscotland:dmsAwards: [qaiknowscotland]
-              visitscotland:dmsCategories: [bandb]
-              visitscotland:dmsFacilities: [petswelcom]
-              visitscotland:location: Edinburgh
-              visitscotland:officialrating: ['3']
-              visitscotland:productType: acco
-              visitscotland:producttype: acti,attr,reta
-          /visitscotland:images:
-            jcr:primaryType: hippogallerypicker:imagelink
-            hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
-            hippo:facets: []
-            hippo:modes: []
-            hippo:values: []
         /national-museum-of-scotland[2]:
           jcr:primaryType: visitscotland:ListicleItem
           jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
-          jcr:uuid: 9d0a3578-a681-41ad-ac92-3de013ec3117
+          jcr:uuid: fd076e84-c3f6-42c8-9fcf-01ad553eac85
           hippo:availability: [preview]
           hippostd:state: unpublished
           hippostdpubwf:createdBy: admin
-          hippostdpubwf:creationDate: 2020-02-27T13:19:13.009Z
-          hippostdpubwf:lastModificationDate: 2020-03-06T12:31:14.847Z
+          hippostdpubwf:creationDate: 2020-03-30T14:46:39.631+01:00
+          hippostdpubwf:lastModificationDate: 2020-03-30T14:52:34.174+01:00
           hippostdpubwf:lastModifiedBy: admin
-          hippotranslation:id: aa4d5cb3-9313-4d6a-9741-225c19c36f20
+          hippotranslation:id: ec9e89f9-6bbe-4b0b-9402-c70a1e5ca466
           hippotranslation:locale: en
-          visitscotland:subtitle: Edinburgh
-          visitscotland:title: National Museum of Scotland
+          visitscotland:subtitle: ''
+          visitscotland:title: NATIONAL MUSEUM OF SCOTLAND
           /visitscotland:description:
             jcr:primaryType: hippostd:html
-            hippostd:content: <p>The&nbsp;<strong>National Museum of Scotland</strong>&nbsp;in&nbsp;<a
-              href="https://en.wikipedia.org/wiki/Edinburgh" title="Edinburgh">Edinburgh</a>,
-              Scotland, was formed in 2006 with the merger of the new&nbsp;<strong>Museum
-              of Scotland</strong>, with collections relating to Scottish&nbsp;<a
-              href="https://en.wikipedia.org/wiki/Antiquities" title="Antiquities">antiquities</a>,&nbsp;<a
-              href="https://en.wikipedia.org/wiki/Culture_of_Scotland" title="Culture
-              of Scotland">culture</a>&nbsp;and&nbsp;<a href="https://en.wikipedia.org/wiki/History_of_Scotland"
-              title="History of Scotland">history</a>, and the adjacent&nbsp;<strong>Royal
-              Scottish Museum</strong>&nbsp;(so renamed in 1904), with collections
-              covering science and technology,&nbsp;<a href="https://en.wikipedia.org/wiki/Natural_history"
-              title="Natural history">natural history</a>, and world cultures. The
-              two connected buildings stand beside each other on&nbsp;<a href="https://en.wikipedia.org/wiki/Chambers_Street_(Edinburgh)"
-              title="Chambers Street (Edinburgh)">Chambers Street</a>, by the intersection
-              with the&nbsp;<a href="https://en.wikipedia.org/wiki/George_IV_Bridge"
-              title="George IV Bridge">George IV Bridge</a>, in central Edinburgh.
-              The museum is part of&nbsp;<a href="https://en.wikipedia.org/wiki/National_Museums_Scotland"
-              title="National Museums Scotland">National Museums Scotland</a>. Admission
-              is free.</p>
+            hippostd:content: |-
+              <p>The National Museum of Scotland is one of the Top 10 UK visitor attractions, and in the Top 20 of the most visited museums and galleries in the world.</p>
+
+              <p>Fresh from a £47 million redevelopment, the museum houses a spectacular array of over 20,000 fascinating artefacts. Our magnificently diverse collections will take you on an inspirational journey through the history of Scotland, the wonders of nature, world cultures and the excitement of science and discovery – all under one roof.</p>
+
+              <p>We are closed on Christmas Day - 25th December.</p>
+
+              <p>Explore this attraction with the&nbsp;<a rel="nofollow" href="https://www.visitscotland.com/app/">ScotlandVR app</a>.</p>
           /visitscotland:products:
             jcr:primaryType: visitscotland:DMSLink
-            visitscotland:label: ''
+            visitscotland:label: Discover the musseum.
             visitscotland:product: '246591'
-          /visitscotland:extraLinks:
-            jcr:primaryType: visitscotland:ProductSearchLink
-            visitscotland:label: Discover more museums in edinburgh
-            /visitscotland:search:
-              jcr:primaryType: visitscotland:ProductsSearch
-              visitscotland:dmsAwards: [qaiknowscotland]
-              visitscotland:dmsCategories: [bandb]
-              visitscotland:dmsFacilities: [petswelcom]
-              visitscotland:location: Edinburgh
-              visitscotland:officialrating: ['3']
-              visitscotland:productType: acco
-              visitscotland:producttype: acti,attr,reta
         /national-museum-of-scotland[3]:
           jcr:primaryType: visitscotland:ListicleItem
           jcr:mixinTypes: ['mix:referenceable']
-          jcr:uuid: 616d0120-4913-458f-9f81-73564f4b8d50
+          jcr:uuid: 42aec38c-dd60-474a-b7d0-04c013a6b1c4
           hippo:availability: [live]
           hippostd:state: published
           hippostdpubwf:createdBy: admin
-          hippostdpubwf:creationDate: 2020-02-27T13:19:13.009Z
-          hippostdpubwf:lastModificationDate: 2020-03-06T12:31:14.847Z
+          hippostdpubwf:creationDate: 2020-03-30T14:46:39.631+01:00
+          hippostdpubwf:lastModificationDate: 2020-03-30T14:52:34.174+01:00
           hippostdpubwf:lastModifiedBy: admin
-          hippostdpubwf:publicationDate: 2020-03-09T13:16:07.218Z
-          hippotranslation:id: aa4d5cb3-9313-4d6a-9741-225c19c36f20
+          hippostdpubwf:publicationDate: 2020-03-30T15:47:41.223+01:00
+          hippotranslation:id: ec9e89f9-6bbe-4b0b-9402-c70a1e5ca466
           hippotranslation:locale: en
-          visitscotland:subtitle: Edinburgh
-          visitscotland:title: National Museum of Scotland
+          visitscotland:subtitle: ''
+          visitscotland:title: NATIONAL MUSEUM OF SCOTLAND
           /visitscotland:description:
             jcr:primaryType: hippostd:html
-            hippostd:content: <p>The&nbsp;<strong>National Museum of Scotland</strong>&nbsp;in&nbsp;<a
-              href="https://en.wikipedia.org/wiki/Edinburgh" title="Edinburgh">Edinburgh</a>,
-              Scotland, was formed in 2006 with the merger of the new&nbsp;<strong>Museum
-              of Scotland</strong>, with collections relating to Scottish&nbsp;<a
-              href="https://en.wikipedia.org/wiki/Antiquities" title="Antiquities">antiquities</a>,&nbsp;<a
-              href="https://en.wikipedia.org/wiki/Culture_of_Scotland" title="Culture
-              of Scotland">culture</a>&nbsp;and&nbsp;<a href="https://en.wikipedia.org/wiki/History_of_Scotland"
-              title="History of Scotland">history</a>, and the adjacent&nbsp;<strong>Royal
-              Scottish Museum</strong>&nbsp;(so renamed in 1904), with collections
-              covering science and technology,&nbsp;<a href="https://en.wikipedia.org/wiki/Natural_history"
-              title="Natural history">natural history</a>, and world cultures. The
-              two connected buildings stand beside each other on&nbsp;<a href="https://en.wikipedia.org/wiki/Chambers_Street_(Edinburgh)"
-              title="Chambers Street (Edinburgh)">Chambers Street</a>, by the intersection
-              with the&nbsp;<a href="https://en.wikipedia.org/wiki/George_IV_Bridge"
-              title="George IV Bridge">George IV Bridge</a>, in central Edinburgh.
-              The museum is part of&nbsp;<a href="https://en.wikipedia.org/wiki/National_Museums_Scotland"
-              title="National Museums Scotland">National Museums Scotland</a>. Admission
-              is free.</p>
+            hippostd:content: |-
+              <p>The National Museum of Scotland is one of the Top 10 UK visitor attractions, and in the Top 20 of the most visited museums and galleries in the world.</p>
+
+              <p>Fresh from a £47 million redevelopment, the museum houses a spectacular array of over 20,000 fascinating artefacts. Our magnificently diverse collections will take you on an inspirational journey through the history of Scotland, the wonders of nature, world cultures and the excitement of science and discovery – all under one roof.</p>
+
+              <p>We are closed on Christmas Day - 25th December.</p>
+
+              <p>Explore this attraction with the&nbsp;<a rel="nofollow" href="https://www.visitscotland.com/app/">ScotlandVR app</a>.</p>
           /visitscotland:products:
             jcr:primaryType: visitscotland:DMSLink
-            visitscotland:label: ''
+            visitscotland:label: Discover the musseum.
             visitscotland:product: '246591'
-          /visitscotland:extraLinks:
-            jcr:primaryType: visitscotland:ProductSearchLink
-            visitscotland:label: Discover more museums in edinburgh
-            /visitscotland:search:
-              jcr:primaryType: visitscotland:ProductsSearch
-              visitscotland:dmsAwards: [qaiknowscotland]
-              visitscotland:dmsCategories: [bandb]
-              visitscotland:dmsFacilities: [petswelcom]
-              visitscotland:location: Edinburgh
-              visitscotland:officialrating: ['3']
-              visitscotland:productType: acco
-              visitscotland:producttype: acti,attr,reta
       /edinburgh-castle:
         jcr:primaryType: hippo:handle
         jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
         jcr:uuid: f86e10db-c111-4855-8e85-9952ca6efe8d
         hippo:name: Edinburgh Castle
+        hippo:versionHistory: 4a77e8c0-bf1a-4b23-9245-884453de9339
         /edinburgh-castle[1]:
           jcr:primaryType: visitscotland:ListicleItem
           jcr:mixinTypes: ['mix:referenceable']
@@ -1036,7 +937,7 @@
           hippostd:state: draft
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2020-02-27T13:21:08.257Z
-          hippostdpubwf:lastModificationDate: 2020-03-09T09:57:27.291Z
+          hippostdpubwf:lastModificationDate: 2020-03-30T14:51:13.519+01:00
           hippostdpubwf:lastModifiedBy: admin
           hippotranslation:id: 25df6d19-f276-49c9-b0e7-5a76254666fe
           hippotranslation:locale: en
@@ -1061,7 +962,7 @@
           hippostd:state: unpublished
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2020-02-27T13:21:08.257Z
-          hippostdpubwf:lastModificationDate: 2020-03-09T09:50:44.970Z
+          hippostdpubwf:lastModificationDate: 2020-03-30T14:51:13.410+01:00
           hippostdpubwf:lastModifiedBy: admin
           hippotranslation:id: 25df6d19-f276-49c9-b0e7-5a76254666fe
           hippotranslation:locale: en
@@ -1086,9 +987,9 @@
           hippostd:state: published
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2020-02-27T13:21:08.257Z
-          hippostdpubwf:lastModificationDate: 2020-03-09T09:50:44.970Z
+          hippostdpubwf:lastModificationDate: 2020-03-30T14:51:13.410+01:00
           hippostdpubwf:lastModifiedBy: admin
-          hippostdpubwf:publicationDate: 2020-03-12T11:34:40.837Z
+          hippostdpubwf:publicationDate: 2020-03-30T15:47:45.174+01:00
           hippotranslation:id: 25df6d19-f276-49c9-b0e7-5a76254666fe
           hippotranslation:locale: en
           visitscotland:subtitle: ''
@@ -2788,7 +2689,6 @@
           jcr:mixinTypes: ['mix:referenceable']
           jcr:uuid: e9f9e393-b112-43fe-a08b-828f062d4a3e
           hippo:availability: []
-          hippostd:holder: admin
           hippostd:state: draft
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2020-03-17T11:17:48.546Z

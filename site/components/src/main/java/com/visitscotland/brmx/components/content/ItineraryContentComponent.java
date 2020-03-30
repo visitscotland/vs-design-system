@@ -143,7 +143,7 @@ public class ItineraryContentComponent extends PageContentComponent<Itinerary> {
                                 if (product.has(OPENING)){
                                     JSONObject opening = product.getJSONObject(OPENING);
                                     //TODO adjust the message to designs when ready
-                                    if ((opening.has(OPENING_STATE)) && (opening.getString(OPENING_STATE)!="unknown")) {
+                                    if ((opening.has(OPENING_STATE)) && (!opening.getString(OPENING_STATE).equalsIgnoreCase("unknown"))) {
                                         String openingMessge = opening.getBoolean(OPENING_PROVISIONAL)==false? "Usually " : "Provisionally ";
                                         openingMessge = openingMessge + opening.getString(OPENING_STATE) +" "+ opening.getString(OPENING_DAY);
                                         if ((opening.has(START_TIME)) && (opening.has(END_TIME))) {
