@@ -1,7 +1,6 @@
 package com.visitscotland.brmx.beans.mapping;
 
 import com.visitscotland.brmx.beans.ListicleItem;
-import org.hippoecm.hst.content.beans.standard.HippoBean;
 import org.hippoecm.hst.content.beans.standard.HippoHtml;
 import org.json.JSONObject;
 
