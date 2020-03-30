@@ -12,6 +12,11 @@ const webpackBabelRuleIncludes = [
     resolve("node_modules/unicode-match-property-ecmascript"),
     resolve("node_modules/unicode-match-property-value-ecmascript"),
     resolve("node_modules/buble/node_modules/acorn-jsx"),
+    resolve("node_modules/react-dev-utils"),
+    resolve("node_modules/chalk"),
+    resolve("node_modules/ansi-styles"),
+    resolve("node_modules/acorn-jsx"),
+    resolve("node_modules/camelcase"),
 ]
 
 const webpackBabelRuleUse = {
@@ -23,13 +28,9 @@ const webpackBabelRuleUse = {
                 "@babel/preset-env",
                 {
                     useBuiltIns: "usage",
-                    corejs: "3.0.0",
+                    corejs: 3,
                     targets: {
                         ie: "11",
-                        chrome: "71",
-                        firefox: "64",
-                        safari: "11",
-                        edge: "17",
                     },
                 },
             ],
@@ -44,17 +45,18 @@ function resolve(dir) {
 
 function getBaseConfig() {
     const babelRule = _.find(_.get(baseConfig, "module.rules"), ["loader", "babel-loader"])
-
+  
     if (babelRule) {
-    // insert extra includes and settings to the base config for docs generation
-        _.unset(babelRule, "loader")
-
-        babelRule.include = _.concat(babelRule.include, webpackBabelRuleIncludes)
-        babelRule.use = webpackBabelRuleUse
+      // insert extra includes and settings to the base config for docs generation
+      _.unset(babelRule, "loader")
+  
+      babelRule.include = _.concat(babelRule.include, webpackBabelRuleIncludes)
+      babelRule.use = webpackBabelRuleUse
     }
-
+  
     return baseConfig
 }
+  
 
 module.exports = {
     /**
