@@ -5,11 +5,10 @@
 <#include "../../../vs-dotcom-ds/components/itinerary-stop.ftl">
 <#include "../../../vs-dotcom-ds/components/itinerary-border-overlap-wrapper.ftl">
 <#include "../../../vs-dotcom-ds/components/image-with-caption.ftl">
-<#include "../../../vs-dotcom-ds/components/icon-description-list.ftl">
+<#include "../../../vs-dotcom-ds/components/icon-list.ftl">
+<#include "../../../vs-dotcom-ds/components/icon-list-item.ftl">
 <#include "../../../vs-dotcom-ds/components/img.ftl">
 <#include "../../../vs-dotcom-ds/components/icon.ftl">
-<#include "../../../vs-dotcom-ds/components/icon-description-list-term.ftl">
-<#include "../../../vs-dotcom-ds/components/icon-description-list-detail.ftl">
 <#include "../../../vs-dotcom-ds/components/link.ftl">
 <#include "../../../vs-dotcom-ds/components/social-credit-link.ftl">
 
@@ -95,29 +94,29 @@
 
 		<div slot="description-slot">
 			<@hst.html hippohtml=item.description />
-			<#if item.links?has_content>
-				<#list item.links as cta>
+
+			<#if  item.ctaLinks?has_content>
+				<#list item.ctaLinks as cta>
 					<#if cta?has_content>
-						<vs-link href="${cta.link}">${cta.label}</vs-link>
-						</br>
+                        <div class="mb-2">
+						    <vs-link href="${cta.link}">${cta.label}</vs-link>
+                        </div>
 					</#if>
 				</#list>
 			</#if>
 		</div>
 
-		<#if item.facilities?? && item.facilities?size gt 1>
+        <#if item.facilities?? && item.facilities?size gt 1>
 			<div slot="facilities-slot">
-				<vs-icon-description-list>
+				<vs-icon-list title="${label('keyFacilities', 'keyfacilitiestitle')}">
 					<#list item.facilities as facility>
-						<vs-icon-description-list-detail
-							icon="${facility.id}"
-							label="${facility.name}">
-						</vs-icon-description-list-detail>
+						<vs-icon-list-item
+							icon="${facility}"
+							label="${label("keyFacilities", "${facility}")}">
+						</vs-icon-list-item>
 					</#list>
-				</vs-icon-description-list>
+				</vs-icon-list>
 			</div>
 		</#if>
-
-
 	</vs-listicle-item>
 </#macro>

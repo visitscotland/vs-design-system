@@ -1,7 +1,7 @@
 <template>
     <div class="vs-icon-list">
         <div class="vs-icon-list__title" v-if="title">{{ title }}</div>
-        <ul class="vs-icon-list__list mb-0 pl-0">
+        <ul class="vs-icon-list__list mb-0">
             <slot />
         </ul>
     </div>
@@ -35,12 +35,13 @@ export default {
     .vs-icon-list__title {
         font-size: $h4-font-size;
         font-weight: $lead-font-weight;
-        margin: $spacer-5 0;
+        margin-bottom: $spacer-5;
     }
 
     .vs-icon-list__list {
         display: inline-block;
         margin: 0 auto;
+        padding: 0;
         text-align: left;
     }
 }
