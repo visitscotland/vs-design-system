@@ -1,42 +1,42 @@
 <template>
     <li class="vs-listicle-item border">
-        
-			<slot name="hippo-details" />
+        <slot name="hippo-details" />
 
-			<!-- HEADER -->
-            <div class="d-flex justify-content-start align-items-top border-bottom border-white ">
-                <div class="position-relative">
-                    <div class="count__bg">
-                    	<span class="count" aria-hidden="true">{{ index }}</span>
-                    </div>
-                </div>
-                <vs-heading level="3">
-                    {{ title }}
-
-                    <template slot="sub-heading">
-                        {{subTitle}}
-                    </template>
-                </vs-heading>
-            </div>
-
-			<!-- BODY -->
-            <div>
-                <!-- @slot Contains the image to be shown.  -->
-                <slot name="image-slot" />
-            
-                <div class="content">
-
-                    <div class="intro">
-                        <!-- @slot Contains the description to be shown.  -->
-                        <slot name="description-slot" />
-                    </div>
-                    
-                    <div class="facilities border-top">
-                        <!-- @slot Contains the facilities list to be shown.  -->
-                        <slot name="facilities-slot"  />
-                    </div>
+        <!-- HEADER -->
+        <div class="d-flex justify-content-start align-items-top border-bottom border-white ">
+            <div class="position-relative">
+                <div class="count__bg">
+                    <span class="count" aria-hidden="true">{{ index }}</span>
                 </div>
             </div>
+            <vs-heading level="3">
+                {{ title }}
+
+                <template slot="sub-heading">
+                    {{ subTitle }}
+                </template>
+            </vs-heading>
+        </div>
+
+        <!-- BODY -->
+        <!-- @slot Contains the image to be shown.  -->
+        <slot name="image-slot" />
+
+        <vs-row>
+            <vs-col cols="12" lg="8" class="mt-2 mt-sm-9 mb-4 mt-lg-2 pr-lg-9">
+                <!-- @slot Contains the description to be shown.  -->
+                <slot name="description-slot" />
+            </vs-col>
+            <vs-col
+                cols="12"
+                lg="4"
+                class="key-facilities-list mt-lg-10"
+                :class="[hasKeyFacilitiesSlot ? 'has-facilities' : '']"
+            >
+                <!-- @slot Contains the facilities list to be shown.  -->
+                <slot name="facilities-slot" />
+            </vs-col>
+        </vs-row>
     </li>
 </template>
 
@@ -49,36 +49,40 @@ export default {
     status: "prototype",
     release: "0.0.1",
     components: {
-        VsHeading
-	},
+        VsHeading,
+    },
     props: {
-		/**
-		 * The index value for the listicle item to be shown on the header
-		 */
-    	index: {
-    		type: String
-		},
-		/**
-		 * The listicle item title
-		 */
-    	title: {
-    		type: String
-		},
-		/**
-		 * The listicle item subtitle
-		 */
-		subTitle: {
-    		type: String
-		}
-    }
+        /**
+         * The index value for the listicle item to be shown on the header
+         */
+        index: {
+            type: String,
+        },
+        /**
+         * The listicle item title
+         */
+        title: {
+            type: String,
+        },
+        /**
+         * The listicle item subtitle
+         */
+        subTitle: {
+            type: String,
+        },
+    },
+    computed: {
+        hasKeyFacilitiesSlot() {
+            return !!this.$slots["facilities-slot"]
+        },
+    },
 }
 </script>
 
 <style lang="scss" scoped>
-
 .vs-listicle-item {
     margin-bottom: $spacer-12;
-    
+
     .count {
         color: $color-white;
         font-family: $headings-font-family;
@@ -88,7 +92,7 @@ export default {
         text-align: center;
         width: 100%;
 
-        &:after{
+        &:after {
             content: "";
             border-bottom: 1px solid $color-white;
             display: block;
@@ -114,10 +118,14 @@ export default {
         }
 
         @include media-breakpoint-up(lg) {
-            padding: $spacer-9;
+            padding: $spacer-8;
         }
 
         @include media-breakpoint-up(xl) {
+            padding: $spacer-11;
+        }
+
+        @include media-breakpoint-up(xxl) {
             padding: $spacer-12;
         }
     }
@@ -126,7 +134,7 @@ export default {
         display: flex;
         flex-direction: column;
         justify-content: center;
-        margin-left: $spacer-2;
+        margin-left: $spacer-3;
         margin-bottom: $spacer-5;
 
         @include media-breakpoint-up(md) {
@@ -134,75 +142,54 @@ export default {
         }
     }
 
-    .content {
-        display: flex;
-        flex-direction: column;
+    .key-facilities-list {
+        &.has-facilities {
+            border-top: 1px solid $color-gray-tint-5;
+            padding-top: $spacer-4;
 
-        @include media-breakpoint-up(md) {
-            flex-direction: initial;
-        }
-
-        .intro {
-            overflow-wrap: break-word;
-            margin-top: $spacer-2;
-            margin-bottom: $spacer-4;
-
-             @include media-breakpoint-up(sm) {
-               margin-top: $spacer-9;
-            }
-            
-            @include media-breakpoint-up(md) {
-                margin-top: $spacer-3;
-                margin-right: $spacer-4;
-            }
-        }
-
-        a.cta {
-            display: block;
-        }
-
-        .facilities {
-            @include media-breakpoint-down(xs) {
-                min-width: calc(100% + 2rem);
-                margin-left: -1rem;
+            @include media-breakpoint-up(sm) {
+                border-top: 0;
+                padding-top: 0;
             }
 
-            @include media-breakpoint-up(md) {
-                border-top: 0!important;
+            @include media-breakpoint-up(lg) {
                 border-left: 1px solid $color-gray-tint-5;
-                margin-top: $spacer-11;
-                padding: 0 $spacer-8;
-                width: auto;
             }
 
-            .vs-icon-description-list {
-                font-size: $h6-font-size;
-                line-height: 16px;
-                border: 0;
-                display: grid;
-                width: max-content;
-                grid-template-columns: 1fr 1fr 1fr;
-                margin: 0 auto;
-                align-self: center;
-                justify-self: center;
+            & ::v-deep {
+                .vs-icon-list {
+                    .vs-icon-list__item {
+                        width: 80px;
+                    }
 
-                @include media-breakpoint-up(sm) {
-                    padding: 2rem 0;
-                }
+                    @include media-breakpoint-up(sm) {
+                        border-top: 1px solid $color-gray-tint-5;
+                        padding-top: $spacer-4;
 
-                @include media-breakpoint-up(md) {
-                    padding: 0;
-                }
+                        .vs-icon-list__item {
+                            width: 90px;
+                        }
+                    }
 
-                & ::v-deep dd {
-                    justify-self: center;
-                    padding: 0 $spacer-4;
-                    display: inline-block;
+                    @include media-breakpoint-up(lg) {
+                        border-top: 0;
+                        padding: 0 $spacer-2;
+
+                        .vs-icon-list__item {
+                            width: 80px;
+                        }
+                    }
+                    @include media-breakpoint-up(xl) {
+                        padding: 0 $spacer-4;
+                    }
+
+                    @include media-breakpoint-up(xxl) {
+                        padding: 0 $spacer-9;
+                    }
                 }
             }
         }
     }
-
 }
 </style>
 
@@ -210,90 +197,7 @@ export default {
 ```jsx
 
 	<ul style="list-style-type: none; padding: 0;">
-		<vs-listicle-item 
-			v-for="(item, index) in listicles.sampleListicle"
-			key="index"
-			index="1"
-			:title="item.title"
-			:subTitle="item.subTitle"
-			ctaLink=""
-			:ctaLabel="item.ctaLabel"
-		>
-			<div slot="image-slot">
-				<vs-image-with-caption
-					:altText="item.image.altText"
-					:image-src="item.image.imageSrc"
-					:latitude="item.image.latitude"
-					:longitude="item.image.longitude"
-					variant="large"
-				>
-					<vs-img 
-						class="lazyload" 
-						:src="item.image.imageSrc"
-						srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
-						:data-srcset="item.image.imageSrc" 
-						:alt="item.image.altText"
-						data-sizes="auto">
-					</vs-img>
 
-					<span slot="caption">
-						{{ item.image.caption }}
-					</span>
-
-					<span slot="credit">
-						&copy; {{ item.image.credit }}
-					</span>
-				</vs-image-with-caption>
-			</div>
-
-			<div slot="description-slot">
-				<p data-v-0abaabb3="">The&nbsp;<strong data-v-0abaabb3="">National Museum of Scotland</strong>&nbsp;in&nbsp;<a data-v-0abaabb3="" href="https://en.wikipedia.org/wiki/Edinburgh" title="Edinburgh" target="_blank">Edinburgh</a>, Scotland, was formed in 2006 with the merger of the new&nbsp;<strong data-v-0abaabb3="">Museum of Scotland</strong>, with collections relating to Scottish&nbsp;<a data-v-0abaabb3="" href="https://en.wikipedia.org/wiki/Antiquities" title="Antiquities" target="_blank">antiquities</a>,&nbsp;<a data-v-0abaabb3="" href="https://en.wikipedia.org/wiki/Culture_of_Scotland" title="Culture of Scotland" target="_blank">culture</a>&nbsp;and&nbsp;<a data-v-0abaabb3="" href="https://en.wikipedia.org/wiki/History_of_Scotland" title="History of Scotland" target="_blank">history</a>, and the adjacent&nbsp;<strong data-v-0abaabb3="">Royal Scottish Museum</strong>&nbsp;(so renamed in 1904), with collections covering science and technology,&nbsp;<a data-v-0abaabb3="" href="https://en.wikipedia.org/wiki/Natural_history" title="Natural history" target="_blank">natural history</a>, and world cultures. The two connected buildings stand beside each other on&nbsp;<a data-v-0abaabb3="" href="https://en.wikipedia.org/wiki/Chambers_Street_(Edinburgh)" title="Chambers Street (Edinburgh)" target="_blank">Chambers Street</a>, by the intersection with the&nbsp;<a data-v-0abaabb3="" href="https://en.wikipedia.org/wiki/George_IV_Bridge" title="George IV Bridge" target="_blank">George IV Bridge</a>, in central Edinburgh. The museum is part of&nbsp;<a data-v-0abaabb3="" href="https://en.wikipedia.org/wiki/National_Museums_Scotland" title="National Museums Scotland" target="_blank">National Museums Scotland</a>. Admission is free.</p>
-			</div>
-
-			
-		</vs-listicle-item">
-        <vs-listicle-item 
-			v-for="(item, index) in listicles.sampleListicle"
-			key="index"
-			index="1"
-			:title="item.title"
-			:subTitle="item.subTitle"
-			ctaLink=""
-			:ctaLabel="item.ctaLabel"
-		>
-			<div slot="image-slot">
-				<vs-image-with-caption
-					:altText="item.image.altText"
-					:image-src="item.image.imageSrc"
-					:latitude="item.image.latitude"
-					:longitude="item.image.longitude"
-					variant="large"
-				>
-					<vs-img 
-						class="lazyload" 
-						:src="item.image.imageSrc"
-						srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
-						:data-srcset="item.image.imageSrc" 
-						:alt="item.image.altText"
-						data-sizes="auto">
-					</vs-img>
-
-					<span slot="caption">
-						{{ item.image.caption }}
-					</span>
-
-					<span slot="credit">
-						&copy; {{ item.image.credit }}
-					</span>
-				</vs-image-with-caption>
-			</div>
-
-			<div slot="description-slot">
-				<p data-v-0abaabb3="">The&nbsp;<strong data-v-0abaabb3="">National Museum of Scotland</strong>&nbsp;in&nbsp;<a data-v-0abaabb3="" href="https://en.wikipedia.org/wiki/Edinburgh" title="Edinburgh" target="_blank">Edinburgh</a>, Scotland, was formed in 2006 with the merger of the new&nbsp;<strong data-v-0abaabb3="">Museum of Scotland</strong>, with collections relating to Scottish&nbsp;<a data-v-0abaabb3="" href="https://en.wikipedia.org/wiki/Antiquities" title="Antiquities" target="_blank">antiquities</a>,&nbsp;<a data-v-0abaabb3="" href="https://en.wikipedia.org/wiki/Culture_of_Scotland" title="Culture of Scotland" target="_blank">culture</a>&nbsp;and&nbsp;<a data-v-0abaabb3="" href="https://en.wikipedia.org/wiki/History_of_Scotland" title="History of Scotland" target="_blank">history</a>, and the adjacent&nbsp;<strong data-v-0abaabb3="">Royal Scottish Museum</strong>&nbsp;(so renamed in 1904), with collections covering science and technology,&nbsp;<a data-v-0abaabb3="" href="https://en.wikipedia.org/wiki/Natural_history" title="Natural history" target="_blank">natural history</a>, and world cultures. The two connected buildings stand beside each other on&nbsp;<a data-v-0abaabb3="" href="https://en.wikipedia.org/wiki/Chambers_Street_(Edinburgh)" title="Chambers Street (Edinburgh)" target="_blank">Chambers Street</a>, by the intersection with the&nbsp;<a data-v-0abaabb3="" href="https://en.wikipedia.org/wiki/George_IV_Bridge" title="George IV Bridge" target="_blank">George IV Bridge</a>, in central Edinburgh. The museum is part of&nbsp;<a data-v-0abaabb3="" href="https://en.wikipedia.org/wiki/National_Museums_Scotland" title="National Museums Scotland" target="_blank">National Museums Scotland</a>. Admission is free.</p>
-			</div>
-
-			
-		</vs-listicle-item">
         <vs-listicle-item 
 			v-for="(item, index) in listicles.sampleListicle"
 			key="index"
@@ -335,30 +239,30 @@ export default {
 			</div>
 
 			<div slot="facilities-slot">
-				<vs-icon-description-list>
-                    <vs-icon-description-list-detail
+				<vs-icon-list title="Key Facilities">
+                    <vs-icon-list-item
                         icon="facility-petswelcom"
                         label="Pets Welcome">
-                    </vs-icon-description-list-detail>
-                    <vs-icon-description-list-detail
+                    </vs-icon-list-item>
+                    <vs-icon-list-item
                         icon="facility-dsblaccess"
                         label="Wheelchair Access">
-                    </vs-icon-description-list-detail>
-                    <vs-icon-description-list-detail
+                    </vs-icon-list-item>
+                    <vs-icon-list-item
                         icon="facility-accessparkdrop"
-                        label="Access Parking">
-                    </vs-icon-description-list-detail>
-                    <vs-icon-description-list-detail
+                        label="Accessible Parking or Drop-off Point">
+                    </vs-icon-list-item>
+                    <vs-icon-list-item
                         icon="facility-audioloop"
                         label="Hearing Loop">
-                    </vs-icon-description-list-detail>
-                    <vs-icon-description-list-detail
+                    </vs-icon-list-item>
+                    <vs-icon-list-item
                         icon="facility-wifi"
                         label="WiFi">
-                    </vs-icon-description-list-detail>
-				</vs-icon-description-list>
+                    </vs-icon-list-item>
+				</vs-icon-list>
 			</div>
-		</vs-listicle-item">
+		</vs-listicle-item>
 	</ul>
 ```
 </docs>
