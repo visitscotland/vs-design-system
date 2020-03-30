@@ -13,7 +13,7 @@
                 {{ title }}
 
                 <template slot="sub-heading">
-                    {{subTitle}}
+                    {{ subTitle }}
                 </template>
             </vs-heading>
         </div>
@@ -21,19 +21,20 @@
         <!-- BODY -->
         <!-- @slot Contains the image to be shown.  -->
         <slot name="image-slot" />
-        
+
         <vs-row>
             <vs-col cols="12" lg="8" class="mt-2 mt-sm-9 mb-4 mt-lg-2 pr-lg-9">
                 <!-- @slot Contains the description to be shown.  -->
                 <slot name="description-slot" />
             </vs-col>
-            <vs-col 
-                cols="12" lg="4" 
+            <vs-col
+                cols="12"
+                lg="4"
                 class="key-facilities-list mt-lg-10"
                 :class="[hasKeyFacilitiesSlot ? 'has-facilities' : '']"
             >
                 <!-- @slot Contains the facilities list to be shown.  -->
-                <slot name="facilities-slot"/>
+                <slot name="facilities-slot" />
             </vs-col>
         </vs-row>
     </li>
@@ -48,41 +49,40 @@ export default {
     status: "prototype",
     release: "0.0.1",
     components: {
-        VsHeading
-	},
+        VsHeading,
+    },
     props: {
-		/**
-		 * The index value for the listicle item to be shown on the header
-		 */
-    	index: {
-    		type: String
-		},
-		/**
-		 * The listicle item title
-		 */
-    	title: {
-    		type: String
-		},
-		/**
-		 * The listicle item subtitle
-		 */
-		subTitle: {
-    		type: String
-		}
+        /**
+         * The index value for the listicle item to be shown on the header
+         */
+        index: {
+            type: String,
+        },
+        /**
+         * The listicle item title
+         */
+        title: {
+            type: String,
+        },
+        /**
+         * The listicle item subtitle
+         */
+        subTitle: {
+            type: String,
+        },
     },
     computed: {
         hasKeyFacilitiesSlot() {
-            return !!this.$slots['facilities-slot']
+            return !!this.$slots["facilities-slot"]
         },
     },
 }
 </script>
 
 <style lang="scss" scoped>
-
 .vs-listicle-item {
     margin-bottom: $spacer-12;
-    
+
     .count {
         color: $color-white;
         font-family: $headings-font-family;
@@ -92,7 +92,7 @@ export default {
         text-align: center;
         width: 100%;
 
-        &:after{
+        &:after {
             content: "";
             border-bottom: 1px solid $color-white;
             display: block;
@@ -142,22 +142,8 @@ export default {
         }
     }
 
-    .intro {
-        margin-top: $spacer-2;
-        margin-bottom: $spacer-4;
-
-        @include media-breakpoint-up(sm) {
-            margin-top: $spacer-9;
-        }
-        
-        @include media-breakpoint-up(md) {
-            margin-top: $spacer-3;
-            margin-right: $spacer-4;
-        }
-    }
-    
-    .key-facilities-list{
-        &.has-facilities{
+    .key-facilities-list {
+        &.has-facilities {
             border-top: 1px solid $color-gray-tint-5;
             padding-top: $spacer-4;
 
@@ -171,9 +157,8 @@ export default {
             }
 
             & ::v-deep {
-                .vs-icon-list{
-
-                    .vs-icon-list__item{
+                .vs-icon-list {
+                    .vs-icon-list__item {
                         width: 80px;
                     }
 
@@ -181,16 +166,16 @@ export default {
                         border-top: 1px solid $color-gray-tint-5;
                         padding-top: $spacer-4;
 
-                        .vs-icon-list__item{
+                        .vs-icon-list__item {
                             width: 90px;
                         }
                     }
-                    
+
                     @include media-breakpoint-up(lg) {
                         border-top: 0;
                         padding: 0 $spacer-2;
 
-                        .vs-icon-list__item{
+                        .vs-icon-list__item {
                             width: 80px;
                         }
                     }
@@ -204,7 +189,7 @@ export default {
                 }
             }
         }
-    }    
+    }
 }
 </style>
 
@@ -285,7 +270,7 @@ export default {
                     </vs-icon-list-item>
 				</vs-icon-list>
 			</div>
-		</vs-listicle-item">
+		</vs-listicle-item>
 	</ul>
 ```
 </docs>
