@@ -95,8 +95,9 @@
                     ${prod.address.city}
                     ${prod.address.postCode} -->
 
-                    <#--TODO show open times the field is:
-                    ${prod.open}-->
+                    <#--TODO show open times the field is:-->
+                    </br>
+                    ${prod.open}
                     </br>
                      <#if prod.openLink?? && prod.openLink.link?? && prod.openLink.link?has_content>
                         <vs-link href="${prod.openLink.link}">

@@ -70,6 +70,9 @@ public class ItineraryContentComponent extends PageContentComponent<Itinerary> {
         final String START_TIME = "startTime";
         final String END_TIME = "endTime";
         final String IMAGE = "images";
+        final String OPENING_DAY = "day";
+        final String OPENING_STATE = "state";
+        final String OPENING_PROVISIONAL = "provivisional";
 
         final Map<String ,FlatStop> products =  new LinkedHashMap<>();
 
@@ -140,13 +143,16 @@ public class ItineraryContentComponent extends PageContentComponent<Itinerary> {
                                 if (product.has(OPENING)){
                                     JSONObject opening = product.getJSONObject(OPENING);
                                     //TODO adjust the message to designs when ready
-                                    model.setOpenLink(
-                                            new FlatLink(HippoUtils.getResourceBundle("stop.opening", "itinerary",
-                                                    request.getLocale()),ctaLink.getLink()+"#opening"));
-                                    if ((opening.has(START_TIME)) && (opening.has(END_TIME))) {
-                                        model.setOpen(opening.getString("day") + ": " + opening.getString("startTime") + "-" + opening.getString("endTime"));
+                                    if ((opening.has(OPENING_STATE)) && (opening.getString(OPENING_STATE)!="unknown")) {
+                                        String openingMessge = opening.getBoolean(OPENING_PROVISIONAL)==false? "Usually " : "Provisionally ";
+                                        openingMessge = openingMessge + opening.getString(OPENING_STATE) +" "+ opening.getString(OPENING_DAY);
+                                        if ((opening.has(START_TIME)) && (opening.has(END_TIME))) {
+                                            openingMessge = openingMessge + ": " + opening.getString(START_TIME) + "-" + opening.getString(END_TIME);
+                                        }
+                                        model.setOpen(openingMessge);
+                                        model.setOpenLink(new FlatLink(HippoUtils.getResourceBundle("stop.opening", "itinerary",
+                                                        request.getLocale()),ctaLink.getLink()+"#opening"));
                                     }
-                                    //TODO "* Please check openings times" create this message on the ftl with the anchor
                                 }
 
                             }

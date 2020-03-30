@@ -1664,7 +1664,7 @@
         hippostd:state: draft
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2020-02-07T12:53:57.587Z
-        hippostdpubwf:lastModificationDate: 2020-02-07T12:53:57.587Z
+        hippostdpubwf:lastModificationDate: 2020-03-30T13:49:44.385+01:00
         hippostdpubwf:lastModifiedBy: admin
         hippotranslation:id: acafffcc-8eb9-41e3-b7fd-e56c9eb7c5ce
         hippotranslation:locale: en
