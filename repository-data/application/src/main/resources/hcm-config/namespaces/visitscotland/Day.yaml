@@ -11,7 +11,7 @@ definitions:
         /hipposysedit:nodetype:
           jcr:primaryType: hipposysedit:nodetype
           jcr:mixinTypes: ['mix:referenceable', 'hipposysedit:remodel']
-          jcr:uuid: 31fb662d-6716-4833-beab-0b1a661ac730
+          jcr:uuid: cd51a314-a521-4907-9649-a5632ff4e2bf
           hipposysedit:node: true
           hipposysedit:supertype: ['visitscotland:basedocument', 'hippostd:relaxed',
             'hippotranslation:translated']
@@ -24,6 +24,7 @@ definitions:
             hipposysedit:path: visitscotland:title
             hipposysedit:primary: false
             hipposysedit:type: String
+            hipposysedit:validators: [required]
           /introduction:
             jcr:primaryType: hipposysedit:field
             hipposysedit:mandatory: false
@@ -38,45 +39,7 @@ definitions:
             hipposysedit:ordered: true
             hipposysedit:path: visitscotland:stops
             hipposysedit:type: hippo:compound
-            hipposysedit:validators: [contentblocks-validator]
-          /transports:
-            jcr:primaryType: hipposysedit:field
-            hipposysedit:mandatory: false
-            hipposysedit:multiple: true
-            hipposysedit:ordered: false
-            hipposysedit:path: visitscotland:transports
-            hipposysedit:primary: false
-            hipposysedit:type: String
-        /hipposysedit:nodetype[2]:
-          jcr:primaryType: hipposysedit:nodetype
-          jcr:mixinTypes: ['mix:referenceable']
-          jcr:uuid: cd51a314-a521-4907-9649-a5632ff4e2bf
-          hipposysedit:node: true
-          hipposysedit:supertype: ['visitscotland:basedocument', 'hippostd:relaxed',
-            'hippotranslation:translated']
-          /title:
-            jcr:primaryType: hipposysedit:field
-            hipposysedit:mandatory: false
-            hipposysedit:multiple: false
-            hipposysedit:ordered: false
-            hipposysedit:path: visitscotland:title
-            hipposysedit:primary: false
-            hipposysedit:type: String
-          /introduction:
-            jcr:primaryType: hipposysedit:field
-            hipposysedit:mandatory: false
-            hipposysedit:multiple: false
-            hipposysedit:ordered: false
-            hipposysedit:path: visitscotland:introduction
-            hipposysedit:primary: false
-            hipposysedit:type: hippostd:html
-          /stops:
-            jcr:primaryType: hipposysedit:field
-            hipposysedit:multiple: true
-            hipposysedit:ordered: true
-            hipposysedit:path: visitscotland:stops
-            hipposysedit:type: hippo:compound
-            hipposysedit:validators: [contentblocks-validator]
+            hipposysedit:validators: [contentblocks-validator, required]
           /transports:
             jcr:primaryType: hipposysedit:field
             hipposysedit:mandatory: false
@@ -97,27 +60,9 @@ definitions:
           hippotranslation:locale: document-type-locale
           jcr:mixinTypes: ['mix:referenceable']
           visitscotland:title: ''
-          jcr:uuid: 81934961-53dc-4795-84b4-2a0ecf8cf01c
+          jcr:uuid: c0296c49-e179-47f6-9ed8-026a6855ffc2
           hippostdpubwf:lastModificationDate: 2019-12-05T15:29:52.785Z
           hippostdpubwf:creationDate: 2019-12-05T15:29:52.785Z
-          visitscotland:transports: []
-          /visitscotland:introduction:
-            jcr:primaryType: hippostd:html
-            hippostd:content: ''
-        /hipposysedit:prototype[2]:
-          jcr:primaryType: nt:unstructured
-          jcr:mixinTypes: ['hippostd:publishableSummary', 'hippostd:relaxed', 'hippostdpubwf:document',
-            'hippotranslation:translated', 'mix:referenceable']
-          jcr:uuid: 0cad05ba-6791-47a2-a295-c53ab57383c6
-          hippostd:holder: holder
-          hippostd:state: draft
-          hippostdpubwf:createdBy: ''
-          hippostdpubwf:creationDate: 2019-12-05T15:29:52.785Z
-          hippostdpubwf:lastModificationDate: 2019-12-05T15:29:52.785Z
-          hippostdpubwf:lastModifiedBy: ''
-          hippotranslation:id: document-type-locale-id
-          hippotranslation:locale: document-type-locale
-          visitscotland:title: ''
           visitscotland:transports: []
           /visitscotland:introduction:
             jcr:primaryType: hippostd:html

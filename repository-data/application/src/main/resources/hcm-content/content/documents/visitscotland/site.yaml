@@ -1782,7 +1782,7 @@
         jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
         jcr:uuid: e16bdb89-c271-46f1-851f-2d2b82d631d4
         hippo:name: Victorian Heritage Trail
-        hippo:versionHistory: 14209e3d-ae74-486b-8a5e-a8868c2a899e
+        hippo:versionHistory: 86d902c4-4c74-4499-a24e-1d5c49600c91
         /content[1]:
           jcr:primaryType: visitscotland:Itinerary
           jcr:mixinTypes: ['mix:referenceable']
@@ -1791,7 +1791,7 @@
           hippostd:state: draft
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2020-02-07T12:52:15.063Z
-          hippostdpubwf:lastModificationDate: 2020-03-30T13:12:48.324+01:00
+          hippostdpubwf:lastModificationDate: 2020-03-30T14:16:39.397+01:00
           hippostdpubwf:lastModifiedBy: admin
           hippotranslation:id: 80ddd0f7-26c8-4514-bc5b-1504204eaec4
           hippotranslation:locale: en
@@ -1833,7 +1833,7 @@
           hippostd:state: unpublished
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2020-02-07T12:52:15.063Z
-          hippostdpubwf:lastModificationDate: 2020-03-30T13:12:56.405+01:00
+          hippostdpubwf:lastModificationDate: 2020-03-30T14:16:53.301+01:00
           hippostdpubwf:lastModifiedBy: admin
           hippotranslation:id: 80ddd0f7-26c8-4514-bc5b-1504204eaec4
           hippotranslation:locale: en
@@ -1875,9 +1875,9 @@
           hippostd:state: published
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2020-02-07T12:52:15.063Z
-          hippostdpubwf:lastModificationDate: 2020-03-30T13:12:56.405+01:00
+          hippostdpubwf:lastModificationDate: 2020-03-30T14:16:53.301+01:00
           hippostdpubwf:lastModifiedBy: admin
-          hippostdpubwf:publicationDate: 2020-03-30T13:13:01.766+01:00
+          hippostdpubwf:publicationDate: 2020-03-30T14:16:58.672+01:00
           hippotranslation:id: 80ddd0f7-26c8-4514-bc5b-1504204eaec4
           hippotranslation:locale: en
           visitscotland:areas: [north]
@@ -2110,59 +2110,6 @@
           /visitscotland:stops[2]:
             jcr:primaryType: hippo:mirror
             hippo:docbase: c50e13f9-71e2-4317-934c-50fccb95dd70
-      /edinburgh-copy:
-        jcr:primaryType: hippo:handle
-        jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
-        jcr:uuid: 2c6f3ec6-0efd-4e70-ac2f-187eafb3931f
-        hippo:name: EDINBURGH (copy)
-        hippo:versionHistory: 2aed488c-472d-4b4c-9718-e29317b16f51
-        /edinburgh-copy[1]:
-          jcr:primaryType: visitscotland:Day
-          jcr:mixinTypes: ['mix:versionable']
-          jcr:uuid: 402c7288-da10-4dd1-91d1-a07ca14520c8
-          hippo:availability: [preview]
-          hippostd:state: unpublished
-          hippostdpubwf:createdBy: admin
-          hippostdpubwf:creationDate: 2020-02-10T09:29:04.847Z
-          hippostdpubwf:lastModificationDate: 2020-02-10T13:27:22.714Z
-          hippostdpubwf:lastModifiedBy: admin
-          hippotranslation:id: ee881e90-3830-4cf6-859d-722172a1494f
-          hippotranslation:locale: en
-          visitscotland:title: EDINBURGH
-          visitscotland:transports: [walking]
-          /visitscotland:introduction:
-            jcr:primaryType: hippostd:html
-            hippostd:content: |-
-              <p>Spend your first day in <u><a style="color:blue; text-decoration:underline" href="https://www.visitscotland.com/destinations-maps/edinburgh/">Edinburgh</a></u> exploring the story of the Jacobites, and Edinburgh’s connections with Prince Charles Edward Stuart - better known as&nbsp;<u><a style="color:blue; text-decoration:underline" href="https://www.visitscotland.com/about/famous-scots/bonnie-prince-charlie/" title="Bonnie Prince Charlie">Bonnie Prince Charlie</a></u>.</p>
-
-              <p>Learn more about the political landscape that Claire falls into when she travels back in time to 1743, two years before the 1745 Jacobite Rising led by Bonnie Prince Charlie. As you explore Edinburgh’s Old Town, keep your eyes peeled for three key&nbsp;<em>Outlander</em>&nbsp;filming locations.</p>
-          /visitscotland:stops:
-            jcr:primaryType: hippo:mirror
-            hippo:docbase: 9e72639a-186f-4d72-8cc7-bcf9616342ca
-        /edinburgh-copy[2]:
-          jcr:primaryType: visitscotland:Day
-          jcr:mixinTypes: ['mix:referenceable']
-          jcr:uuid: da485124-faeb-4837-b20e-1c99500605cc
-          hippo:availability: [live]
-          hippostd:state: published
-          hippostdpubwf:createdBy: admin
-          hippostdpubwf:creationDate: 2020-02-10T09:29:04.847Z
-          hippostdpubwf:lastModificationDate: 2020-02-10T13:27:22.714Z
-          hippostdpubwf:lastModifiedBy: admin
-          hippostdpubwf:publicationDate: 2020-02-20T14:20:30.161Z
-          hippotranslation:id: ee881e90-3830-4cf6-859d-722172a1494f
-          hippotranslation:locale: en
-          visitscotland:title: EDINBURGH
-          visitscotland:transports: [walking]
-          /visitscotland:introduction:
-            jcr:primaryType: hippostd:html
-            hippostd:content: |-
-              <p>Spend your first day in <u><a style="color:blue; text-decoration:underline" href="https://www.visitscotland.com/destinations-maps/edinburgh/">Edinburgh</a></u> exploring the story of the Jacobites, and Edinburgh’s connections with Prince Charles Edward Stuart - better known as&nbsp;<u><a style="color:blue; text-decoration:underline" href="https://www.visitscotland.com/about/famous-scots/bonnie-prince-charlie/" title="Bonnie Prince Charlie">Bonnie Prince Charlie</a></u>.</p>
-
-              <p>Learn more about the political landscape that Claire falls into when she travels back in time to 1743, two years before the 1745 Jacobite Rising led by Bonnie Prince Charlie. As you explore Edinburgh’s Old Town, keep your eyes peeled for three key&nbsp;<em>Outlander</em>&nbsp;filming locations.</p>
-          /visitscotland:stops:
-            jcr:primaryType: hippo:mirror
-            hippo:docbase: 9e72639a-186f-4d72-8cc7-bcf9616342ca
     /outlander:
       jcr:primaryType: hippostd:folder
       jcr:mixinTypes: ['hippo:named', 'hippotranslation:translated', 'mix:versionable']
@@ -2538,7 +2485,7 @@
         jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
         jcr:uuid: 4d302e29-93dd-4157-9df9-bbd741bb12a0
         hippo:name: Orkney short break itinerary
-        hippo:versionHistory: dcfc368e-daf7-45d8-b503-2087885b6b45
+        hippo:versionHistory: 805e7a77-94c1-43d5-8de7-2c25f12a5c88
         /content[1]:
           jcr:primaryType: visitscotland:Itinerary
           jcr:mixinTypes: ['mix:referenceable']
@@ -2547,7 +2494,7 @@
           hippostd:state: draft
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2020-02-07T09:41:25.483Z
-          hippostdpubwf:lastModificationDate: 2020-03-09T13:38:09.876Z
+          hippostdpubwf:lastModificationDate: 2020-03-30T14:18:04.653+01:00
           hippostdpubwf:lastModifiedBy: admin
           hippotranslation:id: 4f317e16-7cca-44da-84bf-26c96e4a4494
           hippotranslation:locale: en
@@ -2571,7 +2518,7 @@
             walk.
           visitscotland:theme: islands
           visitscotland:title: Short Break in Orkney – 4 Day Itinerary
-          visitscotland:transports: []
+          visitscotland:transports: [cycling]
           /visitscotland:heroImage:
             jcr:primaryType: hippogallerypicker:imagelink
             hippo:docbase: 8d4f5036-64ca-4e5d-aa89-b348ae38b081
@@ -2596,7 +2543,7 @@
           hippostd:state: unpublished
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2020-02-07T09:41:25.483Z
-          hippostdpubwf:lastModificationDate: 2020-03-09T13:38:09.822Z
+          hippostdpubwf:lastModificationDate: 2020-03-30T14:18:21.457+01:00
           hippostdpubwf:lastModifiedBy: admin
           hippotranslation:id: 4f317e16-7cca-44da-84bf-26c96e4a4494
           hippotranslation:locale: en
@@ -2620,7 +2567,7 @@
             walk.
           visitscotland:theme: islands
           visitscotland:title: Short Break in Orkney – 4 Day Itinerary
-          visitscotland:transports: []
+          visitscotland:transports: [cycling]
           /visitscotland:heroImage:
             jcr:primaryType: hippogallerypicker:imagelink
             hippo:docbase: 8d4f5036-64ca-4e5d-aa89-b348ae38b081
@@ -2645,9 +2592,9 @@
           hippostd:state: published
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2020-02-07T09:41:25.483Z
-          hippostdpubwf:lastModificationDate: 2020-03-09T13:38:09.822Z
+          hippostdpubwf:lastModificationDate: 2020-03-30T14:18:21.457+01:00
           hippostdpubwf:lastModifiedBy: admin
-          hippostdpubwf:publicationDate: 2020-03-09T13:38:12.894Z
+          hippostdpubwf:publicationDate: 2020-03-30T14:18:25.135+01:00
           hippotranslation:id: 4f317e16-7cca-44da-84bf-26c96e4a4494
           hippotranslation:locale: en
           visitscotland:areas: [north]
@@ -2670,7 +2617,7 @@
             walk.
           visitscotland:theme: islands
           visitscotland:title: Short Break in Orkney – 4 Day Itinerary
-          visitscotland:transports: []
+          visitscotland:transports: [cycling]
           /visitscotland:heroImage:
             jcr:primaryType: hippogallerypicker:imagelink
             hippo:docbase: 8d4f5036-64ca-4e5d-aa89-b348ae38b081
@@ -2841,10 +2788,11 @@
           jcr:mixinTypes: ['mix:referenceable']
           jcr:uuid: e9f9e393-b112-43fe-a08b-828f062d4a3e
           hippo:availability: []
+          hippostd:holder: admin
           hippostd:state: draft
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2020-03-17T11:17:48.546Z
-          hippostdpubwf:lastModificationDate: 2020-03-17T11:23:27.330Z
+          hippostdpubwf:lastModificationDate: 2020-03-30T14:18:45.879+01:00
           hippostdpubwf:lastModifiedBy: admin
           hippotranslation:id: aced74d3-03f8-4ed2-9592-dd31975f29cf
           hippotranslation:locale: en
@@ -2855,6 +2803,7 @@
             advice on how to get there.
           visitscotland:seoNoIndex: false
           visitscotland:seoTitle: 12 Iconic Scottish Views
+          visitscotland:summaryTitle: ''
           visitscotland:teaser: Find some of the most beautiful places in Scotland,
             including iconic viewpoints and lesser known gems, alongside advice on
             how to get there.
@@ -2871,6 +2820,9 @@
               <p>Looking for the most beautiful places to see in Scotland? Want iconic Scottish views and places where you can appreciate the jaw dropping Scottish landscapes in all their glory? We can help!</p>
 
               <p>These 12 viewpoints are a mixture of well-known hot spots that offer some of the best views in Scotland - and lesser-known gems where you'll definitely want to stop and drink in the amazing Scottish scenery.</p>
+          /visitscotland:summary:
+            jcr:primaryType: hippostd:html
+            hippostd:content: ''
         /content[2]:
           jcr:primaryType: visitscotland:Listicle
           jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
