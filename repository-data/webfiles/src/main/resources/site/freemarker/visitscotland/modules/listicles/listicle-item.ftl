@@ -1,16 +1,6 @@
 <#include "../../../include/imports.ftl">
-
-<#include "../../../vs-dotcom-ds/components/button-with-icon.ftl">
-<#include "../../../vs-dotcom-ds/components/itinerary-tips.ftl">
-<#include "../../../vs-dotcom-ds/components/itinerary-stop.ftl">
-<#include "../../../vs-dotcom-ds/components/itinerary-border-overlap-wrapper.ftl">
-<#include "../../../vs-dotcom-ds/components/image-with-caption.ftl">
-<#include "../../../vs-dotcom-ds/components/icon-list.ftl">
-<#include "../../../vs-dotcom-ds/components/icon-list-item.ftl">
-<#include "../../../vs-dotcom-ds/components/img.ftl">
-<#include "../../../vs-dotcom-ds/components/icon.ftl">
+<#include "../../../vs-dotcom-ds/components/listicle-item.ftl">
 <#include "../../../vs-dotcom-ds/components/link.ftl">
-<#include "../../../vs-dotcom-ds/components/social-credit-link.ftl">
 
 <#include "../key-facilities.ftl">
 <#include "../image-with-caption.ftl">

@@ -1,3 +1,7 @@
+<#include "../../vs-dotcom-ds/components/svg.ftl">
+<#include "../../vs-dotcom-ds/components/social-credit-link.ftl">
+<#include "../../vs-dotcom-ds/components/image-with-caption.ftl">
+
 <#macro imageWithCaption imageSrc imageDetails variant>
     <vs-image-with-caption
         alt-text="${(imageDetails.altText)!'${label("essentials.global", "default.alt-text")}'}"
@@ -11,12 +15,7 @@
         </span>
 
         <#if imageDetails.source?has_content>
-            <vs-icon
-                slot="toggle-icon"
-                name="${imageDetails.source}"
-                variant="light"
-                size="sm"
-            ></vs-icon>
+            <vs-svg slot="toggle-icon" path="instagram-bg" height="24" width="24"></vs-svg>
 
             <vs-social-credit-link
                 slot="social-link"
