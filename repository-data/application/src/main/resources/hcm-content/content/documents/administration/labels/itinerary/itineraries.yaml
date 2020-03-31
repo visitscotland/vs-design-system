@@ -3,7 +3,7 @@
   jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
   jcr:uuid: a0e18f5d-09d2-47b9-83d6-c41eed3d6539
   hippo:name: Page - Itinerary
-  hippo:versionHistory: 555ad743-74d8-4272-99fe-08eb80914c7b
+  hippo:versionHistory: 829fefe4-27e5-4453-a4c0-099bfe06e85b
   /itineraries[1]:
     jcr:primaryType: resourcebundle:resourcebundle
     jcr:mixinTypes: ['mix:referenceable']
@@ -12,7 +12,7 @@
     hippostd:state: draft
     hippostdpubwf:createdBy: admin
     hippostdpubwf:creationDate: 2019-12-16T14:56:24.091Z
-    hippostdpubwf:lastModificationDate: 2020-03-30T13:53:54.260+01:00
+    hippostdpubwf:lastModificationDate: 2020-03-31T09:50:37.035+01:00
     hippostdpubwf:lastModifiedBy: admin
     resourcebundle:descriptions: ['', '', '', '', '', '', '', '', '', '', '', '',
       '', '', '', '', '', '', '', '', '', '', '']
@@ -25,7 +25,7 @@
         to eat, Find out more, Stop, Start / Finish, Days, Distance, Main Themes,
       mi, km, Transport, Day, Miles, Kilometres, Highlights, Areas Covered, The stop
         doesn't have any product linked to the stop, Time to explore, Main Theme,
-      '* Please check opening times', hour, hours]
+      Check opening times, hour, hours]
     resourcebundle:messages_de: ['', '', '', '', '', '', '', '', '', '', '', '', '',
       '', '', '', '', '', '', '', '', '', '']
     resourcebundle:messages_es: [Servicios destacados, '¿Dónde pasar la noche?', '¿Dónde
@@ -46,7 +46,7 @@
     hippostd:state: unpublished
     hippostdpubwf:createdBy: admin
     hippostdpubwf:creationDate: 2019-12-16T14:56:24.091Z
-    hippostdpubwf:lastModificationDate: 2020-03-30T13:54:40.415+01:00
+    hippostdpubwf:lastModificationDate: 2020-03-31T09:50:52.629+01:00
     hippostdpubwf:lastModifiedBy: admin
     resourcebundle:descriptions: ['', '', '', '', '', '', '', '', '', '', '', '',
       '', '', '', '', '', '', '', '', '', '', '']
@@ -59,7 +59,7 @@
         to eat, Find out more, Stop, Start / Finish, Days, Distance, Main Themes,
       mi, km, Transport, Day, Miles, Kilometres, Highlights, Areas Covered, The stop
         doesn't have any product linked to the stop, Time to explore, Main Theme,
-      '* Please check opening times', hour, hours]
+      Check opening times, hour, hours]
     resourcebundle:messages_de: ['', '', '', '', '', '', '', '', '', '', '', '', '',
       '', '', '', '', '', '', '', '', '', '']
     resourcebundle:messages_es: [Servicios destacados, '¿Dónde pasar la noche?', '¿Dónde
@@ -80,9 +80,9 @@
     hippostd:state: published
     hippostdpubwf:createdBy: admin
     hippostdpubwf:creationDate: 2019-12-16T14:56:24.091Z
-    hippostdpubwf:lastModificationDate: 2020-03-30T13:54:40.415+01:00
+    hippostdpubwf:lastModificationDate: 2020-03-31T09:50:52.629+01:00
     hippostdpubwf:lastModifiedBy: admin
-    hippostdpubwf:publicationDate: 2020-03-30T13:54:45.409+01:00
+    hippostdpubwf:publicationDate: 2020-03-31T09:50:56.688+01:00
     resourcebundle:descriptions: ['', '', '', '', '', '', '', '', '', '', '', '',
       '', '', '', '', '', '', '', '', '', '', '']
     resourcebundle:id: itinerary
@@ -94,7 +94,7 @@
         to eat, Find out more, Stop, Start / Finish, Days, Distance, Main Themes,
       mi, km, Transport, Day, Miles, Kilometres, Highlights, Areas Covered, The stop
         doesn't have any product linked to the stop, Time to explore, Main Theme,
-      '* Please check opening times', hour, hours]
+      Check opening times, hour, hours]
     resourcebundle:messages_de: ['', '', '', '', '', '', '', '', '', '', '', '', '',
       '', '', '', '', '', '', '', '', '', '']
     resourcebundle:messages_es: [Servicios destacados, '¿Dónde pasar la noche?', '¿Dónde
