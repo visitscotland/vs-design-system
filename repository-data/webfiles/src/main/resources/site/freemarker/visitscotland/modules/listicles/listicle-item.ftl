@@ -12,6 +12,8 @@
 <#include "../../../vs-dotcom-ds/components/link.ftl">
 <#include "../../../vs-dotcom-ds/components/social-credit-link.ftl">
 
+<#include "../key-facilities.ftl">
+<#include "../image-with-caption.ftl">
 
 <#macro listicleItem listItem descOrder>
 <#-- @ftlvariable name="document" type="com.visitscotland.brmx.beans.Listicle" -->
@@ -42,7 +44,6 @@
 		title="${item.title}"
 		sub-title="${item.subTitle}"
 	>
-
 		<div slot="hippo-details" class="has-edit-button">
 			<@hst.manageContent hippobean=listItem />
 			<#if item.errorMessages?? && item.errorMessages?size gt 0 && editMode>
@@ -54,48 +55,14 @@
 
 		<#if image?has_content>
 			<div slot="image-slot">
-				<vs-image-with-caption
-					alt-text="${(item.image.altText)!'${label("essentials.global", "default.alt-text")}'}"
-					alt="${(item.image.altText)!'${label("essentials.global", "default.alt-text")}'}"
-					image-src="${image}"
-					latitude="${(item.image.coordinates.latitude)!''}"
-					longitude="${(item.image.coordinates.longitude)!''}"
-					variant="large"
-				>
-					<span slot="caption">
-						${(item.image.description)!''}
-					</span>
-					
-					<#if !item.image.source?has_content && item.image.credit?has_content>
-						<span slot="credit">
-							&copy; ${item.image.credit}
-						</span>
-					</#if>
-
-					<#if item.image.source?has_content>
-						<vs-icon
-							slot="toggle-icon"
-							name="${item.image.source}"
-							variant="light"
-							size="sm"
-						></vs-icon>
-
-						<vs-social-credit-link
-							slot="social-link"
-							credit="${(item.image.credit)!'No credit'}"
-							social-post-url="${item.image.postUrl}"
-							source="${item.image.source}"
-						></vs-social-credit-link>
-					</#if>
-
-				</vs-image-with-caption>
+                <@imageWithCaption imageSrc=image imageDetails=item.image variant="large"/>
 			</div>
 		</#if>
 
 		<div slot="description-slot">
 			<@hst.html hippohtml=item.description />
 
-			<#if  item.ctaLinks?has_content>
+			<#if item.ctaLinks?has_content>
 				<#list item.ctaLinks as cta>
 					<#if cta?has_content>
                         <div class="mb-2">
@@ -107,16 +74,8 @@
 		</div>
 
         <#if item.facilities?? && item.facilities?size gt 1>
-        
 			<div slot="facilities-slot">
-				<vs-icon-list title="${label('keyFacilities', 'keyfacilitiestitle')}">
-					<#list item.facilities as facility>
-						<vs-icon-list-item
-							icon="${facility.id}"
-							label="${facility.name}">
-						</vs-icon-list-item>
-					</#list>
-				</vs-icon-list>
+				<@keyFacilities facilitiesList=item.facilities />
 			</div>
 		</#if>
 	</vs-listicle-item>

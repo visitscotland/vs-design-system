@@ -5,13 +5,13 @@
 <#include "../../../vs-dotcom-ds/components/itinerary-stop.ftl">
 <#include "../../../vs-dotcom-ds/components/itinerary-border-overlap-wrapper.ftl">
 <#include "../../../vs-dotcom-ds/components/image-with-caption.ftl">
-<#include "../../../vs-dotcom-ds/components/icon-description-list.ftl">
+<#include "../../../vs-dotcom-ds/components/icon-list.ftl">
+<#include "../../../vs-dotcom-ds/components/icon-list-item.ftl">
 <#include "../../../vs-dotcom-ds/components/img.ftl">
-<#include "../../../vs-dotcom-ds/components/icon-description-list-term.ftl">
-<#include "../../../vs-dotcom-ds/components/icon-description-list-detail.ftl">
 <#include "../../../vs-dotcom-ds/components/link.ftl">
 
-
+<#include "../key-facilities.ftl">
+<#include "../image-with-caption.ftl">
 
 <#macro itineraryStop stop lastStop>
 <#-- @ftlvariable name="stop" type="com.visitscotland.brmx.beans.Stop" -->
@@ -60,23 +60,7 @@
                     </#list>
                 </#if>
                 <#if image?? && image?has_content>
-                    <vs-image-with-caption
-                        alt-text="${(prod.image.altText)!'${label("essentials.global", "default.alt-text")}'}"
-                        credit="${(prod.image.credit)!'No credit'}"
-                        caption="${(prod.image.altText)!''}"
-                        image-src="${image}"
-                        latitude="${prod.coordinates.latitude}"
-                        longitude="${prod.coordinates.longitude}"
-                        >
-                    <vs-img
-                        class="lazyload"
-                        src="${image}"
-                        srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
-                        data-srcset="${image}"
-                        alt="${(prod.image.altText)!'${label("essentials.global", "default.alt-text")}'}"
-                        data-sizes="auto">
-                    </vs-img>
-                    </vs-image-with-caption>
+                    <@imageWithCaption imageSrc=image imageDetails=prod.image variant="fullwidth"/>
                 </#if>
 
                 <#if prod?? && prod.description?? && prod.description?has_content>
@@ -105,13 +89,14 @@
                         </vs-link>
                      </#if>
                     <#--TODO show price the field is:
-                       ${prod.price} -->
+                    ${prod.price} -->
+
                 <#if prod??>
                     <#if prod.timeToexplore?? && prod.timeToexplore?has_content>
-                    <vs-description-list class="my-4 mb-0 justify-content-start" inline>
-                        <vs-description-list-term class="mb-0 mr-0 col-auto">${label("itinerary", "stop.time-to-explore")}</vs-description-list-term>
-                        <vs-description-list-detail class="mb-0 col-auto px-0">${prod.timeToexplore}</vs-description-list-detail>
-                    </vs-description-list>
+                        <vs-description-list class="my-4 mb-0 justify-content-start" inline>
+                            <vs-description-list-term class="mb-0 mr-0 col-auto">${label("itinerary", "stop.time-to-explore")}</vs-description-list-term>
+                            <vs-description-list-detail class="mb-0 col-auto px-0">${prod.timeToexplore}</vs-description-list-detail>
+                        </vs-description-list>
                     </#if>
 
                     <#if (prod.tipsTitle?? && prod.tipsTitle?has_content)>
@@ -125,26 +110,16 @@
                     </#if>
 
                     <#if prod.facilities?? && prod.facilities?size gt 1>
-                        <vs-icon-description-list>
-                            <vs-icon-description-list-term>${label("itinerary", "stop.key-facilities")}</vs-icon-description-list-term>
-                            <#list prod.facilities as facility>
-                                <vs-icon-description-list-detail
-                                    icon="${facility.id}"
-                                    label="${facility.name}">
-                                </vs-icon-description-list-detail>
-                            </#list>
-                        </vs-icon-description-list>
+                        <@keyFacilities facilitiesList=prod.facilities />
                     </#if>
                 </#if>
         </div>
             <#if lastStop=="true" && prod.coordinates.longitude?? && prod.coordinates.longitude?has_content && prod.coordinates.latitude?? && prod.coordinates.latitude?has_content>
                 <vs-itinerary-border-overlap-wrapper slot="nearby-links">
-                    <vs-button-with-icon class="mb-3" background="white" variant="outline-primary" icon="food"
-                                         href=" ${productSearch(locale, "cate", prod.coordinates.latitude, prod.coordinates.longitude, 5)}" >
+                    <vs-button-with-icon class="mb-3" background="white" variant="outline-primary" icon="food" href=" ${productSearch(locale, "cate", prod.coordinates.latitude, prod.coordinates.longitude, 5)}" >
                         ${label("itinerary", "stop.nearby-eat")}
                     </vs-button-with-icon>
-                    <vs-button-with-icon background="white" variant="outline-primary" icon="product-accommodation"
-                                         href=" ${productSearch(locale, "acco", prod.coordinates.latitude, prod.coordinates.longitude, 5)}" >
+                    <vs-button-with-icon background="white" variant="outline-primary" icon="product-accommodation" href=" ${productSearch(locale, "acco", prod.coordinates.latitude, prod.coordinates.longitude, 5)}" >
                         ${label("itinerary", "stop.nearby-stay")}
                     </vs-button-with-icon>
                 </vs-itinerary-border-overlap-wrapper>
