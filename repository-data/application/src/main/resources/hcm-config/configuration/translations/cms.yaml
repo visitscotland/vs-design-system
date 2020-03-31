@@ -6,3 +6,12 @@ definitions:
         jcr:primaryType: hipposys:resourcebundle
         titlePropertyFilter.propertyName: Title
         titlePropertyFilter.title: Document title
+    /hippo:configuration/hippo:translations/hippo:cms/validators/es:
+      visitscotland:scotland-coordinates-validator: Las coordenadas deben estar dentro
+        de Escocia
+      visitscotland:url-validator: Introduzca una URL válida
+    /hippo:configuration/hippo:translations/hippo:cms/validators/en:
+      visitscotland:scotland-coordinates-validator: 'Coordinates must be within Scotland:
+        Latitude from 54.6 to 60.9 and longitude from -13.7 to -0.7. Note that longitude
+        must be a negative value.'
+      visitscotland:url-validator: Enter a valid website URL
