@@ -326,7 +326,7 @@ export default {
 
                     <vs-svg 
                         slot="toggle-icon" 
-                        path="image-toggle" 
+                        path="info-toggle" 
                         height="24" 
                         width="24" 
                     />
