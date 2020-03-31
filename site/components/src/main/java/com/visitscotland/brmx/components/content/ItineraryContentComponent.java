@@ -204,7 +204,7 @@ public class ItineraryContentComponent extends PageContentComponent<Itinerary> {
                     firstStopId = lastStopId;
                 }
                 model.setImage(img);
-                model.setErrorMessage(errors);
+                model.setErrorMessages(errors);
                 products.put(model.getIdentifier(), model);
             }
         }

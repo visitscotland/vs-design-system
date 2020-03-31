@@ -38,8 +38,8 @@
         >
             <div slot="stop-details" class="has-edit-button">
                 <@hst.manageContent hippobean=stop />
-                <#if prod.errorMessage?? && prod.errorMessage?size gt 0>
-                    <#list prod.errorMessage as error>
+                <#if prod.errorMessages?? && prod.errorMessages?size gt 0>
+                    <#list prod.errorMessages as error>
                         <h1 class="text-danger">${error?upper_case}</h1>
                     </#list>
                 </#if>

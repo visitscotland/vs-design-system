@@ -26,7 +26,7 @@ public class FlatStop {
     private FlatLink openLink;
 
     private Coordinates coordinates;
-    private List<String> errorMessage;
+    private List<String> errorMessages;
 
     public FlatStop() {
 
@@ -169,11 +169,11 @@ public class FlatStop {
         this.openLink = openLink;
     }
 
-    public List<String> getErrorMessage() {
-        return errorMessage;
+    public List<String> getErrorMessages() {
+        return errorMessages;
     }
 
-    public void setErrorMessage(List<String> errorMessage) {
-        this.errorMessage = errorMessage;
+    public void setErrorMessages(List<String> errorMessages) {
+        this.errorMessages = errorMessages;
     }
 }

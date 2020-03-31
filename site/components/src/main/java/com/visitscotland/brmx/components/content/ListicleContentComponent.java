@@ -166,7 +166,7 @@ public class ListicleContentComponent extends PageContentComponent<Listicle> {
             }
 
             model.setLinks(links);
-            model.setErrorMessage(errors);
+            model.setErrorMessages(errors);
             items.put(model.getIdentifier(), model);
         }
 
