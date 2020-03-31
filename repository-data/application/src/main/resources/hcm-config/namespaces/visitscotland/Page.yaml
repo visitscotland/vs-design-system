@@ -24,6 +24,7 @@ definitions:
             hipposysedit:path: visitscotland:heroImage
             hipposysedit:primary: false
             hipposysedit:type: hippogallerypicker:imagelink
+            hipposysedit:validators: [required]
           /seoTitle:
             jcr:primaryType: hipposysedit:field
             hipposysedit:mandatory: false
@@ -64,6 +65,7 @@ definitions:
             hipposysedit:path: visitscotland:title
             hipposysedit:primary: false
             hipposysedit:type: String
+            hipposysedit:validators: [required]
           /introduction:
             jcr:primaryType: hipposysedit:field
             hipposysedit:mandatory: false
@@ -72,6 +74,7 @@ definitions:
             hipposysedit:path: visitscotland:introduction
             hipposysedit:primary: false
             hipposysedit:type: hippostd:html
+            hipposysedit:validators: [required]
           /teaser:
             jcr:primaryType: hipposysedit:field
             hipposysedit:mandatory: false

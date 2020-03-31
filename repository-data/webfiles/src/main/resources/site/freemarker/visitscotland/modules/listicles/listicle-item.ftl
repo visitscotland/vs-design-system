@@ -46,8 +46,10 @@
 	>
 		<div slot="hippo-details" class="has-edit-button">
 			<@hst.manageContent hippobean=listItem />
-			<#if item.errorMessage?? && editMode>
-				<h1 class="text-danger">${item.errorMessage?upper_case}</h1>
+			<#if item.errorMessages?? && item.errorMessages?size gt 0 && editMode>
+				<#list item.errorMessages as error>
+					<h1 class="text-danger">${error?upper_case}</h1>
+				</#list>
 			</#if>
 		</div>
 

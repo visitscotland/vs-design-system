@@ -11,7 +11,7 @@ definitions:
         /hipposysedit:nodetype:
           jcr:primaryType: hipposysedit:nodetype
           jcr:mixinTypes: ['mix:referenceable', 'hipposysedit:remodel']
-          jcr:uuid: 96053770-b50f-4c34-b916-1442ad18e4ee
+          jcr:uuid: 557094b7-6a80-40c0-98c6-502019aac10e
           hipposysedit:node: true
           hipposysedit:supertype: ['visitscotland:basedocument', 'hippostd:relaxed',
             'hippotranslation:translated']
@@ -32,6 +32,7 @@ definitions:
             hipposysedit:path: visitscotland:description
             hipposysedit:primary: false
             hipposysedit:type: hippostd:html
+            hipposysedit:validators: [required, non-empty]
           /tips:
             jcr:primaryType: hipposysedit:field
             hipposysedit:mandatory: false
@@ -46,7 +47,7 @@ definitions:
             hipposysedit:ordered: true
             hipposysedit:path: visitscotland:product
             hipposysedit:type: hippo:compound
-            hipposysedit:validators: [contentblocks-validator]
+            hipposysedit:validators: [contentblocks-validator, required]
           /title:
             jcr:primaryType: hipposysedit:field
             hipposysedit:mandatory: false
@@ -55,6 +56,7 @@ definitions:
             hipposysedit:path: visitscotland:title
             hipposysedit:primary: false
             hipposysedit:type: String
+            hipposysedit:validators: [required, non-empty]
           /image:
             jcr:primaryType: hipposysedit:field
             hipposysedit:mandatory: false
@@ -74,7 +76,7 @@ definitions:
           hippotranslation:id: document-type-locale-id
           hippotranslation:locale: document-type-locale
           jcr:mixinTypes: ['mix:referenceable']
-          jcr:uuid: 58307169-a143-4d59-9b90-7cd5d6a837f3
+          jcr:uuid: f69c14a6-354f-4e91-98f9-3d0bb570f0c9
           hippostdpubwf:lastModificationDate: 2019-12-05T15:13:21.853Z
           hippostdpubwf:creationDate: 2019-12-05T15:13:21.853Z
           visitscotland:tipsTitle: ''
@@ -143,7 +145,7 @@ definitions:
             jcr:primaryType: frontend:plugin
             caption: Pull Out Title
             field: tipsTitle
-            hint: ''
+            hint: Title is required if pull out is added
             plugin.class: org.hippoecm.frontend.editor.plugins.field.PropertyFieldPlugin
             wicket.id: ${cluster.id}.field
             /cluster.options:

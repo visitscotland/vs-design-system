@@ -11,40 +11,10 @@ definitions:
         /hipposysedit:nodetype:
           jcr:primaryType: hipposysedit:nodetype
           jcr:mixinTypes: ['mix:referenceable', 'hipposysedit:remodel']
-          jcr:uuid: d8e181ef-60eb-41a3-afe4-c24573a9d038
-          hipposysedit:node: true
-          hipposysedit:supertype: ['hippo:compound', 'hippostd:relaxed']
-          hipposysedit:uri: http://www.visitscotland.com/visitscotland/nt/1.0
-          /location:
-            jcr:primaryType: hipposysedit:field
-            hipposysedit:mandatory: false
-            hipposysedit:multiple: false
-            hipposysedit:ordered: false
-            hipposysedit:path: visitscotland:location
-            hipposysedit:primary: false
-            hipposysedit:type: DynamicDropdown
-          /producttype:
-            jcr:primaryType: hipposysedit:field
-            hipposysedit:mandatory: false
-            hipposysedit:multiple: false
-            hipposysedit:ordered: false
-            hipposysedit:path: visitscotland:productType
-            hipposysedit:primary: false
-            hipposysedit:type: DynamicDropdown
-          /officialrating:
-            jcr:primaryType: hipposysedit:field
-            hipposysedit:mandatory: false
-            hipposysedit:multiple: true
-            hipposysedit:ordered: false
-            hipposysedit:path: visitscotland:officialrating
-            hipposysedit:primary: false
-            hipposysedit:type: String
-        /hipposysedit:nodetype[2]:
-          jcr:primaryType: hipposysedit:nodetype
-          jcr:mixinTypes: ['mix:referenceable']
           jcr:uuid: 57b0bddc-fa04-40b6-917e-94560eb83fe8
           hipposysedit:node: true
           hipposysedit:supertype: ['hippo:compound', 'hippostd:relaxed']
+          hipposysedit:uri: http://www.visitscotland.com/visitscotland/nt/1.0
           /location:
             jcr:primaryType: hipposysedit:field
             hipposysedit:mandatory: false
@@ -77,15 +47,6 @@ definitions:
           visitscotland:dmsCategories: []
           visitscotland:dmsAwards: []
           visitscotland:dmsFacilities: []
-          visitscotland:officialrating: []
-          visitscotland:productType: ''
-        /hipposysedit:prototype[2]:
-          jcr:primaryType: nt:unstructured
-          jcr:mixinTypes: ['hippostd:relaxed']
-          visitscotland:dmsAwards: []
-          visitscotland:dmsCategories: []
-          visitscotland:dmsFacilities: []
-          visitscotland:location: ''
           visitscotland:officialrating: []
           visitscotland:productType: ''
       /editor:templates:

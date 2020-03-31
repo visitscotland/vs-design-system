@@ -23,9 +23,10 @@ public class FlatStop {
     private String location;
     private String price;
     private String open;
+    private FlatLink openLink;
 
     private Coordinates coordinates;
-    private String errorMessage;
+    private List<String> errorMessages;
 
     public FlatStop() {
 
@@ -120,14 +121,6 @@ public class FlatStop {
         this.coordinates = coordinates;
     }
 
-    public String getErrorMessage() {
-        return errorMessage;
-    }
-
-    public void setErrorMessage(String errorMessage) {
-        this.errorMessage = errorMessage;
-    }
-
     public FlatLink getCtaLink() {
         return ctaLink;
     }
@@ -166,5 +159,21 @@ public class FlatStop {
 
     public void setOpen(String open) {
         this.open = open;
+    }
+
+    public FlatLink getOpenLink() {
+        return openLink;
+    }
+
+    public void setOpenLink(FlatLink openLink) {
+        this.openLink = openLink;
+    }
+
+    public List<String> getErrorMessages() {
+        return errorMessages;
+    }
+
+    public void setErrorMessages(List<String> errorMessages) {
+        this.errorMessages = errorMessages;
     }
 }
