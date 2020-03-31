@@ -22,11 +22,6 @@
 <#-- @ftlvariable name="cta" type="com.visitscotland.brmx.beans.mapping.FlatLink" -->
 
 	<#assign item = items[listItem.identifier]>
-    <#if descOrder>
-        <#assign i = i - 1>
-    <#else >
-        <#assign i = i + 1>
-    </#if>
 
 	<#assign image = "" />
     <#if item.image.cmsImage??>
@@ -38,7 +33,7 @@
     </#if>
 	
 	<vs-listicle-item
-		index="${i}"
+		index="${item.index}"
 		title="${item.title}"
 		sub-title="${item.subTitle}"
 	>
