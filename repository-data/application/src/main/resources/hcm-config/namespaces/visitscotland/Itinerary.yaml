@@ -11,7 +11,7 @@ definitions:
         /hipposysedit:nodetype:
           jcr:primaryType: hipposysedit:nodetype
           jcr:mixinTypes: ['mix:referenceable', 'hipposysedit:remodel']
-          jcr:uuid: 0dafef2d-2006-497e-a6d2-9f1531c20272
+          jcr:uuid: b35b2c81-9ffd-496e-bf44-5e3a412dace7
           hipposysedit:node: true
           hipposysedit:supertype: ['visitscotland:Page', 'hippostd:relaxed', 'hippotranslation:translated']
           hipposysedit:uri: http://www.visitscotland.com/visitscotland/nt/1.0
@@ -47,6 +47,7 @@ definitions:
             hipposysedit:path: visitscotland:theme
             hipposysedit:primary: false
             hipposysedit:type: DynamicDropdown
+            hipposysedit:validators: [required]
           /text:
             jcr:primaryType: hipposysedit:field
             hipposysedit:mandatory: false
@@ -55,6 +56,7 @@ definitions:
             hipposysedit:path: visitscotland:highlights
             hipposysedit:primary: false
             hipposysedit:type: Text
+            hipposysedit:validators: [required, non-empty]
           /transports:
             jcr:primaryType: hipposysedit:field
             hipposysedit:mandatory: false
@@ -63,6 +65,7 @@ definitions:
             hipposysedit:path: visitscotland:transports
             hipposysedit:primary: false
             hipposysedit:type: String
+            hipposysedit:validators: [required]
           /areas:
             jcr:primaryType: hipposysedit:field
             hipposysedit:mandatory: false
@@ -71,6 +74,7 @@ definitions:
             hipposysedit:path: visitscotland:areas
             hipposysedit:primary: false
             hipposysedit:type: String
+            hipposysedit:validators: [required]
           /popular:
             jcr:primaryType: hipposysedit:field
             hipposysedit:mandatory: false
@@ -98,7 +102,7 @@ definitions:
           visitscotland:start: ''
           visitscotland:distance: 0.0
           visitscotland:theme: ''
-          jcr:uuid: 07e25557-eec1-49f9-9504-4bf597d8a4f8
+          jcr:uuid: 71ad0e76-ffe1-4d63-94b4-fa79b4b20917
           hippostdpubwf:creationDate: 2019-12-06T11:10:08.311Z
           hippostdpubwf:lastModificationDate: 2019-12-06T11:10:08.310Z
           visitscotland:highlights: ''
@@ -163,6 +167,7 @@ definitions:
             field: theme
             plugin.class: org.hippoecm.frontend.editor.plugins.field.PropertyFieldPlugin
             wicket.id: ${cluster.id}.right.item
+            hint: ''
             /cluster.options:
               jcr:primaryType: frontend:pluginconfig
               source: /content/documents/administration/options/themes

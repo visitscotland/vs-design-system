@@ -8,6 +8,7 @@ import com.visitscotland.brmx.beans.mapping.FlatImage;
 import com.visitscotland.brmx.beans.mapping.FlatLink;
 import com.visitscotland.brmx.beans.mapping.FlatStop;
 import com.visitscotland.brmx.utils.CommonUtils;
+import com.visitscotland.brmx.utils.HippoUtils;
 import com.visitscotland.brmx.utils.LocationLoader;
 import org.hippoecm.hst.core.component.HstRequest;
 import org.hippoecm.hst.core.component.HstResponse;
@@ -56,6 +57,7 @@ public class ItineraryContentComponent extends PageContentComponent<Itinerary> {
     private void generateStops(HstRequest request)  {
 
         final Itinerary itinerary = getDocument(request);
+        final String ITINERARY_ALERTS = "alerts";
         final String ADDRESS = "address";
         final String LOCATION = "city";
         final String URL = "url";
@@ -69,8 +71,16 @@ public class ItineraryContentComponent extends PageContentComponent<Itinerary> {
         final String START_TIME = "startTime";
         final String END_TIME = "endTime";
         final String IMAGE = "images";
+        final String OPENING_DAY = "day";
+        final String OPENING_STATE = "state";
+        final String OPENING_PROVISIONAL = "provivisional";
 
         final Map<String ,FlatStop> products =  new LinkedHashMap<>();
+
+        List<String> itineraryAlerts = this.desiredFieldsAlert(itinerary);
+        if (itineraryAlerts.size()>0){
+            request.setAttribute(ITINERARY_ALERTS, itineraryAlerts);
+        }
 
         String firstStopId = null;
         String lastStopId = null;
@@ -78,6 +88,7 @@ public class ItineraryContentComponent extends PageContentComponent<Itinerary> {
 
         for (Day day: itinerary.getDays()) {
             for (Stop stop : day.getStops()) {
+                List<String> errors = new ArrayList<>();
                 FlatStop model = new FlatStop(stop);
                 Coordinates coordinates = new Coordinates();
                 model.setIndex(index++);
@@ -93,12 +104,12 @@ public class ItineraryContentComponent extends PageContentComponent<Itinerary> {
                     try {
 
                         if (dmsLink.getProduct() == null){
-                            model.setErrorMessage("The product's id  was not provided");
+                           errors.add("The product's id  was not provided");
                             logger.warn(CommonUtils.contentIssue("The product's id was not provided for %s, Stop %s", itinerary.getName(), model.getIndex()));
                         } else {
                             JSONObject product = CommonUtils.getProduct(dmsLink.getProduct(), request.getLocale());
                             if (product == null){
-                                model.setErrorMessage("The product id does not exist in the DMS");
+                                errors.add("The product id does not exist in the DMS");
                                 logger.warn(CommonUtils.contentIssue("The product id does not exist in the DMS for %s, Stop %s", itinerary.getName(), model.getIndex()));
                             } else {
 
@@ -138,16 +149,22 @@ public class ItineraryContentComponent extends PageContentComponent<Itinerary> {
                                 if (product.has(OPENING)){
                                     JSONObject opening = product.getJSONObject(OPENING);
                                     //TODO adjust the message to designs when ready
-                                    if ((opening.has(START_TIME)) && (opening.has(END_TIME))) {
-                                        model.setOpen(opening.getString("day") + ": " + opening.getString("startTime") + "-" + opening.getString("endTime"));
+                                    if ((opening.has(OPENING_STATE)) && (!opening.getString(OPENING_STATE).equalsIgnoreCase("unknown"))) {
+                                        String openingMessge = opening.getBoolean(OPENING_PROVISIONAL)==false? "Usually " : "Provisionally ";
+                                        openingMessge = openingMessge + opening.getString(OPENING_STATE) +" "+ opening.getString(OPENING_DAY);
+                                        if ((opening.has(START_TIME)) && (opening.has(END_TIME))) {
+                                            openingMessge = openingMessge + ": " + opening.getString(START_TIME) + "-" + opening.getString(END_TIME);
+                                        }
+                                        model.setOpen(openingMessge);
+                                        model.setOpenLink(new FlatLink(HippoUtils.getResourceBundle("stop.opening", "itinerary",
+                                                        request.getLocale()),ctaLink.getLink()+"#opening"));
                                     }
-                                    //TODO "* Please check openings times" create this message on the ftl with the anchor
                                 }
 
                             }
                         }
                     } catch (IOException exception) {
-                        model.setErrorMessage("Error while querying the DMS: " + exception.getMessage());
+                        errors.add("Error while querying the DMS: " + exception.getMessage());
                         logger.error("Error while querying the DMS for " + itinerary.getName() + ", Stop " + model.getIndex() + ": " + exception.getMessage());
                     }
                 } else if (stop.getStopItem() instanceof ItineraryExternalLink){
@@ -174,18 +191,20 @@ public class ItineraryContentComponent extends PageContentComponent<Itinerary> {
                     }
 
                 }else{
-                    model.setErrorMessage("The product's id  was not provided");
+                    errors.add("The product's id  was not provided");
                     logger.warn(CommonUtils.contentIssue("The product's id  was not provided for %s, Stop %s", itinerary.getName(), model.getIndex()));
                 }
 
                 if ((stop.getTips()!= null && !stop.getTips().getContent().isEmpty()) && (stop.getTipsTitle() == null || stop.getTipsTitle().isEmpty())){
-                    model.setErrorMessage("Tips title is required to show tips");
+                    errors.add("Tips title is required to show tips");
+                    logger.warn(CommonUtils.contentIssue("Tip title was not provided when tried to add a tip for %s, Stop %s", itinerary.getName(), model.getIndex()));
                 }
                 lastStopId = model.getIdentifier();
                 if (firstStopId == null){
                     firstStopId = lastStopId;
                 }
                 model.setImage(img);
+                model.setErrorMessages(errors);
                 products.put(model.getIdentifier(), model);
             }
         }

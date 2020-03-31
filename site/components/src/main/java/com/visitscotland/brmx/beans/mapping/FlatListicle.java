@@ -18,8 +18,7 @@ public class FlatListicle {
     private List<JSONObject> facilities;
     private String location;
     private List<FlatLink> links;
-
-    private String errorMessage;
+    private List<String> errorMessages;
 
     public FlatListicle(){
 
@@ -80,14 +79,6 @@ public class FlatListicle {
         this.facilities = facilities;
     }
 
-    public String getErrorMessage() {
-        return errorMessage;
-    }
-
-    public void setErrorMessage(String errorMessage) {
-        this.errorMessage = errorMessage;
-    }
-
 
     public String getLocation() {
         return location;
@@ -112,5 +103,13 @@ public class FlatListicle {
 
     public void setLinks(List<FlatLink> links) {
         this.links = links;
+    }
+
+    public List<String> getErrorMessages() {
+        return errorMessages;
+    }
+
+    public void setErrorMessages(List<String> errorMessages) {
+        this.errorMessages = errorMessages;
     }
 }

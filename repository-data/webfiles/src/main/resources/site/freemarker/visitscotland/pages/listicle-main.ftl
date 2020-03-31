@@ -23,6 +23,11 @@
 
 <div class="has-edit-button">
 	<@hst.manageContent hippobean=document documentTemplateQuery="new-document" rootPath="site" defaultPath="${path}" />
+	<#if alerts?? && alerts?size gt 0>
+		<#list alerts as error>
+			<h1 class="text-danger">${error?upper_case}</h1>
+		</#list>
+	</#if>
 
 	<vs-container slot="upper" class="py-lg-4">
 		<vs-row class="justify-content-md-between">

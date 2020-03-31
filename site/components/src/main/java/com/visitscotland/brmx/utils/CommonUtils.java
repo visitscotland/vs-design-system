@@ -35,11 +35,14 @@ public class CommonUtils {
                 dmsUrl += "&locale=" + locale.getLanguage();
             }
 
-            JSONObject json = new JSONObject(request(dmsUrl));
+            String responseString = request(dmsUrl);
+            if (responseString!=null) {
+                JSONObject json = new JSONObject(responseString);
 
-            if (json.has("data")) {
-                return json.getJSONObject("data");
-            }
+                if (json.has("data")) {
+                    return json.getJSONObject("data");
+                }
+             }
         }
         return null;
     }
