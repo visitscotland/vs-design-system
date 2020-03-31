@@ -33,7 +33,7 @@
                 />
                 <!-- @slot Contains the icon for the toggle button. Defaults to info icon. -->
                 <slot v-else name="toggle-icon">
-                    <vs-svg path="image-toggle" height="24" width="24" />
+                    <vs-svg path="info-toggle" height="24" width="24" />
                 </slot>
             </vs-button>
         </div>
