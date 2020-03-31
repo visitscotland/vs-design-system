@@ -43,7 +43,7 @@
 			</#if>
 		</div>
 
-		<#if image?has_content>
+		<#if image?? && image?has_content>
 			<div slot="image-slot">
                 <@imageWithCaption imageSrc=image imageDetails=item.image variant="large"/>
 			</div>

@@ -15,7 +15,7 @@
         </span>
 
         <#if imageDetails.source?has_content>
-            <vs-svg slot="toggle-icon" path="instagram-bg" height="24" width="24"></vs-svg>
+            <vs-svg slot="toggle-icon" path="${imageDetails.source + '-bg'}" height="24" width="24"></vs-svg>
 
             <vs-social-credit-link
                 slot="social-link"
@@ -24,9 +24,11 @@
                 source="${imageDetails.source}"
             ></vs-social-credit-link>
         <#else>
-            <span slot="credit">
-                &copy; ${imageDetails.credit}
-            </span>
+            <#if imageDetails.credit?has_content>
+                <span slot="credit">
+                    &copy; ${imageDetails.credit}
+                </span>
+            </#if>
         </#if>
     </vs-image-with-caption>
 </#macro>
