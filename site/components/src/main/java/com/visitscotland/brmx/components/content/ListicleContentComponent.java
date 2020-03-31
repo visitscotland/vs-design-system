@@ -48,13 +48,7 @@ public class ListicleContentComponent extends PageContentComponent<Listicle> {
         final String IMAGE = "images";
         final Map<String ,FlatListicle> items =  new LinkedHashMap<>();
 
-        int index;
-
-        if (listicle.getDescOrder()){
-            index = listicle.getItems().size();
-        } else {
-            index = 1;
-        }
+        int index = listicle.getDescOrder()?listicle.getItems().size():1;
 
         List<String> listicleAlerts = desiredFieldsAlert(listicle);
         if (listicleAlerts.size()>0){
