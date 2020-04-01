@@ -13,10 +13,7 @@
 <#include "../../../vs-dotcom-ds/components/social-credit-link.ftl">
 
 
-<#macro listicleItem listItem descOrder>
-<#-- @ftlvariable name="document" type="com.visitscotland.brmx.beans.Listicle" -->
-<#-- @ftlvariable name="heroCoordinates" type="com.visitscotland.brmx.beans.mapping.Coordinates" -->
-
+<#macro listicleItem listItem>
 <#-- @ftlvariable name="listItem" type="com.visitscotland.brmx.beans.ListicleItem" -->
 <#-- @ftlvariable name="item" type="com.visitscotland.brmx.beans.mapping.FlatListicle" -->
 <#-- @ftlvariable name="cta" type="com.visitscotland.brmx.beans.mapping.FlatLink" -->

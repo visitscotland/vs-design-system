@@ -55,7 +55,7 @@
 
 		<ol style="list-style:none; margin:0; padding:0;">
 			<#list document.items as listItem>
-				<@listicleItem listItem=listItem descOrder=document.descOrder/>
+				<@listicleItem listItem=listItem />
 			</#list>
 		</ol>
 
