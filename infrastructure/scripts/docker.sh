@@ -51,12 +51,19 @@ docker images | egrep "$CONTAINER_NAME"
 for IMAGE in `docker images | egrep "$CONTAINER_NAME" | awk '{print $3}'`; do echo deleting $IMAGE; docker image rm -f $IMAGE; done
 
 # gp:to-do even if override is set we must still check to ensure it's free, move the while loop to after the if block and just add PORT/MAXPORT values into the if. If the override port if in use the job must fail
-echo ""
-echo "finding a free port to map to the new container's Tomcat port"
+if [ "$GIT_BRANCH" == "develop" ]; then
+  echo ""
+  echo "$GIT_BRANCH is develop, OVERRIDE PORT will be set to 8100"
+  VS_BRXM_PORT_OVERRIDE=8100
+fi
+
 if [ -z "$VS_BRXM_PORT_OVERRIDE" ]; then
+  echo ""
+  echo "finding a free port to map to the new container's Tomcat port"
   PORT=8000; MAXPORT=8099; while [ $PORT -le $MAXPORT ]; do FREE=`netstat -an | egrep "LISTEN *$" | grep $PORT`; if [ "$FREE" = "" ]; then echo $PORT is free; break; fi; PORT=$((PORT+1)); sleep 0; done; if [ $PORT -gt $MAXPORT ]; then echo reached $PORT, no ports are free; PORT=NULL; echo PORT=$PORT; fi
 else
-  echo PORT will be set to $VS_BRXM_PORT_OVERRIDE due to VS_BRXM_PORT_OVERRIDE
+  echo ""
+  echo "PORT will be set to $VS_BRXM_PORT_OVERRIDE due to VS_BRXM_PORT_OVERRIDE"
   PORT=$VS_BRXM_PORT_OVERRIDE
 fi
 
