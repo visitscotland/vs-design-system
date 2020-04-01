@@ -54,14 +54,8 @@
 		</vs-row>
 
 		<ol style="list-style:none; margin:0; padding:0;">
-			<#if document.descOrder>
-				<#assign i = items?size + 1>
-			<#else >
-				<#assign i = 0>
-			</#if>
-
 			<#list document.items as listItem>
-				<@listicleItem listItem=listItem descOrder=document.descOrder/>
+				<@listicleItem listItem=listItem />
 			</#list>
 		</ol>
 

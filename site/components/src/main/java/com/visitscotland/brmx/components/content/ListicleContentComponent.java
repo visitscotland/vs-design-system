@@ -48,7 +48,9 @@ public class ListicleContentComponent extends PageContentComponent<Listicle> {
         final String IMAGE = "images";
         final Map<String ,FlatListicle> items =  new LinkedHashMap<>();
 
-        List<String> listicleAlerts = this.desiredFieldsAlert(listicle);
+        int index = listicle.getDescOrder()?listicle.getItems().size():1;
+
+        List<String> listicleAlerts = desiredFieldsAlert(listicle);
         if (listicleAlerts.size()>0){
             request.setAttribute(LISTICLE_ALERTS, listicleAlerts);
         }
@@ -58,6 +60,8 @@ public class ListicleContentComponent extends PageContentComponent<Listicle> {
             List<String> errors = new ArrayList<>();
             FlatListicle model = new FlatListicle(listicleItem);
             List<FlatLink> links = new ArrayList<>();
+
+            model.setIndex(listicle.getDescOrder()?index--:index++);
 
             //Set the image
             if (listicleItem.getListicleItemImage() != null) {
