@@ -18,10 +18,6 @@ import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.time.LocalTime;
-import java.time.ZoneId;
-import java.time.format.DateTimeFormatter;
-
 import java.io.*;
 import java.util.*;
 
@@ -235,20 +231,5 @@ public class ItineraryContentComponent extends PageContentComponent<Itinerary> {
         }
     }
   
-      private  String currentOpenStatus(String starTime, String endTime, Locale locale){
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("hh:mma");
-        LocalTime starts = LocalTime.parse(starTime, formatter);
-        LocalTime ends = LocalTime.parse(endTime, formatter);
-        LocalTime currentTime = LocalTime.now(ZoneId.of("+1"));
-        if (currentTime.isAfter(starts) && currentTime.isBefore(ends)){
-            if (currentTime.plusMinutes(30).isAfter(ends)){
-                return  HippoUtils.getResourceBundle("stop.close.soon", "itinerary", locale);
-            }else{
-                return   HippoUtils.getResourceBundle("stop.open", "itinerary", locale);
-            }
-        }else
-        {
-            return   HippoUtils.getResourceBundle("stop.closed", "itinerary", locale);
-        }
-    }
+
 }
