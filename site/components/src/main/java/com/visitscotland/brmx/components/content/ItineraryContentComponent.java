@@ -126,9 +126,7 @@ public class ItineraryContentComponent extends PageContentComponent<Itinerary> {
 
                                 model.setTimeToexplore(product.has(TIME_TO_EXPLORE)? product.getString(TIME_TO_EXPLORE):null);
                                 if (product.has(TIME_TO_EXPLORE)){
-                                    String timeExplore = product.getString(TIME_TO_EXPLORE);
-                                    visitDuration = timeExplore.equalsIgnoreCase("1") ? timeExplore + " "+HippoUtils.getResourceBundle("stop.hour", "itinerary", request.getLocale())
-                                            : timeExplore + " "+ HippoUtils.getResourceBundle("stop.hours", "itinerary",request.getLocale());
+                                    visitDuration = product.getString(TIME_TO_EXPLORE);
                                 }
 
                                 if (product.has(PRICE)){
@@ -186,8 +184,7 @@ public class ItineraryContentComponent extends PageContentComponent<Itinerary> {
                         img.setCredit(stop.getImage().getCredit());
                         img.setDescription(stop.getImage().getDescription());
                     }
-                    visitDuration = externalLink.getTimeToExplore().equalsIgnoreCase("1") ? externalLink.getTimeToExplore() +" "+ HippoUtils.getResourceBundle("stop.hour", "itinerary", request.getLocale())
-                            : externalLink.getTimeToExplore() +" "+ HippoUtils.getResourceBundle("stop.hours", "itinerary",request.getLocale());
+                    visitDuration = externalLink.getTimeToExplore();
 
                     if (externalLink.getExternalLink() != null) {
                         FlatLink ctaLink = new FlatLink(this.getCtaLabel(externalLink.getExternalLink().getLabel(), request.getLocale()), externalLink.getExternalLink().getLink());
@@ -213,9 +210,15 @@ public class ItineraryContentComponent extends PageContentComponent<Itinerary> {
                 if (firstStopId == null){
                     firstStopId = lastStopId;
                 }
+
                 model.setImage(img);
+                if (visitDuration!=null) {
+                    visitDuration = visitDuration.equalsIgnoreCase("1") ? visitDuration + " " + HippoUtils.getResourceBundle("stop.hour", "itinerary", request.getLocale())
+                            : visitDuration + " " + HippoUtils.getResourceBundle("stop.hours", "itinerary", request.getLocale());
+                    model.setTimeToexplore(visitDuration);
+                }
+
                 model.setErrorMessages(errors);
-                model.setTimeToexplore(visitDuration);
                 products.put(model.getIdentifier(), model);
             }
         }
