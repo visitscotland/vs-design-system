@@ -1824,7 +1824,7 @@
           hippostd:state: draft
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2020-02-07T12:53:32.885Z
-          hippostdpubwf:lastModificationDate: 2020-02-26T11:42:57.471Z
+          hippostdpubwf:lastModificationDate: 2020-04-01T22:30:28.330+01:00
           hippostdpubwf:lastModifiedBy: admin
           hippotranslation:id: 539af613-c55b-4ff5-a393-7159c2b57b96
           hippotranslation:locale: en
@@ -1842,14 +1842,17 @@
             hippo:docbase: b390df94-227d-4535-a7a2-6073465d6642
           /visitscotland:stops[2]:
             jcr:primaryType: hippo:mirror
-            hippo:docbase: b2140603-eb92-40f5-967f-d10060722cea
+            hippo:docbase: 97416082-3bd9-4a5e-b506-240adf081b06
           /visitscotland:stops[3]:
             jcr:primaryType: hippo:mirror
-            hippo:docbase: 93608785-d0d6-4af0-9fed-9deef0caddc6
+            hippo:docbase: b2140603-eb92-40f5-967f-d10060722cea
           /visitscotland:stops[4]:
             jcr:primaryType: hippo:mirror
-            hippo:docbase: 5a0149d0-590f-4c74-b095-92e430e70bd2
+            hippo:docbase: 93608785-d0d6-4af0-9fed-9deef0caddc6
           /visitscotland:stops[5]:
+            jcr:primaryType: hippo:mirror
+            hippo:docbase: 5a0149d0-590f-4c74-b095-92e430e70bd2
+          /visitscotland:stops[6]:
             jcr:primaryType: hippo:mirror
             hippo:docbase: 61b91b38-da53-4d2d-a375-d8a71cd4688b
         /drumoak[2]:
@@ -1860,7 +1863,7 @@
           hippostd:state: unpublished
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2020-02-07T12:53:32.885Z
-          hippostdpubwf:lastModificationDate: 2020-02-26T11:42:57.218Z
+          hippostdpubwf:lastModificationDate: 2020-04-01T22:30:44.598+01:00
           hippostdpubwf:lastModifiedBy: admin
           hippotranslation:id: 539af613-c55b-4ff5-a393-7159c2b57b96
           hippotranslation:locale: en
@@ -1878,14 +1881,17 @@
             hippo:docbase: b390df94-227d-4535-a7a2-6073465d6642
           /visitscotland:stops[2]:
             jcr:primaryType: hippo:mirror
-            hippo:docbase: b2140603-eb92-40f5-967f-d10060722cea
+            hippo:docbase: 97416082-3bd9-4a5e-b506-240adf081b06
           /visitscotland:stops[3]:
             jcr:primaryType: hippo:mirror
-            hippo:docbase: 93608785-d0d6-4af0-9fed-9deef0caddc6
+            hippo:docbase: b2140603-eb92-40f5-967f-d10060722cea
           /visitscotland:stops[4]:
             jcr:primaryType: hippo:mirror
-            hippo:docbase: 5a0149d0-590f-4c74-b095-92e430e70bd2
+            hippo:docbase: 93608785-d0d6-4af0-9fed-9deef0caddc6
           /visitscotland:stops[5]:
+            jcr:primaryType: hippo:mirror
+            hippo:docbase: 5a0149d0-590f-4c74-b095-92e430e70bd2
+          /visitscotland:stops[6]:
             jcr:primaryType: hippo:mirror
             hippo:docbase: 61b91b38-da53-4d2d-a375-d8a71cd4688b
         /drumoak[3]:
@@ -3213,7 +3219,7 @@
           hippostd:state: draft
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2020-03-17T14:21:47.263Z
-          hippostdpubwf:lastModificationDate: 2020-03-17T14:21:47.263Z
+          hippostdpubwf:lastModificationDate: 2020-04-02T15:59:55.751+01:00
           hippostdpubwf:lastModifiedBy: admin
           hippotranslation:id: e5ed7831-d7d0-472c-8472-8896aad7c8bf
           hippotranslation:locale: en
@@ -3319,7 +3325,7 @@
           hippostd:state: draft
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2020-03-17T14:29:28.032Z
-          hippostdpubwf:lastModificationDate: 2020-03-17T14:34:39.180Z
+          hippostdpubwf:lastModificationDate: 2020-04-02T16:00:23.062+01:00
           hippostdpubwf:lastModifiedBy: admin
           hippotranslation:id: 08234810-1faa-4913-8cc3-9ebe0681b3b9
           hippotranslation:locale: en
