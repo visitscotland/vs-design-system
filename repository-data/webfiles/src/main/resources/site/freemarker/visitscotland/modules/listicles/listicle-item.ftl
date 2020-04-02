@@ -44,8 +44,8 @@
 		<div slot="description-slot">
 			<@hst.html hippohtml=item.description />
 
-			<#if item.ctaLinks?has_content>
-				<#list item.ctaLinks as cta>
+			<#if item.links?has_content>
+				<#list item.links as cta>
 					<#if cta?has_content>
                         <div class="mb-2">
 						    <vs-link href="${cta.link}">${cta.label}</vs-link>
