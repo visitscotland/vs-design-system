@@ -8,6 +8,9 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.time.LocalTime;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.Locale;
 
 public class CommonUtils {
@@ -42,7 +45,7 @@ public class CommonUtils {
                 if (json.has("data")) {
                     return json.getJSONObject("data");
                 }
-             }
+            }
         }
         return null;
     }
@@ -67,5 +70,22 @@ public class CommonUtils {
             return sb.toString();
         }
         return null;
+    }
+    //TODO this method returns the current open state and it coud be affected by the cache, ask WEBOPS and move it to front end if needed
+    public static  String currentOpenStatus(String starTime, String endTime, Locale locale){
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("hh:mma");
+        LocalTime starts = LocalTime.parse(starTime, formatter);
+        LocalTime ends = LocalTime.parse(endTime, formatter);
+        LocalTime currentTime = LocalTime.now(ZoneId.of("+1"));
+        if (currentTime.isAfter(starts) && currentTime.isBefore(ends)){
+            if (currentTime.plusMinutes(30).isAfter(ends)){
+                return  HippoUtils.getResourceBundle("stop.close.soon", "itinerary", locale);
+            }else{
+                return   HippoUtils.getResourceBundle("stop.open", "itinerary", locale);
+            }
+        }else
+        {
+            return   HippoUtils.getResourceBundle("stop.closed", "itinerary", locale);
+        }
     }
 }

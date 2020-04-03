@@ -63,6 +63,7 @@ public class ItineraryContentComponent extends PageContentComponent<Itinerary> {
         final String URL = "url";
         final String TIME_TO_EXPLORE = "timeToExplore";
         final String PRICE = "price";
+        final String DISPLAY_PRICE = "displayPrice";
         final String NAME = "name";
         final String LAT = "latitude";
         final String LON = "longitude";
@@ -91,6 +92,7 @@ public class ItineraryContentComponent extends PageContentComponent<Itinerary> {
                 List<String> errors = new ArrayList<>();
                 FlatStop model = new FlatStop(stop);
                 Coordinates coordinates = new Coordinates();
+                String visitDuration = null;
                 model.setIndex(index++);
                 FlatImage img = null;
 
@@ -121,10 +123,16 @@ public class ItineraryContentComponent extends PageContentComponent<Itinerary> {
                                     model.setLocation( address.has(LOCATION)?address.getString(LOCATION):null);
                                 }
 
-                                //TODO we need to add hour or hours to the field
+
                                 model.setTimeToexplore(product.has(TIME_TO_EXPLORE)? product.getString(TIME_TO_EXPLORE):null);
-                                //TODO adjust the price to the design (From or just price)
-                                model.setPrice(product.has(PRICE)? product.getString(PRICE):null);
+                                if (product.has(TIME_TO_EXPLORE)){
+                                    visitDuration = product.getString(TIME_TO_EXPLORE);
+                                }
+
+                                if (product.has(PRICE)){
+                                    JSONObject price = product.getJSONObject(PRICE);
+                                    model.setPrice(price.getString(DISPLAY_PRICE));
+                                }
 
                                 if (stop.getImage() == null && product.has(IMAGE) ){
                                     JSONArray dmsImageList = product.getJSONArray(IMAGE);
@@ -176,8 +184,7 @@ public class ItineraryContentComponent extends PageContentComponent<Itinerary> {
                         img.setCredit(stop.getImage().getCredit());
                         img.setDescription(stop.getImage().getDescription());
                     }
-
-                    model.setTimeToexplore(externalLink.getTimeToExplore());
+                    visitDuration = externalLink.getTimeToExplore();
 
                     if (externalLink.getExternalLink() != null) {
                         FlatLink ctaLink = new FlatLink(this.getCtaLabel(externalLink.getExternalLink().getLabel(), request.getLocale()), externalLink.getExternalLink().getLink());
@@ -203,7 +210,14 @@ public class ItineraryContentComponent extends PageContentComponent<Itinerary> {
                 if (firstStopId == null){
                     firstStopId = lastStopId;
                 }
+
                 model.setImage(img);
+                if (visitDuration!=null) {
+                    visitDuration = visitDuration.equalsIgnoreCase("1") ? visitDuration + " " + HippoUtils.getResourceBundle("stop.hour", "itinerary", request.getLocale())
+                            : visitDuration + " " + HippoUtils.getResourceBundle("stop.hours", "itinerary", request.getLocale());
+                    model.setTimeToexplore(visitDuration);
+                }
+
                 model.setErrorMessages(errors);
                 products.put(model.getIdentifier(), model);
             }
@@ -216,4 +230,6 @@ public class ItineraryContentComponent extends PageContentComponent<Itinerary> {
             request.setAttribute(STOPS_MAP, products);
         }
     }
+  
+
 }
