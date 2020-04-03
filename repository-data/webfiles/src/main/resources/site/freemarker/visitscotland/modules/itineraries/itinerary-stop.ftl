@@ -79,7 +79,7 @@
                     ${prod.address.city}
                     ${prod.address.postCode} -->
 
-                    <#--TODO show open times the field is:-->
+                    <#--TODO show open times the field is:
                     </br>
                     ${prod.open}
                     </br>
@@ -87,9 +87,10 @@
                         <vs-link href="${prod.openLink.link}">
                             ${prod.openLink.label}
                         </vs-link>
-                     </#if>
-                    <#--TODO show price the field is:
-                    ${prod.price} -->
+                     </#if>-->
+                    <#--TODO  price the field is:
+                </br>
+                    ${prod.price}-->
 
                 <#if prod??>
                     <#if prod.timeToexplore?? && prod.timeToexplore?has_content>
