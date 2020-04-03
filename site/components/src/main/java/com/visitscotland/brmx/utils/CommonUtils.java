@@ -71,7 +71,7 @@ public class CommonUtils {
         }
         return null;
     }
-
+    //TODO this method returns the current open state and it coud be affected by the cache, ask WEBOPS and move it to front end if needed
     public static  String currentOpenStatus(String starTime, String endTime, Locale locale){
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("hh:mma");
         LocalTime starts = LocalTime.parse(starTime, formatter);
