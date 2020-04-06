@@ -78,75 +78,87 @@ while [ $PORT -le $MAXPORT ]; do
 done
 
 if [ $PORT -gt $MAXPORT ]; then
-  echo reached $PORT, no ports are free
   PORT=NULL
-  echo PORT=$PORT
+  SAFE_TO_PROCEED=FALSE
+  FAIL_REASON="reached $MAXPORT, no ports are free, setting PORT to NULL"
+  echo " - $FAIL_REASON"
 fi
 
-# create dockerfile location in $WORKSPACE
-#cp -R $DOCKERFILE_LOCATION $WORKSPACE
-#cd $WORKSPACE/$DOCKERFILE_NAME
-#pwd
-
-# copy latest Hippo distribution files to $WORKSPACE/$DOCKERFILE_NAME
+# search for latest Hippo distribution files
 echo ""
-#echo copying latest Hippo distribution files to $WORKSPACE/$DOCKERFILE_NAME
+echo searching for latest Hippo distribution files in $WORKSPACE/target
 HIPPO_LATEST=`ls -alht $WORKSPACE/target/*.tar.gz | head -1 | awk '{print $9}'` 2>&1 > /dev/null
 if [ -z "$HIPPO_LATEST" ]; then
   echo no archive found in $WORKSPACE/target/, widening search
   HIPPO_LATEST=`find $WORKSPACE/ -name "*.tar.gz" | head -1`
 fi
+
 if [ ! -z "$HIPPO_LATEST" ]; then
-  echo found $HIPPO_LATEST
+  echo " - found $HIPPO_LATEST"
 else
-  echo no archive found in $WORKSPACE, giving up
-fi
-#cd $WORKSPACE/$DOCKERFILE_NAME/
-#echo archive found at $HIPPO_LATEST
-#echo copying $HIPPO_LATEST to $WORKSPACE/$DOCKERFILE_NAME/target
-#cp $HIPPO_LATEST $WORKSPACE/$DOCKERFILE_NAME/target
-
-#docker build -t $CONTAINER_NAME .
-
-if [ ! "$PORT" = "NULL" ]; then
-sleep 5
-
-echo ""
-echo about to start Docker container with:
-echo docker run -d --name $CONTAINER_NAME -p $PORT:8080 $DOCKERFILE_NAME /bin/bash -c "/usr/local/bin/vs-mysqld-start && /usr/local/bin/vs-hippo && while [ ! -f /home/hippo/tomcat_8080/logs/hippo-cms.log ]; do echo no log; sleep 2; done; tail -f /home/hippo/tomcat_8080/logs/hippo-cms.log"
-docker run -d --name $CONTAINER_NAME -p $PORT:8080 $DOCKERFILE_NAME /bin/bash -c "/usr/local/bin/vs-mysqld-start && /usr/local/bin/vs-hippo && while [ ! -f /home/hippo/tomcat_8080/logs/hippo-cms.log ]; do echo no log; sleep 2; done; tail -f /home/hippo/tomcat_8080/logs/hippo-cms.log"
-RETURN_CODE=$?; echo $RETURN_CODE
-sleep 10
-
-echo ""
-echo about to copy $HIPPO_LATEST to container $CONTAINER_NAME:/home/hippo
-docker cp $HIPPO_LATEST $CONTAINER_NAME:/home/hippo
-
-echo ""
-echo about to execute "/usr/local/bin/vs-hippo nodb" in container $CONTAINER_NAME
-docker exec -d $CONTAINER_NAME /usr/local/bin/vs-hippo nodb
+  HIPPO_LATEST=NULL
+  SAFE_TO_PROCEED=FALSE
+  FAIL_REASON="no archive found in $WORKSPACE, giving up"
+  echo " - $FAIL_REASON"
 fi
 
-echo ""
-echo ""
-echo "###############################################################################################################################"
-echo ""
-echo The site instance for branch $GIT_BRANCH should now be available in a few moments on $NODE_NAME - $VS_HOST_IP_ADDRESS at:
-echo "  - $VS_PROXY_SERVER_SCHEME://$VS_PROXY_SERVER_FQDN/?vs_brxm_host=$VS_HOST_IP_ADDRESS&vs_brxm_port=$PORT&vs_brxm_http_host=$VS_BRXM_INSTANCE_HTTP_HOST"
-echo ""
-echo The CMS for the instance should now be available at:
-echo "  - $VS_PROXY_SERVER_SCHEME://$VS_PROXY_SERVER_FQDN/cms/?vs_brxm_host=$VS_HOST_IP_ADDRESS&vs_brxm_port=$PORT&vs_brxm_http_host=$VS_BRXM_INSTANCE_HTTP_HOST"
-echo and the Console at:
-echo "  - $VS_PROXY_SERVER_SCHEME://$VS_PROXY_SERVER_FQDN/cms/console/?vs_brxm_host=$VS_HOST_IP_ADDRESS&vs_brxm_port=$PORT&vs_brxm_http_host=$VS_BRXM_INSTANCE_HTTP_HOST"
-echo ""
-echo To clear the proxy server settings between sessions either close your browser or browse to:
-echo "  - $VS_PROXY_SERVER_SCHEME://$VS_PROXY_SERVER_FQDN/?vs_brxm_reset"
-echo ""
-echo ""
-echo Fallback access - available only on the Web Development LAN
-echo "  - http://$VS_HOST_IP_ADDRESS:$PORT/cms/"
-echo "  - http://$VS_HOST_IP_ADDRESS:$PORT/site/"
-echo "###############################################################################################################################"
-echo ""
-echo ""
+if [ ! "$SAFE_TO_PROCEED" = "FALSE" ]; then
+  sleep 5
+
+  echo ""
+  echo about to start Docker container with:
+  echo docker run -d --name $CONTAINER_NAME -p $PORT:8080 $DOCKERFILE_NAME /bin/bash -c "/usr/local/bin/vs-mysqld-start && /usr/local/bin/vs-hippo && while [ ! -f /home/hippo/tomcat_8080/logs/hippo-cms.log ]; do echo no log; sleep 2; done; tail -f /home/hippo/tomcat_8080/logs/hippo-cms.log"
+  docker run -d --name $CONTAINER_NAME -p $PORT:8080 $DOCKERFILE_NAME /bin/bash -c "/usr/local/bin/vs-mysqld-start && /usr/local/bin/vs-hippo && while [ ! -f /home/hippo/tomcat_8080/logs/hippo-cms.log ]; do echo no log; sleep 2; done; tail -f /home/hippo/tomcat_8080/logs/hippo-cms.log"
+  RETURN_CODE=$?; echo $RETURN_CODE
+  sleep 10
+
+  echo ""
+  echo about to copy $HIPPO_LATEST to container $CONTAINER_NAME:/home/hippo
+  docker cp $HIPPO_LATEST $CONTAINER_NAME:/home/hippo
+
+  echo ""
+  echo about to execute "/usr/local/bin/vs-hippo nodb" in container $CONTAINER_NAME
+  docker exec -d $CONTAINER_NAME /usr/local/bin/vs-hippo nodb
+else
+  echo ""
+  echo container will not be started due to previous failures
+fi
+
+if [ ! "$SAFE_TO_PROCEED" = "FALSE" ]; then
+  EXIT_CODE=0
+  echo ""
+  echo ""
+  echo "###############################################################################################################################"
+  echo ""
+  echo The site instance for branch $GIT_BRANCH should now be available in a few moments on $NODE_NAME - $VS_HOST_IP_ADDRESS at:
+  echo "  - $VS_PROXY_SERVER_SCHEME://$VS_PROXY_SERVER_FQDN/?vs_brxm_host=$VS_HOST_IP_ADDRESS&vs_brxm_port=$PORT&vs_brxm_http_host=$VS_BRXM_INSTANCE_HTTP_HOST"
+  echo ""
+  echo The CMS for the instance should now be available at:
+  echo "  - $VS_PROXY_SERVER_SCHEME://$VS_PROXY_SERVER_FQDN/cms/?vs_brxm_host=$VS_HOST_IP_ADDRESS&vs_brxm_port=$PORT&vs_brxm_http_host=$VS_BRXM_INSTANCE_HTTP_HOST"
+  echo and the Console at:
+  echo "  - $VS_PROXY_SERVER_SCHEME://$VS_PROXY_SERVER_FQDN/cms/console/?vs_brxm_host=$VS_HOST_IP_ADDRESS&vs_brxm_port=$PORT&vs_brxm_http_host=$VS_BRXM_INSTANCE_HTTP_HOST"
+  echo ""
+  echo To clear the proxy server settings between sessions either close your browser or browse to:
+  echo "  - $VS_PROXY_SERVER_SCHEME://$VS_PROXY_SERVER_FQDN/?vs_brxm_reset"
+  echo ""
+  echo ""
+  echo Direct Tomcat access - available only on the Web Development LAN
+  echo "  - http://$VS_HOST_IP_ADDRESS:$PORT/cms/"
+  echo "  - http://$VS_HOST_IP_ADDRESS:$PORT/site/"
+  echo "    -  needs a HOST header of localhost:8080 to be passed with the request"
+  echo "###############################################################################################################################"
+  echo ""
+  echo ""
+else
+  EXIT_CODE=127
+  echo "###############################################################################################################################"
+  echo ""
+  echo JOB FAILED because $FAIL_REASON
+  echo "###############################################################################################################################"
+  echo ""
+  echo ""
+fi
+
+exit $EXIT_CODE
+
 # gp:to-do should really tidy
