@@ -10,9 +10,10 @@
 <#include "../../vs-dotcom-ds/components/img.ftl">
 <#include "../../vs-dotcom-ds/components/link.ftl">
 <#include "../../vs-dotcom-ds/components/rich-text-wrapper.ftl">
+<#include "../../vs-dotcom-ds/components/listicle-item.ftl">
 
 <#include "../modules/listicles/listicle-item.ftl">
-<#include "../../vs-dotcom-ds/components/listicle-item.ftl">
+<#include "../modules/cms-errors.ftl">
 
 <#-- Implicit Request Objects -->
 <#-- @ftlvariable name="document" type="com.visitscotland.brmx.beans.Listicle" -->
@@ -24,11 +25,9 @@
 <div class="has-edit-button">
 	<@hst.manageContent hippobean=document documentTemplateQuery="new-document" rootPath="site" defaultPath="${path}" />
 	<#if alerts?? && alerts?size gt 0>
-		<#list alerts as error>
-			<h1 class="text-danger">${error?upper_case}</h1>
-		</#list>
+        <@cmsErrors errors=alerts />
 	</#if>
-
+    
 	<vs-container slot="upper" class="py-lg-4">
 		<vs-row class="justify-content-md-between">
 			<vs-col cols="12" lg="8">
