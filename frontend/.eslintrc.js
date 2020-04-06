@@ -23,7 +23,7 @@ module.exports = {
 		"plugin:jest/recommended",
 		"plugin:cypress/recommended"
 	],
-	"plugins": [
+	plugins: [
 		"vue-a11y",
 		"jest",
 		"cypress"
@@ -59,7 +59,14 @@ module.exports = {
 			"last"
 		],
 	},
-	"overrides": [
+	settings: {
+		"import/resolver": {
+			webpack: {
+				config: "./build/webpack.base.conf.js"
+			}
+		}
+	},
+	overrides: [
 		// Disable no-console rule for build scripts
 		{
 			"files": [ 
