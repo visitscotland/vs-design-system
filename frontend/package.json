@@ -26,7 +26,6 @@
     "cypress:open": "cypress open",
     "docs:remote": "npm-run-all theo styleguide:remote",
     "heroku-docs": "http-server dist/docs -p $PORT",
-    "lint": "eslint '**/*.{js,vue}' --cache",
     "node:build": "node ./build/build.js",
     "node:build:system": "node ./build/build-system.js",
     "serve-docs": "http-server dist/docs",
@@ -38,10 +37,11 @@
     "test": "npm-run-all theo unit",
     "theo": "theo ./src/tokens/tokens.yml --transform web --format map.scss,scss,raw.json,json --dest ./src/assets/tokens",
     "theo:onchange": "onchange \"./src/tokens/*.yml\" -- npm run theo",
-    "lint:vue:all": "eslint \"src/**/*.{js,vue}\"",
-    "lint:vue:all:error": "eslint \"src/**/*.{js,vue}\" --quiet",
-    "lint:vue:all:fix": "eslint \"src/**/*.{js,vue}\" --fix",
-    "lint:vue:all:scss": "stylelint \"src/**/*.{vue,scss}\""
+    "lint": "eslint",
+    "lint:all": "yarn lint \"src/**/*.{js,vue}\"",
+    "lint:fix": "eslint --fix",
+    "lint:style": "stylelint",
+    "lint:style:all": "lint:style \"src/**/*.{vue,scss}\""
   },
   "repository": {
     "type": "git",
