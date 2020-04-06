@@ -59,4 +59,18 @@ module.exports = {
 			"last"
 		],
 	},
+	"overrides": [
+		// Disable no-console rule for build scripts
+		{
+			"files": [ 
+				"src/system.js",
+				"src/utils/core.system-components.js",
+				"src/utils/entry.system-components.js",
+				"{build,config,test}/**/*",
+			],
+			"rules": {
+				"no-console": 0
+			}
+		}
+	]
 };
