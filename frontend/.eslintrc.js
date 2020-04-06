@@ -6,7 +6,7 @@ module.exports = {
 		node: true,
 		browser: true,
 		"jest/globals": true,
-		"cypress/globals": true
+		"cypress/globals": true 
 	},
 	parserOptions: {
 		parser: "babel-eslint",
@@ -18,6 +18,7 @@ module.exports = {
 		"eslint:recommended",
 		"airbnb-base",
 		"plugin:vue/recommended",
+		"plugin:vue/strongly-recommended",
 		"plugin:vue-a11y/recommended",
 		"plugin:jest/recommended",
 		"plugin:cypress/recommended"
@@ -33,6 +34,17 @@ module.exports = {
 			4
 		],
 		"vue/no-unused-vars": "error",
+		"vue/order-in-components": "error",
+		"vue/this-in-template": "error",
+		"vue/component-name-in-template-casing": "error",
+		"vue/script-indent": [
+			"error",
+			4
+		],
+		"vue/html-indent": [
+			"error",
+			4
+		],
 		"quotes": [
 			"error",
 			"double"
@@ -46,6 +58,5 @@ module.exports = {
 			"error",
 			"last"
 		],
-		"no-console": "off"
 	},
 };
