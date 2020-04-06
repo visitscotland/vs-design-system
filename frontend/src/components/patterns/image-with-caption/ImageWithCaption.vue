@@ -33,7 +33,7 @@
                 />
                 <!-- @slot Contains the icon for the toggle button. Defaults to info icon. -->
                 <slot v-else name="toggle-icon">
-                    <vs-svg path="image-toggle" height="24" width="24" />
+                    <vs-svg path="info-toggle" height="24" width="24" />
                 </slot>
             </vs-button>
         </div>
@@ -265,6 +265,7 @@ img {
                 top: auto;
                 width: 310px;
                 height: auto;
+                min-height: 96px;
                 text-align: left;
 
                 > .row {
@@ -286,6 +287,7 @@ img {
                 position: relative;
                 width: 100%;
                 height: auto;
+                min-height: 64px;
                 text-align: left;
 
                 > .row {
@@ -311,6 +313,7 @@ img {
         :longitude="item.longitude"
         variant="large"
         style="max-width:700px"
+        class="mb-11"
     >
         <vs-img 
             class="lazyload" 
@@ -321,11 +324,11 @@ img {
             data-sizes="auto">
         </vs-img>
 
-        <span slot="caption">
+        <span slot="caption" v-if="item.caption">
             {{ item.caption }}
         </span>
 
-        <span slot="credit">
+        <span slot="credit" v-if="item.credit">
             &copy; {{ item.credit }}
         </span>
     </vs-image-with-caption>
@@ -349,11 +352,11 @@ img {
             data-sizes="auto">
         </vs-img>
 
-        <span slot="caption">
+        <span slot="caption" v-if="item.caption">
             {{ item.caption }}
         </span>
 
-        <span slot="credit">
+        <span slot="credit" v-if="item.credit">
             &copy; {{ item.credit }}
         </span>
     </vs-image-with-caption>
@@ -376,11 +379,11 @@ img {
             data-sizes="auto">
         </vs-img>
 
-        <span slot="caption">
+        <span slot="caption" v-if="item.caption">
             {{ item.caption }}
         </span>
 
-        <span slot="credit">
+        <span slot="credit" v-if="item.credit">
             &copy; {{ item.credit }}
         </span>
     </vs-image-with-caption>
@@ -407,7 +410,7 @@ img {
 
         <vs-svg slot="toggle-icon" path="instagram-bg" height="24" width="24" />
 
-        <span slot="caption">
+        <span slot="caption" v-if="item.caption">
             {{ item.caption }}
         </span>
 

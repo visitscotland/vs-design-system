@@ -1,34 +1,16 @@
 <#include "../../../include/imports.ftl">
-
-<#include "../../../vs-dotcom-ds/components/button-with-icon.ftl">
-<#include "../../../vs-dotcom-ds/components/itinerary-tips.ftl">
-<#include "../../../vs-dotcom-ds/components/itinerary-stop.ftl">
-<#include "../../../vs-dotcom-ds/components/itinerary-border-overlap-wrapper.ftl">
-<#include "../../../vs-dotcom-ds/components/image-with-caption.ftl">
-<#include "../../../vs-dotcom-ds/components/icon-list.ftl">
-<#include "../../../vs-dotcom-ds/components/icon-list-item.ftl">
-<#include "../../../vs-dotcom-ds/components/img.ftl">
-<#include "../../../vs-dotcom-ds/components/icon.ftl">
+<#include "../../../vs-dotcom-ds/components/listicle-item.ftl">
 <#include "../../../vs-dotcom-ds/components/link.ftl">
-<#include "../../../vs-dotcom-ds/components/social-credit-link.ftl">
 
 <#include "../key-facilities.ftl">
 <#include "../image-with-caption.ftl">
 
-<#macro listicleItem listItem descOrder>
-<#-- @ftlvariable name="document" type="com.visitscotland.brmx.beans.Listicle" -->
-<#-- @ftlvariable name="heroCoordinates" type="com.visitscotland.brmx.beans.mapping.Coordinates" -->
-
+<#macro listicleItem listItem>
 <#-- @ftlvariable name="listItem" type="com.visitscotland.brmx.beans.ListicleItem" -->
 <#-- @ftlvariable name="item" type="com.visitscotland.brmx.beans.mapping.FlatListicle" -->
 <#-- @ftlvariable name="cta" type="com.visitscotland.brmx.beans.mapping.FlatLink" -->
 
 	<#assign item = items[listItem.identifier]>
-    <#if descOrder>
-        <#assign i = i - 1>
-    <#else >
-        <#assign i = i + 1>
-    </#if>
 
 	<#assign image = "" />
     <#if item.image.cmsImage??>
@@ -40,7 +22,7 @@
     </#if>
 	
 	<vs-listicle-item
-		index="${i}"
+		index="${item.index}"
 		title="${item.title}"
 		sub-title="${item.subTitle}"
 	>
@@ -51,7 +33,7 @@
 			</#if>
 		</div>
 
-		<#if image?has_content>
+		<#if image?? && image?has_content>
 			<div slot="image-slot">
                 <@imageWithCaption imageSrc=image imageDetails=item.image variant="large"/>
 			</div>
@@ -60,8 +42,8 @@
 		<div slot="description-slot">
 			<@hst.html hippohtml=item.description />
 
-			<#if item.ctaLinks?has_content>
-				<#list item.ctaLinks as cta>
+			<#if item.links?has_content>
+				<#list item.links as cta>
 					<#if cta?has_content>
                         <div class="mb-2">
 						    <vs-link href="${cta.link}">${cta.label}</vs-link>

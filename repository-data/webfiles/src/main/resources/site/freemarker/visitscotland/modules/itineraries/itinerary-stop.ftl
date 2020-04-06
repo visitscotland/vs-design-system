@@ -1,14 +1,14 @@
 <#include "../../../include/imports.ftl">
 
-<#include "../../../vs-dotcom-ds/components/button-with-icon.ftl">
-<#include "../../../vs-dotcom-ds/components/itinerary-tips.ftl">
 <#include "../../../vs-dotcom-ds/components/itinerary-stop.ftl">
+<#include "../../../vs-dotcom-ds/components/itinerary-tips.ftl">
 <#include "../../../vs-dotcom-ds/components/itinerary-border-overlap-wrapper.ftl">
-<#include "../../../vs-dotcom-ds/components/image-with-caption.ftl">
-<#include "../../../vs-dotcom-ds/components/icon-list.ftl">
-<#include "../../../vs-dotcom-ds/components/icon-list-item.ftl">
-<#include "../../../vs-dotcom-ds/components/img.ftl">
+<#include "../../../vs-dotcom-ds/components/description-list.ftl">
+<#include "../../../vs-dotcom-ds/components/description-list-term.ftl">
+<#include "../../../vs-dotcom-ds/components/description-list-detail.ftl">
 <#include "../../../vs-dotcom-ds/components/link.ftl">
+<#include "../../../vs-dotcom-ds/components/svg.ftl">
+<#include "../../../vs-dotcom-ds/components/button-with-icon.ftl">
 
 <#include "../key-facilities.ftl">
 <#include "../image-with-caption.ftl">
@@ -75,7 +75,7 @@
                     ${prod.address.city}
                     ${prod.address.postCode} -->
 
-                    <#--TODO show open times the field is:-->
+                    <#--TODO show open times the field is:
                     </br>
                     ${prod.open}
                     </br>
@@ -83,9 +83,10 @@
                         <vs-link href="${prod.openLink.link}">
                             ${prod.openLink.label}
                         </vs-link>
-                     </#if>
-                    <#--TODO show price the field is:
-                    ${prod.price} -->
+                     </#if>-->
+                    <#--TODO  price the field is:
+                </br>
+                    ${prod.price}-->
 
                 <#if prod??>
                     <#if prod.timeToexplore?? && prod.timeToexplore?has_content>

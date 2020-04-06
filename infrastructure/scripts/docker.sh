@@ -4,8 +4,6 @@ echo ""
 echo ""
 echo ======================================================
 echo ==== RUNNING JENKINS SHELL COMMANDS on $NODE_NAME
-echo ====   NOTE: Most of the commands below could be added to a script in SCM
-echo ====         only the directories and port numbers need to be set in the job definition
 echo ""
 echo ==== selected Jenkins environment variables ====
 set | egrep "BRANCH|BUILD|JENKINS|JOB|WORKSPACE"
@@ -41,8 +39,8 @@ for CONTAINER in `docker ps | egrep "$CONTAINER_NAME" | awk '{print $1}'`; do ec
 echo ""
 echo deleting containers with name $CONTAINER_NAME
 docker container ls | egrep "$CONTAINER_NAME"
-for CONTAINER in `docker container ls | egrep "$CONTAINER_NAME" | awk '{print $1}'`; do echo deleting $CONTAINER; docker container rm -f $CONTAINER; done; echo EXIT FOR
-docker container rm $CONTAINER_NAME
+for CONTAINER in `docker container ls | egrep "$CONTAINER_NAME" | awk '{print $1}'`; do echo deleting $CONTAINER; docker container rm -f $CONTAINER; done
+#docker container rm $CONTAINER_NAME
 
 # delete existing images
 echo ""
@@ -51,13 +49,38 @@ docker images | egrep "$CONTAINER_NAME"
 for IMAGE in `docker images | egrep "$CONTAINER_NAME" | awk '{print $3}'`; do echo deleting $IMAGE; docker image rm -f $IMAGE; done
 
 # gp:to-do even if override is set we must still check to ensure it's free, move the while loop to after the if block and just add PORT/MAXPORT values into the if. If the override port if in use the job must fail
-echo ""
-echo "finding a free port to map to the new container's Tomcat port"
+if [ "$GIT_BRANCH" == "develop" ]; then
+  echo ""
+  echo "GIT_BRANCH is $GIT_BRANCH, OVERRIDE PORT will be set to 8100"
+  VS_BRXM_PORT_OVERRIDE=8100
+fi
+
 if [ -z "$VS_BRXM_PORT_OVERRIDE" ]; then
-  PORT=8000; MAXPORT=8099; while [ $PORT -le $MAXPORT ]; do FREE=`netstat -an | egrep "LISTEN *$" | grep $PORT`; if [ "$FREE" = "" ]; then echo $PORT is free; break; fi; PORT=$((PORT+1)); sleep 0; done; if [ $PORT -gt $MAXPORT ]; then echo reached $PORT, no ports are free; PORT=NULL; echo PORT=$PORT; fi
+  PORT=8000
+  MAXPORT=8099;
+  echo ""
+  echo "finding a free port to map to the new container's Tomcat port - range $PORT-$MAXPORT"
 else
-  echo PORT will be set to $VS_BRXM_PORT_OVERRIDE due to VS_BRXM_PORT_OVERRIDE
   PORT=$VS_BRXM_PORT_OVERRIDE
+  MAXPORT=$VS_BRXM_PORT_OVERRIDE
+  echo ""
+  echo "PORT will be set to $VS_BRXM_PORT_OVERRIDE due to VS_BRXM_PORT_OVERRIDE"
+fi
+
+while [ $PORT -le $MAXPORT ]; do
+  FREE=`netstat -an | egrep "LISTEN *$" | grep $PORT`
+  if [ "$FREE" = "" ]; then
+    echo $PORT is free
+    break
+  fi
+  PORT=$((PORT+1))
+  sleep 0
+done
+
+if [ $PORT -gt $MAXPORT ]; then
+  echo reached $PORT, no ports are free
+  PORT=NULL
+  echo PORT=$PORT
 fi
 
 # create dockerfile location in $WORKSPACE
@@ -92,6 +115,7 @@ echo ""
 echo about to start Docker container with:
 echo docker run -d --name $CONTAINER_NAME -p $PORT:8080 $DOCKERFILE_NAME /bin/bash -c "/usr/local/bin/vs-mysqld-start && /usr/local/bin/vs-hippo && while [ ! -f /home/hippo/tomcat_8080/logs/hippo-cms.log ]; do echo no log; sleep 2; done; tail -f /home/hippo/tomcat_8080/logs/hippo-cms.log"
 docker run -d --name $CONTAINER_NAME -p $PORT:8080 $DOCKERFILE_NAME /bin/bash -c "/usr/local/bin/vs-mysqld-start && /usr/local/bin/vs-hippo && while [ ! -f /home/hippo/tomcat_8080/logs/hippo-cms.log ]; do echo no log; sleep 2; done; tail -f /home/hippo/tomcat_8080/logs/hippo-cms.log"
+RETURN_CODE=$?; echo $RETURN_CODE
 sleep 10
 
 echo ""

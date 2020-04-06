@@ -12,7 +12,7 @@
                 :aria-controls="'image_' + imageSrc"
                 @click.native="toggleCaption"
             >
-                <vs-svg path="image-toggle" height="24" width="24" />
+                <vs-svg path="info-toggle" height="24" width="24" />
                 <span class="sr-only">{{ this.toggleButtonText }}</span>
             </vs-button>
         </div>
