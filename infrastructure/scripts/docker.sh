@@ -80,8 +80,8 @@ done
 if [ $PORT -gt $MAXPORT ]; then
   PORT=NULL
   SAFE_TO_PROCEED=FALSE
-  FAIL_REASON="reached $PORT, no ports are free, setting PORT to NULL"
-  echo $FAIL_REASON
+  FAIL_REASON="reached $MAXPORT, no ports are free, setting PORT to NULL"
+  echo " - $FAIL_REASON"
 fi
 
 # search for latest Hippo distribution files
@@ -94,12 +94,12 @@ if [ -z "$HIPPO_LATEST" ]; then
 fi
 
 if [ ! -z "$HIPPO_LATEST" ]; then
-  echo found $HIPPO_LATEST
+  echo " - found $HIPPO_LATEST"
 else
   HIPPO_LATEST=NULL
   SAFE_TO_PROCEED=FALSE
   FAIL_REASON="no archive found in $WORKSPACE, giving up"
-  echo $FAIL_REASON
+  echo " - $FAIL_REASON"
 fi
 
 if [ ! "$SAFE_TO_PROCEED" = "FALSE" ]; then
@@ -121,10 +121,11 @@ if [ ! "$SAFE_TO_PROCEED" = "FALSE" ]; then
   docker exec -d $CONTAINER_NAME /usr/local/bin/vs-hippo nodb
 else
   echo ""
-  echo not attempting to start container due to previous failures
+  echo container will not be started due to previous failures
 fi
 
 if [ ! "$SAFE_TO_PROCEED" = "FALSE" ]; then
+  EXIT_CODE=0
   echo ""
   echo ""
   echo "###############################################################################################################################"
@@ -144,11 +145,12 @@ if [ ! "$SAFE_TO_PROCEED" = "FALSE" ]; then
   echo Direct Tomcat access - available only on the Web Development LAN
   echo "  - http://$VS_HOST_IP_ADDRESS:$PORT/cms/"
   echo "  - http://$VS_HOST_IP_ADDRESS:$PORT/site/"
-  echo "    -  needs a HOST header of localhost:8080 to be passed with the request
+  echo "    -  needs a HOST header of localhost:8080 to be passed with the request"
   echo "###############################################################################################################################"
   echo ""
   echo ""
 else
+  EXIT_CODE=127
   echo "###############################################################################################################################
   echo ""
   echo JOB FAILED because $FAIL_REASON
@@ -156,5 +158,7 @@ else
   echo ""
   echo ""
 fi
+
+exit $EXIT_CODE
 
 # gp:to-do should really tidy
