@@ -80,7 +80,7 @@ done
 if [ $PORT -gt $MAXPORT ]; then
   PORT=NULL
   SAFE_TO_PROCEED=FALSE
-  FAIL_REASON=reached $PORT, no ports are free, setting PORT to NULL
+  FAIL_REASON="reached $PORT, no ports are free, setting PORT to NULL"
   echo $FAIL_REASON
 fi
 
@@ -92,12 +92,13 @@ if [ -z "$HIPPO_LATEST" ]; then
   echo no archive found in $WORKSPACE/target/, widening search
   HIPPO_LATEST=`find $WORKSPACE/ -name "*.tar.gz" | head -1`
 fi
+
 if [ ! -z "$HIPPO_LATEST" ]; then
   echo found $HIPPO_LATEST
 else
   HIPPO_LATEST=NULL
   SAFE_TO_PROCEED=FALSE
-  FAIL_REASON=no archive found in $WORKSPACE, giving up
+  FAIL_REASON="no archive found in $WORKSPACE, giving up"
   echo $FAIL_REASON
 fi
 
@@ -119,6 +120,9 @@ if [ ! "$SAFE_TO_PROCEED" = "FALSE" ]; then
   echo about to execute "/usr/local/bin/vs-hippo nodb" in container $CONTAINER_NAME
   docker exec -d $CONTAINER_NAME /usr/local/bin/vs-hippo nodb
 else
+  echo ""
+  echo not attempting to start container due to previous failures
+fi
 
 if [ ! "$SAFE_TO_PROCEED" = "FALSE" ]; then
   echo ""
