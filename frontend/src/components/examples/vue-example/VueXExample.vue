@@ -1,16 +1,16 @@
 <template>
     <div>
-        <b-card
+        <BCard
             bg-variant="primary"
             style="max-width: 20rem;"
         >
-            <b-card-text>
+            <BCardText>
                 Inside component 1, the count from the VueX state is {{ count }}
-            </b-card-text>
-            <vs-button @click.native="increment">
+            </BCardText>
+            <VsButton @click.native="increment">
                 <slot />
-            </vs-button>
-        </b-card>
+            </VsButton>
+        </BCard>
     </div>
 </template>
 
