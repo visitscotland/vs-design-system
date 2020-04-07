@@ -106,7 +106,9 @@
 </template>
 
 <script>
-import { VsContainer, VsRow, VsCol } from "../elements/layout"
+import {
+    VsContainer, VsRow, VsCol,
+} from "../elements/layout"
 import VsHeading from "../elements/heading/Heading"
 import VsImg from "../elements/img/Img"
 import VsHero from "../patterns/hero/Hero"

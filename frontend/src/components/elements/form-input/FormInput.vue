@@ -1,10 +1,10 @@
 <template>
-  <b-form-input
-    class="vs-form-input"
-    :size="size"
-    v-bind="$attrs"
-    v-model="inputVal"
-  ></b-form-input>
+    <BFormInput
+        v-model="inputVal"
+        class="vs-form-input"
+        :size="size"
+        v-bind="$attrs"
+    />
 </template>
 
 <script>
@@ -16,41 +16,39 @@ import { BFormInput } from "bootstrap-vue"
  */
 
 export default {
-  name: "VsFormInput",
-  status: "prototype",
-  release: "0.0.1",
-  components: {
-    BFormInput,
-  },
-  props: {
-    /**
-     * Set the form field size.
-     * `sm, md, lg`
-     */
-    size: {
-      default: "md",
-      validator: value => {
-        return value.match(/(sm|md|lg)/)
-      },
+    name: "VsFormInput",
+    status: "prototype",
+    release: "0.0.1",
+    components: {
+        BFormInput,
     },
-    value: {
-      type: String,
-      default: "",
+    props: {
+        /**
+         * Set the form field size.
+         * `sm, md, lg`
+         */
+        size: {
+            default: "md",
+            validator: (value) => value.match(/(sm|md|lg)/),
+        },
+        value: {
+            type: String,
+            default: "",
+        },
     },
-  },
-  data() {
-    return {
-      inputVal: this.value,
-    }
-  },
-  watch: {
-    inputVal(newValue) {
-      this.$emit("input", newValue)
+    data() {
+        return {
+            inputVal: this.value,
+        }
     },
-    value(newValue) {
-      this.inputVal = newValue
+    watch: {
+        inputVal(newValue) {
+            this.$emit("input", newValue)
+        },
+        value(newValue) {
+            this.inputVal = newValue
+        },
     },
-  },
 }
 </script>
 
