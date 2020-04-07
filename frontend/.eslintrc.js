@@ -23,7 +23,7 @@ module.exports = {
 		"plugin:jest/recommended",
 		"plugin:cypress/recommended"
 	],
-	"plugins": [
+	plugins: [
 		"vue-a11y",
 		"jest",
 		"cypress"
@@ -59,17 +59,32 @@ module.exports = {
 			"last"
 		],
 	},
-	"overrides": [
-		// Disable no-console rule for build scripts
+	settings: {
+		"import/resolver": {
+			node: {},
+			webpack: {
+				config: "./build/webpack.base.conf.js"
+			}
+		}
+	},
+	overrides: [
+		// Modify rules for build scripts
 		{
 			"files": [ 
 				"src/system.js",
-				"src/utils/core.system-components.js",
-				"src/utils/entry.system-components.js",
 				"{build,config,test}/**/*",
 			],
 			"rules": {
-				"no-console": 0
+				// Disable no-console rule for build scripts
+				"no-console": 0,
+
+				// Allow devDeps to be used without error
+				"import/no-extraneous-dependencies": [
+					"error",
+					{
+						devDependencies: true
+					}
+				]
 			}
 		}
 	]
