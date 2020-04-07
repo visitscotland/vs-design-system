@@ -36,7 +36,9 @@ module.exports = {
 		"vue/no-unused-vars": "error",
 		"vue/order-in-components": "error",
 		"vue/this-in-template": "error",
-		"vue/component-name-in-template-casing": "error",
+		"vue/component-name-in-template-casing": ["error", "PascalCase", {
+            registeredComponentsOnly: false,
+          }],
 		"vue/script-indent": [
 			"error",
 			4
