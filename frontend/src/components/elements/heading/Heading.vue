@@ -1,5 +1,5 @@
 <template>
-    <component
+    <Component
         :is="type"
         class="heading"
         :class="{
@@ -11,7 +11,7 @@
         <span class="heading__sub-heading">
             <slot name="sub-heading" />
         </span>
-    </component>
+    </Component>
 </template>
 
 <script>
@@ -33,9 +33,7 @@ export default {
         level: {
             type: [String, Number],
             default: "1",
-            validator: value => {
-                return isNumber(value) ? value > 0 && value < 7 : value.match(/(1|2|3|4|5|6)/)
-            },
+            validator: (value) => (isNumber(value) ? value > 0 && value < 7 : value.match(/(1|2|3|4|5|6)/)),
         },
 
         /**
@@ -47,7 +45,7 @@ export default {
     },
     computed: {
         type() {
-            return "h" + this.level
+            return `h${this.level}`
         },
     },
 }
@@ -102,7 +100,7 @@ $sub-font-sizes: (
 
 <docs>
   ```jsx
-  <div>  
+  <div>
     <vs-heading>H1 Heading</vs-heading>
     <vs-heading thin>H1 Heading Thin</vs-heading>
     <br />
@@ -123,7 +121,7 @@ $sub-font-sizes: (
 
     <vs-heading level="3" class="mt-9">
         H3 Heading With Subtitle
-        <span slot="sub-heading">This Is a Subtitle</span>   
+        <span slot="sub-heading">This Is a Subtitle</span>
     </vs-heading>
   </div>
 
