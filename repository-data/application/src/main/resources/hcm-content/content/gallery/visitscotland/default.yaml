@@ -138,8 +138,8 @@
       hippogallery:description: ''
       hippogallery:filename: visitscotland_43424542162.jpg
       visitscotland:altText: ''
-      visitscotland:credit: ''
-      visitscotland:location: Abernyte
+      visitscotland:credit: Visitscotland
+      visitscotland:location: Flotta
       /hippogallery:thumbnail:
         jcr:primaryType: hippogallery:image
         hippo:filename: visitscotland_43424542162.jpg
@@ -167,7 +167,11 @@
     /royal-botanic-garden.jpg:
       jcr:primaryType: visitscotland:Image
       hippo:availability: [live, preview]
+      hippogallery:description: Botnic gardens
       hippogallery:filename: Royal Botanic Garden.jpg
+      visitscotland:altText: ''
+      visitscotland:credit: visitscotland
+      visitscotland:location: Shieldaig
       /hippogallery:thumbnail:
         jcr:primaryType: hippogallery:image
         hippo:filename: Royal Botanic Garden.jpg

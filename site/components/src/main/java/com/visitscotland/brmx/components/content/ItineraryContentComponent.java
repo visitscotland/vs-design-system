@@ -99,10 +99,17 @@ public class ItineraryContentComponent extends PageContentComponent<Itinerary> {
                 if (stop.getStopItem() instanceof DMSLink){
                     DMSLink dmsLink = (DMSLink) stop.getStopItem();
                     if (stop.getImage()!=null) {
-                        img = new FlatImage(stop.getImage());
+                        Image cmsImage = (Image) stop.getStopItemImage();
+                        if (cmsImage != null) {
+                            img = new FlatImage(cmsImage, cmsImage.getAltText(), cmsImage.getCredit(), cmsImage.getDescription());
+                            LocationObject locationObject = LocationLoader.getLocation(cmsImage.getLocation(), request.getLocale());
+                            if (locationObject!=null) {
+                                img.setCoordinates(new Coordinates(locationObject.getLatitude(), locationObject.getLongitude()));
+                            }
+                        }
                     }
 
-                    //CONTENT prefix on error messages could means that the problem can be fixed by altering the content.
+                    //CONTENT prefix on error messages could mean that the problem can be fixed by altering the content.
                     try {
 
                         if (dmsLink.getProduct() == null){
@@ -120,7 +127,7 @@ public class ItineraryContentComponent extends PageContentComponent<Itinerary> {
                                 if (product.has(ADDRESS)){
                                     JSONObject address =product.getJSONObject(ADDRESS);
                                     model.setAddress(address);
-                                    model.setLocation( address.has(LOCATION)?address.getString(LOCATION):null);
+                                    model.setLocation(address.has(LOCATION)?address.getString(LOCATION):null);
                                 }
 
 
@@ -136,7 +143,7 @@ public class ItineraryContentComponent extends PageContentComponent<Itinerary> {
 
                                 if (stop.getImage() == null && product.has(IMAGE) ){
                                     JSONArray dmsImageList = product.getJSONArray(IMAGE);
-                                    img = new FlatImage( dmsImageList.getJSONObject(0),product.getString(NAME));
+                                    img = new FlatImage(dmsImageList.getJSONObject(0),product.getString(NAME));
                                 }
 
                                 coordinates.setLatitude(product.getDouble(LAT));
@@ -177,13 +184,18 @@ public class ItineraryContentComponent extends PageContentComponent<Itinerary> {
                     }
                 } else if (stop.getStopItem() instanceof ItineraryExternalLink){
                     ItineraryExternalLink externalLink = (ItineraryExternalLink) stop.getStopItem();
-
                     if (stop.getImage() != null) {
-                        img.setCmsImage(stop.getImage());
-                        img.setAltText(stop.getImage().getAltText());
-                        img.setCredit(stop.getImage().getCredit());
-                        img.setDescription(stop.getImage().getDescription());
+                        Image cmsImage = (Image) stop.getStopItemImage();
+                        if (cmsImage != null) {
+                            img = new FlatImage(cmsImage, cmsImage.getAltText(), cmsImage.getCredit(), cmsImage.getDescription());
+                            LocationObject locationObject = LocationLoader.getLocation(cmsImage.getLocation(), request.getLocale());
+                            if (locationObject!=null) {
+                                img.setCoordinates(new Coordinates(locationObject.getLatitude(), locationObject.getLongitude()));
+                                model.setLocation(cmsImage.getLocation());
+                            }
+                        }
                     }
+
                     visitDuration = externalLink.getTimeToExplore();
 
                     if (externalLink.getExternalLink() != null) {

@@ -275,7 +275,7 @@
         hippostd:state: unpublished
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2019-12-11T12:40:08.862Z
-        hippostdpubwf:lastModificationDate: 2020-03-30T15:21:46.087+01:00
+        hippostdpubwf:lastModificationDate: 2020-04-08T10:03:08.371+01:00
         hippostdpubwf:lastModifiedBy: admin
         hippotranslation:id: 1bdaaad2-68eb-4493-878c-0961215fe02a
         hippotranslation:locale: en
@@ -293,7 +293,7 @@
           hippostd:content: <p>Description example for pull out</p>
         /visitscotland:image:
           jcr:primaryType: hippogallerypicker:imagelink
-          hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
+          hippo:docbase: ecede5a4-326c-4ce5-b9be-bcdf32c3f2c2
           hippo:facets: []
           hippo:modes: []
           hippo:values: []
@@ -309,7 +309,7 @@
         hippostd:state: draft
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2019-12-11T12:40:08.862Z
-        hippostdpubwf:lastModificationDate: 2020-03-30T15:21:29.859+01:00
+        hippostdpubwf:lastModificationDate: 2020-04-08T10:02:56.352+01:00
         hippostdpubwf:lastModifiedBy: admin
         hippotranslation:id: 1bdaaad2-68eb-4493-878c-0961215fe02a
         hippotranslation:locale: en
@@ -327,7 +327,7 @@
           hippostd:content: <p>Description example for pull out</p>
         /visitscotland:image:
           jcr:primaryType: hippogallerypicker:imagelink
-          hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
+          hippo:docbase: ecede5a4-326c-4ce5-b9be-bcdf32c3f2c2
           hippo:facets: []
           hippo:modes: []
           hippo:values: []
@@ -387,7 +387,7 @@
         hippostd:state: unpublished
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2019-12-16T12:20:46.037Z
-        hippostdpubwf:lastModificationDate: 2020-03-09T13:38:58.432Z
+        hippostdpubwf:lastModificationDate: 2020-04-08T11:27:07.770+01:00
         hippostdpubwf:lastModifiedBy: admin
         hippotranslation:id: b4f184af-52de-4e48-92ab-33cc5c2519e0
         hippotranslation:locale: en
@@ -412,7 +412,7 @@
             visitscotland:link: https://ebooks.visitscotland.com/ghosts-myths-legends/
         /visitscotland:image:
           jcr:primaryType: hippogallerypicker:imagelink
-          hippo:docbase: 1e4be246-297b-4404-8102-80fe1bc0ddf7
+          hippo:docbase: 8d4f5036-64ca-4e5d-aa89-b348ae38b081
           hippo:facets: []
           hippo:modes: []
           hippo:values: []
@@ -424,7 +424,7 @@
         hippostd:state: draft
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2019-12-16T12:20:46.037Z
-        hippostdpubwf:lastModificationDate: 2020-03-31T17:38:38.735+01:00
+        hippostdpubwf:lastModificationDate: 2020-04-08T14:06:01.104+01:00
         hippostdpubwf:lastModifiedBy: admin
         hippotranslation:id: b4f184af-52de-4e48-92ab-33cc5c2519e0
         hippotranslation:locale: en
@@ -449,7 +449,7 @@
             visitscotland:link: https://ebooks.visitscotland.com/ghosts-myths-legends/
         /visitscotland:image:
           jcr:primaryType: hippogallerypicker:imagelink
-          hippo:docbase: 1e4be246-297b-4404-8102-80fe1bc0ddf7
+          hippo:docbase: 8d4f5036-64ca-4e5d-aa89-b348ae38b081
           hippo:facets: []
           hippo:modes: []
           hippo:values: []
@@ -544,7 +544,7 @@
         hippostd:state: draft
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2020-03-09T09:35:33.720Z
-        hippostdpubwf:lastModificationDate: 2020-03-30T15:46:03.034+01:00
+        hippostdpubwf:lastModificationDate: 2020-04-08T14:14:44.216+01:00
         hippostdpubwf:lastModifiedBy: admin
         hippotranslation:id: 4e1f4d01-d817-4ca4-8733-8dc82c52888b
         hippotranslation:locale: en
@@ -561,7 +561,7 @@
           hippostd:content: ''
         /visitscotland:image:
           jcr:primaryType: hippogallerypicker:imagelink
-          hippo:docbase: 1e4be246-297b-4404-8102-80fe1bc0ddf7
+          hippo:docbase: 901a0eff-02b0-4cf8-bd34-92bf8c606c85
           hippo:facets: []
           hippo:modes: []
           hippo:values: []
@@ -577,7 +577,7 @@
         hippostd:state: unpublished
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2020-03-09T09:35:33.720Z
-        hippostdpubwf:lastModificationDate: 2020-03-30T15:46:27.730+01:00
+        hippostdpubwf:lastModificationDate: 2020-04-08T11:27:25.886+01:00
         hippostdpubwf:lastModifiedBy: admin
         hippotranslation:id: 4e1f4d01-d817-4ca4-8733-8dc82c52888b
         hippotranslation:locale: en
@@ -594,7 +594,7 @@
           hippostd:content: ''
         /visitscotland:image:
           jcr:primaryType: hippogallerypicker:imagelink
-          hippo:docbase: 1e4be246-297b-4404-8102-80fe1bc0ddf7
+          hippo:docbase: 901a0eff-02b0-4cf8-bd34-92bf8c606c85
           hippo:facets: []
           hippo:modes: []
           hippo:values: []
@@ -1438,7 +1438,7 @@
         hippostd:state: draft
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2020-02-07T12:56:03.081Z
-        hippostdpubwf:lastModificationDate: 2020-02-07T12:56:03.081Z
+        hippostdpubwf:lastModificationDate: 2020-04-07T18:05:41.664+01:00
         hippostdpubwf:lastModifiedBy: admin
         hippotranslation:id: 3d311039-8622-4e7e-92bc-4be5d9e020b6
         hippotranslation:locale: en
@@ -1471,6 +1471,16 @@
             hippo:facets: []
             hippo:modes: []
             hippo:values: []
+          /visitscotland:ExternalLink:
+            jcr:primaryType: visitscotland:ExternalLink
+            visitscotland:label: ''
+            visitscotland:link: www.bus.com
+        /visitscotland:image:
+          jcr:primaryType: hippogallerypicker:imagelink
+          hippo:docbase: aecf0250-aae9-42d9-bc08-34d80ec9b49c
+          hippo:facets: []
+          hippo:modes: []
+          hippo:values: []
       /glen-tanar-estate[2]:
         jcr:primaryType: visitscotland:Stop
         jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
@@ -1479,7 +1489,7 @@
         hippostd:state: unpublished
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2020-02-07T12:56:03.081Z
-        hippostdpubwf:lastModificationDate: 2020-02-07T12:56:30.916Z
+        hippostdpubwf:lastModificationDate: 2020-04-07T18:05:50.320+01:00
         hippostdpubwf:lastModifiedBy: admin
         hippotranslation:id: 3d311039-8622-4e7e-92bc-4be5d9e020b6
         hippotranslation:locale: en
@@ -1512,6 +1522,16 @@
             hippo:facets: []
             hippo:modes: []
             hippo:values: []
+          /visitscotland:ExternalLink:
+            jcr:primaryType: visitscotland:ExternalLink
+            visitscotland:label: ''
+            visitscotland:link: www.bus.com
+        /visitscotland:image:
+          jcr:primaryType: hippogallerypicker:imagelink
+          hippo:docbase: aecf0250-aae9-42d9-bc08-34d80ec9b49c
+          hippo:facets: []
+          hippo:modes: []
+          hippo:values: []
       /glen-tanar-estate[3]:
         jcr:primaryType: visitscotland:Stop
         jcr:mixinTypes: ['mix:referenceable']
@@ -1922,7 +1942,7 @@
         hippostd:state: draft
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2020-02-07T10:04:03.923Z
-        hippostdpubwf:lastModificationDate: 2020-02-07T10:11:06.378Z
+        hippostdpubwf:lastModificationDate: 2020-04-08T09:12:24.140+01:00
         hippostdpubwf:lastModifiedBy: admin
         hippotranslation:id: c5cea3b9-1aae-4a7c-9de7-abe02f994fdb
         hippotranslation:locale: en
@@ -1960,6 +1980,16 @@
             hippo:facets: []
             hippo:modes: []
             hippo:values: []
+          /visitscotland:ExternalLink:
+            jcr:primaryType: visitscotland:ExternalLink
+            visitscotland:label: ''
+            visitscotland:link: www.marca.es
+        /visitscotland:image:
+          jcr:primaryType: hippogallerypicker:imagelink
+          hippo:docbase: 901a0eff-02b0-4cf8-bd34-92bf8c606c85
+          hippo:facets: []
+          hippo:modes: []
+          hippo:values: []
       /st-magnus-cathedral[2]:
         jcr:primaryType: visitscotland:Stop
         jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
@@ -1968,7 +1998,7 @@
         hippostd:state: unpublished
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2020-02-07T10:04:03.923Z
-        hippostdpubwf:lastModificationDate: 2020-02-07T10:10:03.362Z
+        hippostdpubwf:lastModificationDate: 2020-04-08T09:12:24.100+01:00
         hippostdpubwf:lastModifiedBy: admin
         hippotranslation:id: c5cea3b9-1aae-4a7c-9de7-abe02f994fdb
         hippotranslation:locale: en
@@ -2006,6 +2036,16 @@
             hippo:facets: []
             hippo:modes: []
             hippo:values: []
+          /visitscotland:ExternalLink:
+            jcr:primaryType: visitscotland:ExternalLink
+            visitscotland:label: ''
+            visitscotland:link: www.marca.es
+        /visitscotland:image:
+          jcr:primaryType: hippogallerypicker:imagelink
+          hippo:docbase: 901a0eff-02b0-4cf8-bd34-92bf8c606c85
+          hippo:facets: []
+          hippo:modes: []
+          hippo:values: []
       /st-magnus-cathedral[3]:
         jcr:primaryType: visitscotland:Stop
         jcr:mixinTypes: ['mix:referenceable']

@@ -29,23 +29,6 @@
         <#assign image = "" />
     </#if>
 
-    <#if !stop.stopItem?? && editMode>
-        <vs-itinerary-stop
-            slot="stops"
-            stop-number="${prod.index}"
-            stop-label="${prod.title}"
-            stop-title="${prod.location}"
-        >
-            <div slot="stop-details" class="has-edit-button">
-                <@hst.manageContent hippobean=stop />
-                <#if prod.errorMessages?? && prod.errorMessages?size gt 0>
-                    <#list prod.errorMessages as error>
-                        <h1 class="text-danger">${error?upper_case}</h1>
-                    </#list>
-                </#if>
-            </div>
-        </vs-itinerary-stop>
-    <#elseif stop.stopItem??>
         <vs-itinerary-stop
             slot="stops"
             stop-number="${prod.index}"
@@ -126,5 +109,4 @@
                 </vs-itinerary-border-overlap-wrapper>
             </#if>
         </vs-itinerary-stop>
-    </#if>
 </#macro>

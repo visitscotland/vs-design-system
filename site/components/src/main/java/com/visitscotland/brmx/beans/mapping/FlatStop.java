@@ -12,6 +12,7 @@ public class FlatStop {
 
     private Integer index;
     private String title;
+    private String location;
     private HippoHtml description;
     private FlatImage image;
     private String timeToexplore;
@@ -20,7 +21,6 @@ public class FlatStop {
     private HippoHtml tipsBody;
     private List<JSONObject> facilities;
     private JSONObject address;
-    private String location;
     private String price;
     private String open;
     private FlatLink openLink;
