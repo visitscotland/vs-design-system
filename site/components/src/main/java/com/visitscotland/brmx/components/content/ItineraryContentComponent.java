@@ -102,10 +102,6 @@ public class ItineraryContentComponent extends PageContentComponent<Itinerary> {
                         Image cmsImage = (Image) stop.getStopItemImage();
                         if (cmsImage != null) {
                             img = new FlatImage(cmsImage, cmsImage.getAltText(), cmsImage.getCredit(), cmsImage.getDescription());
-                            LocationObject locationObject = LocationLoader.getLocation(cmsImage.getLocation(), request.getLocale());
-                            if (locationObject!=null) {
-                                img.setCoordinates(new Coordinates(locationObject.getLatitude(), locationObject.getLongitude()));
-                            }
                         }
                     }
 
@@ -190,8 +186,7 @@ public class ItineraryContentComponent extends PageContentComponent<Itinerary> {
                             img = new FlatImage(cmsImage, cmsImage.getAltText(), cmsImage.getCredit(), cmsImage.getDescription());
                             LocationObject locationObject = LocationLoader.getLocation(cmsImage.getLocation(), request.getLocale());
                             if (locationObject!=null) {
-                                img.setCoordinates(new Coordinates(locationObject.getLatitude(), locationObject.getLongitude()));
-                                model.setLocation(cmsImage.getLocation());
+                                model.setLocation(locationObject.getName());
                             }
                         }
                     }
@@ -222,7 +217,9 @@ public class ItineraryContentComponent extends PageContentComponent<Itinerary> {
                 if (firstStopId == null){
                     firstStopId = lastStopId;
                 }
-
+                if (model.getCoordinates()!=null) {
+                    img.setCoordinates(model.getCoordinates());
+                }
                 model.setImage(img);
                 if (visitDuration!=null) {
                     visitDuration = visitDuration.equalsIgnoreCase("1") ? visitDuration + " " + HippoUtils.getResourceBundle("stop.hour", "itinerary", request.getLocale())
