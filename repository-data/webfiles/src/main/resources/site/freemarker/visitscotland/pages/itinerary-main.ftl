@@ -30,6 +30,7 @@
 
 <#include "../modules/itineraries/itinerary-stop.ftl">
 <#include "../modules/itineraries/itinerary-map.ftl">
+<#include "../modules/cms-errors.ftl">
 
 <#-- Implicit Request Objects -->
 <#-- @ftlvariable name="document" type="com.visitscotland.brmx.beans.Itinerary" -->
@@ -58,9 +59,7 @@
 
 <div class="has-edit-button">
     <@hst.manageContent hippobean=document documentTemplateQuery="new-document" rootPath="site" defaultPath="${path}" />
-    <#if alerts?? && alerts?size gt 0>
-        <@cmsErrors errors=alerts />
-    </#if>
+    <@cmsErrors errors=alerts!"" editMode=editMode />
 
     <vs-page-intro>
         <#if document.heroImage??>

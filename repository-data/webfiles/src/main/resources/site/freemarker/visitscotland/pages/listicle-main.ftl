@@ -24,9 +24,8 @@
 
 <div class="has-edit-button">
 	<@hst.manageContent hippobean=document documentTemplateQuery="new-document" rootPath="site" defaultPath="${path}" />
-	<#if alerts?? && alerts?size gt 0>
-        <@cmsErrors errors=alerts />
-	</#if>
+    <@cmsErrors errors=alerts!"" editMode=editMode />
+    
     
 	<vs-container slot="upper" class="py-lg-4">
 		<vs-row class="justify-content-md-between">

@@ -12,6 +12,7 @@
 
 <#include "../key-facilities.ftl">
 <#include "../image-with-caption.ftl">
+<#include "../cms-errors.ftl">
 
 <#macro itineraryStop stop lastStop>
 <#-- @ftlvariable name="stop" type="com.visitscotland.brmx.beans.Stop" -->
@@ -38,9 +39,7 @@
         >
             <div slot="stop-details" class="has-edit-button">
                 <@hst.manageContent hippobean=stop />
-                <#if prod.errorMessages?? && prod.errorMessages?size gt 0>
-                    <@cmsErrors errors=prod.errorMessages />
-                </#if>
+                <@cmsErrors errors=prod.errorMessages!"" editMode=editMode />
             </div>
         </vs-itinerary-stop>
     <#elseif stop.stopItem??>
@@ -52,9 +51,7 @@
         >
             <div slot="stop-details" class="has-edit-button">
                 <@hst.manageContent hippobean=stop />
-                <#if prod.errorMessage?? && prod.errorMessage?size gt 0 && editMode>
-                    <@cmsErrors errors=prod.errorMessage />
-                </#if>
+                <@cmsErrors errors=prod.errorMessage!"" editMode=editMode />
                 <#if image?? && image?has_content>
                     <@imageWithCaption imageSrc=image imageDetails=prod.image variant="fullwidth"/>
                 </#if>

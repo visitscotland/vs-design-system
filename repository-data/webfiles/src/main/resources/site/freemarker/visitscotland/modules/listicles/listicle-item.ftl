@@ -4,6 +4,7 @@
 
 <#include "../key-facilities.ftl">
 <#include "../image-with-caption.ftl">
+<#include "../cms-errors.ftl">
 
 <#macro listicleItem listItem>
 <#-- @ftlvariable name="listItem" type="com.visitscotland.brmx.beans.ListicleItem" -->
@@ -28,9 +29,7 @@
 	>
 		<div slot="hippo-details" class="has-edit-button">
 			<@hst.manageContent hippobean=listItem />
-			<#if item.errorMessages?? && item.errorMessages?size gt 0 && editMode>
-                <@cmsErrors errors=item.errorMessages />
-			</#if>
+            <@cmsErrors errors=item.errorMessages!"" editMode=editMode />
 		</div>
 
 		<#if image?? && image?has_content>
