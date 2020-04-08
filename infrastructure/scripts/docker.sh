@@ -77,11 +77,14 @@ while [ $PORT -le $MAXPORT ]; do
   sleep 0
 done
 
+# testing - what happens if port is not avaiable
+if [ ! "$GIT_BRANCH" = "develop" ]; then
 if [ $PORT -gt $MAXPORT ]; then
   PORT=NULL
   SAFE_TO_PROCEED=FALSE
-  FAIL_REASON="reached $MAXPORT, no ports are free, setting PORT to NULL"
+  FAIL_REASON="port scan reached $MAXPORT, no ports are free, setting PORT to NULL"
   echo " - $FAIL_REASON"
+fi
 fi
 
 # search for latest Hippo distribution files
@@ -110,18 +113,42 @@ if [ ! "$SAFE_TO_PROCEED" = "FALSE" ]; then
   echo docker run -d --name $CONTAINER_NAME -p $PORT:8080 $DOCKERFILE_NAME /bin/bash -c "/usr/local/bin/vs-mysqld-start && /usr/local/bin/vs-hippo && while [ ! -f /home/hippo/tomcat_8080/logs/hippo-cms.log ]; do echo no log; sleep 2; done; tail -f /home/hippo/tomcat_8080/logs/hippo-cms.log"
   docker run -d --name $CONTAINER_NAME -p $PORT:8080 $DOCKERFILE_NAME /bin/bash -c "/usr/local/bin/vs-mysqld-start && /usr/local/bin/vs-hippo && while [ ! -f /home/hippo/tomcat_8080/logs/hippo-cms.log ]; do echo no log; sleep 2; done; tail -f /home/hippo/tomcat_8080/logs/hippo-cms.log"
   RETURN_CODE=$?; echo $RETURN_CODE
+  if [ ! "$RETURN_CODE" = "0" ]; then
+    SAFE_TO_PROCEED=FALSE
+    FAIL_REASON="Docker failed to start container $CONTAINER_NAME, command exited with $RETURN_CODE"
+  fi
   sleep 10
-
-  echo ""
-  echo about to copy $HIPPO_LATEST to container $CONTAINER_NAME:/home/hippo
-  docker cp $HIPPO_LATEST $CONTAINER_NAME:/home/hippo
-
-  echo ""
-  echo about to execute "/usr/local/bin/vs-hippo nodb" in container $CONTAINER_NAME
-  docker exec -d $CONTAINER_NAME /usr/local/bin/vs-hippo nodb
 else
   echo ""
   echo container will not be started due to previous failures
+fi
+
+if [ ! "$SAFE_TO_PROCEED" = "FALSE" ]; then
+  echo ""
+  echo about to copy $HIPPO_LATEST to container $CONTAINER_NAME:/home/hippo
+  docker cp $HIPPO_LATEST $CONTAINER_NAME:/home/hippo
+  RETURN_CODE=$?; echo $RETURN_CODE
+  if [ ! "$RETURN_CODE" = "0" ]; then
+    SAFE_TO_PROCEED=FALSE
+    FAIL_REASON="Docker failed to run cp command against $CONTAINER_NAME, command exited with $RETURN_CODE"
+  fi
+else
+  echo ""
+  echo docker cp will not be run due to previous failures
+fi
+
+if [ ! "$SAFE_TO_PROCEED" = "FALSE" ]; then
+  echo ""
+  echo about to execute "/usr/local/bin/vs-hippo nodb" in container $CONTAINER_NAME
+  docker exec -d $CONTAINER_NAME /usr/local/bin/vs-hippo nodb
+  RETURN_CODE=$?; echo $RETURN_CODE
+  if [ ! "$RETURN_CODE" = "0" ]; then
+    SAFE_TO_PROCEED=FALSE
+    FAIL_REASON="Docker failed to run exec command in $CONTAINER_NAME, command exited with $RETURN_CODE"
+  fi
+else
+  echo ""
+  echo docker exec will not be run due to previous failures
 fi
 
 if [ ! "$SAFE_TO_PROCEED" = "FALSE" ]; then
@@ -146,14 +173,18 @@ if [ ! "$SAFE_TO_PROCEED" = "FALSE" ]; then
   echo "  - http://$VS_HOST_IP_ADDRESS:$PORT/cms/"
   echo "  - http://$VS_HOST_IP_ADDRESS:$PORT/site/"
   echo "    -  needs a HOST header of localhost:8080 to be passed with the request"
+  echo ""
   echo "###############################################################################################################################"
   echo ""
   echo ""
 else
   EXIT_CODE=127
+  echo ""
+  echo ""
   echo "###############################################################################################################################"
   echo ""
   echo JOB FAILED because $FAIL_REASON
+  echo ""
   echo "###############################################################################################################################"
   echo ""
   echo ""
