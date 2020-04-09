@@ -2,12 +2,12 @@
 clear
 echo ""
 echo ""
-echo ======================================================
-echo ==== RUNNING JENKINS SHELL COMMANDS on $NODE_NAME
+echo "======================================================"
+echo "==== RUNNING JENKINS SHELL COMMANDS on $NODE_NAME"0
 echo ""
-echo ==== selected Jenkins environment variables ====
+echo "==== selected Jenkins environment variables ===="
 set | egrep "BRANCH|BUILD|JENKINS|JOB|WORKSPACE"
-echo ====/selected Jenkins environment variables ====
+echo "====/selected Jenkins environment variables ===="
 
 # ==== ADJUSTABLE VARIABLES ====
 # gp:to-do we need to update these to set only if they're not set already, that way the Dev can override in the Jenkinsfile
@@ -52,7 +52,7 @@ echo "checking for non-running containers with name $CONTAINER_NAME"
 CONTAINER_EXISTS=`docker ps -aq --filter "name=$CONTAINER_NAME"`
 if [ ! -z "$CONTAINER_EXISTS" ]; then
   CONTAINER_STATUS=`docker ps -a --filter "name=$CONTAINER_NAME" --format "table {{.Status}}" | tail -1`
-  echo " - i found a non-running container, ID:$CONTAINER_RUNNING, with name $CONTAINER_NAME and Status:$CONTAINER_STATUS"
+  echo " - i found a non-running container, ID:$CONTAINER_EXISTS, with name $CONTAINER_NAME and status:$CONTAINER_STATUS"
 else
   echo " - no container found with name $CONTAINER_NAME"
 fi
@@ -72,7 +72,7 @@ for CONTAINER in `docker container ls | egrep "$CONTAINER_NAME" | awk '{print $1
 
 # delete existing images
 echo ""
-echo deleting any docker images with name $CONTAINER_NAME
+echo "deleting any docker images with name $CONTAINER_NAME"
 docker images | egrep "$CONTAINER_NAME"
 for IMAGE in `docker images | egrep "$CONTAINER_NAME" | awk '{print $3}'`; do echo deleting $IMAGE; docker image rm -f $IMAGE; done
 
@@ -96,8 +96,8 @@ else
 fi
 
 # also check if the port is "reserved" by an existing container
-PARENT_JOB_NAME=`echo $JOB_NAME | sed -e "s/\/.*//g"
-echo checking for ports reserved for other branches in $PARENT_JOB_NAME
+PARENT_JOB_NAME=`echo $JOB_NAME | sed -e "s/\/.*//g"`
+echo "checking for ports reserved for other branches in $PARENT_JOB_NAME"
 for CONTAINER in `curl -s $JENKINS_URL/job/$PARENT_JOB_NAME/rssLatest | sed -e "s/type=\"text\/html\" href=\"/\n/g" | egrep "^https" | sed -e "s/%252F/\//g" | sed "s/\".*//g" | sed -e "s/htt.*\/\(.*\)\/[0-9]*\//\1/g" | egrep -v "http"`; do
   RESERVED_PORT=`docker inspect --format='{{(index (index .NetworkSettings.Ports "8080/tcp") 0).HostPort}}' $JOBNAME\_$CONTAINER 2>/dev/null`
   if [ ! -z "$RESERVED_PORT" ]; then
@@ -110,7 +110,7 @@ echo "Ports $RESERVED_PORT_LIST are reserved"
 while [ $PORT -le $MAXPORT ]; do
   FREE=`netstat -an | egrep "LISTEN *$" | grep $PORT`
   if [ "$FREE" = "" ]; then
-    echo $PORT is free
+    echo "$PORT is free"
     break
   fi
   PORT=$((PORT+1))
@@ -131,11 +131,11 @@ fi
 if [ -z $HIPPO_LATEST ]; then
   # search in $WORKSPACE/target/ for files matching "*.tar.gz"
   echo ""
-  echo searching for latest Hippo distribution files in $WORKSPACE/target
+  echo "searching for latest Hippo distribution files in $WORKSPACE/target"
   HIPPO_LATEST=`ls -alht $WORKSPACE/target/*.tar.gz | head -1 | awk '{print $9}'` 2>&1 > /dev/null
   if [ -z "$HIPPO_LATEST" ]; then
     # recursive search in $WORKSPACE/ for files matching "*.tar.gz"
-    echo no archive found in $WORKSPACE/target/, widening search
+    echo "no archive found in $WORKSPACE/target/, widening search"
     HIPPO_LATEST=`find $WORKSPACE/ -name "*.tar.gz" | head -1`
   fi
 
@@ -153,7 +153,7 @@ if [ ! "$SAFE_TO_PROCEED" = "FALSE" ]; then
   sleep 5
 
   echo ""
-  echo about to start Docker container with:
+  echo "about to start Docker container with:"
   echo docker run -d --name $CONTAINER_NAME -p $PORT:8080 $DOCKERFILE_NAME /bin/bash -c "/usr/local/bin/vs-mysqld-start && /usr/local/bin/vs-hippo && while [ ! -f /home/hippo/tomcat_8080/logs/hippo-cms.log ]; do echo no log; sleep 2; done; tail -f /home/hippo/tomcat_8080/logs/hippo-cms.log"
   docker run -d --name $CONTAINER_NAME -p $PORT:8080 $DOCKERFILE_NAME /bin/bash -c "/usr/local/bin/vs-mysqld-start && /usr/local/bin/vs-hippo && while [ ! -f /home/hippo/tomcat_8080/logs/hippo-cms.log ]; do echo no log; sleep 2; done; tail -f /home/hippo/tomcat_8080/logs/hippo-cms.log"
   RETURN_CODE=$?; echo $RETURN_CODE
@@ -164,12 +164,12 @@ if [ ! "$SAFE_TO_PROCEED" = "FALSE" ]; then
   sleep 10
 else
   echo ""
-  echo container will not be started due to previous failures
+  echo "container will not be started due to previous failures"
 fi
 
 if [ ! "$SAFE_TO_PROCEED" = "FALSE" ]; then
   echo ""
-  echo about to copy $HIPPO_LATEST to container $CONTAINER_NAME:/home/hippo
+  echo "about to copy $HIPPO_LATEST to container $CONTAINER_NAME:/home/hippo"
   docker cp $HIPPO_LATEST $CONTAINER_NAME:/home/hippo
   RETURN_CODE=$?; echo $RETURN_CODE
   if [ ! "$RETURN_CODE" = "0" ]; then
@@ -178,12 +178,12 @@ if [ ! "$SAFE_TO_PROCEED" = "FALSE" ]; then
   fi
 else
   echo ""
-  echo docker cp will not be run due to previous failures
+  echo "docker cp will not be run due to previous failures"
 fi
 
 if [ ! "$SAFE_TO_PROCEED" = "FALSE" ]; then
   echo ""
-  echo about to execute "/usr/local/bin/vs-hippo nodb" in container $CONTAINER_NAME
+  echo "about to execute "/usr/local/bin/vs-hippo nodb" in container $CONTAINER_NAME"
   docker exec -d $CONTAINER_NAME /usr/local/bin/vs-hippo nodb
   RETURN_CODE=$?; echo $RETURN_CODE
   if [ ! "$RETURN_CODE" = "0" ]; then
@@ -192,7 +192,7 @@ if [ ! "$SAFE_TO_PROCEED" = "FALSE" ]; then
   fi
 else
   echo ""
-  echo docker exec will not be run due to previous failures
+  echo "docker exec will not be run due to previous failures"
 fi
 
 if [ ! "$SAFE_TO_PROCEED" = "FALSE" ]; then
@@ -201,19 +201,19 @@ if [ ! "$SAFE_TO_PROCEED" = "FALSE" ]; then
   echo ""
   echo "###############################################################################################################################"
   echo ""
-  echo The site instance for branch $GIT_BRANCH should now be available in a few moments on $NODE_NAME - $VS_HOST_IP_ADDRESS at:
+  echo "The site instance for branch $GIT_BRANCH should now be available in a few moments on $NODE_NAME - $VS_HOST_IP_ADDRESS at:"
   echo "  - $VS_PROXY_SERVER_SCHEME://$VS_PROXY_SERVER_FQDN/?vs_brxm_host=$VS_HOST_IP_ADDRESS&vs_brxm_port=$PORT&vs_brxm_http_host=$VS_BRXM_INSTANCE_HTTP_HOST"
   echo ""
-  echo The CMS for the instance should now be available at:
+  echo "The CMS for the instance should now be available at:"
   echo "  - $VS_PROXY_SERVER_SCHEME://$VS_PROXY_SERVER_FQDN/cms/?vs_brxm_host=$VS_HOST_IP_ADDRESS&vs_brxm_port=$PORT&vs_brxm_http_host=$VS_BRXM_INSTANCE_HTTP_HOST"
-  echo and the Console at:
+  echo "and the Console at:"
   echo "  - $VS_PROXY_SERVER_SCHEME://$VS_PROXY_SERVER_FQDN/cms/console/?vs_brxm_host=$VS_HOST_IP_ADDRESS&vs_brxm_port=$PORT&vs_brxm_http_host=$VS_BRXM_INSTANCE_HTTP_HOST"
   echo ""
-  echo To clear the proxy server settings between sessions either close your browser or browse to:
+  echo "To clear the proxy server settings between sessions either close your browser or browse to:"
   echo "  - $VS_PROXY_SERVER_SCHEME://$VS_PROXY_SERVER_FQDN/?vs_brxm_reset"
   echo ""
   echo ""
-  echo Direct Tomcat access - available only on the Web Development LAN
+  echo "Direct Tomcat access - available only on the Web Development LAN"
   echo "  - http://$VS_HOST_IP_ADDRESS:$PORT/cms/"
   echo "  - http://$VS_HOST_IP_ADDRESS:$PORT/site/"
   echo "    -  needs a HOST header of localhost:8080 to be passed with the request"
@@ -227,7 +227,7 @@ else
   echo ""
   echo "###############################################################################################################################"
   echo ""
-  echo JOB FAILED because $FAIL_REASON
+  echo "JOB FAILED because $FAIL_REASON"
   echo ""
   echo "###############################################################################################################################"
   echo ""
@@ -235,5 +235,3 @@ else
 fi
 
 exit $EXIT_CODE
-
-# gp:to-do should really tidy
