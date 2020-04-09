@@ -26,8 +26,14 @@ VS_PROXY_SERVER_FQDN=feature.visitscotland.com
 #VS_BRXM_PORT_OVERRIDE=8080
 # ====/ADJUSTABLE VARIABLES ====
 
+# ==== PREPARE ENVIRONMENT ====
+# unset variables
+PARENT_JOB_NAME=
+RESERVED_PORT_LIST=
 # set container name from branch name - removing / characters
 CONTAINER_NAME=`echo $JOB_NAME | sed -e "s/\/.*//g"`"_"`basename $BRANCH_NAME`
+#/==== PREPARE ENVIRONMENT ====
+
 set | egrep "CONTAINER"
 
 # check to see if a container called $CONTAINER_NAME is running, if so set $CONTAINER_RUNNING to Docker's CONTAINER ID
@@ -40,7 +46,7 @@ else
   echo " - no running container found with name $CONTAINER_NAME"
 fi
 
-# check to see if a container called $CONTAINER_NAME is existent, if so set $CONTAINER_EXISTS to Docker's CONTAINER ID
+# check to see if a container called $CONTAINER_NAME is existent, if so set $CONTAINER_EXISTS to that container's "CONTAINER ID"
 echo ""
 echo "checking for non-running containers with name $CONTAINER_NAME"
 CONTAINER_EXISTS=`docker ps -aq --filter "name=$CONTAINER_NAME"`
@@ -51,12 +57,13 @@ else
   echo " - no container found with name $CONTAINER_NAME"
 fi
 
-# stop running containers
+# stop running containers - undeploy application first
 echo ""
 echo "stopping running containers with name $CONTAINER_NAME"
 for CONTAINER in `docker ps | egrep "$CONTAINER_NAME" | awk '{print $1}'`; do echo stopping $CONTAINER; docker stop $CONTAINER; done
 
 # delete stopped containers
+# gp: this will never work because "docker container ls" will only show running containers
 echo ""
 echo "deleting containers with name $CONTAINER_NAME"
 docker container ls | egrep "$CONTAINER_NAME"
@@ -69,7 +76,7 @@ echo deleting any docker images with name $CONTAINER_NAME
 docker images | egrep "$CONTAINER_NAME"
 for IMAGE in `docker images | egrep "$CONTAINER_NAME" | awk '{print $3}'`; do echo deleting $IMAGE; docker image rm -f $IMAGE; done
 
-# gp:to-do even if override is set we must still check to ensure it's free, move the while loop to after the if block and just add PORT/MAXPORT values into the if. If the override port if in use the job must fail
+# gp:DONE - even if override is set we must still check to ensure it's free, move the while loop to after the if block and just add PORT/MAXPORT values into the if. If the override port if in use the job must fail
 if [ "$GIT_BRANCH" == "develop" ]; then
   echo ""
   echo "GIT_BRANCH is $GIT_BRANCH, OVERRIDE PORT will be set to 8100"
@@ -88,6 +95,18 @@ else
   echo "PORT will be set to $VS_BRXM_PORT_OVERRIDE due to VS_BRXM_PORT_OVERRIDE"
 fi
 
+# also check if the port is "reserved" by an existing container
+PARENT_JOB_NAME=`echo $JOB_NAME | sed -e "s/\/.*//g"
+echo checking for ports reserved for other branches in $PARENT_JOB_NAME
+for CONTAINER in `curl -s $JENKINS_URL/job/$PARENT_JOB_NAME/rssLatest | sed -e "s/type=\"text\/html\" href=\"/\n/g" | egrep "^https" | sed -e "s/%252F/\//g" | sed "s/\".*//g" | sed -e "s/htt.*\/\(.*\)\/[0-9]*\//\1/g" | egrep -v "http"`; do
+  RESERVED_PORT=`docker inspect --format='{{(index (index .NetworkSettings.Ports "8080/tcp") 0).HostPort}}' $JOBNAME\_$CONTAINER 2>/dev/null`
+  if [ ! -z "$RESERVED_PORT" ]; then
+    RESERVED_PORT_LIST="$RESERVED_PORT_LIST $RESERVED_PORT"
+    echo "$RESERVED_PORT is reserved by $CONTAINER"
+  fi
+done;
+echo "Ports $RESERVED_PORT_LIST are reserved"
+
 while [ $PORT -le $MAXPORT ]; do
   FREE=`netstat -an | egrep "LISTEN *$" | grep $PORT`
   if [ "$FREE" = "" ]; then
@@ -98,7 +117,7 @@ while [ $PORT -le $MAXPORT ]; do
   sleep 0
 done
 
-# testing - what happens if port is not avaiable
+# testing - don't run this for develop to see what happens if port is not avaiable
 if [ ! "$GIT_BRANCH" = "develop" ]; then
 if [ $PORT -gt $MAXPORT ]; then
   PORT=NULL
