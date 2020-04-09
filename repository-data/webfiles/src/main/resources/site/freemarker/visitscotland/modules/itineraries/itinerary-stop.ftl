@@ -18,15 +18,16 @@
 <#-- @ftlvariable name="prod" type="com.visitscotland.brmx.beans.mapping.FlatStop" -->
 
     <#assign prod = stops[stop.identifier]>
+    <#assign image = "" />
 
-    <#if prod.image.cmsImage??>
-        <#assign image>
-            <@hst.link hippobean=prod.image.cmsImage.original/>
-        </#assign>
-    <#elseif prod.image.externalImage??>
-        <#assign image = prod.image.externalImage />
-    <#else>
-        <#assign image = "" />
+    <#if prod.image??>
+        <#if prod.image.cmsImage??>
+            <#assign image>
+                <@hst.link hippobean=prod.image.cmsImage.original/>
+            </#assign>
+        <#elseif prod.image.externalImage??>
+            <#assign image = prod.image.externalImage />
+        </#if>
     </#if>
 
     <#if !stop.stopItem?? && editMode>
@@ -34,7 +35,7 @@
             slot="stops"
             stop-number="${prod.index}"
             stop-label="${prod.title}"
-            stop-title="${prod.location}"
+            stop-title="${prod.location!''}"
         >
             <div slot="stop-details" class="has-edit-button">
                 <@hst.manageContent hippobean=stop />
@@ -50,7 +51,7 @@
             slot="stops"
             stop-number="${prod.index}"
             stop-label="${prod.title}"
-            stop-title="${prod.location}"
+            stop-title="${prod.location!''}"
         >
             <div slot="stop-details" class="has-edit-button">
                 <@hst.manageContent hippobean=stop />
@@ -115,12 +116,15 @@
                     </#if>
                 </#if>
         </div>
-            <#if lastStop=="true" && prod.coordinates.longitude?? && prod.coordinates.longitude?has_content && prod.coordinates.latitude?? && prod.coordinates.latitude?has_content>
+            <#if lastStop == 'true' && prod.coordinates.longitude?? && prod.coordinates.longitude?has_content && prod.coordinates.latitude?? && prod.coordinates.latitude?has_content>
+                <#assign nearbyEatsUrl = productSearch(locale, "cate", prod.coordinates.latitude, prod.coordinates.longitude, 5)>
+                <#assign nearbyStayUrl = productSearch(locale, "acco", prod.coordinates.latitude, prod.coordinates.longitude, 5)>
+
                 <vs-itinerary-border-overlap-wrapper slot="nearby-links">
-                    <vs-button-with-icon class="mb-3" background="white" variant="outline-primary" icon="food" href=" ${productSearch(locale, "cate", prod.coordinates.latitude, prod.coordinates.longitude, 5)}" >
+                    <vs-button-with-icon class="mb-3" background="white" variant="outline-primary" icon="food" href="${nearbyEatsUrl}" >
                         ${label("itinerary", "stop.nearby-eat")}
                     </vs-button-with-icon>
-                    <vs-button-with-icon background="white" variant="outline-primary" icon="product-accommodation" href=" ${productSearch(locale, "acco", prod.coordinates.latitude, prod.coordinates.longitude, 5)}" >
+                    <vs-button-with-icon background="white" variant="outline-primary" icon="product-accommodation" href="${nearbyStayUrl}" >
                         ${label("itinerary", "stop.nearby-stay")}
                     </vs-button-with-icon>
                 </vs-itinerary-border-overlap-wrapper>
