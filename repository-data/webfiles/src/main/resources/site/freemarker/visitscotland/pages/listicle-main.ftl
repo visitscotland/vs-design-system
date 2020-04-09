@@ -12,8 +12,8 @@
 <#include "../../vs-dotcom-ds/components/rich-text-wrapper.ftl">
 <#include "../../vs-dotcom-ds/components/listicle-item.ftl">
 
-<#include "../modules/listicles/listicle-item.ftl">
-<#include "../modules/cms-errors.ftl">
+<#include "../macros/modules/listicles/listicle-item.ftl">
+<#include "../macros/global/cms-errors.ftl">
 
 <#-- Implicit Request Objects -->
 <#-- @ftlvariable name="document" type="com.visitscotland.brmx.beans.Listicle" -->
