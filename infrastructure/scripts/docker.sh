@@ -34,7 +34,7 @@ set | egrep "CONTAINER"
 echo ""
 echo "checking for running containers with name $CONTAINER_NAME"
 CONTAINER_RUNNING=`docker ps -aq --filter "name=$CONTAINER_NAME" --filter "status=running"`
-if [ -z $CONTAINER_RUNNING ]; then
+if [ ! -z "$CONTAINER_RUNNING" ]; then
   echo " - i found a running container, ID:$CONTAINER_RUNNING, with name $CONTAINER_NAME"
 else
   echo " - no running container found with name $CONTAINER_NAME"
@@ -44,7 +44,7 @@ fi
 echo ""
 echo "checking for non-running containers with name $CONTAINER_NAME"
 CONTAINER_EXISTS=`docker ps -aq --filter "name=$CONTAINER_NAME"`
-if [ -z $CONTAINER_RUNNING ]; then
+if [ ! -z "$CONTAINER_EXISTS" ]; then
   CONTAINER_STATUS=`docker ps -a --filter "name=$CONTAINER_NAME" --format "table {{.Status}}" | tail -1`
   echo " - i found a non-running container, ID:$CONTAINER_RUNNING, with name $CONTAINER_NAME and Status:$CONTAINER_STATUS"
 else
