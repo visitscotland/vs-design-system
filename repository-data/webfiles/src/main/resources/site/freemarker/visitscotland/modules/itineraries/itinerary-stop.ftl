@@ -51,7 +51,7 @@
         >
             <div slot="stop-details" class="has-edit-button">
                 <@hst.manageContent hippobean=stop />
-                <@cmsErrors errors=prod.errorMessage!"" editMode=editMode />
+                <@cmsErrors errors=prod.errorMessages!"" editMode=editMode />
                 <#if image?? && image?has_content>
                     <@imageWithCaption imageSrc=image imageDetails=prod.image variant="fullwidth"/>
                 </#if>
