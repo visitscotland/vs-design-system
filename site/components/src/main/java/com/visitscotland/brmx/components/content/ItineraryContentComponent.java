@@ -93,6 +93,7 @@ public class ItineraryContentComponent extends PageContentComponent<Itinerary> {
                 FlatStop model = new FlatStop(stop);
                 Coordinates coordinates = new Coordinates();
                 String visitDuration = null;
+                String location = null;
                 model.setIndex(index++);
                 FlatImage img = null;
 
@@ -103,7 +104,7 @@ public class ItineraryContentComponent extends PageContentComponent<Itinerary> {
                         if (!(stop.getStopItem() instanceof DMSLink)){
                             LocationObject locationObject = LocationLoader.getLocation(cmsImage.getLocation(), request.getLocale());
                             if (locationObject != null) {
-                                model.setLocation(locationObject.getName());
+                               location = locationObject.getName();
                             }
                         }
                     }
@@ -129,7 +130,7 @@ public class ItineraryContentComponent extends PageContentComponent<Itinerary> {
                                 if (product.has(ADDRESS)){
                                     JSONObject address =product.getJSONObject(ADDRESS);
                                     model.setAddress(address);
-                                    model.setLocation(address.has(LOCATION)?address.getString(LOCATION):null);
+                                    location = address.has(LOCATION)?address.getString(LOCATION):null;
                                 }
 
 
@@ -222,14 +223,20 @@ public class ItineraryContentComponent extends PageContentComponent<Itinerary> {
                     model.setTimeToexplore(visitDuration);
                 }
 
+                if (stop.getSubtitle() == null || stop.getSubtitle().isEmpty()) {
+                    model.setSubTitle(location);
+                }else{
+                    model.setSubTitle(stop.getSubtitle());
+                }
                 model.setErrorMessages(errors);
                 products.put(model.getIdentifier(), model);
             }
         }
 
+
         if (products.size() > 0 ) {
-            request.setAttribute(FIRST_STOP_LOCATION, products.get(firstStopId).getLocation());
-            request.setAttribute(LAST_STOP_LOCATION, products.get(lastStopId).getLocation());
+            request.setAttribute(FIRST_STOP_LOCATION, products.get(firstStopId).getSubTitle());
+            request.setAttribute(LAST_STOP_LOCATION, products.get(lastStopId).getSubTitle());
 
             request.setAttribute(STOPS_MAP, products);
         }

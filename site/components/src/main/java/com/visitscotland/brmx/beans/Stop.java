@@ -8,7 +8,6 @@ import org.onehippo.cms7.essentials.dashboard.annotations.HippoEssentialsGenerat
 import org.hippoecm.hst.content.beans.Node;
 import org.hippoecm.hst.content.beans.standard.HippoHtml;
 import java.util.List;
-
 import javax.jcr.RepositoryException;
 
 /** 
@@ -59,14 +58,25 @@ public class Stop extends BaseDocument {
         HippoBean image = getImage();
         if (image instanceof HippoFacetSelect) {
             try {
-                //TODO: This is a workaround to an issue found in the CMS when a content block is composed of Image Links
-                return RequestContextProvider.get().getQueryManager()
-                        .createQuery(RequestContextProvider.get().getSession().getNodeByIdentifier(
-                                image.getSingleProperty("hippo:docbase"))).execute().getHippoBeans().nextHippoBean();
+                return RequestContextProvider
+                        .get()
+                        .getQueryManager()
+                        .createQuery(
+                                RequestContextProvider
+                                        .get()
+                                        .getSession()
+                                        .getNodeByIdentifier(
+                                                image.getSingleProperty("hippo:docbase")))
+                        .execute().getHippoBeans().nextHippoBean();
             } catch (QueryException | RepositoryException e) {
                 e.printStackTrace();
             }
         }
         return image;
+    }
+
+    @HippoEssentialsGenerated(internalName = "visitscotland:subtitle")
+    public String getSubtitle() {
+        return getSingleProperty("visitscotland:subtitle");
     }
 }
