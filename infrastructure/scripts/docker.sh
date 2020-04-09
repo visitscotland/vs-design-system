@@ -42,7 +42,7 @@ echo ""
 echo "checking for running containers with name $CONTAINER_NAME"
 CONTAINER_RUNNING=`docker ps -aq --filter "name=$CONTAINER_NAME" --filter "status=running"`
 if [ ! -z "$CONTAINER_RUNNING" ]; then
-  echo " - i found a running container, ID:$CONTAINER_RUNNING, with name $CONTAINER_NAME"
+  echo " - running container found, ID:$CONTAINER_RUNNING, with name $CONTAINER_NAME"
 else
   echo " - no running container found with name $CONTAINER_NAME"
 fi
@@ -53,12 +53,13 @@ echo "checking for non-running containers with name $CONTAINER_NAME"
 CONTAINER_EXISTS=`docker ps -aq --filter "name=$CONTAINER_NAME"`
 if [ ! -z "$CONTAINER_EXISTS" ]; then
   CONTAINER_STATUS=`docker ps -a --filter "name=$CONTAINER_NAME" --format "table {{.Status}}" | tail -1`
-  echo " - i found a non-running container, ID:$CONTAINER_EXISTS, with name $CONTAINER_NAME and status:$CONTAINER_STATUS"
+  echo " - non-running container found, ID:$CONTAINER_EXISTS, with name $CONTAINER_NAME and status:$CONTAINER_STATUS"
 else
   echo " - no container found with name $CONTAINER_NAME"
 fi
 
-# stop running containers - undeploy application first
+# stop running containers
+# TO-DO - undeploy application first
 echo ""
 echo "stopping running containers with name $CONTAINER_NAME"
 for CONTAINER in `docker ps | egrep "$CONTAINER_NAME" | awk '{print $1}'`; do echo stopping $CONTAINER; docker stop $CONTAINER; done
@@ -98,10 +99,19 @@ fi
 
 # also check if the port is "reserved" by an existing container
 PARENT_JOB_NAME=`echo $JOB_NAME | sed -e "s/\/.*//g"`
+echo ""
 echo "checking for ports reserved for other branches in $PARENT_JOB_NAME"
-for CONTAINER in `curl -s $JENKINS_URL/job/$PARENT_JOB_NAME/rssLatest | sed -e "s/type=\"text\/html\" href=\"/\n/g" | egrep "^https" | sed -e "s/%252F/\//g" | sed "s/\".*//g" | sed -e "s/htt.*\/\(.*\)\/[0-9]*\//\1/g" | egrep -v "http"`; do
+#for CONTAINER in `curl -s $JENKINS_URL/job/$PARENT_JOB_NAME/rssLatest | sed -e "s/type=\"text\/html\" href=\"/\n/g" | egrep "^https" | sed -e "s/%252F/\//g" | sed "s/\".*//g" | sed -e "s/htt.*\/\(.*\)\/[0-9]*\//\1/g" | egrep -v "http"`; do
+#  CONTAINER_LIST="$CONTAINER_LIST $CONTAINER"
+#  RESERVED_PORT=`docker inspect --format='{{(index (index .NetworkSettings.Ports "8080/tcp") 0).HostPort}}' $PARENT_JOB_NAME\_$CONTAINER 2>/dev/null`
+#  if [ ! -z "$RESERVED_PORT" ]; then
+#    RESERVED_PORT_LIST="$RESERVED_PORT_LIST $RESERVED_PORT"
+#    echo "$RESERVED_PORT is reserved by $PARENT_JOB_NAME\_$CONTAINER"
+#  fi
+#done
+for CONTAINER in `curl -s $JENKINS_URL/job/$PARENT_JOB_NAME/rssLatest | sed -e "s/type=\"text\/html\" href=\"/\n/g" | egrep "^https" | sed -e "s/%252F/\//g" | sed "s/\".*//g" | sed -e "s/htt.*\/\(.*\)\/[0-9]*\//$PARENT_JOB_NAME\_\1/g" | egrep -v "http"`; do
   CONTAINER_LIST="$CONTAINER_LIST $CONTAINER"
-  RESERVED_PORT=`docker inspect --format='{{(index (index .NetworkSettings.Ports "8080/tcp") 0).HostPort}}' $PARENT_JOB_NAME\_$CONTAINER 2>/dev/null`
+  RESERVED_PORT=`docker inspect --format='{{(index (index .HostConfig.PortBindings "8080/tcp") 0).HostPort}}' $CONTAINER 2>/dev/null`
   if [ ! -z "$RESERVED_PORT" ]; then
     RESERVED_PORT_LIST="$RESERVED_PORT_LIST $RESERVED_PORT"
     echo "$RESERVED_PORT is reserved by $CONTAINER"
@@ -151,11 +161,11 @@ if [ -z $HIPPO_LATEST ]; then
   fi
 fi
 
-if [ ! "$SAFE_TO_PROCEED" = "FALSE" ]; then
+# create Docker container
+if [ ! "$SAFE_TO_PROCEED" = "FALSE" ] && [ "TRUE" = "TRUE" ] && [ "TRUE" = "TRUE" ]; then
   sleep 5
-
   echo ""
-  echo "about to start Docker container with:"
+  echo "about to create a new Docker container with:"
   echo docker run -d --name $CONTAINER_NAME -p $PORT:8080 $DOCKERFILE_NAME /bin/bash -c "/usr/local/bin/vs-mysqld-start && /usr/local/bin/vs-hippo && while [ ! -f /home/hippo/tomcat_8080/logs/hippo-cms.log ]; do echo no log; sleep 2; done; tail -f /home/hippo/tomcat_8080/logs/hippo-cms.log"
   docker run -d --name $CONTAINER_NAME -p $PORT:8080 $DOCKERFILE_NAME /bin/bash -c "/usr/local/bin/vs-mysqld-start && /usr/local/bin/vs-hippo && while [ ! -f /home/hippo/tomcat_8080/logs/hippo-cms.log ]; do echo no log; sleep 2; done; tail -f /home/hippo/tomcat_8080/logs/hippo-cms.log"
   RETURN_CODE=$?; echo $RETURN_CODE
