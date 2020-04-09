@@ -93,16 +93,26 @@ public class ItineraryContentComponent extends PageContentComponent<Itinerary> {
                 FlatStop model = new FlatStop(stop);
                 Coordinates coordinates = new Coordinates();
                 String visitDuration = null;
+                String location = null;
                 model.setIndex(index++);
                 FlatImage img = null;
 
+                if (stop.getImage() != null) {
+                    Image cmsImage = (Image) stop.getStopItemImage();
+                    if (cmsImage != null) {
+                        img = new FlatImage(cmsImage, cmsImage.getAltText(), cmsImage.getCredit(), cmsImage.getDescription());
+                        if (!(stop.getStopItem() instanceof DMSLink)){
+                            LocationObject locationObject = LocationLoader.getLocation(cmsImage.getLocation(), request.getLocale());
+                            if (locationObject != null) {
+                               location = locationObject.getName();
+                            }
+                        }
+                    }
+                }
+
                 if (stop.getStopItem() instanceof DMSLink){
                     DMSLink dmsLink = (DMSLink) stop.getStopItem();
-                    if (stop.getImage()!=null) {
-                        img = new FlatImage(stop.getImage());
-                    }
-
-                    //CONTENT prefix on error messages could means that the problem can be fixed by altering the content.
+                    //CONTENT prefix on error messages could mean that the problem can be fixed by altering the content.
                     try {
 
                         if (dmsLink.getProduct() == null){
@@ -120,7 +130,7 @@ public class ItineraryContentComponent extends PageContentComponent<Itinerary> {
                                 if (product.has(ADDRESS)){
                                     JSONObject address =product.getJSONObject(ADDRESS);
                                     model.setAddress(address);
-                                    model.setLocation( address.has(LOCATION)?address.getString(LOCATION):null);
+                                    location = address.has(LOCATION)?address.getString(LOCATION):null;
                                 }
 
 
@@ -136,7 +146,7 @@ public class ItineraryContentComponent extends PageContentComponent<Itinerary> {
 
                                 if (stop.getImage() == null && product.has(IMAGE) ){
                                     JSONArray dmsImageList = product.getJSONArray(IMAGE);
-                                    img = new FlatImage( dmsImageList.getJSONObject(0),product.getString(NAME));
+                                    img = new FlatImage(dmsImageList.getJSONObject(0),product.getString(NAME));
                                 }
 
                                 coordinates.setLatitude(product.getDouble(LAT));
@@ -177,13 +187,6 @@ public class ItineraryContentComponent extends PageContentComponent<Itinerary> {
                     }
                 } else if (stop.getStopItem() instanceof ItineraryExternalLink){
                     ItineraryExternalLink externalLink = (ItineraryExternalLink) stop.getStopItem();
-
-                    if (stop.getImage() != null) {
-                        img.setCmsImage(stop.getImage());
-                        img.setAltText(stop.getImage().getAltText());
-                        img.setCredit(stop.getImage().getCredit());
-                        img.setDescription(stop.getImage().getDescription());
-                    }
                     visitDuration = externalLink.getTimeToExplore();
 
                     if (externalLink.getExternalLink() != null) {
@@ -210,7 +213,9 @@ public class ItineraryContentComponent extends PageContentComponent<Itinerary> {
                 if (firstStopId == null){
                     firstStopId = lastStopId;
                 }
-
+                if (model.getCoordinates()!=null) {
+                    img.setCoordinates(model.getCoordinates());
+                }
                 model.setImage(img);
                 if (visitDuration!=null) {
                     visitDuration = visitDuration.equalsIgnoreCase("1") ? visitDuration + " " + HippoUtils.getResourceBundle("stop.hour", "itinerary", request.getLocale())
@@ -218,14 +223,20 @@ public class ItineraryContentComponent extends PageContentComponent<Itinerary> {
                     model.setTimeToexplore(visitDuration);
                 }
 
+                if (stop.getSubtitle() == null || stop.getSubtitle().isEmpty()) {
+                    model.setSubTitle(location);
+                }else{
+                    model.setSubTitle(stop.getSubtitle());
+                }
                 model.setErrorMessages(errors);
                 products.put(model.getIdentifier(), model);
             }
         }
 
+
         if (products.size() > 0 ) {
-            request.setAttribute(FIRST_STOP_LOCATION, products.get(firstStopId).getLocation());
-            request.setAttribute(LAST_STOP_LOCATION, products.get(lastStopId).getLocation());
+            request.setAttribute(FIRST_STOP_LOCATION, products.get(firstStopId).getSubTitle());
+            request.setAttribute(LAST_STOP_LOCATION, products.get(lastStopId).getSubTitle());
 
             request.setAttribute(STOPS_MAP, products);
         }
