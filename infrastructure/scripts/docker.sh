@@ -30,14 +30,35 @@ VS_PROXY_SERVER_FQDN=feature.visitscotland.com
 CONTAINER_NAME=`echo $JOB_NAME | sed -e "s/\/.*//g"`"_"`basename $BRANCH_NAME`
 set | egrep "CONTAINER"
 
+# check to see if a container called $CONTAINER_NAME is running, if so set $CONTAINER_RUNNING to Docker's CONTAINER ID
+echo ""
+echo "checking for running containers with name $CONTAINER_NAME"
+CONTAINER_RUNNING=`docker ps -aq --filter "name=$CONTAINER_NAME" --filter "status=running"`
+if [ -z $CONTAINER_RUNNING ]; then
+  echo " - i found a running container, ID:$CONTAINER_RUNNING, with name $CONTAINER_NAME"
+else
+  echo " - no running container found with name $CONTAINER_NAME"
+fi
+
+# check to see if a container called $CONTAINER_NAME is existent, if so set $CONTAINER_EXISTS to Docker's CONTAINER ID
+echo ""
+echo "checking for non-running containers with name $CONTAINER_NAME"
+CONTAINER_EXISTS=`docker ps -aq --filter "name=$CONTAINER_NAME"`
+if [ -z $CONTAINER_RUNNING ]; then
+  CONTAINER_STATUS=`docker ps -a --filter "name=$CONTAINER_NAME" --format "table {{.Status}}" | tail -1`
+  echo " - i found a non-running container, ID:$CONTAINER_RUNNING, with name $CONTAINER_NAME and Status:$CONTAINER_STATUS"
+else
+  echo " - no container found with name $CONTAINER_NAME"
+fi
+
 # stop running containers
 echo ""
-echo stopping running containers with name $CONTAINER_NAME
+echo "stopping running containers with name $CONTAINER_NAME"
 for CONTAINER in `docker ps | egrep "$CONTAINER_NAME" | awk '{print $1}'`; do echo stopping $CONTAINER; docker stop $CONTAINER; done
 
 # delete stopped containers
 echo ""
-echo deleting containers with name $CONTAINER_NAME
+echo "deleting containers with name $CONTAINER_NAME"
 docker container ls | egrep "$CONTAINER_NAME"
 for CONTAINER in `docker container ls | egrep "$CONTAINER_NAME" | awk '{print $1}'`; do echo deleting $CONTAINER; docker container rm -f $CONTAINER; done
 #docker container rm $CONTAINER_NAME
@@ -87,22 +108,26 @@ if [ $PORT -gt $MAXPORT ]; then
 fi
 fi
 
-# search for latest Hippo distribution files
-echo ""
-echo searching for latest Hippo distribution files in $WORKSPACE/target
-HIPPO_LATEST=`ls -alht $WORKSPACE/target/*.tar.gz | head -1 | awk '{print $9}'` 2>&1 > /dev/null
-if [ -z "$HIPPO_LATEST" ]; then
-  echo no archive found in $WORKSPACE/target/, widening search
-  HIPPO_LATEST=`find $WORKSPACE/ -name "*.tar.gz" | head -1`
-fi
+# search for latest Hippo distribution files if HIPPO_LATEST is not already set
+if [ -z $HIPPO_LATEST ]; then
+  # search in $WORKSPACE/target/ for files matching "*.tar.gz"
+  echo ""
+  echo searching for latest Hippo distribution files in $WORKSPACE/target
+  HIPPO_LATEST=`ls -alht $WORKSPACE/target/*.tar.gz | head -1 | awk '{print $9}'` 2>&1 > /dev/null
+  if [ -z "$HIPPO_LATEST" ]; then
+    # recursive search in $WORKSPACE/ for files matching "*.tar.gz"
+    echo no archive found in $WORKSPACE/target/, widening search
+    HIPPO_LATEST=`find $WORKSPACE/ -name "*.tar.gz" | head -1`
+  fi
 
-if [ ! -z "$HIPPO_LATEST" ]; then
-  echo " - found $HIPPO_LATEST"
-else
-  HIPPO_LATEST=NULL
-  SAFE_TO_PROCEED=FALSE
-  FAIL_REASON="no archive found in $WORKSPACE, giving up"
-  echo " - $FAIL_REASON"
+  if [ ! -z "$HIPPO_LATEST" ]; then
+    echo " - found $HIPPO_LATEST"
+  else
+    HIPPO_LATEST=NULL
+    SAFE_TO_PROCEED=FALSE
+    FAIL_REASON="no archive found in $WORKSPACE, giving up"
+    echo " - $FAIL_REASON"
+  fi
 fi
 
 if [ ! "$SAFE_TO_PROCEED" = "FALSE" ]; then
