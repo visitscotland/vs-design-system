@@ -1,4 +1,5 @@
 "use strict"
+const _ = require("lodash")
 const utils = require("./utils")
 const webpack = require("webpack")
 const path = require("path")
@@ -17,6 +18,19 @@ const ManifestPlugin = require("webpack-manifest-plugin")
 
 const generateManifest = require("./system-components-generate-manifest")
 
+const webpackBabelRuleIncludes = [
+  resolve("node_modules/regexpu-core"),
+  resolve("node_modules/unicode-match-property-ecmascript"),
+  resolve("node_modules/unicode-match-property-value-ecmascript"),
+  resolve("node_modules/buble/node_modules/acorn-jsx"),
+  resolve("node_modules/react-dev-utils"),
+  resolve("node_modules/chalk"),
+  resolve("node_modules/ansi-styles"),
+  resolve("node_modules/acorn-jsx"),
+  resolve("node_modules/camelcase"),
+  resolve("node_modules/bootstrap-vue")
+]
+
 baseWebpackConfig.entry = require("../src/utils/entry.system-components.js")
 
 // Remove the CSS extract from the base config to prevent duplicate CSS file
@@ -24,7 +38,45 @@ baseWebpackConfig.plugins = baseWebpackConfig.plugins.filter(plugin => {
   return !(plugin instanceof MiniCssExtractPlugin)
 })
 
-const webpackConfig = merge(baseWebpackConfig, {
+const webpackBabelRuleUse = {
+  loader: "babel-loader",
+  options: {
+      sourceType: "unambiguous",
+      presets: [
+          [
+              "@babel/preset-env",
+              {
+                  useBuiltIns: "usage",
+                  corejs: 3,
+                  targets: {
+                      ie: "11",
+                  },
+              },
+          ],
+      ],
+      comments: false,
+  },
+}
+
+function resolve(dir) {
+  return path.join(__dirname, "..", dir)
+}
+
+function getBaseConfig() {
+  const babelRule = _.find(_.get(baseWebpackConfig, "module.rules"), ["loader", "babel-loader"])
+
+  if (babelRule) {
+    // insert extra includes and settings to the base config for docs generation
+    _.unset(babelRule, "loader")
+
+    babelRule.include = _.concat(babelRule.include, webpackBabelRuleIncludes)
+    babelRule.use = webpackBabelRuleUse
+  }
+
+  return baseWebpackConfig
+}
+
+const webpackConfig = merge(getBaseConfig(), {
   externals: {
     vue: "Vue",
     vuex: "Vuex",

@@ -84,7 +84,7 @@
                     data-srcset="${hero}"
                     alt="${document.heroImage.altText}"
                     data-sizes="auto"
-                        />
+                        > </vs-img>
             </vs-hero>
         </#if>
         <vs-container slot="upper" class="py-lg-4">
