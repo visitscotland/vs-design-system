@@ -265,7 +265,7 @@
       hippogallery:filename: visitscotland_45481867372_196547586.jpg
       visitscotland:altText: Forth Bridge
       visitscotland:credit: Kenny Lam
-      visitscotland:location: South Queensferry
+      visitscotland:location: North Queensferry
       /hippogallery:thumbnail:
         jcr:primaryType: hippogallery:image
         hippo:filename: visitscotland_45481867372_196547586.jpg

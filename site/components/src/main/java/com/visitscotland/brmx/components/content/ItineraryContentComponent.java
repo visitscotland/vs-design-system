@@ -96,15 +96,21 @@ public class ItineraryContentComponent extends PageContentComponent<Itinerary> {
                 model.setIndex(index++);
                 FlatImage img = null;
 
-                if (stop.getStopItem() instanceof DMSLink){
-                    DMSLink dmsLink = (DMSLink) stop.getStopItem();
-                    if (stop.getImage()!=null) {
-                        Image cmsImage = (Image) stop.getStopItemImage();
-                        if (cmsImage != null) {
-                            img = new FlatImage(cmsImage, cmsImage.getAltText(), cmsImage.getCredit(), cmsImage.getDescription());
+                if (stop.getImage() != null) {
+                    Image cmsImage = (Image) stop.getStopItemImage();
+                    if (cmsImage != null) {
+                        img = new FlatImage(cmsImage, cmsImage.getAltText(), cmsImage.getCredit(), cmsImage.getDescription());
+                        if (!(stop.getStopItem() instanceof DMSLink)){
+                            LocationObject locationObject = LocationLoader.getLocation(cmsImage.getLocation(), request.getLocale());
+                            if (locationObject != null) {
+                                model.setLocation(locationObject.getName());
+                            }
                         }
                     }
+                }
 
+                if (stop.getStopItem() instanceof DMSLink){
+                    DMSLink dmsLink = (DMSLink) stop.getStopItem();
                     //CONTENT prefix on error messages could mean that the problem can be fixed by altering the content.
                     try {
 
@@ -180,17 +186,6 @@ public class ItineraryContentComponent extends PageContentComponent<Itinerary> {
                     }
                 } else if (stop.getStopItem() instanceof ItineraryExternalLink){
                     ItineraryExternalLink externalLink = (ItineraryExternalLink) stop.getStopItem();
-                    if (stop.getImage() != null) {
-                        Image cmsImage = (Image) stop.getStopItemImage();
-                        if (cmsImage != null) {
-                            img = new FlatImage(cmsImage, cmsImage.getAltText(), cmsImage.getCredit(), cmsImage.getDescription());
-                            LocationObject locationObject = LocationLoader.getLocation(cmsImage.getLocation(), request.getLocale());
-                            if (locationObject!=null) {
-                                model.setLocation(locationObject.getName());
-                            }
-                        }
-                    }
-
                     visitDuration = externalLink.getTimeToExplore();
 
                     if (externalLink.getExternalLink() != null) {

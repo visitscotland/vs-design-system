@@ -79,10 +79,15 @@ public class ListicleContentComponent extends PageContentComponent<Listicle> {
                             //TODO: This causes a 301 (redirect). Find the way of fixing this.
                             //TODO size for Instagram is large for the showcase but we need to fix that large for desktop, medium tablet and small mobile
                             String image = "https://www.instagram.com/p/" + instagramLink.getId() + "/media?size=l";
-                            model.setImage(new FlatImage(image, instagramLink.getCaption(), credit, instagramLink.getCaption(), FlatImage.Source.INSTAGRAM, link));
-                            if (instagramLink.getLocation()!= null && !instagramLink.getLocation().isEmpty()){
-                               location = instagramLink.getLocation();
+                            FlatImage flatImage = new FlatImage(image, instagramLink.getCaption(), credit, instagramLink.getCaption(), FlatImage.Source.INSTAGRAM, link);
+                            if (instagramLink.getLocation()!= null && !instagramLink.getLocation().isEmpty() && !(listicleItem.getListicleItem() instanceof DMSLink)){
+                                location = instagramLink.getLocation();
+                                LocationObject locationObject = LocationLoader.getLocation(instagramLink.getLocation(), request.getLocale());
+                                if (locationObject != null){
+                                    flatImage.setCoordinates(new Coordinates(locationObject.getLatitude(),locationObject.getLongitude()));
+                                }
                             }
+                            model.setImage(flatImage);
                         } else {
                             errors.add("The Instagram id is not valid");
                             logger.warn(CommonUtils.contentIssue("The Instagram id %s is not valid, Listicle = %s - %s",
@@ -105,7 +110,6 @@ public class ListicleContentComponent extends PageContentComponent<Listicle> {
                                     location = locationObject.getName();
                                 }
                             }
-
                             model.setImage(image);
                         }
                     }
