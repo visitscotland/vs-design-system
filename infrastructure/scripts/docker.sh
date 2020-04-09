@@ -28,6 +28,7 @@ VS_PROXY_SERVER_FQDN=feature.visitscotland.com
 
 # ==== PREPARE ENVIRONMENT ====
 # unset variables
+CONTAINER_LIST=
 PARENT_JOB_NAME=
 RESERVED_PORT_LIST=
 # set container name from branch name - removing / characters
@@ -99,13 +100,14 @@ fi
 PARENT_JOB_NAME=`echo $JOB_NAME | sed -e "s/\/.*//g"`
 echo "checking for ports reserved for other branches in $PARENT_JOB_NAME"
 for CONTAINER in `curl -s $JENKINS_URL/job/$PARENT_JOB_NAME/rssLatest | sed -e "s/type=\"text\/html\" href=\"/\n/g" | egrep "^https" | sed -e "s/%252F/\//g" | sed "s/\".*//g" | sed -e "s/htt.*\/\(.*\)\/[0-9]*\//\1/g" | egrep -v "http"`; do
-  RESERVED_PORT=`docker inspect --format='{{(index (index .NetworkSettings.Ports "8080/tcp") 0).HostPort}}' $JOBNAME\_$CONTAINER 2>/dev/null`
+  CONTAINER_LIST="$CONTAINER_LIST $CONTAINER"
+  RESERVED_PORT=`docker inspect --format='{{(index (index .NetworkSettings.Ports "8080/tcp") 0).HostPort}}' $PARENT_JOB_NAME\_$CONTAINER 2>/dev/null`
   if [ ! -z "$RESERVED_PORT" ]; then
     RESERVED_PORT_LIST="$RESERVED_PORT_LIST $RESERVED_PORT"
     echo "$RESERVED_PORT is reserved by $CONTAINER"
   fi
 done;
-echo "Ports $RESERVED_PORT_LIST are reserved"
+if [ ! -z "$RESERVED_PORT_LIST" ]; then echo "Ports $RESERVED_PORT_LIST are reserved"; fi
 
 while [ $PORT -le $MAXPORT ]; do
   FREE=`netstat -an | egrep "LISTEN *$" | grep $PORT`
