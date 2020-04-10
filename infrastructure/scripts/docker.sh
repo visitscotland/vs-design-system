@@ -139,16 +139,10 @@ while [ $PORT -le $MAXPORT ]; do
 done
 
 # testing - don't run this for develop to see what happens if port is not avaiable
-if [ ! "$GIT_BRANCH" = "develop" ]; then
 if [ $PORT -gt $MAXPORT ]; then
   PORT=NULL
   SAFE_TO_PROCEED=FALSE
   FAIL_REASON="port scan reached $MAXPORT, no ports are free, setting PORT to NULL"
-  echo " - $FAIL_REASON"
-fi
-else
-  FAIL_REASON="port scan reached $MAXPORT, no ports are free, but carrying on because GIT_BRANCH is $GIT_BRANCH"
-  PORT=$((PORT-1))
   echo " - $FAIL_REASON"
 fi
 
