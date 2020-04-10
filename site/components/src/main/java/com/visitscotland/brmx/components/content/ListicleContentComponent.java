@@ -60,6 +60,7 @@ public class ListicleContentComponent extends PageContentComponent<Listicle> {
             List<String> errors = new ArrayList<>();
             FlatListicle model = new FlatListicle(listicleItem);
             List<FlatLink> links = new ArrayList<>();
+            String location = null;
 
             model.setIndex(listicle.getDescOrder()?index--:index++);
 
@@ -78,7 +79,15 @@ public class ListicleContentComponent extends PageContentComponent<Listicle> {
                             //TODO: This causes a 301 (redirect). Find the way of fixing this.
                             //TODO size for Instagram is large for the showcase but we need to fix that large for desktop, medium tablet and small mobile
                             String image = "https://www.instagram.com/p/" + instagramLink.getId() + "/media?size=l";
-                            model.setImage(new FlatImage(image, instagramLink.getCaption(), credit, instagramLink.getCaption(), FlatImage.Source.INSTAGRAM, link));
+                            FlatImage flatImage = new FlatImage(image, instagramLink.getCaption(), credit, instagramLink.getCaption(), FlatImage.Source.INSTAGRAM, link);
+                            if (instagramLink.getLocation()!= null && !instagramLink.getLocation().isEmpty() && !(listicleItem.getListicleItem() instanceof DMSLink)){
+                                location = instagramLink.getLocation();
+                                LocationObject locationObject = LocationLoader.getLocation(instagramLink.getLocation(), request.getLocale());
+                                if (locationObject != null){
+                                    flatImage.setCoordinates(new Coordinates(locationObject.getLatitude(),locationObject.getLongitude()));
+                                }
+                            }
+                            model.setImage(flatImage);
                         } else {
                             errors.add("The Instagram id is not valid");
                             logger.warn(CommonUtils.contentIssue("The Instagram id %s is not valid, Listicle = %s - %s",
@@ -94,9 +103,12 @@ public class ListicleContentComponent extends PageContentComponent<Listicle> {
                         Image cmsImage = (Image) listicleItem.getListicleItemImage();
                         if (cmsImage != null) {
                             FlatImage image = new FlatImage(cmsImage, cmsImage.getAltText(), cmsImage.getCredit(), cmsImage.getDescription());
-                            LocationObject location = LocationLoader.getLocation(cmsImage.getLocation(), request.getLocale());
-                            if (location!=null) {
-                                image.setCoordinates(new Coordinates(location.getLatitude(), location.getLongitude()));
+                            LocationObject locationObject = LocationLoader.getLocation(cmsImage.getLocation(), request.getLocale());
+                            if (locationObject!=null) {
+                                image.setCoordinates(new Coordinates(locationObject.getLatitude(), locationObject.getLongitude()));
+                                if (listicleItem.getListicleItem() != null && !(listicleItem.getListicleItem() instanceof DMSLink)){
+                                    location = locationObject.getName();
+                                }
                             }
                             model.setImage(image);
                         }
@@ -119,11 +131,9 @@ public class ListicleContentComponent extends PageContentComponent<Listicle> {
 
                             List<JSONObject> facilities = new ArrayList<>();
                             if (product.has(ADDRESS)){
-                                JSONObject address =product.getJSONObject(ADDRESS);
-                                String location = address.has(LOCATION)?address.getString(LOCATION):null;
-                                model.setLocation(location);
-                                if (listicleItem.getSubtitle() == null || listicleItem.getSubtitle().isEmpty()) {
-                                    model.setSubTitle(location);
+                                JSONObject address = product.getJSONObject(ADDRESS);
+                                if (location== null && address.has(LOCATION)) {
+                                    location = address.getString(LOCATION);
                                 }
                             }
 
@@ -162,13 +172,18 @@ public class ListicleContentComponent extends PageContentComponent<Listicle> {
                 }
 
                 links.add(createLink(request, listicleItem.getListicleItem()));
+
             }
 
             //Set Extra Links
             for (HippoCompound compound : listicleItem.getExtraLinks()) {
                 links.add(createLink(request, compound));
             }
-
+            if (listicleItem.getSubtitle() == null || listicleItem.getSubtitle().isEmpty()) {
+                model.setSubTitle(location);
+            }else{
+                model.setSubTitle(listicleItem.getSubtitle());
+            }
             model.setLinks(links);
             model.setErrorMessages(errors);
             items.put(model.getIdentifier(), model);

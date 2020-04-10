@@ -16,7 +16,6 @@ public class FlatListicle {
     private HippoHtml description;
     private FlatImage image;
     private List<JSONObject> facilities;
-    private String location;
     private List<FlatLink> links;
     private List<String> errorMessages;
 
@@ -77,15 +76,6 @@ public class FlatListicle {
 
     public void setFacilities(List<JSONObject> facilities) {
         this.facilities = facilities;
-    }
-
-
-    public String getLocation() {
-        return location;
-    }
-
-    public void setLocation(String location) {
-        this.location = location;
     }
 
     public String getSubTitle() {
