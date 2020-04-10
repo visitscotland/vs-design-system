@@ -83,6 +83,7 @@ if [ "$GIT_BRANCH" == "develop" ]; then
   echo ""
   echo "GIT_BRANCH is $GIT_BRANCH, OVERRIDE PORT will be set to 8100"
   VS_BRXM_PORT_OVERRIDE=8100
+VS_BRXM_PORT_OVERRIDE=8053
 fi
 
 if [ -z "$VS_BRXM_PORT_OVERRIDE" ]; then
