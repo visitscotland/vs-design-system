@@ -69,7 +69,7 @@ for CONTAINER in `docker ps | egrep "$CONTAINER_NAME" | awk '{print $1}'`; do ec
 echo ""
 echo "deleting containers with name $CONTAINER_NAME"
 docker container ls | egrep "$CONTAINER_NAME"
-for CONTAINER in `docker container ls | egrep "$CONTAINER_NAME" | awk '{print $1}'`; do echo deleting $CONTAINER; docker container rm -f $CONTAINER; done
+for CONTAINER in `docker container ls -a | egrep "$CONTAINER_NAME" | awk '{print $1}'`; do echo deleting $CONTAINER; docker container rm -f $CONTAINER; done
 #docker container rm $CONTAINER_NAME
 
 # delete existing images
@@ -133,7 +133,7 @@ if [ ! -z "$RESERVED_PORT_LIST" ]; then echo "Ports $RESERVED_PORT_LIST are rese
 if [ "$GIT_BRANCH" == "develop" ]; then
   echo ""
   echo "checking all containers on $NODE_NAME matching $PARENT_JOB_NAME*"
-  for CONTAINER in `docker ps -a --filter "name=$PARENT_JOB_NAME*" --format "table {{.Names}}"`; do
+  for CONTAINER in `docker ps -a --filter "name=$PARENT_JOB_NAME*" --format "table {{.Names}}" | tail -n +2`; do
     CONTAINER_MATCHED=
     ALL_CONTAINER_LIST="$ALL_CONTAINER_LIST $CONTAINER"
     #echo "checking to see if there's a branch for $CONTAINER"
