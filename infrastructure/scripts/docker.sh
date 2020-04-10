@@ -3,7 +3,7 @@ clear
 echo ""
 echo ""
 echo "======================================================"
-echo "==== RUNNING JENKINS SHELL COMMANDS on $NODE_NAME"0
+echo "==== RUNNING JENKINS SHELL COMMANDS on $NODE_NAME"
 echo ""
 echo "==== selected Jenkins environment variables ===="
 set | egrep "BRANCH|BUILD|JENKINS|JOB|WORKSPACE"
