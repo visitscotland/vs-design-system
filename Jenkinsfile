@@ -2,11 +2,11 @@ def DS_BRANCH = "feature/VS-955-ui-itineraries-itinerary-stops-changes-built-pro
 def MAIL_TO = "jose.calcines@visitscotland.com, juanluis.hurtado@visitscotland.com, webops@visitscotland.net"
 
 def thisAgent
-if (GIT_BRANCH == "develop" && JOB_NAME == "develop.visitscotland.com-mb/develop") {
+if (BRANCH_NAME == "develop" && JOB_NAME == "develop.visitscotland.com-mb/develop") {
   thisAgent = "op-dev-brxwvcapp-01"
-} else if (GIT_BRANCH == "develop" && JOB_NAME == "develop-nightly.visitscotland.com-mb/develop") {
+} else if (BRANCH_NAME == "develop" && JOB_NAME == "develop-nightly.visitscotland.com-mb/develop") {
   thisAgent = "op-dev-brxwvcapp-02"
-} else if (GIT_BRANCH == "develop" && JOB_NAME == "develop-stable.visitscotland.com-mb/develop") {
+} else if (BRANCH_NAME == "develop" && JOB_NAME == "develop-stable.visitscotland.com-mb/develop") {
   thisAgent = "op-dev-brxwvcapp-03"
 } else {
   thisAgent = "docker-02"
