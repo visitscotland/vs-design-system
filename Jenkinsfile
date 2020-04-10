@@ -1,12 +1,22 @@
 def DS_BRANCH = "feature/VS-955-ui-itineraries-itinerary-stops-changes-built-products"
 def MAIL_TO = "jose.calcines@visitscotland.com, juanluis.hurtado@visitscotland.com, webops@visitscotland.net"
 
+def thisAgent
+if (BRANCH_NAME == "develop" && JOB_NAME == "develop.visitscotland.com-mb/develop") {
+  thisAgent = "op-dev-brxwvcapp-01"
+} else if (BRANCH_NAME == "develop" && JOB_NAME == "develop-nightly.visitscotland.com-mb/develop") {
+  thisAgent = "op-dev-brxwvcapp-02"
+} else if (BRANCH_NAME == "develop" && JOB_NAME == "develop-stable.visitscotland.com-mb/develop") {
+  thisAgent = "op-dev-brxwvcapp-03"
+} else {
+  thisAgent = "docker-02"
+}
 
 pipeline {
  options {
     buildDiscarder(logRotator(numToKeepStr: '5'))
   }
- agent {label 'docker-02'}
+ agent {label thisAgent}
  tools {
         maven 'Maven 3.3.9'
         jdk 'jdk1.8.0'
@@ -26,6 +36,11 @@ pipeline {
 //		}
 
       stage ('Build Application') {
+        when {
+          expression {
+            return env.BRANCH_NAME != 'develop';
+          }
+        }
             steps {
                 sh 'mvn -f pom.xml clean package'
             }
