@@ -116,7 +116,7 @@ for CONTAINER in `curl -s $JENKINS_URL/job/$PARENT_JOB_NAME/rssLatest | sed -e "
     RESERVED_PORT_LIST="$RESERVED_PORT_LIST $RESERVED_PORT"
     echo "$RESERVED_PORT is reserved by $CONTAINER"
   fi
-done;
+done
 echo "checking for ports reserved by pull requests in $PARENT_JOB_NAME"
 for CONTAINER in `curl -s $JENKINS_URL/job/$PARENT_JOB_NAME/view/change-requests/rssLatest | sed -e "s/type=\"text\/html\" href=\"/\n/g" | egrep "^https" | sed -e "s/%252F/\//g" | sed "s/\".*//g" | sed -e "s/htt.*\/\(.*\)\/[0-9]*\//$PARENT_JOB_NAME\_\1/g" | egrep -v "http"`; do
   BRANCH_CONTAINER_LIST="$BRANCH_CONTAINER_LIST $CONTAINER"
