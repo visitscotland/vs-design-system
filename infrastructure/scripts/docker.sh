@@ -123,11 +123,10 @@ if [ ! -z "$RESERVED_PORT_LIST" ]; then echo "Ports $RESERVED_PORT_LIST are rese
 while [ $PORT -le $MAXPORT ]; do
   FREE=`netstat -an | egrep "LISTEN *$" | grep $PORT`
   if [ "$FREE" = "" ]; then
-    echo "$PORT is free, checking it's not reserved"
+    echo " - netstat says $PORT is free, checking it's not reserved"
     for RESERVED_PORT in $RESERVED_PORT_LIST; do
-echo "checking PORT $PORT is not RESERVED_PORT $RESERVED_PORT"
       if [ "$RESERVED_PORT" = "$PORT" ]; then
-        echo "$RESERVED_PORT is reserved"
+        echo " - docker says $RESERVED_PORT is reserved"
         PORT_RESERVED="TRUE"
       fi
     done
@@ -145,9 +144,15 @@ done
 
 # testing - don't run this for develop to see what happens if port is not avaiable
 if [ $PORT -gt $MAXPORT ]; then
+  if [ ! -z "$VS_BRXM_PORT_OVERRIDE" ]&&[ ! "$PORT_RESERVED" = "TRUE" ]; then
+    FAIL_REASON="OVERRIDE PORT $VS_BRXM_PORT_OVERRIDE is in use, setting PORT to NULL
+  elif [ ! -z "$VS_BRXM_PORT_OVERRIDE" ]&&[ "$PORT_RESERVED" = "TRUE" ]; then
+    FAIL_REASON="OVERRIDE PORT $VS_BRXM_PORT_OVERRIDE is reserved, setting PORT to NULL
+  else  
+    FAIL_REASON="port scan reached $MAXPORT, no ports are free, setting PORT to NULL"
+  fi
   PORT=NULL
   SAFE_TO_PROCEED=FALSE
-  FAIL_REASON="port scan reached $MAXPORT, no ports are free, setting PORT to NULL"
   echo " - $FAIL_REASON"
 fi
 
