@@ -87,7 +87,8 @@ fi
 
 if [ -z "$VS_BRXM_PORT_OVERRIDE" ]; then
   PORT=8000
-  MAXPORT=8099;
+  MAXPORT=8099
+  MAXPORT=8100
   echo ""
   echo "finding a free port to map to the new container's Tomcat port - range $PORT-$MAXPORT"
 else
@@ -146,6 +147,9 @@ if [ $PORT -gt $MAXPORT ]; then
   FAIL_REASON="port scan reached $MAXPORT, no ports are free, setting PORT to NULL"
   echo " - $FAIL_REASON"
 fi
+else
+  FAIL_REASON="port scan reached $MAXPORT, no ports are free, but carrying on because GIT_BRANCH is $GIT_BRANCH"
+  echo " - $FAIL_REASON"
 fi
 
 # search for latest Hippo distribution files if HIPPO_LATEST is not already set
