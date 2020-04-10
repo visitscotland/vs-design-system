@@ -97,7 +97,7 @@ else
   echo "PORT will be set to $VS_BRXM_PORT_OVERRIDE due to VS_BRXM_PORT_OVERRIDE"
 fi
 
-# also check if the port is "reserved" by an existing container
+# check all branches to see what ports are "reserved" by existing containers
 PARENT_JOB_NAME=`echo $JOB_NAME | sed -e "s/\/.*//g"`
 echo ""
 echo "checking for ports reserved for other branches in $PARENT_JOB_NAME"
@@ -122,11 +122,20 @@ if [ ! -z "$RESERVED_PORT_LIST" ]; then echo "Ports $RESERVED_PORT_LIST are rese
 while [ $PORT -le $MAXPORT ]; do
   FREE=`netstat -an | egrep "LISTEN *$" | grep $PORT`
   if [ "$FREE" = "" ]; then
-    echo "$PORT is free"
-    break
+    echo "$PORT is free, checking it's not reserved"
+    for RESERVED_PORT in $RESERVED_PORT_LIST; do
+      if [ "$RESERVED_PORT" = "$PORT" ]; then
+        echo "$RESERVED_PORT is reserved"
+        PORT_RESERVED="TRUE"
+      fi
+    done
+    if [ ! "$PORT_RESERVED" = "TRUE" ]; then
+      break
+    fi
+  else
+    PORT=$((PORT+1))
+    sleep 0
   fi
-  PORT=$((PORT+1))
-  sleep 0
 done
 
 # testing - don't run this for develop to see what happens if port is not avaiable
