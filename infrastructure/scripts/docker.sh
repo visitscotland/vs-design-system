@@ -88,7 +88,6 @@ fi
 if [ -z "$VS_BRXM_PORT_OVERRIDE" ]; then
   PORT=8000
   MAXPORT=8099
-  MAXPORT=8100
   echo ""
   echo "finding a free port to map to the new container's Tomcat port - range $PORT-$MAXPORT"
 else
