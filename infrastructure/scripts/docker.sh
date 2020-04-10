@@ -83,7 +83,6 @@ if [ "$GIT_BRANCH" == "develop" ]; then
   echo ""
   echo "GIT_BRANCH is $GIT_BRANCH, OVERRIDE PORT will be set to 8100"
   VS_BRXM_PORT_OVERRIDE=8100
-VS_BRXM_PORT_OVERRIDE=8053
 fi
 
 if [ -z "$VS_BRXM_PORT_OVERRIDE" ]; then
@@ -157,25 +156,32 @@ if [ $PORT -gt $MAXPORT ]; then
 fi
 
 # search for latest Hippo distribution files if HIPPO_LATEST is not already set
-if [ -z $HIPPO_LATEST ]; then
-  # search in $WORKSPACE/target/ for files matching "*.tar.gz"
-  echo ""
-  echo "searching for latest Hippo distribution files in $WORKSPACE/target"
-  HIPPO_LATEST=`ls -alht $WORKSPACE/target/*.tar.gz | head -1 | awk '{print $9}'` 2>&1 > /dev/null
-  if [ -z "$HIPPO_LATEST" ]; then
-    # recursive search in $WORKSPACE/ for files matching "*.tar.gz"
-    echo "no archive found in $WORKSPACE/target/, widening search"
-    HIPPO_LATEST=`find $WORKSPACE/ -name "*.tar.gz" | head -1`
-  fi
+if [ ! "$SAFE_TO_PROCEED" = "FALSE" ]; then
+  if [ -z $HIPPO_LATEST ]; then
+    # search in $WORKSPACE/target/ for files matching "*.tar.gz"
+    echo ""
+    echo "searching for latest Hippo distribution files in $WORKSPACE/target"
+    HIPPO_LATEST=`ls -alht $WORKSPACE/target/*.tar.gz | head -1 | awk '{print $9}'` 2>&1 > /dev/null
+    if [ -z "$HIPPO_LATEST" ]; then
+      # recursive search in $WORKSPACE/ for files matching "*.tar.gz"
+      echo "no archive found in $WORKSPACE/target/, widening search"
+      HIPPO_LATEST=`find $WORKSPACE/ -name "*.tar.gz" | head -1`
+    fi
 
-  if [ ! -z "$HIPPO_LATEST" ]; then
-    echo " - found $HIPPO_LATEST"
+    if [ ! -z "$HIPPO_LATEST" ]; then
+      echo " - found $HIPPO_LATEST"
+    else
+      HIPPO_LATEST=NULL
+      SAFE_TO_PROCEED=FALSE
+      FAIL_REASON="no archive found in $WORKSPACE, giving up"
+      echo " - $FAIL_REASON"
+    fi
   else
-    HIPPO_LATEST=NULL
-    SAFE_TO_PROCEED=FALSE
-    FAIL_REASON="no archive found in $WORKSPACE, giving up"
-    echo " - $FAIL_REASON"
+    echo "search for distribution files will not be run as HIPPO_LATEST was overridden to $HIPPO_LATEST"
   fi
+else
+  echo ""
+  echo "search for distribution files will not be run due to previous failures"
 fi
 
 # create Docker container
