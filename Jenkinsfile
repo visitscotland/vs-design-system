@@ -38,7 +38,7 @@ pipeline {
       stage ('Build Application') {
         when {
           expression {
-            return env.BRANCH_NAME != 'develop';
+            return env.BRANCH_NAME != 'branch-to-skip';
           }
         }
             steps {
