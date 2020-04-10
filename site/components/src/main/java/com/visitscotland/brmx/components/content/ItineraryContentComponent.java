@@ -30,6 +30,7 @@ public class ItineraryContentComponent extends PageContentComponent<Itinerary> {
     public final String FIRST_STOP_LOCATION = "firstStopLocation";
     public final String LAST_STOP_LOCATION = "lastStopLocation";
     public final String HERO_COORDINATES = "heroCoordinates";
+    public final String HERO_IMAGE = "heroImage";
 
     @Override
     public void doBeforeRender(HstRequest request, HstResponse response) {
@@ -37,6 +38,7 @@ public class ItineraryContentComponent extends PageContentComponent<Itinerary> {
 
         generateStops(request);
         setCoordinates(request);
+        request.setAttribute(HERO_IMAGE, CommonUtils.getTranslatedImage(getDocument(request).getHeroImage(), request.getLocale()));
     }
 
     private void setCoordinates(HstRequest request) {
@@ -100,7 +102,7 @@ public class ItineraryContentComponent extends PageContentComponent<Itinerary> {
                 if (stop.getImage() != null) {
                     Image cmsImage = (Image) stop.getStopItemImage();
                     if (cmsImage != null) {
-                        img = new FlatImage(cmsImage, cmsImage.getAltText(), cmsImage.getCredit(), cmsImage.getDescription());
+                        img = CommonUtils.getTranslatedImage(cmsImage,request.getLocale());
                         if (!(stop.getStopItem() instanceof DMSLink)){
                             LocationObject locationObject = LocationLoader.getLocation(cmsImage.getLocation(), request.getLocale());
                             if (locationObject != null) {
@@ -235,6 +237,7 @@ public class ItineraryContentComponent extends PageContentComponent<Itinerary> {
 
 
         if (products.size() > 0 ) {
+
             request.setAttribute(FIRST_STOP_LOCATION, products.get(firstStopId).getSubTitle());
             request.setAttribute(LAST_STOP_LOCATION, products.get(lastStopId).getSubTitle());
 

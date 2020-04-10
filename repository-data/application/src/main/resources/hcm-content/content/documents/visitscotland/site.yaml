@@ -1133,7 +1133,7 @@
               hippostd:state: draft
               hippostdpubwf:createdBy: admin
               hippostdpubwf:creationDate: 2020-03-09T13:18:03.936Z
-              hippostdpubwf:lastModificationDate: 2020-04-07T17:45:09.790+01:00
+              hippostdpubwf:lastModificationDate: 2020-04-10T14:09:26.401+01:00
               hippostdpubwf:lastModifiedBy: admin
               hippotranslation:id: 97546e89-0d3f-4b72-816b-fd23247d9c2c
               hippotranslation:locale: en
@@ -1149,7 +1149,7 @@
               visitscotland:title: Short Calming Escapes By The Water
               /visitscotland:heroImage:
                 jcr:primaryType: hippogallerypicker:imagelink
-                hippo:docbase: ecede5a4-326c-4ce5-b9be-bcdf32c3f2c2
+                hippo:docbase: 8d4f5036-64ca-4e5d-aa89-b348ae38b081
                 hippo:facets: []
                 hippo:modes: []
                 hippo:values: []
@@ -1170,7 +1170,7 @@
               hippostd:state: unpublished
               hippostdpubwf:createdBy: admin
               hippostdpubwf:creationDate: 2020-03-09T13:18:03.936Z
-              hippostdpubwf:lastModificationDate: 2020-03-30T17:09:26.082+01:00
+              hippostdpubwf:lastModificationDate: 2020-04-10T14:09:26.314+01:00
               hippostdpubwf:lastModifiedBy: admin
               hippotranslation:id: 97546e89-0d3f-4b72-816b-fd23247d9c2c
               hippotranslation:locale: en
@@ -1186,7 +1186,7 @@
               visitscotland:title: Short Calming Escapes By The Water
               /visitscotland:heroImage:
                 jcr:primaryType: hippogallerypicker:imagelink
-                hippo:docbase: ecede5a4-326c-4ce5-b9be-bcdf32c3f2c2
+                hippo:docbase: 8d4f5036-64ca-4e5d-aa89-b348ae38b081
                 hippo:facets: []
                 hippo:modes: []
                 hippo:values: []
@@ -1998,7 +1998,7 @@
         jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
         jcr:uuid: e16bdb89-c271-46f1-851f-2d2b82d631d4
         hippo:name: Victorian Heritage Trail
-        hippo:versionHistory: 9e9bfdf6-f4a1-4b62-a6d8-b336e38060b5
+        hippo:versionHistory: 87375693-e240-4ffd-a98b-e5e34ed6f536
         /content[1]:
           jcr:primaryType: visitscotland:Itinerary
           jcr:mixinTypes: ['mix:referenceable']
@@ -2007,7 +2007,7 @@
           hippostd:state: draft
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2020-02-07T12:52:15.063Z
-          hippostdpubwf:lastModificationDate: 2020-03-30T17:47:43.614+01:00
+          hippostdpubwf:lastModificationDate: 2020-04-10T13:48:04.439+01:00
           hippostdpubwf:lastModifiedBy: admin
           hippotranslation:id: 80ddd0f7-26c8-4514-bc5b-1504204eaec4
           hippotranslation:locale: en
@@ -2031,7 +2031,7 @@
           visitscotland:transports: [car]
           /visitscotland:heroImage:
             jcr:primaryType: hippogallerypicker:imagelink
-            hippo:docbase: 9fb38865-ca10-4ef4-bcab-a1097cc44487
+            hippo:docbase: 8d4f5036-64ca-4e5d-aa89-b348ae38b081
             hippo:facets: []
             hippo:modes: []
             hippo:values: []
@@ -2049,7 +2049,7 @@
           hippostd:state: unpublished
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2020-02-07T12:52:15.063Z
-          hippostdpubwf:lastModificationDate: 2020-03-30T17:47:34.677+01:00
+          hippostdpubwf:lastModificationDate: 2020-04-10T13:47:57.576+01:00
           hippostdpubwf:lastModifiedBy: admin
           hippotranslation:id: 80ddd0f7-26c8-4514-bc5b-1504204eaec4
           hippotranslation:locale: en
@@ -2073,7 +2073,7 @@
           visitscotland:transports: [car]
           /visitscotland:heroImage:
             jcr:primaryType: hippogallerypicker:imagelink
-            hippo:docbase: 9fb38865-ca10-4ef4-bcab-a1097cc44487
+            hippo:docbase: 8d4f5036-64ca-4e5d-aa89-b348ae38b081
             hippo:facets: []
             hippo:modes: []
             hippo:values: []
@@ -2091,9 +2091,9 @@
           hippostd:state: published
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2020-02-07T12:52:15.063Z
-          hippostdpubwf:lastModificationDate: 2020-03-30T17:47:34.677+01:00
+          hippostdpubwf:lastModificationDate: 2020-04-10T13:47:57.576+01:00
           hippostdpubwf:lastModifiedBy: admin
-          hippostdpubwf:publicationDate: 2020-03-30T17:47:43.250+01:00
+          hippostdpubwf:publicationDate: 2020-04-10T13:48:03.644+01:00
           hippotranslation:id: 80ddd0f7-26c8-4514-bc5b-1504204eaec4
           hippotranslation:locale: en
           visitscotland:areas: [north]
@@ -2116,7 +2116,7 @@
           visitscotland:transports: [car]
           /visitscotland:heroImage:
             jcr:primaryType: hippogallerypicker:imagelink
-            hippo:docbase: 9fb38865-ca10-4ef4-bcab-a1097cc44487
+            hippo:docbase: 8d4f5036-64ca-4e5d-aa89-b348ae38b081
             hippo:facets: []
             hippo:modes: []
             hippo:values: []

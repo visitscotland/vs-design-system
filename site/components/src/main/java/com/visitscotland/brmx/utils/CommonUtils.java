@@ -1,5 +1,7 @@
 package com.visitscotland.brmx.utils;
 
+import com.visitscotland.brmx.beans.Image;
+import com.visitscotland.brmx.beans.mapping.FlatImage;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -71,6 +73,63 @@ public class CommonUtils {
         }
         return null;
     }
+
+    public static FlatImage getTranslatedImage(Image cmsImage, Locale locale){
+
+        FlatImage flatImage = new FlatImage(cmsImage);
+        flatImage.setCredit(cmsImage.getCredit());
+        if (locale == null){
+            flatImage.setAltText(cmsImage.getAltText());
+            flatImage.setDescription(cmsImage.getDescription());
+        }else{
+            switch (locale.getLanguage()) {
+                case "fr":
+                    if (cmsImage.getFr()!= null) {
+                        flatImage.setAltText(cmsImage.getFr().getAltText());
+                        flatImage.setDescription(cmsImage.getFr().getCaption());
+                    }
+                    break;
+                case "de":
+                    if (cmsImage.getDe()!= null) {
+                        flatImage.setAltText(cmsImage.getDe().getAltText());
+                        flatImage.setDescription(cmsImage.getDe().getCaption());
+                    }
+                    break;
+                case "es":
+                    if (cmsImage.getEs()!= null) {
+                        flatImage.setAltText(cmsImage.getEs().getAltText());
+                        flatImage.setDescription(cmsImage.getEs().getCaption());
+                    }
+                    break;
+                case "nl":
+                    if (cmsImage.getNl()!= null) {
+                        flatImage.setAltText(cmsImage.getNl().getAltText());
+                        flatImage.setDescription(cmsImage.getNl().getCaption());
+                    }
+                    break;
+                 case "it":
+                    if (cmsImage.getIt()!= null) {
+                        flatImage.setAltText(cmsImage.getIt().getAltText());
+                        flatImage.setDescription(cmsImage.getIt().getCaption());
+                    }
+                    break;
+                default:
+                    flatImage.setAltText(cmsImage.getAltText());
+                    flatImage.setDescription(cmsImage.getDescription());
+            }
+            if (flatImage.getAltText()==null){
+                flatImage.setAltText(cmsImage.getAltText());
+            }
+           if (flatImage.getDescription()==null){
+                flatImage.setDescription(cmsImage.getDescription());
+            }
+
+
+        }
+        return flatImage;
+    }
+
+
     //TODO this method returns the current open state and it coud be affected by the cache, ask WEBOPS and move it to front end if needed
     public static  String currentOpenStatus(String starTime, String endTime, Locale locale){
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("hh:mma");

@@ -25,11 +25,14 @@ public class ListicleContentComponent extends PageContentComponent<Listicle> {
 
     private static final Logger logger = LoggerFactory.getLogger(ListicleContentComponent.class);
 
+    public final String HERO_IMAGE = "heroImage";
+
     @Override
     public void doBeforeRender(HstRequest request, HstResponse response) {
         super.doBeforeRender(request, response);
 
         generateItems(request, getDocument(request));
+        request.setAttribute(HERO_IMAGE, CommonUtils.getTranslatedImage(getDocument(request).getHeroImage(), request.getLocale()));
     }
 
     /**
@@ -102,7 +105,7 @@ public class ListicleContentComponent extends PageContentComponent<Listicle> {
                     if (listicleItem.getListicleItemImage() instanceof Image) {
                         Image cmsImage = (Image) listicleItem.getListicleItemImage();
                         if (cmsImage != null) {
-                            FlatImage image = new FlatImage(cmsImage, cmsImage.getAltText(), cmsImage.getCredit(), cmsImage.getDescription());
+                            FlatImage image = CommonUtils.getTranslatedImage(cmsImage,request.getLocale());
                             LocationObject locationObject = LocationLoader.getLocation(cmsImage.getLocation(), request.getLocale());
                             if (locationObject!=null) {
                                 image.setCoordinates(new Coordinates(locationObject.getLatitude(), locationObject.getLongitude()));
