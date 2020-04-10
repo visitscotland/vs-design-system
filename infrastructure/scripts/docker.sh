@@ -135,11 +135,13 @@ if [ "$GIT_BRANCH" == "develop" ]; then
     for BRANCH_CONTAINER in $BRANCH_CONTAINER_LIST; do
       if [ "$CONTAINER" = "$BRANCH_CONTAINER" ]; then
         echo "there is a branch associated with $CONTAINER"
-      else
-        echo "there is no branch or PR associated with $CONTAINER"
-        echo "i could run docker container rm -f $CONTAINER, but I won't yet"
+        CONTAINER_MATCHED="TRUE"
       fi
     done
+    if [ ! "$CONTANIER_MATCHED" = "TRUE" ]; then
+    	echo "no branch was found matching container $CONTAINER"
+        echo "i could run docker container rm -f $CONTAINER, but I won't just yet"
+    fi
   done
 fi
 
