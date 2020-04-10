@@ -136,7 +136,6 @@ if [ "$GIT_BRANCH" == "develop" ]; then
   for CONTAINER in `docker ps -a --filter "name=$PARENT_JOB_NAME*" --format "table {{.Names}}"`; do
     ALL_CONTAINER_LIST="$ALL_CONTAINER_LIST $CONTAINER"
     for BRANCH_CONTAINER in $BRANCH_CONTAINER_LIST; do
-      echo "checking if \"$CONTAINER\" equals \"$BRANCH_CONTAINER\""
       if [ "$CONTAINER" = "$BRANCH_CONTAINER" ]; then
         echo "there is a branch associated with $CONTAINER"
         CONTAINER_MATCHED="TRUE"
