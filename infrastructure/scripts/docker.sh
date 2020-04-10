@@ -148,6 +148,7 @@ if [ $PORT -gt $MAXPORT ]; then
 fi
 else
   FAIL_REASON="port scan reached $MAXPORT, no ports are free, but carrying on because GIT_BRANCH is $GIT_BRANCH"
+  PORT=$((PORT-1))
   echo " - $FAIL_REASON"
 fi
 
