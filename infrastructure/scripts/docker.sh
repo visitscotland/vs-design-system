@@ -134,8 +134,9 @@ if [ "$GIT_BRANCH" == "develop" ]; then
   echo ""
   echo "checking all containers on $NODE_NAME matching $PARENT_JOB_NAME*"
   for CONTAINER in `docker ps -a --filter "name=$PARENT_JOB_NAME*" --format "table {{.Names}}"`; do
+    CONTAINER_MATCHED=
     ALL_CONTAINER_LIST="$ALL_CONTAINER_LIST $CONTAINER"
-    echo "checking to see if there's a branch for $CONTAINER"
+    #echo "checking to see if there's a branch for $CONTAINER"
     for BRANCH_CONTAINER in $BRANCH_CONTAINER_LIST; do
       if [ "$CONTAINER" = "$BRANCH_CONTAINER" ]; then
         echo "there is a branch associated with $CONTAINER"
@@ -144,8 +145,7 @@ if [ "$GIT_BRANCH" == "develop" ]; then
       fi
     done
     if [ ! "$CONTAINER_MATCHED" = "TRUE" ]; then
-    	echo "no branch was found matching container $CONTAINER"
-        echo "i could run docker container rm -f $CONTAINER, but I won't just yet"
+    	echo "no branch was found matching container $CONTAINER. I could run docker container rm -f $CONTAINER, but I won't just yet"
     fi
   done
 fi
