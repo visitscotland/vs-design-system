@@ -124,6 +124,7 @@ while [ $PORT -le $MAXPORT ]; do
   if [ "$FREE" = "" ]; then
     echo "$PORT is free, checking it's not reserved"
     for RESERVED_PORT in $RESERVED_PORT_LIST; do
+echo "checking PORT $PORT is not RESERVED_PORT $RESERVED_PORT"
       if [ "$RESERVED_PORT" = "$PORT" ]; then
         echo "$RESERVED_PORT is reserved"
         PORT_RESERVED="TRUE"
