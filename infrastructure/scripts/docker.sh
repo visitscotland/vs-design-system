@@ -144,10 +144,10 @@ done
 
 # testing - don't run this for develop to see what happens if port is not avaiable
 if [ $PORT -gt $MAXPORT ]; then
-  if [ ! -z "$VS_BRXM_PORT_OVERRIDE" ]&&[ ! "$PORT_RESERVED" = "TRUE" ]; then
-    FAIL_REASON="OVERRIDE PORT $VS_BRXM_PORT_OVERRIDE is in use, setting PORT to NULL
-  elif [ ! -z "$VS_BRXM_PORT_OVERRIDE" ]&&[ "$PORT_RESERVED" = "TRUE" ]; then
-    FAIL_REASON="OVERRIDE PORT $VS_BRXM_PORT_OVERRIDE is reserved, setting PORT to NULL
+  if [ ! -z "$VS_BRXM_PORT_OVERRIDE" ] && [ ! "$PORT_RESERVED" = "TRUE" ]; then
+    FAIL_REASON="OVERRIDE PORT $VS_BRXM_PORT_OVERRIDE is in use, setting PORT to NULL"
+  elif [ ! -z "$VS_BRXM_PORT_OVERRIDE" ] && [ "$PORT_RESERVED" = "TRUE" ]; then
+    FAIL_REASON="OVERRIDE PORT $VS_BRXM_PORT_OVERRIDE is reserved, setting PORT to NULL"
   else  
     FAIL_REASON="port scan reached $MAXPORT, no ports are free, setting PORT to NULL"
   fi
