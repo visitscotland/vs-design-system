@@ -133,6 +133,9 @@ echo "checking PORT $PORT is not RESERVED_PORT $RESERVED_PORT"
     done
     if [ ! "$PORT_RESERVED" = "TRUE" ]; then
       break
+    else
+      PORT=$((PORT+1))
+      sleep 0
     fi
   else
     PORT=$((PORT+1))
