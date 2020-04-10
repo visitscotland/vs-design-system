@@ -117,6 +117,7 @@ for CONTAINER in `curl -s $JENKINS_URL/job/$PARENT_JOB_NAME/rssLatest | sed -e "
     echo "$RESERVED_PORT is reserved by $CONTAINER"
   fi
 done
+echo ""
 echo "checking for ports reserved by pull requests in $PARENT_JOB_NAME"
 for CONTAINER in `curl -s $JENKINS_URL/job/$PARENT_JOB_NAME/view/change-requests/rssLatest | sed -e "s/type=\"text\/html\" href=\"/\n/g" | egrep "^https" | sed -e "s/%252F/\//g" | sed "s/\".*//g" | sed -e "s/htt.*\/\(.*\)\/[0-9]*\//$PARENT_JOB_NAME\_\1/g" | egrep -v "http"`; do
   BRANCH_CONTAINER_LIST="$BRANCH_CONTAINER_LIST $CONTAINER"
@@ -130,9 +131,12 @@ if [ ! -z "$RESERVED_PORT_LIST" ]; then echo "Ports $RESERVED_PORT_LIST are rese
 
 # tidy containers when building the "develop" branch
 if [ "$GIT_BRANCH" == "develop" ]; then
+  echo ""
+  echo "checking all containers on $NODE_NAME matching $PARENT_JOB_NAME*"
   for CONTAINER in `docker ps -a --filter "name=$PARENT_JOB_NAME*" --format "table {{.Names}}"`; do
     ALL_CONTAINER_LIST="$ALL_CONTAINER_LIST $CONTAINER"
     for BRANCH_CONTAINER in $BRANCH_CONTAINER_LIST; do
+      echo "checking if \"$CONTAINER\" equals \"$BRANCH_CONTAINER\""
       if [ "$CONTAINER" = "$BRANCH_CONTAINER" ]; then
         echo "there is a branch associated with $CONTAINER"
         CONTAINER_MATCHED="TRUE"
