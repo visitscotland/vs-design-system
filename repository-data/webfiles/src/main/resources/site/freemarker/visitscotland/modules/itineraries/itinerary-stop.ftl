@@ -32,10 +32,10 @@
 
     <#if !stop.stopItem?? && editMode>
         <vs-itinerary-stop
-            slot="stops"
-            stop-number="${prod.index}"
-            stop-label="${prod.title}"
-            stop-title="${prod.location}"
+                slot="stops"
+                stop-number="${prod.index}"
+                stop-label="${prod.title}"
+                stop-title="${prod.subTitle}"
         >
             <div slot="stop-details" class="has-edit-button">
                 <@hst.manageContent hippobean=stop />
@@ -44,14 +44,14 @@
         </vs-itinerary-stop>
     <#elseif stop.stopItem??>
         <vs-itinerary-stop
-            slot="stops"
-            stop-number="${prod.index}"
-            stop-label="${prod.title}"
-            stop-title="${prod.location}"
+                slot="stops"
+                stop-number="${prod.index}"
+                stop-label="${prod.title}"
+                stop-title="${prod.subTitle}"
         >
             <div slot="stop-details" class="has-edit-button">
                 <@hst.manageContent hippobean=stop />
-                <@cmsErrors errors=prod.errorMessage!"" editMode=editMode />
+                <@cmsErrors errors=prod.errorMessages!"" editMode=editMode />
                 <#if image?? && image?has_content>
                     <@imageWithCaption imageSrc=image imageDetails=prod.image variant="fullwidth"/>
                 </#if>
@@ -65,25 +65,25 @@
                         ${prod.ctaLink.label}
                     </vs-link>
                 </#if>
-                  <#--TODO Include Address, Address fields allow null and the fields are:
-                    ${prod.address.line1}
-                    ${prod.address.line2}
-                    ${prod.address.line3}
-                    ${prod.address.city}
-                    ${prod.address.postCode} -->
+                <#--TODO Include Address, Address fields allow null and the fields are:
+                  ${prod.address.line1}
+                  ${prod.address.line2}
+                  ${prod.address.line3}
+                  ${prod.address.city}
+                  ${prod.address.postCode} -->
 
-                    <#--TODO show open times the field is:
-                    </br>
-                    ${prod.open}
-                    </br>
-                     <#if prod.openLink?? && prod.openLink.link?? && prod.openLink.link?has_content>
-                        <vs-link href="${prod.openLink.link}">
-                            ${prod.openLink.label}
-                        </vs-link>
-                     </#if>-->
-                    <#--TODO  price the field is:
+                <#--TODO show open times the field is:
                 </br>
-                    ${prod.price}-->
+                ${prod.open}
+                </br>
+                 <#if prod.openLink?? && prod.openLink.link?? && prod.openLink.link?has_content>
+                    <vs-link href="${prod.openLink.link}">
+                        ${prod.openLink.label}
+                    </vs-link>
+                 </#if>-->
+                <#--TODO  price the field is:
+            </br>
+                ${prod.price}-->
 
                 <#if prod??>
                     <#if prod.timeToexplore?? && prod.timeToexplore?has_content>
@@ -107,7 +107,7 @@
                         <@keyFacilities facilitiesList=prod.facilities />
                     </#if>
                 </#if>
-        </div>
+            </div>
             <#if lastStop=="true" && prod.coordinates.longitude?? && prod.coordinates.longitude?has_content && prod.coordinates.latitude?? && prod.coordinates.latitude?has_content>
                 <vs-itinerary-border-overlap-wrapper slot="nearby-links">
                     <vs-button-with-icon class="mb-3" background="white" variant="outline-primary" icon="food" href=" ${productSearch(locale, "cate", prod.coordinates.latitude, prod.coordinates.longitude, 5)}" >
