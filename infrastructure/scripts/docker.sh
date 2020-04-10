@@ -141,7 +141,7 @@ if [ "$GIT_BRANCH" == "develop" ]; then
       fi
     done
   done
-if
+fi
 
 while [ $PORT -le $MAXPORT ]; do
   FREE=`netstat -an | egrep "LISTEN *$" | grep $PORT`
