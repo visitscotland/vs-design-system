@@ -28,9 +28,9 @@
 <#include "../../vs-dotcom-ds/components/itinerary.ftl">
 <#include "../../vs-dotcom-ds/components/svg.ftl">
 
-<#include "../modules/itineraries/itinerary-stop.ftl">
-<#include "../modules/itineraries/itinerary-map.ftl">
-<#include "../modules/cms-errors.ftl">
+<#include "../macros/modules/itineraries/itinerary-stop.ftl">
+<#include "../macros/modules/itineraries/itinerary-map.ftl">
+<#include "../macros/global/cms-errors.ftl">
 
 <#-- Implicit Request Objects -->
 <#-- @ftlvariable name="document" type="com.visitscotland.brmx.beans.Itinerary" -->
