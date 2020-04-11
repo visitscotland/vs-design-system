@@ -194,7 +194,7 @@ definitions:
             wicket.id: ${cluster.id}.field
             /cluster.options:
               jcr:primaryType: frontend:pluginconfig
-              valuelistProvider: service.locationlist.image
+              valuelistProvider: service.locationlist.psr
               source: ''
           /credit:
             jcr:primaryType: frontend:plugin
