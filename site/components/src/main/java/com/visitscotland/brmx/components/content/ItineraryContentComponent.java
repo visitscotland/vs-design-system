@@ -30,15 +30,14 @@ public class ItineraryContentComponent extends PageContentComponent<Itinerary> {
     public final String FIRST_STOP_LOCATION = "firstStopLocation";
     public final String LAST_STOP_LOCATION = "lastStopLocation";
     public final String HERO_COORDINATES = "heroCoordinates";
-    public final String HERO_IMAGE = "heroImage";
 
     @Override
     public void doBeforeRender(HstRequest request, HstResponse response) {
         super.doBeforeRender(request, response);
 
+        generateIndexPage(request);
         generateStops(request);
         setCoordinates(request);
-        request.setAttribute(HERO_IMAGE, CommonUtils.getTranslatedImage(getDocument(request).getHeroImage(), request.getLocale()));
     }
 
     private void setCoordinates(HstRequest request) {
@@ -97,12 +96,13 @@ public class ItineraryContentComponent extends PageContentComponent<Itinerary> {
                 String visitDuration = null;
                 String location = null;
                 model.setIndex(index++);
-                FlatImage img = null;
+                FlatImage flatImage = null;
 
                 if (stop.getImage() != null) {
                     Image cmsImage = (Image) stop.getStopItemImage();
                     if (cmsImage != null) {
-                        img = CommonUtils.getTranslatedImage(cmsImage,request.getLocale());
+                        flatImage = CommonUtils.getTranslatedImage(cmsImage,request.getLocale());
+                        CommonUtils.checkImageErrors(flatImage,request.getLocale(),logger,errors);
                         if (!(stop.getStopItem() instanceof DMSLink)){
                             LocationObject locationObject = LocationLoader.getLocation(cmsImage.getLocation(), request.getLocale());
                             if (locationObject != null) {
@@ -148,7 +148,7 @@ public class ItineraryContentComponent extends PageContentComponent<Itinerary> {
 
                                 if (stop.getImage() == null && product.has(IMAGE) ){
                                     JSONArray dmsImageList = product.getJSONArray(IMAGE);
-                                    img = new FlatImage(dmsImageList.getJSONObject(0),product.getString(NAME));
+                                    flatImage = new FlatImage(dmsImageList.getJSONObject(0),product.getString(NAME));
                                 }
 
                                 coordinates.setLatitude(product.getDouble(LAT));
@@ -216,9 +216,9 @@ public class ItineraryContentComponent extends PageContentComponent<Itinerary> {
                     firstStopId = lastStopId;
                 }
                 if (model.getCoordinates()!=null) {
-                    img.setCoordinates(model.getCoordinates());
+                    flatImage.setCoordinates(model.getCoordinates());
                 }
-                model.setImage(img);
+                model.setImage(flatImage);
                 if (visitDuration!=null) {
                     visitDuration = visitDuration.equalsIgnoreCase("1") ? visitDuration + " " + HippoUtils.getResourceBundle("stop.hour", "itinerary", request.getLocale())
                             : visitDuration + " " + HippoUtils.getResourceBundle("stop.hours", "itinerary", request.getLocale());

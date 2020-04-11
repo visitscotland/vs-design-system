@@ -13,7 +13,10 @@ import java.net.URL;
 import java.time.LocalTime;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
+import org.slf4j.Logger;
 
 public class CommonUtils {
 
@@ -22,6 +25,7 @@ public class CommonUtils {
         return value == null || value.trim().length() == 0;
     }
 
+    //TODO add message format for other languages
     public static final String contentIssue (String message, Object... parameters){
         return String.format("- [CONTENT] - " + message, parameters);
     }
@@ -75,58 +79,52 @@ public class CommonUtils {
     }
 
     public static FlatImage getTranslatedImage(Image cmsImage, Locale locale){
-
         FlatImage flatImage = new FlatImage(cmsImage);
         flatImage.setCredit(cmsImage.getCredit());
-        if (locale == null){
-            flatImage.setAltText(cmsImage.getAltText());
-            flatImage.setDescription(cmsImage.getDescription());
-        }else{
+        if (locale != null){
             switch (locale.getLanguage()) {
                 case "fr":
-                    if (cmsImage.getFr()!= null) {
-                        flatImage.setAltText(cmsImage.getFr().getAltText());
-                        flatImage.setDescription(cmsImage.getFr().getCaption());
-                    }
+                    flatImage.setAltText(cmsImage.getFr().getAltText());
+                    flatImage.setDescription(cmsImage.getFr().getCaption());
                     break;
                 case "de":
-                    if (cmsImage.getDe()!= null) {
-                        flatImage.setAltText(cmsImage.getDe().getAltText());
-                        flatImage.setDescription(cmsImage.getDe().getCaption());
-                    }
+                    flatImage.setAltText(cmsImage.getDe().getAltText());
+                    flatImage.setDescription(cmsImage.getDe().getCaption());
                     break;
                 case "es":
-                    if (cmsImage.getEs()!= null) {
-                        flatImage.setAltText(cmsImage.getEs().getAltText());
-                        flatImage.setDescription(cmsImage.getEs().getCaption());
-                    }
+                    flatImage.setAltText(cmsImage.getEs().getAltText());
+                    flatImage.setDescription(cmsImage.getEs().getCaption());
                     break;
                 case "nl":
-                    if (cmsImage.getNl()!= null) {
-                        flatImage.setAltText(cmsImage.getNl().getAltText());
-                        flatImage.setDescription(cmsImage.getNl().getCaption());
-                    }
+                    flatImage.setAltText(cmsImage.getNl().getAltText());
+                    flatImage.setDescription(cmsImage.getNl().getCaption());
                     break;
                  case "it":
-                    if (cmsImage.getIt()!= null) {
-                        flatImage.setAltText(cmsImage.getIt().getAltText());
-                        flatImage.setDescription(cmsImage.getIt().getCaption());
-                    }
+                    flatImage.setAltText(cmsImage.getIt().getAltText());
+                    flatImage.setDescription(cmsImage.getIt().getCaption());
                     break;
                 default:
                     flatImage.setAltText(cmsImage.getAltText());
                     flatImage.setDescription(cmsImage.getDescription());
             }
-            if (flatImage.getAltText()==null){
-                flatImage.setAltText(cmsImage.getAltText());
-            }
-           if (flatImage.getDescription()==null){
-                flatImage.setDescription(cmsImage.getDescription());
-            }
-
 
         }
         return flatImage;
+    }
+
+    public static void checkImageErrors(FlatImage image, Locale locale, Logger logger, List<String> errors){
+        if (image.getAltText() == null || image.getAltText().isEmpty()){
+            image.setAltText(image.getCmsImage().getAltText());
+            errors.add("Alt text field not provided for " + locale.getDisplayLanguage());
+            logger.warn(contentIssue("Alt text field not provided for %s for the image : %s - %s",
+                    locale.getDisplayLanguage() , image.getCmsImage().getName(), image.getCmsImage().getPath()));
+        }
+        if (image.getDescription() == null || image.getDescription().isEmpty()){
+            image.setDescription(image.getCmsImage().getDescription());
+            errors.add("Caption field not provided for " + locale.getDisplayLanguage());
+            logger.warn(contentIssue("Caption field not provided for %s for the image : %s - %s",
+                    locale.getDisplayLanguage() , image.getCmsImage().getName(), image.getCmsImage().getPath()));
+        }
     }
 
 

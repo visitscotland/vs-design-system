@@ -1,6 +1,7 @@
 package com.visitscotland.brmx.components.content;
 
 import com.visitscotland.brmx.beans.*;
+import com.visitscotland.brmx.beans.mapping.FlatImage;
 import com.visitscotland.brmx.utils.CommonUtils;
 import com.visitscotland.brmx.utils.HippoUtils;
 import com.visitscotland.brmx.utils.ProductSearchBuilder;
@@ -96,6 +97,20 @@ public class PageContentComponent<TYPE extends Page> extends EssentialsContentCo
         }
     }
 
+
+    protected void generateIndexPage(HstRequest request){
+        final String HERO_IMAGE = "heroImage";
+        final String LISTICLE_ALERTS = "alerts";
+        List<String> listicleAlerts = desiredFieldsAlert(getDocument(request));
+
+        FlatImage heroImage = CommonUtils.getTranslatedImage(getDocument(request).getHeroImage(), request.getLocale());
+        CommonUtils.checkImageErrors(heroImage,request.getLocale(),logger,listicleAlerts);
+        request.setAttribute(HERO_IMAGE, heroImage);
+
+        if (listicleAlerts.size()>0){
+            request.setAttribute(LISTICLE_ALERTS, listicleAlerts);
+        }
+    }
 
     protected List<String> desiredFieldsAlert (Page item){
         List<String> response =  new ArrayList<>();
