@@ -16,13 +16,14 @@
             <#list day.stops as stop>
                 <#assign prod = stops[stop.identifier]>
                 <#assign image = "" />
-                <#if prod.image.cmsImage??>
-                    <#assign image>
-                        <@hst.link hippobean=prod.image.cmsImage.original/>
-                    </#assign>
-                <#elseif prod.image.externalImage??>
-                    <#assign image = prod.image.externalImage />
-                <#else>
+                <#if prod.image??>
+                    <#if prod.image.cmsImage??>
+                        <#assign image>
+                            <@hst.link hippobean=prod.image.cmsImage.original/>
+                        </#assign>
+                    <#elseif prod.image.externalImage??>
+                        <#assign image = prod.image.externalImage />
+                    </#if>
                 </#if>
                 <#if prod.coordinates?? && prod.coordinates.latitude?? && prod.coordinates.latitude?has_content && prod.coordinates.longitude?? && prod.coordinates.longitude?has_content>
                 {
