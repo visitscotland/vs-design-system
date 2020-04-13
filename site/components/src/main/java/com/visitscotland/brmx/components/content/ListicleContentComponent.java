@@ -184,11 +184,8 @@ public class ListicleContentComponent extends PageContentComponent<Listicle> {
             items.put(model.getIdentifier(), model);
         }
 
-
         request.setAttribute(LISTICLE_ITEMS, items);
-
     }
-
 
     /**
      * @param request HstRequest
@@ -231,6 +228,4 @@ public class ListicleContentComponent extends PageContentComponent<Listicle> {
 
         return null;
     }
-
-
 }
