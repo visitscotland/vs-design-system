@@ -76,10 +76,9 @@ public class ItineraryContentComponent extends PageContentComponent<Itinerary> {
         final String OPENING_DAY = "day";
         final String OPENING_STATE = "state";
         final String OPENING_PROVISIONAL = "provivisional";
-
         final Map<String ,FlatStop> products =  new LinkedHashMap<>();
-
         List<String> itineraryAlerts = this.desiredFieldsAlert(itinerary);
+      
         if (itineraryAlerts.size()>0){
             request.setAttribute(ITINERARY_ALERTS, itineraryAlerts);
         }
@@ -235,9 +234,7 @@ public class ItineraryContentComponent extends PageContentComponent<Itinerary> {
             }
         }
 
-
         if (products.size() > 0 ) {
-
             request.setAttribute(FIRST_STOP_LOCATION, products.get(firstStopId).getSubTitle());
             request.setAttribute(LAST_STOP_LOCATION, products.get(lastStopId).getSubTitle());
 
