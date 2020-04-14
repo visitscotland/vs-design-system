@@ -46,7 +46,7 @@ public class ListicleContentComponent extends PageContentComponent<Listicle> {
         final String FACILITIES = "keyFacilities";
         final String NAME = "name";
         final String IMAGE = "images";
-        final Map<String ,FlatListicle> items =  new LinkedHashMap<>();
+        final List<FlatListicle> items =  new ArrayList<>();
 
         int index = listicle.getDescOrder()?listicle.getItems().size():1;
 
@@ -186,7 +186,7 @@ public class ListicleContentComponent extends PageContentComponent<Listicle> {
             }
             model.setLinks(links);
             model.setErrorMessages(errors);
-            items.put(model.getIdentifier(), model);
+            items.add(model);
         }
 
 
