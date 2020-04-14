@@ -6,6 +6,8 @@ import VsItineraryMapMobileToggle from "./components/itinerary-map-mobile-toggle
 import VsItineraryBorderOverlapWrapper from "./components/itinerary-border-overlap-wrapper/ItineraryBorderOverlapWrapper"
 import VsItineraryMap from "./components/itinerary-map/ItineraryMap"
 
+import "es6-promise/auto"
+
 export {
     VsItinerary,
     VsItineraryDay,
