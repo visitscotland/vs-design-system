@@ -96,7 +96,7 @@ public class ItineraryContentComponent extends PageContentComponent<Itinerary> {
                     Image cmsImage = (Image) stop.getStopItemImage();
                     if (cmsImage != null) {
                         flatImage = CommonUtils.getTranslatedImage(cmsImage,request.getLocale());
-                        CommonUtils.checkImageErrors(flatImage,request.getLocale(),logger,errors);
+                        checkImageErrors(flatImage,request.getLocale(),errors);
                         if (!(stop.getStopItem() instanceof DMSLink)){
                             LocationObject locationObject = LocationLoader.getLocation(cmsImage.getLocation(), request.getLocale());
                             if (locationObject != null) {

@@ -98,7 +98,7 @@ public class ListicleContentComponent extends PageContentComponent<Listicle> {
                         Image cmsImage = (Image) listicleItem.getListicleItemImage();
                         if (cmsImage != null) {
                             flatImage = CommonUtils.getTranslatedImage(cmsImage,request.getLocale());
-                            CommonUtils.checkImageErrors(flatImage,request.getLocale(),logger,errors);
+                            checkImageErrors(flatImage,request.getLocale(),errors);
                             LocationObject locationObject = LocationLoader.getLocation(cmsImage.getLocation(), request.getLocale());
                             if (locationObject!=null) {
                                 flatImage.setCoordinates(new Coordinates(locationObject.getLatitude(), locationObject.getLongitude()));

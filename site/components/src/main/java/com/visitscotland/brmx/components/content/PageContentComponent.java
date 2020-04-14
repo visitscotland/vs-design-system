@@ -104,7 +104,7 @@ public class PageContentComponent<TYPE extends Page> extends EssentialsContentCo
         List<String> alerts = validateDesiredFields(getDocument(request));
 
         FlatImage heroImage = CommonUtils.getTranslatedImage(getDocument(request).getHeroImage(), request.getLocale());
-        CommonUtils.checkImageErrors(heroImage,request.getLocale(),logger,alerts);
+        checkImageErrors(heroImage,request.getLocale(),alerts);
         request.setAttribute(HERO_IMAGE, heroImage);
 
         if (alerts.size()>0){
@@ -129,4 +129,20 @@ public class PageContentComponent<TYPE extends Page> extends EssentialsContentCo
 
         return response;
     }
+
+    protected static void checkImageErrors(FlatImage image, Locale locale, List<String> errors){
+        if (image.getAltText() == null || image.getAltText().isEmpty()){
+            image.setAltText(image.getCmsImage().getAltText());
+            errors.add("Alt text field not provided for " + locale.getDisplayLanguage());
+            logger.warn(CommonUtils.contentIssue("Alt text field not provided for %s for the image : %s - %s",
+                    locale.getDisplayLanguage() , image.getCmsImage().getName(), image.getCmsImage().getPath()));
+        }
+        if (image.getDescription() == null || image.getDescription().isEmpty()){
+            image.setDescription(image.getCmsImage().getDescription());
+            errors.add("Caption field not provided for " + locale.getDisplayLanguage());
+            logger.warn(CommonUtils.contentIssue("Caption field not provided for %s for the image : %s - %s",
+                    locale.getDisplayLanguage() , image.getCmsImage().getName(), image.getCmsImage().getPath()));
+        }
+    }
+
 }

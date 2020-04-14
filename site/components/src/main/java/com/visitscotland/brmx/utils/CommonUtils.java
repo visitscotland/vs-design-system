@@ -112,21 +112,6 @@ public class CommonUtils {
         return flatImage;
     }
 
-    public static void checkImageErrors(FlatImage image, Locale locale, Logger logger, List<String> errors){
-        if (image.getAltText() == null || image.getAltText().isEmpty()){
-            image.setAltText(image.getCmsImage().getAltText());
-            errors.add("Alt text field not provided for " + locale.getDisplayLanguage());
-            logger.warn(contentIssue("Alt text field not provided for %s for the image : %s - %s",
-                    locale.getDisplayLanguage() , image.getCmsImage().getName(), image.getCmsImage().getPath()));
-        }
-        if (image.getDescription() == null || image.getDescription().isEmpty()){
-            image.setDescription(image.getCmsImage().getDescription());
-            errors.add("Caption field not provided for " + locale.getDisplayLanguage());
-            logger.warn(contentIssue("Caption field not provided for %s for the image : %s - %s",
-                    locale.getDisplayLanguage() , image.getCmsImage().getName(), image.getCmsImage().getPath()));
-        }
-    }
-
 
     //TODO this method returns the current open state and it coud be affected by the cache, ask WEBOPS and move it to front end if needed
     public static  String currentOpenStatus(String starTime, String endTime, Locale locale){
