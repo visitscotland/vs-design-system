@@ -11,25 +11,11 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin")
 const OptimizeCSSPlugin = require("optimize-css-assets-webpack-plugin")
 const CopyWebpackPlugin = require("copy-webpack-plugin")
 const SafeParser = require("postcss-safe-parser")
-
 const env = require("../config/prod.env")
-
 const ManifestPlugin = require("webpack-manifest-plugin")
-
 const generateManifest = require("./system-components-generate-manifest")
+const getBaseConfig = require("./babel-webpack-fix-ie11.js").getBaseConfig
 
-const webpackBabelRuleIncludes = [
-  resolve("node_modules/regexpu-core"),
-  resolve("node_modules/unicode-match-property-ecmascript"),
-  resolve("node_modules/unicode-match-property-value-ecmascript"),
-  resolve("node_modules/buble/node_modules/acorn-jsx"),
-  resolve("node_modules/react-dev-utils"),
-  resolve("node_modules/chalk"),
-  resolve("node_modules/ansi-styles"),
-  resolve("node_modules/acorn-jsx"),
-  resolve("node_modules/camelcase"),
-  resolve("node_modules/bootstrap-vue")
-]
 
 baseWebpackConfig.entry = require("../src/utils/entry.system-components.js")
 
@@ -38,45 +24,7 @@ baseWebpackConfig.plugins = baseWebpackConfig.plugins.filter(plugin => {
   return !(plugin instanceof MiniCssExtractPlugin)
 })
 
-const webpackBabelRuleUse = {
-  loader: "babel-loader",
-  options: {
-      sourceType: "unambiguous",
-      presets: [
-          [
-              "@babel/preset-env",
-              {
-                  useBuiltIns: "usage",
-                  corejs: 3,
-                  targets: {
-                      ie: "11",
-                  },
-              },
-          ],
-      ],
-      comments: false,
-  },
-}
-
-function resolve(dir) {
-  return path.join(__dirname, "..", dir)
-}
-
-function getBaseConfig() {
-  const babelRule = _.find(_.get(baseWebpackConfig, "module.rules"), ["loader", "babel-loader"])
-
-  if (babelRule) {
-    // insert extra includes and settings to the base config for docs generation
-    _.unset(babelRule, "loader")
-
-    babelRule.include = _.concat(babelRule.include, webpackBabelRuleIncludes)
-    babelRule.use = webpackBabelRuleUse
-  }
-
-  return baseWebpackConfig
-}
-
-const webpackConfig = merge(getBaseConfig(), {
+const webpackConfig = merge(getBaseConfig(baseWebpackConfig), {
   externals: {
     vue: "Vue",
     vuex: "Vuex",
@@ -148,6 +96,9 @@ const webpackConfig = merge(getBaseConfig(), {
         ignore: [".*"],
       },
     ]),
+    new webpack.ProvidePlugin({
+      Promise: 'es6-promise'
+    }),
     new ManifestPlugin({
       generate: generateManifest,
       fileName: "manifest.json",
