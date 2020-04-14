@@ -5,8 +5,7 @@ const chalk = require("chalk")
 const baseConfig = require("../build/webpack.base.conf.js")
 const packageConfig = require("../package.json")
 const parseChildComponents = require("../build/parse-child-components.js")
-const getBaseConfig = require("./babel-webpack-fix-ie11.js").getBaseConfig
-//import { getBaseConfig } from "./babel-webpack-fix-ie11.js";
+const { mergeIE11Fix } = require("./babel-webpack-fix-ie11.js")
 
 module.exports = {
     /**
@@ -81,7 +80,7 @@ module.exports = {
         "**/*.spec.jsx",
         "**/ExampleComponent.vue",
     ],
-    webpackConfig: merge(getBaseConfig(baseConfig), {
+    webpackConfig: merge(mergeIE11Fix(baseConfig), {
         resolve: {
             alias: {
                 "rsg-components/ReactComponent/ReactComponentRenderer":
