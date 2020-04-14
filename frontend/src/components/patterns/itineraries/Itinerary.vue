@@ -37,7 +37,7 @@ export default {
     name: "VsItinerary",
     status: "prototype",
     release: "0.0.1",
-    data: function() {
+    data() {
         return {
             showMap: window.innerWidth >= 1200 ? true : false,
             isDesktop: window.innerWidth >= 1200 ? true : false,
@@ -58,11 +58,11 @@ export default {
     },
     props: {},
     methods: {
-        onResize:function()  {
+        onResize()  {
             this.isDesktop = window.innerWidth >= 1200 ? true : false
             this.showMap = window.innerWidth >= 1200 ? true : false
         },
-        onScroll:function()  {
+        onScroll()  {
             var bounding = this.$el.getBoundingClientRect()
             var insideStartOfItineraryMain =
                 bounding.top <= (window.innerHeight || document.documentElement.clientHeight)
@@ -75,11 +75,11 @@ export default {
             this.withinItineraryMain =
                 insideStartOfItineraryMain && !outsideEndOfItineraryMain ? true : false
         },
-        toggleShowMap:function()  {
+        toggleShowMap()  {
             this.showMap = !this.showMap
         },
     },
-    mounted:function()  {
+    mounted(){
         /* Design System wrapper affects page scroll detection, so temporary fix is to
         have a condition checking for design system wrapper. */
         window.addEventListener("resize", this.onResize)
@@ -88,7 +88,7 @@ export default {
             window.addEventListener("scroll", this.onScroll)
         } else designSystemWrapper.addEventListener("scroll", this.onScroll)
     },
-    destroyed:function()  {
+    destroyed(){
         window.removeEventListener("resize", this.onResize)
     },
 }
