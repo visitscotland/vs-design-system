@@ -19,6 +19,7 @@ const componentPaths = [
 const storePattern = "./src/components/**/*.store.js"
 
 let components = {
+  Promise: 'es6-promise',  
   core: "./src/utils/core.system-components.js",
 }
 

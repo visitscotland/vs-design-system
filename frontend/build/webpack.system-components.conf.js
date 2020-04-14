@@ -1,5 +1,4 @@
 "use strict"
-const _ = require("lodash")
 const utils = require("./utils")
 const webpack = require("webpack")
 const path = require("path")
@@ -14,7 +13,7 @@ const SafeParser = require("postcss-safe-parser")
 const env = require("../config/prod.env")
 const ManifestPlugin = require("webpack-manifest-plugin")
 const generateManifest = require("./system-components-generate-manifest")
-const getBaseConfig = require("./babel-webpack-fix-ie11.js").getBaseConfig
+const { mergeIE11Fix } = require("./webpack.ie11-fix.js")
 
 
 baseWebpackConfig.entry = require("../src/utils/entry.system-components.js")
@@ -24,10 +23,10 @@ baseWebpackConfig.plugins = baseWebpackConfig.plugins.filter(plugin => {
   return !(plugin instanceof MiniCssExtractPlugin)
 })
 
-const webpackConfig = merge(getBaseConfig(baseWebpackConfig), {
+const webpackConfig = merge(mergeIE11Fix(baseWebpackConfig), {
   externals: {
     vue: "Vue",
-    vuex: "Vuex",
+  
   },
   module: {
     rules: utils.styleLoaders({
@@ -96,9 +95,6 @@ const webpackConfig = merge(getBaseConfig(baseWebpackConfig), {
         ignore: [".*"],
       },
     ]),
-    new webpack.ProvidePlugin({
-      Promise: 'es6-promise'
-    }),
     new ManifestPlugin({
       generate: generateManifest,
       fileName: "manifest.json",
