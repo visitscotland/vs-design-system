@@ -77,11 +77,6 @@ public class ItineraryContentComponent extends PageContentComponent<Itinerary> {
         final String OPENING_STATE = "state";
         final String OPENING_PROVISIONAL = "provivisional";
         final Map<String ,FlatStop> products =  new LinkedHashMap<>();
-        List<String> itineraryAlerts = this.desiredFieldsAlert(itinerary);
-      
-        if (itineraryAlerts.size()>0){
-            request.setAttribute(ITINERARY_ALERTS, itineraryAlerts);
-        }
 
         String firstStopId = null;
         String lastStopId = null;

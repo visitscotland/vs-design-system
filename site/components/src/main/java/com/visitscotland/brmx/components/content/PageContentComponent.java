@@ -100,19 +100,19 @@ public class PageContentComponent<TYPE extends Page> extends EssentialsContentCo
 
     protected void generateIndexPage(HstRequest request){
         final String HERO_IMAGE = "heroImage";
-        final String LISTICLE_ALERTS = "alerts";
-        List<String> listicleAlerts = desiredFieldsAlert(getDocument(request));
+        final String ALERTS = "alerts";
+        List<String> alerts = validateDesiredFields(getDocument(request));
 
         FlatImage heroImage = CommonUtils.getTranslatedImage(getDocument(request).getHeroImage(), request.getLocale());
-        CommonUtils.checkImageErrors(heroImage,request.getLocale(),logger,listicleAlerts);
+        CommonUtils.checkImageErrors(heroImage,request.getLocale(),logger,alerts);
         request.setAttribute(HERO_IMAGE, heroImage);
 
-        if (listicleAlerts.size()>0){
-            request.setAttribute(LISTICLE_ALERTS, listicleAlerts);
+        if (alerts.size()>0){
+            request.setAttribute(ALERTS, alerts);
         }
     }
 
-    protected List<String> desiredFieldsAlert (Page item){
+    protected List<String> validateDesiredFields (Page item){
         List<String> response =  new ArrayList<>();
         if (item.getTeaser() == null || item.getTeaser().isEmpty()) {
             response.add("Teaser field should be provided");
