@@ -42,7 +42,7 @@ function resolve(dir) {
 
 
 
-function getBaseConfig(config) {
+function mergeIE11Fix(config) {
     const babelRule = _.find(_.get(config, "module.rules"), ["loader", "babel-loader"])
   
     if (babelRule) {
@@ -57,7 +57,7 @@ function getBaseConfig(config) {
   }
 
   module.exports = {
-    getBaseConfig
+    mergeIE11Fix 
   }
   
   
