@@ -26,7 +26,6 @@ baseWebpackConfig.plugins = baseWebpackConfig.plugins.filter(plugin => {
 const webpackConfig = merge(mergeIE11Fix(baseWebpackConfig), {
   externals: {
     vue: "Vue",
-  
   },
   module: {
     rules: utils.styleLoaders({
