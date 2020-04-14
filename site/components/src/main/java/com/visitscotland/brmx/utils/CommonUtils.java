@@ -84,24 +84,34 @@ public class CommonUtils {
         if (locale != null){
             switch (locale.getLanguage()) {
                 case "fr":
-                    flatImage.setAltText(cmsImage.getFr().getAltText());
-                    flatImage.setDescription(cmsImage.getFr().getCaption());
+                    if (cmsImage.getFr() != null) {
+                        flatImage.setAltText(cmsImage.getFr().getAltText());
+                        flatImage.setDescription(cmsImage.getFr().getCaption());
+                    }
                     break;
                 case "de":
-                    flatImage.setAltText(cmsImage.getDe().getAltText());
-                    flatImage.setDescription(cmsImage.getDe().getCaption());
+                    if (cmsImage.getDe() != null) {
+                        flatImage.setAltText(cmsImage.getDe().getAltText());
+                        flatImage.setDescription(cmsImage.getDe().getCaption());
+                    }
                     break;
                 case "es":
-                    flatImage.setAltText(cmsImage.getEs().getAltText());
-                    flatImage.setDescription(cmsImage.getEs().getCaption());
+                    if (cmsImage.getEs() != null) {
+                        flatImage.setAltText(cmsImage.getEs().getAltText());
+                        flatImage.setDescription(cmsImage.getEs().getCaption());
+                    }
                     break;
                 case "nl":
-                    flatImage.setAltText(cmsImage.getNl().getAltText());
-                    flatImage.setDescription(cmsImage.getNl().getCaption());
+                    if (cmsImage.getNl() != null) {
+                        flatImage.setAltText(cmsImage.getNl().getAltText());
+                        flatImage.setDescription(cmsImage.getNl().getCaption());
+                    }
                     break;
                  case "it":
-                    flatImage.setAltText(cmsImage.getIt().getAltText());
-                    flatImage.setDescription(cmsImage.getIt().getCaption());
+                     if (cmsImage.getIt() != null) {
+                         flatImage.setAltText(cmsImage.getIt().getAltText());
+                         flatImage.setDescription(cmsImage.getIt().getCaption());
+                     }
                     break;
                 default:
                     flatImage.setAltText(cmsImage.getAltText());
