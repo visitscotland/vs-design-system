@@ -1,4 +1,4 @@
-/hst:hst/hst:configurations/visitscotland/hst:workspace/hst:sitemenus/footer/footer.utility-list:
+/hst:hst/hst:configurations/visitscotland/hst:workspace/hst:sitemenus/utility/footer.utility-list:
   jcr:primaryType: hst:sitemenuitem
   hst:repobased: false
   /footer.accessibility:

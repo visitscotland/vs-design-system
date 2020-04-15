@@ -39,7 +39,6 @@ public class MenuComponent extends EssentialsMenuComponent {
     private VsHstSiteMenuItemImpl exploreMenu(HstRequest request, VsHstSiteMenuItemImpl parent, HstSiteMenuItem menu){
         VsHstSiteMenuItemImpl enhancedMenu = new VsHstSiteMenuItemImpl(parent, menu);
 
-        if (!menu.getName().equalsIgnoreCase("utility-list")) {
             //if document base page or widget, we enhance the document
             if (isDocumentBased(menu.getHstLink())) {
                 ResolvedSiteMapItem rsi = menu.resolveToSiteMapItem();
@@ -63,7 +62,7 @@ public class MenuComponent extends EssentialsMenuComponent {
                 String value = HippoUtils.getResourceBundle(menu.getName(), NAVIGATION_BUNDLE, request.getLocale());
                 enhancedMenu.setTitle(value);
             }
-        }
+
         for (HstSiteMenuItem child: menu.getChildMenuItems()){
             exploreMenu(request, enhancedMenu, child);
         }
