@@ -11,6 +11,7 @@
 <#include "../../vs-dotcom-ds/components/link.ftl">
 <#include "../../vs-dotcom-ds/components/rich-text-wrapper.ftl">
 <#include "../../vs-dotcom-ds/components/listicle-item.ftl">
+<#include "../../vs-dotcom-ds/components/panel.ftl">
 
 <#include "../macros/modules/listicles/listicle-item.ftl">
 <#include "../macros/global/cms-errors.ftl">
@@ -18,7 +19,6 @@
 <#-- Implicit Request Objects -->
 <#-- @ftlvariable name="document" type="com.visitscotland.brmx.beans.Listicle" -->
 <#-- @ftlvariable name="heroCoordinates" type="com.visitscotland.brmx.beans.mapping.Coordinates" -->
-
 <#-- @ftlvariable name="item" type="com.visitscotland.brmx.beans.mapping.FlatListicle" -->
 <#-- @ftlvariable name="cta" type="com.visitscotland.brmx.beans.mapping.FlatLink" -->
 
@@ -28,13 +28,13 @@
     
     
 	<vs-container slot="upper" class="py-lg-4">
-		<vs-row class="justify-content-md-between">
+		<vs-row>
 			<vs-col cols="12" lg="8">
 				<@hst.include ref="breadcrumb"/>
 			</vs-col>
 		</vs-row>
 
-		<vs-row class="justify-content-md-between">
+		<vs-row>
 			<vs-col cols="10" lg="8">
 				<vs-heading level="1">${document.title}</vs-heading>
 			</vs-col>
@@ -45,9 +45,11 @@
 			</vs-col>
 		</vs-row>
 
-		<vs-row class="justify-content-md-between mb-6">
+		<vs-row class="mb-6">
 			<vs-col cols="12" lg="8">
-                <vs-rich-text-wrapper variant="lead"><@hst.html hippohtml=document.introduction/></vs-rich-text-wrapper>
+                <vs-rich-text-wrapper variant="lead">
+                    <@hst.html hippohtml=document.introduction/>
+                </vs-rich-text-wrapper>
 			</vs-col>
 		</vs-row>
 
@@ -57,5 +59,16 @@
 			</#list>
 		</ol>
 
+        <vs-row class="mb-6">
+			<vs-col cols="12">
+                <vs-panel>
+                    <vs-heading thin level="4" slot="vs-panel-title">${document.summaryTitle}</vs-heading>
+
+                    <vs-rich-text-wrapper variant="lead">
+                        <@hst.html hippohtml=document.summary/>
+                    </vs-rich-text-wrapper>
+                </vs-panel>
+			</vs-col>
+		</vs-row>
 	</vs-container>
 </div>
