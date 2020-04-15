@@ -196,7 +196,10 @@ definitions:
             plugin.class: org.hippoecm.frontend.editor.plugins.field.NodeFieldPlugin
             wicket.id: ${cluster.id}.left.item
             /cluster.options:
-              jcr:primaryType: frontend:pluginconfig
+              jcr:primaryType: frontend:pluginconfig              
+              ckeditor.config.overlayed.json: '{toolbarGroups: [{ name: ''links''
+                },{name:''insert''},{name:''clipboard''},{name:''tools''},{name:''undo''}]
+                , removeButtons: ''PickImage,Youtube,Table''}'
           /teaser:
             jcr:primaryType: frontend:plugin
             caption: Teaser

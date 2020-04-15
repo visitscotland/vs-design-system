@@ -35,6 +35,7 @@ public class ItineraryContentComponent extends PageContentComponent<Itinerary> {
     public void doBeforeRender(HstRequest request, HstResponse response) {
         super.doBeforeRender(request, response);
 
+        generateIndexPage(request);
         generateStops(request);
         setCoordinates(request);
     }
@@ -75,13 +76,7 @@ public class ItineraryContentComponent extends PageContentComponent<Itinerary> {
         final String OPENING_DAY = "day";
         final String OPENING_STATE = "state";
         final String OPENING_PROVISIONAL = "provivisional";
-
         final Map<String ,FlatStop> products =  new LinkedHashMap<>();
-
-        List<String> itineraryAlerts = this.desiredFieldsAlert(itinerary);
-        if (itineraryAlerts.size()>0){
-            request.setAttribute(ITINERARY_ALERTS, itineraryAlerts);
-        }
 
         String firstStopId = null;
         String lastStopId = null;
@@ -93,16 +88,27 @@ public class ItineraryContentComponent extends PageContentComponent<Itinerary> {
                 FlatStop model = new FlatStop(stop);
                 Coordinates coordinates = new Coordinates();
                 String visitDuration = null;
+                String location = null;
                 model.setIndex(index++);
-                FlatImage img = null;
+                FlatImage flatImage = null;
+
+                if (stop.getImage() != null) {
+                    Image cmsImage = (Image) stop.getStopItemImage();
+                    if (cmsImage != null) {
+                        flatImage = CommonUtils.getTranslatedImage(cmsImage,request.getLocale());
+                        checkImageErrors(flatImage,request.getLocale(),errors);
+                        if (!(stop.getStopItem() instanceof DMSLink)){
+                            LocationObject locationObject = LocationLoader.getLocation(cmsImage.getLocation(), request.getLocale());
+                            if (locationObject != null) {
+                               location = locationObject.getName();
+                            }
+                        }
+                    }
+                }
 
                 if (stop.getStopItem() instanceof DMSLink){
                     DMSLink dmsLink = (DMSLink) stop.getStopItem();
-                    if (stop.getImage()!=null) {
-                        img = new FlatImage(stop.getImage());
-                    }
-
-                    //CONTENT prefix on error messages could means that the problem can be fixed by altering the content.
+                    //CONTENT prefix on error messages could mean that the problem can be fixed by altering the content.
                     try {
 
                         if (dmsLink.getProduct() == null){
@@ -120,7 +126,7 @@ public class ItineraryContentComponent extends PageContentComponent<Itinerary> {
                                 if (product.has(ADDRESS)){
                                     JSONObject address =product.getJSONObject(ADDRESS);
                                     model.setAddress(address);
-                                    model.setLocation( address.has(LOCATION)?address.getString(LOCATION):null);
+                                    location = address.has(LOCATION)?address.getString(LOCATION):null;
                                 }
 
 
@@ -136,7 +142,7 @@ public class ItineraryContentComponent extends PageContentComponent<Itinerary> {
 
                                 if (stop.getImage() == null && product.has(IMAGE) ){
                                     JSONArray dmsImageList = product.getJSONArray(IMAGE);
-                                    img = new FlatImage( dmsImageList.getJSONObject(0),product.getString(NAME));
+                                    flatImage = new FlatImage(dmsImageList.getJSONObject(0),product.getString(NAME));
                                 }
 
                                 coordinates.setLatitude(product.getDouble(LAT));
@@ -177,13 +183,6 @@ public class ItineraryContentComponent extends PageContentComponent<Itinerary> {
                     }
                 } else if (stop.getStopItem() instanceof ItineraryExternalLink){
                     ItineraryExternalLink externalLink = (ItineraryExternalLink) stop.getStopItem();
-
-                    if (stop.getImage() != null) {
-                        img.setCmsImage(stop.getImage());
-                        img.setAltText(stop.getImage().getAltText());
-                        img.setCredit(stop.getImage().getCredit());
-                        img.setDescription(stop.getImage().getDescription());
-                    }
                     visitDuration = externalLink.getTimeToExplore();
 
                     if (externalLink.getExternalLink() != null) {
@@ -210,22 +209,29 @@ public class ItineraryContentComponent extends PageContentComponent<Itinerary> {
                 if (firstStopId == null){
                     firstStopId = lastStopId;
                 }
-
-                model.setImage(img);
+                if (model.getCoordinates()!=null) {
+                    flatImage.setCoordinates(model.getCoordinates());
+                }
+                model.setImage(flatImage);
                 if (visitDuration!=null) {
                     visitDuration = visitDuration.equalsIgnoreCase("1") ? visitDuration + " " + HippoUtils.getResourceBundle("stop.hour", "itinerary", request.getLocale())
                             : visitDuration + " " + HippoUtils.getResourceBundle("stop.hours", "itinerary", request.getLocale());
                     model.setTimeToexplore(visitDuration);
                 }
 
+                if (stop.getSubtitle() == null || stop.getSubtitle().isEmpty()) {
+                    model.setSubTitle(location);
+                }else{
+                    model.setSubTitle(stop.getSubtitle());
+                }
                 model.setErrorMessages(errors);
                 products.put(model.getIdentifier(), model);
             }
         }
 
         if (products.size() > 0 ) {
-            request.setAttribute(FIRST_STOP_LOCATION, products.get(firstStopId).getLocation());
-            request.setAttribute(LAST_STOP_LOCATION, products.get(lastStopId).getLocation());
+            request.setAttribute(FIRST_STOP_LOCATION, products.get(firstStopId).getSubTitle());
+            request.setAttribute(LAST_STOP_LOCATION, products.get(lastStopId).getSubTitle());
 
             request.setAttribute(STOPS_MAP, products);
         }
