@@ -36,6 +36,7 @@
 <#-- @ftlvariable name="document" type="com.visitscotland.brmx.beans.Itinerary" -->
 <#-- @ftlvariable name="firstStopLocation" type="java.lang.String" -->
 <#-- @ftlvariable name="lastStopLocation" type="java.lang.String" -->
+<#-- @ftlvariable name="heroImage" type="com.visitscotland.brmx.beans.mapping.FlatImage" -->
 <#-- @ftlvariable name="heroCoordinates" type="com.visitscotland.brmx.beans.mapping.Coordinates" -->
 
 <#-- Template defined objects -->
@@ -62,13 +63,13 @@
     <@cmsErrors errors=alerts!"" editMode=editMode />
 
     <vs-page-intro>
-        <#if document.heroImage??>
+        <#if heroImage??>
             <@hst.link var="hero" hippobean=document.heroImage.original/>
             <vs-hero
                 slot="hero"
-                alt-text="${document.heroImage.altText}"
-                credit="${document.heroImage.credit}"
-                caption="${document.heroImage.description}"
+                alt-text="${heroImage.altText}"
+                credit="${heroImage.credit}"
+                caption="${heroImage.description}"
                 image-src="${hero}"
                 latitude="${(heroCoordinates.latitude)!''}"
                 longitude="${(heroCoordinates.longitude)!''}"

@@ -28,7 +28,7 @@ public class ListicleContentComponent extends PageContentComponent<Listicle> {
     @Override
     public void doBeforeRender(HstRequest request, HstResponse response) {
         super.doBeforeRender(request, response);
-
+        generateIndexPage(request);
         generateItems(request, getDocument(request));
     }
 
@@ -38,7 +38,6 @@ public class ListicleContentComponent extends PageContentComponent<Listicle> {
      */
     private void generateItems(HstRequest request, Listicle listicle) {
         final String LISTICLE_ITEMS = "items";
-        final String LISTICLE_ALERTS = "alerts";
         final String ADDRESS = "address";
         final String LOCATION = "city";
         final String LATITUDE = "latitude";
@@ -50,16 +49,13 @@ public class ListicleContentComponent extends PageContentComponent<Listicle> {
 
         int index = listicle.getDescOrder()?listicle.getItems().size():1;
 
-        List<String> listicleAlerts = desiredFieldsAlert(listicle);
-        if (listicleAlerts.size()>0){
-            request.setAttribute(LISTICLE_ALERTS, listicleAlerts);
-        }
 
         //TODO:separate image, main product and optional cta in different methods ?
         for (ListicleItem listicleItem : listicle.getItems()) {
             List<String> errors = new ArrayList<>();
             FlatListicle model = new FlatListicle(listicleItem);
             List<FlatLink> links = new ArrayList<>();
+            FlatImage flatImage = null;
             String location = null;
 
             model.setIndex(listicle.getDescOrder()?index--:index++);
@@ -78,8 +74,8 @@ public class ListicleContentComponent extends PageContentComponent<Listicle> {
                             String link = "https://www.instagram.com/p/" + instagramLink.getId();
                             //TODO: This causes a 301 (redirect). Find the way of fixing this.
                             //TODO size for Instagram is large for the showcase but we need to fix that large for desktop, medium tablet and small mobile
-                            String image = "https://www.instagram.com/p/" + instagramLink.getId() + "/media?size=l";
-                            FlatImage flatImage = new FlatImage(image, instagramLink.getCaption(), credit, instagramLink.getCaption(), FlatImage.Source.INSTAGRAM, link);
+                            String instagramImage = "https://www.instagram.com/p/" + instagramLink.getId() + "/media?size=l";
+                            flatImage = new FlatImage(instagramImage, instagramLink.getCaption(), credit, instagramLink.getCaption(), FlatImage.Source.INSTAGRAM, link);
                             if (instagramLink.getLocation()!= null && !instagramLink.getLocation().isEmpty() && !(listicleItem.getListicleItem() instanceof DMSLink)){
                                 location = instagramLink.getLocation();
                                 LocationObject locationObject = LocationLoader.getLocation(instagramLink.getLocation(), request.getLocale());
@@ -87,7 +83,6 @@ public class ListicleContentComponent extends PageContentComponent<Listicle> {
                                     flatImage.setCoordinates(new Coordinates(locationObject.getLatitude(),locationObject.getLongitude()));
                                 }
                             }
-                            model.setImage(flatImage);
                         } else {
                             errors.add("The Instagram id is not valid");
                             logger.warn(CommonUtils.contentIssue("The Instagram id %s is not valid, Listicle = %s - %s",
@@ -102,15 +97,15 @@ public class ListicleContentComponent extends PageContentComponent<Listicle> {
                     if (listicleItem.getListicleItemImage() instanceof Image) {
                         Image cmsImage = (Image) listicleItem.getListicleItemImage();
                         if (cmsImage != null) {
-                            FlatImage image = new FlatImage(cmsImage, cmsImage.getAltText(), cmsImage.getCredit(), cmsImage.getDescription());
+                            flatImage = CommonUtils.getTranslatedImage(cmsImage,request.getLocale());
+                            checkImageErrors(flatImage,request.getLocale(),errors);
                             LocationObject locationObject = LocationLoader.getLocation(cmsImage.getLocation(), request.getLocale());
                             if (locationObject!=null) {
-                                image.setCoordinates(new Coordinates(locationObject.getLatitude(), locationObject.getLongitude()));
+                                flatImage.setCoordinates(new Coordinates(locationObject.getLatitude(), locationObject.getLongitude()));
                                 if (listicleItem.getListicleItem() != null && !(listicleItem.getListicleItem() instanceof DMSLink)){
                                     location = locationObject.getName();
                                 }
                             }
-                            model.setImage(image);
                         }
                     }
                 }
@@ -139,13 +134,12 @@ public class ListicleContentComponent extends PageContentComponent<Listicle> {
 
                             if (model.getImage() == null &&  product.has(IMAGE)) {
                                 JSONArray dmsImageList = product.getJSONArray(IMAGE);
-                                FlatImage image = new FlatImage( dmsImageList.getJSONObject(0),product.getString(NAME));
+                                flatImage = new FlatImage( dmsImageList.getJSONObject(0),product.getString(NAME));
                                 if (product.has(LATITUDE) && product.has(LONGITUDE)){
                                     Coordinates coordinates = new Coordinates(product.getDouble(LATITUDE), product.getDouble(LONGITUDE));
-                                    image.setCoordinates(coordinates);
+                                    flatImage.setCoordinates(coordinates);
                                 }
 
-                                model.setImage(image);
                             }else{
                                 if (model.getImage().getCoordinates()==null){
                                     Coordinates coordinates = new Coordinates(product.getDouble(LATITUDE),product.getDouble(LONGITUDE));
@@ -184,11 +178,11 @@ public class ListicleContentComponent extends PageContentComponent<Listicle> {
             }else{
                 model.setSubTitle(listicleItem.getSubtitle());
             }
+            model.setImage(flatImage);
             model.setLinks(links);
             model.setErrorMessages(errors);
             items.put(model.getIdentifier(), model);
         }
-
 
         request.setAttribute(LISTICLE_ITEMS, items);
     }
