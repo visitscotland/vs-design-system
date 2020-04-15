@@ -34,6 +34,7 @@ public class FlatImage {
     }
 
     public FlatImage (Image cmsImage, Locale locale){
+       this.cmsImage = cmsImage;
        this.credit = cmsImage.getCredit();
         if (locale != null){
             switch (locale.getLanguage()) {
