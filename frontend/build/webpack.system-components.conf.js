@@ -13,7 +13,7 @@ const SafeParser = require("postcss-safe-parser")
 const env = require("../config/prod.env")
 const ManifestPlugin = require("webpack-manifest-plugin")
 const generateManifest = require("./system-components-generate-manifest")
-const { mergeIE11Fix } = require("./webpack.ie11-fix.js")
+const { mergeIE11Fix } = require("./webpack.ie11-fix")
 
 
 baseWebpackConfig.entry = require("../src/utils/entry.system-components.js")
