@@ -6,13 +6,10 @@
 <#include "../image-with-caption.ftl">
 <#include "../cms-errors.ftl">
 
-<#macro listicleItem listItem>
+<#macro listicleItem item>
 <#-- @ftlvariable name="listItem" type="com.visitscotland.brmx.beans.ListicleItem" -->
 <#-- @ftlvariable name="item" type="com.visitscotland.brmx.beans.mapping.FlatListicle" -->
 <#-- @ftlvariable name="cta" type="com.visitscotland.brmx.beans.mapping.FlatLink" -->
-
-	<#assign item = items[listItem.identifier]>
-
 	<#assign image = "" />
     <#if item.image.cmsImage??>
         <#assign image>
@@ -28,7 +25,7 @@
 		sub-title="${item.subTitle}"
 	>
 		<div slot="hippo-details" class="has-edit-button">
-			<@hst.manageContent hippobean=listItem />
+			<@hst.manageContent hippobean=item.listicleItem/>
             <@cmsErrors errors=item.errorMessages!"" editMode=editMode />
 		</div>
 

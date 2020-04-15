@@ -18,6 +18,7 @@ public class FlatListicle {
     private List<JSONObject> facilities;
     private List<FlatLink> links;
     private List<String> errorMessages;
+    private ListicleItem listicleItem;
 
     public FlatListicle(){
 
@@ -28,6 +29,7 @@ public class FlatListicle {
         this.title = item.getTitle();
         this.subTitle = item.getSubtitle();
         this.description = item.getDescription();
+        this.listicleItem = item;
     }
 
     public String getIdentifier() {
@@ -101,5 +103,13 @@ public class FlatListicle {
 
     public void setErrorMessages(List<String> errorMessages) {
         this.errorMessages = errorMessages;
+    }
+
+    public ListicleItem getListicleItem() {
+        return listicleItem;
+    }
+
+    public void setListicleItem(ListicleItem listicleItem) {
+        this.listicleItem = listicleItem;
     }
 }
