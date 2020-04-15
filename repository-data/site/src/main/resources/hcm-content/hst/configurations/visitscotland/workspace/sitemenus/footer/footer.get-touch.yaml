@@ -1,0 +1,7 @@
+/hst:hst/hst:configurations/visitscotland/hst:workspace/hst:sitemenus/footer/footer.get-touch:
+  jcr:primaryType: hst:sitemenuitem
+  hst:repobased: false
+  /Accommodation:
+    jcr:primaryType: hst:sitemenuitem
+    hst:referencesitemapitem: accommodation
+    hst:repobased: false

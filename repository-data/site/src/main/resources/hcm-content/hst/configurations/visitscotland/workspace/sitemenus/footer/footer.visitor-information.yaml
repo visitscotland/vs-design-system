@@ -1,0 +1,12 @@
+/hst:hst/hst:configurations/visitscotland/hst:workspace/hst:sitemenus/footer/footer.visitor-information:
+  .meta:order-before: footer.get-touch
+  jcr:primaryType: hst:sitemenuitem
+  hst:repobased: false
+  /Brochures:
+    jcr:primaryType: hst:sitemenuitem
+    hst:referencesitemapitem: dev-test
+    hst:repobased: false
+  /Visitscotland iCentres:
+    jcr:primaryType: hst:sitemenuitem
+    hst:referencesitemapitem: destinations-maps
+    hst:repobased: false

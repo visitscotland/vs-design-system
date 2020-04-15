@@ -16,6 +16,9 @@ definitions:
       /footer:
         jcr:primaryType: hst:component
         hst:template: base-footer
+        hst:componentclassname: com.visitscotland.brmx.components.navigation.MenuComponent
+        hst:parameternames: [selectedMenu, level, menu]
+        hst:parametervalues: ['on', '1', footer]
         /container:
           jcr:primaryType: hst:containercomponentreference
           hst:referencecomponent: base/footer
