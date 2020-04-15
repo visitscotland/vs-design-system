@@ -5,7 +5,7 @@ const chalk = require("chalk")
 const baseConfig = require("../build/webpack.base.conf.js")
 const packageConfig = require("../package.json")
 const parseChildComponents = require("../build/parse-child-components.js")
-const { mergeIE11Fix } = require("./babel-webpack-fix-ie11.js")
+const { mergeIE11Fix } = require("../build/webpack.ie11-fix")
 
 module.exports = {
     /**
@@ -37,7 +37,7 @@ module.exports = {
     skipComponentsWithoutExample: false,
     /**
    * We’re defining below JS and SCSS requires for the documentation.
-   */
+   *.
     require: [
         path.join(__dirname, "../docs/docs.helper.js"),
         path.join(__dirname, "../docs/styles/docs.styles.scss"),
