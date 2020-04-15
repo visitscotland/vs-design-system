@@ -97,7 +97,7 @@ public class ListicleContentComponent extends PageContentComponent<Listicle> {
                     if (listicleItem.getListicleItemImage() instanceof Image) {
                         Image cmsImage = (Image) listicleItem.getListicleItemImage();
                         if (cmsImage != null) {
-                            flatImage = CommonUtils.getTranslatedImage(cmsImage,request.getLocale());
+                            flatImage = new FlatImage(cmsImage,request.getLocale());
                             checkImageErrors(flatImage,request.getLocale(),errors);
                             LocationObject locationObject = LocationLoader.getLocation(cmsImage.getLocation(), request.getLocale());
                             if (locationObject!=null) {

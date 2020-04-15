@@ -103,7 +103,7 @@ public class PageContentComponent<TYPE extends Page> extends EssentialsContentCo
         final String ALERTS = "alerts";
         List<String> alerts = validateDesiredFields(getDocument(request));
 
-        FlatImage heroImage = CommonUtils.getTranslatedImage(getDocument(request).getHeroImage(), request.getLocale());
+        FlatImage heroImage = new FlatImage(getDocument(request).getHeroImage(), request.getLocale());
         checkImageErrors(heroImage,request.getLocale(),alerts);
         request.setAttribute(HERO_IMAGE, heroImage);
 
