@@ -4,6 +4,8 @@ package com.visitscotland.brmx.beans.mapping;
 import com.visitscotland.brmx.beans.Image;
 import org.json.JSONObject;
 
+import java.util.Locale;
+
 public class FlatImage {
 
     public enum Source {
@@ -31,15 +33,45 @@ public class FlatImage {
 
     }
 
-    public FlatImage(Image cmsImage) {
-        this.cmsImage = cmsImage;
-    }
-
-    public FlatImage(Image cmsImage, String altText, String credit, String description) {
-        this.cmsImage = cmsImage;
-        this.altText = altText;
-        this.credit = credit;
-        this.description = description;
+    public FlatImage (Image cmsImage, Locale locale){
+       this.credit = cmsImage.getCredit();
+        if (locale != null){
+            switch (locale.getLanguage()) {
+                case "fr":
+                    if (cmsImage.getFr() != null) {
+                        this.altText = cmsImage.getFr().getAltText();
+                        this.description = cmsImage.getFr().getCaption();
+                    }
+                    break;
+                case "de":
+                    if (cmsImage.getDe() != null) {
+                        this.altText = cmsImage.getDe().getAltText();
+                        this.description =cmsImage.getDe().getCaption();
+                    }
+                    break;
+                case "es":
+                    if (cmsImage.getEs() != null) {
+                        this.altText = cmsImage.getEs().getAltText();
+                        this.description =cmsImage.getEs().getCaption();
+                    }
+                    break;
+                case "nl":
+                    if (cmsImage.getNl() != null) {
+                        this.altText = cmsImage.getNl().getAltText();
+                        this.description =cmsImage.getNl().getCaption();
+                    }
+                    break;
+                case "it":
+                    if (cmsImage.getIt() != null) {
+                        this.altText = cmsImage.getIt().getAltText();
+                        this.description =cmsImage.getIt().getCaption();
+                    }
+                    break;
+                default:
+                    this.altText = cmsImage.getAltText();
+                    this.description =cmsImage.getDescription();
+            }
+        }
     }
 
     public FlatImage(String externalImage, String altText, String credit, String description, Source source, String postUrl) {
