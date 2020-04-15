@@ -25,6 +25,9 @@
 
 [visitscotland:Image] > hippogallery:imageset, hippogallery:relaxed
 
+[visitscotland:ImageData] > hippo:compound, hippostd:relaxed
+  orderable
+
 [visitscotland:InstagramImage] > hippo:compound, hippostd:relaxed
   orderable
 
@@ -59,4 +62,7 @@
   orderable
 
 [visitscotland:default] > hippogallery:imageset, hippogallery:relaxed
+
+[visitscotland:imageData] > hippo:compound, hippostd:relaxed
+  orderable
 

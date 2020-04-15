@@ -30,11 +30,13 @@
 
 <#include "../modules/itineraries/itinerary-stop.ftl">
 <#include "../modules/itineraries/itinerary-map.ftl">
+<#include "../modules/cms-errors.ftl">
 
 <#-- Implicit Request Objects -->
 <#-- @ftlvariable name="document" type="com.visitscotland.brmx.beans.Itinerary" -->
 <#-- @ftlvariable name="firstStopLocation" type="java.lang.String" -->
 <#-- @ftlvariable name="lastStopLocation" type="java.lang.String" -->
+<#-- @ftlvariable name="heroImage" type="com.visitscotland.brmx.beans.mapping.FlatImage" -->
 <#-- @ftlvariable name="heroCoordinates" type="com.visitscotland.brmx.beans.mapping.Coordinates" -->
 
 <#-- Template defined objects -->
@@ -52,27 +54,22 @@
 <#if document.finish?has_content>
     <#assign lastStopLocation = document.finish>
 </#if>
-
 <#if document.transports?has_content >
     <#assign mainTransport = document.transports[0]>
 </#if>
 
 <div class="has-edit-button">
     <@hst.manageContent hippobean=document documentTemplateQuery="new-document" rootPath="site" defaultPath="${path}" />
-    <#if alerts?? && alerts?size gt 0>
-        <#list alerts as error>
-            <h1 class="text-danger">${error?upper_case}</h1>
-        </#list>
-    </#if>
+    <@cmsErrors errors=alerts!"" editMode=editMode />
 
     <vs-page-intro>
-        <#if document.heroImage??>
+        <#if heroImage??>
             <@hst.link var="hero" hippobean=document.heroImage.original/>
             <vs-hero
                 slot="hero"
-                alt-text="${document.heroImage.altText}"
-                credit="${document.heroImage.credit}"
-                caption="${document.heroImage.description}"
+                alt-text="${heroImage.altText}"
+                credit="${heroImage.credit}"
+                caption="${heroImage.description}"
                 image-src="${hero}"
                 latitude="${(heroCoordinates.latitude)!''}"
                 longitude="${(heroCoordinates.longitude)!''}"

@@ -11,7 +11,7 @@ definitions:
         /hipposysedit:nodetype:
           jcr:primaryType: hipposysedit:nodetype
           jcr:mixinTypes: ['mix:referenceable', 'hipposysedit:remodel']
-          jcr:uuid: b35b2c81-9ffd-496e-bf44-5e3a412dace7
+          jcr:uuid: 652ef6e4-0c72-45d7-831b-984cd3a9d30d
           hipposysedit:node: true
           hipposysedit:supertype: ['visitscotland:Page', 'hippostd:relaxed', 'hippotranslation:translated']
           hipposysedit:uri: http://www.visitscotland.com/visitscotland/nt/1.0
@@ -102,7 +102,7 @@ definitions:
           visitscotland:start: ''
           visitscotland:distance: 0.0
           visitscotland:theme: ''
-          jcr:uuid: 71ad0e76-ffe1-4d63-94b4-fa79b4b20917
+          jcr:uuid: 983fdf10-089b-4625-9a8b-46e2e05892d2
           hippostdpubwf:creationDate: 2019-12-06T11:10:08.311Z
           hippostdpubwf:lastModificationDate: 2019-12-06T11:10:08.310Z
           visitscotland:highlights: ''
@@ -207,6 +207,9 @@ definitions:
             wicket.id: ${cluster.id}.left.item
             /cluster.options:
               jcr:primaryType: frontend:pluginconfig
+              ckeditor.config.overlayed.json: '{toolbarGroups: [{ name: ''links''
+                },{name:''insert''},{name:''clipboard''},{name:''tools''},{name:''undo''}]
+                , removeButtons: ''PickImage,Youtube,Table''}'
           /start:
             jcr:primaryType: frontend:plugin
             caption: Starting point

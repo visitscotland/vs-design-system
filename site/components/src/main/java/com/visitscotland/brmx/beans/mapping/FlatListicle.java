@@ -16,9 +16,9 @@ public class FlatListicle {
     private HippoHtml description;
     private FlatImage image;
     private List<JSONObject> facilities;
-    private String location;
     private List<FlatLink> links;
     private List<String> errorMessages;
+    private ListicleItem listicleItem;
 
     public FlatListicle(){
 
@@ -29,6 +29,7 @@ public class FlatListicle {
         this.title = item.getTitle();
         this.subTitle = item.getSubtitle();
         this.description = item.getDescription();
+        this.listicleItem = item;
     }
 
     public String getIdentifier() {
@@ -79,15 +80,6 @@ public class FlatListicle {
         this.facilities = facilities;
     }
 
-
-    public String getLocation() {
-        return location;
-    }
-
-    public void setLocation(String location) {
-        this.location = location;
-    }
-
     public String getSubTitle() {
         return subTitle;
     }
@@ -111,5 +103,13 @@ public class FlatListicle {
 
     public void setErrorMessages(List<String> errorMessages) {
         this.errorMessages = errorMessages;
+    }
+
+    public ListicleItem getListicleItem() {
+        return listicleItem;
+    }
+
+    public void setListicleItem(ListicleItem listicleItem) {
+        this.listicleItem = listicleItem;
     }
 }
