@@ -1881,10 +1881,11 @@
         hippostd:state: draft
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2020-02-07T12:53:57.587Z
-        hippostdpubwf:lastModificationDate: 2020-04-02T18:52:42.048+01:00
+        hippostdpubwf:lastModificationDate: 2020-04-10T16:43:11.687+01:00
         hippostdpubwf:lastModifiedBy: admin
         hippotranslation:id: acafffcc-8eb9-41e3-b7fd-e56c9eb7c5ce
         hippotranslation:locale: en
+        visitscotland:subtitle: ''
         visitscotland:tipsTitle: ''
         visitscotland:title: Drum Castle
         /visitscotland:description:
@@ -1910,7 +1911,7 @@
             hippo:values: []
         /visitscotland:image:
           jcr:primaryType: hippogallerypicker:imagelink
-          hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
+          hippo:docbase: 8d4f5036-64ca-4e5d-aa89-b348ae38b081
           hippo:facets: []
           hippo:modes: []
           hippo:values: []
@@ -1922,10 +1923,11 @@
         hippostd:state: unpublished
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2020-02-07T12:53:57.587Z
-        hippostdpubwf:lastModificationDate: 2020-04-02T18:52:48.666+01:00
+        hippostdpubwf:lastModificationDate: 2020-04-10T13:49:43.188+01:00
         hippostdpubwf:lastModifiedBy: admin
         hippotranslation:id: acafffcc-8eb9-41e3-b7fd-e56c9eb7c5ce
         hippotranslation:locale: en
+        visitscotland:subtitle: ''
         visitscotland:tipsTitle: ''
         visitscotland:title: Drum Castle
         /visitscotland:description:
@@ -1951,7 +1953,7 @@
             hippo:values: []
         /visitscotland:image:
           jcr:primaryType: hippogallerypicker:imagelink
-          hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
+          hippo:docbase: 8d4f5036-64ca-4e5d-aa89-b348ae38b081
           hippo:facets: []
           hippo:modes: []
           hippo:values: []

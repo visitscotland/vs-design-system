@@ -3,7 +3,7 @@ clear
 echo ""
 echo ""
 echo "======================================================"
-echo "==== RUNNING JENKINS SHELL COMMANDS on $NODE_NAME"0
+echo "==== RUNNING JENKINS SHELL COMMANDS on $NODE_NAME"
 echo ""
 echo "==== selected Jenkins environment variables ===="
 set | egrep "BRANCH|BUILD|JENKINS|JOB|WORKSPACE"
@@ -69,7 +69,7 @@ for CONTAINER in `docker ps | egrep "$CONTAINER_NAME" | awk '{print $1}'`; do ec
 echo ""
 echo "deleting containers with name $CONTAINER_NAME"
 docker container ls | egrep "$CONTAINER_NAME"
-for CONTAINER in `docker container ls | egrep "$CONTAINER_NAME" | awk '{print $1}'`; do echo deleting $CONTAINER; docker container rm -f $CONTAINER; done
+for CONTAINER in `docker container ls -a | egrep "$CONTAINER_NAME" | awk '{print $1}'`; do echo deleting $CONTAINER; docker container rm -f $CONTAINER; done
 #docker container rm $CONTAINER_NAME
 
 # delete existing images
@@ -100,7 +100,7 @@ fi
 # check all branches to see what ports are "reserved" by existing containers
 PARENT_JOB_NAME=`echo $JOB_NAME | sed -e "s/\/.*//g"`
 echo ""
-echo "checking for ports reserved for other branches in $PARENT_JOB_NAME"
+echo "checking for ports reserved by other branches in $PARENT_JOB_NAME"
 #for CONTAINER in `curl -s $JENKINS_URL/job/$PARENT_JOB_NAME/rssLatest | sed -e "s/type=\"text\/html\" href=\"/\n/g" | egrep "^https" | sed -e "s/%252F/\//g" | sed "s/\".*//g" | sed -e "s/htt.*\/\(.*\)\/[0-9]*\//\1/g" | egrep -v "http"`; do
 #  CONTAINER_LIST="$CONTAINER_LIST $CONTAINER"
 #  RESERVED_PORT=`docker inspect --format='{{(index (index .NetworkSettings.Ports "8080/tcp") 0).HostPort}}' $PARENT_JOB_NAME\_$CONTAINER 2>/dev/null`
@@ -110,7 +110,17 @@ echo "checking for ports reserved for other branches in $PARENT_JOB_NAME"
 #  fi
 #done
 for CONTAINER in `curl -s $JENKINS_URL/job/$PARENT_JOB_NAME/rssLatest | sed -e "s/type=\"text\/html\" href=\"/\n/g" | egrep "^https" | sed -e "s/%252F/\//g" | sed "s/\".*//g" | sed -e "s/htt.*\/\(.*\)\/[0-9]*\//$PARENT_JOB_NAME\_\1/g" | egrep -v "http"`; do
-  CONTAINER_LIST="$CONTAINER_LIST $CONTAINER"
+  BRANCH_CONTAINER_LIST="$BRANCH_CONTAINER_LIST $CONTAINER"
+  RESERVED_PORT=`docker inspect --format='{{(index (index .HostConfig.PortBindings "8080/tcp") 0).HostPort}}' $CONTAINER 2>/dev/null`
+  if [ ! -z "$RESERVED_PORT" ]; then
+    RESERVED_PORT_LIST="$RESERVED_PORT_LIST $RESERVED_PORT"
+    echo "$RESERVED_PORT is reserved by $CONTAINER"
+  fi
+done
+echo ""
+echo "checking for ports reserved by pull requests in $PARENT_JOB_NAME"
+for CONTAINER in `curl -s $JENKINS_URL/job/$PARENT_JOB_NAME/view/change-requests/rssLatest | sed -e "s/type=\"text\/html\" href=\"/\n/g" | egrep "^https" | sed -e "s/%252F/\//g" | sed "s/\".*//g" | sed -e "s/htt.*\/\(.*\)\/[0-9]*\//$PARENT_JOB_NAME\_\1/g" | egrep -v "http"`; do
+  BRANCH_CONTAINER_LIST="$BRANCH_CONTAINER_LIST $CONTAINER"
   RESERVED_PORT=`docker inspect --format='{{(index (index .HostConfig.PortBindings "8080/tcp") 0).HostPort}}' $CONTAINER 2>/dev/null`
   if [ ! -z "$RESERVED_PORT" ]; then
     RESERVED_PORT_LIST="$RESERVED_PORT_LIST $RESERVED_PORT"
@@ -118,6 +128,27 @@ for CONTAINER in `curl -s $JENKINS_URL/job/$PARENT_JOB_NAME/rssLatest | sed -e "
   fi
 done;
 if [ ! -z "$RESERVED_PORT_LIST" ]; then echo "Ports $RESERVED_PORT_LIST are reserved"; fi
+
+# tidy containers when building the "develop" branch
+if [ "$GIT_BRANCH" == "develop" ]; then
+  echo ""
+  echo "checking all containers on $NODE_NAME matching $PARENT_JOB_NAME*"
+  for CONTAINER in `docker ps -a --filter "name=$PARENT_JOB_NAME*" --format "table {{.Names}}" | tail -n +2`; do
+    CONTAINER_MATCHED=
+    ALL_CONTAINER_LIST="$ALL_CONTAINER_LIST $CONTAINER"
+    #echo "checking to see if there's a branch for $CONTAINER"
+    for BRANCH_CONTAINER in $BRANCH_CONTAINER_LIST; do
+      if [ "$CONTAINER" = "$BRANCH_CONTAINER" ]; then
+        echo "there is a branch associated with $CONTAINER"
+        CONTAINER_MATCHED="TRUE"
+        break
+      fi
+    done
+    if [ ! "$CONTAINER_MATCHED" = "TRUE" ]; then
+    	echo "no branch was found matching container $CONTAINER. I could run docker container rm -f $CONTAINER, but I won't just yet"
+    fi
+  done
+fi
 
 while [ $PORT -le $MAXPORT ]; do
   FREE=`netstat -an | egrep "LISTEN *$" | grep $PORT`
@@ -127,6 +158,8 @@ while [ $PORT -le $MAXPORT ]; do
       if [ "$RESERVED_PORT" = "$PORT" ]; then
         echo " - docker says $RESERVED_PORT is reserved"
         PORT_RESERVED="TRUE"
+      else
+        PORT_RESERVED="FALSE"
       fi
     done
     if [ ! "$PORT_RESERVED" = "TRUE" ]; then

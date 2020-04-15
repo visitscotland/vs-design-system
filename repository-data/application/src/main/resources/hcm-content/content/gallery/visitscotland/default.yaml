@@ -9,9 +9,9 @@
     /vector-illustration-of-cartoon-hippos-in-hot-weather-drawing_csp36829792.jpg:
       jcr:primaryType: visitscotland:Image
       hippo:availability: [live, preview]
-      hippogallery:description: ''
+      hippogallery:description: Tired hippo
       hippogallery:filename: vector-illustration-of-cartoon-hippos-in-hot-weather-drawing_csp36829792.jpg
-      visitscotland:altText: ''
+      visitscotland:altText: Tired hippo
       visitscotland:credit: ''
       visitscotland:location: Edinburgh
       /hippogallery:thumbnail:
@@ -33,6 +33,26 @@
           resource: /content/gallery/visitscotland/default/vector-illustration-of-cartoon-hippos-in-hot-weather-drawing_csp36829792.jpg/vector-illustration-of-cartoon-hippos-in-hot-weather-drawing_csp36829792.jpg/original/original.jpg
         jcr:lastModified: 2019-12-10T15:49:45.047Z
         jcr:mimeType: image/jpeg
+      /visitscotland:nl:
+        jcr:primaryType: visitscotland:ImageData
+        visitscotland:altText: ''
+        visitscotland:caption: ''
+      /visitscotland:fr:
+        jcr:primaryType: visitscotland:ImageData
+        visitscotland:altText: ''
+        visitscotland:caption: ''
+      /visitscotland:de:
+        jcr:primaryType: visitscotland:ImageData
+        visitscotland:altText: ''
+        visitscotland:caption: ''
+      /visitscotland:es:
+        jcr:primaryType: visitscotland:ImageData
+        visitscotland:altText: ''
+        visitscotland:caption: ''
+      /visitscotland:it:
+        jcr:primaryType: visitscotland:ImageData
+        visitscotland:altText: ''
+        visitscotland:caption: ''
   /fraserburgh---davron-hotel-6.jpg:
     jcr:primaryType: hippo:handle
     jcr:mixinTypes: ['hippo:named', 'mix:referenceable']
@@ -41,9 +61,9 @@
     /fraserburgh---davron-hotel-6.jpg:
       jcr:primaryType: visitscotland:Image
       hippo:availability: [live, preview]
-      hippogallery:description: ''
+      hippogallery:description: Fraserburgh - Davron Hotel
       hippogallery:filename: Fraserburgh - Davron Hotel (6).jpg
-      visitscotland:altText: ''
+      visitscotland:altText: Fraserburgh - Davron Hotel
       visitscotland:credit: ''
       visitscotland:location: Largs
       /hippogallery:thumbnail:
@@ -65,6 +85,26 @@
           resource: /content/gallery/visitscotland/default/fraserburgh---davron-hotel-6.jpg/fraserburgh---davron-hotel-6.jpg/original/original.jpg
         jcr:lastModified: 2019-12-11T11:31:30.522Z
         jcr:mimeType: image/jpeg
+      /visitscotland:nl:
+        jcr:primaryType: visitscotland:ImageData
+        visitscotland:altText: ''
+        visitscotland:caption: ''
+      /visitscotland:fr:
+        jcr:primaryType: visitscotland:ImageData
+        visitscotland:altText: ''
+        visitscotland:caption: ''
+      /visitscotland:de:
+        jcr:primaryType: visitscotland:ImageData
+        visitscotland:altText: ''
+        visitscotland:caption: ''
+      /visitscotland:es:
+        jcr:primaryType: visitscotland:ImageData
+        visitscotland:altText: ''
+        visitscotland:caption: ''
+      /visitscotland:it:
+        jcr:primaryType: visitscotland:ImageData
+        visitscotland:altText: ''
+        visitscotland:caption: ''
   /visitscotland_49386435364-1.jpg:
     jcr:primaryType: hippo:handle
     jcr:mixinTypes: ['hippo:named', 'mix:referenceable']
@@ -97,6 +137,26 @@
           resource: /content/gallery/visitscotland/default/visitscotland_49386435364-1.jpg/visitscotland_49386435364-1.jpg/original/original.jpg
         jcr:lastModified: 2019-12-11T11:31:44.652Z
         jcr:mimeType: image/jpeg
+      /visitscotland:nl:
+        jcr:primaryType: visitscotland:ImageData
+        visitscotland:altText: Alt text in dutch
+        visitscotland:caption: Test Dutch
+      /visitscotland:fr:
+        jcr:primaryType: visitscotland:ImageData
+        visitscotland:altText: ''
+        visitscotland:caption: ''
+      /visitscotland:de:
+        jcr:primaryType: visitscotland:ImageData
+        visitscotland:altText: ''
+        visitscotland:caption: ''
+      /visitscotland:es:
+        jcr:primaryType: visitscotland:ImageData
+        visitscotland:altText: Parece perdido
+        visitscotland:caption: Hombre deseando llegar a la meta del itinerario
+      /visitscotland:it:
+        jcr:primaryType: visitscotland:ImageData
+        visitscotland:altText: ''
+        visitscotland:caption: ''
   /visitscotland_42559983584.jpg:
     jcr:primaryType: hippo:handle
     jcr:mixinTypes: ['mix:referenceable']
@@ -104,9 +164,9 @@
     /visitscotland_42559983584.jpg:
       jcr:primaryType: visitscotland:Image
       hippo:availability: [live, preview]
-      hippogallery:description: ''
+      hippogallery:description: Drum Castle
       hippogallery:filename: visitscotland_42559983584.jpg
-      visitscotland:altText: ''
+      visitscotland:altText: Drum Castle
       visitscotland:credit: ''
       visitscotland:location: Edinburgh - City Centre
       /hippogallery:thumbnail:
@@ -128,6 +188,26 @@
           resource: /content/gallery/visitscotland/default/visitscotland_42559983584.jpg/visitscotland_42559983584.jpg/original/original.jpg
         jcr:lastModified: 2020-02-26T08:55:15.199Z
         jcr:mimeType: image/jpeg
+      /visitscotland:nl:
+        jcr:primaryType: visitscotland:ImageData
+        visitscotland:altText: ''
+        visitscotland:caption: ''
+      /visitscotland:fr:
+        jcr:primaryType: visitscotland:ImageData
+        visitscotland:altText: ''
+        visitscotland:caption: ''
+      /visitscotland:de:
+        jcr:primaryType: visitscotland:ImageData
+        visitscotland:altText: ''
+        visitscotland:caption: ''
+      /visitscotland:es:
+        jcr:primaryType: visitscotland:ImageData
+        visitscotland:altText: ''
+        visitscotland:caption: ''
+      /visitscotland:it:
+        jcr:primaryType: visitscotland:ImageData
+        visitscotland:altText: ''
+        visitscotland:caption: ''
   /visitscotland_43424542162.jpg:
     jcr:primaryType: hippo:handle
     jcr:mixinTypes: ['mix:referenceable']
@@ -135,9 +215,9 @@
     /visitscotland_43424542162.jpg:
       jcr:primaryType: visitscotland:Image
       hippo:availability: [live, preview]
-      hippogallery:description: ''
+      hippogallery:description: Crathes Castle
       hippogallery:filename: visitscotland_43424542162.jpg
-      visitscotland:altText: ''
+      visitscotland:altText: Crathes Castle
       visitscotland:credit: Visitscotland
       visitscotland:location: Flotta
       /hippogallery:thumbnail:
@@ -159,6 +239,26 @@
           resource: /content/gallery/visitscotland/default/visitscotland_43424542162.jpg/visitscotland_43424542162.jpg/original/original.jpg
         jcr:lastModified: 2020-02-26T08:55:15.951Z
         jcr:mimeType: image/jpeg
+      /visitscotland:nl:
+        jcr:primaryType: visitscotland:ImageData
+        visitscotland:altText: ''
+        visitscotland:caption: ''
+      /visitscotland:fr:
+        jcr:primaryType: visitscotland:ImageData
+        visitscotland:altText: ''
+        visitscotland:caption: ''
+      /visitscotland:de:
+        jcr:primaryType: visitscotland:ImageData
+        visitscotland:altText: ''
+        visitscotland:caption: ''
+      /visitscotland:es:
+        jcr:primaryType: visitscotland:ImageData
+        visitscotland:altText: ''
+        visitscotland:caption: ''
+      /visitscotland:it:
+        jcr:primaryType: visitscotland:ImageData
+        visitscotland:altText: ''
+        visitscotland:caption: ''
   /royal-botanic-garden.jpg:
     jcr:primaryType: hippo:handle
     jcr:mixinTypes: ['hippo:named', 'mix:referenceable']
@@ -169,9 +269,9 @@
       hippo:availability: [live, preview]
       hippogallery:description: Botnic gardens
       hippogallery:filename: Royal Botanic Garden.jpg
-      visitscotland:altText: ''
+      visitscotland:altText: Royal Botanic Garden
       visitscotland:credit: visitscotland
-      visitscotland:location: Shieldaig
+      visitscotland:location: Edinburgh
       /hippogallery:thumbnail:
         jcr:primaryType: hippogallery:image
         hippo:filename: Royal Botanic Garden.jpg
@@ -191,6 +291,26 @@
           resource: /content/gallery/visitscotland/default/royal-botanic-garden.jpg/royal-botanic-garden.jpg/original/original.jpg
         jcr:lastModified: 2020-03-03T10:26:48.136Z
         jcr:mimeType: image/jpeg
+      /visitscotland:nl:
+        jcr:primaryType: visitscotland:ImageData
+        visitscotland:altText: ''
+        visitscotland:caption: ''
+      /visitscotland:fr:
+        jcr:primaryType: visitscotland:ImageData
+        visitscotland:altText: ''
+        visitscotland:caption: ''
+      /visitscotland:de:
+        jcr:primaryType: visitscotland:ImageData
+        visitscotland:altText: ''
+        visitscotland:caption: ''
+      /visitscotland:es:
+        jcr:primaryType: visitscotland:ImageData
+        visitscotland:altText: ''
+        visitscotland:caption: ''
+      /visitscotland:it:
+        jcr:primaryType: visitscotland:ImageData
+        visitscotland:altText: ''
+        visitscotland:caption: ''
   /header-iconicviewpoints.jpg:
     jcr:primaryType: hippo:handle
     jcr:mixinTypes: ['mix:referenceable']
@@ -200,7 +320,7 @@
       hippo:availability: [live, preview]
       hippogallery:description: Bealach na Bà, Applecross
       hippogallery:filename: header-iconicviewpoints.jpg
-      visitscotland:altText: ''
+      visitscotland:altText: Bealach na Bà, Applecross
       visitscotland:credit: Kenny Lam
       visitscotland:location: Applecross
       /hippogallery:thumbnail:
@@ -222,6 +342,26 @@
           resource: /content/gallery/visitscotland/default/header-iconicviewpoints.jpg/header-iconicviewpoints.jpg/original/original.jpg
         jcr:lastModified: 2020-03-17T11:21:33.976Z
         jcr:mimeType: image/jpeg
+      /visitscotland:nl:
+        jcr:primaryType: visitscotland:ImageData
+        visitscotland:altText: ''
+        visitscotland:caption: ''
+      /visitscotland:fr:
+        jcr:primaryType: visitscotland:ImageData
+        visitscotland:altText: ''
+        visitscotland:caption: ''
+      /visitscotland:de:
+        jcr:primaryType: visitscotland:ImageData
+        visitscotland:altText: ''
+        visitscotland:caption: ''
+      /visitscotland:es:
+        jcr:primaryType: visitscotland:ImageData
+        visitscotland:altText: ''
+        visitscotland:caption: ''
+      /visitscotland:it:
+        jcr:primaryType: visitscotland:ImageData
+        visitscotland:altText: ''
+        visitscotland:caption: ''
   /scotts--view-lothar-stobbe-instagram-lairdsphotography.jpg:
     jcr:primaryType: hippo:handle
     jcr:mixinTypes: ['hippo:named', 'mix:referenceable']

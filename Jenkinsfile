@@ -4,9 +4,9 @@ def MAIL_TO = "jose.calcines@visitscotland.com, juanluis.hurtado@visitscotland.c
 def thisAgent
 if (BRANCH_NAME == "develop" && JOB_NAME == "develop.visitscotland.com-mb/develop") {
   thisAgent = "op-dev-brxwvcapp-01"
-} else if (BRANCH_NAME == "develop" && JOB_NAME == "develop-nightly.visitscotland.com-mb/develop") {
+} else if (BRANCH_NAME == "develop" && JOB_NAME == "develop-nightly.visitscotland.com/develop") {
   thisAgent = "op-dev-brxwvcapp-02"
-} else if (BRANCH_NAME == "develop" && JOB_NAME == "develop-stable.visitscotland.com-mb/develop") {
+} else if (BRANCH_NAME == "develop" && JOB_NAME == "develop-stable.visitscotland.com/develop") {
   thisAgent = "op-dev-brxwvcapp-03"
 } else {
   thisAgent = "docker-02"
@@ -38,7 +38,7 @@ pipeline {
       stage ('Build Application') {
         when {
           expression {
-            return env.BRANCH_NAME != 'develop';
+            return env.BRANCH_NAME != 'branch-to-skip';
           }
         }
             steps {

@@ -58,10 +58,8 @@ public class Stop extends BaseDocument {
         HippoBean image = getImage();
         if (image instanceof HippoFacetSelect) {
             try {
-                return RequestContextProvider
-                        .get()
-                        .getQueryManager()
-                        .createQuery(
+                return RequestContextProvider.get()
+                        .getQueryManager() .createQuery(
                                 RequestContextProvider
                                         .get()
                                         .getSession()

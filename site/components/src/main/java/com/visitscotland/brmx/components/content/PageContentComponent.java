@@ -1,6 +1,7 @@
 package com.visitscotland.brmx.components.content;
 
 import com.visitscotland.brmx.beans.*;
+import com.visitscotland.brmx.beans.mapping.FlatImage;
 import com.visitscotland.brmx.utils.CommonUtils;
 import com.visitscotland.brmx.utils.HippoUtils;
 import com.visitscotland.brmx.utils.ProductSearchBuilder;
@@ -97,7 +98,21 @@ public class PageContentComponent<TYPE extends Page> extends EssentialsContentCo
     }
 
 
-    protected List<String> desiredFieldsAlert (Page item){
+    protected void generateIndexPage(HstRequest request){
+        final String HERO_IMAGE = "heroImage";
+        final String ALERTS = "alerts";
+        List<String> alerts = validateDesiredFields(getDocument(request));
+
+        FlatImage heroImage = new FlatImage(getDocument(request).getHeroImage(), request.getLocale());
+        checkImageErrors(heroImage,request.getLocale(),alerts);
+        request.setAttribute(HERO_IMAGE, heroImage);
+
+        if (alerts.size()>0){
+            request.setAttribute(ALERTS, alerts);
+        }
+    }
+
+    protected List<String> validateDesiredFields (Page item){
         List<String> response =  new ArrayList<>();
         if (item.getTeaser() == null || item.getTeaser().isEmpty()) {
             response.add("Teaser field should be provided");
@@ -114,4 +129,20 @@ public class PageContentComponent<TYPE extends Page> extends EssentialsContentCo
 
         return response;
     }
+
+    protected static void checkImageErrors(FlatImage image, Locale locale, List<String> errors){
+        if (image.getAltText() == null || image.getAltText().isEmpty()){
+            image.setAltText(image.getCmsImage().getAltText());
+            errors.add("Alt text field not provided for " + locale.getDisplayLanguage());
+            logger.warn(CommonUtils.contentIssue("Alt text field not provided for %s for the image : %s - %s",
+                    locale.getDisplayLanguage() , image.getCmsImage().getName(), image.getCmsImage().getPath()));
+        }
+        if (image.getDescription() == null || image.getDescription().isEmpty()){
+            image.setDescription(image.getCmsImage().getDescription());
+            errors.add("Caption field not provided for " + locale.getDisplayLanguage());
+            logger.warn(CommonUtils.contentIssue("Caption field not provided for %s for the image : %s - %s",
+                    locale.getDisplayLanguage() , image.getCmsImage().getName(), image.getCmsImage().getPath()));
+        }
+    }
+
 }

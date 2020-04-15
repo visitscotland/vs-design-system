@@ -1,5 +1,7 @@
 package com.visitscotland.brmx.utils;
 
+import com.visitscotland.brmx.beans.Image;
+import com.visitscotland.brmx.beans.mapping.FlatImage;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -11,7 +13,10 @@ import java.net.URL;
 import java.time.LocalTime;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
+import org.slf4j.Logger;
 
 public class CommonUtils {
 
@@ -20,6 +25,7 @@ public class CommonUtils {
         return value == null || value.trim().length() == 0;
     }
 
+    //TODO add message format for other languages
     public static final String contentIssue (String message, Object... parameters){
         return String.format("- [CONTENT] - " + message, parameters);
     }
@@ -71,6 +77,7 @@ public class CommonUtils {
         }
         return null;
     }
+
     //TODO this method returns the current open state and it coud be affected by the cache, ask WEBOPS and move it to front end if needed
     public static  String currentOpenStatus(String starTime, String endTime, Locale locale){
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("hh:mma");

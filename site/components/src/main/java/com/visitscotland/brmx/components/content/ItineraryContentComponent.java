@@ -35,6 +35,7 @@ public class ItineraryContentComponent extends PageContentComponent<Itinerary> {
     public void doBeforeRender(HstRequest request, HstResponse response) {
         super.doBeforeRender(request, response);
 
+        generateIndexPage(request);
         generateStops(request);
         setCoordinates(request);
     }
@@ -75,13 +76,7 @@ public class ItineraryContentComponent extends PageContentComponent<Itinerary> {
         final String OPENING_DAY = "day";
         final String OPENING_STATE = "state";
         final String OPENING_PROVISIONAL = "provivisional";
-
         final Map<String ,FlatStop> products =  new LinkedHashMap<>();
-
-        List<String> itineraryAlerts = this.desiredFieldsAlert(itinerary);
-        if (itineraryAlerts.size()>0){
-            request.setAttribute(ITINERARY_ALERTS, itineraryAlerts);
-        }
 
         String firstStopId = null;
         String lastStopId = null;
@@ -95,12 +90,13 @@ public class ItineraryContentComponent extends PageContentComponent<Itinerary> {
                 String visitDuration = null;
                 String location = null;
                 model.setIndex(index++);
-                FlatImage img = null;
+                FlatImage flatImage = null;
 
                 if (stop.getImage() != null) {
                     Image cmsImage = (Image) stop.getStopItemImage();
                     if (cmsImage != null) {
-                        img = new FlatImage(cmsImage, cmsImage.getAltText(), cmsImage.getCredit(), cmsImage.getDescription());
+                        flatImage = new FlatImage(cmsImage,request.getLocale());
+                        checkImageErrors(flatImage,request.getLocale(),errors);
                         if (!(stop.getStopItem() instanceof DMSLink)){
                             LocationObject locationObject = LocationLoader.getLocation(cmsImage.getLocation(), request.getLocale());
                             if (locationObject != null) {
@@ -146,7 +142,7 @@ public class ItineraryContentComponent extends PageContentComponent<Itinerary> {
 
                                 if (stop.getImage() == null && product.has(IMAGE) ){
                                     JSONArray dmsImageList = product.getJSONArray(IMAGE);
-                                    img = new FlatImage(dmsImageList.getJSONObject(0),product.getString(NAME));
+                                    flatImage = new FlatImage(dmsImageList.getJSONObject(0),product.getString(NAME));
                                 }
 
                                 coordinates.setLatitude(product.getDouble(LAT));
@@ -214,9 +210,9 @@ public class ItineraryContentComponent extends PageContentComponent<Itinerary> {
                     firstStopId = lastStopId;
                 }
                 if (model.getCoordinates()!=null) {
-                    img.setCoordinates(model.getCoordinates());
+                    flatImage.setCoordinates(model.getCoordinates());
                 }
-                model.setImage(img);
+                model.setImage(flatImage);
                 if (visitDuration!=null) {
                     visitDuration = visitDuration.equalsIgnoreCase("1") ? visitDuration + " " + HippoUtils.getResourceBundle("stop.hour", "itinerary", request.getLocale())
                             : visitDuration + " " + HippoUtils.getResourceBundle("stop.hours", "itinerary", request.getLocale());
@@ -232,7 +228,6 @@ public class ItineraryContentComponent extends PageContentComponent<Itinerary> {
                 products.put(model.getIdentifier(), model);
             }
         }
-
 
         if (products.size() > 0 ) {
             request.setAttribute(FIRST_STOP_LOCATION, products.get(firstStopId).getSubTitle());
