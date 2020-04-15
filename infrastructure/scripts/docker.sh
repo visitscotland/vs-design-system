@@ -158,6 +158,8 @@ while [ $PORT -le $MAXPORT ]; do
       if [ "$RESERVED_PORT" = "$PORT" ]; then
         echo " - docker says $RESERVED_PORT is reserved"
         PORT_RESERVED="TRUE"
+      else
+        PORT_RESERVED="FALSE"
       fi
     done
     if [ ! "$PORT_RESERVED" = "TRUE" ]; then
