@@ -2,7 +2,7 @@
     <vs-row>
         <vs-col cols="12" sm="6" md="4" xl="3" v-for="path in icons" v-bind:key="path">
             <div class="card">
-                <vs-icon :name="path" />
+                <vs-icon :name="path" class="mb-2 mt-4 d-inline-block" />
                 <pre>{{ path }}</pre>
             </div>
         </vs-col>
