@@ -51,9 +51,11 @@ export default {
     }
 
     .vs-panel-text {
-        .vs-rich-text-wrapper.lead {
-            font-size: $font-size-base;
-            line-height: $line-height-m;
+        @include media-breakpoint-down(xs) {
+            .vs-rich-text-wrapper.lead {
+                font-size: $font-size-base;
+                line-height: $line-height-m;
+            }
         }
     }
 }
