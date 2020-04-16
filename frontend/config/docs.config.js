@@ -37,7 +37,7 @@ module.exports = {
     skipComponentsWithoutExample: false,
     /**
    * We’re defining below JS and SCSS requires for the documentation.
-   *.
+   */
     require: [
         path.join(__dirname, "../docs/docs.helper.js"),
         path.join(__dirname, "../docs/styles/docs.styles.scss"),
