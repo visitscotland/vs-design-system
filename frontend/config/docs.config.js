@@ -4,59 +4,8 @@ const merge = require("webpack-merge")
 const chalk = require("chalk")
 const baseConfig = require("../build/webpack.base.conf.js")
 const packageConfig = require("../package.json")
-
 const parseChildComponents = require("../build/parse-child-components.js")
-
-const webpackBabelRuleIncludes = [
-    resolve("node_modules/regexpu-core"),
-    resolve("node_modules/unicode-match-property-ecmascript"),
-    resolve("node_modules/unicode-match-property-value-ecmascript"),
-    resolve("node_modules/buble/node_modules/acorn-jsx"),
-    resolve("node_modules/react-dev-utils"),
-    resolve("node_modules/chalk"),
-    resolve("node_modules/ansi-styles"),
-    resolve("node_modules/acorn-jsx"),
-    resolve("node_modules/camelcase"),
-]
-
-const webpackBabelRuleUse = {
-    loader: "babel-loader",
-    options: {
-        sourceType: "unambiguous",
-        presets: [
-            [
-                "@babel/preset-env",
-                {
-                    useBuiltIns: "usage",
-                    corejs: 3,
-                    targets: {
-                        ie: "11",
-                    },
-                },
-            ],
-        ],
-        comments: false,
-    },
-}
-
-function resolve(dir) {
-    return path.join(__dirname, "..", dir)
-}
-
-function getBaseConfig() {
-    const babelRule = _.find(_.get(baseConfig, "module.rules"), ["loader", "babel-loader"])
-  
-    if (babelRule) {
-      // insert extra includes and settings to the base config for docs generation
-      _.unset(babelRule, "loader")
-  
-      babelRule.include = _.concat(babelRule.include, webpackBabelRuleIncludes)
-      babelRule.use = webpackBabelRuleUse
-    }
-  
-    return baseConfig
-}
-  
+const { mergeIE11Fix } = require("../build/webpack.ie11-fix")
 
 module.exports = {
     /**
@@ -88,7 +37,7 @@ module.exports = {
     skipComponentsWithoutExample: false,
     /**
    * We’re defining below JS and SCSS requires for the documentation.
-   */
+   *.
     require: [
         path.join(__dirname, "../docs/docs.helper.js"),
         path.join(__dirname, "../docs/styles/docs.styles.scss"),
@@ -131,7 +80,7 @@ module.exports = {
         "**/*.spec.jsx",
         "**/ExampleComponent.vue",
     ],
-    webpackConfig: merge(getBaseConfig(), {
+    webpackConfig: merge(mergeIE11Fix(baseConfig), {
         resolve: {
             alias: {
                 "rsg-components/ReactComponent/ReactComponentRenderer":
