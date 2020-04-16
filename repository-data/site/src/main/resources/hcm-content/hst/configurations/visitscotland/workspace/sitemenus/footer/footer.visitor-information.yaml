@@ -2,11 +2,11 @@
   .meta:order-before: footer.get-touch
   jcr:primaryType: hst:sitemenuitem
   hst:repobased: false
-  /Brochures:
+  /Iconic views:
     jcr:primaryType: hst:sitemenuitem
-    hst:referencesitemapitem: dev-test
+    hst:referencesitemapitem: see-do/12-iconic-scottish-views
     hst:repobased: false
-  /Visitscotland iCentres:
+  /Outlander:
     jcr:primaryType: hst:sitemenuitem
-    hst:referencesitemapitem: destinations-maps
+    hst:referencesitemapitem: see-do/outlander
     hst:repobased: false

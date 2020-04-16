@@ -2339,7 +2339,7 @@
         jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
         jcr:uuid: 3158d2f5-5f70-407a-be69-a7f7061c0d11
         hippo:name: Outlander itinerary
-        hippo:versionHistory: 86bee827-5e24-4d09-ab00-fee3e8c6de0c
+        hippo:versionHistory: 558398d8-48f4-4bba-a4c6-c686ae6b9e81
         /content[1]:
           jcr:primaryType: visitscotland:Itinerary
           jcr:mixinTypes: ['mix:referenceable']
@@ -2348,7 +2348,7 @@
           hippostd:state: draft
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2020-02-10T09:26:40.760Z
-          hippostdpubwf:lastModificationDate: 2020-03-09T13:37:32.527Z
+          hippostdpubwf:lastModificationDate: 2020-04-16T09:26:00.423+01:00
           hippostdpubwf:lastModifiedBy: admin
           hippotranslation:id: a485e049-be64-47c6-8c13-0cc355e91443
           hippotranslation:locale: en
@@ -2368,7 +2368,7 @@
           visitscotland:start: ''
           visitscotland:teaser: ''
           visitscotland:theme: filmev
-          visitscotland:title: TOUR SCOTLAND WITH OUTLANDER
+          visitscotland:title: Tour Scotland with Outlander
           visitscotland:transports: [car]
           /visitscotland:heroImage:
             jcr:primaryType: hippogallerypicker:imagelink
@@ -2407,7 +2407,7 @@
           hippostd:state: unpublished
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2020-02-10T09:26:40.760Z
-          hippostdpubwf:lastModificationDate: 2020-03-09T13:37:41.585Z
+          hippostdpubwf:lastModificationDate: 2020-04-16T09:25:59.939+01:00
           hippostdpubwf:lastModifiedBy: admin
           hippotranslation:id: a485e049-be64-47c6-8c13-0cc355e91443
           hippotranslation:locale: en
@@ -2427,7 +2427,7 @@
           visitscotland:start: ''
           visitscotland:teaser: ''
           visitscotland:theme: filmev
-          visitscotland:title: TOUR SCOTLAND WITH OUTLANDER
+          visitscotland:title: Tour Scotland with Outlander
           visitscotland:transports: [car]
           /visitscotland:heroImage:
             jcr:primaryType: hippogallerypicker:imagelink
@@ -2466,9 +2466,9 @@
           hippostd:state: published
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2020-02-10T09:26:40.760Z
-          hippostdpubwf:lastModificationDate: 2020-03-09T13:37:41.585Z
+          hippostdpubwf:lastModificationDate: 2020-04-16T09:25:59.939+01:00
           hippostdpubwf:lastModifiedBy: admin
-          hippostdpubwf:publicationDate: 2020-03-09T13:37:44.095Z
+          hippostdpubwf:publicationDate: 2020-04-16T09:26:05.450+01:00
           hippotranslation:id: a485e049-be64-47c6-8c13-0cc355e91443
           hippotranslation:locale: en
           visitscotland:areas: [east]
@@ -2487,7 +2487,7 @@
           visitscotland:start: ''
           visitscotland:teaser: ''
           visitscotland:theme: filmev
-          visitscotland:title: TOUR SCOTLAND WITH OUTLANDER
+          visitscotland:title: Tour Scotland with Outlander
           visitscotland:transports: [car]
           /visitscotland:heroImage:
             jcr:primaryType: hippogallerypicker:imagelink

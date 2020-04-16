@@ -29,7 +29,6 @@
             </main>
             <div class="row">
                 <@hst.include ref="footer"/>
-                <@hst.include ref="utility"/>
             </div>
         </div>
 

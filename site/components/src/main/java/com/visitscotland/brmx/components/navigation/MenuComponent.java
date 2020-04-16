@@ -33,7 +33,7 @@ public class MenuComponent extends EssentialsMenuComponent {
             enhancedMenu.add(exploreMenu(request, null, item));
         }
 
-        request.setModel("enhancedMenu"+ ((HstSiteMenu) request.getModel("menu")).getName(), enhancedMenu);
+        request.setModel("enhancedMenu", enhancedMenu);
     }
 
     private VsHstSiteMenuItemImpl exploreMenu(HstRequest request, VsHstSiteMenuItemImpl parent, HstSiteMenuItem menu){

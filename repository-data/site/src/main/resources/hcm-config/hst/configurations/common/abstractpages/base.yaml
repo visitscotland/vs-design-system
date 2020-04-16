@@ -19,15 +19,9 @@ definitions:
         hst:componentclassname: com.visitscotland.brmx.components.navigation.MenuComponent
         hst:parameternames: [selectedMenu, level, menu]
         hst:parametervalues: ['on', '1', footer]
-        /container:
-          jcr:primaryType: hst:containercomponentreference
-          hst:referencecomponent: base/footer
-      /utility:
-        jcr:primaryType: hst:component
-        hst:componentclassname: com.visitscotland.brmx.components.navigation.MenuComponent
-        hst:parameternames: [selectedMenu, level, menu]
-        hst:parametervalues: ['on', '1', utility]
-        hst:template: utility-footer
-        /container:
-          jcr:primaryType: hst:containercomponentreference
-          hst:referencecomponent: base/footer
+        /utility:
+          jcr:primaryType: hst:component
+          hst:componentclassname: com.visitscotland.brmx.components.navigation.MenuComponent
+          hst:parameternames: [selectedMenu, level, menu]
+          hst:parametervalues: ['on', '1', utility]
+          hst:template: utility-footer
