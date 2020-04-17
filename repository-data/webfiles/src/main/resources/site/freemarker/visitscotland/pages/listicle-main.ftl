@@ -59,19 +59,21 @@
 			</#list>
 		</ol>
 
-        <#if document.summary?? && document.summary?has_content>
+        <#assign summary>
+            <@hst.html hippohtml=document.summary/>
+        </#assign>
+
+        <#if summary?has_content>
             <vs-row class="mb-6">
                 <vs-col cols="12">
                     <vs-panel>
-                        <#if document.summaryTitle??>
+                        <#if document.summaryTitle?has_content>
                             <vs-heading thin level="4" slot="vs-panel-title">${document.summaryTitle}</vs-heading>
                         </#if>
 
-                        <#if document.summary??>
-                            <vs-rich-text-wrapper variant="lead">
-                                <@hst.html hippohtml=document.summary/>
-                            </vs-rich-text-wrapper>
-                        </#if>
+                        <vs-rich-text-wrapper variant="lead">
+                            ${summary}
+                        </vs-rich-text-wrapper>
                     </vs-panel>
                 </vs-col>
             </vs-row>
