@@ -1,10 +1,10 @@
-<#include "../../../include/imports.ftl">
-<#include "../../../vs-dotcom-ds/components/listicle-item.ftl">
-<#include "../../../vs-dotcom-ds/components/link.ftl">
+<#include "../../../../include/imports.ftl">
+<#include "../../../../vs-dotcom-ds/components/listicle-item.ftl">
+<#include "../../../../vs-dotcom-ds/components/link.ftl">
 
-<#include "../key-facilities.ftl">
-<#include "../image-with-caption.ftl">
-<#include "../cms-errors.ftl">
+<#include "../../global/key-facilities.ftl">
+<#include "../../global/image-with-caption.ftl">
+<#include "../../global/cms-errors.ftl">
 
 <#macro listicleItem item>
 <#-- @ftlvariable name="listItem" type="com.visitscotland.brmx.beans.ListicleItem" -->
