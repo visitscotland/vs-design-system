@@ -1,6 +1,6 @@
 <template>
-    <BCard class="vs-panel">
-        <b-card-title class="vs-panel-title mb-8">
+    <BCard class="vs-panel" :class="[this.$slots['vs-panel-title'] ? '' : 'pt-10']">
+        <b-card-title v-if="this.$slots['vs-panel-title']" class="vs-panel-title mb-8">
             <!-- @slot Contains an optional title for the panel  -->
             <slot name="vs-panel-title" />
         </b-card-title>
@@ -65,7 +65,7 @@ export default {
 ```jsx
 	<vs-panel>
         <vs-heading thin level="4" slot="vs-panel-title">A Title Would Go Here</vs-heading>
-
+        
         <vs-rich-text-wrapper variant="lead">
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras maximus est congue nunc fermentum, eu hendrerit odio fringilla. Donec porta eleifend ipsum Praesent in magna fringilla.</p>
         
