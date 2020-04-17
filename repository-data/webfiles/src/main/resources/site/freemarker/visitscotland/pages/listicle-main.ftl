@@ -59,16 +59,22 @@
 			</#list>
 		</ol>
 
-        <vs-row class="mb-6">
-			<vs-col cols="12">
-                <vs-panel>
-                    <vs-heading thin level="4" slot="vs-panel-title">${document.summaryTitle}</vs-heading>
+        <#if document.summary?? && document.summary?has_content>
+            <vs-row class="mb-6">
+                <vs-col cols="12">
+                    <vs-panel>
+                        <#if document.summaryTitle??>
+                            <vs-heading thin level="4" slot="vs-panel-title">${document.summaryTitle}</vs-heading>
+                        </#if>
 
-                    <vs-rich-text-wrapper variant="lead">
-                        <@hst.html hippohtml=document.summary/>
-                    </vs-rich-text-wrapper>
-                </vs-panel>
-			</vs-col>
-		</vs-row>
+                        <#if document.summary??>
+                            <vs-rich-text-wrapper variant="lead">
+                                <@hst.html hippohtml=document.summary/>
+                            </vs-rich-text-wrapper>
+                        </#if>
+                    </vs-panel>
+                </vs-col>
+            </vs-row>
+        </#if>
 	</vs-container>
 </div>
