@@ -2,3 +2,4 @@ node_modules/*
 dist/*
 test/unit/coverage/*
 rsg-components
+cypress
