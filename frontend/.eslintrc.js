@@ -33,12 +33,17 @@ module.exports = {
 			"warn",
 			4
 		],
+		"vue/attributes-order": "off",
 		"vue/no-unused-vars": "error",
 		"vue/order-in-components": "error",
 		"vue/this-in-template": "error",
-		"vue/component-name-in-template-casing": ["error", "PascalCase", {
-            registeredComponentsOnly: false,
-          }],
+		"vue/component-name-in-template-casing": [
+			"error", 
+			"PascalCase",
+			{
+				registeredComponentsOnly: false,
+			}
+		],
 		"vue/script-indent": [
 			"error",
 			4
