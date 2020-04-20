@@ -66,10 +66,13 @@ module.exports = {
 			"last"
 		],
 		"object-curly-newline": ["error", {
-			"ObjectExpression": "always",
-			"ObjectPattern": { "multiline": true },
-			"ImportDeclaration": { "multiline": true, "minProperties": 3 },
-			"ExportDeclaration": { "multiline": true, "minProperties": 3 }
+			ObjectExpression: "always",
+			ObjectPattern: { "multiline": true },
+			ImportDeclaration: { "multiline": true, "minProperties": 3 },
+			ExportDeclaration: { "multiline": true, "minProperties": 3 }
+		}],
+		"object-property-newline": ["error", {
+			allowAllPropertiesOnSameLine: false
 		}]
 	},
 	settings: {
