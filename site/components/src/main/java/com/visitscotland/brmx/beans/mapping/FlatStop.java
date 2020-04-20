@@ -12,6 +12,7 @@ public class FlatStop {
 
     private Integer index;
     private String title;
+    private String subTitle;
     private HippoHtml description;
     private FlatImage image;
     private String timeToexplore;
@@ -20,7 +21,6 @@ public class FlatStop {
     private HippoHtml tipsBody;
     private List<JSONObject> facilities;
     private JSONObject address;
-    private String location;
     private String price;
     private String open;
     private FlatLink openLink;
@@ -137,12 +137,12 @@ public class FlatStop {
         this.address = address;
     }
 
-    public String getLocation() {
-        return location;
+    public String getSubTitle() {
+        return subTitle;
     }
 
-    public void setLocation(String location) {
-        this.location = location;
+    public void setSubTitle(String subtitle) {
+        this.subTitle = subtitle;
     }
 
     public String getPrice() {

@@ -1,13 +1,13 @@
-<#include "../../vs-dotcom-ds/components/svg.ftl">
-<#include "../../vs-dotcom-ds/components/social-credit-link.ftl">
-<#include "../../vs-dotcom-ds/components/image-with-caption.ftl">
+<#include "../../../vs-dotcom-ds/components/svg.ftl">
+<#include "../../../vs-dotcom-ds/components/social-credit-link.ftl">
+<#include "../../../vs-dotcom-ds/components/image-with-caption.ftl">
 
 <#macro imageWithCaption imageSrc imageDetails variant>
     <vs-image-with-caption
         alt-text="${(imageDetails.altText)!'${label("essentials.global", "default.alt-text")}'}"
         image-src="${imageSrc}"
-        latitude="${(imageDetails.coordinates.latitude)!''}"
-        longitude="${(imageDetails.coordinates.longitude)!''}"
+        latitude="<#if variant != 'fullwidth'>${(imageDetails.coordinates.latitude)!''}</#if>"
+        longitude="<#if variant != 'fullwidth'>${(imageDetails.coordinates.longitude)!''}</#if>"
         variant="${variant}"
     >
         <span slot="caption">
