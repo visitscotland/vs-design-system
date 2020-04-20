@@ -1,9 +1,9 @@
 <template>
     <li class="vs-itinerary-day__list-item">
         <div class="vs-itinerary-day__header text-center position-relative">
-            <vs-heading level="2" thin class="vs-itinerary-day__title">
-                <span>{{ dayLabel }} {{ dayNumber }}</span>
-                {{ dayTitle }}
+            <vs-heading level="2" class="mt-9">
+                <span class="vs-itinerary-day__title d-inline-block">{{ dayLabel }} {{ dayNumber }}</span>
+                <span slot="sub-heading">{{ dayTitle }}</span>   
             </vs-heading>
             <vs-button
                 :animate="false"
@@ -124,11 +124,10 @@ export default {
     }
 }
 
-.vs-itinerary-day__title span {
+.vs-itinerary-day__title  {
     border-bottom: 1px solid $color-base-text;
     color: $color-theme-secondary-teal;
-    margin-bottom: $spacer-4;
-    padding: $spacer-3 $spacer-6;
+    padding: 0 $spacer-6 $spacer-3;
 }
 
 .vs-itinerary-day__toggle-button {
