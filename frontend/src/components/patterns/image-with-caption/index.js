@@ -1,1 +1,1 @@
-export { VsImageWithCaption } from "./ImageWithCaption"
+export { VsImageWithCaption } from "./image-with-caption"
