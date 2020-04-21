@@ -66,6 +66,7 @@ $font-sizes: (
 
 /* Update font sizes */
 $sub-font-sizes: (
+    2: $h2-sub-font-size,
     3: $h3-sub-font-size,
 );
 
@@ -91,7 +92,7 @@ $sub-font-sizes: (
             @at-root h#{$level}#{&} {
                 letter-spacing: $size * 0.1;
                 font-size: $size;
-                margin-top: $size * 0.25;
+                margin-top: $size * 0.5;
             }
         }
     }

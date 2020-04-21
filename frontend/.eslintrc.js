@@ -33,12 +33,17 @@ module.exports = {
 			"warn",
 			4
 		],
+		"vue/attributes-order": "off",
 		"vue/no-unused-vars": "error",
 		"vue/order-in-components": "error",
 		"vue/this-in-template": "error",
-		"vue/component-name-in-template-casing": ["error", "PascalCase", {
-            registeredComponentsOnly: false,
-          }],
+		"vue/component-name-in-template-casing": [
+			"error", 
+			"PascalCase",
+			{
+				registeredComponentsOnly: false,
+			}
+		],
 		"vue/script-indent": [
 			"error",
 			4
@@ -61,10 +66,13 @@ module.exports = {
 			"last"
 		],
 		"object-curly-newline": ["error", {
-			"ObjectExpression": "always",
-			"ObjectPattern": { "multiline": true },
-			"ImportDeclaration": { "multiline": true, "minProperties": 3 },
-			"ExportDeclaration": { "multiline": true, "minProperties": 3 }
+			ObjectExpression: "always",
+			ObjectPattern: { "multiline": true },
+			ImportDeclaration: { "multiline": true, "minProperties": 3 },
+			ExportDeclaration: { "multiline": true, "minProperties": 3 }
+		}],
+		"object-property-newline": ["error", {
+			allowAllPropertiesOnSameLine: false
 		}]
 	},
 	settings: {
