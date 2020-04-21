@@ -1,17 +1,15 @@
-<#include "../../../include/imports.ftl">
-<#include "../../../vs-dotcom-ds/components/listicle-item.ftl">
-<#include "../../../vs-dotcom-ds/components/link.ftl">
+<#include "../../../../include/imports.ftl">
+<#include "../../../../vs-dotcom-ds/components/listicle-item.ftl">
+<#include "../../../../vs-dotcom-ds/components/link.ftl">
 
-<#include "../key-facilities.ftl">
-<#include "../image-with-caption.ftl">
+<#include "../../global/key-facilities.ftl">
+<#include "../../global/image-with-caption.ftl">
+<#include "../../global/cms-errors.ftl">
 
-<#macro listicleItem listItem>
+<#macro listicleItem item>
 <#-- @ftlvariable name="listItem" type="com.visitscotland.brmx.beans.ListicleItem" -->
 <#-- @ftlvariable name="item" type="com.visitscotland.brmx.beans.mapping.FlatListicle" -->
 <#-- @ftlvariable name="cta" type="com.visitscotland.brmx.beans.mapping.FlatLink" -->
-
-	<#assign item = items[listItem.identifier]>
-
 	<#assign image = "" />
     <#if item.image.cmsImage??>
         <#assign image>
@@ -27,12 +25,8 @@
 		sub-title="${item.subTitle}"
 	>
 		<div slot="hippo-details" class="has-edit-button">
-			<@hst.manageContent hippobean=listItem />
-			<#if item.errorMessages?? && item.errorMessages?size gt 0 && editMode>
-				<#list item.errorMessages as error>
-					<h1 class="text-danger">${error?upper_case}</h1>
-				</#list>
-			</#if>
+			<@hst.manageContent hippobean=item.listicleItem/>
+            <@cmsErrors errors=item.errorMessages!"" editMode=editMode />
 		</div>
 
 		<#if image?? && image?has_content>
