@@ -24,7 +24,7 @@ import VsButton from "@components/elements/button/Button"
 import VsHeading from "@components/elements/heading/Heading"
 import { VsContainer, VsRow, VsCol } from "@components/elements/layout"
 import VsImageLocationMap from "@components/patterns/image-location-map/ImageLocationMap"
-import VsImageWithCaption from "@components/patterns/image-with-caption/ImageWithCaption"
+import VsImageWithCaption from "@components/patterns/imageWithCaption/ImageWithCaption"
 import VsItineraryMobileMapToggle from "@components/patterns/itineraries/components/itinerary-mobile-map-toggle/ItineraryMobileMapToggle"
 import VsSocialShare from "@components/patterns/social-share/SocialShare.vue"
 
