@@ -4,7 +4,10 @@ const VsIcon = require("./Icon.vue").default
 
 describe("Icon component", () => {
     const props = {
-        size: "md", name: "favourite", reverse: null, variant: null,
+        size: "md",
+        name: "favourite",
+        reverse: null,
+        variant: null,
     }
     const allSizes = {
         "x-small": "xs",
