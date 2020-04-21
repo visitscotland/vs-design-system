@@ -4,7 +4,10 @@ const VsSvg = require("./Svg.vue").default
 
 describe("Svg component", () => {
     const props = {
-        path: "logo", height: null, width: null, fill: null,
+        path: "logo",
+        height: null,
+        width: null,
+        fill: null,
     }
 
     vueHelper.init("vs-svg", VsSvg, {

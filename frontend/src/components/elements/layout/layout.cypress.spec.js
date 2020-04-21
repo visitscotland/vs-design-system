@@ -28,7 +28,8 @@ function pixelStringToInteger(pixelValue) {
 }
 
 vueHelper.init("vs-container", VsContainer, {
-    props, childContent: mockContents,
+    props,
+    childContent: mockContents,
 })
 
 describe("Container component", () => {
