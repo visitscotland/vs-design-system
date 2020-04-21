@@ -102,6 +102,15 @@ module.exports = {
 					}
 				]
 			}
+		},
+		// Ignore jest rules for cypress tests
+		{
+			files: [
+				"*.cypress.spec.js"
+			],
+			rules: {
+				"jest/expect-expect": "off"
+			}
 		}
 	]
 };
