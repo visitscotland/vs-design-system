@@ -1,14 +1,20 @@
 <template>
-    <BCard class="vs-panel" :class="[this.$slots['vs-panel-title'] ? '' : 'pt-10']">
-        <b-card-title v-if="this.$slots['vs-panel-title']" class="vs-panel-title mb-8">
+    <BCard
+        class="vs-panel"
+        :class="[this.$slots['vs-panel-title'] ? '' : 'pt-10']"
+    >
+        <BCardTitle
+            v-if="this.$slots['vs-panel-title']"
+            class="vs-panel-title mb-8"
+        >
             <!-- @slot Contains an optional title for the panel  -->
             <slot name="vs-panel-title" />
-        </b-card-title>
+        </BCardTitle>
 
-        <b-card-text class="vs-panel-text">
+        <BCardText class="vs-panel-text">
             <!-- @slot default slot containing main body text -->
             <slot />
-        </b-card-text>
+        </BCardText>
     </BCard>
 </template>
 
@@ -63,12 +69,14 @@ export default {
 
 <docs>
 ```jsx
-	<vs-panel>
+    <vs-panel>
         <vs-heading thin level="4" slot="vs-panel-title">A Title Would Go Here</vs-heading>
-        
+
         <vs-rich-text-wrapper variant="lead">
+             <!-- eslint-disable-next-line max-len -->
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras maximus est congue nunc fermentum, eu hendrerit odio fringilla. Donec porta eleifend ipsum Praesent in magna fringilla.</p>
-        
+
+             <!-- eslint-disable-next-line max-len -->
             <p>Morbi faucibus risus in varius sollicitudin. Aenean eget leo ullamcorper, scelerisque urna eu, imperdiet nibh. Duis sit amet nibh tortor. Donec ac ante eros. Praesent in magna fringilla, consectetur eros id, fermentum nibh. Duis luctus ante sapien, scelerisque fermentum massa tincidunt eu. Nullam sed arcu a justo auctor consectetur.</p>
         </vs-rich-text-wrapper>
     </vs-panel>

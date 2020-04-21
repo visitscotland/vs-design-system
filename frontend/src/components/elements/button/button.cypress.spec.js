@@ -5,11 +5,14 @@ const VsButton = require("./Button.vue").default
 describe("Button component", () => {
     const themeColours = getThemeColours()
     const props = {
-        variant: null, type: null, href: null,
+        variant: null,
+        type: null,
+        href: null,
     }
 
     vueHelper.init("vs-button", VsButton, {
-        props, childContent: "hello",
+        props,
+        childContent: "hello",
     })
 
     it("renders the contents", () => {
