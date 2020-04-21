@@ -81,7 +81,11 @@ export default {
 
 <style lang="scss" scoped>
 .vs-listicle-item {
-    margin-bottom: $spacer-12;
+    margin-bottom: $spacer-9;
+
+    @include media-breakpoint-up(sm) {
+        margin-bottom: $spacer-11;
+    }
 
     .count {
         color: $color-white;

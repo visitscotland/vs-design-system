@@ -10,12 +10,11 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin")
 const OptimizeCSSPlugin = require("optimize-css-assets-webpack-plugin")
 const CopyWebpackPlugin = require("copy-webpack-plugin")
 const SafeParser = require("postcss-safe-parser")
-
 const env = require("../config/prod.env")
-
 const ManifestPlugin = require("webpack-manifest-plugin")
-
 const generateManifest = require("./system-components-generate-manifest")
+const { mergeIE11Fix } = require("./webpack.ie11-fix")
+
 
 baseWebpackConfig.entry = require("./entry.system-components.js")
 
@@ -24,10 +23,9 @@ baseWebpackConfig.plugins = baseWebpackConfig.plugins.filter(plugin => {
   return !(plugin instanceof MiniCssExtractPlugin)
 })
 
-const webpackConfig = merge(baseWebpackConfig, {
+const webpackConfig = merge(mergeIE11Fix(baseWebpackConfig), {
   externals: {
     vue: "Vue",
-    vuex: "Vuex",
   },
   module: {
     rules: utils.styleLoaders({
