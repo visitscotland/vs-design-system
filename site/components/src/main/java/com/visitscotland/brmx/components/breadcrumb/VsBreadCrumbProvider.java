@@ -96,10 +96,23 @@ public class VsBreadCrumbProvider extends BreadcrumbProvider {
             if (item != null) {
                 items.add(item);
             }
+            HippoBean itemNotNull = getValidHippoBean(currentItemBean.getParentBean());
 
-            currentItemBean = currentItemBean.getParentBean().getParentBean().getBean("content");
+            int counter = 6;
+            while (itemNotNull==null && counter>0 ) {
+                currentItemBean = currentItemBean.getParentBean();
+                itemNotNull = getValidHippoBean(currentItemBean.getParentBean());
+                counter--;
+
+            }
+            currentItemBean = itemNotNull;
+
         }
 
+    }
+
+    private HippoBean getValidHippoBean (HippoBean bean){
+        return bean.getParentBean().getBean("content");
     }
 
     /**
