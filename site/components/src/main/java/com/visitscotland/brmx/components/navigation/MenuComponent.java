@@ -3,7 +3,6 @@ package com.visitscotland.brmx.components.navigation;
 
 import com.visitscotland.brmx.beans.Page;
 import com.visitscotland.brmx.utils.HippoUtils;
-import com.visitscotland.brmx.beans.ContentDocument;
 import com.visitscotland.brmx.beans.Widget;
 import com.visitscotland.brmx.components.navigation.info.MenuComponentInfo;
 import org.hippoecm.hst.content.beans.standard.HippoBean;
@@ -38,30 +37,35 @@ public class MenuComponent extends EssentialsMenuComponent {
 
     private VsHstSiteMenuItemImpl exploreMenu(HstRequest request, VsHstSiteMenuItemImpl parent, HstSiteMenuItem menu){
         VsHstSiteMenuItemImpl enhancedMenu = new VsHstSiteMenuItemImpl(parent, menu);
+        boolean documentExist = true;
+        //if document base page or widget, we enhance the document
+        if (isDocumentBased(menu.getHstLink())) {
+            ResolvedSiteMapItem rsi = menu.resolveToSiteMapItem();
+            if (rsi != null) {
+                HippoBean bean = getBeanForResolvedSiteMapItem(request, menu.resolveToSiteMapItem());
 
-            //if document base page or widget, we enhance the document
-            if (isDocumentBased(menu.getHstLink())) {
-                ResolvedSiteMapItem rsi = menu.resolveToSiteMapItem();
-                if (rsi != null) {
-                    HippoBean bean = getBeanForResolvedSiteMapItem(request, menu.resolveToSiteMapItem());
-
-                    //Widget document
-                    if (bean instanceof Widget) {
-                        enhancedMenu.setWidget((Widget) bean);
-                    } else if (HippoUtils.existsResourceBundleKey(menu.getName(), NAVIGATION_BUNDLE, request.getLocale())) {
-                        enhancedMenu.setTitle(HippoUtils.getResourceBundle(menu.getName(), NAVIGATION_BUNDLE, request.getLocale()));
-                    } else {
+                //Widget document
+                if (bean instanceof Widget) {
+                    enhancedMenu.setWidget((Widget) bean);
+                } else if (HippoUtils.existsResourceBundleKey(menu.getName(), NAVIGATION_BUNDLE, request.getLocale())) {
+                    enhancedMenu.setTitle(HippoUtils.getResourceBundle(menu.getName(), NAVIGATION_BUNDLE, request.getLocale()));
+                } else {
+                    //TODO if the document is not published yet, it should not be added to live
+                    if (bean == null){
+                        documentExist = false;
+                    } else{
                         if (bean instanceof Page) {
                             enhancedMenu.setTitle(((Page) bean).getTitle());
                         }
                     }
                 }
             }
+        }
 
-            if (enhancedMenu.getTitle() == null) {
-                String value = HippoUtils.getResourceBundle(menu.getName(), NAVIGATION_BUNDLE, request.getLocale());
-                enhancedMenu.setTitle(value);
-            }
+        if (enhancedMenu.getTitle() == null && documentExist) {
+            String value = HippoUtils.getResourceBundle(menu.getName(), NAVIGATION_BUNDLE, request.getLocale());
+            enhancedMenu.setTitle(value);
+        }
 
         for (HstSiteMenuItem child: menu.getChildMenuItems()){
             exploreMenu(request, enhancedMenu, child);
