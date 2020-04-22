@@ -40,8 +40,10 @@ $link-hover-decoration: none;
 
 // These 2 variables are already generated directly from the design tokens by theo
 // so we don't need to set them again here
+
 // $grid-columns: $grid-columns;
 // $grid-gutter-width: $grid-gutter-width;
+
 $grid-breakpoints: (
     xs: $breakpoint-xs,
     sm: $breakpoint-sm,
@@ -50,6 +52,20 @@ $grid-breakpoints: (
     xl: $breakpoint-xl,
     xxl: $breakpoint-xxl,
 );
+
+// Setting gutter width for XS
+@media (max-width: map-get($grid-breakpoints, sm)){
+    .row:not(.no-gutters) {
+        margin-right: -4px;
+        margin-left: -4px;
+    }
+    .row:not(.no-gutters) > .col,
+    .row:not(.no-gutters) > [class*="col-"] {
+        padding-right: 4px;
+        padding-left: 4px;
+    }
+}
+
 $container-max-widths: (
     sm: $max-container-width-sm,
     md: $max-container-width-md,
@@ -116,3 +132,4 @@ $lead-font-weight: 400;
 $semibold-font-weight: 500;
 
 $standard-line-height: 1.2;
+
