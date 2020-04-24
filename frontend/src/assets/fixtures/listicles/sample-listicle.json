@@ -24,7 +24,7 @@
 			}
 		],
 		"image": {
-			"imageSrc": "fixtures/itineraries/images/stops/Guard_House_705080941.JPG",
+			"imageSrc": "fixtures/itineraries/images/stops/Guard_House_705080941.jpg",
 			"altText": "Alt Text",
 			"caption": "Caption",
 			"credit": "Credit",
