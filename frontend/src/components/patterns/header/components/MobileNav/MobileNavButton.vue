@@ -1,5 +1,5 @@
 <template>
-    <vs-button
+    <VsButton
         class="vs-mobile-nav__button p-0 p-sm-1"
         id="mobilenavbutton"
         v-b-toggle.collapse-mobile-nav
@@ -9,14 +9,24 @@
         @click.native="handleClick()"
     >
         <span class="sr-only"><slot /></span>
-        <vs-icon v-if="show" name="close" size="sm" variant="dark" />
-        <vs-icon v-else name="bars-mobile-menu" size="sm" variant="dark" />
-    </vs-button>
+        <VsIcon
+            v-if="show"
+            name="close"
+            size="sm"
+            variant="dark"
+        />
+        <VsIcon
+            v-else
+            name="bars-mobile-menu"
+            size="sm"
+            variant="dark"
+        />
+    </VsButton>
 </template>
 
 <script>
-import VsIcon from "../../../../elements/icon/Icon"
 import { VBToggle } from "bootstrap-vue"
+import VsIcon from "../../../../elements/icon/Icon"
 
 export default {
     name: "VsMobileNavButton",
@@ -25,16 +35,8 @@ export default {
     components: {
         VsIcon,
     },
-    data() {
-        return {
-            show: false,
-        }
-    },
-    directives: { "b-toggle": VBToggle },
-    methods: {
-        handleClick() {
-            this.show = !this.show
-        },
+    directives: {
+        "b-toggle": VBToggle,
     },
     props: {
         /**
@@ -42,6 +44,16 @@ export default {
          */
         name: {
             type: String,
+        },
+    },
+    data() {
+        return {
+            show: false,
+        }
+    },
+    methods: {
+        handleClick() {
+            this.show = !this.show
         },
     },
 }

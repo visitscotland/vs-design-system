@@ -1,176 +1,187 @@
 <template>
-  <component
-    :is="type"
-    data-test="mobile-nav-list-item"
-    class="vs-mobile-nav__list-item"
-    :class="'vs-mobile-nav__list-item--level' + level"
-  >
-    <button
-      v-if="hasChildren"
-      data-test="mobile-nav-button"
-      class="vs-mobile-nav__button"
-      :class="{
-        ['vs-mobile-nav__button--level' + level]: level,
-      }"
-      ref="trigger"
-      data-test-trigger
-      @click="triggerToggle()"
-      aria-haspopup="true"
-      :aria-expanded="show ? 'true' : 'false'"
+    <Component
+        :is="type"
+        data-test="mobile-nav-list-item"
+        class="vs-mobile-nav__list-item"
+        :class="'vs-mobile-nav__list-item--level' + level"
     >
-      {{ title }}
-      <div
-        class="vs-mobile-nav__icon-wrapper vs-mobile-nav__icon-wrapper--spin"
-        :class="{
-          'vs-mobile-nav__icon-wrapper--expanded': show,
-          ['level' + level]: level,
-        }"
-      >
-        <vs-icon data-test="mobile-nav-chevron-svg" name="chevron-down" size="xs" variant="dark" />
-      </div>
-    </button>
-    <a
-      v-else
-      class="vs-mobile-nav__link"
-      :href="href"
-      :class="{
-        external: isExternal,
-        ['vs-mobile-nav__link--level' + level]: level,
-      }"
-      :target="isExternal ? '_blank' : false"
-      :data-vs-track="trackingId"
-      >{{ title }}</a
-    >
-    <transition name="slide-fade" v-if="hasChildren">
-      <div v-show="show">
-        <ul
-          data-test="mobile-submenu-list"
-          class="list-unstyled"
-          :class="{
-            ['vs-mobile-nav__list--level' + incrementLevel]: incrementLevel,
-          }"
-        >
-          <li
-            class="vs-mobile-nav__list-item"
+        <button
+            v-if="hasChildren"
+            data-test="mobile-nav-button"
+            class="vs-mobile-nav__button"
             :class="{
-              ['vs-mobile-nav__list-item--level' + incrementLevel]: incrementLevel,
+                ['vs-mobile-nav__button--level' + level]: level,
             }"
-            v-if="href !== null"
-          >
-            <a
-              class="vs-mobile-nav__link vs-mobile-nav__link--landing-page"
-              :href="href"
-              :class="[
-                isExternal ? 'external' : '',
-                level ? 'vs-mobile-nav__link--level' + incrementLevel : '',
-              ]"
-              :target="isExternal ? '_blank' : false"
-              :data-vs-track="trackingId"
-              >See all {{ lowerCaseTitle }}</a
+            ref="trigger"
+            data-test-trigger
+            @click="triggerToggle()"
+            aria-haspopup="true"
+            :aria-expanded="show ? 'true' : 'false'"
+        >
+            {{ title }}
+            <div
+                class="vs-mobile-nav__icon-wrapper vs-mobile-nav__icon-wrapper--spin"
+                :class="{
+                    'vs-mobile-nav__icon-wrapper--expanded': show,
+                    ['level' + level]: level,
+                }"
             >
-          </li>
-          <slot name="subnav" />
-        </ul>
-        <VsMobileNavPromoItem
-          v-if="promoItem"
-          :href="promoItem.href"
-          :is-external="promoItem.isExternal"
-          :title="promoItem.title"
-          :button-text="promoItem.buttonText"
-          :description="promoItem.description"
-          :image-link="promoItem.imageLink"
-        />
-        <VsMobileNavPromoList v-if="promoList" :list="promoList" />
-      </div>
-    </transition>
-  </component>
+                <VsIcon
+                    data-test="mobile-nav-chevron-svg"
+                    name="chevron-down"
+                    size="xs"
+                    variant="dark"
+                />
+            </div>
+        </button>
+        <a
+            v-else
+            class="vs-mobile-nav__link"
+            :href="href"
+            :class="{
+                external: isExternal,
+                ['vs-mobile-nav__link--level' + level]: level,
+            }"
+            :target="isExternal ? '_blank' : false"
+            :data-vs-track="trackingId"
+        >{{ title }}</a>
+        <Transition
+            name="slide-fade"
+            v-if="hasChildren"
+        >
+            <div v-show="show">
+                <ul
+                    data-test="mobile-submenu-list"
+                    class="list-unstyled"
+                    :class="{
+                        ['vs-mobile-nav__list--level' + incrementLevel]: incrementLevel,
+                    }"
+                >
+                    <li
+                        class="vs-mobile-nav__list-item"
+                        :class="{
+                            ['vs-mobile-nav__list-item--level' + incrementLevel]: incrementLevel,
+                        }"
+                        v-if="href !== null"
+                    >
+                        <a
+                            class="vs-mobile-nav__link vs-mobile-nav__link--landing-page"
+                            :href="href"
+                            :class="[
+                                isExternal ? 'external' : '',
+                                level ? 'vs-mobile-nav__link--level' + incrementLevel : '',
+                            ]"
+                            :target="isExternal ? '_blank' : false"
+                            :data-vs-track="trackingId"
+                        >See all {{ lowerCaseTitle }}</a>
+                    </li>
+                    <slot name="subnav" />
+                </ul>
+                <VsMobileNavPromoItem
+                    v-if="promoItem"
+                    :href="promoItem.href"
+                    :is-external="promoItem.isExternal"
+                    :title="promoItem.title"
+                    :button-text="promoItem.buttonText"
+                    :description="promoItem.description"
+                    :image-link="promoItem.imageLink"
+                />
+                <VsMobileNavPromoList
+                    v-if="promoList"
+                    :list="promoList"
+                />
+            </div>
+        </Transition>
+    </Component>
 </template>
 
 <script>
 import VsIcon from "../../../../elements/icon/Icon"
 
 export default {
-  name: "VsMobileNavListItem",
-  status: "prototype",
-  release: "0.0.1",
-  components: { VsIcon },
-  data() {
-    return {
-      show: false,
-    }
-  },
-  props: {
-    /**
-     * The html element name used for the component
-     */
-    type: {
-      type: String,
-      default: "li",
+    name: "VsMobileNavListItem",
+    status: "prototype",
+    release: "0.0.1",
+    components: {
+        VsIcon,
     },
-    href: {
-      type: String,
+    props: {
+        /**
+         * The html element name used for the component
+         */
+        type: {
+            type: String,
+            default: "li",
+        },
+        href: {
+            type: String,
+        },
+        isExternal: {
+            type: Boolean,
+        },
+        trackingId: {
+            type: String,
+        },
+        title: {
+            type: String,
+        },
+        level: {
+            type: Number,
+        },
+        subnav: {
+            type: Array,
+        },
+        promoList: {
+            type: Array,
+        },
+        promoItem: {
+            type: Object,
+        },
     },
-    isExternal: {
-      type: Boolean,
+    data() {
+        return {
+            show: false,
+        }
     },
-    trackingId: {
-      type: String,
+    computed: {
+        lowerCaseTitle() {
+            return this.title ? this.title.toLowerCase() : ""
+        },
+        hasChildren() {
+            if (
+                this.subnav !== undefined
+                || this.promoItem !== undefined
+                || this.promoList !== undefined
+            ) {
+                return true
+            }
+            return false
+        },
+        incrementLevel() {
+            return this.level + 1
+        },
     },
-    title: {
-      type: String,
+    mounted() {
+        this.$root.$on("resetMenus", this.reset)
     },
-    level: {
-      type: Number,
+    methods: {
+        reset() {
+            this.show = false
+        },
+        triggerToggle() {
+            this.show = !this.show
+            const thisTrigger = this.$refs.trigger
+            if (this.show) {
+                this.$parent.$emit("setScrollOffset", thisTrigger.offsetTop)
+            } else {
+                this.$parent.$emit("setScrollOffset", 0)
+            }
+            thisTrigger.blur()
+        },
+        setOffsetScroll(offset) {
+            this.$emit("setScrollOffset", offset)
+        },
     },
-    subnav: {
-      type: Array,
-    },
-    promoList: {
-      type: Array,
-    },
-    promoItem: {
-      type: Object,
-    },
-  },
-  computed: {
-    lowerCaseTitle() {
-      return this.title ? this.title.toLowerCase() : ""
-    },
-    hasChildren() {
-      if (
-        this.subnav !== undefined ||
-        this.promoItem !== undefined ||
-        this.promoList !== undefined
-      ) {
-        return true
-      }
-      return false
-    },
-    incrementLevel() {
-      return this.level + 1
-    },
-  },
-  methods: {
-    reset() {
-      this.show = false
-    },
-    triggerToggle() {
-      this.show = !this.show
-      let thisTrigger = this.$refs.trigger
-      if (this.show) {
-        this.$parent.$emit("setScrollOffset", thisTrigger.offsetTop)
-      } else {
-        this.$parent.$emit("setScrollOffset", 0)
-      }
-      thisTrigger.blur()
-    },
-    setOffsetScroll(offset) {
-      this.$emit("setScrollOffset", offset)
-    },
-  },
-  mounted() {
-    this.$root.$on("resetMenus", this.reset)
-  },
 }
 </script>
 

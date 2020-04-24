@@ -1,128 +1,129 @@
 <template>
-  <component
-    :is="type"
-    data-test="desktop-nav-list-item"
-    class="vs-desktop-nav__list-item"
-    :class="{
-      ['vs-desktop-nav__list-item--level' + level]: level,
-      ['col-4 col-xl-3 divide-left']: level === 2,
-    }"
-  >
-    <a
-      v-if="href !== null"
-      data-test="desktop-nav-link"
-      class="vs-desktop-nav__link"
-      :href="href"
-      :class="{
-        external: isExternal,
-        ['vs-desktop-nav__link--level' + level]: level,
-      }"
-      :target="isExternal ? '_blank' : false"
-      :data-vs-track="trackingId"
-      >{{ title }}</a
-    >
-    <span
-      v-else
-      class="vs-desktop-nav__span"
-      :class="{
-        ['vs-desktop-nav__span--level' + level]: level,
-      }"
-      >{{ title }}</span
-    >
-    <div v-if="hasChildren">
-      <ul
-        class="list-unstyled"
-        data-test="desktop-nav-submenu-list"
+    <Component
+        :is="type"
+        data-test="desktop-nav-list-item"
+        class="vs-desktop-nav__list-item"
         :class="{
-          ['vs-desktop-nav__list--level' + incrementLevel]: incrementLevel,
+            ['vs-desktop-nav__list-item--level' + level]: level,
+            ['col-4 col-xl-3 divide-left']: level === 2,
         }"
-      >
-        <li
-          class="vs-desktop-nav__list-item"
-          data-test="desktop-nav-submenu-list-item"
-          :class="{
-            ['vs-desktop-nav__list-item--level' + incrementLevel]: incrementLevel,
-          }"
-          v-if="href !== null"
-        >
-          <a
-            class="vs-desktop-nav__link vs-desktop-nav__link--landing-page"
-            data-test="desktop-nav-submenu-link"
+    >
+        <a
+            v-if="href !== null"
+            data-test="desktop-nav-link"
+            class="vs-desktop-nav__link"
             :href="href"
-            :class="[
-              isExternal ? 'external' : '',
-              level ? 'vs-desktop-nav__link--level' + incrementLevel : '',
-            ]"
+            :class="{
+                external: isExternal,
+                ['vs-desktop-nav__link--level' + level]: level,
+            }"
             :target="isExternal ? '_blank' : false"
             :data-vs-track="trackingId"
-            >See all {{ lowerCaseTitle }}</a
-          >
-        </li>
-        <slot name="subnav" />
-      </ul>
-    </div>
-  </component>
+        >{{ title }}</a>
+        <span
+            v-else
+            class="vs-desktop-nav__span"
+            :class="{
+                ['vs-desktop-nav__span--level' + level]: level,
+            }"
+        >{{ title }}</span>
+        <div v-if="hasChildren">
+            <ul
+                class="list-unstyled"
+                data-test="desktop-nav-submenu-list"
+                :class="{
+                    ['vs-desktop-nav__list--level' + incrementLevel]: incrementLevel,
+                }"
+            >
+                <li
+                    class="vs-desktop-nav__list-item"
+                    data-test="desktop-nav-submenu-list-item"
+                    :class="{
+                        ['vs-desktop-nav__list-item--level' + incrementLevel]: incrementLevel,
+                    }"
+                    v-if="href !== null"
+                >
+                    <a
+                        class="vs-desktop-nav__link vs-desktop-nav__link--landing-page"
+                        data-test="desktop-nav-submenu-link"
+                        :href="href"
+                        :class="[
+                            isExternal ? 'external' : '',
+                            level ? 'vs-desktop-nav__link--level' + incrementLevel : '',
+                        ]"
+                        :target="isExternal ? '_blank' : false"
+                        :data-vs-track="trackingId"
+                    >See all {{ lowerCaseTitle }}</a>
+                </li>
+                <slot name="subnav" />
+            </ul>
+        </div>
+    </Component>
 </template>
 
 <script>
 import VsIcon from "../../../../elements/icon/Icon"
 
 export default {
-  name: "VsDesktopNavListItem",
-  status: "prototype",
-  release: "0.0.1",
-  components: { VsIcon },
-  data() {
-    return {}
-  },
-  props: {
-    /**
-     * The html element name used for the component
-     */
-    type: {
-      type: String,
-      default: "li",
+    name: "VsDesktopNavListItem",
+    status: "prototype",
+    release: "0.0.1",
+    components: {
+        VsIcon,
     },
-    href: {
-      type: String,
+    props: {
+        /**
+         * The html element name used for the component
+         */
+        type: {
+            type: String,
+            default: "li",
+        },
+        href: {
+            type: String,
+        },
+        isExternal: {
+            type: Boolean,
+        },
+        trackingId: {
+            type: String,
+        },
+        title: {
+            type: String,
+        },
+        level: {
+            type: Number,
+        },
+        subnav: {
+            type: Array,
+        },
+        subnavId: {
+            type: Number,
+        },
     },
-    isExternal: {
-      type: Boolean,
+    data() {
+        return {
+        }
     },
-    trackingId: {
-      type: String,
+    computed: {
+        lowerCaseTitle() {
+            return this.title ? this.title.toLowerCase() : ""
+        },
+        hasChildren() {
+            if (this.subnav !== undefined) {
+                return true
+            }
+            return false
+        },
+        incrementLevel() {
+            return this.level + 1
+        },
+        formattedSubnavId() {
+            return `subnav${this.subnavId}`
+        },
     },
-    title: {
-      type: String,
+    methods: {
     },
-    level: {
-      type: Number,
-    },
-    subnav: {
-      type: Array,
-    },
-    subnavId: {
-      type: Number,
-    },
-  },
-  computed: {
-    lowerCaseTitle() {
-      return this.title ? this.title.toLowerCase() : ""
-    },
-    hasChildren() {
-      if (this.subnav !== undefined) {
-        return true
-      }
-      return false
-    },
-    incrementLevel() {
-      return this.level + 1
-    },
-    formattedSubnavId() {
-      return "subnav" + this.subnavId
-    },
-  },
-  methods: {},
 }
 </script>
 

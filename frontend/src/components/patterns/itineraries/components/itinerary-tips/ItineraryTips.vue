@@ -18,8 +18,10 @@ export default {
     name: "VsItineraryTips",
     status: "prototype",
     release: "0.0.1",
-    components: {},
-    props: {},
+    components: {
+    },
+    props: {
+    },
 }
 </script>
 
@@ -44,9 +46,11 @@ export default {
     <vs-itinerary-tips>
       <div slot="text">
         <strong>Don't miss:</strong>
-        <p>Make sure you visit one of the many lovely cafés and restaurants that the city has to offer, or venture out to experience Edinburgh’s lively nightlife in the many bars, clubs and restaurants across the city.</p>
+        <p>Make sure you visit one of the many lovely cafés and restaurants that
+        the city has to offer, or venture out to experience Edinburgh’s lively nightlife
+        in the many bars, clubs and restaurants across the city.</p>
       </div>
       <vs-svg slot="svg" path="highland-cow" />
     </vs-itinerary-tips>
-  ``` 
+  ```
 </docs>

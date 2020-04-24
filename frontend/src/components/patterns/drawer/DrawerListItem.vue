@@ -1,52 +1,54 @@
 <template>
-  <b-list-group-item
-    :href="href"
-    :active="active"
-    :target="external ? '_blank' : null"
-    :data-vs-track="trackingId"
-    tabindex="0"
-    class="vs-drawer__list-item text-white text-nowrap text-justify align-items-center d-flex px-lg-2"
-    :class="{ 'vs-drawer__list-item--full-width': fullWidth }"
-  >
-    <slot />
-    <vs-icon
-      v-if="href && external"
-      class="d-lg-none ml-1"
-      name="external-link"
-      size="xxs"
-      variant="reverse-white"
-    />
-  </b-list-group-item>
+    <BListGroupItem
+        :href="href"
+        :active="active"
+        :target="external ? '_blank' : null"
+        :data-vs-track="trackingId"
+        tabindex="0"
+        class="vs-drawer__list-item text-white text-nowrap text-justify align-items-center d-flex px-lg-2"
+        :class="{ 'vs-drawer__list-item--full-width': fullWidth }"
+    >
+        <slot />
+        <VsIcon
+            v-if="href && external"
+            class="d-lg-none ml-1"
+            name="external-link"
+            size="xxs"
+            variant="reverse-white"
+        />
+    </BListGroupItem>
 </template>
 
 <script>
 import { BListGroupItem } from "bootstrap-vue"
 
 export default {
-  name: "VsDrawerListItem",
-  status: "prototype",
-  release: "0.1.0",
-  props: {
-    href: {
-      required: true,
-      type: String,
+    name: "VsDrawerListItem",
+    status: "prototype",
+    release: "0.1.0",
+    components: {
+        BListGroupItem,
     },
-    external: {
-      type: [Boolean, String],
-      default: false,
+    props: {
+        href: {
+            required: true,
+            type: String,
+        },
+        external: {
+            type: [Boolean, String],
+            default: false,
+        },
+        active: {
+            type: [Boolean, String],
+            default: false,
+        },
+        trackingId: {
+            type: String,
+        },
+        fullWidth: {
+            type: Boolean,
+        },
     },
-    active: {
-      type: [Boolean, String],
-      default: false,
-    },
-    trackingId: {
-      type: String,
-    },
-    fullWidth: {
-      type: Boolean,
-    },
-  },
-  components: { BListGroupItem },
 }
 </script>
 

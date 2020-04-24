@@ -1,14 +1,27 @@
 <template>
-  <b-dropdown v-bind="$attrs" class="vs-dropdown" no-caret>
-    <slot v-for="(_, name) in nonButtonContentSlots" :name="name" :slot="name" />
-    <template #button-content>
-      <slot name="button-content">
-        {{ text }}
-      </slot>
-      <vs-icon name="chevron-down" variant="reverse-white" size="xxs" class="ml-1" />
-    </template>
-    <slot />
-  </b-dropdown>
+    <BDropdown
+        v-bind="$attrs"
+        class="vs-dropdown"
+        no-caret
+    >
+        <slot
+            v-for="(_, name) in nonButtonContentSlots"
+            :name="name"
+            :slot="name"
+        />
+        <template #button-content>
+            <slot name="button-content">
+                {{ text }}
+            </slot>
+            <VsIcon
+                name="chevron-down"
+                variant="reverse-white"
+                size="xxs"
+                class="ml-1"
+            />
+        </template>
+        <slot />
+    </BDropdown>
 </template>
 
 <script>
@@ -19,20 +32,22 @@ import { reject } from "lodash"
  * Dropdown component for lists of links for example.
  */
 export default {
-  name: "VsDropdown",
-  components: {
-    BDropdown,
-  },
-  props: {
-    text: {
-      type: String,
+    name: "VsDropdown",
+    components: {
+        BDropdown,
     },
-  },
-  computed: {
-    nonButtonContentSlots() {
-      return reject(this.$slots, { name: "button-content" })
+    props: {
+        text: {
+            type: String,
+        },
     },
-  },
+    computed: {
+        nonButtonContentSlots() {
+            return reject(this.$slots, {
+                name: "button-content",
+            })
+        },
+    },
 }
 </script>
 
