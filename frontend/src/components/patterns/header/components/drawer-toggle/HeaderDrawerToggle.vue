@@ -1,7 +1,11 @@
 <template>
-    <vs-drawer-toggle :tag="tag" v-bind="$attrs" class="vs-header__drawer-toggle">
+    <VsDrawerToggle
+        :tag="tag"
+        v-bind="$attrs"
+        class="vs-header__drawer-toggle"
+    >
         <slot />
-    </vs-drawer-toggle>
+    </VsDrawerToggle>
 </template>
 
 <script>

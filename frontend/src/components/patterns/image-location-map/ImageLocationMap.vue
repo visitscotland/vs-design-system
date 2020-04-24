@@ -305,8 +305,17 @@
             stroke-width="0.5"
             fill-rule="evenodd"
         />
-        <rect :width="mapWidth" :height="mapHeight" fill="none" />
-        <circle r="4" :fill="mapMarkerColor" :cx="positionX" :cy="positionY" />
+        <rect
+            :width="mapWidth"
+            :height="mapHeight"
+            fill="none"
+        />
+        <circle
+            r="4"
+            :fill="mapMarkerColor"
+            :cx="positionX"
+            :cy="positionY"
+        />
     </svg>
 </template>
 
@@ -318,18 +327,6 @@ export default {
     name: "VsImageLocationMap",
     status: "prototype",
     release: "0.0.1",
-    data: function() {
-        return {
-            cornerCoordinates: {
-                NE: 61.3,
-                NW: 54.4,
-                SE: -9.1,
-                SW: 0.4,
-            },
-            mapWidth: 75,
-            mapHeight: 104,
-        }
-    },
     props: {
         /**
          * The image latitude
@@ -353,29 +350,41 @@ export default {
             default: "#191919",
         },
     },
+    data() {
+        return {
+            cornerCoordinates: {
+                NE: 61.3,
+                NW: 54.4,
+                SE: -9.1,
+                SW: 0.4,
+            },
+            mapWidth: 75,
+            mapHeight: 104,
+        }
+    },
     computed: {
         positionY() {
-            let y_coord = Number(this.latitude)
+            const y_coord = Number(this.latitude)
 
             return Math.round(
                 this.calculateAxisPosition(
                     this.cornerCoordinates.NE,
                     this.cornerCoordinates.NW,
                     y_coord,
-                    this.mapHeight
-                )
+                    this.mapHeight,
+                ),
             )
         },
         positionX() {
-            let x_coord = Number(this.longitude)
+            const x_coord = Number(this.longitude)
 
             return Math.round(
                 this.calculateAxisPosition(
                     this.cornerCoordinates.SE,
                     this.cornerCoordinates.SW,
                     x_coord,
-                    this.mapWidth
-                )
+                    this.mapWidth,
+                ),
             )
         },
     },

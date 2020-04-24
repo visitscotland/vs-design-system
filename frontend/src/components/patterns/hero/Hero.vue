@@ -1,9 +1,12 @@
 <template>
     <figure class="d-flex flex-column">
-        <div class="vs-hero__image-wrapper" role="document">
+        <div
+            class="vs-hero__image-wrapper"
+            role="document"
+        >
             <slot />
 
-            <vs-button
+            <VsButton
                 variant="outline-transparent"
                 class="d-lg-none position-absolute vs-hero__toggle-caption"
                 v-if="showToggle"
@@ -12,48 +15,70 @@
                 :aria-controls="'image_' + imageSrc"
                 @click.native="toggleCaption"
             >
-                <vs-svg path="info-toggle" height="24" width="24" />
+                <VsSvg
+                    path="info-toggle"
+                    height="24"
+                    width="24"
+                />
                 <span class="sr-only">{{ this.toggleButtonText }}</span>
-            </vs-button>
+            </VsButton>
         </div>
 
-        <vs-container
+        <VsContainer
             class="position-relative vs-hero__caption-wrapper"
             :class="[showCaption ? 'd-flex' : 'd-none d-lg-flex']"
             :id="'image_' + imageSrc"
         >
-            <figcaption ref="figcaption" v-if="this.showCaptionData || this.showMap">
-                <vs-row>
-                    <vs-col>
-                        <div class="p-4" v-if="this.showCaptionData">
-                            <p class="vs-hero__image-caption" v-if="this.caption">
+            <figcaption
+                ref="figcaption"
+                v-if="this.showCaptionData || this.showMap"
+            >
+                <VsRow>
+                    <VsCol>
+                        <div
+                            class="p-4"
+                            v-if="this.showCaptionData"
+                        >
+                            <p
+                                class="vs-hero__image-caption"
+                                v-if="this.caption"
+                            >
                                 {{ this.caption }}
                             </p>
-                            <p class="vs-hero__image-credit m-0" v-if="this.credit">
+                            <p
+                                class="vs-hero__image-credit m-0"
+                                v-if="this.credit"
+                            >
                                 &copy; {{ this.credit }}
                             </p>
                         </div>
-                    </vs-col>
-                    <vs-col cols="auto" class="pl-0" v-if="showMap">
+                    </VsCol>
+                    <VsCol
+                        cols="auto"
+                        class="pl-0"
+                        v-if="showMap"
+                    >
                         <div class="map__wrapper">
-                            <vs-image-location-map
+                            <VsImageLocationMap
                                 :latitude="this.latitude"
                                 :longitude="this.longitude"
                                 map-outline-color="#FFFFFF"
                                 map-marker-color="#7CC9CC"
-                            ></vs-image-location-map>
+                            />
                         </div>
-                    </vs-col>
-                </vs-row>
+                    </VsCol>
+                </VsRow>
             </figcaption>
-        </vs-container>
+        </VsContainer>
     </figure>
 </template>
 
 <script>
 import VsSvg from "@components/elements/svg/Svg"
 import VsButton from "@components/elements/button/Button"
-import { VsContainer, VsRow, VsCol } from "@components/elements/layout"
+import {
+    VsContainer, VsRow, VsCol,
+} from "@components/elements/layout"
 import VsImageLocationMap from "@components/patterns/image-location-map/ImageLocationMap"
 
 /**
@@ -63,11 +88,13 @@ export default {
     name: "VsHero",
     status: "prototype",
     release: "0.0.1",
-    components: { VsContainer, VsRow, VsCol, VsImageLocationMap, VsButton, VsSvg },
-    data() {
-        return {
-            showCaption: false,
-        }
+    components: {
+        VsContainer,
+        VsRow,
+        VsCol,
+        VsImageLocationMap,
+        VsButton,
+        VsSvg,
     },
     props: {
         /**
@@ -123,6 +150,11 @@ export default {
             type: String,
             default: "Toggle Caption",
         },
+    },
+    data() {
+        return {
+            showCaption: false,
+        }
     },
     computed: {
         showCaptionData() {

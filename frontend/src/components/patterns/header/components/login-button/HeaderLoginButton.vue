@@ -1,14 +1,22 @@
 <template>
-  <vs-header-button @click.native="isLoggedIn = !isLoggedIn" class="vs-header__login-button">
-    <vs-svg class="mr-1" path="icons/user" height="10" fill="white" />
+    <VsHeaderButton
+        @click.native="isLoggedIn = !isLoggedIn"
+        class="vs-header__login-button"
+    >
+        <VsSvg
+            class="mr-1"
+            path="icons/user"
+            height="10"
+            fill="white"
+        />
 
-    <template v-if="isLoggedIn">
-      <slot name="logged-in-content" />
-    </template>
-    <template v-else>
-      <slot name="logged-out-content" />
-    </template>
-  </vs-header-button>
+        <template v-if="isLoggedIn">
+            <slot name="logged-in-content" />
+        </template>
+        <template v-else>
+            <slot name="logged-out-content" />
+        </template>
+    </VsHeaderButton>
 </template>
 
 <script>
@@ -19,20 +27,23 @@ import VsHeaderButton from "../button/HeaderButton"
  *  Placeholder component for header login component
  */
 export default {
-  name: "VsHeaderLoginButton",
-  status: "prototype",
-  release: "0.1.0",
-  components: { VsSvg, VsHeaderButton },
-  data() {
-    return {
-      isLoggedIn: false,
-    }
-  },
-  methods: {
-    toggleLogin() {
-      this.isLoggedIn = !this.isLoggedIn
+    name: "VsHeaderLoginButton",
+    status: "prototype",
+    release: "0.1.0",
+    components: {
+        VsSvg,
+        VsHeaderButton,
     },
-  },
+    data() {
+        return {
+            isLoggedIn: false,
+        }
+    },
+    methods: {
+        toggleLogin() {
+            this.isLoggedIn = !this.isLoggedIn
+        },
+    },
 }
 </script>
 

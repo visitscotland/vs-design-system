@@ -1,6 +1,14 @@
 <template>
-    <section class="content-section" :class="{ lead: lead, ['content-section-' + tag]: true }">
-        <vs-heading level="3" v-if="heading">{{ heading }}</vs-heading>
+    <section
+        class="content-section"
+        :class="{ lead: lead, ['content-section-' + tag]: true }"
+    >
+        <VsHeading
+            level="3"
+            v-if="heading"
+        >
+            {{ heading }}
+        </VsHeading>
 
         <slot />
     </section>
@@ -14,7 +22,9 @@ import VsHeading from "../elements/heading"
  */
 export default {
     name: "VsContentSection",
-    components: { VsHeading },
+    components: {
+        VsHeading,
+    },
     status: "prototype",
     release: "0.0.1",
     props: {
@@ -40,9 +50,7 @@ export default {
         tag: {
             type: String,
             default: "article",
-            validator: value => {
-                return value.match(/(article|aside|div)/)
-            },
+            validator: (value) => value.match(/(article|aside|div)/),
         },
     },
 }
