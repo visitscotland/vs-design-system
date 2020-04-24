@@ -79,7 +79,7 @@
                     },
                     "href": "https://www.visitscotland.com/info/see-do/kellie-castle-garden-p248691",
                     "image": {
-                        "imageSrc": "fixtures/itineraries/images/stops/Kellie_229320466.jpg",
+                        "imageSrc": "fixtures/itineraries/images/stops/kellie_229320466.jpg",
                         "altText": "",
                         "caption": "",
                         "credit": "",
@@ -110,7 +110,7 @@
                     },
                     "href": "https://www.visitscotland.com/info/see-do/scotlands-secret-bunker-p254671",
                     "image": {
-                        "imageSrc": "fixtures/itineraries/images/stops/Guard_House_705080941.jpg",
+                        "imageSrc": "fixtures/itineraries/images/stops/guard_house_705080941.jpg",
                         "altText": "",
                         "caption": "",
                         "credit": "",
@@ -391,7 +391,7 @@
                     },
                     "href": "https://www.visitscotland.com/info/see-do/dundee-science-centre-p247301",
                     "image": {
-                        "imageSrc": "fixtures/itineraries/images/stops/021_Dundee_Science_Centre_AR_1325917410.jpg",
+                        "imageSrc": "fixtures/itineraries/images/stops/021_dundee_science_centre_ar_1325917410.jpg",
                         "altText": "",
                         "caption": "",
                         "credit": "",
@@ -418,7 +418,7 @@
                     },
                     "href": "https://www.visitscotland.com/info/see-do/scotlands-jute-museum-verdant-works-p247361",
                     "image": {
-                        "imageSrc": "fixtures/itineraries/images/stops/vw%20boys%20small.jpg",
+                        "imageSrc": "fixtures/itineraries/images/stops/vw_boys_small.jpg",
                         "altText": "",
                         "caption": "",
                         "credit": "",
@@ -494,7 +494,7 @@
                     },
                     "href": "https://www.visitscotland.com/info/see-do/scottish-wildlife-trust-montrose-basin-visitor-centre-p251931",
                     "image": {
-                        "imageSrc": "fixtures/itineraries/images/stops/SWT_AMOB_065_Wildlife_Centre_AW_LIM_1275337090.jpg",
+                        "imageSrc": "fixtures/itineraries/images/stops/swt_amob_065_wildlife_centre_aw_lim_1275337090.jpg",
                         "altText": "",
                         "caption": "",
                         "credit": "",
@@ -533,7 +533,7 @@
                     },
                     "href": "https://www.visitscotland.com/info/see-do/jm-barries-birthplace-p250601",
                     "image": {
-                        "imageSrc": "fixtures/itineraries/images/stops/JM-Barrie_372704578.jpg",
+                        "imageSrc": "fixtures/itineraries/images/stops/jm-barrie_372704578.jpg",
                         "altText": "",
                         "caption": "",
                         "credit": "",
