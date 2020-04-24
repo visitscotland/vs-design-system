@@ -1,59 +1,70 @@
 <template>
-  <component
-    data-test="chart-container"
-    :is="type"
-    class="vs-desktop-nav-chart__container col-4 col-xl-3 divide-left"
-  >
-    <span data-test="chart-header" class="vs-desktop-nav-chart__header">{{ chartTitle }}</span>
-    <canvas data-test="chart-canvas" :ref="chartId" width="400" height="300"></canvas>
-  </component>
+    <Component
+        data-test="chart-container"
+        :is="type"
+        class="vs-desktop-nav-chart__container col-4 col-xl-3 divide-left"
+    >
+        <span
+            data-test="chart-header"
+            class="vs-desktop-nav-chart__header"
+        >{{ chartTitle }}</span>
+        <canvas
+            data-test="chart-canvas"
+            :ref="chartId"
+            width="400"
+            height="300"
+        />
+    </Component>
 </template>
 
 <script>
 import Chart from "chart.js"
 
 export default {
-  name: "VsDesktopNavChart",
-  status: "prototype",
-  release: "0.0.1",
-  components: {},
-  data() {
-    return {}
-  },
-  props: {
-    /**
-     * The html element name used for the component
-     */
-    type: {
-      type: String,
-      default: "div",
+    name: "VsDesktopNavChart",
+    status: "prototype",
+    release: "0.0.1",
+    components: {
     },
-    chartTitle: {
-      type: String,
+    props: {
+        /**
+         * The html element name used for the component
+         */
+        type: {
+            type: String,
+            default: "div",
+        },
+        chartTitle: {
+            type: String,
+        },
+        chartId: {
+            type: String,
+        },
+        labels: {
+            type: Array,
+        },
+        datasets: {
+            type: Array,
+        },
     },
-    chartId: {
-      type: String,
+    data() {
+        return {
+        }
     },
-    labels: {
-      type: Array,
-    },
-    datasets: {
-      type: Array,
-    },
-  },
-  methods: {},
-  mounted() {
-    var ctx = this.$refs[this.chartId].getContext("2d")
+    mounted() {
+        const ctx = this.$refs[this.chartId].getContext("2d")
 
-    var thisChart = new Chart(ctx, {
-      type: "bar",
-      data: {
-        labels: this.labels,
-        datasets: this.datasets,
-      },
-      options: this.options,
-    })
-  },
+        const thisChart = new Chart(ctx, {
+            type: "bar",
+            data: {
+                labels: this.labels,
+                datasets: this.datasets,
+            },
+            options: this.options,
+        })
+    },
+    methods: {
+    },
 }
 </script>
 

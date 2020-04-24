@@ -1,22 +1,26 @@
 <template>
-  <b-collapse v-model="isOpen" class="vs-header__drawer-wrapper" id="vs-header__drawer-wrapper">
-    <vs-container v-if="container">
-      <slot />
-    </vs-container>
+    <BCollapse
+        v-model="isOpen"
+        class="vs-header__drawer-wrapper"
+        id="vs-header__drawer-wrapper"
+    >
+        <VsContainer v-if="container">
+            <slot />
+        </VsContainer>
 
-    <slot v-else />
-  </b-collapse>
+        <slot v-else />
+    </BCollapse>
 </template>
 
 <script>
 import smoothscroll from "smoothscroll-polyfill"
 
+import { BCollapse } from "bootstrap-vue"
+import VsContainer from "@components/elements/layout/Container"
 import drawerStore from "./drawer.store"
 import { REGISTER_DRAWER } from "./drawer.store.action-types"
 import { GET_ACTIVE_CONTENT } from "./drawer.store.getter-types"
 
-import { BCollapse } from "bootstrap-vue"
-import VsContainer from "@components/elements/layout/Container"
 
 /**
  * VsDrawer provides a collapsible container that can contain
@@ -25,56 +29,56 @@ import VsContainer from "@components/elements/layout/Container"
  * the sets of content and open/close the drawer.
  */
 export default {
-  name: "VsDrawer",
-  status: "prototype",
-  release: "0.0.1",
-  components: {
-    VsContainer,
-    BCollapse,
-  },
-  data() {
-    return {
-      isOpen: Boolean(this.activeContent),
-    }
-  },
-  props: {
-    /**
-     * The unique identifier for the Drawer instance
-     */
-    drawerKey: {
-      type: String,
-      required: true,
+    name: "VsDrawer",
+    status: "prototype",
+    release: "0.0.1",
+    components: {
+        VsContainer,
+        BCollapse,
     },
-    /**
+    props: {
+        /**
+         * The unique identifier for the Drawer instance
+         */
+        drawerKey: {
+            type: String,
+            required: true,
+        },
+        /**
      * Whether the content is wrapped in a container or not
      */
-    container: {
-      type: Boolean,
-      default: true,
+        container: {
+            type: Boolean,
+            default: true,
+        },
     },
-  },
-  computed: {
-    activeContent() {
-      return drawerStore.getters["drawer/" + GET_ACTIVE_CONTENT](this.drawerKey)
+    data() {
+        return {
+            isOpen: Boolean(this.activeContent),
+        }
     },
-  },
-  watch: {
-    activeContent(newValue) {
-      this.isOpen = Boolean(newValue)
+    computed: {
+        activeContent() {
+            return drawerStore.getters[`drawer/${GET_ACTIVE_CONTENT}`](this.drawerKey)
+        },
     },
-  },
-  beforeCreate() {
-    /**
-     * We do this on beforeCreate, otherwise the keys in the store will not be
-     * reactive for the computed prop above
-     */
-    drawerStore.dispatch("drawer/" + REGISTER_DRAWER, {
-      drawerKey: this.$options.propsData.drawerKey,
-    })
-  },
-  created() {
-    smoothscroll.polyfill()
-  },
+    watch: {
+        activeContent(newValue) {
+            this.isOpen = Boolean(newValue)
+        },
+    },
+    beforeCreate() {
+        /**
+         * We do this on beforeCreate, otherwise the keys in the store will not be
+         * reactive for the computed prop above
+         */
+        drawerStore.dispatch(`drawer/${REGISTER_DRAWER}`, {
+            drawerKey: this.$options.propsData.drawerKey,
+        })
+    },
+    created() {
+        smoothscroll.polyfill()
+    },
 }
 </script>
 

@@ -1,22 +1,34 @@
 <template>
-    <vs-button
+    <VsButton
         class="vs-favourites-toggle__button"
         @click.native="toggleFavourite"
         variant="transparent"
         :animate="false"
         size="sm"
     >
-        <span class="sr-only" v-if="this.favourited">Remove from Favourites</span>
-        <span class="sr-only" v-else>Add to Favourites</span>
-        <vs-icon
+        <span
+            class="sr-only"
+            v-if="this.favourited"
+        >Remove from Favourites</span>
+        <span
+            class="sr-only"
+            v-else
+        >Add to Favourites</span>
+        <VsIcon
             v-if="favourited"
             name="favourite-filled"
             size="md"
             variant="primary"
             :padding="0"
         />
-        <vs-icon v-else name="favourite" size="md" variant="dark" :padding="0" />
-    </vs-button>
+        <VsIcon
+            v-else
+            name="favourite"
+            size="md"
+            variant="dark"
+            :padding="0"
+        />
+    </VsButton>
 </template>
 
 <script>
@@ -27,7 +39,9 @@ export default {
     name: "VsFavouritesToggleButton",
     status: "prototype",
     release: "0.0.1",
-    components: { VsIcon },
+    components: {
+        VsIcon,
+    },
     props: {
         title: {
             type: String,
@@ -50,7 +64,7 @@ export default {
         favourited() {
             return (
                 this.favourites.findIndex(
-                    favourite => favourite.href === this.favouriteItem.href
+                    (favourite) => favourite.href === this.favouriteItem.href,
                 ) !== -1
             )
         },

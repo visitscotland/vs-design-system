@@ -7,16 +7,22 @@
                 class="d-flex align-items-center w-100"
                 :key="index"
             >
-                <a :href="item.href" class="vs-favourites-list__link">{{ item.title }}</a>
-                <vs-button
+                <a
+                    :href="item.href"
+                    class="vs-favourites-list__link"
+                >{{ item.title }}</a>
+                <VsButton
                     class="p-2"
                     :animate="false"
                     variant="transparent"
                     @click.native.prevent="deleteFavourite(item.href)"
                 >
                     <span class="sr-only">Remove from favourites</span>
-                    <vs-icon name="close" size="xs" />
-                </vs-button>
+                    <VsIcon
+                        name="close"
+                        size="xs"
+                    />
+                </VsButton>
             </li>
         </ul>
     </div>
@@ -33,8 +39,15 @@ export default {
     components: {
         VsIcon,
     },
+    props: {
+        listHeader: {
+            type: String,
+            default: "Favourites list",
+        },
+    },
     data() {
-        return {}
+        return {
+        }
     },
     computed: {
         favourites() {
@@ -42,12 +55,6 @@ export default {
         },
         last() {
             return this.favourites.length - 1
-        },
-    },
-    props: {
-        listHeader: {
-            type: String,
-            default: "Favourites list",
         },
     },
     methods: {
@@ -79,19 +86,19 @@ export default {
 
   <div style="position: relative; height: 600px;">
     Test Add Favourite Item 1
-    <vs-favourites-toggle-button 
+    <vs-favourites-toggle-button
       :href="favourite.href"
       :title="favourite.title"
     >
     </vs-favourites-toggle-button>
     Test Add Favourite Item 2
-     <vs-favourites-toggle-button 
+     <vs-favourites-toggle-button
       href="http:www.visitscotland.org"
       title="VisitScotland Corporate Website"
     >
     </vs-favourites-toggle-button>
     Test Add Favourite Item 3
-     <vs-favourites-toggle-button 
+     <vs-favourites-toggle-button
       href="https://www.visitscotland.com/destinations-maps/st-andrews/"
       title="St Andrews"
     >
