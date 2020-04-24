@@ -1,13 +1,17 @@
 <template>
-    <div class="vs-itinerary__map" ref="mapbox"></div>
+    <div
+        class="vs-itinerary__map"
+        ref="mapbox"
+    />
 </template>
 
 <script>
 import itinerariesStore from "@components/patterns/itineraries/itineraries.store"
-import mapboxgl from "mapbox-gl"
-import geojsonExtent from "@mapbox/geojson-extent"
 import VsItineraryMapMarker from "@components/patterns/itineraries/components/itinerary-map/ItineraryMapMarker"
 import Vue from "vue"
+import mapboxgl from "mapbox-gl"
+import geojsonExtent from "@mapbox/geojson-extent"
+
 require("mapbox-gl/dist/mapbox-gl.css")
 
 /**
@@ -18,8 +22,34 @@ export default {
     name: "VsItineraryMap",
     status: "prototype",
     release: "0.0.1",
-    components: {
-        VsItineraryMapMarker,
+    props: {
+        accessToken: {
+            type: String,
+            required: true,
+        },
+        labels: {
+            type: Object,
+            required: true,
+        },
+        overviewMapLatitude: {
+            type: String,
+            required: true,
+            default: "-4.13",
+        },
+        overviewMapLongitude: {
+            type: String,
+            required: true,
+            default: "57.81",
+        },
+        overviewMapZoom: {
+            type: String,
+            required: false,
+            default: "5",
+        },
+        stops: {
+            type: Array,
+            required: true,
+        },
     },
     data() {
         return {
@@ -52,41 +82,7 @@ export default {
             popup: null,
         }
     },
-    props: {
-        accessToken: {
-            type: String,
-            required: true,
-        },
-        labels: {
-            type: Object,
-            required: true,
-        },
-        overviewMapLatitude: {
-            type: String,
-            required: true,
-            default: "-4.13",
-        },
-        overviewMapLongitude: {
-            type: String,
-            required: true,
-            default: "57.81",
-        },
-        overviewMapZoom: {
-            type: String,
-            required: false,
-            default: "5",
-        },
-        stops: {
-            type: Array,
-            required: true,
-        },
-    },
     itinerariesStore,
-    watch: {
-        highlightedStopCoordinates() {
-            this.addMapPopup()
-        },
-    },
     computed: {
         mapPadding() {
             if (this.isTablet) {
@@ -96,13 +92,12 @@ export default {
                     left: 100,
                     right: 100,
                 }
-            } else {
-                return {
-                    top: 50,
-                    bottom: 50,
-                    left: 50,
-                    right: 50,
-                }
+            }
+            return {
+                top: 50,
+                bottom: 50,
+                left: 50,
+                right: 50,
             }
         },
         highlightedStop() {
@@ -111,6 +106,31 @@ export default {
         highlightedStopCoordinates() {
             return itinerariesStore.getters["itineraries/getHighlightedStopCoordinates"]
         },
+    },
+    watch: {
+        highlightedStopCoordinates() {
+            this.addMapPopup()
+        },
+    },
+    created() {
+        // Store <body> style attribute, if one exists.
+        this.bodyStyleAttribute = document.body.getAttribute("style") !== null ? document.body.getAttribute("style") : ""
+
+        // Set access token.
+        mapboxgl.accessToken = this.accessToken
+
+        // Disable WebGL if its causing performance problems.
+        mapboxgl.supported({
+            failIfMajorPerformanceCaveat: true,
+        })
+    },
+    mounted() {
+        this.lazyloadMapComponent()
+        this.isTablet = window.innerWidth >= 768
+        window.addEventListener("resize", this.onResize)
+    },
+    destroyed() {
+        window.removeEventListener("resize", this.onResize)
     },
     methods: {
         addMap() {
@@ -122,42 +142,40 @@ export default {
             })
         },
         addMapControls() {
-            var nav = new mapboxgl.NavigationControl()
+            const nav = new mapboxgl.NavigationControl()
             // todo: add map control components or otherwise style the controls as per design
             // add tooltips to the map control icons
             this.mapbox.map.addControl(nav, "top-right")
             this.mapbox.map.addControl(new mapboxgl.FullscreenControl())
         },
         addMapFeatures() {
-            this.stops.map(stop => {
-                return this.geojsonData.features.push({
-                    type: "Feature",
-                    geometry: {
-                        type: "Point",
-                        coordinates: [parseFloat(stop.longitude), parseFloat(stop.latitude)],
-                    },
-                    properties: {
-                        title: stop.title,
-                        stopCount: stop.stopCount,
-                        imageSrc: stop.imageSrc,
-                        altText: stop.altText,
-                    },
-                })
-            })
+            this.stops.map((stop) => this.geojsonData.features.push({
+                type: "Feature",
+                geometry: {
+                    type: "Point",
+                    coordinates: [parseFloat(stop.longitude), parseFloat(stop.latitude)],
+                },
+                properties: {
+                    title: stop.title,
+                    stopCount: stop.stopCount,
+                    imageSrc: stop.imageSrc,
+                    altText: stop.altText,
+                },
+            }))
         },
         addMapMarkers() {
-            this.geojsonData.features.forEach(feature => {
-                let markerComponent = new Vue({
+            this.geojsonData.features.forEach((feature) => {
+                const markerComponent = new Vue({
                     ...VsItineraryMapMarker,
                     parent: this,
                     propsData: {
-                        feature: feature,
+                        feature,
                     },
                 })
 
                 markerComponent.$mount()
 
-                let mapboxMarker = new mapboxgl.Marker(markerComponent.$el)
+                const mapboxMarker = new mapboxgl.Marker(markerComponent.$el)
                     .setLngLat(feature.geometry.coordinates)
                     .addTo(this.mapbox.map)
 
@@ -166,6 +184,7 @@ export default {
         },
         addMapPopup() {
             this.removeMapPopup()
+
             if (this.highlightedStopCoordinates !== null && this.highlightedStop !== null) {
                 this.popup = new mapboxgl.Popup({
                     closeButton: false,
@@ -188,7 +207,7 @@ export default {
                             <h4 class="vs-itinerary__map-popup-stop-number mb-0">${this.labels.stopLabel} ${this.highlightedStop.properties.stopCount}</h4>
                             <p class="vs-itinerary__map-popup-stop-name">${this.highlightedStop.properties.title}</p>
                             </div>
-                        `
+                        `,
                     )
                     .addTo(this.mapbox.map)
             }
@@ -217,7 +236,7 @@ export default {
                 return
             }
 
-            this.observer = new IntersectionObserver(entries => {
+            this.observer = new IntersectionObserver((entries) => {
                 if (entries[0].intersectionRatio > 0) {
                     this.observer.unobserve(this.$el)
                     this.initialiseMapComponent()
@@ -230,28 +249,8 @@ export default {
             this.popup = null
         },
     },
-    created() {
-        // Store <body> style attribute, if one exists.
-        this.bodyStyleAttribute =
-            document.body.getAttribute("style") !== null ? document.body.getAttribute("style") : ""
-        // Set access token.
-        mapboxgl.accessToken = this.accessToken
-
-        // Disable WebGL if its causing performance problems.
-        mapboxgl.supported({
-            failIfMajorPerformanceCaveat: true,
-        })
-    },
     onResize() {
-        this.isTablet = window.innerWidth >= 768 ? true : false
-    },
-    mounted() {
-        this.lazyloadMapComponent()
-        this.isTablet = window.innerWidth >= 768 ? true : false
-        window.addEventListener("resize", this.onResize)
-    },
-    destroyed() {
-        window.removeEventListener("resize", this.onResize)
+        this.isTablet = window.innerWidth >= 768
     },
 }
 </script>
@@ -296,7 +295,7 @@ export default {
 
   const sampleItinerary = require("../../../../../assets/fixtures/itineraries/sampleItinerary.json")
   const stops = [];
-  
+
   sampleItinerary.days.map(day => {
     day.stops.map(stop => {
       return stops.push({
@@ -323,9 +322,9 @@ export default {
           "mapControlsCompass": "Reset angle",
           "mapControlsZoomIn": "Zoom in",
           "mapControlsZoomOut": "Zoom out",
-          
+
       }'
     >
     </vs-itinerary-map>
-  ``` 
+  ```
 </docs>

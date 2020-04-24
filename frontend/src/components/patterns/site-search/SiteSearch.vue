@@ -1,5 +1,5 @@
 <template>
-    <b-form
+    <BForm
         role="search"
         class="d-flex align-items-start py-2 py-md-4"
         action
@@ -11,12 +11,19 @@
         tabindex="-1"
     >
         <div class="d-flex flex-column flex-grow-1 position-relative">
-            <label for="search-input" class="position-absolute vs-site-search__label m-0">
+            <label
+                for="search-input"
+                class="position-absolute vs-site-search__label m-0"
+            >
                 <span class="sr-only">{{ labelText }}</span>
-                <vs-icon name="search" size="sm" variant="secondary" />
+                <VsIcon
+                    name="search"
+                    size="sm"
+                    variant="secondary"
+                />
             </label>
 
-            <vs-form-input
+            <VsFormInput
                 type="search"
                 class="px-9 vs-site-search__input"
                 :placeholder="labelText"
@@ -28,11 +35,17 @@
                 @input.native="onInput"
             />
 
-            <b-form-invalid-feedback v-if="validated === false" :state="validated">{{
-                validationText
-            }}</b-form-invalid-feedback>
-            <div v-if="searchTerm.length" class="position-absolute vs-site-search__clear-container">
-                <vs-button
+            <BFormInvalidFeedback
+                v-if="validated === false"
+                :state="validated"
+            >
+                {{ validationText }}
+            </BFormInvalidFeedback>
+            <div
+                v-if="searchTerm.length"
+                class="position-absolute vs-site-search__clear-container"
+            >
+                <VsButton
                     variant="transparent"
                     type="button"
                     class="px-1"
@@ -41,23 +54,31 @@
                     @click.native.prevent="clearSearchFieldAndFocus()"
                 >
                     <span class="sr-only-sm-down d-sm-block">{{ clearButtonText }}</span>
-                    <vs-icon class="d-sm-none" name="close" size="xs" variant="dark" />
-                </vs-button>
+                    <VsIcon
+                        class="d-sm-none"
+                        name="close"
+                        size="xs"
+                        variant="dark"
+                    />
+                </VsButton>
             </div>
         </div>
-        <vs-button type="submit" class="px-md-5" variant="primary">{{
-            submitButtonText
-        }}</vs-button>
-    </b-form>
+        <VsButton
+            type="submit"
+            class="px-md-5"
+            variant="primary"
+        >
+            {{ submitButtonText }}
+        </VsButton>
+    </BForm>
 </template>
 
 <script>
 import VsIcon from "@components/elements/icon/Icon"
 import VsFormInput from "@components/elements/form-input/FormInput"
 
-import drawerStore from "../drawer/drawer.store"
-
 import { BForm, BFormInvalidFeedback } from "bootstrap-vue"
+import drawerStore from "../drawer/drawer.store"
 
 export default {
     name: "VsSiteSearch",
@@ -139,6 +160,8 @@ export default {
             } else {
                 return true
             }
+
+            return false
         },
         onInput() {
             this.validated = this.isValid ? null : false

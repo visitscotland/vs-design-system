@@ -1,52 +1,55 @@
 <template>
-  <component :is="type">
-    <b-collapse id="collapse-mobile-nav">
-      <div class="vs-mobile-nav__wrapper">
-        <vs-container>
-          <vs-row no-gutters>
-            <vs-col>
-              <nav class="vs-mobile-nav" :aria-label="name">
-                <ul class="vs-mobile-nav__list vs-mobile-nav__list--level1 list-unstyled">
-                  <slot />
-                </ul>
-              </nav>
-            </vs-col>
-          </vs-row>
-        </vs-container>
-      </div>
-    </b-collapse>
-  </component>
+    <Component :is="type">
+        <BCollapse id="collapse-mobile-nav">
+            <div class="vs-mobile-nav__wrapper">
+                <VsContainer>
+                    <VsRow no-gutters>
+                        <VsCol>
+                            <nav
+                                class="vs-mobile-nav"
+                                :aria-label="name"
+                            >
+                                <ul class="vs-mobile-nav__list vs-mobile-nav__list--level1 list-unstyled">
+                                    <slot />
+                                </ul>
+                            </nav>
+                        </VsCol>
+                    </VsRow>
+                </VsContainer>
+            </div>
+        </BCollapse>
+    </Component>
 </template>
 
 <script>
-import VsMobileNavListItem from "./MobileNavListItem"
 import { BCollapse } from "bootstrap-vue"
+import VsMobileNavListItem from "./MobileNavListItem"
 
 export default {
-  name: "VsMobileNav",
-  status: "prototype",
-  release: "0.0.1",
-  components: {
-    VsMobileNavListItem,
-    BCollapse,
-  },
-  data() {
-    return {
-      show: false,
-    }
-  },
-  props: {
-    /**
-     * The html element name used for the component
-     */
-    type: {
-      type: String,
-      default: "div",
+    name: "VsMobileNav",
+    status: "prototype",
+    release: "0.0.1",
+    components: {
+        VsMobileNavListItem,
+        BCollapse,
     },
-    name: {
-      type: String,
+    props: {
+        /**
+         * The html element name used for the component
+         */
+        type: {
+            type: String,
+            default: "div",
+        },
+        name: {
+            type: String,
+        },
     },
-  },
+    data() {
+        return {
+            show: false,
+        }
+    },
 }
 </script>
 
@@ -102,7 +105,7 @@ export default {
 
   <div style="position: relative; height: 600px; overflow-y: scroll; max-width: 400px;">
     <vs-mobile-nav-button name="Mobile navigation"></vs-mobile-nav-button>
-    <vs-mobile-nav name="Mobile navigation"> 
+    <vs-mobile-nav name="Mobile navigation">
       <vs-mobile-nav-list-item
         v-for="(item, index) in header.mainNav"
         :level="1"
