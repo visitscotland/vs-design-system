@@ -33,6 +33,7 @@ export default {
          */
         heading: {
             type: String,
+            default: "",
         },
 
         /**

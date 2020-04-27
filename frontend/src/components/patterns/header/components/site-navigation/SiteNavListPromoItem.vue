@@ -40,6 +40,7 @@ export default {
     props: {
         imageHref: {
             type: String,
+            default: "",
         },
     },
     computed: {
@@ -60,7 +61,10 @@ export default {
                 return false
             }
 
-            const firstSibling = find(this.$parent.$children, (child) => child.$options.name === this.$options.name && child.imageHref)
+            const firstSibling = find(
+                this.$parent.$children,
+                (child) => child.$options.name === this.$options.name && child.imageHref,
+            )
 
             return this._uid === get(firstSibling, "_uid")
         },

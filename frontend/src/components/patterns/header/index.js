@@ -12,9 +12,8 @@ import VsMobileNavListItem from "./components/MobileNav/MobileNavListItem"
 import VsMobileNavPromoItem from "./components/MobileNav/MobileNavPromoItem"
 import VsMobileNavPromoList from "./components/MobileNav/MobileNavPromoList"
 import VsHeaderDrawerToggle from "./components/drawer-toggle/HeaderDrawerToggle"
-import VsHeaderDropdown from "./components/drawer-toggle/HeaderDropdown"
-import VsHeaderListGroup from "./components/list-group/VsHeaderListGroup"
-import VsHeaderListGroupItem from "./components/list-group/VsHeaderListGroupItem"
+import VsHeaderListGroup from "./components/list-group/HeaderListGroup"
+import VsHeaderListGroupItem from "./components/list-group/HeaderListGroupItem"
 
 export {
     VsDesktopNav,
@@ -31,7 +30,6 @@ export {
     VsMobileNavPromoItem,
     VsMobileNavPromoList,
     VsHeaderDrawerToggle,
-    VsHeaderDropdown,
     VsHeaderListGroup,
     VsHeaderListGroupItem,
 }

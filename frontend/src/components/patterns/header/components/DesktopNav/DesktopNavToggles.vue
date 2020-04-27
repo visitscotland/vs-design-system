@@ -15,6 +15,7 @@
             :id="formattedToggleId"
             v-b-toggle="formattedCollapsePaneId"
             @click="setFocus()"
+            @keydown="setFocus()"
         >
             {{ title }}
         </button>
@@ -56,33 +57,51 @@ export default {
         },
         href: {
             type: String,
+            default: "",
         },
         isExternal: {
             type: Boolean,
         },
         trackingId: {
             type: String,
+            default: "",
         },
         title: {
             type: String,
+            default: "",
         },
         level: {
             type: Number,
+            default: 0,
         },
         subnav: {
             type: Array,
+            default() {
+                return []
+            },
         },
         promoList: {
             type: Array,
+            default() {
+                return []
+            },
         },
         promoItem: {
             type: Object,
+            default() {
+                return {
+                }
+            },
         },
         chartWidgets: {
             type: Array,
+            default() {
+                return []
+            },
         },
         toggleId: {
             type: Number,
+            default: 0,
         },
     },
     data() {
@@ -131,21 +150,21 @@ export default {
 
 .vs-desktop-nav__button--level1,
 .vs-desktop-nav__link--level1 {
-  @extend %button-reset;
-  @extend %main-nav-button-style;
-  width: auto;
-  padding: 0 0.5rem;
-  position: relative;
+    @extend %button-reset;
+    @extend %main-nav-button-style;
+    width: auto;
+    padding: 0 0.5rem;
+    position: relative;
 
-  @include media-breakpoint-up(xl) {
-    font-size: 1.125rem;
-  }
+    @include media-breakpoint-up(xl) {
+        font-size: 1.125rem;
+    }
 
-  &[aria-expanded="true"],
-  &:hover,
-  &:focus {
-    @extend %focus-pink-inset;
-  }
+    &[aria-expanded="true"],
+    &:hover,
+    &:focus {
+        @extend %focus-pink-inset;
+    }
 }
 </style>
 

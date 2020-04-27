@@ -8,7 +8,7 @@
     >
         <span
             class="sr-only"
-            v-if="this.favourited"
+            v-if="favourited"
         >Remove from Favourites</span>
         <span
             class="sr-only"
@@ -45,9 +45,11 @@ export default {
     props: {
         title: {
             type: String,
+            default: "",
         },
         href: {
             type: String,
+            default: "",
         },
     },
     // store,
