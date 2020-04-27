@@ -12,6 +12,8 @@ import {
 
 Vue.use(Vuex)
 
+/* eslint-disable no-shadow */
+
 const stateTypes = {
     activeContents: "active_contents",
     returnFocusElements: "return_focus_elements",
@@ -127,3 +129,5 @@ export default new Vuex.Store({
         },
     },
 })
+
+/* eslint-enable no-shadow */

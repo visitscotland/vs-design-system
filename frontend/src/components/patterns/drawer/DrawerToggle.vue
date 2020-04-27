@@ -14,7 +14,7 @@
 
 <script>
 import VsButton from "@components/elements/button"
-import drawerStore from "./drawer.store"
+import { getters } from "./drawer.store"
 import { IS_ACTIVE_CONTENT } from "./drawer.store.getter-types"
 import { CLOSE_DRAWER, SHOW_DRAWER_CONTENT } from "./drawer.store.action-types"
 
@@ -39,7 +39,7 @@ export default {
     },
     computed: {
         contentIsVisible() {
-            return drawerStore.getters[`drawer/${IS_ACTIVE_CONTENT}`](
+            return getters.getters[`drawer/${IS_ACTIVE_CONTENT}`](
                 this.contentKey,
                 this.drawerKey,
             )
@@ -47,14 +47,14 @@ export default {
     },
     methods: {
         closeDrawer() {
-            return drawerStore
+            return getters
                 .dispatch(`drawer/${CLOSE_DRAWER}`, {
                     drawerKey: this.drawerKey,
                 })
                 .then(this.focusSelf)
         },
         showContent() {
-            return drawerStore.dispatch(`drawer/${SHOW_DRAWER_CONTENT}`, {
+            return getters.dispatch(`drawer/${SHOW_DRAWER_CONTENT}`, {
                 drawerKey: this.drawerKey,
                 contentKey: this.contentKey,
                 returnFocusElement: this.$refs.self,
