@@ -131,7 +131,9 @@ svg.active {
 
 <docs>
   ```jsx
-    const sampleGeojsonData = require("../../../../../assets/fixtures/itineraries/sampleItineraryGeojson.json")
+    const sampleGeojsonData = require(
+        "../../../../../assets/fixtures/itineraries/sampleItineraryGeojson.json"
+    )
 
     <vs-row class="py-5">
       <vs-col>

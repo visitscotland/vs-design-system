@@ -245,8 +245,12 @@ export default {
             this.observer.observe(this.$el)
         },
         removeMapPopup() {
-            this.popup !== null ? this.popup.remove() : null
-            this.popup = null
+            if (this.popup !== null) {
+                this.popup.remove()
+                this.popup = null
+            } else {
+                this.popup = null
+            }
         },
     },
     onResize() {
