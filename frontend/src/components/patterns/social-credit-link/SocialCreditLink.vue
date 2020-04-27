@@ -1,9 +1,19 @@
 <template>
     <div class="social-credit">
-        <vs-icon v-if="source" :name="source" variant="light" size="xs" :padding="1" />
-        <vs-link class="social-credit__link" :href="socialPostUrl" external>
-            {{ this.credit }}
-        </vs-link>
+        <VsIcon
+            v-if="source"
+            :name="source"
+            variant="light"
+            size="xs"
+            :padding="1"
+        />
+        <VsLink
+            class="social-credit__link"
+            :href="socialPostUrl"
+            external
+        >
+            {{ credit }}
+        </VsLink>
     </div>
 </template>
 
@@ -15,7 +25,10 @@ export default {
     name: "VsSocialCreditLink",
     status: "prototype",
     release: "0.0.1",
-    components: { VsLink, VsIcon },
+    components: {
+        VsLink,
+        VsIcon,
+    },
     props: {
         /**
          * The social credit
@@ -39,9 +52,8 @@ export default {
          */
         source: {
             type: String,
-            validator: value => {
-                return value.match(/(instagram)/)
-            },
+            default: "",
+            validator: (value) => value.match(/(instagram)/),
         },
     },
 }

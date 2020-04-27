@@ -2,7 +2,7 @@
     <div class="vs-summary-box-distance-label text-center d-block position-absolute w-100">
         <strong class="d-block">{{ distanceLabel }}</strong>
         <div class="d-flex justify-content-center align-items-center">
-            <vs-button
+            <VsButton
                 @click.native="handleClick(true)"
                 :class="showMiles ? 'active' : ''"
                 :aria-expanded="showMiles ? 'true' : 'false'"
@@ -10,9 +10,9 @@
                 aria-controls="display_miles"
             >
                 <abbr :title="milesLabel">{{ milesAbbr }}</abbr>
-            </vs-button>
+            </VsButton>
             <span class="separator">/</span>
-            <vs-button
+            <VsButton
                 @click.native="handleClick(false)"
                 :class="showMiles ? '' : 'active'"
                 :aria-expanded="showMiles ? 'false' : 'true'"
@@ -20,7 +20,7 @@
                 aria-controls="display_kilometres"
             >
                 <abbr :title="kilometresLabel">{{ kilometresAbbr }}</abbr>
-            </vs-button>
+            </VsButton>
         </div>
     </div>
 </template>
@@ -29,17 +29,13 @@
 import summaryBoxStore from "@components/patterns/summary-box/summaryBox.store"
 import VsButton from "@components/elements/button/Button"
 /**
- * Summary Box Distance Label component includes toggles to change the distance type displayed within the VsSummaryBoxDistance component
+ * Summary Box Distance Label component includes toggles to change
+ * the distance type displayed within the VsSummaryBoxDistance component
  */
 export default {
     name: "VsSummaryBoxDistanceLabel",
     status: "prototype",
     release: "0.0.1",
-    data() {
-        return {
-            showMiles: true,
-        }
-    },
     components: {
         VsButton,
     },
@@ -65,14 +61,19 @@ export default {
             default: "km",
         },
     },
-    watch: {
-        isShowingMiles() {
-            this.toggleShowMiles()
-        },
+    data() {
+        return {
+            showMiles: true,
+        }
     },
     computed: {
         isShowingMiles() {
             return summaryBoxStore.getters["summaryBox/getShowMiles"]
+        },
+    },
+    watch: {
+        isShowingMiles() {
+            this.toggleShowMiles()
         },
     },
     summaryBoxStore,
@@ -117,7 +118,7 @@ export default {
 </style>
 
 <docs>
-  
+
   ```jsx
     <div class="position-relative p-5">
         <vs-summary-box-distance-label
