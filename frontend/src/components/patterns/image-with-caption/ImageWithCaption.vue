@@ -3,7 +3,7 @@
         <div class="vs-image-with-caption__image-wrapper">
             <!-- @slot Contains the media to be shown. Defaults to an image.  -->
             <slot>
-                <vs-img
+                <VsImg
                     v-if="imageSrc"
                     class="lazyload"
                     :src="imageSrc"
@@ -11,11 +11,10 @@
                     :data-srcset="imageSrc"
                     :alt="altText"
                     data-sizes="auto"
-                >
-                </vs-img>
+                />
             </slot>
 
-            <vs-button
+            <VsButton
                 variant="outline-transparent"
                 class="vs-image-with-caption__toggle-caption-btn position-absolute"
                 :class="{ 'd-block': closedDefaultCaption }"
@@ -24,7 +23,7 @@
                 :aria-expanded="showCaption ? 'true' : 'false'"
                 @click.native="toggleCaption"
             >
-                <vs-icon
+                <VsIcon
                     v-if="showCaption"
                     name="close-circle"
                     variant="light"
@@ -32,10 +31,17 @@
                     :padding="0"
                 />
                 <!-- @slot Contains the icon for the toggle button. Defaults to info icon. -->
-                <slot v-else name="toggle-icon">
-                    <vs-svg path="info-toggle" height="24" width="24" />
+                <slot
+                    v-else
+                    name="toggle-icon"
+                >
+                    <VsSvg
+                        path="info-toggle"
+                        height="24"
+                        width="24"
+                    />
                 </slot>
-            </vs-button>
+            </VsButton>
         </div>
 
         <div
@@ -53,8 +59,8 @@
                 ]"
                 class="d-flex d-sm-block"
             >
-                <vs-row class="justify-content-center justify-content-sm-start">
-                    <vs-col
+                <VsRow class="justify-content-center justify-content-sm-start">
+                    <VsCol
                         class="order-2 order-sm-1"
                         :class="[!showMap ? 'align-self-center' : '']"
                     >
@@ -72,21 +78,23 @@
                             <!-- @slot Put the social credit link here -->
                             <slot name="social-link" />
                         </div>
-                    </vs-col>
-                    <vs-col
-                        class="col-12 col-sm-auto order-1 order-sm-2 pl-sm-0 align-self-end align-self-sm-start"
+                    </VsCol>
+                    <VsCol
+                        class="col-12 col-sm-auto order-1
+                        order-sm-2 pl-sm-0 align-self-end
+                        align-self-sm-start"
                         v-if="showMap && variant !== isLargeCaption"
                     >
                         <div class="map-wrapper pt-3 pt-sm-2 pb-sm-2 pr-sm-4 mx-auto">
-                            <vs-image-location-map
+                            <VsImageLocationMap
                                 :latitude="latitude"
                                 :longitude="longitude"
                                 :map-outline-color="tokens.color_white"
                                 :map-marker-color="tokens.color_secondary_teal_tint_3"
-                            ></vs-image-location-map>
+                            />
                         </div>
-                    </vs-col>
-                </vs-row>
+                    </VsCol>
+                </VsRow>
             </figcaption>
         </div>
     </figure>
@@ -96,7 +104,7 @@
 import { lazysizes } from "lazysizes"
 import VsSvg from "@components/elements/svg/Svg"
 import VsButton from "@components/elements/button/Button"
-import { VsContainer, VsRow, VsCol } from "@components/elements/layout"
+import { VsRow, VsCol } from "@components/elements/layout"
 import VsImageLocationMap from "@components/patterns/image-location-map/ImageLocationMap"
 import designTokens from "@/assets/tokens/tokens.json"
 
@@ -107,12 +115,12 @@ export default {
     name: "VsImageWithCaption",
     status: "prototype",
     release: "0.0.1",
-    components: { VsContainer, VsRow, VsCol, VsImageLocationMap, VsButton, VsSvg },
-    data() {
-        return {
-            showCaption: false,
-            tokens: designTokens,
-        }
+    components: {
+        VsRow,
+        VsCol,
+        VsImageLocationMap,
+        VsButton,
+        VsSvg,
     },
     props: {
         /**
@@ -120,6 +128,7 @@ export default {
          */
         altText: {
             type: String,
+            default: "",
         },
 
         /**
@@ -135,6 +144,7 @@ export default {
          */
         imageSrc: {
             type: String,
+            default: "",
         },
 
         /**
@@ -142,6 +152,7 @@ export default {
          */
         latitude: {
             type: String,
+            default: "",
         },
 
         /**
@@ -149,6 +160,7 @@ export default {
          */
         longitude: {
             type: String,
+            default: "",
         },
 
         /**
@@ -166,22 +178,26 @@ export default {
         variant: {
             type: String,
             default: "fullwidth",
-            validator: value => {
-                return value.match(/(fullwidth|large)/)
-            },
+            validator: (value) => value.match(/(fullwidth|large)/),
         },
+    },
+    data() {
+        return {
+            showCaption: false,
+            tokens: designTokens,
+        }
     },
     computed: {
         showMap() {
-            return this.longitude && this.latitude ? true : false
+            return !!(this.longitude && this.latitude)
         },
         isLargeCaption() {
-            return this.variant === "large" ? true : false
+            return this.variant === "large"
         },
     },
     methods: {
         toggleCaption() {
-            return (this.showCaption = !this.showCaption)
+            this.showCaption = !this.showCaption
         },
     },
 }
@@ -301,7 +317,7 @@ img {
 </style>
 
 <docs>
-  
+
   ```jsx
 
     <h3>Large Caption Style</h3>
@@ -316,11 +332,11 @@ img {
         style="max-width:700px"
         class="mb-11"
     >
-        <vs-img 
-            class="lazyload" 
+        <vs-img
+            class="lazyload"
             :src="item.imageSrc"
             srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
-            :data-srcset="item.imageSrc" 
+            :data-srcset="item.imageSrc"
             :alt="item.altText"
             data-sizes="auto">
         </vs-img>
@@ -344,11 +360,11 @@ img {
         variant="fullwidth"
         style="max-width:700px"
     >
-        <vs-img 
-            class="lazyload" 
+        <vs-img
+            class="lazyload"
             :src="item.imageSrc"
             srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
-            :data-srcset="item.imageSrc" 
+            :data-srcset="item.imageSrc"
             :alt="item.altText"
             data-sizes="auto">
         </vs-img>
@@ -371,11 +387,11 @@ img {
         variant="fullwidth"
         style="max-width:300px"
     >
-        <vs-img 
-            class="lazyload" 
+        <vs-img
+            class="lazyload"
             :src="item.imageSrc"
             srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
-            :data-srcset="item.imageSrc" 
+            :data-srcset="item.imageSrc"
             :alt="item.altText"
             data-sizes="auto">
         </vs-img>
@@ -400,11 +416,11 @@ img {
         :variant="item.variant"
         style="max-width:700px"
     >
-        <vs-img 
-            class="lazyload" 
+        <vs-img
+            class="lazyload"
             :src="item.imageSrc"
             srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
-            :data-srcset="item.imageSrc" 
+            :data-srcset="item.imageSrc"
             :alt="item.altText"
             data-sizes="auto">
         </vs-img>
@@ -415,11 +431,11 @@ img {
             {{ item.caption }}
         </span>
 
-        <VsSocialCreditLink 
+        <VsSocialCreditLink
             slot="social-link"
             :credit="item.credit"
             :socialPostUrl="item.socialPostUrl"
-            :source="item.source" 
+            :source="item.source"
         >
         </VsSocialCreditLink>
     </vs-image-with-caption>
