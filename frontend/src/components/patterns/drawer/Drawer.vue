@@ -17,7 +17,7 @@ import smoothscroll from "smoothscroll-polyfill"
 
 import { BCollapse } from "bootstrap-vue"
 import VsContainer from "@components/elements/layout/Container"
-import drawerStore from "./drawer.store"
+import { getters } from "./drawer.store"
 import { REGISTER_DRAWER } from "./drawer.store.action-types"
 import { GET_ACTIVE_CONTENT } from "./drawer.store.getter-types"
 
@@ -59,7 +59,7 @@ export default {
     },
     computed: {
         activeContent() {
-            return drawerStore.getters[`drawer/${GET_ACTIVE_CONTENT}`](this.drawerKey)
+            return getters.getters[`drawer/${GET_ACTIVE_CONTENT}`](this.drawerKey)
         },
     },
     watch: {
@@ -72,7 +72,7 @@ export default {
          * We do this on beforeCreate, otherwise the keys in the store will not be
          * reactive for the computed prop above
          */
-        drawerStore.dispatch(`drawer/${REGISTER_DRAWER}`, {
+        getters.dispatch(`drawer/${REGISTER_DRAWER}`, {
             drawerKey: this.$options.propsData.drawerKey,
         })
     },
