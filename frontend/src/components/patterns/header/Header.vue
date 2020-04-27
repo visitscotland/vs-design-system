@@ -60,10 +60,11 @@
                         class="d-flex justify-content-end"
                     >
                         <!-- <ul
-              class="vs-desktop-nav__toggle-list d-none d-lg-flex justify-content-around list-unstyled m-0"
-            >
-              <slot name="desktop-nav-toggles" />
-            </ul> -->
+                            class="vs-desktop-nav__toggle-list
+                            d-none d-lg-flex justify-content-around list-unstyled m-0"
+                            >
+                                <slot name="desktop-nav-toggles" />
+                            </ul> -->
                         <slot name="bottom-right" />
                         <VsSiteNavMobileToggleButton
                             :is-open="siteNavOpen"
@@ -77,8 +78,8 @@
                 </VsRow>
             </VsContainer>
             <!-- <vs-site-nav :is-open="siteNavOpen" >
-        <slot name="site-navigation" />
-      </vs-site-nav> -->
+                    <slot name="site-navigation" />
+                </vs-site-nav> -->
             <VsDrawer
                 drawer-key="header-bottom"
                 class="py-4"
@@ -86,14 +87,16 @@
                 <slot name="bottom-drawer" />
             </VsDrawer>
             <!-- <div class="d-none d-lg-block">
-        <vs-desktop-nav name="Main navigation"> <slot name="desktop-submenu" /> </vs-desktop-nav>
-      </div> -->
+            <vs-desktop-nav name="Main navigation">
+                <slot name="desktop-submenu" />
+            </vs-desktop-nav>
+        </div> -->
 
-            <!-- <div>
-        <vs-mobile-nav name="Main navigation" @setScrollOffset="setScrollOffset">
-          <slot name="mobile-nav-items" />
-        </vs-mobile-nav>
-      </div> -->
+        <!-- <div>
+            <vs-mobile-nav name="Main navigation" @setScrollOffset="setScrollOffset">
+                <slot name="mobile-nav-items" />
+            </vs-mobile-nav>
+        </div> -->
         </div>
     </Component>
 </template>
@@ -112,7 +115,6 @@ import {
 import VsDrawer from "../drawer/Drawer"
 import VsDrawerContent from "../drawer/DrawerContent"
 import { VsSiteNavMobileToggleButton, VsSiteNav } from "./components/site-navigation"
-
 
 import HandDownFocus from "@/directives/hand-down-focus"
 
@@ -134,8 +136,6 @@ export default {
     },
     directives: {
         "b-toggle": VBToggle,
-    },
-    directives: {
         HandDownFocus,
     },
     props: {
@@ -158,9 +158,7 @@ export default {
     methods: {
         toggleMainNav() {
             this.siteNavOpen = !this.siteNavOpen
-            console.log("toggle site nav")
             Vue.nextTick(() => {
-                console.log("toggle site nav next tick")
                 this.$refs.siteNav.$el.focus()
             })
         },

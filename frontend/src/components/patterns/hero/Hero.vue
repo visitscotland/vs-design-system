@@ -20,7 +20,7 @@
                     height="24"
                     width="24"
                 />
-                <span class="sr-only">{{ this.toggleButtonText }}</span>
+                <span class="sr-only">{{ toggleButtonText }}</span>
             </VsButton>
         </div>
 
@@ -31,25 +31,25 @@
         >
             <figcaption
                 ref="figcaption"
-                v-if="this.showCaptionData || this.showMap"
+                v-if="showCaptionData || showMap"
             >
                 <VsRow>
                     <VsCol>
                         <div
                             class="p-4"
-                            v-if="this.showCaptionData"
+                            v-if="showCaptionData"
                         >
                             <p
                                 class="vs-hero__image-caption"
-                                v-if="this.caption"
+                                v-if="caption"
                             >
-                                {{ this.caption }}
+                                {{ caption }}
                             </p>
                             <p
                                 class="vs-hero__image-credit m-0"
-                                v-if="this.credit"
+                                v-if="credit"
                             >
-                                &copy; {{ this.credit }}
+                                &copy; {{ credit }}
                             </p>
                         </div>
                     </VsCol>
@@ -60,8 +60,8 @@
                     >
                         <div class="map__wrapper">
                             <VsImageLocationMap
-                                :latitude="this.latitude"
-                                :longitude="this.longitude"
+                                :latitude="latitude"
+                                :longitude="longitude"
                                 map-outline-color="#FFFFFF"
                                 map-marker-color="#7CC9CC"
                             />
@@ -102,6 +102,7 @@ export default {
          */
         altText: {
             type: String,
+            default: "",
         },
 
         /**
@@ -125,6 +126,7 @@ export default {
          */
         imageSrc: {
             type: String,
+            default: "",
         },
 
         /**
@@ -171,7 +173,7 @@ export default {
     },
     methods: {
         toggleCaption() {
-            return (this.showCaption = !this.showCaption)
+            this.showCaption = !this.showCaption
         },
     },
 }

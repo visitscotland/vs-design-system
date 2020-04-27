@@ -23,7 +23,7 @@ import {
 } from "@components/elements/layout"
 import VsSiteNavList from "./SiteNavList"
 
-import HandDownFocus from "@/directives/hand-down-focus.js"
+import HandDownFocus from "@/directives/hand-down-focus"
 
 export default {
     name: "VsSiteNav",
@@ -39,10 +39,8 @@ export default {
         HandDownFocus,
     },
     computed: {
-        firstNavItem() {
-            console.log(this.$slots.default)
-            debugger
-        },
+        // firstNavItem() {
+        // },
     },
 }
 </script>

@@ -81,24 +81,32 @@ export default {
         },
         href: {
             type: String,
+            default: "",
         },
         isExternal: {
             type: Boolean,
         },
         trackingId: {
             type: String,
+            default: "",
         },
         title: {
             type: String,
+            default: "",
         },
         level: {
             type: Number,
+            default: 0,
         },
         subnav: {
             type: Array,
+            default() {
+                return []
+            },
         },
         subnavId: {
             type: Number,
+            default: 0,
         },
     },
     data() {

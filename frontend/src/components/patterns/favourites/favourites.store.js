@@ -20,7 +20,9 @@ export default new Vuex.Store({
                     state.favourites.unshift(newFavourite)
                 },
                 DELETE_FAVOURITE: (state, payload) => {
-                    const index = state.favourites.findIndex((favourite) => favourite.href === payload)
+                    const index = state.favourites.findIndex(
+                        (favourite) => favourite.href === payload,
+                    )
                     state.favourites.splice(index, 1)
                 },
             },

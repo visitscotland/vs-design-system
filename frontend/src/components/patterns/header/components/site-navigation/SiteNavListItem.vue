@@ -59,7 +59,9 @@
                         class="vs-site-nav__link vs-site-nav__link--landing-page"
                         :href="href"
                         :data-vs-track="trackingId"
-                    >See all {{ lowerCaseContent }}</a>
+                    >
+                        See all {{ lowerCaseContent }}
+                    </a>
                 </li>
                 <slot name="subnav" />
             </VsSiteNavList>
@@ -88,15 +90,21 @@ export default {
     props: {
         href: {
             type: String,
+            default: "",
         },
         trackingId: {
             type: String,
+            default: "",
         },
         title: {
             type: String,
+            default: "",
         },
         subnav: {
             type: Array,
+            default() {
+                return []
+            },
         },
     },
     data() {

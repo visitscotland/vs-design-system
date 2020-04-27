@@ -57,21 +57,26 @@ export default {
         },
         href: {
             type: String,
+            default: "",
         },
         isExternal: {
             type: Boolean,
         },
         title: {
             type: String,
+            default: "",
         },
         buttonText: {
             type: String,
+            default: "",
         },
         description: {
             type: String,
+            default: "",
         },
         imageLink: {
             type: String,
+            default: "",
         },
     },
     data() {
