@@ -109,7 +109,9 @@ module.exports = {
 				"*.cypress.spec.js"
 			],
 			rules: {
-				"jest/expect-expect": "off"
+                "jest/expect-expect": "off",
+                "jest/valid-expect": "off",
+                "jest/valid-expect-in-promise": "off"
 			}
 		}
 	]
