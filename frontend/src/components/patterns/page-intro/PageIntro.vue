@@ -79,7 +79,7 @@ export default {
 <docs>
 
   ```jsx
-    const sampleItinerary = require("../../../assets/fixtures/itineraries/sampleItinerary.json")
+    const sampleItinerary = require("../../../assets/fixtures/itineraries/sample-itinerary.json")
     <vs-page-intro>
       <vs-hero
         slot="hero"
