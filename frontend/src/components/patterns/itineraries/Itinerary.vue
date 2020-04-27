@@ -149,7 +149,7 @@ export default {
       <img
         class="lazyload"
         :src="itineraries.sampleItinerary.image.imageSrc"
-        srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+        :srcset=keysList.keysList[0].imageDataURI
         :data-srcset="itineraries.sampleItinerary.image.imageSrc"
         :alt="itineraries.sampleItinerary.image.altText"
         data-sizes="auto"
@@ -264,7 +264,7 @@ export default {
   <!-- TODO: move mapbox prod and dev keys to an environment variable -->
     <vs-itinerary-map
         slot="map"
-        access-token="pk.eyJ1IjoidmlzaXRzY290bGFuZC1kZXYiLCJhIjoiY2p4MGZwcmtjMDBlczN5bTBnY3pjeHNubCJ9.d3CJWPvX9FfjfSNAW98Q6w"
+        :access-token=keysList.keysList[0].mapToken
         overview-map-longitude="57.81"
         overview-map-latitude="-4.13"
         overview-map-zoom="5"
@@ -339,7 +339,7 @@ export default {
                     <vs-img
                         class="lazyload"
                         :src="stop.image.imageSrc"
-                        srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                        :srcset=keysList.keysList[0].imageDataURI
                         :data-srcset="stop.image.imageSrc"
                         :alt="stop.image.altText"
                         data-sizes="auto">

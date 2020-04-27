@@ -149,7 +149,6 @@ export default {
                     <vs-img
                         class="lazyload"
                         :src="stop.image.imageSrc"
-                        srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
                         :data-srcset="stop.image.imageSrc"
                         :alt="stop.image.altText"
                         data-sizes="auto">

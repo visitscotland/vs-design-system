@@ -7,7 +7,6 @@
                     v-if="imageSrc"
                     class="lazyload"
                     :src="imageSrc"
-                    srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
                     :data-srcset="imageSrc"
                     :alt="altText"
                     data-sizes="auto"
@@ -335,7 +334,6 @@ img {
         <vs-img
             class="lazyload"
             :src="item.imageSrc"
-            srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
             :data-srcset="item.imageSrc"
             :alt="item.altText"
             data-sizes="auto">
@@ -356,14 +354,13 @@ img {
         :altText="item.altText"
         :closedDefaultCaption="item.isSmall"
         :image-src="item.imageSrc"
-        :key="`fullwidth-${index}`"
+        :key="`fullwidth1-${index}`"
         variant="fullwidth"
         style="max-width:700px"
     >
         <vs-img
             class="lazyload"
             :src="item.imageSrc"
-            srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
             :data-srcset="item.imageSrc"
             :alt="item.altText"
             data-sizes="auto">
@@ -383,14 +380,13 @@ img {
         :altText="item.altText"
         :closedDefaultCaption="item.isSmall"
         :image-src="item.imageSrc"
-        :key="`fullwidth-${index}`"
+        :key="`fullwidth2-${index}`"
         variant="fullwidth"
         style="max-width:300px"
     >
         <vs-img
             class="lazyload"
             :src="item.imageSrc"
-            srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
             :data-srcset="item.imageSrc"
             :alt="item.altText"
             data-sizes="auto">
@@ -419,7 +415,6 @@ img {
         <vs-img
             class="lazyload"
             :src="item.imageSrc"
-            srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
             :data-srcset="item.imageSrc"
             :alt="item.altText"
             data-sizes="auto">
