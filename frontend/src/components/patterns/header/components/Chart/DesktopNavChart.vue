@@ -61,7 +61,7 @@ export default {
     },
     mounted() {
         const ctx = this.$refs[this.chartId].getContext("2d")
-
+        // eslint-disable-next-line no-unused-vars
         const thisChart = new Chart(ctx, {
             type: "bar",
             data: {

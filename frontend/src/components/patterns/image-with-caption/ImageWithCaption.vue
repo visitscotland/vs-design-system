@@ -100,6 +100,7 @@
 </template>
 
 <script>
+// eslint-disable-next-line no-unused-vars
 import { lazysizes } from "lazysizes"
 import VsSvg from "@components/elements/svg/Svg"
 import VsButton from "@components/elements/button/Button"

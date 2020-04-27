@@ -65,7 +65,7 @@ describe("Skip To component using ref target", () => {
             .click()
             .then(() => {
                 cy.get(`#${targetId1}`).should("have.focus")
-
+                // eslint-disable-next-line no-unused-expressions
                 expect(spy).to.be.called
             })
     })
@@ -108,7 +108,7 @@ describe("Skip To component using HTML Element target", () => {
             .click()
             .then(() => {
                 cy.get(`#${targetId2}`).should("have.focus")
-
+                // eslint-disable-next-line no-unused-expressions
                 expect(spy).to.be.called
             })
     })

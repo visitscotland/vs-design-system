@@ -78,7 +78,7 @@ import VsIcon from "@components/elements/icon/Icon"
 import VsFormInput from "@components/elements/form-input/FormInput"
 
 import { BForm, BFormInvalidFeedback } from "bootstrap-vue"
-import drawerStore from "../drawer/drawer.store"
+import { getters } from "../drawer/drawer.store"
 
 export default {
     name: "VsSiteSearch",
@@ -128,7 +128,7 @@ export default {
     },
     computed: {
         drawerModule() {
-            return drawerStore.getters["drawer/module"]
+            return getters["drawer/module"]
         },
         isValid() {
             return this.searchTerm.length > 0

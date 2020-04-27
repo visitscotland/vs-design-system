@@ -66,7 +66,7 @@ export default {
                 (child) => child.$options.name === this.$options.name && child.imageHref,
             )
 
-            return this._uid === get(firstSibling, "_uid")
+            return this.uid === get(firstSibling, "_uid")
         },
     },
 }
