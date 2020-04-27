@@ -64,7 +64,7 @@
                         class="order-2 order-sm-1"
                         :class="[!showMap ? 'align-self-center' : '']"
                     >
-                        <div :class="isLargeCaption ? 'p-4' : 'p-3 pr-8'">
+                        <div :class="isLargeCaption ? 'p-4' : 'px-4 py-3 pr-8'">
                             <p class="vs-image-with-caption__image-caption">
                                 <!-- @slot Put the caption here -->
                                 <slot name="caption" />
