@@ -1,31 +1,45 @@
 <template>
     <li class="vs-itinerary-day__list-item">
         <div class="vs-itinerary-day__header text-center position-relative">
-            <vs-heading level="2" class="mt-9">
-                <span class="vs-itinerary-day__title d-inline-block">{{ dayLabel }} {{ dayNumber }}</span>
-                <span slot="sub-heading">{{ dayTitle }}</span>   
-            </vs-heading>
-            <vs-button
+            <VsHeading
+                level="2"
+                class="mt-9"
+            >
+                <span class="vs-itinerary-day__title d-inline-block">
+                    {{ dayLabel }} {{ dayNumber }}
+                </span>
+                <span slot="sub-heading">{{ dayTitle }}</span>
+            </VsHeading>
+            <VsButton
                 :animate="false"
                 :aria-expanded="show ? 'true' : 'false'"
                 :aria-controls="'dayPanel_' + dayNumber"
                 @click.native="triggerToggle()"
                 aria-haspopup="true"
                 class="vs-itinerary-day__toggle-button position-absolute p-0"
-                v-if="!this.isDesktop"
+                v-if="!isDesktop"
                 variant="transparent"
             >
-                <vs-icon
-                    v-if="this.show"
+                <VsIcon
+                    v-if="show"
                     name="chevron-down"
                     variant="dark"
                     size="xs"
                     :padding="3"
                 />
-                <vs-icon v-else name="chevron-up" variant="dark" size="xs" :padding="3" />
-            </vs-button>
+                <VsIcon
+                    v-else
+                    name="chevron-up"
+                    variant="dark"
+                    size="xs"
+                    :padding="3"
+                />
+            </VsButton>
         </div>
-        <div v-show="this.show || this.isDesktop" :id="'dayPanel_' + dayNumber">
+        <div
+            v-show="show || isDesktop"
+            :id="'dayPanel_' + dayNumber"
+        >
             <slot name="day-transport" />
             <slot name="day-introduction" />
             <ul class="list-unstyled">
@@ -39,7 +53,6 @@
 import VsIcon from "@components/elements/icon/Icon"
 import VsHeading from "@components/elements/heading/Heading"
 import VsButton from "@components/elements/button/Button"
-import { VsRow, VsCol } from "@components/elements/layout"
 
 /**
  * Itinerary Day list items.
@@ -53,14 +66,6 @@ export default {
         VsHeading,
         VsButton,
         VsIcon,
-        VsRow,
-        VsCol,
-    },
-    data() {
-        return {
-            show: this.defaultShow,
-            isDesktop: window.innerWidth >= 1200 ? true : false,
-        }
     },
     props: {
         /**
@@ -93,19 +98,25 @@ export default {
             required: true,
         },
     },
-    methods: {
-        onResize() {
-            this.isDesktop = window.innerWidth >= 1200 ? true : false
-        },
-        triggerToggle() {
-            this.show = !this.show
-        },
+    data() {
+        return {
+            show: this.defaultShow,
+            isDesktop: window.innerWidth >= 1200,
+        }
     },
     mounted() {
         window.addEventListener("resize", this.onResize)
     },
     destroyed() {
         window.removeEventListener("resize", this.onResize)
+    },
+    methods: {
+        onResize() {
+            this.isDesktop = window.innerWidth >= 1200
+        },
+        triggerToggle() {
+            this.show = !this.show
+        },
     },
 }
 </script>
@@ -140,28 +151,35 @@ export default {
 
 <docs>
 ```jsx
-	<ul style="list-style-type: none; padding: 0;">
-		<vs-itinerary-day 
-			v-for="(day, index) in itineraries.sampleItinerary.days"
-			:defaultShow="(day.dayCount < 3) ? true : false"
-			:key="index"
+    <ul style="list-style-type: none; padding: 0;">
+        <vs-itinerary-day
+            v-for="(day, index) in itineraries.sampleItinerary.days"
+            :defaultShow="(day.dayCount < 3) ? true : false"
+            :key="index"
             :dayNumber="day.dayCount"
             dayLabel="Day"
             :dayTitle="day.title"
-           
-		>
-            <vs-description-list v-if="day.transport.length" class="text-center justify-content-center align-items-center" slot="day-transport">
+
+        >
+            <vs-description-list
+                v-if="day.transport.length"
+                class="text-center justify-content-center align-items-center"
+                slot="day-transport"
+            >
                 <dt class="list-inline-item">Transport:</dt>
-				<dd class="list-inline-item" v-for="(transportType, transportTypeIndex) in day.transport">
-					<vs-tooltip :title="transportType.value">
-						<vs-icon :name="transportType.key" variant="dark" size="sm" />
-					</vs-tooltip>
-					<span class="sr-only">{{transportType.value}}</span>
-				</dd>
+                <dd
+                    class="list-inline-item"
+                    v-for="(transportType, transportTypeIndex) in day.transport"
+                >
+                    <vs-tooltip :title="transportType.value">
+                        <vs-icon :name="transportType.key" variant="dark" size="sm" />
+                    </vs-tooltip>
+                    <span class="sr-only">{{transportType.value}}</span>
+                </dd>
             </vs-description-list>
 
-			<div slot="day-introduction" v-html="day.introduction"></div>
-		</vs-itinerary-day>
-	</ul>
+            <div slot="day-introduction" v-html="day.introduction"></div>
+        </vs-itinerary-day>
+    </ul>
 ```
 </docs>

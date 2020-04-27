@@ -12,10 +12,12 @@ export default {
     name: "VsSummaryBoxDisplay",
     status: "prototype",
     release: "0.0.1",
-    components: {},
+    components: {
+    },
     props: {
         text: {
             type: String,
+            default: "",
         },
     },
 }
@@ -37,7 +39,7 @@ export default {
 </style>
 
 <docs>
-  
+
   ```jsx
     <div class="py-2">
         <vs-summary-box-display

@@ -1,123 +1,145 @@
 <template>
-  <component
-    :is="type"
-    data-test="desktop-nav-list-item"
-    class="vs-desktop-nav__list-item"
-    :class="'vs-desktop-nav__list-item--level' + level"
-  >
-    <button
-      v-if="hasChildren"
-      data-test="desktop-nav-button"
-      class="vs-desktop-nav__button"
-      :class="{
-        ['vs-desktop-nav__button--level' + level]: level,
-      }"
-      :id="formattedToggleId"
-      v-b-toggle="formattedCollapsePaneId"
-      @click="setFocus()"
+    <Component
+        :is="type"
+        data-test="desktop-nav-list-item"
+        class="vs-desktop-nav__list-item"
+        :class="'vs-desktop-nav__list-item--level' + level"
     >
-      {{ title }}
-    </button>
-    <a
-      v-else
-      class="vs-desktop-nav__link"
-      :href="href"
-      :class="{
-        external: isExternal,
-        ['vs-desktop-nav__link--level' + level]: level,
-      }"
-      :target="isExternal ? '_blank' : false"
-      :data-vs-track="trackingId"
-      >{{ title }}</a
-    >
-  </component>
+        <button
+            v-if="hasChildren"
+            data-test="desktop-nav-button"
+            class="vs-desktop-nav__button"
+            :class="{
+                ['vs-desktop-nav__button--level' + level]: level,
+            }"
+            :id="formattedToggleId"
+            v-b-toggle="formattedCollapsePaneId"
+            @click="setFocus()"
+            @keydown="setFocus()"
+        >
+            {{ title }}
+        </button>
+        <a
+            v-else
+            class="vs-desktop-nav__link"
+            :href="href"
+            :class="{
+                external: isExternal,
+                ['vs-desktop-nav__link--level' + level]: level,
+            }"
+            :target="isExternal ? '_blank' : false"
+            :data-vs-track="trackingId"
+        >{{ title }}</a>
+    </Component>
 </template>
 
 <script>
-import VsIcon from "../../../../elements/icon/Icon"
 import { VBToggle } from "bootstrap-vue"
+import VsIcon from "../../../../elements/icon/Icon"
 
 export default {
-  name: "VsDesktopNavToggles",
-  status: "prototype",
-  release: "0.0.1",
-  components: { VsIcon },
-  directives: { "b-toggle": VBToggle },
-  data() {
-    return {
-      show: false,
-    }
-  },
-  props: {
-    /**
-     * The html element name used for the component
-     */
-    type: {
-      type: String,
-      default: "li",
+    name: "VsDesktopNavToggles",
+    status: "prototype",
+    release: "0.0.1",
+    components: {
+        VsIcon,
     },
-    href: {
-      type: String,
+    directives: {
+        "b-toggle": VBToggle,
     },
-    isExternal: {
-      type: Boolean,
+    props: {
+        /**
+         * The html element name used for the component
+         */
+        type: {
+            type: String,
+            default: "li",
+        },
+        href: {
+            type: String,
+            default: "",
+        },
+        isExternal: {
+            type: Boolean,
+        },
+        trackingId: {
+            type: String,
+            default: "",
+        },
+        title: {
+            type: String,
+            default: "",
+        },
+        level: {
+            type: Number,
+            default: 0,
+        },
+        subnav: {
+            type: Array,
+            default() {
+                return []
+            },
+        },
+        promoList: {
+            type: Array,
+            default() {
+                return []
+            },
+        },
+        promoItem: {
+            type: Object,
+            default() {
+                return {
+                }
+            },
+        },
+        chartWidgets: {
+            type: Array,
+            default() {
+                return []
+            },
+        },
+        toggleId: {
+            type: Number,
+            default: 0,
+        },
     },
-    trackingId: {
-      type: String,
-    },
-    title: {
-      type: String,
-    },
-    level: {
-      type: Number,
-    },
-    subnav: {
-      type: Array,
-    },
-    promoList: {
-      type: Array,
-    },
-    promoItem: {
-      type: Object,
-    },
-    chartWidgets: {
-      type: Array,
-    },
-    toggleId: {
-      type: Number,
-    },
-  },
-  computed: {
-    hasChildren() {
-      if (
-        this.subnav !== undefined ||
-        this.promoItem !== undefined ||
-        this.promoList !== undefined ||
-        this.chartWidgets !== undefined
-      ) {
-        return true
-      }
-      return false
-    },
-    formattedCollapsePaneId() {
-      return "collapse-subnav-" + this.toggleId
-    },
-    formattedToggleId() {
-      return "collapse-toggle-" + this.toggleId
-    },
-  },
-  methods: {
-    setFocus() {
-      var closeButton = "submenu-close-" + this.toggleId
-      setTimeout(() => {
-        let $closeButton = document.getElementById(closeButton)
-
-        if ($closeButton) {
-          $closeButton.focus()
+    data() {
+        return {
+            show: false,
         }
-      }, 100)
     },
-  },
+    computed: {
+        hasChildren() {
+            if (
+                this.subnav !== undefined
+                || this.promoItem !== undefined
+                || this.promoList !== undefined
+                || this.chartWidgets !== undefined
+            ) {
+                return true
+            }
+            return false
+        },
+        formattedCollapsePaneId() {
+            return `collapse-subnav-${this.toggleId}`
+        },
+        formattedToggleId() {
+            return `collapse-toggle-${this.toggleId}`
+        },
+    },
+    methods: {
+        setFocus() {
+            const closeButton = `submenu-close-${this.toggleId}`
+            setTimeout(() => {
+                const $closeButton = document.getElementById(closeButton)
+
+                if ($closeButton) {
+                    $closeButton.focus()
+                }
+            }, 100)
+        },
+    },
 }
 </script>
 
@@ -128,21 +150,21 @@ export default {
 
 .vs-desktop-nav__button--level1,
 .vs-desktop-nav__link--level1 {
-  @extend %button-reset;
-  @extend %main-nav-button-style;
-  width: auto;
-  padding: 0 0.5rem;
-  position: relative;
+    @extend %button-reset;
+    @extend %main-nav-button-style;
+    width: auto;
+    padding: 0 0.5rem;
+    position: relative;
 
-  @include media-breakpoint-up(xl) {
-    font-size: 1.125rem;
-  }
+    @include media-breakpoint-up(xl) {
+        font-size: 1.125rem;
+    }
 
-  &[aria-expanded="true"],
-  &:hover,
-  &:focus {
-    @extend %focus-pink-inset;
-  }
+    &[aria-expanded="true"],
+    &:hover,
+    &:focus {
+        @extend %focus-pink-inset;
+    }
 }
 </style>
 
