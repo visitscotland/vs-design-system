@@ -132,18 +132,19 @@ public class ListicleContentComponent extends PageContentComponent<Listicle> {
                                 }
                             }
 
-                            if (model.getImage() == null &&  product.has(IMAGE)) {
-                                JSONArray dmsImageList = product.getJSONArray(IMAGE);
-                                flatImage = new FlatImage( dmsImageList.getJSONObject(0),product.getString(NAME));
-                                if (product.has(LATITUDE) && product.has(LONGITUDE)){
-                                    Coordinates coordinates = new Coordinates(product.getDouble(LATITUDE), product.getDouble(LONGITUDE));
-                                    flatImage.setCoordinates(coordinates);
+                              if (flatImage == null){
+                                if (product.has(IMAGE)){
+                                	JSONArray dmsImageList = product.getJSONArray(IMAGE);
+                                  	flatImage = new FlatImage( dmsImageList.getJSONObject(0),product.getString(NAME));
+                                  	if (product.has(LATITUDE) && product.has(LONGITUDE)){
+                                      Coordinates coordinates = new Coordinates(product.getDouble(LATITUDE), product.getDouble(LONGITUDE));
+                                      flatImage.setCoordinates(coordinates);
+                                  }
                                 }
-
                             }else{
-                                if (model.getImage().getCoordinates()==null){
+                                if (flatImage.getCoordinates() == null){
                                     Coordinates coordinates = new Coordinates(product.getDouble(LATITUDE),product.getDouble(LONGITUDE));
-                                    model.getImage().setCoordinates(coordinates);
+                                    flatImage.setCoordinates(coordinates);
                                 }
                             }
 
