@@ -44,6 +44,7 @@ export default {
          */
         name: {
             type: String,
+            default: "",
         },
     },
     data() {

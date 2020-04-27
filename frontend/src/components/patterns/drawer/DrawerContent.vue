@@ -36,9 +36,7 @@
 
 <script>
 import Vue from "vue"
-import {
-    isFunction, get, hasIn,
-} from "lodash"
+import { isFunction, get } from "lodash"
 
 import VsCloseButton from "@components/patterns/close-button/CloseButton"
 import VsRow from "@components/elements/layout/Row"
@@ -67,17 +65,17 @@ export default {
             required: true,
         },
         /**
-     * Whether or not the close drawer button is shown
-     */
+         * Whether or not the close drawer button is shown
+         */
         showClose: {
             type: Boolean,
             default: false,
         },
         /**
-     * Determines whether and what gains focus when this content
-     * becomes visible.
-     * `false, "content", "close"`
-     */
+         * Determines whether and what gains focus when this content
+         * becomes visible.
+         * `false, "content", "close"`
+         */
         openFocus: {
             type: [String, Boolean],
             default: false,
@@ -175,7 +173,7 @@ export default {
                     break
                 }
 
-                i++
+                i += 1
             }
 
             this.parentDrawer = $current
@@ -186,16 +184,16 @@ export default {
 
 <style lang="scss" scoped>
 .close-button-wrapper {
-  right: 0;
-  top: 0;
+    right: 0;
+    top: 0;
 }
 
 .catch-focus__button {
-  width: 0;
-  height: 0;
-  margin: 0;
-  padding: 0;
-  border: none;
-  display: block;
+    width: 0;
+    height: 0;
+    margin: 0;
+    padding: 0;
+    border: none;
+    display: block;
 }
 </style>

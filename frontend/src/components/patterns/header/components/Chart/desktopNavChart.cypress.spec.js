@@ -1,5 +1,5 @@
-const VsDesktopNavChart = require("./DesktopNavChart.vue").default
 const { vueHelper } = require("@cypress/helpers/index.js").default
+const VsDesktopNavChart = require("./DesktopNavChart.vue").default
 
 const sizes = ["iphone-6", "ipad-2", [1024, 768]]
 

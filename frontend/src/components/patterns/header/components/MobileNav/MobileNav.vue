@@ -9,7 +9,11 @@
                                 class="vs-mobile-nav"
                                 :aria-label="name"
                             >
-                                <ul class="vs-mobile-nav__list vs-mobile-nav__list--level1 list-unstyled">
+                                <ul
+                                    class="vs-mobile-nav__list
+                                    vs-mobile-nav__list--level1
+                                    list-unstyled"
+                                >
                                     <slot />
                                 </ul>
                             </nav>
@@ -43,6 +47,7 @@ export default {
         },
         name: {
             type: String,
+            default: "",
         },
     },
     data() {

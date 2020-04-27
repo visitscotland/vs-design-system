@@ -36,15 +36,23 @@ export default {
         },
         chartTitle: {
             type: String,
+            default: "",
         },
         chartId: {
             type: String,
+            default: "",
         },
         labels: {
             type: Array,
+            default() {
+                return []
+            },
         },
         datasets: {
             type: Array,
+            default() {
+                return []
+            },
         },
     },
     data() {
