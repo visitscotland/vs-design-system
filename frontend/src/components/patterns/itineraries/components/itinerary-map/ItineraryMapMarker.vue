@@ -127,7 +127,7 @@ svg.active {
 
 <docs>
   ```jsx
-    const sampleGeojsonData = require("../../../../../assets/fixtures/itineraries/sampleItineraryGeojson.json")
+    const sampleGeojsonData = require("../../../../../assets/fixtures/itineraries/sample-itinerary-geojson.json")
     <vs-row class="py-5">
       <vs-col>
         <vs-itinerary-map-marker :feature="sampleGeojsonData.features[0]" />
