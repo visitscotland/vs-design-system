@@ -310,7 +310,7 @@ export default {
   })
 
     <vs-itinerary-map
-      access-token="pk.eyJ1IjoidmlzaXRzY290bGFuZC1kZXYiLCJhIjoiY2p4MGZwcmtjMDBlczN5bTBnY3pjeHNubCJ9.d3CJWPvX9FfjfSNAW98Q6w"
+      :access-token=keysList.keysList[0].mapToken
       overview-map-longitude="57.81"
       overview-map-latitude="-4.13"
       overview-map-zoom="5"
