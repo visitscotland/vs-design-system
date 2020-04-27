@@ -67,7 +67,8 @@
                     </template>
                     <li
                         data-test="desktop-nav-submenu-landing-page-link"
-                        class="vs-desktop-submenu__list-item vs-desktop-submenu__list-item--landing-page-link"
+                        class="vs-desktop-submenu__list-item
+                        vs-desktop-submenu__list-item--landing-page-link"
                     >
                         <a
                             :href="href"
@@ -112,33 +113,51 @@ export default {
         },
         href: {
             type: String,
+            default: "",
         },
         isExternal: {
             type: Boolean,
         },
         trackingId: {
             type: String,
+            default: "",
         },
         title: {
             type: String,
+            default: "",
         },
         level: {
             type: Number,
+            default: 0,
         },
         subnav: {
             type: Array,
+            default() {
+                return []
+            },
         },
         promoList: {
             type: Array,
+            default() {
+                return []
+            },
         },
         promoItem: {
             type: Object,
+            default() {
+                return {
+                }
+            },
         },
         chartWidgets: {
             type: Array,
+            default() {
+                return []
+            },
         },
         subnavId: {
             type: Number,
+            default: 0,
         },
     },
     data() {

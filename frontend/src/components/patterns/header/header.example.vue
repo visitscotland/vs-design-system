@@ -84,7 +84,6 @@
                 >
                     <VsListGroup
                         class="d-lg-none"
-                        tabindex="-1"
                     >
                         <VsDrawerListItem
                             v-for="(site, i) in header.ourSites"
@@ -105,7 +104,6 @@
                 >
                     <VsListGroup
                         class="d-lg-none"
-                        tabindex="-1"
                     >
                         <VsDrawerListItem
                             v-for="(lang, i) in header.languages"
@@ -320,7 +318,6 @@
                 <div
                     id="content-container"
                     class="col p-3"
-                    tabindex="3000"
                     style="height:1000"
                 >
                     Dummy page contents

@@ -5,7 +5,9 @@
         :target="external ? '_blank' : null"
         :data-vs-track="trackingId"
         tabindex="0"
-        class="vs-header__list-group-item text-white text-nowrap text-justify align-items-center d-flex px-lg-2"
+        class="vs-header__list-group-item
+        text-white text-nowrap text-justify
+        align-items-center d-flex px-lg-2"
     >
         <slot />
         <VsIcon
@@ -43,6 +45,7 @@ export default {
         },
         trackingId: {
             type: String,
+            default: "",
         },
     },
 }

@@ -58,22 +58,24 @@ export default {
         }
     },
     computed: {
-        lastPromo() {
-            const lastPromo = this.list.filter((item, index) => {
-                if (index === this.list.length - 1) {
-                    return item
-                }
-            })
-            return lastPromo[0]
-        },
-        allButLastPromos() {
-            const allButLast = this.list.filter((item, index) => {
-                if (index !== this.list.length - 1) {
-                    return item
-                }
-            })
-            return allButLast
-        },
+        // Needs work - breaking lint rules
+
+        // lastPromo() {
+        //     const lastPromo = this.list.filter((item, index) => {
+        //         if (index === this.list.length - 1) {
+        //             return item
+        //         }
+        //     })
+        //     return lastPromo[0]
+        // },
+        // allButLastPromos() {
+        //     const allButLast = this.list.filter((item, index) => {
+        //         if (index !== this.list.length - 1) {
+        //             return item
+        //         }
+        //     })
+        //     return allButLast
+        // },
     },
 }
 </script>

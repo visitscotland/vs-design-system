@@ -10,7 +10,6 @@
 
 <script>
 import VsDrawerToggle from "@components/patterns/drawer/DrawerToggle"
-import VsHeaderButton from "../button/HeaderButton"
 
 /**
  * This component is used to generate a VsDrawerToggle component with
@@ -20,7 +19,6 @@ export default {
     name: "VsHeaderDrawerToggle",
     components: {
         VsDrawerToggle,
-        VsHeaderButton,
     },
     props: {
         tag: {

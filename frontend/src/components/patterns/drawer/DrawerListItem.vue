@@ -5,7 +5,10 @@
         :target="external ? '_blank' : null"
         :data-vs-track="trackingId"
         tabindex="0"
-        class="vs-drawer__list-item text-white text-nowrap text-justify align-items-center d-flex px-lg-2"
+        class="vs-drawer__list-item
+        text-white text-nowrap
+        text-justify align-items-center
+        d-flex px-lg-2"
         :class="{ 'vs-drawer__list-item--full-width': fullWidth }"
     >
         <slot />
@@ -44,6 +47,7 @@ export default {
         },
         trackingId: {
             type: String,
+            default: "",
         },
         fullWidth: {
             type: Boolean,
