@@ -1,6 +1,11 @@
 <template>
     <li class="vs-icon-list__item">
-        <vs-icon :name="icon" variant="dark" size="sm" class="d-block mx-auto" />
+        <VsIcon
+            :name="icon"
+            variant="dark"
+            size="sm"
+            class="d-block mx-auto"
+        />
         {{ label }}
     </li>
 </template>

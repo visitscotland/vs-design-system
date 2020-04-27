@@ -1,7 +1,13 @@
 <template>
     <div class="vs-summary-box-distance-display position-absolute d-block text-center w-100">
-        <span v-if="isShowingMiles" id="display_miles">{{ miles }}</span>
-        <span v-else id="display_kilometres">{{ kilometres }}</span>
+        <span
+            v-if="isShowingMiles"
+            id="display_miles"
+        >{{ miles }}</span>
+        <span
+            v-else
+            id="display_kilometres"
+        >{{ kilometres }}</span>
     </div>
 </template>
 
@@ -14,30 +20,35 @@ export default {
     name: "VsSummaryBoxDistanceDisplay",
     status: "prototype",
     release: "0.0.1",
-    components: {},
-    watch: {
-        isShowingMiles() {},
+    components: {
+    },
+    props: {
+        miles: {
+            type: String,
+            default: "",
+        },
+        kilometres: {
+            type: String,
+            default: "",
+        },
+        milesLabel: {
+            type: String,
+            default: "",
+        },
+        kilometresLabel: {
+            type: String,
+            default: "",
+        },
     },
     computed: {
         isShowingMiles() {
             return summaryBoxStore.getters["summaryBox/getShowMiles"]
         },
     },
-    summaryBoxStore,
-    props: {
-        miles: {
-            type: String,
-        },
-        kilometres: {
-            type: String,
-        },
-        milesLabel: {
-            type: String,
-        },
-        kilometresLabel: {
-            type: String,
-        },
+    watch: {
+        isShowingMiles() {},
     },
+    summaryBoxStore,
 }
 </script>
 
@@ -54,7 +65,7 @@ export default {
 </style>
 
 <docs>
-  
+
   ```jsx
     <div class="py-5">
         <vs-summary-box-distance-display

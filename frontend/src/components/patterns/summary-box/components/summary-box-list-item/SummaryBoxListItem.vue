@@ -12,8 +12,10 @@ export default {
     name: "VsSummaryBoxListItem",
     status: "prototype",
     release: "0.0.1",
-    components: {},
-    props: {},
+    components: {
+    },
+    props: {
+    },
 }
 </script>
 

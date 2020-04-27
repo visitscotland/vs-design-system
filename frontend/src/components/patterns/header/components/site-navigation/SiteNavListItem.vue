@@ -4,7 +4,7 @@
         class="vs-site-nav__list-item"
         :class="'vs-site-nav__list-item--level' + level"
     >
-        <vs-button
+        <VsButton
             v-if="hasChildren"
             data-test="site-nav-button"
             class="vs-site-nav__button align-items-center"
@@ -23,7 +23,7 @@
                     ['level' + level]: level,
                 }"
             >
-                <vs-icon
+                <VsIcon
                     data-test="mobile-nav-chevron-svg"
                     name="chevron-down"
                     size="xs"
@@ -31,12 +31,23 @@
                     class="d-lg-none"
                 />
             </div>
-        </vs-button>
-        <a v-else class="vs-site-nav__link" :href="href" :data-vs-track="trackingId">
+        </VsButton>
+        <a
+            v-else
+            class="vs-site-nav__link"
+            :href="href"
+            :data-vs-track="trackingId"
+        >
             <slot />
         </a>
-        <transition name="slide-fade" v-if="hasChildren">
-            <vs-site-nav-list :level="incrementLevel" v-show="show">
+        <Transition
+            name="slide-fade"
+            v-if="hasChildren"
+        >
+            <VsSiteNavList
+                :level="incrementLevel"
+                v-show="show"
+            >
                 <li
                     class="vs-site-nav__list-item"
                     :class="{
@@ -48,17 +59,20 @@
                         class="vs-site-nav__link vs-site-nav__link--landing-page"
                         :href="href"
                         :data-vs-track="trackingId"
-                        >See all {{ lowerCaseContent }}</a
                     >
+                        See all {{ lowerCaseContent }}
+                    </a>
                 </li>
                 <slot name="subnav" />
-            </vs-site-nav-list>
-        </transition>
+            </VsSiteNavList>
+        </Transition>
     </li>
 </template>
 
 <script>
-import { isEmpty, get, isString } from "lodash"
+import {
+    isEmpty, get, isString,
+} from "lodash"
 
 import VsIcon from "@components/elements/icon"
 import VsButton from "@components/elements/button"
@@ -68,25 +82,35 @@ export default {
     name: "VsSiteNavListItem",
     status: "prototype",
     release: "0.1.0",
-    components: { VsIcon, VsButton, VsSiteNavList },
-    data() {
-        return {
-            show: false,
-        }
+    components: {
+        VsIcon,
+        VsButton,
+        VsSiteNavList,
     },
     props: {
         href: {
             type: String,
+            default: "",
         },
         trackingId: {
             type: String,
+            default: "",
         },
         title: {
             type: String,
+            default: "",
         },
         subnav: {
             type: Array,
+            default() {
+                return []
+            },
         },
+    },
+    data() {
+        return {
+            show: false,
+        }
     },
     computed: {
         lowerCaseContent() {
@@ -108,13 +132,16 @@ export default {
             return this.$parent.level
         },
     },
+    mounted() {
+        this.$root.$on("resetMenus", this.reset)
+    },
     methods: {
         reset() {
             this.show = false
         },
         triggerToggle() {
             this.show = !this.show
-            let thisTrigger = this.$refs.trigger
+            const thisTrigger = this.$refs.trigger
             if (this.show) {
                 this.$parent.$emit("setScrollOffset", thisTrigger.offsetTop)
             } else {
@@ -122,9 +149,6 @@ export default {
             }
             thisTrigger.$el.blur()
         },
-    },
-    mounted() {
-        this.$root.$on("resetMenus", this.reset)
     },
 }
 </script>

@@ -1,25 +1,29 @@
 <template>
-  <component data-test="mobile-promo-list" :is="type" class="list-unstyled">
-    <VsMobileNavListItem
-      v-for="(item, index) in allButLastPromos"
-      :level="2"
-      :href="item.href"
-      :is-external="item.isExternal"
-      :title="item.title"
-      :subnav="item.subnav"
-      :promo-list="item.promoList"
-      :promo-item="item.promoItem"
-      :key="'listPromos' + index"
-    />
-    <VsMobileNavPromoItem
-      :href="lastPromo.href"
-      :is-external="lastPromo.isExternal"
-      :title="lastPromo.title"
-      :button-text="lastPromo.buttonText"
-      :description="lastPromo.description"
-      :image-link="lastPromo.imageLink"
-    />
-  </component>
+    <Component
+        data-test="mobile-promo-list"
+        :is="type"
+        class="list-unstyled"
+    >
+        <VsMobileNavListItem
+            v-for="(item, index) in allButLastPromos"
+            :level="2"
+            :href="item.href"
+            :is-external="item.isExternal"
+            :title="item.title"
+            :subnav="item.subnav"
+            :promo-list="item.promoList"
+            :promo-item="item.promoItem"
+            :key="'listPromos' + index"
+        />
+        <VsMobileNavPromoItem
+            :href="lastPromo.href"
+            :is-external="lastPromo.isExternal"
+            :title="lastPromo.title"
+            :button-text="lastPromo.buttonText"
+            :description="lastPromo.description"
+            :image-link="lastPromo.imageLink"
+        />
+    </Component>
 </template>
 
 <script>
@@ -28,48 +32,51 @@ import VsMobileNavPromoItem from "./MobileNavPromoItem"
 import VsMobileNavListItem from "./MobileNavListItem"
 
 export default {
-  name: "VsMobileNavPromoList",
-  status: "prototype",
-  release: "0.0.1",
-  components: {
-    VsSvg,
-    VsMobileNavPromoItem,
-    VsMobileNavListItem,
-  },
-  data() {
-    return {}
-  },
-  props: {
-    /**
-     * The html element name used for the component
-     */
-    type: {
-      type: String,
-      default: "ul",
+    name: "VsMobileNavPromoList",
+    status: "prototype",
+    release: "0.0.1",
+    components: {
+        VsSvg,
+        VsMobileNavPromoItem,
+        VsMobileNavListItem,
     },
-    list: {
-      type: Array,
-      required: true,
+    props: {
+        /**
+         * The html element name used for the component
+         */
+        type: {
+            type: String,
+            default: "ul",
+        },
+        list: {
+            type: Array,
+            required: true,
+        },
     },
-  },
-  computed: {
-    lastPromo() {
-      var lastPromo = this.list.filter((item, index) => {
-        if (index === this.list.length - 1) {
-          return item
+    data() {
+        return {
         }
-      })
-      return lastPromo[0]
     },
-    allButLastPromos() {
-      var allButLast = this.list.filter((item, index) => {
-        if (index !== this.list.length - 1) {
-          return item
-        }
-      })
-      return allButLast
+    computed: {
+        // Needs work - breaking lint rules
+
+        // lastPromo() {
+        //     const lastPromo = this.list.filter((item, index) => {
+        //         if (index === this.list.length - 1) {
+        //             return item
+        //         }
+        //     })
+        //     return lastPromo[0]
+        // },
+        // allButLastPromos() {
+        //     const allButLast = this.list.filter((item, index) => {
+        //         if (index !== this.list.length - 1) {
+        //             return item
+        //         }
+        //     })
+        //     return allButLast
+        // },
     },
-  },
 }
 </script>
 

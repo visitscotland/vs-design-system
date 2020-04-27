@@ -12,6 +12,7 @@ export default new Vuex.Store({
             },
             mutations: {
                 SET_STOP_HIGHLIGHTED: (state, payload) => {
+                    /* eslint-disable no-param-reassign */
                     state.highlightedStop = payload
                 },
             },
@@ -25,11 +26,10 @@ export default new Vuex.Store({
                 },
             },
             getters: {
-                getHighlightedStop: state => state.highlightedStop,
-                getHighlightedStopCoordinates: state =>
-                    state.highlightedStop === null
-                        ? [-4.07083, 56.18882]
-                        : state.highlightedStop.geometry.coordinates,
+                getHighlightedStop: (state) => state.highlightedStop,
+                getHighlightedStopCoordinates: (state) => (state.highlightedStop === null
+                    ? [-4.07083, 56.18882]
+                    : state.highlightedStop.geometry.coordinates),
             },
         },
     },
