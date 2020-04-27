@@ -261,11 +261,11 @@ export default {
                         label="WiFi">
                     </vs-icon-list-item>
                     <vs-icon-list-item
-                        icon="facility-publictlt"
+                        icon="publictlt"
                         label="Public Toilets">
                     </vs-icon-list-item>
                     <vs-icon-list-item
-                        icon="facility-giftshop"
+                        icon="giftshop"
                         label="Gift Shop">
                     </vs-icon-list-item>
                     <vs-icon-list-item
