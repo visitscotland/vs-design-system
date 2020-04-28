@@ -121,7 +121,7 @@ export default {
 
 <docs>
 ```jsx
-  const sampleItinerary = require("../../../assets/fixtures/itineraries/sampleItinerary.json")
+  const sampleItinerary = require("../../../assets/fixtures/itineraries/sample-itinerary.json")
   const stops = [];
 
   sampleItinerary.days.map(day => {

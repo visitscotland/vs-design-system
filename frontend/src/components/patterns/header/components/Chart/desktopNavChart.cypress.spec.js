@@ -3,7 +3,7 @@ const VsDesktopNavChart = require("./DesktopNavChart.vue").default
 
 const sizes = ["iphone-6", "ipad-2", [1024, 768]]
 
-const mainNav = require("@/assets/fixtures/header/mainNav.json")
+const mainNav = require("@/assets/fixtures/header/main-nav.json")
 
 const chart = mainNav[3].chartWidgets[0]
 

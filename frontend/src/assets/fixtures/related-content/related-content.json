@@ -17,7 +17,7 @@
         "description": "Find information about city stays in Scotland, plus stunning locations for countryside breaks from each city, including modes of transport and travel time.",
         "href": "https://www.visitscotland.com/holidays-breaks/weekend-short/country-breaks-city-stays/",
         "image": {
-            "imageSrc": "fixtures/relatedcontent/images/city-country-breaks.jpg",
+            "imageSrc": "fixtures/related-content/images/city-country-breaks.jpg",
             "altText": "",
             "description": "",
             "credit": "",
@@ -30,7 +30,7 @@
         "description": "Discover why the Highlands is one of the best family holiday destinations and follow this exciting 7 day itinerary which kids will love.",
         "href": "https://www.visitscotland.com/holidays-breaks/family/highlands-for-kids/",
         "image": {
-            "imageSrc": "fixtures/relatedcontent/images/highlands-families-header.jpg",
+            "imageSrc": "fixtures/related-content/images/highlands-families-header.jpg",
             "altText": "",
             "description": "",
             "credit": "",
@@ -43,7 +43,7 @@
         "description": "Step back (or drive back!) in time through the last millennium of our country's heritage and experience Scottish castles at their best on Scotland's only Castle Trail.",
         "href": "https://www.visitscotland.com/info/see-do/the-castle-trail-p331231",
         "image": {
-            "imageSrc": "fixtures/relatedcontent/images/castle-trail.jpg",
+            "imageSrc": "fixtures/related-content/images/castle-trail.jpg",
             "altText": "",
             "description": "",
             "credit": "",
@@ -56,7 +56,7 @@
         "description": "Find outdoor adventures in Scotland that both kids and adults will love, including family-friendly walks, cycle routes, gorge walk and zorbing.",
         "href": "https://www.visitscotland.com/holidays-breaks/family/outdoor-adventures-for-kids/",
         "image": {
-            "imageSrc": "fixtures/relatedcontent/images/outdoor-adventures-kids.jpg",
+            "imageSrc": "fixtures/related-content/images/outdoor-adventures-kids.jpg",
             "altText": "",
             "description": "",
             "credit": "",
