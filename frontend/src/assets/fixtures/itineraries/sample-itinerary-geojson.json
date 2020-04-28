@@ -23,7 +23,7 @@
             "properties": {
                 "title": "Kellie Castle and Garden",
                 "stopCount": 2,
-                "imageSrc": "fixtures/itineraries/images/stops/Kellie_229320466.jpg",
+                "imageSrc": "fixtures/itineraries/images/stops/kellie_229320466.jpg",
                 "altText": "Kellie Castle and Garden"
             }
         },
@@ -36,7 +36,7 @@
             "properties": {
                 "title": "Scotland's Secret Bunker",
                 "stopCount": 3,
-                "imageSrc": "fixtures/itineraries/images/stops/Guard%20House_705080941.JPG",
+                "imageSrc": "fixtures/itineraries/images/stops/guard_house_705080941.jpg",
                 "altText": "Scotland's Secret Bunker"
             }
         }
