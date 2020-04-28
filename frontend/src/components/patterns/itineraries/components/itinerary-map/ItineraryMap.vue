@@ -297,37 +297,39 @@ export default {
 <docs>
   ```jsx
 
-  const sampleItinerary = require("../../../../../assets/fixtures/itineraries/sampleItinerary.json")
-  const stops = [];
+    const sampleItinerary = require(
+        "../../../../../assets/fixtures/itineraries/sample-itinerary.json"
+    )
+    const stops = [];
 
-  sampleItinerary.days.map(day => {
-    day.stops.map(stop => {
-      return stops.push({
-        title: stop.title,
-        latitude: stop.latitude,
-        longitude: stop.longitude,
-        stopCount: stop.stopCount,
-        imageSrc: stop.image.imageSrc,
-        altText: stop.image.altText
-      });
+    sampleItinerary.days.map(day => {
+        day.stops.map(stop => {
+            return stops.push({
+                title: stop.title,
+                latitude: stop.latitude,
+                longitude: stop.longitude,
+                stopCount: stop.stopCount,
+                imageSrc: stop.image.imageSrc,
+                altText: stop.image.altText
+            });
+        })
     })
-  })
 
     <vs-itinerary-map
-      :access-token=keysList.keysList[0].mapToken
-      overview-map-longitude="57.81"
-      overview-map-latitude="-4.13"
-      overview-map-zoom="5"
-      :stops="stops"
-      :labels='{
-          "stopLabel": "Stop",
-          "mapControlsFullscreenOpen": "Show fullscreen",
-          "mapControlsFullscreenClose": "Exit fullscreen",
-          "mapControlsCompass": "Reset angle",
-          "mapControlsZoomIn": "Zoom in",
-          "mapControlsZoomOut": "Zoom out",
+        :access-token=keysList.keysList[0].mapToken
+        overview-map-longitude="57.81"
+        overview-map-latitude="-4.13"
+        overview-map-zoom="5"
+        :stops="stops"
+        :labels='{
+            "stopLabel": "Stop",
+            "mapControlsFullscreenOpen": "Show fullscreen",
+            "mapControlsFullscreenClose": "Exit fullscreen",
+            "mapControlsCompass": "Reset angle",
+            "mapControlsZoomIn": "Zoom in",
+            "mapControlsZoomOut": "Zoom out",
 
-      }'
+        }'
     >
     </vs-itinerary-map>
   ```
