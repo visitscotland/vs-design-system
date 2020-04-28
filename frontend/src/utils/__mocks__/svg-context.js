@@ -1,4 +1,4 @@
-const mockSvg = require("./svg-mock.js")
+const mockSvg = require("../../../test/unit/mocks/svgMock.js")
 
 const mockFunc = jest.fn()
 

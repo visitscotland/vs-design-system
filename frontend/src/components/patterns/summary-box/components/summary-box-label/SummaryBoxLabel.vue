@@ -12,10 +12,12 @@ export default {
     name: "VsSummaryBoxLabel",
     status: "prototype",
     release: "0.0.1",
-    components: {},
+    components: {
+    },
     props: {
         label: {
             type: String,
+            default: "",
         },
     },
 }
@@ -39,7 +41,7 @@ export default {
 </style>
 
 <docs>
-  
+
   ```jsx
     <div class="position-relative p-5">
         <vs-summary-box-label label="Distance" />

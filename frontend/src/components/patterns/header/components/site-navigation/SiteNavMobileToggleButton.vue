@@ -1,5 +1,5 @@
 <template>
-    <vs-button
+    <VsButton
         class="vs-mobile-nav__button p-1"
         id="mobilenavbutton"
         variant="transparent"
@@ -7,9 +7,19 @@
         focus-colour="pink"
     >
         <span class="sr-only"><slot /></span>
-        <vs-icon v-if="isOpen" name="close" size="sm" variant="dark" />
-        <vs-icon v-else name="bars-mobile-menu" size="sm" variant="dark" />
-    </vs-button>
+        <VsIcon
+            v-if="isOpen"
+            name="close"
+            size="sm"
+            variant="dark"
+        />
+        <VsIcon
+            v-else
+            name="bars-mobile-menu"
+            size="sm"
+            variant="dark"
+        />
+    </VsButton>
 </template>
 
 <script>
