@@ -16,14 +16,13 @@
 
 <script>
 /**
- * Component is just a wrapper for the page hero and introduction. Note that everything within is just a slot.
+ * Component is just a wrapper for the page hero and introduction.
+ * Note that everything within is just a slot.
  */
 export default {
     name: "VsPageIntro",
     status: "prototype",
     release: "0.0.1",
-    components: {},
-    props: {},
 }
 </script>
 
@@ -90,11 +89,11 @@ export default {
         :latitude="itineraries.sampleItinerary.image.latitude"
         :longitude="itineraries.sampleItinerary.image.longitude"
       >
-      <img 
-        class="lazyload" 
+      <img
+        class="lazyload"
         :src="itineraries.sampleItinerary.image.imageSrc"
         srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
-        :data-srcset="itineraries.sampleItinerary.image.imageSrc" 
+        :data-srcset="itineraries.sampleItinerary.image.imageSrc"
         :alt="itineraries.sampleItinerary.image.altText"
         data-sizes="auto"
         />
@@ -103,7 +102,7 @@ export default {
         <vs-row class="justify-content-md-between">
           <vs-col cols="12" lg="8" offset-lg="1">
             <vs-breadcrumb>
-              <vs-breadcrumb-item 
+              <vs-breadcrumb-item
                 v-for="(item, index) in breadcrumb.breadcrumb"
                 :key="index"
                 :href="item.href"
@@ -122,17 +121,23 @@ export default {
           </vs-col>
           <vs-col cols="2">
             <div class="d-flex justify-content-center justify-content-sm-end">
-              <!-- TODO - Below icon is FPO. Replace with icon with text component and a share component -->
+              <!-- TODO - Below icon is FPO. Replace with icon
+              with text component and a share component -->
               <vs-icon name="share" variant="dark" size="sm" />
             </div>
           </vs-col>
         </vs-row>
         <vs-row>
           <vs-col cols="12" md="6" lg="5" xl="6" offset-lg="1">
-            <vs-rich-text-wrapper variant="lead" v-html="itineraries.sampleItinerary.introduction"></vs-rich-text-wrapper>
+            <vs-rich-text-wrapper
+                variant="lead"
+                v-html="itineraries.sampleItinerary.introduction">
+            </vs-rich-text-wrapper>
             <dl class="list-inline">
-              <dt class="list-inline-item">Start / Finish</dt>
-              <dd class="list-inline-item">{{itineraries.sampleItinerary.start}}/{{itineraries.sampleItinerary.finish}}</dd>
+                <dt class="list-inline-item">Start / Finish</dt>
+                <dd class="list-inline-item">
+                    {{itineraries.sampleItinerary.start}}/{{itineraries.sampleItinerary.finish}}
+                </dd>
             </dl>
           </vs-col>
           <vs-col cols="12" md="6" lg="5" xl="4">
@@ -179,7 +184,7 @@ export default {
           <vs-col cols="12" lg="11" offset-lg="1">
             <vs-description-list class="mb-6">
                 <vs-description-list-term>Highlights</vs-description-list-term>
-                <vs-description-list-detail 
+                <vs-description-list-detail
                     v-for="(highlight, index) in itineraries.sampleItinerary.highlights"
                 >
                     {{highlight}}
@@ -187,7 +192,7 @@ export default {
             </vs-description-list>
             <vs-description-list class="mb-8">
                 <vs-description-list-term>Areas Covered</vs-description-list-term>
-                    <vs-description-list-detail 
+                    <vs-description-list-detail
                         v-for="(areaCovered, index) in itineraries.sampleItinerary.areasCovered"
                         key="index"
                     >

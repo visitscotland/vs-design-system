@@ -1,7 +1,11 @@
 <template>
-    <vs-row tag="dl" class="vs-description-list" :class="{ 'list-inline': inline }">
+    <VsRow
+        tag="dl"
+        class="vs-description-list"
+        :class="{ 'list-inline': inline }"
+    >
         <slot />
-    </vs-row>
+    </VsRow>
 </template>
 
 <script>
@@ -31,7 +35,7 @@ export default {
     /**
      * Provides inline prop to be injected to child components
      */
-    provide: function() {
+    provide() {
         return {
             inline: this.inline,
         }
@@ -56,7 +60,7 @@ export default {
   ```jsx
     <vs-description-list class="mb-6">
         <vs-description-list-term>Highlights</vs-description-list-term>
-        <vs-description-list-detail 
+        <vs-description-list-detail
             v-for="(highlight, index) in itineraries.sampleItinerary.highlights"
         >
             {{highlight}}
@@ -65,7 +69,7 @@ export default {
 
     <vs-description-list class="mb-8">
         <vs-description-list-term>Areas Covered</vs-description-list-term>
-        <vs-description-list-detail 
+        <vs-description-list-detail
             v-for="(areaCovered, index) in itineraries.sampleItinerary.areasCovered"
             key="index"
         >
@@ -75,7 +79,9 @@ export default {
 
     <vs-description-list inline>
         <vs-description-list-term>Transport</vs-description-list-term>
-        <vs-description-list-detail>Lorem ipsum dolor sit amet, consectetur adipiscing elit mollis neque quis sem facilisis.</vs-description-list-detail>
+        <vs-description-list-detail>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit mollis neque quis sem facilisis.
+        </vs-description-list-detail>
     </vs-description-list>
   ```
 </docs>

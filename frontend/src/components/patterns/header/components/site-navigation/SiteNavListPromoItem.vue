@@ -1,5 +1,5 @@
 <template>
-    <vs-site-nav-list-item
+    <VsSiteNavListItem
         data-test="site-promo-list-item"
         class="vs-site-nav__list-promo-item position-relative"
         v-bind="$attrs"
@@ -11,7 +11,7 @@
         <div class="vs-site-nav__list-promo-item-image-copy">
             <slot />
 
-            <vs-icon
+            <VsIcon
                 v-if="isFirstSiblingWithImage"
                 data-test="mobile-promo-arrow-icon"
                 name="reverse-arrow"
@@ -20,7 +20,7 @@
                 :padding="0"
             />
         </div>
-    </vs-site-nav-list-item>
+    </VsSiteNavListItem>
 </template>
 
 <script>
@@ -33,10 +33,14 @@ export default {
     name: "VsSiteNavListPromoItem",
     status: "prototype",
     release: "0.1.0",
-    components: { VsIcon, VsSiteNavListItem },
+    components: {
+        VsIcon,
+        VsSiteNavListItem,
+    },
     props: {
         imageHref: {
             type: String,
+            default: "",
         },
     },
     computed: {
@@ -49,7 +53,7 @@ export default {
             }
 
             return {
-                backgroundImage: "url(" + this.imageHref + ")",
+                backgroundImage: `url(${this.imageHref})`,
             }
         },
         isFirstSiblingWithImage() {
@@ -57,11 +61,12 @@ export default {
                 return false
             }
 
-            const firstSibling = find(this.$parent.$children, child => {
-                return child.$options.name === this.$options.name && child.imageHref
-            })
+            const firstSibling = find(
+                this.$parent.$children,
+                (child) => child.$options.name === this.$options.name && child.imageHref,
+            )
 
-            return this._uid === get(firstSibling, "_uid")
+            return this.uid === get(firstSibling, "_uid")
         },
     },
 }
