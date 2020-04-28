@@ -45,11 +45,12 @@
         >
             <figcaption
                 ref="figcaption"
-                :class="
+                :class="[
                     isLargeCaption
                         ? 'vs-image-with-caption__large-caption'
-                        : 'vs-image-with-caption__fullwidth-caption'
-                "
+                        : 'vs-image-with-caption__fullwidth-caption',
+                    closedDefaultCaption ? 'default-closed' : '',
+                ]"
                 class="d-flex d-sm-block"
             >
                 <vs-row class="justify-content-center justify-content-sm-start">
@@ -57,7 +58,7 @@
                         class="order-2 order-sm-1"
                         :class="[!showMap ? 'align-self-center' : '']"
                     >
-                        <div :class="isLargeCaption ? 'p-4' : 'p-3 pr-8'">
+                        <div :class="isLargeCaption ? 'p-4' : 'px-4 py-3 pr-8'">
                             <p class="vs-image-with-caption__image-caption">
                                 <!-- @slot Put the caption here -->
                                 <slot name="caption" />
@@ -282,7 +283,7 @@ img {
             }
         }
 
-        &.vs-image-with-caption__fullwidth-caption {
+        &.vs-image-with-caption__fullwidth-caption:not(.default-closed) {
             @include media-breakpoint-up(sm) {
                 position: relative;
                 width: 100%;
