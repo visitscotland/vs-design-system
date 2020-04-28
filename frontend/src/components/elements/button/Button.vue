@@ -1,5 +1,5 @@
 <template>
-    <b-button
+    <BButton
         :variant="variant"
         :href="href"
         :tabindex="tabindex"
@@ -8,12 +8,12 @@
             [animateClass]: animateClass,
             [backgroundClass]: backgroundClass,
         }"
-        @click="animateClass ? animateHandler() : null"
         :size="size"
         v-bind="$attrs"
+        @click="animateClass ? animateHandler() : null"
     >
         <slot />
-    </b-button>
+    </BButton>
 </template>
 <script>
 import { BButton } from "bootstrap-vue"
@@ -57,11 +57,9 @@ export default {
         variant: {
             type: String,
             default: "primary",
-            validator: value => {
-                return value.match(
-                    /(primary|secondary|success|danger|warning|info|light|dark|transparent)/
-                )
-            },
+            validator: (value) => value.match(
+                /(primary|secondary|success|danger|warning|info|light|dark|transparent)/,
+            ),
         },
         /**
          * Background property used primarily for overrides.
@@ -73,9 +71,7 @@ export default {
         background: {
             type: String,
             default: null,
-            validator: value => {
-                return value.match(/(white)/)
-            },
+            validator: (value) => value.match(/(white)/),
         },
         /**
          * Style the button size.
@@ -84,12 +80,11 @@ export default {
         size: {
             type: String,
             default: "md",
-            validator: value => {
-                return value.match(/(sm|md|lg)/)
-            },
+            validator: (value) => value.match(/(sm|md|lg)/),
         },
         /**
-         * By default, buttons have an animation behaviour on click. To disable, add an animate=false property
+         * By default, buttons have an animation behaviour on click.
+         * To disable, add an animate=false property
          */
         animate: {
             type: Boolean,
@@ -101,7 +96,7 @@ export default {
             return this.animate ? "btn-animate" : null
         },
         backgroundClass() {
-            return this.background ? ["btn-bg-" + this.background] : null
+            return this.background ? [`btn-bg-${this.background}`] : null
         },
     },
     methods: {
@@ -226,15 +221,33 @@ export default {
 
     <h4>Disabled States</h4>
     <bs-wrapper class="d-flex flex-wrap mb-4">
-      <vs-button disabled class="mr-2 mb-2" variant="primary" size="md">Disabled primary</vs-button>
-      <vs-button disabled class="mr-2 mb-2" variant="secondary" size="md">Disabled primary pink</vs-button>
-      <vs-button disabled class="mr-2 mb-2" variant="success" size="md">Disabled success</vs-button>
-      <vs-button disabled class="mr-2 mb-2" variant="danger" size="md">Disabled danger</vs-button>
-      <vs-button disabled class="mr-2 mb-2" variant="warning" size="md">Disabled warning</vs-button>
-      <vs-button disabled class="mr-2 mb-2" variant="info" size="md">Disabled info</vs-button>
-      <vs-button disabled class="mr-2 mb-2" variant="light" size="md">Disabled light</vs-button>
-      <vs-button disabled class="mr-2 mb-2" variant="dark" size="md">Disabled dark</vs-button>
-      <vs-button disabled class="mr-2 mb-2" variant="transparent" size="md">Disabled transparent</vs-button>
+        <vs-button disabled class="mr-2 mb-2" variant="primary" size="md">
+            Disabled primary
+        </vs-button>
+        <vs-button disabled class="mr-2 mb-2" variant="secondary" size="md">
+            Disabled primary pink
+        </vs-button>
+        <vs-button disabled class="mr-2 mb-2" variant="success" size="md">
+            Disabled success
+        </vs-button>
+        <vs-button disabled class="mr-2 mb-2" variant="danger" size="md">
+            Disabled danger
+        </vs-button>
+        <vs-button disabled class="mr-2 mb-2" variant="warning" size="md">
+            Disabled warning
+        </vs-button>
+        <vs-button disabled class="mr-2 mb-2" variant="info" size="md">
+            Disabled info
+        </vs-button>
+        <vs-button disabled class="mr-2 mb-2" variant="light" size="md">
+            Disabled light
+        </vs-button>
+        <vs-button disabled class="mr-2 mb-2" variant="dark" size="md">
+            Disabled dark
+        </vs-button>
+        <vs-button disabled class="mr-2 mb-2" variant="transparent" size="md">
+            Disabled transparent
+        </vs-button>
     </bs-wrapper>
 
 ```

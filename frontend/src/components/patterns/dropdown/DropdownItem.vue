@@ -1,15 +1,17 @@
 <template>
-  <b-dropdown-item v-bind="$attrs"><slot /></b-dropdown-item>
+    <BDropdownItem v-bind="$attrs">
+        <slot />
+    </BDropdownItem>
 </template>
 
 <script>
 import { BDropdownItem } from "bootstrap-vue"
 
 export default {
-  name: "VsDropdownItem",
-  components: {
-    BDropdownItem,
-  },
+    name: "VsDropdownItem",
+    components: {
+        BDropdownItem,
+    },
 }
 </script>
 
