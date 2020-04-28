@@ -19,7 +19,7 @@
     <script type="text/javascript">
         vs.app = new Vue({
             el: '[data-vue-app-init]',
-            data() {
+            data:function() {
                 return { test: {} }
             },
             comments: true
