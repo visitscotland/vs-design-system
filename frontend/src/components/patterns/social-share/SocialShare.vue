@@ -1,7 +1,11 @@
 <template>
-    <vs-prototype>
-        <vs-icon name="share" variant="dark" size="sm" />
-    </vs-prototype>
+    <VsPrototype>
+        <VsIcon
+            name="share"
+            variant="dark"
+            size="sm"
+        />
+    </VsPrototype>
 </template>
 
 <script>
@@ -10,8 +14,9 @@ import VsPrototype from "@components/elements/prototype/Prototype.vue"
 
 /**
  * This is a placeholder component for now.
- * 
- * This component will allow users to share content to social media channels. Functionalities and styles still need to be coded.
+ *
+ * This component will allow users to share content to social
+ * media channels. Functionalities and styles still need to be coded.
  */
 export default {
     name: "VsSocialShare",
@@ -20,8 +25,8 @@ export default {
 
     components: {
         VsIcon,
-        VsPrototype
-    }
+        VsPrototype,
+    },
 }
 </script>
 

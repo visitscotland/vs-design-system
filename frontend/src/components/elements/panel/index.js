@@ -1,5 +1,3 @@
 import VsPanel from "./Panel.vue"
 
-export {
-    VsPanel,
-}
+export default VsPanel

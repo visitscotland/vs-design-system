@@ -1,12 +1,19 @@
 <template>
-    <vs-button class="vs-button-with-icon" v-bind="$attrs">
-        <vs-icon :name="icon" size="sm" :padding="0" />
+    <VsButton
+        class="vs-button-with-icon"
+        v-bind="$attrs"
+    >
+        <VsIcon
+            :name="icon"
+            size="sm"
+            :padding="0"
+        />
         <slot />
-    </vs-button>
+    </VsButton>
 </template>
 <script>
-import VsButton from "../../elements/button"
 import VsIcon from "@components/elements/icon/Icon"
+import VsButton from "."
 
 /**
  * This component extends VsButton and is used for buttons with icons and text.
@@ -57,8 +64,16 @@ export default {
 <docs>
 ```jsx
     <bs-wrapper class="d-flex flex-wrap mb-4">
-        <vs-button-with-icon icon="food" variant="outline-primary" class="mr-3">Nearby places to eat</vs-button-with-icon>
-        <vs-button-with-icon icon="map">Map View</vs-button-with-icon>
+        <vs-button-with-icon
+            icon="food"
+            variant="outline-primary"
+            class="mr-3"
+        >
+            Nearby places to eat
+        </vs-button-with-icon>
+        <vs-button-with-icon icon="map">
+            Map View
+        </vs-button-with-icon>
     </bs-wrapper>
 ```
 </docs>

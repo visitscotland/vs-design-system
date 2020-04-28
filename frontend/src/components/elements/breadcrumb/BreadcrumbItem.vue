@@ -1,13 +1,12 @@
 <template>
-    <b-breadcrumb-item
+    <BBreadcrumbItem
         class="vs-breadcrumb-item"
         :active="active"
-        :ariaCurrent="ariaCurrent"
+        :aria-current="ariaCurrent"
         :href="href"
         :text="text"
         v-bind="$attrs"
-    >
-    </b-breadcrumb-item>
+    />
 </template>
 
 <script>
@@ -30,6 +29,7 @@ export default {
          */
         href: {
             type: String,
+            default: "",
         },
         /**
          * The active breadcrumb item (last item). By default, BootstrapVue renders as a span.
@@ -49,6 +49,7 @@ export default {
          */
         text: {
             type: String,
+            default: "",
         },
     },
 }
