@@ -6,6 +6,7 @@ import com.visitscotland.brmx.utils.CommonUtils;
 import com.visitscotland.brmx.utils.HippoUtils;
 import org.hippoecm.hst.component.support.bean.BaseHstComponent;
 import org.hippoecm.hst.content.beans.standard.HippoBean;
+import org.hippoecm.hst.content.beans.standard.HippoFolder;
 import org.hippoecm.hst.core.component.HstRequest;
 import org.hippoecm.hst.core.request.HstRequestContext;
 import org.hippoecm.hst.core.request.ResolvedSiteMapItem;
@@ -91,28 +92,26 @@ public class VsBreadCrumbProvider extends BreadcrumbProvider {
         final HippoBean currentItem = getComponent().getBeanForResolvedSiteMapItem(request, currentSmi);
 
         HippoBean currentItemBean = currentItem;
-        while (!currentItemBean.getParentBean().isSelf(ancestorBean)) {
+        while (!currentItemBean.getParentBean().isSelf(ancestorBean) && !currentItemBean.isSelf(ancestorBean)) {
             final BreadcrumbItem item = getBreadcrumbItem(request, currentItemBean);
-            if (item != null) {
+
+            if (item != null && !(currentItemBean instanceof HippoFolder)) {
                 items.add(item);
             }
-            HippoBean itemNotNull = getValidHippoBean(currentItemBean.getParentBean());
-
-            int counter = 6;
-            while (itemNotNull==null && counter>0 ) {
-                currentItemBean = currentItemBean.getParentBean();
-                itemNotNull = getValidHippoBean(currentItemBean.getParentBean());
-                counter--;
-
-            }
-            currentItemBean = itemNotNull;
-
+            HippoBean bean = currentItemBean instanceof HippoFolder? currentItemBean: currentItemBean.getParentBean();
+            currentItemBean = getValidHippoBean(bean);
         }
 
     }
 
     private HippoBean getValidHippoBean (HippoBean bean){
-        return bean.getParentBean().getBean("content");
+        HippoBean content =  bean.getParentBean().getBean("content");
+        if (content==null ){
+            logger.warn(CommonUtils.contentIssue("The document created at %s has not defined the path as content ",  bean.getParentBean().getPath()));
+            return bean.getParentBean();
+        } else{
+            return content;
+        }
     }
 
     /**
