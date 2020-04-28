@@ -19,7 +19,9 @@
 </template>
 
 <script>
-import { BCard, BCardTitle, BCardText } from "bootstrap-vue"
+import {
+    BCard, BCardTitle, BCardText,
+} from "bootstrap-vue"
 
 /**
  * The panel is used for simple content and contains slots for title and content.
@@ -30,8 +32,8 @@ export default {
     release: "0.0.1",
     components: {
         BCard,
-        BCardTitle, 
-        BCardText
+        BCardTitle,
+        BCardText,
     },
 }
 </script>
