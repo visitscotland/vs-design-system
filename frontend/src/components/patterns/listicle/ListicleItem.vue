@@ -81,7 +81,11 @@ export default {
 
 <style lang="scss" scoped>
 .vs-listicle-item {
-    margin-bottom: $spacer-12;
+    margin-bottom: $spacer-9;
+
+    @include media-breakpoint-up(sm) {
+        margin-bottom: $spacer-11;
+    }
 
     .count {
         color: $color-white;
@@ -257,11 +261,11 @@ export default {
                         label="WiFi">
                     </vs-icon-list-item>
                     <vs-icon-list-item
-                        icon="facility-publictlt"
+                        icon="publictlt"
                         label="Public Toilets">
                     </vs-icon-list-item>
                     <vs-icon-list-item
-                        icon="facility-giftshop"
+                        icon="giftshop"
                         label="Gift Shop">
                     </vs-icon-list-item>
                     <vs-icon-list-item
