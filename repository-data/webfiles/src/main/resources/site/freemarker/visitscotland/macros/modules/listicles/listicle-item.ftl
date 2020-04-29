@@ -11,7 +11,6 @@
 <#-- @ftlvariable name="item" type="com.visitscotland.brmx.beans.mapping.FlatListicle" -->
 <#-- @ftlvariable name="cta" type="com.visitscotland.brmx.beans.mapping.FlatLink" -->
 	<#assign image = "" />
-
     <#if item.image.cmsImage??>
         <#assign image>
             <@hst.link hippobean=item.image.cmsImage.original/>
