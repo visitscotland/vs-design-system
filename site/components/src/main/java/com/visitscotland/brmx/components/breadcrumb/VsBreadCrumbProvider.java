@@ -98,15 +98,21 @@ public class VsBreadCrumbProvider extends BreadcrumbProvider {
             if (item != null && !(currentItemBean instanceof HippoFolder)) {
                 items.add(item);
             }
-            HippoBean bean = currentItemBean instanceof HippoFolder? currentItemBean: currentItemBean.getParentBean();
+            HippoBean bean = currentItemBean instanceof HippoFolder? currentItemBean : currentItemBean.getParentBean();
             currentItemBean = getValidHippoBean(bean);
         }
 
     }
 
+    /** Method to check if the index document (content) exists in a particular folder.
+     * Extract the proper name from the bean.
+     * @param bean
+     * @return HippoBean index document (content) or the folder if the index does not exist
+     */
+
     private HippoBean getValidHippoBean (HippoBean bean){
         HippoBean content =  bean.getParentBean().getBean("content");
-        if (content==null ){
+        if (content == null){
             logger.warn(CommonUtils.contentIssue("The document created at %s has not defined the path as content ",  bean.getParentBean().getPath()));
             return bean.getParentBean();
         } else{
