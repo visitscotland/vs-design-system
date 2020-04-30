@@ -1,73 +1,104 @@
 <template>
-    <component :is="type" class="position-relative" ref="header">
+    <Component
+        :is="type"
+        class="position-relative"
+        ref="header"
+    >
         <div class="vs-header__top bg-primary position-relative">
-            <vs-container>
-                <vs-row>
-                    <vs-col cols="12" class="vs-header__top__main d-flex justify-content-between">
+            <VsContainer>
+                <VsRow>
+                    <VsCol
+                        cols="12"
+                        class="vs-header__top__main d-flex justify-content-between"
+                    >
                         <slot name="top-left" />
                         <div class="d-inline-flex position-static justify-content-end">
-                            <slot name="top-right"></slot>
+                            <slot name="top-right" />
                         </div>
-                    </vs-col>
-                </vs-row>
-            </vs-container>
-            <vs-drawer class="bg-primary" drawer-key="header-top" :container="false">
+                    </VsCol>
+                </VsRow>
+            </VsContainer>
+            <VsDrawer
+                class="bg-primary"
+                drawer-key="header-top"
+                :container="false"
+            >
                 <slot name="top-drawer" />
-            </vs-drawer>
+            </VsDrawer>
         </div>
 
         <div class="vs-header__bottom position-relative bg-white">
-            <vs-container>
-                <vs-row>
-                    <vs-col cols="6" md="4" lg="3" class="d-flex">
+            <VsContainer>
+                <VsRow>
+                    <VsCol
+                        cols="6"
+                        md="4"
+                        lg="3"
+                        class="d-flex"
+                    >
                         <slot name="logo" />
-                    </vs-col>
-                    <vs-col lg="7" cols="1" class="position-static">
-                        <vs-site-nav-list
+                    </VsCol>
+                    <VsCol
+                        lg="7"
+                        cols="1"
+                        class="position-static"
+                    >
+                        <VsSiteNavList
                             :level="1"
                             :is-open="siteNavOpen"
                             ref="siteNav"
                             v-hand-down-focus
                         >
                             <slot name="site-navigation" />
-                        </vs-site-nav-list>
-                    </vs-col>
+                        </VsSiteNavList>
+                    </VsCol>
 
-                    <vs-col cols="5" md="7" lg="2" class="d-flex justify-content-end">
+                    <VsCol
+                        cols="5"
+                        md="7"
+                        lg="2"
+                        class="d-flex justify-content-end"
+                    >
                         <!-- <ul
-              class="vs-desktop-nav__toggle-list d-none d-lg-flex justify-content-around list-unstyled m-0"
-            >
-              <slot name="desktop-nav-toggles" />
-            </ul> -->
+                            class="vs-desktop-nav__toggle-list
+                            d-none d-lg-flex justify-content-around list-unstyled m-0"
+                            >
+                                <slot name="desktop-nav-toggles" />
+                            </ul> -->
                         <slot name="bottom-right" />
-                        <vs-site-nav-mobile-toggle-button
+                        <VsSiteNavMobileToggleButton
                             :is-open="siteNavOpen"
                             class="d-lg-none"
                             @click.native="toggleMainNav"
                         >
                             Toggle menu
-                        </vs-site-nav-mobile-toggle-button>
+                        </VsSiteNavMobileToggleButton>
                         <!-- <div class="d-lg-none"><slot name="mobile-nav-button" /></div> -->
-                    </vs-col>
-                </vs-row>
-            </vs-container>
+                    </VsCol>
+                </VsRow>
+            </VsContainer>
             <!-- <vs-site-nav :is-open="siteNavOpen" >
-        <slot name="site-navigation" />
-      </vs-site-nav> -->
-            <vs-drawer drawer-key="header-bottom" class="py-4">
+                    <slot name="site-navigation" />
+                </vs-site-nav> -->
+            <VsDrawer
+                drawer-key="header-bottom"
+                class="py-4"
+            >
                 <slot name="bottom-drawer" />
-            </vs-drawer>
+            </VsDrawer>
             <!-- <div class="d-none d-lg-block">
-        <vs-desktop-nav name="Main navigation"> <slot name="desktop-submenu" /> </vs-desktop-nav>
-      </div> -->
+            <vs-desktop-nav name="Main navigation">
+                <slot name="desktop-submenu" />
+            </vs-desktop-nav>
+        </div> -->
 
-            <!-- <div>
-        <vs-mobile-nav name="Main navigation" @setScrollOffset="setScrollOffset">
-          <slot name="mobile-nav-items" />
-        </vs-mobile-nav>
-      </div> -->
+        <!-- <div>
+            <vs-mobile-nav name="Main navigation" @setScrollOffset="setScrollOffset">
+                <slot name="mobile-nav-items" />
+            </vs-mobile-nav>
+        </div> -->
         </div>
-    </component>
+    </Component>
 </template>
 
 <script>
@@ -78,11 +109,12 @@ import VsContainer from "@components/elements/layout/Container"
 import VsIcon from "@components/elements/icon/Icon"
 import VsRow from "@components/elements/layout/Row"
 import VsCol from "@components/elements/layout/Col"
+import {
+    BListGroup, BCollapse, VBToggle,
+} from "bootstrap-vue"
 import VsDrawer from "../drawer/Drawer"
 import VsDrawerContent from "../drawer/DrawerContent"
-import { VsSiteNavMobileToggleButton, VsSiteNav } from "./components/site-navigation/"
-
-import { BListGroup, BCollapse, VBToggle } from "bootstrap-vue"
+import { VsSiteNavMobileToggleButton, VsSiteNav } from "./components/site-navigation"
 
 import HandDownFocus from "@/directives/hand-down-focus"
 
@@ -102,11 +134,9 @@ export default {
         VsSiteNavMobileToggleButton,
         VsSiteNav,
     },
-    directives: { "b-toggle": VBToggle },
-    data() {
-        return {
-            siteNavOpen: false,
-        }
+    directives: {
+        "b-toggle": VBToggle,
+        HandDownFocus,
     },
     props: {
         /**
@@ -117,15 +147,18 @@ export default {
             default: "header",
         },
     },
-    directives: {
-        HandDownFocus,
+    data() {
+        return {
+            siteNavOpen: false,
+        }
+    },
+    created() {
+        smoothscroll.polyfill()
     },
     methods: {
         toggleMainNav() {
             this.siteNavOpen = !this.siteNavOpen
-            console.log("toggle site nav")
             Vue.nextTick(() => {
-                console.log("toggle site nav next tick")
                 this.$refs.siteNav.$el.focus()
             })
         },
@@ -140,17 +173,14 @@ export default {
             })
         },
         collapseOtherMenus(openedId) {
-            var allOpenedPanels = document.querySelectorAll(".collapse.show")
-            allOpenedPanels.forEach(panel => {
+            const allOpenedPanels = document.querySelectorAll(".collapse.show")
+            allOpenedPanels.forEach((panel) => {
                 if (panel.id !== openedId) {
                     this.$root.$emit("bv::toggle::collapse", panel.id)
                 }
             })
             this.$emit("resetMenus")
         },
-    },
-    created() {
-        smoothscroll.polyfill()
     },
 }
 </script>
