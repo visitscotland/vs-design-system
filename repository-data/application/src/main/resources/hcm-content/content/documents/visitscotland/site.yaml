@@ -441,8 +441,8 @@
       jcr:primaryType: hippo:handle
       jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
       jcr:uuid: 0751c1d3-3024-4d2d-a5e8-38286fee9722
-      hippo:name: Content
-      hippo:versionHistory: f0d3c02e-12ec-4901-a3f8-b9ffc53df39f
+      hippo:name: Developers test - useful links
+      hippo:versionHistory: 8e0ece72-5e2c-42f5-bcd2-4b81b6414bce
       /content[1]:
         jcr:primaryType: visitscotland:Itinerary
         jcr:mixinTypes: ['mix:referenceable']
@@ -639,7 +639,7 @@
         hippostdpubwf:creationDate: 2019-12-06T12:48:04.149Z
         hippostdpubwf:lastModificationDate: 2020-04-29T14:51:15.203+01:00
         hippostdpubwf:lastModifiedBy: admin
-        hippostdpubwf:publicationDate: 2020-04-29T14:51:39.989+01:00
+        hippostdpubwf:publicationDate: 2020-04-30T17:58:48.008+01:00
         hippotranslation:id: a3ed9022-e239-493b-952c-18d01ac36640
         hippotranslation:locale: en
         visitscotland:areas: [east]
