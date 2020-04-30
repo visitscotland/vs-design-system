@@ -1,68 +1,88 @@
 <template>
-  <component
-    :is="type"
-    data-test="desktop-nav-list-item"
-    class="vs-desktop-nav__list-item col-4 col-xl-3 vs-desktop-nav__list-item--level2 mb-3"
-  >
-    <a data-test="promo-link" class="vs-promo-item__link" :href="href">
-      <div class="vs-promo-item__wrapper">
-        <span class="vs-promo-item__link-title">{{ title }}</span>
-        <div class="vs-promo-item__icon-wrapper">
-          <vs-icon data-test="svg-icon" name="reverse-arrow" size="xs" variant="primary" />
-        </div>
-      </div>
-      <div class="vs-promo-item__image-wrapper" v-if="imageLink">
-        <img
-          data-test="promo-image"
-          class="lazyload vs-promo-item__image"
-          :data-srcset="imageLink"
-          :data-src="imageLink"
-          :alt="title"
-          :src="imageLink"
-        />
-      </div>
-    </a>
-  </component>
+    <Component
+        :is="type"
+        data-test="desktop-nav-list-item"
+        class="vs-desktop-nav__list-item col-4 col-xl-3 vs-desktop-nav__list-item--level2 mb-3"
+    >
+        <a
+            data-test="promo-link"
+            class="vs-promo-item__link"
+            :href="href"
+        >
+            <div class="vs-promo-item__wrapper">
+                <span class="vs-promo-item__link-title">{{ title }}</span>
+                <div class="vs-promo-item__icon-wrapper">
+                    <VsIcon
+                        data-test="svg-icon"
+                        name="reverse-arrow"
+                        size="xs"
+                        variant="primary"
+                    />
+                </div>
+            </div>
+            <div
+                class="vs-promo-item__image-wrapper"
+                v-if="imageLink"
+            >
+                <img
+                    data-test="promo-image"
+                    class="lazyload vs-promo-item__image"
+                    :data-srcset="imageLink"
+                    :data-src="imageLink"
+                    :alt="title"
+                    :src="imageLink"
+                >
+            </div>
+        </a>
+    </Component>
 </template>
 
 <script>
 import VsIcon from "../../../../elements/icon/Icon"
 
 export default {
-  name: "VsDesktopNavPromoItem",
-  status: "prototype",
-  release: "0.0.1",
-  components: { VsIcon },
-  data() {
-    return {}
-  },
-  props: {
-    /**
-     * The html element name used for the component
-     */
-    type: {
-      type: String,
-      default: "li",
+    name: "VsDesktopNavPromoItem",
+    status: "prototype",
+    release: "0.0.1",
+    components: {
+        VsIcon,
     },
-    href: {
-      type: String,
+    props: {
+        /**
+         * The html element name used for the component
+         */
+        type: {
+            type: String,
+            default: "li",
+        },
+        href: {
+            type: String,
+            default: "",
+        },
+        isExternal: {
+            type: Boolean,
+        },
+        title: {
+            type: String,
+            default: "",
+        },
+        buttonText: {
+            type: String,
+            default: "",
+        },
+        description: {
+            type: String,
+            default: "",
+        },
+        imageLink: {
+            type: String,
+            default: "",
+        },
     },
-    isExternal: {
-      type: Boolean,
+    data() {
+        return {
+        }
     },
-    title: {
-      type: String,
-    },
-    buttonText: {
-      type: String,
-    },
-    description: {
-      type: String,
-    },
-    imageLink: {
-      type: String,
-    },
-  },
 }
 </script>
 
