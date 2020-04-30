@@ -10,6 +10,7 @@ import com.visitscotland.brmx.beans.mapping.FlatStop;
 import com.visitscotland.brmx.utils.CommonUtils;
 import com.visitscotland.brmx.utils.HippoUtils;
 import com.visitscotland.brmx.utils.LocationLoader;
+import com.visitscotland.utils.CoordinateUtils;
 import org.hippoecm.hst.core.component.HstRequest;
 import org.hippoecm.hst.core.component.HstResponse;
 import org.json.JSONArray;
@@ -19,6 +20,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.*;
+import java.math.BigDecimal;
 import java.util.*;
 
 
@@ -27,9 +29,14 @@ public class ItineraryContentComponent extends PageContentComponent<Itinerary> {
     private static final Logger logger = LoggerFactory.getLogger(ItineraryContentComponent.class);
 
     public final String STOPS_MAP = "stops";
+
+    public final String DISTANCE = "distance";
     public final String FIRST_STOP_LOCATION = "firstStopLocation";
     public final String LAST_STOP_LOCATION = "lastStopLocation";
     public final String HERO_COORDINATES = "heroCoordinates";
+
+    private BigDecimal totalDistance = BigDecimal.ZERO;
+    private Coordinates prevCoordinates = null;
 
     @Override
     public void doBeforeRender(HstRequest request, HstResponse response) {
@@ -225,12 +232,28 @@ public class ItineraryContentComponent extends PageContentComponent<Itinerary> {
                     model.setSubTitle(stop.getSubtitle());
                 }
                 model.setErrorMessages(errors);
+                if (model.getCoordinates()!=null) {
+                    if (prevCoordinates != null) {
+                        BigDecimal distance = CoordinateUtils.haversineDistance(new BigDecimal(prevCoordinates.getLatitude()),new BigDecimal(prevCoordinates.getLongitude()),
+                                    new BigDecimal(model.getCoordinates().getLatitude()),new BigDecimal(model.getCoordinates().getLongitude()), true, "#,###,##0.00");
+
+                        if (distance != null) {
+                            model.setDistance(distance);
+                            prevCoordinates = model.getCoordinates();
+                            totalDistance = totalDistance.add(distance);
+                        }
+
+                    } else {
+                        prevCoordinates = new Coordinates(model.getCoordinates().getLatitude(), model.getCoordinates().getLongitude());
+                    }
+                }
                 products.put(model.getIdentifier(), model);
+
             }
         }
 
         if (products.size() > 0 ) {
-            request.setAttribute(FIRST_STOP_LOCATION, products.get(firstStopId).getSubTitle());
+            request.setAttribute(DISTANCE, itinerary.getDistance()>0.0 ? itinerary.getDistance():totalDistance);
             request.setAttribute(LAST_STOP_LOCATION, products.get(lastStopId).getSubTitle());
 
             request.setAttribute(STOPS_MAP, products);
