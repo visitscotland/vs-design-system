@@ -1,36 +1,34 @@
 <template>
-  <b-list-group
-    v-bind="$attrs"
-    class="vs-header__list-group"
-    :class="{ 'vs-header__list-group--top': isTop }"
-    horizontal
-  >
-    <slot />
-  </b-list-group>
+    <BListGroup
+        v-bind="$attrs"
+        class="vs-header__list-group"
+        :class="{ 'vs-header__list-group--top': isTop }"
+        horizontal
+    >
+        <slot />
+    </BListGroup>
 </template>
 
 <script>
 import { BListGroup } from "bootstrap-vue"
 
 export default {
-  name: "VsHeaderListGroup",
-  components: {
-    BListGroup,
-  },
-  props: {
-    section: {
-      type: String,
-      default: "bottom",
-      validator: value => {
-        return value.match(/(top|bottom)/)
-      },
+    name: "VsHeaderListGroup",
+    components: {
+        BListGroup,
     },
-  },
-  computed: {
-    isTop() {
-      return this.section === "top"
+    props: {
+        section: {
+            type: String,
+            default: "bottom",
+            validator: (value) => value.match(/(top|bottom)/),
+        },
     },
-  },
+    computed: {
+        isTop() {
+            return this.section === "top"
+        },
+    },
 }
 </script>
 
