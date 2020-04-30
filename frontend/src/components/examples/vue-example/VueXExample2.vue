@@ -1,14 +1,19 @@
 <template>
-  <div>
-    <b-card bg-variant="primary" style="max-width: 20rem;">
-      <b-card-text> Inside component 2, the count from the VueX state is {{ count }} </b-card-text>
-      <vs-button
-        @click.native="increment('Incrementing count from ' + count + ' to ' + (count + 1))"
-      >
-        <slot />
-      </vs-button>
-    </b-card>
-  </div>
+    <div>
+        <BCard
+            bg-variant="primary"
+            style="max-width: 20rem;"
+        >
+            <BCardText>
+                Inside component 2, the count from the VueX state is {{ count }}
+            </BCardText>
+            <VsButton
+                @click.native="increment('Incrementing count from ' + count + ' to ' + (count + 1))"
+            >
+                <slot />
+            </VsButton>
+        </BCard>
+    </div>
 </template>
 
 <script>
@@ -22,25 +27,25 @@ import store from "./example.store"
  * components of the design system.
  */
 export default {
-  name: "VsVueXExample2",
-  status: "prototype",
-  release: "0.0.1",
-  components: {
-    VsButton,
-    BCard,
-    BCardText,
-  },
-  store,
-  computed: {
-    count() {
-      return this.$store.state.example.count
+    name: "VsVueXExample2",
+    status: "prototype",
+    release: "0.0.1",
+    components: {
+        VsButton,
+        BCard,
+        BCardText,
     },
-  },
-  methods: {
-    increment(message) {
-      this.$store.dispatch("example/increment", message)
+    store,
+    computed: {
+        count() {
+            return this.$store.state.example.count
+        },
     },
-  },
+    methods: {
+        increment(message) {
+            this.$store.dispatch("example/increment", message)
+        },
+    },
 }
 </script>
 
@@ -59,7 +64,7 @@ export default {
     </div>
   </div>
   </template>
-  
+
   <script>
   import store from './example.store'
 
@@ -72,8 +77,7 @@ export default {
     }
   }
   </script>
-  
-  
+
 
   ```
 </docs>

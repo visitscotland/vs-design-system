@@ -1,14 +1,18 @@
 <template>
-    <component
+    <Component
         data-test="mobile-promo-list-item"
         :is="type"
         class="vs-mobile-nav__list-item vs-mobile-nav__list-item--level2"
     >
-        <a data-test="mobile-promo-list-link" class="vs-promo-item__link" :href="href">
+        <a
+            data-test="mobile-promo-list-link"
+            class="vs-promo-item__link"
+            :href="href"
+        >
             <div class="vs-promo-item__wrapper">
                 <span class="vs-promo-item__link-title">{{ title }}</span>
                 <div class="vs-promo-item__icon-wrapper">
-                    <vs-icon
+                    <VsIcon
                         data-test="mobile-promo-arrow-icon"
                         name="reverse-arrow"
                         size="xs"
@@ -16,7 +20,10 @@
                     />
                 </div>
             </div>
-            <div class="vs-promo-item__image-wrapper" v-if="imageLink">
+            <div
+                class="vs-promo-item__image-wrapper"
+                v-if="imageLink"
+            >
                 <img
                     data-test="mobile-promo-image"
                     class="lazyload vs-promo-item__image"
@@ -24,10 +31,10 @@
                     :data-src="imageLink"
                     :alt="title"
                     :src="imageLink"
-                />
+                >
             </div>
         </a>
-    </component>
+    </Component>
 </template>
 
 <script>
@@ -37,9 +44,8 @@ export default {
     name: "VsMobileNavPromoItem",
     status: "prototype",
     release: "0.0.1",
-    components: { VsIcon },
-    data() {
-        return {}
+    components: {
+        VsIcon,
     },
     props: {
         /**
@@ -51,22 +57,31 @@ export default {
         },
         href: {
             type: String,
+            default: "",
         },
         isExternal: {
             type: Boolean,
         },
         title: {
             type: String,
+            default: "",
         },
         buttonText: {
             type: String,
+            default: "",
         },
         description: {
             type: String,
+            default: "",
         },
         imageLink: {
             type: String,
+            default: "",
         },
+    },
+    data() {
+        return {
+        }
     },
 }
 </script>

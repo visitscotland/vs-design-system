@@ -1,12 +1,16 @@
 <template>
-  <vs-dropdown
-    v-bind="$attrs"
-    class="vs-header__dropdown"
-    :class="{ 'vs-header__dropdown--top': isTop }"
-    toggle-class="p-1"
-  >
-    <slot v-for="(_, name) in $slots" :name="name" :slot="name" />
-  </vs-dropdown>
+    <VsDropdown
+        v-bind="$attrs"
+        class="vs-header__dropdown"
+        :class="{ 'vs-header__dropdown--top': isTop }"
+        toggle-class="p-1"
+    >
+        <slot
+            v-for="(_, name) in $slots"
+            :name="name"
+            :slot="name"
+        />
+    </VsDropdown>
 </template>
 
 <script>
@@ -16,28 +20,26 @@ import { VsDropdown } from "@components/patterns/dropdown"
  * Dropdown component styled for use in the header.
  */
 export default {
-  name: "VsHeaderDropdown",
-  components: {
-    VsDropdown,
-  },
-  props: {
-    /**
-     * Indicates which section of the header the dropdown is styled for.
-     * `top, bottom`
-     */
-    section: {
-      type: String,
-      default: "bottom",
-      validator: value => {
-        return value.match(/(top|bottom)/)
-      },
+    name: "VsHeaderDropdown",
+    components: {
+        VsDropdown,
     },
-  },
-  computed: {
-    isTop() {
-      return this.section === "top"
+    props: {
+        /**
+         * Indicates which section of the header the dropdown is styled for.
+         * `top, bottom`
+         */
+        section: {
+            type: String,
+            default: "bottom",
+            validator: (value) => value.match(/(top|bottom)/),
+        },
     },
-  },
+    computed: {
+        isTop() {
+            return this.section === "top"
+        },
+    },
 }
 </script>
 
@@ -71,7 +73,7 @@ export default {
         <vs-dropdown-item>feeeeee</vs-dropdown-item>
       </vs-header-dropdown>
     </div>
-    
+
     <vs-header-dropdown text="BOTTOM">
       <vs-dropdown-item>sdafdfsaf</vs-dropdown-item>
       <vs-dropdown-item>bbbb</vs-dropdown-item>

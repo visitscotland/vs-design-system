@@ -1,32 +1,37 @@
 <template>
-  <component :is="type" :aria-label="name">
-    <ul class="list-unstyled">
-      <slot />
-    </ul>
-  </component>
+    <Component
+        :is="type"
+        :aria-label="name"
+    >
+        <ul class="list-unstyled">
+            <slot />
+        </ul>
+    </Component>
 </template>
 
 <script>
 export default {
-  name: "VsDesktopNav",
-  status: "prototype",
-  release: "0.0.1",
+    name: "VsDesktopNav",
+    status: "prototype",
+    release: "0.0.1",
+    props: {
+        /**
+         * The html element name used for the component
+         */
+        type: {
+            type: String,
+            default: "nav",
+        },
+        name: {
+            type: String,
+            default: "",
+        },
+    },
 
-  data() {
-    return {}
-  },
-  props: {
-    /**
-     * The html element name used for the component
-     */
-    type: {
-      type: String,
-      default: "nav",
+    data() {
+        return {
+        }
     },
-    name: {
-      type: String,
-    },
-  },
 }
 </script>
 
@@ -52,7 +57,7 @@ export default {
         :toggleId="1"
       ></vs-desktop-nav-toggles>
     </ul>
-    <vs-desktop-nav name="Desktop navigation"> 
+    <vs-desktop-nav name="Desktop navigation">
       <vs-desktop-nav-submenu
         :level="1"
         :href="header.mainNav[0].href"
