@@ -24,8 +24,8 @@
         jcr:primaryType: hippo:handle
         jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
         jcr:uuid: 8b4a3c11-8b84-4aa0-bccf-f407d18c1c44
-        hippo:name: Content
-        hippo:versionHistory: 87645b57-b557-4d1e-870d-34341f2b6259
+        hippo:name: Itinerary
+        hippo:versionHistory: ab4dc108-6a93-4a2c-8399-02523a18dcfb
         /content[1]:
           jcr:primaryType: visitscotland:Itinerary
           jcr:mixinTypes: ['mix:versionable']
@@ -34,7 +34,7 @@
           hippostd:state: unpublished
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2019-12-06T12:48:04.149Z
-          hippostdpubwf:lastModificationDate: 2020-02-28T16:33:31.479Z
+          hippostdpubwf:lastModificationDate: 2020-04-29T14:55:55.445+01:00
           hippostdpubwf:lastModifiedBy: admin
           hippotranslation:id: 56cf92c8-5887-4146-ad53-eaa062f4e07a
           hippotranslation:locale: en
@@ -45,12 +45,18 @@
           visitscotland:highlights: "Glenfinnan Viaduct \r\nJacobite Steam Train\r\
             \nGlen Etive\r\nThe Elephant House"
           visitscotland:popular: false
-          visitscotland:seoDescription: ''
+          visitscotland:seoDescription: It was in Scotland's capital city that JK
+            Rowling started to plot the adventures of Harry and his friends. With
+            cobbled streets, winding alleys and medieval architecture, the city certainly
+            have a few things in common with the settings from the books and films.
           visitscotland:seoNoIndex: false
           visitscotland:seoTitle: Iconic Harry Potter Film Locations - An Itinerary
           visitscotland:start: Tenerife
           visitscotland:summary: ''
-          visitscotland:teaser: ''
+          visitscotland:teaser: It was in Scotland's capital city that JK Rowling
+            started to plot the adventures of Harry and his friends. With cobbled
+            streets, winding alleys and medieval architecture, the city certainly
+            have a few things in common with the settings from the books and films.
           visitscotland:text: "Glenfinnan Viaduct\r\n\r\nJacobite Steam Train\r\n\r\
             \nGlen Etive\r\n\r\nThe Elephant House"
           visitscotland:theme: whisky
@@ -90,9 +96,9 @@
           hippostd:state: published
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2019-12-06T12:48:04.149Z
-          hippostdpubwf:lastModificationDate: 2020-02-28T16:33:31.479Z
+          hippostdpubwf:lastModificationDate: 2020-04-29T14:55:55.445+01:00
           hippostdpubwf:lastModifiedBy: admin
-          hippostdpubwf:publicationDate: 2020-03-09T09:54:15.967Z
+          hippostdpubwf:publicationDate: 2020-04-29T17:55:25.213+01:00
           hippotranslation:id: 56cf92c8-5887-4146-ad53-eaa062f4e07a
           hippotranslation:locale: en
           visitscotland:areas: [east, north]
@@ -102,12 +108,18 @@
           visitscotland:highlights: "Glenfinnan Viaduct \r\nJacobite Steam Train\r\
             \nGlen Etive\r\nThe Elephant House"
           visitscotland:popular: false
-          visitscotland:seoDescription: ''
+          visitscotland:seoDescription: It was in Scotland's capital city that JK
+            Rowling started to plot the adventures of Harry and his friends. With
+            cobbled streets, winding alleys and medieval architecture, the city certainly
+            have a few things in common with the settings from the books and films.
           visitscotland:seoNoIndex: false
           visitscotland:seoTitle: Iconic Harry Potter Film Locations - An Itinerary
           visitscotland:start: Tenerife
           visitscotland:summary: ''
-          visitscotland:teaser: ''
+          visitscotland:teaser: It was in Scotland's capital city that JK Rowling
+            started to plot the adventures of Harry and his friends. With cobbled
+            streets, winding alleys and medieval architecture, the city certainly
+            have a few things in common with the settings from the books and films.
           visitscotland:text: "Glenfinnan Viaduct\r\n\r\nJacobite Steam Train\r\n\r\
             \nGlen Etive\r\n\r\nThe Elephant House"
           visitscotland:theme: whisky
@@ -147,7 +159,7 @@
           hippostd:state: draft
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2019-12-06T12:48:04.149Z
-          hippostdpubwf:lastModificationDate: 2020-02-28T16:33:27.305Z
+          hippostdpubwf:lastModificationDate: 2020-04-29T14:55:55.642+01:00
           hippostdpubwf:lastModifiedBy: admin
           hippotranslation:id: 56cf92c8-5887-4146-ad53-eaa062f4e07a
           hippotranslation:locale: en
@@ -158,15 +170,21 @@
           visitscotland:highlights: "Glenfinnan Viaduct \r\nJacobite Steam Train\r\
             \nGlen Etive\r\nThe Elephant House"
           visitscotland:popular: false
-          visitscotland:seoDescription: ''
+          visitscotland:seoDescription: It was in Scotland's capital city that JK
+            Rowling started to plot the adventures of Harry and his friends. With
+            cobbled streets, winding alleys and medieval architecture, the city certainly
+            have a few things in common with the settings from the books and films.
           visitscotland:seoNoIndex: false
           visitscotland:seoTitle: Iconic Harry Potter Film Locations - An Itinerary
           visitscotland:start: Tenerife
           visitscotland:summary: ''
-          visitscotland:teaser: ''
+          visitscotland:teaser: It was in Scotland's capital city that JK Rowling
+            started to plot the adventures of Harry and his friends. With cobbled
+            streets, winding alleys and medieval architecture, the city certainly
+            have a few things in common with the settings from the books and films.
           visitscotland:text: "Glenfinnan Viaduct\r\n\r\nJacobite Steam Train\r\n\r\
             \nGlen Etive\r\n\r\nThe Elephant House"
-          visitscotland:theme: filmev
+          visitscotland:theme: whisky
           visitscotland:title: HARRY POTTER FILM AND BOOK LOCATIONS ITINERARY
           visitscotland:transport: [boat]
           visitscotland:transports: [car, train]
@@ -424,7 +442,7 @@
       jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
       jcr:uuid: 0751c1d3-3024-4d2d-a5e8-38286fee9722
       hippo:name: Content
-      hippo:versionHistory: 8be54d8b-57eb-4a39-b2be-382f23dfa708
+      hippo:versionHistory: f0d3c02e-12ec-4901-a3f8-b9ffc53df39f
       /content[1]:
         jcr:primaryType: visitscotland:Itinerary
         jcr:mixinTypes: ['mix:referenceable']
@@ -433,17 +451,18 @@
         hippostd:state: draft
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2019-12-06T12:48:04.149Z
-        hippostdpubwf:lastModificationDate: 2020-03-09T09:02:43.295Z
+        hippostdpubwf:lastModificationDate: 2020-04-29T14:50:02.258+01:00
         hippostdpubwf:lastModifiedBy: admin
         hippotranslation:id: a3ed9022-e239-493b-952c-18d01ac36640
         hippotranslation:locale: en
-        visitscotland:areas: []
+        visitscotland:areas: [east]
         visitscotland:breadcrumb: Development Area
         visitscotland:distance: 3.718
         visitscotland:finish: Spain
-        visitscotland:highlights: ''
+        visitscotland:highlights: "Broken Itinerary\r\nVictoria Heritage\r\nOutlander\r\
+          \nShort break"
         visitscotland:popular: false
-        visitscotland:seoDescription: ''
+        visitscotland:seoDescription: A bunch of useful links for developers
         visitscotland:seoNoIndex: false
         visitscotland:seoTitle: A bunch of useful links for developers
         visitscotland:start: Scotland
@@ -525,17 +544,18 @@
         hippostd:state: unpublished
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2019-12-06T12:48:04.149Z
-        hippostdpubwf:lastModificationDate: 2020-03-09T09:02:43.034Z
+        hippostdpubwf:lastModificationDate: 2020-04-29T14:51:15.203+01:00
         hippostdpubwf:lastModifiedBy: admin
         hippotranslation:id: a3ed9022-e239-493b-952c-18d01ac36640
         hippotranslation:locale: en
-        visitscotland:areas: []
+        visitscotland:areas: [east]
         visitscotland:breadcrumb: Development Area
         visitscotland:distance: 3.718
         visitscotland:finish: Spain
-        visitscotland:highlights: ''
+        visitscotland:highlights: "Broken Itinerary\r\nVictoria Heritage\r\nOutlander\r\
+          \nShort break"
         visitscotland:popular: false
-        visitscotland:seoDescription: ''
+        visitscotland:seoDescription: A bunch of useful links for developers
         visitscotland:seoNoIndex: false
         visitscotland:seoTitle: A bunch of useful links for developers
         visitscotland:start: Scotland
@@ -617,18 +637,19 @@
         hippostd:state: published
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2019-12-06T12:48:04.149Z
-        hippostdpubwf:lastModificationDate: 2020-03-09T09:02:43.034Z
+        hippostdpubwf:lastModificationDate: 2020-04-29T14:51:15.203+01:00
         hippostdpubwf:lastModifiedBy: admin
-        hippostdpubwf:publicationDate: 2020-03-09T09:03:29.502Z
+        hippostdpubwf:publicationDate: 2020-04-29T14:51:39.989+01:00
         hippotranslation:id: a3ed9022-e239-493b-952c-18d01ac36640
         hippotranslation:locale: en
-        visitscotland:areas: []
+        visitscotland:areas: [east]
         visitscotland:breadcrumb: Development Area
         visitscotland:distance: 3.718
         visitscotland:finish: Spain
-        visitscotland:highlights: ''
+        visitscotland:highlights: "Broken Itinerary\r\nVictoria Heritage\r\nOutlander\r\
+          \nShort break"
         visitscotland:popular: false
-        visitscotland:seoDescription: ''
+        visitscotland:seoDescription: A bunch of useful links for developers
         visitscotland:seoNoIndex: false
         visitscotland:seoTitle: A bunch of useful links for developers
         visitscotland:start: Scotland
@@ -715,7 +736,7 @@
         jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
         jcr:uuid: cbc8477d-1deb-4153-b663-12212905b472
         hippo:name: Listicle example for developers
-        hippo:versionHistory: 04e3c2c7-befa-473e-a3aa-f971c9b87ef6
+        hippo:versionHistory: 5108a3a9-64cc-4815-9128-a9bbe1085bd8
         /content[1]:
           jcr:primaryType: visitscotland:Listicle
           jcr:mixinTypes: ['mix:referenceable']
@@ -724,15 +745,15 @@
           hippostd:state: draft
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2020-02-27T13:17:22.069Z
-          hippostdpubwf:lastModificationDate: 2020-03-30T15:46:40.487+01:00
+          hippostdpubwf:lastModificationDate: 2020-04-29T14:56:07.305+01:00
           hippostdpubwf:lastModifiedBy: admin
           hippotranslation:id: 7d4f9ca4-76eb-40a1-a793-29efa7f1ae68
           hippotranslation:locale: en
           visitscotland:breadcrumb: listicle
           visitscotland:descOrder: false
-          visitscotland:seoDescription: ''
+          visitscotland:seoDescription: Listicle Header description
           visitscotland:seoNoIndex: false
-          visitscotland:seoTitle: ''
+          visitscotland:seoTitle: Listicle Header
           visitscotland:summaryTitle: ''
           visitscotland:teaser: If you're looking for the best things to do in Scotland,
             then look no further. We've got iconic castles, incredible museums, beautiful
@@ -763,15 +784,15 @@
           hippostd:state: unpublished
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2020-02-27T13:17:22.069Z
-          hippostdpubwf:lastModificationDate: 2020-03-30T14:44:59.491+01:00
+          hippostdpubwf:lastModificationDate: 2020-04-29T14:58:06.692+01:00
           hippostdpubwf:lastModifiedBy: admin
           hippotranslation:id: 7d4f9ca4-76eb-40a1-a793-29efa7f1ae68
           hippotranslation:locale: en
           visitscotland:breadcrumb: listicle
           visitscotland:descOrder: false
-          visitscotland:seoDescription: ''
+          visitscotland:seoDescription: Listicle Header description
           visitscotland:seoNoIndex: false
-          visitscotland:seoTitle: ''
+          visitscotland:seoTitle: Listicle Header
           visitscotland:summaryTitle: ''
           visitscotland:teaser: If you're looking for the best things to do in Scotland,
             then look no further. We've got iconic castles, incredible museums, beautiful
@@ -802,16 +823,16 @@
           hippostd:state: published
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2020-02-27T13:17:22.069Z
-          hippostdpubwf:lastModificationDate: 2020-03-30T14:44:59.491+01:00
+          hippostdpubwf:lastModificationDate: 2020-04-29T14:58:06.692+01:00
           hippostdpubwf:lastModifiedBy: admin
-          hippostdpubwf:publicationDate: 2020-03-30T15:47:09.865+01:00
+          hippostdpubwf:publicationDate: 2020-04-29T14:58:14.266+01:00
           hippotranslation:id: 7d4f9ca4-76eb-40a1-a793-29efa7f1ae68
           hippotranslation:locale: en
           visitscotland:breadcrumb: listicle
           visitscotland:descOrder: false
-          visitscotland:seoDescription: ''
+          visitscotland:seoDescription: Listicle Header description
           visitscotland:seoNoIndex: false
-          visitscotland:seoTitle: ''
+          visitscotland:seoTitle: Listicle Header
           visitscotland:summaryTitle: ''
           visitscotland:teaser: If you're looking for the best things to do in Scotland,
             then look no further. We've got iconic castles, incredible museums, beautiful
@@ -1124,7 +1145,7 @@
             jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
             jcr:uuid: bc5bec32-9cbc-45a7-855b-342008ad8ef9
             hippo:name: Short Calming Escapes By The Water
-            hippo:versionHistory: efdf4109-6c9c-45a8-8be2-d0d5b306c534
+            hippo:versionHistory: cc93baea-18ed-40d4-9626-8acaebcc94c1
             /content[1]:
               jcr:primaryType: visitscotland:Listicle
               jcr:mixinTypes: ['mix:referenceable']
@@ -1133,7 +1154,7 @@
               hippostd:state: draft
               hippostdpubwf:createdBy: admin
               hippostdpubwf:creationDate: 2020-03-09T13:18:03.936Z
-              hippostdpubwf:lastModificationDate: 2020-04-10T14:09:26.401+01:00
+              hippostdpubwf:lastModificationDate: 2020-04-29T14:59:37.445+01:00
               hippostdpubwf:lastModifiedBy: admin
               hippotranslation:id: 97546e89-0d3f-4b72-816b-fd23247d9c2c
               hippotranslation:locale: en
@@ -1145,7 +1166,9 @@
               visitscotland:seoNoIndex: false
               visitscotland:seoTitle: Short Calming Escapes By The Water
               visitscotland:summaryTitle: ''
-              visitscotland:teaser: ''
+              visitscotland:teaser: Discover relaxing breaks in Scotland, including
+                accommodation beside lochs and canals, lighthouses, boating holidays
+                and harbour-side cottages.
               visitscotland:title: Short Calming Escapes By The Water
               /visitscotland:heroImage:
                 jcr:primaryType: hippogallerypicker:imagelink
@@ -1170,7 +1193,7 @@
               hippostd:state: unpublished
               hippostdpubwf:createdBy: admin
               hippostdpubwf:creationDate: 2020-03-09T13:18:03.936Z
-              hippostdpubwf:lastModificationDate: 2020-04-10T14:09:26.314+01:00
+              hippostdpubwf:lastModificationDate: 2020-04-29T14:59:36.734+01:00
               hippostdpubwf:lastModifiedBy: admin
               hippotranslation:id: 97546e89-0d3f-4b72-816b-fd23247d9c2c
               hippotranslation:locale: en
@@ -1182,7 +1205,9 @@
               visitscotland:seoNoIndex: false
               visitscotland:seoTitle: Short Calming Escapes By The Water
               visitscotland:summaryTitle: ''
-              visitscotland:teaser: ''
+              visitscotland:teaser: Discover relaxing breaks in Scotland, including
+                accommodation beside lochs and canals, lighthouses, boating holidays
+                and harbour-side cottages.
               visitscotland:title: Short Calming Escapes By The Water
               /visitscotland:heroImage:
                 jcr:primaryType: hippogallerypicker:imagelink
@@ -1207,9 +1232,9 @@
               hippostd:state: published
               hippostdpubwf:createdBy: admin
               hippostdpubwf:creationDate: 2020-03-09T13:18:03.936Z
-              hippostdpubwf:lastModificationDate: 2020-03-30T17:09:26.082+01:00
+              hippostdpubwf:lastModificationDate: 2020-04-29T14:59:36.734+01:00
               hippostdpubwf:lastModifiedBy: admin
-              hippostdpubwf:publicationDate: 2020-04-09T18:15:04.099+01:00
+              hippostdpubwf:publicationDate: 2020-04-29T14:59:44.667+01:00
               hippotranslation:id: 97546e89-0d3f-4b72-816b-fd23247d9c2c
               hippotranslation:locale: en
               visitscotland:breadcrumb: ''
@@ -1220,11 +1245,13 @@
               visitscotland:seoNoIndex: false
               visitscotland:seoTitle: Short Calming Escapes By The Water
               visitscotland:summaryTitle: ''
-              visitscotland:teaser: ''
+              visitscotland:teaser: Discover relaxing breaks in Scotland, including
+                accommodation beside lochs and canals, lighthouses, boating holidays
+                and harbour-side cottages.
               visitscotland:title: Short Calming Escapes By The Water
               /visitscotland:heroImage:
                 jcr:primaryType: hippogallerypicker:imagelink
-                hippo:docbase: ecede5a4-326c-4ce5-b9be-bcdf32c3f2c2
+                hippo:docbase: 8d4f5036-64ca-4e5d-aa89-b348ae38b081
                 hippo:facets: []
                 hippo:modes: []
                 hippo:values: []
@@ -1551,9 +1578,10 @@
                 visitscotland:product: '251351'
         /content:
           jcr:primaryType: hippo:handle
-          jcr:mixinTypes: ['hippo:versionInfo', 'mix:referenceable']
+          jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
           jcr:uuid: 9a0fcbb3-6c60-4aa2-8dbe-4d9c418efd26
-          hippo:versionHistory: d20529f9-a188-433b-aed6-23b7170d5603
+          hippo:name: Trip Ideas
+          hippo:versionHistory: e654d6cd-c242-41cf-999a-794cc9521fb8
           /content[1]:
             jcr:primaryType: visitscotland:Listicle
             jcr:mixinTypes: ['mix:referenceable']
@@ -1562,17 +1590,17 @@
             hippostd:state: draft
             hippostdpubwf:createdBy: admin
             hippostdpubwf:creationDate: 2020-04-09T14:02:57.695+01:00
-            hippostdpubwf:lastModificationDate: 2020-04-09T18:14:41.599+01:00
+            hippostdpubwf:lastModificationDate: 2020-04-29T14:58:57.528+01:00
             hippostdpubwf:lastModifiedBy: admin
             hippotranslation:id: 84d6c360-f3b1-4e0b-91c3-8ba170a623e8
             hippotranslation:locale: en
             visitscotland:breadcrumb: ''
             visitscotland:descOrder: false
-            visitscotland:seoDescription: ''
+            visitscotland:seoDescription: Intro test for trip ideas
             visitscotland:seoNoIndex: false
-            visitscotland:seoTitle: ''
+            visitscotland:seoTitle: Trip Ideas
             visitscotland:summaryTitle: ''
-            visitscotland:teaser: ''
+            visitscotland:teaser: Intro test for trip ideas
             visitscotland:title: Trip Ideas
             /visitscotland:heroImage:
               jcr:primaryType: hippogallerypicker:imagelink
@@ -1582,7 +1610,7 @@
               hippo:values: []
             /visitscotland:introduction:
               jcr:primaryType: hippostd:html
-              hippostd:content: <p>Intro test</p>
+              hippostd:content: <p>Intro test for trip ideas</p>
             /visitscotland:summary:
               jcr:primaryType: hippostd:html
               hippostd:content: ''
@@ -1594,17 +1622,17 @@
             hippostd:state: unpublished
             hippostdpubwf:createdBy: admin
             hippostdpubwf:creationDate: 2020-04-09T14:02:57.695+01:00
-            hippostdpubwf:lastModificationDate: 2020-04-09T18:14:49.179+01:00
+            hippostdpubwf:lastModificationDate: 2020-04-29T14:59:17.049+01:00
             hippostdpubwf:lastModifiedBy: admin
             hippotranslation:id: 84d6c360-f3b1-4e0b-91c3-8ba170a623e8
             hippotranslation:locale: en
             visitscotland:breadcrumb: ''
             visitscotland:descOrder: false
-            visitscotland:seoDescription: ''
+            visitscotland:seoDescription: Intro test for trip ideas
             visitscotland:seoNoIndex: false
-            visitscotland:seoTitle: ''
+            visitscotland:seoTitle: Trip Ideas
             visitscotland:summaryTitle: ''
-            visitscotland:teaser: ''
+            visitscotland:teaser: Intro test for trip ideas
             visitscotland:title: Trip Ideas
             /visitscotland:heroImage:
               jcr:primaryType: hippogallerypicker:imagelink
@@ -1614,7 +1642,7 @@
               hippo:values: []
             /visitscotland:introduction:
               jcr:primaryType: hippostd:html
-              hippostd:content: <p>Intro test</p>
+              hippostd:content: <p>Intro test for trip ideas</p>
             /visitscotland:summary:
               jcr:primaryType: hippostd:html
               hippostd:content: ''
@@ -1626,18 +1654,18 @@
             hippostd:state: published
             hippostdpubwf:createdBy: admin
             hippostdpubwf:creationDate: 2020-04-09T14:02:57.695+01:00
-            hippostdpubwf:lastModificationDate: 2020-04-09T18:14:49.179+01:00
+            hippostdpubwf:lastModificationDate: 2020-04-29T14:59:17.049+01:00
             hippostdpubwf:lastModifiedBy: admin
-            hippostdpubwf:publicationDate: 2020-04-09T18:14:51.052+01:00
+            hippostdpubwf:publicationDate: 2020-04-29T17:55:49.930+01:00
             hippotranslation:id: 84d6c360-f3b1-4e0b-91c3-8ba170a623e8
             hippotranslation:locale: en
             visitscotland:breadcrumb: ''
             visitscotland:descOrder: false
-            visitscotland:seoDescription: ''
+            visitscotland:seoDescription: Intro test for trip ideas
             visitscotland:seoNoIndex: false
-            visitscotland:seoTitle: ''
+            visitscotland:seoTitle: Trip Ideas
             visitscotland:summaryTitle: ''
-            visitscotland:teaser: ''
+            visitscotland:teaser: Intro test for trip ideas
             visitscotland:title: Trip Ideas
             /visitscotland:heroImage:
               jcr:primaryType: hippogallerypicker:imagelink
@@ -1647,7 +1675,7 @@
               hippo:values: []
             /visitscotland:introduction:
               jcr:primaryType: hippostd:html
-              hippostd:content: <p>Intro test</p>
+              hippostd:content: <p>Intro test for trip ideas</p>
             /visitscotland:summary:
               jcr:primaryType: hippostd:html
               hippostd:content: ''
@@ -1663,7 +1691,7 @@
         jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
         jcr:uuid: 919640ca-873e-4cd9-9788-a45babcb6b32
         hippo:name: Editor document
-        hippo:versionHistory: 0ec8b5b0-07a8-419b-8cb6-7f889cfdf554
+        hippo:versionHistory: 7625586c-7bb2-4ed3-bfc9-458fa4f84180
         /content[1]:
           jcr:primaryType: visitscotland:Listicle
           jcr:mixinTypes: ['mix:referenceable']
@@ -1672,8 +1700,8 @@
           hippostd:state: draft
           hippostdpubwf:createdBy: editor
           hippostdpubwf:creationDate: 2020-03-03T10:17:30.071Z
-          hippostdpubwf:lastModificationDate: 2020-03-03T10:27:19.865Z
-          hippostdpubwf:lastModifiedBy: author
+          hippostdpubwf:lastModificationDate: 2020-04-29T14:59:49.929+01:00
+          hippostdpubwf:lastModifiedBy: admin
           hippotranslation:id: 88016789-f46b-4bf5-9442-89dd28f5f82a
           hippotranslation:locale: en
           visitscotland:breadcrumb: ''
@@ -1681,6 +1709,7 @@
           visitscotland:seoDescription: Document
           visitscotland:seoNoIndex: false
           visitscotland:seoTitle: Editor
+          visitscotland:summaryTitle: ''
           visitscotland:teaser: Come and see the editor document
           visitscotland:title: Editor document
           /visitscotland:heroImage:
@@ -1693,6 +1722,9 @@
             jcr:primaryType: hippostd:html
             hippostd:content: <p>Editors can create a publish documents!! The thing
               they cannot do is to modify document types</p>
+          /visitscotland:summary:
+            jcr:primaryType: hippostd:html
+            hippostd:content: ''
         /content[2]:
           jcr:primaryType: visitscotland:Listicle
           jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
@@ -1701,8 +1733,8 @@
           hippostd:state: unpublished
           hippostdpubwf:createdBy: editor
           hippostdpubwf:creationDate: 2020-03-03T10:17:30.071Z
-          hippostdpubwf:lastModificationDate: 2020-03-03T10:28:44.129Z
-          hippostdpubwf:lastModifiedBy: author
+          hippostdpubwf:lastModificationDate: 2020-04-29T17:08:54.077+01:00
+          hippostdpubwf:lastModifiedBy: admin
           hippotranslation:id: 88016789-f46b-4bf5-9442-89dd28f5f82a
           hippotranslation:locale: en
           visitscotland:breadcrumb: ''
@@ -1710,6 +1742,7 @@
           visitscotland:seoDescription: Document
           visitscotland:seoNoIndex: false
           visitscotland:seoTitle: Editor
+          visitscotland:summaryTitle: ''
           visitscotland:teaser: Come and see the editor document
           visitscotland:title: Editor document
           /visitscotland:heroImage:
@@ -1722,6 +1755,9 @@
             jcr:primaryType: hippostd:html
             hippostd:content: <p>Editors can create a publish documents!! The thing
               they cannot do is to modify document types</p>
+          /visitscotland:summary:
+            jcr:primaryType: hippostd:html
+            hippostd:content: ''
         /content[3]:
           jcr:primaryType: visitscotland:Listicle
           jcr:mixinTypes: ['mix:referenceable']
@@ -1730,9 +1766,9 @@
           hippostd:state: published
           hippostdpubwf:createdBy: editor
           hippostdpubwf:creationDate: 2020-03-03T10:17:30.071Z
-          hippostdpubwf:lastModificationDate: 2020-03-03T10:28:44.129Z
-          hippostdpubwf:lastModifiedBy: author
-          hippostdpubwf:publicationDate: 2020-03-03T10:30:30.031Z
+          hippostdpubwf:lastModificationDate: 2020-04-29T17:08:54.077+01:00
+          hippostdpubwf:lastModifiedBy: admin
+          hippostdpubwf:publicationDate: 2020-04-29T17:10:00.268+01:00
           hippotranslation:id: 88016789-f46b-4bf5-9442-89dd28f5f82a
           hippotranslation:locale: en
           visitscotland:breadcrumb: ''
@@ -1740,6 +1776,7 @@
           visitscotland:seoDescription: Document
           visitscotland:seoNoIndex: false
           visitscotland:seoTitle: Editor
+          visitscotland:summaryTitle: ''
           visitscotland:teaser: Come and see the editor document
           visitscotland:title: Editor document
           /visitscotland:heroImage:
@@ -1752,6 +1789,9 @@
             jcr:primaryType: hippostd:html
             hippostd:content: <p>Editors can create a publish documents!! The thing
               they cannot do is to modify document types</p>
+          /visitscotland:summary:
+            jcr:primaryType: hippostd:html
+            hippostd:content: ''
       /national-museum-of-scotland-copy:
         jcr:primaryType: hippo:handle
         jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
@@ -1823,7 +1863,7 @@
         jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
         jcr:uuid: 25280d0c-c70e-4a46-bb98-c189da231dc9
         hippo:name: author listicle
-        hippo:versionHistory: ec660e5b-d237-494c-b222-89c173a2a809
+        hippo:versionHistory: 4cedc538-4be4-4d21-9ad2-9c08ea488161
         /content[1]:
           jcr:primaryType: visitscotland:Listicle
           jcr:mixinTypes: ['mix:referenceable']
@@ -1832,15 +1872,17 @@
           hippostd:state: draft
           hippostdpubwf:createdBy: author
           hippostdpubwf:creationDate: 2020-03-03T10:23:49.651Z
-          hippostdpubwf:lastModificationDate: 2020-03-03T10:25:23.546Z
-          hippostdpubwf:lastModifiedBy: author
+          hippostdpubwf:lastModificationDate: 2020-04-29T15:00:58.634+01:00
+          hippostdpubwf:lastModifiedBy: admin
           hippotranslation:id: 05eebe95-732f-4f22-a1af-525589cdec77
           hippotranslation:locale: en
           visitscotland:breadcrumb: ''
           visitscotland:descOrder: false
-          visitscotland:seoDescription: ''
+          visitscotland:seoDescription: Authors can not publish documents straight
+            away. They need to request a review for the publication.
           visitscotland:seoNoIndex: false
-          visitscotland:seoTitle: ''
+          visitscotland:seoTitle: Author listicle
+          visitscotland:summaryTitle: ''
           visitscotland:teaser: Come and see it!
           visitscotland:title: Author listicle
           /visitscotland:heroImage:
@@ -1853,6 +1895,9 @@
             jcr:primaryType: hippostd:html
             hippostd:content: <p>Authors can not publish documents straight away.
               They need to request a review for the publication.</p>
+          /visitscotland:summary:
+            jcr:primaryType: hippostd:html
+            hippostd:content: ''
         /content[2]:
           jcr:primaryType: visitscotland:Listicle
           jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
@@ -1861,15 +1906,17 @@
           hippostd:state: unpublished
           hippostdpubwf:createdBy: author
           hippostdpubwf:creationDate: 2020-03-03T10:23:49.651Z
-          hippostdpubwf:lastModificationDate: 2020-03-03T10:26:08.874Z
-          hippostdpubwf:lastModifiedBy: author
+          hippostdpubwf:lastModificationDate: 2020-04-29T15:00:19.922+01:00
+          hippostdpubwf:lastModifiedBy: admin
           hippotranslation:id: 05eebe95-732f-4f22-a1af-525589cdec77
           hippotranslation:locale: en
           visitscotland:breadcrumb: ''
           visitscotland:descOrder: false
-          visitscotland:seoDescription: ''
+          visitscotland:seoDescription: Authors can not publish documents straight
+            away. They need to request a review for the publication.
           visitscotland:seoNoIndex: false
-          visitscotland:seoTitle: ''
+          visitscotland:seoTitle: Author listicle
+          visitscotland:summaryTitle: ''
           visitscotland:teaser: Come and see it!
           visitscotland:title: Author listicle
           /visitscotland:heroImage:
@@ -1882,6 +1929,9 @@
             jcr:primaryType: hippostd:html
             hippostd:content: <p>Authors can not publish documents straight away.
               They need to request a review for the publication.</p>
+          /visitscotland:summary:
+            jcr:primaryType: hippostd:html
+            hippostd:content: ''
         /content[3]:
           jcr:primaryType: visitscotland:Listicle
           jcr:mixinTypes: ['mix:referenceable']
@@ -1890,16 +1940,18 @@
           hippostd:state: published
           hippostdpubwf:createdBy: author
           hippostdpubwf:creationDate: 2020-03-03T10:23:49.651Z
-          hippostdpubwf:lastModificationDate: 2020-03-03T10:26:08.874Z
-          hippostdpubwf:lastModifiedBy: author
-          hippostdpubwf:publicationDate: 2020-03-03T10:30:24.538Z
+          hippostdpubwf:lastModificationDate: 2020-04-29T15:00:19.922+01:00
+          hippostdpubwf:lastModifiedBy: admin
+          hippostdpubwf:publicationDate: 2020-04-29T15:00:52.486+01:00
           hippotranslation:id: 05eebe95-732f-4f22-a1af-525589cdec77
           hippotranslation:locale: en
           visitscotland:breadcrumb: ''
           visitscotland:descOrder: false
-          visitscotland:seoDescription: ''
+          visitscotland:seoDescription: Authors can not publish documents straight
+            away. They need to request a review for the publication.
           visitscotland:seoNoIndex: false
-          visitscotland:seoTitle: ''
+          visitscotland:seoTitle: Author listicle
+          visitscotland:summaryTitle: ''
           visitscotland:teaser: Come and see it!
           visitscotland:title: Author listicle
           /visitscotland:heroImage:
@@ -1912,6 +1964,9 @@
             jcr:primaryType: hippostd:html
             hippostd:content: <p>Authors can not publish documents straight away.
               They need to request a review for the publication.</p>
+          /visitscotland:summary:
+            jcr:primaryType: hippostd:html
+            hippostd:content: ''
       /national-museum-of-scotland-copy-2:
         jcr:primaryType: hippo:handle
         jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
@@ -2339,7 +2394,7 @@
         jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
         jcr:uuid: 3158d2f5-5f70-407a-be69-a7f7061c0d11
         hippo:name: Outlander itinerary
-        hippo:versionHistory: 86bee827-5e24-4d09-ab00-fee3e8c6de0c
+        hippo:versionHistory: 0cf07534-55f1-45a4-bfef-374c2d77d68e
         /content[1]:
           jcr:primaryType: visitscotland:Itinerary
           jcr:mixinTypes: ['mix:referenceable']
@@ -2348,7 +2403,7 @@
           hippostd:state: draft
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2020-02-10T09:26:40.760Z
-          hippostdpubwf:lastModificationDate: 2020-03-09T13:37:32.527Z
+          hippostdpubwf:lastModificationDate: 2020-04-29T17:07:51.010+01:00
           hippostdpubwf:lastModifiedBy: admin
           hippotranslation:id: a485e049-be64-47c6-8c13-0cc355e91443
           hippotranslation:locale: en
@@ -2366,7 +2421,8 @@
           visitscotland:seoTitle: 12 Day Outlander Itinerary - Self-Drive Tour in
             Scotland
           visitscotland:start: ''
-          visitscotland:teaser: ''
+          visitscotland:teaser: Explore the land that inspired Outlander on this epic,
+            12 day Outlander tour of Scotland.
           visitscotland:theme: filmev
           visitscotland:title: TOUR SCOTLAND WITH OUTLANDER
           visitscotland:transports: [car]
@@ -2407,7 +2463,7 @@
           hippostd:state: unpublished
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2020-02-10T09:26:40.760Z
-          hippostdpubwf:lastModificationDate: 2020-03-09T13:37:41.585Z
+          hippostdpubwf:lastModificationDate: 2020-04-29T17:08:03.358+01:00
           hippostdpubwf:lastModifiedBy: admin
           hippotranslation:id: a485e049-be64-47c6-8c13-0cc355e91443
           hippotranslation:locale: en
@@ -2425,7 +2481,8 @@
           visitscotland:seoTitle: 12 Day Outlander Itinerary - Self-Drive Tour in
             Scotland
           visitscotland:start: ''
-          visitscotland:teaser: ''
+          visitscotland:teaser: Explore the land that inspired Outlander on this epic,
+            12 day Outlander tour of Scotland.
           visitscotland:theme: filmev
           visitscotland:title: TOUR SCOTLAND WITH OUTLANDER
           visitscotland:transports: [car]
@@ -2466,9 +2523,9 @@
           hippostd:state: published
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2020-02-10T09:26:40.760Z
-          hippostdpubwf:lastModificationDate: 2020-03-09T13:37:41.585Z
+          hippostdpubwf:lastModificationDate: 2020-04-29T17:08:03.358+01:00
           hippostdpubwf:lastModifiedBy: admin
-          hippostdpubwf:publicationDate: 2020-03-09T13:37:44.095Z
+          hippostdpubwf:publicationDate: 2020-04-29T17:09:49.005+01:00
           hippotranslation:id: a485e049-be64-47c6-8c13-0cc355e91443
           hippotranslation:locale: en
           visitscotland:areas: [east]
@@ -2485,7 +2542,8 @@
           visitscotland:seoTitle: 12 Day Outlander Itinerary - Self-Drive Tour in
             Scotland
           visitscotland:start: ''
-          visitscotland:teaser: ''
+          visitscotland:teaser: Explore the land that inspired Outlander on this epic,
+            12 day Outlander tour of Scotland.
           visitscotland:theme: filmev
           visitscotland:title: TOUR SCOTLAND WITH OUTLANDER
           visitscotland:transports: [car]
@@ -2710,7 +2768,7 @@
           hippostd:state: draft
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2020-02-07T09:41:25.483Z
-          hippostdpubwf:lastModificationDate: 2020-03-30T14:18:04.653+01:00
+          hippostdpubwf:lastModificationDate: 2020-04-29T17:08:08.730+01:00
           hippostdpubwf:lastModifiedBy: admin
           hippotranslation:id: 4f317e16-7cca-44da-84bf-26c96e4a4494
           hippotranslation:locale: en
@@ -2996,9 +3054,10 @@
       hippotranslation:locale: en
       /content:
         jcr:primaryType: hippo:handle
-        jcr:mixinTypes: ['hippo:versionInfo', 'mix:referenceable']
+        jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
         jcr:uuid: 17a3588b-6cee-439b-acd8-186ceb2067aa
-        hippo:versionHistory: 7cca41f0-2a28-4917-8d0e-82e8a4d5f1ea
+        hippo:name: 12 Iconic Scottish Views
+        hippo:versionHistory: 10086cfc-f1a9-4419-be97-00ead31392d1
         /content[1]:
           jcr:primaryType: visitscotland:Listicle
           jcr:mixinTypes: ['mix:referenceable']
@@ -3093,7 +3152,7 @@
           hippostdpubwf:creationDate: 2020-03-17T11:17:48.546Z
           hippostdpubwf:lastModificationDate: 2020-04-16T17:37:01.371+01:00
           hippostdpubwf:lastModifiedBy: admin
-          hippostdpubwf:publicationDate: 2020-04-16T17:37:03.702+01:00
+          hippostdpubwf:publicationDate: 2020-04-29T17:56:40.400+01:00
           hippotranslation:id: aced74d3-03f8-4ed2-9592-dd31975f29cf
           hippotranslation:locale: en
           visitscotland:breadcrumb: ''
@@ -3252,7 +3311,7 @@
           hippostd:state: draft
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2020-03-17T11:26:00.217Z
-          hippostdpubwf:lastModificationDate: 2020-04-08T16:46:32.133+01:00
+          hippostdpubwf:lastModificationDate: 2020-04-29T15:44:32.046+01:00
           hippostdpubwf:lastModifiedBy: admin
           hippotranslation:id: b5a43011-6ee7-495c-862c-49cacb71d3eb
           hippotranslation:locale: en
@@ -4406,9 +4465,10 @@
             visitscotland:link: https://www.visitscotland.com/see-do/landscapes-nature/iconic-scottish-views/
     /content:
       jcr:primaryType: hippo:handle
-      jcr:mixinTypes: ['hippo:versionInfo', 'mix:referenceable']
+      jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
       jcr:uuid: b368bfc3-72d8-471c-897d-e6becad65cf9
-      hippo:versionHistory: fcb20f7b-dae5-4df1-a89d-be32005f0925
+      hippo:name: See and do
+      hippo:versionHistory: 81d62d1e-d6a3-47fb-80e5-96bb0b839c85
       /content[1]:
         jcr:primaryType: visitscotland:Listicle
         jcr:mixinTypes: ['mix:referenceable']
@@ -4417,17 +4477,17 @@
         hippostd:state: draft
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2020-04-09T18:09:43.409+01:00
-        hippostdpubwf:lastModificationDate: 2020-04-09T18:09:43.410+01:00
+        hippostdpubwf:lastModificationDate: 2020-04-29T15:42:03.775+01:00
         hippostdpubwf:lastModifiedBy: admin
         hippotranslation:id: 400f6cc8-6aab-4e4f-a6ed-73fa8b4429c1
         hippotranslation:locale: en
         visitscotland:breadcrumb: ''
         visitscotland:descOrder: false
-        visitscotland:seoDescription: ''
+        visitscotland:seoDescription: see and do seo description
         visitscotland:seoNoIndex: false
-        visitscotland:seoTitle: ''
+        visitscotland:seoTitle: see and do seo title
         visitscotland:summaryTitle: ''
-        visitscotland:teaser: ''
+        visitscotland:teaser: see and do  teaser
         visitscotland:title: See do listicle
         /visitscotland:heroImage:
           jcr:primaryType: hippogallerypicker:imagelink
@@ -4449,17 +4509,17 @@
         hippostd:state: unpublished
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2020-04-09T18:09:43.409+01:00
-        hippostdpubwf:lastModificationDate: 2020-04-09T18:10:11.019+01:00
+        hippostdpubwf:lastModificationDate: 2020-04-29T17:09:34.867+01:00
         hippostdpubwf:lastModifiedBy: admin
         hippotranslation:id: 400f6cc8-6aab-4e4f-a6ed-73fa8b4429c1
         hippotranslation:locale: en
         visitscotland:breadcrumb: ''
         visitscotland:descOrder: false
-        visitscotland:seoDescription: ''
+        visitscotland:seoDescription: see and do seo description
         visitscotland:seoNoIndex: false
-        visitscotland:seoTitle: ''
+        visitscotland:seoTitle: see and do seo title
         visitscotland:summaryTitle: ''
-        visitscotland:teaser: ''
+        visitscotland:teaser: see and do  teaser
         visitscotland:title: See do listicle
         /visitscotland:heroImage:
           jcr:primaryType: hippogallerypicker:imagelink
@@ -4481,18 +4541,18 @@
         hippostd:state: published
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2020-04-09T18:09:43.409+01:00
-        hippostdpubwf:lastModificationDate: 2020-04-09T18:10:11.019+01:00
+        hippostdpubwf:lastModificationDate: 2020-04-29T17:09:34.867+01:00
         hippostdpubwf:lastModifiedBy: admin
-        hippostdpubwf:publicationDate: 2020-04-09T18:11:59.521+01:00
+        hippostdpubwf:publicationDate: 2020-04-29T17:56:12.106+01:00
         hippotranslation:id: 400f6cc8-6aab-4e4f-a6ed-73fa8b4429c1
         hippotranslation:locale: en
         visitscotland:breadcrumb: ''
         visitscotland:descOrder: false
-        visitscotland:seoDescription: ''
+        visitscotland:seoDescription: see and do seo description
         visitscotland:seoNoIndex: false
-        visitscotland:seoTitle: ''
+        visitscotland:seoTitle: see and do seo title
         visitscotland:summaryTitle: ''
-        visitscotland:teaser: ''
+        visitscotland:teaser: see and do  teaser
         visitscotland:title: See do listicle
         /visitscotland:heroImage:
           jcr:primaryType: hippogallerypicker:imagelink

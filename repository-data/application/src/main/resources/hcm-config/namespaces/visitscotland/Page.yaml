@@ -11,7 +11,7 @@ definitions:
         /hipposysedit:nodetype:
           jcr:primaryType: hipposysedit:nodetype
           jcr:mixinTypes: ['mix:referenceable', 'hipposysedit:remodel']
-          jcr:uuid: b8208b8b-9fdd-4ab8-993b-c99badd7d8c9
+          jcr:uuid: 7e839204-6656-418f-9ea6-de61c1d7bdab
           hipposysedit:node: true
           hipposysedit:supertype: ['visitscotland:basedocument', 'hippostd:relaxed',
             'hippotranslation:translated']
@@ -33,6 +33,7 @@ definitions:
             hipposysedit:path: visitscotland:seoTitle
             hipposysedit:primary: false
             hipposysedit:type: String
+            hipposysedit:validators: [required]
           /breadcrumb:
             jcr:primaryType: hipposysedit:field
             hipposysedit:mandatory: false
@@ -57,6 +58,7 @@ definitions:
             hipposysedit:path: visitscotland:seoDescription
             hipposysedit:primary: false
             hipposysedit:type: String
+            hipposysedit:validators: [required]
           /title:
             jcr:primaryType: hipposysedit:field
             hipposysedit:mandatory: false
@@ -83,6 +85,7 @@ definitions:
             hipposysedit:path: visitscotland:teaser
             hipposysedit:primary: false
             hipposysedit:type: String
+            hipposysedit:validators: [required]
       /hipposysedit:prototypes:
         jcr:primaryType: hipposysedit:prototypeset
         /hipposysedit:prototype:
@@ -99,7 +102,7 @@ definitions:
           visitscotland:seoNoIndex: false
           visitscotland:seoDescription: ''
           visitscotland:title: ''
-          jcr:uuid: 5ad0b5e0-c517-4632-8723-22e7a0d7971d
+          jcr:uuid: 84e18149-fdcb-4ef8-91e7-cd709bd5fe28
           hippostdpubwf:lastModificationDate: 2019-12-05T16:05:38.470Z
           hippostdpubwf:creationDate: 2019-12-05T16:05:38.470Z
           visitscotland:teaser: ''
@@ -196,7 +199,7 @@ definitions:
             plugin.class: org.hippoecm.frontend.editor.plugins.field.NodeFieldPlugin
             wicket.id: ${cluster.id}.left.item
             /cluster.options:
-              jcr:primaryType: frontend:pluginconfig              
+              jcr:primaryType: frontend:pluginconfig
               ckeditor.config.overlayed.json: '{toolbarGroups: [{ name: ''links''
                 },{name:''insert''},{name:''clipboard''},{name:''tools''},{name:''undo''}]
                 , removeButtons: ''PickImage,Youtube,Table''}'
