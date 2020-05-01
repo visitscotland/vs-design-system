@@ -1,7 +1,5 @@
 package com.visitscotland.brmx.components.content;
 
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.visitscotland.brmx.beans.*;
 
 import com.visitscotland.brmx.beans.dms.LocationObject;
@@ -19,7 +17,6 @@ import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.net.*;
 import java.io.*;
 import java.util.*;
 
@@ -129,10 +126,10 @@ public class ListicleContentComponent extends PageContentComponent<Listicle> {
                                   }
                                 }
                             }else{
-                               /* if (flatImage.getCoordinates() == null){*/
+                               if (flatImage.getCoordinates() == null){
                                     Coordinates coordinates = new Coordinates(product.getDouble(LATITUDE),product.getDouble(LONGITUDE));
                                     flatImage.setCoordinates(coordinates);
-                                /*}*/
+                                }
                             }
 
                             if (product.has(FACILITIES)){

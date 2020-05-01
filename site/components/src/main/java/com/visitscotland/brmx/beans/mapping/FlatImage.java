@@ -1,7 +1,6 @@
 package com.visitscotland.brmx.beans.mapping;
 
 
-import com.fasterxml.jackson.databind.JsonNode;
 import com.visitscotland.brmx.beans.Image;
 import com.visitscotland.brmx.beans.InstagramImage;
 import com.visitscotland.brmx.beans.dms.LocationObject;
@@ -78,15 +77,6 @@ public class FlatImage {
         }
     }
 
-    public FlatImage(String externalImage, String altText, String credit, String description, Source source, String postUrl) {
-        this.externalImage = externalImage;
-        this.altText = altText;
-        this.credit = credit;
-        this.description = description;
-        this.source = source;
-        this.postUrl = postUrl;
-    }
-
     public FlatImage(InstagramImage instagramLink, String caption, Locale locale) {
         //TODO remove the size when it is handle in the front end
         this.externalImage =  "https://www.instagram.com/p/" + instagramLink.getId() + "/media?size=l";
@@ -104,15 +94,6 @@ public class FlatImage {
         this.description = (dmsImage.has(ALT_TEXT) ? dmsImage.getString(ALT_TEXT) : productName);
         this.altText = this.description;
     }
-
-    public FlatImage(JsonNode dmsImage, String productName) {
-        this.externalImage = (dmsImage.has(MEDIA) ? dmsImage.get(MEDIA).asText() : null);
-        this.credit = (dmsImage.has(CREDIT) ? dmsImage.get(CREDIT).asText() : null);
-        this.description = (dmsImage.has(ALT_TEXT) ? dmsImage.get(ALT_TEXT).asText() : productName);
-        this.altText = this.description;
-    }
-
-
 
     public String getExternalImage() {
         return externalImage;
