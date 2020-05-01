@@ -49,6 +49,7 @@
 
 <script>
 import VsHeading from "@components/elements/heading/Heading"
+import { VsRow, VsCol } from "@components/elements/layout"
 
 export default {
     name: "VsListicleItem",
@@ -56,6 +57,8 @@ export default {
     release: "0.0.1",
     components: {
         VsHeading,
+        VsRow,
+        VsCol,
     },
     props: {
         /**
