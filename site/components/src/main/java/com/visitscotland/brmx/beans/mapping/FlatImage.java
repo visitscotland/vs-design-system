@@ -1,8 +1,8 @@
 package com.visitscotland.brmx.beans.mapping;
 
 
+import com.fasterxml.jackson.databind.JsonNode;
 import com.visitscotland.brmx.beans.Image;
-import org.json.JSONObject;
 
 import java.util.Locale;
 
@@ -84,10 +84,10 @@ public class FlatImage {
         this.postUrl = postUrl;
     }
 
-    public FlatImage(JSONObject dmsImage, String productName) {
-        this.externalImage = (dmsImage.has(MEDIA) ? dmsImage.getString(MEDIA) : null);
-        this.credit = (dmsImage.has(CREDIT) ? dmsImage.getString(CREDIT) : null);
-        this.description = (dmsImage.has(ALT_TEXT) ? dmsImage.getString(ALT_TEXT) : productName);
+    public FlatImage(JsonNode dmsImage, String productName) {
+        this.externalImage = (dmsImage.has(MEDIA) ? dmsImage.get(MEDIA).asText() : null);
+        this.credit = (dmsImage.has(CREDIT) ? dmsImage.get(CREDIT).asText() : null);
+        this.description = (dmsImage.has(ALT_TEXT) ? dmsImage.get(ALT_TEXT).asText() : productName);
         this.altText = this.description;
     }
 

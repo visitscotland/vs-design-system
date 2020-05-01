@@ -1,6 +1,7 @@
 package com.visitscotland.brmx.components.content;
 
 
+import com.fasterxml.jackson.databind.JsonNode;
 import com.visitscotland.brmx.beans.*;
 import com.visitscotland.brmx.beans.dms.LocationObject;
 import com.visitscotland.brmx.beans.mapping.Coordinates;
@@ -13,8 +14,6 @@ import com.visitscotland.brmx.utils.LocationLoader;
 import com.visitscotland.utils.CoordinateUtils;
 import org.hippoecm.hst.core.component.HstRequest;
 import org.hippoecm.hst.core.component.HstResponse;
-import org.json.JSONArray;
-import org.json.JSONObject;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -75,7 +74,6 @@ public class ItineraryContentComponent extends PageContentComponent<Itinerary> {
         final String NAME = "name";
         final String LAT = "latitude";
         final String LON = "longitude";
-        final String FACILITIES = "keyFacilities";
         final String OPENING = "todayOpeningTime";
         final String START_TIME = "startTime";
         final String END_TIME = "endTime";
@@ -122,59 +120,50 @@ public class ItineraryContentComponent extends PageContentComponent<Itinerary> {
                            errors.add("The product's id  was not provided");
                             logger.warn(CommonUtils.contentIssue("The product's id was not provided for %s, Stop %s", itinerary.getName(), model.getIndex()));
                         } else {
-                            JSONObject product = CommonUtils.getProduct(dmsLink.getProduct(), request.getLocale());
+                            JsonNode product = CommonUtils.getProduct(dmsLink.getProduct(), request.getLocale());
                             if (product == null){
                                 errors.add("The product id does not exist in the DMS");
                                 logger.warn(CommonUtils.contentIssue("The product id does not exist in the DMS for %s, Stop %s", itinerary.getName(), model.getIndex()));
                             } else {
 
-                                FlatLink ctaLink = new FlatLink(this.getCtaLabel(dmsLink.getLabel(),request.getLocale()),product.getString(URL));
+                                FlatLink ctaLink = new FlatLink(this.getCtaLabel(dmsLink.getLabel(),request.getLocale()),product.get(URL).asText());
                                 model.setCtaLink(ctaLink);
                                 if (product.has(ADDRESS)){
-                                    JSONObject address =product.getJSONObject(ADDRESS);
+                                    JsonNode address = product.get(ADDRESS);
                                     model.setAddress(address);
-                                    location = address.has(LOCATION)?address.getString(LOCATION):null;
+                                    location = address.has(LOCATION)?address.get(LOCATION).asText():null;
                                 }
 
 
-                                model.setTimeToexplore(product.has(TIME_TO_EXPLORE)? product.getString(TIME_TO_EXPLORE):null);
+                                model.setTimeToexplore(product.has(TIME_TO_EXPLORE)? product.get(TIME_TO_EXPLORE).asText():null);
                                 if (product.has(TIME_TO_EXPLORE)){
-                                    visitDuration = product.getString(TIME_TO_EXPLORE);
+                                    visitDuration = product.get(TIME_TO_EXPLORE).asText();
                                 }
 
                                 if (product.has(PRICE)){
-                                    JSONObject price = product.getJSONObject(PRICE);
-                                    model.setPrice(price.getString(DISPLAY_PRICE));
+                                    JsonNode price = product.get(PRICE);
+                                    model.setPrice(price.get(DISPLAY_PRICE).asText());
                                 }
 
                                 if (stop.getImage() == null && product.has(IMAGE) ){
-                                    JSONArray dmsImageList = product.getJSONArray(IMAGE);
-                                    flatImage = new FlatImage(dmsImageList.getJSONObject(0),product.getString(NAME));
+                                    JsonNode dmsImageList = product.get(IMAGE);
+                                    flatImage = new FlatImage(dmsImageList.get(0),product.get(NAME).asText());
                                 }
 
-                                coordinates.setLatitude(product.getDouble(LAT));
-                                coordinates.setLongitude(product.getDouble(LON));
+                                coordinates.setLatitude(product.get(LAT).asDouble());
+                                coordinates.setLongitude(product.get(LON).asDouble());
                                 model.setCoordinates(coordinates);
 
-                                if (product.has(FACILITIES)){
-                                    List<JSONObject> facilities = new ArrayList<>();
-                                    JSONArray keyFacilitiesList = product.getJSONArray(FACILITIES);
-                                    if (keyFacilitiesList!=null){
-                                        for (int i = 0; i < keyFacilitiesList.length(); i++) {
-                                            facilities.add(keyFacilitiesList.getJSONObject(i));
-                                        }
-                                    }
-                                    model.setFacilities(facilities);
-                                }
+                                model.setFacilities(getFacilities(product));
 
                                 if (product.has(OPENING)){
-                                    JSONObject opening = product.getJSONObject(OPENING);
+                                    JsonNode opening = product.get(OPENING);
                                     //TODO adjust the message to designs when ready
-                                    if ((opening.has(OPENING_STATE)) && (!opening.getString(OPENING_STATE).equalsIgnoreCase("unknown"))) {
-                                        String openingMessge = opening.getBoolean(OPENING_PROVISIONAL)==false? "Usually " : "Provisionally ";
-                                        openingMessge = openingMessge + opening.getString(OPENING_STATE) +" "+ opening.getString(OPENING_DAY);
+                                    if ((opening.has(OPENING_STATE)) && (!opening.get(OPENING_STATE).asText().equalsIgnoreCase("unknown"))) {
+                                        String openingMessge = opening.get(OPENING_PROVISIONAL).asBoolean()==false? "Usually " : "Provisionally ";
+                                        openingMessge = openingMessge + opening.get(OPENING_STATE).asText() +" "+ opening.get(OPENING_DAY).asText();
                                         if ((opening.has(START_TIME)) && (opening.has(END_TIME))) {
-                                            openingMessge = openingMessge + ": " + opening.getString(START_TIME) + "-" + opening.getString(END_TIME);
+                                            openingMessge = openingMessge + ": " + opening.get(START_TIME).asText() + "-" + opening.get(END_TIME).asText();
                                         }
                                         model.setOpen(openingMessge);
                                         model.setOpenLink(new FlatLink(HippoUtils.getResourceBundle("stop.opening", "itinerary",
