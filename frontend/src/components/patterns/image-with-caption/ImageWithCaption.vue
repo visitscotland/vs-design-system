@@ -103,6 +103,7 @@
 // eslint-disable-next-line no-unused-vars
 import { lazysizes } from "lazysizes"
 import VsSvg from "@components/elements/svg/Svg"
+import VsImg from "@components/elements/img/Img"
 import VsButton from "@components/elements/button/Button"
 import { VsRow, VsCol } from "@components/elements/layout"
 import VsImageLocationMap from "@components/patterns/image-location-map/ImageLocationMap"
@@ -121,6 +122,7 @@ export default {
         VsImageLocationMap,
         VsButton,
         VsSvg,
+        VsImg,
     },
     props: {
         /**
