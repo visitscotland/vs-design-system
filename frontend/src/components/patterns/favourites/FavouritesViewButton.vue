@@ -1,5 +1,5 @@
 <template>
-    <vs-button
+    <VsButton
         class="vs-favourites-view__button p-0 p-sm-1 position-relative"
         @click.native="openFavourites"
         variant="transparent"
@@ -7,12 +7,25 @@
         v-if="favouritesCount > 0"
     >
         <span class="sr-only">View favourites</span>
-        <span class="vs-favourites-view__button__count" v-if="favouritesCount > 0">
+        <span
+            class="vs-favourites-view__button__count"
+            v-if="favouritesCount > 0"
+        >
             <span class="sr-only">Current favourites count:</span> {{ favouritesCount }}
         </span>
-        <vs-icon v-if="favouritesCount > 0" name="favourite-filled" size="sm" variant="primary" />
-        <vs-icon v-else name="favourite" size="sm" variant="dark" />
-    </vs-button>
+        <VsIcon
+            v-if="favouritesCount > 0"
+            name="favourite-filled"
+            size="sm"
+            variant="primary"
+        />
+        <VsIcon
+            v-else
+            name="favourite"
+            size="sm"
+            variant="dark"
+        />
+    </VsButton>
 </template>
 
 <script>
@@ -23,8 +36,11 @@ export default {
     name: "VsFavouritesViewButton",
     status: "prototype",
     release: "0.0.1",
-    components: { VsIcon },
-    props: {},
+    components: {
+        VsIcon,
+    },
+    props: {
+    },
     // store,
     computed: {
         favouritesCount() {
