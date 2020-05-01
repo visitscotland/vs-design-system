@@ -1,6 +1,9 @@
 package com.visitscotland.brmx.utils;
 
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.visitscotland.brmx.beans.Image;
+import com.visitscotland.brmx.beans.InstagramImage;
 import com.visitscotland.brmx.beans.mapping.FlatImage;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -9,6 +12,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.time.LocalTime;
 import java.time.ZoneId;
@@ -76,6 +80,18 @@ public class CommonUtils {
             return sb.toString();
         }
         return null;
+    }
+
+    public static String getInstagramCaption(InstagramImage instagramLink) throws IOException {
+        String response =  null;
+        URL instagramInformation  = new URL("https://api.instagram.com/oembed/?url=http://instagr.am/p/" + instagramLink.getId());
+        String responseInstagram =  request(instagramInformation.toString());
+        if (responseInstagram != null) {
+            ObjectMapper mapper = new ObjectMapper();
+            JsonNode json = mapper.readTree(request(instagramInformation.toString()));
+           response = json.has("author_name") ? json.get("author_name").asText() : "";
+        }
+        return response;
     }
 
     //TODO this method returns the current open state and it coud be affected by the cache, ask WEBOPS and move it to front end if needed
