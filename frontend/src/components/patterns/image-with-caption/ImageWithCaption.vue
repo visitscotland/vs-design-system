@@ -1,7 +1,6 @@
 <template>
     <figure class="vs-image-with-caption position-relative">
         <div class="vs-image-with-caption__image-wrapper">
-            <!-- @slot Contains the media to be shown. Defaults to an image.  -->
             <slot>
                 <VsImg
                     v-if="imageSrc"
@@ -29,7 +28,6 @@
                     size="sm"
                     :padding="0"
                 />
-                <!-- @slot Contains the icon for the toggle button. Defaults to info icon. -->
                 <slot
                     v-else
                     name="toggle-icon"
@@ -65,16 +63,13 @@
                     >
                         <div :class="isLargeCaption ? 'p-4' : 'px-4 py-3 pr-8'">
                             <p class="vs-image-with-caption__image-caption">
-                                <!-- @slot Put the caption here -->
                                 <slot name="caption" />
                             </p>
 
                             <p class="vs-image-with-caption__image-credit">
-                                <!-- @slot Put the credit here  -->
                                 <slot name="credit" />
                             </p>
 
-                            <!-- @slot Put the social credit link here -->
                             <slot name="social-link" />
                         </div>
                     </VsCol>
@@ -103,6 +98,8 @@
 // eslint-disable-next-line no-unused-vars
 import { lazysizes } from "lazysizes"
 import VsSvg from "@components/elements/svg/Svg"
+import VsImg from "@components/elements/img/Img"
+import VsIcon from "@components/elements/icon/Icon"
 import VsButton from "@components/elements/button/Button"
 import { VsRow, VsCol } from "@components/elements/layout"
 import VsImageLocationMap from "@components/patterns/image-location-map/ImageLocationMap"
@@ -121,6 +118,8 @@ export default {
         VsImageLocationMap,
         VsButton,
         VsSvg,
+        VsImg,
+        VsIcon,
     },
     props: {
         /**
@@ -203,7 +202,7 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 img {
     width: 100%;
     height: auto;
