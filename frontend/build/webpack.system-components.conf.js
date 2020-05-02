@@ -47,15 +47,15 @@ const webpackConfig = merge(mergeIE11Fix(baseWebpackConfig), {
   performance: {
     hints: config.system.performanceHints,
   },
-  optimization: {
-    splitChunks: {
-      chunks: "all",
-      minSize: 0,
-      maxInitialRequests: Infinity,
-    },
-    runtimeChunk: "single",
-    concatenateModules: false,
-  },
+  // optimization: {
+  //   splitChunks: {
+  //     chunks: "all",
+  //     minSize: 0,
+  //     maxInitialRequests: Infinity,
+  //   },
+  //   runtimeChunk: "single",
+  //   concatenateModules: false,
+  // },
   plugins: [
     // http://vuejs.github.io/vue-loader/en/workflow/production.html
     new webpack.DefinePlugin({
