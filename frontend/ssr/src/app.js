@@ -35,7 +35,8 @@ import {
     VsSummaryBoxLabel,
     VsSummaryBoxDisplay,
     VsSummaryBoxIconWithLabel,
-
+    VsSummaryBoxDistanceDisplay,
+    VsSummaryBoxDistanceLabel,
 } from '@components/patterns/summary-box'
 import { 
     VsItinerary,
@@ -78,6 +79,8 @@ export const createApp = (context) =>  {
             VsSummaryBoxLabel,
             VsSummaryBoxDisplay,
             VsSummaryBoxIconWithLabel,
+            VsSummaryBoxDistanceDisplay,
+            VsSummaryBoxDistanceLabel,
             VsItinerary,
             // VsItineraryMap,
             VsItineraryDay,
