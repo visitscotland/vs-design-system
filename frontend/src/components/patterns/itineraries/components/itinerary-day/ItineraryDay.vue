@@ -101,14 +101,18 @@ export default {
     data() {
         return {
             show: this.defaultShow,
-            isDesktop: window.innerWidth >= 1200,
+            isDesktop: false,
         }
     },
     mounted() {
-        window.addEventListener("resize", this.onResize)
+        if(window) {
+            window.addEventListener("resize", this.onResize)
+        }
     },
     destroyed() {
-        window.removeEventListener("resize", this.onResize)
+        if(window) {
+            window.removeEventListener("resize", this.onResize)
+        }
     },
     methods: {
         onResize() {

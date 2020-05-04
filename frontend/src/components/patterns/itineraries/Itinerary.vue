@@ -29,8 +29,12 @@
 </template>
 
 <script>
+// import { get } from 'lodash'
+
 import {
-    VsContainer, VsRow, VsCol,
+    VsContainer,
+    VsRow,
+    VsCol,
 } from "@components/elements/layout"
 import VsItineraryMobileMapToggle from "@components/patterns/itineraries/components/itinerary-mobile-map-toggle/ItineraryMobileMapToggle"
 
@@ -51,22 +55,31 @@ export default {
     },
     data() {
         return {
-            showMap: window.innerWidth >= 1200,
-            isDesktop: window.innerWidth >= 1200,
+            showMap: false,
+            isDesktop: false,
             withinItineraryMain: false,
         }
     },
     mounted() {
         /* Design System wrapper affects page scroll detection, so temporary fix is to
         have a condition checking for design system wrapper. */
-        window.addEventListener("resize", this.onResize)
-        const designSystemWrapper = document.querySelector(".vds-example")
-        if (designSystemWrapper === null) {
-            window.addEventListener("scroll", this.onScroll)
-        } else designSystemWrapper.addEventListener("scroll", this.onScroll)
+        if(window) {
+            const designSystemWrapper = document.querySelector(".vds-example")
+
+            window.addEventListener("resize", this.onResize)
+
+            if (designSystemWrapper === null) {
+                window.addEventListener("scroll", this.onScroll)
+            } else {
+                designSystemWrapper.addEventListener("scroll", this.onScroll)
+            }
+
+        }
     },
     destroyed() {
-        window.removeEventListener("resize", this.onResize)
+        if(window) {
+            window.removeEventListener("resize", this.onResize)
+        }
     },
     methods: {
         onResize() {
