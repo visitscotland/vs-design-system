@@ -1,26 +1,53 @@
 
 import Vue from 'vue';
 
-import VsImageWithCaption from '../../src/components/patterns/image-with-caption/ImageWithCaption'
-import VsImg from '../../src/components/elements/img/Img'
-import VsSvg from '../../src/components/elements/svg/Svg'
-import VsLink from '../../src/components/elements/link/Link'
-import VsCol from '../../src/components/elements/layout/Col'
-import VsRow from '../../src/components/elements/layout/Row'
-import VsContainer from '../../src/components/elements/layout/Container'
-import VsHeading from '../../src/components/elements/heading/Heading'
-import VsRichTextWrapper from '../../src/components/elements/rich-text-wrapper/RichTextWrapper'
-import VsBreadcrumb from '../../src/components/elements/breadcrumb/Breadcrumb'
-import VsBreadcrumbItem from '../../src/components/elements/breadcrumb/BreadcrumbItem'
-import VsSocialShare from '../../src/components/patterns/social-share/SocialShare'
-import VsListicleItem from '../../src/components/patterns/listicle/ListicleItem'
-import VsIconList from '../../src/components/patterns/icon-list/IconList'
-import VsIconListItem from '../../src/components/patterns/icon-list/IconListItem'
-import VsSocialCreditLink from '../../src/components/patterns/social-credit-link/SocialCreditLink'
+import VsImageWithCaption from '@components/patterns/image-with-caption/ImageWithCaption'
+import VsImg from '@components/elements/img/Img'
+import VsSvg from '@components/elements/svg/Svg'
+import VsLink from '@components/elements/link/Link'
+import VsButtonWithIcon from '@components/elements/button/ButtonWithIcon'
+import {
+    VsCol,
+    VsRow,
+    VsContainer,
+} from '@components/elements/layout'
+import VsHeading from '@components/elements/heading/Heading'
+import VsIcon from '@components/elements/icon/Icon'
+import {
+    VsDescriptionList,
+    VsDescriptionListTerm,
+    VsDescriptionListDetail,
+} from '@components/elements/description-list'
+import VsRichTextWrapper from '@components/elements/rich-text-wrapper/RichTextWrapper'
+import VsTooltip from '@components/elements/tooltip/Tooltip'
+import VsBreadcrumb from '@components/elements/breadcrumb/Breadcrumb'
+import VsBreadcrumbItem from '@components/elements/breadcrumb/BreadcrumbItem'
+import VsSocialShare from '@components/patterns/social-share/SocialShare'
+import VsListicleItem from '@components/patterns/listicle/ListicleItem'
+import VsIconList from '@components/patterns/icon-list/IconList'
+import VsIconListItem from '@components/patterns/icon-list/IconListItem'
+import VsSocialCreditLink from '@components/patterns/social-credit-link/SocialCreditLink'
+import VsPageIntro from '@components/patterns/page-intro/PageIntro'
+import VsHero from '@components/patterns/hero/Hero'
+import { 
+    VsSummaryBoxList,
+    VsSummaryBoxListItem,
+    VsSummaryBoxLabel,
+    VsSummaryBoxDisplay,
+    VsSummaryBoxIconWithLabel,
+
+} from '@components/patterns/summary-box'
+import { 
+    VsItinerary,
+    // VsItineraryMap,
+    VsItineraryDay,
+    VsItineraryStop,
+    VsItineraryTips,
+    VsItineraryBorderOverlapWrapper,
+} from '@components/patterns/itineraries'
 
 export const createApp = (context) =>  {
-
-    const vueOptions = Object.assign({}, context.vueOptions, {
+    const defaultOptions = {
         components: {
             VsImageWithCaption,
             VsImg,
@@ -38,11 +65,32 @@ export const createApp = (context) =>  {
             VsIconList,
             VsIconListItem,
             VsSocialCreditLink,
+            VsButtonWithIcon,
+            VsIcon,
+            VsDescriptionList,
+            VsDescriptionListTerm,
+            VsDescriptionListDetail,
+            VsTooltip,
+            VsPageIntro,
+            VsHero,
+            VsSummaryBoxList,
+            VsSummaryBoxListItem,
+            VsSummaryBoxLabel,
+            VsSummaryBoxDisplay,
+            VsSummaryBoxIconWithLabel,
+            VsItinerary,
+            // VsItineraryMap,
+            VsItineraryDay,
+            VsItineraryStop,
+            VsItineraryTips,
+            VsItineraryBorderOverlapWrapper,
         },
-        comments: true
-    });
+        comments: true,
+    }
 
-    const app = new Vue(vueOptions);
+    const vueOptions = Object.assign({}, defaultOptions, context.vueOptions)
+
+    const app = new Vue(vueOptions)
 
     return app
 };
