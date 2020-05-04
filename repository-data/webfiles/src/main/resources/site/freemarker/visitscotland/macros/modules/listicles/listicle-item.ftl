@@ -1,6 +1,6 @@
 <#include "../../../../include/imports.ftl">
-<#include "../../../../vs-dotcom-ds/components/listicle-item.ftl">
-<#include "../../../../vs-dotcom-ds/components/link.ftl">
+<#--  <#include "../../../../vs-dotcom-ds/components/listicle-item.ftl">
+<#include "../../../../vs-dotcom-ds/components/link.ftl">  -->
 
 <#include "../../global/key-facilities.ftl">
 <#include "../../global/image-with-caption.ftl">
