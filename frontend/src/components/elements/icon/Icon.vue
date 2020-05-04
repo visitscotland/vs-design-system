@@ -107,6 +107,10 @@ export default {
                     value: "facility-audioloop",
                 },
                 {
+                    key: "cafereston",
+                    value: "cafe",
+                },
+                {
                     key: "cate",
                     value: "product-food-and-drink",
                 },
