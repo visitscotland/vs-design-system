@@ -1,2 +1,6 @@
-export { default } from "./Button"
-export { VsButtonWithIcon } from "./ButtonWithIcon"
+import VsButtonWithIcon from "./ButtonWithIcon"
+import VsButton from "./Button"
+
+export default VsButton
+
+export { VsButtonWithIcon }

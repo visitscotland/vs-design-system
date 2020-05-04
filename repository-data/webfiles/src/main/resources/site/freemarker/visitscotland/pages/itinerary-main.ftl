@@ -1,6 +1,6 @@
 <#include "../../include/imports.ftl">
 
-<#include "../../vs-dotcom-ds/stores/itineraries-store.ftl">
+<#--  <#include "../../vs-dotcom-ds/stores/itineraries-store.ftl">
 <#include "../../vs-dotcom-ds/components/page-intro.ftl">
 <#include "../../vs-dotcom-ds/components/hero.ftl">
 <#include "../../vs-dotcom-ds/components/container.ftl">
@@ -26,7 +26,7 @@
 <#include "../../vs-dotcom-ds/components/description-list-detail.ftl">
 <#include "../../vs-dotcom-ds/components/itinerary-day.ftl">
 <#include "../../vs-dotcom-ds/components/itinerary.ftl">
-<#include "../../vs-dotcom-ds/components/svg.ftl">
+<#include "../../vs-dotcom-ds/components/svg.ftl">  -->
 
 <#include "../macros/modules/itineraries/itinerary-stop.ftl">
 <#include "../macros/modules/itineraries/itinerary-map.ftl">

@@ -1,6 +1,6 @@
 <#include "../../include/imports.ftl">
-<#include "../../vs-dotcom-ds/components/header-list-group.ftl">
-<#include "../../vs-dotcom-ds/components/header-list-group-item.ftl">
+<#--  <#include "../../vs-dotcom-ds/components/header-list-group.ftl">
+<#include "../../vs-dotcom-ds/components/header-list-group-item.ftl">  -->
     
 <vs-header-list-group class="d-lg-inline-flex d-none" section="top">
     <vs-header-list-group-item
