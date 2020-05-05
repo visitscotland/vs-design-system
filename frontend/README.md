@@ -1,5 +1,22 @@
 ![VisitScotland](https://sttc.visitscotland.com/static/img/logos/scotland-alba-logo-500.png)
 
+# Vue SSR
+
+This branch includes an SSR package that can be used to spin up a NodeJS/Express app that performs SSR on a target site. When a client request comes into the app, a proxy request to the target site is made at the same path. The page HTML that is returned is rendered by Vue SSR and returned to the client.
+
+## Get Started
+
+- `yarn` - installs frontend dependencies
+- Add environment variables to `.env` file (see below)
+- Start local Hippo instance (only needed if proxying the local Hippo instance)
+- `yarn ssr:start` - builds for SSR and spins up NodeJS app on http://localhost:3000
+
+## Environment variables
+
+The NodeJS app expects a value for the proxy target to be available at `process.env.VS_SSR_PROXY_TARGET_HOST`. The value is used to make the proxy request when a client request is handled. For example, if `process.env.VS_SSR_PROXY_TARGET_HOST` is `http://localhost:8080` then a client request of `localhost:3000/site/page` will result in a proxy request to `http://localhost:8080/site/page`.
+
+The easiesy way to specify the `process.env.VS_SSR_PROXY_TARGET_HOST` value is to set `VS_SSR_PROXY_TARGET_HOST` in a `.env` file in this `frontend` folder. The package include the `dotenv` to add the variable to the system process.
+
 # VisitScotland Design System
 
 This is the repository for the **VisitScotland Design System**, which is an implementation of [Vue Styleguidist](https://vue-styleguidist.github.io/) and was developed using [Vue Design System](https://vueds.com) as a starting point. Most of the original Vue Design System functionality should still work. However, the functionality of this package has been enhanced or modified in several areas:
