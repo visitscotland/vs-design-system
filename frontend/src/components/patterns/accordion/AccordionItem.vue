@@ -1,5 +1,8 @@
 <template>
-    <BCard no-body class="vs-accordion-item">
+    <BCard
+        no-body
+        class="vs-accordion-item"
+    >
         <BCardHeader role="tab">
             <VsButton
                 :animate="false"
@@ -7,19 +10,33 @@
                 :aria-controls="'panel_' + index"
                 aria-haspopup="true"
                 @click.native="triggerToggle()"
-                class="vs-accordion-item__toggle-btn"
+                class="vs-accordion-item__toggle-btn clearfix"
                 block
                 :variant="variant"
             >
                 <!-- @slot Put the title here  -->
                 <slot name="title" />
 
-                <VsIcon v-if="show" name="chevron-down" variant="light" size="xs" />
-                <VsIcon v-else name="chevron-up" variant="light" size="xs" />
+                <div class="float-right">
+                    <!-- @slot Put the icon to be used when panel is open  -->
+                    <slot
+                        v-if="show"
+                        name="icon-open"
+                    />
+
+                    <!-- @slot Put the icon to be used when panel is closed  -->
+                    <slot
+                        v-else
+                        name="icon-closed"
+                    />
+                </div>
             </VsButton>
         </BCardHeader>
 
-        <BCardBody v-show="show" :id="'panel_' + index">
+        <BCardBody
+            v-show="show"
+            :id="'panel_' + index"
+        >
             <!-- @slot The default slot is the content for the accordion  -->
             <slot />
         </BCardBody>
@@ -27,9 +44,10 @@
 </template>
 
 <script>
-import VsIcon from "@components/elements/icon/Icon"
 import VsButton from "@components/elements/button/Button"
-import { BCard, BCardHeader, BCardBody } from "bootstrap-vue"
+import {
+    BCard, BCardHeader, BCardBody,
+} from "bootstrap-vue"
 
 /**
  * Dropdown component for lists of links for example.
@@ -38,7 +56,6 @@ export default {
     name: "VsAccordionItem",
     components: {
         VsButton,
-        VsIcon,
         BCard,
         BCardHeader,
         BCardBody,
@@ -59,7 +76,7 @@ export default {
     },
     data() {
         return {
-            show: true,
+            show: this.visible,
         }
     },
     methods: {
@@ -70,19 +87,33 @@ export default {
 }
 </script>
 
-<style lang="scss"></style>
+<style lang="scss">
+    .btn.vs-accordion-item__toggle-btn {
+        text-align: left;
+    }
+</style>
 
 <docs>
   ```js
-    <vs-accordion-item :visible=true variant="dark">
+    <vs-accordion-item :visible="true" variant="dark" index="1">
         <span slot="title">
             This is a title
         </span>
 
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. In luctus quam non
-        enim commodo consectetur. Curabitur accumsan non mauris et laoreet. Praesent
-        maximus sagittis mauris a finibus. Morbi fringilla, lorem ut fringilla sollicitudin,
-        turpis enim venenatis ipsum, vitae finibus sem tellus sit amet mauris.
+        <span slot="icon-open">
+            <VsIcon name="chevron-down" variant="light" size="xs" />
+        </span>
+
+        <span slot="icon-closed">
+            <VsIcon name="chevron-up" variant="light" size="xs" />
+        </span>
+
+        <div class="py-3">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. In luctus quam non
+            enim commodo consectetur. Curabitur accumsan non mauris et laoreet. Praesent
+            maximus sagittis mauris a finibus. Morbi fringilla, lorem ut fringilla sollicitudin,
+            turpis enim venenatis ipsum, vitae finibus sem tellus sit amet mauris.
+        </div>
     </vs-accordion-item>
   ```
 </docs>
