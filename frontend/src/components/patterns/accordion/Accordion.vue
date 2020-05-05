@@ -11,7 +11,7 @@
 
 
 /**
- * Dropdown component for lists of links for example.
+ * Accordion wrapper used with AccordionItems.
  */
 export default {
     name: "VsAccordion",
