@@ -50,7 +50,8 @@ import {
 } from "bootstrap-vue"
 
 /**
- * Dropdown component for lists of links for example.
+ * Accordion item for use within the Accordion component.
+ * Contains a button to toggle the panel open or closed.
  */
 export default {
     name: "VsAccordionItem",
