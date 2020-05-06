@@ -2,6 +2,9 @@ package com.visitscotland.brmx.beans.mapping;
 
 
 import com.visitscotland.brmx.beans.Image;
+import com.visitscotland.brmx.beans.InstagramImage;
+import com.visitscotland.brmx.beans.dms.LocationObject;
+import com.visitscotland.brmx.utils.LocationLoader;
 import org.json.JSONObject;
 
 import java.util.Locale;
@@ -30,7 +33,6 @@ public class FlatImage {
     final String ALT_TEXT = "altText";
 
     public FlatImage(){
-
     }
 
     public FlatImage (Image cmsImage, Locale locale){
@@ -75,13 +77,15 @@ public class FlatImage {
         }
     }
 
-    public FlatImage(String externalImage, String altText, String credit, String description, Source source, String postUrl) {
-        this.externalImage = externalImage;
-        this.altText = altText;
-        this.credit = credit;
-        this.description = description;
-        this.source = source;
-        this.postUrl = postUrl;
+    public FlatImage(InstagramImage instagramLink, String caption, Locale locale) {
+        //TODO remove the size when it is handle in the front end
+        this.externalImage =  "https://www.instagram.com/p/" + instagramLink.getId() + "/media?size=l";
+        this.credit = caption;
+        this.altText = instagramLink.getCaption();
+        this.description = instagramLink.getCaption();
+        this.source = Source.INSTAGRAM;
+        this.postUrl = "https://www.instagram.com/p/" + instagramLink.getId();
+        this.coordinates = setInstagramCoordinates(instagramLink,locale);
     }
 
     public FlatImage(JSONObject dmsImage, String productName) {
@@ -152,4 +156,15 @@ public class FlatImage {
     public void setPostUrl(String postUrl) {
         this.postUrl = postUrl;
     }
+
+    public Coordinates setInstagramCoordinates(InstagramImage instagramLink, Locale locale){
+        if (instagramLink.getLocation()!= null && !instagramLink.getLocation().isEmpty()){
+            LocationObject locationObject = LocationLoader.getLocation(instagramLink.getLocation(), locale);
+            if (locationObject != null){
+               return (new Coordinates(locationObject.getLatitude(),locationObject.getLongitude()));
+            }
+        }
+        return null;
+    }
+
 }
