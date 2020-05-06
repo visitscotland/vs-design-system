@@ -4,6 +4,7 @@ import com.visitscotland.brmx.beans.ContentDocument;
 import com.visitscotland.brmx.beans.Page;
 import com.visitscotland.brmx.utils.CommonUtils;
 import com.visitscotland.brmx.utils.HippoUtils;
+import com.visitscotland.utils.Contract;
 import org.hippoecm.hst.component.support.bean.BaseHstComponent;
 import org.hippoecm.hst.content.beans.standard.HippoBean;
 import org.hippoecm.hst.content.beans.standard.HippoFolder;
@@ -128,9 +129,9 @@ public class VsBreadCrumbProvider extends BreadcrumbProvider {
     private String getBreadcrumbText(final HippoBean bean) {
         if (bean instanceof Page) {
             Page page = ((Page) bean);
-            if (!CommonUtils.isEmpty(page.getBreadcrumb())){
+            if (!Contract.isEmpty(page.getBreadcrumb())){
                 return page.getBreadcrumb();
-            } else if (!CommonUtils.isEmpty(page.getTitle())){
+            } else if (!Contract.isEmpty(page.getTitle())){
                 return page.getTitle();
             }
             logger.warn (CommonUtils.contentIssue("The document %s does not have a title so breadcrumb is showing its title (%s)", bean.getDisplayName(), bean.getPath()));

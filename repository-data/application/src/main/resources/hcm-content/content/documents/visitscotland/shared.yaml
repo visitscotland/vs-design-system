@@ -149,7 +149,7 @@
         hippostd:state: draft
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2019-12-11T12:39:11.963Z
-        hippostdpubwf:lastModificationDate: 2020-04-09T13:29:14.924+01:00
+        hippostdpubwf:lastModificationDate: 2020-04-30T17:45:17.713+01:00
         hippostdpubwf:lastModifiedBy: admin
         hippotranslation:id: 9da62445-4ef0-470c-9d9c-ed812d053659
         hippotranslation:locale: en
@@ -412,7 +412,7 @@
         hippostd:state: unpublished
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2019-12-16T12:20:46.037Z
-        hippostdpubwf:lastModificationDate: 2020-04-09T18:16:32.823+01:00
+        hippostdpubwf:lastModificationDate: 2020-04-30T17:45:31.843+01:00
         hippostdpubwf:lastModifiedBy: admin
         hippotranslation:id: b4f184af-52de-4e48-92ab-33cc5c2519e0
         hippotranslation:locale: en
@@ -421,7 +421,7 @@
         visitscotland:title: Casa Jose
         /visitscotland:description:
           jcr:primaryType: hippostd:html
-          hippostd:content: <p>Short description</p>
+          hippostd:content: <p>Short description.</p>
         /visitscotland:tips:
           jcr:primaryType: hippostd:html
           hippostd:content: <p>Example tips invalid</p>
@@ -447,10 +447,11 @@
         jcr:mixinTypes: ['mix:referenceable']
         jcr:uuid: af4ea7ee-b843-4f1f-96d5-c4e30e8500e8
         hippo:availability: []
+        hippostd:holder: admin
         hippostd:state: draft
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2019-12-16T12:20:46.037Z
-        hippostdpubwf:lastModificationDate: 2020-04-09T18:16:22.434+01:00
+        hippostdpubwf:lastModificationDate: 2020-04-30T17:45:32.009+01:00
         hippostdpubwf:lastModifiedBy: admin
         hippotranslation:id: b4f184af-52de-4e48-92ab-33cc5c2519e0
         hippotranslation:locale: en
@@ -459,7 +460,7 @@
         visitscotland:title: Casa Jose
         /visitscotland:description:
           jcr:primaryType: hippostd:html
-          hippostd:content: <p>Short description</p>
+          hippostd:content: <p>Short description.</p>
         /visitscotland:tips:
           jcr:primaryType: hippostd:html
           hippostd:content: <p>Example tips invalid</p>

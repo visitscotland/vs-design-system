@@ -5,6 +5,7 @@ import com.visitscotland.brmx.beans.mapping.FlatImage;
 import com.visitscotland.brmx.utils.CommonUtils;
 import com.visitscotland.brmx.utils.HippoUtils;
 import com.visitscotland.brmx.utils.ProductSearchBuilder;
+import com.visitscotland.utils.Contract;
 import freemarker.ext.beans.BeansWrapper;
 import freemarker.template.TemplateHashModel;
 import freemarker.template.TemplateModelException;
@@ -90,7 +91,7 @@ public class PageContentComponent<TYPE extends Page> extends EssentialsContentCo
      * @return the manual CTA if provided otherwise the default CTA
      */
     public String getCtaLabel(String manualCta, Locale locale) {
-        if (!CommonUtils.isEmpty(manualCta)) {
+        if (!Contract.isEmpty(manualCta)) {
             return manualCta;
         } else {
             return HippoUtils.getResourceBundle("button.find-out-more", "essentials.global", locale);
