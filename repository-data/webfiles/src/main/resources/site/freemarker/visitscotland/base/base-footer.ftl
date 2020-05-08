@@ -1,5 +1,6 @@
 <#include "../../include/imports.ftl">
 <#include "../../vs-dotcom-ds/components/footer-nav-list.ftl">
+<#include "../../vs-dotcom-ds/components/footer.ftl">
 <#include "../../vs-dotcom-ds/components/icon.ftl">
 <#include "../../vs-dotcom-ds/components/accordion-item.ftl">
 <#include "../../vs-dotcom-ds/components/container.ftl">
@@ -10,15 +11,14 @@
 <#-- @ftlvariable name="enhancedMenu" type="java.util.List" -->
 <#-- @ftlvariable name="item" type=""com.visitscotland.www.components.navigation.VsHstSiteMenuItemImpl" -->
 
-
-<#if enhancedMenu??>
-    <div class="has-edit-button">
-        <vs-container>
+<vs-footer>
+    <#if enhancedMenu??>
+        <div class="has-edit-button">
             <vs-row>
                 <#list enhancedMenu as item>
                     <vs-col cols="12" md="4" lg="3">
                         <vs-footer-nav-list>
-                            <vs-accordion-item :visible="false" variant="dark" index="1">
+                            <vs-accordion-item :visible="false" variant="dark" index="${item?index}">
                                 <span slot="title">
                                     <#if !item.hstLink?? && !item.externalLink??>
                                         ${item.title?html}
@@ -32,11 +32,11 @@
                                 </span>
 
                                 <span slot="icon-open">
-                                    <vs-icon name="chevron-down" variant="light" size="xs" />
+                                    <vs-icon name="chevron-up" variant="light" size="xs" />
                                 </span>
 
                                 <span slot="icon-closed">
-                                    <vs-icon name="chevron-up" variant="light" size="xs" />
+                                    <vs-icon name="chevron-right" variant="light" size="xs" />
                                 </span>
 
                                 <ul class="py-3">
@@ -64,12 +64,10 @@
                         </vs-footer-nav-list>
                     </vs-col>
                 </#list>
-
-
             </vs-row>
-        </vs-container>
-    </div>
+        </div>
 
-    <@hst.cmseditmenu menu=menu/>
-    <@hst.include ref="utility"/>
-</#if>
+        <@hst.cmseditmenu menu=menu/>
+        <@hst.include ref="utility"/>
+    </#if>
+</vs-footer>
