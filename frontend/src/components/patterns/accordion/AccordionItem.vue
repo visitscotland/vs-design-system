@@ -91,7 +91,8 @@ export default {
 
 <style lang="scss">
     .vs-accordion-item{
-        border-bottom: 1px solid #AAA9A7;
+        // border-bottom: 1px solid #AAA9A7;
+        border-bottom: 1px solid $color-gray-shade-2;
 
         .btn.vs-accordion-item__toggle-btn {
             text-align: left;
@@ -106,6 +107,8 @@ export default {
         .vs-accordion-item__panel{
             background: #2B2929;
             color: #ffffff;
+            // border-top: 1px solid #727272
+            border-top: 1px solid $color-gray-shade-2;
         }
     }
 </style>

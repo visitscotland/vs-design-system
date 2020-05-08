@@ -53,12 +53,24 @@ export default {
                             <VsIcon name="chevron-right" variant="light" size="xs" />
                         </span>
 
-                        <div class="p-3">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. In luctus quam non
-                            enim commodo consectetur. Curabitur accumsan non mauris et laoreet. Praesent
-                            maximus sagittis mauris a finibus. Morbi fringilla, lorem ut fringilla sollicitudin,
-                            turpis enim venenatis ipsum, vitae finibus sem tellus sit amet mauris.
-                        </div>
+                        <vs-list unstyled class="pb-2">
+                            <vs-footer-nav-list-item
+                                href="#"
+                                linkText="Brochures"
+                            ></vs-footer-nav-list-item>
+                            <vs-footer-nav-list-item
+                                href="#"
+                                linkText="VisitScotland iCentres"
+                            ></vs-footer-nav-list-item>
+                            <vs-footer-nav-list-item
+                                href="#"
+                                linkText="iKnow Scotland Community"
+                            ></vs-footer-nav-list-item>
+                            <vs-footer-nav-list-item
+                                href="#"
+                                linkText="VisitScotland Awards"
+                            ></vs-footer-nav-list-item>
+                        </vs-list>
                     </vs-accordion-item>
                 </vs-col>
                 <vs-col cols="12" md="4" lg="3">
@@ -75,12 +87,24 @@ export default {
                             <VsIcon name="chevron-right" variant="light" size="xs" />
                         </span>
 
-                        <div class="p-3">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. In luctus quam non
-                            enim commodo consectetur. Curabitur accumsan non mauris et laoreet. Praesent
-                            maximus sagittis mauris a finibus. Morbi fringilla, lorem ut fringilla sollicitudin,
-                            turpis enim venenatis ipsum, vitae finibus sem tellus sit amet mauris.
-                        </div>
+                        <vs-list unstyled class="pb-2">
+                            <vs-footer-nav-list-item
+                                href="#"
+                                linkText="Brochures"
+                            ></vs-footer-nav-list-item>
+                            <vs-footer-nav-list-item
+                                href="#"
+                                linkText="VisitScotland iCentres"
+                            ></vs-footer-nav-list-item>
+                            <vs-footer-nav-list-item
+                                href="#"
+                                linkText="iKnow Scotland Community"
+                            ></vs-footer-nav-list-item>
+                            <vs-footer-nav-list-item
+                                href="#"
+                                linkText="VisitScotland Awards"
+                            ></vs-footer-nav-list-item>
+                        </vs-list>
                     </vs-accordion-item>
                 </vs-col>
                 <vs-col cols="12" md="4" lg="3">
@@ -97,12 +121,24 @@ export default {
                             <VsIcon name="chevron-right" variant="light" size="xs" />
                         </span>
 
-                        <div class="p-3">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. In luctus quam non
-                            enim commodo consectetur. Curabitur accumsan non mauris et laoreet. Praesent
-                            maximus sagittis mauris a finibus. Morbi fringilla, lorem ut fringilla sollicitudin,
-                            turpis enim venenatis ipsum, vitae finibus sem tellus sit amet mauris.
-                        </div>
+                        <vs-list unstyled class="pb-2">
+                            <vs-footer-nav-list-item
+                                href="#"
+                                linkText="Brochures"
+                            ></vs-footer-nav-list-item>
+                            <vs-footer-nav-list-item
+                                href="#"
+                                linkText="VisitScotland iCentres"
+                            ></vs-footer-nav-list-item>
+                            <vs-footer-nav-list-item
+                                href="#"
+                                linkText="iKnow Scotland Community"
+                            ></vs-footer-nav-list-item>
+                            <vs-footer-nav-list-item
+                                href="#"
+                                linkText="VisitScotland Awards"
+                            ></vs-footer-nav-list-item>
+                        </vs-list>
                     </vs-accordion-item>
                 </vs-col>
             </vs-row>
