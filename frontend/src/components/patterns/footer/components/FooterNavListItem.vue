@@ -1,44 +1,72 @@
 <template>
-    <div class="vs-footer-nav-list">
-        <VsAccordion>
-            <slot />
-        </VsAccordion>
+    <div class="vs-footer-nav-list-item">
+        <li>
+            <VsLink
+                :href="href"
+                :external="external"
+                variant="dark"
+            >
+                {{ linkText }}
+            </VsLink>
+        </li>
     </div>
 </template>
 
 <script>
-import VsAccordion from "@components/patterns/accordion/Accordion"
+import VsLink from "@components/elements/link/Link"
 
 /**
  * Dropdown component for lists of links for example.
  */
 
 export default {
-    name: "VsFooterNavList",
+    name: "VsFooterNavListItem",
     components: {
-        VsAccordion,
+        VsLink,
+    },
+    props: {
+        /**
+         * The URL the link will point to
+         */
+        href: {
+            type: String,
+            default: null,
+        },
+        /**
+         * Option to create external link which will open URL in blank target and add icon
+         */
+        external: {
+            type: Boolean,
+            default: false,
+        },
+        /**
+         * Text to show for the link
+         */
+        linkText: {
+            type: String,
+            default: "",
+        },
     },
 }
 </script>
 
 <style lang="scss">
-.vs-footer-nav-list {
-    .vs-accordion-item {
-        .btn.vs-accordion-item__toggle-btn {
-            text-transform: none !important;
-            letter-spacing: initial;
-            padding: $spacer-3;
-            line-height: 1;
-            font-weight: 500;
+.vs-footer-nav-list-item {
+    list-style: none;
+    font-size: $small-font-size;
+    line-height: $line-height-s;
+    padding: $spacer-3 $spacer-8;
 
-            &:hover {
-                background: #191919;
-                text-decoration: underline;
-            }
+    .vs-link.dark {
+        color: $color-white;
+        text-decoration: none;
 
-            &:focus {
-                box-shadow: 0 0 0 1px $color_yellow;
-            }
+        &:hover {
+            text-decoration: underline;
+        }
+
+        .icon {
+            fill: $color-white;
         }
     }
 }
@@ -96,19 +124,11 @@ export default {
         <vs-list unstyled class="pb-2">
             <vs-footer-nav-list-item
                 href="#"
-                linkText="Brochures"
+                linkText="Contact Information"
             ></vs-footer-nav-list-item>
             <vs-footer-nav-list-item
                 href="#"
-                linkText="VisitScotland iCentres"
-            ></vs-footer-nav-list-item>
-            <vs-footer-nav-list-item
-                href="#"
-                linkText="iKnow Scotland Community"
-            ></vs-footer-nav-list-item>
-            <vs-footer-nav-list-item
-                href="#"
-                linkText="VisitScotland Awards"
+                linkText="Feedback & Complaints"
             ></vs-footer-nav-list-item>
         </vs-list>
     </vs-accordion-item>
@@ -128,19 +148,18 @@ export default {
         <vs-list unstyled class="pb-2">
             <vs-footer-nav-list-item
                 href="#"
-                linkText="Brochures"
+                linkText="Business Events"
+                external
             ></vs-footer-nav-list-item>
             <vs-footer-nav-list-item
                 href="#"
-                linkText="VisitScotland iCentres"
+                linkText="Travel Trade"
+                external
             ></vs-footer-nav-list-item>
             <vs-footer-nav-list-item
                 href="#"
-                linkText="iKnow Scotland Community"
-            ></vs-footer-nav-list-item>
-            <vs-footer-nav-list-item
-                href="#"
-                linkText="VisitScotland Awards"
+                linkText="Media Centre"
+                external
             ></vs-footer-nav-list-item>
         </vs-list>
     </vs-accordion-item>
