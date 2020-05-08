@@ -36,6 +36,7 @@
         <BCardBody
             v-show="show"
             :id="'panel_' + index"
+            class="vs-accordion-item__panel"
         >
             <!-- @slot The default slot is the content for the accordion  -->
             <slot />
@@ -89,8 +90,23 @@ export default {
 </script>
 
 <style lang="scss">
-    .btn.vs-accordion-item__toggle-btn {
-        text-align: left;
+    .vs-accordion-item{
+        border-bottom: 1px solid #AAA9A7;
+
+        .btn.vs-accordion-item__toggle-btn {
+            text-align: left;
+
+            .icon.icon-xs {
+                height: 16px;
+                width: 16px;
+                padding: 0;
+            }
+        }
+
+        .vs-accordion-item__panel{
+            background: #2B2929;
+            color: #ffffff;
+        }
     }
 </style>
 
