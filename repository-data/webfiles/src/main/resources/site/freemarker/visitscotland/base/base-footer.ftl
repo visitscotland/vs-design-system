@@ -16,10 +16,11 @@
 <vs-footer>
     <#if enhancedMenu??>
         <div class="has-edit-button">
-            <vs-row>
-                <#list enhancedMenu as item>
-                    <vs-col cols="12" md="4" lg="3">
-                        <vs-footer-nav-list>
+            <vs-footer-nav-list>
+                <vs-row>
+                    
+                    <#list enhancedMenu as item>
+                        <vs-col cols="12" md="4" lg="3">
                             <vs-accordion-item :visible="false" variant="dark" index="${item?index}">
                                 <span slot="title">
                                     <#if !item.hstLink?? && !item.externalLink??>
@@ -61,10 +62,10 @@
                                     </#list>
                                 </vs-list>
                             </vs-accordion-item>
-                        </vs-footer-nav-list>
-                    </vs-col>
-                </#list>
-            </vs-row>
+                        </vs-col>
+                    </#list>
+                </vs-row>
+            </vs-footer-nav-list>
         </div>
 
         <@hst.cmseditmenu menu=menu/>

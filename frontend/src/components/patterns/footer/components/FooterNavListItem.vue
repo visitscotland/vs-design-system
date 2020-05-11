@@ -1,6 +1,10 @@
 <template>
     <li class="vs-footer-nav-list-item">
-        <VsLink :href="href" :external="external" variant="dark">
+        <VsLink
+            :href="href"
+            :external="external"
+            variant="dark"
+        >
             {{ linkText }}
         </VsLink>
     </li>
