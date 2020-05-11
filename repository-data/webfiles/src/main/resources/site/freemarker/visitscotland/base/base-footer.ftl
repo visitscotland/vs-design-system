@@ -1,11 +1,13 @@
 <#include "../../include/imports.ftl">
 <#include "../../vs-dotcom-ds/components/footer-nav-list.ftl">
+<#include "../../vs-dotcom-ds/components/footer-nav-list-item.ftl">
 <#include "../../vs-dotcom-ds/components/footer.ftl">
 <#include "../../vs-dotcom-ds/components/icon.ftl">
 <#include "../../vs-dotcom-ds/components/accordion-item.ftl">
 <#include "../../vs-dotcom-ds/components/container.ftl">
 <#include "../../vs-dotcom-ds/components/row.ftl">
 <#include "../../vs-dotcom-ds/components/col.ftl">
+<#include "../../vs-dotcom-ds/components/list.ftl">
 
 <#-- @ftlvariable name="menu" type="org.hippoecm.hst.core.sitemenu.HstSiteMenu" -->
 <#-- @ftlvariable name="enhancedMenu" type="java.util.List" -->
@@ -39,27 +41,25 @@
                                     <vs-icon name="chevron-right" variant="light" size="xs" />
                                 </span>
 
-                                <ul class="py-3">
+                                <vs-list unstyled class="pb-2">
                                     <#list item.childMenuItems as children>
-                                        <#if children.hstLink?? && children.title?has_content>
+                                        <#assign href = "">
+                                        <#assign external = false>
+
+                                        <#if children.hstLink??>
                                             <#assign href><@hst.link link=children.hstLink/></#assign>
-                                            
-                                            <li>
-                                                <vs-link  href="${href}">
-                                                    ${children.title?html}
-                                                </vs-link>
-                                            </li>
                                         <#elseif children.externalLink??>
-                                            <#assign href>${children.externalLink?replace("\"", "")}</#assign>
-                                            <#assign external>true</#assign>
-                                            <li>
-                                                <vs-link external href="${href}">
-                                                    ${children.title?html}
-                                                </vs-link>
-                                            </li>
+                                            <#assign href>${children.externalLink}</#assign>
+                                            <#assign external = true>
                                         </#if>
+
+                                        <vs-footer-nav-list-item
+                                            href="${href}"
+                                            link-text="${children.title}"
+                                            :external="<#if external>true<#else>false</#if>"
+                                        ></vs-footer-nav-list-item>
                                     </#list>
-                                </ul>
+                                </vs-list>
                             </vs-accordion-item>
                         </vs-footer-nav-list>
                     </vs-col>
