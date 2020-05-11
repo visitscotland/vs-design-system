@@ -20,6 +20,15 @@ const config = merge(base, {
             'vue$': 'vue/dist/vue.esm.js'
         }
     },
+    optimization: {
+        splitChunks: {
+          chunks: "all",
+          minSize: 0,
+          maxInitialRequests: Infinity,
+        },
+        runtimeChunk: "single",
+        concatenateModules: false,
+    },
     plugins: [
         new VueSSRClientPlugin()
     ]
