@@ -3,6 +3,7 @@
         class="vs-accordion"
         role="tablist"
     >
+        <!-- @slot Default slot to contain Accordion Items -->
         <slot />
     </div>
 </template>
@@ -32,14 +33,14 @@ export default {
             </span>
 
             <span slot="icon-open">
-                <VsIcon name="chevron-down" variant="light" size="xs" />
+                <vs-icon name="chevron-down" variant="light" size="xs" />
             </span>
 
             <span slot="icon-closed">
-                <VsIcon name="chevron-up" variant="light" size="xs" />
+                <vs-icon name="chevron-up" variant="light" size="xs" />
             </span>
 
-            <div class="py-3">
+            <div class="p-3">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. In luctus quam non
                 enim commodo consectetur. Curabitur accumsan non mauris et laoreet. Praesent
                 maximus sagittis mauris a finibus. Morbi fringilla, lorem ut fringilla sollicitudin,
@@ -53,14 +54,14 @@ export default {
             </span>
 
             <span slot="icon-open">
-                <VsIcon name="chevron-down" variant="light" size="xs" />
+                <vs-icon name="chevron-down" variant="light" size="xs" />
             </span>
 
             <span slot="icon-closed">
-                <VsIcon name="chevron-up" variant="light" size="xs" />
+                <vs-icon name="chevron-up" variant="light" size="xs" />
             </span>
 
-            <div class="py-3">
+            <div class="p-3">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. In luctus quam non
                 enim commodo consectetur. Curabitur accumsan non mauris et laoreet. Praesent
                 maximus sagittis mauris a finibus. Morbi fringilla, lorem ut fringilla sollicitudin,
@@ -73,14 +74,14 @@ export default {
             </span>
 
             <span slot="icon-open">
-                <VsIcon name="chevron-down" variant="light" size="xs" />
+                <vs-icon name="chevron-down" variant="light" size="xs" />
             </span>
 
             <span slot="icon-closed">
-                <VsIcon name="chevron-up" variant="light" size="xs" />
+                <vs-icon name="chevron-up" variant="light" size="xs" />
             </span>
 
-            <div class="py-3">
+            <div class="p-3">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. In luctus quam non
                 enim commodo consectetur. Curabitur accumsan non mauris et laoreet. Praesent
                 maximus sagittis mauris a finibus. Morbi fringilla, lorem ut fringilla sollicitudin,

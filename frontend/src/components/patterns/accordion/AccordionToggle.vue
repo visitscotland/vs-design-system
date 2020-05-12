@@ -9,7 +9,22 @@
         block
         :variant="variant"
     >
+        <!-- @slot Default slot contains text for the button -->
         <slot />
+
+        <div class="float-right">
+            <!-- @slot Put the icon to be used when panel is open  -->
+            <slot
+                v-if="show"
+                name="icon-open"
+            />
+
+            <!-- @slot Put the icon to be used when panel is closed  -->
+            <slot
+                v-else
+                name="icon-closed"
+            />
+        </div>
     </VsButton>
 </template>
 
@@ -26,14 +41,16 @@ export default {
         VsButton,
     },
     props: {
+        /**
+         * The index used for button to match panel ID
+         */
         index: {
             type: String,
             default: "",
         },
-        visible: {
-            type: Boolean,
-            default: true,
-        },
+        /**
+         * Variant for which button to show in headers
+         */
         variant: {
             type: String,
             default: "primary",

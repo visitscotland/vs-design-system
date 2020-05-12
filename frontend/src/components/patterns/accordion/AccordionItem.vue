@@ -2,37 +2,48 @@
     <BCard
         no-body
         class="vs-accordion-item"
+        :class="responsive ? 'responsive' : ''"
     >
         <BCardHeader role="tab">
-            <VsAccordionToggle
-                :index="index"
-                :visible="show"
-                :variant="variant"
-                @toggle-panel="onButtonClick"
-            >
-                <!-- @slot Put the title here  -->
-                <slot name="title" />
+            <!-- @slot Slot to contain Header for accordion item.
+            Defaults to Accordion Toggle button. If component is responsive
+            it will show title instead of button on larger screens. -->
+            <slot name="header">
+                <VsAccordionToggle
+                    :index="index"
+                    :visible="show"
+                    :variant="variant"
+                    :class="responsive ? 'd-md-none' : 'd-block'"
+                    @toggle-panel="onButtonClick"
+                >
+                    <!-- @slot Put the title here  -->
+                    <slot name="title" />
 
-                <div class="float-right">
-                    <!-- @slot Put the icon to be used when panel is open  -->
-                    <slot
-                        v-if="show"
-                        name="icon-open"
-                    />
+                    <template #icon-open>
+                        <!-- @slot Slot for the icon to show when accordion item is open  -->
+                        <slot name="icon-open" />
+                    </template>
+                    <template #icon-closed>
+                        <!-- @slot Slot for the icon to show when accordion item is closed  -->
+                        <slot name="icon-closed" />
+                    </template>
+                </VsAccordionToggle>
 
-                    <!-- @slot Put the icon to be used when panel is closed  -->
-                    <slot
-                        v-else
-                        name="icon-closed"
-                    />
-                </div>
-            </VsAccordionToggle>
+                <span
+                    class="d-none vs-accordion-item__title"
+                    :class="responsive ? 'd-md-block ' : ''"
+                >
+                    <!-- @slot Put the title here  -->
+                    <slot name="title" />
+                </span>
+            </slot>
         </BCardHeader>
 
         <BCardBody
             v-show="show"
             :id="'panel_' + index"
             class="vs-accordion-item__panel"
+            :class="responsive ? 'd-md-block responsive' : 'd-none'"
         >
             <!-- @slot The default slot is the content for the accordion  -->
             <slot />
@@ -60,17 +71,34 @@ export default {
         BCardBody,
     },
     props: {
+        /**
+         * The index used for panel ID to match button
+         */
         index: {
             type: String,
             default: "",
         },
+        /**
+         * Choose to show accordion open or closed by default
+         */
         visible: {
             type: Boolean,
             default: true,
         },
+        /**
+         * Variant for which button to show in headers
+         */
         variant: {
             type: String,
             default: "primary",
+        },
+        /**
+         * If this is provided, the accordion will change to an open
+         * menu with a title instead of button.
+         */
+        responsive: {
+            type: Boolean,
+            default: false,
         },
     },
     data() {
@@ -87,25 +115,49 @@ export default {
 </script>
 
 <style lang="scss">
-    .vs-accordion-item{
-        border-bottom: 1px solid $color-gray-shade-2;
+.vs-accordion-item {
+    border-bottom: 1px solid $color-gray-shade-2;
 
-        .btn.vs-accordion-item__toggle-btn {
-            text-align: left;
+    .btn.vs-accordion-item__toggle-btn {
+        text-align: left;
 
-            .icon.icon-xs {
-                height: 16px;
-                width: 16px;
-                padding: 0;
-            }
-        }
-
-        .vs-accordion-item__panel{
-            background: #2B2929;
-            color: #ffffff;
-            border-top: 1px solid $color-gray-shade-2;
+        .icon.icon-xs {
+            height: 16px;
+            width: 16px;
+            padding: 0;
         }
     }
+
+    .vs-accordion-item__title {
+        color: $color-white;
+        padding: $spacer-3 0;
+        line-height: 1;
+        font-weight: 500;
+    }
+
+    .vs-accordion-item__panel {
+        background: $color-gray-shade-6;
+        color: $color-white;
+        border-top: 1px solid $color-gray-shade-2;
+        padding-bottom: $spacer-2;
+    }
+
+    &.responsive {
+        @include media-breakpoint-up(md) {
+            border-bottom: 0;
+
+            .vs-accordion-item__title {
+                padding-top: $spacer-1;
+            }
+
+            .vs-accordion-item__panel {
+                background: $color-theme-dark;
+                border-top: 0;
+                padding-bottom: 0;
+            }
+        }
+    }
+}
 </style>
 
 <docs>
@@ -116,11 +168,11 @@ export default {
         </span>
 
         <span slot="icon-open">
-            <VsIcon name="chevron-down" variant="light" size="xs" />
+            <vs-icon name="chevron-down" variant="light" size="xs" />
         </span>
 
         <span slot="icon-closed">
-            <VsIcon name="chevron-up" variant="light" size="xs" />
+            <vs-icon name="chevron-up" variant="light" size="xs" />
         </span>
 
         <div class="p-3">
@@ -137,11 +189,11 @@ export default {
         </span>
 
         <span slot="icon-open">
-            <VsIcon name="chevron-down" variant="light" size="xs" />
+            <vs-icon name="chevron-down" variant="light" size="xs" />
         </span>
 
         <span slot="icon-closed">
-            <VsIcon name="chevron-up" variant="light" size="xs" />
+            <vs-icon name="chevron-up" variant="light" size="xs" />
         </span>
 
         <div class="p-3">
@@ -157,11 +209,11 @@ export default {
         </span>
 
         <span slot="icon-open">
-            <VsIcon name="chevron-down" variant="light" size="xs" />
+            <vs-icon name="chevron-down" variant="light" size="xs" />
         </span>
 
         <span slot="icon-closed">
-            <VsIcon name="chevron-up" variant="light" size="xs" />
+            <vs-icon name="chevron-up" variant="light" size="xs" />
         </span>
 
         <div class="p-3">
