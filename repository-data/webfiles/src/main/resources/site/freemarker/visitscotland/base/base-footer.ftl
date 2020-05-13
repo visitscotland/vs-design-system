@@ -13,9 +13,8 @@
 <#-- @ftlvariable name="enhancedMenu" type="java.util.List" -->
 <#-- @ftlvariable name="item" type=""com.visitscotland.www.components.navigation.VsHstSiteMenuItemImpl" -->
 
-<vs-footer>
+<vs-footer class="has-edit-button">
     <#if enhancedMenu??>
-        <div class="has-edit-button">
 
             <vs-footer-nav-list :responsive="true" break-point="md">
                 <vs-row>
@@ -71,8 +70,6 @@
                     </#list>
                 </vs-row>
             </vs-footer-nav-list>
-        </div>
-
         <@hst.cmseditmenu menu=menu/>
         <#--  <@hst.include ref="utility"/>  -->
     </#if>
