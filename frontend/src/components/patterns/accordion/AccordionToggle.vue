@@ -55,6 +55,13 @@ export default {
             type: String,
             default: "primary",
         },
+        /**
+         * Choose to show accordion open or closed by default
+         */
+        visible: {
+            type: Boolean,
+            default: true,
+        },
     },
     data() {
         return {
