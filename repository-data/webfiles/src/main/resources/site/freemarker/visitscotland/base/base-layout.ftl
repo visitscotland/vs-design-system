@@ -27,9 +27,9 @@
             <main id="main">
                 <@hst.include ref="main"/>
             </main>
-            <div class="row">
-                <@hst.include ref="footer"/>
-            </div>
+            
+            <@hst.include ref="footer"/>
+                
         </div>
 
         <script type="text/javascript" src="<@hst.webfile  path='design-system/components/core.js'/>"></script>
