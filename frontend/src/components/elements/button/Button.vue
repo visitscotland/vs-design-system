@@ -3,7 +3,7 @@
         :variant="variant"
         :href="href"
         :tabindex="tabindex"
-        class="text-uppercase align-items-center justify-content-center"
+        class="text-uppercase"
         :class="{
             [animateClass]: animateClass,
             [backgroundClass]: backgroundClass,
@@ -121,7 +121,6 @@ export default {
     letter-spacing: 2px;
     position: relative;
     overflow: hidden;
-    display: flex;
 
     .btn-dark {
         &:hover {
