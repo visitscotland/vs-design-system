@@ -43,7 +43,7 @@
             v-show="show"
             :id="'panel_' + index"
             class="vs-accordion-item__panel"
-            :class="responsive ? 'd-md-block responsive' : 'd-none'"
+            :class="responsive ? 'd-md-block responsive' : ''"
         >
             <!-- @slot The default slot is the content for the accordion  -->
             <slot />
