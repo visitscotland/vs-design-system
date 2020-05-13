@@ -2,7 +2,6 @@
     <BCard
         no-body
         class="vs-accordion-item"
-        :class="responsive ? 'responsive' : ''"
     >
         <BCardHeader role="tab">
             <!-- @slot Slot to contain Header for accordion item.
@@ -13,7 +12,7 @@
                     :index="index"
                     :visible="show"
                     :variant="variant"
-                    :class="responsive ? 'd-md-none' : 'd-block'"
+                    :class="responsive ? 'd-' + breakPoint + '-none' : 'd-block'"
                     @toggle-panel="onButtonClick"
                 >
                     <!-- @slot Put the title here  -->
@@ -31,7 +30,7 @@
 
                 <span
                     class="d-none vs-accordion-item__title"
-                    :class="responsive ? 'd-md-block ' : ''"
+                    :class="responsive ? 'd-' + breakPoint + '-block' : ''"
                 >
                     <!-- @slot Put the title here  -->
                     <slot name="title" />
@@ -43,7 +42,7 @@
             v-show="show"
             :id="'panel_' + index"
             class="vs-accordion-item__panel"
-            :class="responsive ? 'd-md-block responsive' : ''"
+            :class="responsive ? 'd-' + breakPoint + '-block' : ''"
         >
             <!-- @slot The default slot is the content for the accordion  -->
             <slot />
@@ -92,20 +91,16 @@ export default {
             type: String,
             default: "primary",
         },
-        /**
-         * If this is provided, the accordion will change to an open
-         * menu with a title instead of button.
-         */
-        responsive: {
-            type: Boolean,
-            default: false,
-        },
     },
     data() {
         return {
             show: this.visible,
         }
     },
+    /**
+     * Injects responsive prop provided by Accordion
+     */
+    inject: ["responsive", "breakPoint"],
     methods: {
         onButtonClick(e) {
             this.show = e
@@ -129,8 +124,9 @@ export default {
     }
 
     .vs-accordion-item__title {
+        background: $color-gray-shade-7;
         color: $color-white;
-        padding: $spacer-3 0;
+        padding: $spacer-3;
         line-height: 1;
         font-weight: 500;
     }
@@ -140,22 +136,6 @@ export default {
         color: $color-white;
         border-top: 1px solid $color-gray-shade-2;
         padding-bottom: $spacer-2;
-    }
-
-    &.responsive {
-        @include media-breakpoint-up(md) {
-            border-bottom: 0;
-
-            .vs-accordion-item__title {
-                padding-top: $spacer-1;
-            }
-
-            .vs-accordion-item__panel {
-                background: $color-theme-dark;
-                border-top: 0;
-                padding-bottom: 0;
-            }
-        }
     }
 }
 </style>
