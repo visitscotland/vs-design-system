@@ -37,113 +37,117 @@ export default {
 </style>
 
 <docs>
-  ```
+  ```js
     <vs-footer>
-        <vs-footer-nav-list>
+        <vs-footer-nav-list :responsive="true" break-point="md">
             <vs-row>
                 <vs-col cols="12" md="4" lg="3">
-                    <vs-accordion-item :visible="false" variant="dark" index="1" :responsive="true">
+                    <vs-accordion-item
+                        :visible="false"
+                        variant="dark" index="1"
+                        class="border-left-0 pl-md-0"
+                    >
                         <span slot="title">
                             Visitor information
                         </span>
 
                         <span slot="icon-open">
-                            <VsIcon name="chevron-up" variant="light" size="xs" />
+                            <vs-icon name="chevron-up" variant="light" size="xs" />
                         </span>
 
                         <span slot="icon-closed">
-                            <VsIcon name="chevron-right" variant="light" size="xs" />
+                            <vs-icon name="chevron-right" variant="light" size="xs" />
                         </span>
 
                         <vs-list unstyled>
                             <vs-footer-nav-list-item
                                 href="#"
-                                linkText="Brochures"
+                                link-text="Brochures"
                             ></vs-footer-nav-list-item>
                             <vs-footer-nav-list-item
                                 href="#"
-                                linkText="VisitScotland iCentres"
+                                link-text="VisitScotland iCentres"
                             ></vs-footer-nav-list-item>
                             <vs-footer-nav-list-item
                                 href="#"
-                                linkText="iKnow Scotland Community"
+                                link-text="iKnow Scotland Community"
                             ></vs-footer-nav-list-item>
                             <vs-footer-nav-list-item
                                 href="#"
-                                linkText="VisitScotland Awards"
+                                link-text="VisitScotland Awards"
                             ></vs-footer-nav-list-item>
                         </vs-list>
                     </vs-accordion-item>
                 </vs-col>
 
                 <vs-col cols="12" md="4" lg="3">
-                    <vs-accordion-item :visible="false" variant="dark" index="2" :responsive="true">
+                    <vs-accordion-item :visible="false" variant="dark" index="2">
                         <span slot="title">
                             Get in touch
                         </span>
 
                         <span slot="icon-open">
-                            <VsIcon name="chevron-up" variant="light" size="xs" />
+                            <vs-icon name="chevron-up" variant="light" size="xs" />
                         </span>
 
                         <span slot="icon-closed">
-                            <VsIcon name="chevron-right" variant="light" size="xs" />
+                            <vs-icon name="chevron-right" variant="light" size="xs" />
                         </span>
 
                         <vs-list unstyled>
                             <vs-footer-nav-list-item
                                 href="#"
-                                linkText="Brochures"
+                                link-text="Brochures"
                             ></vs-footer-nav-list-item>
                             <vs-footer-nav-list-item
                                 href="#"
-                                linkText="VisitScotland iCentres"
+                                link-text="VisitScotland iCentres"
                             ></vs-footer-nav-list-item>
                             <vs-footer-nav-list-item
                                 href="#"
-                                linkText="iKnow Scotland Community"
+                                link-text="iKnow Scotland Community"
                             ></vs-footer-nav-list-item>
                             <vs-footer-nav-list-item
                                 href="#"
-                                linkText="VisitScotland Awards"
+                                link-text="VisitScotland Awards"
                             ></vs-footer-nav-list-item>
                         </vs-list>
                     </vs-accordion-item>
                 </vs-col>
 
                 <vs-col cols="12" md="4" lg="3">
-                    <vs-accordion-item :visible="false" variant="dark" index="3" :responsive="true">
+                    <vs-accordion-item :visible="false" variant="dark" index="3">
                         <span slot="title">
                             Our other sites
                         </span>
 
                         <span slot="icon-open">
-                            <VsIcon name="chevron-up" variant="light" size="xs" />
+                            <vs-icon name="chevron-up" variant="light" size="xs" />
                         </span>
 
                         <span slot="icon-closed">
-                            <VsIcon name="chevron-right" variant="light" size="xs" />
+                            <vs-icon name="chevron-right" variant="light" size="xs" />
                         </span>
 
                         <vs-list unstyled>
                             <vs-footer-nav-list-item
                                 href="#"
-                                linkText="Brochures"
+                                link-text="Brochures"
                                 external
                             ></vs-footer-nav-list-item>
                             <vs-footer-nav-list-item
                                 href="#"
-                                linkText="VisitScotland iCentres"
+                                link-text="VisitScotland iCentres"
                                 external
                             ></vs-footer-nav-list-item>
                             <vs-footer-nav-list-item
                                 href="#"
-                                linkText="iKnow Scotland Community"
+                                link-text="iKnow Scotland Community"
                                 external
                             ></vs-footer-nav-list-item>
                             <vs-footer-nav-list-item
                                 href="#"
-                                linkText="VisitScotland Awards"
+                                link-text="VisitScotland Awards"
                                 external
                             ></vs-footer-nav-list-item>
                         </vs-list>
