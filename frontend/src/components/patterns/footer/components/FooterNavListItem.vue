@@ -100,19 +100,19 @@ export default {
                     <vs-list unstyled class="pb-2">
                         <vs-footer-nav-list-item
                             href="#"
-                            linkText="Brochures"
+                            link-text="Brochures"
                         ></vs-footer-nav-list-item>
                         <vs-footer-nav-list-item
                             href="#"
-                            linkText="VisitScotland iCentres"
+                            link-text="VisitScotland iCentres"
                         ></vs-footer-nav-list-item>
                         <vs-footer-nav-list-item
                             href="#"
-                            linkText="iKnow Scotland Community"
+                            link-text="iKnow Scotland Community"
                         ></vs-footer-nav-list-item>
                         <vs-footer-nav-list-item
                             href="#"
-                            linkText="VisitScotland Awards"
+                            link-text="VisitScotland Awards"
                         ></vs-footer-nav-list-item>
                     </vs-list>
                 </vs-accordion-item>

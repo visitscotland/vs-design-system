@@ -17,11 +17,16 @@
     <#if enhancedMenu??>
         <div class="has-edit-button">
 
-            <vs-footer-nav-list>
+            <vs-footer-nav-list :responsive="true" break-point="md">
                 <vs-row>
                     <#list enhancedMenu as item>
                         <vs-col cols="12" md="4" lg="3">
-                            <vs-accordion-item :visible="false" variant="dark" index="${item?index}" :responsive="true">
+                            <vs-accordion-item 
+                                :visible="false" 
+                                variant="dark" 
+                                index="${item?index}" 
+                                class="<#if item?index == 0>border-left-0 pl-md-0</#if>"
+                            >
                                 <span slot="title">
                                     <#if !item.hstLink?? && !item.externalLink??>
                                         ${item.title?html}
