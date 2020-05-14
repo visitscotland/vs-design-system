@@ -94,7 +94,12 @@ export default {
     <vs-footer-nav-list break-point="md">
         <vs-row>
             <vs-col cols="12" md="4" lg="3">
-                <vs-accordion-item :visible="false" variant="dark" aria-control-id="1" class="border-left-0">
+                <vs-accordion-item
+                    :visible="false"
+                    variant="dark"
+                    aria-control-id="1"
+                    class="border-left-0"
+                >
                     <span slot="title">
                         Visitor information
                     </span>
@@ -129,7 +134,11 @@ export default {
             </vs-col>
 
             <vs-col cols="12" md="4" lg="3">
-                <vs-accordion-item :visible="false" variant="dark" aria-control-id="2">
+                <vs-accordion-item
+                    :visible="false"
+                    variant="dark"
+                    aria-control-id="2"
+                >
                     <span slot="title">
                         Get in touch
                     </span>
@@ -164,7 +173,11 @@ export default {
             </vs-col>
 
             <vs-col cols="12" md="4" lg="3">
-                <vs-accordion-item :visible="false" variant="dark" aria-control-id="3">
+                <vs-accordion-item
+                    :visible="false"
+                    variant="dark"
+                    aria-control-id="3"
+                >
                     <span slot="title">
                         Our other sites
                     </span>
