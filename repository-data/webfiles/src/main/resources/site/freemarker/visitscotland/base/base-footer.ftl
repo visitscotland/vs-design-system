@@ -15,8 +15,6 @@
 
 <vs-footer class="has-edit-button">
     <#if enhancedMenu??>
-      
-
             <vs-footer-nav-list break-point="md">
                 <vs-row>
                     <#list enhancedMenu as item>
@@ -71,7 +69,6 @@
                     </#list>
                 </vs-row>
             </vs-footer-nav-list>
-    
         <@hst.cmseditmenu menu=menu/>
         <#--  <@hst.include ref="utility"/>  -->
     </#if>
