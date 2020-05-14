@@ -84,7 +84,7 @@ export default {
     <vs-footer-nav-list>
         <vs-row>
             <vs-col cols="12" md="4" lg="3">
-                <vs-accordion-item :visible="false" variant="dark" index="1" :responsive="true">
+                <vs-accordion-item :visible="false" variant="dark" aria-control-id="1">
                     <span slot="title">
                         Visitor information
                     </span>

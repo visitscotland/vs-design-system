@@ -39,12 +39,12 @@ export default {
 <docs>
   ```js
     <vs-footer>
-        <vs-footer-nav-list :responsive="true" break-point="md">
+        <vs-footer-nav-list break-point="md">
             <vs-row>
                 <vs-col cols="12" md="4" lg="3">
                     <vs-accordion-item
                         :visible="false"
-                        variant="dark" index="1"
+                        variant="dark" aria-control-id="1"
                         class="border-left-0 pl-md-0"
                     >
                         <span slot="title">
@@ -81,7 +81,7 @@ export default {
                 </vs-col>
 
                 <vs-col cols="12" md="4" lg="3">
-                    <vs-accordion-item :visible="false" variant="dark" index="2">
+                    <vs-accordion-item :visible="false" variant="dark" aria-control-id="2">
                         <span slot="title">
                             Get in touch
                         </span>
@@ -116,7 +116,7 @@ export default {
                 </vs-col>
 
                 <vs-col cols="12" md="4" lg="3">
-                    <vs-accordion-item :visible="false" variant="dark" index="3">
+                    <vs-accordion-item :visible="false" variant="dark" aria-control-id="3">
                         <span slot="title">
                             Our other sites
                         </span>

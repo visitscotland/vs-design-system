@@ -2,7 +2,6 @@
     <VsButton
         :animate="false"
         :aria-expanded="show ? 'true' : 'false'"
-        :aria-controls="'panel_' + index"
         aria-haspopup="true"
         @click.native="triggerToggle"
         class="vs-accordion-toggle clearfix"
@@ -41,13 +40,6 @@ export default {
         VsButton,
     },
     props: {
-        /**
-         * The index used for button to match panel ID
-         */
-        index: {
-            type: String,
-            default: "",
-        },
         /**
          * Variant for which button to show in headers
          */
