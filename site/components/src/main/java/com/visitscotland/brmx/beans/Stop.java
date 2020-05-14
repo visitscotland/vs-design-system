@@ -51,15 +51,6 @@ public class Stop extends BaseDocument {
         return getLinkedBean("visitscotland:image", Image.class);
     }
 
-    public HippoBean getStopItemImage() {
-        HippoBean image = getImage();
-        //TODO: This is a workaround to an issue found in the CMS when a content block is composed of Image Links
-        if (image instanceof HippoMirror) {
-            return ((HippoMirror)image).getReferencedBean();
-        }
-        return image;
-    }
-
     @HippoEssentialsGenerated(internalName = "visitscotland:subtitle")
     public String getSubtitle() {
         return getSingleProperty("visitscotland:subtitle");
