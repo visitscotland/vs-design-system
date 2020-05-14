@@ -1,7 +1,7 @@
 <template>
     <VsButton
         :animate="false"
-        :aria-expanded="show ? 'true' : 'false'"
+        :aria-expanded="visible ? 'true' : 'false'"
         aria-haspopup="true"
         @click.native="triggerToggle"
         class="vs-accordion-toggle clearfix"
@@ -14,7 +14,7 @@
         <div class="float-right">
             <!-- @slot Put the icon to be used when panel is open  -->
             <slot
-                v-if="show"
+                v-if="visible"
                 name="icon-open"
             />
 
@@ -55,15 +55,9 @@ export default {
             default: true,
         },
     },
-    data() {
-        return {
-            show: this.visible,
-        }
-    },
     methods: {
         triggerToggle() {
-            this.show = !this.show
-            this.$emit("toggle-panel", this.show)
+            this.$emit("toggle-panel")
         },
     },
 }
