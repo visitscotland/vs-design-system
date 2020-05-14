@@ -1,14 +1,11 @@
 package com.visitscotland.brmx.beans;
 
-import org.hippoecm.hst.container.RequestContextProvider;
-import org.hippoecm.hst.content.beans.query.exceptions.QueryException;
 import org.hippoecm.hst.content.beans.standard.HippoBean;
-import org.hippoecm.hst.content.beans.standard.HippoFacetSelect;
+import org.hippoecm.hst.content.beans.standard.HippoMirror;
 import org.onehippo.cms7.essentials.dashboard.annotations.HippoEssentialsGenerated;
 import org.hippoecm.hst.content.beans.Node;
 import org.hippoecm.hst.content.beans.standard.HippoHtml;
 import java.util.List;
-import javax.jcr.RepositoryException;
 
 /** 
  * TODO: Beanwriter: Failed to create getter for node type: hippo:compound
@@ -56,19 +53,9 @@ public class Stop extends BaseDocument {
 
     public HippoBean getStopItemImage() {
         HippoBean image = getImage();
-        if (image instanceof HippoFacetSelect) {
-            try {
-                return RequestContextProvider.get()
-                        .getQueryManager() .createQuery(
-                                RequestContextProvider
-                                        .get()
-                                        .getSession()
-                                        .getNodeByIdentifier(
-                                                image.getSingleProperty("hippo:docbase")))
-                        .execute().getHippoBeans().nextHippoBean();
-            } catch (QueryException | RepositoryException e) {
-                e.printStackTrace();
-            }
+        //TODO: This is a workaround to an issue found in the CMS when a content block is composed of Image Links
+        if (image instanceof HippoMirror) {
+            return ((HippoMirror)image).getReferencedBean();
         }
         return image;
     }
