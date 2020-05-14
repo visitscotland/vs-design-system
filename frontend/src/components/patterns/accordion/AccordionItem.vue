@@ -6,43 +6,41 @@
         <BCardHeader role="tab">
             <!-- @slot Slot to contain Header for accordion item.
             Defaults to Accordion Toggle button. If component is responsive
-            it will show title instead of button on larger screens. -->
-            <slot name="header">
-                <VsAccordionToggle
-                    :index="index"
-                    :visible="show"
-                    :variant="variant"
-                    :class="responsive ? 'd-' + breakPoint + '-none' : 'd-block'"
-                    @toggle-panel="onButtonClick"
-                >
-                    <!-- @slot Put the title here  -->
-                    <slot name="title" />
+            and has a breakPoint it will show title instead of button on larger screens. -->
+            <VsAccordionToggle
+                :aria-controls="'panel_' + ariaControlId"
+                :visible="show"
+                :variant="variant"
+                :class="breakPoint ? 'd-' + breakPoint + '-none' : 'd-block'"
+                @toggle-panel="onButtonClick"
+            >
+                <!-- @slot Put the title here  -->
+                <slot name="title" />
 
-                    <template #icon-open>
-                        <!-- @slot Slot for the icon to show when accordion item is open  -->
-                        <slot name="icon-open" />
-                    </template>
-                    <template #icon-closed>
-                        <!-- @slot Slot for the icon to show when accordion item is closed  -->
-                        <slot name="icon-closed" />
-                    </template>
-                </VsAccordionToggle>
+                <template #icon-open>
+                    <!-- @slot Slot for the icon to show when accordion item is open  -->
+                    <slot name="icon-open" />
+                </template>
+                <template #icon-closed>
+                    <!-- @slot Slot for the icon to show when accordion item is closed  -->
+                    <slot name="icon-closed" />
+                </template>
+            </VsAccordionToggle>
 
-                <span
-                    class="d-none vs-accordion-item__title"
-                    :class="responsive ? 'd-' + breakPoint + '-block' : ''"
-                >
-                    <!-- @slot Put the title here  -->
-                    <slot name="title" />
-                </span>
-            </slot>
+            <span
+                class="d-none vs-accordion-item__title"
+                :class="breakPoint ? 'd-' + breakPoint + '-block' : ''"
+            >
+                <!-- @slot Put the title here  -->
+                <slot name="title" />
+            </span>
         </BCardHeader>
 
         <BCardBody
             v-show="show"
-            :id="'panel_' + index"
+            :id="'panel_' + ariaControlId"
             class="vs-accordion-item__panel"
-            :class="responsive ? 'd-' + breakPoint + '-block' : ''"
+            :class="breakPoint ? 'd-' + breakPoint + '-block' : ''"
         >
             <!-- @slot The default slot is the content for the accordion  -->
             <slot />
@@ -71,11 +69,11 @@ export default {
     },
     props: {
         /**
-         * The index used for panel ID to match button
+         * The aria control ID used for panel ID to match button aria control
          */
-        index: {
+        ariaControlId: {
             type: String,
-            default: "",
+            required: true,
         },
         /**
          * Choose to show accordion open or closed by default
@@ -98,12 +96,12 @@ export default {
         }
     },
     /**
-     * Injects responsive prop provided by Accordion
+     * Injects breakPoint prop provided by Accordion
      */
-    inject: ["responsive", "breakPoint"],
+    inject: ["breakPoint"],
     methods: {
-        onButtonClick(e) {
-            this.show = e
+        onButtonClick(show) {
+            this.show = show
         },
     },
 }
@@ -142,7 +140,7 @@ export default {
 
 <docs>
   ```js
-    <vs-accordion-item :visible="false" variant="dark" index="1">
+    <vs-accordion-item :visible="false" variant="dark" aria-control-id="1">
         <span slot="title">
             This is a title
         </span>
@@ -163,7 +161,7 @@ export default {
         </div>
     </vs-accordion-item>
 
-    <vs-accordion-item :visible="false" variant="dark" index="3">
+    <vs-accordion-item :visible="false" variant="dark" aria-control-id="3">
         <span slot="title">
             This is a title
         </span>
@@ -183,7 +181,7 @@ export default {
             turpis enim venenatis ipsum, vitae finibus sem tellus sit amet mauris.
         </div>
     </vs-accordion-item>
-    <vs-accordion-item :visible="false" variant="dark" index="2">
+    <vs-accordion-item :visible="false" variant="dark" aria-control-id="2">
         <span slot="title">
             This is a title
         </span>

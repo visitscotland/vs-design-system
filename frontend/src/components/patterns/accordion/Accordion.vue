@@ -16,32 +16,22 @@
  */
 export default {
     name: "VsAccordion",
-    components: {
-    },
     props: {
         /**
-         * If this is provided, the accordion will change to an open
-         * menu with a title instead of button.
-         */
-        responsive: {
-            type: Boolean,
-            default: false,
-        },
-        /**
-         * If this is provided and responsive is set, this prop
-         * decides when the accordion expands.
+         * If this is provided, the accordion expands above
+         * the specified viewport `sm, md, lg, xl`
          */
         breakPoint: {
             type: String,
-            default: "",
+            default: null,
+            validator: (value) => value.match(/(sm|md|lg|xl)/),
         },
     },
     /**
-     * Provides responsive prop to be injected to child component AccordionItem
+     * Provides breakPoint prop to be injected to child component AccordionItem
      */
     provide() {
         return {
-            responsive: this.responsive,
             breakPoint: this.breakPoint,
         }
     },
@@ -56,7 +46,7 @@ export default {
 
     <h3>Basic Accordion</h3>
     <vs-accordion>
-        <vs-accordion-item :visible="true" variant="dark" index="1">
+        <vs-accordion-item :visible="true" variant="dark" aria-control-id="1">
             <span slot="title">
                 This is a title
             </span>
@@ -77,7 +67,7 @@ export default {
             </div>
         </vs-accordion-item>
 
-        <vs-accordion-item :visible="false" variant="dark" index="2">
+        <vs-accordion-item :visible="false" variant="dark" aria-control-id="2">
             <span slot="title">
                 This is a title
             </span>
@@ -97,7 +87,7 @@ export default {
                 turpis enim venenatis ipsum, vitae finibus sem tellus sit amet mauris.
             </div>
         </vs-accordion-item>
-        <vs-accordion-item :visible="false" variant="dark" index="3">
+        <vs-accordion-item :visible="false" variant="dark" aria-control-id="3">
             <span slot="title">
                 This is a title
             </span>
@@ -120,8 +110,8 @@ export default {
     </vs-accordion>
 
     <h3  class="mt-6">Responsive Accordion</h3>
-    <vs-accordion :responsive="true" break-point="sm">
-        <vs-accordion-item :visible="true" variant="dark" index="4">
+    <vs-accordion break-point="md">
+        <vs-accordion-item :visible="true" variant="dark" aria-control-id="4">
             <span slot="title">
                 This is a title
             </span>
@@ -142,7 +132,7 @@ export default {
             </div>
         </vs-accordion-item>
 
-        <vs-accordion-item :visible="false" variant="dark" index="5">
+        <vs-accordion-item :visible="false" variant="dark" aria-control-id="5">
             <span slot="title">
                 This is a title
             </span>
@@ -162,7 +152,7 @@ export default {
                 turpis enim venenatis ipsum, vitae finibus sem tellus sit amet mauris.
             </div>
         </vs-accordion-item>
-        <vs-accordion-item :visible="false" variant="dark" index="6">
+        <vs-accordion-item :visible="false" variant="dark" aria-control-id="6">
             <span slot="title">
                 This is a title
             </span>
