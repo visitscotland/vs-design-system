@@ -364,7 +364,7 @@
       jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
       jcr:uuid: 8b215960-87aa-47ae-9c11-8a750be25ad8
       hippo:name: Casa Jose
-      hippo:versionHistory: dfa9d32e-1c92-4db7-bc70-6e47d1c28cde
+      hippo:versionHistory: 15c90b49-3791-41c9-9d96-dba2350e7ba8
       /casa-jose[1]:
         jcr:primaryType: visitscotland:Stop
         jcr:mixinTypes: ['mix:referenceable']
@@ -373,9 +373,9 @@
         hippostd:state: published
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2019-12-16T12:20:46.037Z
-        hippostdpubwf:lastModificationDate: 2020-04-09T18:16:32.823+01:00
+        hippostdpubwf:lastModificationDate: 2020-04-30T17:45:31.843+01:00
         hippostdpubwf:lastModifiedBy: admin
-        hippostdpubwf:publicationDate: 2020-04-09T18:16:35.460+01:00
+        hippostdpubwf:publicationDate: 2020-05-14T16:41:25.859+01:00
         hippotranslation:id: b4f184af-52de-4e48-92ab-33cc5c2519e0
         hippotranslation:locale: en
         visitscotland:subtitle: ''
@@ -383,7 +383,7 @@
         visitscotland:title: Casa Jose
         /visitscotland:description:
           jcr:primaryType: hippostd:html
-          hippostd:content: <p>Short description</p>
+          hippostd:content: <p>Short description.</p>
         /visitscotland:tips:
           jcr:primaryType: hippostd:html
           hippostd:content: <p>Example tips invalid</p>
@@ -447,7 +447,6 @@
         jcr:mixinTypes: ['mix:referenceable']
         jcr:uuid: af4ea7ee-b843-4f1f-96d5-c4e30e8500e8
         hippo:availability: []
-        hippostd:holder: admin
         hippostd:state: draft
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2019-12-16T12:20:46.037Z
