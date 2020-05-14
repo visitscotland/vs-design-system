@@ -13,18 +13,18 @@
 <#-- @ftlvariable name="enhancedMenu" type="java.util.List" -->
 <#-- @ftlvariable name="item" type=""com.visitscotland.www.components.navigation.VsHstSiteMenuItemImpl" -->
 
-<vs-footer>
+<vs-footer class="has-edit-button">
     <#if enhancedMenu??>
-        <div class="has-edit-button">
+      
 
-            <vs-footer-nav-list :responsive="true" break-point="md">
+            <vs-footer-nav-list break-point="md">
                 <vs-row>
                     <#list enhancedMenu as item>
                         <vs-col cols="12" md="4" lg="3">
                             <vs-accordion-item 
                                 :visible="false" 
                                 variant="dark" 
-                                index="${item?index}" 
+                                aria-control-id="${item?index}" 
                                 class="<#if item?index == 0>border-left-0 pl-md-0</#if>"
                             >
                                 <span slot="title">
@@ -71,8 +71,7 @@
                     </#list>
                 </vs-row>
             </vs-footer-nav-list>
-        </div>
-
+    
         <@hst.cmseditmenu menu=menu/>
         <#--  <@hst.include ref="utility"/>  -->
     </#if>
