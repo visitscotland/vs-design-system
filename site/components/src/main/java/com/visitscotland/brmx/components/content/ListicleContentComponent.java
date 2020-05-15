@@ -207,6 +207,7 @@ public class ListicleContentComponent extends PageContentComponent<Listicle> {
             return new FlatLink(this.getCtaLabel(externalLink.getLabel(), request.getLocale()), externalLink.getLabel());
 
         } else if (item instanceof CMSLink) {
+            //TODO: check this. It is probably wrong!
             CMSLink cmsLink = (CMSLink) item;
             return new FlatLink(this.getCtaLabel(cmsLink.getLabel(), request.getLocale()), cmsLink.getLabel());
         }

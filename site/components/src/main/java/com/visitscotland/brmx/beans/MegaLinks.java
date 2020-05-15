@@ -34,12 +34,16 @@ public class MegaLinks extends BaseDocument {
     }
 
     @HippoEssentialsGenerated(internalName = "visitscotland:singleImageLinks", allowModifications = false)
-    public List<HippoCompound> getSingleImageLinks() {
-        return getChildBeansByName("visitscotland:singleImageLinks", HippoCompound.class);
+    public List<SingleImageModule> getSingleImageLinks() {
+        return getChildBeansByName("visitscotland:singleImageLinks", SingleImageModule.class);
+    }
+
+    public SingleImageModule getSingleImageModule() {
+        return getOnlyChild(getSingleImageLinks());
     }
 
     @HippoEssentialsGenerated(internalName = "visitscotland:megaLinkItems", allowModifications = false)
-    public List<HippoCompound> getMegaLinkItems() {
-        return getChildBeansByName("visitscotland:megaLinkItems", HippoCompound.class);
+    public List<MegaLinkItem> getMegaLinkItems() {
+        return getChildBeansByName("visitscotland:megaLinkItems", MegaLinkItem.class);
     }
 }

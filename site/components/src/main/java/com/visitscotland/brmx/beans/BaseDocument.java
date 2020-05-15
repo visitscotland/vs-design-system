@@ -77,10 +77,22 @@ public class BaseDocument extends HippoDocument {
             return children.get(0);
         } else {
             logger.warn("This list in supposed to have only one child");
-            //TODO: get childs
             return children.get(0);
         }
     }
+
+//    TODO: Delete the following block after checking that SingleItem is casted as expected
+//    public <T,E> E getOnlyChild(List<T> children, Class<E> type){
+//        T child = getOnlyChild(children);
+//        if (child != null){
+//            if (type.isAssignableFrom(child.getClass())){
+//                return (E) child;
+//            } else {
+//                logger.error("The type of the child doesn't match with the expected one");
+//            }
+//        }
+//        return null;
+//    }
 
     public <T> List<T> getSiblingDocuments(String documentType, Class<T> typeClass) {
         //Get the list of sibling nodes
