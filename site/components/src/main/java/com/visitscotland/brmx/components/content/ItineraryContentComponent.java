@@ -93,7 +93,7 @@ public class ItineraryContentComponent extends PageContentComponent<Itinerary> {
                 FlatImage flatImage = null;
 
                 if (stop.getImage() != null) {
-                    Image cmsImage = (Image) stop.getStopItemImage();
+                    Image cmsImage = stop.getImage();
                     if (cmsImage != null) {
                         flatImage = new FlatImage(cmsImage,request.getLocale());
                         checkImageErrors(flatImage,request.getLocale(),errors);
