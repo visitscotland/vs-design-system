@@ -79,7 +79,7 @@ public class FlatImage {
 
     public FlatImage(InstagramImage instagramLink, String caption, Locale locale) {
         //TODO remove the size when it is handle in the front end
-        this.externalImage =  "https://www.instagram.com/p/" + instagramLink.getId() + "/media?size=l";
+        this.externalImage =  "https://www.instagram.com/p/" + instagramLink.getId() + "/media";
         this.credit = caption;
         this.altText = instagramLink.getCaption();
         this.description = instagramLink.getCaption();

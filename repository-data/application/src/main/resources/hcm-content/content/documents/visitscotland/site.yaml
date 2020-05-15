@@ -2026,6 +2026,105 @@
             jcr:primaryType: visitscotland:DMSLink
             visitscotland:label: Visit the Museum
             visitscotland:product: '246591'
+    /edinburgh:
+      jcr:primaryType: hippostd:folder
+      jcr:mixinTypes: ['hippo:named', 'hippotranslation:translated', 'mix:versionable']
+      jcr:uuid: 36c2b178-2d2d-429e-9879-217c3e4d5b59
+      hippo:name: Edinburgh
+      hippostd:foldertype: [new-translated-folder, new-document]
+      hippotranslation:id: 6e09897d-631e-4302-aa08-87bd9ef6fa84
+      hippotranslation:locale: en
+      /content:
+        jcr:primaryType: hippo:handle
+        jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
+        jcr:uuid: a2c8d3a8-7d73-4fd5-b1e9-73698863341f
+        hippo:name: Edinburgh
+        hippo:versionHistory: e0801aa7-5263-4731-a378-4570b13472d7
+        /content[1]:
+          jcr:primaryType: visitscotland:Destination
+          jcr:mixinTypes: ['mix:referenceable']
+          jcr:uuid: 337eb02d-1b93-46a6-9beb-32eb62660862
+          hippo:availability: []
+          hippostd:state: draft
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2020-05-15T11:13:39.117+01:00
+          hippostdpubwf:lastModificationDate: 2020-05-15T11:15:34.621+01:00
+          hippostdpubwf:lastModifiedBy: admin
+          hippotranslation:id: 1fbcced7-88f7-4124-8470-b9ed88b5ead0
+          hippotranslation:locale: en
+          visitscotland:breadcrumb: ''
+          visitscotland:location: Edinburgh
+          visitscotland:seoDescription: Edinburgh seo description
+          visitscotland:seoNoIndex: false
+          visitscotland:seoTitle: Edinburgh seo title
+          visitscotland:teaser: Edinburgh city teaser
+          visitscotland:title: Edinburgh
+          /visitscotland:heroImage:
+            jcr:primaryType: hippogallerypicker:imagelink
+            hippo:docbase: ecede5a4-326c-4ce5-b9be-bcdf32c3f2c2
+            hippo:facets: []
+            hippo:modes: []
+            hippo:values: []
+          /visitscotland:introduction:
+            jcr:primaryType: hippostd:html
+            hippostd:content: <p>Edinburgh intro</p>
+        /content[2]:
+          jcr:primaryType: visitscotland:Destination
+          jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
+          jcr:uuid: f15145cd-7079-4d6a-b63c-813df705478d
+          hippo:availability: [preview]
+          hippostd:state: unpublished
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2020-05-15T11:13:39.117+01:00
+          hippostdpubwf:lastModificationDate: 2020-05-15T11:15:33.358+01:00
+          hippostdpubwf:lastModifiedBy: admin
+          hippotranslation:id: 1fbcced7-88f7-4124-8470-b9ed88b5ead0
+          hippotranslation:locale: en
+          visitscotland:breadcrumb: ''
+          visitscotland:location: Edinburgh
+          visitscotland:seoDescription: Edinburgh seo description
+          visitscotland:seoNoIndex: false
+          visitscotland:seoTitle: Edinburgh seo title
+          visitscotland:teaser: Edinburgh city teaser
+          visitscotland:title: Edinburgh
+          /visitscotland:heroImage:
+            jcr:primaryType: hippogallerypicker:imagelink
+            hippo:docbase: ecede5a4-326c-4ce5-b9be-bcdf32c3f2c2
+            hippo:facets: []
+            hippo:modes: []
+            hippo:values: []
+          /visitscotland:introduction:
+            jcr:primaryType: hippostd:html
+            hippostd:content: <p>Edinburgh intro</p>
+        /content[3]:
+          jcr:primaryType: visitscotland:Destination
+          jcr:mixinTypes: ['mix:referenceable']
+          jcr:uuid: 54cc96ea-8e2e-4e4f-aa61-e7cc4421f890
+          hippo:availability: [live]
+          hippostd:state: published
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2020-05-15T11:13:39.117+01:00
+          hippostdpubwf:lastModificationDate: 2020-05-15T11:15:33.358+01:00
+          hippostdpubwf:lastModifiedBy: admin
+          hippostdpubwf:publicationDate: 2020-05-15T15:30:24.138+01:00
+          hippotranslation:id: 1fbcced7-88f7-4124-8470-b9ed88b5ead0
+          hippotranslation:locale: en
+          visitscotland:breadcrumb: ''
+          visitscotland:location: Edinburgh
+          visitscotland:seoDescription: Edinburgh seo description
+          visitscotland:seoNoIndex: false
+          visitscotland:seoTitle: Edinburgh seo title
+          visitscotland:teaser: Edinburgh city teaser
+          visitscotland:title: Edinburgh
+          /visitscotland:heroImage:
+            jcr:primaryType: hippogallerypicker:imagelink
+            hippo:docbase: ecede5a4-326c-4ce5-b9be-bcdf32c3f2c2
+            hippo:facets: []
+            hippo:modes: []
+            hippo:values: []
+          /visitscotland:introduction:
+            jcr:primaryType: hippostd:html
+            hippostd:content: <p>Edinburgh intro</p>
   /destinations-maps:
     jcr:primaryType: hippostd:folder
     jcr:mixinTypes: ['hippotranslation:translated', 'mix:versionable']
@@ -2033,6 +2132,117 @@
     hippostd:foldertype: [new-translated-folder, new-document]
     hippotranslation:id: 9a465810-0318-447d-af80-28f023b96f0f
     hippotranslation:locale: en
+    /edinburgh:
+      jcr:primaryType: hippostd:folder
+      jcr:mixinTypes: ['hippo:named', 'hippotranslation:translated', 'mix:versionable']
+      jcr:uuid: c0051db6-5057-4272-8be1-143dacb9bf2b
+      hippo:name: Edinburgh
+      hippostd:foldertype: [new-translated-folder, new-document]
+      hippotranslation:id: 39d5b354-54ec-49a3-99c8-9d8d9ae41e09
+      hippotranslation:locale: en
+    /content:
+      jcr:primaryType: hippo:handle
+      jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
+      jcr:uuid: ccb181a5-06de-4ae4-8360-6265116ee443
+      hippo:name: Example
+      hippo:versionHistory: 6eec3fda-ba3a-40d3-94cb-434cb80e0afb
+      /content[1]:
+        jcr:primaryType: visitscotland:Listicle
+        jcr:mixinTypes: ['mix:referenceable']
+        jcr:uuid: a63fb766-e285-4007-bfca-a973cec2b51b
+        hippo:availability: []
+        hippostd:state: draft
+        hippostdpubwf:createdBy: admin
+        hippostdpubwf:creationDate: 2020-05-15T15:24:56.700+01:00
+        hippostdpubwf:lastModificationDate: 2020-05-15T15:24:56.700+01:00
+        hippostdpubwf:lastModifiedBy: admin
+        hippotranslation:id: a5604f9f-823d-4c78-8fc3-2b0fc1c659d1
+        hippotranslation:locale: en
+        visitscotland:breadcrumb: ''
+        visitscotland:descOrder: false
+        visitscotland:seoDescription: seo description
+        visitscotland:seoNoIndex: false
+        visitscotland:seoTitle: title seo
+        visitscotland:summaryTitle: ''
+        visitscotland:teaser: teaser
+        visitscotland:title: HEading
+        /visitscotland:heroImage:
+          jcr:primaryType: hippogallerypicker:imagelink
+          hippo:docbase: 878bc413-07fe-4c1a-9df6-55514c250a16
+          hippo:facets: []
+          hippo:modes: []
+          hippo:values: []
+        /visitscotland:introduction:
+          jcr:primaryType: hippostd:html
+          hippostd:content: <p>intro</p>
+        /visitscotland:summary:
+          jcr:primaryType: hippostd:html
+          hippostd:content: ''
+      /content[2]:
+        jcr:primaryType: visitscotland:Listicle
+        jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
+        jcr:uuid: 37f8df20-e2f9-4fd1-bd22-adecb38fd97a
+        hippo:availability: [preview]
+        hippostd:state: unpublished
+        hippostdpubwf:createdBy: admin
+        hippostdpubwf:creationDate: 2020-05-15T15:24:56.700+01:00
+        hippostdpubwf:lastModificationDate: 2020-05-15T15:25:26.552+01:00
+        hippostdpubwf:lastModifiedBy: admin
+        hippotranslation:id: a5604f9f-823d-4c78-8fc3-2b0fc1c659d1
+        hippotranslation:locale: en
+        visitscotland:breadcrumb: ''
+        visitscotland:descOrder: false
+        visitscotland:seoDescription: seo description
+        visitscotland:seoNoIndex: false
+        visitscotland:seoTitle: title seo
+        visitscotland:summaryTitle: ''
+        visitscotland:teaser: teaser
+        visitscotland:title: HEading
+        /visitscotland:heroImage:
+          jcr:primaryType: hippogallerypicker:imagelink
+          hippo:docbase: 878bc413-07fe-4c1a-9df6-55514c250a16
+          hippo:facets: []
+          hippo:modes: []
+          hippo:values: []
+        /visitscotland:introduction:
+          jcr:primaryType: hippostd:html
+          hippostd:content: <p>intro</p>
+        /visitscotland:summary:
+          jcr:primaryType: hippostd:html
+          hippostd:content: ''
+      /content[3]:
+        jcr:primaryType: visitscotland:Listicle
+        jcr:mixinTypes: ['mix:referenceable']
+        jcr:uuid: 5c2c07d8-69ea-4a42-9788-17a86f929222
+        hippo:availability: [live]
+        hippostd:state: published
+        hippostdpubwf:createdBy: admin
+        hippostdpubwf:creationDate: 2020-05-15T15:24:56.700+01:00
+        hippostdpubwf:lastModificationDate: 2020-05-15T15:25:26.552+01:00
+        hippostdpubwf:lastModifiedBy: admin
+        hippostdpubwf:publicationDate: 2020-05-15T15:30:30.462+01:00
+        hippotranslation:id: a5604f9f-823d-4c78-8fc3-2b0fc1c659d1
+        hippotranslation:locale: en
+        visitscotland:breadcrumb: ''
+        visitscotland:descOrder: false
+        visitscotland:seoDescription: seo description
+        visitscotland:seoNoIndex: false
+        visitscotland:seoTitle: title seo
+        visitscotland:summaryTitle: ''
+        visitscotland:teaser: teaser
+        visitscotland:title: HEading
+        /visitscotland:heroImage:
+          jcr:primaryType: hippogallerypicker:imagelink
+          hippo:docbase: 878bc413-07fe-4c1a-9df6-55514c250a16
+          hippo:facets: []
+          hippo:modes: []
+          hippo:values: []
+        /visitscotland:introduction:
+          jcr:primaryType: hippostd:html
+          hippostd:content: <p>intro</p>
+        /visitscotland:summary:
+          jcr:primaryType: hippostd:html
+          hippostd:content: ''
   /see-do:
     jcr:primaryType: hippostd:folder
     jcr:mixinTypes: ['hippotranslation:translated', 'mix:versionable']
