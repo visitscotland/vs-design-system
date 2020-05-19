@@ -10,16 +10,15 @@ const entry = {
 
 base.entry = Object.assign({}, entry, base.entry)
 
-const config = merge(base, {
+module.exports = merge(base, {
     output: {
         path: path.resolve(__dirname, "../dist/ssr/client"),
-        publicPath: '/public',
     },
-    resolve: {
-        alias: {
-            'vue$': 'vue/dist/vue.esm.js'
-        }
-    },
+    // resolve: {
+    //     alias: {
+    //         'vue$': 'vue/dist/vue.esm.js'
+    //     }
+    // },
     optimization: {
         splitChunks: {
           chunks: "all",
@@ -33,7 +32,3 @@ const config = merge(base, {
         new VueSSRClientPlugin()
     ]
 });
-
-// console.log(config)
-
-module.exports = config

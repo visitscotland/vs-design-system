@@ -1,33 +1,37 @@
-const path = require('path');
+const path = require("path");
+const fs = require("fs");
 
-const express = require('express');
-const { some } = require('lodash');
+const express = require("express");
+const { some } = require("lodash");
+const getPort = require('get-port');
 
-const { renderPage, initRenderer } = require('./ssr');
-const { getPage } = require('./proxy');
+const { renderPage, initRenderer } = require("./ssr");
+const { getPage } = require("./proxy");
 
-const port = 3000;
+const minPort = 3000;
+const maxPort = 3100;
+
 const app = express();
 
 const skipPathFragments = [
-    '/public',
-    '/site/autoreload',
-    '/favicon.ico',
+    "/public",
+    "/site/autoreload",
+    "/favicon.ico",
 ]
 
-const skipSsr = (path) => {
+const skipSsr = (uriPath) => {
     return some(skipPathFragments, (fragment) => {
-        return path.indexOf(fragment) !== -1
+        return uriPath.indexOf(fragment) !== -1
     })
 }
 
 // you may want to serve static files with nginx or CDN in production
-app.use('/public',  express.static(path.resolve(__dirname, '../../dist/ssr/client')));
+app.use("/public", express.static(path.resolve(__dirname, "../../dist/ssr/client")));
 
 app.use(async (req, res) => {
     let renderedPage;
 
-    if(skipSsr(req.path)) {
+    if (skipSsr(req.path)) {
         res.status(400).send();
         return;
     }
@@ -38,7 +42,8 @@ app.use(async (req, res) => {
         renderedPage = await renderPage(cmsRenderedHtml);
     } catch (error) {
         if (error.code === 404) {
-            return res.status(404).send('404 | Page Not Found');
+            res.status(404).send("404 | Page Not Found");
+            return;
         }
         console.log(error);
     }
@@ -47,6 +52,11 @@ app.use(async (req, res) => {
     res.status(200).send(renderedPage || cmsRenderedHtml);
 });
 
-app.listen(port, () => console.log(`Listening on: ${port}`));
+(async () => {
+    const port = await getPort({ port: getPort.makeRange(minPort, maxPort) });
+
+    app.listen(port, () => console.log(`Listening on: ${port}`));
+})();
+
 
 initRenderer(app);
