@@ -51,7 +51,8 @@
     "ssr:serve": "nodemon ./ssr/server/index.js",
     "ssr:serve:inspect": "nodemon --inspect-brk ./ssr/server/index.js",
     "ssr:build:client": "cross-env NODE_ENV=development webpack --config ./build/webpack.ssr.client.config.js",
-    "ssr:build:server": "cross-env NODE_ENV=development webpack --config ./build/webpack.ssr.server.config.js"
+    "ssr:build:server": "cross-env NODE_ENV=development webpack --config ./build/webpack.ssr.server.config.js",
+    "ssr:build:server:inspect": "cross-env NODE_ENV=development node --inspect-brk ./node_modules/webpack/bin/webpack.js --config ./build/webpack.ssr.server.config.js"
   },
   "repository": {
     "type": "git",
@@ -74,6 +75,8 @@
     "cheerio": "^1.0.0-rc.3",
     "codemirror": "^5.42.0",
     "core-js": "3",
+    "dotenv": "^7.0.0",
+    "get-port": "^5.1.1",
     "js-beautify": "^1.11.0",
     "lazysizes": "^5.2.0-beta1",
     "lodash": "^4.17.15",
@@ -92,6 +95,7 @@
     "vue-meta": "^1.6.0",
     "vue-router": "^3.0.6",
     "vue-server-renderer": "@2.6.10",
+    "vue-template-compiler": "@2.6.10",
     "vuejs-logger": "^1.5.3",
     "vuex": "^3.1.1",
     "webfontloader": "^1.6.28",
@@ -122,7 +126,6 @@
     "css-loader": "^1.0.1",
     "cypress": "^3.4.1",
     "cypress-vue-unit-test": "^1.11.3",
-    "dotenv": "^7.0.0",
     "eslint": "^6.8.0",
     "eslint-config-airbnb-base": "^14.0.0",
     "eslint-import-resolver-webpack": "^0.12.1",
@@ -174,14 +177,14 @@
     "vue-loader": ">=14.0.0",
     "vue-style-loader": "^4.1.2",
     "vue-styleguidist": "3.23.1",
-    "vue-template-compiler": "@2.6.10",
     "webpack": "^4.26.1",
     "webpack-bundle-analyzer": "^3.4.1",
     "webpack-cli": "^3.1.2",
     "webpack-dev-server": "^3.8.0",
     "webpack-manifest-plugin": "^2.0.4",
     "webpack-merge": "^4.1.4",
-    "webpack-merge-and-include-globally": "^2.1.7"
+    "webpack-merge-and-include-globally": "^2.1.7",
+    "webpack-node-externals": "^1.7.2"
   },
   "engines": {
     "node": ">= 10.16.3",

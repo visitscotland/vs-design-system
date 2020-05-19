@@ -1,5 +1,4 @@
-import { createApp } from './app';
 
-export default context => {
-    return createApp(context)
-}
+import createApp from "./app"
+
+export default (context) => createApp(context)
