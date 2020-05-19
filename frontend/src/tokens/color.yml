@@ -72,6 +72,19 @@ props:
       value: "#700E57"
       category: "Theme colours"
 
+    - name: color_facebook
+      value: "#5890FF"
+      category: "Theme colours"
+    - name: color_twitter
+      value: "#08A0E9"
+      category: "Theme colours"
+    - name: color_youtube
+      value: "#E62117"
+      category: "Theme colours"
+    - name: color_instagram
+      value: "#F00075"
+      category: "Social colours"
+
     - name: color_purple_tint_1
       value: "#853270"
       category: "Primary Purple Tints"
