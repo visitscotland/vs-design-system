@@ -1,6 +1,7 @@
 <#include "../../include/imports.ftl">
 <#include "../../vs-dotcom-ds/components/footer-nav-list.ftl">
 <#include "../../vs-dotcom-ds/components/footer-nav-list-item.ftl">
+<#include "../../vs-dotcom-ds/components/footer-social-item.ftl">
 <#include "../../vs-dotcom-ds/components/footer.ftl">
 <#include "../../vs-dotcom-ds/components/icon.ftl">
 <#include "../../vs-dotcom-ds/components/accordion-item.ftl">
@@ -67,6 +68,44 @@
                             </vs-accordion-item>
                         </vs-col>
                     </#list>
+                        <vs-col cols="12" lg="3" xl="2">
+                            <vs-accordion-item 
+                                :visible="false" 
+                                variant="dark" 
+                                aria-control-id="4" 
+                            >
+                                <span slot="title">
+                                    ${label("navigation", "footer.find-us-on")}
+                                </span>
+
+                                <span slot="icon-open">
+                                    <vs-icon name="chevron-up" variant="light" size="xs" />
+                                </span>
+
+                                <span slot="icon-closed">
+                                    <vs-icon name="chevron-right" variant="light" size="xs" />
+                                </span>
+
+                                <vs-list unstyled class="mt-5 pr-lg-8 pr-xl-4">
+                                    <vs-footer-social-item
+                                        href="#"
+                                        icon="facebook"
+                                    ></vs-footer-social-item>
+                                    <vs-footer-social-item
+                                        href="#"
+                                        icon="twitter"
+                                    ></vs-footer-social-item>
+                                    <vs-footer-social-item
+                                        href="#"
+                                        icon="youtube"
+                                    ></vs-footer-social-item>
+                                    <vs-footer-social-item
+                                        href="#"
+                                        icon="instagram"
+                                    ></vs-footer-social-item>
+                                </vs-list>
+                            </vs-accordion-item>
+                        </vs-col>
                 </vs-row>
             </vs-footer-nav-list>
         <@hst.cmseditmenu menu=menu/>
