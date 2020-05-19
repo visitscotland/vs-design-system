@@ -80,7 +80,7 @@ public class ItineraryContentComponent extends PageContentComponent<Itinerary> {
         final String IMAGE = "images";
         final String OPENING_DAY = "day";
         final String OPENING_STATE = "state";
-        final String OPENING_PROVISIONAL = "provivisional";
+        final String OPENING_PROVISIONAL = "provisional";
         final Map<String ,FlatStop> products =  new LinkedHashMap<>();
 
         String firstStopId = null;
@@ -98,7 +98,7 @@ public class ItineraryContentComponent extends PageContentComponent<Itinerary> {
                 FlatImage flatImage = null;
 
                 if (stop.getImage() != null) {
-                    Image cmsImage = (Image) stop.getStopItemImage();
+                    Image cmsImage = stop.getImage();
                     if (cmsImage != null) {
                         flatImage = new FlatImage(cmsImage,request.getLocale());
                         checkImageErrors(flatImage,request.getLocale(),errors);

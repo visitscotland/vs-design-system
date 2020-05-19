@@ -17,7 +17,6 @@ import org.hippoecm.hst.core.component.HstResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.net.*;
 import java.io.*;
 import java.util.*;
 
@@ -64,31 +63,16 @@ public class ListicleContentComponent extends PageContentComponent<Listicle> {
             if (listicleItem.getListicleItemImage() != null) {
                 if (listicleItem.getListicleItemImage() instanceof InstagramImage) {
                     InstagramImage instagramLink = (InstagramImage) listicleItem.getListicleItemImage();
+                    location = instagramLink.getLocation();
                     try {
-                        URL instagramInformation = new URL("https://api.instagram.com/oembed/?url=http://instagr.am/p/" + instagramLink.getId());
-
-                        String response = CommonUtils.request(instagramInformation.toString());
-                        if (response != null) {
-                            JsonNode json = mapper.readTree(response);
-                            String credit = json.has("author_name") ? json.get("author_name").asText() : "";
-                            String link = "https://www.instagram.com/p/" + instagramLink.getId();
-                            //TODO: This causes a 301 (redirect). Find the way of fixing this.
-                            //TODO size for Instagram is large for the showcase but we need to fix that large for desktop, medium tablet and small mobile
-                            String instagramImage = "https://www.instagram.com/p/" + instagramLink.getId() + "/media?size=l";
-                            flatImage = new FlatImage(instagramImage, instagramLink.getCaption(), credit, instagramLink.getCaption(), FlatImage.Source.INSTAGRAM, link);
-                            if (instagramLink.getLocation()!= null && !instagramLink.getLocation().isEmpty() && !(listicleItem.getListicleItem() instanceof DMSLink)){
-                                location = instagramLink.getLocation();
-                                LocationObject locationObject = LocationLoader.getLocation(instagramLink.getLocation(), request.getLocale());
-                                if (locationObject != null){
-                                    flatImage.setCoordinates(new Coordinates(locationObject.getLatitude(),locationObject.getLongitude()));
-                                }
-                            }
+                        String caption = CommonUtils.getInstagramCaption(instagramLink);
+                        if (caption != null) {
+                            flatImage = new FlatImage(instagramLink,caption,request.getLocale());
                         } else {
                             errors.add("The Instagram id is not valid");
                             logger.warn(CommonUtils.contentIssue("The Instagram id %s is not valid, Listicle = %s - %s",
                                     instagramLink.getId(), listicle.getPath(), listicleItem.getTitle()));
                         }
-
                     } catch (IOException e) {
                         errors.add("Error while accessing Instagram: " + e.getMessage());
                         logger.error("Error while accessing Instagram", e);
@@ -140,7 +124,7 @@ public class ListicleContentComponent extends PageContentComponent<Listicle> {
                                   }
                                 }
                             }else{
-                                if (flatImage.getCoordinates() == null){
+                               if (flatImage.getCoordinates() == null){
                                     Coordinates coordinates = new Coordinates(product.get(LATITUDE).asDouble(),product.get(LONGITUDE).asDouble());
                                     flatImage.setCoordinates(coordinates);
                                 }
