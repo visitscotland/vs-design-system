@@ -184,12 +184,12 @@
       hippostd:state: draft
       hippostdpubwf:createdBy: admin
       hippostdpubwf:creationDate: 2019-12-20T14:35:30.322Z
-      hippostdpubwf:lastModificationDate: 2020-03-02T09:59:10.751Z
+      hippostdpubwf:lastModificationDate: 2020-05-18T15:58:43.589+01:00
       hippostdpubwf:lastModifiedBy: admin
       resourcebundle:descriptions: ['']
       resourcebundle:id: keys
-      resourcebundle:keys: [mapbox.devkey]
-      resourcebundle:messages: [pk.eyJ1IjoidmlzaXRzY290bGFuZC1kZXYiLCJhIjoiY2p4MGZwcmtjMDBlczN5bTBnY3pjeHNubCJ9.d3CJWPvX9FfjfSNAW98Q6w]
+      resourcebundle:keys: [maptiler.devkey]
+      resourcebundle:messages: [SZGAUFW8iNcUjjJgrkgf]
     /keys[2]:
       jcr:primaryType: resourcebundle:resourcebundle
       jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
@@ -198,12 +198,12 @@
       hippostd:state: unpublished
       hippostdpubwf:createdBy: admin
       hippostdpubwf:creationDate: 2019-12-20T14:35:30.322Z
-      hippostdpubwf:lastModificationDate: 2019-12-20T14:36:06.011Z
+      hippostdpubwf:lastModificationDate: 2020-05-18T15:58:43.544+01:00
       hippostdpubwf:lastModifiedBy: admin
       resourcebundle:descriptions: ['']
       resourcebundle:id: keys
-      resourcebundle:keys: [mapbox.devkey]
-      resourcebundle:messages: [pk.eyJ1IjoidmlzaXRzY290bGFuZC1kZXYiLCJhIjoiY2p4MGZwcmtjMDBlczN5bTBnY3pjeHNubCJ9.d3CJWPvX9FfjfSNAW98Q6w]
+      resourcebundle:keys: [maptiler.devkey]
+      resourcebundle:messages: [SZGAUFW8iNcUjjJgrkgf]
     /keys[3]:
       jcr:primaryType: resourcebundle:resourcebundle
       jcr:mixinTypes: ['mix:referenceable']
