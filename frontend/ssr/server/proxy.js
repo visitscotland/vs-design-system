@@ -1,35 +1,34 @@
-const http = require('http');
-const path = require('path');
+const http = require("http");
+const path = require("path");
 
 if (!process.env.VS_SSR_PROXY_TARGET_HOST) {
-    require("dotenv").config()
+    require("dotenv").config();
 }
 
 const makeUrl = (subPath) => {
-    if(!process.env.VS_SSR_PROXY_TARGET_HOST) {
-        throw 'Target host URL missing'
+    if (!process.env.VS_SSR_PROXY_TARGET_HOST) {
+        throw new Error("Target host URL missing");
     }
 
-    return path.join(process.env.VS_SSR_PROXY_TARGET_HOST, subPath)
+    return path.join(process.env.VS_SSR_PROXY_TARGET_HOST, subPath);
 }
 
 const getPage = async (path) => {
     return new Promise((resolve, reject) => {
         const url = makeUrl(path);
 
-        console.log('Proxying request to ' + url);
+        console.log(`Proxying request to ${url}`);
 
         http.get(url, (resp) => {
-            let data = '';
-          
-            resp.on('data', (chunk) => {
-              data += chunk;
+            let data = "";
+
+            resp.on("data", (chunk) => {
+                data += chunk;
             });
-          
-            resp.on('end', () => {
-              resolve(data);
+
+            resp.on("end", () => {
+                resolve(data);
             });
-          
         }).on("error", (err) => {
             reject(err);
         });
@@ -37,5 +36,5 @@ const getPage = async (path) => {
 }
 
 module.exports = {
-    getPage
+    getPage,
 }
