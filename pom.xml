@@ -157,8 +157,7 @@
         </property>
       </activation>
       <modules>
-        <!-- <module>ui-integration</module> -->
-        
+        <module>ui-integration</module>
         <module>cms-dependencies</module>
         <module>repository-data</module>
         <module>cms</module>

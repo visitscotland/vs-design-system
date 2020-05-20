@@ -1,26 +1,26 @@
 const path = require("path");
-const fs = require("fs");
 
 const express = require("express");
 const { some } = require("lodash");
-const getPort = require('get-port');
+const getPort = require("get-port");
 
 const { renderPage, initRenderer } = require("./ssr");
 const { getPage } = require("./proxy");
 
+// Port range for the Node app
 const minPort = 3000;
 const maxPort = 3100;
 
 const app = express();
 
-const skipPathFragments = [
+const noSSRPaths = [
     "/public",
     "/site/autoreload",
     "/favicon.ico",
-]
+];
 
 const skipSsr = (uriPath) => {
-    return some(skipPathFragments, (fragment) => {
+    return some(noSSRPaths, (fragment) => {
         return uriPath.indexOf(fragment) !== -1
     })
 }
@@ -31,6 +31,7 @@ app.use("/public", express.static(path.resolve(__dirname, "../../dist/ssr/client
 app.use(async (req, res) => {
     let renderedPage;
 
+    // TODO: Figure out what to do in situations like this
     if (skipSsr(req.path)) {
         res.status(400).send();
         return;
@@ -41,6 +42,7 @@ app.use(async (req, res) => {
     try {
         renderedPage = await renderPage(cmsRenderedHtml);
     } catch (error) {
+        // TODO: improve error handling
         if (error.code === 404) {
             res.status(404).send("404 | Page Not Found");
             return;
@@ -48,7 +50,6 @@ app.use(async (req, res) => {
         console.log(error);
     }
 
-    // res.status(200).send(renderedPage);
     res.status(200).send(renderedPage || cmsRenderedHtml);
 });
 

@@ -1,5 +1,5 @@
 <#include "../../include/imports.ftl">
-<#--  <#include "../../vs-dotcom-ds/components/header-dropdown.ftl">  -->
+<#include "../../vs-dotcom-ds/components/header-dropdown.ftl">
 
 
 

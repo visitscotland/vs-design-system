@@ -1,57 +1,42 @@
-const vueServerRenderer = require("vue-server-renderer")
-const vueTemplateCompiler = require("vue-template-compiler")
+const vueServerRenderer = require("vue-server-renderer");
+const vueTemplateCompiler = require("vue-template-compiler");
 
-const cheerio = require("cheerio")
-const { html: beautifyHtml } = require("js-beautify")
+const cheerio = require("cheerio");
+const { html: beautifyHtml } = require("js-beautify");
 
-const setupDevServer = require("./setup-dev-server")
+const setupDevServer = require("./setup-dev-server");
 
-const serverBundle = require("../../dist/ssr/server/vue-ssr-server-bundle.json")
-const clientManifest = require("../../dist/ssr/client/vue-ssr-client-manifest.json")
+const serverBundle = require("../../dist/ssr/server/vue-ssr-server-bundle.json");
+const clientManifest = require("../../dist/ssr/client/vue-ssr-client-manifest.json");
 
-const transformHtml = require("./transform-html")
+const transformHtml = require("./transform-html");
 
-// const componentMap = require("../../build/entry.system-components.js")
+const appAttributeName = "data-vue-app-init";
+const templatePlaceholderAttrName = "vue-ssr-outlet";
+const templatePlaceholderHtml = `<span ${templatePlaceholderAttrName}></span>`;
+const xTemplateId = "app-template";
 
-// const testHTMLEntry = fs.readFileSync(
-//    path.resolve(__dirname, '../src/dummy-ssr-template.html'), 'utf-8');
+let $template;
+let renderer;
 
-const appAttributeName = "data-vue-app-init"
-const templatePlaceholderAttrName = "vue-ssr-outlet"
-const templatePlaceholderHtml = `<span ${templatePlaceholderAttrName}></span>`
-const xTemplateId = "app-template"
-
-// const sourceImports = require("../src/generate-component-library-map")(componentMap)
-// console.log(sourceImports)
-let $template
-let renderer
-
-const formatHtml = (subjectHtml) => {
-    return beautifyHtml(subjectHtml, {
+const formatHtml = (subjectHtml) => beautifyHtml(
+    subjectHtml,
+    {
         indent_with_tabs: true,
         preserve_newlines: false,
-    })
-}
+    },
+);
 
 const completeSsrTemplate = (appHtml/* , context */) => {
-    // const headAssetInject = `
-    //     ${context.renderResourceHints() }
-    //     ${context.renderStyles() }
-    // `;
-    // const bodyAssetInject = `
-    //     ${context.renderScripts()}
-    // `;
+    $template(`[${templatePlaceholderAttrName}]`).replaceWith(appHtml);
 
-    // $template('head').append(headAssetInject);
-    // $template('body').append(bodyAssetInject);
+    const pageHtml = transformHtml($template.html());
 
-    $template(`[${templatePlaceholderAttrName}]`).replaceWith(appHtml)
+    return pageHtml;
 
-    const pageHtml = transformHtml($template.html())
-
-    // return pageHtml;
-
-    return formatHtml(pageHtml)
+    // Formatting the HTML here breaks hydration due to node tree mismatch
+    // TODO: Enable formatting without breaking hydration
+    // return formatHtml(pageHtml)
 }
 
 const createRenderer = (bundle) => vueServerRenderer.createBundleRenderer(bundle, {
@@ -61,40 +46,31 @@ const createRenderer = (bundle) => vueServerRenderer.createBundleRenderer(bundle
     clientManifest,
 });
 
-const initRenderer = (app) => {
-    if (process.env.NODE_ENV === "development") {
-        setupDevServer(app, (bundle) => {
-            renderer = createRenderer(bundle)
-        })
-    } else {
-        renderer = createRenderer(serverBundle)
-    }
-}
-
 // inserts pre-rendered app template into an x-template
 const makeXTemplate = (template) => {
     // the data-vue-app-init must be removed otherwise the app will be instantiated twice
     return `
-        <script type="text/x-template" id="${xTemplateId}">${template.replace(" data-vue-app-init", "")}</script>
-    `
+        <script type="text/x-template" id="${xTemplateId}">
+            ${template.replace(" data-vue-app-init", "")}
+        </script>
+    `;
 }
 
 const prepSsrTemplate = ($page, formattedAppHtml) => {
-    const xTemplateHtml = makeXTemplate(formattedAppHtml)
+    const xTemplateHtml = makeXTemplate(formattedAppHtml);
 
-    $page(`[${templatePlaceholderAttrName}]`).after(xTemplateHtml)
+    $page(`[${templatePlaceholderAttrName}]`).after(xTemplateHtml);
 
-    $template = $page
+    $template = $page;
 }
 
 // Render the HTML page using Vue SSR on the provided app template
 const renderApp = async (template) => {
-
     const compileOptions = {
         outputSourceRange: true,
     }
 
-    const compiled = vueTemplateCompiler.compileToFunctions(template, compileOptions)
+    const compiled = vueTemplateCompiler.compileToFunctions(template, compileOptions);
 
     const context = {
         vueOptions: {
@@ -102,9 +78,9 @@ const renderApp = async (template) => {
             staticRenderFns: compiled.staticRenderFns,
         },
         template,
-    }
+    };
 
-    return renderer.renderToString(context)
+    return renderer.renderToString(context);
 }
 
 const parsePageParts = (pageHtml) => {
@@ -113,12 +89,12 @@ const parsePageParts = (pageHtml) => {
         style: true,
         pre: true,
         comment: true,
-    })
+    });
 
-    const $appNode = $page(`[${appAttributeName}]`).replaceWith(templatePlaceholderHtml)
+    const $appNode = $page(`[${appAttributeName}]`).replaceWith(templatePlaceholderHtml);
 
     if (!$appNode) {
-        throw "App element missing"
+        throw new Error("App element missing");
     }
 
     return {
@@ -127,15 +103,33 @@ const parsePageParts = (pageHtml) => {
     }
 }
 
+/**
+ * Renders the Vue app contained in pageHTML
+ * @param {String} pageHtml
+ */
 const renderPage = async (pageHtml) => {
     const { $appNode, $page } = parsePageParts(pageHtml)
 
     // HTML is formatted before rendering to ensure successful hydration
-    const formattedAppHtml = formatHtml(cheerio.html($appNode))
+    const formattedAppHtml = formatHtml(cheerio.html($appNode));
 
-    prepSsrTemplate($page, formattedAppHtml)
+    prepSsrTemplate($page, formattedAppHtml);
 
-    return renderApp(formattedAppHtml)
+    return renderApp(formattedAppHtml);
+}
+
+/**
+ * Initialises the Vue SSR renderer
+ * @param {*} nodeApp
+ */
+const initRenderer = (nodeApp) => {
+    if (process.env.NODE_ENV === "development") {
+        setupDevServer(nodeApp, (freshBundle) => {
+            renderer = createRenderer(freshBundle);
+        })
+    } else {
+        renderer = createRenderer(serverBundle);
+    }
 }
 
 module.exports = {

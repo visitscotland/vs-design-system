@@ -1,6 +1,6 @@
-<#--  <#include "../../../vs-dotcom-ds/components/svg.ftl">
+<#include "../../../vs-dotcom-ds/components/svg.ftl">
 <#include "../../../vs-dotcom-ds/components/social-credit-link.ftl">
-<#include "../../../vs-dotcom-ds/components/image-with-caption.ftl">  -->
+<#include "../../../vs-dotcom-ds/components/image-with-caption.ftl">
 
 <#macro imageWithCaption imageSrc imageDetails variant>
     <vs-image-with-caption

@@ -1,7 +1,7 @@
 <#include "../../include/imports.ftl">
 <#include "./base-header/navigation-item.ftl">
 
-<#--  <#include "../../vs-dotcom-ds/components/header.ftl">
+<#include "../../vs-dotcom-ds/components/header.ftl">
 <#include "../../vs-dotcom-ds/components/header-drawer-toggle.ftl">
 <#include "../../vs-dotcom-ds/components/header-login-button.ftl">
 <#include "../../vs-dotcom-ds/components/drawer-content.ftl">
@@ -12,7 +12,7 @@
 <#include "../../vs-dotcom-ds/components/site-search-toggle-button.ftl">
 <#include "../../vs-dotcom-ds/components/favourites-button.ftl">
 <#include "../../vs-dotcom-ds/components/header-button.ftl">
-<#include "../../vs-dotcom-ds/components/site-nav-list-item.ftl">  -->
+<#include "../../vs-dotcom-ds/components/site-nav-list-item.ftl">
 
 <#-- @ftlvariable name="menu" type="org.hippoecm.hst.core.sitemenu.HstSiteMenu" -->
 <#-- @ftlvariable name="editMode" type="java.lang.Boolean"-->

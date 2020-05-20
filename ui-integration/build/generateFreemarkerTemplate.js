@@ -58,7 +58,7 @@ function generateTemplateContentStoreScript(moduleName) {
 }
 
 function generateTemplateContentRegisterScript(moduleName) {
-  let scriptText = "Vue.component('vs-" + kebabCase(moduleName) + "', " + moduleName + ".default)"
+  let scriptText = `Vue.component('vs-${kebabCase(moduleName)}', ${moduleName}.default)`
 
   return generateTemplateContentScript(null, scriptText)
 }

@@ -1,6 +1,7 @@
 <#include "../../../../include/imports.ftl">
-<#--  <#include "../../../../vs-dotcom-ds/components/itinerary-map.ftl">
-<#include "../../../../vs-dotcom-ds/components/itinerary-map-marker.ftl">  -->
+<#--  This needs to be commented out for now because the ItineraryMap component is currently excluded from the build  -->
+<#--  <#include "../../../../vs-dotcom-ds/components/itinerary-map.ftl">  -->
+<#include "../../../../vs-dotcom-ds/components/itinerary-map-marker.ftl">
 
 <#-- @ftlvariable name="stop" type="com.visitscotland.brmx.beans.Stop" -->
 <#-- @ftlvariable name="prod" type="com.visitscotland.brmx.beans.mapping.FlatStop" -->
