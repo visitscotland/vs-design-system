@@ -44,7 +44,6 @@
             </#if>
 
             <#if prod?? && prod.description?? && prod.description?has_content>
-                Distance to previous: ${prod.distance}
                 <@hst.html hippohtml=prod.description/>
             </#if>
 

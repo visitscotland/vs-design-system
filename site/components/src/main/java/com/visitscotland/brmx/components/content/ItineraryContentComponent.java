@@ -221,21 +221,10 @@ public class ItineraryContentComponent extends PageContentComponent<Itinerary> {
                     model.setSubTitle(stop.getSubtitle());
                 }
                 model.setErrorMessages(errors);
-                if (model.getCoordinates()!=null) {
-                    if (prevCoordinates != null) {
-                        BigDecimal distance = CoordinateUtils.haversineDistance(new BigDecimal(prevCoordinates.getLatitude()),new BigDecimal(prevCoordinates.getLongitude()),
-                                    new BigDecimal(model.getCoordinates().getLatitude()),new BigDecimal(model.getCoordinates().getLongitude()), true, "#,###,##0.00");
-
-                        if (distance != null) {
-                            model.setDistance(distance);
-                            prevCoordinates = model.getCoordinates();
-                            totalDistance = totalDistance.add(distance);
-                        }
-
-                    } else {
-                        prevCoordinates = new Coordinates(model.getCoordinates().getLatitude(), model.getCoordinates().getLongitude());
-                    }
+                if (itinerary.getDistance()==0 && model.getCoordinates() != null) {
+                    model.setDistance(getDistanceStops(model));
                 }
+
                 products.put(model.getIdentifier(), model);
 
             }
@@ -248,6 +237,30 @@ public class ItineraryContentComponent extends PageContentComponent<Itinerary> {
             request.setAttribute(STOPS_MAP, products);
         }
     }
+
+    /**
+     * Method to calculate the distance between stops and accumulate them for the total distance
+     * TODO This method must be changed in the future to calculate distance based on routes (Graphhopper)
+     * @param model the stop
+     * @return distance between stops
+     */
   
+    private BigDecimal getDistanceStops (FlatStop model) {
+            BigDecimal distance = null;
+            if (prevCoordinates != null) {
+                 distance = CoordinateUtils.haversineDistance(new BigDecimal(prevCoordinates.getLatitude()), new BigDecimal(prevCoordinates.getLongitude()),
+                        new BigDecimal(model.getCoordinates().getLatitude()), new BigDecimal(model.getCoordinates().getLongitude()), true, "#,###,##0.0");
+
+                if (distance != null) {
+                    model.setDistance(distance);
+                    prevCoordinates = model.getCoordinates();
+                    totalDistance = totalDistance.add(distance);
+                }
+
+            } else {
+                prevCoordinates = new Coordinates(model.getCoordinates().getLatitude(), model.getCoordinates().getLongitude());
+            }
+        return distance;
+    }
 
 }
