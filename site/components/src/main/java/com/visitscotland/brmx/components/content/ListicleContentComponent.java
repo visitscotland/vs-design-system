@@ -125,7 +125,7 @@ public class ListicleContentComponent extends PageContentComponent<Listicle> {
                                 }
                             }else{
                                if (flatImage.getCoordinates() == null){
-                                    Coordinates coordinates = new Coordinates(product.get(LATITUDE).asDouble(),product.get(LONGITUDE).asDouble());
+                                    Coordinates coordinates = new Coordinates(product.getDouble(LATITUDE),product.getDouble(LONGITUDE));
                                     flatImage.setCoordinates(coordinates);
                                 }
                             }
