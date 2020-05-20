@@ -17,7 +17,6 @@ base.entry = Object.assign({}, entry, base.entry)
 
 module.exports = merge(base, {
     target: "node",
-    // This tells the server bundle to use Node-style exports
     output: {
         path: path.resolve(__dirname, "../dist/ssr/server"),
         libraryTarget: "commonjs2"
@@ -49,8 +48,7 @@ module.exports = merge(base, {
     },
 
     // This is the plugin that turns the entire output of the server build
-    // into a single JSON file. The default file name will be
-    // `vue-ssr-server-bundle.json`
+    // into a single JSON file. The default file name is`vue-ssr-server-bundle.json`
     plugins: [
         new VueSSRServerPlugin(),
     ]
