@@ -67,7 +67,7 @@ function generateTemplateContentScripts(scripts) {
 function generateTemplateContentPreload(path, type) {
   let linkString = `\t<link rel="preload" href="${
     generateTemplateContentWebfilePath(path)
-  }" type="${type}">`
+  }" type="${type}"/>`
 
   return generateTemplateContentHeadContribution(linkString, "htmlHeadPreload")
 }
@@ -106,7 +106,7 @@ function generateTemplateContentStyle(path) {
   let linkString =
     '\t<link rel="stylesheet" href="' +
     generateTemplateContentWebfilePath(path) +
-    '" type="text/css">'
+    '" type="text/css"/>'
 
   return generateTemplateContentHeadContribution(linkString, "htmlHead")
 }
