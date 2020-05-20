@@ -9,7 +9,7 @@
     jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
     jcr:uuid: 8ee40201-fbb6-42dc-81b2-bfe329ba5bf2
     hippo:name: Navigation
-    hippo:versionHistory: 7f8051fa-2e1a-495f-9346-854bd75c1f54
+    hippo:versionHistory: f90cd9f9-181d-4977-93f7-2991711263a1
     /navigation[1]:
       jcr:primaryType: resourcebundle:resourcebundle
       jcr:mixinTypes: ['mix:referenceable']
@@ -18,21 +18,22 @@
       hippostd:state: draft
       hippostdpubwf:createdBy: admin
       hippostdpubwf:creationDate: 2019-11-07T18:38:44.678Z
-      hippostdpubwf:lastModificationDate: 2020-04-30T13:39:16.834+01:00
+      hippostdpubwf:lastModificationDate: 2020-05-15T16:56:29.262+01:00
       hippostdpubwf:lastModifiedBy: admin
       resourcebundle:descriptions: ['', '', '', '', This MUST not be used in production,
-        '', '', '', '', '', '', '', '', '', '']
+        '', '', '', '', '', '', '', '', '', '', '']
       resourcebundle:id: navigation
       resourcebundle:keys: [home, content, see-do, destination-map, dev-test, footer.accessibility,
         footer.visitor-information, footer.get-touch, footer.media-centre, footer.business-events,
         footer.corporate, footer.other-sites, footer.scotland-is-now, footer.travel-trade,
-        footer.utility-list]
+        footer.utility-list, footer.find-us-on]
       resourcebundle:messages: [Home, Content, Things to see and do, Map of destinations,
         Development pages, Accessibility, Visitor information, Get in touch, Media
           Centre, Business Events, Corporate, Our other sites, Scotland is Now, Travel
-          Trade, Utility list]
+          Trade, Utility list, Find us on]
       resourcebundle:messages_es: [Inicio, Contenido, Cosas Varias (Para hacer o ver),
-        Destinos para güiris, Páginas rotas, '', '', '', '', '', '', '', '', '', '']
+        Destinos para güiris, Páginas rotas, '', '', '', '', '', '', '', '', '', '',
+        '']
     /navigation[2]:
       jcr:primaryType: resourcebundle:resourcebundle
       jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
@@ -41,21 +42,22 @@
       hippostd:state: unpublished
       hippostdpubwf:createdBy: admin
       hippostdpubwf:creationDate: 2019-11-07T18:38:44.678Z
-      hippostdpubwf:lastModificationDate: 2020-04-15T12:45:40.603+01:00
+      hippostdpubwf:lastModificationDate: 2020-05-15T16:56:27.873+01:00
       hippostdpubwf:lastModifiedBy: admin
       resourcebundle:descriptions: ['', '', '', '', This MUST not be used in production,
-        '', '', '', '', '', '', '', '', '', '']
+        '', '', '', '', '', '', '', '', '', '', '']
       resourcebundle:id: navigation
       resourcebundle:keys: [home, content, see-do, destination-map, dev-test, footer.accessibility,
         footer.visitor-information, footer.get-touch, footer.media-centre, footer.business-events,
         footer.corporate, footer.other-sites, footer.scotland-is-now, footer.travel-trade,
-        footer.utility-list]
+        footer.utility-list, footer.find-us-on]
       resourcebundle:messages: [Home, Content, Things to see and do, Map of destinations,
         Development pages, Accessibility, Visitor information, Get in touch, Media
           Centre, Business Events, Corporate, Our other sites, Scotland is Now, Travel
-          Trade, Utility list]
+          Trade, Utility list, Find us on]
       resourcebundle:messages_es: [Inicio, Contenido, Cosas Varias (Para hacer o ver),
-        Destinos para güiris, Páginas rotas, '', '', '', '', '', '', '', '', '', '']
+        Destinos para güiris, Páginas rotas, '', '', '', '', '', '', '', '', '', '',
+        '']
     /navigation[3]:
       jcr:primaryType: resourcebundle:resourcebundle
       jcr:mixinTypes: ['mix:referenceable']
@@ -64,19 +66,20 @@
       hippostd:state: published
       hippostdpubwf:createdBy: admin
       hippostdpubwf:creationDate: 2019-11-07T18:38:44.678Z
-      hippostdpubwf:lastModificationDate: 2020-04-15T12:45:40.603+01:00
+      hippostdpubwf:lastModificationDate: 2020-05-15T16:56:27.873+01:00
       hippostdpubwf:lastModifiedBy: admin
-      hippostdpubwf:publicationDate: 2020-04-30T13:39:30.314+01:00
+      hippostdpubwf:publicationDate: 2020-05-15T16:56:32.449+01:00
       resourcebundle:descriptions: ['', '', '', '', This MUST not be used in production,
-        '', '', '', '', '', '', '', '', '', '']
+        '', '', '', '', '', '', '', '', '', '', '']
       resourcebundle:id: navigation
       resourcebundle:keys: [home, content, see-do, destination-map, dev-test, footer.accessibility,
         footer.visitor-information, footer.get-touch, footer.media-centre, footer.business-events,
         footer.corporate, footer.other-sites, footer.scotland-is-now, footer.travel-trade,
-        footer.utility-list]
+        footer.utility-list, footer.find-us-on]
       resourcebundle:messages: [Home, Content, Things to see and do, Map of destinations,
         Development pages, Accessibility, Visitor information, Get in touch, Media
           Centre, Business Events, Corporate, Our other sites, Scotland is Now, Travel
-          Trade, Utility list]
+          Trade, Utility list, Find us on]
       resourcebundle:messages_es: [Inicio, Contenido, Cosas Varias (Para hacer o ver),
-        Destinos para güiris, Páginas rotas, '', '', '', '', '', '', '', '', '', '']
+        Destinos para güiris, Páginas rotas, '', '', '', '', '', '', '', '', '', '',
+        '']
