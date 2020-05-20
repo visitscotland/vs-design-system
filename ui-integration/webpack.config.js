@@ -2,7 +2,7 @@ const CopyPlugin = require("copy-webpack-plugin")
 const { CleanWebpackPlugin } = require("clean-webpack-plugin")
 const path = require("path")
 
-const DEFAULT_SOURCE_PATH = "../frontend/dist"
+const DEFAULT_SOURCE_PATH = "../frontend/dist/ssr/client"
 const DEFAULT_OUTPUT_PATH_ROOT = "../repository-data/webfiles/src/main/resources/site/"
 const ASSET_OUTPUT_PATH = "design-system"
 const TEMPLATE_OUTPUT_PATH = "freemarker/vs-dotcom-ds"

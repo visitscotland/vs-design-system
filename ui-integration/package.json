@@ -15,7 +15,7 @@
   "scripts": {
     "preinstall": "yarn install:frontend",
     "install:frontend": "yarn --cwd ../frontend/",
-    "build:frontend": "yarn --cwd ../frontend/ build:system:components ",
+    "build:frontend": "yarn --cwd ../frontend/ ssr:build:client",
     "build:integrate": "webpack --config webpack.config.js",
     "build": "yarn build:frontend && yarn build:integrate"
   }
