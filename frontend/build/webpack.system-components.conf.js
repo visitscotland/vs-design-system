@@ -37,7 +37,10 @@ const webpackConfig = merge(mergeIE11Fix(baseWebpackConfig), {
   devtool: config.build.productionSourceMap ? config.system.devtool : false,
   output: {
     path: config.system.assetsRoot,
-    filename: utils.assetsSystemPath("components/[name].js"),
+    filename: utils.assetsSystemPath(process.env.NODE_ENV === "development" ?
+      "components/[name].js" :
+      "components/[chunkhash].js",
+    ),
     // This will give the chunks hash names rather than meaningful names
     // Use this in real production
     // filename: utils.assetsSystemPath("components/[chunkhash].js"),
