@@ -2,19 +2,24 @@ package com.visitscotland.brmx.components.content;
 
 import com.visitscotland.brmx.beans.*;
 import com.visitscotland.brmx.beans.mapping.FlatImage;
+import com.visitscotland.brmx.beans.mapping.FlatLink;
 import com.visitscotland.brmx.utils.CommonUtils;
 import com.visitscotland.brmx.utils.HippoUtils;
 import com.visitscotland.brmx.utils.ProductSearchBuilder;
+import com.visitscotland.brmx.utils.Properties;
 import com.visitscotland.utils.Contract;
 import freemarker.ext.beans.BeansWrapper;
 import freemarker.template.TemplateHashModel;
 import freemarker.template.TemplateModelException;
+import org.hippoecm.hst.content.beans.standard.HippoCompound;
 import org.hippoecm.hst.core.component.HstRequest;
 import org.hippoecm.hst.core.component.HstResponse;
+import org.json.JSONObject;
 import org.onehippo.cms7.essentials.components.EssentialsContentComponent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -24,8 +29,8 @@ public class PageContentComponent<TYPE extends Page> extends EssentialsContentCo
 
     private static final Logger logger = LoggerFactory.getLogger(PageContentComponent.class);
 
-    public final String DOCUMENT = "document";
-    public final String EDIT_PATH = "path";
+    public static final String DOCUMENT = "document";
+    public static final String EDIT_PATH = "path";
 
     @Override
     public void doBeforeRender(HstRequest request, HstResponse response) {
@@ -33,6 +38,8 @@ public class PageContentComponent<TYPE extends Page> extends EssentialsContentCo
 
         addDocumentPath(request);
         addProductSearchBuilder(request);
+
+        initPage(request);
     }
 
     public void addProductSearchBuilder(HstRequest request){
@@ -83,6 +90,49 @@ public class PageContentComponent<TYPE extends Page> extends EssentialsContentCo
     }
 
     /**
+     * @param request HstRequest
+     * @param item Compound for DMSLink, PSRLink , External Link or CMS link
+     * @return FlatLink
+     */
+    protected FlatLink createLink(HstRequest request, HippoCompound item) {
+        final String URL = "url";
+
+        if (item instanceof DMSLink) {
+            DMSLink dmsLink = (DMSLink) item;
+            try {
+                JSONObject product = CommonUtils.getProduct(dmsLink.getProduct(), request.getLocale());
+                if (product == null) {
+                    logger.warn(CommonUtils.contentIssue("There is no product with the id '%s', (%s) ",
+                            dmsLink.getProduct(), getDocument(request).getPath()));
+                } else {
+                    //TODO build the link for the DMS product properly
+                    return new FlatLink(getCtaLabel(dmsLink.getLabel(), request.getLocale()), Properties.VS_DMS_SERVICE + product.getString(URL));
+                }
+            } catch (IOException e) {
+                logger.error(String.format("Error while querying the DMS for '%s', (%s)",
+                        dmsLink.getProduct(), getDocument(request).getPath()));
+            }
+        } else if (item instanceof ProductSearchLink) {
+            ProductSearchLink productSearchLink = (ProductSearchLink) item;
+            ProductSearchBuilder psb = new ProductSearchBuilder()
+                    .productType(productSearchLink.getSearch()).locale(request.getLocale());
+
+            return new FlatLink(getCtaLabel(productSearchLink.getLabel(), request.getLocale()), psb.build());
+
+        } else if (item instanceof ExternalLink) {
+            ExternalLink externalLink = (ExternalLink) item;
+            return new FlatLink(getCtaLabel(externalLink.getLabel(), request.getLocale()), externalLink.getLabel());
+
+        } else if (item instanceof CMSLink) {
+            //TODO: check this. It is probably wrong!
+            CMSLink cmsLink = (CMSLink) item;
+            return new FlatLink(getCtaLabel(cmsLink.getLabel(), request.getLocale()), cmsLink.getLabel());
+        }
+
+        return null;
+    }
+
+    /**
      * Returns the default CTA label when the manual CTA  is not defined.     *
      *
      * @param manualCta Manual CTA defined in the CMS
@@ -90,7 +140,7 @@ public class PageContentComponent<TYPE extends Page> extends EssentialsContentCo
      *
      * @return the manual CTA if provided otherwise the default CTA
      */
-    public String getCtaLabel(String manualCta, Locale locale) {
+    protected static String getCtaLabel(String manualCta, Locale locale) {
         if (!Contract.isEmpty(manualCta)) {
             return manualCta;
         } else {
@@ -99,7 +149,7 @@ public class PageContentComponent<TYPE extends Page> extends EssentialsContentCo
     }
 
 
-    protected void generateIndexPage(HstRequest request){
+    protected void initPage (HstRequest request){
         final String HERO_IMAGE = "heroImage";
         final String ALERTS = "alerts";
         List<String> alerts = validateDesiredFields(getDocument(request));

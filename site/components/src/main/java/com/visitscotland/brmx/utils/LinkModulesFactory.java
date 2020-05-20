@@ -1,6 +1,5 @@
 package com.visitscotland.brmx.utils;
 
-import com.visitscotland.brmx.beans.BaseDocument;
 import com.visitscotland.brmx.beans.MegaLinkItem;
 import com.visitscotland.brmx.beans.MegaLinks;
 import com.visitscotland.brmx.beans.Page;
@@ -9,7 +8,7 @@ import com.visitscotland.brmx.beans.mapping.FlatLink;
 import com.visitscotland.brmx.beans.mapping.megalinks.AbstractLayout;
 import com.visitscotland.brmx.beans.mapping.megalinks.ListLayout;
 import com.visitscotland.brmx.beans.mapping.megalinks.SingleImageLayout;
-import com.visitscotland.brmx.beans.mapping.megalinks.StandardLayout;
+import com.visitscotland.brmx.beans.mapping.megalinks.FeaturedLayout;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,13 +18,13 @@ public class LinkModulesFactory {
 
     private final static int MAX_ITEMS = 6;
 
-    public AbstractLayout getModule(MegaLinks doc, Locale locale){
+    public AbstractLayout getMegalinkModule(MegaLinks doc, Locale locale){
         if (doc.getSingleImageModule() != null){
             return singleImageLayout(doc, locale);
         } else if (doc.getList() || doc.getSingleImageLinks().size() > MAX_ITEMS){
             return list(doc, locale);
         } else {
-            return standard(doc, locale);
+            return featuredLayout(doc, locale);
         }
     }
 
@@ -33,21 +32,28 @@ public class LinkModulesFactory {
         SingleImageLayout sil = new SingleImageLayout ();
         sil.setTitle(doc.getTitle());
         sil.setIntroduction(doc.getIntroduction());
-//        sil.setCta(doc.getCta());
         sil.setImage(new FlatImage(doc.getSingleImageModule().getImage(), locale));
         sil.setFullWidth(doc.getSingleImageModule().getFullWidth());
+        //TODO: Question: Featured links first?
         sil.setLinks(convertoToFlatLinks(doc.getMegaLinkItems()));
+
+
+
+        //TODO cta?
+        //sil.setCta(doc.getCta());
 
         return sil;
     }
 
-    public StandardLayout standard(MegaLinks doc, Locale locale){
+    public FeaturedLayout featuredLayout(MegaLinks doc, Locale locale){
         //TODO
-        return new StandardLayout();
+        return new FeaturedLayout();
     }
 
     public ListLayout list(MegaLinks doc, Locale locale){
-        //TODO
+        ListLayout l = new ListLayout();
+        l.setHideTeaser(doc.getHideTeaser());
+
         return new ListLayout();
     }
 

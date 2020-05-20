@@ -8,7 +8,8 @@ public class SingleImageLayout extends AbstractLayout {
 
     private FlatImage image;
     private boolean fullWidth;
-    private FlatLink cta;
+    //todo title + intro
+
 
     public FlatImage getImage() {
         return image;
@@ -24,13 +25,5 @@ public class SingleImageLayout extends AbstractLayout {
 
     public void setFullWidth(boolean fullWidth) {
         this.fullWidth = fullWidth;
-    }
-
-    public FlatLink getCta() {
-        return cta;
-    }
-
-    public void setCta(FlatLink cta) {
-        this.cta = cta;
     }
 }

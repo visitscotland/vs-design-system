@@ -27,7 +27,7 @@ public class ListicleContentComponent extends PageContentComponent<Listicle> {
     @Override
     public void doBeforeRender(HstRequest request, HstResponse response) {
         super.doBeforeRender(request, response);
-        generateIndexPage(request);
+
         generateItems(request, getDocument(request));
     }
 
@@ -170,48 +170,5 @@ public class ListicleContentComponent extends PageContentComponent<Listicle> {
         }
 
         request.setAttribute(LISTICLE_ITEMS, items);
-    }
-
-    /**
-     * @param request HstRequest
-     * @param item Compound for DMSLink, PSRLink , External Link or CMS link
-     * @return FlatLink
-     */
-    private FlatLink createLink(HstRequest request, HippoCompound item) {
-        final String URL = "url";
-
-        if (item instanceof DMSLink) {
-            DMSLink dmsLink = (DMSLink) item;
-            try {
-                JSONObject product = CommonUtils.getProduct(dmsLink.getProduct(), request.getLocale());
-                if (product == null) {
-                    logger.warn(CommonUtils.contentIssue("There is no product with the id '%s', (%s) ",
-                            dmsLink.getProduct(), getDocument(request).getPath()));
-                } else {
-                    //TODO build the link for the DMS product properly
-                    return new FlatLink(this.getCtaLabel(dmsLink.getLabel(), request.getLocale()), Properties.VS_DMS_SERVICE + product.getString(URL));
-                }
-            } catch (IOException e) {
-                logger.error(String.format("Error while querying the DMS for '%s', (%s)",
-                        dmsLink.getProduct(), getDocument(request).getPath()));
-            }
-        } else if (item instanceof ProductSearchLink) {
-            ProductSearchLink productSearchLink = (ProductSearchLink) item;
-            ProductSearchBuilder psb = new ProductSearchBuilder()
-                    .productType(productSearchLink.getSearch()).locale(request.getLocale());
-
-            return new FlatLink(this.getCtaLabel(productSearchLink.getLabel(), request.getLocale()), psb.build());
-
-        } else if (item instanceof ExternalLink) {
-            ExternalLink externalLink = (ExternalLink) item;
-            return new FlatLink(this.getCtaLabel(externalLink.getLabel(), request.getLocale()), externalLink.getLabel());
-
-        } else if (item instanceof CMSLink) {
-            //TODO: check this. It is probably wrong!
-            CMSLink cmsLink = (CMSLink) item;
-            return new FlatLink(this.getCtaLabel(cmsLink.getLabel(), request.getLocale()), cmsLink.getLabel());
-        }
-
-        return null;
     }
 }

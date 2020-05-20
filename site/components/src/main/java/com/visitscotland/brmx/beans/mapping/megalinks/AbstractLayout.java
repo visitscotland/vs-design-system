@@ -10,6 +10,7 @@ public abstract class AbstractLayout<L extends FlatLink> {
     private String title;
     private HippoHtml introduction;
     private List<L> links;
+    private FlatLink cta;
 
     public String getTitle() {
         return title;
@@ -33,5 +34,13 @@ public abstract class AbstractLayout<L extends FlatLink> {
 
     public void setLinks(List<L> links) {
         this.links = links;
+    }
+
+    public FlatLink getCta() {
+        return cta;
+    }
+
+    public void setCta(FlatLink cta) {
+        this.cta = cta;
     }
 }

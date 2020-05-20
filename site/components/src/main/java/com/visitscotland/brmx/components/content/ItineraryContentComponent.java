@@ -35,7 +35,6 @@ public class ItineraryContentComponent extends PageContentComponent<Itinerary> {
     public void doBeforeRender(HstRequest request, HstResponse response) {
         super.doBeforeRender(request, response);
 
-        generateIndexPage(request);
         generateStops(request);
         setCoordinates(request);
     }
