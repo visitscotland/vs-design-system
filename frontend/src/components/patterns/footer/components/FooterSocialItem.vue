@@ -117,7 +117,7 @@ export default {
             <vs-row>
                 <vs-col cols="12" md="6">
                     <vs-accordion-item
-                        :visible="false"
+                        :openByDefault="true"
                         variant="dark"
                         aria-control-id="1"
                         class="border-left-0"

@@ -43,7 +43,7 @@ export default {
             <vs-row>
                 <vs-col cols="12" md="4" lg="3">
                     <vs-accordion-item
-                        :visible="false"
+                        :openByDefault="false"
                         variant="dark" aria-control-id="1"
                         class="border-left-0 pl-md-0"
                     >
@@ -81,7 +81,7 @@ export default {
                 </vs-col>
 
                 <vs-col cols="12" md="4" lg="3">
-                    <vs-accordion-item :visible="false" variant="dark" aria-control-id="2">
+                    <vs-accordion-item :openByDefault="false" variant="dark" aria-control-id="2">
                         <span slot="title">
                             Get in touch
                         </span>
@@ -116,7 +116,7 @@ export default {
                 </vs-col>
 
                 <vs-col cols="12" md="4" lg="3">
-                    <vs-accordion-item :visible="false" variant="dark" aria-control-id="3">
+                    <vs-accordion-item :openByDefault="false" variant="dark" aria-control-id="3">
                         <span slot="title">
                             Our other sites
                         </span>
@@ -150,6 +150,45 @@ export default {
                                 link-text="VisitScotland Awards"
                                 external
                             ></vs-footer-nav-list-item>
+                        </vs-list>
+                    </vs-accordion-item>
+                </vs-col>
+
+                <vs-col cols="12" lg="3" xl="2">
+                    <vs-accordion-item
+                        :openByDefault="true"
+                        variant="dark"
+                        aria-control-id="1"
+                    >
+                        <span slot="title">
+                            Find us on
+                        </span>
+
+                        <span slot="icon-open">
+                            <vs-icon name="chevron-up" variant="light" size="xs" />
+                        </span>
+
+                        <span slot="icon-closed">
+                            <vs-icon name="chevron-right" variant="light" size="xs" />
+                        </span>
+
+                        <vs-list unstyled class="mt-5 pr-lg-8 pr-xl-4">
+                            <vs-footer-social-item
+                                href="#"
+                                icon="facebook"
+                            ></vs-footer-social-item>
+                            <vs-footer-social-item
+                                href="#"
+                                icon="twitter"
+                            ></vs-footer-social-item>
+                            <vs-footer-social-item
+                                href="#"
+                                icon="youtube"
+                            ></vs-footer-social-item>
+                            <vs-footer-social-item
+                                href="#"
+                                icon="instagram"
+                            ></vs-footer-social-item>
                         </vs-list>
                     </vs-accordion-item>
                 </vs-col>
