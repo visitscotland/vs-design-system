@@ -78,7 +78,7 @@ export default {
         /**
          * Choose to show accordion open or closed by default
          */
-        visible: {
+        openByDefault: {
             type: Boolean,
             default: true,
         },
@@ -92,7 +92,7 @@ export default {
     },
     data() {
         return {
-            show: this.visible,
+            show: this.openByDefault,
         }
     },
     /**
@@ -141,7 +141,7 @@ export default {
 <docs>
   ```js
     <vs-accordion>
-        <vs-accordion-item :visible="false" variant="dark" aria-control-id="1">
+        <vs-accordion-item :openByDefault="true" variant="dark" aria-control-id="1">
             <span slot="title">
                 This is a title
             </span>
@@ -162,7 +162,7 @@ export default {
             </div>
         </vs-accordion-item>
 
-        <vs-accordion-item :visible="false" variant="dark" aria-control-id="3">
+        <vs-accordion-item :openByDefault="false" variant="dark" aria-control-id="3">
             <span slot="title">
                 This is a title
             </span>
@@ -182,7 +182,7 @@ export default {
                 turpis enim venenatis ipsum, vitae finibus sem tellus sit amet mauris.
             </div>
         </vs-accordion-item>
-        <vs-accordion-item :visible="false" variant="dark" aria-control-id="2">
+        <vs-accordion-item :openByDefault="false" variant="dark" aria-control-id="2">
             <span slot="title">
                 This is a title
             </span>
