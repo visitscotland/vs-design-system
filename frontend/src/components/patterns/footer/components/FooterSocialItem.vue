@@ -1,7 +1,15 @@
 <template>
     <li class="vs-footer-social-item">
-        <VsLink :href="href" :external="true" :class="icon">
-            <VsIcon :name="icon" variant="light" size="sm" />
+        <VsLink
+            :href="href"
+            :external="true"
+            :class="icon"
+        >
+            <VsIcon
+                :name="icon"
+                variant="light"
+                size="sm"
+            />
         </VsLink>
     </li>
 </template>
