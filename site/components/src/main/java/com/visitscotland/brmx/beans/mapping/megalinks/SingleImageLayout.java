@@ -6,25 +6,25 @@ import org.hippoecm.hst.content.beans.standard.HippoHtml;
 
 public class SingleImageLayout extends AbstractLayout {
 
-    private String sectionTitle;
-    private HippoHtml sectionIntroduction;
+    private String innerTitle;
+    private HippoHtml innerIntroduction;
     private FlatImage image;
     private boolean fullWidth;
 
-    public String getSectionTitle() {
-        return sectionTitle;
+    public String getInnerTitle() {
+        return innerTitle;
     }
 
-    public void setSectionTitle(String sectionTitle) {
-        this.sectionTitle = sectionTitle;
+    public void setInnerTitle(String innerTitle) {
+        this.innerTitle = innerTitle;
     }
 
-    public HippoHtml getSectionIntroduction() {
-        return sectionIntroduction;
+    public HippoHtml getInnerIntroduction() {
+        return innerIntroduction;
     }
 
-    public void setSectionIntroduction(HippoHtml sectionIntroduction) {
-        this.sectionIntroduction = sectionIntroduction;
+    public void setInnerIntroduction(HippoHtml innerIntroduction) {
+        this.innerIntroduction = innerIntroduction;
     }
 
     public FlatImage getImage() {

@@ -1,6 +1,7 @@
 package com.visitscotland.brmx.components.content;
 
 import com.visitscotland.brmx.beans.*;
+import com.visitscotland.brmx.beans.mapping.megalinks.AbstractLayout;
 import com.visitscotland.brmx.utils.LinkModulesFactory;
 import org.hippoecm.hst.core.component.HstRequest;
 import org.hippoecm.hst.core.component.HstResponse;
@@ -14,20 +15,25 @@ public class DestinationContentComponent extends PageContentComponent<Destinatio
 
     private static final Logger logger = LoggerFactory.getLogger(DestinationContentComponent.class);
 
+    private static final String PAGE_ITEMS = "pageItems";
+
     private LinkModulesFactory linksFactory = new LinkModulesFactory();
 
     @Override
     public void doBeforeRender(HstRequest request, HstResponse response) {
         super.doBeforeRender(request, response);
 
-        addLinkModules(request);
+        addModules(request);
     }
 
-    private void addLinkModules(HstRequest request){
-        List<MegaLinks> links = new ArrayList<>();
+    private void addModules(HstRequest request){
+        List<AbstractLayout> links = new ArrayList<>();
         for (MegaLinks mega: getDocument(request).getItems()){
-            linksFactory.getMegalinkModule(mega, request.getLocale());
+            links.add(linksFactory.getMegalinkModule(mega, request.getLocale()));
         }
+
+        //Note: In the future this list will be compose by different types of module.
+        request.setAttribute("pageItems", links);
     }
 
 }

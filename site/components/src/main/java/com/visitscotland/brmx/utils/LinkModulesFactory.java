@@ -28,14 +28,13 @@ public class LinkModulesFactory {
 
     public SingleImageLayout singleImageLayout(MegaLinks doc, Locale locale){
         SingleImageLayout sil = new SingleImageLayout ();
-        sil.setSectionTitle(doc.getTitle());
-        sil.setSectionIntroduction(doc.getIntroduction());
+        sil.setTitle(doc.getTitle());
+        sil.setIntroduction(doc.getIntroduction());
 
-        sil.setTitle(doc.getSingleImageModule().getTitle());
-        sil.setIntroduction(doc.getSingleImageModule().getIntroduction());
+        sil.setInnerTitle(doc.getSingleImageModule().getTitle());
+        sil.setInnerIntroduction(doc.getSingleImageModule().getIntroduction());
         sil.setImage(new FlatImage(doc.getSingleImageModule().getImage(), locale));
         sil.setFullWidth(doc.getSingleImageModule().getFullWidth());
-        //TODO: Question: Featured links first?
         sil.setLinks(convertoToFlatLinks(doc.getMegaLinkItems()));
 
         //TODO cta?
@@ -75,11 +74,13 @@ public class LinkModulesFactory {
 
         //There is no featured items when the amount of items is inferior to 3
         if (fl.getLinks().size() > 2) {
+            //For 3 links the maximum of 1 featured item.  From 4 on the maximum is 2 featured items.
             fl.setFeaturedLinks(fl.getLinks().stream()
                     .filter(link -> link.isFeatured())
-                    .limit(fl.getLinks().size() > 3 ? 2 : 1)
+                    .limit(fl.getLinks().size() == 3 ? 1 : 2)
                     .collect(Collectors.toCollection(ArrayList::new)));
 
+            //When there is more than 3 items and no featured item the first item is promoted as featured.
             if (fl.getFeaturedLinks().size() == 0 && fl.getLinks().size() > 3){
                 fl.getFeaturedLinks().add(fl.getLinks().get(0));
             }
@@ -109,7 +110,6 @@ public class LinkModulesFactory {
             if (item.getLink() == null) {
                 //TODO "The module %s contains a link without any reference"
             } else if (item.getLink() instanceof Page){
-                //TODO HippoUtils.getUrl(HippoLink)
                 links.add(new FlatLink(((Page) item.getLink()).getTitle(), HippoUtils.createUrl(item.getLink())));
             } else {
                 //TODO "The module %s is pointing to a document of type %s which cannot be rendered as a page " item.getLink().getClass().getSimpleName()
