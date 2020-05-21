@@ -48,12 +48,6 @@
 <#assign stopNumber = 0>
 <#assign lastStop = 0>
 
-<#if document.start?has_content>
-   <#assign firstStopLocation = document.start>
-</#if>
-<#if document.finish?has_content>
-    <#assign lastStopLocation = document.finish>
-</#if>
 <#if document.transports?has_content >
     <#assign mainTransport = document.transports[0]>
 </#if>

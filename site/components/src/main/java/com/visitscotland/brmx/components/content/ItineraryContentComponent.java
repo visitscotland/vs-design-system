@@ -237,7 +237,8 @@ public class ItineraryContentComponent extends PageContentComponent<Itinerary> {
 
         if (products.size() > 0 ) {
             request.setAttribute(DISTANCE, itinerary.getDistance()>0.0 ? itinerary.getDistance():totalDistance);
-            request.setAttribute(LAST_STOP_LOCATION, products.get(lastStopId).getSubTitle());
+            request.setAttribute(FIRST_STOP_LOCATION, itinerary.getStart().isEmpty() ? products.get(firstStopId).getSubTitle() : itinerary.getStart());
+            request.setAttribute(LAST_STOP_LOCATION, itinerary.getFinish().isEmpty() ? products.get(lastStopId).getSubTitle(): itinerary.getFinish() );
 
             request.setAttribute(STOPS_MAP, products);
         }
