@@ -222,7 +222,7 @@ public class ItineraryContentComponent extends PageContentComponent<Itinerary> {
                 }
                 model.setErrorMessages(errors);
 
-                if (itinerary.getDistance()==0) {
+                if (itinerary.getDistance() == 0) {
                     if (prevCoordinates != null && model.getCoordinates() != null) {
                         BigDecimal distancePrevStop = getDistanceStops(model, prevCoordinates);
                         totalDistance = totalDistance.add(distancePrevStop);
@@ -234,9 +234,9 @@ public class ItineraryContentComponent extends PageContentComponent<Itinerary> {
 
             }
         }
+        request.setAttribute(DISTANCE,totalDistance.compareTo(BigDecimal.ZERO) == 0? itinerary.getDistance():totalDistance);
 
         if (products.size() > 0 ) {
-            request.setAttribute(DISTANCE, itinerary.getDistance()>0.0 ? itinerary.getDistance():totalDistance);
             request.setAttribute(FIRST_STOP_LOCATION, itinerary.getStart().isEmpty() ? products.get(firstStopId).getSubTitle() : itinerary.getStart());
             request.setAttribute(LAST_STOP_LOCATION, itinerary.getFinish().isEmpty() ? products.get(lastStopId).getSubTitle(): itinerary.getFinish() );
 
