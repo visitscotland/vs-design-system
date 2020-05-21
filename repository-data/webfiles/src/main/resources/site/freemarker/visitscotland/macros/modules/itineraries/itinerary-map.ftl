@@ -8,7 +8,7 @@
 <#macro itineraryMap days>
     <vs-itinerary-map
         slot="map"
-        access-token= ${label("keys", "mapbox.devkey")}
+        access-token= ${label("keys", "maptiler.devkey")}
         overview-map-longitude="57.81"
         overview-map-latitude="-4.13"
         overview-map-zoom="5"

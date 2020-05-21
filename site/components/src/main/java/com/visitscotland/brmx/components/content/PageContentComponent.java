@@ -1,11 +1,13 @@
 package com.visitscotland.brmx.components.content;
 
+import com.fasterxml.jackson.databind.JsonNode;
 import com.visitscotland.brmx.beans.*;
 import com.visitscotland.brmx.beans.mapping.FlatImage;
 import com.visitscotland.brmx.beans.mapping.FlatLink;
 import com.visitscotland.brmx.utils.CommonUtils;
 import com.visitscotland.brmx.utils.HippoUtils;
 import com.visitscotland.brmx.utils.ProductSearchBuilder;
+import com.visitscotland.dataobjects.DataType;
 import com.visitscotland.brmx.utils.Properties;
 import com.visitscotland.utils.Contract;
 import freemarker.ext.beans.BeansWrapper;
@@ -14,13 +16,11 @@ import freemarker.template.TemplateModelException;
 import org.hippoecm.hst.content.beans.standard.HippoCompound;
 import org.hippoecm.hst.core.component.HstRequest;
 import org.hippoecm.hst.core.component.HstResponse;
-import org.json.JSONObject;
 import org.onehippo.cms7.essentials.components.EssentialsContentComponent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
-import java.lang.annotation.Documented;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -32,6 +32,7 @@ public class PageContentComponent<TYPE extends Page> extends EssentialsContentCo
 
     public static final String DOCUMENT = "document";
     public static final String EDIT_PATH = "path";
+    protected final String FACILITIES = "keyFacilities";
 
     @Override
     public void doBeforeRender(HstRequest request, HstResponse response) {
@@ -106,13 +107,13 @@ public class PageContentComponent<TYPE extends Page> extends EssentialsContentCo
         if (item instanceof DMSLink) {
             DMSLink dmsLink = (DMSLink) item;
             try {
-                JSONObject product = CommonUtils.getProduct(dmsLink.getProduct(), request.getLocale());
+                JsonNode product = CommonUtils.getProduct(dmsLink.getProduct(), request.getLocale());
                 if (product == null) {
                     logger.warn(CommonUtils.contentIssue("There is no product with the id '%s', (%s) ",
                             dmsLink.getProduct(),document.getPath()));
                 } else {
                     //TODO build the link for the DMS product properly
-                    return new FlatLink(getCtaLabel(dmsLink.getLabel(), request.getLocale()), Properties.VS_DMS_SERVICE + product.getString(URL));
+                    return new FlatLink(getCtaLabel(dmsLink.getLabel(), request.getLocale()), Properties.VS_DMS_SERVICE + product.get(URL).asText());
                 }
             } catch (IOException e) {
                 logger.error(String.format("Error while querying the DMS for '%s', (%s)",
@@ -200,6 +201,22 @@ public class PageContentComponent<TYPE extends Page> extends EssentialsContentCo
             logger.warn(CommonUtils.contentIssue("Caption field not provided for %s for the image : %s - %s",
                     locale.getDisplayLanguage() , image.getCmsImage().getName(), image.getCmsImage().getPath()));
         }
+    }
+
+    protected List<DataType> getFacilities (JsonNode product){
+        List<DataType> facilities = null;
+        if (product.has(FACILITIES)){
+            facilities = new ArrayList<>();
+            JsonNode keyFacilitiesList = product.get(FACILITIES);
+
+            if (keyFacilitiesList.isArray()) {
+                for (JsonNode facility : keyFacilitiesList) {
+                    DataType dataType = new DataType(facility.get("id").asText(),facility.get("name").asText());
+                    facilities.add(dataType);
+                }
+            }
+        }
+        return facilities;
     }
 
 }
