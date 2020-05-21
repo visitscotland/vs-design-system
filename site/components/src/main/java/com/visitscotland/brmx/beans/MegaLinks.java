@@ -18,11 +18,13 @@ public class MegaLinks extends BaseDocument {
         return getSingleProperty("visitscotland:title");
     }
 
+    //TODO: Change from list to listView.
     @HippoEssentialsGenerated(internalName = "visitscotland:list")
     public Boolean getList() {
         return getSingleProperty("visitscotland:list");
     }
 
+    //TODO: Change from hideTeaser to showTeaser (and marked by default) (Readability improves with positive verbs as name of fields)
     @HippoEssentialsGenerated(internalName = "visitscotland:hideTeaser")
     public Boolean getHideTeaser() {
         return getSingleProperty("visitscotland:hideTeaser");

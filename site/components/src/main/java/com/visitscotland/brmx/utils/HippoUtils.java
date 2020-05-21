@@ -1,5 +1,10 @@
 package com.visitscotland.brmx.utils;
 
+import org.hippoecm.hst.container.RequestContextProvider;
+import org.hippoecm.hst.content.beans.standard.HippoBean;
+import org.hippoecm.hst.core.component.HstRequest;
+import org.hippoecm.hst.core.linking.HstLink;
+import org.hippoecm.hst.core.request.HstRequestContext;
 import org.hippoecm.hst.resourcebundle.ResourceBundleRegistry;
 import org.hippoecm.hst.site.HstServices;
 import org.slf4j.Logger;
@@ -60,5 +65,16 @@ public class HippoUtils {
         } else {
             return resourceBundleRegistry.getBundle(bundleName, locale);
         }
+    }
+
+    /**
+     * TODO comment
+     * @param document
+     * @return
+     */
+    public static String createUrl(HippoBean document){
+        HstRequestContext context = RequestContextProvider.get();
+        HstLink link = context.getHstLinkCreator().create(document, context);
+        return link.toUrlForm(context, false);
     }
 }

@@ -20,6 +20,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
+import java.lang.annotation.Documented;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -95,6 +96,11 @@ public class PageContentComponent<TYPE extends Page> extends EssentialsContentCo
      * @return FlatLink
      */
     protected FlatLink createLink(HstRequest request, HippoCompound item) {
+        return createLink(request, item, getDocument(request));
+    }
+
+
+    protected static FlatLink createLink(HstRequest request, HippoCompound item, Page document) {
         final String URL = "url";
 
         if (item instanceof DMSLink) {
@@ -103,14 +109,14 @@ public class PageContentComponent<TYPE extends Page> extends EssentialsContentCo
                 JSONObject product = CommonUtils.getProduct(dmsLink.getProduct(), request.getLocale());
                 if (product == null) {
                     logger.warn(CommonUtils.contentIssue("There is no product with the id '%s', (%s) ",
-                            dmsLink.getProduct(), getDocument(request).getPath()));
+                            dmsLink.getProduct(),document.getPath()));
                 } else {
                     //TODO build the link for the DMS product properly
                     return new FlatLink(getCtaLabel(dmsLink.getLabel(), request.getLocale()), Properties.VS_DMS_SERVICE + product.getString(URL));
                 }
             } catch (IOException e) {
                 logger.error(String.format("Error while querying the DMS for '%s', (%s)",
-                        dmsLink.getProduct(), getDocument(request).getPath()));
+                        dmsLink.getProduct(),document.getPath()));
             }
         } else if (item instanceof ProductSearchLink) {
             ProductSearchLink productSearchLink = (ProductSearchLink) item;
