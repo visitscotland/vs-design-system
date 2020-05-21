@@ -159,6 +159,7 @@ export default {
                         :openByDefault="true"
                         variant="dark"
                         aria-control-id="1"
+                        item-break-point="xs"
                     >
                         <span slot="title">
                             Find us on
