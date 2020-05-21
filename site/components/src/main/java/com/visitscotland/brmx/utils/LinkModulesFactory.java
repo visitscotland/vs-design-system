@@ -6,6 +6,8 @@ import com.visitscotland.brmx.beans.Page;
 import com.visitscotland.brmx.beans.mapping.FlatImage;
 import com.visitscotland.brmx.beans.mapping.FlatLink;
 import com.visitscotland.brmx.beans.mapping.megalinks.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,10 +16,12 @@ import java.util.stream.Collectors;
 
 public class LinkModulesFactory {
 
+    private static final Logger logger = LoggerFactory.getLogger(LinkModulesFactory.class);
+
     private final static int MAX_ITEMS = 6;
 
     public AbstractLayout getMegalinkModule(MegaLinks doc, Locale locale){
-        if (doc.getSingleImageModule() != null){
+        if (!doc.getList() && doc.getSingleImageModule() != null){
             return singleImageLayout(doc, locale);
         } else if (doc.getList() || doc.getSingleImageLinks().size() > MAX_ITEMS){
             return list(doc, locale);
@@ -101,7 +105,7 @@ public class LinkModulesFactory {
         // TODO cta?
         //l.setCta();
 
-        return new ListLayout();
+        return ll;
     }
 
     private List<FlatLink> convertoToFlatLinks(List<MegaLinkItem> items){
@@ -123,7 +127,7 @@ public class LinkModulesFactory {
         for (MegaLinkItem item : items){
 
             if (item.getLink() == null) {
-                //TODO "The module %s contains a link without any reference"
+                CommonUtils.contentIssue("The module %s contains a link without any reference");
             } else if (item.getLink() instanceof Page){
                 //TODO HippoUtils.getUrl(HippoLink)
                 EnhancedLink link = new EnhancedLink();
@@ -135,6 +139,7 @@ public class LinkModulesFactory {
 
                 links.add(link);
             } else {
+
                 //TODO "The module %s is pointing to a document of type %s which cannot be rendered as a page " item.getLink().getClass().getSimpleName()
             }
         }

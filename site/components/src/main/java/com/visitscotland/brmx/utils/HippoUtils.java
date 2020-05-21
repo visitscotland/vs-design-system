@@ -73,8 +73,9 @@ public class HippoUtils {
      * @return
      */
     public static String createUrl(HippoBean document){
+        final boolean FULLY_QUALIFIED = true;
         HstRequestContext context = RequestContextProvider.get();
         HstLink link = context.getHstLinkCreator().create(document, context);
-        return link.toUrlForm(context, false);
+        return link.toUrlForm(context, FULLY_QUALIFIED);
     }
 }
