@@ -34,9 +34,6 @@ public class ItineraryContentComponent extends PageContentComponent<Itinerary> {
     public final String LAST_STOP_LOCATION = "lastStopLocation";
     public final String HERO_COORDINATES = "heroCoordinates";
 
-    private BigDecimal totalDistance = BigDecimal.ZERO;
-    private Coordinates prevCoordinates = null;
-
     @Override
     public void doBeforeRender(HstRequest request, HstResponse response) {
         super.doBeforeRender(request, response);
@@ -80,8 +77,11 @@ public class ItineraryContentComponent extends PageContentComponent<Itinerary> {
         final String IMAGE = "images";
         final String OPENING_DAY = "day";
         final String OPENING_STATE = "state";
-        final String OPENING_PROVISIONAL = "provisional";
+        //TODO change provivisional to provisional on the DMS product project
+        final String OPENING_PROVISIONAL = "provivisional";
         final Map<String ,FlatStop> products =  new LinkedHashMap<>();
+        BigDecimal totalDistance = BigDecimal.ZERO;
+        Coordinates prevCoordinates = null;
 
         String firstStopId = null;
         String lastStopId = null;
@@ -221,10 +221,15 @@ public class ItineraryContentComponent extends PageContentComponent<Itinerary> {
                     model.setSubTitle(stop.getSubtitle());
                 }
                 model.setErrorMessages(errors);
-                if (itinerary.getDistance()==0 && model.getCoordinates() != null) {
-                    model.setDistance(getDistanceStops(model));
-                }
 
+                if (itinerary.getDistance()==0) {
+                    if (prevCoordinates != null && model.getCoordinates() != null) {
+                        BigDecimal distancePrevStop = getDistanceStops(model, prevCoordinates);
+                        totalDistance = totalDistance.add(distancePrevStop);
+                        model.setDistance(distancePrevStop);
+                    }
+                    prevCoordinates = model.getCoordinates();
+                }
                 products.put(model.getIdentifier(), model);
 
             }
@@ -239,27 +244,20 @@ public class ItineraryContentComponent extends PageContentComponent<Itinerary> {
     }
 
     /**
-     * Method to calculate the distance between stops and accumulate them for the total distance
+     * Method to calculate the distance between stops
      * TODO This method must be changed in the future to calculate distance based on routes (Graphhopper)
      * @param model the stop
      * @return distance between stops
      */
   
-    private BigDecimal getDistanceStops (FlatStop model) {
-            BigDecimal distance = null;
-            if (prevCoordinates != null) {
-                 distance = CoordinateUtils.haversineDistance(new BigDecimal(prevCoordinates.getLatitude()), new BigDecimal(prevCoordinates.getLongitude()),
-                        new BigDecimal(model.getCoordinates().getLatitude()), new BigDecimal(model.getCoordinates().getLongitude()), true, "#,###,##0.0");
+    private BigDecimal getDistanceStops (FlatStop model, Coordinates prevCoordinates) {
+            BigDecimal distance = CoordinateUtils.haversineDistance(new BigDecimal(prevCoordinates.getLatitude()), new BigDecimal(prevCoordinates.getLongitude()),
+                    new BigDecimal(model.getCoordinates().getLatitude()), new BigDecimal(model.getCoordinates().getLongitude()), true, "#,###,##0.0");
 
-                if (distance != null) {
-                    model.setDistance(distance);
-                    prevCoordinates = model.getCoordinates();
-                    totalDistance = totalDistance.add(distance);
-                }
-
-            } else {
-                prevCoordinates = new Coordinates(model.getCoordinates().getLatitude(), model.getCoordinates().getLongitude());
+            if (distance != null) {
+                model.setDistance(distance);
             }
+
         return distance;
     }
 
