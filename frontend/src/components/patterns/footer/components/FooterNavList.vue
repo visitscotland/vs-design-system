@@ -1,6 +1,8 @@
 <template>
     <div class="vs-footer-nav-list pb-md-6">
-        <VsAccordion :break-point="breakPoint">
+        <VsAccordion
+            :break-point="breakPoint"
+        >
             <!-- @slot Default slot to contain Accordion Items in the footer -->
             <slot />
         </VsAccordion>
@@ -31,12 +33,12 @@ export default {
         },
         /**
          * If this is provided, the accordion expands above
-         * the specified viewport `sm, md, lg, xl`
+         * the specified viewport `xs, sm, md, lg, xl`
          */
         breakPoint: {
             type: String,
             default: null,
-            validator: value => value.match(/(sm|md|lg|xl)/),
+            validator: (value) => value.match(/(xs|sm|md|lg|xl)/),
         },
     },
 }

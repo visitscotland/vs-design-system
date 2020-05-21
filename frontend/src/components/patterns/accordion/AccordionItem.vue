@@ -11,7 +11,7 @@
                 :aria-controls="'panel_' + ariaControlId"
                 :visible="show"
                 :variant="variant"
-                :class="breakPoint ? 'd-' + breakPoint + '-none' : 'd-block'"
+                :class="toggleAccordionBtn"
                 @toggle-panel="onButtonClick"
             >
                 <!-- @slot Put the title here  -->
@@ -29,7 +29,7 @@
 
             <span
                 class="d-none vs-accordion-item__title"
-                :class="breakPoint ? 'd-' + breakPoint + '-block' : ''"
+                :class="toggleResponsiveItem"
             >
                 <!-- @slot Put the title here  -->
                 <slot name="title" />
@@ -40,7 +40,7 @@
             v-show="show"
             :id="'panel_' + ariaControlId"
             class="vs-accordion-item__panel"
-            :class="breakPoint ? 'd-' + breakPoint + '-block' : ''"
+            :class="toggleResponsiveItem"
         >
             <!-- @slot The default slot is the content for the accordion  -->
             <slot />
@@ -76,6 +76,17 @@ export default {
             required: true,
         },
         /**
+         * If this is provided, the accordion expands above
+         * the specified viewport `xs, sm, md, lg, xl`
+         */
+        itemBreakPoint: {
+            type: String,
+            default() {
+                return this.breakPoint
+            },
+            validator: (value) => value.match(/(xs|sm|md|lg|xl)/),
+        },
+        /**
          * Choose to show accordion open or closed by default
          */
         openByDefault: {
@@ -94,6 +105,22 @@ export default {
         return {
             show: this.openByDefault,
         }
+    },
+    computed: {
+        toggleAccordionBtn() {
+            if (!this.itemBreakPoint) {
+                return "d-block"
+            }
+
+            return this.itemBreakPoint === "xs" ? "d-none" : `d-${this.itemBreakPoint}-none`
+        },
+        toggleResponsiveItem() {
+            if (!this.itemBreakPoint) {
+                return ""
+            }
+
+            return this.itemBreakPoint === "xs" ? "d-block" : `d-${this.itemBreakPoint}-block`
+        },
     },
     /**
      * Injects breakPoint prop provided by Accordion
