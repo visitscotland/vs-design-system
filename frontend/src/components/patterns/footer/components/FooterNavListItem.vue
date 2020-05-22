@@ -85,7 +85,7 @@ export default {
         <vs-footer-nav-list break-point="md">
             <vs-row>
                 <vs-col cols="12" md="6">
-                    <vs-accordion-item
+                    <vs-footer-accordion-item
                         :openByDefault="false"
                         variant="dark"
                         aria-control-id="1"
@@ -121,7 +121,7 @@ export default {
                                 link-text="VisitScotland Awards"
                             ></vs-footer-nav-list-item>
                         </vs-list>
-                    </vs-accordion-item>
+                    </vs-footer-accordion-item>
                 </vs-col>
             </vs-row>
         </vs-footer-nav-list>

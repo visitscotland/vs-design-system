@@ -8,7 +8,7 @@
             Defaults to Accordion Toggle button. If component is responsive
             and has a breakPoint it will show title instead of button on larger screens. -->
             <VsAccordionToggle
-                :aria-controls="'panel_' + ariaControlId"
+                :aria-controls="'panel_' + controlId"
                 :visible="show"
                 :variant="variant"
                 :class="toggleAccordionBtn"
@@ -38,7 +38,7 @@
 
         <BCardBody
             v-show="show"
-            :id="'panel_' + ariaControlId"
+            :id="'panel_' + controlId"
             class="vs-accordion-item__panel"
             :class="toggleResponsiveItem"
         >
@@ -71,7 +71,7 @@ export default {
         /**
          * The aria control ID used for panel ID to match button aria control
          */
-        ariaControlId: {
+        controlId: {
             type: String,
             required: true,
         },
@@ -168,7 +168,7 @@ export default {
 <docs>
   ```js
     <vs-accordion>
-        <vs-accordion-item :openByDefault="true" variant="dark" aria-control-id="1">
+        <vs-accordion-item :openByDefault="true" variant="dark" control-id="1">
             <span slot="title">
                 This is a title
             </span>
@@ -189,7 +189,7 @@ export default {
             </div>
         </vs-accordion-item>
 
-        <vs-accordion-item :openByDefault="false" variant="dark" aria-control-id="3">
+        <vs-accordion-item :openByDefault="false" variant="dark" control-id="3">
             <span slot="title">
                 This is a title
             </span>
@@ -209,7 +209,7 @@ export default {
                 turpis enim venenatis ipsum, vitae finibus sem tellus sit amet mauris.
             </div>
         </vs-accordion-item>
-        <vs-accordion-item :openByDefault="false" variant="dark" aria-control-id="2">
+        <vs-accordion-item :openByDefault="false" variant="dark" control-id="2">
             <span slot="title">
                 This is a title
             </span>
