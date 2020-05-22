@@ -1,7 +1,7 @@
 <#include "../../include/imports.ftl">
 <#include "../../vs-dotcom-ds/components/footer.ftl">
 <#include "../../vs-dotcom-ds/components/footer-accordion-item.ftl">
-<#include "../../vs-dotcom-ds/components/footer-social-accordion-item.ftl">
+<#include "../../vs-dotcom-ds/components/footer-social-menu.ftl">
 <#include "../../vs-dotcom-ds/components/footer-nav-list.ftl">
 <#include "../../vs-dotcom-ds/components/footer-nav-list-item.ftl">
 <#include "../../vs-dotcom-ds/components/footer-social-item.ftl">
@@ -70,12 +70,7 @@
                         </vs-col>
                     </#list>
                         <vs-col cols="12" lg="3" xl="2">
-                            <vs-footer-social-accordion-item
-                                :openByDefault="true"
-                                variant="dark"
-                                control-id="4"
-                                item-break-point="xs"
-                            >
+                            <vs-footer-social-menu>
                                 <span slot="title">
                                     ${label("navigation", "footer.find-us-on")}
                                 </span>
@@ -98,7 +93,7 @@
                                         icon="instagram"
                                     ></vs-footer-social-item>
                                 </vs-list>
-                            </vs-footer-social-accordion-item>
+                            </vs-footer-social-menu>
                         </vs-col>
                 </vs-row>
             </vs-footer-nav-list>
