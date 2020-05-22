@@ -27,13 +27,13 @@
                 </template>
             </VsAccordionToggle>
 
-            <span
+            <h4
                 class="d-none vs-accordion-item__title"
                 :class="toggleResponsiveItem"
             >
                 <!-- @slot Put the title here  -->
                 <slot name="title" />
-            </span>
+            </h4>
         </BCardHeader>
 
         <BCardBody
@@ -151,7 +151,7 @@ export default {
     .vs-accordion-item__title {
         background: $color-gray-shade-7;
         color: $color-white;
-        padding: $spacer-3;
+        margin: $spacer-3;
         line-height: 1;
         font-weight: 500;
     }
