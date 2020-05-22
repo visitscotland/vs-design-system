@@ -155,12 +155,7 @@ export default {
                 </vs-col>
 
                 <vs-col cols="12" lg="3" xl="2">
-                    <vs-footer-social-accordion-item
-                        :openByDefault="true"
-                        variant="dark"
-                        control-id="1"
-                        item-break-point="xs"
-                    >
+                    <vs-footer-social-menu>
                         <span slot="title">
                             Find us on
                         </span>
@@ -183,7 +178,7 @@ export default {
                                 icon="instagram"
                             ></vs-footer-social-item>
                         </vs-list>
-                    </vs-footer-social-accordion-item>
+                    </vs-footer-social-menu>
                 </vs-col>
             </vs-row>
         </vs-footer-nav-list>
