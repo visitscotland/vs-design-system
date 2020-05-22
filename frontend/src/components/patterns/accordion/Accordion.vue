@@ -46,7 +46,7 @@ export default {
 
     <h3>Basic Accordion</h3>
     <vs-accordion>
-        <vs-accordion-item :openByDefault="true" variant="dark" aria-control-id="1">
+        <vs-accordion-item :openByDefault="true" variant="dark" control-id="1">
             <span slot="title">
                 This is a title
             </span>
@@ -67,7 +67,7 @@ export default {
             </div>
         </vs-accordion-item>
 
-        <vs-accordion-item :openByDefault="false" variant="dark" aria-control-id="2">
+        <vs-accordion-item :openByDefault="false" variant="dark" control-id="2">
             <span slot="title">
                 This is a title
             </span>
@@ -87,7 +87,7 @@ export default {
                 turpis enim venenatis ipsum, vitae finibus sem tellus sit amet mauris.
             </div>
         </vs-accordion-item>
-        <vs-accordion-item :openByDefault="false" variant="dark" aria-control-id="3">
+        <vs-accordion-item :openByDefault="false" variant="dark" control-id="3">
             <span slot="title">
                 This is a title
             </span>
@@ -111,7 +111,7 @@ export default {
 
     <h3  class="mt-6">Responsive Accordion</h3>
     <vs-accordion break-point="md">
-        <vs-accordion-item :openByDefault="true" variant="dark" aria-control-id="4">
+        <vs-accordion-item :openByDefault="true" variant="dark" control-id="4">
             <span slot="title">
                 This is a title
             </span>
@@ -132,7 +132,7 @@ export default {
             </div>
         </vs-accordion-item>
 
-        <vs-accordion-item :openByDefault="false" variant="dark" aria-control-id="5">
+        <vs-accordion-item :openByDefault="false" variant="dark" control-id="5">
             <span slot="title">
                 This is a title
             </span>
@@ -152,7 +152,7 @@ export default {
                 turpis enim venenatis ipsum, vitae finibus sem tellus sit amet mauris.
             </div>
         </vs-accordion-item>
-        <vs-accordion-item :openByDefault="false" variant="dark" aria-control-id="6">
+        <vs-accordion-item :openByDefault="false" variant="dark" control-id="6">
             <span slot="title">
                 This is a title
             </span>
