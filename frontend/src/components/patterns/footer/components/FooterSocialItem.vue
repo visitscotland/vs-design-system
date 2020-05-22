@@ -127,7 +127,7 @@ export default {
                     <vs-accordion-item
                         :openByDefault="true"
                         variant="dark"
-                        aria-control-id="1"
+                        control-id="1"
                         class="border-left-0"
                     >
                         <span slot="title">

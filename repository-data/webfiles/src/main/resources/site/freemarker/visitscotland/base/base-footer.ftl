@@ -1,10 +1,11 @@
 <#include "../../include/imports.ftl">
+<#include "../../vs-dotcom-ds/components/footer.ftl">
+<#include "../../vs-dotcom-ds/components/footer-accordion-item.ftl">
+<#include "../../vs-dotcom-ds/components/footer-social-accordion-item.ftl">
 <#include "../../vs-dotcom-ds/components/footer-nav-list.ftl">
 <#include "../../vs-dotcom-ds/components/footer-nav-list-item.ftl">
 <#include "../../vs-dotcom-ds/components/footer-social-item.ftl">
-<#include "../../vs-dotcom-ds/components/footer.ftl">
 <#include "../../vs-dotcom-ds/components/icon.ftl">
-<#include "../../vs-dotcom-ds/components/accordion-item.ftl">
 <#include "../../vs-dotcom-ds/components/container.ftl">
 <#include "../../vs-dotcom-ds/components/row.ftl">
 <#include "../../vs-dotcom-ds/components/col.ftl">
@@ -20,10 +21,10 @@
                 <vs-row>
                     <#list enhancedMenu as item>
                         <vs-col cols="12" md="4" lg="3">
-                            <vs-accordion-item 
-                                :visible="false" 
+                            <vs-footer-accordion-item
+                                :openByDefault="false" 
                                 variant="dark" 
-                                aria-control-id="${item?index}" 
+                                control-id="${item?index}" 
                                 class="<#if item?index == 0>border-left-0 pl-md-0</#if>"
                             >
                                 <span slot="title">
@@ -69,24 +70,17 @@
                         </vs-col>
                     </#list>
                         <vs-col cols="12" lg="3" xl="2">
-                            <vs-accordion-item 
-                                :visible="false" 
-                                variant="dark" 
-                                aria-control-id="4" 
+                            <vs-footer-social-accordion-item
+                                :openByDefault="true"
+                                variant="dark"
+                                control-id="4"
+                                item-break-point="xs"
                             >
                                 <span slot="title">
                                     ${label("navigation", "footer.find-us-on")}
                                 </span>
 
-                                <span slot="icon-open">
-                                    <vs-icon name="chevron-up" variant="light" size="xs" />
-                                </span>
-
-                                <span slot="icon-closed">
-                                    <vs-icon name="chevron-right" variant="light" size="xs" />
-                                </span>
-
-                                <vs-list unstyled class="mt-5 pr-lg-8 pr-xl-4">
+                                <vs-list unstyled class="mt-5 mt-md-0 mt-lg-5 pr-lg-8 pr-xl-4">
                                     <vs-footer-social-item
                                         href="#"
                                         icon="facebook"
@@ -104,7 +98,7 @@
                                         icon="instagram"
                                     ></vs-footer-social-item>
                                 </vs-list>
-                            </vs-accordion-item>
+                            </vs-footer-social-accordion-item>
                         </vs-col>
                 </vs-row>
             </vs-footer-nav-list>
