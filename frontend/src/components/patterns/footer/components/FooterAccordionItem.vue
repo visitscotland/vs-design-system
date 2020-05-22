@@ -78,7 +78,7 @@ export default {
 <style lang="scss">
 .vs-footer-accordion-item {
     .vs-accordion-item__title {
-        padding: $spacer-3 0;
+        margin: $spacer-3 0;
     }
 
     .btn.vs-accordion-toggle {
@@ -106,7 +106,7 @@ export default {
         background: $color-theme-dark;
 
         .vs-accordion-item__title {
-            padding-top: $spacer-1;
+            margin-top: $spacer-1;
         }
 
         .vs-accordion-item__panel {
