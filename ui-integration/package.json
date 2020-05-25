@@ -7,6 +7,7 @@
     "clean-webpack-plugin": "^3.0.0",
     "copy-webpack-plugin": "^5.0.4",
     "lodash": "^4.17.15",
+    "npm-run-all": "^4.1.5",
     "rimraf": "^3.0.0",
     "schema-utils": "^2.1.0",
     "webpack": "^4.39.2",
@@ -15,7 +16,9 @@
   "scripts": {
     "preinstall": "yarn install:frontend",
     "install:frontend": "yarn --cwd ../frontend/",
-    "build:frontend": "yarn --cwd ../frontend/ ssr:build:client",
+    "build:frontend": "npm-run-all build:frontend:theo build:frontend:main",
+    "build:frontend:theo": "yarn --cwd ../frontend/ theo",
+    "build:frontend:main": "yarn --cwd ../frontend/ ssr:build",
     "build:integrate": "webpack --config webpack.config.js",
     "build": "yarn build:frontend && yarn build:integrate"
   }

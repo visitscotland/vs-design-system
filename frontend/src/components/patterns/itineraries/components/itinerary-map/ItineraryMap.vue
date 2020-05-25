@@ -64,7 +64,7 @@ export default {
                 rotation: 0,
                 config: {
                     container: this.$refs.mapbox,
-                    style: "mapbox://styles/mapbox/outdoors-v11?optimize=true", // TODO: Ordinance Survey Map Tiles
+                    style: `https://api.maptiler.com/maps/37d4e215-6535-46b5-a5f7-fd09bd5897bb/style.json?key=${this.accessToken}`,
                     center: [
                         parseFloat(this.overviewMapLatitude),
                         parseFloat(this.overviewMapLongitude),
@@ -115,9 +115,6 @@ export default {
     created() {
         // Store <body> style attribute, if one exists.
         this.bodyStyleAttribute = document.body.getAttribute("style") !== null ? document.body.getAttribute("style") : ""
-
-        // Set access token.
-        mapboxgl.accessToken = this.accessToken
 
         // Disable WebGL if its causing performance problems.
         mapboxgl.supported({
