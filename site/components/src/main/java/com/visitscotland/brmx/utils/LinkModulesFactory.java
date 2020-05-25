@@ -23,7 +23,7 @@ public class LinkModulesFactory {
     public AbstractLayout getMegalinkModule(MegaLinks doc, Locale locale){
         if (!doc.getList() && doc.getSingleImageModule() != null){
             return singleImageLayout(doc, locale);
-        } else if (doc.getList() || doc.getSingleImageLinks().size() > MAX_ITEMS){
+        } else if (doc.getList() || doc.getMegaLinkItems().size() > MAX_ITEMS){
             return list(doc, locale);
         } else {
             return featuredLayout(doc, locale);
@@ -40,6 +40,7 @@ public class LinkModulesFactory {
         sil.setImage(new FlatImage(doc.getSingleImageModule().getImage(), locale));
         sil.setFullWidth(doc.getSingleImageModule().getFullWidth());
         sil.setLinks(convertoToFlatLinks(doc.getMegaLinkItems()));
+        sil.setMegaLinkItem(doc);
 
         //TODO cta?
         //sil.setCta(doc.getCta());
@@ -71,6 +72,7 @@ public class LinkModulesFactory {
         fl.setTitle(doc.getTitle());
         fl.setIntroduction(doc.getIntroduction());
         fl.setHideTeaser(doc.getHideTeaser());
+        fl.setMegaLinkItem(doc);
         // TODO cta?
         //l.setCta();
 
@@ -102,6 +104,7 @@ public class LinkModulesFactory {
         ll.setIntroduction(doc.getIntroduction());
         ll.setHideTeaser(doc.getHideTeaser());
         ll.setLinks(convertToEnhancedLinks(doc.getMegaLinkItems(), locale));
+        ll.setMegaLinkItem(doc);
         // TODO cta?
         //l.setCta();
 

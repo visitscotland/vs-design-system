@@ -2,13 +2,12 @@ package com.visitscotland.brmx.components.content;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.visitscotland.brmx.beans.*;
+import com.visitscotland.brmx.beans.dms.LocationObject;
+import com.visitscotland.brmx.beans.mapping.Coordinates;
 import com.visitscotland.brmx.beans.mapping.FlatImage;
 import com.visitscotland.brmx.beans.mapping.FlatLink;
-import com.visitscotland.brmx.utils.CommonUtils;
-import com.visitscotland.brmx.utils.HippoUtils;
-import com.visitscotland.brmx.utils.ProductSearchBuilder;
+import com.visitscotland.brmx.utils.*;
 import com.visitscotland.dataobjects.DataType;
-import com.visitscotland.brmx.utils.Properties;
 import com.visitscotland.utils.Contract;
 import freemarker.ext.beans.BeansWrapper;
 import freemarker.template.TemplateHashModel;
@@ -33,6 +32,7 @@ public class PageContentComponent<TYPE extends Page> extends EssentialsContentCo
     public static final String DOCUMENT = "document";
     public static final String EDIT_PATH = "path";
     protected final String FACILITIES = "keyFacilities";
+    public final String HERO_COORDINATES = "heroCoordinates";
 
     @Override
     public void doBeforeRender(HstRequest request, HstResponse response) {
@@ -42,6 +42,17 @@ public class PageContentComponent<TYPE extends Page> extends EssentialsContentCo
         addProductSearchBuilder(request);
 
         initPage(request);
+    }
+
+    protected void setCoordinates(HstRequest request) {
+        LocationObject location = LocationLoader.getLocation(getDocument(request).getHeroImage().getLocation(), request.getLocale());
+
+        if (location != null){
+            Coordinates coordinates = new Coordinates();
+            coordinates.setLatitude(location.getLatitude());
+            coordinates.setLongitude(location.getLongitude());
+            request.setAttribute(HERO_COORDINATES, coordinates);
+        }
     }
 
     public void addProductSearchBuilder(HstRequest request){

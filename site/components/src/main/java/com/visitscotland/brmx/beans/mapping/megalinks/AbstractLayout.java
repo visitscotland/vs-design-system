@@ -1,5 +1,6 @@
 package com.visitscotland.brmx.beans.mapping.megalinks;
 
+import com.visitscotland.brmx.beans.MegaLinks;
 import com.visitscotland.brmx.beans.mapping.FlatLink;
 import org.hippoecm.hst.content.beans.standard.HippoHtml;
 
@@ -11,6 +12,8 @@ public abstract class AbstractLayout<L extends FlatLink> {
     private HippoHtml introduction;
     private List<L> links;
     private FlatLink cta;
+    //reference for edit mode
+    private MegaLinks megaLinkItem;
 
     public String getTitle() {
         return title;
@@ -42,5 +45,13 @@ public abstract class AbstractLayout<L extends FlatLink> {
 
     public void setCta(FlatLink cta) {
         this.cta = cta;
+    }
+
+    public MegaLinks getMegaLinkItem() {
+        return megaLinkItem;
+    }
+
+    public void setMegaLinkItem(MegaLinks megaLinkItem) {
+        this.megaLinkItem = megaLinkItem;
     }
 }

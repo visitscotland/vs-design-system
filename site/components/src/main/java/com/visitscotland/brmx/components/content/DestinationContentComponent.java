@@ -23,6 +23,7 @@ public class DestinationContentComponent extends PageContentComponent<Destinatio
     public void doBeforeRender(HstRequest request, HstResponse response) {
         super.doBeforeRender(request, response);
 
+        setCoordinates(request);
         addModules(request);
     }
 
