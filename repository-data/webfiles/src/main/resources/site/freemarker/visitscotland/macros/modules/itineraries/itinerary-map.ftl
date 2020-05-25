@@ -7,25 +7,23 @@
 <#-- @ftlvariable name="prod" type="com.visitscotland.brmx.beans.mapping.FlatStop" -->
 
 <#macro itineraryMap days>
-    <vs-no-ssr>
-        <#--  <vs-itinerary-map
-            slot="map"
-            access-token= ${label("keys", "mapbox.devkey")}
-            overview-map-longitude="57.81"
-            overview-map-latitude="-4.13"
-            overview-map-zoom="5"
-            :stops='[<#list days as day>
-                <#list day.stops as stop>
-                    <#assign prod = stops[stop.identifier]>
-                    <#assign image = "" />
-                    <#if prod.image??>
-                        <#if prod.image.cmsImage??>
-                            <#assign image>
-                                <@hst.link hippobean=prod.image.cmsImage.original/>
-                            </#assign>
-                        <#elseif prod.image.externalImage??>
-                            <#assign image = prod.image.externalImage />
-                        </#if>
+    <#--  <vs-itinerary-map
+        slot="map"
+        access-token= ${label("keys", "maptiler.devkey")}
+        overview-map-longitude="57.81"
+        overview-map-latitude="-4.13"
+        overview-map-zoom="5"
+        :stops='[<#list days as day>
+            <#list day.stops as stop>
+                <#assign prod = stops[stop.identifier]>
+                <#assign image = "" />
+                <#if prod.image??>
+                    <#if prod.image.cmsImage??>
+                        <#assign image>
+                            <@hst.link hippobean=prod.image.cmsImage.original/>
+                        </#assign>
+                    <#elseif prod.image.externalImage??>
+                        <#assign image = prod.image.externalImage />
                     </#if>
                     <#if prod.coordinates?? && prod.coordinates.latitude?? && prod.coordinates.latitude?has_content && prod.coordinates.longitude?? && prod.coordinates.longitude?has_content>
                     {
@@ -48,6 +46,6 @@
                 mapControlsZoomOut: "${label("map", "map.zoomout")}"
             }'
         >
-        </vs-itinerary-map>  -->
-    </vs-no-ssr>
+    </vs-itinerary-map>  -->
+
 </#macro>
