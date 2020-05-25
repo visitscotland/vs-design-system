@@ -65,11 +65,13 @@ function generateTemplateContentScripts(scripts) {
 }
 
 function generateTemplateContentPreload(path, type) {
-  let linkString = `\t<link rel="preload" href="${
-    generateTemplateContentWebfilePath(path)
-  }" type="${type}">`
+  let linkString = generateTemplateContentLinkTag(path, type, true)
 
   return generateTemplateContentHeadContribution(linkString, "htmlHeadPreload")
+}
+
+function generateTemplateContentLinkTag(rel, path, type) {
+  return `\t<link rel="${rel}" href="${generateTemplateContentWebfilePath(path)}" type="${type}"/>`
 }
 
 function generateTemplateContentScript(scriptPath, scriptContent) {
@@ -103,10 +105,7 @@ function generateTemplateContentStyles(styles) {
 }
 
 function generateTemplateContentStyle(path) {
-  let linkString =
-    '\t<link rel="stylesheet" href="' +
-    generateTemplateContentWebfilePath(path) +
-    '" type="text/css">'
+  let linkString = generateTemplateContentLinkTag("stylesheet", path, "text/css")
 
   return generateTemplateContentHeadContribution(linkString, "htmlHead")
 }
