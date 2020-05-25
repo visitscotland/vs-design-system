@@ -119,10 +119,7 @@ export default {
         VsButton,
         VsSvg,
         VsImg,
-<<<<<<< HEAD
         VsIcon,
-=======
->>>>>>> develop
     },
     props: {
         /**
