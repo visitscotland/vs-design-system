@@ -170,55 +170,6 @@
       resourcebundle:id: universal
       resourcebundle:keys: [en-gb, de-de, es-es, fr-fr, it-it, nl-nl]
       resourcebundle:messages: [English, Deutsch, Español, Français, Italiano, Nederlands]
-  /keys:
-    jcr:primaryType: hippo:handle
-    jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
-    jcr:uuid: 6ea33f18-325f-419f-9380-8dcc147d3aed
-    hippo:name: Keys
-    hippo:versionHistory: 24566d50-1c4e-438d-844f-bdd8678c2402
-    /keys[1]:
-      jcr:primaryType: resourcebundle:resourcebundle
-      jcr:mixinTypes: ['mix:referenceable']
-      jcr:uuid: 3c4a8cb5-fb88-40cc-9e4c-8ea5ac59f10b
-      hippo:availability: []
-      hippostd:state: draft
-      hippostdpubwf:createdBy: admin
-      hippostdpubwf:creationDate: 2019-12-20T14:35:30.322Z
-      hippostdpubwf:lastModificationDate: 2020-03-02T09:59:10.751Z
-      hippostdpubwf:lastModifiedBy: admin
-      resourcebundle:descriptions: ['']
-      resourcebundle:id: keys
-      resourcebundle:keys: [mapbox.devkey]
-      resourcebundle:messages: [pk.eyJ1IjoidmlzaXRzY290bGFuZC1kZXYiLCJhIjoiY2p4MGZwcmtjMDBlczN5bTBnY3pjeHNubCJ9.d3CJWPvX9FfjfSNAW98Q6w]
-    /keys[2]:
-      jcr:primaryType: resourcebundle:resourcebundle
-      jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
-      jcr:uuid: 0621cd76-6bdf-47c2-8374-2abe31b24afc
-      hippo:availability: [preview]
-      hippostd:state: unpublished
-      hippostdpubwf:createdBy: admin
-      hippostdpubwf:creationDate: 2019-12-20T14:35:30.322Z
-      hippostdpubwf:lastModificationDate: 2019-12-20T14:36:06.011Z
-      hippostdpubwf:lastModifiedBy: admin
-      resourcebundle:descriptions: ['']
-      resourcebundle:id: keys
-      resourcebundle:keys: [mapbox.devkey]
-      resourcebundle:messages: [pk.eyJ1IjoidmlzaXRzY290bGFuZC1kZXYiLCJhIjoiY2p4MGZwcmtjMDBlczN5bTBnY3pjeHNubCJ9.d3CJWPvX9FfjfSNAW98Q6w]
-    /keys[3]:
-      jcr:primaryType: resourcebundle:resourcebundle
-      jcr:mixinTypes: ['mix:referenceable']
-      jcr:uuid: 38cb13a7-181e-4ba6-b030-6d93f1cbf87d
-      hippo:availability: [live]
-      hippostd:state: published
-      hippostdpubwf:createdBy: admin
-      hippostdpubwf:creationDate: 2019-12-20T14:35:30.322Z
-      hippostdpubwf:lastModificationDate: 2019-12-20T14:36:06.011Z
-      hippostdpubwf:lastModifiedBy: admin
-      hippostdpubwf:publicationDate: 2019-12-20T14:36:08.398Z
-      resourcebundle:descriptions: ['']
-      resourcebundle:id: keys
-      resourcebundle:keys: [mapbox.devkey]
-      resourcebundle:messages: [pk.eyJ1IjoidmlzaXRzY290bGFuZC1kZXYiLCJhIjoiY2p4MGZwcmtjMDBlczN5bTBnY3pjeHNubCJ9.d3CJWPvX9FfjfSNAW98Q6w]
   /itinerary:
     jcr:primaryType: hippostd:folder
     jcr:mixinTypes: ['hippo:named', 'mix:versionable']

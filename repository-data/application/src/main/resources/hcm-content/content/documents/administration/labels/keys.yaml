@@ -1,0 +1,50 @@
+/content/documents/administration/labels/keys:
+  .meta:order-before: facilities
+  jcr:primaryType: hippo:handle
+  jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
+  jcr:uuid: 6ea33f18-325f-419f-9380-8dcc147d3aed
+  hippo:name: Keys
+  hippo:versionHistory: 1787cd8c-bfd8-4f72-b52c-62869b10256d
+  /keys[1]:
+    jcr:primaryType: resourcebundle:resourcebundle
+    jcr:mixinTypes: ['mix:referenceable']
+    jcr:uuid: 3c4a8cb5-fb88-40cc-9e4c-8ea5ac59f10b
+    hippo:availability: []
+    hippostd:state: draft
+    hippostdpubwf:createdBy: admin
+    hippostdpubwf:creationDate: 2019-12-20T14:35:30.322Z
+    hippostdpubwf:lastModificationDate: 2020-05-18T15:58:43.589+01:00
+    hippostdpubwf:lastModifiedBy: admin
+    resourcebundle:descriptions: ['']
+    resourcebundle:id: keys
+    resourcebundle:keys: [maptiler.devkey]
+    resourcebundle:messages: [SZGAUFW8iNcUjjJgrkgf]
+  /keys[2]:
+    jcr:primaryType: resourcebundle:resourcebundle
+    jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
+    jcr:uuid: 0621cd76-6bdf-47c2-8374-2abe31b24afc
+    hippo:availability: [preview]
+    hippostd:state: unpublished
+    hippostdpubwf:createdBy: admin
+    hippostdpubwf:creationDate: 2019-12-20T14:35:30.322Z
+    hippostdpubwf:lastModificationDate: 2020-05-18T15:58:43.544+01:00
+    hippostdpubwf:lastModifiedBy: admin
+    resourcebundle:descriptions: ['']
+    resourcebundle:id: keys
+    resourcebundle:keys: [maptiler.devkey]
+    resourcebundle:messages: [SZGAUFW8iNcUjjJgrkgf]
+  /keys[3]:
+    jcr:primaryType: resourcebundle:resourcebundle
+    jcr:mixinTypes: ['mix:referenceable']
+    jcr:uuid: 38cb13a7-181e-4ba6-b030-6d93f1cbf87d
+    hippo:availability: [live]
+    hippostd:state: published
+    hippostdpubwf:createdBy: admin
+    hippostdpubwf:creationDate: 2019-12-20T14:35:30.322Z
+    hippostdpubwf:lastModificationDate: 2020-05-18T15:58:43.544+01:00
+    hippostdpubwf:lastModifiedBy: admin
+    hippostdpubwf:publicationDate: 2020-05-20T14:42:07.135+01:00
+    resourcebundle:descriptions: ['']
+    resourcebundle:id: keys
+    resourcebundle:keys: [maptiler.devkey]
+    resourcebundle:messages: [SZGAUFW8iNcUjjJgrkgf]

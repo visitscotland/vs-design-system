@@ -1,10 +1,13 @@
 package com.visitscotland.brmx.components.content;
 
+import com.fasterxml.jackson.databind.JsonNode;
 import com.visitscotland.brmx.beans.*;
 import com.visitscotland.brmx.beans.mapping.FlatImage;
 import com.visitscotland.brmx.utils.CommonUtils;
 import com.visitscotland.brmx.utils.HippoUtils;
 import com.visitscotland.brmx.utils.ProductSearchBuilder;
+import com.visitscotland.dataobjects.DataType;
+import com.visitscotland.utils.Contract;
 import freemarker.ext.beans.BeansWrapper;
 import freemarker.template.TemplateHashModel;
 import freemarker.template.TemplateModelException;
@@ -25,6 +28,7 @@ public class PageContentComponent<TYPE extends Page> extends EssentialsContentCo
 
     public final String DOCUMENT = "document";
     public final String EDIT_PATH = "path";
+    protected final String FACILITIES = "keyFacilities";
 
     @Override
     public void doBeforeRender(HstRequest request, HstResponse response) {
@@ -90,7 +94,7 @@ public class PageContentComponent<TYPE extends Page> extends EssentialsContentCo
      * @return the manual CTA if provided otherwise the default CTA
      */
     public String getCtaLabel(String manualCta, Locale locale) {
-        if (!CommonUtils.isEmpty(manualCta)) {
+        if (!Contract.isEmpty(manualCta)) {
             return manualCta;
         } else {
             return HippoUtils.getResourceBundle("button.find-out-more", "essentials.global", locale);
@@ -143,6 +147,22 @@ public class PageContentComponent<TYPE extends Page> extends EssentialsContentCo
             logger.warn(CommonUtils.contentIssue("Caption field not provided for %s for the image : %s - %s",
                     locale.getDisplayLanguage() , image.getCmsImage().getName(), image.getCmsImage().getPath()));
         }
+    }
+
+    protected List<DataType> getFacilities (JsonNode product){
+        List<DataType> facilities = null;
+        if (product.has(FACILITIES)){
+            facilities = new ArrayList<>();
+            JsonNode keyFacilitiesList = product.get(FACILITIES);
+
+            if (keyFacilitiesList.isArray()) {
+                for (JsonNode facility : keyFacilitiesList) {
+                    DataType dataType = new DataType(facility.get("id").asText(),facility.get("name").asText());
+                    facilities.add(dataType);
+                }
+            }
+        }
+        return facilities;
     }
 
 }
