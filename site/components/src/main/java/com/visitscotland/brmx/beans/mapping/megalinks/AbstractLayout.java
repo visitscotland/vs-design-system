@@ -14,6 +14,7 @@ public abstract class AbstractLayout<L extends FlatLink> {
     private FlatLink cta;
     //reference for edit mode
     private MegaLinks megaLinkItem;
+    private String style;
 
     public String getTitle() {
         return title;
@@ -53,5 +54,13 @@ public abstract class AbstractLayout<L extends FlatLink> {
 
     public void setMegaLinkItem(MegaLinks megaLinkItem) {
         this.megaLinkItem = megaLinkItem;
+    }
+
+    public String getStyle() {
+        return style;
+    }
+
+    public void setStyle(String style) {
+        this.style = style;
     }
 }
