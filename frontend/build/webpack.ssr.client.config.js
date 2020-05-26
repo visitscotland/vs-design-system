@@ -1,7 +1,6 @@
 const path = require('path');
 const merge = require('webpack-merge');
 const VueSSRClientPlugin = require('vue-server-renderer/client-plugin')
-// const { endsWith } = require("lodash")
 
 const base = require('./webpack.ssr.base.config');
 
@@ -20,16 +19,6 @@ module.exports = merge(base, {
             chunks: "all",
             minSize: 0,
             maxInitialRequests: Infinity,
-            // cacheGroups: {
-            //     vueCore: {
-            //         name: "vue",
-            //         chunks: "all",
-            //         test(moduleDefinition, chunks) {
-            //             return endsWith(moduleDefinition.resource, "vue.esm.js")
-            //         },
-            //         filename: 'components/vendors~vue.js',
-            //     },
-            // },
         },
         runtimeChunk: "single",
         concatenateModules: false,
