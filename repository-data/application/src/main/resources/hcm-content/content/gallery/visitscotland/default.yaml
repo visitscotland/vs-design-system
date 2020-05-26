@@ -271,7 +271,7 @@
       hippogallery:filename: Royal Botanic Garden.jpg
       visitscotland:altText: Royal Botanic Garden
       visitscotland:credit: visitscotland
-      visitscotland:location: Edinburgh Airport
+      visitscotland:location: Edinburgh
       /hippogallery:thumbnail:
         jcr:primaryType: hippogallery:image
         hippo:filename: Royal Botanic Garden.jpg

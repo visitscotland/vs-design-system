@@ -2371,7 +2371,7 @@
           hippostd:state: draft
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2020-05-21T17:54:15.934+01:00
-          hippostdpubwf:lastModificationDate: 2020-05-25T15:39:18.398+01:00
+          hippostdpubwf:lastModificationDate: 2020-05-26T08:40:35.346+01:00
           hippostdpubwf:lastModifiedBy: admin
           hippotranslation:id: 9390056b-b448-4e0a-8c69-f373eb031d00
           hippotranslation:locale: en
@@ -2486,7 +2486,7 @@
           hippostd:state: unpublished
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2020-05-21T17:54:15.934+01:00
-          hippostdpubwf:lastModificationDate: 2020-05-25T14:25:32.138+01:00
+          hippostdpubwf:lastModificationDate: 2020-05-26T08:42:54.297+01:00
           hippostdpubwf:lastModifiedBy: admin
           hippotranslation:id: 947115dd-693b-4a35-af7b-c527e3a432fa
           hippotranslation:locale: en
@@ -2535,7 +2535,7 @@
               hippo:docbase: 8b4a3c11-8b84-4aa0-bccf-f407d18c1c44
           /visitscotland:singleImageLinks:
             jcr:primaryType: visitscotland:SingleImageModule
-            visitscotland:fullWidth: false
+            visitscotland:fullWidth: true
             visitscotland:title: Megalink in Spanish would be Megaenlace
             /visitscotland:image:
               jcr:primaryType: hippogallerypicker:imagelink
@@ -2557,7 +2557,7 @@
           hippostd:state: draft
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2020-05-21T17:54:15.934+01:00
-          hippostdpubwf:lastModificationDate: 2020-05-25T14:25:32.250+01:00
+          hippostdpubwf:lastModificationDate: 2020-05-26T08:42:54.561+01:00
           hippostdpubwf:lastModifiedBy: admin
           hippotranslation:id: 947115dd-693b-4a35-af7b-c527e3a432fa
           hippotranslation:locale: en
@@ -2606,7 +2606,7 @@
               hippo:docbase: 8b4a3c11-8b84-4aa0-bccf-f407d18c1c44
           /visitscotland:singleImageLinks:
             jcr:primaryType: visitscotland:SingleImageModule
-            visitscotland:fullWidth: false
+            visitscotland:fullWidth: true
             visitscotland:title: Megalink in Spanish would be Megaenlace
             /visitscotland:image:
               jcr:primaryType: hippogallerypicker:imagelink

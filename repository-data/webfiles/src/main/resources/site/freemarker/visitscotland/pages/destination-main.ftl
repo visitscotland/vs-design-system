@@ -101,7 +101,7 @@
 						<vs-row>
 							<vs-col cols="6" lg="6" offset-lg="1">
 								<#--TODO for links the image does not have caption-->
-								<@imageWithCaption imageSrc=image imageDetails=image variant="fullwidth"/>
+								<@imageWithCaption imageSrc=image imageDetails=feature.image variant="fullwidth"/>
 							</vs-col>
 							<vs-col cols="3" lg="3" offset-lg="1">
 								<vs-heading level="3">${feature.label}</vs-heading>
@@ -123,7 +123,7 @@
 							</#assign>
 							<vs-col cols="4" lg="4">
 								<#--TODO for links the image does not have caption-->
-								<@imageWithCaption imageSrc=image imageDetails=image variant="fullwidth"/>
+								<@imageWithCaption imageSrc=image imageDetails=megaLink.image variant="fullwidth"/>
 								<vs-heading level="3">${megaLink.label}</vs-heading>
 								<#if item.hideTeaser == false >
 									${megaLink.teaser}
@@ -136,7 +136,6 @@
 						</#list>
 					</vs-row>
 					</br> </br>
-
 				<#--Macro for single image-->
 				<#elseif item.image??>
 					<#assign image>
@@ -144,7 +143,7 @@
 					</#assign>
 					<vs-row>
 						<#if item.fullWidth == true>
-							<vs-col cols="12" lg="12"
+							<vs-col cols="12" lg="12">
 								<#--FOR SIMPLE IMAGE, THE IMAGE HAS CAPTION-->
 								<@imageWithCaption imageSrc=image imageDetails=item.image variant="fullwidth"/>
 							</vs-col>
@@ -194,7 +193,7 @@
 								</#assign>
 								<vs-col cols="3" lg="3">
 									<#--TODO for links the image does not have caption-->
-									<@imageWithCaption imageSrc=image imageDetails=image variant="fullwidth"/>
+									<@imageWithCaption imageSrc=image imageDetails=megaLink.image variant="fullwidth"/>
 								</vs-col>
 								<vs-col cols="2" lg="2">
 									<vs-heading level="3">${megaLink.label}</vs-heading>
