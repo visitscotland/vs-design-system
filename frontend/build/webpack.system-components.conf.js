@@ -43,6 +43,7 @@ const webpackConfig = merge(mergeIE11Fix(baseWebpackConfig), {
       "components/[name].js" :
       "components/[chunkhash].js",
     ),
+    publicPath: config.system.assetsPublicPath,
     library: "[name]",
     libraryTarget: config.system.libraryTarget,
   },
