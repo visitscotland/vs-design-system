@@ -9,7 +9,7 @@
     <script src="https://unpkg.com/vuex@3.1.1/dist/vuex.min.js"></script>
 </@hst.headContribution>
 
-<@hst.headContribution category="htmlHead">
+<@hst.headContribution category="htmlBodyEndScriptsFirst">
 	<script type="text/javascript">
         // initialise global vs object
 		vs = {
