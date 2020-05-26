@@ -17,9 +17,12 @@
     "preinstall": "yarn install:frontend",
     "install:frontend": "yarn --cwd ../frontend/",
     "build:frontend": "npm-run-all build:frontend:theo build:frontend:main",
+    "build:frontend:dev": "npm-run-all build:frontend:theo build:frontend:main:dev",
     "build:frontend:theo": "yarn --cwd ../frontend/ theo",
     "build:frontend:main": "yarn --cwd ../frontend/ ssr:build",
+    "build:frontend:main:dev": "yarn --cwd ../frontend/ ssr:build:dev",
     "build:integrate": "webpack --config webpack.config.js",
-    "build": "yarn build:frontend && yarn build:integrate"
+    "build": "npm-run-all build:frontend build:integrate",
+    "build:dev": "yarn build:frontend:dev && yarn build:integrate"
   }
 }
