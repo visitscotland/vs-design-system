@@ -54,7 +54,10 @@ const webpackConfig = merge(mergeIE11Fix(baseWebpackConfig), {
     }),
     // extract css into its own file
     new MiniCssExtractPlugin({
-      filename: utils.assetsSystemPath("components/[name].css"),
+      filename: utils.assetsSystemPath(process.env.NODE_ENV === "development" ?
+        "components/[name].css" :
+        "components/[chunkhash].css"
+      ),
       // This will give the chunks hash names rather than meaningful names
       // Use this in real production
       //filename: utils.assetsSystemPath("components/[chunkhash].css"),
