@@ -8,6 +8,7 @@
 <#include "../../vs-dotcom-ds/components/col.ftl">
 <#include "../../vs-dotcom-ds/components/rich-text-wrapper.ftl">
 <#include "../../vs-dotcom-ds/components/img.ftl">
+
 <#include "../../vs-dotcom-ds/components/image-with-caption.ftl">
 <#include "../../vs-dotcom-ds/components/heading.ftl">
 <#include "../../vs-dotcom-ds/components/social-share.ftl">

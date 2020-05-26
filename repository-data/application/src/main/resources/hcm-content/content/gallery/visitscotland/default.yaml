@@ -267,7 +267,7 @@
     /royal-botanic-garden.jpg:
       jcr:primaryType: visitscotland:Image
       hippo:availability: [live, preview]
-      hippogallery:description: Botnic gardens
+      hippogallery:description: Botanic gardens
       hippogallery:filename: Royal Botanic Garden.jpg
       visitscotland:altText: Royal Botanic Garden
       visitscotland:credit: visitscotland
