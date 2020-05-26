@@ -46,10 +46,11 @@
     "ssr:prod": "yarn ssr:build && yarn ssr:serve",
     "ssr:serve": "nodemon ./ssr/server/index.js",
     "ssr:serve:dev": "cross-env NODE_ENV=development nodemon ./ssr/server/index.js",
-    "ssr:build": "yarn ssr:build:client && yarn ssr:build:server",
-    "ssr:build:dev": "cross-env NODE_ENV=development yarn ssr:build:client && cross-env NODE_ENV=development yarn ssr:build:server",
+    "ssr:build": "npm-run-all ssr:build:client ssr:build:server",
+    "ssr:build:dev": "cross-env NODE_ENV=development yarn ssr:build",
     "ssr:build:client": "webpack --config ./build/webpack.ssr.client.config.js",
-    "ssr:build:server": "webpack --config ./build/webpack.ssr.server.config.js"
+    "ssr:build:server": "webpack --config ./build/webpack.ssr.server.config.js",
+    "ssr:build:client:inspect": "cross-env NODE_ENV=development node --inspect-brk ./node_modules/webpack/bin/webpack.js --config ./build/webpack.ssr.client.config.js"
   },
   "repository": {
     "type": "git",

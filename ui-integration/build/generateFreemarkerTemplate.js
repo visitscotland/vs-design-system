@@ -2,7 +2,17 @@ const fs = require("fs")
 const path = require("path")
 
 const rf = require("rimraf")
-const { each, kebabCase, partial, reduce, trimStart, startsWith, isEmpty } = require("lodash")
+const { 
+  each,
+  kebabCase,
+  partial,
+  reduce,
+  trimStart,
+  startsWith,
+  isEmpty,
+  includes,
+  last,
+} = require("lodash")
 const { getOptions } = require("loader-utils")
 const validateOptions = require("schema-utils")
 
@@ -14,26 +24,60 @@ const optionsSchema = {
     },
     importsPath: {
       type: "string",
-    }
+    },
   },
+}
+
+const mainClientModuleName = "main-client"
+
+const coreModules = [
+  "core",
+  mainClientModuleName,
+]
+
+function moduleIsCore(moduleName) {
+  return includes(coreModules, moduleName)
+}
+
+function moduleIsStore(moduleName) {
+  return startsWith(moduleName, "store")
+}
+
+function moduleIsMainClientEntry(moduleName) {
+  return moduleName === mainClientModuleName
+}
+
+function generateVueAppInitInclude() {
+  return '<#include "../vue-app-init.ftl">\n'
+}
+
+function generateImportsInclude(importsPath) {
+  return '<#include "' + importsPath + '">\n'
 }
 
 function generateTemplateContent(moduleName, mod, importsPath) {
   let content = ""
+  const isCore = moduleIsCore(moduleName)
+  const isStore = moduleIsStore(moduleName)
+  const isClientEntry = moduleIsMainClientEntry(moduleName)
 
-  content += '<#include "' + importsPath + '">\n' + '<#include "../vue-app-init.ftl">\n\n'
+  if(!isCore) {
+    content += generateVueAppInitInclude()
+    content += generateImportsInclude(importsPath)
+    content += "\n"
+  }
 
   if(!isEmpty(mod.styles)) {
     content += generateTemplateContentStyles(mod.styles)
   }
 
   if(!isEmpty(mod.scripts)) {
-    content += generateTemplateContentScripts(mod.scripts)
+    content += generateTemplateContentAssets(mod.scripts, isClientEntry)
   }
   
-  if (startsWith(moduleName, "store")) {
+  if (isStore) {
     content += generateTemplateContentStoreScript(moduleName)
-  } else {
+  } else if(!isCore) {
     content += generateTemplateContentRegisterScript(moduleName)
   }
 
@@ -52,20 +96,27 @@ function generateTemplateContentRegisterScript(moduleName) {
   return generateTemplateContentScript(null, scriptText)
 }
 
-function generateTemplateContentScripts(scripts) {
+function generateTemplateContentAssets(scripts, isClientEntry) {
+  const isClientEntryLast = isClientEntry ? last(scripts) : null
+
+  function isAppEntry(path) {
+    return isClientEntryLast && isClientEntryLast === path
+  }
+
   return reduce(
     scripts,
     function(content, path) {
-      return content +
-        generateTemplateContentPreload(path, "script") +
-        generateTemplateContentScript(path)
+      let altHeadContributionName = isAppEntry(path) ? "htmlBodyEndAppEntry" : null
+
+      return content + generateTemplateContentPreload(path, "script") +
+          generateTemplateContentScript(path, null, altHeadContributionName)
     },
-    ""
+    "",
   );
 }
 
 function generateTemplateContentPreload(path, type) {
-  let linkString = generateTemplateContentLinkTag(path, type, true)
+  let linkString = generateTemplateContentLinkTag("preload", path, type)
 
   return generateTemplateContentHeadContribution(linkString, "htmlHeadPreload")
 }
@@ -74,7 +125,7 @@ function generateTemplateContentLinkTag(rel, path, type) {
   return `\t<link rel="${rel}" href="${generateTemplateContentWebfilePath(path)}" type="${type}"/>`
 }
 
-function generateTemplateContentScript(scriptPath, scriptContent) {
+function generateTemplateContentScript(scriptPath, scriptContent, headContributionName) {
   let nodeString = '\t<script type="text/javascript"'
 
   if (scriptPath) {
@@ -89,7 +140,11 @@ function generateTemplateContentScript(scriptPath, scriptContent) {
 
   nodeString += "</script>"
 
-  return generateTemplateContentHeadContribution(nodeString)
+  if(!headContributionName) {
+    headContributionName = "htmlBodyEndScripts"
+  }
+
+  return generateTemplateContentHeadContribution(nodeString, headContributionName)
 }
 
 function generateTemplateContentStyles(styles) {
@@ -100,20 +155,20 @@ function generateTemplateContentStyles(styles) {
         generateTemplateContentPreload(path, "style") +
         generateTemplateContentStyle(path)
     },
-    ""
+    "",
   ) + "\n"
 }
 
 function generateTemplateContentStyle(path) {
   let linkString = generateTemplateContentLinkTag("stylesheet", path, "text/css")
 
-  return generateTemplateContentHeadContribution(linkString, "htmlHead")
+  return generateTemplateContentHeadContribution(linkString, "htmlHeadStyles")
 }
 
 function generateTemplateContentHeadContribution(content, category) {
   let node = ""
 
-  node += '\n<@hst.headContribution category="' + (category || "htmlBodyEnd") + '">\n'
+  node += '\n<@hst.headContribution category="' + category + '">\n'
   node += content + "\n"
   node += "</@hst.headContribution>\n"
 
@@ -135,8 +190,10 @@ function outputTemplate(mod, moduleName, targetPath, importsPath) {
 }
 
 function moduleSubPath(mod, moduleName) {
-  if (startsWith(moduleName, "store")) {
+  if (moduleIsStore(moduleName)) {
     return "/stores"
+  } else if(moduleIsCore(moduleName)) {
+    return "/"
   }
 
   return "/components"
@@ -168,12 +225,13 @@ function prepTargetDir(targetPath) {
  * 
  * This module generates a freemarker for each module that contains
  * 
- * - htmlBodyEnd headContributions for each script asset chunk
- * - htmlHead headContributions for each style asset chunk
+ * - htmlBodyEndScripts headContributions for each script asset chunk
+ * - htmlHeadStyle headContributions for each style asset chunk
  * - preload references in htmlHeadPreload headContributions for all script and style chunks
  * - includes for the vue-app-init.ftl and imports.ftl freemarker templates
- * - a htmlBodyEnd headContribution containing a script tag containing the component 
- *   registraion (for Vue components) or global reference setup (for Vuex stores)
+ * - htmlBodyEndScripts headContributions containing a script tag with the component 
+ *   registraion or global reference setup for each Vue component or Vuex store, respectively
+ * - a htmlBodyEndAppEntry headContribution for the final chunk for the main client entry
  * 
  * @param {String} manifest
  * 
