@@ -5,7 +5,7 @@ const nodeExternals = require("webpack-node-externals");
 const VueSSRServerPlugin = require("vue-server-renderer/server-plugin");
 const merge = require("webpack-merge");
 
-const base = require("./webpack.ssr.base.config");
+const base = require('./webpack.system-components.conf');
 
 const entry = {
     "main-server": path.resolve(__dirname, "../ssr/src/server-entry.js"),

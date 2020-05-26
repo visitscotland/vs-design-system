@@ -1,17 +1,19 @@
 "use strict"
-const utils = require("./utils")
 const webpack = require("webpack")
 const path = require("path")
-const config = require("../config")
 const merge = require("webpack-merge")
 const baseWebpackConfig = require("./webpack.base.conf")
 const MergeWebpackPlugin = require("webpack-merge-and-include-globally")
 const MiniCssExtractPlugin = require("mini-css-extract-plugin")
 const OptimizeCSSPlugin = require("optimize-css-assets-webpack-plugin")
 const CopyWebpackPlugin = require("copy-webpack-plugin")
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const SafeParser = require("postcss-safe-parser")
-const env = require("../config/prod.env")
 const ManifestPlugin = require("webpack-manifest-plugin")
+
+const utils = require("./utils")
+const config = require("../config")
+const env = require("../config/prod.env")
 const generateManifest = require("./system-components-generate-manifest")
 const { mergeIE11Fix } = require("./webpack.ie11-fix")
 
@@ -92,6 +94,7 @@ const webpackConfig = merge(mergeIE11Fix(baseWebpackConfig), {
       generate: generateManifest,
       fileName: "manifest.json",
     }),
+    new CleanWebpackPlugin(),
   ],
 })
 
