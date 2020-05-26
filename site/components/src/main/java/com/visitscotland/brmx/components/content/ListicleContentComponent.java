@@ -1,5 +1,7 @@
 package com.visitscotland.brmx.components.content;
 
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.visitscotland.brmx.beans.*;
 
 import com.visitscotland.brmx.beans.dms.LocationObject;
@@ -12,8 +14,6 @@ import com.visitscotland.brmx.utils.LocationLoader;
 import org.hippoecm.hst.content.beans.standard.HippoCompound;
 import org.hippoecm.hst.core.component.HstRequest;
 import org.hippoecm.hst.core.component.HstResponse;
-import org.json.JSONArray;
-import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -41,7 +41,6 @@ public class ListicleContentComponent extends PageContentComponent<Listicle> {
         final String LOCATION = "city";
         final String LATITUDE = "latitude";
         final String LONGITUDE = "longitude";
-        final String FACILITIES = "keyFacilities";
         final String NAME = "name";
         final String IMAGE = "images";
         final List<FlatListicle> items =  new ArrayList<>();
@@ -51,6 +50,7 @@ public class ListicleContentComponent extends PageContentComponent<Listicle> {
 
         //TODO:separate image, main product and optional cta in different methods ?
         for (ListicleItem listicleItem : listicle.getItems()) {
+            ObjectMapper mapper = new ObjectMapper();
             List<String> errors = new ArrayList<>();
             FlatListicle model = new FlatListicle(listicleItem);
             List<FlatLink> links = new ArrayList<>();
@@ -99,7 +99,7 @@ public class ListicleContentComponent extends PageContentComponent<Listicle> {
             if (listicleItem.getListicleItem() != null) {
                 if (listicleItem.getListicleItem() instanceof DMSLink) {
                     DMSLink dmsLink = (DMSLink) listicleItem.getListicleItem();
-                    JSONObject product;
+                    JsonNode product;
                     try {
                         product = CommonUtils.getProduct(dmsLink.getProduct(), request.getLocale());
                         if (product == null) {
@@ -107,40 +107,30 @@ public class ListicleContentComponent extends PageContentComponent<Listicle> {
                             logger.warn(CommonUtils.contentIssue("The product's id  wasn't provided for %s, Listicle = %s - %s",
                                     dmsLink.getProduct(), listicle.getPath(), listicleItem.getTitle()));
                         } else {
-
-                            List<JSONObject> facilities = new ArrayList<>();
                             if (product.has(ADDRESS)){
-                                JSONObject address = product.getJSONObject(ADDRESS);
+                                JsonNode address = product.get(ADDRESS);
                                 if (location== null && address.has(LOCATION)) {
-                                    location = address.getString(LOCATION);
+                                    location = address.get(LOCATION).asText();
                                 }
                             }
 
                               if (flatImage == null){
                                 if (product.has(IMAGE)){
-                                	JSONArray dmsImageList = product.getJSONArray(IMAGE);
-                                  	flatImage = new FlatImage( dmsImageList.getJSONObject(0),product.getString(NAME));
+                                    JsonNode dmsImageList = product.get(IMAGE);
+                                  	flatImage = new FlatImage(dmsImageList.get(0),product.get(NAME).asText());
                                   	if (product.has(LATITUDE) && product.has(LONGITUDE)){
-                                      Coordinates coordinates = new Coordinates(product.getDouble(LATITUDE), product.getDouble(LONGITUDE));
+                                      Coordinates coordinates = new Coordinates(product.get(LATITUDE).asDouble(), product.get(LONGITUDE).asDouble());
                                       flatImage.setCoordinates(coordinates);
                                   }
                                 }
                             }else{
-                               if (flatImage.getCoordinates() == null){
-                                    Coordinates coordinates = new Coordinates(product.getDouble(LATITUDE),product.getDouble(LONGITUDE));
-                                    flatImage.setCoordinates(coordinates);
-                                }
+                              if (flatImage.getCoordinates() == null){
+                                  Coordinates coordinates = new Coordinates(product.get(LATITUDE).asDouble(),product.get(LONGITUDE).asDouble());
+                                  flatImage.setCoordinates(coordinates);
+                              }
                             }
 
-                            if (product.has(FACILITIES)){
-                                JSONArray keyFacilitiesList = product.getJSONArray(FACILITIES);
-                                if (keyFacilitiesList!=null){
-                                    for (int i = 0; i < keyFacilitiesList.length(); i++) {
-                                        facilities.add(keyFacilitiesList.getJSONObject(i));
-                                     }
-                                 }
-                                model.setFacilities(facilities);
-                            }
+                             model.setFacilities(getFacilities(product));
 
                         }
                     } catch (IOException e) {
@@ -183,13 +173,13 @@ public class ListicleContentComponent extends PageContentComponent<Listicle> {
         if (item instanceof DMSLink) {
             DMSLink dmsLink = (DMSLink) item;
             try {
-                JSONObject product = CommonUtils.getProduct(dmsLink.getProduct(), request.getLocale());
+                JsonNode product = CommonUtils.getProduct(dmsLink.getProduct(), request.getLocale());
                 if (product == null) {
                     logger.warn(CommonUtils.contentIssue("There is no product with the id '%s', (%s) ",
                             dmsLink.getProduct(), getDocument(request).getPath()));
                 } else {
                     //TODO build the link for the DMS product properly
-                    return new FlatLink(this.getCtaLabel(dmsLink.getLabel(), request.getLocale()), Properties.VS_DMS_SERVICE + product.getString(URL));
+                    return new FlatLink(this.getCtaLabel(dmsLink.getLabel(), request.getLocale()), Properties.VS_DMS_SERVICE + product.get(URL).asText());
                 }
             } catch (IOException e) {
                 logger.error(String.format("Error while querying the DMS for '%s', (%s)",
