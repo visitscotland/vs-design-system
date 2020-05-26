@@ -2,7 +2,7 @@ const path = require('path');
 const merge = require('webpack-merge');
 const VueSSRClientPlugin = require('vue-server-renderer/client-plugin')
 
-const base = require('./webpack.ssr.base.config');
+const base = require('./webpack.system-components.conf');
 
 const entry = {
     'main-client': path.resolve(__dirname, '../ssr/src/client-entry.js'),
