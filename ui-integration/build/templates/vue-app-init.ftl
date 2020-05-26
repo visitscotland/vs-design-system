@@ -2,11 +2,11 @@
 <#include "./core.ftl">
 
 <@hst.headContribution category="htmlBodyEndScriptsFirst">
-    <script src="https://unpkg.com/vue@2.6.10/dist/vue.js"></script>
+    <script src="https://unpkg.com/vue@2.6.10/dist/vue.min.js"></script>
 </@hst.headContribution>
 
 <@hst.headContribution category="htmlBodyEndScriptsFirst">
-    <script src="https://unpkg.com/vuex@3.1.1/dist/vuex.js"></script>
+    <script src="https://unpkg.com/vuex@3.1.1/dist/vuex.min.js"></script>
 </@hst.headContribution>
 
 <@hst.headContribution category="htmlHead">
