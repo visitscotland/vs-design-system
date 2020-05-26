@@ -41,9 +41,6 @@ const webpackConfig = merge(mergeIE11Fix(baseWebpackConfig), {
       "components/[name].js" :
       "components/[chunkhash].js",
     ),
-    // This will give the chunks hash names rather than meaningful names
-    // Use this in real production
-    // filename: utils.assetsSystemPath("components/[chunkhash].js"),
     library: "[name]",
     libraryTarget: config.system.libraryTarget,
   },
