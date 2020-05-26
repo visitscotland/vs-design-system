@@ -39,7 +39,7 @@ public class ItineraryContentComponent extends PageContentComponent<Itinerary> {
         super.doBeforeRender(request, response);
 
         generateStops(request);
-        setCoordinates(request);
+        addHeroCoordinates(request);
     }
 
 

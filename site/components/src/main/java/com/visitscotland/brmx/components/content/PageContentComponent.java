@@ -44,7 +44,11 @@ public class PageContentComponent<TYPE extends Page> extends EssentialsContentCo
         initPage(request);
     }
 
-    protected void setCoordinates(HstRequest request) {
+    /**
+     * TODO Comment
+     * @param request
+     */
+    protected void addHeroCoordinates(HstRequest request) {
         LocationObject location = LocationLoader.getLocation(getDocument(request).getHeroImage().getLocation(), request.getLocale());
 
         if (location != null){

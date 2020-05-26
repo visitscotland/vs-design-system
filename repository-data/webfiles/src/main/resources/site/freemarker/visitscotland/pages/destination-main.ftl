@@ -49,7 +49,6 @@
 		<vs-container slot="upper" class="py-lg-4">
 			<vs-row class="justify-content-md-between">
 				<vs-col cols="12" lg="8" offset-lg="1">
-					<#-- TODO: BREADCRUMB as part of the main template -->
 					<@hst.include ref="breadcrumb"/>
 				</vs-col>
 			</vs-row>
@@ -76,7 +75,12 @@
 
   <#--TODO SPlit in macros-->
 	<#list pageItems as item>
-		<div class="has-edit-button">
+		<#if item.style="style1">
+			<#assign style = "lightgray" />
+		<#else>
+			<#assign style = "white" />
+		</#if>
+		<div class="has-edit-button" style="background-color:${style}">
 			<@hst.manageContent hippobean=item.megaLinkItem />
 			<vs-container slot="upper" class="py-lg-4" >
 				<vs-row>
@@ -202,7 +206,7 @@
 										${megaLink.teaser}
 									</#if>
 									</br>
-									<vs-link href="${megaLink.link}"> ${megaLink.label}</vs-link> </br>
+									<vs-link href="${megaLink.link}"> Find out more</vs-link> </br>
 									</br>
 								</vs-col>
 							</#list>
