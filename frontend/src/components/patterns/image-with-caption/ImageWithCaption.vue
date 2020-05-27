@@ -208,16 +208,18 @@ img {
     height: auto;
 }
 
-.vs-image-with-caption__toggle-caption-btn {
-    bottom: $spacer-2;
-    padding: 0;
-    right: $spacer-2;
-    line-height: $line_height_xs;
-    z-index: 3;
-    display: block;
+.vs-image-with-caption__image-wrapper {
+    .vs-image-with-caption__toggle-caption-btn {
+        bottom: $spacer-2;
+        padding: 0;
+        right: $spacer-2;
+        line-height: $line_height_xs;
+        z-index: 3;
+        display: block;
 
-    @include media-breakpoint-up(sm) {
-        display: none;
+        @include media-breakpoint-up(sm) {
+            display: none;
+        }
     }
 }
 
