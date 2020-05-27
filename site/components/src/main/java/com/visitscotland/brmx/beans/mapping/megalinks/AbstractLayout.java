@@ -16,6 +16,10 @@ public abstract class AbstractLayout<L extends FlatLink> {
     private MegaLinks megaLinkItem;
     private String style;
 
+    public String getType(){
+        return getClass().getSimpleName();
+    }
+
     public String getTitle() {
         return title;
     }
