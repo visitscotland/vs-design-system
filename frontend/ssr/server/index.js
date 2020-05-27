@@ -8,8 +8,8 @@ const { renderPage, initRenderer } = require("./ssr");
 const { getPage } = require("./proxy");
 
 // Port range for the Node app
-const minPort = 3000;
-const maxPort = 3100;
+const minPort = 8082;
+const maxPort = 8082;
 
 const app = express();
 
