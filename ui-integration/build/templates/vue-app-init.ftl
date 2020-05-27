@@ -15,5 +15,12 @@
 		vs = {
             stores: {}
         }
+
+        // remove no-js class 
+        var elements = document.getElementsByClassName("no-js")
+
+        if(elements.length > 0) {
+            elements[0].className = elements[0].className.replace(/(\\s|^)no-js(\\s|$)/, "")
+        }
 	</script>
 </@hst.headContribution>
