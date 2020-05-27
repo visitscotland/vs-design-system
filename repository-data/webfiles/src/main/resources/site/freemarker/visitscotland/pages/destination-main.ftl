@@ -75,7 +75,7 @@
 
   <#--TODO SPlit in macros-->
 	<#list pageItems as item>
-		<#if item.style="style1">
+		<#if item.style="style3">
 			<#assign style = "lightgray" />
 		<#else>
 			<#assign style = "white" />

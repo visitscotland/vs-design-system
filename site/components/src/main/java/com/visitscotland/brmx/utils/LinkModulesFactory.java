@@ -1,8 +1,11 @@
 package com.visitscotland.brmx.utils;
 
+import com.visitscotland.brmx.beans.Image;
 import com.visitscotland.brmx.beans.MegaLinkItem;
 import com.visitscotland.brmx.beans.MegaLinks;
 import com.visitscotland.brmx.beans.Page;
+import com.visitscotland.brmx.beans.dms.LocationObject;
+import com.visitscotland.brmx.beans.mapping.Coordinates;
 import com.visitscotland.brmx.beans.mapping.FlatImage;
 import com.visitscotland.brmx.beans.mapping.FlatLink;
 import com.visitscotland.brmx.beans.mapping.megalinks.*;
@@ -37,7 +40,7 @@ public class LinkModulesFactory {
 
         sil.setInnerTitle(doc.getSingleImageModule().getTitle());
         sil.setInnerIntroduction(doc.getSingleImageModule().getIntroduction());
-        sil.setImage(new FlatImage(doc.getSingleImageModule().getImage(), locale));
+        sil.setImage(createFlatImage(doc.getSingleImageModule().getImage(),locale));
         sil.setFullWidth(doc.getSingleImageModule().getFullWidth());
         sil.setLinks(convertoToFlatLinks(doc.getMegaLinkItems()));
         sil.setMegaLinkItem(doc);
@@ -137,7 +140,7 @@ public class LinkModulesFactory {
                 link.setTeaser(((Page) item.getLink()).getTeaser());
                 link.setLabel(((Page) item.getLink()).getTitle());
                 link.setLink(HippoUtils.createUrl(item.getLink()));
-                link.setImage(new FlatImage(((Page) item.getLink()).getHeroImage(), locale));
+                link.setImage(createFlatImage(((Page) item.getLink()).getHeroImage(),locale));
                 link.setFeatured(item.getFeature());
 
                 links.add(link);
@@ -150,7 +153,16 @@ public class LinkModulesFactory {
     }
 
 
+    private FlatImage createFlatImage(Image img, Locale locale) {
 
+        FlatImage flatImage = new FlatImage(img, locale);
+        LocationObject locationObject = LocationLoader.getLocation(img.getLocation(), locale);
+        if (locationObject!=null) {
+            flatImage.setCoordinates(new Coordinates(locationObject.getLatitude(), locationObject.getLongitude()));
+        }
+
+        return flatImage;
+    }
 
 
 }
