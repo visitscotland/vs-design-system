@@ -85,7 +85,7 @@ export default {
         text-transform: none !important;
         letter-spacing: initial;
         padding: $spacer-3;
-        line-height: 1;
+        line-height: $line-height-xs;
         font-weight: 500;
 
         &:hover {
@@ -96,6 +96,12 @@ export default {
 
         &:focus {
             box-shadow: 0 0 0 1px $color-yellow;
+        }
+    }
+
+    @include media-breakpoint-up(sm) {
+        .btn.vs-accordion-toggle {
+            padding: $spacer-3 $spacer-6;
         }
     }
 
@@ -122,49 +128,46 @@ export default {
   ```js
     <vs-footer>
         <vs-footer-nav-list break-point="md">
-            <vs-row>
-                <vs-col cols="12" md="6">
-                    <vs-footer-accordion-item
-                        :openByDefault="true"
-                        variant="dark"
-                        control-id="1"
-                        class="border-left-0"
-                    >
-                        <span slot="title">
-                            Find us on
-                        </span>
+            <vs-col cols="12" md="6">
+                <vs-footer-accordion-item
+                    :openByDefault="true"
+                    variant="dark"
+                    control-id="1"
+                    class="border-left-0"
+                >
+                    <span slot="title">
+                        Find us on
+                    </span>
 
-                        <span slot="icon-open">
-                            <vs-icon name="chevron-up" variant="light" size="xs" />
-                        </span>
+                    <span slot="icon-open">
+                        <vs-icon name="chevron-up" variant="light" size="xs" />
+                    </span>
 
-                        <span slot="icon-closed">
-                            <vs-icon name="chevron-right" variant="light" size="xs" />
-                        </span>
+                    <span slot="icon-closed">
+                        <vs-icon name="chevron-right" variant="light" size="xs" />
+                    </span>
 
-                        <vs-list unstyled class="pb-2">
-                            <vs-footer-social-item
-                                href="#"
-                                icon="facebook"
-                            ></vs-footer-social-item>
-                            <vs-footer-social-item
-                                href="#"
-                                icon="twitter"
-                            ></vs-footer-social-item>
-                            <vs-footer-social-item
-                                href="#"
-                                icon="youtube"
-                            ></vs-footer-social-item>
-                            <vs-footer-social-item
-                                href="#"
-                                icon="instagram"
-                            ></vs-footer-social-item>
-                        </vs-list>
-                    </vs-footer-accordion-item>
-                </vs-col>
-            </vs-row>
+                    <vs-list unstyled class="pb-2">
+                        <vs-footer-social-item
+                            href="#"
+                            icon="facebook"
+                        ></vs-footer-social-item>
+                        <vs-footer-social-item
+                            href="#"
+                            icon="twitter"
+                        ></vs-footer-social-item>
+                        <vs-footer-social-item
+                            href="#"
+                            icon="youtube"
+                        ></vs-footer-social-item>
+                        <vs-footer-social-item
+                            href="#"
+                            icon="instagram"
+                        ></vs-footer-social-item>
+                    </vs-list>
+                </vs-footer-accordion-item>
+            </vs-col>
         </vs-footer-nav-list>
     </vs-footer>
-
   ```
 </docs>

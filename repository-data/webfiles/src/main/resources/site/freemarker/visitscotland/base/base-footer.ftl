@@ -17,86 +17,117 @@
 
 <vs-footer class="has-edit-button">
     <#if enhancedMenu??>
-            <vs-footer-nav-list break-point="md">
+        <vs-footer-nav-list break-point="md">
+            <#list enhancedMenu as item>
+                <vs-col cols="12" md="4" lg="3">
+                    <vs-footer-accordion-item
+                        :open-by-default="false" 
+                        variant="dark" 
+                        control-id="${item?index}" 
+                        class="<#if item?is_first>border-left-0 pl-md-0</#if> <#if item?is_last>border-bottom-0</#if>"
+                    >
+                        <span slot="title">
+                            <#if !item.hstLink?? && !item.externalLink??>
+                                ${item.title?html}
+                            <#else>
+                                <#if item.hstLink??>
+                                    <#assign href><@hst.link link=item.hstLink/></#assign>
+                                <#elseif item.externalLink??>
+                                    <#assign href>${item.externalLink?replace("\"", "")}</#assign>
+                                </#if>
+                            </#if>
+                        </span>
+
+                        <span slot="icon-open">
+                            <vs-icon name="chevron-up" variant="light" size="xs" />
+                        </span>
+
+                        <span slot="icon-closed">
+                            <vs-icon name="chevron-right" variant="light" size="xs" />
+                        </span>
+
+                        <vs-list unstyled class="pb-2">
+                            <#list item.childMenuItems as children>
+                                <#assign href = "">
+                                <#assign external = false>
+
+                                <#if children.hstLink??>
+                                    <#assign href><@hst.link link=children.hstLink/></#assign>
+                                <#elseif children.externalLink??>
+                                    <#assign href>${children.externalLink}</#assign>
+                                    <#assign external = true>
+                                </#if>
+
+                                <vs-footer-nav-list-item
+                                    href="${href}"
+                                    link-text="${children.title}"
+                                    :external="<#if external>true<#else>false</#if>"
+                                ></vs-footer-nav-list-item>
+                            </#list>
+                        </vs-list>
+                    </vs-accordion-item>
+                </vs-col>
+            </#list>
+                <vs-col cols="12" lg="3" xl="2" class="d-none d-lg-block">
+                    <vs-footer-social-menu>
+                        <span slot="title">
+                            ${label("navigation", "footer.find-us-on")}
+                        </span>
+
+                        <vs-list unstyled class="mt-5 mt-md-0 mt-lg-5 pr-lg-8 pr-xl-4">
+                            <vs-footer-social-item
+                                href="#"
+                                icon="facebook"
+                            ></vs-footer-social-item>
+                            <vs-footer-social-item
+                                href="#"
+                                icon="twitter"
+                            ></vs-footer-social-item>
+                            <vs-footer-social-item
+                                href="#"
+                                icon="youtube"
+                            ></vs-footer-social-item>
+                            <vs-footer-social-item
+                                href="#"
+                                icon="instagram"
+                            ></vs-footer-social-item>
+                        </vs-list>
+                    </vs-footer-social-menu>
+                </vs-col>
+        </vs-footer-nav-list>
+
+        <div class="border-top border-secondary-light">
+            <vs-container class="vs-footer-social-menu__wrapper">
                 <vs-row>
-                    <#list enhancedMenu as item>
-                        <vs-col cols="12" md="4" lg="3">
-                            <vs-footer-accordion-item
-                                :openByDefault="false" 
-                                variant="dark" 
-                                control-id="${item?index}" 
-                                class="<#if item?index == 0>border-left-0 pl-md-0</#if>"
-                            >
-                                <span slot="title">
-                                    <#if !item.hstLink?? && !item.externalLink??>
-                                        ${item.title?html}
-                                    <#else>
-                                        <#if item.hstLink??>
-                                            <#assign href><@hst.link link=item.hstLink/></#assign>
-                                        <#elseif item.externalLink??>
-                                            <#assign href>${item.externalLink?replace("\"", "")}</#assign>
-                                        </#if>
-                                    </#if>
-                                </span>
+                    <vs-col cols="12" class="d-block d-lg-none">
+                        <vs-footer-social-menu>
+                            <span slot="title">
+                                Find us on
+                            </span>
 
-                                <span slot="icon-open">
-                                    <vs-icon name="chevron-up" variant="light" size="xs" />
-                                </span>
-
-                                <span slot="icon-closed">
-                                    <vs-icon name="chevron-right" variant="light" size="xs" />
-                                </span>
-
-                                <vs-list unstyled class="pb-2">
-                                    <#list item.childMenuItems as children>
-                                        <#assign href = "">
-                                        <#assign external = false>
-
-                                        <#if children.hstLink??>
-                                            <#assign href><@hst.link link=children.hstLink/></#assign>
-                                        <#elseif children.externalLink??>
-                                            <#assign href>${children.externalLink}</#assign>
-                                            <#assign external = true>
-                                        </#if>
-
-                                        <vs-footer-nav-list-item
-                                            href="${href}"
-                                            link-text="${children.title}"
-                                            :external="<#if external>true<#else>false</#if>"
-                                        ></vs-footer-nav-list-item>
-                                    </#list>
-                                </vs-list>
-                            </vs-accordion-item>
-                        </vs-col>
-                    </#list>
-                        <vs-col cols="12" lg="3" xl="2">
-                            <vs-footer-social-menu>
-                                <span slot="title">
-                                    ${label("navigation", "footer.find-us-on")}
-                                </span>
-
-                                <vs-list unstyled class="mt-5 mt-md-0 mt-lg-5 pr-lg-8 pr-xl-4">
-                                    <vs-footer-social-item
-                                        href="#"
-                                        icon="facebook"
-                                    ></vs-footer-social-item>
-                                    <vs-footer-social-item
-                                        href="#"
-                                        icon="twitter"
-                                    ></vs-footer-social-item>
-                                    <vs-footer-social-item
-                                        href="#"
-                                        icon="youtube"
-                                    ></vs-footer-social-item>
-                                    <vs-footer-social-item
-                                        href="#"
-                                        icon="instagram"
-                                    ></vs-footer-social-item>
-                                </vs-list>
-                            </vs-footer-social-menu>
-                        </vs-col>
+                            <vs-list unstyled class="mt-5 mt-md-0 mt-lg-5 pr-lg-8 pr-xl-4">
+                                <vs-footer-social-item
+                                    href="#"
+                                    icon="facebook"
+                                ></vs-footer-social-item>
+                                <vs-footer-social-item
+                                    href="#"
+                                    icon="twitter"
+                                ></vs-footer-social-item>
+                                <vs-footer-social-item
+                                    href="#"
+                                    icon="youtube"
+                                ></vs-footer-social-item>
+                                <vs-footer-social-item
+                                    href="#"
+                                    icon="instagram"
+                                ></vs-footer-social-item>
+                            </vs-list>
+                        </vs-footer-social-menu>
+                    </vs-col>
                 </vs-row>
-            </vs-footer-nav-list>
+            </vs-container>
+        </div>
         <@hst.cmseditmenu menu=menu/>
         <#--  <@hst.include ref="utility"/>  -->
     </#if>
