@@ -4,8 +4,6 @@ const vueTemplateCompiler = require("vue-template-compiler");
 const cheerio = require("cheerio");
 const { html: beautifyHtml } = require("js-beautify");
 
-const setupDevServer = require("./setup-dev-server");
-
 const serverBundle = require("../../dist/ssr/server/vue-ssr-server-bundle.json");
 const clientManifest = require("../../dist/ssr/client/vue-ssr-client-manifest.json");
 
@@ -124,7 +122,8 @@ const renderPage = async (pageHtml) => {
  */
 const initRenderer = (nodeApp) => {
     if (process.env.NODE_ENV === "development") {
-        setupDevServer(nodeApp, (freshBundle) => {
+        // eslint-disable-next-line global-require
+        require("./setup-dev-server")(nodeApp, (freshBundle) => {
             renderer = createRenderer(freshBundle);
         })
     } else {
