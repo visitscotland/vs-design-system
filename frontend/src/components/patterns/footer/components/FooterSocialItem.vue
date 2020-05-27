@@ -19,8 +19,8 @@ import VsLink from "@components/elements/link/Link"
 import VsIcon from "@components/elements/icon/Icon"
 
 /**
- * The FooterNavListItems is used inside the FooterNavList to
- * show an indivudal footer link.
+ * The FooterSocialItem is used inside the FooterSocialMenu to
+ * show a button for a social media link.
  */
 
 export default {
@@ -67,7 +67,7 @@ export default {
         display: block;
         height: 45px;
         width: 45px;
-        transition: all .2s;
+        transition: all 0.2s;
 
         &.facebook {
             &:hover {
@@ -122,49 +122,46 @@ export default {
   ```js
     <vs-footer>
         <vs-footer-nav-list break-point="md">
-            <vs-row>
-                <vs-col cols="12" md="6">
-                    <vs-accordion-item
-                        :openByDefault="true"
-                        variant="dark"
-                        control-id="1"
-                        class="border-left-0"
-                    >
-                        <span slot="title">
-                            Find us on
-                        </span>
+            <vs-col cols="12" md="6">
+                <vs-accordion-item
+                    :openByDefault="true"
+                    variant="dark"
+                    control-id="1"
+                    class="border-left-0"
+                >
+                    <span slot="title">
+                        Find us on
+                    </span>
 
-                        <span slot="icon-open">
-                            <vs-icon name="chevron-up" variant="light" size="xs" />
-                        </span>
+                    <span slot="icon-open">
+                        <vs-icon name="chevron-up" variant="light" size="xs" />
+                    </span>
 
-                        <span slot="icon-closed">
-                            <vs-icon name="chevron-right" variant="light" size="xs" />
-                        </span>
+                    <span slot="icon-closed">
+                        <vs-icon name="chevron-right" variant="light" size="xs" />
+                    </span>
 
-                        <vs-list unstyled class="pb-2">
-                            <vs-footer-social-item
-                                href="#"
-                                icon="facebook"
-                            ></vs-footer-social-item>
-                            <vs-footer-social-item
-                                href="#"
-                                icon="twitter"
-                            ></vs-footer-social-item>
-                            <vs-footer-social-item
-                                href="#"
-                                icon="youtube"
-                            ></vs-footer-social-item>
-                            <vs-footer-social-item
-                                href="#"
-                                icon="instagram"
-                            ></vs-footer-social-item>
-                        </vs-list>
-                    </vs-accordion-item>
-                </vs-col>
-            </vs-row>
+                    <vs-list unstyled class="pb-2">
+                        <vs-footer-social-item
+                            href="#"
+                            icon="facebook"
+                        ></vs-footer-social-item>
+                        <vs-footer-social-item
+                            href="#"
+                            icon="twitter"
+                        ></vs-footer-social-item>
+                        <vs-footer-social-item
+                            href="#"
+                            icon="youtube"
+                        ></vs-footer-social-item>
+                        <vs-footer-social-item
+                            href="#"
+                            icon="instagram"
+                        ></vs-footer-social-item>
+                    </vs-list>
+                </vs-accordion-item>
+            </vs-col>
         </vs-footer-nav-list>
     </vs-footer>
-
   ```
 </docs>
