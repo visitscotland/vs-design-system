@@ -65,6 +65,9 @@ props:
     - name: color_theme_light
       value: "#EFEFEF"
       category: "Theme colours"
+    - name: color_theme_secondary_light
+      value: "#666666"
+      category: "Theme colours"
     - name: color_theme_dark
       value: "#191919"
       category: "Theme colours"

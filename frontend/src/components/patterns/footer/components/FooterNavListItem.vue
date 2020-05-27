@@ -83,47 +83,45 @@ export default {
   ```js
     <vs-footer>
         <vs-footer-nav-list break-point="md">
-            <vs-row>
-                <vs-col cols="12" md="6">
-                    <vs-footer-accordion-item
-                        :openByDefault="false"
-                        variant="dark"
-                        aria-control-id="1"
-                        class="border-left-0"
-                    >
-                        <span slot="title">
-                            Visitor information
-                        </span>
+            <vs-col cols="12" md="6">
+                <vs-footer-accordion-item
+                    :openByDefault="false"
+                    variant="dark"
+                    aria-control-id="1"
+                    class="border-left-0"
+                >
+                    <span slot="title">
+                        Visitor information
+                    </span>
 
-                        <span slot="icon-open">
-                            <vs-icon name="chevron-up" variant="light" size="xs" />
-                        </span>
+                    <span slot="icon-open">
+                        <vs-icon name="chevron-up" variant="light" size="xs" />
+                    </span>
 
-                        <span slot="icon-closed">
-                            <vs-icon name="chevron-right" variant="light" size="xs" />
-                        </span>
+                    <span slot="icon-closed">
+                        <vs-icon name="chevron-right" variant="light" size="xs" />
+                    </span>
 
-                        <vs-list unstyled class="pb-2">
-                            <vs-footer-nav-list-item
-                                href="#"
-                                link-text="Brochures"
-                            ></vs-footer-nav-list-item>
-                            <vs-footer-nav-list-item
-                                href="#"
-                                link-text="VisitScotland iCentres"
-                            ></vs-footer-nav-list-item>
-                            <vs-footer-nav-list-item
-                                href="#"
-                                link-text="iKnow Scotland Community"
-                            ></vs-footer-nav-list-item>
-                            <vs-footer-nav-list-item
-                                href="#"
-                                link-text="VisitScotland Awards"
-                            ></vs-footer-nav-list-item>
-                        </vs-list>
-                    </vs-footer-accordion-item>
-                </vs-col>
-            </vs-row>
+                    <vs-list unstyled class="pb-2">
+                        <vs-footer-nav-list-item
+                            href="#"
+                            link-text="Brochures"
+                        ></vs-footer-nav-list-item>
+                        <vs-footer-nav-list-item
+                            href="#"
+                            link-text="VisitScotland iCentres"
+                        ></vs-footer-nav-list-item>
+                        <vs-footer-nav-list-item
+                            href="#"
+                            link-text="iKnow Scotland Community"
+                        ></vs-footer-nav-list-item>
+                        <vs-footer-nav-list-item
+                            href="#"
+                            link-text="VisitScotland Awards"
+                        ></vs-footer-nav-list-item>
+                    </vs-list>
+                </vs-footer-accordion-item>
+            </vs-col>
         </vs-footer-nav-list>
     </vs-footer>
 
