@@ -1,23 +1,13 @@
 <template>
     <li class="vs-footer-social-item">
-        <VsLink
+        <VsSocialSquareButton
             :href="href"
-            :external="true"
-            :class="icon"
-        >
-            <VsIcon
-                :name="icon"
-                variant="light"
-                size="sm"
-            />
-        </VsLink>
+            :icon="icon"
+        />
     </li>
 </template>
 
 <script>
-import VsLink from "@components/elements/link/Link"
-import VsIcon from "@components/elements/icon/Icon"
-
 /**
  * The FooterSocialItem is used inside the FooterSocialMenu to
  * show a button for a social media link.
@@ -25,10 +15,6 @@ import VsIcon from "@components/elements/icon/Icon"
 
 export default {
     name: "VsFooterSocialItem",
-    components: {
-        VsLink,
-        VsIcon,
-    },
     props: {
         /**
          * The URL the link will point to
@@ -56,65 +42,8 @@ export default {
     display: inline-block;
     text-decoration: none;
     padding: 0;
-    margin-right: $spacer-2;
-    margin-bottom: $spacer-2;
-
-    .vs-link.primary {
-        background: $color-gray-shade-1;
-        box-shadow: 0 0 0 2px $color-gray-shade-7;
-        border: 1px solid $color-gray-shade-7;
-        border-radius: 0.5rem;
-        display: block;
-        height: 45px;
-        width: 45px;
-        transition: all 0.2s;
-
-        &.facebook {
-            &:hover {
-                background: $color-facebook;
-            }
-        }
-        &.instagram {
-            &:hover {
-                background: $color-instagram;
-            }
-        }
-        &.twitter {
-            &:hover {
-                background: $color-twitter;
-            }
-        }
-        &.youtube {
-            &:hover {
-                background: $color-youtube;
-            }
-        }
-
-        &:hover {
-            text-decoration: underline;
-        }
-
-        &:focus {
-            outline: none;
-            border: 1px solid $color-pink;
-            box-shadow: 0 0 0 2px $color-pink-tint-5;
-        }
-
-        .icon {
-            &.icon-sm {
-                height: 100%;
-                width: 24px;
-                padding: 0;
-                margin: 0 auto;
-                fill: $color-white;
-                display: block;
-            }
-
-            &.icon-external-link {
-                display: none;
-            }
-        }
-    }
+    margin-right: $spacer-3;
+    margin-bottom: $spacer-3;
 }
 </style>
 
