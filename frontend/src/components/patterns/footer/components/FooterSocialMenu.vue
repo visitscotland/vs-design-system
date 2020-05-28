@@ -5,12 +5,18 @@
             <slot name="title" />
         </h4>
 
-        <!-- @slot The default slot is the content for the menu social items -->
-        <slot />
+        <VsList
+            unstyled
+            class="mt-5 mt-md-0 mt-lg-5 pr-lg-8 pr-xl-4"
+        >
+            <!-- @slot The default slot is the content for the menu social items -->
+            <slot />
+        </VsList>
     </div>
 </template>
 
 <script>
+import VsList from "@components/elements/list/List"
 
 /**
  * The FooterSocialMenu is used inside the FooterNavList.
@@ -19,6 +25,9 @@
 
 export default {
     name: "VsFooterSocialMenu",
+    components: {
+        VsList,
+    },
 }
 </script>
 
@@ -59,24 +68,22 @@ export default {
                         Find us on
                     </span>
 
-                    <vs-list unstyled class="mt-5 mt-md-0 mt-lg-5 pr-lg-8 pr-xl-4">
-                        <vs-footer-social-item
-                            href="#"
-                            icon="facebook"
-                        ></vs-footer-social-item>
-                        <vs-footer-social-item
-                            href="#"
-                            icon="twitter"
-                        ></vs-footer-social-item>
-                        <vs-footer-social-item
-                            href="#"
-                            icon="youtube"
-                        ></vs-footer-social-item>
-                        <vs-footer-social-item
-                            href="#"
-                            icon="instagram"
-                        ></vs-footer-social-item>
-                    </vs-list>
+                    <vs-footer-social-item
+                        href="#"
+                        icon="facebook"
+                    ></vs-footer-social-item>
+                    <vs-footer-social-item
+                        href="#"
+                        icon="twitter"
+                    ></vs-footer-social-item>
+                    <vs-footer-social-item
+                        href="#"
+                        icon="youtube"
+                    ></vs-footer-social-item>
+                    <vs-footer-social-item
+                        href="#"
+                        icon="instagram"
+                    ></vs-footer-social-item>
                 </vs-footer-social-menu>
             </vs-col>
         </vs-footer-nav-list>
