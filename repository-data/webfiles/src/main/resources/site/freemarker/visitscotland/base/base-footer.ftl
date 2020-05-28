@@ -1,15 +1,12 @@
 <#include "../../include/imports.ftl">
 <#include "../../vs-dotcom-ds/components/footer.ftl">
-<#include "../../vs-dotcom-ds/components/footer-accordion-item.ftl">
-<#include "../../vs-dotcom-ds/components/footer-social-menu.ftl">
 <#include "../../vs-dotcom-ds/components/footer-nav-list.ftl">
-<#include "../../vs-dotcom-ds/components/footer-nav-list-item.ftl">
-<#include "../../vs-dotcom-ds/components/footer-social-item.ftl">
-<#include "../../vs-dotcom-ds/components/icon.ftl">
 <#include "../../vs-dotcom-ds/components/container.ftl">
 <#include "../../vs-dotcom-ds/components/row.ftl">
 <#include "../../vs-dotcom-ds/components/col.ftl">
-<#include "../../vs-dotcom-ds/components/list.ftl">
+
+<#include "../macros/modules/footer/footer-accordion-item.ftl">
+<#include "../macros/modules/footer/footer-social-menu.ftl">
 
 <#-- @ftlvariable name="menu" type="org.hippoecm.hst.core.sitemenu.HstSiteMenu" -->
 <#-- @ftlvariable name="enhancedMenu" type="java.util.List" -->
@@ -18,112 +15,18 @@
 <vs-footer class="has-edit-button">
     <#if enhancedMenu??>
         <vs-footer-nav-list break-point="md">
-            <#list enhancedMenu as item>
-                <vs-col cols="12" md="4" lg="3">
-                    <vs-footer-accordion-item
-                        :open-by-default="false" 
-                        variant="dark" 
-                        control-id="${item?index}" 
-                        class="<#if item?is_first>border-left-0 pl-md-0</#if> <#if item?is_last>border-bottom-0</#if>"
-                    >
-                        <span slot="title">
-                            <#if !item.hstLink?? && !item.externalLink??>
-                                ${item.title?html}
-                            <#else>
-                                <#if item.hstLink??>
-                                    <#assign href><@hst.link link=item.hstLink/></#assign>
-                                <#elseif item.externalLink??>
-                                    <#assign href>${item.externalLink?replace("\"", "")}</#assign>
-                                </#if>
-                            </#if>
-                        </span>
-
-                        <span slot="icon-open">
-                            <vs-icon name="chevron-up" variant="light" size="xs" />
-                        </span>
-
-                        <span slot="icon-closed">
-                            <vs-icon name="chevron-right" variant="light" size="xs" />
-                        </span>
-
-                        <vs-list unstyled class="pb-2">
-                            <#list item.childMenuItems as children>
-                                <#assign href = "">
-                                <#assign external = false>
-
-                                <#if children.hstLink??>
-                                    <#assign href><@hst.link link=children.hstLink/></#assign>
-                                <#elseif children.externalLink??>
-                                    <#assign href>${children.externalLink}</#assign>
-                                    <#assign external = true>
-                                </#if>
-
-                                <vs-footer-nav-list-item
-                                    href="${href}"
-                                    link-text="${children.title}"
-                                    :external="<#if external>true<#else>false</#if>"
-                                ></vs-footer-nav-list-item>
-                            </#list>
-                        </vs-list>
-                    </vs-accordion-item>
-                </vs-col>
-            </#list>
-                <vs-col cols="12" lg="3" xl="2" class="d-none d-lg-block">
-                    <vs-footer-social-menu>
-                        <span slot="title">
-                            ${label("navigation", "footer.find-us-on")}
-                        </span>
-
-                        <vs-list unstyled class="mt-5 mt-md-0 mt-lg-5 pr-lg-8 pr-xl-4">
-                            <vs-footer-social-item
-                                href="#"
-                                icon="facebook"
-                            ></vs-footer-social-item>
-                            <vs-footer-social-item
-                                href="#"
-                                icon="twitter"
-                            ></vs-footer-social-item>
-                            <vs-footer-social-item
-                                href="#"
-                                icon="youtube"
-                            ></vs-footer-social-item>
-                            <vs-footer-social-item
-                                href="#"
-                                icon="instagram"
-                            ></vs-footer-social-item>
-                        </vs-list>
-                    </vs-footer-social-menu>
-                </vs-col>
+            <@footerAccordionItem footerMenuItems=enhancedMenu />
+               
+            <vs-col cols="12" lg="3" xl="2" class="d-none d-lg-block">
+                <@footerSocialMenu />
+            </vs-col>
         </vs-footer-nav-list>
 
         <div class="border-top border-secondary-light">
             <vs-container class="vs-footer-social-menu__wrapper">
                 <vs-row>
                     <vs-col cols="12" class="d-block d-lg-none">
-                        <vs-footer-social-menu>
-                            <span slot="title">
-                                Find us on
-                            </span>
-
-                            <vs-list unstyled class="mt-5 mt-md-0 mt-lg-5 pr-lg-8 pr-xl-4">
-                                <vs-footer-social-item
-                                    href="#"
-                                    icon="facebook"
-                                ></vs-footer-social-item>
-                                <vs-footer-social-item
-                                    href="#"
-                                    icon="twitter"
-                                ></vs-footer-social-item>
-                                <vs-footer-social-item
-                                    href="#"
-                                    icon="youtube"
-                                ></vs-footer-social-item>
-                                <vs-footer-social-item
-                                    href="#"
-                                    icon="instagram"
-                                ></vs-footer-social-item>
-                            </vs-list>
-                        </vs-footer-social-menu>
+                        <@footerSocialMenu />
                     </vs-col>
                 </vs-row>
             </vs-container>
