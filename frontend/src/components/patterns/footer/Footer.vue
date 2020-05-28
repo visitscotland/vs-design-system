@@ -175,24 +175,23 @@ export default {
                         Find us on
                     </span>
 
-                    <vs-list unstyled class="mt-5 mt-md-0 mt-lg-5 pr-lg-8 pr-xl-4">
-                        <vs-footer-social-item
-                            href="#"
-                            icon="facebook"
-                        ></vs-footer-social-item>
-                        <vs-footer-social-item
-                            href="#"
-                            icon="twitter"
-                        ></vs-footer-social-item>
-                        <vs-footer-social-item
-                            href="#"
-                            icon="youtube"
-                        ></vs-footer-social-item>
-                        <vs-footer-social-item
-                            href="#"
-                            icon="instagram"
-                        ></vs-footer-social-item>
-                    </vs-list>
+
+                    <vs-footer-social-item
+                        href="#"
+                        icon="facebook"
+                    ></vs-footer-social-item>
+                    <vs-footer-social-item
+                        href="#"
+                        icon="twitter"
+                    ></vs-footer-social-item>
+                    <vs-footer-social-item
+                        href="#"
+                        icon="youtube"
+                    ></vs-footer-social-item>
+                    <vs-footer-social-item
+                        href="#"
+                        icon="instagram"
+                    ></vs-footer-social-item>
                 </vs-footer-social-menu>
             </vs-col>
         </vs-footer-nav-list>
@@ -205,8 +204,7 @@ export default {
                                 Find us on
                             </span>
 
-                            <vs-list unstyled class="mt-5 mt-md-0 mt-lg-5 pr-lg-8 pr-xl-4">
-                                <vs-footer-social-item
+                            <vs-footer-social-item
                                     href="#"
                                     icon="facebook"
                                 ></vs-footer-social-item>
@@ -222,7 +220,6 @@ export default {
                                     href="#"
                                     icon="instagram"
                                 ></vs-footer-social-item>
-                            </vs-list>
                         </vs-footer-social-menu>
                     </vs-col>
                 </vs-row>
