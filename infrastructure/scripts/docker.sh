@@ -248,12 +248,13 @@ if [ "$VS_SSR_PROXY_ON" = "TRUE" ] && [ ! "$SAFE_TO_PROCEED" = "FALSE" ]; then
 fi
 
 # create Docker container
-if [ ! "$SAFE_TO_PROCEED" = "FALSE" ] && [ "TRUE" = "TRUE" ] && [ "TRUE" = "TRUE" ]; then
+if [ ! "$SAFE_TO_PROCEED" = "FALSE" ]; then
   sleep 5
   if [ "$VS_SSR_PROXY_ON" = "TRUE" ]; then
     VS_CONTAINER_EXPOSE_PORT=$VS_SSR_APP_PORT
   else
     VS_CONTAINER_EXPOSE_PORT=$VS_HIPPO_TOMCAT_PORT
+  fi
   echo ""
   echo "about to create a new Docker container with:"
   VS_DOCKER_CMD=docker run -d --name $CONTAINER_NAME -p $PORT:$VS_CONTAINER_EXPOSE_PORT --env VS_SSR_PROXY_ON=$VS_SSR_PROXY_ON --env VS_SSR_PACKAGE_NAME=$VS_SSR_PACKAGE_NAME $DOCKERFILE_NAME /bin/bash -c "/usr/local/bin/vs-mysqld-start && /usr/local/bin/vs-hippo && while [ ! -f /home/hippo/tomcat_8080/logs/cms.log ]; do echo no log; sleep 2; done; tail -f /home/hippo/tomcat_8080/logs/cms.log"
@@ -280,7 +281,11 @@ if [ ! "$SAFE_TO_PROCEED" = "FALSE" ]; then
     SAFE_TO_PROCEED=FALSE
     FAIL_REASON="Docker failed to run cp command against $CONTAINER_NAME, command exited with $RETURN_CODE"
   fi
+else
+  echo ""
+  echo "docker cp will not be run due to previous failures"
 fi
+
 if [ "VS_SSR_PROXY_ON" = "TRUE" ] && [ ! "$SAFE_TO_PROCEED" = "FALSE" ]; then
   echo ""
   echo "about to copy $VS_SSR_PACKAGE_NAME to container $CONTAINER_NAME:/home/hippo"
