@@ -49,6 +49,8 @@ export default {
 <style lang="scss" scoped>
 .vs-list {
     &.unstyled {
+        padding: 0;
+        margin: 0;
         list-style: none;
     }
 
