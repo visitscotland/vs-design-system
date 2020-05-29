@@ -12,7 +12,6 @@ public abstract class AbstractLayout<L extends FlatLink> {
     private HippoHtml introduction;
     private List<L> links;
     private FlatLink cta;
-    //reference for edit mode
     private MegaLinks megaLinkItem;
     private String style;
 

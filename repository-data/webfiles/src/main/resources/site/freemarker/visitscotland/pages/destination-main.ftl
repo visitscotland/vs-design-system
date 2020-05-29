@@ -98,7 +98,7 @@
 
 
 				<#--Macro for Featured-->
-				<#if item.featuredLinks?? >
+				<#if item.getType()== "FeaturedLayout" >
 					<#list item.featuredLinks as feature>
 						<#assign image>
 							<@hst.link hippobean=feature.image.cmsImage.original/>
@@ -142,7 +142,7 @@
 					</vs-row>
 					</br> </br>
 				<#--Macro for single image-->
-				<#elseif item.image??>
+				<#elseif item.getType()== "SingleImageLayout">
 					<#assign image>
 						<@hst.link hippobean=item.image.cmsImage.original/>
 					</#assign>
