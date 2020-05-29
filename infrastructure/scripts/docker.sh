@@ -9,6 +9,11 @@ echo "==== selected Jenkins environment variables ===="
 set | egrep "BRANCH|BUILD|JENKINS|JOB|WORKSPACE"
 echo "====/selected Jenkins environment variables ===="
 
+# ==== TODO ====
+# split into functions
+# activate clean-up routine
+
+
 # ==== ADJUSTABLE VARIABLES ====
 # gp:to-do we need to update these to set only if they're not set already, that way the Dev can override in the Jenkinsfile
 #  == Tomcat Variables ==
@@ -24,6 +29,11 @@ VS_PROXY_SERVER_SCHEME=https
 VS_PROXY_SERVER_FQDN=feature.visitscotland.com
 # the next variable "VS_BRXM_PORT_OVERRIDE" should only be used by operations for debug purposes, an available port will be found and used later in this script
 #VS_BRXM_PORT_OVERRIDE=8080
+VS_FRONTEND_DIR=frontend
+VS_SSR_PACKAGE_SOURCE="$VS_FRONTEND_DIR/ssr/server/ $VS_FRONTEND_DIR/dist/ssr/ $VS_FRONTEND_DIR/node_modules/"
+VS_SSR_PACKAGE_TARGET="./target"
+VS_SSR_PACKAGE_NAME="vs-ssr-package.tar.gz"
+VS_SSR_PORT=8082
 # ====/ADJUSTABLE VARIABLES ====
 
 # ==== PREPARE ENVIRONMENT ====
@@ -72,7 +82,7 @@ docker container ls | egrep "$CONTAINER_NAME"
 for CONTAINER in `docker container ls -a | egrep "$CONTAINER_NAME" | awk '{print $1}'`; do echo deleting $CONTAINER; docker container rm -f $CONTAINER; done
 #docker container rm $CONTAINER_NAME
 
-# delete existing images
+# delete existing images - does this have a purpose? will there ever be an image with the name $CONTAINER_NAME?
 echo ""
 echo "deleting any docker images with name $CONTAINER_NAME"
 docker images | egrep "$CONTAINER_NAME"
@@ -146,6 +156,8 @@ if [ "$GIT_BRANCH" == "develop" ]; then
     done
     if [ ! "$CONTAINER_MATCHED" = "TRUE" ]; then
     	echo "no branch was found matching container $CONTAINER. I could run docker container rm -f $CONTAINER, but I won't just yet"
+        #echo "no branch was found matching container $CONTAINER, running docker container rm -f $CONTAINER"
+        #docker container rm -f $CONTAINER
     fi
   done
 fi
@@ -217,6 +229,19 @@ else
   echo "search for distribution files will not be run due to previous failures"
 fi
 
+# package SSR app files
+
+if [ ! "$SAFE_TO_PROCEED" = "FALSE" ]; then
+  if [ -d "$VS_FRONTEND_DIR" ]; then
+    tar -zcvf $VS_SSR_PACKAGE_TARGET/$VS_SSR_PACKAGE_NAME $VS_SSR_PACKAGE_SOURCE
+    RETURN_CODE=$?; echo $RETURN_CODE
+    if [ ! "$RETURN_CODE" = "0" ]; then
+      SAFE_TO_PROCEED=FALSE
+      FAIL_REASON="Failed to package SSR app from $FRONTEND_DIR, command exited with $RETURN_CODE"
+    fi
+  fi
+fi
+
 # create Docker container
 if [ ! "$SAFE_TO_PROCEED" = "FALSE" ] && [ "TRUE" = "TRUE" ] && [ "TRUE" = "TRUE" ]; then
   sleep 5
@@ -235,10 +260,18 @@ else
   echo "container will not be started due to previous failures"
 fi
 
+# copy build artefacts to container
 if [ ! "$SAFE_TO_PROCEED" = "FALSE" ]; then
   echo ""
   echo "about to copy $HIPPO_LATEST to container $CONTAINER_NAME:/home/hippo"
   docker cp $HIPPO_LATEST $CONTAINER_NAME:/home/hippo
+  RETURN_CODE=$?; echo $RETURN_CODE
+  if [ ! "$RETURN_CODE" = "0" ]; then
+    SAFE_TO_PROCEED=FALSE
+    FAIL_REASON="Docker failed to run cp command against $CONTAINER_NAME, command exited with $RETURN_CODE"
+  fi
+  echo "about to copy $VS_SSR_PACKAGE_NAME to container $CONTAINER_NAME:/home/hippo"
+  docker cp $VS_SSR_PACKAGE_TARGET/$VS_SSR_PACKAGE_NAME $CONTAINER_NAME:/home/hippo
   RETURN_CODE=$?; echo $RETURN_CODE
   if [ ! "$RETURN_CODE" = "0" ]; then
     SAFE_TO_PROCEED=FALSE
