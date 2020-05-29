@@ -18,7 +18,7 @@ echo "====/selected Jenkins environment variables ===="
 # gp:to-do we need to update these to set only if they're not set already, that way the Dev can override in the Jenkinsfile
 #  == Tomcat Variables ==
 DOCKERFILE_PATH=/home/jenkins/vs-dockerfile/
-DOCKERFILE_NAME=brx13
+DOCKERFILE_NAME=vs-brxm
 DOCKERFILE_LOCATION=$DOCKERFILE_PATH/$DOCKERFILE_NAME
 VS_DATESTAMP=`date +%Y%m%d`
 VS_HOST_IP_ADDRESS=`/usr/sbin/ip ad sh  | egrep "global noprefixroute" | awk '{print $2}' | sed -e "s/\/.*$//"`
