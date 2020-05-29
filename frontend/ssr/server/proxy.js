@@ -1,5 +1,5 @@
 const http = require("http");
-const path = require("path");
+const url = require("url");
 
 if (!process.env.VS_SSR_PROXY_TARGET_HOST) {
     require("dotenv").config();
@@ -10,15 +10,15 @@ const makeUrl = (subPath) => {
         throw new Error("Target host URL missing");
     }
 
-    return path.join(process.env.VS_SSR_PROXY_TARGET_HOST, subPath);
+    return url.resolve(process.env.VS_SSR_PROXY_TARGET_HOST, subPath);
 }
 
 const getPage = async (uriPath) => new Promise((resolve, reject) => {
-    const url = makeUrl(uriPath);
+    const targetUrl = makeUrl(uriPath);
 
-    console.log(`Proxying request to ${url}`);
+    console.log(`Proxying request to ${targetUrl}`);
 
-    http.get(url, (resp) => {
+    http.get(targetUrl, (resp) => {
         let data = "";
 
         resp.on("data", (chunk) => {
