@@ -9,10 +9,12 @@ import com.visitscotland.brmx.beans.mapping.Coordinates;
 import com.visitscotland.brmx.beans.mapping.FlatImage;
 import com.visitscotland.brmx.beans.mapping.FlatLink;
 import com.visitscotland.brmx.beans.mapping.megalinks.*;
+import org.hippoecm.hst.content.beans.standard.HippoBean;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
 import java.util.stream.Collectors;
@@ -21,7 +23,7 @@ public class LinkModulesFactory {
 
     private static final Logger logger = LoggerFactory.getLogger(LinkModulesFactory.class);
 
-    private final static int MAX_ITEMS = 6;
+    final static int MAX_ITEMS = 6;
 
     public AbstractLayout getMegalinkModule(MegaLinks doc, Locale locale){
         if (!doc.getList() && doc.getSingleImageModule() != null){
@@ -96,6 +98,8 @@ public class LinkModulesFactory {
 
             //Links added to the Featured list MUST be removed from the original list
             fl.getLinks().removeAll(fl.getFeaturedLinks());
+        } else {
+            fl.setFeaturedLinks(Collections.EMPTY_LIST);
         }
 
         return fl;
@@ -114,54 +118,63 @@ public class LinkModulesFactory {
         return ll;
     }
 
-    private List<FlatLink> convertoToFlatLinks(List<MegaLinkItem> items){
+    List<FlatLink> convertoToFlatLinks(List<MegaLinkItem> items){
         List<FlatLink> links = new ArrayList<>();
         for (MegaLinkItem item : items){
             if (item.getLink() == null) {
-                //TODO "The module %s contains a link without any reference"
+                CommonUtils.contentIssue("The module %s contains a link without any reference", item.getPath());
             } else if (item.getLink() instanceof Page){
-                links.add(new FlatLink(((Page) item.getLink()).getTitle(), HippoUtils.createUrl(item.getLink())));
+                links.add(new FlatLink(((Page) item.getLink()).getTitle(), createUrl(item.getLink())));
             } else {
-                //TODO "The module %s is pointing to a document of type %s which cannot be rendered as a page " item.getLink().getClass().getSimpleName()
+                CommonUtils.contentIssue("The module %s is pointing to a document of type %s which cannot be rendered as a page", item.getPath(), item.getLink().getClass().getSimpleName());
             }
         }
         return links;
     }
 
-    private List<EnhancedLink> convertToEnhancedLinks(List<MegaLinkItem> items, Locale locale){
+    List<EnhancedLink> convertToEnhancedLinks(List<MegaLinkItem> items, Locale locale){
         List<EnhancedLink> links = new ArrayList<>();
         for (MegaLinkItem item : items){
 
             if (item.getLink() == null) {
-                CommonUtils.contentIssue("The module %s contains a link without any reference");
+                CommonUtils.contentIssue("The module %s contains a link without any reference", item.getPath());
             } else if (item.getLink() instanceof Page){
-                //TODO HippoUtils.getUrl(HippoLink)
                 EnhancedLink link = new EnhancedLink();
                 link.setTeaser(((Page) item.getLink()).getTeaser());
                 link.setLabel(((Page) item.getLink()).getTitle());
-                link.setLink(HippoUtils.createUrl(item.getLink()));
+                link.setLink(createUrl(item.getLink()));
                 link.setImage(createFlatImage(((Page) item.getLink()).getHeroImage(),locale));
                 link.setFeatured(item.getFeature());
 
                 links.add(link);
             } else {
-
-                //TODO "The module %s is pointing to a document of type %s which cannot be rendered as a page " item.getLink().getClass().getSimpleName()
+                CommonUtils.contentIssue("The module %s is pointing to a document of type %s which cannot be rendered as a page", item.getPath(), item.getLink().getClass().getSimpleName());
             }
         }
         return links;
     }
 
-
     private FlatImage createFlatImage(Image img, Locale locale) {
-
         FlatImage flatImage = new FlatImage(img, locale);
-        LocationObject locationObject = LocationLoader.getLocation(img.getLocation(), locale);
+        LocationObject locationObject = getLocation(img.getLocation(), locale);
         if (locationObject!=null) {
             flatImage.setCoordinates(new Coordinates(locationObject.getLatitude(), locationObject.getLongitude()));
         }
 
         return flatImage;
+    }
+
+    /**
+     *
+     * @param page
+     * @return
+     */
+    String createUrl(HippoBean page){
+        return HippoUtils.createUrl(page);
+    }
+
+    LocationObject getLocation(String location, Locale locale){
+        return LocationLoader.getLocation(location, locale);
     }
 
 

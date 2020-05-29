@@ -33,7 +33,8 @@ public class DestinationContentComponent extends PageContentComponent<Destinatio
 
     private void addModules(HstRequest request){
         List<AbstractLayout> links = new ArrayList<>();
-       int index = -1;
+        int index = -1;
+
         for (MegaLinks mega: getDocument(request).getItems()){
                         AbstractLayout al = linksFactory.getMegalinkModule(mega, request.getLocale());
             if (!Contract.isEmpty(al.getTitle()) || index < 0){
