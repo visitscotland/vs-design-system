@@ -286,7 +286,7 @@ else
   echo "docker cp will not be run due to previous failures"
 fi
 
-if [ "VS_SSR_PROXY_ON" = "TRUE" ] && [ ! "$SAFE_TO_PROCEED" = "FALSE" ]; then
+if [ "$VS_SSR_PROXY_ON" = "TRUE" ] && [ ! "$SAFE_TO_PROCEED" = "FALSE" ]; then
   echo ""
   echo "about to copy $VS_SSR_PACKAGE_NAME to container $CONTAINER_NAME:/home/hippo"
   docker cp $VS_SSR_PACKAGE_TARGET/$VS_SSR_PACKAGE_NAME $CONTAINER_NAME:/home/hippo
