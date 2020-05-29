@@ -1,4 +1,4 @@
-package com.visitscotland.brmx.utils;
+package com.visitscotland.brmx.components.content.factory;
 
 import com.visitscotland.brmx.beans.Image;
 import com.visitscotland.brmx.beans.MegaLinkItem;
@@ -9,6 +9,9 @@ import com.visitscotland.brmx.beans.mapping.Coordinates;
 import com.visitscotland.brmx.beans.mapping.FlatImage;
 import com.visitscotland.brmx.beans.mapping.FlatLink;
 import com.visitscotland.brmx.beans.mapping.megalinks.*;
+import com.visitscotland.brmx.dms.LocationLoader;
+import com.visitscotland.brmx.utils.CommonUtils;
+import com.visitscotland.brmx.utils.HippoUtils;
 import org.hippoecm.hst.content.beans.standard.HippoBean;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

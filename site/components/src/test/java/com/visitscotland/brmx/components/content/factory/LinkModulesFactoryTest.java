@@ -1,22 +1,15 @@
-package com.visitscotland.brmx.utils;
+package com.visitscotland.brmx.components.content.factory;
 
-import com.sun.xml.bind.v2.runtime.unmarshaller.XsiNilLoader;
 import com.visitscotland.brmx.beans.*;
-import com.visitscotland.brmx.beans.dms.LocationObject;
 import com.visitscotland.brmx.beans.mapping.megalinks.AbstractLayout;
 import com.visitscotland.brmx.beans.mapping.megalinks.FeaturedLayout;
+import com.visitscotland.brmx.components.content.factory.LinkModulesFactory;
 import org.easymock.EasyMock;
-import org.easymock.Mock;
-import org.easymock.MockType;
 import org.hippoecm.hst.content.beans.standard.HippoBean;
 import org.hippoecm.hst.content.beans.standard.HippoHtml;
-import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import org.junit.rules.ExpectedException;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -139,14 +132,10 @@ public class LinkModulesFactoryTest {
         EasyMock.expect(mi.getFeature()).andReturn(false).anyTimes();
         EasyMock.expect(mi.getLink()).andReturn(page).anyTimes();
 
-
         EasyMock.replay(mi);
 
         Assertions.assertEquals(factory.convertoToFlatLinks(Arrays.asList(mi)).size(), 1);
         Assertions.assertEquals(factory.convertToEnhancedLinks(Arrays.asList(mi), Locale.UK).size(), 1);
-
-        //This verifies that messages were generated and include the problematic node
-        EasyMock.verify(mi);
     }
 
     @Test

@@ -2,7 +2,7 @@ package com.visitscotland.brmx.components.content;
 
 import com.visitscotland.brmx.beans.*;
 import com.visitscotland.brmx.beans.mapping.megalinks.AbstractLayout;
-import com.visitscotland.brmx.utils.LinkModulesFactory;
+import com.visitscotland.brmx.components.content.factory.LinkModulesFactory;
 import com.visitscotland.utils.Contract;
 import org.hippoecm.hst.core.component.HstRequest;
 import org.hippoecm.hst.core.component.HstResponse;
@@ -16,11 +16,11 @@ public class DestinationContentComponent extends PageContentComponent<Destinatio
 
     private static final Logger logger = LoggerFactory.getLogger(DestinationContentComponent.class);
 
-    private static final String PAGE_ITEMS = "pageItems";
+    static final String PAGE_ITEMS = "pageItems";
 
     private LinkModulesFactory linksFactory = new LinkModulesFactory();
 
-    private final String[] style = {"style1","style2", "style3"};
+    private final String[] styles = {"style1","style2","style3"};
 
 
     @Override
@@ -40,12 +40,12 @@ public class DestinationContentComponent extends PageContentComponent<Destinatio
             if (!Contract.isEmpty(al.getTitle()) || index < 0){
                 index++;
             }
-            al.setStyle(style[index % 3]);
+            al.setStyle(styles[index % styles.length]);
             links.add(al);
         }
 
         //Note: In the future this list will be compose by different types of module.
-        request.setAttribute("pageItems", links);
+        request.setAttribute(PAGE_ITEMS, links);
     }
 
 }

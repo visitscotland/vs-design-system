@@ -1,7 +1,8 @@
-package com.visitscotland.brmx.utils;
+package com.visitscotland.brmx.dms;
 
-import static com.visitscotland.brmx.utils.ProductSearchBuilder.*;
+import static com.visitscotland.brmx.dms.ProductSearchBuilder.*;
 
+import com.visitscotland.brmx.utils.Properties;
 import org.junit.Assert;
 import org.junit.Test;
 

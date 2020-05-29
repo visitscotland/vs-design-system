@@ -1,4 +1,4 @@
-package com.visitscotland.brmx;
+package com.visitscotland.brmx.utils;
 
 
 import org.junit.Test;
