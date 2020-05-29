@@ -30,10 +30,11 @@ VS_PROXY_SERVER_FQDN=feature.visitscotland.com
 # the next variable "VS_BRXM_PORT_OVERRIDE" should only be used by operations for debug purposes, an available port will be found and used later in this script
 #VS_BRXM_PORT_OVERRIDE=8080
 VS_FRONTEND_DIR=frontend
+VS_HIPPO_TOMCAT_PORT=8080
 VS_SSR_PACKAGE_SOURCE="$VS_FRONTEND_DIR/ssr/server/ $VS_FRONTEND_DIR/dist/ssr/ $VS_FRONTEND_DIR/node_modules/"
 VS_SSR_PACKAGE_TARGET="./target"
 VS_SSR_PACKAGE_NAME="vs-ssr-package.tar.gz"
-VS_SSR_PORT=8082
+VS_SSR_APP_PORT=8082
 # ====/ADJUSTABLE VARIABLES ====
 
 # ==== PREPARE ENVIRONMENT ====
@@ -43,9 +44,13 @@ PARENT_JOB_NAME=
 RESERVED_PORT_LIST=
 # set container name from branch name - removing / characters
 CONTAINER_NAME=`echo $JOB_NAME | sed -e "s/\/.*//g"`"_"`basename $BRANCH_NAME`
+VS_CONTAINER_INTERNAL_PORT=
 #/==== PREPARE ENVIRONMENT ====
 
+echo "==== selected VS environment variables ===="
+set | egrep "VS_"
 set | egrep "CONTAINER"
+echo "====/selected VS environment variables ===="
 
 # check to see if a container called $CONTAINER_NAME is running, if so set $CONTAINER_RUNNING to Docker's CONTAINER ID
 echo ""
@@ -230,8 +235,8 @@ else
 fi
 
 # package SSR app files
-
-if [ ! "$SAFE_TO_PROCEED" = "FALSE" ]; then
+if [ "$VS_SSR_PROXY_ON" = "TRUE" ] && [ ! "$SAFE_TO_PROCEED" = "FALSE" ]; then
+  echo "packaging SSR application"
   if [ -d "$VS_FRONTEND_DIR" ]; then
     tar -zcf $VS_SSR_PACKAGE_TARGET/$VS_SSR_PACKAGE_NAME $VS_SSR_PACKAGE_SOURCE
     RETURN_CODE=$?; echo $RETURN_CODE
@@ -245,10 +250,15 @@ fi
 # create Docker container
 if [ ! "$SAFE_TO_PROCEED" = "FALSE" ] && [ "TRUE" = "TRUE" ] && [ "TRUE" = "TRUE" ]; then
   sleep 5
+  if [ "$VS_SSR_PROXY_ON" = "TRUE" ]; then
+    VS_CONTAINER_EXPOSE_PORT=$VS_SSR_APP_PORT
+  else
+    VS_CONTAINER_EXPOSE_PORT=$VS_HIPPO_TOMCAT_PORT
   echo ""
   echo "about to create a new Docker container with:"
-  echo docker run -d --name $CONTAINER_NAME -p $PORT:8082 $DOCKERFILE_NAME /bin/bash -c "/usr/local/bin/vs-mysqld-start && /usr/local/bin/vs-hippo && while [ ! -f /home/hippo/tomcat_8080/logs/cms.log ]; do echo no log; sleep 2; done; tail -f /home/hippo/tomcat_8080/logs/cms.log"
-  docker run -d --name $CONTAINER_NAME -p $PORT:8082 $DOCKERFILE_NAME /bin/bash -c "/usr/local/bin/vs-mysqld-start && /usr/local/bin/vs-hippo && while [ ! -f /home/hippo/tomcat_8080/logs/cms.log ]; do echo no log; sleep 2; done; tail -f /home/hippo/tomcat_8080/logs/cms.log"
+  VS_DOCKER_CMD=docker run -d --name $CONTAINER_NAME -p $PORT:$VS_CONTAINER_EXPOSE_PORT --env VS_SSR_PROXY_ON=$VS_SSR_PROXY_ON --env VS_SSR_PACKAGE_NAME=$VS_SSR_PACKAGE_NAME $DOCKERFILE_NAME /bin/bash -c "/usr/local/bin/vs-mysqld-start && /usr/local/bin/vs-hippo && while [ ! -f /home/hippo/tomcat_8080/logs/cms.log ]; do echo no log; sleep 2; done; tail -f /home/hippo/tomcat_8080/logs/cms.log"
+  echo $VS_DOCKER_CMD
+  docker run -d --name $CONTAINER_NAME -p $PORT:$VS_CONTAINER_EXPOSE_PORT --env VS_SSR_PROXY_ON=$VS_SSR_PROXY_ON --env VS_SSR_PACKAGE_NAME=$VS_SSR_PACKAGE_NAME $DOCKERFILE_NAME /bin/bash -c "/usr/local/bin/vs-mysqld-start && /usr/local/bin/vs-hippo && while [ ! -f /home/hippo/tomcat_8080/logs/cms.log ]; do echo no log; sleep 2; done; tail -f /home/hippo/tomcat_8080/logs/cms.log"
   RETURN_CODE=$?; echo $RETURN_CODE
   if [ ! "$RETURN_CODE" = "0" ]; then
     SAFE_TO_PROCEED=FALSE
@@ -270,6 +280,9 @@ if [ ! "$SAFE_TO_PROCEED" = "FALSE" ]; then
     SAFE_TO_PROCEED=FALSE
     FAIL_REASON="Docker failed to run cp command against $CONTAINER_NAME, command exited with $RETURN_CODE"
   fi
+fi
+if [ "VS_SSR_PROXY_ON" = "TRUE" ] && [ ! "$SAFE_TO_PROCEED" = "FALSE" ]; then
+  echo ""
   echo "about to copy $VS_SSR_PACKAGE_NAME to container $CONTAINER_NAME:/home/hippo"
   docker cp $VS_SSR_PACKAGE_TARGET/$VS_SSR_PACKAGE_NAME $CONTAINER_NAME:/home/hippo
   RETURN_CODE=$?; echo $RETURN_CODE
