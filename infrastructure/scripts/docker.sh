@@ -233,11 +233,11 @@ fi
 
 if [ ! "$SAFE_TO_PROCEED" = "FALSE" ]; then
   if [ -d "$VS_FRONTEND_DIR" ]; then
-    tar -zcvf $VS_SSR_PACKAGE_TARGET/$VS_SSR_PACKAGE_NAME $VS_SSR_PACKAGE_SOURCE
+    tar -zcf $VS_SSR_PACKAGE_TARGET/$VS_SSR_PACKAGE_NAME $VS_SSR_PACKAGE_SOURCE
     RETURN_CODE=$?; echo $RETURN_CODE
     if [ ! "$RETURN_CODE" = "0" ]; then
-      SAFE_TO_PROCEED=FALSE
-      FAIL_REASON="Failed to package SSR app from $FRONTEND_DIR, command exited with $RETURN_CODE"
+      #SAFE_TO_PROCEED=FALSE
+      FAIL_REASON="Failed to package SSR app from $VS_FRONTEND_DIR, command exited with $RETURN_CODE"
     fi
   fi
 fi
