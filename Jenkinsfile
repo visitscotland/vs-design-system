@@ -13,14 +13,17 @@ if (BRANCH_NAME == "develop" && JOB_NAME == "develop.visitscotland.com-mb/develo
 }
 
 pipeline {
- options {
+  options {
     buildDiscarder(logRotator(numToKeepStr: '5'))
   }
- agent {label thisAgent}
- tools {
+  agent {label thisAgent}
+  environment {
+    VS_SSR_PROXY_ON=TRUE
+  }
+  tools {
         maven 'Maven 3.3.9'
         jdk 'jdk1.8.0'
-    }
+  }
     stages {
 
 // "Checkout Design System" stage now commented out as it's no longer required since VS-1081 - please merge this change as required but leave the block for reference
