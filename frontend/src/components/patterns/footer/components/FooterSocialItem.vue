@@ -8,6 +8,10 @@
 </template>
 
 <script>
+
+import VsSocialSquareButton from "@components/patterns/social-square-button/SocialSquareButton"
+
+
 /**
  * The FooterSocialItem is used inside the FooterSocialMenu to
  * show a button for a social media link.
@@ -15,6 +19,11 @@
 
 export default {
     name: "VsFooterSocialItem",
+    status: "prototype",
+    release: "0.0.1",
+    components: {
+        VsSocialSquareButton,
+    },
     props: {
         /**
          * The URL the link will point to
