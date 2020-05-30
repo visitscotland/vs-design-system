@@ -94,7 +94,7 @@ public class PageContentComponent<TYPE extends Page> extends EssentialsContentCo
      *
      * @param request Request where the master document is defined and where the path will be added
      */
-    private void addDocumentPath(HstRequest request) {
+    void addDocumentPath(HstRequest request) {
         final String ROOT_SITE = "/site/";
 
         if (request.getAttribute(DOCUMENT) instanceof BaseDocument) {

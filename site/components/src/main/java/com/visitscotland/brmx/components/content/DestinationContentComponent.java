@@ -16,12 +16,14 @@ public class DestinationContentComponent extends PageContentComponent<Destinatio
 
     private static final Logger logger = LoggerFactory.getLogger(DestinationContentComponent.class);
 
+    LinkModulesFactory linksFactory;
+
     static final String PAGE_ITEMS = "pageItems";
+    static final String[] styles = {"style1","style2","style3"};
 
-    private LinkModulesFactory linksFactory = new LinkModulesFactory();
-
-    private final String[] styles = {"style1","style2","style3"};
-
+    public DestinationContentComponent(){
+        linksFactory = new LinkModulesFactory();
+    }
 
     @Override
     public void doBeforeRender(HstRequest request, HstResponse response) {
@@ -31,20 +33,22 @@ public class DestinationContentComponent extends PageContentComponent<Destinatio
         addModules(request);
     }
 
-    private void addModules(HstRequest request){
+    void addModules(HstRequest request){
         List<AbstractLayout> links = new ArrayList<>();
-        int index = -1;
+        int styleIndex = 0;
 
         for (MegaLinks mega: getDocument(request).getItems()){
-                        AbstractLayout al = linksFactory.getMegalinkModule(mega, request.getLocale());
-            if (!Contract.isEmpty(al.getTitle()) || index < 0){
-                index++;
+            AbstractLayout al = linksFactory.getMegalinkModule(mega, request.getLocale());
+
+            if (Contract.isEmpty(al.getTitle()) && styleIndex > 0){
+                styleIndex--;
             }
-            al.setStyle(styles[index % styles.length]);
+
+            al.setStyle(styles[styleIndex++ % styles.length]);
             links.add(al);
         }
 
-        //Note: In the future this list will be compose by different types of module.
+        //Note: In the future this listLayout will be compose by different types of module.
         request.setAttribute(PAGE_ITEMS, links);
     }
 

@@ -26,13 +26,21 @@ public class LinkModulesFactory {
 
     private static final Logger logger = LoggerFactory.getLogger(LinkModulesFactory.class);
 
-    final static int MAX_ITEMS = 6;
+    public final static int MAX_ITEMS = 6;
+
+//    public LinkModulesFactory() {
+//        this(new HippoUtils());
+//    }
+//
+//    public LinkModulesFactory(HippoUtils utils) {
+//        this.utils = utils;
+//    }
 
     public AbstractLayout getMegalinkModule(MegaLinks doc, Locale locale){
         if (!doc.getList() && doc.getSingleImageModule() != null){
             return singleImageLayout(doc, locale);
         } else if (doc.getList() || doc.getMegaLinkItems().size() > MAX_ITEMS){
-            return list(doc, locale);
+            return listLayout(doc, locale);
         } else {
             return featuredLayout(doc, locale);
         }
@@ -108,7 +116,7 @@ public class LinkModulesFactory {
         return fl;
     }
 
-    public ListLayout list(MegaLinks doc, Locale locale){
+    public ListLayout listLayout(MegaLinks doc, Locale locale){
         ListLayout ll = new ListLayout();
         ll.setTitle(doc.getTitle());
         ll.setIntroduction(doc.getIntroduction());
