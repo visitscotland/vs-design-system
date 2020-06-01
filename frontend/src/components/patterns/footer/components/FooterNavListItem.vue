@@ -85,7 +85,7 @@ export default {
         <vs-footer-nav-list break-point="md">
             <vs-col cols="12" md="6">
                 <vs-footer-accordion-item
-                    :openByDefault="false"
+                    :open-by-default="false"
                     variant="dark"
                     aria-control-id="1"
                     class="border-left-0"
