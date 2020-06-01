@@ -86,7 +86,7 @@ props:
       category: "Theme colours"
     - name: color_instagram
       value: "#F00075"
-      category: "Social colours"
+      category: "Social Media Colours"
 
     - name: color_purple_tint_1
       value: "#853270"
