@@ -38,12 +38,12 @@ export default {
         },
         /**
          * If this is provided, the accordion expands above
-         * the specified viewport `xs,sm, md, lg, xl`
+         * the specified viewport `xs,sm, md, lg, xl, xxl`
          */
         breakPoint: {
             type: String,
             default: null,
-            validator: (value) => value.match(/(xs|sm|md|lg|xl)/),
+            validator: (value) => value.match(/(xs|sm|md|lg|xl|xxl)/),
         },
     },
 }
@@ -77,7 +77,7 @@ export default {
         <vs-footer-nav-list break-point="md">
             <vs-col cols="12" md="4" lg="3">
                 <vs-footer-accordion-item
-                    :openByDefault="false"
+                    :open-by-default="false"
                     variant="dark"
                     control-id="1"
                     class="border-left-0"
@@ -117,7 +117,7 @@ export default {
 
             <vs-col cols="12" md="4" lg="3">
                 <vs-footer-accordion-item
-                    :openByDefault="false"
+                    :open-by-default="false"
                     variant="dark"
                     control-id="2"
                 >
@@ -156,7 +156,7 @@ export default {
 
             <vs-col cols="12" md="4" lg="3">
                 <vs-footer-accordion-item
-                    :openByDefault="false"
+                    :open-by-default="false"
                     variant="dark"
                     control-id="3"
                 >
@@ -198,7 +198,7 @@ export default {
             </vs-col>
             <vs-col cols="12" lg="3" xl="2">
                 <vs-footer-accordion-item
-                    :openByDefault="true"
+                    :open-by-default="true"
                     variant="dark"
                     control-id="1"
                 >
