@@ -1,11 +1,13 @@
-const path = require("path");
-
 const express = require("express");
 const { some } = require("lodash");
 const getPort = require("get-port");
 
 const { renderPage, initRenderer } = require("./ssr");
-const { getPage } = require("./proxy");
+const getProxyServer = require("./proxy");
+
+if (!process.env.VS_SSR_PROXY_TARGET_HOST) {
+    require("dotenv").config();
+}
 
 // Port range for the Node app
 const minPort = 8082;
@@ -14,47 +16,49 @@ const maxPort = 8082;
 const app = express();
 
 const noSSRPaths = [
-    "/public",
+    "/site/webfiles",
     "/site/autoreload",
     "/favicon.ico",
 ];
 
-const skipSsr = (uriPath) => {
-    return some(noSSRPaths, (fragment) => {
-        return uriPath.indexOf(fragment) !== -1
-    })
+const doNotPerformSsrOn = (uriPath) => some(
+    noSSRPaths,
+    (fragment) => uriPath.indexOf(fragment) !== -1,
+);
+
+const postProxyProcess = async (path, rawResponse) => {
+
+    if (doNotPerformSsrOn(path)) {
+        console.log(`Proxying request to ${path}`);
+    } else {
+        console.log(`Attempting SSR on request to ${path}`)
+
+        try {
+            const renderedResponse = renderPage(rawResponse);
+
+            console.log(`Completed SSR on request to ${path}`)
+
+            return renderedResponse;
+        } catch (error) {
+            console.error(`Failed SSR on request to ${path}, error to follow`)
+            console.error(error);
+        }
+    }
+
+    return rawResponse;
 }
 
-// you may want to serve static files with nginx or CDN in production
-app.use("/public", express.static(path.resolve(__dirname, "../../dist/ssr/client")));
+const proxy = getProxyServer(process.env.VS_SSR_PROXY_TARGET_HOST, postProxyProcess)
 
-app.use(async (req, res) => {
-    let renderedPage;
 
-    // TODO: Figure out what to do in situations like this
-    if (skipSsr(req.path)) {
-        res.status(400).send();
-        return;
-    }
-
-    const cmsRenderedHtml = await getPage(req.path);
-
-    try {
-        renderedPage = await renderPage(cmsRenderedHtml);
-    } catch (error) {
-        // TODO: improve error handling
-        if (error.code === 404) {
-            res.status(404).send("404 | Page Not Found");
-            return;
-        }
-        console.log(error);
-    }
-
-    res.status(200).send(renderedPage || cmsRenderedHtml);
+app.use((req, res) => {
+    proxy.web(req, res);
 });
 
 (async () => {
-    const port = await getPort({ port: getPort.makeRange(minPort, maxPort) });
+    const port = await getPort({
+        port: getPort.makeRange(minPort, maxPort),
+    });
 
     app.listen(port, () => console.log(`Listening on: ${port}`));
 })();
