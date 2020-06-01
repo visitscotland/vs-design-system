@@ -48,14 +48,14 @@ export default {
         },
         /**
          * If this is provided, the accordion expands above
-         * the specified viewport `xs, sm, md, lg, xl`
+         * the specified viewport `xs, sm, md, lg, xl, xxl`
          */
         itemBreakPoint: {
             type: String,
             default() {
                 return this.breakPoint
             },
-            validator: (value) => value.match(/(xs|sm|md|lg|xl)/),
+            validator: (value) => value.match(/(xs|sm|md|lg|xl|xxl)/),
         },
         /**
          * Choose to show accordion open or closed by default
@@ -130,7 +130,7 @@ export default {
         <vs-footer-nav-list break-point="md">
             <vs-col cols="12" md="6">
                 <vs-footer-accordion-item
-                    :openByDefault="true"
+                    :open-by-default="true"
                     variant="dark"
                     control-id="1"
                     class="border-left-0"

@@ -1,6 +1,6 @@
 <template>
     <li class="vs-footer-social-item">
-        <VsSocialSquareButton
+        <VsButtonSquareSocial
             :href="href"
             :icon="icon"
         />
@@ -9,7 +9,7 @@
 
 <script>
 
-import VsSocialSquareButton from "@components/patterns/social-square-button/SocialSquareButton"
+import VsButtonSquareSocial from "@components/patterns/button-square-social/ButtonSquareSocial"
 
 
 /**
@@ -22,7 +22,7 @@ export default {
     status: "prototype",
     release: "0.0.1",
     components: {
-        VsSocialSquareButton,
+        VsButtonSquareSocial,
     },
     props: {
         /**
@@ -62,7 +62,7 @@ export default {
         <vs-footer-nav-list break-point="md">
             <vs-col cols="12" md="6">
                 <vs-accordion-item
-                    :openByDefault="true"
+                    :open-by-default="true"
                     variant="dark"
                     control-id="1"
                     class="border-left-0"
