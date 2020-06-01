@@ -1,38 +1,54 @@
-const http = require("http");
-const url = require("url");
+const httpProxy = require("http-proxy");
+const webO = Object.values(require("http-proxy/lib/http-proxy/passes/web-outgoing"));
+const { isFunction } = require("lodash");
 
-if (!process.env.VS_SSR_PROXY_TARGET_HOST) {
-    require("dotenv").config();
-}
+let proxy;
 
-const makeUrl = (subPath) => {
-    if (!process.env.VS_SSR_PROXY_TARGET_HOST) {
-        throw new Error("Target host URL missing");
+const proxyOptions = {
+    selfHandleResponse: true,
+    ws: true,
+};
+
+const createOnResponse = (postProcess) => {
+    return (proxyRes, req, res) => {
+        const body = [];
+
+        proxyRes.on("data", (chunk) => {
+            body.push(chunk);
+        });
+
+        proxyRes.on("end", async () => {
+            let response = Buffer.concat(body).toString();
+
+            if (isFunction(postProcess)) {
+                response = await postProcess(req.path, response);
+            }
+
+            proxyRes.pipe(res);
+
+            res.end(response);
+        });
+
+        // Here we have to copy what the http-proxy library does for responses that
+        // don't require custom handling. This is bad but necessary until the library
+        // provides a way to conditionally apply custom handling per request.
+        // https://github.com/http-party/node-http-proxy/issues/1451
+
+        if (!res.headersSent) {
+            for (let i = 0; i < webO.length; i++) {
+                if (webO[i](req, res, proxyRes, proxyOptions)) { break }
+            }
+        }
     }
-
-    return url.resolve(process.env.VS_SSR_PROXY_TARGET_HOST, subPath);
 }
 
-const getPage = async (uriPath) => new Promise((resolve, reject) => {
-    const targetUrl = makeUrl(uriPath);
-
-    console.log(`Proxying request to ${targetUrl}`);
-
-    http.get(targetUrl, (resp) => {
-        let data = "";
-
-        resp.on("data", (chunk) => {
-            data += chunk;
-        });
-
-        resp.on("end", () => {
-            resolve(data);
-        });
-    }).on("error", (err) => {
-        reject(err);
+module.exports = (target, postProcess) => {
+    proxy = httpProxy.createProxyServer({
+        ...proxyOptions,
+        target,
     });
-});
 
-module.exports = {
-    getPage,
+    proxy.on("proxyRes", createOnResponse(postProcess))
+
+    return proxy;
 }

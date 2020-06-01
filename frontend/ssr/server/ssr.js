@@ -28,7 +28,8 @@ const formatHtml = (subjectHtml) => beautifyHtml(
 const completeSsrTemplate = (appHtml/* , context */) => {
     $template(`[${templatePlaceholderAttrName}]`).replaceWith(appHtml);
 
-    const pageHtml = transformHtml($template.html());
+    // const pageHtml = transformHtml($template.html());
+    const pageHtml = $template.html();
 
     return pageHtml;
 
