@@ -87,7 +87,7 @@ export default {
                 <vs-footer-accordion-item
                     :open-by-default="false"
                     variant="dark"
-                    aria-control-id="1"
+                    control-id="footer_accordion_item_1"
                     class="border-left-0"
                 >
                     <span slot="title">

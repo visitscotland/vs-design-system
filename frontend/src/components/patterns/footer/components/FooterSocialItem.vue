@@ -64,7 +64,7 @@ export default {
                 <vs-accordion-item
                     :open-by-default="true"
                     variant="dark"
-                    control-id="1"
+                    control-id="accordion_item_1"
                     class="border-left-0"
                 >
                     <span slot="title">
