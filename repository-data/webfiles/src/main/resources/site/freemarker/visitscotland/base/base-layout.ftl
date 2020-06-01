@@ -18,7 +18,7 @@
         <!-- END HEAD CONTRIBUTIONS: htmlHeadStyles -->
     </head>
     <body>
-        <div data-vue-app-init>
+        <div data-vue-app-init class="no-js">
             <div class="row">
                 <div class="col-md-6 col-md-offset-3">
                     <@hst.include ref="menu"/>
