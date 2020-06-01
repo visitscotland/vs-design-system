@@ -79,7 +79,7 @@ export default {
                 <vs-footer-accordion-item
                     :open-by-default="false"
                     variant="dark"
-                    control-id="1"
+                    control-id="footer_accordion_item_1"
                     class="border-left-0"
                 >
                     <span slot="title">
@@ -119,7 +119,7 @@ export default {
                 <vs-footer-accordion-item
                     :open-by-default="false"
                     variant="dark"
-                    control-id="2"
+                    control-id="footer_accordion_item_2"
                 >
                     <span slot="title">
                         Get in touch
@@ -158,7 +158,7 @@ export default {
                 <vs-footer-accordion-item
                     :open-by-default="false"
                     variant="dark"
-                    control-id="3"
+                    control-id="footer_accordion_item_3"
                 >
                     <span slot="title">
                         Our other sites
@@ -200,7 +200,7 @@ export default {
                 <vs-footer-accordion-item
                     :open-by-default="true"
                     variant="dark"
-                    control-id="1"
+                    control-id="footer_accordion_item_4"
                 >
                     <span slot="title">
                         Find us on
