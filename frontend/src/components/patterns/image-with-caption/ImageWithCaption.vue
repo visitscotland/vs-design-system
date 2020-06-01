@@ -1,5 +1,8 @@
 <template>
-    <figure class="vs-image-with-caption position-relative">
+    <figure
+        class="vs-image-with-caption position-relative"
+        :class="{ 'vs-image-with-caption--closed-default': closedDefaultCaption }"
+    >
         <div class="vs-image-with-caption__image-wrapper">
             <slot>
                 <VsImg
@@ -15,7 +18,6 @@
             <VsButton
                 variant="outline-transparent"
                 class="vs-image-with-caption__toggle-caption-btn position-absolute"
-                :class="{ 'd-block': closedDefaultCaption }"
                 :animate="false"
                 :aria-controls="'image_' + imageSrc"
                 :aria-expanded="showCaption ? 'true' : 'false'"
@@ -42,7 +44,9 @@
         </div>
 
         <div
-            :class="{ 'd-block': showCaption, 'd-none': closedDefaultCaption }"
+            :class="{
+                'd-block': showCaption,
+            }"
             class="vs-image-with-caption__caption-wrapper"
             :id="'image_' + imageSrc"
         >
@@ -209,6 +213,7 @@ img {
 }
 
 .vs-image-with-caption__image-wrapper {
+
     .vs-image-with-caption__toggle-caption-btn {
         bottom: $spacer-2;
         padding: 0;
@@ -219,6 +224,10 @@ img {
 
         @include media-breakpoint-up(sm) {
             display: none;
+
+            .vs-image-with-caption--closed-default & {
+                display: block;
+            }
         }
     }
 }
@@ -228,6 +237,10 @@ img {
 
     @include media-breakpoint-up(sm) {
         display: block;
+
+        .vs-image-with-caption--closed-default & {
+            display: none;
+        }
     }
 
     @include media-breakpoint-down(lg) {
@@ -311,6 +324,41 @@ img {
                 > .row {
                     margin: 0 -16px;
                 }
+            }
+        }
+    }
+}
+
+
+@include no-js {
+    .vs-image-with-caption__image-wrapper {
+        .vs-image-with-caption__toggle-caption-btn {
+            display: none;
+        }
+    }
+
+    .vs-image-with-caption__caption-wrapper {
+        display: block;
+
+        .vs-image-with-caption__large-caption,
+        .vs-image-with-caption__fullwidth-caption {
+            @include media-breakpoint-down(xs) {
+                position: relative;
+            }
+        }
+    }
+
+    .vs-image-with-caption--closed-default {
+        .vs-image-with-caption__image-wrapper {
+            .vs-image-with-caption__toggle-caption-btn {
+                display: none;
+            }
+        }
+
+        .vs-image-with-caption__caption-wrapper {
+            .vs-image-with-caption__large-caption,
+            .vs-image-with-caption__fullwidth-caption {
+                position: relative;
             }
         }
     }
