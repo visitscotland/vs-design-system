@@ -52,25 +52,42 @@
                     ${prod.ctaLink.label}
                 </vs-link>
             </#if>
+            </br>
             <#--TODO Include Address, Address fields allow null and the fields are:
-              ${prod.address.line1}
-              ${prod.address.line2}
-              ${prod.address.line3}
-              ${prod.address.city}
-              ${prod.address.postCode} -->
-
+           <#if prod.address.line1?? && prod.address.line1?has_content>
+                  </br>ADDRESS</br>
+                  ${prod.address.line1}</br>
+              <#if prod.address.line2?? && prod.address.line2?has_content>
+                      ${prod.address.line2}</br>
+              </#if>
+                 <#if prod.address.line3?? && prod.address.line3?has_content>
+                      ${prod.address.line3}</br>
+              </#if>
+                  <#if prod.address.city?? && prod.address.city?has_content>
+                      ${prod.address.city}</br>
+              </#if>
+              <#if prod.address.postCode?? && prod.address.postCode?has_content>
+                      ${prod.address.postCode}</br>
+              </#if>
+           </#if>-->
             <#--TODO show open times the field is:
-            </br>
-            ${prod.open}
-            </br>
+        </br>
              <#if prod.openLink?? && prod.openLink.link?? && prod.openLink.link?has_content>
+                 </br>OPENINGS </br>
+                 ${prod.open}</br>
                 <vs-link href="${prod.openLink.link}">
                     ${prod.openLink.label}
                 </vs-link>
-             </#if>-->
-            <#--TODO  price the field is:
+             </#if>
+             -->
+            <#--TODO price the field is:
         </br>
-            ${prod.price}-->
+         <#if prod.price?? && prod.price?has_content>
+        </br>PRICE</br>
+
+            ${prod.price}
+         </#if>
+            -->
 
             <#if prod??>
                 <#if prod.timeToexplore?? && prod.timeToexplore?has_content>

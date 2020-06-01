@@ -12,11 +12,24 @@ are expected.
 
     mvn clean verify -P !fed-build
     mvn -P cargo.run
+    
+## Troubleshooting
+**I get the following error when I try to clone the message: _fatal: cannot create directory at '{some big path}': Filename too long_**
 
-BloomReach Instruction (Legacy)
+Git has a limit of 260 characters for a filename in Windows when Git is compiled with msys. You can circumvent the issue by executing the following command:
+
+     git config --system core.longpaths true
+
+**The front-end build doesn't finish or finish with an exception**
+
+To be documented
+
+_QuickFix: Intall NPM and Yarn manually with the versions specified in ui-integration/pom.xml_
+
+BloomReach Instruction (Legacy) 
 ===============================
 
-##Running Locally
+## Running Locally
 This project uses the Maven Cargo plugin to run Essentials, the CMS and site locally in Tomcat.
 From the project root folder, execute:
 
@@ -38,7 +51,7 @@ After your project is set up, access the CMS at <http://localhost:8080/cms> and 
 Logs are located in target/tomcat9x/logs
 
 
-##Best Practice for Development
+## Best Practice for Development
 
 Use the option `-Drepo.path=/some/path/to/repository` during start up. This will avoid
 your repository to be cleared when you do a mvn clean.

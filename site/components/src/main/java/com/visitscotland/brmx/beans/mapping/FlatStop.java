@@ -1,9 +1,11 @@
 package com.visitscotland.brmx.beans.mapping;
 
+import com.fasterxml.jackson.databind.JsonNode;
 import com.visitscotland.brmx.beans.Stop;
+import com.visitscotland.dataobjects.DataType;
 import org.hippoecm.hst.content.beans.standard.HippoHtml;
-import org.json.JSONObject;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 public class FlatStop {
@@ -19,11 +21,12 @@ public class FlatStop {
     private String tipsTitle;
     private FlatLink ctaLink;
     private HippoHtml tipsBody;
-    private List<JSONObject> facilities;
-    private JSONObject address;
+    private List<DataType> facilities;
+    private JsonNode address;
     private String price;
     private String open;
     private FlatLink openLink;
+    private BigDecimal distance;
 
     private Coordinates coordinates;
     private List<String> errorMessages;
@@ -105,11 +108,11 @@ public class FlatStop {
         this.tipsBody = tipsBody;
     }
 
-    public List<JSONObject> getFacilities() {
+    public List<DataType> getFacilities() {
         return facilities;
     }
 
-    public void setFacilities(List<JSONObject> facilities) {
+    public void setFacilities(List<DataType> facilities) {
         this.facilities = facilities;
     }
 
@@ -129,11 +132,11 @@ public class FlatStop {
         this.ctaLink = ctaLink;
     }
 
-    public JSONObject getAddress() {
+    public JsonNode getAddress() {
         return address;
     }
 
-    public void setAddress(JSONObject address) {
+    public void setAddress(JsonNode address) {
         this.address = address;
     }
 
@@ -175,5 +178,13 @@ public class FlatStop {
 
     public void setErrorMessages(List<String> errorMessages) {
         this.errorMessages = errorMessages;
+    }
+
+    public BigDecimal getDistance() {
+        return distance;
+    }
+
+    public void setDistance(BigDecimal distance) {
+        this.distance = distance;
     }
 }

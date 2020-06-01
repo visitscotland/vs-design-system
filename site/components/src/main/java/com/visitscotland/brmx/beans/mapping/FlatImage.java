@@ -1,11 +1,12 @@
 package com.visitscotland.brmx.beans.mapping;
 
 
+import com.fasterxml.jackson.databind.JsonNode;
 import com.visitscotland.brmx.beans.Image;
 import com.visitscotland.brmx.beans.InstagramImage;
 import com.visitscotland.brmx.beans.dms.LocationObject;
 import com.visitscotland.brmx.utils.LocationLoader;
-import org.json.JSONObject;
+import com.visitscotland.brmx.utils.Properties;
 
 import java.util.Locale;
 
@@ -78,20 +79,19 @@ public class FlatImage {
     }
 
     public FlatImage(InstagramImage instagramLink, String caption, Locale locale) {
-        //TODO remove the size when it is handle in the front end
-        this.externalImage =  "https://www.instagram.com/p/" + instagramLink.getId() + "/media?size=l";
+        this.externalImage =  Properties.INSTAGRAM_API + instagramLink.getId() + "/media";
         this.credit = caption;
         this.altText = instagramLink.getCaption();
         this.description = instagramLink.getCaption();
         this.source = Source.INSTAGRAM;
-        this.postUrl = "https://www.instagram.com/p/" + instagramLink.getId();
+        this.postUrl = Properties.INSTAGRAM_API  + instagramLink.getId();
         this.coordinates = setInstagramCoordinates(instagramLink,locale);
     }
 
-    public FlatImage(JSONObject dmsImage, String productName) {
-        this.externalImage = (dmsImage.has(MEDIA) ? dmsImage.getString(MEDIA) : null);
-        this.credit = (dmsImage.has(CREDIT) ? dmsImage.getString(CREDIT) : null);
-        this.description = (dmsImage.has(ALT_TEXT) ? dmsImage.getString(ALT_TEXT) : productName);
+    public FlatImage(JsonNode dmsImage, String productName) {
+        this.externalImage = (dmsImage.has(MEDIA) ? dmsImage.get(MEDIA).asText() : null);
+        this.credit = (dmsImage.has(CREDIT) ? dmsImage.get(CREDIT).asText() : null);
+        this.description = (dmsImage.has(ALT_TEXT) ? dmsImage.get(ALT_TEXT).asText() : productName);
         this.altText = this.description;
     }
 

@@ -2,12 +2,13 @@ package com.visitscotland.brmx.utils;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.visitscotland.brmx.beans.Image;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.JsonNode;
 import com.visitscotland.brmx.beans.InstagramImage;
-import com.visitscotland.brmx.beans.mapping.FlatImage;
+import com.visitscotland.brmx.beans.InstagramImage;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.visitscotland.utils.Contract;
-import org.json.JSONArray;
-import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -18,10 +19,7 @@ import java.net.URL;
 import java.time.LocalTime;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Locale;
-import org.slf4j.Logger;
 
 public class CommonUtils {
     //TODO add message format for other languages
@@ -36,7 +34,7 @@ public class CommonUtils {
      * @return
      * @throws IOException
      */
-    public static JSONObject getProduct(String productId, Locale locale) throws IOException {
+    public static JsonNode getProduct(String productId, Locale locale) throws IOException {
         if (!Contract.isEmpty(productId)) {
             String dmsUrl = Properties.VS_DMS_SERVICE + "/data/products/card?id=" + productId;
             if (locale != null) {
@@ -45,10 +43,11 @@ public class CommonUtils {
 
             String responseString = request(dmsUrl);
             if (responseString!=null) {
-                JSONObject json = new JSONObject(responseString);
+                ObjectMapper mapper = new ObjectMapper();
+                JsonNode json = mapper.readTree(responseString);
 
                 if (json.has("data")) {
-                    return json.getJSONObject("data");
+                    return json.get("data");
                 }
             }
         }

@@ -2186,7 +2186,7 @@
         jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
         jcr:uuid: 5b67dc0d-73ec-4b6f-acd8-84e78e4bde14
         hippo:name: Drumoak
-        hippo:versionHistory: ee59ff8c-bd7d-488c-b766-88e83545209e
+        hippo:versionHistory: 5117f24a-2b84-4754-a1c0-2539b76e1de0
         /drumoak[1]:
           jcr:primaryType: visitscotland:Day
           jcr:mixinTypes: ['mix:referenceable']
@@ -2195,7 +2195,7 @@
           hippostd:state: draft
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2020-02-07T12:53:32.885Z
-          hippostdpubwf:lastModificationDate: 2020-04-02T18:52:12.995+01:00
+          hippostdpubwf:lastModificationDate: 2020-04-30T18:35:01.493+01:00
           hippostdpubwf:lastModifiedBy: admin
           hippotranslation:id: 539af613-c55b-4ff5-a393-7159c2b57b96
           hippotranslation:locale: en
@@ -2220,9 +2220,6 @@
           /visitscotland:stops[4]:
             jcr:primaryType: hippo:mirror
             hippo:docbase: 5a0149d0-590f-4c74-b095-92e430e70bd2
-          /visitscotland:stops[5]:
-            jcr:primaryType: hippo:mirror
-            hippo:docbase: 61b91b38-da53-4d2d-a375-d8a71cd4688b
         /drumoak[2]:
           jcr:primaryType: visitscotland:Day
           jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
@@ -2231,7 +2228,7 @@
           hippostd:state: unpublished
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2020-02-07T12:53:32.885Z
-          hippostdpubwf:lastModificationDate: 2020-04-02T18:52:30.647+01:00
+          hippostdpubwf:lastModificationDate: 2020-04-30T18:35:08.608+01:00
           hippostdpubwf:lastModifiedBy: admin
           hippotranslation:id: 539af613-c55b-4ff5-a393-7159c2b57b96
           hippotranslation:locale: en
@@ -2256,9 +2253,6 @@
           /visitscotland:stops[4]:
             jcr:primaryType: hippo:mirror
             hippo:docbase: 5a0149d0-590f-4c74-b095-92e430e70bd2
-          /visitscotland:stops[5]:
-            jcr:primaryType: hippo:mirror
-            hippo:docbase: 61b91b38-da53-4d2d-a375-d8a71cd4688b
         /drumoak[3]:
           jcr:primaryType: visitscotland:Day
           jcr:mixinTypes: ['mix:referenceable']
@@ -2267,9 +2261,9 @@
           hippostd:state: published
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2020-02-07T12:53:32.885Z
-          hippostdpubwf:lastModificationDate: 2020-04-02T18:52:30.647+01:00
+          hippostdpubwf:lastModificationDate: 2020-04-30T18:35:08.608+01:00
           hippostdpubwf:lastModifiedBy: admin
-          hippostdpubwf:publicationDate: 2020-04-02T18:52:34.177+01:00
+          hippostdpubwf:publicationDate: 2020-04-30T18:35:13.371+01:00
           hippotranslation:id: 539af613-c55b-4ff5-a393-7159c2b57b96
           hippotranslation:locale: en
           visitscotland:title: Drumoak
@@ -2293,9 +2287,6 @@
           /visitscotland:stops[4]:
             jcr:primaryType: hippo:mirror
             hippo:docbase: 5a0149d0-590f-4c74-b095-92e430e70bd2
-          /visitscotland:stops[5]:
-            jcr:primaryType: hippo:mirror
-            hippo:docbase: 61b91b38-da53-4d2d-a375-d8a71cd4688b
       /glen-tanar-cambus-o-may--ballater:
         jcr:primaryType: hippo:handle
         jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
