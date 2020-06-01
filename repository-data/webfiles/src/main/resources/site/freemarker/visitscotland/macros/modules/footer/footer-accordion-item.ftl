@@ -10,7 +10,7 @@
             <vs-footer-accordion-item
                 :open-by-default="false" 
                 variant="dark" 
-                control-id="${menuItem?index}" 
+                control-id="footer_accordion_item_${menuItem?index}" 
                 class="<#if menuItem?is_first>border-left-0 pl-md-0</#if> <#if menuItem?is_last>border-bottom-0</#if>"
             >
                 <span slot="title">
