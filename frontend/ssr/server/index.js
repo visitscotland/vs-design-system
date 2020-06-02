@@ -1,9 +1,9 @@
 const express = require("express");
 const { some } = require("lodash");
 const getPort = require("get-port");
+const proxy = require("express-http-proxy");
 
 const { renderPage, initRenderer } = require("./ssr");
-const getProxyServer = require("./proxy");
 
 if (!process.env.VS_SSR_PROXY_TARGET_HOST) {
     require("dotenv").config();
@@ -26,34 +26,32 @@ const doNotPerformSsrOn = (uriPath) => some(
     (fragment) => uriPath.indexOf(fragment) !== -1,
 );
 
-const postProxyProcess = async (path, rawResponse) => {
+const postProxyHandler = async (proxyRes, proxyResData, userReq) => {
 
-    if (doNotPerformSsrOn(path)) {
-        console.log(`Proxying request to ${path}`);
+    if (doNotPerformSsrOn(userReq.path)) {
+        console.log(`Proxying request to ${userReq.path}`);
     } else {
-        console.log(`Attempting SSR on request to ${path}`)
+        console.log(`Attempting SSR on request to ${userReq.path}`)
 
         try {
-            const renderedResponse = renderPage(rawResponse);
+            const renderedResponse = await renderPage(proxyResData.toString("utf8"));
 
-            console.log(`Completed SSR on request to ${path}`)
+            console.log(`Completed SSR on request to ${userReq.path}`)
 
             return renderedResponse;
         } catch (error) {
-            console.error(`Failed SSR on request to ${path}, error to follow`)
+            console.error(`Failed SSR on request to ${userReq.path}, error to follow`)
             console.error(error);
         }
     }
 
-    return rawResponse;
+    return proxyResData;
 }
 
-const proxy = getProxyServer(process.env.VS_SSR_PROXY_TARGET_HOST, postProxyProcess)
+app.use(proxy(process.env.VS_SSR_PROXY_TARGET_HOST, {
+    userResDecorator: postProxyHandler,
+}));
 
-
-app.use((req, res) => {
-    proxy.web(req, res);
-});
 
 (async () => {
     const port = await getPort({
