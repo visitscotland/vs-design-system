@@ -50,7 +50,7 @@ const postProxyHandler = async (proxyRes, proxyResData, userReq) => {
     if (excludePathFromSSR(userReq.path)) {
         console.log(`Proxying request to ${pathAndParams}`);
     } else {
-        console.log(`Attempting SSR on request to ${pathAndParams}`)
+        console.log(`Attempting SSR on request to ${pathAndParams}`);
 
         try {
             const renderedResponse = await renderPage(proxyResData.toString("utf8"));
@@ -59,7 +59,7 @@ const postProxyHandler = async (proxyRes, proxyResData, userReq) => {
 
             return renderedResponse;
         } catch (error) {
-            console.error(`Failed SSR on request to ${pathAndParams}, error to follow`)
+            console.error(`Failed SSR on request to ${pathAndParams}, error to follow`);
             console.error(error);
         }
     }

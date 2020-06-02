@@ -6,12 +6,12 @@ module.exports = {
 		node: true,
 		browser: true,
 		"jest/globals": true,
-		"cypress/globals": true 
+		"cypress/globals": true ,
 	},
 	parserOptions: {
 		parser: "babel-eslint",
 		// specifying a module sourcetype prevent eslint from marking import statements as errors
-		sourceType: "module"
+		sourceType: "module",
 	},
 	extends: [
 		// use the recommended rule set for both plain javascript and vue
@@ -21,12 +21,12 @@ module.exports = {
 		"plugin:vue/strongly-recommended",
 		"plugin:vue-a11y/recommended",
 		"plugin:jest/recommended",
-		"plugin:cypress/recommended"
+		"plugin:cypress/recommended",
 	],
 	plugins: [
 		"vue-a11y",
 		"jest",
-		"cypress"
+		"cypress",
 	],
 	rules: {
 		"indent": [
@@ -69,19 +69,19 @@ module.exports = {
 			ObjectExpression: "always",
 			ObjectPattern: { "multiline": true },
 			ImportDeclaration: { "multiline": true, "minProperties": 3 },
-			ExportDeclaration: { "multiline": true, "minProperties": 3 }
+			ExportDeclaration: { "multiline": true, "minProperties": 3 },
 		}],
 		"object-property-newline": ["error", {
-			allowAllPropertiesOnSameLine: false
-		}]
+			allowAllPropertiesOnSameLine: false,
+		}],
 	},
 	settings: {
 		"import/resolver": {
 			node: {},
 			webpack: {
-				config: "./build/webpack.base.conf.js"
+				config: "./build/webpack.base.conf.js",
 			}
-		}
+		},
 	},
 	overrides: [
 		// Modify rules for build scripts
@@ -98,10 +98,10 @@ module.exports = {
 				"import/no-extraneous-dependencies": [
 					"error",
 					{
-						devDependencies: true
+						devDependencies: true,
 					}
-				]
-			}
+				],
+			},
 		},
 		// Ignore jest rules for cypress tests
 		{
@@ -111,8 +111,21 @@ module.exports = {
 			rules: {
                 "jest/expect-expect": "off",
                 "jest/valid-expect": "off",
-                "jest/valid-expect-in-promise": "off"
-			}
-		}
+                "jest/valid-expect-in-promise": "off",
+			},
+		},
+		// Various rules for uncompiled Node SSR app files
+		{
+			files: [
+				"/ssr/*",
+			],
+			rules: {
+				"semi": [
+					"error",
+					"always"
+				],
+				"no-console": "off",
+			},
+		},
 	]
 };
