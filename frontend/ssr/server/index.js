@@ -1,5 +1,6 @@
+const querystring = require("querystring");
 const express = require("express");
-const { some } = require("lodash");
+const { some, startsWith, get } = require("lodash");
 const getPort = require("get-port");
 const proxy = require("express-http-proxy");
 
@@ -9,38 +10,56 @@ if (!process.env.VS_SSR_PROXY_TARGET_HOST) {
     require("dotenv").config();
 }
 
-// Port range for the Node app
+// Port range for the app
 const minPort = 8082;
 const maxPort = 8082;
 
 const app = express();
 
-const noSSRPaths = [
+/**
+ * Add the start of any URL path to be excluded from SSR here
+ */
+const pathsToExcludeFromSSR = [
     "/site/webfiles",
     "/site/autoreload",
     "/favicon.ico",
+    "/cms",
 ];
 
-const doNotPerformSsrOn = (uriPath) => some(
-    noSSRPaths,
-    (fragment) => uriPath.indexOf(fragment) !== -1,
+/**
+ * Returns true if the provided URL path is to be excluded from SSR
+ * @param {String} urlPath
+ */
+const excludePathFromSSR = (urlPath) => some(
+    pathsToExcludeFromSSR,
+    (fragment) => startsWith(urlPath, fragment),
 );
 
-const postProxyHandler = async (proxyRes, proxyResData, userReq) => {
+/**
+ * Returns string of the request's path and params URL parts
+ * @param {Object} request Request object
+ */
+const getRequestPathAndParams = (request) => `${get(request, "path")}?${querystring.stringify(get(request, "query"))}`;
 
-    if (doNotPerformSsrOn(userReq.path)) {
-        console.log(`Proxying request to ${userReq.path}`);
+/**
+ * Handles all requests after they have been proxied and performs SSR on them if appropriate
+ */
+const postProxyHandler = async (proxyRes, proxyResData, userReq) => {
+    const pathAndParams = getRequestPathAndParams(userReq);
+
+    if (excludePathFromSSR(userReq.path)) {
+        console.log(`Proxying request to ${pathAndParams}`);
     } else {
-        console.log(`Attempting SSR on request to ${userReq.path}`)
+        console.log(`Attempting SSR on request to ${pathAndParams}`)
 
         try {
             const renderedResponse = await renderPage(proxyResData.toString("utf8"));
 
-            console.log(`Completed SSR on request to ${userReq.path}`)
+            console.log(`Completed SSR on request to ${pathAndParams}`)
 
             return renderedResponse;
         } catch (error) {
-            console.error(`Failed SSR on request to ${userReq.path}, error to follow`)
+            console.error(`Failed SSR on request to ${pathAndParams}, error to follow`)
             console.error(error);
         }
     }
