@@ -7,7 +7,7 @@ const { html: beautifyHtml } = require("js-beautify");
 const serverBundle = require("../../dist/ssr/server/vue-ssr-server-bundle.json");
 const clientManifest = require("../../dist/ssr/client/vue-ssr-client-manifest.json");
 
-const transformHtml = require("./transform-html");
+// const transformHtml = require("./transform-html");
 
 const appAttributeName = "data-vue-app-init";
 const templatePlaceholderAttrName = "vue-ssr-outlet";
