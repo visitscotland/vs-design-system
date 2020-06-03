@@ -10,19 +10,19 @@
         </span>
 
         <vs-footer-social-item
-            href="#"
+            href="${label('social-media', 'facebook')}"
             icon="facebook"
         ></vs-footer-social-item>
         <vs-footer-social-item
-            href="#"
+            href="${label('social-media', 'twitter')}"
             icon="twitter"
         ></vs-footer-social-item>
         <vs-footer-social-item
-            href="#"
+            href="${label('social-media', 'youtube')}"
             icon="youtube"
         ></vs-footer-social-item>
         <vs-footer-social-item
-            href="#"
+            href="${label('social-media', 'instagram')}"
             icon="instagram"
         ></vs-footer-social-item>
     </vs-footer-social-menu>
