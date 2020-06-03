@@ -3,7 +3,7 @@
         :href="href"
         :external="true"
         :class="icon"
-        class="social-square-button"
+        class="button-square-social"
     >
         <VsIcon
             :name="icon"
@@ -15,7 +15,7 @@
 
 <script>
 /**
- * The SocialSquareButton is a square button that takes an icon
+ * The ButtonSquareSocial is a square button that takes an icon
  * and href to display button with corresponding social colour.
  */
 
@@ -23,7 +23,7 @@ import VsLink from "@components/elements/link/Link"
 import VsIcon from "@components/elements/icon/Icon"
 
 export default {
-    name: "VsSocialSquareButton",
+    name: "VsButtonSquareSocial",
     status: "prototype",
     release: "0.0.1",
     components: {
@@ -52,7 +52,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.social-square-button {
+.button-square-social {
     &.vs-link.primary {
         background: $color-gray-shade-1;
         box-shadow: 0 0 0 2px $color-gray-shade-1;
@@ -123,10 +123,10 @@ export default {
 </style>
 <docs>
   ```js
-    <vs-social-square-button
+    <vs-button-square-social
         href="#"
         icon="youtube"
     >
-    </vs-social-square-button>
+    </vs-button-square-social>
   ```
 </docs>
