@@ -6,6 +6,8 @@ import com.visitscotland.brmx.beans.dms.LocationObject;
 import com.visitscotland.brmx.beans.mapping.Coordinates;
 import com.visitscotland.brmx.beans.mapping.FlatImage;
 import com.visitscotland.brmx.beans.mapping.FlatLink;
+import com.visitscotland.brmx.dms.LocationLoader;
+import com.visitscotland.brmx.dms.ProductSearchBuilder;
 import com.visitscotland.brmx.utils.*;
 import com.visitscotland.dataobjects.DataType;
 import com.visitscotland.utils.Contract;
@@ -92,7 +94,7 @@ public class PageContentComponent<TYPE extends Page> extends EssentialsContentCo
      *
      * @param request Request where the master document is defined and where the path will be added
      */
-    private void addDocumentPath(HstRequest request) {
+    void addDocumentPath(HstRequest request) {
         final String ROOT_SITE = "/site/";
 
         if (request.getAttribute(DOCUMENT) instanceof BaseDocument) {

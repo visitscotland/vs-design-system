@@ -1,8 +1,9 @@
-package com.visitscotland.brmx.utils;
+package com.visitscotland.brmx.dms;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.visitscotland.brmx.beans.dms.LocationObject;
+import com.visitscotland.brmx.utils.Properties;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -26,7 +27,7 @@ public abstract class LocationLoader {
 
     public static LocationObject getLocation(String location, Locale locale){
 
-        if (Properties.locales.contains(locale)){
+        if (com.visitscotland.brmx.utils.Properties.locales.contains(locale)){
             return locations.get(locale).get(locationToId.get(location));
         } else {
             return locations.get(null).get(locationToId.get(location));
@@ -72,7 +73,7 @@ public abstract class LocationLoader {
     private static void init() {
         synchronized (LocationLoader.class) {
             if (locationToId.size() == 0) {
-                for (Locale locale : Properties.locales) {
+                for (Locale locale : com.visitscotland.brmx.utils.Properties.locales) {
                     Map<String, LocationObject> locationsMap = new HashMap<>();
                     try {
                         List<LocationObject> locationList = deserialize(request(locale));
@@ -111,9 +112,9 @@ public abstract class LocationLoader {
     private static String request(Locale locale){
         //TODO Change the level to add polygon (for destinations pages)
         if (locale == null){
-            return requestPage(String.format("%s/data/meta/location/list?full",Properties.VS_DMS_SERVICE));
+            return requestPage(String.format("%s/data/meta/location/list?full", com.visitscotland.brmx.utils.Properties.VS_DMS_SERVICE));
         } else {
-            return requestPage(String.format("%s/data/meta/location/list?full&locale=%s",Properties.VS_DMS_SERVICE, locale.getLanguage()));
+            return requestPage(String.format("%s/data/meta/location/list?full&locale=%s", Properties.VS_DMS_SERVICE, locale.getLanguage()));
         }
     }
 
