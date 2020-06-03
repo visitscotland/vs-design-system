@@ -8,7 +8,7 @@
             Defaults to Accordion Toggle button. If component is responsive
             and has a breakPoint it will show title instead of button on larger screens. -->
             <VsAccordionToggle
-                :aria-controls="'panel_' + controlId"
+                :aria-controls="controlId"
                 :visible="show"
                 :variant="variant"
                 :class="toggleAccordionBtn"
@@ -38,7 +38,7 @@
 
         <BCardBody
             v-show="show"
-            :id="'panel_' + controlId"
+            :id="controlId"
             class="vs-accordion-item__panel"
             :class="toggleResponsiveItem"
         >
@@ -77,14 +77,14 @@ export default {
         },
         /**
          * If this is provided, the accordion expands above
-         * the specified viewport `xs, sm, md, lg, xl`
+         * the specified viewport `xs, sm, md, lg, xl, xxl`
          */
         itemBreakPoint: {
             type: String,
             default() {
                 return this.breakPoint
             },
-            validator: (value) => value.match(/(xs|sm|md|lg|xl)/),
+            validator: (value) => value.match(/(xs|sm|md|lg|xl|xxl)/),
         },
         /**
          * Choose to show accordion open or closed by default
@@ -168,7 +168,7 @@ export default {
 <docs>
   ```js
     <vs-accordion>
-        <vs-accordion-item :openByDefault="true" variant="dark" control-id="1">
+        <vs-accordion-item :open-by-default="true" variant="dark" control-id="accordion_item_1">
             <span slot="title">
                 This is a title
             </span>
@@ -189,7 +189,7 @@ export default {
             </div>
         </vs-accordion-item>
 
-        <vs-accordion-item :openByDefault="false" variant="dark" control-id="3">
+        <vs-accordion-item :open-by-default="false" variant="dark" control-id="accordion_item_2">
             <span slot="title">
                 This is a title
             </span>
@@ -209,7 +209,7 @@ export default {
                 turpis enim venenatis ipsum, vitae finibus sem tellus sit amet mauris.
             </div>
         </vs-accordion-item>
-        <vs-accordion-item :openByDefault="false" variant="dark" control-id="2">
+        <vs-accordion-item :open-by-default="false" variant="dark" control-id="accordion_item_3">
             <span slot="title">
                 This is a title
             </span>
