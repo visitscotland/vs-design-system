@@ -35,7 +35,7 @@ public class DestinationContentComponent extends PageContentComponent<Destinatio
         List<AbstractLayout> links = new ArrayList<>();
         int index = -1;
 
-        for (MegaLinks mega: getDocument(request).getItems()){
+        for (Megalinks mega: getDocument(request).getItems()){
                         AbstractLayout al = linksFactory.getMegalinkModule(mega, request.getLocale());
             if (!Contract.isEmpty(al.getTitle()) || index < 0){
                 index++;

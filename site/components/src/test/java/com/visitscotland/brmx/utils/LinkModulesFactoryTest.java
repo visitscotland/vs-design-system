@@ -64,14 +64,14 @@ public class LinkModulesFactoryTest {
 
     @Test
     void getListLayout(){
-        MegaLinks mega = createMockMegalink(TITLE, false, true, true, 0);
+        Megalinks mega = createMockMegalink(TITLE, false, true, true, 0);
         AbstractLayout layout = factory.getMegalinkModule(mega, Locale.UK);
         Assertions.assertEquals(layout.getType(), LIST);
     }
 
     @Test
     void getListLayoutOn7OrMoreItems(){
-        MegaLinks mega = createMockMegalink(TITLE, false, false, true, LinkModulesFactory.MAX_ITEMS);
+        Megalinks mega = createMockMegalink(TITLE, false, false, true, LinkModulesFactory.MAX_ITEMS);
         AbstractLayout layout = factory.getMegalinkModule(mega, Locale.UK);
         Assertions.assertNotEquals(layout.getType(), LIST);
 
@@ -82,14 +82,14 @@ public class LinkModulesFactoryTest {
 
     @Test
     void getSingleImage(){
-        MegaLinks mega = createMockMegalink(TITLE, false, false, true, 0, "Single image title");
+        Megalinks mega = createMockMegalink(TITLE, false, false, true, 0, "Single image title");
         AbstractLayout layout = factory.getMegalinkModule(mega, Locale.UK);
         Assertions.assertEquals(layout.getType(), SINGLE_IMAGE);
     }
 
     @Test
     void getSingleImageWithLargeAmountOfItems(){
-        MegaLinks mega = createMockMegalink(TITLE, false, false, true, LinkModulesFactory.MAX_ITEMS + 1, "Single image title");
+        Megalinks mega = createMockMegalink(TITLE, false, false, true, LinkModulesFactory.MAX_ITEMS + 1, "Single image title");
         AbstractLayout layout = factory.getMegalinkModule(mega, Locale.UK);
         Assertions.assertEquals(layout.getType(), SINGLE_IMAGE);
     }
@@ -97,7 +97,7 @@ public class LinkModulesFactoryTest {
     @Test
     void getFeatured(){
         for (int i= 0; i < LinkModulesFactory.MAX_ITEMS; i++) {
-            MegaLinks mega = createMockMegalink(TITLE, false, false, true, i);
+            Megalinks mega = createMockMegalink(TITLE, false, false, true, i);
             AbstractLayout layout = factory.getMegalinkModule(mega, Locale.UK);
             Assertions.assertEquals(layout.getType(), FEATURED);
         }
@@ -113,18 +113,18 @@ public class LinkModulesFactoryTest {
         createFeaturedLayoutAndCheckItems(6,1,2);
 
         //Check that from 7 items is not Featured any longer.
-        MegaLinks mega = createMockMegalink(TITLE, false, false, true, 7);
+        Megalinks mega = createMockMegalink(TITLE, false, false, true, 7);
         AbstractLayout layout = factory.getMegalinkModule(mega, Locale.UK);
         Assertions.assertNotEquals(layout.getType(), FEATURED);
     }
     
     private void createFeaturedLayoutAndCheckItems(int total, int minItems, int maxItems){
-        MegaLinks min = createMockMegalink(TITLE, false, false, true, 0);
-        MegaLinks max = createMockMegalink(TITLE, false, false, true, 0);
+        Megalinks min = createMockMegalink(TITLE, false, false, true, 0);
+        Megalinks max = createMockMegalink(TITLE, false, false, true, 0);
 
         for (int i = 0; i < total; i++){
-            min.getMegaLinkItems().add(createMockMegalinkItem(false));
-            max.getMegaLinkItems().add(createMockMegalinkItem(true));
+            min.getMegalinkItems().add(createMockMegalinkItem(false));
+            max.getMegalinkItems().add(createMockMegalinkItem(true));
         }
 
         Assertions.assertEquals(((FeaturedLayout) factory.getMegalinkModule(min, Locale.UK)).getFeaturedLinks().size(), minItems);
@@ -134,7 +134,7 @@ public class LinkModulesFactoryTest {
     @Test
     void addValidLinkElements(){
 
-        MegaLinkItem mi = EasyMock.createMock(MegaLinkItem.class);
+        MegalinkItem mi = EasyMock.createMock(MegalinkItem.class);
 
         EasyMock.expect(mi.getFeature()).andReturn(false).anyTimes();
         EasyMock.expect(mi.getLink()).andReturn(page).anyTimes();
@@ -152,7 +152,7 @@ public class LinkModulesFactoryTest {
     @Test
     void skipNullLinkElements(){
 
-        MegaLinkItem mi = EasyMock.createMock(MegaLinkItem.class);
+        MegalinkItem mi = EasyMock.createMock(MegalinkItem.class);
 
         EasyMock.expect(mi.getFeature()).andReturn(false).anyTimes();
         EasyMock.expect(mi.getLink()).andReturn(null).anyTimes();
@@ -170,10 +170,10 @@ public class LinkModulesFactoryTest {
     @Test
     void skipInvalidLinkElements(){
 
-        MegaLinkItem mi = EasyMock.createMock(MegaLinkItem.class);
+        MegalinkItem mi = EasyMock.createMock(MegalinkItem.class);
 
         EasyMock.expect(mi.getFeature()).andReturn(false).anyTimes();
-        EasyMock.expect(mi.getLink()).andReturn(EasyMock.createNiceMock(MegaLinks.class)).anyTimes();
+        EasyMock.expect(mi.getLink()).andReturn(EasyMock.createNiceMock(Megalinks.class)).anyTimes();
         EasyMock.expect(mi.getPath()).andReturn("path/to/node").times(2);
 
         EasyMock.replay(mi);
@@ -186,11 +186,11 @@ public class LinkModulesFactoryTest {
     }
 
 
-    private MegaLinks createMockMegalink(String title, boolean introduction, boolean listView, boolean teaser, int links, String intro){
-        MegaLinks mega = EasyMock.createMock(MegaLinks.class);
+    private Megalinks createMockMegalink(String title, boolean introduction, boolean listView, boolean teaser, int links, String intro){
+        Megalinks mega = EasyMock.createMock(Megalinks.class);
         SingleImageModule single = EasyMock.createNiceMock(SingleImageModule.class);
         Image img = EasyMock.createNiceMock(Image.class);
-        List<MegaLinkItem> items = new ArrayList<>();
+        List<MegalinkItem> items = new ArrayList<>();
 
         EasyMock.expect(mega.getTitle()).andReturn(title).anyTimes();
         EasyMock.expect(mega.getList()).andReturn(listView).anyTimes();
@@ -213,7 +213,7 @@ public class LinkModulesFactoryTest {
             items.add(createMockMegalinkItem(false));
         }
 
-        EasyMock.expect(mega.getMegaLinkItems()).andReturn(items).anyTimes();
+        EasyMock.expect(mega.getMegalinkItems()).andReturn(items).anyTimes();
 
         EasyMock.replay(mega, single, img);
 
@@ -221,9 +221,9 @@ public class LinkModulesFactoryTest {
     }
 
 
-    private MegaLinks createMockMegalink(String title, boolean introduction, boolean listView, boolean teaser, int links){
-        MegaLinks mega = EasyMock.createMock(MegaLinks.class);
-        List<MegaLinkItem> items = new ArrayList<>();
+    private Megalinks createMockMegalink(String title, boolean introduction, boolean listView, boolean teaser, int links){
+        Megalinks mega = EasyMock.createMock(Megalinks.class);
+        List<MegalinkItem> items = new ArrayList<>();
 
         EasyMock.expect(mega.getTitle()).andReturn(title).anyTimes();
         EasyMock.expect(mega.getList()).andReturn(listView).anyTimes();
@@ -240,15 +240,15 @@ public class LinkModulesFactoryTest {
             items.add(createMockMegalinkItem(false));
         }
 
-        EasyMock.expect(mega.getMegaLinkItems()).andReturn(items).anyTimes();
+        EasyMock.expect(mega.getMegalinkItems()).andReturn(items).anyTimes();
 
         EasyMock.replay(mega);
 
         return mega;
     }
 
-    private MegaLinkItem createMockMegalinkItem(boolean featured) {
-        MegaLinkItem item = EasyMock.createMock(MegaLinkItem.class);
+    private MegalinkItem createMockMegalinkItem(boolean featured) {
+        MegalinkItem item = EasyMock.createMock(MegalinkItem.class);
 
         EasyMock.expect(item.getFeature()).andReturn(featured).anyTimes();
         EasyMock.expect(item.getLink()).andReturn(page).anyTimes();

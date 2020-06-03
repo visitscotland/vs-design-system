@@ -1,6 +1,6 @@
 definitions:
   config:
-    /hippo:namespaces/visitscotland/MegaLinks:
+    /hippo:namespaces/visitscotland/Megalinks:
       jcr:primaryType: hipposysedit:templatetype
       jcr:mixinTypes: ['editor:editable', 'mix:referenceable']
       jcr:uuid: e0befb61-80ca-4a2f-9ffd-0467c75fac65
@@ -11,7 +11,7 @@ definitions:
         /hipposysedit:nodetype:
           jcr:primaryType: hipposysedit:nodetype
           jcr:mixinTypes: ['mix:referenceable', 'hipposysedit:remodel']
-          jcr:uuid: dab29fb2-0b3c-4f12-b8cd-05cbe076945d
+          jcr:uuid: 92b8e223-0081-4034-8877-46297f0f4e19
           hipposysedit:node: true
           hipposysedit:supertype: ['visitscotland:basedocument', 'hippostd:relaxed',
             'hippotranslation:translated']
@@ -29,7 +29,7 @@ definitions:
             hipposysedit:mandatory: false
             hipposysedit:multiple: false
             hipposysedit:ordered: false
-            hipposysedit:path: visitscotland:list
+            hipposysedit:path: visitscotland:listLayout
             hipposysedit:primary: false
             hipposysedit:type: Boolean
           /introduction:
@@ -45,7 +45,7 @@ definitions:
             hipposysedit:mandatory: false
             hipposysedit:multiple: false
             hipposysedit:ordered: false
-            hipposysedit:path: visitscotland:hideTeaser
+            hipposysedit:path: visitscotland:teaserVisible
             hipposysedit:primary: false
             hipposysedit:type: Boolean
           /singleImageLinks:
@@ -55,17 +55,17 @@ definitions:
             hipposysedit:path: visitscotland:singleImageLinks
             hipposysedit:type: hippo:compound
             hipposysedit:validators: [contentblocks-validator]
-          /megaLinkItems:
+          /megalinkItems:
             jcr:primaryType: hipposysedit:field
             hipposysedit:multiple: true
             hipposysedit:ordered: true
-            hipposysedit:path: visitscotland:megaLinkItems
+            hipposysedit:path: visitscotland:megalinkItems
             hipposysedit:type: hippo:compound
             hipposysedit:validators: [contentblocks-validator, required]
       /hipposysedit:prototypes:
         jcr:primaryType: hipposysedit:prototypeset
         /hipposysedit:prototype:
-          jcr:primaryType: visitscotland:MegaLinks
+          jcr:primaryType: visitscotland:Megalinks
           hippostd:holder: holder
           hippostd:state: draft
           hippostdpubwf:createdBy: ''
@@ -74,11 +74,11 @@ definitions:
           hippotranslation:locale: document-type-locale
           jcr:mixinTypes: ['mix:referenceable']
           visitscotland:title: ''
-          visitscotland:list: false
-          visitscotland:hideTeaser: false
-          jcr:uuid: f8692d3b-70f0-4e14-b0fb-3d136ac7cf0e
+          jcr:uuid: 46da91ae-37ca-4401-8ac4-8e427809dfe9
           hippostdpubwf:lastModificationDate: 2020-05-14T14:29:51.020+01:00
           hippostdpubwf:creationDate: 2020-05-14T14:29:51.020+01:00
+          visitscotland:teaserVisible: true
+          visitscotland:listLayout: false
           /visitscotland:introduction:
             jcr:primaryType: hippostd:html
             hippostd:content: ''
@@ -114,7 +114,7 @@ definitions:
             wicket.id: ${cluster.id}.left.item
             /cluster.options:
               jcr:primaryType: frontend:pluginconfig
-          /list:
+          /listLayout:
             jcr:primaryType: frontend:plugin
             caption: List View
             field: list
@@ -133,9 +133,9 @@ definitions:
               ckeditor.config.overlayed.json: '{toolbarGroups: [{ name: ''links''
                 },{name:''insert''},{name:''clipboard''},{name:''tools''},{name:''undo''}]
                 , removeButtons: ''PickImage,Youtube,Table''}'
-          /hideTeaser:
+          /teaserVisible:
             jcr:primaryType: frontend:plugin
-            caption: Hide Teaser
+            caption: Display Teaser
             field: hideTeaser
             hint: ''
             plugin.class: org.hippoecm.frontend.editor.plugins.field.PropertyFieldPlugin
@@ -154,12 +154,12 @@ definitions:
             /cluster.options:
               jcr:primaryType: frontend:pluginconfig
               maxitems: 1
-          /megaLinkItems:
+          /megalinkItems:
             jcr:primaryType: frontend:plugin
             caption: Links
-            compoundList: visitscotland:MegaLinkItem
+            compoundList: visitscotland:MegalinkItem
             contentPickerType: links
-            field: megaLinkItems
+            field: megalinkItems
             plugin.class: org.onehippo.forge.contentblocks.ContentBlocksFieldPlugin
             wicket.id: ${cluster.id}.left.item
             hint: ''

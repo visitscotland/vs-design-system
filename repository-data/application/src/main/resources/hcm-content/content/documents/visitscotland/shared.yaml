@@ -25,7 +25,6 @@
         jcr:mixinTypes: ['mix:referenceable']
         jcr:uuid: e8d45bd4-c666-466b-a6e0-d38aec4ead8f
         hippo:availability: []
-        hippostd:holder: admin
         hippostd:state: draft
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2019-12-10T13:29:39.541Z

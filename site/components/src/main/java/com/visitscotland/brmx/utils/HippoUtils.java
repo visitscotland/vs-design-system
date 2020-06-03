@@ -68,12 +68,17 @@ public class HippoUtils {
     }
 
     /**
-     * TODO comment
-     * @param document
-     * @return
+     * Convert and HstLink or a HippoBean into a URL String
+     *
+     * TODO: Verify that the item can be rendered as a page and return null when it doesn't
+     *
+     * @param document Page document
+     *
+     * @return URL for the page that renders the document or null when it cannot be rendered as a page.
      */
     public static String createUrl(HippoBean document){
         final boolean FULLY_QUALIFIED = true;
+
         HstRequestContext context = RequestContextProvider.get();
         HstLink link = context.getHstLinkCreator().create(document, context);
         return link.toUrlForm(context, FULLY_QUALIFIED);

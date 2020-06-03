@@ -1,0 +1,7 @@
+/hst:hst/hst:configurations/visitscotland/hst:workspace/hst:sitemenus/utility/footer.utility-list:
+  jcr:primaryType: hst:sitemenuitem
+  hst:repobased: false
+  /footer.accessibility:
+    jcr:primaryType: hst:sitemenuitem
+    hst:externallink: https://www.visitscotland.com/policies/accessibility/
+    hst:repobased: false

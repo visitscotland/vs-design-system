@@ -1,6 +1,6 @@
 package com.visitscotland.brmx.utils;
 
-import com.visitscotland.brmx.beans.MegaLinks;
+import com.visitscotland.brmx.beans.Megalinks;
 import org.easymock.EasyMock;
 import org.easymock.Mock;
 import org.junit.jupiter.api.Assertions;
@@ -14,8 +14,8 @@ public class DemoTest {
     void mockDemo(){
         final String TITLE = "Megalink title";
 
-        //Create a Mock for the class MegaLinks
-        MegaLinks mega = EasyMock.createNiceMock(MegaLinks.class);
+        //Create a Mock for the class Megalinks
+        Megalinks mega = EasyMock.createNiceMock(Megalinks.class);
         //Create a rule for the Mock
         EasyMock.expect(mega.getTitle()).andReturn(TITLE);
         //Applies the rules to the mock

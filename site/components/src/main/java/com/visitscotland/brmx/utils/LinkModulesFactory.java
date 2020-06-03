@@ -1,8 +1,8 @@
 package com.visitscotland.brmx.utils;
 
 import com.visitscotland.brmx.beans.Image;
-import com.visitscotland.brmx.beans.MegaLinkItem;
-import com.visitscotland.brmx.beans.MegaLinks;
+import com.visitscotland.brmx.beans.MegalinkItem;
+import com.visitscotland.brmx.beans.Megalinks;
 import com.visitscotland.brmx.beans.Page;
 import com.visitscotland.brmx.beans.dms.LocationObject;
 import com.visitscotland.brmx.beans.mapping.Coordinates;
@@ -25,17 +25,17 @@ public class LinkModulesFactory {
 
     final static int MAX_ITEMS = 6;
 
-    public AbstractLayout getMegalinkModule(MegaLinks doc, Locale locale){
+    public AbstractLayout getMegalinkModule(Megalinks doc, Locale locale){
         if (!doc.getList() && doc.getSingleImageModule() != null){
             return singleImageLayout(doc, locale);
-        } else if (doc.getList() || doc.getMegaLinkItems().size() > MAX_ITEMS){
+        } else if (doc.getList() || doc.getMegalinkItems().size() > MAX_ITEMS){
             return list(doc, locale);
         } else {
             return featuredLayout(doc, locale);
         }
     }
 
-    public SingleImageLayout singleImageLayout(MegaLinks doc, Locale locale){
+    public SingleImageLayout singleImageLayout(Megalinks doc, Locale locale){
         SingleImageLayout sil = new SingleImageLayout ();
         sil.setTitle(doc.getTitle());
         sil.setIntroduction(doc.getIntroduction());
@@ -44,8 +44,8 @@ public class LinkModulesFactory {
         sil.setInnerIntroduction(doc.getSingleImageModule().getIntroduction());
         sil.setImage(createFlatImage(doc.getSingleImageModule().getImage(),locale));
         sil.setFullWidth(doc.getSingleImageModule().getFullWidth());
-        sil.setLinks(convertoToFlatLinks(doc.getMegaLinkItems()));
-        sil.setMegaLinkItem(doc);
+        sil.setLinks(convertoToFlatLinks(doc.getMegalinkItems()));
+        sil.setMegalinkItem(doc);
 
         //TODO cta?
         //sil.setCta(doc.getCta());
@@ -72,16 +72,16 @@ public class LinkModulesFactory {
      *
      * @return FeaturedLayout containing the relevant information from the Megalinks document
      */
-    public FeaturedLayout featuredLayout(MegaLinks doc, Locale locale){
+    public FeaturedLayout featuredLayout(Megalinks doc, Locale locale){
         FeaturedLayout fl = new FeaturedLayout();
         fl.setTitle(doc.getTitle());
         fl.setIntroduction(doc.getIntroduction());
         fl.setHideTeaser(doc.getHideTeaser());
-        fl.setMegaLinkItem(doc);
+        fl.setMegalinkItem(doc);
         // TODO cta?
         //l.setCta();
 
-        fl.setLinks(convertToEnhancedLinks(doc.getMegaLinkItems(), locale));
+        fl.setLinks(convertToEnhancedLinks(doc.getMegalinkItems(), locale));
 
         //There is no featured items when the amount of items is inferior to 3
         if (fl.getLinks().size() > 2) {
@@ -105,22 +105,22 @@ public class LinkModulesFactory {
         return fl;
     }
 
-    public ListLayout list(MegaLinks doc, Locale locale){
+    public ListLayout list(Megalinks doc, Locale locale){
         ListLayout ll = new ListLayout();
         ll.setTitle(doc.getTitle());
         ll.setIntroduction(doc.getIntroduction());
         ll.setHideTeaser(doc.getHideTeaser());
-        ll.setLinks(convertToEnhancedLinks(doc.getMegaLinkItems(), locale));
-        ll.setMegaLinkItem(doc);
+        ll.setLinks(convertToEnhancedLinks(doc.getMegalinkItems(), locale));
+        ll.setMegalinkItem(doc);
         // TODO cta?
         //l.setCta();
 
         return ll;
     }
 
-    List<FlatLink> convertoToFlatLinks(List<MegaLinkItem> items){
+    List<FlatLink> convertoToFlatLinks(List<MegalinkItem> items){
         List<FlatLink> links = new ArrayList<>();
-        for (MegaLinkItem item : items){
+        for (MegalinkItem item : items){
             if (item.getLink() == null) {
                 CommonUtils.contentIssue("The module %s contains a link without any reference", item.getPath());
             } else if (item.getLink() instanceof Page){
@@ -132,9 +132,9 @@ public class LinkModulesFactory {
         return links;
     }
 
-    List<EnhancedLink> convertToEnhancedLinks(List<MegaLinkItem> items, Locale locale){
+    List<EnhancedLink> convertToEnhancedLinks(List<MegalinkItem> items, Locale locale){
         List<EnhancedLink> links = new ArrayList<>();
-        for (MegaLinkItem item : items){
+        for (MegalinkItem item : items){
 
             if (item.getLink() == null) {
                 CommonUtils.contentIssue("The module %s contains a link without any reference", item.getPath());

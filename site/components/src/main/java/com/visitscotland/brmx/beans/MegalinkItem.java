@@ -5,9 +5,9 @@ import org.hippoecm.hst.content.beans.Node;
 import org.hippoecm.hst.content.beans.standard.HippoCompound;
 import org.hippoecm.hst.content.beans.standard.HippoBean;
 
-@HippoEssentialsGenerated(internalName = "visitscotland:MegaLinkItem")
-@Node(jcrType = "visitscotland:MegaLinkItem")
-public class MegaLinkItem extends HippoCompound {
+@HippoEssentialsGenerated(internalName = "visitscotland:MegalinkItem")
+@Node(jcrType = "visitscotland:MegalinkItem")
+public class MegalinkItem extends HippoCompound {
     @HippoEssentialsGenerated(internalName = "visitscotland:feature")
     public Boolean getFeature() {
         return getSingleProperty("visitscotland:feature");
