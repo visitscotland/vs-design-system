@@ -5,7 +5,6 @@ import com.visitscotland.brmx.beans.dms.LocationObject;
 import com.visitscotland.brmx.beans.mapping.megalinks.AbstractLayout;
 import com.visitscotland.brmx.beans.mapping.megalinks.FeaturedLayout;
 import com.visitscotland.brmx.beans.mapping.megalinks.SingleImageLayout;
-import org.easymock.EasyMock;
 import org.easymock.EasyMockSupport;
 import org.hippoecm.hst.content.beans.standard.HippoBean;
 import org.junit.jupiter.api.Assertions;
@@ -13,26 +12,25 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.Locale;
 
 import static org.easymock.EasyMock.*;
 
 
-public class LinkModulesFactoryTest extends EasyMockSupport {
+class LinkModulesFactoryTest extends EasyMockSupport {
 
     private final String TITLE = "Megalink title";
     
     //This constants must not generate the name from the class since Freemarker is not aware of them so any change would break the template 
-    final String LIST = "ListLayout";
-    final String FEATURED = "FeaturedLayout";
-    final String SINGLE_IMAGE = "SingleImageLayout";
+    private final String LIST = "ListLayout";
+    private final String FEATURED = "FeaturedLayout";
+    private final String SINGLE_IMAGE = "SingleImageLayout";
 
-    static MegalinksMockService megalinkService;
-    static MegalinkItemMockService megalinkItemService;
+    private static MegalinksMockService megalinkService;
+    private static MegalinkItemMockService megalinkItemService;
 
-    LinkModulesFactory factory;
+    private LinkModulesFactory factory;
 
     /**
      * {@code factory} needs an static method (createUrl) to be mocked since it relies on a static BloomReach dependency
@@ -176,8 +174,8 @@ public class LinkModulesFactoryTest extends EasyMockSupport {
         MegaLinkItem mi = megalinkItemService.createMock(false);
 
         verifyAll();
-        Assertions.assertEquals(factory.convertoToFlatLinks(Arrays.asList(mi)).size(), 1);
-        Assertions.assertEquals(factory.convertToEnhancedLinks(Arrays.asList(mi), Locale.UK).size(), 1);
+        Assertions.assertEquals(factory.convertoToFlatLinks(Collections.singletonList(mi)).size(), 1);
+        Assertions.assertEquals(factory.convertToEnhancedLinks(Collections.singletonList(mi), Locale.UK).size(), 1);
     }
 
     @Test
@@ -191,8 +189,8 @@ public class LinkModulesFactoryTest extends EasyMockSupport {
         replayAll();
 
 
-        Assertions.assertEquals(factory.convertoToFlatLinks(Arrays.asList(mi)).size(), 0);
-        Assertions.assertEquals(factory.convertToEnhancedLinks(Arrays.asList(mi), Locale.UK).size(), 0);
+        Assertions.assertEquals(factory.convertoToFlatLinks(Collections.singletonList(mi)).size(), 0);
+        Assertions.assertEquals(factory.convertToEnhancedLinks(Collections.singletonList(mi), Locale.UK).size(), 0);
 
         //This verifies that messages were generated and include the problematic node
         verify(mi);
@@ -209,8 +207,8 @@ public class LinkModulesFactoryTest extends EasyMockSupport {
 
         replay(mi);
 
-        Assertions.assertEquals(factory.convertoToFlatLinks(Arrays.asList(mi)).size(), 0);
-        Assertions.assertEquals(factory.convertToEnhancedLinks(Arrays.asList(mi), Locale.UK).size(), 0);
+        Assertions.assertEquals(factory.convertoToFlatLinks(Collections.singletonList(mi)).size(), 0);
+        Assertions.assertEquals(factory.convertToEnhancedLinks(Collections.singletonList(mi), Locale.UK).size(), 0);
 
         //This verifies that messages were generated and include the problematic node
         verify(mi);
