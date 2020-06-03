@@ -211,6 +211,14 @@ definitions:
                         hst:componentconfigurationmappingvalues: ['hst:pages/itinerary-page',
                           'hst:pages/listicle-page']
                         hst:relativecontentpath: ${parent}/content
+            /frontend:
+              jcr:primaryType: hst:sitemapitem
+              hst:relativecontentpath: ${parent}/vuex
+              hst:componentconfigurationid: hst:pages/vuex-example-page
+            /vuex:
+              jcr:primaryType: hst:sitemapitem
+              hst:componentconfigurationid: hst:pages/vuex-example-page
+              hst:relativecontentpath: ${parent}/vuex
         /hst:abstractpages:
           jcr:primaryType: hst:pages
         /hst:pages:
@@ -246,6 +254,9 @@ definitions:
           /utility-footer:
             jcr:primaryType: hst:template
             hst:renderpath: webfile:/freemarker/visitscotland/base/utility-footer.ftl
+          /vuex-example:
+            jcr:primaryType: hst:template
+            hst:renderpath: webfile:/freemarker/visitscotland/dev-pages/vuex-example.ftl
         /hst:catalog:
           jcr:primaryType: hst:catalog
           /visitscotland-catalog:

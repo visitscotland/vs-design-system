@@ -18,9 +18,13 @@
         <@hst.headContributions categoryIncludes="htmlHeadStyles" xhtml=true/>
         <!-- END HEAD CONTRIBUTIONS: htmlHeadStyles -->
 
+        <!-- BEGIN HEAD CONTRIBUTIONS: general -->
+        <@hst.headContributions categoryExcludes="htmlHeadPreload,htmlHeadStyles,htmlBodyEndScriptsFirst,htmlBodyEndScripts,htmlBodyEndAppEntry" xhtml=true/>
+        <!-- END HEAD CONTRIBUTIONS: general -->
+
     </head>
     <body>
-        <div class="container no-js" data-vue-app-init>
+        <div class="no-js" data-vue-app-init>
             <div class="row">
                 <div class="col-md-6 col-md-offset-3">
                     <@hst.include ref="top"/>
@@ -34,9 +38,7 @@
             <main id="main">
                 <@hst.include ref="main"/>
             </main>
-            
             <@hst.include ref="footer"/>
-                
         </div>
 
         <!-- BEGIN HEAD CONTRIBUTIONS: htmlBodyEndScriptsFirst -->
