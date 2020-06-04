@@ -1,8 +1,8 @@
 <template>
-    <b-row v-bind="$attrs">
+    <BRow v-bind="$attrs">
         <!-- @slot The row's contents go here -->
         <slot />
-    </b-row>
+    </BRow>
 </template>
 
 <script>
