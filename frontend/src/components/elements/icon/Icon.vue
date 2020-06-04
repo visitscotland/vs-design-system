@@ -1,5 +1,5 @@
 <template>
-    <vs-svg
+    <VsSvg
         :path="path"
         :class="{
             icon: true,
@@ -14,9 +14,9 @@
 </template>
 
 <script>
+import { get } from "lodash"
 import VsSvg from "../svg"
 import designTokens from "@/assets/tokens/tokens.raw.json"
-import { get } from "lodash"
 
 const iconPath = "icons/"
 
@@ -32,7 +32,57 @@ export default {
     name: "VsIcon",
     status: "prototype",
     release: "0.1.0",
-    components: { VsSvg },
+    components: {
+        VsSvg,
+    },
+    props: {
+        /**
+         * The name of the icon to display.
+         */
+        name: {
+            type: String,
+            required: true,
+            default: "search",
+        },
+        /**
+         * The fill color of the SVG icon.
+         * `primary, secondary, success, danger, warning, info,
+         * light, dark, reverse-white, primary-purple, secondary-teal`
+         */
+        variant: {
+            type: String,
+            default: null,
+            validator: (value) => value.match(
+                /(primary|secondary|success|danger|warning|info|light|dark|reverse-white)/,
+            ),
+        },
+        /**
+         * The size of the icon. Defaults to medium.
+         * `small, medium, large`
+         */
+        size: {
+            type: String,
+            default: "md",
+            validator: (value) => value.match(/(xxs|xs|sm|md|lg|xl)/),
+        },
+        /**
+         * Whether to reverse the icon's background and
+         * fill colours
+         */
+        reverse: {
+            type: Boolean,
+        },
+
+        /**
+         * Amount of padding
+         * `null, 0, 1, 2, 3`
+         */
+        padding: {
+            type: Number,
+            default: 2,
+            validator: (value) => [null, 0, 1, 2, 3].indexOf(value) !== -1,
+        },
+    },
     data() {
         return {
             iconLookup: [
@@ -115,71 +165,20 @@ export default {
             ],
         }
     },
-    props: {
-        /**
-         * The name of the icon to display.
-         */
-        name: {
-            required: true,
-            default: "search",
-        },
-        /**
-         * The fill color of the SVG icon.
-         * `primary, secondary, success, danger, warning, info, light, dark, reverse-white, primary-purple, secondary-teal`
-         */
-        variant: {
-            type: String,
-            default: null,
-            validator: value => {
-                return value.match(
-                    /(primary|secondary|success|danger|warning|info|light|dark|reverse-white)/
-                )
-            },
-        },
-        /**
-         * The size of the icon. Defaults to medium.
-         * `small, medium, large`
-         */
-        size: {
-            type: String,
-            default: "md",
-            validator: value => {
-                return value.match(/(xxs|xs|sm|md|lg|xl)/)
-            },
-        },
-        /**
-         * Whether to reverse the icon's background and
-         * fill colours
-         */
-        reverse: {
-            type: Boolean,
-        },
-
-        /**
-         * Amount of padding
-         * `null, 0, 1, 2, 3`
-         */
-        padding: {
-            type: Number,
-            default: 2,
-            validator: value => {
-                return [null, 0, 1, 2, 3].indexOf(value) !== -1
-            },
-        },
-    },
     computed: {
         path() {
             return iconPath + this.formattedName
         },
         dimension() {
-            return get(designTokens, "props.icon_size_" + this.size + ".value", "40px")
+            return get(designTokens, `props.icon_size_${this.size}.value`, "40px")
         },
         formattedName() {
             /*
-             * To facilitate more readable icon names and organise / group icons within the design system
+             * To facilitate more readable icon names and
+             * organise / group icons within the design system
              * there is a lookup for how keys may be passed from the backend
              */
-            var formattedNameLookup = this.iconLookup.find(({ key }) => key === this.name)
+            const formattedNameLookup = this.iconLookup.find(({ key }) => key === this.name)
 
             return formattedNameLookup !== undefined ? formattedNameLookup.value : this.name
         },
@@ -271,14 +270,14 @@ $variants: (
 <docs>
   ```jsx
   <div>
-    <bs-wrapper class="row mb-5">    
+    <bs-wrapper class="row mb-5">
       <bs-wrapper class="col">
         <h3>Default</h3>
         <vs-icon name="search" />
       </bs-wrapper>
     </bs-wrapper>
-    
-    <bs-wrapper class="row mb-5">    
+
+    <bs-wrapper class="row mb-5">
       <bs-wrapper class="col">
         <h3>Variant</h3>
         <vs-icon name="user" variant="primary" />
@@ -291,8 +290,8 @@ $variants: (
         <vs-icon name="user" variant="light" />
       </bs-wrapper>
     </bs-wrapper>
-    
-    <bs-wrapper class="row mb-5">    
+
+    <bs-wrapper class="row mb-5">
       <bs-wrapper class="col">
         <h3>Reverse</h3>
         <vs-icon name="favourite" reverse />
@@ -307,7 +306,7 @@ $variants: (
       </bs-wrapper>
     </bs-wrapper>
 
-    <bs-wrapper class="row mb-5">    
+    <bs-wrapper class="row mb-5">
       <bs-wrapper class="col">
         <h3>Size</h3>
 
@@ -321,7 +320,7 @@ $variants: (
             <h4>xs</h4>
             <vs-icon name="favourite" size="xs" />
           </bs-wrapper>
-          
+
           <bs-wrapper class="d-flex flex-column mr-3 align-items-center">
             <h4>sm</h4>
             <vs-icon name="favourite" size="sm" />
@@ -331,12 +330,12 @@ $variants: (
             <h4>md</h4>
             <vs-icon name="favourite" size="md" />
           </bs-wrapper>
-          
+
           <bs-wrapper class="d-flex flex-column mr-3 align-items-center">
             <h4>lg</h4>
             <vs-icon name="favourite" size="lg" />
           </bs-wrapper>
-          
+
           <bs-wrapper class="d-flex flex-column mr-3 align-items-center">
             <h4>xl</h4>
             <vs-icon name="favourite" size="xl" />
@@ -345,7 +344,7 @@ $variants: (
       </bs-wrapper>
     </bs-wrapper>
 
-    <bs-wrapper class="row mb-5">    
+    <bs-wrapper class="row mb-5">
       <bs-wrapper class="col">
         <h3>Padding size</h3>
 
@@ -360,7 +359,7 @@ $variants: (
             <h4>1</h4>
             <vs-icon name="favourite" reverse :padding="1" />
           </bs-wrapper>
-          
+
           <bs-wrapper class="d-flex flex-column mr-3 align-items-center">
             <h4>2</h4>
             <vs-icon name="favourite" reverse />

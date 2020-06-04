@@ -1,7 +1,13 @@
 <template>
-    <b-img v-bind="$attrs" :src="src" :alt="alt" :fluid="fluid" :fluid-grow="fluidGrow">
+    <BImg
+        v-bind="$attrs"
+        :src="src"
+        :alt="alt"
+        :fluid="fluid"
+        :fluid-grow="fluidGrow"
+    >
         <slot />
-    </b-img>
+    </BImg>
 </template>
 
 <script>
@@ -66,7 +72,7 @@ export default {
     <vs-container>
       <vs-row>
         <vs-col>
-          <vs-img 
+          <vs-img
             src="https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"
             alt="Claire standing stones"
           />
@@ -74,7 +80,7 @@ export default {
       </vs-row>
       <vs-row class="mt-5">
         <vs-col>
-          <vs-img 
+          <vs-img
             src="https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"
             alt="Claire standing stones"
             fluid
@@ -83,7 +89,7 @@ export default {
       </vs-row>
       <vs-row class="mt-5">
         <vs-col>
-          <vs-img 
+          <vs-img
             src="https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"
             alt="Claire standing stones"
             fluid-grow
@@ -96,6 +102,5 @@ export default {
   </div>
 
 
-  
   ```
 </docs>

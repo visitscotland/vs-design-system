@@ -1,1 +1,5 @@
-export { VsSocialCreditLink } from "./SocialCreditLink"
+import VsSocialCreditLink from "./SocialCreditLink.vue"
+
+export default {
+    VsSocialCreditLink,
+}

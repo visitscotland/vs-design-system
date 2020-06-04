@@ -1,13 +1,18 @@
 <template>
-    <vs-button
-        class="vs-skip-to sr-only sr-only-focusable d-inline-flex p-absolute align-items-center flex-column py-2 px-3"
+    <VsButton
+        class="vs-skip-to sr-only sr-only-focusable d-inline-flex
+        p-absolute align-items-center flex-column py-2 px-3"
         variant="dark"
         :tabindex="tabindex"
         :animate="false"
     >
         <slot />
-        <vs-icon name="chevron-down" size="xs" variant="reverse-white" />
-    </vs-button>
+        <VsIcon
+            name="chevron-down"
+            size="xs"
+            variant="reverse-white"
+        />
+    </VsButton>
 </template>
 
 <script>
@@ -35,6 +40,7 @@ export default {
          */
         tabindex: {
             type: String,
+            default: "",
         },
     },
 }
