@@ -6,11 +6,12 @@ From the project root folder, execute:
     mvn clean verify
     mvn -P cargo.run
 
-Alternatively, developers might prefer to run a quicker version where UI packages are not built.
+Alternatively, developers might prefer to run a quicker version were UI packages are not built.
 Please, note that the full run is advised every time the branch is changed or when front end changes 
 are expected.
 
-    mvn verify -P !fed-build -D skipTests && mvn -P cargo.run
+    mvn verify -P !fed-build -D skipTests 
+    mvn -P cargo.run
     
 Front end developers can also benefit of a quick run by running the following command which only
 build the front end packages and the UI integration.
@@ -18,10 +19,20 @@ build the front end packages and the UI integration.
     mvn verify -P fed-build -D skipTests && mvn -P cargo.run
 
 
-BloomReach Instruction (Legacy)
+Git has a limit of 260 characters for a filename in Windows when Git is compiled with msys. You can circumvent the issue by executing the following command:
+
+     git config --system core.longpaths true
+
+**The front-end build doesn't finish or finish with an exception**
+
+To be documented
+
+_QuickFix: Intall NPM and Yarn manually with the versions specified in ui-integration/pom.xml_
+
+BloomReach Instruction (Legacy) 
 ===============================
 
-##Running Locally
+## Running Locally
 This project uses the Maven Cargo plugin to run Essentials, the CMS and site locally in Tomcat.
 From the project root folder, execute:
 
@@ -43,7 +54,7 @@ After your project is set up, access the CMS at <http://localhost:8080/cms> and 
 Logs are located in target/tomcat9x/logs
 
 
-##Best Practice for Development
+## Best Practice for Development
 
 Use the option `-Drepo.path=/some/path/to/repository` during start up. This will avoid
 your repository to be cleared when you do a mvn clean.

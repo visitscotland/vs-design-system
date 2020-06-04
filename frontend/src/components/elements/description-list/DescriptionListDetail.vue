@@ -1,5 +1,5 @@
 <template>
-    <vs-col
+    <VsCol
         tag="dd"
         class="vs-description-list__detail"
         :class="{ 'list-inline-item': inline, 'vs-description-list__detail--styled': !inline }"
@@ -7,7 +7,7 @@
         <div class="position-relative">
             <slot />
         </div>
-    </vs-col>
+    </VsCol>
 </template>
 
 <script>

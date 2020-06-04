@@ -1,5 +1,10 @@
 <template>
-    <b-list-group v-bind="$attrs" v-hand-down-focus><slot /></b-list-group>
+    <BListGroup
+        v-bind="$attrs"
+        v-hand-down-focus
+    >
+        <slot />
+    </BListGroup>
 </template>
 
 <script>

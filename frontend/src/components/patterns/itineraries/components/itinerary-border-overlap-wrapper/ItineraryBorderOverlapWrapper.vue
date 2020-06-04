@@ -1,6 +1,11 @@
 <template>
     <div
-        class="vs-itinerary-border-overlap__wrapper d-flex d-sm-inline-flex flex-column justify-content-start border-left"
+        class="vs-itinerary-border-overlap__wrapper
+        d-flex
+        d-sm-inline-flex
+        flex-column
+        justify-content-start
+        border-left"
     >
         <slot />
     </div>
@@ -14,8 +19,10 @@ export default {
     name: "VsItineraryBorderOverlapWrapper",
     status: "prototype",
     release: "0.0.1",
-    components: {},
-    props: {},
+    components: {
+    },
+    props: {
+    },
 }
 </script>
 
@@ -40,13 +47,24 @@ export default {
 }
 </style>
 <docs>
-  
+
   ```jsx
     <vs-itinerary-border-overlap-wrapper>
-        <vs-button-with-icon class="mb-3" background="white" variant="outline-primary" href="#" icon="food">
+        <vs-button-with-icon
+            class="mb-3"
+            background="white"
+            variant="outline-primary"
+            href="#"
+            icon="food"
+        >
             Nearby places to eat
         </vs-button-with-icon>
-        <vs-button-with-icon background="white" variant="outline-primary" href="#" icon="product-accommodation">
+        <vs-button-with-icon
+            background="white"
+            variant="outline-primary"
+            href="#"
+            icon="product-accommodation"
+        >
             Nearby places to stay
         </vs-button-with-icon>
     </vs-itinerary-border-overlap-wrapper>

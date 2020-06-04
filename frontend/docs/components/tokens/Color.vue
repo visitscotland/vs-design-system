@@ -1,107 +1,122 @@
 <template>
-  <div>
-    <div
-      v-for="(category, categoryKey) in tokenGroups"
-      :key="categoryKey"
-      class="color-category"
-      :class="['color-category-' + category.name]"
-    >
-      <h2>{{ category.name }}</h2>
+    <div>
+        <div
+            v-for="(category, categoryKey) in tokenGroups"
+            :key="categoryKey"
+            class="color-category"
+            :class="['color-category-' + category.name]"
+        >
+            <h2>{{ category.name }}</h2>
 
-      <ul class="colors">
-        <li v-for="(prop, index) in category.colors" :key="index" class="color">
-          <div class="swatch" :style="{ backgroundColor: prop.value }">
-            <ul class="contrast-indicator__ul">
-              <li v-for="(item, index2) in prop.readability" :key="index2">
-                <p :class="index2">A</p>
-                <p class="result">{{ item }}</p>
-              </li>
+            <ul class="colors">
+                <li
+                    v-for="(prop, index) in category.colors"
+                    :key="index"
+                    class="color"
+                >
+                    <div
+                        class="swatch"
+                        :style="{ backgroundColor: prop.value }"
+                    >
+                        <ul class="contrast-indicator__ul">
+                            <li
+                                v-for="(item, index2) in prop.readability"
+                                :key="index2"
+                            >
+                                <p :class="index2">
+                                    A
+                                </p>
+                                <p class="result">
+                                    {{ item }}
+                                </p>
+                            </li>
+                        </ul>
+                    </div>
+                    <h3>{{ prop.name.replace(/_/g, " ").replace(/color/g, "") }}</h3>
+                    <dl class="docs__dl">
+                        <dt>SCSS:</dt>
+                        <dd>${{ prop.name.replace(/_/g, "-") }}</dd>
+                        <dt>HEX:</dt>
+                        <dd>{{ prop.originalValue }}</dd>
+                        <dt>RGB:</dt>
+                        <dd>{{ prop.value }}</dd>
+                    </dl>
+                </li>
             </ul>
-          </div>
-          <h3>{{ prop.name.replace(/_/g, " ").replace(/color/g, "") }}</h3>
-          <dl class="docs__dl">
-            <dt>SCSS:</dt>
-            <dd>${{ prop.name.replace(/_/g, "-") }}</dd>
-            <dt>HEX:</dt>
-            <dd>{{ prop.originalValue }}</dd>
-            <dt>RGB:</dt>
-            <dd>{{ prop.value }}</dd>
-          </dl>
-        </li>
-      </ul>
+        </div>
     </div>
-  </div>
 </template>
 
 <script>
+import {
+    filter,
+    each,
+    get,
+    find,
+    matchesProperty,
+} from "lodash"
+import tinycolor from "tinycolor2"
 import designTokens from "@/assets/tokens/tokens.raw.json"
 
-import filter from "lodash/filter"
-import groupBy from "lodash/groupBy"
-import map from "lodash/map"
-import each from "lodash/each"
-import get from "lodash/get"
-import find from "lodash/find"
-import matchesProperty from "lodash/matchesProperty"
-import cloneDeep from "lodash/cloneDeep"
-import tinycolor from "tinycolor2"
-
 export default {
-  name: "Color",
-  data() {
-    let groups = []
-    let colours = filter(designTokens.props, ["type", "color"])
+    name: "Color",
+    data() {
+        const groups = []
+        const colours = filter(designTokens.props, ["type", "color"])
 
-    each(colours, colour => {
-      let categoryName = get(colour, "category")
-      let category = find(groups, matchesProperty("name", categoryName))
-      colour.readability = this.checkContrast(colour.originalValue)
+        each(colours, (colour) => {
+            const categoryName = get(colour, "category")
+            let category = find(groups, matchesProperty("name", categoryName))
+            /* eslint-disable no-param-reassign */
+            colour.readability = this.checkContrast(colour.originalValue)
+            /* eslint-enable no-param-reassign */
 
-      if (!category) {
-        category = {
-          name: categoryName,
-          colors: [],
+            if (!category) {
+                category = {
+                    name: categoryName,
+                    colors: [],
+                }
+                groups.push(category)
+            }
+
+            category.colors.push(colour)
+        })
+
+        return {
+            tokenGroups: groups,
         }
-        groups.push(category)
-      }
-
-      category.colors.push(colour)
-    })
-
-    return {
-      tokenGroups: groups,
-    }
-  },
-  methods: {
-    checkContrast(originalValue) {
-      let readability = {}
-      readability.blackLG = tinycolor.isReadable("#000000", originalValue, {
-        level: "AA",
-        size: "large",
-      })
-        ? "Pass"
-        : "Fail"
-      readability.blackSM = tinycolor.isReadable("#000000", originalValue, {
-        level: "AA",
-        size: "small",
-      })
-        ? "Pass"
-        : "Fail"
-      readability.whiteLG = tinycolor.isReadable("#ffffff", originalValue, {
-        level: "AA",
-        size: "large",
-      })
-        ? "Pass"
-        : "Fail"
-      readability.whiteSM = tinycolor.isReadable("#ffffff", originalValue, {
-        level: "AA",
-        size: "small",
-      })
-        ? "Pass"
-        : "Fail"
-      return readability
     },
-  },
+    methods: {
+        checkContrast(originalValue) {
+            const readability = {
+            }
+            readability.blackLG = tinycolor.isReadable("#000000", originalValue, {
+                level: "AA",
+                size: "large",
+            })
+                ? "Pass"
+                : "Fail"
+            readability.blackSM = tinycolor.isReadable("#000000", originalValue, {
+                level: "AA",
+                size: "small",
+            })
+                ? "Pass"
+                : "Fail"
+            readability.whiteLG = tinycolor.isReadable("#ffffff", originalValue, {
+                level: "AA",
+                size: "large",
+            })
+                ? "Pass"
+                : "Fail"
+            readability.whiteSM = tinycolor.isReadable("#ffffff", originalValue, {
+                level: "AA",
+                size: "small",
+            })
+                ? "Pass"
+                : "Fail"
+            return readability
+        },
+    },
 }
 </script>
 

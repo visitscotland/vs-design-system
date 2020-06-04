@@ -1,10 +1,17 @@
 <template>
-  <div>
-    <b-card bg-variant="primary" style="max-width: 20rem;">
-      <b-card-text> Inside component 1, the count from the VueX state is {{ count }} </b-card-text>
-      <vs-button @click.native="increment"> <slot /> </vs-button>
-    </b-card>
-  </div>
+    <div>
+        <BCard
+            bg-variant="primary"
+            style="max-width: 20rem;"
+        >
+            <BCardText>
+                Inside component 1, the count from the VueX state is {{ count }}
+            </BCardText>
+            <VsButton @click.native="increment">
+                <slot />
+            </VsButton>
+        </BCard>
+    </div>
 </template>
 
 <script>
@@ -15,8 +22,8 @@ import mixin from "./example.mixin"
  * components of the design system.
  */
 export default {
-  name: "VsVueXExample",
-  mixins: [mixin],
+    name: "VsVueXExample",
+    mixins: [mixin],
 }
 </script>
 
@@ -38,7 +45,7 @@ export default {
     </div>
   </div>
   </template>
-  
+
   <script>
   import store from './example.store'
 
@@ -51,8 +58,7 @@ export default {
     }
   }
   </script>
-  
-  
+
 
   ```
 </docs>

@@ -25,6 +25,8 @@ props:
       value: "{!font_size_base} * 0.875"
     - name: h3-sub-font-size
       value: "{!font_size_base} * 1"
+    - name: h2-sub-font-size
+      value: "{!font_size_base} * 1.5"
     - name: display1-size
       value: "{!font_size_base} * 1.875"
     - name: display2-size

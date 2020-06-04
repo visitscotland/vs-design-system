@@ -1,37 +1,49 @@
 <template>
-    <vs-row>
-        <vs-col cols="12" sm="6" md="4" xl="3" v-for="path in icons" v-bind:key="path">
+    <VsRow>
+        <VsCol
+            cols="12"
+            sm="6"
+            md="4"
+            xl="3"
+            v-for="path in icons"
+            :key="path"
+        >
             <div class="card">
-                <vs-icon :name="path" />
+                <VsIcon :name="path" />
                 <pre>{{ path }}</pre>
             </div>
-        </vs-col>
-    </vs-row>
+        </VsCol>
+    </VsRow>
 </template>
 
 <script>
-const allIcons = getAllIcons()
 import VsIcon from "@components/elements/icon/"
 import { VsRow, VsCol } from "@components/elements/layout"
 import { trimStart, map } from "lodash"
 
+const getAllIcons = () => {
+    const all = require.context("@/assets/svg/icons", false, /^\.\/.*\.svg$/)
+    return map(all.keys(), (key) => trimStart(key, "./").replace(".svg", ""))
+}
+
+const allIcons = getAllIcons()
+
 export default {
     name: "Icons",
-    components: { VsIcon, VsCol, VsRow },
+    components: {
+        VsIcon,
+        VsCol,
+        VsRow,
+    },
     data() {
         return {
             icons: allIcons,
         }
     },
-    methods: {},
+    methods: {
+    },
 }
 
-function getAllIcons() {
-    const all = require.context("@/assets/svg/icons", false, /^\.\/.*\.svg$/)
-    return map(all.keys(), key => {
-        return trimStart(key, "./").replace(".svg", "")
-    })
-}
 </script>
 
 <style lang="scss" scoped>
