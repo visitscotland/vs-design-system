@@ -16,6 +16,7 @@ definitions:
       max.file.size: 1M
       max.width: 2048
       max.height: 1536
+      extensions.allowed: ['*.jpg', '*.jpeg']
     /hippo:configuration/hippo:frontend/cms/cms-advanced-search/genericFilters:
       document.type.namespaces: [visitscotland]
       document.type.excluded: ['visitscotland:basedocument', 'visitscotland:Page']
@@ -31,12 +32,6 @@ definitions:
       plugin.class: com.onehippo.cms7.search.frontend.filters.GenericPropertyFilterPlugin
       wicket.id: ${search.extensions}
       wicket.model: ${model.search}
-    /hippo:configuration/hippo:frontend/cms/cms-services/DmsImageLocationListProvider:
-      .meta:order-before: DmsDestinationLocationListProvider
-      jcr:primaryType: frontend:plugin
-      plugin.class: com.visitscotland.brmx.components.DmsLocationListProvider
-      valuelist.provider: service.locationlist.image
-      location.levels: [DISTRICT, DESTINATION]
     /hippo:configuration/hippo:frontend/cms/cms-services/DmsDestinationLocationListProvider:
       jcr:primaryType: frontend:plugin
       plugin.class: com.visitscotland.brmx.components.DmsLocationListProvider

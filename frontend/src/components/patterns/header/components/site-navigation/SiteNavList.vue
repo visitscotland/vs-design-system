@@ -14,7 +14,7 @@
 <script>
 import { get } from "lodash"
 
-import HandDownFocus from "@/directives/hand-down-focus.js"
+import HandDownFocus from "@/directives/hand-down-focus"
 
 /**
  * The nearest ancestor with position relative
@@ -39,12 +39,6 @@ export default {
         firstNavItem() {
             return get(this.$slots, "default.0")
         },
-    },
-    created() {
-        console.log("site nav created")
-    },
-    mounted() {
-        console.log("site nav mounted")
     },
 }
 </script>

@@ -1,13 +1,19 @@
 <template>
-    <component
+    <Component
         :is="type"
         class="vs-itinerary-mobile-map-toggle"
         variant="primary"
         @click.native="toggleMap()"
     >
-        <vs-icon :name="showMap ? 'list' : 'map'" variant="reverse-white" size="sm" :padding="0" />
-        <span v-html="showMap ? 'List View' : 'Map View'"></span>
-    </component>
+        <VsIcon
+            :name="showMap ? 'list' : 'map'"
+            variant="reverse-white"
+            size="sm"
+            :padding="0"
+        />
+
+        {{ showMap ? 'List View' : 'Map View' }}
+    </Component>
 </template>
 
 <script>
@@ -26,16 +32,16 @@ export default {
         VsIcon,
         VsButton,
     },
-    data() {
-        return {
-            showMap: false,
-        }
-    },
     props: {
         type: {
             type: String,
             default: "vs-button",
         },
+    },
+    data() {
+        return {
+            showMap: false,
+        }
     },
     methods: {
         toggleMap() {
@@ -61,5 +67,5 @@ export default {
 
     <vs-itinerary-mobile-map-toggle />
 
-  ``` 
+  ```
 </docs>

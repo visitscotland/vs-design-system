@@ -246,7 +246,7 @@ public class ProductSearchBuilder {
         String compose =  String.format(PRODUCT_SEARCH, host==null?"":host, path);
 
         compose = addParams(compose, PRODUCT_TYPE, productTypes);
-        //Accommotions MUST deactivate availavility search
+        //Accommodations MUST deactivate availavility search
         if (path.equals(PATH_ACCOMMODATION)) {
             compose = addParams(compose, AVAILABILITY, "off");
         }

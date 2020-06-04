@@ -11,7 +11,7 @@ definitions:
         /hipposysedit:nodetype:
           jcr:primaryType: hipposysedit:nodetype
           jcr:mixinTypes: ['mix:referenceable', 'hipposysedit:remodel']
-          jcr:uuid: 96053770-b50f-4c34-b916-1442ad18e4ee
+          jcr:uuid: 960cf11a-760e-4615-a78d-a8d6c0e91efe
           hipposysedit:node: true
           hipposysedit:supertype: ['visitscotland:basedocument', 'hippostd:relaxed',
             'hippotranslation:translated']
@@ -32,6 +32,7 @@ definitions:
             hipposysedit:path: visitscotland:description
             hipposysedit:primary: false
             hipposysedit:type: hippostd:html
+            hipposysedit:validators: [required, non-empty]
           /tips:
             jcr:primaryType: hipposysedit:field
             hipposysedit:mandatory: false
@@ -46,7 +47,7 @@ definitions:
             hipposysedit:ordered: true
             hipposysedit:path: visitscotland:product
             hipposysedit:type: hippo:compound
-            hipposysedit:validators: [contentblocks-validator]
+            hipposysedit:validators: [contentblocks-validator, required]
           /title:
             jcr:primaryType: hipposysedit:field
             hipposysedit:mandatory: false
@@ -55,6 +56,7 @@ definitions:
             hipposysedit:path: visitscotland:title
             hipposysedit:primary: false
             hipposysedit:type: String
+            hipposysedit:validators: [required, non-empty]
           /image:
             jcr:primaryType: hipposysedit:field
             hipposysedit:mandatory: false
@@ -63,6 +65,14 @@ definitions:
             hipposysedit:path: visitscotland:image
             hipposysedit:primary: false
             hipposysedit:type: hippogallerypicker:imagelink
+          /subtitle:
+            jcr:primaryType: hipposysedit:field
+            hipposysedit:mandatory: false
+            hipposysedit:multiple: false
+            hipposysedit:ordered: false
+            hipposysedit:path: visitscotland:subtitle
+            hipposysedit:primary: false
+            hipposysedit:type: String
       /hipposysedit:prototypes:
         jcr:primaryType: hipposysedit:prototypeset
         /hipposysedit:prototype:
@@ -74,11 +84,12 @@ definitions:
           hippotranslation:id: document-type-locale-id
           hippotranslation:locale: document-type-locale
           jcr:mixinTypes: ['mix:referenceable']
-          jcr:uuid: 58307169-a143-4d59-9b90-7cd5d6a837f3
+          jcr:uuid: bffc2ab8-494c-46cb-9058-739b9d3de802
           hippostdpubwf:lastModificationDate: 2019-12-05T15:13:21.853Z
           hippostdpubwf:creationDate: 2019-12-05T15:13:21.853Z
           visitscotland:tipsTitle: ''
           visitscotland:title: ''
+          visitscotland:subtitle: ''
           /visitscotland:description:
             jcr:primaryType: hippostd:html
             hippostd:content: ''
@@ -110,6 +121,15 @@ definitions:
             wicket.id: ${cluster.id}.field
             /cluster.options:
               jcr:primaryType: frontend:pluginconfig
+          /subtitle:
+            jcr:primaryType: frontend:plugin
+            caption: Location (Subtitle)
+            field: subtitle
+            hint: ''
+            plugin.class: org.hippoecm.frontend.editor.plugins.field.PropertyFieldPlugin
+            wicket.id: ${cluster.id}.field
+            /cluster.options:
+              jcr:primaryType: frontend:pluginconfig
           /description:
             jcr:primaryType: frontend:plugin
             caption: Description
@@ -119,6 +139,9 @@ definitions:
             hint: ''
             /cluster.options:
               jcr:primaryType: frontend:pluginconfig
+              ckeditor.config.overlayed.json: '{toolbarGroups: [{ name: ''links''
+                },{name:''insert''},{name:''clipboard''},{name:''tools''},{name:''undo''}]
+                , removeButtons: ''PickImage,Youtube,Table''}'
           /image:
             jcr:primaryType: frontend:plugin
             caption: Image
@@ -143,7 +166,7 @@ definitions:
             jcr:primaryType: frontend:plugin
             caption: Pull Out Title
             field: tipsTitle
-            hint: ''
+            hint: Title is required if pull out is added
             plugin.class: org.hippoecm.frontend.editor.plugins.field.PropertyFieldPlugin
             wicket.id: ${cluster.id}.field
             /cluster.options:
@@ -157,3 +180,6 @@ definitions:
             wicket.id: ${cluster.id}.field
             /cluster.options:
               jcr:primaryType: frontend:pluginconfig
+              ckeditor.config.overlayed.json: '{toolbarGroups: [{ name: ''links''
+                },{name:''insert''},{name:''clipboard''},{name:''tools''},{name:''undo''}]
+                , removeButtons: ''PickImage,Youtube,Table''}'

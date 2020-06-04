@@ -29,13 +29,15 @@
 <#include "../../vs-dotcom-ds/components/itinerary.ftl">
 <#include "../../vs-dotcom-ds/components/svg.ftl">
 
-<#include "../modules/itineraries/itinerary-stop.ftl">
-<#include "../modules/itineraries/itinerary-map.ftl">
+<#include "../macros/modules/itineraries/itinerary-stop.ftl">
+<#include "../macros/modules/itineraries/itinerary-map.ftl">
+<#include "../macros/global/cms-errors.ftl">
 
 <#-- Implicit Request Objects -->
 <#-- @ftlvariable name="document" type="com.visitscotland.brmx.beans.Itinerary" -->
 <#-- @ftlvariable name="firstStopLocation" type="java.lang.String" -->
 <#-- @ftlvariable name="lastStopLocation" type="java.lang.String" -->
+<#-- @ftlvariable name="heroImage" type="com.visitscotland.brmx.beans.mapping.FlatImage" -->
 <#-- @ftlvariable name="heroCoordinates" type="com.visitscotland.brmx.beans.mapping.Coordinates" -->
 
 <#-- Template defined objects -->
@@ -47,28 +49,22 @@
 <#assign stopNumber = 0>
 <#assign lastStop = 0>
 
-<#if document.start?has_content>
-   <#assign firstStopLocation = document.start>
-</#if>
-<#if document.finish?has_content>
-    <#assign lastStopLocation = document.finish>
-</#if>
-
 <#if document.transports?has_content >
     <#assign mainTransport = document.transports[0]>
 </#if>
 </#compress>
 <div class="has-edit-button">
-      <@hst.manageContent hippobean=document documentTemplateQuery="new-document" rootPath="site" defaultPath="${path}" />
+    <@hst.manageContent hippobean=document documentTemplateQuery="new-document" rootPath="site" defaultPath="${path}" />
+    <@cmsErrors errors=alerts!"" editMode=editMode />
 
     <vs-page-intro>
-        <#if document.heroImage??>
+        <#if heroImage??>
             <@hst.link var="hero" hippobean=document.heroImage.original/>
             <vs-hero
                 slot="hero"
-                alt-text="${document.heroImage.altText}"
-                credit="${document.heroImage.credit}"
-                caption="${document.heroImage.description}"
+                alt-text="${heroImage.altText}"
+                credit="${heroImage.credit}"
+                caption="${heroImage.description}"
                 image-src="${hero}"
                 latitude="${(heroCoordinates.latitude)!''}"
                 longitude="${(heroCoordinates.longitude)!''}"
@@ -80,7 +76,7 @@
                     data-srcset="${hero}"
                     alt="${document.heroImage.altText}"
                     data-sizes="auto"
-                        />
+                        > </vs-img>
             </vs-hero>
         </#if>
         <vs-container slot="upper" class="py-lg-4">
@@ -121,8 +117,8 @@
                         </vs-summary-box-list-item>
                         <vs-summary-box-list-item>
                             <vs-summary-box-distance-display
-                                miles="${(document.distance)}"
-                                kilometres="${(document.distance*1.6)}"
+                                miles="${distance}"
+                                kilometres="${(distance*1.6)}"
                                 miles-label="${label("itinerary", "miles")}"
                                 kilometres-label="${label("itinerary", "kilometres")}">
                             </vs-summary-box-distance-display>

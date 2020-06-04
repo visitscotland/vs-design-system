@@ -98,7 +98,7 @@ To include a component in another project:
 - Reference all the relevent assets for the component as listed in the manifest.json.
 - Register the component using the [`Vue.component()` function](https://vuejs.org/v2/guide/components-registration.html) or locally in another component/app.
 
-The build also creates a core module (consisting of core.js and core.css artefacts) that contains any styles that need to applied globally to all components, such as the Bootstrap reboot styles. To add JS to this module, include it in `src/utils/core.system-components.js`, which is the entry file for the core module. This entry file imports `src/styles/core.styles.scss`, so add any global Sass to that file.
+The build also creates a core module (consisting of core.js and core.css artefacts) that contains any styles that need to applied globally to all components, such as the Bootstrap reboot styles. To add JS to this module, include it in `build/core.system-components.js`, which is the entry file for the core module. This entry file imports `src/styles/core.styles.scss`, so add any global Sass to that file.
 
 NOTE: An example webpack consuming package can be found in the `hippo/frontend` folder.
 

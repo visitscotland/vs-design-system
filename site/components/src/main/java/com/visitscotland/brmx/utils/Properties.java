@@ -17,5 +17,7 @@ public class Properties {
     //TODO Calculate environment
     public static final String VS_DMS_SERVICE = "http://172.28.81.65:8089";
 
+    public static final String INSTAGRAM_API = "https://www.instagram.com/p/";
+
 
 }

@@ -2,15 +2,13 @@ package com.visitscotland.brmx.beans;
 
 import org.hippoecm.hst.container.RequestContextProvider;
 import org.hippoecm.hst.content.beans.query.exceptions.QueryException;
-import org.hippoecm.hst.content.beans.standard.HippoBean;
-import org.hippoecm.hst.content.beans.standard.HippoCompound;
-import org.hippoecm.hst.content.beans.standard.HippoFacetSelect;
+import org.hippoecm.hst.content.beans.standard.*;
 import org.onehippo.cms7.essentials.dashboard.annotations.HippoEssentialsGenerated;
 import org.hippoecm.hst.content.beans.Node;
-import org.hippoecm.hst.content.beans.standard.HippoHtml;
 
 import javax.jcr.RepositoryException;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /** 
  * TODO: Beanwriter: Failed to create getter for node type: hippo:compound
@@ -44,7 +42,13 @@ public class ListicleItem extends BaseDocument {
 
     @HippoEssentialsGenerated(internalName = "visitscotland:images", allowModifications = false)
     public List<HippoBean> getImages() {
-        return getChildBeansByName("visitscotland:images", HippoBean.class);
+        //TODO: This is a workaround to an issue found in the CMS when a content block is composed of Image Links
+        return getChildBeansByName("visitscotland:images", HippoBean.class).stream().map(hippoBean -> {
+            if (hippoBean instanceof HippoMirror) {
+                return ((HippoMirror)hippoBean).getReferencedBean();
+            }
+            return hippoBean;
+        }).collect(Collectors.toList());
     }
 
     /**
@@ -53,18 +57,7 @@ public class ListicleItem extends BaseDocument {
      * Allowed types are InstagramImage and Image (Image Link)
      */
     public HippoBean getListicleItemImage() {
-        HippoBean image = getOnlyChild(getImages());
-        if (image instanceof HippoFacetSelect) {
-            try {
-                //TODO: This is a workaround to an issue found in the CMS when a content block is composed of Image Links
-                return RequestContextProvider.get().getQueryManager()
-                        .createQuery(RequestContextProvider.get().getSession().getNodeByIdentifier(
-                                image.getSingleProperty("hippo:docbase"))).execute().getHippoBeans().nextHippoBean();
-            } catch (QueryException | RepositoryException e) {
-                e.printStackTrace();
-            }
-        }
-        return image;
+        return getOnlyChild(getImages());
     }
 
     @HippoEssentialsGenerated(internalName = "visitscotland:extraLinks", allowModifications = false)

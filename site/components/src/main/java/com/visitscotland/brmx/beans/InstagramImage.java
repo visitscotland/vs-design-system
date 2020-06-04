@@ -16,4 +16,9 @@ public class InstagramImage extends HippoCompound {
     public String getId() {
         return getSingleProperty("visitscotland:id");
     }
+
+    @HippoEssentialsGenerated(internalName = "visitscotland:location")
+    public String getLocation() {
+        return getSingleProperty("visitscotland:location");
+    }
 }

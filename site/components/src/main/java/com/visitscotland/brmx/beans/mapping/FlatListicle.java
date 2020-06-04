@@ -1,6 +1,7 @@
 package com.visitscotland.brmx.beans.mapping;
 
 import com.visitscotland.brmx.beans.ListicleItem;
+import com.visitscotland.dataobjects.DataType;
 import org.hippoecm.hst.content.beans.standard.HippoHtml;
 
 import java.util.List;
@@ -14,12 +15,10 @@ public class FlatListicle {
     private String subTitle;
     private HippoHtml description;
     private FlatImage image;
-    private List<String> facilities;
-    private String location;
-    //TODO links instead ctaLinks
-    private List<FlatLink> ctaLinks;
-
-    private String errorMessage;
+    private List<DataType> facilities;
+    private List<FlatLink> links;
+    private List<String> errorMessages;
+    private ListicleItem listicleItem;
 
     public FlatListicle(){
 
@@ -30,6 +29,7 @@ public class FlatListicle {
         this.title = item.getTitle();
         this.subTitle = item.getSubtitle();
         this.description = item.getDescription();
+        this.listicleItem = item;
     }
 
     public String getIdentifier() {
@@ -72,29 +72,12 @@ public class FlatListicle {
         this.image = image;
     }
 
-    public List<String> getFacilities() {
+    public List<DataType> getFacilities() {
         return facilities;
     }
 
-    public void setFacilities(List<String> facilities) {
+    public void setFacilities(List<DataType> facilities) {
         this.facilities = facilities;
-    }
-
-    public String getErrorMessage() {
-        return errorMessage;
-    }
-
-    public void setErrorMessage(String errorMessage) {
-        this.errorMessage = errorMessage;
-    }
-
-
-    public String getLocation() {
-        return location;
-    }
-
-    public void setLocation(String location) {
-        this.location = location;
     }
 
     public String getSubTitle() {
@@ -105,12 +88,27 @@ public class FlatListicle {
         this.subTitle = subTitle;
     }
 
-
-    public List<FlatLink> getCtaLinks() {
-        return ctaLinks;
+    public List<FlatLink> getLinks() {
+        return links;
     }
 
-    public void setCtaLinks(List<FlatLink> ctaLinks) {
-        this.ctaLinks = ctaLinks;
+    public void setLinks(List<FlatLink> links) {
+        this.links = links;
+    }
+
+    public List<String> getErrorMessages() {
+        return errorMessages;
+    }
+
+    public void setErrorMessages(List<String> errorMessages) {
+        this.errorMessages = errorMessages;
+    }
+
+    public ListicleItem getListicleItem() {
+        return listicleItem;
+    }
+
+    public void setListicleItem(ListicleItem listicleItem) {
+        this.listicleItem = listicleItem;
     }
 }

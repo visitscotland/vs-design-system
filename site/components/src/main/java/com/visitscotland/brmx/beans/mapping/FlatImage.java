@@ -1,7 +1,14 @@
 package com.visitscotland.brmx.beans.mapping;
 
 
+import com.fasterxml.jackson.databind.JsonNode;
 import com.visitscotland.brmx.beans.Image;
+import com.visitscotland.brmx.beans.InstagramImage;
+import com.visitscotland.brmx.beans.dms.LocationObject;
+import com.visitscotland.brmx.utils.LocationLoader;
+import com.visitscotland.brmx.utils.Properties;
+
+import java.util.Locale;
 
 public class FlatImage {
 
@@ -22,24 +29,70 @@ public class FlatImage {
     private Source source;
     private String postUrl;
 
+    final String MEDIA = "mediaUrl";
+    final String CREDIT = "copyright";
+    final String ALT_TEXT = "altText";
+
     public FlatImage(){
-
     }
 
-    public FlatImage(Image cmsImage, String altText, String credit, String description) {
-        this.cmsImage = cmsImage;
-        this.altText = altText;
-        this.credit = credit;
-        this.description = description;
+    public FlatImage (Image cmsImage, Locale locale){
+       this.cmsImage = cmsImage;
+       this.credit = cmsImage.getCredit();
+        if (locale != null){
+            switch (locale.getLanguage()) {
+                case "fr":
+                    if (cmsImage.getFr() != null) {
+                        this.altText = cmsImage.getFr().getAltText();
+                        this.description = cmsImage.getFr().getCaption();
+                    }
+                    break;
+                case "de":
+                    if (cmsImage.getDe() != null) {
+                        this.altText = cmsImage.getDe().getAltText();
+                        this.description =cmsImage.getDe().getCaption();
+                    }
+                    break;
+                case "es":
+                    if (cmsImage.getEs() != null) {
+                        this.altText = cmsImage.getEs().getAltText();
+                        this.description =cmsImage.getEs().getCaption();
+                    }
+                    break;
+                case "nl":
+                    if (cmsImage.getNl() != null) {
+                        this.altText = cmsImage.getNl().getAltText();
+                        this.description =cmsImage.getNl().getCaption();
+                    }
+                    break;
+                case "it":
+                    if (cmsImage.getIt() != null) {
+                        this.altText = cmsImage.getIt().getAltText();
+                        this.description =cmsImage.getIt().getCaption();
+                    }
+                    break;
+                default:
+                    this.altText = cmsImage.getAltText();
+                    this.description =cmsImage.getDescription();
+            }
+        }
     }
 
-    public FlatImage(String externalImage, String altText, String credit, String description, Source source, String postUrl) {
-        this.externalImage = externalImage;
-        this.altText = altText;
-        this.credit = credit;
-        this.description = description;
-        this.source = source;
-        this.postUrl = postUrl;
+    public FlatImage(InstagramImage instagramLink, String caption, Locale locale) {
+        this.externalImage =  Properties.INSTAGRAM_API + instagramLink.getId() + "/media";
+        this.credit = caption;
+        this.altText = instagramLink.getCaption();
+        this.description = instagramLink.getCaption();
+        this.source = Source.INSTAGRAM;
+        this.postUrl = Properties.INSTAGRAM_API  + instagramLink.getId();
+        this.coordinates = setInstagramCoordinates(instagramLink,locale);
+    }
+
+    public FlatImage(JsonNode dmsImage, String productName) {
+        this.externalImage = (dmsImage.has(MEDIA) ? dmsImage.get(MEDIA).asText() : null);
+        this.credit = (dmsImage.has(CREDIT) ? dmsImage.get(CREDIT).asText() : null);
+        this.description = (dmsImage.has(ALT_TEXT) ? dmsImage.get(ALT_TEXT).asText() : productName);
+        this.altText = this.description;
     }
 
     public String getExternalImage() {
@@ -103,4 +156,15 @@ public class FlatImage {
     public void setPostUrl(String postUrl) {
         this.postUrl = postUrl;
     }
+
+    public Coordinates setInstagramCoordinates(InstagramImage instagramLink, Locale locale){
+        if (instagramLink.getLocation()!= null && !instagramLink.getLocation().isEmpty()){
+            LocationObject locationObject = LocationLoader.getLocation(instagramLink.getLocation(), locale);
+            if (locationObject != null){
+               return (new Coordinates(locationObject.getLatitude(),locationObject.getLongitude()));
+            }
+        }
+        return null;
+    }
+
 }

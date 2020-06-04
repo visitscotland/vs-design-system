@@ -19,7 +19,7 @@
       jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
       jcr:uuid: 1ead4399-7e30-47dc-9b75-2ea488fb5742
       hippo:name: Edinburgh castle
-      hippo:versionHistory: b8ae8151-3c8e-4f65-b69e-03ea1bac3ba9
+      hippo:versionHistory: 50c82259-bbca-4d58-90b8-aebcad7b2c41
       /edinburgh-castle[1]:
         jcr:primaryType: visitscotland:Stop
         jcr:mixinTypes: ['mix:referenceable']
@@ -28,10 +28,11 @@
         hippostd:state: draft
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2019-12-10T13:29:39.541Z
-        hippostdpubwf:lastModificationDate: 2020-03-09T15:59:21.163Z
+        hippostdpubwf:lastModificationDate: 2020-04-09T18:16:09.986+01:00
         hippostdpubwf:lastModifiedBy: admin
         hippotranslation:id: bd1aa2df-999b-4ed5-af2e-1f9cf0286372
         hippotranslation:locale: en
+        visitscotland:subtitle: ''
         visitscotland:tipsTitle: Edinburgh Castle - Sample Pullout Title
         visitscotland:title: Edinburgh castle
         /visitscotland:description:
@@ -43,6 +44,7 @@
           hippostd:content: <p>Edinburgh Castle - Sample Pullout Information</p>
         /visitscotland:product:
           jcr:primaryType: visitscotland:DMSLink
+          visitscotland:label: ''
           visitscotland:product: '245821'
           /visitscotland:image:
             jcr:primaryType: hippogallerypicker:imagelink
@@ -50,6 +52,12 @@
             hippo:facets: []
             hippo:modes: []
             hippo:values: []
+        /visitscotland:image:
+          jcr:primaryType: hippogallerypicker:imagelink
+          hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
+          hippo:facets: []
+          hippo:modes: []
+          hippo:values: []
       /edinburgh-castle[2]:
         jcr:primaryType: visitscotland:Stop
         jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
@@ -58,10 +66,11 @@
         hippostd:state: unpublished
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2019-12-10T13:29:39.541Z
-        hippostdpubwf:lastModificationDate: 2019-12-23T12:11:51.236Z
+        hippostdpubwf:lastModificationDate: 2020-04-09T18:16:12.706+01:00
         hippostdpubwf:lastModifiedBy: admin
         hippotranslation:id: bd1aa2df-999b-4ed5-af2e-1f9cf0286372
         hippotranslation:locale: en
+        visitscotland:subtitle: ''
         visitscotland:tipsTitle: Edinburgh Castle - Sample Pullout Title
         visitscotland:title: Edinburgh castle
         /visitscotland:description:
@@ -73,6 +82,7 @@
           hippostd:content: <p>Edinburgh Castle - Sample Pullout Information</p>
         /visitscotland:product:
           jcr:primaryType: visitscotland:DMSLink
+          visitscotland:label: ''
           visitscotland:product: '245821'
           /visitscotland:image:
             jcr:primaryType: hippogallerypicker:imagelink
@@ -80,6 +90,12 @@
             hippo:facets: []
             hippo:modes: []
             hippo:values: []
+        /visitscotland:image:
+          jcr:primaryType: hippogallerypicker:imagelink
+          hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
+          hippo:facets: []
+          hippo:modes: []
+          hippo:values: []
       /edinburgh-castle[3]:
         jcr:primaryType: visitscotland:Stop
         jcr:mixinTypes: ['mix:referenceable']
@@ -88,11 +104,12 @@
         hippostd:state: published
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2019-12-10T13:29:39.541Z
-        hippostdpubwf:lastModificationDate: 2019-12-23T12:11:51.236Z
+        hippostdpubwf:lastModificationDate: 2020-04-09T18:16:12.706+01:00
         hippostdpubwf:lastModifiedBy: admin
-        hippostdpubwf:publicationDate: 2019-12-23T12:11:54.704Z
+        hippostdpubwf:publicationDate: 2020-04-09T18:16:15.079+01:00
         hippotranslation:id: bd1aa2df-999b-4ed5-af2e-1f9cf0286372
         hippotranslation:locale: en
+        visitscotland:subtitle: ''
         visitscotland:tipsTitle: Edinburgh Castle - Sample Pullout Title
         visitscotland:title: Edinburgh castle
         /visitscotland:description:
@@ -104,6 +121,7 @@
           hippostd:content: <p>Edinburgh Castle - Sample Pullout Information</p>
         /visitscotland:product:
           jcr:primaryType: visitscotland:DMSLink
+          visitscotland:label: ''
           visitscotland:product: '245821'
           /visitscotland:image:
             jcr:primaryType: hippogallerypicker:imagelink
@@ -111,6 +129,12 @@
             hippo:facets: []
             hippo:modes: []
             hippo:values: []
+        /visitscotland:image:
+          jcr:primaryType: hippogallerypicker:imagelink
+          hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
+          hippo:facets: []
+          hippo:modes: []
+          hippo:values: []
     /royal-mil-and-grassmarket:
       jcr:primaryType: hippo:handle
       jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
@@ -125,7 +149,7 @@
         hippostd:state: draft
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2019-12-11T12:39:11.963Z
-        hippostdpubwf:lastModificationDate: 2020-01-10T14:45:23.610Z
+        hippostdpubwf:lastModificationDate: 2020-04-30T17:45:17.713+01:00
         hippostdpubwf:lastModifiedBy: admin
         hippotranslation:id: 9da62445-4ef0-470c-9d9c-ed812d053659
         hippotranslation:locale: en
@@ -231,8 +255,8 @@
       jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
       jcr:uuid: 28abd074-5fc4-4ebc-a424-1d4f9e5cb0e6
       hippo:name: GREYFRIARS KIRKYARD
-      hippo:versionHistory: ca7cf1d2-105c-4a16-9dfb-cdcb03186f4e
-      /greyfriars-kirkyard:
+      hippo:versionHistory: bc97ceb1-460a-4e77-8620-d5f700a15acb
+      /greyfriars-kirkyard[1]:
         jcr:primaryType: visitscotland:Stop
         jcr:mixinTypes: ['mix:referenceable']
         jcr:uuid: 55b22033-bb49-4c18-a9fc-e65c6a970ed6
@@ -240,9 +264,9 @@
         hippostd:state: published
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2019-12-11T12:40:08.862Z
-        hippostdpubwf:lastModificationDate: 2020-01-31T15:26:42.991Z
+        hippostdpubwf:lastModificationDate: 2020-04-08T10:03:08.371+01:00
         hippostdpubwf:lastModifiedBy: admin
-        hippostdpubwf:publicationDate: 2020-01-31T15:26:49.424Z
+        hippostdpubwf:publicationDate: 2020-04-09T18:16:18.757+01:00
         hippotranslation:id: 1bdaaad2-68eb-4493-878c-0961215fe02a
         hippotranslation:locale: en
         visitscotland:tipsTitle: Pull out title example
@@ -257,19 +281,90 @@
         /visitscotland:tips:
           jcr:primaryType: hippostd:html
           hippostd:content: <p>Description example for pull out</p>
+        /visitscotland:image:
+          jcr:primaryType: hippogallerypicker:imagelink
+          hippo:docbase: ecede5a4-326c-4ce5-b9be-bcdf32c3f2c2
+          hippo:facets: []
+          hippo:modes: []
+          hippo:values: []
         /visitscotland:product:
-          jcr:primaryType: visitscotland:ItineraryExternalLink
-          visitscotland:timeToExplore: ' 24'
-          /visitscotland:Coordinates:
-            jcr:primaryType: visitscotland:Coordinates
-            visitscotland:latitude: 57.144481250000005
-            visitscotland:longitude: -2.1929624999999997
+          jcr:primaryType: visitscotland:DMSLink
+          visitscotland:label: ''
+          visitscotland:product: '246891'
+      /greyfriars-kirkyard[2]:
+        jcr:primaryType: visitscotland:Stop
+        jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
+        jcr:uuid: c98a8e7f-3e6a-4dc1-a8e5-fa0ba51f3171
+        hippo:availability: [preview]
+        hippostd:state: unpublished
+        hippostdpubwf:createdBy: admin
+        hippostdpubwf:creationDate: 2019-12-11T12:40:08.862Z
+        hippostdpubwf:lastModificationDate: 2020-04-08T10:03:08.371+01:00
+        hippostdpubwf:lastModifiedBy: admin
+        hippotranslation:id: 1bdaaad2-68eb-4493-878c-0961215fe02a
+        hippotranslation:locale: en
+        visitscotland:tipsTitle: Pull out title example
+        visitscotland:title: Greyfriars Kirkyard
+        /visitscotland:description:
+          jcr:primaryType: hippostd:html
+          hippostd:content: '<p>Only a short walk away from The Elephant House you''ll
+            find this infamous, spine-tingling graveyard, and burial place of several
+            notable Edinburgh academics and writers of the past. However, also buried
+            here are a few other notable residents: Thomas Riddell, William McGonagall
+            and Elizabeth Moodie. A coincidence? We think not.</p>'
+        /visitscotland:tips:
+          jcr:primaryType: hippostd:html
+          hippostd:content: <p>Description example for pull out</p>
+        /visitscotland:image:
+          jcr:primaryType: hippogallerypicker:imagelink
+          hippo:docbase: ecede5a4-326c-4ce5-b9be-bcdf32c3f2c2
+          hippo:facets: []
+          hippo:modes: []
+          hippo:values: []
+        /visitscotland:product:
+          jcr:primaryType: visitscotland:DMSLink
+          visitscotland:label: ''
+          visitscotland:product: '246891'
+      /greyfriars-kirkyard[3]:
+        jcr:primaryType: visitscotland:Stop
+        jcr:mixinTypes: ['mix:referenceable']
+        jcr:uuid: 7771f970-611c-4bcf-8fef-0e7b78969e7c
+        hippo:availability: []
+        hippostd:state: draft
+        hippostdpubwf:createdBy: admin
+        hippostdpubwf:creationDate: 2019-12-11T12:40:08.862Z
+        hippostdpubwf:lastModificationDate: 2020-04-08T10:02:56.352+01:00
+        hippostdpubwf:lastModifiedBy: admin
+        hippotranslation:id: 1bdaaad2-68eb-4493-878c-0961215fe02a
+        hippotranslation:locale: en
+        visitscotland:tipsTitle: Pull out title example
+        visitscotland:title: Greyfriars Kirkyard
+        /visitscotland:description:
+          jcr:primaryType: hippostd:html
+          hippostd:content: '<p>Only a short walk away from The Elephant House you''ll
+            find this infamous, spine-tingling graveyard, and burial place of several
+            notable Edinburgh academics and writers of the past. However, also buried
+            here are a few other notable residents: Thomas Riddell, William McGonagall
+            and Elizabeth Moodie. A coincidence? We think not.</p>'
+        /visitscotland:tips:
+          jcr:primaryType: hippostd:html
+          hippostd:content: <p>Description example for pull out</p>
+        /visitscotland:image:
+          jcr:primaryType: hippogallerypicker:imagelink
+          hippo:docbase: ecede5a4-326c-4ce5-b9be-bcdf32c3f2c2
+          hippo:facets: []
+          hippo:modes: []
+          hippo:values: []
+        /visitscotland:product:
+          jcr:primaryType: visitscotland:DMSLink
+          visitscotland:label: ''
+          visitscotland:product: '246891'
     /casa-jose:
       jcr:primaryType: hippo:handle
       jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
       jcr:uuid: 8b215960-87aa-47ae-9c11-8a750be25ad8
       hippo:name: Casa Jose
-      hippo:versionHistory: 3a650a49-e26e-41cf-82ee-e0764966cda2
+      hippo:versionHistory: dfa9d32e-1c92-4db7-bc70-6e47d1c28cde
       /casa-jose[1]:
         jcr:primaryType: visitscotland:Stop
         jcr:mixinTypes: ['mix:referenceable']
@@ -278,11 +373,12 @@
         hippostd:state: published
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2019-12-16T12:20:46.037Z
-        hippostdpubwf:lastModificationDate: 2020-03-09T13:38:58.432Z
+        hippostdpubwf:lastModificationDate: 2020-04-09T18:16:32.823+01:00
         hippostdpubwf:lastModifiedBy: admin
-        hippostdpubwf:publicationDate: 2020-03-09T13:39:03.368Z
+        hippostdpubwf:publicationDate: 2020-04-09T18:16:35.460+01:00
         hippotranslation:id: b4f184af-52de-4e48-92ab-33cc5c2519e0
         hippotranslation:locale: en
+        visitscotland:subtitle: ''
         visitscotland:tipsTitle: ''
         visitscotland:title: Casa Jose
         /visitscotland:description:
@@ -290,7 +386,7 @@
           hippostd:content: <p>Short description</p>
         /visitscotland:tips:
           jcr:primaryType: hippostd:html
-          hippostd:content: ''
+          hippostd:content: <p>Example tips invalid</p>
         /visitscotland:product:
           jcr:primaryType: visitscotland:ItineraryExternalLink
           visitscotland:timeToExplore: '1'
@@ -304,7 +400,7 @@
             visitscotland:link: https://ebooks.visitscotland.com/ghosts-myths-legends/
         /visitscotland:image:
           jcr:primaryType: hippogallerypicker:imagelink
-          hippo:docbase: 1e4be246-297b-4404-8102-80fe1bc0ddf7
+          hippo:docbase: 8d4f5036-64ca-4e5d-aa89-b348ae38b081
           hippo:facets: []
           hippo:modes: []
           hippo:values: []
@@ -316,18 +412,19 @@
         hippostd:state: unpublished
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2019-12-16T12:20:46.037Z
-        hippostdpubwf:lastModificationDate: 2020-03-09T13:38:58.432Z
+        hippostdpubwf:lastModificationDate: 2020-04-30T17:45:31.843+01:00
         hippostdpubwf:lastModifiedBy: admin
         hippotranslation:id: b4f184af-52de-4e48-92ab-33cc5c2519e0
         hippotranslation:locale: en
+        visitscotland:subtitle: ''
         visitscotland:tipsTitle: ''
         visitscotland:title: Casa Jose
         /visitscotland:description:
           jcr:primaryType: hippostd:html
-          hippostd:content: <p>Short description</p>
+          hippostd:content: <p>Short description.</p>
         /visitscotland:tips:
           jcr:primaryType: hippostd:html
-          hippostd:content: ''
+          hippostd:content: <p>Example tips invalid</p>
         /visitscotland:product:
           jcr:primaryType: visitscotland:ItineraryExternalLink
           visitscotland:timeToExplore: '1'
@@ -341,7 +438,7 @@
             visitscotland:link: https://ebooks.visitscotland.com/ghosts-myths-legends/
         /visitscotland:image:
           jcr:primaryType: hippogallerypicker:imagelink
-          hippo:docbase: 1e4be246-297b-4404-8102-80fe1bc0ddf7
+          hippo:docbase: 8d4f5036-64ca-4e5d-aa89-b348ae38b081
           hippo:facets: []
           hippo:modes: []
           hippo:values: []
@@ -350,21 +447,23 @@
         jcr:mixinTypes: ['mix:referenceable']
         jcr:uuid: af4ea7ee-b843-4f1f-96d5-c4e30e8500e8
         hippo:availability: []
+        hippostd:holder: admin
         hippostd:state: draft
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2019-12-16T12:20:46.037Z
-        hippostdpubwf:lastModificationDate: 2020-03-09T17:24:26.599Z
+        hippostdpubwf:lastModificationDate: 2020-04-30T17:45:32.009+01:00
         hippostdpubwf:lastModifiedBy: admin
         hippotranslation:id: b4f184af-52de-4e48-92ab-33cc5c2519e0
         hippotranslation:locale: en
+        visitscotland:subtitle: ''
         visitscotland:tipsTitle: ''
         visitscotland:title: Casa Jose
         /visitscotland:description:
           jcr:primaryType: hippostd:html
-          hippostd:content: <p>Short description</p>
+          hippostd:content: <p>Short description.</p>
         /visitscotland:tips:
           jcr:primaryType: hippostd:html
-          hippostd:content: ''
+          hippostd:content: <p>Example tips invalid</p>
         /visitscotland:product:
           jcr:primaryType: visitscotland:ItineraryExternalLink
           visitscotland:timeToExplore: '1'
@@ -378,7 +477,7 @@
             visitscotland:link: https://ebooks.visitscotland.com/ghosts-myths-legends/
         /visitscotland:image:
           jcr:primaryType: hippogallerypicker:imagelink
-          hippo:docbase: 1e4be246-297b-4404-8102-80fe1bc0ddf7
+          hippo:docbase: 8d4f5036-64ca-4e5d-aa89-b348ae38b081
           hippo:facets: []
           hippo:modes: []
           hippo:values: []
@@ -396,7 +495,7 @@
         hippostd:state: draft
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2019-12-16T12:21:59.073Z
-        hippostdpubwf:lastModificationDate: 2020-01-08T09:35:08.635Z
+        hippostdpubwf:lastModificationDate: 2020-03-30T15:49:49.052+01:00
         hippostdpubwf:lastModifiedBy: admin
         hippotranslation:id: c98c9973-3626-4ce4-a46a-1ee9aca1839e
         hippotranslation:locale: en
@@ -408,6 +507,16 @@
         /visitscotland:tips:
           jcr:primaryType: hippostd:html
           hippostd:content: <p>Malformed Stop - Sample Pullout Information</p>
+        /visitscotland:image:
+          jcr:primaryType: hippogallerypicker:imagelink
+          hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
+          hippo:facets: []
+          hippo:modes: []
+          hippo:values: []
+        /visitscotland:product:
+          jcr:primaryType: visitscotland:DMSLink
+          visitscotland:label: ''
+          visitscotland:product: ''
       /malformed-stop[2]:
         jcr:primaryType: visitscotland:Stop
         jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
@@ -454,7 +563,7 @@
       jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
       jcr:uuid: fb585bd7-188e-4430-a332-bf0fbc337d23
       hippo:name: Test version 14
-      hippo:versionHistory: 822c5439-3224-431f-9d2d-4ca65bddfa5c
+      hippo:versionHistory: 0ab4bba1-7977-4913-8ce6-8aa2912096f1
       /test-version-14[1]:
         jcr:primaryType: visitscotland:Stop
         jcr:mixinTypes: ['mix:referenceable']
@@ -463,7 +572,7 @@
         hippostd:state: draft
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2020-03-09T09:35:33.720Z
-        hippostdpubwf:lastModificationDate: 2020-03-09T09:54:45.579Z
+        hippostdpubwf:lastModificationDate: 2020-04-08T14:14:44.216+01:00
         hippostdpubwf:lastModifiedBy: admin
         hippotranslation:id: 4e1f4d01-d817-4ca4-8733-8dc82c52888b
         hippotranslation:locale: en
@@ -480,20 +589,14 @@
           hippostd:content: ''
         /visitscotland:image:
           jcr:primaryType: hippogallerypicker:imagelink
-          hippo:docbase: 1e4be246-297b-4404-8102-80fe1bc0ddf7
+          hippo:docbase: 901a0eff-02b0-4cf8-bd34-92bf8c606c85
           hippo:facets: []
           hippo:modes: []
           hippo:values: []
         /visitscotland:product:
-          jcr:primaryType: visitscotland:ItineraryExternalLink
-          /visitscotland:Coordinates:
-            jcr:primaryType: visitscotland:Coordinates
-            visitscotland:latitude: 0.0
-            visitscotland:longitude: 0.0
-          /visitscotland:ExternalLink:
-            jcr:primaryType: visitscotland:ExternalLink
-            visitscotland:label: ''
-            visitscotland:link: http://www.visitscotland.com
+          jcr:primaryType: visitscotland:DMSLink
+          visitscotland:label: ''
+          visitscotland:product: '246891'
       /test-version-14[2]:
         jcr:primaryType: visitscotland:Stop
         jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
@@ -502,7 +605,7 @@
         hippostd:state: unpublished
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2020-03-09T09:35:33.720Z
-        hippostdpubwf:lastModificationDate: 2020-03-09T10:55:49.638Z
+        hippostdpubwf:lastModificationDate: 2020-04-08T11:27:25.886+01:00
         hippostdpubwf:lastModifiedBy: admin
         hippotranslation:id: 4e1f4d01-d817-4ca4-8733-8dc82c52888b
         hippotranslation:locale: en
@@ -519,20 +622,14 @@
           hippostd:content: ''
         /visitscotland:image:
           jcr:primaryType: hippogallerypicker:imagelink
-          hippo:docbase: 1e4be246-297b-4404-8102-80fe1bc0ddf7
+          hippo:docbase: 901a0eff-02b0-4cf8-bd34-92bf8c606c85
           hippo:facets: []
           hippo:modes: []
           hippo:values: []
         /visitscotland:product:
-          jcr:primaryType: visitscotland:ItineraryExternalLink
-          /visitscotland:Coordinates:
-            jcr:primaryType: visitscotland:Coordinates
-            visitscotland:latitude: 0.0
-            visitscotland:longitude: 0.0
-          /visitscotland:ExternalLink:
-            jcr:primaryType: visitscotland:ExternalLink
-            visitscotland:label: ''
-            visitscotland:link: http://www.visitscotland.com
+          jcr:primaryType: visitscotland:DMSLink
+          visitscotland:label: ''
+          visitscotland:product: '246891'
       /test-version-14[3]:
         jcr:primaryType: visitscotland:Stop
         jcr:mixinTypes: ['mix:referenceable']
@@ -541,9 +638,9 @@
         hippostd:state: published
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2020-03-09T09:35:33.720Z
-        hippostdpubwf:lastModificationDate: 2020-03-09T10:55:49.638Z
+        hippostdpubwf:lastModificationDate: 2020-04-08T11:27:25.886+01:00
         hippostdpubwf:lastModifiedBy: admin
-        hippostdpubwf:publicationDate: 2020-03-09T13:39:10.032Z
+        hippostdpubwf:publicationDate: 2020-04-09T18:16:39.163+01:00
         hippotranslation:id: 4e1f4d01-d817-4ca4-8733-8dc82c52888b
         hippotranslation:locale: en
         visitscotland:tipsTitle: ''
@@ -559,20 +656,111 @@
           hippostd:content: ''
         /visitscotland:image:
           jcr:primaryType: hippogallerypicker:imagelink
-          hippo:docbase: 1e4be246-297b-4404-8102-80fe1bc0ddf7
+          hippo:docbase: 901a0eff-02b0-4cf8-bd34-92bf8c606c85
           hippo:facets: []
           hippo:modes: []
           hippo:values: []
         /visitscotland:product:
-          jcr:primaryType: visitscotland:ItineraryExternalLink
-          /visitscotland:Coordinates:
-            jcr:primaryType: visitscotland:Coordinates
-            visitscotland:latitude: 0.0
-            visitscotland:longitude: 0.0
-          /visitscotland:ExternalLink:
-            jcr:primaryType: visitscotland:ExternalLink
-            visitscotland:label: ''
-            visitscotland:link: http://www.visitscotland.com
+          jcr:primaryType: visitscotland:DMSLink
+          visitscotland:label: ''
+          visitscotland:product: '246891'
+    /treezone-aerial-adventure-course---loch-lomond:
+      jcr:primaryType: hippo:handle
+      jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
+      jcr:uuid: 97416082-3bd9-4a5e-b506-240adf081b06
+      hippo:name: TreeZone Aerial Adventure Course - Loch Lomond
+      hippo:versionHistory: a6dd1726-9c07-4ef2-92af-d508c62bad61
+      /treezone-aerial-adventure-course---loch-lomond[1]:
+        jcr:primaryType: visitscotland:Stop
+        jcr:mixinTypes: ['mix:referenceable']
+        jcr:uuid: 8b531ad6-645b-4d65-83ca-e5fae1ba385b
+        hippo:availability: []
+        hippostd:state: draft
+        hippostdpubwf:createdBy: admin
+        hippostdpubwf:creationDate: 2020-04-01T22:29:57.736+01:00
+        hippostdpubwf:lastModificationDate: 2020-04-01T22:39:38.104+01:00
+        hippostdpubwf:lastModifiedBy: admin
+        hippotranslation:id: bf41d5f4-dd26-4280-b3e4-1565ea5caec1
+        hippotranslation:locale: en
+        visitscotland:tipsTitle: ''
+        visitscotland:title: TreeZone Aerial Adventure Course - Loch Lomond
+        /visitscotland:description:
+          jcr:primaryType: hippostd:html
+          hippostd:content: <p>TreeZone Aerial Adventure Course - Loch Lomond description</p>
+        /visitscotland:tips:
+          jcr:primaryType: hippostd:html
+          hippostd:content: ''
+        /visitscotland:image:
+          jcr:primaryType: hippogallerypicker:imagelink
+          hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
+          hippo:facets: []
+          hippo:modes: []
+          hippo:values: []
+        /visitscotland:product:
+          jcr:primaryType: visitscotland:DMSLink
+          visitscotland:label: ''
+          visitscotland:product: '255531'
+      /treezone-aerial-adventure-course---loch-lomond[2]:
+        jcr:primaryType: visitscotland:Stop
+        jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
+        jcr:uuid: 4546b6ff-51c9-4a78-b269-ce7f9fb7e883
+        hippo:availability: [preview]
+        hippostd:state: unpublished
+        hippostdpubwf:createdBy: admin
+        hippostdpubwf:creationDate: 2020-04-01T22:29:57.736+01:00
+        hippostdpubwf:lastModificationDate: 2020-04-01T22:34:09.567+01:00
+        hippostdpubwf:lastModifiedBy: admin
+        hippotranslation:id: bf41d5f4-dd26-4280-b3e4-1565ea5caec1
+        hippotranslation:locale: en
+        visitscotland:tipsTitle: ''
+        visitscotland:title: TreeZone Aerial Adventure Course - Loch Lomond
+        /visitscotland:description:
+          jcr:primaryType: hippostd:html
+          hippostd:content: <p>TreeZone Aerial Adventure Course - Loch Lomond description</p>
+        /visitscotland:tips:
+          jcr:primaryType: hippostd:html
+          hippostd:content: ''
+        /visitscotland:image:
+          jcr:primaryType: hippogallerypicker:imagelink
+          hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
+          hippo:facets: []
+          hippo:modes: []
+          hippo:values: []
+        /visitscotland:product:
+          jcr:primaryType: visitscotland:DMSLink
+          visitscotland:label: ''
+          visitscotland:product: '255531'
+      /treezone-aerial-adventure-course---loch-lomond[3]:
+        jcr:primaryType: visitscotland:Stop
+        jcr:mixinTypes: ['mix:referenceable']
+        jcr:uuid: ed1b8d6f-0bdb-48a5-ae22-28ef4d335a6d
+        hippo:availability: [live]
+        hippostd:state: published
+        hippostdpubwf:createdBy: admin
+        hippostdpubwf:creationDate: 2020-04-01T22:29:57.736+01:00
+        hippostdpubwf:lastModificationDate: 2020-04-01T22:34:09.567+01:00
+        hippostdpubwf:lastModifiedBy: admin
+        hippostdpubwf:publicationDate: 2020-04-09T18:13:43.795+01:00
+        hippotranslation:id: bf41d5f4-dd26-4280-b3e4-1565ea5caec1
+        hippotranslation:locale: en
+        visitscotland:tipsTitle: ''
+        visitscotland:title: TreeZone Aerial Adventure Course - Loch Lomond
+        /visitscotland:description:
+          jcr:primaryType: hippostd:html
+          hippostd:content: <p>TreeZone Aerial Adventure Course - Loch Lomond description</p>
+        /visitscotland:tips:
+          jcr:primaryType: hippostd:html
+          hippostd:content: ''
+        /visitscotland:image:
+          jcr:primaryType: hippogallerypicker:imagelink
+          hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
+          hippo:facets: []
+          hippo:modes: []
+          hippo:values: []
+        /visitscotland:product:
+          jcr:primaryType: visitscotland:DMSLink
+          visitscotland:label: ''
+          visitscotland:product: '255531'
   /itinerary-stops:
     jcr:primaryType: hippostd:folder
     jcr:mixinTypes: ['hippo:named', 'hippotranslation:translated', 'mix:versionable']
@@ -1301,7 +1489,7 @@
       jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
       jcr:uuid: 61b91b38-da53-4d2d-a375-d8a71cd4688b
       hippo:name: Glen Tanar Estate
-      hippo:versionHistory: cdb9ef9e-08fa-4bea-a49c-225a0a39d71f
+      hippo:versionHistory: 7e85e302-cbc2-4b88-9efa-2bceb134e21e
       /glen-tanar-estate[1]:
         jcr:primaryType: visitscotland:Stop
         jcr:mixinTypes: ['mix:referenceable']
@@ -1310,7 +1498,7 @@
         hippostd:state: draft
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2020-02-07T12:56:03.081Z
-        hippostdpubwf:lastModificationDate: 2020-02-07T12:56:03.081Z
+        hippostdpubwf:lastModificationDate: 2020-04-07T18:05:41.664+01:00
         hippostdpubwf:lastModifiedBy: admin
         hippotranslation:id: 3d311039-8622-4e7e-92bc-4be5d9e020b6
         hippotranslation:locale: en
@@ -1343,6 +1531,16 @@
             hippo:facets: []
             hippo:modes: []
             hippo:values: []
+          /visitscotland:ExternalLink:
+            jcr:primaryType: visitscotland:ExternalLink
+            visitscotland:label: ''
+            visitscotland:link: www.bus.com
+        /visitscotland:image:
+          jcr:primaryType: hippogallerypicker:imagelink
+          hippo:docbase: aecf0250-aae9-42d9-bc08-34d80ec9b49c
+          hippo:facets: []
+          hippo:modes: []
+          hippo:values: []
       /glen-tanar-estate[2]:
         jcr:primaryType: visitscotland:Stop
         jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
@@ -1351,7 +1549,7 @@
         hippostd:state: unpublished
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2020-02-07T12:56:03.081Z
-        hippostdpubwf:lastModificationDate: 2020-02-07T12:56:30.916Z
+        hippostdpubwf:lastModificationDate: 2020-04-07T18:05:50.320+01:00
         hippostdpubwf:lastModifiedBy: admin
         hippotranslation:id: 3d311039-8622-4e7e-92bc-4be5d9e020b6
         hippotranslation:locale: en
@@ -1384,6 +1582,16 @@
             hippo:facets: []
             hippo:modes: []
             hippo:values: []
+          /visitscotland:ExternalLink:
+            jcr:primaryType: visitscotland:ExternalLink
+            visitscotland:label: ''
+            visitscotland:link: www.bus.com
+        /visitscotland:image:
+          jcr:primaryType: hippogallerypicker:imagelink
+          hippo:docbase: aecf0250-aae9-42d9-bc08-34d80ec9b49c
+          hippo:facets: []
+          hippo:modes: []
+          hippo:values: []
       /glen-tanar-estate[3]:
         jcr:primaryType: visitscotland:Stop
         jcr:mixinTypes: ['mix:referenceable']
@@ -1392,9 +1600,9 @@
         hippostd:state: published
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2020-02-07T12:56:03.081Z
-        hippostdpubwf:lastModificationDate: 2020-02-07T12:56:30.916Z
+        hippostdpubwf:lastModificationDate: 2020-04-07T18:05:50.320+01:00
         hippostdpubwf:lastModifiedBy: admin
-        hippostdpubwf:publicationDate: 2020-02-07T12:59:45.475Z
+        hippostdpubwf:publicationDate: 2020-04-09T18:16:46.403+01:00
         hippotranslation:id: 3d311039-8622-4e7e-92bc-4be5d9e020b6
         hippotranslation:locale: en
         visitscotland:tipsTitle: ''
@@ -1426,6 +1634,16 @@
             hippo:facets: []
             hippo:modes: []
             hippo:values: []
+          /visitscotland:ExternalLink:
+            jcr:primaryType: visitscotland:ExternalLink
+            visitscotland:label: ''
+            visitscotland:link: www.bus.com
+        /visitscotland:image:
+          jcr:primaryType: hippogallerypicker:imagelink
+          hippo:docbase: aecf0250-aae9-42d9-bc08-34d80ec9b49c
+          hippo:facets: []
+          hippo:modes: []
+          hippo:values: []
     /finzean-estate:
       jcr:primaryType: hippo:handle
       jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
@@ -1552,7 +1770,7 @@
         hippostd:state: draft
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2020-02-07T12:55:05.069Z
-        hippostdpubwf:lastModificationDate: 2020-02-25T16:35:29.374Z
+        hippostdpubwf:lastModificationDate: 2020-03-30T15:11:08.158+01:00
         hippostdpubwf:lastModifiedBy: admin
         hippotranslation:id: 64e6ea6c-920f-44dc-9800-a263900a082f
         hippotranslation:locale: en
@@ -1566,7 +1784,7 @@
             at the ornate gargoyles and fairytale turrets. On your tour of the castle
             you'll learn about the castle's intriguing history along with the story
             of its resident ghosts, the Green Lady and her infant child. It is even
-            said that Queen Victoria witnessed the ghostly pair herself.</p>
+            said that Queen Victoria witnessed the ghostly pair herself</p>
         /visitscotland:tips:
           jcr:primaryType: hippostd:html
           hippostd:content: ''
@@ -1655,7 +1873,7 @@
       jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
       jcr:uuid: b390df94-227d-4535-a7a2-6073465d6642
       hippo:name: Drum Castle
-      hippo:versionHistory: ccc0f57e-4190-4181-b635-aa35ceaf5f76
+      hippo:versionHistory: a7714521-0358-49e3-86a0-329a518fc078
       /drum-castle[1]:
         jcr:primaryType: visitscotland:Stop
         jcr:mixinTypes: ['mix:referenceable']
@@ -1664,10 +1882,11 @@
         hippostd:state: draft
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2020-02-07T12:53:57.587Z
-        hippostdpubwf:lastModificationDate: 2020-02-07T12:53:57.587Z
+        hippostdpubwf:lastModificationDate: 2020-04-10T16:43:11.687+01:00
         hippostdpubwf:lastModifiedBy: admin
         hippotranslation:id: acafffcc-8eb9-41e3-b7fd-e56c9eb7c5ce
         hippotranslation:locale: en
+        visitscotland:subtitle: ''
         visitscotland:tipsTitle: ''
         visitscotland:title: Drum Castle
         /visitscotland:description:
@@ -1683,6 +1902,7 @@
           hippostd:content: ''
         /visitscotland:product:
           jcr:primaryType: visitscotland:DMSLink
+          visitscotland:label: ''
           visitscotland:product: '254211'
           /visitscotland:image:
             jcr:primaryType: hippogallerypicker:imagelink
@@ -1690,6 +1910,12 @@
             hippo:facets: []
             hippo:modes: []
             hippo:values: []
+        /visitscotland:image:
+          jcr:primaryType: hippogallerypicker:imagelink
+          hippo:docbase: 8d4f5036-64ca-4e5d-aa89-b348ae38b081
+          hippo:facets: []
+          hippo:modes: []
+          hippo:values: []
       /drum-castle[2]:
         jcr:primaryType: visitscotland:Stop
         jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
@@ -1698,10 +1924,11 @@
         hippostd:state: unpublished
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2020-02-07T12:53:57.587Z
-        hippostdpubwf:lastModificationDate: 2020-02-07T12:54:25.600Z
+        hippostdpubwf:lastModificationDate: 2020-04-10T13:49:43.188+01:00
         hippostdpubwf:lastModifiedBy: admin
         hippotranslation:id: acafffcc-8eb9-41e3-b7fd-e56c9eb7c5ce
         hippotranslation:locale: en
+        visitscotland:subtitle: ''
         visitscotland:tipsTitle: ''
         visitscotland:title: Drum Castle
         /visitscotland:description:
@@ -1717,6 +1944,7 @@
           hippostd:content: ''
         /visitscotland:product:
           jcr:primaryType: visitscotland:DMSLink
+          visitscotland:label: ''
           visitscotland:product: '254211'
           /visitscotland:image:
             jcr:primaryType: hippogallerypicker:imagelink
@@ -1724,6 +1952,12 @@
             hippo:facets: []
             hippo:modes: []
             hippo:values: []
+        /visitscotland:image:
+          jcr:primaryType: hippogallerypicker:imagelink
+          hippo:docbase: 8d4f5036-64ca-4e5d-aa89-b348ae38b081
+          hippo:facets: []
+          hippo:modes: []
+          hippo:values: []
       /drum-castle[3]:
         jcr:primaryType: visitscotland:Stop
         jcr:mixinTypes: ['mix:referenceable']
@@ -1732,9 +1966,9 @@
         hippostd:state: published
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2020-02-07T12:53:57.587Z
-        hippostdpubwf:lastModificationDate: 2020-02-07T12:54:25.600Z
+        hippostdpubwf:lastModificationDate: 2020-04-02T18:52:48.666+01:00
         hippostdpubwf:lastModifiedBy: admin
-        hippostdpubwf:publicationDate: 2020-02-07T12:59:45.723Z
+        hippostdpubwf:publicationDate: 2020-04-02T18:52:52.871+01:00
         hippotranslation:id: acafffcc-8eb9-41e3-b7fd-e56c9eb7c5ce
         hippotranslation:locale: en
         visitscotland:tipsTitle: ''
@@ -1752,6 +1986,7 @@
           hippostd:content: ''
         /visitscotland:product:
           jcr:primaryType: visitscotland:DMSLink
+          visitscotland:label: ''
           visitscotland:product: '254211'
           /visitscotland:image:
             jcr:primaryType: hippogallerypicker:imagelink
@@ -1759,12 +1994,18 @@
             hippo:facets: []
             hippo:modes: []
             hippo:values: []
+        /visitscotland:image:
+          jcr:primaryType: hippogallerypicker:imagelink
+          hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
+          hippo:facets: []
+          hippo:modes: []
+          hippo:values: []
     /st-magnus-cathedral:
       jcr:primaryType: hippo:handle
       jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
       jcr:uuid: dd98ed46-1531-4bbf-b47f-394ebca903f5
       hippo:name: St Magnus Cathedral
-      hippo:versionHistory: 23d3353d-9de2-4e91-8ac0-a2ee24ec4d64
+      hippo:versionHistory: 9b976902-e51c-43bf-a325-bec1e3b52ff2
       /st-magnus-cathedral[1]:
         jcr:primaryType: visitscotland:Stop
         jcr:mixinTypes: ['mix:referenceable']
@@ -1773,10 +2014,11 @@
         hippostd:state: draft
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2020-02-07T10:04:03.923Z
-        hippostdpubwf:lastModificationDate: 2020-02-07T10:11:06.378Z
+        hippostdpubwf:lastModificationDate: 2020-05-19T12:57:47.365+01:00
         hippostdpubwf:lastModifiedBy: admin
         hippotranslation:id: c5cea3b9-1aae-4a7c-9de7-abe02f994fdb
         hippotranslation:locale: en
+        visitscotland:subtitle: ''
         visitscotland:tipsTitle: Top Tip
         visitscotland:title: St Magnus Cathedral (Earth)
         /visitscotland:description:
@@ -1789,8 +2031,6 @@
             <p>Major events to look out for at the cathedral include the St Magnus International Festival in June and St Lucy Festival in early December.&nbsp;</p>
 
             <p>Tour St Magnus and admire the beautiful stained-glass windows before finding a vibrant local restaurant where you can enjoy dinner.&nbsp;</p>
-
-            <p>Open: all year&nbsp;</p>
 
             <p>Spend the evening in <a rel="noreferrer noopener" href="http://www.visitscotland.com/info/accommodation/search-results?cat=&amp;prodtypes=acco&amp;loc=Kirkwall&amp;locplace=5561&amp;locprox=1&amp;areaproxdist=5&amp;avail=off&amp;rooms=1&amp;stay=&amp;nights=1&amp;r1a=2&amp;r1c=0&amp;r1children=0&amp;r1infants=0&amp;minprice=0&amp;maxprice=1000" target="_blank">Kirkwall</a>.&nbsp;</p>
         /visitscotland:tips:
@@ -1811,6 +2051,16 @@
             hippo:facets: []
             hippo:modes: []
             hippo:values: []
+          /visitscotland:ExternalLink:
+            jcr:primaryType: visitscotland:ExternalLink
+            visitscotland:label: ''
+            visitscotland:link: https://www.stmagnus.org/
+        /visitscotland:image:
+          jcr:primaryType: hippogallerypicker:imagelink
+          hippo:docbase: f846ac14-4bbe-43af-8bdd-1f60979abc11
+          hippo:facets: []
+          hippo:modes: []
+          hippo:values: []
       /st-magnus-cathedral[2]:
         jcr:primaryType: visitscotland:Stop
         jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
@@ -1819,10 +2069,11 @@
         hippostd:state: unpublished
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2020-02-07T10:04:03.923Z
-        hippostdpubwf:lastModificationDate: 2020-02-07T10:10:03.362Z
+        hippostdpubwf:lastModificationDate: 2020-05-19T12:57:32.286+01:00
         hippostdpubwf:lastModifiedBy: admin
         hippotranslation:id: c5cea3b9-1aae-4a7c-9de7-abe02f994fdb
         hippotranslation:locale: en
+        visitscotland:subtitle: ''
         visitscotland:tipsTitle: Top Tip
         visitscotland:title: St Magnus Cathedral (Earth)
         /visitscotland:description:
@@ -1835,8 +2086,6 @@
             <p>Major events to look out for at the cathedral include the St Magnus International Festival in June and St Lucy Festival in early December.&nbsp;</p>
 
             <p>Tour St Magnus and admire the beautiful stained-glass windows before finding a vibrant local restaurant where you can enjoy dinner.&nbsp;</p>
-
-            <p>Open: all year&nbsp;</p>
 
             <p>Spend the evening in <a rel="noreferrer noopener" href="http://www.visitscotland.com/info/accommodation/search-results?cat=&amp;prodtypes=acco&amp;loc=Kirkwall&amp;locplace=5561&amp;locprox=1&amp;areaproxdist=5&amp;avail=off&amp;rooms=1&amp;stay=&amp;nights=1&amp;r1a=2&amp;r1c=0&amp;r1children=0&amp;r1infants=0&amp;minprice=0&amp;maxprice=1000" target="_blank">Kirkwall</a>.&nbsp;</p>
         /visitscotland:tips:
@@ -1857,6 +2106,16 @@
             hippo:facets: []
             hippo:modes: []
             hippo:values: []
+          /visitscotland:ExternalLink:
+            jcr:primaryType: visitscotland:ExternalLink
+            visitscotland:label: ''
+            visitscotland:link: https://www.stmagnus.org/
+        /visitscotland:image:
+          jcr:primaryType: hippogallerypicker:imagelink
+          hippo:docbase: f846ac14-4bbe-43af-8bdd-1f60979abc11
+          hippo:facets: []
+          hippo:modes: []
+          hippo:values: []
       /st-magnus-cathedral[3]:
         jcr:primaryType: visitscotland:Stop
         jcr:mixinTypes: ['mix:referenceable']
@@ -1865,11 +2124,12 @@
         hippostd:state: published
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2020-02-07T10:04:03.923Z
-        hippostdpubwf:lastModificationDate: 2020-02-07T10:10:03.362Z
+        hippostdpubwf:lastModificationDate: 2020-05-19T12:57:32.286+01:00
         hippostdpubwf:lastModifiedBy: admin
-        hippostdpubwf:publicationDate: 2020-02-07T10:18:02.878Z
+        hippostdpubwf:publicationDate: 2020-05-19T12:57:47.194+01:00
         hippotranslation:id: c5cea3b9-1aae-4a7c-9de7-abe02f994fdb
         hippotranslation:locale: en
+        visitscotland:subtitle: ''
         visitscotland:tipsTitle: Top Tip
         visitscotland:title: St Magnus Cathedral (Earth)
         /visitscotland:description:
@@ -1882,8 +2142,6 @@
             <p>Major events to look out for at the cathedral include the St Magnus International Festival in June and St Lucy Festival in early December.&nbsp;</p>
 
             <p>Tour St Magnus and admire the beautiful stained-glass windows before finding a vibrant local restaurant where you can enjoy dinner.&nbsp;</p>
-
-            <p>Open: all year&nbsp;</p>
 
             <p>Spend the evening in <a rel="noreferrer noopener" href="http://www.visitscotland.com/info/accommodation/search-results?cat=&amp;prodtypes=acco&amp;loc=Kirkwall&amp;locplace=5561&amp;locprox=1&amp;areaproxdist=5&amp;avail=off&amp;rooms=1&amp;stay=&amp;nights=1&amp;r1a=2&amp;r1c=0&amp;r1children=0&amp;r1infants=0&amp;minprice=0&amp;maxprice=1000" target="_blank">Kirkwall</a>.&nbsp;</p>
         /visitscotland:tips:
@@ -1904,12 +2162,22 @@
             hippo:facets: []
             hippo:modes: []
             hippo:values: []
+          /visitscotland:ExternalLink:
+            jcr:primaryType: visitscotland:ExternalLink
+            visitscotland:label: ''
+            visitscotland:link: https://www.stmagnus.org/
+        /visitscotland:image:
+          jcr:primaryType: hippogallerypicker:imagelink
+          hippo:docbase: f846ac14-4bbe-43af-8bdd-1f60979abc11
+          hippo:facets: []
+          hippo:modes: []
+          hippo:values: []
     /royal-deeside-railway-station:
       jcr:primaryType: hippo:handle
       jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
       jcr:uuid: 5a0149d0-590f-4c74-b095-92e430e70bd2
       hippo:name: Royal Deeside Railway Station
-      hippo:versionHistory: b338125b-45ab-4627-bf26-3d3ea1aad94b
+      hippo:versionHistory: 771f8c4c-ecda-4338-bc7b-e792f3f6c9fe
       /royal-deeside-railway-station[1]:
         jcr:primaryType: visitscotland:Stop
         jcr:mixinTypes: ['mix:referenceable']
@@ -1918,10 +2186,11 @@
         hippostd:state: draft
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2020-02-07T12:54:37.745Z
-        hippostdpubwf:lastModificationDate: 2020-02-07T12:54:37.745Z
+        hippostdpubwf:lastModificationDate: 2020-04-09T18:17:38.048+01:00
         hippostdpubwf:lastModifiedBy: admin
         hippotranslation:id: 74848360-6438-48a7-a426-7f74a3806040
         hippotranslation:locale: en
+        visitscotland:subtitle: ''
         visitscotland:tipsTitle: ''
         visitscotland:title: Royal Deeside Railway Station
         /visitscotland:description:
@@ -1936,6 +2205,7 @@
           hippostd:content: ''
         /visitscotland:product:
           jcr:primaryType: visitscotland:DMSLink
+          visitscotland:label: ''
           visitscotland:product: '254131'
           /visitscotland:image:
             jcr:primaryType: hippogallerypicker:imagelink
@@ -1943,6 +2213,12 @@
             hippo:facets: []
             hippo:modes: []
             hippo:values: []
+        /visitscotland:image:
+          jcr:primaryType: hippogallerypicker:imagelink
+          hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
+          hippo:facets: []
+          hippo:modes: []
+          hippo:values: []
       /royal-deeside-railway-station[2]:
         jcr:primaryType: visitscotland:Stop
         jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
@@ -1951,10 +2227,11 @@
         hippostd:state: unpublished
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2020-02-07T12:54:37.745Z
-        hippostdpubwf:lastModificationDate: 2020-02-07T12:54:54.118Z
+        hippostdpubwf:lastModificationDate: 2020-04-09T18:17:41.426+01:00
         hippostdpubwf:lastModifiedBy: admin
         hippotranslation:id: 74848360-6438-48a7-a426-7f74a3806040
         hippotranslation:locale: en
+        visitscotland:subtitle: ''
         visitscotland:tipsTitle: ''
         visitscotland:title: Royal Deeside Railway Station
         /visitscotland:description:
@@ -1969,6 +2246,7 @@
           hippostd:content: ''
         /visitscotland:product:
           jcr:primaryType: visitscotland:DMSLink
+          visitscotland:label: ''
           visitscotland:product: '254131'
           /visitscotland:image:
             jcr:primaryType: hippogallerypicker:imagelink
@@ -1976,6 +2254,12 @@
             hippo:facets: []
             hippo:modes: []
             hippo:values: []
+        /visitscotland:image:
+          jcr:primaryType: hippogallerypicker:imagelink
+          hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
+          hippo:facets: []
+          hippo:modes: []
+          hippo:values: []
       /royal-deeside-railway-station[3]:
         jcr:primaryType: visitscotland:Stop
         jcr:mixinTypes: ['mix:referenceable']
@@ -1984,11 +2268,12 @@
         hippostd:state: published
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2020-02-07T12:54:37.745Z
-        hippostdpubwf:lastModificationDate: 2020-02-07T12:54:54.118Z
+        hippostdpubwf:lastModificationDate: 2020-04-09T18:17:41.426+01:00
         hippostdpubwf:lastModifiedBy: admin
-        hippostdpubwf:publicationDate: 2020-02-07T12:59:47.465Z
+        hippostdpubwf:publicationDate: 2020-04-09T18:17:43.232+01:00
         hippotranslation:id: 74848360-6438-48a7-a426-7f74a3806040
         hippotranslation:locale: en
+        visitscotland:subtitle: ''
         visitscotland:tipsTitle: ''
         visitscotland:title: Royal Deeside Railway Station
         /visitscotland:description:
@@ -2003,6 +2288,7 @@
           hippostd:content: ''
         /visitscotland:product:
           jcr:primaryType: visitscotland:DMSLink
+          visitscotland:label: ''
           visitscotland:product: '254131'
           /visitscotland:image:
             jcr:primaryType: hippogallerypicker:imagelink
@@ -2010,3 +2296,9 @@
             hippo:facets: []
             hippo:modes: []
             hippo:values: []
+        /visitscotland:image:
+          jcr:primaryType: hippogallerypicker:imagelink
+          hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
+          hippo:facets: []
+          hippo:modes: []
+          hippo:values: []

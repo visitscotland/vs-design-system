@@ -1,9 +1,13 @@
 package com.visitscotland.brmx.components.content;
 
+import com.fasterxml.jackson.databind.JsonNode;
 import com.visitscotland.brmx.beans.*;
+import com.visitscotland.brmx.beans.mapping.FlatImage;
 import com.visitscotland.brmx.utils.CommonUtils;
 import com.visitscotland.brmx.utils.HippoUtils;
 import com.visitscotland.brmx.utils.ProductSearchBuilder;
+import com.visitscotland.dataobjects.DataType;
+import com.visitscotland.utils.Contract;
 import freemarker.ext.beans.BeansWrapper;
 import freemarker.template.TemplateHashModel;
 import freemarker.template.TemplateModelException;
@@ -13,6 +17,8 @@ import org.onehippo.cms7.essentials.components.EssentialsContentComponent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 
 
@@ -22,7 +28,7 @@ public class PageContentComponent<TYPE extends Page> extends EssentialsContentCo
 
     public final String DOCUMENT = "document";
     public final String EDIT_PATH = "path";
-
+    protected final String FACILITIES = "keyFacilities";
 
     @Override
     public void doBeforeRender(HstRequest request, HstResponse response) {
@@ -88,10 +94,75 @@ public class PageContentComponent<TYPE extends Page> extends EssentialsContentCo
      * @return the manual CTA if provided otherwise the default CTA
      */
     public String getCtaLabel(String manualCta, Locale locale) {
-        if (!CommonUtils.isEmpty(manualCta)) {
+        if (!Contract.isEmpty(manualCta)) {
             return manualCta;
         } else {
             return HippoUtils.getResourceBundle("button.find-out-more", "essentials.global", locale);
         }
     }
+
+
+    protected void generateIndexPage(HstRequest request){
+        final String HERO_IMAGE = "heroImage";
+        final String ALERTS = "alerts";
+        List<String> alerts = validateDesiredFields(getDocument(request));
+
+        FlatImage heroImage = new FlatImage(getDocument(request).getHeroImage(), request.getLocale());
+        checkImageErrors(heroImage,request.getLocale(),alerts);
+        request.setAttribute(HERO_IMAGE, heroImage);
+
+        if (alerts.size()>0){
+            request.setAttribute(ALERTS, alerts);
+        }
+    }
+
+    protected List<String> validateDesiredFields (Page item){
+        List<String> response =  new ArrayList<>();
+        if (item.getTeaser() == null || item.getTeaser().isEmpty()) {
+            response.add("Teaser field should be provided");
+            logger.warn(CommonUtils.contentIssue("The teaser has not been provided for = %s",item.getPath()));
+        }
+        if (item.getSeoTitle() == null || item.getSeoTitle().isEmpty()) {
+            response.add("SEO title field is required");
+            logger.warn(CommonUtils.contentIssue("The SEO title has not been provided for = %s",item.getPath()));
+        }
+        if (item.getSeoDescription() == null || item.getSeoDescription().isEmpty()) {
+            response.add("SEO description field is required");
+            logger.warn(CommonUtils.contentIssue("The SEO description has not been provided for = %s",item.getPath()));
+        }
+
+        return response;
+    }
+
+    protected static void checkImageErrors(FlatImage image, Locale locale, List<String> errors){
+        if (image.getAltText() == null || image.getAltText().isEmpty()){
+            image.setAltText(image.getCmsImage().getAltText());
+            errors.add("Alt text field not provided for " + locale.getDisplayLanguage());
+            logger.warn(CommonUtils.contentIssue("Alt text field not provided for %s for the image : %s - %s",
+                    locale.getDisplayLanguage() , image.getCmsImage().getName(), image.getCmsImage().getPath()));
+        }
+        if (image.getDescription() == null || image.getDescription().isEmpty()){
+            image.setDescription(image.getCmsImage().getDescription());
+            errors.add("Caption field not provided for " + locale.getDisplayLanguage());
+            logger.warn(CommonUtils.contentIssue("Caption field not provided for %s for the image : %s - %s",
+                    locale.getDisplayLanguage() , image.getCmsImage().getName(), image.getCmsImage().getPath()));
+        }
+    }
+
+    protected List<DataType> getFacilities (JsonNode product){
+        List<DataType> facilities = null;
+        if (product.has(FACILITIES)){
+            facilities = new ArrayList<>();
+            JsonNode keyFacilitiesList = product.get(FACILITIES);
+
+            if (keyFacilitiesList.isArray()) {
+                for (JsonNode facility : keyFacilitiesList) {
+                    DataType dataType = new DataType(facility.get("id").asText(),facility.get("name").asText());
+                    facilities.add(dataType);
+                }
+            }
+        }
+        return facilities;
+    }
+
 }

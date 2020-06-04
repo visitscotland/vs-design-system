@@ -1,11 +1,11 @@
 package com.visitscotland.brmx.beans;
 
 import org.hippoecm.hst.content.beans.standard.HippoBean;
+import org.hippoecm.hst.content.beans.standard.HippoMirror;
 import org.onehippo.cms7.essentials.dashboard.annotations.HippoEssentialsGenerated;
 import org.hippoecm.hst.content.beans.Node;
 import org.hippoecm.hst.content.beans.standard.HippoHtml;
 import java.util.List;
-import com.visitscotland.brmx.beans.Image;
 
 /** 
  * TODO: Beanwriter: Failed to create getter for node type: hippo:compound
@@ -49,5 +49,10 @@ public class Stop extends BaseDocument {
     @HippoEssentialsGenerated(internalName = "visitscotland:image")
     public Image getImage() {
         return getLinkedBean("visitscotland:image", Image.class);
+    }
+
+    @HippoEssentialsGenerated(internalName = "visitscotland:subtitle")
+    public String getSubtitle() {
+        return getSingleProperty("visitscotland:subtitle");
     }
 }

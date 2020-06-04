@@ -10,7 +10,6 @@ import org.apache.commons.lang.StringUtils;
 import org.onehippo.forge.exdocpicker.api.ExternalDocumentCollection;
 import org.onehippo.forge.exdocpicker.api.ExternalDocumentServiceContext;
 import org.onehippo.forge.exdocpicker.impl.SimpleExternalDocumentCollection;
-import vs.ase.dms.ProductTypes;
 
 import java.util.ArrayList;
 import java.util.List;

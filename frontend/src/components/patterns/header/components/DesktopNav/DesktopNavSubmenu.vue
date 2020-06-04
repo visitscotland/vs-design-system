@@ -1,78 +1,85 @@
 <template>
-  <component :is="type" data-test="desktop-nav-submenu">
-    <b-collapse
-      data-test="desktop-nav-submenu-wrapper"
-      :id="formattedCollapsePaneId"
-      class="vs-desktop-submenu__wrapper"
+    <Component
+        :is="type"
+        data-test="desktop-nav-submenu"
     >
-      <vs-container>
-        <vs-row class="mb-3">
-          <vs-col class="position-relative">
-            <span class="vs-desktop-submenu__header">{{ title }}</span>
-            <button
-              class="vs-desktop-submenu__close-button"
-              :id="formattedSubmenuCloseId"
-              v-b-toggle="formattedCollapsePaneId"
-              @keydown="checkKeydownReverse($event)"
-              @click="setFocusOnToggle()"
-            >
-              <span class="sr-only">Close the {{ lowerCaseTitle }} submenu</span>
-              <vs-icon name="close" size="xs" variant="dark" />
-            </button>
-          </vs-col>
-        </vs-row>
-        <ul
-          data-test="desktop-nav-submenu-list"
-          class="list-unstyled row flex-column vs-desktop-submenu__list"
+        <BCollapse
+            data-test="desktop-nav-submenu-wrapper"
+            :id="formattedCollapsePaneId"
+            class="vs-desktop-submenu__wrapper"
         >
-          <slot name="subnav" />
-          <VsDesktopNavPromoItem
-            v-if="promoItem"
-            :href="promoItem.href"
-            :is-external="promoItem.isExternal"
-            :title="promoItem.title"
-            :button-text="promoItem.buttonText"
-            :description="promoItem.description"
-            :image-link="promoItem.imageLink"
-          />
-          <template v-if="promoList">
-            <VsDesktopNavPromoItem
-              v-for="(item, index) in promoList"
-              :key="index"
-              :href="header.mainNav[0].href"
-              :is-external="header.mainNav[0].isExternal"
-              :title="header.mainNav[0].title"
-              :button-text="header.mainNav[0].buttonText"
-              :description="header.mainNav[0].description"
-              :image-link="header.mainNav[0].imageLink"
-            />
-          </template>
-          <template v-if="chartWidgets">
-            <vs-desktop-nav-chart
-              v-for="(chart, index) in chartWidgets"
-              :chart-title="chart.chartTitle"
-              :labels="chart.labels"
-              :datasets="chart.datasets"
-              :options="chart.options"
-              :chartId="'chartId' + index"
-              :key="'chart' + index"
-            />
-          </template>
-          <li
-            data-test="desktop-nav-submenu-landing-page-link"
-            class="vs-desktop-submenu__list-item vs-desktop-submenu__list-item--landing-page-link"
-          >
-            <a
-              :href="href"
-              class="vs-desktop-submenu__landing-page-link"
-              @keydown="checkKeydownForward($event)"
-              >See all {{ lowerCaseTitle }}</a
-            >
-          </li>
-        </ul>
-      </vs-container>
-    </b-collapse>
-  </component>
+            <VsContainer>
+                <VsRow class="mb-3">
+                    <VsCol class="position-relative">
+                        <span class="vs-desktop-submenu__header">{{ title }}</span>
+                        <button
+                            class="vs-desktop-submenu__close-button"
+                            :id="formattedSubmenuCloseId"
+                            v-b-toggle="formattedCollapsePaneId"
+                            @keydown="checkKeydownReverse($event)"
+                            @click="setFocusOnToggle()"
+                        >
+                            <span class="sr-only">Close the {{ lowerCaseTitle }} submenu</span>
+                            <VsIcon
+                                name="close"
+                                size="xs"
+                                variant="dark"
+                            />
+                        </button>
+                    </VsCol>
+                </VsRow>
+                <ul
+                    data-test="desktop-nav-submenu-list"
+                    class="list-unstyled row flex-column vs-desktop-submenu__list"
+                >
+                    <slot name="subnav" />
+                    <VsDesktopNavPromoItem
+                        v-if="promoItem"
+                        :href="promoItem.href"
+                        :is-external="promoItem.isExternal"
+                        :title="promoItem.title"
+                        :button-text="promoItem.buttonText"
+                        :description="promoItem.description"
+                        :image-link="promoItem.imageLink"
+                    />
+                    <template v-if="promoList">
+                        <VsDesktopNavPromoItem
+                            v-for="(item, index) in promoList"
+                            :key="index"
+                            :href="header.mainNav[0].href"
+                            :is-external="header.mainNav[0].isExternal"
+                            :title="header.mainNav[0].title"
+                            :button-text="header.mainNav[0].buttonText"
+                            :description="header.mainNav[0].description"
+                            :image-link="header.mainNav[0].imageLink"
+                        />
+                    </template>
+                    <template v-if="chartWidgets">
+                        <VsDesktopNavChart
+                            v-for="(chart, index) in chartWidgets"
+                            :chart-title="chart.chartTitle"
+                            :labels="chart.labels"
+                            :datasets="chart.datasets"
+                            :options="chart.options"
+                            :chart-id="'chartId' + index"
+                            :key="'chart' + index"
+                        />
+                    </template>
+                    <li
+                        data-test="desktop-nav-submenu-landing-page-link"
+                        class="vs-desktop-submenu__list-item
+                        vs-desktop-submenu__list-item--landing-page-link"
+                    >
+                        <a
+                            :href="href"
+                            class="vs-desktop-submenu__landing-page-link"
+                            @keydown="checkKeydownForward($event)"
+                        >See all {{ lowerCaseTitle }}</a>
+                    </li>
+                </ul>
+            </VsContainer>
+        </BCollapse>
+    </Component>
 </template>
 
 <script>
@@ -83,92 +90,113 @@ import VsRow from "../../../../elements/layout/Row"
 import VsCol from "../../../../elements/layout/Col"
 
 export default {
-  name: "VsDesktopNavSubmenu",
-  status: "prototype",
-  release: "0.0.1",
-  components: {
-    BCollapse,
-    VsCol,
-    VsContainer,
-    VsIcon,
-    VsRow,
-  },
-  directives: { "b-toggle": VBToggle },
-  data() {
-    return {}
-  },
-  props: {
-    /**
-     * The html element name used for the component
-     */
-    type: {
-      type: String,
-      default: "li",
+    name: "VsDesktopNavSubmenu",
+    status: "prototype",
+    release: "0.0.1",
+    components: {
+        BCollapse,
+        VsCol,
+        VsContainer,
+        VsIcon,
+        VsRow,
     },
-    href: {
-      type: String,
+    directives: {
+        "b-toggle": VBToggle,
     },
-    isExternal: {
-      type: Boolean,
+    props: {
+        /**
+         * The html element name used for the component
+         */
+        type: {
+            type: String,
+            default: "li",
+        },
+        href: {
+            type: String,
+            default: "",
+        },
+        isExternal: {
+            type: Boolean,
+        },
+        trackingId: {
+            type: String,
+            default: "",
+        },
+        title: {
+            type: String,
+            default: "",
+        },
+        level: {
+            type: Number,
+            default: 0,
+        },
+        subnav: {
+            type: Array,
+            default() {
+                return []
+            },
+        },
+        promoList: {
+            type: Array,
+            default() {
+                return []
+            },
+        },
+        promoItem: {
+            type: Object,
+            default() {
+                return {
+                }
+            },
+        },
+        chartWidgets: {
+            type: Array,
+            default() {
+                return []
+            },
+        },
+        subnavId: {
+            type: Number,
+            default: 0,
+        },
     },
-    trackingId: {
-      type: String,
+    data() {
+        return {
+        }
     },
-    title: {
-      type: String,
+    computed: {
+        formattedCollapsePaneId() {
+            return `collapse-subnav-${this.subnavId}`
+        },
+        formattedSubmenuCloseId() {
+            return `submenu-close-${this.subnavId}`
+        },
+        lowerCaseTitle() {
+            return this.title ? this.title.toLowerCase() : ""
+        },
     },
-    level: {
-      type: Number,
+    methods: {
+        close() {
+            this.setFocusOnToggle()
+            this.$root.$emit("bv::toggle::collapse", this.formattedCollapsePaneId)
+        },
+        checkKeydownForward($event) {
+            if ($event.key === "Tab" && !$event.shiftKey) {
+                this.close()
+            }
+        },
+        checkKeydownReverse($event) {
+            if ($event.key === "Tab" && $event.shiftKey) {
+                this.close()
+            }
+        },
+        setFocusOnToggle() {
+            const menuToggle = `collapse-toggle-${this.subnavId}`
+            setTimeout(() => {
+                document.getElementById(menuToggle).focus()
+            }, 100)
+        },
     },
-    subnav: {
-      type: Array,
-    },
-    promoList: {
-      type: Array,
-    },
-    promoItem: {
-      type: Object,
-    },
-    chartWidgets: {
-      type: Array,
-    },
-    subnavId: {
-      type: Number,
-    },
-  },
-  computed: {
-    formattedCollapsePaneId() {
-      return "collapse-subnav-" + this.subnavId
-    },
-    formattedSubmenuCloseId() {
-      return "submenu-close-" + this.subnavId
-    },
-    lowerCaseTitle() {
-      return this.title ? this.title.toLowerCase() : ""
-    },
-  },
-  methods: {
-    close() {
-      this.setFocusOnToggle()
-      this.$root.$emit("bv::toggle::collapse", this.formattedCollapsePaneId)
-    },
-    checkKeydownForward($event) {
-      if ($event.key === "Tab" && !$event.shiftKey) {
-        this.close()
-      }
-    },
-    checkKeydownReverse($event) {
-      if ($event.key === "Tab" && $event.shiftKey) {
-        this.close()
-      }
-    },
-    setFocusOnToggle() {
-      var menuToggle = "collapse-toggle-" + this.subnavId
-      setTimeout(() => {
-        document.getElementById(menuToggle).focus()
-      }, 100)
-    },
-  },
 }
 </script>
 

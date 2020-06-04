@@ -4,8 +4,14 @@
         class="vs-logo d-flex align-items-center ml-1 mr-3 ml-sm-2 mr-sm-0"
         href="/"
     >
-        <span data-test="logo-screenreader-text" class="sr-only">VisitScotland Home</span>
-        <vs-svg path="visitscotland" width="100%" />
+        <span
+            data-test="logo-screenreader-text"
+            class="sr-only"
+        >VisitScotland Home</span>
+        <VsSvg
+            path="visitscotland"
+            width="100%"
+        />
     </a>
 </template>
 
@@ -16,7 +22,9 @@ export default {
     name: "VsLogo",
     status: "prototype",
     release: "0.1.0",
-    components: { VsSvg },
+    components: {
+        VsSvg,
+    },
 }
 </script>
 

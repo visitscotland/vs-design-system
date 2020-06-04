@@ -21,4 +21,29 @@ public class Image extends HippoGalleryImageSet {
     public String getLocation() {
         return getSingleProperty("visitscotland:location");
     }
+
+    @HippoEssentialsGenerated(internalName = "visitscotland:de")
+    public ImageData getDe() {
+        return getBean("visitscotland:de", ImageData.class);
+    }
+
+    @HippoEssentialsGenerated(internalName = "visitscotland:es")
+    public ImageData getEs() {
+        return getBean("visitscotland:es", ImageData.class);
+    }
+
+    @HippoEssentialsGenerated(internalName = "visitscotland:fr")
+    public ImageData getFr() {
+        return getBean("visitscotland:fr", ImageData.class);
+    }
+
+    @HippoEssentialsGenerated(internalName = "visitscotland:it")
+    public ImageData getIt() {
+        return getBean("visitscotland:it", ImageData.class);
+    }
+
+    @HippoEssentialsGenerated(internalName = "visitscotland:nl")
+    public ImageData getNl() {
+        return getBean("visitscotland:nl", ImageData.class);
+    }
 }
