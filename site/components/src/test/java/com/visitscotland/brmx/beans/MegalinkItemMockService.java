@@ -4,8 +4,8 @@ import org.easymock.EasyMock;
 
 public class MegalinkItemMockService {
 
-    public MegaLinkItem createMock(boolean featured) {
-        MegaLinkItem item = EasyMock.createMock(MegaLinkItem.class);
+    public MegalinkItem createMock(boolean featured) {
+        MegalinkItem item = EasyMock.createMock(MegalinkItem.class);
 
         EasyMock.expect(item.getFeature()).andReturn(featured).anyTimes();
         EasyMock.expect(item.getLink()).andReturn(mockCMSLink()).anyTimes();

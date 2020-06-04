@@ -1,14 +1,11 @@
 package com.visitscotland.brmx.components.content;
 
-import static org.easymock.EasyMock.*;
-
 import com.visitscotland.brmx.beans.Destination;
-import com.visitscotland.brmx.beans.MegaLinks;
+import com.visitscotland.brmx.beans.Megalinks;
 import com.visitscotland.brmx.beans.MegalinksMockService;
 import com.visitscotland.brmx.beans.mapping.megalinks.AbstractLayout;
 import com.visitscotland.brmx.components.content.factory.LinkModulesFactory;
-import org.easymock.EasyMock;
-import org.hippoecm.hst.content.beans.standard.HippoBean;
+import com.visitscotland.brmx.utils.HippoUtilsService;
 import org.hippoecm.hst.core.component.HstRequest;
 import org.hippoecm.hst.mock.core.component.MockHstRequest;
 import org.junit.Ignore;
@@ -18,7 +15,8 @@ import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.Locale;
+
+import static org.easymock.EasyMock.*;
 
 
 public class DestinationContentComponentTest {
@@ -52,7 +50,7 @@ public class DestinationContentComponentTest {
         replay(dcc);
 
         //Mocking the object prevents the initialization of the variables
-        dcc.linksFactory = new LinkModulesFactory();
+        dcc.linksFactory = new LinkModulesFactory(createNiceMock(HippoUtilsService.class));
 
         return dcc;
     }
@@ -86,7 +84,7 @@ public class DestinationContentComponentTest {
     @Test
     void addMegalinksModules(){
         HstRequest request = new MockHstRequest();
-        MegaLinks megaLinks = megalinkService.createMock("Section 1");
+        Megalinks megaLinks = megalinkService.createMock("Section 1");
         Destination document = createNiceMock(Destination.class);
 
         expect(document.getItems()).andReturn(Arrays.asList(megaLinks));

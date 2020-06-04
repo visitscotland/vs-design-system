@@ -2,7 +2,6 @@ package com.visitscotland.brmx.utils;
 
 import org.hippoecm.hst.container.RequestContextProvider;
 import org.hippoecm.hst.content.beans.standard.HippoBean;
-import org.hippoecm.hst.core.component.HstRequest;
 import org.hippoecm.hst.core.linking.HstLink;
 import org.hippoecm.hst.core.request.HstRequestContext;
 import org.hippoecm.hst.resourcebundle.ResourceBundleRegistry;
@@ -13,15 +12,45 @@ import org.slf4j.LoggerFactory;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
-public class HippoUtils {
+public class HippoUtilsService {
 
-    private static final Logger logger = LoggerFactory.getLogger(HippoUtils.class.getName());
+    private static final Logger logger = LoggerFactory.getLogger(HippoUtilsService.class.getName());
+
+    final ResourceBundleRegistry resourceBundleRegistry;
+    final HstRequestContext requestContext;
+
+    public HippoUtilsService(){
+        resourceBundleRegistry = HstServices.getComponentManager().getComponent(ResourceBundleRegistry.class.getName());
+        requestContext = RequestContextProvider.get();
+    }
+
+    public HippoUtilsService(
+            ResourceBundleRegistry resourceBundleRegistry,
+            HstRequestContext requestContext){
+        this.resourceBundleRegistry = resourceBundleRegistry;
+        this.requestContext = requestContext;
+    }
+
+    static HippoUtilsService INSTANCE;
+
+    /**
+     * This method
+     * @return
+     */
+    @Deprecated
+    public static HippoUtilsService getInstance(){
+        if (INSTANCE == null){
+            INSTANCE = new HippoUtilsService();
+        }
+        return INSTANCE;
+    }
 
     /**
      * TODO: CREATE J-UNIT TEST
-     * TODO: DOCUMENT
+     *
+     *
      */
-    public static String getResourceBundle(String key, String bundleName, Locale locale){
+    public String getResourceBundle(String key, String bundleName, Locale locale){
         return getResourceBundle(key, bundleName, locale, false);
     }
 
@@ -29,7 +58,7 @@ public class HippoUtils {
      * TODO: CREATE J-UNIT TEST
      * TODO: DOCUMENT
      */
-    public static String getResourceBundle(String key, String bundleName, Locale locale, boolean optional){
+    public String getResourceBundle(String key, String bundleName, Locale locale, boolean optional){
 
         ResourceBundle bundle = getResourceBundle(bundleName, locale);
 
@@ -43,7 +72,7 @@ public class HippoUtils {
         return "??"+key+"??";
     }
 
-    public static boolean existsResourceBundleKey(String key, String bundleName, Locale locale){
+    public boolean existsResourceBundleKey(String key, String bundleName, Locale locale){
         ResourceBundle bundle = getResourceBundle(bundleName, locale);
         return bundle != null && bundle.containsKey(key);
     }
@@ -56,10 +85,7 @@ public class HippoUtils {
      *
      * @return
      */
-    private static ResourceBundle getResourceBundle(String bundleName, Locale locale){
-        final ResourceBundleRegistry resourceBundleRegistry =
-                HstServices.getComponentManager().getComponent(ResourceBundleRegistry.class.getName());
-
+    private ResourceBundle getResourceBundle(String bundleName, Locale locale){
         if (locale == null) {
             return resourceBundleRegistry.getBundle(bundleName);
         } else {
@@ -76,11 +102,10 @@ public class HippoUtils {
      *
      * @return URL for the page that renders the document or null when it cannot be rendered as a page.
      */
-    public static String createUrl(HippoBean document){
+    public String createUrl(HippoBean document){
         final boolean FULLY_QUALIFIED = true;
 
-        HstRequestContext context = RequestContextProvider.get();
-        HstLink link = context.getHstLinkCreator().create(document, context);
-        return link.toUrlForm(context, FULLY_QUALIFIED);
+        HstLink link = requestContext.getHstLinkCreator().create(document, requestContext);
+        return link.toUrlForm(requestContext, FULLY_QUALIFIED);
     }
 }

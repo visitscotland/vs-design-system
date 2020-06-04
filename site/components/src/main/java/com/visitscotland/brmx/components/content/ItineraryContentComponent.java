@@ -9,7 +9,7 @@ import com.visitscotland.brmx.beans.mapping.FlatImage;
 import com.visitscotland.brmx.beans.mapping.FlatLink;
 import com.visitscotland.brmx.beans.mapping.FlatStop;
 import com.visitscotland.brmx.utils.CommonUtils;
-import com.visitscotland.brmx.utils.HippoUtils;
+import com.visitscotland.brmx.utils.HippoUtilsService;
 import com.visitscotland.brmx.dms.LocationLoader;
 import com.visitscotland.utils.CoordinateUtils;
 import org.hippoecm.hst.core.component.HstRequest;
@@ -32,6 +32,8 @@ public class ItineraryContentComponent extends PageContentComponent<Itinerary> {
     public final String DISTANCE = "distance";
     public final String FIRST_STOP_LOCATION = "firstStopLocation";
     public final String LAST_STOP_LOCATION = "lastStopLocation";
+
+
 
 
     @Override
@@ -155,7 +157,7 @@ public class ItineraryContentComponent extends PageContentComponent<Itinerary> {
                                             openingMessge = openingMessge + ": " + opening.get(START_TIME).asText() + "-" + opening.get(END_TIME).asText();
                                         }
                                         model.setOpen(openingMessge);
-                                        model.setOpenLink(new FlatLink(HippoUtils.getResourceBundle("stop.opening", "itinerary",
+                                        model.setOpenLink(new FlatLink(utils.getResourceBundle("stop.opening", "itinerary",
                                                         request.getLocale()),ctaLink.getLink()+"#opening"));
                                     }
                                 }
@@ -199,8 +201,8 @@ public class ItineraryContentComponent extends PageContentComponent<Itinerary> {
                 }
                 model.setImage(flatImage);
                 if (visitDuration!=null) {
-                    visitDuration = visitDuration.equalsIgnoreCase("1") ? visitDuration + " " + HippoUtils.getResourceBundle("stop.hour", "itinerary", request.getLocale())
-                            : visitDuration + " " + HippoUtils.getResourceBundle("stop.hours", "itinerary", request.getLocale());
+                    visitDuration = visitDuration.equalsIgnoreCase("1") ? visitDuration + " " + utils.getResourceBundle("stop.hour", "itinerary", request.getLocale())
+                            : visitDuration + " " + utils.getResourceBundle("stop.hours", "itinerary", request.getLocale());
                     model.setTimeToexplore(visitDuration);
                 }
 

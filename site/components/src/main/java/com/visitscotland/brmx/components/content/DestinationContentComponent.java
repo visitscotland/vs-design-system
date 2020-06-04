@@ -1,6 +1,7 @@
 package com.visitscotland.brmx.components.content;
 
-import com.visitscotland.brmx.beans.*;
+import com.visitscotland.brmx.beans.Destination;
+import com.visitscotland.brmx.beans.Megalinks;
 import com.visitscotland.brmx.beans.mapping.megalinks.AbstractLayout;
 import com.visitscotland.brmx.components.content.factory.LinkModulesFactory;
 import com.visitscotland.utils.Contract;
@@ -37,7 +38,7 @@ public class DestinationContentComponent extends PageContentComponent<Destinatio
         List<AbstractLayout> links = new ArrayList<>();
         int styleIndex = 0;
 
-        for (MegaLinks mega: getDocument(request).getItems()){
+        for (Megalinks mega: getDocument(request).getItems()){
             AbstractLayout al = linksFactory.getMegalinkModule(mega, request.getLocale());
 
             if (Contract.isEmpty(al.getTitle()) && styleIndex > 0){

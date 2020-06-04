@@ -14,15 +14,15 @@ public class MegalinksMockService {
         itemService = new MegalinkItemMockService();
     }
 
-    public MegaLinks createMock(String title, boolean introduction, boolean listView, boolean teaser, int links, String intro){
-        MegaLinks mega = EasyMock.createNiceMock(MegaLinks.class);
+    public Megalinks createMock(String title, boolean introduction, boolean listView, boolean teaser, int links, String intro){
+        Megalinks mega = EasyMock.createNiceMock(Megalinks.class);
         SingleImageModule single = EasyMock.createNiceMock(SingleImageModule.class);
         Image img = EasyMock.createNiceMock(Image.class);
-        List<MegaLinkItem> items = new ArrayList<>();
+        List<MegalinkItem> items = new ArrayList<>();
 
         EasyMock.expect(mega.getTitle()).andReturn(title).anyTimes();
-        EasyMock.expect(mega.getList()).andReturn(listView).anyTimes();
-        EasyMock.expect(mega.getHideTeaser()).andReturn(teaser).anyTimes();
+        EasyMock.expect(mega.getListLayout()).andReturn(listView).anyTimes();
+        EasyMock.expect(mega.getTeaserVisible()).andReturn(teaser).anyTimes();
 
         EasyMock.expect(mega.getSingleImageModule()).andReturn(single).anyTimes();
 
@@ -41,25 +41,25 @@ public class MegalinksMockService {
             items.add(itemService.createMock(false));
         }
 
-        EasyMock.expect(mega.getMegaLinkItems()).andReturn(items).anyTimes();
+        EasyMock.expect(mega.getMegalinkItems()).andReturn(items).anyTimes();
 
         EasyMock.replay(mega, single, img);
 
         return mega;
     }
 
-    public MegaLinks createMock(String title){
+    public Megalinks createMock(String title){
         return createMock(title, title!=null,true, true, 0);
     }
 
 
-    public MegaLinks createMock(String title, boolean introduction, boolean listView, boolean teaser, int links){
-        MegaLinks mega = EasyMock.createNiceMock(MegaLinks.class);
-        List<MegaLinkItem> items = new ArrayList<>();
+    public Megalinks createMock(String title, boolean introduction, boolean listView, boolean teaser, int links){
+        Megalinks mega = EasyMock.createNiceMock(Megalinks.class);
+        List<MegalinkItem> items = new ArrayList<>();
 
         EasyMock.expect(mega.getTitle()).andReturn(title).anyTimes();
-        EasyMock.expect(mega.getList()).andReturn(listView).anyTimes();
-        EasyMock.expect(mega.getHideTeaser()).andReturn(teaser).anyTimes();
+        EasyMock.expect(mega.getListLayout()).andReturn(listView).anyTimes();
+        EasyMock.expect(mega.getTeaserVisible()).andReturn(teaser).anyTimes();
         EasyMock.expect(mega.getSingleImageModule()).andReturn(null).anyTimes();
 
         if (introduction){
@@ -72,7 +72,7 @@ public class MegalinksMockService {
             items.add(itemService.createMock(false));
         }
 
-        EasyMock.expect(mega.getMegaLinkItems()).andReturn(items).anyTimes();
+        EasyMock.expect(mega.getMegalinkItems()).andReturn(items).anyTimes();
 
         EasyMock.replay(mega);
 

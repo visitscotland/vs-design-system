@@ -36,6 +36,12 @@ public class PageContentComponent<TYPE extends Page> extends EssentialsContentCo
     protected final String FACILITIES = "keyFacilities";
     public final String HERO_COORDINATES = "heroCoordinates";
 
+    HippoUtilsService utils;
+
+    public PageContentComponent(){
+        utils = new HippoUtilsService();
+    }
+
     @Override
     public void doBeforeRender(HstRequest request, HstResponse response) {
         super.doBeforeRender(request, response);
@@ -44,6 +50,7 @@ public class PageContentComponent<TYPE extends Page> extends EssentialsContentCo
         addProductSearchBuilder(request);
 
         initPage(request);
+
     }
 
     /**
@@ -168,7 +175,7 @@ public class PageContentComponent<TYPE extends Page> extends EssentialsContentCo
         if (!Contract.isEmpty(manualCta)) {
             return manualCta;
         } else {
-            return HippoUtils.getResourceBundle("button.find-out-more", "essentials.global", locale);
+            return HippoUtilsService.getInstance().getResourceBundle("button.find-out-more", "essentials.global", locale);
         }
     }
 
