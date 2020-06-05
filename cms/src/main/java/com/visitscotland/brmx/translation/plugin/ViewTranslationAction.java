@@ -1,0 +1,78 @@
+package com.visitscotland.brmx.translation.plugin;
+
+import org.apache.wicket.Component;
+import org.apache.wicket.model.IModel;
+import org.hippoecm.addon.workflow.StdWorkflow;
+import org.hippoecm.addon.workflow.WorkflowDescriptorModel;
+import org.hippoecm.frontend.model.JcrNodeModel;
+import org.hippoecm.frontend.service.IBrowseService;
+import org.hippoecm.frontend.translation.ILocaleProvider;
+import org.hippoecm.repository.translation.HippoTranslatedNode;
+import org.hippoecm.repository.translation.TranslationWorkflow;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import javax.jcr.Node;
+import javax.jcr.RepositoryException;
+
+final class ViewTranslationAction extends StdWorkflow<TranslationWorkflow> {
+    private static final Logger LOG = LoggerFactory.getLogger(ViewTranslationAction.class);
+
+    private TranslationWorkflowPlugin workflow;
+    private final String language;
+    private final IModel<ILocaleProvider.HippoLocale> localeModel;
+
+    ViewTranslationAction(TranslationWorkflowPlugin workflowPlugin, String id, IModel<String> name, IModel<ILocaleProvider.HippoLocale> localeModel, String language, IModel<String> languageModel) {
+        super(id, name, workflowPlugin.getPluginContext(), (WorkflowDescriptorModel) workflowPlugin.getModel());
+        this.workflow = workflowPlugin;
+        this.language = language;
+        this.localeModel = localeModel;
+    }
+
+    @Override
+    public boolean isVisible() {
+        if (super.isVisible() && findPage() != null) {
+            return workflow.canTranslateModel();
+        }
+        return false;
+    }
+
+    @Override
+    protected Component getIcon(final String id) {
+        return workflow.getActionIcon(id, localeModel);
+    }
+
+    @Override
+    protected String execute(TranslationWorkflow wf) {
+        final IBrowseService<IModel<Node>> browser = workflow.getBrowserService();
+        if (browser == null) {
+            LOG.warn("Cannot navigate to translation - configured browser.id '" + workflow.getPluginConfig().getString(
+                    "browser.id") + "' is invalid.");
+            return null;
+        }
+
+        final WorkflowDescriptorModel wdm = (WorkflowDescriptorModel) workflow.getDefaultModel();
+        if (wdm == null) {
+            LOG.error("No workflow descriptor model for document");
+            return null;
+        }
+
+        Node node;
+        try {
+            node = wdm.getNode();
+            if (node == null) {
+                LOG.error("No node found for document");
+                return null;
+            }
+
+            HippoTranslatedNode translatedNode = new HippoTranslatedNode(node);
+            Node translation = translatedNode.getTranslation(language);
+            browser.browse(new JcrNodeModel(translation.getParent()));
+        } catch (RepositoryException e) {
+            LOG.error("Error retrieving translation node", e);
+        }
+
+        return null;
+    }
+
+}

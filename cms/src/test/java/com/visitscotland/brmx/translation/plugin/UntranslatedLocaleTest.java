@@ -2,7 +2,6 @@ package com.visitscotland.brmx.translation.plugin;
 
 import org.apache.wicket.request.resource.ResourceReference;
 import org.apache.wicket.util.lang.Packages;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -12,12 +11,12 @@ import java.util.Locale;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
-public class MissingTranslationTest {
-    private MissingTranslation missingTranslation;
+public class UntranslatedLocaleTest {
+    private UntranslatedLocale missingTranslation;
 
     @BeforeEach
     public void beforeEach() {
-        missingTranslation = new MissingTranslation();
+        missingTranslation = new UntranslatedLocale();
     }
 
     @Test

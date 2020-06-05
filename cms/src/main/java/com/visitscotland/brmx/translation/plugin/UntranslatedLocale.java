@@ -15,9 +15,9 @@ import java.util.Locale;
  * The Class should not be expected to behave as other HippoLocales do, it is
  * actually Locale independent.
  */
-public class MissingTranslation extends ILocaleProvider.HippoLocale {
+public class UntranslatedLocale extends ILocaleProvider.HippoLocale {
 
-    public MissingTranslation() {
+    public UntranslatedLocale() {
         super(Locale.ENGLISH, "Missing");
     }
 
