@@ -130,7 +130,7 @@
 								<#--TODO for links the image does not have caption-->
 								<@imageWithCaption imageSrc=image imageDetails=megalink.image variant="fullwidth"/>
 								<vs-heading level="3">${megalink.label}</vs-heading>
-								<#if megalink.teaserVisible == true >
+								<#if item.teaserVisible == true >
 									${megalink.teaser}
 								</#if>
 								</br>

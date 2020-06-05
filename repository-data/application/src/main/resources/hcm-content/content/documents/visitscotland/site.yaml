@@ -2185,14 +2185,14 @@
           hippostd:state: draft
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2020-05-21T17:54:15.934+01:00
-          hippostdpubwf:lastModificationDate: 2020-06-05T12:17:08.750+01:00
+          hippostdpubwf:lastModificationDate: 2020-06-05T12:54:36.467+01:00
           hippostdpubwf:lastModifiedBy: admin
           hippotranslation:id: 5dc9b699-4821-4c91-b426-7b75aed683e4
           hippotranslation:locale: en
           visitscotland:hideTeaser: false
           visitscotland:list: false
-          visitscotland:listLayout: true
-          visitscotland:teaserVisible: false
+          visitscotland:listLayout: false
+          visitscotland:teaserVisible: true
           visitscotland:title: Featured Links (6 items)
           /visitscotland:introduction:
             jcr:primaryType: hippostd:html
@@ -2241,14 +2241,14 @@
           hippostd:state: unpublished
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2020-05-21T17:54:15.934+01:00
-          hippostdpubwf:lastModificationDate: 2020-06-05T12:17:08.693+01:00
+          hippostdpubwf:lastModificationDate: 2020-06-05T12:54:36.228+01:00
           hippostdpubwf:lastModifiedBy: admin
           hippotranslation:id: 5dc9b699-4821-4c91-b426-7b75aed683e4
           hippotranslation:locale: en
           visitscotland:hideTeaser: false
           visitscotland:list: false
-          visitscotland:listLayout: true
-          visitscotland:teaserVisible: false
+          visitscotland:listLayout: false
+          visitscotland:teaserVisible: true
           visitscotland:title: Featured Links (6 items)
           /visitscotland:introduction:
             jcr:primaryType: hippostd:html
