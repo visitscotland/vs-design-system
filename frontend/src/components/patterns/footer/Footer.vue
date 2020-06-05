@@ -5,7 +5,6 @@
 </template>
 
 <script>
-
 /**
  * This component is the main Footer wrapper for the bottom of the page.
  */
@@ -21,22 +20,30 @@ export default {
 .vs-footer {
     background: $color-theme-dark;
 
-    @include media-breakpoint-down(sm) {
-        .vs-footer-social-menu__wrapper{
-            max-width: 100%;
-            padding: 0;
+    .vs-footer-social-menu__wrapper {
+        @include media-breakpoint-down(sm) {
+            .container {
+                max-width: 100%;
+                padding: 0;
 
-            & ::v-deep {
-                .row{
-                    margin-right: 0;
-                    margin-left: 0;
+                & ::v-deep {
+                    .row {
+                        margin-right: 0;
+                        margin-left: 0;
 
-                    > .col,
-                    > [class*="col-"]  {
-                        padding-right: 0;
-                        padding-left: 0;
+                        > .col,
+                        > [class*="col-"] {
+                            padding-right: 0;
+                            padding-left: 0;
+                        }
                     }
                 }
+            }
+        }
+
+        @include media-breakpoint-up(lg) {
+            &.border-top {
+                border-top: 0!important;
             }
         }
     }
@@ -195,8 +202,8 @@ export default {
                 </vs-footer-social-menu>
             </vs-col>
         </vs-footer-nav-list>
-        <div class="border-top border-secondary-light">
-            <vs-container class="vs-footer-social-menu__wrapper">
+        <div class="vs-footer-social-menu__wrapper border-top border-secondary-light">
+            <vs-container >
                 <vs-row>
                     <vs-col cols="12" class="d-block d-lg-none">
                         <vs-footer-social-menu>
@@ -225,6 +232,40 @@ export default {
                 </vs-row>
             </vs-container>
         </div>
+       <vs-footer-utility-list>
+            <vs-footer-nav-list-item
+                href="#"
+                link-text="Accessibility"
+            ></vs-footer-nav-list-item>
+            <vs-footer-nav-list-item
+                href="#"
+                link-text="Acceptable Use"
+            ></vs-footer-nav-list-item>
+            <vs-footer-nav-list-item
+                href="#"
+                link-text="Privacy"
+            ></vs-footer-nav-list-item>
+            <vs-footer-nav-list-item
+                href="#"
+                link-text="Cookies"
+            ></vs-footer-nav-list-item>
+             <vs-footer-nav-list-item
+                href="#"
+                link-text="Social Media"
+            ></vs-footer-nav-list-item>
+            <vs-footer-nav-list-item
+                href="#"
+                link-text="Environmental Policy"
+            ></vs-footer-nav-list-item>
+            <vs-footer-nav-list-item
+                href="#"
+                link-text="Terms of Use"
+            ></vs-footer-nav-list-item>
+            <vs-footer-nav-list-item
+                href="#"
+                link-text="About Us"
+            ></vs-footer-nav-list-item>
+        </vs-footer-utility-list>
     </vs-footer>
   ```
 </docs>
