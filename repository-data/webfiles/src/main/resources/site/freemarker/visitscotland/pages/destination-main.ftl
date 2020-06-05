@@ -110,7 +110,7 @@
 							</vs-col>
 							<vs-col cols="3" lg="3" offset-lg="1">
 								<vs-heading level="3">${feature.label}</vs-heading>
-								<#if item.hideTeaser == false >
+								<#if item.teaserVisible == true >
 									${feature.teaser}
 								</#if>
 								</br>
@@ -130,7 +130,7 @@
 								<#--TODO for links the image does not have caption-->
 								<@imageWithCaption imageSrc=image imageDetails=megalink.image variant="fullwidth"/>
 								<vs-heading level="3">${megalink.label}</vs-heading>
-								<#if item.hideTeaser == false >
+								<#if megalink.teaserVisible == true >
 									${megalink.teaser}
 								</#if>
 								</br>
@@ -141,6 +141,7 @@
 						</#list>
 					</vs-row>
 					</br> </br>
+
 				<#--Macro for single image-->
 				<#elseif item.getType()== "SingleImageLayout">
 					<#assign image>
@@ -202,7 +203,7 @@
 								</vs-col>
 								<vs-col cols="2" lg="2">
 									<vs-heading level="3">${megalink.label}</vs-heading>
-									<#if item.hideTeaser == false >
+									<#if item.teaserVisible == true >
 										${megalink.teaser}
 									</#if>
 									</br>

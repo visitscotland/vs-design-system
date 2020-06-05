@@ -27,7 +27,7 @@ public abstract class LocationLoader {
 
     public static LocationObject getLocation(String location, Locale locale){
 
-        if (com.visitscotland.brmx.utils.Properties.locales.contains(locale)){
+        if (Properties.locales.contains(locale)){
             return locations.get(locale).get(locationToId.get(location));
         } else {
             return locations.get(null).get(locationToId.get(location));

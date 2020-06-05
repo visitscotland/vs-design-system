@@ -63,7 +63,7 @@ public class ProductSearchBuilder {
     static final String PATH_FOOD_DRINK = "food-drink";
     static final String PATH_EVENTS = "events";
 
-    private String host = com.visitscotland.brmx.utils.Properties.VS_DMS_SERVICE;
+    private String host = Properties.VS_DMS_SERVICE;
 
     private String productTypes;
     private String path;

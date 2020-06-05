@@ -6,15 +6,15 @@ import java.util.stream.Collectors;
 
 public class FeaturedLayout extends AbstractLayout<EnhancedLink> {
 
-    private boolean hideTeaser;
+    private boolean teaserVisible;
     private List<EnhancedLink> featuredLinks;
 
-    public boolean isHideTeaser() {
-        return hideTeaser;
+    public boolean isTeaserVisible() {
+        return teaserVisible;
     }
 
-    public void setHideTeaser(boolean hideTeaser) {
-        this.hideTeaser = hideTeaser;
+    public void setTeaserVisible(boolean teaserVisible) {
+        this.teaserVisible = teaserVisible;
     }
 
     public List<EnhancedLink> getFeaturedLinks() {

@@ -36,14 +36,7 @@ public class DestinationContentComponentTest {
      */
     private DestinationContentComponent mockComponent(Destination document){
         DestinationContentComponent dcc = createMockBuilder(DestinationContentComponent.class)
-                //Page component method. There is no need to test them
-                .addMockedMethod("addHeroCoordinates", HstRequest.class)
-                .addMockedMethod("addDocumentPath", HstRequest.class)
-                .addMockedMethod("addProductSearchBuilder", HstRequest.class)
-                .addMockedMethod("initPage", HstRequest.class)
                 .addMockedMethod("getDocument", HstRequest.class)
-                //HippoCMS methods. They generate errors if not mocked
-                .addMockedMethod("setEditMode", HstRequest.class)
                 .createMock();
 
         expect(dcc.getDocument(anyObject())).andReturn(document);
