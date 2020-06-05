@@ -2,14 +2,13 @@ package com.visitscotland.brmx.beans.mapping.megalinks;
 
 public class ListLayout extends AbstractLayout<EnhancedLink> {
 
-    //TODO: Question displayTeaser insteadof hideTeaser?
-    private boolean hideTeaser;
+    private boolean teaserVisible;
 
     public boolean isHideTeaser() {
-        return hideTeaser;
+        return teaserVisible;
     }
 
-    public void setHideTeaser(boolean hideTeaser) {
-        this.hideTeaser = hideTeaser;
+    public void setTeaserVisible(boolean teaserVisible) {
+        this.teaserVisible = teaserVisible;
     }
 }

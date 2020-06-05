@@ -1,7 +1,8 @@
-package com.visitscotland.brmx.utils;
+package com.visitscotland.brmx.dms;
 
 import com.visitscotland.brmx.beans.ProductsSearch;
 import com.visitscotland.brmx.beans.dms.LocationObject;
+import com.visitscotland.brmx.utils.Properties;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -62,7 +63,7 @@ public class ProductSearchBuilder {
     static final String PATH_FOOD_DRINK = "food-drink";
     static final String PATH_EVENTS = "events";
 
-    private String host = Properties.VS_DMS_SERVICE;
+    private String host = com.visitscotland.brmx.utils.Properties.VS_DMS_SERVICE;
 
     private String productTypes;
     private String path;

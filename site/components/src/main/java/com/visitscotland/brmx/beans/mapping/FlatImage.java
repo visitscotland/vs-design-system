@@ -2,11 +2,10 @@ package com.visitscotland.brmx.beans.mapping;
 
 
 import com.fasterxml.jackson.databind.JsonNode;
-import com.visitscotland.brmx.beans.DMSLink;
 import com.visitscotland.brmx.beans.Image;
 import com.visitscotland.brmx.beans.InstagramImage;
 import com.visitscotland.brmx.beans.dms.LocationObject;
-import com.visitscotland.brmx.utils.LocationLoader;
+import com.visitscotland.brmx.dms.LocationLoader;
 import com.visitscotland.brmx.utils.Properties;
 
 import java.util.Locale;

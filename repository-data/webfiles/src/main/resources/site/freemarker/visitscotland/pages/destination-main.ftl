@@ -18,7 +18,7 @@
 
 <#-- Implicit Request Objects -->
 <#-- @ftlvariable name="document" type="com.visitscotland.brmx.beans.Destination" -->
-<#-- @ftlvariable name="pageItems" type="com.visitscotland.brmx.beans.MegaLinks" -->
+<#-- @ftlvariable name="pageItems" type="com.visitscotland.brmx.beans.Megalinks" -->
 <#-- @ftlvariable name="image" type="com.visitscotland.brmx.beans.mapping.FlatImage" -->
 
 <#-- @ftlvariable name="heroImage" type="com.visitscotland.brmx.beans.mapping.FlatImage" -->
@@ -81,7 +81,7 @@
 			<#assign style = "white" />
 		</#if>
 		<div class="has-edit-button" style="background-color:${style}">
-			<@hst.manageContent hippobean=item.megaLinkItem />
+			<@hst.manageContent hippobean=item.megalinkItem />
 			<vs-container slot="upper" class="py-lg-4" >
 				<vs-row>
 					<vs-col cols="10" lg="8" offset-lg="1">
@@ -122,19 +122,19 @@
 					</#list>
 
 					<vs-row>
-						<#list item.links as megaLink>
+						<#list item.links as megalink>
 							<#assign image>
-								<@hst.link hippobean=megaLink.image.cmsImage.original/>
+								<@hst.link hippobean=megalink.image.cmsImage.original/>
 							</#assign>
 							<vs-col cols="4" lg="4">
 								<#--TODO for links the image does not have caption-->
-								<@imageWithCaption imageSrc=image imageDetails=megaLink.image variant="fullwidth"/>
-								<vs-heading level="3">${megaLink.label}</vs-heading>
+								<@imageWithCaption imageSrc=image imageDetails=megalink.image variant="fullwidth"/>
+								<vs-heading level="3">${megalink.label}</vs-heading>
 								<#if item.hideTeaser == false >
-									${megaLink.teaser}
+									${megalink.teaser}
 								</#if>
 								</br>
-								<vs-link href="${megaLink.link}"> ${megaLink.label}</vs-link>
+								<vs-link href="${megalink.link}"> ${megalink.label}</vs-link>
 								</br>
 								</br>
 							</vs-col>
@@ -178,10 +178,10 @@
 
 					</vs-row>
 					<ol>
-					<#list item.links as megaLink>
+					<#list item.links as megalink>
 						<vs-row>
 							<vs-col cols="4" lg="4" offset-lg="1">
-								<vs-link href="${megaLink.link}"> ${megaLink.label}</vs-link> </br>
+								<vs-link href="${megalink.link}"> ${megalink.label}</vs-link> </br>
 							</vs-col>
 
 						</vs-row>
@@ -192,21 +192,21 @@
 				<#else>
 					<ol>
 						<vs-row>
-							<#list item.links as megaLink>
+							<#list item.links as megalink>
 								<#assign image>
-									<@hst.link hippobean=megaLink.image.cmsImage.original/>
+									<@hst.link hippobean=megalink.image.cmsImage.original/>
 								</#assign>
 								<vs-col cols="3" lg="3">
 									<#--TODO for links the image does not have caption-->
-									<@imageWithCaption imageSrc=image imageDetails=megaLink.image variant="fullwidth"/>
+									<@imageWithCaption imageSrc=image imageDetails=megalink.image variant="fullwidth"/>
 								</vs-col>
 								<vs-col cols="2" lg="2">
-									<vs-heading level="3">${megaLink.label}</vs-heading>
+									<vs-heading level="3">${megalink.label}</vs-heading>
 									<#if item.hideTeaser == false >
-										${megaLink.teaser}
+										${megalink.teaser}
 									</#if>
 									</br>
-									<vs-link href="${megaLink.link}"> Find out more</vs-link> </br>
+									<vs-link href="${megalink.link}"> Find out more</vs-link> </br>
 									</br>
 								</vs-col>
 							</#list>

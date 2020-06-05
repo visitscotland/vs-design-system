@@ -13,7 +13,7 @@ public class Destination extends Page {
         return getSingleProperty("visitscotland:location");
     }
 
-    public List<MegaLinks> getItems() {
-        return getExternalBeansByType(MegaLinks.class);
+    public List<Megalinks> getItems() {
+        return getExternalBeansByType(Megalinks.class);
     }
 }

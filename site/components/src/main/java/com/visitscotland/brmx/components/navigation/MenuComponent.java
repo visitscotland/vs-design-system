@@ -1,11 +1,12 @@
 package com.visitscotland.brmx.components.navigation;
 
 
-import com.visitscotland.brmx.utils.HippoUtils;
-import com.visitscotland.brmx.beans.ContentDocument;
+import com.visitscotland.brmx.beans.Page;
+import com.visitscotland.brmx.utils.HippoUtilsService;
 import com.visitscotland.brmx.beans.Widget;
 import com.visitscotland.brmx.components.navigation.info.MenuComponentInfo;
 import org.hippoecm.hst.content.beans.standard.HippoBean;
+import org.hippoecm.hst.content.beans.standard.HippoFolder;
 import org.hippoecm.hst.core.component.HstRequest;
 import org.hippoecm.hst.core.component.HstResponse;
 import org.hippoecm.hst.core.linking.HstLink;
@@ -23,6 +24,12 @@ public class MenuComponent extends EssentialsMenuComponent {
 
     private static final String NAVIGATION_BUNDLE = "navigation";
 
+    HippoUtilsService utils;
+
+    MenuComponent(){
+        utils = new HippoUtilsService();
+    }
+
     @Override
     public void doBeforeRender(HstRequest request, HstResponse response) {
         super.doBeforeRender(request, response);
@@ -37,29 +44,33 @@ public class MenuComponent extends EssentialsMenuComponent {
 
     private VsHstSiteMenuItemImpl exploreMenu(HstRequest request, VsHstSiteMenuItemImpl parent, HstSiteMenuItem menu){
         VsHstSiteMenuItemImpl enhancedMenu = new VsHstSiteMenuItemImpl(parent, menu);
-
+        boolean documentExist = true;
         //if document base page or widget, we enhance the document
-        if(isDocumentBased(menu.getHstLink())){
+        if (isDocumentBased(menu.getHstLink())) {
             ResolvedSiteMapItem rsi = menu.resolveToSiteMapItem();
-            if (rsi != null){
+            if (rsi != null) {
                 HippoBean bean = getBeanForResolvedSiteMapItem(request, menu.resolveToSiteMapItem());
+                //if the document does not exist or no publish
+                if (bean == null || bean instanceof HippoFolder){
+                    documentExist = false;
+                }
 
-                //Widget document
-                if (bean instanceof Widget){
-                    enhancedMenu.setWidget((Widget) bean);
-                    // TODO: IF BEAN IS INSTANCE OF BASEDOCUMENT (when Base document properly defined)
-                } else if (bean instanceof ContentDocument){
-                    if (HippoUtils.existsResourceBundleKey(menu.getName(),NAVIGATION_BUNDLE, request.getLocale())){
-                        enhancedMenu.setTitle(HippoUtils.getResourceBundle(menu.getName(),NAVIGATION_BUNDLE, request.getLocale()));
-                    } else {
-                        enhancedMenu.setTitle(((ContentDocument) bean).getTitle());
+                else {
+                    //Widget document
+                    if (bean instanceof Widget) {
+                        enhancedMenu.setWidget((Widget) bean);
+                    } else if (utils.existsResourceBundleKey(menu.getName(), NAVIGATION_BUNDLE, request.getLocale())) {
+                        enhancedMenu.setTitle(utils.getResourceBundle(menu.getName(), NAVIGATION_BUNDLE, request.getLocale()));
+                    } else if (bean instanceof Page) {
+                        enhancedMenu.setTitle(((Page) bean).getTitle());
                     }
                 }
+
             }
         }
 
-        if (enhancedMenu.getTitle() == null){
-            String value = HippoUtils.getResourceBundle(menu.getName(),NAVIGATION_BUNDLE, request.getLocale());
+        if (enhancedMenu.getTitle() == null && documentExist) {
+            String value = utils.getResourceBundle(menu.getName(), NAVIGATION_BUNDLE, request.getLocale());
             enhancedMenu.setTitle(value);
         }
 
