@@ -4,8 +4,12 @@
 
 <#-- CANONICAL TAG -->
 <@hst.headContribution category="seo">
-<#-- canonical tag has -->
     <link rel="canonical" href="<@hst.link hippobean=document canonical=true fullyQualified=true/>" />
+</@hst.headContribution>
+
+<#-- Meta Language Mark-up -->
+<@hst.headContribution category="seo">
+    <meta http-equiv="content-language" content="${document.locale.language}" />
 </@hst.headContribution>
 
 <#-- HREFLANG TAG -->
