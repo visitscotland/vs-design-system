@@ -22,8 +22,8 @@
             </vs-col>
         </vs-footer-nav-list>
 
-        <div class="border-top border-secondary-light">
-            <vs-container class="vs-footer-social-menu__wrapper">
+        <div class="border-top border-secondary-light vs-footer-social-menu__wrapper">
+            <vs-container>
                 <vs-row>
                     <vs-col cols="12" class="d-block d-lg-none">
                         <@footerSocialMenu />
@@ -32,6 +32,7 @@
             </vs-container>
         </div>
         <@hst.cmseditmenu menu=menu/>
-        <#--  <@hst.include ref="utility"/>  -->
+
+        <@hst.include ref="utility"/>
     </#if>
 </vs-footer>
