@@ -1,7 +1,6 @@
 "use strict"
 
 const path = require("path")
-const isComponentsBuild = require("../build/system-components")
 
 module.exports = {
   build: {
@@ -42,7 +41,7 @@ module.exports = {
     index: path.resolve(__dirname, "../dist/index.html"),
 
     // Paths
-    assetsRoot: path.resolve(__dirname, "../dist", "system"),
+    assetsRoot: path.resolve(__dirname, "../dist", "library"),
     assetsSubDirectory: "./",
     assetsPublicPath: "../",
 

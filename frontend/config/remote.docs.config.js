@@ -43,7 +43,7 @@ const commonConfig = {
 
 const hippo = merge({}, commonConfig, {
   requestOptions: {
-    transform: require("../build/remote-response-transform-hippo").transformRawResponse,
+    transform: require("../build/system.transform-response.hippo").transformRawResponse,
   },
 })
 
@@ -54,7 +54,7 @@ const contentful = merge({}, commonConfig, {
     include: 5,
   },
   requestOptions: {
-    transform: require("../build/remote-response-transform-contentful").transformRawResponse,
+    transform: require("../build/system.transform-response.contentful").transformRawResponse,
   },
 })
 
