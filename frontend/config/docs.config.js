@@ -2,10 +2,13 @@ const _ = require("lodash")
 const path = require("path")
 const merge = require("webpack-merge")
 const chalk = require("chalk")
-const baseConfig = require("../build/webpack.base.conf.js")
+
+const baseConfig = require("../build/base.webpack.conf.js")
 const packageConfig = require("../package.json")
-const parseChildComponents = require("../build/parse-child-components.js")
+const parseChildComponents = require("../build/system.parse-child-components.js")
 const { mergeIE11Fix } = require("../build/webpack.ie11-fix")
+
+const remoteConfig = require("./remote.docs.config")
 
 module.exports = {
     /**
@@ -128,7 +131,7 @@ module.exports = {
             edge: "17",
         },
     },
-    styleguideDir: "../dist/docs",
+    styleguideDir: "dist/system",
     printServerInstructions() {},
     printBuildInstructions(config) {
         console.log(chalk.cyan("\n  Design System Docs build finished succesfully!\n"))
@@ -152,6 +155,10 @@ module.exports = {
             addScriptHandlers: [parseChildComponents.default],
         })
     },
+    /**
+     * Details of any remote config profiles
+     */
+    remoteProfiles: remoteConfig
 
     /**
    * Configure docs server to redirect asset queries
