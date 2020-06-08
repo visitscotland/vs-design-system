@@ -266,6 +266,12 @@ export default {
                 link-text="About Us"
             ></vs-footer-nav-list-item>
         </vs-footer-utility-list>
+
+        <vs-footer-copyright>
+            <span slot="copyright">
+                VisitScotland. All rights reserved.
+            </span>
+        </vs-footer-copyright>
     </vs-footer>
   ```
 </docs>
