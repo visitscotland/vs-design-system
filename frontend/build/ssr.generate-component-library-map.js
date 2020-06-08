@@ -13,7 +13,7 @@ const {
 } = require("lodash")
 
 /**
- * This module prepares moduleMap for the ssr-dynamic-component-loader
+ * This module prepares moduleMap for the ssr.dynamic-component-loader
  * 
  * @param {Object} moduleMap 
  * @param {String|[String]} exclude 
