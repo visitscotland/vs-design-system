@@ -27,22 +27,38 @@ public class HippoTranslatedNodeFactoryTest {
 
     @BeforeEach
     public void beforeEach() {
-        when(mockFolder.getNode()).thenReturn(mockNode);
         factory = new HippoTranslatedNodeFactory();
     }
 
     @Test
-    public void not_translated_type() throws Exception {
+    public void fromTranslatedFolder_not_translated_type() throws Exception {
+        when(mockFolder.getNode()).thenReturn(mockNode);
         when(mockNode.isNodeType(HippoTranslationNodeType.NT_TRANSLATED)).thenReturn(false);
 
         assertThrows(RepositoryException.class, () -> factory.createFromTranslatedFolder(mockFolder));
     }
 
     @Test
-    public void is_translated_type() throws Exception {
+    public void fromTranslatedFolder_is_translated_type() throws Exception {
+        when(mockFolder.getNode()).thenReturn(mockNode);
         when(mockNode.isNodeType(HippoTranslationNodeType.NT_TRANSLATED)).thenReturn(true);
 
         HippoTranslatedNode hippoNode = factory.createFromTranslatedFolder(mockFolder);
+        assertNotNull(hippoNode);
+    }
+
+    @Test
+    public void fromNode_not_translated_type() throws Exception {
+        when(mockNode.isNodeType(HippoTranslationNodeType.NT_TRANSLATED)).thenReturn(false);
+
+        assertThrows(RepositoryException.class, () -> factory.createFromNode(mockNode));
+    }
+
+    @Test
+    public void fromNode_is_translated_type() throws Exception {
+        when(mockNode.isNodeType(HippoTranslationNodeType.NT_TRANSLATED)).thenReturn(true);
+
+        HippoTranslatedNode hippoNode = factory.createFromNode(mockNode);
         assertNotNull(hippoNode);
     }
 }

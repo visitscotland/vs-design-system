@@ -10,6 +10,7 @@
   <artifactId>visitscotland-cms</artifactId>
   <packaging>war</packaging>
   <name>www.visitscotland.com CMS Pages CMS</name>
+
   <description>www.visitscotland.com CMS Pages CMS</description>
   <dependencies>
     <dependency>
@@ -38,6 +39,12 @@
       <groupId>com.visitscotland</groupId>
       <artifactId>data-service-api</artifactId>
       <version>${data-service-api.version}</version>
+      <exclusions>
+      	<exclusion>
+      		<groupId>org.slf4j</groupId>
+      		<artifactId>slf4j-log4j12</artifactId>
+      	</exclusion>
+      </exclusions>
     </dependency>
 
     <dependency>
@@ -60,6 +67,7 @@
       <version>${mockito.version}</version>
       <scope>test</scope>
     </dependency>
+
   </dependencies>
   <build>
     <finalName>cms</finalName>

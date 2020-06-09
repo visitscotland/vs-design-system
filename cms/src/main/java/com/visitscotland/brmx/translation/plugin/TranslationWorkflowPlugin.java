@@ -62,32 +62,6 @@ public class TranslationWorkflowPlugin extends RenderPlugin {
     private static Logger log = LoggerFactory.getLogger(TranslationWorkflowPlugin.class);
     private final IModel<Boolean> canTranslateModel;
 
-    protected final Component getActionIcon(final String id, IModel<HippoLocale> localeModel) {
-        final HippoLocale hippoLocale = localeModel.getObject();
-        final HippoIconStack nodeIcon = new HippoIconStack(id, IconSize.M);
-
-        final ResourceReference flagIcon = hippoLocale.getIcon(IconSize.M, LocaleState.EXISTS);
-        nodeIcon.addFromResource(flagIcon);
-
-        return nodeIcon;
-    }
-
-    private DocumentTranslationProvider translationProvider;
-
-    public Boolean canTranslateModel() {
-        return canTranslateModel.getObject();
-    }
-
-    @Override
-    public IPluginContext getPluginContext() {
-        return super.getPluginContext();
-    }
-
-    @Override
-    public IPluginConfig getPluginConfig() {
-        return super.getPluginConfig();
-    }
-
     public TranslationWorkflowPlugin(IPluginContext context, IPluginConfig config) {
         super(context, config);
 
@@ -131,11 +105,11 @@ public class TranslationWorkflowPlugin extends RenderPlugin {
 
         try {
             if (!TranslationUtil.isNtTranslated(documentNode.getParent().getParent()) &&
-                (!TranslationUtil.isNtTranslated(documentNode) || !localeProvider.isKnown(languageModel.getObject()))) {
+                    (!TranslationUtil.isNtTranslated(documentNode) || !localeProvider.isKnown(languageModel.getObject()))) {
                 return;
             }
         } catch (RepositoryException e) {
-           log.warn("Could not determine translations status of document", e);
+            log.warn("Could not determine translations status of document", e);
         }
 
         add(new EmptyPanel("content"));
@@ -173,7 +147,7 @@ public class TranslationWorkflowPlugin extends RenderPlugin {
                                 protected String load() {
                                     return locale.getDisplayName(getLocale());
                                 }
-                            }, item.getModel(), language, languageModel
+                            }, item.getModel()
                             ));
                         } else {
                             item.add(new ViewTranslationAction(TranslationWorkflowPlugin.this, "language", new LoadableDetachableModel<String>() {
@@ -198,6 +172,32 @@ public class TranslationWorkflowPlugin extends RenderPlugin {
             }
         });
 
+    }
+
+    protected final Component getActionIcon(final String id, IModel<HippoLocale> localeModel) {
+        final HippoLocale hippoLocale = localeModel.getObject();
+        final HippoIconStack nodeIcon = new HippoIconStack(id, IconSize.M);
+
+        final ResourceReference flagIcon = hippoLocale.getIcon(IconSize.M, LocaleState.EXISTS);
+        nodeIcon.addFromResource(flagIcon);
+
+        return nodeIcon;
+    }
+
+    private DocumentTranslationProvider translationProvider;
+
+    public Boolean canTranslateModel() {
+        return canTranslateModel.getObject();
+    }
+
+    @Override
+    public IPluginContext getPluginContext() {
+        return super.getPluginContext();
+    }
+
+    @Override
+    public IPluginConfig getPluginConfig() {
+        return super.getPluginConfig();
     }
 
     public boolean hasLocaleTranslation(String locale) {
