@@ -1,17 +1,17 @@
 definitions:
   config:
-    /hippo:namespaces/visitscotland/ListicleItem:
+    /hippo:namespaces/visitscotland/Megalinks:
       jcr:primaryType: hipposysedit:templatetype
       jcr:mixinTypes: ['editor:editable', 'mix:referenceable']
-      jcr:uuid: 1671cd29-a924-4e04-b843-d16f5b4ff4a8
+      jcr:uuid: e0befb61-80ca-4a2f-9ffd-0467c75fac65
       /hipposysedit:nodetype:
         jcr:primaryType: hippo:handle
         jcr:mixinTypes: ['mix:referenceable']
-        jcr:uuid: 8888b49f-63e0-4c35-9b38-451d32791f3b
+        jcr:uuid: 4881f854-bb53-41e7-9e02-b3c949017891
         /hipposysedit:nodetype:
           jcr:primaryType: hipposysedit:nodetype
           jcr:mixinTypes: ['mix:referenceable', 'hipposysedit:remodel']
-          jcr:uuid: 5a12647e-cd9f-4cdb-ada1-668af3e55142
+          jcr:uuid: 92b8e223-0081-4034-8877-46297f0f4e19
           hipposysedit:node: true
           hipposysedit:supertype: ['visitscotland:basedocument', 'hippostd:relaxed',
             'hippotranslation:translated']
@@ -24,49 +24,48 @@ definitions:
             hipposysedit:path: visitscotland:title
             hipposysedit:primary: false
             hipposysedit:type: String
-            hipposysedit:validators: [required]
-          /description:
+          /list:
             jcr:primaryType: hipposysedit:field
             hipposysedit:mandatory: false
             hipposysedit:multiple: false
             hipposysedit:ordered: false
-            hipposysedit:path: visitscotland:description
+            hipposysedit:path: visitscotland:listLayout
+            hipposysedit:primary: false
+            hipposysedit:type: Boolean
+          /introduction:
+            jcr:primaryType: hipposysedit:field
+            hipposysedit:mandatory: false
+            hipposysedit:multiple: false
+            hipposysedit:ordered: false
+            hipposysedit:path: visitscotland:introduction
             hipposysedit:primary: false
             hipposysedit:type: hippostd:html
-            hipposysedit:validators: [required]
-          /subtitle:
+          /hideTeaser:
             jcr:primaryType: hipposysedit:field
             hipposysedit:mandatory: false
             hipposysedit:multiple: false
             hipposysedit:ordered: false
-            hipposysedit:path: visitscotland:subtitle
+            hipposysedit:path: visitscotland:teaserVisible
             hipposysedit:primary: false
-            hipposysedit:type: String
-          /extraLinks:
+            hipposysedit:type: Boolean
+          /singleImageLinks:
             jcr:primaryType: hipposysedit:field
             hipposysedit:multiple: true
             hipposysedit:ordered: true
-            hipposysedit:path: visitscotland:extraLinks
+            hipposysedit:path: visitscotland:singleImageLinks
             hipposysedit:type: hippo:compound
             hipposysedit:validators: [contentblocks-validator]
-          /products:
+          /megalinkItems:
             jcr:primaryType: hipposysedit:field
             hipposysedit:multiple: true
             hipposysedit:ordered: true
-            hipposysedit:path: visitscotland:products
+            hipposysedit:path: visitscotland:megalinkItems
             hipposysedit:type: hippo:compound
             hipposysedit:validators: [contentblocks-validator, required]
-          /images:
-            jcr:primaryType: hipposysedit:field
-            hipposysedit:multiple: true
-            hipposysedit:ordered: true
-            hipposysedit:path: visitscotland:images
-            hipposysedit:type: hippo:compound
-            hipposysedit:validators: [contentblocks-validator]
       /hipposysedit:prototypes:
         jcr:primaryType: hipposysedit:prototypeset
         /hipposysedit:prototype:
-          jcr:primaryType: visitscotland:ListicleItem
+          jcr:primaryType: visitscotland:Megalinks
           hippostd:holder: holder
           hippostd:state: draft
           hippostdpubwf:createdBy: ''
@@ -75,11 +74,12 @@ definitions:
           hippotranslation:locale: document-type-locale
           jcr:mixinTypes: ['mix:referenceable']
           visitscotland:title: ''
-          visitscotland:subtitle: ''
-          jcr:uuid: 44526011-2f33-42ff-9dc5-9560f4031eb5
-          hippostdpubwf:lastModificationDate: 2020-02-11T16:18:17.876Z
-          hippostdpubwf:creationDate: 2020-02-11T16:18:17.876Z
-          /visitscotland:description:
+          jcr:uuid: 46da91ae-37ca-4401-8ac4-8e427809dfe9
+          hippostdpubwf:lastModificationDate: 2020-05-14T14:29:51.020+01:00
+          hippostdpubwf:creationDate: 2020-05-14T14:29:51.020+01:00
+          visitscotland:teaserVisible: true
+          visitscotland:listLayout: false
+          /visitscotland:introduction:
             jcr:primaryType: hippostd:html
             hippostd:content: ''
       /editor:templates:
@@ -91,67 +91,78 @@ definitions:
           frontend:services: [wicket.id, validator.id]
           /root:
             jcr:primaryType: frontend:plugin
-            item: ${cluster.id}.field
+            extension.left: ${cluster.id}.left
+            extension.right: ${cluster.id}.right
+            plugin.class: org.hippoecm.frontend.editor.layout.TwoColumn
+            wicket.extensions: [extension.left, extension.right]
+          /left:
+            jcr:primaryType: frontend:plugin
+            item: ${cluster.id}.left.item
             plugin.class: org.hippoecm.frontend.service.render.ListViewPlugin
+            wicket.id: ${cluster.id}.left
+          /right:
+            jcr:primaryType: frontend:plugin
+            item: ${cluster.id}.right.item
+            plugin.class: org.hippoecm.frontend.service.render.ListViewPlugin
+            wicket.id: ${cluster.id}.right
           /title:
             jcr:primaryType: frontend:plugin
             caption: Title
             field: title
+            hint: H2 title
             plugin.class: org.hippoecm.frontend.editor.plugins.field.PropertyFieldPlugin
-            wicket.id: ${cluster.id}.field
+            wicket.id: ${cluster.id}.left.item
             /cluster.options:
               jcr:primaryType: frontend:pluginconfig
-          /subtitle:
+          /listLayout:
             jcr:primaryType: frontend:plugin
-            caption: Subtitle
-            field: subtitle
+            caption: List View
+            field: list
             plugin.class: org.hippoecm.frontend.editor.plugins.field.PropertyFieldPlugin
-            wicket.id: ${cluster.id}.field
+            wicket.id: ${cluster.id}.right.item
             /cluster.options:
               jcr:primaryType: frontend:pluginconfig
-          /description:
+          /introduction:
             jcr:primaryType: frontend:plugin
-            caption: Description
-            field: description
+            caption: Introduction
+            field: introduction
             plugin.class: org.hippoecm.frontend.editor.plugins.field.NodeFieldPlugin
-            wicket.id: ${cluster.id}.field
-            hint: ''
+            wicket.id: ${cluster.id}.left.item
             /cluster.options:
               jcr:primaryType: frontend:pluginconfig
               ckeditor.config.overlayed.json: '{toolbarGroups: [{ name: ''links''
                 },{name:''insert''},{name:''clipboard''},{name:''tools''},{name:''undo''}]
                 , removeButtons: ''PickImage,Youtube,Table''}'
-          /images:
+          /teaserVisible:
             jcr:primaryType: frontend:plugin
-            caption: Image
-            compoundList: hippogallerypicker:imagelink,visitscotland:InstagramImage
+            caption: Display Teaser
+            field: hideTeaser
+            hint: ''
+            plugin.class: org.hippoecm.frontend.editor.plugins.field.PropertyFieldPlugin
+            wicket.id: ${cluster.id}.right.item
+            /cluster.options:
+              jcr:primaryType: frontend:pluginconfig
+          /singleImageLinks:
+            jcr:primaryType: frontend:plugin
+            caption: Single Image view
+            compoundList: visitscotland:SingleImageModule
             contentPickerType: links
-            field: images
+            field: singleImageLinks
             plugin.class: org.onehippo.forge.contentblocks.ContentBlocksFieldPlugin
-            wicket.id: ${cluster.id}.field
+            wicket.id: ${cluster.id}.left.item
             hint: ''
             /cluster.options:
               jcr:primaryType: frontend:pluginconfig
               maxitems: 1
-          /products:
+          /megalinkItems:
             jcr:primaryType: frontend:plugin
-            caption: Main Product
-            compoundList: visitscotland:CMSLink,visitscotland:DMSLink,visitscotland:ExternalLink,visitscotland:ProductSearchLink
+            caption: Links
+            compoundList: visitscotland:MegalinkItem
             contentPickerType: links
-            field: products
+            field: megalinkItems
             plugin.class: org.onehippo.forge.contentblocks.ContentBlocksFieldPlugin
-            wicket.id: ${cluster.id}.field
+            wicket.id: ${cluster.id}.left.item
+            hint: ''
             /cluster.options:
               jcr:primaryType: frontend:pluginconfig
-              maxitems: 1
-          /extraLinks:
-            jcr:primaryType: frontend:plugin
-            caption: Optional CTA
-            compoundList: visitscotland:CMSLink,visitscotland:DMSLink,visitscotland:ExternalLink,visitscotland:ProductSearchLink
-            contentPickerType: links
-            field: extraLinks
-            plugin.class: org.onehippo.forge.contentblocks.ContentBlocksFieldPlugin
-            wicket.id: ${cluster.id}.field
-            /cluster.options:
-              jcr:primaryType: frontend:pluginconfig
-              maxitems: 1
+              maxitems: 9

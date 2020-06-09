@@ -77,10 +77,10 @@ public class BaseDocument extends HippoDocument {
             return children.get(0);
         } else {
             logger.warn("This list in supposed to have only one child");
-            //TODO: get childs
             return children.get(0);
         }
     }
+
 
     public <T> List<T> getSiblingDocuments(String documentType, Class<T> typeClass) {
         //Get the list of sibling nodes
