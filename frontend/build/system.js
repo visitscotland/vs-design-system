@@ -6,7 +6,7 @@ const ora = require("ora")
 const StyleguidistError = require("react-styleguidist/lib/scripts/utils/error")
 const styleguidist = require("vue-styleguidist")
 
-const remoteUtils = require("./utils-remote.js")
+const { getRemoteConfig, cleanupRemoteBuild } = require("./system.remote-config.js")
 
 const argv = minimist(process.argv.slice(2))
 const command = argv._[0]
@@ -42,8 +42,7 @@ if (!process.env.REMOTE_CONFIG_HIPPO_SPACE) {
   require("dotenv").config()
 }
 
-remoteUtils
-  .getRemoteConfig(argv)
+getRemoteConfig(argv)
   .then(partial(run, command))
   .catch(function(err) {
     console.log(chalk.red("Problem getting remote config:", err))
@@ -92,17 +91,7 @@ function callbackCommon(err, stats) {
 function buildCallback(err, config, stats) {
   callbackCommon(err, stats)
 
-  // console.log(
-  //   chalk.yellow(
-  //     "  Tip: You can now publish the design system as a private NPM module.\n" +
-  //       "  Users can import the provided UMD module using:\n\n" +
-  //       "  import DesignSystem from 'vs-design-system'\n" +
-  //       "  import 'vs-design-system/dist/system/system.css'\n\n" +
-  //       "  Vue.use(DesignSystem)\n"
-  //   )
-  // )
-
-  remoteUtils.cleanup(config)
+  cleanupRemoteBuild(config)
 }
 
 function serverCallback(err, config, stats) {
@@ -115,5 +104,5 @@ function serverCallback(err, config, stats) {
   console.log(chalk.yellow(config.title, `running at ${url}`))
 
   // can't cleanup until after the server has stopped
-  // remoteUtils.cleanup(remoteConfig, config)
+  // cleanupRemoteBuild(remoteConfig, config)
 }
