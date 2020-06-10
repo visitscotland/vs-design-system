@@ -6,16 +6,37 @@ This branch includes an SSR package that can be used to spin up a NodeJS/Express
 
 ## Get Started
 
-- `yarn` - installs frontend dependencies
-- Add environment variables to `.env` file (see below)
-- Start local Hippo instance (only needed if proxying the local Hippo instance)
-- `yarn ssr:start` - builds for SSR and spins up NodeJS app on http://localhost:3000
+To install and start the local Hippo and NodeJS SSR instances:
 
-## Environment variables
+```sh
+# Install and run the parent Hippo site (this also installs and builds the necessary FE assets)
+mvn clean verify && mvn -Pcargo.run
 
-The NodeJS app expects a value for the proxy target to be available at `process.env.VS_SSR_PROXY_TARGET_HOST`. The value is used to make the proxy request when a client request is handled. For example, if `process.env.VS_SSR_PROXY_TARGET_HOST` is `http://localhost:8080` then a client request of `localhost:3000/site/page` will result in a proxy request to `http://localhost:8080/site/page`.
+# Add the relevant environment variables to the `frontend/.env` file, creating if necessary
+touch frontend/.env
 
-The easiesy way to specify the `process.env.VS_SSR_PROXY_TARGET_HOST` value is to set `VS_SSR_PROXY_TARGET_HOST` in a `.env` file in this `frontend` folder. The package include the `dotenv` to add the variable to the system process.
+# Start the SSR app on http://localhost:8082
+cd frontend
+yarn ssr:start
+```
+
+This will start:
+- the Hippo instance at [http://localhost:8080](http://localhost:8080)
+- the SSR app at [http://localhost:8082](http://localhost:8082)
+
+The Hippo instance is basically unchanged from the existing Hippo instance. To browse the SSR'ed Hippo site through the SSR app, browse to the same URL except at the SSR app host.
+
+For example, to view the SSR version of the Hippo page [http://localhost:8080/site/see-do/victorian-heritage-trail](http://localhost:8080/site/see-do/victorian-heritage-trail), browse to [http://localhost:8082/site/see-do/victorian-heritage-trail](http://localhost:8082/site/see-do/victorian-heritage-trail).
+
+The site is browsable just like the regular Hippo site. Note that it's not possible to access the CMS pages via the SSR site.
+
+## SSR Environment variable
+
+The NodeJS app requires an environment variable called `VS_SSR_PROXY_TARGET_HOST`, which is the host address of the target site. If the target is the local Hippo site the value should be `http://localhost:8080`. The easiest way to provide this is to add the following line to the `frontend/.env` file:
+
+```sh
+VS_SSR_PROXY_TARGET_HOST = http://localhost:8080
+```
 
 # VisitScotland Design System
 
