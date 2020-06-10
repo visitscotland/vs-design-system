@@ -1,9 +1,7 @@
 package com.visitscotland.brmx.components.breadcrumb;
 
-import com.visitscotland.brmx.beans.ContentDocument;
 import com.visitscotland.brmx.beans.Page;
 import com.visitscotland.brmx.utils.CommonUtils;
-import com.visitscotland.brmx.utils.HippoUtils;
 import com.visitscotland.utils.Contract;
 import org.hippoecm.hst.component.support.bean.BaseHstComponent;
 import org.hippoecm.hst.content.beans.standard.HippoBean;
