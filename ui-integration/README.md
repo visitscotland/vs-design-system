@@ -30,7 +30,7 @@ This script executes the `frontend` package's `yarn build:system:components` bui
 1. Include the Vue freemarker template for the component you want to include
 
 ```html
-<#include "../include/frontend/container.ftl">
+<#include "../include/vs-dotcom-ds/container.ftl">
 ```
 
 2. Add `data-vue-app-init` attribute on a parent container to ensure the Vue app is initialised (see base-layout.ftl)
