@@ -16,6 +16,7 @@
     "system": "node ./build/system server --config ./config/docs.config.js",
     "system:build": "node ./build/system build --config ./config/docs.config.js",
     "library": "cross-env NODE_ENV=production webpack --config ./build/library.webpack.conf.js",
+    "library:dev": "cross-env NODE_ENV=development webpack --config ./build/library.webpack.conf.js",
     "ssr": "npm-run-all ssr:build:dev ssr:serve:dev",
     "ssr:build": "npm-run-all ssr:build:client ssr:build:server",
     "ssr:build:dev": "cross-env NODE_ENV=development yarn ssr:build",

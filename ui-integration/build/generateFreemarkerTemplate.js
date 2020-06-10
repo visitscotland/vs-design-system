@@ -19,6 +19,9 @@ const validateOptions = require("schema-utils")
 const optionsSchema = {
   type: "object",
   properties: {
+    webfilesPath: {
+      type: "string",
+    },
     targetPath: {
       type: "string",
     },
@@ -55,7 +58,7 @@ function generateImportsInclude(importsPath) {
   return '<#include "' + importsPath + '">\n'
 }
 
-function generateTemplateContent(moduleName, mod, importsPath) {
+function generateTemplateContent(moduleName, mod, configPaths) {
   let content = ""
   const isCore = moduleIsCore(moduleName)
   const isStore = moduleIsStore(moduleName)
@@ -63,16 +66,16 @@ function generateTemplateContent(moduleName, mod, importsPath) {
 
   if(!isCore) {
     content += generateVueAppInitInclude()
-    content += generateImportsInclude(importsPath)
+    content += generateImportsInclude(configPaths.imports)
     content += "\n"
   }
 
   if(!isEmpty(mod.styles)) {
-    content += generateTemplateContentStyles(mod.styles)
+    content += generateTemplateContentStyles(mod.styles, configPaths.webfiles)
   }
 
   if(!isEmpty(mod.scripts)) {
-    content += generateTemplateContentAssets(mod.scripts, isClientEntry)
+    content += generateTemplateContentAssets(mod.scripts, isClientEntry, configPaths.webfiles)
   }
   
   if (isStore) {
@@ -87,16 +90,16 @@ function generateTemplateContent(moduleName, mod, importsPath) {
 function generateTemplateContentStoreScript(moduleName) {
   let scriptText = "vs.stores." + moduleName + " = " + moduleName + ".default"
 
-  return generateTemplateContentScript(null, scriptText)
+  return generateTemplateContentScript(scriptText)
 }
 
 function generateTemplateContentRegisterScript(moduleName) {
   let scriptText = `Vue.component('vs-${kebabCase(moduleName)}', ${moduleName}.default)`
 
-  return generateTemplateContentScript(null, scriptText)
+  return generateTemplateContentScript(scriptText)
 }
 
-function generateTemplateContentAssets(scripts, isClientEntry) {
+function generateTemplateContentAssets(scripts, isClientEntry, webfilesPath) {
   const isClientEntryLast = isClientEntry ? last(scripts) : null
 
   function isAppEntry(path) {
@@ -105,31 +108,32 @@ function generateTemplateContentAssets(scripts, isClientEntry) {
 
   return reduce(
     scripts,
-    function(content, path) {
-      let altHeadContributionName = isAppEntry(path) ? "htmlBodyEndAppEntry" : null
+    function(content, assetPath) {
+      const href = generateTemplateContentWebfileTag(assetPath, webfilesPath)
+      const altHeadContributionName = isAppEntry(assetPath) ? "htmlBodyEndAppEntry" : null
 
-      return content + generateTemplateContentPreload(path, "script") +
-          generateTemplateContentScript(path, null, altHeadContributionName)
+      return content + generateTemplateContentPreload(href, "script") +
+          generateTemplateContentScript(null, href, altHeadContributionName)
     },
     "",
   );
 }
 
-function generateTemplateContentPreload(path, type) {
-  let linkString = generateTemplateContentLinkTag("preload", path, type)
+function generateTemplateContentPreload(href, linkType) {
+  const linkString = generateTemplateContentLinkTag("preload", href, linkType)
 
   return generateTemplateContentHeadContribution(linkString, "htmlHeadPreload")
 }
 
-function generateTemplateContentLinkTag(rel, path, type) {
-  return `\t<link rel="${rel}" href="${generateTemplateContentWebfilePath(path)}" type="${type}"/>`
+function generateTemplateContentLinkTag(rel, href, type) {
+  return `\t<link rel="${rel}" href="${href}" type="${type}"/>`
 }
 
-function generateTemplateContentScript(scriptPath, scriptContent, headContributionName) {
+function generateTemplateContentScript(scriptContent, href, headContributionName) {
   let nodeString = '\t<script type="text/javascript"'
 
-  if (scriptPath) {
-    nodeString += ' src="' + generateTemplateContentWebfilePath(scriptPath) + '"'
+  if (href) {
+    nodeString += ' src="' + href + '"'
   }
 
   nodeString += ">"
@@ -140,27 +144,25 @@ function generateTemplateContentScript(scriptPath, scriptContent, headContributi
 
   nodeString += "</script>"
 
-  if(!headContributionName) {
-    headContributionName = "htmlBodyEndScripts"
-  }
-
-  return generateTemplateContentHeadContribution(nodeString, headContributionName)
+  return generateTemplateContentHeadContribution(nodeString, headContributionName || "htmlBodyEndScripts")
 }
 
-function generateTemplateContentStyles(styles) {
+function generateTemplateContentStyles(styles, webfilesPath) {
   return reduce(
     styles,
-    function(content, path) {
+    function(content, assetPath) {
+      const href = generateTemplateContentWebfileTag(assetPath, webfilesPath)
+
       return content +
-        generateTemplateContentPreload(path, "style") +
-        generateTemplateContentStyle(path)
+        generateTemplateContentPreload(href, "style") +
+        generateTemplateContentStyle(href)
     },
     "",
   ) + "\n"
 }
 
-function generateTemplateContentStyle(path) {
-  let linkString = generateTemplateContentLinkTag("stylesheet", path, "text/css")
+function generateTemplateContentStyle(href) {
+  const linkString = generateTemplateContentLinkTag("stylesheet", href, "text/css")
 
   return generateTemplateContentHeadContribution(linkString, "htmlHeadStyles")
 }
@@ -175,21 +177,23 @@ function generateTemplateContentHeadContribution(content, category) {
   return node
 }
 
-function generateTemplateContentWebfilePath(path) {
-  return "<@hst.webfile  path='design-system/" + path + "'/>"
+function generateTemplateContentWebfileTag(assetPath, webfilesPath) {
+  return `<@hst.webfile  path="${webfilesPath}/${assetPath}" />`
 }
 
-function outputTemplate(mod, moduleName, targetPath, importsPath) {
+function outputTemplate(mod, moduleName, configPaths) {
   let targetFilePath = path.join(
-    targetPath,
-    moduleSubPath(mod, moduleName),
-    moduleFileName(mod, moduleName)
+    configPaths.target,
+    moduleSubPath(moduleName),
+    moduleFileName(moduleName)
   )
 
-  fs.writeFileSync(targetFilePath, generateTemplateContent(moduleName, mod, importsPath))
+  const template = generateTemplateContent(moduleName, mod, configPaths)
+
+  fs.writeFileSync(targetFilePath, template)
 }
 
-function moduleSubPath(mod, moduleName) {
+function moduleSubPath(moduleName) {
   if (moduleIsStore(moduleName)) {
     return "/stores"
   } else if(moduleIsCore(moduleName)) {
@@ -199,7 +203,7 @@ function moduleSubPath(mod, moduleName) {
   return "/components"
 }
 
-function moduleFileName(mod, moduleName) {
+function moduleFileName(moduleName) {
   if (startsWith(moduleName, "store")) {
     moduleName = trimStart(moduleName, "store")
   }
@@ -244,7 +248,18 @@ module.exports = function(manifest) {
 
   prepTargetDir(options.targetPath)
 
-  each(modules, partial(outputTemplate, partial.placeholder, partial.placeholder, options.targetPath, options.importsPath))
+  const configPaths = {
+    target: options.targetPath,
+    imports: options.importsPath,
+    webfiles: options.webfilesPath,
+  }
+
+  each(modules, partial(
+    outputTemplate,
+    partial.placeholder,
+    partial.placeholder,
+    configPaths,
+  ))
 
   return manifest
 }

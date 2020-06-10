@@ -1,13 +1,13 @@
 <#include "../../include/imports.ftl">
-<#include "../../vs-dotcom-ds/components/footer-nav-list.ftl">
-<#include "../../vs-dotcom-ds/components/footer-nav-list-item.ftl">
-<#include "../../vs-dotcom-ds/components/footer.ftl">
-<#include "../../vs-dotcom-ds/components/icon.ftl">
-<#include "../../vs-dotcom-ds/components/accordion-item.ftl">
-<#include "../../vs-dotcom-ds/components/container.ftl">
-<#include "../../vs-dotcom-ds/components/row.ftl">
-<#include "../../vs-dotcom-ds/components/col.ftl">
-<#include "../../vs-dotcom-ds/components/list.ftl">
+<#include "../../frontend/components/footer-nav-list.ftl">
+<#include "../../frontend/components/footer-nav-list-item.ftl">
+<#include "../../frontend/components/footer.ftl">
+<#include "../../frontend/components/icon.ftl">
+<#include "../../frontend/components/accordion-item.ftl">
+<#include "../../frontend/components/container.ftl">
+<#include "../../frontend/components/row.ftl">
+<#include "../../frontend/components/col.ftl">
+<#include "../../frontend/components/list.ftl">
 
 <#-- @ftlvariable name="menu" type="org.hippoecm.hst.core.sitemenu.HstSiteMenu" -->
 <#-- @ftlvariable name="enhancedMenu" type="java.util.List" -->
