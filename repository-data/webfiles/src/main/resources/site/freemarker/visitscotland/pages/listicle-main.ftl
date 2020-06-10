@@ -1,17 +1,17 @@
 <#ftl output_format="XML">
 <#include "../../include/imports.ftl">
 
-<#include "../../frontend/components/container.ftl">
-<#include "../../frontend/components/row.ftl">
-<#include "../../frontend/components/col.ftl">
-<#include "../../frontend/components/icon.ftl">
-<#include "../../frontend/components/social-share.ftl">
-<#include "../../frontend/components/heading.ftl">
-<#include "../../frontend/components/img.ftl">
-<#include "../../frontend/components/link.ftl">
-<#include "../../frontend/components/rich-text-wrapper.ftl">
-<#include "../../frontend/components/listicle-item.ftl">
-<#--  <#include "../../frontend/components/panel.ftl">  -->
+<#include "../../vs-dotcom-ds/components/container.ftl">
+<#include "../../vs-dotcom-ds/components/row.ftl">
+<#include "../../vs-dotcom-ds/components/col.ftl">
+<#include "../../vs-dotcom-ds/components/icon.ftl">
+<#include "../../vs-dotcom-ds/components/social-share.ftl">
+<#include "../../vs-dotcom-ds/components/heading.ftl">
+<#include "../../vs-dotcom-ds/components/img.ftl">
+<#include "../../vs-dotcom-ds/components/link.ftl">
+<#include "../../vs-dotcom-ds/components/rich-text-wrapper.ftl">
+<#include "../../vs-dotcom-ds/components/listicle-item.ftl">
+<#--  <#include "../../vs-dotcom-ds/components/panel.ftl">  -->
 
 <#include "../macros/modules/listicles/listicle-item.ftl">
 <#include "../macros/global/cms-errors.ftl">
