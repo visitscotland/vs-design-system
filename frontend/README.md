@@ -30,6 +30,8 @@ For example, to view the SSR version of the Hippo page [http://localhost:8080/si
 
 The site is browsable just like the regular Hippo site. Note that it's not possible to access the CMS pages via the SSR site.
 
+**NOTE: do not use the ssr:serve:dev npm script. It is broken and will be fixed soon** 
+
 ## SSR Environment variable
 
 The NodeJS app requires an environment variable called `VS_SSR_PROXY_TARGET_HOST`, which is the host address of the target site. If the target is the local Hippo site the value should be `http://localhost:8080`. The easiest way to provide this is to add the following line to the `frontend/.env` file:
