@@ -224,13 +224,13 @@ public class ItineraryContentComponent extends PageContentComponent<Itinerary> {
                 products.put(model.getIdentifier(), model);
             }
         }
+
         request.setAttribute(DISTANCE,totalDistance.compareTo(BigDecimal.ZERO) == 0? itinerary.getDistance():totalDistance);
+        request.setAttribute(STOPS_MAP, products);
 
         if (products.size() > 0 ) {
             request.setAttribute(FIRST_STOP_LOCATION, itinerary.getStart().isEmpty() ? products.get(firstStopId).getSubTitle() : itinerary.getStart());
             request.setAttribute(LAST_STOP_LOCATION, itinerary.getFinish().isEmpty() ? products.get(lastStopId).getSubTitle(): itinerary.getFinish() );
-
-            request.setAttribute(STOPS_MAP, products);
         } else {
             request.setAttribute(FIRST_STOP_LOCATION, itinerary.getStart());
             request.setAttribute(LAST_STOP_LOCATION, itinerary.getFinish());
