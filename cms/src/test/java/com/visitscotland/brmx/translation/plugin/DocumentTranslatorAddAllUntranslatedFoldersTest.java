@@ -72,9 +72,7 @@ public class DocumentTranslatorAddAllUntranslatedFoldersTest {
         createUntranslatedFolderChain(mockSourceFolder, numberInChain, "no",true);
         translator.addAllUntranslatedFolders("no", folders, mockSourceFolder);
 
-        // The folders should also be populated, not sure if this intended functionality
-        // but I'll test that the values are what they should be
-        // Source folder + numberInChain, note the folders are in reverse index order
+        // The folders should be populated
         assertEquals(numberInChain, folders.size());
         for (int index = 0; index < numberInChain; index++) {
             assertFolderTranslation(index, folders.get(index));

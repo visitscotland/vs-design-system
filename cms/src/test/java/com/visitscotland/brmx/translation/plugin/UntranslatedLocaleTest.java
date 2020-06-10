@@ -33,7 +33,7 @@ public class UntranslatedLocaleTest {
     public void displayName() {
         for (Locale locale: Locale.getAvailableLocales()) {
             assertNotNull(missingTranslation.getDisplayName(locale));
-            assertEquals("Translate", missingTranslation.getDisplayName(locale));
+            assertEquals(UntranslatedLocale.MENU_TEXT, missingTranslation.getDisplayName(locale));
         }
     }
 }

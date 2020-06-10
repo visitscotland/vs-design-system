@@ -16,7 +16,7 @@ import java.util.Locale;
  * actually Locale independent.
  */
 public class UntranslatedLocale extends ILocaleProvider.HippoLocale {
-
+    public static final String MENU_TEXT = "Create clone";
     public UntranslatedLocale() {
         super(Locale.ENGLISH, "Missing");
     }
@@ -28,6 +28,6 @@ public class UntranslatedLocale extends ILocaleProvider.HippoLocale {
 
     @Override
     public String getDisplayName(Locale locale) {
-        return "Translate";
+        return MENU_TEXT;
     }
 }

@@ -70,34 +70,39 @@ final class TranslationAction extends StdWorkflow<TranslationWorkflow> {
 
     @Override
     protected String execute(TranslationWorkflow workflow) throws WorkflowException, RepositoryException, RemoteException {
-        Session session = sessionFactory.getJcrSession();
-
-        // Only want to add languages we do not have a translation for
-        List<ILocaleProvider.HippoLocale> untranslatedLocales = new ArrayList<>();
-        for (String language : workflowPlugin.getAvailableLanguages()) {
-            if (!workflowPlugin.hasLocaleTranslation(language)) {
-                untranslatedLocales.add(workflowPlugin.getLocaleProvider().getLocale(language));
-            }
-        }
-
-        for(ILocaleProvider.HippoLocale targetLocale : untranslatedLocales) {
-
-            Node docNode = ((WorkflowDescriptorModel) workflowPlugin.getDefaultModel()).getNode();
-
-            List<FolderTranslation> folders = new LinkedList<>();
-            String result = translator.cloneTranslationFolderStructure(docNode, folders, targetLocale, session);
-            if (result != null) {
-                return result;
-            }
-
-            workflow.addTranslation(targetLocale.getName(), translator.getTranslatedDocumentName(folders));
-
-        }
+        // TODO removed stubbed return
         return null;
+
+//        Session session = sessionFactory.getJcrSession();
+//
+//        // Only want to add languages we do not have a translation for
+//        List<ILocaleProvider.HippoLocale> untranslatedLocales = new ArrayList<>();
+//        for (String language : workflowPlugin.getAvailableLanguages()) {
+//            if (!workflowPlugin.hasLocaleTranslation(language)) {
+//                untranslatedLocales.add(workflowPlugin.getLocaleProvider().getLocale(language));
+//            }
+//        }
+//
+//        for(ILocaleProvider.HippoLocale targetLocale : untranslatedLocales) {
+//
+//            Node docNode = ((WorkflowDescriptorModel) workflowPlugin.getDefaultModel()).getNode();
+//
+//            List<FolderTranslation> folders = new LinkedList<>();
+//            String result = translator.cloneTranslationFolderStructure(docNode, folders, targetLocale, session);
+//            if (result != null) {
+//                return result;
+//            }
+//
+//            workflow.addTranslation(targetLocale.getName(), translator.getTranslatedDocumentName(folders));
+//
+//        }
+//        return null;
     }
 
     @Override
     protected IDialogService.Dialog createRequestDialog() {
-        return new TranslationConfirmationDialog(this, new UntranslatedLocaleProvider(workflowPlugin, workflowPlugin.getLocaleProvider()));
+        // TODO remove stubbed return
+        return null;
+        // return new TranslationConfirmationDialog(this, new UntranslatedLocaleProvider(workflowPlugin, workflowPlugin.getLocaleProvider()));
     }
 }
