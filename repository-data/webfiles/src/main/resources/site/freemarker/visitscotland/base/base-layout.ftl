@@ -24,7 +24,7 @@
 
     </head>
     <body>
-        <div class="no-js" data-vue-app-init>
+        <div class="no-js container" data-vue-app-init>
             <div class="row">
                 <div class="col-md-6 col-md-offset-3">
                     <@hst.include ref="top"/>
