@@ -1,29 +1,26 @@
-package com.visitscotland.brmx.translation.plugin;
+package com.visitscotland.brmx.translation.plugin.menu;
 
-import com.sun.mail.iap.Argument;
-import org.apache.wicket.Component;
+import com.visitscotland.brmx.translation.plugin.DocumentTranslator;
+import com.visitscotland.brmx.translation.plugin.SessionFactory;
+import com.visitscotland.brmx.translation.plugin.TranslationWorkflowPlugin;
+import com.visitscotland.brmx.translation.plugin.menu.TranslationAction;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.LoadableDetachableModel;
 import org.apache.wicket.util.tester.WicketTester;
-import org.hippoecm.addon.workflow.StdWorkflow;
 import org.hippoecm.addon.workflow.WorkflowDescriptorModel;
 import org.hippoecm.frontend.translation.ILocaleProvider;
 import org.hippoecm.repository.api.HippoSession;
 import org.hippoecm.repository.translation.TranslationWorkflow;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.ArgumentCaptor;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import javax.jcr.Node;
 import javax.jcr.Session;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.*;

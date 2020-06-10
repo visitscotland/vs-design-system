@@ -1,5 +1,6 @@
-package com.visitscotland.brmx.translation.plugin;
+package com.visitscotland.brmx.translation.plugin.menu;
 
+import com.visitscotland.brmx.translation.plugin.TranslationWorkflowPlugin;
 import org.apache.wicket.Component;
 import org.apache.wicket.model.IModel;
 import org.hippoecm.addon.workflow.StdWorkflow;
@@ -15,14 +16,14 @@ import org.slf4j.LoggerFactory;
 import javax.jcr.Node;
 import javax.jcr.RepositoryException;
 
-final class ViewTranslationAction extends StdWorkflow<TranslationWorkflow> {
+public class ViewTranslationAction extends StdWorkflow<TranslationWorkflow> {
     private static final Logger LOG = LoggerFactory.getLogger(ViewTranslationAction.class);
 
     private TranslationWorkflowPlugin workflow;
     private final String language;
     private final IModel<ILocaleProvider.HippoLocale> localeModel;
 
-    ViewTranslationAction(TranslationWorkflowPlugin workflowPlugin, String id, IModel<String> name, IModel<ILocaleProvider.HippoLocale> localeModel, String language, IModel<String> languageModel) {
+    public ViewTranslationAction(TranslationWorkflowPlugin workflowPlugin, String id, IModel<String> name, IModel<ILocaleProvider.HippoLocale> localeModel, String language, IModel<String> languageModel) {
         super(id, name, workflowPlugin.getPluginContext(), (WorkflowDescriptorModel) workflowPlugin.getModel());
         this.workflow = workflowPlugin;
         this.language = language;

@@ -15,13 +15,13 @@
  */
 package com.visitscotland.brmx.translation.plugin;
 
+import com.visitscotland.brmx.translation.plugin.menu.MenuLocaleProvider;
+import com.visitscotland.brmx.translation.plugin.menu.TranslationLocaleMenuItem;
 import org.apache.wicket.Component;
 import org.apache.wicket.MarkupContainer;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.panel.EmptyPanel;
 import org.apache.wicket.markup.html.panel.Fragment;
-import org.apache.wicket.markup.repeater.Item;
-import org.apache.wicket.markup.repeater.data.DataView;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.LoadableDetachableModel;
 import org.apache.wicket.request.resource.ResourceReference;
@@ -128,50 +128,7 @@ public class TranslationWorkflowPlugin extends RenderPlugin {
             @Override
             public MarkupContainer getContent() {
                 Fragment fragment = new Fragment("content", "languages", TranslationWorkflowPlugin.this);
-                fragment.add(new DataView<HippoLocale>("languages", new MenuLocaleProvider(TranslationWorkflowPlugin.this)) {
-
-                    {
-                        onPopulate();
-                    }
-
-                    @Override
-                    protected void populateItem(Item<HippoLocale> item) {
-                        // Only want to display a menu item if there is an existing translation, or a translate option
-                        final HippoLocale locale = item.getModelObject();
-                        final String language = locale.getName();
-                        final String currentDocumentLanguage = getCurrentlySelectedDocumentLocale();
-
-                        if (locale instanceof UntranslatedLocale) {
-                            if (currentDocumentLanguage.equals("en")) {
-                                item.add(new TranslationAction(TranslationWorkflowPlugin.this, "language", new LoadableDetachableModel<String>() {
-
-                                    @Override
-                                    protected String load() {
-                                        return locale.getDisplayName(getLocale());
-                                    }
-                                }, item.getModel()
-                                ));
-                            } else {
-                                log.debug("Not displaying clone menu item for not english document");
-                            }
-                        } else {
-                            item.add(new ViewTranslationAction(TranslationWorkflowPlugin.this, "language", new LoadableDetachableModel<String>() {
-
-                                @Override
-                                protected String load() {
-                                    return locale.getDisplayName(getLocale());
-                                }
-                            }, item.getModel(), language, languageModel
-                            ));
-                        }
-                    }
-
-                    @Override
-                    protected void onDetach() {
-                        languageModel.detach();
-                        super.onDetach();
-                    }
-                });
+                fragment.add(new TranslationLocaleMenuItem("languages", TranslationWorkflowPlugin.this, languageModel, new MenuLocaleProvider(TranslationWorkflowPlugin.this)));
                 TranslationWorkflowPlugin.this.addOrReplace(fragment);
                 return fragment;
             }
@@ -301,4 +258,5 @@ public class TranslationWorkflowPlugin extends RenderPlugin {
     private static String fieldPath(final String basePath, final IFieldDescriptor fieldDescriptor) {
         return (basePath != null ? basePath + '/' : "") + fieldDescriptor.getPath();
     }
+
 }

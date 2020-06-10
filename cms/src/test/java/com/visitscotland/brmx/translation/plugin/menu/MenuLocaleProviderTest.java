@@ -1,17 +1,16 @@
-package com.visitscotland.brmx.translation.plugin;
+package com.visitscotland.brmx.translation.plugin.menu;
 
+import com.visitscotland.brmx.translation.plugin.TranslationWorkflowPlugin;
+import com.visitscotland.brmx.translation.plugin.UntranslatedLocale;
+import com.visitscotland.brmx.translation.plugin.menu.MenuLocaleProvider;
 import org.apache.wicket.model.IModel;
-import org.hippoecm.addon.workflow.WorkflowDescriptorModel;
 import org.hippoecm.frontend.translation.ILocaleProvider;
-import org.hippoecm.repository.translation.HippoTranslationNodeType;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import javax.jcr.Node;
-import javax.jcr.Property;
 import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.*;

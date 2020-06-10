@@ -1,5 +1,7 @@
-package com.visitscotland.brmx.translation.plugin;
+package com.visitscotland.brmx.translation.plugin.menu;
 
+import com.visitscotland.brmx.translation.plugin.TranslationWorkflowPlugin;
+import com.visitscotland.brmx.translation.plugin.UntranslatedLocale;
 import org.apache.wicket.markup.repeater.data.IDataProvider;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.LoadableDetachableModel;
@@ -15,7 +17,7 @@ public class MenuLocaleProvider implements IDataProvider<ILocaleProvider.HippoLo
     private final ILocaleProvider localeProvider;
     private transient List<ILocaleProvider.HippoLocale> availableLocales;
 
-    MenuLocaleProvider(TranslationWorkflowPlugin workflowPlugin) {
+    public MenuLocaleProvider(TranslationWorkflowPlugin workflowPlugin) {
         this.workflowPlugin = workflowPlugin;
         this.localeProvider = workflowPlugin.getLocaleProvider();
     }

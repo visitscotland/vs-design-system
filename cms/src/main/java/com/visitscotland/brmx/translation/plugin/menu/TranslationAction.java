@@ -1,5 +1,8 @@
-package com.visitscotland.brmx.translation.plugin;
+package com.visitscotland.brmx.translation.plugin.menu;
 
+import com.visitscotland.brmx.translation.plugin.DocumentTranslator;
+import com.visitscotland.brmx.translation.plugin.SessionFactory;
+import com.visitscotland.brmx.translation.plugin.TranslationWorkflowPlugin;
 import org.apache.wicket.Component;
 import org.apache.wicket.model.IModel;
 import org.hippoecm.addon.workflow.StdWorkflow;
@@ -7,21 +10,16 @@ import org.hippoecm.addon.workflow.WorkflowDescriptorModel;
 import org.hippoecm.frontend.dialog.IDialogService;
 import org.hippoecm.frontend.translation.ILocaleProvider;
 import org.hippoecm.frontend.translation.components.document.FolderTranslation;
-import org.hippoecm.frontend.translation.workflow.JcrFolderTranslationFactory;
 import org.hippoecm.repository.api.WorkflowException;
 import org.hippoecm.repository.translation.TranslationWorkflow;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.jcr.Node;
 import javax.jcr.RepositoryException;
-import javax.jcr.Session;
 import java.rmi.RemoteException;
-import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 
-final class TranslationAction extends StdWorkflow<TranslationWorkflow> {
+public class TranslationAction extends StdWorkflow<TranslationWorkflow> {
     private static final Logger LOG = LoggerFactory.getLogger(TranslationAction.class);
     public static final String COULD_NOT_CREATE_FOLDERS = "could-not-create-folders";
 
@@ -35,7 +33,7 @@ final class TranslationAction extends StdWorkflow<TranslationWorkflow> {
     private SessionFactory sessionFactory;
     private DocumentTranslator translator;
 
-    TranslationAction(TranslationWorkflowPlugin workflowPlugin,
+    public TranslationAction(TranslationWorkflowPlugin workflowPlugin,
                       String id,
                       IModel<String> name,
                       IModel<ILocaleProvider.HippoLocale> localeModel) {
