@@ -4,6 +4,7 @@
         :external="true"
         :class="icon"
         class="button-square-social"
+        :aria-label="icon"
     >
         <VsIcon
             :name="icon"
