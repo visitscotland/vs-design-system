@@ -222,7 +222,6 @@ public class ItineraryContentComponent extends PageContentComponent<Itinerary> {
                     prevCoordinates = model.getCoordinates();
                 }
                 products.put(model.getIdentifier(), model);
-
             }
         }
         request.setAttribute(DISTANCE,totalDistance.compareTo(BigDecimal.ZERO) == 0? itinerary.getDistance():totalDistance);
@@ -232,6 +231,9 @@ public class ItineraryContentComponent extends PageContentComponent<Itinerary> {
             request.setAttribute(LAST_STOP_LOCATION, itinerary.getFinish().isEmpty() ? products.get(lastStopId).getSubTitle(): itinerary.getFinish() );
 
             request.setAttribute(STOPS_MAP, products);
+        } else {
+            request.setAttribute(FIRST_STOP_LOCATION, itinerary.getStart());
+            request.setAttribute(LAST_STOP_LOCATION, itinerary.getFinish());
         }
     }
 
