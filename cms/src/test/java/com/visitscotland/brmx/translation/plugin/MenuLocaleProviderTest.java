@@ -41,8 +41,7 @@ public class MenuLocaleProviderTest {
         // When there are no available locales then an empty list should be returned
         // Note: this is not a realistic test, it should never happen,
         // but is a valid path through the code
-        initialiseDefaultModel("en");
-        addLocaleToProvider("en", "English");
+        initialiseCurrentDocumentLocale("en");
         when(mockWorkflowPlugin.getAvailableLanguages()).thenReturn(new HashSet<>());
 
         provider.load();
@@ -54,8 +53,7 @@ public class MenuLocaleProviderTest {
     @Test
     public void load_only_current_locale() throws Exception {
         // If the only locale available is the current locale then an empty list should be returned
-        initialiseDefaultModel("en");
-        addLocaleToProvider("en", "English");
+        initialiseCurrentDocumentLocale("en");
         initialiseAvailableLocales("en");
         addLocaleTranslation("en");
 
@@ -69,8 +67,7 @@ public class MenuLocaleProviderTest {
     public void load_with_missing_translation() throws Exception {
         // The available locales contains only the current locale and a locale with a untranslated translation
         // Only the untranslated locale marker should be returned
-        initialiseDefaultModel("en");
-        addLocaleToProvider("en", "English");
+        initialiseCurrentDocumentLocale("en");
         initialiseAvailableLocales("en", "es");
         addLocaleTranslation("en");
 
@@ -85,8 +82,7 @@ public class MenuLocaleProviderTest {
     public void load_with_mixed() throws Exception {
         // The available locales contains the current locale and a mix of missing translations and translated
         // locales. The translated locales should be returned and the untranslated locale marker.
-        initialiseDefaultModel("en");
-        addLocaleToProvider("en", "English");
+        initialiseCurrentDocumentLocale("en");
         addLocaleToProvider("fr", "French");
         addLocaleToProvider("es", "Spanish");
         initialiseAvailableLocales("en", "es", "de", "fr");
@@ -107,8 +103,7 @@ public class MenuLocaleProviderTest {
     public void load_with_no_missing() throws Exception {
         // The available locales contains a full set of the locales, i.e. they all have translations.
         // All of the translated locales should be returned.
-        initialiseDefaultModel("en");
-        addLocaleToProvider("en", "English");
+        initialiseCurrentDocumentLocale("en");
         addLocaleToProvider("fr", "French");
         addLocaleToProvider("es", "Spanish");
         addLocaleToProvider("de", "German");
@@ -130,8 +125,7 @@ public class MenuLocaleProviderTest {
         // Test that the data is loaded if null, but not reloaded on subsequent calls
         assertNull(provider.getAvailableLocales());
 
-        initialiseDefaultModel("en");
-        addLocaleToProvider("en", "English");
+        initialiseCurrentDocumentLocale("en");
         initialiseAvailableLocales("en", "es");
         addLocaleTranslation("en");
 
@@ -161,8 +155,7 @@ public class MenuLocaleProviderTest {
         // Test that the data is loaded if null, but not reloaded on subsequent calls
         assertNull(provider.getAvailableLocales());
 
-        initialiseDefaultModel("en");
-        addLocaleToProvider("en", "English");
+        initialiseCurrentDocumentLocale("en");
         initialiseAvailableLocales("en", "es");
         addLocaleTranslation("en");
 
@@ -182,8 +175,7 @@ public class MenuLocaleProviderTest {
     @Test
     public void detach() throws Exception {
         // The available locales should be null after detach. Should not cause an error if already null.
-        initialiseDefaultModel("en");
-        addLocaleToProvider("en", "English");
+        initialiseCurrentDocumentLocale("en");
         initialiseAvailableLocales("en", "es");
         addLocaleTranslation("en");
         provider.load();
@@ -204,16 +196,8 @@ public class MenuLocaleProviderTest {
         lenient().when(mockLocale.getDisplayName(eq(Locale.ENGLISH))).thenReturn(displayName);
     }
 
-    private void initialiseDefaultModel(String localeString) throws Exception {
-        WorkflowDescriptorModel mockDefaultModel = mock(WorkflowDescriptorModel.class);
-        when(mockWorkflowPlugin.getDefaultModel()).thenReturn((IModel) mockDefaultModel);
-
-        Node mockCurrentNode = mock(Node.class);
-        when(mockDefaultModel.getNode()).thenReturn(mockCurrentNode);
-
-        Property mockLocaleProperty = mock(Property.class);
-        when(mockCurrentNode.getProperty(HippoTranslationNodeType.LOCALE)).thenReturn(mockLocaleProperty);
-        when(mockLocaleProperty.getString()).thenReturn(localeString);
+    private void initialiseCurrentDocumentLocale(String localeString) {
+        when(mockWorkflowPlugin.getCurrentlySelectedDocumentLocale()).thenReturn(localeString);
     }
 
     private void initialiseAvailableLocales(String... localeISO) {

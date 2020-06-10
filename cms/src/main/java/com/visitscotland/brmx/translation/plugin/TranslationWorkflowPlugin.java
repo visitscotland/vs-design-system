@@ -139,16 +139,21 @@ public class TranslationWorkflowPlugin extends RenderPlugin {
                         // Only want to display a menu item if there is an existing translation, or a translate option
                         final HippoLocale locale = item.getModelObject();
                         final String language = locale.getName();
+                        final String currentDocumentLanguage = getCurrentlySelectedDocumentLocale();
 
                         if (locale instanceof UntranslatedLocale) {
-                            item.add(new TranslationAction(TranslationWorkflowPlugin.this, "language", new LoadableDetachableModel<String>() {
+                            if (currentDocumentLanguage.equals("en")) {
+                                item.add(new TranslationAction(TranslationWorkflowPlugin.this, "language", new LoadableDetachableModel<String>() {
 
-                                @Override
-                                protected String load() {
-                                    return locale.getDisplayName(getLocale());
-                                }
-                            }, item.getModel()
-                            ));
+                                    @Override
+                                    protected String load() {
+                                        return locale.getDisplayName(getLocale());
+                                    }
+                                }, item.getModel()
+                                ));
+                            } else {
+                                log.debug("Not displaying clone menu item for not english document");
+                            }
                         } else {
                             item.add(new ViewTranslationAction(TranslationWorkflowPlugin.this, "language", new LoadableDetachableModel<String>() {
 
@@ -172,6 +177,12 @@ public class TranslationWorkflowPlugin extends RenderPlugin {
             }
         });
 
+    }
+
+    // Gets the locale String of the document currently selected in the editor
+    public String getCurrentlySelectedDocumentLocale() {
+        LanguageModel languageModel = new LanguageModel(this);
+        return getLocaleProvider().getLocale(languageModel.getObject()).getName();
     }
 
     protected final Component getActionIcon(final String id, IModel<HippoLocale> localeModel) {

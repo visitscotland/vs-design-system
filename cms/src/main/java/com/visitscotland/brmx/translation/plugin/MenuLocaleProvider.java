@@ -26,8 +26,7 @@ public class MenuLocaleProvider implements IDataProvider<ILocaleProvider.HippoLo
 
     void load() {
         availableLocales = new LinkedList<>();
-        LanguageModel languageModel = new LanguageModel(workflowPlugin);
-        String documentLocale = localeProvider.getLocale(languageModel.getObject()).getName();
+        String documentLocale = workflowPlugin.getCurrentlySelectedDocumentLocale();
         // Only want to add languages we have a translation for
         boolean hasMissingTranslation = false;
         for (String language : workflowPlugin.getAvailableLanguages()) {
