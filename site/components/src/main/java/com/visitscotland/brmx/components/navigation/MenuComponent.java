@@ -26,7 +26,7 @@ public class MenuComponent extends EssentialsMenuComponent {
 
     HippoUtilsService utils;
 
-    MenuComponent(){
+    public MenuComponent(){
         utils = new HippoUtilsService();
     }
 
