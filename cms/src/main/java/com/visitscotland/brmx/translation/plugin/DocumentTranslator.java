@@ -27,7 +27,7 @@ public class DocumentTranslator {
 
     private HippoTranslatedNodeFactory translatedNodeFactory;
 
-    DocumentTranslator() {
+    public DocumentTranslator() {
         this(new HippoTranslatedNodeFactory());
     }
 

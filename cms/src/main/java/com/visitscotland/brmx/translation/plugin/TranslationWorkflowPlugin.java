@@ -27,9 +27,7 @@ import org.apache.wicket.model.LoadableDetachableModel;
 import org.apache.wicket.request.resource.ResourceReference;
 import org.hippoecm.addon.workflow.MenuDescription;
 import org.hippoecm.addon.workflow.WorkflowDescriptorModel;
-import org.hippoecm.editor.type.JcrTypeStore;
 import org.hippoecm.frontend.model.JcrNodeModel;
-import org.hippoecm.frontend.model.ocm.StoreException;
 import org.hippoecm.frontend.plugin.IPluginContext;
 import org.hippoecm.frontend.plugin.config.IPluginConfig;
 import org.hippoecm.frontend.plugins.standards.icon.HippoIconStack;
@@ -43,19 +41,20 @@ import org.hippoecm.frontend.translation.ILocaleProvider;
 import org.hippoecm.frontend.translation.ILocaleProvider.HippoLocale;
 import org.hippoecm.frontend.translation.ILocaleProvider.LocaleState;
 import org.hippoecm.frontend.translation.TranslationUtil;
-import org.hippoecm.frontend.types.IFieldDescriptor;
-import org.hippoecm.frontend.types.ITypeDescriptor;
-import org.hippoecm.frontend.util.CodecUtils;
-import org.hippoecm.repository.HippoStdNodeType;
-import org.hippoecm.repository.api.*;
+import org.hippoecm.repository.api.WorkflowDescriptor;
+import org.hippoecm.repository.api.WorkflowException;
+import org.hippoecm.repository.api.WorkflowManager;
 import org.hippoecm.repository.translation.TranslationWorkflow;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.jcr.*;
+import javax.jcr.Node;
+import javax.jcr.RepositoryException;
 import java.io.Serializable;
 import java.rmi.RemoteException;
-import java.util.*;
+import java.util.Collections;
+import java.util.Map;
+import java.util.Set;
 
 public class TranslationWorkflowPlugin extends RenderPlugin {
 
@@ -142,7 +141,7 @@ public class TranslationWorkflowPlugin extends RenderPlugin {
         return getLocaleProvider().getLocale(languageModel.getObject()).getName();
     }
 
-    protected final Component getActionIcon(final String id, IModel<HippoLocale> localeModel) {
+    public final Component getActionIcon(final String id, IModel<HippoLocale> localeModel) {
         final HippoLocale hippoLocale = localeModel.getObject();
         final HippoIconStack nodeIcon = new HippoIconStack(id, IconSize.M);
 
@@ -204,19 +203,15 @@ public class TranslationWorkflowPlugin extends RenderPlugin {
         return null;
     }
 
-    protected ILocaleProvider getLocaleProvider() {
+    public ILocaleProvider getLocaleProvider() {
         return getPluginContext().getService(
                 getPluginConfig().getString(ILocaleProvider.SERVICE_ID, ILocaleProvider.class.getName()),
                 ILocaleProvider.class);
     }
 
-    protected IBrowseService<IModel<Node>> getBrowserService() {
+    public IBrowseService<IModel<Node>> getBrowserService() {
         final String serviceId = getPluginConfig().getString(IBrowseService.BROWSER_ID, "service.browse");
         return getPluginContext().getService(serviceId, IBrowseService.class);
-    }
-
-    protected StringCodec getLocalizeCodec() {
-        return CodecUtils.getDisplayNameCodec(getPluginContext());
     }
 
     @Override
@@ -227,36 +222,4 @@ public class TranslationWorkflowPlugin extends RenderPlugin {
         this.canTranslateModel.detach();
         super.onDetach();
     }
-
-    private static void collectFields(String relPath, String nodeType, Set<String> plainTextFields, Set<String> richTextFields) {
-        try {
-            final JcrTypeStore jcrTypeStore = new JcrTypeStore();
-            final ITypeDescriptor type = jcrTypeStore.load(nodeType);
-            for (Map.Entry<String, IFieldDescriptor> field : type.getFields().entrySet()) {
-                final IFieldDescriptor fieldDescriptor = field.getValue();
-                if ("*".equals(fieldDescriptor.getPath())) {
-                    continue;
-                }
-                final ITypeDescriptor fieldType = fieldDescriptor.getTypeDescriptor();
-                final String fieldPath = fieldPath(relPath, fieldDescriptor);
-                if (fieldType.getType().equals(HippoStdNodeType.NT_HTML)) {
-                    final String propertyPath = fieldPath + '/' + HippoStdNodeType.HIPPOSTD_CONTENT;
-                    richTextFields.add(propertyPath);
-                } else if (fieldType.getName().equals("Text")) {
-                    plainTextFields.add(fieldPath);
-                } else if (fieldType.getName().equals("Html")) {
-                    richTextFields.add(fieldPath);
-                } else if (fieldType.isNode()) {
-                    collectFields(fieldPath, fieldType.getType(), plainTextFields, richTextFields);
-                }
-            }
-        } catch (StoreException ex) {
-            // ignore nt:base
-        }
-    }
-
-    private static String fieldPath(final String basePath, final IFieldDescriptor fieldDescriptor) {
-        return (basePath != null ? basePath + '/' : "") + fieldDescriptor.getPath();
-    }
-
 }
