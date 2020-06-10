@@ -21,6 +21,7 @@ const app = express();
  */
 const pathsToExcludeFromSSR = [
     "/site/webfiles",
+    "/site/binaries",
     "/site/autoreload",
     "/favicon.ico",
     "/cms",
