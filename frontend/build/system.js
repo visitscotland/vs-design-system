@@ -6,7 +6,7 @@ const ora = require("ora")
 const StyleguidistError = require("react-styleguidist/lib/scripts/utils/error")
 const styleguidist = require("vue-styleguidist")
 
-const { getRemoteConfig, cleanupRemoteBuild } = require("./system.remote-config.js")
+const remoteUtils = require("./utils-remote.js")
 
 const argv = minimist(process.argv.slice(2))
 const command = argv._[0]
@@ -42,7 +42,8 @@ if (!process.env.REMOTE_CONFIG_HIPPO_SPACE) {
   require("dotenv").config()
 }
 
-getRemoteConfig(argv)
+remoteUtils
+  .getRemoteConfig(argv)
   .then(partial(run, command))
   .catch(function(err) {
     console.log(chalk.red("Problem getting remote config:", err))
@@ -101,7 +102,7 @@ function buildCallback(err, config, stats) {
   //   )
   // )
 
-  cleanupRemoteBuild(config)
+  remoteUtils.cleanup(config)
 }
 
 function serverCallback(err, config, stats) {
@@ -114,5 +115,5 @@ function serverCallback(err, config, stats) {
   console.log(chalk.yellow(config.title, `running at ${url}`))
 
   // can't cleanup until after the server has stopped
-  // cleanupRemoteBuild(remoteConfig, config)
+  // remoteUtils.cleanup(remoteConfig, config)
 }

@@ -75,7 +75,7 @@ function getRemoteConfig(argv) {
     .then(getConfig)
 }
 
-function cleanupRemoteBuild(docsConfig) {
+function cleanup(docsConfig) {
   const sectionMarkdownFiles = _.map(_.get(docsConfig, "sections"), _makeSectionMarkdownFileName)
 
   const tempPath = _.get(_applyRemoteConfigDefaults(remoteConfig), "tempPath")
@@ -215,9 +215,8 @@ function _extractRemoteConfig(config, profileName) {
   } else if (!_.has(remoteConfig, profileName)) {
     console.log(
       chalk.red(
-        `Profile ${profileName} not included in remote config - ensure that "remoteProfiles"
-        config key is properly formed.
-
+        `Profile ${profileName} not included in remote config - 
+        add at least one profile to the "remoteProfile" key of the config. 
         Falling back to first profile in config`
       )
     )
@@ -232,5 +231,5 @@ function _extractRemoteConfig(config, profileName) {
 
 module.exports = {
   getRemoteConfig,
-  cleanupRemoteBuild,
+  cleanup,
 }

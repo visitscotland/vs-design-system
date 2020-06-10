@@ -34,57 +34,47 @@ This is the repository for the **VisitScotland Design System**, which is an impl
 
 Install the package:
 
-```sh
-# Clone the repo
-git clone https://username@bitbucket.visitscotland.com/scm/vscom/design-system.git
+- `git clone https://username@bitbucket.visitscotland.com/scm/vscom/design-system.git`
+- `cd design-system`
+- `yarn install`
 
-# Navigate to frontend dir
-cd frontend
+## Working with the design system (documentation) site
 
-# Install the package
-yarn install
-```
+This package is able to generate a design system website that documents your components and site in general. There are various builds to either generate and start a local server running the site or generate artefacts for publication of the site elsewhere.
 
-Start up the development environment (a hot-reloading design system instance)
+### Running a local development version of the design system
 
-```sh
-# Create a `.env` file containing the necessary environment variables (see below)
-touch .env
+The design system site can be generated and served locally using various NPM scripts. All of these scripts use the `config/docs.config.js` to inform the layout and content of the generated site. The following commands will generate the site from this config file and associated local markdown files.
 
-# Build and run the design system
-yarn system
-```
+1. `yarn build` (compiles tokens and builds site)
+2. `yarn styleguide`
 
-The design system instance will be running at [localhost:6060](http://localhost:6060) and is independent of the parent Hippo instance.
+After running those commands the documentation site should be available at [localhost:6060](http://localhost:6060). Modifications to source files will trigger a rebuild and refresh the browser. However, tokens will not be re-generated automatically on file change so this must be done manually.
 
-## The design system
+An alternative build merges the local `config/docs.config.js` config with content from a remote database to generate the site. This build [requires the relevent remote config and environment variables](#remote-config).
 
-This package can be used to generate a design system using one of the `system` build scripts. The design system documents the components and styles contained in the `src` folder, as well as arbitrary design information. Additionally, the design system provides a contained development environment that hot-reloads when source files are changed.
+`yarn docs:remote` (includes token compilation)
 
-To generate the design system using either of the `system` build scriots, the relevent environment variables must be set either in a `.env` file or made available as system variables on the system **building** the site.
+### Building a static version of the documentation site
 
-```sh
-# Generates and runs the local instance of the deisgn system at localhost:6060
-yarn system
+The following script generates build artefacts for the documentation site into `dist/docs`, using the config in `config/docs.config.js`:
 
-# Generates assets encoding the design system for hosting on a production server
-yarn system:build
-``` 
+`yarn build:docs`
 
-### Design system Config
+To include remote content in that build use this script instead ([along with the relevent remote config](#remote-config)):
 
-The layout and content of the design system is generated from a combination of the source files and configuration in `config/docs.config.js`. Details of the available config settings can be found in the [vue-styleguidist documentation](https://vue-styleguidist.github.io/Configuration.htm).
+`yarn build:docs:remote`
 
-There is one custom config key `remoteProfiles`, which can be used to specify config for including content from remote sources in the generated design system. Details for the remote configuration [can be found below](#remote-config).
+To serve the artefacts use this script, which starts a http-server in the `dist/docs` folder:
+
+`yarn serve-docs`
 
 ### <a name="remote-config"></a> Configuring the remote build
 
-When included, the `remoteProfiles` key in `config/docs.config.js` specifies config profiles for merging content from a remote API into the static local config in that file.
+Some of the builds (`yarn docs:remote`,`yarn styleguide:remote` or `yarn styleguide:remote:build`) merge the local `config/docs.config.js` with content from a remote API to generate the design system site. These builds require valid configuration, as follows:
 
-These builds require valid configuration, as follows:
-
-- The `remoteProfiles` key in `config/docs.config.js` is a map of objects - each key being the profile name and the value being an object with the profile's config. The project currently includes profiles for Hippo and Contentful, which are specified in `config/remote.docs.config.js`. See `config/remote.docs.config.js` for details on how to properly configure a remote profile.
-- Set the `VS_DS_REMOTE_CONFIG_URL` and any other environment variables (e.g. `VS_DS_REMOTE_CONFIG_HIPPO_PROJECT_NAME`) by specifying them in a `.env` file in the package root, or some other way.
+- Edit `config/remote.docs.config.js`, specifying sets of remote config profiles, each with URL, params and transforms. NOTE: the project already includes profiles for Hippo and Contentful.
+- Set the `VS_DS_REMOTE_CONFIG_URL` and any other environment variables (e.g. `VS_DS_REMOTE_CONFIG_HIPPO_PROJECT_NAME`) by specifying them in a `.env` file in the package root, or manually some other way.
 
 Common environment variables for remote config:
 `VS_DS_REMOTE_CONFIG_URL` - sets the URL for the API call
@@ -97,36 +87,28 @@ Environment variables for Hippo and Contentful config:
 `VS_DS_REMOTE_CONFIG_HIPPO_PROJECT_NAME`
 `VS_DS_REMOTE_CONFIG_CONTENTFUL_TOKEN`
 
-Only the `VS_DS_REMOTE_CONFIG_URL` variable is truly needed. However, each profile generally requires other variables to be set.
+Only the `VS_DS_REMOTE_CONFIG_URL` variable is truly needed. However, the other variables may need to be set to ensure proper functioning of the profiles.
 
-By default, the build selects the first profile defined on the `remoteProfiles` key. A different profile can be selected in one of the following ways:
+By default, the build selects the first profile defined in the `config/remote.docs.config.js` export object. To select a different profile, do one of the following:
 
 1. Set the `VS_DS_REMOTE_PROFILE` environment variable to the desired profile name
-2. Pass the profile name as the --remote-profile arg when running the package.json script, e.g `yarn system --remote-profile contentful`
+2. Pass the profile name as the --remote-profile arg when running the package.json script, like so `yarn styleguide:remote --remote-profile contentful`
 
-### Developing in the design system instance
+NOTE: The second method will fail for `yarn docs:remote` because `npm-run-all` will not pass the arg to the `styleguide:remote` script.
 
-Run `yarn system`
+## Using the design system assets in other apps
 
-This build script generates and serves the design system at [localhost:6060](http://localhost:6060).
+The "system" and "system components" builds will compile artefacts for inclusion of the design system components and styles in other projects.
 
-Modifications to source files will trigger a rebuild and refresh the browser. **Tokens will not be recompiled automatically on file change but tokens can be recompiled manually by running:**
+### System components build
 
-`yarn theo`
+**This script is the recommended way of including assets from the design system in other projects.**
 
-### Building static design system assets for production
+This build creates a set of artefacts that allow for the inclusion of specific components and global site-wide styles of the design system in other projects.
 
-The following script generates build artefacts encoding the design system site into `dist/system`, using the config in `config/docs.config.js`:
+- `yarn build:system:components`
 
-`yarn system:build`
-
-The artefacts can be served as a static site using a standard http server.
-
-## Using the components and styles in downstream projects
-
-The `library` and `library:dev` build scripts compile artefacts consisting of all the js, css and other assets required for inclusion of any of the Vue components, Vuex stores or core styles from the `src` folder in a downstream project.
-
-The assets are built into the `dist/library` folder. A `manifest.json` file is also generated, which lists which of the generated assets must be included to include each Vue component or Vue store in another project.
+This script compiles the tokens (via theo) then compiles the design system assets into discrete chunks and generates a manifest.json file in the `dist/` folder. The manifest.json file lists which of the generated assets are needed to include each Vue component and Vue store in another project.
 
 To include a component in another project:
 
@@ -137,7 +119,15 @@ The build also creates a core module (consisting of core.js and core.css artefac
 
 NOTE: An example webpack consuming package can be found in the `hippo/frontend` folder.
 
+### System build
 
+This is the default Vue Design System build and produces a monolithic asset for inclusion of **all parts** of the design system in another project. This script is generally not how we use the design system at VS.
+
+- `yarn build:system`
+
+**NOTE: this build is not supported in this package and may not function**
+
+Detailed instructions for including the design system in this way [are detailed here](https://github.com/viljamis/vue-design-system/wiki/getting-started#using-design-system-as-an-npm-module).
 
 ## Development workflow
 
