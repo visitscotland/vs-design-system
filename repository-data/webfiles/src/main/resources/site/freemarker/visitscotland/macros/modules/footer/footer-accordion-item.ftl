@@ -1,8 +1,8 @@
 <#include "../../../../include/imports.ftl">
-<#include "../../../../vs-dotcom-ds/components/footer-accordion-item.ftl">
-<#include "../../../../vs-dotcom-ds/components/footer-nav-list-item.ftl">
-<#include "../../../../vs-dotcom-ds/components/icon.ftl">
-<#include "../../../../vs-dotcom-ds/components/list.ftl">
+<#include "../../../../frontend/components/footer-accordion-item.ftl">
+<#include "../../../../frontend/components/footer-nav-list-item.ftl">
+<#include "../../../../frontend/components/icon.ftl">
+<#include "../../../../frontend/components/list.ftl">
 
 <#macro footerAccordionItem footerMenuItems>
     <#list footerMenuItems as menuItem>

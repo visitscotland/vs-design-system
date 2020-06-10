@@ -1,9 +1,9 @@
 <#include "../../include/imports.ftl">
-<#include "../../vs-dotcom-ds/components/footer.ftl">
-<#include "../../vs-dotcom-ds/components/footer-nav-list.ftl">
-<#include "../../vs-dotcom-ds/components/container.ftl">
-<#include "../../vs-dotcom-ds/components/row.ftl">
-<#include "../../vs-dotcom-ds/components/col.ftl">
+<#include "../../frontend/components/footer.ftl">
+<#include "../../frontend/components/footer-nav-list.ftl">
+<#include "../../frontend/components/container.ftl">
+<#include "../../frontend/components/row.ftl">
+<#include "../../frontend/components/col.ftl">
 
 <#include "../macros/modules/footer/footer-accordion-item.ftl">
 <#include "../macros/modules/footer/footer-social-menu.ftl">

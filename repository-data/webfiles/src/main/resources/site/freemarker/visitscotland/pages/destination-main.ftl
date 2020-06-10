@@ -1,17 +1,17 @@
 <#ftl output_format="XML">
 <#include "../../include/imports.ftl">
 <#include "../macros/global/cms-errors.ftl">
-<#include "../../vs-dotcom-ds/components/page-intro.ftl">
-<#include "../../vs-dotcom-ds/components/hero.ftl">
-<#include "../../vs-dotcom-ds/components/container.ftl">
-<#include "../../vs-dotcom-ds/components/row.ftl">
-<#include "../../vs-dotcom-ds/components/col.ftl">
-<#include "../../vs-dotcom-ds/components/rich-text-wrapper.ftl">
-<#include "../../vs-dotcom-ds/components/img.ftl">
+<#include "../../frontend/components/page-intro.ftl">
+<#include "../../frontend/components/hero.ftl">
+<#include "../../frontend/components/container.ftl">
+<#include "../../frontend/components/row.ftl">
+<#include "../../frontend/components/col.ftl">
+<#include "../../frontend/components/rich-text-wrapper.ftl">
+<#include "../../frontend/components/img.ftl">
 
-<#include "../../vs-dotcom-ds/components/image-with-caption.ftl">
-<#include "../../vs-dotcom-ds/components/heading.ftl">
-<#include "../../vs-dotcom-ds/components/social-share.ftl">
+<#include "../../frontend/components/image-with-caption.ftl">
+<#include "../../frontend/components/heading.ftl">
+<#include "../../frontend/components/social-share.ftl">
 
 <#include "../macros/modules/itineraries/itinerary-stop.ftl">
 <#include "../macros/global/cms-errors.ftl">
