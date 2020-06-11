@@ -1,7 +1,8 @@
-package com.visitscotland.brmx.utils;
+package com.visitscotland.brmx.dms;
 
 import com.visitscotland.brmx.beans.ProductsSearch;
 import com.visitscotland.brmx.beans.dms.LocationObject;
+import com.visitscotland.brmx.utils.Properties;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

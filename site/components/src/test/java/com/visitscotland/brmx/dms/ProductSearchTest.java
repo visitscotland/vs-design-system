@@ -1,7 +1,8 @@
-package com.visitscotland.brmx.utils;
+package com.visitscotland.brmx.dms;
 
-import static com.visitscotland.brmx.utils.ProductSearchBuilder.*;
+import static com.visitscotland.brmx.dms.ProductSearchBuilder.*;
 
+import com.visitscotland.brmx.utils.Properties;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -137,7 +138,7 @@ public class ProductSearchTest {
 
         url = new ProductSearchBuilder().productTypes(DEFAULT_TYPE)
                 .category("")
-                .category(null)
+                .category((String) null)
                 .category(" \t \n ")
                 .category("cat1&cat2")
                 .build();
@@ -170,7 +171,7 @@ public class ProductSearchTest {
 
         url = new ProductSearchBuilder().productTypes(DEFAULT_TYPE)
                 .award("")
-                .award(null)
+                .award((String) null)
                 .award(" \t \n ")
                 .award("1&2")
                 .build();
@@ -204,7 +205,7 @@ public class ProductSearchTest {
 
         url = new ProductSearchBuilder().productTypes(DEFAULT_TYPE)
                 .facility("")
-                .facility(null)
+                .facility((String) null)
                 .facility(" \t \n ")
                 .facility("1&2")
                 .build();
@@ -212,7 +213,6 @@ public class ProductSearchTest {
                 String.format("The Generated URL is expected to contain no facilities (%s) ", url),
                 !url.contains(FACILITY + "="));
         validate(url);
-
     }
 
     @Test
@@ -238,7 +238,7 @@ public class ProductSearchTest {
 
         url = new ProductSearchBuilder().productTypes(DEFAULT_TYPE)
                 .rating("")
-                .rating(null)
+                .rating((String) null)
                 .rating(" \t \n ")
                 .rating("1&2")
                 .build();

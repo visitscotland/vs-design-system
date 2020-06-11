@@ -5,7 +5,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.visitscotland.brmx.beans.Image;
 import com.visitscotland.brmx.beans.InstagramImage;
 import com.visitscotland.brmx.beans.dms.LocationObject;
-import com.visitscotland.brmx.utils.LocationLoader;
+import com.visitscotland.brmx.dms.LocationLoader;
 import com.visitscotland.brmx.utils.Properties;
 
 import java.util.Locale;
@@ -39,7 +39,7 @@ public class FlatImage {
     public FlatImage (Image cmsImage, Locale locale){
        this.cmsImage = cmsImage;
        this.credit = cmsImage.getCredit();
-        if (locale != null){
+       if (locale != null){
             switch (locale.getLanguage()) {
                 case "fr":
                     if (cmsImage.getFr() != null) {

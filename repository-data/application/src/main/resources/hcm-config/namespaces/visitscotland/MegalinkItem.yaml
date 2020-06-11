@@ -1,51 +1,45 @@
 definitions:
   config:
-    /hippo:namespaces/visitscotland/ProductSearchLink:
+    /hippo:namespaces/visitscotland/MegalinkItem:
       jcr:primaryType: hipposysedit:templatetype
       jcr:mixinTypes: ['editor:editable', 'mix:referenceable']
-      jcr:uuid: db2d408f-4535-4bd1-b0ae-c21f39a51107
+      jcr:uuid: 28c9c011-c939-4d79-bd2d-5d898570f7a5
       /hipposysedit:nodetype:
         jcr:primaryType: hippo:handle
         jcr:mixinTypes: ['mix:referenceable']
-        jcr:uuid: a56809be-6350-495d-94ef-ce60b3c66cd4
+        jcr:uuid: 1358ec58-cd78-4936-8bfb-136ee12c2d06
         /hipposysedit:nodetype:
           jcr:primaryType: hipposysedit:nodetype
           jcr:mixinTypes: ['mix:referenceable', 'hipposysedit:remodel']
-          jcr:uuid: d469c4b3-d9f9-493e-b56b-94c2b63be099
+          jcr:uuid: 36e50d6a-5899-4769-b6b0-3741ccbaa235
           hipposysedit:node: true
           hipposysedit:supertype: ['hippo:compound', 'hippostd:relaxed']
           hipposysedit:uri: http://www.visitscotland.com/visitscotland/nt/1.0
-          /search:
+          /link:
             jcr:primaryType: hipposysedit:field
             hipposysedit:mandatory: false
             hipposysedit:multiple: false
             hipposysedit:ordered: false
-            hipposysedit:path: visitscotland:search
+            hipposysedit:path: visitscotland:link
             hipposysedit:primary: false
-            hipposysedit:type: visitscotland:ProductsSearch
-          /label:
-            jcr:primaryType: hipposysedit:field
-            hipposysedit:mandatory: false
-            hipposysedit:multiple: false
-            hipposysedit:ordered: false
-            hipposysedit:path: visitscotland:label
-            hipposysedit:primary: false
-            hipposysedit:type: String
+            hipposysedit:type: hippo:mirror
             hipposysedit:validators: [required]
+          /feature:
+            jcr:primaryType: hipposysedit:field
+            hipposysedit:mandatory: false
+            hipposysedit:multiple: false
+            hipposysedit:ordered: false
+            hipposysedit:path: visitscotland:feature
+            hipposysedit:primary: false
+            hipposysedit:type: Boolean
       /hipposysedit:prototypes:
         jcr:primaryType: hipposysedit:prototypeset
         /hipposysedit:prototype:
-          jcr:primaryType: visitscotland:ProductSearchLink
-          visitscotland:label: ''
-          /visitscotland:search:
-            jcr:primaryType: visitscotland:ProductsSearch
-            visitscotland:dmsAwards: []
-            visitscotland:dmsCategories: []
-            visitscotland:dmsFacilities: []
-            visitscotland:location: ''
-            visitscotland:producttype: ''
-            visitscotland:officialrating: []
-            visitscotland:productType: ''
+          jcr:primaryType: visitscotland:MegalinkItem
+          visitscotland:feature: false
+          /visitscotland:link:
+            jcr:primaryType: hippo:mirror
+            hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
       /editor:templates:
         jcr:primaryType: editor:templateset
         /_default_:
@@ -55,23 +49,34 @@ definitions:
           frontend:services: [wicket.id, validator.id]
           /root:
             jcr:primaryType: frontend:plugin
-            item: ${cluster.id}.field
-            plugin.class: org.hippoecm.frontend.service.render.ListViewPlugin
-          /search:
+            extension.left: ${cluster.id}.left
+            extension.right: ${cluster.id}.right
+            plugin.class: org.hippoecm.frontend.editor.layout.TwoColumn
+            wicket.extensions: [extension.left, extension.right]
+          /left:
             jcr:primaryType: frontend:plugin
-            caption: ProductsSearch
-            field: search
+            item: ${cluster.id}.left.item
+            plugin.class: org.hippoecm.frontend.service.render.ListViewPlugin
+            wicket.id: ${cluster.id}.left
+          /right:
+            jcr:primaryType: frontend:plugin
+            item: ${cluster.id}.right.item
+            plugin.class: org.hippoecm.frontend.service.render.ListViewPlugin
+            wicket.id: ${cluster.id}.right
+          /link:
+            jcr:primaryType: frontend:plugin
+            caption: Link
+            field: link
             plugin.class: org.hippoecm.frontend.editor.plugins.field.NodeFieldPlugin
-            wicket.id: ${cluster.id}.field
-            hint: ''
+            wicket.id: ${cluster.id}.left.item
             /cluster.options:
               jcr:primaryType: frontend:pluginconfig
-          /label:
+          /feature:
             jcr:primaryType: frontend:plugin
-            caption: CTA text
-            field: label
+            caption: Feature
+            field: feature
             hint: ''
             plugin.class: org.hippoecm.frontend.editor.plugins.field.PropertyFieldPlugin
-            wicket.id: ${cluster.id}.field
+            wicket.id: ${cluster.id}.right.item
             /cluster.options:
               jcr:primaryType: frontend:pluginconfig
