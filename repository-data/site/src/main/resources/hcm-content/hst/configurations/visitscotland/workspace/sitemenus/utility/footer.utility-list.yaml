@@ -1,10 +1,6 @@
 /hst:hst/hst:configurations/visitscotland/hst:workspace/hst:sitemenus/utility/footer.utility-list:
   jcr:primaryType: hst:sitemenuitem
   hst:repobased: false
-  /f sdfgfdg dfg:
-    jcr:primaryType: hst:sitemenuitem
-    hst:referencesitemapitem: root
-    hst:repobased: false
   /footer.accessibility:
     jcr:primaryType: hst:sitemenuitem
     hst:referencesitemapitem: root
@@ -33,15 +29,7 @@
     jcr:primaryType: hst:sitemenuitem
     hst:referencesitemapitem: root
     hst:repobased: false
-  /Testing:
-    jcr:primaryType: hst:sitemenuitem
-    hst:referencesitemapitem: root
-    hst:repobased: false
   /footer.about-us:
-    jcr:primaryType: hst:sitemenuitem
-    hst:referencesitemapitem: root
-    hst:repobased: false
-  /fg df df gdf:
     jcr:primaryType: hst:sitemenuitem
     hst:referencesitemapitem: root
     hst:repobased: false
