@@ -1,10 +1,44 @@
 <template>
     <div class="vs-footer pt-sm-6 pt-md-9">
+        <VsFooterNavList break-point="md">
+            <!-- @slot Contains accordion item for each menu list  -->
+            <slot name="accordion-items" />
+
+            <VsCol
+                cols="12"
+                lg="3"
+                xl="2"
+                class="d-none d-lg-block"
+            >
+                <!-- @slot Contains social menu for large screens  -->
+                <slot name="social-menu" />
+            </VsCol>
+        </VsFooterNavList>
+
+        <div class="vs-footer-social-menu__wrapper border-top border-secondary-light">
+            <VsContainer>
+                <VsRow>
+                    <VsCol
+                        cols="12"
+                        class="d-block d-lg-none"
+                    >
+                        <!-- @slot Contains social menu for screens medium and below -->
+                        <slot name="social-menu" />
+                    </VsCol>
+                </VsRow>
+            </VsContainer>
+        </div>
+
         <slot />
     </div>
 </template>
 
 <script>
+import VsFooterNavList from "@components/patterns/footer/components/FooterNavList"
+import {
+    VsContainer, VsRow, VsCol,
+} from "@components/elements/layout"
+
 /**
  * This component is the main Footer wrapper for the bottom of the page.
  */
@@ -13,6 +47,12 @@ export default {
     name: "VsFooter",
     status: "prototype",
     release: "0.1.0",
+    components: {
+        VsFooterNavList,
+        VsCol,
+        VsContainer,
+        VsRow,
+    },
 }
 </script>
 
@@ -43,7 +83,7 @@ export default {
 
         @include media-breakpoint-up(lg) {
             &.border-top {
-                border-top: 0!important;
+                border-top: 0 !important;
             }
         }
     }
@@ -51,227 +91,6 @@ export default {
 </style>
 
 <docs>
-  ```js
-    <vs-footer>
-        <vs-footer-nav-list break-point="md">
-            <vs-col cols="12" md="4" lg="3">
-                <vs-footer-accordion-item
-                    :open-by-default="false"
-                    variant="dark" control-id="footer_accordion_item_1"
-                    class="border-left-0 pl-md-0"
-                >
-                    <span slot="title">
-                        Visitor information
-                    </span>
-
-                    <span slot="icon-open">
-                        <vs-icon name="chevron-up" variant="light" size="xs" />
-                    </span>
-
-                    <span slot="icon-closed">
-                        <vs-icon name="chevron-right" variant="light" size="xs" />
-                    </span>
-
-                    <vs-list unstyled>
-                        <vs-footer-nav-list-item
-                            href="#"
-                            link-text="Brochures"
-                        ></vs-footer-nav-list-item>
-                        <vs-footer-nav-list-item
-                            href="#"
-                            link-text="VisitScotland iCentres"
-                        ></vs-footer-nav-list-item>
-                        <vs-footer-nav-list-item
-                            href="#"
-                            link-text="iKnow Scotland Community"
-                        ></vs-footer-nav-list-item>
-                        <vs-footer-nav-list-item
-                            href="#"
-                            link-text="VisitScotland Awards"
-                        ></vs-footer-nav-list-item>
-                    </vs-list>
-                </vs-footer-accordion-item>
-            </vs-col>
-
-            <vs-col cols="12" md="4" lg="3">
-                <vs-footer-accordion-item
-                    :open-by-default="false"
-                    variant="dark"
-                    control-id="footer_accordion_item_2"
-                >
-                    <span slot="title">
-                        Get in touch
-                    </span>
-
-                    <span slot="icon-open">
-                        <vs-icon name="chevron-up" variant="light" size="xs" />
-                    </span>
-
-                    <span slot="icon-closed">
-                        <vs-icon name="chevron-right" variant="light" size="xs" />
-                    </span>
-
-                    <vs-list unstyled>
-                        <vs-footer-nav-list-item
-                            href="#"
-                            link-text="Brochures"
-                        ></vs-footer-nav-list-item>
-                        <vs-footer-nav-list-item
-                            href="#"
-                            link-text="VisitScotland iCentres"
-                        ></vs-footer-nav-list-item>
-                        <vs-footer-nav-list-item
-                            href="#"
-                            link-text="iKnow Scotland Community"
-                        ></vs-footer-nav-list-item>
-                        <vs-footer-nav-list-item
-                            href="#"
-                            link-text="VisitScotland Awards"
-                        ></vs-footer-nav-list-item>
-                    </vs-list>
-                </vs-footer-accordion-item>
-            </vs-col>
-
-            <vs-col cols="12" md="4" lg="3">
-                <vs-footer-accordion-item
-                    :open-by-default="false"
-                    variant="dark"
-                    control-id="footer_accordion_item_3"
-                    class="border-bottom-0"
-                >
-                    <span slot="title">
-                        Our other sites
-                    </span>
-
-                    <span slot="icon-open">
-                        <vs-icon name="chevron-up" variant="light" size="xs" />
-                    </span>
-
-                    <span slot="icon-closed">
-                        <vs-icon name="chevron-right" variant="light" size="xs" />
-                    </span>
-
-                    <vs-list unstyled>
-                        <vs-footer-nav-list-item
-                            href="#"
-                            link-text="Brochures"
-                            external
-                        ></vs-footer-nav-list-item>
-                        <vs-footer-nav-list-item
-                            href="#"
-                            link-text="VisitScotland iCentres"
-                            external
-                        ></vs-footer-nav-list-item>
-                        <vs-footer-nav-list-item
-                            href="#"
-                            link-text="iKnow Scotland Community"
-                            external
-                        ></vs-footer-nav-list-item>
-                        <vs-footer-nav-list-item
-                            href="#"
-                            link-text="VisitScotland Awards"
-                            external
-                        ></vs-footer-nav-list-item>
-                    </vs-list>
-                </vs-footer-accordion-item>
-            </vs-col>
-
-            <vs-col cols="12" lg="3" xl="2" class="d-none d-lg-block">
-                <vs-footer-social-menu>
-                    <span slot="title">
-                        Find us on
-                    </span>
-
-
-                    <vs-footer-social-item
-                        href="#"
-                        icon="facebook"
-                    ></vs-footer-social-item>
-                    <vs-footer-social-item
-                        href="#"
-                        icon="twitter"
-                    ></vs-footer-social-item>
-                    <vs-footer-social-item
-                        href="#"
-                        icon="youtube"
-                    ></vs-footer-social-item>
-                    <vs-footer-social-item
-                        href="#"
-                        icon="instagram"
-                    ></vs-footer-social-item>
-                </vs-footer-social-menu>
-            </vs-col>
-        </vs-footer-nav-list>
-        <div class="vs-footer-social-menu__wrapper border-top border-secondary-light">
-            <vs-container >
-                <vs-row>
-                    <vs-col cols="12" class="d-block d-lg-none">
-                        <vs-footer-social-menu>
-                            <span slot="title">
-                                Find us on
-                            </span>
-
-                            <vs-footer-social-item
-                                    href="#"
-                                    icon="facebook"
-                                ></vs-footer-social-item>
-                                <vs-footer-social-item
-                                    href="#"
-                                    icon="twitter"
-                                ></vs-footer-social-item>
-                                <vs-footer-social-item
-                                    href="#"
-                                    icon="youtube"
-                                ></vs-footer-social-item>
-                                <vs-footer-social-item
-                                    href="#"
-                                    icon="instagram"
-                                ></vs-footer-social-item>
-                        </vs-footer-social-menu>
-                    </vs-col>
-                </vs-row>
-            </vs-container>
-        </div>
-       <vs-footer-utility-list>
-            <vs-footer-nav-list-item
-                href="#"
-                link-text="Accessibility"
-            ></vs-footer-nav-list-item>
-            <vs-footer-nav-list-item
-                href="#"
-                link-text="Acceptable Use"
-            ></vs-footer-nav-list-item>
-            <vs-footer-nav-list-item
-                href="#"
-                link-text="Privacy"
-            ></vs-footer-nav-list-item>
-            <vs-footer-nav-list-item
-                href="#"
-                link-text="Cookies"
-            ></vs-footer-nav-list-item>
-             <vs-footer-nav-list-item
-                href="#"
-                link-text="Social Media"
-            ></vs-footer-nav-list-item>
-            <vs-footer-nav-list-item
-                href="#"
-                link-text="Environmental Policy"
-            ></vs-footer-nav-list-item>
-            <vs-footer-nav-list-item
-                href="#"
-                link-text="Terms of Use"
-            ></vs-footer-nav-list-item>
-            <vs-footer-nav-list-item
-                href="#"
-                link-text="About Us"
-            ></vs-footer-nav-list-item>
-        </vs-footer-utility-list>
-
-        <vs-footer-copyright>
-            <span slot="copyright">
-                VisitScotland. All rights reserved.
-            </span>
-        </vs-footer-copyright>
-    </vs-footer>
+  ```[import](./footer.example.vue)
   ```
 </docs>
