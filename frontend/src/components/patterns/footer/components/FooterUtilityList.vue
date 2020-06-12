@@ -67,10 +67,6 @@ export default {
             padding: $spacer-8 0;
         }
 
-        @include media-breakpoint-up(xl) {
-            padding: $spacer-9 0;
-        }
-
         .vs-footer-nav-list-item {
             display: inline-block;
             font-size: $font-size-sm;

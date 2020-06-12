@@ -6,6 +6,7 @@
 <#include "../../vs-dotcom-ds/components/col.ftl">
 
 <#include "../macros/modules/footer/footer-accordion-item.ftl">
+<#include "../macros/modules/footer/footer-copyright.ftl">
 <#include "../macros/modules/footer/footer-social-menu.ftl">
 
 <#-- @ftlvariable name="menu" type="org.hippoecm.hst.core.sitemenu.HstSiteMenu" -->
@@ -26,4 +27,6 @@
 
         <@hst.include ref="utility"/>
     </#if>
+
+    <@footerCopyright />
 </vs-footer>
