@@ -24,6 +24,7 @@ $theme-colors: (
     dark: $color-theme-dark,
     primary-purple: $color-theme-primary-purple,
     secondary-teal: $color-theme-secondary-teal,
+    secondary-light: $color-theme-secondary-light,
 );
 
 $body-color: $color-base-text;
@@ -95,6 +96,7 @@ $spacers: (
 
 /* Borders */
 $border-color: $color-gray-tint-5;
+$border-light-color: $color-gray-shade-2;
 
 $border-radius: $border-radius-default;
 $border-radius-lg: $border-radius-lg;

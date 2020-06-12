@@ -68,9 +68,9 @@ export default {
     text-align: left;
 
     .icon.icon-xs {
-        height: 16px;
-        width: 16px;
-        padding: 0;
+        height: 16px!important;
+        width: 16px!important;
+        padding: 0!important;
     }
 }
 </style>
