@@ -30,14 +30,12 @@ public class DocumentTranslatorSameNameSiblingsTest {
     private DocumentTranslator translator;
     @Mock
     private Session mockSession;
-    @Mock
-    private HippoTranslatedNodeFactory mockNodeFactory;
     private List<FolderTranslation> folders;
 
     @BeforeEach
     public void beforeEach() {
         folders = new LinkedList<>();
-        translator = new DocumentTranslator(mockNodeFactory);
+        translator = spy(new DocumentTranslator());
     }
 
     @Test
@@ -190,7 +188,7 @@ public class DocumentTranslatorSameNameSiblingsTest {
         Node sourceNode = mock(Node.class);
         HippoTranslatedNode mockHippoTranslatedNode = mock(HippoTranslatedNode.class);
         when(mockSession.getNodeByIdentifier(sourceNodeIdentifier)).thenReturn(sourceNode);
-        when(mockNodeFactory.createFromNode(same(sourceNode))).thenReturn(mockHippoTranslatedNode);
+        doReturn(mockHippoTranslatedNode).when(translator).createFromNode(same(sourceNode));
         when(mockHippoTranslatedNode.getTranslation(eq(targetLanguage))).thenReturn(translatedTargetNode);
         return sourceNode;
     }

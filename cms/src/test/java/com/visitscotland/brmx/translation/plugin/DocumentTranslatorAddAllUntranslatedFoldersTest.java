@@ -22,15 +22,13 @@ import static org.mockito.Mockito.when;
 public class DocumentTranslatorAddAllUntranslatedFoldersTest {
     private DocumentTranslator translator;
     @Mock
-    private HippoTranslatedNodeFactory mockTranslatedNodeFactory;
-    @Mock
     private TranslatedFolder mockSourceFolder;
     private List<FolderTranslation> folders;
 
     @BeforeEach
     public void beforeEach() {
         folders = new LinkedList<>();
-        translator = new DocumentTranslator(mockTranslatedNodeFactory);
+        translator = new DocumentTranslator();
     }
 
     @Test

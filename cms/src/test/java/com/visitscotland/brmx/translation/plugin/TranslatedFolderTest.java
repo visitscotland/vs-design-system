@@ -16,8 +16,7 @@ import javax.jcr.RepositoryException;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 public class TranslatedFolderTest {
@@ -25,13 +24,11 @@ public class TranslatedFolderTest {
     @Mock
     private Node mockNode;
     @Mock
-    private HippoTranslatedNodeFactory mockFactory;
-    @Mock
     private HippoTranslatedNode mockTranslatedNode;
 
     @BeforeEach
     public void beforeEach() throws Exception {
-        folder = new TranslatedFolder(mockNode, mockFactory);
+        folder = spy(new TranslatedFolder(mockNode));
     }
 
     @Test
@@ -84,7 +81,7 @@ public class TranslatedFolderTest {
 
     @Test
     public void getSibling_itemNotFound() throws Exception {
-        when(mockFactory.createFromTranslatedFolder(any(TranslatedFolder.class))).thenReturn(mockTranslatedNode);
+        doReturn(mockTranslatedNode).when(folder).toHippoTranslatedNode();
         when(mockTranslatedNode.getTranslation(Mockito.anyString())).thenThrow(new ItemNotFoundException());
 
         TranslatedFolder translated = folder.getSibling("fr");
@@ -94,7 +91,7 @@ public class TranslatedFolderTest {
 
     @Test
     public void getSibling_repositoryException() throws Exception {
-        when(mockFactory.createFromTranslatedFolder(any(TranslatedFolder.class))).thenReturn(mockTranslatedNode);
+        doReturn(mockTranslatedNode).when(folder).toHippoTranslatedNode();
         when(mockTranslatedNode.getTranslation(Mockito.anyString())).thenThrow(new RepositoryException());
 
         assertThrows(RepositoryException.class, () -> folder.getSibling("fr"));
@@ -131,12 +128,15 @@ public class TranslatedFolderTest {
     public void hashCode_repositoryException() throws Exception {
         when(mockNode.getPath()).thenThrow(new RepositoryException());
 
-        assertThrows(IllegalStateException.class, () -> folder.hashCode());
+        TranslatedFolder nonSpy = new TranslatedFolder(mockNode);
+
+        assertThrows(IllegalStateException.class, () -> nonSpy.hashCode());
     }
 
     @Test
     public void equals_not_TranslatedFolder() {
-        assertFalse(folder.equals(new Object()));
+        TranslatedFolder nonSpy = new TranslatedFolder(mockNode);
+        assertFalse(nonSpy.equals(new Object()));
     }
 
     @Test
@@ -144,7 +144,10 @@ public class TranslatedFolderTest {
         Node notSame = mock(Node.class);
         when(notSame.isSame(any(Item.class))).thenReturn(false);
         TranslatedFolder notSameFolder = new TranslatedFolder(notSame);
-        assertFalse(folder.equals(notSameFolder));
+
+        TranslatedFolder nonSpy = new TranslatedFolder(mockNode);
+
+        assertFalse(nonSpy.equals(notSameFolder));
     }
 
     @Test
@@ -153,14 +156,19 @@ public class TranslatedFolderTest {
         when(notSame.isSame(any(Item.class))).thenThrow(new RepositoryException());
         TranslatedFolder notSameFolder = new TranslatedFolder(notSame);
 
-        assertThrows(IllegalStateException.class, () -> folder.equals(notSameFolder));
+        TranslatedFolder nonSpy = new TranslatedFolder(mockNode);
+
+        assertThrows(IllegalStateException.class, () -> nonSpy.equals(notSameFolder));
     }
 
     @Test
     public void equals_same() throws Exception {
         Node same = mock(Node.class);
-        when(same.isSame(any(Item.class))).thenReturn(true);
+        when(same.isSame(any(Node.class))).thenReturn(true);
         TranslatedFolder sameFolder = new TranslatedFolder(same);
-        assertTrue(folder.equals(sameFolder));
+
+        TranslatedFolder nonSpy = new TranslatedFolder(mockNode);
+
+        assertTrue(nonSpy.equals(sameFolder));
     }
 }

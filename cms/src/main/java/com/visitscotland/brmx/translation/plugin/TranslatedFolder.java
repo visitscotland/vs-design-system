@@ -10,19 +10,12 @@ import javax.jcr.RepositoryException;
 public class TranslatedFolder {
 
     private final Node node;
-    private final HippoTranslatedNodeFactory translatedNodefactory;
 
     public TranslatedFolder(Node node) {
-        this(node, new HippoTranslatedNodeFactory());
-
-    }
-
-    TranslatedFolder(Node node, HippoTranslatedNodeFactory translatedNodefactory) {
         if (null == node) {
             throw new IllegalArgumentException("unable to intialise to null");
         }
         this.node = node;
-        this.translatedNodefactory = translatedNodefactory;
     }
 
     /**
@@ -44,12 +37,16 @@ public class TranslatedFolder {
     }
 
     public TranslatedFolder getSibling(String locale) throws RepositoryException {
-        HippoTranslatedNode translatedNode = translatedNodefactory.createFromTranslatedFolder(this);
+        HippoTranslatedNode translatedNode = toHippoTranslatedNode();
         try {
             return new TranslatedFolder(translatedNode.getTranslation(locale));
         } catch (ItemNotFoundException e) {
             return null;
         }
+    }
+
+    protected HippoTranslatedNode toHippoTranslatedNode() throws RepositoryException {
+        return new HippoTranslatedNode(getNode());
     }
 
     public Node getNode() {

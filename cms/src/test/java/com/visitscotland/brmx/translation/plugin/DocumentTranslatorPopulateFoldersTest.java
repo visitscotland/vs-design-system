@@ -36,12 +36,10 @@ public class DocumentTranslatorPopulateFoldersTest {
     HippoNode translatedFolder0Node;
     TranslatedFolder translatedFolder0;
     private DocumentTranslator translator;
-    @Mock
-    private HippoTranslatedNodeFactory mockTranslatedNodeFactory;
 
     @BeforeEach
     public void beforeEach() throws Exception {
-        translator = spy(new DocumentTranslator(mockTranslatedNodeFactory));
+        translator = spy(new DocumentTranslator());
 
         createSourceTranslatedFolders();
         documentHandle = createDocumentHandle(translatedFolder5Node);

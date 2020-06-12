@@ -20,13 +20,11 @@ import static org.mockito.Mockito.when;
 public class DocumentTranslatorFindHighestTranslatedSourceFolderTest {
     DocumentTranslator translator;
     @Mock
-    HippoTranslatedNodeFactory mockTranslatedNodeFactory;
-    @Mock
     Node mockSourceNode;
 
     @BeforeEach
     public void beforeEach() {
-        translator = new DocumentTranslator(mockTranslatedNodeFactory);
+        translator = new DocumentTranslator();
     }
 
     @Test

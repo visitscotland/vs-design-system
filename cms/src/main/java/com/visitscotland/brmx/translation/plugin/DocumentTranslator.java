@@ -10,6 +10,7 @@ import org.hippoecm.repository.api.HippoWorkspace;
 import org.hippoecm.repository.api.WorkflowException;
 import org.hippoecm.repository.api.WorkflowManager;
 import org.hippoecm.repository.standardworkflow.DefaultWorkflow;
+import org.hippoecm.repository.translation.HippoTranslatedNode;
 import org.hippoecm.repository.translation.HippoTranslationNodeType;
 import org.hippoecm.repository.translation.TranslationWorkflow;
 import org.slf4j.Logger;
@@ -23,15 +24,6 @@ import java.util.List;
 public class DocumentTranslator {
     public static final String COULD_NOT_CREATE_FOLDERS = "could-not-create-folders";
     private static final Logger LOG = LoggerFactory.getLogger(DocumentTranslator.class);
-    private HippoTranslatedNodeFactory translatedNodeFactory;
-
-    public DocumentTranslator() {
-        this(new HippoTranslatedNodeFactory());
-    }
-
-    protected DocumentTranslator(HippoTranslatedNodeFactory translatedNodeFactory) {
-        this.translatedNodeFactory = translatedNodeFactory;
-    }
 
     public String getTranslatedDocumentName(List<FolderTranslation> folders) {
         if (folders == null || folders.isEmpty()) {
@@ -145,7 +137,7 @@ public class DocumentTranslator {
         Collections.reverse(folders);
     }
 
-    Node findHighestTranslatedSourceFolder(Node sourceFolder) throws RepositoryException {
+    protected Node findHighestTranslatedSourceFolder(Node sourceFolder) throws RepositoryException {
         // The JCR has a pair of Nodes to represent a document. The highest node has a Mixin of
         // hippo:translated, but its parent does not but is hippo:named. It is the hippo:named Node that
         // is passed to the populateFolders method this method recurses over the nodes to find the first
@@ -164,7 +156,7 @@ public class DocumentTranslator {
         return sourceFolder;
     }
 
-    TranslatedFolder addAllUntranslatedFolders(String targetLanguage, List<FolderTranslation> folders, TranslatedFolder sourceFolder) throws RepositoryException {
+    protected TranslatedFolder addAllUntranslatedFolders(String targetLanguage, List<FolderTranslation> folders, TranslatedFolder sourceFolder) throws RepositoryException {
         // walk up the source tree until a translated ancestor is found
         while (sourceFolder.getSibling(targetLanguage) == null) {
             FolderTranslation ft = JcrFolderTranslationFactory.createFolderTranslation(sourceFolder.getNode(),
@@ -191,12 +183,12 @@ public class DocumentTranslator {
      * <p>
      * An exception of type {@link WorkflowSNSException} will be thrown if there is an SNS issue.
      */
-    void avoidSameNameSiblings(Session session, int indexOfDeepestTranslatedFolder, String targetLanguage, List<FolderTranslation> folders)
+    protected void avoidSameNameSiblings(Session session, int indexOfDeepestTranslatedFolder, String targetLanguage, List<FolderTranslation> folders)
             throws WorkflowSNSException, RepositoryException {
 
         final FolderTranslation deepestTranslatedFolder = folders.get(indexOfDeepestTranslatedFolder);
         final Node deepestTranslatedSourceNode = session.getNodeByIdentifier(deepestTranslatedFolder.getId());
-        final Node deepestTranslatedTargetNode = translatedNodeFactory.createFromNode(deepestTranslatedSourceNode).getTranslation(targetLanguage);
+        final Node deepestTranslatedTargetNode = createFromNode(deepestTranslatedSourceNode).getTranslation(targetLanguage);
 
         if (deepestTranslatedTargetNode == null) {
             // this means that there's a programmatic problem in the construction ot the "folders" list.
@@ -218,7 +210,11 @@ public class DocumentTranslator {
         // No SNS issue!
     }
 
-    boolean saveFolder(FolderTranslation ft, Session session, String targetLanguage) {
+    protected HippoTranslatedNode createFromNode(Node node) throws RepositoryException {
+        return new HippoTranslatedNode(node);
+    }
+
+    protected boolean saveFolder(FolderTranslation ft, Session session, String targetLanguage) {
         if (!ft.isEditable()) {
             throw new UnsupportedOperationException("Translation is immutable");
         }

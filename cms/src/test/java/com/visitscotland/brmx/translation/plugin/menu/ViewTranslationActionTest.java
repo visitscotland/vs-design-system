@@ -1,6 +1,5 @@
 package com.visitscotland.brmx.translation.plugin.menu;
 
-import com.visitscotland.brmx.translation.plugin.HippoTranslatedNodeFactory;
 import com.visitscotland.brmx.translation.plugin.TranslationWorkflowPlugin;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.util.tester.WicketTester;
@@ -39,8 +38,6 @@ public class ViewTranslationActionTest {
     @Mock
     private IModel<String> mockLanguageModel;
     @Mock
-    private HippoTranslatedNodeFactory mockNodeFactory;
-    @Mock
     private TranslationWorkflow mockWorkflow;
 
     @BeforeEach
@@ -52,8 +49,7 @@ public class ViewTranslationActionTest {
                 mockNameModel,
                 mockLocaleModel,
                 "es",
-                mockLanguageModel,
-                mockNodeFactory));
+                mockLanguageModel));
     }
 
     @Test
@@ -98,7 +94,7 @@ public class ViewTranslationActionTest {
         HippoNode mockDocNode = mock(HippoNode.class);
         when(mockWdm.getNode()).thenReturn(mockDocNode);
         HippoTranslatedNode mockTranslatedNode = mock(HippoTranslatedNode.class);
-        when(mockNodeFactory.createFromNode(same(mockDocNode))).thenReturn(mockTranslatedNode);
+        doReturn(mockTranslatedNode).when(action).createFromNode(same(mockDocNode));
         when(mockTranslatedNode.getTranslation(eq("es"))).thenThrow(new RepositoryException());
 
         action.execute(mockWorkflow);
@@ -113,7 +109,7 @@ public class ViewTranslationActionTest {
         HippoNode mockDocNode = mock(HippoNode.class);
         when(mockWdm.getNode()).thenReturn(mockDocNode);
         HippoTranslatedNode mockTranslatedHippoNode = mock(HippoTranslatedNode.class);
-        when(mockNodeFactory.createFromNode(same(mockDocNode))).thenReturn(mockTranslatedHippoNode);
+        doReturn(mockTranslatedHippoNode).when(action).createFromNode(same(mockDocNode));
         Node mockTranslatedNode = mock(Node.class);
         Node mockTranslatedNodeParent = mock(Node.class);
         when(mockTranslatedNode.getParent()).thenReturn(mockTranslatedNodeParent);
