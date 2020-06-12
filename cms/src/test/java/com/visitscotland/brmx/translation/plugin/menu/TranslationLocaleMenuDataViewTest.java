@@ -17,9 +17,9 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
-public class TranslationLocaleMenuItemTest {
+public class TranslationLocaleMenuDataViewTest {
     private WicketTester tester;
-    private TranslationLocaleMenuItem menuItem;
+    private TranslationLocaleMenuDataView menuItem;
     @Mock
     private TranslationWorkflowPlugin mockTranslationWorkflowPlugin;
     @Mock
@@ -31,7 +31,7 @@ public class TranslationLocaleMenuItemTest {
     public void beforeEach() {
         // This is needed so a TranslationLocaleMenuItem can be created, provided a mock WicketApplication
         tester = new WicketTester();
-        menuItem = new TranslationLocaleMenuItem("compId", mockTranslationWorkflowPlugin, mockLanguageModel, mockMenuLocaleProvider);
+        menuItem = new TranslationLocaleMenuDataView("compId", mockTranslationWorkflowPlugin, mockLanguageModel, mockMenuLocaleProvider);
     }
 
     @Test

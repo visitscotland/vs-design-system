@@ -16,7 +16,7 @@
 package com.visitscotland.brmx.translation.plugin;
 
 import com.visitscotland.brmx.translation.plugin.menu.MenuLocaleProvider;
-import com.visitscotland.brmx.translation.plugin.menu.TranslationLocaleMenuItem;
+import com.visitscotland.brmx.translation.plugin.menu.TranslationLocaleMenuDataView;
 import org.apache.wicket.Component;
 import org.apache.wicket.MarkupContainer;
 import org.apache.wicket.markup.html.basic.Label;
@@ -127,7 +127,7 @@ public class TranslationWorkflowPlugin extends RenderPlugin {
             @Override
             public MarkupContainer getContent() {
                 Fragment fragment = new Fragment("content", "languages", TranslationWorkflowPlugin.this);
-                fragment.add(new TranslationLocaleMenuItem("languages", TranslationWorkflowPlugin.this, languageModel, new MenuLocaleProvider(TranslationWorkflowPlugin.this)));
+                fragment.add(new TranslationLocaleMenuDataView("languages", TranslationWorkflowPlugin.this, languageModel, new MenuLocaleProvider(TranslationWorkflowPlugin.this)));
                 TranslationWorkflowPlugin.this.addOrReplace(fragment);
                 return fragment;
             }

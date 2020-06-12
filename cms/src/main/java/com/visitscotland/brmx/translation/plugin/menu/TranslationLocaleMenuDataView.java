@@ -9,12 +9,12 @@ import org.hippoecm.frontend.translation.ILocaleProvider;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class TranslationLocaleMenuItem extends DataView<ILocaleProvider.HippoLocale> {
-    private static final Logger LOG = LoggerFactory.getLogger(TranslationLocaleMenuItem.class);
+public class TranslationLocaleMenuDataView extends DataView<ILocaleProvider.HippoLocale> {
+    private static final Logger LOG = LoggerFactory.getLogger(TranslationLocaleMenuDataView.class);
     private TranslationWorkflowPlugin plugin;
     private final IModel<String> languageModel;
 
-    public TranslationLocaleMenuItem(String id, TranslationWorkflowPlugin plugin, IModel<String> languageModel, MenuLocaleProvider menuItemProvider) {
+    public TranslationLocaleMenuDataView(String id, TranslationWorkflowPlugin plugin, IModel<String> languageModel, MenuLocaleProvider menuItemProvider) {
         super(id, menuItemProvider);
         this.plugin = plugin;
         this.languageModel = languageModel;
