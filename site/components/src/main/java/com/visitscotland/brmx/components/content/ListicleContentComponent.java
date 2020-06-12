@@ -8,9 +8,7 @@ import com.visitscotland.brmx.beans.dms.LocationObject;
 import com.visitscotland.brmx.beans.mapping.*;
 import com.visitscotland.brmx.beans.mapping.Coordinates;
 import com.visitscotland.brmx.utils.CommonUtils;
-import com.visitscotland.brmx.utils.ProductSearchBuilder;
-import com.visitscotland.brmx.utils.Properties;
-import com.visitscotland.brmx.utils.LocationLoader;
+import com.visitscotland.brmx.dms.LocationLoader;
 import org.hippoecm.hst.content.beans.standard.HippoCompound;
 import org.hippoecm.hst.core.component.HstRequest;
 import org.hippoecm.hst.core.component.HstResponse;
@@ -27,7 +25,7 @@ public class ListicleContentComponent extends PageContentComponent<Listicle> {
     @Override
     public void doBeforeRender(HstRequest request, HstResponse response) {
         super.doBeforeRender(request, response);
-        generateIndexPage(request);
+
         generateItems(request, getDocument(request));
     }
 
@@ -160,47 +158,5 @@ public class ListicleContentComponent extends PageContentComponent<Listicle> {
         }
 
         request.setAttribute(LISTICLE_ITEMS, items);
-    }
-
-    /**
-     * @param request HstRequest
-     * @param item Compound for DMSLink, PSRLink , External Link or CMS link
-     * @return FlatLink
-     */
-    private FlatLink createLink(HstRequest request, HippoCompound item) {
-        final String URL = "url";
-
-        if (item instanceof DMSLink) {
-            DMSLink dmsLink = (DMSLink) item;
-            try {
-                JsonNode product = CommonUtils.getProduct(dmsLink.getProduct(), request.getLocale());
-                if (product == null) {
-                    logger.warn(CommonUtils.contentIssue("There is no product with the id '%s', (%s) ",
-                            dmsLink.getProduct(), getDocument(request).getPath()));
-                } else {
-                    //TODO build the link for the DMS product properly
-                    return new FlatLink(this.getCtaLabel(dmsLink.getLabel(), request.getLocale()), Properties.VS_DMS_SERVICE + product.get(URL).asText());
-                }
-            } catch (IOException e) {
-                logger.error(String.format("Error while querying the DMS for '%s', (%s)",
-                        dmsLink.getProduct(), getDocument(request).getPath()));
-            }
-        } else if (item instanceof ProductSearchLink) {
-            ProductSearchLink productSearchLink = (ProductSearchLink) item;
-            ProductSearchBuilder psb = new ProductSearchBuilder()
-                    .productType(productSearchLink.getSearch()).locale(request.getLocale());
-
-            return new FlatLink(this.getCtaLabel(productSearchLink.getLabel(), request.getLocale()), psb.build());
-
-        } else if (item instanceof ExternalLink) {
-            ExternalLink externalLink = (ExternalLink) item;
-            return new FlatLink(this.getCtaLabel(externalLink.getLabel(), request.getLocale()), externalLink.getLabel());
-
-        } else if (item instanceof CMSLink) {
-            CMSLink cmsLink = (CMSLink) item;
-            return new FlatLink(this.getCtaLabel(cmsLink.getLabel(), request.getLocale()), cmsLink.getLabel());
-        }
-
-        return null;
     }
 }

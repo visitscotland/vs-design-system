@@ -2,7 +2,7 @@ package com.visitscotland.brmx.components.navigation;
 
 
 import com.visitscotland.brmx.beans.Page;
-import com.visitscotland.brmx.utils.HippoUtils;
+import com.visitscotland.brmx.utils.HippoUtilsService;
 import com.visitscotland.brmx.beans.Widget;
 import com.visitscotland.brmx.components.navigation.info.MenuComponentInfo;
 import org.hippoecm.hst.content.beans.standard.HippoBean;
@@ -23,6 +23,12 @@ import java.util.*;
 public class MenuComponent extends EssentialsMenuComponent {
 
     private static final String NAVIGATION_BUNDLE = "navigation";
+
+    HippoUtilsService utils;
+
+    public MenuComponent(){
+        utils = new HippoUtilsService();
+    }
 
     @Override
     public void doBeforeRender(HstRequest request, HstResponse response) {
@@ -53,8 +59,8 @@ public class MenuComponent extends EssentialsMenuComponent {
                     //Widget document
                     if (bean instanceof Widget) {
                         enhancedMenu.setWidget((Widget) bean);
-                    } else if (HippoUtils.existsResourceBundleKey(menu.getName(), NAVIGATION_BUNDLE, request.getLocale())) {
-                        enhancedMenu.setTitle(HippoUtils.getResourceBundle(menu.getName(), NAVIGATION_BUNDLE, request.getLocale()));
+                    } else if (utils.existsResourceBundleKey(menu.getName(), NAVIGATION_BUNDLE, request.getLocale())) {
+                        enhancedMenu.setTitle(utils.getResourceBundle(menu.getName(), NAVIGATION_BUNDLE, request.getLocale()));
                     } else if (bean instanceof Page) {
                         enhancedMenu.setTitle(((Page) bean).getTitle());
                     }
@@ -64,7 +70,7 @@ public class MenuComponent extends EssentialsMenuComponent {
         }
 
         if (enhancedMenu.getTitle() == null && documentExist) {
-            String value = HippoUtils.getResourceBundle(menu.getName(), NAVIGATION_BUNDLE, request.getLocale());
+            String value = utils.getResourceBundle(menu.getName(), NAVIGATION_BUNDLE, request.getLocale());
             enhancedMenu.setTitle(value);
         }
 

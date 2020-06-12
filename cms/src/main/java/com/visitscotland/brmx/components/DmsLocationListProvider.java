@@ -1,6 +1,7 @@
 package com.visitscotland.brmx.components;
 
 import com.visitscotland.brmx.beans.dms.LocationObject;
+import com.visitscotland.brmx.dms.LocationLoader;
 import org.hippoecm.frontend.plugin.IPluginContext;
 import org.hippoecm.frontend.plugin.Plugin;
 import org.hippoecm.frontend.plugin.config.IPluginConfig;
@@ -11,7 +12,6 @@ import org.onehippo.forge.selection.frontend.provider.IValueListProvider;
 import org.onehippo.forge.selection.frontend.utils.JcrUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import com.visitscotland.brmx.utils.*;
 import com.visitscotland.brmx.model.ValueListLocation;
 
 import javax.jcr.Session;
