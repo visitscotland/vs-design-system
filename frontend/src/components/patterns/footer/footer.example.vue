@@ -221,7 +221,10 @@
             />
         </VsFooterUtilityList>
 
-        <VsFooterCopyright>
+        <VsFooterCopyright
+            logo-alt-text="VisitScotland Home"
+            href="/"
+        >
             <span slot="copyright">
                 VisitScotland. All rights reserved.
             </span>
