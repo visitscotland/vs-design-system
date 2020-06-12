@@ -11,40 +11,10 @@ definitions:
         /hipposysedit:nodetype:
           jcr:primaryType: hipposysedit:nodetype
           jcr:mixinTypes: ['mix:referenceable', 'hipposysedit:remodel']
-          jcr:uuid: 671ac51d-860f-4d02-bf18-c3d9bd5ba540
-          hipposysedit:node: true
-          hipposysedit:supertype: ['visitscotland:Page', 'hippostd:relaxed', 'hippotranslation:translated']
-          hipposysedit:uri: http://www.visitscotland.com/visitscotland/nt/1.0
-          /descOrder:
-            jcr:primaryType: hipposysedit:field
-            hipposysedit:mandatory: false
-            hipposysedit:multiple: false
-            hipposysedit:ordered: false
-            hipposysedit:path: visitscotland:descOrder
-            hipposysedit:primary: false
-            hipposysedit:type: Boolean
-          /summaryTitle:
-            jcr:primaryType: hipposysedit:field
-            hipposysedit:mandatory: false
-            hipposysedit:multiple: false
-            hipposysedit:ordered: false
-            hipposysedit:path: visitscotland:summaryTitle
-            hipposysedit:primary: false
-            hipposysedit:type: String
-          /summary:
-            jcr:primaryType: hipposysedit:field
-            hipposysedit:mandatory: false
-            hipposysedit:multiple: false
-            hipposysedit:ordered: false
-            hipposysedit:path: visitscotland:summary
-            hipposysedit:primary: false
-            hipposysedit:type: hippostd:html
-        /hipposysedit:nodetype[2]:
-          jcr:primaryType: hipposysedit:nodetype
-          jcr:mixinTypes: ['mix:referenceable']
           jcr:uuid: a22820a2-9428-426a-a018-87b0c0dafb2f
           hipposysedit:node: true
           hipposysedit:supertype: ['visitscotland:Page', 'hippostd:relaxed', 'hippotranslation:translated']
+          hipposysedit:uri: http://www.visitscotland.com/visitscotland/nt/1.0
           /descOrder:
             jcr:primaryType: hipposysedit:field
             hipposysedit:mandatory: false
@@ -86,44 +56,11 @@ definitions:
           visitscotland:title: ''
           visitscotland:seoTitle: ''
           jcr:mixinTypes: ['mix:referenceable']
-          jcr:uuid: 37083414-d2bb-4307-ae5a-76d540efeb24
+          jcr:uuid: 7a534f1f-33e7-4bb4-b22c-f725f1d66a28
           hippostdpubwf:lastModificationDate: 2020-02-11T09:30:21.383Z
           hippostdpubwf:creationDate: 2020-02-11T09:30:21.383Z
           visitscotland:descOrder: false
           visitscotland:summaryTitle: ''
-          /visitscotland:heroImage:
-            jcr:primaryType: hippogallerypicker:imagelink
-            hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
-            hippo:facets: []
-            hippo:modes: []
-            hippo:values: []
-          /visitscotland:introduction:
-            jcr:primaryType: hippostd:html
-            hippostd:content: ''
-          /visitscotland:summary:
-            jcr:primaryType: hippostd:html
-            hippostd:content: ''
-        /hipposysedit:prototype[2]:
-          jcr:primaryType: nt:unstructured
-          jcr:mixinTypes: ['hippostd:publishableSummary', 'hippostd:relaxed', 'hippostdpubwf:document',
-            'hippotranslation:translated', 'mix:referenceable']
-          jcr:uuid: b83e3b0d-7551-4665-8640-0c43fcea4704
-          hippostd:holder: holder
-          hippostd:state: draft
-          hippostdpubwf:createdBy: ''
-          hippostdpubwf:creationDate: 2020-02-11T09:30:21.383Z
-          hippostdpubwf:lastModificationDate: 2020-02-11T09:30:21.383Z
-          hippostdpubwf:lastModifiedBy: ''
-          hippotranslation:id: document-type-locale-id
-          hippotranslation:locale: document-type-locale
-          visitscotland:breadcrumb: ''
-          visitscotland:descOrder: false
-          visitscotland:seoDescription: ''
-          visitscotland:seoNoIndex: false
-          visitscotland:seoTitle: ''
-          visitscotland:summaryTitle: ''
-          visitscotland:teaser: ''
-          visitscotland:title: ''
           /visitscotland:heroImage:
             jcr:primaryType: hippogallerypicker:imagelink
             hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
