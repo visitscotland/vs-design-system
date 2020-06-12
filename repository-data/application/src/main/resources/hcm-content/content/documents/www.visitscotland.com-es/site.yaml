@@ -12,13 +12,13 @@
     hippostd:foldertype: [new-translated-folder, new-document]
     hippotranslation:id: 0ff458fa-cab8-47ba-9862-d8a0b7a1bacf
     hippotranslation:locale: es
-    /content:
+    /content-original:
       jcr:primaryType: hippo:handle
       jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
       jcr:uuid: 8f633189-ce6e-4f76-9c56-66bcc38b307a
-      hippo:name: Test Page
-      hippo:versionHistory: e200ae24-5195-43cd-acb6-74f0e0b2dac4
-      /content[1]:
+      hippo:name: Test
+      hippo:versionHistory: c51e9229-90f5-47d7-9190-263a3d937ee4
+      /content-original[1]:
         jcr:primaryType: visitscotland:Itinerary
         jcr:mixinTypes: ['mix:versionable']
         jcr:uuid: 51626c1e-ed6d-4802-b809-31be91a215dd
@@ -111,7 +111,7 @@
           visitscotland:dmscategories: ''
           visitscotland:location: ''
           visitscotland:producttype: ''
-      /content[2]:
+      /content-original[2]:
         jcr:primaryType: visitscotland:Itinerary
         jcr:mixinTypes: ['mix:referenceable']
         jcr:uuid: 726fd5e1-cecf-4ada-b734-1b1130479d18
@@ -204,11 +204,11 @@
           visitscotland:dmscategories: ''
           visitscotland:location: ''
           visitscotland:producttype: ''
-      /content[3]:
+      /content-original[3]:
         jcr:primaryType: visitscotland:Itinerary
         jcr:mixinTypes: ['mix:referenceable']
         jcr:uuid: 30831483-0719-47e7-94fa-7c596a6d6af2
-        hippo:availability: [live]
+        hippo:availability: []
         hippostd:state: published
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2019-12-06T12:48:04.149Z
@@ -298,3 +298,69 @@
           visitscotland:dmscategories: ''
           visitscotland:location: ''
           visitscotland:producttype: ''
+    /pagina-indice:
+      jcr:primaryType: hippo:handle
+      jcr:mixinTypes: ['hippo:named', 'mix:referenceable']
+      jcr:uuid: f9afb960-e913-4651-be1c-6f9f175940b4
+      hippo:name: Página Indice
+      /pagina-indice[1]:
+        jcr:primaryType: visitscotland:Destination
+        jcr:mixinTypes: ['mix:versionable']
+        jcr:uuid: 8911bb47-62ce-4354-90f7-8edf9f9ed41e
+        hippo:availability: [preview]
+        hippostd:state: unpublished
+        hippostdpubwf:createdBy: admin
+        hippostdpubwf:creationDate: 2020-06-12T09:19:11.781+01:00
+        hippostdpubwf:lastModificationDate: 2020-06-12T13:12:57.760+01:00
+        hippostdpubwf:lastModifiedBy: admin
+        hippotranslation:id: d4a2124b-1158-4b28-ab11-ff84f2c9801f
+        hippotranslation:locale: es
+        visitscotland:breadcrumb: ''
+        visitscotland:location: Aberdeen
+        visitscotland:seoDescription: '1'
+        visitscotland:seoNoIndex: false
+        visitscotland:seoTitle: '1'
+        visitscotland:teaser: These pages are used by back ends developers for content
+          modelling
+        visitscotland:title: Devs - test
+        /visitscotland:heroImage:
+          jcr:primaryType: hippogallerypicker:imagelink
+          hippo:docbase: 878bc413-07fe-4c1a-9df6-55514c250a16
+          hippo:facets: []
+          hippo:modes: []
+          hippo:values: []
+        /visitscotland:introduction:
+          jcr:primaryType: hippostd:html
+          hippostd:content: <p>These pages are used by back ends developers for content
+            modelling&nbsp;</p>
+      /pagina-indice[2]:
+        jcr:primaryType: visitscotland:Destination
+        jcr:mixinTypes: ['mix:referenceable']
+        jcr:uuid: 482f1251-5c20-40e2-afe7-779727d0f672
+        hippo:availability: []
+        hippostd:holder: admin
+        hippostd:state: draft
+        hippostdpubwf:createdBy: admin
+        hippostdpubwf:creationDate: 2020-06-12T09:19:11.781+01:00
+        hippostdpubwf:lastModificationDate: 2020-06-12T13:12:58.023+01:00
+        hippostdpubwf:lastModifiedBy: admin
+        hippotranslation:id: d4a2124b-1158-4b28-ab11-ff84f2c9801f
+        hippotranslation:locale: es
+        visitscotland:breadcrumb: Desarrollo Informágico
+        visitscotland:location: Edinburgh
+        visitscotland:seoDescription: El único propósito de esta campo es validar
+          que hice bien la implementación de SEO.
+        visitscotland:seoNoIndex: false
+        visitscotland:seoTitle: Un montón de enlaces útiles para desarrolladores
+        visitscotland:teaser: NUNCA HAS DE CREAR UN ENLACE A ESTA PÁGINA
+        visitscotland:title: Un montón de enlaces útiles para desarrolladores
+        /visitscotland:heroImage:
+          jcr:primaryType: hippogallerypicker:imagelink
+          hippo:docbase: 878bc413-07fe-4c1a-9df6-55514c250a16
+          hippo:facets: []
+          hippo:modes: []
+          hippo:values: []
+        /visitscotland:introduction:
+          jcr:primaryType: hippostd:html
+          hippostd:content: <p>These pages are used by back ends developers for content
+            modelling&nbsp;</p>
