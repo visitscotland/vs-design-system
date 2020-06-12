@@ -6,12 +6,10 @@ import org.hippoecm.repository.HippoStdNodeType;
 import org.hippoecm.repository.api.HippoNode;
 import org.hippoecm.repository.api.HippoNodeType;
 import org.hippoecm.repository.translation.HippoTranslatedNode;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.invocation.InvocationOnMock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.mockito.stubbing.Answer;
@@ -35,13 +33,15 @@ public class DocumentTranslatorSameNameSiblingsTest {
     @Mock
     private Session mockSession;
     @Mock
-    private HippoTranslatedNodeFactory mockFactory;
+    private HippoTranslatedNodeFactory mockNodeFactory;
+    @Mock
+    private TranslatedFolderFactory mockFolderFactory;
     private List<FolderTranslation> folders;
 
     @BeforeEach
     public void beforeEach() {
         folders = new LinkedList<>();
-        translator = new DocumentTranslator(mockFactory);
+        translator = new DocumentTranslator(mockNodeFactory, mockFolderFactory);
     }
 
     @Test
@@ -192,7 +192,7 @@ public class DocumentTranslatorSameNameSiblingsTest {
         Node sourceNode = mock(Node.class);
         HippoTranslatedNode mockHippoTranslatedNode = mock(HippoTranslatedNode.class);
         when(mockSession.getNodeByIdentifier(sourceNodeIdentifier)).thenReturn(sourceNode);
-        when(mockFactory.createFromNode(same(sourceNode))).thenReturn(mockHippoTranslatedNode);
+        when(mockNodeFactory.createFromNode(same(sourceNode))).thenReturn(mockHippoTranslatedNode);
         when(mockHippoTranslatedNode.getTranslation(eq(targetLanguage))).thenReturn(translatedTargetNode);
         return sourceNode;
     }

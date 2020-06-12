@@ -9,12 +9,12 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
-final class UntranslatedLocaleProvider implements IDataProvider<ILocaleProvider.HippoLocale> {
+public class UntranslatedLocaleProvider implements IDataProvider<ILocaleProvider.HippoLocale> {
     private TranslationWorkflowPlugin workflow;
     private final ILocaleProvider localeProvider;
     private transient List<ILocaleProvider.HippoLocale> missingLocales;
 
-    UntranslatedLocaleProvider(TranslationWorkflowPlugin workflow, ILocaleProvider localeProvider) {
+    public UntranslatedLocaleProvider(TranslationWorkflowPlugin workflow, ILocaleProvider localeProvider) {
         this.workflow = workflow;
         this.localeProvider = localeProvider;
     }

@@ -1,7 +1,5 @@
 package com.visitscotland.brmx.translation.plugin;
 
-import com.zaxxer.hikari.pool.HikariPool;
-import org.apache.jackrabbit.core.WorkspaceManager;
 import org.hippoecm.frontend.translation.components.document.FolderTranslation;
 import org.hippoecm.repository.api.Document;
 import org.hippoecm.repository.api.HippoWorkspace;
@@ -9,19 +7,16 @@ import org.hippoecm.repository.api.WorkflowException;
 import org.hippoecm.repository.api.WorkflowManager;
 import org.hippoecm.repository.standardworkflow.DefaultWorkflow;
 import org.hippoecm.repository.translation.TranslationWorkflow;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import javax.jcr.Node;
 import javax.jcr.RepositoryException;
 import javax.jcr.Session;
-import javax.jcr.Workspace;
 
 import java.rmi.RemoteException;
 

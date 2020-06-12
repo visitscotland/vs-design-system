@@ -2,15 +2,12 @@ package com.visitscotland.brmx.translation.plugin;
 
 import org.hippoecm.frontend.translation.components.document.FolderTranslation;
 import org.hippoecm.repository.api.HippoNode;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import javax.jcr.Node;
 import javax.jcr.RepositoryException;
 
 import java.util.LinkedList;
@@ -30,13 +27,15 @@ public class DocumentTranslatorAddAllUntranslatedFoldersTest {
     @Mock
     private HippoTranslatedNodeFactory mockTranslatedNodeFactory;
     @Mock
+    private TranslatedFolderFactory mockFolderFactory;
+    @Mock
     private TranslatedFolder mockSourceFolder;
     private List<FolderTranslation> folders;
 
     @BeforeEach
     public void beforeEach() {
         folders = new LinkedList<>();
-        translator = new DocumentTranslator(mockTranslatedNodeFactory);
+        translator = new DocumentTranslator(mockTranslatedNodeFactory, mockFolderFactory);
     }
 
     @Test
