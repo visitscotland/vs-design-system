@@ -1,7 +1,6 @@
 package com.visitscotland.brmx.translation.plugin.menu;
 
 import com.visitscotland.brmx.translation.plugin.DocumentTranslator;
-import com.visitscotland.brmx.translation.plugin.SessionFactory;
 import com.visitscotland.brmx.translation.plugin.TranslationWorkflowPlugin;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.LoadableDetachableModel;
@@ -39,8 +38,6 @@ public class TranslationActionTest {
     @Mock
     private TranslationWorkflow mockWorkflow;
     @Mock
-    private SessionFactory mockSessionFactory;
-    @Mock
     private HippoSession mockHippoSession;
     private Set<String> availableLanguages;
     @Mock
@@ -59,15 +56,15 @@ public class TranslationActionTest {
         availableLanguages = new HashSet<>();
         lenient().when(mockWorkflowPlugin.getAvailableLanguages()).thenReturn(availableLanguages);
         lenient().when(mockWorkflowPlugin.getLocaleProvider()).thenReturn(mockLocaleProvider);
-        lenient().when(mockSessionFactory.getJcrSession()).thenReturn(mockHippoSession);
         lenient().when(mockNameModel.getObject()).thenReturn("translationName");
-        action = new TranslationAction(
+        action = spy(new TranslationAction(
                 mockWorkflowPlugin,
                 "translation",
                 mockNameModel,
                 mockLocaleModel,
-                mockSessionFactory,
-                mockTranslator);
+                mockTranslator));
+
+        doReturn(mockHippoSession).when(action).getJcrSession();
     }
 
     @Test

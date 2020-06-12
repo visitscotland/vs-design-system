@@ -6,6 +6,7 @@ import org.apache.wicket.model.IModel;
 import org.hippoecm.addon.workflow.StdWorkflow;
 import org.hippoecm.addon.workflow.WorkflowDescriptorModel;
 import org.hippoecm.frontend.dialog.IDialogService;
+import org.hippoecm.frontend.session.UserSession;
 import org.hippoecm.frontend.translation.ILocaleProvider;
 import org.hippoecm.frontend.translation.components.document.FolderTranslation;
 import org.hippoecm.repository.api.WorkflowException;
@@ -22,30 +23,23 @@ import java.util.List;
 public class TranslationAction extends StdWorkflow<TranslationWorkflow> {
     private final IModel<ILocaleProvider.HippoLocale> localeModel;
     private TranslationWorkflowPlugin workflowPlugin;
-    private String url;
-
-    private List<FolderTranslation> folders;
-
-    private SessionFactory sessionFactory;
     private DocumentTranslator translator;
 
     public TranslationAction(TranslationWorkflowPlugin workflowPlugin,
                              String id,
                              IModel<String> name,
                              IModel<ILocaleProvider.HippoLocale> localeModel) {
-        this(workflowPlugin, id, name, localeModel, new SessionFactory(), new DocumentTranslator());
+        this(workflowPlugin, id, name, localeModel, new DocumentTranslator());
     }
 
     TranslationAction(TranslationWorkflowPlugin workflowPlugin,
                       String id,
                       IModel<String> name,
                       IModel<ILocaleProvider.HippoLocale> localeModel,
-                      SessionFactory sessionFactory,
                       DocumentTranslator translator) {
         super(id, name, workflowPlugin.getPluginContext(), (WorkflowDescriptorModel) workflowPlugin.getModel());
         this.workflowPlugin = workflowPlugin;
         this.localeModel = localeModel;
-        this.sessionFactory = sessionFactory;
         this.translator = translator;
     }
 
@@ -64,7 +58,7 @@ public class TranslationAction extends StdWorkflow<TranslationWorkflow> {
 
     @Override
     protected String execute(TranslationWorkflow workflow) throws WorkflowException, RepositoryException, RemoteException {
-        Session session = sessionFactory.getJcrSession();
+        Session session = getJcrSession();
 
         // Only want to add languages we do not have a translation for
         List<ILocaleProvider.HippoLocale> untranslatedLocales = new ArrayList<>();
@@ -93,5 +87,9 @@ public class TranslationAction extends StdWorkflow<TranslationWorkflow> {
     @Override
     protected IDialogService.Dialog createRequestDialog() {
         return new TranslationConfirmationDialog(this, new UntranslatedLocaleProvider(workflowPlugin, workflowPlugin.getLocaleProvider()));
+    }
+
+    protected Session getJcrSession() {
+        return UserSession.get().getJcrSession();
     }
 }
