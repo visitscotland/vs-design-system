@@ -24,7 +24,7 @@
 <#if document.availableTranslations.translations?size gt 1>
     <#list document.availableTranslations.translations as translation>
         <@hst.headContribution category="seo">
-            <link rel="alternate" href="<@hst.link hippobean=translation fullyQualified=true/>"  hreflang="${translation.localeString}"/>
+            <link rel="alternate" href="<@hst.link hippobean=translation fullyQualified=true/>"  hreflang="${translation.locale.language}"/>
         </@hst.headContribution>
     </#list>
 </#if>
@@ -35,7 +35,7 @@
 </@hst.headContribution>
 
 <#-- META DESCRIPTION TAG -->
-<@hst.headContribution category="seo">
+<@hst.headContribution category="opengraph">
     <meta name="description" content="${document.seoDescription}" />
 </@hst.headContribution>
 
@@ -53,6 +53,12 @@
 </@hst.headContribution>
 <@hst.headContribution category="opengraph">
     <meta property="og:url" content="<@hst.link hippobean=document canonical=true fullyQualified=true/>" />
+</@hst.headContribution>
+<@hst.headContribution category="opengraph">
+    <meta property="og:site_name" content="Visit Scotland" /><#-- TODO: lablel -->
+</@hst.headContribution>
+<@hst.headContribution category="opengraph">
+    <meta property="og:locale" content="${document.locale.toLanguageTag()?lower_case}" />
 </@hst.headContribution>
 <@hst.headContribution category="opengraph">
     <meta property="fb:pages" content="334250391467"/><#-- TODO: lablel -->
@@ -73,5 +79,5 @@
     <meta name="twitter:description" content="${document.seoDescription}" />
 </@hst.headContribution>
 <@hst.headContribution category="opengraph">
-    <meta name="twitter:image" content="${ogImage}" />
+    <meta property="twitter:image" content="${ogImage}" />
 </@hst.headContribution>
