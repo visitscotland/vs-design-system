@@ -38,12 +38,10 @@ public class DocumentTranslatorPopulateFoldersTest {
     private DocumentTranslator translator;
     @Mock
     private HippoTranslatedNodeFactory mockTranslatedNodeFactory;
-    @Mock
-    private TranslatedFolderFactory mockTranslatedFolderFactory;
 
     @BeforeEach
     public void beforeEach() throws Exception {
-        translator = new DocumentTranslator(mockTranslatedNodeFactory, mockTranslatedFolderFactory);
+        translator = spy(new DocumentTranslator(mockTranslatedNodeFactory));
 
         createSourceTranslatedFolders();
         documentHandle = createDocumentHandle(translatedFolder5Node);
@@ -219,7 +217,7 @@ public class DocumentTranslatorPopulateFoldersTest {
         translatedFolder5 = createMockTranslatedFolder(translatedFolder4);
         translatedFolder5Node = createMockTranslatedFolderNode(translatedFolder5, "name5", "url5");
         when(translatedFolder5Node.isNodeType(eq(HippoTranslationNodeType.NT_TRANSLATED))).thenReturn(true);
-        when(mockTranslatedFolderFactory.createFromNode(same(translatedFolder5Node))).thenReturn(translatedFolder5);
+        doReturn(translatedFolder5).when(translator).createTranslatedFolder(same(translatedFolder5Node));
     }
 
     private HippoNode createMockTranslatedFolderNode(TranslatedFolder translatedFolder, String name, String url) throws Exception {

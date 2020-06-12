@@ -24,16 +24,13 @@ public class DocumentTranslator {
     public static final String COULD_NOT_CREATE_FOLDERS = "could-not-create-folders";
     private static final Logger LOG = LoggerFactory.getLogger(DocumentTranslator.class);
     private HippoTranslatedNodeFactory translatedNodeFactory;
-    private TranslatedFolderFactory translatedFolderFactory;
 
     public DocumentTranslator() {
-        this(new HippoTranslatedNodeFactory(), new TranslatedFolderFactory());
+        this(new HippoTranslatedNodeFactory());
     }
 
-    protected DocumentTranslator(HippoTranslatedNodeFactory translatedNodeFactory,
-                                 TranslatedFolderFactory translatedFolderFactory) {
+    protected DocumentTranslator(HippoTranslatedNodeFactory translatedNodeFactory) {
         this.translatedNodeFactory = translatedNodeFactory;
-        this.translatedFolderFactory = translatedFolderFactory;
     }
 
     public String getTranslatedDocumentName(List<FolderTranslation> folders) {
@@ -75,11 +72,15 @@ public class DocumentTranslator {
         return null;
     }
 
-    void populateFolders(Node handle, String targetLanguage, List<FolderTranslation> folders) throws RepositoryException {
+    protected TranslatedFolder createTranslatedFolder(Node node) {
+        return new TranslatedFolder(node);
+    }
+
+    protected void populateFolders(Node handle, String targetLanguage, List<FolderTranslation> folders) throws RepositoryException {
         Node sourceFolder = findHighestTranslatedSourceFolder(handle);
         if (sourceFolder == null) return;
 
-        TranslatedFolder sourceTranslatedFolder = addAllUntranslatedFolders(targetLanguage, folders, translatedFolderFactory.createFromNode(sourceFolder));
+        TranslatedFolder sourceTranslatedFolder = addAllUntranslatedFolders(targetLanguage, folders, createTranslatedFolder(sourceFolder));
 
         TranslatedFolder targetTranslatedFolder = sourceTranslatedFolder.getSibling(targetLanguage);
         assert targetTranslatedFolder != null;

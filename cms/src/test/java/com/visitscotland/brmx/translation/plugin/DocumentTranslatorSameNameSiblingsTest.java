@@ -32,14 +32,12 @@ public class DocumentTranslatorSameNameSiblingsTest {
     private Session mockSession;
     @Mock
     private HippoTranslatedNodeFactory mockNodeFactory;
-    @Mock
-    private TranslatedFolderFactory mockFolderFactory;
     private List<FolderTranslation> folders;
 
     @BeforeEach
     public void beforeEach() {
         folders = new LinkedList<>();
-        translator = new DocumentTranslator(mockNodeFactory, mockFolderFactory);
+        translator = new DocumentTranslator(mockNodeFactory);
     }
 
     @Test

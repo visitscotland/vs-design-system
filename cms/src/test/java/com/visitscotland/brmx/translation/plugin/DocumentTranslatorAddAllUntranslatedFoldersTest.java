@@ -24,15 +24,13 @@ public class DocumentTranslatorAddAllUntranslatedFoldersTest {
     @Mock
     private HippoTranslatedNodeFactory mockTranslatedNodeFactory;
     @Mock
-    private TranslatedFolderFactory mockFolderFactory;
-    @Mock
     private TranslatedFolder mockSourceFolder;
     private List<FolderTranslation> folders;
 
     @BeforeEach
     public void beforeEach() {
         folders = new LinkedList<>();
-        translator = new DocumentTranslator(mockTranslatedNodeFactory, mockFolderFactory);
+        translator = new DocumentTranslator(mockTranslatedNodeFactory);
     }
 
     @Test
