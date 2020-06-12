@@ -17,7 +17,7 @@
       jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
       jcr:uuid: 8f633189-ce6e-4f76-9c56-66bcc38b307a
       hippo:name: Test Page
-      hippo:versionHistory: d23a5b6b-3e2a-4a75-bfa7-3dbdfc93bf57
+      hippo:versionHistory: e200ae24-5195-43cd-acb6-74f0e0b2dac4
       /content[1]:
         jcr:primaryType: visitscotland:Itinerary
         jcr:mixinTypes: ['mix:versionable']
@@ -26,19 +26,19 @@
         hippostd:state: unpublished
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2019-12-06T12:48:04.149Z
-        hippostdpubwf:lastModificationDate: 2020-03-25T09:19:47.226Z
+        hippostdpubwf:lastModificationDate: 2020-06-12T12:53:49.679+01:00
         hippostdpubwf:lastModifiedBy: admin
         hippotranslation:id: a3ed9022-e239-493b-952c-18d01ac36640
         hippotranslation:locale: es
-        visitscotland:areas: []
+        visitscotland:areas: [all]
         visitscotland:breadcrumb: Development Area
         visitscotland:distance: 3.718
         visitscotland:finish: Spain
-        visitscotland:highlights: ''
+        visitscotland:highlights: Nada especial que resaltar
         visitscotland:popular: false
         visitscotland:seoDescription: El único propósito de esta campo es validar
           que hice bien la implementación de SEO.
-        visitscotland:seoNoIndex: false
+        visitscotland:seoNoIndex: true
         visitscotland:seoTitle: Un montón de enlaces útiles para desarrolladores
         visitscotland:start: Scotland
         visitscotland:summary: ''
@@ -119,19 +119,19 @@
         hippostd:state: draft
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2019-12-06T12:48:04.149Z
-        hippostdpubwf:lastModificationDate: 2020-03-25T09:19:47.289Z
+        hippostdpubwf:lastModificationDate: 2020-06-12T12:53:50.009+01:00
         hippostdpubwf:lastModifiedBy: admin
         hippotranslation:id: a3ed9022-e239-493b-952c-18d01ac36640
         hippotranslation:locale: es
-        visitscotland:areas: []
+        visitscotland:areas: [all]
         visitscotland:breadcrumb: Development Area
         visitscotland:distance: 3.718
         visitscotland:finish: Spain
-        visitscotland:highlights: ''
+        visitscotland:highlights: Nada especial que resaltar
         visitscotland:popular: false
         visitscotland:seoDescription: El único propósito de esta campo es validar
           que hice bien la implementación de SEO.
-        visitscotland:seoNoIndex: false
+        visitscotland:seoNoIndex: true
         visitscotland:seoTitle: Un montón de enlaces útiles para desarrolladores
         visitscotland:start: Scotland
         visitscotland:summary: ''
@@ -212,20 +212,20 @@
         hippostd:state: published
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2019-12-06T12:48:04.149Z
-        hippostdpubwf:lastModificationDate: 2020-03-25T09:19:47.226Z
+        hippostdpubwf:lastModificationDate: 2020-06-12T12:53:49.679+01:00
         hippostdpubwf:lastModifiedBy: admin
-        hippostdpubwf:publicationDate: 2020-03-25T09:19:50.899Z
+        hippostdpubwf:publicationDate: 2020-06-12T12:54:13.747+01:00
         hippotranslation:id: a3ed9022-e239-493b-952c-18d01ac36640
         hippotranslation:locale: es
-        visitscotland:areas: []
+        visitscotland:areas: [all]
         visitscotland:breadcrumb: Development Area
         visitscotland:distance: 3.718
         visitscotland:finish: Spain
-        visitscotland:highlights: ''
+        visitscotland:highlights: Nada especial que resaltar
         visitscotland:popular: false
         visitscotland:seoDescription: El único propósito de esta campo es validar
           que hice bien la implementación de SEO.
-        visitscotland:seoNoIndex: false
+        visitscotland:seoNoIndex: true
         visitscotland:seoTitle: Un montón de enlaces útiles para desarrolladores
         visitscotland:start: Scotland
         visitscotland:summary: ''

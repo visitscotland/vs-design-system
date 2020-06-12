@@ -17,23 +17,25 @@
         <@hst.headContributions categoryExcludes="seo, opengraph, htmlBodyEnd, scripts, htmlAppInit" xhtml=true/>
     </head>
     <body>
-        <div class="container" data-vue-app-init>
-            <div class="row">
-                <div class="col-md-6 col-md-offset-3">
-                    <@hst.include ref="top"/>
+        <div data-vue-app-init>
+            <div class="container" >
+                <div class="row">
+                    <div class="col-md-6 col-md-offset-3">
+                        <@hst.include ref="top"/>
+                    </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-md-6 col-md-offset-3">
-                    <@hst.include ref="menu"/>
+                <div class="row">
+                    <div class="col-md-6 col-md-offset-3">
+                        <@hst.include ref="menu"/>
+                    </div>
                 </div>
+                <main id="main">
+                    <@hst.include ref="main"/>
+                </main>
             </div>
-            <main id="main">
-                <@hst.include ref="main"/>
-            </main>
-
+            
             <@hst.include ref="footer"/>
-
+                
         </div>
 
         <script type="text/javascript" src="<@hst.webfile  path='design-system/components/core.js'/>"></script>

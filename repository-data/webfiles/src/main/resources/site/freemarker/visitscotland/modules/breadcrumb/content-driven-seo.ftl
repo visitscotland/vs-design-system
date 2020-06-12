@@ -2,6 +2,12 @@
 
 <#-- @ftlvariable name="document" type="com.visitscotland.brmx.beans.Page" -->
 
+<#-- NO INDEX -->
+<#if document.seoNoIndex >
+    <@hst.headContribution category="seo">
+        <meta name="robots" content="noindex,follow" />
+    </@hst.headContribution>
+</#if>
 <#-- CANONICAL TAG -->
 <@hst.headContribution category="seo">
     <link rel="canonical" href="<@hst.link hippobean=document canonical=true fullyQualified=true/>" />
@@ -11,6 +17,8 @@
 <@hst.headContribution category="seo">
     <meta http-equiv="content-language" content="${document.locale.language}" />
 </@hst.headContribution>
+
+
 
 <#-- HREFLANG TAG -->
 <#if document.availableTranslations.translations?size gt 1>
