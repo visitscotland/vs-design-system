@@ -55,13 +55,13 @@
     <meta property="og:url" content="<@hst.link hippobean=document canonical=true fullyQualified=true/>" />
 </@hst.headContribution>
 <@hst.headContribution category="opengraph">
-    <meta property="og:site_name" content="Visit Scotland" /><#-- TODO: lablel -->
+    <meta property="og:site_name" content="${label("channel", "og.site-name")}" />
 </@hst.headContribution>
 <@hst.headContribution category="opengraph">
     <meta property="og:locale" content="${document.locale.toLanguageTag()?lower_case}" />
 </@hst.headContribution>
 <@hst.headContribution category="opengraph">
-    <meta property="fb:pages" content="334250391467"/><#-- TODO: lablel -->
+    <meta property="fb:pages" content="${label("channel", "og.fb.pages")}"/>
 </@hst.headContribution>
 <@hst.headContribution category="opengraph">
     <meta property="og:image" content="${ogImage}" />
@@ -70,7 +70,7 @@
     <meta name="twitter:card" content="summary_large_image" />
 </@hst.headContribution>
 <@hst.headContribution category="opengraph">
-    <meta name="twitter:site" content="@VisitScotland" /><#-- TODO: lablel -->
+    <meta name="twitter:site" content="${label("channel", "og.twitter.site")}" /><#-- TODO: lablel -->
 </@hst.headContribution>
 <@hst.headContribution category="opengraph">
     <meta name="twitter:title" content="${document.seoTitle}" />
