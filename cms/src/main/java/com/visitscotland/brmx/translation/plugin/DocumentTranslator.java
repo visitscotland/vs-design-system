@@ -21,9 +21,8 @@ import java.util.Collections;
 import java.util.List;
 
 public class DocumentTranslator {
-    private static final Logger LOG = LoggerFactory.getLogger(DocumentTranslator.class);
     public static final String COULD_NOT_CREATE_FOLDERS = "could-not-create-folders";
-
+    private static final Logger LOG = LoggerFactory.getLogger(DocumentTranslator.class);
     private HippoTranslatedNodeFactory translatedNodeFactory;
     private TranslatedFolderFactory translatedFolderFactory;
 
@@ -32,7 +31,7 @@ public class DocumentTranslator {
     }
 
     protected DocumentTranslator(HippoTranslatedNodeFactory translatedNodeFactory,
-                       TranslatedFolderFactory translatedFolderFactory) {
+                                 TranslatedFolderFactory translatedFolderFactory) {
         this.translatedNodeFactory = translatedNodeFactory;
         this.translatedFolderFactory = translatedFolderFactory;
     }
@@ -185,10 +184,10 @@ public class DocumentTranslator {
     /**
      * Prevent the creation of same-name-sibling (SNS) folders when translating a document (or folder?).
      * This affects
-     *
-     *   1) the case where the deepest existing folder already has a child node with the same (node-)name
-     *   2) the case where the deepest existing folder already has a child node with the same localized name
-     *
+     * <p>
+     * 1) the case where the deepest existing folder already has a child node with the same (node-)name
+     * 2) the case where the deepest existing folder already has a child node with the same localized name
+     * <p>
      * An exception of type {@link WorkflowSNSException} will be thrown if there is an SNS issue.
      */
     void avoidSameNameSiblings(Session session, int indexOfDeepestTranslatedFolder, String targetLanguage, List<FolderTranslation> folders)

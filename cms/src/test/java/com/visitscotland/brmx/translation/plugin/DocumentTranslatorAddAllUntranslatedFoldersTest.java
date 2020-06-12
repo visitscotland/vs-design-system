@@ -48,7 +48,7 @@ public class DocumentTranslatorAddAllUntranslatedFoldersTest {
     public void addAllUntranslatedFolders_parentIsNull() throws Exception {
         // No translated sibling before parent is eventually null
         int numberInChain = 10;
-        createUntranslatedFolderChain(mockSourceFolder, numberInChain, "no",false);
+        createUntranslatedFolderChain(mockSourceFolder, numberInChain, "no", false);
         assertThrows(RepositoryException.class, () -> translator.addAllUntranslatedFolders("no", folders, mockSourceFolder));
 
         // The folders should also be populated, not sure if this intended functionality
@@ -65,7 +65,7 @@ public class DocumentTranslatorAddAllUntranslatedFoldersTest {
         // Valid path, walks the untranslated folders adding them to the folders list
         // the names of the folders and their URLs should match the originals
         int numberInChain = 10;
-        createUntranslatedFolderChain(mockSourceFolder, numberInChain, "no",true);
+        createUntranslatedFolderChain(mockSourceFolder, numberInChain, "no", true);
         translator.addAllUntranslatedFolders("no", folders, mockSourceFolder);
 
         // The folders should be populated

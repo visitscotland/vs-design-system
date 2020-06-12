@@ -29,6 +29,8 @@ import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 public class TranslationActionTest {
+    @Mock
+    LoadableDetachableModel<String> mockNameModel;
     private WicketTester wicket;
     @Mock
     private TranslationWorkflowPlugin mockWorkflowPlugin;
@@ -43,8 +45,6 @@ public class TranslationActionTest {
     private Set<String> availableLanguages;
     @Mock
     private ILocaleProvider mockLocaleProvider;
-    @Mock
-    LoadableDetachableModel<String> mockNameModel;
     @Mock
     private WorkflowDescriptorModel mockWorkflowDescriptorModel;
     @Mock

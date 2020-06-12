@@ -60,6 +60,7 @@ public class TranslationWorkflowPlugin extends RenderPlugin {
 
     private static Logger log = LoggerFactory.getLogger(TranslationWorkflowPlugin.class);
     private final IModel<Boolean> canTranslateModel;
+    private DocumentTranslationProvider translationProvider;
 
     public TranslationWorkflowPlugin(IPluginContext context, IPluginConfig config) {
         super(context, config);
@@ -150,8 +151,6 @@ public class TranslationWorkflowPlugin extends RenderPlugin {
 
         return nodeIcon;
     }
-
-    private DocumentTranslationProvider translationProvider;
 
     public Boolean canTranslateModel() {
         return canTranslateModel.getObject();

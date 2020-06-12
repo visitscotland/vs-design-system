@@ -26,13 +26,17 @@ public class DocumentTranslatorGetTranslatedDocumentNameTest {
     @Test
     public void getTranslatedDocumentName_null_list() {
         assertThrows(IllegalStateException.class,
-                () -> { translator.getTranslatedDocumentName(null); });
+                () -> {
+                    translator.getTranslatedDocumentName(null);
+                });
     }
 
     @Test
     public void getTranslatedDocumentName_empty_list() {
         assertThrows(IllegalStateException.class,
-                () -> { translator.getTranslatedDocumentName(new LinkedList<>()); });
+                () -> {
+                    translator.getTranslatedDocumentName(new LinkedList<>());
+                });
     }
 
     @Test

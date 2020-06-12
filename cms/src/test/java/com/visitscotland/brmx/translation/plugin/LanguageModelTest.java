@@ -40,7 +40,7 @@ public class LanguageModelTest {
     }
 
     @Test
-    public void valid()throws Exception {
+    public void valid() throws Exception {
         // A valid test case, expect the result to returned with expected value
         when(mockProperty.getString()).thenReturn(TEST_PROPERTY);
 

@@ -19,12 +19,6 @@ import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 public class DocumentTranslatorPopulateFoldersTest {
-    private DocumentTranslator translator;
-    @Mock
-    private HippoTranslatedNodeFactory mockTranslatedNodeFactory;
-    @Mock
-    private TranslatedFolderFactory mockTranslatedFolderFactory;
-
     // The JCR has a pair of Nodes to represent a document. The highest node has a Mixin of
     // hippo:translated, but its parent does not. It is the hippo:named Node parent that
     // is passed to the populateFolders method.
@@ -41,6 +35,11 @@ public class DocumentTranslatorPopulateFoldersTest {
     TranslatedFolder translatedFolder1;
     HippoNode translatedFolder0Node;
     TranslatedFolder translatedFolder0;
+    private DocumentTranslator translator;
+    @Mock
+    private HippoTranslatedNodeFactory mockTranslatedNodeFactory;
+    @Mock
+    private TranslatedFolderFactory mockTranslatedFolderFactory;
 
     @BeforeEach
     public void beforeEach() throws Exception {
@@ -103,7 +102,7 @@ public class DocumentTranslatorPopulateFoldersTest {
             assertPreviouslyTranslated(folders, index);
         }
 
-        for (int index = 3; index <= 5; index ++) {
+        for (int index = 3; index <= 5; index++) {
             assertNewTranslation(folders, index);
         }
     }
@@ -179,6 +178,7 @@ public class DocumentTranslatorPopulateFoldersTest {
         assertTrue(folders.get(index).getUrlfr().startsWith("url"));
         assertTrue(folders.get(index).getUrlfr().endsWith("" + index));
     }
+
     private void assertPreviouslyTranslated(List<FolderTranslation> folders, int index) {
         String s = "" + index;
         assertFalse(folders.get(index).isEditable());
@@ -192,6 +192,7 @@ public class DocumentTranslatorPopulateFoldersTest {
         assertTrue(folders.get(index).getUrlfr().startsWith("fr_url"));
         assertTrue(folders.get(index).getUrlfr().endsWith(s));
     }
+
     private TranslatedFolder addTranslatedFolder(TranslatedFolder sourceFolder, TranslatedFolder translatedParentFolder, String name, String url) throws Exception {
         TranslatedFolder translatedFolder = createMockTranslatedFolder(translatedParentFolder);
         createMockTranslatedFolderNode(translatedFolder, name, url);

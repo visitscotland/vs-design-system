@@ -83,7 +83,7 @@ public class ViewTranslationActionTest {
         IBrowseService<IModel<Node>> mockBrowser = mock(IBrowseService.class);
         when(mockWorkflowPlugin.getBrowserService()).thenReturn(mockBrowser);
         WorkflowDescriptorModel mockWdm = mock(WorkflowDescriptorModel.class);
-        when(mockWorkflowPlugin.getDefaultModel()).thenReturn((IModel)mockWdm);
+        when(mockWorkflowPlugin.getDefaultModel()).thenReturn((IModel) mockWdm);
 
         action.execute(mockWorkflow);
     }
@@ -94,7 +94,7 @@ public class ViewTranslationActionTest {
         IBrowseService<IModel<Node>> mockBrowser = mock(IBrowseService.class);
         when(mockWorkflowPlugin.getBrowserService()).thenReturn(mockBrowser);
         WorkflowDescriptorModel mockWdm = mock(WorkflowDescriptorModel.class);
-        when(mockWorkflowPlugin.getDefaultModel()).thenReturn((IModel)mockWdm);
+        when(mockWorkflowPlugin.getDefaultModel()).thenReturn((IModel) mockWdm);
         HippoNode mockDocNode = mock(HippoNode.class);
         when(mockWdm.getNode()).thenReturn(mockDocNode);
         HippoTranslatedNode mockTranslatedNode = mock(HippoTranslatedNode.class);
@@ -109,7 +109,7 @@ public class ViewTranslationActionTest {
         IBrowseService<IModel<Node>> mockBrowser = mock(IBrowseService.class);
         when(mockWorkflowPlugin.getBrowserService()).thenReturn(mockBrowser);
         WorkflowDescriptorModel mockWdm = mock(WorkflowDescriptorModel.class);
-        when(mockWorkflowPlugin.getDefaultModel()).thenReturn((IModel)mockWdm);
+        when(mockWorkflowPlugin.getDefaultModel()).thenReturn((IModel) mockWdm);
         HippoNode mockDocNode = mock(HippoNode.class);
         when(mockWdm.getNode()).thenReturn(mockDocNode);
         HippoTranslatedNode mockTranslatedHippoNode = mock(HippoTranslatedNode.class);

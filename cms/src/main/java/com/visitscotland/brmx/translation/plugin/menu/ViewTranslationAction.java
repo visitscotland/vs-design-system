@@ -19,10 +19,9 @@ import javax.jcr.RepositoryException;
 
 public class ViewTranslationAction extends StdWorkflow<TranslationWorkflow> {
     private static final Logger LOG = LoggerFactory.getLogger(ViewTranslationAction.class);
-
-    private TranslationWorkflowPlugin workflow;
     private final String language;
     private final IModel<ILocaleProvider.HippoLocale> localeModel;
+    private TranslationWorkflowPlugin workflow;
     private HippoTranslatedNodeFactory hippoTranslatedNodeFactory;
 
     public ViewTranslationAction(

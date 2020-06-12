@@ -12,8 +12,8 @@ import org.slf4j.LoggerFactory;
 
 public class TranslationLocaleMenuDataView extends DataView<ILocaleProvider.HippoLocale> {
     private static final Logger LOG = LoggerFactory.getLogger(TranslationLocaleMenuDataView.class);
-    private TranslationWorkflowPlugin plugin;
     private final IModel<String> languageModel;
+    private TranslationWorkflowPlugin plugin;
 
     public TranslationLocaleMenuDataView(String id, TranslationWorkflowPlugin plugin, IModel<String> languageModel, MenuLocaleProvider menuItemProvider) {
         super(id, menuItemProvider);

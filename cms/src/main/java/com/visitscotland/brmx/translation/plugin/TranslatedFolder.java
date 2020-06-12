@@ -28,6 +28,7 @@ public class TranslatedFolder {
     /**
      * Return the first translated parent of a node, or null if the root
      * path is reached before finding a translated parent.
+     *
      * @return The first translated parent or null if they are all untranslated.
      * @throws RepositoryException
      */

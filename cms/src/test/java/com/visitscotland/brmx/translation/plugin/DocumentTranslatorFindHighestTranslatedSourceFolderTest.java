@@ -22,9 +22,9 @@ public class DocumentTranslatorFindHighestTranslatedSourceFolderTest {
     @Mock
     HippoTranslatedNodeFactory mockTranslatedNodeFactory;
     @Mock
-    private TranslatedFolderFactory mockFolderFactory;
-    @Mock
     Node mockSourceNode;
+    @Mock
+    private TranslatedFolderFactory mockFolderFactory;
 
     @BeforeEach
     public void beforeEach() {

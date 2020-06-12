@@ -30,7 +30,7 @@ public class UntranslatedLocaleTest {
 
     @Test
     public void displayName() {
-        for (Locale locale: Locale.getAvailableLocales()) {
+        for (Locale locale : Locale.getAvailableLocales()) {
             assertNotNull(missingTranslation.getDisplayName(locale));
             assertEquals(UntranslatedLocale.MENU_TEXT, missingTranslation.getDisplayName(locale));
         }

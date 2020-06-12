@@ -126,13 +126,13 @@ public class MenuLocaleProviderTest {
         initialiseAvailableLocales("en", "es");
         addLocaleTranslation("en");
 
-        provider.iterator(0,1);
+        provider.iterator(0, 1);
 
         verify(mockWorkflowPlugin, atMostOnce()).getAvailableLanguages();
         List<ILocaleProvider.HippoLocale> initialLoad = provider.getAvailableLocales();
         assertNotNull(provider.getAvailableLocales());
 
-        provider.iterator(0,1);
+        provider.iterator(0, 1);
 
         verify(mockWorkflowPlugin, atMostOnce()).getAvailableLanguages();
         assertNotNull(provider.getAvailableLocales());
@@ -203,7 +203,7 @@ public class MenuLocaleProviderTest {
     }
 
     private void addLocaleTranslation(String... localeISO) {
-        for(String locale : localeISO) {
+        for (String locale : localeISO) {
             when(mockWorkflowPlugin.hasLocaleTranslation(eq(locale))).thenReturn(true);
         }
     }

@@ -134,6 +134,7 @@ public class DocumentTranslatorSameNameSiblingsTest {
         final int maxNumberOfCalls = 5;
         Answer<Boolean> mockNodeIteratorAnswer = new Answer<Boolean>() {
             int numberOfCalls = 0;
+
             @Override
             public Boolean answer(InvocationOnMock invocation) throws Throwable {
                 numberOfCalls++;
@@ -144,12 +145,13 @@ public class DocumentTranslatorSameNameSiblingsTest {
 
         Answer<HippoNode> mockNodeIteratorNodeAnswer = new Answer<HippoNode>() {
             int numberOfCalls = 0;
+
             @Override
             public HippoNode answer(InvocationOnMock invocation) throws Throwable {
                 numberOfCalls++;
                 HippoNode mockNode = mock(HippoNode.class);
                 // Splitting the nodes between folders and handles, the first will be neither
-                if(numberOfCalls == 0) {
+                if (numberOfCalls == 0) {
                     when(mockNode.isNodeType(eq(HippoStdNodeType.NT_FOLDER))).thenReturn(false);
                     when(mockNode.isNodeType(eq(HippoNodeType.NT_HANDLE))).thenReturn(false);
                 } else {
@@ -196,7 +198,7 @@ public class DocumentTranslatorSameNameSiblingsTest {
     }
 
     private FolderTranslation createMockFolderTranslation(String nodeId) {
-        FolderTranslation mockFolder =  mock(FolderTranslation.class);
+        FolderTranslation mockFolder = mock(FolderTranslation.class);
         lenient().when(mockFolder.getId()).thenReturn(nodeId);
         return mockFolder;
     }

@@ -43,7 +43,7 @@ public class UntranslatedLocaleProviderTest {
         // Test that the data is loaded if null, but not reloaded on subsequent calls
         assertNull(provider.getMisingLocales());
 
-        initialiseTranslatedLanguages(new String[] {"fr", "es", "nl"}, new String[] {"fr"});
+        initialiseTranslatedLanguages(new String[]{"fr", "es", "nl"}, new String[]{"fr"});
 
         assertEquals(2, provider.size());
 
@@ -60,14 +60,14 @@ public class UntranslatedLocaleProviderTest {
         // Test that the data is loaded if null, but not reloaded on subsequent calls
         assertNull(provider.getMisingLocales());
 
-        initialiseTranslatedLanguages(new String[] {"fr", "es", "nl", "no"}, new String[] {"fr"});
+        initialiseTranslatedLanguages(new String[]{"fr", "es", "nl", "no"}, new String[]{"fr"});
 
-        provider.iterator(0,2);
+        provider.iterator(0, 2);
 
         assertNotNull(provider.getMisingLocales());
         List<ILocaleProvider.HippoLocale> initailList = provider.getMisingLocales();
 
-        provider.iterator(0,1);
+        provider.iterator(0, 1);
 
         assertSame(initailList, provider.getMisingLocales());
     }
@@ -78,7 +78,7 @@ public class UntranslatedLocaleProviderTest {
         assertNull(provider.getMisingLocales());
         provider.detach();
         assertNull(provider.getMisingLocales());
-        initialiseTranslatedLanguages(new String[] {"fr", "es", "nl", "no"}, new String[] {"fr"});
+        initialiseTranslatedLanguages(new String[]{"fr", "es", "nl", "no"}, new String[]{"fr"});
         provider.load();
         assertNotNull(provider.getMisingLocales());
         provider.detach();
@@ -97,7 +97,7 @@ public class UntranslatedLocaleProviderTest {
     @Test
     public void load_all_translated() {
         // Should just return an empty list
-        initialiseTranslatedLanguages(new String[] {"en", "es", "fr"}, new String[] {"en", "es", "fr"});
+        initialiseTranslatedLanguages(new String[]{"en", "es", "fr"}, new String[]{"en", "es", "fr"});
         provider.load();
 
         assertTrue(provider.getMisingLocales().isEmpty());
@@ -106,7 +106,7 @@ public class UntranslatedLocaleProviderTest {
     @Test
     public void load_mixed_translations() {
         // Should return the untranslated languages in the list
-        initialiseTranslatedLanguages(new String[] {"en", "es", "fr"}, new String[] {"en"});
+        initialiseTranslatedLanguages(new String[]{"en", "es", "fr"}, new String[]{"en"});
         provider.load();
 
         assertEquals(2, provider.getMisingLocales().size());
@@ -115,7 +115,7 @@ public class UntranslatedLocaleProviderTest {
     @Test
     public void load_none_translated() {
         // Should return all the languages in the list
-        initialiseTranslatedLanguages(new String[] {"en", "es", "fr"}, new String[] {});
+        initialiseTranslatedLanguages(new String[]{"en", "es", "fr"}, new String[]{});
         provider.load();
 
         assertEquals(3, provider.getMisingLocales().size());

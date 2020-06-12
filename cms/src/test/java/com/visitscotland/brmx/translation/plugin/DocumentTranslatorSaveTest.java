@@ -27,9 +27,9 @@ import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 public class DocumentTranslatorSaveTest {
-    private DocumentTranslator translator;
     @Mock
     Session mockSession;
+    private DocumentTranslator translator;
 
     @BeforeEach
     public void beforeEach() {

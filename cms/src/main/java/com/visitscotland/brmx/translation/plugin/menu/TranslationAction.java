@@ -20,9 +20,8 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class TranslationAction extends StdWorkflow<TranslationWorkflow> {
-    private TranslationWorkflowPlugin workflowPlugin;
     private final IModel<ILocaleProvider.HippoLocale> localeModel;
-
+    private TranslationWorkflowPlugin workflowPlugin;
     private String url;
 
     private List<FolderTranslation> folders;
@@ -31,9 +30,9 @@ public class TranslationAction extends StdWorkflow<TranslationWorkflow> {
     private DocumentTranslator translator;
 
     public TranslationAction(TranslationWorkflowPlugin workflowPlugin,
-                      String id,
-                      IModel<String> name,
-                      IModel<ILocaleProvider.HippoLocale> localeModel) {
+                             String id,
+                             IModel<String> name,
+                             IModel<ILocaleProvider.HippoLocale> localeModel) {
         this(workflowPlugin, id, name, localeModel, new SessionFactory(), new DocumentTranslator());
     }
 
@@ -75,7 +74,7 @@ public class TranslationAction extends StdWorkflow<TranslationWorkflow> {
             }
         }
 
-        for(ILocaleProvider.HippoLocale targetLocale : untranslatedLocales) {
+        for (ILocaleProvider.HippoLocale targetLocale : untranslatedLocales) {
 
             Node docNode = ((WorkflowDescriptorModel) workflowPlugin.getDefaultModel()).getNode();
 
@@ -93,6 +92,6 @@ public class TranslationAction extends StdWorkflow<TranslationWorkflow> {
 
     @Override
     protected IDialogService.Dialog createRequestDialog() {
-         return new TranslationConfirmationDialog(this, new UntranslatedLocaleProvider(workflowPlugin, workflowPlugin.getLocaleProvider()));
+        return new TranslationConfirmationDialog(this, new UntranslatedLocaleProvider(workflowPlugin, workflowPlugin.getLocaleProvider()));
     }
 }

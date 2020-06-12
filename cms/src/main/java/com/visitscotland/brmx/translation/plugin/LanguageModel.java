@@ -10,8 +10,8 @@ import javax.jcr.Node;
 import javax.jcr.RepositoryException;
 
 final class LanguageModel extends LoadableDetachableModel<String> {
-    private static Logger log = LoggerFactory.getLogger(LanguageModel.class);
     public static final String UNKNOWN_VALUE = "unknown";
+    private static Logger log = LoggerFactory.getLogger(LanguageModel.class);
     private TranslationWorkflowPlugin translationWorkflow;
 
     public LanguageModel(TranslationWorkflowPlugin translationWorkflow) {
@@ -29,7 +29,7 @@ final class LanguageModel extends LoadableDetachableModel<String> {
         try {
             Node documentNode = workflowModel.getNode();
             return documentNode.getProperty(HippoTranslationNodeType.LOCALE).getString();
-        } catch(RepositoryException ex) {
+        } catch (RepositoryException ex) {
             log.error(ex.getMessage(), ex);
             return UNKNOWN_VALUE;
         }

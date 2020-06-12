@@ -13,8 +13,8 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class MenuLocaleProvider implements IDataProvider<ILocaleProvider.HippoLocale> {
-    private TranslationWorkflowPlugin workflowPlugin;
     private final ILocaleProvider localeProvider;
+    private TranslationWorkflowPlugin workflowPlugin;
     private transient List<ILocaleProvider.HippoLocale> availableLocales;
 
     public MenuLocaleProvider(TranslationWorkflowPlugin workflowPlugin) {
@@ -52,7 +52,7 @@ public class MenuLocaleProvider implements IDataProvider<ILocaleProvider.HippoLo
         if (availableLocales == null) {
             load();
         }
-        return availableLocales.subList((int) first, (int)(first + count)).iterator();
+        return availableLocales.subList((int) first, (int) (first + count)).iterator();
     }
 
     @Override

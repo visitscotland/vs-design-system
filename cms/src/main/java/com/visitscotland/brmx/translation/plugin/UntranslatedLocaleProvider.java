@@ -10,8 +10,8 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class UntranslatedLocaleProvider implements IDataProvider<ILocaleProvider.HippoLocale> {
-    private TranslationWorkflowPlugin workflow;
     private final ILocaleProvider localeProvider;
+    private TranslationWorkflowPlugin workflow;
     private transient List<ILocaleProvider.HippoLocale> missingLocales;
 
     public UntranslatedLocaleProvider(TranslationWorkflowPlugin workflow, ILocaleProvider localeProvider) {
@@ -37,7 +37,7 @@ public class UntranslatedLocaleProvider implements IDataProvider<ILocaleProvider
         if (missingLocales == null) {
             load();
         }
-        return missingLocales.subList((int) first, (int)(first + count)).iterator();
+        return missingLocales.subList((int) first, (int) (first + count)).iterator();
     }
 
     @Override
