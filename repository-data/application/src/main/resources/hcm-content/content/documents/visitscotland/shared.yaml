@@ -10,7 +10,7 @@
     jcr:primaryType: hippostd:folder
     jcr:mixinTypes: ['hippo:named', 'hippotranslation:translated', 'mix:versionable']
     jcr:uuid: 41b800fa-fa6e-40e7-b01f-c248bf66a26a
-    hippo:name: Itinerary stops (Devs)
+    hippo:name: Itinerary stops (Back end Devs)
     hippostd:foldertype: [new-translated-folder, new-document]
     hippotranslation:id: 683a53b0-4162-48f2-9124-d025fabe4f64
     hippotranslation:locale: en
@@ -1872,7 +1872,7 @@
       jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
       jcr:uuid: b390df94-227d-4535-a7a2-6073465d6642
       hippo:name: Drum Castle
-      hippo:versionHistory: a7714521-0358-49e3-86a0-329a518fc078
+      hippo:versionHistory: f5042b93-66bc-497f-8155-91a49a2236a0
       /drum-castle[1]:
         jcr:primaryType: visitscotland:Stop
         jcr:mixinTypes: ['mix:referenceable']
@@ -1965,11 +1965,12 @@
         hippostd:state: published
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2020-02-07T12:53:57.587Z
-        hippostdpubwf:lastModificationDate: 2020-04-02T18:52:48.666+01:00
+        hippostdpubwf:lastModificationDate: 2020-04-10T13:49:43.188+01:00
         hippostdpubwf:lastModifiedBy: admin
-        hippostdpubwf:publicationDate: 2020-04-02T18:52:52.871+01:00
+        hippostdpubwf:publicationDate: 2020-06-12T09:13:34.154+01:00
         hippotranslation:id: acafffcc-8eb9-41e3-b7fd-e56c9eb7c5ce
         hippotranslation:locale: en
+        visitscotland:subtitle: ''
         visitscotland:tipsTitle: ''
         visitscotland:title: Drum Castle
         /visitscotland:description:
@@ -1995,7 +1996,7 @@
             hippo:values: []
         /visitscotland:image:
           jcr:primaryType: hippogallerypicker:imagelink
-          hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
+          hippo:docbase: 8d4f5036-64ca-4e5d-aa89-b348ae38b081
           hippo:facets: []
           hippo:modes: []
           hippo:values: []

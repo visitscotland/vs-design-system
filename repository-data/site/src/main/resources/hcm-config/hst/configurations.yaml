@@ -148,9 +148,9 @@ definitions:
               hst:componentconfigurationid: hst:pages/pagenotfound
               hst:relativecontentpath: ${parent}/content
               hst:componentconfigurationmappingvalues: ['hst:pages/itinerary-page',
-                'hst:pages/listicle-page']
+                'hst:pages/listicle-page', 'hst:pages/destination-page']
               hst:componentconfigurationmappingnames: ['visitscotland:Itinerary',
-                'visitscotland:Listicle']
+                'visitscotland:Listicle', 'visitscotland:Destination']
             /_default_:
               jcr:primaryType: hst:sitemapitem
               hst:componentconfigurationid: hst:pages/pagenotfound
@@ -171,9 +171,9 @@ definitions:
                   jcr:primaryType: hst:sitemapitem
                   hst:componentconfigurationid: hst:pages/pagenotfound
                   hst:componentconfigurationmappingnames: ['visitscotland:Itinerary',
-                    'visitscotland:Listicle']
+                    'visitscotland:Listicle', 'visitscotland:Destination']
                   hst:componentconfigurationmappingvalues: ['hst:pages/itinerary-page',
-                    'hst:pages/listicle-page']
+                    'hst:pages/listicle-page', 'visitscotland:Destination']
                   hst:relativecontentpath: ${parent}/content
                 /_default_:
                   jcr:primaryType: hst:sitemapitem
@@ -183,9 +183,9 @@ definitions:
                     jcr:primaryType: hst:sitemapitem
                     hst:componentconfigurationid: hst:pages/pagenotfound
                     hst:componentconfigurationmappingnames: ['visitscotland:Itinerary',
-                      'visitscotland:Listicle']
+                      'visitscotland:Listicle', 'visitscotland:Destination']
                     hst:componentconfigurationmappingvalues: ['hst:pages/itinerary-page',
-                      'hst:pages/listicle-page']
+                      'hst:pages/listicle-page', 'visitscotland:Destination']
                     hst:relativecontentpath: ${parent}/content
                   /_default_:
                     jcr:primaryType: hst:sitemapitem
