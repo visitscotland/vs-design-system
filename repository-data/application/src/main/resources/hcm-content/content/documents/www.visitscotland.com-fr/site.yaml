@@ -15,286 +15,97 @@
     /content:
       jcr:primaryType: hippo:handle
       jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
-      jcr:uuid: 53b31efa-3039-4f2d-80f3-c76754cf4713
-      hippo:name: Developer test -FR
-      hippo:versionHistory: 7bd4d880-48ba-4988-874f-1908926bb1ce
+      jcr:uuid: 7c608f10-a511-490d-9d0e-1ae3e84b75d1
+      hippo:name: index FR
+      hippo:versionHistory: 03e30b5e-950a-47f4-b92c-52987006f6b0
       /content[1]:
-        jcr:primaryType: visitscotland:Itinerary
+        jcr:primaryType: visitscotland:Destination
         jcr:mixinTypes: ['mix:versionable']
-        jcr:uuid: b989a5fe-f08b-469f-89f8-d8bf472ac6c2
+        jcr:uuid: 5d22fa41-68cb-439b-8b86-bd5eacb05402
         hippo:availability: [preview]
         hippostd:state: unpublished
         hippostdpubwf:createdBy: admin
-        hippostdpubwf:creationDate: 2019-12-06T12:48:04.149Z
-        hippostdpubwf:lastModificationDate: 2020-06-05T09:57:08.115+01:00
+        hippostdpubwf:creationDate: 2020-06-12T09:19:11.781+01:00
+        hippostdpubwf:lastModificationDate: 2020-06-12T15:41:33.596+01:00
         hippostdpubwf:lastModifiedBy: admin
-        hippotranslation:id: a3ed9022-e239-493b-952c-18d01ac36640
+        hippotranslation:id: d4a2124b-1158-4b28-ab11-ff84f2c9801f
         hippotranslation:locale: fr
-        visitscotland:areas: [east]
-        visitscotland:breadcrumb: Development Area
-        visitscotland:distance: 3.718
-        visitscotland:finish: Spain
-        visitscotland:highlights: "Broken Itinerary\r\nVictoria Heritage\r\nOutlander\r\
-          \nShort break"
-        visitscotland:popular: false
-        visitscotland:seoDescription: A bunch of useful links for developers
+        visitscotland:breadcrumb: ''
+        visitscotland:location: Aberdeen
+        visitscotland:seoDescription: '1'
         visitscotland:seoNoIndex: false
-        visitscotland:seoTitle: A bunch of useful links for developers
-        visitscotland:start: Scotland
-        visitscotland:summary: ''
-        visitscotland:teaser: Do not dare to link to this page!!!
-        visitscotland:text: "Glenfinnan Viaduct\r\n\r\nJacobite Steam Train\r\n\r\n\
-          Glen Etive\r\n\r\nThe Elephant House"
-        visitscotland:theme: whisky
-        visitscotland:title: A bunch of useful links for developers
-        visitscotland:transport: [boat]
-        visitscotland:transports: [car, train]
+        visitscotland:seoTitle: '1'
+        visitscotland:teaser: These pages are used by back ends developers for content
+          modelling
+        visitscotland:title: Devs - test
         /visitscotland:heroImage:
           jcr:primaryType: hippogallerypicker:imagelink
-          hippo:docbase: 1e4be246-297b-4404-8102-80fe1bc0ddf7
+          hippo:docbase: 878bc413-07fe-4c1a-9df6-55514c250a16
           hippo:facets: []
           hippo:modes: []
           hippo:values: []
         /visitscotland:introduction:
           jcr:primaryType: hippostd:html
-          hippostd:content: |-
-            <p>Itineraries:</p>
-
-            <ul>
-             <li><a href="content_3">Broken Itinerary</a></li>
-             <li><a href="content_2">Victoria Heritage</a></li>
-             <li><a href="content_1">Outlander</a></li>
-             <li><a href="content">Short break</a></li>
-            </ul>
-
-            <p>Listicles:</p>
-
-            <ul>
-             <li><a href="content_4">Demo Listicle</a></li>
-            </ul>
-
-            <p>&nbsp;</p>
-          /content:
-            jcr:primaryType: hippo:facetselect
-            hippo:docbase: 4d302e29-93dd-4157-9df9-bbd741bb12a0
-            hippo:facets: []
-            hippo:modes: []
-            hippo:values: []
-          /content_1:
-            jcr:primaryType: hippo:facetselect
-            hippo:docbase: 3158d2f5-5f70-407a-be69-a7f7061c0d11
-            hippo:facets: []
-            hippo:modes: []
-            hippo:values: []
-          /content_2:
-            jcr:primaryType: hippo:facetselect
-            hippo:docbase: e16bdb89-c271-46f1-851f-2d2b82d631d4
-            hippo:facets: []
-            hippo:modes: []
-            hippo:values: []
-          /content_3:
-            jcr:primaryType: hippo:facetselect
-            hippo:docbase: 8b4a3c11-8b84-4aa0-bccf-f407d18c1c44
-            hippo:facets: []
-            hippo:modes: []
-            hippo:values: []
-          /content_4:
-            jcr:primaryType: hippo:facetselect
-            hippo:docbase: cbc8477d-1deb-4153-b663-12212905b472
-            hippo:facets: []
-            hippo:modes: []
-            hippo:values: []
-        /visitscotland:ProductsSearch:
-          jcr:primaryType: visitscotland:ProductsSearch
-          visitscotland:distance: 0
-          visitscotland:dmsCategories: [guesthouse, yurts, touringpark, hostel]
-          visitscotland:dmscategories: ''
-          visitscotland:location: ''
-          visitscotland:producttype: ''
+          hippostd:content: <p>These pages are used by back ends developers for content
+            modelling&nbsp;</p>
       /content[2]:
-        jcr:primaryType: visitscotland:Itinerary
+        jcr:primaryType: visitscotland:Destination
         jcr:mixinTypes: ['mix:referenceable']
-        jcr:uuid: 030dbeb1-993f-4f0c-81ab-465e62a13465
+        jcr:uuid: aa88eea0-fcd2-41b8-a7f7-aea10c69b86d
         hippo:availability: []
         hippostd:state: draft
         hippostdpubwf:createdBy: admin
-        hippostdpubwf:creationDate: 2019-12-06T12:48:04.149Z
-        hippostdpubwf:lastModificationDate: 2020-06-05T09:57:08.289+01:00
+        hippostdpubwf:creationDate: 2020-06-12T09:19:11.781+01:00
+        hippostdpubwf:lastModificationDate: 2020-06-12T15:41:33.654+01:00
         hippostdpubwf:lastModifiedBy: admin
-        hippotranslation:id: a3ed9022-e239-493b-952c-18d01ac36640
+        hippotranslation:id: d4a2124b-1158-4b28-ab11-ff84f2c9801f
         hippotranslation:locale: fr
-        visitscotland:areas: [east]
-        visitscotland:breadcrumb: Development Area
-        visitscotland:distance: 3.718
-        visitscotland:finish: Spain
-        visitscotland:highlights: "Broken Itinerary\r\nVictoria Heritage\r\nOutlander\r\
-          \nShort break"
-        visitscotland:popular: false
-        visitscotland:seoDescription: A bunch of useful links for developers
+        visitscotland:breadcrumb: ''
+        visitscotland:location: Aberdeen
+        visitscotland:seoDescription: '1'
         visitscotland:seoNoIndex: false
-        visitscotland:seoTitle: A bunch of useful links for developers
-        visitscotland:start: Scotland
-        visitscotland:summary: ''
-        visitscotland:teaser: Do not dare to link to this page!!!
-        visitscotland:text: "Glenfinnan Viaduct\r\n\r\nJacobite Steam Train\r\n\r\n\
-          Glen Etive\r\n\r\nThe Elephant House"
-        visitscotland:theme: whisky
-        visitscotland:title: A bunch of useful links for developers
-        visitscotland:transport: [boat]
-        visitscotland:transports: [car, train]
+        visitscotland:seoTitle: '1'
+        visitscotland:teaser: These pages are used by back ends developers for content
+          modelling
+        visitscotland:title: Devs - test
         /visitscotland:heroImage:
           jcr:primaryType: hippogallerypicker:imagelink
-          hippo:docbase: 1e4be246-297b-4404-8102-80fe1bc0ddf7
+          hippo:docbase: 878bc413-07fe-4c1a-9df6-55514c250a16
           hippo:facets: []
           hippo:modes: []
           hippo:values: []
         /visitscotland:introduction:
           jcr:primaryType: hippostd:html
-          hippostd:content: |-
-            <p>Itineraries:</p>
-
-            <ul>
-             <li><a href="content_3">Broken Itinerary</a></li>
-             <li><a href="content_2">Victoria Heritage</a></li>
-             <li><a href="content_1">Outlander</a></li>
-             <li><a href="content">Short break</a></li>
-            </ul>
-
-            <p>Listicles:</p>
-
-            <ul>
-             <li><a href="content_4">Demo Listicle</a></li>
-            </ul>
-
-            <p>&nbsp;</p>
-          /content:
-            jcr:primaryType: hippo:facetselect
-            hippo:docbase: 4d302e29-93dd-4157-9df9-bbd741bb12a0
-            hippo:facets: []
-            hippo:modes: []
-            hippo:values: []
-          /content_1:
-            jcr:primaryType: hippo:facetselect
-            hippo:docbase: 3158d2f5-5f70-407a-be69-a7f7061c0d11
-            hippo:facets: []
-            hippo:modes: []
-            hippo:values: []
-          /content_2:
-            jcr:primaryType: hippo:facetselect
-            hippo:docbase: e16bdb89-c271-46f1-851f-2d2b82d631d4
-            hippo:facets: []
-            hippo:modes: []
-            hippo:values: []
-          /content_3:
-            jcr:primaryType: hippo:facetselect
-            hippo:docbase: 8b4a3c11-8b84-4aa0-bccf-f407d18c1c44
-            hippo:facets: []
-            hippo:modes: []
-            hippo:values: []
-          /content_4:
-            jcr:primaryType: hippo:facetselect
-            hippo:docbase: cbc8477d-1deb-4153-b663-12212905b472
-            hippo:facets: []
-            hippo:modes: []
-            hippo:values: []
-        /visitscotland:ProductsSearch:
-          jcr:primaryType: visitscotland:ProductsSearch
-          visitscotland:distance: 0
-          visitscotland:dmsCategories: [guesthouse, yurts, touringpark, hostel]
-          visitscotland:dmscategories: ''
-          visitscotland:location: ''
-          visitscotland:producttype: ''
+          hippostd:content: <p>These pages are used by back ends developers for content
+            modelling&nbsp;</p>
       /content[3]:
-        jcr:primaryType: visitscotland:Itinerary
+        jcr:primaryType: visitscotland:Destination
         jcr:mixinTypes: ['mix:referenceable']
-        jcr:uuid: 589ed6ba-324b-4f2d-97ae-4baf4b7f7050
+        jcr:uuid: f47b7e45-8f90-42ed-9b2a-dd0f2325a046
         hippo:availability: [live]
         hippostd:state: published
         hippostdpubwf:createdBy: admin
-        hippostdpubwf:creationDate: 2019-12-06T12:48:04.149Z
-        hippostdpubwf:lastModificationDate: 2020-06-05T09:57:08.115+01:00
+        hippostdpubwf:creationDate: 2020-06-12T09:19:11.781+01:00
+        hippostdpubwf:lastModificationDate: 2020-06-12T15:41:33.596+01:00
         hippostdpubwf:lastModifiedBy: admin
-        hippostdpubwf:publicationDate: 2020-06-05T09:57:49.748+01:00
-        hippotranslation:id: a3ed9022-e239-493b-952c-18d01ac36640
+        hippostdpubwf:publicationDate: 2020-06-12T15:44:22.765+01:00
+        hippotranslation:id: d4a2124b-1158-4b28-ab11-ff84f2c9801f
         hippotranslation:locale: fr
-        visitscotland:areas: [east]
-        visitscotland:breadcrumb: Development Area
-        visitscotland:distance: 3.718
-        visitscotland:finish: Spain
-        visitscotland:highlights: "Broken Itinerary\r\nVictoria Heritage\r\nOutlander\r\
-          \nShort break"
-        visitscotland:popular: false
-        visitscotland:seoDescription: A bunch of useful links for developers
+        visitscotland:breadcrumb: ''
+        visitscotland:location: Aberdeen
+        visitscotland:seoDescription: '1'
         visitscotland:seoNoIndex: false
-        visitscotland:seoTitle: A bunch of useful links for developers
-        visitscotland:start: Scotland
-        visitscotland:summary: ''
-        visitscotland:teaser: Do not dare to link to this page!!!
-        visitscotland:text: "Glenfinnan Viaduct\r\n\r\nJacobite Steam Train\r\n\r\n\
-          Glen Etive\r\n\r\nThe Elephant House"
-        visitscotland:theme: whisky
-        visitscotland:title: A bunch of useful links for developers
-        visitscotland:transport: [boat]
-        visitscotland:transports: [car, train]
+        visitscotland:seoTitle: '1'
+        visitscotland:teaser: These pages are used by back ends developers for content
+          modelling
+        visitscotland:title: Devs - test
         /visitscotland:heroImage:
           jcr:primaryType: hippogallerypicker:imagelink
-          hippo:docbase: 1e4be246-297b-4404-8102-80fe1bc0ddf7
+          hippo:docbase: 878bc413-07fe-4c1a-9df6-55514c250a16
           hippo:facets: []
           hippo:modes: []
           hippo:values: []
         /visitscotland:introduction:
           jcr:primaryType: hippostd:html
-          hippostd:content: |-
-            <p>Itineraries:</p>
-
-            <ul>
-             <li><a href="content_3">Broken Itinerary</a></li>
-             <li><a href="content_2">Victoria Heritage</a></li>
-             <li><a href="content_1">Outlander</a></li>
-             <li><a href="content">Short break</a></li>
-            </ul>
-
-            <p>Listicles:</p>
-
-            <ul>
-             <li><a href="content_4">Demo Listicle</a></li>
-            </ul>
-
-            <p>&nbsp;</p>
-          /content:
-            jcr:primaryType: hippo:facetselect
-            hippo:docbase: 4d302e29-93dd-4157-9df9-bbd741bb12a0
-            hippo:facets: []
-            hippo:modes: []
-            hippo:values: []
-          /content_1:
-            jcr:primaryType: hippo:facetselect
-            hippo:docbase: 3158d2f5-5f70-407a-be69-a7f7061c0d11
-            hippo:facets: []
-            hippo:modes: []
-            hippo:values: []
-          /content_2:
-            jcr:primaryType: hippo:facetselect
-            hippo:docbase: e16bdb89-c271-46f1-851f-2d2b82d631d4
-            hippo:facets: []
-            hippo:modes: []
-            hippo:values: []
-          /content_3:
-            jcr:primaryType: hippo:facetselect
-            hippo:docbase: 8b4a3c11-8b84-4aa0-bccf-f407d18c1c44
-            hippo:facets: []
-            hippo:modes: []
-            hippo:values: []
-          /content_4:
-            jcr:primaryType: hippo:facetselect
-            hippo:docbase: cbc8477d-1deb-4153-b663-12212905b472
-            hippo:facets: []
-            hippo:modes: []
-            hippo:values: []
-        /visitscotland:ProductsSearch:
-          jcr:primaryType: visitscotland:ProductsSearch
-          visitscotland:distance: 0
-          visitscotland:dmsCategories: [guesthouse, yurts, touringpark, hostel]
-          visitscotland:dmscategories: ''
-          visitscotland:location: ''
-          visitscotland:producttype: ''
+          hippostd:content: <p>These pages are used by back ends developers for content
+            modelling&nbsp;</p>
