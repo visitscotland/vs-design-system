@@ -19,7 +19,11 @@ public class UntranslatedLocaleProvider implements IDataProvider<ILocaleProvider
         this.localeProvider = localeProvider;
     }
 
-    private void load() {
+    protected List<ILocaleProvider.HippoLocale> getMisingLocales() {
+        return missingLocales;
+    }
+
+    protected void load() {
         missingLocales = new LinkedList<>();
         for (String language : workflow.getAvailableLanguages()) {
             if (!workflow.hasLocaleTranslation(language)) {

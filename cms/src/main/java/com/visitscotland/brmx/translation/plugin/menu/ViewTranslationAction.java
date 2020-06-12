@@ -1,5 +1,6 @@
 package com.visitscotland.brmx.translation.plugin.menu;
 
+import com.visitscotland.brmx.translation.plugin.HippoTranslatedNodeFactory;
 import com.visitscotland.brmx.translation.plugin.TranslationWorkflowPlugin;
 import org.apache.wicket.Component;
 import org.apache.wicket.model.IModel;
@@ -22,12 +23,35 @@ public class ViewTranslationAction extends StdWorkflow<TranslationWorkflow> {
     private TranslationWorkflowPlugin workflow;
     private final String language;
     private final IModel<ILocaleProvider.HippoLocale> localeModel;
+    private HippoTranslatedNodeFactory hippoTranslatedNodeFactory;
 
-    public ViewTranslationAction(TranslationWorkflowPlugin workflowPlugin, String id, IModel<String> name, IModel<ILocaleProvider.HippoLocale> localeModel, String language, IModel<String> languageModel) {
+    public ViewTranslationAction(
+            TranslationWorkflowPlugin workflowPlugin,
+            String id,
+            IModel<String> name,
+            IModel<ILocaleProvider.HippoLocale> localeModel,
+            String language,
+            IModel<String> languageModel) {
         super(id, name, workflowPlugin.getPluginContext(), (WorkflowDescriptorModel) workflowPlugin.getModel());
         this.workflow = workflowPlugin;
         this.language = language;
         this.localeModel = localeModel;
+        this.hippoTranslatedNodeFactory = new HippoTranslatedNodeFactory();
+    }
+
+    public ViewTranslationAction(
+            TranslationWorkflowPlugin workflowPlugin,
+            String id,
+            IModel<String> name,
+            IModel<ILocaleProvider.HippoLocale> localeModel,
+            String language,
+            IModel<String> languageModel,
+            HippoTranslatedNodeFactory hippoTranslatedNodeFactory) {
+        super(id, name, workflowPlugin.getPluginContext(), (WorkflowDescriptorModel) workflowPlugin.getModel());
+        this.workflow = workflowPlugin;
+        this.language = language;
+        this.localeModel = localeModel;
+        this.hippoTranslatedNodeFactory = hippoTranslatedNodeFactory;
     }
 
     @Override
@@ -66,9 +90,9 @@ public class ViewTranslationAction extends StdWorkflow<TranslationWorkflow> {
                 return null;
             }
 
-            HippoTranslatedNode translatedNode = new HippoTranslatedNode(node);
+            HippoTranslatedNode translatedNode = hippoTranslatedNodeFactory.createFromNode(node);
             Node translation = translatedNode.getTranslation(language);
-            browser.browse(new JcrNodeModel(translation.getParent()));
+            browser.browse(createJcrNodeModel(translation.getParent()));
         } catch (RepositoryException e) {
             LOG.error("Error retrieving translation node", e);
         }
@@ -76,4 +100,7 @@ public class ViewTranslationAction extends StdWorkflow<TranslationWorkflow> {
         return null;
     }
 
+    protected JcrNodeModel createJcrNodeModel(Node node) throws RepositoryException {
+        return new JcrNodeModel(node);
+    }
 }
