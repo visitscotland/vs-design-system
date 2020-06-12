@@ -6,7 +6,8 @@ import org.hippoecm.repository.translation.HippoTranslationNodeType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.jcr.*;
+import javax.jcr.Node;
+import javax.jcr.RepositoryException;
 
 final class LanguageModel extends LoadableDetachableModel<String> {
     private static Logger log = LoggerFactory.getLogger(LanguageModel.class);

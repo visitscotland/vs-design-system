@@ -1,7 +1,5 @@
 package com.visitscotland.brmx.translation.plugin;
 
-import org.apache.wicket.request.resource.ResourceReference;
-import org.apache.wicket.util.lang.Packages;
 import org.junit.jupiter.api.Test;
 
 import java.io.InputStream;
