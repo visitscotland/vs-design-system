@@ -1,3 +1,9 @@
-export { VsDescriptionList } from "./DescriptionList"
-export { VsDescriptionListDetail } from "./DescriptionListDetail"
-export { VsDescriptionListTerm } from "./DescriptionListTerm"
+import VsDescriptionList from "./DescriptionList"
+import VsDescriptionListDetail from "./DescriptionListDetail"
+import VsDescriptionListTerm from "./DescriptionListTerm"
+
+export {
+    VsDescriptionList,
+    VsDescriptionListDetail,
+    VsDescriptionListTerm,
+}
