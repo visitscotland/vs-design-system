@@ -20,6 +20,9 @@ const storePattern = "./src/components/**/*.store.js"
 
 const components = {
     core: "./build/core.system-components.js",
+    // This, combined with other build settings will internalise the
+    // Vue dependency and make it available as a module for manipulation
+    // VsVendorVue: "vue/dist/vue.esm.js",
 }
 
 componentPaths
