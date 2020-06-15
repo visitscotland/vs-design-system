@@ -1,12 +1,13 @@
 <#include "../../../../include/imports.ftl">
-<#include "../../../../vs-dotcom-ds/components/itinerary-map.ftl">
+<#--  This needs to be commented out for now because the ItineraryMap component is currently excluded from the build  -->
+<#--  <#include "../../../../vs-dotcom-ds/components/itinerary-map.ftl">  -->
 <#include "../../../../vs-dotcom-ds/components/itinerary-map-marker.ftl">
 
 <#-- @ftlvariable name="stop" type="com.visitscotland.brmx.beans.Stop" -->
 <#-- @ftlvariable name="prod" type="com.visitscotland.brmx.beans.mapping.FlatStop" -->
 
 <#macro itineraryMap days>
-    <vs-itinerary-map
+    <#--  <vs-itinerary-map
         slot="map"
         access-token= ${label("keys", "maptiler.devkey")}
         overview-map-longitude="57.81"
@@ -24,27 +25,27 @@
                     <#elseif prod.image.externalImage??>
                         <#assign image = prod.image.externalImage />
                     </#if>
-                </#if>
-                <#if prod.coordinates?? && prod.coordinates.latitude?? && prod.coordinates.latitude?has_content && prod.coordinates.longitude?? && prod.coordinates.longitude?has_content>
-                {
-                    title: "${prod.title}",
-                    latitude: "${prod.coordinates.latitude}",
-                    longitude: "${prod.coordinates.longitude}",
-                    stopCount: "${prod.index}",
-                    imageSrc: "${image}",
-                    altText: "${prod.title}"
-                },
-                </#if>
-            </#list>
-        </#list>]'
-        :labels='{
-            stopLabel: "${label("itinerary", "stop.title")}",
-            mapControlsFullscreenOpen:"${label("map", "map.fullscreen")}",
-            mapControlsFullscreenClose: "${label("map", "map.exitfullscreen")}",
-            mapControlsCompass: "${label("map", "map.reset")}",
-            mapControlsZoomIn: "${label("map", "map.zoomin")}",
-            mapControlsZoomOut: "${label("map", "map.zoomout")}"
-        }'
-    >
-    </vs-itinerary-map>
+                    <#if prod.coordinates?? && prod.coordinates.latitude?? && prod.coordinates.latitude?has_content && prod.coordinates.longitude?? && prod.coordinates.longitude?has_content>
+                    {
+                        title: "${prod.title}",
+                        latitude: "${prod.coordinates.latitude}",
+                        longitude: "${prod.coordinates.longitude}",
+                        stopCount: "${prod.index}",
+                        imageSrc: "${image}",
+                        altText: "${prod.title}"
+                    },
+                    </#if>
+                </#list>
+            </#list>]'
+            :labels='{
+                stopLabel: "${label("itinerary", "stop.title")}",
+                mapControlsFullscreenOpen:"${label("map", "map.fullscreen")}",
+                mapControlsFullscreenClose: "${label("map", "map.exitfullscreen")}",
+                mapControlsCompass: "${label("map", "map.reset")}",
+                mapControlsZoomIn: "${label("map", "map.zoomin")}",
+                mapControlsZoomOut: "${label("map", "map.zoomout")}"
+            }'
+        >
+    </vs-itinerary-map>  -->
+
 </#macro>
