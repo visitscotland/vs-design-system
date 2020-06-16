@@ -1,7 +1,9 @@
 <template>
-    <figure class="vs-image-with-caption position-relative">
+    <figure
+        class="vs-image-with-caption position-relative"
+        :class="{ 'vs-image-with-caption--closed-default': closedDefaultCaption }"
+    >
         <div class="vs-image-with-caption__image-wrapper">
-            <!-- @slot Contains the media to be shown. Defaults to an image.  -->
             <slot>
                 <VsImg
                     v-if="imageSrc"
@@ -16,7 +18,6 @@
             <VsButton
                 variant="outline-transparent"
                 class="vs-image-with-caption__toggle-caption-btn position-absolute"
-                :class="{ 'd-block': closedDefaultCaption }"
                 :animate="false"
                 :aria-controls="'image_' + imageSrc"
                 :aria-expanded="showCaption ? 'true' : 'false'"
@@ -29,7 +30,6 @@
                     size="sm"
                     :padding="0"
                 />
-                <!-- @slot Contains the icon for the toggle button. Defaults to info icon. -->
                 <slot
                     v-else
                     name="toggle-icon"
@@ -44,7 +44,9 @@
         </div>
 
         <div
-            :class="{ 'd-block': showCaption, 'd-none': closedDefaultCaption }"
+            :class="{
+                'd-block': showCaption,
+            }"
             class="vs-image-with-caption__caption-wrapper"
             :id="'image_' + imageSrc"
         >
@@ -65,16 +67,13 @@
                     >
                         <div :class="isLargeCaption ? 'p-4' : 'px-4 py-3 pr-8'">
                             <p class="vs-image-with-caption__image-caption">
-                                <!-- @slot Put the caption here -->
                                 <slot name="caption" />
                             </p>
 
                             <p class="vs-image-with-caption__image-credit">
-                                <!-- @slot Put the credit here  -->
                                 <slot name="credit" />
                             </p>
 
-                            <!-- @slot Put the social credit link here -->
                             <slot name="social-link" />
                         </div>
                     </VsCol>
@@ -104,6 +103,7 @@
 import { lazysizes } from "lazysizes"
 import VsSvg from "@components/elements/svg/Svg"
 import VsImg from "@components/elements/img/Img"
+import VsIcon from "@components/elements/icon/Icon"
 import VsButton from "@components/elements/button/Button"
 import { VsRow, VsCol } from "@components/elements/layout"
 import VsImageLocationMap from "@components/patterns/image-location-map/ImageLocationMap"
@@ -123,6 +123,7 @@ export default {
         VsButton,
         VsSvg,
         VsImg,
+        VsIcon,
     },
     props: {
         /**
@@ -205,22 +206,29 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 img {
     width: 100%;
     height: auto;
 }
 
-.vs-image-with-caption__toggle-caption-btn {
-    bottom: $spacer-2;
-    padding: 0;
-    right: $spacer-2;
-    line-height: $line_height_xs;
-    z-index: 3;
-    display: block;
+.vs-image-with-caption__image-wrapper {
 
-    @include media-breakpoint-up(sm) {
-        display: none;
+    .vs-image-with-caption__toggle-caption-btn {
+        bottom: $spacer-2;
+        padding: 0;
+        right: $spacer-2;
+        line-height: $line_height_xs;
+        z-index: 3;
+        display: block;
+
+        @include media-breakpoint-up(sm) {
+            display: none;
+
+            .vs-image-with-caption--closed-default & {
+                display: block;
+            }
+        }
     }
 }
 
@@ -229,6 +237,10 @@ img {
 
     @include media-breakpoint-up(sm) {
         display: block;
+
+        .vs-image-with-caption--closed-default & {
+            display: none;
+        }
     }
 
     @include media-breakpoint-down(lg) {
@@ -312,6 +324,41 @@ img {
                 > .row {
                     margin: 0 -16px;
                 }
+            }
+        }
+    }
+}
+
+
+@include no-js {
+    .vs-image-with-caption__image-wrapper {
+        .vs-image-with-caption__toggle-caption-btn {
+            display: none;
+        }
+    }
+
+    .vs-image-with-caption__caption-wrapper {
+        display: block;
+
+        .vs-image-with-caption__large-caption,
+        .vs-image-with-caption__fullwidth-caption {
+            @include media-breakpoint-down(xs) {
+                position: relative;
+            }
+        }
+    }
+
+    .vs-image-with-caption--closed-default {
+        .vs-image-with-caption__image-wrapper {
+            .vs-image-with-caption__toggle-caption-btn {
+                display: none;
+            }
+        }
+
+        .vs-image-with-caption__caption-wrapper {
+            .vs-image-with-caption__large-caption,
+            .vs-image-with-caption__fullwidth-caption {
+                position: relative;
             }
         }
     }
