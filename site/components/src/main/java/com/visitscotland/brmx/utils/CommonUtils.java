@@ -16,6 +16,9 @@ import java.time.format.DateTimeFormatter;
 import java.util.Locale;
 
 public class CommonUtils {
+  
+    final static String VS_DMS_ENCODING = "UTF8";
+  
     //TODO add message format for other languages
     public static final String contentIssue (String message, Object... parameters){
         return String.format("- [CONTENT] - " + message, parameters);
@@ -57,7 +60,7 @@ public class CommonUtils {
     public static String request(String url) throws IOException {
         // TODO comment
         if (((HttpURLConnection) new URL(url).openConnection()).getResponseCode() < 400){
-            final BufferedReader br = new BufferedReader(new InputStreamReader(new URL(url).openStream()));
+            final BufferedReader br = new BufferedReader(new InputStreamReader(new URL(url).openStream(), VS_DMS_ENCODING));
             final StringBuilder sb = new StringBuilder();
             int cp;
 
