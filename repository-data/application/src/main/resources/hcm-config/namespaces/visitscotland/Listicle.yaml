@@ -11,7 +11,7 @@ definitions:
         /hipposysedit:nodetype:
           jcr:primaryType: hipposysedit:nodetype
           jcr:mixinTypes: ['mix:referenceable', 'hipposysedit:remodel']
-          jcr:uuid: 7858754d-03ad-4ab7-91d7-294d56411503
+          jcr:uuid: a22820a2-9428-426a-a018-87b0c0dafb2f
           hipposysedit:node: true
           hipposysedit:supertype: ['visitscotland:Page', 'hippostd:relaxed', 'hippotranslation:translated']
           hipposysedit:uri: http://www.visitscotland.com/visitscotland/nt/1.0
@@ -56,7 +56,7 @@ definitions:
           visitscotland:title: ''
           visitscotland:seoTitle: ''
           jcr:mixinTypes: ['mix:referenceable']
-          jcr:uuid: 722be19a-ffe5-4882-b037-42bbf41ae2f4
+          jcr:uuid: 7a534f1f-33e7-4bb4-b22c-f725f1d66a28
           hippostdpubwf:lastModificationDate: 2020-02-11T09:30:21.383Z
           hippostdpubwf:creationDate: 2020-02-11T09:30:21.383Z
           visitscotland:descOrder: false
@@ -98,10 +98,11 @@ definitions:
             wicket.id: ${cluster.id}.right
           /heroImage:
             jcr:primaryType: frontend:plugin
-            caption: Hero Image
+            caption: Link Image
             field: heroImage
             plugin.class: org.hippoecm.frontend.editor.plugins.field.NodeFieldPlugin
             wicket.id: ${cluster.id}.left.item
+            hint: ''
             /cluster.options:
               jcr:primaryType: frontend:pluginconfig
           /seoTitle:

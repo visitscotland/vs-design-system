@@ -13,15 +13,18 @@ if (BRANCH_NAME == "develop" && JOB_NAME == "develop.visitscotland.com-mb/develo
 }
 
 pipeline {
- options {
+  options {
     buildDiscarder(logRotator(numToKeepStr: '5'))
   }
- agent {label thisAgent}
- tools {
+  agent {label thisAgent}
+  environment {
+    VS_SSR_PROXY_ON = 'TRUE'
+  }
+  tools {
         maven 'Maven 3.3.9'
         jdk 'jdk1.8.0'
-    }
-    stages {
+  }
+  stages {
 
 // "Checkout Design System" stage now commented out as it's no longer required since VS-1081 - please merge this change as required but leave the block for reference
 //		stage ('Checkout Design System') {
@@ -35,12 +38,18 @@ pipeline {
 //			}
 //		}
 
-      stage ('Build Application') {
-        when {
+    stage ('Pre-build') {
+      steps {
+        sh 'printenv'
+      }
+    }
+
+    stage ('Build Application') {
+      when {
           expression {
             return env.BRANCH_NAME != 'branch-to-skip';
           }
-        }
+      }
             steps {
                 sh 'mvn -f pom.xml clean package'
             }
