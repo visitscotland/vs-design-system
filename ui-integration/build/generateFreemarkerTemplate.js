@@ -2,11 +2,19 @@ const fs = require("fs")
 const path = require("path")
 
 const rf = require("rimraf")
-const { each, kebabCase, partial, reduce, trimStart, startsWith } = require("lodash")
+const { 
+  each,
+  kebabCase,
+  partial,
+  reduce,
+  trimStart,
+  startsWith,
+  isEmpty,
+  includes,
+  last,
+} = require("lodash")
 const { getOptions } = require("loader-utils")
 const validateOptions = require("schema-utils")
-
-const defaultTargetpath = path.resolve(__dirname, "../dist/templates")
 
 const optionsSchema = {
   type: "object",
@@ -14,37 +22,62 @@ const optionsSchema = {
     targetPath: {
       type: "string",
     },
-      importsPath: {
-        type: "string",
-      }
+    importsPath: {
+      type: "string",
+    },
   },
+}
+
+const mainClientModuleName = "main-client"
+
+const coreModules = [
+  "core",
+  mainClientModuleName,
+]
+
+function moduleIsCore(moduleName) {
+  return includes(coreModules, moduleName)
+}
+
+function moduleIsStore(moduleName) {
+  return startsWith(moduleName, "store")
+}
+
+function moduleIsMainClientEntry(moduleName) {
+  return moduleName === mainClientModuleName
+}
+
+function generateVueAppInitInclude() {
+  return '<#include "../vue-app-init.ftl">\n'
+}
+
+function generateImportsInclude(importsPath) {
+  return '<#include "' + importsPath + '">\n'
 }
 
 function generateTemplateContent(moduleName, mod, importsPath) {
   let content = ""
+  const isCore = moduleIsCore(moduleName)
+  const isStore = moduleIsStore(moduleName)
+  const isClientEntry = moduleIsMainClientEntry(moduleName)
 
-  content += '<#include "' + importsPath + '">\n' + '<#include "../vue-app-init.ftl">\n\n'
+  if(!isCore) {
+    content += generateVueAppInitInclude()
+    content += generateImportsInclude(importsPath)
+    content += "\n"
+  }
 
-  content =
-    reduce(
-      mod.styles,
-      function(content, path) {
-        return content + generateTemplateContentStyle(path)
-      },
-      content
-    ) + "\n"
+  if(!isEmpty(mod.styles)) {
+    content += generateTemplateContentStyles(mod.styles)
+  }
 
-  content = reduce(
-    mod.scripts,
-    function(content, path) {
-      return content + generateTemplateContentScript(path)
-    },
-    content
-  )
-
-  if (startsWith(moduleName, "store")) {
+  if(!isEmpty(mod.scripts)) {
+    content += generateTemplateContentAssets(mod.scripts, isClientEntry)
+  }
+  
+  if (isStore) {
     content += generateTemplateContentStoreScript(moduleName)
-  } else {
+  } else if(!isCore) {
     content += generateTemplateContentRegisterScript(moduleName)
   }
 
@@ -58,12 +91,41 @@ function generateTemplateContentStoreScript(moduleName) {
 }
 
 function generateTemplateContentRegisterScript(moduleName) {
-  let scriptText = "Vue.component('vs-" + kebabCase(moduleName) + "', " + moduleName + ".default)"
+  let scriptText = `Vue.component('vs-${kebabCase(moduleName)}', ${moduleName}.default)`
 
   return generateTemplateContentScript(null, scriptText)
 }
 
-function generateTemplateContentScript(scriptPath, scriptContent) {
+function generateTemplateContentAssets(scripts, isClientEntry) {
+  const isClientEntryLast = isClientEntry ? last(scripts) : null
+
+  function isAppEntry(path) {
+    return isClientEntryLast && isClientEntryLast === path
+  }
+
+  return reduce(
+    scripts,
+    function(content, path) {
+      let altHeadContributionName = isAppEntry(path) ? "htmlBodyEndAppEntry" : null
+
+      return content + generateTemplateContentPreload(path, "script") +
+          generateTemplateContentScript(path, null, altHeadContributionName)
+    },
+    "",
+  );
+}
+
+function generateTemplateContentPreload(path, type) {
+  let linkString = generateTemplateContentLinkTag("preload", path, type)
+
+  return generateTemplateContentHeadContribution(linkString, "htmlHeadPreload")
+}
+
+function generateTemplateContentLinkTag(rel, path, type) {
+  return `\t<link rel="${rel}" href="${generateTemplateContentWebfilePath(path)}" type="${type}"/>`
+}
+
+function generateTemplateContentScript(scriptPath, scriptContent, headContributionName) {
   let nodeString = '\t<script type="text/javascript"'
 
   if (scriptPath) {
@@ -78,22 +140,35 @@ function generateTemplateContentScript(scriptPath, scriptContent) {
 
   nodeString += "</script>"
 
-  return generateTemplateContentHeadContribution(nodeString)
+  if(!headContributionName) {
+    headContributionName = "htmlBodyEndScripts"
+  }
+
+  return generateTemplateContentHeadContribution(nodeString, headContributionName)
+}
+
+function generateTemplateContentStyles(styles) {
+  return reduce(
+    styles,
+    function(content, path) {
+      return content +
+        generateTemplateContentPreload(path, "style") +
+        generateTemplateContentStyle(path)
+    },
+    "",
+  ) + "\n"
 }
 
 function generateTemplateContentStyle(path) {
-  let linkString =
-    '\t<link rel="stylesheet" href="' +
-    generateTemplateContentWebfilePath(path) +
-    '" type="text/css"/>'
+  let linkString = generateTemplateContentLinkTag("stylesheet", path, "text/css")
 
-  return generateTemplateContentHeadContribution(linkString, "htmlHead")
+  return generateTemplateContentHeadContribution(linkString, "htmlHeadStyles")
 }
 
 function generateTemplateContentHeadContribution(content, category) {
   let node = ""
 
-  node += '\n<@hst.headContribution category="' + (category || "htmlBodyEnd") + '">\n'
+  node += '\n<@hst.headContribution category="' + category + '">\n'
   node += content + "\n"
   node += "</@hst.headContribution>\n"
 
@@ -115,8 +190,10 @@ function outputTemplate(mod, moduleName, targetPath, importsPath) {
 }
 
 function moduleSubPath(mod, moduleName) {
-  if (startsWith(moduleName, "store")) {
+  if (moduleIsStore(moduleName)) {
     return "/stores"
+  } else if(moduleIsCore(moduleName)) {
+    return "/"
   }
 
   return "/components"
@@ -139,6 +216,26 @@ function prepTargetDir(targetPath) {
   fs.mkdirSync(path.join(targetPath, "stores"))
 }
 
+/**
+ * Outputs a freemarker template for each module listed in the provided manifest
+ * 
+ * manifest is a JSON string encoding an object with module names as keys and asset
+ * maps as values. Each asset map has `scripts`, `styles` and `other` keys, which are 
+ * arrays of paths to the asset chunks that encode the module and all its dependencies.
+ * 
+ * This module generates a freemarker for each module that contains
+ * 
+ * - htmlBodyEndScripts headContributions for each script asset chunk
+ * - htmlHeadStyle headContributions for each style asset chunk
+ * - preload references in htmlHeadPreload headContributions for all script and style chunks
+ * - includes for the vue-app-init.ftl and imports.ftl freemarker templates
+ * - htmlBodyEndScripts headContributions containing a script tag with the component 
+ *   registraion or global reference setup for each Vue component or Vuex store, respectively
+ * - a htmlBodyEndAppEntry headContribution for the final chunk for the main client entry
+ * 
+ * @param {String} manifest
+ * 
+ */
 module.exports = function(manifest) {
   const modules = JSON.parse(manifest)
   const options = getOptions(this)
