@@ -1,5 +1,45 @@
 ![VisitScotland](https://sttc.visitscotland.com/static/img/logos/scotland-alba-logo-500.png)
 
+# Vue SSR
+
+This branch includes an SSR package that can be used to spin up a NodeJS/Express app that performs SSR on a target site. When a client request comes into the app, a proxy request to the target site is made at the same path. The page HTML that is returned is rendered by Vue SSR and returned to the client.
+
+## Get Started
+
+To install and start the local Hippo and NodeJS SSR instances:
+
+```sh
+# Install and run the parent Hippo site (this also installs and builds the necessary FE assets)
+mvn clean verify && mvn -Pcargo.run
+
+# Add the relevant environment variables to the `frontend/.env` file, creating if necessary
+touch frontend/.env
+
+# Start the SSR app on http://localhost:8082
+cd frontend
+yarn ssr:start
+```
+
+This will start:
+- the Hippo instance at [http://localhost:8080](http://localhost:8080)
+- the SSR app at [http://localhost:8082](http://localhost:8082)
+
+The Hippo instance is basically unchanged from the existing Hippo instance. To browse the SSR'ed Hippo site through the SSR app, browse to the same URL except at the SSR app host.
+
+For example, to view the SSR version of the Hippo page [http://localhost:8080/site/see-do/victorian-heritage-trail](http://localhost:8080/site/see-do/victorian-heritage-trail), browse to [http://localhost:8082/site/see-do/victorian-heritage-trail](http://localhost:8082/site/see-do/victorian-heritage-trail).
+
+The site is browsable just like the regular Hippo site. Note that it's not possible to access the CMS pages via the SSR site.
+
+**NOTE: do not use the ssr:serve:dev npm script. It is broken and will be fixed soon** 
+
+## SSR Environment variable
+
+The NodeJS app requires an environment variable called `VS_SSR_PROXY_TARGET_HOST`, which is the host address of the target site. If the target is the local Hippo site the value should be `http://localhost:8080`. The easiest way to provide this is to add the following line to the `frontend/.env` file:
+
+```sh
+VS_SSR_PROXY_TARGET_HOST = http://localhost:8080
+```
+
 # VisitScotland Design System
 
 This is the repository for the **VisitScotland Design System**, which is an implementation of [Vue Styleguidist](https://vue-styleguidist.github.io/) and was developed using [Vue Design System](https://vueds.com) as a starting point. Most of the original Vue Design System functionality should still work. However, the functionality of this package has been enhanced or modified in several areas:
