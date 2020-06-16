@@ -10,7 +10,7 @@ function resolve(dir) {
 }
 
 module.exports = {
-  mode: process.env.NODE_ENV === "production" ? config.build.mode : config.dev.mode,
+  mode: process.env.NODE_ENV === "development" ? config.dev.mode : config.build.mode,
   context: path.resolve(__dirname, "../"),
   entry: {
     app: "./src/main.js",
@@ -60,9 +60,8 @@ module.exports = {
       },
       {
         test: /\.(png|jpe?g|gif)(\?.*)?$/,
-        loader: "url-loader",
+        loader: "file-loader",
         options: {
-          limit: 10000,
           name: utils.assetsPath("img/[name].[hash:7].[ext]"),
         },
       },
@@ -72,17 +71,15 @@ module.exports = {
       },
       {
         test: /\.(mp4|webm|ogg|mp3|wav|flac|aac)(\?.*)?$/,
-        loader: "url-loader",
+        loader: "file-loader",
         options: {
-          limit: 10000,
           name: utils.assetsPath("media/[name].[hash:7].[ext]"),
         },
       },
       {
         test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
-        loader: "url-loader",
+        loader: "file-loader",
         options: {
-          limit: 10000,
           name: utils.assetsPath("fonts/[name].[hash:7].[ext]"),
         },
       },
