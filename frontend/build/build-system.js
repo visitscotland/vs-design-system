@@ -22,8 +22,8 @@ const buildCompleteInfo =
   "  Vue.use(DesignSystem)\n"
 
 const buildCompleteInfoComponents =
-  "  Tip: You can now use the design system components in other projects by importing the dist/system-components folder.\n\n" +
-  "  The system-components/manifest.json file lists which assets need to be referenced for each component.\n" +
+  "  Tip: You can now use the built components in other projects by importing the dist/system folder.\n\n" +
+  "  The system/manifest.json file lists which assets need to be included for each component.\n" +
   "  Once all relevent assets are referenced, add the component to the Vue app by registering it, e.g:\n\n" +
   "  Vue.component('vs-col', Col.default)\n"
 
