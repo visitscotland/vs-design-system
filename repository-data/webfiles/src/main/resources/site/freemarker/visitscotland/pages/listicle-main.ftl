@@ -12,7 +12,7 @@
 <#include "../../vs-dotcom-ds/components/link.ftl">
 <#include "../../vs-dotcom-ds/components/rich-text-wrapper.ftl">
 <#include "../../vs-dotcom-ds/components/listicle-item.ftl">
-<#include "../../vs-dotcom-ds/components/panel.ftl">
+<#--  <#include "../../vs-dotcom-ds/components/panel.ftl">  -->
 
 <#include "../macros/modules/listicles/listicle-item.ftl">
 <#include "../macros/global/cms-errors.ftl">

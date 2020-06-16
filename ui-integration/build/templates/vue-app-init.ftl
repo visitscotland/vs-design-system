@@ -1,28 +1,26 @@
-<@hst.headContribution category="htmlBodyEnd">
-    <script src="https://unpkg.com/vue@2.6.10/dist/vue.js"></script>
+<#include "./main-client.ftl">
+<#include "./core.ftl">
+
+<@hst.headContribution category="htmlBodyEndScriptsFirst">
+    <script src="https://unpkg.com/vue@2.6.10/dist/vue.min.js"></script>
 </@hst.headContribution>
 
-<@hst.headContribution category="htmlBodyEnd">
-    <script src="https://unpkg.com/vuex@3.1.1/dist/vuex.js"></script>
+<@hst.headContribution category="htmlBodyEndScriptsFirst">
+    <script src="https://unpkg.com/vuex@3.1.1/dist/vuex.min.js"></script>
 </@hst.headContribution>
 
-<@hst.headContribution category="htmlBodyEnd">
-    <script type="text/javascript">
-        let vs = {
-            stores: {},
-            app: null
+<@hst.headContribution category="htmlBodyEndScriptsFirst">
+	<script type="text/javascript">
+        // initialise global vs object
+		vs = {
+            stores: {}
         }
-    </script>
-</@hst.headContribution>
 
-<@hst.headContribution category="htmlAppInit">
-    <script type="text/javascript">
-        vs.app = new Vue({
-            el: '[data-vue-app-init]',
-            data:function() {
-                return { test: {} }
-            },
-            comments: true
-        })
-    </script>
+        // remove no-js class 
+        var elements = document.getElementsByClassName("no-js")
+
+        if(elements.length > 0) {
+            elements[0].className = elements[0].className.replace(/(\\s|^)no-js(\\s|$)/, "")
+        }
+	</script>
 </@hst.headContribution>
