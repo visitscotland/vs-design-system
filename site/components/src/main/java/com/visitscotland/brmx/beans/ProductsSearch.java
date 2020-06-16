@@ -36,4 +36,9 @@ public class ProductsSearch extends HippoCompound {
     public String getProductType() {
         return getSingleProperty("visitscotland:productType");
     }
+
+    @HippoEssentialsGenerated(internalName = "visitscotland:distance")
+    public Double getDistance() {
+        return getSingleProperty("visitscotland:distance");
+    }
 }
