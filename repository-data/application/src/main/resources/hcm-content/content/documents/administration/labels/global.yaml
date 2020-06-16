@@ -1,0 +1,53 @@
+/content/documents/administration/labels/global:
+  .meta:order-before: facilities
+  jcr:primaryType: hippo:handle
+  jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
+  jcr:uuid: 5efb212a-55c3-4670-922b-69dea2fec67b
+  hippo:name: Global
+  hippo:versionHistory: 7b1e29d5-ab17-4c09-bd51-68ed33aea23c
+  /global[1]:
+    jcr:primaryType: resourcebundle:resourcebundle
+    jcr:mixinTypes: ['mix:referenceable']
+    jcr:uuid: 3d72b51b-02e2-41e0-98f8-fe564afa818f
+    hippo:availability: [live]
+    hippostd:state: published
+    hippostdpubwf:createdBy: admin
+    hippostdpubwf:creationDate: 2014-08-21T22:10:13.443+02:00
+    hippostdpubwf:lastModificationDate: 2020-06-16T14:18:00.489+01:00
+    hippostdpubwf:lastModifiedBy: admin
+    hippostdpubwf:publicationDate: 2020-06-16T14:18:07.599+01:00
+    resourcebundle:descriptions: [Text shown in the global page footer., '', '']
+    resourcebundle:id: essentials.global
+    resourcebundle:keys: [footer.text, button.find-out-more, default.alt-text]
+    resourcebundle:messages: [©2019, Find out more, No image title]
+    resourcebundle:messages_es: ['', '', '']
+  /global[2]:
+    jcr:primaryType: resourcebundle:resourcebundle
+    jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
+    jcr:uuid: d68d8c05-f29b-4cf8-9f5a-6b5410f30af1
+    hippo:availability: [preview]
+    hippostd:state: unpublished
+    hippostdpubwf:createdBy: admin
+    hippostdpubwf:creationDate: 2014-08-21T22:10:13.443+02:00
+    hippostdpubwf:lastModificationDate: 2020-06-16T14:18:00.489+01:00
+    hippostdpubwf:lastModifiedBy: admin
+    resourcebundle:descriptions: [Text shown in the global page footer., '', '']
+    resourcebundle:id: essentials.global
+    resourcebundle:keys: [footer.text, button.find-out-more, default.alt-text]
+    resourcebundle:messages: [©2019, Find out more, No image title]
+    resourcebundle:messages_es: ['', '', '']
+  /global[3]:
+    jcr:primaryType: resourcebundle:resourcebundle
+    jcr:mixinTypes: ['mix:referenceable']
+    jcr:uuid: 19eb7b34-a824-463c-a06f-b2f9455231f8
+    hippo:availability: []
+    hippostd:state: draft
+    hippostdpubwf:createdBy: admin
+    hippostdpubwf:creationDate: 2014-08-21T22:10:13.443+02:00
+    hippostdpubwf:lastModificationDate: 2020-06-16T14:18:00.543+01:00
+    hippostdpubwf:lastModifiedBy: admin
+    resourcebundle:descriptions: [Text shown in the global page footer., '', '']
+    resourcebundle:id: essentials.global
+    resourcebundle:keys: [footer.text, button.find-out-more, default.alt-text]
+    resourcebundle:messages: [©2019, Find out more, No image title]
+    resourcebundle:messages_es: ['', '', '']
