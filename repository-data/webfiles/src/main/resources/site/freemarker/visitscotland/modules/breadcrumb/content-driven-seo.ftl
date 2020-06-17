@@ -61,9 +61,6 @@
     <meta property="og:locale" content="${document.locale.toLanguageTag()?lower_case}" />
 </@hst.headContribution>
 <@hst.headContribution category="opengraph">
-    <meta property="fb:pages" content="${label("channel", "og.fb.pages")}"/>
-</@hst.headContribution>
-<@hst.headContribution category="opengraph">
     <meta property="og:image" content="${ogImage}" />
 </@hst.headContribution>
 <@hst.headContribution category="opengraph">

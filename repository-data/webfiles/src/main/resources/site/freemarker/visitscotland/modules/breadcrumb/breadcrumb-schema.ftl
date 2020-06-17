@@ -1,10 +1,5 @@
 <#include "../../../include/imports.ftl">
-<@hst.setBundle basename="navigation"/>
-
 <#-- @ftlvariable name="breadcrumb" type="org.onehippo.forge.breadcrumb.om.Breadcrumb" -->
-<#-- @ftlvariable name="requestedURI" type="java.lang.String" -->
-<#-- @ftlvariable name="isHome" type="java.lang.Boolean" -->
-<#-- @ftlvariable name="document" type="com.visitscotland.brmx.beans.Page" -->
 
 <#if breadcrumb?? && breadcrumb.items??>
     <@hst.headContribution category="seo">

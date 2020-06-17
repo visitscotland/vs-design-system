@@ -3,7 +3,7 @@
   jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
   jcr:uuid: 538c8caf-5f0a-45f6-a6ea-590d2cd32f71
   hippo:name: Channel Properties
-  hippo:versionHistory: 1fb35707-a765-4b9a-9028-5995a23a105b
+  hippo:versionHistory: 509e35ad-aaef-4b4e-97a5-2b14fd3055a9
   /channel-properties[1]:
     jcr:primaryType: resourcebundle:resourcebundle
     jcr:mixinTypes: ['mix:referenceable']
@@ -12,12 +12,12 @@
     hippostd:state: draft
     hippostdpubwf:createdBy: admin
     hippostdpubwf:creationDate: 2020-06-12T19:38:17.843+01:00
-    hippostdpubwf:lastModificationDate: 2020-06-12T19:41:08.384+01:00
+    hippostdpubwf:lastModificationDate: 2020-06-17T14:48:14.119+01:00
     hippostdpubwf:lastModifiedBy: admin
-    resourcebundle:descriptions: ['', '', '']
+    resourcebundle:descriptions: ['', '']
     resourcebundle:id: channel
-    resourcebundle:keys: [og.site-name, og.twitter.site, og.fb.pages]
-    resourcebundle:messages: [Visit Scotland, '@VisitScotland', '334250391467']
+    resourcebundle:keys: [og.site-name, og.twitter.site]
+    resourcebundle:messages: [Visit Scotland, '@VisitScotland']
   /channel-properties[2]:
     jcr:primaryType: resourcebundle:resourcebundle
     jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
@@ -26,12 +26,12 @@
     hippostd:state: unpublished
     hippostdpubwf:createdBy: admin
     hippostdpubwf:creationDate: 2020-06-12T19:38:17.843+01:00
-    hippostdpubwf:lastModificationDate: 2020-06-12T19:41:51.400+01:00
+    hippostdpubwf:lastModificationDate: 2020-06-17T14:48:13.942+01:00
     hippostdpubwf:lastModifiedBy: admin
-    resourcebundle:descriptions: ['', '', '']
+    resourcebundle:descriptions: ['', '']
     resourcebundle:id: channel
-    resourcebundle:keys: [og.site-name, og.twitter.site, og.fb.pages]
-    resourcebundle:messages: [Visit Scotland, '@VisitScotland', '334250391467']
+    resourcebundle:keys: [og.site-name, og.twitter.site]
+    resourcebundle:messages: [Visit Scotland, '@VisitScotland']
   /channel-properties[3]:
     jcr:primaryType: resourcebundle:resourcebundle
     jcr:mixinTypes: ['mix:referenceable']
@@ -40,10 +40,10 @@
     hippostd:state: published
     hippostdpubwf:createdBy: admin
     hippostdpubwf:creationDate: 2020-06-12T19:38:17.843+01:00
-    hippostdpubwf:lastModificationDate: 2020-06-12T19:41:51.400+01:00
+    hippostdpubwf:lastModificationDate: 2020-06-17T14:48:13.942+01:00
     hippostdpubwf:lastModifiedBy: admin
-    hippostdpubwf:publicationDate: 2020-06-12T19:42:03.023+01:00
-    resourcebundle:descriptions: ['', '', '']
+    hippostdpubwf:publicationDate: 2020-06-17T14:48:18.488+01:00
+    resourcebundle:descriptions: ['', '']
     resourcebundle:id: channel
-    resourcebundle:keys: [og.site-name, og.twitter.site, og.fb.pages]
-    resourcebundle:messages: [Visit Scotland, '@VisitScotland', '334250391467']
+    resourcebundle:keys: [og.site-name, og.twitter.site]
+    resourcebundle:messages: [Visit Scotland, '@VisitScotland']
