@@ -4,9 +4,9 @@
   hst:repobased: false
   /Iconic views:
     jcr:primaryType: hst:sitemenuitem
-    hst:referencesitemapitem: see-do/12-iconic-scottish-views
+    hst:referencesitemapitem: see-do/landscapes-nature/iconic-scottish-views
     hst:repobased: false
-  /Outlander:
+  /Victorian Heritage Trail:
     jcr:primaryType: hst:sitemenuitem
-    hst:referencesitemapitem: see-do/outlander
+    hst:referencesitemapitem: see-do/attractions/historic/victorian-heritage-trail-itinerary
     hst:repobased: false
