@@ -63,19 +63,40 @@ export default {
         }
 
         @include media-breakpoint-up(lg) {
-            justify-content: space-evenly;
+            justify-content: center;
             padding: $spacer-8 0;
         }
 
         @include media-breakpoint-up(xl) {
             padding: $spacer-9 0;
         }
+        
+        @include media-breakpoint-up(xxl) {
+            justify-content: space-evenly;
+            padding: $spacer-9 0;
+        }
 
         .vs-footer-nav-list-item {
             display: inline-block;
             font-size: $font-size-sm;
-            padding: $spacer-3 0;
+            padding: $spacer-3;
             flex: 1 0 50%;
+
+            @include media-breakpoint-down(sm) {
+                &:nth-child(odd){
+                    padding-left: 0;
+                }
+            }
+
+            @include media-breakpoint-up(sm) {
+                &:first-child {
+                    padding-left: 0;
+                }
+
+                &:last-child {
+                    padding-right: 0;
+                }
+            }
 
             @include media-breakpoint-up(md) {
                 flex: none;
@@ -108,6 +129,7 @@ export default {
                 href="#"
                 link-text="VisitScotland Awards"
             ></vs-footer-nav-list-item>
+            
         </vs-footer-utility-list>
     </vs-footer>
 
