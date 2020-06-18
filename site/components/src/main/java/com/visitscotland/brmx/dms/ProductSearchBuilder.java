@@ -41,7 +41,7 @@ public class ProductSearchBuilder {
 
     static final String PRODUCT_SEARCH = "%s/info/%s/search-results?";
     static final String AVAILABILITY = "avail";
-    static final Integer DEFAULT_PROXIMITY = 10;
+    static final Double DEFAULT_PROXIMITY = 10.0;
 
     static final String PRODUCT_TYPE = "prodtypes";
     static final String LOCATION_NAME = "loc";
@@ -67,7 +67,7 @@ public class ProductSearchBuilder {
 
     private String productTypes;
     private String path;
-    private Integer proximity;
+    private Double proximity;
     private String location;
     private Double longitude;
     private Double latitude;
@@ -80,7 +80,6 @@ public class ProductSearchBuilder {
     private Set<String> ratings = new TreeSet<>();
 
     public ProductSearchBuilder(){
-        this.proximity = DEFAULT_PROXIMITY;
         this.order = Order.NONE;
     }
 
@@ -146,6 +145,7 @@ public class ProductSearchBuilder {
             psb.facility(ps.getDmsFacilities());
             psb.award(ps.getDmsAwards());
             psb.rating(ps.getOfficialrating());
+            psb.proximity(ps.getDistance());
 
             return psb;
         }
@@ -203,9 +203,9 @@ public class ProductSearchBuilder {
         return this;
     }
 
-    public ProductSearchBuilder proximity(Number proximity){
+    public ProductSearchBuilder proximity(Double proximity){
         if (validNumber(proximity) && proximity.intValue() > 0){
-            this.proximity = proximity.intValue();
+            this.proximity = proximity.doubleValue();
         }
         return this;
     }
