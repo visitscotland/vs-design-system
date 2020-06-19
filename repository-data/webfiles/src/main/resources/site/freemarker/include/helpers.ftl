@@ -4,10 +4,24 @@
 
 <#--  More reliable method for including labels from resource bundles  -->
 <#--  e.g. ${label("essentials.global", "footer.signup")} -->
-<#function label bundle key>
+<#function legacyLabel bundle key>
     <@hst.setBundle basename="${bundle}"/>
     <@fmt.message var="message" key="${key}" />
     <#return message>
+</#function>
+
+<#-- @ftlvariable name="ResourceBundle" type="com.visitscotland.brmx.utils.ResourceBundleService" -->
+
+<#--  More reliable method for including labels from resource bundles  -->
+<#--  e.g. ${label("essentials.global", "footer.signup")} -->
+<#function label bundle key>
+    <#return ResourceBundle.getResourceBundle(key, bundle, locale, false)>
+</#function>
+
+<#--  More reliable method for including labels from resource bundles  -->
+<#--  e.g. ${label("essentials.global", "footer.signup")} -->
+<#function optionalLabel bundle key>
+    <#return ResourceBundle.getResourceBundle(key, bundle, locale, true)>
 </#function>
 
 <#function productSearch locale productType lat lon proximity>

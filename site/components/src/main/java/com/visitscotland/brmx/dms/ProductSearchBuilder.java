@@ -84,7 +84,7 @@ public class ProductSearchBuilder {
     }
 
     /**
-     * Allows new instances from FreeMarker
+     * Allow new instances from FreeMarker
      *
      * @return
      */

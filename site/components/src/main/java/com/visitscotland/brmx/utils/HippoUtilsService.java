@@ -48,8 +48,9 @@ public class HippoUtilsService {
     /**
      * TODO: CREATE J-UNIT TEST
      *
-     *
+     *TODO Duplicated Method
      */
+    @Deprecated
     public String getResourceBundle(String key, String bundleName, Locale locale){
         return getResourceBundle(key, bundleName, locale, false);
     }
@@ -57,7 +58,10 @@ public class HippoUtilsService {
     /**
      * TODO: CREATE J-UNIT TEST
      * TODO: DOCUMENT
+     *
+     * TODO Duplicated Method
      */
+    @Deprecated
     public String getResourceBundle(String key, String bundleName, Locale locale, boolean optional){
 
         ResourceBundle bundle = getResourceBundle(bundleName, locale);
@@ -72,6 +76,16 @@ public class HippoUtilsService {
         return "??"+key+"??";
     }
 
+    /**
+     *
+     * @param key
+     * @param bundleName
+     * @param locale
+     * @return
+     *
+     * TODO Duplicated Method
+     */
+    @Deprecated
     public boolean existsResourceBundleKey(String key, String bundleName, Locale locale){
         ResourceBundle bundle = getResourceBundle(bundleName, locale);
         return bundle != null && bundle.containsKey(key);
@@ -84,7 +98,10 @@ public class HippoUtilsService {
      * @param locale locale
      *
      * @return
+     *
+     * TODO Duplicated Method
      */
+    @Deprecated
     private ResourceBundle getResourceBundle(String bundleName, Locale locale){
         if (locale == null) {
             return resourceBundleRegistry.getBundle(bundleName);

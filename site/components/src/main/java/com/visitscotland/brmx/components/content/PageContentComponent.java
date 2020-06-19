@@ -37,9 +37,11 @@ public class PageContentComponent<TYPE extends Page> extends EssentialsContentCo
     public final String HERO_COORDINATES = "heroCoordinates";
 
     HippoUtilsService utils;
+    ResourceBundleService bundle;
 
     public PageContentComponent(){
         utils = new HippoUtilsService();
+        bundle = new ResourceBundleService();
     }
 
     @Override
@@ -48,9 +50,9 @@ public class PageContentComponent<TYPE extends Page> extends EssentialsContentCo
 
         addDocumentPath(request);
         addProductSearchBuilder(request);
+        addResourceBundleService(request);
 
         initPage(request);
-
     }
 
     /**
@@ -77,6 +79,10 @@ public class PageContentComponent<TYPE extends Page> extends EssentialsContentCo
         } catch (TemplateModelException e) {
             logger.error("Product Search Builder is not available for the Page", e);
         }
+    }
+
+    private void addResourceBundleService(HstRequest request){
+        request.setAttribute("ResourceBundle", bundle);
     }
 
     /**
