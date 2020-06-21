@@ -4,24 +4,15 @@ const VueSSRClientPlugin = require('vue-server-renderer/client-plugin')
 
 const base = require('./library.webpack.conf');
 
-const entry = {
-    'main-client': path.resolve(__dirname, '../ssr/src/client-entry.js'),
+const clientEntry = {
+    'VsApp': path.resolve(__dirname, '../ssr/src/client-entry.js'),
 }
 
-base.entry = Object.assign({}, entry, base.entry)
+base.entry = { ...base.entry, ...clientEntry }
 
 module.exports = merge(base, {
     output: {
         path: path.resolve(__dirname, "../dist/ssr/client"),
-    },
-    optimization: {
-        splitChunks: {
-            chunks: "all",
-            minSize: 0,
-            maxInitialRequests: Infinity,
-        },
-        runtimeChunk: "single",
-        concatenateModules: false,
     },
     plugins: [
         new VueSSRClientPlugin()

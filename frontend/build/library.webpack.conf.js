@@ -1,12 +1,9 @@
 "use strict"
 const webpack = require("webpack")
-const path = require("path")
 const merge = require("webpack-merge")
 const baseWebpackConfig = require("./base.webpack.conf")
-const MergeWebpackPlugin = require("webpack-merge-and-include-globally")
 const MiniCssExtractPlugin = require("mini-css-extract-plugin")
 const OptimizeCSSPlugin = require("optimize-css-assets-webpack-plugin")
-const CopyWebpackPlugin = require("copy-webpack-plugin")
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const SafeParser = require("postcss-safe-parser")
 const ManifestPlugin = require("webpack-manifest-plugin")
@@ -25,17 +22,14 @@ baseWebpackConfig.plugins = baseWebpackConfig.plugins.filter(plugin => {
 })
 
 const webpackConfig = merge(mergeIE11Fix(baseWebpackConfig), {
-  externals: {
-    vue: "Vue",
-  },
   module: {
     rules: utils.styleLoaders({
-      sourceMap: config.system.productionSourceMap,
+      sourceMap: false,
       extract: true,
       usePostCSS: true,
     }),
   },
-  devtool: config.build.productionSourceMap ? config.system.devtool : false,
+  devtool: false,
   output: {
     path: config.system.assetsRoot,
     filename: utils.assetsSystemPath(process.env.NODE_ENV === "development" ?
@@ -46,6 +40,15 @@ const webpackConfig = merge(mergeIE11Fix(baseWebpackConfig), {
     library: "[name]",
     libraryTarget: config.system.libraryTarget,
   },
+  optimization: {
+      splitChunks: {
+          chunks: "all",
+          minSize: 0,
+          maxInitialRequests: Infinity,
+      },
+      runtimeChunk: "single",
+      concatenateModules: false,
+  },
   performance: {
     hints: config.system.performanceHints,
   },
@@ -54,6 +57,7 @@ const webpackConfig = merge(mergeIE11Fix(baseWebpackConfig), {
     new webpack.DefinePlugin({
       "process.env": env,
     }),
+
     // extract css into its own file
     new MiniCssExtractPlugin({
       filename: utils.assetsSystemPath(process.env.NODE_ENV === "development" ?
@@ -61,36 +65,21 @@ const webpackConfig = merge(mergeIE11Fix(baseWebpackConfig), {
         "styles/[chunkhash].css"
       ),
     }),
-    // Compress extracted CSS. We are using this plugin so that possible
-    // duplicated CSS from different components can be deduped.
+
+    // Compress and dedupe extracted CSS
     new OptimizeCSSPlugin({
       cssProcessorOptions: { parser: SafeParser },
     }),
-    // keep module.id stable when vendor modules does not change
+
+    // Keep module.id stable when vendor modules does not change
     new webpack.HashedModuleIdsPlugin(),
-    // Copy and merge Sass tokens and system utilities as well
-    // new MergeWebpackPlugin({
-    //   files: {
-    //     [utils.assetsSystemPath("system.utils.scss")]: [
-    //       "./src/assets/tokens/tokens.scss",
-    //       "./src/styles/_spacing.scss",
-    //       "./src/styles/_mixins.scss",
-    //       "./src/styles/_functions.scss",
-    //     ],
-    //   },
-    // }),
-    // copy custom static assets
-    // new CopyWebpackPlugin([
-    //   {
-    //     from: path.resolve(__dirname, "../src/assets"),
-    //     to: config.system.assetsSubDirectory,
-    //     ignore: [".*"],
-    //   },
-    // ]),
+
+    // Generate custom manifest.json
     new ManifestPlugin({
       generate: generateManifest,
       fileName: "manifest.json",
     }),
+
     new CleanWebpackPlugin(),
   ],
 })

@@ -127,81 +127,188 @@ By default, the build selects the first profile defined on the `remoteProfiles` 
 1. Set the `VS_DS_REMOTE_PROFILE` environment variable to the desired profile name
 2. Pass the profile name as the --remote-profile arg when running the package.json script, e.g `yarn system --remote-profile contentful`
 
-### Developing in the design system instance
+<a name="developing-in-the-design-system-instance"></a>### Developing in the design system instance
 
-Run `yarn system`
+```sh
+yarn system
+```
 
 This build script generates and serves the design system at [localhost:6060](http://localhost:6060).
 
-Modifications to source files will trigger a rebuild and refresh the browser. **Tokens will not be recompiled automatically on file change but tokens can be recompiled manually by running:**
+Modifications to source files will trigger a rebuild and refresh the browser. 
 
-`yarn theo`
+NOTE: Tokens will **not** be recompiled automatically on file change but this can be triggered manually if needed by running:
+
+```sh
+yarn theo
+```
 
 ### Building static design system assets for production
 
-The following script generates build artefacts encoding the design system site into `dist/system`, using the config in `config/docs.config.js`:
+The following script generates a flat site version of the design system site, according to the config in `config/docs.config.js`, with all assets being output into `dist/system`:
 
-`yarn system:build`
+```sh
+yarn system:build
+```
 
-The artefacts can be served as a static site using a standard http server.
+The assets can be served as a static site using a standard http server.
 
-## Using the components and styles in downstream projects
+## Using the components, stores and styles in downstream projects
 
-The `library` and `library:dev` build scripts compile artefacts consisting of all the js, css and other assets required for inclusion of any of the Vue components, Vuex stores or core styles from the `src` folder in a downstream project.
+The `library` and `library:dev` build scripts compile asset bundles containing all the JS, CSS and other assets required to include the Vue components, Vuex stores and core app styles/scripts in the `src` folder in a downstream project.
 
-The assets are built into the `dist/library` folder. A `manifest.json` file is also generated, which lists which of the generated assets must be included to include each Vue component or Vue store in another project.
+### The entry modules and associated assets
 
-To include a component in another project:
+The bundles created by `library` and `library:dev` are collections of entry modules with all supporting assets:
 
-- Reference all the relevent assets for the component as listed in the manifest.json.
-- Register the component using the [`Vue.component()` function](https://vuejs.org/v2/guide/components-registration.html) or locally in another component/app.
+- One entry module for each Vue SFC (`.vue`) in the `src/components` subfolders called `Vs{FileName}`
+- One entry module for each Vuex store (`.store.js`) in the `src/components` subfolders called `VsStore{FileName}`
+- An additional core app module created from the `src/main.js` file and called `VsApp`
 
-The build also creates a core module (consisting of core.js and core.css artefacts) that contains any styles that need to applied globally to all components, such as the Bootstrap reboot styles. To add JS to this module, include it in `build/core.system-components.js`, which is the entry file for the core module. This entry file imports `src/styles/core.styles.scss`, so add any global Sass to that file.
+The build generates JS and CSS asset chunks for all entry modules and dependencies into the `dist/library/scripts` and `dist/library/styles` folders. Any other assets are output into the `dist/library/assets` folder. Each JS and CSS chunk is required by one or more of the entry modules.
 
-NOTE: An example webpack consuming package can be found in the `hippo/frontend` folder.
+The `library` build generates production assets, with hashed asset names. The `library:dev` build generates development assets, with meaningful names based on which entry module they are needed by.
 
+### The manifest.json
 
+The build also generates a `manifest.json` file in the `dist/library` folder. The `manifest.json` is a map of entry modules and a list of assets, separated by asset type, required for each entry module to function. All the listed assets for an entry module need to be loaded for that module to function correctly.
 
-## Development workflow
+An example manifest [can be seen here](#example-manifest).
 
-The best way to develop the design system is to run a local development instance of the documentation site, as detailed above.
+### The core app module
 
-To see how the local, modified version of the design system behaves in a target local project, carry out the following to link the target project's dependency to the local version, rather than the published version, of the design system assets. You will find an example of such an app, which runs these commands during it's install, in this repository at `hippo/frontend`.
+The core app module contains styles and scripts, such as the Bootstrap reboot styles, that are needed globally by all components. Global JS should be imported directly in `src/main.js` while any global styles should be imported into `src/styles/core.styles.scss`, which itself is imported into `src/main.js`.
 
-- `cd design-system`
-- `yarn link`
-- `cd ../target-project`
-- `yarn link vs-dotcom-ds`
+### Using the modules
 
-NOTE: It is `vs-dotcom-ds` because that is this package's name.
+1. Load the core app module assets
+2. Load the component and store module assets
+3. Register any components
+4. Initialise the Vue app
+5. Use the components in the HTML or the stores in scripts
 
-This will create a symlink between the target project folder and the local design-system folder. The target project's vs-dotcom-ds dependency will use the local design-system folder directly.
+Each entry module is exposed by webpack as a UMD module that will be accessible once all the assets (as listed in the `manifest.json`) are loaded. The module's exports can then be accessed globally using the module's name.
 
-**It is advised to reference the built artefacts in the `dist/` folder, in which case the design system assets will need to be rebuilt (using `yarn build:system:components`) for changes to source files to be propogated into the target project**.
+The core app module assets should be included before any component and store assets to ensure that any global scripts have been loaded. It has 2 named exports `window.VsApp.Vue` and `window.VsApp.initApp`. The `Vue` named export is the Vue library that's included in the package. It is the [Runtime and Compiler version](https://vuejs.org/v2/guide/installation.html#Runtime-Compiler-vs-Runtime-only) of Vue so it can initialise an app from an arbitrary app template. The `initApp` export can be used to initialise the Vue app and accepts an options argument that will be passed to the `new Vue()` call with some default options added. 
+
+Load the assets for component and store modules after the core app assets. The component and stores modules should be default exports so should be accessible like `window.{moduleName}.default`, respectively. Register the components
+
+### Library usage example
+
+<a name="example-manifest"></a>Given a `manifest.json` that looks like this:
+
+```json
+{
+  "VsItineraryStop": {
+    "scripts": [
+      "scripts/runtime.js",
+      "scripts/vendors~VsAccordion~VsItineraryStop~~d5a3aa75.js",
+      "scripts/VsItineraryStop.js"
+    ],
+    "styles": [
+      "styles/VsContentSection~VsExample~VsHeading~VsItineraryDay~VsItineraryStop~VsListicleItem.css",
+      "styles/VsItineraryStop.css"
+    ]
+  },
+  "VsStoreItinerariesStore": {
+    "scripts": [
+      "scripts/runtime.js",
+      "scripts/vendors~VsDrawer~VsStoreItinerariesStore~afa580f0.js",
+      "scripts/VsItineraryMap~VsItineraryMapMarker~VsStoreItinerariesStore.js",
+      "scripts/VsStoreItinerariesStore.js"
+    ]
+  },
+  "VsApp": {
+    "scripts": [
+      "scripts/runtime.js",
+      "scripts/vendors~VsApp~VsButtonSquareSocial~VsDesktopN~f5f162b1.js",
+      "scripts/VsApp.js"
+    ],
+    "styles": [
+      "styles/VsApp.css"
+    ]
+  },
+  //...
+}
+```
+
+<a name="example-downstream-usage"></a>The ItineraryStop component and Itineraries store can then be used like this:
+
+```html
+<!-- Include the style assets -->
+<head>
+  <link rel="stylesheet" href="{publicPath}/styles/VsContentSection~VsExample~VsHeading~VsItineraryDay~VsItineraryStop~VsListicleItem.css" type="text/css">
+  <link rel="stylesheet" href="{publicPath}/styles/VsItineraryStop.css" type="text/css">
+  <link rel="stylesheet" href="{publicPath}/styles/VsApp.css" type="text/css">
+</head>
+<body>
+  
+  <!-- Include a mount point and no-js class -->
+  <div data-vs-vue-app class="no-js">
+    <!-- Use the ItineraryStop component -->
+    <vs-itinerary-stop :stop-number="1" stop-title="Edinburgh"></vs-itinerary-stop>
+  </div>
+
+  <!-- Include the core app module script assets -->
+  <script src="{publicPath}/scripts/runtime.js" type="text/javascript"></script>
+  <script src="{publicPath}/vendors~VsApp~VsButtonSquareSocial~VsDesktopN~f5f162b1.js" type="text/javascript"></script>
+  <script src="{publicPath}/VsApp.js" type="text/javascript"></script>
+
+  <script type="text/javascript">    
+
+    // Globalise the Vue library (optional)
+    Vue = VsApp.Vue
+
+  </script>
+
+  <!-- Include the script assets for the VsItineraryStop and VsStoreItinerariesStore modules -->
+  <script src="{publicPath}/scripts/vendors~VsAccordion~VsItineraryStop~~d5a3aa75.js" type="text/javascript"></script>
+  <script src="{publicPath}/scripts/VsItineraryStop.js" type="text/javascript"></script>
+
+  <script src="{publicPath}/scripts/vendors~VsDrawer~VsStoreItinerariesStore~afa580f0.js" type="text/javascript"></script>
+  <script src="{publicPath}/scripts/VsItineraryMap~VsItineraryMapMarker~VsStoreItinerariesStore.js" type="text/javascript"></script>
+  <script src="{publicPath}/scripts/VsStoreItinerariesStore.js" type="text/javascript"></script>
+
+  <script type="text/javascript">
+    
+    // Register the component
+    VsApp.Vue.component("vs-itinerary", VsItinerary.default)
+    
+    // Initialise the Vue app, passing the mount point selector on the "el" option
+    VsApp.initApp({
+      el: "[data-vs-vue-app]"
+    })
+  
+    // Use the store
+    VsStoreItinerariesStore.default.subscribe(function(mutation, state) {
+        console.log("The new state is...")
+        console.log(state)
+    })
+
+    VsStoreItinerariesStore.default.dispatch("changeStop", { stop: 8 })
+      .then(function() {
+        console.log("Action complete")
+      })
+
+	</script>
+</body>
+```
 
 ## VueX
 
-Adhere to [this styleguide](https://docs.vuestorefront.io/guide/vuex/vuex-conventions.html) and the following exceptions and additions when developing Vuex stores:
+To include VueX functionality in one or more components:
 
-- Locate all Vuex stores with the components that use them the most.
-- All Vuex stores must be modularised and namespaced.
-- You do not need to include the module name in getters unless your modules are **NOT** namespaced, which they should be (see above).
-- Do not register a store via the `store` key of a Vue component's configuration object. This will alow multiple stores to be.
-- Only use getters and actions in external modules.
-- Define getter and action names in a separate file and import the ones you need into the store and any other consumers.
-
-To include VueX functionality in one or more of your components:
-
-- Write a VueX store and then import and include it in the component definition object - this is enough to add the store's functionality to _components rendered in the design system documentation_.
+- [Write a VueX store](#vuex-store-authoring)
+- [Import the store into the Vue SFC file and reference it directly in the code](#vuex-store-component-usage-example) (do not add it to the `store` key of the component).
 - _To make the store functionality work in the production (system components) build_ - VueX must be available globally before the components are registered with Vue.
 
-### Writing VueX Stores
+Multiple components can use the same store and the store's state will be shared among them. The store can also be accessed directly independently of a component, and the common state will be shared in all contexts.
 
-See the VueX example component in the `src/components/examples` folder.
+<a name="vuex-store-authoring"></a>### Writing VueX Stores
 
-VueX stores should be added to components as needed and must be given a file name ending in `store.js` to ensure proper exposure in the system components build.
+Define each store in its own file and export as the default export. This ensures the store is exposed properly by the webpack builds.
 
-Multiple components can use the same store and the state will be shared among them.
+Each store file must be given a file name ending in `store.js`otherwise it won't be recognised as a Vuex store.
 
 ```js
 import Vuex from "vuex"
@@ -239,7 +346,7 @@ export default new Vuex.Store({
 })
 ```
 
-### Accessing VueX stores in components
+<a name="vuex-store-component-usage-example"></a>### Accessing VueX stores in components
 
 Example use inside components:
 
@@ -266,11 +373,13 @@ export default {
 }
 ```
 
-### Exposure of stores in the system components build
+## Component usage examples
 
-The system components build treats each store as a module and creates a package for it with the naming convention `store<CapitalisedCamelCasedAndRationalisedFileName>`. So a store with the filename of `example.store.js` will be given a module name of `storeExampleStore` (and will be available in JS as `storeExampleStore.default`).
+Examples of component usage can be included in the SFC in a `docs` block. The `docs` block examples are recognised by the `vue-styleguidist` build and added as component examples to the generated design system site. [The `vue-styleguidist` documentation](https://vue-styleguidist.github.io/docs/Documenting.html#usage-examples-and-readme-files) has examples of how to do this.
 
-## Addition of fixtures for documentation examples
+If `docs` examples get very large, [they can be moved to an external file and imported instead](https://vue-styleguidist.github.io/docs/Documenting.html#importing-examples).
+
+### Addition of fixture data/assets for documentation examples
 
 To make fixtures data available for easy inclusion in `docs` block examples, create `.json` files in `src/assets/fixtures/`, in subfolders if desired. The documentation site build automatically exposes the contained data in a key relative to the camel-cased folder and file names. For example:
 
@@ -299,6 +408,43 @@ To make fixtures data available for easy inclusion in `docs` block examples, cre
 </docs>
 ```
 
+## Server-side rendering
+
+
+## Styling
+
+The package's core styles and Sass members are located in the `src/styles/` directory. All global Sass members are imported into `src/styles/styles.scss` and are available for use in any Vue component without explicit import - these are resolved during the builds using [Sass resources loader](https://github.com/shakacode/sass-resources-loader).
+
+Any styles intended to be applied gloabally should be imported into `src/styles/core.styles.scss` - this Sass file is included in the core App module and will manifest as global styles in the library and design system builds.
+
+### Bootstrap / Bootstrap Vue
+
+The package uses Bootstrap 4 styles as its base styles. Bootstrap members are made available in all Vue components along with all the other Sass members. Bootstrap core styles (reboot and utilities) are included in `src/styles/core.styles.scss` so are included in the core app module so they are applied globally.
+
+The Bootstrap variable default values are overriden in `src/styles/_bootstrap-overrides.scss`.
+
+### Tokens
+
+### Targetting styles for users with JS enabled
+
+A No-js class is defined for targetting styles at users who have Javascript disabled. To apply this no-js class, use the `no-js` Sass mixin to wrap the styles that need to be targetted.
+
+```scss
+@include no-js {
+  .thing-to-be-hidden-for-no-js-users {
+    display: none;
+  }
+}
+```
+
+The class itself is defined as the `no_javascript` token in `src/tokens/utility.yaml`, which is converted into a Sass variable with the name `$no-javascript`. The class itself should not be used anywhere as a static string - all use should be achieved via the Sass mixin or the Sass variable if the mixin can't be used for some reason.
+
+For the no-js styles to take effect, the class must be placed on the Vue app mount point or a parent of it. Nothing else needs to be done other than initialising the Vue app with the core App module's `initApp` function, which should be being done already. On initial page load, the no-js class is present and any styles wrapped in the `no-js` mixin will take effect. Just after the Vue app is initialised in the core App module, a JS function is called automatically that removes the class from any elements that have it, and so the no-js styles no longer take effect.
+
+## Tests
+
+## Linting
+
 ## Logging
 
 This package includes the `vuejs-logger` NPM package, which provides logging capabilities. To use it import the `src/utilities/logger.js` utility and use it as follows.
@@ -317,60 +463,24 @@ Check the [`vuejs-logger` documentation](https://www.npmjs.com/package/vuejs-log
 
 To change the `vuejs-logger` configuration alter the options object passed to it in `src/utilities/logger.js`.
 
-## Rendora Server-side rendering POC
-
-The Rendora app in this repo can be used to run a local SSR service for prototyping of the use of SSR to render this repo's Hippo site, which includes Vue components or components from some other frontend framework.
-
-The following instructions list how to get the demo running. These instructions install GO and build Rendora manually. There's also a Docker image for installing and running Rendora running - check the README inside the Rendora folder for details on how to get that to work. It would be replacing steps 2 and 3.
-
-1. Install and build frontend assets
-
-- `yarn` (in root directory)
-- `cd hippo/frontend`
-- `yarn`
-- `yarn build`
-
-2. Install Rendora
-
-- Install GO V1.11
-- `cd rendora` (from root directory)
-- `make build`
-- `sudo make install`
-
-3. Run headless Chrome and Rendora
-
-- `google-chrome --headless --remote-debugging-port=9222`
-- `cd rendora` (from root directory)
-- `rendora --config config.yaml`
-
-4. Run Hippo
-
-- `cd hippo` (from root directory)
-- `mvn clean verify`
-- `mvn -Pcargo.run -Dpath.repo=storage`
-
-5. Enjoy that sweet SSR nectar
-
-- Go to [http://localhost:8080/site/demo](http://localhost:8080/site/demo) and view source to see the Vue demo page without SSR
-- Go to [http://localhost:3001/site/demo](http://localhost:3001/site/demo)
-
 ## TODO
 
-- Fix deep selectors issue \*
-- Alter docs to allow inclusion of dynamic full width view in examples \*
-- Improve readme with more info (e.g. bootstrap components, sass and utilities, colours and docs colours, icon usage) \*
-- Refactor sidebar nav to work more smoothly \*
-- Implement permanent solution for inclusion of vue and vue-x dependencies \*
-- Create a dev version of the system-components build for live inclusion in Hippo \*
-- Change docs:remote (and other?) scripts to use theo:onchange \*
+- Alter docs to allow inclusion of dynamic full width view in examples
+- Add info to readme (see below)
+- Refactor design system sidebar nav to work more smoothly
+- Move theo processing inside webpack builds
+- Add automatic component registration to bundled Vue library so consumers don't have to do that manually
 - Refactor breakpoints.bootstrap-vue.config.js breakpoints definition to generate dynamically from tokens
-- Refactor theme colours so they are specified in a tokens file and auto generated (bootstrap)
+- Refactor theme colours so they are auto generated and registered in bootstrap
 - Refactor button and other components to use autogenerated theme colours
 
-## To Add to readme
+### To Add to readme
 
-- Bootstrap and BootstrapVue
-- Sass and utilities
-- Colours and docs colours
+- SSR
+- Linting
+- Tests
+- Tokens
+- BootstrapVue
+- Breakpoints
 - Icons
-- Setup of Vue and VueX as externals in the system components build
+- Colours and docs colours
