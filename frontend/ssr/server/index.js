@@ -40,7 +40,16 @@ const excludePathFromSSR = (urlPath) => some(
  * Returns string of the request's path and params URL parts
  * @param {Object} request Request object
  */
-const getRequestPathAndParams = (request) => `${get(request, "path")}?${querystring.stringify(get(request, "query"))}`;
+const getRequestPathAndParams = (request) => {
+    let fullPath = get(request, "path")
+    const query = querystring.stringify(get(request, "query"))
+
+    if(query) {
+        fullPath += `?${query}`
+    }
+
+    return fullPath
+}
 
 /**
  * Handles all requests after they have been proxied and performs SSR on them if appropriate
