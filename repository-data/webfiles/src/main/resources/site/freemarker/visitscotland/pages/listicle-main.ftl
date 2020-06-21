@@ -1,17 +1,17 @@
 <#ftl output_format="XML">
 <#include "../../include/imports.ftl">
 
-<#include "../../frontend/components/container.ftl">
-<#include "../../frontend/components/row.ftl">
-<#include "../../frontend/components/col.ftl">
-<#include "../../frontend/components/icon.ftl">
-<#include "../../frontend/components/social-share.ftl">
-<#include "../../frontend/components/heading.ftl">
-<#include "../../frontend/components/img.ftl">
-<#include "../../frontend/components/link.ftl">
-<#include "../../frontend/components/rich-text-wrapper.ftl">
-<#include "../../frontend/components/listicle-item.ftl">
-<#--  <#include "../../frontend/components/panel.ftl">  -->
+<#include "../../frontend/components/vs-container.ftl">
+<#include "../../frontend/components/vs-row.ftl">
+<#include "../../frontend/components/vs-col.ftl">
+<#include "../../frontend/components/vs-icon.ftl">
+<#include "../../frontend/components/vs-social-share.ftl">
+<#include "../../frontend/components/vs-heading.ftl">
+<#include "../../frontend/components/vs-img.ftl">
+<#include "../../frontend/components/vs-link.ftl">
+<#include "../../frontend/components/vs-rich-text-wrapper.ftl">
+<#include "../../frontend/components/vs-listicle-item.ftl">
+<#--  <#include "../../frontend/components/vs-panel.ftl">  -->
 
 <#include "../macros/modules/listicles/listicle-item.ftl">
 <#include "../macros/global/cms-errors.ftl">

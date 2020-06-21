@@ -1,5 +1,5 @@
 <#include "../../include/imports.ftl">
-<#include "../../frontend/components/header-dropdown.ftl">
+<#include "../../frontend/components/vs-header-dropdown.ftl">
 
 
 

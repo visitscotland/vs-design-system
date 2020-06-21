@@ -1,17 +1,17 @@
 <#ftl output_format="XML">
 <#include "../../include/imports.ftl">
 <#include "../macros/global/cms-errors.ftl">
-<#include "../../frontend/components/page-intro.ftl">
-<#include "../../frontend/components/hero.ftl">
-<#include "../../frontend/components/container.ftl">
-<#include "../../frontend/components/row.ftl">
-<#include "../../frontend/components/col.ftl">
-<#include "../../frontend/components/rich-text-wrapper.ftl">
-<#include "../../frontend/components/img.ftl">
+<#include "../../frontend/components/vs-page-intro.ftl">
+<#include "../../frontend/components/vs-hero.ftl">
+<#include "../../frontend/components/vs-container.ftl">
+<#include "../../frontend/components/vs-row.ftl">
+<#include "../../frontend/components/vs-col.ftl">
+<#include "../../frontend/components/vs-rich-text-wrapper.ftl">
+<#include "../../frontend/components/vs-img.ftl">
 
-<#include "../../frontend/components/image-with-caption.ftl">
-<#include "../../frontend/components/heading.ftl">
-<#include "../../frontend/components/social-share.ftl">
+<#include "../../frontend/components/vs-image-with-caption.ftl">
+<#include "../../frontend/components/vs-heading.ftl">
+<#include "../../frontend/components/vs-social-share.ftl">
 
 <#include "../macros/modules/itineraries/itinerary-stop.ftl">
 <#include "../macros/global/cms-errors.ftl">

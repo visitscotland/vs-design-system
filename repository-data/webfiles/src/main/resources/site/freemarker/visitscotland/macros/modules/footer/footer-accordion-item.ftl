@@ -1,8 +1,8 @@
 <#include "../../../../include/imports.ftl">
-<#include "../../../../frontend/components/footer-accordion-item.ftl">
-<#include "../../../../frontend/components/footer-nav-list-item.ftl">
-<#include "../../../../frontend/components/icon.ftl">
-<#include "../../../../frontend/components/list.ftl">
+<#include "../../../../frontend/components/vs-footer-accordion-item.ftl">
+<#include "../../../../frontend/components/vs-footer-nav-list-item.ftl">
+<#include "../../../../frontend/components/vs-icon.ftl">
+<#include "../../../../frontend/components/vs-list.ftl">
 
 <#macro footerAccordionItem footerMenuItems>
     <#list footerMenuItems as menuItem>

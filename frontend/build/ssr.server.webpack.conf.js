@@ -15,6 +15,8 @@ const sourceImports = require("./ssr.generate-component-library-map")(base.entry
 
 base.entry = Object.assign({}, entry, base.entry)
 
+delete base.optimization
+
 module.exports = merge(base, {
     target: "node",
     output: {
@@ -34,7 +36,7 @@ module.exports = merge(base, {
     module: {
         rules: [
             {
-                test: /app\.js$/,
+                test: /server-entry\.js$/,
                 use: [
                     {
                         loader: path.resolve(__dirname, "./ssr.dynamic-component-loader"),
@@ -51,5 +53,5 @@ module.exports = merge(base, {
     // into a single JSON file. The default file name is`vue-ssr-server-bundle.json`
     plugins: [
         new VueSSRServerPlugin(),
-    ]
+    ],
 });

@@ -1,6 +1,6 @@
 <#include "../../include/imports.ftl">
-<#include "../../frontend/components/list-group.ftl">
-<#include "../../frontend/components/drawer-list-item.ftl">
+<#include "../../frontend/components/vs-list-group.ftl">
+<#include "../../frontend/components/vs-drawer-list-item.ftl">
 
 <vs-list-group class="d-lg-none" tabindex="-1">
     <vs-drawer-list-item

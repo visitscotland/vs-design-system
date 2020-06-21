@@ -1,9 +1,9 @@
 <#include "../../include/imports.ftl">
-<#include "../../frontend/components/footer.ftl">
-<#include "../../frontend/components/footer-nav-list.ftl">
-<#include "../../frontend/components/container.ftl">
-<#include "../../frontend/components/row.ftl">
-<#include "../../frontend/components/col.ftl">
+<#include "../../frontend/components/vs-footer.ftl">
+<#include "../../frontend/components/vs-footer-nav-list.ftl">
+<#include "../../frontend/components/vs-container.ftl">
+<#include "../../frontend/components/vs-row.ftl">
+<#include "../../frontend/components/vs-col.ftl">
 
 <#include "../macros/modules/footer/footer-accordion-item.ftl">
 <#include "../macros/modules/footer/footer-social-menu.ftl">

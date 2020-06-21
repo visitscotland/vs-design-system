@@ -1,6 +1,6 @@
 <#include "../../../../include/imports.ftl">
-<#include "../../../../frontend/components/listicle-item.ftl">
-<#include "../../../../frontend/components/link.ftl">
+<#include "../../../../frontend/components/vs-listicle-item.ftl">
+<#include "../../../../frontend/components/vs-link.ftl">
 
 <#include "../../global/key-facilities.ftl">
 <#include "../../global/image-with-caption.ftl">

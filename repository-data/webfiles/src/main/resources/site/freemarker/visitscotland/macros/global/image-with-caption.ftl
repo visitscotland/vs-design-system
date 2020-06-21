@@ -1,6 +1,6 @@
-<#include "../../../frontend/components/svg.ftl">
-<#include "../../../frontend/components/social-credit-link.ftl">
-<#include "../../../frontend/components/image-with-caption.ftl">
+<#include "../../../frontend/components/vs-svg.ftl">
+<#include "../../../frontend/components/vs-social-credit-link.ftl">
+<#include "../../../frontend/components/vs-image-with-caption.ftl">
 
 <#macro imageWithCaption imageSrc imageDetails variant>
     <vs-image-with-caption

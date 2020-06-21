@@ -7,65 +7,64 @@ const {
   kebabCase,
   partial,
   reduce,
-  trimStart,
   startsWith,
   isEmpty,
-  includes,
-  last,
 } = require("lodash")
 const { getOptions } = require("loader-utils")
 const validateOptions = require("schema-utils")
 
+
+/**
+ * Options passed in from webpack loader config
+ */
 const optionsSchema = {
   type: "object",
   properties: {
+    
+    // {String} Path to webfiles relative to the project root
     webfilesPath: {
       type: "string",
     },
-    targetPath: {
+    // {String} Target folder in which to created freemarker templates
+    freemarkerTargetPath: {
       type: "string",
     },
+    // {String} Full path including file name to the freemarker imports utility file
     importsPath: {
       type: "string",
     },
+    // {String} DOM element selector on which to mount the Vue app
+    appMountTarget: {
+      type: "string"
+    }
   },
 }
 
-const mainClientModuleName = "main-client"
-
-const coreModules = [
-  "core",
-  mainClientModuleName,
-]
-
-function moduleIsCore(moduleName) {
-  return includes(coreModules, moduleName)
-}
+const appModuleName = "VsApp"
 
 function moduleIsStore(moduleName) {
-  return startsWith(moduleName, "store")
+  return startsWith(moduleName, "VsStore")
 }
 
-function moduleIsMainClientEntry(moduleName) {
-  return moduleName === mainClientModuleName
+function moduleIsApp(moduleName) {
+  return moduleName === appModuleName
 }
 
-function generateVueAppInitInclude() {
-  return '<#include "../vue-app-init.ftl">\n'
+function generateVueAppInclude() {
+  return `<#include "../${moduleFileName(appModuleName)}">\n`
 }
 
 function generateImportsInclude(importsPath) {
-  return '<#include "' + importsPath + '">\n'
+  return `<#include "${importsPath}">\n`
 }
 
-function generateTemplateContent(moduleName, mod, configPaths) {
+function generateTemplateContent(moduleName, mod, configPaths, appMountTarget) {
   let content = ""
-  const isCore = moduleIsCore(moduleName)
   const isStore = moduleIsStore(moduleName)
-  const isClientEntry = moduleIsMainClientEntry(moduleName)
+  const isApp = moduleIsApp(moduleName)
 
-  if(!isCore) {
-    content += generateVueAppInitInclude()
+  if(!isApp) {
+    content += generateVueAppInclude()
     content += generateImportsInclude(configPaths.imports)
     content += "\n"
   }
@@ -75,42 +74,70 @@ function generateTemplateContent(moduleName, mod, configPaths) {
   }
 
   if(!isEmpty(mod.scripts)) {
-    content += generateTemplateContentAssets(mod.scripts, isClientEntry, configPaths.webfiles)
+    content += generateTemplateContentScriptAssets(mod.scripts, isApp, configPaths.webfiles)
   }
   
   if (isStore) {
     content += generateTemplateContentStoreScript(moduleName)
-  } else if(!isCore) {
+  } else if(isApp) {
+    content += generateTemplateContentApp(appMountTarget)
+  } else {
     content += generateTemplateContentRegisterScript(moduleName)
   }
 
   return content
 }
 
+// Creates custom main App scripts that:
+// - Sets up the `vs` global
+// - Adds the `initApp` method exported from the main VsApp module to the `vs` global
+// - Globalises the Vue library exported from the main App module so it can be used to
+//   register whichever components are needed
+// - Call the `initApp` function to bootstrap the app 
+function generateTemplateContentApp(appMountTarget) {
+  const setupScriptContent = `
+        // initialise global vs object
+        vs = {
+            stores: {},
+            initApp: ${appModuleName}.initApp
+        }
+        
+        Vue = ${appModuleName}.Vue
+  `
+  const initScriptContent = `
+        vs.initApp({
+          el: "[data-vue-app-init]"
+        })
+  `
+
+  return generateTemplateContentScript(setupScriptContent, null, "htmlBodyEndScriptsFirst") +
+    generateTemplateContentScript(initScriptContent, null, "htmlBodyEndAppInit")
+}
+
 function generateTemplateContentStoreScript(moduleName) {
-  let scriptText = "vs.stores." + moduleName + " = " + moduleName + ".default"
+  let scriptText = `vs.stores.${moduleName} = ${moduleName}.default`
 
   return generateTemplateContentScript(scriptText)
 }
 
 function generateTemplateContentRegisterScript(moduleName) {
-  let scriptText = `Vue.component('vs-${kebabCase(moduleName)}', ${moduleName}.default)`
+  let scriptText = `Vue.component('${kebabCase(moduleName)}', ${moduleName}.default)`
 
   return generateTemplateContentScript(scriptText)
 }
 
-function generateTemplateContentAssets(scripts, isClientEntry, webfilesPath) {
-  const isClientEntryLast = isClientEntry ? last(scripts) : null
-
-  function isAppEntry(path) {
-    return isClientEntryLast && isClientEntryLast === path
-  }
+function generateTemplateContentScriptAssets(scripts, isApp, webfilesPath) {
 
   return reduce(
     scripts,
     function(content, assetPath) {
       const href = generateTemplateContentWebfileTag(assetPath, webfilesPath)
-      const altHeadContributionName = isAppEntry(assetPath) ? "htmlBodyEndAppEntry" : null
+
+      let altHeadContributionName = null
+
+      if(isApp) {
+        altHeadContributionName = "htmlBodyEndScriptsFirst"
+      }
 
       return content + generateTemplateContentPreload(href, "script") +
           generateTemplateContentScript(null, href, altHeadContributionName)
@@ -178,7 +205,7 @@ function generateTemplateContentHeadContribution(content, category) {
 }
 
 function generateTemplateContentWebfileTag(assetPath, webfilesPath) {
-  return `<@hst.webfile  path="${webfilesPath}/${assetPath}" />`
+  return `<@hst.webfile  path='${webfilesPath}/${assetPath}' />`
 }
 
 function outputTemplate(mod, moduleName, configPaths) {
@@ -196,7 +223,7 @@ function outputTemplate(mod, moduleName, configPaths) {
 function moduleSubPath(moduleName) {
   if (moduleIsStore(moduleName)) {
     return "/stores"
-  } else if(moduleIsCore(moduleName)) {
+  } else if(moduleIsApp(moduleName)) {
     return "/"
   }
 
@@ -204,20 +231,17 @@ function moduleSubPath(moduleName) {
 }
 
 function moduleFileName(moduleName) {
-  if (startsWith(moduleName, "store")) {
-    moduleName = trimStart(moduleName, "store")
-  }
   return kebabCase(moduleName) + ".ftl"
 }
 
-function prepTargetDir(targetPath) {
-  if (fs.existsSync(targetPath)) {
-    rf.sync(targetPath)
+function prepTargetDir(freemarkerTargetPath) {
+  if (fs.existsSync(freemarkerTargetPath)) {
+    rf.sync(freemarkerTargetPath)
   }
 
-  fs.mkdirSync(targetPath, { recursive: true })
-  fs.mkdirSync(path.join(targetPath, "components"))
-  fs.mkdirSync(path.join(targetPath, "stores"))
+  fs.mkdirSync(freemarkerTargetPath, { recursive: true })
+  fs.mkdirSync(path.join(freemarkerTargetPath, "components"))
+  fs.mkdirSync(path.join(freemarkerTargetPath, "stores"))
 }
 
 /**
@@ -227,15 +251,23 @@ function prepTargetDir(targetPath) {
  * maps as values. Each asset map has `scripts`, `styles` and `other` keys, which are 
  * arrays of paths to the asset chunks that encode the module and all its dependencies.
  * 
- * This module generates a freemarker for each module that contains
+ * This module generates:
+ * - A freemarker for each module consisting of a Vue component or Vuex store that contains:
+ *    - htmlBodyEndScripts headContributions for each script asset chunk
+ *    - htmlHeadStyle headContributions for each style asset chunk
+ *    - htmlHeadPreload headContributions containing resource hints for each cript and style chunk
+ *    - Includes for the main VsApp module and imports.ftl freemarker templates
+ *    - htmlBodyEndScripts headContributions containing a script tag with either the component 
+ *      registraion or global reference setup for each Vue component or Vuex store, respectively
+ * - A freemarker for the main VsApp module with all of the above with the followig differences:
+ *    - Each script asset chunk is contained in a htmlBodyEndScriptsFirst headContribution
+ *    - Does not contain a reference to itself
+ *    - Contains an additional script contained in a htmlBodyEndScriptsFirst headContribution that 
+ *      globalises the Vue dependency exported from the VsApp module and sets up the `vs` global object
+ *    - Contains an additional script contained in a htmlBodyEndAppInit headContribution tag that
+ *      calls the initApp method exported from the VsApp module
  * 
- * - htmlBodyEndScripts headContributions for each script asset chunk
- * - htmlHeadStyle headContributions for each style asset chunk
- * - preload references in htmlHeadPreload headContributions for all script and style chunks
- * - includes for the vue-app-init.ftl and imports.ftl freemarker templates
- * - htmlBodyEndScripts headContributions containing a script tag with the component 
- *   registraion or global reference setup for each Vue component or Vuex store, respectively
- * - a htmlBodyEndAppEntry headContribution for the final chunk for the main client entry
+ * For webpack loader options see the schema at the top of this file.
  * 
  * @param {String} manifest
  * 
@@ -246,10 +278,10 @@ module.exports = function(manifest) {
 
   validateOptions(optionsSchema, options, "Generate Freemarker Template")
 
-  prepTargetDir(options.targetPath)
+  prepTargetDir(options.freemarkerTargetPath)
 
   const configPaths = {
-    target: options.targetPath,
+    target: options.freemarkerTargetPath,
     imports: options.importsPath,
     webfiles: options.webfilesPath,
   }
@@ -259,6 +291,7 @@ module.exports = function(manifest) {
     partial.placeholder,
     partial.placeholder,
     configPaths,
+    options.appMountTarget,
   ))
 
   return manifest

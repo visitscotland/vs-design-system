@@ -40,8 +40,6 @@ function resolve(dir) {
     return path.join(__dirname, "..", dir)
 }
 
-
-
 function mergeIE11Fix(config) {
     const babelRule = _.find(_.get(config, "module.rules"), ["loader", "babel-loader"])
   

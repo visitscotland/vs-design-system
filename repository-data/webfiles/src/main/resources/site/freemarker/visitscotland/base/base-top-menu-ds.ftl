@@ -1,18 +1,18 @@
 <#include "../../include/imports.ftl">
 <#include "./base-header/navigation-item.ftl">
 
-<#include "../../frontend/components/header.ftl">
-<#include "../../frontend/components/header-drawer-toggle.ftl">
-<#include "../../frontend/components/header-login-button.ftl">
-<#include "../../frontend/components/drawer-content.ftl">
-<#include "../../frontend/components/list-group.ftl">
-<#include "../../frontend/components/logo.ftl">
-<#include "../../frontend/components/site-search.ftl">
-<#include "../../frontend/components/favourites-list.ftl">
-<#include "../../frontend/components/site-search-toggle-button.ftl">
-<#include "../../frontend/components/favourites-button.ftl">
-<#include "../../frontend/components/header-button.ftl">
-<#include "../../frontend/components/site-nav-list-item.ftl">
+<#include "../../frontend/components/vs-header.ftl">
+<#include "../../frontend/components/vs-header-drawer-toggle.ftl">
+<#include "../../frontend/components/vs-header-login-button.ftl">
+<#include "../../frontend/components/vs-drawer-content.ftl">
+<#include "../../frontend/components/vs-list-group.ftl">
+<#include "../../frontend/components/vs-logo.ftl">
+<#include "../../frontend/components/vs-site-search.ftl">
+<#include "../../frontend/components/vs-favourites-list.ftl">
+<#include "../../frontend/components/vs-site-search-toggle-button.ftl">
+<#include "../../frontend/components/vs-favourites-button.ftl">
+<#include "../../frontend/components/vs-header-button.ftl">
+<#include "../../frontend/components/vs-site-nav-list-item.ftl">
 
 <#-- @ftlvariable name="menu" type="org.hippoecm.hst.core.sitemenu.HstSiteMenu" -->
 <#-- @ftlvariable name="editMode" type="java.lang.Boolean"-->
