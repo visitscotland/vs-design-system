@@ -1,4 +1,6 @@
 "use strict"
+const path = require("path")
+
 const webpack = require("webpack")
 const merge = require("webpack-merge")
 const baseWebpackConfig = require("./base.webpack.conf")
@@ -9,8 +11,6 @@ const SafeParser = require("postcss-safe-parser")
 const ManifestPlugin = require("webpack-manifest-plugin")
 
 const utils = require("./utils")
-const config = require("../config")
-const env = require("../config/prod.env")
 const generateManifest = require("./library.generate-manifest")
 const { mergeIE11Fix } = require("./webpack.ie11-fix")
 
@@ -31,14 +31,11 @@ const webpackConfig = merge(mergeIE11Fix(baseWebpackConfig), {
   },
   devtool: false,
   output: {
-    path: config.system.assetsRoot,
-    filename: utils.assetsSystemPath(process.env.NODE_ENV === "development" ?
-      "scripts/[name].js" :
-      "scripts/[chunkhash].js",
-    ),
-    publicPath: config.system.assetsPublicPath,
+    path: path.resolve(__dirname, "../dist", "library"),
+    filename: process.env.NODE_ENV === "development" ? "scripts/[name].js" : "scripts/[chunkhash].js",
+    publicPath: "../",
     library: "[name]",
-    libraryTarget: config.system.libraryTarget,
+    libraryTarget: "umd",
   },
   optimization: {
       splitChunks: {
@@ -49,21 +46,11 @@ const webpackConfig = merge(mergeIE11Fix(baseWebpackConfig), {
       runtimeChunk: "single",
       concatenateModules: false,
   },
-  performance: {
-    hints: config.system.performanceHints,
-  },
   plugins: [
-    // http://vuejs.github.io/vue-loader/en/workflow/production.html
-    new webpack.DefinePlugin({
-      "process.env": env,
-    }),
 
     // extract css into its own file
     new MiniCssExtractPlugin({
-      filename: utils.assetsSystemPath(process.env.NODE_ENV === "development" ?
-        "styles/[name].css" :
-        "styles/[chunkhash].css"
-      ),
+      filename: process.env.NODE_ENV === "development" ? "styles/[name].css" : "styles/[chunkhash].css",
     }),
 
     // Compress and dedupe extracted CSS
@@ -83,24 +70,5 @@ const webpackConfig = merge(mergeIE11Fix(baseWebpackConfig), {
     new CleanWebpackPlugin(),
   ],
 })
-
-if (config.system.productionGzip) {
-  const CompressionWebpackPlugin = require("compression-webpack-plugin")
-
-  webpackConfig.plugins.push(
-    new CompressionWebpackPlugin({
-      asset: "[path].gz[query]",
-      algorithm: "gzip",
-      test: new RegExp("\\.(" + config.system.productionGzipExtensions.join("|") + ")$"),
-      threshold: 10240,
-      minRatio: 0.8,
-    })
-  )
-}
-
-if (config.system.bundleAnalyzerReport) {
-  const BundleAnalyzerPlugin = require("webpack-bundle-analyzer").BundleAnalyzerPlugin
-  webpackConfig.plugins.push(new BundleAnalyzerPlugin())
-}
 
 module.exports = webpackConfig

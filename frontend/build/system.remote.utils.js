@@ -29,8 +29,7 @@ const defaultRequestOptions = {
 let remoteConfig = null
 let spinner
 
-function getRemoteConfig(argv) {
-  let config = require(path.resolve(__dirname, "..", argv.config))
+function getRemoteConfig(config, argv) {
 
   const selectedProfileName = _.get(argv, ARG_REMOTE_PROFILE, process.env.VS_DS_REMOTE_PROFILE)
 

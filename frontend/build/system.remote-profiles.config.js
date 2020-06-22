@@ -1,5 +1,9 @@
 const { merge } = require("lodash")
 
+if (!process.env.VS_DS_REMOTE_CONFIG_URL) {
+  require("dotenv").config()
+}
+
 /**
  * Define connection details and response transformations for remote config here
  *
