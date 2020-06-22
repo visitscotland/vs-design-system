@@ -3,12 +3,12 @@ const path = require("path")
 const merge = require("webpack-merge")
 const chalk = require("chalk")
 
-const baseConfig = require("../build/base.webpack.conf.js")
+const baseConfig = require("./base.webpack.conf")
 const packageConfig = require("../package.json")
-const parseChildComponents = require("../build/system.parse-child-components.js")
-const { mergeIE11Fix } = require("../build/webpack.ie11-fix")
+const parseChildComponents = require("./system.parse-child-components")
+const { mergeIE11Fix } = require("./webpack.ie11-fix")
 
-const remoteConfig = require("./remote.docs.config")
+const remoteProfiles = require("./system.remote-profiles.config")
 
 module.exports = {
     /**
@@ -158,7 +158,7 @@ module.exports = {
     /**
      * Details of any remote config profiles
      */
-    remoteProfiles: remoteConfig
+    remoteProfiles,
 
     /**
    * Configure docs server to redirect asset queries

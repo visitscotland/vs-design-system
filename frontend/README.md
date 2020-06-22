@@ -96,17 +96,17 @@ yarn system:build
 
 ### Design system Config
 
-The layout and content of the design system is generated from a combination of the source files and configuration in `config/docs.config.js`. Details of the available config settings can be found in the [vue-styleguidist documentation](https://vue-styleguidist.github.io/Configuration.htm).
+The layout and content of the design system is generated from a combination of the source files and configuration in `build/system.config.js`. Details of the available config settings can be found in the [vue-styleguidist documentation](https://vue-styleguidist.github.io/Configuration.htm).
 
 There is one custom config key `remoteProfiles`, which can be used to specify config for including content from remote sources in the generated design system. Details for the remote configuration [can be found below](#remote-config).
 
 ### <a name="remote-config"></a> Configuring the remote build
 
-When included, the `remoteProfiles` key in `config/docs.config.js` specifies config profiles for merging content from a remote API into the static local config in that file.
+When included, the `remoteProfiles` key in `build/system.config.js` specifies config profiles for merging content from a remote API into the static local config in that file.
 
 These builds require valid configuration, as follows:
 
-- The `remoteProfiles` key in `config/docs.config.js` is a map of objects - each key being the profile name and the value being an object with the profile's config. The project currently includes profiles for Hippo and Contentful, which are specified in `config/remote.docs.config.js`. See `config/remote.docs.config.js` for details on how to properly configure a remote profile.
+- The `remoteProfiles` key in `build/system.config.js` is a map of objects - each key being the profile name and the value being an object with the profile's config. The project currently includes profiles for Hippo and Contentful, which are specified in `config/build/system.remote-profiles.config.js`. See that file for details on how to properly configure remote profiles.
 - Set the `VS_DS_REMOTE_CONFIG_URL` and any other environment variables (e.g. `VS_DS_REMOTE_CONFIG_HIPPO_PROJECT_NAME`) by specifying them in a `.env` file in the package root, or some other way.
 
 Common environment variables for remote config:
@@ -145,7 +145,7 @@ yarn theo
 
 ### Building static design system assets for production
 
-The following script generates a flat site version of the design system site, according to the config in `config/docs.config.js`, with all assets being output into `dist/system`:
+The following script generates a flat site version of the design system site, according to the config in `build/system.config.js`, with all assets being output into `dist/system`:
 
 ```sh
 yarn system:build
