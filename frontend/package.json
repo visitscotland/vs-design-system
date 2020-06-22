@@ -36,6 +36,7 @@
     "theo:watch": "onchange \"./src/tokens/*.yml\" -- npm run _theo",
     "presystem": "yarn theo",
     "presystem:build": "yarn theo",
+    "pressr:build": "yarn theo",
     "pree2e": "yarn theo",
     "preunit": "yarn theo",
     "pretdd": "yarn theo"
