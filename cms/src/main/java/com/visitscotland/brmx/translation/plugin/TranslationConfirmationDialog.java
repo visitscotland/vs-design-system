@@ -12,10 +12,13 @@ import org.hippoecm.frontend.service.IconSize;
 import org.hippoecm.frontend.translation.ILocaleProvider;
 
 public class TranslationConfirmationDialog extends WorkflowDialog<Void> {
+    public static final String ID_IMG = "img";
+    public static final String ID_NAME = "name";
+
     public TranslationConfirmationDialog(IWorkflowInvoker invoker,
                                          IDataProvider<ILocaleProvider.HippoLocale> languageList) {
         super(invoker);
-        add(new DataView<ILocaleProvider.HippoLocale>("languages", languageList) {
+        add(new DataView<ILocaleProvider.HippoLocale>(TranslationWorkflowPlugin.ID_LANGUAGES, languageList) {
             {
                 onPopulate();
             }
@@ -24,8 +27,8 @@ public class TranslationConfirmationDialog extends WorkflowDialog<Void> {
             protected void populateItem(Item<ILocaleProvider.HippoLocale> item) {
                 ILocaleProvider.HippoLocale locale = item.getModelObject();
                 ResourceReference resourceRef = locale.getIcon(IconSize.M, ILocaleProvider.LocaleState.EXISTS);
-                item.add(new CachingImage("img", resourceRef));
-                item.add(new Label("name", locale.getDisplayName(getLocale())));
+                item.add(new CachingImage(ID_IMG, resourceRef));
+                item.add(new Label(ID_NAME, locale.getDisplayName(getLocale())));
             }
         });
     }
