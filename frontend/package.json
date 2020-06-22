@@ -1,11 +1,11 @@
 {
-  "name": "vs-dotcom-ds",
-  "version": "0.0.1",
-  "description": "visitScotland.com Frontend",
+  "name": "vs-dotcom-frontend",
+  "version": "0.1.0",
+  "description": "visitscotland.com Frontend",
   "author": "lukenofurther",
   "main": "dist/library/manifest.json",
   "files": [
-    "dist/system"
+    "dist/library"
   ],
   "homepage": "",
   "private": true,
@@ -13,8 +13,8 @@
   "scripts": {
     "dev": "npm-run-all --parallel system theo:watch dev:webpack",
     "dev:webpack": "webpack-dev-server --inline --config ./build/webpack.dev.conf.js",
-    "system": "node ./build/system server --config ./config/docs.config.js",
-    "system:build": "node ./build/system build --config ./config/docs.config.js",
+    "system": "node ./build/system server --remote-profile hippo",
+    "system:build": "node ./build/system build",
     "library": "cross-env NODE_ENV=production webpack --config ./build/library.webpack.conf.js",
     "library:dev": "cross-env NODE_ENV=development webpack --config ./build/library.webpack.conf.js",
     "ssr": "npm-run-all ssr:build:dev ssr:serve:dev",
@@ -46,12 +46,12 @@
     "url": ""
   },
   "keywords": [
-    "design system",
     "vue.js",
+    "visit scotland",
     "vue",
+    "design system",
     "design",
-    "system",
-    "visit scotland"
+    "system"
   ],
   "dependencies": {
     "@mapbox/geojson-extent": "^0.3.2",
