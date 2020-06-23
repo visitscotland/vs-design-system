@@ -12,7 +12,7 @@ const ManifestPlugin = require("webpack-manifest-plugin")
 
 const utils = require("./utils")
 const generateManifest = require("./library.generate-manifest")
-const { mergeIE11Fix } = require("./webpack.ie11-fix")
+const mergeIE11Fix = require("./webpack.ie11-fix")
 
 baseWebpackConfig.entry = require("./library.entry.js")
 

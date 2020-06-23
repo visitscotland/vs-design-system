@@ -40,7 +40,7 @@ function resolve(dir) {
     return path.join(__dirname, "..", dir)
 }
 
-function mergeIE11Fix(config) {
+module.exports = function mergeIE11Fix(config) {
     const babelRule = _.find(_.get(config, "module.rules"), ["loader", "babel-loader"])
   
     if (babelRule) {
@@ -52,10 +52,4 @@ function mergeIE11Fix(config) {
     }
   
     return config
-  }
-
-  module.exports = {
-    mergeIE11Fix 
-  }
-  
-  
+}  

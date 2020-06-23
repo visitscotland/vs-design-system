@@ -20,8 +20,25 @@ exports.cssLoaders = function(options) {
     },
   }
 
+  const baseSassLoaderOptions = {
+    style: "compressed",
+    implementation: require("sass"),
+    sourceMap: options.sourceMap,
+  }
+
+  const sassResourcesLoader = {
+    loader: "sass-resources-loader",
+    options: {
+      resources: [
+        path.resolve(__dirname, "../src/assets/tokens/tokens.scss"),
+        path.resolve(__dirname, "../src/assets/tokens/tokens.map.scss"),
+        path.resolve(__dirname, "../src/styles/styles.scss"),
+      ],
+    },
+  }
+
   // generate loader string to be used with extract text plugin
-  function generateLoaders(loader, loaderOptions) {
+  function generateLoaders(sassLoader, extraSassLoaderOptions) {
     const loaders = []
 
     // Extract CSS when that option is specified
@@ -38,42 +55,27 @@ exports.cssLoaders = function(options) {
       loaders.push(postcssLoader)
     }
 
-    if (loader) {
+    if (sassLoader) {
       loaders.push({
-        loader: loader + "-loader",
-        options: Object.assign({}, loaderOptions, {
-          sourceMap: options.sourceMap,
-        }),
+        loader: "sass-loader",
+        options: {
+          ...baseSassLoaderOptions,
+          ...extraSassLoaderOptions || {},
+        }
       })
+
+      loaders.push(sassResourcesLoader)
     }
 
     return loaders
-  }
-
-  const sassResourcesConfig = {
-    loader: "sass-resources-loader",
-    options: {
-      resources: [
-        path.resolve(__dirname, "../src/assets/tokens/tokens.scss"),
-        path.resolve(__dirname, "../src/assets/tokens/tokens.map.scss"),
-        path.resolve(__dirname, "../src/styles/styles.scss"),
-      ],
-    },
-  }
-
-  const sassOptions = {
-    style: "compressed",
-    implementation: require("sass"),
   }
 
   // https://vue-loader.vuejs.org/guide/extract-css.html
   return {
     css: generateLoaders(),
     postcss: generateLoaders(),
-    sass: generateLoaders("sass", Object.assign({ indentedSyntax: true }, sassOptions)).concat(
-      sassResourcesConfig
-    ),
-    scss: generateLoaders("sass", sassOptions).concat(sassResourcesConfig),
+    sass: generateLoaders(true, { indentedSyntax: true }),
+    scss: generateLoaders("sass"),
   }
 }
 
