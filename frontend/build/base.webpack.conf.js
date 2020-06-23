@@ -85,9 +85,16 @@ module.exports = {
       },
     ],
   },
+  performance: {
+    maxEntrypointSize: 750000,
+  },
+  stats: {
+    entrypoints: false,
+    children: false,
+  },
   plugins: [
     new VueLoaderPlugin(),
-    new MiniCssExtractPlugin("style.css")
+    new MiniCssExtractPlugin("style.css"),
   ],
   node: {
     // prevent webpack from injecting useless setImmediate polyfill because Vue
