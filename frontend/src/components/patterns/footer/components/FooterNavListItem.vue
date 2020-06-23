@@ -117,6 +117,7 @@ export default {
                         ></vs-footer-nav-list-item>
                         <vs-footer-nav-list-item
                             href="#"
+                            external
                             link-text="VisitScotland Awards"
                         ></vs-footer-nav-list-item>
                     </vs-list>
