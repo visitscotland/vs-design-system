@@ -1,5 +1,5 @@
 <template>
-    <div class="vs-footer pt-sm-6 pt-md-9">
+    <div class="vs-footer pt-6 pt-md-9">
         <VsFooterNavList break-point="md">
             <!-- @slot Contains accordion item for each menu list  -->
             <slot name="accordion-items" />
