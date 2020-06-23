@@ -86,7 +86,7 @@ export default {
                         <vs-icon name="chevron-right" variant="light" size="xs" />
                     </span>
 
-                    <vs-list unstyled class="pb-2">
+                    <vs-list unstyled>
                         <vs-footer-nav-list-item
                             href="#"
                             link-text="Brochures"
@@ -125,7 +125,7 @@ export default {
                         <vs-icon name="chevron-right" variant="light" size="xs" />
                     </span>
 
-                    <vs-list unstyled class="pb-2">
+                    <vs-list unstyled>
                         <vs-footer-nav-list-item
                             href="#"
                             link-text="Brochures"
@@ -164,7 +164,7 @@ export default {
                         <vs-icon name="chevron-right" variant="light" size="xs" />
                     </span>
 
-                    <vs-list unstyled class="pb-2">
+                    <vs-list unstyled>
                         <vs-footer-nav-list-item
                             href="#"
                             link-text="Brochures"
