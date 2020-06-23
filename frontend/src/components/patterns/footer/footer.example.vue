@@ -220,5 +220,14 @@
                 link-text="About Us"
             />
         </VsFooterUtilityList>
+
+        <VsFooterCopyright
+            logo-alt-text="VisitScotland Home"
+            href="/"
+        >
+            <span slot="copyright">
+                VisitScotland. All rights reserved.
+            </span>
+        </VsFooterCopyright>
     </VsFooter>
 </template>
