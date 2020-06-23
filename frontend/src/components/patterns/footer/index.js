@@ -4,6 +4,7 @@ import VsFooterSocialMenu from "./components/FooterSocialMenu"
 import VsFooterNavList from "./components/FooterNavList"
 import VsFooterNavListItem from "./components/FooterNavListItem"
 import VsFooterSocialItem from "./components/FooterSocialItem"
+import VsFooterUtilityList from "./components/FooterUtilityList"
 
 export default {
     VsFooter,
@@ -12,4 +13,5 @@ export default {
     VsFooterNavList,
     VsFooterNavListItem,
     VsFooterSocialItem,
+    VsFooterUtilityList,
 }
