@@ -1,20 +1,16 @@
-const _ = require("lodash")
 const path = require("path")
-const merge = require("webpack-merge")
 const chalk = require("chalk")
 
-const baseConfig = require("./base.webpack.conf")
+const webpackConfig = require("./system.webpack.config")
 const packageConfig = require("../package.json")
 const parseChildComponents = require("./system.parse-child-components")
-const { mergeIE11Fix } = require("./webpack.ie11-fix")
-
 const remoteProfiles = require("./system.remote-profiles.config")
 
 module.exports = {
-    /**
-   * Most of the styles are defined in /docs/styles/docs.styles.scss
-   */
     version: packageConfig.version,
+    /**
+     * Most of the styles are defined in /docs/styles/docs.styles.scss
+     */
     theme: {
         maxWidth: "100%",
         sidebarWidth: 240,
@@ -24,37 +20,32 @@ module.exports = {
         },
     },
     renderRootJsx: path.join(__dirname, "../docs/components/Preview.js"),
-    /**
-   * Define a custom code highlighting theme.
-   */
     editorConfig: {
         theme: "night",
     },
-    /**
-   * Path to static assets directory
-   */
     assetsDir: path.join(__dirname, "../src/assets"),
     /**
-   * Enabling the below option will break things in Vue Design System!
-   */
+     * Enabling the below option will break things!
+     */
     skipComponentsWithoutExample: false,
     /**
-   * We’re defining below JS and SCSS requires for the documentation.
-   */
+     * We’re defining below JS and SCSS required globally.
+     */
     require: [
         path.join(__dirname, "../docs/docs.helper.js"),
         path.join(__dirname, "../docs/styles/docs.styles.scss"),
         path.join(__dirname, "../src/assets/fixtures/index.js"),
+        path.join(__dirname, "../src/styles/core.styles.scss"),
     ],
     /**
-   * Enabling the following option splits sections into separate views.
-   */
+     * Enabling the following option splits sections into separate views.
+     */
     pagePerSection: true,
     /**
-   * Custom wrapper template for the documentation.
-   */
+     * Custom wrapper template for the design system site.
+     */
     template: {
-        title: "Example — Vue Design System",
+        title: "Example — Design System",
         lang: "en",
         trimWhitespace: true,
         head: {
@@ -71,9 +62,6 @@ module.exports = {
         },
         favicon: "https://www.visitscotland.com/favicon.ico",
     },
-    /**
-   * Ignore app.vue, tests, and example component.
-   */
     ignore: [
         "**/App.vue",
         "**/__tests__/**",
@@ -83,45 +71,7 @@ module.exports = {
         "**/*.spec.jsx",
         "**/ExampleComponent.vue",
     ],
-    webpackConfig: merge(mergeIE11Fix(baseConfig), {
-        resolve: {
-            alias: {
-                "rsg-components/ReactComponent/ReactComponentRenderer":
-          "rsg-components-default/ReactComponent/ReactComponentRenderer",
-                "rsg-components/Playground/PlaygroundRenderer":
-          "rsg-components-default/Playground/PlaygroundRenderer",
-            },
-        },
-        module: {
-            rules: [
-                {
-                    test: /\.(css?|scss|sass)(\?.*)?$/,
-                    use: [
-                        "style-loader",
-                        "css-loader",
-                        "postcss-loader",
-                        {
-                            loader: "sass-loader",
-                            options: {
-                                implementation: require("sass"),
-                            },
-                        },
-                        {
-                            loader: "sass-resources-loader",
-                            options: {
-                                resources: [
-                                    path.join(__dirname, "../src/assets/tokens/tokens.scss"),
-                                    path.join(__dirname, "../src/assets/tokens/tokens.map.scss"),
-                                    path.join(__dirname, "../src/styles/styles.scss"),
-                                    path.join(__dirname, "../src/styles/core.styles.scss"),
-                                ],
-                            },
-                        },
-                    ],
-                },
-            ],
-        },
-    }),
+    webpackConfig,
     compilerConfig: {
         target: {
             ie: "11",
@@ -132,14 +82,16 @@ module.exports = {
         },
     },
     styleguideDir: "dist/system",
-    printServerInstructions() {},
+    printServerInstructions() {
+
+    },
     printBuildInstructions(config) {
         console.log(chalk.cyan("\n  Design System Docs build finished succesfully!\n"))
         console.log(
             chalk.yellow(
-                "  Tip: You can now deploy the docs as a static website.\n"
-          + "  Copy the build files from "
-          + `${config.styleguideDir}\n`,
+                "  Tip: You can now deploy the docs as a static website.\n" +
+                "  Copy the build files from " +
+                `${config.styleguideDir}\n`
             ),
         )
     },
@@ -150,8 +102,8 @@ module.exports = {
     },
     propsParser(filePath, source) {
         return require("vue-docgen-api").parse(filePath, {
-            resolve: baseConfig.resolve,
-            alias: baseConfig.resolve.alias,
+            resolve: webpackConfig.resolve,
+            alias: webpackConfig.resolve.alias,
             addScriptHandlers: [parseChildComponents.default],
         })
     },

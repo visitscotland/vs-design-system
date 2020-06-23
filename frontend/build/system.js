@@ -8,14 +8,17 @@ const ora = require("ora")
 const StyleguidistError = require("react-styleguidist/lib/scripts/utils/error")
 const styleguidist = require("vue-styleguidist")
 
-let config = require(path.resolve(__dirname, "./system.config"))
 const { getRemoteConfig, cleanup: cleanupRemoteBuild } = require("./system.remote.utils.js")
 
 const argv = minimist(process.argv.slice(2))
 const command = argv._[0]
 
 // This will be used if NODE_ENV isn't already set
-const fallbackEnv = command === "build" ? "production" : "development"
+if(!process.env.NODE_ENV) {
+  process.env.NODE_ENV = command === "build" ? "production" : "development"
+}
+
+let config = require(path.resolve(__dirname, "./system.config"))
 
 const spinner = ora("Building design system...")
 
@@ -35,8 +38,6 @@ process.on("uncaughtException", err => {
   }
   process.exit(1)
 })
-
-process.env.NODE_ENV = process.env.NODE_ENV || fallbackEnv
 
 getRemoteConfig(config, argv)
   .then(partial(run, command))
@@ -76,7 +77,7 @@ function callbackCommon(err, stats) {
     )
 
     if (stats.hasErrors()) {
-      console.log(chalk.red("  Design System build failed with errors.\n"))
+      console.log(chalk.red("Design System build failed with errors.\n"))
       process.exit(1)
     }
   }

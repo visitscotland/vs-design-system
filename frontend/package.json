@@ -11,8 +11,6 @@
   "private": true,
   "license": "MIT",
   "scripts": {
-    "dev": "npm-run-all --parallel system theo:watch dev:webpack",
-    "dev:webpack": "webpack-dev-server --inline --config ./build/webpack.dev.conf.js",
     "system": "node ./build/system server --remote-profile hippo",
     "system:build": "node ./build/system build",
     "library": "cross-env NODE_ENV=production webpack --config ./build/library.webpack.conf.js",
