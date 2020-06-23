@@ -1,6 +1,7 @@
 package com.visitscotland.brmx.translation.plugin.menu;
 
 import com.visitscotland.brmx.translation.plugin.DocumentTranslator;
+import com.visitscotland.brmx.translation.plugin.TranslationException;
 import com.visitscotland.brmx.translation.plugin.TranslationWorkflowPlugin;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.LoadableDetachableModel;
@@ -79,7 +80,6 @@ public class TranslationActionTest {
         Node mockDocNode = mock(Node.class);
         when(mockWorkflowPlugin.getDefaultModel()).thenReturn((IModel) mockWorkflowDescriptorModel);
         when(mockWorkflowDescriptorModel.getNode()).thenReturn(mockDocNode);
-        when(mockTranslator.getTranslatedDocumentName(anyList())).thenReturn("translated");
 
         addTranslatedLocale("en");
         addUntranslatedLocale("es");
@@ -88,10 +88,7 @@ public class TranslationActionTest {
         action.execute(mockWorkflow);
 
         verify(mockTranslator, times(2)).cloneDocumentAndFolderStructure(
-                any(Node.class), anyList(), any(ILocaleProvider.HippoLocale.class), any(Session.class));
-
-        verify(mockWorkflow).addTranslation(eq("es"), eq("translated"));
-        verify(mockWorkflow).addTranslation(eq("de"), eq("translated"));
+                same(mockDocNode), any(ILocaleProvider.HippoLocale.class), any(Session.class), eq(mockWorkflow));
     }
 
     @Test
@@ -99,12 +96,12 @@ public class TranslationActionTest {
         Node mockDocNode = mock(Node.class);
         when(mockWorkflowPlugin.getDefaultModel()).thenReturn((IModel) mockWorkflowDescriptorModel);
         when(mockWorkflowDescriptorModel.getNode()).thenReturn(mockDocNode);
-        when(mockTranslator.cloneDocumentAndFolderStructure(
+        doThrow(new TranslationException("error message")).when(mockTranslator).cloneDocumentAndFolderStructure(
                 same(mockDocNode),
-                anyList(),
                 any(ILocaleProvider.HippoLocale.class),
-                any(Session.class))
-        ).thenReturn("error message");
+                any(Session.class),
+                eq(mockWorkflow)
+        );
 
         addTranslatedLocale("en");
         addUntranslatedLocale("de");
@@ -113,8 +110,7 @@ public class TranslationActionTest {
         String message = action.execute(mockWorkflow);
 
         assertEquals("error message", message);
-        verify(mockTranslator).cloneDocumentAndFolderStructure(same(mockDocNode), anyList(), any(ILocaleProvider.HippoLocale.class), any(Session.class));
-        verify(mockWorkflow, never()).addTranslation(anyString(), anyString());
+        verify(mockTranslator).cloneDocumentAndFolderStructure(same(mockDocNode), any(ILocaleProvider.HippoLocale.class), any(Session.class), eq(mockWorkflow));
     }
 
     private void addTranslatedLocale(String isoString) {

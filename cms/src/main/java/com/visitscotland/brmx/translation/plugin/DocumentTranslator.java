@@ -1,14 +1,16 @@
 package com.visitscotland.brmx.translation.plugin;
 
+import com.visitscotland.brmx.beans.Page;
+import com.visitscotland.brmx.beans.TranslationParent;
 import org.hippoecm.addon.workflow.WorkflowSNSException;
 import org.hippoecm.frontend.plugins.standardworkflow.validators.SameNameSiblingsUtil;
 import org.hippoecm.frontend.translation.ILocaleProvider;
 import org.hippoecm.frontend.translation.components.document.FolderTranslation;
 import org.hippoecm.frontend.translation.workflow.JcrFolderTranslationFactory;
-import org.hippoecm.repository.api.Document;
-import org.hippoecm.repository.api.HippoWorkspace;
-import org.hippoecm.repository.api.WorkflowException;
-import org.hippoecm.repository.api.WorkflowManager;
+import org.hippoecm.hst.container.RequestContextProvider;
+import org.hippoecm.hst.content.beans.query.exceptions.QueryException;
+import org.hippoecm.hst.content.beans.standard.HippoBean;
+import org.hippoecm.repository.api.*;
 import org.hippoecm.repository.standardworkflow.DefaultWorkflow;
 import org.hippoecm.repository.translation.HippoTranslatedNode;
 import org.hippoecm.repository.translation.HippoTranslationNodeType;
@@ -18,29 +20,51 @@ import org.slf4j.LoggerFactory;
 
 import javax.jcr.*;
 import java.rmi.RemoteException;
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.LinkedList;
 import java.util.List;
 
 public class DocumentTranslator {
     public static final String COULD_NOT_CREATE_FOLDERS = "could-not-create-folders";
     private static final Logger LOG = LoggerFactory.getLogger(DocumentTranslator.class);
 
-    public String getTranslatedDocumentName(List<FolderTranslation> folders) {
-        if (folders == null || folders.isEmpty()) {
-            throw new IllegalStateException("must have at least one document");
+    public void cloneDocumentAndFolderStructure(Node docNode,
+                                                ILocaleProvider.HippoLocale targetLocale,
+                                                Session session,
+                                                TranslationWorkflow workflow)
+            throws TranslationException, WorkflowException, RepositoryException, RemoteException, QueryException {
+        // First need to build up a Set of FolderTranslations that need to be done.
+        // Need to do this first so we can check for same name siblings before any translations are actually done.
+        List<Node> nodeList = new ArrayList<>();
+        nodeList.add(docNode);
+        if (docNode.isNodeType(Page.JCR_TYPE)) {
+            // Convert the node to a HippoBean so we can check the type
+            HippoBean bean = RequestContextProvider.get().getQueryManager()
+                    .createQuery(docNode.getParent()).execute().getHippoBeans().nextHippoBean();
+            if (bean instanceof TranslationParent) {
+                TranslationParent parent = (TranslationParent)bean;
+                String[] childJcrTypes = parent.getChildJcrTypes();
+                Node containingFolder = docNode.getParent();
+                //while(containingFolder.isNodeType())
+            }
         }
-        int docIndex = folders.size() - 1;
-        return folders.get(docIndex).getNamefr();
+
+        List<List<FolderTranslation>> changeSets = new ArrayList<>();
+        for (Node node : nodeList) {
+            changeSets.add(generateFolderChangeSet(node, targetLocale));
+        }
+
+        for (List<FolderTranslation> change : changeSets) {
+            cloneSingleDocumentAndFolderStructure(change, targetLocale, session, workflow);
+        }
     }
 
-    public String cloneDocumentAndFolderStructure(Node docNode, List<FolderTranslation> folders, ILocaleProvider.HippoLocale targetLocale, Session session) throws WorkflowException, RepositoryException {
-        Node handle = docNode.getParent();
-        FolderTranslation documentTranslation = JcrFolderTranslationFactory.createFolderTranslation(handle, null);
-        documentTranslation.setNamefr(documentTranslation.getName() + " (" + targetLocale.getName() + ")");
-        documentTranslation.setUrlfr(documentTranslation.getUrl());
-        folders.add(documentTranslation);
-
-        populateFolders(handle, targetLocale.getName(), folders);
+    public void cloneSingleDocumentAndFolderStructure(List<FolderTranslation> folders,
+                                                      ILocaleProvider.HippoLocale targetLocale,
+                                                      Session session,
+                                                      TranslationWorkflow workflow)
+            throws TranslationException, WorkflowException, RepositoryException, RemoteException {
 
         // Find the index of the deepest translated folder.
         // The caller is to guarantee that at least the root node is translated (hence starting i at 1),
@@ -57,11 +81,31 @@ public class DocumentTranslator {
         // Try to create new target folders for all not yet translated source folders
         for (; i < indexOfDeepestFolder; i++) {
             if (!saveFolder(folders.get(i), session, targetLocale.getName())) {
-                return COULD_NOT_CREATE_FOLDERS;
+                throw new TranslationException(COULD_NOT_CREATE_FOLDERS);
             }
         }
+        workflow.addTranslation(targetLocale.getName(), getTranslatedDocumentName(folders));
+    }
 
-        return null;
+    protected List<FolderTranslation> generateFolderChangeSet(Node docNode,
+                                                              ILocaleProvider.HippoLocale targetLocale)
+            throws RepositoryException {
+        List<FolderTranslation> folders = new LinkedList<>();
+        Node handle = docNode.getParent();
+        FolderTranslation documentTranslation = JcrFolderTranslationFactory.createFolderTranslation(handle, null);
+        documentTranslation.setNamefr(documentTranslation.getName() + " (" + targetLocale.getName() + ")");
+        documentTranslation.setUrlfr(documentTranslation.getUrl());
+        folders.add(documentTranslation);
+        populateFolders(handle, targetLocale.getName(), folders);
+        return folders;
+    }
+
+    protected String getTranslatedDocumentName(List<FolderTranslation> folders) {
+        if (folders == null || folders.isEmpty()) {
+            throw new IllegalStateException("must have at least one document");
+        }
+        int docIndex = folders.size() - 1;
+        return folders.get(docIndex).getNamefr();
     }
 
     protected TranslatedFolder createTranslatedFolder(Node node) {

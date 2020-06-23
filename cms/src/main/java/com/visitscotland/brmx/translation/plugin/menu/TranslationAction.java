@@ -9,6 +9,7 @@ import org.hippoecm.frontend.dialog.IDialogService;
 import org.hippoecm.frontend.session.UserSession;
 import org.hippoecm.frontend.translation.ILocaleProvider;
 import org.hippoecm.frontend.translation.components.document.FolderTranslation;
+import org.hippoecm.hst.content.beans.query.exceptions.QueryException;
 import org.hippoecm.repository.api.WorkflowException;
 import org.hippoecm.repository.translation.TranslationWorkflow;
 
@@ -57,7 +58,8 @@ public class TranslationAction extends StdWorkflow<TranslationWorkflow> {
     }
 
     @Override
-    protected String execute(TranslationWorkflow workflow) throws WorkflowException, RepositoryException, RemoteException {
+    protected String execute(TranslationWorkflow workflow)
+            throws WorkflowException, RepositoryException, RemoteException, QueryException {
         Session session = getJcrSession();
 
         // Only want to add languages we do not have a translation for
@@ -72,14 +74,11 @@ public class TranslationAction extends StdWorkflow<TranslationWorkflow> {
 
             Node docNode = ((WorkflowDescriptorModel) workflowPlugin.getDefaultModel()).getNode();
 
-            List<FolderTranslation> folders = new LinkedList<>();
-            String result = translator.cloneDocumentAndFolderStructure(docNode, folders, targetLocale, session);
-            if (result != null) {
-                return result;
+            try {
+                translator.cloneDocumentAndFolderStructure(docNode, targetLocale, session, workflow);
+            } catch(TranslationException ex) {
+                return ex.getMessage();
             }
-
-            workflow.addTranslation(targetLocale.getName(), translator.getTranslatedDocumentName(folders));
-
         }
         return null;
     }
