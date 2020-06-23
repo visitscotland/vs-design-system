@@ -14,24 +14,16 @@
 
 <vs-footer class="has-edit-button">
     <#if enhancedMenu??>
-        <vs-footer-nav-list break-point="md">
+        <template slot="accordion-items">
             <@footerAccordionItem footerMenuItems=enhancedMenu />
-               
-            <vs-col cols="12" lg="3" xl="2" class="d-none d-lg-block">
-                <@footerSocialMenu />
-            </vs-col>
-        </vs-footer-nav-list>
+        </template>
 
-        <div class="border-top border-secondary-light">
-            <vs-container class="vs-footer-social-menu__wrapper">
-                <vs-row>
-                    <vs-col cols="12" class="d-block d-lg-none">
-                        <@footerSocialMenu />
-                    </vs-col>
-                </vs-row>
-            </vs-container>
-        </div>
+        <template slot="social-menu">      
+           <@footerSocialMenu />
+        </template>
+        
         <@hst.cmseditmenu menu=menu/>
-        <#--  <@hst.include ref="utility"/>  -->
+
+        <@hst.include ref="utility"/>
     </#if>
 </vs-footer>
