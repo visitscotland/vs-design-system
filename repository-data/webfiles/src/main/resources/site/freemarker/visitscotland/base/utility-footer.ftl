@@ -1,6 +1,6 @@
 <#include "../../include/imports.ftl">
-<#include "../../vs-dotcom-ds/components/footer-utility-list.ftl">
-<#include "../../vs-dotcom-ds/components/footer-nav-list-item.ftl">
+<#include "../../frontend/components/vs-footer-utility-list.ftl">
+<#include "../../frontend/components/vs-footer-nav-list-item.ftl">
 
 <#-- @ftlvariable name="menu" type="org.hippoecm.hst.core.sitemenu.HstSiteMenu" -->
 <#-- @ftlvariable name="enhancedMenu" type="java.util.List" -->

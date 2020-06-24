@@ -11,7 +11,7 @@
 <#include "../../frontend/components/vs-link.ftl">
 <#include "../../frontend/components/vs-rich-text-wrapper.ftl">
 <#include "../../frontend/components/vs-listicle-item.ftl">
-<#--  <#include "../../frontend/components/vs-panel.ftl">  -->
+<#include "../../frontend/components/vs-panel.ftl">
 
 <#include "../macros/modules/listicles/listicle-item.ftl">
 <#include "../macros/global/cms-errors.ftl">
