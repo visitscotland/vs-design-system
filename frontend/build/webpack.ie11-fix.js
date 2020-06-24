@@ -13,6 +13,9 @@ const webpackBabelRuleIncludes = [
     resolve("node_modules/camelcase"),
     resolve("node_modules/bootstrap-vue"),
     resolve("node_modules/vuex"),
+    resolve("node_modules/vue"),
+    resolve("src"),
+    resolve("ssr"),
 ]
 
 const webpackBabelRuleUse = {
