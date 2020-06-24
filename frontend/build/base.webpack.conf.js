@@ -11,7 +11,7 @@ function resolve(dir) {
 }
 
 module.exports = {
-  mode: process.env.NODE_ENV,
+  mode: process.env.NODE_ENV || "production",
   context: path.resolve(__dirname, "../"),
   entry: {
     app: "./src/main.js",
