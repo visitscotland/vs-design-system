@@ -59,7 +59,7 @@
 				</vs-col>
 				<vs-col cols="2">
 					<div class="d-flex justify-content-center justify-content-sm-end">
-						<vs-social-share />
+						<vs-social-share></vs-social-share>
 					</div>
 				</vs-col>
 			</vs-row>

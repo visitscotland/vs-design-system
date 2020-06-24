@@ -291,7 +291,7 @@ public class ProductSearchTest {
     @Test
     public void proximity() {
         final String LOCATION = "Edinburgh";
-        final Integer PROXIMITY = 6;
+        final Double PROXIMITY = 6.0;
 
 
         String url;
@@ -315,7 +315,7 @@ public class ProductSearchTest {
 
         url = new ProductSearchBuilder().productTypes(DEFAULT_TYPE)
                 .location(LOCATION)
-                .proximity(0)
+                .proximity(0.0)
                 .sortBy(null)
                 .build();
         Assert.assertTrue(

@@ -28,11 +28,11 @@
                 </span>
 
                 <span slot="icon-open">
-                    <vs-icon name="chevron-up" variant="light" size="xs" />
+                    <vs-icon name="chevron-up" variant="light" size="xs"></vs-icon>
                 </span>
 
                 <span slot="icon-closed">
-                    <vs-icon name="chevron-right" variant="light" size="xs" />
+                    <vs-icon name="chevron-right" variant="light" size="xs"></vs-icon>
                 </span>
 
                 <vs-list unstyled class="pb-2">
