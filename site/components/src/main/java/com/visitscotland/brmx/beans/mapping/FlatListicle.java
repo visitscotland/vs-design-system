@@ -1,8 +1,8 @@
 package com.visitscotland.brmx.beans.mapping;
 
 import com.visitscotland.brmx.beans.ListicleItem;
+import com.visitscotland.dataobjects.DataType;
 import org.hippoecm.hst.content.beans.standard.HippoHtml;
-import org.json.JSONObject;
 
 import java.util.List;
 
@@ -15,7 +15,7 @@ public class FlatListicle {
     private String subTitle;
     private HippoHtml description;
     private FlatImage image;
-    private List<JSONObject> facilities;
+    private List<DataType> facilities;
     private List<FlatLink> links;
     private List<String> errorMessages;
     private ListicleItem listicleItem;
@@ -72,11 +72,11 @@ public class FlatListicle {
         this.image = image;
     }
 
-    public List<JSONObject> getFacilities() {
+    public List<DataType> getFacilities() {
         return facilities;
     }
 
-    public void setFacilities(List<JSONObject> facilities) {
+    public void setFacilities(List<DataType> facilities) {
         this.facilities = facilities;
     }
 
@@ -87,7 +87,6 @@ public class FlatListicle {
     public void setSubTitle(String subTitle) {
         this.subTitle = subTitle;
     }
-
 
     public List<FlatLink> getLinks() {
         return links;

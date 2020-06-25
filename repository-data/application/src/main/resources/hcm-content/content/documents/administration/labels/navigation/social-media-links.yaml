@@ -1,0 +1,52 @@
+/content/documents/administration/labels/navigation/social-media-links:
+  jcr:primaryType: hippo:handle
+  jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
+  jcr:uuid: 93697ed5-5c68-4ab7-8787-e70e27707801
+  hippo:name: Social media links
+  hippo:versionHistory: 4454c56e-d7d3-41f2-947a-8f46776d3713
+  /social-media-links[1]:
+    jcr:primaryType: resourcebundle:resourcebundle
+    jcr:mixinTypes: ['mix:referenceable']
+    jcr:uuid: 70b1c391-f992-4771-9a4c-8aab5da43e15
+    hippo:availability: []
+    hippostd:state: draft
+    hippostdpubwf:createdBy: admin
+    hippostdpubwf:creationDate: 2020-04-30T13:40:44.798+01:00
+    hippostdpubwf:lastModificationDate: 2020-04-30T13:40:44.798+01:00
+    hippostdpubwf:lastModifiedBy: admin
+    resourcebundle:descriptions: ['', '', '', '']
+    resourcebundle:id: social-media
+    resourcebundle:keys: [facebook, twitter, youtube, instagram]
+    resourcebundle:messages: ['https://www.facebook.com/visitscotland/', 'https://twitter.com/VisitScotland',
+      'https://www.youtube.com/channel/UC1FdvQG5MFwzv0PY6dMsaFg', 'https://www.instagram.com/visitscotland/']
+  /social-media-links[2]:
+    jcr:primaryType: resourcebundle:resourcebundle
+    jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
+    jcr:uuid: 27dcb9e6-957b-4b28-ab86-694b09db853b
+    hippo:availability: [preview]
+    hippostd:state: unpublished
+    hippostdpubwf:createdBy: admin
+    hippostdpubwf:creationDate: 2020-04-30T13:40:44.798+01:00
+    hippostdpubwf:lastModificationDate: 2020-04-30T13:45:00.564+01:00
+    hippostdpubwf:lastModifiedBy: admin
+    resourcebundle:descriptions: ['', '', '', '']
+    resourcebundle:id: social-media
+    resourcebundle:keys: [facebook, twitter, youtube, instagram]
+    resourcebundle:messages: ['https://www.facebook.com/visitscotland/', 'https://twitter.com/VisitScotland',
+      'https://www.youtube.com/channel/UC1FdvQG5MFwzv0PY6dMsaFg', 'https://www.instagram.com/visitscotland/']
+  /social-media-links[3]:
+    jcr:primaryType: resourcebundle:resourcebundle
+    jcr:mixinTypes: ['mix:referenceable']
+    jcr:uuid: f9423467-034b-4308-af74-4ae19bffb5ae
+    hippo:availability: [live]
+    hippostd:state: published
+    hippostdpubwf:createdBy: admin
+    hippostdpubwf:creationDate: 2020-04-30T13:40:44.798+01:00
+    hippostdpubwf:lastModificationDate: 2020-04-30T13:45:00.564+01:00
+    hippostdpubwf:lastModifiedBy: admin
+    hippostdpubwf:publicationDate: 2020-04-30T13:45:05.223+01:00
+    resourcebundle:descriptions: ['', '', '', '']
+    resourcebundle:id: social-media
+    resourcebundle:keys: [facebook, twitter, youtube, instagram]
+    resourcebundle:messages: ['https://www.facebook.com/visitscotland/', 'https://twitter.com/VisitScotland',
+      'https://www.youtube.com/channel/UC1FdvQG5MFwzv0PY6dMsaFg', 'https://www.instagram.com/visitscotland/']

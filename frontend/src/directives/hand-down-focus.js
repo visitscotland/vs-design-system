@@ -7,10 +7,8 @@ import { get, isFunction } from "lodash"
  * element needs to be given a tabindex value to work.
  */
 
-export default function(el, binding) {
-    console.log("hand down focus: " + el.classList[0])
-    el.onfocus = () => {
-        console.log("focus: " + el.classList[0])
+export default function (el, binding) {
+    el.onfocus = () => { // eslint-disable-line no-param-reassign
         const $target = binding.value || get(el, "childNodes[0]")
         if (isFunction($target.focus)) {
             $target.focus()

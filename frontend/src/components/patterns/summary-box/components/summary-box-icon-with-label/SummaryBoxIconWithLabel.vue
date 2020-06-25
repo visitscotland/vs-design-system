@@ -1,9 +1,16 @@
 <template>
     <div
-        class="vs-summary-box-icon-with-label d-flex align-items-end position-absolute justify-content-center w-100"
+        class="vs-summary-box-icon-with-label d-flex align-items-end
+        position-absolute justify-content-center w-100"
     >
         <div class="icon-wrapper text-right">
-            <vs-icon slot="icon" :name="icon" variant="dark" size="md" :padding="0" />
+            <VsIcon
+                slot="icon"
+                :name="icon"
+                variant="dark"
+                size="md"
+                :padding="0"
+            />
         </div>
         <div class="text-wrapper d-block w-auto mx-1">
             <span>{{ label }}</span>
@@ -20,13 +27,17 @@ export default {
     name: "VsSummaryBoxIconWithLabel",
     status: "prototype",
     release: "0.0.1",
-    components: { VsIcon },
+    components: {
+        VsIcon,
+    },
     props: {
         icon: {
             type: String,
+            default: "",
         },
         label: {
             type: String,
+            default: "",
         },
     },
 }
@@ -53,7 +64,7 @@ export default {
 }
 </style>
 <docs>
-  
+
   ```jsx
     <div class="position-relative mt-5">
         <vs-summary-box-icon-with-label

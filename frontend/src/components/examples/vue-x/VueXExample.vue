@@ -1,0 +1,99 @@
+<template>
+    <div>
+        <BCard :title="title">
+            <BCardText>
+                The count is {{ count }}
+            </BCardText>
+            <VsButton @click.native="increment">
+                <slot />
+            </VsButton>
+        </BCard>
+    </div>
+</template>
+
+<script>
+import BCard from "bootstrap-vue/es/components/card/card"
+import BCardText from "bootstrap-vue/es/components/card/card-text"
+import { BFormCheckbox } from "bootstrap-vue/es/components/form-checkbox"
+
+import VsButton from "../../elements/button"
+import store from "./example.store"
+
+/**
+ * This is an example component to demonstrate how VueX can be used with
+ * components of the design system.
+ */
+export default {
+    name: "VsVueXExample",
+    status: "prototype",
+    release: "0.0.1",
+    components: {
+        VsButton,
+        BCard,
+        BCardText,
+        BFormCheckbox,
+    },
+    store,
+    data() {
+        return {
+            showAlert: false,
+        }
+    },
+    props: {
+        title: {
+            type: String,
+            default: "Vuex Example component",
+        },
+    },
+    computed: {
+        count() {
+            return this.$store.state.example.count
+        },
+    },
+    methods: {
+        increment() {
+            const message = this.showAlert
+                ? `Incrementing count from ${this.count} to ${this.count + 1}`
+                : false
+
+            this.$store.dispatch("example/increment", message)
+        },
+    },
+}
+</script>
+
+<style lang="scss">
+@import "~bootstrap/scss/card";
+</style>
+
+<docs>
+  ```vue
+
+  <template>
+  <div>
+    <vs-row>
+        <vs-vue-x-example class="col-3" title="Example component 1">Increment count</vs-vue-x-example>
+        <vs-vue-x-example class="col-3" title="Example component 2">Increment count</vs-vue-x-example>
+    </vs-row>
+    <div style="margin-top:24px">
+      <span>Outside the components, the count is {{ count }}</span>
+    </div>
+  </div>
+  </template>
+
+  <script>
+  import store from './example.store'
+
+  export default {
+    store,
+    computed: {
+      count() {
+        return this.$store.state.example.count
+      }
+    }
+  }
+  </script>
+
+
+  ```
+</docs>

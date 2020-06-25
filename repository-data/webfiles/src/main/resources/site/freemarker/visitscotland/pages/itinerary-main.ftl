@@ -28,9 +28,9 @@
 <#include "../../vs-dotcom-ds/components/itinerary.ftl">
 <#include "../../vs-dotcom-ds/components/svg.ftl">
 
-<#include "../modules/itineraries/itinerary-stop.ftl">
-<#include "../modules/itineraries/itinerary-map.ftl">
-<#include "../modules/cms-errors.ftl">
+<#include "../macros/modules/itineraries/itinerary-stop.ftl">
+<#include "../macros/modules/itineraries/itinerary-map.ftl">
+<#include "../macros/global/cms-errors.ftl">
 
 <#-- Implicit Request Objects -->
 <#-- @ftlvariable name="document" type="com.visitscotland.brmx.beans.Itinerary" -->
@@ -48,12 +48,6 @@
 <#assign stopNumber = 0>
 <#assign lastStop = 0>
 
-<#if document.start?has_content>
-   <#assign firstStopLocation = document.start>
-</#if>
-<#if document.finish?has_content>
-    <#assign lastStopLocation = document.finish>
-</#if>
 <#if document.transports?has_content >
     <#assign mainTransport = document.transports[0]>
 </#if>
@@ -100,7 +94,7 @@
                 <vs-col cols="2">
                     <div class="d-flex justify-content-center justify-content-sm-end">
                         <!-- TODO - Below icon is FPO. Replace with icon with text component and a share component -->
-                        <vs-icon name="share" variant="dark" size="sm" />
+                        <vs-icon name="share" variant="dark" size="sm"></vs-icon>
                     </div>
                 </vs-col>
             </vs-row>
@@ -122,8 +116,8 @@
                         </vs-summary-box-list-item>
                         <vs-summary-box-list-item>
                             <vs-summary-box-distance-display
-                                miles="${(document.distance)}"
-                                kilometres="${(document.distance*1.6)}"
+                                miles="${distance}"
+                                kilometres="${(distance*1.6)}"
                                 miles-label="${label("itinerary", "miles")}"
                                 kilometres-label="${label("itinerary", "kilometres")}">
                             </vs-summary-box-distance-display>

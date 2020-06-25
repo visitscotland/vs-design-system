@@ -10,7 +10,7 @@
     jcr:primaryType: hippostd:folder
     jcr:mixinTypes: ['hippo:named', 'hippotranslation:translated', 'mix:versionable']
     jcr:uuid: 41b800fa-fa6e-40e7-b01f-c248bf66a26a
-    hippo:name: Itinerary stops (Devs)
+    hippo:name: Itinerary stops (Back end Devs)
     hippostd:foldertype: [new-translated-folder, new-document]
     hippotranslation:id: 683a53b0-4162-48f2-9124-d025fabe4f64
     hippotranslation:locale: en
@@ -28,7 +28,7 @@
         hippostd:state: draft
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2019-12-10T13:29:39.541Z
-        hippostdpubwf:lastModificationDate: 2020-04-09T18:16:09.986+01:00
+        hippostdpubwf:lastModificationDate: 2020-05-26T12:11:56.527+01:00
         hippostdpubwf:lastModifiedBy: admin
         hippotranslation:id: bd1aa2df-999b-4ed5-af2e-1f9cf0286372
         hippotranslation:locale: en
@@ -149,7 +149,7 @@
         hippostd:state: draft
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2019-12-11T12:39:11.963Z
-        hippostdpubwf:lastModificationDate: 2020-04-09T13:29:14.924+01:00
+        hippostdpubwf:lastModificationDate: 2020-04-30T17:45:17.713+01:00
         hippostdpubwf:lastModifiedBy: admin
         hippotranslation:id: 9da62445-4ef0-470c-9d9c-ed812d053659
         hippotranslation:locale: en
@@ -364,7 +364,7 @@
       jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
       jcr:uuid: 8b215960-87aa-47ae-9c11-8a750be25ad8
       hippo:name: Casa Jose
-      hippo:versionHistory: dfa9d32e-1c92-4db7-bc70-6e47d1c28cde
+      hippo:versionHistory: 15c90b49-3791-41c9-9d96-dba2350e7ba8
       /casa-jose[1]:
         jcr:primaryType: visitscotland:Stop
         jcr:mixinTypes: ['mix:referenceable']
@@ -373,9 +373,9 @@
         hippostd:state: published
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2019-12-16T12:20:46.037Z
-        hippostdpubwf:lastModificationDate: 2020-04-09T18:16:32.823+01:00
+        hippostdpubwf:lastModificationDate: 2020-04-30T17:45:31.843+01:00
         hippostdpubwf:lastModifiedBy: admin
-        hippostdpubwf:publicationDate: 2020-04-09T18:16:35.460+01:00
+        hippostdpubwf:publicationDate: 2020-05-14T16:41:25.859+01:00
         hippotranslation:id: b4f184af-52de-4e48-92ab-33cc5c2519e0
         hippotranslation:locale: en
         visitscotland:subtitle: ''
@@ -383,7 +383,7 @@
         visitscotland:title: Casa Jose
         /visitscotland:description:
           jcr:primaryType: hippostd:html
-          hippostd:content: <p>Short description</p>
+          hippostd:content: <p>Short description.</p>
         /visitscotland:tips:
           jcr:primaryType: hippostd:html
           hippostd:content: <p>Example tips invalid</p>
@@ -412,7 +412,7 @@
         hippostd:state: unpublished
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2019-12-16T12:20:46.037Z
-        hippostdpubwf:lastModificationDate: 2020-04-09T18:16:32.823+01:00
+        hippostdpubwf:lastModificationDate: 2020-04-30T17:45:31.843+01:00
         hippostdpubwf:lastModifiedBy: admin
         hippotranslation:id: b4f184af-52de-4e48-92ab-33cc5c2519e0
         hippotranslation:locale: en
@@ -421,7 +421,7 @@
         visitscotland:title: Casa Jose
         /visitscotland:description:
           jcr:primaryType: hippostd:html
-          hippostd:content: <p>Short description</p>
+          hippostd:content: <p>Short description.</p>
         /visitscotland:tips:
           jcr:primaryType: hippostd:html
           hippostd:content: <p>Example tips invalid</p>
@@ -450,7 +450,7 @@
         hippostd:state: draft
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2019-12-16T12:20:46.037Z
-        hippostdpubwf:lastModificationDate: 2020-04-09T18:16:22.434+01:00
+        hippostdpubwf:lastModificationDate: 2020-04-30T17:45:32.009+01:00
         hippostdpubwf:lastModifiedBy: admin
         hippotranslation:id: b4f184af-52de-4e48-92ab-33cc5c2519e0
         hippotranslation:locale: en
@@ -459,7 +459,7 @@
         visitscotland:title: Casa Jose
         /visitscotland:description:
           jcr:primaryType: hippostd:html
-          hippostd:content: <p>Short description</p>
+          hippostd:content: <p>Short description.</p>
         /visitscotland:tips:
           jcr:primaryType: hippostd:html
           hippostd:content: <p>Example tips invalid</p>
@@ -1872,7 +1872,7 @@
       jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
       jcr:uuid: b390df94-227d-4535-a7a2-6073465d6642
       hippo:name: Drum Castle
-      hippo:versionHistory: a7714521-0358-49e3-86a0-329a518fc078
+      hippo:versionHistory: f5042b93-66bc-497f-8155-91a49a2236a0
       /drum-castle[1]:
         jcr:primaryType: visitscotland:Stop
         jcr:mixinTypes: ['mix:referenceable']
@@ -1965,11 +1965,12 @@
         hippostd:state: published
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2020-02-07T12:53:57.587Z
-        hippostdpubwf:lastModificationDate: 2020-04-02T18:52:48.666+01:00
+        hippostdpubwf:lastModificationDate: 2020-04-10T13:49:43.188+01:00
         hippostdpubwf:lastModifiedBy: admin
-        hippostdpubwf:publicationDate: 2020-04-02T18:52:52.871+01:00
+        hippostdpubwf:publicationDate: 2020-06-12T09:13:34.154+01:00
         hippotranslation:id: acafffcc-8eb9-41e3-b7fd-e56c9eb7c5ce
         hippotranslation:locale: en
+        visitscotland:subtitle: ''
         visitscotland:tipsTitle: ''
         visitscotland:title: Drum Castle
         /visitscotland:description:
@@ -1995,7 +1996,7 @@
             hippo:values: []
         /visitscotland:image:
           jcr:primaryType: hippogallerypicker:imagelink
-          hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
+          hippo:docbase: 8d4f5036-64ca-4e5d-aa89-b348ae38b081
           hippo:facets: []
           hippo:modes: []
           hippo:values: []
@@ -2004,7 +2005,7 @@
       jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
       jcr:uuid: dd98ed46-1531-4bbf-b47f-394ebca903f5
       hippo:name: St Magnus Cathedral
-      hippo:versionHistory: 6247ef1e-767e-4043-b03a-28374351e380
+      hippo:versionHistory: 9b976902-e51c-43bf-a325-bec1e3b52ff2
       /st-magnus-cathedral[1]:
         jcr:primaryType: visitscotland:Stop
         jcr:mixinTypes: ['mix:referenceable']
@@ -2013,7 +2014,7 @@
         hippostd:state: draft
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2020-02-07T10:04:03.923Z
-        hippostdpubwf:lastModificationDate: 2020-04-09T18:16:49.703+01:00
+        hippostdpubwf:lastModificationDate: 2020-05-19T12:57:47.365+01:00
         hippostdpubwf:lastModifiedBy: admin
         hippotranslation:id: c5cea3b9-1aae-4a7c-9de7-abe02f994fdb
         hippotranslation:locale: en
@@ -2030,8 +2031,6 @@
             <p>Major events to look out for at the cathedral include the St Magnus International Festival in June and St Lucy Festival in early December.&nbsp;</p>
 
             <p>Tour St Magnus and admire the beautiful stained-glass windows before finding a vibrant local restaurant where you can enjoy dinner.&nbsp;</p>
-
-            <p>Open: all year&nbsp;</p>
 
             <p>Spend the evening in <a rel="noreferrer noopener" href="http://www.visitscotland.com/info/accommodation/search-results?cat=&amp;prodtypes=acco&amp;loc=Kirkwall&amp;locplace=5561&amp;locprox=1&amp;areaproxdist=5&amp;avail=off&amp;rooms=1&amp;stay=&amp;nights=1&amp;r1a=2&amp;r1c=0&amp;r1children=0&amp;r1infants=0&amp;minprice=0&amp;maxprice=1000" target="_blank">Kirkwall</a>.&nbsp;</p>
         /visitscotland:tips:
@@ -2070,7 +2069,7 @@
         hippostd:state: unpublished
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2020-02-07T10:04:03.923Z
-        hippostdpubwf:lastModificationDate: 2020-04-09T18:17:32.814+01:00
+        hippostdpubwf:lastModificationDate: 2020-05-19T12:57:32.286+01:00
         hippostdpubwf:lastModifiedBy: admin
         hippotranslation:id: c5cea3b9-1aae-4a7c-9de7-abe02f994fdb
         hippotranslation:locale: en
@@ -2087,8 +2086,6 @@
             <p>Major events to look out for at the cathedral include the St Magnus International Festival in June and St Lucy Festival in early December.&nbsp;</p>
 
             <p>Tour St Magnus and admire the beautiful stained-glass windows before finding a vibrant local restaurant where you can enjoy dinner.&nbsp;</p>
-
-            <p>Open: all year&nbsp;</p>
 
             <p>Spend the evening in <a rel="noreferrer noopener" href="http://www.visitscotland.com/info/accommodation/search-results?cat=&amp;prodtypes=acco&amp;loc=Kirkwall&amp;locplace=5561&amp;locprox=1&amp;areaproxdist=5&amp;avail=off&amp;rooms=1&amp;stay=&amp;nights=1&amp;r1a=2&amp;r1c=0&amp;r1children=0&amp;r1infants=0&amp;minprice=0&amp;maxprice=1000" target="_blank">Kirkwall</a>.&nbsp;</p>
         /visitscotland:tips:
@@ -2127,9 +2124,9 @@
         hippostd:state: published
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2020-02-07T10:04:03.923Z
-        hippostdpubwf:lastModificationDate: 2020-04-09T18:17:32.814+01:00
+        hippostdpubwf:lastModificationDate: 2020-05-19T12:57:32.286+01:00
         hippostdpubwf:lastModifiedBy: admin
-        hippostdpubwf:publicationDate: 2020-04-09T18:17:35.110+01:00
+        hippostdpubwf:publicationDate: 2020-05-19T12:57:47.194+01:00
         hippotranslation:id: c5cea3b9-1aae-4a7c-9de7-abe02f994fdb
         hippotranslation:locale: en
         visitscotland:subtitle: ''
@@ -2145,8 +2142,6 @@
             <p>Major events to look out for at the cathedral include the St Magnus International Festival in June and St Lucy Festival in early December.&nbsp;</p>
 
             <p>Tour St Magnus and admire the beautiful stained-glass windows before finding a vibrant local restaurant where you can enjoy dinner.&nbsp;</p>
-
-            <p>Open: all year&nbsp;</p>
 
             <p>Spend the evening in <a rel="noreferrer noopener" href="http://www.visitscotland.com/info/accommodation/search-results?cat=&amp;prodtypes=acco&amp;loc=Kirkwall&amp;locplace=5561&amp;locprox=1&amp;areaproxdist=5&amp;avail=off&amp;rooms=1&amp;stay=&amp;nights=1&amp;r1a=2&amp;r1c=0&amp;r1children=0&amp;r1infants=0&amp;minprice=0&amp;maxprice=1000" target="_blank">Kirkwall</a>.&nbsp;</p>
         /visitscotland:tips:
