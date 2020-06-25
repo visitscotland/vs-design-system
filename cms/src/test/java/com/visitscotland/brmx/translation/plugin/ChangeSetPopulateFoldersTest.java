@@ -1,5 +1,6 @@
 package com.visitscotland.brmx.translation.plugin;
 
+import org.hippoecm.frontend.translation.ILocaleProvider;
 import org.hippoecm.frontend.translation.components.document.FolderTranslation;
 import org.hippoecm.repository.api.HippoNode;
 import org.hippoecm.repository.translation.HippoTranslationNodeType;
@@ -9,7 +10,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import java.util.LinkedList;
+import javax.jcr.Node;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -18,11 +19,12 @@ import static org.mockito.ArgumentMatchers.same;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
-public class DocumentTranslatorPopulateFoldersTest {
+public class ChangeSetPopulateFoldersTest {
     // The JCR has a pair of Nodes to represent a document. The highest node has a Mixin of
     // hippo:translated, but its parent does not. It is the hippo:named Node parent that
     // is passed to the populateFolders method.
-    HippoNode documentHandle;
+    @Mock
+    JcrDocument document;
     HippoNode translatedFolder5Node;
     TranslatedFolder translatedFolder5;
     HippoNode translatedFolder4Node;
@@ -35,14 +37,19 @@ public class DocumentTranslatorPopulateFoldersTest {
     TranslatedFolder translatedFolder1;
     HippoNode translatedFolder0Node;
     TranslatedFolder translatedFolder0;
-    private DocumentTranslator translator;
+
+    @Mock
+    ILocaleProvider.HippoLocale mockLocale;
+    ChangeSet changeSet;
 
     @BeforeEach
     public void beforeEach() throws Exception {
-        translator = spy(new DocumentTranslator());
+        when(mockLocale.getName()).thenReturn("fr");
+        changeSet = spy(new ChangeSet(mockLocale));
 
         createSourceTranslatedFolders();
-        documentHandle = createDocumentHandle(translatedFolder5Node);
+        Node documentHandle = createDocumentHandle(translatedFolder5Node);
+        when(document.getHandle()).thenReturn(documentHandle);
 
     }
 
@@ -57,23 +64,22 @@ public class DocumentTranslatorPopulateFoldersTest {
     public void populateFolders_only_root_translated() throws Exception {
         // only the root folder exists in the target, all the folders should be added as mutable folder translations
         addTranslatedFolder(translatedFolder0, null, "fr_name0", "fr_url0");
-        List<FolderTranslation> folders = new LinkedList<>();
 
-        translator.populateFolders(documentHandle, "fr", folders);
+        changeSet.populateFolders(document);
 
         // Should have a list of FolderTranslations
         // at index 0 should be the root folder, immutable with the english and french names
         // All the rest should be mutable with a clone of the english names.
-        assertEquals(6, folders.size());
+        assertEquals(6, changeSet.getFolders().size());
 
-        assertFalse(folders.get(0).isEditable());
-        assertEquals("name0", folders.get(0).getName());
-        assertEquals("fr_name0", folders.get(0).getNamefr());
-        assertEquals("url0", folders.get(0).getUrl());
-        assertEquals("fr_url0", folders.get(0).getUrlfr());
+        assertFalse(changeSet.getFolders().get(0).isEditable());
+        assertEquals("name0", changeSet.getFolders().get(0).getName());
+        assertEquals("fr_name0", changeSet.getFolders().get(0).getNamefr());
+        assertEquals("url0", changeSet.getFolders().get(0).getUrl());
+        assertEquals("fr_url0", changeSet.getFolders().get(0).getUrlfr());
 
         for (int index = 1; index <= 5; index++) {
-            assertNewTranslation(folders, index);
+            assertNewTranslation(changeSet.getFolders(), index);
         }
     }
 
@@ -86,20 +92,18 @@ public class DocumentTranslatorPopulateFoldersTest {
         TranslatedFolder frenchTranslatedFolder1 = addTranslatedFolder(translatedFolder1, frenchTranslatedFolder0, "fr_name1", "fr_url1");
         addTranslatedFolder(translatedFolder2, frenchTranslatedFolder1, "fr_name2", "fr_url2");
 
-        List<FolderTranslation> folders = new LinkedList<>();
-
-        translator.populateFolders(documentHandle, "fr", folders);
+        changeSet.populateFolders(document);
 
         // this time the already translated folders should be immutable,
         // this should be the folder at index 0, 1, 2
-        assertEquals(6, folders.size());
+        assertEquals(6, changeSet.getFolders().size());
 
         for (int index = 0; index <= 2; index++) {
-            assertPreviouslyTranslated(folders, index);
+            assertPreviouslyTranslated(changeSet.getFolders(), index);
         }
 
         for (int index = 3; index <= 5; index++) {
-            assertNewTranslation(folders, index);
+            assertNewTranslation(changeSet.getFolders(), index);
         }
     }
 
@@ -113,15 +117,13 @@ public class DocumentTranslatorPopulateFoldersTest {
         TranslatedFolder frenchTranslatedFolder4 = addTranslatedFolder(translatedFolder4, frenchTranslatedFolder3, "fr_name4", "fr_url4");
         addTranslatedFolder(translatedFolder5, frenchTranslatedFolder4, "fr_name5", "fr_url5");
 
-        List<FolderTranslation> folders = new LinkedList<>();
-
-        translator.populateFolders(documentHandle, "fr", folders);
+        changeSet.populateFolders(document);
 
         // this time they are all translated folders and should be immutable,
-        assertEquals(6, folders.size());
+        assertEquals(6, changeSet.getFolders().size());
 
         for (int index = 0; index <= 5; index++) {
-            assertPreviouslyTranslated(folders, index);
+            assertPreviouslyTranslated(changeSet.getFolders(), index);
         }
     }
 
@@ -134,31 +136,29 @@ public class DocumentTranslatorPopulateFoldersTest {
 
         TranslatedFolder frenchTranslatedFolder2 = addTranslatedFolder(translatedFolder2, translatedFolder1, "fr_name2", "fr_url2");
 
-        List<FolderTranslation> folders = new LinkedList<>();
-
-        translator.populateFolders(documentHandle, "fr", folders);
+        changeSet.populateFolders(document);
 
         // Here we have translatedFolder2 pointing to the english folder as its parent
         // This is described in the code as a back link.
         // So folders at index 0, 1 should be the english folders
         // folder at index 2 should be an already translated folder
         // and folders 3, 4, 5 should be editable translations
-        assertEquals(6, folders.size());
+        assertEquals(6, changeSet.getFolders().size());
 
         for (int index = 0; index <= 1; index++) {
-            assertFalse(folders.get(index).isEditable());
-            assertTrue(folders.get(index).getName().startsWith("name"));
-            assertTrue(folders.get(index).getName().endsWith("" + index));
-            assertTrue(folders.get(index).getUrl().startsWith("url"));
-            assertTrue(folders.get(index).getUrl().endsWith("" + index));
-            assertEquals("", folders.get(index).getNamefr());
-            assertEquals("", folders.get(index).getUrlfr());
+            assertFalse(changeSet.getFolders().get(index).isEditable());
+            assertTrue(changeSet.getFolders().get(index).getName().startsWith("name"));
+            assertTrue(changeSet.getFolders().get(index).getName().endsWith("" + index));
+            assertTrue(changeSet.getFolders().get(index).getUrl().startsWith("url"));
+            assertTrue(changeSet.getFolders().get(index).getUrl().endsWith("" + index));
+            assertEquals("", changeSet.getFolders().get(index).getNamefr());
+            assertEquals("", changeSet.getFolders().get(index).getUrlfr());
         }
 
-        assertPreviouslyTranslated(folders, 2);
+        assertPreviouslyTranslated(changeSet.getFolders(), 2);
 
         for (int index = 3; index <= 5; index++) {
-            assertNewTranslation(folders, index);
+            assertNewTranslation(changeSet.getFolders(), index);
         }
     }
 
@@ -215,7 +215,7 @@ public class DocumentTranslatorPopulateFoldersTest {
         translatedFolder5 = createMockTranslatedFolder(translatedFolder4);
         translatedFolder5Node = createMockTranslatedFolderNode(translatedFolder5, "name5", "url5");
         when(translatedFolder5Node.isNodeType(eq(HippoTranslationNodeType.NT_TRANSLATED))).thenReturn(true);
-        doReturn(translatedFolder5).when(translator).createTranslatedFolder(same(translatedFolder5Node));
+        doReturn(translatedFolder5).when(changeSet).createTranslatedFolder(same(translatedFolder5Node));
     }
 
     private HippoNode createMockTranslatedFolderNode(TranslatedFolder translatedFolder, String name, String url) throws Exception {

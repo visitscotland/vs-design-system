@@ -4,9 +4,11 @@ import org.onehippo.cms7.essentials.dashboard.annotations.HippoEssentialsGenerat
 import org.hippoecm.hst.content.beans.Node;
 import java.util.List;
 
-@HippoEssentialsGenerated(internalName = "visitscotland:Itinerary")
-@Node(jcrType = "visitscotland:Itinerary")
+@HippoEssentialsGenerated(internalName = Itinerary.JCR_TYPE)
+@Node(jcrType = Itinerary.JCR_TYPE)
 public class Itinerary extends Page implements TranslationParent {
+    public static final String JCR_TYPE = "visitscotland:Itinerary";
+
     @HippoEssentialsGenerated(internalName = "visitscotland:start")
     public String getStart() {
         return getSingleProperty("visitscotland:start");
@@ -49,5 +51,10 @@ public class Itinerary extends Page implements TranslationParent {
     @HippoEssentialsGenerated(internalName = "visitscotland:popular")
     public Boolean getPopular() {
         return getSingleProperty("visitscotland:popular");
+    }
+
+    @Override
+    public String[] getChildJcrTypes() {
+        return new String[] { Day.JCR_TYPE };
     }
 }

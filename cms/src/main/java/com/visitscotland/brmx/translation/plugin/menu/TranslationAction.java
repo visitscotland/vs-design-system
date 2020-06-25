@@ -9,6 +9,7 @@ import org.hippoecm.frontend.dialog.IDialogService;
 import org.hippoecm.frontend.session.UserSession;
 import org.hippoecm.frontend.translation.ILocaleProvider;
 import org.hippoecm.frontend.translation.components.document.FolderTranslation;
+import org.hippoecm.hst.content.beans.ObjectBeanManagerException;
 import org.hippoecm.hst.content.beans.query.exceptions.QueryException;
 import org.hippoecm.repository.api.WorkflowException;
 import org.hippoecm.repository.translation.TranslationWorkflow;
@@ -59,7 +60,7 @@ public class TranslationAction extends StdWorkflow<TranslationWorkflow> {
 
     @Override
     protected String execute(TranslationWorkflow workflow)
-            throws WorkflowException, RepositoryException, RemoteException, QueryException {
+            throws WorkflowException, RepositoryException, RemoteException, ObjectBeanManagerException {
         Session session = getJcrSession();
 
         // Only want to add languages we do not have a translation for

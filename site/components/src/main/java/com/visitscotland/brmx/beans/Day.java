@@ -8,9 +8,11 @@ import java.util.List;
 /** 
  * TODO: Beanwriter: Failed to create getter for node type: hippo:compound
  */
-@HippoEssentialsGenerated(internalName = "visitscotland:Day")
-@Node(jcrType = "visitscotland:Day")
+@HippoEssentialsGenerated(internalName = Day.JCR_TYPE)
+@Node(jcrType = Day.JCR_TYPE)
 public class Day extends BaseDocument {
+    public static final String JCR_TYPE = "visitscotland:Day";
+
     @HippoEssentialsGenerated(internalName = "visitscotland:title")
     public String getTitle() {
         return getSingleProperty("visitscotland:title");

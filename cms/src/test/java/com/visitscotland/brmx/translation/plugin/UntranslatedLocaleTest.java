@@ -20,7 +20,7 @@ public class UntranslatedLocaleTest {
     }
 
     @Test
-    public void verifyIconExists() throws Exception {
+    void verifyIconExists() throws Exception {
         ClassLoader classLoader = getClass().getClassLoader();
         ResourceReference.Key key = missingTranslation.getIcon(null, null).getKey();
         // This will return null if the icon file identified by the Key does not exist.
