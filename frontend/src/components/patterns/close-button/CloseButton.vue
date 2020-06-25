@@ -1,13 +1,21 @@
 <template>
-  <vs-button class="px-3" variant="transparent" :animate="false">
-    <span class="sr-only"><slot /></span>
-    <vs-icon name="close" size="xs" variant="secondary" />
-  </vs-button>
+    <VsButton
+        class="px-3"
+        variant="transparent"
+        :animate="false"
+    >
+        <span class="sr-only"><slot /></span>
+        <VsIcon
+            name="close"
+            size="xs"
+            variant="secondary"
+        />
+    </VsButton>
 </template>
 
 <script>
 export default {
-  name: "VsCloseButton",
+    name: "VsCloseButton",
 }
 </script>
 

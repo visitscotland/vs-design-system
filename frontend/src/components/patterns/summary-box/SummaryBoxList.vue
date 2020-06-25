@@ -14,8 +14,10 @@ export default {
     name: "VsSummaryBoxList",
     status: "prototype",
     release: "0.0.1",
-    components: {},
-    props: {},
+    components: {
+    },
+    props: {
+    },
 }
 </script>
 
@@ -40,7 +42,7 @@ export default {
 }
 </style>
 <docs>
-  
+
   ```jsx
   <div class="position-relative" style="height: 400px;">
     <vs-summary-box-list>

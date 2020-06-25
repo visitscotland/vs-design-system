@@ -1,5 +1,7 @@
 <template>
-    <b-col v-bind="$attrs"> <slot /> </b-col>
+    <BCol v-bind="$attrs">
+        <slot />
+    </BCol>
 </template>
 
 <script>

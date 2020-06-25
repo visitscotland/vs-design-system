@@ -12,6 +12,7 @@ export default new Vuex.Store({
             },
             mutations: {
                 SET_SHOW_MILES: (state, payload) => {
+                    /* eslint-disable no-param-reassign */
                     state.showMiles = payload
                 },
             },
@@ -25,7 +26,7 @@ export default new Vuex.Store({
                 },
             },
             getters: {
-                getShowMiles: state => state.showMiles,
+                getShowMiles: (state) => state.showMiles,
             },
         },
     },
