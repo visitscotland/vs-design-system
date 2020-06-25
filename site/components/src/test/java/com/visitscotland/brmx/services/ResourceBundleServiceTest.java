@@ -1,6 +1,5 @@
 package com.visitscotland.brmx.services;
 
-import org.easymock.cglib.core.Local;
 import org.hippoecm.hst.resourcebundle.ResourceBundleRegistry;
 import org.junit.Assert;
 import org.junit.jupiter.api.BeforeEach;
