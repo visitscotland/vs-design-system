@@ -8,6 +8,7 @@ import com.visitscotland.brmx.beans.mapping.FlatImage;
 import com.visitscotland.brmx.beans.mapping.FlatLink;
 import com.visitscotland.brmx.dms.LocationLoader;
 import com.visitscotland.brmx.dms.ProductSearchBuilder;
+import com.visitscotland.brmx.services.ResourceBundleService;
 import com.visitscotland.brmx.utils.*;
 import com.visitscotland.dataobjects.DataType;
 import com.visitscotland.utils.Contract;
