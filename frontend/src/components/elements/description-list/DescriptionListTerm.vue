@@ -1,11 +1,11 @@
 <template>
-    <vs-col
+    <VsCol
         tag="dt"
         class="vs-description-list__term"
         :class="{ 'list-inline-item': inline, 'vs-description-list__term--styled': !inline }"
     >
         <slot />
-    </vs-col>
+    </VsCol>
 </template>
 
 <script>

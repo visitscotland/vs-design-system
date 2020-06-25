@@ -1,5 +1,9 @@
 <template>
-    <span class="vs-tooltip d-inline-block position-relative" v-b-tooltip.hover :title="this.title">
+    <span
+        v-b-tooltip.hover
+        class="vs-tooltip d-inline-block position-relative"
+        :title="title"
+    >
         <slot />
     </span>
 </template>
@@ -14,10 +18,13 @@ export default {
     name: "VsTooltip",
     status: "prototype",
     release: "0.0.1",
-    directives: { "b-tooltip": VBTooltip },
+    directives: {
+        "b-tooltip": VBTooltip,
+    },
     props: {
         title: {
             type: String,
+            default: "",
         },
     },
 }

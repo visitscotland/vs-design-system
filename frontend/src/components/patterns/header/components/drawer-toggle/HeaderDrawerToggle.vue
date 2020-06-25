@@ -1,12 +1,15 @@
 <template>
-    <vs-drawer-toggle :tag="tag" v-bind="$attrs" class="vs-header__drawer-toggle">
+    <VsDrawerToggle
+        :tag="tag"
+        v-bind="$attrs"
+        class="vs-header__drawer-toggle"
+    >
         <slot />
-    </vs-drawer-toggle>
+    </VsDrawerToggle>
 </template>
 
 <script>
 import VsDrawerToggle from "@components/patterns/drawer/DrawerToggle"
-import VsHeaderButton from "../button/HeaderButton"
 
 /**
  * This component is used to generate a VsDrawerToggle component with
@@ -16,7 +19,6 @@ export default {
     name: "VsHeaderDrawerToggle",
     components: {
         VsDrawerToggle,
-        VsHeaderButton,
     },
     props: {
         tag: {

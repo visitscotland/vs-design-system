@@ -1,8 +1,14 @@
 <template>
-    <nav aria-label="breadcrumbs" class="py-4">
-        <b-breadcrumb class="flex-nowrap p-0" v-bind="$attrs">
+    <nav
+        aria-label="breadcrumbs"
+        class="py-4"
+    >
+        <BBreadcrumb
+            class="flex-nowrap p-0"
+            v-bind="$attrs"
+        >
             <slot />
-        </b-breadcrumb>
+        </BBreadcrumb>
     </nav>
 </template>
 
@@ -23,6 +29,9 @@ export default {
     props: {
         items: {
             type: Array,
+            default() {
+                return []
+            },
         },
     },
 }
@@ -35,7 +44,7 @@ export default {
 <docs>
   ```jsx
   <vs-breadcrumb>
-    <vs-breadcrumb-item 
+    <vs-breadcrumb-item
       v-for="(item, index) in breadcrumb.breadcrumb"
       :key="index"
       :href="item.href"
