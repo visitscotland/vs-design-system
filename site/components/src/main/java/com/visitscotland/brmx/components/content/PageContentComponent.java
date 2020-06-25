@@ -178,11 +178,12 @@ public class PageContentComponent<TYPE extends Page> extends EssentialsContentCo
      *
      * @return the manual CTA if provided otherwise the default CTA
      */
+    //TODO: Refactor static method.
     protected static String getCtaLabel(String manualCta, Locale locale) {
         if (!Contract.isEmpty(manualCta)) {
             return manualCta;
         } else {
-            return HippoUtilsService.getInstance().getResourceBundle("button.find-out-more", "essentials.global", locale);
+            return HippoUtilsService.getInstance().getResourceBundle("essentials.global","button.find-out-more",  locale);
         }
     }
 

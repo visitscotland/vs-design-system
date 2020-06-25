@@ -15,53 +15,69 @@ public class ResourceBundleService {
     private static final Logger logger = LoggerFactory.getLogger(ResourceBundleService.class.getName());
 
     final ResourceBundleRegistry resourceBundleRegistry;
+    final CommonUtils common;
 
     public ResourceBundleService (){
         //Default Hippo Resource bundle Service
-        this(HstServices.getComponentManager().getComponent(ResourceBundleRegistry.class.getName()));
+        this(HstServices.getComponentManager().getComponent(ResourceBundleRegistry.class.getName()),
+                new CommonUtils());
     }
 
-    ResourceBundleService (ResourceBundleRegistry rbr){
+    ResourceBundleService (ResourceBundleRegistry rbr, CommonUtils common){
         resourceBundleRegistry = rbr;
+        this.common = common;
     }
 
 
     /**
-     * TODO: CREATE J-UNIT TEST
+     * Gets a string for the given key from this resource bundle or one of its parents.
      *
-     *
+     * @param bundleName id of the Resource Bundle defined in Hippo
+     * @param key key
+     * @param locale locale
      */
     public String getResourceBundle(String bundleName, String key, Locale locale){
         return getResourceBundle(bundleName, key, locale, false);
     }
 
     /**
-     * Used from FREEMARKER
+     * Gets a string for the given key from this resource bundle or one of its parents.
      *
-     * @param bundleName
-     * @param key
-     * @param locale
-     * @return
+     * This method is usually used from FREEMARKER
+     *
+     * @param bundleName id of the Resource Bundle defined in Hippo
+     * @param key key
+     * @param locale locale
      */
     public String getResourceBundle(String bundleName, String key, String locale){
         return getResourceBundle(bundleName, key, Locale.forLanguageTag(locale));
     }
 
     /**
-     * Used from FREEMARKER
+     * Gets a string for the given key from this resource bundle (or one of its parents when is not {@code optional}).
      *
-     * @param bundleName
-     * @param key
-     * @param locale
-     * @param optional
+     * This method is usually used from FREEMARKER
+     *
+     * @param bundleName id of the Resource Bundle defined in Hippo
+     * @param key key
+     * @param locale locale
+     * @param optional when {@code false} if the value does not exist in the language it would fallback to English
+     *
      * @return
      */
     public String getResourceBundle(String bundleName, String key, String locale, boolean optional){
         return getResourceBundle(bundleName, key, Locale.forLanguageTag(locale), false);
     }
+
     /**
-     * TODO: CREATE J-UNIT TEST
-     * TODO: DOCUMENT
+     * Gets a string for the given key from this resource bundle (or one of its parents when is not {@code optional}).
+     *
+     *
+     * @param bundleName id of the Resource Bundle defined in Hippo
+     * @param key key
+     * @param locale locale
+     * @param optional when {@code false} if the value does not exist in the language it would fallback to English
+     * @return
      */
     public String getResourceBundle(String bundleName, String key, Locale locale, boolean optional){
 
@@ -105,17 +121,39 @@ public class ResourceBundleService {
         }
     }
 
-    public boolean existsResourceBundleKey(String key, String bundleName, Locale locale){
+    /**
+     * Verify that a value exists for a key in the specified language
+     *
+     * @param bundleName id of the Resource Bundle defined in Hippo
+     * @param key Key
+     * @param locale Locale
+     *
+     * @return {@code true} when the key exists in that language and has a value.
+     */
+    public boolean existsResourceBundleKey(String bundleName, String key,  Locale locale){
         ResourceBundle bundle = getResourceBundle(bundleName, locale);
-        return bundle != null && bundle.containsKey(key);
+        return bundle != null && bundle.getLocale() != null
+                && bundle.containsKey(key) && !Contract.isEmpty(bundle.getString(key));
     }
 
-
-
+    /**
+     * Logs a issue that can be solved from the CMS
+     *
+     * @param message message
+     * @param args arguments for the message
+     */
     void logContentIssue(String message, Object... args){
-        CommonUtils.contentIssue(message, args);
+        common.contentIssue(message, args);
     }
 
+    /**
+     * Logs an issue with a warning message.
+     *
+     * This method allows Unit test to verify that the message is logged.
+     *
+     * @param message
+     */
+    // TODO: Is unit test for this really important?
     void logIssue(String message){
         logger.warn(message);
     }

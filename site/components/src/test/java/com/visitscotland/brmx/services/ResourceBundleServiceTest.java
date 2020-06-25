@@ -108,4 +108,20 @@ public class ResourceBundleServiceTest {
         Assert.assertNull(value);
     }
 
+    @Test
+    public void existsKey(){
+        when(bundle.containsKey("key")).thenReturn(true);
+        when(bundle.getString("key")).thenReturn("value");
+
+        Assert.assertTrue(service.existsResourceBundleKey(BUNDLE, "key", Locale.UK));
+    }
+
+    @Test
+    public void existsKey_emptyValue(){
+        when(bundle.containsKey("key")).thenReturn(true);
+        when(bundle.getString("key")).thenReturn("");
+
+        Assert.assertFalse(service.existsResourceBundleKey(BUNDLE, "key", Locale.UK));
+    }
+
 }

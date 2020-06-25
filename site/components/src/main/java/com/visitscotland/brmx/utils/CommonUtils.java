@@ -3,6 +3,7 @@ package com.visitscotland.brmx.utils;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.visitscotland.brmx.beans.InstagramImage;
+import com.visitscotland.brmx.services.ResourceBundleService;
 import com.visitscotland.utils.Contract;
 
 import java.io.BufferedReader;
@@ -16,6 +17,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.Locale;
 
 public class CommonUtils {
+
     //TODO add message format for other languages
     public static final String contentIssue (String message, Object... parameters){
         return String.format("- [CONTENT] - " + message, parameters);
@@ -82,22 +84,22 @@ public class CommonUtils {
         return response;
     }
 
-    //TODO this method returns the current open state and it coud be affected by the cache, ask WEBOPS and move it to front end if needed
+    //TODO this method returns the current open state and it could be affected by the cache, ask WEBOPS and move it to front end if needed
     public static  String currentOpenStatus(String starTime, String endTime, Locale locale){
-        HippoUtilsService utils = HippoUtilsService.getInstance();
+        ResourceBundleService bundle = new ResourceBundleService();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("hh:mma");
         LocalTime starts = LocalTime.parse(starTime, formatter);
         LocalTime ends = LocalTime.parse(endTime, formatter);
         LocalTime currentTime = LocalTime.now(ZoneId.of("+1"));
         if (currentTime.isAfter(starts) && currentTime.isBefore(ends)){
             if (currentTime.plusMinutes(30).isAfter(ends)){
-                return  utils.getResourceBundle("stop.close.soon", "itinerary", locale);
+                return  bundle.getResourceBundle("itinerary","stop.close.soon",  locale);
             }else{
-                return   utils.getResourceBundle("stop.open", "itinerary", locale);
+                return   bundle.getResourceBundle("itinerary","stop.open",  locale);
             }
         }else
         {
-            return   utils.getResourceBundle("stop.closed", "itinerary", locale);
+            return   bundle.getResourceBundle("itinerary","stop.closed",  locale);
         }
     }
 }
