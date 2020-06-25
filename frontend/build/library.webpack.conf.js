@@ -26,7 +26,7 @@ const webpackConfig = merge(mergeIE11Fix(baseWebpackConfig), {
     rules: utils.styleLoaders({
       sourceMap: false,
       extract: true,
-      usePostCSS: true,
+      usePostCSS: false,
     }),
   },
   devtool: false,
