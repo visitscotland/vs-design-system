@@ -1,11 +1,17 @@
 <template>
-    <b-container tag="div" v-bind="$attrs"><slot /></b-container>
+    <BContainer
+        tag="div"
+        v-bind="$attrs"
+    >
+        <slot />
+    </BContainer>
 </template>
 
 <script>
 import { BContainer } from "bootstrap-vue"
 /**
- * Containers are the primary structural element used to organise page content. Our containers utilise
+ * Containers are the primary structural element used to
+ * organise page content. Our containers utilise
  * <a href="https://bootstrap-vue.js.org/docs/components/layout">Bootstrap Vue's b-container component</a>,
  * and can be fixed (default) or fluid.
  */
@@ -39,7 +45,8 @@ export default {
         </vs-row>
       </vs-container>
       <br />
-      *Note: the fixed width container appears fluid here because it is inside a parent element that is not full-page width.
+      *Note: the fixed width container appears fluid here because
+       it is inside a parent element that is not full-page width.
     </div>
 
   ```

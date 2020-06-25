@@ -1,20 +1,29 @@
 <template>
-    <vs-container class="vs-site-nav bg-white" v-hand-down-focus="firstNavItem">
-        <vs-row no-gutters>
-            <vs-col lg="7" offset-lg="3" type="nav">
-                <vs-site-nav-list :level="1">
+    <VsContainer
+        class="vs-site-nav bg-white"
+        v-hand-down-focus="firstNavItem"
+    >
+        <VsRow no-gutters>
+            <VsCol
+                lg="7"
+                offset-lg="3"
+                type="nav"
+            >
+                <VsSiteNavList :level="1">
                     <slot />
-                </vs-site-nav-list>
-            </vs-col>
-        </vs-row>
-    </vs-container>
+                </VsSiteNavList>
+            </VsCol>
+        </VsRow>
+    </VsContainer>
 </template>
 
 <script>
+import {
+    VsCol, VsRow, VsContainer,
+} from "@components/elements/layout"
 import VsSiteNavList from "./SiteNavList"
-import { VsCol, VsRow, VsContainer } from "@components/elements/layout"
 
-import HandDownFocus from "@/directives/hand-down-focus.js"
+import HandDownFocus from "@/directives/hand-down-focus"
 
 export default {
     name: "VsSiteNav",
@@ -30,10 +39,8 @@ export default {
         HandDownFocus,
     },
     computed: {
-        firstNavItem() {
-            console.log(this.$slots.default)
-            debugger
-        },
+        // firstNavItem() {
+        // },
     },
 }
 </script>
@@ -49,7 +56,7 @@ export default {
 
   <div style="position: relative; height: 600px; overflow-y: scroll; max-width: 400px;">
     <vs-mobile-nav-button></vs-mobile-nav-button>
-    <vs-mobile-nav> 
+    <vs-mobile-nav>
       <vs-mobile-nav-list-item
         v-for="(item, index) in header.mainNav"
         :level="1"

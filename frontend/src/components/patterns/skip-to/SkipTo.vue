@@ -1,12 +1,17 @@
 <template>
-  <vs-skip-to-button @click.native.prevent="skipTo" :tabindex="tabindex">
-    <slot />
-  </vs-skip-to-button>
+    <VsSkipToButton
+        @click.native.prevent="skipTo"
+        :tabindex="tabindex"
+    >
+        <slot />
+    </VsSkipToButton>
 </template>
 
 <script>
+import {
+    isFunction, get, isNumber,
+} from "lodash"
 import VsSkipToButton from "./SkipToButton"
-import { isFunction, get, isNumber } from "lodash"
 
 /**
  * The SkipTo component provides users of assistive
@@ -14,47 +19,49 @@ import { isFunction, get, isNumber } from "lodash"
  * focus to a provided target element when activated.
  */
 export default {
-  name: "VsSkipTo",
-  status: "prototype",
-  release: "0.0.1",
-  components: {
-    VsSkipToButton,
-  },
-  props: {
-    /**
-     * The tabindex attribute for this element. For some reason
-     * tabindex isn't passed to the root element so we must do
-     * that manually.
-     */
-    tabindex: {
-      type: String,
+    name: "VsSkipTo",
+    status: "prototype",
+    release: "0.0.1",
+    components: {
+        VsSkipToButton,
     },
-    /**
-     * The target element to skip to: a Vue ref - e.g.
-     * from this.$refs - or a DOM Element.
-     */
-    target: {
-      default: null,
+    props: {
+        /**
+         * The tabindex attribute for this element. For some reason
+         * tabindex isn't passed to the root element so we must do
+         * that manually.
+         */
+        tabindex: {
+            type: String,
+            default: "",
+        },
+        /**
+         * The target element to skip to: a Vue ref - e.g.
+         * from this.$refs - or a DOM Element.
+         */
+        target: {
+            type: Object,
+            default: null,
+        },
     },
-  },
-  methods: {
-    skipTo() {
-      let element
+    methods: {
+        skipTo() {
+            let element
 
-      if (isFunction(get(this.target, "focus"))) {
-        element = this.target
-      } else if (isFunction(get(this.target, "$el.focus"))) {
-        element = this.target.$el
-      }
+            if (isFunction(get(this.target, "focus"))) {
+                element = this.target
+            } else if (isFunction(get(this.target, "$el.focus"))) {
+                element = this.target.$el
+            }
 
-      if (element) {
-        if (!isNumber(element.tabIndex)) {
-          element.tabIndex = -1
-        }
-        element.focus()
-      }
+            if (element) {
+                if (!isNumber(element.tabIndex)) {
+                    element.tabIndex = -1
+                }
+                element.focus()
+            }
+        },
     },
-  },
 }
 </script>
 
@@ -79,7 +86,7 @@ export default {
         <vs-skip-to :target="element" @activated="activated('HTML element')" tabindex="10002">
           Skip to HTML Element target
         </vs-skip-to>
-        
+
         <bs-wrapper class="card mr-2" style="width:10rem" tabindex="10003">
           <bs-wrapper class="card-body">
             Thing to skip
@@ -100,7 +107,7 @@ export default {
       </bs-wrapper>
     `,
     data() {
-      return { 
+      return {
         element: null,
         ref: null
       }
@@ -115,8 +122,6 @@ export default {
       this.ref = this.$refs.refTarget
     },
   })
-
-
 
 
   ```

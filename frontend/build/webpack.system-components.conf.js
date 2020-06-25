@@ -1,22 +1,24 @@
 "use strict"
-const utils = require("./utils")
 const webpack = require("webpack")
 const path = require("path")
-const config = require("../config")
 const merge = require("webpack-merge")
 const baseWebpackConfig = require("./webpack.base.conf")
 const MergeWebpackPlugin = require("webpack-merge-and-include-globally")
 const MiniCssExtractPlugin = require("mini-css-extract-plugin")
 const OptimizeCSSPlugin = require("optimize-css-assets-webpack-plugin")
 const CopyWebpackPlugin = require("copy-webpack-plugin")
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const SafeParser = require("postcss-safe-parser")
-const env = require("../config/prod.env")
 const ManifestPlugin = require("webpack-manifest-plugin")
+
+const utils = require("./utils")
+const config = require("../config")
+const env = require("../config/prod.env")
 const generateManifest = require("./system-components-generate-manifest")
 const { mergeIE11Fix } = require("./webpack.ie11-fix")
 
 
-baseWebpackConfig.entry = require("../src/utils/entry.system-components.js")
+baseWebpackConfig.entry = require("./entry.system-components.js")
 
 // Remove the CSS extract from the base config to prevent duplicate CSS file
 baseWebpackConfig.plugins = baseWebpackConfig.plugins.filter(plugin => {
@@ -37,24 +39,16 @@ const webpackConfig = merge(mergeIE11Fix(baseWebpackConfig), {
   devtool: config.build.productionSourceMap ? config.system.devtool : false,
   output: {
     path: config.system.assetsRoot,
-    filename: utils.assetsSystemPath("components/[name].js"),
-    // This will give the chunks hash names rather than meaningful names
-    // Use this in real production
-    // filename: utils.assetsSystemPath("components/[chunkhash].js"),
+    filename: utils.assetsSystemPath(process.env.NODE_ENV === "development" ?
+      "components/[name].js" :
+      "components/[chunkhash].js",
+    ),
+    publicPath: config.system.assetsPublicPath,
     library: "[name]",
     libraryTarget: config.system.libraryTarget,
   },
   performance: {
     hints: config.system.performanceHints,
-  },
-  optimization: {
-    splitChunks: {
-      chunks: "all",
-      minSize: 0,
-      maxInitialRequests: Infinity,
-    },
-    runtimeChunk: "single",
-    concatenateModules: false,
   },
   plugins: [
     // http://vuejs.github.io/vue-loader/en/workflow/production.html
@@ -63,7 +57,10 @@ const webpackConfig = merge(mergeIE11Fix(baseWebpackConfig), {
     }),
     // extract css into its own file
     new MiniCssExtractPlugin({
-      filename: utils.assetsSystemPath("components/[name].css"),
+      filename: utils.assetsSystemPath(process.env.NODE_ENV === "development" ?
+        "components/[name].css" :
+        "components/[chunkhash].css"
+      ),
       // This will give the chunks hash names rather than meaningful names
       // Use this in real production
       //filename: utils.assetsSystemPath("components/[chunkhash].css"),
@@ -98,6 +95,7 @@ const webpackConfig = merge(mergeIE11Fix(baseWebpackConfig), {
       generate: generateManifest,
       fileName: "manifest.json",
     }),
+    new CleanWebpackPlugin(),
   ],
 })
 

@@ -1,30 +1,33 @@
 <template>
     <div style="overflow-y: scroll; min-height: 600px;">
-        <vs-skip-to :target="contentContainer">
+        <VsSkipTo :target="contentContainer">
             Skip to Content
-        </vs-skip-to>
+        </VsSkipTo>
 
-        <vs-drawer-toggle
+        <VsDrawerToggle
             content-key="site-search"
             drawer-key="header-bottom"
             tag="vs-skip-to-button"
         >
             Skip to Search
-        </vs-drawer-toggle>
+        </VsDrawerToggle>
 
-        <vs-header>
+        <VsHeader>
             <template #top-left>
-                <vs-header-drawer-toggle
+                <VsHeaderDrawerToggle
                     section="top"
                     class="d-lg-none"
                     content-key="universal-nav"
                     drawer-key="header-top"
                 >
                     Our sites
-                </vs-header-drawer-toggle>
+                </VsHeaderDrawerToggle>
 
-                <vs-header-list-group class="d-lg-inline-flex d-none" section="top">
-                    <vs-header-list-group-item
+                <VsHeaderListGroup
+                    class="d-lg-inline-flex d-none"
+                    section="top"
+                >
+                    <VsHeaderListGroupItem
                         v-for="(site, i) in header.ourSites"
                         :key="i"
                         :href="site.href"
@@ -32,12 +35,12 @@
                         :tracking-id="site.trackingId"
                     >
                         {{ site.title }}
-                    </vs-header-list-group-item>
-                </vs-header-list-group>
+                    </VsHeaderListGroupItem>
+                </VsHeaderListGroup>
             </template>
 
             <template #top-right>
-                <vs-header-login-button>
+                <VsHeaderLoginButton>
                     <template v-slot:logged-in-content>
                         <span class="d-none">Log out</span>
                         <span>Hi Boudicca... (not you?)</span>
@@ -45,19 +48,24 @@
                     <template v-slot:logged-out-content>
                         <span>Login</span>
                     </template>
-                </vs-header-login-button>
+                </VsHeaderLoginButton>
 
-                <vs-header-drawer-toggle
+                <VsHeaderDrawerToggle
                     section="top"
                     class="d-lg-none"
                     content-key="language-list"
                     drawer-key="header-top"
                 >
                     ENG
-                </vs-header-drawer-toggle>
+                </VsHeaderDrawerToggle>
 
-                <vs-header-dropdown text="EN" right class="d-none d-lg-flex" section="top">
-                    <vs-dropdown-item
+                <VsHeaderDropdown
+                    text="EN"
+                    right
+                    class="d-none d-lg-flex"
+                    section="top"
+                >
+                    <VsDropdownItem
                         v-for="(lang, i) in header.languages"
                         :key="i"
                         :href="lang.href"
@@ -65,14 +73,19 @@
                         :tracking-id="lang.trackingId"
                     >
                         {{ lang.title }}
-                    </vs-dropdown-item>
-                </vs-header-dropdown>
+                    </VsDropdownItem>
+                </VsHeaderDropdown>
             </template>
 
             <template #top-drawer>
-                <vs-drawer-content content-key="universal-nav" open-focus="content">
-                    <vs-list-group class="d-lg-none" tabindex="-1">
-                        <vs-drawer-list-item
+                <VsDrawerContent
+                    content-key="universal-nav"
+                    open-focus="content"
+                >
+                    <VsListGroup
+                        class="d-lg-none"
+                    >
+                        <VsDrawerListItem
                             v-for="(site, i) in header.ourSites"
                             :key="i"
                             :href="site.href"
@@ -82,12 +95,17 @@
                             full-width
                         >
                             {{ site.title }}
-                        </vs-drawer-list-item>
-                    </vs-list-group>
-                </vs-drawer-content>
-                <vs-drawer-content content-key="language-list" open-focus="content">
-                    <vs-list-group class="d-lg-none" tabindex="-1">
-                        <vs-drawer-list-item
+                        </VsDrawerListItem>
+                    </VsListGroup>
+                </VsDrawerContent>
+                <VsDrawerContent
+                    content-key="language-list"
+                    open-focus="content"
+                >
+                    <VsListGroup
+                        class="d-lg-none"
+                    >
+                        <VsDrawerListItem
                             v-for="(lang, i) in header.languages"
                             :key="i"
                             :href="lang.href"
@@ -96,13 +114,13 @@
                             full-width
                         >
                             <span>{{ lang.title }}</span>
-                        </vs-drawer-list-item>
-                    </vs-list-group>
-                </vs-drawer-content>
+                        </VsDrawerListItem>
+                    </VsListGroup>
+                </VsDrawerContent>
             </template>
 
             <template #logo>
-                <vs-logo />
+                <VsLogo />
             </template>
 
             <!-- <template #mobile-nav-button>
@@ -110,16 +128,16 @@
       </template> -->
 
             <template #bottom-right>
-                <vs-header-drawer-toggle
+                <VsHeaderDrawerToggle
                     drawer-key="header-bottom"
                     content-key="site-search"
                     tag="vs-site-search-toggle-button"
                     section="bottom"
                 >
                     Search
-                </vs-header-drawer-toggle>
+                </VsHeaderDrawerToggle>
 
-                <vs-header-drawer-toggle
+                <VsHeaderDrawerToggle
                     drawer-key="header-bottom"
                     content-key="favourites-list"
                     tag="vs-favourites-view-button"
@@ -128,16 +146,23 @@
             </template>
 
             <template #bottom-drawer>
-                <vs-drawer-content content-key="site-search" ref="siteSearch" open-focus="content">
-                    <vs-site-search />
-                </vs-drawer-content>
-                <vs-drawer-content content-key="favourites-list" open-focus="close">
-                    <vs-favourites-list />
-                </vs-drawer-content>
+                <VsDrawerContent
+                    content-key="site-search"
+                    ref="siteSearch"
+                    open-focus="content"
+                >
+                    <VsSiteSearch />
+                </VsDrawerContent>
+                <VsDrawerContent
+                    content-key="favourites-list"
+                    open-focus="close"
+                >
+                    <VsFavouritesList />
+                </VsDrawerContent>
             </template>
 
             <template #desktop-nav-toggles>
-                <vs-desktop-nav-toggles
+                <VsDesktopNavToggles
                     v-for="(item, index) in header.mainNav"
                     :level="1"
                     :href="item.href"
@@ -148,7 +173,7 @@
                     :promo-item="item.promoItem"
                     :chart-widgets="item.chartWidgets"
                     :key="index"
-                    :toggleId="index + 1"
+                    :toggle-id="index + 1"
                 />
             </template>
 
@@ -194,7 +219,7 @@
       </vs-desktop-nav-submenu> -->
 
             <template #site-navigation>
-                <vs-site-nav-list-item
+                <VsSiteNavListItem
                     v-for="(item1, index) in header.mainNav"
                     :href="item1.href"
                     :tracking-id="item1.trackingId"
@@ -202,8 +227,11 @@
                     :key="index"
                 >
                     {{ item1.title }}
-                    <template #subnav v-f="!item1.promo">
-                        <component
+                    <template
+                        #subnav
+                        v-f="!item1.promo"
+                    >
+                        <Component
                             :is="
                                 item2.promo
                                     ? 'vs-site-nav-list-promo-item'
@@ -217,8 +245,11 @@
                             :image-href="item2.imageHref"
                         >
                             {{ item2.title }}
-                            <template #subnav v-f="!item2.promo">
-                                <component
+                            <template
+                                #subnav
+                                v-f="!item2.promo"
+                            >
+                                <Component
                                     :is="
                                         item3.promo
                                             ? 'vs-site-nav-list-promo-item'
@@ -231,11 +262,11 @@
                                     :image-href="item3.imageHref"
                                 >
                                     {{ item3.title }}
-                                </component>
+                                </Component>
                             </template>
-                        </component>
+                        </Component>
                     </template>
-                </vs-site-nav-list-item>
+                </VsSiteNavListItem>
             </template>
 
             <!-- <vs-mobile-nav-list-item
@@ -280,11 +311,15 @@
           </vs-mobile-nav-list-item>
         </vs-mobile-nav-list-item>
       </vs-mobile-nav-list-item> -->
-        </vs-header>
+        </VsHeader>
 
         <div class="container">
             <div class="row">
-                <div id="content-container" class="col p-3" tabindex="3000" style="height:1000">
+                <div
+                    id="content-container"
+                    class="col p-3"
+                    style="height:1000"
+                >
                     Dummy page contents
                 </div>
             </div>

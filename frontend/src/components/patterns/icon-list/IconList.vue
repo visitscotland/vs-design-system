@@ -1,6 +1,11 @@
 <template>
     <div class="vs-icon-list">
-        <div class="vs-icon-list__title" v-if="title">{{ title }}</div>
+        <div
+            class="vs-icon-list__title"
+            v-if="title"
+        >
+            {{ title }}
+        </div>
         <ul class="vs-icon-list__list mb-0">
             <slot />
         </ul>
@@ -23,6 +28,7 @@ export default {
          */
         title: {
             type: String,
+            default: "",
         },
     },
 }
@@ -71,11 +77,11 @@ export default {
             label="Hearing Loop"
         />
         <vs-icon-list-item
-            icon="facility-publictlt"
+            icon="publictlt"
             label="Public Toilets">
         </vs-icon-list-item>
         <vs-icon-list-item
-            icon="facility-giftshop"
+            icon="giftshop"
             label="Gift Shop">
         </vs-icon-list-item>
         <vs-icon-list-item
