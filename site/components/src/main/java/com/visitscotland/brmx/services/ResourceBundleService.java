@@ -132,8 +132,7 @@ public class ResourceBundleService {
      */
     public boolean existsResourceBundleKey(String bundleName, String key,  Locale locale){
         ResourceBundle bundle = getResourceBundle(bundleName, locale);
-        return bundle != null && bundle.getLocale() != null
-                && bundle.containsKey(key) && !Contract.isEmpty(bundle.getString(key));
+        return bundle != null && bundle.containsKey(key) && !Contract.isEmpty(bundle.getString(key));
     }
 
     /**

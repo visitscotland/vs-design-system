@@ -1,5 +1,6 @@
 package com.visitscotland.brmx.services;
 
+import com.visitscotland.brmx.utils.CommonUtils;
 import org.hippoecm.hst.resourcebundle.ResourceBundleRegistry;
 import org.junit.Assert;
 import org.junit.jupiter.api.BeforeEach;
@@ -36,7 +37,7 @@ public class ResourceBundleServiceTest {
         lenient().when(registry.getBundle(BUNDLE)).thenReturn(fbBundle);
         lenient().when(registry.getBundle(BUNDLE, Locale.UK)).thenReturn(bundle);
 
-        service = new ResourceBundleService(registry);
+        service = new ResourceBundleService(registry, new CommonUtils());
 
     }
 
@@ -110,6 +111,7 @@ public class ResourceBundleServiceTest {
 
     @Test
     public void existsKey(){
+        when(bundle.containsKey("key")).thenReturn(true);
         when(bundle.containsKey("key")).thenReturn(true);
         when(bundle.getString("key")).thenReturn("value");
 
