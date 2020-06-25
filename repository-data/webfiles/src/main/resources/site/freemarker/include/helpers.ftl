@@ -2,14 +2,6 @@
     Functions
 -->
 
-<#--  More reliable method for including labels from resource bundles  -->
-<#--  e.g. ${label("essentials.global", "footer.signup")} -->
-<#function legacyLabel bundle key>
-    <@hst.setBundle basename="${bundle}"/>
-    <@fmt.message var="message" key="${key}" />
-    <#return message>
-</#function>
-
 <#-- @ftlvariable name="ResourceBundle" type="com.visitscotland.brmx.services.ResourceBundleService" -->
 
 <#--  More reliable method for including labels from resource bundles  -->
