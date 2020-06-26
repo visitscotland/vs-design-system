@@ -130,13 +130,13 @@ export default {
         <vs-footer-nav-list break-point="md">
             <vs-col cols="12" md="6">
                 <vs-footer-accordion-item
-                    :open-by-default="true"
+                    :open-by-default="false"
                     variant="dark"
                     control-id="footer_accordion_item_1"
                     class="border-left-0"
                 >
                     <span slot="title">
-                        Find us on
+                        Visitor information
                     </span>
 
                     <span slot="icon-open">
@@ -148,22 +148,22 @@ export default {
                     </span>
 
                     <vs-list unstyled class="pb-2">
-                        <vs-footer-social-item
+                        <vs-footer-nav-list-item
                             href="#"
-                            icon="facebook"
-                        ></vs-footer-social-item>
-                        <vs-footer-social-item
+                            link-text="Brochures"
+                        ></vs-footer-nav-list-item>
+                        <vs-footer-nav-list-item
                             href="#"
-                            icon="twitter"
-                        ></vs-footer-social-item>
-                        <vs-footer-social-item
+                            link-text="VisitScotland iCentres"
+                        ></vs-footer-nav-list-item>
+                        <vs-footer-nav-list-item
                             href="#"
-                            icon="youtube"
-                        ></vs-footer-social-item>
-                        <vs-footer-social-item
+                            link-text="iKnow Scotland Community"
+                        ></vs-footer-nav-list-item>
+                        <vs-footer-nav-list-item
                             href="#"
-                            icon="instagram"
-                        ></vs-footer-social-item>
+                            link-text="VisitScotland Awards"
+                        ></vs-footer-nav-list-item>
                     </vs-list>
                 </vs-footer-accordion-item>
             </vs-col>

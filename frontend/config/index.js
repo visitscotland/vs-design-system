@@ -42,9 +42,9 @@ module.exports = {
     index: path.resolve(__dirname, "../dist/index.html"),
 
     // Paths
-    assetsRoot: path.resolve(__dirname, "../dist"),
+    assetsRoot: path.resolve(__dirname, "../dist", "system"),
     assetsSubDirectory: "./",
-    assetsPublicPath: "/",
+    assetsPublicPath: "../",
 
     // The system.js library target, supports all
     // Webpack libraryTargets (umd, commonjs2, etc...)

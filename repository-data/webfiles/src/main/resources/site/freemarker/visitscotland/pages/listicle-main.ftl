@@ -11,7 +11,7 @@
 <#include "../../vs-dotcom-ds/components/link.ftl">
 <#include "../../vs-dotcom-ds/components/rich-text-wrapper.ftl">
 <#include "../../vs-dotcom-ds/components/listicle-item.ftl">
-<#include "../../vs-dotcom-ds/components/panel.ftl">
+<#--  <#include "../../vs-dotcom-ds/components/panel.ftl">  -->
 
 <#include "../macros/modules/listicles/listicle-item.ftl">
 <#include "../macros/global/cms-errors.ftl">
@@ -40,7 +40,7 @@
 			</vs-col>
 			<vs-col cols="2">
 				<div class="d-flex justify-content-center justify-content-sm-end">
-					<vs-social-share />
+					<vs-social-share></vs-social-share>
 				</div>
 			</vs-col>
 		</vs-row>
