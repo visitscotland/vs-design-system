@@ -4,7 +4,7 @@ const path = require("path");
 const { getOptions } = require("loader-utils");
 const { get, map, keys } = require("lodash");
 
-const importsPlaceholder = "/** PLACEHOLDER: IMPORTS */";
+const importsPlaceholder = "/** PLACEHOLDER: COMPONENT IMPORTS */";
 const registrationsPlaceholder = "/** PLACEHOLDER: COMPONENT REGISTRATION */";
 const ssrAppPath = "./ssr/src/";
 
