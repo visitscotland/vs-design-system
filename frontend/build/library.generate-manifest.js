@@ -12,6 +12,7 @@ const {
   ary,
   endsWith,
   remove,
+  isEmpty,
 } = require("lodash")
 
 function extractAllEntriesFromFileDescriptor(FileDescriptor) {
@@ -31,13 +32,25 @@ function extractEntriesFromOutputFile(outputFile) {
 }
 
 function mapComponentEntryFiles(component) {
-  let files = uniq(flatMap(get(component, "chunks"), "files"))
+  const files = uniq(flatMap(get(component, "chunks"), "files"))
+  const scripts = remove(files, ary(partial(endsWith, partial.placeholder, ".js"), 1))
+  const styles = remove(files, ary(partial(endsWith, partial.placeholder, ".css"), 1))
 
-  return {
-    scripts: remove(files, ary(partial(endsWith, partial.placeholder, ".js"), 1)),
-    styles: remove(files, ary(partial(endsWith, partial.placeholder, ".css"), 1)),
-    other: files,
+  let assetMap = {}
+
+  if(!isEmpty(scripts)) {
+    assetMap.scripts = scripts
   }
+
+  if(!isEmpty(styles)) {
+    assetMap.styles = styles
+  }
+
+  if(!isEmpty(files)) {
+    assetMap.other = files
+  }
+
+  return assetMap
 }
 
 /**
