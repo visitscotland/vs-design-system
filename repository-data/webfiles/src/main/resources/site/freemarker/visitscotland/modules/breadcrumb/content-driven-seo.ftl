@@ -31,7 +31,7 @@
 
 <#-- TITLE TAG -->
 <@hst.headContribution category="seo">
-    <title>${document.title}</title>
+    <title>${document.title} ${label("channel", "seo.title-suffix")}</title>
 </@hst.headContribution>
 
 <#-- META DESCRIPTION TAG -->
