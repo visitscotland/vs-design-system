@@ -22,13 +22,10 @@ design-system/
 .classpath
 .project
 .settings/
+.metadata/
 
 # IntelliJ IDEA
 .idea/
 
 #VSCODE
 .vscode/
-
-
-/.metadata/
-/.metadata/
