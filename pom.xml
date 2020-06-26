@@ -28,6 +28,10 @@
     
     <forge.exdocpickerbase.version>6.0.0</forge.exdocpickerbase.version>
     <forge.breadcrumb.version>3.0.0</forge.breadcrumb.version>
+
+    <junit.jupiter.version>5.6.2</junit.jupiter.version>
+
+    <mockito.version>3.3.3</mockito.version>
     <!-- TODO end define -->
   
   </properties>
