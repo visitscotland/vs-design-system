@@ -10,6 +10,8 @@ import org.hippoecm.frontend.translation.ILocaleProvider;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.Locale;
+
 public class TranslationLocaleMenuDataView extends DataView<ILocaleProvider.HippoLocale> {
     private static final Logger LOG = LoggerFactory.getLogger(TranslationLocaleMenuDataView.class);
     private final IModel<String> languageModel;
@@ -30,8 +32,8 @@ public class TranslationLocaleMenuDataView extends DataView<ILocaleProvider.Hipp
         final String currentDocumentLanguage = plugin.getCurrentlySelectedDocumentLocale();
 
         if (locale instanceof UntranslatedLocale) {
-            if (currentDocumentLanguage.equals("en")) {
-                item.add(new TranslationAction(plugin, "language", new LoadableDetachableModel<String>() {
+            if (currentDocumentLanguage.equals(Locale.ENGLISH.getLanguage())) {
+                item.add(new TranslationAction(plugin, TranslationWorkflowPlugin.ID_LANGUAGE, new LoadableDetachableModel<String>() {
 
                     @Override
                     protected String load() {
@@ -43,7 +45,7 @@ public class TranslationLocaleMenuDataView extends DataView<ILocaleProvider.Hipp
                 LOG.debug("Not displaying clone menu item for not english document");
             }
         } else {
-            item.add(new ViewTranslationAction(plugin, "language", new LoadableDetachableModel<String>() {
+            item.add(new ViewTranslationAction(plugin, TranslationWorkflowPlugin.ID_LANGUAGE, new LoadableDetachableModel<String>() {
 
                 @Override
                 protected String load() {

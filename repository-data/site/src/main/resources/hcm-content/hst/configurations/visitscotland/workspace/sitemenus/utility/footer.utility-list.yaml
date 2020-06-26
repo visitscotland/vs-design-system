@@ -3,5 +3,33 @@
   hst:repobased: false
   /footer.accessibility:
     jcr:primaryType: hst:sitemenuitem
-    hst:externallink: https://www.visitscotland.com/policies/accessibility/
+    hst:referencesitemapitem: root
+    hst:repobased: false
+  /footer.acceptable-use:
+    jcr:primaryType: hst:sitemenuitem
+    hst:referencesitemapitem: root
+    hst:repobased: false
+  /footer.privacy:
+    jcr:primaryType: hst:sitemenuitem
+    hst:referencesitemapitem: root
+    hst:repobased: false
+  /footer.cookies:
+    jcr:primaryType: hst:sitemenuitem
+    hst:referencesitemapitem: root
+    hst:repobased: false
+  /footer.social-media:
+    jcr:primaryType: hst:sitemenuitem
+    hst:referencesitemapitem: root
+    hst:repobased: false
+  /footer.environmental-policy:
+    jcr:primaryType: hst:sitemenuitem
+    hst:referencesitemapitem: root
+    hst:repobased: false
+  /footer.terms-of-use:
+    jcr:primaryType: hst:sitemenuitem
+    hst:referencesitemapitem: root
+    hst:repobased: false
+  /footer.about-us:
+    jcr:primaryType: hst:sitemenuitem
+    hst:referencesitemapitem: root
     hst:repobased: false

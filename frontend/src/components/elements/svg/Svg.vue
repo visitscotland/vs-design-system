@@ -128,23 +128,23 @@ export default {
 <docs>
   ```jsx
   <div>
-    <pre>&lt;vs-svg path="svg/logo" /&gt; </pre>
-    <vs-svg path="logo" />
+    <pre>&lt;vs-svg path="svg/visitscotland" /&gt; </pre>
+    <vs-svg path="visitscotland" />
 
     <br /><hr /><br />
 
-    <pre>height="110"</pre>
-    <vs-svg path="logo" height="110" />
+    <pre>height="50"</pre>
+    <vs-svg path="visitscotland" height="50" />
 
     <br /><hr /><br />
 
     <pre>width="110"</pre>
-    <vs-svg path="logo" width="110" />
+    <vs-svg path="visitscotland" width="110" />
 
     <br /><hr /><br />
 
     <pre>fill="red"</pre>
-    <vs-svg path="logo" height="110" fill="red" />
+    <vs-svg path="visitscotland" fill="red" />
 
   </div>
   ```

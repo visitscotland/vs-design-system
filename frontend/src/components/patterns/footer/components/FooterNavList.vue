@@ -29,14 +29,6 @@ export default {
     },
     props: {
         /**
-         * If this is provided, the accordion will change to an open
-         * menu with a title instead of button.
-         */
-        responsive: {
-            type: Boolean,
-            default: false,
-        },
-        /**
          * If this is provided, the accordion expands above
          * the specified viewport `xs,sm, md, lg, xl, xxl`
          */
