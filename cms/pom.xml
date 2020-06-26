@@ -10,6 +10,7 @@
   <artifactId>visitscotland-cms</artifactId>
   <packaging>war</packaging>
   <name>www.visitscotland.com CMS Pages CMS</name>
+
   <description>www.visitscotland.com CMS Pages CMS</description>
   <dependencies>
     <dependency>
@@ -38,10 +39,58 @@
       <groupId>com.visitscotland</groupId>
       <artifactId>data-service-api</artifactId>
       <version>${data-service-api.version}</version>
+      <exclusions>
+      	<exclusion>
+      		<groupId>org.slf4j</groupId>
+      		<artifactId>slf4j-log4j12</artifactId>
+      	</exclusion>
+      </exclusions>
     </dependency>
+
+    <dependency>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter</artifactId>
+      <version>${junit.jupiter.version}</version>
+      <scope>test</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>org.mockito</groupId>
+      <artifactId>mockito-inline</artifactId>
+      <version>${mockito.version}</version>
+      <scope>test</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>org.mockito</groupId>
+      <artifactId>mockito-junit-jupiter</artifactId>
+      <version>${mockito.version}</version>
+      <scope>test</scope>
+    </dependency>
+
   </dependencies>
   <build>
     <finalName>cms</finalName>
+    <resources>
+      <resource>
+        <directory>src/main/java</directory>
+        <filtering>false</filtering>
+        <includes>
+          <include>**/*.properties</include>
+          <include>**/*.html</include>
+          <include>**/*.css</include>
+          <include>**/*.png</include>
+          <include>**/*.js</include>
+        </includes>
+      </resource>
+      <resource>
+        <directory>src/main/resources</directory>
+        <filtering>false</filtering>
+        <includes>
+          <include>**/*</include>
+        </includes>
+      </resource>
+    </resources>
     <plugins>
       <plugin>
         <artifactId>maven-war-plugin</artifactId>
