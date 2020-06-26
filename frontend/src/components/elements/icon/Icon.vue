@@ -71,16 +71,6 @@ export default {
         reverse: {
             type: Boolean,
         },
-
-        /**
-         * Amount of padding
-         * `null, 0, 1, 2, 3`
-         */
-        padding: {
-            type: Number,
-            default: 2,
-            validator: (value) => [null, 0, 1, 2, 3].indexOf(value) !== -1,
-        },
     },
     data() {
         return {
@@ -326,35 +316,6 @@ $variants: (
           <bs-wrapper class="d-flex flex-column mr-3 align-items-center">
             <h4>xl</h4>
             <vs-icon name="favourite" size="xl" />
-          </bs-wrapper>
-        </bs-wrapper>
-      </bs-wrapper>
-    </bs-wrapper>
-
-    <bs-wrapper class="row mb-5">
-      <bs-wrapper class="col">
-        <h3>Padding size</h3>
-
-        <bs-wrapper class="d-flex">
-          <bs-wrapper class="d-flex flex-column mr-3 align-items-center">
-            <h4>0</h4>
-            <vs-icon name="favourite" reverse :padding="0" />
-
-          </bs-wrapper>
-
-          <bs-wrapper class="d-flex flex-column mr-3 align-items-center">
-            <h4>1</h4>
-            <vs-icon name="favourite" reverse :padding="1" />
-          </bs-wrapper>
-
-          <bs-wrapper class="d-flex flex-column mr-3 align-items-center">
-            <h4>2</h4>
-            <vs-icon name="favourite" reverse />
-          </bs-wrapper>
-
-          <bs-wrapper class="d-flex flex-column mr-3 align-items-center">
-            <h4>3</h4>
-            <vs-icon name="favourite" reverse :padding="3" />
           </bs-wrapper>
         </bs-wrapper>
       </bs-wrapper>
