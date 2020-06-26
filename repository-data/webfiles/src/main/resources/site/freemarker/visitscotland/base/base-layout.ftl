@@ -19,7 +19,7 @@
         <!-- END HEAD CONTRIBUTIONS: htmlHeadStyles -->
 
         <!-- BEGIN HEAD CONTRIBUTIONS: general -->
-        <@hst.headContributions categoryExcludes="htmlHeadPreload,htmlHeadStyles,htmlBodyEndScriptsFirst,htmlBodyEndScripts,htmlBodyEndAppEntry" xhtml=true/>
+        <@hst.headContributions categoryExcludes="htmlHeadPreload,htmlHeadStyles,htmlBodyEndScriptsFirst,htmlBodyEndScripts,htmlBodyEndAppInit" xhtml=true/>
         <!-- END HEAD CONTRIBUTIONS: general -->
 
     </head>
@@ -42,15 +42,15 @@
         </div>
 
         <!-- BEGIN HEAD CONTRIBUTIONS: htmlBodyEndScriptsFirst -->
-        <@hst.headContributions categoryIncludes="htmlBodyEndScriptsFirst, scripts" xhtml=true/>
+        <@hst.headContributions categoryIncludes="htmlBodyEndScriptsFirst" xhtml=true/>
         <!-- END HEAD CONTRIBUTIONS: htmlBodyEndScriptsFirst -->
 
         <!-- BEGIN HEAD CONTRIBUTIONS: htmlBodyEndScripts -->
-        <@hst.headContributions categoryIncludes="htmlBodyEndScripts, scripts" xhtml=true/>
+        <@hst.headContributions categoryIncludes="htmlBodyEndScripts" xhtml=true/>
         <!-- END HEAD CONTRIBUTIONS: htmlBodyEndScripts -->
 
-        <!-- BEGIN HEAD CONTRIBUTIONS: htmlBodyEndAppEntry -->
-        <@hst.headContributions categoryIncludes="htmlBodyEndAppEntry" xhtml=true/>
-        <!-- END HEAD CONTRIBUTIONS: htmlBodyEndAppEntry -->
+        <!-- BEGIN HEAD CONTRIBUTIONS: htmlBodyEndAppInit -->
+        <@hst.headContributions categoryIncludes="htmlBodyEndAppInit" xhtml=true/>
+        <!-- END HEAD CONTRIBUTIONS: htmlBodyEndAppInit -->
     </body>
 </html>

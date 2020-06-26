@@ -1,22 +1,36 @@
-// Vue Design System: The Vue build version to load with the `import` command
-// (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from "vue"
-import Meta from "vue-meta"
-import App from "@/App"
+import { isObject, each } from "lodash"
 
-// Vue Design System: Auto importing components globally
-import DesignSystem from "@/system"
-
-Vue.use(DesignSystem)
-Vue.use(Meta)
+import "@/styles/core.styles.scss"
+import noJsClass from "@/utils/no-js-class"
 
 Vue.config.productionTip = false
 
-/* eslint-disable no-new */
-new Vue({
-    el: "#app",
-    components: {
-        App,
-    },
-    template: "<App/>",
-})
+const defaultVueOptions = {
+    comments: true,
+}
+
+const removeNoJSClass = () => {
+    // remove no-js class 
+    var elements = document.getElementsByClassName(noJsClass)
+
+    each(elements, (element) => {
+        element.classList.remove(noJsClass)
+    })
+}
+
+export const initApp = (options, skipRemoveNoJsClass) => {
+    
+    const app = new Vue({
+        ...defaultVueOptions,
+        ...isObject(options) ? options : {},
+    })
+
+    if(!skipRemoveNoJsClass) {
+        removeNoJSClass()
+    }
+    
+    return app
+}
+
+export { Vue }

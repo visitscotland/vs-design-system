@@ -1,5 +1,5 @@
 <#include "../../../../include/imports.ftl">
-<#include "../../../../vs-dotcom-ds/components/footer-copyright.ftl">
+<#include "../../../../frontend/components/vs-footer-copyright.ftl">
 
 <#macro footerCopyright>
     <vs-footer-copyright href="<@hst.link siteMapItemRefId='root'/>" logo-alt-text="${label('essentials.global', 'footer.logo-alt-text')}">

@@ -1,4 +1,21 @@
+import { get } from "lodash"
 
-import createApp from "./app"
+/** PLACEHOLDER: COMPONENT IMPORTS */
 
-export default (context) => createApp(context)
+import { initApp } from "@/main"
+
+const defaultVueOptions = {
+    components: {
+        /** PLACEHOLDER: COMPONENT REGISTRATION */
+    },
+}
+
+export default (context) => {
+
+    const vueOptions = {
+        ...get(context, "vueOptions", {}),
+        ...defaultVueOptions,
+    }
+    
+    return initApp(vueOptions, true)
+}
