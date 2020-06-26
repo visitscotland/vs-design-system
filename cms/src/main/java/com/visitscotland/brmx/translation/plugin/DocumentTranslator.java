@@ -177,10 +177,10 @@ public class DocumentTranslator {
     /**
      * Prevent the creation of same-name-sibling (SNS) folders when translating a document (or folder?).
      * This affects
-     * <p>
+     * 
      * 1) the case where the deepest existing folder already has a child node with the same (node-)name
      * 2) the case where the deepest existing folder already has a child node with the same localized name
-     * <p>
+     *
      * An exception of type {@link WorkflowSNSException} will be thrown if there is an SNS issue.
      */
     protected void avoidSameNameSiblings(Session session, int indexOfDeepestTranslatedFolder, String targetLanguage, List<FolderTranslation> folders)
