@@ -13,6 +13,9 @@ const turndownTablesPlugin = require("turndown-plugin-gfm").tables
 const getConfig = require("vue-styleguidist/scripts/config")
 const StyleguidistError = require("react-styleguidist/lib/scripts/utils/error")
 
+const KEY_REMOTE_CONFIG = "remoteProfiles"
+const ARG_REMOTE_PROFILE = "remote-profile"
+
 const defaultRemoteConfig = {
   tempPath: "./.tmp/",
 }
@@ -26,13 +29,14 @@ const defaultRequestOptions = {
 let remoteConfig = null
 let spinner
 
-function getRemoteConfig(argv) {
-  const localConfig = getConfig(argv.config)
+function getRemoteConfig(config, argv) {
 
-  remoteConfig = _getRemoteConfigProfile(argv)
+  const selectedProfileName = _.get(argv, ARG_REMOTE_PROFILE, process.env.VS_DS_REMOTE_PROFILE)
+
+  remoteConfig = _extractRemoteConfig(config, selectedProfileName)
 
   if (!remoteConfig) {
-    return Promise.resolve(localConfig)
+    return Promise.resolve(getConfig(config))
   }
 
   remoteConfig = _applyRemoteConfigDefaults(remoteConfig)
@@ -44,7 +48,7 @@ function getRemoteConfig(argv) {
   spinner.start()
 
   return requestPromise(requestOptions)
-    .then(_.partial(_mergeConfig, _, localConfig))
+    .then(_.partial(_mergeConfig, _, config))
     .then(_.partial(_processSections, _, _.get(remoteConfig, "tempPath")))
     .then(_addPrivateComponents)
     .then(function(mergedConfig) {
@@ -62,10 +66,12 @@ function getRemoteConfig(argv) {
 
       // return the original static config on error
       console.log(chalk.cyan("Ignoring remote config"))
-      return localConfig
+
+      return config
 
       // throw err
     })
+    .then(getConfig)
 }
 
 function cleanup(docsConfig) {
@@ -189,31 +195,32 @@ function _addPrivateComponents(mergedConfig) {
   return mergedConfig
 }
 
-function _getRemoteConfigProfile(argv) {
-  const remoteConfigFile = argv["remote-config"]
-  const remoteConfig = remoteConfigFile ? require(remoteConfigFile) : undefined
+function _extractRemoteConfig(config, profileName) {
+  const remoteConfig = _.get(config, KEY_REMOTE_CONFIG)
 
-  let profileName = argv["remote-profile"] || process.env.VS_DS_REMOTE_PROFILE
+  _.unset(config, KEY_REMOTE_CONFIG)
 
-  if (!profileName) {
-    profileName = _.first(_.keys(remoteConfig))
-  } else if (!_.has(remoteConfig, profileName)) {
+  if(_.isEmpty(remoteConfig)) {
     console.log(
-      chalk.red(
-        "Profile " +
-          profileName +
-          " not included in remote config - add the profile to /config/remote.docs.config.js"
-      )
+      chalk.red("No remote config defined")
     )
-    console.log(chalk.cyan("Falling back to first profile in config"))
 
-    profileName = _.first(_.keys(remoteConfig))
+    return null
   }
 
   if (!profileName) {
-    console.log(chalk.red("No remote profile specified."))
+    profileName = _.first(_.keys(remoteConfig))
+    console.log(chalk.red("No profile chosen, falling back to first profile in config"))
+  } else if (!_.has(remoteConfig, profileName)) {
+    console.log(
+      chalk.red(
+        `Profile ${profileName} not included in remote config - 
+        add at least one profile to the "remoteProfile" key of the config. 
+        Falling back to first profile in config`
+      )
+    )
 
-    return null
+    profileName = _.first(_.keys(remoteConfig))
   }
 
   console.log(chalk.cyan("Selected remote profile - " + profileName + "."))
