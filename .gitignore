@@ -19,11 +19,10 @@ repository-data/webfiles/src/main/resources/site/freemarker/frontend/
 .classpath
 .project
 .settings/
+.metadata/
 
 # IntelliJ IDEA
 .idea/
 
 #VSCODE
 .vscode/
-
-
