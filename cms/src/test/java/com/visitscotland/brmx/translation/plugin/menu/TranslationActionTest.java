@@ -1,9 +1,7 @@
 package com.visitscotland.brmx.translation.plugin.menu;
 
 import com.visitscotland.brmx.translation.plugin.DocumentTranslator;
-import com.visitscotland.brmx.translation.plugin.SessionFactory;
 import com.visitscotland.brmx.translation.plugin.TranslationWorkflowPlugin;
-import com.visitscotland.brmx.translation.plugin.menu.TranslationAction;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.LoadableDetachableModel;
 import org.apache.wicket.util.tester.WicketTester;
@@ -12,7 +10,6 @@ import org.hippoecm.frontend.translation.ILocaleProvider;
 import org.hippoecm.repository.api.HippoSession;
 import org.hippoecm.repository.translation.TranslationWorkflow;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
@@ -23,14 +20,16 @@ import javax.jcr.Session;
 import java.util.HashSet;
 import java.util.Set;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.ArgumentMatchers.same;
 import static org.mockito.Mockito.*;
 
-@Disabled
 @ExtendWith(MockitoExtension.class)
 public class TranslationActionTest {
+    @Mock
+    LoadableDetachableModel<String> mockNameModel;
     private WicketTester wicket;
     @Mock
     private TranslationWorkflowPlugin mockWorkflowPlugin;
@@ -39,14 +38,10 @@ public class TranslationActionTest {
     @Mock
     private TranslationWorkflow mockWorkflow;
     @Mock
-    private SessionFactory mockSessionFactory;
-    @Mock
     private HippoSession mockHippoSession;
     private Set<String> availableLanguages;
     @Mock
     private ILocaleProvider mockLocaleProvider;
-    @Mock
-    LoadableDetachableModel<String> mockNameModel;
     @Mock
     private WorkflowDescriptorModel mockWorkflowDescriptorModel;
     @Mock
@@ -61,15 +56,15 @@ public class TranslationActionTest {
         availableLanguages = new HashSet<>();
         lenient().when(mockWorkflowPlugin.getAvailableLanguages()).thenReturn(availableLanguages);
         lenient().when(mockWorkflowPlugin.getLocaleProvider()).thenReturn(mockLocaleProvider);
-        lenient().when(mockSessionFactory.getJcrSession()).thenReturn(mockHippoSession);
         lenient().when(mockNameModel.getObject()).thenReturn("translationName");
-        action = new TranslationAction(
+        action = spy(new TranslationAction(
                 mockWorkflowPlugin,
                 "translation",
                 mockNameModel,
                 mockLocaleModel,
-                mockSessionFactory,
-                mockTranslator);
+                mockTranslator));
+
+        doReturn(mockHippoSession).when(action).getJcrSession();
     }
 
     @Test
@@ -92,7 +87,7 @@ public class TranslationActionTest {
 
         action.execute(mockWorkflow);
 
-        verify(mockTranslator, times(2)).cloneTranslationFolderStructure(
+        verify(mockTranslator, times(2)).cloneDocumentAndFolderStructure(
                 any(Node.class), anyList(), any(ILocaleProvider.HippoLocale.class), any(Session.class));
 
         verify(mockWorkflow).addTranslation(eq("es"), eq("translated"));
@@ -104,7 +99,7 @@ public class TranslationActionTest {
         Node mockDocNode = mock(Node.class);
         when(mockWorkflowPlugin.getDefaultModel()).thenReturn((IModel) mockWorkflowDescriptorModel);
         when(mockWorkflowDescriptorModel.getNode()).thenReturn(mockDocNode);
-        when(mockTranslator.cloneTranslationFolderStructure(
+        when(mockTranslator.cloneDocumentAndFolderStructure(
                 same(mockDocNode),
                 anyList(),
                 any(ILocaleProvider.HippoLocale.class),
@@ -118,7 +113,7 @@ public class TranslationActionTest {
         String message = action.execute(mockWorkflow);
 
         assertEquals("error message", message);
-        verify(mockTranslator).cloneTranslationFolderStructure(same(mockDocNode), anyList(), any(ILocaleProvider.HippoLocale.class), any(Session.class));
+        verify(mockTranslator).cloneDocumentAndFolderStructure(same(mockDocNode), anyList(), any(ILocaleProvider.HippoLocale.class), any(Session.class));
         verify(mockWorkflow, never()).addTranslation(anyString(), anyString());
     }
 

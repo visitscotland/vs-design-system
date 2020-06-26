@@ -9,17 +9,21 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
-final class UntranslatedLocaleProvider implements IDataProvider<ILocaleProvider.HippoLocale> {
-    private TranslationWorkflowPlugin workflow;
+public class UntranslatedLocaleProvider implements IDataProvider<ILocaleProvider.HippoLocale> {
     private final ILocaleProvider localeProvider;
+    private TranslationWorkflowPlugin workflow;
     private transient List<ILocaleProvider.HippoLocale> missingLocales;
 
-    UntranslatedLocaleProvider(TranslationWorkflowPlugin workflow, ILocaleProvider localeProvider) {
+    public UntranslatedLocaleProvider(TranslationWorkflowPlugin workflow, ILocaleProvider localeProvider) {
         this.workflow = workflow;
         this.localeProvider = localeProvider;
     }
 
-    private void load() {
+    protected List<ILocaleProvider.HippoLocale> getMisingLocales() {
+        return missingLocales;
+    }
+
+    protected void load() {
         missingLocales = new LinkedList<>();
         for (String language : workflow.getAvailableLanguages()) {
             if (!workflow.hasLocaleTranslation(language)) {
@@ -33,7 +37,7 @@ final class UntranslatedLocaleProvider implements IDataProvider<ILocaleProvider.
         if (missingLocales == null) {
             load();
         }
-        return missingLocales.subList((int) first, (int)(first + count)).iterator();
+        return missingLocales.subList((int) first, (int) (first + count)).iterator();
     }
 
     @Override

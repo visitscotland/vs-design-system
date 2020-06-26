@@ -18,12 +18,17 @@ import javax.jcr.RepositoryException;
 
 public class ViewTranslationAction extends StdWorkflow<TranslationWorkflow> {
     private static final Logger LOG = LoggerFactory.getLogger(ViewTranslationAction.class);
-
-    private TranslationWorkflowPlugin workflow;
     private final String language;
     private final IModel<ILocaleProvider.HippoLocale> localeModel;
+    private TranslationWorkflowPlugin workflow;
 
-    public ViewTranslationAction(TranslationWorkflowPlugin workflowPlugin, String id, IModel<String> name, IModel<ILocaleProvider.HippoLocale> localeModel, String language, IModel<String> languageModel) {
+    public ViewTranslationAction(
+            TranslationWorkflowPlugin workflowPlugin,
+            String id,
+            IModel<String> name,
+            IModel<ILocaleProvider.HippoLocale> localeModel,
+            String language,
+            IModel<String> languageModel) {
         super(id, name, workflowPlugin.getPluginContext(), (WorkflowDescriptorModel) workflowPlugin.getModel());
         this.workflow = workflowPlugin;
         this.language = language;
@@ -66,9 +71,9 @@ public class ViewTranslationAction extends StdWorkflow<TranslationWorkflow> {
                 return null;
             }
 
-            HippoTranslatedNode translatedNode = new HippoTranslatedNode(node);
+            HippoTranslatedNode translatedNode = createFromNode(node);
             Node translation = translatedNode.getTranslation(language);
-            browser.browse(new JcrNodeModel(translation.getParent()));
+            browser.browse(createJcrNodeModel(translation.getParent()));
         } catch (RepositoryException e) {
             LOG.error("Error retrieving translation node", e);
         }
@@ -76,4 +81,11 @@ public class ViewTranslationAction extends StdWorkflow<TranslationWorkflow> {
         return null;
     }
 
+    protected HippoTranslatedNode createFromNode(Node node) throws RepositoryException {
+        return new HippoTranslatedNode(node);
+    }
+
+    protected JcrNodeModel createJcrNodeModel(Node node) throws RepositoryException {
+        return new JcrNodeModel(node);
+    }
 }

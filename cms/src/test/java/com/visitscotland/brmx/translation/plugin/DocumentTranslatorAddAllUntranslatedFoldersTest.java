@@ -2,23 +2,17 @@ package com.visitscotland.brmx.translation.plugin;
 
 import org.hippoecm.frontend.translation.components.document.FolderTranslation;
 import org.hippoecm.repository.api.HippoNode;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import javax.jcr.Node;
 import javax.jcr.RepositoryException;
-
 import java.util.LinkedList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
@@ -28,15 +22,13 @@ import static org.mockito.Mockito.when;
 public class DocumentTranslatorAddAllUntranslatedFoldersTest {
     private DocumentTranslator translator;
     @Mock
-    private HippoTranslatedNodeFactory mockTranslatedNodeFactory;
-    @Mock
     private TranslatedFolder mockSourceFolder;
     private List<FolderTranslation> folders;
 
     @BeforeEach
     public void beforeEach() {
         folders = new LinkedList<>();
-        translator = new DocumentTranslator(mockTranslatedNodeFactory);
+        translator = new DocumentTranslator();
     }
 
     @Test
@@ -52,7 +44,7 @@ public class DocumentTranslatorAddAllUntranslatedFoldersTest {
     public void addAllUntranslatedFolders_parentIsNull() throws Exception {
         // No translated sibling before parent is eventually null
         int numberInChain = 10;
-        createUntranslatedFolderChain(mockSourceFolder, numberInChain, "no",false);
+        createUntranslatedFolderChain(mockSourceFolder, numberInChain, "no", false);
         assertThrows(RepositoryException.class, () -> translator.addAllUntranslatedFolders("no", folders, mockSourceFolder));
 
         // The folders should also be populated, not sure if this intended functionality
@@ -69,7 +61,7 @@ public class DocumentTranslatorAddAllUntranslatedFoldersTest {
         // Valid path, walks the untranslated folders adding them to the folders list
         // the names of the folders and their URLs should match the originals
         int numberInChain = 10;
-        createUntranslatedFolderChain(mockSourceFolder, numberInChain, "no",true);
+        createUntranslatedFolderChain(mockSourceFolder, numberInChain, "no", true);
         translator.addAllUntranslatedFolders("no", folders, mockSourceFolder);
 
         // The folders should be populated

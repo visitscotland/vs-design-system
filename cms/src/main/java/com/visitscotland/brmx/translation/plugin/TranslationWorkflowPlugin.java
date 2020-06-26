@@ -16,7 +16,7 @@
 package com.visitscotland.brmx.translation.plugin;
 
 import com.visitscotland.brmx.translation.plugin.menu.MenuLocaleProvider;
-import com.visitscotland.brmx.translation.plugin.menu.TranslationLocaleMenuItem;
+import com.visitscotland.brmx.translation.plugin.menu.TranslationLocaleMenuDataView;
 import org.apache.wicket.Component;
 import org.apache.wicket.MarkupContainer;
 import org.apache.wicket.markup.html.basic.Label;
@@ -57,9 +57,14 @@ import java.util.Map;
 import java.util.Set;
 
 public class TranslationWorkflowPlugin extends RenderPlugin {
-
+    public static final String ID_CONTENT = "content";
+    public static final String ID_CURRENT_LANGUAGE = "current-language";
+    public static final String ID_LANGUAGE = "language";
+    public static final String ID_LANGUAGES = "languages";
+    public static final String ID_LABEL = "label";
     private static Logger log = LoggerFactory.getLogger(TranslationWorkflowPlugin.class);
     private final IModel<Boolean> canTranslateModel;
+    private DocumentTranslationProvider translationProvider;
 
     public TranslationWorkflowPlugin(IPluginContext context, IPluginConfig config) {
         super(context, config);
@@ -116,18 +121,18 @@ public class TranslationWorkflowPlugin extends RenderPlugin {
         add(new MenuDescription() {
             @Override
             public Component getLabel() {
-                Fragment fragment = new Fragment("label", "label", TranslationWorkflowPlugin.this);
+                Fragment fragment = new Fragment(ID_LABEL, ID_LABEL, TranslationWorkflowPlugin.this);
                 HippoLocale locale = localeProvider.getLocale(languageModel.getObject());
                 ResourceReference resourceRef = locale.getIcon(IconSize.M, LocaleState.EXISTS);
                 fragment.add(new CachingImage("img", resourceRef));
-                fragment.add(new Label("current-language", locale.getDisplayName(getLocale())));
+                fragment.add(new Label(ID_CURRENT_LANGUAGE, locale.getDisplayName(getLocale())));
                 return fragment;
             }
 
             @Override
             public MarkupContainer getContent() {
-                Fragment fragment = new Fragment("content", "languages", TranslationWorkflowPlugin.this);
-                fragment.add(new TranslationLocaleMenuItem("languages", TranslationWorkflowPlugin.this, languageModel, new MenuLocaleProvider(TranslationWorkflowPlugin.this)));
+                Fragment fragment = new Fragment(ID_CONTENT, ID_LANGUAGES, TranslationWorkflowPlugin.this);
+                fragment.add(new TranslationLocaleMenuDataView(ID_LANGUAGES, TranslationWorkflowPlugin.this, languageModel, new MenuLocaleProvider(TranslationWorkflowPlugin.this)));
                 TranslationWorkflowPlugin.this.addOrReplace(fragment);
                 return fragment;
             }
@@ -150,8 +155,6 @@ public class TranslationWorkflowPlugin extends RenderPlugin {
 
         return nodeIcon;
     }
-
-    private DocumentTranslationProvider translationProvider;
 
     public Boolean canTranslateModel() {
         return canTranslateModel.getObject();

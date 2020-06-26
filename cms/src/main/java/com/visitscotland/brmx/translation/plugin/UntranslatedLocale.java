@@ -11,12 +11,13 @@ import java.util.Locale;
  * This is a fake HippoLocale that is used to display a translation menu item.
  * A HippoLocale was needed as we were extending an existing Hippo plugin and
  * a HippoLocale was already used.
- *
+ * <p>
  * The Class should not be expected to behave as other HippoLocales do, it is
  * actually Locale independent.
  */
 public class UntranslatedLocale extends ILocaleProvider.HippoLocale {
     public static final String MENU_TEXT = "Create clone";
+
     public UntranslatedLocale() {
         super(Locale.ENGLISH, "Missing");
     }

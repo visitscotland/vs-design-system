@@ -1,6 +1,7 @@
 package com.visitscotland.brmx.translation.plugin.menu;
 
-import com.visitscotland.brmx.translation.plugin.*;
+import com.visitscotland.brmx.translation.plugin.TranslationWorkflowPlugin;
+import com.visitscotland.brmx.translation.plugin.UntranslatedLocale;
 import org.apache.wicket.Component;
 import org.apache.wicket.markup.repeater.Item;
 import org.apache.wicket.model.IModel;
@@ -17,9 +18,9 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
-public class TranslationLocaleMenuItemTest {
+public class TranslationLocaleMenuDataViewTest {
     private WicketTester tester;
-    private TranslationLocaleMenuItem menuItem;
+    private TranslationLocaleMenuDataView menuItem;
     @Mock
     private TranslationWorkflowPlugin mockTranslationWorkflowPlugin;
     @Mock
@@ -31,7 +32,7 @@ public class TranslationLocaleMenuItemTest {
     public void beforeEach() {
         // This is needed so a TranslationLocaleMenuItem can be created, provided a mock WicketApplication
         tester = new WicketTester();
-        menuItem = new TranslationLocaleMenuItem("compId", mockTranslationWorkflowPlugin, mockLanguageModel, mockMenuLocaleProvider);
+        menuItem = new TranslationLocaleMenuDataView("compId", mockTranslationWorkflowPlugin, mockLanguageModel, mockMenuLocaleProvider);
     }
 
     @Test

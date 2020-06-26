@@ -6,12 +6,10 @@ import org.hippoecm.repository.HippoStdNodeType;
 import org.hippoecm.repository.api.HippoNode;
 import org.hippoecm.repository.api.HippoNodeType;
 import org.hippoecm.repository.translation.HippoTranslatedNode;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.invocation.InvocationOnMock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.mockito.stubbing.Answer;
@@ -25,23 +23,19 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.ArgumentMatchers.same;
-import static org.mockito.Mockito.lenient;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 public class DocumentTranslatorSameNameSiblingsTest {
     private DocumentTranslator translator;
     @Mock
     private Session mockSession;
-    @Mock
-    private HippoTranslatedNodeFactory mockFactory;
     private List<FolderTranslation> folders;
 
     @BeforeEach
     public void beforeEach() {
         folders = new LinkedList<>();
-        translator = new DocumentTranslator(mockFactory);
+        translator = spy(new DocumentTranslator());
     }
 
     @Test
@@ -136,6 +130,7 @@ public class DocumentTranslatorSameNameSiblingsTest {
         final int maxNumberOfCalls = 5;
         Answer<Boolean> mockNodeIteratorAnswer = new Answer<Boolean>() {
             int numberOfCalls = 0;
+
             @Override
             public Boolean answer(InvocationOnMock invocation) throws Throwable {
                 numberOfCalls++;
@@ -146,12 +141,13 @@ public class DocumentTranslatorSameNameSiblingsTest {
 
         Answer<HippoNode> mockNodeIteratorNodeAnswer = new Answer<HippoNode>() {
             int numberOfCalls = 0;
+
             @Override
             public HippoNode answer(InvocationOnMock invocation) throws Throwable {
                 numberOfCalls++;
                 HippoNode mockNode = mock(HippoNode.class);
                 // Splitting the nodes between folders and handles, the first will be neither
-                if(numberOfCalls == 0) {
+                if (numberOfCalls == 0) {
                     when(mockNode.isNodeType(eq(HippoStdNodeType.NT_FOLDER))).thenReturn(false);
                     when(mockNode.isNodeType(eq(HippoNodeType.NT_HANDLE))).thenReturn(false);
                 } else {
@@ -192,13 +188,13 @@ public class DocumentTranslatorSameNameSiblingsTest {
         Node sourceNode = mock(Node.class);
         HippoTranslatedNode mockHippoTranslatedNode = mock(HippoTranslatedNode.class);
         when(mockSession.getNodeByIdentifier(sourceNodeIdentifier)).thenReturn(sourceNode);
-        when(mockFactory.createFromNode(same(sourceNode))).thenReturn(mockHippoTranslatedNode);
+        doReturn(mockHippoTranslatedNode).when(translator).createFromNode(same(sourceNode));
         when(mockHippoTranslatedNode.getTranslation(eq(targetLanguage))).thenReturn(translatedTargetNode);
         return sourceNode;
     }
 
     private FolderTranslation createMockFolderTranslation(String nodeId) {
-        FolderTranslation mockFolder =  mock(FolderTranslation.class);
+        FolderTranslation mockFolder = mock(FolderTranslation.class);
         lenient().when(mockFolder.getId()).thenReturn(nodeId);
         return mockFolder;
     }

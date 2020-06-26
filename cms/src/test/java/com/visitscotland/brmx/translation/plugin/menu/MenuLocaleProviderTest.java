@@ -2,7 +2,6 @@ package com.visitscotland.brmx.translation.plugin.menu;
 
 import com.visitscotland.brmx.translation.plugin.TranslationWorkflowPlugin;
 import com.visitscotland.brmx.translation.plugin.UntranslatedLocale;
-import com.visitscotland.brmx.translation.plugin.menu.MenuLocaleProvider;
 import org.apache.wicket.model.IModel;
 import org.hippoecm.frontend.translation.ILocaleProvider;
 import org.junit.jupiter.api.BeforeEach;
@@ -14,7 +13,6 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.*;
@@ -128,13 +126,13 @@ public class MenuLocaleProviderTest {
         initialiseAvailableLocales("en", "es");
         addLocaleTranslation("en");
 
-        provider.iterator(0,1);
+        provider.iterator(0, 1);
 
         verify(mockWorkflowPlugin, atMostOnce()).getAvailableLanguages();
         List<ILocaleProvider.HippoLocale> initialLoad = provider.getAvailableLocales();
         assertNotNull(provider.getAvailableLocales());
 
-        provider.iterator(0,1);
+        provider.iterator(0, 1);
 
         verify(mockWorkflowPlugin, atMostOnce()).getAvailableLanguages();
         assertNotNull(provider.getAvailableLocales());
@@ -205,7 +203,7 @@ public class MenuLocaleProviderTest {
     }
 
     private void addLocaleTranslation(String... localeISO) {
-        for(String locale : localeISO) {
+        for (String locale : localeISO) {
             when(mockWorkflowPlugin.hasLocaleTranslation(eq(locale))).thenReturn(true);
         }
     }
