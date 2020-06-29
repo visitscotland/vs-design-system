@@ -79,7 +79,7 @@ module.exports = {
 		"import/resolver": {
 			node: {},
 			webpack: {
-				config: "./build/webpack.base.conf.js",
+				config: "./build/base.webpack.conf.js",
 			}
 		},
 	},

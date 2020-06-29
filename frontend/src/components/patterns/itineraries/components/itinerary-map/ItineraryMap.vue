@@ -9,10 +9,10 @@
 import itinerariesStore from "@components/patterns/itineraries/itineraries.store"
 import VsItineraryMapMarker from "@components/patterns/itineraries/components/itinerary-map/ItineraryMapMarker"
 import Vue from "vue"
-import mapboxgl from "mapbox-gl"
-import geojsonExtent from "@mapbox/geojson-extent"
+// import mapboxgl from "mapbox-gl"
+// import geojsonExtent from "@mapbox/geojson-extent"
 
-require("mapbox-gl/dist/mapbox-gl.css")
+// require("mapbox-gl/dist/mapbox-gl.css")
 
 /**
  * TODO: Document usage
