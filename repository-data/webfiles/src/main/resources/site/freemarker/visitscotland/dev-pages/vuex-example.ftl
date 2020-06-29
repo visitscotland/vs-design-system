@@ -1,9 +1,9 @@
 <#include "../../include/imports.ftl">
-<#include "../../vs-dotcom-ds/components/vue-x-example.ftl">
-<#include "../../vs-dotcom-ds/stores/example-store.ftl">
-<#include "../../vs-dotcom-ds/components/container.ftl">
-<#include "../../vs-dotcom-ds/components/row.ftl">
-<#include "../../vs-dotcom-ds/components/col.ftl">
+<#include "../../frontend/components/vs-vue-x-example.ftl">
+<#include "../../frontend/stores/example-store.ftl">
+<#include "../../frontend/components/vs-container.ftl">
+<#include "../../frontend/components/vs-row.ftl">
+<#include "../../frontend/components/vs-col.ftl">
 
 
 <@hst.headContribution category="htmlBodyEndAppEntry">

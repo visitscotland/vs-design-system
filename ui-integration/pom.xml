@@ -59,7 +59,7 @@
                   <goal>yarn</goal>
                 </goals>
                 <configuration>
-                  <arguments>build</arguments>
+                  <arguments>build:ssr</arguments>
                 </configuration>
               </execution>
             </executions>
