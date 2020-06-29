@@ -1,5 +1,9 @@
 const { merge } = require("lodash")
 
+if (!process.env.VS_DS_REMOTE_CONFIG_URL) {
+  require("dotenv").config()
+}
+
 /**
  * Define connection details and response transformations for remote config here
  *
@@ -43,7 +47,7 @@ const commonConfig = {
 
 const hippo = merge({}, commonConfig, {
   requestOptions: {
-    transform: require("../build/remote-response-transform-hippo").transformRawResponse,
+    transform: require("../build/system.transform-response.hippo").transformRawResponse,
   },
 })
 
@@ -54,7 +58,7 @@ const contentful = merge({}, commonConfig, {
     include: 5,
   },
   requestOptions: {
-    transform: require("../build/remote-response-transform-contentful").transformRawResponse,
+    transform: require("../build/system.transform-response.contentful").transformRawResponse,
   },
 })
 
