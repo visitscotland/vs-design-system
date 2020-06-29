@@ -42,7 +42,7 @@ public class TranslationLocaleMenuDataView extends DataView<ILocaleProvider.Hipp
                 }, item.getModel()
                 ));
             } else {
-                LOG.debug("Not displaying clone menu item for not english document");
+                LOG.debug("Not displaying clone menu item for non english document");
             }
         } else {
             item.add(new ViewTranslationAction(plugin, TranslationWorkflowPlugin.ID_LANGUAGE, new LoadableDetachableModel<String>() {

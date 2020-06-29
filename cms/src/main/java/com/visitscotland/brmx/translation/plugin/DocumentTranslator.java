@@ -35,6 +35,51 @@ public class DocumentTranslator {
     public static final String COULD_NOT_CREATE_FOLDERS = "could-not-create-folders";
     private static final Logger LOG = LoggerFactory.getLogger(DocumentTranslator.class);
 
+    /**
+     * Build a change set for each language, listing the folders and documents that are not already translated.
+     * If the document is a TrasnlationParent then add untranslated siblings also.
+     * @param sourceDocument
+     * @param targetLocaleList
+     * @return
+     */
+    public List<ChangeSet> buildChangeSetList(Node sourceDocument, List<ILocaleProvider.HippoLocale> targetLocaleList)
+            throws ObjectBeanManagerException, RepositoryException {
+        List<ChangeSet> changeSetList = new ArrayList<>();
+        for (ILocaleProvider.HippoLocale targetlocale : targetLocaleList) {
+            ChangeSet change = new ChangeSet(targetlocale);
+            JcrDocument document = new JcrDocument(sourceDocument);
+            change.populateFolders(document);
+            if (!document.hasTranslation(targetlocale)) {
+                change.addDocument(document);
+            }
+
+            if (document.isNodeType(Page.JCR_TYPE)) {
+                // Convert the node to a HippoBean so we can check the type
+                HippoBean bean = document.asHippoBean();
+                if (bean instanceof TranslationParent) {
+                    TranslationParent parent = (TranslationParent)bean;
+                    String[] childJcrTypes = parent.getChildJcrTypes();
+                    Node containingFolder = document.getContainingFolder();
+                    // Getting the nodes that are in the folder will give us all the folders and hippo:handle
+                    // nodes in the folder. We want to convert these into the unpublished versions of the nodes.
+                    NodeIterator handleIterator = containingFolder.getNodes();
+                    while(handleIterator.hasNext()) {
+                        JcrDocument siblingDocument = new JcrDocument(handleIterator.nextNode());
+                        if (siblingDocument.isNodeType(childJcrTypes) && !siblingDocument.hasTranslation(targetlocale)) {
+                            change.addDocument(siblingDocument);
+                        }
+                    }
+                }
+            }
+
+            if (!change.getDocuments().isEmpty()) {
+                changeSetList.add(change);
+            }
+        }
+
+        return changeSetList;
+    }
+
     public void cloneDocumentAndFolderStructure(Node docNode,
                                                 ILocaleProvider.HippoLocale targetLocale,
                                                 Session session,

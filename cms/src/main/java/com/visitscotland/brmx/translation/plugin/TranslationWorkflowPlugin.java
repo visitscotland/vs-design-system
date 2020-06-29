@@ -206,6 +206,10 @@ public class TranslationWorkflowPlugin extends RenderPlugin {
         return null;
     }
 
+    public Node getSourceDocumentNode() throws RepositoryException {
+        return ((WorkflowDescriptorModel) getDefaultModel()).getNode();
+    }
+
     public ILocaleProvider getLocaleProvider() {
         return getPluginContext().getService(
                 getPluginConfig().getString(ILocaleProvider.SERVICE_ID, ILocaleProvider.class.getName()),

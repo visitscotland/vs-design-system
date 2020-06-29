@@ -1,9 +1,11 @@
 package com.visitscotland.brmx.translation.plugin;
 
+import org.hippoecm.frontend.translation.ILocaleProvider;
 import org.hippoecm.hst.container.RequestContextProvider;
 import org.hippoecm.hst.content.beans.ObjectBeanManagerException;
 import org.hippoecm.hst.content.beans.standard.HippoBean;
 import org.hippoecm.repository.HippoStdNodeType;
+import org.hippoecm.repository.translation.HippoTranslatedNode;
 
 import javax.jcr.*;
 import java.util.HashMap;
@@ -126,5 +128,10 @@ public class JcrDocument {
         HippoBean bean = (HippoBean) RequestContextProvider.get().getContentBeansTool()
                 .getObjectConverter().getObject(handle);
         return bean;
+    }
+
+    public boolean hasTranslation(ILocaleProvider.HippoLocale targetlocale) throws RepositoryException {
+        HippoTranslatedNode translatedNode = new HippoTranslatedNode(getVariantNode(VARIANT_UNPUBLISHED));
+        return translatedNode.hasTranslation(targetlocale.getName());
     }
 }
