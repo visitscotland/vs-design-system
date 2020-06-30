@@ -1,3 +1,5 @@
+const path = require("path")
+
 const minimist = require("minimist")
 const partial = require("lodash/partial")
 const chalk = require("chalk")
@@ -6,17 +8,19 @@ const ora = require("ora")
 const StyleguidistError = require("react-styleguidist/lib/scripts/utils/error")
 const styleguidist = require("vue-styleguidist")
 
-const remoteUtils = require("./utils-remote.js")
+const { getRemoteConfig, cleanup: cleanupRemoteBuild } = require("./system.remote.utils.js")
 
 const argv = minimist(process.argv.slice(2))
 const command = argv._[0]
 
-// Set environment before loading style guide config because user’s webpack config may use it
-const env = command === "build" ? "production" : "development"
+// This will be used if NODE_ENV isn't already set
+if(!process.env.NODE_ENV) {
+  process.env.NODE_ENV = command === "build" ? "production" : "development"
+}
+
+let config = require(path.resolve(__dirname, "./system.config"))
 
 const spinner = ora("Building design system...")
-
-let config
 
 // Do not show nasty stack traces for Styleguidist errors
 process.on("uncaughtException", err => {
@@ -28,7 +32,6 @@ process.on("uncaughtException", err => {
     )
   } else if (err instanceof StyleguidistError) {
     console.error(chalk.red(err.message))
-    logger.debug(err.stack)
   } else {
     console.error(err.toString())
     console.error(err.stack)
@@ -36,14 +39,7 @@ process.on("uncaughtException", err => {
   process.exit(1)
 })
 
-process.env.NODE_ENV = process.env.NODE_ENV || env
-
-if (!process.env.REMOTE_CONFIG_HIPPO_SPACE) {
-  require("dotenv").config()
-}
-
-remoteUtils
-  .getRemoteConfig(argv)
+getRemoteConfig(config, argv)
   .then(partial(run, command))
   .catch(function(err) {
     console.log(chalk.red("Problem getting remote config:", err))
@@ -81,7 +77,7 @@ function callbackCommon(err, stats) {
     )
 
     if (stats.hasErrors()) {
-      console.log(chalk.red("  Design System build failed with errors.\n"))
+      console.log(chalk.red("Design System build failed with errors.\n"))
       process.exit(1)
     }
   }
@@ -92,17 +88,7 @@ function callbackCommon(err, stats) {
 function buildCallback(err, config, stats) {
   callbackCommon(err, stats)
 
-  // console.log(
-  //   chalk.yellow(
-  //     "  Tip: You can now publish the design system as a private NPM module.\n" +
-  //       "  Users can import the provided UMD module using:\n\n" +
-  //       "  import DesignSystem from 'vs-design-system'\n" +
-  //       "  import 'vs-design-system/dist/system/system.css'\n\n" +
-  //       "  Vue.use(DesignSystem)\n"
-  //   )
-  // )
-
-  remoteUtils.cleanup(config)
+  cleanupRemoteBuild(config)
 }
 
 function serverCallback(err, config, stats) {
@@ -115,5 +101,5 @@ function serverCallback(err, config, stats) {
   console.log(chalk.yellow(config.title, `running at ${url}`))
 
   // can't cleanup until after the server has stopped
-  // remoteUtils.cleanup(remoteConfig, config)
+  // cleanupRemoteBuild(remoteConfig, config)
 }

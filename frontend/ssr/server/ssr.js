@@ -25,7 +25,7 @@ const formatHtml = (subjectHtml) => beautifyHtml(
     },
 );
 
-const completeSsrTemplate = (appHtml/* , context */) => {
+const completeSsrTemplate = (appHtml) => {
     $template(`[${templatePlaceholderAttrName}]`).replaceWith(appHtml);
 
     // const pageHtml = transformHtml($template.html());
@@ -69,14 +69,13 @@ const renderApp = async (template) => {
         outputSourceRange: true,
     }
 
-    const compiled = vueTemplateCompiler.compileToFunctions(template, compileOptions);
+    const compiled = vueTemplateCompiler.ssrCompileToFunctions(template, compileOptions);
 
     const context = {
         vueOptions: {
             render: compiled.render,
             staticRenderFns: compiled.staticRenderFns,
         },
-        template,
     };
 
     return renderer.renderToString(context);

@@ -5,15 +5,17 @@ const nodeExternals = require("webpack-node-externals");
 const VueSSRServerPlugin = require("vue-server-renderer/server-plugin");
 const merge = require("webpack-merge");
 
-const base = require('./webpack.system-components.conf');
+const base = require('./library.webpack.conf');
 
 const entry = {
     "main-server": path.resolve(__dirname, "../ssr/src/server-entry.js"),
 }
 
-const sourceImports = require("./ssr-generate-component-library-map")(base.entry, ["ItineraryMap"])
+const sourceImports = require("./ssr.generate-component-library-map")(base.entry)
 
 base.entry = Object.assign({}, entry, base.entry)
+
+delete base.optimization
 
 module.exports = merge(base, {
     target: "node",
@@ -34,10 +36,10 @@ module.exports = merge(base, {
     module: {
         rules: [
             {
-                test: /app\.js$/,
+                test: /server-entry\.js$/,
                 use: [
                     {
-                        loader: path.resolve(__dirname, "./ssr-dynamic-component-loader"),
+                        loader: path.resolve(__dirname, "./ssr.dynamic-component-loader"),
                         options: {
                             componentMap: get(sourceImports, "components")
                         }
@@ -51,5 +53,5 @@ module.exports = merge(base, {
     // into a single JSON file. The default file name is`vue-ssr-server-bundle.json`
     plugins: [
         new VueSSRServerPlugin(),
-    ]
+    ],
 });
