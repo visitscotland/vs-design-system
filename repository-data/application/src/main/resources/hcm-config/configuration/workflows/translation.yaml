@@ -1,0 +1,4 @@
+definitions:
+  config:
+    /hippo:configuration/hippo:workflows/translation/default/frontend:renderer:
+      plugin.class: com.visitscotland.brmx.translation.plugin.TranslationWorkflowPlugin
