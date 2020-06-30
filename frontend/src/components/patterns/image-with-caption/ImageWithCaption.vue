@@ -27,7 +27,7 @@
                     v-if="showCaption"
                     name="close-circle"
                     variant="light"
-                    size="sm"
+                    size="md"
                     :padding="0"
                 />
                 <slot

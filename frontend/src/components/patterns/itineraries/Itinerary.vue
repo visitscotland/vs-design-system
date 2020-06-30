@@ -327,7 +327,7 @@ export default {
                 :key="transportTypeIndex"
             >
                 <vs-tooltip :title="transportType.value">
-                    <vs-icon :name="transportType.key" variant="dark" size="sm" />
+                    <vs-icon :name="transportType.key" variant="dark" size="md" />
                 </vs-tooltip>
                 <span class="sr-only">{{transportType.value}}</span>
             </vs-description-list-detail>
