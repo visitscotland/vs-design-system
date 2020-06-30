@@ -6,7 +6,6 @@
             ['icon-' + size]: true,
             ['icon-' + formattedName]: true,
             ['icon-' + variant]: variant,
-            'icon-reverse': reverse,
         }"
         v-bind="$attrs"
     />
@@ -63,13 +62,6 @@ export default {
             type: String,
             default: "md",
             validator: (value) => value.match(/(xxs|xs|sm|md|lg|xl)/),
-        },
-        /**
-         * Whether to reverse the icon's background and
-         * fill colours
-         */
-        reverse: {
-            type: Boolean,
         },
     },
     data() {
@@ -210,12 +202,7 @@ $variants: (
 
 .icon {
     fill: $color-black;
-    overflow: visible;
-
-    &.icon-reverse {
-        background-color: $color-black;
-        fill: $color-white;
-    }
+    overflow: visible;    
 
     @each $size in map-keys($sizes) {
         $this-size: map-get($sizes, $size);
@@ -265,21 +252,6 @@ $variants: (
         <vs-icon name="user" variant="danger" />
         <vs-icon name="user" variant="dark" />
         <vs-icon name="user" variant="light" />
-      </bs-wrapper>
-    </bs-wrapper>
-
-    <bs-wrapper class="row mb-5">
-      <bs-wrapper class="col">
-        <h3>Reverse</h3>
-        <vs-icon name="favourite" reverse />
-        <vs-icon name="favourite" reverse variant="primary" />
-        <vs-icon name="favourite" reverse variant="secondary" />
-        <vs-icon name="favourite" reverse variant="success" />
-        <vs-icon name="favourite" reverse variant="warning" />
-        <vs-icon name="favourite" reverse variant="info" />
-        <vs-icon name="favourite" reverse variant="danger" />
-        <vs-icon name="favourite" reverse variant="dark" />
-        <vs-icon name="favourite" reverse variant="light" />
       </bs-wrapper>
     </bs-wrapper>
 
