@@ -8,7 +8,7 @@
         <VsIcon
             :name="showMap ? 'list' : 'map'"
             variant="reverse-white"
-            size="sm"
+            size="md"
             :padding="0"
         />
 

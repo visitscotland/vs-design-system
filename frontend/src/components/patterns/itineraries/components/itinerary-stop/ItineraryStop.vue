@@ -6,7 +6,7 @@
                     <VsIcon
                         name="map-marker-filled"
                         variant="secondary-teal"
-                        size="md"
+                        size="xl"
                         :padding="0"
                     />
                     <span
