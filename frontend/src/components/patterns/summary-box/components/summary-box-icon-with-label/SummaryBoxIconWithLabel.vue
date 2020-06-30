@@ -8,7 +8,7 @@
                 slot="icon"
                 :name="icon"
                 variant="dark"
-                size="md"
+                size="xl"
                 :padding="0"
             />
         </div>

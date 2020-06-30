@@ -18,7 +18,7 @@
                 <span class="sr-only">{{ labelText }}</span>
                 <VsIcon
                     name="search"
-                    size="sm"
+                    size="md"
                     variant="secondary"
                 />
             </label>
@@ -49,7 +49,7 @@
                     variant="transparent"
                     type="button"
                     class="px-1"
-                    size="sm"
+                    size="md"
                     :animate="false"
                     @click.native.prevent="clearSearchFieldAndFocus()"
                 >
