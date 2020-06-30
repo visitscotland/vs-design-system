@@ -11,7 +11,7 @@ const entry = {
     "main-server": path.resolve(__dirname, "../ssr/src/server-entry.js"),
 }
 
-const sourceImports = require("./ssr.generate-component-library-map")(base.entry, ["ItineraryMap"])
+const sourceImports = require("./ssr.generate-component-library-map")(base.entry)
 
 base.entry = Object.assign({}, entry, base.entry)
 
