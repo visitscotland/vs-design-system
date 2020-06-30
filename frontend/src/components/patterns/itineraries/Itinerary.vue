@@ -63,26 +63,25 @@ export default {
     mounted() {
         /* Design System wrapper affects page scroll detection, so temporary fix is to
         have a condition checking for design system wrapper. */
-        if(window) {
-            const designSystemWrapper = document.querySelector(".vds-example")
 
-            window.addEventListener("resize", this.onResize)
+        const designSystemWrapper = document.querySelector(".vds-example")
 
-            if (designSystemWrapper === null) {
-                window.addEventListener("scroll", this.onScroll)
-            } else {
-                designSystemWrapper.addEventListener("scroll", this.onScroll)
-            }
+        window.addEventListener("resize", this.resizeWidth)
 
+        if (designSystemWrapper === null) {
+            window.addEventListener("scroll", this.onScroll)
+        } else {
+            designSystemWrapper.addEventListener("scroll", this.onScroll)
         }
+
+        this.resizeWidth()
+    
     },
     destroyed() {
-        if(window) {
-            window.removeEventListener("resize", this.onResize)
-        }
+        window.removeEventListener("resize", this.resizeWidth)
     },
     methods: {
-        onResize() {
+        resizeWidth() {
             this.isDesktop = window.innerWidth >= 1200
             this.showMap = window.innerWidth >= 1200
         },
