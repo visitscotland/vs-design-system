@@ -1,19 +1,20 @@
 <#include "../../../../include/imports.ftl">
 <#--  This needs to be commented out for now because the ItineraryMap component is currently excluded from the build  -->
-<#--  <#include "../../../../frontend/components/vs-itinerary-map.ftl">  -->
+<#include "../../../../frontend/components/vs-itinerary-map.ftl">
 <#include "../../../../frontend/components/vs-itinerary-map-marker.ftl">
 
 <#-- @ftlvariable name="stop" type="com.visitscotland.brmx.beans.Stop" -->
 <#-- @ftlvariable name="prod" type="com.visitscotland.brmx.beans.mapping.FlatStop" -->
 
 <#macro itineraryMap days>
-    <#--  <vs-itinerary-map
+    <vs-itinerary-map
         slot="map"
         access-token= ${label("keys", "maptiler.devkey")}
         overview-map-longitude="57.81"
         overview-map-latitude="-4.13"
         overview-map-zoom="5"
-        :stops='[<#list days as day>
+        :stops='[
+            <#list days as day>
             <#list day.stops as stop>
                 <#assign prod = stops[stop.identifier]>
                 <#assign image = "" />
@@ -35,17 +36,19 @@
                         altText: "${prod.title}"
                     },
                     </#if>
+                </#if>
                 </#list>
-            </#list>]'
-            :labels='{
-                stopLabel: "${label("itinerary", "stop.title")}",
-                mapControlsFullscreenOpen:"${label("map", "map.fullscreen")}",
-                mapControlsFullscreenClose: "${label("map", "map.exitfullscreen")}",
-                mapControlsCompass: "${label("map", "map.reset")}",
-                mapControlsZoomIn: "${label("map", "map.zoomin")}",
-                mapControlsZoomOut: "${label("map", "map.zoomout")}"
-            }'
-        >
-    </vs-itinerary-map>  -->
+            </#list>
+        ]'
+        :labels='{
+            stopLabel: "${label("itinerary", "stop.title")}",
+            mapControlsFullscreenOpen:"${label("map", "map.fullscreen")}",
+            mapControlsFullscreenClose: "${label("map", "map.exitfullscreen")}",
+            mapControlsCompass: "${label("map", "map.reset")}",
+            mapControlsZoomIn: "${label("map", "map.zoomin")}",
+            mapControlsZoomOut: "${label("map", "map.zoomout")}"
+        }'
+    >
+    </vs-itinerary-map>
 
 </#macro>
