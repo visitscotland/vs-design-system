@@ -10,10 +10,11 @@ const {
     includes,
     castArray,
     omitBy,
+    clone,
 } = require("lodash")
 
 /**
- * This module prepares moduleMap for the ssr-dynamic-component-loader
+ * This module prepares moduleMap for the ssr.dynamic-component-loader
  * 
  * @param {Object} moduleMap 
  * @param {String|[String]} exclude 
@@ -21,12 +22,12 @@ const {
 
 const getType = (moduleName) => {
 
-    if (startsWith(moduleName, "store")) {
+    if (startsWith(moduleName, "VsStore")) {
         return "stores"
     }
 
-    if (moduleName === "core") {
-        return "core"
+    if (moduleName === "VsApp") {
+        return "main"
     }
 
     return "components"
@@ -34,12 +35,11 @@ const getType = (moduleName) => {
 
 const prepareModule = (moduleValue, moduleName) => {
     const type = getType(moduleName);
-    const key = type === "components" ? `Vs${moduleName}` : moduleName;
 
     return {
-        key,
         type,
-        value: moduleValue
+        key: moduleName,
+        value: moduleValue,
     }
 }
 
@@ -69,7 +69,7 @@ module.exports = (moduleMap, exclude) => {
     );
 
     return mapValues(groupedModules, (items, groupName) => {
-        if (groupName === "core") {
+        if (groupName === "main") {
             return isArray(items) && items.length ? get(items[0], "value") : null;
         }
 
