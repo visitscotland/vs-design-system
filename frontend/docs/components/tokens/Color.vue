@@ -154,7 +154,6 @@ export default {
         },
         populateSubgroup(color, type, level) {
             this.subgroup = []
-            console.log(this.getSubgroup(color, type, level))
             this.subgroup = this.getSubgroup(color, type, level)
             this.currentSubgroup = level
         },
