@@ -76,7 +76,7 @@ export default {
 </script>
 
 <style lang="scss">
-.vs-footer-accordion-item {
+.vs-footer-accordion-item.card {
     .vs-accordion-item__title {
         margin: $spacer-3 0;
     }
@@ -106,18 +106,18 @@ export default {
     }
 
     @include media-breakpoint-up(md) {
-        border-bottom: 0;
+        border: 0;
         border-left: 1px solid $color-gray-shade-2;
         padding: 0 $spacer-3;
-        background: $color-theme-dark;
+        background-color: $color-theme-dark;
 
         .vs-accordion-item__title {
             margin-top: $spacer-1;
         }
 
-        .vs-accordion-item__panel {
-            padding-bottom: 0;
-            background: $color-theme-dark;
+        .vs-accordion-item__panel.card-body {
+            padding: 0;
+            background-color: $color-theme-dark;
             border-top: 0;
         }
     }
