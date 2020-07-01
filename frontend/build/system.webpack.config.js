@@ -11,8 +11,8 @@ const mergeIE11Fix = require("./webpack.ie11-fix")
 const utils = require("./utils")
 
 const styleRules = utils.styleLoaders({
-    sourceMap: process.env.NODE_ENV === "development",
-    extract: process.env.NODE_ENV !== "development",
+    sourceMap: baseWebpackConfig.mode === "development",
+    extract: baseWebpackConfig.mode !== "development",
     usePostCSS: true,
 })
 
