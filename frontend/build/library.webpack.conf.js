@@ -24,15 +24,15 @@ baseWebpackConfig.plugins = baseWebpackConfig.plugins.filter(plugin => {
 const webpackConfig = merge(mergeIE11Fix(baseWebpackConfig), {
   module: {
     rules: utils.styleLoaders({
-      sourceMap: false,
-      extract: true,
-      usePostCSS: false,
+      sourceMap: baseWebpackConfig.mode === "development",
+      extract: baseWebpackConfig.mode !== "development",
+      usePostCSS: true,
     }),
   },
   devtool: false,
   output: {
     path: path.resolve(__dirname, "../dist", "library"),
-    filename: process.env.NODE_ENV === "development" ? "scripts/[name].js" : "scripts/[chunkhash].js",
+    filename: baseWebpackConfig.mode === "development" ? "scripts/[name].js" : "scripts/[chunkhash].js",
     publicPath: "../",
     library: "[name]",
     libraryTarget: "umd",
@@ -50,7 +50,7 @@ const webpackConfig = merge(mergeIE11Fix(baseWebpackConfig), {
 
     // extract css into its own file
     new MiniCssExtractPlugin({
-      filename: process.env.NODE_ENV === "development" ? "styles/[name].css" : "styles/[chunkhash].css",
+      filename: baseWebpackConfig.mode === "development" ? "styles/[name].css" : "styles/[chunkhash].css",
     }),
 
     // Compress and dedupe extracted CSS
