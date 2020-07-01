@@ -3,7 +3,10 @@
         no-body
         class="vs-accordion-item"
     >
-        <BCardHeader role="tab">
+        <BCardHeader 
+            role="tab" 
+            class="vs-accordion-item__card-header"
+        >
             <!-- @slot Slot to contain Header for accordion item.
             Defaults to Accordion Toggle button. If component is responsive
             and has a breakPoint it will show title instead of button on larger screens. -->
@@ -135,8 +138,15 @@ export default {
 </script>
 
 <style lang="scss">
-.vs-accordion-item {
+.vs-accordion-item.card {
+    border: 0;
     border-bottom: 1px solid $color-gray-shade-2;
+
+    .vs-accordion-item__card-header{
+        padding: 0;
+        background-color: $color-gray-shade-7;
+        border: 0;
+    }
 
     .btn.vs-accordion-item__toggle-btn {
         text-align: left;
@@ -149,18 +159,18 @@ export default {
     }
 
     .vs-accordion-item__title {
-        background: $color-gray-shade-7;
+        background-color: $color-gray-shade-7;
         color: $color-white;
         margin: $spacer-3;
         line-height: 1;
         font-weight: 500;
     }
 
-    .vs-accordion-item__panel {
-        background: $color-gray-shade-6;
+    .vs-accordion-item__panel.card-body {
+        background-color: $color-gray-shade-6;
         color: $color-white;
         border-top: 1px solid $color-gray-shade-2;
-        padding-bottom: $spacer-2;
+        padding: 0 0 $spacer-2;
     }
 }
 </style>
