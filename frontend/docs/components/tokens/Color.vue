@@ -9,8 +9,15 @@
             <h2>{{ category.name }}</h2>
 
             <ul class="colors">
-                <li v-for="(prop, index) in category.colors" :key="index" class="color">
-                    <div class="swatch" :style="{ backgroundColor: prop.value }">
+                <li 
+					v-for="(prop, index) in category.colors" 
+					:key="index" 
+					class="color"
+				>
+                    <div 
+						class="swatch" 
+						:style="{ backgroundColor: prop.value }"
+					>
                         <ul class="contrast-indicator__ul">
                             <li v-for="(item, index2) in prop.readability" :key="index2">
                                 <p :class="index2">
