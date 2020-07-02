@@ -19,14 +19,12 @@
             name="favourite-filled"
             size="lg"
             variant="primary"
-            :padding="0"
         />
         <VsIcon
             v-else
             name="favourite"
             size="lg"
             variant="dark"
-            :padding="0"
         />
     </VsButton>
 </template>
