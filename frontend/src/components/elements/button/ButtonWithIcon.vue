@@ -125,8 +125,6 @@ export default {
         </vs-button-with-icon>
     </bs-wrapper>
 
-   
-
     <bs-wrapper class="d-flex flex-wrap mb-4">
         <vs-button-with-icon
             icon="food"
