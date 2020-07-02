@@ -127,41 +127,6 @@ public class ChangeSetPopulateFoldersTest {
         }
     }
 
-
-    @Test
-    public void populateFolders_tree_with_backLink() throws Exception {
-        // the code suggests that a folder can be linked to BOTH languages at the same time,
-        // i.e. they are the same node. All folders below this "back link" are treated as immutable folders.
-        // this would also imply that the root folder of both is the same, not sure that can even be created in the CMS.
-
-        TranslatedFolder frenchTranslatedFolder2 = addTranslatedFolder(translatedFolder2, translatedFolder1, "fr_name2", "fr_url2");
-
-        changeSet.populateFolders(document);
-
-        // Here we have translatedFolder2 pointing to the english folder as its parent
-        // This is described in the code as a back link.
-        // So folders at index 0, 1 should be the english folders
-        // folder at index 2 should be an already translated folder
-        // and folders 3, 4, 5 should be editable translations
-        assertEquals(6, changeSet.getFolders().size());
-
-        for (int index = 0; index <= 1; index++) {
-            assertFalse(changeSet.getFolders().get(index).isEditable());
-            assertTrue(changeSet.getFolders().get(index).getName().startsWith("name"));
-            assertTrue(changeSet.getFolders().get(index).getName().endsWith("" + index));
-            assertTrue(changeSet.getFolders().get(index).getUrl().startsWith("url"));
-            assertTrue(changeSet.getFolders().get(index).getUrl().endsWith("" + index));
-            assertEquals("", changeSet.getFolders().get(index).getNamefr());
-            assertEquals("", changeSet.getFolders().get(index).getUrlfr());
-        }
-
-        assertPreviouslyTranslated(changeSet.getFolders(), 2);
-
-        for (int index = 3; index <= 5; index++) {
-            assertNewTranslation(changeSet.getFolders(), index);
-        }
-    }
-
     private void assertNewTranslation(List<FolderTranslation> folders, int index) {
         assertTrue(folders.get(index).isEditable());
 
@@ -192,7 +157,7 @@ public class ChangeSetPopulateFoldersTest {
     private TranslatedFolder addTranslatedFolder(TranslatedFolder sourceFolder, TranslatedFolder translatedParentFolder, String name, String url) throws Exception {
         TranslatedFolder translatedFolder = createMockTranslatedFolder(translatedParentFolder);
         createMockTranslatedFolderNode(translatedFolder, name, url);
-        when(sourceFolder.getSibling(eq("fr"))).thenReturn(translatedFolder);
+        lenient().when(sourceFolder.getSibling(eq("fr"))).thenReturn(translatedFolder);
         return translatedFolder;
     }
 

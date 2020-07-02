@@ -2,34 +2,22 @@ package com.visitscotland.brmx.translation.plugin;
 
 import com.visitscotland.brmx.beans.Page;
 import com.visitscotland.brmx.beans.TranslationParent;
-import org.hippoecm.addon.workflow.WorkflowSNSException;
-import org.hippoecm.frontend.plugins.standardworkflow.validators.SameNameSiblingsUtil;
 import org.hippoecm.frontend.translation.ILocaleProvider;
 import org.hippoecm.frontend.translation.components.document.FolderTranslation;
-import org.hippoecm.frontend.translation.workflow.JcrFolderTranslationFactory;
-import org.hippoecm.hst.container.RequestContextProvider;
 import org.hippoecm.hst.content.beans.ObjectBeanManagerException;
 import org.hippoecm.hst.content.beans.standard.HippoBean;
-import org.hippoecm.repository.HippoStdNodeType;
-import org.hippoecm.repository.api.Document;
-import org.hippoecm.repository.api.HippoWorkspace;
-import org.hippoecm.repository.api.WorkflowException;
-import org.hippoecm.repository.api.WorkflowManager;
+import org.hippoecm.repository.api.*;
 import org.hippoecm.repository.standardworkflow.DefaultWorkflow;
-import org.hippoecm.repository.translation.HippoTranslatedNode;
-import org.hippoecm.repository.translation.HippoTranslationNodeType;
-import org.hippoecm.repository.translation.TranslationWorkflow;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.jcr.*;
-import javax.jcr.nodetype.NodeType;
+import javax.jcr.Node;
+import javax.jcr.NodeIterator;
+import javax.jcr.RepositoryException;
+import javax.jcr.Session;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.LinkedList;
 import java.util.List;
-import java.util.function.Consumer;
 
 public class DocumentTranslator {
     public static final String COULD_NOT_CREATE_FOLDERS = "could-not-create-folders";
@@ -45,11 +33,11 @@ public class DocumentTranslator {
     public List<ChangeSet> buildChangeSetList(Node sourceDocument, List<ILocaleProvider.HippoLocale> targetLocaleList)
             throws ObjectBeanManagerException, RepositoryException {
         List<ChangeSet> changeSetList = new ArrayList<>();
-        for (ILocaleProvider.HippoLocale targetlocale : targetLocaleList) {
-            ChangeSet change = new ChangeSet(targetlocale);
-            JcrDocument document = new JcrDocument(sourceDocument);
+        for (ILocaleProvider.HippoLocale targetLocale : targetLocaleList) {
+            ChangeSet change = createChangeSet(targetLocale);
+            JcrDocument document = createJcrDocument(sourceDocument);
             change.populateFolders(document);
-            if (!document.hasTranslation(targetlocale)) {
+            if (!document.hasTranslation(targetLocale)) {
                 change.addDocument(document);
             }
 
@@ -64,9 +52,16 @@ public class DocumentTranslator {
                     // nodes in the folder. We want to convert these into the unpublished versions of the nodes.
                     NodeIterator handleIterator = containingFolder.getNodes();
                     while(handleIterator.hasNext()) {
-                        JcrDocument siblingDocument = new JcrDocument(handleIterator.nextNode());
-                        if (siblingDocument.isNodeType(childJcrTypes) && !siblingDocument.hasTranslation(targetlocale)) {
-                            change.addDocument(siblingDocument);
+                        HippoNode siblingNode = (HippoNode)handleIterator.nextNode();
+                        // We want to make sure we are not cloning folders and other types.
+                        if (!siblingNode.isNodeType("hippostd:folder") &&
+                                (siblingNode.isNodeType(JcrDocument.HIPPO_HANDLE) ||
+                                        siblingNode.isNodeType(JcrDocument.HIPPO_TRANSLATED))) {
+                            JcrDocument siblingDocument = createJcrDocument(siblingNode);
+                            if (siblingDocument.isNodeType(childJcrTypes) &&
+                                    !siblingDocument.hasTranslation(targetLocale)) {
+                                change.addDocument(siblingDocument);
+                            }
                         }
                     }
                 }
@@ -80,35 +75,12 @@ public class DocumentTranslator {
         return changeSetList;
     }
 
-    public void cloneDocumentAndFolderStructure(Node docNode,
-                                                ILocaleProvider.HippoLocale targetLocale,
-                                                Session session,
-                                                TranslationWorkflow workflow)
-            throws TranslationException, WorkflowException, RepositoryException, RemoteException, ObjectBeanManagerException {
-        ChangeSet change = new ChangeSet(targetLocale);
-        JcrDocument document = new JcrDocument(docNode);
-        change.addDocument(document);
-        change.populateFolders(document);
-        if (document.isNodeType(Page.JCR_TYPE)) {
-            // Convert the node to a HippoBean so we can check the type
-            HippoBean bean = document.asHippoBean();
-            if (bean instanceof TranslationParent) {
-                TranslationParent parent = (TranslationParent)bean;
-                String[] childJcrTypes = parent.getChildJcrTypes();
-                Node containingFolder = document.getContainingFolder();
-                // Getting the nodes that are in the folder will give us all the folders and hippo:handle
-                // nodes in the folder. We want to convert these into the unpublished versions of the nodes.
-                NodeIterator handleIterator = containingFolder.getNodes();
-                while(handleIterator.hasNext()) {
-                    JcrDocument siblingDocument = new JcrDocument(handleIterator.nextNode());
-                    if (siblingDocument.isNodeType(childJcrTypes)) {
-                        change.addDocument(siblingDocument);
-                    }
-                }
-            }
-        }
+    protected ChangeSet createChangeSet(ILocaleProvider.HippoLocale targetLocale) {
+        return new ChangeSet(targetLocale);
+    }
 
-        applyChangeSet(change, session, workflow);
+    protected JcrDocument createJcrDocument(Node sourceNode) throws RepositoryException {
+        return new JcrDocument(sourceNode);
     }
 
     public void applyChangeSet(ChangeSet change,
@@ -117,8 +89,8 @@ public class DocumentTranslator {
             throws TranslationException, WorkflowException, RepositoryException, RemoteException {
         // working from index zero work our way up the folders creating them as we go
         // there must always be a root folder and it always exists so skipping to index 1
-        List<FolderTranslation> folders = change.getFolders();
         change.checkForSameNameSiblings(session);
+        List<FolderTranslation> folders = change.getFolders();
         for (int index = 1; index < folders.size(); index++) {
             FolderTranslation translation = folders.get(index);
             if (translation.isEditable()) {
@@ -129,7 +101,9 @@ public class DocumentTranslator {
         }
 
         for (FolderTranslation document : change.getDocuments()) {
-            workflow.addTranslation(change.getTargetLocale().getName(), document.getNamefr());
+            JcrDocument sourceDocument = createJcrDocument(session.getNodeByIdentifier(document.getId()));
+            workflow.addTranslation(change.getTargetLocale().getName(), document.getNamefr(),
+                    sourceDocument.getVariantNode(JcrDocument.VARIANT_UNPUBLISHED));
         }
     }
 

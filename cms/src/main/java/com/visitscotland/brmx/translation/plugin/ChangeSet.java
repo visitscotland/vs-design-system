@@ -59,68 +59,20 @@ public class ChangeSet {
         if (sourceFolder == null) return;
 
         TranslatedFolder sourceTranslatedFolder = addAllUntranslatedFolders(targetLanguage, folders, createTranslatedFolder(sourceFolder));
-
         TranslatedFolder targetTranslatedFolder = sourceTranslatedFolder.getSibling(targetLanguage);
         assert targetTranslatedFolder != null;
-        while (sourceTranslatedFolder != null) {
-            {
-                FolderTranslation ft = JcrFolderTranslationFactory.createFolderTranslation(
-                        sourceTranslatedFolder.getNode(), targetTranslatedFolder.getNode());
-                ft.setEditable(false);
-                folders.add(ft);
-            }
-
-
+        while(sourceTranslatedFolder != null) {
+            FolderTranslation ftx = JcrFolderTranslationFactory.createFolderTranslation(sourceTranslatedFolder.getNode(), targetTranslatedFolder.getNode());
+            ftx.setEditable(false);
+            this.folders.add(ftx);
             sourceTranslatedFolder = sourceTranslatedFolder.getParent();
-            if (sourceTranslatedFolder == null) {
-                break;
-            }
-            TranslatedFolder sourceSibling = sourceTranslatedFolder.getSibling(targetLanguage);
-            // This while loop catches cases where the parent of the translated folder
-            // points back to the source translation folders
-            while (sourceSibling == null) {
-                FolderTranslation ft = JcrFolderTranslationFactory.createFolderTranslation(
-                        sourceTranslatedFolder.getNode(), null);
-                ft.setEditable(false);
-                folders.add(ft);
-
-                sourceTranslatedFolder = sourceTranslatedFolder.getParent();
-                if (sourceTranslatedFolder == null) {
-                    break;
-                }
-                sourceSibling = sourceTranslatedFolder.getSibling(targetLanguage);
-            }
-            if (sourceTranslatedFolder == null) {
-                break;
-            }
-
-
             targetTranslatedFolder = targetTranslatedFolder.getParent();
-            while (targetTranslatedFolder != null) {
-                if (targetTranslatedFolder.equals(sourceSibling)) {
-                    break;
-                }
-                TranslatedFolder backLink = targetTranslatedFolder.getSibling(targetLanguage);
-                if (backLink != null) {
-                    // This will always be true,
-                    // if targetTranslatedFolder equals sourceSibling the previous break would have been hit
-                    if (!targetTranslatedFolder.equals(sourceSibling)) {
-                        break;
-                    }
-                }
-
-                FolderTranslation ft = JcrFolderTranslationFactory.createFolderTranslation(null,
-                        targetTranslatedFolder.getNode());
-                ft.setEditable(false);
-                folders.add(ft);
-
-                targetTranslatedFolder = targetTranslatedFolder.getParent();
-            }
-            if (targetTranslatedFolder == null || !targetTranslatedFolder.equals(sourceSibling)) {
+            if (sourceTranslatedFolder == null) {
                 break;
             }
         }
-        Collections.reverse(folders);
+
+        Collections.reverse(this.folders);
     }
 
     protected Node findHighestTranslatedSourceFolder(Node sourceFolder) throws RepositoryException {

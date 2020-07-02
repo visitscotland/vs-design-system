@@ -24,13 +24,19 @@ public class MenuLocaleProvider implements IDataProvider<ILocaleProvider.HippoLo
     private final ILocaleProvider localeProvider;
     private TranslationWorkflowPlugin workflowPlugin;
     private transient List<ILocaleProvider.HippoLocale> availableLocales;
+    private DocumentTranslator documentTranslator;
 
     public MenuLocaleProvider(TranslationWorkflowPlugin workflowPlugin) {
-        this.workflowPlugin = workflowPlugin;
-        this.localeProvider = workflowPlugin.getLocaleProvider();
+        this(workflowPlugin, new DocumentTranslator());
     }
 
-    List<ILocaleProvider.HippoLocale> getAvailableLocales() {
+    protected MenuLocaleProvider(TranslationWorkflowPlugin workflowPlugin, DocumentTranslator documentTranslator) {
+        this.workflowPlugin = workflowPlugin;
+        this.localeProvider = workflowPlugin.getLocaleProvider();
+        this.documentTranslator = documentTranslator;
+    }
+
+    protected List<ILocaleProvider.HippoLocale> getAvailableLocales() {
         return availableLocales;
     }
 
@@ -56,13 +62,8 @@ public class MenuLocaleProvider implements IDataProvider<ILocaleProvider.HippoLo
             try {
                 // Build a change set to check if there are any untranslated children
                 // A change set is only added to the list if it or one of it's children is missing a translation
-                DocumentTranslator translator = new DocumentTranslator();
-
-                final ILocaleProvider localeProvider = workflowPlugin.getLocaleProvider();
-                List<ILocaleProvider.HippoLocale> localeList = workflowPlugin.getAvailableLanguages().stream()
-                        .map(name -> localeProvider.getLocale(name)).collect(Collectors.toList());
-
-                List<ChangeSet> changeSetList = translator.buildChangeSetList(workflowPlugin.getSourceDocumentNode(), localeList);
+                List<ChangeSet> changeSetList = documentTranslator.buildChangeSetList(workflowPlugin.getSourceDocumentNode(),
+                        workflowPlugin.getAvailableLocales());
 
                 if (!changeSetList.isEmpty()) {
                     availableLocales.add(0, new UntranslatedLocale());

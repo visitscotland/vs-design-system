@@ -19,20 +19,26 @@ import java.util.Map;
  */
 public class JcrDocument {
     public static final String HIPPO_HANDLE = "hippo:handle";
-    public static final String HIPPOSTD_STATE = "hippostd:state";
+    public static final String HIPPO_TRANSLATED = HippoStdNodeType.NT_TRANSLATED;
+    public static final String HIPPOSTD_STATE = HippoStdNodeType.HIPPOSTD_STATE;
+    public static final String HIPPOSTD_PUBLISHABLE = HippoStdNodeType.NT_PUBLISHABLE;
 
-    public static final String VARIANT_PUBLISHED = "published";
-    public static final String VARIANT_UNPUBLISHED = "unpublished";
-    public static final String VARIANT_DRAFT = "draft";
+    public static final String VARIANT_PUBLISHED = HippoStdNodeType.PUBLISHED;
+    public static final String VARIANT_UNPUBLISHED = HippoStdNodeType.UNPUBLISHED;
+    public static final String VARIANT_DRAFT = HippoStdNodeType.DRAFT;
     private Node handle;
-    // Do not access directly, will be lazy loaded
-    private Map<String, Node> variantMap;
+    // Do not access directly, will be lazy loaded, use getter
+    protected Map<String, Node> variantMap;
 
     /**
      * Will create an instance from the hippostd:handle instance or one of the document variants.
      * @param handle
      */
     public JcrDocument(Node handle) throws RepositoryException {
+        if (null == handle) {
+            throw new IllegalArgumentException("the Node supplied must be a handle or a document variant, not null");
+        }
+
         if (handle.isNodeType(HIPPO_HANDLE)) {
             this.handle = handle;
         } else {
@@ -56,11 +62,9 @@ public class JcrDocument {
             NodeIterator varIterator = handle.getNodes();
             while (varIterator.hasNext()) {
                 Node variant = varIterator.nextNode();
-                try {
+                if (variant.isNodeType(HippoStdNodeType.NT_PUBLISHABLE)) {
                     Property state = variant.getProperty(HIPPOSTD_STATE);
                     variantMap.put(state.getString(), variant);
-                } catch(PathNotFoundException ex) {
-                    // If the Node does not have the hippostd:state ignore it
                 }
             }
         }
@@ -69,7 +73,7 @@ public class JcrDocument {
 
     /**
      * Returns the variant with the matching state, or returns null if not present.
-     * @param state the vairiant state to match, draft, unpublished, or published
+     * @param state the variant state to match, draft, unpublished, or published
      * @return the variant Node matching the given state
      * @throws RepositoryException
      */
@@ -78,7 +82,7 @@ public class JcrDocument {
     }
 
     /**
-     * Will look return true if the unpublished variant of a document matches one of the jcr types.
+     * Will return true if the unpublished variant of a document matches one of the jcr types.
      *
      * @param jcrType
      * @return
@@ -97,17 +101,14 @@ public class JcrDocument {
     }
 
     /**
-     * Gets the first Node that is a parent of this document.
+     * Gets the folder Node containing this document.
      * @return
      * @throws RepositoryException
      */
     public Node getContainingFolder() throws RepositoryException {
         Node parent = handle.getParent();
-        while(!parent.isNodeType(HippoStdNodeType.NT_FOLDER)) {
-            parent = parent.getParent();
-            if (null == parent) {
-                throw new IllegalStateException("No folder found for Node");
-            }
+        if (null == parent || !parent.isNodeType(HippoStdNodeType.NT_FOLDER)) {
+            throw new IllegalStateException("No folder found for Node");
         }
         return parent;
     }
