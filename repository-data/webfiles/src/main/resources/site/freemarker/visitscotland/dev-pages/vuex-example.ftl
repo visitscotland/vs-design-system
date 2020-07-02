@@ -1,14 +1,14 @@
 <#include "../../include/imports.ftl">
 <#include "../../frontend/components/vs-vue-x-example.ftl">
-<#include "../../frontend/stores/example-store.ftl">
+<#include "../../frontend/stores/vs-store-example-store.ftl">
 <#include "../../frontend/components/vs-container.ftl">
 <#include "../../frontend/components/vs-row.ftl">
 <#include "../../frontend/components/vs-col.ftl">
 
 
-<@hst.headContribution category="htmlBodyEndAppEntry">
+<@hst.headContribution category="htmlBodyEndScripts">
 	<script type="text/javascript">
-		vs.stores.storeExampleStore.subscribe((mutation, state) => {
+		vs.stores.VsStoreExampleStore.subscribe((mutation, state) => {
             const trackerElement = document.getElementById("vue-x-example-tracker");
 
             trackerElement.innerHTML = state.example.count
