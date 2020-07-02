@@ -16,7 +16,6 @@
                 :class="isHighlighted ? 'active' : ''"
                 :variant="isHighlighted ? 'dark' : 'secondary-teal'"
                 :size="isHighlighted ? 'lg' : 'md'"
-                :padding="0"
             />
             <span
                 class="vs-itinerary-map-marker__count"

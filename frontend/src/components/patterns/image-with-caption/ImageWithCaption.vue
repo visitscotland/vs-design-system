@@ -28,7 +28,6 @@
                     name="close-circle"
                     variant="light"
                     size="md"
-                    :padding="0"
                 />
                 <slot
                     v-else

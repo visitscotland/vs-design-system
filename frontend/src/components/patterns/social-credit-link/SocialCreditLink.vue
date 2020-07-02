@@ -5,7 +5,6 @@
             :name="source"
             variant="light"
             size="xs"
-            :padding="1"
         />
         <VsLink
             class="social-credit__link"
