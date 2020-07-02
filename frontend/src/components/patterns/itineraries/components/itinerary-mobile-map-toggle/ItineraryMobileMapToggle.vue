@@ -9,7 +9,6 @@
             :name="showMap ? 'list' : 'map'"
             variant="reverse-white"
             size="md"
-            :padding="0"
         />
 
         {{ showMap ? 'List View' : 'Map View' }}
