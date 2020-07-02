@@ -42,7 +42,7 @@ public class ChangeSet {
     }
 
     /**
-     * Converts the JcrDocume to a FolderTranslation instance and adds it to the List of documents to be cloned.
+     * Converts the JcrDocument to a FolderTranslation instance and adds it to the List of documents to be cloned.
      * @param document The JcrDocument to be added to the document list
      * @throws RepositoryException
      */

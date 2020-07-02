@@ -1,13 +1,12 @@
 <html xmlns:wicket="http://wicket.apache.org/">
 <wicket:extend>
-    <label for="language-list" style="padding-left: 10px; padding-top: 10px;">You are about to create translations for
+    <label for="change-list" style="padding-left: 10px; padding-top: 10px;">You are about to create translation clones for
         the following:</label>
-    <ul class="hippo-dialog-center" id="language-list"
-        style="padding-top: 10px; padding-bottom: 10px; display: flex; flex-direction: column;">
-        <li wicket:id="languages" style="padding-top: 5px; padding-bottom: 5px; padding-left: 100px;">
-            <img wicket:id="img" style="padding-left: 5px; padding-right: 5px;">
-            <span wicket:id="name"></span>
-        </li>
-    </ul>
+    <table id="change-list" style="padding-top:20px; padding-left: 100px; padding-bottom:20px;">
+        <tr wicket:id="change">
+            <td wicket:id="name" style="padding-right: 10px;"></td>
+            <td wicket:id="languages"><img wicket:id="img"></td>
+        </tr>
+    </table>
 </wicket:extend>
 </html>

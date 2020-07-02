@@ -5,6 +5,7 @@ import org.apache.wicket.Component;
 import org.apache.wicket.model.IModel;
 import org.hippoecm.addon.workflow.StdWorkflow;
 import org.hippoecm.addon.workflow.WorkflowDescriptorModel;
+import org.hippoecm.frontend.dialog.ExceptionDialog;
 import org.hippoecm.frontend.dialog.IDialogService;
 import org.hippoecm.frontend.session.UserSession;
 import org.hippoecm.frontend.translation.ILocaleProvider;
@@ -75,7 +76,14 @@ public class TranslationAction extends StdWorkflow<TranslationWorkflow> {
 
     @Override
     protected IDialogService.Dialog createRequestDialog() {
-        return new TranslationConfirmationDialog(this, new UntranslatedLocaleProvider(workflowPlugin, workflowPlugin.getLocaleProvider()));
+        try {
+            List<ChangeSet> changeSetList = translator.buildChangeSetList(workflowPlugin.getSourceDocumentNode(),
+                    workflowPlugin.getAvailableLocales());
+
+            return new TranslationConfirmationDialog(this, new DocumentChangeProvider(changeSetList));
+        } catch(ObjectBeanManagerException | RepositoryException ex) {
+            return new ExceptionDialog(ex);
+        }
     }
 
     protected Session getJcrSession() {
