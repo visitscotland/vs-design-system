@@ -9,7 +9,6 @@
                 :name="icon"
                 variant="dark"
                 size="xl"
-                :padding="0"
             />
         </div>
         <div class="text-wrapper d-block w-auto mx-1">

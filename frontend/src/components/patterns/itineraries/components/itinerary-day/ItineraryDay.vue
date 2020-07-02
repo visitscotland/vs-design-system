@@ -25,14 +25,12 @@
                     name="chevron-down"
                     variant="dark"
                     size="xs"
-                    :padding="3"
                 />
                 <VsIcon
                     v-else
                     name="chevron-up"
                     variant="dark"
                     size="xs"
-                    :padding="3"
                 />
             </VsButton>
         </div>

@@ -11,7 +11,6 @@
             name="external-link"
             variant="primary"
             size="xs"
-            :padding="0"
             class="ml-1"
         />
     </BLink>

@@ -7,7 +7,6 @@
                         name="map-marker-filled"
                         variant="secondary-teal"
                         size="xl"
-                        :padding="0"
                     />
                     <span
                         class="map-marker__count"
