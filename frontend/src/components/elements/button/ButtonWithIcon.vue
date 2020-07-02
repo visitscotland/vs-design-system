@@ -2,10 +2,11 @@
     <VsButton
         class="vs-button-with-icon"
         v-bind="$attrs"
+        :size="buttonSize"
     >
         <VsIcon
             :name="icon"
-            size="sm"
+            :size="iconSize"
             :padding="0"
         />
         <slot />
@@ -35,6 +36,32 @@ export default {
             type: String,
             required: true,
         },
+        /**
+         * The button size
+         * `sm, md, lg`
+         */
+        buttonSize: {
+            type: String,
+            required: true,
+            validator: (value) => value.match(/(sm|md|lg)/),
+        },
+    },
+    computed: {
+        iconSize() {
+            switch(this.buttonSize) {
+                case "sm":
+                    return "xs"
+                    break;
+                case "md":
+                    return "sm"
+                    break;
+                case "lg":
+                    return "md"
+                    break;
+                default:
+                    return "md"
+            }
+        },
     },
 }
 </script>
@@ -52,6 +79,7 @@ export default {
         fill: currentColor;
         margin-right: 0.625rem;
         transition: fill 250ms;
+        vertical-align: sub;
     }
     &:hover {
         svg {
@@ -66,12 +94,52 @@ export default {
     <bs-wrapper class="d-flex flex-wrap mb-4">
         <vs-button-with-icon
             icon="food"
+            button-size="sm"
             variant="outline-primary"
             class="mr-3"
         >
             Nearby places to eat
         </vs-button-with-icon>
-        <vs-button-with-icon icon="map">
+        <vs-button-with-icon 
+            icon="map"
+            button-size="sm"
+        >
+            Map View
+        </vs-button-with-icon>
+    </bs-wrapper>
+
+    <bs-wrapper class="d-flex flex-wrap mb-4">
+        <vs-button-with-icon
+            icon="food"
+            button-size="md"
+            variant="outline-primary"
+            class="mr-3"
+        >
+            Nearby places to eat
+        </vs-button-with-icon>
+        <vs-button-with-icon 
+            icon="map"
+            button-size="md"
+        >
+            Map View
+        </vs-button-with-icon>
+    </bs-wrapper>
+
+   
+
+    <bs-wrapper class="d-flex flex-wrap mb-4">
+        <vs-button-with-icon
+            icon="food"
+            button-size="lg"
+            variant="outline-primary"
+            class="mr-3"
+        >
+            Nearby places to eat
+        </vs-button-with-icon>
+        <vs-button-with-icon 
+            icon="map"
+            button-size="lg"
+        >
             Map View
         </vs-button-with-icon>
     </bs-wrapper>
