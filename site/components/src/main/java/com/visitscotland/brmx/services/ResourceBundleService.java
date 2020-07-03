@@ -107,7 +107,7 @@ public class ResourceBundleService {
         } else {
             if(bundle.containsKey(key)) {
                 value = bundle.getString(key);
-                if (Contract.isEmpty(value) && bundle.getLocale() != null && !optional) {
+                if (Contract.isEmpty(value) && locale != null && !optional) {
                     value = getResourceBundle(bundleName,key, (Locale) null, false);
                     if (!Contract.isEmpty(value)) {
                         logContentIssue("The label key %s does not exists for the %s channel. Resource Bundle key %s", key, bundle.getLocale(), bundleName);

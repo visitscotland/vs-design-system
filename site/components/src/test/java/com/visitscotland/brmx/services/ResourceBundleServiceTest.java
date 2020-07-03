@@ -147,12 +147,9 @@ public class ResourceBundleServiceTest {
         Assert.assertEquals("", value);
     }
 
-
-
-
-
     @Test
     public void nonExistingKey(){
+        //When a key does not exist it returns null and logs an issue
         service = spy(service);
         when(bundle.containsKey("key")).thenReturn(false);
 
