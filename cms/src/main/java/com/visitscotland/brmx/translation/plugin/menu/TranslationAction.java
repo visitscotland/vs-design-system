@@ -5,6 +5,7 @@ import org.apache.wicket.Component;
 import org.apache.wicket.model.IModel;
 import org.hippoecm.addon.workflow.StdWorkflow;
 import org.hippoecm.addon.workflow.WorkflowDescriptorModel;
+import org.hippoecm.addon.workflow.WorkflowSNSException;
 import org.hippoecm.frontend.dialog.ExceptionDialog;
 import org.hippoecm.frontend.dialog.IDialogService;
 import org.hippoecm.frontend.session.UserSession;
@@ -12,11 +13,9 @@ import org.hippoecm.frontend.translation.ILocaleProvider;
 import org.hippoecm.hst.content.beans.ObjectBeanManagerException;
 import org.hippoecm.repository.api.WorkflowException;
 
-import javax.jcr.Node;
 import javax.jcr.RepositoryException;
 import javax.jcr.Session;
 import java.rmi.RemoteException;
-import java.util.ArrayList;
 import java.util.List;
 
 public class TranslationAction extends StdWorkflow<TranslationWorkflow> {
@@ -80,14 +79,19 @@ public class TranslationAction extends StdWorkflow<TranslationWorkflow> {
             List<ChangeSet> changeSetList = translator.buildChangeSetList(workflowPlugin.getSourceDocumentNode(),
                     workflowPlugin.getAvailableLocales());
 
+            boolean haveSameNameSiblings = false;
             for(ChangeSet changeSet : changeSetList) {
+                changeSet.markSameNameSiblings(getJcrSession());
                 if (changeSet.hasSameNameSiblingConflicts()) {
-                    return new ExceptionDialog("Have same name sibling conflicts");
+                    haveSameNameSiblings = true;
                 }
             }
-
+            if (haveSameNameSiblings) {
+                SameNameSiblingProvider provider = new SameNameSiblingProvider(changeSetList);
+                return new SameNameSiblingDialog(provider);
+            }
             return new TranslationConfirmationDialog(this, new DocumentChangeProvider(changeSetList));
-        } catch(ObjectBeanManagerException | RepositoryException ex) {
+        } catch(ObjectBeanManagerException | WorkflowSNSException | RepositoryException ex) {
             return new ExceptionDialog(ex);
         }
     }

@@ -76,6 +76,7 @@ public class ChangeSetCheckForSameNameSiblingsTest {
         addSiblingMatchingUrl(translatedTargetFolder, "targetUrl");
         HippoTranslatedNode sourceFolderNode = createDeepestTranslatedSourceNode("level1");
         addNodeTranslation(sourceFolderNode, "fr", translatedTargetFolder);
+        addSiblingsWithDisplayName(translatedTargetFolder, "diff");
 
         assertThrows(WorkflowSNSException.class, () -> changeSet.checkForSameNameSiblings(mockSession));
 
@@ -83,13 +84,16 @@ public class ChangeSetCheckForSameNameSiblingsTest {
         assertTrue(changeSet.hasSameNameSiblingConflicts());
         assertFalse(rootFolder.hasSameNameSibling());
         assertFalse(level1.hasSameNameSibling());
-        assertTrue(level2.hasSameNameSibling());
+        assertFalse(level2.hasSameNameSibling());
+        assertFalse(rootFolder.hasSameUrlSibling());
+        assertFalse(level1.hasSameUrlSibling());
+        assertTrue(level2.hasSameUrlSibling());
     }
 
     @Test
     public void checkForSameNameSiblings_same_name_folder_sibling_matches_display_name() throws Exception {
         // Tests that an exception is thrown when a node with the same display name already exists
-        // This is a little more complex, the addSiblingsToNode has to mimic a NodeIterator that the
+        // This is a little more complex, the addSiblingsWithDisplayName has to mimic a NodeIterator that the
         // SameNameSiblingsUtil uses
         FolderTranslation rootFolder = createFolderTranslation("root", false);
         FolderTranslation level1 = createFolderTranslation("level1", false);
@@ -102,7 +106,7 @@ public class ChangeSetCheckForSameNameSiblingsTest {
         HippoTranslatedNode sourceFolderNode = createDeepestTranslatedSourceNode("level1");
         addNodeTranslation(sourceFolderNode, "fr", sameNameSibling);
 
-        addSiblingsToNode(sameNameSibling, "targetName", "otherName");
+        addSiblingsWithDisplayName(sameNameSibling, "targetName", "otherName");
 
         assertThrows(WorkflowSNSException.class, () -> changeSet.checkForSameNameSiblings(mockSession));
 
@@ -111,6 +115,9 @@ public class ChangeSetCheckForSameNameSiblingsTest {
         assertFalse(rootFolder.hasSameNameSibling());
         assertFalse(level1.hasSameNameSibling());
         assertTrue(level2.hasSameNameSibling());
+        assertFalse(rootFolder.hasSameUrlSibling());
+        assertFalse(level1.hasSameUrlSibling());
+        assertFalse(level2.hasSameUrlSibling());
     }
 
     @Test
@@ -137,6 +144,9 @@ public class ChangeSetCheckForSameNameSiblingsTest {
         assertFalse(rootFolder.hasSameNameSibling());
         assertFalse(level1.hasSameNameSibling());
         assertFalse(level2.hasSameNameSibling());
+        assertFalse(rootFolder.hasSameUrlSibling());
+        assertFalse(level1.hasSameUrlSibling());
+        assertFalse(level2.hasSameUrlSibling());
     }
 
     @Test
@@ -152,7 +162,7 @@ public class ChangeSetCheckForSameNameSiblingsTest {
         HippoTranslatedNode sourceFolderNode = createDeepestTranslatedSourceNode("level1");
         addNodeTranslation(sourceFolderNode, "fr", deepestTranslatedTargetNode);
 
-        addSiblingsToNode(deepestTranslatedTargetNode, "targetName-diff");
+        addSiblingsWithDisplayName(deepestTranslatedTargetNode, "targetName-diff");
 
         changeSet.checkForSameNameSiblings(mockSession);
 
@@ -161,6 +171,9 @@ public class ChangeSetCheckForSameNameSiblingsTest {
         assertFalse(rootFolder.hasSameNameSibling());
         assertFalse(level1.hasSameNameSibling());
         assertFalse(level2.hasSameNameSibling());
+        assertFalse(rootFolder.hasSameUrlSibling());
+        assertFalse(level1.hasSameUrlSibling());
+        assertFalse(level2.hasSameUrlSibling());
     }
 
     @Test
@@ -176,7 +189,7 @@ public class ChangeSetCheckForSameNameSiblingsTest {
         changeSet.getDocuments().add(document2);
         changeSet.getDocuments().add(document3);
 
-        addSiblingsToNode(documentParentFolder, "doc1-diff");
+        addSiblingsWithDisplayName(documentParentFolder, "doc1-diff");
 
         changeSet.checkForSameNameSiblings(mockSession);
 
@@ -185,6 +198,9 @@ public class ChangeSetCheckForSameNameSiblingsTest {
         assertFalse(document1.hasSameNameSibling());
         assertFalse(document2.hasSameNameSibling());
         assertFalse(document3.hasSameNameSibling());
+        assertFalse(document1.hasSameUrlSibling());
+        assertFalse(document2.hasSameUrlSibling());
+        assertFalse(document3.hasSameUrlSibling());
     }
 
     @Test
@@ -200,7 +216,7 @@ public class ChangeSetCheckForSameNameSiblingsTest {
         changeSet.getDocuments().add(document2);
         changeSet.getDocuments().add(document3);
 
-        addSiblingsToNode(documentParentFolder, "doc1name-diff");
+        addSiblingsWithDisplayName(documentParentFolder, "doc1name-diff");
         addSiblingMatchingUrl(documentParentFolder,"doc2url");
         addSiblingMatchingUrl(documentParentFolder,"doc3url");
 
@@ -209,8 +225,11 @@ public class ChangeSetCheckForSameNameSiblingsTest {
         changeSet.markSameNameSiblings(mockSession);
         assertTrue(changeSet.hasSameNameSiblingConflicts());
         assertFalse(document1.hasSameNameSibling());
-        assertTrue(document2.hasSameNameSibling());
-        assertTrue(document3.hasSameNameSibling());
+        assertFalse(document2.hasSameNameSibling());
+        assertFalse(document3.hasSameNameSibling());
+        assertFalse(document1.hasSameUrlSibling());
+        assertTrue(document2.hasSameUrlSibling());
+        assertTrue(document3.hasSameUrlSibling());
     }
 
     @Test
@@ -226,7 +245,7 @@ public class ChangeSetCheckForSameNameSiblingsTest {
         changeSet.getDocuments().add(document2);
         changeSet.getDocuments().add(document3);
 
-        addSiblingsToNode(documentParentFolder, "doc2name", "doc3name", "doc1Name-diff", "doc-other");
+        addSiblingsWithDisplayName(documentParentFolder, "doc2name", "doc3name", "doc1Name-diff", "doc-other");
 
         assertThrows(WorkflowSNSException.class, () -> changeSet.checkForSameNameSiblings(mockSession));
 
@@ -235,6 +254,9 @@ public class ChangeSetCheckForSameNameSiblingsTest {
         assertFalse(document1.hasSameNameSibling());
         assertTrue(document2.hasSameNameSibling());
         assertTrue(document3.hasSameNameSibling());
+        assertFalse(document1.hasSameUrlSibling());
+        assertFalse(document2.hasSameUrlSibling());
+        assertFalse(document3.hasSameUrlSibling());
     }
 
     @Test
@@ -261,12 +283,9 @@ public class ChangeSetCheckForSameNameSiblingsTest {
         assertFalse(document1.hasSameNameSibling());
         assertFalse(document2.hasSameNameSibling());
         assertFalse(document3.hasSameNameSibling());
-    }
-
-    private void initialiseEmptyChildNodeIterator(Node parentNode) throws Exception {
-        NodeIterator mockNodeIterator = mock(NodeIterator.class);
-        when(parentNode.getNodes()).thenReturn(mockNodeIterator);
-        when(mockNodeIterator.hasNext()).thenReturn(false);
+        assertFalse(document1.hasSameUrlSibling());
+        assertFalse(document2.hasSameUrlSibling());
+        assertFalse(document3.hasSameUrlSibling());
     }
 
     private Node initialiseFoldersAllTranslated() throws Exception {
@@ -288,7 +307,7 @@ public class ChangeSetCheckForSameNameSiblingsTest {
         when(folderNode.hasNode(eq(relPath))).thenReturn(true);
     }
 
-    private void addSiblingsToNode(Node targetNode, String... targetDisplayNames) throws Exception {
+    private void addSiblingsWithDisplayName(Node targetNode, String... targetDisplayNames) throws Exception {
         // This creates a mock NodeIterator by creating a List and using the Iterator from the List as a NodeIterator.
         // The Answer is used to ensure we get a new NodeIterator instance every time getNodes() method is called.
         when(targetNode.getNodes()).thenAnswer(new Answer<NodeIterator>() {

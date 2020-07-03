@@ -9,9 +9,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.jcr.*;
+import javax.mail.Folder;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Is used to contain all the changes required for a translation operation.
@@ -180,11 +182,10 @@ public class ChangeSet {
         String targetUrlName = targetFolderTranslation.getUrlfr();
         String targetLocalizedName = targetFolderTranslation.getNamefr();
         if (sourceFolderNode.hasNode(targetUrlName)) {
-            targetFolderTranslation.setHasSameNameSibling(true);
+            targetFolderTranslation.setHasSameUrlSibling(true);
             if (throwException) {
                 throw new WorkflowSNSException("A folder or document with name '" + targetUrlName + "' already exists", targetUrlName);
             }
-            return;
         }
         // check for duplicated localized name
         if (SameNameSiblingsUtil.hasChildWithDisplayName(sourceFolderNode, targetLocalizedName)) {
@@ -192,7 +193,6 @@ public class ChangeSet {
             if (throwException) {
                 throw new WorkflowSNSException("A folder or document with localized name '" + targetLocalizedName + "' already exists", targetLocalizedName);
             }
-            return;
         }
     }
 
@@ -201,18 +201,8 @@ public class ChangeSet {
      * @return
      */
     public boolean hasSameNameSiblingConflicts() {
-        for (FolderTranslation folder : folders) {
-            if (folder.hasSameNameSibling()) {
-                return true;
-            }
-        }
-
-        for (FolderTranslation document : documents) {
-            if (document.hasSameNameSibling()) {
-                return true;
-            }
-        }
-
-        return false;
+        return folders.stream().anyMatch((folder) -> folder.hasSameNameSibling() || folder.hasSameUrlSibling()) ||
+                documents.stream().anyMatch((document) -> document.hasSameNameSibling() || document.hasSameUrlSibling());
     }
+
 }

@@ -15,6 +15,8 @@ import org.hippoecm.frontend.translation.ILocaleProvider;
 public class TranslationConfirmationDialog extends WorkflowDialog<Void> {
     public static final String ID_IMG = "img";
     public static final String ID_NAME = "name";
+    public static final String ID_LANGUAGES = "languages";
+    public static final String ID_CHANGE = "change";
 
     public TranslationConfirmationDialog(IWorkflowInvoker invoker,
                                          IDataProvider<DocumentChangeProvider.Entry> changeSetProvider) {
@@ -28,7 +30,7 @@ public class TranslationConfirmationDialog extends WorkflowDialog<Void> {
             }
         });
 
-        add(new DataView<DocumentChangeProvider.Entry>("change", changeSetProvider) {
+        add(new DataView<DocumentChangeProvider.Entry>(ID_CHANGE, changeSetProvider) {
             {
                 onPopulate();
             }
@@ -38,7 +40,7 @@ public class TranslationConfirmationDialog extends WorkflowDialog<Void> {
                 DocumentChangeProvider.Entry change = item.getModelObject();
                 item.add(new Label(ID_NAME, change.getDocumentName()));
                 IDataProvider<ILocaleProvider.HippoLocale> localeProvider = new LocaleListProvider(change.getLocaleList());
-                item.add(new DataView<ILocaleProvider.HippoLocale>("languages", localeProvider) {
+                item.add(new DataView<ILocaleProvider.HippoLocale>(ID_LANGUAGES, localeProvider) {
                     {
                         onPopulate();
                     }
