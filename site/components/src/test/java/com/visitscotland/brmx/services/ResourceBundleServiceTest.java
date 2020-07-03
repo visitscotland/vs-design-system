@@ -3,9 +3,11 @@ package com.visitscotland.brmx.services;
 import com.visitscotland.brmx.utils.CommonUtils;
 import org.hippoecm.hst.resourcebundle.ResourceBundleRegistry;
 import org.junit.Assert;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.ArgumentCaptor;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
@@ -42,35 +44,65 @@ public class ResourceBundleServiceTest {
     }
 
     @Test
-    public void getResourceBundle_nonExistingBundleRegisterIssue(){
+    void getResourceBundle_freemarker_overload(){
+        //Tests different combination of parameters and
+        //Verifies that the main method receives the correct parameters
         service = spy(service);
+        ArgumentCaptor<Locale> localeCaptor = ArgumentCaptor.forClass(Locale.class);
+        doCallRealMethod().when(service).getResourceBundle(eq(BUNDLE), eq("key"), localeCaptor.capture());
+        doReturn("false").when(service).getResourceBundle(eq(BUNDLE), eq("key"), localeCaptor.capture(), eq(false));
+        doReturn("true").when(service).getResourceBundle(eq(BUNDLE), eq("key"), localeCaptor.capture(), eq(true));
 
-        String value = service.getResourceBundle("Non-existing", "key", Locale.UK);
+        Assertions.assertEquals("false", service.getResourceBundle(BUNDLE, "key", "es"));
+        Assertions.assertEquals("es", localeCaptor.getValue().getLanguage());
 
-        verify(service).logIssue(anyString());
+        Assertions.assertEquals("true", service.getResourceBundle(BUNDLE, "key", "en", true));
+        Assertions.assertEquals("en", localeCaptor.getValue().getLanguage());
+
+        Assertions.assertEquals("false", service.getResourceBundle(BUNDLE, "key", "fr", false));
+        Assertions.assertEquals("fr", localeCaptor.getValue().getLanguage());
+    }
+
+
+    @Test
+    void toLocale(){
+        // Checks method toLocale when locale is null or empty a Null locale is sent.
+        // Otherwise, a locale is created according to Locale.forLanguageTag(String) specification
+        Assertions.assertEquals("en", service.toLocale("en").getLanguage());
+        Assertions.assertEquals("", service.toLocale(".java").getLanguage());
+        Assertions.assertNull(service.toLocale(""));
+        Assertions.assertNull(service.toLocale(null));
     }
 
     @Test
-    public void getResourceBundle_existingBundleDoNotRegisterIssue(){
-        service = spy(service);
+    public void getResourceBundle_nonExistingBundleRegisterIssue(){
+        //Returns null when the name of the resource bundle does not exist.
+        String value = service.getResourceBundle("Non-existing", "key", Locale.UK);
 
-        String value = service.getResourceBundle(BUNDLE, "key", Locale.UK);
-
-        verify(service, times(0)).logIssue(anyString());
+        Assert.assertNull(value);
     }
 
     @Test
     public void keyExistsInTheLocale(){
+        //Returns the value when the key exists.
         when(bundle.containsKey("key")).thenReturn(true);
         when(bundle.getString("key")).thenReturn("value");
 
-        String value = service.getResourceBundle(BUNDLE, "key", Locale.UK);
+        Assert.assertEquals("value", service.getResourceBundle(BUNDLE, "key", Locale.UK, true));
+    }
 
-        Assert.assertEquals("value", value);
+    @Test
+    public void keyExistsInTheLocale_optional(){
+        //Returns the value when the key exists and optional does not have any impact on it.
+        when(bundle.containsKey("key")).thenReturn(true);
+        when(bundle.getString("key")).thenReturn("value");
+
+        Assert.assertEquals("value", service.getResourceBundle(BUNDLE, "key", Locale.UK, true));
     }
 
     @Test
     public void fallbackLocaleToDefault(){
+        //When a test in a language does not exits it logs the issue and fall back to default (English)
         service = spy(service);
         when(bundle.containsKey("key")).thenReturn(true);
         when(bundle.getString("key")).thenReturn("");
@@ -85,7 +117,25 @@ public class ResourceBundleServiceTest {
     }
 
     @Test
+    public void fallbackLocaleToDefault_defaultDoesNotExist(){
+        // Tries to fallback to English but the English key does not exist either.
+        // It logs 2 messages, one for the original language and other for the global language.
+        service = spy(service);
+        when(bundle.containsKey("key")).thenReturn(true);
+        when(bundle.getString("key")).thenReturn("");
+        when(bundle.getLocale()).thenReturn(Locale.UK);
+        when(fbBundle.containsKey("key")).thenReturn(true);
+        when(fbBundle.getString("key")).thenReturn("");
+
+        String value = service.getResourceBundle(BUNDLE, "key", Locale.UK);
+
+        verify(service, times(2)).logContentIssue(anyString(), any());
+        Assert.assertEquals("", value);
+    }
+
+    @Test
     public void optional_DoNotFallbackLocaleToDefault(){
+        //When optional, it doesn't log any issue when not found
         service = spy(service);
         when(bundle.containsKey("key")).thenReturn(true);
         when(bundle.getString("key")).thenReturn("");
@@ -96,6 +146,9 @@ public class ResourceBundleServiceTest {
         verify(service, times(0)).logContentIssue(anyString(), any());
         Assert.assertEquals("", value);
     }
+
+
+
 
 
     @Test

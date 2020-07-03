@@ -50,7 +50,7 @@ public class ResourceBundleService {
      * @param locale locale
      */
     public String getResourceBundle(String bundleName, String key, String locale){
-        return getResourceBundle(bundleName, key, Locale.forLanguageTag(locale));
+        return getResourceBundle(bundleName, key, toLocale(locale));
     }
 
     /**
@@ -66,7 +66,23 @@ public class ResourceBundleService {
      * @return
      */
     public String getResourceBundle(String bundleName, String key, String locale, boolean optional){
-        return getResourceBundle(bundleName, key, Locale.forLanguageTag(locale), false);
+        return getResourceBundle(bundleName, key, toLocale(locale), optional);
+    }
+
+    /**
+     * when locale is null or empty a {@code null}value is returned. Otherwise, a locale is created according to
+     * Locale.forLanguageTag(String) specification
+     *
+     * @param locale String with the locale information
+     *
+     * @return a {@code Locale} object version of the {@dode String} or {@code null} when empty String or null
+     */
+    Locale toLocale(String locale){
+        if (locale == null || locale.length() == 0){
+            return null;
+        } else {
+            return Locale.forLanguageTag(locale);
+        }
     }
 
     /**
@@ -84,21 +100,24 @@ public class ResourceBundleService {
         ResourceBundle bundle = getResourceBundle(bundleName, locale);
 
         String value = null;
+        boolean fallback = false;
 
         if (bundle == null) {
-            logIssue(String.format("The resource bundle '%s' does not exist" , bundleName));
+            logger.warn(String.format("The resource bundle '%s' does not exist" , bundleName));
         } else {
             if(bundle.containsKey(key)) {
                 value = bundle.getString(key);
                 if (Contract.isEmpty(value) && bundle.getLocale() != null && !optional) {
-                    value = getResourceBundle(bundleName,key, (Locale) null, optional);
+                    value = getResourceBundle(bundleName,key, (Locale) null, false);
                     if (!Contract.isEmpty(value)) {
                         logContentIssue("The label key %s does not exists for the %s channel. Resource Bundle key %s", key, bundle.getLocale(), bundleName);
                     }
+                    fallback = true;
                 }
             }
             if (Contract.isEmpty(value) && !optional){
                 logContentIssue("The label key %s does not exists for the English channel. Resource Bundle key %s", key, bundleName);
+                logger.warn(String.format("The label key %s does not exists for the English channel. Resource Bundle key %s", key, bundleName));
             }
         }
 
@@ -142,18 +161,8 @@ public class ResourceBundleService {
      * @param args arguments for the message
      */
     void logContentIssue(String message, Object... args){
-        common.contentIssue(message, args);
+        //TODO Transform into a different Logger
+        logger.warn(common.contentIssue(message, args));
     }
 
-    /**
-     * Logs an issue with a warning message.
-     *
-     * This method allows Unit test to verify that the message is logged.
-     *
-     * @param message
-     */
-    // TODO: Is unit test for this really important?
-    void logIssue(String message){
-        logger.warn(message);
-    }
 }
