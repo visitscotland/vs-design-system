@@ -1,8 +1,6 @@
 package com.visitscotland.brmx.translation.plugin;
 
 import org.hippoecm.frontend.translation.ILocaleProvider;
-import org.hippoecm.frontend.translation.components.document.FolderTranslation;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -11,11 +9,9 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.mockito.Mockito.lenient;
-import static org.mockito.Mockito.mock;
 
 @ExtendWith(MockitoExtension.class)
-public class ChangeSetGetIndexOfDeepestTranslatedFolder {
+public class ChangeSetGetIndexOfDeepestTranslatedFolderTest {
     private ChangeSet changeSet;
     @Mock
     private ILocaleProvider.HippoLocale mockLocale;
@@ -63,9 +59,8 @@ public class ChangeSetGetIndexOfDeepestTranslatedFolder {
     }
 
     private FolderTranslation createMockFolderTranslation(String nodeId, boolean isEditable) {
-        FolderTranslation mockFolder = mock(FolderTranslation.class);
-        lenient().when(mockFolder.getId()).thenReturn(nodeId);
-        lenient().when(mockFolder.isEditable()).thenReturn(isEditable);
-        return mockFolder;
+        FolderTranslation folder = new FolderTranslation(nodeId);
+        folder.setEditable(isEditable);
+        return folder;
     }
 }

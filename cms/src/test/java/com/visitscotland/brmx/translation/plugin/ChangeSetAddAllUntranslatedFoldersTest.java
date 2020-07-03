@@ -1,7 +1,6 @@
 package com.visitscotland.brmx.translation.plugin;
 
 import org.hippoecm.frontend.translation.ILocaleProvider;
-import org.hippoecm.frontend.translation.components.document.FolderTranslation;
 import org.hippoecm.repository.api.HippoNode;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -24,6 +23,10 @@ public class ChangeSetAddAllUntranslatedFoldersTest {
     private TranslatedFolder mockSourceFolder;
     @Mock
     private ILocaleProvider.HippoLocale mockLocale;
+    @Mock
+    private HippoTranslatedNodeFactory mockHippoTranslatedNodeFactory;
+    @Mock
+    private JcrFolderTranslationFactory mockJcrFolderTranslationFactory;
 
     @BeforeEach
     public void beforeEach() {

@@ -1,7 +1,6 @@
 package com.visitscotland.brmx.translation.plugin;
 
 import org.hippoecm.frontend.translation.ILocaleProvider;
-import org.hippoecm.frontend.translation.components.document.FolderTranslation;
 import org.hippoecm.repository.api.HippoNode;
 import org.hippoecm.repository.translation.HippoTranslationNodeType;
 import org.junit.jupiter.api.BeforeEach;

@@ -2,12 +2,8 @@ package com.visitscotland.brmx.translation.plugin;
 
 import org.apache.wicket.model.IModel;
 import org.hippoecm.frontend.translation.ILocaleProvider;
-import org.hippoecm.frontend.translation.components.document.FolderTranslation;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.ArrayList;
@@ -53,12 +49,12 @@ public class DocumentChangeProviderTest {
         List<FolderTranslation> change3Documents = new ArrayList<>();
         when(change3.getDocuments()).thenReturn(change3Documents);
 
-        FolderTranslation document1 = mock(FolderTranslation.class);
-        when(document1.getName()).thenReturn("doc1name");
-        FolderTranslation document2 = mock(FolderTranslation.class);
-        when(document2.getName()).thenReturn("doc2name");
-        FolderTranslation document3 = mock(FolderTranslation.class);
-        when(document3.getName()).thenReturn("doc3name");
+        FolderTranslation document1 = new FolderTranslation("doc1id");
+        document1.setName("doc1name");
+        FolderTranslation document2 = new FolderTranslation("doc2id");
+        document2.setName("doc2name");
+        FolderTranslation document3 = new FolderTranslation("doc3id");
+        document3.setName("doc3name");
 
         change1Documents.add(document1);
 

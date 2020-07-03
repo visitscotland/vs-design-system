@@ -28,7 +28,7 @@ import static org.mockito.ArgumentMatchers.same;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
-public class DocumentTranslatorBuildChangeSetList {
+public class DocumentTranslatorBuildChangeSetListTest {
     private DocumentTranslator documentTranslator;
     @Mock
     private HippoNode mockSourceNode;

@@ -3,8 +3,6 @@ package com.visitscotland.brmx.translation.plugin;
 import org.hippoecm.addon.workflow.WorkflowSNSException;
 import org.hippoecm.frontend.plugins.standardworkflow.validators.SameNameSiblingsUtil;
 import org.hippoecm.frontend.translation.ILocaleProvider;
-import org.hippoecm.frontend.translation.components.document.FolderTranslation;
-import org.hippoecm.frontend.translation.workflow.JcrFolderTranslationFactory;
 import org.hippoecm.repository.translation.HippoTranslatedNode;
 import org.hippoecm.repository.translation.HippoTranslationNodeType;
 import org.slf4j.Logger;
@@ -23,14 +21,24 @@ import java.util.List;
  */
 public class ChangeSet {
     private static final Logger LOG = LoggerFactory.getLogger(ChangeSet.class);
+    private JcrFolderTranslationFactory jcrFolderTranslationFactory;
+    private HippoTranslatedNodeFactory translatedNodeFactory;
     private List<FolderTranslation> folders;
     private List<FolderTranslation> documents;
     private ILocaleProvider.HippoLocale targetLocale;
 
     public ChangeSet(ILocaleProvider.HippoLocale targetLocale) {
+        this(targetLocale, new HippoTranslatedNodeFactory(), new JcrFolderTranslationFactory());
+    }
+
+    protected ChangeSet(ILocaleProvider.HippoLocale targetLocale,
+                        HippoTranslatedNodeFactory translatedNodeFactory,
+                        JcrFolderTranslationFactory jcrFolderTranslationFactory) {
         folders = new ArrayList<>();
         documents = new ArrayList<>();
         this.targetLocale = targetLocale;
+        this.translatedNodeFactory = translatedNodeFactory;
+        this.jcrFolderTranslationFactory = jcrFolderTranslationFactory;
     }
 
     public List<FolderTranslation> getFolders() {
@@ -47,7 +55,7 @@ public class ChangeSet {
      * @throws RepositoryException
      */
     public void addDocument(JcrDocument document) throws RepositoryException {
-        FolderTranslation documentTranslation = JcrFolderTranslationFactory.createFolderTranslation(document.getHandle(), null);
+        FolderTranslation documentTranslation = jcrFolderTranslationFactory.createFolderTranslation(document.getHandle(), null);
         documentTranslation.setNamefr(documentTranslation.getName() + " (" + targetLocale.getName() + ")");
         documentTranslation.setUrlfr(documentTranslation.getUrl());
         documents.add(documentTranslation);
@@ -62,7 +70,7 @@ public class ChangeSet {
         TranslatedFolder targetTranslatedFolder = sourceTranslatedFolder.getSibling(targetLanguage);
         assert targetTranslatedFolder != null;
         while(sourceTranslatedFolder != null) {
-            FolderTranslation ftx = JcrFolderTranslationFactory.createFolderTranslation(sourceTranslatedFolder.getNode(), targetTranslatedFolder.getNode());
+            FolderTranslation ftx = jcrFolderTranslationFactory.createFolderTranslation(sourceTranslatedFolder.getNode(), targetTranslatedFolder.getNode());
             ftx.setEditable(false);
             this.folders.add(ftx);
             sourceTranslatedFolder = sourceTranslatedFolder.getParent();
@@ -97,7 +105,7 @@ public class ChangeSet {
     protected TranslatedFolder addAllUntranslatedFolders(String targetLanguage, List<FolderTranslation> folders, TranslatedFolder sourceFolder) throws RepositoryException {
         // walk up the source tree until a translated ancestor is found
         while (sourceFolder.getSibling(targetLanguage) == null) {
-            FolderTranslation ft = JcrFolderTranslationFactory.createFolderTranslation(sourceFolder.getNode(),
+            FolderTranslation ft = jcrFolderTranslationFactory.createFolderTranslation(sourceFolder.getNode(),
                     null);
             ft.setEditable(true);
             ft.setNamefr(ft.getName());
@@ -136,12 +144,20 @@ public class ChangeSet {
         return index;
     }
 
-    public void checkForSameNameSiblings(Session session)
+    public void checkForSameNameSiblings(Session session) throws WorkflowSNSException, RepositoryException {
+        checkForSameNameSiblings(session, true);
+    }
+
+    public void markSameNameSiblings(Session session) throws WorkflowSNSException, RepositoryException {
+        checkForSameNameSiblings(session, false);
+    }
+
+    protected void checkForSameNameSiblings(Session session, boolean throwException)
             throws WorkflowSNSException, RepositoryException {
         final int indexOfDeepestTranslatedFolder = getIndexOfDeepestTranslatedFolder();
         final FolderTranslation deepestTranslatedFolder = folders.get(indexOfDeepestTranslatedFolder);
         final Node deepestTranslatedSourceNode = session.getNodeByIdentifier(deepestTranslatedFolder.getId());
-        final Node deepestTranslatedTargetNode = createFromNode(deepestTranslatedSourceNode).getTranslation(targetLocale.getName());
+        final Node deepestTranslatedTargetNode = translatedNodeFactory.createFromNode(deepestTranslatedSourceNode).getTranslation(targetLocale.getName());
 
         if (deepestTranslatedTargetNode == null) {
             // this means that there's a programmatic problem in the construction ot the "folders" list.
@@ -152,28 +168,51 @@ public class ChangeSet {
         // if it is a document then we need to check every document for a same name sibling
         if (indexOfDeepestTranslatedFolder < folders.size() - 1) {
             final FolderTranslation highestUntranslatedItem = folders.get(indexOfDeepestTranslatedFolder + 1);
-            hasSameNameSibling(highestUntranslatedItem, deepestTranslatedTargetNode);
+            hasSameNameSibling(highestUntranslatedItem, deepestTranslatedTargetNode, throwException);
         } else {
             for (FolderTranslation document : documents) {
-                hasSameNameSibling(document, deepestTranslatedTargetNode);
+                hasSameNameSibling(document, deepestTranslatedTargetNode, throwException);
             }
         }
-        // No SNS issue!
     }
 
-    protected void hasSameNameSibling(FolderTranslation targetFolderTranslation, Node sourceFolderNode) throws WorkflowSNSException, RepositoryException {
+    protected void hasSameNameSibling(FolderTranslation targetFolderTranslation, Node sourceFolderNode, boolean throwException) throws WorkflowSNSException, RepositoryException {
         String targetUrlName = targetFolderTranslation.getUrlfr();
         String targetLocalizedName = targetFolderTranslation.getNamefr();
         if (sourceFolderNode.hasNode(targetUrlName)) {
-            throw new WorkflowSNSException("A folder or document with name '" + targetUrlName + "' already exists", targetUrlName);
+            targetFolderTranslation.setHasSameNameSibling(true);
+            if (throwException) {
+                throw new WorkflowSNSException("A folder or document with name '" + targetUrlName + "' already exists", targetUrlName);
+            }
+            return;
         }
         // check for duplicated localized name
         if (SameNameSiblingsUtil.hasChildWithDisplayName(sourceFolderNode, targetLocalizedName)) {
-            throw new WorkflowSNSException("A folder or document with localized name '" + targetLocalizedName + "' already exists", targetLocalizedName);
+            targetFolderTranslation.setHasSameNameSibling(true);
+            if (throwException) {
+                throw new WorkflowSNSException("A folder or document with localized name '" + targetLocalizedName + "' already exists", targetLocalizedName);
+            }
+            return;
         }
     }
 
-    protected HippoTranslatedNode createFromNode(Node node) throws RepositoryException {
-        return new HippoTranslatedNode(node);
+    /**
+     * Will return true if there are any documents or folder that have same name siblings in the ChangeSet List
+     * @return
+     */
+    public boolean hasSameNameSiblingConflicts() {
+        for (FolderTranslation folder : folders) {
+            if (folder.hasSameNameSibling()) {
+                return true;
+            }
+        }
+
+        for (FolderTranslation document : documents) {
+            if (document.hasSameNameSibling()) {
+                return true;
+            }
+        }
+
+        return false;
     }
 }

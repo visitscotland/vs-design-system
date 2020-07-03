@@ -11,12 +11,6 @@ import org.hippoecm.addon.workflow.WorkflowDialog;
 import org.hippoecm.frontend.plugins.standards.image.CachingImage;
 import org.hippoecm.frontend.service.IconSize;
 import org.hippoecm.frontend.translation.ILocaleProvider;
-import org.hippoecm.frontend.translation.components.document.FolderTranslation;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 public class TranslationConfirmationDialog extends WorkflowDialog<Void> {
     public static final String ID_IMG = "img";

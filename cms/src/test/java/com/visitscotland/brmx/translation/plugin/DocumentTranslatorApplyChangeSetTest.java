@@ -1,16 +1,12 @@
 package com.visitscotland.brmx.translation.plugin;
 
-import org.apache.jackrabbit.vault.fs.spi.impl.jcr20.JcrServiceProvider;
 import org.hippoecm.addon.workflow.WorkflowSNSException;
 import org.hippoecm.frontend.translation.ILocaleProvider;
-import org.hippoecm.frontend.translation.components.document.FolderTranslation;
 import org.hippoecm.repository.api.HippoNode;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import javax.jcr.Session;
@@ -19,12 +15,11 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.ArgumentMatchers.same;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
-public class DocumentTranslatorApplyChangeSet {
+public class DocumentTranslatorApplyChangeSetTest {
     private DocumentTranslator documentTranslator;
     @Mock
     private ChangeSet mockChange;
@@ -64,11 +59,11 @@ public class DocumentTranslatorApplyChangeSet {
     @Test
     public void applyChangeSet_allFoldersTranslated() throws Exception {
         // When all the folders in the list are translated the saveFolder method should never be called
-        FolderTranslation rootFolder = mock(FolderTranslation.class);
-        FolderTranslation folder1 = mock(FolderTranslation.class);
-        when(folder1.isEditable()).thenReturn(false);
-        FolderTranslation folder2 = mock(FolderTranslation.class);
-        when(folder2.isEditable()).thenReturn(false);
+        FolderTranslation rootFolder = new FolderTranslation("rootId");
+        FolderTranslation folder1 = new FolderTranslation("folder1id");
+        folder1.setEditable(false);
+        FolderTranslation folder2 = new FolderTranslation("folder2id");
+        folder2.setEditable(false);
 
         folderList.add(rootFolder);
         folderList.add(folder1);
@@ -82,11 +77,11 @@ public class DocumentTranslatorApplyChangeSet {
     @Test
     public void applyChangeSet_missingFolders_saveSuccess() throws Exception {
         // Should call saveFolder method for each folder with no translation
-        FolderTranslation rootFolder = mock(FolderTranslation.class);
-        FolderTranslation folder1 = mock(FolderTranslation.class);
-        when(folder1.isEditable()).thenReturn(false);
-        FolderTranslation folder2 = mock(FolderTranslation.class);
-        when(folder2.isEditable()).thenReturn(true);
+        FolderTranslation rootFolder = new FolderTranslation("rootId");
+        FolderTranslation folder1 = new FolderTranslation("folder1id");
+        folder1.setEditable(false);
+        FolderTranslation folder2 = new FolderTranslation("folder2id");
+        folder2.setEditable(true);
 
         folderList.add(rootFolder);
         folderList.add(folder1);
@@ -102,11 +97,11 @@ public class DocumentTranslatorApplyChangeSet {
     @Test
     public void applyChangeSet_missingFolders_saveFail() throws Exception {
         // Should call saveFolder method for each folder with no translation
-        FolderTranslation rootFolder = mock(FolderTranslation.class);
-        FolderTranslation folder1 = mock(FolderTranslation.class);
-        when(folder1.isEditable()).thenReturn(false);
-        FolderTranslation folder2 = mock(FolderTranslation.class);
-        when(folder2.isEditable()).thenReturn(true);
+        FolderTranslation rootFolder = new FolderTranslation("rootId");
+        FolderTranslation folder1 = new FolderTranslation("folder1id");
+        folder1.setEditable(false);
+        FolderTranslation folder2 = new FolderTranslation("folder2id");
+        folder2.setEditable(true);
 
         folderList.add(rootFolder);
         folderList.add(folder1);
@@ -153,11 +148,11 @@ public class DocumentTranslatorApplyChangeSet {
     @Test
     public void applyChangeSet_withDocuments_andFolders() throws Exception {
         // Saving both folder and documents, just doing both in the same test to be sure there is no interdependency
-        FolderTranslation rootFolder = mock(FolderTranslation.class);
-        FolderTranslation folder1 = mock(FolderTranslation.class);
-        when(folder1.isEditable()).thenReturn(false);
-        FolderTranslation folder2 = mock(FolderTranslation.class);
-        when(folder2.isEditable()).thenReturn(true);
+        FolderTranslation rootFolder = new FolderTranslation("rootId");
+        FolderTranslation folder1 = new FolderTranslation("folder1id");
+        folder1.setEditable(false);
+        FolderTranslation folder2 = new FolderTranslation("folder2id");
+        folder2.setEditable(true);
 
         folderList.add(rootFolder);
         folderList.add(folder1);

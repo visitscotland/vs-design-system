@@ -1,7 +1,6 @@
 package com.visitscotland.brmx.translation.plugin;
 
 import org.hippoecm.frontend.translation.ILocaleProvider;
-import org.hippoecm.frontend.translation.components.document.FolderTranslation;
 import org.hippoecm.repository.api.HippoNode;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -15,7 +14,7 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
-public class ChangeSetAddDocument {
+public class ChangeSetAddDocumentTest {
     private ChangeSet changeSet;
     @Mock
     private ILocaleProvider.HippoLocale mockLocale;

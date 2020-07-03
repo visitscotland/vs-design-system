@@ -3,7 +3,6 @@ package com.visitscotland.brmx.translation.plugin;
 import com.visitscotland.brmx.beans.Page;
 import com.visitscotland.brmx.beans.TranslationParent;
 import org.hippoecm.frontend.translation.ILocaleProvider;
-import org.hippoecm.frontend.translation.components.document.FolderTranslation;
 import org.hippoecm.hst.content.beans.ObjectBeanManagerException;
 import org.hippoecm.hst.content.beans.standard.HippoBean;
 import org.hippoecm.repository.api.*;

@@ -2,7 +2,6 @@ package com.visitscotland.brmx.translation.plugin;
 
 import org.hippoecm.addon.workflow.WorkflowSNSException;
 import org.hippoecm.frontend.translation.ILocaleProvider;
-import org.hippoecm.frontend.translation.components.document.FolderTranslation;
 import org.hippoecm.repository.HippoStdNodeType;
 import org.hippoecm.repository.api.HippoNode;
 import org.hippoecm.repository.api.HippoNodeType;
@@ -18,35 +17,40 @@ import org.mockito.stubbing.Answer;
 import javax.jcr.Node;
 import javax.jcr.NodeIterator;
 import javax.jcr.Session;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.ArgumentMatchers.same;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
-public class ChangeSetCheckForSameNameSiblings {
+public class ChangeSetCheckForSameNameSiblingsTest {
     private ChangeSet changeSet;
     @Mock
     private Session mockSession;
     @Mock
     private ILocaleProvider.HippoLocale mockLocale;
+    @Mock
+    private HippoTranslatedNodeFactory mockHippoTranslatedNodeFactory;
+    @Mock
+    private JcrFolderTranslationFactory mockJcrFolderTranslationFactory;
 
     @BeforeEach
     public void beforeEach() {
         when(mockLocale.getName()).thenReturn("fr");
-        changeSet = spy(new ChangeSet(mockLocale));
+        changeSet = new ChangeSet(mockLocale, mockHippoTranslatedNodeFactory, mockJcrFolderTranslationFactory);
     }
 
     @Test
     public void checkForSameNameSiblings_deepestTranslatedTargetNode_is_null() throws Exception {
         // This tests that a missing translated folder returns without error.
         // It is replicating existing functionality and is a case that should never happen.
-        FolderTranslation rootFolder = createMockFolderTranslation("root", false);
-        FolderTranslation level1 = createMockFolderTranslation("level1", false);
-        FolderTranslation level2 = createMockFolderTranslation("level2", true);
+        FolderTranslation rootFolder = createFolderTranslation("root", false);
+        FolderTranslation level1 = createFolderTranslation("level1", false);
+        FolderTranslation level2 = createFolderTranslation("level2", true);
         changeSet.getFolders().add(rootFolder);
         changeSet.getFolders().add(level1);
         changeSet.getFolders().add(level2);
@@ -54,13 +58,15 @@ public class ChangeSetCheckForSameNameSiblings {
         createDeepestTranslatedSourceNode("level1");
 
         assertThrows(WorkflowSNSException.class, () -> changeSet.checkForSameNameSiblings(mockSession));
+
+        assertThrows(WorkflowSNSException.class, () -> changeSet.markSameNameSiblings(mockSession));
     }
 
     @Test
     public void checkForSameNameSiblings_same_name_folder_sibling_matches_url() throws Exception {
         // Tests that an exception is thrown when a node with the same url name already exists
-        FolderTranslation rootFolder = createMockFolderTranslation("root", false);
-        FolderTranslation level1 = createMockFolderTranslation("level1", false);
+        FolderTranslation rootFolder = createFolderTranslation("root", false);
+        FolderTranslation level1 = createFolderTranslation("level1", false);
         FolderTranslation level2 = createHighestUntranslatedFolder("level2", "targetUrl", "targetName");
         changeSet.getFolders().add(rootFolder);
         changeSet.getFolders().add(level1);
@@ -72,6 +78,12 @@ public class ChangeSetCheckForSameNameSiblings {
         addNodeTranslation(sourceFolderNode, "fr", translatedTargetFolder);
 
         assertThrows(WorkflowSNSException.class, () -> changeSet.checkForSameNameSiblings(mockSession));
+
+        changeSet.markSameNameSiblings(mockSession);
+        assertTrue(changeSet.hasSameNameSiblingConflicts());
+        assertFalse(rootFolder.hasSameNameSibling());
+        assertFalse(level1.hasSameNameSibling());
+        assertTrue(level2.hasSameNameSibling());
     }
 
     @Test
@@ -79,8 +91,8 @@ public class ChangeSetCheckForSameNameSiblings {
         // Tests that an exception is thrown when a node with the same display name already exists
         // This is a little more complex, the addSiblingsToNode has to mimic a NodeIterator that the
         // SameNameSiblingsUtil uses
-        FolderTranslation rootFolder = createMockFolderTranslation("root", false);
-        FolderTranslation level1 = createMockFolderTranslation("level1", false);
+        FolderTranslation rootFolder = createFolderTranslation("root", false);
+        FolderTranslation level1 = createFolderTranslation("level1", false);
         FolderTranslation level2 = createHighestUntranslatedFolder("level2", "targetUrl", "targetName");
         changeSet.getFolders().add(rootFolder);
         changeSet.getFolders().add(level1);
@@ -90,15 +102,21 @@ public class ChangeSetCheckForSameNameSiblings {
         HippoTranslatedNode sourceFolderNode = createDeepestTranslatedSourceNode("level1");
         addNodeTranslation(sourceFolderNode, "fr", sameNameSibling);
 
-        addSiblingsToNode(sameNameSibling, "targetName", true);
+        addSiblingsToNode(sameNameSibling, "targetName", "otherName");
 
         assertThrows(WorkflowSNSException.class, () -> changeSet.checkForSameNameSiblings(mockSession));
+
+        changeSet.markSameNameSiblings(mockSession);
+        assertTrue(changeSet.hasSameNameSiblingConflicts());
+        assertFalse(rootFolder.hasSameNameSibling());
+        assertFalse(level1.hasSameNameSibling());
+        assertTrue(level2.hasSameNameSibling());
     }
 
     @Test
     public void checkForSameNameSiblings_folder_with_no_siblings() throws Exception {
-        FolderTranslation rootFolder = createMockFolderTranslation("root", false);
-        FolderTranslation level1 = createMockFolderTranslation("level1", false);
+        FolderTranslation rootFolder = createFolderTranslation("root", false);
+        FolderTranslation level1 = createFolderTranslation("level1", false);
         FolderTranslation level2 = createHighestUntranslatedFolder("level2", "targetUrl", "targetName");
         changeSet.getFolders().add(rootFolder);
         changeSet.getFolders().add(level1);
@@ -113,12 +131,18 @@ public class ChangeSetCheckForSameNameSiblings {
         when(mockIterator.hasNext()).thenReturn(false);
 
         changeSet.checkForSameNameSiblings(mockSession);
+
+        changeSet.markSameNameSiblings(mockSession);
+        assertFalse(changeSet.hasSameNameSiblingConflicts());
+        assertFalse(rootFolder.hasSameNameSibling());
+        assertFalse(level1.hasSameNameSibling());
+        assertFalse(level2.hasSameNameSibling());
     }
 
     @Test
     public void checkForSameNameSiblings_with_siblings_but_all_different_names_and_urls() throws Exception {
-        FolderTranslation rootFolder = createMockFolderTranslation("root", false);
-        FolderTranslation level1 = createMockFolderTranslation("level1", false);
+        FolderTranslation rootFolder = createFolderTranslation("root", false);
+        FolderTranslation level1 = createFolderTranslation("level1", false);
         FolderTranslation level2 = createHighestUntranslatedFolder("level2", "targetUrl", "targetName");
         changeSet.getFolders().add(rootFolder);
         changeSet.getFolders().add(level1);
@@ -128,9 +152,15 @@ public class ChangeSetCheckForSameNameSiblings {
         HippoTranslatedNode sourceFolderNode = createDeepestTranslatedSourceNode("level1");
         addNodeTranslation(sourceFolderNode, "fr", deepestTranslatedTargetNode);
 
-        addSiblingsToNode(deepestTranslatedTargetNode, "targetName", false);
+        addSiblingsToNode(deepestTranslatedTargetNode, "targetName-diff");
 
         changeSet.checkForSameNameSiblings(mockSession);
+
+        changeSet.markSameNameSiblings(mockSession);
+        assertFalse(changeSet.hasSameNameSiblingConflicts());
+        assertFalse(rootFolder.hasSameNameSibling());
+        assertFalse(level1.hasSameNameSibling());
+        assertFalse(level2.hasSameNameSibling());
     }
 
     @Test
@@ -146,9 +176,15 @@ public class ChangeSetCheckForSameNameSiblings {
         changeSet.getDocuments().add(document2);
         changeSet.getDocuments().add(document3);
 
-        addSiblingsToNode(documentParentFolder, "doc1", false);
+        addSiblingsToNode(documentParentFolder, "doc1-diff");
 
         changeSet.checkForSameNameSiblings(mockSession);
+
+        changeSet.markSameNameSiblings(mockSession);
+        assertFalse(changeSet.hasSameNameSiblingConflicts());
+        assertFalse(document1.hasSameNameSibling());
+        assertFalse(document2.hasSameNameSibling());
+        assertFalse(document3.hasSameNameSibling());
     }
 
     @Test
@@ -164,14 +200,21 @@ public class ChangeSetCheckForSameNameSiblings {
         changeSet.getDocuments().add(document2);
         changeSet.getDocuments().add(document3);
 
-        addSiblingsToNode(documentParentFolder, "doc1name", false);
+        addSiblingsToNode(documentParentFolder, "doc1name-diff");
+        addSiblingMatchingUrl(documentParentFolder,"doc2url");
         addSiblingMatchingUrl(documentParentFolder,"doc3url");
 
         assertThrows(WorkflowSNSException.class, () -> changeSet.checkForSameNameSiblings(mockSession));
+
+        changeSet.markSameNameSiblings(mockSession);
+        assertTrue(changeSet.hasSameNameSiblingConflicts());
+        assertFalse(document1.hasSameNameSibling());
+        assertTrue(document2.hasSameNameSibling());
+        assertTrue(document3.hasSameNameSibling());
     }
 
     @Test
-    public void checkForSameNameSiblings_document_with_same_name_sibling() throws Exception {
+    public void checkForSameNameSiblings_document_with_same_name_siblings() throws Exception {
         // If there are no same name siblings in the folders it moves on to check all of the documents
         // This test will have a document with siblings, sibling with same display name
         Node documentParentFolder = initialiseFoldersAllTranslated();
@@ -183,9 +226,15 @@ public class ChangeSetCheckForSameNameSiblings {
         changeSet.getDocuments().add(document2);
         changeSet.getDocuments().add(document3);
 
-        addSiblingsToNode(documentParentFolder, "doc3name", true);
+        addSiblingsToNode(documentParentFolder, "doc2name", "doc3name", "doc1Name-diff", "doc-other");
 
         assertThrows(WorkflowSNSException.class, () -> changeSet.checkForSameNameSiblings(mockSession));
+
+        changeSet.markSameNameSiblings(mockSession);
+        assertTrue(changeSet.hasSameNameSiblingConflicts());
+        assertFalse(document1.hasSameNameSibling());
+        assertTrue(document2.hasSameNameSibling());
+        assertTrue(document3.hasSameNameSibling());
     }
 
     @Test
@@ -206,12 +255,24 @@ public class ChangeSetCheckForSameNameSiblings {
         when(mockIterator.hasNext()).thenReturn(false);
 
         changeSet.checkForSameNameSiblings(mockSession);
+
+        changeSet.markSameNameSiblings(mockSession);
+        assertFalse(changeSet.hasSameNameSiblingConflicts());
+        assertFalse(document1.hasSameNameSibling());
+        assertFalse(document2.hasSameNameSibling());
+        assertFalse(document3.hasSameNameSibling());
+    }
+
+    private void initialiseEmptyChildNodeIterator(Node parentNode) throws Exception {
+        NodeIterator mockNodeIterator = mock(NodeIterator.class);
+        when(parentNode.getNodes()).thenReturn(mockNodeIterator);
+        when(mockNodeIterator.hasNext()).thenReturn(false);
     }
 
     private Node initialiseFoldersAllTranslated() throws Exception {
-        FolderTranslation rootFolder = createMockFolderTranslation("root", false);
-        FolderTranslation level1 = createMockFolderTranslation("level1", false);
-        FolderTranslation level2 = createMockFolderTranslation("level2", false);
+        FolderTranslation rootFolder = createFolderTranslation("root", false);
+        FolderTranslation level1 = createFolderTranslation("level1", false);
+        FolderTranslation level2 = createFolderTranslation("level2", false);
         changeSet.getFolders().add(rootFolder);
         changeSet.getFolders().add(level1);
         changeSet.getFolders().add(level2);
@@ -227,55 +288,46 @@ public class ChangeSetCheckForSameNameSiblings {
         when(folderNode.hasNode(eq(relPath))).thenReturn(true);
     }
 
-    private void addSiblingsToNode(Node targetNode, String targetName, boolean hasMatchingSibling) throws Exception {
-        // Add a node with a getDisplayName equals to targetName if hasMatchingSibling is true
+    private void addSiblingsToNode(Node targetNode, String... targetDisplayNames) throws Exception {
+        // This creates a mock NodeIterator by creating a List and using the Iterator from the List as a NodeIterator.
+        // The Answer is used to ensure we get a new NodeIterator instance every time getNodes() method is called.
         when(targetNode.getNodes()).thenAnswer(new Answer<NodeIterator>() {
-            final int maxNumberOfCalls = 5;
-
             @Override
             public NodeIterator answer(InvocationOnMock invocation) throws Throwable {
-                Answer<Boolean> mockHasNextAnswer = new Answer<Boolean>() {
-                    int numberOfCalls = 0;
+                List<Node> nodeList = new ArrayList<>();
 
+                HippoNode neitherFolderOrHandle = mock(HippoNode.class);
+                lenient().when(neitherFolderOrHandle.isNodeType(eq(HippoStdNodeType.NT_FOLDER))).thenReturn(false);
+                lenient().when(neitherFolderOrHandle.isNodeType(eq(HippoNodeType.NT_HANDLE))).thenReturn(false);
+                nodeList.add(neitherFolderOrHandle);
+
+                int nodeNumber = 1;
+                for (String displayName : targetDisplayNames) {
+                    HippoNode mockNode = mock(HippoNode.class);
+                    nodeList.add(mockNode);
+                    lenient().when(mockNode.getDisplayName()).thenReturn(displayName);
+                    if (nodeNumber % 2 == 0) {
+                        lenient().when(mockNode.isNodeType(eq(HippoStdNodeType.NT_FOLDER))).thenReturn(true);
+                    } else {
+                        lenient().when(mockNode.isNodeType(eq(HippoStdNodeType.NT_FOLDER))).thenReturn(false);
+                        lenient().when(mockNode.isNodeType(eq(HippoNodeType.NT_HANDLE))).thenReturn(true);
+                    }
+                    nodeNumber++;
+                }
+                final Iterator<Node> nodeIterator = nodeList.iterator();
+                NodeIterator mockNodeIterator = mock(NodeIterator.class);
+                lenient().when(mockNodeIterator.hasNext()).thenAnswer(new Answer<Boolean>() {
                     @Override
                     public Boolean answer(InvocationOnMock invocation) throws Throwable {
-                        boolean hasNext = numberOfCalls < maxNumberOfCalls;
-                        numberOfCalls++;
-                        return hasNext;
+                        return nodeIterator.hasNext();
                     }
-                };
-
-                Answer<HippoNode> mockNodeIteratorNodeAnswer = new Answer<HippoNode>() {
-                    int numberOfCalls = 0;
-
+                });
+                lenient().when(mockNodeIterator.nextNode()).thenAnswer(new Answer<Node>() {
                     @Override
-                    public HippoNode answer(InvocationOnMock invocation) throws Throwable {
-                        HippoNode mockNode = mock(HippoNode.class);
-                        // Splitting the nodes between folders and handles, the first will be neither
-                        if (numberOfCalls == 0) {
-                            when(mockNode.isNodeType(eq(HippoStdNodeType.NT_FOLDER))).thenReturn(false);
-                            when(mockNode.isNodeType(eq(HippoNodeType.NT_HANDLE))).thenReturn(false);
-                        } else {
-                            if (numberOfCalls % 2 == 0) {
-                                when(mockNode.isNodeType(eq(HippoStdNodeType.NT_FOLDER))).thenReturn(true);
-                            } else {
-                                when(mockNode.isNodeType(eq(HippoStdNodeType.NT_FOLDER))).thenReturn(false);
-                                when(mockNode.isNodeType(eq(HippoNodeType.NT_HANDLE))).thenReturn(true);
-                            }
-                            if (numberOfCalls == maxNumberOfCalls - 1 && hasMatchingSibling) {
-                                when(mockNode.getDisplayName()).thenReturn(targetName);
-                            } else {
-                                when(mockNode.getDisplayName()).thenReturn(targetName + "-different");
-                            }
-                        }
-                        numberOfCalls++;
-                        return mockNode;
+                    public Node answer(InvocationOnMock invocation) throws Throwable {
+                        return nodeIterator.next();
                     }
-                };
-
-                NodeIterator mockNodeIterator = mock(NodeIterator.class);
-                when(mockNodeIterator.hasNext()).thenAnswer(mockHasNextAnswer);
-                when(mockNodeIterator.nextNode()).thenAnswer(mockNodeIteratorNodeAnswer);
+                });
                 return mockNodeIterator;
             }
         });
@@ -288,9 +340,9 @@ public class ChangeSetCheckForSameNameSiblings {
     }
 
     private FolderTranslation createHighestUntranslatedFolder(String nodeId, String targetUrlName, String targetLocalizedName) {
-        FolderTranslation highestUntranslatedItem = createMockFolderTranslation(nodeId, true);
-        when(highestUntranslatedItem.getUrlfr()).thenReturn(targetUrlName);
-        when(highestUntranslatedItem.getNamefr()).thenReturn(targetLocalizedName);
+        FolderTranslation highestUntranslatedItem = createFolderTranslation(nodeId, true);
+        highestUntranslatedItem.setNamefr(targetLocalizedName);
+        highestUntranslatedItem.setUrlfr(targetUrlName);
         return highestUntranslatedItem;
     }
 
@@ -298,7 +350,7 @@ public class ChangeSetCheckForSameNameSiblings {
         Node sourceNode = mock(Node.class);
         HippoTranslatedNode mockHippoTranslatedNode = mock(HippoTranslatedNode.class);
         when(mockSession.getNodeByIdentifier(sourceNodeIdentifier)).thenReturn(sourceNode);
-        doReturn(mockHippoTranslatedNode).when(changeSet).createFromNode(same(sourceNode));
+        when(mockHippoTranslatedNodeFactory.createFromNode(same(sourceNode))).thenReturn(mockHippoTranslatedNode);
         return mockHippoTranslatedNode;
     }
 
@@ -306,10 +358,9 @@ public class ChangeSetCheckForSameNameSiblings {
         when(sourceNode.getTranslation(eq(language))).thenReturn(translatedNode);
     }
 
-    private FolderTranslation createMockFolderTranslation(String nodeId, boolean isEditable) {
-        FolderTranslation mockFolder = mock(FolderTranslation.class);
-        lenient().when(mockFolder.getId()).thenReturn(nodeId);
-        lenient().when(mockFolder.isEditable()).thenReturn(isEditable);
+    private FolderTranslation createFolderTranslation(String nodeId, boolean isEditable) {
+        FolderTranslation mockFolder = new FolderTranslation(nodeId);
+        mockFolder.setEditable(isEditable);
         return mockFolder;
     }
 }

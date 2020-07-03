@@ -80,6 +80,12 @@ public class TranslationAction extends StdWorkflow<TranslationWorkflow> {
             List<ChangeSet> changeSetList = translator.buildChangeSetList(workflowPlugin.getSourceDocumentNode(),
                     workflowPlugin.getAvailableLocales());
 
+            for(ChangeSet changeSet : changeSetList) {
+                if (changeSet.hasSameNameSiblingConflicts()) {
+                    return new ExceptionDialog("Have same name sibling conflicts");
+                }
+            }
+
             return new TranslationConfirmationDialog(this, new DocumentChangeProvider(changeSetList));
         } catch(ObjectBeanManagerException | RepositoryException ex) {
             return new ExceptionDialog(ex);
