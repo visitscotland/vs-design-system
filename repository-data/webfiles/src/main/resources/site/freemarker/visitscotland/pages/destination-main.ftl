@@ -1,17 +1,17 @@
 <#ftl output_format="XML">
 <#include "../../include/imports.ftl">
 <#include "../macros/global/cms-errors.ftl">
-<#include "../../vs-dotcom-ds/components/page-intro.ftl">
-<#include "../../vs-dotcom-ds/components/hero.ftl">
-<#include "../../vs-dotcom-ds/components/container.ftl">
-<#include "../../vs-dotcom-ds/components/row.ftl">
-<#include "../../vs-dotcom-ds/components/col.ftl">
-<#include "../../vs-dotcom-ds/components/rich-text-wrapper.ftl">
-<#include "../../vs-dotcom-ds/components/img.ftl">
+<#include "../../frontend/components/vs-page-intro.ftl">
+<#include "../../frontend/components/vs-hero.ftl">
+<#include "../../frontend/components/vs-container.ftl">
+<#include "../../frontend/components/vs-row.ftl">
+<#include "../../frontend/components/vs-col.ftl">
+<#include "../../frontend/components/vs-rich-text-wrapper.ftl">
+<#include "../../frontend/components/vs-img.ftl">
 
-<#include "../../vs-dotcom-ds/components/image-with-caption.ftl">
-<#include "../../vs-dotcom-ds/components/heading.ftl">
-<#include "../../vs-dotcom-ds/components/social-share.ftl">
+<#include "../../frontend/components/vs-image-with-caption.ftl">
+<#include "../../frontend/components/vs-heading.ftl">
+<#include "../../frontend/components/vs-social-share.ftl">
 
 <#include "../macros/modules/itineraries/itinerary-stop.ftl">
 <#include "../macros/global/cms-errors.ftl">
@@ -59,7 +59,7 @@
 				</vs-col>
 				<vs-col cols="2">
 					<div class="d-flex justify-content-center justify-content-sm-end">
-						<vs-social-share />
+						<vs-social-share></vs-social-share>
 					</div>
 				</vs-col>
 			</vs-row>

@@ -10,7 +10,7 @@
 
 const preprocessor = require("@cypress/webpack-preprocessor")
 
-const webpackOptions = require("../../build/webpack.test.conf")
+const webpackOptions = require("../../build/test.webpack.conf")
 
 // This function is called when a project is opened or re-opened (e.g. due to
 // the project's config changing)

@@ -1452,7 +1452,7 @@
           jcr:uuid: 0e981425-e48d-4d6b-bb2f-a3678128bbb8
           hippo:name: Featured Layout
           hippo:versionHistory: 55a9bcf3-9bab-4195-a252-2e68bcc70eae
-          /featured-layout[1]:
+          /featured-layout:
             jcr:primaryType: visitscotland:Megalinks
             jcr:mixinTypes: ['mix:referenceable']
             jcr:uuid: 45facf37-0020-4ff7-863c-a3422dd4eaaa
@@ -1910,7 +1910,7 @@
     /edinburgh:
       jcr:primaryType: hippostd:folder
       jcr:mixinTypes: ['hippo:named', 'hippotranslation:translated', 'mix:versionable']
-      jcr:uuid: 36c2b178-2d2d-429e-9879-217c3e4d5b59
+      jcr:uuid: 18319fb4-3261-41ca-a807-75abd023aec9
       hippo:name: destination Edinburgh
       hippostd:foldertype: [new-translated-folder, new-document]
       hippotranslation:id: 6e09897d-631e-4302-aa08-87bd9ef6fa84
@@ -1918,13 +1918,13 @@
       /content:
         jcr:primaryType: hippo:handle
         jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
-        jcr:uuid: a2c8d3a8-7d73-4fd5-b1e9-73698863341f
+        jcr:uuid: 26939dfd-6cc8-49db-83ee-369df9971a95
         hippo:name: Edinburgh
         hippo:versionHistory: 83c66920-d2e7-4f20-b285-d57448895970
         /content[1]:
           jcr:primaryType: visitscotland:Destination
           jcr:mixinTypes: ['mix:referenceable']
-          jcr:uuid: 337eb02d-1b93-46a6-9beb-32eb62660862
+          jcr:uuid: 7b856bda-2c61-4791-92ae-5d491962eade
           hippo:availability: []
           hippostd:state: draft
           hippostdpubwf:createdBy: admin
@@ -1955,7 +1955,7 @@
         /content[2]:
           jcr:primaryType: visitscotland:Destination
           jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
-          jcr:uuid: f15145cd-7079-4d6a-b63c-813df705478d
+          jcr:uuid: 1f096dcb-eb10-4e1b-983a-1ef0f28cc549
           hippo:availability: [preview]
           hippostd:state: unpublished
           hippostdpubwf:createdBy: admin
@@ -1986,7 +1986,7 @@
         /content[3]:
           jcr:primaryType: visitscotland:Destination
           jcr:mixinTypes: ['mix:referenceable']
-          jcr:uuid: 54cc96ea-8e2e-4e4f-aa61-e7cc4421f890
+          jcr:uuid: 3b0ad6ce-40e4-4930-8578-89681efca8cb
           hippo:availability: [live]
           hippostd:state: published
           hippostdpubwf:createdBy: admin
@@ -2018,13 +2018,13 @@
       /featured-layout:
         jcr:primaryType: hippo:handle
         jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
-        jcr:uuid: 0e981425-e48d-4d6b-bb2f-a3678128bbb8
+        jcr:uuid: b7bef756-0e4b-44d0-9100-269b3ec7980b
         hippo:name: Featured Layout
         hippo:versionHistory: 0d260efa-668e-40a8-871c-e44e87815f50
         /featured-layout[1]:
           jcr:primaryType: visitscotland:Megalinks
           jcr:mixinTypes: ['mix:referenceable']
-          jcr:uuid: 45facf37-0020-4ff7-863c-a3422dd4eaaa
+          jcr:uuid: 78f927ce-15f9-42ba-9bcf-c788c515d309
           hippo:availability: []
           hippostd:state: draft
           hippostdpubwf:createdBy: admin
@@ -2594,2248 +2594,316 @@
   /destinations-maps:
     jcr:primaryType: hippostd:folder
     jcr:mixinTypes: ['hippotranslation:translated', 'mix:versionable']
-    jcr:uuid: 81bb0b87-c15c-475d-bd13-5d9a262a95e5
+    jcr:uuid: e3bbb7c8-d800-4de3-92bc-d9c63973dccb
     hippostd:foldertype: [new-translated-folder, new-document]
-    hippotranslation:id: 9a465810-0318-447d-af80-28f023b96f0f
+    hippotranslation:id: 34e6e617-eb85-4cad-b6f2-3dee16e1412f
     hippotranslation:locale: en
-    /edinburgh:
+    /orkney:
       jcr:primaryType: hippostd:folder
-      jcr:mixinTypes: ['hippo:named', 'hippotranslation:translated', 'mix:versionable']
-      jcr:uuid: c0051db6-5057-4272-8be1-143dacb9bf2b
-      hippo:name: Edinburgh
+      jcr:mixinTypes: ['hippotranslation:translated', 'mix:versionable']
+      jcr:uuid: dca6304b-040c-4f59-85ae-5e0521a08f34
       hippostd:foldertype: [new-translated-folder, new-document]
-      hippotranslation:id: 39d5b354-54ec-49a3-99c8-9d8d9ae41e09
+      hippotranslation:id: 64929184-6bd8-44fa-8e9e-d8a459fe1c3b
       hippotranslation:locale: en
-    /content:
-      jcr:primaryType: hippo:handle
-      jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
-      jcr:uuid: ccb181a5-06de-4ae4-8360-6265116ee443
-      hippo:name: Example
-      hippo:versionHistory: 6eec3fda-ba3a-40d3-94cb-434cb80e0afb
-      /content[1]:
-        jcr:primaryType: visitscotland:Listicle
-        jcr:mixinTypes: ['mix:referenceable']
-        jcr:uuid: a63fb766-e285-4007-bfca-a973cec2b51b
-        hippo:availability: []
-        hippostd:state: draft
-        hippostdpubwf:createdBy: admin
-        hippostdpubwf:creationDate: 2020-05-15T15:24:56.700+01:00
-        hippostdpubwf:lastModificationDate: 2020-05-15T15:24:56.700+01:00
-        hippostdpubwf:lastModifiedBy: admin
-        hippotranslation:id: a5604f9f-823d-4c78-8fc3-2b0fc1c659d1
+      /short-break-itinerary:
+        jcr:primaryType: hippostd:folder
+        jcr:mixinTypes: ['hippo:named', 'hippotranslation:translated', 'mix:versionable']
+        jcr:uuid: 493a5d82-ed98-49ab-9f2a-bedad3bee33a
+        hippo:name: short break itinerary
+        hippostd:foldertype: [new-translated-folder, new-document]
+        hippotranslation:id: c2843c5a-891a-430a-82cd-5dc702d97131
         hippotranslation:locale: en
-        visitscotland:breadcrumb: ''
-        visitscotland:descOrder: false
-        visitscotland:seoDescription: seo description
-        visitscotland:seoNoIndex: false
-        visitscotland:seoTitle: title seo
-        visitscotland:summaryTitle: ''
-        visitscotland:teaser: teaser
-        visitscotland:title: HEading
-        /visitscotland:heroImage:
-          jcr:primaryType: hippogallerypicker:imagelink
-          hippo:docbase: 878bc413-07fe-4c1a-9df6-55514c250a16
-          hippo:facets: []
-          hippo:modes: []
-          hippo:values: []
-        /visitscotland:introduction:
-          jcr:primaryType: hippostd:html
-          hippostd:content: <p>intro</p>
-        /visitscotland:summary:
-          jcr:primaryType: hippostd:html
-          hippostd:content: ''
-      /content[2]:
-        jcr:primaryType: visitscotland:Listicle
-        jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
-        jcr:uuid: 37f8df20-e2f9-4fd1-bd22-adecb38fd97a
-        hippo:availability: [preview]
-        hippostd:state: unpublished
-        hippostdpubwf:createdBy: admin
-        hippostdpubwf:creationDate: 2020-05-15T15:24:56.700+01:00
-        hippostdpubwf:lastModificationDate: 2020-05-15T15:25:26.552+01:00
-        hippostdpubwf:lastModifiedBy: admin
-        hippotranslation:id: a5604f9f-823d-4c78-8fc3-2b0fc1c659d1
-        hippotranslation:locale: en
-        visitscotland:breadcrumb: ''
-        visitscotland:descOrder: false
-        visitscotland:seoDescription: seo description
-        visitscotland:seoNoIndex: false
-        visitscotland:seoTitle: title seo
-        visitscotland:summaryTitle: ''
-        visitscotland:teaser: teaser
-        visitscotland:title: HEading
-        /visitscotland:heroImage:
-          jcr:primaryType: hippogallerypicker:imagelink
-          hippo:docbase: 878bc413-07fe-4c1a-9df6-55514c250a16
-          hippo:facets: []
-          hippo:modes: []
-          hippo:values: []
-        /visitscotland:introduction:
-          jcr:primaryType: hippostd:html
-          hippostd:content: <p>intro</p>
-        /visitscotland:summary:
-          jcr:primaryType: hippostd:html
-          hippostd:content: ''
-      /content[3]:
-        jcr:primaryType: visitscotland:Listicle
-        jcr:mixinTypes: ['mix:referenceable']
-        jcr:uuid: 5c2c07d8-69ea-4a42-9788-17a86f929222
-        hippo:availability: [live]
-        hippostd:state: published
-        hippostdpubwf:createdBy: admin
-        hippostdpubwf:creationDate: 2020-05-15T15:24:56.700+01:00
-        hippostdpubwf:lastModificationDate: 2020-05-15T15:25:26.552+01:00
-        hippostdpubwf:lastModifiedBy: admin
-        hippostdpubwf:publicationDate: 2020-05-15T15:30:30.462+01:00
-        hippotranslation:id: a5604f9f-823d-4c78-8fc3-2b0fc1c659d1
-        hippotranslation:locale: en
-        visitscotland:breadcrumb: ''
-        visitscotland:descOrder: false
-        visitscotland:seoDescription: seo description
-        visitscotland:seoNoIndex: false
-        visitscotland:seoTitle: title seo
-        visitscotland:summaryTitle: ''
-        visitscotland:teaser: teaser
-        visitscotland:title: HEading
-        /visitscotland:heroImage:
-          jcr:primaryType: hippogallerypicker:imagelink
-          hippo:docbase: 878bc413-07fe-4c1a-9df6-55514c250a16
-          hippo:facets: []
-          hippo:modes: []
-          hippo:values: []
-        /visitscotland:introduction:
-          jcr:primaryType: hippostd:html
-          hippostd:content: <p>intro</p>
-        /visitscotland:summary:
-          jcr:primaryType: hippostd:html
-          hippostd:content: ''
-  /see-do:
-    jcr:primaryType: hippostd:folder
-    jcr:mixinTypes: ['hippotranslation:translated', 'mix:versionable']
-    jcr:uuid: b600d137-1a3d-4737-9310-9098df612fbc
-    hippostd:foldertype: [new-translated-folder, new-document]
-    hippotranslation:id: 657f878c-ae60-469b-a144-ef6472e320ff
-    hippotranslation:locale: en
-    /victorian-heritage-trail:
-      jcr:primaryType: hippostd:folder
-      jcr:mixinTypes: ['hippo:named', 'hippotranslation:translated', 'mix:versionable']
-      jcr:uuid: 09c30de2-3800-46ae-9ea3-a29106a6b0ca
-      hippo:name: Victorian Heritage Trail
-      hippostd:foldertype: [new-translated-folder, new-document]
-      hippotranslation:id: c4d3e913-6ac7-49b9-83c2-f9bb147effaa
-      hippotranslation:locale: en
-      /content:
-        jcr:primaryType: hippo:handle
-        jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
-        jcr:uuid: e16bdb89-c271-46f1-851f-2d2b82d631d4
-        hippo:name: Victorian Heritage Trail
-        hippo:versionHistory: 3f2c7bc2-bd1f-4651-9b9f-c3d86239dba4
-        /content[1]:
-          jcr:primaryType: visitscotland:Itinerary
-          jcr:mixinTypes: ['mix:referenceable']
-          jcr:uuid: ebdf7e9e-543e-4855-85ce-cea5c20b796c
-          hippo:availability: []
-          hippostd:state: draft
-          hippostdpubwf:createdBy: admin
-          hippostdpubwf:creationDate: 2020-02-07T12:52:15.063Z
-          hippostdpubwf:lastModificationDate: 2020-05-25T14:09:40.049+01:00
-          hippostdpubwf:lastModifiedBy: admin
-          hippotranslation:id: 80ddd0f7-26c8-4514-bc5b-1504204eaec4
-          hippotranslation:locale: en
-          visitscotland:areas: [north]
-          visitscotland:breadcrumb: ''
-          visitscotland:distance: 0.0
-          visitscotland:finish: ''
-          visitscotland:highlights: "Balmoral Castle \r\nBraemar Castle\r\nBallater"
-          visitscotland:popular: false
-          visitscotland:seoDescription: The Victorian Heritage Trail pinpoints many
-            of the historic places that make the picturesque Dee and Don Valleys,
-            in the north east of Scotland, a truly majestic place.
-          visitscotland:seoNoIndex: false
-          visitscotland:seoTitle: Victorian Heritage Trail
-          visitscotland:start: ''
-          visitscotland:teaser: The Victorian Heritage Trail pinpoints many of the
-            historic places that make the picturesque Dee and Don Valleys, in the
-            north east of Scotland, a truly majestic place.
-          visitscotland:theme: sightseeing
-          visitscotland:title: Victorian Heritage Trail
-          visitscotland:transports: [car]
-          /visitscotland:heroImage:
-            jcr:primaryType: hippogallerypicker:imagelink
-            hippo:docbase: d607431a-46f7-4ed1-a288-de6458bbdc97
-            hippo:facets: []
-            hippo:modes: []
-            hippo:values: []
-          /visitscotland:introduction:
-            jcr:primaryType: hippostd:html
-            hippostd:content: |-
-              <p>Royal Deeside has been a favourite holiday destination of the Royal Family ever since Queen Victoria and Prince Albert first visited and fell in love with the Balmoral Estate in 1848. Since then successive generations of the Royal Family have adopted the area as their tranquil retreat.</p>
-
-              <p>The&nbsp;<a href="http://visitroyaldeeside.com/victorian-heritage-trail-on-royal-deeside-infomation/" target="_blank">Victorian Heritage Trail</a>&nbsp;pinpoints many of the historic places that make the picturesque Dee and Don Valleys, in the north east of Scotland, a truly majestic place.</p>
-        /content[2]:
-          jcr:primaryType: visitscotland:Itinerary
-          jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
-          jcr:uuid: 6ae786ab-b2a2-4085-8fc4-e2ae4754b4ca
-          hippo:availability: [preview]
-          hippostd:state: unpublished
-          hippostdpubwf:createdBy: admin
-          hippostdpubwf:creationDate: 2020-02-07T12:52:15.063Z
-          hippostdpubwf:lastModificationDate: 2020-05-25T14:09:52.572+01:00
-          hippostdpubwf:lastModifiedBy: admin
-          hippotranslation:id: 80ddd0f7-26c8-4514-bc5b-1504204eaec4
-          hippotranslation:locale: en
-          visitscotland:areas: [north]
-          visitscotland:breadcrumb: ''
-          visitscotland:distance: 0.0
-          visitscotland:finish: ''
-          visitscotland:highlights: "Balmoral Castle \r\nBraemar Castle\r\nBallater"
-          visitscotland:popular: false
-          visitscotland:seoDescription: The Victorian Heritage Trail pinpoints many
-            of the historic places that make the picturesque Dee and Don Valleys,
-            in the north east of Scotland, a truly majestic place.
-          visitscotland:seoNoIndex: false
-          visitscotland:seoTitle: Victorian Heritage Trail
-          visitscotland:start: ''
-          visitscotland:teaser: The Victorian Heritage Trail pinpoints many of the
-            historic places that make the picturesque Dee and Don Valleys, in the
-            north east of Scotland, a truly majestic place.
-          visitscotland:theme: sightseeing
-          visitscotland:title: Victorian Heritage Trail
-          visitscotland:transports: [car]
-          /visitscotland:heroImage:
-            jcr:primaryType: hippogallerypicker:imagelink
-            hippo:docbase: d607431a-46f7-4ed1-a288-de6458bbdc97
-            hippo:facets: []
-            hippo:modes: []
-            hippo:values: []
-          /visitscotland:introduction:
-            jcr:primaryType: hippostd:html
-            hippostd:content: |-
-              <p>Royal Deeside has been a favourite holiday destination of the Royal Family ever since Queen Victoria and Prince Albert first visited and fell in love with the Balmoral Estate in 1848. Since then successive generations of the Royal Family have adopted the area as their tranquil retreat.</p>
-
-              <p>The&nbsp;<a href="http://visitroyaldeeside.com/victorian-heritage-trail-on-royal-deeside-infomation/" target="_blank">Victorian Heritage Trail</a>&nbsp;pinpoints many of the historic places that make the picturesque Dee and Don Valleys, in the north east of Scotland, a truly majestic place.</p>
-        /content[3]:
-          jcr:primaryType: visitscotland:Itinerary
-          jcr:mixinTypes: ['mix:referenceable']
-          jcr:uuid: e546d1d7-ca93-497d-a6cc-55c05a8de40e
-          hippo:availability: [live]
-          hippostd:state: published
-          hippostdpubwf:createdBy: admin
-          hippostdpubwf:creationDate: 2020-02-07T12:52:15.063Z
-          hippostdpubwf:lastModificationDate: 2020-05-25T14:09:52.572+01:00
-          hippostdpubwf:lastModifiedBy: admin
-          hippostdpubwf:publicationDate: 2020-05-25T14:09:55.154+01:00
-          hippotranslation:id: 80ddd0f7-26c8-4514-bc5b-1504204eaec4
-          hippotranslation:locale: en
-          visitscotland:areas: [north]
-          visitscotland:breadcrumb: ''
-          visitscotland:distance: 0.0
-          visitscotland:finish: ''
-          visitscotland:highlights: "Balmoral Castle \r\nBraemar Castle\r\nBallater"
-          visitscotland:popular: false
-          visitscotland:seoDescription: The Victorian Heritage Trail pinpoints many
-            of the historic places that make the picturesque Dee and Don Valleys,
-            in the north east of Scotland, a truly majestic place.
-          visitscotland:seoNoIndex: false
-          visitscotland:seoTitle: Victorian Heritage Trail
-          visitscotland:start: ''
-          visitscotland:teaser: The Victorian Heritage Trail pinpoints many of the
-            historic places that make the picturesque Dee and Don Valleys, in the
-            north east of Scotland, a truly majestic place.
-          visitscotland:theme: sightseeing
-          visitscotland:title: Victorian Heritage Trail
-          visitscotland:transports: [car]
-          /visitscotland:heroImage:
-            jcr:primaryType: hippogallerypicker:imagelink
-            hippo:docbase: d607431a-46f7-4ed1-a288-de6458bbdc97
-            hippo:facets: []
-            hippo:modes: []
-            hippo:values: []
-          /visitscotland:introduction:
-            jcr:primaryType: hippostd:html
-            hippostd:content: |-
-              <p>Royal Deeside has been a favourite holiday destination of the Royal Family ever since Queen Victoria and Prince Albert first visited and fell in love with the Balmoral Estate in 1848. Since then successive generations of the Royal Family have adopted the area as their tranquil retreat.</p>
-
-              <p>The&nbsp;<a href="http://visitroyaldeeside.com/victorian-heritage-trail-on-royal-deeside-infomation/" target="_blank">Victorian Heritage Trail</a>&nbsp;pinpoints many of the historic places that make the picturesque Dee and Don Valleys, in the north east of Scotland, a truly majestic place.</p>
-      /drumoak:
-        jcr:primaryType: hippo:handle
-        jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
-        jcr:uuid: 5b67dc0d-73ec-4b6f-acd8-84e78e4bde14
-        hippo:name: Drumoak
-        hippo:versionHistory: 5117f24a-2b84-4754-a1c0-2539b76e1de0
-        /drumoak[1]:
-          jcr:primaryType: visitscotland:Day
-          jcr:mixinTypes: ['mix:referenceable']
-          jcr:uuid: 7ee1aa0a-29a4-4d01-8312-71a0e25e7af8
-          hippo:availability: []
-          hippostd:state: draft
-          hippostdpubwf:createdBy: admin
-          hippostdpubwf:creationDate: 2020-02-07T12:53:32.885Z
-          hippostdpubwf:lastModificationDate: 2020-04-30T18:35:01.493+01:00
-          hippostdpubwf:lastModifiedBy: admin
-          hippotranslation:id: 539af613-c55b-4ff5-a393-7159c2b57b96
-          hippotranslation:locale: en
-          visitscotland:title: Drumoak
-          visitscotland:transports: [car]
-          /visitscotland:introduction:
-            jcr:primaryType: hippostd:html
-            hippostd:content: <p>The first day on your itinerary is jam-packed with
-              Victorian attractions for you to explore. See Victorian architecture
-              at Drum Castle, visit the railway station used by Queen Victoria, learn
-              about Queen Victoria’s connection with Crathes Castle and see beautiful
-              Victorian artwork at Finzean Estate.</p>
-          /visitscotland:stops[1]:
-            jcr:primaryType: hippo:mirror
-            hippo:docbase: b390df94-227d-4535-a7a2-6073465d6642
-          /visitscotland:stops[2]:
-            jcr:primaryType: hippo:mirror
-            hippo:docbase: b2140603-eb92-40f5-967f-d10060722cea
-          /visitscotland:stops[3]:
-            jcr:primaryType: hippo:mirror
-            hippo:docbase: 93608785-d0d6-4af0-9fed-9deef0caddc6
-          /visitscotland:stops[4]:
-            jcr:primaryType: hippo:mirror
-            hippo:docbase: 5a0149d0-590f-4c74-b095-92e430e70bd2
-        /drumoak[2]:
-          jcr:primaryType: visitscotland:Day
-          jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
-          jcr:uuid: e2140f08-c915-4084-a237-90309ed22b17
-          hippo:availability: [preview]
-          hippostd:state: unpublished
-          hippostdpubwf:createdBy: admin
-          hippostdpubwf:creationDate: 2020-02-07T12:53:32.885Z
-          hippostdpubwf:lastModificationDate: 2020-04-30T18:35:08.608+01:00
-          hippostdpubwf:lastModifiedBy: admin
-          hippotranslation:id: 539af613-c55b-4ff5-a393-7159c2b57b96
-          hippotranslation:locale: en
-          visitscotland:title: Drumoak
-          visitscotland:transports: [car]
-          /visitscotland:introduction:
-            jcr:primaryType: hippostd:html
-            hippostd:content: <p>The first day on your itinerary is jam-packed with
-              Victorian attractions for you to explore. See Victorian architecture
-              at Drum Castle, visit the railway station used by Queen Victoria, learn
-              about Queen Victoria’s connection with Crathes Castle and see beautiful
-              Victorian artwork at Finzean Estate.</p>
-          /visitscotland:stops[1]:
-            jcr:primaryType: hippo:mirror
-            hippo:docbase: b390df94-227d-4535-a7a2-6073465d6642
-          /visitscotland:stops[2]:
-            jcr:primaryType: hippo:mirror
-            hippo:docbase: b2140603-eb92-40f5-967f-d10060722cea
-          /visitscotland:stops[3]:
-            jcr:primaryType: hippo:mirror
-            hippo:docbase: 93608785-d0d6-4af0-9fed-9deef0caddc6
-          /visitscotland:stops[4]:
-            jcr:primaryType: hippo:mirror
-            hippo:docbase: 5a0149d0-590f-4c74-b095-92e430e70bd2
-        /drumoak[3]:
-          jcr:primaryType: visitscotland:Day
-          jcr:mixinTypes: ['mix:referenceable']
-          jcr:uuid: 41387c6c-3a2d-4629-a287-fd359ec53b49
-          hippo:availability: [live]
-          hippostd:state: published
-          hippostdpubwf:createdBy: admin
-          hippostdpubwf:creationDate: 2020-02-07T12:53:32.885Z
-          hippostdpubwf:lastModificationDate: 2020-04-30T18:35:08.608+01:00
-          hippostdpubwf:lastModifiedBy: admin
-          hippostdpubwf:publicationDate: 2020-04-30T18:35:13.371+01:00
-          hippotranslation:id: 539af613-c55b-4ff5-a393-7159c2b57b96
-          hippotranslation:locale: en
-          visitscotland:title: Drumoak
-          visitscotland:transports: [car]
-          /visitscotland:introduction:
-            jcr:primaryType: hippostd:html
-            hippostd:content: <p>The first day on your itinerary is jam-packed with
-              Victorian attractions for you to explore. See Victorian architecture
-              at Drum Castle, visit the railway station used by Queen Victoria, learn
-              about Queen Victoria’s connection with Crathes Castle and see beautiful
-              Victorian artwork at Finzean Estate.</p>
-          /visitscotland:stops[1]:
-            jcr:primaryType: hippo:mirror
-            hippo:docbase: b390df94-227d-4535-a7a2-6073465d6642
-          /visitscotland:stops[2]:
-            jcr:primaryType: hippo:mirror
-            hippo:docbase: b2140603-eb92-40f5-967f-d10060722cea
-          /visitscotland:stops[3]:
-            jcr:primaryType: hippo:mirror
-            hippo:docbase: 93608785-d0d6-4af0-9fed-9deef0caddc6
-          /visitscotland:stops[4]:
-            jcr:primaryType: hippo:mirror
-            hippo:docbase: 5a0149d0-590f-4c74-b095-92e430e70bd2
-      /glen-tanar-cambus-o-may--ballater:
-        jcr:primaryType: hippo:handle
-        jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
-        jcr:uuid: bb6720bb-5736-49fc-86dc-6d44c7488b65
-        hippo:name: Glen Tanar, Cambus o’ May & Ballater
-        hippo:versionHistory: 992dc9da-a7ec-48af-8e26-7a77e8afd963
-        /glen-tanar-cambus-o-may--ballater[1]:
-          jcr:primaryType: visitscotland:Day
-          jcr:mixinTypes: ['mix:referenceable']
-          jcr:uuid: b86c98ce-bb0f-4834-a5d4-4d4ad5e9ced5
-          hippo:availability: []
-          hippostd:state: draft
-          hippostdpubwf:createdBy: admin
-          hippostdpubwf:creationDate: 2020-02-07T12:57:23.675Z
-          hippostdpubwf:lastModificationDate: 2020-02-07T12:57:23.675Z
-          hippostdpubwf:lastModifiedBy: admin
-          hippotranslation:id: 15806f51-f9fd-4cdc-aaa2-d584813e8a26
-          hippotranslation:locale: en
-          visitscotland:title: Glen Tanar, Cambus o’ May & Ballater
-          visitscotland:transports: [car]
-          /visitscotland:introduction:
-            jcr:primaryType: hippostd:html
-            hippostd:content: <p>On your second day, enjoy the natural splendour of
-              Royal Deeside with a trip to some of the favourite beauty spots of the
-              Royal Family. Absorb beautiful views of Glen Tanar, the&nbsp;tall Scots
-              pine trees&nbsp;at Cambus o’May and the lovely burgh of Ballater.</p>
-          /visitscotland:stops[1]:
-            jcr:primaryType: hippo:mirror
-            hippo:docbase: 61b91b38-da53-4d2d-a375-d8a71cd4688b
-          /visitscotland:stops[2]:
-            jcr:primaryType: hippo:mirror
-            hippo:docbase: c50e13f9-71e2-4317-934c-50fccb95dd70
-        /glen-tanar-cambus-o-may--ballater[2]:
-          jcr:primaryType: visitscotland:Day
-          jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
-          jcr:uuid: 241ed572-a0d3-47d0-b1d2-7dbb4df75bd2
-          hippo:availability: [preview]
-          hippostd:state: unpublished
-          hippostdpubwf:createdBy: admin
-          hippostdpubwf:creationDate: 2020-02-07T12:57:23.675Z
-          hippostdpubwf:lastModificationDate: 2020-02-07T12:58:02.438Z
-          hippostdpubwf:lastModifiedBy: admin
-          hippotranslation:id: 15806f51-f9fd-4cdc-aaa2-d584813e8a26
-          hippotranslation:locale: en
-          visitscotland:title: Glen Tanar, Cambus o’ May & Ballater
-          visitscotland:transports: [car]
-          /visitscotland:introduction:
-            jcr:primaryType: hippostd:html
-            hippostd:content: <p>On your second day, enjoy the natural splendour of
-              Royal Deeside with a trip to some of the favourite beauty spots of the
-              Royal Family. Absorb beautiful views of Glen Tanar, the&nbsp;tall Scots
-              pine trees&nbsp;at Cambus o’May and the lovely burgh of Ballater.</p>
-          /visitscotland:stops[1]:
-            jcr:primaryType: hippo:mirror
-            hippo:docbase: 61b91b38-da53-4d2d-a375-d8a71cd4688b
-          /visitscotland:stops[2]:
-            jcr:primaryType: hippo:mirror
-            hippo:docbase: c50e13f9-71e2-4317-934c-50fccb95dd70
-        /glen-tanar-cambus-o-may--ballater[3]:
-          jcr:primaryType: visitscotland:Day
-          jcr:mixinTypes: ['mix:referenceable']
-          jcr:uuid: 44d50ad8-8d46-42ae-bf0a-1f2c2ee41714
-          hippo:availability: [live]
-          hippostd:state: published
-          hippostdpubwf:createdBy: admin
-          hippostdpubwf:creationDate: 2020-02-07T12:57:23.675Z
-          hippostdpubwf:lastModificationDate: 2020-02-07T12:58:02.438Z
-          hippostdpubwf:lastModifiedBy: admin
-          hippostdpubwf:publicationDate: 2020-02-07T12:59:47.114Z
-          hippotranslation:id: 15806f51-f9fd-4cdc-aaa2-d584813e8a26
-          hippotranslation:locale: en
-          visitscotland:title: Glen Tanar, Cambus o’ May & Ballater
-          visitscotland:transports: [car]
-          /visitscotland:introduction:
-            jcr:primaryType: hippostd:html
-            hippostd:content: <p>On your second day, enjoy the natural splendour of
-              Royal Deeside with a trip to some of the favourite beauty spots of the
-              Royal Family. Absorb beautiful views of Glen Tanar, the&nbsp;tall Scots
-              pine trees&nbsp;at Cambus o’May and the lovely burgh of Ballater.</p>
-          /visitscotland:stops[1]:
-            jcr:primaryType: hippo:mirror
-            hippo:docbase: 61b91b38-da53-4d2d-a375-d8a71cd4688b
-          /visitscotland:stops[2]:
-            jcr:primaryType: hippo:mirror
-            hippo:docbase: c50e13f9-71e2-4317-934c-50fccb95dd70
-    /outlander:
-      jcr:primaryType: hippostd:folder
-      jcr:mixinTypes: ['hippo:named', 'hippotranslation:translated', 'mix:versionable']
-      jcr:uuid: 4136f4a6-0a8f-431a-8ca2-83f91c983020
-      hippo:name: Outlander
-      hippostd:foldertype: [new-translated-folder, new-document]
-      hippotranslation:id: 569bad7c-fd2c-4527-bc4d-fedf7793c318
-      hippotranslation:locale: en
-      /content:
-        jcr:primaryType: hippo:handle
-        jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
-        jcr:uuid: 3158d2f5-5f70-407a-be69-a7f7061c0d11
-        hippo:name: Outlander itinerary
-        hippo:versionHistory: 9f60184f-b7c3-405e-8fd6-e35542b3132b
-        /content[1]:
-          jcr:primaryType: visitscotland:Itinerary
-          jcr:mixinTypes: ['mix:referenceable']
-          jcr:uuid: b916c99b-5d4f-4233-b857-f5ce764f3552
-          hippo:availability: []
-          hippostd:state: draft
-          hippostdpubwf:createdBy: admin
-          hippostdpubwf:creationDate: 2020-02-10T09:26:40.760Z
-          hippostdpubwf:lastModificationDate: 2020-05-25T14:09:59.848+01:00
-          hippostdpubwf:lastModifiedBy: admin
-          hippotranslation:id: a485e049-be64-47c6-8c13-0cc355e91443
-          hippotranslation:locale: en
-          visitscotland:areas: [east]
-          visitscotland:breadcrumb: ''
-          visitscotland:distance: 0.0
-          visitscotland:finish: ''
-          visitscotland:highlights: "Palace of Holyroodhouse kajsdlka jasdjalk klja\
-            \ jkl\r\nEdinburgh Old Town\r\nHopetoun House\r\nDoune Castle\r\nCulloden\
-            \ Battlefield\r\nClava Cairns"
-          visitscotland:popular: false
-          visitscotland:seoDescription: Explore the land that inspired Outlander on
-            this epic, 12 day Outlander tour of Scotland.
-          visitscotland:seoNoIndex: false
-          visitscotland:seoTitle: 12 Day Outlander Itinerary - Self-Drive Tour in
-            Scotland
-          visitscotland:start: ''
-          visitscotland:teaser: Explore the land that inspired Outlander on this epic,
-            12 day Outlander tour of Scotland.
-          visitscotland:theme: filmev
-          visitscotland:title: TOUR SCOTLAND WITH OUTLANDER
-          visitscotland:transports: [car]
-          /visitscotland:heroImage:
-            jcr:primaryType: hippogallerypicker:imagelink
-            hippo:docbase: f0fe0f26-489b-4a2e-b6c5-605df1abbdcb
-            hippo:facets: []
-            hippo:modes: []
-            hippo:values: []
-          /visitscotland:introduction:
-            jcr:primaryType: hippostd:html
-            hippostd:content: |-
-              <p>Explore the land that inspired&nbsp;<em>Outlander</em>&nbsp;on this epic, 12 day&nbsp;Outlander&nbsp;tour of Scotland!</p>
-
-              <p>See where&nbsp;<em>Outlander</em>&nbsp;stars, such as Sam Heughan (Jamie) and Caitriona Balfe (Claire), shot their scenes at&nbsp;filming locations from <a>season 1, season 2, season 3, season 4 and visit&nbsp;<em>Outlander</em>&nbsp;book locations.</a><a name="_msoanchor_1" id="_anchor_1" href="#_msocom_1" class="msocomanchor">[IP1]</a>&nbsp;</p>
-
-              <p>Along the way you’ll also explore historic attractions with real-life Jacobite connections, where you can delve into the fascinating story of the Jacobite cause.</p>
-
-              <div>
-              <div>
-              <div class="msocomtxt"><a name="_msocom_1"></a>
-
-              <p>&nbsp;<a href="#_msoanchor_1" class="msocomoff">[IP1]</a>Season 4 locations to add - suggested optional pull outs to days 2, 3, 9 and 12 – and one additional stop on day 5.</p>
-
-              <p>Some locations were also used again for season 4, which I’ve noted.</p>
-
-              <p>&nbsp;</p>
-
-              <p>Note to incorporate changes in translated versions.</p>
-              </div>
-              </div>
-              </div>
-        /content[2]:
-          jcr:primaryType: visitscotland:Itinerary
-          jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
-          jcr:uuid: af3daec7-37df-4473-833f-ffa847d2d305
-          hippo:availability: [preview]
-          hippostd:state: unpublished
-          hippostdpubwf:createdBy: admin
-          hippostdpubwf:creationDate: 2020-02-10T09:26:40.760Z
-          hippostdpubwf:lastModificationDate: 2020-05-25T14:10:14.290+01:00
-          hippostdpubwf:lastModifiedBy: admin
-          hippotranslation:id: a485e049-be64-47c6-8c13-0cc355e91443
-          hippotranslation:locale: en
-          visitscotland:areas: [east]
-          visitscotland:breadcrumb: ''
-          visitscotland:distance: 0.0
-          visitscotland:finish: ''
-          visitscotland:highlights: "Palace of Holyroodhouse kajsdlka jasdjalk klja\
-            \ jkl\r\nEdinburgh Old Town\r\nHopetoun House\r\nDoune Castle\r\nCulloden\
-            \ Battlefield\r\nClava Cairns"
-          visitscotland:popular: false
-          visitscotland:seoDescription: Explore the land that inspired Outlander on
-            this epic, 12 day Outlander tour of Scotland.
-          visitscotland:seoNoIndex: false
-          visitscotland:seoTitle: 12 Day Outlander Itinerary - Self-Drive Tour in
-            Scotland
-          visitscotland:start: ''
-          visitscotland:teaser: Explore the land that inspired Outlander on this epic,
-            12 day Outlander tour of Scotland.
-          visitscotland:theme: filmev
-          visitscotland:title: TOUR SCOTLAND WITH OUTLANDER
-          visitscotland:transports: [car]
-          /visitscotland:heroImage:
-            jcr:primaryType: hippogallerypicker:imagelink
-            hippo:docbase: f0fe0f26-489b-4a2e-b6c5-605df1abbdcb
-            hippo:facets: []
-            hippo:modes: []
-            hippo:values: []
-          /visitscotland:introduction:
-            jcr:primaryType: hippostd:html
-            hippostd:content: |-
-              <p>Explore the land that inspired&nbsp;<em>Outlander</em>&nbsp;on this epic, 12 day&nbsp;Outlander&nbsp;tour of Scotland!</p>
-
-              <p>See where&nbsp;<em>Outlander</em>&nbsp;stars, such as Sam Heughan (Jamie) and Caitriona Balfe (Claire), shot their scenes at&nbsp;filming locations from <a>season 1, season 2, season 3, season 4 and visit&nbsp;<em>Outlander</em>&nbsp;book locations.</a><a name="_msoanchor_1" id="_anchor_1" href="#_msocom_1" class="msocomanchor">[IP1]</a>&nbsp;</p>
-
-              <p>Along the way you’ll also explore historic attractions with real-life Jacobite connections, where you can delve into the fascinating story of the Jacobite cause.</p>
-
-              <div>
-              <div>
-              <div class="msocomtxt"><a name="_msocom_1"></a>
-
-              <p>&nbsp;<a href="#_msoanchor_1" class="msocomoff">[IP1]</a>Season 4 locations to add - suggested optional pull outs to days 2, 3, 9 and 12 – and one additional stop on day 5.</p>
-
-              <p>Some locations were also used again for season 4, which I’ve noted.</p>
-
-              <p>&nbsp;</p>
-
-              <p>Note to incorporate changes in translated versions.</p>
-              </div>
-              </div>
-              </div>
-        /content[3]:
-          jcr:primaryType: visitscotland:Itinerary
-          jcr:mixinTypes: ['mix:referenceable']
-          jcr:uuid: 6906c93e-3a37-4282-a67e-6a6ca61e7e6d
-          hippo:availability: [live]
-          hippostd:state: published
-          hippostdpubwf:createdBy: admin
-          hippostdpubwf:creationDate: 2020-02-10T09:26:40.760Z
-          hippostdpubwf:lastModificationDate: 2020-05-25T14:10:14.290+01:00
-          hippostdpubwf:lastModifiedBy: admin
-          hippostdpubwf:publicationDate: 2020-05-25T14:10:16.497+01:00
-          hippotranslation:id: a485e049-be64-47c6-8c13-0cc355e91443
-          hippotranslation:locale: en
-          visitscotland:areas: [east]
-          visitscotland:breadcrumb: ''
-          visitscotland:distance: 0.0
-          visitscotland:finish: ''
-          visitscotland:highlights: "Palace of Holyroodhouse kajsdlka jasdjalk klja\
-            \ jkl\r\nEdinburgh Old Town\r\nHopetoun House\r\nDoune Castle\r\nCulloden\
-            \ Battlefield\r\nClava Cairns"
-          visitscotland:popular: false
-          visitscotland:seoDescription: Explore the land that inspired Outlander on
-            this epic, 12 day Outlander tour of Scotland.
-          visitscotland:seoNoIndex: false
-          visitscotland:seoTitle: 12 Day Outlander Itinerary - Self-Drive Tour in
-            Scotland
-          visitscotland:start: ''
-          visitscotland:teaser: Explore the land that inspired Outlander on this epic,
-            12 day Outlander tour of Scotland.
-          visitscotland:theme: filmev
-          visitscotland:title: TOUR SCOTLAND WITH OUTLANDER
-          visitscotland:transports: [car]
-          /visitscotland:heroImage:
-            jcr:primaryType: hippogallerypicker:imagelink
-            hippo:docbase: f0fe0f26-489b-4a2e-b6c5-605df1abbdcb
-            hippo:facets: []
-            hippo:modes: []
-            hippo:values: []
-          /visitscotland:introduction:
-            jcr:primaryType: hippostd:html
-            hippostd:content: |-
-              <p>Explore the land that inspired&nbsp;<em>Outlander</em>&nbsp;on this epic, 12 day&nbsp;Outlander&nbsp;tour of Scotland!</p>
-
-              <p>See where&nbsp;<em>Outlander</em>&nbsp;stars, such as Sam Heughan (Jamie) and Caitriona Balfe (Claire), shot their scenes at&nbsp;filming locations from <a>season 1, season 2, season 3, season 4 and visit&nbsp;<em>Outlander</em>&nbsp;book locations.</a><a name="_msoanchor_1" id="_anchor_1" href="#_msocom_1" class="msocomanchor">[IP1]</a>&nbsp;</p>
-
-              <p>Along the way you’ll also explore historic attractions with real-life Jacobite connections, where you can delve into the fascinating story of the Jacobite cause.</p>
-
-              <div>
-              <div>
-              <div class="msocomtxt"><a name="_msocom_1"></a>
-
-              <p>&nbsp;<a href="#_msoanchor_1" class="msocomoff">[IP1]</a>Season 4 locations to add - suggested optional pull outs to days 2, 3, 9 and 12 – and one additional stop on day 5.</p>
-
-              <p>Some locations were also used again for season 4, which I’ve noted.</p>
-
-              <p>&nbsp;</p>
-
-              <p>Note to incorporate changes in translated versions.</p>
-              </div>
-              </div>
-              </div>
-      /boness-and-linlithgow:
-        jcr:primaryType: hippo:handle
-        jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
-        jcr:uuid: 4c2cab15-9568-41a2-92dd-79c2aaa318bb
-        hippo:name: Bo’ness and Linlithgow
-        hippo:versionHistory: f5984fdc-4cf8-4916-a54c-c3a9d1b37542
-        /boness-and-linlithgow[1]:
-          jcr:primaryType: visitscotland:Day
-          jcr:mixinTypes: ['mix:referenceable']
-          jcr:uuid: 486258b4-cb86-409c-acda-a52b5d09f9b9
-          hippo:availability: []
-          hippostd:state: draft
-          hippostdpubwf:createdBy: admin
-          hippostdpubwf:creationDate: 2020-02-10T09:29:33.787Z
-          hippostdpubwf:lastModificationDate: 2020-04-08T09:22:11.370+01:00
-          hippostdpubwf:lastModifiedBy: admin
-          hippotranslation:id: 8edb81ab-7546-4417-8ad2-10cc31d5ecf6
-          hippotranslation:locale: en
-          visitscotland:title: Bo’ness and Linlithgow
-          visitscotland:transports: [car]
-          /visitscotland:introduction:
-            jcr:primaryType: hippostd:html
-            hippostd:content: <p>Take a ride on a vintage train and tour a beautiful
-              ruined palace on this great day out from Edinburgh. Another lovely stop
-              on your journey from Edinburgh (or on your way back) is South Queensferry,
-              where you can see the iconic Forth Bridges up close.</p>
-          /visitscotland:stops[1]:
-            jcr:primaryType: hippo:mirror
-            hippo:docbase: 28abd074-5fc4-4ebc-a424-1d4f9e5cb0e6
-          /visitscotland:stops[2]:
-            jcr:primaryType: hippo:mirror
-            hippo:docbase: 8ce0fc13-a5e2-4e1a-b94d-d75f3bcdc80d
-          /visitscotland:stops[3]:
-            jcr:primaryType: hippo:mirror
-            hippo:docbase: 49d5965f-f7b5-4948-811d-b03e4ec6ec63
-        /boness-and-linlithgow[2]:
-          jcr:primaryType: visitscotland:Day
-          jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
-          jcr:uuid: b3ea64b7-5ab1-466d-b82f-7ee8f93a3221
-          hippo:availability: [preview]
-          hippostd:state: unpublished
-          hippostdpubwf:createdBy: admin
-          hippostdpubwf:creationDate: 2020-02-10T09:29:33.787Z
-          hippostdpubwf:lastModificationDate: 2020-02-26T11:39:12.905Z
-          hippostdpubwf:lastModifiedBy: admin
-          hippotranslation:id: 8edb81ab-7546-4417-8ad2-10cc31d5ecf6
-          hippotranslation:locale: en
-          visitscotland:title: Bo’ness and Linlithgow
-          visitscotland:transports: [car]
-          /visitscotland:introduction:
-            jcr:primaryType: hippostd:html
-            hippostd:content: <p>Take a ride on a vintage train and tour a beautiful
-              ruined palace on this great day out from Edinburgh. Another lovely stop
-              on your journey from Edinburgh (or on your way back) is South Queensferry,
-              where you can see the iconic Forth Bridges up close.</p>
-          /visitscotland:stops[1]:
-            jcr:primaryType: hippo:mirror
-            hippo:docbase: 28abd074-5fc4-4ebc-a424-1d4f9e5cb0e6
-          /visitscotland:stops[2]:
-            jcr:primaryType: hippo:mirror
-            hippo:docbase: 8ce0fc13-a5e2-4e1a-b94d-d75f3bcdc80d
-          /visitscotland:stops[3]:
-            jcr:primaryType: hippo:mirror
-            hippo:docbase: 49d5965f-f7b5-4948-811d-b03e4ec6ec63
-        /boness-and-linlithgow[3]:
-          jcr:primaryType: visitscotland:Day
-          jcr:mixinTypes: ['mix:referenceable']
-          jcr:uuid: 36ea094f-ab76-478f-8212-68950b691200
-          hippo:availability: [live]
-          hippostd:state: published
-          hippostdpubwf:createdBy: admin
-          hippostdpubwf:creationDate: 2020-02-10T09:29:33.787Z
-          hippostdpubwf:lastModificationDate: 2020-02-26T11:39:12.905Z
-          hippostdpubwf:lastModifiedBy: admin
-          hippostdpubwf:publicationDate: 2020-02-26T12:11:21.265Z
-          hippotranslation:id: 8edb81ab-7546-4417-8ad2-10cc31d5ecf6
-          hippotranslation:locale: en
-          visitscotland:title: Bo’ness and Linlithgow
-          visitscotland:transports: [car]
-          /visitscotland:introduction:
-            jcr:primaryType: hippostd:html
-            hippostd:content: <p>Take a ride on a vintage train and tour a beautiful
-              ruined palace on this great day out from Edinburgh. Another lovely stop
-              on your journey from Edinburgh (or on your way back) is South Queensferry,
-              where you can see the iconic Forth Bridges up close.</p>
-          /visitscotland:stops[1]:
-            jcr:primaryType: hippo:mirror
-            hippo:docbase: 28abd074-5fc4-4ebc-a424-1d4f9e5cb0e6
-          /visitscotland:stops[2]:
-            jcr:primaryType: hippo:mirror
-            hippo:docbase: 8ce0fc13-a5e2-4e1a-b94d-d75f3bcdc80d
-          /visitscotland:stops[3]:
-            jcr:primaryType: hippo:mirror
-            hippo:docbase: 49d5965f-f7b5-4948-811d-b03e4ec6ec63
-      /edinburgh:
-        jcr:primaryType: hippo:handle
-        jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
-        jcr:uuid: 8e063833-f7b5-447b-ab73-cfb04aa86aa1
-        hippo:name: EDINBURGH
-        hippo:versionHistory: 4821b48d-06e4-4e00-bc45-fd4404727b83
-        /edinburgh[1]:
-          jcr:primaryType: visitscotland:Day
-          jcr:mixinTypes: ['mix:referenceable']
-          jcr:uuid: 50bac201-5c3a-4fa9-8b91-d969b8b7f3ad
-          hippo:availability: []
-          hippostd:state: draft
-          hippostdpubwf:createdBy: admin
-          hippostdpubwf:creationDate: 2020-02-10T09:29:04.847Z
-          hippostdpubwf:lastModificationDate: 2020-02-25T16:29:36.537Z
-          hippostdpubwf:lastModifiedBy: admin
-          hippotranslation:id: 9d694b00-3808-42a7-b6d1-12834472637b
-          hippotranslation:locale: en
-          visitscotland:title: EDINBURGH
-          visitscotland:transports: [walking]
-          /visitscotland:introduction:
-            jcr:primaryType: hippostd:html
-            hippostd:content: |-
-              <p>Spend your first day in <u><a style="color:blue; text-decoration:underline" href="https://www.visitscotland.com/destinations-maps/edinburgh/">Edinburgh</a></u> exploring the story of the Jacobites, and Edinburgh’s connections with Prince Charles Edward Stuart - better known as&nbsp;<u><a style="color:blue; text-decoration:underline" href="https://www.visitscotland.com/about/famous-scots/bonnie-prince-charlie/" title="Bonnie Prince Charlie">Bonnie Prince Charlie</a></u>.</p>
-
-              <p>Learn more about the political landscape that Claire falls into when she travels back in time to 1743, two years before the 1745 Jacobite Rising led by Bonnie Prince Charlie. As you explore Edinburgh’s Old Town, keep your eyes peeled for three key&nbsp;<em>Outlander</em>&nbsp;filming locations.</p>
-          /visitscotland:stops:
-            jcr:primaryType: hippo:mirror
-            hippo:docbase: 9e72639a-186f-4d72-8cc7-bcf9616342ca
-        /edinburgh[2]:
-          jcr:primaryType: visitscotland:Day
-          jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
-          jcr:uuid: 0dbc71a7-72cf-4dfc-98d8-c474daa47dcc
-          hippo:availability: [preview]
-          hippostd:state: unpublished
-          hippostdpubwf:createdBy: admin
-          hippostdpubwf:creationDate: 2020-02-10T09:29:04.847Z
-          hippostdpubwf:lastModificationDate: 2020-02-10T13:27:22.714Z
-          hippostdpubwf:lastModifiedBy: admin
-          hippotranslation:id: 9d694b00-3808-42a7-b6d1-12834472637b
-          hippotranslation:locale: en
-          visitscotland:title: EDINBURGH
-          visitscotland:transports: [walking]
-          /visitscotland:introduction:
-            jcr:primaryType: hippostd:html
-            hippostd:content: |-
-              <p>Spend your first day in <u><a style="color:blue; text-decoration:underline" href="https://www.visitscotland.com/destinations-maps/edinburgh/">Edinburgh</a></u> exploring the story of the Jacobites, and Edinburgh’s connections with Prince Charles Edward Stuart - better known as&nbsp;<u><a style="color:blue; text-decoration:underline" href="https://www.visitscotland.com/about/famous-scots/bonnie-prince-charlie/" title="Bonnie Prince Charlie">Bonnie Prince Charlie</a></u>.</p>
-
-              <p>Learn more about the political landscape that Claire falls into when she travels back in time to 1743, two years before the 1745 Jacobite Rising led by Bonnie Prince Charlie. As you explore Edinburgh’s Old Town, keep your eyes peeled for three key&nbsp;<em>Outlander</em>&nbsp;filming locations.</p>
-          /visitscotland:stops:
-            jcr:primaryType: hippo:mirror
-            hippo:docbase: 9e72639a-186f-4d72-8cc7-bcf9616342ca
-        /edinburgh[3]:
-          jcr:primaryType: visitscotland:Day
-          jcr:mixinTypes: ['mix:referenceable']
-          jcr:uuid: 0696b0de-6ccc-4228-b876-bf466c94d6c6
-          hippo:availability: [live]
-          hippostd:state: published
-          hippostdpubwf:createdBy: admin
-          hippostdpubwf:creationDate: 2020-02-10T09:29:04.847Z
-          hippostdpubwf:lastModificationDate: 2020-02-10T13:27:22.714Z
-          hippostdpubwf:lastModifiedBy: admin
-          hippostdpubwf:publicationDate: 2020-02-10T13:27:44.764Z
-          hippotranslation:id: 9d694b00-3808-42a7-b6d1-12834472637b
-          hippotranslation:locale: en
-          visitscotland:title: EDINBURGH
-          visitscotland:transports: [walking]
-          /visitscotland:introduction:
-            jcr:primaryType: hippostd:html
-            hippostd:content: |-
-              <p>Spend your first day in <u><a style="color:blue; text-decoration:underline" href="https://www.visitscotland.com/destinations-maps/edinburgh/">Edinburgh</a></u> exploring the story of the Jacobites, and Edinburgh’s connections with Prince Charles Edward Stuart - better known as&nbsp;<u><a style="color:blue; text-decoration:underline" href="https://www.visitscotland.com/about/famous-scots/bonnie-prince-charlie/" title="Bonnie Prince Charlie">Bonnie Prince Charlie</a></u>.</p>
-
-              <p>Learn more about the political landscape that Claire falls into when she travels back in time to 1743, two years before the 1745 Jacobite Rising led by Bonnie Prince Charlie. As you explore Edinburgh’s Old Town, keep your eyes peeled for three key&nbsp;<em>Outlander</em>&nbsp;filming locations.</p>
-          /visitscotland:stops:
-            jcr:primaryType: hippo:mirror
-            hippo:docbase: 9e72639a-186f-4d72-8cc7-bcf9616342ca
-    /short-break-itinerary:
-      jcr:primaryType: hippostd:folder
-      jcr:mixinTypes: ['hippo:named', 'hippotranslation:translated', 'mix:versionable']
-      jcr:uuid: d7d0a356-4eef-492f-83d8-e1e9e8442c8e
-      hippo:name: Short break itinerary
-      hippostd:foldertype: [new-translated-folder, new-document]
-      hippotranslation:id: 21610b43-4815-42d1-8016-58c085012671
-      hippotranslation:locale: en
-      /content:
-        jcr:primaryType: hippo:handle
-        jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
-        jcr:uuid: 4d302e29-93dd-4157-9df9-bbd741bb12a0
-        hippo:name: Orkney short break itinerary
-        hippo:versionHistory: 5a39ba80-af13-41b0-9912-18e051d849c1
-        /content[1]:
-          jcr:primaryType: visitscotland:Itinerary
-          jcr:mixinTypes: ['mix:referenceable']
-          jcr:uuid: 83e7c2a7-dc4c-4ca5-a206-74ecb9e2ccb3
-          hippo:availability: []
-          hippostd:state: draft
-          hippostdpubwf:createdBy: admin
-          hippostdpubwf:creationDate: 2020-02-07T09:41:25.483Z
-          hippostdpubwf:lastModificationDate: 2020-05-25T14:10:20.684+01:00
-          hippostdpubwf:lastModifiedBy: admin
-          hippotranslation:id: 4f317e16-7cca-44da-84bf-26c96e4a4494
-          hippotranslation:locale: en
-          visitscotland:areas: [north]
-          visitscotland:breadcrumb: ''
-          visitscotland:distance: 0.0
-          visitscotland:finish: Kirkwall
-          visitscotland:highlights: "Heart of Neolithic Orkney World Heritage Site\
-            \  \r\nIsle of Hoy  \r\nYesnaby Sea Cliffs \r\nNorth Ronaldsay"
-          visitscotland:popular: false
-          visitscotland:seoDescription: Taste the smoky influences in Orkney whisky,
-            see rare birds soaring in the skies overhead, walk amongst historic sites
-            that have stood for thousands of years and gaze out at swirling seas on
-            a coastal walk.
-          visitscotland:seoNoIndex: false
-          visitscotland:seoTitle: Short Break in Orkney – 4 Day Itinerary
-          visitscotland:start: ''
-          visitscotland:teaser: Taste the smoky influences in Orkney whisky, see rare
-            birds soaring in the skies overhead, walk amongst historic sites that
-            have stood for thousands of years and gaze out at swirling seas on a coastal
-            walk.
-          visitscotland:theme: islands
-          visitscotland:title: Short Break in Orkney – 4 Day Itinerary
-          visitscotland:transports: [cycling]
-          /visitscotland:heroImage:
-            jcr:primaryType: hippogallerypicker:imagelink
-            hippo:docbase: ecede5a4-326c-4ce5-b9be-bcdf32c3f2c2
-            hippo:facets: []
-            hippo:modes: []
-            hippo:values: []
-          /visitscotland:introduction:
-            jcr:primaryType: hippostd:html
-            hippostd:content: |-
-              <p>Taste the smoky influences in Orkney whisky, see rare birds soaring in the skies overhead, walk amongst historic sites that have stood for thousands of years and gaze out at swirling seas on a coastal walk.&nbsp;</p>
-
-              <p>You can explore the enchanting islands on this 4 day short break in <a rel="noreferrer noopener" href="https://www.visitscotland.com/destinations-maps/orkney/" target="_blank">Orkney</a>. You’ll visit key Orkney points of interest, such as the fascinating historic sites of the Heart of Neolithic&nbsp;Orkney, and&nbsp;discover the wonder of Orkney through the&nbsp;elements of fire, air, earth and water.&nbsp;&nbsp;</p>
-
-              <p>There are lots of unique things to do in Orkney throughout the seasons too, from seeing North&nbsp;Ronaldsay&nbsp;lambs frolicking in spring and summer to gazing at the dazzling Northern Lights in the darker months.&nbsp;</p>
-
-              <p>For more information about visiting Orkney head to <a rel="noreferrer noopener" href="https://www.orkney.com/" target="_blank">orkney.com</a> or read on for our top ideas on how to fit in the highlights of Orkney in just four days, with travel information, attraction opening, maps and more.&nbsp;</p>
-        /content[2]:
-          jcr:primaryType: visitscotland:Itinerary
-          jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
-          jcr:uuid: 3a87a995-30de-447a-b004-84cb3387020b
-          hippo:availability: [preview]
-          hippostd:state: unpublished
-          hippostdpubwf:createdBy: admin
-          hippostdpubwf:creationDate: 2020-02-07T09:41:25.483Z
-          hippostdpubwf:lastModificationDate: 2020-05-25T14:10:26.222+01:00
-          hippostdpubwf:lastModifiedBy: admin
-          hippotranslation:id: 4f317e16-7cca-44da-84bf-26c96e4a4494
-          hippotranslation:locale: en
-          visitscotland:areas: [north]
-          visitscotland:breadcrumb: ''
-          visitscotland:distance: 0.0
-          visitscotland:finish: Kirkwall
-          visitscotland:highlights: "Heart of Neolithic Orkney World Heritage Site\
-            \  \r\nIsle of Hoy  \r\nYesnaby Sea Cliffs \r\nNorth Ronaldsay"
-          visitscotland:popular: false
-          visitscotland:seoDescription: Taste the smoky influences in Orkney whisky,
-            see rare birds soaring in the skies overhead, walk amongst historic sites
-            that have stood for thousands of years and gaze out at swirling seas on
-            a coastal walk.
-          visitscotland:seoNoIndex: false
-          visitscotland:seoTitle: Short Break in Orkney – 4 Day Itinerary
-          visitscotland:start: ''
-          visitscotland:teaser: Taste the smoky influences in Orkney whisky, see rare
-            birds soaring in the skies overhead, walk amongst historic sites that
-            have stood for thousands of years and gaze out at swirling seas on a coastal
-            walk.
-          visitscotland:theme: islands
-          visitscotland:title: Short Break in Orkney – 4 Day Itinerary
-          visitscotland:transports: [cycling]
-          /visitscotland:heroImage:
-            jcr:primaryType: hippogallerypicker:imagelink
-            hippo:docbase: ecede5a4-326c-4ce5-b9be-bcdf32c3f2c2
-            hippo:facets: []
-            hippo:modes: []
-            hippo:values: []
-          /visitscotland:introduction:
-            jcr:primaryType: hippostd:html
-            hippostd:content: |-
-              <p>Taste the smoky influences in Orkney whisky, see rare birds soaring in the skies overhead, walk amongst historic sites that have stood for thousands of years and gaze out at swirling seas on a coastal walk.&nbsp;</p>
-
-              <p>You can explore the enchanting islands on this 4 day short break in <a rel="noreferrer noopener" href="https://www.visitscotland.com/destinations-maps/orkney/" target="_blank">Orkney</a>. You’ll visit key Orkney points of interest, such as the fascinating historic sites of the Heart of Neolithic&nbsp;Orkney, and&nbsp;discover the wonder of Orkney through the&nbsp;elements of fire, air, earth and water.&nbsp;&nbsp;</p>
-
-              <p>There are lots of unique things to do in Orkney throughout the seasons too, from seeing North&nbsp;Ronaldsay&nbsp;lambs frolicking in spring and summer to gazing at the dazzling Northern Lights in the darker months.&nbsp;</p>
-
-              <p>For more information about visiting Orkney head to <a rel="noreferrer noopener" href="https://www.orkney.com/" target="_blank">orkney.com</a> or read on for our top ideas on how to fit in the highlights of Orkney in just four days, with travel information, attraction opening, maps and more.&nbsp;</p>
-        /content[3]:
-          jcr:primaryType: visitscotland:Itinerary
-          jcr:mixinTypes: ['mix:referenceable']
-          jcr:uuid: 14a9dd5b-0a5a-47fa-90ef-cc58005c71c4
-          hippo:availability: [live]
-          hippostd:state: published
-          hippostdpubwf:createdBy: admin
-          hippostdpubwf:creationDate: 2020-02-07T09:41:25.483Z
-          hippostdpubwf:lastModificationDate: 2020-05-25T14:10:26.222+01:00
-          hippostdpubwf:lastModifiedBy: admin
-          hippostdpubwf:publicationDate: 2020-05-25T14:10:29.116+01:00
-          hippotranslation:id: 4f317e16-7cca-44da-84bf-26c96e4a4494
-          hippotranslation:locale: en
-          visitscotland:areas: [north]
-          visitscotland:breadcrumb: ''
-          visitscotland:distance: 0.0
-          visitscotland:finish: Kirkwall
-          visitscotland:highlights: "Heart of Neolithic Orkney World Heritage Site\
-            \  \r\nIsle of Hoy  \r\nYesnaby Sea Cliffs \r\nNorth Ronaldsay"
-          visitscotland:popular: false
-          visitscotland:seoDescription: Taste the smoky influences in Orkney whisky,
-            see rare birds soaring in the skies overhead, walk amongst historic sites
-            that have stood for thousands of years and gaze out at swirling seas on
-            a coastal walk.
-          visitscotland:seoNoIndex: false
-          visitscotland:seoTitle: Short Break in Orkney – 4 Day Itinerary
-          visitscotland:start: ''
-          visitscotland:teaser: Taste the smoky influences in Orkney whisky, see rare
-            birds soaring in the skies overhead, walk amongst historic sites that
-            have stood for thousands of years and gaze out at swirling seas on a coastal
-            walk.
-          visitscotland:theme: islands
-          visitscotland:title: Short Break in Orkney – 4 Day Itinerary
-          visitscotland:transports: [cycling]
-          /visitscotland:heroImage:
-            jcr:primaryType: hippogallerypicker:imagelink
-            hippo:docbase: ecede5a4-326c-4ce5-b9be-bcdf32c3f2c2
-            hippo:facets: []
-            hippo:modes: []
-            hippo:values: []
-          /visitscotland:introduction:
-            jcr:primaryType: hippostd:html
-            hippostd:content: |-
-              <p>Taste the smoky influences in Orkney whisky, see rare birds soaring in the skies overhead, walk amongst historic sites that have stood for thousands of years and gaze out at swirling seas on a coastal walk.&nbsp;</p>
-
-              <p>You can explore the enchanting islands on this 4 day short break in <a rel="noreferrer noopener" href="https://www.visitscotland.com/destinations-maps/orkney/" target="_blank">Orkney</a>. You’ll visit key Orkney points of interest, such as the fascinating historic sites of the Heart of Neolithic&nbsp;Orkney, and&nbsp;discover the wonder of Orkney through the&nbsp;elements of fire, air, earth and water.&nbsp;&nbsp;</p>
-
-              <p>There are lots of unique things to do in Orkney throughout the seasons too, from seeing North&nbsp;Ronaldsay&nbsp;lambs frolicking in spring and summer to gazing at the dazzling Northern Lights in the darker months.&nbsp;</p>
-
-              <p>For more information about visiting Orkney head to <a rel="noreferrer noopener" href="https://www.orkney.com/" target="_blank">orkney.com</a> or read on for our top ideas on how to fit in the highlights of Orkney in just four days, with travel information, attraction opening, maps and more.&nbsp;</p>
-      /mainland-orkney:
-        jcr:primaryType: hippo:handle
-        jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
-        jcr:uuid: b1e7a0fc-15ba-4d75-8b56-eadd710da675
-        hippo:name: Mainland Orkney
-        hippo:versionHistory: 13c2d4f9-67ee-4249-aae9-cbe921eea464
-        /mainland-orkney[1]:
-          jcr:primaryType: visitscotland:Day
-          jcr:mixinTypes: ['mix:referenceable']
-          jcr:uuid: c322e0e2-3df7-4dfe-a323-5dbf7dd26e49
-          hippo:availability: []
-          hippostd:state: draft
-          hippostdpubwf:createdBy: admin
-          hippostdpubwf:creationDate: 2020-02-07T09:53:28.791Z
-          hippostdpubwf:lastModificationDate: 2020-02-07T10:41:46.416Z
-          hippostdpubwf:lastModifiedBy: admin
-          hippotranslation:id: e918acd6-1648-4553-8289-cdda8e3e2938
-          hippotranslation:locale: en
-          visitscotland:title: Mainland Orkney
-          visitscotland:transports: [car, ferry]
-          /visitscotland:introduction:
-            jcr:primaryType: hippostd:html
-            hippostd:content: |-
-              <p>Your first day on Orkney begins with a visit to the famous <a rel="noreferrer noopener" href="https://www.historicenvironment.scot/advice-and-support/listing-scheduling-and-designations/world-heritage-sites/heart-of-neolithic-orkney/" target="_blank">Heart of Neolithic Orkney World Heritage Site</a>.&nbsp;</p>
-
-              <p>Four world-class historic sites make up the Heart of Neolithic Orkney and you’ll visit them all in this itinerary, with three to tick off today and the fourth on day 3. In the afternoon head back to the main town of Kirkwall to tour a whisky distillery and explore around town.&nbsp;</p>
-
-              <p>GETTING TO MAINLAND ORKNEY&nbsp;</p>
-
-              <p>Fly to Kirkwall Airport.&nbsp;</p>
-
-              <p>Sail from ferry terminals near John O’ Groats or&nbsp;Scrabster&nbsp;in the North Highlands or from Aberdeen.&nbsp;</p>
-
-              <p>Find out more about <a rel="noreferrer noopener" href="https://www.orkney.com/plan/getting-here" target="_blank">getting to Orkney</a>.&nbsp;</p>
-
-              <p>GETTING AROUND MAINLAND ORKNEY&nbsp;</p>
-
-              <p>Mainland Orkney is a large island and this itinerary covers a lot of ground. There are bus services available but for this itinerary it would be best to bring your car over on the ferry or hire a car on the island for getting around.&nbsp;</p>
-
-              <p>Find out more about <a rel="noreferrer noopener" href="http://www.orkney.com/move/transport" target="_blank">getting around on Orkney</a>.&nbsp;</p>
-          /visitscotland:stops[1]:
-            jcr:primaryType: hippo:mirror
-            hippo:docbase: 013a6677-1e64-4bb4-82d4-1e3af6a80ca2
-          /visitscotland:stops[2]:
-            jcr:primaryType: hippo:mirror
-            hippo:docbase: 207ac2b4-49dd-46ef-ae72-c901d228fae7
-          /visitscotland:stops[3]:
-            jcr:primaryType: hippo:mirror
-            hippo:docbase: dd98ed46-1531-4bbf-b47f-394ebca903f5
-        /mainland-orkney[2]:
-          jcr:primaryType: visitscotland:Day
-          jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
-          jcr:uuid: 75e36fef-3852-46a5-a2ba-7c202186be8a
-          hippo:availability: [preview]
-          hippostd:state: unpublished
-          hippostdpubwf:createdBy: admin
-          hippostdpubwf:creationDate: 2020-02-07T09:53:28.791Z
-          hippostdpubwf:lastModificationDate: 2020-02-07T10:06:49.352Z
-          hippostdpubwf:lastModifiedBy: admin
-          hippotranslation:id: e918acd6-1648-4553-8289-cdda8e3e2938
-          hippotranslation:locale: en
-          visitscotland:title: Mainland Orkney
-          visitscotland:transports: [car, ferry]
-          /visitscotland:introduction:
-            jcr:primaryType: hippostd:html
-            hippostd:content: |-
-              <p>Your first day on Orkney begins with a visit to the famous <a rel="noreferrer noopener" href="https://www.historicenvironment.scot/advice-and-support/listing-scheduling-and-designations/world-heritage-sites/heart-of-neolithic-orkney/" target="_blank">Heart of Neolithic Orkney World Heritage Site</a>.&nbsp;</p>
-
-              <p>Four world-class historic sites make up the Heart of Neolithic Orkney and you’ll visit them all in this itinerary, with three to tick off today and the fourth on day 3. In the afternoon head back to the main town of Kirkwall to tour a whisky distillery and explore around town.&nbsp;</p>
-
-              <p>GETTING TO MAINLAND ORKNEY&nbsp;</p>
-
-              <p>Fly to Kirkwall Airport.&nbsp;</p>
-
-              <p>Sail from ferry terminals near John O’ Groats or&nbsp;Scrabster&nbsp;in the North Highlands or from Aberdeen.&nbsp;</p>
-
-              <p>Find out more about <a rel="noreferrer noopener" href="https://www.orkney.com/plan/getting-here" target="_blank">getting to Orkney</a>.&nbsp;</p>
-
-              <p>GETTING AROUND MAINLAND ORKNEY&nbsp;</p>
-
-              <p>Mainland Orkney is a large island and this itinerary covers a lot of ground. There are bus services available but for this itinerary it would be best to bring your car over on the ferry or hire a car on the island for getting around.&nbsp;</p>
-
-              <p>Find out more about <a rel="noreferrer noopener" href="http://www.orkney.com/move/transport" target="_blank">getting around on Orkney</a>.&nbsp;</p>
-          /visitscotland:stops[1]:
-            jcr:primaryType: hippo:mirror
-            hippo:docbase: 013a6677-1e64-4bb4-82d4-1e3af6a80ca2
-          /visitscotland:stops[2]:
-            jcr:primaryType: hippo:mirror
-            hippo:docbase: 207ac2b4-49dd-46ef-ae72-c901d228fae7
-          /visitscotland:stops[3]:
-            jcr:primaryType: hippo:mirror
-            hippo:docbase: dd98ed46-1531-4bbf-b47f-394ebca903f5
-        /mainland-orkney[3]:
-          jcr:primaryType: visitscotland:Day
-          jcr:mixinTypes: ['mix:referenceable']
-          jcr:uuid: 20140076-eead-4d12-99f6-c0e3717513b8
-          hippo:availability: [live]
-          hippostd:state: published
-          hippostdpubwf:createdBy: admin
-          hippostdpubwf:creationDate: 2020-02-07T09:53:28.791Z
-          hippostdpubwf:lastModificationDate: 2020-02-07T10:06:49.352Z
-          hippostdpubwf:lastModifiedBy: admin
-          hippostdpubwf:publicationDate: 2020-02-07T10:17:26.827Z
-          hippotranslation:id: e918acd6-1648-4553-8289-cdda8e3e2938
-          hippotranslation:locale: en
-          visitscotland:title: Mainland Orkney
-          visitscotland:transports: [car, ferry]
-          /visitscotland:introduction:
-            jcr:primaryType: hippostd:html
-            hippostd:content: |-
-              <p>Your first day on Orkney begins with a visit to the famous <a rel="noreferrer noopener" href="https://www.historicenvironment.scot/advice-and-support/listing-scheduling-and-designations/world-heritage-sites/heart-of-neolithic-orkney/" target="_blank">Heart of Neolithic Orkney World Heritage Site</a>.&nbsp;</p>
-
-              <p>Four world-class historic sites make up the Heart of Neolithic Orkney and you’ll visit them all in this itinerary, with three to tick off today and the fourth on day 3. In the afternoon head back to the main town of Kirkwall to tour a whisky distillery and explore around town.&nbsp;</p>
-
-              <p>GETTING TO MAINLAND ORKNEY&nbsp;</p>
-
-              <p>Fly to Kirkwall Airport.&nbsp;</p>
-
-              <p>Sail from ferry terminals near John O’ Groats or&nbsp;Scrabster&nbsp;in the North Highlands or from Aberdeen.&nbsp;</p>
-
-              <p>Find out more about <a rel="noreferrer noopener" href="https://www.orkney.com/plan/getting-here" target="_blank">getting to Orkney</a>.&nbsp;</p>
-
-              <p>GETTING AROUND MAINLAND ORKNEY&nbsp;</p>
-
-              <p>Mainland Orkney is a large island and this itinerary covers a lot of ground. There are bus services available but for this itinerary it would be best to bring your car over on the ferry or hire a car on the island for getting around.&nbsp;</p>
-
-              <p>Find out more about <a rel="noreferrer noopener" href="http://www.orkney.com/move/transport" target="_blank">getting around on Orkney</a>.&nbsp;</p>
-          /visitscotland:stops[1]:
-            jcr:primaryType: hippo:mirror
-            hippo:docbase: 013a6677-1e64-4bb4-82d4-1e3af6a80ca2
-          /visitscotland:stops[2]:
-            jcr:primaryType: hippo:mirror
-            hippo:docbase: 207ac2b4-49dd-46ef-ae72-c901d228fae7
-          /visitscotland:stops[3]:
-            jcr:primaryType: hippo:mirror
-            hippo:docbase: dd98ed46-1531-4bbf-b47f-394ebca903f5
-    /12-iconic-scottish-views:
-      jcr:primaryType: hippostd:folder
-      jcr:mixinTypes: ['hippo:named', 'hippotranslation:translated', 'mix:versionable']
-      jcr:uuid: a8a60383-ca47-4dba-9671-d8654609fcf7
-      hippo:name: 12 Iconic Scottish Views
-      hippostd:foldertype: [new-translated-folder, new-document]
-      hippotranslation:id: 7f14fd94-0c5b-4c48-a82f-e5d55dbc31f1
-      hippotranslation:locale: en
-      /content:
-        jcr:primaryType: hippo:handle
-        jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
-        jcr:uuid: 17a3588b-6cee-439b-acd8-186ceb2067aa
-        hippo:name: 12 Iconic Scottish Views
-        hippo:versionHistory: 10086cfc-f1a9-4419-be97-00ead31392d1
-        /content[1]:
-          jcr:primaryType: visitscotland:Listicle
-          jcr:mixinTypes: ['mix:referenceable']
-          jcr:uuid: e9f9e393-b112-43fe-a08b-828f062d4a3e
-          hippo:availability: []
-          hippostd:state: draft
-          hippostdpubwf:createdBy: admin
-          hippostdpubwf:creationDate: 2020-03-17T11:17:48.546Z
-          hippostdpubwf:lastModificationDate: 2020-04-16T17:35:28.648+01:00
-          hippostdpubwf:lastModifiedBy: admin
-          hippotranslation:id: aced74d3-03f8-4ed2-9592-dd31975f29cf
-          hippotranslation:locale: en
-          visitscotland:breadcrumb: ''
-          visitscotland:descOrder: false
-          visitscotland:seoDescription: Find some of the most beautiful places in
-            Scotland, including iconic viewpoints and lesser known gems, alongside
-            advice on how to get there.
-          visitscotland:seoNoIndex: false
-          visitscotland:seoTitle: 12 Iconic Scottish Views
-          visitscotland:summaryTitle: A Testing Title
-          visitscotland:teaser: Find some of the most beautiful places in Scotland,
-            including iconic viewpoints and lesser known gems, alongside advice on
-            how to get there.
-          visitscotland:title: 12 Iconic Scottish Views
-          /visitscotland:heroImage:
-            jcr:primaryType: hippogallerypicker:imagelink
-            hippo:docbase: 878bc413-07fe-4c1a-9df6-55514c250a16
-            hippo:facets: []
-            hippo:modes: []
-            hippo:values: []
-          /visitscotland:introduction:
-            jcr:primaryType: hippostd:html
-            hippostd:content: |-
-              <p>Looking for the most beautiful places to see in Scotland? Want iconic Scottish views and places where you can appreciate the jaw dropping Scottish landscapes in all their glory? We can help!</p>
-
-              <p>These 12 viewpoints are a mixture of well-known hot spots that offer some of the best views in Scotland - and lesser-known gems where you'll definitely want to stop and drink in the amazing Scottish scenery.</p>
-          /visitscotland:summary:
-            jcr:primaryType: hippostd:html
-            hippostd:content: |-
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque placerat gravida tincidunt. Cras enim velit, varius sed porttitor eget, venenatis dapibus enim.</p>
-
-              <p>Integer in venenatis odio. In ante ante, tincidunt eget libero non, vehicula lobortis lorem. Mauris vulputate felis ac nunc hendrerit, non posuere lacus molestie.</p>
-        /content[2]:
-          jcr:primaryType: visitscotland:Listicle
-          jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
-          jcr:uuid: d4149aca-4d04-461e-a518-596b99bd5120
-          hippo:availability: [preview]
-          hippostd:state: unpublished
-          hippostdpubwf:createdBy: admin
-          hippostdpubwf:creationDate: 2020-03-17T11:17:48.546Z
-          hippostdpubwf:lastModificationDate: 2020-04-16T17:37:01.371+01:00
-          hippostdpubwf:lastModifiedBy: admin
-          hippotranslation:id: aced74d3-03f8-4ed2-9592-dd31975f29cf
-          hippotranslation:locale: en
-          visitscotland:breadcrumb: ''
-          visitscotland:descOrder: false
-          visitscotland:seoDescription: Find some of the most beautiful places in
-            Scotland, including iconic viewpoints and lesser known gems, alongside
-            advice on how to get there.
-          visitscotland:seoNoIndex: false
-          visitscotland:seoTitle: 12 Iconic Scottish Views
-          visitscotland:summaryTitle: A Testing Title
-          visitscotland:teaser: Find some of the most beautiful places in Scotland,
-            including iconic viewpoints and lesser known gems, alongside advice on
-            how to get there.
-          visitscotland:title: 12 Iconic Scottish Views
-          /visitscotland:heroImage:
-            jcr:primaryType: hippogallerypicker:imagelink
-            hippo:docbase: 878bc413-07fe-4c1a-9df6-55514c250a16
-            hippo:facets: []
-            hippo:modes: []
-            hippo:values: []
-          /visitscotland:introduction:
-            jcr:primaryType: hippostd:html
-            hippostd:content: |-
-              <p>Looking for the most beautiful places to see in Scotland? Want iconic Scottish views and places where you can appreciate the jaw dropping Scottish landscapes in all their glory? We can help!</p>
-
-              <p>These 12 viewpoints are a mixture of well-known hot spots that offer some of the best views in Scotland - and lesser-known gems where you'll definitely want to stop and drink in the amazing Scottish scenery.</p>
-          /visitscotland:summary:
-            jcr:primaryType: hippostd:html
-            hippostd:content: |-
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque placerat gravida tincidunt. Cras enim velit, varius sed porttitor eget, venenatis dapibus enim.</p>
-
-              <p>Integer in venenatis odio. In ante ante, tincidunt eget libero non, vehicula lobortis lorem. Mauris vulputate felis ac nunc hendrerit, non posuere lacus molestie.</p>
-        /content[3]:
-          jcr:primaryType: visitscotland:Listicle
-          jcr:mixinTypes: ['mix:referenceable']
-          jcr:uuid: 35621165-abfa-4629-9591-55a8bd71066c
-          hippo:availability: [live]
-          hippostd:state: published
-          hippostdpubwf:createdBy: admin
-          hippostdpubwf:creationDate: 2020-03-17T11:17:48.546Z
-          hippostdpubwf:lastModificationDate: 2020-04-16T17:37:01.371+01:00
-          hippostdpubwf:lastModifiedBy: admin
-          hippostdpubwf:publicationDate: 2020-04-29T17:56:40.400+01:00
-          hippotranslation:id: aced74d3-03f8-4ed2-9592-dd31975f29cf
-          hippotranslation:locale: en
-          visitscotland:breadcrumb: ''
-          visitscotland:descOrder: false
-          visitscotland:seoDescription: Find some of the most beautiful places in
-            Scotland, including iconic viewpoints and lesser known gems, alongside
-            advice on how to get there.
-          visitscotland:seoNoIndex: false
-          visitscotland:seoTitle: 12 Iconic Scottish Views
-          visitscotland:summaryTitle: A Testing Title
-          visitscotland:teaser: Find some of the most beautiful places in Scotland,
-            including iconic viewpoints and lesser known gems, alongside advice on
-            how to get there.
-          visitscotland:title: 12 Iconic Scottish Views
-          /visitscotland:heroImage:
-            jcr:primaryType: hippogallerypicker:imagelink
-            hippo:docbase: 878bc413-07fe-4c1a-9df6-55514c250a16
-            hippo:facets: []
-            hippo:modes: []
-            hippo:values: []
-          /visitscotland:introduction:
-            jcr:primaryType: hippostd:html
-            hippostd:content: |-
-              <p>Looking for the most beautiful places to see in Scotland? Want iconic Scottish views and places where you can appreciate the jaw dropping Scottish landscapes in all their glory? We can help!</p>
-
-              <p>These 12 viewpoints are a mixture of well-known hot spots that offer some of the best views in Scotland - and lesser-known gems where you'll definitely want to stop and drink in the amazing Scottish scenery.</p>
-          /visitscotland:summary:
-            jcr:primaryType: hippostd:html
-            hippostd:content: |-
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque placerat gravida tincidunt. Cras enim velit, varius sed porttitor eget, venenatis dapibus enim.</p>
-
-              <p>Integer in venenatis odio. In ante ante, tincidunt eget libero non, vehicula lobortis lorem. Mauris vulputate felis ac nunc hendrerit, non posuere lacus molestie.</p>
-      /sumburgh-head-shetland:
-        jcr:primaryType: hippo:handle
-        jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
-        jcr:uuid: 0d89b75f-32bc-4f4e-93f0-b1514be23a0d
-        hippo:name: Sumburgh Head, Shetland
-        hippo:versionHistory: 0711ebe9-3096-4580-b926-b47ab001bf60
-        /sumburgh-head-shetland[1]:
-          jcr:primaryType: visitscotland:ListicleItem
-          jcr:mixinTypes: ['mix:referenceable']
-          jcr:uuid: 6b27fa64-b559-4216-88b4-ea0f64fe53e6
-          hippo:availability: []
-          hippostd:state: draft
-          hippostdpubwf:createdBy: admin
-          hippostdpubwf:creationDate: 2020-03-17T14:46:45.172Z
-          hippostdpubwf:lastModificationDate: 2020-05-26T12:12:07.203+01:00
-          hippostdpubwf:lastModifiedBy: admin
-          hippotranslation:id: 3a46d97d-2a76-4c61-b139-742c4e58cc22
-          hippotranslation:locale: en
-          visitscotland:subtitle: ''
-          visitscotland:title: Sumburgh Head
-          /visitscotland:description:
-            jcr:primaryType: hippostd:html
-            hippostd:content: |-
-              <p>Shining its beacon from the perilous cliffs of Sumburgh Head, Sumburgh Head Lighthouse is perched 91 m above sea level and boasts incredible views out across the North Sea. Constructed in 1821, the lighthouse was designed by the renowned lighthouse architect Robert Stevenson (grandfather of author Robert Louis Stevenson). Marvel at the huge colonies of seabirds, including gannets and puffins.</p>
-
-              <p>How to get there: Fly from Edinburgh, Glasgow or Aberdeen to Sumburgh or catch the ferry from Aberdeen or Orkney to Lerwick.</p>
-          /visitscotland:extraLinks:
-            jcr:primaryType: visitscotland:CMSLink
-            visitscotland:label: See more things to do in Shetland
-            /visitscotland:link:
-              jcr:primaryType: hippo:mirror
-              hippo:docbase: 8b4a3c11-8b84-4aa0-bccf-f407d18c1c44
-          /visitscotland:products:
-            jcr:primaryType: visitscotland:ExternalLink
-            visitscotland:label: Discover Sumburgh Head
-            visitscotland:link: https://www.sumburghhead.com/
-          /visitscotland:images:
-            jcr:primaryType: visitscotland:InstagramImage
-            visitscotland:caption: Sumburgh Head
-            visitscotland:id: BIVXxuqhviq
-            visitscotland:location: Shetland
-        /sumburgh-head-shetland[2]:
-          jcr:primaryType: visitscotland:ListicleItem
-          jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
-          jcr:uuid: a6e2ab22-4b6c-4809-b2e2-b990e5353eab
-          hippo:availability: [preview]
-          hippostd:state: unpublished
-          hippostdpubwf:createdBy: admin
-          hippostdpubwf:creationDate: 2020-03-17T14:46:45.172Z
-          hippostdpubwf:lastModificationDate: 2020-04-08T16:34:29.746+01:00
-          hippostdpubwf:lastModifiedBy: admin
-          hippotranslation:id: 3a46d97d-2a76-4c61-b139-742c4e58cc22
-          hippotranslation:locale: en
-          visitscotland:subtitle: ''
-          visitscotland:title: Sumburgh Head
-          /visitscotland:description:
-            jcr:primaryType: hippostd:html
-            hippostd:content: |-
-              <p>Shining its beacon from the perilous cliffs of Sumburgh Head, Sumburgh Head Lighthouse is perched 91 m above sea level and boasts incredible views out across the North Sea. Constructed in 1821, the lighthouse was designed by the renowned lighthouse architect Robert Stevenson (grandfather of author Robert Louis Stevenson). Marvel at the huge colonies of seabirds, including gannets and puffins.</p>
-
-              <p>How to get there: Fly from Edinburgh, Glasgow or Aberdeen to Sumburgh or catch the ferry from Aberdeen or Orkney to Lerwick.</p>
-          /visitscotland:extraLinks:
-            jcr:primaryType: visitscotland:CMSLink
-            visitscotland:label: See more things to do in Shetland
-            /visitscotland:link:
-              jcr:primaryType: hippo:mirror
-              hippo:docbase: 8b4a3c11-8b84-4aa0-bccf-f407d18c1c44
-          /visitscotland:products:
-            jcr:primaryType: visitscotland:ExternalLink
-            visitscotland:label: Discover Sumburgh Head
-            visitscotland:link: https://www.sumburghhead.com/
-          /visitscotland:images:
-            jcr:primaryType: visitscotland:InstagramImage
-            visitscotland:caption: Sumburgh Head
-            visitscotland:id: BIVXxuqhviq
-            visitscotland:location: Shetland
-        /sumburgh-head-shetland[3]:
-          jcr:primaryType: visitscotland:ListicleItem
-          jcr:mixinTypes: ['mix:referenceable']
-          jcr:uuid: 116aa47b-02a4-4446-8e1d-6467841e1a95
-          hippo:availability: [live]
-          hippostd:state: published
-          hippostdpubwf:createdBy: admin
-          hippostdpubwf:creationDate: 2020-03-17T14:46:45.172Z
-          hippostdpubwf:lastModificationDate: 2020-04-08T16:34:29.746+01:00
-          hippostdpubwf:lastModifiedBy: admin
-          hippostdpubwf:publicationDate: 2020-04-08T16:46:22.246+01:00
-          hippotranslation:id: 3a46d97d-2a76-4c61-b139-742c4e58cc22
-          hippotranslation:locale: en
-          visitscotland:subtitle: ''
-          visitscotland:title: Sumburgh Head
-          /visitscotland:description:
-            jcr:primaryType: hippostd:html
-            hippostd:content: |-
-              <p>Shining its beacon from the perilous cliffs of Sumburgh Head, Sumburgh Head Lighthouse is perched 91 m above sea level and boasts incredible views out across the North Sea. Constructed in 1821, the lighthouse was designed by the renowned lighthouse architect Robert Stevenson (grandfather of author Robert Louis Stevenson). Marvel at the huge colonies of seabirds, including gannets and puffins.</p>
-
-              <p>How to get there: Fly from Edinburgh, Glasgow or Aberdeen to Sumburgh or catch the ferry from Aberdeen or Orkney to Lerwick.</p>
-          /visitscotland:extraLinks:
-            jcr:primaryType: visitscotland:CMSLink
-            visitscotland:label: See more things to do in Shetland
-            /visitscotland:link:
-              jcr:primaryType: hippo:mirror
-              hippo:docbase: 8b4a3c11-8b84-4aa0-bccf-f407d18c1c44
-          /visitscotland:products:
-            jcr:primaryType: visitscotland:ExternalLink
-            visitscotland:label: Discover Sumburgh Head
-            visitscotland:link: https://www.sumburghhead.com/
-          /visitscotland:images:
-            jcr:primaryType: visitscotland:InstagramImage
-            visitscotland:caption: Sumburgh Head
-            visitscotland:id: BIVXxuqhviq
-            visitscotland:location: Shetland
-      /scotts-view-scottish-borders:
-        jcr:primaryType: hippo:handle
-        jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
-        jcr:uuid: 8ebe58c3-71a8-4c3a-b427-b14f94f80a78
-        hippo:name: Scott's View Scottish Borders
-        hippo:versionHistory: 6b365e8d-7bd5-4c5e-9b67-d1481b35afbd
-        /scotts-view-scottish-borders[1]:
-          jcr:primaryType: visitscotland:ListicleItem
-          jcr:mixinTypes: ['mix:referenceable']
-          jcr:uuid: fe7c91d7-c98f-459f-b82f-51bb77c36840
-          hippo:availability: []
-          hippostd:state: draft
-          hippostdpubwf:createdBy: admin
-          hippostdpubwf:creationDate: 2020-03-17T11:26:00.217Z
-          hippostdpubwf:lastModificationDate: 2020-04-29T15:44:32.046+01:00
-          hippostdpubwf:lastModifiedBy: admin
-          hippotranslation:id: b5a43011-6ee7-495c-862c-49cacb71d3eb
-          hippotranslation:locale: en
-          visitscotland:subtitle: ''
-          visitscotland:title: Scott's View
-          /visitscotland:description:
-            jcr:primaryType: hippostd:html
-            hippostd:content: |-
-              <p>Soak up the peaceful vista at Sir Walter Scott's favourite viewpoint. Things to look out for include the fast-flowing River Tweed, famous for its underwater residents - huge wild salmon - and the prominent Eildon Hills, which are all that remain of an ancient volcano. Iron Age people and Romans once lived on top of these hills.</p>
-              hippostd:content: <p>This is an example of Featured Links</p>
-            /visitscotland:megalinkItems[1]:
-              jcr:primaryType: visitscotland:MegalinkItem
-              visitscotland:feature: true
-              /visitscotland:link:
-                jcr:primaryType: hippo:mirror
-                hippo:docbase: e16bdb89-c271-46f1-851f-2d2b82d631d4
-            /visitscotland:megalinkItems[2]:
-              jcr:primaryType: visitscotland:MegalinkItem
-              visitscotland:feature: false
-              /visitscotland:link:
-                jcr:primaryType: hippo:mirror
-                hippo:docbase: 4d302e29-93dd-4157-9df9-bbd741bb12a0
-            /visitscotland:megalinkItems[3]:
-              jcr:primaryType: visitscotland:MegalinkItem
-              visitscotland:feature: false
-              /visitscotland:link:
-                jcr:primaryType: hippo:mirror
-                hippo:docbase: 17a3588b-6cee-439b-acd8-186ceb2067aa
-            /visitscotland:megalinkItems[4]:
-              jcr:primaryType: visitscotland:MegalinkItem
-              visitscotland:feature: true
-              /visitscotland:link:
-                jcr:primaryType: hippo:mirror
-                hippo:docbase: cbc8477d-1deb-4153-b663-12212905b472
-            /visitscotland:megalinkItems[5]:
-              jcr:primaryType: visitscotland:MegalinkItem
-              visitscotland:feature: false
-              /visitscotland:link:
-                jcr:primaryType: hippo:mirror
-                hippo:docbase: 8b4a3c11-8b84-4aa0-bccf-f407d18c1c44
-          /featured-layout[2]:
-            jcr:primaryType: visitscotland:Megalinks
+        /content:
+          jcr:primaryType: hippo:handle
+          jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
+          jcr:uuid: 4d302e29-93dd-4157-9df9-bbd741bb12a0
+          hippo:name: Orkney short break itinerary
+          hippo:versionHistory: 2eb4469d-fbed-4a80-a0ad-fa16d8a1f936
+          /content[1]:
+            jcr:primaryType: visitscotland:Itinerary
+            jcr:mixinTypes: ['mix:referenceable']
+            jcr:uuid: 83e7c2a7-dc4c-4ca5-a206-74ecb9e2ccb3
+            hippo:availability: []
+            hippostd:state: draft
+            hippostdpubwf:createdBy: admin
+            hippostdpubwf:creationDate: 2020-02-07T09:41:25.483Z
+            hippostdpubwf:lastModificationDate: 2020-05-25T14:10:20.684+01:00
+            hippostdpubwf:lastModifiedBy: admin
+            hippotranslation:id: 4f317e16-7cca-44da-84bf-26c96e4a4494
+            hippotranslation:locale: en
+            visitscotland:areas: [north]
+            visitscotland:breadcrumb: ''
+            visitscotland:distance: 0.0
+            visitscotland:finish: Kirkwall
+            visitscotland:highlights: "Heart of Neolithic Orkney World Heritage Site\
+              \  \r\nIsle of Hoy  \r\nYesnaby Sea Cliffs \r\nNorth Ronaldsay"
+            visitscotland:popular: false
+            visitscotland:seoDescription: Taste the smoky influences in Orkney whisky,
+              see rare birds soaring in the skies overhead, walk amongst historic
+              sites that have stood for thousands of years and gaze out at swirling
+              seas on a coastal walk.
+            visitscotland:seoNoIndex: false
+            visitscotland:seoTitle: Short Break in Orkney – 4 Day Itinerary
+            visitscotland:start: ''
+            visitscotland:teaser: Taste the smoky influences in Orkney whisky, see
+              rare birds soaring in the skies overhead, walk amongst historic sites
+              that have stood for thousands of years and gaze out at swirling seas
+              on a coastal walk.
+            visitscotland:theme: islands
+            visitscotland:title: Short Break in Orkney – 4 Day Itinerary
+            visitscotland:transports: [cycling]
+            /visitscotland:heroImage:
+              jcr:primaryType: hippogallerypicker:imagelink
+              hippo:docbase: ecede5a4-326c-4ce5-b9be-bcdf32c3f2c2
+              hippo:facets: []
+              hippo:modes: []
+              hippo:values: []
+            /visitscotland:introduction:
+              jcr:primaryType: hippostd:html
+              hippostd:content: |-
+                <p>Taste the smoky influences in Orkney whisky, see rare birds soaring in the skies overhead, walk amongst historic sites that have stood for thousands of years and gaze out at swirling seas on a coastal walk.&nbsp;</p>
+
+                <p>You can explore the enchanting islands on this 4 day short break in <a rel="noreferrer noopener" href="https://www.visitscotland.com/destinations-maps/orkney/" target="_blank">Orkney</a>. You’ll visit key Orkney points of interest, such as the fascinating historic sites of the Heart of Neolithic&nbsp;Orkney, and&nbsp;discover the wonder of Orkney through the&nbsp;elements of fire, air, earth and water.&nbsp;&nbsp;</p>
+
+                <p>There are lots of unique things to do in Orkney throughout the seasons too, from seeing North&nbsp;Ronaldsay&nbsp;lambs frolicking in spring and summer to gazing at the dazzling Northern Lights in the darker months.&nbsp;</p>
+
+                <p>For more information about visiting Orkney head to <a rel="noreferrer noopener" href="https://www.orkney.com/" target="_blank">orkney.com</a> or read on for our top ideas on how to fit in the highlights of Orkney in just four days, with travel information, attraction opening, maps and more.&nbsp;</p>
+          /content[2]:
+            jcr:primaryType: visitscotland:Itinerary
             jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
-            jcr:uuid: 5ffd9e37-ad7c-4d7e-b188-4276e3802351
+            jcr:uuid: 3a87a995-30de-447a-b004-84cb3387020b
             hippo:availability: [preview]
             hippostd:state: unpublished
             hippostdpubwf:createdBy: admin
-            hippostdpubwf:creationDate: 2020-05-21T17:54:15.934+01:00
-            hippostdpubwf:lastModificationDate: 2020-06-16T16:30:37.878+01:00
+            hippostdpubwf:creationDate: 2020-02-07T09:41:25.483Z
+            hippostdpubwf:lastModificationDate: 2020-05-25T14:10:26.222+01:00
             hippostdpubwf:lastModifiedBy: admin
-            hippotranslation:id: 5dc9b699-4821-4c91-b426-7b75aed683e4
+            hippotranslation:id: 4f317e16-7cca-44da-84bf-26c96e4a4494
             hippotranslation:locale: en
-            visitscotland:hideTeaser: false
-            visitscotland:list: false
-            visitscotland:listLayout: false
-            visitscotland:teaserVisible: true
-            visitscotland:title: Featured Links (6 items)
+            visitscotland:areas: [north]
+            visitscotland:breadcrumb: ''
+            visitscotland:distance: 0.0
+            visitscotland:finish: Kirkwall
+            visitscotland:highlights: "Heart of Neolithic Orkney World Heritage Site\
+              \  \r\nIsle of Hoy  \r\nYesnaby Sea Cliffs \r\nNorth Ronaldsay"
+            visitscotland:popular: false
+            visitscotland:seoDescription: Taste the smoky influences in Orkney whisky,
+              see rare birds soaring in the skies overhead, walk amongst historic
+              sites that have stood for thousands of years and gaze out at swirling
+              seas on a coastal walk.
+            visitscotland:seoNoIndex: false
+            visitscotland:seoTitle: Short Break in Orkney – 4 Day Itinerary
+            visitscotland:start: ''
+            visitscotland:teaser: Taste the smoky influences in Orkney whisky, see
+              rare birds soaring in the skies overhead, walk amongst historic sites
+              that have stood for thousands of years and gaze out at swirling seas
+              on a coastal walk.
+            visitscotland:theme: islands
+            visitscotland:title: Short Break in Orkney – 4 Day Itinerary
+            visitscotland:transports: [cycling]
+            /visitscotland:heroImage:
+              jcr:primaryType: hippogallerypicker:imagelink
+              hippo:docbase: ecede5a4-326c-4ce5-b9be-bcdf32c3f2c2
+              hippo:facets: []
+              hippo:modes: []
+              hippo:values: []
             /visitscotland:introduction:
               jcr:primaryType: hippostd:html
-              hippostd:content: <p>This is an example of Featured Links</p>
-            /visitscotland:megalinkItems[1]:
-              jcr:primaryType: visitscotland:MegalinkItem
-              visitscotland:feature: true
-              /visitscotland:link:
-                jcr:primaryType: hippo:mirror
-                hippo:docbase: e16bdb89-c271-46f1-851f-2d2b82d631d4
-            /visitscotland:megalinkItems[2]:
-              jcr:primaryType: visitscotland:MegalinkItem
-              visitscotland:feature: false
-              /visitscotland:link:
-                jcr:primaryType: hippo:mirror
-                hippo:docbase: 4d302e29-93dd-4157-9df9-bbd741bb12a0
-            /visitscotland:megalinkItems[3]:
-              jcr:primaryType: visitscotland:MegalinkItem
-              visitscotland:feature: false
-              /visitscotland:link:
-                jcr:primaryType: hippo:mirror
-                hippo:docbase: 17a3588b-6cee-439b-acd8-186ceb2067aa
-            /visitscotland:megalinkItems[4]:
-              jcr:primaryType: visitscotland:MegalinkItem
-              visitscotland:feature: true
-              /visitscotland:link:
-                jcr:primaryType: hippo:mirror
-                hippo:docbase: cbc8477d-1deb-4153-b663-12212905b472
-            /visitscotland:megalinkItems[5]:
-              jcr:primaryType: visitscotland:MegalinkItem
-              visitscotland:feature: false
-              /visitscotland:link:
-                jcr:primaryType: hippo:mirror
-                hippo:docbase: 8b4a3c11-8b84-4aa0-bccf-f407d18c1c44
-          /featured-layout[3]:
-            jcr:primaryType: visitscotland:Megalinks
+              hippostd:content: |-
+                <p>Taste the smoky influences in Orkney whisky, see rare birds soaring in the skies overhead, walk amongst historic sites that have stood for thousands of years and gaze out at swirling seas on a coastal walk.&nbsp;</p>
+
+                <p>You can explore the enchanting islands on this 4 day short break in <a rel="noreferrer noopener" href="https://www.visitscotland.com/destinations-maps/orkney/" target="_blank">Orkney</a>. You’ll visit key Orkney points of interest, such as the fascinating historic sites of the Heart of Neolithic&nbsp;Orkney, and&nbsp;discover the wonder of Orkney through the&nbsp;elements of fire, air, earth and water.&nbsp;&nbsp;</p>
+
+                <p>There are lots of unique things to do in Orkney throughout the seasons too, from seeing North&nbsp;Ronaldsay&nbsp;lambs frolicking in spring and summer to gazing at the dazzling Northern Lights in the darker months.&nbsp;</p>
+
+                <p>For more information about visiting Orkney head to <a rel="noreferrer noopener" href="https://www.orkney.com/" target="_blank">orkney.com</a> or read on for our top ideas on how to fit in the highlights of Orkney in just four days, with travel information, attraction opening, maps and more.&nbsp;</p>
+          /content[3]:
+            jcr:primaryType: visitscotland:Itinerary
             jcr:mixinTypes: ['mix:referenceable']
-            jcr:uuid: 08069ffe-0b6a-43ff-8089-3b3af02158fc
+            jcr:uuid: 14a9dd5b-0a5a-47fa-90ef-cc58005c71c4
             hippo:availability: [live]
             hippostd:state: published
             hippostdpubwf:createdBy: admin
-            hippostdpubwf:creationDate: 2020-05-21T17:54:15.934+01:00
-            hippostdpubwf:lastModificationDate: 2020-06-16T16:30:37.878+01:00
+            hippostdpubwf:creationDate: 2020-02-07T09:41:25.483Z
+            hippostdpubwf:lastModificationDate: 2020-05-25T14:10:26.222+01:00
             hippostdpubwf:lastModifiedBy: admin
-            hippostdpubwf:publicationDate: 2020-06-16T16:30:41.598+01:00
-            hippotranslation:id: 5dc9b699-4821-4c91-b426-7b75aed683e4
+            hippostdpubwf:publicationDate: 2020-06-12T08:53:27.606+01:00
+            hippotranslation:id: 4f317e16-7cca-44da-84bf-26c96e4a4494
             hippotranslation:locale: en
-            visitscotland:hideTeaser: false
-            visitscotland:list: false
-            visitscotland:listLayout: false
-            visitscotland:teaserVisible: true
-            visitscotland:title: Featured Links (6 items)
+            visitscotland:areas: [north]
+            visitscotland:breadcrumb: ''
+            visitscotland:distance: 0.0
+            visitscotland:finish: Kirkwall
+            visitscotland:highlights: "Heart of Neolithic Orkney World Heritage Site\
+              \  \r\nIsle of Hoy  \r\nYesnaby Sea Cliffs \r\nNorth Ronaldsay"
+            visitscotland:popular: false
+            visitscotland:seoDescription: Taste the smoky influences in Orkney whisky,
+              see rare birds soaring in the skies overhead, walk amongst historic
+              sites that have stood for thousands of years and gaze out at swirling
+              seas on a coastal walk.
+            visitscotland:seoNoIndex: false
+            visitscotland:seoTitle: Short Break in Orkney – 4 Day Itinerary
+            visitscotland:start: ''
+            visitscotland:teaser: Taste the smoky influences in Orkney whisky, see
+              rare birds soaring in the skies overhead, walk amongst historic sites
+              that have stood for thousands of years and gaze out at swirling seas
+              on a coastal walk.
+            visitscotland:theme: islands
+            visitscotland:title: Short Break in Orkney – 4 Day Itinerary
+            visitscotland:transports: [cycling]
+            /visitscotland:heroImage:
+              jcr:primaryType: hippogallerypicker:imagelink
+              hippo:docbase: ecede5a4-326c-4ce5-b9be-bcdf32c3f2c2
+              hippo:facets: []
+              hippo:modes: []
+              hippo:values: []
             /visitscotland:introduction:
               jcr:primaryType: hippostd:html
-              hippostd:content: <p>This is an example of Featured Links</p>
-            /visitscotland:megalinkItems[1]:
-              jcr:primaryType: visitscotland:MegalinkItem
-              visitscotland:feature: true
-              /visitscotland:link:
-                jcr:primaryType: hippo:mirror
-                hippo:docbase: e16bdb89-c271-46f1-851f-2d2b82d631d4
-            /visitscotland:megalinkItems[2]:
-              jcr:primaryType: visitscotland:MegalinkItem
-              visitscotland:feature: false
-              /visitscotland:link:
-                jcr:primaryType: hippo:mirror
-                hippo:docbase: 4d302e29-93dd-4157-9df9-bbd741bb12a0
-            /visitscotland:megalinkItems[3]:
-              jcr:primaryType: visitscotland:MegalinkItem
-              visitscotland:feature: false
-              /visitscotland:link:
-                jcr:primaryType: hippo:mirror
-                hippo:docbase: 17a3588b-6cee-439b-acd8-186ceb2067aa
-            /visitscotland:megalinkItems[4]:
-              jcr:primaryType: visitscotland:MegalinkItem
-              visitscotland:feature: true
-              /visitscotland:link:
-                jcr:primaryType: hippo:mirror
-                hippo:docbase: cbc8477d-1deb-4153-b663-12212905b472
-            /visitscotland:megalinkItems[5]:
-              jcr:primaryType: visitscotland:MegalinkItem
-              visitscotland:feature: false
-              /visitscotland:link:
-                jcr:primaryType: hippo:mirror
-                hippo:docbase: 8b4a3c11-8b84-4aa0-bccf-f407d18c1c44
-        /list-layout:
+              hippostd:content: |-
+                <p>Taste the smoky influences in Orkney whisky, see rare birds soaring in the skies overhead, walk amongst historic sites that have stood for thousands of years and gaze out at swirling seas on a coastal walk.&nbsp;</p>
+
+                <p>You can explore the enchanting islands on this 4 day short break in <a rel="noreferrer noopener" href="https://www.visitscotland.com/destinations-maps/orkney/" target="_blank">Orkney</a>. You’ll visit key Orkney points of interest, such as the fascinating historic sites of the Heart of Neolithic&nbsp;Orkney, and&nbsp;discover the wonder of Orkney through the&nbsp;elements of fire, air, earth and water.&nbsp;&nbsp;</p>
+
+                <p>There are lots of unique things to do in Orkney throughout the seasons too, from seeing North&nbsp;Ronaldsay&nbsp;lambs frolicking in spring and summer to gazing at the dazzling Northern Lights in the darker months.&nbsp;</p>
+
+                <p>For more information about visiting Orkney head to <a rel="noreferrer noopener" href="https://www.orkney.com/" target="_blank">orkney.com</a> or read on for our top ideas on how to fit in the highlights of Orkney in just four days, with travel information, attraction opening, maps and more.&nbsp;</p>
+        /mainland-orkney:
           jcr:primaryType: hippo:handle
           jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
-          jcr:uuid: 83f02b86-81e0-4e6c-8a5a-0a32b2a64290
-          hippo:name: List Layout
-          hippo:versionHistory: 60a0670a-c725-4e03-8433-450a4e8d6514
-          /list-layout[1]:
-            jcr:primaryType: visitscotland:Megalinks
-            jcr:mixinTypes: ['mix:versionable']
-            jcr:uuid: 7d7da833-cae5-48d6-bb64-e7a27d0f154b
+          jcr:uuid: b1e7a0fc-15ba-4d75-8b56-eadd710da675
+          hippo:name: Mainland Orkney
+          hippo:versionHistory: 1b5211e8-fb3e-4eac-803e-1ae53a4328f3
+          /mainland-orkney[1]:
+            jcr:primaryType: visitscotland:Day
+            jcr:mixinTypes: ['mix:referenceable']
+            jcr:uuid: c322e0e2-3df7-4dfe-a323-5dbf7dd26e49
+            hippo:availability: []
+            hippostd:holder: admin
+            hippostd:state: draft
+            hippostdpubwf:createdBy: admin
+            hippostdpubwf:creationDate: 2020-02-07T09:53:28.791Z
+            hippostdpubwf:lastModificationDate: 2020-06-18T17:02:26.747+01:00
+            hippostdpubwf:lastModifiedBy: admin
+            hippotranslation:id: e918acd6-1648-4553-8289-cdda8e3e2938
+            hippotranslation:locale: en
+            visitscotland:title: Mainland Orkney
+            visitscotland:transports: [car, ferry]
+            /visitscotland:introduction:
+              jcr:primaryType: hippostd:html
+              hippostd:content: |-
+                <p>Your first day on Orkney begins with a visit to the famous <a rel="noreferrer noopener" href="https://www.historicenvironment.scot/advice-and-support/listing-scheduling-and-designations/world-heritage-sites/heart-of-neolithic-orkney/" target="_blank">Heart of Neolithic Orkney World Heritage Site</a>.&nbsp;</p>
+
+                <p>Four world-class historic sites make up the Heart of Neolithic Orkney and you’ll visit them all in this itinerary, with three to tick off today and the fourth on day 3. In the afternoon head back to the main town of Kirkwall to tour a whisky distillery and explore around town.&nbsp;</p>
+
+                <p>GETTING TO MAINLAND ORKNEY&nbsp;</p>
+
+                <p>Fly to Kirkwall Airport.&nbsp;</p>
+
+                <p>Sail from ferry terminals near John O’ Groats or&nbsp;Scrabster&nbsp;in the North Highlands or from Aberdeen.&nbsp;</p>
+
+                <p>Find out more about <a rel="noreferrer noopener" href="https://www.orkney.com/plan/getting-here" target="_blank">getting to Orkney</a>.&nbsp;</p>
+
+                <p>GETTING AROUND MAINLAND ORKNEY&nbsp;</p>
+
+                <p>Mainland Orkney is a large island and this itinerary covers a lot of ground. There are bus services available but for this itinerary it would be best to bring your car over on the ferry or hire a car on the island for getting around.&nbsp;</p>
+
+                <p>Find out more about <a rel="noreferrer noopener" href="http://www.orkney.com/move/transport" target="_blank">getting around on Orkney</a>.&nbsp;</p>
+            /visitscotland:stops[1]:
+              jcr:primaryType: hippo:mirror
+              hippo:docbase: 013a6677-1e64-4bb4-82d4-1e3af6a80ca2
+            /visitscotland:stops[2]:
+              jcr:primaryType: hippo:mirror
+              hippo:docbase: 207ac2b4-49dd-46ef-ae72-c901d228fae7
+            /visitscotland:stops[3]:
+              jcr:primaryType: hippo:mirror
+              hippo:docbase: dd98ed46-1531-4bbf-b47f-394ebca903f5
+          /mainland-orkney[2]:
+            jcr:primaryType: visitscotland:Day
+            jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
+            jcr:uuid: 75e36fef-3852-46a5-a2ba-7c202186be8a
             hippo:availability: [preview]
             hippostd:state: unpublished
             hippostdpubwf:createdBy: admin
-            hippostdpubwf:creationDate: 2020-05-21T17:54:15.934+01:00
-            hippostdpubwf:lastModificationDate: 2020-06-16T16:30:51.641+01:00
+            hippostdpubwf:creationDate: 2020-02-07T09:53:28.791Z
+            hippostdpubwf:lastModificationDate: 2020-02-07T10:06:49.352Z
             hippostdpubwf:lastModifiedBy: admin
-            hippotranslation:id: 9390056b-b448-4e0a-8c69-f373eb031d00
+            hippotranslation:id: e918acd6-1648-4553-8289-cdda8e3e2938
             hippotranslation:locale: en
-            visitscotland:hideTeaser: false
-            visitscotland:list: true
-            visitscotland:listLayout: true
-            visitscotland:teaserVisible: true
-            visitscotland:title: Featured Links (6 items) - List view
+            visitscotland:title: Mainland Orkney
+            visitscotland:transports: [car, ferry]
             /visitscotland:introduction:
               jcr:primaryType: hippostd:html
-              hippostd:content: <p>This is an example of Featured Links</p>
-            /visitscotland:megalinkItems[1]:
-              jcr:primaryType: visitscotland:MegalinkItem
-              visitscotland:feature: false
-              /visitscotland:link:
-                jcr:primaryType: hippo:mirror
-                hippo:docbase: e16bdb89-c271-46f1-851f-2d2b82d631d4
-            /visitscotland:megalinkItems[2]:
-              jcr:primaryType: visitscotland:MegalinkItem
-              visitscotland:feature: false
-              /visitscotland:link:
-                jcr:primaryType: hippo:mirror
-                hippo:docbase: 4d302e29-93dd-4157-9df9-bbd741bb12a0
-            /visitscotland:megalinkItems[3]:
-              jcr:primaryType: visitscotland:MegalinkItem
-              visitscotland:feature: false
-              /visitscotland:link:
-                jcr:primaryType: hippo:mirror
-                hippo:docbase: 17a3588b-6cee-439b-acd8-186ceb2067aa
-            /visitscotland:megalinkItems[4]:
-              jcr:primaryType: visitscotland:MegalinkItem
-              visitscotland:feature: true
-              /visitscotland:link:
-                jcr:primaryType: hippo:mirror
-                hippo:docbase: cbc8477d-1deb-4153-b663-12212905b472
-            /visitscotland:megalinkItems[5]:
-              jcr:primaryType: visitscotland:MegalinkItem
-              visitscotland:feature: false
-              /visitscotland:link:
-                jcr:primaryType: hippo:mirror
-                hippo:docbase: 8b4a3c11-8b84-4aa0-bccf-f407d18c1c44
-          /list-layout[2]:
-            jcr:primaryType: visitscotland:Megalinks
+              hippostd:content: |-
+                <p>Your first day on Orkney begins with a visit to the famous <a rel="noreferrer noopener" href="https://www.historicenvironment.scot/advice-and-support/listing-scheduling-and-designations/world-heritage-sites/heart-of-neolithic-orkney/" target="_blank">Heart of Neolithic Orkney World Heritage Site</a>.&nbsp;</p>
+
+                <p>Four world-class historic sites make up the Heart of Neolithic Orkney and you’ll visit them all in this itinerary, with three to tick off today and the fourth on day 3. In the afternoon head back to the main town of Kirkwall to tour a whisky distillery and explore around town.&nbsp;</p>
+
+                <p>GETTING TO MAINLAND ORKNEY&nbsp;</p>
+
+                <p>Fly to Kirkwall Airport.&nbsp;</p>
+
+                <p>Sail from ferry terminals near John O’ Groats or&nbsp;Scrabster&nbsp;in the North Highlands or from Aberdeen.&nbsp;</p>
+
+                <p>Find out more about <a rel="noreferrer noopener" href="https://www.orkney.com/plan/getting-here" target="_blank">getting to Orkney</a>.&nbsp;</p>
+
+                <p>GETTING AROUND MAINLAND ORKNEY&nbsp;</p>
+
+                <p>Mainland Orkney is a large island and this itinerary covers a lot of ground. There are bus services available but for this itinerary it would be best to bring your car over on the ferry or hire a car on the island for getting around.&nbsp;</p>
+
+                <p>Find out more about <a rel="noreferrer noopener" href="http://www.orkney.com/move/transport" target="_blank">getting around on Orkney</a>.&nbsp;</p>
+            /visitscotland:stops[1]:
+              jcr:primaryType: hippo:mirror
+              hippo:docbase: 013a6677-1e64-4bb4-82d4-1e3af6a80ca2
+            /visitscotland:stops[2]:
+              jcr:primaryType: hippo:mirror
+              hippo:docbase: 207ac2b4-49dd-46ef-ae72-c901d228fae7
+            /visitscotland:stops[3]:
+              jcr:primaryType: hippo:mirror
+              hippo:docbase: dd98ed46-1531-4bbf-b47f-394ebca903f5
+          /mainland-orkney[3]:
+            jcr:primaryType: visitscotland:Day
             jcr:mixinTypes: ['mix:referenceable']
-            jcr:uuid: efc0bccb-dd92-49e0-b1e4-6b17bfd1cf78
-            hippo:availability: []
-            hippostd:state: draft
-            hippostdpubwf:createdBy: admin
-            hippostdpubwf:creationDate: 2020-05-21T17:54:15.934+01:00
-            hippostdpubwf:lastModificationDate: 2020-06-16T16:30:51.695+01:00
-            hippostdpubwf:lastModifiedBy: admin
-            hippotranslation:id: 9390056b-b448-4e0a-8c69-f373eb031d00
-            hippotranslation:locale: en
-            visitscotland:hideTeaser: false
-            visitscotland:list: true
-            visitscotland:listLayout: true
-            visitscotland:teaserVisible: true
-            visitscotland:title: Featured Links (6 items) - List view
-            /visitscotland:introduction:
-              jcr:primaryType: hippostd:html
-              hippostd:content: <p>This is an example of Featured Links</p>
-            /visitscotland:megalinkItems[1]:
-              jcr:primaryType: visitscotland:MegalinkItem
-              visitscotland:feature: false
-              /visitscotland:link:
-                jcr:primaryType: hippo:mirror
-                hippo:docbase: e16bdb89-c271-46f1-851f-2d2b82d631d4
-            /visitscotland:megalinkItems[2]:
-              jcr:primaryType: visitscotland:MegalinkItem
-              visitscotland:feature: false
-              /visitscotland:link:
-                jcr:primaryType: hippo:mirror
-                hippo:docbase: 4d302e29-93dd-4157-9df9-bbd741bb12a0
-            /visitscotland:megalinkItems[3]:
-              jcr:primaryType: visitscotland:MegalinkItem
-              visitscotland:feature: false
-              /visitscotland:link:
-                jcr:primaryType: hippo:mirror
-                hippo:docbase: 17a3588b-6cee-439b-acd8-186ceb2067aa
-            /visitscotland:megalinkItems[4]:
-              jcr:primaryType: visitscotland:MegalinkItem
-              visitscotland:feature: true
-              /visitscotland:link:
-                jcr:primaryType: hippo:mirror
-                hippo:docbase: cbc8477d-1deb-4153-b663-12212905b472
-            /visitscotland:megalinkItems[5]:
-              jcr:primaryType: visitscotland:MegalinkItem
-              visitscotland:feature: false
-              /visitscotland:link:
-                jcr:primaryType: hippo:mirror
-                hippo:docbase: 8b4a3c11-8b84-4aa0-bccf-f407d18c1c44
-          /list-layout[3]:
-            jcr:primaryType: visitscotland:Megalinks
-            jcr:mixinTypes: ['mix:referenceable']
-            jcr:uuid: 72965c8c-4af0-4cc2-9c11-1043944e4f02
+            jcr:uuid: 20140076-eead-4d12-99f6-c0e3717513b8
             hippo:availability: [live]
             hippostd:state: published
             hippostdpubwf:createdBy: admin
-            hippostdpubwf:creationDate: 2020-05-21T17:54:15.934+01:00
-            hippostdpubwf:lastModificationDate: 2020-06-16T16:30:51.641+01:00
+            hippostdpubwf:creationDate: 2020-02-07T09:53:28.791Z
+            hippostdpubwf:lastModificationDate: 2020-02-07T10:06:49.352Z
             hippostdpubwf:lastModifiedBy: admin
-            hippostdpubwf:publicationDate: 2020-06-16T16:30:54.880+01:00
-            hippotranslation:id: 9390056b-b448-4e0a-8c69-f373eb031d00
+            hippostdpubwf:publicationDate: 2020-06-12T08:53:24.820+01:00
+            hippotranslation:id: e918acd6-1648-4553-8289-cdda8e3e2938
             hippotranslation:locale: en
-            visitscotland:hideTeaser: false
-            visitscotland:list: true
-            visitscotland:listLayout: true
-            visitscotland:teaserVisible: true
-            visitscotland:title: Featured Links (6 items) - List view
+            visitscotland:title: Mainland Orkney
+            visitscotland:transports: [car, ferry]
             /visitscotland:introduction:
               jcr:primaryType: hippostd:html
-              hippostd:content: <p>This is an example of Featured Links</p>
-            /visitscotland:megalinkItems[1]:
-              jcr:primaryType: visitscotland:MegalinkItem
-              visitscotland:feature: false
-              /visitscotland:link:
-                jcr:primaryType: hippo:mirror
-                hippo:docbase: e16bdb89-c271-46f1-851f-2d2b82d631d4
-            /visitscotland:megalinkItems[2]:
-              jcr:primaryType: visitscotland:MegalinkItem
-              visitscotland:feature: false
-              /visitscotland:link:
-                jcr:primaryType: hippo:mirror
-                hippo:docbase: 4d302e29-93dd-4157-9df9-bbd741bb12a0
-            /visitscotland:megalinkItems[3]:
-              jcr:primaryType: visitscotland:MegalinkItem
-              visitscotland:feature: false
-              /visitscotland:link:
-                jcr:primaryType: hippo:mirror
-                hippo:docbase: 17a3588b-6cee-439b-acd8-186ceb2067aa
-            /visitscotland:megalinkItems[4]:
-              jcr:primaryType: visitscotland:MegalinkItem
-              visitscotland:feature: true
-              /visitscotland:link:
-                jcr:primaryType: hippo:mirror
-                hippo:docbase: cbc8477d-1deb-4153-b663-12212905b472
-            /visitscotland:megalinkItems[5]:
-              jcr:primaryType: visitscotland:MegalinkItem
-              visitscotland:feature: false
-              /visitscotland:link:
-                jcr:primaryType: hippo:mirror
-                hippo:docbase: 8b4a3c11-8b84-4aa0-bccf-f407d18c1c44
-        /single-image:
-          jcr:primaryType: hippo:handle
-          jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
-          jcr:uuid: ea5e9e7e-c8a9-4986-8b1a-fd63b8d9c7e6
-          hippo:name: Single Image
-          hippo:versionHistory: fd5251ca-4675-4655-87bc-b3354ad57f79
-          /single-image[1]:
-            jcr:primaryType: visitscotland:Megalinks
-            jcr:mixinTypes: ['mix:versionable']
-            jcr:uuid: f36a4ff3-7ead-4e03-97dc-7ac439230a8e
-            hippo:availability: [preview]
-            hippostd:state: unpublished
-            hippostdpubwf:createdBy: admin
-            hippostdpubwf:creationDate: 2020-05-21T17:54:15.934+01:00
-            hippostdpubwf:lastModificationDate: 2020-06-16T16:31:08.236+01:00
-            hippostdpubwf:lastModifiedBy: admin
-            hippotranslation:id: 947115dd-693b-4a35-af7b-c527e3a432fa
-            hippotranslation:locale: en
-            visitscotland:hideTeaser: false
-            visitscotland:list: false
-            visitscotland:listLayout: false
-            visitscotland:teaserVisible: false
-            visitscotland:title: Single Image Links (6 items)
-            /visitscotland:introduction:
-              jcr:primaryType: hippostd:html
-              hippostd:content: <p>This is an example of the Simgle Image Layout of
-                the Megalinks module</p>
-            /visitscotland:megalinkItems[1]:
-              jcr:primaryType: visitscotland:MegalinkItem
-              visitscotland:feature: false
-              /visitscotland:link:
-                jcr:primaryType: hippo:mirror
-                hippo:docbase: e16bdb89-c271-46f1-851f-2d2b82d631d4
-            /visitscotland:megalinkItems[2]:
-              jcr:primaryType: visitscotland:MegalinkItem
-              visitscotland:feature: false
-              /visitscotland:link:
-                jcr:primaryType: hippo:mirror
-                hippo:docbase: 4d302e29-93dd-4157-9df9-bbd741bb12a0
-            /visitscotland:megalinkItems[3]:
-              jcr:primaryType: visitscotland:MegalinkItem
-              visitscotland:feature: false
-              /visitscotland:link:
-                jcr:primaryType: hippo:mirror
-                hippo:docbase: 17a3588b-6cee-439b-acd8-186ceb2067aa
-            /visitscotland:megalinkItems[4]:
-              jcr:primaryType: visitscotland:MegalinkItem
-              visitscotland:feature: true
-              /visitscotland:link:
-                jcr:primaryType: hippo:mirror
-                hippo:docbase: cbc8477d-1deb-4153-b663-12212905b472
-            /visitscotland:megalinkItems[5]:
-              jcr:primaryType: visitscotland:MegalinkItem
-              visitscotland:feature: false
-              /visitscotland:link:
-                jcr:primaryType: hippo:mirror
-                hippo:docbase: 8b4a3c11-8b84-4aa0-bccf-f407d18c1c44
-            /visitscotland:singleImageLinks:
-              jcr:primaryType: visitscotland:SingleImageModule
-              visitscotland:fullWidth: false
-              visitscotland:title: Megalink in Spanish would be Megaenlace
-              /visitscotland:image:
-                jcr:primaryType: hippogallerypicker:imagelink
-                hippo:docbase: ecede5a4-326c-4ce5-b9be-bcdf32c3f2c2
-                hippo:facets: []
-                hippo:modes: []
-                hippo:values: []
-              /visitscotland:introduction:
-                jcr:primaryType: hippostd:html
-                hippostd:content: |-
-                  <p>I don't feel very creative today so I'd just say:</p>
+              hippostd:content: |-
+                <p>Your first day on Orkney begins with a visit to the famous <a rel="noreferrer noopener" href="https://www.historicenvironment.scot/advice-and-support/listing-scheduling-and-designations/world-heritage-sites/heart-of-neolithic-orkney/" target="_blank">Heart of Neolithic Orkney World Heritage Site</a>.&nbsp;</p>
 
-                  <p>Lorem Ipsum In nomini il patri el iji y el espiritu sancti</p>
-          /single-image[2]:
-            jcr:primaryType: visitscotland:Megalinks
-            jcr:mixinTypes: ['mix:referenceable']
-            jcr:uuid: ee591b3b-3cce-46c9-b421-be474319dcfc
-            hippo:availability: []
-            hippostd:state: draft
-            hippostdpubwf:createdBy: admin
-            hippostdpubwf:creationDate: 2020-05-21T17:54:15.934+01:00
-            hippostdpubwf:lastModificationDate: 2020-06-16T16:31:08.312+01:00
-            hippostdpubwf:lastModifiedBy: admin
-            hippotranslation:id: 947115dd-693b-4a35-af7b-c527e3a432fa
-            hippotranslation:locale: en
-            visitscotland:hideTeaser: false
-            visitscotland:list: false
-            visitscotland:listLayout: false
-            visitscotland:teaserVisible: false
-            visitscotland:title: Single Image Links (6 items)
-            /visitscotland:introduction:
-              jcr:primaryType: hippostd:html
-              hippostd:content: <p>This is an example of the Simgle Image Layout of
-                the Megalinks module</p>
-            /visitscotland:megalinkItems[1]:
-              jcr:primaryType: visitscotland:MegalinkItem
-              visitscotland:feature: false
-              /visitscotland:link:
-                jcr:primaryType: hippo:mirror
-                hippo:docbase: e16bdb89-c271-46f1-851f-2d2b82d631d4
-            /visitscotland:megalinkItems[2]:
-              jcr:primaryType: visitscotland:MegalinkItem
-              visitscotland:feature: false
-              /visitscotland:link:
-                jcr:primaryType: hippo:mirror
-                hippo:docbase: 4d302e29-93dd-4157-9df9-bbd741bb12a0
-            /visitscotland:megalinkItems[3]:
-              jcr:primaryType: visitscotland:MegalinkItem
-              visitscotland:feature: false
-              /visitscotland:link:
-                jcr:primaryType: hippo:mirror
-                hippo:docbase: 17a3588b-6cee-439b-acd8-186ceb2067aa
-            /visitscotland:megalinkItems[4]:
-              jcr:primaryType: visitscotland:MegalinkItem
-              visitscotland:feature: true
-              /visitscotland:link:
-                jcr:primaryType: hippo:mirror
-                hippo:docbase: cbc8477d-1deb-4153-b663-12212905b472
-            /visitscotland:megalinkItems[5]:
-              jcr:primaryType: visitscotland:MegalinkItem
-              visitscotland:feature: false
-              /visitscotland:link:
-                jcr:primaryType: hippo:mirror
-                hippo:docbase: 8b4a3c11-8b84-4aa0-bccf-f407d18c1c44
-            /visitscotland:singleImageLinks:
-              jcr:primaryType: visitscotland:SingleImageModule
-              visitscotland:fullWidth: false
-              visitscotland:title: Megalink in Spanish would be Megaenlace
-              /visitscotland:image:
-                jcr:primaryType: hippogallerypicker:imagelink
-                hippo:docbase: ecede5a4-326c-4ce5-b9be-bcdf32c3f2c2
-                hippo:facets: []
-                hippo:modes: []
-                hippo:values: []
-              /visitscotland:introduction:
-                jcr:primaryType: hippostd:html
-                hippostd:content: |-
-                  <p>I don't feel very creative today so I'd just say:</p>
+                <p>Four world-class historic sites make up the Heart of Neolithic Orkney and you’ll visit them all in this itinerary, with three to tick off today and the fourth on day 3. In the afternoon head back to the main town of Kirkwall to tour a whisky distillery and explore around town.&nbsp;</p>
 
-                  <p>Lorem Ipsum In nomini il patri el iji y el espiritu sancti</p>
-          /single-image[3]:
-            jcr:primaryType: visitscotland:Megalinks
-            jcr:mixinTypes: ['mix:referenceable']
-            jcr:uuid: aba834ce-ece8-4322-a6c7-cee43bf672e3
-            hippo:availability: [live]
-            hippostd:state: published
-            hippostdpubwf:createdBy: admin
-            hippostdpubwf:creationDate: 2020-05-21T17:54:15.934+01:00
-            hippostdpubwf:lastModificationDate: 2020-06-16T16:31:08.236+01:00
-            hippostdpubwf:lastModifiedBy: admin
-            hippostdpubwf:publicationDate: 2020-06-16T16:31:11.175+01:00
-            hippotranslation:id: 947115dd-693b-4a35-af7b-c527e3a432fa
-            hippotranslation:locale: en
-            visitscotland:hideTeaser: false
-            visitscotland:list: false
-            visitscotland:listLayout: false
-            visitscotland:teaserVisible: false
-            visitscotland:title: Single Image Links (6 items)
-            /visitscotland:introduction:
-              jcr:primaryType: hippostd:html
-              hippostd:content: <p>This is an example of the Simgle Image Layout of
-                the Megalinks module</p>
-            /visitscotland:megalinkItems[1]:
-              jcr:primaryType: visitscotland:MegalinkItem
-              visitscotland:feature: false
-              /visitscotland:link:
-                jcr:primaryType: hippo:mirror
-                hippo:docbase: e16bdb89-c271-46f1-851f-2d2b82d631d4
-            /visitscotland:megalinkItems[2]:
-              jcr:primaryType: visitscotland:MegalinkItem
-              visitscotland:feature: false
-              /visitscotland:link:
-                jcr:primaryType: hippo:mirror
-                hippo:docbase: 4d302e29-93dd-4157-9df9-bbd741bb12a0
-            /visitscotland:megalinkItems[3]:
-              jcr:primaryType: visitscotland:MegalinkItem
-              visitscotland:feature: false
-              /visitscotland:link:
-                jcr:primaryType: hippo:mirror
-                hippo:docbase: 17a3588b-6cee-439b-acd8-186ceb2067aa
-            /visitscotland:megalinkItems[4]:
-              jcr:primaryType: visitscotland:MegalinkItem
-              visitscotland:feature: true
-              /visitscotland:link:
-                jcr:primaryType: hippo:mirror
-                hippo:docbase: cbc8477d-1deb-4153-b663-12212905b472
-            /visitscotland:megalinkItems[5]:
-              jcr:primaryType: visitscotland:MegalinkItem
-              visitscotland:feature: false
-              /visitscotland:link:
-                jcr:primaryType: hippo:mirror
-                hippo:docbase: 8b4a3c11-8b84-4aa0-bccf-f407d18c1c44
-            /visitscotland:singleImageLinks:
-              jcr:primaryType: visitscotland:SingleImageModule
-              visitscotland:fullWidth: false
-              visitscotland:title: Megalink in Spanish would be Megaenlace
-              /visitscotland:image:
-                jcr:primaryType: hippogallerypicker:imagelink
-                hippo:docbase: ecede5a4-326c-4ce5-b9be-bcdf32c3f2c2
-                hippo:facets: []
-                hippo:modes: []
-                hippo:values: []
-              /visitscotland:introduction:
-                jcr:primaryType: hippostd:html
-                hippostd:content: |-
-                  <p>I don't feel very creative today so I'd just say:</p>
+                <p>GETTING TO MAINLAND ORKNEY&nbsp;</p>
 
-                  <p>Lorem Ipsum In nomini il patri el iji y el espiritu sancti</p>
-    /content:
-      jcr:primaryType: hippo:handle
-      jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
-      jcr:uuid: 409e26ac-1690-4c14-a284-f0689e572493
-      hippo:name: index page
-      hippo:versionHistory: 05ddc640-77f0-47eb-97a6-6e777b98af28
-      /content[1]:
-        jcr:primaryType: visitscotland:Destination
-        jcr:mixinTypes: ['mix:referenceable']
-        jcr:uuid: 69f7d120-b195-4137-a2a9-6ae64a7d51a8
-        hippo:availability: []
-        hippostd:state: draft
-        hippostdpubwf:createdBy: admin
-        hippostdpubwf:creationDate: 2020-06-12T09:19:11.781+01:00
-        hippostdpubwf:lastModificationDate: 2020-06-12T10:46:25.605+01:00
-        hippostdpubwf:lastModifiedBy: admin
-        hippotranslation:id: d4a2124b-1158-4b28-ab11-ff84f2c9801f
-        hippotranslation:locale: en
-        visitscotland:breadcrumb: ''
-        visitscotland:location: Aberdeen
-        visitscotland:seoDescription: '1'
-        visitscotland:seoNoIndex: false
-        visitscotland:seoTitle: '1'
-        visitscotland:teaser: These pages are used by back ends developers for content
-          modelling
-        visitscotland:title: Devs - test
-        /visitscotland:heroImage:
-          jcr:primaryType: hippogallerypicker:imagelink
-          hippo:docbase: 878bc413-07fe-4c1a-9df6-55514c250a16
-          hippo:facets: []
-          hippo:modes: []
-          hippo:values: []
-        /visitscotland:introduction:
-          jcr:primaryType: hippostd:html
-          hippostd:content: <p>These pages are used by back ends developers for content
-            modelling&nbsp;</p>
-      /content[2]:
-        jcr:primaryType: visitscotland:Destination
-        jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
-        jcr:uuid: e96ffe94-d7ab-4d01-9069-8e0ffbf836a0
-        hippo:availability: [preview]
-        hippostd:state: unpublished
-        hippostdpubwf:createdBy: admin
-        hippostdpubwf:creationDate: 2020-06-12T09:19:11.781+01:00
-        hippostdpubwf:lastModificationDate: 2020-06-12T10:46:08.633+01:00
-        hippostdpubwf:lastModifiedBy: admin
-        hippotranslation:id: d4a2124b-1158-4b28-ab11-ff84f2c9801f
-        hippotranslation:locale: en
-        visitscotland:breadcrumb: ''
-        visitscotland:location: Aberdeen
-        visitscotland:seoDescription: '1'
-        visitscotland:seoNoIndex: false
-        visitscotland:seoTitle: '1'
-        visitscotland:teaser: These pages are used by back ends developers for content
-          modelling
-        visitscotland:title: Devs - test
-        /visitscotland:heroImage:
-          jcr:primaryType: hippogallerypicker:imagelink
-          hippo:docbase: 878bc413-07fe-4c1a-9df6-55514c250a16
-          hippo:facets: []
-          hippo:modes: []
-          hippo:values: []
-        /visitscotland:introduction:
-          jcr:primaryType: hippostd:html
-          hippostd:content: <p>These pages are used by back ends developers for content
-            modelling&nbsp;</p>
-      /content[3]:
-        jcr:primaryType: visitscotland:Destination
-        jcr:mixinTypes: ['mix:referenceable']
-        jcr:uuid: 4aeb6337-060f-46fc-a3c7-fa48ed85b541
-        hippo:availability: [live]
-        hippostd:state: published
-        hippostdpubwf:createdBy: admin
-        hippostdpubwf:creationDate: 2020-06-12T09:19:11.781+01:00
-        hippostdpubwf:lastModificationDate: 2020-06-12T10:46:08.633+01:00
-        hippostdpubwf:lastModifiedBy: admin
-        hippostdpubwf:publicationDate: 2020-06-12T10:46:10.375+01:00
-        hippotranslation:id: d4a2124b-1158-4b28-ab11-ff84f2c9801f
-        hippotranslation:locale: en
-        visitscotland:breadcrumb: ''
-        visitscotland:location: Aberdeen
-        visitscotland:seoDescription: '1'
-        visitscotland:seoNoIndex: false
-        visitscotland:seoTitle: '1'
-        visitscotland:teaser: These pages are used by back ends developers for content
-          modelling
-        visitscotland:title: Devs - test
-        /visitscotland:heroImage:
-          jcr:primaryType: hippogallerypicker:imagelink
-          hippo:docbase: 878bc413-07fe-4c1a-9df6-55514c250a16
-          hippo:facets: []
-          hippo:modes: []
-          hippo:values: []
-        /visitscotland:introduction:
-          jcr:primaryType: hippostd:html
-          hippostd:content: <p>These pages are used by back ends developers for content
-            modelling&nbsp;</p>
-    /itineraries:
-      jcr:primaryType: hippo:handle
-      jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
-      jcr:uuid: ea05bf2f-053b-4c2d-b05b-6c96ff6e4768
-      hippo:name: Itineraries
-      hippo:versionHistory: de3cb6f1-ea06-40eb-8f5b-8bbea1216ca8
-      /itineraries[1]:
-        jcr:primaryType: visitscotland:Megalinks
-        jcr:mixinTypes: ['mix:referenceable']
-        jcr:uuid: 8f90fb1e-9a08-416c-ab5b-ef83ace13602
-        hippo:availability: []
-        hippostd:state: draft
-        hippostdpubwf:createdBy: admin
-        hippostdpubwf:creationDate: 2020-06-12T09:20:17.047+01:00
-        hippostdpubwf:lastModificationDate: 2020-06-12T09:22:05.146+01:00
-        hippostdpubwf:lastModifiedBy: admin
-        hippotranslation:id: 9efea18e-e057-45b7-b12c-68d6e980d9bd
-        hippotranslation:locale: en
-        visitscotland:listLayout: true
-        visitscotland:teaserVisible: true
-        visitscotland:title: Itineraries
-        /visitscotland:introduction:
-          jcr:primaryType: hippostd:html
-          hippostd:content: ''
-        /visitscotland:megalinkItems:
-          jcr:primaryType: visitscotland:MegalinkItem
-          visitscotland:feature: false
-          /visitscotland:link:
-            jcr:primaryType: hippo:mirror
-            hippo:docbase: 8b4a3c11-8b84-4aa0-bccf-f407d18c1c44
-      /itineraries[2]:
-        jcr:primaryType: visitscotland:Megalinks
-        jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
-        jcr:uuid: c07b8c3b-22b7-4514-ae33-bba76c857045
-        hippo:availability: [preview]
-        hippostd:state: unpublished
-        hippostdpubwf:createdBy: admin
-        hippostdpubwf:creationDate: 2020-06-12T09:20:17.047+01:00
-        hippostdpubwf:lastModificationDate: 2020-06-12T09:22:14.155+01:00
-        hippostdpubwf:lastModifiedBy: admin
-        hippotranslation:id: 9efea18e-e057-45b7-b12c-68d6e980d9bd
-        hippotranslation:locale: en
-        visitscotland:listLayout: true
-        visitscotland:teaserVisible: true
-        visitscotland:title: Itineraries
-        /visitscotland:introduction:
-          jcr:primaryType: hippostd:html
-          hippostd:content: ''
-        /visitscotland:megalinkItems:
-          jcr:primaryType: visitscotland:MegalinkItem
-          visitscotland:feature: false
-          /visitscotland:link:
-            jcr:primaryType: hippo:mirror
-            hippo:docbase: 8b4a3c11-8b84-4aa0-bccf-f407d18c1c44
-      /itineraries[3]:
-        jcr:primaryType: visitscotland:Megalinks
-        jcr:mixinTypes: ['mix:referenceable']
-        jcr:uuid: dc1aef76-4005-4852-bf36-84790295d28a
-        hippo:availability: [live]
-        hippostd:state: published
-        hippostdpubwf:createdBy: admin
-        hippostdpubwf:creationDate: 2020-06-12T09:20:17.047+01:00
-        hippostdpubwf:lastModificationDate: 2020-06-12T09:22:14.155+01:00
-        hippostdpubwf:lastModifiedBy: admin
-        hippostdpubwf:publicationDate: 2020-06-12T09:24:40.516+01:00
-        hippotranslation:id: 9efea18e-e057-45b7-b12c-68d6e980d9bd
-        hippotranslation:locale: en
-        visitscotland:listLayout: true
-        visitscotland:teaserVisible: true
-        visitscotland:title: Itineraries
-        /visitscotland:introduction:
-          jcr:primaryType: hippostd:html
-          hippostd:content: ''
-        /visitscotland:megalinkItems:
-          jcr:primaryType: visitscotland:MegalinkItem
-          visitscotland:feature: false
-          /visitscotland:link:
-            jcr:primaryType: hippo:mirror
-            hippo:docbase: 8b4a3c11-8b84-4aa0-bccf-f407d18c1c44
-    /listicles:
-      jcr:primaryType: hippo:handle
-      jcr:mixinTypes: ['hippo:versionInfo', 'mix:referenceable']
-      jcr:uuid: c6e5a4b0-c5c9-4291-a5dd-4401ccba8ed5
-      hippo:versionHistory: 0aac5b4c-0534-4011-8198-dc12e40f361d
-      /listicles[1]:
-        jcr:primaryType: visitscotland:Megalinks
-        jcr:mixinTypes: ['mix:referenceable']
-        jcr:uuid: 7e348101-00a5-4a6e-acb4-eafc0093a594
-        hippo:availability: []
-        hippostd:state: draft
-        hippostdpubwf:createdBy: admin
-        hippostdpubwf:creationDate: 2020-06-12T09:22:35.009+01:00
-        hippostdpubwf:lastModificationDate: 2020-06-12T09:26:40.669+01:00
-        hippostdpubwf:lastModifiedBy: admin
-        hippotranslation:id: 79506ec2-e0b2-4f74-905e-c714115d7fe0
-        hippotranslation:locale: en
-        visitscotland:listLayout: true
-        visitscotland:teaserVisible: true
-        visitscotland:title: Listicles
-        /visitscotland:introduction:
-          jcr:primaryType: hippostd:html
-          hippostd:content: ''
-        /visitscotland:megalinkItems[1]:
-          jcr:primaryType: visitscotland:MegalinkItem
-          visitscotland:feature: false
-          /visitscotland:link:
-            jcr:primaryType: hippo:mirror
-            hippo:docbase: bc5bec32-9cbc-45a7-855b-342008ad8ef9
-        /visitscotland:megalinkItems[2]:
-          jcr:primaryType: visitscotland:MegalinkItem
-          visitscotland:feature: false
-          /visitscotland:link:
-            jcr:primaryType: hippo:mirror
-            hippo:docbase: cbc8477d-1deb-4153-b663-12212905b472
-      /listicles[2]:
-        jcr:primaryType: visitscotland:Megalinks
-        jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
-        jcr:uuid: 55be6d28-221d-4421-81ab-2f1f7abc721a
-        hippo:availability: [preview]
-        hippostd:state: unpublished
-        hippostdpubwf:createdBy: admin
-        hippostdpubwf:creationDate: 2020-06-12T09:22:35.009+01:00
-        hippostdpubwf:lastModificationDate: 2020-06-12T09:26:44.454+01:00
-        hippostdpubwf:lastModifiedBy: admin
-        hippotranslation:id: 79506ec2-e0b2-4f74-905e-c714115d7fe0
-        hippotranslation:locale: en
-        visitscotland:listLayout: true
-        visitscotland:teaserVisible: true
-        visitscotland:title: Listicles
-        /visitscotland:introduction:
-          jcr:primaryType: hippostd:html
-          hippostd:content: ''
-        /visitscotland:megalinkItems[1]:
-          jcr:primaryType: visitscotland:MegalinkItem
-          visitscotland:feature: false
-          /visitscotland:link:
-            jcr:primaryType: hippo:mirror
-            hippo:docbase: bc5bec32-9cbc-45a7-855b-342008ad8ef9
-        /visitscotland:megalinkItems[2]:
-          jcr:primaryType: visitscotland:MegalinkItem
-          visitscotland:feature: false
-          /visitscotland:link:
-            jcr:primaryType: hippo:mirror
-            hippo:docbase: cbc8477d-1deb-4153-b663-12212905b472
-      /listicles[3]:
-        jcr:primaryType: visitscotland:Megalinks
-        jcr:mixinTypes: ['mix:referenceable']
-        jcr:uuid: 66d41e65-65c7-41db-a220-59ff823c3a1a
-        hippo:availability: [live]
-        hippostd:state: published
-        hippostdpubwf:createdBy: admin
-        hippostdpubwf:creationDate: 2020-06-12T09:22:35.009+01:00
-        hippostdpubwf:lastModificationDate: 2020-06-12T09:26:44.454+01:00
-        hippostdpubwf:lastModifiedBy: admin
-        hippostdpubwf:publicationDate: 2020-06-12T09:26:46.982+01:00
-        hippotranslation:id: 79506ec2-e0b2-4f74-905e-c714115d7fe0
-        hippotranslation:locale: en
-        visitscotland:listLayout: true
-        visitscotland:teaserVisible: true
-        visitscotland:title: Listicles
-        /visitscotland:introduction:
-          jcr:primaryType: hippostd:html
-          hippostd:content: ''
-        /visitscotland:megalinkItems[1]:
-          jcr:primaryType: visitscotland:MegalinkItem
-          visitscotland:feature: false
-          /visitscotland:link:
-            jcr:primaryType: hippo:mirror
-            hippo:docbase: bc5bec32-9cbc-45a7-855b-342008ad8ef9
-        /visitscotland:megalinkItems[2]:
-          jcr:primaryType: visitscotland:MegalinkItem
-          visitscotland:feature: false
-          /visitscotland:link:
-            jcr:primaryType: hippo:mirror
-            hippo:docbase: cbc8477d-1deb-4153-b663-12212905b472
-    /megalinks-tested-on-destination-page:
-      jcr:primaryType: hippo:handle
-      jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
-      jcr:uuid: fea799d3-3e91-4c15-81ec-10d093934b5e
-      hippo:name: Megalinks tested on Destination page
-      hippo:versionHistory: b1f6c871-f822-4a12-9d39-a83eed028d5d
-      /megalinks-tested-on-destination-page[1]:
-        jcr:primaryType: visitscotland:Megalinks
-        jcr:mixinTypes: ['mix:referenceable']
-        jcr:uuid: bf4ee13c-ed5b-4572-b6e7-ee31d0d91159
-        hippo:availability: []
-        hippostd:state: draft
-        hippostdpubwf:createdBy: admin
-        hippostdpubwf:creationDate: 2020-06-12T09:26:07.254+01:00
-        hippostdpubwf:lastModificationDate: 2020-06-12T10:19:53.223+01:00
-        hippostdpubwf:lastModifiedBy: admin
-        hippotranslation:id: c6036167-14b0-4314-bb35-cdc574207db0
-        hippotranslation:locale: en
-        visitscotland:listLayout: true
-        visitscotland:teaserVisible: true
-        visitscotland:title: Megalinks used initial Destination page
-        /visitscotland:introduction:
-          jcr:primaryType: hippostd:html
-          hippostd:content: ''
-        /visitscotland:megalinkItems:
-          jcr:primaryType: visitscotland:MegalinkItem
-          visitscotland:feature: false
-          /visitscotland:link:
-            jcr:primaryType: hippo:mirror
-            hippo:docbase: a2c8d3a8-7d73-4fd5-b1e9-73698863341f
-      /megalinks-tested-on-destination-page[2]:
-        jcr:primaryType: visitscotland:Megalinks
-        jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
-        jcr:uuid: 6e400198-ff99-4523-af5e-d0a833071f9c
-        hippo:availability: [preview]
-        hippostd:state: unpublished
-        hippostdpubwf:createdBy: admin
-        hippostdpubwf:creationDate: 2020-06-12T09:26:07.254+01:00
-        hippostdpubwf:lastModificationDate: 2020-06-12T09:26:35.079+01:00
-        hippostdpubwf:lastModifiedBy: admin
-        hippotranslation:id: c6036167-14b0-4314-bb35-cdc574207db0
-        hippotranslation:locale: en
-        visitscotland:listLayout: true
-        visitscotland:teaserVisible: true
-        visitscotland:title: Megalinks used initial Destination page
-        /visitscotland:introduction:
-          jcr:primaryType: hippostd:html
-          hippostd:content: ''
-        /visitscotland:megalinkItems:
-          jcr:primaryType: visitscotland:MegalinkItem
-          visitscotland:feature: false
-          /visitscotland:link:
-            jcr:primaryType: hippo:mirror
-            hippo:docbase: a2c8d3a8-7d73-4fd5-b1e9-73698863341f
-      /megalinks-tested-on-destination-page[3]:
-        jcr:primaryType: visitscotland:Megalinks
-        jcr:mixinTypes: ['mix:referenceable']
-        jcr:uuid: 3457e45a-ebb7-4f9b-8e14-aea69d294263
-        hippo:availability: [live]
-        hippostd:state: published
-        hippostdpubwf:createdBy: admin
-        hippostdpubwf:creationDate: 2020-06-12T09:26:07.254+01:00
-        hippostdpubwf:lastModificationDate: 2020-06-12T09:26:35.079+01:00
-        hippostdpubwf:lastModifiedBy: admin
-        hippostdpubwf:publicationDate: 2020-06-12T09:26:37.519+01:00
-        hippotranslation:id: c6036167-14b0-4314-bb35-cdc574207db0
-        hippotranslation:locale: en
-        visitscotland:listLayout: true
-        visitscotland:teaserVisible: true
-        visitscotland:title: Megalinks used initial Destination page
-        /visitscotland:introduction:
-          jcr:primaryType: hippostd:html
-          hippostd:content: ''
-        /visitscotland:megalinkItems:
-          jcr:primaryType: visitscotland:MegalinkItem
-          visitscotland:feature: false
-          /visitscotland:link:
-            jcr:primaryType: hippo:mirror
-            hippo:docbase: a2c8d3a8-7d73-4fd5-b1e9-73698863341f
+                <p>Fly to Kirkwall Airport.&nbsp;</p>
+
+                <p>Sail from ferry terminals near John O’ Groats or&nbsp;Scrabster&nbsp;in the North Highlands or from Aberdeen.&nbsp;</p>
+
+                <p>Find out more about <a rel="noreferrer noopener" href="https://www.orkney.com/plan/getting-here" target="_blank">getting to Orkney</a>.&nbsp;</p>
+
+                <p>GETTING AROUND MAINLAND ORKNEY&nbsp;</p>
+
+                <p>Mainland Orkney is a large island and this itinerary covers a lot of ground. There are bus services available but for this itinerary it would be best to bring your car over on the ferry or hire a car on the island for getting around.&nbsp;</p>
+
+                <p>Find out more about <a rel="noreferrer noopener" href="http://www.orkney.com/move/transport" target="_blank">getting around on Orkney</a>.&nbsp;</p>
+            /visitscotland:stops[1]:
+              jcr:primaryType: hippo:mirror
+              hippo:docbase: 013a6677-1e64-4bb4-82d4-1e3af6a80ca2
+            /visitscotland:stops[2]:
+              jcr:primaryType: hippo:mirror
+              hippo:docbase: 207ac2b4-49dd-46ef-ae72-c901d228fae7
+            /visitscotland:stops[3]:
+              jcr:primaryType: hippo:mirror
+              hippo:docbase: dd98ed46-1531-4bbf-b47f-394ebca903f5
   /see-do:
     jcr:primaryType: hippostd:folder
     jcr:mixinTypes: ['hippotranslation:translated', 'mix:versionable']
@@ -6619,315 +4687,3 @@
               jcr:primaryType: visitscotland:ExternalLink
               visitscotland:label: ''
               visitscotland:link: https://www.visitscotland.com/see-do/landscapes-nature/iconic-scottish-views/
-  /destinations-maps:
-    jcr:primaryType: hippostd:folder
-    jcr:mixinTypes: ['hippotranslation:translated', 'mix:versionable']
-    jcr:uuid: e3bbb7c8-d800-4de3-92bc-d9c63973dccb
-    hippostd:foldertype: [new-translated-folder, new-document]
-    hippotranslation:id: 34e6e617-eb85-4cad-b6f2-3dee16e1412f
-    hippotranslation:locale: en
-    /orkney:
-      jcr:primaryType: hippostd:folder
-      jcr:mixinTypes: ['hippotranslation:translated', 'mix:versionable']
-      jcr:uuid: dca6304b-040c-4f59-85ae-5e0521a08f34
-      hippostd:foldertype: [new-translated-folder, new-document]
-      hippotranslation:id: 64929184-6bd8-44fa-8e9e-d8a459fe1c3b
-      hippotranslation:locale: en
-      /short-break-itinerary:
-        jcr:primaryType: hippostd:folder
-        jcr:mixinTypes: ['hippo:named', 'hippotranslation:translated', 'mix:versionable']
-        jcr:uuid: 493a5d82-ed98-49ab-9f2a-bedad3bee33a
-        hippo:name: short break itinerary
-        hippostd:foldertype: [new-translated-folder, new-document]
-        hippotranslation:id: c2843c5a-891a-430a-82cd-5dc702d97131
-        hippotranslation:locale: en
-        /content:
-          jcr:primaryType: hippo:handle
-          jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
-          jcr:uuid: 4d302e29-93dd-4157-9df9-bbd741bb12a0
-          hippo:name: Orkney short break itinerary
-          hippo:versionHistory: 2eb4469d-fbed-4a80-a0ad-fa16d8a1f936
-          /content[1]:
-            jcr:primaryType: visitscotland:Itinerary
-            jcr:mixinTypes: ['mix:referenceable']
-            jcr:uuid: 83e7c2a7-dc4c-4ca5-a206-74ecb9e2ccb3
-            hippo:availability: []
-            hippostd:state: draft
-            hippostdpubwf:createdBy: admin
-            hippostdpubwf:creationDate: 2020-02-07T09:41:25.483Z
-            hippostdpubwf:lastModificationDate: 2020-05-25T14:10:20.684+01:00
-            hippostdpubwf:lastModifiedBy: admin
-            hippotranslation:id: 4f317e16-7cca-44da-84bf-26c96e4a4494
-            hippotranslation:locale: en
-            visitscotland:areas: [north]
-            visitscotland:breadcrumb: ''
-            visitscotland:distance: 0.0
-            visitscotland:finish: Kirkwall
-            visitscotland:highlights: "Heart of Neolithic Orkney World Heritage Site\
-              \  \r\nIsle of Hoy  \r\nYesnaby Sea Cliffs \r\nNorth Ronaldsay"
-            visitscotland:popular: false
-            visitscotland:seoDescription: Taste the smoky influences in Orkney whisky,
-              see rare birds soaring in the skies overhead, walk amongst historic
-              sites that have stood for thousands of years and gaze out at swirling
-              seas on a coastal walk.
-            visitscotland:seoNoIndex: false
-            visitscotland:seoTitle: Short Break in Orkney – 4 Day Itinerary
-            visitscotland:start: ''
-            visitscotland:teaser: Taste the smoky influences in Orkney whisky, see
-              rare birds soaring in the skies overhead, walk amongst historic sites
-              that have stood for thousands of years and gaze out at swirling seas
-              on a coastal walk.
-            visitscotland:theme: islands
-            visitscotland:title: Short Break in Orkney – 4 Day Itinerary
-            visitscotland:transports: [cycling]
-            /visitscotland:heroImage:
-              jcr:primaryType: hippogallerypicker:imagelink
-              hippo:docbase: ecede5a4-326c-4ce5-b9be-bcdf32c3f2c2
-              hippo:facets: []
-              hippo:modes: []
-              hippo:values: []
-            /visitscotland:introduction:
-              jcr:primaryType: hippostd:html
-              hippostd:content: |-
-                <p>Taste the smoky influences in Orkney whisky, see rare birds soaring in the skies overhead, walk amongst historic sites that have stood for thousands of years and gaze out at swirling seas on a coastal walk.&nbsp;</p>
-
-                <p>You can explore the enchanting islands on this 4 day short break in <a rel="noreferrer noopener" href="https://www.visitscotland.com/destinations-maps/orkney/" target="_blank">Orkney</a>. You’ll visit key Orkney points of interest, such as the fascinating historic sites of the Heart of Neolithic&nbsp;Orkney, and&nbsp;discover the wonder of Orkney through the&nbsp;elements of fire, air, earth and water.&nbsp;&nbsp;</p>
-
-                <p>There are lots of unique things to do in Orkney throughout the seasons too, from seeing North&nbsp;Ronaldsay&nbsp;lambs frolicking in spring and summer to gazing at the dazzling Northern Lights in the darker months.&nbsp;</p>
-
-                <p>For more information about visiting Orkney head to <a rel="noreferrer noopener" href="https://www.orkney.com/" target="_blank">orkney.com</a> or read on for our top ideas on how to fit in the highlights of Orkney in just four days, with travel information, attraction opening, maps and more.&nbsp;</p>
-          /content[2]:
-            jcr:primaryType: visitscotland:Itinerary
-            jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
-            jcr:uuid: 3a87a995-30de-447a-b004-84cb3387020b
-            hippo:availability: [preview]
-            hippostd:state: unpublished
-            hippostdpubwf:createdBy: admin
-            hippostdpubwf:creationDate: 2020-02-07T09:41:25.483Z
-            hippostdpubwf:lastModificationDate: 2020-05-25T14:10:26.222+01:00
-            hippostdpubwf:lastModifiedBy: admin
-            hippotranslation:id: 4f317e16-7cca-44da-84bf-26c96e4a4494
-            hippotranslation:locale: en
-            visitscotland:areas: [north]
-            visitscotland:breadcrumb: ''
-            visitscotland:distance: 0.0
-            visitscotland:finish: Kirkwall
-            visitscotland:highlights: "Heart of Neolithic Orkney World Heritage Site\
-              \  \r\nIsle of Hoy  \r\nYesnaby Sea Cliffs \r\nNorth Ronaldsay"
-            visitscotland:popular: false
-            visitscotland:seoDescription: Taste the smoky influences in Orkney whisky,
-              see rare birds soaring in the skies overhead, walk amongst historic
-              sites that have stood for thousands of years and gaze out at swirling
-              seas on a coastal walk.
-            visitscotland:seoNoIndex: false
-            visitscotland:seoTitle: Short Break in Orkney – 4 Day Itinerary
-            visitscotland:start: ''
-            visitscotland:teaser: Taste the smoky influences in Orkney whisky, see
-              rare birds soaring in the skies overhead, walk amongst historic sites
-              that have stood for thousands of years and gaze out at swirling seas
-              on a coastal walk.
-            visitscotland:theme: islands
-            visitscotland:title: Short Break in Orkney – 4 Day Itinerary
-            visitscotland:transports: [cycling]
-            /visitscotland:heroImage:
-              jcr:primaryType: hippogallerypicker:imagelink
-              hippo:docbase: ecede5a4-326c-4ce5-b9be-bcdf32c3f2c2
-              hippo:facets: []
-              hippo:modes: []
-              hippo:values: []
-            /visitscotland:introduction:
-              jcr:primaryType: hippostd:html
-              hippostd:content: |-
-                <p>Taste the smoky influences in Orkney whisky, see rare birds soaring in the skies overhead, walk amongst historic sites that have stood for thousands of years and gaze out at swirling seas on a coastal walk.&nbsp;</p>
-
-                <p>You can explore the enchanting islands on this 4 day short break in <a rel="noreferrer noopener" href="https://www.visitscotland.com/destinations-maps/orkney/" target="_blank">Orkney</a>. You’ll visit key Orkney points of interest, such as the fascinating historic sites of the Heart of Neolithic&nbsp;Orkney, and&nbsp;discover the wonder of Orkney through the&nbsp;elements of fire, air, earth and water.&nbsp;&nbsp;</p>
-
-                <p>There are lots of unique things to do in Orkney throughout the seasons too, from seeing North&nbsp;Ronaldsay&nbsp;lambs frolicking in spring and summer to gazing at the dazzling Northern Lights in the darker months.&nbsp;</p>
-
-                <p>For more information about visiting Orkney head to <a rel="noreferrer noopener" href="https://www.orkney.com/" target="_blank">orkney.com</a> or read on for our top ideas on how to fit in the highlights of Orkney in just four days, with travel information, attraction opening, maps and more.&nbsp;</p>
-          /content[3]:
-            jcr:primaryType: visitscotland:Itinerary
-            jcr:mixinTypes: ['mix:referenceable']
-            jcr:uuid: 14a9dd5b-0a5a-47fa-90ef-cc58005c71c4
-            hippo:availability: [live]
-            hippostd:state: published
-            hippostdpubwf:createdBy: admin
-            hippostdpubwf:creationDate: 2020-02-07T09:41:25.483Z
-            hippostdpubwf:lastModificationDate: 2020-05-25T14:10:26.222+01:00
-            hippostdpubwf:lastModifiedBy: admin
-            hippostdpubwf:publicationDate: 2020-06-12T08:53:27.606+01:00
-            hippotranslation:id: 4f317e16-7cca-44da-84bf-26c96e4a4494
-            hippotranslation:locale: en
-            visitscotland:areas: [north]
-            visitscotland:breadcrumb: ''
-            visitscotland:distance: 0.0
-            visitscotland:finish: Kirkwall
-            visitscotland:highlights: "Heart of Neolithic Orkney World Heritage Site\
-              \  \r\nIsle of Hoy  \r\nYesnaby Sea Cliffs \r\nNorth Ronaldsay"
-            visitscotland:popular: false
-            visitscotland:seoDescription: Taste the smoky influences in Orkney whisky,
-              see rare birds soaring in the skies overhead, walk amongst historic
-              sites that have stood for thousands of years and gaze out at swirling
-              seas on a coastal walk.
-            visitscotland:seoNoIndex: false
-            visitscotland:seoTitle: Short Break in Orkney – 4 Day Itinerary
-            visitscotland:start: ''
-            visitscotland:teaser: Taste the smoky influences in Orkney whisky, see
-              rare birds soaring in the skies overhead, walk amongst historic sites
-              that have stood for thousands of years and gaze out at swirling seas
-              on a coastal walk.
-            visitscotland:theme: islands
-            visitscotland:title: Short Break in Orkney – 4 Day Itinerary
-            visitscotland:transports: [cycling]
-            /visitscotland:heroImage:
-              jcr:primaryType: hippogallerypicker:imagelink
-              hippo:docbase: ecede5a4-326c-4ce5-b9be-bcdf32c3f2c2
-              hippo:facets: []
-              hippo:modes: []
-              hippo:values: []
-            /visitscotland:introduction:
-              jcr:primaryType: hippostd:html
-              hippostd:content: |-
-                <p>Taste the smoky influences in Orkney whisky, see rare birds soaring in the skies overhead, walk amongst historic sites that have stood for thousands of years and gaze out at swirling seas on a coastal walk.&nbsp;</p>
-
-                <p>You can explore the enchanting islands on this 4 day short break in <a rel="noreferrer noopener" href="https://www.visitscotland.com/destinations-maps/orkney/" target="_blank">Orkney</a>. You’ll visit key Orkney points of interest, such as the fascinating historic sites of the Heart of Neolithic&nbsp;Orkney, and&nbsp;discover the wonder of Orkney through the&nbsp;elements of fire, air, earth and water.&nbsp;&nbsp;</p>
-
-                <p>There are lots of unique things to do in Orkney throughout the seasons too, from seeing North&nbsp;Ronaldsay&nbsp;lambs frolicking in spring and summer to gazing at the dazzling Northern Lights in the darker months.&nbsp;</p>
-
-                <p>For more information about visiting Orkney head to <a rel="noreferrer noopener" href="https://www.orkney.com/" target="_blank">orkney.com</a> or read on for our top ideas on how to fit in the highlights of Orkney in just four days, with travel information, attraction opening, maps and more.&nbsp;</p>
-        /mainland-orkney:
-          jcr:primaryType: hippo:handle
-          jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
-          jcr:uuid: b1e7a0fc-15ba-4d75-8b56-eadd710da675
-          hippo:name: Mainland Orkney
-          hippo:versionHistory: 1b5211e8-fb3e-4eac-803e-1ae53a4328f3
-          /mainland-orkney[1]:
-            jcr:primaryType: visitscotland:Day
-            jcr:mixinTypes: ['mix:referenceable']
-            jcr:uuid: c322e0e2-3df7-4dfe-a323-5dbf7dd26e49
-            hippo:availability: []
-            hippostd:state: draft
-            hippostdpubwf:createdBy: admin
-            hippostdpubwf:creationDate: 2020-02-07T09:53:28.791Z
-            hippostdpubwf:lastModificationDate: 2020-02-07T10:41:46.416Z
-            hippostdpubwf:lastModifiedBy: admin
-            hippotranslation:id: e918acd6-1648-4553-8289-cdda8e3e2938
-            hippotranslation:locale: en
-            visitscotland:title: Mainland Orkney
-            visitscotland:transports: [car, ferry]
-            /visitscotland:introduction:
-              jcr:primaryType: hippostd:html
-              hippostd:content: |-
-                <p>Your first day on Orkney begins with a visit to the famous <a rel="noreferrer noopener" href="https://www.historicenvironment.scot/advice-and-support/listing-scheduling-and-designations/world-heritage-sites/heart-of-neolithic-orkney/" target="_blank">Heart of Neolithic Orkney World Heritage Site</a>.&nbsp;</p>
-
-                <p>Four world-class historic sites make up the Heart of Neolithic Orkney and you’ll visit them all in this itinerary, with three to tick off today and the fourth on day 3. In the afternoon head back to the main town of Kirkwall to tour a whisky distillery and explore around town.&nbsp;</p>
-
-                <p>GETTING TO MAINLAND ORKNEY&nbsp;</p>
-
-                <p>Fly to Kirkwall Airport.&nbsp;</p>
-
-                <p>Sail from ferry terminals near John O’ Groats or&nbsp;Scrabster&nbsp;in the North Highlands or from Aberdeen.&nbsp;</p>
-
-                <p>Find out more about <a rel="noreferrer noopener" href="https://www.orkney.com/plan/getting-here" target="_blank">getting to Orkney</a>.&nbsp;</p>
-
-                <p>GETTING AROUND MAINLAND ORKNEY&nbsp;</p>
-
-                <p>Mainland Orkney is a large island and this itinerary covers a lot of ground. There are bus services available but for this itinerary it would be best to bring your car over on the ferry or hire a car on the island for getting around.&nbsp;</p>
-
-                <p>Find out more about <a rel="noreferrer noopener" href="http://www.orkney.com/move/transport" target="_blank">getting around on Orkney</a>.&nbsp;</p>
-            /visitscotland:stops[1]:
-              jcr:primaryType: hippo:mirror
-              hippo:docbase: 013a6677-1e64-4bb4-82d4-1e3af6a80ca2
-            /visitscotland:stops[2]:
-              jcr:primaryType: hippo:mirror
-              hippo:docbase: 207ac2b4-49dd-46ef-ae72-c901d228fae7
-            /visitscotland:stops[3]:
-              jcr:primaryType: hippo:mirror
-              hippo:docbase: dd98ed46-1531-4bbf-b47f-394ebca903f5
-          /mainland-orkney[2]:
-            jcr:primaryType: visitscotland:Day
-            jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
-            jcr:uuid: 75e36fef-3852-46a5-a2ba-7c202186be8a
-            hippo:availability: [preview]
-            hippostd:state: unpublished
-            hippostdpubwf:createdBy: admin
-            hippostdpubwf:creationDate: 2020-02-07T09:53:28.791Z
-            hippostdpubwf:lastModificationDate: 2020-02-07T10:06:49.352Z
-            hippostdpubwf:lastModifiedBy: admin
-            hippotranslation:id: e918acd6-1648-4553-8289-cdda8e3e2938
-            hippotranslation:locale: en
-            visitscotland:title: Mainland Orkney
-            visitscotland:transports: [car, ferry]
-            /visitscotland:introduction:
-              jcr:primaryType: hippostd:html
-              hippostd:content: |-
-                <p>Your first day on Orkney begins with a visit to the famous <a rel="noreferrer noopener" href="https://www.historicenvironment.scot/advice-and-support/listing-scheduling-and-designations/world-heritage-sites/heart-of-neolithic-orkney/" target="_blank">Heart of Neolithic Orkney World Heritage Site</a>.&nbsp;</p>
-
-                <p>Four world-class historic sites make up the Heart of Neolithic Orkney and you’ll visit them all in this itinerary, with three to tick off today and the fourth on day 3. In the afternoon head back to the main town of Kirkwall to tour a whisky distillery and explore around town.&nbsp;</p>
-
-                <p>GETTING TO MAINLAND ORKNEY&nbsp;</p>
-
-                <p>Fly to Kirkwall Airport.&nbsp;</p>
-
-                <p>Sail from ferry terminals near John O’ Groats or&nbsp;Scrabster&nbsp;in the North Highlands or from Aberdeen.&nbsp;</p>
-
-                <p>Find out more about <a rel="noreferrer noopener" href="https://www.orkney.com/plan/getting-here" target="_blank">getting to Orkney</a>.&nbsp;</p>
-
-                <p>GETTING AROUND MAINLAND ORKNEY&nbsp;</p>
-
-                <p>Mainland Orkney is a large island and this itinerary covers a lot of ground. There are bus services available but for this itinerary it would be best to bring your car over on the ferry or hire a car on the island for getting around.&nbsp;</p>
-
-                <p>Find out more about <a rel="noreferrer noopener" href="http://www.orkney.com/move/transport" target="_blank">getting around on Orkney</a>.&nbsp;</p>
-            /visitscotland:stops[1]:
-              jcr:primaryType: hippo:mirror
-              hippo:docbase: 013a6677-1e64-4bb4-82d4-1e3af6a80ca2
-            /visitscotland:stops[2]:
-              jcr:primaryType: hippo:mirror
-              hippo:docbase: 207ac2b4-49dd-46ef-ae72-c901d228fae7
-            /visitscotland:stops[3]:
-              jcr:primaryType: hippo:mirror
-              hippo:docbase: dd98ed46-1531-4bbf-b47f-394ebca903f5
-          /mainland-orkney[3]:
-            jcr:primaryType: visitscotland:Day
-            jcr:mixinTypes: ['mix:referenceable']
-            jcr:uuid: 20140076-eead-4d12-99f6-c0e3717513b8
-            hippo:availability: [live]
-            hippostd:state: published
-            hippostdpubwf:createdBy: admin
-            hippostdpubwf:creationDate: 2020-02-07T09:53:28.791Z
-            hippostdpubwf:lastModificationDate: 2020-02-07T10:06:49.352Z
-            hippostdpubwf:lastModifiedBy: admin
-            hippostdpubwf:publicationDate: 2020-06-12T08:53:24.820+01:00
-            hippotranslation:id: e918acd6-1648-4553-8289-cdda8e3e2938
-            hippotranslation:locale: en
-            visitscotland:title: Mainland Orkney
-            visitscotland:transports: [car, ferry]
-            /visitscotland:introduction:
-              jcr:primaryType: hippostd:html
-              hippostd:content: |-
-                <p>Your first day on Orkney begins with a visit to the famous <a rel="noreferrer noopener" href="https://www.historicenvironment.scot/advice-and-support/listing-scheduling-and-designations/world-heritage-sites/heart-of-neolithic-orkney/" target="_blank">Heart of Neolithic Orkney World Heritage Site</a>.&nbsp;</p>
-
-                <p>Four world-class historic sites make up the Heart of Neolithic Orkney and you’ll visit them all in this itinerary, with three to tick off today and the fourth on day 3. In the afternoon head back to the main town of Kirkwall to tour a whisky distillery and explore around town.&nbsp;</p>
-
-                <p>GETTING TO MAINLAND ORKNEY&nbsp;</p>
-
-                <p>Fly to Kirkwall Airport.&nbsp;</p>
-
-                <p>Sail from ferry terminals near John O’ Groats or&nbsp;Scrabster&nbsp;in the North Highlands or from Aberdeen.&nbsp;</p>
-
-                <p>Find out more about <a rel="noreferrer noopener" href="https://www.orkney.com/plan/getting-here" target="_blank">getting to Orkney</a>.&nbsp;</p>
-
-                <p>GETTING AROUND MAINLAND ORKNEY&nbsp;</p>
-
-                <p>Mainland Orkney is a large island and this itinerary covers a lot of ground. There are bus services available but for this itinerary it would be best to bring your car over on the ferry or hire a car on the island for getting around.&nbsp;</p>
-
-                <p>Find out more about <a rel="noreferrer noopener" href="http://www.orkney.com/move/transport" target="_blank">getting around on Orkney</a>.&nbsp;</p>
-            /visitscotland:stops[1]:
-              jcr:primaryType: hippo:mirror
-              hippo:docbase: 013a6677-1e64-4bb4-82d4-1e3af6a80ca2
-            /visitscotland:stops[2]:
-              jcr:primaryType: hippo:mirror
-              hippo:docbase: 207ac2b4-49dd-46ef-ae72-c901d228fae7
-            /visitscotland:stops[3]:
-              jcr:primaryType: hippo:mirror
-              hippo:docbase: dd98ed46-1531-4bbf-b47f-394ebca903f5

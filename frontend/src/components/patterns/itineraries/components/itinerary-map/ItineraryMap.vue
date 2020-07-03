@@ -9,13 +9,13 @@
 import itinerariesStore from "@components/patterns/itineraries/itineraries.store"
 import VsItineraryMapMarker from "@components/patterns/itineraries/components/itinerary-map/ItineraryMapMarker"
 import Vue from "vue"
-import mapboxgl from "mapbox-gl"
-import geojsonExtent from "@mapbox/geojson-extent"
 
-require("mapbox-gl/dist/mapbox-gl.css")
+let mapboxgl = null
+let geojsonExtent = null
 
 /**
- * TODO: Document usage
+ * Renders a MapBox map (for the itinerary)
+ * TODO: refactor this into a general purpose map
  */
 
 export default {
@@ -111,15 +111,6 @@ export default {
         highlightedStopCoordinates() {
             this.addMapPopup()
         },
-    },
-    created() {
-        // Store <body> style attribute, if one exists.
-        this.bodyStyleAttribute = document.body.getAttribute("style") !== null ? document.body.getAttribute("style") : ""
-
-        // Disable WebGL if its causing performance problems.
-        mapboxgl.supported({
-            failIfMajorPerformanceCaveat: true,
-        })
     },
     mounted() {
         this.lazyloadMapComponent()
@@ -228,6 +219,17 @@ export default {
             }
         },
         lazyloadMapComponent() {
+            // ALL Mapbox dependency import and init must be done only in the mounted
+            // lifecycle event so it doesn't break SSR
+            
+            mapboxgl = require("mapbox-gl")
+            geojsonExtent = require("@mapbox/geojson-extent")
+
+            // Disable WebGL if its causing performance problems.
+            mapboxgl.supported({
+                failIfMajorPerformanceCaveat: true,
+            })
+
             if (!("IntersectionObserver" in window)) {
                 this.initialiseMapComponent()
                 return
@@ -256,7 +258,9 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
+@import "mapbox-gl/dist/mapbox-gl.css";
+
 .vs-itinerary__map {
     height: 100vh;
     position: relative;

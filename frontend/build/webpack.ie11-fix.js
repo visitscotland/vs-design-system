@@ -13,6 +13,9 @@ const webpackBabelRuleIncludes = [
     resolve("node_modules/camelcase"),
     resolve("node_modules/bootstrap-vue"),
     resolve("node_modules/vuex"),
+    resolve("node_modules/vue"),
+    resolve("src"),
+    resolve("ssr"),
 ]
 
 const webpackBabelRuleUse = {
@@ -40,9 +43,7 @@ function resolve(dir) {
     return path.join(__dirname, "..", dir)
 }
 
-
-
-function mergeIE11Fix(config) {
+module.exports = function mergeIE11Fix(config) {
     const babelRule = _.find(_.get(config, "module.rules"), ["loader", "babel-loader"])
   
     if (babelRule) {
@@ -54,10 +55,4 @@ function mergeIE11Fix(config) {
     }
   
     return config
-  }
-
-  module.exports = {
-    mergeIE11Fix 
-  }
-  
-  
+}  
