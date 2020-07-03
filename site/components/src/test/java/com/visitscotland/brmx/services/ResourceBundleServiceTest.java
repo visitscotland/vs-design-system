@@ -106,7 +106,6 @@ public class ResourceBundleServiceTest {
         service = spy(service);
         when(bundle.containsKey("key")).thenReturn(true);
         when(bundle.getString("key")).thenReturn("");
-        when(bundle.getLocale()).thenReturn(Locale.UK);
         when(fbBundle.containsKey("key")).thenReturn(true);
         when(fbBundle.getString("key")).thenReturn("value");
 
@@ -123,7 +122,6 @@ public class ResourceBundleServiceTest {
         service = spy(service);
         when(bundle.containsKey("key")).thenReturn(true);
         when(bundle.getString("key")).thenReturn("");
-        when(bundle.getLocale()).thenReturn(Locale.UK);
         when(fbBundle.containsKey("key")).thenReturn(true);
         when(fbBundle.getString("key")).thenReturn("");
 
@@ -139,7 +137,6 @@ public class ResourceBundleServiceTest {
         service = spy(service);
         when(bundle.containsKey("key")).thenReturn(true);
         when(bundle.getString("key")).thenReturn("");
-        when(bundle.getLocale()).thenReturn(Locale.UK);
 
         String value = service.getResourceBundle(BUNDLE, "key", Locale.UK, true);
 
