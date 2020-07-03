@@ -1,13 +1,13 @@
 <#include "../../../../include/imports.ftl">
-<#include "../../../../vs-dotcom-ds/components/itinerary-stop.ftl">
-<#include "../../../../vs-dotcom-ds/components/itinerary-tips.ftl">
-<#include "../../../../vs-dotcom-ds/components/itinerary-border-overlap-wrapper.ftl">
-<#include "../../../../vs-dotcom-ds/components/description-list.ftl">
-<#include "../../../../vs-dotcom-ds/components/description-list-term.ftl">
-<#include "../../../../vs-dotcom-ds/components/description-list-detail.ftl">
-<#include "../../../../vs-dotcom-ds/components/link.ftl">
-<#include "../../../../vs-dotcom-ds/components/svg.ftl">
-<#include "../../../../vs-dotcom-ds/components/button-with-icon.ftl">
+<#include "../../../../frontend/components/vs-itinerary-stop.ftl">
+<#include "../../../../frontend/components/vs-itinerary-tips.ftl">
+<#include "../../../../frontend/components/vs-itinerary-border-overlap-wrapper.ftl">
+<#include "../../../../frontend/components/vs-description-list.ftl">
+<#include "../../../../frontend/components/vs-description-list-term.ftl">
+<#include "../../../../frontend/components/vs-description-list-detail.ftl">
+<#include "../../../../frontend/components/vs-link.ftl">
+<#include "../../../../frontend/components/vs-svg.ftl">
+<#include "../../../../frontend/components/vs-button-with-icon.ftl">
 
 <#include "../../global/key-facilities.ftl">
 <#include "../../global/image-with-caption.ftl">
