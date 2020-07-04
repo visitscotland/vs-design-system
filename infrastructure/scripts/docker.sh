@@ -6,7 +6,7 @@ echo "======================================================"
 echo "==== RUNNING JENKINS SHELL COMMANDS on $NODE_NAME"
 echo ""
 echo "==== selected Jenkins environment variables ===="
-set | egrep "BRANCH|BUILD|JENKINS|JOB|WORKSPACE"
+set | egrep "BRANCH|BUILD|CHANGE|GIT|JENKINS|JOB|WORKSPACE"
 echo "====/selected Jenkins environment variables ===="
 
 # ==== TODO ====
