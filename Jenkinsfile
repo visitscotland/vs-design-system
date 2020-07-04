@@ -1,5 +1,6 @@
 def DS_BRANCH = "feature/VS-955-ui-itineraries-itinerary-stops-changes-built-products"
 def MAIL_TO = "jose.calcines@visitscotland.com, juanluis.hurtado@visitscotland.com, webops@visitscotland.net"
+def AUTHOR = sh script: "git show -s --pretty=\"%an <%ae>\" ${GIT_COMMIT}", returnStdout: true
 
 def thisAgent
 if (BRANCH_NAME == "develop" && JOB_NAME == "develop.visitscotland.com-mb/develop") {
