@@ -68,7 +68,8 @@ pipeline {
         stage ('Build environment'){
             steps{
                 script{
-                    sh 'sh ./infrastructure/scripts/docker.sh'
+                    //sh 'sh ./infrastructure/scripts/docker.sh'
+		    sh 'sh ./infrastructure/scripts/infrastructure.sh'
                 }
             }
         }
