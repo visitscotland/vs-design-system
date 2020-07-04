@@ -5,6 +5,14 @@ echo ""
 echo "======================================================"
 echo "==== RUNNING JENKINS SHELL COMMANDS on $NODE_NAME"
 echo ""
+echo "==== printenv ===="
+printenv
+echo "====/printenv ===="
+echo
+echo "==== set ===="
+set
+echo "====/set ===="
+echo
 echo "==== selected Jenkins environment variables ===="
 set | egrep "BRANCH|BUILD|JENKINS|JOB|WORKSPACE"
 echo "====/selected Jenkins environment variables ===="
@@ -51,6 +59,7 @@ echo "==== selected VS environment variables ===="
 set | egrep "VS_"
 set | egrep "CONTAINER"
 echo "====/selected VS environment variables ===="
+echo
 
 # check to see if a container called $CONTAINER_NAME is running, if so set $CONTAINER_RUNNING to Docker's CONTAINER ID
 echo ""

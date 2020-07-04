@@ -47,7 +47,7 @@ pipeline {
     stage ('Build Application') {
       when {
           expression {
-            return env.BRANCH_NAME != 'branch-to-skip';
+            return env.BRANCH_NAME != 'feature/VS-1865-feature-environments-enhancements';
           }
       }
             steps {
