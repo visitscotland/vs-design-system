@@ -53,7 +53,7 @@ RESERVED_PORT_LIST=
 # set container name from branch name - removing / characters
 CONTAINER_NAME=`echo $JOB_NAME | sed -e "s/\/.*//g"`"_"`basename $BRANCH_NAME`
 VS_CONTAINER_INTERNAL_PORT=
-VS_COMMIT_AUTHOR=`git show -s --pretty="%an <%ae>" ${GIT_COMMIT}`
+VS_COMMIT_AUTHOR=`git show -s --pretty="%ae" ${GIT_COMMIT}`
 #/==== PREPARE ENVIRONMENT ====
 
 echo "==== selected VS environment variables ===="
