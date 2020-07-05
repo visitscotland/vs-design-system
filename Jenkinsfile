@@ -12,6 +12,8 @@ if (BRANCH_NAME == "develop" && JOB_NAME == "develop.visitscotland.com-mb/develo
   thisAgent = "docker-02"
 }
 
+sh 'printenv'
+
 pipeline {
   options {
     buildDiscarder(logRotator(numToKeepStr: '5'))
@@ -69,7 +71,7 @@ pipeline {
             steps{
                 script{
                     //sh 'sh ./infrastructure/scripts/docker.sh'
-		    sh 'sh ./infrastructure/scripts/infrastructure.sh'
+		    sh 'sh ./infrastructure/scripts/infrastructure.sh --debug'
                 }
             }
         }
