@@ -1,9 +1,15 @@
 #!/bin/bash
 
 # ==== TO-DO ====
-# split into functions done
-# activate clean-up routine done
-# gp: update adjustatable variables to set only if they're not set already, that way the Dev can override in the Jenkinsfile
+# gp: split into functions - done
+# gp: activate clean-up routine - done
+# gp: update adjustatable variables to set only if they're not set already, that way the Dev can override in the Jenkinsfile - partially done
+# gp: rename BASE_PORT to MIN_PORT - done
+# gp: update port find to set VS_CONTAINER_BASE_PORT between MIN_PORT and MAX_PORT - done
+#      - then check the + 100s right to the limit
+# gp: create an array of required ports
+#      - e.g. "VS_CONTAINER_BRXM_PORT VS_CONTAINER_SSR_PORT VS_CONTAINER_SSH_PORT"
+#      - then do a FOR MAP_PORT in VS_CONTAINER_REQUIRED_PORTS and +100 knowing that the're available (from above)
 # ====/TO-DO ====
 
 # ==== SETUP ====
@@ -230,27 +236,28 @@ setPortRange() {
     VS_CONTAINER_BASE_PORT_OVERRIDE=8100
   fi
   if [ -z "$VS_CONTAINER_BASE_PORT_OVERRIDE" ]; then
-    BASE_PORT=8000
+    MIN_PORT=8000
     MAX_PORT=8099
-    echo "finding a free port to map to the new container's Tomcat port - range $BASE_PORT-$MAX_PORT"
+    echo "finding a free port to map to the new container's Tomcat port - range $MIN_PORT-$MAX_PORT"
     echo ""
   else
-    BASE_PORT=$VS_CONTAINER_BASE_PORT_OVERRIDE
+    MIN_PORT=$VS_CONTAINER_BASE_PORT_OVERRIDE
     MAX_PORT=$VS_CONTAINER_BASE_PORT_OVERRIDE
-    echo "BASE_PORT will be set to $VS_CONTAINER_BASE_PORT_OVERRIDE due to VS_CONTAINER_BASE_PORT_OVERRIDE"
+    echo "MIN_PORT will be set to $VS_CONTAINER_BASE_PORT_OVERRIDE due to VS_CONTAINER_BASE_PORT_OVERRIDE"
     echo ""
   fi
 }
 
 findBasePort() {
   echo "checking ports all containers on $NODE_NAME matching $VS_PARENT_JOB_NAME*"
-  while [ $BASE_PORT -le $MAX_PORT ]; do
-    FREE=`netstat -an | egrep "LISTEN *$" | grep $BASE_PORT`
+  THIS_PORT=$BASE_PORT
+  while [ $THIS_PORT -le $MAX_PORT ]; do
+    FREE=`netstat -an | egrep "LISTEN *$" | grep $THIS_PORT`
     if [ "$FREE" = "" ]; then
-      echo " - netstat says $BASE_PORT is free, checking it's not reserved"
+      echo " - netstat says $THIS_PORT is free, checking it's not reserved"
       for RESERVED_PORT in $RESERVED_PORT_LIST; do
-        if [ "$RESERVED_PORT" = "$BASE_PORT" ]; then
-          echo " - docker says $RESERVED_PORT is reserved"
+        if [ "$RESERVED_PORT" = "$THIS_PORT" ]; then
+          echo " - docker says $THIS_PORT is reserved"
           PORT_RESERVED="TRUE"
         else
           PORT_RESERVED="FALSE"
@@ -259,17 +266,17 @@ findBasePort() {
       if [ ! "$PORT_RESERVED" = "TRUE" ]; then
         break
       else
-        BASE_PORT=$((BASE_PORT+1))
+        THIS_PORT=$((THIS_PORT+1))
         sleep 0
       fi
     else
-      BASE_PORT=$((BASE_PORT+1))
+      THIS_PORT=$((THIS_PORT+1))
       sleep 0
     fi
   done
 
   # testing - don't run this for develop to see what happens if port is not avaiable
-  if [ $BASE_PORT -gt $MAX_PORT ]; then
+  if [ $THIS_PORT -gt $MAX_PORT ]; then
     if [ ! -z "$VS_CONTAINER_BASE_PORT_OVERRIDE" ] && [ ! "$PORT_RESERVED" = "TRUE" ]; then
       FAIL_REASON="OVERRIDE PORT $VS_CONTAINER_BASE_PORT_OVERRIDE is in use, setting PORT to NULL"
     elif [ ! -z "$VS_CONTAINER_BASE_PORT_OVERRIDE" ] && [ "$PORT_RESERVED" = "TRUE" ]; then
@@ -277,9 +284,11 @@ findBasePort() {
     else  
       FAIL_REASON="port scan reached $MAX_PORT, no ports are free, setting PORT to NULL"
     fi
-    BASE_PORT=NULL
+    THIS_PORT=NULL
     SAFE_TO_PROCEED=FALSE
     echo " - $FAIL_REASON"
+  else
+    VS_CONTAINER_BASE_PORT=$THIS_PORT
   fi
 }
 
@@ -340,8 +349,8 @@ containerCreateAndStart() {
     fi
     echo ""
     echo "about to create a new Docker container with:"
-    VS_DOCKER_CMD='docker run -d --name '$VS_CONTAINER_NAME' -p '$BASE_PORT':'$VS_CONTAINER_EXPOSE_PORT' --env VS_SSR_PROXY_ON='$VS_SSR_PROXY_ON' --env VS_SSR_PACKAGE_NAME='$VS_SSR_PACKAGE_NAME' '$VS_DOCKER_IMAGE_NAME' /bin/bash -c "/usr/local/bin/vs-mysqld-start && /usr/local/bin/vs-hippo && while [ ! -f /home/hippo/tomcat_8080/logs/cms.log ]; do echo no log; sleep 2; done; tail -f /home/hippo/tomcat_8080/logs/cms.log"'
-    echo "$VS_DOCKER_CMD"
+    VS_DOCKER_CMD='docker run -d --name '$VS_CONTAINER_NAME' -p '$VS_CONTAINER_BASE_PORT':'$VS_CONTAINER_EXPOSE_PORT' --env VS_SSR_PROXY_ON='$VS_SSR_PROXY_ON' --env VS_SSR_PACKAGE_NAME='$VS_SSR_PACKAGE_NAME' '$VS_DOCKER_IMAGE_NAME' /bin/bash -c "/usr/local/bin/vs-mysqld-start && /usr/local/bin/vs-hippo && while [ ! -f /home/hippo/tomcat_8080/logs/cms.log ]; do echo no log; sleep 2; done; tail -f /home/hippo/tomcat_8080/logs/cms.log"'
+    echo " - $VS_DOCKER_CMD"
     eval $VS_DOCKER_CMD
     RETURN_CODE=$?; echo $RETURN_CODE
     if [ ! "$RETURN_CODE" = "0" ]; then
@@ -416,20 +425,20 @@ createReport() {
     echo "###############################################################################################################################"
     echo ""
     echo "The site instance for branch $GIT_BRANCH should now be available in a few moments on $NODE_NAME - $VS_HOST_IP_ADDRESS at:"
-    echo "  - $VS_PROXY_SERVER_SCHEME://$VS_PROXY_SERVER_FQDN/?vs_brxm_host=$VS_HOST_IP_ADDRESS&vs_brxm_port=$BASE_PORT&vs_brxm_http_host=$VS_BRXM_INSTANCE_HTTP_HOST"
+    echo "  - $VS_PROXY_SERVER_SCHEME://$VS_PROXY_SERVER_FQDN/?vs_brxm_host=$VS_HOST_IP_ADDRESS&vs_brxm_port=$VS_CONTAINER_BASE_PORT&vs_brxm_http_host=$VS_BRXM_INSTANCE_HTTP_HOST"
     echo ""
     echo "The CMS for the instance should now be available at:"
-    echo "  - $VS_PROXY_SERVER_SCHEME://$VS_PROXY_SERVER_FQDN/cms/?vs_brxm_host=$VS_HOST_IP_ADDRESS&vs_brxm_port=$BASE_PORT&vs_brxm_http_host=$VS_BRXM_INSTANCE_HTTP_HOST"
+    echo "  - $VS_PROXY_SERVER_SCHEME://$VS_PROXY_SERVER_FQDN/cms/?vs_brxm_host=$VS_HOST_IP_ADDRESS&vs_brxm_port=$VS_CONTAINER_BASE_PORT&vs_brxm_http_host=$VS_BRXM_INSTANCE_HTTP_HOST"
     echo "and the Console at:"
-    echo "  - $VS_PROXY_SERVER_SCHEME://$VS_PROXY_SERVER_FQDN/cms/console/?vs_brxm_host=$VS_HOST_IP_ADDRESS&vs_brxm_port=$BASE_PORT&vs_brxm_http_host=$VS_BRXM_INSTANCE_HTTP_HOST"
+    echo "  - $VS_PROXY_SERVER_SCHEME://$VS_PROXY_SERVER_FQDN/cms/console/?vs_brxm_host=$VS_HOST_IP_ADDRESS&vs_brxm_port=$VS_CONTAINER_BASE_PORT&vs_brxm_http_host=$VS_BRXM_INSTANCE_HTTP_HOST"
     echo ""
     echo "To clear the proxy server settings between sessions either close your browser or browse to:"
     echo "  - $VS_PROXY_SERVER_SCHEME://$VS_PROXY_SERVER_FQDN/?vs_brxm_reset"
     echo ""
     echo ""
     echo "Direct Tomcat access - available only on the Web Development LAN"
-    echo "  - http://$VS_HOST_IP_ADDRESS:$BASE_PORT/cms/"
-    echo "  - http://$VS_HOST_IP_ADDRESS:$BASE_PORT/site/"
+    echo "  - http://$VS_HOST_IP_ADDRESS:$VS_CONTAINER_BASE_PORT/cms/"
+    echo "  - http://$VS_HOST_IP_ADDRESS:$VS_CONTAINER_BASE_PORT/site/"
     echo "    -  needs a HOST header of localhost:8080 to be passed with the request"
     echo ""
     echo "###############################################################################################################################"
@@ -464,7 +473,7 @@ case $METHOD in
     reportSettings
     checkContainers
     stopContainers
-    startContainers
+    #startContainers
     deleteContainers
     deleteImages
     #getChildBranchesViaCurl
