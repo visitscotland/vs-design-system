@@ -14,6 +14,9 @@
 #     - re-use it for any new container
 # gp: create routine to re-use existing container if it's there
 #     - start it if stoppped - redeploy artifact if it's running
+# gp: create notification routine using "VS_COMMIT_AUTHOR"
+# gp: create test routine
+# gp: don't start tomcat with container
 # ====/TO-DO ====
 
 # ==== SETUP ====
@@ -167,7 +170,7 @@ getChildBranchesViaCurl() {
 
 getBranchListViaCurl() {
   for CONTAINER in `curl -s $JENKINS_URL/job/$VS_PARENT_JOB_NAME/rssLatest | sed -e "s/type=\"text\/html\" href=\"/\n/g" | egrep "^https" | sed -e "s/%252F/\//g" | sed "s/\".*//g" | sed -e "s/htt.*\/\(.*\)\/[0-9]*\//$VS_PARENT_JOB_NAME\_\1/g" | egrep -v "http"`; do
-    BRANCH_CONTAINER_LIST="$BRANCH_CONTAINER_LIST $CONTAINER"
+    BRANCH_LIST="$BRANCH_LIST $CONTAINER"
     RESERVED_PORT=`docker inspect --format='{{(index (index .HostConfig.PortBindings "8080/tcp") 0).HostPort}}' $CONTAINER 2>/dev/null`
     if [ ! -z "$RESERVED_PORT" ]; then
       RESERVED_PORT_LIST="$RESERVED_PORT_LIST $RESERVED_PORT"
@@ -180,7 +183,7 @@ getBranchListViaCurl() {
 getPullRequestListViaCurl() {
   echo "checking for ports reserved by pull requests in $VS_PARENT_JOB_NAME"
   for CONTAINER in `curl -s $JENKINS_URL/job/$VS_PARENT_JOB_NAME/view/change-requests/rssLatest | sed -e "s/type=\"text\/html\" href=\"/\n/g" | egrep "^https" | sed -e "s/%252F/\//g" | sed "s/\".*//g" | sed -e "s/htt.*\/\(.*\)\/[0-9]*\//$VS_PARENT_JOB_NAME\_\1/g" | egrep -v "http"`; do
-    BRANCH_CONTAINER_LIST="$BRANCH_CONTAINER_LIST $CONTAINER"
+    BRANCH_LIST="$BRANCH_LIST $CONTAINER"
     RESERVED_PORT=`docker inspect --format='{{(index (index .HostConfig.PortBindings "8080/tcp") 0).HostPort}}' $CONTAINER 2>/dev/null`
     if [ ! -z "$RESERVED_PORT" ]; then
       RESERVED_PORT_LIST="$RESERVED_PORT_LIST $RESERVED_PORT"
@@ -358,7 +361,8 @@ containerCreateAndStart() {
     fi
     echo ""
     echo "about to create a new Docker container with:"
-    VS_DOCKER_CMD='docker run -d --name '$VS_CONTAINER_NAME' -p '$VS_CONTAINER_BASE_PORT':'$VS_CONTAINER_EXPOSE_PORT' --env VS_SSR_PROXY_ON='$VS_SSR_PROXY_ON' --env VS_SSR_PACKAGE_NAME='$VS_SSR_PACKAGE_NAME' '$VS_DOCKER_IMAGE_NAME' /bin/bash -c "/usr/local/bin/vs-mysqld-start && /usr/local/bin/vs-hippo && while [ ! -f /home/hippo/tomcat_8080/logs/cms.log ]; do echo no log; sleep 2; done; tail -f /home/hippo/tomcat_8080/logs/cms.log"'
+    #VS_DOCKER_CMD='docker run -d --name '$VS_CONTAINER_NAME' -p '$VS_CONTAINER_BASE_PORT':'$VS_CONTAINER_EXPOSE_PORT' --env VS_SSR_PROXY_ON='$VS_SSR_PROXY_ON' --env VS_SSR_PACKAGE_NAME='$VS_SSR_PACKAGE_NAME' '$VS_DOCKER_IMAGE_NAME' /bin/bash -c "/usr/local/bin/vs-mysqld-start && /usr/local/bin/vs-hippo && while [ ! -f /home/hippo/tomcat_8080/logs/cms.log ]; do echo no log; sleep 2; done; tail -f /home/hippo/tomcat_8080/logs/cms.log"'
+    VS_DOCKER_CMD='docker run -d --name '$VS_CONTAINER_NAME' -p '$VS_CONTAINER_BASE_PORT':'$VS_CONTAINER_EXPOSE_PORT' --env VS_SSR_PROXY_ON='$VS_SSR_PROXY_ON' --env VS_SSR_PACKAGE_NAME='$VS_SSR_PACKAGE_NAME' '$VS_DOCKER_IMAGE_NAME' /bin/bash -c "/usr/local/bin/vs-mysqld-start && while [ ! -f /home/hippo/tomcat_8080/logs/cms.log ]; do echo no log; sleep 2; done; tail -f /home/hippo/tomcat_8080/logs/cms.log"'
     echo " - $VS_DOCKER_CMD"
     eval $VS_DOCKER_CMD
     RETURN_CODE=$?; echo $RETURN_CODE
