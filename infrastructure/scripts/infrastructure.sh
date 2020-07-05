@@ -210,7 +210,7 @@ getReservedPortList() {
     for BRANCH in $BRANCH_LIST; do
         RESERVED_PORT=`docker port $BRANCH | awk '{gsub(/.*:/,"");}1' 2>/dev/null`
         RESERVED_PORT_LIST="$RESERVED_PORT_LIST $RESERVED_PORT"
-        echo "$RESERVED_PORT is reserved by $CONTAINER"
+        echo "$RESERVED_PORT is reserved by $BRANCH"
     done
     if [ ! -z "$RESERVED_PORT_LIST" ]; then echo "Ports $RESERVED_PORT_LIST are reserved"; fi
 }
