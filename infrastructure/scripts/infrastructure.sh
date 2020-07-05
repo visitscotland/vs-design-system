@@ -152,6 +152,7 @@ if [ -z "$VS_CONTAINER_BASE_PORT_OVERRIDE" ]; then
   MAX_PORT=8099
   echo ""
   echo "finding a free port to map to the new container's Tomcat port - range $BASE_PORT-$MAXPORT"
+  echo ""
 else
   BASE_PORT=$VS_CONTAINER_BASE_PORT_OVERRIDE
   MAX_PORT=$VS_CONTAINER_BASE_PORT_OVERRIDE
@@ -200,7 +201,7 @@ getPullRequestListViaCurl() {
 getBranchListFromWorkspace() {
     echo "checking for branches and PRs for $VS_PARENT_JOB_NAME listed in workspaces.txt"
     for BRANCH in `cat $JENKINS_HOME/workspace/workspaces.txt | grep "$VS_PARENT_JOB_NAME" | sed -e "s/%2F/\//g" | sed "s/.*\//$VS_PARENT_JOB_NAME\_/g"`; do
-        if [ "$VS_DEBUG" = "TRUE" ]; then echo $BRANCH; fi
+        if [ "$VS_DEBUG" = "TRUE" ]; then echo " - found branch $BRANCH"; fi
         BRANCH_LIST="$BRANCH_LIST $BRANCH"
     done
 }
@@ -208,9 +209,11 @@ getBranchListFromWorkspace() {
 getReservedPortList() {
     echo "checking for ports reserved by branches in BRANCH_LIST"
     for BRANCH in $BRANCH_LIST; do
-        RESERVED_PORT=`docker port $BRANCH | awk '{gsub(/.*:/,"");}1' 2>/dev/null`
-        RESERVED_PORT_LIST="$RESERVED_PORT_LIST $RESERVED_PORT"
-        echo "$RESERVED_PORT is reserved by $BRANCH"
+        RESERVED_PORT=`docker port $BRANCH 2>/dev/null| awk '{gsub(/.*:/,"");}1'`
+        if [ ! -z $RESERVED_PORT ]; then
+	  RESERVED_PORT_LIST="$RESERVED_PORT_LIST $RESERVED_PORT"
+          echo "$RESERVED_PORT is reserved by $BRANCH"
+	fi
     done
     if [ ! -z "$RESERVED_PORT_LIST" ]; then echo "Ports $RESERVED_PORT_LIST are reserved"; fi
 }
