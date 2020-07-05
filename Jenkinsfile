@@ -85,17 +85,17 @@ pipeline {
         sh 'echo "This environment will run until the next commit to bitbucket is detected."'
       }
     }
-  }
+  } //end stages
 
-post{
-  aborted{
-    script{
-      try{
-        sh ' '
-      }catch(err){
-        sh 'echo "an error occurred in abort script"'
+  post{
+    aborted{
+      script{
+        try{
+          sh ' '
+        }catch(err){
+          sh 'echo "an error occurred in abort script"'
+        }
       }
     }
-  }
-}
-}
+  } //end post
+} //end pipeline
