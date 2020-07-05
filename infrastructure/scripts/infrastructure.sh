@@ -321,7 +321,7 @@ packageSSRArtifact() {
 }
 
 # create Docker container
-container-create-and-start() {
+containerCreateAndStart() {
   if [ ! "$SAFE_TO_PROCEED" = "FALSE" ]; then
     sleep 5
     if [ "$VS_SSR_PROXY_ON" = "TRUE" ]; then
@@ -347,7 +347,7 @@ container-create-and-start() {
 }
 
 # copy build artefacts to container
-container-copy-hippo-artifact() {
+containerCopyHippoArtifact() {
     if [ ! "$SAFE_TO_PROCEED" = "FALSE" ]; then
     echo ""
     echo "about to copy $HIPPO_LATEST to container $CONTAINER_NAME:/home/hippo"
@@ -363,7 +363,7 @@ container-copy-hippo-artifact() {
   fi
 }
 
-container-copy-ssr-artifact() {
+containerCopySSRArtifact() {
   if [ "$VS_SSR_PROXY_ON" = "TRUE" ] && [ ! "$SAFE_TO_PROCEED" = "FALSE" ]; then
     echo ""
     echo "about to copy $VS_SSR_PACKAGE_NAME to container $CONTAINER_NAME:/home/hippo"
@@ -382,7 +382,7 @@ container-copy-ssr-artifact() {
   fi
 }
 
-container-start-hippo() {
+containerStartHippo() {
   if [ ! "$SAFE_TO_PROCEED" = "FALSE" ]; then
     echo ""
     echo "about to execute "/usr/local/bin/vs-hippo nodb" in container $CONTAINER_NAME"
@@ -398,7 +398,7 @@ container-start-hippo() {
   fi
 }
 
-create-report() {
+createReport() {
   if [ ! "$SAFE_TO_PROCEED" = "FALSE" ]; then
     EXIT_CODE=0
     echo ""
