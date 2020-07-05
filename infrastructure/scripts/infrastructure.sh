@@ -342,7 +342,7 @@ containerCreateAndStart() {
     fi
     echo ""
     echo "about to create a new Docker container with:"
-    VS_DOCKER_CMD='docker run -d --name $VS_CONTAINER_NAME -p $BASE_PORT:$VS_CONTAINER_EXPOSE_PORT --env VS_SSR_PROXY_ON=$VS_SSR_PROXY_ON --env VS_SSR_PACKAGE_NAME=$VS_SSR_PACKAGE_NAME $DOCKERFILE_NAME /bin/bash -c "/usr/local/bin/vs-mysqld-start && /usr/local/bin/vs-hippo && while [ ! -f /home/hippo/tomcat_8080/logs/cms.log ]; do echo no log; sleep 2; done; tail -f /home/hippo/tomcat_8080/logs/cms.log"'
+    VS_DOCKER_CMD='docker run -d --name '$VS_CONTAINER_NAME' -p '$BASE_PORT':'$VS_CONTAINER_EXPOSE_PORT' --env VS_SSR_PROXY_ON='$VS_SSR_PROXY_ON' --env VS_SSR_PACKAGE_NAME='$VS_SSR_PACKAGE_NAME' '$DOCKERFILE_NAME' /bin/bash -c "/usr/local/bin/vs-mysqld-start && /usr/local/bin/vs-hippo && while [ ! -f /home/hippo/tomcat_8080/logs/cms.log ]; do echo no log; sleep 2; done; tail -f /home/hippo/tomcat_8080/logs/cms.log"'
     echo "$VS_DOCKER_CMD"
     eval $VS_DOCKER_CMD
     docker run -d --name $VS_CONTAINER_NAME -p $BASE_PORT:$VS_CONTAINER_EXPOSE_PORT --env VS_SSR_PROXY_ON=$VS_SSR_PROXY_ON --env VS_SSR_PACKAGE_NAME=$VS_SSR_PACKAGE_NAME $DOCKERFILE_NAME /bin/bash -c "/usr/local/bin/vs-mysqld-start && /usr/local/bin/vs-hippo && while [ ! -f /home/hippo/tomcat_8080/logs/cms.log ]; do echo no log; sleep 2; done; tail -f /home/hippo/tomcat_8080/logs/cms.log"
