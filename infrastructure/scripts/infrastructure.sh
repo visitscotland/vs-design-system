@@ -72,7 +72,7 @@ reportSettings() {
   if [ "$VS_DEBUG" = "TRUE" ]; then echo "==== printenv ===="; printenv; echo "====/printenv ===="; echo ""; fi
   #if [ "$VS_DEBUG" = "TRUE" ]; then echo "==== set ===="; set; echo "====/set ====";  echo ""; fi
   echo "==== selected Jenkins environment variables ===="
-  set | egrep "^(BRANCH|BUILD|CHANGE|GIT|JENKINS|JOB|WORKSPACE)"
+  set | egrep "^(BRANCH|BUILD|CHANGE|GIT|JENKINS|JOB|RUN|WORKSPACE)"
   echo "====/selected Jenkins environment variables ===="
   echo ""
   echo "==== selected VS environment variables ===="
@@ -479,8 +479,8 @@ case $METHOD in
     if [ "$DEBUG" == "TRUE" ]; then reportStatus; fi
     ;;
   *)
-    echo "NO METHOD SELECTED"
     defaultSettings
+    echo "NO METHOD SELECTED"
     reportSettings
   ;;
 esac
