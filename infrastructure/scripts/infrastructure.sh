@@ -252,7 +252,7 @@ setPortRange() {
 
 findBasePort() {
   echo "checking ports all containers on $NODE_NAME matching $VS_PARENT_JOB_NAME*"
-  THIS_PORT=$BASE_PORT
+  THIS_PORT=$VS_CONTAINER_BASE_PORT
   while [ $THIS_PORT -le $MAX_PORT ]; do
     FREE=`netstat -an | egrep "LISTEN *$" | grep $THIS_PORT`
     if [ "$FREE" = "" ]; then
