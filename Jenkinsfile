@@ -71,7 +71,7 @@ pipeline {
       steps{
         script{
           //sh 'sh ./infrastructure/scripts/docker.sh'
-          sh 'sh ./infrastructure/scripts/infrastructure.sh --debug'
+          sh 'sh ./infrastructure/scripts/infrastructure.sh --debug --tidy-containers'
         }
       }
     }

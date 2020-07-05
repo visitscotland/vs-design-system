@@ -10,6 +10,8 @@
 # gp: create an array of required ports
 #      - e.g. "VS_CONTAINER_BRXM_PORT VS_CONTAINER_SSR_PORT VS_CONTAINER_SSH_PORT"
 #      - then do a FOR MAP_PORT in VS_CONTAINER_REQUIRED_PORTS and +100 knowing that the're available (from above)
+# gp: if an existent container is found grab its base port
+#     - re-use it for any new container
 # gp: create routine to re-use existing container if it's there
 #     - start it if stoppped - redeploy artifact if it's running
 # ====/TO-DO ====
@@ -53,6 +55,7 @@ while [[ $# -gt 0 ]]; do
   if [ "$VS_DEBUG" == "TRUE" ]; then echo -en "\nread \"$THIS_VAR\" from command line"; fi
   case $THIS_VAR in
     --debug) if [ ! -z "$THIS_RESULT" ]; then VS_DEBUG=$THIS_RESULT; else VS_DEBUG=TRUE; fi;;
+    --tidy-containers) if [ ! -z "$THIS_RESULT" ]; then VS_TIDY_CONTAINERS=$THIS_RESULT; else VS_TIDY_CONTAINERS=TRUE; fi;;
     *)
       if [ "$DEBUG" == "TRUE" ]; then echo -en " - no match found - SKIPPING"; fi
     ;;
@@ -209,8 +212,7 @@ getReservedPortList() {
 
 tidyContainers() {
   # tidy containers when building the "develop" branch
-  if [ "$GIT_BRANCH" == "develop" ]; then
-    echo ""
+  if [ "$GIT_BRANCH" == "develop" ]||[ "$VS_TIDY_CONTAINERS" == "TRUE" ]; then
     echo "checking all containers on $NODE_NAME matching $VS_PARENT_JOB_NAME*"
     for CONTAINER in `docker ps -a --filter "name=$VS_PARENT_JOB_NAME*" --format "table {{.Names}}" | tail -n +2`; do
       CONTAINER_MATCHED=
@@ -228,6 +230,7 @@ tidyContainers() {
         docker container rm -f $CONTAINER
       fi
       done
+    echo ""
   fi
 }
 
@@ -240,7 +243,6 @@ setPortRange() {
   if [ -z "$VS_CONTAINER_BASE_PORT_OVERRIDE" ]; then
     MIN_PORT=8000
     MAX_PORT=8099
-    echo ""
   else
     MIN_PORT=$VS_CONTAINER_BASE_PORT_OVERRIDE
     MAX_PORT=$VS_CONTAINER_BASE_PORT_OVERRIDE
