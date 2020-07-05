@@ -219,18 +219,22 @@ tidyContainers() {
       CONTAINER_MATCHED=
       ALL_CONTAINER_LIST="$ALL_CONTAINER_LIST $CONTAINER"
       #echo "checking to see if there's a branch for $CONTAINER"
-      for BRANCH_CONTAINER in $BRANCH_LIST; do
-        if [ "$CONTAINER" = "$BRANCH_CONTAINER" ]; then
-          echo "there is a branch $BRANCH_CONTAINER associated with container $CONTAINER"
-          CONTAINER_MATCHED="TRUE"
-          break
+      if [ ! -z "$BRANCH_LIST"]; then 
+        for BRANCH_CONTAINER in $BRANCH_LIST; do
+          if [ "$CONTAINER" = "$BRANCH_CONTAINER" ]; then
+            echo " - there is a branch associated with container $CONTAINER"
+            CONTAINER_MATCHED="TRUE"
+            break
+          fi
+        done
+        if [ ! "$CONTAINER_MATCHED" = "TRUE" ]; then
+          echo " - no branch was found matching container $CONTAINER - deleting"
+          docker container rm -f $CONTAINER
         fi
-      done
-      if [ ! "$CONTAINER_MATCHED" = "TRUE" ]; then
-        echo "no branch $BRANCH_CONTAINER was found matching container $CONTAINER - deleting"
-        echo docker container rm -f $CONTAINER
+      else
+        echo "no branches were found in BRANCH_LIST - not safe to delete containers - please confirm manually"
       fi
-      done
+    done
     echo ""
   fi
 }
