@@ -219,7 +219,7 @@ tidyContainers() {
       CONTAINER_MATCHED=
       ALL_CONTAINER_LIST="$ALL_CONTAINER_LIST $CONTAINER"
       #echo "checking to see if there's a branch for $CONTAINER"
-      for BRANCH_CONTAINER in $BRANCH_CONTAINER_LIST; do
+      for BRANCH_CONTAINER in $BRANCH_LIST; do
         if [ "$CONTAINER" = "$BRANCH_CONTAINER" ]; then
           echo "there is a branch $BRANCH_CONTAINER associated with container $CONTAINER"
           CONTAINER_MATCHED="TRUE"
