@@ -10,7 +10,7 @@
 # ==== ADJUSTABLE VARIABLES ====
 #  == VS Variables ==
 if [ -z "$VS_DEBUG" ]; then VS_DEBUG=FALSE; fi
-if [ -z "$VS_DOCKERFILE_PATH" ]; then VS_DOCKERFILE_PATH=/home/jenkins/vs-dockerfile/; fi
+if [ -z "$VS_DOCKERFILE_PATH" ]; then VS_DOCKERFILE_PATH=/home/jenkins/vs-dockerfile; fi
 if [ -z "$VS_DOCKERFILE_NAME" ]; then VS_DOCKERFILE_NAME=vs-brxm; fi
 if [ -z "$VS_DOCKERFILE_LOCN" ]; then VS_DOCKERFILE_LOCN=$VS_DOCKERFILE_PATH/$VS_DOCKERFILE_NAME; fi
 VS_DATESTAMP=`date +%Y%m%d`
@@ -56,7 +56,7 @@ defaultSettings() {
   VS_PARENT_JOB_NAME=
   RESERVED_PORT_LIST=
   # set container name from branch name - removing / characters
-  CONTAINER_NAME=`echo $JOB_NAME | sed -e "s/\/.*//g"`"_"`basename $BRANCH_NAME`
+  VS_CONTAINER_NAME=`echo $JOB_NAME | sed -e "s/\/.*//g"`"_"`basename $BRANCH_NAME`
   if [ -z "$NODE_NAME" ]; then THIS_SERVER=$HOSTNAME; else THIS_SERVER=$NODE_NAME; fi
   VS_COMMIT_AUTHOR=`git show -s --pretty="%ae" ${GIT_COMMIT}`
   VS_PARENT_JOB_NAME=`echo $JOB_NAME | sed -e "s/\/.*//g"`
@@ -65,9 +65,9 @@ defaultSettings() {
 reportSettings() {
   clear
   echo ""
-  echo "======================================================"
-  echo "== RUNNING JENKINS SHELL COMMANDS on $THIS_SERVER"
-  echo "======================================================"
+  echo "================================================================================"
+  echo "== RUNNING JENKINS SHELL COMMANDS on $THIS_SERVER" as $USER
+  echo "================================================================================"
   echo ""
   if [ "$VS_DEBUG" = "TRUE" ]; then echo "==== printenv ===="; printenv; echo "====/printenv ===="; echo ""; fi
   #if [ "$VS_DEBUG" = "TRUE" ]; then echo "==== set ===="; set; echo "====/set ====";  echo ""; fi
@@ -82,16 +82,16 @@ reportSettings() {
 }
 
 checkContainers() {
-    # check to see if a container called $CONTAINER_NAME exists, if so set $CONTAINER_ID to Docker's CONTAINER ID
-    echo "checking for containers with name $CONTAINER_NAME"
-    CONTAINER_ID=`docker ps -aq --filter "name=$CONTAINER_NAME"`
+    # check to see if a container called $VS_CONTAINER_NAME exists, if so set $CONTAINER_ID to Docker's CONTAINER ID
+    echo "checking for containers with name $VS_CONTAINER_NAME"
+    CONTAINER_ID=`docker ps -aq --filter "name=$VS_CONTAINER_NAME"`
     if [ ! -z "$CONTAINER_ID" ]; then
-        echo " - container found, ID:$CONTAINER_ID, with name $CONTAINER_NAME"
+        echo " - container found, ID:$CONTAINER_ID, with name $VS_CONTAINER_NAME"
         echo " - checking status of container $CONTAINER_ID"
         CONTAINER_STATUS=`docker inspect --format "{{.State.Status}}" $CONTAINER_ID`
-        echo " - $CONTAINER_STATUS container found with ID:$CONTAINER_ID and name $CONTAINER_NAME"
+        echo " - $CONTAINER_STATUS container found with ID:$CONTAINER_ID and name $VS_CONTAINER_NAME"
     else
-        echo " - no container found with name $CONTAINER_NAME"
+        echo " - no container found with name $VS_CONTAINER_NAME"
     fi
     echo ""
 }
@@ -125,10 +125,10 @@ deleteContainers() {
 }
 
 deleteImages() {
-    #delete existing images - does this have a purpose? will there ever be an image with the name $CONTAINER_NAME?
-    echo "deleting any docker images with name $CONTAINER_NAME"
-    docker images | egrep "$CONTAINER_NAME"
-    for IMAGE in `docker images | egrep "$CONTAINER_NAME" | awk '{print $3}'`; do
+    #delete existing images - does this have a purpose? will there ever be an image with the name $VS_CONTAINER_NAME?
+    echo "deleting any docker images with name $VS_CONTAINER_NAME"
+    docker images | egrep "$VS_CONTAINER_NAME"
+    for IMAGE in `docker images | egrep "$VS_CONTAINER_NAME" | awk '{print $3}'`; do
         echo "deleting $IMAGE"
         docker image rm -f $IMAGE
     done
@@ -331,13 +331,13 @@ containerCreateAndStart() {
     fi
     echo ""
     echo "about to create a new Docker container with:"
-    VS_DOCKER_CMD=docker run -d --name $CONTAINER_NAME -p $BASE_PORT:$VS_CONTAINER_EXPOSE_PORT --env VS_SSR_PROXY_ON=$VS_SSR_PROXY_ON --env VS_SSR_PACKAGE_NAME=$VS_SSR_PACKAGE_NAME $DOCKERFILE_NAME /bin/bash -c "/usr/local/bin/vs-mysqld-start && /usr/local/bin/vs-hippo && while [ ! -f /home/hippo/tomcat_8080/logs/cms.log ]; do echo no log; sleep 2; done; tail -f /home/hippo/tomcat_8080/logs/cms.log"
+    VS_DOCKER_CMD=docker run -d --name $VS_CONTAINER_NAME -p $BASE_PORT:$VS_CONTAINER_EXPOSE_PORT --env VS_SSR_PROXY_ON=$VS_SSR_PROXY_ON --env VS_SSR_PACKAGE_NAME=$VS_SSR_PACKAGE_NAME $DOCKERFILE_NAME /bin/bash -c "/usr/local/bin/vs-mysqld-start && /usr/local/bin/vs-hippo && while [ ! -f /home/hippo/tomcat_8080/logs/cms.log ]; do echo no log; sleep 2; done; tail -f /home/hippo/tomcat_8080/logs/cms.log"
     echo $VS_DOCKER_CMD
-    docker run -d --name $CONTAINER_NAME -p $BASE_PORT:$VS_CONTAINER_EXPOSE_PORT --env VS_SSR_PROXY_ON=$VS_SSR_PROXY_ON --env VS_SSR_PACKAGE_NAME=$VS_SSR_PACKAGE_NAME $DOCKERFILE_NAME /bin/bash -c "/usr/local/bin/vs-mysqld-start && /usr/local/bin/vs-hippo && while [ ! -f /home/hippo/tomcat_8080/logs/cms.log ]; do echo no log; sleep 2; done; tail -f /home/hippo/tomcat_8080/logs/cms.log"
+    docker run -d --name $VS_CONTAINER_NAME -p $BASE_PORT:$VS_CONTAINER_EXPOSE_PORT --env VS_SSR_PROXY_ON=$VS_SSR_PROXY_ON --env VS_SSR_PACKAGE_NAME=$VS_SSR_PACKAGE_NAME $DOCKERFILE_NAME /bin/bash -c "/usr/local/bin/vs-mysqld-start && /usr/local/bin/vs-hippo && while [ ! -f /home/hippo/tomcat_8080/logs/cms.log ]; do echo no log; sleep 2; done; tail -f /home/hippo/tomcat_8080/logs/cms.log"
     RETURN_CODE=$?; echo $RETURN_CODE
     if [ ! "$RETURN_CODE" = "0" ]; then
       SAFE_TO_PROCEED=FALSE
-      FAIL_REASON="Docker failed to start container $CONTAINER_NAME, command exited with $RETURN_CODE"
+      FAIL_REASON="Docker failed to start container $VS_CONTAINER_NAME, command exited with $RETURN_CODE"
     fi
     sleep 10
     else
@@ -350,12 +350,12 @@ containerCreateAndStart() {
 containerCopyHippoArtifact() {
     if [ ! "$SAFE_TO_PROCEED" = "FALSE" ]; then
     echo ""
-    echo "about to copy $HIPPO_LATEST to container $CONTAINER_NAME:/home/hippo"
-    docker cp $HIPPO_LATEST $CONTAINER_NAME:/home/hippo
+    echo "about to copy $HIPPO_LATEST to container $VS_CONTAINER_NAME:/home/hippo"
+    docker cp $HIPPO_LATEST $VS_CONTAINER_NAME:/home/hippo
     RETURN_CODE=$?; echo $RETURN_CODE
     if [ ! "$RETURN_CODE" = "0" ]; then
       SAFE_TO_PROCEED=FALSE
-      FAIL_REASON="Docker failed to run cp command against $CONTAINER_NAME, command exited with $RETURN_CODE"
+      FAIL_REASON="Docker failed to run cp command against $VS_CONTAINER_NAME, command exited with $RETURN_CODE"
     fi
     else
     echo ""
@@ -366,12 +366,12 @@ containerCopyHippoArtifact() {
 containerCopySSRArtifact() {
   if [ "$VS_SSR_PROXY_ON" = "TRUE" ] && [ ! "$SAFE_TO_PROCEED" = "FALSE" ]; then
     echo ""
-    echo "about to copy $VS_SSR_PACKAGE_NAME to container $CONTAINER_NAME:/home/hippo"
-    docker cp $VS_SSR_PACKAGE_TARGET/$VS_SSR_PACKAGE_NAME $CONTAINER_NAME:/home/hippo
+    echo "about to copy $VS_SSR_PACKAGE_NAME to container $VS_CONTAINER_NAME:/home/hippo"
+    docker cp $VS_SSR_PACKAGE_TARGET/$VS_SSR_PACKAGE_NAME $VS_CONTAINER_NAME:/home/hippo
     RETURN_CODE=$?; echo $RETURN_CODE
     if [ ! "$RETURN_CODE" = "0" ]; then
       SAFE_TO_PROCEED=FALSE
-      FAIL_REASON="Docker failed to run cp command against $CONTAINER_NAME, command exited with $RETURN_CODE"
+      FAIL_REASON="Docker failed to run cp command against $VS_CONTAINER_NAME, command exited with $RETURN_CODE"
     fi
     elif [ ! "$VS_SSR_PROXY_ON" = "TRUE" ] && [ ! "$SAFE_TO_PROCEED" = "FALSE" ]; then
     echo ""
@@ -385,12 +385,12 @@ containerCopySSRArtifact() {
 containerStartHippo() {
   if [ ! "$SAFE_TO_PROCEED" = "FALSE" ]; then
     echo ""
-    echo "about to execute "/usr/local/bin/vs-hippo nodb" in container $CONTAINER_NAME"
-    docker exec -d $CONTAINER_NAME /usr/local/bin/vs-hippo nodb
+    echo "about to execute "/usr/local/bin/vs-hippo nodb" in container $VS_CONTAINER_NAME"
+    docker exec -d $VS_CONTAINER_NAME /usr/local/bin/vs-hippo nodb
     RETURN_CODE=$?; echo $RETURN_CODE
     if [ ! "$RETURN_CODE" = "0" ]; then
       SAFE_TO_PROCEED=FALSE
-      FAIL_REASON="Docker failed to run exec command in $CONTAINER_NAME, command exited with $RETURN_CODE"
+      FAIL_REASON="Docker failed to run exec command in $VS_CONTAINER_NAME, command exited with $RETURN_CODE"
     fi
   else
     echo ""
