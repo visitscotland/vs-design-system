@@ -87,165 +87,162 @@ reportSettings() {
 }
 
 checkContainers() {
-    # check to see if a container called $VS_CONTAINER_NAME exists, if so set $CONTAINER_ID to Docker's CONTAINER ID
-    echo "checking for containers with name $VS_CONTAINER_NAME"
-    CONTAINER_ID=`docker ps -aq --filter "name=$VS_CONTAINER_NAME"`
-    if [ ! -z "$CONTAINER_ID" ]; then
-        echo " - container found, ID:$CONTAINER_ID, with name $VS_CONTAINER_NAME"
-        echo " - checking status of container $CONTAINER_ID"
-        CONTAINER_STATUS=`docker inspect --format "{{.State.Status}}" $CONTAINER_ID`
-        echo " - $CONTAINER_STATUS container found with ID:$CONTAINER_ID and name $VS_CONTAINER_NAME"
-    else
-        echo " - no container found with name $VS_CONTAINER_NAME"
-    fi
-    echo ""
+  # check to see if a container called $VS_CONTAINER_NAME exists, if so set $CONTAINER_ID to Docker's CONTAINER ID
+  echo "checking for containers with name $VS_CONTAINER_NAME"
+  CONTAINER_ID=`docker ps -aq --filter "name=$VS_CONTAINER_NAME"`
+  if [ ! -z "$CONTAINER_ID" ]; then
+    echo " - container found, ID:$CONTAINER_ID, with name $VS_CONTAINER_NAME"
+    echo " - checking status of container $CONTAINER_ID"
+    CONTAINER_STATUS=`docker inspect --format "{{.State.Status}}" $CONTAINER_ID`
+    echo " - $CONTAINER_STATUS container found with ID:$CONTAINER_ID and name $VS_CONTAINER_NAME"
+  else
+    echo " - no container found with name $VS_CONTAINER_NAME"
+  fi
+  echo ""
 }
 
 stopContainers() {
-    # TO-DO - maybe undeploy application first?
-    echo "stopping containers with ID $CONTAINER_ID"
-    for CONTAINER in $CONTAINER_ID; do
-        echo "stopping $CONTAINER"
-        docker stop $CONTAINER
-    done
-    echo ""
+  # TO-DO - maybe undeploy application first?
+  echo "stopping containers with ID $CONTAINER_ID"
+  for CONTAINER in $CONTAINER_ID; do
+    echo "stopping $CONTAINER"
+    docker stop $CONTAINER
+  done
+  echo ""
 }
 
 startContainers() {
-    echo "starting containers with ID $CONTAINER_ID"
-    for CONTAINER in $CONTAINER_ID; do
-        echo "starting $CONTAINER"
-        docker start $CONTAINER
-    done
-    echo ""
+  echo "starting containers with ID $CONTAINER_ID"
+  for CONTAINER in $CONTAINER_ID; do
+    echo "starting $CONTAINER"
+    docker start $CONTAINER
+  done
+  echo ""
 }
 
 deleteContainers() {
-    echo "deleting containers with name $CONTAINER_ID"
-    for CONTAINER in $CONTAINER_ID; do
-        echo "deleting $CONTAINER"
-        docker container rm -f $CONTAINER
-    done
-    echo ""
+  echo "deleting containers with name $CONTAINER_ID"
+  for CONTAINER in $CONTAINER_ID; do
+    echo "deleting $CONTAINER"
+    docker container rm -f $CONTAINER
+  done
+  echo ""
 }
 
 deleteImages() {
-    #delete existing images - does this have a purpose? will there ever be an image with the name $VS_CONTAINER_NAME?
-    echo "deleting any docker images with name $VS_CONTAINER_NAME"
-    docker images | egrep "$VS_CONTAINER_NAME"
-    for IMAGE in `docker images | egrep "$VS_CONTAINER_NAME" | awk '{print $3}'`; do
-        echo "deleting $IMAGE"
-        docker image rm -f $IMAGE
-    done
-    echo ""
-}
-
-
-portOverride() {
-# gp:DONE - even if override is set we must still check to ensure it's free, move the while loop to after the if block and just add PORT/MAXPORT values into the if. If the override port if in use the job must fail
-if [ "$GIT_BRANCH" == "develop" ]; then
+  #delete existing images - does this have a purpose? will there ever be an image with the name $VS_CONTAINER_NAME?
+  echo "deleting any docker images with name $VS_CONTAINER_NAME"
+  docker images | egrep "$VS_CONTAINER_NAME"
+  for IMAGE in `docker images | egrep "$VS_CONTAINER_NAME" | awk '{print $3}'`; do
+    echo "deleting $IMAGE"
+    docker image rm -f $IMAGE
+  done
   echo ""
-  echo "GIT_BRANCH is $GIT_BRANCH, OVERRIDE PORT will be set to 8100"
-  VS_CONTAINER_BASE_PORT_OVERRIDE=8100
-fi
-if [ -z "$VS_CONTAINER_BASE_PORT_OVERRIDE" ]; then
-  BASE_PORT=8000
-  MAX_PORT=8099
-  echo ""
-  echo "finding a free port to map to the new container's Tomcat port - range $BASE_PORT-$MAXPORT"
-  echo ""
-else
-  BASE_PORT=$VS_CONTAINER_BASE_PORT_OVERRIDE
-  MAX_PORT=$VS_CONTAINER_BASE_PORT_OVERRIDE
-  echo ""
-  echo "BASE_PORT will be set to $VS_CONTAINER_BASE_PORT_OVERRIDE due to VS_CONTAINER_BASE_PORT_OVERRIDE"
-fi
 }
 
 # check all branches to see what ports are "reserved" by existing containers
 getChildBranchesViaCurl() {
-    echo "checking for ports reserved by other branches in $VS_PARENT_JOB_NAME"
-    #for CONTAINER in `curl -s $JENKINS_URL/job/$VS_PARENT_JOB_NAME/rssLatest | sed -e "s/type=\"text\/html\" href=\"/\n/g" | egrep "^https" | sed -e "s/%252F/\//g" | sed "s/\".*//g" | sed -e "s/htt.*\/\(.*\)\/[0-9]*\//\1/g" | egrep -v "http"`; do
-    #  VS_CONTAINER_LIST="$VS_CONTAINER_LIST $CONTAINER"
-    #  RESERVED_PORT=`docker inspect --format='{{(index (index .NetworkSettings.Ports "8080/tcp") 0).HostPort}}' $VS_PARENT_JOB_NAME\_$CONTAINER 2>/dev/null`
-    #  if [ ! -z "$RESERVED_PORT" ]; then
-    #    RESERVED_PORT_LIST="$RESERVED_PORT_LIST $RESERVED_PORT"
-    #    echo "$RESERVED_PORT is reserved by $VS_PARENT_JOB_NAME\_$CONTAINER"
-    #  fi
-    #done
+  echo "checking for ports reserved by other branches in $VS_PARENT_JOB_NAME"
+  #for CONTAINER in `curl -s $JENKINS_URL/job/$VS_PARENT_JOB_NAME/rssLatest | sed -e "s/type=\"text\/html\" href=\"/\n/g" | egrep "^https" | sed -e "s/%252F/\//g" | sed "s/\".*//g" | sed -e "s/htt.*\/\(.*\)\/[0-9]*\//\1/g" | egrep -v "http"`; do
+  #  VS_CONTAINER_LIST="$VS_CONTAINER_LIST $CONTAINER"
+  #  RESERVED_PORT=`docker inspect --format='{{(index (index .NetworkSettings.Ports "8080/tcp") 0).HostPort}}' $VS_PARENT_JOB_NAME\_$CONTAINER 2>/dev/null`
+  #  if [ ! -z "$RESERVED_PORT" ]; then
+  #    RESERVED_PORT_LIST="$RESERVED_PORT_LIST $RESERVED_PORT"
+  #    echo "$RESERVED_PORT is reserved by $VS_PARENT_JOB_NAME\_$CONTAINER"
+  #  fi
+  #done
 }
 
 getBranchListViaCurl() {
-    for CONTAINER in `curl -s $JENKINS_URL/job/$VS_PARENT_JOB_NAME/rssLatest | sed -e "s/type=\"text\/html\" href=\"/\n/g" | egrep "^https" | sed -e "s/%252F/\//g" | sed "s/\".*//g" | sed -e "s/htt.*\/\(.*\)\/[0-9]*\//$VS_PARENT_JOB_NAME\_\1/g" | egrep -v "http"`; do
-        BRANCH_CONTAINER_LIST="$BRANCH_CONTAINER_LIST $CONTAINER"
-        RESERVED_PORT=`docker inspect --format='{{(index (index .HostConfig.PortBindings "8080/tcp") 0).HostPort}}' $CONTAINER 2>/dev/null`
-        if [ ! -z "$RESERVED_PORT" ]; then
-            RESERVED_PORT_LIST="$RESERVED_PORT_LIST $RESERVED_PORT"
-            echo "$RESERVED_PORT is reserved by $CONTAINER"
-        fi
-    done
-    echo ""
+  for CONTAINER in `curl -s $JENKINS_URL/job/$VS_PARENT_JOB_NAME/rssLatest | sed -e "s/type=\"text\/html\" href=\"/\n/g" | egrep "^https" | sed -e "s/%252F/\//g" | sed "s/\".*//g" | sed -e "s/htt.*\/\(.*\)\/[0-9]*\//$VS_PARENT_JOB_NAME\_\1/g" | egrep -v "http"`; do
+    BRANCH_CONTAINER_LIST="$BRANCH_CONTAINER_LIST $CONTAINER"
+    RESERVED_PORT=`docker inspect --format='{{(index (index .HostConfig.PortBindings "8080/tcp") 0).HostPort}}' $CONTAINER 2>/dev/null`
+    if [ ! -z "$RESERVED_PORT" ]; then
+      RESERVED_PORT_LIST="$RESERVED_PORT_LIST $RESERVED_PORT"
+      echo "$RESERVED_PORT is reserved by $CONTAINER"
+    fi
+  done
+  echo ""
 }
 
 getPullRequestListViaCurl() {
-    echo "checking for ports reserved by pull requests in $VS_PARENT_JOB_NAME"
-    for CONTAINER in `curl -s $JENKINS_URL/job/$VS_PARENT_JOB_NAME/view/change-requests/rssLatest | sed -e "s/type=\"text\/html\" href=\"/\n/g" | egrep "^https" | sed -e "s/%252F/\//g" | sed "s/\".*//g" | sed -e "s/htt.*\/\(.*\)\/[0-9]*\//$VS_PARENT_JOB_NAME\_\1/g" | egrep -v "http"`; do
-        BRANCH_CONTAINER_LIST="$BRANCH_CONTAINER_LIST $CONTAINER"
-        RESERVED_PORT=`docker inspect --format='{{(index (index .HostConfig.PortBindings "8080/tcp") 0).HostPort}}' $CONTAINER 2>/dev/null`
-        if [ ! -z "$RESERVED_PORT" ]; then
-            RESERVED_PORT_LIST="$RESERVED_PORT_LIST $RESERVED_PORT"
-            echo "$RESERVED_PORT is reserved by $CONTAINER"
-        fi
-    done;
+  echo "checking for ports reserved by pull requests in $VS_PARENT_JOB_NAME"
+  for CONTAINER in `curl -s $JENKINS_URL/job/$VS_PARENT_JOB_NAME/view/change-requests/rssLatest | sed -e "s/type=\"text\/html\" href=\"/\n/g" | egrep "^https" | sed -e "s/%252F/\//g" | sed "s/\".*//g" | sed -e "s/htt.*\/\(.*\)\/[0-9]*\//$VS_PARENT_JOB_NAME\_\1/g" | egrep -v "http"`; do
+    BRANCH_CONTAINER_LIST="$BRANCH_CONTAINER_LIST $CONTAINER"
+    RESERVED_PORT=`docker inspect --format='{{(index (index .HostConfig.PortBindings "8080/tcp") 0).HostPort}}' $CONTAINER 2>/dev/null`
+    if [ ! -z "$RESERVED_PORT" ]; then
+      RESERVED_PORT_LIST="$RESERVED_PORT_LIST $RESERVED_PORT"
+      echo "$RESERVED_PORT is reserved by $CONTAINER"
+    fi
+  done;
 }
 
 getBranchListFromWorkspace() {
-    echo "checking for branches and PRs for $VS_PARENT_JOB_NAME listed in workspaces.txt"
-    for BRANCH in `cat $JENKINS_HOME/workspace/workspaces.txt | grep "$VS_PARENT_JOB_NAME" | sed -e "s/%2F/\//g" | sed "s/.*\//$VS_PARENT_JOB_NAME\_/g"`; do
-        if [ "$VS_DEBUG" = "TRUE" ]; then echo " - found branch $BRANCH"; fi
-        BRANCH_LIST="$BRANCH_LIST $BRANCH"
-    done
-    echo ""
+  echo "checking for branches and PRs for $VS_PARENT_JOB_NAME listed in workspaces.txt"
+  for BRANCH in `cat $JENKINS_HOME/workspace/workspaces.txt | grep "$VS_PARENT_JOB_NAME" | sed -e "s/%2F/\//g" | sed "s/.*\//$VS_PARENT_JOB_NAME\_/g"`; do
+    if [ "$VS_DEBUG" = "TRUE" ]; then echo " - found branch $BRANCH"; fi
+    BRANCH_LIST="$BRANCH_LIST $BRANCH"
+  done
+  echo ""
 }
 
 getReservedPortList() {
-    echo "checking for ports reserved by branches in BRANCH_LIST"
-    for BRANCH in $BRANCH_LIST; do
-        RESERVED_PORT=`docker port $BRANCH 2>/dev/null| awk '{gsub(/.*:/,"");}1'`
-        if [ ! -z $RESERVED_PORT ]; then
-	  RESERVED_PORT_LIST="$RESERVED_PORT_LIST $RESERVED_PORT"
-          if [ "$VS_DEBUG" = "TRUE" ]; then echo " - $RESERVED_PORT is reserved by $BRANCH"; fi
-	fi
-    done
-    echo ""
-    if [ ! -z "$RESERVED_PORT_LIST" ]; then echo "Ports $RESERVED_PORT_LIST are reserved"; echo ""; fi
+  echo "checking for ports reserved by branches in BRANCH_LIST"
+  for BRANCH in $BRANCH_LIST; do
+    RESERVED_PORT=`docker port $BRANCH 2>/dev/null| awk '{gsub(/.*:/,"");}1'`
+    if [ ! -z $RESERVED_PORT ]; then
+      RESERVED_PORT_LIST="$RESERVED_PORT_LIST $RESERVED_PORT"
+      if [ "$VS_DEBUG" = "TRUE" ]; then echo " - $RESERVED_PORT is reserved by $BRANCH"; fi
+    fi
+  done
+  echo ""
+  if [ ! -z "$RESERVED_PORT_LIST" ]; then echo "Ports $RESERVED_PORT_LIST are reserved"; echo ""; fi
 }
 
 tidyContainers() {
-    # tidy containers when building the "develop" branch
-    if [ "$GIT_BRANCH" == "develop" ]; then
-      echo ""
-      echo "checking all containers on $NODE_NAME matching $VS_PARENT_JOB_NAME*"
-      for CONTAINER in `docker ps -a --filter "name=$VS_PARENT_JOB_NAME*" --format "table {{.Names}}" | tail -n +2`; do
-        CONTAINER_MATCHED=
-        ALL_CONTAINER_LIST="$ALL_CONTAINER_LIST $CONTAINER"
-        #echo "checking to see if there's a branch for $CONTAINER"
-        for BRANCH_CONTAINER in $BRANCH_CONTAINER_LIST; do
-          if [ "$CONTAINER" = "$BRANCH_CONTAINER" ]; then
-            echo "there is a branch associated with $CONTAINER"
-            CONTAINER_MATCHED="TRUE"
-            break
-          fi
-        done
-        if [ ! "$CONTAINER_MATCHED" = "TRUE" ]; then
-            echo "no branch was found matching container $CONTAINER - deleting"
-            docker container rm -f $CONTAINER
+  # tidy containers when building the "develop" branch
+  if [ "$GIT_BRANCH" == "develop" ]; then
+    echo ""
+    echo "checking all containers on $NODE_NAME matching $VS_PARENT_JOB_NAME*"
+    for CONTAINER in `docker ps -a --filter "name=$VS_PARENT_JOB_NAME*" --format "table {{.Names}}" | tail -n +2`; do
+      CONTAINER_MATCHED=
+      ALL_CONTAINER_LIST="$ALL_CONTAINER_LIST $CONTAINER"
+      #echo "checking to see if there's a branch for $CONTAINER"
+      for BRANCH_CONTAINER in $BRANCH_CONTAINER_LIST; do
+        if [ "$CONTAINER" = "$BRANCH_CONTAINER" ]; then
+          echo "there is a branch associated with $CONTAINER"
+          CONTAINER_MATCHED="TRUE"
+          break
         fi
-        done
-    fi
+      done
+      if [ ! "$CONTAINER_MATCHED" = "TRUE" ]; then
+        echo "no branch was found matching container $CONTAINER - deleting"
+        docker container rm -f $CONTAINER
+      fi
+      done
+  fi
 }
 
-findPorts() {
+setPortRange() {
+  # gp:DONE - even if override is set we must still check to ensure it's free, move the while loop to after the if block and just add PORT/MAXPORT values into the if. If the override port if in use the job must fail
+  if [ "$GIT_BRANCH" == "develop" ]; then
+    echo "GIT_BRANCH is $GIT_BRANCH, OVERRIDE PORT will be set to 8100"
+    VS_CONTAINER_BASE_PORT_OVERRIDE=8100
+  fi
+  if [ -z "$VS_CONTAINER_BASE_PORT_OVERRIDE" ]; then
+    BASE_PORT=8000
+    MAX_PORT=8099
+    echo "finding a free port to map to the new container's Tomcat port - range $BASE_PORT-$MAX_PORT"
+    echo ""
+  else
+    BASE_PORT=$VS_CONTAINER_BASE_PORT_OVERRIDE
+    MAX_PORT=$VS_CONTAINER_BASE_PORT_OVERRIDE
+    echo "BASE_PORT will be set to $VS_CONTAINER_BASE_PORT_OVERRIDE due to VS_CONTAINER_BASE_PORT_OVERRIDE"
+    echo ""
+  fi
+}
+
+findBasePort() {
   echo "checking ports all containers on $NODE_NAME matching $VS_PARENT_JOB_NAME*"
   while [ $BASE_PORT -le $MAX_PORT ]; do
     FREE=`netstat -an | egrep "LISTEN *$" | grep $BASE_PORT`
@@ -470,14 +467,14 @@ case $METHOD in
     startContainers
     deleteContainers
     deleteImages
-    portOverride
     #getChildBranchesViaCurl
     #getBranchListViaCurl
     #getPullRequestListViaCurl
     getBranchListFromWorkspace
     getReservedPortList
     tidyContainers
-    findPorts
+    setPortRange
+    findBasePort
     findHippoArtifact
     packageSSRArtifact
     containerCreateAndStart
