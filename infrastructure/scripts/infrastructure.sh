@@ -19,7 +19,7 @@ VS_HOST_IP_ADDRESS=`/usr/sbin/ip ad sh  | egrep "global noprefixroute" | awk '{p
 if [ -z "$VS_PROXY_SERVER_SCHEME" ]; then VS_PROXY_SERVER_SCHEME=https; fi
 if [ -z "$VS_PROXY_SERVER_FQDN" ]; then VS_PROXY_SERVER_FQDN=feature.visitscotland.com; fi
 #  == brXM Instance Variables ==
-if [ -z "$VS_CONTAINER_BASE_PORT_OVERRIDE" ]; then VS_CONTAINER_BASE_PORT_OVERRIDE=NULL; fi
+if [ -z "$VS_CONTAINER_BASE_PORT_OVERRIDE" ]; then unset VS_CONTAINER_BASE_PORT_OVERRIDE; fi
 if [ -z "$VS_BRXM_INSTANCE_HTTP_HOST ]; then VS_BRXM_INSTANCE_HTTP_HOST=localhost; fi
 if [ -z "$VS_BRXM_TOMCAT_PORT ]; then VS_BRXM_TOMCAT_PORT=8080; fi
 #  ==== SSR Application Variables ====
@@ -199,7 +199,7 @@ getPullRequestListViaCurl() {
 
 getBranchListFromWorkspace() {
     echo "checking for branches and PRs for $VS_PARENT_JOB_NAME listed in workspaces.txt"
-    for BRANCH in `cat $JENKINS_HOME/workspace/workspaces.txt | grep "$VS_PARENT_JOB_NAME" | sed -e "s/%2F/\//g" | sed "s/.*\///g"`; do
+    for BRANCH in `cat $JENKINS_HOME/workspace/workspaces.txt | grep "$VS_PARENT_JOB_NAME" | sed -e "s/%2F/\//g" | sed "s/.*\//$VS_PARENT_JOB_NAME\_/g"`; do
         if [ "$VS_DEBUG" = "TRUE" ]; then echo $BRANCH; fi
         BRANCH_LIST="$BRANCH_LIST $BRANCH"
     done
@@ -462,9 +462,9 @@ case $METHOD in
     deleteContainers
     deleteImages
     portOverride
-    getChildBranchesViaCurl
-    getBranchListViaCurl
-    getPullRequestListViaCurl
+    #getChildBranchesViaCurl
+    #getBranchListViaCurl
+    #getPullRequestListViaCurl
     getBranchListFromWorkspace
     getReservedPortList
     tidyContainers
