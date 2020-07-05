@@ -106,6 +106,7 @@ checkContainers() {
     echo " - checking status of container $CONTAINER_ID"
     CONTAINER_STATUS=`docker inspect --format "{{.State.Status}}" $CONTAINER_ID`
     echo " - $CONTAINER_STATUS container found with ID:$CONTAINER_ID and name $VS_CONTAINER_NAME"
+    # GRAB BASE PORT
   else
     echo " - no container found with name $VS_CONTAINER_NAME"
   fi
@@ -220,14 +221,14 @@ tidyContainers() {
       #echo "checking to see if there's a branch for $CONTAINER"
       for BRANCH_CONTAINER in $BRANCH_CONTAINER_LIST; do
         if [ "$CONTAINER" = "$BRANCH_CONTAINER" ]; then
-          echo "there is a branch associated with $CONTAINER"
+          echo "there is a branch $BRANCH_CONTAINER associated with container $CONTAINER"
           CONTAINER_MATCHED="TRUE"
           break
         fi
       done
       if [ ! "$CONTAINER_MATCHED" = "TRUE" ]; then
-        echo "no branch was found matching container $CONTAINER - deleting"
-        docker container rm -f $CONTAINER
+        echo "no branch $BRANCH_CONTAINER was found matching container $CONTAINER - deleting"
+        echo docker container rm -f $CONTAINER
       fi
       done
     echo ""
