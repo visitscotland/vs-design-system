@@ -10,6 +10,8 @@
 # gp: create an array of required ports
 #      - e.g. "VS_CONTAINER_BRXM_PORT VS_CONTAINER_SSR_PORT VS_CONTAINER_SSH_PORT"
 #      - then do a FOR MAP_PORT in VS_CONTAINER_REQUIRED_PORTS and +100 knowing that the're available (from above)
+# gp: create routine to re-use existing container if it's there
+#     - start it if stoppped - redeploy artifact if it's running
 # ====/TO-DO ====
 
 # ==== SETUP ====
