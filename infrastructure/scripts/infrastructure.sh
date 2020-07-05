@@ -29,6 +29,10 @@ if [ -z "$VS_SSR_PACKAGE_TARGET" ]; then VS_SSR_PACKAGE_TARGET="./target"; fi
 if [ -z "$VS_SSR_PACKAGE_NAME" ]; then VS_SSR_PACKAGE_NAME="vs-ssr-package.tar.gz"; fi
 if [ -z "$VS_SSR_APP_PORT" ]; then VS_SSR_APP_PORT=8082; fi
 # ====/ADJUSTABLE VARIABLES ====
+# ==== TESTING VARIABLES ====
+if [ -z "$BRANCH_NAME" ]; then BRANCH_NAME=feature/VS-1865-feature-environments-enhancements; fi
+if [ -z "$JOB_NAME" ]; then JOB_NAME=feature.visitscotland.com-mb/feature%2FVS-1865-feature-environments-enhancements; fi
+# ====/TESTING VARIABLES ====
 # ====/SETUP ====
 
 # ==== PARSE COMMAND LINE ARGUMENTS ====
@@ -442,46 +446,36 @@ createReport() {
 
 # ==== RUN ====
 case $METHOD in
-  tomcat)
-    case $FUNCTION in
-      AUTO)
-        if [ "$DEBUG" == "TRUE" ]; then reportSettings; fi
-        if [ "$STOP_SERVER" == "TRUE" ]; then stopTomcat; fi
-        tomcatPreFlightCheck
-        if [ "$DEBUG" == "TRUE" ]; then reportStatus; fi
-        if [ "$FORCE_OVERWRITE" == "TRUE" ]; then deleteCatalinaBase; fi
-        if [ ! -z "$CATALINA_BASE" ]&&[ ! -z "TOMCAT_USER_HOME" ]&&[ ! -d "$CATALINA_BASE" ]; then createCatalinaBase; fi
-        if [ "$DEBUG" == "TRUE" ]; then reportStatus; fi
-        if [ "$START_SERVER" == "TRUE" ]; then startTomcat; fi
-        if [ "$DEPLOY_ARTEFACT" == "TRUE" ]; then deployTomcatArtefact; fi
-      ;;
-      stop)
-        if [ "$DEBUG" == "TRUE" ]; then reportSettings; fi
-        stopTomcat
-      ;;
-      start)
-        if [ "$DEBUG" == "TRUE" ]; then reportSettings; fi
-        startTomcat
-      ;;
-      report)
-        reportSettings
-      ;;
-      *)
-        $FUNCTION
-      ;;
-    esac
+  other)
+    false
   ;;
-  wildfly)
-    if [ "$DEBUG" == "TRUE" ]; then reportSettings; fi
-    wildflyPreFlightCheck
-    if [ "$DEBUG" == "TRUE" ]; then reportStatus; fi
-    if [ "$FORCE_OVERWRITE" == "TRUE" ]; then deleteJbossBase; fi
-    if [ "$DEBUG" == "TRUE" ]; then reportStatus; fi
+  default)
+    false
     ;;
   *)
+    echo "NO METHOD SELECTED - running as docker.sh"
     defaultSettings
-    echo "NO METHOD SELECTED"
     reportSettings
+    checkContainers
+    stopContainers
+    startContainers
+    deleteContainers
+    deleteImages
+    portOverride
+    getChildBranchesViaCurl
+    getBranchListViaCurl
+    getPullRequestListViaCurl
+    getBranchListFromWorkspace
+    getReservedPortList
+    tidyContainers
+    findPorts
+    findHippoArtifact
+    packageSSRArtifact
+    containerCreateAndStart
+    containerCopyHippoArtifact
+    containerCopySSRArtifact
+    containerStartHippo
+    createReport
   ;;
 esac
 # ====/RUN ====
