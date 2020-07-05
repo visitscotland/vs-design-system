@@ -50,7 +50,7 @@ while [[ $# -gt 0 ]]; do
 # ====/PARSE COMMAND LINE ARGUMENTS ====
 
 # ==== FUNCTIONS ====
-prepare-environment() {
+defaultSettings() {
   # unset variables
   VS_CONTAINER_LIST=
   VS_PARENT_JOB_NAME=
@@ -62,7 +62,7 @@ prepare-environment() {
   VS_PARENT_JOB_NAME=`echo $JOB_NAME | sed -e "s/\/.*//g"`
 }
 
-report-environment() {
+reportSettings() {
   clear
   echo ""
   echo "======================================================"
@@ -480,8 +480,8 @@ case $METHOD in
     ;;
   *)
     echo "NO METHOD SELECTED"
-    prepare-environment
-    report-environment
+    defaultSettings
+    reportSettings
   ;;
 esac
 # ====/RUN ====
