@@ -195,7 +195,7 @@ getBranchListFromWorkspace() {
 }
 
 getReservedPortList() {
-  echo "checking for ports reserved by branches in BRANCH_LIST"
+  echo "checking for ports reserved by containers in BRANCH_LIST"
   for BRANCH in $BRANCH_LIST; do
     RESERVED_PORT=`docker port $BRANCH 2>/dev/null| awk '{gsub(/.*:/,"");}1'`
     if [ ! -z $RESERVED_PORT ]; then
@@ -240,7 +240,6 @@ setPortRange() {
   if [ -z "$VS_CONTAINER_BASE_PORT_OVERRIDE" ]; then
     MIN_PORT=8000
     MAX_PORT=8099
-    echo "finding a free port to map to the new container's Tomcat port - range $MIN_PORT-$MAX_PORT"
     echo ""
   else
     MIN_PORT=$VS_CONTAINER_BASE_PORT_OVERRIDE
@@ -251,8 +250,8 @@ setPortRange() {
 }
 
 findBasePort() {
-  echo "checking ports all containers on $NODE_NAME matching $VS_PARENT_JOB_NAME*"
-  THIS_PORT=$VS_CONTAINER_BASE_PORT
+  echo "Finding a free port to map to the new container's Tomcat port - range $MIN_PORT-$MAX_PORT"
+  THIS_PORT=$MIN_PORT
   while [ $THIS_PORT -le $MAX_PORT ]; do
     FREE=`netstat -an | egrep "LISTEN *$" | grep $THIS_PORT`
     if [ "$FREE" = "" ]; then
@@ -291,7 +290,9 @@ findBasePort() {
     echo " - $FAIL_REASON"
   else
     VS_CONTAINER_BASE_PORT=$THIS_PORT
+    echo "VS_CONTAINER_BASE_PORT set to $VS_CONTAINER_BASE_PORT"
   fi
+  echo ""
 }
 
 # search for latest Hippo distribution files if HIPPO_LATEST is not already set
@@ -299,7 +300,6 @@ findHippoArtifact() {
   if [ ! "$SAFE_TO_PROCEED" = "FALSE" ]; then
     if [ -z $HIPPO_LATEST ]; then
       # search in $WORKSPACE/target/ for files matching "*.tar.gz"
-      echo ""
       echo "searching for latest Hippo distribution files in $WORKSPACE/target"
       HIPPO_LATEST=`ls -alht $WORKSPACE/target/*.tar.gz | head -1 | awk '{print $9}'` 2>&1 > /dev/null
       if [ -z "$HIPPO_LATEST" ]; then
