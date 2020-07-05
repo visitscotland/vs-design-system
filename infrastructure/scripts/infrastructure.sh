@@ -81,7 +81,7 @@ reportSettings() {
   echo ""
 }
 
-check-containers() {
+checkContainers() {
     # check to see if a container called $CONTAINER_NAME exists, if so set $CONTAINER_ID to Docker's CONTAINER ID
     echo "checking for containers with name $CONTAINER_NAME"
     CONTAINER_ID=`docker ps -aq --filter "name=$CONTAINER_NAME"`
@@ -96,7 +96,7 @@ check-containers() {
     echo ""
 }
 
-stop-container() {
+stopContainers() {
     # TO-DO - maybe undeploy application first?
     echo "stopping containers with ID $CONTAINER_ID"
     for CONTAINER in $CONTAINER_ID; do
@@ -106,7 +106,7 @@ stop-container() {
     echo ""
 }
 
-start-container() {
+startContainers() {
     echo "starting containers with ID $CONTAINER_ID"
     for CONTAINER in $CONTAINER_ID; do
         echo "starting $CONTAINER"
@@ -115,7 +115,7 @@ start-container() {
     echo ""
 }
 
-delete-containers() {
+deleteContainers() {
     echo "deleting containers with name $CONTAINER_ID"
     for CONTAINER in $CONTAINER_ID; do
         echo "deleting $CONTAINER"
@@ -124,7 +124,7 @@ delete-containers() {
     echo ""
 }
 
-delete-images() {
+deleteImages() {
     #delete existing images - does this have a purpose? will there ever be an image with the name $CONTAINER_NAME?
     echo "deleting any docker images with name $CONTAINER_NAME"
     docker images | egrep "$CONTAINER_NAME"
@@ -136,7 +136,7 @@ delete-images() {
 }
 
 
-port-override() {
+portOverride() {
 # gp:DONE - even if override is set we must still check to ensure it's free, move the while loop to after the if block and just add PORT/MAXPORT values into the if. If the override port if in use the job must fail
 if [ "$GIT_BRANCH" == "develop" ]; then
   echo ""
@@ -157,7 +157,7 @@ fi
 }
 
 # check all branches to see what ports are "reserved" by existing containers
-get-child-branches-curl-old() {
+getChildBranchesViaCurl() {
     echo "checking for ports reserved by other branches in $VS_PARENT_JOB_NAME"
     #for CONTAINER in `curl -s $JENKINS_URL/job/$VS_PARENT_JOB_NAME/rssLatest | sed -e "s/type=\"text\/html\" href=\"/\n/g" | egrep "^https" | sed -e "s/%252F/\//g" | sed "s/\".*//g" | sed -e "s/htt.*\/\(.*\)\/[0-9]*\//\1/g" | egrep -v "http"`; do
     #  VS_CONTAINER_LIST="$VS_CONTAINER_LIST $CONTAINER"
@@ -169,7 +169,7 @@ get-child-branches-curl-old() {
     #done
 }
 
-get-branch-list-curl() {
+getBranchListViaCurl() {
     for CONTAINER in `curl -s $JENKINS_URL/job/$VS_PARENT_JOB_NAME/rssLatest | sed -e "s/type=\"text\/html\" href=\"/\n/g" | egrep "^https" | sed -e "s/%252F/\//g" | sed "s/\".*//g" | sed -e "s/htt.*\/\(.*\)\/[0-9]*\//$VS_PARENT_JOB_NAME\_\1/g" | egrep -v "http"`; do
         BRANCH_CONTAINER_LIST="$BRANCH_CONTAINER_LIST $CONTAINER"
         RESERVED_PORT=`docker inspect --format='{{(index (index .HostConfig.PortBindings "8080/tcp") 0).HostPort}}' $CONTAINER 2>/dev/null`
@@ -181,7 +181,7 @@ get-branch-list-curl() {
     echo ""
 }
 
-get-pr-list-curl() {
+getPullRequestListViaCurl() {
     echo "checking for ports reserved by pull requests in $VS_PARENT_JOB_NAME"
     for CONTAINER in `curl -s $JENKINS_URL/job/$VS_PARENT_JOB_NAME/view/change-requests/rssLatest | sed -e "s/type=\"text\/html\" href=\"/\n/g" | egrep "^https" | sed -e "s/%252F/\//g" | sed "s/\".*//g" | sed -e "s/htt.*\/\(.*\)\/[0-9]*\//$VS_PARENT_JOB_NAME\_\1/g" | egrep -v "http"`; do
         BRANCH_CONTAINER_LIST="$BRANCH_CONTAINER_LIST $CONTAINER"
@@ -193,7 +193,7 @@ get-pr-list-curl() {
     done;
 }
 
-get-branch-list() {
+getBranchListFromWorkspace() {
     echo "checking for branches and PRs for $VS_PARENT_JOB_NAME listed in workspaces.txt"
     for BRANCH in `cat $JENKINS_HOME/workspace/workspaces.txt | grep "$VS_PARENT_JOB_NAME" | sed -e "s/%2F/\//g" | sed "s/.*\///g"`; do
         if [ "$VS_DEBUG" = "TRUE" ]; then echo $BRANCH; fi
@@ -201,7 +201,7 @@ get-branch-list() {
     done
 }
 
-get-reserved-port-list() {
+getReservedPortList() {
     echo "checking for ports reserved by branches in BRANCH_LIST"
     for BRANCH in $BRANCH_LIST; do
         RESERVED_PORT=`docker port $BRANCH | awk '{gsub(/.*:/,"");}1' 2>/dev/null`
@@ -211,7 +211,7 @@ get-reserved-port-list() {
     if [ ! -z "$RESERVED_PORT_LIST" ]; then echo "Ports $RESERVED_PORT_LIST are reserved"; fi
 }
 
-tidy-containers() {
+tidyContainers() {
     # tidy containers when building the "develop" branch
     if [ "$GIT_BRANCH" == "develop" ]; then
       echo ""
@@ -235,7 +235,7 @@ tidy-containers() {
     fi
 }
 
-find-ports() {
+findPorts() {
   while [ $BASE_PORT -le $MAX_PORT ]; do
     FREE=`netstat -an | egrep "LISTEN *$" | grep $BASE_PORT`
     if [ "$FREE" = "" ]; then
@@ -276,7 +276,7 @@ find-ports() {
 }
 
 # search for latest Hippo distribution files if HIPPO_LATEST is not already set
-find-hippo-artifact() {
+findHippoArtifact() {
   if [ ! "$SAFE_TO_PROCEED" = "FALSE" ]; then
     if [ -z $HIPPO_LATEST ]; then
       # search in $WORKSPACE/target/ for files matching "*.tar.gz"
@@ -306,7 +306,7 @@ find-hippo-artifact() {
 }
 
 # package SSR app files
-package-ssr-artifact() {
+packageSSRArtifact() {
   if [ "$VS_SSR_PROXY_ON" = "TRUE" ] && [ ! "$SAFE_TO_PROCEED" = "FALSE" ]; then
     echo "packaging SSR application"
     if [ -d "$VS_FRONTEND_DIR" ]; then
