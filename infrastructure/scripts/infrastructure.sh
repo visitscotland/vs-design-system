@@ -204,6 +204,7 @@ getBranchListFromWorkspace() {
         if [ "$VS_DEBUG" = "TRUE" ]; then echo " - found branch $BRANCH"; fi
         BRANCH_LIST="$BRANCH_LIST $BRANCH"
     done
+    echo ""
 }
 
 getReservedPortList() {
@@ -212,10 +213,11 @@ getReservedPortList() {
         RESERVED_PORT=`docker port $BRANCH 2>/dev/null| awk '{gsub(/.*:/,"");}1'`
         if [ ! -z $RESERVED_PORT ]; then
 	  RESERVED_PORT_LIST="$RESERVED_PORT_LIST $RESERVED_PORT"
-          echo "$RESERVED_PORT is reserved by $BRANCH"
+          if [ "$VS_DEBUG" = "TRUE" ]; then echo " - $RESERVED_PORT is reserved by $BRANCH"; fi
 	fi
     done
-    if [ ! -z "$RESERVED_PORT_LIST" ]; then echo "Ports $RESERVED_PORT_LIST are reserved"; fi
+    echo ""
+    if [ ! -z "$RESERVED_PORT_LIST" ]; then echo "Ports $RESERVED_PORT_LIST are reserved"; echo ""; fi
 }
 
 tidyContainers() {
@@ -243,6 +245,7 @@ tidyContainers() {
 }
 
 findPorts() {
+  echo "checking ports all containers on $NODE_NAME matching $VS_PARENT_JOB_NAME*"
   while [ $BASE_PORT -le $MAX_PORT ]; do
     FREE=`netstat -an | egrep "LISTEN *$" | grep $BASE_PORT`
     if [ "$FREE" = "" ]; then
@@ -310,6 +313,7 @@ findHippoArtifact() {
     echo ""
     echo "search for distribution files will not be run due to previous failures"
   fi
+  echo ""
 }
 
 # package SSR app files
@@ -338,8 +342,9 @@ containerCreateAndStart() {
     fi
     echo ""
     echo "about to create a new Docker container with:"
-    VS_DOCKER_CMD=docker run -d --name $VS_CONTAINER_NAME -p $BASE_PORT:$VS_CONTAINER_EXPOSE_PORT --env VS_SSR_PROXY_ON=$VS_SSR_PROXY_ON --env VS_SSR_PACKAGE_NAME=$VS_SSR_PACKAGE_NAME $DOCKERFILE_NAME /bin/bash -c "/usr/local/bin/vs-mysqld-start && /usr/local/bin/vs-hippo && while [ ! -f /home/hippo/tomcat_8080/logs/cms.log ]; do echo no log; sleep 2; done; tail -f /home/hippo/tomcat_8080/logs/cms.log"
+    VS_DOCKER_CMD="docker run -d --name $VS_CONTAINER_NAME -p $BASE_PORT:$VS_CONTAINER_EXPOSE_PORT --env VS_SSR_PROXY_ON=$VS_SSR_PROXY_ON --env VS_SSR_PACKAGE_NAME=$VS_SSR_PACKAGE_NAME $DOCKERFILE_NAME /bin/bash -c "/usr/local/bin/vs-mysqld-start && /usr/local/bin/vs-hippo && while [ ! -f /home/hippo/tomcat_8080/logs/cms.log ]; do echo no log; sleep 2; done; tail -f /home/hippo/tomcat_8080/logs/cms.log""
     echo $VS_DOCKER_CMD
+    eval $VS_DOCKER_CMD
     docker run -d --name $VS_CONTAINER_NAME -p $BASE_PORT:$VS_CONTAINER_EXPOSE_PORT --env VS_SSR_PROXY_ON=$VS_SSR_PROXY_ON --env VS_SSR_PACKAGE_NAME=$VS_SSR_PACKAGE_NAME $DOCKERFILE_NAME /bin/bash -c "/usr/local/bin/vs-mysqld-start && /usr/local/bin/vs-hippo && while [ ! -f /home/hippo/tomcat_8080/logs/cms.log ]; do echo no log; sleep 2; done; tail -f /home/hippo/tomcat_8080/logs/cms.log"
     RETURN_CODE=$?; echo $RETURN_CODE
     if [ ! "$RETURN_CODE" = "0" ]; then
@@ -351,6 +356,7 @@ containerCreateAndStart() {
     echo ""
     echo "container will not be started due to previous failures"
   fi
+  echo ""
 }
 
 # copy build artefacts to container
