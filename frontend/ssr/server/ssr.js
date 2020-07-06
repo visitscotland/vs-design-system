@@ -109,7 +109,7 @@ const renderPage = async (pageHtml) => {
     const { $appNode, $page } = parsePageParts(pageHtml)
 
     // HTML is formatted before rendering to ensure successful hydration
-    const formattedAppHtml = formatHtml(cheerio.html($appNode));
+    const formattedAppHtml = formatHtml(cheerio.html($appNode, { decodeEntities: false }))
 
     prepSsrTemplate($page, formattedAppHtml);
 
