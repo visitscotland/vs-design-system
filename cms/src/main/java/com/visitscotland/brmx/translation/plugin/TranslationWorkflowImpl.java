@@ -1,15 +1,9 @@
 package com.visitscotland.brmx.translation.plugin;
 
-import javax.jcr.Node;
-import javax.jcr.NodeIterator;
-import javax.jcr.RepositoryException;
-import javax.jcr.Session;
-
 import org.hippoecm.repository.HippoStdNodeType;
 import org.hippoecm.repository.api.*;
 import org.hippoecm.repository.ext.InternalWorkflow;
 import org.hippoecm.repository.standardworkflow.CopyWorkflow;
-import org.hippoecm.repository.standardworkflow.EditableWorkflow;
 import org.hippoecm.repository.standardworkflow.FolderWorkflow;
 import org.hippoecm.repository.translation.HippoTranslatedNode;
 import org.hippoecm.repository.translation.HippoTranslationNodeType;
@@ -17,6 +11,10 @@ import org.hippoecm.repository.util.JcrUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javax.jcr.Node;
+import javax.jcr.NodeIterator;
+import javax.jcr.RepositoryException;
+import javax.jcr.Session;
 import java.io.Serializable;
 import java.rmi.RemoteException;
 import java.util.Map;

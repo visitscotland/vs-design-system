@@ -66,7 +66,7 @@ public class TranslationAction extends StdWorkflow<TranslationWorkflow> {
         for (ChangeSet changeSet : changeSetList) {
             try {
                 translator.applyChangeSet(changeSet, session, workflow);
-            } catch(TranslationException ex) {
+            } catch (TranslationException ex) {
                 return ex.getMessage();
             }
         }
@@ -80,7 +80,7 @@ public class TranslationAction extends StdWorkflow<TranslationWorkflow> {
                     workflowPlugin.getAvailableLocales());
 
             boolean haveSameNameSiblings = false;
-            for(ChangeSet changeSet : changeSetList) {
+            for (ChangeSet changeSet : changeSetList) {
                 changeSet.markSameNameSiblings(getJcrSession());
                 if (changeSet.hasSameNameSiblingConflicts()) {
                     haveSameNameSiblings = true;
@@ -92,7 +92,7 @@ public class TranslationAction extends StdWorkflow<TranslationWorkflow> {
                 return new SameNameSiblingDialog(provider);
             }
             return new TranslationConfirmationDialog(this, new DocumentChangeProvider(changeSetList));
-        } catch(ObjectBeanManagerException | WorkflowSNSException | RepositoryException ex) {
+        } catch (ObjectBeanManagerException | WorkflowSNSException | RepositoryException ex) {
             return new ExceptionDialog(ex);
         }
     }

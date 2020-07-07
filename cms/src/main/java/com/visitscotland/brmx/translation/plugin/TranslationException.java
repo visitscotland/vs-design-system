@@ -1,7 +1,5 @@
 package com.visitscotland.brmx.translation.plugin;
 
-import org.hippoecm.repository.api.WorkflowException;
-
 public class TranslationException extends Exception {
 
     public TranslationException() {

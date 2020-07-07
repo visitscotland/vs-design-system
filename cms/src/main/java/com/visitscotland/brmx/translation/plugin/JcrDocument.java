@@ -7,9 +7,11 @@ import org.hippoecm.hst.content.beans.standard.HippoBean;
 import org.hippoecm.repository.HippoStdNodeType;
 import org.hippoecm.repository.translation.HippoTranslatedNode;
 
-import javax.jcr.*;
+import javax.jcr.Node;
+import javax.jcr.NodeIterator;
+import javax.jcr.Property;
+import javax.jcr.RepositoryException;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -32,6 +34,7 @@ public class JcrDocument {
 
     /**
      * Will create an instance from the hippostd:handle instance or one of the document variants.
+     *
      * @param handle
      */
     public JcrDocument(Node handle) throws RepositoryException {
@@ -73,6 +76,7 @@ public class JcrDocument {
 
     /**
      * Returns the variant with the matching state, or returns null if not present.
+     *
      * @param state the variant state to match, draft, unpublished, or published
      * @return the variant Node matching the given state
      * @throws RepositoryException
@@ -102,6 +106,7 @@ public class JcrDocument {
 
     /**
      * Gets the folder Node containing this document.
+     *
      * @return
      * @throws RepositoryException
      */
@@ -115,6 +120,7 @@ public class JcrDocument {
 
     /**
      * Gets the handle Node for the document.
+     *
      * @return hippostd:handle Node
      */
     public Node getHandle() {
@@ -123,6 +129,7 @@ public class JcrDocument {
 
     /**
      * Converts the document to a HippoBean
+     *
      * @return
      */
     public HippoBean asHippoBean() throws ObjectBeanManagerException {

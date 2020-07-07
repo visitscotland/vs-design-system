@@ -3,17 +3,14 @@ package com.visitscotland.brmx.translation.plugin;
 import org.apache.wicket.markup.repeater.data.IDataProvider;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.LoadableDetachableModel;
-import org.hippoecm.frontend.session.UserSession;
 import org.hippoecm.frontend.translation.ILocaleProvider;
 import org.hippoecm.repository.api.HippoNode;
 import org.hippoecm.repository.api.HippoSession;
 
 import javax.jcr.RepositoryException;
-import javax.jcr.Session;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class SameNameSiblingProvider implements IDataProvider<SameNameSiblingProvider.Entry> {
     private List<Entry> entryList;
@@ -28,7 +25,7 @@ public class SameNameSiblingProvider implements IDataProvider<SameNameSiblingPro
                 entryList.addAll(createSameNameSiblingEntries(targetLocale, jcrSession, folder));
             }
 
-            for (FolderTranslation document: changeSet.getDocuments()) {
+            for (FolderTranslation document : changeSet.getDocuments()) {
                 entryList.addAll(createSameNameSiblingEntries(targetLocale, jcrSession, document));
             }
         }
@@ -67,12 +64,12 @@ public class SameNameSiblingProvider implements IDataProvider<SameNameSiblingPro
     }
 
     protected List<Entry> createSameNameSiblingEntries(ILocaleProvider.HippoLocale locale,
-                                HippoSession jcrSession,
-                                FolderTranslation folderTranslation) throws RepositoryException {
+                                                       HippoSession jcrSession,
+                                                       FolderTranslation folderTranslation) throws RepositoryException {
         List<Entry> sameNameSiblingEntries = new ArrayList<>();
         if (folderTranslation.hasSameNameSibling() && folderTranslation.hasSameUrlSibling() &&
                 folderTranslation.getSameUrlSiblingId().equals(folderTranslation.getSameNameSiblingId())) {
-            HippoNode sibling = (HippoNode)jcrSession.getNodeByIdentifier(folderTranslation.getSameUrlSiblingId());
+            HippoNode sibling = (HippoNode) jcrSession.getNodeByIdentifier(folderTranslation.getSameUrlSiblingId());
             sameNameSiblingEntries.add(new Entry(locale, sibling.getName(),
                     sibling.getDisplayName(), true, true));
         } else {

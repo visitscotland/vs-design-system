@@ -25,6 +25,7 @@ public class DocumentTranslator {
     /**
      * Build a change set for each language, listing the folders and documents that are not already translated.
      * If the document is a TrasnlationParent then add untranslated siblings also.
+     *
      * @param sourceDocument
      * @param targetLocaleList
      * @return
@@ -44,14 +45,14 @@ public class DocumentTranslator {
                 // Convert the node to a HippoBean so we can check the type
                 HippoBean bean = document.asHippoBean();
                 if (bean instanceof TranslationParent) {
-                    TranslationParent parent = (TranslationParent)bean;
+                    TranslationParent parent = (TranslationParent) bean;
                     String[] childJcrTypes = parent.getChildJcrTypes();
                     Node containingFolder = document.getContainingFolder();
                     // Getting the nodes that are in the folder will give us all the folders and hippo:handle
                     // nodes in the folder. We want to convert these into the unpublished versions of the nodes.
                     NodeIterator handleIterator = containingFolder.getNodes();
-                    while(handleIterator.hasNext()) {
-                        HippoNode siblingNode = (HippoNode)handleIterator.nextNode();
+                    while (handleIterator.hasNext()) {
+                        HippoNode siblingNode = (HippoNode) handleIterator.nextNode();
                         // We want to make sure we are not cloning folders and other types.
                         if (!siblingNode.isNodeType("hippostd:folder") &&
                                 (siblingNode.isNodeType(JcrDocument.HIPPO_HANDLE) ||

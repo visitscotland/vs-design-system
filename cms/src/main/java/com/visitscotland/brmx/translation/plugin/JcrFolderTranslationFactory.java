@@ -22,12 +22,12 @@ public final class JcrFolderTranslationFactory {
 
         if (original != null) {
             ft.setUrl(original.getName());
-            ft.setName(((HippoNode)original).getDisplayName());
+            ft.setName(((HippoNode) original).getDisplayName());
         }
 
         if (node != null) {
             ft.setUrlfr(node.getName());
-            ft.setNamefr(((HippoNode)node).getDisplayName());
+            ft.setNamefr(((HippoNode) node).getDisplayName());
         }
 
         return ft;

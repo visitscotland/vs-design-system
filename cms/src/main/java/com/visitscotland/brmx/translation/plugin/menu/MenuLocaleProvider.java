@@ -17,7 +17,6 @@ import java.util.Comparator;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class MenuLocaleProvider implements IDataProvider<ILocaleProvider.HippoLocale> {
     private static final Logger LOG = LoggerFactory.getLogger(MenuLocaleProvider.class);
@@ -68,7 +67,7 @@ public class MenuLocaleProvider implements IDataProvider<ILocaleProvider.HippoLo
                 if (!changeSetList.isEmpty()) {
                     availableLocales.add(0, new UntranslatedLocale());
                 }
-            } catch(ObjectBeanManagerException | RepositoryException ex) {
+            } catch (ObjectBeanManagerException | RepositoryException ex) {
                 LOG.error("Unable to build change set for document children");
             }
         }

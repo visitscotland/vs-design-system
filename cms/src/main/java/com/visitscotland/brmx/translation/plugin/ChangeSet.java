@@ -2,20 +2,16 @@ package com.visitscotland.brmx.translation.plugin;
 
 import org.apache.commons.lang3.StringUtils;
 import org.hippoecm.addon.workflow.WorkflowSNSException;
-import org.hippoecm.frontend.plugins.standardworkflow.validators.SameNameSiblingsUtil;
 import org.hippoecm.frontend.translation.ILocaleProvider;
 import org.hippoecm.repository.api.HippoNode;
-import org.hippoecm.repository.translation.HippoTranslatedNode;
 import org.hippoecm.repository.translation.HippoTranslationNodeType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.jcr.*;
-import javax.mail.Folder;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * Is used to contain all the changes required for a translation operation.
@@ -55,6 +51,7 @@ public class ChangeSet {
 
     /**
      * Converts the JcrDocument to a FolderTranslation instance and adds it to the List of documents to be cloned.
+     *
      * @param document The JcrDocument to be added to the document list
      * @throws RepositoryException
      */
@@ -73,7 +70,7 @@ public class ChangeSet {
         TranslatedFolder sourceTranslatedFolder = addAllUntranslatedFolders(targetLanguage, folders, createTranslatedFolder(sourceFolder));
         TranslatedFolder targetTranslatedFolder = sourceTranslatedFolder.getSibling(targetLanguage);
         assert targetTranslatedFolder != null;
-        while(sourceTranslatedFolder != null) {
+        while (sourceTranslatedFolder != null) {
             FolderTranslation ftx = jcrFolderTranslationFactory.createFolderTranslation(sourceTranslatedFolder.getNode(), targetTranslatedFolder.getNode());
             ftx.setEditable(false);
             this.folders.add(ftx);
@@ -204,6 +201,7 @@ public class ChangeSet {
 
     /**
      * Will return true if there are any documents or folder that have same name siblings in the ChangeSet List
+     *
      * @return
      */
     public boolean hasSameNameSiblingConflicts() {
@@ -223,10 +221,10 @@ public class ChangeSet {
                 }
 
                 child = children.nextNode();
-            } while(!child.isNodeType("hippostd:folder") && !child.isNodeType("hippo:handle"));
+            } while (!child.isNodeType("hippostd:folder") && !child.isNodeType("hippo:handle"));
 
-            childName = ((HippoNode)child).getDisplayName();
-        } while(!StringUtils.equals(childName, displayName));
+            childName = ((HippoNode) child).getDisplayName();
+        } while (!StringUtils.equals(childName, displayName));
 
         return child;
     }

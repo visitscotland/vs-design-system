@@ -11,10 +11,8 @@ import org.hippoecm.frontend.plugins.standards.image.CachingImage;
 import org.hippoecm.frontend.service.IconSize;
 import org.hippoecm.frontend.translation.ILocaleProvider;
 
-import javax.jcr.Session;
-
 public class SameNameSiblingDialog extends Dialog {
-    public static final String ID_IMG  = "img";
+    public static final String ID_IMG = "img";
     public static final String ID_DISPLAY_NAME = "display-name";
     public static final String ID_URL = "url";
 
@@ -41,7 +39,7 @@ public class SameNameSiblingDialog extends Dialog {
                     @Override
                     protected void onComponentTag(ComponentTag tag) {
                         super.onComponentTag(tag);
-                        if(sameNameSibling.hasSameNameSibling()) {
+                        if (sameNameSibling.hasSameNameSibling()) {
                             tag.put("class", "same-name-sibling");
                         }
                     }
@@ -50,7 +48,7 @@ public class SameNameSiblingDialog extends Dialog {
                     @Override
                     protected void onComponentTag(ComponentTag tag) {
                         super.onComponentTag(tag);
-                        if(sameNameSibling.hasSameUrlSibling()) {
+                        if (sameNameSibling.hasSameUrlSibling()) {
                             tag.put("class", "same-name-sibling");
                         }
                     }
