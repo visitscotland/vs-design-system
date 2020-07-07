@@ -19,6 +19,9 @@ pipeline {
 
   environment {
     VS_SSR_PROXY_ON = 'FALSE'
+    brc_stack = 'visitscotland'
+    brc_environment = 'demo'
+    brc_url = 'https://api-${brc_stack}.onehippo.io'
   }
 
   tools {
