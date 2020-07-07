@@ -18,9 +18,6 @@ pipeline {
   agent {label thisAgent}
 
   environment {
-    brc_stack = 'visitscotland'
-    brc_environment = 'demo'
-    brc_url = 'https://api-${brc_stack}.onehippo.io'
     VS_SSR_PROXY_ON = 'FALSE'
   }
 
@@ -52,7 +49,7 @@ pipeline {
     stage ('Build Application') {
       when {
           expression {
-            return env.BRANCH_NAME != 'feature/VS-1865-feature-environments-enhancements';
+            return env.BRANCH_NAME != 'eg:feature/VS-1865-feature-environments-enhancements';
           }
       }
       steps {
@@ -88,31 +85,6 @@ pipeline {
         sh 'echo "This environment will run until the next commit to bitbucket is detected."'
       }
     }
-
-    stage ('Test brCloud Connection'){
-      steps {
-        script {
-          // Login to get the access token
-          echo "Login to brc and obtain token:"
-          withCredentials([usernamePassword(credentialsId: 'brCloud', passwordVariable: 'brc_password', usernameVariable: 'brc_username')]) {
-            def json = "{\"username\": \"${brc_username}\", \"password\": \"${brc_password}\"}"
-            loginResult = post("${brc_url}/v3/authn/access_token", json)
-          }
-          echo "Login result ${loginResult}"
-          String access_token = "Bearer " + parseJson(loginResult).access_token
-
-          // Get the environment ID
-          echo "Get the environments"
-          environments = get("${brc_url}/v3/environments/", access_token)
-
-          // We require an existing environment. Alternative is to delete/create one
-          def environmentID = getEnvironmentID(environments, brc_environment)
-          echo "Environments result: ${environments}"
-          echo "Environment ID: ${environmentID}"
-        }
-      }
-    }
-
   } //end stages
 
   post{
@@ -126,5 +98,4 @@ pipeline {
       }
     }
   } //end post
-
 } //end pipeline
