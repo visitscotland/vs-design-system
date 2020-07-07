@@ -118,7 +118,7 @@ pipeline {
     stage ('Upload to brCloud'){
       steps {
         script {
-          withCredentials([usernamePassword(credentialsId: 'brCloud_admin', passwordVariable: 'brc_password', usernameVariable: 'brc_username')]) {
+          withCredentials([usernamePassword(credentialsId: 'brCloud', passwordVariable: 'brc_password', usernameVariable: 'brc_username')]) {
             loginResponse = login("${brc_url}/v3/authn/access_token", brc_username, brc_password)
           }
 
