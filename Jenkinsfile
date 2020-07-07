@@ -115,6 +115,28 @@ pipeline {
       }
     } //end stage
 
+    stage(Upload to brCloud) {
+      steps {
+        script {
+          withCredentials([usernamePassword(credentialsId: 'brCloud_admin', passwordVariable: 'brc_password', usernameVariable: 'brc_username')]) {
+            loginResponse = login("${brc_url}/v3/authn/access_token", brc_username, brc_password)
+          }
+
+          access_token = "Bearer " + parseJson(loginResponse).access_token
+          refresh_token = parseJson(loginResponse).refresh_token
+
+          String projectName = readMavenPom(file: "${workspace}/pom.xml").getArtifactId()
+          String projectVersion = readMavenPom(file: "${workspace}/pom.xml").getVersion()
+          String distribution = "target/${projectName}-${projectVersion}-distribution.tar.gz"
+          echo "Upload the distribution ${distribution}"
+          uploadResult = postMultipart("${brc_url}/v3/distributions/", "dist_file", "${workspace}/${distribution}", access_token)
+          echo "Upload result: ${uploadResult}"
+          distID = parseJson(uploadResult).id
+          echo "distID: ${distID}"
+        }
+      }
+    } //end stage
+
   } //end stages
 
   post{
