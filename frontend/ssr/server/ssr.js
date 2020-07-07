@@ -20,8 +20,9 @@ let renderer;
 const formatHtml = (subjectHtml) => beautifyHtml(
     subjectHtml,
     {
-        indent_with_tabs: true,
-        preserve_newlines: false,
+		indent_with_tabs: false,
+        preserve_newlines: true,
+        indent_char: "",
     },
 );
 
