@@ -12,6 +12,8 @@ if (BRANCH_NAME == "develop" && JOB_NAME == "develop.visitscotland.com-mb/develo
   thisAgent = "docker-02"
 }
 
+import groovy.json.JsonSlurper
+
 pipeline {
   options {buildDiscarder(logRotator(numToKeepStr: '5'))}
 
