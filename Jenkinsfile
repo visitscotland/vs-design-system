@@ -93,17 +93,25 @@ pipeline {
       steps {
         script {
           // Login to get the access token
+          echo "Login to brc and obtain token:"
+          withCredentials([usernamePassword(credentialsId: 'brCloud', passwordVariable: 'brc_password', usernameVariable: 'brc_username')]) {
+            def json = "{\"username\": \"${brc_username}\", \"password\": \"${brc_password}\"}"
+            loginResult = post("${brc_url}/v3/authn/access_token", json)
+          }
           echo "Login result ${loginResult}"
+          String access_token = "Bearer " + parseJson(loginResult).access_token
 
           // Get the environment ID
           echo "Get the environments"
+          environments = get("${brc_url}/v3/environments/", access_token)
 
           // We require an existing environment. Alternative is to delete/create one
+          def environmentID = getEnvironmentID(environments, brc_environment)
           echo "Environments result: ${environments}"
           echo "Environment ID: ${environmentID}"
         }
       }
-    } //stage
+    } //end stage
 
   } //end stages
 
