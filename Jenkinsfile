@@ -88,6 +88,23 @@ pipeline {
         sh 'echo "This environment will run until the next commit to bitbucket is detected."'
       }
     }
+
+    stage ('Test brCloud Connection'){
+      steps {
+        script {
+          // Login to get the access token
+          echo "Login result ${loginResult}"
+
+          // Get the environment ID
+          echo "Get the environments"
+
+          // We require an existing environment. Alternative is to delete/create one
+          echo "Environments result: ${environments}"
+          echo "Environment ID: ${environmentID}"
+        }
+      }
+    } //stage
+
   } //end stages
 
   post{
