@@ -12,6 +12,8 @@ if (BRANCH_NAME == "develop" && JOB_NAME == "develop.visitscotland.com-mb/develo
   thisAgent = "docker-02"
 }
 
+import groovy.json.JsonSlurper
+
 pipeline {
   options {buildDiscarder(logRotator(numToKeepStr: '5'))}
 
@@ -94,7 +96,7 @@ pipeline {
         script {
           // Login to get the access token
           echo "Login to brc and obtain token:"
-          withCredentials([usernamePassword(credentialsId: 'brCloud user', passwordVariable: 'brc_password', usernameVariable: 'brc_username')]) {
+          withCredentials([usernamePassword(credentialsId: 'brCloud', passwordVariable: 'brc_password', usernameVariable: 'brc_username')]) {
             def json = "{\"username\": \"${brc_username}\", \"password\": \"${brc_password}\"}"
             loginResult = post("${brc_url}/v3/authn/access_token", json)
           }
