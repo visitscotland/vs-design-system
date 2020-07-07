@@ -115,7 +115,7 @@ pipeline {
       }
     } //end stage
 
-    stage(Upload to brCloud) {
+    stage ('Upload to brCloud'){
       steps {
         script {
           withCredentials([usernamePassword(credentialsId: 'brCloud_admin', passwordVariable: 'brc_password', usernameVariable: 'brc_username')]) {
