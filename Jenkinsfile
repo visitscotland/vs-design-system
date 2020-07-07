@@ -152,6 +152,42 @@ pipeline {
   } //end post
 } //end pipeline
 
+private String login(url, brc_username, brc_password) {
+   echo "Login and obtain access token:"
+   def json = "{\"username\": \"${brc_username}\", \"password\": \"${brc_password}\"}"
+   loginResult = post(url, json)
+   echo "Login result ${loginResult}"
+   return loginResult
+}
+
+private boolean verify_token(url, access_token) {
+    if (access_token) {
+        echo "Verify access token:"
+        verifyResult = get(url, access_token)
+        echo "Verify result ${verifyResult}"
+        if (parseJson(verifyResult).error_code) {
+            echo "Token is invalid"
+            echo "Error code: " + parseJson(verifyResult).error_code
+            echo "Error detail: " + parseJson(verifyResult).error_detail
+            return false;
+        }
+        echo "Access token is valid"
+        return true;
+    } else {
+        echo "Access token is null"
+        return false;
+    }
+}
+
+private String refresh_token(url, refresh_token) {
+    echo "Refresh access token:"
+    def json = "{\"grant_type\": \"refresh_token\", \"refresh_token\": \"${refresh_token}\"}"
+    refreshResult = post(url, json)
+    echo "Refresh result ${refreshResult}"
+    return "Bearer " + parseJson(refreshResult).access_token;
+}
+ 
+
 @NonCPS
 private String get(url, access_token = null) {
    return curl("GET", url, access_token)
@@ -160,6 +196,21 @@ private String get(url, access_token = null) {
 @NonCPS
 private String post(url, json, access_token = null) {
    return curl("POST", url, access_token, json)
+}
+
+@NonCPS
+private String postMultipart(url, String fileName, file, String access_token = null) {
+   return curl("POST", url, access_token, null, fileName, file, null, "multipart/form-data")
+}
+
+@NonCPS
+private String put(url, json, String access_token = null) {
+   return curl("PUT", url, access_token, json, null, null, "-i --http1.1")
+}
+
+@NonCPS
+private String  delete(url, access_token = null) {
+   return curl("DELETE", url, access_token, null, null, null, "--http1.1")
 }
 
 @NonCPS
@@ -177,6 +228,7 @@ private String curl(method, url, access_token, json = null, fileName = null, fil
 def parseJson(text) {
    return new JsonSlurper().parseText(text)
 }
+
 
 @NonCPS
 def getEnvironmentID(environments, brc_environment) {
