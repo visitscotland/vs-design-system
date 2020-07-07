@@ -127,3 +127,40 @@ pipeline {
     }
   } //end post
 } //end pipeline
+
+@NonCPS
+private String get(url, access_token = null) {
+   return curl("GET", url, access_token)
+}
+
+@NonCPS
+private String post(url, json, access_token = null) {
+   return curl("POST", url, access_token, json)
+}
+
+@NonCPS
+private String curl(method, url, access_token, json = null, fileName = null, file = null, extraParams = null, contentType = "application/json") {
+   return sh(script: "curl ${extraParams?:""} \
+           -X ${method} '${url}' \
+           ${access_token?"-H 'Authorization: ${access_token}'":""} \
+           -H 'Content-Type: ${contentType}' \
+           ${json?"-d '${json}'":""} \
+           ${(fileName && file)?"-F '${fileName}=@${file}'":""}",
+           returnStdout: true)
+}
+
+@NonCPS
+def parseJson(text) {
+   return new JsonSlurper().parseText(text)
+}
+
+@NonCPS
+def getEnvironmentID(environments, brc_environment) {
+   result = null
+   parseJson(environments).items.each() { env ->
+       if(env.name.toString() == brc_environment) {
+           result = env.id
+       }
+   }
+   return result
+}
