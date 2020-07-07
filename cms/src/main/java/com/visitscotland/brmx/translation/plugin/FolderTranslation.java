@@ -19,7 +19,9 @@ public class FolderTranslation implements Serializable {
     private String urlfr = "";
     private boolean mutable = true;
     private boolean hasSameNameSibling = false;
+    private String sameNameSiblingId;
     private boolean hasSameUrlSibling = false;
+    private String sameUrlSiblingId;
 
     public FolderTranslation(String id) {
         this.id = id;
@@ -89,5 +91,21 @@ public class FolderTranslation implements Serializable {
 
     public void setHasSameUrlSibling(boolean hasSameUrlSibling) {
         this.hasSameUrlSibling = hasSameUrlSibling;
+    }
+
+    public String getSameUrlSiblingId() {
+        return sameUrlSiblingId;
+    }
+
+    public String getSameNameSiblingId() {
+        return sameNameSiblingId;
+    }
+
+    public void setSameNameSiblingId(String sameNameSiblingId) {
+        this.sameNameSiblingId = sameNameSiblingId;
+    }
+
+    public void setSameUrlSiblingId(String sameUrlSiblingId) {
+        this.sameUrlSiblingId = sameUrlSiblingId;
     }
 }

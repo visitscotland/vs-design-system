@@ -1,8 +1,10 @@
 package com.visitscotland.brmx.translation.plugin;
 
+import org.apache.commons.lang3.StringUtils;
 import org.hippoecm.addon.workflow.WorkflowSNSException;
 import org.hippoecm.frontend.plugins.standardworkflow.validators.SameNameSiblingsUtil;
 import org.hippoecm.frontend.translation.ILocaleProvider;
+import org.hippoecm.repository.api.HippoNode;
 import org.hippoecm.repository.translation.HippoTranslatedNode;
 import org.hippoecm.repository.translation.HippoTranslationNodeType;
 import org.slf4j.Logger;
@@ -182,14 +184,18 @@ public class ChangeSet {
         String targetUrlName = targetFolderTranslation.getUrlfr();
         String targetLocalizedName = targetFolderTranslation.getNamefr();
         if (sourceFolderNode.hasNode(targetUrlName)) {
+            Node sameUrlSibling = sourceFolderNode.getNode(targetUrlName);
             targetFolderTranslation.setHasSameUrlSibling(true);
+            targetFolderTranslation.setSameUrlSiblingId(sameUrlSibling.getIdentifier());
             if (throwException) {
                 throw new WorkflowSNSException("A folder or document with name '" + targetUrlName + "' already exists", targetUrlName);
             }
         }
         // check for duplicated localized name
-        if (SameNameSiblingsUtil.hasChildWithDisplayName(sourceFolderNode, targetLocalizedName)) {
+        Node sameNameSibling = getChildWithDisplayName(sourceFolderNode, targetLocalizedName);
+        if (null != sameNameSibling) {
             targetFolderTranslation.setHasSameNameSibling(true);
+            targetFolderTranslation.setSameNameSiblingId(sameNameSibling.getIdentifier());
             if (throwException) {
                 throw new WorkflowSNSException("A folder or document with localized name '" + targetLocalizedName + "' already exists", targetLocalizedName);
             }
@@ -205,4 +211,23 @@ public class ChangeSet {
                 documents.stream().anyMatch((document) -> document.hasSameNameSibling() || document.hasSameUrlSibling());
     }
 
+    public Node getChildWithDisplayName(Node parentNode, String displayName) throws RepositoryException {
+        NodeIterator children = parentNode.getNodes();
+
+        String childName;
+        Node child;
+        do {
+            do {
+                if (!children.hasNext()) {
+                    return null;
+                }
+
+                child = children.nextNode();
+            } while(!child.isNodeType("hippostd:folder") && !child.isNodeType("hippo:handle"));
+
+            childName = ((HippoNode)child).getDisplayName();
+        } while(!StringUtils.equals(childName, displayName));
+
+        return child;
+    }
 }

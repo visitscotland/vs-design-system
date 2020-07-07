@@ -305,6 +305,8 @@ public class ChangeSetCheckForSameNameSiblingsTest {
 
     private void addSiblingMatchingUrl(Node folderNode, String relPath) throws Exception {
         when(folderNode.hasNode(eq(relPath))).thenReturn(true);
+        HippoNode siblingNode = mock(HippoNode.class);
+        when(folderNode.getNode(eq(relPath))).thenReturn(siblingNode);
     }
 
     private void addSiblingsWithDisplayName(Node targetNode, String... targetDisplayNames) throws Exception {

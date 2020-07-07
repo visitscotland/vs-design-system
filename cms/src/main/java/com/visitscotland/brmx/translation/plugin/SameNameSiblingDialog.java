@@ -37,20 +37,20 @@ public class SameNameSiblingDialog extends Dialog {
                 ILocaleProvider.HippoLocale locale = sameNameSibling.getLocale();
                 ResourceReference resourceRef = locale.getIcon(IconSize.M, ILocaleProvider.LocaleState.EXISTS);
                 item.add(new CachingImage(ID_IMG, resourceRef));
-                item.add(new Label(ID_DISPLAY_NAME, sameNameSibling.getFolderTranslation().getNamefr()) {
+                item.add(new Label(ID_DISPLAY_NAME, sameNameSibling.getName()) {
                     @Override
                     protected void onComponentTag(ComponentTag tag) {
                         super.onComponentTag(tag);
-                        if(sameNameSibling.getFolderTranslation().hasSameNameSibling()) {
+                        if(sameNameSibling.hasSameNameSibling()) {
                             tag.put("class", "same-name-sibling");
                         }
                     }
                 });
-                item.add(new Label(ID_URL, sameNameSibling.getFolderTranslation().getUrlfr()) {
+                item.add(new Label(ID_URL, sameNameSibling.getUrl()) {
                     @Override
                     protected void onComponentTag(ComponentTag tag) {
                         super.onComponentTag(tag);
-                        if(sameNameSibling.getFolderTranslation().hasSameUrlSibling()) {
+                        if(sameNameSibling.hasSameUrlSibling()) {
                             tag.put("class", "same-name-sibling");
                         }
                     }

@@ -87,7 +87,8 @@ public class TranslationAction extends StdWorkflow<TranslationWorkflow> {
                 }
             }
             if (haveSameNameSiblings) {
-                SameNameSiblingProvider provider = new SameNameSiblingProvider(changeSetList);
+                SameNameSiblingProvider provider = new SameNameSiblingProvider(changeSetList,
+                        workflowPlugin.getSession().getJcrSession());
                 return new SameNameSiblingDialog(provider);
             }
             return new TranslationConfirmationDialog(this, new DocumentChangeProvider(changeSetList));
