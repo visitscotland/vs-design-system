@@ -110,14 +110,6 @@
         <configuration>
           <configuration>
             <type>runtime</type>
-            <properties>
-              <cargo.start.jvmargs>
-                -Xdebug
-                -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=8000
-                -Xnoagent
-                -Djava.compiler=NONE
-              </cargo.start.jvmargs>
-            </properties>
           </configuration>
           <container>
             <type>remote</type>
