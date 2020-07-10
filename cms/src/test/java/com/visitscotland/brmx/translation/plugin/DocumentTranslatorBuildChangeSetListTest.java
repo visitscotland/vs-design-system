@@ -29,6 +29,7 @@ import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 public class DocumentTranslatorBuildChangeSetListTest {
+    public static final String JCR_TYPE = "visitscotland:Page";
     private DocumentTranslator documentTranslator;
     @Mock
     private HippoNode mockSourceNode;
@@ -83,7 +84,7 @@ public class DocumentTranslatorBuildChangeSetListTest {
         when(mockSourceDocument.hasTranslation(same(mockFrenchLocale))).thenReturn(true);
         when(mockSourceDocument.hasTranslation(same(mockSpanishLocale))).thenReturn(true);
 
-        when(mockSourceDocument.isNodeType(eq(Page.JCR_TYPE))).thenReturn(false);
+        when(mockSourceDocument.isNodeType(eq(JCR_TYPE))).thenReturn(false);
 
         List<ChangeSet> result = documentTranslator.buildChangeSetList(mockSourceNode, targetLocaleList);
 
@@ -103,7 +104,7 @@ public class DocumentTranslatorBuildChangeSetListTest {
         when(mockSourceDocument.hasTranslation(same(mockFrenchLocale))).thenReturn(false);
         when(mockSourceDocument.hasTranslation(same(mockSpanishLocale))).thenReturn(false);
 
-        when(mockSourceDocument.isNodeType(eq(Page.JCR_TYPE))).thenReturn(false);
+        when(mockSourceDocument.isNodeType(eq(JCR_TYPE))).thenReturn(false);
 
         List<ChangeSet> result = documentTranslator.buildChangeSetList(mockSourceNode, targetLocaleList);
 
@@ -132,7 +133,7 @@ public class DocumentTranslatorBuildChangeSetListTest {
 
         Page mockHippoBean = mock(Page.class);
         when(mockSourceDocument.asHippoBean()).thenReturn(mockHippoBean);
-        when(mockSourceDocument.isNodeType(eq(Page.JCR_TYPE))).thenReturn(true);
+        when(mockSourceDocument.isNodeType(eq(JCR_TYPE))).thenReturn(true);
 
         List<ChangeSet> result = documentTranslator.buildChangeSetList(mockSourceNode, targetLocaleList);
 
@@ -155,7 +156,7 @@ public class DocumentTranslatorBuildChangeSetListTest {
 
         Page mockHippoBean = mock(Page.class);
         when(mockSourceDocument.asHippoBean()).thenReturn(mockHippoBean);
-        when(mockSourceDocument.isNodeType(eq(Page.JCR_TYPE))).thenReturn(true);
+        when(mockSourceDocument.isNodeType(eq(JCR_TYPE))).thenReturn(true);
 
         List<ChangeSet> result = documentTranslator.buildChangeSetList(mockSourceNode, targetLocaleList);
 
@@ -192,7 +193,7 @@ public class DocumentTranslatorBuildChangeSetListTest {
 
         when(mockSourceDocument.getContainingFolder()).thenReturn(mockContainingFolder);
         when(mockSourceDocument.asHippoBean()).thenReturn(mockHippoBean);
-        when(mockSourceDocument.isNodeType(eq(Page.JCR_TYPE))).thenReturn(true);
+        when(mockSourceDocument.isNodeType(eq(JCR_TYPE))).thenReturn(true);
 
         List<ChangeSet> result = documentTranslator.buildChangeSetList(mockSourceNode, targetLocaleList);
 
@@ -244,7 +245,7 @@ public class DocumentTranslatorBuildChangeSetListTest {
 
         when(mockSourceDocument.getContainingFolder()).thenReturn(mockContainingFolder);
         when(mockSourceDocument.asHippoBean()).thenReturn(mockHippoBean);
-        when(mockSourceDocument.isNodeType(eq(Page.JCR_TYPE))).thenReturn(true);
+        when(mockSourceDocument.isNodeType(eq(JCR_TYPE))).thenReturn(true);
 
         List<ChangeSet> result = documentTranslator.buildChangeSetList(mockSourceNode, targetLocaleList);
 
@@ -301,7 +302,7 @@ public class DocumentTranslatorBuildChangeSetListTest {
 
         when(mockSourceDocument.getContainingFolder()).thenReturn(mockContainingFolder);
         when(mockSourceDocument.asHippoBean()).thenReturn(mockHippoBean);
-        when(mockSourceDocument.isNodeType(eq(Page.JCR_TYPE))).thenReturn(true);
+        when(mockSourceDocument.isNodeType(eq(JCR_TYPE))).thenReturn(true);
 
         List<ChangeSet> result = documentTranslator.buildChangeSetList(mockSourceNode, targetLocaleList);
 
@@ -361,7 +362,7 @@ public class DocumentTranslatorBuildChangeSetListTest {
 
         when(mockSourceDocument.getContainingFolder()).thenReturn(mockContainingFolder);
         when(mockSourceDocument.asHippoBean()).thenReturn(mockHippoBean);
-        when(mockSourceDocument.isNodeType(eq(Page.JCR_TYPE))).thenReturn(true);
+        when(mockSourceDocument.isNodeType(eq(JCR_TYPE))).thenReturn(true);
 
         List<ChangeSet> result = documentTranslator.buildChangeSetList(mockSourceNode, targetLocaleList);
 
