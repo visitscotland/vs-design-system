@@ -5,11 +5,9 @@ import org.hippoecm.hst.content.beans.Node;
 import java.util.List;
 import org.hippoecm.hst.content.beans.standard.HippoHtml;
 
-@HippoEssentialsGenerated(internalName = Listicle.JCR_TYPE)
-@Node(jcrType = Listicle.JCR_TYPE)
+@HippoEssentialsGenerated(internalName = "visitscotland:Listicle")
+@Node(jcrType = "visitscotland:Listicle")
 public class Listicle extends Page implements TranslationParent {
-    public static final String JCR_TYPE = "visitscotland:Listicle";
-
     public List<ListicleItem> getItems() {
         return getExternalBeansByType(ListicleItem.class);
     }
@@ -31,6 +29,6 @@ public class Listicle extends Page implements TranslationParent {
 
     @Override
     public String[] getChildJcrTypes() {
-        return new String[] { ListicleItem.JCR_TYPE };
+        return new String[] { "visitscotland:ListicleItem" };
     }
 }

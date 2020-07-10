@@ -41,6 +41,6 @@ public class ChangeSetAddDocumentTest {
         assertEquals("docUrl", translation.getUrl());
         assertEquals("docUrl", translation.getUrlfr());
         assertEquals("docName", translation.getName());
-        assertEquals("docName (locale)", translation.getNamefr());
+        assertEquals("docName (LOCALE)", translation.getNamefr());
     }
 }

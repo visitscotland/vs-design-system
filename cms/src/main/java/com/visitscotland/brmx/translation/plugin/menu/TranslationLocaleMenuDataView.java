@@ -13,7 +13,7 @@ import org.slf4j.LoggerFactory;
 import java.util.Locale;
 
 public class TranslationLocaleMenuDataView extends DataView<ILocaleProvider.HippoLocale> {
-    private static final Logger LOG = LoggerFactory.getLogger(TranslationLocaleMenuDataView.class);
+    private static final Logger logger = LoggerFactory.getLogger(TranslationLocaleMenuDataView.class);
     private final IModel<String> languageModel;
     private TranslationWorkflowPlugin plugin;
 
@@ -42,7 +42,7 @@ public class TranslationLocaleMenuDataView extends DataView<ILocaleProvider.Hipp
                 }, item.getModel()
                 ));
             } else {
-                LOG.debug("Not displaying clone menu item for non english document");
+                logger.debug("Not displaying clone menu item for non english document");
             }
         } else {
             item.add(new ViewTranslationAction(plugin, TranslationWorkflowPlugin.ID_LANGUAGE, new LoadableDetachableModel<String>() {

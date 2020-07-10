@@ -13,11 +13,9 @@ import java.util.stream.Collectors;
 /** 
  * TODO: Beanwriter: Failed to create getter for node type: hippo:compound
  */
-@HippoEssentialsGenerated(internalName = ListicleItem.JCR_TYPE)
-@Node(jcrType = ListicleItem.JCR_TYPE)
+@HippoEssentialsGenerated(internalName = "visitscotland:ListicleItem")
+@Node(jcrType = "visitscotland:ListicleItem")
 public class ListicleItem extends BaseDocument {
-    public static final String JCR_TYPE = "visitscotland:ListicleItem";
-
     @HippoEssentialsGenerated(internalName = "visitscotland:title")
     public String getTitle() {
         return getSingleProperty("visitscotland:title");

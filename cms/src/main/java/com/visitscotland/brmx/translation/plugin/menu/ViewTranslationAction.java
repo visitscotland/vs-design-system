@@ -17,7 +17,7 @@ import javax.jcr.Node;
 import javax.jcr.RepositoryException;
 
 public class ViewTranslationAction extends StdWorkflow<TranslationWorkflow> {
-    private static final Logger LOG = LoggerFactory.getLogger(ViewTranslationAction.class);
+    private static final Logger logger = LoggerFactory.getLogger(ViewTranslationAction.class);
     private final String language;
     private final IModel<ILocaleProvider.HippoLocale> localeModel;
     private TranslationWorkflowPlugin workflow;
@@ -52,14 +52,14 @@ public class ViewTranslationAction extends StdWorkflow<TranslationWorkflow> {
     protected String execute(TranslationWorkflow wf) {
         final IBrowseService<IModel<Node>> browser = workflow.getBrowserService();
         if (browser == null) {
-            LOG.warn("Cannot navigate to translation - configured browser.id '" + workflow.getPluginConfig().getString(
+            logger.warn("Cannot navigate to translation - configured browser.id '" + workflow.getPluginConfig().getString(
                     "browser.id") + "' is invalid.");
             return null;
         }
 
         final WorkflowDescriptorModel wdm = (WorkflowDescriptorModel) workflow.getDefaultModel();
         if (wdm == null) {
-            LOG.error("No workflow descriptor model for document");
+            logger.error("No workflow descriptor model for document");
             return null;
         }
 
@@ -67,7 +67,7 @@ public class ViewTranslationAction extends StdWorkflow<TranslationWorkflow> {
         try {
             node = wdm.getNode();
             if (node == null) {
-                LOG.error("No node found for document");
+                logger.error("No node found for document");
                 return null;
             }
 
@@ -75,7 +75,7 @@ public class ViewTranslationAction extends StdWorkflow<TranslationWorkflow> {
             Node translation = translatedNode.getTranslation(language);
             browser.browse(createJcrNodeModel(translation.getParent()));
         } catch (RepositoryException e) {
-            LOG.error("Error retrieving translation node", e);
+            logger.error("Error retrieving translation node", e);
         }
 
         return null;

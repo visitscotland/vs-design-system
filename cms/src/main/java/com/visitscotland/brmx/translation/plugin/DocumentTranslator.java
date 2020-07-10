@@ -20,7 +20,7 @@ import java.util.List;
 
 public class DocumentTranslator {
     public static final String COULD_NOT_CREATE_FOLDERS = "could-not-create-folders";
-    private static final Logger LOG = LoggerFactory.getLogger(DocumentTranslator.class);
+    private static final Logger logger = LoggerFactory.getLogger(DocumentTranslator.class);
 
     /**
      * Build a change set for each language, listing the folders and documents that are not already translated.
@@ -125,11 +125,11 @@ public class DocumentTranslator {
             }
             return true;
         } catch (RepositoryException e) {
-            LOG.error("Could not persist folder translation for {}", id, e);
+            logger.error("Could not persist folder translation for {}", id, e);
         } catch (RemoteException e) {
-            LOG.error("Could not contact repository when storing folder translation for {}", id, e);
+            logger.error("Could not contact repository when storing folder translation for {}", id, e);
         } catch (WorkflowException e) {
-            LOG.error("Workflow prevented storing translation for {}", id, e);
+            logger.error("Workflow prevented storing translation for {}", id, e);
         }
         return false;
     }

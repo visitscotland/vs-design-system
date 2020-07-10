@@ -20,7 +20,7 @@ import java.util.List;
  * A ChangeSet usually specifies the changes to be applied for a single language.
  */
 public class ChangeSet {
-    private static final Logger LOG = LoggerFactory.getLogger(ChangeSet.class);
+    private static final Logger logger = LoggerFactory.getLogger(ChangeSet.class);
     private JcrFolderTranslationFactory jcrFolderTranslationFactory;
     private HippoTranslatedNodeFactory translatedNodeFactory;
     private List<FolderTranslation> folders;
@@ -57,7 +57,7 @@ public class ChangeSet {
      */
     public void addDocument(JcrDocument document) throws RepositoryException {
         FolderTranslation documentTranslation = jcrFolderTranslationFactory.createFolderTranslation(document.getHandle(), null);
-        documentTranslation.setNamefr(documentTranslation.getName() + " (" + targetLocale.getName() + ")");
+        documentTranslation.setNamefr(documentTranslation.getName() + " (" + targetLocale.getName().toUpperCase() + ")");
         documentTranslation.setUrlfr(documentTranslation.getUrl());
         documents.add(documentTranslation);
     }
@@ -94,10 +94,10 @@ public class ChangeSet {
                 sourceFolder = sourceFolder.getParent();
             }
         } catch (ItemNotFoundException infe) {
-            LOG.warn("Parent folder of translatable document could not be found", infe);
+            logger.warn("Parent folder of translatable document could not be found", infe);
             return null;
         } catch (AccessDeniedException ade) {
-            LOG.warn("Parent folder of translatable document is not accessible", ade);
+            logger.warn("Parent folder of translatable document is not accessible", ade);
             return null;
         }
         return sourceFolder;
