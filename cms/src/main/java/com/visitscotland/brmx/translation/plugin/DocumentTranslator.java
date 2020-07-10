@@ -41,7 +41,7 @@ public class DocumentTranslator {
                 change.addDocument(document);
             }
 
-            if (document.isNodeType(Page.JCR_TYPE)) {
+            if (document.isNodeType("visitscotland:Page")) {
                 // Convert the node to a HippoBean so we can check the type
                 HippoBean bean = document.asHippoBean();
                 if (bean instanceof TranslationParent) {
