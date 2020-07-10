@@ -24,20 +24,15 @@
 
     </head>
     <body>
-        <div class="no-js container" data-vue-app-init>
-            <div class="row">
-                <div class="col-md-6 col-md-offset-3">
-                    <@hst.include ref="top"/>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-6 col-md-offset-3">
-                    <@hst.include ref="menu"/>
-                </div>
-            </div>
+        <div class="no-js" data-vue-app-init>
+            <@hst.include ref="top"/>
+    
+            <@hst.include ref="menu"/>
+                
             <main id="main">
                 <@hst.include ref="main"/>
             </main>
+            
             <@hst.include ref="footer"/>
         </div>
 
