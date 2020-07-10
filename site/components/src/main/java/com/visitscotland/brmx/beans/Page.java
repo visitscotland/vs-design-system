@@ -5,11 +5,9 @@ import org.hippoecm.hst.content.beans.Node;
 import com.visitscotland.brmx.beans.Image;
 import org.hippoecm.hst.content.beans.standard.HippoHtml;
 
-@HippoEssentialsGenerated(internalName = Page.JCR_TYPE)
-@Node(jcrType = Page.JCR_TYPE)
+@HippoEssentialsGenerated(internalName = "visitscotland:Page")
+@Node(jcrType = "visitscotland:Page")
 public class Page extends BaseDocument {
-    public static final String JCR_TYPE = "visitscotland:Page";
-
     @HippoEssentialsGenerated(internalName = "visitscotland:seoTitle")
     public String getSeoTitle() {
         return getSingleProperty("visitscotland:seoTitle");
