@@ -58,7 +58,7 @@ pipeline {
       }
     }
 
-    stage ('brxm-compile') {
+    stage ('brxm compile') {
       when {
           expression {
             return env.VS_SKIP_BUILD != 'TRUE';
@@ -72,7 +72,7 @@ pipeline {
       }
     }
 
-    stage ('brxm-unit-test') {
+    stage ('brxm unit-test') {
       when {
           expression {
             return env.VS_SKIP_BUILD != 'TRUE';
@@ -86,7 +86,7 @@ pipeline {
       }
     }
 
-    stage ('brxm-package') {
+    stage ('brxm package') {
       when {
           expression {
             return env.VS_SKIP_BUILD != 'TRUE';
