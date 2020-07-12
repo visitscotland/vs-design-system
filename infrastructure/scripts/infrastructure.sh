@@ -113,6 +113,10 @@ defaultSettings() {
   if [ -z "$NODE_NAME" ]; then THIS_SERVER=$HOSTNAME; else THIS_SERVER=$NODE_NAME; fi
   VS_COMMIT_AUTHOR=`git show -s --pretty="%ae" ${GIT_COMMIT}`
   VS_PARENT_JOB_NAME=`echo $JOB_NAME | sed -e "s/\/.*//g"`
+  VS_MAIL_MESSAGE_NOTIFY_BUILD=/tmp/$VS_CONTAINER_NAME.msg.notify.build
+  VS_MAIL_MESSAGE_NOTIFY_BUILD_TO=$VS_COMMIT_AUTHOR
+  VS_MAIL_MESSAGE_NOTIFY_SITE=/tmp/$VS_CONTAINER_NAME.msg.notify.site
+  VS_MAIL_MESSAGE_NOTIFY_SITE_TO=$VS_COMMIT_AUTHOR
 }
 
 reportSettings() {
@@ -464,44 +468,44 @@ containerStartHippo() {
   fi
 }
 
-createReport() {
+createBuildReport() {
   if [ ! "$SAFE_TO_PROCEED" = "FALSE" ]; then
     EXIT_CODE=0
-    echo ""
-    echo ""
-    echo "###############################################################################################################################"
-    echo ""
-    echo "The site instance for branch $GIT_BRANCH should now be available in a few moments on $NODE_NAME - $VS_HOST_IP_ADDRESS at:"
-    echo "  - $VS_PROXY_SERVER_SCHEME://$VS_PROXY_SERVER_FQDN/?vs_brxm_host=$VS_HOST_IP_ADDRESS&vs_brxm_port=$VS_CONTAINER_BASE_PORT&vs_brxm_http_host=$VS_BRXM_INSTANCE_HTTP_HOST"
-    echo ""
-    echo "The CMS for the instance should now be available at:"
-    echo "  - $VS_PROXY_SERVER_SCHEME://$VS_PROXY_SERVER_FQDN/cms/?vs_brxm_host=$VS_HOST_IP_ADDRESS&vs_brxm_port=$VS_CONTAINER_BASE_PORT&vs_brxm_http_host=$VS_BRXM_INSTANCE_HTTP_HOST"
-    echo "and the Console at:"
-    echo "  - $VS_PROXY_SERVER_SCHEME://$VS_PROXY_SERVER_FQDN/cms/console/?vs_brxm_host=$VS_HOST_IP_ADDRESS&vs_brxm_port=$VS_CONTAINER_BASE_PORT&vs_brxm_http_host=$VS_BRXM_INSTANCE_HTTP_HOST"
-    echo ""
-    echo "To clear the proxy server settings between sessions either close your browser or browse to:"
-    echo "  - $VS_PROXY_SERVER_SCHEME://$VS_PROXY_SERVER_FQDN/?vs_brxm_reset"
-    echo ""
-    echo ""
-    echo "Direct Tomcat access - available only on the Web Development LAN"
-    echo "  - http://$VS_HOST_IP_ADDRESS:$VS_CONTAINER_BASE_PORT/cms/"
-    echo "  - http://$VS_HOST_IP_ADDRESS:$VS_CONTAINER_BASE_PORT/site/"
-    echo "    -  needs a HOST header of localhost:8080 to be passed with the request"
-    echo ""
-    echo "###############################################################################################################################"
-    echo ""
-    echo ""
+    echo "" | tee $VS_MAIL_MESSAGE_NOTIFY_BUILD
+    echo "" | tee -a $VS_MAIL_MESSAGE_NOTIFY_BUILD
+    echo "###############################################################################################################################" | tee -a $VS_MAIL_MESSAGE_NOTIFY_BUILD
+    echo "" | tee -a $VS_MAIL_MESSAGE_NOTIFY_BUILD
+    echo "The site instance for branch $GIT_BRANCH should now be available in a few moments on $NODE_NAME - $VS_HOST_IP_ADDRESS at:" | tee -a $VS_MAIL_MESSAGE_NOTIFY_BUILD
+    echo "  - $VS_PROXY_SERVER_SCHEME://$VS_PROXY_SERVER_FQDN/?vs_brxm_host=$VS_HOST_IP_ADDRESS&vs_brxm_port=$VS_CONTAINER_BASE_PORT&vs_brxm_http_host=$VS_BRXM_INSTANCE_HTTP_HOST" | tee -a $VS_MAIL_MESSAGE_NOTIFY_BUILD
+    echo "" | tee -a $VS_MAIL_MESSAGE_NOTIFY_BUILD
+    echo "The CMS for the instance should now be available at:" | tee -a $VS_MAIL_MESSAGE_NOTIFY_BUILD
+    echo "  - $VS_PROXY_SERVER_SCHEME://$VS_PROXY_SERVER_FQDN/cms/?vs_brxm_host=$VS_HOST_IP_ADDRESS&vs_brxm_port=$VS_CONTAINER_BASE_PORT&vs_brxm_http_host=$VS_BRXM_INSTANCE_HTTP_HOST" | tee -a $VS_MAIL_MESSAGE_NOTIFY_BUILD
+    echo "and the Console at:" | tee -a $VS_MAIL_MESSAGE_NOTIFY_BUILD
+    echo "  - $VS_PROXY_SERVER_SCHEME://$VS_PROXY_SERVER_FQDN/cms/console/?vs_brxm_host=$VS_HOST_IP_ADDRESS&vs_brxm_port=$VS_CONTAINER_BASE_PORT&vs_brxm_http_host=$VS_BRXM_INSTANCE_HTTP_HOST" | tee -a $VS_MAIL_MESSAGE_NOTIFY_BUILD
+    echo "" | tee -a $VS_MAIL_MESSAGE_NOTIFY_BUILD
+    echo "To clear the proxy server settings between sessions either close your browser or browse to:" | tee -a $VS_MAIL_MESSAGE_NOTIFY_BUILD
+    echo "  - $VS_PROXY_SERVER_SCHEME://$VS_PROXY_SERVER_FQDN/?vs_brxm_reset" | tee -a $VS_MAIL_MESSAGE_NOTIFY_BUILD
+    echo "" | tee -a $VS_MAIL_MESSAGE_NOTIFY_BUILD
+    echo "" | tee -a $VS_MAIL_MESSAGE_NOTIFY_BUILD
+    echo "Direct Tomcat access - available only on the Web Development LAN" | tee -a $VS_MAIL_MESSAGE_NOTIFY_BUILD
+    echo "  - http://$VS_HOST_IP_ADDRESS:$VS_CONTAINER_BASE_PORT/cms/" | tee -a $VS_MAIL_MESSAGE_NOTIFY_BUILD
+    echo "  - http://$VS_HOST_IP_ADDRESS:$VS_CONTAINER_BASE_PORT/site/" | tee -a $VS_MAIL_MESSAGE_NOTIFY_BUILD | tee -a $VS_MAIL_MESSAGE_NOTIFY_BUILD
+    echo "    -  needs a HOST header of localhost:8080 to be passed with the request" | tee -a $VS_MAIL_MESSAGE_NOTIFY_BUILD
+    echo "" | tee -a $VS_MAIL_MESSAGE_NOTIFY_BUILD
+    echo "###############################################################################################################################" | tee -a $VS_MAIL_MESSAGE_NOTIFY_BUILD | tee -a $VS_MAIL_MESSAGE_NOTIFY_BUILD
+    echo "" | tee -a $VS_MAIL_MESSAGE_NOTIFY_BUILD
+    echo "" | tee -a $VS_MAIL_MESSAGE_NOTIFY_BUILD
   else
     EXIT_CODE=127
-    echo ""
-    echo ""
-    echo "###############################################################################################################################"
-    echo ""
-    echo "JOB FAILED because $FAIL_REASON"
-    echo ""
-    echo "###############################################################################################################################"
-    echo ""
-    echo ""
+    echo "" | tee $VS_MAIL_MESSAGE_NOTIFY_BUILD
+    echo "" | tee -a $VS_MAIL_MESSAGE_NOTIFY_BUILD
+    echo "###############################################################################################################################" | tee -a $VS_MAIL_MESSAGE_NOTIFY_BUILD
+    echo "" | tee -a $VS_MAIL_MESSAGE_NOTIFY_BUILD
+    echo "JOB FAILED because $FAIL_REASON" | tee -a $VS_MAIL_MESSAGE_NOTIFY_BUILD
+    echo "" | tee -a $VS_MAIL_MESSAGE_NOTIFY_BUILD
+    echo "###############################################################################################################################" | tee -a $VS_MAIL_MESSAGE_NOTIFY_BUILD
+    echo "" | tee -a $VS_MAIL_MESSAGE_NOTIFY_BUILD
+    echo "" | tee -a $VS_MAIL_MESSAGE_NOTIFY_BUILD
   fi
 }
 # ====/FUNCTIONS ====
@@ -515,9 +519,8 @@ case $METHOD in
     false
     ;;
   *)
-    echo "NO METHOD SELECTED - running default functions"
+    echo "no function specified - running defaults"
     checkVariables
-    echo "sleeping"; sleep 10
     defaultSettings
     reportSettings
     checkContainers
@@ -539,7 +542,7 @@ case $METHOD in
     containerCopyHippoArtifact
     containerCopySSRArtifact
     containerStartHippo
-    createReport
+    createBuildReport
   ;;
 esac
 # ====/RUN ====
