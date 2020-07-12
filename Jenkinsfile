@@ -140,7 +140,7 @@ pipeline {
       }
     }
 
-    stage ('Build environment') {
+    stage ('vs build feature env') {
       steps{
         script{
           //sh 'sh ./infrastructure/scripts/docker.sh'
