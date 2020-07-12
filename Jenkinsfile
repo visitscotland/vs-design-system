@@ -95,7 +95,7 @@ pipeline {
           }
       }
       steps {
-        sh 'mvn verify && mvn -P dist'
+        sh 'mvn verify && mvn -Pdist'
       }
       post {
         success {
