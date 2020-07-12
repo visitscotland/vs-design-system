@@ -67,33 +67,32 @@ while [[ $# -gt 0 ]]; do
   done
   echo -en "\n"
 # ====/PARSE COMMAND LINE ARGUMENTS ====
+
+
+
 # ====/SETUP ====
 
 # ==== FUNCTIONS ====
 checkVariables() {
-  if [ ! "$DEBUG" == "TRUE" ]; then clear; fi
+  clear
   echo "==== Checking variables to ensure environment is set up ===="
-  if [ ! "$LOGNAME" = "jenkins" ]; then
-    echo "$VS_SCRIPTNAME was not called by the user Jenkins, please switch user"
-    exit 3
-  elif [ "$LOGNAME" = "jenkins" ] && [ ! -z "JENKINS_SERVER_COOKIE" ]; then
+  if [ "$LOGNAME" = "jenkins" ] && [ ! -z "JENKINS_SERVER_COOKIE" ]; then
     echo "$VS_SCRIPTNAME appears to be running from a Jenkins job"
     echo " - exporting selected variables to $VS_JENKINS_LAST_ENV"
     prtenv | egrep "JENKINS_(HOME|URL)|JOB_((BASE_)?NAME|(DISPLAY_)?URL|VS_(DOCKER|BRC|COMMIT"
-  elif [ "$LOGNAME" = "jenkins" ] && [ -z "$JOB_NAME" ] && [ -e $VS_JENKINS_LAST_ENV ]; then
-    echo "$VS_SCRIPTNAME was called from a Jenkins workspace but not by a Jenkins job"
+  elif [ -z "$JOB_NAME" ] && [ -e $VS_JENKINS_LAST_ENV ]; then
+    echo "$VS_SCRIPTNAME was not called from a Jenkins job"
     echo " - setting Jenkins environment variables from last run"
     source ./jenkins-last-env
-  elif [ "$LOGNAME" = "jenkins" ] && [ -z "$JOB_NAME" ] && [ ! -d ./target ] && [ ! -z "$VS_WORKING_DIR" ]; then
+  elif [ -z "$JOB_NAME" ] && [ ! "$VS_WD_PARENT" = "workspace" ] && [ ! -z "$VS_WORKING_DIR" ]; then
     echo "$VS_SCRIPTNAME was not called from within Jenkins workspace"
     echo " - switching to $VS_WORKING_DIR"
-    checkVariables
     cd $VS_WORKING_DIR
   elif [ -z "$JOB_NAME" ] && [ "$VS_WD_PARENT" = "workspace" ] && [ ! -z "$VS_WORKING_DIR" ] && [ ! -e $VS_JENKINS_LAST_ENV ] && [ ! -d ./target ]; then
     echo "$VS_SCRIPTNAME was called from "`pwd`" but this may not be a Jenkins workspace, please either:"
     echo " - switch to the workspace of a Jenkins job that has previously run this script"
     echo " - run a Jenkins job for this branch to populate $VS_JENKINS_LAST_ENV and create ./target"
-    echo " - call this script with --working-dir=[workspace of a Jenkins job that has previously run this script]"
+  echo " - call this script with --working-dir=[workspace of a Jenkins job that has previously run this script]"
     exit 2
   else
     echo "$VS_SCRIPTNAME needs to run relative to a Jenkins workspace, please either:"
@@ -515,10 +514,9 @@ case $METHOD in
     false
     ;;
   *)
-    echo "NO METHOD SELECTED - running default functions"
-    checkVariables
-    echo "sleeping"; sleep 10
+    echo "NO METHOD SELECTED - running as docker.sh"
     defaultSettings
+    checkVariables
     reportSettings
     checkContainers
     stopContainers
