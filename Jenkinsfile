@@ -28,6 +28,8 @@ pipeline {
     VS_SKIP_BRC_BLD = 'FALSE'
     VS_SKIP_BRC_TST = 'FALSE'
     VS_SKIP_BRC_PKG = 'FALSE'
+    VS_SKIP_BRC_CXN = 'FALSE'
+    VS_SKIP_BRC_UPL = 'FALSE'
     VS_BRC_STACK_URI = 'visitscotland'
     VS_BRC_ENV = 'demo'
     VS_BRC_STACK_URL = "https://api-${VS_BRC_STACK_URI}.onehippo.io"
@@ -159,6 +161,12 @@ pipeline {
 //    }
 
     stage ('brCloud cxn test') {
+      when {
+        expression {
+	  return env.VS_RUN_BRC_STAGES = 'TRUE';
+          return env.VS_SKIP_BRC_CXN != 'TRUE';
+        }
+      }
       steps {
         script {
           // Login to get the access token
@@ -183,6 +191,12 @@ pipeline {
     } //end stage
 
     stage ('brCloud upload') {
+      when {
+        expression {
+	  return env.VS_RUN_BRC_STAGES = 'TRUE';
+          return env.VS_SKIP_BRC_UPL != 'TRUE';
+        }
+      }
       steps {
         script {
           withCredentials([usernamePassword(credentialsId: 'brCloud', passwordVariable: 'VS_BRC_PASSWORD', usernameVariable: 'VS_BRC_USERNAME')]) {
