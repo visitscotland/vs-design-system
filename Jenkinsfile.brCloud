@@ -1,5 +1,6 @@
 def DS_BRANCH = "feature/VS-955-ui-itineraries-itinerary-stops-changes-built-products"
-def MAIL_TO = "jose.calcines@visitscotland.com, juanluis.hurtado@visitscotland.com, webops@visitscotland.net"
+//def MAIL_TO = "jose.calcines@visitscotland.com, juanluis.hurtado@visitscotland.com, webops@visitscotland.net"
+def MAIL_TO = "gavin@visitscotland.net"
 
 def thisAgent
 if (BRANCH_NAME == "develop" && JOB_NAME == "develop.visitscotland.com-mb/develop") {
@@ -21,9 +22,15 @@ pipeline {
 
   environment {
     VS_SSR_PROXY_ON = 'FALSE'
-    brc_stack = 'visitscotland'
-    brc_environment = 'demo'
-    brc_url = "https://api-${brc_stack}.onehippo.io"
+    VS_SKIP_MVN_BUILD = 'FALSE'
+    // -- 20200712: TEST and PACKAGE stages might need VS_SKIP set to TRUE as they just run the ~4 minute front-end build every time
+    VS_SKIP_MVN_TEST =  'FALSE'
+    VS_SKIP_MVN_PACKAGE = 'FALSE'
+    VS_SKIP_BUILD_FOR_BRANCH = 'eg:feature/VS-1865-feature-environments-enhancements'
+    VS_BRC_STACK_URI = 'visitscotland'
+    VS_BRC_ENV = 'demo'
+    VS_BRC_STACK_URL = "https://api-${VS_BRC_STACK_URI}.onehippo.io"
+    VS_BRC_STACK_API_VERSION = 'v3'
   }
 
   tools {
@@ -33,10 +40,10 @@ pipeline {
 
   stages {
 
-//  "Checkout Design System". This stage now commented out as it's no longer required since VS-1081 - please merge this change as required but leave the block for reference
+//  -- "Checkout Design System". This stage now commented out as it's no longer required since VS-1081 - please merge this change as required but leave the block for reference
 //  stage ('Checkout Design System') {
 //    steps {
-//      // create a directory for the checkout then run the Git command within that directory, the package.json file must be aware of this location which introduces fragility/cross-dependency, could this be improved?
+//      // -- create a directory for the checkout then run the Git command within that directory, the package.json file must be aware of this location which introduces fragility/cross-dependency, could this be improved?
 //      sh 'mkdir -p design-system'
 //      dir('design-system') {
 //        //git branch: '${DS_BRANCH}', credentialsId: '12a55ebf-608d-4b3e-811c-e4ad04f61f43', url: 'https://bitbucket.visitscotland.com/scm/vscom/design-system.git'
@@ -51,19 +58,51 @@ pipeline {
       }
     }
 
-    stage ('Build Application') {
+    stage ('brxm compile') {
       when {
           expression {
-            return env.BRANCH_NAME != 'feature/VS-1865-feature-environments-enhancements';
+            return env.VS_SKIP_BUILD != 'TRUE';
+          }
+          expression {
+            return env.BRANCH_NAME != env.VS_SKIP_BUILD_FOR_BRANCH;
           }
       }
       steps {
-        sh 'mvn -f pom.xml clean package'
+        sh 'mvn clean compile -Pdefault'
+      }
+    }
+
+    stage ('brxm unit-test') {
+      when {
+          expression {
+            return env.VS_SKIP_BUILD != 'TRUE';
+          }
+          expression {
+            return env.BRANCH_NAME != env.VS_SKIP_BUILD_FOR_BRANCH;
+          }
+      }
+      steps {
+        sh 'mvn test -Pdefault'
+      }
+    }
+
+    stage ('brxm package') {
+      when {
+          expression {
+            return env.VS_SKIP_BUILD != 'TRUE';
+          }
+          expression {
+            return env.BRANCH_NAME != env.VS_SKIP_BUILD_FOR_BRANCH;
+          }
+      }
+      steps {
+        sh 'mvn verify && mvn -Pdist'
       }
       post {
         success {
           //sh 'mvn -f pom.xml install -P !default'
-          sh 'mvn -f pom.xml install -P dist'
+	  // -- 20200712: extra install temp 
+          //sh 'mvn -f pom.xml install -P dist'
           mail bcc: '', body: "<b>Notification</b><br>Project: ${env.JOB_NAME} <br>Build Number: ${env.BUILD_NUMBER} <br> build URL: ${env.BUILD_URL}", cc: '', charset: 'UTF-8', from: '', mimeType: 'text/html', replyTo: '', subject: "SUCCESS CI: Project name -> ${env.JOB_NAME}", to: "${MAIL_TO}";
         }
         failure {
@@ -81,34 +120,35 @@ pipeline {
       }
     }
 
-    stage ('Availability notice'){
-    //"input" section commented out for now - useful for when there is genuinely a need to pause for an answer
-    //input{
-    //  message "This environment will run until the next push is made the bitbucket repo."
-    //}
-      steps {
-        sh 'echo "This environment will run until the next commit to bitbucket is detected."'
-      }
-    }
+// -- 20200712: entire section commented out as it currently serves no purpose
+//    stage ('Availability notice'){
+//    // -- "input" section commented out for now - useful for when there is genuinely a need to pause for an answer
+//    //input{
+//    //  message "This environment will run until the next push is made the bitbucket repo."
+//    //}
+//      steps {
+//        sh 'echo "This environment will run until the next commit to bitbucket is detected."'
+//      }
+//    }
 
     stage ('Test brCloud Connection'){
       steps {
         script {
           // Login to get the access token
-          echo "Login to brc and obtain token:"
-          withCredentials([usernamePassword(credentialsId: 'brCloud', passwordVariable: 'brc_password', usernameVariable: 'brc_username')]) {
-            def json = "{\"username\": \"${brc_username}\", \"password\": \"${brc_password}\"}"
-            loginResult = post("${brc_url}/v3/authn/access_token", json)
+          echo "Login to brC and obtain token:"
+          withCredentials([usernamePassword(credentialsId: 'brCloud', passwordVariable: 'VS_BRC_PASSWORD', usernameVariable: 'VS_BRC_USERNAME')]) {
+            def json = "{\"username\": \"${VS_BRC_USERNAME}\", \"password\": \"${VS_BRC_PASSWORD}\"}"
+            loginResult = post("${VS_BRC_STACK_URL}/${VS_BRC_STACK_API_VERSION}/authn/access_token", json)
           }
           echo "Login result ${loginResult}"
           String access_token = "Bearer " + parseJson(loginResult).access_token
 
           // Get the environment ID
           echo "Get the environments"
-          environments = get("${brc_url}/v3/environments/", access_token)
+          environments = get("${VS_BRC_STACK_URL}/${VS_BRC_STACK_API_VERSION}/environments/", access_token)
 
           // We require an existing environment. Alternative is to delete/create one
-          def environmentID = getEnvironmentID(environments, brc_environment)
+          def environmentID = getEnvironmentID(environments, VS_BRC_ENV)
           echo "Environments result: ${environments}"
           echo "Environment ID: ${environmentID}"
         }
@@ -118,8 +158,8 @@ pipeline {
     stage ('Upload to brCloud'){
       steps {
         script {
-          withCredentials([usernamePassword(credentialsId: 'brCloud', passwordVariable: 'brc_password', usernameVariable: 'brc_username')]) {
-            loginResponse = login("${brc_url}/v3/authn/access_token", brc_username, brc_password)
+          withCredentials([usernamePassword(credentialsId: 'brCloud', passwordVariable: 'VS_BRC_PASSWORD', usernameVariable: 'VS_BRC_USERNAME')]) {
+            loginResponse = login("${VS_BRC_STACK_URL}/${VS_BRC_STACK_API_VERSION}/authn/access_token", VS_BRC_USERNAME, VS_BRC_PASSWORD)
           }
 
           access_token = "Bearer " + parseJson(loginResponse).access_token
@@ -129,7 +169,7 @@ pipeline {
           String projectVersion = readMavenPom(file: "${workspace}/pom.xml").getVersion()
           String distribution = "target/${projectName}-${projectVersion}-distribution.tar.gz"
           echo "Upload the distribution ${distribution}"
-          uploadResult = postMultipart("${brc_url}/v3/distributions/", "dist_file", "${workspace}/${distribution}", access_token)
+          uploadResult = postMultipart("${VS_BRC_STACK_URL}/${VS_BRC_STACK_API_VERSION}/distributions/", "dist_file", "${workspace}/${distribution}", access_token)
           echo "Upload result: ${uploadResult}"
           distID = parseJson(uploadResult).id
           echo "distID: ${distID}"
@@ -152,9 +192,9 @@ pipeline {
   } //end post
 } //end pipeline
 
-private String login(url, brc_username, brc_password) {
+private String login(url, VS_BRC_USERNAME, VS_BRC_PASSWORD) {
    echo "Login and obtain access token:"
-   def json = "{\"username\": \"${brc_username}\", \"password\": \"${brc_password}\"}"
+   def json = "{\"username\": \"${VS_BRC_USERNAME}\", \"password\": \"${VS_BRC_PASSWORD}\"}"
    loginResult = post(url, json)
    echo "Login result ${loginResult}"
    return loginResult
@@ -231,10 +271,10 @@ def parseJson(text) {
 
 
 @NonCPS
-def getEnvironmentID(environments, brc_environment) {
+def getEnvironmentID(environments, VS_BRC_ENV) {
    result = null
    parseJson(environments).items.each() { env ->
-       if(env.name.toString() == brc_environment) {
+       if(env.name.toString() == VS_BRC_ENV) {
            result = env.id
        }
    }
