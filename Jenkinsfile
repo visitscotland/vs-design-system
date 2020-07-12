@@ -160,7 +160,7 @@ pipeline {
 //      }
 //    }
 
-    stage ('brCloud cxn test') {
+    stage ('brC cxn test') {
       when {
         expression {
 	  return env.VS_RUN_BRC_STAGES = 'TRUE';
@@ -190,7 +190,7 @@ pipeline {
       }
     } //end stage
 
-    stage ('brCloud upload') {
+    stage ('brC upload') {
       when {
         expression {
 	  return env.VS_RUN_BRC_STAGES = 'TRUE';
