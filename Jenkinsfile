@@ -21,7 +21,7 @@ pipeline {
 
   environment {
     VS_SSR_PROXY_ON = 'FALSE'
-    VS_SKIP_BUILD = 'TRUE'
+    VS_SKIP_BUILD = 'FALSE'
     VS_SKIP_BUILD_FOR_BRANCH = 'feature/VS-1865-feature-environments-enhancements'
     brc_stack = 'visitscotland'
     brc_environment = 'demo'
