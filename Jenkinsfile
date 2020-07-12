@@ -30,6 +30,7 @@ pipeline {
     VS_BRC_STACK_URI = 'visitscotland'
     VS_BRC_ENV = 'demo'
     VS_BRC_STACK_URL = "https://api-${VS_BRC_STACK_URI}.onehippo.io"
+    VS_BRC_STACK_API_VERSION = 'v3'
   }
 
   tools {
@@ -134,17 +135,17 @@ pipeline {
       steps {
         script {
           // Login to get the access token
-          echo "Login to brc and obtain token:"
-          withCredentials([usernamePassword(credentialsId: 'brCloud', passwordVariable: 'brc_password', usernameVariable: 'brc_username')]) {
-            def json = "{\"username\": \"${brc_username}\", \"password\": \"${brc_password}\"}"
-            loginResult = post("${VS_BRC_STACK_URL}/v3/authn/access_token", json)
+          echo "Login to brC and obtain token:"
+          withCredentials([usernamePassword(credentialsId: 'brCloud', passwordVariable: 'VS_BRC_PASSWORD', usernameVariable: 'VS_BRC_USERNAME')]) {
+            def json = "{\"username\": \"${VS_BRC_USERNAME}\", \"password\": \"${VS_BRC_PASSWORD}\"}"
+            loginResult = post("${VS_BRC_STACK_URL}/${VS_BRC_USERNAME}/authn/access_token", json)
           }
           echo "Login result ${loginResult}"
           String access_token = "Bearer " + parseJson(loginResult).access_token
 
           // Get the environment ID
           echo "Get the environments"
-          environments = get("${VS_BRC_STACK_URL}/v3/environments/", access_token)
+          environments = get("${VS_BRC_STACK_URL}/${VS_BRC_USERNAME}/environments/", access_token)
 
           // We require an existing environment. Alternative is to delete/create one
           def environmentID = getEnvironmentID(environments, VS_BRC_ENV)
@@ -157,8 +158,8 @@ pipeline {
     stage ('Upload to brCloud'){
       steps {
         script {
-          withCredentials([usernamePassword(credentialsId: 'brCloud', passwordVariable: 'brc_password', usernameVariable: 'brc_username')]) {
-            loginResponse = login("${VS_BRC_STACK_URL}/v3/authn/access_token", brc_username, brc_password)
+          withCredentials([usernamePassword(credentialsId: 'brCloud', passwordVariable: 'VS_BRC_PASSWORD', usernameVariable: 'VS_BRC_USERNAME')]) {
+            loginResponse = login("${VS_BRC_STACK_URL}/${VS_BRC_USERNAME}/authn/access_token", VS_BRC_USERNAME, VS_BRC_PASSWORD)
           }
 
           access_token = "Bearer " + parseJson(loginResponse).access_token
@@ -168,7 +169,7 @@ pipeline {
           String projectVersion = readMavenPom(file: "${workspace}/pom.xml").getVersion()
           String distribution = "target/${projectName}-${projectVersion}-distribution.tar.gz"
           echo "Upload the distribution ${distribution}"
-          uploadResult = postMultipart("${VS_BRC_STACK_URL}/v3/distributions/", "dist_file", "${workspace}/${distribution}", access_token)
+          uploadResult = postMultipart("${VS_BRC_STACK_URL}/${VS_BRC_USERNAME}/distributions/", "dist_file", "${workspace}/${distribution}", access_token)
           echo "Upload result: ${uploadResult}"
           distID = parseJson(uploadResult).id
           echo "distID: ${distID}"
@@ -191,9 +192,9 @@ pipeline {
   } //end post
 } //end pipeline
 
-private String login(url, brc_username, brc_password) {
+private String login(url, VS_BRC_USERNAME, VS_BRC_PASSWORD) {
    echo "Login and obtain access token:"
-   def json = "{\"username\": \"${brc_username}\", \"password\": \"${brc_password}\"}"
+   def json = "{\"username\": \"${VS_BRC_USERNAME}\", \"password\": \"${VS_BRC_PASSWORD}\"}"
    loginResult = post(url, json)
    echo "Login result ${loginResult}"
    return loginResult
