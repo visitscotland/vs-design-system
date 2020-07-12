@@ -138,14 +138,14 @@ pipeline {
           echo "Login to brC and obtain token:"
           withCredentials([usernamePassword(credentialsId: 'brCloud', passwordVariable: 'VS_BRC_PASSWORD', usernameVariable: 'VS_BRC_USERNAME')]) {
             def json = "{\"username\": \"${VS_BRC_USERNAME}\", \"password\": \"${VS_BRC_PASSWORD}\"}"
-            loginResult = post("${VS_BRC_STACK_URL}/${VS_BRC_USERNAME}/authn/access_token", json)
+            loginResult = post("${VS_BRC_STACK_URL}/${VS_BRC_STACK_API_VERSION}/authn/access_token", json)
           }
           echo "Login result ${loginResult}"
           String access_token = "Bearer " + parseJson(loginResult).access_token
 
           // Get the environment ID
           echo "Get the environments"
-          environments = get("${VS_BRC_STACK_URL}/${VS_BRC_USERNAME}/environments/", access_token)
+          environments = get("${VS_BRC_STACK_URL}/${VS_BRC_STACK_API_VERSION}/environments/", access_token)
 
           // We require an existing environment. Alternative is to delete/create one
           def environmentID = getEnvironmentID(environments, VS_BRC_ENV)
@@ -159,7 +159,7 @@ pipeline {
       steps {
         script {
           withCredentials([usernamePassword(credentialsId: 'brCloud', passwordVariable: 'VS_BRC_PASSWORD', usernameVariable: 'VS_BRC_USERNAME')]) {
-            loginResponse = login("${VS_BRC_STACK_URL}/${VS_BRC_USERNAME}/authn/access_token", VS_BRC_USERNAME, VS_BRC_PASSWORD)
+            loginResponse = login("${VS_BRC_STACK_URL}/${VS_BRC_STACK_API_VERSION}/authn/access_token", VS_BRC_USERNAME, VS_BRC_PASSWORD)
           }
 
           access_token = "Bearer " + parseJson(loginResponse).access_token
@@ -169,7 +169,7 @@ pipeline {
           String projectVersion = readMavenPom(file: "${workspace}/pom.xml").getVersion()
           String distribution = "target/${projectName}-${projectVersion}-distribution.tar.gz"
           echo "Upload the distribution ${distribution}"
-          uploadResult = postMultipart("${VS_BRC_STACK_URL}/${VS_BRC_USERNAME}/distributions/", "dist_file", "${workspace}/${distribution}", access_token)
+          uploadResult = postMultipart("${VS_BRC_STACK_URL}/${VS_BRC_STACK_API_VERSION}/distributions/", "dist_file", "${workspace}/${distribution}", access_token)
           echo "Upload result: ${uploadResult}"
           distID = parseJson(uploadResult).id
           echo "distID: ${distID}"
