@@ -21,6 +21,8 @@ pipeline {
 
   environment {
     VS_SSR_PROXY_ON = 'FALSE'
+    VS_SKIP_BUILD = 'TRUE'
+    VS_SKIP_BUILD_FOR_BRANCH = 'feature/VS-1865-feature-environments-enhancements'
     brc_stack = 'visitscotland'
     brc_environment = 'demo'
     brc_url = "https://api-${brc_stack}.onehippo.io"
@@ -51,14 +53,45 @@ pipeline {
       }
     }
 
-    stage ('Build Application') {
+    stage ('brxm-compile') {
       when {
           expression {
-            return env.BRANCH_NAME != 'feature/VS-1865-feature-environments-enhancements';
+            return env.VS_SKIP_BUILD != 'TRUE';
+          }
+          expression {
+            return env.BRANCH_NAME != env.VS_SKIP_BUILD_FOR_BRANCH;
           }
       }
       steps {
-        sh 'mvn -f pom.xml clean package'
+        sh 'mvn clean compile -Pdefault'
+      }
+    }
+
+    stage ('brxm-unit-test')
+      when {
+          expression {
+            return env.VS_SKIP_BUILD != 'TRUE';
+          }
+          expression {
+            return env.BRANCH_NAME != env.VS_SKIP_BUILD_FOR_BRANCH;
+          }
+      }
+      steps {
+        sh 'mvn test -Pdefault'
+      }
+    }
+
+    stage ('brxm-package')
+      when {
+          expression {
+            return env.VS_SKIP_BUILD != 'TRUE';
+          }
+          expression {
+            return env.BRANCH_NAME != env.VS_SKIP_BUILD_FOR_BRANCH;
+          }
+      }
+      steps {
+        sh 'mvn verify && mvn -P dist'
       }
       post {
         success {
