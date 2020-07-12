@@ -98,9 +98,11 @@ pipeline {
           }
       }
       steps {
-        sh 'mvn clean compile -Pdefault'
+        withMaven(maven: 'M3', options: [artifactsPublisher(disabled: true)], mavenSettingsConfig: mavenSettingsID) {
+          sh '$MVN_CMD clean compile -Pdefault'
+        }
       }
-    }
+    } //end stage
 
     stage ('brxm unit-test') {
       when {
@@ -113,7 +115,7 @@ pipeline {
       steps {
         sh 'mvn test -Pdefault'
       }
-    }
+    } //end stage
 
     stage ('brxm package') {
       when {
@@ -138,7 +140,7 @@ pipeline {
           mail bcc: '', body: "<b>Notification</b><br>Project: ${env.JOB_NAME} <br>Build Number: ${env.BUILD_NUMBER} <br> build URL: ${env.BUILD_URL}", cc: '', charset: 'UTF-8', from: '', mimeType: 'text/html', replyTo: '', subject: "ERROR CI: Project name -> ${env.JOB_NAME}", to: "${MAIL_TO}";
         }
       }
-    }
+    } //end stage
 
     stage ('vs build feature env') {
       steps{
@@ -147,7 +149,7 @@ pipeline {
           sh 'sh ./infrastructure/scripts/infrastructure.sh --debug'
         }
       }
-    }
+    } //end stage
 
 // -- 20200712: entire section commented out as it currently serves no purpose
 //    stage ('Availability notice'){
