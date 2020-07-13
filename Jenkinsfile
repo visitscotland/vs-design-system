@@ -23,7 +23,7 @@ pipeline {
   environment {
     VS_SSR_PROXY_ON = 'FALSE'
     VS_SKIP_BUILD_FOR_BRANCH = 'eg:feature/VS-1865-feature-environments-enhancements'
-    VS_RUN_BRC_STAGES = 'TRUE'
+    VS_RUN_BRC_STAGES = 'FALSE'
     // -- 20200712: TEST and PACKAGE stages might need VS_SKIP set to TRUE as they just run the ~4 minute front-end build every time
     VS_SKIP_BRC_BLD = 'FALSE'
     VS_SKIP_BRC_TST = 'TRUE'
