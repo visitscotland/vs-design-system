@@ -399,14 +399,21 @@ findDynamicPorts() {
 	THIS_PORT=$((THIS_PORT+$VS_CONTAINER_PORT_INCREMENT))
 	break
       fi
+      echo " - $THIS_PORT is in use, trying "$((THIS_PORT+$VS_CONTAINER_PORT_INCREMENT))
     done
   done
   unset VS_CONTAINER_INT_PORT
   for SERVICE in $VS_CONTAINER_SERVICE_LIST; do
     unset MAPPINGS
-    for MAPPING in `set | egrep "VS_CONTAINER_(INT|EXT)_PORT_$SERVICE"`; do MAPPINGS=$MAPPINGS" "$MAPPING; done
+    for MAPPING in `set | egrep "VS_CONTAINER_(INT|EXT)_PORT_$SERVICE"`; do
+      MAPPINGS=$MAPPING" "$MAPPINGS
+      eval VS_CONTAINER_PORT_MAPPINGS="-p "$VS_CONTAINER_EXT_PORT_$SERVICE":"$VS_CONTAINER_EXT_PORT_$SERVICE" "$VS_CONTAINER_PORT_MAPPINGS
+    done
     echo " - for service $SERVICE: $MAPPINGS" 
+    echo ""
   done
+  echo "Docker will be presented with: "$VS_CONTAINER_PORT_MAPPINGS
+  echo ""
 }
 
 # search for latest Hippo distribution files if HIPPO_LATEST is not already set
