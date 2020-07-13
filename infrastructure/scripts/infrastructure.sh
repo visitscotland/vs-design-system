@@ -394,16 +394,17 @@ findDynamicPorts() {
     while [ $THIS_PORT -le $VS_CONTAINER_DYN_PORT_MAX ]; do
       FREE=`netstat -an | egrep "LISTEN *$" | grep $THIS_PORT`
       if [ "$FREE" = "" ]; then
-        echo " - netstat says $THIS_PORT is free - using it"
+        #echo " - netstat says $THIS_PORT is free - using it"
 	eval "VS_CONTAINER_EXT_PORT_"$VS_CONTAINER_SERVICE"="$THIS_PORT
 	THIS_PORT=$((THIS_PORT+$VS_CONTAINER_PORT_INCREMENT))
 	break
       fi
     done
   done
+  unset VS_CONTAINER_INT_PORT
   for SERVICE in $VS_CONTAINER_SERVICE_LIST; do
-    echo "for service $SERVICE"
-    set | egrep "VS_CONTAINER_(INT|EXT)_PORT_$SERVICE"
+    for MAPPING in `set | egrep "VS_CONTAINER_(INT|EXT)_PORT_$SERVICE"`; do MAPPINGS=$MAPPINGS" "$MAPPING; done
+    echo "for service $SERVICE $MAPPINGS" 
   done
 }
 
