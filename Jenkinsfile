@@ -98,7 +98,7 @@ pipeline {
           }
       }
       steps {
-        withMaven(maven: 'M3', options: [artifactsPublisher(disabled: true)], mavenSettingsConfig: mavenSettingsID) {
+        withMaven(maven: 'Maven 3.3.9', options: [artifactsPublisher(disabled: true)]) {
           sh '$MVN_CMD clean compile -Pdefault'
         }
       }
