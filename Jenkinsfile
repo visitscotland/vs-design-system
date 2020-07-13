@@ -92,7 +92,7 @@ pipeline {
     stage ('brxm compile') {
       when {
           expression {
-	    return env.VS_RUN_BRC_STAGES = 'TRUE';
+	    return env.VS_RUN_BRC_STAGES == 'TRUE';
             return env.VS_SKIP_BRC_BLD != 'TRUE';
             return env.BRANCH_NAME != env.VS_SKIP_BUILD_FOR_BRANCH;
           }
@@ -107,7 +107,7 @@ pipeline {
     stage ('brxm unit-test') {
       when {
           expression {
-	    return env.VS_RUN_BRC_STAGES = 'TRUE';
+	    return env.VS_RUN_BRC_STAGES == 'TRUE';
             return env.VS_SKIP_BRC_TST != 'TRUE';
             return env.BRANCH_NAME != env.VS_SKIP_BUILD_FOR_BRANCH;
           }
@@ -120,7 +120,7 @@ pipeline {
     stage ('brxm package') {
       when {
           expression {
-	    return env.VS_RUN_BRC_STAGES = 'TRUE';
+	    return env.VS_RUN_BRC_STAGES == 'TRUE';
             return env.VS_SKIP_BRC_PKG != 'TRUE';
             return env.BRANCH_NAME != env.VS_SKIP_BUILD_FOR_BRANCH;
           }
@@ -165,7 +165,7 @@ pipeline {
     stage ('brC cxn test') {
       when {
         expression {
-	  return env.VS_RUN_BRC_STAGES = 'TRUE';
+	  return env.VS_RUN_BRC_STAGES == 'TRUE';
           return env.VS_SKIP_BRC_CXN != 'TRUE';
         }
       }
@@ -195,7 +195,7 @@ pipeline {
     stage ('brC upload') {
       when {
         expression {
-	  return env.VS_RUN_BRC_STAGES = 'TRUE';
+	  return env.VS_RUN_BRC_STAGES == 'TRUE';
           return env.VS_SKIP_BRC_UPL != 'TRUE';
         }
       }
