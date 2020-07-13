@@ -39,6 +39,11 @@ if [ -z "$VS_MAIL_NOTIFY_SITE" ]; then VS_MAIL_NOTIFY_SITE="TRUE"; fi
 if [ -z "$VS_CONTAINER_BASE_PORT_OVERRIDE" ]; then unset VS_CONTAINER_BASE_PORT_OVERRIDE; fi
 if [ -z "$VS_BRXM_INSTANCE_HTTP_HOST" ]; then VS_BRXM_INSTANCE_HTTP_HOST=localhost; fi
 if [ -z "$VS_BRXM_TOMCAT_PORT" ]; then VS_BRXM_TOMCAT_PORT=8080; fi
+if [ -z "$VS_CONTAINER_PORT_INCREMENT" ]; then VS_CONTAINER_PORT_INCREMENT=100; fi
+if [ -z "$VS_CONTAINER_DYN_PORT_MAX" ]; then VS_CONTAINER_DYN_PORT_MAX=8999; fi
+if [ -z "$VS_CONTAINER_INT_PORT_SSR" ]; then VS_CONTAINER_INT_PORT_SSR=8082; fi
+if [ -z "$VS_CONTAINER_INT_PORT_SSH" ]; then VS_CONTAINER_INT_PORT_SSR=22; fi
+if [ -z "$VS_CONTAINER_INT_PORT_TLN" ]; then VS_CONTAINER_INT_PORT_SSR=8081; fi
 #  ==== SSR Application Variables ====
 if [ -z "$VS_FRONTEND_DIR" ]; then VS_FRONTEND_DIR=frontend; fi
 if [ -z "$VS_SSR_PACKAGE_SOURCE" ]; then VS_SSR_PACKAGE_SOURCE="$VS_FRONTEND_DIR/ssr/server/ $VS_FRONTEND_DIR/dist/ssr/ $VS_FRONTEND_DIR/node_modules/"; fi
@@ -358,7 +363,6 @@ findBasePort() {
     fi
   done
 
-  # testing - don't run this for develop to see what happens if port is not avaiable
   if [ $THIS_PORT -gt $MAX_PORT ]; then
     if [ ! -z "$VS_CONTAINER_BASE_PORT_OVERRIDE" ] && [ ! "$PORT_RESERVED" = "TRUE" ]; then
       FAIL_REASON="OVERRIDE PORT $VS_CONTAINER_BASE_PORT_OVERRIDE is in use, setting PORT to NULL"
@@ -375,6 +379,11 @@ findBasePort() {
     echo " - VS_CONTAINER_BASE_PORT set to $VS_CONTAINER_BASE_PORT"
   fi
   echo ""
+}
+
+findAdditionalPorts() {
+  echo "Finding free ports at an increment of $VS_CONTAINER_PORT_INCREMENT to dynamically map to other servies on the new container - up to $VS_MAX_DYN_PORT"
+  for VS_CONTAINER_INT_PORT in `printenv | grep "VS_CONTAINER_INT_PORT"`; do echo $VS_CONTAINER_INT_PORT; done
 }
 
 # search for latest Hippo distribution files if HIPPO_LATEST is not already set
@@ -545,13 +554,26 @@ createBuildReport() {
   fi
 }
 
+testSite() {
+  false
+}
+
 sendBuildReport() {
   if [ -e "$VS_MAIL_NOTIFY_BUILD_MESSAGE" ] && [ "$VS_MAIL_NOTIFY_BUILD" == "TRUE" ]; then
     echo ""
     echo "sending environment build notification to $VS_MAIL_NOTIFY_BUILD_TO"
-    mailx -s $VS_MAIL_NOTIFY_BUILD_MESSAGE -r $VS_MAIL_NOTIFY_BUILD_SENDER $VS_MAIL_NOTIFY_BUILD_TO < $VS_MAIL_NOTIFY_BUILD_MESSAGE
+    mailx -S $VS_MAIL_HOST -s $VS_MAIL_NOTIFY_BUILD_SUBJECT -r $VS_MAIL_NOTIFY_BUILD_SENDER $VS_MAIL_NOTIFY_BUILD_TO < $VS_MAIL_NOTIFY_BUILD_MESSAGE
   fi
 }
+
+sendSiteReport() {
+  if [ -e "$VS_MAIL_NOTIFY_SITE_MESSAGE" ] && [ "$VS_MAIL_NOTIFY_SITE" == "TRUE" ]; then
+    echo ""
+    echo "sending site check notification to $VS_MAIL_NOTIFY_SITE_TO"
+    mailx -S $VS_MAIL_HOST -s $VS_MAIL_NOTIFY_SITE_SUBJECT -r $VS_MAIL_NOTIFY_SITE_SENDER $VS_MAIL_NOTIFY_SITE_TO < $VS_MAIL_NOTIFY_SITE_MESSAGE
+  fi
+}
+
 # ====/FUNCTIONS ====
 
 # ==== RUN ====
