@@ -27,14 +27,14 @@ if [ -z "$VS_DOCKER_IMAGE_NAME" ]; then VS_DOCKER_IMAGE_NAME=vs-brxm; fi
 if [ -z "$VS_DOCKERFILE_PATH" ]; then VS_DOCKERFILE_PATH=/home/jenkins/vs-dockerfile; fi
 if [ -z "$VS_DOCKERFILE_NAME" ]; then VS_DOCKERFILE_NAME=vs-brxm; fi
 if [ -z "$VS_DOCKERFILE_LOCN" ]; then VS_DOCKERFILE_LOCN=$VS_DOCKERFILE_PATH/$VS_DOCKERFILE_NAME; fi
-VS_DATESTAMP=`date +%Y%m%d`
-VS_HOST_IP_ADDRESS=`/usr/sbin/ip ad sh  | egrep "global noprefixroute" | awk '{print $2}' | sed -e "s/\/.*$//"`
-VS_JENKINS_LAST_ENV=jenkins-last-env
-VS_SCRIPTNAME=`basename $0`
-VS_WD_PARENT="$(basename `echo ${PWD%/*}`)"
 #  ==== Hosting Environment Variables ====
 if [ -z "$VS_PROXY_SERVER_SCHEME" ]; then VS_PROXY_SERVER_SCHEME=https; fi
 if [ -z "$VS_PROXY_SERVER_FQDN" ]; then VS_PROXY_SERVER_FQDN=feature.visitscotland.com; fi
+#  ==== Mail Variables ====
+if [ -z "$VS_MAIL_DOMAIN" ]; then VS_MAIL_DOMAIN=visitscotland.net; fi
+if [ -z "$VS_MAIL_HOST" ]; then VS_MAIL_HOST=10.1.1.152; fi
+if [ -z "$VS_MAIL_NOTIFY_BUILD" ]; then VS_MAIL_NOTIFY_BUILD="TRUE"; fi
+if [ -z "$VS_MAIL_NOTIFY_SITE" ]; then VS_MAIL_NOTIFY_SITE="TRUE"; fi
 #  == brXM Instance Variables ==
 if [ -z "$VS_CONTAINER_BASE_PORT_OVERRIDE" ]; then unset VS_CONTAINER_BASE_PORT_OVERRIDE; fi
 if [ -z "$VS_BRXM_INSTANCE_HTTP_HOST" ]; then VS_BRXM_INSTANCE_HTTP_HOST=localhost; fi
@@ -45,6 +45,8 @@ if [ -z "$VS_SSR_PACKAGE_SOURCE" ]; then VS_SSR_PACKAGE_SOURCE="$VS_FRONTEND_DIR
 if [ -z "$VS_SSR_PACKAGE_TARGET" ]; then VS_SSR_PACKAGE_TARGET="./target"; fi
 if [ -z "$VS_SSR_PACKAGE_NAME" ]; then VS_SSR_PACKAGE_NAME="vs-ssr-package.tar.gz"; fi
 if [ -z "$VS_SSR_APP_PORT" ]; then VS_SSR_APP_PORT=8082; fi
+#  ==== Other Variables ====
+VS_JENKINS_LAST_ENV=jenkins-last-env
 # ====/ADJUSTABLE VARIABLES ====
 
 # ==== PARSE COMMAND LINE ARGUMENTS ====
@@ -109,21 +111,42 @@ defaultSettings() {
   VS_PARENT_JOB_NAME=
   RESERVED_PORT_LIST=
   # set container name from branch name - removing / characters
-  VS_CONTAINER_NAME=`echo $JOB_NAME | sed -e "s/\/.*//g"`"_"`basename $BRANCH_NAME`
-  if [ -z "$NODE_NAME" ]; then THIS_SERVER=$HOSTNAME; else THIS_SERVER=$NODE_NAME; fi
+  if [ -z "$VS_CONTAINER_NAME" ]; then VS_CONTAINER_NAME=`echo $JOB_NAME | sed -e "s/\/.*//g"`"_"`basename $BRANCH_NAME`; fi
+  if [ -z "$NODE_NAME" ]; then VS_THIS_SERVER=$HOSTNAME; else VS_THIS_SERVER=$NODE_NAME; fi
   VS_COMMIT_AUTHOR=`git show -s --pretty="%ae" ${GIT_COMMIT}`
+  VS_DATESTAMP=`date +%Y%m%d`
+  VS_HOST_IP_ADDRESS=`/usr/sbin/ip ad sh  | egrep "global noprefixroute" | awk '{print $2}' | sed -e "s/\/.*$//"`
   VS_PARENT_JOB_NAME=`echo $JOB_NAME | sed -e "s/\/.*//g"`
-  VS_MAIL_MESSAGE_NOTIFY_BUILD=/tmp/$VS_CONTAINER_NAME.msg.notify.build
-  VS_MAIL_MESSAGE_NOTIFY_BUILD_TO=$VS_COMMIT_AUTHOR
-  VS_MAIL_MESSAGE_NOTIFY_SITE=/tmp/$VS_CONTAINER_NAME.msg.notify.site
-  VS_MAIL_MESSAGE_NOTIFY_SITE_TO=$VS_COMMIT_AUTHOR
+  VS_SCRIPTNAME=`basename $0`
+  # mail settings - build
+  if [ -z "$VS_MAIL_NOTIFY_BUILD_MESSAGE_TO" ]; then VS_MAIL_NOTIFY_BUILD_MESSAGE_TO=$VS_COMMIT_AUTHOR; fi
+  VS_MAIL_NOTIFY_BUILD_SENDER="$VS_PARENT_JOB_NAME"
+  VS_MAIL_NOTIFY_BUILD_MESSAGE=/tmp/$VS_CONTAINER_NAME.msg.notify.build
+  VS_MAIL_NOTIFY_BUILD_SUBJECT="environment was build for $GIT_BRANCH in $VS_PARENT_JOB_NAME"
+  VS_MAIL_NOTIFY_BUILD_SENDER="$VS_PARENT_JOB_NAME@$VS_MAIL_DOMAIN"
+  # mail settings - site
+  if [ -z "$VS_MAIL_MESSAGE_NOTIFY_SITE_TO" ]; then VS_MAIL_MESSAGE_NOTIFY_SITE_TO=$VS_COMMIT_AUTHOR; fi
+  VS_MAIL_NOTIFY_SITE_SENDER="$VS_PARENT_JOB_NAME"
+  VS_MAIL_NOTIFY_SITE_MESSAGE=/tmp/$VS_CONTAINER_NAME.msg.notify.site
+  VS_MAIL_NOTIFY_SITE_SUBJECT=" $VS_PARENT_JOB_NAME environment was build for $GIT_BRANCH"
+  # mail settings - executable
+  VS_WD_PARENT="$(basename `echo ${PWD%/*}`)"
+  if [ ! -z $VS_MAILER_BIN ]; then
+    if [ ! -z "`which mailx`" ]; then
+      VS_MAILER_BIN="`which mailx`"
+    elif [ ! -z "`which mail`" ]; then
+      VS_MAILER_BIN="`which mail`"
+    else
+      VS_MAILER_BIN="`/bin/false`"
+    fi
+  fi
 }
 
 reportSettings() {
   clear
   echo ""
   echo "================================================================================"
-  echo "== RUNNING JENKINS SHELL COMMANDS on $THIS_SERVER" as $USER
+  echo "== RUNNING JENKINS SHELL COMMANDS on $VS_THIS_SERVER" as $USER
   echo "================================================================================"
   echo ""
   if [ "$VS_DEBUG" = "TRUE" ]; then echo "==== printenv ===="; printenv; echo "====/printenv ===="; echo ""; fi
@@ -158,7 +181,7 @@ stopContainers() {
   # TO-DO - maybe undeploy application first?
   echo "stopping containers with ID $CONTAINER_ID"
   for CONTAINER in $CONTAINER_ID; do
-    echo "stopping $CONTAINER"
+    echo " - stopping $CONTAINER"
     docker stop $CONTAINER
   done
   echo ""
@@ -167,7 +190,7 @@ stopContainers() {
 startContainers() {
   echo "starting containers with ID $CONTAINER_ID"
   for CONTAINER in $CONTAINER_ID; do
-    echo "starting $CONTAINER"
+    echo " - starting $CONTAINER"
     docker start $CONTAINER
   done
   echo ""
@@ -176,7 +199,7 @@ startContainers() {
 deleteContainers() {
   echo "deleting containers with name $CONTAINER_ID"
   for CONTAINER in $CONTAINER_ID; do
-    echo "deleting $CONTAINER"
+    echo " - deleting $CONTAINER"
     docker container rm -f $CONTAINER
   done
   echo ""
@@ -282,13 +305,24 @@ tidyContainers() {
 
 setPortRange() {
   # gp:DONE - even if override is set we must still check to ensure it's free, move the while loop to after the if block and just add PORT/MAXPORT values into the if. If the override port if in use the job must fail
-  if [ "$GIT_BRANCH" == "develop" ]; then
-    echo "GIT_BRANCH is $GIT_BRANCH, OVERRIDE PORT will be set to 8100"
+  if [ "VS_PARENT_JOB_NAME" == "feature.visitscotland.com-mb" ] && [ "$GIT_BRANCH" == "develop" ]; then
     VS_CONTAINER_BASE_PORT_OVERRIDE=8100
+    echo "GIT_BRANCH is $GIT_BRANCH, OVERRIDE PORT will be set to  $VS_CONTAINER_BASE_PORT_OVERRIDE"
+  elif [ "$VS_PARENT_JOB_NAME" == "develop.visitscotland.com-mb" ] && [ "$GIT_BRANCH" == "develop" ]; then
+    VS_CONTAINER_BASE_PORT_OVERRIDE=8099
+    echo "GIT_BRANCH is $GIT_BRANCH for JOB $VS_PARENT_JOB_NAME, OVERRIDE PORT will be set to $VS_CONTAINER_BASE_PORT_OVERRIDE"
+  elif [ "$VS_PARENT_JOB_NAME" == "develop-nightly.visitscotland.com-mb" ] && [ "$GIT_BRANCH" == "develop" ]; then
+    VS_CONTAINER_BASE_PORT_OVERRIDE=8098
+    echo "GIT_BRANCH is $GIT_BRANCH, OVERRIDE PORT will be set to $VS_CONTAINER_BASE_PORT_OVERRIDE"
+  elif [ "$VS_PARENT_JOB_NAME" == "develop-stable.visitscotland.com-mb" ] && [ "$GIT_BRANCH" == "develop" ]; then
+    VS_CONTAINER_BASE_PORT_OVERRIDE=8097
+    echo "GIT_BRANCH is $GIT_BRANCH, OVERRIDE PORT will be set to $VS_CONTAINER_BASE_PORT_OVERRIDE"
+  else
+    echo "GIT_BRANCH is $GIT_BRANCH for JOB $VS_PARENT_JOB_NAME, NO OVERRIDE PORT will be set"
   fi
   if [ -z "$VS_CONTAINER_BASE_PORT_OVERRIDE" ]; then
     MIN_PORT=8000
-    MAX_PORT=8099
+    MAX_PORT=8096
   else
     MIN_PORT=$VS_CONTAINER_BASE_PORT_OVERRIDE
     MAX_PORT=$VS_CONTAINER_BASE_PORT_OVERRIDE
@@ -338,7 +372,7 @@ findBasePort() {
     echo " - $FAIL_REASON"
   else
     VS_CONTAINER_BASE_PORT=$THIS_PORT
-    echo "VS_CONTAINER_BASE_PORT set to $VS_CONTAINER_BASE_PORT"
+    echo " - VS_CONTAINER_BASE_PORT set to $VS_CONTAINER_BASE_PORT"
   fi
   echo ""
 }
@@ -471,42 +505,49 @@ containerStartHippo() {
 createBuildReport() {
   if [ ! "$SAFE_TO_PROCEED" = "FALSE" ]; then
     EXIT_CODE=0
-    echo "" | tee $VS_MAIL_MESSAGE_NOTIFY_BUILD
-    echo "" | tee -a $VS_MAIL_MESSAGE_NOTIFY_BUILD
-    echo "###############################################################################################################################" | tee -a $VS_MAIL_MESSAGE_NOTIFY_BUILD
-    echo "" | tee -a $VS_MAIL_MESSAGE_NOTIFY_BUILD
-    echo "The site instance for branch $GIT_BRANCH should now be available in a few moments on $NODE_NAME - $VS_HOST_IP_ADDRESS at:" | tee -a $VS_MAIL_MESSAGE_NOTIFY_BUILD
-    echo "  - $VS_PROXY_SERVER_SCHEME://$VS_PROXY_SERVER_FQDN/?vs_brxm_host=$VS_HOST_IP_ADDRESS&vs_brxm_port=$VS_CONTAINER_BASE_PORT&vs_brxm_http_host=$VS_BRXM_INSTANCE_HTTP_HOST" | tee -a $VS_MAIL_MESSAGE_NOTIFY_BUILD
-    echo "" | tee -a $VS_MAIL_MESSAGE_NOTIFY_BUILD
-    echo "The CMS for the instance should now be available at:" | tee -a $VS_MAIL_MESSAGE_NOTIFY_BUILD
-    echo "  - $VS_PROXY_SERVER_SCHEME://$VS_PROXY_SERVER_FQDN/cms/?vs_brxm_host=$VS_HOST_IP_ADDRESS&vs_brxm_port=$VS_CONTAINER_BASE_PORT&vs_brxm_http_host=$VS_BRXM_INSTANCE_HTTP_HOST" | tee -a $VS_MAIL_MESSAGE_NOTIFY_BUILD
-    echo "and the Console at:" | tee -a $VS_MAIL_MESSAGE_NOTIFY_BUILD
-    echo "  - $VS_PROXY_SERVER_SCHEME://$VS_PROXY_SERVER_FQDN/cms/console/?vs_brxm_host=$VS_HOST_IP_ADDRESS&vs_brxm_port=$VS_CONTAINER_BASE_PORT&vs_brxm_http_host=$VS_BRXM_INSTANCE_HTTP_HOST" | tee -a $VS_MAIL_MESSAGE_NOTIFY_BUILD
-    echo "" | tee -a $VS_MAIL_MESSAGE_NOTIFY_BUILD
-    echo "To clear the proxy server settings between sessions either close your browser or browse to:" | tee -a $VS_MAIL_MESSAGE_NOTIFY_BUILD
-    echo "  - $VS_PROXY_SERVER_SCHEME://$VS_PROXY_SERVER_FQDN/?vs_brxm_reset" | tee -a $VS_MAIL_MESSAGE_NOTIFY_BUILD
-    echo "" | tee -a $VS_MAIL_MESSAGE_NOTIFY_BUILD
-    echo "" | tee -a $VS_MAIL_MESSAGE_NOTIFY_BUILD
-    echo "Direct Tomcat access - available only on the Web Development LAN" | tee -a $VS_MAIL_MESSAGE_NOTIFY_BUILD
-    echo "  - http://$VS_HOST_IP_ADDRESS:$VS_CONTAINER_BASE_PORT/cms/" | tee -a $VS_MAIL_MESSAGE_NOTIFY_BUILD
-    echo "  - http://$VS_HOST_IP_ADDRESS:$VS_CONTAINER_BASE_PORT/site/" | tee -a $VS_MAIL_MESSAGE_NOTIFY_BUILD | tee -a $VS_MAIL_MESSAGE_NOTIFY_BUILD
-    echo "    -  needs a HOST header of localhost:8080 to be passed with the request" | tee -a $VS_MAIL_MESSAGE_NOTIFY_BUILD
-    echo "" | tee -a $VS_MAIL_MESSAGE_NOTIFY_BUILD
-    echo "###############################################################################################################################" | tee -a $VS_MAIL_MESSAGE_NOTIFY_BUILD | tee -a $VS_MAIL_MESSAGE_NOTIFY_BUILD
-    echo "" | tee -a $VS_MAIL_MESSAGE_NOTIFY_BUILD
-    echo "" | tee -a $VS_MAIL_MESSAGE_NOTIFY_BUILD
+    echo "writing mail message to $VS_MAIL_NOTIFY_BUILD_MESSAGE"
+    echo ""
+    echo "" | tee $VS_MAIL_NOTIFY_BUILD_MESSAGE
+    echo "" | tee -a $VS_MAIL_NOTIFY_BUILD_MESSAGE
+    echo "###############################################################################################################################" | tee -a $VS_MAIL_NOTIFY_BUILD_MESSAGE
+    echo "" | tee -a $VS_MAIL_NOTIFY_BUILD_MESSAGE
+    echo "The site instance for branch $GIT_BRANCH should now be available in a few moments on $NODE_NAME - $VS_HOST_IP_ADDRESS at:" | tee -a $VS_MAIL_NOTIFY_BUILD_MESSAGE
+    echo "  - $VS_PROXY_SERVER_SCHEME://$VS_PROXY_SERVER_FQDN/?vs_brxm_host=$VS_HOST_IP_ADDRESS&vs_brxm_port=$VS_CONTAINER_BASE_PORT&vs_brxm_http_host=$VS_BRXM_INSTANCE_HTTP_HOST" | tee -a $VS_MAIL_NOTIFY_BUILD_MESSAGE
+    echo "" | tee -a $VS_MAIL_NOTIFY_BUILD_MESSAGE
+    echo "The CMS for the instance should now be available at:" | tee -a $VS_MAIL_NOTIFY_BUILD_MESSAGE
+    echo "  - $VS_PROXY_SERVER_SCHEME://$VS_PROXY_SERVER_FQDN/cms/?vs_brxm_host=$VS_HOST_IP_ADDRESS&vs_brxm_port=$VS_CONTAINER_BASE_PORT&vs_brxm_http_host=$VS_BRXM_INSTANCE_HTTP_HOST" | tee -a $VS_MAIL_NOTIFY_BUILD_MESSAGE
+    echo "and the Console at:" | tee -a $VS_MAIL_NOTIFY_BUILD_MESSAGE
+    echo "  - $VS_PROXY_SERVER_SCHEME://$VS_PROXY_SERVER_FQDN/cms/console/?vs_brxm_host=$VS_HOST_IP_ADDRESS&vs_brxm_port=$VS_CONTAINER_BASE_PORT&vs_brxm_http_host=$VS_BRXM_INSTANCE_HTTP_HOST" | tee -a $VS_MAIL_NOTIFY_BUILD_MESSAGE
+    echo "" | tee -a $VS_MAIL_NOTIFY_BUILD_MESSAGE
+    echo "To clear the proxy server settings between sessions either close your browser or browse to:" | tee -a $VS_MAIL_NOTIFY_BUILD_MESSAGE
+    echo "  - $VS_PROXY_SERVER_SCHEME://$VS_PROXY_SERVER_FQDN/?vs_brxm_reset" | tee -a $VS_MAIL_NOTIFY_BUILD_MESSAGE
+    echo "" | tee -a $VS_MAIL_NOTIFY_BUILD_MESSAGE
+    echo "" | tee -a $VS_MAIL_NOTIFY_BUILD_MESSAGE
+    echo "Direct Tomcat access - available only on the Web Development LAN" | tee -a $VS_MAIL_NOTIFY_BUILD_MESSAGE
+    echo "  - http://$VS_HOST_IP_ADDRESS:$VS_CONTAINER_BASE_PORT/cms/" | tee -a $VS_MAIL_NOTIFY_BUILD_MESSAGE
+    echo "  - http://$VS_HOST_IP_ADDRESS:$VS_CONTAINER_BASE_PORT/site/" | tee -a $VS_MAIL_NOTIFY_BUILD_MESSAGE
+    echo "    -  needs a HOST header of localhost:8080 to be passed with the request" | tee -a $VS_MAIL_NOTIFY_BUILD_MESSAGE
+    echo "" | tee -a $VS_MAIL_NOTIFY_BUILD_MESSAGE
+    echo "###############################################################################################################################" | tee -a $VS_MAIL_NOTIFY_BUILD_MESSAGE | tee -a $VS_MAIL_NOTIFY_BUILD_MESSAGE
+    echo "" | tee -a $VS_MAIL_NOTIFY_BUILD_MESSAGE
+    echo "" | tee -a $VS_MAIL_NOTIFY_BUILD_MESSAGE
   else
     EXIT_CODE=127
-    echo "" | tee $VS_MAIL_MESSAGE_NOTIFY_BUILD
-    echo "" | tee -a $VS_MAIL_MESSAGE_NOTIFY_BUILD
-    echo "###############################################################################################################################" | tee -a $VS_MAIL_MESSAGE_NOTIFY_BUILD
-    echo "" | tee -a $VS_MAIL_MESSAGE_NOTIFY_BUILD
-    echo "JOB FAILED because $FAIL_REASON" | tee -a $VS_MAIL_MESSAGE_NOTIFY_BUILD
-    echo "" | tee -a $VS_MAIL_MESSAGE_NOTIFY_BUILD
-    echo "###############################################################################################################################" | tee -a $VS_MAIL_MESSAGE_NOTIFY_BUILD
-    echo "" | tee -a $VS_MAIL_MESSAGE_NOTIFY_BUILD
-    echo "" | tee -a $VS_MAIL_MESSAGE_NOTIFY_BUILD
+    echo "" | tee $VS_MAIL_NOTIFY_BUILD_MESSAGE
+    echo "" | tee -a $VS_MAIL_NOTIFY_BUILD_MESSAGE
+    echo "###############################################################################################################################" | tee -a $VS_MAIL_NOTIFY_BUILD_MESSAGE
+    echo "" | tee -a $VS_MAIL_NOTIFY_BUILD_MESSAGE
+    echo "JOB FAILED because $FAIL_REASON" | tee -a $VS_MAIL_NOTIFY_BUILD_MESSAGE
+    echo "" | tee -a $VS_MAIL_NOTIFY_BUILD_MESSAGE
+    echo "###############################################################################################################################" | tee -a $VS_MAIL_NOTIFY_BUILD_MESSAGE
+    echo "" | tee -a $VS_MAIL_NOTIFY_BUILD_MESSAGE
+    echo "" | tee -a $VS_MAIL_NOTIFY_BUILD_MESSAGE
   fi
+}
+
+mailBuildReport() {
+  if [ -e "$VS_MAIL_NOTIFY_BUILD_MESSAGE" ] && [ "$VS_MAIL_NOTIFY_BUILD" == "TRUE" ]; then
+    mailx -s $VS_MAIL_NOTIFY_BUILD_MESSAGE -r $VS_MAIL_NOTIFY_BUILD_FROM $VS_MAIL_NOTIFY_BUILD_TO < $VS_MAIL_NOTIFY_BUILD_MESSAGE
 }
 # ====/FUNCTIONS ====
 
