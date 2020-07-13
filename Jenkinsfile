@@ -194,7 +194,7 @@ pipeline {
 
     stage ('brC upload') {
       when {
-        allOf
+        allOf {
           expression {return env.VS_RUN_BRC_STAGES == 'TRUE'}
 	  expression {return env.VS_SKIP_BRC_UPL != 'TRUE'}
         }
