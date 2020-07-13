@@ -547,7 +547,9 @@ createBuildReport() {
 
 sendBuildReport() {
   if [ -e "$VS_MAIL_NOTIFY_BUILD_MESSAGE" ] && [ "$VS_MAIL_NOTIFY_BUILD" == "TRUE" ]; then
-    mailx -s $VS_MAIL_NOTIFY_BUILD_MESSAGE -r $VS_MAIL_NOTIFY_BUILD_FROM $VS_MAIL_NOTIFY_BUILD_TO < $VS_MAIL_NOTIFY_BUILD_MESSAGE
+    echo ""
+    echo "sending environment build notification to $VS_MAIL_NOTIFY_BUILD_TO"
+    mailx -s $VS_MAIL_NOTIFY_BUILD_MESSAGE -r $VS_MAIL_NOTIFY_BUILD_SENDER $VS_MAIL_NOTIFY_BUILD_TO < $VS_MAIL_NOTIFY_BUILD_MESSAGE
   fi
 }
 # ====/FUNCTIONS ====
