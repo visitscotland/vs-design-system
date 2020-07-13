@@ -136,7 +136,7 @@ public class ProductSearchBuilder {
         return this;
     }
 
-    public ProductSearchBuilder productType(ProductsSearch ps){
+    public ProductSearchBuilder fromHippoBean(ProductsSearch ps){
         if (ps.getProductType() != null) {
             ProductSearchBuilder psb = new ProductSearchBuilder();
             psb.productTypes(ps.getProductType());

@@ -61,6 +61,9 @@
 [visitscotland:ProductsSearch] > hippo:compound, hippostd:relaxed
   orderable
 
+[visitscotland:SharedLink] > hippostd:relaxed, hippotranslation:translated, visitscotland:basedocument
+  orderable
+
 [visitscotland:SingleImageModule] > hippo:compound, hippostd:relaxed
   orderable
 

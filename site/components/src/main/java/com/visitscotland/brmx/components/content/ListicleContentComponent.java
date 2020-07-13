@@ -113,9 +113,10 @@ public class ListicleContentComponent extends PageContentComponent<Listicle> {
                             }
 
                               if (flatImage == null){
+                                  //TODO: USE the new constructor instead.
                                 if (product.has(IMAGE)){
                                     JsonNode dmsImageList = product.get(IMAGE);
-                                  	flatImage = new FlatImage(dmsImageList.get(0),product.get(NAME).asText());
+                                  	flatImage = new FlatImage(dmsImageList.get(0), product.get(NAME).asText());
                                   	if (product.has(LATITUDE) && product.has(LONGITUDE)){
                                       Coordinates coordinates = new Coordinates(product.get(LATITUDE).asDouble(), product.get(LONGITUDE).asDouble());
                                       flatImage.setCoordinates(coordinates);

@@ -5,6 +5,7 @@ import com.visitscotland.brmx.beans.Megalinks;
 import com.visitscotland.brmx.beans.MegalinksMockService;
 import com.visitscotland.brmx.beans.mapping.megalinks.AbstractLayout;
 import com.visitscotland.brmx.components.content.factory.LinkModulesFactory;
+import com.visitscotland.brmx.dms.ProductSearchBuilder;
 import com.visitscotland.brmx.utils.HippoUtilsService;
 import org.hippoecm.hst.core.component.HstRequest;
 import org.hippoecm.hst.mock.core.component.MockHstRequest;
@@ -43,7 +44,7 @@ public class DestinationContentComponentTest {
         replay(dcc);
 
         //Mocking the object prevents the initialization of the variables
-        dcc.linksFactory = new LinkModulesFactory(createNiceMock(HippoUtilsService.class));
+        dcc.linksFactory = new LinkModulesFactory(createNiceMock(HippoUtilsService.class), new ProductSearchBuilder());
 
         return dcc;
     }

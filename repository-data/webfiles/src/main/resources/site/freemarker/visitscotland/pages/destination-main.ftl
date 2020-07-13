@@ -34,16 +34,16 @@
 			<@hst.link var="hero" hippobean=document.heroImage.original/>
 			<vs-hero
 					slot="hero"
-					alt-text="${heroImage.altText}"
-					credit="${heroImage.credit}"
-					caption="${heroImage.description}"
+					alt-text="${heroImage.altText!''}"
+					credit="${heroImage.credit!''}"
+					caption="${heroImage.description!''}"
 					image-src="${hero}"
 					latitude="${(heroCoordinates.latitude)!''}"
 					longitude="${(heroCoordinates.longitude)!''}"
 			>
 				<vs-img
 						src="${hero}"
-						alt="${document.heroImage.altText}"
+						alt="${heroImage.altText!''}"
 				> </vs-img>
 			</vs-hero>
 		<vs-container slot="upper" class="py-lg-4">
@@ -97,12 +97,19 @@
 				</vs-row>
 
 
-				<#--Macro for Featured-->
+				<#-- Macro for Featured -->
 				<#if item.getType()== "FeaturedLayout" >
 					<#list item.featuredLinks as feature>
-						<#assign image>
-							<@hst.link hippobean=feature.image.cmsImage.original/>
-						</#assign>
+						<#if feature.image.cmsImage??>
+							<#assign image>
+								<@hst.link hippobean=feature.image.cmsImage.original/>
+							</#assign>
+						<#else>
+							<#assign image>
+								${feature.image.externalImage}
+							</#assign>
+						</#if>
+
 						<vs-row>
 							<vs-col cols="6" lg="6" offset-lg="1">
 								<#--TODO for links the image does not have caption-->
@@ -123,9 +130,15 @@
 
 					<vs-row>
 						<#list item.links as megalink>
-							<#assign image>
-								<@hst.link hippobean=megalink.image.cmsImage.original/>
-							</#assign>
+							<#if megalink.image.cmsImage??>
+								<#assign image>
+									<@hst.link hippobean=feature.image.cmsImage.original/>
+								</#assign>
+							<#else>
+								<#assign image>
+									${megalink.image.externalImage}
+								</#assign>
+							</#if>
 							<vs-col cols="4" lg="4">
 								<#--TODO for links the image does not have caption-->
 								<@imageWithCaption imageSrc=image imageDetails=megalink.image variant="fullwidth"/>
@@ -142,11 +155,17 @@
 					</vs-row>
 					</br> </br>
 
+
+
 				<#--Macro for single image-->
 				<#elseif item.getType()== "SingleImageLayout">
-					<#assign image>
-						<@hst.link hippobean=item.image.cmsImage.original/>
-					</#assign>
+					<#if feature.image.cmsImage??>
+						<#assign image>
+							<@hst.link hippobean=feature.image.cmsImage.original/>
+						</#assign>
+					<#else>
+						<#assign image = feature.image.externalImage!'' />
+					</#if>
 					<vs-row>
 						<#if item.fullWidth == true>
 							<vs-col cols="12" lg="12">
@@ -160,6 +179,16 @@
 							<vs-col cols="6" lg="6">
 								<vs-rich-text-wrapper variant="lead">
 									<@hst.html hippohtml=item.innerIntroduction/> </br>
+                                    <ol>
+									<#list item.links as megalink>
+                                        <vs-row>
+                                            <vs-col cols="4" lg="4" offset-lg="1">
+                                                <vs-link href="${megalink.link}"> ${megalink.label}</vs-link> </br>
+                                            </vs-col>
+
+                                        </vs-row>
+									</#list>
+                                    </ol>
 								</vs-rich-text-wrapper>
 							</vs-col>
 						<#else>
@@ -170,6 +199,16 @@
 								<vs-rich-text-wrapper variant="lead">
 									<@hst.html hippohtml=item.innerIntroduction/> </br>
 								</vs-rich-text-wrapper>
+                                <ol>
+									<#list item.links as megalink>
+										<vs-row>
+											<vs-col cols="4" lg="4" offset-lg="1">
+												<vs-link href="${megalink.link}"> ${megalink.label}</vs-link> </br>
+											</vs-col>
+
+										</vs-row>
+									</#list>
+                                </ol>
 							</vs-col>
 							<vs-col cols="4" lg="4">
 								<#--FOR SIMPLE IMAGE, THE IMAGE HAS CAPTION-->
@@ -178,25 +217,20 @@
 						</#if>
 
 					</vs-row>
-					<ol>
-					<#list item.links as megalink>
-						<vs-row>
-							<vs-col cols="4" lg="4" offset-lg="1">
-								<vs-link href="${megalink.link}"> ${megalink.label}</vs-link> </br>
-							</vs-col>
 
-						</vs-row>
-					</#list>
-					</ol>
 
 				<#--Macro for list-->
 				<#else>
 					<ol>
 						<vs-row>
 							<#list item.links as megalink>
-								<#assign image>
-									<@hst.link hippobean=megalink.image.cmsImage.original/>
-								</#assign>
+								<#if megalink.image.cmsImage??>
+									<#assign image>
+										<@hst.link hippobean=megalink.image.cmsImage.original/>
+									</#assign>
+								<#else>
+									<#assign image = megalink.image.externalImage!'' />
+								</#if>
 								<vs-col cols="3" lg="3">
 									<#--TODO for links the image does not have caption-->
 									<@imageWithCaption imageSrc=image imageDetails=megalink.image variant="fullwidth"/>

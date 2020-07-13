@@ -32,6 +32,10 @@ public class FlatImage {
     final String MEDIA = "mediaUrl";
     final String CREDIT = "copyright";
     final String ALT_TEXT = "altText";
+    final String IMAGE = "images";
+    final String NAME = "name";
+    final String LATITUDE = "latitude";
+    final String LONGITUDE = "longitude";
 
     public FlatImage(){
     }
@@ -86,6 +90,22 @@ public class FlatImage {
         this.source = Source.INSTAGRAM;
         this.postUrl = Properties.INSTAGRAM_API  + instagramLink.getId();
         this.coordinates = setInstagramCoordinates(instagramLink,locale);
+    }
+
+    public FlatImage(JsonNode product) {
+        if (product.has(IMAGE)){
+            JsonNode dmsImage = product.get(IMAGE).get(0);
+            this.externalImage = (dmsImage.has(MEDIA) ? dmsImage.get(MEDIA).asText() : null);
+            this.credit = (dmsImage.has(CREDIT) ? dmsImage.get(CREDIT).asText() : null);
+            this.description = (dmsImage.has(ALT_TEXT) ? dmsImage.get(ALT_TEXT).asText() : product.get(NAME).asText());
+            this.altText = this.description;
+
+            if (product.has(LATITUDE) && product.has(LONGITUDE)){
+                this.coordinates = new Coordinates(product.get(LATITUDE).asDouble(), product.get(LONGITUDE).asDouble());
+            }
+        } else {
+            //TODO: LOG WARNING
+        }
     }
 
     public FlatImage(JsonNode dmsImage, String productName) {
