@@ -403,8 +403,9 @@ findDynamicPorts() {
   done
   unset VS_CONTAINER_INT_PORT
   for SERVICE in $VS_CONTAINER_SERVICE_LIST; do
+    unset MAPPINGS
     for MAPPING in `set | egrep "VS_CONTAINER_(INT|EXT)_PORT_$SERVICE"`; do MAPPINGS=$MAPPINGS" "$MAPPING; done
-    echo "for service $SERVICE $MAPPINGS" 
+    echo " - for service $SERVICE: $MAPPINGS" 
   done
 }
 
