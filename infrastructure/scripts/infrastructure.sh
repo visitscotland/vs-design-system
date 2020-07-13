@@ -78,8 +78,8 @@ checkVariables() {
     exit 3
   elif [ "$LOGNAME" = "jenkins" ] && [ ! -z "JENKINS_SERVER_COOKIE" ]; then
     echo "$VS_SCRIPTNAME appears to be running from a Jenkins job"
-    echo " - exporting selected variables to $VS_JENKINS_LAST_ENV"
-    prtenv | egrep "JENKINS_(HOME|URL)|JOB_((BASE_)?NAME|(DISPLAY_)?URL|VS_(DOCKER|BRC|COMMIT"
+    echo " - exporting selected variables to ./$VS_JENKINS_LAST_ENV"
+    printenv | egrep "JENKINS_(HOME|URL)|JOB_((BASE_)?NAME|(DISPLAY_)?URL)|VS_(DOCKER|BRC|COMMIT)" | tee $VS_JENKINS_LAST_ENV
   elif [ "$LOGNAME" = "jenkins" ] && [ -z "$JOB_NAME" ] && [ -e $VS_JENKINS_LAST_ENV ]; then
     echo "$VS_SCRIPTNAME was called from a Jenkins workspace but not by a Jenkins job"
     echo " - setting Jenkins environment variables from last run"
