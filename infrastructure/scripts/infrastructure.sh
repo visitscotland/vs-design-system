@@ -44,6 +44,7 @@ if [ -z "$VS_CONTAINER_DYN_PORT_MAX" ]; then VS_CONTAINER_DYN_PORT_MAX=8999; fi
 if [ -z "$VS_CONTAINER_INT_PORT_SSR" ]; then VS_CONTAINER_INT_PORT_SSR=8082; fi
 if [ -z "$VS_CONTAINER_INT_PORT_SSH" ]; then VS_CONTAINER_INT_PORT_SSH=22; fi
 if [ -z "$VS_CONTAINER_INT_PORT_TLN" ]; then VS_CONTAINER_INT_PORT_TLN=8081; fi
+if [ -z "$VS_CONTAINER_PRESERVE_RUNNING" ]; then VS_CONTAINER_RESERVE_RUNNING=TRUE; fi
 #  ==== SSR Application Variables ====
 if [ -z "$VS_FRONTEND_DIR" ]; then VS_FRONTEND_DIR=frontend; fi
 if [ -z "$VS_SSR_PACKAGE_SOURCE" ]; then VS_SSR_PACKAGE_SOURCE="$VS_FRONTEND_DIR/ssr/server/ $VS_FRONTEND_DIR/dist/ssr/ $VS_FRONTEND_DIR/node_modules/"; fi
@@ -384,11 +385,24 @@ findBasePort() {
 
 findDynamicPorts() {
   echo "Finding free ports at an increment of $VS_CONTAINER_PORT_INCREMENT to dynamically map to other servies on the new container - up to $VS_CONTAINER_DYN_PORT_MAX"
+  THIS_PORT=$((VS_CONTAINER_BASE_PORT+$VS_CONTAINER_PORT_INCREMENT))
   for VS_CONTAINER_INT_PORT in `set | grep "VS_CONTAINER_INT_PORT_"`; do
     VS_CONTAINER_SERVICE=`echo "$VS_CONTAINER_INT_PORT" | sed -e "s/.*_//g" | sed -e "s/=.*//g"`
+    VS_CONTAINER_SERVICE_PORT=`echo "$VS_CONTAINER_INT_PORT" | sed -e "s/.*=//g"`
     VS_CONTAINER_SERVICE_LIST=$VS_CONTAINER_SERVICE_LIST" "$VS_CONTAINER_SERVICE
+    VS_CONTAINER_SERVICE_LIST_PORTS=$VS_CONTAINER_SERVICE_LIST_PORTS" "$VS_CONTAINER_SERVICE_PORT
+    while [ $THIS_PORT -le $VS_CONTAINER_DYN_PORT_MAX ]; do
+      FREE=`netstat -an | egrep "LISTEN *$" | grep $THIS_PORT`
+      if [ "$FREE" = "" ]; then
+        echo " - netstat says $THIS_PORT is free - using it"
+	eval "VS_CONTAINER_EXT_PORT_"$VS_CONTAINER_SERVICE"="$THIS_PORT
+	THIS_PORT=$((THIS_PORT+$VS_CONTAINER_PORT_INCREMENT))
+      fi
+    done
   done
-  echo $VS_CONTAINER_SERVICE_LIST  
+  for SERVICE in $VS_CONTAINER_SERVICE_LIST; do
+    set | egep "VS_CONTAINER_(INT|EXT)_PORT_$SERVICE"
+  done
 }
 
 # search for latest Hippo distribution files if HIPPO_LATEST is not already set
