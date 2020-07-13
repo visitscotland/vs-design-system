@@ -401,7 +401,8 @@ findDynamicPorts() {
     done
   done
   for SERVICE in $VS_CONTAINER_SERVICE_LIST; do
-    set | egep "VS_CONTAINER_(INT|EXT)_PORT_$SERVICE"
+    echo "for service $SERVICE"
+    set | egrep "VS_CONTAINER_(INT|EXT)_PORT_$SERVICE"
   done
 }
 
