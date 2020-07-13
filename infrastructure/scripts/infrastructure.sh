@@ -397,6 +397,7 @@ findDynamicPorts() {
         echo " - netstat says $THIS_PORT is free - using it"
 	eval "VS_CONTAINER_EXT_PORT_"$VS_CONTAINER_SERVICE"="$THIS_PORT
 	THIS_PORT=$((THIS_PORT+$VS_CONTAINER_PORT_INCREMENT))
+	break
       fi
     done
   done
