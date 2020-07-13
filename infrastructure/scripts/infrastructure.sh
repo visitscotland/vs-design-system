@@ -382,7 +382,7 @@ findBasePort() {
   echo ""
 }
 
-findAdditionalPorts() {
+findDynamicPorts() {
   echo "Finding free ports at an increment of $VS_CONTAINER_PORT_INCREMENT to dynamically map to other servies on the new container - up to $VS_MAX_DYN_PORT"
   for VS_CONTAINER_INT_PORT in `printenv | grep "VS_CONTAINER_INT_PORT"`; do echo $VS_CONTAINER_INT_PORT; done
 }
@@ -603,6 +603,7 @@ case $METHOD in
     tidyContainers
     setPortRange
     findBasePort
+    findDynamicPorts
     findHippoArtifact
     packageSSRArtifact
     containerCreateAndStart
