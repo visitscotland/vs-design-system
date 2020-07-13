@@ -262,9 +262,17 @@ class LinkModulesFactoryTest extends EasyMockSupport {
     }
 
     @Test
-    void External_nonExistingDMSItem(){
+    void DMS_productDoesNotExist(){
 
     }
+
+    @Test
+    void sharedLink_noImageDefined(){
+
+    }
+
+
+
 
 
 }

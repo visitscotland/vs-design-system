@@ -10,7 +10,7 @@ import com.visitscotland.brmx.utils.Properties;
 
 import java.util.Locale;
 
-public class FlatImage {
+public class FlatImage extends IssueList {
 
     public enum Source {
         INSTAGRAM;
@@ -36,6 +36,7 @@ public class FlatImage {
     final String NAME = "name";
     final String LATITUDE = "latitude";
     final String LONGITUDE = "longitude";
+    final String ID = "longitude";
 
     public FlatImage(){
     }
@@ -103,8 +104,8 @@ public class FlatImage {
             if (product.has(LATITUDE) && product.has(LONGITUDE)){
                 this.coordinates = new Coordinates(product.get(LATITUDE).asDouble(), product.get(LONGITUDE).asDouble());
             }
-        } else {
-            //TODO: LOG WARNING
+        } else if (product != null) {
+            addError(String.format("The product %s does not have an image", product.has(ID)?product.get(ID):null));
         }
     }
 

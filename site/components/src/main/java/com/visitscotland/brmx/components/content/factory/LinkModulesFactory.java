@@ -13,7 +13,6 @@ import com.visitscotland.brmx.dms.ProductSearchBuilder;
 import com.visitscotland.brmx.utils.CommonUtils;
 import com.visitscotland.brmx.utils.HippoUtilsService;
 import com.visitscotland.brmx.utils.Properties;
-import org.hippoecm.hst.content.beans.standard.HippoBean;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -33,8 +32,8 @@ public class LinkModulesFactory {
     private final static String URL = "url";
     private final static String IMAGE = "images";
 
-    final HippoUtilsService utils;
-    final ProductSearchBuilder psBuilder;
+    private final HippoUtilsService utils;
+    private final ProductSearchBuilder psBuilder;
 
     public LinkModulesFactory() {
         this(new HippoUtilsService(), new ProductSearchBuilder());
@@ -45,29 +44,29 @@ public class LinkModulesFactory {
         this.psBuilder = psb;
     }
 
-    public AbstractLayout getMegalinkModule(Megalinks doc, Locale locale){
-        if (!Boolean.TRUE.equals(doc.getListLayout()) && doc.getSingleImageModule() != null){
+    public AbstractLayout getMegalinkModule(Megalinks doc, Locale locale) {
+        if (!Boolean.TRUE.equals(doc.getListLayout()) && doc.getSingleImageModule() != null) {
             return singleImageLayout(doc, locale);
-        } else if (Boolean.TRUE.equals(doc.getListLayout()) || doc.getMegalinkItems().size() > MAX_ITEMS){
+        } else if (Boolean.TRUE.equals(doc.getListLayout()) || doc.getMegalinkItems().size() > MAX_ITEMS) {
             return list(doc, locale);
         } else {
             return featuredLayout(doc, locale);
         }
     }
 
-    public SingleImageLayout singleImageLayout(Megalinks doc, Locale locale){
-        SingleImageLayout sil = new SingleImageLayout ();
+    public SingleImageLayout singleImageLayout(Megalinks doc, Locale locale) {
+        SingleImageLayout sil = new SingleImageLayout();
         sil.setTitle(doc.getTitle());
         sil.setIntroduction(doc.getIntroduction());
 
         sil.setInnerTitle(doc.getSingleImageModule().getTitle());
         sil.setInnerIntroduction(doc.getSingleImageModule().getIntroduction());
-        sil.setImage(createFlatImage(doc.getSingleImageModule().getImage(),locale));
+        sil.setImage(createFlatImage(doc.getSingleImageModule().getImage(), locale));
         sil.setFullWidth(doc.getSingleImageModule().getFullWidth());
         sil.setLinks(convertoToFlatLinks(doc.getMegalinkItems(), locale));
         sil.setMegalinkItem(doc);
 
-        //TODO cta?
+        //Note: The requirements for the CTA haven't been defined yet
         //sil.setCta(doc.getCta());
 
         return sil;
@@ -76,7 +75,7 @@ public class LinkModulesFactory {
     /**
      * Converts a Megalinks document into a FeaturedLayout Object for easier the consumption of the data on the front
      * end.
-     *
+     * <p>
      * The number of featured items marked on the document might change depending on the following rules:
      * <ul>
      * <li>Megalinks with 2 or less featured items won't have featured items</li>
@@ -87,19 +86,19 @@ public class LinkModulesFactory {
      * to featured items</li>
      * </ul>
      *
-     * @param doc Megalink document to be converted.
+     * @param doc    Megalink document to be converted.
      * @param locale Locale of the request
-     *
      * @return FeaturedLayout containing the relevant information from the Megalinks document
      */
-    public FeaturedLayout featuredLayout(Megalinks doc, Locale locale){
+    public FeaturedLayout featuredLayout(Megalinks doc, Locale locale) {
         FeaturedLayout fl = new FeaturedLayout();
         fl.setTitle(doc.getTitle());
         fl.setIntroduction(doc.getIntroduction());
         fl.setTeaserVisible(doc.getTeaserVisible());
         fl.setMegalinkItem(doc);
-        // TODO cta?
-        //l.setCta();
+
+        // Note: The requirements for the CTA haven't been defined yet
+        //fl.setCta();
 
         fl.setLinks(convertToEnhancedLinks(doc.getMegalinkItems(), locale));
 
@@ -112,7 +111,7 @@ public class LinkModulesFactory {
                     .collect(Collectors.toCollection(ArrayList::new)));
 
             //When there is more than 3 items and no featured item the first item is promoted as featured.
-            if (fl.getFeaturedLinks().size() == 0 && fl.getLinks().size() > 3){
+            if (fl.getFeaturedLinks().size() == 0 && fl.getLinks().size() > 3) {
                 fl.getFeaturedLinks().add(fl.getLinks().get(0));
             }
 
@@ -125,29 +124,30 @@ public class LinkModulesFactory {
         return fl;
     }
 
-    public ListLayout list(Megalinks doc, Locale locale){
+    public ListLayout list(Megalinks doc, Locale locale) {
         ListLayout ll = new ListLayout();
         ll.setTitle(doc.getTitle());
         ll.setIntroduction(doc.getIntroduction());
         ll.setTeaserVisible(doc.getTeaserVisible());
         ll.setLinks(convertToEnhancedLinks(doc.getMegalinkItems(), locale));
         ll.setMegalinkItem(doc);
-        // TODO cta?
-        //l.setCta();
+
+        // Note: The requirements for the CTA haven't been defined yet
+        //ll.setCta();
 
         return ll;
     }
 
-    List<FlatLink> convertoToFlatLinks(List<MegalinkItem> items, Locale locale){
+    List<FlatLink> convertoToFlatLinks(List<MegalinkItem> items, Locale locale) {
         List<FlatLink> links = new ArrayList<>();
-        for (MegalinkItem item : items){
+        for (MegalinkItem item : items) {
             if (item.getLink() == null) {
                 CommonUtils.contentIssue("The module %s contains a link without any reference", item.getPath());
-            } else if (item.getLink() instanceof Page){
+            } else if (item.getLink() instanceof Page) {
                 links.add(new FlatLink(((Page) item.getLink()).getTitle(), utils.createUrl(item.getLink())));
             } else if (item.getLink() instanceof SharedLink) {
                 JsonNode node = getNodeFromSharedLink((SharedLink) item.getLink(), locale);
-                links.add(new FlatLink(((SharedLink) item.getLink()).getTitle(), getPlainLink(item.getLink(), locale, node)));
+                links.add(new FlatLink(((SharedLink) item.getLink()).getTitle(), getPlainLink((SharedLink)item.getLink(), node)));
             } else {
                 CommonUtils.contentIssue("The module %s is pointing to a document of type %s which cannot be rendered as a page", item.getPath(), item.getLink().getClass().getSimpleName());
             }
@@ -155,39 +155,36 @@ public class LinkModulesFactory {
         return links;
     }
 
-    List<EnhancedLink> convertToEnhancedLinks(List<MegalinkItem> items, Locale locale){
+    List<EnhancedLink> convertToEnhancedLinks(List<MegalinkItem> items, Locale locale) {
         List<EnhancedLink> links = new ArrayList<>();
-        for (MegalinkItem item : items){
+        for (MegalinkItem item : items) {
 
             if (item.getLink() == null) {
                 CommonUtils.contentIssue("The module %s contains a link without any reference", item.getPath());
-            } else if (item.getLink() instanceof Linkable){
+            } else if (item.getLink() instanceof Linkable) {
                 EnhancedLink link = new EnhancedLink();
-                FlatImage image = null;
                 link.setTeaser(((Linkable) item.getLink()).getTeaser());
                 link.setLabel(((Linkable) item.getLink()).getTitle());
                 link.setFeatured(item.getFeature());
-                if (((Linkable) item.getLink()).getImage() != null){
-                    image = createFlatImage(((Linkable) item.getLink()).getImage(),locale);
+                if (((Linkable) item.getLink()).getImage() != null) {
+                    link.setImage(createFlatImage(((Linkable) item.getLink()).getImage(), locale));
                 }
 
                 if (item.getLink() instanceof Page) {
                     link.setLink(utils.createUrl(item.getLink()));
                 } else if (item.getLink() instanceof SharedLink) {
                     JsonNode product = getNodeFromSharedLink((SharedLink) item.getLink(), locale);
-                    if (image == null && product != null && product.has(IMAGE)){
-                        image = new FlatImage(product);
+                    if (link.getImage() == null && product != null && product.has(IMAGE)) {
+                        link.setImage(new FlatImage(product));
                     }
-                    //TODO do the conversion in getplainLInk
-                    link.setLink(getPlainLink(((SharedLink)item.getLink()).getLinkType(), locale, product));
+                    link.setLink(getPlainLink((SharedLink) item.getLink(), product));
                 } else {
-                    //TODO log.error
+                    logger.warn("The type %s was not expected and will be skipped", item.getLink().getClass().getSimpleName());
+                    continue;
                 }
 
-                if (image == null){
-                    //TODO log content issue
-                } else {
-                    link.setImage(image);
+                if (link.getImage() == null) {
+                    CommonUtils.contentIssue("The link to %s does not have an image but it is expecting one", item.getLink());
                 }
 
                 links.add(link);
@@ -198,13 +195,12 @@ public class LinkModulesFactory {
         return links;
     }
 
-    private JsonNode getNodeFromSharedLink(SharedLink link, Locale locale){
-        if (link.getLinkType() instanceof DMSLink){
+    private JsonNode getNodeFromSharedLink(SharedLink link, Locale locale) {
+        if (link.getLinkType() instanceof DMSLink) {
             try {
                 return CommonUtils.getProduct(((DMSLink) link.getLinkType()).getProduct(), locale);
             } catch (IOException e) {
-                //TODO: log
-                e.printStackTrace();
+                logger.error(e.getMessage(), e);
             }
         }
         return null;
@@ -213,33 +209,34 @@ public class LinkModulesFactory {
     private FlatImage createFlatImage(Image img, Locale locale) {
         FlatImage flatImage = new FlatImage(img, locale);
         LocationObject locationObject = getLocation(img.getLocation(), locale);
-        if (locationObject!=null) {
+        if (locationObject != null) {
             flatImage.setCoordinates(new Coordinates(locationObject.getLatitude(), locationObject.getLongitude()));
         }
 
         return flatImage;
     }
 
-    private String getPlainLink(HippoBean link, Locale locale, JsonNode product){
-        String plainLink = null;
-        if (link instanceof DMSLink){
+    private String getPlainLink(SharedLink link, JsonNode product) {
+
+        if (link.getLinkType() instanceof DMSLink) {
             if (product == null) {//((DMSLink) link).getDmsData(locale)
-                //TODO: Log content error
+                CommonUtils.contentIssue("The product id '%s' does not exist but is linked ",
+                        ((DMSLink) link.getLinkType()).getProduct(), link.getPath());
             } else {
-                plainLink = Properties.VS_DMS_SERVICE + product.get(URL).asText();
+                return Properties.VS_DMS_SERVICE + product.get(URL).asText();
             }
-        } else if (link instanceof ExternalLink) {
-            plainLink = ((ExternalLink) link).getLink();
-        } else if (link instanceof ProductsSearch){
-            plainLink = psBuilder.fromHippoBean((ProductsSearch)link).build();
+        } else if (link.getLinkType() instanceof ExternalLink) {
+            return ((ExternalLink) link.getLinkType()).getLink();
+        } else if (link.getLinkType() instanceof ProductsSearch) {
+            return psBuilder.fromHippoBean((ProductsSearch) link.getLinkType()).build();
         } else {
-            //TODO: log error
+            logger.warn("This class %s is not recognized as a link type and cannot be converted", link.getLinkType() == null ? "null" : link.getClass().getSimpleName());
         }
-        return plainLink;
+        return null;
 
     }
 
-    LocationObject getLocation(String location, Locale locale){
+    LocationObject getLocation(String location, Locale locale) {
         return LocationLoader.getLocation(location, locale);
     }
 

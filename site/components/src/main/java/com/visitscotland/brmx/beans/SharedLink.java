@@ -7,9 +7,6 @@ import org.hippoecm.hst.content.beans.Node;
 
 import java.util.List;
 
-/** 
- * TODO: Beanwriter: Failed to create getter for node type: hippo:compound
- */
 @HippoEssentialsGenerated(internalName = "visitscotland:SharedLink")
 @Node(jcrType = "visitscotland:SharedLink")
 public class SharedLink extends BaseDocument implements Linkable {
