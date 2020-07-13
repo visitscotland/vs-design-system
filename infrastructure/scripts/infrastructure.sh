@@ -119,7 +119,7 @@ defaultSettings() {
   VS_PARENT_JOB_NAME=`echo $JOB_NAME | sed -e "s/\/.*//g"`
   VS_SCRIPTNAME=`basename $0`
   # mail settings - build
-  if [ -z "$VS_MAIL_NOTIFY_BUILD_MESSAGE_TO" ]; then VS_MAIL_NOTIFY_BUILD_MESSAGE_TO=$VS_COMMIT_AUTHOR; fi
+  if [ -z "$VS_MAIL_NOTIFY_BUILD_TO" ]; then VS_MAIL_NOTIFY_BUILD_TO=$VS_COMMIT_AUTHOR; fi
   VS_MAIL_NOTIFY_BUILD_SENDER="$VS_PARENT_JOB_NAME"
   VS_MAIL_NOTIFY_BUILD_MESSAGE=/tmp/$VS_CONTAINER_NAME.msg.notify.build
   VS_MAIL_NOTIFY_BUILD_SUBJECT="environment was build for $GIT_BRANCH in $VS_PARENT_JOB_NAME"
