@@ -63,10 +63,10 @@ pipeline {
 
     stage ('vs compile & package') {
       when {
-          expression {
-	    return env.VS_RUN_BRC_STAGES != 'TRUE';
-            return env.BRANCH_NAME != env.VS_SKIP_BUILD_FOR_BRANCH;
-          }
+        allOf {
+          expression {return env.VS_RUN_BRC_STAGES != 'TRUE'}
+          expression {return env.BRANCH_NAME != env.VS_SKIP_BUILD_FOR_BRANCH}
+        }
       }
       steps {
         // -- 20200712: QUESTION FOR SE, "why do we not build with-development-data?"
@@ -91,10 +91,10 @@ pipeline {
 
     stage ('brxm compile') {
       when {
-          expression {
-	    return env.VS_RUN_BRC_STAGES == 'TRUE';
-            return env.VS_SKIP_BRC_BLD != 'TRUE';
-            return env.BRANCH_NAME != env.VS_SKIP_BUILD_FOR_BRANCH;
+        allOf
+          expression {return env.VS_RUN_BRC_STAGES == 'TRUE'}
+          expression {return env.VS_SKIP_BRC_BLD != 'TRUE'}
+          expression {return env.BRANCH_NAME != env.VS_SKIP_BUILD_FOR_BRANCH}
           }
       }
       steps {
@@ -106,11 +106,11 @@ pipeline {
 
     stage ('brxm unit-test') {
       when {
-          expression {
-	    return env.VS_RUN_BRC_STAGES == 'TRUE';
-            return env.VS_SKIP_BRC_TST != 'TRUE';
-            return env.BRANCH_NAME != env.VS_SKIP_BUILD_FOR_BRANCH;
-          }
+        allOf
+          expression {  return env.VS_RUN_BRC_STAGES == 'TRUE'}
+          expression {  return env.VS_SKIP_BRC_TST != 'TRUE'}
+          expression {  return env.BRANCH_NAME != env.VS_SKIP_BUILD_FOR_BRANCH}
+        }
       }
       steps {
         sh 'mvn test -Pdefault'
@@ -119,11 +119,11 @@ pipeline {
 
     stage ('brxm package') {
       when {
-          expression {
-	    return env.VS_RUN_BRC_STAGES == 'TRUE';
-            return env.VS_SKIP_BRC_PKG != 'TRUE';
-            return env.BRANCH_NAME != env.VS_SKIP_BUILD_FOR_BRANCH;
-          }
+        allOf {
+          expression {return env.VS_RUN_BRC_STAGES == 'TRUE'}
+          expression {return env.VS_SKIP_BRC_PKG != 'TRUE'}
+          expression {return env.BRANCH_NAME != env.VS_SKIP_BUILD_FOR_BRANCH}
+        }
       }
       steps {
         // -- 20200712: QUESTION FOR SE, "brC does not recognise the package, maybe it needs Enterprise Features?"
@@ -164,9 +164,9 @@ pipeline {
 
     stage ('brC cxn test') {
       when {
-        expression {
-	  return env.VS_RUN_BRC_STAGES == 'TRUE';
-          return env.VS_SKIP_BRC_CXN != 'TRUE';
+        allOf {
+          expression {return env.VS_RUN_BRC_STAGES == 'TRUE'}
+	  expression {return env.VS_SKIP_BRC_CXN != 'TRUE'}
         }
       }
       steps {
@@ -194,9 +194,9 @@ pipeline {
 
     stage ('brC upload') {
       when {
-        expression {
-	  return env.VS_RUN_BRC_STAGES == 'TRUE';
-          return env.VS_SKIP_BRC_UPL != 'TRUE';
+        allOf
+          expression {return env.VS_RUN_BRC_STAGES == 'TRUE'}
+	  expression {return env.VS_SKIP_BRC_UPL != 'TRUE'}
         }
       }
       steps {
