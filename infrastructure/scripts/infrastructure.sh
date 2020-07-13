@@ -545,7 +545,7 @@ createBuildReport() {
   fi
 }
 
-mailBuildReport() {
+sendBuildReport() {
   if [ -e "$VS_MAIL_NOTIFY_BUILD_MESSAGE" ] && [ "$VS_MAIL_NOTIFY_BUILD" == "TRUE" ]; then
     mailx -s $VS_MAIL_NOTIFY_BUILD_MESSAGE -r $VS_MAIL_NOTIFY_BUILD_FROM $VS_MAIL_NOTIFY_BUILD_TO < $VS_MAIL_NOTIFY_BUILD_MESSAGE
   fi
@@ -585,6 +585,7 @@ case $METHOD in
     containerCopySSRArtifact
     containerStartHippo
     createBuildReport
+    sendBuildReport
   ;;
 esac
 # ====/RUN ====
