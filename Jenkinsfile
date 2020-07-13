@@ -91,7 +91,7 @@ pipeline {
 
     stage ('brxm compile') {
       when {
-        allOf
+        allOf {
           expression {return env.VS_RUN_BRC_STAGES == 'TRUE'}
           expression {return env.VS_SKIP_BRC_BLD != 'TRUE'}
           expression {return env.BRANCH_NAME != env.VS_SKIP_BUILD_FOR_BRANCH}
@@ -106,10 +106,10 @@ pipeline {
 
     stage ('brxm unit-test') {
       when {
-        allOf
-          expression {  return env.VS_RUN_BRC_STAGES == 'TRUE'}
-          expression {  return env.VS_SKIP_BRC_TST != 'TRUE'}
-          expression {  return env.BRANCH_NAME != env.VS_SKIP_BUILD_FOR_BRANCH}
+        allOf {
+          expression {return env.VS_RUN_BRC_STAGES == 'TRUE'}
+          expression {return env.VS_SKIP_BRC_TST != 'TRUE'}
+          expression {return env.BRANCH_NAME != env.VS_SKIP_BUILD_FOR_BRANCH}
         }
       }
       steps {
