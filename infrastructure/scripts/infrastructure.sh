@@ -383,9 +383,9 @@ findBasePort() {
 }
 
 findDynamicPorts() {
-  printenv
+  
   echo "Finding free ports at an increment of $VS_CONTAINER_PORT_INCREMENT to dynamically map to other servies on the new container - up to $VS_CONTAINER_DYN_PORT_MAX"
-  for VS_CONTAINER_INT_PORT in `printenv | grep "VS_CONTAINER_INT_PORT_"`; do echo found $VS_CONTAINER_INT_PORT; done
+  for VS_CONTAINER_INT_PORT in `set | grep "VS_CONTAINER_INT_PORT_"`; do echo found $VS_CONTAINER_INT_PORT; done
 }
 
 # search for latest Hippo distribution files if HIPPO_LATEST is not already set
