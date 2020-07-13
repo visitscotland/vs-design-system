@@ -407,12 +407,12 @@ findDynamicPorts() {
     unset MAPPINGS
     for MAPPING in `set | egrep "VS_CONTAINER_(INT|EXT)_PORT_$SERVICE"`; do
       MAPPINGS=$MAPPING" "$MAPPINGS
-      eval VS_CONTAINER_PORT_MAPPINGS="-p "$VS_CONTAINER_EXT_PORT_$SERVICE":"$VS_CONTAINER_EXT_PORT_$SERVICE" "$VS_CONTAINER_PORT_MAPPINGS
+      eval VS_CONTAINER_PORT_MAPPINGS="-p $VS_CONTAINER_EXT_PORT_$SERVICE:$VS_CONTAINER_EXT_PORT_$SERVICE $VS_CONTAINER_PORT_MAPPINGS"
     done
     echo " - for service $SERVICE: $MAPPINGS" 
     echo ""
   done
-  echo "Docker will be presented with: "$VS_CONTAINER_PORT_MAPPINGS
+  echo "Docker will be presented with: $VS_CONTAINER_PORT_MAPPINGS"
   echo ""
 }
 
@@ -544,6 +544,7 @@ containerStartHippo() {
 createBuildReport() {
   if [ ! "$SAFE_TO_PROCEED" = "FALSE" ]; then
     EXIT_CODE=0
+    echo ""
     echo "writing mail message to $VS_MAIL_NOTIFY_BUILD_MESSAGE"
     echo ""
     echo "" | tee $VS_MAIL_NOTIFY_BUILD_MESSAGE
