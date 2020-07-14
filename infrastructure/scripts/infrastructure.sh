@@ -412,7 +412,7 @@ findDynamicPorts() {
     echo " - for service $SERVICE: $MAPPINGS" 
   done
   echo ""
-  echo "Docker will be presented with: $VS_CONTAINER_PORT_MAPPINGS"
+  echo "Docker will be presented with: `eval $VS_CONTAINER_PORT_MAPPINGS`"
 }
 
 # search for latest Hippo distribution files if HIPPO_LATEST is not already set
