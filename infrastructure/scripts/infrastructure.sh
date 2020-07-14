@@ -135,7 +135,7 @@ defaultSettings() {
   if [ -z "$VS_MAIL_MESSAGE_NOTIFY_SITE_TO" ]; then VS_MAIL_MESSAGE_NOTIFY_SITE_TO=$VS_COMMIT_AUTHOR; fi
   VS_MAIL_NOTIFY_SITE_SENDER="$VS_PARENT_JOB_NAME"
   VS_MAIL_NOTIFY_SITE_MESSAGE=/tmp/$VS_CONTAINER_NAME.msg.notify.site
-  VS_MAIL_NOTIFY_SITE_SUBJECT=" $VS_PARENT_JOB_NAME environment was build for $GIT_BRANCH"
+  VS_MAIL_NOTIFY_SITE_SUBJECT="$VS_PARENT_JOB_NAME environment was built for $GIT_BRANCH"
   # mail settings - executable
   VS_WD_PARENT="$(basename `echo ${PWD%/*}`)"
   if [ ! -z $VS_MAILER_BIN ]; then
@@ -465,11 +465,7 @@ packageSSRArtifact() {
 containerCreateAndStart() {
   if [ ! "$SAFE_TO_PROCEED" = "FALSE" ]; then
     sleep 5
-    if [ "$VS_SSR_PROXY_ON" = "TRUE" ]; then
-      VS_CONTAINER_EXPOSE_PORT=$VS_SSR_APP_PORT
-      else
-      VS_CONTAINER_EXPOSE_PORT=$VS_BRXM_TOMCAT_PORT
-    fi
+    VS_CONTAINER_EXPOSE_PORT=$VS_BRXM_TOMCAT_PORT
     echo ""
     echo "about to create a new Docker container with:"
     #VS_DOCKER_CMD='docker run -d --name '$VS_CONTAINER_NAME' -p '$VS_CONTAINER_BASE_PORT':'$VS_CONTAINER_EXPOSE_PORT' --env VS_SSR_PROXY_ON='$VS_SSR_PROXY_ON' --env VS_SSR_PACKAGE_NAME='$VS_SSR_PACKAGE_NAME' '$VS_DOCKER_IMAGE_NAME' /bin/bash -c "/usr/local/bin/vs-mysqld-start && /usr/local/bin/vs-hippo && while [ ! -f /home/hippo/tomcat_8080/logs/cms.log ]; do echo no log; sleep 2; done; tail -f /home/hippo/tomcat_8080/logs/cms.log"'
