@@ -410,7 +410,7 @@ findDynamicPorts() {
     done
     EXT=`set | egrep "VS_CONTAINER_EXT_PORT_$SERVICE" | sed -e "s/.*=//g"`
     INT=`set | egrep "VS_CONTAINER_INT_PORT_$SERVICE" | sed -e "s/.*=//g"`
-    VS_CONTAINER_PORT_MAPPINGS="-p $EXT:$INT" $VS_CONTAINER_PORT_MAPPINGS"`
+    VS_CONTAINER_PORT_MAPPINGS="-p $EXT:$INT" $VS_CONTAINER_PORT_MAPPINGS"
     echo " - for service $SERVICE: $MAPPINGS" 
   done
   echo ""
