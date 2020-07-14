@@ -397,6 +397,8 @@ findDynamicPorts() {
         #echo " - netstat says $THIS_PORT is free - using it"
 	eval "VS_CONTAINER_EXT_PORT_"$VS_CONTAINER_SERVICE"="$THIS_PORT
 	THIS_PORT=$((THIS_PORT+$VS_CONTAINER_PORT_INCREMENT))
+	THIS_DOCKER_MAP="-p $THIS_PORT:$VS_CONTAINER_INT_PORT"
+	VS_CONTAINER_PORT_MAPPINGS=$THIS_DOCKER_MAP" "$ VS_CONTAINER_PORT_MAPPINGS
 	break
       fi
       echo " - $THIS_PORT is in use, trying "$((THIS_PORT+$VS_CONTAINER_PORT_INCREMENT))
@@ -408,9 +410,9 @@ findDynamicPorts() {
     for MAPPING in `set | egrep "VS_CONTAINER_(INT|EXT)_PORT_$SERVICE"`; do
       MAPPINGS=$MAPPING" "$MAPPINGS
     done
-    EXT=`set | egrep "VS_CONTAINER_EXT_PORT_$SERVICE" | sed -e "s/.*=//g"`
-    INT=`set | egrep "VS_CONTAINER_INT_PORT_$SERVICE" | sed -e "s/.*=//g"`
-    VS_CONTAINER_PORT_MAPPINGS="-p $EXT:$INT $VS_CONTAINER_PORT_MAPPINGS"
+#    THIS_EXT=`set | egrep "VS_CONTAINER_EXT_PORT_$SERVICE" | sed -e "s/.*=//g"`
+#    THIS_INT=`set | egrep "VS_CONTAINER_INT_PORT_$SERVICE" | sed -e "s/.*=//g"`
+#    VS_CONTAINER_PORT_MAPPINGS="-p $EXT:$INT $VS_CONTAINER_PORT_MAPPINGS"
     echo " - for service $SERVICE: $MAPPINGS" 
   done
   echo ""
