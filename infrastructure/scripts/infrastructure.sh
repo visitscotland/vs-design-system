@@ -408,11 +408,11 @@ findDynamicPorts() {
     for MAPPING in `set | egrep "VS_CONTAINER_(INT|EXT)_PORT_$SERVICE"`; do
       MAPPINGS=$MAPPING" "$MAPPINGS
     done
-    VS_CONTAINER_PORT_MAPPINGS="-p $`eval echo "VS_CONTAINER_EXT_PORT_"$SERVICE`:$`eval echo "VS_CONTAINER_INT_PORT_"$SERVICE` $VS_CONTAINER_PORT_MAPPINGS"
+    VS_CONTAINER_PORT_MAPPINGS=eval echo "-p $`eval echo "VS_CONTAINER_EXT_PORT_"$SERVICE`:$`eval echo "VS_CONTAINER_INT_PORT_"$SERVICE` $VS_CONTAINER_PORT_MAPPINGS"
     echo " - for service $SERVICE: $MAPPINGS" 
   done
   echo ""
-  echo "Docker will be presented with: `eval $VS_CONTAINER_PORT_MAPPINGS`"
+  echo "Docker will be presented with: $VS_CONTAINER_PORT_MAPPINGS"
 }
 
 # search for latest Hippo distribution files if HIPPO_LATEST is not already set
@@ -592,7 +592,7 @@ sendBuildReport() {
   if [ -e "$VS_MAIL_NOTIFY_BUILD_MESSAGE" ] && [ "$VS_MAIL_NOTIFY_BUILD" == "TRUE" ]; then
     echo ""
     echo "sending environment build notification to $VS_MAIL_NOTIFY_BUILD_TO"
-    mailx -s $VS_MAIL_NOTIFY_BUILD_SUBJECT -r $VS_MAIL_NOTIFY_BUILD_SENDER $VS_MAIL_NOTIFY_BUILD_TO < $VS_MAIL_NOTIFY_BUILD_MESSAGE
+    mailx -s "$VS_MAIL_NOTIFY_BUILD_SUBJECT" -r "$VS_MAIL_NOTIFY_BUILD_SENDER" "$VS_MAIL_NOTIFY_BUILD_TO" < $VS_MAIL_NOTIFY_BUILD_MESSAGE
   fi
 }
 
@@ -600,7 +600,7 @@ sendSiteReport() {
   if [ -e "$VS_MAIL_NOTIFY_SITE_MESSAGE" ] && [ "$VS_MAIL_NOTIFY_SITE" == "TRUE" ]; then
     echo ""
     echo "sending site check notification to $VS_MAIL_NOTIFY_SITE_TO"
-    mailx -s $VS_MAIL_NOTIFY_SITE_SUBJECT -r $VS_MAIL_NOTIFY_SITE_SENDER $VS_MAIL_NOTIFY_SITE_TO < $VS_MAIL_NOTIFY_SITE_MESSAGE
+    mailx -s "$VS_MAIL_NOTIFY_SITE_SUBJECT" -r "$VS_MAIL_NOTIFY_SITE_SENDER" "$VS_MAIL_NOTIFY_SITE_TO" < $VS_MAIL_NOTIFY_SITE_MESSAGE
   fi
 }
 
