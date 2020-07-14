@@ -408,7 +408,9 @@ findDynamicPorts() {
     for MAPPING in `set | egrep "VS_CONTAINER_(INT|EXT)_PORT_$SERVICE"`; do
       MAPPINGS=$MAPPING" "$MAPPINGS
     done
-    VS_CONTAINER_PORT_MAPPINGS=`eval echo "-p $`eval echo "VS_CONTAINER_EXT_PORT_"$SERVICE`:$`eval echo "VS_CONTAINER_INT_PORT_"$SERVICE` $VS_CONTAINER_PORT_MAPPINGS"`
+    EXT=`set | egrep "VS_CONTAINER_EXT_PORT_$SERVICE" | sed -e "s/.*=//g"`
+    INT=`set | egrep "VS_CONTAINER_INT_PORT_$SERVICE" | sed -e "s/.*=//g"`
+    VS_CONTAINER_PORT_MAPPINGS="-p $EXT:$INT" $VS_CONTAINER_PORT_MAPPINGS"`
     echo " - for service $SERVICE: $MAPPINGS" 
   done
   echo ""
