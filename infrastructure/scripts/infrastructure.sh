@@ -410,12 +410,10 @@ findDynamicPorts() {
     for MAPPING in `set | egrep "VS_CONTAINER_(INT|EXT)_PORT_$SERVICE"`; do
       MAPPINGS=$MAPPING" "$MAPPINGS
     done
-#    THIS_EXT=`set | egrep "VS_CONTAINER_EXT_PORT_$SERVICE" | sed -e "s/.*=//g"`
-#    THIS_INT=`set | egrep "VS_CONTAINER_INT_PORT_$SERVICE" | sed -e "s/.*=//g"`
-#    VS_CONTAINER_PORT_MAPPINGS="-p $EXT:$INT $VS_CONTAINER_PORT_MAPPINGS"
     echo " - for service $SERVICE: $MAPPINGS" 
   done
-  echo " - Docker will be presented with: $VS_CONTAINER_PORT_MAPPINGS"
+  echo " - docker will be presented with: $VS_CONTAINER_PORT_MAPPINGS"
+  echo ""
 }
 
 # search for latest Hippo distribution files if HIPPO_LATEST is not already set
@@ -475,7 +473,7 @@ containerCreateAndStart() {
     echo ""
     echo "about to create a new Docker container with:"
     #VS_DOCKER_CMD='docker run -d --name '$VS_CONTAINER_NAME' -p '$VS_CONTAINER_BASE_PORT':'$VS_CONTAINER_EXPOSE_PORT' --env VS_SSR_PROXY_ON='$VS_SSR_PROXY_ON' --env VS_SSR_PACKAGE_NAME='$VS_SSR_PACKAGE_NAME' '$VS_DOCKER_IMAGE_NAME' /bin/bash -c "/usr/local/bin/vs-mysqld-start && /usr/local/bin/vs-hippo && while [ ! -f /home/hippo/tomcat_8080/logs/cms.log ]; do echo no log; sleep 2; done; tail -f /home/hippo/tomcat_8080/logs/cms.log"'
-    VS_DOCKER_CMD='docker run -d --name '$VS_CONTAINER_NAME' -p '$VS_CONTAINER_BASE_PORT':'$VS_CONTAINER_EXPOSE_PORT' --env VS_SSR_PROXY_ON='$VS_SSR_PROXY_ON' --env VS_SSR_PACKAGE_NAME='$VS_SSR_PACKAGE_NAME' '$VS_DOCKER_IMAGE_NAME' /bin/bash -c "/usr/local/bin/vs-mysqld-start && while [ ! -f /home/hippo/tomcat_8080/logs/cms.log ]; do echo no log; sleep 2; done; tail -f /home/hippo/tomcat_8080/logs/cms.log"'
+    VS_DOCKER_CMD='docker run -d --name '$VS_CONTAINER_NAME' -p '$VS_CONTAINER_BASE_PORT':'$VS_CONTAINER_EXPOSE_PORT' '$VS_CONTAINER_PORT_MAPPINGS' --env VS_SSR_PROXY_ON='$VS_SSR_PROXY_ON' --env VS_SSR_PACKAGE_NAME='$VS_SSR_PACKAGE_NAME' '$VS_DOCKER_IMAGE_NAME' /bin/bash -c "/usr/local/bin/vs-mysqld-start && while [ ! -f /home/hippo/tomcat_8080/logs/cms.log ]; do echo no log; sleep 2; done; tail -f /home/hippo/tomcat_8080/logs/cms.log"'
     echo " - $VS_DOCKER_CMD"
     eval $VS_DOCKER_CMD
     RETURN_CODE=$?; echo $RETURN_CODE
