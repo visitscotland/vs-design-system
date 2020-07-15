@@ -8,6 +8,7 @@ import com.visitscotland.brmx.beans.mapping.Coordinates;
 import com.visitscotland.brmx.beans.mapping.FlatImage;
 import com.visitscotland.brmx.beans.mapping.FlatLink;
 import com.visitscotland.brmx.beans.mapping.megalinks.*;
+import com.visitscotland.brmx.dms.DMSDataService;
 import com.visitscotland.brmx.dms.LocationLoader;
 import com.visitscotland.brmx.dms.ProductSearchBuilder;
 import com.visitscotland.brmx.utils.CommonUtils;
@@ -33,15 +34,17 @@ public class LinkModulesFactory {
     private final static String IMAGE = "images";
 
     private final HippoUtilsService utils;
+    private final DMSDataService dmsData;
     private final ProductSearchBuilder psBuilder;
 
     public LinkModulesFactory() {
-        this(new HippoUtilsService(), new ProductSearchBuilder());
+        this(new HippoUtilsService(), new ProductSearchBuilder(), new DMSDataService());
     }
 
-    public LinkModulesFactory(HippoUtilsService utils, ProductSearchBuilder psb) {
+    public LinkModulesFactory(HippoUtilsService utils, ProductSearchBuilder psb, DMSDataService dmsData) {
         this.utils = utils;
         this.psBuilder = psb;
+        this.dmsData = dmsData;
     }
 
     public AbstractLayout getMegalinkModule(Megalinks doc, Locale locale) {
@@ -63,7 +66,7 @@ public class LinkModulesFactory {
         sil.setInnerIntroduction(doc.getSingleImageModule().getIntroduction());
         sil.setImage(createFlatImage(doc.getSingleImageModule().getImage(), locale));
         sil.setFullWidth(doc.getSingleImageModule().getFullWidth());
-        sil.setLinks(convertoToFlatLinks(doc.getMegalinkItems(), locale));
+        sil.setLinks(convertToFlatLinks(doc.getMegalinkItems(), locale));
         sil.setMegalinkItem(doc);
 
         //Note: The requirements for the CTA haven't been defined yet
@@ -138,7 +141,7 @@ public class LinkModulesFactory {
         return ll;
     }
 
-    List<FlatLink> convertoToFlatLinks(List<MegalinkItem> items, Locale locale) {
+    List<FlatLink> convertToFlatLinks(List<MegalinkItem> items, Locale locale) {
         List<FlatLink> links = new ArrayList<>();
         for (MegalinkItem item : items) {
             if (item.getLink() == null) {
@@ -179,7 +182,7 @@ public class LinkModulesFactory {
                     }
                     link.setLink(getPlainLink((SharedLink) item.getLink(), product));
                 } else {
-                    logger.warn("The type %s was not expected and will be skipped", item.getLink().getClass().getSimpleName());
+                    logger.warn(String.format("The type %s was not expected and will be skipped", item.getLink().getClass().getSimpleName()));
                     continue;
                 }
 
@@ -198,7 +201,7 @@ public class LinkModulesFactory {
     private JsonNode getNodeFromSharedLink(SharedLink link, Locale locale) {
         if (link.getLinkType() instanceof DMSLink) {
             try {
-                return CommonUtils.getProduct(((DMSLink) link.getLinkType()).getProduct(), locale);
+                return dmsData.productCard(((DMSLink) link.getLinkType()).getProduct(), locale);
             } catch (IOException e) {
                 logger.error(e.getMessage(), e);
             }
@@ -230,7 +233,7 @@ public class LinkModulesFactory {
         } else if (link.getLinkType() instanceof ProductsSearch) {
             return psBuilder.fromHippoBean((ProductsSearch) link.getLinkType()).build();
         } else {
-            logger.warn("This class %s is not recognized as a link type and cannot be converted", link.getLinkType() == null ? "null" : link.getClass().getSimpleName());
+            logger.warn(String.format("This class %s is not recognized as a link type and cannot be converted", link.getLinkType() == null ? "null" : link.getClass().getSimpleName()));
         }
         return null;
 

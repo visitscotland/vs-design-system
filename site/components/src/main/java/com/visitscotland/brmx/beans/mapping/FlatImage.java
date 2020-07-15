@@ -98,8 +98,8 @@ public class FlatImage extends IssueList {
             JsonNode dmsImage = product.get(IMAGE).get(0);
             this.externalImage = (dmsImage.has(MEDIA) ? dmsImage.get(MEDIA).asText() : null);
             this.credit = (dmsImage.has(CREDIT) ? dmsImage.get(CREDIT).asText() : null);
-            this.description = (dmsImage.has(ALT_TEXT) ? dmsImage.get(ALT_TEXT).asText() : product.get(NAME).asText());
-            this.altText = this.description;
+            this.altText = (dmsImage.has(ALT_TEXT) ? dmsImage.get(ALT_TEXT).asText() : product.get(NAME).asText());
+            this.description = this.altText;
 
             if (product.has(LATITUDE) && product.has(LONGITUDE)){
                 this.coordinates = new Coordinates(product.get(LATITUDE).asDouble(), product.get(LONGITUDE).asDouble());

@@ -5,6 +5,7 @@ import com.visitscotland.brmx.beans.dms.LocationObject;
 import com.visitscotland.brmx.beans.mapping.megalinks.AbstractLayout;
 import com.visitscotland.brmx.beans.mapping.megalinks.FeaturedLayout;
 import com.visitscotland.brmx.beans.mapping.megalinks.SingleImageLayout;
+import com.visitscotland.brmx.dms.DMSDataService;
 import com.visitscotland.brmx.dms.ProductSearchBuilder;
 import com.visitscotland.brmx.utils.HippoUtilsService;
 import org.easymock.EasyMockSupport;
@@ -35,6 +36,7 @@ class LinkModulesFactoryTest extends EasyMockSupport {
     private LinkModulesFactory factory;
     private HippoUtilsService utils;
     private ProductSearchBuilder psb;
+    private DMSDataService dms;
 
     /**
      * {@code factory} needs an static method (createUrl) to be mocked since it relies on a static BloomReach dependency
@@ -51,10 +53,13 @@ class LinkModulesFactoryTest extends EasyMockSupport {
     void initFactory(){
         utils = createNiceMock(HippoUtilsService.class);
         psb = new ProductSearchBuilder();
+        dms = new DMSDataService();
 
         expect(utils.createUrl(anyObject(HippoBean.class))).andStubReturn("/fake-url/mock");
 
-        factory = partialMockBuilder(LinkModulesFactory.class).withConstructor(HippoUtilsService.class, ProductSearchBuilder.class).withArgs(utils, psb)
+        factory = partialMockBuilder(LinkModulesFactory.class)
+                .withConstructor(HippoUtilsService.class,ProductSearchBuilder.class,DMSDataService.class)
+                .withArgs(utils, psb, dms)
                 .addMockedMethod("getLocation", String.class, Locale.class)
                 .createMock();
 
@@ -181,7 +186,7 @@ class LinkModulesFactoryTest extends EasyMockSupport {
         MegalinkItem mi = megalinkItemService.createMock(false);
 
         verifyAll();
-        Assertions.assertEquals(factory.convertoToFlatLinks(Collections.singletonList(mi), null).size(), 1);
+        Assertions.assertEquals(factory.convertToFlatLinks(Collections.singletonList(mi), null).size(), 1);
         Assertions.assertEquals(factory.convertToEnhancedLinks(Collections.singletonList(mi), Locale.UK).size(), 1);
     }
 
@@ -196,7 +201,7 @@ class LinkModulesFactoryTest extends EasyMockSupport {
         replayAll();
 
 
-        Assertions.assertEquals(factory.convertoToFlatLinks(Collections.singletonList(mi), null).size(), 0);
+        Assertions.assertEquals(factory.convertToFlatLinks(Collections.singletonList(mi), null).size(), 0);
         Assertions.assertEquals(factory.convertToEnhancedLinks(Collections.singletonList(mi), Locale.UK).size(), 0);
 
         //This verifies that messages were generated and include the problematic node
@@ -214,62 +219,13 @@ class LinkModulesFactoryTest extends EasyMockSupport {
 
         replay(mi);
 
-        Assertions.assertEquals(factory.convertoToFlatLinks(Collections.singletonList(mi), null).size(), 0);
+        Assertions.assertEquals(factory.convertToFlatLinks(Collections.singletonList(mi), null).size(), 0);
         Assertions.assertEquals(factory.convertToEnhancedLinks(Collections.singletonList(mi), Locale.UK).size(), 0);
 
         //This verifies that messages were generated and include the problematic node
         verify(mi);
     }
 
-    @Test
-    void useOfSharedLinks(){
-
-    }
-
-    @Test
-    void DMS_SharedLink(){
-
-    }
-
-    @Test
-    void ProductSearch_SharedLink(){
-
-    }
-
-    @Test
-    void External_SharedLink(){
-
-    }
-
-    @Test
-    void DMS_enhanced_SharedLink(){
-
-    }
-
-    @Test
-    void ProductSearch_enhanced_SharedLink(){
-
-    }
-
-    @Test
-    void External_enhanced_SharedLink(){
-
-    }
-
-    @Test
-    void External_defaultToDMSImage(){
-
-    }
-
-    @Test
-    void DMS_productDoesNotExist(){
-
-    }
-
-    @Test
-    void sharedLink_noImageDefined(){
-
-    }
 
 
 
