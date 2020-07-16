@@ -4,7 +4,6 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.visitscotland.brmx.beans.InstagramImage;
 import com.visitscotland.brmx.dms.DMSDataService;
-import com.visitscotland.utils.Contract;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -26,6 +25,8 @@ public class CommonUtils {
     }
 
 
+    @Deprecated
+    //TODO Remove method uses
     public static JsonNode getProduct(String productId, Locale locale) throws IOException {
         return dmsData.productCard(productId, locale);
     }
@@ -35,6 +36,7 @@ public class CommonUtils {
      * @return null if status code not 200 or 300
      * @throws IOException
      */
+    @Deprecated
     public static String request(String url) throws IOException {
         // TODO comment
         if (((HttpURLConnection) new URL(url).openConnection()).getResponseCode() < 400){
@@ -49,6 +51,10 @@ public class CommonUtils {
             return sb.toString();
         }
         return null;
+    }
+
+    public String requestUrl(String url) throws IOException {
+        return CommonUtils.request(url);
     }
 
     public static String getInstagramCaption(InstagramImage instagramLink) throws IOException {

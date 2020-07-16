@@ -132,7 +132,7 @@
 						<#list item.links as megalink>
 							<#if megalink.image.cmsImage??>
 								<#assign image>
-									<@hst.link hippobean=feature.image.cmsImage.original/>
+									<@hst.link hippobean=megalink.image.cmsImage.original/>
 								</#assign>
 							<#else>
 								<#assign image>
