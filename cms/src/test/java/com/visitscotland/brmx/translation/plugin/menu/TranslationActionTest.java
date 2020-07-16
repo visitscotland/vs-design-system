@@ -1,24 +1,20 @@
 package com.visitscotland.brmx.translation.plugin.menu;
 
-import com.visitscotland.brmx.translation.plugin.DocumentTranslator;
-import com.visitscotland.brmx.translation.plugin.TranslationWorkflowPlugin;
+import com.visitscotland.brmx.translation.plugin.*;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.LoadableDetachableModel;
 import org.apache.wicket.util.tester.WicketTester;
-import org.hippoecm.addon.workflow.WorkflowDescriptorModel;
 import org.hippoecm.frontend.translation.ILocaleProvider;
 import org.hippoecm.repository.api.HippoSession;
-import org.hippoecm.repository.translation.TranslationWorkflow;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import javax.jcr.Node;
-import javax.jcr.Session;
+import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.Set;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
@@ -39,24 +35,21 @@ public class TranslationActionTest {
     private TranslationWorkflow mockWorkflow;
     @Mock
     private HippoSession mockHippoSession;
-    private Set<String> availableLanguages;
-    @Mock
-    private ILocaleProvider mockLocaleProvider;
-    @Mock
-    private WorkflowDescriptorModel mockWorkflowDescriptorModel;
+    private List<ILocaleProvider.HippoLocale> availableLocales;
     @Mock
     private DocumentTranslator mockTranslator;
+    private List<ChangeSet> changeSetList;
     private TranslationAction action;
 
     @BeforeEach
-    public void beforeEach() {
+    public void beforeEach() throws Exception {
         // This is needed to initialise the Wicket application so we can create the component.
         wicket = new WicketTester();
 
-        availableLanguages = new HashSet<>();
-        lenient().when(mockWorkflowPlugin.getAvailableLanguages()).thenReturn(availableLanguages);
-        lenient().when(mockWorkflowPlugin.getLocaleProvider()).thenReturn(mockLocaleProvider);
-        lenient().when(mockNameModel.getObject()).thenReturn("translationName");
+        availableLocales = new ArrayList<>();
+        changeSetList = new ArrayList<>();
+        when(mockTranslator.buildChangeSetList(any(), any())).thenReturn(changeSetList);
+        when(mockWorkflowPlugin.getAvailableLocales()).thenReturn(availableLocales);
         action = spy(new TranslationAction(
                 mockWorkflowPlugin,
                 "translation",
@@ -72,61 +65,36 @@ public class TranslationActionTest {
         // will test that if run with no languages to translate does not cause an error
         // should never happen but is a valid path through the code
         assertNull(action.execute(mockWorkflow));
+
+        verify(mockTranslator, never()).applyChangeSet(any(), any(), any());
     }
 
     @Test
-    public void execute_with_mixed_translations() throws Exception {
-        Node mockDocNode = mock(Node.class);
-        when(mockWorkflowPlugin.getDefaultModel()).thenReturn((IModel) mockWorkflowDescriptorModel);
-        when(mockWorkflowDescriptorModel.getNode()).thenReturn(mockDocNode);
-        when(mockTranslator.getTranslatedDocumentName(anyList())).thenReturn("translated");
-
-        addTranslatedLocale("en");
-        addUntranslatedLocale("es");
-        addUntranslatedLocale("de");
+    public void execute_with_changes() throws Exception {
+        // when the change set list includes a ChangeSet they are passed to the DocumentTranslator
+        ChangeSet change1 = mock(ChangeSet.class);
+        ChangeSet change2 = mock(ChangeSet.class);
+        changeSetList.add(change1);
+        changeSetList.add(change2);
 
         action.execute(mockWorkflow);
 
-        verify(mockTranslator, times(2)).cloneDocumentAndFolderStructure(
-                any(Node.class), anyList(), any(ILocaleProvider.HippoLocale.class), any(Session.class));
-
-        verify(mockWorkflow).addTranslation(eq("es"), eq("translated"));
-        verify(mockWorkflow).addTranslation(eq("de"), eq("translated"));
+        verify(mockTranslator).applyChangeSet(same(change1), eq(mockHippoSession), eq(mockWorkflow));
+        verify(mockTranslator).applyChangeSet(same(change2), eq(mockHippoSession), eq(mockWorkflow));
     }
 
     @Test
     public void execute_with_error() throws Exception {
-        Node mockDocNode = mock(Node.class);
-        when(mockWorkflowPlugin.getDefaultModel()).thenReturn((IModel) mockWorkflowDescriptorModel);
-        when(mockWorkflowDescriptorModel.getNode()).thenReturn(mockDocNode);
-        when(mockTranslator.cloneDocumentAndFolderStructure(
-                same(mockDocNode),
-                anyList(),
-                any(ILocaleProvider.HippoLocale.class),
-                any(Session.class))
-        ).thenReturn("error message");
-
-        addTranslatedLocale("en");
-        addUntranslatedLocale("de");
-        addUntranslatedLocale("es");
+        ChangeSet change1 = mock(ChangeSet.class);
+        changeSetList.add(change1);
+        doThrow(new TranslationException("error message")).when(mockTranslator).applyChangeSet(
+                same(change1),
+                eq(mockHippoSession),
+                eq(mockWorkflow)
+        );
 
         String message = action.execute(mockWorkflow);
 
         assertEquals("error message", message);
-        verify(mockTranslator).cloneDocumentAndFolderStructure(same(mockDocNode), anyList(), any(ILocaleProvider.HippoLocale.class), any(Session.class));
-        verify(mockWorkflow, never()).addTranslation(anyString(), anyString());
-    }
-
-    private void addTranslatedLocale(String isoString) {
-        availableLanguages.add(isoString);
-        when(mockWorkflowPlugin.hasLocaleTranslation(eq(isoString))).thenReturn(true);
-    }
-
-    private void addUntranslatedLocale(String isoString) {
-        availableLanguages.add(isoString);
-        when(mockWorkflowPlugin.hasLocaleTranslation(eq(isoString))).thenReturn(false);
-        ILocaleProvider.HippoLocale mockLocale = mock(ILocaleProvider.HippoLocale.class);
-        when(mockLocaleProvider.getLocale(eq(isoString))).thenReturn(mockLocale);
-        lenient().when(mockLocale.getName()).thenReturn(isoString);
     }
 }

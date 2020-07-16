@@ -44,7 +44,6 @@ import org.hippoecm.frontend.translation.TranslationUtil;
 import org.hippoecm.repository.api.WorkflowDescriptor;
 import org.hippoecm.repository.api.WorkflowException;
 import org.hippoecm.repository.api.WorkflowManager;
-import org.hippoecm.repository.translation.TranslationWorkflow;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -53,8 +52,10 @@ import javax.jcr.RepositoryException;
 import java.io.Serializable;
 import java.rmi.RemoteException;
 import java.util.Collections;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 public class TranslationWorkflowPlugin extends RenderPlugin {
     public static final String ID_CONTENT = "content";
@@ -189,6 +190,13 @@ public class TranslationWorkflowPlugin extends RenderPlugin {
         return Collections.emptySet();
     }
 
+    public List<HippoLocale> getAvailableLocales() {
+        final ILocaleProvider localeProvider = getLocaleProvider();
+        List<HippoLocale> localeList = getAvailableLanguages().stream()
+                .map(name -> localeProvider.getLocale(name)).collect(Collectors.toList());
+        return localeList;
+    }
+
     private Node getDocumentNode() throws RepositoryException {
         WorkflowDescriptorModel wdm = (WorkflowDescriptorModel) getDefaultModel();
         if (wdm != null) {
@@ -204,6 +212,10 @@ public class TranslationWorkflowPlugin extends RenderPlugin {
             return wdm.getObject();
         }
         return null;
+    }
+
+    public Node getSourceDocumentNode() throws RepositoryException {
+        return ((WorkflowDescriptorModel) getDefaultModel()).getNode();
     }
 
     public ILocaleProvider getLocaleProvider() {
