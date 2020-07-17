@@ -487,3 +487,157 @@
           resource: /content/gallery/visitscotland/default/visitscotland_38116659689.jpg/visitscotland_38116659689.jpg/original/original.jpg
         jcr:lastModified: 2020-03-17T14:41:29.262Z
         jcr:mimeType: image/jpeg
+  /luskentyre-beach-min_1133217383.jpg:
+    jcr:primaryType: hippo:handle
+    jcr:mixinTypes: ['mix:referenceable']
+    jcr:uuid: b9d61304-1b64-4995-bea9-af40d165e8d1
+    /luskentyre-beach-min_1133217383.jpg:
+      jcr:primaryType: visitscotland:Image
+      hippo:availability: [live, preview]
+      hippogallery:description: Luskentyre Beach
+      hippogallery:filename: luskentyre-beach-min_1133217383.jpg
+      visitscotland:altText: This beach is in Luskentyre
+      visitscotland:credit: ''
+      visitscotland:location: Isle of Harris
+      /hippogallery:thumbnail:
+        jcr:primaryType: hippogallery:image
+        hippo:filename: luskentyre-beach-min_1133217383.jpg
+        hippogallery:height: 40
+        hippogallery:width: 60
+        jcr:data:
+          type: binary
+          resource: /content/gallery/visitscotland/default/luskentyre-beach-min_1133217383.jpg/luskentyre-beach-min_1133217383.jpg/thumbnail/thumbnail.jpg
+        jcr:lastModified: 2020-07-10T13:42:00.881+01:00
+        jcr:mimeType: image/jpeg
+      /hippogallery:original:
+        jcr:primaryType: hippogallery:image
+        hippogallery:height: 700
+        hippogallery:width: 1050
+        jcr:data:
+          type: binary
+          resource: /content/gallery/visitscotland/default/luskentyre-beach-min_1133217383.jpg/luskentyre-beach-min_1133217383.jpg/original/original.jpg
+        jcr:lastModified: 2020-07-10T13:42:00.881+01:00
+        jcr:mimeType: image/jpeg
+      /visitscotland:nl:
+        jcr:primaryType: visitscotland:ImageData
+        visitscotland:altText: ''
+        visitscotland:caption: ''
+      /visitscotland:fr:
+        jcr:primaryType: visitscotland:ImageData
+        visitscotland:altText: ''
+        visitscotland:caption: ''
+      /visitscotland:de:
+        jcr:primaryType: visitscotland:ImageData
+        visitscotland:altText: ''
+        visitscotland:caption: ''
+      /visitscotland:es:
+        jcr:primaryType: visitscotland:ImageData
+        visitscotland:altText: ''
+        visitscotland:caption: ''
+      /visitscotland:it:
+        jcr:primaryType: visitscotland:ImageData
+        visitscotland:altText: ''
+        visitscotland:caption: ''
+  /calanais.jpg:
+    jcr:primaryType: hippo:handle
+    jcr:mixinTypes: ['mix:referenceable']
+    jcr:uuid: c3eafb5b-6c18-4caa-9c9a-63279b816630
+    /calanais.jpg:
+      jcr:primaryType: visitscotland:Image
+      hippo:availability: [live, preview]
+      hippogallery:description: Calanais Standing stones
+      hippogallery:filename: calanais.jpg
+      visitscotland:altText: They haven't sit in a thousand years
+      visitscotland:credit: ''
+      visitscotland:location: ''
+      /hippogallery:thumbnail:
+        jcr:primaryType: hippogallery:image
+        hippo:filename: calanais.jpg
+        hippogallery:height: 45
+        hippogallery:width: 60
+        jcr:data:
+          type: binary
+          resource: /content/gallery/visitscotland/default/calanais.jpg/calanais.jpg/thumbnail/thumbnail.jpg
+        jcr:lastModified: 2020-07-10T13:50:17.157+01:00
+        jcr:mimeType: image/jpeg
+      /hippogallery:original:
+        jcr:primaryType: hippogallery:image
+        hippogallery:height: 473
+        hippogallery:width: 630
+        jcr:data:
+          type: binary
+          resource: /content/gallery/visitscotland/default/calanais.jpg/calanais.jpg/original/original.jpg
+        jcr:lastModified: 2020-07-10T13:50:17.157+01:00
+        jcr:mimeType: image/jpeg
+      /visitscotland:nl:
+        jcr:primaryType: visitscotland:ImageData
+        visitscotland:altText: ''
+        visitscotland:caption: ''
+      /visitscotland:fr:
+        jcr:primaryType: visitscotland:ImageData
+        visitscotland:altText: ''
+        visitscotland:caption: ''
+      /visitscotland:de:
+        jcr:primaryType: visitscotland:ImageData
+        visitscotland:altText: ''
+        visitscotland:caption: ''
+      /visitscotland:es:
+        jcr:primaryType: visitscotland:ImageData
+        visitscotland:altText: ''
+        visitscotland:caption: ''
+      /visitscotland:it:
+        jcr:primaryType: visitscotland:ImageData
+        visitscotland:altText: ''
+        visitscotland:caption: ''
+  /gearrannan-blackhouses.jpeg:
+    jcr:primaryType: hippo:handle
+    jcr:mixinTypes: ['mix:referenceable']
+    jcr:uuid: dbcdddc3-5586-4188-85a7-fcd5e7e3c29a
+    /gearrannan-blackhouses.jpeg:
+      jcr:primaryType: visitscotland:Image
+      hippo:availability: [live, preview]
+      hippogallery:description: Gearrannan Blackhouse
+      hippogallery:filename: gearrannan-blackhouses.jpeg
+      visitscotland:altText: The colour isn't relate to that they were burned down,
+        or it does?
+      visitscotland:credit: ''
+      visitscotland:location: Isle of Lewis
+      /hippogallery:thumbnail:
+        jcr:primaryType: hippogallery:image
+        hippo:filename: gearrannan-blackhouses.jpeg
+        hippogallery:height: 39
+        hippogallery:width: 60
+        jcr:data:
+          type: binary
+          resource: /content/gallery/visitscotland/default/gearrannan-blackhouses.jpeg/gearrannan-blackhouses.jpeg/thumbnail/thumbnail.jpg
+        jcr:lastModified: 2020-07-10T14:47:59.621+01:00
+        jcr:mimeType: image/jpeg
+      /hippogallery:original:
+        jcr:primaryType: hippogallery:image
+        hippogallery:height: 1365
+        hippogallery:width: 2048
+        jcr:data:
+          type: binary
+          resource: /content/gallery/visitscotland/default/gearrannan-blackhouses.jpeg/gearrannan-blackhouses.jpeg/original/original.jpg
+        jcr:lastModified: 2020-07-10T14:47:59.621+01:00
+        jcr:mimeType: image/jpeg
+      /visitscotland:nl:
+        jcr:primaryType: visitscotland:ImageData
+        visitscotland:altText: ''
+        visitscotland:caption: ''
+      /visitscotland:fr:
+        jcr:primaryType: visitscotland:ImageData
+        visitscotland:altText: ''
+        visitscotland:caption: ''
+      /visitscotland:de:
+        jcr:primaryType: visitscotland:ImageData
+        visitscotland:altText: ''
+        visitscotland:caption: ''
+      /visitscotland:es:
+        jcr:primaryType: visitscotland:ImageData
+        visitscotland:altText: ''
+        visitscotland:caption: ''
+      /visitscotland:it:
+        jcr:primaryType: visitscotland:ImageData
+        visitscotland:altText: ''
+        visitscotland:caption: ''
