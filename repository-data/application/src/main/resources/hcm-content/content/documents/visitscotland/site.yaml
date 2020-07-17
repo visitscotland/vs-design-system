@@ -2018,6 +2018,100 @@
               /visitscotland:link:
                 jcr:primaryType: hippo:mirror
                 hippo:docbase: 8b4a3c11-8b84-4aa0-bccf-f407d18c1c44
+        /icentre:
+          jcr:primaryType: hippo:handle
+          jcr:mixinTypes: ['hippo:named', 'mix:referenceable']
+          jcr:uuid: cf6ce661-2e33-46cc-8cb9-d599d9252d88
+          hippo:name: iCentre
+          /icentre[1]:
+            jcr:primaryType: visitscotland:iKnowIcentre
+            jcr:mixinTypes: ['mix:referenceable']
+            jcr:uuid: b2618859-caac-4679-98aa-6590c012459b
+            hippo:availability: []
+            hippostd:holder: admin
+            hippostd:state: draft
+            hippostdpubwf:createdBy: admin
+            hippostdpubwf:creationDate: 2020-07-16T16:04:14.980+01:00
+            hippostdpubwf:lastModificationDate: 2020-07-16T16:42:29.831+01:00
+            hippostdpubwf:lastModifiedBy: admin
+            hippotranslation:id: 7fd57c55-7cfa-4d21-ba49-ff2444fc3037
+            hippotranslation:locale: en
+            /visitscotland:ICentre:
+              jcr:primaryType: visitscotland:ICentre
+              visitscotland:description: ''
+              visitscotland:iknowDescription: <p>You can also get advice from.....
+                NO CTA on the text</p>
+              visitscotland:iknowTitle: ''
+              visitscotland:string: and that's all folks!
+              visitscotland:title: ''
+              /visitscotland:image:
+                jcr:primaryType: hippogallerypicker:imagelink
+                hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
+                hippo:facets: []
+                hippo:modes: []
+                hippo:values: []
+              /visitscotland:ICentreQuote:
+                jcr:primaryType: visitscotland:ICentreQuote
+                visitscotland:html: ''
+                visitscotland:name: Jose
+                visitscotland:productId: '238501'
+                visitscotland:quote: |-
+                  <p>Some quote from some person saying something somehow inspiring.</p>
+
+                  <p>That someone, might be someone from some iCentre localted somewhere.</p>
+                visitscotland:string: ''
+                visitscotland:string_: ''
+                visitscotland:title: Senior Software Engineer at VisitScotland,
+                /visitscotland:image:
+                  jcr:primaryType: hippogallerypicker:imagelink
+                  hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
+                  hippo:facets: []
+                  hippo:modes: []
+                  hippo:values: []
+          /icentre[2]:
+            jcr:primaryType: visitscotland:iKnowIcentre
+            jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
+            jcr:uuid: 1a72998d-3955-4c81-8186-1fd907ecca59
+            hippo:availability: [preview]
+            hippostd:state: unpublished
+            hippostdpubwf:createdBy: admin
+            hippostdpubwf:creationDate: 2020-07-16T16:04:14.980+01:00
+            hippostdpubwf:lastModificationDate: 2020-07-16T16:38:27.741+01:00
+            hippostdpubwf:lastModifiedBy: admin
+            hippotranslation:id: 7fd57c55-7cfa-4d21-ba49-ff2444fc3037
+            hippotranslation:locale: en
+            /visitscotland:ICentre:
+              jcr:primaryType: visitscotland:ICentre
+              visitscotland:description: ''
+              visitscotland:iknowDescription: <p>You can also get advice from.....
+                NO CTA on the text</p>
+              visitscotland:iknowTitle: ''
+              visitscotland:string: and that's all folks!
+              visitscotland:title: ''
+              /visitscotland:image:
+                jcr:primaryType: hippogallerypicker:imagelink
+                hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
+                hippo:facets: []
+                hippo:modes: []
+                hippo:values: []
+              /visitscotland:ICentreQuote:
+                jcr:primaryType: visitscotland:ICentreQuote
+                visitscotland:html: ''
+                visitscotland:name: Jose
+                visitscotland:productId: '238501'
+                visitscotland:quote: |-
+                  <p>Some quote from some person saying something somehow inspiring.</p>
+
+                  <p>That someone, might be someone from some iCentre localted somewhere.</p>
+                visitscotland:string: ''
+                visitscotland:string_: ''
+                visitscotland:title: Senior Software Engineer at VisitScotland,
+                /visitscotland:image:
+                  jcr:primaryType: hippogallerypicker:imagelink
+                  hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
+                  hippo:facets: []
+                  hippo:modes: []
+                  hippo:values: []
       /the-outer-hebrides:
         jcr:primaryType: hippostd:folder
         jcr:mixinTypes: ['hippo:named', 'hippotranslation:translated', 'mix:versionable']
@@ -2037,7 +2131,6 @@
             jcr:mixinTypes: ['mix:referenceable']
             jcr:uuid: 8f061d83-5de3-4a05-88d0-acf7886be4cd
             hippo:availability: []
-            hippostd:holder: admin
             hippostd:state: draft
             hippostdpubwf:createdBy: admin
             hippostdpubwf:creationDate: 2020-07-10T14:38:03.350+01:00
@@ -2165,7 +2258,6 @@
             jcr:mixinTypes: ['mix:referenceable']
             jcr:uuid: 802aad32-b8cf-4e96-b188-ad0b88f4b548
             hippo:availability: []
-            hippostd:holder: admin
             hippostd:state: draft
             hippostdpubwf:createdBy: admin
             hippostdpubwf:creationDate: 2020-07-10T14:41:12.033+01:00

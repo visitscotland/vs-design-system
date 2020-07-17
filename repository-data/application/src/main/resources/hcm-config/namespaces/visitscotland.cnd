@@ -29,6 +29,12 @@
 [visitscotland:ExternalLink] > hippo:compound, hippostd:relaxed
   orderable
 
+[visitscotland:ICentre] > hippo:compound, hippostd:relaxed
+  orderable
+
+[visitscotland:ICentreQuote] > hippo:compound, hippostd:relaxed
+  orderable
+
 [visitscotland:Image] > hippogallery:imageset, hippogallery:relaxed
 
 [visitscotland:ImageData] > hippo:compound, hippostd:relaxed
@@ -77,6 +83,9 @@
   orderable
 
 [visitscotland:default] > hippogallery:imageset, hippogallery:relaxed
+
+[visitscotland:iKnowIcentre] > hippostd:relaxed, hippotranslation:translated, visitscotland:basedocument
+  orderable
 
 [visitscotland:imageData] > hippo:compound, hippostd:relaxed
   orderable
