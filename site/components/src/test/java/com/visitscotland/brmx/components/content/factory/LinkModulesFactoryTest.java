@@ -123,14 +123,14 @@ class LinkModulesFactoryTest extends EasyMockSupport {
     }
 
     @Test
-    void getSingleImageWithLargeAmountOfItems(){
+    void getListLayoutWhenSingleImageLinksIsHigherThan6(){
         replayAll();
 
-        Megalinks mega = megalinkService.createMock(TITLE, false, false, true, LinkModulesFactory.MAX_ITEMS + 1, "Single image title");
+        Megalinks mega = megalinkService.createMock(TITLE, false, false, true, LinkModulesFactory.MAX_ITEMS + 1, "List Layout Title");
         AbstractLayout layout = factory.getMegalinkModule(mega, Locale.UK);
 
         verifyAll();
-        Assertions.assertEquals(layout.getType(), SINGLE_IMAGE);
+        Assertions.assertEquals(LIST, layout.getType());
     }
 
     @Test
@@ -140,7 +140,7 @@ class LinkModulesFactoryTest extends EasyMockSupport {
         for (int i= 0; i <= LinkModulesFactory.MAX_ITEMS; i++) {
             Megalinks mega = megalinkService.createMock(TITLE, false, false, true, i);
             AbstractLayout layout = factory.getMegalinkModule(mega, Locale.UK);
-            Assertions.assertEquals(layout.getType(), FEATURED);
+            Assertions.assertEquals(FEATURED, layout.getType());
         }
 
         verifyAll();

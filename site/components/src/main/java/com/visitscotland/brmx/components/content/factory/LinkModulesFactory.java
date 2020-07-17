@@ -48,10 +48,10 @@ public class LinkModulesFactory {
     }
 
     public AbstractLayout getMegalinkModule(Megalinks doc, Locale locale) {
-        if (!Boolean.TRUE.equals(doc.getListLayout()) && doc.getSingleImageModule() != null) {
-            return singleImageLayout(doc, locale);
-        } else if (Boolean.TRUE.equals(doc.getListLayout()) || doc.getMegalinkItems().size() > MAX_ITEMS) {
+        if (Boolean.TRUE.equals(doc.getListLayout()) || doc.getMegalinkItems().size() > MAX_ITEMS) {
             return list(doc, locale);
+        } else if (doc.getSingleImageModule() != null) {
+            return singleImageLayout(doc, locale);
         } else {
             return featuredLayout(doc, locale);
         }
@@ -65,7 +65,6 @@ public class LinkModulesFactory {
         sil.setInnerTitle(doc.getSingleImageModule().getTitle());
         sil.setInnerIntroduction(doc.getSingleImageModule().getIntroduction());
         sil.setImage(createFlatImage(doc.getSingleImageModule().getImage(), locale));
-        sil.setFullWidth(doc.getSingleImageModule().getFullWidth());
         sil.setLinks(convertToFlatLinks(doc.getMegalinkItems(), locale));
         sil.setMegalinkItem(doc);
 
