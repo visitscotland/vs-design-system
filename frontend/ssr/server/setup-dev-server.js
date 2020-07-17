@@ -6,8 +6,8 @@ const path = require("path");
 const webpackHotMiddleware = require("webpack-hot-middleware");
 const webpackDevMiddleware = require("webpack-dev-middleware");
 
-const clientConfig = require("../../build/webpack.ssr.client.conf");
-const serverConfig = require("../../build/webpack.ssr.server.conf");
+const clientConfig = require("../../build/ssr.client.webpack.conf");
+const serverConfig = require("../../build/ssr.server.webpack.conf");
 
 /**
  * Setup webpack-dev-middleware and webpack-hot-middleware.
@@ -18,7 +18,7 @@ const serverConfig = require("../../build/webpack.ssr.server.conf");
  */
 const setupDevServer = (app, onServerBundleReady) => {
     // additional client entry for hot reload
-    clientConfig.entry["main-client"] = ["webpack-hot-middleware/client", clientConfig.entry["main-client"]];
+    clientConfig.entry["VsApp"] = ["webpack-hot-middleware/client", clientConfig.entry["VsApp"]];
 
     const clientCompiler = webpack(clientConfig);
 

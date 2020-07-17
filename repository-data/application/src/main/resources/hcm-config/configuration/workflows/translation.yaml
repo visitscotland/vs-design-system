@@ -2,3 +2,5 @@ definitions:
   config:
     /hippo:configuration/hippo:workflows/translation/default/frontend:renderer:
       plugin.class: com.visitscotland.brmx.translation.plugin.TranslationWorkflowPlugin
+    /hippo:configuration/hippo:workflows/translation/default:
+      hipposys:classname: com.visitscotland.brmx.translation.plugin.TranslationWorkflowImpl
