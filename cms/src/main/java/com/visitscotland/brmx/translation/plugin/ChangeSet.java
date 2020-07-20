@@ -1,8 +1,10 @@
 package com.visitscotland.brmx.translation.plugin;
 
+import com.visitscotland.brmx.beans.TranslationLinkContainer;
 import org.apache.commons.lang3.StringUtils;
 import org.hippoecm.addon.workflow.WorkflowSNSException;
 import org.hippoecm.frontend.translation.ILocaleProvider;
+import org.hippoecm.hst.content.beans.ObjectBeanManagerException;
 import org.hippoecm.repository.api.HippoNode;
 import org.hippoecm.repository.translation.HippoTranslationNodeType;
 import org.slf4j.Logger;
@@ -11,6 +13,7 @@ import org.slf4j.LoggerFactory;
 import javax.jcr.*;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -55,10 +58,13 @@ public class ChangeSet {
      * @param document The JcrDocument to be added to the document list
      * @throws RepositoryException
      */
-    public void addDocument(JcrDocument document) throws RepositoryException {
+    public void addDocument(JcrDocument document) throws RepositoryException, ObjectBeanManagerException {
         FolderTranslation documentTranslation = jcrFolderTranslationFactory.createFolderTranslation(document.getHandle(), null);
         documentTranslation.setNamefr(documentTranslation.getName() + " (" + targetLocale.getName().toUpperCase() + ")");
         documentTranslation.setUrlfr(documentTranslation.getUrl());
+        if (document.asHippoBean() instanceof TranslationLinkContainer) {
+            documentTranslation.setContainsTranslationLinks(true);
+        }
         documents.add(documentTranslation);
     }
 
@@ -82,6 +88,21 @@ public class ChangeSet {
         }
 
         Collections.reverse(this.folders);
+    }
+
+    public String getTargetPath() {
+        StringBuilder pathBuilder = new StringBuilder();
+        Iterator<FolderTranslation> ftIterator = folders.iterator();
+        do {
+            pathBuilder.append("/");
+            pathBuilder.append(ftIterator.next().getUrlfr());
+        } while(ftIterator.hasNext());
+        return pathBuilder.toString();
+    }
+
+    public boolean containsDocumentWithUrl(String url) {
+        return documents.stream().anyMatch(
+                (document) -> (url.equals(document.getUrlfr()) || url.equals(document.getUrl())));
     }
 
     protected Node findHighestTranslatedSourceFolder(Node sourceFolder) throws RepositoryException {

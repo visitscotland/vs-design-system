@@ -31,6 +31,8 @@ public class JcrDocument {
     private Node handle;
     // Do not access directly, will be lazy loaded, use getter
     protected Map<String, Node> variantMap;
+    // Do not access directly, will be lazy loaded, use getter
+    protected HippoBean hippoBean;
 
     /**
      * Will create an instance from the hippostd:handle instance or one of the document variants.
@@ -128,18 +130,33 @@ public class JcrDocument {
     }
 
     /**
-     * Converts the document to a HippoBean
+     * Converts the document to a HippoBean. Will be lazy loaded on first access.
      *
      * @return
      */
     public HippoBean asHippoBean() throws ObjectBeanManagerException {
-        HippoBean bean = (HippoBean) RequestContextProvider.get().getContentBeansTool()
-                .getObjectConverter().getObject(handle);
-        return bean;
+        if (null == hippoBean) {
+            hippoBean = (HippoBean) RequestContextProvider.get().getContentBeansTool()
+                    .getObjectConverter().getObject(handle);
+        }
+        return hippoBean;
+    }
+
+    public <T> T asHippoBean(Class<T> clazz)throws ObjectBeanManagerException {
+        return clazz.cast(asHippoBean());
     }
 
     public boolean hasTranslation(ILocaleProvider.HippoLocale targetlocale) throws RepositoryException {
+        return hasTranslation(targetlocale.getName());
+    }
+
+    public boolean hasTranslation(String localeName) throws RepositoryException {
         HippoTranslatedNode translatedNode = new HippoTranslatedNode(getVariantNode(VARIANT_UNPUBLISHED));
-        return translatedNode.hasTranslation(targetlocale.getName());
+        return translatedNode.hasTranslation(localeName);
+    }
+
+    public Node getTranslation(String localName) throws RepositoryException {
+        HippoTranslatedNode translatedNode = new HippoTranslatedNode(getVariantNode(VARIANT_UNPUBLISHED));
+        return translatedNode.getTranslation(localName);
     }
 }

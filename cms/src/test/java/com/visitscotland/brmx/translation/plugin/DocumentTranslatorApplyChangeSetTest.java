@@ -11,6 +11,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import javax.jcr.Session;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -31,6 +32,7 @@ public class DocumentTranslatorApplyChangeSetTest {
     private ILocaleProvider.HippoLocale mockTargetLocale;
     private List<FolderTranslation> folderList;
     private List<FolderTranslation> documentList;
+    private ArrayList<ChangeSet> changeSetList;
 
     @BeforeEach
     public void beforeEach() {
@@ -41,19 +43,26 @@ public class DocumentTranslatorApplyChangeSetTest {
         lenient().when(mockChange.getDocuments()).thenReturn(documentList);
         lenient().when(mockChange.getTargetLocale()).thenReturn(mockTargetLocale);
         lenient().when(mockTargetLocale.getName()).thenReturn("fr");
+
+        changeSetList = new ArrayList<>();
+        changeSetList.add(mockChange);
     }
 
     @Test
     public void applyChangeSet_allEmpty() throws Exception {
         // Not a realistic scenario, but should not cause an exception
-        documentTranslator.applyChangeSet(mockChange, mockSession, mockWorkflow);
+        documentTranslator.applyChangeSet(changeSetList, mockSession, mockWorkflow);
+
+        verify(mockWorkflow).saveSession();
     }
 
     @Test
     public void applyChangeSet_hasSameNameSibling() throws Exception {
         // When there is a same name sibling should throw a WorkflowSNSException
         doThrow(new WorkflowSNSException("")).when(mockChange).checkForSameNameSiblings(eq(mockSession));
-        assertThrows(WorkflowSNSException.class, () -> documentTranslator.applyChangeSet(mockChange, mockSession, mockWorkflow));
+        assertThrows(WorkflowSNSException.class, () -> documentTranslator.applyChangeSet(changeSetList, mockSession, mockWorkflow));
+
+        verify(mockWorkflow, never()).saveSession();
     }
 
     @Test
@@ -69,9 +78,10 @@ public class DocumentTranslatorApplyChangeSetTest {
         folderList.add(folder1);
         folderList.add(folder2);
 
-        documentTranslator.applyChangeSet(mockChange, mockSession, mockWorkflow);
+        documentTranslator.applyChangeSet(changeSetList, mockSession, mockWorkflow);
 
         verify(documentTranslator, never()).saveFolder(any(), any(), any());
+        verify(mockWorkflow).saveSession();
     }
 
     @Test
@@ -89,9 +99,10 @@ public class DocumentTranslatorApplyChangeSetTest {
 
         doReturn(true).when(documentTranslator).saveFolder(any(), any(), any());
 
-        documentTranslator.applyChangeSet(mockChange, mockSession, mockWorkflow);
+        documentTranslator.applyChangeSet(changeSetList, mockSession, mockWorkflow);
 
         verify(documentTranslator, times(1)).saveFolder(same(folder2), same(mockSession), eq("fr"));
+        verify(mockWorkflow).saveSession();
     }
 
     @Test
@@ -109,9 +120,10 @@ public class DocumentTranslatorApplyChangeSetTest {
 
         doReturn(false).when(documentTranslator).saveFolder(any(), any(), any());
 
-        assertThrows(TranslationException.class, () -> documentTranslator.applyChangeSet(mockChange, mockSession, mockWorkflow));
+        assertThrows(TranslationException.class, () -> documentTranslator.applyChangeSet(changeSetList, mockSession, mockWorkflow));
 
         verify(documentTranslator, times(1)).saveFolder(any(), any(), any());
+        verify(mockWorkflow, never()).saveSession();
     }
 
     @Test
@@ -139,10 +151,11 @@ public class DocumentTranslatorApplyChangeSetTest {
         doReturn(document2).when(documentTranslator).createJcrDocument(document2Node);
         documentList.add(translation2);
 
-        documentTranslator.applyChangeSet(mockChange, mockSession, mockWorkflow);
+        documentTranslator.applyChangeSet(changeSetList, mockSession, mockWorkflow);
 
         verify(mockWorkflow).addTranslation(eq("fr"), eq("document1"), same(document1Variant));
         verify(mockWorkflow).addTranslation(eq("fr"), eq("document2"), same(document2Variant));
+        verify(mockWorkflow).saveSession();
     }
 
     @Test
@@ -182,11 +195,20 @@ public class DocumentTranslatorApplyChangeSetTest {
         doReturn(document2).when(documentTranslator).createJcrDocument(document2Node);
         documentList.add(translation2);
 
-        documentTranslator.applyChangeSet(mockChange, mockSession, mockWorkflow);
+        documentTranslator.applyChangeSet(changeSetList, mockSession, mockWorkflow);
 
         verify(documentTranslator, times(1)).saveFolder(same(folder2), same(mockSession), eq("fr"));
 
         verify(mockWorkflow).addTranslation(eq("fr"), eq("document1"), same(document1Variant));
         verify(mockWorkflow).addTranslation(eq("fr"), eq("document2"), same(document2Variant));
+        verify(mockWorkflow).saveSession();
+    }
+
+    @Test
+    public void applyChangeSet_emptyList() throws Exception {
+        // When there are no ChangeSet instances in the List it should not cause an error
+        // but should also not try to save the session.
+        documentTranslator.applyChangeSet(Collections.emptyList(), mockSession, mockWorkflow);
+        verify(mockWorkflow, never()).saveSession();
     }
 }
