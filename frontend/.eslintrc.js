@@ -80,14 +80,18 @@ module.exports = {
 			node: {},
 			webpack: {
 				config: "./build/base.webpack.conf.js",
-			}
+			},
+			"import/extensions": [
+				".js",
+				".vue"
+			]
 		},
 	},
 	overrides: [
 		// Modify rules for build scripts
 		{
 			"files": [ 
-				"src/system.js",
+				"./src/system.js",
 				"{build,config,test}/**/*",
 			],
 			"rules": {
@@ -117,7 +121,7 @@ module.exports = {
 		// Various rules for uncompiled Node SSR app files
 		{
 			files: [
-				"/ssr/*",
+				"./ssr/*",
 			],
 			rules: {
 				"semi": [
