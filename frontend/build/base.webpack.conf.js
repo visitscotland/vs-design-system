@@ -38,7 +38,7 @@ module.exports = {
 	  {
 		enforce: 'pre',
 		test: /src.*\.(js|vue)$/,
-		exclude: ["/ssr/", "frontend/src/components/patterns/header/components/Chart/"],
+		exclude: ["/ssr/", "/src/components/patterns/header/components/Chart/"],
 		loader: 'eslint-loader',
 		options: {
 		  failOnError: true,
