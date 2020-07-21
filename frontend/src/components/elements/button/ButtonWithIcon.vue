@@ -13,7 +13,7 @@
 </template>
 <script>
 import VsIcon from "@components/elements/icon/Icon"
-import VsButton from "."
+import VsButton from "./Button"
 
 /**
  * This component extends VsButton and is used for buttons with icons and text.

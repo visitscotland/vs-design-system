@@ -3,8 +3,8 @@
         no-body
         class="vs-accordion-item"
     >
-        <BCardHeader 
-            role="tab" 
+        <BCardHeader
+            role="tab"
             class="vs-accordion-item__card-header"
         >
             <!-- @slot Slot to contain Header for accordion item.
