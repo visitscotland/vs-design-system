@@ -35,6 +35,15 @@ module.exports = {
   },
   module: {
     rules: [
+	  {
+		enforce: 'pre',
+		test: /src.*\.(js|vue)$/,
+		exclude: ["/ssr/", "frontend/src/components/patterns/header/components/Chart/"],
+		loader: 'eslint-loader',
+		options: {
+		  failOnError: true,
+		},
+	  },
       {
         test: /\.vue$/,
         loader: "vue-loader",
