@@ -75,7 +75,6 @@ export default {
         }
 
         this.resizeWidth()
-    
     },
     destroyed() {
         window.removeEventListener("resize", this.resizeWidth)

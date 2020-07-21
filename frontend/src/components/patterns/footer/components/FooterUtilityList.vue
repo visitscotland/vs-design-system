@@ -70,7 +70,7 @@ export default {
         @include media-breakpoint-up(xl) {
             padding: $spacer-9 0;
         }
-        
+
         @include media-breakpoint-up(xxl) {
             justify-content: space-evenly;
             padding: $spacer-9 0;
@@ -129,7 +129,7 @@ export default {
                 href="#"
                 link-text="VisitScotland Awards"
             ></vs-footer-nav-list-item>
-            
+
         </vs-footer-utility-list>
     </vs-footer>
 

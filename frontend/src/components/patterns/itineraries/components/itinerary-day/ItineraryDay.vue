@@ -105,12 +105,12 @@ export default {
         }
     },
     mounted() {
-        if(window) {
+        if (window) {
             window.addEventListener("resize", this.onResize)
         }
     },
     destroyed() {
-        if(window) {
+        if (window) {
             window.removeEventListener("resize", this.onResize)
         }
     },
