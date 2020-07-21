@@ -9,16 +9,16 @@
 </template>
 
 <script>
-import { VsCol } from "../elements/layout"
+import { VsCol } from '../elements/layout';
 
 /**
  * Sidebar component: a wrapper component for sidebar content, generally
  * wrapped in content sections
  */
 export default {
-    name: "VsSidebar",
-    status: "prototype",
-    release: "0.0.1",
+    name: 'VsSidebar',
+    status: 'prototype',
+    release: '0.0.1',
     components: {
         VsCol,
     },
@@ -28,10 +28,10 @@ export default {
          */
         tag: {
             type: String,
-            default: "aside",
+            default: 'aside',
         },
     },
-}
+};
 </script>
 
 <style lang="scss" scoped></style>

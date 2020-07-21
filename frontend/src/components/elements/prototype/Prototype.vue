@@ -14,10 +14,10 @@
  */
 
 export default {
-    name: "VsPrototype",
-    status: "prototype",
-    release: "0.0.1",
-}
+    name: 'VsPrototype',
+    status: 'prototype',
+    release: '0.0.1',
+};
 </script>
 
 <style lang="scss" scoped>

@@ -16,14 +16,14 @@
  * Wraps the nearby links at the bottom of each day and applies border styling
  */
 export default {
-    name: "VsItineraryBorderOverlapWrapper",
-    status: "prototype",
-    release: "0.0.1",
+    name: 'VsItineraryBorderOverlapWrapper',
+    status: 'prototype',
+    release: '0.0.1',
     components: {
     },
     props: {
     },
-}
+};
 </script>
 
 <style lang="scss" scoped>

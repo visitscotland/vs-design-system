@@ -10,8 +10,8 @@
 <script>
 import {
     isFunction, get, isNumber,
-} from "lodash"
-import VsSkipToButton from "./SkipToButton"
+} from 'lodash';
+import VsSkipToButton from './SkipToButton';
 
 /**
  * The SkipTo component provides users of assistive
@@ -19,9 +19,9 @@ import VsSkipToButton from "./SkipToButton"
  * focus to a provided target element when activated.
  */
 export default {
-    name: "VsSkipTo",
-    status: "prototype",
-    release: "0.0.1",
+    name: 'VsSkipTo',
+    status: 'prototype',
+    release: '0.0.1',
     components: {
         VsSkipToButton,
     },
@@ -33,7 +33,7 @@ export default {
          */
         tabindex: {
             type: String,
-            default: "",
+            default: '',
         },
         /**
          * The target element to skip to: a Vue ref - e.g.
@@ -46,23 +46,23 @@ export default {
     },
     methods: {
         skipTo() {
-            let element
+            let element;
 
-            if (isFunction(get(this.target, "focus"))) {
-                element = this.target
-            } else if (isFunction(get(this.target, "$el.focus"))) {
-                element = this.target.$el
+            if (isFunction(get(this.target, 'focus'))) {
+                element = this.target;
+            } else if (isFunction(get(this.target, '$el.focus'))) {
+                element = this.target.$el;
             }
 
             if (element) {
                 if (!isNumber(element.tabIndex)) {
-                    element.tabIndex = -1
+                    element.tabIndex = -1;
                 }
-                element.focus()
+                element.focus();
             }
         },
     },
-}
+};
 </script>
 
 <style lang="scss" scoped></style>

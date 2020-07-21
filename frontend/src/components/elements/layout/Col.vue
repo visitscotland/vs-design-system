@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import { BCol } from "bootstrap-vue"
+import { BCol } from 'bootstrap-vue';
 
 /**
  * Column components are used to organise, align and space sibling blocks of content within row
@@ -16,13 +16,13 @@ import { BCol } from "bootstrap-vue"
  */
 
 export default {
-    name: "VsCol",
-    status: "prototype",
-    release: "0.1.0",
+    name: 'VsCol',
+    status: 'prototype',
+    release: '0.1.0',
     components: {
         BCol,
     },
-}
+};
 </script>
 
 <style lang="scss" scoped>

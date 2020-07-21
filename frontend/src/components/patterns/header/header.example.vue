@@ -333,11 +333,11 @@ export default {
         return {
             contentContainer: null,
             siteSearchModule: null,
-        }
+        };
     },
     mounted() {
-        this.contentContainer = document.getElementById("content-container")
-        this.siteSearchModule = this.$refs.siteSearch
+        this.contentContainer = document.getElementById('content-container');
+        this.siteSearchModule = this.$refs.siteSearch;
     },
-}
+};
 </script>

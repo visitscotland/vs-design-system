@@ -23,13 +23,13 @@
 </template>
 
 <script>
-import VsIcon from "@components/elements/icon"
-import VsButton from "@components/elements/button"
+import VsIcon from '@components/elements/icon';
+import VsButton from '@components/elements/button';
 
 export default {
-    name: "VsSiteNavMobileToggleButton",
-    status: "prototype",
-    release: "0.1.0",
+    name: 'VsSiteNavMobileToggleButton',
+    status: 'prototype',
+    release: '0.1.0',
     components: {
         VsIcon,
         VsButton,
@@ -39,7 +39,7 @@ export default {
             type: Boolean,
         },
     },
-}
+};
 </script>
 
 <style lang="scss" scoped>
