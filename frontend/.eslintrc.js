@@ -54,12 +54,12 @@ module.exports = {
 		],
 		"quotes": [
 			"error",
-			"double"
+			"single"
 		],
 		"no-extra-semi": "off",
 		"semi": [
 			"error",
-			"never"
+			"always"
 		],
 		"semi-style": [
 			"error",
@@ -74,6 +74,21 @@ module.exports = {
 		"object-property-newline": ["error", {
 			allowAllPropertiesOnSameLine: false,
 		}],
+		"space-before-function-paren": ["error", "never"],
+		"comma-dangle": ["error", "always-multiline"],
+		"arrow-parens": ["error", "always"],
+		"no-plusplus": ["error", { "allowForLoopAfterthoughts": true }],
+		"vue/html-self-closing": ["error", {
+			"html": {
+			  "void": "never",
+			  "normal": "always",
+			},
+		}],
+		"vue/singleline-html-element-content-newline": ["error", {
+			"ignoreWhenNoAttributes": true,
+			"ignoreWhenEmpty": true,
+		}],
+		"vue/no-v-html": 2,
 	},
 	settings: {
 		"import/resolver": {
