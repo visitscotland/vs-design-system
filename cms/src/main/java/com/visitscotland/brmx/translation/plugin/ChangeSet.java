@@ -100,7 +100,7 @@ public class ChangeSet {
         return pathBuilder.toString();
     }
 
-    public boolean containsDocumentWithUrl(String url) {
+    public boolean containsDocumentMatchingUrl(String url) {
         return documents.stream().anyMatch(
                 (document) -> (url.equals(document.getUrlfr()) || url.equals(document.getUrl())));
     }

@@ -6,6 +6,7 @@ import org.hippoecm.repository.api.HippoNode;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InOrder;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
@@ -210,5 +211,89 @@ public class DocumentTranslatorApplyChangeSetTest {
         // but should also not try to save the session.
         documentTranslator.applyChangeSet(Collections.emptyList(), mockSession, mockWorkflow);
         verify(mockWorkflow, never()).saveSession();
+    }
+
+    @Test
+    public void applyChangeSet_mixedTranslationLinkContainers() throws Exception {
+        // When there is a mixture of TranslationLinkContainer documents and non containers
+        // verify that TranslationLinkContainer documents are cloned last.
+        FolderTranslation translation1 = mock(FolderTranslation.class);
+        HippoNode document1Node = mock(HippoNode.class);
+        JcrDocument document1 = mock(JcrDocument.class);
+        HippoNode document1Variant = mock(HippoNode.class);
+        when(translation1.getNamefr()).thenReturn("document1");
+        when(document1.getVariantNode(eq(JcrDocument.VARIANT_UNPUBLISHED))).thenReturn(document1Variant);
+        when(translation1.getId()).thenReturn("doc1");
+        when(translation1.containsTranslationLinks()).thenReturn(true);
+        when(mockSession.getNodeByIdentifier(eq("doc1"))).thenReturn(document1Node);
+        doReturn(document1).when(documentTranslator).createJcrDocument(document1Node);
+        documentList.add(translation1);
+
+        FolderTranslation translation2 = mock(FolderTranslation.class);
+        HippoNode document2Node = mock(HippoNode.class);
+        JcrDocument document2 = mock(JcrDocument.class);
+        HippoNode document2Variant = mock(HippoNode.class);
+        when(translation2.getNamefr()).thenReturn("document2");
+        when(document2.getVariantNode(eq(JcrDocument.VARIANT_UNPUBLISHED))).thenReturn(document2Variant);
+        when(translation2.getId()).thenReturn("doc2");
+        when(translation2.containsTranslationLinks()).thenReturn(false);
+        when(mockSession.getNodeByIdentifier(eq("doc2"))).thenReturn(document2Node);
+        doReturn(document2).when(documentTranslator).createJcrDocument(document2Node);
+        documentList.add(translation2);
+
+        FolderTranslation translation3 = mock(FolderTranslation.class);
+        HippoNode document3Node = mock(HippoNode.class);
+        JcrDocument document3 = mock(JcrDocument.class);
+        HippoNode document3Variant = mock(HippoNode.class);
+        when(translation3.getNamefr()).thenReturn("document3");
+        when(document3.getVariantNode(eq(JcrDocument.VARIANT_UNPUBLISHED))).thenReturn(document3Variant);
+        when(translation3.getId()).thenReturn("doc3");
+        when(translation3.containsTranslationLinks()).thenReturn(true);
+        when(mockSession.getNodeByIdentifier(eq("doc3"))).thenReturn(document3Node);
+        doReturn(document3).when(documentTranslator).createJcrDocument(document3Node);
+        documentList.add(translation3);
+
+        documentTranslator.applyChangeSet(changeSetList, mockSession, mockWorkflow);
+
+        InOrder inOrder = inOrder(mockWorkflow);
+        inOrder.verify(mockWorkflow).addTranslation(eq("fr"), eq("document2"), same(document2Variant));
+        inOrder.verify(mockWorkflow).addTranslation(eq("fr"), eq("document1"), same(document1Variant));
+        inOrder.verify(mockWorkflow).addTranslation(eq("fr"), eq("document3"), same(document3Variant));
+        inOrder.verify(mockWorkflow).saveSession();
+    }
+
+    @Test
+    public void applyChangeSet_onlyTranslationLinkContainers() throws Exception {
+        // When there are only TranslationLinkContainer documents
+        // verify that processing is still successful.
+        FolderTranslation translation1 = mock(FolderTranslation.class);
+        HippoNode document1Node = mock(HippoNode.class);
+        JcrDocument document1 = mock(JcrDocument.class);
+        HippoNode document1Variant = mock(HippoNode.class);
+        when(translation1.getNamefr()).thenReturn("document1");
+        when(document1.getVariantNode(eq(JcrDocument.VARIANT_UNPUBLISHED))).thenReturn(document1Variant);
+        when(translation1.getId()).thenReturn("doc1");
+        when(translation1.containsTranslationLinks()).thenReturn(true);
+        when(mockSession.getNodeByIdentifier(eq("doc1"))).thenReturn(document1Node);
+        doReturn(document1).when(documentTranslator).createJcrDocument(document1Node);
+        documentList.add(translation1);
+
+        FolderTranslation translation2 = mock(FolderTranslation.class);
+        HippoNode document2Node = mock(HippoNode.class);
+        JcrDocument document2 = mock(JcrDocument.class);
+        HippoNode document2Variant = mock(HippoNode.class);
+        when(translation2.getNamefr()).thenReturn("document2");
+        when(document2.getVariantNode(eq(JcrDocument.VARIANT_UNPUBLISHED))).thenReturn(document2Variant);
+        when(translation2.getId()).thenReturn("doc2");
+        when(translation2.containsTranslationLinks()).thenReturn(true);
+        when(mockSession.getNodeByIdentifier(eq("doc2"))).thenReturn(document2Node);
+        doReturn(document2).when(documentTranslator).createJcrDocument(document2Node);
+        documentList.add(translation2);
+
+        documentTranslator.applyChangeSet(changeSetList, mockSession, mockWorkflow);
+
+        verify(mockWorkflow).addTranslation(eq("fr"), eq("document2"), same(document2Variant));
+        verify(mockWorkflow).addTranslation(eq("fr"), eq("document1"), same(document1Variant));
+        verify(mockWorkflow).saveSession();
     }
 }
