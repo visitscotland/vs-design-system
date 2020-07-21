@@ -1,5 +1,5 @@
-import VsRichTextWrapper from "./RichTextWrapper.vue"
+import VsRichTextWrapper from './RichTextWrapper.vue';
 
 export default {
     VsRichTextWrapper,
-}
+};

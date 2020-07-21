@@ -50,18 +50,18 @@
 </template>
 
 <script>
-import VsIcon from "@components/elements/icon/Icon"
-import VsHeading from "@components/elements/heading/Heading"
-import VsButton from "@components/elements/button/Button"
+import VsIcon from '@components/elements/icon/Icon';
+import VsHeading from '@components/elements/heading/Heading';
+import VsButton from '@components/elements/button/Button';
 
 /**
  * Itinerary Day list items.
  */
 
 export default {
-    name: "VsItineraryDay",
-    status: "prototype",
-    release: "0.0.1",
+    name: 'VsItineraryDay',
+    status: 'prototype',
+    release: '0.0.1',
     components: {
         VsHeading,
         VsButton,
@@ -102,27 +102,27 @@ export default {
         return {
             show: this.defaultShow,
             isDesktop: false,
-        }
+        };
     },
     mounted() {
         if (window) {
-            window.addEventListener("resize", this.onResize)
+            window.addEventListener('resize', this.onResize);
         }
     },
     destroyed() {
         if (window) {
-            window.removeEventListener("resize", this.onResize)
+            window.removeEventListener('resize', this.onResize);
         }
     },
     methods: {
         onResize() {
-            this.isDesktop = window.innerWidth >= 1200
+            this.isDesktop = window.innerWidth >= 1200;
         },
         triggerToggle() {
-            this.show = !this.show
+            this.show = !this.show;
         },
     },
-}
+};
 </script>
 
 <style lang="scss" scoped>
