@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import { BImg } from "bootstrap-vue"
+import { BImg } from 'bootstrap-vue';
 /**
  * This image component is used to render images in the site. It utilises
  * <a href="https://bootstrap-vue.js.org/docs/components/image">the Bootstrap
@@ -19,9 +19,9 @@ import { BImg } from "bootstrap-vue"
  */
 
 export default {
-    name: "VsImg",
-    status: "prototype",
-    release: "0.0.1",
+    name: 'VsImg',
+    status: 'prototype',
+    release: '0.0.1',
     components: {
         BImg,
     },
@@ -58,7 +58,7 @@ export default {
             type: Boolean,
         },
     },
-}
+};
 </script>
 
 <style lang="scss" scoped>

@@ -20,10 +20,10 @@
  * Note that everything within is just a slot.
  */
 export default {
-    name: "VsPageIntro",
-    status: "prototype",
-    release: "0.0.1",
-}
+    name: 'VsPageIntro',
+    status: 'prototype',
+    release: '0.0.1',
+};
 </script>
 
 <style lang="scss" scoped>

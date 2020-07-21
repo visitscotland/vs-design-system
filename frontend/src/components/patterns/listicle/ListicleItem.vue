@@ -48,13 +48,13 @@
 </template>
 
 <script>
-import VsHeading from "@components/elements/heading/Heading"
-import { VsRow, VsCol } from "@components/elements/layout"
+import VsHeading from '@components/elements/heading/Heading';
+import { VsRow, VsCol } from '@components/elements/layout';
 
 export default {
-    name: "VsListicleItem",
-    status: "prototype",
-    release: "0.0.1",
+    name: 'VsListicleItem',
+    status: 'prototype',
+    release: '0.0.1',
     components: {
         VsHeading,
         VsRow,
@@ -66,29 +66,29 @@ export default {
          */
         index: {
             type: String,
-            default: "",
+            default: '',
         },
         /**
          * The listicle item title
          */
         title: {
             type: String,
-            default: "",
+            default: '',
         },
         /**
          * The listicle item subtitle
          */
         subTitle: {
             type: String,
-            default: "",
+            default: '',
         },
     },
     computed: {
         hasKeyFacilitiesSlot() {
-            return !!this.$slots["facilities-slot"]
+            return !!this.$slots['facilities-slot'];
         },
     },
-}
+};
 </script>
 
 <style lang="scss" scoped>

@@ -9,23 +9,23 @@
 </template>
 
 <script>
-import { VsCol } from "@components/elements/layout"
+import { VsCol } from '@components/elements/layout';
 /**
  * TODO: Document usage
  */
 
 export default {
-    name: "VsDescriptionListTerm",
-    status: "prototype",
-    release: "0.0.1",
+    name: 'VsDescriptionListTerm',
+    status: 'prototype',
+    release: '0.0.1',
     components: {
         VsCol,
     },
     /**
      * Injects inline prop provided by DescriptionList
      */
-    inject: ["inline"],
-}
+    inject: ['inline'],
+};
 </script>
 
 <style lang="scss" scoped>

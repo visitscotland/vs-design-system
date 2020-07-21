@@ -15,25 +15,25 @@
 </template>
 
 <script>
-import VsHeading from "../elements/heading"
+import VsHeading from '../elements/heading';
 
 /**
  * Section component
  */
 export default {
-    name: "VsContentSection",
+    name: 'VsContentSection',
     components: {
         VsHeading,
     },
-    status: "prototype",
-    release: "0.0.1",
+    status: 'prototype',
+    release: '0.0.1',
     props: {
         /**
          * Section heading
          */
         heading: {
             type: String,
-            default: "",
+            default: '',
         },
 
         /**
@@ -50,11 +50,11 @@ export default {
          */
         tag: {
             type: String,
-            default: "article",
+            default: 'article',
             validator: (value) => value.match(/(article|aside|div)/),
         },
     },
-}
+};
 </script>
 
 <style lang="scss" scoped>
