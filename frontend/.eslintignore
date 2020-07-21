@@ -9,3 +9,4 @@ cypress
 build
 config
 src/components/patterns/header/components/Chart/
+ssr
