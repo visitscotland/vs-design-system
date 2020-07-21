@@ -52,18 +52,18 @@
 </template>
 
 <script>
-import VsAccordionToggle from "@components/patterns/accordion/AccordionToggle"
+import VsAccordionToggle from '@components/patterns/accordion/AccordionToggle';
 
 import {
     BCard, BCardHeader, BCardBody,
-} from "bootstrap-vue"
+} from 'bootstrap-vue';
 
 /**
  * Accordion item for use within the Accordion component.
  * Contains a button to toggle the panel open or closed.
  */
 export default {
-    name: "VsAccordionItem",
+    name: 'VsAccordionItem',
     components: {
         VsAccordionToggle,
         BCard,
@@ -85,7 +85,7 @@ export default {
         itemBreakPoint: {
             type: String,
             default() {
-                return this.breakPoint
+                return this.breakPoint;
             },
             validator: (value) => value.match(/(xs|sm|md|lg|xl|xxl)/),
         },
@@ -101,40 +101,40 @@ export default {
          */
         variant: {
             type: String,
-            default: "primary",
+            default: 'primary',
         },
     },
     data() {
         return {
             show: this.openByDefault,
-        }
+        };
     },
     computed: {
         toggleAccordionBtn() {
             if (!this.itemBreakPoint) {
-                return "d-block"
+                return 'd-block';
             }
 
-            return this.itemBreakPoint === "xs" ? "d-none" : `d-${this.itemBreakPoint}-none`
+            return this.itemBreakPoint === 'xs' ? 'd-none' : `d-${this.itemBreakPoint}-none`;
         },
         toggleResponsiveItem() {
             if (!this.itemBreakPoint) {
-                return ""
+                return '';
             }
 
-            return this.itemBreakPoint === "xs" ? "d-block" : `d-${this.itemBreakPoint}-block`
+            return this.itemBreakPoint === 'xs' ? 'd-block' : `d-${this.itemBreakPoint}-block`;
         },
     },
     /**
      * Injects breakPoint prop provided by Accordion
      */
-    inject: ["breakPoint"],
+    inject: ['breakPoint'],
     methods: {
         onButtonClick() {
-            this.show = !this.show
+            this.show = !this.show;
         },
     },
-}
+};
 </script>
 
 <style lang="scss">

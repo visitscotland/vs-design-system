@@ -12,20 +12,20 @@
 </template>
 
 <script>
-import BCard from "bootstrap-vue/es/components/card/card"
-import BCardText from "bootstrap-vue/es/components/card/card-text"
+import BCard from 'bootstrap-vue/es/components/card/card';
+import BCardText from 'bootstrap-vue/es/components/card/card-text';
 
-import VsButton from "../../elements/button"
-import store from "./example.store"
+import VsButton from '../../elements/button';
+import store from './example.store';
 
 /**
  * This is an example component to demonstrate how VueX can be used with
  * components of the design system.
  */
 export default {
-    name: "VsVueXExample",
-    status: "prototype",
-    release: "0.0.1",
+    name: 'VsVueXExample',
+    status: 'prototype',
+    release: '0.0.1',
     components: {
         VsButton,
         BCard,
@@ -35,29 +35,29 @@ export default {
     props: {
         title: {
             type: String,
-            default: "Vuex Example component",
+            default: 'Vuex Example component',
         },
     },
     data() {
         return {
             showAlert: false,
-        }
+        };
     },
     computed: {
         count() {
-            return this.$store.state.example.count
+            return this.$store.state.example.count;
         },
     },
     methods: {
         increment() {
             const message = this.showAlert
                 ? `Incrementing count from ${this.count} to ${this.count + 1}`
-                : false
+                : false;
 
-            this.$store.dispatch("example/increment", message)
+            this.$store.dispatch('example/increment', message);
         },
     },
-}
+};
 </script>
 
 <style lang="scss">

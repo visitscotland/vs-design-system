@@ -9,14 +9,14 @@
  * Summary Box List Item
  */
 export default {
-    name: "VsSummaryBoxListItem",
-    status: "prototype",
-    release: "0.0.1",
+    name: 'VsSummaryBoxListItem',
+    status: 'prototype',
+    release: '0.0.1',
     components: {
     },
     props: {
     },
-}
+};
 </script>
 
 <style lang="scss" scoped>

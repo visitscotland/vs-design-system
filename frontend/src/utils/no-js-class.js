@@ -1,5 +1,5 @@
-import getTokenValue from "./get-token"
+import getTokenValue from './get-token';
 
-const defaultNoJsClassName = "no-js-missing"
+const defaultNoJsClassName = 'no-js-missing';
 
-export default getTokenValue("no_javascript", defaultNoJsClassName)
+export default getTokenValue('no_javascript', defaultNoJsClassName);
