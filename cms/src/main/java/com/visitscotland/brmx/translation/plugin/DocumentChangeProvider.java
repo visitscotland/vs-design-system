@@ -3,34 +3,51 @@ package com.visitscotland.brmx.translation.plugin;
 import org.apache.wicket.markup.repeater.data.IDataProvider;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.LoadableDetachableModel;
+import org.apache.wicket.model.Model;
+import org.hippoecm.frontend.i18n.types.TypeTranslator;
+import org.hippoecm.frontend.model.nodetypes.JcrNodeTypeModel;
+import org.hippoecm.frontend.plugins.standards.list.resolvers.TypeRenderer;
 import org.hippoecm.frontend.translation.ILocaleProvider;
 
+import javax.jcr.Node;
+import javax.jcr.RepositoryException;
 import java.util.*;
 import java.util.stream.Collectors;
 
+import static org.hippoecm.repository.api.HippoNodeType.NT_DOCUMENT;
+import static org.hippoecm.repository.api.HippoNodeType.NT_HANDLE;
+import static org.hippoecm.repository.api.HippoNodeType.NT_TEMPLATETYPE;
+
 public class DocumentChangeProvider implements IDataProvider<DocumentChangeProvider.Entry> {
     protected List<Entry> documentChangeList;
+    private TypeNameFactory typeNameFactory;
 
     public DocumentChangeProvider(List<ChangeSet> changeSetList) {
+        this(changeSetList, new TypeNameFactory());
+    }
+
+    protected DocumentChangeProvider(List<ChangeSet> changeSetList, TypeNameFactory typeNameFactory) {
+        this.typeNameFactory = typeNameFactory;
         documentChangeList = buildDocumentChangeMap(changeSetList);
     }
 
     protected List<Entry> buildDocumentChangeMap(List<ChangeSet> changeSetList) {
         // Need to convert the List<ChangeSet> into a list of unique document names and the languages they will
         // cloned into
-        Map<String, List<ILocaleProvider.HippoLocale>> documentLocaleMap = new HashMap<>();
+        Map<String, Entry> documentEntryMap = new HashMap<>();
         for (ChangeSet change : changeSetList) {
             ILocaleProvider.HippoLocale targetLocale = change.getTargetLocale();
             for (FolderTranslation document : change.getDocuments()) {
-                List<ILocaleProvider.HippoLocale> localeList = documentLocaleMap.get(document.getName());
-                if (null == localeList) {
-                    localeList = new ArrayList<>();
-                    documentLocaleMap.put(document.getName(), localeList);
+                Entry documentEntry = documentEntryMap.get(document.getName());
+                if (null == documentEntry) {
+                    documentEntry = new Entry(document.getName(),
+                            typeNameFactory.lookupTypeName(document.getSourceNode()));
+                    documentEntryMap.put(document.getName(), documentEntry);
                 }
-                localeList.add(targetLocale);
+                documentEntry.addLocale(targetLocale);
             }
         }
-        return documentLocaleMap.entrySet().stream().map((entry) -> new Entry(entry)).collect(Collectors.toList());
+        return new ArrayList<>(documentEntryMap.values());
     }
 
     @Override
@@ -63,19 +80,25 @@ public class DocumentChangeProvider implements IDataProvider<DocumentChangeProvi
 
     public class Entry {
         private String documentName;
+        private String documentType;
         private List<ILocaleProvider.HippoLocale> localeList;
 
-        Entry(Map.Entry<String, List<ILocaleProvider.HippoLocale>> entry) {
-            this.documentName = entry.getKey();
-            this.localeList = entry.getValue();
+        Entry(String documentName, String documentType) {
+            this.documentName = documentName;
+            this.localeList = new ArrayList<>();
+            this.documentType = documentType;
         }
 
         public String getDocumentName() {
             return documentName;
         }
 
+        protected void addLocale(ILocaleProvider.HippoLocale toAdd) { localeList.add(toAdd); }
+
         public List<ILocaleProvider.HippoLocale> getLocaleList() {
             return localeList;
         }
+
+        public String getDocumentType() { return  documentType; }
     }
 }
