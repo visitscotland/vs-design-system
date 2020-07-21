@@ -5,6 +5,8 @@ import com.visitscotland.brmx.beans.dms.LocationObject;
 import com.visitscotland.brmx.beans.mapping.megalinks.AbstractLayout;
 import com.visitscotland.brmx.beans.mapping.megalinks.FeaturedLayout;
 import com.visitscotland.brmx.beans.mapping.megalinks.SingleImageLayout;
+import com.visitscotland.brmx.dms.DMSDataService;
+import com.visitscotland.brmx.dms.ProductSearchBuilder;
 import com.visitscotland.brmx.utils.HippoUtilsService;
 import org.easymock.EasyMockSupport;
 import org.hippoecm.hst.content.beans.standard.HippoBean;
@@ -33,6 +35,8 @@ class LinkModulesFactoryTest extends EasyMockSupport {
 
     private LinkModulesFactory factory;
     private HippoUtilsService utils;
+    private ProductSearchBuilder psb;
+    private DMSDataService dms;
 
     /**
      * {@code factory} needs an static method (createUrl) to be mocked since it relies on a static BloomReach dependency
@@ -48,10 +52,14 @@ class LinkModulesFactoryTest extends EasyMockSupport {
     @BeforeEach
     void initFactory(){
         utils = createNiceMock(HippoUtilsService.class);
+        psb = new ProductSearchBuilder();
+        dms = new DMSDataService();
 
         expect(utils.createUrl(anyObject(HippoBean.class))).andStubReturn("/fake-url/mock");
 
-        factory = partialMockBuilder(LinkModulesFactory.class).withConstructor(HippoUtilsService.class).withArgs(utils)
+        factory = partialMockBuilder(LinkModulesFactory.class)
+                .withConstructor(HippoUtilsService.class,ProductSearchBuilder.class,DMSDataService.class)
+                .withArgs(utils, psb, dms)
                 .addMockedMethod("getLocation", String.class, Locale.class)
                 .createMock();
 
@@ -115,14 +123,14 @@ class LinkModulesFactoryTest extends EasyMockSupport {
     }
 
     @Test
-    void getSingleImageWithLargeAmountOfItems(){
+    void getListLayoutWhenSingleImageLinksIsHigherThan6(){
         replayAll();
 
-        Megalinks mega = megalinkService.createMock(TITLE, false, false, true, LinkModulesFactory.MAX_ITEMS + 1, "Single image title");
+        Megalinks mega = megalinkService.createMock(TITLE, false, false, true, LinkModulesFactory.MAX_ITEMS + 1, "List Layout Title");
         AbstractLayout layout = factory.getMegalinkModule(mega, Locale.UK);
 
         verifyAll();
-        Assertions.assertEquals(layout.getType(), SINGLE_IMAGE);
+        Assertions.assertEquals(LIST, layout.getType());
     }
 
     @Test
@@ -132,7 +140,7 @@ class LinkModulesFactoryTest extends EasyMockSupport {
         for (int i= 0; i <= LinkModulesFactory.MAX_ITEMS; i++) {
             Megalinks mega = megalinkService.createMock(TITLE, false, false, true, i);
             AbstractLayout layout = factory.getMegalinkModule(mega, Locale.UK);
-            Assertions.assertEquals(layout.getType(), FEATURED);
+            Assertions.assertEquals(FEATURED, layout.getType());
         }
 
         verifyAll();
@@ -178,7 +186,7 @@ class LinkModulesFactoryTest extends EasyMockSupport {
         MegalinkItem mi = megalinkItemService.createMock(false);
 
         verifyAll();
-        Assertions.assertEquals(factory.convertoToFlatLinks(Collections.singletonList(mi)).size(), 1);
+        Assertions.assertEquals(factory.convertToFlatLinks(Collections.singletonList(mi), null).size(), 1);
         Assertions.assertEquals(factory.convertToEnhancedLinks(Collections.singletonList(mi), Locale.UK).size(), 1);
     }
 
@@ -193,7 +201,7 @@ class LinkModulesFactoryTest extends EasyMockSupport {
         replayAll();
 
 
-        Assertions.assertEquals(factory.convertoToFlatLinks(Collections.singletonList(mi)).size(), 0);
+        Assertions.assertEquals(factory.convertToFlatLinks(Collections.singletonList(mi), null).size(), 0);
         Assertions.assertEquals(factory.convertToEnhancedLinks(Collections.singletonList(mi), Locale.UK).size(), 0);
 
         //This verifies that messages were generated and include the problematic node
@@ -211,10 +219,16 @@ class LinkModulesFactoryTest extends EasyMockSupport {
 
         replay(mi);
 
-        Assertions.assertEquals(factory.convertoToFlatLinks(Collections.singletonList(mi)).size(), 0);
+        Assertions.assertEquals(factory.convertToFlatLinks(Collections.singletonList(mi), null).size(), 0);
         Assertions.assertEquals(factory.convertToEnhancedLinks(Collections.singletonList(mi), Locale.UK).size(), 0);
 
         //This verifies that messages were generated and include the problematic node
         verify(mi);
     }
+
+
+
+
+
+
 }
