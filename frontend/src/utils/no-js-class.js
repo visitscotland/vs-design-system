@@ -1,5 +1,3 @@
-import { get } from "lodash"
-
 import getTokenValue from "./get-token"
 
 const defaultNoJsClassName = "no-js-missing"

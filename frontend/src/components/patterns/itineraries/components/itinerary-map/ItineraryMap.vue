@@ -221,9 +221,9 @@ export default {
         lazyloadMapComponent() {
             // ALL Mapbox dependency import and init must be done only in the mounted
             // lifecycle event so it doesn't break SSR
-            
-            mapboxgl = require("mapbox-gl")
-            geojsonExtent = require("@mapbox/geojson-extent")
+
+            mapboxgl = require("mapbox-gl") // eslint-disable-line global-require
+            geojsonExtent = require("@mapbox/geojson-extent") // eslint-disable-line global-require
 
             // Disable WebGL if its causing performance problems.
             mapboxgl.supported({

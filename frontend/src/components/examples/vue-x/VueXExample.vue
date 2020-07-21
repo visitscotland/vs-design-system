@@ -14,7 +14,6 @@
 <script>
 import BCard from "bootstrap-vue/es/components/card/card"
 import BCardText from "bootstrap-vue/es/components/card/card-text"
-import { BFormCheckbox } from "bootstrap-vue/es/components/form-checkbox"
 
 import VsButton from "../../elements/button"
 import store from "./example.store"
@@ -31,19 +30,18 @@ export default {
         VsButton,
         BCard,
         BCardText,
-        BFormCheckbox,
     },
     store,
-    data() {
-        return {
-            showAlert: false,
-        }
-    },
     props: {
         title: {
             type: String,
             default: "Vuex Example component",
         },
+    },
+    data() {
+        return {
+            showAlert: false,
+        }
     },
     computed: {
         count() {
@@ -72,8 +70,12 @@ export default {
   <template>
   <div>
     <vs-row>
-        <vs-vue-x-example class="col-3" title="Example component 1">Increment count</vs-vue-x-example>
-        <vs-vue-x-example class="col-3" title="Example component 2">Increment count</vs-vue-x-example>
+        <vs-vue-x-example class="col-3" title="Example component 1">
+            Increment count
+        </vs-vue-x-example>
+        <vs-vue-x-example class="col-3" title="Example component 2">
+            Increment count
+        </vs-vue-x-example>
     </vs-row>
     <div style="margin-top:24px">
       <span>Outside the components, the count is {{ count }}</span>

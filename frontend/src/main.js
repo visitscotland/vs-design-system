@@ -11,8 +11,8 @@ const defaultVueOptions = {
 }
 
 const removeNoJSClass = () => {
-    // remove no-js class 
-    var elements = document.getElementsByClassName(noJsClass)
+    // remove no-js class
+    const elements = document.getElementsByClassName(noJsClass)
 
     each(elements, (element) => {
         element.classList.remove(noJsClass)
@@ -20,16 +20,16 @@ const removeNoJSClass = () => {
 }
 
 export const initApp = (options, skipRemoveNoJsClass) => {
-    
     const app = new Vue({
         ...defaultVueOptions,
-        ...isObject(options) ? options : {},
+        ...isObject(options) ? options : {
+        },
     })
 
-    if(!skipRemoveNoJsClass) {
+    if (!skipRemoveNoJsClass) {
         removeNoJSClass()
     }
-    
+
     return app
 }
 
