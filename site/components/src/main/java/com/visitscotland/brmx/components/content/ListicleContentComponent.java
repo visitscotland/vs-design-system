@@ -39,8 +39,6 @@ public class ListicleContentComponent extends PageContentComponent<Listicle> {
         final String LOCATION = "city";
         final String LATITUDE = "latitude";
         final String LONGITUDE = "longitude";
-        final String NAME = "name";
-        final String IMAGE = "images";
         final List<FlatListicle> items =  new ArrayList<>();
 
         int index = listicle.getDescOrder()?listicle.getItems().size():1;
@@ -48,7 +46,6 @@ public class ListicleContentComponent extends PageContentComponent<Listicle> {
 
         //TODO:separate image, main product and optional cta in different methods ?
         for (ListicleItem listicleItem : listicle.getItems()) {
-            ObjectMapper mapper = new ObjectMapper();
             List<String> errors = new ArrayList<>();
             FlatListicle model = new FlatListicle(listicleItem);
             List<FlatLink> links = new ArrayList<>();
@@ -112,20 +109,13 @@ public class ListicleContentComponent extends PageContentComponent<Listicle> {
                                 }
                             }
 
-                              if (flatImage == null){
-                                if (product.has(IMAGE)){
-                                    JsonNode dmsImageList = product.get(IMAGE);
-                                  	flatImage = new FlatImage(dmsImageList.get(0),product.get(NAME).asText());
-                                  	if (product.has(LATITUDE) && product.has(LONGITUDE)){
-                                      Coordinates coordinates = new Coordinates(product.get(LATITUDE).asDouble(), product.get(LONGITUDE).asDouble());
-                                      flatImage.setCoordinates(coordinates);
-                                  }
+                            if (flatImage == null) {
+                                flatImage = new FlatImage(product);
+                            } else {
+                                if (flatImage.getCoordinates() == null) {
+                                    Coordinates coordinates = new Coordinates(product.get(LATITUDE).asDouble(), product.get(LONGITUDE).asDouble());
+                                    flatImage.setCoordinates(coordinates);
                                 }
-                            }else{
-                              if (flatImage.getCoordinates() == null){
-                                  Coordinates coordinates = new Coordinates(product.get(LATITUDE).asDouble(),product.get(LONGITUDE).asDouble());
-                                  flatImage.setCoordinates(coordinates);
-                              }
                             }
 
                              model.setFacilities(getFacilities(product));
