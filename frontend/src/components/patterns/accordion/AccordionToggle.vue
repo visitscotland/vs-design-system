@@ -28,14 +28,14 @@
 </template>
 
 <script>
-import VsButton from "@components/elements/button/Button"
+import VsButton from '@components/elements/button/Button';
 
 /**
  * Accordion toggle button used with AccordionItem
  * It emits an event to the parent to toggle the Accordion panel.
  */
 export default {
-    name: "VsAccordionToggle",
+    name: 'VsAccordionToggle',
     components: {
         VsButton,
     },
@@ -45,7 +45,7 @@ export default {
          */
         variant: {
             type: String,
-            default: "primary",
+            default: 'primary',
         },
         /**
          * Choose to show accordion open or closed by default
@@ -57,10 +57,10 @@ export default {
     },
     methods: {
         triggerToggle() {
-            this.$emit("toggle-panel")
+            this.$emit('toggle-panel');
         },
     },
-}
+};
 </script>
 
 <style lang="scss">

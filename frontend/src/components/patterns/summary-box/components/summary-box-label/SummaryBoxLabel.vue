@@ -9,18 +9,18 @@
  * Summary Box Label
  */
 export default {
-    name: "VsSummaryBoxLabel",
-    status: "prototype",
-    release: "0.0.1",
+    name: 'VsSummaryBoxLabel',
+    status: 'prototype',
+    release: '0.0.1',
     components: {
     },
     props: {
         label: {
             type: String,
-            default: "",
+            default: '',
         },
     },
-}
+};
 </script>
 
 <style lang="scss" scoped>

@@ -23,12 +23,12 @@
 </template>
 
 <script>
-import { BListGroupItem } from "bootstrap-vue"
+import { BListGroupItem } from 'bootstrap-vue';
 
 export default {
-    name: "VsDrawerListItem",
-    status: "prototype",
-    release: "0.1.0",
+    name: 'VsDrawerListItem',
+    status: 'prototype',
+    release: '0.1.0',
     components: {
         BListGroupItem,
     },
@@ -47,13 +47,13 @@ export default {
         },
         trackingId: {
             type: String,
-            default: "",
+            default: '',
         },
         fullWidth: {
             type: Boolean,
         },
     },
-}
+};
 </script>
 
 <style lang="scss" scoped>

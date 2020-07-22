@@ -11,28 +11,28 @@
 
 <script>
 export default {
-    name: "VsDesktopNav",
-    status: "prototype",
-    release: "0.0.1",
+    name: 'VsDesktopNav',
+    status: 'prototype',
+    release: '0.0.1',
     props: {
         /**
          * The html element name used for the component
          */
         type: {
             type: String,
-            default: "nav",
+            default: 'nav',
         },
         name: {
             type: String,
-            default: "",
+            default: '',
         },
     },
 
     data() {
         return {
-        }
+        };
     },
-}
+};
 </script>
 
 <style lang="scss" scoped>
