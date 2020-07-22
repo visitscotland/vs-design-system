@@ -19,14 +19,15 @@ import org.onehippo.cms7.essentials.components.EssentialsMenuComponent;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
 @ParametersInfo(
         type = MenuComponentInfo.class
 )
 public class MenuComponent extends EssentialsMenuComponent {
 
-    private static final String NAVIGATION_BUNDLE = "meganav";
+    private static final String NAVIGATION_LINKS = "meganav";
+    private static final String HEADER = "header";
+    private static final String CTA_SUFFIX = ".cta";
 
     static final String ENHANCED_MENU = "enhancedMenu";
 
@@ -72,7 +73,7 @@ public class MenuComponent extends EssentialsMenuComponent {
         boolean documentExist = true;
 
         //By default the name would be populated by the resourceBundle
-        enhancedMenu.setTitle(bundle.getResourceBundle(NAVIGATION_BUNDLE, menu.getName(), request.getLocale()));
+        enhancedMenu.setTitle(bundle.getResourceBundle(NAVIGATION_LINKS, menu.getName(), request.getLocale()));
 
         //if document base page or widget, we enhance the document
         if (isDocumentBased(menu.getHstLink())) {
@@ -93,12 +94,13 @@ public class MenuComponent extends EssentialsMenuComponent {
                             enhancedMenu.setTitle(((Page) bean).getTitle());
                         }
 
-                        //TODO create constant .cta
-                        if (bundle.existsResourceBundleKey(NAVIGATION_BUNDLE,menu.getName()+ ".cta",  request.getLocale())){
-                            enhancedMenu.setCta(bundle.getResourceBundle(NAVIGATION_BUNDLE,menu.getName()+ ".cta", request.getLocale()));
+                        if (bundle.existsResourceBundleKey(NAVIGATION_LINKS,menu.getName()+ CTA_SUFFIX,  request.getLocale())){
+                            enhancedMenu.setCta(bundle.getResourceBundle(NAVIGATION_LINKS,menu.getName()+ CTA_SUFFIX, request.getLocale()));
                         } else {
-                            //TODO label
-                            enhancedMenu.setCta(enhancedMenu.getTitle()+ " (See all)");
+                            String seeAll = bundle.getResourceBundle(HEADER,"see-all-cta", request.getLocale());
+                            if (seeAll != null) {
+                                enhancedMenu.setCta(String.format(seeAll, enhancedMenu.getTitle()));
+                            }
                         }
                     }
 
@@ -119,32 +121,19 @@ public class MenuComponent extends EssentialsMenuComponent {
         return enhancedMenu;
     }
 
-    private VsHstSiteMenuItemImpl populateMenuItem(VsHstSiteMenuItemImpl parent, HstSiteMenuItem menu, HippoBean bean, Locale locale){
-        VsHstSiteMenuItemImpl enhancedMenu = new VsHstSiteMenuItemImpl(parent, menu);
-        //if the document does not exist or no publish
-        if (bean == null || bean instanceof HippoFolder){
-            return null;
-        } else if (bean instanceof Widget) {
-            enhancedMenu.setWidget((Widget) bean);
-        } else {
-            if (bundle.existsResourceBundleKey(NAVIGATION_BUNDLE, menu.getName(), locale)) {
-                enhancedMenu.setTitle(bundle.getResourceBundle(NAVIGATION_BUNDLE, menu.getName(), locale));
-            } else if (bean instanceof Page) {
-                enhancedMenu.setTitle(((Page) bean).getTitle());
-            }
-
-            //TODO create constant .cta
-            if (bundle.existsResourceBundleKey(menu.getName()+ ".cta", NAVIGATION_BUNDLE, locale)){
-                enhancedMenu.setCta(bundle.getResourceBundle(menu.getName()+ ".cta", NAVIGATION_BUNDLE, locale));
-            } else {
-                //TODO label
-                enhancedMenu.setCta(enhancedMenu.getTitle()+ " (See all)");
-            }
-        }
-
-
-        return enhancedMenu;
-    }
+//    private VsHstSiteMenuItemImpl populateMenuItem(VsHstSiteMenuItemImpl parent, HstSiteMenuItem menu, HippoBean bean, Locale locale){
+//        VsHstSiteMenuItemImpl enhancedMenu = new VsHstSiteMenuItemImpl(parent, menu);
+//        //if the document does not exist or no publish
+//        if (bean == null || bean instanceof HippoFolder){
+//            return null;
+//        } else if (bean instanceof Widget) {
+//            enhancedMenu.setWidget((Widget) bean);
+//        } else {
+//           TODO: Body of the method
+//        }
+//
+//        return enhancedMenu;
+//    }
 
     private boolean isDocumentBased(HstLink link){
         return link != null && link.getPath() != null && link.getPath().length() > 0;
