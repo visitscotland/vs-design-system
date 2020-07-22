@@ -1,4 +1,5 @@
 /content/documents/administration/labels/navigation/social-media-links:
+  .meta:order-before: meganav
   jcr:primaryType: hippo:handle
   jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
   jcr:uuid: 93697ed5-5c68-4ab7-8787-e70e27707801
@@ -21,7 +22,7 @@
       'https://www.youtube.com/channel/UC1FdvQG5MFwzv0PY6dMsaFg', 'https://www.instagram.com/visitscotland/']
   /social-media-links[2]:
     jcr:primaryType: resourcebundle:resourcebundle
-    jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
+    jcr:mixinTypes: ['mix:versionable']
     jcr:uuid: 27dcb9e6-957b-4b28-ab86-694b09db853b
     hippo:availability: [preview]
     hippostd:state: unpublished
