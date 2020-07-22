@@ -16,8 +16,8 @@
 </template>
 
 <script>
-import VsIcon from "@components/elements/icon/Icon"
-import VsButton from "@components/elements/button"
+import VsIcon from '@components/elements/icon/Icon';
+import VsButton from '@components/elements/button';
 
 /**
  * The SkipToButton component is a button with specific style and
@@ -25,9 +25,9 @@ import VsButton from "@components/elements/button"
  * control.
  */
 export default {
-    name: "VsSkipToButton",
-    status: "prototype",
-    release: "0.0.1",
+    name: 'VsSkipToButton',
+    status: 'prototype',
+    release: '0.0.1',
     components: {
         VsIcon,
         VsButton,
@@ -40,10 +40,10 @@ export default {
          */
         tabindex: {
             type: String,
-            default: "",
+            default: '',
         },
     },
-}
+};
 </script>
 
 <style lang="scss" scoped>
