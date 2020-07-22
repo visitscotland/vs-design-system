@@ -14,13 +14,13 @@
 </template>
 
 <script>
-import { VsDropdown } from "@components/patterns/dropdown"
+import { VsDropdown } from '@components/patterns/dropdown';
 
 /**
  * Dropdown component styled for use in the header.
  */
 export default {
-    name: "VsHeaderDropdown",
+    name: 'VsHeaderDropdown',
     components: {
         VsDropdown,
     },
@@ -31,16 +31,16 @@ export default {
          */
         section: {
             type: String,
-            default: "bottom",
+            default: 'bottom',
             validator: (value) => value.match(/(top|bottom)/),
         },
     },
     computed: {
         isTop() {
-            return this.section === "top"
+            return this.section === 'top';
         },
     },
-}
+};
 </script>
 
 <style lang="scss">

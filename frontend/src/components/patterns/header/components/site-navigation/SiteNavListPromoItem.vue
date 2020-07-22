@@ -24,15 +24,15 @@
 </template>
 
 <script>
-import { get, find } from "lodash"
+import { get, find } from 'lodash';
 
-import VsIcon from "@components/elements/icon"
-import VsSiteNavListItem from "./SiteNavListItem"
+import VsIcon from '@components/elements/icon';
+import VsSiteNavListItem from './SiteNavListItem';
 
 export default {
-    name: "VsSiteNavListPromoItem",
-    status: "prototype",
-    release: "0.1.0",
+    name: 'VsSiteNavListPromoItem',
+    status: 'prototype',
+    release: '0.1.0',
     components: {
         VsIcon,
         VsSiteNavListItem,
@@ -40,36 +40,36 @@ export default {
     props: {
         imageHref: {
             type: String,
-            default: "",
+            default: '',
         },
     },
     computed: {
         level() {
-            return this.$parent.level
+            return this.$parent.level;
         },
         backgroundImgStyle() {
             if (!this.isFirstSiblingWithImage) {
-                return false
+                return false;
             }
 
             return {
                 backgroundImage: `url(${this.imageHref})`,
-            }
+            };
         },
         isFirstSiblingWithImage() {
             if (!this.imageHref) {
-                return false
+                return false;
             }
 
             const firstSibling = find(
                 this.$parent.$children,
                 (child) => child.$options.name === this.$options.name && child.imageHref,
-            )
+            );
 
-            return this.uid === get(firstSibling, "_uid")
+            return this.uid === get(firstSibling, '_uid');
         },
     },
-}
+};
 </script>
 
 <style lang="scss" scoped>

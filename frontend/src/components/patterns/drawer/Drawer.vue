@@ -13,13 +13,13 @@
 </template>
 
 <script>
-import smoothscroll from "smoothscroll-polyfill"
+import smoothscroll from 'smoothscroll-polyfill';
 
-import { BCollapse } from "bootstrap-vue"
-import VsContainer from "@components/elements/layout/Container"
-import { getters } from "./drawer.store"
-import { REGISTER_DRAWER } from "./drawer.store.action-types"
-import { GET_ACTIVE_CONTENT } from "./drawer.store.getter-types"
+import { BCollapse } from 'bootstrap-vue';
+import VsContainer from '@components/elements/layout/Container';
+import { getters } from './drawer.store';
+import { REGISTER_DRAWER } from './drawer.store.action-types';
+import { GET_ACTIVE_CONTENT } from './drawer.store.getter-types';
 
 
 /**
@@ -29,9 +29,9 @@ import { GET_ACTIVE_CONTENT } from "./drawer.store.getter-types"
  * the sets of content and open/close the drawer.
  */
 export default {
-    name: "VsDrawer",
-    status: "prototype",
-    release: "0.0.1",
+    name: 'VsDrawer',
+    status: 'prototype',
+    release: '0.0.1',
     components: {
         VsContainer,
         BCollapse,
@@ -55,16 +55,16 @@ export default {
     data() {
         return {
             isOpen: Boolean(this.activeContent),
-        }
+        };
     },
     computed: {
         activeContent() {
-            return getters.getters[`drawer/${GET_ACTIVE_CONTENT}`](this.drawerKey)
+            return getters.getters[`drawer/${GET_ACTIVE_CONTENT}`](this.drawerKey);
         },
     },
     watch: {
         activeContent(newValue) {
-            this.isOpen = Boolean(newValue)
+            this.isOpen = Boolean(newValue);
         },
     },
     beforeCreate() {
@@ -74,12 +74,12 @@ export default {
          */
         getters.dispatch(`drawer/${REGISTER_DRAWER}`, {
             drawerKey: this.$options.propsData.drawerKey,
-        })
+        });
     },
     created() {
-        smoothscroll.polyfill()
+        smoothscroll.polyfill();
     },
-}
+};
 </script>
 
 <style lang="scss" scoped>
