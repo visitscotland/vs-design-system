@@ -8,6 +8,7 @@ import org.hippoecm.hst.content.beans.ObjectBeanManagerException;
 import org.hippoecm.hst.content.beans.standard.HippoBean;
 import org.hippoecm.repository.api.*;
 import org.hippoecm.repository.standardworkflow.DefaultWorkflow;
+import org.hippoecm.repository.translation.HippoTranslatedNode;
 import org.jetbrains.annotations.NotNull;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,6 +24,15 @@ import java.util.List;
 public class DocumentTranslator {
     public static final String COULD_NOT_CREATE_FOLDERS = "could-not-create-folders";
     private static final Logger logger = LoggerFactory.getLogger(DocumentTranslator.class);
+    private HippoTranslatedNodeFactory hippoTranslatedNodeFactory;
+
+    public DocumentTranslator() {
+        this(new HippoTranslatedNodeFactory());
+    }
+
+    protected DocumentTranslator(HippoTranslatedNodeFactory hippoTranslatedNodeFactory) {
+        this.hippoTranslatedNodeFactory = hippoTranslatedNodeFactory;
+    }
 
     /**
      * Build a change set for each language, listing the folders and documents that are not already translated.
@@ -158,10 +168,14 @@ public class DocumentTranslator {
                                TranslationWorkflow workflow)
             throws TranslationException, WorkflowException,
                    RepositoryException, RemoteException, ObjectBeanManagerException {
+        // We want to check them all at the same time for same name siblings,
+        // otherwise the creation of nested folders could throw a false SNS exception
+        for (ChangeSet changeSet : changeSetList) {
+            changeSet.checkForSameNameSiblings(session);
+        }
         for (ChangeSet changeSet : changeSetList) {
             // working from index zero work our way up the folders creating them as we go
             // there must always be a root folder and it always exists so skipping to index 1
-            changeSet.checkForSameNameSiblings(session);
             List<FolderTranslation> folders = changeSet.getFolders();
             for (int index = 1; index < folders.size(); index++) {
                 FolderTranslation translation = folders.get(index);
@@ -208,6 +222,11 @@ public class DocumentTranslator {
         String id = ft.getId();
         try {
             Node node = session.getNodeByIdentifier(id);
+            // If the folder has already been translated just act as though we have just created it
+            HippoTranslatedNode translatedNode = hippoTranslatedNodeFactory.createFromNode(node);
+            if (translatedNode.hasTranslation(targetLanguage)) {
+                return true;
+            }
             WorkflowManager manager = ((HippoWorkspace) node.getSession().getWorkspace()).getWorkflowManager();
             TranslationWorkflow tw = (TranslationWorkflow) manager.getWorkflow("translation", node);
             String namefr = ft.getNamefr();
