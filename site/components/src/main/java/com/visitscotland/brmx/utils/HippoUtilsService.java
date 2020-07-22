@@ -1,5 +1,6 @@
 package com.visitscotland.brmx.utils;
 
+import com.visitscotland.brmx.services.ResourceBundleService;
 import org.hippoecm.hst.container.RequestContextProvider;
 import org.hippoecm.hst.content.beans.standard.HippoBean;
 import org.hippoecm.hst.core.linking.HstLink;
@@ -19,9 +20,13 @@ public class HippoUtilsService {
     final ResourceBundleRegistry resourceBundleRegistry;
     final HstRequestContext requestContext;
 
+    //TODO: eliminate when PageContentComponent.getCtaLabel() gets refactored.
+    final ResourceBundleService bundle;
+
     public HippoUtilsService(){
         resourceBundleRegistry = HstServices.getComponentManager().getComponent(ResourceBundleRegistry.class.getName());
         requestContext = RequestContextProvider.get();
+        bundle = new ResourceBundleService();
     }
 
     public HippoUtilsService(
@@ -29,6 +34,8 @@ public class HippoUtilsService {
             HstRequestContext requestContext){
         this.resourceBundleRegistry = resourceBundleRegistry;
         this.requestContext = requestContext;
+
+        bundle = new ResourceBundleService();
     }
 
     static HippoUtilsService INSTANCE;
@@ -45,52 +52,9 @@ public class HippoUtilsService {
         return INSTANCE;
     }
 
-    /**
-     * TODO: CREATE J-UNIT TEST
-     *
-     *
-     */
-    public String getResourceBundle(String key, String bundleName, Locale locale){
-        return getResourceBundle(key, bundleName, locale, false);
-    }
-
-    /**
-     * TODO: CREATE J-UNIT TEST
-     * TODO: DOCUMENT
-     */
-    public String getResourceBundle(String key, String bundleName, Locale locale, boolean optional){
-
-        ResourceBundle bundle = getResourceBundle(bundleName, locale);
-
-        if (bundle != null && bundle.containsKey(key)) {
-            return bundle.getString(key);
-        } else if (!optional){
-            String localeText = locale==null? Locale.UK.getLanguage():locale.getLanguage();
-            logger.warn(String.format("The resource bundle key %s does not exist for %s", key, localeText));
-        }
-
-        return "??"+key+"??";
-    }
-
-    public boolean existsResourceBundleKey(String key, String bundleName, Locale locale){
-        ResourceBundle bundle = getResourceBundle(bundleName, locale);
-        return bundle != null && bundle.containsKey(key);
-    }
-
-    /**
-     * Return a resource bundle for a specific locale
-     *
-     * @param bundleName id of the Resource Bundle defined in Hippo
-     * @param locale locale
-     *
-     * @return
-     */
-    private ResourceBundle getResourceBundle(String bundleName, Locale locale){
-        if (locale == null) {
-            return resourceBundleRegistry.getBundle(bundleName);
-        } else {
-            return resourceBundleRegistry.getBundle(bundleName, locale);
-        }
+    @Deprecated
+    public String getResourceBundle(String bundleName, String key,  Locale locale){
+        return bundle.getResourceBundle(bundleName, key,  locale, false);
     }
 
     /**
