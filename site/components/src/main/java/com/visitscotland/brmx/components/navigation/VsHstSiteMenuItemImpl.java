@@ -1,8 +1,10 @@
 package com.visitscotland.brmx.components.navigation;
 
 import com.visitscotland.brmx.beans.Widget;
+import org.hippoecm.hst.content.annotations.PageModelIgnore;
 import org.hippoecm.hst.core.linking.HstLink;
 import org.hippoecm.hst.core.request.ResolvedSiteMapItem;
+import org.hippoecm.hst.core.sitemenu.CommonMenu;
 import org.hippoecm.hst.core.sitemenu.HstSiteMenu;
 import org.hippoecm.hst.core.sitemenu.HstSiteMenuItem;
 
@@ -10,14 +12,17 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-public class VsHstSiteMenuItemImpl implements VsMenuItem {
+public class VsHstSiteMenuItemImpl implements VsMenuItem, CommonMenu {
 
     private final HstSiteMenuItem menuItem;
     private final List<HstSiteMenuItem> children;
+
+    @PageModelIgnore
     private final VsHstSiteMenuItemImpl parent;
 
     private String title;
     private Widget widget;
+    private String cta;
 
 
     public VsHstSiteMenuItemImpl(VsHstSiteMenuItemImpl parent, HstSiteMenuItem menuItem) {
@@ -62,6 +67,14 @@ public class VsHstSiteMenuItemImpl implements VsMenuItem {
     @Override
     public HstSiteMenuItem getParentItem() {
         return parent;
+    }
+
+    public String getCta() {
+        return cta;
+    }
+
+    public void setCta(String cta) {
+        this.cta = cta;
     }
 
     // Delegating methods

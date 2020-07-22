@@ -2,9 +2,9 @@ package com.visitscotland.brmx.components.navigation;
 
 
 import com.visitscotland.brmx.beans.Page;
-import com.visitscotland.brmx.utils.HippoUtilsService;
 import com.visitscotland.brmx.beans.Widget;
 import com.visitscotland.brmx.components.navigation.info.MenuComponentInfo;
+import com.visitscotland.brmx.utils.HippoUtilsService;
 import org.hippoecm.hst.content.beans.standard.HippoBean;
 import org.hippoecm.hst.content.beans.standard.HippoFolder;
 import org.hippoecm.hst.core.component.HstRequest;
@@ -12,10 +12,12 @@ import org.hippoecm.hst.core.component.HstResponse;
 import org.hippoecm.hst.core.linking.HstLink;
 import org.hippoecm.hst.core.parameters.ParametersInfo;
 import org.hippoecm.hst.core.request.ResolvedSiteMapItem;
-import org.hippoecm.hst.core.sitemenu.*;
+import org.hippoecm.hst.core.sitemenu.HstSiteMenu;
+import org.hippoecm.hst.core.sitemenu.HstSiteMenuItem;
 import org.onehippo.cms7.essentials.components.EssentialsMenuComponent;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @ParametersInfo(
         type = MenuComponentInfo.class
@@ -35,11 +37,28 @@ public class MenuComponent extends EssentialsMenuComponent {
         super.doBeforeRender(request, response);
         List<HstSiteMenuItem> enhancedMenu = new ArrayList<>();
 
-        for (HstSiteMenuItem item: ((HstSiteMenu) request.getModel("menu")).getSiteMenuItems()) {
-            enhancedMenu.add(exploreMenu(request, null, item));
+        if (request.getModel("menu") != null) {
+            for (HstSiteMenuItem item: ((HstSiteMenu) request.getModel("menu")).getSiteMenuItems()) {
+                enhancedMenu.add(exploreMenu(request, null, item));
+            }
+
+            request.setModel("enhancedMenu", enhancedMenu);
+
+            //TODO transform the list of elements into an element so it can be used is hst.cmseditmenu
+//            VsHstSiteMenuItemImpl root = new VsHstSiteMenuItemImpl(null, request.getModel("menu"));
+//            for (HstSiteMenuItem item : ((HstSiteMenu) request.getModel("menu")).getSiteMenuItems()) {
+//                exploreMenu(request, root, item);
+//            }
+//
+//            request.setModel("enhancedMenu", enhancedMenu);
+//            request.setModel("enhancedMenuItem", root);
+//
+//            //TODO update references
+////            request.setModel("menu", enhancedMenu);
+
         }
 
-        request.setModel("enhancedMenu", enhancedMenu);
+
     }
 
     private VsHstSiteMenuItemImpl exploreMenu(HstRequest request, VsHstSiteMenuItemImpl parent, HstSiteMenuItem menu){
@@ -59,11 +78,22 @@ public class MenuComponent extends EssentialsMenuComponent {
                     //Widget document
                     if (bean instanceof Widget) {
                         enhancedMenu.setWidget((Widget) bean);
-                    } else if (utils.existsResourceBundleKey(menu.getName(), NAVIGATION_BUNDLE, request.getLocale())) {
-                        enhancedMenu.setTitle(utils.getResourceBundle(menu.getName(), NAVIGATION_BUNDLE, request.getLocale()));
-                    } else if (bean instanceof Page) {
-                        enhancedMenu.setTitle(((Page) bean).getTitle());
+                    } else {
+                        if (utils.existsResourceBundleKey(menu.getName(), NAVIGATION_BUNDLE, request.getLocale())) {
+                            enhancedMenu.setTitle(utils.getResourceBundle(menu.getName(), NAVIGATION_BUNDLE, request.getLocale()));
+                        } else if (bean instanceof Page) {
+                            enhancedMenu.setTitle(((Page) bean).getTitle());
+                        }
+
+                        //TODO create constant .cta
+                        if (utils.existsResourceBundleKey(menu.getName()+ ".cta", NAVIGATION_BUNDLE, request.getLocale())){
+                            enhancedMenu.setCta(utils.getResourceBundle(menu.getName()+ ".cta", NAVIGATION_BUNDLE, request.getLocale()));
+                        } else {
+                            //TODO label
+                            enhancedMenu.setCta(enhancedMenu.getTitle()+ " (See all)");
+                        }
                     }
+
                 }
 
             }
