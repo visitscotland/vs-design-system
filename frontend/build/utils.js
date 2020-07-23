@@ -18,7 +18,7 @@ exports.cssLoaders = function(options) {
 
   const cssLoaderForModulesOptions = {
     modules: true,
-    localIdentName: buildMode === "production" ?
+    localIdentName: buildMode === "development" ?
       "[path][name]__[local]" : "[hash:base64]",
   }
 
