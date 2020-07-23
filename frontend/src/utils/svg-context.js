@@ -1,3 +1,3 @@
-import requireContext from "require-context.macro"
+import requireContext from 'require-context.macro';
 
-export default requireContext("../assets/svg", true, /^\.\/.*\.svg$/)
+export default requireContext('../assets/svg', true, /^\.\/.*\.svg$/);

@@ -15,16 +15,16 @@
 </template>
 
 <script>
-import { isNumber } from "lodash"
+import { isNumber } from 'lodash';
 /**
  * Headings are used as the titles of each major section of a page in the
  * interface. For example, templates generally use headings as their title.
  * Heading element provides an option to change the level of the heading.
  */
 export default {
-    name: "VsHeading",
-    status: "prototype",
-    release: "0.1.0",
+    name: 'VsHeading',
+    status: 'prototype',
+    release: '0.1.0',
     props: {
         /**
          * The heading level used for the heading.
@@ -32,7 +32,7 @@ export default {
          */
         level: {
             type: [String, Number],
-            default: "1",
+            default: '1',
             validator: (value) => (isNumber(value) ? value > 0 && value < 7 : value.match(/(1|2|3|4|5|6)/)),
         },
 
@@ -45,10 +45,10 @@ export default {
     },
     computed: {
         type() {
-            return `h${this.level}`
+            return `h${this.level}`;
         },
     },
-}
+};
 </script>
 
 <style lang="scss" scoped>

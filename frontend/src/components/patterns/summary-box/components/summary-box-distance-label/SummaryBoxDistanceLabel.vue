@@ -26,66 +26,66 @@
 </template>
 
 <script>
-import summaryBoxStore from "@components/patterns/summary-box/summaryBox.store"
-import VsButton from "@components/elements/button/Button"
+import summaryBoxStore from '@components/patterns/summary-box/summaryBox.store';
+import VsButton from '@components/elements/button/Button';
 /**
  * Summary Box Distance Label component includes toggles to change
  * the distance type displayed within the VsSummaryBoxDistance component
  */
 export default {
-    name: "VsSummaryBoxDistanceLabel",
-    status: "prototype",
-    release: "0.0.1",
+    name: 'VsSummaryBoxDistanceLabel',
+    status: 'prototype',
+    release: '0.0.1',
     components: {
         VsButton,
     },
     props: {
         distanceLabel: {
             type: String,
-            default: "Distance",
+            default: 'Distance',
         },
         milesLabel: {
             type: String,
-            default: "miles",
+            default: 'miles',
         },
         milesAbbr: {
             type: String,
-            default: "mi",
+            default: 'mi',
         },
         kilometresLabel: {
             type: String,
-            default: "kilometers",
+            default: 'kilometers',
         },
         kilometresAbbr: {
             type: String,
-            default: "km",
+            default: 'km',
         },
     },
     data() {
         return {
             showMiles: true,
-        }
+        };
     },
     computed: {
         isShowingMiles() {
-            return summaryBoxStore.getters["summaryBox/getShowMiles"]
+            return summaryBoxStore.getters['summaryBox/getShowMiles'];
         },
     },
     watch: {
         isShowingMiles() {
-            this.toggleShowMiles()
+            this.toggleShowMiles();
         },
     },
     summaryBoxStore,
     methods: {
         handleClick(value) {
-            return summaryBoxStore.dispatch("summaryBox/setShowMiles", value)
+            return summaryBoxStore.dispatch('summaryBox/setShowMiles', value);
         },
         toggleShowMiles() {
-            this.showMiles = this.isShowingMiles
+            this.showMiles = this.isShowingMiles;
         },
     },
-}
+};
 </script>
 <style lang="scss" scoped>
 .vs-summary-box-distance-label {
