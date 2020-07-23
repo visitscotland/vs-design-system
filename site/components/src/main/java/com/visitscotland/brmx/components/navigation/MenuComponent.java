@@ -6,6 +6,7 @@ import com.visitscotland.brmx.beans.Widget;
 import com.visitscotland.brmx.components.navigation.info.MenuComponentInfo;
 import com.visitscotland.brmx.services.ResourceBundleService;
 import com.visitscotland.brmx.utils.HippoUtilsService;
+import com.visitscotland.utils.Contract;
 import org.hippoecm.hst.content.beans.standard.HippoBean;
 import org.hippoecm.hst.content.beans.standard.HippoFolder;
 import org.hippoecm.hst.core.component.HstRequest;
@@ -45,6 +46,8 @@ public class MenuComponent extends EssentialsMenuComponent {
         super.doBeforeRender(request, response);
         List<HstSiteMenuItem> enhancedMenu = new ArrayList<>();
 
+
+
         if (request.getModel("menu") != null) {
             for (HstSiteMenuItem item: ((HstSiteMenu) request.getModel("menu")).getSiteMenuItems()) {
                 enhancedMenu.add(exploreMenu(request, null, item));
@@ -72,8 +75,16 @@ public class MenuComponent extends EssentialsMenuComponent {
         VsHstSiteMenuItemImpl enhancedMenu = new VsHstSiteMenuItemImpl(parent, menu);
         boolean documentExist = true;
 
+        String nodeName = ((HstSiteMenu) request.getModel("menu")).getName();
+        String resourceBundle = null;
+        if ("main".equals(nodeName)){
+            resourceBundle = NAVIGATION_LINKS;
+        } else {
+            resourceBundle = "navigation";
+        }
+
         //By default the name would be populated by the resourceBundle
-        enhancedMenu.setTitle(bundle.getResourceBundle(NAVIGATION_LINKS, menu.getName(), request.getLocale()));
+        enhancedMenu.setTitle(bundle.getResourceBundle(resourceBundle, menu.getName(), request.getLocale()));
 
         //if document base page or widget, we enhance the document
         if (isDocumentBased(menu.getHstLink())) {
@@ -81,21 +92,20 @@ public class MenuComponent extends EssentialsMenuComponent {
             if (rsi != null) {
                 HippoBean bean = utils.getBeanForResolvedSiteMapItem(request, menu.resolveToSiteMapItem());
                 //if the document does not exist or no publish
-                if (bean == null || bean instanceof HippoFolder){
-                    documentExist = false;
-                }
+                if (bean != null && !(bean instanceof HippoFolder)){
+                    //By default the name would be populated by the resourceBundle
+                    enhancedMenu.setTitle(bundle.getResourceBundle(resourceBundle, menu.getName(), request.getLocale()));
 
-                else {
                     //Widget document
                     if (bean instanceof Widget) {
                         enhancedMenu.setWidget((Widget) bean);
                     } else {
-                        if (enhancedMenu.getTitle() == null && bean instanceof Page) {
+                        if (Contract.isEmpty(enhancedMenu.getTitle()) && bean instanceof Page) {
                             enhancedMenu.setTitle(((Page) bean).getTitle());
                         }
 
-                        if (bundle.existsResourceBundleKey(NAVIGATION_LINKS,menu.getName()+ CTA_SUFFIX,  request.getLocale())){
-                            enhancedMenu.setCta(bundle.getResourceBundle(NAVIGATION_LINKS,menu.getName()+ CTA_SUFFIX, request.getLocale()));
+                        if (bundle.existsResourceBundleKey(resourceBundle,menu.getName()+ CTA_SUFFIX,  request.getLocale())){
+                            enhancedMenu.setCta(bundle.getResourceBundle(resourceBundle,menu.getName()+ CTA_SUFFIX, request.getLocale()));
                         } else {
                             String seeAll = bundle.getResourceBundle(HEADER,"see-all-cta", request.getLocale());
                             if (seeAll != null) {
@@ -107,6 +117,8 @@ public class MenuComponent extends EssentialsMenuComponent {
                 }
 
             } else {
+                //By default the name would be populated by the resourceBundle
+                enhancedMenu.setTitle(bundle.getResourceBundle(resourceBundle, menu.getName(), request.getLocale()));
                 //TODO: Check if the page exists on the global channel
             }
         }
@@ -120,6 +132,8 @@ public class MenuComponent extends EssentialsMenuComponent {
 
         return enhancedMenu;
     }
+
+
 
 //    private VsHstSiteMenuItemImpl populateMenuItem(VsHstSiteMenuItemImpl parent, HstSiteMenuItem menu, HippoBean bean, Locale locale){
 //        VsHstSiteMenuItemImpl enhancedMenu = new VsHstSiteMenuItemImpl(parent, menu);
