@@ -27,14 +27,13 @@ import java.util.List;
 public class MenuComponent extends EssentialsMenuComponent {
 
     private static final String NAVIGATION_LINKS = "meganav";
-    private static final String HEADER = "header";
+    private static final String HEADER = "navigation.static";
     private static final String CTA_SUFFIX = ".cta";
 
     static final String ENHANCED_MENU = "enhancedMenu";
 
     private ResourceBundleService bundle;
     private HippoUtilsService utils;
-
 
     public MenuComponent(){
         bundle = new ResourceBundleService();
@@ -44,6 +43,8 @@ public class MenuComponent extends EssentialsMenuComponent {
     @Override
     public void doBeforeRender(HstRequest request, HstResponse response) {
         super.doBeforeRender(request, response);
+
+        bundle.register(request);
         List<HstSiteMenuItem> enhancedMenu = new ArrayList<>();
 
 
@@ -76,15 +77,10 @@ public class MenuComponent extends EssentialsMenuComponent {
         boolean documentExist = true;
 
         String nodeName = ((HstSiteMenu) request.getModel("menu")).getName();
-        String resourceBundle = null;
-        if ("main".equals(nodeName)){
-            resourceBundle = NAVIGATION_LINKS;
-        } else {
-            resourceBundle = "navigation";
-        }
+        String resourceBundle = "navigation." + nodeName;
 
         //By default the name would be populated by the resourceBundle
-        enhancedMenu.setTitle(bundle.getResourceBundle(resourceBundle, menu.getName(), request.getLocale()));
+        enhancedMenu.setTitle(bundle.getResourceBundle(resourceBundle, menu.getName(), request.getLocale(), true));
 
         //if document base page or widget, we enhance the document
         if (isDocumentBased(menu.getHstLink())) {
@@ -94,7 +90,7 @@ public class MenuComponent extends EssentialsMenuComponent {
                 //if the document does not exist or no publish
                 if (bean != null && !(bean instanceof HippoFolder)){
                     //By default the name would be populated by the resourceBundle
-                    enhancedMenu.setTitle(bundle.getResourceBundle(resourceBundle, menu.getName(), request.getLocale()));
+                    enhancedMenu.setTitle(bundle.getResourceBundle(resourceBundle, menu.getName(), request.getLocale(), true));
 
                     //Widget document
                     if (bean instanceof Widget) {
@@ -125,7 +121,7 @@ public class MenuComponent extends EssentialsMenuComponent {
 
 
 
-        //Childen will add themselves to the parent on the method exploreMenu
+        //Children will add themselves to the parent on the method exploreMenu
         for (HstSiteMenuItem child : menu.getChildMenuItems()) {
             exploreMenu(request, enhancedMenu, child);
         }
