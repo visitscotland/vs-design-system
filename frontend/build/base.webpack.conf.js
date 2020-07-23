@@ -4,14 +4,14 @@ const path = require("path")
 const MiniCssExtractPlugin = require("mini-css-extract-plugin")
 const { VueLoaderPlugin } = require("vue-loader")
 
-const utils = require("./utils")
+const buildMode = require("./base.build-mode")
 
 function resolve(dir) {
   return path.join(__dirname, "..", dir)
 }
 
 module.exports = {
-  mode: process.env.NODE_ENV || "production",
+  mode: buildMode,
   context: path.resolve(__dirname, "../"),
   entry: {
     app: "./src/main.js",
@@ -20,7 +20,7 @@ module.exports = {
     path: path.resolve(__dirname, "../dist/base"),
     filename: "[name].js",
     publicPath:
-      process.env.NODE_ENV === "development" ? "/" : "../",
+      buildMode === "development" ? "/" : "../",
   },
   resolve: {
     extensions: [".js", ".vue", ".json"],
