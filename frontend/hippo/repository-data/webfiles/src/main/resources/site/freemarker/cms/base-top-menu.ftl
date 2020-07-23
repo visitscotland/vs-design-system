@@ -15,7 +15,7 @@
           <#list menu.siteMenuItems as item>
             <#if !item.hstLink?? && !item.externalLink??>
               <#if item.selected || item.expanded>
-                <li class="active">${item.name?html}</li>
+                <li class="active"><div style="padding: 10px 15px;">${item.name?html}</div></li>
               <#else>
                 <li><div style="padding: 10px 15px;">${item.name?html}</div></li>
               </#if>
@@ -26,9 +26,9 @@
                 <#assign href>${item.externalLink?replace("\"", "")}</#assign>
               </#if>
               <#if  item.selected || item.expanded>
-                <li class="active">${item.title?html} (Go to <a href="${href}">${item.cta?html}</a>)</li>
+                <li class="active"><a href="${href}">${item.name?html}</a></li>
               <#else>
-                <li><a href="${href}">${item.title?html}</a></li>
+                <li><a href="${href}">${item.name?html}</a></li>
               </#if>
             </#if>
           </#list>
