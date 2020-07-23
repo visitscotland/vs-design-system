@@ -1,7 +1,10 @@
 "use strict"
 const path = require("path")
 const MiniCssExtractPlugin = require("mini-css-extract-plugin")
+const { cloneDeep, find } = require("lodash")
+
 const packageConfig = require("../package.json")
+const buildMode = require("./base.build-mode")
 
 exports.cssLoaders = function(options) {
   options = options || {}
@@ -11,6 +14,12 @@ exports.cssLoaders = function(options) {
     options: {
       sourceMap: options.sourceMap,
     },
+  }
+
+  const cssLoaderForModulesOptions = {
+    modules: true,
+    localIdentName: buildMode === "production" ?
+      "[path][name]__[local]" : "[hash:base64]",
   }
 
   const postcssLoader = {
@@ -32,9 +41,19 @@ exports.cssLoaders = function(options) {
       resources: [
         path.resolve(__dirname, "../src/assets/tokens/tokens.scss"),
         path.resolve(__dirname, "../src/assets/tokens/tokens.map.scss"),
-        path.resolve(__dirname, "../src/styles/styles.scss"),
-      ],
+        path.resolve(__dirname, "../src/styles/resources.scss"),
+      ]
     },
+  }
+
+  function generateLoadersForCssModules(loaders) {
+    const cssModulesLoaders = cloneDeep(loaders)
+
+    const cssLoader = find(cssModulesLoaders, { loader: "css-loader" })
+
+    cssLoader.options = { ...cssLoader.options, ...cssLoaderForModulesOptions }
+
+    return cssModulesLoaders
   }
 
   // generate loader string to be used with extract text plugin
@@ -67,7 +86,18 @@ exports.cssLoaders = function(options) {
       loaders.push(sassResourcesLoader)
     }
 
-    return loaders
+    // For CSS Modules we need to return an array with 2 options -
+    // one for CSS modules style blocks and the other for all
+    // other style blocks 
+    return [
+      {
+        resourceQuery: /module/,
+        use: generateLoadersForCssModules(loaders),
+      },
+      {
+        use: loaders,
+      },
+    ]
   }
 
   // https://vue-loader.vuejs.org/guide/extract-css.html
@@ -88,7 +118,8 @@ exports.styleLoaders = function(options) {
     const loader = loaders[extension]
     output.push({
       test: new RegExp("\\." + extension + "$"),
-      use: loader,
+      // use: loader,
+      oneOf: loader,
     })
   }
 

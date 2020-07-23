@@ -24,8 +24,8 @@
     "ssr:build:server": "webpack --config ./build/ssr.server.webpack.conf.js",
     "lint": "eslint",
     "lint:all": "yarn lint \"src/**/*.{js,vue}\"",
-	"lint:fix": "yarn lint \"src/**/*.{js,vue}\" --fix",
-	"lint:watch": "esw \"src/**/*.{js,vue}\" --watch --ext .js,.vue --watch-delay 0",
+    "lint:fix": "yarn lint \"src/**/*.{js,vue}\" --fix",
+    "lint:watch": "esw \"src/**/*.{js,vue}\" --watch --ext .js,.vue --watch-delay 0",
     "lint:style": "stylelint",
     "lint:style:all": "lint:style \"src/**/*.{vue,scss}\"",
     "e2e": "cypress open",
@@ -127,6 +127,7 @@
     "eslint-plugin-jest": "^23.7.0",
     "eslint-plugin-vue": "^6.2.1",
     "eslint-plugin-vue-a11y": "^0.0.31",
+    "fibers": "^4.0.2",
     "file-loader": "^2.0.0",
     "friendly-errors-webpack-plugin": "^1.7.0",
     "glob": "^7.1.3",
@@ -202,7 +203,7 @@
   },
   "husky": {
     "hooks": {
-	  "pre-commit": "yarn lint:all"
+      "pre-commit": "yarn lint:all"
     }
   }
 }
