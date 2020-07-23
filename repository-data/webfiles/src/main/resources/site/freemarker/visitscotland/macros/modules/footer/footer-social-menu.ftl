@@ -1,7 +1,7 @@
 <#include "../../../../include/imports.ftl">
-<#include "../../../../vs-dotcom-ds/components/footer-social-menu.ftl">
-<#include "../../../../vs-dotcom-ds/components/footer-social-item.ftl">
-<#include "../../../../vs-dotcom-ds/components/list.ftl">
+<#include "../../../../frontend/components/vs-footer-social-menu.ftl">
+<#include "../../../../frontend/components/vs-footer-social-item.ftl">
+<#include "../../../../frontend/components/vs-list.ftl">
 
 <#macro footerSocialMenu>
     <vs-footer-social-menu>

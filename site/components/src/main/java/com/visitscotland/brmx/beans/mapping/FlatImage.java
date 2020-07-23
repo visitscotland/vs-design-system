@@ -10,7 +10,7 @@ import com.visitscotland.brmx.utils.Properties;
 
 import java.util.Locale;
 
-public class FlatImage {
+public class FlatImage extends IssueList {
 
     public enum Source {
         INSTAGRAM;
@@ -32,6 +32,11 @@ public class FlatImage {
     final String MEDIA = "mediaUrl";
     final String CREDIT = "copyright";
     final String ALT_TEXT = "altText";
+    final String IMAGE = "images";
+    final String NAME = "name";
+    final String LATITUDE = "latitude";
+    final String LONGITUDE = "longitude";
+    final String ID = "longitude";
 
     public FlatImage(){
     }
@@ -86,6 +91,22 @@ public class FlatImage {
         this.source = Source.INSTAGRAM;
         this.postUrl = Properties.INSTAGRAM_API  + instagramLink.getId();
         this.coordinates = setInstagramCoordinates(instagramLink,locale);
+    }
+
+    public FlatImage(JsonNode product) {
+        if (product.has(IMAGE)){
+            JsonNode dmsImage = product.get(IMAGE).get(0);
+            this.externalImage = (dmsImage.has(MEDIA) ? dmsImage.get(MEDIA).asText() : null);
+            this.credit = (dmsImage.has(CREDIT) ? dmsImage.get(CREDIT).asText() : null);
+            this.altText = (dmsImage.has(ALT_TEXT) ? dmsImage.get(ALT_TEXT).asText() : product.get(NAME).asText());
+            this.description = this.altText;
+
+            if (product.has(LATITUDE) && product.has(LONGITUDE)){
+                this.coordinates = new Coordinates(product.get(LATITUDE).asDouble(), product.get(LONGITUDE).asDouble());
+            }
+        } else if (product != null) {
+            addError(String.format("The product %s does not have an image", product.has(ID)?product.get(ID):null));
+        }
     }
 
     public FlatImage(JsonNode dmsImage, String productName) {

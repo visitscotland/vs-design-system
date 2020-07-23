@@ -1,8 +1,8 @@
 <#include "../../../../include/imports.ftl">
-<#include "../../../../vs-dotcom-ds/components/footer-accordion-item.ftl">
-<#include "../../../../vs-dotcom-ds/components/footer-nav-list-item.ftl">
-<#include "../../../../vs-dotcom-ds/components/icon.ftl">
-<#include "../../../../vs-dotcom-ds/components/list.ftl">
+<#include "../../../../frontend/components/vs-footer-accordion-item.ftl">
+<#include "../../../../frontend/components/vs-footer-nav-list-item.ftl">
+<#include "../../../../frontend/components/vs-icon.ftl">
+<#include "../../../../frontend/components/vs-list.ftl">
 
 <#macro footerAccordionItem footerMenuItems>
     <#list footerMenuItems as menuItem>
@@ -28,11 +28,11 @@
                 </span>
 
                 <span slot="icon-open">
-                    <vs-icon name="chevron-up" variant="light" size="xs" />
+                    <vs-icon name="chevron-up" variant="light" size="xs"></vs-icon>
                 </span>
 
                 <span slot="icon-closed">
-                    <vs-icon name="chevron-right" variant="light" size="xs" />
+                    <vs-icon name="chevron-right" variant="light" size="xs"></vs-icon>
                 </span>
 
                 <vs-list unstyled class="pb-2">

@@ -173,7 +173,7 @@ definitions:
                   hst:componentconfigurationmappingnames: ['visitscotland:Itinerary',
                     'visitscotland:Listicle', 'visitscotland:Destination']
                   hst:componentconfigurationmappingvalues: ['hst:pages/itinerary-page',
-                    'hst:pages/listicle-page', 'visitscotland:Destination']
+                    'hst:pages/listicle-page', 'hst:pages/destination-page']
                   hst:relativecontentpath: ${parent}/content
                 /_default_:
                   jcr:primaryType: hst:sitemapitem

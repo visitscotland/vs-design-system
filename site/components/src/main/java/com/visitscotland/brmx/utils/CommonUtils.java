@@ -4,7 +4,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.visitscotland.brmx.beans.InstagramImage;
 import com.visitscotland.brmx.services.ResourceBundleService;
-import com.visitscotland.utils.Contract;
+import com.visitscotland.brmx.dms.DMSDataService;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -18,44 +18,26 @@ import java.util.Locale;
 
 public class CommonUtils {
 
+    private static DMSDataService dmsData = new DMSDataService();
+
     //TODO add message format for other languages
     public static final String contentIssue (String message, Object... parameters){
         return String.format("- [CONTENT] - " + message, parameters);
     }
 
-    /**
-     * TODO comment!
-     * @param productId
-     * @param locale
-     * @return
-     * @throws IOException
-     */
+
+    @Deprecated
+    //TODO Remove method uses
     public static JsonNode getProduct(String productId, Locale locale) throws IOException {
-        if (!Contract.isEmpty(productId)) {
-            String dmsUrl = Properties.VS_DMS_SERVICE + "/data/products/card?id=" + productId;
-            if (locale != null) {
-                dmsUrl += "&locale=" + locale.getLanguage();
-            }
-
-            String responseString = request(dmsUrl);
-            if (responseString!=null) {
-                ObjectMapper mapper = new ObjectMapper();
-                JsonNode json = mapper.readTree(responseString);
-
-                if (json.has("data")) {
-                    return json.get("data");
-                }
-            }
-        }
-        return null;
+        return dmsData.productCard(productId, locale);
     }
-
     /**
      * Request a page and return the body as String
      * @param url
      * @return null if status code not 200 or 300
      * @throws IOException
      */
+    @Deprecated
     public static String request(String url) throws IOException {
         // TODO comment
         if (((HttpURLConnection) new URL(url).openConnection()).getResponseCode() < 400){
@@ -72,6 +54,10 @@ public class CommonUtils {
         return null;
     }
 
+    public String requestUrl(String url) throws IOException {
+        return CommonUtils.request(url);
+    }
+
     public static String getInstagramCaption(InstagramImage instagramLink) throws IOException {
         String response =  null;
         URL instagramInformation  = new URL("https://api.instagram.com/oembed/?url=http://instagr.am/p/" + instagramLink.getId());
@@ -84,7 +70,9 @@ public class CommonUtils {
         return response;
     }
 
+
     //TODO this method returns the current open state and it could be affected by the cache, ask WEBOPS and move it to front end if needed
+    //TODO move to DMSDataService once this method need is confirmed
     public static  String currentOpenStatus(String starTime, String endTime, Locale locale){
         ResourceBundleService bundle = new ResourceBundleService();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("hh:mma");

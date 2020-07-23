@@ -35,8 +35,8 @@ import {
     VsContainer,
     VsRow,
     VsCol,
-} from "@components/elements/layout"
-import VsItineraryMobileMapToggle from "@components/patterns/itineraries/components/itinerary-mobile-map-toggle/ItineraryMobileMapToggle"
+} from '@components/elements/layout';
+import VsItineraryMobileMapToggle from '@components/patterns/itineraries/components/itinerary-mobile-map-toggle/ItineraryMobileMapToggle';
 
 /**
  * A wrapper component that wraps the itinerary map and list.
@@ -44,9 +44,9 @@ import VsItineraryMobileMapToggle from "@components/patterns/itineraries/compone
  */
 
 export default {
-    name: "VsItinerary",
-    status: "prototype",
-    release: "0.0.1",
+    name: 'VsItinerary',
+    status: 'prototype',
+    release: '0.0.1',
     components: {
         VsContainer,
         VsRow,
@@ -58,51 +58,49 @@ export default {
             showMap: false,
             isDesktop: false,
             withinItineraryMain: false,
-        }
+        };
     },
     mounted() {
         /* Design System wrapper affects page scroll detection, so temporary fix is to
         have a condition checking for design system wrapper. */
-        if(window) {
-            const designSystemWrapper = document.querySelector(".vds-example")
 
-            window.addEventListener("resize", this.onResize)
+        const designSystemWrapper = document.querySelector('.vds-example');
 
-            if (designSystemWrapper === null) {
-                window.addEventListener("scroll", this.onScroll)
-            } else {
-                designSystemWrapper.addEventListener("scroll", this.onScroll)
-            }
+        window.addEventListener('resize', this.resizeWidth);
 
+        if (designSystemWrapper === null) {
+            window.addEventListener('scroll', this.onScroll);
+        } else {
+            designSystemWrapper.addEventListener('scroll', this.onScroll);
         }
+
+        this.resizeWidth();
     },
     destroyed() {
-        if(window) {
-            window.removeEventListener("resize", this.onResize)
-        }
+        window.removeEventListener('resize', this.resizeWidth);
     },
     methods: {
-        onResize() {
-            this.isDesktop = window.innerWidth >= 1200
-            this.showMap = window.innerWidth >= 1200
+        resizeWidth() {
+            this.isDesktop = window.innerWidth >= 1200;
+            this.showMap = window.innerWidth >= 1200;
         },
         onScroll() {
-            const bounding = this.$el.getBoundingClientRect()
+            const bounding = this.$el.getBoundingClientRect();
             const insideStartOfItineraryMain = bounding.top <= (
                 window.innerHeight || document.documentElement.clientHeight
-            )
+            );
             const outsideEndOfItineraryMain = bounding.bottom <= (
                 window.innerHeight || document.documentElement.clientHeight
-            )
+            );
             this.withinItineraryMain = !!(
                 insideStartOfItineraryMain && !outsideEndOfItineraryMain
-            )
+            );
         },
         toggleShowMap() {
-            this.showMap = !this.showMap
+            this.showMap = !this.showMap;
         },
     },
-}
+};
 </script>
 
 <style lang="scss" scoped>

@@ -3,55 +3,6 @@
   jcr:mixinTypes: ['mix:referenceable']
   jcr:uuid: bbe9c718-d5e8-4e56-8cab-5c3bf3f64209
   hippostd:foldertype: [new-resource-bundle, new-untranslated-folder]
-  /global:
-    jcr:primaryType: hippo:handle
-    jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
-    jcr:uuid: 5efb212a-55c3-4670-922b-69dea2fec67b
-    hippo:name: Global
-    hippo:versionHistory: d8644a3e-75d8-4279-8b27-f9adf4b22f0d
-    /global[1]:
-      jcr:primaryType: resourcebundle:resourcebundle
-      jcr:mixinTypes: ['mix:referenceable']
-      jcr:uuid: 3d72b51b-02e2-41e0-98f8-fe564afa818f
-      hippo:availability: [live]
-      hippostd:state: published
-      hippostdpubwf:createdBy: admin
-      hippostdpubwf:creationDate: 2014-08-21T22:10:13.443+02:00
-      hippostdpubwf:lastModificationDate: 2020-02-20T11:47:21.765Z
-      hippostdpubwf:lastModifiedBy: admin
-      hippostdpubwf:publicationDate: 2020-02-20T11:47:22.882Z
-      resourcebundle:descriptions: [Text shown in the global page footer., '', '']
-      resourcebundle:id: essentials.global
-      resourcebundle:keys: [footer.text, button.find-out-more, default.alt-text]
-      resourcebundle:messages: [©2019, Find out more, No image title]
-    /global[2]:
-      jcr:primaryType: resourcebundle:resourcebundle
-      jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
-      jcr:uuid: d68d8c05-f29b-4cf8-9f5a-6b5410f30af1
-      hippo:availability: [preview]
-      hippostd:state: unpublished
-      hippostdpubwf:createdBy: admin
-      hippostdpubwf:creationDate: 2014-08-21T22:10:13.443+02:00
-      hippostdpubwf:lastModificationDate: 2020-02-20T11:47:21.765Z
-      hippostdpubwf:lastModifiedBy: admin
-      resourcebundle:descriptions: [Text shown in the global page footer., '', '']
-      resourcebundle:id: essentials.global
-      resourcebundle:keys: [footer.text, button.find-out-more, default.alt-text]
-      resourcebundle:messages: [©2019, Find out more, No image title]
-    /global[3]:
-      jcr:primaryType: resourcebundle:resourcebundle
-      jcr:mixinTypes: ['mix:referenceable']
-      jcr:uuid: 19eb7b34-a824-463c-a06f-b2f9455231f8
-      hippo:availability: []
-      hippostd:state: draft
-      hippostdpubwf:createdBy: admin
-      hippostdpubwf:creationDate: 2014-08-21T22:10:13.443+02:00
-      hippostdpubwf:lastModificationDate: 2020-02-20T11:46:14.410Z
-      hippostdpubwf:lastModifiedBy: admin
-      resourcebundle:descriptions: [Text shown in the global page footer., '', '']
-      resourcebundle:id: essentials.global
-      resourcebundle:keys: [footer.text, button.find-out-more, default.alt-text]
-      resourcebundle:messages: [©2019, Find out more, No image title]
   /homepage:
     jcr:primaryType: hippo:handle
     jcr:mixinTypes: ['hippo:named', 'mix:referenceable']
