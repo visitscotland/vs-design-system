@@ -1,10 +1,10 @@
-/content/documents/administration/labels/navigation/header:
+/content/documents/administration/labels/navigation/static:
   jcr:primaryType: hippo:handle
   jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
   jcr:uuid: ecfe0a42-72cd-456a-89c9-dda1983e4a46
-  hippo:name: Header Static Labels
-  hippo:versionHistory: 50461b37-3e95-4377-86e4-99c7a8123293
-  /header[1]:
+  hippo:name: Static Texts
+  hippo:versionHistory: 29e6ce0a-eb5e-47f4-9620-70794dadd8cd
+  /static[1]:
     jcr:primaryType: resourcebundle:resourcebundle
     jcr:mixinTypes: ['mix:referenceable']
     jcr:uuid: b185af5a-69b4-4f36-ab3e-a46e5b4e0a94
@@ -12,13 +12,13 @@
     hippostd:state: draft
     hippostdpubwf:createdBy: admin
     hippostdpubwf:creationDate: 2020-07-22T16:18:57.603+01:00
-    hippostdpubwf:lastModificationDate: 2020-07-22T16:18:57.603+01:00
+    hippostdpubwf:lastModificationDate: 2020-07-23T15:46:23.766+01:00
     hippostdpubwf:lastModifiedBy: admin
-    resourcebundle:descriptions: ['']
-    resourcebundle:id: header
-    resourcebundle:keys: [see-all-cta]
-    resourcebundle:messages: [See all %s]
-  /header[2]:
+    resourcebundle:descriptions: ['', '', '']
+    resourcebundle:id: navigation.static
+    resourcebundle:keys: [see-all-cta, home, footer.find-us-on]
+    resourcebundle:messages: [See all %s, Home, Find us on]
+  /static[2]:
     jcr:primaryType: resourcebundle:resourcebundle
     jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
     jcr:uuid: c8998aaf-91e3-4cca-8ab2-e3691f259530
@@ -26,13 +26,13 @@
     hippostd:state: unpublished
     hippostdpubwf:createdBy: admin
     hippostdpubwf:creationDate: 2020-07-22T16:18:57.603+01:00
-    hippostdpubwf:lastModificationDate: 2020-07-22T16:45:55.182+01:00
+    hippostdpubwf:lastModificationDate: 2020-07-23T15:53:38.903+01:00
     hippostdpubwf:lastModifiedBy: admin
-    resourcebundle:descriptions: ['']
-    resourcebundle:id: header
-    resourcebundle:keys: [see-all-cta]
-    resourcebundle:messages: [See all %s]
-  /header[3]:
+    resourcebundle:descriptions: ['', '', '']
+    resourcebundle:id: navigation.static
+    resourcebundle:keys: [see-all-cta, home, footer.find-us-on]
+    resourcebundle:messages: [See all %s, Home, Find us on]
+  /static[3]:
     jcr:primaryType: resourcebundle:resourcebundle
     jcr:mixinTypes: ['mix:referenceable']
     jcr:uuid: bfeb0679-6b1a-4f2d-9d58-93b31cb9e5c4
@@ -40,10 +40,10 @@
     hippostd:state: published
     hippostdpubwf:createdBy: admin
     hippostdpubwf:creationDate: 2020-07-22T16:18:57.603+01:00
-    hippostdpubwf:lastModificationDate: 2020-07-22T16:45:55.182+01:00
+    hippostdpubwf:lastModificationDate: 2020-07-23T15:53:38.903+01:00
     hippostdpubwf:lastModifiedBy: admin
-    hippostdpubwf:publicationDate: 2020-07-22T16:46:00.728+01:00
-    resourcebundle:descriptions: ['']
-    resourcebundle:id: header
-    resourcebundle:keys: [see-all-cta]
-    resourcebundle:messages: [See all %s]
+    hippostdpubwf:publicationDate: 2020-07-23T16:02:58.836+01:00
+    resourcebundle:descriptions: ['', '', '']
+    resourcebundle:id: navigation.static
+    resourcebundle:keys: [see-all-cta, home, footer.find-us-on]
+    resourcebundle:messages: [See all %s, Home, Find us on]

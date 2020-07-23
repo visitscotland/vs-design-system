@@ -1,10 +1,10 @@
 /content/documents/administration/labels/navigation/meganav:
-  .meta:order-before: header
+  .meta:order-before: footer
   jcr:primaryType: hippo:handle
   jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
   jcr:uuid: 51836878-2e2f-4ea5-8ca4-8e68147b1210
   hippo:name: Meganav Links
-  hippo:versionHistory: cde953fc-dd84-4a38-9dd7-805a27178e21
+  hippo:versionHistory: aceb3a2f-8162-4dba-bd1f-2fe3d871f44d
   /meganav[1]:
     jcr:primaryType: resourcebundle:resourcebundle
     jcr:mixinTypes: ['mix:referenceable']
@@ -13,12 +13,12 @@
     hippostd:state: draft
     hippostdpubwf:createdBy: admin
     hippostdpubwf:creationDate: 2020-07-22T15:19:03.855+01:00
-    hippostdpubwf:lastModificationDate: 2020-07-22T15:51:17.986+01:00
+    hippostdpubwf:lastModificationDate: 2020-07-23T15:51:20.863+01:00
     hippostdpubwf:lastModifiedBy: admin
     resourcebundle:descriptions: ['', '', '', '', '', '', The purpose of this text
         is to verify that the cta will not be shown when a Top level Menu Item does
         not have a link]
-    resourcebundle:id: meganav
+    resourcebundle:id: navigation.main
     resourcebundle:keys: [destinations-map, see-do, accommodation, inspiration, travel-planning,
       destinations-map.cta, accommodation.cta]
     resourcebundle:messages: [Places to go, Things to do, Accommodation, Inspiration,
@@ -31,12 +31,12 @@
     hippostd:state: unpublished
     hippostdpubwf:createdBy: admin
     hippostdpubwf:creationDate: 2020-07-22T15:19:03.855+01:00
-    hippostdpubwf:lastModificationDate: 2020-07-22T15:55:34.418+01:00
+    hippostdpubwf:lastModificationDate: 2020-07-23T15:46:11.532+01:00
     hippostdpubwf:lastModifiedBy: admin
     resourcebundle:descriptions: ['', '', '', '', '', '', The purpose of this text
         is to verify that the cta will not be shown when a Top level Menu Item does
         not have a link]
-    resourcebundle:id: meganav
+    resourcebundle:id: navigation.main
     resourcebundle:keys: [destinations-map, see-do, accommodation, inspiration, travel-planning,
       destinations-map.cta, accommodation.cta]
     resourcebundle:messages: [Places to go, Things to do, Accommodation, Inspiration,
@@ -49,13 +49,13 @@
     hippostd:state: published
     hippostdpubwf:createdBy: admin
     hippostdpubwf:creationDate: 2020-07-22T15:19:03.855+01:00
-    hippostdpubwf:lastModificationDate: 2020-07-22T15:55:34.418+01:00
+    hippostdpubwf:lastModificationDate: 2020-07-23T15:46:11.532+01:00
     hippostdpubwf:lastModifiedBy: admin
-    hippostdpubwf:publicationDate: 2020-07-22T16:46:03.781+01:00
+    hippostdpubwf:publicationDate: 2020-07-23T16:02:58.778+01:00
     resourcebundle:descriptions: ['', '', '', '', '', '', The purpose of this text
         is to verify that the cta will not be shown when a Top level Menu Item does
         not have a link]
-    resourcebundle:id: meganav
+    resourcebundle:id: navigation.main
     resourcebundle:keys: [destinations-map, see-do, accommodation, inspiration, travel-planning,
       destinations-map.cta, accommodation.cta]
     resourcebundle:messages: [Places to go, Things to do, Accommodation, Inspiration,
