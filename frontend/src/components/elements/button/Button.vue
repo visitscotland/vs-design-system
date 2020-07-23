@@ -5,12 +5,14 @@
         :tabindex="tabindex"
         class="text-uppercase"
         :class="{
-            [animateClass]: animateClass,
+            [$style.root]: true,
+            [$style.ripple]: ripple,
+            [$style.isRippling]: isRippling,
             [backgroundClass]: backgroundClass,
         }"
         :size="size"
         v-bind="$attrs"
-        @click="animateClass ? animateHandler() : null"
+        @click="doRipple"
     >
         <slot />
     </BButton>
@@ -83,97 +85,113 @@ export default {
             validator: (value) => value.match(/(sm|md|lg)/),
         },
         /**
-         * By default, buttons have an animation behaviour on click.
-         * To disable, add an animate=false property
+         * By default, buttons have an ripple behaviour on click.
+         * To disable, add a ripple=false property
          */
-        animate: {
+        ripple: {
             type: Boolean,
             default: true,
         },
     },
+    data() {
+        return {
+            isRippling: false,
+        };
+    },
     computed: {
-        animateClass() {
-            return this.animate ? 'btn-animate' : null;
-        },
         backgroundClass() {
-            return this.background ? [`btn-bg-${this.background}`] : null;
+            switch (this.background) {
+            case 'white':
+                return this.$style.bgWhite;
+            default:
+                return null;
+            }
         },
     },
     methods: {
-        animateHandler() {
-            this.$el.classList.add('bubble');
+        doRipple() {
+            if (!this.ripple) {
+                return;
+            }
+
+            this.isRippling = true;
+
             setTimeout(() => {
-                this.$el.classList.remove('bubble');
+                this.isRippling = false;
             }, 1000);
         },
     },
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 @import "~bootstrap/scss/buttons";
+</style>
 
-.btn {
-    font-family: $font-family-base;
-    font-weight: $font-weight-light;
-    transition: $transition-base;
-    text-decoration: none;
-    letter-spacing: 2px;
-    position: relative;
-    overflow: hidden;
+<style lang="scss" module>
 
-    .btn-dark {
-        &:hover {
+.root {
+    &:global(.btn) {
+        font-family: $font-family-base;
+        font-weight: $font-weight-light;
+        transition: $transition-base;
+        text-decoration: none;
+        letter-spacing: 2px;
+        position: relative;
+        overflow: hidden;
+
+        :global(.btn-dark):hover {
             background-color: $color-gray-shade-5;
+        }
+
+        &.bgWhite:not(:hover) {
+            background-color: $color-white;
+        }
+
+        &:global(.btn-light),
+        &:global(.btn-transparent) {
+            &:focus {
+                box-shadow: 0 0 0 0.2rem rgba(0, 0, 0, 0.25);
+            }
+
+            &::after {
+                background: rgba(0, 0, 0, 0.2);
+            }
         }
     }
 
-    &.btn-bg-white:not(:hover) {
-        background-color: $color-white;
-    }
-
-    &.btn-light,
-    &.btn-transparent {
-        &:focus {
-            box-shadow: 0 0 0 0.2rem rgba(0, 0, 0, 0.25);
+    &.ripple {
+        @keyframes ripple {
+            0% {
+                transform: scale(0, 0);
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+                transform: scale(100, 100);
+            }
         }
 
         &::after {
-            background: rgba(0, 0, 0, 0.2);
-        }
-    }
-}
-
-.btn-animate {
-    @keyframes bubble {
-        0% {
-            transform: scale(0, 0);
-            opacity: 1;
-        }
-        100% {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            bottom: 0;
+            content: "";
+            height: 5px;
             opacity: 0;
-            transform: scale(100, 100);
+            position: absolute;
+            right: 0;
+            transform-origin: 50% 50%;
+            transform: scale(1, 1) translate(-50%);
+            width: 5px;
+        }
+
+        &.isRippling::after {
+            animation: ripple 500ms ease-in-out;
         }
     }
-
-    &::after {
-        background: rgba(255, 255, 255, 0.1);
-        border-radius: 50%;
-        bottom: 0;
-        content: "";
-        height: 5px;
-        opacity: 0;
-        position: absolute;
-        right: 0;
-        transform-origin: 50% 50%;
-        transform: scale(1, 1) translate(-50%);
-        width: 5px;
-    }
-
-    &.bubble::after {
-        animation: bubble 500ms ease-in-out;
-    }
 }
+
 </style>
 
 <docs>
@@ -181,7 +199,7 @@ export default {
     <h4>Types</h4>
     <bs-wrapper class="d-flex flex-wrap mb-4">
       <vs-button class="mr-2 mb-2">Button</vs-button>
-      <vs-button :animate=false class="mr-2 mb-2">Button with no animation</vs-button>
+      <vs-button :ripple="false" class="mr-2 mb-2">Button with no ripple animation</vs-button>
       <vs-button class="mr-2 mb-2" href="https://www.visitscotland.com">Link</vs-button>
     </bs-wrapper>
     <h4>Variants</h4>
