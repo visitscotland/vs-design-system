@@ -1,6 +1,6 @@
 <template>
     <VsButton
-        class="vs-button-with-icon"
+        :class="$style.root"
         v-bind="$attrs"
     >
         <VsIcon
@@ -39,8 +39,8 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
-.vs-button-with-icon {
+<style lang="scss" module>
+.root:global(.btn) {
     padding-left: 1rem;
     padding-right: 1rem;
 
