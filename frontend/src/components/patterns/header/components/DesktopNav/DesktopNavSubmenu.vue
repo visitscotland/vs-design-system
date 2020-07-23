@@ -83,16 +83,16 @@
 </template>
 
 <script>
-import { BCollapse, VBToggle } from "bootstrap-vue"
-import VsIcon from "../../../../elements/icon/Icon"
-import VsContainer from "../../../../elements/layout/Container"
-import VsRow from "../../../../elements/layout/Row"
-import VsCol from "../../../../elements/layout/Col"
+import { BCollapse, VBToggle } from 'bootstrap-vue';
+import VsIcon from '../../../../elements/icon/Icon';
+import VsContainer from '../../../../elements/layout/Container';
+import VsRow from '../../../../elements/layout/Row';
+import VsCol from '../../../../elements/layout/Col';
 
 export default {
-    name: "VsDesktopNavSubmenu",
-    status: "prototype",
-    release: "0.0.1",
+    name: 'VsDesktopNavSubmenu',
+    status: 'prototype',
+    release: '0.0.1',
     components: {
         BCollapse,
         VsCol,
@@ -101,7 +101,7 @@ export default {
         VsRow,
     },
     directives: {
-        "b-toggle": VBToggle,
+        'b-toggle': VBToggle,
     },
     props: {
         /**
@@ -109,22 +109,22 @@ export default {
          */
         type: {
             type: String,
-            default: "li",
+            default: 'li',
         },
         href: {
             type: String,
-            default: "",
+            default: '',
         },
         isExternal: {
             type: Boolean,
         },
         trackingId: {
             type: String,
-            default: "",
+            default: '',
         },
         title: {
             type: String,
-            default: "",
+            default: '',
         },
         level: {
             type: Number,
@@ -133,26 +133,26 @@ export default {
         subnav: {
             type: Array,
             default() {
-                return []
+                return [];
             },
         },
         promoList: {
             type: Array,
             default() {
-                return []
+                return [];
             },
         },
         promoItem: {
             type: Object,
             default() {
                 return {
-                }
+                };
             },
         },
         chartWidgets: {
             type: Array,
             default() {
-                return []
+                return [];
             },
         },
         subnavId: {
@@ -162,42 +162,42 @@ export default {
     },
     data() {
         return {
-        }
+        };
     },
     computed: {
         formattedCollapsePaneId() {
-            return `collapse-subnav-${this.subnavId}`
+            return `collapse-subnav-${this.subnavId}`;
         },
         formattedSubmenuCloseId() {
-            return `submenu-close-${this.subnavId}`
+            return `submenu-close-${this.subnavId}`;
         },
         lowerCaseTitle() {
-            return this.title ? this.title.toLowerCase() : ""
+            return this.title ? this.title.toLowerCase() : '';
         },
     },
     methods: {
         close() {
-            this.setFocusOnToggle()
-            this.$root.$emit("bv::toggle::collapse", this.formattedCollapsePaneId)
+            this.setFocusOnToggle();
+            this.$root.$emit('bv::toggle::collapse', this.formattedCollapsePaneId);
         },
         checkKeydownForward($event) {
-            if ($event.key === "Tab" && !$event.shiftKey) {
-                this.close()
+            if ($event.key === 'Tab' && !$event.shiftKey) {
+                this.close();
             }
         },
         checkKeydownReverse($event) {
-            if ($event.key === "Tab" && $event.shiftKey) {
-                this.close()
+            if ($event.key === 'Tab' && $event.shiftKey) {
+                this.close();
             }
         },
         setFocusOnToggle() {
-            const menuToggle = `collapse-toggle-${this.subnavId}`
+            const menuToggle = `collapse-toggle-${this.subnavId}`;
             setTimeout(() => {
-                document.getElementById(menuToggle).focus()
-            }, 100)
+                document.getElementById(menuToggle).focus();
+            }, 100);
         },
     },
-}
+};
 </script>
 
 <style lang="scss" scoped>

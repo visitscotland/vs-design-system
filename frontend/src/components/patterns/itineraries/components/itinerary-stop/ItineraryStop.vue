@@ -33,17 +33,17 @@
 </template>
 
 <script>
-import VsIcon from "@components/elements/icon/Icon"
-import VsHeading from "@components/elements/heading/Heading"
+import VsIcon from '@components/elements/icon/Icon';
+import VsHeading from '@components/elements/heading/Heading';
 
 /**
  * Itinerary Day list items.
  */
 
 export default {
-    name: "VsItineraryStop",
-    status: "prototype",
-    release: "0.0.1",
+    name: 'VsItineraryStop',
+    status: 'prototype',
+    release: '0.0.1',
     components: {
         VsHeading,
         VsIcon,
@@ -73,11 +73,11 @@ export default {
     },
     data() {
         return {
-        }
+        };
     },
     methods: {
     },
-}
+};
 </script>
 
 <style lang="scss" scoped>
