@@ -9,15 +9,15 @@
 </template>
 
 <script>
-import { VsCol } from "../elements/layout"
+import { VsCol } from '../elements/layout';
 
 /**
  * The Article component is a wrapper for article content, generally wrapped in content sections
  */
 export default {
-    name: "VsArticle",
-    status: "prototype",
-    release: "0.0.1",
+    name: 'VsArticle',
+    status: 'prototype',
+    release: '0.0.1',
     components: {
         VsCol,
     },
@@ -27,10 +27,10 @@ export default {
          */
         tag: {
             type: String,
-            default: "article",
+            default: 'article',
         },
     },
-}
+};
 </script>
 
 <style lang="scss" scoped></style>
