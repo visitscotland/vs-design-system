@@ -169,7 +169,7 @@ public class ResourceBundleService {
     }
 
     public void register(HstRequest request){
-        if (request.getAttribute(SERVICE_NAME) != null) {
+        if (request.getAttribute(SERVICE_NAME) == null) {
             request.setAttribute(SERVICE_NAME, this);
         }
     }

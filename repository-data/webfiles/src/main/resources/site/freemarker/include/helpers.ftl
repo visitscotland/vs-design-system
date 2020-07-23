@@ -20,7 +20,7 @@
     <#if ResourceBundle??>
         <#return ResourceBundle.getResourceBundle(bundle, key, locale, true)>
     <#else >
-        <#return @label(bundle, key)>
+        <#return labelFallback(bundle, key)>
     </#if >
 </#function>
 
