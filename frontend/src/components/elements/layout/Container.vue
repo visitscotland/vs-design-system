@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import { BContainer } from "bootstrap-vue"
+import { BContainer } from 'bootstrap-vue';
 /**
  * Containers are the primary structural element used to
  * organise page content. Our containers utilise
@@ -17,13 +17,13 @@ import { BContainer } from "bootstrap-vue"
  */
 
 export default {
-    name: "VsContainer",
-    status: "prototype",
-    release: "0.1.0",
+    name: 'VsContainer',
+    status: 'prototype',
+    release: '0.1.0',
     components: {
         BContainer,
     },
-}
+};
 </script>
 
 <style lang="scss" scoped>

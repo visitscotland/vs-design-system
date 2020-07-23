@@ -18,10 +18,10 @@
 </template>
 
 <script>
-import VsList from "@components/elements/list/List"
+import VsList from '@components/elements/list/List';
 import {
     VsRow, VsContainer, VsCol,
-} from "@components/elements/layout"
+} from '@components/elements/layout';
 
 /**
  * The FooterUtilityList is a list of FooterNavListItems
@@ -29,14 +29,14 @@ import {
  */
 
 export default {
-    name: "VsFooterUtilityList",
+    name: 'VsFooterUtilityList',
     components: {
         VsList,
         VsRow,
         VsContainer,
         VsCol,
     },
-}
+};
 </script>
 
 <style lang="scss">
@@ -70,7 +70,7 @@ export default {
         @include media-breakpoint-up(xl) {
             padding: $spacer-9 0;
         }
-        
+
         @include media-breakpoint-up(xxl) {
             justify-content: space-evenly;
             padding: $spacer-9 0;
@@ -129,7 +129,7 @@ export default {
                 href="#"
                 link-text="VisitScotland Awards"
             ></vs-footer-nav-list-item>
-            
+
         </vs-footer-utility-list>
     </vs-footer>
 

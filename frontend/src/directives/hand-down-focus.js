@@ -1,4 +1,4 @@
-import { get, isFunction } from "lodash"
+import { get, isFunction } from 'lodash';
 
 /**
  * When an element with this directive is focused on, the
@@ -7,11 +7,11 @@ import { get, isFunction } from "lodash"
  * element needs to be given a tabindex value to work.
  */
 
-export default function (el, binding) {
+export default function(el, binding) {
     el.onfocus = () => { // eslint-disable-line no-param-reassign
-        const $target = binding.value || get(el, "childNodes[0]")
+        const $target = binding.value || get(el, 'childNodes[0]');
         if (isFunction($target.focus)) {
-            $target.focus()
+            $target.focus();
         }
-    }
+    };
 }
