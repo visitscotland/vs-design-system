@@ -139,17 +139,17 @@ public class LinkModulesFactory {
 
         return ll;
     }
-
+    //TODO comment this method
     List<FlatLink> convertToFlatLinks(List<MegalinkItem> items, Locale locale) {
         List<FlatLink> links = new ArrayList<>();
         for (MegalinkItem item : items) {
             if (item.getLink() == null) {
                 CommonUtils.contentIssue("The module %s contains a link without any reference", item.getPath());
             } else if (item.getLink() instanceof Page) {
-                links.add(new FlatLink(((Page) item.getLink()).getTitle(), utils.createUrl(item.getLink())));
+                links.add(new FlatLink(((Page) item.getLink()).getTitle().toLowerCase(), utils.createUrl(item.getLink())));
             } else if (item.getLink() instanceof SharedLink) {
                 JsonNode node = getNodeFromSharedLink((SharedLink) item.getLink(), locale);
-                links.add(new FlatLink(((SharedLink) item.getLink()).getTitle(), getPlainLink((SharedLink)item.getLink(), node)));
+                links.add(new FlatLink(((SharedLink) item.getLink()).getTitle().toLowerCase(), getPlainLink((SharedLink)item.getLink(), node)));
             } else {
                 CommonUtils.contentIssue("The module %s is pointing to a document of type %s which cannot be rendered as a page", item.getPath(), item.getLink().getClass().getSimpleName());
             }
@@ -157,6 +157,7 @@ public class LinkModulesFactory {
         return links;
     }
 
+    //TODO comment this method
     List<EnhancedLink> convertToEnhancedLinks(List<MegalinkItem> items, Locale locale) {
         List<EnhancedLink> links = new ArrayList<>();
         for (MegalinkItem item : items) {
@@ -166,7 +167,7 @@ public class LinkModulesFactory {
             } else if (item.getLink() instanceof Linkable) {
                 EnhancedLink link = new EnhancedLink();
                 link.setTeaser(((Linkable) item.getLink()).getTeaser());
-                link.setLabel(((Linkable) item.getLink()).getTitle());
+                link.setLabel(((Linkable) item.getLink()).getTitle().toLowerCase());
                 link.setFeatured(item.getFeature());
                 if (((Linkable) item.getLink()).getImage() != null) {
                     link.setImage(createFlatImage(((Linkable) item.getLink()).getImage(), locale));
@@ -196,7 +197,7 @@ public class LinkModulesFactory {
         }
         return links;
     }
-
+    //TODO comment this method
     private JsonNode getNodeFromSharedLink(SharedLink link, Locale locale) {
         if (link.getLinkType() instanceof DMSLink) {
             try {
@@ -207,7 +208,7 @@ public class LinkModulesFactory {
         }
         return null;
     }
-
+    //TODO comment this method
     private FlatImage createFlatImage(Image img, Locale locale) {
         FlatImage flatImage = new FlatImage(img, locale);
         LocationObject locationObject = getLocation(img.getLocation(), locale);
@@ -217,7 +218,7 @@ public class LinkModulesFactory {
 
         return flatImage;
     }
-
+    //TODO comment this method
     private String getPlainLink(SharedLink link, JsonNode product) {
 
         if (link.getLinkType() instanceof DMSLink) {
