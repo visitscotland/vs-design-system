@@ -51,7 +51,7 @@ public class PageContentComponent<TYPE extends Page> extends EssentialsContentCo
 
         addDocumentPath(request);
         addProductSearchBuilder(request);
-        bundle.register(request);
+        bundle.registerIn(request);
 
         initPage(request);
     }
