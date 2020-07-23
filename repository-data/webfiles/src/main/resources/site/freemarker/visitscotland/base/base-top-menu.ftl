@@ -10,9 +10,9 @@
           <#if item.title?has_content>
             <#if !item.hstLink?? && !item.externalLink??>
                 <#if item.selected || item.expanded>
-                <li class="active"><div style="padding: 10px 15px;">${item.title?html}</div></li>
+                <li class="active">${item.title?html}</li>
                 <#else>
-                <li><div style="padding: 10px 15px;">${item.title?html}</div></li>
+                <li>${item.title?html}</li>
                 </#if>
             <#else>
                 <#if item.hstLink??>
@@ -23,9 +23,9 @@
                 <#if item.widget??>
                     <li><a style="background: lightcyan;">Widget (${item.widget.component})</a></li>
                 <#elseif  item.selected || item.expanded>
-                <li class="active"><a href="${href}">${item.title?html}</a></li>
+                    <li class="active">${item.title?html} (<a href="${href}">${item.cta?html}</a>)</li>
                 <#else>
-                <li><a href="${href}">${item.title?html}</a></li>
+                    <li>${item.title?html} (<a href="${href}">${item.cta?html}</a>)</li>
                 </#if>
             </#if>
           </#if>
