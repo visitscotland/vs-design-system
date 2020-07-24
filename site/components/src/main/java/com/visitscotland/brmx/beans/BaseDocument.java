@@ -36,8 +36,6 @@ public class BaseDocument extends HippoDocument {
     }
 
     public <T extends HippoBean> List<T> getExternalBeansByType(Class<T> type){
-//        String documentType = type.getAnnotation(Node.class).jcrType();
-//        return getSiblingDocuments(documentType, type);
         return getSiblingDocuments(type);
     }
 
@@ -83,7 +81,12 @@ public class BaseDocument extends HippoDocument {
     }
 
 
-//    public <T> List<T> getSiblingDocuments(String documentType, Class<T> typeClass) {
+    /**
+     * TODO TEST
+     * @param typeClass
+     * @param <T>
+     * @return
+     */
     public <T> List<T> getSiblingDocuments(Class<T> typeClass) {
         //Get the list of sibling nodes
         final NodeIterator it;
@@ -113,18 +116,16 @@ public class BaseDocument extends HippoDocument {
                             continue;
                         }
                     }
-//                    String primaryType = jcrNode.getNodes().nextNode().getProperty(DOCUMENT_TYPE).getString();
-//                    if (documentType.equals(primaryType)) {
-                        HippoBean bean = RequestContextProvider.get().getQueryManager()
-                                .createQuery(jcrNode).execute().getHippoBeans().nextHippoBean();
 
-                        Object aux = getObjectConverter().getObject(bean.getNode());
-                        //The document is added if the type matches
-                        //TODO we need some kind of tests
-                        if (aux != null && typeClass.isAssignableFrom(aux.getClass())) {
-                            documents.add((T) aux);
-                        }
-//                    }
+                    HippoBean bean = RequestContextProvider.get().getQueryManager()
+                            .createQuery(jcrNode).execute().getHippoBeans().nextHippoBean();
+
+                    Object aux = getObjectConverter().getObject(bean.getNode());
+                    //The document is added if the type matches
+                    //TODO we need some kind of tests
+                    if (aux != null && typeClass.isAssignableFrom(aux.getClass())) {
+                        documents.add((T) aux);
+                    }
                 }
             } catch (QueryException | RepositoryException | NullPointerException | ObjectBeanManagerException e) {
                 logError("The following node is corrupted", node, e);
