@@ -1,7 +1,9 @@
 package com.visitscotland.brmx.components.content;
 
+import com.visitscotland.brmx.beans.BaseDocument;
 import com.visitscotland.brmx.beans.Destination;
 import com.visitscotland.brmx.beans.Megalinks;
+import com.visitscotland.brmx.beans.Stop;
 import com.visitscotland.brmx.beans.mapping.megalinks.AbstractLayout;
 import com.visitscotland.brmx.components.content.factory.LinkModulesFactory;
 import com.visitscotland.utils.Contract;
@@ -38,15 +40,19 @@ public class DestinationContentComponent extends PageContentComponent<Destinatio
         List<AbstractLayout> links = new ArrayList<>();
         int styleIndex = 0;
 
-        for (Megalinks mega: getDocument(request).getItems()){
-            AbstractLayout al = linksFactory.getMegalinkModule(mega, request.getLocale());
+        for (BaseDocument item: getDocument(request).getItems()){
+            if (item instanceof Megalinks) {
+                AbstractLayout al = linksFactory.getMegalinkModule((Megalinks) item, request.getLocale());
 
-            if (Contract.isEmpty(al.getTitle()) && styleIndex > 0){
-                styleIndex--;
+                if (Contract.isEmpty(al.getTitle()) && styleIndex > 0) {
+                    styleIndex--;
+                }
+
+                al.setStyle(styles[styleIndex++ % styles.length]);
+                links.add(al);
+            } else if (item instanceof Stop){
+                System.out.println("An stop was found");
             }
-
-            al.setStyle(styles[styleIndex++ % styles.length]);
-            links.add(al);
         }
 
         //Note: In the future this listLayout will be compose by different types of module.

@@ -7,13 +7,18 @@ import java.util.List;
 
 @HippoEssentialsGenerated(internalName = "visitscotland:Destination")
 @Node(jcrType = "visitscotland:Destination")
-public class Destination extends Page {
+public class Destination extends Page implements TranslationParent{
     @HippoEssentialsGenerated(internalName = "visitscotland:location")
     public String getLocation() {
         return getSingleProperty("visitscotland:location");
     }
 
-    public List<Megalinks> getItems() {
-        return getExternalBeansByType(Megalinks.class);
+    public List<BaseDocument> getItems() {
+        return getExternalBeansByType(BaseDocument.class);
+    }
+
+    @Override
+    public String[] getChildJcrTypes() {
+        return new String[]{"visitscotland:Megalinks", "visitscotland:TouristInformation", "visitscotland:Stop"};
     }
 }
