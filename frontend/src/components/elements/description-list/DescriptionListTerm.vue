@@ -1,8 +1,13 @@
 <template>
     <VsCol
         tag="dt"
-        class="vs-description-list__term"
-        :class="{ 'list-inline-item': inline, 'vs-description-list__term--styled': !inline }"
+        :class="[
+            $style.root,
+            {
+                [$style.inline]: inline,
+                [$style.styled]: !inline
+            }
+        ]"
     >
         <slot />
     </VsCol>
@@ -11,7 +16,7 @@
 <script>
 import { VsCol } from '@components/elements/layout';
 /**
- * TODO: Document usage
+ * Renders a description list - dl element
  */
 
 export default {
@@ -30,10 +35,12 @@ export default {
 
 <style lang="scss" scoped>
 @import "~bootstrap/scss/type";
+</style>
 
-.vs-description-list__term {
+<style lang="scss" module>
+.root{
     // Responsive columns to achieve default 2 column list layout
-    &.vs-description-list__term--styled {
+    &.styled {
         font-family: $headings-font-family;
         @include make-col(4);
 
@@ -49,7 +56,7 @@ export default {
     }
 
     // Adds colon separator after inline term for consistency
-    &.list-inline-item {
+    &.inline {
         &::after {
             content: ": ";
         }
