@@ -12,17 +12,17 @@
     </VsButton>
 </template>
 <script>
-import VsIcon from "@components/elements/icon/Icon"
-import VsButton from "."
+import VsIcon from '@components/elements/icon/Icon';
+import VsButton from './Button';
 
 /**
  * This component extends VsButton and is used for buttons with icons and text.
  */
 
 export default {
-    name: "VsButtonWithIcon",
-    status: "prototype",
-    release: "0.0.1",
+    name: 'VsButtonWithIcon',
+    status: 'prototype',
+    release: '0.0.1',
     components: {
         VsButton,
         VsIcon,
@@ -36,7 +36,7 @@ export default {
             required: true,
         },
     },
-}
+};
 </script>
 
 <style lang="scss" scoped>
