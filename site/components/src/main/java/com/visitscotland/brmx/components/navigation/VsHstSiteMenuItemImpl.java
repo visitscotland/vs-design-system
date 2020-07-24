@@ -18,20 +18,16 @@ public class VsHstSiteMenuItemImpl implements VsMenuItem, CommonMenu {
     private final List<HstSiteMenuItem> children;
 
     @PageModelIgnore
-    private final VsHstSiteMenuItemImpl parent;
+    private VsHstSiteMenuItemImpl parent;
 
     private String title;
     private Widget widget;
     private String cta;
 
 
-    public VsHstSiteMenuItemImpl(VsHstSiteMenuItemImpl parent, HstSiteMenuItem menuItem) {
+    public VsHstSiteMenuItemImpl(HstSiteMenuItem menuItem) {
         this.children = new ArrayList<>();
         this.menuItem = menuItem;
-        this.parent = parent;
-        if (parent != null){
-            parent.addChild(this);
-        }
     }
 
     public Widget getWidget() {
@@ -60,8 +56,11 @@ public class VsHstSiteMenuItemImpl implements VsMenuItem, CommonMenu {
         return children;
     }
 
-    private void addChild(HstSiteMenuItem child){
-        children.add(child);
+    public void addChild(VsHstSiteMenuItemImpl child){
+        if (child != null) {
+            children.add(child);
+            child.parent = this;
+        }
     }
 
     @Override

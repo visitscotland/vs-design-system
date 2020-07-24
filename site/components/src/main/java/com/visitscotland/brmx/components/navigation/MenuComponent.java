@@ -26,11 +26,12 @@ import java.util.List;
 )
 public class MenuComponent extends EssentialsMenuComponent {
 
-    private static final String NAVIGATION_LINKS = "meganav";
-    private static final String HEADER = "navigation.static";
+    private static final String STATIC = "static";
+    private static final String NAVIGATION_PREFIX = "navigation.";
     private static final String CTA_SUFFIX = ".cta";
 
     static final String ENHANCED_MENU = "enhancedMenu";
+    static final String MENU = "menu";
 
     private ResourceBundleService bundle;
     private HippoUtilsService utils;
@@ -44,13 +45,13 @@ public class MenuComponent extends EssentialsMenuComponent {
     public void doBeforeRender(HstRequest request, HstResponse response) {
         super.doBeforeRender(request, response);
 
-        bundle.register(request);
+        bundle.registerIn(request);
         List<HstSiteMenuItem> enhancedMenu = new ArrayList<>();
 
 
 
-        if (request.getModel("menu") != null) {
-            for (HstSiteMenuItem item: ((HstSiteMenu) request.getModel("menu")).getSiteMenuItems()) {
+        if (request.getModel(MENU) != null) {
+            for (HstSiteMenuItem item: ((HstSiteMenu) request.getModel(MENU)).getSiteMenuItems()) {
                 enhancedMenu.add(exploreMenu(request, null, item));
             }
 
@@ -73,14 +74,14 @@ public class MenuComponent extends EssentialsMenuComponent {
     }
 
     private VsHstSiteMenuItemImpl exploreMenu(HstRequest request, VsHstSiteMenuItemImpl parent, HstSiteMenuItem menu){
-        VsHstSiteMenuItemImpl enhancedMenu = new VsHstSiteMenuItemImpl(parent, menu);
-        boolean documentExist = true;
+        VsHstSiteMenuItemImpl menuItem = new VsHstSiteMenuItemImpl(menu);
 
-        String nodeName = ((HstSiteMenu) request.getModel("menu")).getName();
-        String resourceBundle = "navigation." + nodeName;
+
+        String nodeName = ((HstSiteMenu) request.getModel(MENU)).getName();
+        String resourceBundle = NAVIGATION_PREFIX + nodeName;
 
         //By default the name would be populated by the resourceBundle
-        enhancedMenu.setTitle(bundle.getResourceBundle(resourceBundle, menu.getName(), request.getLocale(), true));
+        menuItem.setTitle(bundle.getResourceBundle(resourceBundle, menu.getName(), request.getLocale(), true));
 
         //if document base page or widget, we enhance the document
         if (isDocumentBased(menu.getHstLink())) {
@@ -90,43 +91,45 @@ public class MenuComponent extends EssentialsMenuComponent {
                 //if the document does not exist or no publish
                 if (bean != null && !(bean instanceof HippoFolder)){
                     //By default the name would be populated by the resourceBundle
-                    enhancedMenu.setTitle(bundle.getResourceBundle(resourceBundle, menu.getName(), request.getLocale(), true));
+                    menuItem.setTitle(bundle.getResourceBundle(resourceBundle, menu.getName(), request.getLocale(), true));
 
                     //Widget document
                     if (bean instanceof Widget) {
-                        enhancedMenu.setWidget((Widget) bean);
+                        menuItem.setWidget((Widget) bean);
                     } else {
-                        if (Contract.isEmpty(enhancedMenu.getTitle()) && bean instanceof Page) {
-                            enhancedMenu.setTitle(((Page) bean).getTitle());
+                        if (Contract.isEmpty(menuItem.getTitle()) && bean instanceof Page) {
+                            menuItem.setTitle(((Page) bean).getTitle());
                         }
 
                         if (bundle.existsResourceBundleKey(resourceBundle,menu.getName()+ CTA_SUFFIX,  request.getLocale())){
-                            enhancedMenu.setCta(bundle.getResourceBundle(resourceBundle,menu.getName()+ CTA_SUFFIX, request.getLocale()));
+                            menuItem.setCta(bundle.getResourceBundle(resourceBundle,menu.getName()+ CTA_SUFFIX, request.getLocale()));
                         } else {
-                            String seeAll = bundle.getResourceBundle(HEADER,"see-all-cta", request.getLocale());
+                            String seeAll = bundle.getResourceBundle(STATIC,"see-all-cta", request.getLocale());
                             if (seeAll != null) {
-                                enhancedMenu.setCta(String.format(seeAll, enhancedMenu.getTitle()));
+                                menuItem.setCta(String.format(seeAll, menuItem.getTitle()));
                             }
                         }
                     }
-
                 }
 
             } else {
                 //By default the name would be populated by the resourceBundle
-                enhancedMenu.setTitle(bundle.getResourceBundle(resourceBundle, menu.getName(), request.getLocale()));
+                menuItem.setTitle(bundle.getResourceBundle(resourceBundle, menu.getName(), request.getLocale()));
                 //TODO: Check if the page exists on the global channel
             }
         }
 
-
-
-        //Children will add themselves to the parent on the method exploreMenu
-        for (HstSiteMenuItem child : menu.getChildMenuItems()) {
-            exploreMenu(request, enhancedMenu, child);
+        if (menuItem.getTitle() == null) {
+            return null;
+        } else {
+            //Children will add themselves to the parent on the method exploreMenu
+            for (HstSiteMenuItem child : menu.getChildMenuItems()) {
+                menuItem.addChild(exploreMenu(request, menuItem, child));
+            }
+            return menuItem;
         }
 
-        return enhancedMenu;
+
     }
 
 
