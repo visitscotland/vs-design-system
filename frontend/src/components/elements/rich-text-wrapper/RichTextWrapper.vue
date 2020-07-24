@@ -1,13 +1,21 @@
 <template>
     <div
         class="vs-rich-text-wrapper"
-        :class="[variant]"
+        :class="[
+            $style.root,
+            variantClass,
+            {
+                lead: variant === 'lead',
+            }
+        ]"
     >
         <slot />
     </div>
 </template>
 
 <script>
+import { upperFirst } from 'lodash';
+
 /**
   * Text Wrapper is used to wrap and render HTML or text strings from
   * WYSIWYG editors or others and apply styles when needed.
@@ -27,20 +35,28 @@ export default {
             validator: (value) => value.match(/(normal|lead)/),
         },
     },
+    computed: {
+        variantClass() {
+            return this.$style[`variant${upperFirst(this.variant)}`];
+        },
+    },
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 @import "~bootstrap/scss/type";
+</style>
 
-.normal ::v-deep {
+<style lang="scss" module>
+.variantNormal {
     font-family: $font-family-base;
     font-size: $font-size-base;
-}
 
-.lead ::v-deep {
+}
+.variantLead {
     line-height: $line-height-lead;
 }
+
 </style>
 
 <docs>
@@ -49,8 +65,8 @@ export default {
         <h3>Normal Variant</h3>
         <vs-rich-text-wrapper>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis
-             <a href="#foo">eget</a> ante urna.<br/> Pellentesque aliquam faucibus
-             enim fermentum fringilla. Vivamus ultrices dictum justo ac porta.
+            <vs-link href="#foo" external>eget</vs-link> ante urna.<br/> Pellentesque aliquam
+            faucibus enim fermentum fringilla. Vivamus ultrices dictum justo ac porta.
             Quisque mattis <b>tortor</b> dapibus tellus aliquet, finibus lacinia felis pulvinar.
         </vs-rich-text-wrapper>
     </bs-wrapper>
@@ -59,8 +75,8 @@ export default {
         <h3>Lead Variant</h3>
         <vs-rich-text-wrapper variant="lead">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis
-             <a href="#foo">eget</a> ante urna.<br/> Pellentesque aliquam faucibus
-              enim fermentum fringilla. Vivamus ultrices dictum justo ac porta.
+            <vs-link href="#foo" external>eget</vs-link> ante urna.<br/> Pellentesque aliquam
+            faucibus enim fermentum fringilla. Vivamus ultrices dictum justo ac porta.
             Quisque mattis <b>tortor</b> dapibus tellus aliquet, finibus lacinia felis pulvinar.
         </vs-rich-text-wrapper>
     </bs-wrapper>

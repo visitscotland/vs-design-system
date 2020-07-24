@@ -1,28 +1,28 @@
 <template>
-    <VsCol
-        tag="dd"
-        class="vs-description-list__detail"
-        :class="{ 'list-inline-item': inline, 'vs-description-list__detail--styled': !inline }"
+    <dd
+        :class="[
+            $style.detail,
+            {
+                col: inline,
+                [$style.styled]: !inline,
+            }
+        ]"
     >
         <div class="position-relative">
             <slot />
         </div>
-    </VsCol>
+    </dd>
 </template>
 
 <script>
-import { VsCol } from '@components/elements/layout';
 /**
- * TODO: Document usage
+ * Renders a dd element of the styled/inline description list
  */
 
 export default {
     name: 'VsDescriptionListDetail',
     status: 'prototype',
     release: '0.0.1',
-    components: {
-        VsCol,
-    },
     /**
      * Injects inline prop provided by DescriptionList
      */
@@ -30,15 +30,17 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 @import "~bootstrap/scss/type";
+</style>
 
-.vs-description-list__detail {
+<style lang="scss" module>
+.root {
     margin-bottom: 0;
 }
 
 // Responsive columns to achieve default 2 column list layout
-.vs-description-list__detail--styled {
+.styled {
     @include make-col(8);
     @include make-col-offset(4);
 
