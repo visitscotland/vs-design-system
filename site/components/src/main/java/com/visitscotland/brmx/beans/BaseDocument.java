@@ -100,6 +100,19 @@ public class BaseDocument extends HippoDocument {
             javax.jcr.Node jcrNode = it.nextNode();
             try {
                 if (jcrNode.getNodes().getSize() > 0) {
+                    if (this instanceof TranslationParent){
+                        String primaryType = jcrNode.getNodes().nextNode().getProperty(DOCUMENT_TYPE).getString();
+                        boolean allowed = false;
+                        for (String type: ((TranslationParent) this).getChildJcrTypes()){
+                            allowed = type.equals(primaryType);
+                            if (allowed){
+                                break;
+                            }
+                        }
+                        if (!allowed){
+                            continue;
+                        }
+                    }
 //                    String primaryType = jcrNode.getNodes().nextNode().getProperty(DOCUMENT_TYPE).getString();
 //                    if (documentType.equals(primaryType)) {
                         HippoBean bean = RequestContextProvider.get().getQueryManager()

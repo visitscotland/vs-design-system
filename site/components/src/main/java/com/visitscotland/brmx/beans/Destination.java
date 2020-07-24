@@ -19,6 +19,6 @@ public class Destination extends Page implements TranslationParent{
 
     @Override
     public String[] getChildJcrTypes() {
-        return new String[]{"visitscotland:Megalinks", "visitscotland:TouristInformation", "visitscotland:Stop"};
+        return new String[]{"visitscotland:Megalinks", "visitscotland:iKnowIcentre"};
     }
 }

@@ -1,9 +1,6 @@
 package com.visitscotland.brmx.components.content;
 
-import com.visitscotland.brmx.beans.BaseDocument;
-import com.visitscotland.brmx.beans.Destination;
-import com.visitscotland.brmx.beans.Megalinks;
-import com.visitscotland.brmx.beans.Stop;
+import com.visitscotland.brmx.beans.*;
 import com.visitscotland.brmx.beans.mapping.megalinks.AbstractLayout;
 import com.visitscotland.brmx.components.content.factory.LinkModulesFactory;
 import com.visitscotland.utils.Contract;
@@ -50,8 +47,8 @@ public class DestinationContentComponent extends PageContentComponent<Destinatio
 
                 al.setStyle(styles[styleIndex++ % styles.length]);
                 links.add(al);
-            } else if (item instanceof Stop){
-                System.out.println("An stop was found");
+            } else if (item instanceof IKnowIcentre){
+                System.out.println("An IKnowIcentre was found");
             }
         }
 
