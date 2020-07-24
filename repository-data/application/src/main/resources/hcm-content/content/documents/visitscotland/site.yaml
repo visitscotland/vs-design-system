@@ -2112,6 +2112,73 @@
                   hippo:facets: []
                   hippo:modes: []
                   hippo:values: []
+        /ejemplo-parada:
+          jcr:primaryType: hippo:handle
+          jcr:mixinTypes: ['hippo:named', 'mix:referenceable']
+          jcr:uuid: 9cca37c9-7438-4044-a9a2-d815e011a77c
+          hippo:name: ejemplo parada
+          /ejemplo-parada[1]:
+            jcr:primaryType: visitscotland:Stop
+            jcr:mixinTypes: ['mix:referenceable']
+            jcr:uuid: 8fb3b8ed-d603-48ba-bd93-71d0e8a11f5b
+            hippo:availability: []
+            hippostd:state: draft
+            hippostdpubwf:createdBy: admin
+            hippostdpubwf:creationDate: 2020-07-24T10:58:39.630+01:00
+            hippostdpubwf:lastModificationDate: 2020-07-24T10:58:39.630+01:00
+            hippostdpubwf:lastModifiedBy: admin
+            hippotranslation:id: 4fa22051-afc1-4af0-8ef1-e7eae915386e
+            hippotranslation:locale: en
+            visitscotland:subtitle: ''
+            visitscotland:tipsTitle: ''
+            visitscotland:title: casa jl
+            /visitscotland:description:
+              jcr:primaryType: hippostd:html
+              hippostd:content: <p>hola</p>
+            /visitscotland:tips:
+              jcr:primaryType: hippostd:html
+              hippostd:content: ''
+            /visitscotland:image:
+              jcr:primaryType: hippogallerypicker:imagelink
+              hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
+              hippo:facets: []
+              hippo:modes: []
+              hippo:values: []
+            /visitscotland:product:
+              jcr:primaryType: visitscotland:DMSLink
+              visitscotland:label: ''
+              visitscotland:product: '245821'
+          /ejemplo-parada[2]:
+            jcr:primaryType: visitscotland:Stop
+            jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
+            jcr:uuid: 8778e8e7-3a7d-4e72-b555-c3f6ce20de10
+            hippo:availability: [preview]
+            hippostd:state: unpublished
+            hippostdpubwf:createdBy: admin
+            hippostdpubwf:creationDate: 2020-07-24T10:58:39.630+01:00
+            hippostdpubwf:lastModificationDate: 2020-07-24T10:59:23.324+01:00
+            hippostdpubwf:lastModifiedBy: admin
+            hippotranslation:id: 4fa22051-afc1-4af0-8ef1-e7eae915386e
+            hippotranslation:locale: en
+            visitscotland:subtitle: ''
+            visitscotland:tipsTitle: ''
+            visitscotland:title: casa jl
+            /visitscotland:description:
+              jcr:primaryType: hippostd:html
+              hippostd:content: <p>hola</p>
+            /visitscotland:tips:
+              jcr:primaryType: hippostd:html
+              hippostd:content: ''
+            /visitscotland:image:
+              jcr:primaryType: hippogallerypicker:imagelink
+              hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
+              hippo:facets: []
+              hippo:modes: []
+              hippo:values: []
+            /visitscotland:product:
+              jcr:primaryType: visitscotland:DMSLink
+              visitscotland:label: ''
+              visitscotland:product: '245821'
       /the-outer-hebrides:
         jcr:primaryType: hippostd:folder
         jcr:mixinTypes: ['hippo:named', 'hippotranslation:translated', 'mix:versionable']

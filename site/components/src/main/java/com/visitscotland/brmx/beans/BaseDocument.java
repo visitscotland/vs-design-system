@@ -108,7 +108,7 @@ public class BaseDocument extends HippoDocument {
                         Object aux = getObjectConverter().getObject(bean.getNode());
                         //The document is added if the type matches
                         //TODO we need some kind of tests
-                        if (aux != null && aux.getClass().isAssignableFrom(typeClass)) {
+                        if (aux != null && typeClass.isAssignableFrom(aux.getClass())) {
                             documents.add((T) aux);
                         }
 //                    }
