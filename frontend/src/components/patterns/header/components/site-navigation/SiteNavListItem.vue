@@ -72,16 +72,16 @@
 <script>
 import {
     isEmpty, get, isString,
-} from "lodash"
+} from 'lodash';
 
-import VsIcon from "@components/elements/icon"
-import VsButton from "@components/elements/button"
-import VsSiteNavList from "./SiteNavList"
+import VsIcon from '@components/elements/icon';
+import VsButton from '@components/elements/button';
+import VsSiteNavList from './SiteNavList';
 
 export default {
-    name: "VsSiteNavListItem",
-    status: "prototype",
-    release: "0.1.0",
+    name: 'VsSiteNavListItem',
+    status: 'prototype',
+    release: '0.1.0',
     components: {
         VsIcon,
         VsButton,
@@ -90,67 +90,67 @@ export default {
     props: {
         href: {
             type: String,
-            default: "",
+            default: '',
         },
         trackingId: {
             type: String,
-            default: "",
+            default: '',
         },
         title: {
             type: String,
-            default: "",
+            default: '',
         },
         subnav: {
             type: Array,
             default() {
-                return []
+                return [];
             },
         },
     },
     data() {
         return {
             show: false,
-        }
+        };
     },
     computed: {
         lowerCaseContent() {
-            const defaultContent = get(this.$slots, "default.0.text")
+            const defaultContent = get(this.$slots, 'default.0.text');
 
-            return isString(defaultContent) ? defaultContent.toLowerCase() : ""
+            return isString(defaultContent) ? defaultContent.toLowerCase() : '';
         },
         hasChildren() {
             if (this.level > 2) {
-                return false
+                return false;
             }
 
-            return !isEmpty(this.$slots.subnav)
+            return !isEmpty(this.$slots.subnav);
         },
         incrementLevel() {
-            return this.level + 1
+            return this.level + 1;
         },
         level() {
-            return this.$parent.level
+            return this.$parent.level;
         },
     },
     mounted() {
-        this.$root.$on("resetMenus", this.reset)
+        this.$root.$on('resetMenus', this.reset);
     },
     methods: {
         reset() {
-            this.show = false
+            this.show = false;
         },
         triggerToggle() {
-            this.show = !this.show
-            const thisTrigger = this.$refs.trigger
+            this.show = !this.show;
+            const thisTrigger = this.$refs.trigger;
             if (this.show) {
-                this.$parent.$emit("setScrollOffset", thisTrigger.offsetTop)
+                this.$parent.$emit('setScrollOffset', thisTrigger.offsetTop);
             } else {
-                this.$parent.$emit("setScrollOffset", 0)
+                this.$parent.$emit('setScrollOffset', 0);
             }
-            thisTrigger.$el.blur()
+            thisTrigger.$el.blur();
         },
     },
-}
+};
 </script>
 
 <style lang="scss" scoped>
