@@ -1,58 +1,77 @@
 <template>
     <li class="vs-itinerary-day__list-item">
-        <div class="vs-itinerary-day__header text-center position-relative">
-            <VsHeading
-                level="2"
-                class="mt-9"
+        <VsAccordion break-point="lg">
+            <VsAccordionItem
+                :open-by-default="true"
+                :control-id="'accordion_item_' + dayNumber"
+                variant="light"
             >
-                <span class="vs-itinerary-day__title d-inline-block">
-                    {{ dayLabel }} {{ dayNumber }}
-                </span>
-                <span slot="sub-heading">{{ dayTitle }}</span>
-            </VsHeading>
-            <VsButton
-                :animate="false"
-                :aria-expanded="show ? 'true' : 'false'"
-                :aria-controls="'dayPanel_' + dayNumber"
-                @click.native="triggerToggle()"
-                aria-haspopup="true"
-                class="vs-itinerary-day__toggle-button position-absolute p-0"
-                v-if="!isDesktop"
-                variant="transparent"
-            >
-                <VsIcon
-                    v-if="show"
-                    name="chevron-down"
-                    variant="dark"
-                    size="xs"
-                    :padding="3"
-                />
-                <VsIcon
-                    v-else
-                    name="chevron-up"
-                    variant="dark"
-                    size="xs"
-                    :padding="3"
-                />
-            </VsButton>
-        </div>
-        <div
-            v-show="show || isDesktop"
-            :id="'dayPanel_' + dayNumber"
-        >
-            <slot name="day-transport" />
-            <slot name="day-introduction" />
-            <ul class="list-unstyled">
-                <slot name="stops" />
-            </ul>
-        </div>
+                <!-- <div class="vs-itinerary-day__header text-center position-relative"> -->
+                <div
+                    slot="title"
+                    class="vs-itinerary-day__header text-center"
+                >
+                    <span class="vs-itinerary-day__title d-inline-block">
+                        {{ dayLabel }} {{ dayNumber }}
+                    </span>
+                    <span slot="sub-heading">{{ dayTitle }}</span>
+                    <VsHeading
+                        level="2"
+                        class="mt-9"
+                    />
+                    <!-- <VsButton
+                        :animate="false"
+                        :aria-expanded="show ? 'true' : 'false'"
+                        :aria-controls="'dayPanel_' + dayNumber"
+                        @click.native="triggerToggle()"
+                        aria-haspopup="true"
+                        v-if="!isDesktop"
+                        variant="transparent"
+                    > -->
+                    <span slot="icon-open">
+                        <VsIcon
+                            name="chevron-down"
+                            variant="dark"
+                            size="xs"
+                            :padding="3"
+                            class="vs-itinerary-day__toggle-button p-0"
+                        />
+                    </span>
+                    <span slot="icon-closed">
+                        <VsIcon
+                            name="chevron-up"
+                            variant="dark"
+                            size="xs"
+                            :padding="3"
+                            class="vs-itinerary-day__toggle-button p-0"
+                        />
+                    </span>
+                </div>
+
+                <!-- </VsButton> -->
+                <!-- </div> -->
+
+                <div
+                    v-show="show || isDesktop"
+                    :id="'dayPanel_' + dayNumber"
+                >
+                    <slot name="day-transport" />
+                    <slot name="day-introduction" />
+                    <ul class="list-unstyled">
+                        <slot name="stops" />
+                    </ul>
+                </div>
+            </VsAccordionItem>
+        </VsAccordion>
     </li>
 </template>
 
 <script>
 import VsIcon from '@components/elements/icon/Icon';
 import VsHeading from '@components/elements/heading/Heading';
-import VsButton from '@components/elements/button/Button';
+// import VsButton from '@components/elements/button/Button';
+import VsAccordion from '@components/patterns/accordion/Accordion';
+import VsAccordionItem from '@components/patterns/accordion/AccordionItem';
 
 /**
  * Itinerary Day list items.
@@ -64,8 +83,10 @@ export default {
     release: '0.0.1',
     components: {
         VsHeading,
-        VsButton,
+        // VsButton,
         VsIcon,
+        VsAccordion,
+        VsAccordionItem,
     },
     props: {
         /**
