@@ -29,7 +29,7 @@ describe('VsLink', () => {
 			expect(wrapper.text()).toBe(slotContent)
 		});
 	})
-
+    
 	describe(':props', () => {
 		it(':variant - should render the primary variant by default', () => {
 			const wrapper = factoryShallowMount()
@@ -43,7 +43,7 @@ describe('VsLink', () => {
 			expect(wrapper.classes()).toContain('dark')
 			expect(wrapper.classes()).not.toContain('primary')
 		})
-
+        
 		it(':href - should apply the supplied href', () => {
 			const href = 'http://google.com'
 			const wrapper = factoryShallowMount({ href })
