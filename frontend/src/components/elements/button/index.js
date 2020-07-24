@@ -1,6 +1,6 @@
-import VsButtonWithIcon from "./ButtonWithIcon"
-import VsButton from "./Button"
+import VsButtonWithIcon from './ButtonWithIcon';
+import VsButton from './Button';
 
-export default VsButton
+export default VsButton;
 
-export { VsButtonWithIcon }
+export { VsButtonWithIcon };
