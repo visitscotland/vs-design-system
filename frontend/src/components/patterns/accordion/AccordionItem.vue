@@ -144,7 +144,7 @@ export default {
 
     .vs-accordion-item__card-header{
         padding: 0;
-        background-color: $color-gray-shade-7;
+        //background-color: $color-gray-shade-7;
         border: 0;
     }
 
@@ -159,16 +159,16 @@ export default {
     }
 
     .vs-accordion-item__title {
-        background-color: $color-gray-shade-7;
-        color: $color-white;
+        //background-color: $color-gray-shade-7;
+        //color: $color-white;
         margin: $spacer-3;
         line-height: 1;
         font-weight: 500;
     }
 
     .vs-accordion-item__panel.card-body {
-        background-color: $color-gray-shade-6;
-        color: $color-white;
+        //background-color: $color-gray-shade-6;
+        //color: $color-white;
         border-top: 1px solid $color-gray-shade-2;
         padding: 0 0 $spacer-2;
     }
