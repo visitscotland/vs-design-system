@@ -16,7 +16,7 @@
     </BButton>
 </template>
 <script>
-import { BButton } from "bootstrap-vue"
+import { BButton } from 'bootstrap-vue';
 
 /**
  * TODO: Document usage.
@@ -28,9 +28,9 @@ import { BButton } from "bootstrap-vue"
  */
 
 export default {
-    name: "VsButton",
-    status: "prototype",
-    release: "0.0.1",
+    name: 'VsButton',
+    status: 'prototype',
+    release: '0.0.1',
     components: {
         BButton,
     },
@@ -56,7 +56,7 @@ export default {
          */
         variant: {
             type: String,
-            default: "primary",
+            default: 'primary',
             validator: (value) => value.match(
                 /(primary|secondary|success|danger|warning|info|light|dark|transparent)/,
             ),
@@ -79,7 +79,7 @@ export default {
          */
         size: {
             type: String,
-            default: "md",
+            default: 'md',
             validator: (value) => value.match(/(sm|md|lg)/),
         },
         /**
@@ -93,21 +93,21 @@ export default {
     },
     computed: {
         animateClass() {
-            return this.animate ? "btn-animate" : null
+            return this.animate ? 'btn-animate' : null;
         },
         backgroundClass() {
-            return this.background ? [`btn-bg-${this.background}`] : null
+            return this.background ? [`btn-bg-${this.background}`] : null;
         },
     },
     methods: {
         animateHandler() {
-            this.$el.classList.add("bubble")
+            this.$el.classList.add('bubble');
             setTimeout(() => {
-                this.$el.classList.remove("bubble")
-            }, 1000)
+                this.$el.classList.remove('bubble');
+            }, 1000);
         },
     },
-}
+};
 </script>
 
 <style lang="scss" scoped>

@@ -19,19 +19,19 @@
  */
 
 export default {
-    name: "VsIconList",
-    status: "prototype",
-    release: "0.0.1",
+    name: 'VsIconList',
+    status: 'prototype',
+    release: '0.0.1',
     props: {
         /**
          * The title for the icon list
          */
         title: {
             type: String,
-            default: "",
+            default: '',
         },
     },
-}
+};
 </script>
 
 <style lang="scss" scoped>
