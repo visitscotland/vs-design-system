@@ -37,7 +37,6 @@ import {
     VsCol,
 } from '@components/elements/layout';
 import VsItineraryMobileMapToggle from '@components/patterns/itineraries/components/itinerary-mobile-map-toggle/ItineraryMobileMapToggle';
-
 /**
  * A wrapper component that wraps the itinerary map and list.
  * It controls display of the mobile map toggle on smaller screens.
