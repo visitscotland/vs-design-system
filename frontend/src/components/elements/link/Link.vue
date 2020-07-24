@@ -1,7 +1,11 @@
 <template>
     <BLink
         class="vs-link"
-        :class="[variant, { 'vs-link--external': external }]"
+        :class="[
+            $style.root,
+            variantClass,
+            { [$style.external]: external }
+        ]"
         :href="href"
         :target="external ? '_blank' : '_self'"
     >
@@ -13,11 +17,13 @@
             size="xs"
             :padding="0"
             class="ml-1"
+            :class="$style.icon"
         />
     </BLink>
 </template>
 
 <script>
+import { upperFirst } from 'lodash';
 import { BLink } from 'bootstrap-vue';
 import VsIcon from '@components/elements/icon/Icon';
 
@@ -61,12 +67,17 @@ export default {
             validator: (value) => value.match(/(primary|dark)/),
         },
     },
+    computed: {
+        variantClass() {
+            return this.$style[`variant${upperFirst(this.variant)}`];
+        },
+    },
 };
 </script>
 
-<style lang="scss" scoped>
-.vs-link {
-    &.primary {
+<style lang="scss" module>
+.root {
+    &.variantPrimary {
         color: $color_pink;
 
         .icon {
@@ -78,7 +89,7 @@ export default {
         }
     }
 
-    &.dark {
+    &.variantDark {
         color: $color_yellow;
 
         .icon {
