@@ -565,7 +565,7 @@ createBuildReport() {
     #echo "and the Console at:" | tee -a $VS_MAIL_NOTIFY_BUILD_MESSAGE
     echo " - console: $VS_PROXY_SERVER_SCHEME://$VS_PROXY_SERVER_FQDN/cms/console/" | tee -a $VS_MAIL_NOTIFY_BUILD_MESSAGE
     echo " - logs:    $VS_PROXY_SERVER_SCHEME://$VS_PROXY_SERVER_FQDN/logs/" | tee -a $VS_MAIL_NOTIFY_BUILD_MESSAGE
-    if [ ! -z "$VS_CONTAINER_EXT_PORT_SSR" ]; then echo " tailon:  $VS_PROXY_SERVER_SCHEME://$VS_PROXY_SERVER_FQDN/tailon/" | tee -a $VS_MAIL_NOTIFY_BUILD_MESSAGE; fi
+    if [ ! -z "$VS_CONTAINER_EXT_PORT_TLN" ]; then echo " - tailon:  $VS_PROXY_SERVER_SCHEME://$VS_PROXY_SERVER_FQDN/tailon/" | tee -a $VS_MAIL_NOTIFY_BUILD_MESSAGE; fi
     echo "" | tee -a $VS_MAIL_NOTIFY_BUILD_MESSAGE
     echo "To clear the proxy server settings between sessions either close your browser or browse to:" | tee -a $VS_MAIL_NOTIFY_BUILD_MESSAGE
     echo "  - $VS_PROXY_SERVER_SCHEME://$VS_PROXY_SERVER_FQDN/?vs_brxm_reset" | tee -a $VS_MAIL_NOTIFY_BUILD_MESSAGE
