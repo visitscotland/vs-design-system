@@ -3,12 +3,17 @@ def DS_BRANCH = "feature/VS-955-ui-itineraries-itinerary-stops-changes-built-pro
 def MAIL_TO = "gavin@visitscotland.net"
 
 def thisAgent
+def VS_CONTAINER_BASE_PORT_OVERRIDE
 if (BRANCH_NAME == "develop" && (JOB_NAME == "develop.visitscotland.com/visitscotland-2019/develop" || JOB_NAME == "develop.visitscotland.com-mb/develop")) {
   thisAgent = "op-dev-xvcdocker-01"
+  VS_CONTAINER_BASE_PORT_OVERRIDE = "8099"
 } else if (BRANCH_NAME == "develop" && (JOB_NAME == "develop-nightly.visitscotland.com/visitscotland-2019/develop" || JOB_NAME == "develop-nightly.visitscotland.com-mb/develop")) {
   thisAgent = "op-dev-xvcdocker-01"
+  VS_CONTAINER_BASE_PORT_OVERRIDE = "8098"
+  String cron_string = BRANCH_NAME == "develop" ? "@midnight" : ""
 } else if (BRANCH_NAME == "develop" && (JOB_NAME == "develop-stable.visitscotland.com/visitscotland-2019/develop" || JOB_NAME == "develop-stable.visitscotland.com-mb/develop")) {
   thisAgent = "op-dev-xvcdocker-01"
+  VS_CONTAINER_BASE_PORT_OVERRIDE = "8097"
 } else {
   thisAgent = "docker-02"
 }

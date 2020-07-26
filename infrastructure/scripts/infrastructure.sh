@@ -36,7 +36,7 @@ if [ -z "$VS_MAIL_HOST" ]; then VS_MAIL_HOST=10.1.1.152; fi
 if [ -z "$VS_MAIL_NOTIFY_BUILD" ]; then VS_MAIL_NOTIFY_BUILD="TRUE"; fi
 if [ -z "$VS_MAIL_NOTIFY_SITE" ]; then VS_MAIL_NOTIFY_SITE="TRUE"; fi
 #  == brXM Instance Variables ==
-if [ -z "$VS_CONTAINER_BASE_PORT_OVERRIDE" ]; then unset VS_CONTAINER_BASE_PORT_OVERRIDE; fi
+if [ -z "$VS_CONTAINER_BASE_PORT_OVERRIDE" ]; then unset VS_CONTAINER_BASE_PORT_OVERRIDE; else echo "VS_CONTAINER_BASE_PORT_OVERRIDE was set to $VS_CONTAINER_BASE_PORT_OVERRIDE before $0 was called"; fi
 if [ -z "$VS_BRXM_INSTANCE_HTTP_HOST" ]; then VS_BRXM_INSTANCE_HTTP_HOST=localhost; fi
 if [ -z "$VS_BRXM_TOMCAT_PORT" ]; then VS_BRXM_TOMCAT_PORT=8080; fi
 if [ -z "$VS_CONTAINER_PORT_INCREMENT" ]; then VS_CONTAINER_PORT_INCREMENT=100; fi
@@ -312,20 +312,22 @@ tidyContainers() {
 
 setPortRange() {
   # gp:DONE - even if override is set we must still check to ensure it's free, move the while loop to after the if block and just add PORT/MAXPORT values into the if. If the override port if in use the job must fail
-  if [ "VS_PARENT_JOB_NAME" == "feature.visitscotland.com-mb" ] && [ "$GIT_BRANCH" == "develop" ]; then
-    VS_CONTAINER_BASE_PORT_OVERRIDE=8100
-    echo "GIT_BRANCH is $GIT_BRANCH, OVERRIDE PORT will be set to  $VS_CONTAINER_BASE_PORT_OVERRIDE"
-  elif [ "$VS_PARENT_JOB_NAME" == "develop.visitscotland.com-mb" ] && [ "$GIT_BRANCH" == "develop" ]; then
-    VS_CONTAINER_BASE_PORT_OVERRIDE=8099
-    echo "GIT_BRANCH is $GIT_BRANCH for JOB $VS_PARENT_JOB_NAME, OVERRIDE PORT will be set to $VS_CONTAINER_BASE_PORT_OVERRIDE"
-  elif [ "$VS_PARENT_JOB_NAME" == "develop-nightly.visitscotland.com-mb" ] && [ "$GIT_BRANCH" == "develop" ]; then
-    VS_CONTAINER_BASE_PORT_OVERRIDE=8098
-    echo "GIT_BRANCH is $GIT_BRANCH, OVERRIDE PORT will be set to $VS_CONTAINER_BASE_PORT_OVERRIDE"
-  elif [ "$VS_PARENT_JOB_NAME" == "develop-stable.visitscotland.com-mb" ] && [ "$GIT_BRANCH" == "develop" ]; then
-    VS_CONTAINER_BASE_PORT_OVERRIDE=8097
-    echo "GIT_BRANCH is $GIT_BRANCH, OVERRIDE PORT will be set to $VS_CONTAINER_BASE_PORT_OVERRIDE"
-  else
-    echo "GIT_BRANCH is $GIT_BRANCH for JOB $VS_PARENT_JOB_NAME, NO OVERRIDE PORT will be set"
+  if [ -z "$VS_CONTAINER_BASE_PORT_OVERRIDE" ]; then
+    if [ "VS_PARENT_JOB_NAME" == "feature.visitscotland.com-mb" ] && [ "$GIT_BRANCH" == "develop" ]; then
+      VS_CONTAINER_BASE_PORT_OVERRIDE=8100
+      echo "GIT_BRANCH is $GIT_BRANCH, OVERRIDE PORT will be set to  $VS_CONTAINER_BASE_PORT_OVERRIDE"
+    elif [ "$VS_PARENT_JOB_NAME" == "develop.visitscotland.com-mb" ] && [ "$GIT_BRANCH" == "develop" ]; then
+      VS_CONTAINER_BASE_PORT_OVERRIDE=8099
+      echo "GIT_BRANCH is $GIT_BRANCH for JOB $VS_PARENT_JOB_NAME, OVERRIDE PORT will be set to $VS_CONTAINER_BASE_PORT_OVERRIDE"
+    elif [ "$VS_PARENT_JOB_NAME" == "develop-nightly.visitscotland.com-mb" ] && [ "$GIT_BRANCH" == "develop" ]; then
+      VS_CONTAINER_BASE_PORT_OVERRIDE=8098
+      echo "GIT_BRANCH is $GIT_BRANCH, OVERRIDE PORT will be set to $VS_CONTAINER_BASE_PORT_OVERRIDE"
+    elif [ "$VS_PARENT_JOB_NAME" == "develop-stable.visitscotland.com-mb" ] && [ "$GIT_BRANCH" == "develop" ]; then
+      VS_CONTAINER_BASE_PORT_OVERRIDE=8097
+      echo "GIT_BRANCH is $GIT_BRANCH, OVERRIDE PORT will be set to $VS_CONTAINER_BASE_PORT_OVERRIDE"
+    else
+      echo "GIT_BRANCH is $GIT_BRANCH for JOB $VS_PARENT_JOB_NAME, NO OVERRIDE PORT will be set"
+    fi
   fi
   if [ -z "$VS_CONTAINER_BASE_PORT_OVERRIDE" ]; then
     MIN_PORT=8000
