@@ -22,14 +22,14 @@ pipeline {
 
   environment {
     VS_SSR_PROXY_ON = 'TRUE'
-    VS_SKIP_BUILD_FOR_BRANCH = 'feature/VS-1865-feature-environments-enhancements'
-    VS_RUN_BRC_STAGES = 'FALSE'
+    VS_SKIP_BUILD_FOR_BRANCH = 'eg:feature/VS-1865-feature-environments-enhancements'
+    VS_RUN_BRC_STAGES = 'TRUE'
     // -- 20200712: TEST and PACKAGE stages might need VS_SKIP set to TRUE as they just run the ~4 minute front-end build every time
     VS_SKIP_BRC_BLD = 'FALSE'
-    VS_SKIP_BRC_TST = 'TRUE'
+    VS_SKIP_BRC_TST = 'FALSE'
     VS_SKIP_BRC_PKG = 'FALSE'
-    VS_SKIP_BRC_CXN = 'TRUE'
-    VS_SKIP_BRC_UPL = 'TRUE'
+    VS_SKIP_BRC_CXN = 'FALSE'
+    VS_SKIP_BRC_UPL = 'FALSE'
     VS_BRC_STACK_URI = 'visitscotland'
     VS_BRC_ENV = 'demo'
     VS_BRC_STACK_URL = "https://api-${VS_BRC_STACK_URI}.onehippo.io"
@@ -100,7 +100,7 @@ pipeline {
       }
       steps {
         withMaven(maven: 'Maven 3.3.9', options: [artifactsPublisher(disabled: true)]) {
-          sh '$MVN_CMD clean compile -Pdefault'
+          sh '$MVN_CMD clean compile -Pdefault -DskipTests'
         }
       }
     } //end stage
@@ -114,7 +114,7 @@ pipeline {
         }
       }
       steps {
-        sh 'mvn test -Pdefault'
+        sh 'mvn test -Pdefault -P!fed-build'
       }
     } //end stage
 
@@ -128,7 +128,7 @@ pipeline {
       }
       steps {
         // -- 20200712: QUESTION FOR SE, "brC does not recognise the package, maybe it needs Enterprise Features?"
-        sh 'mvn verify && mvn -Pdist'
+        sh 'mvn verify && mvn -Pdist -P!fed-build -DskipTests'
       }
       post {
         success {
