@@ -555,7 +555,7 @@ createBuildReport() {
     echo "" | tee -a $VS_MAIL_NOTIFY_BUILD_MESSAGE
     echo "The site instance for branch $GIT_BRANCH should now be available in a few moments on $NODE_NAME - $VS_HOST_IP_ADDRESS" | tee -a $VS_MAIL_NOTIFY_BUILD_MESSAGE
     echo "" | tee -a $VS_MAIL_NOTIFY_BUILD_MESSAGE
-    echo "To configure your browser session for this branch please follow this link:
+    echo "To configure your browser session for this branch please follow this link:"
     echo "  - $VS_PROXY_SERVER_SCHEME://$VS_PROXY_SERVER_FQDN/?vs_brxm_host=$VS_HOST_IP_ADDRESS&vs_brxm_port=$VS_CONTAINER_BASE_PORT&vs_brxm_http_host=$VS_BRXM_INSTANCE_HTTP_HOST&vs_ssr_http_port=$VS_CONTAINER_EXT_PORT_SSR&vs_tln_http_poer=VS_CONTAINER_EXT_PORT_TLN" | tee -a $VS_MAIL_NOTIFY_BUILD_MESSAGE
     echo "" | tee -a $VS_MAIL_NOTIFY_BUILD_MESSAGE
     echo "Thereafter, until you clear the settings, you will be able to access the environment on the following URLs" | tee -a $VS_MAIL_NOTIFY_BUILD_MESSAGE
@@ -578,11 +578,11 @@ createBuildReport() {
     echo "" | tee -a $VS_MAIL_NOTIFY_BUILD_MESSAGE
     if [ ! -z "$VS_CONTAINER_EXT_PORT_SSR" ]; then
       echo "Direct SSR access - available only on the Web Development LAN" | tee -a $VS_MAIL_NOTIFY_BUILD_MESSAGE
-      echo "  - http://$VS_HOST_IP_ADDRESS:$VS_CONTAINER_EXT_PORT_SSR/site/"
+      echo "  - http://$VS_HOST_IP_ADDRESS:$VS_CONTAINER_EXT_PORT_SSR/site/" | tee -a $VS_MAIL_NOTIFY_BUILD_MESSAGE
       echo "" | tee -a $VS_MAIL_NOTIFY_BUILD_MESSAGE
     fi
     if [ ! -z "$VS_CONTAINER_EXT_PORT_SSH" ]; then
-      echo "SSH access - if enabled on the container - available only on the Web Development LAN" | tee -a $VS_MAIL_NOTIFY_BUILD_MESSAGE
+      echo "SSH access \(if enabled on the container\) - available only on the Web Development LAN" | tee -a $VS_MAIL_NOTIFY_BUILD_MESSAGE
       echo "  - ssh -p $VS_CONTAINER_EXT_PORT_SSH $VS_HOST_IP_ADDRESS" | tee -a $VS_MAIL_NOTIFY_BUILD_MESSAGE
       echo "" | tee -a $VS_MAIL_NOTIFY_BUILD_MESSAGE
     fi
