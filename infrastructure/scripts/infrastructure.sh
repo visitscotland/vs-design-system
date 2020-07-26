@@ -401,7 +401,7 @@ findDynamicPorts() {
       if [ "$FREE" = "" ]; then
         #echo " - netstat says $THIS_PORT is free - using it"
 	eval "VS_CONTAINER_EXT_PORT_"$VS_CONTAINER_SERVICE"="$THIS_PORT
-        echo " - service $VS_CONTAINER_SERVICE on port $VS_CONTAINER_INT_PORT has been mapped to external port $THIS_PORT" | tee -a $VS_MAIL_NOTIFY_BUILD_MESSAGE_EXTRA
+        echo " - service $VS_CONTAINER_SERVICE on port $VS_CONTAINER_SERVICE_PORT has been mapped to external port $THIS_PORT" | tee -a $VS_MAIL_NOTIFY_BUILD_MESSAGE_EXTRA
 	THIS_DOCKER_MAP="-p $THIS_PORT:$VS_CONTAINER_SERVICE_PORT"
 	VS_CONTAINER_PORT_MAPPINGS="$THIS_DOCKER_MAP $VS_CONTAINER_PORT_MAPPINGS"
 	break
