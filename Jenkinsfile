@@ -3,12 +3,12 @@ def DS_BRANCH = "feature/VS-955-ui-itineraries-itinerary-stops-changes-built-pro
 def MAIL_TO = "gavin@visitscotland.net"
 
 def thisAgent
-if (BRANCH_NAME == "develop" && JOB_NAME == "develop.visitscotland.com-mb/develop") {
-  thisAgent = "op-dev-brxwvcapp-01"
-} else if (BRANCH_NAME == "develop" && JOB_NAME == "develop-nightly.visitscotland.com/develop") {
-  thisAgent = "op-dev-brxwvcapp-02"
-} else if (BRANCH_NAME == "develop" && JOB_NAME == "develop-stable.visitscotland.com/develop") {
-  thisAgent = "op-dev-brxwvcapp-03"
+if (BRANCH_NAME == "develop" && (JOB_NAME == "develop.visitscotland.com/visitscotland-2019/develop" || JOB_NAME == "develop.visitscotland.com-mb/develop")) {
+  thisAgent = "op-dev-xvcdocker-01"
+} else if (BRANCH_NAME == "develop" && (JOB_NAME == "develop-nightly.visitscotland.com/visitscotland-2019/develop" || JOB_NAME == "develop-nightly.visitscotland.com-mb/develop")) {
+  thisAgent = "op-dev-xvcdocker-01"
+} else if (BRANCH_NAME == "develop" && (JOB_NAME == "develop-stable.visitscotland.com/visitscotland-2019/develop" || JOB_NAME == "develop-stable.visitscotland.com-mb/develop")) {
+  thisAgent = "op-dev-xvcdocker-01"
 } else {
   thisAgent = "docker-02"
 }
