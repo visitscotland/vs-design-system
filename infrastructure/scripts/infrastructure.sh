@@ -336,7 +336,7 @@ setPortRange() {
   else
     MIN_PORT=$VS_CONTAINER_BASE_PORT_OVERRIDE
     MAX_PORT=$VS_CONTAINER_BASE_PORT_OVERRIDE
-    echo "MIN_PORT will be set to $VS_CONTAINER_BASE_PORT_OVERRIDE due to VS_CONTAINER_BASE_PORT_OVERRIDE"
+    echo " - MIN_PORT will be set to $VS_CONTAINER_BASE_PORT_OVERRIDE due to VS_CONTAINER_BASE_PORT_OVERRIDE"
     echo ""
   fi
 }
@@ -470,7 +470,7 @@ packageSSRArtifact() {
 # create Docker container
 containerCreateAndStart() {
   if [ ! "$SAFE_TO_PROCEED" = "FALSE" ]; then
-    sleep 5
+    #sleep 5
     VS_CONTAINER_EXPOSE_PORT=$VS_BRXM_TOMCAT_PORT
     echo ""
     echo "about to create a new Docker container with:"
@@ -490,6 +490,27 @@ containerCreateAndStart() {
   fi
   echo ""
 }
+
+containerSshStart() {
+  if [ ! "$SAFE_TO_PROCEED" = "FALSE" ]; then
+    echo ""
+    echo "about to enable SSH in container $VS_CONTAINER_NAME:"
+    VS_DOCKER_CMD='docker exec -d $VS_CONTAINER_NAME /bin/bash -c "ssh-keygen -A; /usr/sbin/sshd; echo hippo:hippossh | chpasswd; echo root:rootssh | chpasswd"'
+    echo " - $VS_DOCKER_CMD"
+    eval $VS_DOCKER_CMD
+    RETURN_CODE=$?; echo $RETURN_CODE
+    if [ ! "$RETURN_CODE" = "0" ]; then
+      SAFE_TO_PROCEED=TRUE
+      FAIL_REASON="Docker failed to run command in container $VS_CONTAINER_NAME, command exited with $RETURN_CODE. Script will continue."
+    fi
+    sleep 10
+    else
+    echo ""
+    echo "container will not be started due to previous failures"
+  fi
+  echo ""
+}
+
 
 # copy build artefacts to container
 containerCopyHippoArtifact() {
@@ -655,6 +676,7 @@ case $METHOD in
     findHippoArtifact
     packageSSRArtifact
     containerCreateAndStart
+    containerSshStart
     containerCopyHippoArtifact
     containerCopySSRArtifact
     containerStartHippo
