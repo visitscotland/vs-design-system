@@ -6,17 +6,17 @@ def thisAgent
 def VS_CONTAINER_BASE_PORT_OVERRIDE
 if (BRANCH_NAME == "develop" && (JOB_NAME == "develop.visitscotland.com/visitscotland-2019/develop" || JOB_NAME == "develop.visitscotland.com-mb/develop")) {
   thisAgent = "op-dev-xvcdocker-01"
-  VS_CONTAINER_BASE_PORT_OVERRIDE = "8099"
+  env.VS_CONTAINER_BASE_PORT_OVERRIDE = "8099"
 } else if (BRANCH_NAME == "develop" && (JOB_NAME == "develop-nightly.visitscotland.com/visitscotland-2019/develop" || JOB_NAME == "develop-nightly.visitscotland.com-mb/develop")) {
   thisAgent = "op-dev-xvcdocker-01"
-  VS_CONTAINER_BASE_PORT_OVERRIDE = "8098"
+  env.VS_CONTAINER_BASE_PORT_OVERRIDE = "8098"
   String cron_string = BRANCH_NAME == "develop" ? "@midnight" : ""
 } else if (BRANCH_NAME == "develop" && (JOB_NAME == "develop-stable.visitscotland.com/visitscotland-2019/develop" || JOB_NAME == "develop-stable.visitscotland.com-mb/develop")) {
   thisAgent = "op-dev-xvodocker-01"
-  VS_CONTAINER_BASE_PORT_OVERRIDE = "8097"
+  env.VS_CONTAINER_BASE_PORT_OVERRIDE = "8097"
 } else if (BRANCH_NAME == "feature/VS-1865-feature-environments-enhancements" && (JOB_NAME == "feature.visitscotland.com-mb/feature%2FVS-1865-feature-environments-enhancements")) {
   thisAgent = "op-dev-xvodocker-01"
-  VS_CONTAINER_BASE_PORT_OVERRIDE = "8096"
+  env.VS_CONTAINER_BASE_PORT_OVERRIDE = "8096"
   String cron_string = BRANCH_NAME == "feature/VS-1865-feature-environments-enhancements" ? "@hourly" : ""
 } else {
   thisAgent = "docker-02"

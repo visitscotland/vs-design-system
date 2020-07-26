@@ -129,6 +129,7 @@ defaultSettings() {
   if [ -z "$VS_MAIL_NOTIFY_BUILD_TO" ]; then VS_MAIL_NOTIFY_BUILD_TO=$VS_COMMIT_AUTHOR; fi
   VS_MAIL_NOTIFY_BUILD_SENDER="$VS_PARENT_JOB_NAME"
   VS_MAIL_NOTIFY_BUILD_MESSAGE=/tmp/$VS_CONTAINER_NAME.msg.notify.build
+  VS_MAIL_NOTIFY_BUILD_MESSAGE_EXTRA=$VS_MAIL_NOTIFY_BUILD_MESSAGE.extra
   VS_MAIL_NOTIFY_BUILD_SUBJECT="environment was built for $GIT_BRANCH in $VS_PARENT_JOB_NAME"
   VS_MAIL_NOTIFY_BUILD_SENDER="$VS_PARENT_JOB_NAME@$VS_MAIL_DOMAIN"
   # mail settings - site
@@ -368,10 +369,11 @@ findBasePort() {
   done
 
   if [ $THIS_PORT -gt $MAX_PORT ]; then
+    FAIL_CAUSE=`docker ps -a | grep $VS_CONTAINER_BASE_PORT_OVERRIDE | tail -1 | awk '{print $13}'`
     if [ ! -z "$VS_CONTAINER_BASE_PORT_OVERRIDE" ] && [ ! "$PORT_RESERVED" = "TRUE" ]; then
-      FAIL_REASON="OVERRIDE PORT $VS_CONTAINER_BASE_PORT_OVERRIDE is in use, setting PORT to NULL"
+      FAIL_REASON="OVERRIDE PORT $VS_CONTAINER_BASE_PORT_OVERRIDE is in use by $FAIL_CAUSE, setting PORT to NULL"
     elif [ ! -z "$VS_CONTAINER_BASE_PORT_OVERRIDE" ] && [ "$PORT_RESERVED" = "TRUE" ]; then
-      FAIL_REASON="OVERRIDE PORT $VS_CONTAINER_BASE_PORT_OVERRIDE is reserved, setting PORT to NULL"
+      FAIL_REASON="OVERRIDE PORT $VS_CONTAINER_BASE_PORT_OVERRIDE is reserved by $FAIL_CAUSE, setting PORT to NULL"
     else  
       FAIL_REASON="port scan reached $MAX_PORT, no ports are free, setting PORT to NULL"
     fi
@@ -399,6 +401,7 @@ findDynamicPorts() {
       if [ "$FREE" = "" ]; then
         #echo " - netstat says $THIS_PORT is free - using it"
 	eval "VS_CONTAINER_EXT_PORT_"$VS_CONTAINER_SERVICE"="$THIS_PORT
+        echo " - service $VS_CONTAINER_SERVICE on port $VS_CONTAINER_INT_PORT has been mapped to external port $THIS_PORT" | tee -a $VS_MAIL_NOTIFY_BUILD_MESSAGE_EXTRA
 	THIS_DOCKER_MAP="-p $THIS_PORT:$VS_CONTAINER_SERVICE_PORT"
 	VS_CONTAINER_PORT_MAPPINGS="$THIS_DOCKER_MAP $VS_CONTAINER_PORT_MAPPINGS"
 	break
