@@ -1,7 +1,7 @@
 <template>
     <li class="vs-itinerary-day__list-item">
         <VsAccordionItem
-            :open-by-default="true"
+            :open-by-default="show"
             :control-id="'itinerary-day-' + dayNumber"
             variant="light"
             item-break-point="lg"
@@ -52,7 +52,6 @@
             <!-- </div> -->
 
             <div
-                v-show="show || isDesktop"
                 :id="'dayPanel_' + dayNumber"
             >
                 <slot name="day-transport" />
