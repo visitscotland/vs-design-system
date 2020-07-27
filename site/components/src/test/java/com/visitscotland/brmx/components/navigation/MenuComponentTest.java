@@ -27,6 +27,7 @@ import java.util.Locale;
 
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.withSettings;
 
 
 @ExtendWith(MockitoExtension.class)
@@ -76,6 +77,23 @@ public class MenuComponentTest {
         Assertions.assertEquals(1, getEnhancedMenu(request).size());
         Assertions.assertEquals("Home Page", getEnhancedMenu(request).get(0).getTitle());
         Assertions.assertNull(getEnhancedMenu(request).get(0).getCta());
+    }
+
+    @Test
+    void resourceBundleTakesPrecedenceFromDocumentTitle(){
+        //Basic element with no link. Takes the title of the menu from a ResourceBundle but doesn't add a CTA text
+        HstRequest request = mockRequest();
+        MenuComponent menu = new MenuComponent(bundle, utils);
+        Page page = mock(Page.class, withSettings().lenient());
+        addHstLink(request, page);
+        when(page.getTitle()).thenReturn("Page Title");
+        when(menuItem.getName()).thenReturn("home");
+        when(bundle.getResourceBundle(BUNDLE_ID, "home", LOCALE, true)).thenReturn("Resource Bundle Title");
+
+        menu.exploreMenu(request);
+
+        Assertions.assertEquals(1, getEnhancedMenu(request).size());
+        Assertions.assertEquals("Resource Bundle Title", getEnhancedMenu(request).get(0).getTitle());
     }
 
 

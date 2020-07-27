@@ -139,6 +139,7 @@ public class MenuComponent extends EssentialsMenuComponent {
 
             } else {
                 //By default the name would be populated by the resourceBundle
+                //TODO coverage
                 menuItem.setTitle(bundle.getResourceBundle(resourceBundle, hstItem.getName(), request.getLocale()));
                 //TODO: Check if the page exists on the global channel
             }
