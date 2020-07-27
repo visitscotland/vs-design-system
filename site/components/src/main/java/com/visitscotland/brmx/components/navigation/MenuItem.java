@@ -4,7 +4,6 @@ import com.visitscotland.brmx.beans.Widget;
 import org.hippoecm.hst.content.annotations.PageModelIgnore;
 import org.hippoecm.hst.core.linking.HstLink;
 import org.hippoecm.hst.core.request.ResolvedSiteMapItem;
-import org.hippoecm.hst.core.sitemenu.CommonMenu;
 import org.hippoecm.hst.core.sitemenu.HstSiteMenu;
 import org.hippoecm.hst.core.sitemenu.HstSiteMenuItem;
 
@@ -12,20 +11,20 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-public class VsHstSiteMenuItemImpl implements VsMenuItem, CommonMenu {
+public class MenuItem implements HstSiteMenuItem {
 
     private final HstSiteMenuItem menuItem;
     private final List<HstSiteMenuItem> children;
 
     @PageModelIgnore
-    private VsHstSiteMenuItemImpl parent;
+    private MenuItem parent;
 
     private String title;
     private Widget widget;
     private String cta;
 
 
-    public VsHstSiteMenuItemImpl(HstSiteMenuItem menuItem) {
+    public MenuItem(HstSiteMenuItem menuItem) {
         this.children = new ArrayList<>();
         this.menuItem = menuItem;
     }
@@ -47,19 +46,22 @@ public class VsHstSiteMenuItemImpl implements VsMenuItem, CommonMenu {
     }
 
     @Override
-    public String getName() {
-        return menuItem.getName();
-    }
-
-    @Override
     public List<HstSiteMenuItem> getChildMenuItems() {
         return children;
     }
 
-    public void addChild(VsHstSiteMenuItemImpl child){
-        if (child != null) {
+    public void addChild(MenuItem child){
+        if (child != null && !children.contains(child)) {
             children.add(child);
             child.parent = this;
+        }
+    }
+
+    public boolean removeChild(MenuItem child){
+        if (children.contains(child)){
+            return children.remove(child);
+        } else {
+            return false;
         }
     }
 
@@ -76,7 +78,14 @@ public class VsHstSiteMenuItemImpl implements VsMenuItem, CommonMenu {
         this.cta = cta;
     }
 
-    // Delegating methods
+
+
+    // Delegated methods
+
+    @Override
+    public String getName() {
+        return menuItem.getName();
+    }
 
     @Override
     public HstSiteMenu getHstSiteMenu() {
