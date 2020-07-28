@@ -128,7 +128,11 @@ export default {
     /**
      * Injects breakPoint prop provided by Accordion
      */
-    inject: ['breakPoint'],
+    inject: {
+        breakPoint: {
+            default: 'lg',
+        },
+    },
     methods: {
         onButtonClick() {
             this.show = !this.show;
