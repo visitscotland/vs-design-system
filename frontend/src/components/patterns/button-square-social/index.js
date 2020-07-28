@@ -1,5 +1,5 @@
-import VsButtonSquareSocial from "./ButtonSquareSocial.vue"
+import VsButtonSquareSocial from './ButtonSquareSocial.vue';
 
 export default {
     VsButtonSquareSocial,
-}
+};
