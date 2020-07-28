@@ -15,7 +15,7 @@
  * Accordion wrapper used with AccordionItems.
  */
 export default {
-    name: "VsAccordion",
+    name: 'VsAccordion',
     props: {
         /**
          * If this is provided, the accordion expands above
@@ -33,9 +33,9 @@ export default {
     provide() {
         return {
             breakPoint: this.breakPoint,
-        }
+        };
     },
-}
+};
 </script>
 
 <style lang="scss">

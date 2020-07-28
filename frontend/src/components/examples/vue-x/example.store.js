@@ -1,7 +1,7 @@
-import Vuex from "vuex"
-import Vue from "vue"
+import Vuex from 'vuex';
+import Vue from 'vue';
 
-Vue.use(Vuex)
+Vue.use(Vuex);
 
 export default new Vuex.Store({
     modules: {
@@ -19,7 +19,7 @@ export default new Vuex.Store({
                  */
                 increment(state) {
                     /* eslint-disable no-param-reassign */
-                    state.count += 1
+                    state.count += 1;
                 },
             },
             actions: {
@@ -27,13 +27,13 @@ export default new Vuex.Store({
                  * Example action
                  */
                 increment(context, message) {
-                    context.commit("increment")
+                    context.commit('increment');
                     if (message) {
                         /* eslint-disable no-alert */
-                        alert(message)
+                        alert(message);
                     }
                 },
             },
         },
     },
-})
+});
