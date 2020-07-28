@@ -139,7 +139,7 @@ public class LinkModulesFactory {
 
         return ll;
     }
-
+    //TODO comment this method
     List<FlatLink> convertToFlatLinks(List<MegalinkItem> items, Locale locale) {
         List<FlatLink> links = new ArrayList<>();
         for (MegalinkItem item : items) {
@@ -157,6 +157,7 @@ public class LinkModulesFactory {
         return links;
     }
 
+    //TODO comment this method
     List<EnhancedLink> convertToEnhancedLinks(List<MegalinkItem> items, Locale locale) {
         List<EnhancedLink> links = new ArrayList<>();
         for (MegalinkItem item : items) {
@@ -196,7 +197,7 @@ public class LinkModulesFactory {
         }
         return links;
     }
-
+    //TODO comment this method
     private JsonNode getNodeFromSharedLink(SharedLink link, Locale locale) {
         if (link.getLinkType() instanceof DMSLink) {
             try {
@@ -207,7 +208,7 @@ public class LinkModulesFactory {
         }
         return null;
     }
-
+    //TODO comment this method
     private FlatImage createFlatImage(Image img, Locale locale) {
         FlatImage flatImage = new FlatImage(img, locale);
         LocationObject locationObject = getLocation(img.getLocation(), locale);
@@ -217,7 +218,7 @@ public class LinkModulesFactory {
 
         return flatImage;
     }
-
+    //TODO comment this method
     private String getPlainLink(SharedLink link, JsonNode product) {
 
         if (link.getLinkType() instanceof DMSLink) {

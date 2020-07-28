@@ -94,7 +94,7 @@
                 <vs-col cols="2">
                     <div class="d-flex justify-content-center justify-content-sm-end">
                         <!-- TODO - Below icon is FPO. Replace with icon with text component and a share component -->
-                        <vs-icon name="share" variant="dark" size="sm"></vs-icon>
+                        <vs-icon name="share" variant="dark" size="md"></vs-icon>
                     </div>
                 </vs-col>
             </vs-row>
@@ -199,7 +199,7 @@
                         <#list day.transports as transport>
                             <dd class="list-inline-item">
                                 <vs-tooltip title="${label("transports", "${transport}")}">
-                                    <vs-icon name="${transport}" variant="dark" size="sm"></vs-icon>
+                                    <vs-icon name="${transport}" variant="dark" size="md"></vs-icon>
                                 </vs-tooltip>
                                 <span class="sr-only">${label("transports", "${transport}")}</span>
                             </dd>
