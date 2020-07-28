@@ -1,5 +1,5 @@
 <template>
-    <div class="vs-footer pt-sm-6 pt-md-9">
+    <div class="vs-footer pt-6 pt-md-9">
         <VsFooterNavList break-point="md">
             <!-- @slot Contains accordion item for each menu list  -->
             <slot name="accordion-items" />
@@ -34,26 +34,26 @@
 </template>
 
 <script>
-import VsFooterNavList from "@components/patterns/footer/components/FooterNavList"
+import VsFooterNavList from '@components/patterns/footer/components/FooterNavList';
 import {
     VsContainer, VsRow, VsCol,
-} from "@components/elements/layout"
+} from '@components/elements/layout';
 
 /**
  * This component is the main Footer wrapper for the bottom of the page.
  */
 
 export default {
-    name: "VsFooter",
-    status: "prototype",
-    release: "0.1.0",
+    name: 'VsFooter',
+    status: 'prototype',
+    release: '0.1.0',
     components: {
         VsFooterNavList,
         VsCol,
         VsContainer,
         VsRow,
     },
-}
+};
 </script>
 
 <style lang="scss" scoped>

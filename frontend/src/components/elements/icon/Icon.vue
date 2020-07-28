@@ -12,11 +12,11 @@
 </template>
 
 <script>
-import { get } from "lodash"
-import VsSvg from "../svg"
-import designTokens from "@/assets/tokens/tokens.raw.json"
+import { get } from 'lodash';
+import VsSvg from '../svg';
+import designTokens from '@/assets/tokens/tokens.raw.json';
 
-const iconPath = "icons/"
+const iconPath = 'icons/';
 
 /**
  * Icons are used to visually communicate core parts of the product and
@@ -27,9 +27,9 @@ const iconPath = "icons/"
  * including any of the theme colours.
  */
 export default {
-    name: "VsIcon",
-    status: "prototype",
-    release: "0.1.0",
+    name: 'VsIcon',
+    status: 'prototype',
+    release: '0.1.0',
     components: {
         VsSvg,
     },
@@ -40,7 +40,7 @@ export default {
         name: {
             type: String,
             required: true,
-            default: "search",
+            default: 'search',
         },
         /**
          * The fill color of the SVG icon.
@@ -60,7 +60,7 @@ export default {
          */
         size: {
             type: String,
-            default: "md",
+            default: 'md',
             validator: (value) => value.match(/(xxs|xs|sm|md|lg|xl)/),
         },
     },
@@ -68,94 +68,94 @@ export default {
         return {
             iconLookup: [
                 {
-                    key: "accessparkdrop",
-                    value: "facility-accessparkdrop",
+                    key: 'accessparkdrop',
+                    value: 'facility-accessparkdrop',
                 },
                 {
-                    key: "acco",
-                    value: "product-accommodation",
+                    key: 'acco',
+                    value: 'product-accommodation',
                 },
                 {
-                    key: "acti",
-                    value: "product-activities",
+                    key: 'acti',
+                    value: 'product-activities',
                 },
                 {
-                    key: "attr",
-                    value: "product-attractions",
+                    key: 'attr',
+                    value: 'product-attractions',
                 },
                 {
-                    key: "audioloop",
-                    value: "facility-audioloop",
+                    key: 'audioloop',
+                    value: 'facility-audioloop',
                 },
                 {
-                    key: "cafereston",
-                    value: "cafe",
+                    key: 'cafereston',
+                    value: 'cafe',
                 },
                 {
-                    key: "cate",
-                    value: "product-food-and-drink",
+                    key: 'cate',
+                    value: 'product-food-and-drink',
                 },
                 {
-                    key: "cities",
-                    value: "city",
+                    key: 'cities',
+                    value: 'city',
                 },
                 {
-                    key: "cycling",
-                    value: "cycle",
+                    key: 'cycling',
+                    value: 'cycle',
                 },
                 {
-                    key: "dsblaccess",
-                    value: "facility-dsblaccess",
+                    key: 'dsblaccess',
+                    value: 'facility-dsblaccess',
                 },
                 {
-                    key: "even",
-                    value: "product-events",
+                    key: 'even',
+                    value: 'product-events',
                 },
                 {
-                    key: "familyev",
-                    value: "family",
+                    key: 'familyev',
+                    value: 'family',
                 },
                 {
-                    key: "filmev",
-                    value: "film-tv",
+                    key: 'filmev',
+                    value: 'film-tv',
                 },
                 {
-                    key: "parking",
-                    value: "facility-parking",
+                    key: 'parking',
+                    value: 'facility-parking',
                 },
                 {
-                    key: "petswelcom",
-                    value: "facility-petswelcom",
+                    key: 'petswelcom',
+                    value: 'facility-petswelcom',
                 },
                 {
-                    key: "wifi",
-                    value: "facility-wifi",
+                    key: 'wifi',
+                    value: 'facility-wifi',
                 },
                 {
-                    key: "public",
-                    value: "public-transport",
+                    key: 'public',
+                    value: 'public-transport',
                 },
                 {
-                    key: "reta",
-                    value: "product-shopping",
+                    key: 'reta',
+                    value: 'product-shopping',
                 },
                 {
-                    key: "spahealth",
-                    value: "wellness",
+                    key: 'spahealth',
+                    value: 'wellness',
                 },
                 {
-                    key: "walking",
-                    value: "walk",
+                    key: 'walking',
+                    value: 'walk',
                 },
             ],
-        }
+        };
     },
     computed: {
         path() {
-            return iconPath + this.formattedName
+            return iconPath + this.formattedName;
         },
         dimension() {
-            return get(designTokens, `props.icon_size_${this.size}.value`, "40px")
+            return get(designTokens, `props.icon_size_${this.size}.value`, '40px');
         },
         formattedName() {
             /*
@@ -163,12 +163,12 @@ export default {
              * organise / group icons within the design system
              * there is a lookup for how keys may be passed from the backend
              */
-            const formattedNameLookup = this.iconLookup.find(({ key }) => key === this.name)
+            const formattedNameLookup = this.iconLookup.find(({ key }) => key === this.name);
 
-            return formattedNameLookup !== undefined ? formattedNameLookup.value : this.name
+            return formattedNameLookup !== undefined ? formattedNameLookup.value : this.name;
         },
     },
-}
+};
 </script>
 
 <style lang="scss" scoped>
@@ -202,7 +202,7 @@ $variants: (
 
 .icon {
     fill: $color-black;
-    overflow: visible;    
+    overflow: visible;
 
     @each $size in map-keys($sizes) {
         $this-size: map-get($sizes, $size);
