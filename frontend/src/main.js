@@ -1,36 +1,36 @@
-import Vue from "vue"
-import { isObject, each } from "lodash"
+import Vue from 'vue';
+import { isObject, each } from 'lodash';
 
-import "@/styles/core.styles.scss"
-import noJsClass from "@/utils/no-js-class"
+import '@/styles/core.styles.scss';
+import noJsClass from '@/utils/no-js-class';
 
-Vue.config.productionTip = false
+Vue.config.productionTip = false;
 
 const defaultVueOptions = {
     comments: true,
-}
+};
 
 const removeNoJSClass = () => {
-    // remove no-js class 
-    var elements = document.getElementsByClassName(noJsClass)
+    // remove no-js class
+    const elements = document.getElementsByClassName(noJsClass);
 
     each(elements, (element) => {
-        element.classList.remove(noJsClass)
-    })
-}
+        element.classList.remove(noJsClass);
+    });
+};
 
 export const initApp = (options, skipRemoveNoJsClass) => {
-    
     const app = new Vue({
         ...defaultVueOptions,
-        ...isObject(options) ? options : {},
-    })
+        ...isObject(options) ? options : {
+        },
+    });
 
-    if(!skipRemoveNoJsClass) {
-        removeNoJSClass()
+    if (!skipRemoveNoJsClass) {
+        removeNoJSClass();
     }
-    
-    return app
-}
 
-export { Vue }
+    return app;
+};
+
+export { Vue };

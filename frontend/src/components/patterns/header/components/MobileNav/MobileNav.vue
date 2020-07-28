@@ -26,13 +26,13 @@
 </template>
 
 <script>
-import { BCollapse } from "bootstrap-vue"
-import VsMobileNavListItem from "./MobileNavListItem"
+import { BCollapse } from 'bootstrap-vue';
+import VsMobileNavListItem from './MobileNavListItem';
 
 export default {
-    name: "VsMobileNav",
-    status: "prototype",
-    release: "0.0.1",
+    name: 'VsMobileNav',
+    status: 'prototype',
+    release: '0.0.1',
     components: {
         VsMobileNavListItem,
         BCollapse,
@@ -43,19 +43,19 @@ export default {
          */
         type: {
             type: String,
-            default: "div",
+            default: 'div',
         },
         name: {
             type: String,
-            default: "",
+            default: '',
         },
     },
     data() {
         return {
             show: false,
-        }
+        };
     },
-}
+};
 </script>
 
 <style lang="scss" scoped>

@@ -15,14 +15,14 @@
 
 <script>
 export default {
-    name: "VsSiteSearchToggleButton",
+    name: 'VsSiteSearchToggleButton',
     props: {
         isOn: {
             type: Boolean,
             default: false,
         },
     },
-}
+};
 </script>
 
 <style lang="scss" scoped>

@@ -17,9 +17,9 @@
  *
  */
 export default {
-    name: "VsList",
-    status: "prototype",
-    release: "0.0.1",
+    name: 'VsList',
+    status: 'prototype',
+    release: '0.0.1',
     props: {
         /**
          * Option to choose the kind of list needed (ordered | unordered)
@@ -43,7 +43,7 @@ export default {
             default: false,
         },
     },
-}
+};
 </script>
 
 <style lang="scss" scoped>

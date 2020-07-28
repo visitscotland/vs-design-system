@@ -25,18 +25,18 @@
 </template>
 
 <script>
-import { VBToggle } from "bootstrap-vue"
-import VsIcon from "../../../../elements/icon/Icon"
+import { VBToggle } from 'bootstrap-vue';
+import VsIcon from '../../../../elements/icon/Icon';
 
 export default {
-    name: "VsMobileNavButton",
-    status: "prototype",
-    release: "0.0.1",
+    name: 'VsMobileNavButton',
+    status: 'prototype',
+    release: '0.0.1',
     components: {
         VsIcon,
     },
     directives: {
-        "b-toggle": VBToggle,
+        'b-toggle': VBToggle,
     },
     props: {
         /**
@@ -44,20 +44,20 @@ export default {
          */
         name: {
             type: String,
-            default: "",
+            default: '',
         },
     },
     data() {
         return {
             show: false,
-        }
+        };
     },
     methods: {
         handleClick() {
-            this.show = !this.show
+            this.show = !this.show;
         },
     },
-}
+};
 </script>
 
 <style lang="scss" scoped>

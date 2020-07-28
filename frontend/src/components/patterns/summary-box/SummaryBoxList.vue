@@ -11,14 +11,14 @@
  * Summary Box List - Wraps a number of VsSummaryBoxListItem components
  */
 export default {
-    name: "VsSummaryBoxList",
-    status: "prototype",
-    release: "0.0.1",
+    name: 'VsSummaryBoxList',
+    status: 'prototype',
+    release: '0.0.1',
     components: {
     },
     props: {
     },
-}
+};
 </script>
 
 <style lang="scss" scoped>
