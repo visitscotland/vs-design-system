@@ -1,8 +1,8 @@
-import Vuex from "vuex"
-import Vue from "vue"
-import { find, matches } from "lodash"
+import Vuex from 'vuex';
+import Vue from 'vue';
+import { find, matches } from 'lodash';
 
-Vue.use(Vuex)
+Vue.use(Vuex);
 
 export default new Vuex.Store({
     modules: {
@@ -16,28 +16,28 @@ export default new Vuex.Store({
                     const newFavourite = {
                         href: payload.href,
                         title: payload.title,
-                    }
-                    state.favourites.unshift(newFavourite)
+                    };
+                    state.favourites.unshift(newFavourite);
                 },
                 DELETE_FAVOURITE: (state, payload) => {
                     const index = state.favourites.findIndex(
                         (favourite) => favourite.href === payload,
-                    )
-                    state.favourites.splice(index, 1)
+                    );
+                    state.favourites.splice(index, 1);
                 },
             },
             actions: {
                 addFavourite: ({ commit, getters }, payload) => {
                     if (getters.getFavourite(payload)) {
-                        return false
+                        return false;
                     }
 
-                    commit("ADD_FAVOURITE", payload)
+                    commit('ADD_FAVOURITE', payload);
 
-                    return true
+                    return true;
                 },
                 deleteFavourite: (context, payload) => {
-                    context.commit("DELETE_FAVOURITE", payload)
+                    context.commit('DELETE_FAVOURITE', payload);
                 },
             },
             getters: {
@@ -48,4 +48,4 @@ export default new Vuex.Store({
             },
         },
     },
-})
+});
