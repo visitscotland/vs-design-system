@@ -27,14 +27,14 @@
 </template>
 
 <script>
-import VsSvg from "../../../../elements/svg/Svg"
-import VsMobileNavPromoItem from "./MobileNavPromoItem"
-import VsMobileNavListItem from "./MobileNavListItem"
+import VsSvg from '../../../../elements/svg/Svg';
+import VsMobileNavPromoItem from './MobileNavPromoItem';
+import VsMobileNavListItem from './MobileNavListItem';
 
 export default {
-    name: "VsMobileNavPromoList",
-    status: "prototype",
-    release: "0.0.1",
+    name: 'VsMobileNavPromoList',
+    status: 'prototype',
+    release: '0.0.1',
     components: {
         VsSvg,
         VsMobileNavPromoItem,
@@ -46,7 +46,7 @@ export default {
          */
         type: {
             type: String,
-            default: "ul",
+            default: 'ul',
         },
         list: {
             type: Array,
@@ -55,7 +55,7 @@ export default {
     },
     data() {
         return {
-        }
+        };
     },
     computed: {
         // Needs work - breaking lint rules
@@ -77,7 +77,7 @@ export default {
         //     return allButLast
         // },
     },
-}
+};
 </script>
 
 <style lang="scss" scoped>

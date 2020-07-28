@@ -99,22 +99,22 @@
 
 <script>
 // eslint-disable-next-line no-unused-vars
-import { lazysizes } from "lazysizes"
-import VsSvg from "@components/elements/svg/Svg"
-import VsImg from "@components/elements/img/Img"
-import VsIcon from "@components/elements/icon/Icon"
-import VsButton from "@components/elements/button/Button"
-import { VsRow, VsCol } from "@components/elements/layout"
-import VsImageLocationMap from "@components/patterns/image-location-map/ImageLocationMap"
-import designTokens from "@/assets/tokens/tokens.json"
+import { lazysizes } from 'lazysizes';
+import VsSvg from '@components/elements/svg/Svg';
+import VsImg from '@components/elements/img/Img';
+import VsIcon from '@components/elements/icon/Icon';
+import VsButton from '@components/elements/button/Button';
+import { VsRow, VsCol } from '@components/elements/layout';
+import VsImageLocationMap from '@components/patterns/image-location-map/ImageLocationMap';
+import designTokens from '@/assets/tokens/tokens.json';
 
 /**
  * Image with toggle to open a caption and image location map
  */
 export default {
-    name: "VsImageWithCaption",
-    status: "prototype",
-    release: "0.0.1",
+    name: 'VsImageWithCaption',
+    status: 'prototype',
+    release: '0.0.1',
     components: {
         VsRow,
         VsCol,
@@ -130,7 +130,7 @@ export default {
          */
         altText: {
             type: String,
-            default: "",
+            default: '',
         },
 
         /**
@@ -146,7 +146,7 @@ export default {
          */
         imageSrc: {
             type: String,
-            default: "",
+            default: '',
         },
 
         /**
@@ -154,7 +154,7 @@ export default {
          */
         latitude: {
             type: String,
-            default: "",
+            default: '',
         },
 
         /**
@@ -162,7 +162,7 @@ export default {
          */
         longitude: {
             type: String,
-            default: "",
+            default: '',
         },
 
         /**
@@ -170,7 +170,7 @@ export default {
          */
         toggleButtonText: {
             type: String,
-            default: "Toggle Caption",
+            default: 'Toggle Caption',
         },
 
         /**
@@ -179,7 +179,7 @@ export default {
          */
         variant: {
             type: String,
-            default: "fullwidth",
+            default: 'fullwidth',
             validator: (value) => value.match(/(fullwidth|large)/),
         },
     },
@@ -187,22 +187,22 @@ export default {
         return {
             showCaption: false,
             tokens: designTokens,
-        }
+        };
     },
     computed: {
         showMap() {
-            return !!(this.longitude && this.latitude)
+            return !!(this.longitude && this.latitude);
         },
         isLargeCaption() {
-            return this.variant === "large"
+            return this.variant === 'large';
         },
     },
     methods: {
         toggleCaption() {
-            this.showCaption = !this.showCaption
+            this.showCaption = !this.showCaption;
         },
     },
-}
+};
 </script>
 
 <style lang="scss">

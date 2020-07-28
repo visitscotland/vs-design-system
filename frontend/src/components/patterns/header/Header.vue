@@ -102,26 +102,26 @@
 </template>
 
 <script>
-import Vue from "vue"
-import smoothscroll from "smoothscroll-polyfill"
+import Vue from 'vue';
+import smoothscroll from 'smoothscroll-polyfill';
 
-import VsContainer from "@components/elements/layout/Container"
-import VsIcon from "@components/elements/icon/Icon"
-import VsRow from "@components/elements/layout/Row"
-import VsCol from "@components/elements/layout/Col"
+import VsContainer from '@components/elements/layout/Container';
+import VsIcon from '@components/elements/icon/Icon';
+import VsRow from '@components/elements/layout/Row';
+import VsCol from '@components/elements/layout/Col';
 import {
     BListGroup, BCollapse, VBToggle,
-} from "bootstrap-vue"
-import VsDrawer from "../drawer/Drawer"
-import VsDrawerContent from "../drawer/DrawerContent"
-import { VsSiteNavMobileToggleButton, VsSiteNav } from "./components/site-navigation"
+} from 'bootstrap-vue';
+import VsDrawer from '../drawer/Drawer';
+import VsDrawerContent from '../drawer/DrawerContent';
+import { VsSiteNavMobileToggleButton, VsSiteNav } from './components/site-navigation';
 
-import HandDownFocus from "@/directives/hand-down-focus"
+import HandDownFocus from '@/directives/hand-down-focus';
 
 export default {
-    name: "VsHeader",
-    status: "prototype",
-    release: "0.1.0",
+    name: 'VsHeader',
+    status: 'prototype',
+    release: '0.1.0',
     components: {
         VsCol,
         VsContainer,
@@ -135,7 +135,7 @@ export default {
         VsSiteNav,
     },
     directives: {
-        "b-toggle": VBToggle,
+        'b-toggle': VBToggle,
         HandDownFocus,
     },
     props: {
@@ -144,45 +144,45 @@ export default {
          */
         type: {
             type: String,
-            default: "header",
+            default: 'header',
         },
     },
     data() {
         return {
             siteNavOpen: false,
-        }
+        };
     },
     created() {
-        smoothscroll.polyfill()
+        smoothscroll.polyfill();
     },
     methods: {
         toggleMainNav() {
-            this.siteNavOpen = !this.siteNavOpen
+            this.siteNavOpen = !this.siteNavOpen;
             Vue.nextTick(() => {
-                this.$refs.siteNav.$el.focus()
-            })
+                this.$refs.siteNav.$el.focus();
+            });
         },
         resetMenus() {
-            this.$emit("resetMenus")
+            this.$emit('resetMenus');
         },
         setScrollOffset(offset) {
             this.$refs.header.scrollTo({
-                behavior: "smooth",
+                behavior: 'smooth',
                 left: 0,
                 top: offset > 0 ? offset + 68 : offset,
-            })
+            });
         },
         collapseOtherMenus(openedId) {
-            const allOpenedPanels = document.querySelectorAll(".collapse.show")
+            const allOpenedPanels = document.querySelectorAll('.collapse.show');
             allOpenedPanels.forEach((panel) => {
                 if (panel.id !== openedId) {
-                    this.$root.$emit("bv::toggle::collapse", panel.id)
+                    this.$root.$emit('bv::toggle::collapse', panel.id);
                 }
-            })
-            this.$emit("resetMenus")
+            });
+            this.$emit('resetMenus');
         },
     },
-}
+};
 </script>
 
 <style lang="scss" scoped>
