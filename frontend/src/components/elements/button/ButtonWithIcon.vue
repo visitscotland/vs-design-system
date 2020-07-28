@@ -48,18 +48,15 @@ export default {
     },
     computed: {
         iconSize() {
-            switch(this.buttonSize) {
-                case "sm":
-                    return "xs"
-                    break;
-                case "md":
-                    return "sm"
-                    break;
-                case "lg":
-                    return "md"
-                    break;
-                default:
-                    return "md"
+            switch (this.buttonSize) {
+            case 'sm':
+                return 'xs';
+            case 'md':
+                return 'sm';
+            case 'lg':
+                return 'md';
+            default:
+                return 'md';
             }
         },
     },
@@ -100,7 +97,7 @@ export default {
         >
             Nearby places to eat
         </vs-button-with-icon>
-        <vs-button-with-icon 
+        <vs-button-with-icon
             icon="map"
             button-size="sm"
         >
@@ -117,7 +114,7 @@ export default {
         >
             Nearby places to eat
         </vs-button-with-icon>
-        <vs-button-with-icon 
+        <vs-button-with-icon
             icon="map"
             button-size="md"
         >
@@ -134,7 +131,7 @@ export default {
         >
             Nearby places to eat
         </vs-button-with-icon>
-        <vs-button-with-icon 
+        <vs-button-with-icon
             icon="map"
             button-size="lg"
         >
