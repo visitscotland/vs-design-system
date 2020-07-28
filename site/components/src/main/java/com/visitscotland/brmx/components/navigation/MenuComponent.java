@@ -28,7 +28,7 @@ import java.util.MissingFormatArgumentException;
 )
 public class MenuComponent extends EssentialsMenuComponent {
 
-    static final String STATIC = "static";
+    static final String STATIC = "navigation.static";
     static final String NAVIGATION_PREFIX = "navigation.";
     static final String CTA_SUFFIX = ".cta";
 
@@ -89,7 +89,6 @@ public class MenuComponent extends EssentialsMenuComponent {
 
     private MenuItem exploreMenu(HstRequest request, HstSiteMenuItem hstItem){
         MenuItem menuItem = new MenuItem(hstItem);
-
 
         String nodeName = ((HstSiteMenu) request.getModel(MENU)).getName();
         String resourceBundle = NAVIGATION_PREFIX + nodeName;
