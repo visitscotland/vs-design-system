@@ -9,7 +9,7 @@
 
 <script>
 
-import VsButtonSquareSocial from "@components/patterns/button-square-social/ButtonSquareSocial"
+import VsButtonSquareSocial from '@components/patterns/button-square-social/ButtonSquareSocial';
 
 
 /**
@@ -18,9 +18,9 @@ import VsButtonSquareSocial from "@components/patterns/button-square-social/Butt
  */
 
 export default {
-    name: "VsFooterSocialItem",
-    status: "prototype",
-    release: "0.0.1",
+    name: 'VsFooterSocialItem',
+    status: 'prototype',
+    release: '0.0.1',
     components: {
         VsButtonSquareSocial,
     },
@@ -42,7 +42,7 @@ export default {
             validator: (value) => value.match(/(facebook|instagram|twitter|youtube)/),
         },
     },
-}
+};
 </script>
 
 <style lang="scss">

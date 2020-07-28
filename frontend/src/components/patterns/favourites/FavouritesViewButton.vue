@@ -29,13 +29,13 @@
 </template>
 
 <script>
-import VsIcon from "@components/elements/icon/Icon"
-import store from "./favourites.store"
+import VsIcon from '@components/elements/icon/Icon';
+import store from './favourites.store';
 
 export default {
-    name: "VsFavouritesViewButton",
-    status: "prototype",
-    release: "0.0.1",
+    name: 'VsFavouritesViewButton',
+    status: 'prototype',
+    release: '0.0.1',
     components: {
         VsIcon,
     },
@@ -44,13 +44,13 @@ export default {
     // store,
     computed: {
         favouritesCount() {
-            return store.getters["favourites/getFavouritesCount"]
+            return store.getters['favourites/getFavouritesCount'];
         },
         favourites() {
-            return store.getters["favourites/getFavourites"]
+            return store.getters['favourites/getFavourites'];
         },
     },
-}
+};
 </script>
 
 <style lang="scss" scoped>
