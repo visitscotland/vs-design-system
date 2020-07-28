@@ -27,10 +27,10 @@
 </template>
 
 <script>
-import VsSvg from "@components/elements/svg/Svg"
+import VsSvg from '@components/elements/svg/Svg';
 import {
     VsRow, VsContainer, VsCol,
-} from "@components/elements/layout"
+} from '@components/elements/layout';
 
 
 /**
@@ -38,7 +38,7 @@ import {
  */
 
 export default {
-    name: "VsFooterCopyright",
+    name: 'VsFooterCopyright',
     components: {
         VsSvg,
         VsRow,
@@ -63,15 +63,15 @@ export default {
     },
     data() {
         return {
-            currentYear: "",
-        }
+            currentYear: '',
+        };
     },
     computed: {
         getCurrentYear() {
-            return new Date().getFullYear()
+            return new Date().getFullYear();
         },
     },
-}
+};
 </script>
 
 <style lang="scss">

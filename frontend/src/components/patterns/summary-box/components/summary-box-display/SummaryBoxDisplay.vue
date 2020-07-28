@@ -9,18 +9,18 @@
  * Summary Box Display
  */
 export default {
-    name: "VsSummaryBoxDisplay",
-    status: "prototype",
-    release: "0.0.1",
+    name: 'VsSummaryBoxDisplay',
+    status: 'prototype',
+    release: '0.0.1',
     components: {
     },
     props: {
         text: {
             type: String,
-            default: "",
+            default: '',
         },
     },
-}
+};
 </script>
 
 <style lang="scss" scoped>

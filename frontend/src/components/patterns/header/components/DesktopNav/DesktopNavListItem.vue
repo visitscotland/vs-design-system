@@ -62,12 +62,12 @@
 </template>
 
 <script>
-import VsIcon from "../../../../elements/icon/Icon"
+import VsIcon from '../../../../elements/icon/Icon';
 
 export default {
-    name: "VsDesktopNavListItem",
-    status: "prototype",
-    release: "0.0.1",
+    name: 'VsDesktopNavListItem',
+    status: 'prototype',
+    release: '0.0.1',
     components: {
         VsIcon,
     },
@@ -77,22 +77,22 @@ export default {
          */
         type: {
             type: String,
-            default: "li",
+            default: 'li',
         },
         href: {
             type: String,
-            default: "",
+            default: '',
         },
         isExternal: {
             type: Boolean,
         },
         trackingId: {
             type: String,
-            default: "",
+            default: '',
         },
         title: {
             type: String,
-            default: "",
+            default: '',
         },
         level: {
             type: Number,
@@ -101,7 +101,7 @@ export default {
         subnav: {
             type: Array,
             default() {
-                return []
+                return [];
             },
         },
         subnavId: {
@@ -111,28 +111,28 @@ export default {
     },
     data() {
         return {
-        }
+        };
     },
     computed: {
         lowerCaseTitle() {
-            return this.title ? this.title.toLowerCase() : ""
+            return this.title ? this.title.toLowerCase() : '';
         },
         hasChildren() {
             if (this.subnav !== undefined) {
-                return true
+                return true;
             }
-            return false
+            return false;
         },
         incrementLevel() {
-            return this.level + 1
+            return this.level + 1;
         },
         formattedSubnavId() {
-            return `subnav${this.subnavId}`
+            return `subnav${this.subnavId}`;
         },
     },
     methods: {
     },
-}
+};
 </script>
 
 <style lang="scss" scoped>

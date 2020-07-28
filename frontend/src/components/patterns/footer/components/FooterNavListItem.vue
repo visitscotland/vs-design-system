@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import VsLink from "@components/elements/link/Link"
+import VsLink from '@components/elements/link/Link';
 
 /**
  * The FooterNavListItems is used inside the FooterNavList to
@@ -19,7 +19,7 @@ import VsLink from "@components/elements/link/Link"
  */
 
 export default {
-    name: "VsFooterNavListItem",
+    name: 'VsFooterNavListItem',
     components: {
         VsLink,
     },
@@ -43,10 +43,10 @@ export default {
          */
         linkText: {
             type: String,
-            default: "",
+            default: '',
         },
     },
-}
+};
 </script>
 
 <style lang="scss">
