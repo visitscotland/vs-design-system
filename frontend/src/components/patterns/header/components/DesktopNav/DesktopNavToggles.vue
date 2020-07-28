@@ -34,18 +34,18 @@
 </template>
 
 <script>
-import { VBToggle } from "bootstrap-vue"
-import VsIcon from "../../../../elements/icon/Icon"
+import { VBToggle } from 'bootstrap-vue';
+import VsIcon from '../../../../elements/icon/Icon';
 
 export default {
-    name: "VsDesktopNavToggles",
-    status: "prototype",
-    release: "0.0.1",
+    name: 'VsDesktopNavToggles',
+    status: 'prototype',
+    release: '0.0.1',
     components: {
         VsIcon,
     },
     directives: {
-        "b-toggle": VBToggle,
+        'b-toggle': VBToggle,
     },
     props: {
         /**
@@ -53,22 +53,22 @@ export default {
          */
         type: {
             type: String,
-            default: "li",
+            default: 'li',
         },
         href: {
             type: String,
-            default: "",
+            default: '',
         },
         isExternal: {
             type: Boolean,
         },
         trackingId: {
             type: String,
-            default: "",
+            default: '',
         },
         title: {
             type: String,
-            default: "",
+            default: '',
         },
         level: {
             type: Number,
@@ -77,26 +77,26 @@ export default {
         subnav: {
             type: Array,
             default() {
-                return []
+                return [];
             },
         },
         promoList: {
             type: Array,
             default() {
-                return []
+                return [];
             },
         },
         promoItem: {
             type: Object,
             default() {
                 return {
-                }
+                };
             },
         },
         chartWidgets: {
             type: Array,
             default() {
-                return []
+                return [];
             },
         },
         toggleId: {
@@ -107,7 +107,7 @@ export default {
     data() {
         return {
             show: false,
-        }
+        };
     },
     computed: {
         hasChildren() {
@@ -117,30 +117,30 @@ export default {
                 || this.promoList !== undefined
                 || this.chartWidgets !== undefined
             ) {
-                return true
+                return true;
             }
-            return false
+            return false;
         },
         formattedCollapsePaneId() {
-            return `collapse-subnav-${this.toggleId}`
+            return `collapse-subnav-${this.toggleId}`;
         },
         formattedToggleId() {
-            return `collapse-toggle-${this.toggleId}`
+            return `collapse-toggle-${this.toggleId}`;
         },
     },
     methods: {
         setFocus() {
-            const closeButton = `submenu-close-${this.toggleId}`
+            const closeButton = `submenu-close-${this.toggleId}`;
             setTimeout(() => {
-                const $closeButton = document.getElementById(closeButton)
+                const $closeButton = document.getElementById(closeButton);
 
                 if ($closeButton) {
-                    $closeButton.focus()
+                    $closeButton.focus();
                 }
-            }, 100)
+            }, 100);
         },
     },
-}
+};
 </script>
 
 <style lang="scss" scoped>

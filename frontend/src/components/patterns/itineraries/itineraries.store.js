@@ -1,7 +1,7 @@
-import Vuex from "vuex"
-import Vue from "vue"
+import Vuex from 'vuex';
+import Vue from 'vue';
 
-Vue.use(Vuex)
+Vue.use(Vuex);
 
 export default new Vuex.Store({
     modules: {
@@ -13,16 +13,16 @@ export default new Vuex.Store({
             mutations: {
                 SET_STOP_HIGHLIGHTED: (state, payload) => {
                     /* eslint-disable no-param-reassign */
-                    state.highlightedStop = payload
+                    state.highlightedStop = payload;
                 },
             },
             actions: {
                 setStopHighlighted: ({ commit, getters }, payload) => {
                     if (getters.getHighlightedStop === payload) {
-                        return false
+                        return false;
                     }
-                    commit("SET_STOP_HIGHLIGHTED", payload)
-                    return true
+                    commit('SET_STOP_HIGHLIGHTED', payload);
+                    return true;
                 },
             },
             getters: {
@@ -33,4 +33,4 @@ export default new Vuex.Store({
             },
         },
     },
-})
+});

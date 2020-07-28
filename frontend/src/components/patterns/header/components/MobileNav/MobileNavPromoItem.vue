@@ -38,12 +38,12 @@
 </template>
 
 <script>
-import VsIcon from "../../../../elements/icon/Icon"
+import VsIcon from '../../../../elements/icon/Icon';
 
 export default {
-    name: "VsMobileNavPromoItem",
-    status: "prototype",
-    release: "0.0.1",
+    name: 'VsMobileNavPromoItem',
+    status: 'prototype',
+    release: '0.0.1',
     components: {
         VsIcon,
     },
@@ -53,37 +53,37 @@ export default {
          */
         type: {
             type: String,
-            default: "li",
+            default: 'li',
         },
         href: {
             type: String,
-            default: "",
+            default: '',
         },
         isExternal: {
             type: Boolean,
         },
         title: {
             type: String,
-            default: "",
+            default: '',
         },
         buttonText: {
             type: String,
-            default: "",
+            default: '',
         },
         description: {
             type: String,
-            default: "",
+            default: '',
         },
         imageLink: {
             type: String,
-            default: "",
+            default: '',
         },
     },
     data() {
         return {
-        }
+        };
     },
-}
+};
 </script>
 
 <style lang="scss" scoped>

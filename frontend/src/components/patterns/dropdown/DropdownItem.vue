@@ -5,14 +5,14 @@
 </template>
 
 <script>
-import { BDropdownItem } from "bootstrap-vue"
+import { BDropdownItem } from 'bootstrap-vue';
 
 export default {
-    name: "VsDropdownItem",
+    name: 'VsDropdownItem',
     components: {
         BDropdownItem,
     },
-}
+};
 </script>
 
 <style lang="scss">
