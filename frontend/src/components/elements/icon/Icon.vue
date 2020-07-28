@@ -202,7 +202,7 @@ $variants: (
 
 .icon {
     fill: $color-black;
-    overflow: visible;    
+    overflow: visible;
 
     @each $size in map-keys($sizes) {
         $this-size: map-get($sizes, $size);
