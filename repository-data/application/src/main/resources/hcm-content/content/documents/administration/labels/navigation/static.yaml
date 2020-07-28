@@ -12,12 +12,12 @@
     hippostd:state: draft
     hippostdpubwf:createdBy: admin
     hippostdpubwf:creationDate: 2020-07-22T16:18:57.603+01:00
-    hippostdpubwf:lastModificationDate: 2020-07-23T15:46:23.766+01:00
+    hippostdpubwf:lastModificationDate: 2020-07-28T08:59:17.129+01:00
     hippostdpubwf:lastModifiedBy: admin
-    resourcebundle:descriptions: ['', '', '']
+    resourcebundle:descriptions: ['', '', '', '']
     resourcebundle:id: navigation.static
-    resourcebundle:keys: [see-all-cta, home, footer.find-us-on]
-    resourcebundle:messages: [See all %s, Home, Find us on]
+    resourcebundle:keys: [see-all-cta, home, footer.find-us-on, uninav.our-sites]
+    resourcebundle:messages: [See all %s, Home, Find us on, Our websites]
   /static[2]:
     jcr:primaryType: resourcebundle:resourcebundle
     jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
@@ -26,12 +26,12 @@
     hippostd:state: unpublished
     hippostdpubwf:createdBy: admin
     hippostdpubwf:creationDate: 2020-07-22T16:18:57.603+01:00
-    hippostdpubwf:lastModificationDate: 2020-07-23T15:53:38.903+01:00
+    hippostdpubwf:lastModificationDate: 2020-07-28T08:59:16.772+01:00
     hippostdpubwf:lastModifiedBy: admin
-    resourcebundle:descriptions: ['', '', '']
+    resourcebundle:descriptions: ['', '', '', '']
     resourcebundle:id: navigation.static
-    resourcebundle:keys: [see-all-cta, home, footer.find-us-on]
-    resourcebundle:messages: [See all %s, Home, Find us on]
+    resourcebundle:keys: [see-all-cta, home, footer.find-us-on, uninav.our-sites]
+    resourcebundle:messages: [See all %s, Home, Find us on, Our websites]
   /static[3]:
     jcr:primaryType: resourcebundle:resourcebundle
     jcr:mixinTypes: ['mix:referenceable']
