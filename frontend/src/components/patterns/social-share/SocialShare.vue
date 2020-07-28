@@ -3,7 +3,7 @@
         <VsIcon
             name="share"
             variant="dark"
-            size="sm"
+            size="md"
         />
     </VsPrototype>
 </template>
