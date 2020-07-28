@@ -10,26 +10,26 @@
 </template>
 
 <script>
-import { BListGroup } from "bootstrap-vue"
+import { BListGroup } from 'bootstrap-vue';
 
 export default {
-    name: "VsHeaderListGroup",
+    name: 'VsHeaderListGroup',
     components: {
         BListGroup,
     },
     props: {
         section: {
             type: String,
-            default: "bottom",
+            default: 'bottom',
             validator: (value) => value.match(/(top|bottom)/),
         },
     },
     computed: {
         isTop() {
-            return this.section === "top"
+            return this.section === 'top';
         },
     },
-}
+};
 </script>
 
 <style lang="scss" scoped>

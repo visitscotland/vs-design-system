@@ -13,20 +13,20 @@
 </template>
 
 <script>
-import VsButton from "@components/elements/button"
-import { getters } from "./drawer.store"
-import { IS_ACTIVE_CONTENT } from "./drawer.store.getter-types"
-import { CLOSE_DRAWER, SHOW_DRAWER_CONTENT } from "./drawer.store.action-types"
+import VsButton from '@components/elements/button';
+import { getters } from './drawer.store';
+import { IS_ACTIVE_CONTENT } from './drawer.store.getter-types';
+import { CLOSE_DRAWER, SHOW_DRAWER_CONTENT } from './drawer.store.action-types';
 
 export default {
-    name: "VsDrawerToggle",
+    name: 'VsDrawerToggle',
     components: {
         VsButton,
     },
     props: {
         tag: {
             type: String,
-            default: "vs-button",
+            default: 'vs-button',
         },
         drawerKey: {
             type: String,
@@ -42,7 +42,7 @@ export default {
             return getters.getters[`drawer/${IS_ACTIVE_CONTENT}`](
                 this.contentKey,
                 this.drawerKey,
-            )
+            );
         },
     },
     methods: {
@@ -51,25 +51,25 @@ export default {
                 .dispatch(`drawer/${CLOSE_DRAWER}`, {
                     drawerKey: this.drawerKey,
                 })
-                .then(this.focusSelf)
+                .then(this.focusSelf);
         },
         showContent() {
             return getters.dispatch(`drawer/${SHOW_DRAWER_CONTENT}`, {
                 drawerKey: this.drawerKey,
                 contentKey: this.contentKey,
                 returnFocusElement: this.$refs.self,
-            })
+            });
         },
         toggleContent() {
             if (this.contentIsVisible) {
-                this.closeDrawer()
+                this.closeDrawer();
             } else {
-                this.showContent()
+                this.showContent();
             }
         },
         focusSelf() {
-            this.$refs.self.$el.focus()
+            this.$refs.self.$el.focus();
         },
     },
-}
+};
 </script>

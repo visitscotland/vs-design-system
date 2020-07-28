@@ -10,16 +10,16 @@
 </template>
 
 <script>
-import { BBreadcrumbItem } from "bootstrap-vue"
+import { BBreadcrumbItem } from 'bootstrap-vue';
 
 /**
  * https://bootstrap-vue.js.org/docs/components/breadcrumb#comp-ref-b-breadcrumb-item
  */
 
 export default {
-    name: "VsBreadcrumbItem",
-    status: "prototype",
-    release: "0.0.1",
+    name: 'VsBreadcrumbItem',
+    status: 'prototype',
+    release: '0.0.1',
     components: {
         BBreadcrumbItem,
     },
@@ -29,7 +29,7 @@ export default {
          */
         href: {
             type: String,
-            default: "",
+            default: '',
         },
         /**
          * The active breadcrumb item (last item). By default, BootstrapVue renders as a span.
@@ -42,17 +42,17 @@ export default {
          */
         ariaCurrent: {
             type: String,
-            default: "page",
+            default: 'page',
         },
         /**
          * The breadcrumb text.
          */
         text: {
             type: String,
-            default: "",
+            default: '',
         },
     },
-}
+};
 </script>
 
 <style lang="scss" scoped>

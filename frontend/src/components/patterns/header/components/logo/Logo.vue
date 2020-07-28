@@ -16,16 +16,16 @@
 </template>
 
 <script>
-import VsSvg from "@components/elements/svg/Svg"
+import VsSvg from '@components/elements/svg/Svg';
 
 export default {
-    name: "VsLogo",
-    status: "prototype",
-    release: "0.1.0",
+    name: 'VsLogo',
+    status: 'prototype',
+    release: '0.1.0',
     components: {
         VsSvg,
     },
-}
+};
 </script>
 
 <style lang="scss" scoped>

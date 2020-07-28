@@ -17,8 +17,8 @@
 </template>
 
 <script>
-import { BLink } from "bootstrap-vue"
-import VsIcon from "@components/elements/icon/Icon"
+import { BLink } from 'bootstrap-vue';
+import VsIcon from '@components/elements/icon/Icon';
 
 /**
  * Links are used to point the user to locations in the
@@ -28,9 +28,9 @@ import VsIcon from "@components/elements/icon/Icon"
  */
 
 export default {
-    name: "VsLink",
-    status: "prototype",
-    release: "0.0.2",
+    name: 'VsLink',
+    status: 'prototype',
+    release: '0.0.2',
     components: {
         BLink,
         VsIcon,
@@ -56,11 +56,11 @@ export default {
          */
         variant: {
             type: String,
-            default: "primary",
+            default: 'primary',
             validator: (value) => value.match(/(primary|dark)/),
         },
     },
-}
+};
 </script>
 
 <style lang="scss" scoped>
