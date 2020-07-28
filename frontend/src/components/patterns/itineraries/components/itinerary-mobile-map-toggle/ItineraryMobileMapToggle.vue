@@ -9,7 +9,6 @@
             :name="showMap ? 'list' : 'map'"
             variant="reverse-white"
             size="md"
-            :padding="0"
         />
 
         {{ showMap ? 'List View' : 'Map View' }}
@@ -17,17 +16,17 @@
 </template>
 
 <script>
-import VsIcon from "@components/elements/icon/Icon"
-import VsButton from "@components/elements/button/Button"
+import VsIcon from '@components/elements/icon/Icon';
+import VsButton from '@components/elements/button/Button';
 
 /**
  * TODO: Document usage
  */
 
 export default {
-    name: "VsItineraryMobileMapToggle",
-    status: "prototype",
-    release: "0.0.1",
+    name: 'VsItineraryMobileMapToggle',
+    status: 'prototype',
+    release: '0.0.1',
     components: {
         VsIcon,
         VsButton,
@@ -35,20 +34,20 @@ export default {
     props: {
         type: {
             type: String,
-            default: "vs-button",
+            default: 'vs-button',
         },
     },
     data() {
         return {
             showMap: false,
-        }
+        };
     },
     methods: {
         toggleMap() {
-            this.showMap = !this.showMap
+            this.showMap = !this.showMap;
         },
     },
-}
+};
 </script>
 
 <style lang="scss" scoped>

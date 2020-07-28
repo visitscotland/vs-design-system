@@ -1,6 +1,6 @@
 package com.visitscotland.brmx.translation.plugin;
 
-import org.hippoecm.frontend.translation.components.document.FolderTranslation;
+import org.hippoecm.frontend.translation.ILocaleProvider;
 import org.hippoecm.repository.api.HippoNode;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -9,8 +9,6 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import javax.jcr.RepositoryException;
-import java.util.LinkedList;
-import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.eq;
@@ -19,16 +17,20 @@ import static org.mockito.Mockito.when;
 
 
 @ExtendWith(MockitoExtension.class)
-public class DocumentTranslatorAddAllUntranslatedFoldersTest {
-    private DocumentTranslator translator;
+public class ChangeSetAddAllUntranslatedFoldersTest {
+    private ChangeSet changeSet;
     @Mock
     private TranslatedFolder mockSourceFolder;
-    private List<FolderTranslation> folders;
+    @Mock
+    private ILocaleProvider.HippoLocale mockLocale;
+    @Mock
+    private HippoTranslatedNodeFactory mockHippoTranslatedNodeFactory;
+    @Mock
+    private JcrFolderTranslationFactory mockJcrFolderTranslationFactory;
 
     @BeforeEach
     public void beforeEach() {
-        folders = new LinkedList<>();
-        translator = new DocumentTranslator();
+        changeSet = new ChangeSet(mockLocale);
     }
 
     @Test
@@ -36,8 +38,8 @@ public class DocumentTranslatorAddAllUntranslatedFoldersTest {
         // The first folder is already translated, should return that folder
         when(mockSourceFolder.getSibling(eq("no"))).thenReturn(mock(TranslatedFolder.class));
 
-        translator.addAllUntranslatedFolders("no", folders, mockSourceFolder);
-        assertTrue(folders.isEmpty());
+        changeSet.addAllUntranslatedFolders("no", changeSet.getFolders(), mockSourceFolder);
+        assertTrue(changeSet.getFolders().isEmpty());
     }
 
     @Test
@@ -45,14 +47,14 @@ public class DocumentTranslatorAddAllUntranslatedFoldersTest {
         // No translated sibling before parent is eventually null
         int numberInChain = 10;
         createUntranslatedFolderChain(mockSourceFolder, numberInChain, "no", false);
-        assertThrows(RepositoryException.class, () -> translator.addAllUntranslatedFolders("no", folders, mockSourceFolder));
+        assertThrows(RepositoryException.class, () -> changeSet.addAllUntranslatedFolders("no", changeSet.getFolders(), mockSourceFolder));
 
         // The folders should also be populated, not sure if this intended functionality
         // but I'll test that the values are what they should be
         // Source folder + numberInChain, note the folders are in reverse index order
-        assertEquals(numberInChain + 1, folders.size());
+        assertEquals(numberInChain + 1, changeSet.getFolders().size());
         for (int index = 0; index < numberInChain + 1; index++) {
-            assertFolderTranslation(index, folders.get(index));
+            assertFolderTranslation(index, changeSet.getFolders().get(index));
         }
     }
 
@@ -62,12 +64,12 @@ public class DocumentTranslatorAddAllUntranslatedFoldersTest {
         // the names of the folders and their URLs should match the originals
         int numberInChain = 10;
         createUntranslatedFolderChain(mockSourceFolder, numberInChain, "no", true);
-        translator.addAllUntranslatedFolders("no", folders, mockSourceFolder);
+        changeSet.addAllUntranslatedFolders("no", changeSet.getFolders(), mockSourceFolder);
 
         // The folders should be populated
-        assertEquals(numberInChain, folders.size());
+        assertEquals(numberInChain, changeSet.getFolders().size());
         for (int index = 0; index < numberInChain; index++) {
-            assertFolderTranslation(index, folders.get(index));
+            assertFolderTranslation(index, changeSet.getFolders().get(index));
         }
     }
 

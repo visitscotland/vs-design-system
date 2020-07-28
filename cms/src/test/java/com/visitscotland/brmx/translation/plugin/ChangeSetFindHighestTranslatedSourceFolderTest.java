@@ -1,5 +1,6 @@
 package com.visitscotland.brmx.translation.plugin;
 
+import org.hippoecm.frontend.translation.ILocaleProvider;
 import org.hippoecm.repository.translation.HippoTranslationNodeType;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -17,14 +18,17 @@ import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
-public class DocumentTranslatorFindHighestTranslatedSourceFolderTest {
-    DocumentTranslator translator;
+public class ChangeSetFindHighestTranslatedSourceFolderTest {
+    ChangeSet change;
+    @Mock
+    ILocaleProvider.HippoLocale mockLocale;
+
     @Mock
     Node mockSourceNode;
 
     @BeforeEach
     public void beforeEach() {
-        translator = new DocumentTranslator();
+        change = new ChangeSet(mockLocale);
     }
 
     @Test
@@ -34,7 +38,7 @@ public class DocumentTranslatorFindHighestTranslatedSourceFolderTest {
         when(mockSourceNode.isNodeType(eq(HippoTranslationNodeType.NT_TRANSLATED))).thenReturn(false);
         when(mockSourceNode.getParent()).thenThrow(new ItemNotFoundException());
 
-        assertNull(translator.findHighestTranslatedSourceFolder(mockSourceNode));
+        assertNull(change.findHighestTranslatedSourceFolder(mockSourceNode));
     }
 
     @Test
@@ -44,7 +48,7 @@ public class DocumentTranslatorFindHighestTranslatedSourceFolderTest {
         when(mockSourceNode.isNodeType(eq(HippoTranslationNodeType.NT_TRANSLATED))).thenReturn(false);
         when(mockSourceNode.getParent()).thenThrow(new AccessDeniedException());
 
-        assertNull(translator.findHighestTranslatedSourceFolder(mockSourceNode));
+        assertNull(change.findHighestTranslatedSourceFolder(mockSourceNode));
     }
 
     @Test
@@ -52,6 +56,6 @@ public class DocumentTranslatorFindHighestTranslatedSourceFolderTest {
         // If highest translated source folder has already been translated then
         when(mockSourceNode.isNodeType(eq(HippoTranslationNodeType.NT_TRANSLATED))).thenReturn(true);
 
-        assertSame(mockSourceNode, translator.findHighestTranslatedSourceFolder(mockSourceNode));
+        assertSame(mockSourceNode, change.findHighestTranslatedSourceFolder(mockSourceNode));
     }
 }

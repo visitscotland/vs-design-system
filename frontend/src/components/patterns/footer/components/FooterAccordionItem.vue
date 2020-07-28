@@ -26,7 +26,7 @@
 </template>
 
 <script>
-import VsAccordionItem from "@components/patterns/accordion/AccordionItem"
+import VsAccordionItem from '@components/patterns/accordion/AccordionItem';
 
 /**
  * The FooterAccordionItem is an accordion item used inside the FooterNavList.
@@ -34,7 +34,7 @@ import VsAccordionItem from "@components/patterns/accordion/AccordionItem"
  */
 
 export default {
-    name: "VsFooterAccordionItem",
+    name: 'VsFooterAccordionItem',
     components: {
         VsAccordionItem,
     },
@@ -53,7 +53,7 @@ export default {
         itemBreakPoint: {
             type: String,
             default() {
-                return this.breakPoint
+                return this.breakPoint;
             },
             validator: (value) => value.match(/(xs|sm|md|lg|xl|xxl)/),
         },
@@ -69,14 +69,14 @@ export default {
          */
         variant: {
             type: String,
-            default: "primary",
+            default: 'primary',
         },
     },
-}
+};
 </script>
 
 <style lang="scss">
-.vs-footer-accordion-item {
+.vs-footer-accordion-item.card {
     .vs-accordion-item__title {
         margin: $spacer-3 0;
     }
@@ -106,18 +106,18 @@ export default {
     }
 
     @include media-breakpoint-up(md) {
-        border-bottom: 0;
+        border: 0;
         border-left: 1px solid $color-gray-shade-2;
         padding: 0 $spacer-3;
-        background: $color-theme-dark;
+        background-color: $color-theme-dark;
 
         .vs-accordion-item__title {
             margin-top: $spacer-1;
         }
 
-        .vs-accordion-item__panel {
-            padding-bottom: 0;
-            background: $color-theme-dark;
+        .vs-accordion-item__panel.card-body {
+            padding: 0;
+            background-color: $color-theme-dark;
             border-top: 0;
         }
     }

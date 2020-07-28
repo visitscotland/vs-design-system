@@ -18,6 +18,11 @@
 </template>
 
 <script>
+/*
+ * Had to ignore this file on eslint because of this single line
+ * The webpack regex thinks this is a .js file instead of a NPM package
+ * Tried to disable the eslint just for the line but it didn't work
+*/
 import Chart from "chart.js"
 
 export default {

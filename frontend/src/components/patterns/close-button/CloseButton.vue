@@ -15,8 +15,8 @@
 
 <script>
 export default {
-    name: "VsCloseButton",
-}
+    name: 'VsCloseButton',
+};
 </script>
 
 <style lang="scss" scoped></style>

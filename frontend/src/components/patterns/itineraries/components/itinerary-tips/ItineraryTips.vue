@@ -15,14 +15,14 @@
  */
 
 export default {
-    name: "VsItineraryTips",
-    status: "prototype",
-    release: "0.0.1",
+    name: 'VsItineraryTips',
+    status: 'prototype',
+    release: '0.0.1',
     components: {
     },
     props: {
     },
-}
+};
 </script>
 
 <style lang="scss" scoped>
