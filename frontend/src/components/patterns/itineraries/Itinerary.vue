@@ -18,8 +18,7 @@
             <VsRow>
                 <VsCol
                     cols="12"
-                    tag="ul"
-                    class="list-unstyled p-0"
+                    class="p-0"
                 >
                     <VsAccordion break-point="lg">
                         <slot name="list" />
