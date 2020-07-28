@@ -177,7 +177,7 @@ export default {
 @include no-js {
     .vs-accordion-toggle .icon{
         display: none;
-    }        
+    }
 
     .vs-accordion-item .vs-accordion-item__panel{
         display: block!important;
