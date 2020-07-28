@@ -1,9 +1,9 @@
 <template>
     <figure
-        class="vs-image-with-caption position-relative"
-        :class="{ 'vs-image-with-caption--closed-default': closedDefaultCaption }"
+        class="position-relative"
+        :class="[$style.root, { [$style.closedDefault]: closedDefaultCaption }]"
     >
-        <div class="vs-image-with-caption__image-wrapper">
+        <div :class="$style.imageWrapper">
             <slot>
                 <VsImg
                     v-if="imageSrc"
@@ -17,7 +17,8 @@
 
             <VsButton
                 variant="outline-transparent"
-                class="vs-image-with-caption__toggle-caption-btn position-absolute"
+                class="position-absolute"
+                :class="$style.toggleCaptionBtn"
                 :animate="false"
                 :aria-controls="'image_' + imageSrc"
                 :aria-expanded="showCaption ? 'true' : 'false'"
@@ -44,19 +45,14 @@
         </div>
 
         <div
-            :class="{
-                'd-block': showCaption,
-            }"
-            class="vs-image-with-caption__caption-wrapper"
+            :class="[$style.captionWrapper, { 'd-block': showCaption }]"
             :id="'image_' + imageSrc"
         >
             <figcaption
                 ref="figcaption"
                 :class="[
-                    isLargeCaption
-                        ? 'vs-image-with-caption__large-caption'
-                        : 'vs-image-with-caption__fullwidth-caption',
-                    closedDefaultCaption ? 'default-closed' : '',
+                    isLargeCaption ? $style.largeCaption : $style.fullwidthCaption,
+                    closedDefaultCaption ? $style.captionDefaultClosed : '',
                 ]"
                 class="d-flex d-sm-block"
             >
@@ -66,11 +62,11 @@
                         :class="[!showMap ? 'align-self-center' : '']"
                     >
                         <div :class="isLargeCaption ? 'p-4' : 'px-4 py-3 pr-8'">
-                            <p class="vs-image-with-caption__image-caption">
+                            <p :class="$style.imageCaption">
                                 <slot name="caption" />
                             </p>
 
-                            <p class="vs-image-with-caption__image-credit">
+                            <p :class="$style.imageCredit">
                                 <slot name="credit" />
                             </p>
 
@@ -83,7 +79,10 @@
                         align-self-sm-start"
                         v-if="showMap && variant !== isLargeCaption"
                     >
-                        <div class="map-wrapper pt-3 pt-sm-2 pb-sm-2 pr-sm-4 mx-auto">
+                        <div
+                            :class="$style.mapWrapper"
+                            class="pt-3 pt-sm-2 pb-sm-2 pr-sm-4 mx-auto"
+                        >
                             <VsImageLocationMap
                                 :latitude="latitude"
                                 :longitude="longitude"
@@ -206,163 +205,172 @@ export default {
 };
 </script>
 
-<style lang="scss">
-img {
-    width: 100%;
-    height: auto;
-}
+<style lang="scss" module>
 
-.vs-image-with-caption__image-wrapper {
+.root{
+    img {
+        width: 100%;
+        height: auto;
+    }
 
-    .vs-image-with-caption__toggle-caption-btn {
-        bottom: $spacer-2;
-        padding: 0;
-        right: $spacer-2;
-        line-height: $line_height_xs;
-        z-index: 3;
-        display: block;
+    &.closedDefault {
+        @include media-breakpoint-up(sm) {
+            .imageWrapper {
+                .toggleCaptionBtn {
+                    display: block;
+                }
+            }
+
+            .captionWrapper{
+                display: none;
+            }
+        }
+    }
+
+    .imageWrapper {
+        .toggleCaptionBtn {
+            bottom: $spacer-2;
+            padding: 0;
+            right: $spacer-2;
+            line-height: $line_height_xs;
+            z-index: 3;
+            display: block;
+
+            @include media-breakpoint-up(sm) {
+                display: none;
+            }
+        }
+    }
+
+    .captionWrapper {
+        display: none;
 
         @include media-breakpoint-up(sm) {
-            display: none;
-
-            .vs-image-with-caption--closed-default & {
-                display: block;
-            }
-        }
-    }
-}
-
-.vs-image-with-caption__caption-wrapper {
-    display: none;
-
-    @include media-breakpoint-up(sm) {
-        display: block;
-
-        .vs-image-with-caption--closed-default & {
-            display: none;
-        }
-    }
-
-    @include media-breakpoint-down(lg) {
-        max-width: 100%;
-        padding: 0;
-    }
-
-    figcaption {
-        background-color: $color-gray-shade-6;
-        color: $color-white;
-
-        .vs-image-with-caption__image-caption,
-        .vs-image-with-caption__image-credit {
-            font-size: $small-font-size;
-            line-height: $standard-line-height;
+            display: block;
         }
 
-        .vs-image-with-caption__image-caption {
-            font-weight: $semibold-font-weight;
+        @include media-breakpoint-down(lg) {
+            max-width: 100%;
+            padding: 0;
         }
 
-        .vs-image-with-caption__image-credit {
-            font-weight: $font-weight-light;
-            margin-bottom: $spacer-0;
-        }
+        figcaption {
+            background-color: $color-gray-shade-6;
+            color: $color-white;
 
-        &.vs-image-with-caption__large-caption,
-        &.vs-image-with-caption__fullwidth-caption {
-            position: absolute;
-            top: 0;
-            right: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 2;
-            text-align: center;
-
-            > .row {
-                margin: 0 auto;
+            .imageCaption,
+            .imageCredit {
+                font-size: $small-font-size;
+                line-height: $standard-line-height;
             }
 
-            .vs-image-with-caption__image-caption {
-                margin-bottom: $spacer-2;
+            .imageCaption {
+                font-weight: $semibold-font-weight;
             }
 
-            .map-wrapper {
-                max-width: 60px;
+            .imageCredit {
+                font-weight: $font-weight-light;
+                margin-bottom: $spacer-0;
             }
-        }
 
-        &.vs-image-with-caption__large-caption {
-            @include media-breakpoint-up(sm) {
-                bottom: -48px;
-                top: auto;
-                width: 310px;
-                height: auto;
-                min-height: 96px;
-                text-align: left;
-
-                > .row {
-                    margin: 0 -16px;
-                }
-
-                .vs-image-with-caption__image-caption {
-                    margin-bottom: $spacer-8;
-                }
-
-                .map-wrapper {
-                    max-width: 74px;
-                }
-            }
-        }
-
-        &.vs-image-with-caption__fullwidth-caption:not(.default-closed) {
-            @include media-breakpoint-up(sm) {
-                position: relative;
+            &.largeCaption,
+            &.fullwidthCaption {
+                position: absolute;
+                top: 0;
+                right: 0;
                 width: 100%;
-                height: auto;
-                min-height: 64px;
-                text-align: left;
+                height: 100%;
+                z-index: 2;
+                text-align: center;
 
-                > .row {
-                    margin: 0 -16px;
+                > :global(.row) {
+                    margin: 0 auto;
+                }
+
+                .imageCaption {
+                    margin-bottom: $spacer-2;
+                }
+
+                .mapWrapper {
+                    max-width: 60px;
+                }
+            }
+
+            &.largeCaption {
+                @include media-breakpoint-up(sm) {
+                    bottom: -48px;
+                    top: auto;
+                    width: 310px;
+                    height: auto;
+                    min-height: 96px;
+                    text-align: left;
+
+                    > :global(.row) {
+                        margin: 0 -16px;
+                    }
+
+                    .imageCaption {
+                        margin-bottom: $spacer-8;
+                    }
+
+                    .mapWrapper {
+                        max-width: 74px;
+                    }
+                }
+            }
+
+            &.fullwidthCaption:not(.captionDefaultClosed) {
+                @include media-breakpoint-up(sm) {
+                    position: relative;
+                    width: 100%;
+                    height: auto;
+                    min-height: 64px;
+                    text-align: left;
+
+                    > :global(.row) {
+                        margin: 0 -16px;
+                    }
                 }
             }
         }
     }
-}
 
-
-@include no-js {
-    .vs-image-with-caption__image-wrapper {
-        .vs-image-with-caption__toggle-caption-btn {
-            display: none;
-        }
-    }
-
-    .vs-image-with-caption__caption-wrapper {
-        display: block;
-
-        .vs-image-with-caption__large-caption,
-        .vs-image-with-caption__fullwidth-caption {
-            @include media-breakpoint-down(xs) {
-                position: relative;
-            }
-        }
-    }
-
-    .vs-image-with-caption--closed-default {
-        .vs-image-with-caption__image-wrapper {
-            .vs-image-with-caption__toggle-caption-btn {
+    @include no-js {
+        .imageWrapper {
+            .toggleCaptionBtn {
                 display: none;
             }
         }
 
-        .vs-image-with-caption__caption-wrapper {
-            .vs-image-with-caption__large-caption,
-            .vs-image-with-caption__fullwidth-caption {
-                position: relative;
+        .captionWrapper {
+            display: block;
+
+            .largeCaption,
+            .fullwidthCaption {
+                @include media-breakpoint-down(xs) {
+                    position: relative;
+                }
+            }
+        }
+
+        .closedDefault {
+            .imageWrapper {
+                .toggleCaptionBtn {
+                    display: none;
+                }
+            }
+
+            .captionWrapper {
+                .largeCaption,
+                .fullwidthCaption {
+                    position: relative;
+                }
             }
         }
     }
 }
+
+
 </style>
 
 <docs>
