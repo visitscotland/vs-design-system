@@ -12,8 +12,8 @@
 </template>
 
 <script>
-import VsAccordion from "@components/patterns/accordion/Accordion"
-import { VsRow, VsContainer } from "@components/elements/layout"
+import VsAccordion from '@components/patterns/accordion/Accordion';
+import { VsRow, VsContainer } from '@components/elements/layout';
 
 /**
  * The FooterNavList is a set of menu items used for
@@ -21,7 +21,7 @@ import { VsRow, VsContainer } from "@components/elements/layout"
  */
 
 export default {
-    name: "VsFooterNavList",
+    name: 'VsFooterNavList',
     components: {
         VsAccordion,
         VsRow,
@@ -38,7 +38,7 @@ export default {
             validator: (value) => value.match(/(xs|sm|md|lg|xl|xxl)/),
         },
     },
-}
+};
 </script>
 
 <style lang="scss">

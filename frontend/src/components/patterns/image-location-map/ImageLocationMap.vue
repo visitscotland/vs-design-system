@@ -420,16 +420,16 @@
  * Image map element
  */
 export default {
-    name: "VsImageLocationMap",
-    status: "prototype",
-    release: "0.0.1",
+    name: 'VsImageLocationMap',
+    status: 'prototype',
+    release: '0.0.1',
     props: {
         /**
          * The image latitude
          */
         latitude: {
             type: String,
-            default: "",
+            default: '',
         },
 
         /**
@@ -437,15 +437,15 @@ export default {
          */
         longitude: {
             type: String,
-            default: "",
+            default: '',
         },
         mapOutlineColor: {
             type: String,
-            default: "#191919",
+            default: '#191919',
         },
         mapMarkerColor: {
             type: String,
-            default: "#191919",
+            default: '#191919',
         },
     },
     data() {
@@ -458,11 +458,11 @@ export default {
             },
             mapWidth: 75,
             mapHeight: 104,
-        }
+        };
     },
     computed: {
         positionY() {
-            const yCoord = Number(this.latitude)
+            const yCoord = Number(this.latitude);
 
             return Math.round(
                 this.calculateAxisPosition(
@@ -471,10 +471,10 @@ export default {
                     yCoord,
                     this.mapHeight,
                 ),
-            )
+            );
         },
         positionX() {
-            const xCoord = Number(this.longitude)
+            const xCoord = Number(this.longitude);
 
             return Math.round(
                 this.calculateAxisPosition(
@@ -483,15 +483,15 @@ export default {
                     xCoord,
                     this.mapWidth,
                 ),
-            )
+            );
         },
     },
     methods: {
         calculateAxisPosition(scaleStart, scaleEnd, coord, axisLength) {
-            return ((coord - scaleStart) * axisLength) / (scaleEnd - scaleStart)
+            return ((coord - scaleStart) * axisLength) / (scaleEnd - scaleStart);
         },
     },
-}
+};
 </script>
 
 <style lang="scss" scoped>

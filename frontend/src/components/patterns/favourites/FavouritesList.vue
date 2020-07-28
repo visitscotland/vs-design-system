@@ -29,41 +29,41 @@
 </template>
 
 <script>
-import VsIcon from "@components/elements/icon/Icon"
-import favouritesStore from "./favourites.store"
+import VsIcon from '@components/elements/icon/Icon';
+import favouritesStore from './favourites.store';
 
 export default {
-    name: "VsFavouritesList",
-    status: "prototype",
-    release: "0.0.1",
+    name: 'VsFavouritesList',
+    status: 'prototype',
+    release: '0.0.1',
     components: {
         VsIcon,
     },
     props: {
         listHeader: {
             type: String,
-            default: "Favourites list",
+            default: 'Favourites list',
         },
     },
     data() {
         return {
-        }
+        };
     },
     computed: {
         favourites() {
-            return favouritesStore.getters["favourites/getFavourites"]
+            return favouritesStore.getters['favourites/getFavourites'];
         },
         last() {
-            return this.favourites.length - 1
+            return this.favourites.length - 1;
         },
     },
     methods: {
         deleteFavourite(href) {
-            favouritesStore.dispatch("favourites/deleteFavourite", href)
-            this.$emit("favourite-deleted")
+            favouritesStore.dispatch('favourites/deleteFavourite', href);
+            this.$emit('favourite-deleted');
         },
     },
-}
+};
 </script>
 
 <style lang="scss" scoped>
