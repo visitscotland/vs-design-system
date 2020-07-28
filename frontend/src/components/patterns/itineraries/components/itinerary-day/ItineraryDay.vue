@@ -1,27 +1,23 @@
 <template>
-    <li class="vs-itinerary-day__list-item">
-        <VsAccordionItem
-            :open-by-default="show"
-            :control-id="'itinerary-day-' + dayNumber"
-            variant="light"
-            item-break-point="lg"
+    <VsAccordionItem
+        :open-by-default="show"
+        :control-id="'itinerary-day-' + dayNumber"
+        variant="light"
+        item-break-point="lg"
+        class="vs-itinerary-day__list-item"
+    >
+        <!-- <div class="vs-itinerary-day__header text-center position-relative"> -->
+        <VsHeading
+            level="2"
+            class="vs-itinerary-day__header text-center mt-9  position-relative"
+            slot="title"
         >
-            <!-- <div class="vs-itinerary-day__header text-center position-relative"> -->
-            <div
-                slot="title"
-                class="vs-itinerary-day__header text-center"
-            >
-                <VsHeading
-                    level="2"
-                    class="mt-9"
-                >
-                    <span class="vs-itinerary-day__title d-inline-block">
-                        {{ dayLabel }} {{ dayNumber }}
-                    </span>
-                    <span slot="sub-heading">{{ dayTitle }}</span>
-                </VsHeading>
-            </div>
-            <!-- <VsButton
+            <span class="vs-itinerary-day__title d-inline-block">
+                {{ dayLabel }} {{ dayNumber }}
+            </span>
+            <span slot="sub-heading">{{ dayTitle }}</span>
+        </VsHeading>
+        <!-- <VsButton
                         :animate="false"
                         :aria-expanded="show ? 'true' : 'false'"
                         :aria-controls="'dayPanel_' + dayNumber"
@@ -30,39 +26,38 @@
                         v-if="!isDesktop"
                         variant="transparent"
                     > -->
-            <span slot="icon-open">
-                <VsIcon
-                    name="chevron-down"
-                    variant="dark"
-                    size="xs"
-                    :padding="3"
-                    class="vs-itinerary-day__toggle-button p-0"
-                />
-            </span>
-            <span slot="icon-closed">
-                <VsIcon
-                    name="chevron-up"
-                    variant="dark"
-                    size="xs"
-                    :padding="3"
-                    class="vs-itinerary-day__toggle-button p-0"
-                />
-            </span>
+        <span slot="icon-open">
+            <VsIcon
+                name="chevron-down"
+                variant="dark"
+                size="xs"
+                :padding="3"
+                class="vs-itinerary-day__toggle-button p-0"
+            />
+        </span>
+        <span slot="icon-closed">
+            <VsIcon
+                name="chevron-up"
+                variant="dark"
+                size="xs"
+                :padding="3"
+                class="vs-itinerary-day__toggle-button p-0"
+            />
+        </span>
 
-            <!-- </VsButton> -->
-            <!-- </div> -->
+        <!-- </VsButton> -->
+        <!-- </div> -->
 
-            <div
-                :id="'dayPanel_' + dayNumber"
-            >
-                <slot name="day-transport" />
-                <slot name="day-introduction" />
-                <ul class="list-unstyled">
-                    <slot name="stops" />
-                </ul>
-            </div>
-        </VsAccordionItem>
-    </li>
+        <div
+            :id="'dayPanel_' + dayNumber"
+        >
+            <slot name="day-transport" />
+            <slot name="day-introduction" />
+            <ul class="list-unstyled">
+                <slot name="stops" />
+            </ul>
+        </div>
+    </VsAccordionItem>
 </template>
 
 <script>
@@ -173,7 +168,6 @@ export default {
 
 <docs>
 ```jsx
-   <vs-itinerary>
         <vs-itinerary-day
             v-for="(day, index) in itineraries.sampleItinerary.days"
             :defaultShow="(day.dayCount < 3) ? true : false"
@@ -182,7 +176,6 @@ export default {
             dayLabel="Day"
              slot="list"
             :dayTitle="day.title"
-
         >
             <vs-description-list
                 v-if="day.transport.length"
@@ -203,6 +196,5 @@ export default {
 
             <div slot="day-introduction" v-html="day.introduction"></div>
         </vs-itinerary-day>
-    </vs-itinerary>
 ```
 </docs>
