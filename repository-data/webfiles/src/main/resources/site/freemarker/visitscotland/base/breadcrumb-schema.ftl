@@ -1,5 +1,5 @@
 <#include "../../include/imports.ftl">
-<@hst.setBundle basename="navigation"/>
+<@hst.setBundle basename="navigation.static"/>
 
 <#-- @ftlvariable name="breadcrumb" type="org.onehippo.forge.breadcrumb.om.Breadcrumb" -->
 

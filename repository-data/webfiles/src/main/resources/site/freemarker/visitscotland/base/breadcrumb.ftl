@@ -3,7 +3,7 @@
 <#include "../../frontend/components/vs-breadcrumb.ftl">
 <#include "../../frontend/components/vs-breadcrumb-item.ftl">
 
-<@hst.setBundle basename="navigation"/>
+<@hst.setBundle basename="navigation.static"/>
 
 <#-- @ftlvariable name="breadcrumb" type="org.onehippo.forge.breadcrumb.om.Breadcrumb" -->
 
