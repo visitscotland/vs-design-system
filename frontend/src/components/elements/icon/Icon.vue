@@ -6,8 +6,6 @@
             ['icon-' + size]: true,
             ['icon-' + formattedName]: true,
             ['icon-' + variant]: variant,
-            ['icon-padding-' + padding]: padding,
-            'icon-reverse': reverse,
         }"
         v-bind="$attrs"
     />
@@ -64,23 +62,6 @@ export default {
             type: String,
             default: 'md',
             validator: (value) => value.match(/(xxs|xs|sm|md|lg|xl)/),
-        },
-        /**
-         * Whether to reverse the icon's background and
-         * fill colours
-         */
-        reverse: {
-            type: Boolean,
-        },
-
-        /**
-         * Amount of padding
-         * `null, 0, 1, 2, 3`
-         */
-        padding: {
-            type: Number,
-            default: 2,
-            validator: (value) => [null, 0, 1, 2, 3].indexOf(value) !== -1,
         },
     },
     data() {
@@ -223,14 +204,7 @@ $variants: (
     fill: $color-black;
     overflow: visible;
 
-    &.icon-reverse {
-        background-color: $color-black;
-        fill: $color-white;
-    }
-
     @each $size in map-keys($sizes) {
-        $padding-sizes: 1, 2, 3;
-
         $this-size: map-get($sizes, $size);
 
         &.icon-#{$size} {
@@ -240,20 +214,6 @@ $variants: (
 
             &.icon-reverse {
                 border-radius: $this-size / 2;
-            }
-            @each $padding-size in $padding-sizes {
-                &.icon-padding-#{$padding-size} {
-                    $padding: $this-size * pow(2, $padding-size - 1) / 8;
-                    $dimension: $this-size + ($padding * 2);
-
-                    height: $dimension;
-                    width: $dimension;
-                    padding: $padding;
-
-                    &.icon-reverse {
-                        border-radius: $dimension / 2;
-                    }
-                }
             }
         }
     }
@@ -297,21 +257,6 @@ $variants: (
 
     <bs-wrapper class="row mb-5">
       <bs-wrapper class="col">
-        <h3>Reverse</h3>
-        <vs-icon name="favourite" reverse />
-        <vs-icon name="favourite" reverse variant="primary" />
-        <vs-icon name="favourite" reverse variant="secondary" />
-        <vs-icon name="favourite" reverse variant="success" />
-        <vs-icon name="favourite" reverse variant="warning" />
-        <vs-icon name="favourite" reverse variant="info" />
-        <vs-icon name="favourite" reverse variant="danger" />
-        <vs-icon name="favourite" reverse variant="dark" />
-        <vs-icon name="favourite" reverse variant="light" />
-      </bs-wrapper>
-    </bs-wrapper>
-
-    <bs-wrapper class="row mb-5">
-      <bs-wrapper class="col">
         <h3>Size</h3>
 
         <bs-wrapper class="d-flex">
@@ -343,35 +288,6 @@ $variants: (
           <bs-wrapper class="d-flex flex-column mr-3 align-items-center">
             <h4>xl</h4>
             <vs-icon name="favourite" size="xl" />
-          </bs-wrapper>
-        </bs-wrapper>
-      </bs-wrapper>
-    </bs-wrapper>
-
-    <bs-wrapper class="row mb-5">
-      <bs-wrapper class="col">
-        <h3>Padding size</h3>
-
-        <bs-wrapper class="d-flex">
-          <bs-wrapper class="d-flex flex-column mr-3 align-items-center">
-            <h4>0</h4>
-            <vs-icon name="favourite" reverse :padding="0" />
-
-          </bs-wrapper>
-
-          <bs-wrapper class="d-flex flex-column mr-3 align-items-center">
-            <h4>1</h4>
-            <vs-icon name="favourite" reverse :padding="1" />
-          </bs-wrapper>
-
-          <bs-wrapper class="d-flex flex-column mr-3 align-items-center">
-            <h4>2</h4>
-            <vs-icon name="favourite" reverse />
-          </bs-wrapper>
-
-          <bs-wrapper class="d-flex flex-column mr-3 align-items-center">
-            <h4>3</h4>
-            <vs-icon name="favourite" reverse :padding="3" />
           </bs-wrapper>
         </bs-wrapper>
       </bs-wrapper>

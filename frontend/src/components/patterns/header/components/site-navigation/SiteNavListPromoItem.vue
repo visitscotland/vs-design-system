@@ -17,7 +17,6 @@
                 name="reverse-arrow"
                 size="sm"
                 variant="primary"
-                :padding="0"
             />
         </div>
     </VsSiteNavListItem>
