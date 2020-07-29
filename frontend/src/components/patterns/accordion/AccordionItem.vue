@@ -144,11 +144,12 @@ export default {
 <style lang="scss">
 .vs-accordion-item.card {
     border: 0;
-    border-bottom: 1px solid $color-gray-shade-2;
+    // border-bottom: 1px solid $color-gray-shade-2;
 
     .vs-accordion-item__card-header{
         padding: 0;
         //background-color: $color-gray-shade-7;
+        background-color: transparent;
         border: 0;
     }
 
@@ -173,7 +174,7 @@ export default {
     .vs-accordion-item__panel.card-body {
         //background-color: $color-gray-shade-6;
         //color: $color-white;
-        border-top: 1px solid $color-gray-shade-2;
+        // border-top: 1px solid $color-gray-shade-2;
         padding: 0 0 $spacer-2;
     }
 }
