@@ -12,44 +12,44 @@
 </template>
 
 <script>
-import summaryBoxStore from "@components/patterns/summary-box/summaryBox.store"
+import summaryBoxStore from '@components/patterns/summary-box/summaryBox.store';
 /**
  * Summary Box Distance Display
  */
 export default {
-    name: "VsSummaryBoxDistanceDisplay",
-    status: "prototype",
-    release: "0.0.1",
+    name: 'VsSummaryBoxDistanceDisplay',
+    status: 'prototype',
+    release: '0.0.1',
     components: {
     },
     props: {
         miles: {
             type: String,
-            default: "",
+            default: '',
         },
         kilometres: {
             type: String,
-            default: "",
+            default: '',
         },
         milesLabel: {
             type: String,
-            default: "",
+            default: '',
         },
         kilometresLabel: {
             type: String,
-            default: "",
+            default: '',
         },
     },
     computed: {
         isShowingMiles() {
-            return summaryBoxStore.getters["summaryBox/getShowMiles"]
+            return summaryBoxStore.getters['summaryBox/getShowMiles'];
         },
     },
     watch: {
         isShowingMiles() {},
     },
     summaryBoxStore,
-}
+};
 </script>
 
 <style lang="scss" scoped>

@@ -97,12 +97,12 @@
 </template>
 
 <script>
-import VsIcon from "../../../../elements/icon/Icon"
+import VsIcon from '../../../../elements/icon/Icon';
 
 export default {
-    name: "VsMobileNavListItem",
-    status: "prototype",
-    release: "0.0.1",
+    name: 'VsMobileNavListItem',
+    status: 'prototype',
+    release: '0.0.1',
     components: {
         VsIcon,
     },
@@ -112,22 +112,22 @@ export default {
          */
         type: {
             type: String,
-            default: "li",
+            default: 'li',
         },
         href: {
             type: String,
-            default: "",
+            default: '',
         },
         isExternal: {
             type: Boolean,
         },
         trackingId: {
             type: String,
-            default: "",
+            default: '',
         },
         title: {
             type: String,
-            default: "",
+            default: '',
         },
         level: {
             type: Number,
@@ -136,31 +136,31 @@ export default {
         subnav: {
             type: Array,
             default() {
-                return []
+                return [];
             },
         },
         promoList: {
             type: Array,
             default() {
-                return []
+                return [];
             },
         },
         promoItem: {
             type: Object,
             default() {
                 return {
-                }
+                };
             },
         },
     },
     data() {
         return {
             show: false,
-        }
+        };
     },
     computed: {
         lowerCaseTitle() {
-            return this.title ? this.title.toLowerCase() : ""
+            return this.title ? this.title.toLowerCase() : '';
         },
         hasChildren() {
             if (
@@ -168,36 +168,36 @@ export default {
                 || this.promoItem !== undefined
                 || this.promoList !== undefined
             ) {
-                return true
+                return true;
             }
-            return false
+            return false;
         },
         incrementLevel() {
-            return this.level + 1
+            return this.level + 1;
         },
     },
     mounted() {
-        this.$root.$on("resetMenus", this.reset)
+        this.$root.$on('resetMenus', this.reset);
     },
     methods: {
         reset() {
-            this.show = false
+            this.show = false;
         },
         triggerToggle() {
-            this.show = !this.show
-            const thisTrigger = this.$refs.trigger
+            this.show = !this.show;
+            const thisTrigger = this.$refs.trigger;
             if (this.show) {
-                this.$parent.$emit("setScrollOffset", thisTrigger.offsetTop)
+                this.$parent.$emit('setScrollOffset', thisTrigger.offsetTop);
             } else {
-                this.$parent.$emit("setScrollOffset", 0)
+                this.$parent.$emit('setScrollOffset', 0);
             }
-            thisTrigger.blur()
+            thisTrigger.blur();
         },
         setOffsetScroll(offset) {
-            this.$emit("setScrollOffset", offset)
+            this.$emit('setScrollOffset', offset);
         },
     },
-}
+};
 </script>
 
 <style lang="scss" scoped>

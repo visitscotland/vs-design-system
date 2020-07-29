@@ -16,7 +16,7 @@
 </template>
 
 <script>
-import VsList from "@components/elements/list/List"
+import VsList from '@components/elements/list/List';
 
 /**
  * The FooterSocialMenu is used inside the FooterNavList.
@@ -24,11 +24,11 @@ import VsList from "@components/elements/list/List"
  */
 
 export default {
-    name: "VsFooterSocialMenu",
+    name: 'VsFooterSocialMenu',
     components: {
         VsList,
     },
-}
+};
 </script>
 
 <style lang="scss">
