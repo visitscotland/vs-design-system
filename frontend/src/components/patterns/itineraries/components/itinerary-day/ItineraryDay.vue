@@ -6,18 +6,40 @@
         item-break-point="lg"
         class="vs-itinerary-day__list-item"
     >
-        <div
-            class="vs-itinerary-day__header text-center mt-9 position-relative"
-        >
+        <template #title>
+            <!-- @slot Put the title here  -->
             <VsHeading
                 level="2"
+                class="vs-itinerary-day__header text-center mt-9 position-relative"
             >
                 <span class="vs-itinerary-day__title d-inline-block">
                     {{ dayLabel }} {{ dayNumber }}
                 </span>
                 <span slot="sub-heading">{{ dayTitle }}</span>
             </VsHeading>
-            <!-- <VsButton
+        </template>
+
+        <template #icon-open>
+            <!-- @slot Slot for the icon to show when accordion item is open  -->
+            <VsIcon
+                name="chevron-down"
+                variant="dark"
+                size="xs"
+                :padding="3"
+                class="vs-itinerary-day__toggle-button p-0"
+            />
+        </template>
+        <template #icon-closed>
+            <!-- @slot Slot for the icon to show when accordion item is closed  -->
+            <VsIcon
+                name="chevron-up"
+                variant="dark"
+                size="xs"
+                :padding="3"
+                class="vs-itinerary-day__toggle-button p-0"
+            />
+        </template>
+        <!-- <VsButton
                         :animate="false"
                         :aria-expanded="show ? 'true' : 'false'"
                         :aria-controls="'dayPanel_' + dayNumber"
@@ -26,27 +48,8 @@
                         v-if="!isDesktop"
                         variant="transparent"
                     > -->
-            <span slot="icon-open">
-                <VsIcon
-                    name="chevron-down"
-                    variant="dark"
-                    size="xs"
-                    :padding="3"
-                    class="vs-itinerary-day__toggle-button p-0"
-                />
-            </span>
-            <span slot="icon-closed">
-                <VsIcon
-                    name="chevron-up"
-                    variant="dark"
-                    size="xs"
-                    :padding="3"
-                    class="vs-itinerary-day__toggle-button p-0"
-                />
-            </span>
 
         <!-- </VsButton> -->
-        </div>
 
         <div
             :id="'dayPanel_' + dayNumber"
