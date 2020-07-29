@@ -25,15 +25,23 @@ public class DocumentTranslatorAddTranslationLinkChangeSets {
     private DocumentTranslator documentTranslator;
     @Mock
     private Session mockSession;
-    @Mock
-    ExampleTranslationLinkContainer sourceDocument;
+    HippoBean sourceDocument;
     @Mock
     ILocaleProvider.HippoLocale mockLocale;
+    @Mock
+    HippoTranslatedNodeFactory mockNodeFactory;
+    @Mock
+    SessionFactory mockSessionFactory;
+    @Mock
+    JcrDocumentFactory mockJcrDocumentFactory;
+    @Mock
+    ChangeSetFactory mockChangeSetFactory;
 
     @BeforeEach
     public void beforeEach() {
-        documentTranslator = spy(new DocumentTranslator());
-        lenient().doReturn(mockSession).when(documentTranslator).getJcrSession();
+        sourceDocument = mock(HippoBean.class, withSettings().extraInterfaces(TranslationLinkContainer.class));
+        documentTranslator = spy(new DocumentTranslator(mockNodeFactory, mockSessionFactory, mockJcrDocumentFactory, mockChangeSetFactory));
+        lenient().doReturn(mockSession).when(mockSessionFactory).getJcrSession();
     }
 
     @Test
@@ -69,7 +77,7 @@ public class DocumentTranslatorAddTranslationLinkChangeSets {
         Node node1 = mock(Node.class);
         when(mockSession.getNodeByIdentifier("node1uuid")).thenReturn(node1);
         JcrDocument node1jcr = mock(JcrDocument.class);
-        doReturn(node1jcr).when(documentTranslator).createJcrDocument(same(node1));
+        doReturn(node1jcr).when(mockJcrDocumentFactory).createJcrDocument(same(node1));
         when(node1jcr.hasTranslation(same(mockLocale))).thenReturn(true);
 
         List<Node> translatableLinkNodes = new ArrayList<>();
@@ -94,7 +102,7 @@ public class DocumentTranslatorAddTranslationLinkChangeSets {
         Node node1 = mock(Node.class);
         when(mockSession.getNodeByIdentifier("node1uuid")).thenReturn(node1);
         JcrDocument node1jcr = mock(JcrDocument.class);
-        doReturn(node1jcr).when(documentTranslator).createJcrDocument(same(node1));
+        doReturn(node1jcr).when(mockJcrDocumentFactory).createJcrDocument(same(node1));
         when(node1jcr.hasTranslation(same(mockLocale))).thenReturn(false);
 
         List<Node> translatableLinkNodes = new ArrayList<>();
@@ -102,7 +110,7 @@ public class DocumentTranslatorAddTranslationLinkChangeSets {
         doReturn(translatableLinkNodes).when(documentTranslator).getChildTranslatableLinkNodes(same(sourceDocument));
 
         ChangeSet mockChangeSet = mock(ChangeSet.class);
-        doReturn(mockChangeSet).when(documentTranslator).createChangeSet(same(mockLocale));
+        doReturn(mockChangeSet).when(mockChangeSetFactory).createChangeSet(same(mockLocale));
 
         List<ChangeSet> changeSetList = new ArrayList<>();
         documentTranslator.addTranslationLinkChangeSets(sourceDocument, mockLocale, changeSetList);
@@ -126,7 +134,7 @@ public class DocumentTranslatorAddTranslationLinkChangeSets {
         Node node1 = mock(Node.class);
         when(mockSession.getNodeByIdentifier("node1uuid")).thenReturn(node1);
         JcrDocument node1jcr = mock(JcrDocument.class);
-        doReturn(node1jcr).when(documentTranslator).createJcrDocument(same(node1));
+        doReturn(node1jcr).when(mockJcrDocumentFactory).createJcrDocument(same(node1));
         when(node1jcr.hasTranslation(same(mockLocale))).thenReturn(false);
         Node node1unpublished = mock(Node.class);
         when(node1jcr.getVariantNode(eq(JcrDocument.VARIANT_UNPUBLISHED))).thenReturn(node1unpublished);
@@ -138,7 +146,7 @@ public class DocumentTranslatorAddTranslationLinkChangeSets {
         ChangeSet mockChangeSet = mock(ChangeSet.class);
         when(mockChangeSet.getTargetPath()).thenReturn("/matching");
 
-        doReturn(mockChangeSet).when(documentTranslator).createChangeSet(same(mockLocale));
+        doReturn(mockChangeSet).when(mockChangeSetFactory).createChangeSet(same(mockLocale));
 
         List<ChangeSet> changeSetList = new ArrayList<>();
         ChangeSet doesntMatchPath = mock(ChangeSet.class);
@@ -169,7 +177,7 @@ public class DocumentTranslatorAddTranslationLinkChangeSets {
         Node node1 = mock(Node.class);
         when(mockSession.getNodeByIdentifier("node1uuid")).thenReturn(node1);
         JcrDocument node1jcr = mock(JcrDocument.class);
-        doReturn(node1jcr).when(documentTranslator).createJcrDocument(same(node1));
+        doReturn(node1jcr).when(mockJcrDocumentFactory).createJcrDocument(same(node1));
         when(node1jcr.hasTranslation(same(mockLocale))).thenReturn(false);
         Node node1unpublished = mock(Node.class);
         when(node1jcr.getVariantNode(eq(JcrDocument.VARIANT_UNPUBLISHED))).thenReturn(node1unpublished);
@@ -181,7 +189,7 @@ public class DocumentTranslatorAddTranslationLinkChangeSets {
         ChangeSet mockChangeSet = mock(ChangeSet.class);
         when(mockChangeSet.getTargetPath()).thenReturn("/matching");
 
-        doReturn(mockChangeSet).when(documentTranslator).createChangeSet(same(mockLocale));
+        doReturn(mockChangeSet).when(mockChangeSetFactory).createChangeSet(same(mockLocale));
 
         List<ChangeSet> changeSetList = new ArrayList<>();
         ChangeSet doesntMatchPath = mock(ChangeSet.class);
@@ -198,7 +206,4 @@ public class DocumentTranslatorAddTranslationLinkChangeSets {
         assertSame(existingChangeSet, changeSetList.get(1));
     }
 
-    public abstract class ExampleTranslationLinkContainer implements HippoBean, TranslationLinkContainer {
-
-    }
 }

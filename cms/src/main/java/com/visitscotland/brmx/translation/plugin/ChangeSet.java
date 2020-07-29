@@ -96,7 +96,7 @@ public class ChangeSet {
         do {
             pathBuilder.append("/");
             pathBuilder.append(ftIterator.next().getUrlfr());
-        } while(ftIterator.hasNext());
+        } while (ftIterator.hasNext());
         return pathBuilder.toString();
     }
 

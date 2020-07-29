@@ -6,9 +6,7 @@ import org.hippoecm.frontend.model.nodetypes.JcrNodeTypeModel;
 import javax.jcr.Node;
 import javax.jcr.RepositoryException;
 
-import static org.hippoecm.repository.api.HippoNodeType.NT_DOCUMENT;
-import static org.hippoecm.repository.api.HippoNodeType.NT_HANDLE;
-import static org.hippoecm.repository.api.HippoNodeType.NT_TEMPLATETYPE;
+import static org.hippoecm.repository.api.HippoNodeType.*;
 
 public class TypeNameFactory {
     protected String lookupTypeName(Node node) {
@@ -27,7 +25,7 @@ public class TypeNameFactory {
             if (type != null) {
                 return new TypeTranslator(new JcrNodeTypeModel(type)).getTypeName().getObject();
             }
-        } catch(RepositoryException ex) {
+        } catch (RepositoryException ex) {
             // consume the exception and make the type unknown
         }
         return "unknown";

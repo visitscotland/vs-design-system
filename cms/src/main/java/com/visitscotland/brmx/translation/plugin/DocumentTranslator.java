@@ -2,14 +2,12 @@ package com.visitscotland.brmx.translation.plugin;
 
 import com.visitscotland.brmx.beans.TranslationLinkContainer;
 import com.visitscotland.brmx.beans.TranslationParent;
-import org.hippoecm.frontend.session.UserSession;
 import org.hippoecm.frontend.translation.ILocaleProvider;
 import org.hippoecm.hst.content.beans.ObjectBeanManagerException;
 import org.hippoecm.hst.content.beans.standard.HippoBean;
 import org.hippoecm.repository.api.*;
 import org.hippoecm.repository.standardworkflow.DefaultWorkflow;
 import org.hippoecm.repository.translation.HippoTranslatedNode;
-import org.jetbrains.annotations.NotNull;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -25,13 +23,25 @@ public class DocumentTranslator {
     public static final String COULD_NOT_CREATE_FOLDERS = "could-not-create-folders";
     private static final Logger logger = LoggerFactory.getLogger(DocumentTranslator.class);
     private HippoTranslatedNodeFactory hippoTranslatedNodeFactory;
+    private SessionFactory sessionFactory;
+    private JcrDocumentFactory jcrDocumentFactory;
+    private ChangeSetFactory changeSetFactory;
 
     public DocumentTranslator() {
-        this(new HippoTranslatedNodeFactory());
+        this(new HippoTranslatedNodeFactory(),
+                new SessionFactory(),
+                new JcrDocumentFactory(),
+                new ChangeSetFactory());
     }
 
-    protected DocumentTranslator(HippoTranslatedNodeFactory hippoTranslatedNodeFactory) {
+    protected DocumentTranslator(HippoTranslatedNodeFactory hippoTranslatedNodeFactory,
+                                 SessionFactory sessionFactory,
+                                 JcrDocumentFactory jcrDocumentFactory,
+                                 ChangeSetFactory changeSetFactory) {
         this.hippoTranslatedNodeFactory = hippoTranslatedNodeFactory;
+        this.sessionFactory = sessionFactory;
+        this.jcrDocumentFactory = jcrDocumentFactory;
+        this.changeSetFactory = changeSetFactory;
     }
 
     /**
@@ -39,7 +49,7 @@ public class DocumentTranslator {
      * If the document is a TranslationParent then add untranslated siblings also.
      * The document, and it's siblings, if they implement TranslationLinkContainer will have their translatable
      * links checked for translations and a ChangeSet added if they are missing.
-     *
+     * <p>
      * Will check every document that implements TranslationLinkContainer for links in the document that need to
      * be translated.
      *
@@ -50,8 +60,8 @@ public class DocumentTranslator {
     public List<ChangeSet> buildChangeSetList(Node sourceDocument, List<ILocaleProvider.HippoLocale> targetLocaleList) throws RepositoryException, ObjectBeanManagerException {
         List<ChangeSet> changeSetList = new ArrayList<>();
         for (ILocaleProvider.HippoLocale targetLocale : targetLocaleList) {
-            ChangeSet change = createChangeSet(targetLocale);
-            JcrDocument document = createJcrDocument(sourceDocument);
+            ChangeSet change = changeSetFactory.createChangeSet(targetLocale);
+            JcrDocument document = jcrDocumentFactory.createJcrDocument(sourceDocument);
             change.populateFolders(document);
             if (!document.hasTranslation(targetLocale)) {
                 change.addDocument(document);
@@ -73,7 +83,7 @@ public class DocumentTranslator {
                         if (!siblingNode.isNodeType("hippostd:folder") &&
                                 (siblingNode.isNodeType(JcrDocument.HIPPO_HANDLE) ||
                                         siblingNode.isNodeType(JcrDocument.HIPPO_TRANSLATED))) {
-                            JcrDocument siblingDocument = createJcrDocument(siblingNode);
+                            JcrDocument siblingDocument = jcrDocumentFactory.createJcrDocument(siblingNode);
                             if (siblingDocument.isNodeType(childJcrTypes)) {
                                 if (!siblingDocument.hasTranslation(targetLocale)) {
                                     change.addDocument(siblingDocument);
@@ -99,19 +109,19 @@ public class DocumentTranslator {
     }
 
     protected void addTranslationLinkChangeSets(HippoBean sourceDocument, ILocaleProvider.HippoLocale targetLocale, List<ChangeSet> changeSetList)
-            throws RepositoryException ,ObjectBeanManagerException {
+            throws RepositoryException, ObjectBeanManagerException {
         if (sourceDocument instanceof TranslationLinkContainer) {
             // Get the translatable links from the container,
             // and then check each one to see if it has been translated
             List<Node> translatableChildNodes = getChildTranslatableLinkNodes(sourceDocument);
             for (Node link : translatableChildNodes) {
-                Node linkedNode = getJcrSession().getNodeByIdentifier(link.getProperty("hippo:docbase").getString());
-                JcrDocument linkDocument = createJcrDocument(linkedNode);
+                Node linkedNode = sessionFactory.getJcrSession().getNodeByIdentifier(link.getProperty("hippo:docbase").getString());
+                JcrDocument linkDocument = jcrDocumentFactory.createJcrDocument(linkedNode);
                 if (!linkDocument.hasTranslation(targetLocale)) {
                     // Create a ChangeSet for the linked document, and populate the folders,
                     // this will allow the checking of the ChangeSet path to see if there is already a
                     // ChangeSet for this path
-                    ChangeSet linkChange = createChangeSet(targetLocale);
+                    ChangeSet linkChange = changeSetFactory.createChangeSet(targetLocale);
                     linkChange.populateFolders(linkDocument);
                     //We might already have a ChangeSet for this folder, check it doesn't already exist
                     ChangeSet existingChangeSet = null;
@@ -139,7 +149,7 @@ public class DocumentTranslator {
     }
 
     protected List<Node> getChildTranslatableLinkNodes(HippoBean sourceDocument) throws RepositoryException {
-        TranslationLinkContainer container = (TranslationLinkContainer)sourceDocument;
+        TranslationLinkContainer container = (TranslationLinkContainer) sourceDocument;
         String[] translatableLinkNames = container.getTranslatableLinkNames();
         List<Node> translatableChildNodes = new ArrayList<>();
         for (String translatableLink : translatableLinkNames) {
@@ -151,23 +161,11 @@ public class DocumentTranslator {
         return translatableChildNodes;
     }
 
-    protected ChangeSet createChangeSet(ILocaleProvider.HippoLocale targetLocale) {
-        return new ChangeSet(targetLocale);
-    }
-
-    protected JcrDocument createJcrDocument(Node sourceNode) throws RepositoryException {
-        return new JcrDocument(sourceNode);
-    }
-
-    protected Session getJcrSession() {
-        return UserSession.get().getJcrSession();
-    }
-
     public void applyChangeSet(List<ChangeSet> changeSetList,
                                Session session,
                                TranslationWorkflow workflow)
             throws TranslationException, WorkflowException,
-                   RepositoryException, RemoteException, ObjectBeanManagerException {
+            RepositoryException, RemoteException, ObjectBeanManagerException {
         // We want to check them all at the same time for same name siblings,
         // otherwise the creation of nested folders could throw a false SNS exception
         for (ChangeSet changeSet : changeSetList) {
@@ -208,7 +206,7 @@ public class DocumentTranslator {
             if (document.containsTranslationLinks() != includeTranslationLinkContainers) {
                 continue;
             }
-            JcrDocument sourceDocument = createJcrDocument(session.getNodeByIdentifier(document.getId()));
+            JcrDocument sourceDocument = jcrDocumentFactory.createJcrDocument(session.getNodeByIdentifier(document.getId()));
             workflow.addTranslation(changeSet.getTargetLocale().getName(), document.getNamefr(),
                     sourceDocument.getVariantNode(JcrDocument.VARIANT_UNPUBLISHED));
         }

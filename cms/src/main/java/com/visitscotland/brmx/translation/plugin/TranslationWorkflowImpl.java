@@ -16,7 +16,10 @@ import org.slf4j.LoggerFactory;
 import javax.jcr.*;
 import java.io.Serializable;
 import java.rmi.RemoteException;
-import java.util.*;
+import java.util.Map;
+import java.util.Set;
+import java.util.TreeMap;
+import java.util.TreeSet;
 
 public class TranslationWorkflowImpl implements TranslationWorkflow, InternalWorkflow {
 
@@ -96,7 +99,7 @@ public class TranslationWorkflowImpl implements TranslationWorkflow, InternalWor
 
         // Iterate over the child Nodes in the document looking for Translatable children
         JcrDocument jcrDocument = new JcrDocument(newDocumentHandle);
-        String[] translatableLinkNames = new String[] {};
+        String[] translatableLinkNames = new String[]{};
         boolean containsTranslatableTypes = false;
         if (jcrDocument.asHippoBean() instanceof TranslationLinkContainer) {
             containsTranslatableTypes = true;

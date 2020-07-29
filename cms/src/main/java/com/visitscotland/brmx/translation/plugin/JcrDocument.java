@@ -142,7 +142,7 @@ public class JcrDocument {
         return hippoBean;
     }
 
-    public <T> T asHippoBean(Class<T> clazz)throws ObjectBeanManagerException {
+    public <T> T asHippoBean(Class<T> clazz) throws ObjectBeanManagerException {
         return clazz.cast(asHippoBean());
     }
 

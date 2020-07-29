@@ -3,20 +3,9 @@ package com.visitscotland.brmx.translation.plugin;
 import org.apache.wicket.markup.repeater.data.IDataProvider;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.LoadableDetachableModel;
-import org.apache.wicket.model.Model;
-import org.hippoecm.frontend.i18n.types.TypeTranslator;
-import org.hippoecm.frontend.model.nodetypes.JcrNodeTypeModel;
-import org.hippoecm.frontend.plugins.standards.list.resolvers.TypeRenderer;
 import org.hippoecm.frontend.translation.ILocaleProvider;
 
-import javax.jcr.Node;
-import javax.jcr.RepositoryException;
 import java.util.*;
-import java.util.stream.Collectors;
-
-import static org.hippoecm.repository.api.HippoNodeType.NT_DOCUMENT;
-import static org.hippoecm.repository.api.HippoNodeType.NT_HANDLE;
-import static org.hippoecm.repository.api.HippoNodeType.NT_TEMPLATETYPE;
 
 public class DocumentChangeProvider implements IDataProvider<DocumentChangeProvider.Entry> {
     protected List<Entry> documentChangeList;
@@ -93,12 +82,16 @@ public class DocumentChangeProvider implements IDataProvider<DocumentChangeProvi
             return documentName;
         }
 
-        protected void addLocale(ILocaleProvider.HippoLocale toAdd) { localeList.add(toAdd); }
+        protected void addLocale(ILocaleProvider.HippoLocale toAdd) {
+            localeList.add(toAdd);
+        }
 
         public List<ILocaleProvider.HippoLocale> getLocaleList() {
             return localeList;
         }
 
-        public String getDocumentType() { return  documentType; }
+        public String getDocumentType() {
+            return documentType;
+        }
     }
 }
