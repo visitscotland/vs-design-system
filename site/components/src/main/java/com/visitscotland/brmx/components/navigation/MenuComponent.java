@@ -60,16 +60,21 @@ public class MenuComponent extends EssentialsMenuComponent {
 
     protected void exploreMenu(HstRequest request){
         List<HstSiteMenuItem> enhancedMenu = new ArrayList<>();
+        RootMenuItem root = new RootMenuItem(request.getModel(MENU));
 
         if (request.getModel(MENU) != null) {
-            for (HstSiteMenuItem hstItem: ((HstSiteMenu) request.getModel(MENU)).getSiteMenuItems()) {
+            for (HstSiteMenuItem hstItem: (((HstSiteMenu)request.getModel(MENU)).getSiteMenuItems())) {
                 MenuItem menuItem = exploreMenu(request, hstItem);
                 if (menuItem != null) {
                     enhancedMenu.add(menuItem);
                 }
             }
 
+            root.setSiteMenuItems(enhancedMenu);
             request.setModel(ENHANCED_MENU, enhancedMenu);
+
+            request.setModel("menu", root);
+
 
             // TODO transform the list of elements into an element so it can be used is hst.cmseditmenu
 //            VsHstSiteMenuItemImpl root = new VsHstSiteMenuItemImpl(null, request.getModel("menu"));
@@ -81,7 +86,7 @@ public class MenuComponent extends EssentialsMenuComponent {
 //            request.setModel("enhancedMenuItem", root);
 //
 //            //TODO update references
-////            request.setModel("menu", enhancedMenu);
+//            request.setModel("menu", enhancedMenu);
 
         }
 
@@ -109,9 +114,6 @@ public class MenuComponent extends EssentialsMenuComponent {
                     //Widget document
                     if (bean instanceof Widget) {
                         menuItem.setWidget((Widget) bean);
-                        if (menuItem.getTitle() == null){
-                            menuItem.setTitle(hstItem.getName());
-                        }
                     } else {
                         if (Contract.isEmpty(menuItem.getTitle()) && bean instanceof Page) {
                             menuItem.setTitle(((Page) bean).getTitle());
@@ -133,6 +135,7 @@ public class MenuComponent extends EssentialsMenuComponent {
                                 }
                             }
                         }
+//                        fromDocument(menuItem, bean, resourceBundle, request, hstItem);
                     }
                 }
 
@@ -144,7 +147,7 @@ public class MenuComponent extends EssentialsMenuComponent {
             }
         }
 
-        if (menuItem.getTitle() == null) {
+        if (menuItem.getTitle() == null && menuItem.getWidget() != null) {
             return null;
         } else {
             //Children will add themselves to the parent on the method exploreMenu
@@ -156,9 +159,11 @@ public class MenuComponent extends EssentialsMenuComponent {
             }
             return menuItem;
         }
-
-
     }
+
+//    private void fromDocument(MenuItem menuItem, HippoBean bean, String resourceBundle, HstRequest request, HstSiteMenuItem hstItem){
+//        ;
+//    }
 
 
 

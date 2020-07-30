@@ -6,7 +6,7 @@
 <#if enhancedMenu??>
 <div class="has-edit-button">
     <ul class="nav nav-pills">
-      <#list enhancedMenu as item>
+      <#list menu.siteMenuItems as item>
           <#if item.title?has_content>
             <#if !item.hstLink?? && !item.externalLink??>
                 <#if item.selected || item.expanded>
@@ -23,9 +23,9 @@
                 <#if item.widget??>
                     <li><a style="background: lightcyan;">Widget (${item.widget.component})</a></li>
                 <#elseif  item.selected || item.expanded>
-                    <li class="active">${item.title?html} (<a href="${href}">${item.cta?html}</a>)</li>
+                    <li class="active">${item.title?html} <a href="${href}">(${item.cta?html})</a></li>
                 <#else>
-                    <li>${item.title?html} (<a href="${href}">${item.cta?html}</a>)</li>
+                    <li>${item.title?html} <a href="${href}">(${item.cta?html})</a></li>
                 </#if>
             </#if>
           </#if>

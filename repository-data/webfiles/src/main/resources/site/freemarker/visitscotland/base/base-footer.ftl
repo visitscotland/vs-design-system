@@ -16,7 +16,7 @@
 <vs-footer class="has-edit-button">
     <#if enhancedMenu??>
         <template slot="accordion-items">
-            <@footerAccordionItem footerMenuItems=enhancedMenu />
+            <@footerAccordionItem footerMenuItems=menu.siteMenuItems />
         </template>
 
         <template slot="social-menu">      

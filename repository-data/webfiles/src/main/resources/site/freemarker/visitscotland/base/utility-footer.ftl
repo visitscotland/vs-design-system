@@ -8,7 +8,7 @@
 
 <#if enhancedMenu??>
     <div class="has-edit-button">
-        <#list enhancedMenu as item>
+        <#list menu.siteMenuItems as item>
             <vs-footer-utility-list>
                 <#list item.childMenuItems as childItem>
                     <#if childItem.title?has_content>
