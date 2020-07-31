@@ -77,8 +77,22 @@ export default {
 
 <style lang="scss">
 .vs-footer-accordion-item.card {
+    border-bottom: 1px solid $color-gray-shade-2;
+
+      .vs-accordion-item__card-header{
+        background-color: $color-gray-shade-7;
+    }
+
     .vs-accordion-item__title {
         margin: $spacer-3 0;
+        background-color: $color-gray-shade-7;
+        color: $color-white;
+    }
+
+     .vs-accordion-item__panel.card-body {
+        background-color: $color-gray-shade-6;
+        color: $color-white;
+        border-top: 1px solid $color-gray-shade-2;
     }
 
     .btn.vs-accordion-toggle {
@@ -96,6 +110,12 @@ export default {
 
         &:focus {
             box-shadow: 0 0 0 1px $color-yellow;
+        }
+
+         .icon.icon-xs {
+            height: 16px;
+            width: 16px;
+            padding: 0;
         }
     }
 
