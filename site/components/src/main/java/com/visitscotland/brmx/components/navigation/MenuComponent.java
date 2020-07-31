@@ -101,6 +101,12 @@ public class MenuComponent extends EssentialsMenuComponent {
         //By default the name would be populated by the resourceBundle
         menuItem.setTitle(bundle.getResourceBundle(resourceBundle, hstItem.getName(), request.getLocale(), true));
 
+        //TODO. Complete!
+//        HstRequestContext context = request.getRequestContext();
+//        Mount englishMount   = context.getMount("english");
+//        HstLink link = context.getHstLinkCreator().create(hstItem.getName(), englishMount);
+        // link.getHstSiteMapItem()
+
         //if document base page or widget, we enhance the document
         if (isDocumentBased(hstItem.getHstLink())) {
             ResolvedSiteMapItem rsi = hstItem.resolveToSiteMapItem();
