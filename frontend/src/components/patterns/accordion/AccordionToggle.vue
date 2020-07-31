@@ -4,26 +4,24 @@
         :aria-expanded="visible ? 'true' : 'false'"
         aria-haspopup="true"
         @click.native="triggerToggle"
-        class="vs-accordion-toggle clearfix"
+        class="vs-accordion-toggle clearfix position-relative"
         block
         :variant="variant"
     >
         <!-- @slot Default slot contains text for the button -->
         <slot />
 
-        <div class="float-right">
-            <!-- @slot Put the icon to be used when panel is open  -->
-            <slot
-                v-if="visible"
-                name="icon-open"
-            />
+        <!-- @slot Put the icon to be used when panel is open  -->
+        <slot
+            v-if="visible"
+            name="icon-open"
+        />
 
-            <!-- @slot Put the icon to be used when panel is closed  -->
-            <slot
-                v-else
-                name="icon-closed"
-            />
-        </div>
+        <!-- @slot Put the icon to be used when panel is closed  -->
+        <slot
+            v-else
+            name="icon-closed"
+        />
     </VsButton>
 </template>
 
@@ -65,12 +63,9 @@ export default {
 
 <style lang="scss">
 .btn.vs-accordion-toggle {
-    text-align: left;
-
     .icon.icon-xs {
-        height: 16px!important;
-        width: 16px!important;
-        padding: 0!important;
+       position:absolute;
+       right: 0;
     }
 }
 </style>
