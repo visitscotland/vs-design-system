@@ -69,4 +69,34 @@ public class DMSDataService {
         }
         return null;
     }
+
+    //TODO: Do it right!!!!
+    public JsonNode searchResults(ProductSearchBuilder psb, Locale locale){
+        String dmsUrl = Properties.VS_DMS_SERVICE + "/data/product-search/map?cat=vics&loc=Scotland&locplace=&locprox=0";
+        String responseString = null;
+
+        if (locale != null) {
+            dmsUrl += "&locale=" + locale.getLanguage();
+        }
+
+        logger.info("Requesting data to the dms: " + dmsUrl);
+        try {
+            responseString = utils.requestUrl(dmsUrl);
+
+            if (responseString!=null) {
+
+                ObjectMapper mapper = new ObjectMapper();
+                JsonNode json = mapper.readTree(responseString);
+
+                if (json.has("features")) {
+                    return json.get("features");
+                }
+            }
+        } catch (JsonProcessingException e){
+            logger.error("The response could not be parsed:\n" + responseString, e);
+        } catch (IOException e){
+            logger.error("An unexpected error happened while connecting to the DMS", e);
+        }
+        return  null;
+    }
 }

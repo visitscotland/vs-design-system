@@ -47,7 +47,7 @@ public class LinkModulesFactory {
         this.dmsData = dmsData;
     }
 
-    public AbstractLayout getMegalinkModule(Megalinks doc, Locale locale) {
+    public AbstractLayout getModule(Megalinks doc, Locale locale) {
         if (!Boolean.TRUE.equals(doc.getListLayout()) && doc.getSingleImageModule() != null) {
             return singleImageLayout(doc, locale);
         } else if (Boolean.TRUE.equals(doc.getListLayout()) || doc.getMegalinkItems().size() > MAX_ITEMS) {
