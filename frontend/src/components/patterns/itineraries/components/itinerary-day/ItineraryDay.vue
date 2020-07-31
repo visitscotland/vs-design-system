@@ -2,7 +2,7 @@
     <VsAccordionItem
         :open-by-default="show"
         :control-id="'itinerary-day-' + dayNumber"
-        variant="light"
+        variant="transparent"
         item-break-point="lg"
         class="vs-itinerary-day__list-item"
     >
@@ -26,7 +26,7 @@
                 variant="dark"
                 size="xs"
                 :padding="3"
-                class="vs-itinerary-day__toggle-button p-0"
+                class="vs-itinerary-day__toggle-button"
             />
         </template>
         <template #icon-closed>
@@ -36,7 +36,7 @@
                 variant="dark"
                 size="xs"
                 :padding="3"
-                class="vs-itinerary-day__toggle-button p-0"
+                class="vs-itinerary-day__toggle-button"
             />
         </template>
         <!-- <VsButton
@@ -164,7 +164,7 @@ export default {
 .vs-itinerary-day__toggle-button {
     border: 1px solid $color-base-text;
     border-radius: 50%;
-    top: $spacer-2;
+    top: 30%;
     right: 0;
     height:24px;
     width:24px;
@@ -174,6 +174,12 @@ export default {
         margin: 0 auto;
         display: block;
     }
+
+    &.icon.icon-xs {
+           height: 32px;
+           width: 32px;
+           padding: 8px;
+        }
 }
 </style>
 
