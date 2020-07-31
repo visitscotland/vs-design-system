@@ -19,7 +19,7 @@ pipeline {
   }
   agent {label thisAgent}
   environment {
-    VS_SSR_PROXY_ON = 'TRUE'
+    VS_SSR_PROXY_ON = 'FALSE'
   }
   tools {
         maven 'Maven 3.3.9'
