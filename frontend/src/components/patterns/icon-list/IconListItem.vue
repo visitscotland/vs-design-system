@@ -3,7 +3,7 @@
         <VsIcon
             :name="icon"
             variant="dark"
-            size="sm"
+            size="md"
             class="d-block mx-auto"
         />
         {{ label }}
@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import VsIcon from "@components/elements/icon/Icon"
+import VsIcon from '@components/elements/icon/Icon';
 
 /**
  * An icon list item is a child component used within icon list components.
@@ -20,9 +20,9 @@ import VsIcon from "@components/elements/icon/Icon"
  */
 
 export default {
-    name: "VsIconListItem",
-    status: "prototype",
-    release: "0.0.1",
+    name: 'VsIconListItem',
+    status: 'prototype',
+    release: '0.0.1',
     components: {
         VsIcon,
     },
@@ -42,7 +42,7 @@ export default {
             required: true,
         },
     },
-}
+};
 </script>
 
 <style lang="scss" scoped>
@@ -54,5 +54,9 @@ export default {
     padding: 0 $spacer-1;
     font-size: $h6-font-size;
     line-height: $standard-line-height;
+
+    svg{
+        margin-bottom: $spacer-3;
+    }
 }
 </style>

@@ -1,7 +1,7 @@
-import Vuex from "vuex"
-import Vue from "vue"
+import Vuex from 'vuex';
+import Vue from 'vue';
 
-Vue.use(Vuex)
+Vue.use(Vuex);
 
 export default new Vuex.Store({
     modules: {
@@ -13,16 +13,16 @@ export default new Vuex.Store({
             mutations: {
                 SET_SHOW_MILES: (state, payload) => {
                     /* eslint-disable no-param-reassign */
-                    state.showMiles = payload
+                    state.showMiles = payload;
                 },
             },
             actions: {
                 setShowMiles: ({ commit, getters }, payload) => {
                     if (getters.getShowMiles === payload) {
-                        return false
+                        return false;
                     }
-                    commit("SET_SHOW_MILES", payload)
-                    return true
+                    commit('SET_SHOW_MILES', payload);
+                    return true;
                 },
             },
             getters: {
@@ -30,4 +30,4 @@ export default new Vuex.Store({
             },
         },
     },
-})
+});

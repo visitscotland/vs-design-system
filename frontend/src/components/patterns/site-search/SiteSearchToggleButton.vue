@@ -6,7 +6,7 @@
     >
         <VsIcon
             name="search"
-            size="sm"
+            size="md"
             :variant="isOn ? 'secondary' : 'reverse-white'"
         />
         <span class="sr-only-xl-down d-xl-flex"><slot /></span>
@@ -15,14 +15,14 @@
 
 <script>
 export default {
-    name: "VsSiteSearchToggleButton",
+    name: 'VsSiteSearchToggleButton',
     props: {
         isOn: {
             type: Boolean,
             default: false,
         },
     },
-}
+};
 </script>
 
 <style lang="scss" scoped>

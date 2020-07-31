@@ -81,6 +81,7 @@ public class ProductSearchBuilder {
 
     public ProductSearchBuilder(){
         this.order = Order.NONE;
+        this.proximity = DEFAULT_PROXIMITY;
     }
 
     /**
@@ -256,7 +257,7 @@ public class ProductSearchBuilder {
         if (location != null) {
             LocationObject loc = LocationLoader.getLocation(location, locale);
 
-            compose = addParams(compose, "POLYGON".equals(loc.getType())?LOCATION_POLYGON: LOCATION_PLACE, loc.getId());
+            compose = addParams(compose, "POLYGON".equals(loc.getType())?LOCATION_POLYGON: LOCATION_PLACE, loc.getKey());
             compose = addParams(compose, PROXIMITY_LOCATION, proximity.toString());
 
             try {

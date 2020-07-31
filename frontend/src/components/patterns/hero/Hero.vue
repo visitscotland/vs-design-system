@@ -74,20 +74,20 @@
 </template>
 
 <script>
-import VsSvg from "@components/elements/svg/Svg"
-import VsButton from "@components/elements/button/Button"
+import VsSvg from '@components/elements/svg/Svg';
+import VsButton from '@components/elements/button/Button';
 import {
     VsContainer, VsRow, VsCol,
-} from "@components/elements/layout"
-import VsImageLocationMap from "@components/patterns/image-location-map/ImageLocationMap"
+} from '@components/elements/layout';
+import VsImageLocationMap from '@components/patterns/image-location-map/ImageLocationMap';
 
 /**
  * Hero image element
  */
 export default {
-    name: "VsHero",
-    status: "prototype",
-    release: "0.0.1",
+    name: 'VsHero',
+    status: 'prototype',
+    release: '0.0.1',
     components: {
         VsContainer,
         VsRow,
@@ -102,7 +102,7 @@ export default {
          */
         altText: {
             type: String,
-            default: "",
+            default: '',
         },
 
         /**
@@ -110,7 +110,7 @@ export default {
          */
         credit: {
             type: String,
-            default: "",
+            default: '',
         },
 
         /**
@@ -118,7 +118,7 @@ export default {
          */
         caption: {
             type: String,
-            default: "",
+            default: '',
         },
 
         /**
@@ -126,7 +126,7 @@ export default {
          */
         imageSrc: {
             type: String,
-            default: "",
+            default: '',
         },
 
         /**
@@ -134,7 +134,7 @@ export default {
          */
         latitude: {
             type: String,
-            default: "",
+            default: '',
         },
 
         /**
@@ -142,7 +142,7 @@ export default {
          */
         longitude: {
             type: String,
-            default: "",
+            default: '',
         },
 
         /**
@@ -150,33 +150,33 @@ export default {
          */
         toggleButtonText: {
             type: String,
-            default: "Toggle Caption",
+            default: 'Toggle Caption',
         },
     },
     data() {
         return {
             showCaption: false,
-        }
+        };
     },
     computed: {
         showCaptionData() {
-            return this.caption.length || this.credit.length
+            return this.caption.length || this.credit.length;
         },
         showToggle() {
             // only show the image caption toggle button if there's a map or caption data
-            return this.showCaptionData || this.showMap
+            return this.showCaptionData || this.showMap;
         },
         showMap() {
             // only show the map if longitude and latitude are both set
-            return this.longitude.length && this.latitude.length
+            return this.longitude.length && this.latitude.length;
         },
     },
     methods: {
         toggleCaption() {
-            this.showCaption = !this.showCaption
+            this.showCaption = !this.showCaption;
         },
     },
-}
+};
 </script>
 
 <style lang="scss" scoped>

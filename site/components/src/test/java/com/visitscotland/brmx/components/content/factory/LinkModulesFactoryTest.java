@@ -69,7 +69,7 @@ class LinkModulesFactoryTest extends EasyMockSupport {
     @Test
     void getListLayout(){
         Megalinks mega = megalinkService.createMock(TITLE, false, true, true, 0);
-        AbstractLayout layout = factory.getModule(mega, Locale.UK);
+        AbstractLayout layout = factory.getMegalinkModule(mega, Locale.UK);
         replayAll();
 
         verifyAll();
@@ -82,14 +82,14 @@ class LinkModulesFactoryTest extends EasyMockSupport {
 
         //6 elements => Featured Layout
         Megalinks mega = megalinkService.createMock(TITLE, false, false, true, LinkModulesFactory.MAX_ITEMS);
-        AbstractLayout layout = factory.getModule(mega, Locale.UK);
+        AbstractLayout layout = factory.getMegalinkModule(mega, Locale.UK);
 
         verifyAll();
         Assertions.assertNotEquals(layout.getType(), LIST);
 
         // 7 elements => Convert to List Layout
         mega = megalinkService.createMock(TITLE, false, false, true, LinkModulesFactory.MAX_ITEMS + 1);
-        layout = factory.getModule(mega, Locale.UK);
+        layout = factory.getMegalinkModule(mega, Locale.UK);
 
         verifyAll();
         Assertions.assertEquals(layout.getType(), LIST);
@@ -100,7 +100,7 @@ class LinkModulesFactoryTest extends EasyMockSupport {
         replayAll();
 
         Megalinks mega = megalinkService.createMock(TITLE, false, false, true, 0, "Single image title");
-        AbstractLayout layout = factory.getModule(mega, Locale.UK);
+        AbstractLayout layout = factory.getMegalinkModule(mega, Locale.UK);
 
         verifyAll();
         Assertions.assertEquals(layout.getType(), SINGLE_IMAGE);
@@ -115,7 +115,7 @@ class LinkModulesFactoryTest extends EasyMockSupport {
         replayAll();
 
         Megalinks mega = megalinkService.createMock(TITLE, false, false, true, 0, "Single image title");
-        AbstractLayout layout = factory.getModule(mega, Locale.UK);
+        AbstractLayout layout = factory.getMegalinkModule(mega, Locale.UK);
 
         verifyAll();
         Assertions.assertEquals(layout.getType(), SINGLE_IMAGE);
@@ -123,14 +123,14 @@ class LinkModulesFactoryTest extends EasyMockSupport {
     }
 
     @Test
-    void getSingleImageWithLargeAmountOfItems(){
+    void getListLayoutWhenSingleImageLinksIsHigherThan6(){
         replayAll();
 
-        Megalinks mega = megalinkService.createMock(TITLE, false, false, true, LinkModulesFactory.MAX_ITEMS + 1, "Single image title");
-        AbstractLayout layout = factory.getModule(mega, Locale.UK);
+        Megalinks mega = megalinkService.createMock(TITLE, false, false, true, LinkModulesFactory.MAX_ITEMS + 1, "List Layout Title");
+        AbstractLayout layout = factory.getMegalinkModule(mega, Locale.UK);
 
         verifyAll();
-        Assertions.assertEquals(layout.getType(), SINGLE_IMAGE);
+        Assertions.assertEquals(LIST, layout.getType());
     }
 
     @Test
@@ -139,8 +139,8 @@ class LinkModulesFactoryTest extends EasyMockSupport {
 
         for (int i= 0; i <= LinkModulesFactory.MAX_ITEMS; i++) {
             Megalinks mega = megalinkService.createMock(TITLE, false, false, true, i);
-            AbstractLayout layout = factory.getModule(mega, Locale.UK);
-            Assertions.assertEquals(layout.getType(), FEATURED);
+            AbstractLayout layout = factory.getMegalinkModule(mega, Locale.UK);
+            Assertions.assertEquals(FEATURED, layout.getType());
         }
 
         verifyAll();
@@ -159,7 +159,7 @@ class LinkModulesFactoryTest extends EasyMockSupport {
 
         //Check that from 7 items is not Featured any longer.
         Megalinks mega = megalinkService.createMock(TITLE, false, false, true, 7);
-        AbstractLayout layout = factory.getModule(mega, Locale.UK);
+        AbstractLayout layout = factory.getMegalinkModule(mega, Locale.UK);
 
         verifyAll();
         Assertions.assertNotEquals(layout.getType(), FEATURED);
@@ -175,8 +175,8 @@ class LinkModulesFactoryTest extends EasyMockSupport {
         }
 
         verifyAll();
-        Assertions.assertEquals(((FeaturedLayout) factory.getModule(min, Locale.UK)).getFeaturedLinks().size(), minItems);
-        Assertions.assertEquals(((FeaturedLayout) factory.getModule(max, Locale.UK)).getFeaturedLinks().size(), maxItems);
+        Assertions.assertEquals(((FeaturedLayout) factory.getMegalinkModule(min, Locale.UK)).getFeaturedLinks().size(), minItems);
+        Assertions.assertEquals(((FeaturedLayout) factory.getMegalinkModule(max, Locale.UK)).getFeaturedLinks().size(), maxItems);
     }
 
     @Test

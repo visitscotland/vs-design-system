@@ -47,11 +47,11 @@ public class LinkModulesFactory {
         this.dmsData = dmsData;
     }
 
-    public AbstractLayout getModule(Megalinks doc, Locale locale) {
-        if (!Boolean.TRUE.equals(doc.getListLayout()) && doc.getSingleImageModule() != null) {
-            return singleImageLayout(doc, locale);
-        } else if (Boolean.TRUE.equals(doc.getListLayout()) || doc.getMegalinkItems().size() > MAX_ITEMS) {
+    public AbstractLayout getMegalinkModule(Megalinks doc, Locale locale) {
+        if (Boolean.TRUE.equals(doc.getListLayout()) || doc.getMegalinkItems().size() > MAX_ITEMS) {
             return list(doc, locale);
+        } else if (doc.getSingleImageModule() != null) {
+            return singleImageLayout(doc, locale);
         } else {
             return featuredLayout(doc, locale);
         }
@@ -65,7 +65,6 @@ public class LinkModulesFactory {
         sil.setInnerTitle(doc.getSingleImageModule().getTitle());
         sil.setInnerIntroduction(doc.getSingleImageModule().getIntroduction());
         sil.setImage(createFlatImage(doc.getSingleImageModule().getImage(), locale));
-        sil.setFullWidth(doc.getSingleImageModule().getFullWidth());
         sil.setLinks(convertToFlatLinks(doc.getMegalinkItems(), locale));
         sil.setMegalinkItem(doc);
 
@@ -140,7 +139,7 @@ public class LinkModulesFactory {
 
         return ll;
     }
-
+    //TODO comment this method
     List<FlatLink> convertToFlatLinks(List<MegalinkItem> items, Locale locale) {
         List<FlatLink> links = new ArrayList<>();
         for (MegalinkItem item : items) {
@@ -158,6 +157,7 @@ public class LinkModulesFactory {
         return links;
     }
 
+    //TODO comment this method
     List<EnhancedLink> convertToEnhancedLinks(List<MegalinkItem> items, Locale locale) {
         List<EnhancedLink> links = new ArrayList<>();
         for (MegalinkItem item : items) {
@@ -197,7 +197,7 @@ public class LinkModulesFactory {
         }
         return links;
     }
-
+    //TODO comment this method
     private JsonNode getNodeFromSharedLink(SharedLink link, Locale locale) {
         if (link.getLinkType() instanceof DMSLink) {
             try {
@@ -208,7 +208,7 @@ public class LinkModulesFactory {
         }
         return null;
     }
-
+    //TODO comment this method
     private FlatImage createFlatImage(Image img, Locale locale) {
         FlatImage flatImage = new FlatImage(img, locale);
         LocationObject locationObject = getLocation(img.getLocation(), locale);
