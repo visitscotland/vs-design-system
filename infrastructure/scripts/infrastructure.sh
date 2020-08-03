@@ -46,6 +46,7 @@ if [ -z "$VS_CONTAINER_INT_PORT_SSR" ]; then VS_CONTAINER_INT_PORT_SSR=8082; fi
 if [ -z "$VS_CONTAINER_INT_PORT_SSH" ]; then VS_CONTAINER_INT_PORT_SSH=22; fi
 if [ -z "$VS_CONTAINER_INT_PORT_TLN" ]; then VS_CONTAINER_INT_PORT_TLN=8081; fi
 if [ -z "$VS_CONTAINER_PRESERVE" ]; then VS_CONTAINER_PRESERVE=TRUE; fi
+if [ -z "$VS_CONTAINER_UPDATES_DIR" ]; then VS_CONTAINER_UPDATES_DIR=files
 #  ==== SSR Application Variables ====
 if [ -z "$VS_FRONTEND_DIR" ]; then VS_FRONTEND_DIR=frontend; fi
 if [ -z "$VS_SSR_PACKAGE_SOURCE" ]; then VS_SSR_PACKAGE_SOURCE="$VS_FRONTEND_DIR/ssr/server/ $VS_FRONTEND_DIR/dist/ssr/ $VS_FRONTEND_DIR/node_modules/"; fi
@@ -126,7 +127,10 @@ defaultSettings() {
   # set container name from branch name - removing / characters
   if [ -z "$VS_CONTAINER_NAME" ]; then VS_CONTAINER_NAME=`echo $JOB_NAME | sed -e "s/\/.*//g"`"_"`basename $BRANCH_NAME`; fi
   if [ -z "$NODE_NAME" ]; then VS_THIS_SERVER=$HOSTNAME; else VS_THIS_SERVER=$NODE_NAME; fi
-  if [ "$VS_CONTAINER_PRESERVE" == "TRUE" ]; then VS_BRXM_REPOSITORY="repository"; fi
+  if [ "$VS_CONTAINER_PRESERVE" == "TRUE" ]; then
+    VS_BRXM_REPOSITORY="repository"
+    VS_HIPPO_REPOSITORY_PERSIST="TRUE"
+  fi
   VS_COMMIT_AUTHOR=`git show -s --pretty="%ae" ${GIT_COMMIT}`
   VS_DATESTAMP=`date +%Y%m%d`
   VS_HOST_IP_ADDRESS=`/usr/sbin/ip ad sh  | egrep "global noprefixroute" | awk '{print $2}' | sed -e "s/\/.*$//"`
@@ -254,7 +258,7 @@ manageContainers() {
   # if container is running and preserve running is FALSE then - deleteContainers
   if [ "$VS_CONTAINER_PRESERVE" == "TRUE" ] && [ "$CONTAINER_STATUS" == "running" ]; then
     echo "VS_CONTAINER_PRESERVE is $VS_CONTAINER_PRESERVE so existing container $CONTAINER_ID will be re-used"
-  elif [ "$VS_CONTAINER_PRESERVE" == "TRUE" ] && [ ! "$CONTAINER_STATUS" == "running" ]; then
+  elif [ "$VS_CONTAINER_PRESERVE" == "TRUE" ] && [ ! -z "$CONTAINER_ID" ] && [ ! "$CONTAINER_STATUS" == "running" ]; then
     echo "VS_CONTAINER_PRESERVE is $VS_CONTAINER_PRESERVE so existing container $CONTAINER_ID will be started and re-used"
     startContainers
   elif [ ! "$VS_CONTAINER_PRESERVE" == "TRUE" ] && [ "$CONTAINER_STATUS" == "running" ]; then
@@ -529,10 +533,10 @@ findHippoArtifact() {
 # package SSR app files
 packageSSRArtifact() {
   if [ "$VS_SSR_PROXY_ON" = "TRUE" ] && [ ! "$SAFE_TO_PROCEED" = "FALSE" ]; then
-    echo "packaging SSR application"; echo ""
+    echo "packaging SSR application"
     if [ -d "$VS_FRONTEND_DIR" ]; then
       tar -zcf $VS_SSR_PACKAGE_TARGET/$VS_SSR_PACKAGE_NAME $VS_SSR_PACKAGE_SOURCE
-      RETURN_CODE=$?; echo " - return code: " $RETURN_CODE
+      RETURN_CODE=$?; echo " - return code: " $RETURN_CODE; echo ""
       if [ ! "$RETURN_CODE" = "0" ]; then
         SAFE_TO_PROCEED=FALSE
         FAIL_REASON="Failed to package SSR app from $VS_FRONTEND_DIR, command exited with $RETURN_CODE"
@@ -549,7 +553,7 @@ containerCreateAndStart() {
     echo ""
     echo "about to create a new Docker container with:"
     #VS_DOCKER_CMD='docker run -d --name '$VS_CONTAINER_NAME' -p '$VS_CONTAINER_BASE_PORT':'$VS_CONTAINER_EXPOSE_PORT' --env VS_SSR_PROXY_ON='$VS_SSR_PROXY_ON' --env VS_SSR_PACKAGE_NAME='$VS_SSR_PACKAGE_NAME' '$VS_DOCKER_IMAGE_NAME' /bin/bash -c "/usr/local/bin/vs-mysqld-start && /usr/local/bin/vs-hippo && while [ ! -f /home/hippo/tomcat_8080/logs/cms.log ]; do echo no log; sleep 2; done; tail -f /home/hippo/tomcat_8080/logs/cms.log"'
-    VS_DOCKER_CMD='docker run -d --name '$VS_CONTAINER_NAME' -p '$VS_CONTAINER_BASE_PORT':'$VS_CONTAINER_EXPOSE_PORT' '$VS_CONTAINER_PORT_MAPPINGS' --env VS_HIPPO_REPOSITORY_DIR='$VS_BRXM_REPOSITORY' --env VS_SSR_PROXY_ON='$VS_SSR_PROXY_ON' --env VS_SSR_PACKAGE_NAME='$VS_SSR_PACKAGE_NAME' '$VS_DOCKER_IMAGE_NAME' /bin/bash -c "/usr/local/bin/vs-mysqld-start && while [ ! -f /home/hippo/tomcat_8080/logs/cms.log ]; do echo no log; sleep 2; done; tail -f /home/hippo/tomcat_8080/logs/cms.log"'
+    VS_DOCKER_CMD='docker run -d --name '$VS_CONTAINER_NAME' -p '$VS_CONTAINER_BASE_PORT':'$VS_CONTAINER_EXPOSE_PORT' '$VS_CONTAINER_PORT_MAPPINGS' --env VS_HIPPO_REPOSITORY_DIR='$VS_BRXM_REPOSITORY' --env VS_HIPPO_REPOSITORY_PERSIST=$VS_HIPPO_REPOSITORY_PERSIST --env VS_SSR_PROXY_ON='$VS_SSR_PROXY_ON' --env VS_SSR_PACKAGE_NAME='$VS_SSR_PACKAGE_NAME' '$VS_DOCKER_IMAGE_NAME' /bin/bash -c "/usr/local/bin/vs-mysqld-start && while [ ! -f /home/hippo/tomcat_8080/logs/cms.log ]; do echo no log; sleep 2; done; tail -f /home/hippo/tomcat_8080/logs/cms.log"'
     echo " - $VS_DOCKER_CMD"
     eval $VS_DOCKER_CMD
     RETURN_CODE=$?; echo " - return code: " $RETURN_CODE
@@ -564,6 +568,23 @@ containerCreateAndStart() {
   echo ""
 }
 
+containerUpdates() {
+  # check files for updated versions, if the checksum matches we want to update
+  TEST_FILES=("/usr/local/bin/vs-hippo")
+  TEST_SUMS=("5c92fa2dfbc167d0163c1dc1d8690bfa")
+  for i in ${!TEST_FILES[@]}; do
+    THIS_FILE=${TEST_FILES[$1]};
+    THIS_SUM=${TEST_SUMS[$1]};
+    echo "checking $THIS_FILE for update (md5sum must not match $THIS_SUM"
+    THIS_TEST=`docker exec $VS_CONTAINER_NAME md5sum $THIS_FILE | awk '{print $1}'`
+    if [ "$THIS_TEST" == "$THIS_SUM" ] && [ -e "`dirname $0`/$VS_CONTAINER_UPDATES_DIR/`basename $THIS_FILE`"]; then
+      echo " - found $THIS_TEST, an updated version of $THIS_FILE is available, copying to container"
+      docker exec $VS_CONTAINER_NAME mv $THIS_FILE $THIS_FILE.old
+      docker cp "`dirname $0`/$VS_CONTAINER_UPDATES_DIR/`basename $THIS_TEST_FILE`" $VS_CONTAINER_NAME:$THIS_TEST_FILE
+      echo " - sum now: " `docker exec $VS_CONTAINER_NAME md5sum $THIS_FILE | awk '{print $1}'`
+  fi
+}
+
 containerSshStart() {
   if [ ! "$SAFE_TO_PROCEED" = "FALSE" ]; then
     echo ""
@@ -576,11 +597,10 @@ containerSshStart() {
       SAFE_TO_PROCEED=TRUE
       FAIL_REASON="Docker failed to run command in container $VS_CONTAINER_NAME, command exited with $RETURN_CODE. Script will continue."
     fi
-    else
+  else
     echo ""
     echo "container will not be started due to previous failures"
   fi
-  echo ""
 }
 
 
@@ -611,10 +631,10 @@ containerCopySSRArtifact() {
       SAFE_TO_PROCEED=FALSE
       FAIL_REASON="Docker failed to run cp command against $VS_CONTAINER_NAME, command exited with $RETURN_CODE"
     fi
-    elif [ ! "$VS_SSR_PROXY_ON" = "TRUE" ] && [ ! "$SAFE_TO_PROCEED" = "FALSE" ]; then
+  elif [ ! "$VS_SSR_PROXY_ON" = "TRUE" ] && [ ! "$SAFE_TO_PROCEED" = "FALSE" ]; then
     echo ""
     echo "docker cp of VS_SSR_PACKAGE_NAME:$VS_SSR_PACKAGE_NAME will not be run due VS_SSR_PROXY_ON:$VS_SSR_PROXY_ON"
-    else
+  else
     echo ""
     echo "docker cp will not be run due to previous failures"
   fi
@@ -761,6 +781,7 @@ case $METHOD in
     else
       echo "re-using existing container $CONTAINER_ID"  
     fi
+    containerUpdate
     containerSshStart
     containerCopyHippoArtifact
     containerCopySSRArtifact
