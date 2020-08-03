@@ -137,10 +137,10 @@ defaultSettings() {
   VS_HOST_IP_ADDRESS=`/usr/sbin/ip ad sh  | egrep "global noprefixroute" | awk '{print $2}' | sed -e "s/\/.*$//"`
   VS_PARENT_JOB_NAME=`echo $JOB_NAME | sed -e "s/\/.*//g"`
   VS_SCRIPTNAME=`basename $0`
-  if [ -z "$VS_SSR_PROXY_ON" ]; then
-    VS_PROXY_QS_SSR="&vs_ssr_proxy_on"
+  if [ "$VS_SSR_PROXY_ON" == "TRUE" ]; then
+    VS_PROXY_QS_SSR="\&vs_ssr_proxy_on"
   else
-    VS_PROXY_QS_SSR="&vs_ssr_proxy_off"
+    VS_PROXY_QS_SSR="\&vs_ssr_proxy_off"
   fi
   # mail settings - build
   if [ -z "$VS_MAIL_NOTIFY_BUILD_TO" ]; then VS_MAIL_NOTIFY_BUILD_TO=$VS_COMMIT_AUTHOR; fi
