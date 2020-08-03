@@ -39,18 +39,6 @@
                 class="vs-itinerary-day__toggle-button"
             />
         </template>
-        <!-- <VsButton
-                        :animate="false"
-                        :aria-expanded="show ? 'true' : 'false'"
-                        :aria-controls="'dayPanel_' + dayNumber"
-                        @click.native="triggerToggle()"
-                        aria-haspopup="true"
-                        v-if="!isDesktop"
-                        variant="transparent"
-                    > -->
-
-        <!-- </VsButton> -->
-
         <div
             :id="'dayPanel_' + dayNumber"
         >
@@ -66,7 +54,6 @@
 <script>
 import VsIcon from '@components/elements/icon/Icon';
 import VsHeading from '@components/elements/heading/Heading';
-// import VsButton from '@components/elements/button/Button';
 import VsAccordionItem from '@components/patterns/accordion/AccordionItem';
 
 /**
@@ -79,7 +66,6 @@ export default {
     release: '0.0.1',
     components: {
         VsHeading,
-        // VsButton,
         VsIcon,
         VsAccordionItem,
     },
@@ -117,26 +103,7 @@ export default {
     data() {
         return {
             show: this.defaultShow,
-            isDesktop: false,
         };
-    },
-    mounted() {
-        if (window) {
-            window.addEventListener('resize', this.onResize);
-        }
-    },
-    destroyed() {
-        if (window) {
-            window.removeEventListener('resize', this.onResize);
-        }
-    },
-    methods: {
-        onResize() {
-            this.isDesktop = window.innerWidth >= 1200;
-        },
-        triggerToggle() {
-            this.show = !this.show;
-        },
     },
 };
 </script>
