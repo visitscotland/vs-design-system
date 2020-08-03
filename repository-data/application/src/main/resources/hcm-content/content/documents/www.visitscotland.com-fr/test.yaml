@@ -1,0 +1,114 @@
+/content/documents/www.visitscotland.com-fr/test:
+  jcr:primaryType: hippostd:folder
+  jcr:mixinTypes: ['hippotranslation:translated', 'mix:versionable']
+  jcr:uuid: 50ca2cf7-a1c5-407b-a710-e687d10b1621
+  hippostd:foldertype: [new-translated-folder, new-document]
+  hippotranslation:id: cae12615-0478-46e6-a75d-a44cde1632ea
+  hippotranslation:locale: fr
+  /translation:
+    jcr:primaryType: hippostd:folder
+    jcr:mixinTypes: ['hippotranslation:translated', 'mix:versionable']
+    jcr:uuid: 8f94aa1c-2ab7-43ac-87d2-2186414a904c
+    hippostd:foldertype: [new-translated-folder, new-document]
+    hippotranslation:id: 2a2c835d-6c64-46d8-9c54-37f0025c7b4e
+    hippotranslation:locale: fr
+    /clone-document:
+      jcr:primaryType: hippostd:folder
+      jcr:mixinTypes: ['hippotranslation:translated', 'mix:versionable']
+      jcr:uuid: 9e571228-b447-4bf0-831d-f26aa3e92d6e
+      hippostd:foldertype: [new-translated-folder, new-document]
+      hippotranslation:id: 955248eb-87ca-405b-9145-a343bfb3c560
+      hippotranslation:locale: fr
+      /itinerary-fully-translated:
+        jcr:primaryType: hippostd:folder
+        jcr:mixinTypes: ['hippo:named', 'hippotranslation:translated', 'mix:versionable']
+        jcr:uuid: 566523d7-80f7-49a4-b1c2-ec788507a1a6
+        hippo:name: itinerary fully translated
+        hippostd:foldertype: [new-translated-folder, new-document]
+        hippotranslation:id: 7479f1fa-2363-41d9-825b-79d826b12f4e
+        hippotranslation:locale: fr
+        /content:
+          jcr:primaryType: hippo:handle
+          jcr:mixinTypes: ['hippo:named', 'mix:referenceable']
+          jcr:uuid: 77dd2538-e50f-49e6-a1bf-316a688365fb
+          hippo:name: Itinerary (FR)
+          /content:
+            jcr:primaryType: visitscotland:Itinerary
+            jcr:mixinTypes: ['mix:versionable']
+            jcr:uuid: b2016845-f6c9-4c69-b0e3-af80f3123aa7
+            hippo:availability: [preview]
+            hippostd:state: unpublished
+            hippostdpubwf:createdBy: admin
+            hippostdpubwf:creationDate: 2020-08-03T14:45:39.847+01:00
+            hippostdpubwf:lastModificationDate: 2020-08-03T14:49:35.154+01:00
+            hippostdpubwf:lastModifiedBy: admin
+            hippotranslation:id: a579e072-d29e-49b0-9615-6a3f652b53f5
+            hippotranslation:locale: fr
+            visitscotland:areas: [all]
+            visitscotland:breadcrumb: ''
+            visitscotland:distance: 0.0
+            visitscotland:finish: ''
+            visitscotland:highlights: highlights
+            visitscotland:popular: false
+            visitscotland:seoDescription: description
+            visitscotland:seoNoIndex: false
+            visitscotland:seoTitle: title
+            visitscotland:start: ''
+            visitscotland:teaser: teaser
+            visitscotland:theme: acti
+            visitscotland:title: heading
+            visitscotland:transports: [boat]
+            /visitscotland:heroImage:
+              jcr:primaryType: hippogallerypicker:imagelink
+              hippo:docbase: c3eafb5b-6c18-4caa-9c9a-63279b816630
+              hippo:facets: []
+              hippo:modes: []
+              hippo:values: []
+            /visitscotland:introduction:
+              jcr:primaryType: hippostd:html
+              hippostd:content: <p>introduction</p>
+      /listicle-fully-translated:
+        jcr:primaryType: hippostd:folder
+        jcr:mixinTypes: ['hippo:named', 'hippotranslation:translated', 'mix:versionable']
+        jcr:uuid: 02b7ef91-da13-4e4d-a144-77b2299d87e4
+        hippo:name: listicle fully translated
+        hippostd:foldertype: [new-translated-folder, new-document]
+        hippotranslation:id: ebd9d2d3-ac6b-4b1f-9993-e2737368b71a
+        hippotranslation:locale: fr
+        /content:
+          jcr:primaryType: hippo:handle
+          jcr:mixinTypes: ['hippo:named', 'mix:referenceable']
+          jcr:uuid: 9465b0d2-82fa-429a-9f08-14068374dd8b
+          hippo:name: Listicle (FR)
+          /content:
+            jcr:primaryType: visitscotland:Listicle
+            jcr:mixinTypes: ['mix:versionable']
+            jcr:uuid: d625fe23-e9a8-4504-8940-de2e2be5720b
+            hippo:availability: [preview]
+            hippostd:state: unpublished
+            hippostdpubwf:createdBy: admin
+            hippostdpubwf:creationDate: 2020-08-03T14:47:46.796+01:00
+            hippostdpubwf:lastModificationDate: 2020-08-03T14:49:53.316+01:00
+            hippostdpubwf:lastModifiedBy: admin
+            hippotranslation:id: c01c5c8f-a89a-47c7-961c-7de7e6964d24
+            hippotranslation:locale: fr
+            visitscotland:breadcrumb: ''
+            visitscotland:descOrder: false
+            visitscotland:seoDescription: description
+            visitscotland:seoNoIndex: false
+            visitscotland:seoTitle: title
+            visitscotland:summaryTitle: ''
+            visitscotland:teaser: teaser
+            visitscotland:title: heading
+            /visitscotland:heroImage:
+              jcr:primaryType: hippogallerypicker:imagelink
+              hippo:docbase: c3eafb5b-6c18-4caa-9c9a-63279b816630
+              hippo:facets: []
+              hippo:modes: []
+              hippo:values: []
+            /visitscotland:introduction:
+              jcr:primaryType: hippostd:html
+              hippostd:content: <p>introduction</p>
+            /visitscotland:summary:
+              jcr:primaryType: hippostd:html
+              hippostd:content: ''
