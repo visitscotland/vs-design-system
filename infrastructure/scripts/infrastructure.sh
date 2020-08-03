@@ -400,7 +400,7 @@ setPortRange() {
 }
 
 findBasePort() {
-  echo "Finding a free port to map to the new container's Tomcat port - range $MIN_PORT-$MAX_PORT"
+  echo "finding a free port to map to the new container's Tomcat port - range $MIN_PORT-$MAX_PORT"
   THIS_PORT=$MIN_PORT
   while [ $THIS_PORT -le $MAX_PORT ]; do
     FREE=`netstat -an | egrep "LISTEN *$" | grep $THIS_PORT`
@@ -457,7 +457,7 @@ findBasePort() {
 }
 
 findDynamicPorts() {
-  echo "Finding free ports from $VS_CONTAINER_BASE_PORT in increments of $VS_CONTAINER_PORT_INCREMENT to dynamically map to other servies on the new container - up to $VS_CONTAINER_DYN_PORT_MAX"
+  echo "finding free ports from $VS_CONTAINER_BASE_PORT in increments of $VS_CONTAINER_PORT_INCREMENT to dynamically map to other servies on the new container - up to $VS_CONTAINER_DYN_PORT_MAX"
   THIS_PORT=$VS_CONTAINER_BASE_PORT
   echo "" > $VS_MAIL_NOTIFY_BUILD_MESSAGE_EXTRA
   for VS_CONTAINER_INT_PORT in `set | grep "VS_CONTAINER_INT_PORT_"`; do
@@ -577,16 +577,12 @@ containerUpdates() {
     THIS_SUM="${TEST_SUMS[$i]}"
     echo "checking $THIS_FILE for update - md5sum must not match $THIS_SUM"
     THIS_TEST="`docker exec $VS_CONTAINER_NAME md5sum $THIS_FILE 2>/dev/null | awk '{print $1}'`"
-    echo " - THIS_TEST:$THIS_TEST - THIS_SUM:$THIS_SUM"
     THIS_LOCAL_FILE="`dirname $0`/$VS_CONTAINER_UPDATES_DIR/`basename $THIS_FILE`"
-    echo " - THIS_LOCAL_FILE:$THIS_LOCAL_FILE"
-    if [ "$THIS_TEST" == "$THIS_SUM" ]; then echo "TEST=SUM"; fi
-    ls -alh 
     if [ "$THIS_TEST" == "$THIS_SUM" ] && [ -e "$THIS_LOCAL_FILE" ]; then
-      echo " - found $THIS_TEST, an updated version of $THIS_FILE is available, copying to container"
-      docker exec $VS_CONTAINER_NAME mv $THIS_FILE $THIS_FILE.old
-      docker cp "$THIS_LOCAL_FILE" $VS_CONTAINER_NAME:$THIS_FILE
-      THIS_TEST=`docker exec $VS_CONTAINER_NAME md5sum $THIS_FILE | awk '{print $1}'`
+      echo " - sums match, an updated version of $THIS_FILE is available, copying to container"
+      docker exec $VS_CONTAINER_NAME mv $THIS_FILE $THIS_FILE.old 2>/dev/null
+      docker cp "$THIS_LOCAL_FILE" $VS_CONTAINER_NAME:$THIS_FILE 2>/dev/null
+      THIS_TEST=`docker exec $VS_CONTAINER_NAME md5sum $THIS_FILE 2>/dev/null | awk '{print $1}'`
       echo " - sum now: $THIS_TEST"
     fi
   done
