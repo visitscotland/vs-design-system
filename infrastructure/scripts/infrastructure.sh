@@ -620,6 +620,8 @@ containerCopySSRArtifact() {
 containerStartHippo() {
   if [ ! "$SAFE_TO_PROCEED" = "FALSE" ]; then
     echo ""
+    echo "about to execute "/usr/bin/pkill node" in container $VS_CONTAINER_NAME"
+    docker exec -d $VS_CONTAINER_NAME /usr/bin/pkill node
     echo "about to execute "/usr/local/bin/vs-hippo nodb" in container $VS_CONTAINER_NAME"
     docker exec -d $VS_CONTAINER_NAME /usr/local/bin/vs-hippo nodb
     RETURN_CODE=$?; echo $RETURN_CODE
