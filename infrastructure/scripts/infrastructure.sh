@@ -582,7 +582,8 @@ containerUpdates() {
       docker exec $VS_CONTAINER_NAME mv $THIS_FILE $THIS_FILE.old
       docker cp "`dirname $0`/$VS_CONTAINER_UPDATES_DIR/`basename $THIS_TEST_FILE`" $VS_CONTAINER_NAME:$THIS_TEST_FILE
       echo " - sum now: " `docker exec $VS_CONTAINER_NAME md5sum $THIS_FILE | awk '{print $1}'`
-  fi
+    fi
+  done
 }
 
 containerSshStart() {
