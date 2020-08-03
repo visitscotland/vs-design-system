@@ -312,10 +312,14 @@ getReservedPortList() {
   for BRANCH in $BRANCH_LIST; do
     if [ "$VS_DEBUG" == "TRUE" ]; then echo " - checking $BRANCH"; fi
     #RESERVED_PORT=`docker port $BRANCH 2>/dev/null| awk '{gsub(/.*:/,"");}1'`
-    RESERVED_PORT=`docker inspect --format='{{(index (index .NetworkSettings.Ports "'$VS_BRXM_TOMCAT_PORT'/tcp") 0).HostPort}}' $BRANCH`
+    RESERVED_PORT=`docker inspect --format='{{(index (index .NetworkSettings.Ports "'$VS_BRXM_TOMCAT_PORT'/tcp") 0).HostPort}}' $BRANCH 2>/dev/null`
     if [ ! -z "$RESERVED_PORT" ]; then
-      RESERVED_PORT_LIST="$RESERVED_PORT_LIST $RESERVED_PORT"
-      if [ "$VS_DEBUG" == "TRUE" ]; then echo " - $RESERVED_PORT is reserved by $BRANCH"; fi
+      if [ ! -z "$RESERVED_PORT_LIST" ]; then
+        RESERVED_PORT_LIST="$RESERVED_PORT_LIST $RESERVED_PORT"
+      else
+        RESERVED_PORT_LIST="$RESERVED_PORT"
+      fi
+      if [ "$VS_DEBUG" == "TRUE" ]; then echo " -- $RESERVED_PORT is reserved by $BRANCH"; fi
     fi
   done
   echo ""
