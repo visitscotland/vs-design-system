@@ -157,8 +157,8 @@ reportSettings() {
   echo ""
   echo "========================================================================"
   echo "== RUNNING JENKINS SHELL COMMANDS on $VS_THIS_SERVER"
-  echo "== as user:$USER"
-  echo "== from: $0"
+  echo "== as user: $USER"
+  echo "== from: $0 "
   echo "========================================================================"
   echo ""
   if [ "$VS_DEBUG" = "TRUE" ]; then echo "==== printenv ===="; printenv; echo "====/printenv ===="; echo ""; fi
@@ -242,15 +242,16 @@ manageContainers() {
   # if container is RUNNING and preserve running is TRUE then - stop tomcat/undeploy app/leave alone?
   # if container is STOPPED and preserve running is TRUE then - ?
   # if container is running and preserve running is FALSE then - deleteContainers
-  if [ "$VS_CONTAINER_PRESERVE_RUNNING" = "TRUE" ]&&[ "$CONTAINER_STATUS" = "running" ]; then
+  if [ "$VS_CONTAINER_PRESERVE_RUNNING" = "TRUE" ] && [ "$CONTAINER_STATUS" = "running" ]; then
     echo "VS_CONTAINER_PRESERVE_RUNNING is $VS_CONTAINER_PRESERVE_RUNNING so existing container: $CONTAINER_ID will be re-used"
-  elif [ "$VS_CONTAINER_PRESERVE_RUNNING" = "TRUE" ]&&[ ! "$CONTAINER_STATUS" = "running" ]; then
+  elif [ "$VS_CONTAINER_PRESERVE_RUNNING" = "TRUE" ] && [ ! "$CONTAINER_STATUS" = "running" ]; then
     echo "VS_CONTAINER_PRESERVE_RUNNING is $VS_CONTAINER_PRESERVE_RUNNING so existing container: $CONTAINER_ID will be started and re-used"
-  elif [ ! "$VS_CONTAINER_PRESERVE_RUNNING" = "TRUE" ]&&[ "$CONTAINER_STATUS" = "running" ]; then
+    startContainers
+  elif [ ! "$VS_CONTAINER_PRESERVE_RUNNING" = "TRUE" ] && [ "$CONTAINER_STATUS" = "running" ]; then
     echo "VS_CONTAINER_PRESERVE_RUNNING is $VS_CONTAINER_PRESERVE_RUNNING so existing container: $CONTAINER_ID will be stopped and removed"
     stopContainers
     deleteContainers
-  elif [ ! "$VS_CONTAINER_PRESERVE_RUNNING" = "TRUE" ]&&[ ! "$CONTAINER_STATUS" = "running" ]; then
+  elif [ ! "$VS_CONTAINER_PRESERVE_RUNNING" = "TRUE" ] && [ ! "$CONTAINER_STATUS" = "running" ]; then
     echo "VS_CONTAINER_PRESERVE_RUNNING is $VS_CONTAINER_PRESERVE_RUNNING so existing container: $CONTAINER_ID will be removed"
     deleteContainers
   else
