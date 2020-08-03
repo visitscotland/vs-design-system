@@ -307,11 +307,12 @@ getBranchListFromWorkspace() {
 }
 
 getReservedPortList() {
-  echo "checking for ports reserved by containers in BRANCH_LIST"
+  echo "checking for base ports reserved by containers in BRANCH_LIST"
   if [ "$VS_DEBUG" == "TRUE" ]; then echo "$BRANCH_LIST"; fi
   for BRANCH in $BRANCH_LIST; do
     if [ "$VS_DEBUG" == "TRUE" ]; then echo " - checking $BRANCH"; fi
-    RESERVED_PORT=`docker port $BRANCH 2>/dev/null| awk '{gsub(/.*:/,"");}1'`
+    #RESERVED_PORT=`docker port $BRANCH 2>/dev/null| awk '{gsub(/.*:/,"");}1'`
+    RESERVED_PORT=`docker inspect --format='{{(index (index .NetworkSettings.Ports "'$VS_BRXM_TOMCAT_PORT'/tcp") 0).HostPort}}' $BRANCH`
     if [ ! -z "$RESERVED_PORT" ]; then
       RESERVED_PORT_LIST="$RESERVED_PORT_LIST $RESERVED_PORT"
       if [ "$VS_DEBUG" == "TRUE" ]; then echo " - $RESERVED_PORT is reserved by $BRANCH"; fi
