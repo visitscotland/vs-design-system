@@ -575,13 +575,15 @@ containerUpdates() {
   for i in ${!TEST_FILES[@]}; do
     THIS_FILE=${TEST_FILES[$i]}
     THIS_SUM=${TEST_SUMS[$i]}
-    echo "checking $THIS_FILE for update (md5sum must not match $THIS_SUM)"
+    echo "checking $THIS_FILE for update - md5sum must not match $THIS_SUM"
     THIS_TEST=`docker exec $VS_CONTAINER_NAME md5sum $THIS_FILE | awk '{print $1}'`
-    if [ "$THIS_TEST" == "$THIS_SUM" ] && [ -e "`dirname $0`/$VS_CONTAINER_UPDATES_DIR/`basename $THIS_FILE`" ]; then
+    THIS_LOCAL_FILE="`dirname $0`/$VS_CONTAINER_UPDATES_DIR/`basename $THIS_FILE`"
+    if [ "$THIS_TEST" == "$THIS_SUM" ] && [ -e "$THIS_LOCAL_FILE" ]; then
       echo " - found $THIS_TEST, an updated version of $THIS_FILE is available, copying to container"
       docker exec $VS_CONTAINER_NAME mv $THIS_FILE $THIS_FILE.old
-      docker cp "`dirname $0`/$VS_CONTAINER_UPDATES_DIR/`basename $THIS_TEST_FILE`" $VS_CONTAINER_NAME:$THIS_TEST_FILE
-      echo " - sum now: " `docker exec $VS_CONTAINER_NAME md5sum $THIS_FILE | awk '{print $1}'`
+      docker cp "$THIS_LOCAL_FILE" $VS_CONTAINER_NAME:$THIS_FILE
+      THIS_TEST=`docker exec $VS_CONTAINER_NAME md5sum $THIS_FILE | awk '{print $1}'`
+      echo " - sum now: $THIS_TEST"
     fi
   done
 }
