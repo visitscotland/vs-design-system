@@ -65,6 +65,8 @@ while [[ $# -gt 0 ]]; do
   case $THIS_VAR in
     --debug) if [ ! -z "$THIS_RESULT" ]; then VS_DEBUG=$THIS_RESULT; else VS_DEBUG=TRUE; fi;;
     --frontend-dir) if [ ! -z "$THIS_RESULT" ]; then VS_FRONTEND_DIR=$THIS_RESULT; fi;;
+    --preserve-container) if [ ! -z "$THIS_RESULT" ]; then VS_CONTAINER_PRESERVE_RUNNING=$THIS_RESULT; else VS_CONTAINER_PRESERVE_RUNNING=TRUE; fi;;
+    --reuse-container) if [ ! -z "$THIS_RESULT" ]; then VS_CONTAINER_PRESERVE_RUNNING=$THIS_RESULT; else VS_CONTAINER_PRESERVE_RUNNING=TRUE; fi;;
     --single-function) if [ ! -z "$THIS_RESULT" ]; then VS_THIS_FUNCTION=$THIS_RESULT; fi;;
     --tidy-containers) if [ ! -z "$THIS_RESULT" ]; then VS_TIDY_CONTAINERS=$THIS_RESULT; else VS_TIDY_CONTAINERS=TRUE; fi;;
     --working-dir) if [ ! -z "$THIS_RESULT" ]; then VS_WORKING_DIR=$THIS_RESULT; fi;;
@@ -181,8 +183,10 @@ checkContainers() {
     echo " - checking for base port of container $CONTAINER_ID"
     CONTAINER_PORT=`docker inspect --format='{{(index (index .NetworkSettings.Ports "8080/tcp") 0).HostPort}}' $CONTAINER_ID`
     if [ ! -z "$CONTAINER_PORT" ]; then
-      echo " - base port of $CONTAINER_PORT found for container $CONTAINER_ID - reserving"
       VS_CONTAINER_BASE_PORT_OVERRIDE=$CONTAINER_PORT
+      echo " - base port of $CONTAINER_PORT found for container $CONTAINER_ID - reserving"
+      echo "  - checking other ports (for info)"
+      docker inspect --format='{{range $p, $conf := .NetworkSettings.Ports}} {{$p}} -> {{(index $conf 0).HostPort}} {{end}}' $CONTAINER_ID
     else
       echo " - no base port was found for container $CONTAINER_ID"
     fi
@@ -232,6 +236,10 @@ deleteImages() {
 }
 
 manageContainers() {
+  # at this point we know VS_CONTAINER_NAME, VS_CONTAINER_PRESERVE_RUNNING, CONTAINER_ID, CONTAINER_STATUS
+  # if container is RUNNING and preserve running is TRUE then - stop tomcat/undeploy app/leave alone?
+  # if container is STOPPED and preserve running is TRUE then - ?
+  # if container is running and preserve running is FALSE then - deleteContainers
   if [ ! "$VS_CONTAINER_PRESERVE_RUNNING" = "TRUE" ]; then
     false
   fi
@@ -620,6 +628,9 @@ createBuildReport() {
       echo "SSH access (if enabled on the container) - available only on the Web Development LAN" | tee -a $VS_MAIL_NOTIFY_BUILD_MESSAGE
       echo "  - ssh -p $VS_CONTAINER_EXT_PORT_SSH root@$VS_HOST_IP_ADDRESS" | tee -a $VS_MAIL_NOTIFY_BUILD_MESSAGE
       echo "" | tee -a $VS_MAIL_NOTIFY_BUILD_MESSAGE
+    fi
+    if [ -e "$VS_MAIL_NOTIFY_BUILD_MESSAGE_EXTRA" ]; then
+      cat $VS_MAIL_NOTIFY_BUILD_MESSAGE_EXTRA | tee -a $VS_MAIL_NOTIFY_BUILD_MESSAGE
     fi
     echo "###############################################################################################################################" | tee -a $VS_MAIL_NOTIFY_BUILD_MESSAGE | tee -a $VS_MAIL_NOTIFY_BUILD_MESSAGE
     echo "" | tee -a $VS_MAIL_NOTIFY_BUILD_MESSAGE
