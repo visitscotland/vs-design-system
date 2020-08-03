@@ -487,6 +487,7 @@ findDynamicPorts() {
         HAS_PORT_NAME=`docker ps -a --filter="id=$HAS_PORT_ID" --format "table {{.Names}}" | tail -n +2`
         if [ "$HAS_PORT_NAME" == "$VS_CONTAINER_NAME" ]; then
           echo " -- success"
+	  eval "VS_CONTAINER_EXT_PORT_"$VS_CONTAINER_SERVICE"="$THIS_PORT
 	  break
 	fi
       else
