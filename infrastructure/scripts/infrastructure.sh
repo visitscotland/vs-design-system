@@ -238,6 +238,7 @@ deleteImages() {
 }
 
 manageContainers() {
+  if [ "$VS_DEBUG" = "TRUE" ]; then echo "Running $0"; fi
   # at this point we know VS_CONTAINER_NAME, VS_CONTAINER_PRESERVE_RUNNING, CONTAINER_ID, CONTAINER_STATUS
   # if container is RUNNING and preserve running is TRUE then - stop tomcat/undeploy app/leave alone?
   # if container is STOPPED and preserve running is TRUE then - ?
@@ -246,14 +247,14 @@ manageContainers() {
     echo "VS_CONTAINER_PRESERVE_RUNNING is $VS_CONTAINER_PRESERVE_RUNNING so existing container: $CONTAINER_ID will be re-used"
   elif [ "$VS_CONTAINER_PRESERVE_RUNNING" = "TRUE" ] && [ ! "$CONTAINER_STATUS" = "running" ]; then
     echo "VS_CONTAINER_PRESERVE_RUNNING is $VS_CONTAINER_PRESERVE_RUNNING so existing container: $CONTAINER_ID will be started and re-used"
-    startContainers
+    #startContainers
   elif [ ! "$VS_CONTAINER_PRESERVE_RUNNING" = "TRUE" ] && [ "$CONTAINER_STATUS" = "running" ]; then
     echo "VS_CONTAINER_PRESERVE_RUNNING is $VS_CONTAINER_PRESERVE_RUNNING so existing container: $CONTAINER_ID will be stopped and removed"
-    stopContainers
-    deleteContainers
+    #stopContainers
+    #deleteContainers
   elif [ ! "$VS_CONTAINER_PRESERVE_RUNNING" = "TRUE" ] && [ ! "$CONTAINER_STATUS" = "running" ]; then
     echo "VS_CONTAINER_PRESERVE_RUNNING is $VS_CONTAINER_PRESERVE_RUNNING so existing container: $CONTAINER_ID will be removed"
-    deleteContainers
+    #deleteContainers
   else
     echo "Container status for $CONTAINER_ID could not be determined"
   fi
