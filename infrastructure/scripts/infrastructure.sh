@@ -576,6 +576,7 @@ containerUpdates() {
     THIS_FILE="${TEST_FILES[$i]}"
     THIS_SUM="${TEST_SUMS[$i]}"
     echo "checking $THIS_FILE for update - md5sum must not match $THIS_SUM"
+    docker exec $VS_CONTAINER_NAME md5sum $THIS_FILE | awk '{print $1}'
     THIS_TEST=`docker exec $VS_CONTAINER_NAME md5sum $THIS_FILE | awk '{print $1}'`
     echo $THIS_TEST
     THIS_LOCAL_FILE=`dirname $0` "/" $VS_CONTAINER_UPDATES_DIR "/" `basename $THIS_FILE`
