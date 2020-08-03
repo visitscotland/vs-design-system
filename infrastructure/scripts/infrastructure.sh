@@ -6,7 +6,7 @@
 # gp: update adjustatable variables to set only if they're not set already, that way the Dev can override in the Jenkinsfile - partially done
 # gp: rename BASE_PORT to MIN_PORT - done
 # gp: update port find to set VS_CONTAINER_BASE_PORT between MIN_PORT and MAX_PORT - done
-#      - then check the + 100s right to the limit
+#      - then check the + 100s right to the limit - done
 # gp: create an array of required ports
 #      - e.g. "VS_CONTAINER_BRXM_PORT VS_CONTAINER_SSR_PORT VS_CONTAINER_SSH_PORT"
 #      - then do a FOR MAP_PORT in VS_CONTAINER_REQUIRED_PORTS and +100 knowing that the're available (from above)
@@ -44,7 +44,7 @@ if [ -z "$VS_CONTAINER_DYN_PORT_MAX" ]; then VS_CONTAINER_DYN_PORT_MAX=8999; fi
 if [ -z "$VS_CONTAINER_INT_PORT_SSR" ]; then VS_CONTAINER_INT_PORT_SSR=8082; fi
 if [ -z "$VS_CONTAINER_INT_PORT_SSH" ]; then VS_CONTAINER_INT_PORT_SSH=22; fi
 if [ -z "$VS_CONTAINER_INT_PORT_TLN" ]; then VS_CONTAINER_INT_PORT_TLN=8081; fi
-if [ -z "$VS_CONTAINER_PRESERVE_RUNNING" ]; then VS_CONTAINER_RESERVE_RUNNING=TRUE; fi
+if [ -z "$VS_CONTAINER_PRESERVE_RUNNING" ]; then VS_CONTAINER_PRESERVE_RUNNING=TRUE; fi
 #  ==== SSR Application Variables ====
 if [ -z "$VS_FRONTEND_DIR" ]; then VS_FRONTEND_DIR=frontend; fi
 if [ -z "$VS_SSR_PACKAGE_SOURCE" ]; then VS_SSR_PACKAGE_SOURCE="$VS_FRONTEND_DIR/ssr/server/ $VS_FRONTEND_DIR/dist/ssr/ $VS_FRONTEND_DIR/node_modules/"; fi
@@ -178,7 +178,14 @@ checkContainers() {
     echo " - checking status of container $CONTAINER_ID"
     CONTAINER_STATUS=`docker inspect --format "{{.State.Status}}" $CONTAINER_ID`
     echo " - $CONTAINER_STATUS container found with ID:$CONTAINER_ID and name $VS_CONTAINER_NAME"
-    # GRAB BASE PORT
+    echo " - checking for base port of container $CONTAINER_ID"
+    CONTAINER_PORT=`docker inspect --format='{{(index (index .NetworkSettings.Ports "8080/tcp") 0).HostPort}}' $CONTAINER_ID`
+    if [ ! -z "$CONTAINER_PORT" ]; then
+      echo " - base port of $CONTAINER_PORT found for container $CONTAINER_ID - reserving"
+      VS_CONTAINER_BASE_PORT_OVERRIDE=$CONTAINER_PORT
+    else
+      echo " - no base port was found for container $CONTAINER_ID"
+    fi
   else
     echo " - no container found with name $VS_CONTAINER_NAME"
   fi
@@ -224,6 +231,12 @@ deleteImages() {
   echo ""
 }
 
+manageContainers() {
+  if [ ! "$VS_CONTAINER_PRESERVE_RUNNING" = "TRUE" ]; then
+    false
+  fi
+}
+
 # check all branches to see what ports are "reserved" by existing containers
 getChildBranchesViaCurl() {
   echo "checking for ports reserved by other branches in $VS_PARENT_JOB_NAME"
@@ -232,7 +245,7 @@ getChildBranchesViaCurl() {
   #  RESERVED_PORT=`docker inspect --format='{{(index (index .NetworkSettings.Ports "8080/tcp") 0).HostPort}}' $VS_PARENT_JOB_NAME\_$CONTAINER 2>/dev/null`
   #  if [ ! -z "$RESERVED_PORT" ]; then
   #    RESERVED_PORT_LIST="$RESERVED_PORT_LIST $RESERVED_PORT"
-  #    echo "$RESERVED_PORT is reserved by $VS_PARENT_JOB_NAME\_$CONTAINER"
+  #    echo " - $RESERVED_PORT is reserved by $VS_PARENT_JOB_NAME\_$CONTAINER"
   #  fi
   #done
 }
@@ -243,7 +256,7 @@ getBranchListViaCurl() {
     RESERVED_PORT=`docker inspect --format='{{(index (index .HostConfig.PortBindings "8080/tcp") 0).HostPort}}' $CONTAINER 2>/dev/null`
     if [ ! -z "$RESERVED_PORT" ]; then
       RESERVED_PORT_LIST="$RESERVED_PORT_LIST $RESERVED_PORT"
-      echo "$RESERVED_PORT is reserved by $CONTAINER"
+      echo " - $RESERVED_PORT is reserved by $CONTAINER"
     fi
   done
   echo ""
@@ -256,7 +269,7 @@ getPullRequestListViaCurl() {
     RESERVED_PORT=`docker inspect --format='{{(index (index .HostConfig.PortBindings "8080/tcp") 0).HostPort}}' $CONTAINER 2>/dev/null`
     if [ ! -z "$RESERVED_PORT" ]; then
       RESERVED_PORT_LIST="$RESERVED_PORT_LIST $RESERVED_PORT"
-      echo "$RESERVED_PORT is reserved by $CONTAINER"
+      echo " - $RESERVED_PORT is reserved by $CONTAINER"
     fi
   done;
 }
@@ -469,6 +482,7 @@ packageSSRArtifact() {
 
 # create Docker container
 containerCreateAndStart() {
+# WebOps TO-DO - additional check to see if mySQL is required - create a CMD without mysql
   if [ ! "$SAFE_TO_PROCEED" = "FALSE" ]; then
     #sleep 5
     VS_CONTAINER_EXPOSE_PORT=$VS_BRXM_TOMCAT_PORT
@@ -577,7 +591,7 @@ createBuildReport() {
     echo "The site instance for branch $GIT_BRANCH should now be available in a few moments on $NODE_NAME - $VS_HOST_IP_ADDRESS" | tee -a $VS_MAIL_NOTIFY_BUILD_MESSAGE
     echo "" | tee -a $VS_MAIL_NOTIFY_BUILD_MESSAGE
     echo "To configure your browser session for this branch please follow this link:"
-    echo "  - $VS_PROXY_SERVER_SCHEME://$VS_PROXY_SERVER_FQDN/?vs_brxm_host=$VS_HOST_IP_ADDRESS&vs_brxm_port=$VS_CONTAINER_BASE_PORT&vs_brxm_http_host=$VS_BRXM_INSTANCE_HTTP_HOST&vs_ssr_http_port=$VS_CONTAINER_EXT_PORT_SSR&vs_tln_http_poer=VS_CONTAINER_EXT_PORT_TLN" | tee -a $VS_MAIL_NOTIFY_BUILD_MESSAGE
+    echo "  - $VS_PROXY_SERVER_SCHEME://$VS_PROXY_SERVER_FQDN/?vs_brxm_host=$VS_HOST_IP_ADDRESS&vs_brxm_port=$VS_CONTAINER_BASE_PORT&vs_brxm_http_host=$VS_BRXM_INSTANCE_HTTP_HOST&vs_ssr_http_port=$VS_CONTAINER_EXT_PORT_SSR&vs_tln_http_port=VS_CONTAINER_EXT_PORT_TLN" | tee -a $VS_MAIL_NOTIFY_BUILD_MESSAGE
     echo "" | tee -a $VS_MAIL_NOTIFY_BUILD_MESSAGE
     echo "Thereafter, until you clear the settings, you will be able to access the environment on the following URLs" | tee -a $VS_MAIL_NOTIFY_BUILD_MESSAGE
     echo " - site:    $VS_PROXY_SERVER_SCHEME://$VS_PROXY_SERVER_FQDN/" | tee -a $VS_MAIL_NOTIFY_BUILD_MESSAGE
@@ -604,7 +618,7 @@ createBuildReport() {
     fi
     if [ ! -z "$VS_CONTAINER_EXT_PORT_SSH" ]; then
       echo "SSH access (if enabled on the container) - available only on the Web Development LAN" | tee -a $VS_MAIL_NOTIFY_BUILD_MESSAGE
-      echo "  - ssh -p $VS_CONTAINER_EXT_PORT_SSH $VS_HOST_IP_ADDRESS" | tee -a $VS_MAIL_NOTIFY_BUILD_MESSAGE
+      echo "  - ssh -p $VS_CONTAINER_EXT_PORT_SSH root@$VS_HOST_IP_ADDRESS" | tee -a $VS_MAIL_NOTIFY_BUILD_MESSAGE
       echo "" | tee -a $VS_MAIL_NOTIFY_BUILD_MESSAGE
     fi
     echo "###############################################################################################################################" | tee -a $VS_MAIL_NOTIFY_BUILD_MESSAGE | tee -a $VS_MAIL_NOTIFY_BUILD_MESSAGE
@@ -680,6 +694,7 @@ case $METHOD in
     containerCopyHippoArtifact
     containerCopySSRArtifact
     containerStartHippo
+    testSite
     createBuildReport
     sendBuildReport
   ;;
