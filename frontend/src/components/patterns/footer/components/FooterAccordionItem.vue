@@ -101,6 +101,7 @@ export default {
         padding: $spacer-3;
         line-height: $line-height-xs;
         font-weight: 500;
+        text-align: left;
 
         &:hover {
             background: $color-theme-dark;
@@ -116,6 +117,7 @@ export default {
             height: 16px;
             width: 16px;
             padding: 0;
+            right: $spacer-3;
         }
     }
 
