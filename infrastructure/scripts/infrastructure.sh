@@ -432,7 +432,7 @@ findBasePort() {
 }
 
 findDynamicPorts() {
-  echo "Finding free ports at an increment of $VS_CONTAINER_PORT_INCREMENT to dynamically map to other servies on the new container - up to $VS_CONTAINER_DYN_PORT_MAX"
+  echo "Finding free ports from $VS_CONTAINER_BASE_PORT at an increment of $VS_CONTAINER_PORT_INCREMENT to dynamically map to other servies on the new container - up to $VS_CONTAINER_DYN_PORT_MAX"
   THIS_PORT=$VS_CONTAINER_BASE_PORT
   echo "" > $VS_MAIL_NOTIFY_BUILD_MESSAGE_EXTRA
   for VS_CONTAINER_INT_PORT in `set | grep "VS_CONTAINER_INT_PORT_"`; do
