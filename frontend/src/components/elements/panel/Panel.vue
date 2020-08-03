@@ -1,22 +1,17 @@
 <template>
     <BCard
-        :class="[
-            $style.root,
-            {
-                'pt-10': this.$slots['vs-panel-title'],
-            },
-        ]"
+        class="vs-panel"
+        :class="[this.$slots['vs-panel-title'] ? '' : 'pt-10']"
     >
         <BCardTitle
             v-if="this.$slots['vs-panel-title']"
-            class="mb-8"
-            :class="$style.title"
+            class="vs-panel-title mb-8"
         >
             <!-- @slot Contains an optional title for the panel  -->
             <slot name="vs-panel-title" />
         </BCardTitle>
 
-        <BCardText :class="$style.text">
+        <BCardText class="vs-panel-text">
             <!-- @slot default slot containing main body text -->
             <slot />
         </BCardText>
@@ -43,16 +38,10 @@ export default {
 };
 </script>
 
-<style lang="scss">
-@import "~bootstrap/scss/card";
-
-</style>
-
-<style lang="scss" module>
-.root:global(.card) {
+<style lang="scss" scoped>
+.vs-panel {
     background-color: $color-theme-light;
     padding: $spacer-9 $spacer-4 $spacer-9;
-    border: 0;
 
     @include media-breakpoint-up(md) {
         padding: $spacer-9 $spacer-8 $spacer-10;
@@ -66,18 +55,14 @@ export default {
         padding: $spacer-9 $spacer-12 $spacer-10;
     }
 
-    :global(.card-body) {
-        padding: 0;
-    }
-
-    .title {
+    .vs-panel-title {
         display: block;
         text-align: center;
     }
 
-    .text {
+    .vs-panel-text {
         @include media-breakpoint-down(xs) {
-            * {
+            .vs-rich-text-wrapper.lead {
                 font-size: $font-size-base;
                 line-height: $line-height-m;
             }

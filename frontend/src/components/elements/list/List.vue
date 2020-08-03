@@ -1,13 +1,11 @@
 <template>
     <Component
         :is="ordered ? 'ol' : 'ul'"
-        :class="[
-            $style.root,
-            {
-                [$style.unstyled]: unstyled,
-                [$style.inline]: inline,
-            }
-        ]"
+        class="vs-list"
+        :class="{
+            unstyled,
+            inline,
+        }"
     >
         <slot />
     </Component>
@@ -48,8 +46,8 @@ export default {
 };
 </script>
 
-<style lang="scss" module>
-.root {
+<style lang="scss" scoped>
+.vs-list {
     &.unstyled {
         padding: 0;
         margin: 0;
@@ -65,44 +63,35 @@ export default {
 <docs>
 ```jsx
     <h3>Default</h3>
-    <vs-list class="mb-8">
+    <vs-list>
         <li class="mr-7">Test</li>
         <li class="mr-7">Test</li>
         <li class="mr-7">Test</li>
     </vs-list>
 
     <h3>Inline</h3>
-    <vs-list inline class="mb-8">
+    <vs-list inline>
         <li class="mr-7">Test</li>
         <li class="mr-7">Test</li>
         <li class="mr-7">Test</li>
     </vs-list>
 
     <h3>Inline Unstyled</h3>
-    <vs-list unstyled inline class="mb-8">
+    <vs-list unstyled inline>
         <li class="mr-7">Test</li>
         <li class="mr-7">Test</li>
         <li class="mr-7">Test</li>
     </vs-list>
 
     <h3>Unstyled</h3>
-    <vs-list unstyled class="mb-8">
+    <vs-list unstyled>
         <li class="mr-7">Test</li>
         <li class="mr-7">Test</li>
         <li class="mr-7">Test</li>
     </vs-list>
 
-    <h3>Ordered</h3>
-    <vs-list ordered class="mb-8">
-        <li>Test</li>
-        <li>Test</li>
-        <li>Test</li>
-    </vs-list>
-
-    <h3>Ordered Unstyled</h3>
-    <vs-list ordered unstyled class="mb-8">
-        <li>Test</li>
-        <li>Test</li>
+    <h3>Ordered List</h3>
+    <vs-list ordered>
         <li>Test</li>
     </vs-list>
 ```

@@ -1,7 +1,7 @@
 <template>
     <span
-        class="d-inline-block position-relative"
         v-b-tooltip.hover
+        class="vs-tooltip d-inline-block position-relative"
         :title="title"
     >
         <slot />
@@ -11,7 +11,7 @@
 <script>
 import { VBTooltip } from 'bootstrap-vue';
 /**
- * Renders a text span with tooltip displayed on hover
+ * TODO: Document usage
  */
 
 export default {
@@ -29,6 +29,8 @@ export default {
     },
 };
 </script>
+
+<style lang="scss" scoped></style>
 
 <docs>
   ```jsx
