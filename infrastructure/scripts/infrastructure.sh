@@ -620,6 +620,7 @@ containerCopySSRArtifact() {
 containerStartHippo() {
   if [ ! "$SAFE_TO_PROCEED" = "FALSE" ]; then
     echo ""
+    # temporary mamangement of node app here until changes can be made in vs-hippo
     echo "about to execute "/usr/bin/pkill node" in container $VS_CONTAINER_NAME"
     docker exec -d $VS_CONTAINER_NAME /usr/bin/pkill node
     echo "about to execute "/usr/local/bin/vs-hippo nodb" in container $VS_CONTAINER_NAME"
