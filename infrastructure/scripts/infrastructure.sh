@@ -406,7 +406,8 @@ findBasePort() {
   done
 
   if [ $THIS_PORT -gt $MAX_PORT ]; then
-    FAIL_CAUSE=`docker ps -a | grep $VS_CONTAINER_BASE_PORT_OVERRIDE | tail -1 | awk '{print $13}'`
+    FAIL_CAUSE_ID=`docker ps -a | grep $VS_CONTAINER_BASE_PORT_OVERRIDE | tail -1 | awk '{print $1}'`
+    FAIL_CAUSE=`docker ps -a --filter="id=$FAIL_CAUSE_ID" --format "table {{.Names}}" | tail -n +2`
     if [ ! -z "$VS_CONTAINER_BASE_PORT_OVERRIDE" ] && [ ! "$PORT_RESERVED" = "TRUE" ]; then
       FAIL_REASON="OVERRIDE PORT $VS_CONTAINER_BASE_PORT_OVERRIDE is in use by $FAIL_CAUSE, setting PORT to NULL"
     elif [ ! -z "$VS_CONTAINER_BASE_PORT_OVERRIDE" ] && [ "$PORT_RESERVED" = "TRUE" ]; then
