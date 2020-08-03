@@ -46,7 +46,7 @@ if [ -z "$VS_CONTAINER_INT_PORT_SSR" ]; then VS_CONTAINER_INT_PORT_SSR=8082; fi
 if [ -z "$VS_CONTAINER_INT_PORT_SSH" ]; then VS_CONTAINER_INT_PORT_SSH=22; fi
 if [ -z "$VS_CONTAINER_INT_PORT_TLN" ]; then VS_CONTAINER_INT_PORT_TLN=8081; fi
 if [ -z "$VS_CONTAINER_PRESERVE" ]; then VS_CONTAINER_PRESERVE=TRUE; fi
-if [ -z "$VS_CONTAINER_UPDATES_DIR" ]; then VS_CONTAINER_UPDATES_DIR=files; fi
+if [ -z "$VS_CONTAINER_UPDATES_DIR" ]; then VS_CONTAINER_UPDATES_DIR="../files"; fi
 #  ==== SSR Application Variables ====
 if [ -z "$VS_FRONTEND_DIR" ]; then VS_FRONTEND_DIR=frontend; fi
 if [ -z "$VS_SSR_PACKAGE_SOURCE" ]; then VS_SSR_PACKAGE_SOURCE="$VS_FRONTEND_DIR/ssr/server/ $VS_FRONTEND_DIR/dist/ssr/ $VS_FRONTEND_DIR/node_modules/"; fi
@@ -577,9 +577,11 @@ containerUpdates() {
     THIS_SUM="${TEST_SUMS[$i]}"
     echo "checking $THIS_FILE for update - md5sum must not match $THIS_SUM"
     THIS_TEST="`docker exec $VS_CONTAINER_NAME md5sum $THIS_FILE 2>/dev/null | awk '{print $1}'`"
-    echo "THIS_TEST:$THIS_TEST - THIS_SUM:$THIS_SUM"
+    echo " - THIS_TEST:$THIS_TEST - THIS_SUM:$THIS_SUM"
     THIS_LOCAL_FILE="`dirname $0`/$VS_CONTAINER_UPDATES_DIR/`basename $THIS_FILE`"
-    echo "THIS_LOCAL_FILE:$THIS_LOCAL_FILE"
+    echo " - THIS_LOCAL_FILE:$THIS_LOCAL_FILE"
+    if [ "$THIS_TEST" == "$THIS_SUM" ]; then echo "TEST=SUM"; fi
+    ls -alh 
     if [ "$THIS_TEST" == "$THIS_SUM" ] && [ -e "$THIS_LOCAL_FILE" ]; then
       echo " - found $THIS_TEST, an updated version of $THIS_FILE is available, copying to container"
       docker exec $VS_CONTAINER_NAME mv $THIS_FILE $THIS_FILE.old
