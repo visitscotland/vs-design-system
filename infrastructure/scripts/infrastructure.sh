@@ -52,6 +52,7 @@ if [ -z "$VS_FRONTEND_DIR" ]; then VS_FRONTEND_DIR=frontend; fi
 if [ -z "$VS_SSR_PACKAGE_SOURCE" ]; then VS_SSR_PACKAGE_SOURCE="$VS_FRONTEND_DIR/ssr/server/ $VS_FRONTEND_DIR/dist/ssr/ $VS_FRONTEND_DIR/node_modules/"; fi
 if [ -z "$VS_SSR_PACKAGE_TARGET" ]; then VS_SSR_PACKAGE_TARGET="./target"; fi
 if [ -z "$VS_SSR_PACKAGE_NAME" ]; then VS_SSR_PACKAGE_NAME="vs-ssr-package.tar.gz"; fi
+if [ -z "$VS_SSR_PROXY_ON" ]; then VS_SSR_PROXY_ON="TRUE";
 if [ -z "$VS_SSR_APP_PORT" ]; then VS_SSR_APP_PORT=8082; fi
 #  ==== Other Variables ====
 VS_JENKINS_LAST_ENV=jenkins-last-env
@@ -136,6 +137,11 @@ defaultSettings() {
   VS_HOST_IP_ADDRESS=`/usr/sbin/ip ad sh  | egrep "global noprefixroute" | awk '{print $2}' | sed -e "s/\/.*$//"`
   VS_PARENT_JOB_NAME=`echo $JOB_NAME | sed -e "s/\/.*//g"`
   VS_SCRIPTNAME=`basename $0`
+  if [ -z "$VS_SSR_PROXY_ON" ]; then
+    VS_PROXY_QS_SSR="&vs_ssr_proxy_on"
+  else
+    VS_PROXY_QS_SSR="&vs_ssr_proxy_off"
+  fi
   # mail settings - build
   if [ -z "$VS_MAIL_NOTIFY_BUILD_TO" ]; then VS_MAIL_NOTIFY_BUILD_TO=$VS_COMMIT_AUTHOR; fi
   VS_MAIL_NOTIFY_BUILD_SENDER="$VS_PARENT_JOB_NAME"
@@ -675,7 +681,7 @@ createBuildReport() {
     echo "The site instance for branch $GIT_BRANCH should now be available in a few moments on $NODE_NAME - $VS_HOST_IP_ADDRESS" | tee -a $VS_MAIL_NOTIFY_BUILD_MESSAGE
     echo "" | tee -a $VS_MAIL_NOTIFY_BUILD_MESSAGE
     echo "To configure your browser session for this branch please follow this link:"
-    echo "  - $VS_PROXY_SERVER_SCHEME://$VS_PROXY_SERVER_FQDN/?vs_brxm_host=$VS_HOST_IP_ADDRESS&vs_brxm_port=$VS_CONTAINER_BASE_PORT&vs_brxm_http_host=$VS_BRXM_INSTANCE_HTTP_HOST&vs_ssr_http_port=$VS_CONTAINER_EXT_PORT_SSR&vs_tln_http_port=VS_CONTAINER_EXT_PORT_TLN" | tee -a $VS_MAIL_NOTIFY_BUILD_MESSAGE
+    echo "  - $VS_PROXY_SERVER_SCHEME://$VS_PROXY_SERVER_FQDN/?vs_brxm_host=$VS_HOST_IP_ADDRESS&vs_brxm_port=$VS_CONTAINER_BASE_PORT&vs_brxm_http_host=$VS_BRXM_INSTANCE_HTTP_HOST&vs_ssr_http_port=$VS_CONTAINER_EXT_PORT_SSR&vs_tln_http_port=$VS_CONTAINER_EXT_PORT_TLN$VS_PROXY_QS_SSR" | tee -a $VS_MAIL_NOTIFY_BUILD_MESSAGE
     echo "" | tee -a $VS_MAIL_NOTIFY_BUILD_MESSAGE
     echo "Thereafter, until you clear the settings, you will be able to access the environment on the following URLs" | tee -a $VS_MAIL_NOTIFY_BUILD_MESSAGE
     echo " - site:    $VS_PROXY_SERVER_SCHEME://$VS_PROXY_SERVER_FQDN/" | tee -a $VS_MAIL_NOTIFY_BUILD_MESSAGE
