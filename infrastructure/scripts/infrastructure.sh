@@ -570,14 +570,14 @@ containerCreateAndStart() {
 
 containerUpdates() {
   # check files for updated versions, if the checksum matches we want to update
-  TEST_FILES=("/usr/local/bin/vs-hippo")
-  TEST_SUMS=("5c92fa2dfbc167d0163c1dc1d8690bfa")
+  TEST_FILES=("/usr/local/bin/vs-hippo" "/usr/local/bin/vs-test")
+  TEST_SUMS=("5c92fa2dfbc167d0163c1dc1d8690bfa" "")
   for i in ${!TEST_FILES[@]}; do
     THIS_FILE=${TEST_FILES[$i]}
     THIS_SUM=${TEST_SUMS[$i]}
     echo "checking $THIS_FILE for update - md5sum must not match $THIS_SUM"
     THIS_TEST=`docker exec $VS_CONTAINER_NAME md5sum $THIS_FILE | awk '{print $1}'`
-    THIS_LOCAL_FILE="`dirname $0`/$VS_CONTAINER_UPDATES_DIR/`basename $THIS_FILE`"
+    THIS_LOCAL_FILE=`dirname $0`"/"$VS_CONTAINER_UPDATES_DIR"/"`basename $THIS_FILE`
     if [ "$THIS_TEST" == "$THIS_SUM" ] && [ -e "$THIS_LOCAL_FILE" ]; then
       echo " - found $THIS_TEST, an updated version of $THIS_FILE is available, copying to container"
       docker exec $VS_CONTAINER_NAME mv $THIS_FILE $THIS_FILE.old
@@ -588,7 +588,7 @@ containerUpdates() {
   done
 }
 
-containerSshStart() {
+containerSSHStart() {
   if [ ! "$SAFE_TO_PROCEED" = "FALSE" ]; then
     echo ""
     echo "about to enable SSH in container $VS_CONTAINER_NAME:"
@@ -784,8 +784,8 @@ case $METHOD in
     else
       echo "re-using existing container $CONTAINER_ID"  
     fi
-    containerUpdate
-    containerSshStart
+    containerUpdates
+    containerSSHStart
     containerCopyHippoArtifact
     containerCopySSRArtifact
     containerStartHippo
