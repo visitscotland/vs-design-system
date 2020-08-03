@@ -155,9 +155,11 @@ defaultSettings() {
 reportSettings() {
   clear
   echo ""
-  echo "================================================================================"
-  echo "== RUNNING JENKINS SHELL COMMANDS on $VS_THIS_SERVER" as $USER
-  echo "================================================================================"
+  echo "========================================================================"
+  echo "== RUNNING JENKINS SHELL COMMANDS on $VS_THIS_SERVER"
+  echo "== as user:$USER"
+  echo "== from: $0"
+  echo "========================================================================"
   echo ""
   if [ "$VS_DEBUG" = "TRUE" ]; then echo "==== printenv ===="; printenv; echo "====/printenv ===="; echo ""; fi
   #if [ "$VS_DEBUG" = "TRUE" ]; then echo "==== set ===="; set; echo "====/set ====";  echo ""; fi
@@ -240,9 +242,21 @@ manageContainers() {
   # if container is RUNNING and preserve running is TRUE then - stop tomcat/undeploy app/leave alone?
   # if container is STOPPED and preserve running is TRUE then - ?
   # if container is running and preserve running is FALSE then - deleteContainers
-  if [ ! "$VS_CONTAINER_PRESERVE_RUNNING" = "TRUE" ]; then
-    false
+  if [ "$VS_CONTAINER_PRESERVE_RUNNING" = "TRUE" ]&&[ "$CONTAINER_STATUS" = "running" ]; then
+    echo "VS_CONTAINER_PRESERVE_RUNNING is $VS_CONTAINER_PRESERVE_RUNNING so existing container: $CONTAINER_ID will be re-used"
+  elif [ "$VS_CONTAINER_PRESERVE_RUNNING" = "TRUE" ]&&[ ! "$CONTAINER_STATUS" = "running" ]; then
+    echo "VS_CONTAINER_PRESERVE_RUNNING is $VS_CONTAINER_PRESERVE_RUNNING so existing container: $CONTAINER_ID will be started and re-used"
+  elif [ ! "$VS_CONTAINER_PRESERVE_RUNNING" = "TRUE" ]&&[ "$CONTAINER_STATUS" = "running" ]; then
+    echo "VS_CONTAINER_PRESERVE_RUNNING is $VS_CONTAINER_PRESERVE_RUNNING so existing container: $CONTAINER_ID will be stopped and removed"
+    stopContainers
+    deleteContainers
+  elif [ ! "$VS_CONTAINER_PRESERVE_RUNNING" = "TRUE" ]&&[ ! "$CONTAINER_STATUS" = "running" ]; then
+    echo "VS_CONTAINER_PRESERVE_RUNNING is $VS_CONTAINER_PRESERVE_RUNNING so existing container: $CONTAINER_ID will be removed"
+    deleteContainers
+  else
+    echo "Container status for $CONTAINER_ID could not be determined"
   fi
+  echo ""
 }
 
 # check all branches to see what ports are "reserved" by existing containers
@@ -594,7 +608,7 @@ createBuildReport() {
     echo ""
     echo "" | tee $VS_MAIL_NOTIFY_BUILD_MESSAGE
     echo "" | tee -a $VS_MAIL_NOTIFY_BUILD_MESSAGE
-    echo "###############################################################################################################################" | tee -a $VS_MAIL_NOTIFY_BUILD_MESSAGE
+    echo "########################################################################" | tee -a $VS_MAIL_NOTIFY_BUILD_MESSAGE
     echo "" | tee -a $VS_MAIL_NOTIFY_BUILD_MESSAGE
     echo "The site instance for branch $GIT_BRANCH should now be available in a few moments on $NODE_NAME - $VS_HOST_IP_ADDRESS" | tee -a $VS_MAIL_NOTIFY_BUILD_MESSAGE
     echo "" | tee -a $VS_MAIL_NOTIFY_BUILD_MESSAGE
@@ -632,18 +646,18 @@ createBuildReport() {
     if [ -e "$VS_MAIL_NOTIFY_BUILD_MESSAGE_EXTRA" ]; then
       cat $VS_MAIL_NOTIFY_BUILD_MESSAGE_EXTRA | tee -a $VS_MAIL_NOTIFY_BUILD_MESSAGE
     fi
-    echo "###############################################################################################################################" | tee -a $VS_MAIL_NOTIFY_BUILD_MESSAGE | tee -a $VS_MAIL_NOTIFY_BUILD_MESSAGE
+    echo "########################################################################" | tee -a $VS_MAIL_NOTIFY_BUILD_MESSAGE | tee -a $VS_MAIL_NOTIFY_BUILD_MESSAGE
     echo "" | tee -a $VS_MAIL_NOTIFY_BUILD_MESSAGE
     echo "" | tee -a $VS_MAIL_NOTIFY_BUILD_MESSAGE
   else
     EXIT_CODE=127
     echo "" | tee $VS_MAIL_NOTIFY_BUILD_MESSAGE
     echo "" | tee -a $VS_MAIL_NOTIFY_BUILD_MESSAGE
-    echo "###############################################################################################################################" | tee -a $VS_MAIL_NOTIFY_BUILD_MESSAGE
+    echo "########################################################################" | tee -a $VS_MAIL_NOTIFY_BUILD_MESSAGE
     echo "" | tee -a $VS_MAIL_NOTIFY_BUILD_MESSAGE
     echo "JOB FAILED because $FAIL_REASON" | tee -a $VS_MAIL_NOTIFY_BUILD_MESSAGE
     echo "" | tee -a $VS_MAIL_NOTIFY_BUILD_MESSAGE
-    echo "###############################################################################################################################" | tee -a $VS_MAIL_NOTIFY_BUILD_MESSAGE
+    echo "########################################################################" | tee -a $VS_MAIL_NOTIFY_BUILD_MESSAGE
     echo "" | tee -a $VS_MAIL_NOTIFY_BUILD_MESSAGE
     echo "" | tee -a $VS_MAIL_NOTIFY_BUILD_MESSAGE
   fi
@@ -685,10 +699,11 @@ case $METHOD in
     defaultSettings
     reportSettings
     checkContainers
-    stopContainers
+    manageContainers
+    #stopContainers
     #startContainers
-    deleteContainers
-    deleteImages
+    #deleteContainers
+    #deleteImages
     #getChildBranchesViaCurl
     #getBranchListViaCurl
     #getPullRequestListViaCurl
