@@ -44,7 +44,7 @@ if [ -z "$VS_CONTAINER_DYN_PORT_MAX" ]; then VS_CONTAINER_DYN_PORT_MAX=8999; fi
 if [ -z "$VS_CONTAINER_INT_PORT_SSR" ]; then VS_CONTAINER_INT_PORT_SSR=8082; fi
 if [ -z "$VS_CONTAINER_INT_PORT_SSH" ]; then VS_CONTAINER_INT_PORT_SSH=22; fi
 if [ -z "$VS_CONTAINER_INT_PORT_TLN" ]; then VS_CONTAINER_INT_PORT_TLN=8081; fi
-if [ -z "$VS_CONTAINER_PRESERVE_RUNNING" ]; then VS_CONTAINER_PRESERVE_RUNNING=TRUE; fi
+if [ -z "$VS_CONTAINER_PRESERVE" ]; then VS_CONTAINER_PRESERVE=TRUE; fi
 #  ==== SSR Application Variables ====
 if [ -z "$VS_FRONTEND_DIR" ]; then VS_FRONTEND_DIR=frontend; fi
 if [ -z "$VS_SSR_PACKAGE_SOURCE" ]; then VS_SSR_PACKAGE_SOURCE="$VS_FRONTEND_DIR/ssr/server/ $VS_FRONTEND_DIR/dist/ssr/ $VS_FRONTEND_DIR/node_modules/"; fi
@@ -65,8 +65,8 @@ while [[ $# -gt 0 ]]; do
   case $THIS_VAR in
     --debug) if [ ! -z "$THIS_RESULT" ]; then VS_DEBUG=$THIS_RESULT; else VS_DEBUG=TRUE; fi;;
     --frontend-dir) if [ ! -z "$THIS_RESULT" ]; then VS_FRONTEND_DIR=$THIS_RESULT; fi;;
-    --preserve-container) if [ ! -z "$THIS_RESULT" ]; then VS_CONTAINER_PRESERVE_RUNNING=$THIS_RESULT; else VS_CONTAINER_PRESERVE_RUNNING=TRUE; fi;;
-    --reuse-container) if [ ! -z "$THIS_RESULT" ]; then VS_CONTAINER_PRESERVE_RUNNING=$THIS_RESULT; else VS_CONTAINER_PRESERVE_RUNNING=TRUE; fi;;
+    --preserve-container) if [ ! -z "$THIS_RESULT" ]; then VS_CONTAINER_PRESERVE=$THIS_RESULT; else VS_CONTAINER_PRESERVE=TRUE; fi;;
+    --reuse-container) if [ ! -z "$THIS_RESULT" ]; then VS_CONTAINER_PRESERVE=$THIS_RESULT; else VS_CONTAINER_PRESERVE=TRUE; fi;;
     --single-function) if [ ! -z "$THIS_RESULT" ]; then VS_THIS_FUNCTION=$THIS_RESULT; fi;;
     --tidy-containers) if [ ! -z "$THIS_RESULT" ]; then VS_TIDY_CONTAINERS=$THIS_RESULT; else VS_TIDY_CONTAINERS=TRUE; fi;;
     --working-dir) if [ ! -z "$THIS_RESULT" ]; then VS_WORKING_DIR=$THIS_RESULT; fi;;
@@ -238,21 +238,21 @@ deleteImages() {
 }
 
 manageContainers() {
-  # at this point we know VS_CONTAINER_NAME, VS_CONTAINER_PRESERVE_RUNNING, CONTAINER_ID, CONTAINER_STATUS
+  # at this point we know VS_CONTAINER_NAME, VS_CONTAINER_PRESERVE, CONTAINER_ID, CONTAINER_STATUS
   # if container is RUNNING and preserve running is TRUE then - stop tomcat/undeploy app/leave alone?
   # if container is STOPPED and preserve running is TRUE then - ?
   # if container is running and preserve running is FALSE then - deleteContainers
-  if [ "$VS_CONTAINER_PRESERVE_RUNNING" == "TRUE" ] && [ "$CONTAINER_STATUS" == "running" ]; then
-    echo "VS_CONTAINER_PRESERVE_RUNNING is $VS_CONTAINER_PRESERVE_RUNNING so existing container $CONTAINER_ID will be re-used"
-  elif [ "$VS_CONTAINER_PRESERVE_RUNNING" == "TRUE" ] && [ ! "$CONTAINER_STATUS" == "running" ]; then
-    echo "VS_CONTAINER_PRESERVE_RUNNING is $VS_CONTAINER_PRESERVE_RUNNING so existing container $CONTAINER_ID will be started and re-used"
+  if [ "$VS_CONTAINER_PRESERVE" == "TRUE" ] && [ "$CONTAINER_STATUS" == "running" ]; then
+    echo "VS_CONTAINER_PRESERVE is $VS_CONTAINER_PRESERVE so existing container $CONTAINER_ID will be re-used"
+  elif [ "$VS_CONTAINER_PRESERVE" == "TRUE" ] && [ ! "$CONTAINER_STATUS" == "running" ]; then
+    echo "VS_CONTAINER_PRESERVE is $VS_CONTAINER_PRESERVE so existing container $CONTAINER_ID will be started and re-used"
     #startContainers
-  elif [ ! "$VS_CONTAINER_PRESERVE_RUNNING" == "TRUE" ] && [ "$CONTAINER_STATUS" == "running" ]; then
-    echo "VS_CONTAINER_PRESERVE_RUNNING is $VS_CONTAINER_PRESERVE_RUNNING so existing container $CONTAINER_ID will be stopped and removed"
+  elif [ ! "$VS_CONTAINER_PRESERVE" == "TRUE" ] && [ "$CONTAINER_STATUS" == "running" ]; then
+    echo "VS_CONTAINER_PRESERVE is $VS_CONTAINER_PRESERVE so existing container $CONTAINER_ID will be stopped and removed"
     #stopContainers
     #deleteContainers
-  elif [ ! "$VS_CONTAINER_PRESERVE_RUNNING" == "TRUE" ] && [ ! "$CONTAINER_STATUS" == "running" ]; then
-    echo "VS_CONTAINER_PRESERVE_RUNNING is $VS_CONTAINER_PRESERVE_RUNNING so existing container $CONTAINER_ID will be removed"
+  elif [ ! "$VS_CONTAINER_PRESERVE" == "TRUE" ] && [ ! "$CONTAINER_STATUS" == "running" ]; then
+    echo "VS_CONTAINER_PRESERVE is $VS_CONTAINER_PRESERVE so existing container $CONTAINER_ID will be removed"
     #deleteContainers
   else
     echo "Container status for $CONTAINER_ID could not be determined"
@@ -410,29 +410,39 @@ findBasePort() {
       sleep 0
     fi
   done
-
-  if [ $THIS_PORT -gt $MAX_PORT ]; then
-    FAIL_CAUSE_ID=`docker ps -a | grep $VS_CONTAINER_BASE_PORT_OVERRIDE | tail -1 | awk '{print $1}'`
-    FAIL_CAUSE=`docker ps -a --filter="id=$FAIL_CAUSE_ID" --format "table {{.Names}}" | tail -n +2`
-    if [ ! -z "$VS_CONTAINER_BASE_PORT_OVERRIDE" ] && [ ! "$PORT_RESERVED" = "TRUE" ]; then
-      FAIL_REASON="OVERRIDE PORT $VS_CONTAINER_BASE_PORT_OVERRIDE is in use by $FAIL_CAUSE, setting PORT to NULL"
-    elif [ ! -z "$VS_CONTAINER_BASE_PORT_OVERRIDE" ] && [ "$PORT_RESERVED" = "TRUE" ]; then
-      FAIL_REASON="OVERRIDE PORT $VS_CONTAINER_BASE_PORT_OVERRIDE is reserved by $FAIL_CAUSE, setting PORT to NULL"
-    else  
-      FAIL_REASON="port scan reached $MAX_PORT, no ports are free, setting PORT to NULL"
+  
+  if [ $THIS_PORT -le $MAX_PORT ]; then
+    VS_CONTAINER_BASE_PORT=$THIS_PORT
+    echo " - VS_CONTAINER_BASE_PORT set to $VS_CONTAINER_BASE_PORT"
+  elif [ $THIS_PORT -gt $MAX_PORT ] && [ ! -z "$VS_CONTAINER_BASE_PORT_OVERRIDE" ] && [ "$PORT_RESERVED" = "TRUE" ]; then
+    echo " - override port $VS_CONTAINER_BASE_PORT_OVERRIDE was reserved - checking it's reserved by this branch"
+    HAS_PORT_ID=`docker ps -a | grep $VS_CONTAINER_BASE_PORT_OVERRIDE | tail -1 | awk '{print $1}'`
+    HAS_PORT_NAME=`docker ps -a --filter="id=$HAS_PORT_ID" --format "table {{.Names}}" | tail -n +2`
+    if [ "$HAS_PORT_NAME" == "$VS_CONTAINER_NAME" ]; then
+      echo " -- success"
+      VS_CONTAINER_BASE_PORT=$VS_CONTAINER_BASE_PORT_OVERRIDE
+      echo " -- VS_CONTAINER_BASE_PORT set to $VS_CONTAINER_BASE_PORT_OVERRIDE"
+    else
+      FAIL_REASON="$VS_CONTAINER_BASE_PORT_OVERRIDE is in use by $HAS_PORT_NAME, setting PORT to NULL"
+      THIS_PORT=NULL
+      SAFE_TO_PROCEED=FALSE
+      echo " - $FAIL_REASON"
     fi
+  elif [ $THIS_PORT -gt $MAX_PORT ] && [ ! -z "$VS_CONTAINER_BASE_PORT_OVERRIDE" ] && [ ! "$PORT_RESERVED" = "TRUE" ]; then
+    echo " - override port $VS_CONTAINER_BASE_PORT_OVERRIDE was not reserved - don't know how we got here"
+    VS_CONTAINER_BASE_PORT=$VS_CONTAINER_BASE_PORT_OVERRIDE
+    echo " -- VS_CONTAINER_BASE_PORT set to $VS_CONTAINER_BASE_PORT_OVERRIDE"
+  else
+    FAIL_REASON="port scan reached $MAXPORT, no ports are free, setting PORT to NULL"
     THIS_PORT=NULL
     SAFE_TO_PROCEED=FALSE
     echo " - $FAIL_REASON"
-  else
-    VS_CONTAINER_BASE_PORT=$THIS_PORT
-    echo " - VS_CONTAINER_BASE_PORT set to $VS_CONTAINER_BASE_PORT"
   fi
   echo ""
 }
 
 findDynamicPorts() {
-  echo "Finding free ports from $VS_CONTAINER_BASE_PORT at an increment of $VS_CONTAINER_PORT_INCREMENT to dynamically map to other servies on the new container - up to $VS_CONTAINER_DYN_PORT_MAX"
+  echo "Finding free ports from $VS_CONTAINER_BASE_PORT in increments of $VS_CONTAINER_PORT_INCREMENT to dynamically map to other servies on the new container - up to $VS_CONTAINER_DYN_PORT_MAX"
   THIS_PORT=$VS_CONTAINER_BASE_PORT
   echo "" > $VS_MAIL_NOTIFY_BUILD_MESSAGE_EXTRA
   for VS_CONTAINER_INT_PORT in `set | grep "VS_CONTAINER_INT_PORT_"`; do
