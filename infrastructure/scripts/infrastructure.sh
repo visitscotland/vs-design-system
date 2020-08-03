@@ -363,6 +363,7 @@ tidyContainers() {
 
 setPortRange() {
   # gp:DONE - even if override is set we must still check to ensure it's free, move the while loop to after the if block and just add PORT/MAXPORT values into the if. If the override port if in use the job must fail
+  echo "determining port range to test for available base ports"
   if [ -z "$VS_CONTAINER_BASE_PORT_OVERRIDE" ]; then
     if [ "VS_PARENT_JOB_NAME" == "feature.visitscotland.com-mb" ] && [ "$GIT_BRANCH" == "develop" ]; then
       VS_CONTAINER_BASE_PORT_OVERRIDE=8100
@@ -498,11 +499,11 @@ findHippoArtifact() {
     if [ -z $HIPPO_LATEST ]; then
       # search in $WORKSPACE/target/ for files matching "*.tar.gz"
       echo "searching for latest Hippo distribution files in $WORKSPACE/target"
-      HIPPO_LATEST=`ls -alht $WORKSPACE/target/*.tar.gz | head -1 | awk '{print $9}'` 2>&1 > /dev/null
+      HIPPO_LATEST=`ls -alht $WORKSPACE/target/visit*.tar.gz | head -1 | awk '{print $9}'` 2>&1 > /dev/null
       if [ -z "$HIPPO_LATEST" ]; then
-        # recursive search in $WORKSPACE/ for files matching "*.tar.gz"
+        # recursive search in $WORKSPACE/ for files matching "visit*.tar.gz"
         echo "no archive found in $WORKSPACE/target/, widening search"
-        HIPPO_LATEST=`find $WORKSPACE/ -name "*.tar.gz" | head -1`
+        HIPPO_LATEST=`find $WORKSPACE/ -name "visit*.tar.gz" | head -1`
       fi
       if [ ! -z "$HIPPO_LATEST" ]; then
         echo " - found $HIPPO_LATEST"
@@ -525,7 +526,7 @@ findHippoArtifact() {
 # package SSR app files
 packageSSRArtifact() {
   if [ "$VS_SSR_PROXY_ON" = "TRUE" ] && [ ! "$SAFE_TO_PROCEED" = "FALSE" ]; then
-    echo "packaging SSR application"
+    echo "packaging SSR application"; echo ""
     if [ -d "$VS_FRONTEND_DIR" ]; then
       tar -zcf $VS_SSR_PACKAGE_TARGET/$VS_SSR_PACKAGE_NAME $VS_SSR_PACKAGE_SOURCE
       RETURN_CODE=$?; echo " - return code: " $RETURN_CODE
