@@ -460,7 +460,7 @@ findDynamicPorts() {
 	THIS_DOCKER_MAP="-p $THIS_PORT:$VS_CONTAINER_SERVICE_PORT"
 	VS_CONTAINER_PORT_MAPPINGS="$THIS_DOCKER_MAP $VS_CONTAINER_PORT_MAPPINGS"
 	break
-      else [ ! "$FREE" = "" ] && [ "$VS_CONTAINER_PRESERVE" == "TRUE" ]; then
+      elif [ ! "$FREE" = "" ] && [ "$VS_CONTAINER_PRESERVE" == "TRUE" ]; then
         echo " - netstat says $THIS_PORT is not free - checking if it's reserved by this branch "
         HAS_PORT_ID=`docker ps -a | grep $THIS_PORT | tail -1 | awk '{print $1}'`
         HAS_PORT_NAME=`docker ps -a --filter="id=$HAS_PORT_ID" --format "table {{.Names}}" | tail -n +2`
@@ -468,8 +468,9 @@ findDynamicPorts() {
           echo " -- success"
 	  break
 	fi
+      else
+        echo " - $THIS_PORT is in use, trying "$((THIS_PORT+$VS_CONTAINER_PORT_INCREMENT))
       fi
-      echo " - $THIS_PORT is in use, trying "$((THIS_PORT+$VS_CONTAINER_PORT_INCREMENT))
     done
   done
   unset VS_CONTAINER_INT_PORT
