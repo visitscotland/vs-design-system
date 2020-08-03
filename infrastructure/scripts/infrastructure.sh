@@ -238,11 +238,7 @@ deleteImages() {
 }
 
 manageContainers() {
-  if [ "$VS_DEBUG" = "TRUE" ]; then echo "Running $0"; fi
-  # at this point we know VS_CONTAINER_NAME, VS_CONTAINER_PRESERVE_RUNNING, CONTAINER_ID, CONTAINER_STATUS
-  # if container is RUNNING and preserve running is TRUE then - stop tomcat/undeploy app/leave alone?
-  # if container is STOPPED and preserve running is TRUE then - ?
-  # if container is running and preserve running is FALSE then - deleteContainers
+  if [ "$VS_DEBUG" = "TRUE" ]; then echo "running %0"; fi
   if [ "$VS_CONTAINER_PRESERVE_RUNNING" = "TRUE" ] && [ "$CONTAINER_STATUS" = "running" ]; then
     echo "VS_CONTAINER_PRESERVE_RUNNING is $VS_CONTAINER_PRESERVE_RUNNING so existing container $CONTAINER_ID will be re-used"
   elif [ "$VS_CONTAINER_PRESERVE_RUNNING" = "TRUE" ] && [ ! "$CONTAINER_STATUS" = "running" ]; then
