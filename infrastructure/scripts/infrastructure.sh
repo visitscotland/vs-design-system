@@ -308,13 +308,13 @@ getBranchListFromWorkspace() {
 
 getReservedPortList() {
   echo "checking for ports reserved by containers in BRANCH_LIST"
-  if [ "$VS_DEBUG" = "TRUE" ]; then echo "$BRANCH_LIST"; fi
+  if [ "$VS_DEBUG" == "TRUE" ]; then echo "$BRANCH_LIST"; fi
   for BRANCH in $BRANCH_LIST; do
-    if [ "$VS_DEBUG" = "TRUE" ]; then echo " - checking $BRANCH"; fi
+    if [ "$VS_DEBUG" == "TRUE" ]; then echo " - checking $BRANCH"; fi
     RESERVED_PORT=`docker port $BRANCH 2>/dev/null| awk '{gsub(/.*:/,"");}1'`
-    if [ ! -z $RESERVED_PORT ]; then
+    if [ ! -z "$RESERVED_PORT" ]; then
       RESERVED_PORT_LIST="$RESERVED_PORT_LIST $RESERVED_PORT"
-      if [ "$VS_DEBUG" = "TRUE" ]; then echo " - $RESERVED_PORT is reserved by $BRANCH"; fi
+      if [ "$VS_DEBUG" == "TRUE" ]; then echo " - $RESERVED_PORT is reserved by $BRANCH"; fi
     fi
   done
   echo ""
