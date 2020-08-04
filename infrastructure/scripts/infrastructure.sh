@@ -438,7 +438,7 @@ findBasePort() {
     VS_CONTAINER_BASE_PORT=$THIS_PORT
     echo " - VS_CONTAINER_BASE_PORT set to $VS_CONTAINER_BASE_PORT"
   elif [ $THIS_PORT -gt $MAX_PORT ] && [ ! -z "$VS_CONTAINER_BASE_PORT_OVERRIDE" ] && [ "$PORT_IN_USE" = "TRUE" ]; then
-    echo " - override port $VS_CONTAINER_BASE_PORT_OVERRIDE was reserved - checking if it's reserved by this branch"
+    echo " - override port $VS_CONTAINER_BASE_PORT_OVERRIDE is in-use - checking if it's reserved by this branch"
     HAS_PORT_ID=`docker ps -a | grep $VS_CONTAINER_BASE_PORT_OVERRIDE | tail -1 | awk '{print $1}'`
     HAS_PORT_NAME=`docker ps -a --filter="id=$HAS_PORT_ID" --format "table {{.Names}}" | tail -n +2`
     if [ "$HAS_PORT_NAME" == "$VS_CONTAINER_NAME" ]; then
