@@ -391,60 +391,6 @@
             /visitscotland:introduction:
               jcr:primaryType: hippostd:html
               hippostd:content: <p>introduction</p>
-        /Day 1 (FR):
-          jcr:primaryType: hippo:handle
-          jcr:mixinTypes: ['mix:referenceable']
-          jcr:uuid: 8470f851-6563-43c8-97a6-f9aa0b908ece
-          /Day 1 (FR):
-            jcr:primaryType: visitscotland:Day
-            jcr:mixinTypes: ['mix:versionable']
-            jcr:uuid: e7543bea-8333-440c-9d90-a3d998239ef3
-            hippo:availability: [preview]
-            hippostd:state: unpublished
-            hippostdpubwf:createdBy: admin
-            hippostdpubwf:creationDate: 2020-07-29T21:38:06.759+01:00
-            hippostdpubwf:lastModificationDate: 2020-07-29T21:52:48.139+01:00
-            hippostdpubwf:lastModifiedBy: admin
-            hippotranslation:id: a5f63545-47b6-4080-acce-d87bbd6db09c
-            hippotranslation:locale: fr
-            visitscotland:title: day 1
-            visitscotland:transports: []
-            /visitscotland:introduction:
-              jcr:primaryType: hippostd:html
-              hippostd:content: ''
-            /visitscotland:stops[1]:
-              jcr:primaryType: hippo:mirror
-              hippo:docbase: e0bc6554-7f78-453d-a108-59bdb760fc3f
-            /visitscotland:stops[2]:
-              jcr:primaryType: hippo:mirror
-              hippo:docbase: a54848de-4d9a-4bae-b686-287772df04e0
-        /Day 2 (FR):
-          jcr:primaryType: hippo:handle
-          jcr:mixinTypes: ['mix:referenceable']
-          jcr:uuid: 3950f223-4d5d-4184-9f29-9e377f64e718
-          /Day 2 (FR):
-            jcr:primaryType: visitscotland:Day
-            jcr:mixinTypes: ['mix:versionable']
-            jcr:uuid: 9f2c79c0-86cd-4110-9a51-cffb67e5f9cb
-            hippo:availability: [preview]
-            hippostd:state: unpublished
-            hippostdpubwf:createdBy: admin
-            hippostdpubwf:creationDate: 2020-07-29T21:38:22.662+01:00
-            hippostdpubwf:lastModificationDate: 2020-07-29T21:52:48.294+01:00
-            hippostdpubwf:lastModifiedBy: admin
-            hippotranslation:id: 8a939ad7-abae-44b0-977b-00458ba05170
-            hippotranslation:locale: fr
-            visitscotland:title: day 2
-            visitscotland:transports: []
-            /visitscotland:introduction:
-              jcr:primaryType: hippostd:html
-              hippostd:content: ''
-            /visitscotland:stops[1]:
-              jcr:primaryType: hippo:mirror
-              hippo:docbase: 40ff8627-63b2-4c4e-80ea-db3e8542337c
-            /visitscotland:stops[2]:
-              jcr:primaryType: hippo:mirror
-              hippo:docbase: ee8b084d-738e-488a-8592-37d4b3cdf461
       /itinerary-with-same-name-sibling-stops:
         jcr:primaryType: hippostd:folder
         jcr:mixinTypes: ['hippo:named', 'hippotranslation:translated', 'mix:versionable']
