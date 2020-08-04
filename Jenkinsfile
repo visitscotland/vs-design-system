@@ -16,7 +16,7 @@ if (BRANCH_NAME == "develop" && (JOB_NAME == "develop.visitscotland.com/develop"
   env.VS_CONTAINER_BASE_PORT_OVERRIDE = "8097"
 } else if (BRANCH_NAME == "feature/VS-1865-feature-environments-enhancements" && (JOB_NAME == "feature.visitscotland.com-mb/feature%2FVS-1865-feature-environments-enhancements")) {
   thisAgent = "op-dev-xvcdocker-01"
-  env.VS_CONTAINER_BASE_PORT_OVERRIDE = "8096"
+  //env.VS_CONTAINER_BASE_PORT_OVERRIDE = "8096"
   //cron_string = "*/2 * * * *"
   cron_string = ""
 } else {
