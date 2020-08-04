@@ -151,7 +151,7 @@ export default {
     height:24px;
     width:24px;
 
-    .icon{
+    .vs-icon{
         height: 100%;
         margin: 0 auto;
         display: block;

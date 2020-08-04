@@ -76,10 +76,6 @@ export default {
     &.vs-link--variant-primary {
         color: $color_pink;
 
-        .icon {
-            fill: $color_pink;
-        }
-
         &:focus {
             outline: 2px solid $color_pink;
         }
