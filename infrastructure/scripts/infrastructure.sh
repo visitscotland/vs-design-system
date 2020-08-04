@@ -47,6 +47,8 @@ if [ -z "$VS_CONTAINER_INT_PORT_SSR" ]; then VS_CONTAINER_INT_PORT_SSR=8082; fi
 if [ -z "$VS_CONTAINER_INT_PORT_SSH" ]; then VS_CONTAINER_INT_PORT_SSH=22; fi
 if [ -z "$VS_CONTAINER_INT_PORT_TLN" ]; then VS_CONTAINER_INT_PORT_TLN=8081; fi
 if [ -z "$VS_CONTAINER_PRESERVE" ]; then VS_CONTAINER_PRESERVE=TRUE; fi
+if [ -z "$VS_CONTAINER_SSH_PASS_ROOT" ]; then VS_CONTAINER_SSH_PASS_ROOT=rootssh; fi
+if [ -z "$VS_CONTAINER_SSH_PASS_HIPPO" ]; then VS_CONTAINER_SSH_PASS_ROOT=hippossh; fi
 if [ -z "$VS_CONTAINER_UPDATES_DIR" ]; then VS_CONTAINER_UPDATES_DIR="../files"; fi
 #  ==== SSR Application Variables ====
 if [ -z "$VS_FRONTEND_DIR" ]; then VS_FRONTEND_DIR=frontend; fi
@@ -606,7 +608,7 @@ containerSSHStart() {
   if [ ! "$SAFE_TO_PROCEED" = "FALSE" ]; then
     echo ""
     echo "about to enable SSH in container $VS_CONTAINER_NAME:"
-    VS_DOCKER_CMD='docker exec -d $VS_CONTAINER_NAME /bin/bash -c "ssh-keygen -A; /usr/sbin/sshd; echo hippo:hippossh | chpasswd; echo root:rootssh | chpasswd"'
+    VS_DOCKER_CMD='docker exec -d $VS_CONTAINER_NAME /bin/bash -c "ssh-keygen -A; /usr/sbin/sshd; echo hippo:$VS_CONTAINER_SSH_PASS_HIPPO | chpasswd; echo root:$VS_CONTAINER_SSH_PASS_ROOT | chpasswd"'
     echo " - $VS_DOCKER_CMD"
     eval $VS_DOCKER_CMD
     RETURN_CODE=$?; echo $RETURN_CODE
@@ -722,7 +724,7 @@ createBuildReport() {
     fi
     if [ ! -z "$VS_CONTAINER_EXT_PORT_SSH" ]; then
       echo "SSH access (if enabled on the container) - available only on the Web Development LAN" | tee -a $VS_MAIL_NOTIFY_BUILD_MESSAGE
-      echo "  - ssh -p $VS_CONTAINER_EXT_PORT_SSH root@$VS_HOST_IP_ADDRESS" | tee -a $VS_MAIL_NOTIFY_BUILD_MESSAGE
+      echo "  - ssh -p $VS_CONTAINER_EXT_PORT_SSH hippo@$VS_HOST_IP_ADDRESS ($VS_CONTAINER_SSH_PASS_HIPPO)" | tee -a $VS_MAIL_NOTIFY_BUILD_MESSAGE
       echo "" | tee -a $VS_MAIL_NOTIFY_BUILD_MESSAGE
     fi
     if [ -e "$VS_MAIL_NOTIFY_BUILD_MESSAGE_EXTRA" ]; then
