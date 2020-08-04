@@ -2,7 +2,10 @@
     <VsCol
         tag="dt"
         class="vs-description-list__term"
-        :class="{ 'list-inline-item': inline, 'vs-description-list__term--styled': !inline }"
+        :class="{
+            'list-inline-item': inline,
+            'vs-description-list__term--styled': !inline
+        }"
     >
         <slot />
     </VsCol>
@@ -28,7 +31,7 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 @import "~bootstrap/scss/type";
 
 .vs-description-list__term {
