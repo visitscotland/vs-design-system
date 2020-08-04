@@ -2,10 +2,10 @@
     <VsSvg
         :path="path"
         :class="{
-            icon: true,
-            ['icon-' + size]: true,
-            ['icon-' + formattedName]: true,
-            ['icon-' + variant]: variant,
+            'vs-icon': true,
+            ['vs-icon--size-' + size]: true,
+            ['vs-icon--' + formattedName]: true,
+            ['vs-icon--variant-' + variant]: variant,
         }"
         v-bind="$attrs"
     />
@@ -35,7 +35,7 @@ export default {
     },
     props: {
         /**
-         * The name of the icon to display.
+         * The name of the icon to display, which will be the name of the icon file
          */
         name: {
             type: String,
@@ -171,11 +171,7 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
-// @include reset;
-
-@mixin icon-dimensions($size, $dimension) {
-}
+<style lang="scss">
 
 $sizes: (
     xxs: $icon-size-xxs,
@@ -200,32 +196,23 @@ $variants: (
     secondary-teal: $color-theme-secondary-teal,
 );
 
-.icon {
+.vs-icon {
     fill: $color-black;
     overflow: visible;
 
     @each $size in map-keys($sizes) {
         $this-size: map-get($sizes, $size);
 
-        &.icon-#{$size} {
+        &.vs-icon--size-#{$size} {
             height: $this-size;
             width: $this-size;
             padding: 0;
-
-            &.icon-reverse {
-                border-radius: $this-size / 2;
-            }
         }
     }
 
     @each $variant in map-keys($variants) {
-        &.icon-#{$variant} {
+        &.vs-icon--variant-#{$variant} {
             fill: map-get($variants, $variant);
-
-            &.icon-reverse {
-                fill: $color-white;
-                background: map-get($variants, $variant);
-            }
         }
     }
 }
