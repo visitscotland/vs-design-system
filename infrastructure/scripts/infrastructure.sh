@@ -3,20 +3,21 @@
 # ==== TO-DO ====
 # gp: split into functions - done
 # gp: activate clean-up routine - done
-# gp: update adjustatable variables to set only if they're not set already, that way the Dev can override in the Jenkinsfile - partially done
+# gp: update adjustatable variables to set only if they're not set already, that way the Dev can override in the Jenkinsfile - done
 # gp: rename BASE_PORT to MIN_PORT - done
 # gp: update port find to set VS_CONTAINER_BASE_PORT between MIN_PORT and MAX_PORT - done
 #      - then check the + 100s right to the limit - done
-# gp: create an array of required ports
+# gp: create an array of required ports - done
 #      - e.g. "VS_CONTAINER_BRXM_PORT VS_CONTAINER_SSR_PORT VS_CONTAINER_SSH_PORT"
 #      - then do a FOR MAP_PORT in VS_CONTAINER_REQUIRED_PORTS and +100 knowing that the're available (from above)
-# gp: if an existent container is found grab its base port
+# gp: if an existent container is found grab its base port - done
 #     - re-use it for any new container
-# gp: create routine to re-use existing container if it's there
+# gp: create routine to re-use existing container if it's there - done
 #     - start it if stoppped - redeploy artifact if it's running
-# gp: create notification routine using "VS_COMMIT_AUTHOR"
+# gp: create notification routine using "VS_COMMIT_AUTHOR" - done
 # gp: create test routine
-# gp: don't start tomcat with container
+# gp: don't start tomcat with container - done
+# gp: additional check to see if mySQL is required - create a CMD without mysql - done
 # ====/TO-DO ====
 
 # ==== SETUP ====
@@ -214,7 +215,6 @@ checkContainers() {
 }
 
 stopContainers() {
-  # TO-DO - maybe undeploy application first?
   echo "stopping containers with ID $CONTAINER_ID"
   for CONTAINER in $CONTAINER_ID; do
     echo " - stopping $CONTAINER"
@@ -554,7 +554,6 @@ packageSSRArtifact() {
 
 # create Docker container
 containerCreateAndStart() {
-# WebOps TO-DO - additional check to see if mySQL is required - create a CMD without mysql
   if [ ! "$SAFE_TO_PROCEED" = "FALSE" ]; then
     VS_CONTAINER_EXPOSE_PORT=$VS_BRXM_TOMCAT_PORT
     echo ""
