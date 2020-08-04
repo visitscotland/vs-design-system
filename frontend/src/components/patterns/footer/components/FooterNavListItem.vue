@@ -64,7 +64,7 @@ export default {
             text-decoration: underline;
         }
 
-        .icon {
+        .vs-icon {
             fill: $color-white;
         }
     }
