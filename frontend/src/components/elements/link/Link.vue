@@ -1,7 +1,10 @@
 <template>
     <BLink
         class="vs-link"
-        :class="[variantClass, { 'vs-link--external': external }]"
+        :class="[
+            `vs-link--variant-${variant}`,
+            { 'vs-link--external': external }
+        ]"
         :href="href"
         :target="external ? '_blank' : '_self'"
     >
