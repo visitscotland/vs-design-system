@@ -10,14 +10,14 @@ if (BRANCH_NAME == "develop" && (JOB_NAME == "develop.visitscotland.com/develop"
 } else if (BRANCH_NAME == "develop" && (JOB_NAME == "develop-nightly.visitscotland.com/develop" || JOB_NAME == "develop-nightly.visitscotland.com-mb/develop")) {
   thisAgent = "op-dev-xvcdocker-01"
   env.VS_CONTAINER_BASE_PORT_OVERRIDE = "8098"
-  String cron_string = BRANCH_NAME == "develop" ? "@midnight" : ""
+  cron_string = "@midnight"
 } else if (BRANCH_NAME == "develop" && (JOB_NAME == "develop-stable.visitscotland.com/develop" || JOB_NAME == "develop-stable.visitscotland.com-mb/develop")) {
   thisAgent = "op-dev-xvcdocker-01"
   env.VS_CONTAINER_BASE_PORT_OVERRIDE = "8097"
 } else if (BRANCH_NAME == "feature/VS-1865-feature-environments-enhancements" && (JOB_NAME == "feature.visitscotland.com-mb/feature%2FVS-1865-feature-environments-enhancements")) {
   thisAgent = "op-dev-xvcdocker-01"
   env.VS_CONTAINER_BASE_PORT_OVERRIDE = "8096"
-  cron_string = "@hourly"
+  cron_string = "*/5 * * * *"
 } else {
   thisAgent = "docker-02"
 }
@@ -27,11 +27,11 @@ import groovy.json.JsonSlurper
 pipeline {
   options {buildDiscarder(logRotator(numToKeepStr: '5'))}
   agent {label thisAgent}
- 
   triggers { cron( cron_string ) }
- 
   environment {
+    // from 20200804 VS_SSR_PROXY_ON will only affect whether the SSR app is packaged and sent to the container, using or bypassing will be set via query string
     VS_SSR_PROXY_ON = 'TRUE'
+    // VS_BRXM_PERSISTENCE_METHOD can be set to either 'h2' or 'mysql' - do not change during the lifetime of a container or it will break the repo
     VS_BRXM_PERSISTENCE_METHOD = 'h2'
     VS_SKIP_BUILD_FOR_BRANCH = 'eg:feature/VS-1865-feature-environments-enhancements'
     VS_RUN_BRC_STAGES = 'FALSE'
