@@ -202,7 +202,7 @@ checkContainers() {
     CONTAINER_PORT=`docker inspect --format='{{(index (index .NetworkSettings.Ports "8080/tcp") 0).HostPort}}' $CONTAINER_ID`
     if [ ! -z "$CONTAINER_PORT" ]; then
       VS_CONTAINER_BASE_PORT_OVERRIDE=$CONTAINER_PORT
-      echo " - base port of $CONTAINER_PORT found for container $CONTAINER_ID - reserving"
+      echo " - base port of $CONTAINER_PORT found for container $CONTAINER_ID - setting VS_CONTAINER_BASE_PORT_OVERRIDE"
       echo "  - checking other ports (for info)"
       docker inspect --format='{{range $p, $conf := .NetworkSettings.Ports}} {{$p}} -> {{(index $conf 0).HostPort}} {{end}}' $CONTAINER_ID
     else
@@ -411,6 +411,7 @@ findBasePort() {
   while [ $THIS_PORT -le $MAX_PORT ]; do
     FREE=`netstat -an | egrep "LISTEN *$" | grep $THIS_PORT`
     if [ "$FREE" = "" ]; then
+      PORT_IN_USE="FALSE"
       echo " - netstat says $THIS_PORT is free, checking it's not reserved"
       for RESERVED_PORT in $RESERVED_PORT_LIST; do
         if [ "$RESERVED_PORT" = "$THIS_PORT" ]; then
@@ -427,6 +428,7 @@ findBasePort() {
         sleep 0
       fi
     else
+      PORT_IN_USE="TRUE"
       THIS_PORT=$((THIS_PORT+1))
       sleep 0
     fi
@@ -435,7 +437,7 @@ findBasePort() {
   if [ $THIS_PORT -le $MAX_PORT ]; then
     VS_CONTAINER_BASE_PORT=$THIS_PORT
     echo " - VS_CONTAINER_BASE_PORT set to $VS_CONTAINER_BASE_PORT"
-  elif [ $THIS_PORT -gt $MAX_PORT ] && [ ! -z "$VS_CONTAINER_BASE_PORT_OVERRIDE" ] && [ "$PORT_RESERVED" = "TRUE" ]; then
+  elif [ $THIS_PORT -gt $MAX_PORT ] && [ ! -z "$VS_CONTAINER_BASE_PORT_OVERRIDE" ] && [ "$PORT_IN_USE" = "TRUE" ]; then
     echo " - override port $VS_CONTAINER_BASE_PORT_OVERRIDE was reserved - checking if it's reserved by this branch"
     HAS_PORT_ID=`docker ps -a | grep $VS_CONTAINER_BASE_PORT_OVERRIDE | tail -1 | awk '{print $1}'`
     HAS_PORT_NAME=`docker ps -a --filter="id=$HAS_PORT_ID" --format "table {{.Names}}" | tail -n +2`
