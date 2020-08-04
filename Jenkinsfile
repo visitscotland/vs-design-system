@@ -17,7 +17,7 @@ if (BRANCH_NAME == "develop" && (JOB_NAME == "develop.visitscotland.com/develop"
 } else if (BRANCH_NAME == "feature/VS-1865-feature-environments-enhancements" && (JOB_NAME == "feature.visitscotland.com-mb/feature%2FVS-1865-feature-environments-enhancements")) {
   thisAgent = "op-dev-xvcdocker-01"
   env.VS_CONTAINER_BASE_PORT_OVERRIDE = "8096"
-  //cron_string = "*/10 * * * *"
+  //cron_string = "*/2 * * * *"
   cron_string = ""
 } else {
   thisAgent = "docker-02"
@@ -34,7 +34,7 @@ pipeline {
     VS_SSR_PROXY_ON = 'TRUE'
     // VS_BRXM_PERSISTENCE_METHOD can be set to either 'h2' or 'mysql' - do not change during the lifetime of a container or it will break the repo
     VS_BRXM_PERSISTENCE_METHOD = 'h2'
-    VS_SKIP_BUILD_FOR_BRANCH = 'eg:feature/VS-1865-feature-environments-enhancements'
+    VS_SKIP_BUILD_FOR_BRANCH = 'feature/VS-1865-feature-environments-enhancements'
     VS_RUN_BRC_STAGES = 'FALSE'
     // -- 20200712: TEST and PACKAGE stages might need VS_SKIP set to TRUE as they just run the ~4 minute front-end build every time
     VS_SKIP_BRC_BLD = 'FALSE'
