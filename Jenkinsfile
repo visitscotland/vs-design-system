@@ -3,6 +3,7 @@ def DS_BRANCH = "feature/VS-955-ui-itineraries-itinerary-stops-changes-built-pro
 def MAIL_TO = "gavin@visitscotland.net"
 
 def thisAgent
+def cron_string
 def VS_CONTAINER_BASE_PORT_OVERRIDE
 if (BRANCH_NAME == "develop" && (JOB_NAME == "develop.visitscotland.com/develop" || JOB_NAME == "develop.visitscotland.com-mb/develop")) {
   thisAgent = "op-dev-xvcdocker-01"
