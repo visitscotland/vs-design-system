@@ -12,10 +12,10 @@ if (BRANCH_NAME == "develop" && (JOB_NAME == "develop.visitscotland.com/develop"
   env.VS_CONTAINER_BASE_PORT_OVERRIDE = "8098"
   String cron_string = BRANCH_NAME == "develop" ? "@midnight" : ""
 } else if (BRANCH_NAME == "develop" && (JOB_NAME == "develop-stable.visitscotland.com/develop" || JOB_NAME == "develop-stable.visitscotland.com-mb/develop")) {
-  thisAgent = "op-dev-xvodocker-01"
+  thisAgent = "op-dev-xvcdocker-01"
   env.VS_CONTAINER_BASE_PORT_OVERRIDE = "8097"
 } else if (BRANCH_NAME == "feature/VS-1865-feature-environments-enhancements" && (JOB_NAME == "feature.visitscotland.com-mb/feature%2FVS-1865-feature-environments-enhancements")) {
-  thisAgent = "op-dev-xvodocker-01"
+  thisAgent = "op-dev-xvcdocker-01"
   env.VS_CONTAINER_BASE_PORT_OVERRIDE = "8096"
   String cron_string = BRANCH_NAME == "feature/VS-1865-feature-environments-enhancements" ? "@hourly" : ""
 } else {
@@ -31,7 +31,7 @@ pipeline {
 
   environment {
     VS_SSR_PROXY_ON = 'TRUE'
-    VS_BRXM_PERSISTENCE_METHOD = ''
+    VS_BRXM_PERSISTENCE_METHOD = 'h2'
     VS_SKIP_BUILD_FOR_BRANCH = 'feature/VS-1865-feature-environments-enhancements'
     VS_RUN_BRC_STAGES = 'FALSE'
     // -- 20200712: TEST and PACKAGE stages might need VS_SKIP set to TRUE as they just run the ~4 minute front-end build every time
