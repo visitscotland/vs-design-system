@@ -697,7 +697,7 @@ createBuildReport() {
     echo "The site instance for branch $GIT_BRANCH should now be available in a few moments on $NODE_NAME - $VS_HOST_IP_ADDRESS" | tee -a $VS_MAIL_NOTIFY_BUILD_MESSAGE
     echo "" | tee -a $VS_MAIL_NOTIFY_BUILD_MESSAGE
     echo "To configure your browser session for this branch please follow this link:"
-    echo "  - $VS_PROXY_SERVER_SCHEME://$VS_PROXY_SERVER_FQDN/?vs_brxm_host=$VS_HOST_IP_ADDRESS&vs_brxm_port=$VS_CONTAINER_BASE_PORT&vs_brxm_http_host=$VS_BRXM_INSTANCE_HTTP_HOST&vs_ssr_http_port=$VS_CONTAINER_EXT_PORT_SSR&vs_tln_http_port=$VS_CONTAINER_EXT_PORT_TLN$VS_PROXY_QS_SSR" | tee -a $VS_MAIL_NOTIFY_BUILD_MESSAGE
+    echo "  - $VS_PROXY_SERVER_SCHEME://$VS_PROXY_SERVER_FQDN/?vs_brxm_host=$VS_HOST_IP_ADDRESS&vs_brxm_port=$VS_CONTAINER_BASE_PORT&vs_brxm_http_host=$VS_BRXM_INSTANCE_HTTP_HOST&vs_ssr_http_port=$VS_CONTAINER_EXT_PORT_SSR&vs_tln_http_port=$VS_CONTAINER_EXT_PORT_TLN&vs_feature_branch=$BRANCH_NAME$VS_PROXY_QS_SSR" | tee -a $VS_MAIL_NOTIFY_BUILD_MESSAGE
     echo "" | tee -a $VS_MAIL_NOTIFY_BUILD_MESSAGE
     echo "Thereafter, until you clear the settings, you will be able to access the environment on the following URLs" | tee -a $VS_MAIL_NOTIFY_BUILD_MESSAGE
     echo " - site:    $VS_PROXY_SERVER_SCHEME://$VS_PROXY_SERVER_FQDN/" | tee -a $VS_MAIL_NOTIFY_BUILD_MESSAGE
@@ -724,7 +724,7 @@ createBuildReport() {
     fi
     if [ ! -z "$VS_CONTAINER_EXT_PORT_SSH" ]; then
       echo "SSH access (if enabled on the container) - available only on the Web Development LAN" | tee -a $VS_MAIL_NOTIFY_BUILD_MESSAGE
-      echo "  - ssh -p $VS_CONTAINER_EXT_PORT_SSH hippo@$VS_HOST_IP_ADDRESS ($VS_CONTAINER_SSH_PASS_HIPPO)" | tee -a $VS_MAIL_NOTIFY_BUILD_MESSAGE
+      echo "  - ssh -p $VS_CONTAINER_EXT_PORT_SSH root@$VS_HOST_IP_ADDRESS ($VS_CONTAINER_SSH_PASS_ROOT)" | tee -a $VS_MAIL_NOTIFY_BUILD_MESSAGE
       echo "" | tee -a $VS_MAIL_NOTIFY_BUILD_MESSAGE
     fi
     if [ -e "$VS_MAIL_NOTIFY_BUILD_MESSAGE_EXTRA" ]; then
