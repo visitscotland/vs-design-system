@@ -26,9 +26,10 @@ import groovy.json.JsonSlurper
 
 pipeline {
   options {buildDiscarder(logRotator(numToKeepStr: '5'))}
-
   agent {label thisAgent}
-
+ 
+  triggers { cron(cron_string) }
+ 
   environment {
     VS_SSR_PROXY_ON = 'TRUE'
     VS_BRXM_PERSISTENCE_METHOD = 'h2'
@@ -173,64 +174,6 @@ pipeline {
 //      }
 //    }
 
-    stage ('brC cxn test') {
-      when {
-        allOf {
-          expression {return env.VS_RUN_BRC_STAGES == 'TRUE'}
-	  expression {return env.VS_SKIP_BRC_CXN != 'TRUE'}
-        }
-      }
-      steps {
-        script {
-          // Login to get the access token
-          echo "Login to brC and obtain token:"
-          withCredentials([usernamePassword(credentialsId: 'brCloud', passwordVariable: 'VS_BRC_PASSWORD', usernameVariable: 'VS_BRC_USERNAME')]) {
-            def json = "{\"username\": \"${VS_BRC_USERNAME}\", \"password\": \"${VS_BRC_PASSWORD}\"}"
-            loginResult = post("${VS_BRC_STACK_URL}/${VS_BRC_STACK_API_VERSION}/authn/access_token", json)
-          }
-          echo "Login result ${loginResult}"
-          String access_token = "Bearer " + parseJson(loginResult).access_token
-
-          // Get the environment ID
-          echo "Get the environments"
-          environments = get("${VS_BRC_STACK_URL}/${VS_BRC_STACK_API_VERSION}/environments/", access_token)
-
-          // We require an existing environment. Alternative is to delete/create one
-          def environmentID = getEnvironmentID(environments, VS_BRC_ENV)
-          echo "Environments result: ${environments}"
-          echo "Environment ID: ${environmentID}"
-        }
-      }
-    } //end stage
-
-    stage ('brC upload') {
-      when {
-        allOf {
-          expression {return env.VS_RUN_BRC_STAGES == 'TRUE'}
-	  expression {return env.VS_SKIP_BRC_UPL != 'TRUE'}
-        }
-      }
-      steps {
-        script {
-          withCredentials([usernamePassword(credentialsId: 'brCloud', passwordVariable: 'VS_BRC_PASSWORD', usernameVariable: 'VS_BRC_USERNAME')]) {
-            loginResponse = login("${VS_BRC_STACK_URL}/${VS_BRC_STACK_API_VERSION}/authn/access_token", VS_BRC_USERNAME, VS_BRC_PASSWORD)
-          }
-
-          access_token = "Bearer " + parseJson(loginResponse).access_token
-          refresh_token = parseJson(loginResponse).refresh_token
-
-          String projectName = readMavenPom(file: "${workspace}/pom.xml").getArtifactId()
-          String projectVersion = readMavenPom(file: "${workspace}/pom.xml").getVersion()
-          String distribution = "target/${projectName}-${projectVersion}-distribution.tar.gz"
-          echo "Upload the distribution ${distribution}"
-          uploadResult = postMultipart("${VS_BRC_STACK_URL}/${VS_BRC_STACK_API_VERSION}/distributions/", "dist_file", "${workspace}/${distribution}", access_token)
-          echo "Upload result: ${uploadResult}"
-          distID = parseJson(uploadResult).id
-          echo "distID: ${distID}"
-        }
-      }
-    } //end stage
-
   } //end stages
 
   post{
@@ -246,91 +189,3 @@ pipeline {
   } //end post
 } //end pipeline
 
-private String login(url, VS_BRC_USERNAME, VS_BRC_PASSWORD) {
-   echo "Login and obtain access token:"
-   def json = "{\"username\": \"${VS_BRC_USERNAME}\", \"password\": \"${VS_BRC_PASSWORD}\"}"
-   loginResult = post(url, json)
-   echo "Login result ${loginResult}"
-   return loginResult
-}
-
-private boolean verify_token(url, access_token) {
-    if (access_token) {
-        echo "Verify access token:"
-        verifyResult = get(url, access_token)
-        echo "Verify result ${verifyResult}"
-        if (parseJson(verifyResult).error_code) {
-            echo "Token is invalid"
-            echo "Error code: " + parseJson(verifyResult).error_code
-            echo "Error detail: " + parseJson(verifyResult).error_detail
-            return false;
-        }
-        echo "Access token is valid"
-        return true;
-    } else {
-        echo "Access token is null"
-        return false;
-    }
-}
-
-private String refresh_token(url, refresh_token) {
-    echo "Refresh access token:"
-    def json = "{\"grant_type\": \"refresh_token\", \"refresh_token\": \"${refresh_token}\"}"
-    refreshResult = post(url, json)
-    echo "Refresh result ${refreshResult}"
-    return "Bearer " + parseJson(refreshResult).access_token;
-}
- 
-
-@NonCPS
-private String get(url, access_token = null) {
-   return curl("GET", url, access_token)
-}
-
-@NonCPS
-private String post(url, json, access_token = null) {
-   return curl("POST", url, access_token, json)
-}
-
-@NonCPS
-private String postMultipart(url, String fileName, file, String access_token = null) {
-   return curl("POST", url, access_token, null, fileName, file, null, "multipart/form-data")
-}
-
-@NonCPS
-private String put(url, json, String access_token = null) {
-   return curl("PUT", url, access_token, json, null, null, "-i --http1.1")
-}
-
-@NonCPS
-private String  delete(url, access_token = null) {
-   return curl("DELETE", url, access_token, null, null, null, "--http1.1")
-}
-
-@NonCPS
-private String curl(method, url, access_token, json = null, fileName = null, file = null, extraParams = null, contentType = "application/json") {
-   return sh(script: "curl ${extraParams?:""} \
-           -X ${method} '${url}' \
-           ${access_token?"-H 'Authorization: ${access_token}'":""} \
-           -H 'Content-Type: ${contentType}' \
-           ${json?"-d '${json}'":""} \
-           ${(fileName && file)?"-F '${fileName}=@${file}'":""}",
-           returnStdout: true)
-}
-
-@NonCPS
-def parseJson(text) {
-   return new JsonSlurper().parseText(text)
-}
-
-
-@NonCPS
-def getEnvironmentID(environments, VS_BRC_ENV) {
-   result = null
-   parseJson(environments).items.each() { env ->
-       if(env.name.toString() == VS_BRC_ENV) {
-           result = env.id
-       }
-   }
-   return result
-}
