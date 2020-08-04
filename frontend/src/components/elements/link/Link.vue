@@ -1,7 +1,7 @@
 <template>
     <BLink
         class="vs-link"
-        :class="[variant, { 'vs-link--external': external }]"
+        :class="[variantClass, { 'vs-link--external': external }]"
         :href="href"
         :target="external ? '_blank' : '_self'"
     >
@@ -60,12 +60,17 @@ export default {
             validator: (value) => value.match(/(primary|dark)/),
         },
     },
+    computed: {
+        variantClass() {
+            return `vs-link--variant-${this.variant}`;
+        },
+    },
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .vs-link {
-    &.primary {
+    &.vs-link--variant-primary {
         color: $color_pink;
 
         .icon {
@@ -77,10 +82,10 @@ export default {
         }
     }
 
-    &.dark {
+    &.vs-link--variant-dark {
         color: $color_yellow;
 
-        .icon {
+        .vs-icon {
             fill: $color_yellow;
         }
 
