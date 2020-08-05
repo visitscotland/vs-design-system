@@ -63,7 +63,7 @@ export default {
 
 <style lang="scss">
 .btn.vs-accordion-toggle {
-    .icon.icon-xs {
+    .icon {
        position: absolute;
        right: 0;
     }
