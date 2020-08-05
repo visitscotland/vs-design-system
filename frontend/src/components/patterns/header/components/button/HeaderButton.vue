@@ -9,28 +9,28 @@
 </template>
 
 <script>
-import VsButton from "@components/elements/button"
+import VsButton from '@components/elements/button';
 
 export default {
-    name: "VsHeaderButton",
-    status: "prototype",
-    release: "0.1.0",
+    name: 'VsHeaderButton',
+    status: 'prototype',
+    release: '0.1.0',
     components: {
         VsButton,
     },
     props: {
         section: {
             type: String,
-            default: "bottom",
+            default: 'bottom',
             validator: (value) => value.match(/(top|bottom)/),
         },
     },
     computed: {
         isTop() {
-            return this.section === "top"
+            return this.section === 'top';
         },
     },
-}
+};
 </script>
 
 <style lang="scss" scoped>

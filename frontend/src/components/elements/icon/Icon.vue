@@ -6,19 +6,17 @@
             ['icon-' + size]: true,
             ['icon-' + formattedName]: true,
             ['icon-' + variant]: variant,
-            ['icon-padding-' + padding]: padding,
-            'icon-reverse': reverse,
         }"
         v-bind="$attrs"
     />
 </template>
 
 <script>
-import { get } from "lodash"
-import VsSvg from "../svg"
-import designTokens from "@/assets/tokens/tokens.raw.json"
+import { get } from 'lodash';
+import VsSvg from '../svg';
+import designTokens from '@/assets/tokens/tokens.raw.json';
 
-const iconPath = "icons/"
+const iconPath = 'icons/';
 
 /**
  * Icons are used to visually communicate core parts of the product and
@@ -29,9 +27,9 @@ const iconPath = "icons/"
  * including any of the theme colours.
  */
 export default {
-    name: "VsIcon",
-    status: "prototype",
-    release: "0.1.0",
+    name: 'VsIcon',
+    status: 'prototype',
+    release: '0.1.0',
     components: {
         VsSvg,
     },
@@ -42,7 +40,7 @@ export default {
         name: {
             type: String,
             required: true,
-            default: "search",
+            default: 'search',
         },
         /**
          * The fill color of the SVG icon.
@@ -62,119 +60,102 @@ export default {
          */
         size: {
             type: String,
-            default: "md",
+            default: 'md',
             validator: (value) => value.match(/(xxs|xs|sm|md|lg|xl)/),
-        },
-        /**
-         * Whether to reverse the icon's background and
-         * fill colours
-         */
-        reverse: {
-            type: Boolean,
-        },
-
-        /**
-         * Amount of padding
-         * `null, 0, 1, 2, 3`
-         */
-        padding: {
-            type: Number,
-            default: 2,
-            validator: (value) => [null, 0, 1, 2, 3].indexOf(value) !== -1,
         },
     },
     data() {
         return {
             iconLookup: [
                 {
-                    key: "accessparkdrop",
-                    value: "facility-accessparkdrop",
+                    key: 'accessparkdrop',
+                    value: 'facility-accessparkdrop',
                 },
                 {
-                    key: "acco",
-                    value: "product-accommodation",
+                    key: 'acco',
+                    value: 'product-accommodation',
                 },
                 {
-                    key: "acti",
-                    value: "product-activities",
+                    key: 'acti',
+                    value: 'product-activities',
                 },
                 {
-                    key: "attr",
-                    value: "product-attractions",
+                    key: 'attr',
+                    value: 'product-attractions',
                 },
                 {
-                    key: "audioloop",
-                    value: "facility-audioloop",
+                    key: 'audioloop',
+                    value: 'facility-audioloop',
                 },
                 {
-                    key: "cafereston",
-                    value: "cafe",
+                    key: 'cafereston',
+                    value: 'cafe',
                 },
                 {
-                    key: "cate",
-                    value: "product-food-and-drink",
+                    key: 'cate',
+                    value: 'product-food-and-drink',
                 },
                 {
-                    key: "cities",
-                    value: "city",
+                    key: 'cities',
+                    value: 'city',
                 },
                 {
-                    key: "cycling",
-                    value: "cycle",
+                    key: 'cycling',
+                    value: 'cycle',
                 },
                 {
-                    key: "dsblaccess",
-                    value: "facility-dsblaccess",
+                    key: 'dsblaccess',
+                    value: 'facility-dsblaccess',
                 },
                 {
-                    key: "even",
-                    value: "product-events",
+                    key: 'even',
+                    value: 'product-events',
                 },
                 {
-                    key: "familyev",
-                    value: "family",
+                    key: 'familyev',
+                    value: 'family',
                 },
                 {
-                    key: "filmev",
-                    value: "film-tv",
+                    key: 'filmev',
+                    value: 'film-tv',
                 },
                 {
-                    key: "parking",
-                    value: "facility-parking",
+                    key: 'parking',
+                    value: 'facility-parking',
                 },
                 {
-                    key: "petswelcom",
-                    value: "facility-petswelcom",
+                    key: 'petswelcom',
+                    value: 'facility-petswelcom',
                 },
                 {
-                    key: "wifi",
-                    value: "facility-wifi",
+                    key: 'wifi',
+                    value: 'facility-wifi',
                 },
                 {
-                    key: "public",
-                    value: "public-transport",
+                    key: 'public',
+                    value: 'public-transport',
                 },
                 {
-                    key: "reta",
-                    value: "product-shopping",
+                    key: 'reta',
+                    value: 'product-shopping',
                 },
                 {
-                    key: "spahealth",
-                    value: "wellness",
+                    key: 'spahealth',
+                    value: 'wellness',
                 },
                 {
-                    key: "walking",
-                    value: "walk",
+                    key: 'walking',
+                    value: 'walk',
                 },
             ],
-        }
+        };
     },
     computed: {
         path() {
-            return iconPath + this.formattedName
+            return iconPath + this.formattedName;
         },
         dimension() {
-            return get(designTokens, `props.icon_size_${this.size}.value`, "40px")
+            return get(designTokens, `props.icon_size_${this.size}.value`, '40px');
         },
         formattedName() {
             /*
@@ -182,12 +163,12 @@ export default {
              * organise / group icons within the design system
              * there is a lookup for how keys may be passed from the backend
              */
-            const formattedNameLookup = this.iconLookup.find(({ key }) => key === this.name)
+            const formattedNameLookup = this.iconLookup.find(({ key }) => key === this.name);
 
-            return formattedNameLookup !== undefined ? formattedNameLookup.value : this.name
+            return formattedNameLookup !== undefined ? formattedNameLookup.value : this.name;
         },
     },
-}
+};
 </script>
 
 <style lang="scss" scoped>
@@ -223,14 +204,7 @@ $variants: (
     fill: $color-black;
     overflow: visible;
 
-    &.icon-reverse {
-        background-color: $color-black;
-        fill: $color-white;
-    }
-
     @each $size in map-keys($sizes) {
-        $padding-sizes: 1, 2, 3;
-
         $this-size: map-get($sizes, $size);
 
         &.icon-#{$size} {
@@ -240,20 +214,6 @@ $variants: (
 
             &.icon-reverse {
                 border-radius: $this-size / 2;
-            }
-            @each $padding-size in $padding-sizes {
-                &.icon-padding-#{$padding-size} {
-                    $padding: $this-size * pow(2, $padding-size - 1) / 8;
-                    $dimension: $this-size + ($padding * 2);
-
-                    height: $dimension;
-                    width: $dimension;
-                    padding: $padding;
-
-                    &.icon-reverse {
-                        border-radius: $dimension / 2;
-                    }
-                }
             }
         }
     }
@@ -297,21 +257,6 @@ $variants: (
 
     <bs-wrapper class="row mb-5">
       <bs-wrapper class="col">
-        <h3>Reverse</h3>
-        <vs-icon name="favourite" reverse />
-        <vs-icon name="favourite" reverse variant="primary" />
-        <vs-icon name="favourite" reverse variant="secondary" />
-        <vs-icon name="favourite" reverse variant="success" />
-        <vs-icon name="favourite" reverse variant="warning" />
-        <vs-icon name="favourite" reverse variant="info" />
-        <vs-icon name="favourite" reverse variant="danger" />
-        <vs-icon name="favourite" reverse variant="dark" />
-        <vs-icon name="favourite" reverse variant="light" />
-      </bs-wrapper>
-    </bs-wrapper>
-
-    <bs-wrapper class="row mb-5">
-      <bs-wrapper class="col">
         <h3>Size</h3>
 
         <bs-wrapper class="d-flex">
@@ -343,35 +288,6 @@ $variants: (
           <bs-wrapper class="d-flex flex-column mr-3 align-items-center">
             <h4>xl</h4>
             <vs-icon name="favourite" size="xl" />
-          </bs-wrapper>
-        </bs-wrapper>
-      </bs-wrapper>
-    </bs-wrapper>
-
-    <bs-wrapper class="row mb-5">
-      <bs-wrapper class="col">
-        <h3>Padding size</h3>
-
-        <bs-wrapper class="d-flex">
-          <bs-wrapper class="d-flex flex-column mr-3 align-items-center">
-            <h4>0</h4>
-            <vs-icon name="favourite" reverse :padding="0" />
-
-          </bs-wrapper>
-
-          <bs-wrapper class="d-flex flex-column mr-3 align-items-center">
-            <h4>1</h4>
-            <vs-icon name="favourite" reverse :padding="1" />
-          </bs-wrapper>
-
-          <bs-wrapper class="d-flex flex-column mr-3 align-items-center">
-            <h4>2</h4>
-            <vs-icon name="favourite" reverse />
-          </bs-wrapper>
-
-          <bs-wrapper class="d-flex flex-column mr-3 align-items-center">
-            <h4>3</h4>
-            <vs-icon name="favourite" reverse :padding="3" />
           </bs-wrapper>
         </bs-wrapper>
       </bs-wrapper>

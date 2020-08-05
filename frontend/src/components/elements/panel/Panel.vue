@@ -21,21 +21,21 @@
 <script>
 import {
     BCard, BCardTitle, BCardText,
-} from "bootstrap-vue"
+} from 'bootstrap-vue';
 
 /**
  * The panel is used for simple content and contains slots for title and content.
  */
 export default {
-    name: "VsPanel",
-    status: "prototype",
-    release: "0.0.1",
+    name: 'VsPanel',
+    status: 'prototype',
+    release: '0.0.1',
     components: {
         BCard,
         BCardTitle,
         BCardText,
     },
-}
+};
 </script>
 
 <style lang="scss" scoped>
