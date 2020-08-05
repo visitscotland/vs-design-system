@@ -35,21 +35,21 @@
 </template>
 
 <script>
-import Vue from "vue"
-import { isFunction, get } from "lodash"
+import Vue from 'vue';
+import { isFunction, get } from 'lodash';
 
-import VsCloseButton from "@components/patterns/close-button/CloseButton"
-import VsRow from "@components/elements/layout/Row"
-import VsCol from "@components/elements/layout/Col"
-import logger from "@/utils/logger"
-import VsDrawer from "./Drawer"
+import VsCloseButton from '@components/patterns/close-button/CloseButton';
+import VsRow from '@components/elements/layout/Row';
+import VsCol from '@components/elements/layout/Col';
+import logger from '@/utils/logger';
+import VsDrawer from './Drawer';
 
-import { getters } from "./drawer.store"
-import { IS_ACTIVE_CONTENT } from "./drawer.store.getter-types"
-import { CLOSE_DRAWER } from "./drawer.store.action-types"
+import { getters } from './drawer.store';
+import { IS_ACTIVE_CONTENT } from './drawer.store.getter-types';
+import { CLOSE_DRAWER } from './drawer.store.action-types';
 
 export default {
-    name: "VsDrawerContent",
+    name: 'VsDrawerContent',
     components: {
         VsCloseButton,
         VsRow,
@@ -86,40 +86,40 @@ export default {
         return {
             parentDrawer: {
             },
-        }
+        };
     },
     computed: {
         isVisible() {
             return getters.getters[`drawer/${IS_ACTIVE_CONTENT}`](
                 this.contentKey,
                 this.parentDrawerKey,
-            )
+            );
         },
         hasDefaultSlot() {
-            return isFunction(get(this.$scopedSlots, "default"))
+            return isFunction(get(this.$scopedSlots, 'default'));
         },
         parentDrawerKey() {
-            return get(this.parentDrawer, "$options.propsData.drawerKey")
+            return get(this.parentDrawer, '$options.propsData.drawerKey');
         },
         container() {
-            return get(this.parentDrawer, "$options.propsData.container", false)
+            return get(this.parentDrawer, '$options.propsData.container', false);
         },
         wrappingElement() {
-            return this.container ? "vs-row" : "div"
+            return this.container ? 'vs-row' : 'div';
         },
     },
     watch: {
         isVisible(newVal, oldVal) {
             if (!oldVal && newVal) {
-                Vue.nextTick(this.onBecomeVisible)
+                Vue.nextTick(this.onBecomeVisible);
             }
         },
     },
     mounted() {
-        this.setParentDrawer()
+        this.setParentDrawer();
 
         if (!this.$parent) {
-            logger.error("VsDrawerContent is not inside a parent VsDrawer")
+            logger.error('VsDrawerContent is not inside a parent VsDrawer');
         }
     },
     methods: {
@@ -129,57 +129,57 @@ export default {
                     drawerKey: this.parentDrawerKey,
                 })
                 .then((returnFocusElement) => {
-                    if (isFunction(get(returnFocusElement, "$el.focus"))) {
-                        returnFocusElement.$el.focus()
+                    if (isFunction(get(returnFocusElement, '$el.focus'))) {
+                        returnFocusElement.$el.focus();
                     }
-                })
+                });
         },
         onBecomeVisible() {
-            if (this.openFocus === "close" && this.showClose) {
-                this.$refs.closeButton.$el.focus()
-            } else if (this.openFocus === "content") {
-                this.focusOnContent()
+            if (this.openFocus === 'close' && this.showClose) {
+                this.$refs.closeButton.$el.focus();
+            } else if (this.openFocus === 'content') {
+                this.focusOnContent();
             }
         },
         focusOnContent() {
-            const slotContent = get(this.$slots, "default[0]")
+            const slotContent = get(this.$slots, 'default[0]');
 
-            const $el = get(slotContent, "elm")
+            const $el = get(slotContent, 'elm');
 
-            if (isFunction(get($el, "focus"))) {
-                $el.focus()
+            if (isFunction(get($el, 'focus'))) {
+                $el.focus();
             }
         },
         checkKeydown($event) {
-            if ($event.key === "Tab" && $event.shiftKey) {
-                this.closeDrawer()
+            if ($event.key === 'Tab' && $event.shiftKey) {
+                this.closeDrawer();
             }
         },
         setParentDrawer() {
-            let $current = this.$parent
-            let i = 0
+            let $current = this.$parent;
+            let i = 0;
 
             // TODO: Replace with a non-hacky solution ASAP or if one
             // doesn't exist, use a prop instead
             while (i < 500) {
                 if ($current.$parent === undefined) {
-                    $current = null
-                    break
+                    $current = null;
+                    break;
                 }
 
-                $current = $current.$parent
+                $current = $current.$parent;
 
                 if ($current.$options.name === VsDrawer.name) {
-                    break
+                    break;
                 }
 
-                i += 1
+                i += 1;
             }
 
-            this.parentDrawer = $current
+            this.parentDrawer = $current;
         },
     },
-}
+};
 </script>
 
 <style lang="scss" scoped>

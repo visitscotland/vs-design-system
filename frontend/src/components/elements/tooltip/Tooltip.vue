@@ -9,25 +9,25 @@
 </template>
 
 <script>
-import { VBTooltip } from "bootstrap-vue"
+import { VBTooltip } from 'bootstrap-vue';
 /**
  * TODO: Document usage
  */
 
 export default {
-    name: "VsTooltip",
-    status: "prototype",
-    release: "0.0.1",
+    name: 'VsTooltip',
+    status: 'prototype',
+    release: '0.0.1',
     directives: {
-        "b-tooltip": VBTooltip,
+        'b-tooltip': VBTooltip,
     },
     props: {
         title: {
             type: String,
-            default: "",
+            default: '',
         },
     },
-}
+};
 </script>
 
 <style lang="scss" scoped></style>

@@ -13,16 +13,16 @@
 </template>
 
 <script>
-import { BBreadcrumb } from "bootstrap-vue"
+import { BBreadcrumb } from 'bootstrap-vue';
 
 /**
  * Breadcrumbs are used to indicate the current page position within the navigational hierarchy.
  */
 
 export default {
-    name: "VsBreadcrumb",
-    status: "prototype",
-    release: "0.0.1",
+    name: 'VsBreadcrumb',
+    status: 'prototype',
+    release: '0.0.1',
     components: {
         BBreadcrumb,
     },
@@ -30,11 +30,11 @@ export default {
         items: {
             type: Array,
             default() {
-                return []
+                return [];
             },
         },
     },
-}
+};
 </script>
 
 <style lang="scss" scoped>
