@@ -2,7 +2,7 @@ package com.visitscotland.brmx.components.navigation;
 
 
 import com.visitscotland.brmx.beans.Page;
-import com.visitscotland.brmx.utils.HippoUtilsService;
+import com.visitscotland.brmx.services.ResourceBundleService;
 import com.visitscotland.brmx.beans.Widget;
 import com.visitscotland.brmx.components.navigation.info.MenuComponentInfo;
 import org.hippoecm.hst.content.beans.standard.HippoBean;
@@ -24,10 +24,12 @@ public class MenuComponent extends EssentialsMenuComponent {
 
     private static final String NAVIGATION_BUNDLE = "navigation";
 
-    HippoUtilsService utils;
+    static final String ENHANCED_MENU = "enhancedMenu";
+
+    ResourceBundleService bundle;
 
     public MenuComponent(){
-        utils = new HippoUtilsService();
+        bundle = new ResourceBundleService();
     }
 
     @Override
@@ -39,7 +41,7 @@ public class MenuComponent extends EssentialsMenuComponent {
             enhancedMenu.add(exploreMenu(request, null, item));
         }
 
-        request.setModel("enhancedMenu", enhancedMenu);
+        request.setModel(ENHANCED_MENU, enhancedMenu);
     }
 
     private VsHstSiteMenuItemImpl exploreMenu(HstRequest request, VsHstSiteMenuItemImpl parent, HstSiteMenuItem menu){
@@ -59,8 +61,8 @@ public class MenuComponent extends EssentialsMenuComponent {
                     //Widget document
                     if (bean instanceof Widget) {
                         enhancedMenu.setWidget((Widget) bean);
-                    } else if (utils.existsResourceBundleKey(menu.getName(), NAVIGATION_BUNDLE, request.getLocale())) {
-                        enhancedMenu.setTitle(utils.getResourceBundle(menu.getName(), NAVIGATION_BUNDLE, request.getLocale()));
+                    } else if (bundle.existsResourceBundleKey(NAVIGATION_BUNDLE, menu.getName(), request.getLocale())) {
+                        enhancedMenu.setTitle(bundle.getResourceBundle(NAVIGATION_BUNDLE, menu.getName(), request.getLocale()));
                     } else if (bean instanceof Page) {
                         enhancedMenu.setTitle(((Page) bean).getTitle());
                     }
@@ -70,7 +72,7 @@ public class MenuComponent extends EssentialsMenuComponent {
         }
 
         if (enhancedMenu.getTitle() == null && documentExist) {
-            String value = utils.getResourceBundle(menu.getName(), NAVIGATION_BUNDLE, request.getLocale());
+            String value = bundle.getResourceBundle(NAVIGATION_BUNDLE, menu.getName(), request.getLocale());
             enhancedMenu.setTitle(value);
         }
 
