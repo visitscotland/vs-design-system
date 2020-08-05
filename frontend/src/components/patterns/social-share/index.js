@@ -1,5 +1,5 @@
-import VsSocialShare from "./SocialShare.vue"
+import VsSocialShare from './SocialShare.vue';
 
 export default {
     VsSocialShare,
-}
+};

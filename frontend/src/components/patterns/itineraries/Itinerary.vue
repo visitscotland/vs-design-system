@@ -35,8 +35,8 @@ import {
     VsContainer,
     VsRow,
     VsCol,
-} from "@components/elements/layout"
-import VsItineraryMobileMapToggle from "@components/patterns/itineraries/components/itinerary-mobile-map-toggle/ItineraryMobileMapToggle"
+} from '@components/elements/layout';
+import VsItineraryMobileMapToggle from '@components/patterns/itineraries/components/itinerary-mobile-map-toggle/ItineraryMobileMapToggle';
 
 /**
  * A wrapper component that wraps the itinerary map and list.
@@ -44,9 +44,9 @@ import VsItineraryMobileMapToggle from "@components/patterns/itineraries/compone
  */
 
 export default {
-    name: "VsItinerary",
-    status: "prototype",
-    release: "0.0.1",
+    name: 'VsItinerary',
+    status: 'prototype',
+    release: '0.0.1',
     components: {
         VsContainer,
         VsRow,
@@ -58,50 +58,49 @@ export default {
             showMap: false,
             isDesktop: false,
             withinItineraryMain: false,
-        }
+        };
     },
     mounted() {
         /* Design System wrapper affects page scroll detection, so temporary fix is to
         have a condition checking for design system wrapper. */
 
-        const designSystemWrapper = document.querySelector(".vds-example")
+        const designSystemWrapper = document.querySelector('.vds-example');
 
-        window.addEventListener("resize", this.resizeWidth)
+        window.addEventListener('resize', this.resizeWidth);
 
         if (designSystemWrapper === null) {
-            window.addEventListener("scroll", this.onScroll)
+            window.addEventListener('scroll', this.onScroll);
         } else {
-            designSystemWrapper.addEventListener("scroll", this.onScroll)
+            designSystemWrapper.addEventListener('scroll', this.onScroll);
         }
 
-        this.resizeWidth()
-    
+        this.resizeWidth();
     },
     destroyed() {
-        window.removeEventListener("resize", this.resizeWidth)
+        window.removeEventListener('resize', this.resizeWidth);
     },
     methods: {
         resizeWidth() {
-            this.isDesktop = window.innerWidth >= 1200
-            this.showMap = window.innerWidth >= 1200
+            this.isDesktop = window.innerWidth >= 1200;
+            this.showMap = window.innerWidth >= 1200;
         },
         onScroll() {
-            const bounding = this.$el.getBoundingClientRect()
+            const bounding = this.$el.getBoundingClientRect();
             const insideStartOfItineraryMain = bounding.top <= (
                 window.innerHeight || document.documentElement.clientHeight
-            )
+            );
             const outsideEndOfItineraryMain = bounding.bottom <= (
                 window.innerHeight || document.documentElement.clientHeight
-            )
+            );
             this.withinItineraryMain = !!(
                 insideStartOfItineraryMain && !outsideEndOfItineraryMain
-            )
+            );
         },
         toggleShowMap() {
-            this.showMap = !this.showMap
+            this.showMap = !this.showMap;
         },
     },
-}
+};
 </script>
 
 <style lang="scss" scoped>
@@ -326,7 +325,7 @@ export default {
                 :key="transportTypeIndex"
             >
                 <vs-tooltip :title="transportType.value">
-                    <vs-icon :name="transportType.key" variant="dark" size="sm" />
+                    <vs-icon :name="transportType.key" variant="dark" size="md" />
                 </vs-tooltip>
                 <span class="sr-only">{{transportType.value}}</span>
             </vs-description-list-detail>

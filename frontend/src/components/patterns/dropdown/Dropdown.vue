@@ -25,31 +25,31 @@
 </template>
 
 <script>
-import { BDropdown } from "bootstrap-vue"
-import { reject } from "lodash"
+import { BDropdown } from 'bootstrap-vue';
+import { reject } from 'lodash';
 
 /**
  * Dropdown component for lists of links for example.
  */
 export default {
-    name: "VsDropdown",
+    name: 'VsDropdown',
     components: {
         BDropdown,
     },
     props: {
         text: {
             type: String,
-            default: "",
+            default: '',
         },
     },
     computed: {
         nonButtonContentSlots() {
             return reject(this.$slots, {
-                name: "button-content",
-            })
+                name: 'button-content',
+            });
         },
     },
-}
+};
 </script>
 
 <style lang="scss">

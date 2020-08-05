@@ -18,7 +18,7 @@
                 <span class="sr-only">{{ labelText }}</span>
                 <VsIcon
                     name="search"
-                    size="sm"
+                    size="md"
                     variant="secondary"
                 />
             </label>
@@ -49,7 +49,7 @@
                     variant="transparent"
                     type="button"
                     class="px-1"
-                    size="sm"
+                    size="md"
                     :animate="false"
                     @click.native.prevent="clearSearchFieldAndFocus()"
                 >
@@ -74,16 +74,16 @@
 </template>
 
 <script>
-import VsIcon from "@components/elements/icon/Icon"
-import VsFormInput from "@components/elements/form-input/FormInput"
+import VsIcon from '@components/elements/icon/Icon';
+import VsFormInput from '@components/elements/form-input/FormInput';
 
-import { BForm, BFormInvalidFeedback } from "bootstrap-vue"
-import { getters } from "../drawer/drawer.store"
+import { BForm, BFormInvalidFeedback } from 'bootstrap-vue';
+import { getters } from '../drawer/drawer.store';
 
 export default {
-    name: "VsSiteSearch",
-    status: "prototype",
-    release: "0.0.1",
+    name: 'VsSiteSearch',
+    status: 'prototype',
+    release: '0.0.1',
     components: {
         VsIcon,
         BForm,
@@ -96,81 +96,81 @@ export default {
          */
         labelText: {
             type: String,
-            default: "Enter a search term",
+            default: 'Enter a search term',
         },
         /**
          * Text that renders inside the clear button once users start typing
          */
         clearButtonText: {
             type: String,
-            default: "Clear",
+            default: 'Clear',
         },
         /**
          * Text that renders inside the submit button
          */
         submitButtonText: {
             type: String,
-            default: "Go",
+            default: 'Go',
         },
         /**
          * Validation text that renders when an empty form is submitted
          */
         validationText: {
             type: String,
-            default: "Please enter a search term.",
+            default: 'Please enter a search term.',
         },
     },
     data() {
         return {
-            searchTerm: "",
+            searchTerm: '',
             validated: null,
-        }
+        };
     },
     computed: {
         drawerModule() {
-            return getters["drawer/module"]
+            return getters['drawer/module'];
         },
         isValid() {
-            return this.searchTerm.length > 0
+            return this.searchTerm.length > 0;
         },
     },
     watch: {
         drawerModule(newValue) {
-            if (newValue !== "site-search") {
-                this.clearSearchField()
-                this.resetValidation()
+            if (newValue !== 'site-search') {
+                this.clearSearchField();
+                this.resetValidation();
             }
         },
     },
     methods: {
         clearSearchField() {
-            this.searchTerm = ""
+            this.searchTerm = '';
         },
         focusOnInput() {
-            this.$refs.searchInput.$el.focus()
+            this.$refs.searchInput.$el.focus();
         },
         clearSearchFieldAndFocus() {
-            this.clearSearchField()
-            this.focusOnInput()
+            this.clearSearchField();
+            this.focusOnInput();
         },
         onSubmit($event) {
             if (!this.isValid) {
-                $event.preventDefault()
-                this.validated = false
+                $event.preventDefault();
+                this.validated = false;
             } else {
-                return true
+                return true;
             }
 
-            return false
+            return false;
         },
         onInput() {
-            this.validated = this.isValid ? null : false
+            this.validated = this.isValid ? null : false;
         },
         resetValidation() {
-            this.validated = null
+            this.validated = null;
         },
     },
-}
+};
 </script>
 
 <style lang="scss" scoped>

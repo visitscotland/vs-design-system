@@ -146,7 +146,7 @@ public class PageContentComponent<TYPE extends Page> extends EssentialsContentCo
         } else if (item instanceof ProductSearchLink) {
             ProductSearchLink productSearchLink = (ProductSearchLink) item;
             ProductSearchBuilder psb = new ProductSearchBuilder()
-                    .productType(productSearchLink.getSearch()).locale(request.getLocale());
+                    .fromHippoBean(productSearchLink.getSearch()).locale(request.getLocale());
 
             return new FlatLink(getCtaLabel(productSearchLink.getLabel(), request.getLocale()), psb.build());
 

@@ -133,7 +133,7 @@ pipeline {
       post {
         success {
           //sh 'mvn -f pom.xml install -P !default'
-	  // -- 20200712: extra install step removed 
+	  // -- 20200712: extra install step removed
           //sh 'mvn -f pom.xml install -P dist'
           mail bcc: '', body: "<b>Notification</b><br>Project: ${env.JOB_NAME} <br>Build Number: ${env.BUILD_NUMBER} <br> build URL: ${env.BUILD_URL}", cc: '', charset: 'UTF-8', from: '', mimeType: 'text/html', replyTo: '', subject: "SUCCESS CI: Project name -> ${env.JOB_NAME}", to: "${MAIL_TO}";
         }
@@ -270,7 +270,7 @@ private String refresh_token(url, refresh_token) {
     echo "Refresh result ${refreshResult}"
     return "Bearer " + parseJson(refreshResult).access_token;
 }
- 
+
 
 @NonCPS
 private String get(url, access_token = null) {
