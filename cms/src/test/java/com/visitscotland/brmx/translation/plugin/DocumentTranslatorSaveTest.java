@@ -1,12 +1,10 @@
 package com.visitscotland.brmx.translation.plugin;
 
-import org.hippoecm.frontend.translation.components.document.FolderTranslation;
 import org.hippoecm.repository.api.Document;
 import org.hippoecm.repository.api.HippoWorkspace;
 import org.hippoecm.repository.api.WorkflowException;
 import org.hippoecm.repository.api.WorkflowManager;
 import org.hippoecm.repository.standardworkflow.DefaultWorkflow;
-import org.hippoecm.repository.translation.TranslationWorkflow;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -38,30 +36,30 @@ public class DocumentTranslatorSaveTest {
 
     @Test
     public void saveFolder_immutable() {
-        FolderTranslation mockFolder = createMockFolderTranslation(false);
+        FolderTranslation folder = createFolderTranslation(false);
 
         assertThrows(UnsupportedOperationException.class,
-                () -> translator.saveFolder(mockFolder, mockSession, "fr"));
+                () -> translator.saveFolder(folder, mockSession, "fr"));
     }
 
     @Test
     public void saveFolder_getNodeByIdentifier_RepositoryException() throws Exception {
         String nodeId = "ft1";
-        FolderTranslation mockFolder = createMockFolderTranslation(true, nodeId);
+        FolderTranslation folder = createFolderTranslation(true, nodeId);
         when(mockSession.getNodeByIdentifier(eq(nodeId))).thenThrow(new RepositoryException());
 
-        assertFalse(translator.saveFolder(mockFolder, mockSession, "es"));
+        assertFalse(translator.saveFolder(folder, mockSession, "es"));
     }
 
     @Test
     public void saveFolder_getSession_RepositoryException() throws Exception {
         String nodeId = "ft2";
-        FolderTranslation mockFolder = createMockFolderTranslation(true, nodeId);
+        FolderTranslation folder = createFolderTranslation(true, nodeId);
         Node mockNode = mock(Node.class);
         when(mockNode.getSession()).thenThrow(new RepositoryException());
         when(mockSession.getNodeByIdentifier(eq(nodeId))).thenReturn(mockNode);
 
-        assertFalse(translator.saveFolder(mockFolder, mockSession, "de"));
+        assertFalse(translator.saveFolder(folder, mockSession, "de"));
     }
 
     @Test
@@ -72,9 +70,9 @@ public class DocumentTranslatorSaveTest {
         Session mockNodeSession = createMockNodeSession(mockWorkspace);
         Node mockNode = createMockNode(mockNodeSession);
         when(mockSession.getNodeByIdentifier(eq(nodeId))).thenReturn(mockNode);
-        FolderTranslation mockFolder = createMockFolderTranslation(true, nodeId);
+        FolderTranslation folder = createFolderTranslation(true, nodeId);
 
-        assertFalse(translator.saveFolder(mockFolder, mockSession, "it"));
+        assertFalse(translator.saveFolder(folder, mockSession, "it"));
     }
 
     @Test
@@ -86,9 +84,9 @@ public class DocumentTranslatorSaveTest {
         Session mockNodeSession = createMockNodeSession(mockWorkspace);
         Node mockNode = createMockNode(mockNodeSession);
         when(mockSession.getNodeByIdentifier(eq(nodeId))).thenReturn(mockNode);
-        FolderTranslation mockFolder = createMockFolderTranslation(true, nodeId);
+        FolderTranslation folder = createFolderTranslation(true, nodeId);
 
-        assertFalse(translator.saveFolder(mockFolder, mockSession, "en"));
+        assertFalse(translator.saveFolder(folder, mockSession, "en"));
     }
 
     @Test
@@ -101,9 +99,9 @@ public class DocumentTranslatorSaveTest {
         Session mockNodeSession = createMockNodeSession(mockWorkspace);
         Node mockNode = createMockNode(mockNodeSession);
         when(mockSession.getNodeByIdentifier(eq(nodeId))).thenReturn(mockNode);
-        FolderTranslation mockFolder = createMockFolderTranslation(true, nodeId, "translatedName", "translatedUrl");
+        FolderTranslation folder = createFolderTranslation(true, nodeId, "translatedName", "translatedUrl");
 
-        assertFalse(translator.saveFolder(mockFolder, mockSession, "nn"));
+        assertFalse(translator.saveFolder(folder, mockSession, "nn"));
     }
 
     @Test
@@ -116,9 +114,9 @@ public class DocumentTranslatorSaveTest {
         Session mockNodeSession = createMockNodeSession(mockWorkspace);
         Node mockNode = createMockNode(mockNodeSession);
         when(mockSession.getNodeByIdentifier(eq(nodeId))).thenReturn(mockNode);
-        FolderTranslation mockFolder = createMockFolderTranslation(true, nodeId, "translatedName", "translatedUrl");
+        FolderTranslation folder = createFolderTranslation(true, nodeId, "translatedName", "translatedUrl");
 
-        assertFalse(translator.saveFolder(mockFolder, mockSession, "nl"));
+        assertFalse(translator.saveFolder(folder, mockSession, "nl"));
     }
 
     @Test
@@ -131,9 +129,9 @@ public class DocumentTranslatorSaveTest {
         Session mockNodeSession = createMockNodeSession(mockWorkspace);
         Node mockNode = createMockNode(mockNodeSession);
         when(mockSession.getNodeByIdentifier(eq(nodeId))).thenReturn(mockNode);
-        FolderTranslation mockFolder = createMockFolderTranslation(true, nodeId, "translatedName", "translatedUrl");
+        FolderTranslation folder = createFolderTranslation(true, nodeId, "translatedName", "translatedUrl");
 
-        assertFalse(translator.saveFolder(mockFolder, mockSession, "no"));
+        assertFalse(translator.saveFolder(folder, mockSession, "no"));
     }
 
     @Test
@@ -150,12 +148,12 @@ public class DocumentTranslatorSaveTest {
         Session mockNodeSession = createMockNodeSession(mockWorkspace);
         Node mockNode = createMockNode(mockNodeSession);
         when(mockSession.getNodeByIdentifier(eq(nodeId))).thenReturn(mockNode);
-        FolderTranslation mockFolder = createMockFolderTranslation(true, nodeId, "translatedName", "translatedUrl");
+        FolderTranslation folder = createFolderTranslation(true, nodeId, "translatedName", "translatedUrl");
 
         DefaultWorkflow mockDefaultWorkflow = mock(DefaultWorkflow.class);
         when(mockManager.getWorkflow(eq("core"), any(Document.class))).thenReturn(mockDefaultWorkflow);
 
-        assertTrue(translator.saveFolder(mockFolder, mockSession, "no"));
+        assertTrue(translator.saveFolder(folder, mockSession, "no"));
 
         verify(mockDefaultWorkflow).setDisplayName(eq("translatedName"));
     }
@@ -174,28 +172,27 @@ public class DocumentTranslatorSaveTest {
         Session mockNodeSession = createMockNodeSession(mockWorkspace);
         Node mockNode = createMockNode(mockNodeSession);
         when(mockSession.getNodeByIdentifier(eq(nodeId))).thenReturn(mockNode);
-        FolderTranslation mockFolder = createMockFolderTranslation(true, nodeId, "translatedName", "translatedName");
+        FolderTranslation folder = createFolderTranslation(true, nodeId, "translatedName", "translatedName");
 
-        assertTrue(translator.saveFolder(mockFolder, mockSession, "no"));
+        assertTrue(translator.saveFolder(folder, mockSession, "no"));
 
     }
 
-    private FolderTranslation createMockFolderTranslation(boolean editable) {
-        FolderTranslation ft = mock(FolderTranslation.class);
-        when(ft.isEditable()).thenReturn(editable);
+    private FolderTranslation createFolderTranslation(boolean editable) {
+        FolderTranslation ft = createFolderTranslation(editable, "id");
         return ft;
     }
 
-    private FolderTranslation createMockFolderTranslation(boolean editable, String id) {
-        FolderTranslation ft = createMockFolderTranslation(editable);
-        when(ft.getId()).thenReturn(id);
+    private FolderTranslation createFolderTranslation(boolean editable, String id) {
+        FolderTranslation ft = new FolderTranslation(id);
+        ft.setEditable(editable);
         return ft;
     }
 
-    private FolderTranslation createMockFolderTranslation(boolean editable, String id, String translatedName, String translatedUrl) {
-        FolderTranslation ft = createMockFolderTranslation(editable, id);
-        when(ft.getNamefr()).thenReturn(translatedName);
-        when(ft.getUrlfr()).thenReturn(translatedUrl);
+    private FolderTranslation createFolderTranslation(boolean editable, String id, String translatedName, String translatedUrl) {
+        FolderTranslation ft = createFolderTranslation(editable, id);
+        ft.setNamefr(translatedName);
+        ft.setUrlfr(translatedUrl);
         return ft;
     }
 

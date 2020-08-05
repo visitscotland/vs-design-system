@@ -8,8 +8,7 @@
                 slot="icon"
                 :name="icon"
                 variant="dark"
-                size="md"
-                :padding="0"
+                size="xl"
             />
         </div>
         <div class="text-wrapper d-block w-auto mx-1">
@@ -19,28 +18,28 @@
 </template>
 
 <script>
-import VsIcon from "@components/elements/icon/Icon"
+import VsIcon from '@components/elements/icon/Icon';
 /**
  * Summary Box Icon With Label
  */
 export default {
-    name: "VsSummaryBoxIconWithLabel",
-    status: "prototype",
-    release: "0.0.1",
+    name: 'VsSummaryBoxIconWithLabel',
+    status: 'prototype',
+    release: '0.0.1',
     components: {
         VsIcon,
     },
     props: {
         icon: {
             type: String,
-            default: "",
+            default: '',
         },
         label: {
             type: String,
-            default: "",
+            default: '',
         },
     },
-}
+};
 </script>
 
 <style lang="scss" scoped>

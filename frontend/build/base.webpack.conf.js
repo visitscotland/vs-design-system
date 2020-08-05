@@ -25,7 +25,7 @@ module.exports = {
   resolve: {
     extensions: [".js", ".vue", ".json"],
     alias: {
-      vue$: "vue/dist/vue.esm.browser.js",
+      vue$: "vue/dist/vue.esm.js",
       "bootstrap-vue$": "bootstrap-vue/src/index.js",
       "@": resolve("src"),
       "@components": resolve("src/components"),
@@ -35,6 +35,16 @@ module.exports = {
   },
   module: {
     rules: [
+	  {
+		enforce: 'pre',
+		test: /src.*\.(js|vue)$/,
+		exclude: ["/ssr/", "/src/components/patterns/header/components/Chart/"],
+		loader: 'eslint-loader',
+		options: {
+		  failOnError: true,
+		  failOnWarning: true
+		},
+	  },
       {
         test: /\.vue$/,
         loader: "vue-loader",

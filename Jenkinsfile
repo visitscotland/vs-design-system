@@ -24,7 +24,10 @@ if (BRANCH_NAME == "develop" && (JOB_NAME == "develop.visitscotland.com/develop"
   cron_string = ""
 }
 
+<<<<<<< HEAD
 import groovy.json.JsonSlurper
+=======
+>>>>>>> a2f83126fb859fac9d75232769b5a502ca159684
 
 pipeline {
   options {buildDiscarder(logRotator(numToKeepStr: '5'))}

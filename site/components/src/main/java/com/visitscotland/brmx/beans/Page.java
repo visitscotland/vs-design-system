@@ -1,13 +1,13 @@
 package com.visitscotland.brmx.beans;
 
+import com.visitscotland.brmx.beans.capabilities.Linkable;
 import org.onehippo.cms7.essentials.dashboard.annotations.HippoEssentialsGenerated;
 import org.hippoecm.hst.content.beans.Node;
-import com.visitscotland.brmx.beans.Image;
 import org.hippoecm.hst.content.beans.standard.HippoHtml;
 
 @HippoEssentialsGenerated(internalName = "visitscotland:Page")
 @Node(jcrType = "visitscotland:Page")
-public class Page extends BaseDocument {
+public class Page extends BaseDocument implements Linkable {
     @HippoEssentialsGenerated(internalName = "visitscotland:seoTitle")
     public String getSeoTitle() {
         return getSingleProperty("visitscotland:seoTitle");
@@ -46,5 +46,9 @@ public class Page extends BaseDocument {
     @HippoEssentialsGenerated(internalName = "visitscotland:teaser")
     public String getTeaser() {
         return getSingleProperty("visitscotland:teaser");
+    }
+
+    public Image getImage(){
+        return getHeroImage();
     }
 }

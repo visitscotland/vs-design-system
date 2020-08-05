@@ -1,5 +1,6 @@
 package com.visitscotland.brmx.translation.plugin.menu;
 
+import com.visitscotland.brmx.translation.plugin.TranslationWorkflow;
 import com.visitscotland.brmx.translation.plugin.TranslationWorkflowPlugin;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.util.tester.WicketTester;
@@ -10,7 +11,6 @@ import org.hippoecm.frontend.service.IBrowseService;
 import org.hippoecm.frontend.translation.ILocaleProvider;
 import org.hippoecm.repository.api.HippoNode;
 import org.hippoecm.repository.translation.HippoTranslatedNode;
-import org.hippoecm.repository.translation.TranslationWorkflow;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
