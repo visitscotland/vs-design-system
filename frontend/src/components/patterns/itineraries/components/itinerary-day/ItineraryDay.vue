@@ -158,7 +158,7 @@ export default {
             :key="index"
             :dayNumber="day.dayCount"
             dayLabel="Day"
-             slot="list"
+            slot="list"
             :dayTitle="day.title"
         >
             <vs-description-list
