@@ -3,27 +3,40 @@ def DS_BRANCH = "feature/VS-955-ui-itineraries-itinerary-stops-changes-built-pro
 def MAIL_TO = "gavin@visitscotland.net"
 
 def thisAgent
-if (BRANCH_NAME == "develop" && JOB_NAME == "develop.visitscotland.com-mb/develop") {
-  thisAgent = "op-dev-brxwvcapp-01"
-} else if (BRANCH_NAME == "develop" && JOB_NAME == "develop-nightly.visitscotland.com/develop") {
-  thisAgent = "op-dev-brxwvcapp-02"
-} else if (BRANCH_NAME == "develop" && JOB_NAME == "develop-stable.visitscotland.com/develop") {
-  thisAgent = "op-dev-brxwvcapp-03"
+def VS_CONTAINER_BASE_PORT_OVERRIDE
+if (BRANCH_NAME == "develop" && (JOB_NAME == "develop.visitscotland.com/develop" || JOB_NAME == "develop.visitscotland.com-mb/develop")) {
+  thisAgent = "op-dev-xvcdocker-01"
+  env.VS_CONTAINER_BASE_PORT_OVERRIDE = "8099"
+} else if (BRANCH_NAME == "develop" && (JOB_NAME == "develop-nightly.visitscotland.com/develop" || JOB_NAME == "develop-nightly.visitscotland.com-mb/develop")) {
+  thisAgent = "op-dev-xvcdocker-01"
+  env.VS_CONTAINER_BASE_PORT_OVERRIDE = "8098"
+  cron_string = "@midnight"
+} else if (BRANCH_NAME == "develop" && (JOB_NAME == "develop-stable.visitscotland.com/develop" || JOB_NAME == "develop-stable.visitscotland.com-mb/develop")) {
+  thisAgent = "op-dev-xvcdocker-01"
+  env.VS_CONTAINER_BASE_PORT_OVERRIDE = "8097"
+} else if (BRANCH_NAME == "feature/VS-1865-feature-environments-enhancements" && (JOB_NAME == "feature.visitscotland.com-mb/feature%2FVS-1865-feature-environments-enhancements")) {
+  thisAgent = "op-dev-xvcdocker-01"
+  //env.VS_CONTAINER_BASE_PORT_OVERRIDE = "8096"
+  //cron_string = "*/2 * * * *"
+  cron_string = ""
 } else {
   thisAgent = "docker-02"
+  cron_string = ""
 }
 
 import groovy.json.JsonSlurper
 
 pipeline {
   options {buildDiscarder(logRotator(numToKeepStr: '5'))}
-
   agent {label thisAgent}
-
+  triggers { cron( cron_string ) }
   environment {
+    // from 20200804 VS_SSR_PROXY_ON will only affect whether the SSR app is packaged and sent to the container, using or bypassing will be set via query string
     VS_SSR_PROXY_ON = 'TRUE'
-    VS_SKIP_BUILD_FOR_BRANCH = 'eg:feature/VS-1865-feature-environments-enhancements'
-    VS_RUN_BRC_STAGES = 'TRUE'
+    // VS_BRXM_PERSISTENCE_METHOD can be set to either 'h2' or 'mysql' - do not change during the lifetime of a container or it will break the repo
+    VS_BRXM_PERSISTENCE_METHOD = 'h2'
+    VS_SKIP_BUILD_FOR_BRANCH = 'feature/VS-1865-feature-environments-enhancements'
+    VS_RUN_BRC_STAGES = 'FALSE'
     // -- 20200712: TEST and PACKAGE stages might need VS_SKIP set to TRUE as they just run the ~4 minute front-end build every time
     VS_SKIP_BRC_BLD = 'FALSE'
     VS_SKIP_BRC_TST = 'FALSE'
@@ -162,64 +175,6 @@ pipeline {
 //        sh 'echo "This environment will run until the next commit to bitbucket is detected."'
 //      }
 //    }
-
-    stage ('brC cxn test') {
-      when {
-        allOf {
-          expression {return env.VS_RUN_BRC_STAGES == 'TRUE'}
-	  expression {return env.VS_SKIP_BRC_CXN != 'TRUE'}
-        }
-      }
-      steps {
-        script {
-          // Login to get the access token
-          echo "Login to brC and obtain token:"
-          withCredentials([usernamePassword(credentialsId: 'brCloud', passwordVariable: 'VS_BRC_PASSWORD', usernameVariable: 'VS_BRC_USERNAME')]) {
-            def json = "{\"username\": \"${VS_BRC_USERNAME}\", \"password\": \"${VS_BRC_PASSWORD}\"}"
-            loginResult = post("${VS_BRC_STACK_URL}/${VS_BRC_STACK_API_VERSION}/authn/access_token", json)
-          }
-          echo "Login result ${loginResult}"
-          String access_token = "Bearer " + parseJson(loginResult).access_token
-
-          // Get the environment ID
-          echo "Get the environments"
-          environments = get("${VS_BRC_STACK_URL}/${VS_BRC_STACK_API_VERSION}/environments/", access_token)
-
-          // We require an existing environment. Alternative is to delete/create one
-          def environmentID = getEnvironmentID(environments, VS_BRC_ENV)
-          echo "Environments result: ${environments}"
-          echo "Environment ID: ${environmentID}"
-        }
-      }
-    } //end stage
-
-    stage ('brC upload') {
-      when {
-        allOf {
-          expression {return env.VS_RUN_BRC_STAGES == 'TRUE'}
-	  expression {return env.VS_SKIP_BRC_UPL != 'TRUE'}
-        }
-      }
-      steps {
-        script {
-          withCredentials([usernamePassword(credentialsId: 'brCloud', passwordVariable: 'VS_BRC_PASSWORD', usernameVariable: 'VS_BRC_USERNAME')]) {
-            loginResponse = login("${VS_BRC_STACK_URL}/${VS_BRC_STACK_API_VERSION}/authn/access_token", VS_BRC_USERNAME, VS_BRC_PASSWORD)
-          }
-
-          access_token = "Bearer " + parseJson(loginResponse).access_token
-          refresh_token = parseJson(loginResponse).refresh_token
-
-          String projectName = readMavenPom(file: "${workspace}/pom.xml").getArtifactId()
-          String projectVersion = readMavenPom(file: "${workspace}/pom.xml").getVersion()
-          String distribution = "target/${projectName}-${projectVersion}-distribution.tar.gz"
-          echo "Upload the distribution ${distribution}"
-          uploadResult = postMultipart("${VS_BRC_STACK_URL}/${VS_BRC_STACK_API_VERSION}/distributions/", "dist_file", "${workspace}/${distribution}", access_token)
-          echo "Upload result: ${uploadResult}"
-          distID = parseJson(uploadResult).id
-          echo "distID: ${distID}"
-        }
-      }
-    } //end stage
 
   } //end stages
 
