@@ -114,9 +114,6 @@ export default {
         }
 
          .icon.icon-xs {
-            height: 16px;
-            width: 16px;
-            padding: 0;
             right: $spacer-3;
         }
     }
