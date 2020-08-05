@@ -79,17 +79,17 @@ export default {
 .vs-footer-accordion__item.card {
     border-bottom: 1px solid $color-gray-shade-2;
 
-      .vs-accordion-item__card-header{
+      .vs-accordion__item__card-header{
         background-color: $color-gray-shade-7;
     }
 
-    .vs-accordion-item__title {
+    .vs-accordion__item__title {
         margin: $spacer-3 0;
         background-color: $color-gray-shade-7;
         color: $color-white;
     }
 
-     .vs-accordion-item__panel.card-body {
+     .vs-accordion__item__panel.card-body {
         background-color: $color-gray-shade-6;
         color: $color-white;
         border-top: 1px solid $color-gray-shade-2;
@@ -130,11 +130,11 @@ export default {
         padding: 0 $spacer-3;
         background-color: $color-theme-dark;
 
-        .vs-accordion-item__title {
+        .vs-accordion__item__title {
             margin-top: $spacer-1;
         }
 
-        .vs-accordion-item__panel.card-body {
+        .vs-accordion__item__panel.card-body {
             padding: 0;
             background-color: $color-theme-dark;
             border-top: 0;
