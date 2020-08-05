@@ -1,28 +1,20 @@
 definitions:
   config:
-    /hippo:namespaces/visitscotland/ICentre:
+    /hippo:namespaces/visitscotland/IKnow:
       jcr:primaryType: hipposysedit:templatetype
       jcr:mixinTypes: ['editor:editable', 'mix:referenceable']
-      jcr:uuid: fb797bd2-ed65-4a59-bfdd-f2d8c09b91fc
+      jcr:uuid: e2729bf4-181b-44af-99a3-8bd4eb0e42dd
       /hipposysedit:nodetype:
         jcr:primaryType: hippo:handle
         jcr:mixinTypes: ['mix:referenceable']
-        jcr:uuid: ca251e4d-30c9-4f0e-9ddb-adb185379c15
+        jcr:uuid: fc1d0dcc-33e8-4935-ace4-2459ce223043
         /hipposysedit:nodetype:
           jcr:primaryType: hipposysedit:nodetype
           jcr:mixinTypes: ['mix:referenceable', 'hipposysedit:remodel']
-          jcr:uuid: 17a6a764-4f71-45c5-a8b8-0ff7035e97c1
+          jcr:uuid: 65e20115-e4f0-4c04-80d4-cf02173a7eb9
           hipposysedit:node: true
           hipposysedit:supertype: ['hippo:compound', 'hippostd:relaxed']
           hipposysedit:uri: http://www.visitscotland.com/visitscotland/nt/1.0
-          /image:
-            jcr:primaryType: hipposysedit:field
-            hipposysedit:mandatory: false
-            hipposysedit:multiple: false
-            hipposysedit:ordered: false
-            hipposysedit:path: visitscotland:image
-            hipposysedit:primary: false
-            hipposysedit:type: hippogallerypicker:imagelink
           /title:
             jcr:primaryType: hipposysedit:field
             hipposysedit:mandatory: false
@@ -31,24 +23,22 @@ definitions:
             hipposysedit:path: visitscotland:title
             hipposysedit:primary: false
             hipposysedit:type: String
-          /quotes:
+          /description:
             jcr:primaryType: hipposysedit:field
-            hipposysedit:multiple: true
-            hipposysedit:ordered: true
-            hipposysedit:path: visitscotland:quotes
-            hipposysedit:type: hippo:compound
-            hipposysedit:validators: [contentblocks-validator]
+            hipposysedit:mandatory: false
+            hipposysedit:multiple: false
+            hipposysedit:ordered: false
+            hipposysedit:path: visitscotland:description
+            hipposysedit:primary: false
+            hipposysedit:type: hippostd:html
       /hipposysedit:prototypes:
         jcr:primaryType: hipposysedit:prototypeset
         /hipposysedit:prototype:
-          jcr:primaryType: visitscotland:ICentre
+          jcr:primaryType: visitscotland:IKnow
           visitscotland:title: ''
-          /visitscotland:image:
-            jcr:primaryType: hippogallerypicker:imagelink
-            hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
-            hippo:facets: []
-            hippo:modes: []
-            hippo:values: []
+          /visitscotland:description:
+            jcr:primaryType: hippostd:html
+            hippostd:content: ''
       /editor:templates:
         jcr:primaryType: editor:templateset
         /_default_:
@@ -60,16 +50,6 @@ definitions:
             jcr:primaryType: frontend:plugin
             item: ${cluster.id}.field
             plugin.class: org.hippoecm.frontend.service.render.ListViewPlugin
-          /image:
-            jcr:primaryType: frontend:plugin
-            caption: Image
-            field: image
-            plugin.class: org.hippoecm.frontend.editor.plugins.field.NodeFieldPlugin
-            wicket.id: ${cluster.id}.field
-            hint: When this image is not set, It will be defaulted to iCentre DMS
-              listing image.
-            /cluster.options:
-              jcr:primaryType: frontend:pluginconfig
           /title:
             jcr:primaryType: frontend:plugin
             caption: Title (Override)
@@ -79,14 +59,15 @@ definitions:
             hint: ''
             /cluster.options:
               jcr:primaryType: frontend:pluginconfig
-          /quotes:
+          /description:
             jcr:primaryType: frontend:plugin
-            caption: Quote
-            compoundList: visitscotland:ICentreQuote
-            contentPickerType: links
-            field: quotes
-            plugin.class: org.onehippo.forge.contentblocks.ContentBlocksFieldPlugin
+            caption: Description
+            field: description
+            plugin.class: org.hippoecm.frontend.editor.plugins.field.NodeFieldPlugin
             wicket.id: ${cluster.id}.field
+            hint: ''
             /cluster.options:
               jcr:primaryType: frontend:pluginconfig
-              maxitems: 1
+              ckeditor.config.overlayed.json: '{toolbarGroups: [{ name: ''links''
+                },{name:''insert''},{name:''clipboard''},{name:''tools''},{name:''undo''}]
+                , removeButtons: ''PickImage,Youtube,Table''}'

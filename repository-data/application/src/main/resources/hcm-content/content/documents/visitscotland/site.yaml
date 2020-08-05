@@ -219,7 +219,7 @@
         jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
         jcr:uuid: 806448db-18e1-4a25-81c3-777a76f530d2
         hippo:name: Edinburgh
-        hippo:versionHistory: 8cb78d5f-c647-4c62-ba6b-a801d7c5f8c9
+        hippo:versionHistory: 486f5a3d-2a9d-4190-908e-a2ef43edb326
         /edinburgh[1]:
           jcr:primaryType: visitscotland:Day
           jcr:mixinTypes: ['mix:versionable']
@@ -263,9 +263,9 @@
           hippostd:state: published
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2019-12-10T13:28:39.550Z
-          hippostdpubwf:lastModificationDate: 2020-04-08T09:23:48.905+01:00
+          hippostdpubwf:lastModificationDate: 2020-07-10T15:31:24.439+01:00
           hippostdpubwf:lastModifiedBy: admin
-          hippostdpubwf:publicationDate: 2020-04-08T14:16:18.054+01:00
+          hippostdpubwf:publicationDate: 2020-07-31T16:22:24.614+01:00
           hippotranslation:id: 533c98b2-c2cd-491f-929a-ea2c4a491bb2
           hippotranslation:locale: en
           visitscotland:title: DMS Stops Day
@@ -291,9 +291,6 @@
           /visitscotland:stops[3]:
             jcr:primaryType: hippo:mirror
             hippo:docbase: ca56dfe6-f8c8-410f-aa63-ed513fc71385
-          /visitscotland:stops[4]:
-            jcr:primaryType: hippo:mirror
-            hippo:docbase: 28abd074-5fc4-4ebc-a424-1d4f9e5cb0e6
         /edinburgh[3]:
           jcr:primaryType: visitscotland:Day
           jcr:mixinTypes: ['mix:referenceable']
@@ -1846,13 +1843,13 @@
               /visitscotland:link:
                 jcr:primaryType: hippo:mirror
                 hippo:docbase: bc5bec32-9cbc-45a7-855b-342008ad8ef9
-        /featured-layout:
+        /multi-image-layout:
           jcr:primaryType: hippo:handle
           jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
           jcr:uuid: 932f15c1-74d1-47f6-9a3f-f8644e2ae491
-          hippo:name: Featured Layout
-          hippo:versionHistory: eca8ccdd-a89b-43b3-ae6e-0fc2da78c3a2
-          /featured-layout[1]:
+          hippo:name: Multi image Layout
+          hippo:versionHistory: 228134a2-1f2d-425e-a2ab-2fb2bcad3c71
+          /multi-image-layout[1]:
             jcr:primaryType: visitscotland:Megalinks
             jcr:mixinTypes: ['mix:referenceable']
             jcr:uuid: 116b29ac-dbf3-4c7e-b97f-b4e41dc3aefd
@@ -1860,7 +1857,7 @@
             hippostd:state: draft
             hippostdpubwf:createdBy: admin
             hippostdpubwf:creationDate: 2020-05-21T17:54:15.934+01:00
-            hippostdpubwf:lastModificationDate: 2020-07-23T06:01:49.445+01:00
+            hippostdpubwf:lastModificationDate: 2020-07-31T16:22:49.057+01:00
             hippostdpubwf:lastModifiedBy: admin
             hippotranslation:id: 5dc9b699-4821-4c91-b426-7b75aed683e4
             hippotranslation:locale: en
@@ -1908,7 +1905,7 @@
               /visitscotland:link:
                 jcr:primaryType: hippo:mirror
                 hippo:docbase: 8b4a3c11-8b84-4aa0-bccf-f407d18c1c44
-          /featured-layout[2]:
+          /multi-image-layout[2]:
             jcr:primaryType: visitscotland:Megalinks
             jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
             jcr:uuid: 5ffd9e37-ad7c-4d7e-b188-4276e3802351
@@ -1964,7 +1961,7 @@
               /visitscotland:link:
                 jcr:primaryType: hippo:mirror
                 hippo:docbase: 8b4a3c11-8b84-4aa0-bccf-f407d18c1c44
-          /featured-layout[3]:
+          /multi-image-layout[3]:
             jcr:primaryType: visitscotland:Megalinks
             jcr:mixinTypes: ['mix:referenceable']
             jcr:uuid: 08069ffe-0b6a-43ff-8089-3b3af02158fc
@@ -1974,7 +1971,7 @@
             hippostdpubwf:creationDate: 2020-05-21T17:54:15.934+01:00
             hippostdpubwf:lastModificationDate: 2020-07-23T06:01:58.719+01:00
             hippostdpubwf:lastModifiedBy: admin
-            hippostdpubwf:publicationDate: 2020-07-23T06:02:00.989+01:00
+            hippostdpubwf:publicationDate: 2020-07-31T16:23:16.486+01:00
             hippotranslation:id: 5dc9b699-4821-4c91-b426-7b75aed683e4
             hippotranslation:locale: en
             visitscotland:hideTeaser: false
@@ -2024,28 +2021,24 @@
         /icentre:
           jcr:primaryType: hippo:handle
           jcr:mixinTypes: ['hippo:named', 'mix:referenceable']
-          jcr:uuid: cf6ce661-2e33-46cc-8cb9-d599d9252d88
-          hippo:name: iCentre
+          jcr:uuid: 60b07d1a-a51b-4803-a054-53b4b7bc7430
+          hippo:name: Icentre
           /icentre[1]:
-            jcr:primaryType: visitscotland:iKnowIcentre
+            jcr:primaryType: visitscotland:TourismInformation
             jcr:mixinTypes: ['mix:referenceable']
-            jcr:uuid: b2618859-caac-4679-98aa-6590c012459b
+            jcr:uuid: 8377a687-572e-44f3-b2a1-bf5a16158c9d
             hippo:availability: []
             hippostd:holder: admin
             hippostd:state: draft
             hippostdpubwf:createdBy: admin
-            hippostdpubwf:creationDate: 2020-07-16T16:04:14.980+01:00
-            hippostdpubwf:lastModificationDate: 2020-07-16T16:42:29.831+01:00
+            hippostdpubwf:creationDate: 2020-07-31T17:13:11.916+01:00
+            hippostdpubwf:lastModificationDate: 2020-07-31T17:58:35.350+01:00
             hippostdpubwf:lastModifiedBy: admin
-            hippotranslation:id: 7fd57c55-7cfa-4d21-ba49-ff2444fc3037
+            hippotranslation:id: f2da1618-a777-407e-a223-a66028a342f9
             hippotranslation:locale: en
             /visitscotland:ICentre:
               jcr:primaryType: visitscotland:ICentre
               visitscotland:description: ''
-              visitscotland:iknowDescription: <p>You can also get advice from.....
-                NO CTA on the text</p>
-              visitscotland:iknowTitle: ''
-              visitscotland:string: and that's all folks!
               visitscotland:title: ''
               /visitscotland:image:
                 jcr:primaryType: hippogallerypicker:imagelink
@@ -2053,43 +2046,27 @@
                 hippo:facets: []
                 hippo:modes: []
                 hippo:values: []
-              /visitscotland:ICentreQuote:
-                jcr:primaryType: visitscotland:ICentreQuote
-                visitscotland:html: ''
-                visitscotland:name: Jose
-                visitscotland:productId: '238501'
-                visitscotland:quote: |-
-                  <p>Some quote from some person saying something somehow inspiring.</p>
-
-                  <p>That someone, might be someone from some iCentre localted somewhere.</p>
-                visitscotland:string: ''
-                visitscotland:string_: ''
-                visitscotland:title: Senior Software Engineer at VisitScotland,
-                /visitscotland:image:
-                  jcr:primaryType: hippogallerypicker:imagelink
-                  hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
-                  hippo:facets: []
-                  hippo:modes: []
-                  hippo:values: []
+            /visitscotland:IKnow:
+              jcr:primaryType: visitscotland:IKnow
+              visitscotland:title: ''
+              /visitscotland:description:
+                jcr:primaryType: hippostd:html
+                hippostd:content: <p>qwe</p>
           /icentre[2]:
-            jcr:primaryType: visitscotland:iKnowIcentre
+            jcr:primaryType: visitscotland:TourismInformation
             jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
-            jcr:uuid: 1a72998d-3955-4c81-8186-1fd907ecca59
+            jcr:uuid: 9c4db6b7-27e9-4b9d-b75a-56c6b8c22eab
             hippo:availability: [preview]
             hippostd:state: unpublished
             hippostdpubwf:createdBy: admin
-            hippostdpubwf:creationDate: 2020-07-16T16:04:14.980+01:00
-            hippostdpubwf:lastModificationDate: 2020-07-16T16:38:27.741+01:00
+            hippostdpubwf:creationDate: 2020-07-31T17:13:11.916+01:00
+            hippostdpubwf:lastModificationDate: 2020-07-31T17:13:28.955+01:00
             hippostdpubwf:lastModifiedBy: admin
-            hippotranslation:id: 7fd57c55-7cfa-4d21-ba49-ff2444fc3037
+            hippotranslation:id: f2da1618-a777-407e-a223-a66028a342f9
             hippotranslation:locale: en
             /visitscotland:ICentre:
               jcr:primaryType: visitscotland:ICentre
               visitscotland:description: ''
-              visitscotland:iknowDescription: <p>You can also get advice from.....
-                NO CTA on the text</p>
-              visitscotland:iknowTitle: ''
-              visitscotland:string: and that's all folks!
               visitscotland:title: ''
               /visitscotland:image:
                 jcr:primaryType: hippogallerypicker:imagelink
@@ -2097,91 +2074,12 @@
                 hippo:facets: []
                 hippo:modes: []
                 hippo:values: []
-              /visitscotland:ICentreQuote:
-                jcr:primaryType: visitscotland:ICentreQuote
-                visitscotland:html: ''
-                visitscotland:name: Jose
-                visitscotland:productId: '238501'
-                visitscotland:quote: |-
-                  <p>Some quote from some person saying something somehow inspiring.</p>
-
-                  <p>That someone, might be someone from some iCentre localted somewhere.</p>
-                visitscotland:string: ''
-                visitscotland:string_: ''
-                visitscotland:title: Senior Software Engineer at VisitScotland,
-                /visitscotland:image:
-                  jcr:primaryType: hippogallerypicker:imagelink
-                  hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
-                  hippo:facets: []
-                  hippo:modes: []
-                  hippo:values: []
-        /ejemplo-parada:
-          jcr:primaryType: hippo:handle
-          jcr:mixinTypes: ['hippo:named', 'mix:referenceable']
-          jcr:uuid: 9cca37c9-7438-4044-a9a2-d815e011a77c
-          hippo:name: ejemplo parada
-          /ejemplo-parada[1]:
-            jcr:primaryType: visitscotland:Stop
-            jcr:mixinTypes: ['mix:referenceable']
-            jcr:uuid: 8fb3b8ed-d603-48ba-bd93-71d0e8a11f5b
-            hippo:availability: []
-            hippostd:state: draft
-            hippostdpubwf:createdBy: admin
-            hippostdpubwf:creationDate: 2020-07-24T10:58:39.630+01:00
-            hippostdpubwf:lastModificationDate: 2020-07-24T10:58:39.630+01:00
-            hippostdpubwf:lastModifiedBy: admin
-            hippotranslation:id: 4fa22051-afc1-4af0-8ef1-e7eae915386e
-            hippotranslation:locale: en
-            visitscotland:subtitle: ''
-            visitscotland:tipsTitle: ''
-            visitscotland:title: casa jl
-            /visitscotland:description:
-              jcr:primaryType: hippostd:html
-              hippostd:content: <p>hola</p>
-            /visitscotland:tips:
-              jcr:primaryType: hippostd:html
-              hippostd:content: ''
-            /visitscotland:image:
-              jcr:primaryType: hippogallerypicker:imagelink
-              hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
-              hippo:facets: []
-              hippo:modes: []
-              hippo:values: []
-            /visitscotland:product:
-              jcr:primaryType: visitscotland:DMSLink
-              visitscotland:label: ''
-              visitscotland:product: '245821'
-          /ejemplo-parada[2]:
-            jcr:primaryType: visitscotland:Stop
-            jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
-            jcr:uuid: 8778e8e7-3a7d-4e72-b555-c3f6ce20de10
-            hippo:availability: [preview]
-            hippostd:state: unpublished
-            hippostdpubwf:createdBy: admin
-            hippostdpubwf:creationDate: 2020-07-24T10:58:39.630+01:00
-            hippostdpubwf:lastModificationDate: 2020-07-24T10:59:23.324+01:00
-            hippostdpubwf:lastModifiedBy: admin
-            hippotranslation:id: 4fa22051-afc1-4af0-8ef1-e7eae915386e
-            hippotranslation:locale: en
-            visitscotland:subtitle: ''
-            visitscotland:tipsTitle: ''
-            visitscotland:title: casa jl
-            /visitscotland:description:
-              jcr:primaryType: hippostd:html
-              hippostd:content: <p>hola</p>
-            /visitscotland:tips:
-              jcr:primaryType: hippostd:html
-              hippostd:content: ''
-            /visitscotland:image:
-              jcr:primaryType: hippogallerypicker:imagelink
-              hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
-              hippo:facets: []
-              hippo:modes: []
-              hippo:values: []
-            /visitscotland:product:
-              jcr:primaryType: visitscotland:DMSLink
-              visitscotland:label: ''
-              visitscotland:product: '245821'
+            /visitscotland:IKnow:
+              jcr:primaryType: visitscotland:IKnow
+              visitscotland:title: ''
+              /visitscotland:description:
+                jcr:primaryType: hippostd:html
+                hippostd:content: <p>qwe</p>
       /the-outer-hebrides:
         jcr:primaryType: hippostd:folder
         jcr:mixinTypes: ['hippo:named', 'hippotranslation:translated', 'mix:versionable']

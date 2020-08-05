@@ -1,9 +1,11 @@
 package com.visitscotland.brmx.beans.mapping;
 
+import org.hippoecm.hst.content.beans.standard.HippoHtml;
+
 public class IKnowModule {
 
     private String title;
-    private String description;
+    private HippoHtml description;
     private FlatLink link;
 
     public String getTitle() {
@@ -14,11 +16,11 @@ public class IKnowModule {
         this.title = title;
     }
 
-    public String getDescription() {
+    public HippoHtml getDescription() {
         return description;
     }
 
-    public void setDescription(String description) {
+    public void setDescription(HippoHtml description) {
         this.description = description;
     }
 

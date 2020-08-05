@@ -1,9 +1,6 @@
 package com.visitscotland.brmx.components.content;
 
-import com.visitscotland.brmx.beans.BaseDocument;
-import com.visitscotland.brmx.beans.Destination;
-import com.visitscotland.brmx.beans.IKnowIcentre;
-import com.visitscotland.brmx.beans.Megalinks;
+import com.visitscotland.brmx.beans.*;
 import com.visitscotland.brmx.beans.mapping.megalinks.AbstractLayout;
 import com.visitscotland.brmx.components.content.factory.ICentreFactory;
 import com.visitscotland.brmx.components.content.factory.IKnowFactory;
@@ -50,7 +47,7 @@ public class DestinationContentComponent extends PageContentComponent<Destinatio
 
         for (BaseDocument item: getDocument(request).getItems()){
             if (item instanceof Megalinks) {
-                AbstractLayout layout = linksFactory.getModule((Megalinks) item, request.getLocale());
+                AbstractLayout layout = linksFactory.getMegalinksModule((Megalinks) item, request.getLocale());
 
                 if (Contract.isEmpty(layout.getTitle()) && styleIndex > 0) {
                     styleIndex--;
@@ -58,16 +55,16 @@ public class DestinationContentComponent extends PageContentComponent<Destinatio
 
                 layout.setStyle(styles[styleIndex++ % styles.length]);
                 links.add(layout);
-            } else if (item instanceof IKnowIcentre){
-                IKnowIcentre iKnowIcentre = (IKnowIcentre) item;
+            } else if (item instanceof TourismInformation){
+                TourismInformation touristInfo = (TourismInformation) item;
                 String location = getDocument(request).getLocation();
 
                 //TODO IcentreModule
-                iCentreFactory.getModule(((IKnowIcentre) item).getICentre(),request.getLocale(), location);
+                iCentreFactory.getModule(touristInfo.getICentre(),request.getLocale(), location);
 
-                iKnowFactory.getModule(((IKnowIcentre) item).getICentre(),location);
+                iKnowFactory.getModule(touristInfo.getIKnow(),location);
 
-                System.out.println("An IKnowIcentre was found");
+                System.out.println("A TourismInformation was found");
             }
         }
 

@@ -58,7 +58,6 @@ public class ICentreFactory {
         if (vicList.size() == 0) {
             return null;
         } else {
-            //icentre.setTitle()
             if (Contract.isEmpty(doc.getTitle())){
                 //TODO: Resource Bundle
                 module.setTitle("A tip from your local expert");
@@ -67,23 +66,23 @@ public class ICentreFactory {
             }
 
             if (doc.getImage() != null){
-                module.setImage(new FlatImage((Image)doc.getImage(), locale));
+                module.setImage(new FlatImage(doc.getImage(), locale));
             }
 
-            if (doc.getICentreQuote() != null) {
+            if (doc.getQuote() != null) {
 
-                //TODO Change Document type
-//                module.setQuote(doc.getICentreQuote().getQuote());
-                module.setQuoteAuthorName(doc.getICentreQuote().getName());
-                module.setQuoteAuthorTitle(doc.getICentreQuote().getTitle());
+                //TODO remove index
+                module.setQuote(doc.getQuote().getQuote());
+                module.setQuoteAuthorName(doc.getQuote().getAuthor());
+                module.setQuoteAuthorTitle(doc.getQuote().getRole());
 
-                if (doc.getICentreQuote().getImage() != null) {
-                    module.setQuoteImage(new FlatImage((Image) doc.getICentreQuote().getImage(), locale));
+                if (doc.getQuote().getImage() != null) {
+                    module.setQuoteImage(new FlatImage(doc.getQuote().getImage() , locale));
                 }
 
-                if (doc.getICentreQuote().getProductId() != null){
+                if (doc.getQuote().getProductId() != null){
                     try {
-                        JsonNode product = dmsData.productCard(doc.getICentreQuote().getProductId(), locale);
+                        JsonNode product = dmsData.productCard(doc.getQuote().getProductId(), locale);
                         if (product != null) {
                             module.setImage(new FlatImage(product));
                         }

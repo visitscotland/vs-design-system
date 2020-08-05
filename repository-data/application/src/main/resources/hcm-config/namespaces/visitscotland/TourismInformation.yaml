@@ -1,17 +1,17 @@
 definitions:
   config:
-    /hippo:namespaces/visitscotland/iKnowIcentre:
+    /hippo:namespaces/visitscotland/TourismInformation:
       jcr:primaryType: hipposysedit:templatetype
       jcr:mixinTypes: ['editor:editable', 'mix:referenceable']
-      jcr:uuid: e5e8e362-6c22-4735-a381-3a5a2b8dfbbb
+      jcr:uuid: 60d13dc8-9942-4896-98b9-965d1526f655
       /hipposysedit:nodetype:
         jcr:primaryType: hippo:handle
         jcr:mixinTypes: ['mix:referenceable']
-        jcr:uuid: d2882b70-3cf8-4a0a-89ff-5d8edcabc68e
+        jcr:uuid: e4d176a4-1117-44ce-9506-7dfea4665d12
         /hipposysedit:nodetype:
           jcr:primaryType: hipposysedit:nodetype
           jcr:mixinTypes: ['mix:referenceable', 'hipposysedit:remodel']
-          jcr:uuid: e96b0655-6eb2-4034-8fb8-4dc4c215511f
+          jcr:uuid: c08cd089-0595-4230-a431-aca407183f69
           hipposysedit:node: true
           hipposysedit:supertype: ['visitscotland:basedocument', 'hippostd:relaxed',
             'hippotranslation:translated']
@@ -24,10 +24,18 @@ definitions:
             hipposysedit:path: visitscotland:ICentre
             hipposysedit:primary: false
             hipposysedit:type: visitscotland:ICentre
+          /IKnow:
+            jcr:primaryType: hipposysedit:field
+            hipposysedit:mandatory: false
+            hipposysedit:multiple: false
+            hipposysedit:ordered: false
+            hipposysedit:path: visitscotland:IKnow
+            hipposysedit:primary: false
+            hipposysedit:type: visitscotland:IKnow
       /hipposysedit:prototypes:
         jcr:primaryType: hipposysedit:prototypeset
         /hipposysedit:prototype:
-          jcr:primaryType: visitscotland:iKnowIcentre
+          jcr:primaryType: visitscotland:TourismInformation
           hippostd:holder: holder
           hippostd:state: draft
           hippostdpubwf:createdBy: ''
@@ -35,13 +43,12 @@ definitions:
           hippotranslation:id: document-type-locale-id
           hippotranslation:locale: document-type-locale
           jcr:mixinTypes: ['mix:referenceable']
-          jcr:uuid: 5a7c2bf1-041c-49b1-ade7-024aff2caf59
-          hippostdpubwf:lastModificationDate: 2020-07-16T15:53:12.649+01:00
-          hippostdpubwf:creationDate: 2020-07-16T15:53:12.649+01:00
+          jcr:uuid: ebbb0ec9-5f32-4372-97e9-912dadaf0734
+          hippostdpubwf:lastModificationDate: 2020-07-31T16:41:13.276+01:00
+          hippostdpubwf:creationDate: 2020-07-31T16:41:13.276+01:00
           /visitscotland:ICentre:
             jcr:primaryType: visitscotland:ICentre
-            visitscotland:iknowTitle: ''
-            visitscotland:string: ''
+            visitscotland:description: ''
             visitscotland:title: ''
             /visitscotland:image:
               jcr:primaryType: hippogallerypicker:imagelink
@@ -49,21 +56,12 @@ definitions:
               hippo:facets: []
               hippo:modes: []
               hippo:values: []
-            /visitscotland:ICentreQuote:
-              jcr:primaryType: visitscotland:ICentreQuote
-              visitscotland:html: ''
-              visitscotland:name: ''
-              visitscotland:productId: ''
-              visitscotland:quote: ''
-              visitscotland:string: ''
-              visitscotland:string_: ''
-              visitscotland:title: ''
-              /visitscotland:image:
-                jcr:primaryType: hippogallerypicker:imagelink
-                hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
-                hippo:facets: []
-                hippo:modes: []
-                hippo:values: []
+          /visitscotland:IKnow:
+            jcr:primaryType: visitscotland:IKnow
+            visitscotland:title: ''
+            /visitscotland:description:
+              jcr:primaryType: hippostd:html
+              hippostd:content: ''
       /editor:templates:
         jcr:primaryType: editor:templateset
         /_default_:
@@ -79,6 +77,14 @@ definitions:
             jcr:primaryType: frontend:plugin
             caption: ICentre
             field: ICentre
+            plugin.class: org.hippoecm.frontend.editor.plugins.field.NodeFieldPlugin
+            wicket.id: ${cluster.id}.field
+            /cluster.options:
+              jcr:primaryType: frontend:pluginconfig
+          /IKnow:
+            jcr:primaryType: frontend:plugin
+            caption: IKnow
+            field: IKnow
             plugin.class: org.hippoecm.frontend.editor.plugins.field.NodeFieldPlugin
             wicket.id: ${cluster.id}.field
             hint: ''

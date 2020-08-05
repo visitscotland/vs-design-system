@@ -11,34 +11,16 @@ definitions:
         /hipposysedit:nodetype:
           jcr:primaryType: hipposysedit:nodetype
           jcr:mixinTypes: ['mix:referenceable', 'hipposysedit:remodel']
-          jcr:uuid: b65667a4-f640-4680-a2ef-56ebcf5a4a05
+          jcr:uuid: e9afb287-9566-4281-a94c-658a36758f4a
           hipposysedit:node: true
           hipposysedit:supertype: ['hippo:compound', 'hippostd:relaxed']
           hipposysedit:uri: http://www.visitscotland.com/visitscotland/nt/1.0
-          /html:
+          /author:
             jcr:primaryType: hipposysedit:field
             hipposysedit:mandatory: false
             hipposysedit:multiple: false
             hipposysedit:ordered: false
-            hipposysedit:path: visitscotland:quote
-            hipposysedit:primary: false
-            hipposysedit:type: Html
-            hipposysedit:validators: [required]
-          /string:
-            jcr:primaryType: hipposysedit:field
-            hipposysedit:mandatory: false
-            hipposysedit:multiple: false
-            hipposysedit:ordered: false
-            hipposysedit:path: visitscotland:name
-            hipposysedit:primary: false
-            hipposysedit:type: String
-            hipposysedit:validators: [required]
-          /string_:
-            jcr:primaryType: hipposysedit:field
-            hipposysedit:mandatory: false
-            hipposysedit:multiple: false
-            hipposysedit:ordered: false
-            hipposysedit:path: visitscotland:title
+            hipposysedit:path: visitscotland:author
             hipposysedit:primary: false
             hipposysedit:type: String
             hipposysedit:validators: [required]
@@ -59,20 +41,40 @@ definitions:
             hipposysedit:primary: false
             hipposysedit:type: String
             hipposysedit:validators: [required]
+          /quote:
+            jcr:primaryType: hipposysedit:field
+            hipposysedit:mandatory: false
+            hipposysedit:multiple: false
+            hipposysedit:ordered: false
+            hipposysedit:path: visitscotland:quote
+            hipposysedit:primary: false
+            hipposysedit:type: hippostd:html
+            hipposysedit:validators: [required]
+          /role:
+            jcr:primaryType: hipposysedit:field
+            hipposysedit:mandatory: false
+            hipposysedit:multiple: false
+            hipposysedit:ordered: false
+            hipposysedit:path: visitscotland:role
+            hipposysedit:primary: false
+            hipposysedit:type: String
+            hipposysedit:validators: [required]
       /hipposysedit:prototypes:
         jcr:primaryType: hipposysedit:prototypeset
         /hipposysedit:prototype:
           jcr:primaryType: visitscotland:ICentreQuote
-          visitscotland:title: ''
-          visitscotland:quote: ''
-          visitscotland:name: ''
           visitscotland:productId: ''
+          visitscotland:author: ''
+          visitscotland:role: ''
           /visitscotland:image:
             jcr:primaryType: hippogallerypicker:imagelink
             hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
             hippo:facets: []
             hippo:modes: []
             hippo:values: []
+          /visitscotland:quote:
+            jcr:primaryType: hippostd:html
+            hippostd:content: ''
       /editor:templates:
         jcr:primaryType: editor:templateset
         /_default_:
@@ -87,11 +89,15 @@ definitions:
           /quote:
             jcr:primaryType: frontend:plugin
             caption: Quote
-            field: html
-            plugin.class: org.hippoecm.frontend.editor.plugins.field.PropertyFieldPlugin
+            field: quote
+            hint: ''
+            plugin.class: org.hippoecm.frontend.editor.plugins.field.NodeFieldPlugin
             wicket.id: ${cluster.id}.field
             /cluster.options:
               jcr:primaryType: frontend:pluginconfig
+              ckeditor.config.overlayed.json: '{toolbarGroups: [{ name: ''links''
+                },{name:''insert''},{name:''clipboard''},{name:''tools''},{name:''undo''}]
+                , removeButtons: ''PickImage,Youtube,Table''}'
           /productId:
             jcr:primaryType: frontend:plugin
             caption: DMS Product ID
@@ -108,19 +114,19 @@ definitions:
             wicket.id: ${cluster.id}.field
             /cluster.options:
               jcr:primaryType: frontend:pluginconfig
-          /name:
+          /author:
             jcr:primaryType: frontend:plugin
-            caption: Name
-            field: string
+            caption: Author
+            field: author
+            hint: ''
             plugin.class: org.hippoecm.frontend.editor.plugins.field.PropertyFieldPlugin
             wicket.id: ${cluster.id}.field
-            hint: ''
             /cluster.options:
               jcr:primaryType: frontend:pluginconfig
-          /title:
+          /role:
             jcr:primaryType: frontend:plugin
-            caption: Title
-            field: string_
+            caption: Author role
+            field: role
             hint: ''
             plugin.class: org.hippoecm.frontend.editor.plugins.field.PropertyFieldPlugin
             wicket.id: ${cluster.id}.field

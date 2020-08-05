@@ -1,6 +1,7 @@
 package com.visitscotland.brmx.components.content.factory;
 
 import com.visitscotland.brmx.beans.ICentre;
+import com.visitscotland.brmx.beans.IKnow;
 import com.visitscotland.brmx.beans.mapping.FlatLink;
 import com.visitscotland.brmx.beans.mapping.IKnowModule;
 import com.visitscotland.brmx.dms.ProductSearchBuilder;
@@ -18,23 +19,22 @@ public class IKnowFactory {
     }
 
     //TODO Decide if we need this method
-    public IKnowModule getModule(ICentre doc, String location) {
+    public IKnowModule getModule(IKnow doc, String location) {
         return getIKnowModule(doc, location);
     }
 
-    //TODO: Change iCentre to IKnow
-    public IKnowModule getIKnowModule(ICentre document, String location){
+    public IKnowModule getIKnowModule(IKnow document, String location){
         IKnowModule module = new IKnowModule ();
         //TODO IknowModule
 
-        if (!Contract.isEmpty(document.getIknowTitle())){
+        if (!Contract.isEmpty(document.getTitle())){
             //TODO bundle
             module.setTitle("Help and Advice");
         } else {
-            module.setTitle(document.getIknowTitle());
+            module.setTitle(document.getTitle());
         }
 
-        module.setDescription(document.getIknowDescription());
+        module.setDescription(document.getDescription());
 
         FlatLink link = new FlatLink();
 
