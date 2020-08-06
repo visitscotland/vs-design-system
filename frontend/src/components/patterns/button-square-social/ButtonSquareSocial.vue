@@ -9,7 +9,7 @@
         <VsIcon
             :name="icon"
             variant="light"
-            size="sm"
+            size="md"
         />
     </VsLink>
 </template>
@@ -105,10 +105,8 @@ export default {
 
         ::v-deep {
             .icon {
-                &.icon-sm {
+                &.icon-md {
                     height: 100%;
-                    width: 24px;
-                    padding: 0;
                     margin: 0 auto;
                     fill: $color-white;
                     display: block;

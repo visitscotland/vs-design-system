@@ -9,7 +9,7 @@
             :key="path"
         >
             <div class="card">
-                <VsIcon :name="path" />
+                <VsIcon :name="path" size="xl"/>
                 <pre>{{ path }}</pre>
             </div>
         </VsCol>
@@ -52,6 +52,10 @@ export default {
     padding: 0.5rem 0;
     margin-bottom: 1rem;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+
+    .icon{
+        margin: $spacer-4 auto $spacer-3;
+    }
 }
 </style>
 
