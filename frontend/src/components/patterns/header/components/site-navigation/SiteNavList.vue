@@ -12,17 +12,17 @@
 </template>
 
 <script>
-import { get } from "lodash"
+import { get } from 'lodash';
 
-import HandDownFocus from "@/directives/hand-down-focus"
+import HandDownFocus from '@/directives/hand-down-focus';
 
 /**
  * The nearest ancestor with position relative
  */
 export default {
-    name: "VsSiteNavList",
-    status: "prototype",
-    release: "0.1.0",
+    name: 'VsSiteNavList',
+    status: 'prototype',
+    release: '0.1.0',
     directives: {
         HandDownFocus,
     },
@@ -37,10 +37,10 @@ export default {
     },
     computed: {
         firstNavItem() {
-            return get(this.$slots, "default.0")
+            return get(this.$slots, 'default.0');
         },
     },
-}
+};
 </script>
 
 <style lang="scss" scoped>

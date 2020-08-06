@@ -5,7 +5,6 @@
             :name="source"
             variant="light"
             size="xs"
-            :padding="1"
         />
         <VsLink
             class="social-credit__link"
@@ -18,13 +17,13 @@
 </template>
 
 <script>
-import VsLink from "@components/elements/link/Link"
-import VsIcon from "@components/elements/icon/Icon"
+import VsLink from '@components/elements/link/Link';
+import VsIcon from '@components/elements/icon/Icon';
 
 export default {
-    name: "VsSocialCreditLink",
-    status: "prototype",
-    release: "0.0.1",
+    name: 'VsSocialCreditLink',
+    status: 'prototype',
+    release: '0.0.1',
     components: {
         VsLink,
         VsIcon,
@@ -52,11 +51,11 @@ export default {
          */
         source: {
             type: String,
-            default: "",
+            default: '',
             validator: (value) => value.match(/(instagram)/),
         },
     },
-}
+};
 </script>
 
 <style lang="scss" scoped>

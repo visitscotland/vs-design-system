@@ -13,9 +13,9 @@
   * WYSIWYG editors or others and apply styles when needed.
  */
 export default {
-    name: "VsRichTextWrapper",
-    status: "prototype",
-    release: "0.0.1",
+    name: 'VsRichTextWrapper',
+    status: 'prototype',
+    release: '0.0.1',
     props: {
         /**
          * The font size used by the wrapper
@@ -23,11 +23,11 @@ export default {
          */
         variant: {
             type: String,
-            default: "normal",
+            default: 'normal',
             validator: (value) => value.match(/(normal|lead)/),
         },
     },
-}
+};
 </script>
 
 <style lang="scss" scoped>
