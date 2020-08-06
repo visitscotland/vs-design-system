@@ -1,0 +1,1 @@
+!function(e,o){"object"==typeof exports&&"object"==typeof module?module.exports=o():"function"==typeof define&&define.amd?define([],o):"object"==typeof exports?exports.VsCloseButton=o():e.VsCloseButton=o()}(window,function(){return(window.webpackJsonp_name_=window.webpackJsonp_name_||[]).push([[109],[],[["gGYm",0,1,59]]])});
