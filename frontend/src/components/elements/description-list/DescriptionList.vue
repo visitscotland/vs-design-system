@@ -2,10 +2,7 @@
     <VsRow
         tag="dl"
         class="vs-description-list"
-        :class="[
-            $style.root,
-            { [$style.inline]: inline }
-        ]"
+        :class="{ 'list-inline': inline }"
     >
         <slot />
     </VsRow>
@@ -48,12 +45,11 @@ export default {
 
 <style lang="scss">
 @import "~bootstrap/scss/type";
-</style>
 
-<style lang="scss" module>
-.root {
+.vs-description-list {
+
     // turns offset column off for first item after a term to avoid layout errors
-    dt + dd {
+    .vs-description-list__term+.vs-description-list__detail {
         @include make-col-offset(0);
     }
 }

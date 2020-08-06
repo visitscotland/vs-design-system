@@ -151,7 +151,7 @@ export default {
     .btn.vs-accordion-item__toggle-btn {
         text-align: left;
 
-        .icon.icon-xs {
+        .vs-icon.vs-icon--size-xs {
             height: 16px;
             width: 16px;
             padding: 0;
@@ -175,7 +175,7 @@ export default {
 }
 
 @include no-js {
-    .vs-accordion-toggle .icon{
+    .vs-accordion-toggle .vs-icon{
         display: none;
     }
 

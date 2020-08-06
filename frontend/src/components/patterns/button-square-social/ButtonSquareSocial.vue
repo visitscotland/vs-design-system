@@ -54,7 +54,7 @@ export default {
 
 <style lang="scss" scoped>
 .button-square-social {
-    &.vs-link.primary {
+    &.vs-link.vs-link--variant-primary {
         background: $color-gray-shade-1;
         box-shadow: 0 0 0 2px $color-gray-shade-1;
         border: 1px solid $color-gray-shade-1;
@@ -104,15 +104,15 @@ export default {
         }
 
         ::v-deep {
-            .icon {
-                &.icon-md {
+            .vs-icon {
+                &.vs-icon--size-md {
                     height: 100%;
                     margin: 0 auto;
                     fill: $color-white;
                     display: block;
                 }
 
-                &.icon-external-link {
+                &.vs-icon--external-link {
                     display: none;
                 }
             }
