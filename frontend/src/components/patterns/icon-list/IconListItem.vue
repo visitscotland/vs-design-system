@@ -3,7 +3,7 @@
         <VsIcon
             :name="icon"
             variant="dark"
-            size="sm"
+            size="md"
             class="d-block mx-auto"
         />
         {{ label }}
@@ -54,5 +54,9 @@ export default {
     padding: 0 $spacer-1;
     font-size: $h6-font-size;
     line-height: $standard-line-height;
+
+    svg{
+        margin-bottom: $spacer-3;
+    }
 }
 </style>

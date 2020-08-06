@@ -173,6 +173,16 @@ export default {
         padding: 0 0 $spacer-2;
     }
 }
+
+@include no-js {
+    .vs-accordion-toggle .icon{
+        display: none;
+    }
+
+    .vs-accordion-item .vs-accordion-item__panel{
+        display: block!important;
+    }
+}
 </style>
 
 <docs>
