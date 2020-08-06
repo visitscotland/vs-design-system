@@ -8,8 +8,7 @@
                 slot="icon"
                 :name="icon"
                 variant="dark"
-                size="md"
-                :padding="0"
+                size="xl"
             />
         </div>
         <div class="text-wrapper d-block w-auto mx-1">

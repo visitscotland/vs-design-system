@@ -8,8 +8,7 @@
         <VsIcon
             :name="showMap ? 'list' : 'map'"
             variant="reverse-white"
-            size="sm"
-            :padding="0"
+            size="md"
         />
 
         {{ showMap ? 'List View' : 'Map View' }}
