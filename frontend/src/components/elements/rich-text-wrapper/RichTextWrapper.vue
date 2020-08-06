@@ -2,11 +2,10 @@
     <div
         class="vs-rich-text-wrapper"
         :class="[
-            $style.root,
-            variantClass,
+            `vs-rich-text-wrapper--variant-${variant}`,
             {
                 lead: variant === 'lead',
-            }
+            },
         ]"
     >
         <slot />
@@ -14,8 +13,6 @@
 </template>
 
 <script>
-import { upperFirst } from 'lodash';
-
 /**
   * Text Wrapper is used to wrap and render HTML or text strings from
   * WYSIWYG editors or others and apply styles when needed.
@@ -35,26 +32,22 @@ export default {
             validator: (value) => value.match(/(normal|lead)/),
         },
     },
-    computed: {
-        variantClass() {
-            return this.$style[`variant${upperFirst(this.variant)}`];
-        },
-    },
 };
 </script>
 
 <style lang="scss">
 @import "~bootstrap/scss/type";
-</style>
 
-<style lang="scss" module>
-.variantNormal {
-    font-family: $font-family-base;
-    font-size: $font-size-base;
+.vs-rich-text-wrapper {
 
-}
-.variantLead {
-    line-height: $line-height-lead;
+    &.vs-rich-text-wrapper--variant-normal * {
+        font-family: $font-family-base;
+        font-size: $font-size-base;
+    }
+
+    &.vs-rich-text-wrapper--variant-lead.lead * {
+        line-height: $line-height-lead;
+    }
 }
 
 </style>
@@ -65,8 +58,8 @@ export default {
         <h3>Normal Variant</h3>
         <vs-rich-text-wrapper>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis
-            <vs-link href="#foo" external>eget</vs-link> ante urna.<br/> Pellentesque aliquam
-            faucibus enim fermentum fringilla. Vivamus ultrices dictum justo ac porta.
+             <a href="#foo">eget</a> ante urna.<br/> Pellentesque aliquam faucibus
+             enim fermentum fringilla. Vivamus ultrices dictum justo ac porta.
             Quisque mattis <b>tortor</b> dapibus tellus aliquet, finibus lacinia felis pulvinar.
         </vs-rich-text-wrapper>
     </bs-wrapper>
@@ -75,8 +68,8 @@ export default {
         <h3>Lead Variant</h3>
         <vs-rich-text-wrapper variant="lead">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis
-            <vs-link href="#foo" external>eget</vs-link> ante urna.<br/> Pellentesque aliquam
-            faucibus enim fermentum fringilla. Vivamus ultrices dictum justo ac porta.
+             <a href="#foo">eget</a> ante urna.<br/> Pellentesque aliquam faucibus
+              enim fermentum fringilla. Vivamus ultrices dictum justo ac porta.
             Quisque mattis <b>tortor</b> dapibus tellus aliquet, finibus lacinia felis pulvinar.
         </vs-rich-text-wrapper>
     </bs-wrapper>

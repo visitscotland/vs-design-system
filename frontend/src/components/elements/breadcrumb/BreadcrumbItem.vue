@@ -1,6 +1,6 @@
 <template>
     <BBreadcrumbItem
-        :class="$style.root"
+        class="vs-breadcrumb__item"
         :active="active"
         :aria-current="ariaCurrent"
         :href="href"
@@ -57,14 +57,16 @@ export default {
 
 <style lang="scss">
 @import "~bootstrap/scss/breadcrumb";
-</style>
 
-<style lang="scss" module>
-
-.root {
+.vs-breadcrumb__item {
     color: $color-base-text;
     font-size: $font-size-base;
     font-weight: $font-weight-normal;
+
+    &:last-child {
+        color: $color-base-text;
+        font-weight: $font-weight-light;
+    }
 
     @include media-breakpoint-down(md) {
         font-size: $font-size-sm;
@@ -95,12 +97,8 @@ export default {
     a {
         color: $color-base-text;
     }
-
-    &:last-child {
-        color: $color-base-text;
-        font-weight: $font-weight-light;
-    }
 }
+
 </style>
 
 <docs>
