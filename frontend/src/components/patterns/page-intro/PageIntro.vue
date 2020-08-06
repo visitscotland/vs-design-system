@@ -20,10 +20,10 @@
  * Note that everything within is just a slot.
  */
 export default {
-    name: "VsPageIntro",
-    status: "prototype",
-    release: "0.0.1",
-}
+    name: 'VsPageIntro',
+    status: 'prototype',
+    release: '0.0.1',
+};
 </script>
 
 <style lang="scss" scoped>
@@ -123,7 +123,7 @@ export default {
             <div class="d-flex justify-content-center justify-content-sm-end">
               <!-- TODO - Below icon is FPO. Replace with icon
               with text component and a share component -->
-              <vs-icon name="share" variant="dark" size="sm" />
+              <vs-icon name="share" variant="dark" size="md" />
             </div>
           </vs-col>
         </vs-row>

@@ -20,15 +20,15 @@
 <script>
 import {
     VsCol, VsRow, VsContainer,
-} from "@components/elements/layout"
-import VsSiteNavList from "./SiteNavList"
+} from '@components/elements/layout';
+import VsSiteNavList from './SiteNavList';
 
-import HandDownFocus from "@/directives/hand-down-focus"
+import HandDownFocus from '@/directives/hand-down-focus';
 
 export default {
-    name: "VsSiteNav",
-    status: "prototype",
-    release: "0.1.0",
+    name: 'VsSiteNav',
+    status: 'prototype',
+    release: '0.1.0',
     components: {
         VsSiteNavList,
         VsCol,
@@ -42,7 +42,7 @@ export default {
         // firstNavItem() {
         // },
     },
-}
+};
 </script>
 
 <style lang="scss" scoped>

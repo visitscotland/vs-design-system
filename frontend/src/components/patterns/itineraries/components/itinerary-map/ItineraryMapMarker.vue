@@ -16,7 +16,6 @@
                 :class="isHighlighted ? 'active' : ''"
                 :variant="isHighlighted ? 'dark' : 'secondary-teal'"
                 :size="isHighlighted ? 'lg' : 'md'"
-                :padding="0"
             />
             <span
                 class="vs-itinerary-map-marker__count"
@@ -29,17 +28,17 @@
 </template>
 
 <script>
-import itinerariesStore from "@components/patterns/itineraries/itineraries.store"
-import VsIcon from "@components/elements/icon/Icon"
+import itinerariesStore from '@components/patterns/itineraries/itineraries.store';
+import VsIcon from '@components/elements/icon/Icon';
 
 /**
  * TODO: Document usage
  */
 
 export default {
-    name: "VsItineraryMapMarker",
-    status: "prototype",
-    release: "0.0.1",
+    name: 'VsItineraryMapMarker',
+    status: 'prototype',
+    release: '0.0.1',
     components: {
         VsIcon,
     },
@@ -52,37 +51,37 @@ export default {
     data() {
         return {
             isHighlighted: false,
-        }
+        };
     },
     itinerariesStore,
     computed: {
         highlightedStop() {
-            return itinerariesStore.getters["itineraries/getHighlightedStop"]
+            return itinerariesStore.getters['itineraries/getHighlightedStop'];
         },
     },
     watch: {
         highlightedStop() {
-            this.toggleHighlighted()
+            this.toggleHighlighted();
         },
     },
     methods: {
         handleClick() {
             if (this.highlightedStop === this.feature) {
-                return itinerariesStore.dispatch("itineraries/setStopHighlighted", null)
+                return itinerariesStore.dispatch('itineraries/setStopHighlighted', null);
             }
-            return itinerariesStore.dispatch("itineraries/setStopHighlighted", this.feature)
+            return itinerariesStore.dispatch('itineraries/setStopHighlighted', this.feature);
         },
         handleMouseEnter() {
-            return itinerariesStore.dispatch("itineraries/setStopHighlighted", this.feature)
+            return itinerariesStore.dispatch('itineraries/setStopHighlighted', this.feature);
         },
         handleMouseLeave() {
-            return itinerariesStore.dispatch("itineraries/setStopHighlighted", null)
+            return itinerariesStore.dispatch('itineraries/setStopHighlighted', null);
         },
         toggleHighlighted() {
-            this.isHighlighted = this.highlightedStop === this.feature
+            this.isHighlighted = this.highlightedStop === this.feature;
         },
     },
-}
+};
 </script>
 
 <style lang="scss" scoped>
