@@ -33,34 +33,29 @@
 
     </head>
     <body>
-        <div class="no-js container" data-vue-app-init>
-            <div class="row">
-                <div class="col-md-6 col-md-offset-3">
-                    <@hst.include ref="top"/>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-6 col-md-offset-3">
-                    <@hst.include ref="menu"/>
-                </div>
-            </div>
+        <div class="no-js" data-vue-app-init>
+            <@hst.include ref="top"/>
+
+            <@hst.include ref="menu"/>
+
             <main id="main">
                 <@hst.include ref="main"/>
             </main>
+
             <@hst.include ref="footer"/>
         </div>
 
         <!-- BEGIN HEAD CONTRIBUTIONS: htmlBodyEndScriptsFirst -->
-        <@hst.headContributions categoryIncludes="htmlBodyEndScriptsFirst, scripts" xhtml=true/>
+        <@hst.headContributions categoryIncludes="htmlBodyEndScriptsFirst" xhtml=true/>
         <!-- END HEAD CONTRIBUTIONS: htmlBodyEndScriptsFirst -->
 
         <!-- BEGIN HEAD CONTRIBUTIONS: htmlBodyEndScripts -->
-        <@hst.headContributions categoryIncludes="htmlBodyEndScripts, scripts" xhtml=true/>
+        <@hst.headContributions categoryIncludes="htmlBodyEndScripts" xhtml=true/>
         <!-- END HEAD CONTRIBUTIONS: htmlBodyEndScripts -->
 
-        <!-- BEGIN HEAD CONTRIBUTIONS: htmlBodyEndAppEntry -->
-        <@hst.headContributions categoryIncludes="htmlBodyEndAppEntry" xhtml=true/>
-        <!-- END HEAD CONTRIBUTIONS: htmlBodyEndAppEntry -->
+        <!-- BEGIN HEAD CONTRIBUTIONS: htmlBodyEndAppInit -->
+        <@hst.headContributions categoryIncludes="htmlBodyEndAppInit" xhtml=true/>
+        <!-- END HEAD CONTRIBUTIONS: htmlBodyEndAppInit -->
     </body>
 =======
 <!doctype html>
@@ -91,13 +86,13 @@
     <body>
         <div class="no-js" data-vue-app-init>
             <@hst.include ref="top"/>
-    
+
             <@hst.include ref="menu"/>
-                
+
             <main id="main">
                 <@hst.include ref="main"/>
             </main>
-            
+
             <@hst.include ref="footer"/>
         </div>
 
