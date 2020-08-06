@@ -1,33 +1,33 @@
 <#compress>
 <#include "../../include/imports.ftl">
 
-<#include "../../vs-dotcom-ds/stores/itineraries-store.ftl">
-<#include "../../vs-dotcom-ds/components/page-intro.ftl">
-<#include "../../vs-dotcom-ds/components/hero.ftl">
-<#include "../../vs-dotcom-ds/components/container.ftl">
-<#include "../../vs-dotcom-ds/components/row.ftl">
-<#include "../../vs-dotcom-ds/components/col.ftl">
-<#include "../../vs-dotcom-ds/components/icon.ftl">
-<#include "../../vs-dotcom-ds/components/rich-text-wrapper.ftl">
-<#include "../../vs-dotcom-ds/components/image-with-caption.ftl">
-<#include "../../vs-dotcom-ds/components/image-location-map.ftl">
-<#include "../../vs-dotcom-ds/components/button.ftl">
-<#include "../../vs-dotcom-ds/components/heading.ftl">
-<#include "../../vs-dotcom-ds/components/img.ftl">
-<#include "../../vs-dotcom-ds/components/tooltip.ftl">
-<#include "../../vs-dotcom-ds/components/summary-box-list.ftl">
-<#include "../../vs-dotcom-ds/components/summary-box-list-item.ftl">
-<#include "../../vs-dotcom-ds/components/summary-box-display.ftl">
-<#include "../../vs-dotcom-ds/components/summary-box-label.ftl">
-<#include "../../vs-dotcom-ds/components/summary-box-distance-display.ftl">
-<#include "../../vs-dotcom-ds/components/summary-box-distance-label.ftl">
-<#include "../../vs-dotcom-ds/components/summary-box-icon-with-label.ftl">
-<#include "../../vs-dotcom-ds/components/description-list.ftl">
-<#include "../../vs-dotcom-ds/components/description-list-term.ftl">
-<#include "../../vs-dotcom-ds/components/description-list-detail.ftl">
-<#include "../../vs-dotcom-ds/components/itinerary-day.ftl">
-<#include "../../vs-dotcom-ds/components/itinerary.ftl">
-<#include "../../vs-dotcom-ds/components/svg.ftl">
+<#--  <#include "../../frontend/stores/vs-store-itineraries-store.ftl">  -->
+<#include "../../frontend/components/vs-page-intro.ftl">
+<#include "../../frontend/components/vs-hero.ftl">
+<#include "../../frontend/components/vs-container.ftl">
+<#include "../../frontend/components/vs-row.ftl">
+<#include "../../frontend/components/vs-col.ftl">
+<#include "../../frontend/components/vs-icon.ftl">
+<#include "../../frontend/components/vs-rich-text-wrapper.ftl">
+<#include "../../frontend/components/vs-image-with-caption.ftl">
+<#include "../../frontend/components/vs-image-location-map.ftl">
+<#include "../../frontend/components/vs-button.ftl">
+<#include "../../frontend/components/vs-heading.ftl">
+<#include "../../frontend/components/vs-img.ftl">
+<#include "../../frontend/components/vs-tooltip.ftl">
+<#include "../../frontend/components/vs-summary-box-list.ftl">
+<#include "../../frontend/components/vs-summary-box-list-item.ftl">
+<#include "../../frontend/components/vs-summary-box-display.ftl">
+<#include "../../frontend/components/vs-summary-box-label.ftl">
+<#include "../../frontend/components/vs-summary-box-distance-display.ftl">
+<#include "../../frontend/components/vs-summary-box-distance-label.ftl">
+<#include "../../frontend/components/vs-summary-box-icon-with-label.ftl">
+<#include "../../frontend/components/vs-description-list.ftl">
+<#include "../../frontend/components/vs-description-list-term.ftl">
+<#include "../../frontend/components/vs-description-list-detail.ftl">
+<#include "../../frontend/components/vs-itinerary-day.ftl">
+<#include "../../frontend/components/vs-itinerary.ftl">
+<#include "../../frontend/components/vs-svg.ftl">
 
 <#include "../macros/modules/itineraries/itinerary-stop.ftl">
 <#include "../macros/modules/itineraries/itinerary-map.ftl">
@@ -95,7 +95,7 @@
                 <vs-col cols="2">
                     <div class="d-flex justify-content-center justify-content-sm-end">
                         <!-- TODO - Below icon is FPO. Replace with icon with text component and a share component -->
-                        <vs-icon name="share" variant="dark" size="sm" />
+                        <vs-icon name="share" variant="dark" size="md"></vs-icon>
                     </div>
                 </vs-col>
             </vs-row>
@@ -200,7 +200,7 @@
                         <#list day.transports as transport>
                             <dd class="list-inline-item">
                                 <vs-tooltip title="${label("transports", "${transport}")}">
-                                    <vs-icon name="${transport}" variant="dark" size="sm"></vs-icon>
+                                    <vs-icon name="${transport}" variant="dark" size="md"></vs-icon>
                                 </vs-tooltip>
                                 <span class="sr-only">${label("transports", "${transport}")}</span>
                             </dd>

@@ -1,18 +1,18 @@
 <#include "../../include/imports.ftl">
 <#include "./base-header/navigation-item.ftl">
 
-<#include "../../vs-dotcom-ds/components/header.ftl">
-<#include "../../vs-dotcom-ds/components/header-drawer-toggle.ftl">
-<#include "../../vs-dotcom-ds/components/header-login-button.ftl">
-<#include "../../vs-dotcom-ds/components/drawer-content.ftl">
-<#include "../../vs-dotcom-ds/components/list-group.ftl">
-<#include "../../vs-dotcom-ds/components/logo.ftl">
-<#include "../../vs-dotcom-ds/components/site-search.ftl">
-<#include "../../vs-dotcom-ds/components/favourites-list.ftl">
-<#include "../../vs-dotcom-ds/components/site-search-toggle-button.ftl">
-<#include "../../vs-dotcom-ds/components/favourites-button.ftl">
-<#include "../../vs-dotcom-ds/components/header-button.ftl">
-<#include "../../vs-dotcom-ds/components/site-nav-list-item.ftl">
+<#include "../../frontend/components/vs-header.ftl">
+<#include "../../frontend/components/vs-header-drawer-toggle.ftl">
+<#include "../../frontend/components/vs-header-login-button.ftl">
+<#include "../../frontend/components/vs-drawer-content.ftl">
+<#include "../../frontend/components/vs-list-group.ftl">
+<#include "../../frontend/components/vs-logo.ftl">
+<#include "../../frontend/components/vs-site-search.ftl">
+<#include "../../frontend/components/vs-favourites-list.ftl">
+<#include "../../frontend/components/vs-site-search-toggle-button.ftl">
+<#include "../../frontend/components/vs-favourites-button.ftl">
+<#include "../../frontend/components/vs-header-button.ftl">
+<#include "../../frontend/components/vs-site-nav-list-item.ftl">
 
 <#-- @ftlvariable name="menu" type="org.hippoecm.hst.core.sitemenu.HstSiteMenu" -->
 <#-- @ftlvariable name="editMode" type="java.lang.Boolean"-->

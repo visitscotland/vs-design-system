@@ -48,7 +48,7 @@ public class DMSDataService {
 
             logger.info("Requesting data to the dms: " + dmsUrl);
             try {
-                responseString = utils.requestUrl(dmsUrl);
+                responseString = utils.request(dmsUrl);
 
                 if (responseString!=null) {
 

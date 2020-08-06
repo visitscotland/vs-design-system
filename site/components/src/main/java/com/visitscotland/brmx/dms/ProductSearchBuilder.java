@@ -41,7 +41,7 @@ public class ProductSearchBuilder {
 
     static final String PRODUCT_SEARCH = "%s/info/%s/search-results?";
     static final String AVAILABILITY = "avail";
-    static final Integer DEFAULT_PROXIMITY = 10;
+    static final Double DEFAULT_PROXIMITY = 10.0;
 
     static final String PRODUCT_TYPE = "prodtypes";
     static final String LOCATION_NAME = "loc";
@@ -67,7 +67,7 @@ public class ProductSearchBuilder {
 
     private String productTypes;
     private String path;
-    private Integer proximity;
+    private Double proximity;
     private String location;
     private Double longitude;
     private Double latitude;
@@ -80,12 +80,12 @@ public class ProductSearchBuilder {
     private Set<String> ratings = new TreeSet<>();
 
     public ProductSearchBuilder(){
-        this.proximity = DEFAULT_PROXIMITY;
         this.order = Order.NONE;
+        this.proximity = DEFAULT_PROXIMITY;
     }
 
     /**
-     * Allows new instances from FreeMarker
+     * Allow new instances from FreeMarker
      *
      * @return
      */
@@ -137,7 +137,7 @@ public class ProductSearchBuilder {
         return this;
     }
 
-    public ProductSearchBuilder productType(ProductsSearch ps){
+    public ProductSearchBuilder fromHippoBean(ProductsSearch ps){
         if (ps.getProductType() != null) {
             ProductSearchBuilder psb = new ProductSearchBuilder();
             psb.productTypes(ps.getProductType());
@@ -146,6 +146,7 @@ public class ProductSearchBuilder {
             psb.facility(ps.getDmsFacilities());
             psb.award(ps.getDmsAwards());
             psb.rating(ps.getOfficialrating());
+            psb.proximity(ps.getDistance());
 
             return psb;
         }
@@ -203,9 +204,9 @@ public class ProductSearchBuilder {
         return this;
     }
 
-    public ProductSearchBuilder proximity(Number proximity){
+    public ProductSearchBuilder proximity(Double proximity){
         if (validNumber(proximity) && proximity.intValue() > 0){
-            this.proximity = proximity.intValue();
+            this.proximity = proximity.doubleValue();
         }
         return this;
     }
@@ -256,7 +257,7 @@ public class ProductSearchBuilder {
         if (location != null) {
             LocationObject loc = LocationLoader.getLocation(location, locale);
 
-            compose = addParams(compose, "POLYGON".equals(loc.getType())?LOCATION_POLYGON: LOCATION_PLACE, loc.getId());
+            compose = addParams(compose, "POLYGON".equals(loc.getType())?LOCATION_POLYGON: LOCATION_PLACE, loc.getKey());
             compose = addParams(compose, PROXIMITY_LOCATION, proximity.toString());
 
             try {

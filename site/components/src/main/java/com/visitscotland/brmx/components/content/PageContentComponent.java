@@ -8,6 +8,7 @@ import com.visitscotland.brmx.beans.mapping.FlatImage;
 import com.visitscotland.brmx.beans.mapping.FlatLink;
 import com.visitscotland.brmx.dms.LocationLoader;
 import com.visitscotland.brmx.dms.ProductSearchBuilder;
+import com.visitscotland.brmx.services.ResourceBundleService;
 import com.visitscotland.brmx.utils.*;
 import com.visitscotland.dataobjects.DataType;
 import com.visitscotland.utils.Contract;
@@ -37,9 +38,11 @@ public class PageContentComponent<TYPE extends Page> extends EssentialsContentCo
     public final String HERO_COORDINATES = "heroCoordinates";
 
     HippoUtilsService utils;
+    ResourceBundleService bundle;
 
     public PageContentComponent(){
         utils = new HippoUtilsService();
+        bundle = new ResourceBundleService();
     }
 
     @Override
@@ -48,9 +51,9 @@ public class PageContentComponent<TYPE extends Page> extends EssentialsContentCo
 
         addDocumentPath(request);
         addProductSearchBuilder(request);
+        addResourceBundleService(request);
 
         initPage(request);
-
     }
 
     /**
@@ -77,6 +80,10 @@ public class PageContentComponent<TYPE extends Page> extends EssentialsContentCo
         } catch (TemplateModelException e) {
             logger.error("Product Search Builder is not available for the Page", e);
         }
+    }
+
+    private void addResourceBundleService(HstRequest request){
+        request.setAttribute("ResourceBundle", bundle);
     }
 
     /**
@@ -146,7 +153,7 @@ public class PageContentComponent<TYPE extends Page> extends EssentialsContentCo
         } else if (item instanceof ProductSearchLink) {
             ProductSearchLink productSearchLink = (ProductSearchLink) item;
             ProductSearchBuilder psb = new ProductSearchBuilder()
-                    .productType(productSearchLink.getSearch()).locale(request.getLocale());
+                    .fromHippoBean(productSearchLink.getSearch()).locale(request.getLocale());
 
             return new FlatLink(getCtaLabel(productSearchLink.getLabel(), request.getLocale()), psb.build());
 
@@ -171,11 +178,12 @@ public class PageContentComponent<TYPE extends Page> extends EssentialsContentCo
      *
      * @return the manual CTA if provided otherwise the default CTA
      */
+    //TODO: Refactor static method.
     protected static String getCtaLabel(String manualCta, Locale locale) {
         if (!Contract.isEmpty(manualCta)) {
             return manualCta;
         } else {
-            return HippoUtilsService.getInstance().getResourceBundle("button.find-out-more", "essentials.global", locale);
+            return HippoUtilsService.getInstance().getResourceBundle("essentials.global","button.find-out-more",  locale);
         }
     }
 

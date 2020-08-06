@@ -20,16 +20,16 @@
 </template>
 
 <script>
-import VsSvg from "@components/elements/svg/Svg"
-import VsHeaderButton from "../button/HeaderButton"
+import VsSvg from '@components/elements/svg/Svg';
+import VsHeaderButton from '../button/HeaderButton';
 
 /**
  *  Placeholder component for header login component
  */
 export default {
-    name: "VsHeaderLoginButton",
-    status: "prototype",
-    release: "0.1.0",
+    name: 'VsHeaderLoginButton',
+    status: 'prototype',
+    release: '0.1.0',
     components: {
         VsSvg,
         VsHeaderButton,
@@ -37,14 +37,14 @@ export default {
     data() {
         return {
             isLoggedIn: false,
-        }
+        };
     },
     methods: {
         toggleLogin() {
-            this.isLoggedIn = !this.isLoggedIn
+            this.isLoggedIn = !this.isLoggedIn;
         },
     },
-}
+};
 </script>
 
 <style lang="scss" scoped>
