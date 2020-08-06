@@ -1,16 +1,14 @@
 <template>
     <Component
         :is="type"
-        :class="[
-            $style.root,
-            {
-                [$style.thin]: thin,
-            }
-        ]"
+        class="vs-heading"
+        :class="{
+            'vs-heading--thin': thin,
+        }"
     >
         <slot />
 
-        <span :class="$style.sub">
+        <span class="vs-heading__sub-heading">
             <slot name="sub-heading" />
         </span>
     </Component>
@@ -56,9 +54,7 @@ export default {
 <style lang="scss">
 @import "~bootstrap/scss/type";
 @import "../../../assets/fonts/fonts.css";
-</style>
 
-<style lang="scss" module>
 $font-sizes: (
     1: $h1-font-size,
     2: $h2-font-size,
@@ -74,7 +70,7 @@ $sub-font-sizes: (
     3: $h3-sub-font-size,
 );
 
-.root {
+.vs-heading {
     font-family: $headings-font-family;
 
     @each $level, $size in $font-sizes {
@@ -84,11 +80,11 @@ $sub-font-sizes: (
         }
     }
 
-    &.thin {
+    &.vs-heading--thin {
         font-family: $headings-font-family-thin;
     }
 
-    .sub {
+    .vs-heading__sub-heading {
         font-family: $headings-font-family-thin;
         display: block;
 

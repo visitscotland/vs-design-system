@@ -105,7 +105,7 @@ export default {
             background-color: white;
             position: relative;
 
-            .icon {
+            .vs-icon {
                 position: absolute;
                 right: 10px;
                 bottom: 10px;
