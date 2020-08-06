@@ -1,9 +1,9 @@
 <template>
     <BFormInput
-        :class="$style.root"
+        v-model="inputVal"
+        class="vs-form__input"
         :size="size"
         v-bind="$attrs"
-        v-model="inputVal"
     />
 </template>
 
@@ -11,8 +11,6 @@
 import { BFormInput } from 'bootstrap-vue';
 
 /**
- * This component is not currently being used by anything on the site
- *
  * https://bootstrap-vue.js.org/docs/components/form-input
  * https://getbootstrap.com/docs/4.3/components/forms/
  */
@@ -56,11 +54,9 @@ export default {
 
 <style lang="scss">
 @import "~bootstrap/scss/forms";
-</style>
 
-<style lang="scss" module>
-.root {
-  &:global(.form-control) {
+.vs-form__input {
+  &.form-control {
     border-color: $color-gray-tint-1;
     transition: box-shadow 250ms ease;
 

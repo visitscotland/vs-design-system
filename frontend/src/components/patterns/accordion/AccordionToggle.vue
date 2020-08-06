@@ -67,7 +67,7 @@ export default {
 .btn.vs-accordion-toggle {
     text-align: left;
 
-    .icon.icon-xs {
+    .vs-icon.vs-icon--size-xs {
         height: 16px!important;
         width: 16px!important;
         padding: 0!important;

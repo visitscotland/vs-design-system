@@ -1,8 +1,5 @@
 <template>
-    <div
-        class="p-0 m-0"
-        :class="$style.root"
-    >
+    <div class="vs-prototype p-0 m-0">
         <slot />
     </div>
 </template>
@@ -23,8 +20,8 @@ export default {
 };
 </script>
 
-<style lang="scss" module>
-.root {
+<style lang="scss">
+.vs-prototype {
     opacity: 30%;
 
     & > * {
@@ -42,7 +39,7 @@ export default {
 
 <docs>
 ```jsx
-    <h4>Originals (not wrapped in prototype)</h4>
+    <h4>Originals</h4>
     <bs-wrapper class="d-flex mb-4">
         <vs-button class="mr-2 mb-2">Button</vs-button>
     </bs-wrapper>
@@ -51,7 +48,7 @@ export default {
         <vs-icon name="search" />
     </bs-wrapper>
 
-    <h4>Prototypes</h4>
+    <h4 class="mt-8">Prototypes</h4>
     <bs-wrapper class="d-flex mb-4">
         <vs-prototype>
             <vs-button class="mr-2 mb-2">Button</vs-button>

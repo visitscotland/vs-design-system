@@ -80,7 +80,7 @@ export default {
         }
 
         & ::v-deep {
-            svg.icon {
+            svg.vs-icon {
                 fill: $color-white !important;
             }
         }
