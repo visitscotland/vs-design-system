@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import { BFormInput } from "bootstrap-vue"
+import { BFormInput } from 'bootstrap-vue';
 
 /**
  * https://bootstrap-vue.js.org/docs/components/form-input
@@ -16,9 +16,9 @@ import { BFormInput } from "bootstrap-vue"
  */
 
 export default {
-    name: "VsFormInput",
-    status: "prototype",
-    release: "0.0.1",
+    name: 'VsFormInput',
+    status: 'prototype',
+    release: '0.0.1',
     components: {
         BFormInput,
     },
@@ -28,28 +28,28 @@ export default {
          * `sm, md, lg`
          */
         size: {
-            default: "md",
+            default: 'md',
             validator: (value) => value.match(/(sm|md|lg)/),
         },
         value: {
             type: String,
-            default: "",
+            default: '',
         },
     },
     data() {
         return {
             inputVal: this.value,
-        }
+        };
     },
     watch: {
         inputVal(newValue) {
-            this.$emit("input", newValue)
+            this.$emit('input', newValue);
         },
         value(newValue) {
-            this.inputVal = newValue
+            this.inputVal = newValue;
         },
     },
-}
+};
 </script>
 
 <style lang="scss" scoped>

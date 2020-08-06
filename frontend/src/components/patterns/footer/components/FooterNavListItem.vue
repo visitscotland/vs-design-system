@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import VsLink from "@components/elements/link/Link"
+import VsLink from '@components/elements/link/Link';
 
 /**
  * The FooterNavListItems is used inside the FooterNavList to
@@ -19,7 +19,7 @@ import VsLink from "@components/elements/link/Link"
  */
 
 export default {
-    name: "VsFooterNavListItem",
+    name: 'VsFooterNavListItem',
     components: {
         VsLink,
     },
@@ -43,10 +43,10 @@ export default {
          */
         linkText: {
             type: String,
-            default: "",
+            default: '',
         },
     },
-}
+};
 </script>
 
 <style lang="scss">
@@ -102,7 +102,7 @@ export default {
                         <vs-icon name="chevron-right" variant="light" size="xs" />
                     </span>
 
-                    <vs-list unstyled class="pb-2">
+                    <vs-list unstyled>
                         <vs-footer-nav-list-item
                             href="#"
                             link-text="Brochures"
@@ -117,6 +117,7 @@ export default {
                         ></vs-footer-nav-list-item>
                         <vs-footer-nav-list-item
                             href="#"
+                            external
                             link-text="VisitScotland Awards"
                         ></vs-footer-nav-list-item>
                     </vs-list>

@@ -26,7 +26,7 @@
 </template>
 
 <script>
-import VsAccordionItem from "@components/patterns/accordion/AccordionItem"
+import VsAccordionItem from '@components/patterns/accordion/AccordionItem';
 
 /**
  * The FooterAccordionItem is an accordion item used inside the FooterNavList.
@@ -34,7 +34,7 @@ import VsAccordionItem from "@components/patterns/accordion/AccordionItem"
  */
 
 export default {
-    name: "VsFooterAccordionItem",
+    name: 'VsFooterAccordionItem',
     components: {
         VsAccordionItem,
     },
@@ -53,7 +53,7 @@ export default {
         itemBreakPoint: {
             type: String,
             default() {
-                return this.breakPoint
+                return this.breakPoint;
             },
             validator: (value) => value.match(/(xs|sm|md|lg|xl|xxl)/),
         },
@@ -69,14 +69,14 @@ export default {
          */
         variant: {
             type: String,
-            default: "primary",
+            default: 'primary',
         },
     },
-}
+};
 </script>
 
 <style lang="scss">
-.vs-footer-accordion-item {
+.vs-footer-accordion-item.card {
     .vs-accordion-item__title {
         margin: $spacer-3 0;
     }
@@ -106,18 +106,18 @@ export default {
     }
 
     @include media-breakpoint-up(md) {
-        border-bottom: 0;
+        border: 0;
         border-left: 1px solid $color-gray-shade-2;
         padding: 0 $spacer-3;
-        background: $color-theme-dark;
+        background-color: $color-theme-dark;
 
         .vs-accordion-item__title {
             margin-top: $spacer-1;
         }
 
-        .vs-accordion-item__panel {
-            padding-bottom: 0;
-            background: $color-theme-dark;
+        .vs-accordion-item__panel.card-body {
+            padding: 0;
+            background-color: $color-theme-dark;
             border-top: 0;
         }
     }
@@ -130,13 +130,13 @@ export default {
         <vs-footer-nav-list break-point="md">
             <vs-col cols="12" md="6">
                 <vs-footer-accordion-item
-                    :open-by-default="true"
+                    :open-by-default="false"
                     variant="dark"
                     control-id="footer_accordion_item_1"
                     class="border-left-0"
                 >
                     <span slot="title">
-                        Find us on
+                        Visitor information
                     </span>
 
                     <span slot="icon-open">
@@ -147,23 +147,23 @@ export default {
                         <vs-icon name="chevron-right" variant="light" size="xs" />
                     </span>
 
-                    <vs-list unstyled class="pb-2">
-                        <vs-footer-social-item
+                    <vs-list unstyled>
+                        <vs-footer-nav-list-item
                             href="#"
-                            icon="facebook"
-                        ></vs-footer-social-item>
-                        <vs-footer-social-item
+                            link-text="Brochures"
+                        ></vs-footer-nav-list-item>
+                        <vs-footer-nav-list-item
                             href="#"
-                            icon="twitter"
-                        ></vs-footer-social-item>
-                        <vs-footer-social-item
+                            link-text="VisitScotland iCentres"
+                        ></vs-footer-nav-list-item>
+                        <vs-footer-nav-list-item
                             href="#"
-                            icon="youtube"
-                        ></vs-footer-social-item>
-                        <vs-footer-social-item
+                            link-text="iKnow Scotland Community"
+                        ></vs-footer-nav-list-item>
+                        <vs-footer-nav-list-item
                             href="#"
-                            icon="instagram"
-                        ></vs-footer-social-item>
+                            link-text="VisitScotland Awards"
+                        ></vs-footer-nav-list-item>
                     </vs-list>
                 </vs-footer-accordion-item>
             </vs-col>

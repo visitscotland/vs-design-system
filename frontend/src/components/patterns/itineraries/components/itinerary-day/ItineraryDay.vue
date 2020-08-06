@@ -25,14 +25,12 @@
                     name="chevron-down"
                     variant="dark"
                     size="xs"
-                    :padding="3"
                 />
                 <VsIcon
                     v-else
                     name="chevron-up"
                     variant="dark"
                     size="xs"
-                    :padding="3"
                 />
             </VsButton>
         </div>
@@ -50,18 +48,18 @@
 </template>
 
 <script>
-import VsIcon from "@components/elements/icon/Icon"
-import VsHeading from "@components/elements/heading/Heading"
-import VsButton from "@components/elements/button/Button"
+import VsIcon from '@components/elements/icon/Icon';
+import VsHeading from '@components/elements/heading/Heading';
+import VsButton from '@components/elements/button/Button';
 
 /**
  * Itinerary Day list items.
  */
 
 export default {
-    name: "VsItineraryDay",
-    status: "prototype",
-    release: "0.0.1",
+    name: 'VsItineraryDay',
+    status: 'prototype',
+    release: '0.0.1',
     components: {
         VsHeading,
         VsButton,
@@ -102,27 +100,27 @@ export default {
         return {
             show: this.defaultShow,
             isDesktop: false,
-        }
+        };
     },
     mounted() {
-        if(window) {
-            window.addEventListener("resize", this.onResize)
+        if (window) {
+            window.addEventListener('resize', this.onResize);
         }
     },
     destroyed() {
-        if(window) {
-            window.removeEventListener("resize", this.onResize)
+        if (window) {
+            window.removeEventListener('resize', this.onResize);
         }
     },
     methods: {
         onResize() {
-            this.isDesktop = window.innerWidth >= 1200
+            this.isDesktop = window.innerWidth >= 1200;
         },
         triggerToggle() {
-            this.show = !this.show
+            this.show = !this.show;
         },
     },
-}
+};
 </script>
 
 <style lang="scss" scoped>
@@ -150,6 +148,14 @@ export default {
     border-radius: 50%;
     top: $spacer-2;
     right: 0;
+    height:24px;
+    width:24px;
+
+    .icon{
+        height: 100%;
+        margin: 0 auto;
+        display: block;
+    }
 }
 </style>
 
@@ -176,7 +182,7 @@ export default {
                     v-for="(transportType, transportTypeIndex) in day.transport"
                 >
                     <vs-tooltip :title="transportType.value">
-                        <vs-icon :name="transportType.key" variant="dark" size="sm" />
+                        <vs-icon :name="transportType.key" variant="dark" size="md" />
                     </vs-tooltip>
                     <span class="sr-only">{{transportType.value}}</span>
                 </dd>

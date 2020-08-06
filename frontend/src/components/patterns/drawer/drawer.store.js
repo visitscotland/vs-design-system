@@ -1,29 +1,29 @@
-import Vuex from "vuex"
-import Vue from "vue"
-import { get, set /* , isFunction */ } from "lodash"
+import Vuex from 'vuex';
+import Vue from 'vue';
+import { get, set /* , isFunction */ } from 'lodash';
 import {
     GET_ACTIVE_CONTENT,
     GET_RETURN_FOCUS_ELEMENT,
     IS_ACTIVE_CONTENT,
-} from "./drawer.store.getter-types"
+} from './drawer.store.getter-types';
 import {
     REGISTER_DRAWER, CLOSE_DRAWER, SHOW_DRAWER_CONTENT,
-} from "./drawer.store.action-types"
+} from './drawer.store.action-types';
 
-Vue.use(Vuex)
+Vue.use(Vuex);
 
 /* eslint-disable no-shadow */
 
 const stateTypes = {
-    activeContents: "active_contents",
-    returnFocusElements: "return_focus_elements",
-}
+    activeContents: 'active_contents',
+    returnFocusElements: 'return_focus_elements',
+};
 
 const mutationTypes = {
-    setActiveContent: "setActiveContent",
-    setReturnFocusElement: "setReturnFocusElement",
-    addDrawer: "addDrawer",
-}
+    setActiveContent: 'setActiveContent',
+    setReturnFocusElement: 'setReturnFocusElement',
+    addDrawer: 'addDrawer',
+};
 
 /**
  * This store controls drawer content and visibility. Each drawer
@@ -45,78 +45,78 @@ export const state = {
      */
     [stateTypes.returnFocusElements]: {
     },
-}
+};
 
 export const getters = {
     [GET_ACTIVE_CONTENT](state) {
-        return (drawerKey) => get(state[stateTypes.activeContents], drawerKey)
+        return (drawerKey) => get(state[stateTypes.activeContents], drawerKey);
     },
     [GET_RETURN_FOCUS_ELEMENT](state) {
-        return (drawerKey) => get(state[stateTypes.returnFocusElements], drawerKey)
+        return (drawerKey) => get(state[stateTypes.returnFocusElements], drawerKey);
     },
     [IS_ACTIVE_CONTENT](state, getters) {
-        return (contentKey, drawerKey) => contentKey === getters[GET_ACTIVE_CONTENT](drawerKey)
+        return (contentKey, drawerKey) => contentKey === getters[GET_ACTIVE_CONTENT](drawerKey);
     },
-}
+};
 
 export const mutations = {
     [mutationTypes.setActiveContent](state, { drawerKey, contentKey }) {
-        set(state[stateTypes.activeContents], drawerKey, contentKey)
+        set(state[stateTypes.activeContents], drawerKey, contentKey);
     },
     [mutationTypes.setReturnFocusElement](state, { drawerKey, returnFocusElement }) {
-        set(state[stateTypes.returnFocusElements], drawerKey, returnFocusElement)
+        set(state[stateTypes.returnFocusElements], drawerKey, returnFocusElement);
     },
     [mutationTypes.addDrawer](state, { drawerKey }) {
-        Vue.set(state[stateTypes.activeContents], drawerKey, null)
-        Vue.set(state[stateTypes.returnFocusElements], drawerKey, null)
+        Vue.set(state[stateTypes.activeContents], drawerKey, null);
+        Vue.set(state[stateTypes.returnFocusElements], drawerKey, null);
     },
-}
+};
 
 export const actions = {
     [REGISTER_DRAWER]({ commit }, { drawerKey }) {
-        commit("addDrawer", {
+        commit('addDrawer', {
             drawerKey,
-        })
+        });
     },
     [SHOW_DRAWER_CONTENT]({ commit }, { drawerKey, contentKey, returnFocusElement }) {
         return new Promise((resolve, reject) => {
             if (!drawerKey) {
-                reject(new Error("Drawer key missing"))
+                reject(new Error('Drawer key missing'));
             }
 
             commit(mutationTypes.setActiveContent, {
                 drawerKey,
                 contentKey,
-            })
+            });
             commit(mutationTypes.setReturnFocusElement, {
                 drawerKey,
                 returnFocusElement,
-            })
+            });
 
-            resolve()
-        })
+            resolve();
+        });
     },
     [CLOSE_DRAWER]({ getters, commit }, { drawerKey }) {
         return new Promise((resolve, reject) => {
             if (!drawerKey) {
-                reject(new Error("Drawer key missing"))
+                reject(new Error('Drawer key missing'));
             }
 
-            const returnFocusElement = getters[GET_RETURN_FOCUS_ELEMENT](drawerKey)
+            const returnFocusElement = getters[GET_RETURN_FOCUS_ELEMENT](drawerKey);
 
             commit(mutationTypes.setActiveContent, {
                 drawerKey,
                 contentKey: null,
-            })
+            });
             commit(mutationTypes.setReturnFocusElement, {
                 drawerKey,
                 returnFocusElement: null,
-            })
+            });
 
-            resolve(returnFocusElement)
-        })
+            resolve(returnFocusElement);
+        });
     },
-}
+};
 
 export default new Vuex.Store({
     modules: {
@@ -128,6 +128,6 @@ export default new Vuex.Store({
             actions,
         },
     },
-})
+});
 
 /* eslint-enable no-shadow */

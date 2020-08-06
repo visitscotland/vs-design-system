@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import { VsRow } from "@components/elements/layout"
+import { VsRow } from '@components/elements/layout';
 /**
  * A description list can be used where there is a list of terms and descriptions.
  *
@@ -18,9 +18,9 @@ import { VsRow } from "@components/elements/layout"
  */
 
 export default {
-    name: "VsDescriptionList",
-    status: "prototype",
-    release: "0.0.1",
+    name: 'VsDescriptionList',
+    status: 'prototype',
+    release: '0.0.1',
     components: {
         VsRow,
     },
@@ -38,9 +38,9 @@ export default {
     provide() {
         return {
             inline: this.inline,
-        }
+        };
     },
-}
+};
 </script>
 
 <style lang="scss" scoped>
