@@ -72,7 +72,7 @@ public class MenuComponentTest {
         when(menuItem.getName()).thenReturn("home");
         when(bundle.getResourceBundle(BUNDLE_ID, "home", LOCALE, true)).thenReturn("Home Page");
 
-        menu.exploreMenu(request);
+        menu.enhanceMenu(request);
 
         Assertions.assertEquals(1, getEnhancedMenu(request).size());
         Assertions.assertEquals("Home Page", getEnhancedMenu(request).get(0).getTitle());
@@ -90,7 +90,7 @@ public class MenuComponentTest {
         when(menuItem.getName()).thenReturn("home");
         when(bundle.getResourceBundle(BUNDLE_ID, "home", LOCALE, true)).thenReturn("Resource Bundle Title");
 
-        menu.exploreMenu(request);
+        menu.enhanceMenu(request);
 
         Assertions.assertEquals(1, getEnhancedMenu(request).size());
         Assertions.assertEquals("Resource Bundle Title", getEnhancedMenu(request).get(0).getTitle());
@@ -105,7 +105,7 @@ public class MenuComponentTest {
         MenuComponent menu = new MenuComponent(bundle, utils);
         addHstLink(request, null);
 
-        menu.exploreMenu(request);
+        menu.enhanceMenu(request);
 
         Assertions.assertEquals(0, getEnhancedMenu(request).size());
     }
@@ -118,7 +118,7 @@ public class MenuComponentTest {
         HippoFolder folder = mock(HippoFolder.class);
         addHstLink(request, folder);
 
-        menu.exploreMenu(request);
+        menu.enhanceMenu(request);
 
         Assertions.assertEquals(0, getEnhancedMenu(request).size());
     }
@@ -132,7 +132,7 @@ public class MenuComponentTest {
         addHstLink(request, widget);
         when(menuItem.getName()).thenReturn("widget.title");
 
-        menu.exploreMenu(request);
+        menu.enhanceMenu(request);
 
         Assertions.assertEquals(1, getEnhancedMenu(request).size());
         Assertions.assertNotNull(getEnhancedMenu(request).get(0).getWidget());
@@ -151,7 +151,7 @@ public class MenuComponentTest {
         when(bundle.getResourceBundle(BUNDLE_ID,"home", LOCALE, true)).thenReturn(null);
         when(bundle.existsResourceBundleKey(BUNDLE_ID,"home.cta", LOCALE)).thenReturn(false);
 
-        menu.exploreMenu(request);
+        menu.enhanceMenu(request);
 
         Assertions.assertEquals(0, getEnhancedMenu(request).size());
     }
@@ -169,7 +169,7 @@ public class MenuComponentTest {
         when(bundle.existsResourceBundleKey(BUNDLE_ID,"home.cta", LOCALE)).thenReturn(true);
         when(bundle.getResourceBundle(BUNDLE_ID,"home.cta", LOCALE)).thenReturn("CTA text");
 
-        menu.exploreMenu(request);
+        menu.enhanceMenu(request);
 
         Assertions.assertEquals(1, getEnhancedMenu(request).size());
         Assertions.assertEquals("CTA text", getEnhancedMenu(request).get(0).getCta());
@@ -190,7 +190,7 @@ public class MenuComponentTest {
         when(bundle.existsResourceBundleKey(BUNDLE_ID,"home.cta", LOCALE)).thenReturn(false);
         when(bundle.getResourceBundle(MenuComponent.STATIC,"see-all-cta", request.getLocale())).thenReturn("See all %s");
 
-        menu.exploreMenu(request);
+        menu.enhanceMenu(request);
 
         Assertions.assertEquals(1, getEnhancedMenu(request).size());
         Assertions.assertEquals("See all Cities", getEnhancedMenu(request).get(0).getCta());
@@ -210,7 +210,7 @@ public class MenuComponentTest {
         when(bundle.existsResourceBundleKey(BUNDLE_ID,"home.cta", LOCALE)).thenReturn(false);
         when(bundle.getResourceBundle(MenuComponent.STATIC,"see-all-cta", request.getLocale())).thenReturn("See all");
 
-        menu.exploreMenu(request);
+        menu.enhanceMenu(request);
 
         Assertions.assertEquals(1, getEnhancedMenu(request).size());
         Assertions.assertEquals("See all", getEnhancedMenu(request).get(0).getCta());
@@ -233,7 +233,7 @@ public class MenuComponentTest {
         when(bundle.existsResourceBundleKey(BUNDLE_ID,"home.cta", LOCALE)).thenReturn(false);
         when(bundle.getResourceBundle(MenuComponent.STATIC,"see-all-cta", request.getLocale())).thenReturn("See all %s %s %s.");
 
-        menu.exploreMenu(request);
+        menu.enhanceMenu(request);
 
         Assertions.assertEquals(1, getEnhancedMenu(request).size());
         Assertions.assertEquals("See all   .", getEnhancedMenu(request).get(0).getCta());
@@ -270,7 +270,7 @@ public class MenuComponentTest {
 
         when(child.getChildMenuItems()).thenReturn(Collections.singletonList(grandChild));
 
-        menu.exploreMenu(request);
+        menu.enhanceMenu(request);
 
         Assertions.assertEquals(1, getEnhancedMenu(request).size());
         Assertions.assertEquals("home", getEnhancedMenu(request).get(0).getName());
