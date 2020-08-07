@@ -110,15 +110,15 @@ public class MenuComponent extends EssentialsMenuComponent {
             }
         }
 
-        if (menuItem.getTitle() == null && menuItem.getWidget() != null) {
-            //Menu Items with no title cannot be displayed so they are not included in the list of menu Items.
-            return null;
-        } else {
+        if (menuItem.getTitle() != null || menuItem.getWidget() != null) {
             //Process all children
             for (HstSiteMenuItem hstChild : hstItem.getChildMenuItems()) {
                 menuItem.addChild(enhanceMenuItem(request, hstChild));
             }
             return menuItem;
+        } else {
+            //Menu Items with no title cannot be displayed so they are not included in the list of menu Items.
+            return null;
         }
     }
 
@@ -133,7 +133,7 @@ public class MenuComponent extends EssentialsMenuComponent {
     private void updateMenuItemFromDocument(MenuItem menuItem, HippoBean document, String bundleId, HstRequest request){
         //If the menu hasn't been set we use the title coming from the document.
         if (Contract.isEmpty(menuItem.getTitle()) && document instanceof Page) {
-            if (((Page) document).getBreadcrumb() != null){
+            if (!Contract.isEmpty(((Page) document).getBreadcrumb())){
                 menuItem.setTitle(((Page) document).getBreadcrumb());
             } else {
                 menuItem.setTitle(((Page) document).getTitle());
@@ -151,7 +151,7 @@ public class MenuComponent extends EssentialsMenuComponent {
                     String message = String.format("The label '%s' has more parameters than expected. File: %s, key: %s",
                             seeAll, STATIC, "see-all-cta");
                     logger.warn(message);
-                    CommonUtils.contentIssue(message);
+                    CommonUtils.contentIssue(message.replace("%", "%%"));
 
                     //After Catching the exception, we can eliminate the parameters.
                     menuItem.setCta(seeAll.replace("%s", ""));
@@ -159,6 +159,8 @@ public class MenuComponent extends EssentialsMenuComponent {
             }
         }
     }
+
+
 
     private boolean isDocumentBased(HstLink link){
         return link != null && link.getPath() != null && link.getPath().length() > 0;

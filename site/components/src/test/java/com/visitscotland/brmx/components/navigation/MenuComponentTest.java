@@ -45,7 +45,7 @@ public class MenuComponentTest {
     ResourceBundleService bundle;
 
     @Mock
-    HstSiteMenuItem menuItem;
+    HstSiteMenuItem hstMenuItem;
 
     @BeforeEach
     void setUp() {
@@ -69,7 +69,7 @@ public class MenuComponentTest {
         HstRequest request = mockRequest();
         MenuComponent menu = new MenuComponent(bundle, utils);
 
-        when(menuItem.getName()).thenReturn("home");
+        when(hstMenuItem.getName()).thenReturn("home");
         when(bundle.getResourceBundle(BUNDLE_ID, "home", LOCALE, true)).thenReturn("Home Page");
 
         menu.enhanceMenu(request);
@@ -87,7 +87,7 @@ public class MenuComponentTest {
         Page page = mock(Page.class, withSettings().lenient());
         addHstLink(request, page);
         when(page.getTitle()).thenReturn("Page Title");
-        when(menuItem.getName()).thenReturn("home");
+        when(hstMenuItem.getName()).thenReturn("home");
         when(bundle.getResourceBundle(BUNDLE_ID, "home", LOCALE, true)).thenReturn("Resource Bundle Title");
 
         menu.enhanceMenu(request);
@@ -130,7 +130,7 @@ public class MenuComponentTest {
         MenuComponent menu = new MenuComponent(bundle, utils);
         Widget widget = mock(Widget.class);
         addHstLink(request, widget);
-        when(menuItem.getName()).thenReturn("widget.title");
+        when(hstMenuItem.getName()).thenReturn("widget.title");
 
         menu.enhanceMenu(request);
 
@@ -147,7 +147,7 @@ public class MenuComponentTest {
         Page page = mock(Page.class);
         addHstLink(request, page);
 
-        when(menuItem.getName()).thenReturn("home");
+        when(hstMenuItem.getName()).thenReturn("home");
         when(bundle.getResourceBundle(BUNDLE_ID,"home", LOCALE, true)).thenReturn(null);
         when(bundle.existsResourceBundleKey(BUNDLE_ID,"home.cta", LOCALE)).thenReturn(false);
 
@@ -164,7 +164,7 @@ public class MenuComponentTest {
         Page page = mock(Page.class);
         addHstLink(request, page);
 
-        when(menuItem.getName()).thenReturn("home");
+        when(hstMenuItem.getName()).thenReturn("home");
         when(bundle.getResourceBundle(BUNDLE_ID,"home", LOCALE, true)).thenReturn("Home Page");
         when(bundle.existsResourceBundleKey(BUNDLE_ID,"home.cta", LOCALE)).thenReturn(true);
         when(bundle.getResourceBundle(BUNDLE_ID,"home.cta", LOCALE)).thenReturn("CTA text");
@@ -185,7 +185,7 @@ public class MenuComponentTest {
 
         when(page.getTitle()).thenReturn("Cities");
 
-        when(menuItem.getName()).thenReturn("home");
+        when(hstMenuItem.getName()).thenReturn("home");
         when(bundle.getResourceBundle(BUNDLE_ID,"home", LOCALE, true)).thenReturn(null);
         when(bundle.existsResourceBundleKey(BUNDLE_ID,"home.cta", LOCALE)).thenReturn(false);
         when(bundle.getResourceBundle(MenuComponent.STATIC,"see-all-cta", request.getLocale())).thenReturn("See all %s");
@@ -205,7 +205,7 @@ public class MenuComponentTest {
         addHstLink(request, page);
         when(page.getTitle()).thenReturn("Cities");
 
-        when(menuItem.getName()).thenReturn("home");
+        when(hstMenuItem.getName()).thenReturn("home");
         when(bundle.getResourceBundle(BUNDLE_ID,"home", LOCALE, true)).thenReturn(null);
         when(bundle.existsResourceBundleKey(BUNDLE_ID,"home.cta", LOCALE)).thenReturn(false);
         when(bundle.getResourceBundle(MenuComponent.STATIC,"see-all-cta", request.getLocale())).thenReturn("See all");
@@ -228,7 +228,7 @@ public class MenuComponentTest {
         addHstLink(request, page);
         when(page.getTitle()).thenReturn("Cities");
 
-        when(menuItem.getName()).thenReturn("home");
+        when(hstMenuItem.getName()).thenReturn("home");
         when(bundle.getResourceBundle(BUNDLE_ID,"home", LOCALE, true)).thenReturn(null);
         when(bundle.existsResourceBundleKey(BUNDLE_ID,"home.cta", LOCALE)).thenReturn(false);
         when(bundle.getResourceBundle(MenuComponent.STATIC,"see-all-cta", request.getLocale())).thenReturn("See all %s %s %s.");
@@ -247,7 +247,7 @@ public class MenuComponentTest {
         Page page = mock(Page.class);
         addHstLink(request, page);
 
-        when(menuItem.getName()).thenReturn("home");
+        when(hstMenuItem.getName()).thenReturn("home");
         when(bundle.getResourceBundle(BUNDLE_ID, "home", LOCALE, true)).thenReturn("I'm the granny");
         when(bundle.existsResourceBundleKey(BUNDLE_ID, "home.cta", LOCALE)).thenReturn(true);
         when(bundle.getResourceBundle(BUNDLE_ID, "home.cta", LOCALE)).thenReturn("See my family");
@@ -259,7 +259,7 @@ public class MenuComponentTest {
         when(bundle.existsResourceBundleKey(BUNDLE_ID, "child.cta", LOCALE)).thenReturn(true);
         when(bundle.getResourceBundle(BUNDLE_ID, "child.cta", LOCALE)).thenReturn("See my children");
 
-        when(menuItem.getChildMenuItems()).thenReturn(Collections.singletonList(child));
+        when(hstMenuItem.getChildMenuItems()).thenReturn(Collections.singletonList(child));
 
         HstSiteMenuItem grandChild = mock(HstSiteMenuItem.class);
         addHstLink(request, page, grandChild);
@@ -296,7 +296,7 @@ public class MenuComponentTest {
         HstSiteMenu model = mock(HstSiteMenu.class);
 
         when(model.getName()).thenReturn(MENU_ID);
-        when(model.getSiteMenuItems()).thenReturn(Collections.singletonList(menuItem));
+        when(model.getSiteMenuItems()).thenReturn(Collections.singletonList(hstMenuItem));
         request.setModel(MenuComponent.MENU, model);
 
         return request;
@@ -307,7 +307,7 @@ public class MenuComponentTest {
     }
 
     private void addHstLink(HstRequest request, HippoBean bean){
-        addHstLink(request, bean, menuItem);
+        addHstLink(request, bean, hstMenuItem);
     }
 
     private void addHstLink(HstRequest request, HippoBean bean, HstSiteMenuItem menuItem){

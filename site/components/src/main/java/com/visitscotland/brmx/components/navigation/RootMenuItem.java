@@ -23,7 +23,7 @@ public class RootMenuItem implements HstSiteMenu {
 
     @Override
     public List<HstSiteMenuItem> getSiteMenuItems() {
-        return (List<HstSiteMenuItem>) menuItems;
+        return menuItems;
     }
 
 

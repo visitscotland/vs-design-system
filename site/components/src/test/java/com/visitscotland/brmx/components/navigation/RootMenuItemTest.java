@@ -44,33 +44,30 @@ public class RootMenuItemTest {
         RootMenuItem item = new RootMenuItem(hsm);
 
         HstSiteMenus hsmMock = mock(HstSiteMenus.class);
-        when(item.getHstSiteMenus()).thenReturn(hsmMock);
-        Assertions.assertEquals(hsmMock, item.getHstSiteMenus());
-        verify(hsm).getHstSiteMenus();
-
         HstSiteMenuItem hsmiMock = mock(HstSiteMenuItem.class);
-        when(item.getHstSiteMenus()).thenReturn(hsmMock);
+        EditableMenu editableMenu = mock(EditableMenu.class);
+
+        when(hsm.getHstSiteMenus()).thenReturn(hsmMock);
         Assertions.assertEquals(hsmMock, item.getHstSiteMenus());
         verify(hsm).getHstSiteMenus();
 
-        when(item.getDeepestExpandedItem()).thenReturn(hsmiMock);
+        when(hsm.getDeepestExpandedItem()).thenReturn(hsmiMock);
         Assertions.assertEquals(hsmiMock, item.getDeepestExpandedItem());
         verify(hsm).getDeepestExpandedItem();
 
-        when(item.getSelectSiteMenuItem()).thenReturn(hsmiMock);
+        when(hsm.getSelectSiteMenuItem()).thenReturn(hsmiMock);
         Assertions.assertEquals(hsmiMock, item.getSelectSiteMenuItem());
         verify(hsm).getSelectSiteMenuItem();
 
-        EditableMenu editableMenu = mock(EditableMenu.class);
-        when(item.getEditableMenu()).thenReturn(editableMenu);
+        when(hsm.getEditableMenu()).thenReturn(editableMenu);
         Assertions.assertEquals(editableMenu, item.getEditableMenu());
         verify(hsm).getEditableMenu();
 
-        when(item.getName()).thenReturn("name");
+        when(hsm.getName()).thenReturn("name");
         Assertions.assertEquals("name", item.getName());
         verify(hsm).getName();
 
-        when(item.isExpanded()).thenReturn(true);
+        when(hsm.isExpanded()).thenReturn(true);
         Assertions.assertEquals(true, item.isExpanded());
         verify(hsm).isExpanded();
     }
