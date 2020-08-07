@@ -38,6 +38,7 @@ public class ICentreFactory {
         if (location != null){
             psBuilder.location(location);
         }
+        psBuilder.productTypes("serv");
         psBuilder.category("vics");
         psBuilder.sortBy("alpha");
         String dmsQuery = psBuilder.build();
