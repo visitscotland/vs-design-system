@@ -17,16 +17,14 @@
         <VsIcon
             v-if="favourited"
             name="favourite-filled"
-            size="md"
+            size="lg"
             variant="primary"
-            :padding="0"
         />
         <VsIcon
             v-else
             name="favourite"
-            size="md"
+            size="lg"
             variant="dark"
-            :padding="0"
         />
     </VsButton>
 </template>
