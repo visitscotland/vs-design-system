@@ -131,8 +131,6 @@ export default {
 .vs-itinerary-day__toggle-button {
     border: 1px solid $color-base-text;
     border-radius: 50%;
-    top: 30%;
-    right: 0;
     height:24px;
     width:24px;
 
