@@ -131,6 +131,18 @@ pipeline {
       }
     } //end stage
 
+    stage('SonarQube scan') {
+      steps {
+        script {
+          SQ_BRANCH = env.BRANCH_NAME != 'master' ? "-Dsonar.branch.name=${env.BRANCH_NAME}" : ''
+        }
+        withSonarQubeEnv(installationName: 'SonarQube', credentialsId: 'sonarqube') {
+          sh "mvn sonar:sonar $SQ_BRANCH -Dsonar.projectVersion=$NEW_TAG -s $MAVEN_SETTINGS"
+        }
+      }
+    }
+
+
     stage ('brxm package') {
       when {
         allOf {
