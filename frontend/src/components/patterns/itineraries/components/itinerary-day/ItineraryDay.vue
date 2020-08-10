@@ -25,14 +25,12 @@
                     name="chevron-down"
                     variant="dark"
                     size="xs"
-                    :padding="3"
                 />
                 <VsIcon
                     v-else
                     name="chevron-up"
                     variant="dark"
                     size="xs"
-                    :padding="3"
                 />
             </VsButton>
         </div>
@@ -150,6 +148,14 @@ export default {
     border-radius: 50%;
     top: $spacer-2;
     right: 0;
+    height:24px;
+    width:24px;
+
+    .icon{
+        height: 100%;
+        margin: 0 auto;
+        display: block;
+    }
 }
 </style>
 
@@ -176,7 +182,7 @@ export default {
                     v-for="(transportType, transportTypeIndex) in day.transport"
                 >
                     <vs-tooltip :title="transportType.value">
-                        <vs-icon :name="transportType.key" variant="dark" size="sm" />
+                        <vs-icon :name="transportType.key" variant="dark" size="md" />
                     </vs-tooltip>
                     <span class="sr-only">{{transportType.value}}</span>
                 </dd>
