@@ -48,7 +48,7 @@ export default {
         }
     }
 
-    .vs-list.unstyled {
+    .vs-list--unstyled {
         justify-content: space-between;
         display: flex;
         flex-wrap: wrap;
