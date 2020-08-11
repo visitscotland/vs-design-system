@@ -76,7 +76,7 @@ export default {
             padding: $spacer-9 0;
         }
 
-        .vs-footer-nav-list-item {
+        .vs-footer__nav-list__item {
             display: inline-block;
             font-size: $font-size-sm;
             padding: $spacer-3;
