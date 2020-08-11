@@ -6,12 +6,12 @@
     >
         <a
             data-test="mobile-promo-list-link"
-            class="vs-promo-item__link"
+            class="vs-mobile-nav__promo-item__link"
             :href="href"
         >
-            <div class="vs-promo-item__wrapper">
-                <span class="vs-promo-item__link-title">{{ title }}</span>
-                <div class="vs-promo-item__icon-wrapper">
+            <div class="vs-mobile-nav__promo-item__wrapper">
+                <span class="vs-mobile-nav__promo-item__link-title">{{ title }}</span>
+                <div class="vs-mobile-nav__promo-item__icon-wrapper">
                     <VsIcon
                         data-test="mobile-promo-arrow-icon"
                         name="reverse-arrow"
@@ -21,12 +21,12 @@
                 </div>
             </div>
             <div
-                class="vs-promo-item__image-wrapper"
+                class="vs-mobile-nav__promo-item__image-wrapper"
                 v-if="imageLink"
             >
                 <img
                     data-test="mobile-promo-image"
-                    class="lazyload vs-promo-item__image"
+                    class="lazyload vs-mobile-nav__promo-item__image"
                     :data-srcset="imageLink"
                     :data-src="imageLink"
                     :alt="title"
@@ -90,11 +90,11 @@ export default {
 @import "~bootstrap/scss/type";
 @import "../../styles/placeholders";
 
-.vs-promo-item__wrapper {
+.vs-mobile-nav__promo-item__wrapper {
     border-bottom: 1px solid $color-gray-tint-8;
 }
 
-.vs-promo-item__link {
+.vs-mobile-nav__promo-item__link {
     display: block;
     height: 200px;
     position: relative;
@@ -105,7 +105,7 @@ export default {
     }
 }
 
-.vs-promo-item__link-title {
+.vs-mobile-nav__promo-item__link-title {
     color: $color-base-text;
     display: inline-flex;
     font-size: 1.125rem;
@@ -113,8 +113,8 @@ export default {
     line-height: 1.25rem;
 }
 
-.vs-promo-item__image,
-.vs-promo-item__image-wrapper {
+.vs-mobile-nav__promo-item__image,
+.vs-mobile-nav__promo-item__image-wrapper {
     background-position: 50% 50%;
     background-size: cover;
     height: 200px;
@@ -126,7 +126,7 @@ export default {
     width: 100%;
 }
 
-.vs-promo-item__wrapper {
+.vs-mobile-nav__promo-item__wrapper {
     background-color: $color-white;
     bottom: 0;
     left: 0;
@@ -135,7 +135,7 @@ export default {
     z-index: 1;
 }
 
-.vs-promo-item__icon-wrapper {
+.vs-mobile-nav__promo-item__icon-wrapper {
     bottom: 0;
     padding: 10px 10px 14px 10px;
     position: absolute;
