@@ -594,7 +594,7 @@ containerUpdates() {
     THIS_LOCAL_FILE="`dirname $0`/$VS_CONTAINER_UPDATES_DIR/`basename $THIS_FILE`"
     if [ "$THIS_TEST" == "$THIS_SUM" ] && [ -e "$THIS_LOCAL_FILE" ]; then
       echo " - sums match, an updated version of $THIS_FILE is available, copying to container"
-      docker exec $VS_CONTAINER_NAME mv $THIS_FILE $THIS_FILE.old 2>/dev/null
+      docker exec $VS_CONTAINER_NAME cp $THIS_FILE $THIS_FILE.old 2>/dev/null
       docker cp "$THIS_LOCAL_FILE" $VS_CONTAINER_NAME:$THIS_FILE 2>/dev/null
       THIS_TEST=`docker exec $VS_CONTAINER_NAME md5sum $THIS_FILE 2>/dev/null | awk '{print $1}'`
       echo " - sum now: $THIS_TEST"
