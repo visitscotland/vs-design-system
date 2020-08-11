@@ -7,6 +7,7 @@ def VS_CONTAINER_BASE_PORT_OVERRIDE
 if (BRANCH_NAME == "develop" && (JOB_NAME == "develop.visitscotland.com/develop" || JOB_NAME == "develop.visitscotland.com-mb/develop")) {
   thisAgent = "op-dev-xvcdocker-01"
   env.VS_CONTAINER_BASE_PORT_OVERRIDE = "8099"
+  cron_string = ""
 } else if (BRANCH_NAME == "develop" && (JOB_NAME == "develop-nightly.visitscotland.com/develop" || JOB_NAME == "develop-nightly.visitscotland.com-mb/develop")) {
   thisAgent = "op-dev-xvcdocker-01"
   env.VS_CONTAINER_BASE_PORT_OVERRIDE = "8098"
@@ -14,6 +15,7 @@ if (BRANCH_NAME == "develop" && (JOB_NAME == "develop.visitscotland.com/develop"
 } else if (BRANCH_NAME == "develop" && (JOB_NAME == "develop-stable.visitscotland.com/develop" || JOB_NAME == "develop-stable.visitscotland.com-mb/develop")) {
   thisAgent = "op-dev-xvcdocker-01"
   env.VS_CONTAINER_BASE_PORT_OVERRIDE = "8097"
+  cron_string = ""
 } else if (BRANCH_NAME == "feature/VS-1865-feature-environments-enhancements" && (JOB_NAME == "feature.visitscotland.com-mb/feature%2FVS-1865-feature-environments-enhancements")) {
   thisAgent = "op-dev-xvcdocker-01"
   //env.VS_CONTAINER_BASE_PORT_OVERRIDE = "8096"
@@ -35,7 +37,7 @@ pipeline {
     VS_SSR_PROXY_ON = 'TRUE'
     // VS_BRXM_PERSISTENCE_METHOD can be set to either 'h2' or 'mysql' - do not change during the lifetime of a container or it will break the repo
     VS_BRXM_PERSISTENCE_METHOD = 'h2'
-    VS_SKIP_BUILD_FOR_BRANCH = 'feature/VS-1865-feature-environments-enhancements'
+    VS_SKIP_BUILD_FOR_BRANCH = 'eg:feature/VS-1865-feature-environments-enhancements'
     VS_RUN_BRC_STAGES = 'FALSE'
     // -- 20200712: TEST and PACKAGE stages might need VS_SKIP set to TRUE as they just run the ~4 minute front-end build every time
     VS_SKIP_BRC_BLD = 'FALSE'
@@ -190,92 +192,3 @@ pipeline {
     }
   } //end post
 } //end pipeline
-
-private String login(url, VS_BRC_USERNAME, VS_BRC_PASSWORD) {
-   echo "Login and obtain access token:"
-   def json = "{\"username\": \"${VS_BRC_USERNAME}\", \"password\": \"${VS_BRC_PASSWORD}\"}"
-   loginResult = post(url, json)
-   echo "Login result ${loginResult}"
-   return loginResult
-}
-
-private boolean verify_token(url, access_token) {
-    if (access_token) {
-        echo "Verify access token:"
-        verifyResult = get(url, access_token)
-        echo "Verify result ${verifyResult}"
-        if (parseJson(verifyResult).error_code) {
-            echo "Token is invalid"
-            echo "Error code: " + parseJson(verifyResult).error_code
-            echo "Error detail: " + parseJson(verifyResult).error_detail
-            return false;
-        }
-        echo "Access token is valid"
-        return true;
-    } else {
-        echo "Access token is null"
-        return false;
-    }
-}
-
-private String refresh_token(url, refresh_token) {
-    echo "Refresh access token:"
-    def json = "{\"grant_type\": \"refresh_token\", \"refresh_token\": \"${refresh_token}\"}"
-    refreshResult = post(url, json)
-    echo "Refresh result ${refreshResult}"
-    return "Bearer " + parseJson(refreshResult).access_token;
-}
-
-
-@NonCPS
-private String get(url, access_token = null) {
-   return curl("GET", url, access_token)
-}
-
-@NonCPS
-private String post(url, json, access_token = null) {
-   return curl("POST", url, access_token, json)
-}
-
-@NonCPS
-private String postMultipart(url, String fileName, file, String access_token = null) {
-   return curl("POST", url, access_token, null, fileName, file, null, "multipart/form-data")
-}
-
-@NonCPS
-private String put(url, json, String access_token = null) {
-   return curl("PUT", url, access_token, json, null, null, "-i --http1.1")
-}
-
-@NonCPS
-private String  delete(url, access_token = null) {
-   return curl("DELETE", url, access_token, null, null, null, "--http1.1")
-}
-
-@NonCPS
-private String curl(method, url, access_token, json = null, fileName = null, file = null, extraParams = null, contentType = "application/json") {
-   return sh(script: "curl ${extraParams?:""} \
-           -X ${method} '${url}' \
-           ${access_token?"-H 'Authorization: ${access_token}'":""} \
-           -H 'Content-Type: ${contentType}' \
-           ${json?"-d '${json}'":""} \
-           ${(fileName && file)?"-F '${fileName}=@${file}'":""}",
-           returnStdout: true)
-}
-
-@NonCPS
-def parseJson(text) {
-   return new JsonSlurper().parseText(text)
-}
-
-
-@NonCPS
-def getEnvironmentID(environments, VS_BRC_ENV) {
-   result = null
-   parseJson(environments).items.each() { env ->
-       if(env.name.toString() == VS_BRC_ENV) {
-           result = env.id
-       }
-   }
-   return result
-}

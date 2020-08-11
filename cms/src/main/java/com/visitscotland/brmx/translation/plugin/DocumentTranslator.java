@@ -100,10 +100,14 @@ public class DocumentTranslator {
             }
         }
 
+        WorkflowManager manager = ((HippoWorkspace) session.getWorkspace()).getWorkflowManager();
         for (FolderTranslation document : change.getDocuments()) {
             JcrDocument sourceDocument = createJcrDocument(session.getNodeByIdentifier(document.getId()));
-            workflow.addTranslation(change.getTargetLocale().getName(), document.getNamefr(),
+            Document translatedDocument = workflow.addTranslation(change.getTargetLocale().getName(), document.getUrlfr(),
                     sourceDocument.getVariantNode(JcrDocument.VARIANT_UNPUBLISHED));
+
+            DefaultWorkflow defaultWorkflow = (DefaultWorkflow) manager.getWorkflow("core", translatedDocument);
+            defaultWorkflow.setDisplayName(document.getNamefr());
         }
     }
 
