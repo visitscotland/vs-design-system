@@ -27,7 +27,7 @@ public class IKnowFactory {
         IKnowModule module = new IKnowModule ();
         //TODO IknowModule
 
-        if (!Contract.isEmpty(document.getTitle())){
+        if (Contract.isEmpty(document.getTitle())){
             //TODO bundle
             module.setTitle("Help and Advice");
         } else {

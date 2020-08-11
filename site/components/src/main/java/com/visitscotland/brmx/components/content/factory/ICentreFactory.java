@@ -48,6 +48,7 @@ public class ICentreFactory {
         List<FlatLink> vicList = new ArrayList<>();
         for (JsonNode child  :node) {
             String label = child.get("properties").get("name").asText();
+            //TODO: create url to the DMS product page
             String url = child.get("properties").get("id").asText();
 
             vicList.add(new FlatLink(label, url));

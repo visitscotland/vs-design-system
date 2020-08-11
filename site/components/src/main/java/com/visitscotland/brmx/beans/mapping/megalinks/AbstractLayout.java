@@ -15,6 +15,7 @@ public abstract class AbstractLayout<L extends FlatLink> {
     private Megalinks megalinkItem;
     private String style;
 
+    //TODO move this method to the module class
     public String getType(){
         return getClass().getSimpleName();
     }

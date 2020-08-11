@@ -8,6 +8,10 @@ public class IKnowModule {
     private HippoHtml description;
     private FlatLink link;
 
+    //TODO move this method to the module class
+    public String getType(){
+        return getClass().getSimpleName();
+    }
     public String getTitle() {
         return title;
     }

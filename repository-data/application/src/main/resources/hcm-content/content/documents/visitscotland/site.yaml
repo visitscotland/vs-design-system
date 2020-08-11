@@ -1016,7 +1016,7 @@
             jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
             jcr:uuid: 6a70fb18-aa9f-4515-a99a-22f338e71ea0
             hippo:name: test Subtitle
-            hippo:versionHistory: f0860f5a-183e-4023-b3c8-f10eef2b8239
+            hippo:versionHistory: 56b5bd30-71a2-4838-a7b4-d8e0aa62af3b
             /test-subtitle[1]:
               jcr:primaryType: visitscotland:ListicleItem
               jcr:mixinTypes: ['mix:referenceable']
@@ -1025,7 +1025,7 @@
               hippostd:state: draft
               hippostdpubwf:createdBy: admin
               hippostdpubwf:creationDate: 2020-04-07T16:32:06.622+01:00
-              hippostdpubwf:lastModificationDate: 2020-04-07T17:55:42.051+01:00
+              hippostdpubwf:lastModificationDate: 2020-08-06T15:24:41.351+01:00
               hippostdpubwf:lastModifiedBy: admin
               hippotranslation:id: 52efbdda-6fef-4030-9a99-d99dc2cd8a4d
               hippotranslation:locale: en
@@ -1052,7 +1052,7 @@
               hippostd:state: unpublished
               hippostdpubwf:createdBy: admin
               hippostdpubwf:creationDate: 2020-04-07T16:32:06.622+01:00
-              hippostdpubwf:lastModificationDate: 2020-04-07T17:55:42.005+01:00
+              hippostdpubwf:lastModificationDate: 2020-08-06T15:26:42.764+01:00
               hippostdpubwf:lastModifiedBy: admin
               hippotranslation:id: 52efbdda-6fef-4030-9a99-d99dc2cd8a4d
               hippotranslation:locale: en
@@ -1079,9 +1079,9 @@
               hippostd:state: published
               hippostdpubwf:createdBy: admin
               hippostdpubwf:creationDate: 2020-04-07T16:32:06.622+01:00
-              hippostdpubwf:lastModificationDate: 2020-04-07T17:55:42.005+01:00
+              hippostdpubwf:lastModificationDate: 2020-08-06T15:26:42.764+01:00
               hippostdpubwf:lastModifiedBy: admin
-              hippostdpubwf:publicationDate: 2020-04-09T18:15:05.965+01:00
+              hippostdpubwf:publicationDate: 2020-08-06T15:26:46.429+01:00
               hippotranslation:id: 52efbdda-6fef-4030-9a99-d99dc2cd8a4d
               hippotranslation:locale: en
               visitscotland:subtitle: ''
@@ -1258,10 +1258,11 @@
               jcr:mixinTypes: ['mix:referenceable']
               jcr:uuid: bc3f5a75-4cae-4390-88e2-67a032b2630a
               hippo:availability: []
+              hippostd:holder: admin
               hippostd:state: draft
               hippostdpubwf:createdBy: admin
               hippostdpubwf:creationDate: 2020-03-20T11:44:21.296Z
-              hippostdpubwf:lastModificationDate: 2020-03-20T11:45:49.339Z
+              hippostdpubwf:lastModificationDate: 2020-08-05T16:28:11.388+01:00
               hippostdpubwf:lastModifiedBy: admin
               hippotranslation:id: 7b3c5b8a-6929-4ac7-bdea-25fa3d1d9d64
               hippotranslation:locale: en
@@ -1276,6 +1277,19 @@
                 jcr:primaryType: visitscotland:DMSLink
                 visitscotland:label: Discover more about it
                 visitscotland:product: '251351'
+              /visitscotland:extraLinks:
+                jcr:primaryType: visitscotland:ProductSearchLink
+                visitscotland:label: ''
+                /visitscotland:search:
+                  jcr:primaryType: visitscotland:ProductsSearch
+                  visitscotland:distance: 10.0
+                  visitscotland:dmsAwards: []
+                  visitscotland:dmsCategories: []
+                  visitscotland:dmsFacilities: []
+                  visitscotland:location: Burra
+                  visitscotland:officialrating: []
+                  visitscotland:productType: ''
+                  visitscotland:producttype: ''
             /the-black-watch-castle--museum[2]:
               jcr:primaryType: visitscotland:ListicleItem
               jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
@@ -2028,11 +2042,10 @@
             jcr:mixinTypes: ['mix:referenceable']
             jcr:uuid: 8377a687-572e-44f3-b2a1-bf5a16158c9d
             hippo:availability: []
-            hippostd:holder: admin
             hippostd:state: draft
             hippostdpubwf:createdBy: admin
             hippostdpubwf:creationDate: 2020-07-31T17:13:11.916+01:00
-            hippostdpubwf:lastModificationDate: 2020-07-31T17:58:35.350+01:00
+            hippostdpubwf:lastModificationDate: 2020-08-07T14:12:12.632+01:00
             hippostdpubwf:lastModifiedBy: admin
             hippotranslation:id: f2da1618-a777-407e-a223-a66028a342f9
             hippotranslation:locale: en
@@ -2051,7 +2064,7 @@
               visitscotland:title: ''
               /visitscotland:description:
                 jcr:primaryType: hippostd:html
-                hippostd:content: <p>qwe</p>
+                hippostd:content: <p>hola</p>
           /icentre[2]:
             jcr:primaryType: visitscotland:TourismInformation
             jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
@@ -2060,7 +2073,7 @@
             hippostd:state: unpublished
             hippostdpubwf:createdBy: admin
             hippostdpubwf:creationDate: 2020-07-31T17:13:11.916+01:00
-            hippostdpubwf:lastModificationDate: 2020-07-31T17:13:28.955+01:00
+            hippostdpubwf:lastModificationDate: 2020-08-07T14:12:16.336+01:00
             hippostdpubwf:lastModifiedBy: admin
             hippotranslation:id: f2da1618-a777-407e-a223-a66028a342f9
             hippotranslation:locale: en
@@ -2079,7 +2092,7 @@
               visitscotland:title: ''
               /visitscotland:description:
                 jcr:primaryType: hippostd:html
-                hippostd:content: <p>qwe</p>
+                hippostd:content: <p>hola</p>
       /the-outer-hebrides:
         jcr:primaryType: hippostd:folder
         jcr:mixinTypes: ['hippo:named', 'hippotranslation:translated', 'mix:versionable']

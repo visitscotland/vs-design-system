@@ -1,6 +1,8 @@
 package com.visitscotland.brmx.components.content;
 
 import com.visitscotland.brmx.beans.*;
+import com.visitscotland.brmx.beans.mapping.ICentreModule;
+import com.visitscotland.brmx.beans.mapping.IKnowModule;
 import com.visitscotland.brmx.beans.mapping.megalinks.AbstractLayout;
 import com.visitscotland.brmx.components.content.factory.ICentreFactory;
 import com.visitscotland.brmx.components.content.factory.IKnowFactory;
@@ -42,7 +44,8 @@ public class DestinationContentComponent extends PageContentComponent<Destinatio
     }
 
     void addModules(HstRequest request){
-        List<AbstractLayout> links = new ArrayList<>();
+        //TODO create a parent class for modules in a destination page and inherit from it
+        List<Object> links = new ArrayList<>();
         int styleIndex = 0;
 
         for (BaseDocument item: getDocument(request).getItems()){
@@ -60,11 +63,16 @@ public class DestinationContentComponent extends PageContentComponent<Destinatio
                 String location = getDocument(request).getLocation();
 
                 //TODO IcentreModule
-                iCentreFactory.getModule(touristInfo.getICentre(),request.getLocale(), location);
+                ICentreModule iCentreModule = iCentreFactory.getModule(touristInfo.getICentre(),request.getLocale(), location);
+                if (iCentreModule != null) {
+                    links.add(iCentreModule);
+                }
 
-                iKnowFactory.getModule(touristInfo.getIKnow(),location);
+                IKnowModule iKnowModule = iKnowFactory.getModule(touristInfo.getIKnow(),location);
+                links.add(iKnowModule);
 
                 System.out.println("A TourismInformation was found");
+
             }
         }
 

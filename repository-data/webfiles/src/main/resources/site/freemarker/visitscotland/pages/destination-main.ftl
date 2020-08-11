@@ -194,7 +194,7 @@
 
 
 				<#--Macro for list-->
-				<#else>
+				<#elseif item.getType()== "ListLayout">
 					<ol>
 						<vs-row>
 							<#list item.links as megalink>
@@ -224,6 +224,31 @@
 							</#list>
 						</vs-row>
 					</ol>
+				<#elseif item.getType()== "ICentreModule">
+					<#if item.image.cmsImage??>
+						<#assign image>
+							<@hst.link hippobean=item.image.cmsImage.original/>
+						</#assign>
+					<#else>
+						<#assign image = item.image.externalImage!'' />
+					</#if>
+					<vs-col >
+						<#--TODO for links the image does not have caption-->
+						<@imageWithCaption imageSrc=image imageDetails=item.image variant="fullwidth"/>
+
+					</vs-col>
+					<vs-row>
+						<vs-col cols="12" md="10" lg="10" xl="10" offset-lg="1">
+							<@hst.html hippohtml=item.description/>
+						</vs-col>
+					</vs-row>
+
+				<#elseif item.getType()== "IKnowModule">
+					<vs-row>
+						<vs-col cols="12" md="10" lg="10" xl="10" offset-lg="1">
+								<@hst.html hippohtml=item.description/>
+						</vs-col>
+					</vs-row>
 				</#if>
 			</vs-container>
 		</div>

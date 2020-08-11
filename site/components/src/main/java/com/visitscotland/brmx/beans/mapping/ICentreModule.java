@@ -14,6 +14,10 @@ public class ICentreModule {
     private FlatImage quoteImage;
     private List<FlatLink> iCentreList;
 
+    //TODO move this method to the module class
+    public String getType(){
+        return getClass().getSimpleName();
+    }
     public String getTitle() {
         return title;
     }
