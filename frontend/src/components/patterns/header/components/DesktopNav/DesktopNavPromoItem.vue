@@ -86,7 +86,7 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 @import "../../styles/placeholders";
 
 .vs-promo-item__wrapper {
