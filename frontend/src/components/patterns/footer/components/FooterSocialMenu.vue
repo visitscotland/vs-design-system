@@ -50,7 +50,7 @@ export default {
             display: flex;
             justify-content: center;
 
-            .vs-footer-social-item{
+            .vs-footer__social__item {
                 margin-bottom: 0;
             }
         }
