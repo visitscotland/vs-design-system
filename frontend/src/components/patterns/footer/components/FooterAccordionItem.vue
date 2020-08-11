@@ -95,7 +95,7 @@ export default {
         border-top: 1px solid $color-gray-shade-2;
     }
 
-    .btn.vs-accordion-toggle {
+    .btn.vs-accordion__toggle {
         text-transform: none !important;
         letter-spacing: initial;
         padding: $spacer-3;
@@ -119,7 +119,7 @@ export default {
     }
 
     @include media-breakpoint-up(sm) {
-        .btn.vs-accordion-toggle {
+        .btn.vs-accordion__toggle {
             padding: $spacer-3 $spacer-6;
         }
     }
