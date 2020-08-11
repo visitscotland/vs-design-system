@@ -53,7 +53,7 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .vs-favourites-view__button__count {
     color: $color-white;
     display: block;
