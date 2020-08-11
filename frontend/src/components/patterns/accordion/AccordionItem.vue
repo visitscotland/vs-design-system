@@ -168,7 +168,7 @@ export default {
 }
 
 @include no-js {
-    .vs-accordion-toggle .vs-icon {
+    .vs-accordion__toggle .vs-icon {
         display: none;
     }
 
