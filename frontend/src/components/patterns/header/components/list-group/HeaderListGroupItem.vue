@@ -51,7 +51,7 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 @import "~bootstrap/scss/list-group";
 @import "../../styles/placeholders";
 
