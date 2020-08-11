@@ -145,7 +145,7 @@ export default {
 .vs-accordion__item.card {
     border: 0;
 
-    .vs-accordion__item__card-header{
+    .vs-accordion__item__card-header {
         padding: 0;
         border: 0;
         background-color: transparent;
@@ -168,11 +168,11 @@ export default {
 }
 
 @include no-js {
-    .vs-accordion-toggle .vs-icon{
+    .vs-accordion-toggle .vs-icon {
         display: none;
     }
 
-    .vs-accordion__item .vs-accordion__item__panel{
+    .vs-accordion__item .vs-accordion__item__panel {
         display: block!important;
     }
 }
