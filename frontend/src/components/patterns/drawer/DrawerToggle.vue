@@ -6,7 +6,7 @@
         :aria-expanded="contentIsVisible"
         :is-on="contentIsVisible"
         v-bind="$attrs"
-        class="vs-drawer-toggle"
+        class="vs-drawer__toggle"
     >
         <slot />
     </Component>
