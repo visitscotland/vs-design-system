@@ -32,6 +32,7 @@ import org.hippoecm.addon.workflow.WorkflowDescriptorModel;
 import org.hippoecm.frontend.model.JcrNodeModel;
 import org.hippoecm.frontend.plugin.IPluginContext;
 import org.hippoecm.frontend.plugin.config.IPluginConfig;
+import org.hippoecm.frontend.plugins.reviewedactions.PublicationWorkflowPlugin;
 import org.hippoecm.frontend.plugins.standards.icon.HippoIconStack;
 import org.hippoecm.frontend.plugins.standards.image.CachingImage;
 import org.hippoecm.frontend.service.IBrowseService;
@@ -43,6 +44,7 @@ import org.hippoecm.frontend.translation.ILocaleProvider;
 import org.hippoecm.frontend.translation.ILocaleProvider.HippoLocale;
 import org.hippoecm.frontend.translation.ILocaleProvider.LocaleState;
 import org.hippoecm.frontend.translation.TranslationUtil;
+import org.hippoecm.repository.HippoStdNodeType;
 import org.hippoecm.repository.api.WorkflowDescriptor;
 import org.hippoecm.repository.api.WorkflowException;
 import org.hippoecm.repository.api.WorkflowManager;
@@ -135,14 +137,30 @@ public class TranslationWorkflowPlugin extends RenderPlugin {
             @Override
             public MarkupContainer getContent() {
                 Fragment fragment = new Fragment(ID_CONTENT, ID_LANGUAGES, TranslationWorkflowPlugin.this);
-                //
-                fragment.add(new SendForTranslationAction(TranslationWorkflowPlugin.this, ID_LANGUAGE));
+                if (isChangePending()) {
+                    fragment.add(new SendForTranslationAction(TranslationWorkflowPlugin.this, ID_LANGUAGE));
+                }
                 fragment.add(new TranslationLocaleMenuDataView(ID_LANGUAGES, TranslationWorkflowPlugin.this, languageModel, new MenuLocaleProvider(TranslationWorkflowPlugin.this)));
                 TranslationWorkflowPlugin.this.addOrReplace(fragment);
                 return fragment;
             }
         });
 
+    }
+
+    public boolean isChangePending() {
+        try {
+            JcrDocument jcrDocument = new JcrDocument(getDocumentNode());
+            Node unpublishedVariant = jcrDocument.getVariantNode(JcrDocument.VARIANT_UNPUBLISHED);
+            if (unpublishedVariant.hasProperty(HippoStdNodeType.HIPPOSTD_STATESUMMARY) &&
+                    "changed".equals(unpublishedVariant.getProperty(HippoStdNodeType.HIPPOSTD_STATESUMMARY).getString())) {
+                return true;
+            }
+        } catch(RepositoryException ex) {
+            // Just consume the exception
+            log.warn("Failed to lookup unpublished status", ex);
+        }
+        return false;
     }
 
     // Gets the locale String of the document currently selected in the editor
