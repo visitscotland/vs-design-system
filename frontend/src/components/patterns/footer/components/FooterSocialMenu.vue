@@ -1,6 +1,6 @@
 <template>
-    <div class="vs-footer-social-menu px-0 py-6 py-md-8 py-lg-0 px-lg-3">
-        <h4 class="vs-footer-social-menu__title mx-3 mx-sm-6 m-md-0 mb-lg-6">
+    <div class="vs-footer__social-menu px-0 py-6 py-md-8 py-lg-0 px-lg-3">
+        <h4 class="vs-footer__social-menu__title mx-3 mx-sm-6 m-md-0 mb-lg-6">
             <!-- @slot Put the menu title here  -->
             <slot name="title" />
         </h4>
@@ -32,11 +32,11 @@ export default {
 </script>
 
 <style lang="scss">
-.vs-footer-social-menu {
+.vs-footer__social-menu {
     border-left: 1px solid $color-gray-shade-2;
     background: $color-gray-shade-7;
 
-    .vs-footer-social-menu__title{
+    .vs-footer__social-menu__title{
         background: $color-gray-shade-7;
         color: $color-white;
         line-height: $line-height-xs;
