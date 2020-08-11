@@ -81,7 +81,7 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .vs-favourites-toggle__button {
     display: block;
     position: relative;
