@@ -4,15 +4,15 @@
         :control-id="'itinerary-day-' + dayNumber"
         variant="transparent"
         item-break-point="lg"
-        class="vs-itinerary-day__list-item"
+        class="vs-itinerary__day__list-item"
     >
         <template #title>
             <!-- @slot Put the title here  -->
             <VsHeading
                 level="2"
-                class="vs-itinerary-day__header text-center mt-9 position-relative"
+                class="vs-itinerary__day__header text-center mt-9 position-relative"
             >
-                <span class="vs-itinerary-day__title d-inline-block">
+                <span class="vs-itinerary__day__title d-inline-block">
                     {{ dayLabel }} {{ dayNumber }}
                 </span>
                 <span slot="sub-heading">{{ dayTitle }}</span>
@@ -26,7 +26,7 @@
                 variant="dark"
                 size="xs"
                 :padding="3"
-                class="vs-itinerary-day__toggle-button"
+                class="vs-itinerary__day__toggle-button"
             />
         </template>
         <template #icon-closed>
@@ -36,7 +36,7 @@
                 variant="dark"
                 size="xs"
                 :padding="3"
-                class="vs-itinerary-day__toggle-button"
+                class="vs-itinerary__day__toggle-button"
             />
         </template>
         <div
@@ -108,10 +108,10 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 @import "~bootstrap/scss/type";
 
-.vs-itinerary-day__list-item {
+.vs-itinerary__day__list-item.card {
     border-top: 5px solid $color-base-text;
     padding: $spacer-4 $spacer-4 0;
 
@@ -122,13 +122,13 @@ export default {
     }
 }
 
-.vs-itinerary-day__title  {
+.vs-itinerary__day__title  {
     border-bottom: 1px solid $color-base-text;
     color: $color-theme-secondary-teal;
     padding: 0 $spacer-6 $spacer-3;
 }
 
-.vs-itinerary-day__toggle-button {
+.vs-itinerary__day__toggle-button {
     border: 1px solid $color-base-text;
     border-radius: 50%;
     height:24px;
