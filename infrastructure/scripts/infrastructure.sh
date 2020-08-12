@@ -667,7 +667,7 @@ containerStartHippo() {
     # temporary mamangement of node app here until changes can be made in vs-hippo
     echo "about to execute "/usr/bin/pkill node" in container $VS_CONTAINER_NAME"
     docker exec -d $VS_CONTAINER_NAME /usr/bin/pkill node
-    VS_DOCKER_CMD='docker exec -d $VS_CONTAINER_NAME /bin/basc -c "for PID in `ps -ef | grep "java" | grep "$VS_BRXM_TOMCAT_PORT" | awk '{print $2}'`; do echo "terminating $PID"; kill -9 $PID; done"'
+    VS_DOCKER_CMD='docker exec -d $VS_CONTAINER_NAME /bin/bash -c "for PID in `ps -ef | grep "java" | grep "$VS_BRXM_TOMCAT_PORT" | awk \'{print $2}\'`; do echo "terminating $PID"; kill -9 $PID; done"'
     echo "about to execute $VS_DOCKER_CMD in container $VS_CONTAINER_NAME"
     eval $VS_DOCKER_CMD 
     if [ "$VS_BRXM_PERSISTENCE_METHOD" == "mysql" ]; then
