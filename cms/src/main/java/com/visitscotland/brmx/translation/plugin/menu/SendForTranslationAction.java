@@ -25,31 +25,25 @@ import java.rmi.RemoteException;
 import java.util.List;
 
 public class SendForTranslationAction extends StdWorkflow<TranslationWorkflow> {
+    public static final String MENU_TEXT = "Send for translation";
     private TranslationWorkflowPlugin workflowPlugin;
-    private DocumentTranslator translator;
 
     public SendForTranslationAction(TranslationWorkflowPlugin workflowPlugin,
-                                    String id) {
-        this(workflowPlugin, id, new DocumentTranslator());
-    }
-
-    SendForTranslationAction(TranslationWorkflowPlugin workflowPlugin,
-                             String id,
-                             DocumentTranslator translator) {
+                                       String id) {
         super(id, new LoadableDetachableModel<String>() {
             @Override
             protected String load() {
-                return "Send for translation";
+                return MENU_TEXT;
             }
         }, workflowPlugin.getPluginContext(), (WorkflowDescriptorModel) workflowPlugin.getModel());
         this.workflowPlugin = workflowPlugin;
-        this.translator = translator;
     }
 
     @Override
     public boolean isVisible() {
         if (super.isVisible() && findPage() != null) {
-            return workflowPlugin.canTranslateModel();
+            return workflowPlugin.canTranslateModel() &&
+                    workflowPlugin.isChangePending();
         }
         return false;
     }
@@ -67,5 +61,15 @@ public class SendForTranslationAction extends StdWorkflow<TranslationWorkflow> {
             throws WorkflowException, RepositoryException, RemoteException, ObjectBeanManagerException {
         // TODO need to decide what sending for translation actually means
         return null;
+    }
+
+    protected void clearSuperVisible() {
+        // This is only intended for testing purposes, clears the parent's default visible flag
+        setFlag(0x0010, false);
+    }
+
+    protected String getStdWorkflowName() {
+        // This is only intended for testing purposes, the getName is protected and not visible from tests
+        return getName();
     }
 }

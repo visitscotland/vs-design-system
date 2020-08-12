@@ -70,9 +70,15 @@ public class TranslationWorkflowPlugin extends RenderPlugin {
     private static Logger log = LoggerFactory.getLogger(TranslationWorkflowPlugin.class);
     private final IModel<Boolean> canTranslateModel;
     private DocumentTranslationProvider translationProvider;
+    private JcrFolderTranslationFactory jcrFolderTranslationFactory;
 
     public TranslationWorkflowPlugin(IPluginContext context, IPluginConfig config) {
+        this(context, config, new JcrFolderTranslationFactory());
+    }
+
+    protected TranslationWorkflowPlugin(IPluginContext context, IPluginConfig config, JcrFolderTranslationFactory jcrFolderTranslationFactory) {
         super(context, config);
+        this.jcrFolderTranslationFactory = jcrFolderTranslationFactory;
 
         final IModel<String> languageModel = new LanguageModel(this);
         final ILocaleProvider localeProvider = getLocaleProvider();
@@ -137,9 +143,7 @@ public class TranslationWorkflowPlugin extends RenderPlugin {
             @Override
             public MarkupContainer getContent() {
                 Fragment fragment = new Fragment(ID_CONTENT, ID_LANGUAGES, TranslationWorkflowPlugin.this);
-                if (isChangePending()) {
-                    fragment.add(new SendForTranslationAction(TranslationWorkflowPlugin.this, ID_LANGUAGE));
-                }
+                fragment.add(new SendForTranslationAction(TranslationWorkflowPlugin.this, ID_LANGUAGE));
                 fragment.add(new TranslationLocaleMenuDataView(ID_LANGUAGES, TranslationWorkflowPlugin.this, languageModel, new MenuLocaleProvider(TranslationWorkflowPlugin.this)));
                 TranslationWorkflowPlugin.this.addOrReplace(fragment);
                 return fragment;
