@@ -55,7 +55,7 @@ export default {
     font-size: $h6-font-size;
     line-height: $standard-line-height;
 
-    svg{
+    svg {
         margin-bottom: $spacer-3;
     }
 }
