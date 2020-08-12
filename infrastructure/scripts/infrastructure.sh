@@ -398,7 +398,7 @@ setPortRange() {
     fi
   fi
   if [ -z "$VS_CONTAINER_BASE_PORT_OVERRIDE" ]; then
-    MIN_PORT=8000
+    MIN_PORT=8001
     MAX_PORT=8096
   else
     MIN_PORT=$VS_CONTAINER_BASE_PORT_OVERRIDE
@@ -671,11 +671,11 @@ containerStartHippo() {
     #echo "about to execute $VS_DOCKER_CMD in container $VS_CONTAINER_NAME"
     #eval $VS_DOCKER_CMD 
     if [ "$VS_BRXM_PERSISTENCE_METHOD" == "mysql" ]; then
-      VS_DOCKER_CMD='docker exec -d $VS_CONTAINER_NAME /usr/local/bin/vs-hippo'
+      VS_DOCKER_CMD='docker exec -d $VS_CONTAINER_NAME /bin/bash -c "/usr/local/bin/vs-hippo >> $VS_CONTAINER_CONSOLE_FILE"'
     else
       VS_DOCKER_CMD='docker exec -d $VS_CONTAINER_NAME /usr/local/bin/vs-hippo nodb'
     fi
-    echo "about to execute "/usr/local/bin/vs-hippo nodb" in container $VS_CONTAINER_NAME"
+    echo "about to execute VS_DOCKER_CMD in container $VS_CONTAINER_NAME"
     echo " - $VS_DOCKER_CMD"
     eval $VS_DOCKER_CMD
     RETURN_CODE=$?; echo $RETURN_CODE
