@@ -36,7 +36,7 @@ export default {
 @import "~bootstrap/scss/list-group";
 @import "../../styles/placeholders";
 
-.vs-header__list-group--top ::v-deep {
+.vs-header__list-group--top {
   .vs-header__list-group-item.list-group-item {
     @extend %header-nav-item-top;
 
