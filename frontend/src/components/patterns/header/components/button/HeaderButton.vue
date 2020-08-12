@@ -36,7 +36,7 @@ export default {
 <style lang="scss">
 @import "../../styles/placeholders";
 
-.vs-header__button {
+.vs-header__button.btn {
   @extend %header-nav-item;
   text-transform: none !important;
   letter-spacing: normal;
