@@ -716,7 +716,7 @@ createBuildReport() {
     echo "Direct Tomcat access - available only on the Web Development LAN" | tee -a $VS_MAIL_NOTIFY_BUILD_MESSAGE
     echo "  - http://$VS_HOST_IP_ADDRESS:$VS_CONTAINER_BASE_PORT/cms/" | tee -a $VS_MAIL_NOTIFY_BUILD_MESSAGE
     echo "  - http://$VS_HOST_IP_ADDRESS:$VS_CONTAINER_BASE_PORT/site/" | tee -a $VS_MAIL_NOTIFY_BUILD_MESSAGE
-    echo "    -  needs a HOST header of localhost:8080 to be passed with the request" | tee -a $VS_MAIL_NOTIFY_BUILD_MESSAGE
+    echo "    -  both need a HOST header of \"localhost:8080\" to be passed with the request" | tee -a $VS_MAIL_NOTIFY_BUILD_MESSAGE
     echo "" | tee -a $VS_MAIL_NOTIFY_BUILD_MESSAGE
     if [ ! -z "$VS_CONTAINER_EXT_PORT_SSR" ]; then
       echo "Direct SSR access - available only on the Web Development LAN" | tee -a $VS_MAIL_NOTIFY_BUILD_MESSAGE
