@@ -265,32 +265,30 @@ export default {
     height: 100vh;
     position: relative;
 
-    & ::v-deep {
-        .mapboxgl-popup {
-            z-index: 999;
-        }
+    .mapboxgl-popup {
+        z-index: 999;
+    }
 
-        .mapboxgl-popup-content {
-            display: flex;
-            padding: 0.5rem;
-        }
+    .mapboxgl-popup-content {
+        display: flex;
+        padding: 0.5rem;
+    }
 
-        .vs-itinerary__map-popup-stop-number {
-            font-family: $font-family-base;
-            font-size: $font-size-base;
-            font-weight: $font-weight-bold;
-        }
+    .vs-itinerary__map-popup-stop-number {
+        font-family: $font-family-base;
+        font-size: $font-size-base;
+        font-weight: $font-weight-bold;
+    }
 
-        .vs-itinerary__map-popup-stop-name {
-            font-family: $font-family-base;
-            font-size: $font-size-base;
-            font-weight: $font-weight-normal;
-        }
+    .vs-itinerary__map-popup-stop-name {
+        font-family: $font-family-base;
+        font-size: $font-size-base;
+        font-weight: $font-weight-normal;
+    }
 
-        .vs-itinerary__map-popup-image {
-            width: 105px;
-            margin-right: 1rem;
-        }
+    .vs-itinerary__map-popup-image {
+        width: 105px;
+        margin-right: 1rem;
     }
 }
 </style>
