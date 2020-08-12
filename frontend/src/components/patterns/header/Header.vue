@@ -194,20 +194,15 @@ export default {
 
     .vs-header__top__main {
         height: 28px;
-
-        & ::v-deep * {
             font-size: $font-size-base;
             font-weight: 400;
-        }
 
         @include media-breakpoint-up(md) {
             height: 35px;
         }
 
         @include media-breakpoint-up(lg) {
-            & ::v-deep * {
-                font-size: $font-size-sm;
-            }
+            font-size: $font-size-sm;
         }
     }
 }
