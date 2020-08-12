@@ -602,7 +602,7 @@ containerUpdates() {
       echo " - no match"
     fi
   done
-  find /usr/local/bin -type f | xargs chmod +x
+  docker exec $VS_CONTAINER_NAME find /usr/local/bin -type f | xargs chmod +x
 }
 
 containerSSHStart() {
