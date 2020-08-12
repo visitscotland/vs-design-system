@@ -45,7 +45,7 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .vs-icon-list__item {
     display: inline-table;
     text-align: center;
