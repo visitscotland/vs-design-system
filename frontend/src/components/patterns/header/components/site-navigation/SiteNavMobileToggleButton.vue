@@ -1,6 +1,6 @@
 <template>
     <VsButton
-        class="vs-mobile-nav__button p-1"
+        class="vs-site__mobile-nav__button p-1"
         id="mobilenavbutton"
         variant="transparent"
         focus-style="underline"
@@ -42,7 +42,7 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 @import "~bootstrap/scss/utilities/screenreaders";
 @import "~bootstrap/scss/utilities/spacing";
 </style>
