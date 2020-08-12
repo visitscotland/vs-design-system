@@ -71,7 +71,7 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 @import "~bootstrap/scss/utilities/text";
 @import "~bootstrap/scss/utilities/display";
 @import "~bootstrap/scss/utilities/flex";
@@ -79,7 +79,7 @@ export default {
 @import "../../styles/placeholders";
 
 .vs-site-nav__list-promo-item {
-    &.vs-site-nav__list-promo-item--image ::v-deep {
+    &.vs-site-nav__list-promo-item--image {
         height: 168px;
         background-position: 50% 50%;
         background-size: cover;
