@@ -30,7 +30,7 @@ module.exports = {
 	],
 	rules: {
 		"indent": [
-			"off",
+			"warn",
 			4,
 			{
 				"ignoredNodes": [
