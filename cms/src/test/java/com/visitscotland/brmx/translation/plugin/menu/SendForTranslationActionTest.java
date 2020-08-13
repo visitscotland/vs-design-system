@@ -31,6 +31,7 @@ public class SendForTranslationActionTest {
         sendForTranslationAction = new SendForTranslationAction(mockWorkflowPlugin,
                 "COMP_ID");
         sendForTranslationAction.setParent(mockParent);
+        lenient().when(mockWorkflowPlugin.getCurrentlySelectedDocumentLocale()).thenReturn("en");
     }
 
     @Test
@@ -57,6 +58,15 @@ public class SendForTranslationActionTest {
         when(mockWorkflowPlugin.canTranslateModel()).thenReturn(true);
         when(mockWorkflowPlugin.isChangePending()).thenReturn(false);
         assertFalse(sendForTranslationAction.isVisible());
+    }
+
+    @Test
+    public void isVisible_notEnglishDocument() {
+        // When the document is not English do not show the menu item
+        when(mockWorkflowPlugin.getCurrentlySelectedDocumentLocale()).thenReturn("es");
+        assertFalse(sendForTranslationAction.isVisible());
+        verify(mockWorkflowPlugin, never()).canTranslateModel();
+        verify(mockWorkflowPlugin, never()).isChangePending();
     }
 
     @Test
