@@ -30,9 +30,15 @@ module.exports = {
 	],
 	rules: {
 		"indent": [
-			"warn",
-			4
+			"off",
+			4,
+			{
+				"ignoredNodes": [
+				  "TemplateLiteral"
+				]
+			}
 		],
+		"template-curly-spacing": "off",
 		"vue/attributes-order": "off",
 		"vue/no-unused-vars": "error",
 		"vue/order-in-components": "error",
@@ -89,6 +95,10 @@ module.exports = {
 			"ignoreWhenEmpty": true,
 		}],
 		"vue/no-v-html": 2,
+		"import/extensions": ["error", "ignorePackages", {
+			"vue": "never",
+			"js": "never",
+		}],
 	},
 	settings: {
 		"import/resolver": {

@@ -372,7 +372,6 @@ export default {
                     </span>
                 </vs-image-with-caption>
 
-
                 <div v-html="stop.description"></div>
                 <vs-link href="stop.href">
                     Find out more
