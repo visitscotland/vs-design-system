@@ -10,15 +10,14 @@ import org.mockito.invocation.InvocationOnMock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.mockito.stubbing.Answer;
 
-import javax.jcr.Node;
-import javax.jcr.NodeIterator;
-import javax.jcr.RepositoryException;
+import javax.jcr.*;
 
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.lenient;
 import static org.mockito.Mockito.mock;
@@ -28,13 +27,24 @@ import static org.mockito.Mockito.when;
 public class DocumentTranslatorGetChildTranslatableLinkNodesTest {
     private DocumentTranslator documentTranslator;
     @Mock
-    ExampleTranslationLinkContainer mockSourceDocument;
+    private ExampleTranslationLinkContainer mockSourceDocument;
     @Mock
-    Node mockSourceNode;
+    private Node mockSourceNode;
+    @Mock
+    private SessionFactory mockSessionFactory;
+    @Mock
+    private HippoTranslatedNodeFactory mockHippoTranslatedNodeFactory;
+    @Mock
+    private JcrDocumentFactory mockJcrDocumentFactory;
+    @Mock
+    private ChangeSetFactory mockChangeSetFactory;
 
     @BeforeEach
     public void beforeEach() {
-        documentTranslator = new DocumentTranslator();
+        documentTranslator = new DocumentTranslator(mockHippoTranslatedNodeFactory,
+                                                    mockSessionFactory,
+                                                    mockJcrDocumentFactory,
+                                                    mockChangeSetFactory);
         lenient().when(mockSourceDocument.getNode()).thenReturn(mockSourceNode);
     }
 
@@ -67,8 +77,12 @@ public class DocumentTranslatorGetChildTranslatableLinkNodesTest {
         // When the TranslationLinkContainer contains a type, and there are matching children.
         when(mockSourceDocument.getTranslatableLinkNames()).thenReturn(new String[] {"visitscotland:stops"});
         Node mockChildNode = mock(Node.class);
+        Property mockChildProperty = mock(Property.class);
+        when(mockChildNode.getProperty(eq("hippo:docbase"))).thenReturn(mockChildProperty);
+        when(mockChildProperty.getString()).thenReturn("LINK_ID");
         NodeIterator childIterator = createNodeIterator(mockChildNode);
         when(mockSourceNode.getNodes(eq("visitscotland:stops"))).thenReturn(childIterator);
+
         List<Node> nodeList = documentTranslator.getChildTranslatableLinkNodes(mockSourceDocument);
 
         assertNotNull(nodeList);

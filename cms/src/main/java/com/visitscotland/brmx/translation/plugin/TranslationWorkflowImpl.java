@@ -133,8 +133,13 @@ public class TranslationWorkflowImpl implements TranslationWorkflow, InternalWor
                         }
                         // Now we have the UUID of the node we are linking to, get the Node and see if there is a
                         // translation for the current language.
-                        Property linkUUID = childNode.getProperty("hippo:docbase");
-                        Node linkedNode = rootSession.getNodeByIdentifier(linkUUID.getString());
+                        // If the linkUUID does not exist or points to the root Node then skip it.
+                        String linkUUID = childNode.getProperty("hippo:docbase").getString();
+                        if (linkUUID == null || linkUUID.equals("") || linkUUID.startsWith("cafebabe-")) {
+                            log.warn("Link contains an empty Node");
+                            continue;
+                        }
+                        Node linkedNode = rootSession.getNodeByIdentifier(linkUUID);
                         JcrDocument linkedJcrDocument = new JcrDocument(linkedNode);
                         if (linkedJcrDocument.hasTranslation(language)) {
                             Node targetNode = linkedJcrDocument.getTranslation(language);

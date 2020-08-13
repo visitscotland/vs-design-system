@@ -155,7 +155,12 @@ public class DocumentTranslator {
         for (String translatableLink : translatableLinkNames) {
             NodeIterator childIterator = sourceDocument.getNode().getNodes(translatableLink);
             while (childIterator.hasNext()) {
-                translatableChildNodes.add(childIterator.nextNode());
+                Node childNode = childIterator.nextNode();
+                // Need to check the node pointed to by the child node actually exists.
+                String linkUUID = childNode.getProperty("hippo:docbase").getString();
+                if (linkUUID != null && !linkUUID.equals("") && !linkUUID.startsWith("cafebabe-")) {
+                    translatableChildNodes.add(childNode);
+                }
             }
         }
         return translatableChildNodes;
