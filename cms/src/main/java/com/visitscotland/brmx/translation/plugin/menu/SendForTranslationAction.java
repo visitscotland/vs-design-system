@@ -59,7 +59,8 @@ public class SendForTranslationAction extends StdWorkflow<TranslationWorkflow> {
     @Override
     protected String execute(TranslationWorkflow workflow)
             throws WorkflowException, RepositoryException, RemoteException, ObjectBeanManagerException {
-        // TODO need to decide what sending for translation actually means
+        // Mark the Node as Translation required if it has mixin visitscotland:translatable
+        workflow.setTranslationRequiredFlag();
         return null;
     }
 

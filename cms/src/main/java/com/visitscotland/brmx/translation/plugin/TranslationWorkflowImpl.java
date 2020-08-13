@@ -210,6 +210,20 @@ public class TranslationWorkflowImpl implements TranslationWorkflow, InternalWor
         rootSession.refresh(false);
     }
 
+    @Override
+    public void setTranslationRequiredFlag() throws RepositoryException {
+        JcrDocument rootJcrDocument = new JcrDocument(rootSubject);
+        if (rootJcrDocument.isNodeType("visitscotland:translatable")) {
+            Set<JcrDocument> jcrTranslations = rootJcrDocument.getTranslations();
+            for (JcrDocument translatedDocument : jcrTranslations) {
+                Node unpublished = translatedDocument.getVariantNode(JcrDocument.VARIANT_UNPUBLISHED);
+                unpublished.setProperty("visitscotland:translationFlag", "Translation required");
+            }
+            rootSession.save();
+            rootSession.refresh(false);
+        }
+    }
+
     public Map<String, Serializable> hints() throws WorkflowException, RepositoryException {
         Map<String, Serializable> hints = new TreeMap<>();
 
