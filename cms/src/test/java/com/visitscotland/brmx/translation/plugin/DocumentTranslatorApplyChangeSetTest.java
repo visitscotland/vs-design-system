@@ -2,7 +2,11 @@ package com.visitscotland.brmx.translation.plugin;
 
 import org.hippoecm.addon.workflow.WorkflowSNSException;
 import org.hippoecm.frontend.translation.ILocaleProvider;
+import org.hippoecm.repository.api.Document;
 import org.hippoecm.repository.api.HippoNode;
+import org.hippoecm.repository.api.HippoWorkspace;
+import org.hippoecm.repository.api.WorkflowManager;
+import org.hippoecm.repository.standardworkflow.DefaultWorkflow;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -11,6 +15,7 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import javax.jcr.Session;
+import javax.jcr.Workspace;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -28,6 +33,12 @@ public class DocumentTranslatorApplyChangeSetTest {
     @Mock
     private Session mockSession;
     @Mock
+    private HippoWorkspace mockWorkspace;
+    @Mock
+    private WorkflowManager mockWorkflowManager;
+    @Mock
+    private DefaultWorkflow mockDefaultWorkflow;
+    @Mock
     private TranslationWorkflow mockWorkflow;
     @Mock
     private ILocaleProvider.HippoLocale mockTargetLocale;
@@ -44,7 +55,7 @@ public class DocumentTranslatorApplyChangeSetTest {
     private ArrayList<ChangeSet> changeSetList;
 
     @BeforeEach
-    public void beforeEach() {
+    public void beforeEach() throws Exception {
         documentTranslator = spy(new DocumentTranslator(mockNodeFactory, mockSessionFactory, mockJcrDocumentFactory,
                 mockChangeSetFactory));
         folderList = new ArrayList<>();
@@ -56,6 +67,11 @@ public class DocumentTranslatorApplyChangeSetTest {
 
         changeSetList = new ArrayList<>();
         changeSetList.add(mockChange);
+        lenient().when(mockSessionFactory.getJcrSession()).thenReturn(mockSession);
+        lenient().when(mockSession.getWorkspace()).thenReturn(mockWorkspace);
+        lenient().when(mockWorkspace.getWorkflowManager()).thenReturn(mockWorkflowManager);
+        lenient().when(mockWorkflowManager.getWorkflow(eq("core"), any(Document.class))).thenReturn(mockDefaultWorkflow);
+        lenient().when(mockWorkflow.addTranslation(anyString(), anyString(), any())).thenReturn(mock(Document.class));
     }
 
     @Test
@@ -144,6 +160,7 @@ public class DocumentTranslatorApplyChangeSetTest {
         JcrDocument document1 = mock(JcrDocument.class);
         HippoNode document1Variant = mock(HippoNode.class);
         when(translation1.getNamefr()).thenReturn("document1");
+        when(translation1.getUrlfr()).thenReturn("document1url");
         when(document1.getVariantNode(eq(JcrDocument.VARIANT_UNPUBLISHED))).thenReturn(document1Variant);
         when(translation1.getId()).thenReturn("doc1");
         when(mockSession.getNodeByIdentifier(eq("doc1"))).thenReturn(document1Node);
@@ -155,6 +172,7 @@ public class DocumentTranslatorApplyChangeSetTest {
         JcrDocument document2 = mock(JcrDocument.class);
         HippoNode document2Variant = mock(HippoNode.class);
         when(translation2.getNamefr()).thenReturn("document2");
+        when(translation2.getUrlfr()).thenReturn("document2url");
         when(document2.getVariantNode(eq(JcrDocument.VARIANT_UNPUBLISHED))).thenReturn(document2Variant);
         when(translation2.getId()).thenReturn("doc2");
         when(mockSession.getNodeByIdentifier(eq("doc2"))).thenReturn(document2Node);
@@ -163,8 +181,10 @@ public class DocumentTranslatorApplyChangeSetTest {
 
         documentTranslator.applyChangeSet(changeSetList, mockSession, mockWorkflow);
 
-        verify(mockWorkflow).addTranslation(eq("fr"), eq("document1"), same(document1Variant));
-        verify(mockWorkflow).addTranslation(eq("fr"), eq("document2"), same(document2Variant));
+        verify(mockWorkflow).addTranslation(eq("fr"), eq("document1url"), same(document1Variant));
+        verify(mockDefaultWorkflow).setDisplayName(eq("document1"));
+        verify(mockWorkflow).addTranslation(eq("fr"), eq("document2url"), same(document2Variant));
+        verify(mockDefaultWorkflow).setDisplayName(eq("document2"));
         verify(mockWorkflow).saveSession();
     }
 
@@ -188,6 +208,7 @@ public class DocumentTranslatorApplyChangeSetTest {
         JcrDocument document1 = mock(JcrDocument.class);
         HippoNode document1Variant = mock(HippoNode.class);
         when(translation1.getNamefr()).thenReturn("document1");
+        when(translation1.getUrlfr()).thenReturn("document1url");
         when(document1.getVariantNode(eq(JcrDocument.VARIANT_UNPUBLISHED))).thenReturn(document1Variant);
         when(translation1.getId()).thenReturn("doc1");
         when(mockSession.getNodeByIdentifier(eq("doc1"))).thenReturn(document1Node);
@@ -199,6 +220,7 @@ public class DocumentTranslatorApplyChangeSetTest {
         JcrDocument document2 = mock(JcrDocument.class);
         HippoNode document2Variant = mock(HippoNode.class);
         when(translation2.getNamefr()).thenReturn("document2");
+        when(translation2.getUrlfr()).thenReturn("document2url");
         when(document2.getVariantNode(eq(JcrDocument.VARIANT_UNPUBLISHED))).thenReturn(document2Variant);
         when(translation2.getId()).thenReturn("doc2");
         when(mockSession.getNodeByIdentifier(eq("doc2"))).thenReturn(document2Node);
@@ -209,8 +231,10 @@ public class DocumentTranslatorApplyChangeSetTest {
 
         verify(documentTranslator, times(1)).saveFolder(same(folder2), same(mockSession), eq("fr"));
 
-        verify(mockWorkflow).addTranslation(eq("fr"), eq("document1"), same(document1Variant));
-        verify(mockWorkflow).addTranslation(eq("fr"), eq("document2"), same(document2Variant));
+        verify(mockWorkflow).addTranslation(eq("fr"), eq("document1url"), same(document1Variant));
+        verify(mockDefaultWorkflow).setDisplayName(eq("document1"));
+        verify(mockWorkflow).addTranslation(eq("fr"), eq("document2url"), same(document2Variant));
+        verify(mockDefaultWorkflow).setDisplayName(eq("document2"));
         verify(mockWorkflow).saveSession();
     }
 
@@ -231,6 +255,7 @@ public class DocumentTranslatorApplyChangeSetTest {
         JcrDocument document1 = mock(JcrDocument.class);
         HippoNode document1Variant = mock(HippoNode.class);
         when(translation1.getNamefr()).thenReturn("document1");
+        when(translation1.getUrlfr()).thenReturn("document1url");
         when(document1.getVariantNode(eq(JcrDocument.VARIANT_UNPUBLISHED))).thenReturn(document1Variant);
         when(translation1.getId()).thenReturn("doc1");
         when(translation1.containsTranslationLinks()).thenReturn(true);
@@ -243,6 +268,7 @@ public class DocumentTranslatorApplyChangeSetTest {
         JcrDocument document2 = mock(JcrDocument.class);
         HippoNode document2Variant = mock(HippoNode.class);
         when(translation2.getNamefr()).thenReturn("document2");
+        when(translation2.getUrlfr()).thenReturn("document2url");
         when(document2.getVariantNode(eq(JcrDocument.VARIANT_UNPUBLISHED))).thenReturn(document2Variant);
         when(translation2.getId()).thenReturn("doc2");
         when(translation2.containsTranslationLinks()).thenReturn(false);
@@ -255,6 +281,7 @@ public class DocumentTranslatorApplyChangeSetTest {
         JcrDocument document3 = mock(JcrDocument.class);
         HippoNode document3Variant = mock(HippoNode.class);
         when(translation3.getNamefr()).thenReturn("document3");
+        when(translation3.getUrlfr()).thenReturn("document3url");
         when(document3.getVariantNode(eq(JcrDocument.VARIANT_UNPUBLISHED))).thenReturn(document3Variant);
         when(translation3.getId()).thenReturn("doc3");
         when(translation3.containsTranslationLinks()).thenReturn(true);
@@ -265,9 +292,13 @@ public class DocumentTranslatorApplyChangeSetTest {
         documentTranslator.applyChangeSet(changeSetList, mockSession, mockWorkflow);
 
         InOrder inOrder = inOrder(mockWorkflow);
-        inOrder.verify(mockWorkflow).addTranslation(eq("fr"), eq("document2"), same(document2Variant));
-        inOrder.verify(mockWorkflow).addTranslation(eq("fr"), eq("document1"), same(document1Variant));
-        inOrder.verify(mockWorkflow).addTranslation(eq("fr"), eq("document3"), same(document3Variant));
+        InOrder inOrderDefault = inOrder(mockDefaultWorkflow);
+        inOrder.verify(mockWorkflow).addTranslation(eq("fr"), eq("document2url"), same(document2Variant));
+        inOrderDefault.verify(mockDefaultWorkflow).setDisplayName("document2");
+        inOrder.verify(mockWorkflow).addTranslation(eq("fr"), eq("document1url"), same(document1Variant));
+        inOrderDefault.verify(mockDefaultWorkflow).setDisplayName("document1");
+        inOrder.verify(mockWorkflow).addTranslation(eq("fr"), eq("document3url"), same(document3Variant));
+        inOrderDefault.verify(mockDefaultWorkflow).setDisplayName("document3");
         inOrder.verify(mockWorkflow).saveSession();
     }
 
@@ -280,6 +311,7 @@ public class DocumentTranslatorApplyChangeSetTest {
         JcrDocument document1 = mock(JcrDocument.class);
         HippoNode document1Variant = mock(HippoNode.class);
         when(translation1.getNamefr()).thenReturn("document1");
+        when(translation1.getUrlfr()).thenReturn("document1url");
         when(document1.getVariantNode(eq(JcrDocument.VARIANT_UNPUBLISHED))).thenReturn(document1Variant);
         when(translation1.getId()).thenReturn("doc1");
         when(translation1.containsTranslationLinks()).thenReturn(true);
@@ -292,6 +324,7 @@ public class DocumentTranslatorApplyChangeSetTest {
         JcrDocument document2 = mock(JcrDocument.class);
         HippoNode document2Variant = mock(HippoNode.class);
         when(translation2.getNamefr()).thenReturn("document2");
+        when(translation2.getUrlfr()).thenReturn("document2url");
         when(document2.getVariantNode(eq(JcrDocument.VARIANT_UNPUBLISHED))).thenReturn(document2Variant);
         when(translation2.getId()).thenReturn("doc2");
         when(translation2.containsTranslationLinks()).thenReturn(true);
@@ -301,8 +334,10 @@ public class DocumentTranslatorApplyChangeSetTest {
 
         documentTranslator.applyChangeSet(changeSetList, mockSession, mockWorkflow);
 
-        verify(mockWorkflow).addTranslation(eq("fr"), eq("document2"), same(document2Variant));
-        verify(mockWorkflow).addTranslation(eq("fr"), eq("document1"), same(document1Variant));
+        verify(mockWorkflow).addTranslation(eq("fr"), eq("document2url"), same(document2Variant));
+        verify(mockDefaultWorkflow).setDisplayName(eq("document2"));
+        verify(mockWorkflow).addTranslation(eq("fr"), eq("document1url"), same(document1Variant));
+        verify(mockDefaultWorkflow).setDisplayName(eq("document1"));
         verify(mockWorkflow).saveSession();
     }
 }

@@ -207,13 +207,17 @@ public class DocumentTranslator {
                                         Session session,
                                         TranslationWorkflow workflow)
             throws RepositoryException, ObjectBeanManagerException, RemoteException, WorkflowException {
+        WorkflowManager manager = ((HippoWorkspace) session.getWorkspace()).getWorkflowManager();
         for (FolderTranslation document : changeSet.getDocuments()) {
             if (document.containsTranslationLinks() != includeTranslationLinkContainers) {
                 continue;
             }
             JcrDocument sourceDocument = jcrDocumentFactory.createJcrDocument(session.getNodeByIdentifier(document.getId()));
-            workflow.addTranslation(changeSet.getTargetLocale().getName(), document.getNamefr(),
+            Document translatedDocument = workflow.addTranslation(changeSet.getTargetLocale().getName(), document.getUrlfr(),
                     sourceDocument.getVariantNode(JcrDocument.VARIANT_UNPUBLISHED));
+
+            DefaultWorkflow defaultWorkflow = (DefaultWorkflow) manager.getWorkflow("core", translatedDocument);
+            defaultWorkflow.setDisplayName(document.getNamefr());
         }
     }
 
