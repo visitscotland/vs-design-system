@@ -21,6 +21,7 @@ public class DestinationContentComponent extends PageContentComponent<Destinatio
 
     static final String PAGE_ITEMS = "pageItems";
     static final String[] styles = {"style1","style2","style3"};
+    static final String[] alignment = {"left","right"};
 
     public DestinationContentComponent(){
         linksFactory = new LinkModulesFactory();
@@ -37,10 +38,14 @@ public class DestinationContentComponent extends PageContentComponent<Destinatio
     void addModules(HstRequest request){
         List<AbstractLayout> links = new ArrayList<>();
         int styleIndex = 0;
+        int singleImageindex = 0;
 
         for (Megalinks mega: getDocument(request).getItems()){
             AbstractLayout al = linksFactory.getMegalinkModule(mega, request.getLocale());
 
+            if (al.getType().equalsIgnoreCase("singleimagelayout")){
+                al.setAlignment(alignment[singleImageindex++ % alignment.length]);
+            }
             if (Contract.isEmpty(al.getTitle()) && styleIndex > 0){
                 styleIndex--;
             }

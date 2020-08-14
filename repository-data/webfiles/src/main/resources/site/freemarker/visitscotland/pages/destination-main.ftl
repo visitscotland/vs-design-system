@@ -168,28 +168,56 @@
 						<#assign image = item.image.externalImage!'' />
 					</#if>
 					<vs-row>
-						<vs-col cols="12" lg="12" offset-lg="1">
-							<vs-heading level="3">${item.innerTitle}</vs-heading>
-						</vs-col>
-						<vs-col cols="6" lg="6" offset-lg="1">
-							<vs-rich-text-wrapper variant="lead">
-								<@hst.html hippohtml=item.innerIntroduction/> </br>
-							</vs-rich-text-wrapper>
-							<ol>
-								<#list item.links as megalink>
-									<vs-row>
-										<vs-col cols="4" lg="4" offset-lg="1">
-											<vs-link href="${megalink.link}"> ${megalink.label}</vs-link> </br>
-										</vs-col>
+					<#--TODO: control alignment right/left properly-->
+						<#if item.getAlignment()=="right">
+							<vs-col cols="12" lg="12" offset-lg="1">
+								<vs-heading level="3">${item.innerTitle}</vs-heading>
+							</vs-col>
+							<vs-col cols="6" lg="6" offset-lg="1">
+								<vs-rich-text-wrapper variant="lead">
+									<@hst.html hippohtml=item.innerIntroduction/> </br>
+								</vs-rich-text-wrapper>
+								<ol>
+									<#list item.links as megalink>
+										<vs-row>
+											<vs-col cols="4" lg="4" offset-lg="1">
+												<vs-link href="${megalink.link}"> ${megalink.label}</vs-link> </br>
+											</vs-col>
 
-									</vs-row>
-								</#list>
-							</ol>
-						</vs-col>
-						<vs-col cols="4" lg="4">
-							<#--FOR SIMPLE IMAGE, THE IMAGE HAS CAPTION-->
-							<@imageWithCaption imageSrc=image imageDetails=item.image variant="fullwidth"/>
-						</vs-col>
+										</vs-row>
+									</#list>
+								</ol>
+							</vs-col>
+							<vs-col cols="4" lg="4">
+								<#--FOR SIMPLE IMAGE, THE IMAGE HAS CAPTION-->
+								<@imageWithCaption imageSrc=image imageDetails=item.image variant="fullwidth"/>
+							</vs-col>
+						<#else>
+							<vs-col cols="4" lg="4">
+								<#--FOR SIMPLE IMAGE, THE IMAGE HAS CAPTION-->
+								<@imageWithCaption imageSrc=image imageDetails=item.image variant="fullwidth"/>
+							</vs-col>
+							<vs-row>
+								<vs-col cols="10" lg="10" offset-lg="1">
+									<vs-heading level="3">${item.innerTitle}</vs-heading>
+								</vs-col>
+								<vs-col cols="10" lg="10" offset-lg="1">
+									<vs-rich-text-wrapper variant="lead">
+										<@hst.html hippohtml=item.innerIntroduction/> </br>
+									</vs-rich-text-wrapper>
+									<ol>
+										<#list item.links as megalink>
+											<vs-row>
+												<vs-col cols="4" lg="4" offset-lg="1">
+													<vs-link href="${megalink.link}"> ${megalink.label}</vs-link> </br>
+												</vs-col>
+
+											</vs-row>
+										</#list>
+									</ol>
+								</vs-col>
+							</vs-row>
+						</#if>
 					</vs-row>
 
 
