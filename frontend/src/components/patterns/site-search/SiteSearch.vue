@@ -1,7 +1,7 @@
 <template>
     <BForm
         role="search"
-        class="d-flex align-items-start py-2 py-md-4"
+        class="d-flex align-items-start py-2 py-md-4 vs-site-search"
         action
         method="get"
         :novalidate="true"
@@ -173,7 +173,7 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 @import "~bootstrap/scss/forms";
 @import "~bootstrap/scss/input-group";
 
