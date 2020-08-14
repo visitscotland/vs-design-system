@@ -23,7 +23,7 @@ describe('VsSummaryBoxDistanceLabel', () => {
     it('should render a wrapper', () => {
         const wrapper = factoryShallowMount();
         expect(wrapper.html()).toContain(
-            '<div class="vs-summary-box-distance-label text-center d-block position-absolute w-100">',
+            '<div class="vs-summary-box__distance-label text-center d-block position-absolute w-100">',
         );
     });
 
