@@ -25,7 +25,7 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .vs-header__site-search__toggle-button {
   font-size: 1.125rem;
   font-weight: $font-weight-normal;
