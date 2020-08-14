@@ -1,5 +1,5 @@
 <template>
-    <li class="vs-summary-box-list-item position-relative">
+    <li class="vs-summary-box__list-item position-relative">
         <slot />
     </li>
 </template>
@@ -19,8 +19,8 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
-.vs-summary-box-list-item {
+<style lang="scss">
+.vs-summary-box__list-item {
     flex: 1 0 calc(50% - 1rem);
     margin: 0.5rem;
     @include media-breakpoint-up(md) {

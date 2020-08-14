@@ -1,5 +1,5 @@
 <template>
-    <div class="vs-summary-box-distance-label text-center d-block position-absolute w-100">
+    <div class="vs-summary-box__distance-label text-center d-block position-absolute w-100">
         <strong class="d-block">{{ distanceLabel }}</strong>
         <div class="d-flex justify-content-center align-items-center">
             <VsButton
@@ -87,8 +87,8 @@ export default {
     },
 };
 </script>
-<style lang="scss" scoped>
-.vs-summary-box-distance-label {
+<style lang="scss">
+.vs-summary-box__distance-label {
     bottom: 5px;
     left: 0;
     line-height: 1rem;
