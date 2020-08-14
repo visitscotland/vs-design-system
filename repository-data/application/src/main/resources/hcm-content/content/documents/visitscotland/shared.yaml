@@ -412,7 +412,7 @@
         hippostd:state: unpublished
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2019-12-16T12:20:46.037Z
-        hippostdpubwf:lastModificationDate: 2020-04-30T17:45:31.843+01:00
+        hippostdpubwf:lastModificationDate: 2020-08-13T15:23:52.532+01:00
         hippostdpubwf:lastModifiedBy: admin
         hippotranslation:id: b4f184af-52de-4e48-92ab-33cc5c2519e0
         hippotranslation:locale: en
@@ -424,7 +424,7 @@
           hippostd:content: <p>Short description.</p>
         /visitscotland:tips:
           jcr:primaryType: hippostd:html
-          hippostd:content: <p>Example tips invalid</p>
+          hippostd:content: <p>Example tips invalid.</p>
         /visitscotland:product:
           jcr:primaryType: visitscotland:ItineraryExternalLink
           visitscotland:timeToExplore: '1'
@@ -450,7 +450,7 @@
         hippostd:state: draft
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2019-12-16T12:20:46.037Z
-        hippostdpubwf:lastModificationDate: 2020-04-30T17:45:32.009+01:00
+        hippostdpubwf:lastModificationDate: 2020-08-13T15:23:52.740+01:00
         hippostdpubwf:lastModifiedBy: admin
         hippotranslation:id: b4f184af-52de-4e48-92ab-33cc5c2519e0
         hippotranslation:locale: en
@@ -462,7 +462,7 @@
           hippostd:content: <p>Short description.</p>
         /visitscotland:tips:
           jcr:primaryType: hippostd:html
-          hippostd:content: <p>Example tips invalid</p>
+          hippostd:content: <p>Example tips invalid.</p>
         /visitscotland:product:
           jcr:primaryType: visitscotland:ItineraryExternalLink
           visitscotland:timeToExplore: '1'

@@ -71,8 +71,8 @@ public class DMSDataService {
     }
 
     //TODO: Do it right!!!!
-    public JsonNode searchResults(ProductSearchBuilder psb, Locale locale){
-        String dmsUrl = Properties.VS_DMS_SERVICE + "/data/product-search/map?cat=vics&loc=Scotland&locplace=&locprox=0";
+    public JsonNode searchResults(ProductSearchBuilder psb, Locale locale, String query){
+        String dmsUrl = Properties.VS_DMS_SERVICE + "/data/product-search/map" + query.substring(query.lastIndexOf("?")) ;
         String responseString = null;
 
         if (locale != null) {

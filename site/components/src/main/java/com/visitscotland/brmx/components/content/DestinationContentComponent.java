@@ -69,6 +69,7 @@ public class DestinationContentComponent extends PageContentComponent<Destinatio
                 }
 
                 IKnowModule iKnowModule = iKnowFactory.getModule(touristInfo.getIKnow(),location);
+                iKnowModule.setTourismInformation(touristInfo);
                 links.add(iKnowModule);
 
                 System.out.println("A TourismInformation was found");

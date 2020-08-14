@@ -43,7 +43,7 @@ public class ICentreFactory {
         psBuilder.sortBy("alpha");
         String dmsQuery = psBuilder.build();
 
-        JsonNode node = dmsData.searchResults(psBuilder, null);
+        JsonNode node = dmsData.searchResults(psBuilder, null, dmsQuery);
 
         List<FlatLink> vicList = new ArrayList<>();
         for (JsonNode child  :node) {

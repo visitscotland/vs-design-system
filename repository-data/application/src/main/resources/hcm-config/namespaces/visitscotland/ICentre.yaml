@@ -11,7 +11,7 @@ definitions:
         /hipposysedit:nodetype:
           jcr:primaryType: hipposysedit:nodetype
           jcr:mixinTypes: ['mix:referenceable', 'hipposysedit:remodel']
-          jcr:uuid: 17a6a764-4f71-45c5-a8b8-0ff7035e97c1
+          jcr:uuid: 1e32b781-ba73-4501-b203-92fe4d81a99e
           hipposysedit:node: true
           hipposysedit:supertype: ['hippo:compound', 'hippostd:relaxed']
           hipposysedit:uri: http://www.visitscotland.com/visitscotland/nt/1.0
@@ -66,8 +66,8 @@ definitions:
             field: image
             plugin.class: org.hippoecm.frontend.editor.plugins.field.NodeFieldPlugin
             wicket.id: ${cluster.id}.field
-            hint: When this image is not set, It will be defaulted to iCentre DMS
-              listing image.
+            hint: When this image is not added, It will default to iCentre DMS listing
+              image.
             /cluster.options:
               jcr:primaryType: frontend:pluginconfig
           /title:

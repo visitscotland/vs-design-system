@@ -11,7 +11,7 @@ definitions:
         /hipposysedit:nodetype:
           jcr:primaryType: hipposysedit:nodetype
           jcr:mixinTypes: ['mix:referenceable', 'hipposysedit:remodel']
-          jcr:uuid: e9afb287-9566-4281-a94c-658a36758f4a
+          jcr:uuid: ea57b995-9e76-48cc-8294-9bf61dcc6ac8
           hipposysedit:node: true
           hipposysedit:supertype: ['hippo:compound', 'hippostd:relaxed']
           hipposysedit:uri: http://www.visitscotland.com/visitscotland/nt/1.0
@@ -108,15 +108,16 @@ definitions:
               jcr:primaryType: frontend:pluginconfig
           /image:
             jcr:primaryType: frontend:plugin
-            caption: Image
+            caption: Profile Image
             field: image
             plugin.class: org.hippoecm.frontend.editor.plugins.field.NodeFieldPlugin
             wicket.id: ${cluster.id}.field
+            hint: ''
             /cluster.options:
               jcr:primaryType: frontend:pluginconfig
           /author:
             jcr:primaryType: frontend:plugin
-            caption: Author
+            caption: First Name
             field: author
             hint: ''
             plugin.class: org.hippoecm.frontend.editor.plugins.field.PropertyFieldPlugin
@@ -125,7 +126,7 @@ definitions:
               jcr:primaryType: frontend:pluginconfig
           /role:
             jcr:primaryType: frontend:plugin
-            caption: Author role
+            caption: Job Title
             field: role
             hint: ''
             plugin.class: org.hippoecm.frontend.editor.plugins.field.PropertyFieldPlugin
