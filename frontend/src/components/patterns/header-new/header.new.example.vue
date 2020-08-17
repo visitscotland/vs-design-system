@@ -18,16 +18,17 @@
         <template slot="mega-nav">
             <VsMegaNav>
                 <template slot="mega-nav-top-menu-items">
-                    <VsMegaNavTopMenuItem>
-                        Testing 1
-                       
-                    </VsMegaNavTopMenuItem>
-
-                    <VsMegaNavTopMenuItem>
-                        Testing 2
-                    </VsMegaNavTopMenuItem>
-                    <VsMegaNavTopMenuItem>
-                        Testing 3
+                    
+                    
+                    <VsMegaNavTopMenuItem
+                        v-for="(item, index) in header.mainNav"
+                        :key="index"
+                    >
+                        {{item.title}}
+                        
+                        <template slot="subnav">
+                            Test {{item.title}}
+                        </template>
                     </VsMegaNavTopMenuItem>
                 </template>
             </VsMegaNav>
