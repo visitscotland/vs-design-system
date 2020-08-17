@@ -31,6 +31,7 @@ public class SendForTranslationActionTest {
         sendForTranslationAction = new SendForTranslationAction(mockWorkflowPlugin,
                 "COMP_ID");
         sendForTranslationAction.setParent(mockParent);
+        lenient().when(mockWorkflowPlugin.getCurrentlySelectedDocumentLocale()).thenReturn("en");
     }
 
     @Test
@@ -54,17 +55,37 @@ public class SendForTranslationActionTest {
     public void isVisible_hasTranslationPermissions_noChangePending() {
         // When the user has translation permissions and the document does not have a pending change
         // the menu item should not be visible
+        when(mockWorkflowPlugin.currentDocumentHasTranslation()).thenReturn(true);
         when(mockWorkflowPlugin.canTranslateModel()).thenReturn(true);
         when(mockWorkflowPlugin.isChangePending()).thenReturn(false);
         assertFalse(sendForTranslationAction.isVisible());
     }
 
     @Test
+    public void isVisible_notEnglishDocument() {
+        // When the document is not English do not show the menu item
+        when(mockWorkflowPlugin.getCurrentlySelectedDocumentLocale()).thenReturn("es");
+        assertFalse(sendForTranslationAction.isVisible());
+        verify(mockWorkflowPlugin, never()).canTranslateModel();
+        verify(mockWorkflowPlugin, never()).isChangePending();
+    }
+
+    @Test
     public void isVisible_noTranslationPermissions() {
         // When the user does not have translation permissions
         // the menu item should not be visible
+        when(mockWorkflowPlugin.currentDocumentHasTranslation()).thenReturn(true);
         when(mockWorkflowPlugin.canTranslateModel()).thenReturn(false);
         assertFalse(sendForTranslationAction.isVisible());
+        verify(mockWorkflowPlugin, never()).isChangePending();
+    }
+
+    @Test
+    public void isVisible_hasNoTranslations() {
+        // When the English document has no existing translations the menu should not be visible
+        when(mockWorkflowPlugin.currentDocumentHasTranslation()).thenReturn(false);
+        assertFalse(sendForTranslationAction.isVisible());
+        verify(mockWorkflowPlugin, never()).canTranslateModel();
         verify(mockWorkflowPlugin, never()).isChangePending();
     }
 
@@ -72,6 +93,7 @@ public class SendForTranslationActionTest {
     public void isVisible_hasTranslationPermissions_andChangePending() {
         // When the user has translation permissions and the document has a pending change
         // the menu item should be visible
+        when(mockWorkflowPlugin.currentDocumentHasTranslation()).thenReturn(true);
         when(mockWorkflowPlugin.canTranslateModel()).thenReturn(true);
         when(mockWorkflowPlugin.isChangePending()).thenReturn(true);
         assertTrue(sendForTranslationAction.isVisible());
