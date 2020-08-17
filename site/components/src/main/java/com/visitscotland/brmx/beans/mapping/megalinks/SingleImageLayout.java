@@ -8,7 +8,6 @@ public class SingleImageLayout extends AbstractLayout {
     private String innerTitle;
     private HippoHtml innerIntroduction;
     private FlatImage image;
-    private boolean fullWidth;
 
     public String getInnerTitle() {
         return innerTitle;

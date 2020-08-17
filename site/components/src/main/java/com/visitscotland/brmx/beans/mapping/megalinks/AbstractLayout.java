@@ -14,6 +14,7 @@ public abstract class AbstractLayout<L extends FlatLink> {
     private FlatLink cta;
     private Megalinks megalinkItem;
     private String style;
+    private String alignment;
 
     public String getType(){
         return getClass().getSimpleName();
@@ -65,5 +66,13 @@ public abstract class AbstractLayout<L extends FlatLink> {
 
     public void setStyle(String style) {
         this.style = style;
+    }
+
+    public String getAlignment() {
+        return alignment;
+    }
+
+    public void setAlignment(String alignment) {
+        this.alignment = alignment;
     }
 }
