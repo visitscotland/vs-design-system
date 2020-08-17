@@ -79,10 +79,8 @@ export default {
             outline: 0 !important;
         }
 
-        & ::v-deep {
-            svg.vs-icon {
-                fill: $color-white !important;
-            }
+        svg.vs-icon {
+            fill: $color-white !important;
         }
     }
 }
