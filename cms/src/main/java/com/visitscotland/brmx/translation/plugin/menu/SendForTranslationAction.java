@@ -43,6 +43,7 @@ public class SendForTranslationAction extends StdWorkflow<TranslationWorkflow> {
     public boolean isVisible() {
         if (super.isVisible() && findPage() != null) {
             return "en".equals(workflowPlugin.getCurrentlySelectedDocumentLocale()) &&
+                    workflowPlugin.currentDocumentHasTranslation() &&
                     workflowPlugin.canTranslateModel() &&
                     workflowPlugin.isChangePending();
         }

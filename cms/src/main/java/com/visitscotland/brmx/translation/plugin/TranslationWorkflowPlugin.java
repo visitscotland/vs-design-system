@@ -48,6 +48,7 @@ import org.hippoecm.repository.HippoStdNodeType;
 import org.hippoecm.repository.api.WorkflowDescriptor;
 import org.hippoecm.repository.api.WorkflowException;
 import org.hippoecm.repository.api.WorkflowManager;
+import org.hippoecm.repository.translation.HippoTranslatedNode;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -70,15 +71,15 @@ public class TranslationWorkflowPlugin extends RenderPlugin {
     private static Logger log = LoggerFactory.getLogger(TranslationWorkflowPlugin.class);
     private final IModel<Boolean> canTranslateModel;
     private DocumentTranslationProvider translationProvider;
-    private JcrFolderTranslationFactory jcrFolderTranslationFactory;
+    private HippoTranslatedNodeFactory translatedNodeFactory;
 
     public TranslationWorkflowPlugin(IPluginContext context, IPluginConfig config) {
-        this(context, config, new JcrFolderTranslationFactory());
+        this(context, config, new HippoTranslatedNodeFactory());
     }
 
-    protected TranslationWorkflowPlugin(IPluginContext context, IPluginConfig config, JcrFolderTranslationFactory jcrFolderTranslationFactory) {
+    protected TranslationWorkflowPlugin(IPluginContext context, IPluginConfig config, HippoTranslatedNodeFactory translatedNodeFactory) {
         super(context, config);
-        this.jcrFolderTranslationFactory = jcrFolderTranslationFactory;
+        this.translatedNodeFactory = translatedNodeFactory;
 
         final IModel<String> languageModel = new LanguageModel(this);
         final ILocaleProvider localeProvider = getLocaleProvider();
@@ -199,6 +200,27 @@ public class TranslationWorkflowPlugin extends RenderPlugin {
 
     public boolean hasLocaleTranslation(String locale) {
         return translationProvider != null && translationProvider.contains(locale);
+    }
+
+    public boolean currentDocumentHasTranslation() {
+        // Will return true if the currently selected document has at least one translation (excluding English)
+        Set<String> availableLanguages = getAvailableLanguages();
+        boolean hasTranslation = false;
+        try {
+            HippoTranslatedNode translatedNode = translatedNodeFactory.createFromNode(getDocumentNode());
+            for (String language : availableLanguages) {
+                if ("en".equals(language)) {
+                    continue;
+                } else if (translatedNode.hasTranslation(language)) {
+                    hasTranslation = true;
+                    break;
+                }
+            }
+        } catch(RepositoryException ex) {
+            // If we get a repository exception creating the hippo node just return false
+            log.warn("Unable to create HippoTranslatedNode", ex);
+        }
+        return hasTranslation;
     }
 
     public Set<String> getAvailableLanguages() {
