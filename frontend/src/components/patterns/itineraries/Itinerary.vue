@@ -18,10 +18,11 @@
             <VsRow>
                 <VsCol
                     cols="12"
-                    tag="ul"
-                    class="list-unstyled p-0"
+                    class="p-0"
                 >
-                    <slot name="list" />
+                    <VsAccordion break-point="lg">
+                        <slot name="list" />
+                    </VsAccordion>
                 </VsCol>
             </VsRow>
         </VsContainer>
@@ -37,7 +38,7 @@ import {
     VsCol,
 } from '@components/elements/layout';
 import VsItineraryMobileMapToggle from '@components/patterns/itineraries/components/itinerary-mobile-map-toggle/ItineraryMobileMapToggle';
-
+import VsAccordion from '@components/patterns/accordion/Accordion';
 /**
  * A wrapper component that wraps the itinerary map and list.
  * It controls display of the mobile map toggle on smaller screens.
@@ -52,6 +53,7 @@ export default {
         VsRow,
         VsCol,
         VsItineraryMobileMapToggle,
+        VsAccordion,
     },
     data() {
         return {
