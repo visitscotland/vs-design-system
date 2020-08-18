@@ -146,6 +146,13 @@ export default {
            padding: 8px;
         }
 }
+
+@include no-js {
+    .vs-accordion-toggle__icon {
+        display: none;
+    }
+}
+
 </style>
 
 <docs>
