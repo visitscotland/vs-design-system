@@ -157,4 +157,9 @@ public class JcrDocument {
         }
         return translationDocuments;
     }
+
+    public boolean isDraftBeingEdited() throws RepositoryException {
+        Node draftNode = getVariantNode(JcrDocument.VARIANT_DRAFT);
+        return draftNode.hasProperty(HippoStdNodeType.HIPPOSTD_HOLDER);
+    }
 }

@@ -4,6 +4,7 @@ import org.hippoecm.repository.HippoStdNodeType;
 import org.hippoecm.repository.api.*;
 import org.hippoecm.repository.ext.InternalWorkflow;
 import org.hippoecm.repository.standardworkflow.CopyWorkflow;
+import org.hippoecm.repository.standardworkflow.EditableWorkflow;
 import org.hippoecm.repository.standardworkflow.FolderWorkflow;
 import org.hippoecm.repository.translation.HippoTranslatedNode;
 import org.hippoecm.repository.translation.HippoTranslationNodeType;
@@ -17,10 +18,7 @@ import javax.jcr.RepositoryException;
 import javax.jcr.Session;
 import java.io.Serializable;
 import java.rmi.RemoteException;
-import java.util.Map;
-import java.util.Set;
-import java.util.TreeMap;
-import java.util.TreeSet;
+import java.util.*;
 
 public class TranslationWorkflowImpl implements TranslationWorkflow, InternalWorkflow {
 
@@ -211,16 +209,83 @@ public class TranslationWorkflowImpl implements TranslationWorkflow, InternalWor
     }
 
     @Override
-    public void setTranslationRequiredFlag() throws RepositoryException {
+    public void setTranslationRequiredFlag() throws WorkflowException, RepositoryException, RemoteException {
         JcrDocument rootJcrDocument = new JcrDocument(rootSubject);
         if (rootJcrDocument.isNodeType("visitscotland:translatable")) {
             Set<JcrDocument> jcrTranslations = rootJcrDocument.getTranslations();
+
+            // The Hippo CMS uses the handle of the document variants to perform checkout, commit and discard
+            // operations. But the getEditableNode returns the unpublished Node so we need to keep hold of the
+            // handle so we can perform the commit, or discard operations.
+
+            // HashMap<Handle, Editable>
+            HashMap<Node, Node> editableNodes = new HashMap<>();
+            List<Node> failedCheckoutNodes = new ArrayList<>();
+
             for (JcrDocument translatedDocument : jcrTranslations) {
-                Node unpublished = translatedDocument.getVariantNode(JcrDocument.VARIANT_UNPUBLISHED);
-                unpublished.setProperty("visitscotland:translationFlag", "Translation required");
+                if (translatedDocument.isDraftBeingEdited()) {
+                    failedCheckoutNodes.add(translatedDocument.getHandle());
+                    log.debug("Document already checked out for edit, unable to send for translation");
+                    continue;
+                }
+
+                Node handle = translatedDocument.getHandle();
+                try {
+                    Node editableNode = getEditableNode(handle);
+                    editableNodes.put(handle, editableNode);
+                } catch (WorkflowException ex) {
+                    // If we get a workflow exception we have not been able to check the document out
+                    // add the Node to a list of failed documents
+                    log.debug("Document already checked out for edit, unable to send for translation", ex);
+                    failedCheckoutNodes.add(handle);
+                }
             }
-            rootSession.save();
-            rootSession.refresh(false);
+
+            if (failedCheckoutNodes.isEmpty()) {
+                for (HashMap.Entry<Node, Node> editableNodeEntry : editableNodes.entrySet()) {
+                    editableNodeEntry.getValue().setProperty("visitscotland:translationFlag", true);
+                    commitEditableNode(editableNodeEntry.getKey());
+                }
+                rootSession.save();
+                rootSession.refresh(false);
+            } else {
+                for (Node handle : editableNodes.keySet()) {
+                    discardEditableNode(handle);
+                }
+            }
+
+
+        }
+    }
+
+    protected Node getEditableNode(Node unpublishedVariant) throws RemoteException, WorkflowException, RepositoryException {
+        final Workflow editing = workflowContext.getWorkflow("editing", new Document(unpublishedVariant));
+        if (editing instanceof EditableWorkflow) {
+            EditableWorkflow editableWorkflow = (EditableWorkflow) editing;
+            Document editableDocument = editableWorkflow.obtainEditableInstance();
+            return editableDocument.getNode(rootSession);
+        } else {
+            throw new WorkflowException("Unable to obtain an EditableWorkflow to perform translation");
+        }
+    }
+
+    protected void discardEditableNode(Node toDiscard) throws RemoteException, WorkflowException, RepositoryException {
+        final Workflow editing = workflowContext.getWorkflow("editing", new Document(toDiscard));
+        if (editing instanceof EditableWorkflow) {
+            EditableWorkflow editableWorkflow = (EditableWorkflow) editing;
+            editableWorkflow.disposeEditableInstance();
+        } else {
+            throw new WorkflowException("Unable to obtain an EditableWorkflow to discard checkout");
+        }
+    }
+
+    protected void commitEditableNode(Node toCommit) throws RemoteException, WorkflowException, RepositoryException {
+        final Workflow editing = workflowContext.getWorkflow("editing", new Document(toCommit));
+        if (editing instanceof EditableWorkflow) {
+            EditableWorkflow editableWorkflow = (EditableWorkflow) editing;
+            editableWorkflow.commitEditableInstance();
+        } else {
+            throw new WorkflowException("Unable to obtain an EditableWorkflow to commit changes");
         }
     }
 

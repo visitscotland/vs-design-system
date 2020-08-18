@@ -15,5 +15,5 @@ public interface TranslationWorkflow extends Workflow {
 
     void addTranslation(String var1, Document var2) throws WorkflowException, RepositoryException, RemoteException;
 
-    void setTranslationRequiredFlag() throws RepositoryException;
+    void setTranslationRequiredFlag() throws WorkflowException, RepositoryException, RemoteException;
 }
