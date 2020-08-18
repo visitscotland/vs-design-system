@@ -1,5 +1,6 @@
 package com.visitscotland.brmx.beans;
 
+import com.visitscotland.brmx.utils.Properties;
 import org.hippoecm.hst.container.RequestContextProvider;
 import org.hippoecm.hst.content.beans.Node;
 import org.hippoecm.hst.content.beans.ObjectBeanManagerException;
@@ -16,6 +17,7 @@ import javax.jcr.NodeIterator;
 import javax.jcr.RepositoryException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 @Node(jcrType="visitscotland:basedocument")
 public class BaseDocument extends HippoDocument {
@@ -124,5 +126,31 @@ public class BaseDocument extends HippoDocument {
         } catch (RepositoryException e1) {
             logger.error(message + ". A nested exception happened while trying to access to the node ", e1);
         }
+    }
+
+    /**
+     * Reorganize the document translations depending on an order predefined by SEO so hreflang
+     *
+     * TODO Use in the content-driven-seo template
+     * @param <B>
+     * @return
+     */
+    private <B extends BaseDocument> List<B> getOrderedTranslations(){
+        //TODO: Improve variable names.
+        List<BaseDocument> beans = super.getAvailableTranslations(BaseDocument.class).getTranslations();
+        List<B> output = new ArrayList<>();
+
+        //TODO get the order from a Property
+        for (Locale locale: Properties.locales) {
+            for (BaseDocument bean : beans){
+
+                //Note: The first part of this condition might not be required once we use the property
+                if ((bean.getLocale().getLanguage().equals("en") && locale == null)
+                        ||(bean.getLocale().getLanguage().equals(locale.getLanguage()))){
+                    output.add((B) bean);
+                }
+            }
+        }
+        return output;
     }
 }
