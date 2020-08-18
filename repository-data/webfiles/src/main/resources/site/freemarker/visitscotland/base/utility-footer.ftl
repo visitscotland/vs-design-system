@@ -2,11 +2,10 @@
 <#include "../../frontend/components/vs-footer-utility-list.ftl">
 <#include "../../frontend/components/vs-footer-nav-list-item.ftl">
 
-<#-- @ftlvariable name="menu" type="org.hippoecm.hst.core.sitemenu.HstSiteMenu" -->
-<#-- @ftlvariable name="enhancedMenu" type="java.util.List" -->
-<#-- @ftlvariable name="item" type=""com.visitscotland.www.components.navigation.VsHstSiteMenuItemImpl" -->
+<#-- @ftlvariable name="menu" type="com.visitscotland.brmx.components.navigation.RootMenuItem" -->
+<#-- @ftlvariable name="item" type="com.visitscotland.brmx.components.navigation.MenuItem" -->
 
-<#if enhancedMenu??>
+<#if menu??>
     <div class="has-edit-button">
         <#list menu.siteMenuItems as item>
             <vs-footer-utility-list>

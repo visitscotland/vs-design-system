@@ -95,7 +95,7 @@
 
     <template #site-navigation>
       <#if menu.siteMenuItems??>
-        <#list enhancedMenu as item>
+        <#list menu.siteMenuItems as item>
           <@navItem menuItem=item/>
         </#list>
       </#if>

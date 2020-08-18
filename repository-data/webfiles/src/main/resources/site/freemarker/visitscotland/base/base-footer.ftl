@@ -9,12 +9,11 @@
 <#include "../macros/modules/footer/footer-copyright.ftl">
 <#include "../macros/modules/footer/footer-social-menu.ftl">
 
-<#-- @ftlvariable name="menu" type="org.hippoecm.hst.core.sitemenu.HstSiteMenu" -->
-<#-- @ftlvariable name="enhancedMenu" type="java.util.List" -->
-<#-- @ftlvariable name="item" type=""com.visitscotland.www.components.navigation.VsHstSiteMenuItemImpl" -->
+<#-- @ftlvariable name="menu" type="com.visitscotland.brmx.components.navigation.RootMenuItem" -->
+<#-- @ftlvariable name="item" type="com.visitscotland.brmx.components.navigation.MenuItem" -->
 
 <vs-footer class="has-edit-button">
-    <#if enhancedMenu??>
+    <#if menu??>
         <template slot="accordion-items">
             <@footerAccordionItem footerMenuItems=menu.siteMenuItems />
         </template>

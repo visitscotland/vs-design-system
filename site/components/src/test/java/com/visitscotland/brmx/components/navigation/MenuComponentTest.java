@@ -59,8 +59,6 @@ public class MenuComponentTest {
     @Test
     void basicHippoMockingTest(){
         MenuComponent menu = new MenuComponent(bundle, utils);
-
-//        menu.doBeforeRender(request, null);
     }
 
     @Test
@@ -74,9 +72,9 @@ public class MenuComponentTest {
 
         menu.enhanceMenu(request);
 
-        Assertions.assertEquals(1, getEnhancedMenu(request).size());
-        Assertions.assertEquals("Home Page", getEnhancedMenu(request).get(0).getTitle());
-        Assertions.assertNull(getEnhancedMenu(request).get(0).getCta());
+        Assertions.assertEquals(1, getMenu(request).size());
+        Assertions.assertEquals("Home Page", getFirstMenuItem(request).getTitle());
+        Assertions.assertNull(getFirstMenuItem(request).getCta());
     }
 
     @Test
@@ -92,11 +90,9 @@ public class MenuComponentTest {
 
         menu.enhanceMenu(request);
 
-        Assertions.assertEquals(1, getEnhancedMenu(request).size());
-        Assertions.assertEquals("Resource Bundle Title", getEnhancedMenu(request).get(0).getTitle());
+        Assertions.assertEquals(1, getMenu(request).size());
+        Assertions.assertEquals("Resource Bundle Title", getFirstMenuItem(request).getTitle());
     }
-
-
 
     @Test
     void notExisting_or_notPublishedDocument(){
@@ -107,7 +103,7 @@ public class MenuComponentTest {
 
         menu.enhanceMenu(request);
 
-        Assertions.assertEquals(0, getEnhancedMenu(request).size());
+        Assertions.assertEquals(0, getMenu(request).size());
     }
 
     @Test
@@ -120,7 +116,7 @@ public class MenuComponentTest {
 
         menu.enhanceMenu(request);
 
-        Assertions.assertEquals(0, getEnhancedMenu(request).size());
+        Assertions.assertEquals(0, getMenu(request).size());
     }
 
     @Test
@@ -134,8 +130,8 @@ public class MenuComponentTest {
 
         menu.enhanceMenu(request);
 
-        Assertions.assertEquals(1, getEnhancedMenu(request).size());
-        Assertions.assertNotNull(getEnhancedMenu(request).get(0).getWidget());
+        Assertions.assertEquals(1, getMenu(request).size());
+        Assertions.assertNotNull(getFirstMenuItem(request).getWidget());
     }
 
     @Test
@@ -153,7 +149,7 @@ public class MenuComponentTest {
 
         menu.enhanceMenu(request);
 
-        Assertions.assertEquals(0, getEnhancedMenu(request).size());
+        Assertions.assertEquals(0, getMenu(request).size());
     }
 
     @Test
@@ -171,8 +167,8 @@ public class MenuComponentTest {
 
         menu.enhanceMenu(request);
 
-        Assertions.assertEquals(1, getEnhancedMenu(request).size());
-        Assertions.assertEquals("CTA text", getEnhancedMenu(request).get(0).getCta());
+        Assertions.assertEquals(1, getMenu(request).size());
+        Assertions.assertEquals("CTA text", getFirstMenuItem(request).getCta());
     }
 
     @Test
@@ -192,8 +188,8 @@ public class MenuComponentTest {
 
         menu.enhanceMenu(request);
 
-        Assertions.assertEquals(1, getEnhancedMenu(request).size());
-        Assertions.assertEquals("See all Cities", getEnhancedMenu(request).get(0).getCta());
+        Assertions.assertEquals(1, getMenu(request).size());
+        Assertions.assertEquals("See all Cities", getFirstMenuItem(request).getCta());
     }
 
     @Test
@@ -212,8 +208,8 @@ public class MenuComponentTest {
 
         menu.enhanceMenu(request);
 
-        Assertions.assertEquals(1, getEnhancedMenu(request).size());
-        Assertions.assertEquals("See all", getEnhancedMenu(request).get(0).getCta());
+        Assertions.assertEquals(1, getMenu(request).size());
+        Assertions.assertEquals("See all", getFirstMenuItem(request).getCta());
 
         // "%s hello %s"
         // "hello"
@@ -235,8 +231,8 @@ public class MenuComponentTest {
 
         menu.enhanceMenu(request);
 
-        Assertions.assertEquals(1, getEnhancedMenu(request).size());
-        Assertions.assertEquals("See all   .", getEnhancedMenu(request).get(0).getCta());
+        Assertions.assertEquals(1, getMenu(request).size());
+        Assertions.assertEquals("See all   .", getFirstMenuItem(request).getCta());
     }
 
     @Test
@@ -272,13 +268,13 @@ public class MenuComponentTest {
 
         menu.enhanceMenu(request);
 
-        Assertions.assertEquals(1, getEnhancedMenu(request).size());
-        Assertions.assertEquals("home", getEnhancedMenu(request).get(0).getName());
-        Assertions.assertEquals("I'm the granny", getEnhancedMenu(request).get(0).getTitle());
-        Assertions.assertEquals("See my family", getEnhancedMenu(request).get(0).getCta());
+        Assertions.assertEquals(1, getMenu(request).size());
+        Assertions.assertEquals("home", getFirstMenuItem(request).getName());
+        Assertions.assertEquals("I'm the granny", getFirstMenuItem(request).getTitle());
+        Assertions.assertEquals("See my family", getFirstMenuItem(request).getCta());
 
-        Assertions.assertEquals(1, getEnhancedMenu(request).get(0).getChildMenuItems().size());
-        MenuItem aux = (MenuItem) getEnhancedMenu(request).get(0).getChildMenuItems().get(0);
+        Assertions.assertEquals(1, getFirstMenuItem(request).getChildMenuItems().size());
+        MenuItem aux = (MenuItem) getFirstMenuItem(request).getChildMenuItems().get(0);
         Assertions.assertEquals("child", aux.getName());
         Assertions.assertEquals("Still a Parent", aux.getTitle());
         Assertions.assertEquals("See my children", aux.getCta());
@@ -302,8 +298,12 @@ public class MenuComponentTest {
         return request;
     }
 
-    private List<MenuItem> getEnhancedMenu(HstRequest request){
-        return (List<MenuItem>) request.getModel(MenuComponent.ENHANCED_MENU);
+    private List<HstSiteMenuItem> getMenu(HstRequest request){
+        return ((RootMenuItem) request.getModel(MenuComponent.MENU)).getSiteMenuItems();
+    }
+    
+    private MenuItem getFirstMenuItem(HstRequest request){
+        return (MenuItem) getMenu(request).get(0);
     }
 
     private void addHstLink(HstRequest request, HippoBean bean){

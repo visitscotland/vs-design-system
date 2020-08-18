@@ -66,9 +66,12 @@ public class MenuComponent extends EssentialsMenuComponent {
         List<HstSiteMenuItem> enhancedMenu = new ArrayList<>();
         RootMenuItem root = new RootMenuItem(request.getModel(MENU));
 
+        //Calculate the resource bundle id
+        String resourceBundle = NAVIGATION_PREFIX + ((HstSiteMenu) request.getModel(MENU)).getName();
+
         if (request.getModel(MENU) != null) {
             for (HstSiteMenuItem hstItem: (((HstSiteMenu)request.getModel(MENU)).getSiteMenuItems())) {
-                MenuItem menuItem = enhanceMenuItem(request, hstItem);
+                MenuItem menuItem = enhanceMenuItem(request, hstItem, resourceBundle);
                 if (menuItem != null) {
                     enhancedMenu.add(menuItem);
                 }
@@ -76,18 +79,12 @@ public class MenuComponent extends EssentialsMenuComponent {
 
             root.setSiteMenuItems(enhancedMenu);
 
-            //TODO: Legacy configuration used on the footer. To be removed in future iterations
-            request.setModel(ENHANCED_MENU, enhancedMenu);
             request.setModel(MENU, root);
         }
-
     }
 
-    private MenuItem enhanceMenuItem(HstRequest request, HstSiteMenuItem hstItem){
+    private MenuItem enhanceMenuItem(HstRequest request, HstSiteMenuItem hstItem, String resourceBundle){
         MenuItem menuItem = new MenuItem(hstItem);
-
-        String nodeName = ((HstSiteMenu) request.getModel(MENU)).getName();
-        String resourceBundle = NAVIGATION_PREFIX + nodeName;
 
         //By default the name would be populated by the resourceBundle
         menuItem.setTitle(bundle.getResourceBundle(resourceBundle, hstItem.getName(), request.getLocale(), true));
@@ -103,8 +100,10 @@ public class MenuComponent extends EssentialsMenuComponent {
                     //Widget document
                     if (bean instanceof Widget) {
                         menuItem.setWidget((Widget) bean);
+                    } else if (bean instanceof Page){
+                        updateMenuItemFromDocument(menuItem, (Page) bean, resourceBundle, request);
                     } else {
-                        updateMenuItemFromDocument(menuItem, bean, resourceBundle, request);
+                        logger.warn("Skipping Unexpected document type: " + bean.getClass().getSimpleName());
                     }
                 }
             }
@@ -113,7 +112,7 @@ public class MenuComponent extends EssentialsMenuComponent {
         if (menuItem.getTitle() != null || menuItem.getWidget() != null) {
             //Process all children
             for (HstSiteMenuItem hstChild : hstItem.getChildMenuItems()) {
-                menuItem.addChild(enhanceMenuItem(request, hstChild));
+                menuItem.addChild(enhanceMenuItem(request, hstChild, resourceBundle));
             }
             return menuItem;
         } else {
@@ -130,13 +129,13 @@ public class MenuComponent extends EssentialsMenuComponent {
      * @param bundleId Resource Bundle where the labels of the menu item might come from
      * @param request HstRequest
      */
-    private void updateMenuItemFromDocument(MenuItem menuItem, HippoBean document, String bundleId, HstRequest request){
+    private void updateMenuItemFromDocument(MenuItem menuItem, Page document, String bundleId, HstRequest request){
         //If the menu hasn't been set we use the title coming from the document.
-        if (Contract.isEmpty(menuItem.getTitle()) && document instanceof Page) {
-            if (!Contract.isEmpty(((Page) document).getBreadcrumb())){
-                menuItem.setTitle(((Page) document).getBreadcrumb());
+        if (Contract.isEmpty(menuItem.getTitle())) {
+            if (!Contract.isEmpty(document.getBreadcrumb())){
+                menuItem.setTitle(document.getBreadcrumb());
             } else {
-                menuItem.setTitle(((Page) document).getTitle());
+                menuItem.setTitle(document.getTitle());
             }
         }
 
@@ -157,10 +156,11 @@ public class MenuComponent extends EssentialsMenuComponent {
                     menuItem.setCta(seeAll.replace("%s", ""));
                 }
             }
+        } else {
+            //Title is a mandatory field for all page documents. The following line being executed might mean that the node is corrupted
+            logger.error(String.format("The node %s does not have a title", document.getPath()));
         }
     }
-
-
 
     private boolean isDocumentBased(HstLink link){
         return link != null && link.getPath() != null && link.getPath().length() > 0;
