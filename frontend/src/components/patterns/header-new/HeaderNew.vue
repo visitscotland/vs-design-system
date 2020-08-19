@@ -1,9 +1,8 @@
-<!-- eslint-disable -->
 <template>
     <header>
         <!-- @slot Global menu bar slot  -->
         <slot name="global-navbar" />
-        
+
         <!-- @slot Main navigation bar slot  -->
         <slot name="mega-nav" />
     </header>

@@ -3,10 +3,10 @@
         :variant="variant"
         :href="href"
         :tabindex="tabindex"
-        class="text-uppercase"
         :class="{
             [animateClass]: animateClass,
             [backgroundClass]: backgroundClass,
+            [textTransformClass]: textTransformClass,
         }"
         :size="size"
         v-bind="$attrs"
@@ -90,6 +90,14 @@ export default {
             type: Boolean,
             default: true,
         },
+        /**
+         * By default, button text is uppercase
+         * To disable, add an uppercase=false property
+         */
+        uppercase: {
+            type: Boolean,
+            default: true,
+        },
     },
     computed: {
         animateClass() {
@@ -97,6 +105,9 @@ export default {
         },
         backgroundClass() {
             return this.background ? [`btn-bg-${this.background}`] : null;
+        },
+        textTransformClass() {
+            return this.uppercase ? 'text-uppercase' : null;
         },
     },
     methods: {

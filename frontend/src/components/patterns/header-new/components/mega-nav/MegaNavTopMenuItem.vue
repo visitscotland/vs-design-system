@@ -7,6 +7,8 @@
             class="vs-mega-nav__button"
             variant="transparent"
             aria-haspopup="true"
+            :animate="false"
+            :uppercase="false"
             :aria-expanded="isOpen ? 'true' : 'false'"
             @click.native="openMenu"
         >
@@ -23,7 +25,6 @@
 </template>
 
 <script>
-
 /**
  *  Mega nav top level menu button
  */
@@ -75,11 +76,50 @@ export default {
 </script>
 
 <style lang="scss">
-@import "~bootstrap/scss/type";
+@import '~bootstrap/scss/type';
 
-.vs-mega-nav__button{
-    text-transform: none;
-    position: relative;
+.vs-mega-nav__item {
+
+    @include media-breakpoint-up(xl) {
+        margin-right: $spacer-6;
+
+        &:last-of-type{
+            margin-right: 0;
+        }
+    }
+
+    .vs-mega-nav__button.btn {
+        letter-spacing: 0;
+        font-weight: normal;
+        line-height: 1.2;
+        padding: $spacer-3 $spacer-2;
+        border-radius: 0;
+        border: 0;
+
+        &::after {
+            content: '';
+            position: absolute;
+            display: block;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 4px;
+            background: $color-pink !important;
+            transition: width 0.2s;
+        }
+
+        &:hover{
+            color: $color-pink;
+
+            &::after {
+                width: 100%;
+            }
+        }
+
+        &:focus {
+            box-shadow: 0 0 0 0.1rem $color-pink;
+        }
+    }
 }
 </style>
 
