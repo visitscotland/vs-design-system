@@ -30,8 +30,11 @@ export default {
 @import "~bootstrap/scss/type";
 
 .vs-mega-nav-top-menu {
-    width: 100%;
-    display: flex;
+    &.vs-list.unstyled{
+        width: 100%;
+        display: flex;
+        margin-top: 0.75rem;
+    }
 }
 
 </style>

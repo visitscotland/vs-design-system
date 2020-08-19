@@ -57,6 +57,16 @@ export default {
 };
 </script>
 
+<style lang="scss">
+.vs-svg-link {
+    &:focus {
+        outline: none;
+        box-shadow: 0 0 0 0.1rem $color-pink;
+    }
+}
+
+</style>
+
 <docs>
 ```jsx
     <vs-svg-link
