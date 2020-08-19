@@ -57,40 +57,6 @@
                     </div>
 
                     <!-- Language Changer Component -->
-                    <VsDropdown
-                        class="vs-global-menu__languages"
-                    >
-                        <template
-                            v-slot:button-content
-                        >
-                            <VsIcon
-                                class="d-none d-lg-block"
-                                name="information"
-                                variant="light"
-                                size="xxs"
-                            />
-                            <div class="d-lg-none">
-                                {{ selectedLanguage }}
-                            </div>
-                            <!-- Tablet/Desktop -->
-                            <div class="d-none d-lg-block">
-                                Language: {{ selectedLanguage }}
-                            </div>
-                        </template>
-                        <VsDropdownItem
-                            v-for="lang in websiteLanguages"
-                            :key="lang.languageTag"
-                        >
-                            <!-- Mobile Text -->
-                            <div class="d-lg-none">
-                                {{ lang.languageTag }}
-                            </div>
-                            <!-- Tablet/Desktop -->
-                            <div class="d-none d-lg-block">
-                                {{ lang.languageName }}
-                            </div>
-                        </VsDropdownItem>
-                    </VsDropdown>
                 </VsCol>
             </VsRow>
         </VsContainer>
