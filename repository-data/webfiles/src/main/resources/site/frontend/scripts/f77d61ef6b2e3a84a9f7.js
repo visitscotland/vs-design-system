@@ -1,0 +1,1 @@
+!function(e,o){"object"==typeof exports&&"object"==typeof module?module.exports=o():"function"==typeof define&&define.amd?define([],o):"object"==typeof exports?exports.VsStoreDrawerStore=o():e.VsStoreDrawerStore=o()}(window,function(){return(window.webpackJsonp_name_=window.webpackJsonp_name_||[]).push([[193],[],[["I6a5",0,2,4,3,5,6,7,8,9,14,16,40,44]]])});
