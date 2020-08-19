@@ -8,7 +8,7 @@
                 >
                     <!-- Mobile Devices Menu -->
                     <VsDropdown
-                        text="Our Websites"
+                        :text="ourWebsitesLabel"
                         class="vs-global-menu__websites d-lg-none"
                     >
                         <VsDropdownItem
@@ -43,54 +43,9 @@
                         </li>
                     </VsList>
 
-                    <!-- Login Temporary "Component" -->
-                    <div class="vs-global-menu__login">
-                        <VsIcon
-                            name="user"
-                            variant="light"
-                            size="xxs"
-                        />
-                        Hi Alexis...
-                        <a href="#">
-                            (Not you?)
-                        </a>
-                    </div>
+                    <slot name="login-menu" />
 
-                    <!-- Language Changer Component -->
-                    <VsDropdown
-                        class="vs-global-menu__languages"
-                    >
-                        <template
-                            v-slot:button-content
-                        >
-                            <VsIcon
-                                class="d-none d-lg-block"
-                                name="information"
-                                variant="light"
-                                size="xxs"
-                            />
-                            <div class="d-lg-none">
-                                {{ selectedLanguage }}
-                            </div>
-                            <!-- Tablet/Desktop -->
-                            <div class="d-none d-lg-block">
-                                Language: {{ selectedLanguage }}
-                            </div>
-                        </template>
-                        <VsDropdownItem
-                            v-for="lang in websiteLanguages"
-                            :key="lang.languageTag"
-                        >
-                            <!-- Mobile Text -->
-                            <div class="d-lg-none">
-                                {{ lang.languageTag }}
-                            </div>
-                            <!-- Tablet/Desktop -->
-                            <div class="d-none d-lg-block">
-                                {{ lang.languageName }}
-                            </div>
-                        </VsDropdownItem>
-                    </VsDropdown>
+                    <slot name="language-menu" />
                 </VsCol>
             </VsRow>
         </VsContainer>
@@ -98,17 +53,16 @@
 </template>
 
 <script>
-import VsIcon from '@components/elements/icon';
-import VsList from '@components/elements/list';
 import {
     VsContainer, VsRow, VsCol,
 } from '@components/elements/layout';
+import VsList from '@components/elements/list';
 import VsDropdown from '../../../dropdown/Dropdown';
 import VsDropdownItem from '../../../dropdown/DropdownItem';
 
 /**
  * This component is the main Global Nav Wrapper for the top of the page.
- * It holds the Our Websites and Language Changer functions to be shared across other websites.
+ * It holds the Our Websites and slots for Login and Language Change functionalities.
  */
 
 export default {
@@ -116,13 +70,12 @@ export default {
     status: 'prototype',
     release: '0.1.0',
     components: {
-        VsIcon,
-        VsList,
         VsContainer,
-        VsCol,
         VsRow,
+        VsCol,
         VsDropdown,
         VsDropdownItem,
+        VsList,
     },
     props: {
         /**
@@ -132,36 +85,16 @@ export default {
             type: String,
             required: true,
         },
+        /**
+         * Translation text for the "Our Websites" label
+         */
+        ourWebsitesLabel: {
+            type: String,
+            default: 'Our Websites',
+        },
     },
     data() {
         return {
-            selectedLanguage: 'EN',
-            websiteLanguages: [
-                {
-                    languageTag: 'EN',
-                    languageName: 'English',
-                },
-                {
-                    languageTag: 'DE',
-                    languageName: 'Deutsch',
-                },
-                {
-                    languageTag: 'ES',
-                    languageName: 'Español',
-                },
-                {
-                    languageTag: 'FR',
-                    languageName: 'Français',
-                },
-                {
-                    languageTag: 'IT',
-                    languageName: 'Italiano',
-                },
-                {
-                    languageTag: 'NE',
-                    languageName: 'Nederlands',
-                },
-            ],
             ourWebsites: [
                 {
                     siteName: 'VisitScotland',
@@ -196,9 +129,13 @@ export default {
     color: white;
     position: relative;
     font-size: $font-size-sm;
+    height: 28px;
+    display: flex;
+    align-items: center;
 
     @include media-breakpoint-up(lg) {
         font-size: $small-font-size;
+        height: 35px;
     }
 
     .container {
@@ -221,32 +158,21 @@ export default {
         }
     }
 
-    &__login {
-        margin-right: 1rem;
-    }
-
-    .dropdown-toggle {
-        display: flex;
-        align-items: center;
-    }
-
     .icon:not(.icon-chevron-down):not(.icon-chevron-up) {
         margin-right: 0.5rem;
     }
 }
 
 .vs-global-menu__websites,
-.vs-global-menu__websites .btn,
-.vs-global-menu__languages,
-.vs-global-menu__languages .btn {
+.vs-global-menu__websites .btn {
     padding: 0;
     background: transparent;
     border: none;
 }
 
-.vs-global-menu__websites,
-.vs-global-menu__languages {
+.vs-global-menu__websites {
     position: initial;
+    flex: auto;
 
     a {
         color: white;
@@ -258,8 +184,10 @@ export default {
     }
 
     & .btn {
-        padding: 0.5rem;
+        padding: 0.3rem $spacer-5;
         font-size: $font-size-sm;
+        display: flex;
+        align-items: center;
 
         @include media-breakpoint-up(lg) {
             font-size: $small-font-size;
@@ -293,7 +221,7 @@ export default {
         background: $color-purple;
 
         &.show {
-            transform: translate3d(0px, 32px, 0px) !important;
+            transform: translate3d(0px, 26px, 0px) !important;
             border: none;
             padding: 0;
 
@@ -305,9 +233,10 @@ export default {
                 }
 
                 a {
-                    padding: 1rem;
+                    padding: 0.7rem $spacer-5;
                     color: white;
                     text-decoration: none;
+                    font-size: $font-size-sm;
 
                     &:hover, &:focus {
                         background: $color-purple-shade-2;
@@ -321,14 +250,11 @@ export default {
             }
         }
     }
-}
-
-.vs-global-menu__websites {
-    flex: auto;
 
     &__item {
         a {
-            padding: 0.6rem 1rem;
+            padding: 0.55rem $spacer_5;
+            max-height: 35px;
 
             &:focus {
                 outline: 3px solid $color-purple-tint-5;
@@ -357,16 +283,21 @@ export default {
         }
     }
 }
-
-.vs-global-menu__languages {
-    @include media-breakpoint-up(lg) {
-        position: relative;
-    }
-}
 </style>
 
 <docs>
   ```
-    <vs-global-menu active-site="https://www.visitscotland.com/"></vs-global-menu>
+    <vs-global-menu
+        our-websites-label="I nostri siti"
+        active-site="https://www.visitscotland.com/"
+    >
+        <span slot="login-menu">
+            User... (Not you?)
+        </span>
+
+        <span slot="language-menu">
+            EN
+        </span>
+    </vs-global-menu>
   ```
 </docs>
