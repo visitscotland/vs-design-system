@@ -1,6 +1,8 @@
-<!-- eslint-disable -->
 <template>
-    <li class="vs-mega-nav__item" ref="menuToggle">
+    <li
+        class="vs-mega-nav__item"
+        ref="menuToggle"
+    >
         <VsButton
             class="vs-mega-nav__button"
             variant="transparent"
@@ -12,6 +14,9 @@
         </VsButton>
 
         <VsMegaNavDropdown v-show="isOpen">
+            <a :href="href">{{ ctaText }}</a>
+            <hr>
+
             <slot name="subnav" />
         </VsMegaNavDropdown>
     </li>
@@ -33,6 +38,16 @@ export default {
     components: {
         VsButton,
         VsMegaNavDropdown,
+    },
+    props: {
+        href: {
+            type: String,
+            default: '',
+        },
+        ctaText: {
+            type: String,
+            default: '',
+        },
     },
     data() {
         return {
