@@ -13,7 +13,7 @@ import java.util.Map;
 
 public class MenuItem implements HstSiteMenuItem {
 
-    private final HstSiteMenuItem menuItem;
+    private final HstSiteMenuItem hstMenuItem;
     private final List<HstSiteMenuItem> children;
 
     @PageModelIgnore
@@ -24,9 +24,13 @@ public class MenuItem implements HstSiteMenuItem {
     private String cta;
 
 
-    public MenuItem(HstSiteMenuItem menuItem) {
+    public MenuItem(HstSiteMenuItem hstMenuItem) {
         this.children = new ArrayList<>();
-        this.menuItem = menuItem;
+        this.hstMenuItem = hstMenuItem;
+    }
+
+    public HstSiteMenuItem getHstMenuItem() {
+        return hstMenuItem;
     }
 
     public Widget getWidget() {
@@ -84,71 +88,71 @@ public class MenuItem implements HstSiteMenuItem {
 
     @Override
     public String getName() {
-        return menuItem.getName();
+        return hstMenuItem.getName();
     }
 
     @Override
     public HstSiteMenu getHstSiteMenu() {
-        return menuItem.getHstSiteMenu();
+        return hstMenuItem.getHstSiteMenu();
     }
 
     @Override
     public String getParameter(String s) {
-        return menuItem.getParameter(s);
+        return hstMenuItem.getParameter(s);
     }
 
     @Override
     public String getLocalParameter(String s) {
-        return menuItem.getLocalParameter(s);
+        return hstMenuItem.getLocalParameter(s);
     }
 
     @Override
     public Map<String, String> getParameters() {
-        return menuItem.getParameters();
+        return hstMenuItem.getParameters();
     }
 
     @Override
     public Map<String, String> getLocalParameters() {
-        return menuItem.getLocalParameters();
+        return hstMenuItem.getLocalParameters();
     }
 
     @Override
     public HstLink getHstLink() {
-        return menuItem.getHstLink();
+        return hstMenuItem.getHstLink();
     }
 
     @Override
     public String getExternalLink() {
-        return menuItem.getExternalLink();
+        return hstMenuItem.getExternalLink();
     }
 
     @Override
     public ResolvedSiteMapItem resolveToSiteMapItem() {
-        return menuItem.resolveToSiteMapItem();
+        return hstMenuItem.resolveToSiteMapItem();
     }
 
     @Override
     public boolean isExpanded() {
-        return menuItem.isExpanded();
+        return hstMenuItem.isExpanded();
     }
 
     @Override
     public Map<String, Object> getProperties() {
-        return menuItem.getProperties();
+        return hstMenuItem.getProperties();
     }
 
     @Override
     public boolean isRepositoryBased() {
-        return menuItem.isRepositoryBased();
+        return hstMenuItem.isRepositoryBased();
     }
 
     @Override
     public int getDepth() {
-        return menuItem.getDepth();
+        return hstMenuItem.getDepth();
     }
 
     @Override
     public boolean isSelected() {
-        return menuItem.isSelected();
+        return hstMenuItem.isSelected();
     }
 }
