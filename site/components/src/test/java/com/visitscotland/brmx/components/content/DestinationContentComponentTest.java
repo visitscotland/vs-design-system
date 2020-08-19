@@ -3,11 +3,10 @@ package com.visitscotland.brmx.components.content;
 import com.visitscotland.brmx.beans.Destination;
 import com.visitscotland.brmx.beans.Megalinks;
 import com.visitscotland.brmx.beans.MegalinksMockService;
-import com.visitscotland.brmx.beans.mapping.megalinks.AbstractLayout;
+import com.visitscotland.brmx.beans.mapping.megalinks.LinksModule;
 import com.visitscotland.brmx.components.content.factory.LinkModulesFactory;
 import com.visitscotland.brmx.dms.DMSDataService;
 import com.visitscotland.brmx.dms.ProductSearchBuilder;
-import com.visitscotland.brmx.utils.CommonUtils;
 import com.visitscotland.brmx.utils.HippoUtilsService;
 import org.hippoecm.hst.core.component.HstRequest;
 import org.hippoecm.hst.mock.core.component.MockHstRequest;
@@ -112,7 +111,7 @@ public class DestinationContentComponentTest {
         DestinationContentComponent dcc = mockComponent(document);
 
         dcc.addModules(request);
-        List<AbstractLayout> items = (List)request.getAttribute(DestinationContentComponent.PAGE_ITEMS);
+        List<LinksModule> items = (List)request.getAttribute(DestinationContentComponent.PAGE_ITEMS);
 
         Assertions.assertEquals(4, items.size());
 
@@ -140,7 +139,7 @@ public class DestinationContentComponentTest {
         DestinationContentComponent dcc = mockComponent(document);
 
         dcc.addModules(request);
-        List<AbstractLayout> items = (List)request.getAttribute(DestinationContentComponent.PAGE_ITEMS);
+        List<LinksModule> items = (List)request.getAttribute(DestinationContentComponent.PAGE_ITEMS);
 
         Assertions.assertEquals(4, items.size());
 
@@ -168,8 +167,8 @@ public class DestinationContentComponentTest {
 
         dccA.addModules(request);
         dccB.addModules(request);
-        List<AbstractLayout> listA = (List)request.getAttribute(DestinationContentComponent.PAGE_ITEMS);
-        List<AbstractLayout> listB = (List)request.getAttribute(DestinationContentComponent.PAGE_ITEMS);
+        List<LinksModule> listA = (List)request.getAttribute(DestinationContentComponent.PAGE_ITEMS);
+        List<LinksModule> listB = (List)request.getAttribute(DestinationContentComponent.PAGE_ITEMS);
 
         Assertions.assertEquals(listA.get(0).getStyle(), listB.get(0).getStyle());
     }

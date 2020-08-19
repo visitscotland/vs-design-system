@@ -35,7 +35,6 @@ public class ItineraryContentComponent extends PageContentComponent<Itinerary> {
     @Override
     public void doBeforeRender(HstRequest request, HstResponse response) {
         super.doBeforeRender(request, response);
-
         generateStops(request);
         addHeroCoordinates(request);
     }
@@ -107,13 +106,13 @@ public class ItineraryContentComponent extends PageContentComponent<Itinerary> {
                            errors.add("The product's id  was not provided");
                             logger.warn(CommonUtils.contentIssue("The product's id was not provided for %s, Stop %s", itinerary.getName(), model.getIndex()));
                         } else {
-                            JsonNode product = CommonUtils.getProduct(dmsLink.getProduct(), request.getLocale());
+                            JsonNode product = dmsData.productCard(dmsLink.getProduct(), request.getLocale());
                             if (product == null){
                                 errors.add("The product id does not exist in the DMS");
                                 logger.warn(CommonUtils.contentIssue("The product id does not exist in the DMS for %s, Stop %s", itinerary.getName(), model.getIndex()));
                             } else {
 
-                                FlatLink ctaLink = new FlatLink(this.getCtaLabel(dmsLink.getLabel(),request.getLocale()),product.get(URL).asText());
+                                FlatLink ctaLink = new FlatLink(CommonUtils.getCtaLabel(dmsLink.getLabel(),request.getLocale()),product.get(URL).asText());
                                 model.setCtaLink(ctaLink);
                                 if (product.has(ADDRESS)){
                                     JsonNode address = product.get(ADDRESS);
@@ -169,7 +168,7 @@ public class ItineraryContentComponent extends PageContentComponent<Itinerary> {
                     visitDuration = externalLink.getTimeToExplore();
 
                     if (externalLink.getExternalLink() != null) {
-                        FlatLink ctaLink = new FlatLink(this.getCtaLabel(externalLink.getExternalLink().getLabel(), request.getLocale()), externalLink.getExternalLink().getLink());
+                        FlatLink ctaLink = new FlatLink(CommonUtils.getCtaLabel(externalLink.getExternalLink().getLabel(), request.getLocale()), externalLink.getExternalLink().getLink());
                         model.setCtaLink(ctaLink);
                     }
 
@@ -235,8 +234,7 @@ public class ItineraryContentComponent extends PageContentComponent<Itinerary> {
 
     /**
      * Method to calculate the distance between stops
-     * TODO This method must be changed in the future to calculate distance based on routes (Graphhopper)
-     * @param model the stop
+y     * @param model the stop
      * @return distance between stops
      */
   

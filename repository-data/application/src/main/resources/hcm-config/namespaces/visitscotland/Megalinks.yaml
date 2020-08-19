@@ -11,7 +11,7 @@ definitions:
         /hipposysedit:nodetype:
           jcr:primaryType: hipposysedit:nodetype
           jcr:mixinTypes: ['mix:referenceable', 'hipposysedit:remodel']
-          jcr:uuid: 92b8e223-0081-4034-8877-46297f0f4e19
+          jcr:uuid: 39ab364a-0965-48ba-b5b2-fb3ee41695e4
           hipposysedit:node: true
           hipposysedit:supertype: ['visitscotland:basedocument', 'hippostd:relaxed',
             'hippotranslation:translated']
@@ -62,6 +62,13 @@ definitions:
             hipposysedit:path: visitscotland:megalinkItems
             hipposysedit:type: hippo:compound
             hipposysedit:validators: [contentblocks-validator, required]
+          /products:
+            jcr:primaryType: hipposysedit:field
+            hipposysedit:multiple: true
+            hipposysedit:ordered: true
+            hipposysedit:path: visitscotland:products
+            hipposysedit:type: hippo:compound
+            hipposysedit:validators: [contentblocks-validator]
       /hipposysedit:prototypes:
         jcr:primaryType: hipposysedit:prototypeset
         /hipposysedit:prototype:
@@ -74,7 +81,7 @@ definitions:
           hippotranslation:locale: document-type-locale
           jcr:mixinTypes: ['mix:referenceable']
           visitscotland:title: ''
-          jcr:uuid: 46da91ae-37ca-4401-8ac4-8e427809dfe9
+          jcr:uuid: e0c3319a-b7df-45eb-b0b7-3bda1bc1fdc9
           hippostdpubwf:lastModificationDate: 2020-05-14T14:29:51.020+01:00
           hippostdpubwf:creationDate: 2020-05-14T14:29:51.020+01:00
           visitscotland:teaserVisible: true
@@ -166,3 +173,14 @@ definitions:
             /cluster.options:
               jcr:primaryType: frontend:pluginconfig
               maxitems: 10
+          /products:
+            jcr:primaryType: frontend:plugin
+            caption: Link Button
+            compoundList: visitscotland:CMSLink,visitscotland:DMSLink,visitscotland:ExternalLink,visitscotland:ProductSearchLink
+            contentPickerType: links
+            field: products
+            plugin.class: org.onehippo.forge.contentblocks.ContentBlocksFieldPlugin
+            wicket.id: ${cluster.id}.left.item
+            /cluster.options:
+              jcr:primaryType: frontend:pluginconfig
+              maxitems: 1
