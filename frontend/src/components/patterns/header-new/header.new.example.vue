@@ -1,4 +1,3 @@
-<!-- eslint-disable -->
 <template>
     <VsHeaderNew>
         <template slot="global-navbar">
@@ -18,16 +17,23 @@
         <template slot="mega-nav">
             <VsMegaNav>
                 <template slot="mega-nav-top-menu-items">
-                    
-                    
                     <VsMegaNavTopMenuItem
                         v-for="(item, index) in header.mainNav"
                         :key="index"
+                        :href="item.href"
+                        :cta-text="item.cta"
                     >
-                        {{item.title}}
-                        
+                        {{ item.title }}
+
                         <template slot="subnav">
-                            Test {{item.title}}
+                            <ul>
+                                <li
+                                    v-for="(subnavItem, subnavIndex) in item.subnav"
+                                    :key="subnavIndex"
+                                >
+                                    {{ subnavItem.title }}
+                                </li>
+                            </ul>
                         </template>
                     </VsMegaNavTopMenuItem>
                 </template>
