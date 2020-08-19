@@ -1,4 +1,6 @@
-<#include "../../../include/imports.ftl">
+<#include "../../include/imports.ftl">
+<@hst.setBundle basename="navigation.static"/>
+
 <#-- @ftlvariable name="breadcrumb" type="org.onehippo.forge.breadcrumb.om.Breadcrumb" -->
 
 <#if breadcrumb?? && breadcrumb.items??>

@@ -2,6 +2,7 @@ package com.visitscotland.brmx.services;
 
 import com.visitscotland.brmx.utils.CommonUtils;
 import com.visitscotland.utils.Contract;
+import org.hippoecm.hst.core.component.HstRequest;
 import org.hippoecm.hst.resourcebundle.ResourceBundleRegistry;
 import org.hippoecm.hst.site.HstServices;
 import org.slf4j.Logger;
@@ -13,6 +14,8 @@ import java.util.ResourceBundle;
 public class ResourceBundleService {
 
     private static final Logger logger = LoggerFactory.getLogger(ResourceBundleService.class.getName());
+
+    private static final String SERVICE_NAME = "ResourceBundle";
 
     final ResourceBundleRegistry resourceBundleRegistry;
     final CommonUtils common;
@@ -163,6 +166,15 @@ public class ResourceBundleService {
     void logContentIssue(String message, Object... args){
         //TODO Transform into a different Logger
         logger.warn(common.contentIssue(message, args));
+    }
+
+    public void registerIn(HstRequest request){
+        if (request.getAttribute(SERVICE_NAME) == null) {
+            request.setAttribute(SERVICE_NAME, this);
+            logger.debug(SERVICE_NAME + " has been registered on the request");
+        } else{
+            logger.info(SERVICE_NAME + " has been been already registered on the request");
+        }
     }
 
 }
