@@ -30,6 +30,7 @@ pipeline {
   agent {label thisAgent}
   triggers { cron( cron_string ) }
   environment {
+    MAVEN_SETTINGS = credentials('maven-settings')
     // from 20200804 VS_SSR_PROXY_ON will only affect whether the SSR app is packaged and sent to the container, using or bypassing will be set via query string
     VS_SSR_PROXY_ON = 'TRUE'
     // VS_CONTAINER_PRESERVE is set to TRUE in the ingrastructure build script, if this is set to FALSE the container will be rebuilt every time and the repository wiped
@@ -156,7 +157,44 @@ pipeline {
         }
       }
     } //end stage
+    stage ('Snapshot to Nexus'){
+        when {
+            not {
+                branch 'PR-145'//to do - change this to master and staging when ready
+            }
+        }
+        steps{
+            script{
+                sh 'mvn -f pom.xml deploy -P dist -s $MAVEN_SETTINGS'
+            }
+        }
+    }
+    stage('Release to Nexus') {
+        when {
+            branch 'PR-145' // to do - change this to develop  when ready
+        }
+        steps {
+         
+            script {
+              NEW_TAG = "${env.JOB_NAME}-${env.BUILD_NUMBER}"
+            }
 
+            echo "Creating tag $NEW_TAG"
+            sh "git tag -m \"CI tagging\" $NEW_TAG"
+            echo "Uploading tag $NEW_TAG to Bitbucket"
+            withCredentials([usernamePassword(credentialsId: 'jenkins-ssh', usernameVariable: 'USER', passwordVariable: 'PASSWORD')]) {
+              sh """
+              git config --local credential.username ${USER}
+              git config --local credential.helper "!echo password=${PASSWORD}; echo"
+              git push origin $NEW_TAG --repo=${env.GIT_URL}
+              """
+            }
+            echo "Uploading version $NEW_TAG to Nexus"
+            sh "mvn versions:set -DremoveSnapshot"
+            sh "mvn -B clean  deploy -P dist -Drevision=$NEW_TAG -Dchangelist= -DskipTests -s $MAVEN_SETTINGS"
+        }
+          
+    }
     stage ('vs build feature env') {
       steps{
         script{
