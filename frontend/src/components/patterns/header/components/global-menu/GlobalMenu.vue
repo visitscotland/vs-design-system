@@ -48,7 +48,7 @@
                         <VsIcon
                             name="user"
                             variant="light"
-                            size="xs"
+                            size="xxs"
                         />
                         Hi Alexis...
                         <a href="#">
@@ -67,7 +67,7 @@
                                 class="d-none d-lg-block"
                                 name="information"
                                 variant="light"
-                                size="xs"
+                                size="xxs"
                             />
                             <div class="d-lg-none">
                                 {{ selectedLanguage }}
@@ -106,6 +106,11 @@ import {
 import VsDropdown from '../../../dropdown/Dropdown';
 import VsDropdownItem from '../../../dropdown/DropdownItem';
 
+/**
+ * This component is the main Global Nav Wrapper for the top of the page.
+ * It holds the Our Websites and Language Changer functions to be shared across other websites.
+ */
+
 export default {
     name: 'VsGlobalMenu',
     status: 'prototype',
@@ -125,7 +130,6 @@ export default {
          */
         activeSite: {
             type: String,
-            default: '',
             required: true,
         },
     },
@@ -191,10 +195,14 @@ export default {
     background: $color-purple;
     color: white;
     position: relative;
-    font-size: 14px;
+    font-size: $font-size-sm;
+
+    @include media-breakpoint-up(lg) {
+        font-size: $small-font-size;
+    }
 
     .container {
-        @media (max-width: 1000px) {
+        @include media-breakpoint-down(lg) {
             padding: 0;
             margin: 0;
             max-width: 100%;
@@ -205,7 +213,8 @@ export default {
         position: initial;
         display: flex;
         align-items: center;
-        @media (max-width: 1000px) {
+
+        @include media-breakpoint-down(lg) {
             width: 100%;
             padding: 0;
             margin: 0;
@@ -242,6 +251,7 @@ export default {
     a {
         color: white;
         text-decoration: none;
+
         &:hover {
             background: $color-purple-shade-2;
         }
@@ -249,12 +259,18 @@ export default {
 
     & .btn {
         padding: 0.5rem;
-        font-size: 14px;
+        font-size: $font-size-sm;
+
+        @include media-breakpoint-up(lg) {
+            font-size: $small-font-size;
+        }
+
         &-secondary:not(:disabled):not(.disabled):active {
             background: $color-purple-shade-2;
         }
+
         &:focus {
-            outline: 3px solid rgba(235,191,219,1);
+            outline: 3px solid $color-purple-tint-5;
             outline-offset: -3px;
             box-shadow: none;
         }
@@ -267,7 +283,7 @@ export default {
     }
 
     ul:focus {
-        outline: 3px solid rgba(235,191,219,1);
+        outline: 3px solid $color-purple-tint-5;
         outline-offset: -3px;
     }
 
@@ -275,12 +291,14 @@ export default {
         min-width: auto;
         width: 100%;
         background: $color-purple;
+
         &.show {
-            transform: translate3d(0px, 35px, 0px) !important;
+            transform: translate3d(0px, 32px, 0px) !important;
             border: none;
             padding: 0;
+
             li {
-                border-bottom: 1px solid white;
+                border-bottom: 1px solid $color-purple-tint-3;
 
                 &:last-of-type {
                     border: none;
@@ -290,11 +308,13 @@ export default {
                     padding: 1rem;
                     color: white;
                     text-decoration: none;
+
                     &:hover, &:focus {
                         background: $color-purple-shade-2;
                     }
+
                     &:focus {
-                        outline: 3px solid   rgba(235,191,219,1);
+                        outline: 3px solid $color-purple-tint-5;
                         outline-offset: -3px;
                     }
                 }
@@ -309,22 +329,29 @@ export default {
     &__item {
         a {
             padding: 0.6rem 1rem;
+
             &:focus {
-                outline: 3px solid rgba(235,191,219,1);
+                outline: 3px solid $color-purple-tint-5;
                 outline-offset: -3px;
             }
+
             &:active {
                 background: white;
                 color: $color-purple-shade-2;
                 outline: none;
             }
         }
+
         &--active {
             a {
             background: $color-white;
             color: $color-purple-shade-2;
+
                 &:hover {
                     color: white;
+                }
+                &:active {
+                    background: $color-purple-shade-2;
                 }
             }
         }
@@ -332,7 +359,7 @@ export default {
 }
 
 .vs-global-menu__languages {
-    @media (min-width: 1000px) {
+    @include media-breakpoint-up(lg) {
         position: relative;
     }
 }
