@@ -2,13 +2,14 @@
 <template>
     <div class="vs-mega-nav bg-white">
         <VsContainer>
-            <VsRow>
+            <VsRow class="align-items-center">
                 <VsCol
                     cols="8"
                     md="4"
                     lg="3"
                 >
                     <VsSvgLink
+                        class="vs-mega-nav__logo"
                         logo-alt-text="VisitScotland Home"
                         href="/"
                         svg-fill="700e57"
@@ -19,7 +20,7 @@
                     cols="4"
                     md="8"
                     lg="9"
-                    class="vs-mega-nav__menu"
+                    class="vs-mega-nav__menu d-none d-lg-block"
                 >
                     <VsMegaNavTopMenu>
                         <!-- @slot for top menu list items  -->
@@ -58,12 +59,12 @@ export default {
     height: 55px;
     @extend %default-box-shadow;
 
-    &__logo {
-        display: inline-block;
+    &__logo svg{
+        max-width: 184px;
     }
 
     .vs-mega-nav__menu{
-        position: initial;
+        position: static;
     }
 }
 
