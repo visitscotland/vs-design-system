@@ -18,6 +18,8 @@ import org.hippoecm.hst.core.request.ResolvedSiteMapItem;
 import org.hippoecm.hst.core.sitemenu.HstSiteMenu;
 import org.hippoecm.hst.core.sitemenu.HstSiteMenuItem;
 import org.onehippo.cms7.essentials.components.EssentialsMenuComponent;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,6 +29,8 @@ import java.util.MissingFormatArgumentException;
         type = MenuComponentInfo.class
 )
 public class MenuComponent extends EssentialsMenuComponent {
+
+    private static final Logger logger = LoggerFactory.getLogger(MenuComponent.class);
 
     static final String STATIC = "navigation.static";
     static final String NAVIGATION_PREFIX = "navigation.";
@@ -55,43 +59,32 @@ public class MenuComponent extends EssentialsMenuComponent {
 
     protected void enhanceRequest(HstRequest request){
         bundle.registerIn(request);
-        exploreMenu(request);
+        enhanceMenu(request);
     }
 
-    protected void exploreMenu(HstRequest request){
+    protected void enhanceMenu(HstRequest request){
         List<HstSiteMenuItem> enhancedMenu = new ArrayList<>();
+        RootMenuItem root = new RootMenuItem(request.getModel(MENU));
+
+        //Calculate the resource bundle id
+        String resourceBundle = NAVIGATION_PREFIX + ((HstSiteMenu) request.getModel(MENU)).getName();
 
         if (request.getModel(MENU) != null) {
-            for (HstSiteMenuItem hstItem: ((HstSiteMenu) request.getModel(MENU)).getSiteMenuItems()) {
-                MenuItem menuItem = exploreMenu(request, hstItem);
+            for (HstSiteMenuItem hstItem: (((HstSiteMenu)request.getModel(MENU)).getSiteMenuItems())) {
+                MenuItem menuItem = enhanceMenuItem(request, hstItem, resourceBundle);
                 if (menuItem != null) {
                     enhancedMenu.add(menuItem);
                 }
             }
 
-            request.setModel(ENHANCED_MENU, enhancedMenu);
+            root.setSiteMenuItems(enhancedMenu);
 
-            // TODO transform the list of elements into an element so it can be used is hst.cmseditmenu
-//            VsHstSiteMenuItemImpl root = new VsHstSiteMenuItemImpl(null, request.getModel("menu"));
-//            for (HstSiteMenuItem item : ((HstSiteMenu) request.getModel("menu")).getSiteMenuItems()) {
-//                exploreMenu(request, root, item);
-//            }
-//
-//            request.setModel("enhancedMenu", enhancedMenu);
-//            request.setModel("enhancedMenuItem", root);
-//
-//            //TODO update references
-////            request.setModel("menu", enhancedMenu);
-
+            request.setModel(MENU, root);
         }
-
     }
 
-    private MenuItem exploreMenu(HstRequest request, HstSiteMenuItem hstItem){
+    private MenuItem enhanceMenuItem(HstRequest request, HstSiteMenuItem hstItem, String resourceBundle){
         MenuItem menuItem = new MenuItem(hstItem);
-
-        String nodeName = ((HstSiteMenu) request.getModel(MENU)).getName();
-        String resourceBundle = NAVIGATION_PREFIX + nodeName;
 
         //By default the name would be populated by the resourceBundle
         menuItem.setTitle(bundle.getResourceBundle(resourceBundle, hstItem.getName(), request.getLocale(), true));
@@ -103,78 +96,71 @@ public class MenuComponent extends EssentialsMenuComponent {
                 HippoBean bean = utils.getBeanForResolvedSiteMapItem(request, rsi);
                 //if the document does not exist or no publish
                 if (bean != null && !(bean instanceof HippoFolder)){
-                    //By default the name would be populated by the resourceBundle
-                    menuItem.setTitle(bundle.getResourceBundle(resourceBundle, hstItem.getName(), request.getLocale(), true));
 
                     //Widget document
                     if (bean instanceof Widget) {
                         menuItem.setWidget((Widget) bean);
-                        if (menuItem.getTitle() == null){
-                            menuItem.setTitle(hstItem.getName());
-                        }
+                    } else if (bean instanceof Page){
+                        updateMenuItemFromDocument(menuItem, (Page) bean, resourceBundle, request);
                     } else {
-                        if (Contract.isEmpty(menuItem.getTitle()) && bean instanceof Page) {
-                            menuItem.setTitle(((Page) bean).getTitle());
-                        }
-
-                        if (bundle.existsResourceBundleKey(resourceBundle,hstItem.getName()+ CTA_SUFFIX,  request.getLocale())){
-                            menuItem.setCta(bundle.getResourceBundle(resourceBundle,hstItem.getName()+ CTA_SUFFIX, request.getLocale()));
-                        } else if (menuItem.getTitle() != null){
-                            String seeAll = bundle.getResourceBundle(STATIC,"see-all-cta", request.getLocale());
-                            if (seeAll != null) {
-                                try {
-                                    menuItem.setCta(String.format(seeAll, menuItem.getTitle()));
-                                } catch (MissingFormatArgumentException e){
-                                    //Catch the exception and eliminate the parameters
-                                    //TODO: log error
-                                    CommonUtils.contentIssue("The label '%s' has more parameters than expected. File: %s, key: %s",
-                                            seeAll, STATIC, "see-all-cta");
-                                    menuItem.setCta(seeAll.replace("%s", ""));
-                                }
-                            }
-                        }
+                        logger.warn("Skipping Unexpected document type: " + bean.getClass().getSimpleName());
                     }
                 }
-
-            } else {
-                //By default the name would be populated by the resourceBundle
-                //TODO coverage
-                menuItem.setTitle(bundle.getResourceBundle(resourceBundle, hstItem.getName(), request.getLocale()));
-                //TODO: Check if the page exists on the global channel
             }
         }
 
-        if (menuItem.getTitle() == null) {
-            return null;
-        } else {
-            //Children will add themselves to the parent on the method exploreMenu
+        if (menuItem.getTitle() != null || menuItem.getWidget() != null) {
+            //Process all children
             for (HstSiteMenuItem hstChild : hstItem.getChildMenuItems()) {
-                MenuItem item = exploreMenu(request, hstChild);
-                if (item != null) {
-                    menuItem.addChild(item);
-                }
+                menuItem.addChild(enhanceMenuItem(request, hstChild, resourceBundle));
             }
             return menuItem;
+        } else {
+            //Menu Items with no title cannot be displayed so they are not included in the list of menu Items.
+            return null;
         }
-
-
     }
 
+    /**
+     * Updates the menu item with enhanced information taken from the labels or the core document where they link to
+     *
+     * @param menuItem Menu Item to enhance
+     * @param document HippoBean that contains the relevant document that is linked from the header
+     * @param bundleId Resource Bundle where the labels of the menu item might come from
+     * @param request HstRequest
+     */
+    private void updateMenuItemFromDocument(MenuItem menuItem, Page document, String bundleId, HstRequest request){
+        //If the menu hasn't been set we use the title coming from the document.
+        if (Contract.isEmpty(menuItem.getTitle())) {
+            if (!Contract.isEmpty(document.getBreadcrumb())){
+                menuItem.setTitle(document.getBreadcrumb());
+            } else {
+                menuItem.setTitle(document.getTitle());
+            }
+        }
 
+        if (bundle.existsResourceBundleKey(bundleId,menuItem.getHstMenuItem().getName()+ CTA_SUFFIX,  request.getLocale())){
+            menuItem.setCta(bundle.getResourceBundle(bundleId,menuItem.getHstMenuItem().getName()+ CTA_SUFFIX, request.getLocale()));
+        } else if (menuItem.getTitle() != null){
+            String seeAll = bundle.getResourceBundle(STATIC,"see-all-cta", request.getLocale());
+            if (seeAll != null) {
+                try {
+                    menuItem.setCta(String.format(seeAll, menuItem.getTitle()));
+                } catch (MissingFormatArgumentException e){
+                    String message = String.format("The label '%s' has more parameters than expected. File: %s, key: %s",
+                            seeAll, STATIC, "see-all-cta");
+                    logger.warn(message);
+                    CommonUtils.contentIssue(message.replace("%", "%%"));
 
-//    private VsHstSiteMenuItemImpl populateMenuItem(VsHstSiteMenuItemImpl parent, HstSiteMenuItem menu, HippoBean bean, Locale locale){
-//        VsHstSiteMenuItemImpl enhancedMenu = new VsHstSiteMenuItemImpl(parent, menu);
-//        //if the document does not exist or no publish
-//        if (bean == null || bean instanceof HippoFolder){
-//            return null;
-//        } else if (bean instanceof Widget) {
-//            enhancedMenu.setWidget((Widget) bean);
-//        } else {
-//           TODO: Body of the method
-//        }
-//
-//        return enhancedMenu;
-//    }
+                    //After Catching the exception, we can eliminate the parameters.
+                    menuItem.setCta(seeAll.replace("%s", ""));
+                }
+            }
+        } else {
+            //Title is a mandatory field for all page documents. The following line being executed might mean that the node is corrupted
+            logger.error(String.format("The node %s does not have a title", document.getPath()));
+        }
+    }
 
     private boolean isDocumentBased(HstLink link){
         return link != null && link.getPath() != null && link.getPath().length() > 0;
