@@ -1,1 +1,0 @@
-(window.webpackJsonp_name_=window.webpackJsonp_name_||[]).push([[108],{"+Mtj":function(n,e,t){"use strict";t.r(e);var a=t("L2JU"),c=t("i7/w");t.n(c).a.use(a.a),e.default=new a.a.Store({modules:{example:{namespaced:!0,state:{count:0},mutations:{increment:function(n){n.count+=1}},actions:{increment:function(n,e){n.commit("increment"),e&&alert(e)}}}}})}}]);
