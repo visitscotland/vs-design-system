@@ -59,13 +59,13 @@ export default {
 
 .vs-dropdown {
   .dropdown-toggle {
-    .icon {
+    .icon-chevron-down {
       transition: all 150ms ease-in-out;
     }
   }
   &.show {
     .dropdown-toggle {
-      .icon {
+      .icon-chevron-down {
         transform: rotate(-180deg);
       }
     }
