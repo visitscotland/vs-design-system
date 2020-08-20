@@ -21,21 +21,30 @@ import java.rmi.RemoteException;
 import java.util.*;
 
 public class TranslationWorkflowImpl implements TranslationWorkflow, InternalWorkflow {
-
+    public static final String VS_TRANSLATABLE = "visitscotland:translatable";
     private static final Logger log = LoggerFactory.getLogger(TranslationWorkflowImpl.class);
     private final Session userSession;
     private final Session rootSession;
     private final WorkflowContext workflowContext;
     private final Node rootSubject;
     private final Node userSubject;
+    private JcrDocumentFactory jcrDocumentFactory;
+    private DocumentFactory documentFactory;
 
     public TranslationWorkflowImpl(final WorkflowContext context, final Session userSession, final Session rootSession,
                                    final Node subject) throws RepositoryException {
+        this(context, userSession, rootSession, subject, new JcrDocumentFactory(), new DocumentFactory());
+    }
+
+    protected TranslationWorkflowImpl(final WorkflowContext context, final Session userSession, final Session rootSession,
+                                   final Node subject, JcrDocumentFactory jcrDocumentFactory, DocumentFactory documentFactory) throws RepositoryException {
         this.workflowContext = context;
         this.rootSession = rootSession;
         this.userSession = userSession;
         this.userSubject = userSession.getNodeByIdentifier(subject.getIdentifier());
         this.rootSubject = rootSession.getNodeByIdentifier(subject.getIdentifier());
+        this.jcrDocumentFactory = jcrDocumentFactory;
+        this.documentFactory = documentFactory;
 
         if (!userSubject.isNodeType(HippoTranslationNodeType.NT_TRANSLATED)) {
             throw new RepositoryException("Node is not of type " + HippoTranslationNodeType.NT_TRANSLATED);
@@ -69,14 +78,14 @@ public class TranslationWorkflowImpl implements TranslationWorkflow, InternalWor
 
         rootSession.save();
         rootSession.refresh(false);
-        return new Document(copiedNode);
+        return documentFactory.createFromNode(copiedNode);
     }
 
     private Node addTranslatedDocument(final String language, final String newDocumentName, final Node sourceDocumentNode, final Node targetFolderNode)
             throws WorkflowException, RepositoryException, RemoteException {
 
         Node copyRootSubject = rootSession.getNodeByIdentifier(sourceDocumentNode.getIdentifier());
-        getOriginsCopyWorkflow(copyRootSubject).copy(new Document(targetFolderNode), newDocumentName);
+        getOriginsCopyWorkflow(copyRootSubject).copy(documentFactory.createFromNode(targetFolderNode), newDocumentName);
 
         Node newDocumentHandle = null;
 
@@ -103,11 +112,11 @@ public class TranslationWorkflowImpl implements TranslationWorkflow, InternalWor
 
     private CopyWorkflow getOriginsCopyWorkflow(Node copyRootSubject) throws RepositoryException, WorkflowException {
         // first check if a copy workflow is configured on the handle itself
-        Workflow workflow = workflowContext.getWorkflow("translation-copy", new Document(copyRootSubject.getParent()));
+        Workflow workflow = workflowContext.getWorkflow("translation-copy", documentFactory.createFromNode(copyRootSubject.getParent()));
 
         if (workflow == null) {
             // No? Fallback to a copy workflow on the subject itself
-            workflow = workflowContext.getWorkflow("translation-copy", new Document(copyRootSubject));
+            workflow = workflowContext.getWorkflow("translation-copy", documentFactory.createFromNode(copyRootSubject));
         }
 
         if (workflow instanceof CopyWorkflow) {
@@ -181,7 +190,7 @@ public class TranslationWorkflowImpl implements TranslationWorkflow, InternalWor
     private FolderWorkflow getFolderWorkflow(final Node targetFolderNode) throws WorkflowException,
             RepositoryException {
 
-        Workflow workflow = workflowContext.getWorkflow("internal", new Document(targetFolderNode));
+        Workflow workflow = workflowContext.getWorkflow("internal", documentFactory.createFromNode(targetFolderNode));
         if (!(workflow instanceof FolderWorkflow)) {
             throw new WorkflowException("Target folder does not have a folder workflow in the category 'internal'.");
         }
@@ -210,7 +219,7 @@ public class TranslationWorkflowImpl implements TranslationWorkflow, InternalWor
 
     @Override
     public void setTranslationRequiredFlag() throws WorkflowException, RepositoryException, RemoteException {
-        JcrDocument rootJcrDocument = new JcrDocument(rootSubject);
+        JcrDocument rootJcrDocument = jcrDocumentFactory.createFromNode(rootSubject);
         if (rootJcrDocument.isNodeType("visitscotland:translatable")) {
             Set<JcrDocument> jcrTranslations = rootJcrDocument.getTranslations();
 
@@ -223,13 +232,13 @@ public class TranslationWorkflowImpl implements TranslationWorkflow, InternalWor
             List<Node> failedCheckoutNodes = new ArrayList<>();
 
             for (JcrDocument translatedDocument : jcrTranslations) {
+                Node handle = translatedDocument.getHandle();
                 if (translatedDocument.isDraftBeingEdited()) {
-                    failedCheckoutNodes.add(translatedDocument.getHandle());
+                    failedCheckoutNodes.add(handle);
                     log.debug("Document already checked out for edit, unable to send for translation");
                     continue;
                 }
 
-                Node handle = translatedDocument.getHandle();
                 try {
                     Node editableNode = getEditableNode(handle);
                     editableNodes.put(handle, editableNode);
@@ -242,24 +251,24 @@ public class TranslationWorkflowImpl implements TranslationWorkflow, InternalWor
             }
 
             if (failedCheckoutNodes.isEmpty()) {
-                for (HashMap.Entry<Node, Node> editableNodeEntry : editableNodes.entrySet()) {
-                    editableNodeEntry.getValue().setProperty("visitscotland:translationFlag", true);
-                    commitEditableNode(editableNodeEntry.getKey());
+                if (!editableNodes.isEmpty()) {
+                    for (HashMap.Entry<Node, Node> editableNodeEntry : editableNodes.entrySet()) {
+                        editableNodeEntry.getValue().setProperty("visitscotland:translationFlag", true);
+                        commitEditableNode(editableNodeEntry.getKey());
+                    }
+                    rootSession.save();
+                    rootSession.refresh(false);
                 }
-                rootSession.save();
-                rootSession.refresh(false);
             } else {
                 for (Node handle : editableNodes.keySet()) {
                     discardEditableNode(handle);
                 }
             }
-
-
         }
     }
 
-    protected Node getEditableNode(Node unpublishedVariant) throws RemoteException, WorkflowException, RepositoryException {
-        final Workflow editing = workflowContext.getWorkflow("editing", new Document(unpublishedVariant));
+    protected Node getEditableNode(Node handle) throws RemoteException, WorkflowException, RepositoryException {
+        final Workflow editing = workflowContext.getWorkflow("editing", documentFactory.createFromNode(handle));
         if (editing instanceof EditableWorkflow) {
             EditableWorkflow editableWorkflow = (EditableWorkflow) editing;
             Document editableDocument = editableWorkflow.obtainEditableInstance();
@@ -270,7 +279,7 @@ public class TranslationWorkflowImpl implements TranslationWorkflow, InternalWor
     }
 
     protected void discardEditableNode(Node toDiscard) throws RemoteException, WorkflowException, RepositoryException {
-        final Workflow editing = workflowContext.getWorkflow("editing", new Document(toDiscard));
+        final Workflow editing = workflowContext.getWorkflow("editing", documentFactory.createFromNode(toDiscard));
         if (editing instanceof EditableWorkflow) {
             EditableWorkflow editableWorkflow = (EditableWorkflow) editing;
             editableWorkflow.disposeEditableInstance();
@@ -280,7 +289,7 @@ public class TranslationWorkflowImpl implements TranslationWorkflow, InternalWor
     }
 
     protected void commitEditableNode(Node toCommit) throws RemoteException, WorkflowException, RepositoryException {
-        final Workflow editing = workflowContext.getWorkflow("editing", new Document(toCommit));
+        final Workflow editing = workflowContext.getWorkflow("editing", documentFactory.createFromNode(toCommit));
         if (editing instanceof EditableWorkflow) {
             EditableWorkflow editableWorkflow = (EditableWorkflow) editing;
             editableWorkflow.commitEditableInstance();
@@ -370,6 +379,12 @@ public class TranslationWorkflowImpl implements TranslationWorkflow, InternalWor
             log.warn(e.getClass().getName() + ": " + e.getMessage(), e);
         } catch (RemoteException e) {
             log.error(e.getClass().getName() + ": " + e.getMessage(), e);
+        }
+    }
+
+    public static class DocumentFactory {
+        public Document createFromNode(Node node) throws RepositoryException {
+            return new Document(node);
         }
     }
 }

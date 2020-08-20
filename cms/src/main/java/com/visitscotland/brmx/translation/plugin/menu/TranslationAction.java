@@ -22,23 +22,26 @@ public class TranslationAction extends StdWorkflow<TranslationWorkflow> {
     private final IModel<ILocaleProvider.HippoLocale> localeModel;
     private TranslationWorkflowPlugin workflowPlugin;
     private DocumentTranslator translator;
+    private UserSessionFactory userSessionFactory;
 
     public TranslationAction(TranslationWorkflowPlugin workflowPlugin,
                              String id,
                              IModel<String> name,
                              IModel<ILocaleProvider.HippoLocale> localeModel) {
-        this(workflowPlugin, id, name, localeModel, new DocumentTranslator());
+        this(workflowPlugin, id, name, localeModel, new DocumentTranslator(), new UserSessionFactory());
     }
 
     TranslationAction(TranslationWorkflowPlugin workflowPlugin,
                       String id,
                       IModel<String> name,
                       IModel<ILocaleProvider.HippoLocale> localeModel,
-                      DocumentTranslator translator) {
+                      DocumentTranslator translator,
+                      UserSessionFactory userSessionFactory) {
         super(id, name, workflowPlugin.getPluginContext(), (WorkflowDescriptorModel) workflowPlugin.getModel());
         this.workflowPlugin = workflowPlugin;
         this.localeModel = localeModel;
         this.translator = translator;
+        this.userSessionFactory = userSessionFactory;
     }
 
     @Override
@@ -57,7 +60,7 @@ public class TranslationAction extends StdWorkflow<TranslationWorkflow> {
     @Override
     protected String execute(TranslationWorkflow workflow)
             throws WorkflowException, RepositoryException, RemoteException, ObjectBeanManagerException {
-        Session session = getJcrSession();
+        Session session = userSessionFactory.getUserSession().getJcrSession();
 
         //Build a change set for the folders and documents that are missing
         List<ChangeSet> changeSetList = translator.buildChangeSetList(workflowPlugin.getSourceDocumentNode(),
@@ -81,7 +84,7 @@ public class TranslationAction extends StdWorkflow<TranslationWorkflow> {
 
             boolean haveSameNameSiblings = false;
             for (ChangeSet changeSet : changeSetList) {
-                changeSet.markSameNameSiblings(getJcrSession());
+                changeSet.markSameNameSiblings(userSessionFactory.getUserSession().getJcrSession());
                 if (changeSet.hasSameNameSiblingConflicts()) {
                     haveSameNameSiblings = true;
                 }
@@ -97,7 +100,4 @@ public class TranslationAction extends StdWorkflow<TranslationWorkflow> {
         }
     }
 
-    protected Session getJcrSession() {
-        return UserSession.get().getJcrSession();
-    }
 }

@@ -69,18 +69,37 @@ public class TranslationWorkflowPlugin extends RenderPlugin {
     public static final String ID_LANGUAGES = "languages";
     public static final String ID_LABEL = "label";
     private static Logger log = LoggerFactory.getLogger(TranslationWorkflowPlugin.class);
-    private final IModel<Boolean> canTranslateModel;
+    private IModel<Boolean> canTranslateModel;
     private DocumentTranslationProvider translationProvider;
     private HippoTranslatedNodeFactory translatedNodeFactory;
+    private JcrDocumentFactory jcrDocumentFactory;
+    private UserSessionFactory userSessionFactory;
 
     public TranslationWorkflowPlugin(IPluginContext context, IPluginConfig config) {
-        this(context, config, new HippoTranslatedNodeFactory());
+        this(context, config, new HippoTranslatedNodeFactory(), new JcrDocumentFactory(), new UserSessionFactory());
+        initialise();
     }
 
-    protected TranslationWorkflowPlugin(IPluginContext context, IPluginConfig config, HippoTranslatedNodeFactory translatedNodeFactory) {
+    /**
+     * This constructor is intended for use in tests. It avoids calling initialisation functionality that would make
+     * testing difficult.
+     *
+     * @param context
+     * @param config
+     * @param translatedNodeFactory
+     */
+    protected TranslationWorkflowPlugin(IPluginContext context,
+                                        IPluginConfig config,
+                                        HippoTranslatedNodeFactory translatedNodeFactory,
+                                        JcrDocumentFactory jcrDocumentFactory,
+                                        UserSessionFactory userSessionFactory) {
         super(context, config);
         this.translatedNodeFactory = translatedNodeFactory;
+        this.jcrDocumentFactory = jcrDocumentFactory;
+        this.userSessionFactory = userSessionFactory;
+    }
 
+    protected void initialise() {
         final IModel<String> languageModel = new LanguageModel(this);
         final ILocaleProvider localeProvider = getLocaleProvider();
 
@@ -155,7 +174,7 @@ public class TranslationWorkflowPlugin extends RenderPlugin {
 
     public boolean isChangePending() {
         try {
-            JcrDocument jcrDocument = new JcrDocument(getDocumentNode());
+            JcrDocument jcrDocument = jcrDocumentFactory.createFromNode(getDocumentNode());
             Node unpublishedVariant = jcrDocument.getVariantNode(JcrDocument.VARIANT_UNPUBLISHED);
             if (unpublishedVariant.hasProperty(HippoStdNodeType.HIPPOSTD_STATESUMMARY) &&
                     "changed".equals(unpublishedVariant.getProperty(HippoStdNodeType.HIPPOSTD_STATESUMMARY).getString())) {
@@ -227,7 +246,7 @@ public class TranslationWorkflowPlugin extends RenderPlugin {
         WorkflowDescriptorModel wdm = (WorkflowDescriptorModel) TranslationWorkflowPlugin.this.getDefaultModel();
         if (wdm != null) {
             WorkflowDescriptor descriptor = wdm.getObject();
-            WorkflowManager manager = UserSession.get().getWorkflowManager();
+            WorkflowManager manager = userSessionFactory.getUserSession().getWorkflowManager();
             try {
                 TranslationWorkflow translationWorkflow = (TranslationWorkflow) manager.getWorkflow(descriptor);
                 return (Set<String>) translationWorkflow.hints().get("available");
