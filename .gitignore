@@ -11,8 +11,12 @@ repository-data/webfiles/coverage/
 *.css.map
 
 # Frontend webfiles artefacts
-repository-data/webfiles/src/main/resources/site/frontend/
-repository-data/webfiles/src/main/resources/site/freemarker/frontend/
+# repository-data/webfiles/src/main/resources/site/frontend/
+# repository-data/webfiles/src/main/resources/site/freemarker/frontend/
+
+# Legacy Frontend generated sources.
+repository-data/webfiles/src/main/resources/site/design-system/
+repository-data/webfiles/src/main/resources/site/freemarker/vs-dotcom-ds/
 
 ### IDE CONFIGURATION Files
 # Eclipse based IDEs
