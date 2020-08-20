@@ -9,7 +9,11 @@
                     <!-- Mobile Devices Menu -->
                     <VsDropdown
                         :text="ourWebsitesLabel"
-                        class="vs-global-menu__websites d-lg-none"
+                        class="
+                            vs-global-menu__websites
+                            vs-global-menu__websites--mobile
+                            d-lg-none
+                        "
                     >
                         <VsDropdownItem
                             v-for="site in ourWebsites"
@@ -24,7 +28,12 @@
                     <VsList
                         unstyled
                         inline
-                        class="vs-global-menu__websites d-none d-lg-flex"
+                        class="
+                            vs-global-menu__websites
+                            vs-global-menu__websites--desktop
+                            d-none
+                            d-lg-flex
+                        "
                     >
                         <li
                             v-for="site in ourWebsites"
@@ -283,6 +292,48 @@ export default {
         }
     }
 }
+
+@include no-js {
+    .vs-global-menu {
+        height: auto;
+        font-size: 16px;
+
+        &__wraper {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        &__websites {
+            flex-wrap: wrap;
+
+            &__item {
+                display: flex;
+                flex: auto;
+                flex-basis: 100%;
+
+                @include media-breakpoint-up(md) {
+                    flex-basis: auto;
+                }
+
+                a {
+                    display: flex;
+                    align-items: center;
+                    flex: auto;
+                    justify-content: center;
+                    padding: 1.9rem $spacer-5;
+                }
+            }
+
+            &--mobile {
+                display: none;
+            }
+
+            &--desktop {
+                display: flex !important;
+            }
+        }
+    }
+}
 </style>
 
 <docs>
@@ -291,11 +342,17 @@ export default {
         our-websites-label="I nostri siti"
         active-site="https://www.visitscotland.com/"
     >
-        <span slot="login-menu">
+        <span
+            slot="login-menu"
+            style="min-width: 150px;"
+        >
             User... (Not you?)
         </span>
 
-        <span slot="language-menu">
+        <span
+            slot="language-menu"
+            style="min-width: 150px;"
+        >
             EN
         </span>
     </vs-global-menu>
