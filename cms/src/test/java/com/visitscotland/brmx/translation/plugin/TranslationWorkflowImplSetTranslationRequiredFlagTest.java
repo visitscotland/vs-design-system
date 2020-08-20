@@ -1,5 +1,6 @@
 package com.visitscotland.brmx.translation.plugin;
 
+import com.visitscotland.brmx.translation.plugin.TranslationWorkflow.SetTranslationRequiredResult;
 import org.hamcrest.Matcher;
 import org.hippoecm.repository.api.Document;
 import org.hippoecm.repository.api.Workflow;
@@ -7,6 +8,7 @@ import org.hippoecm.repository.api.WorkflowContext;
 import org.hippoecm.repository.api.WorkflowException;
 import org.hippoecm.repository.standardworkflow.EditableWorkflow;
 import org.hippoecm.repository.translation.HippoTranslationNodeType;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -23,6 +25,7 @@ import javax.jcr.Session;
 import java.rmi.RemoteException;
 import java.util.*;
 
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.Mockito.*;
 
@@ -62,7 +65,7 @@ public class TranslationWorkflowImplSetTranslationRequiredFlagTest {
         JcrDocument mockRootDocument = mock(JcrDocument.class);
         when(mockJcrDocumentFactory.createFromNode(same(mockRootSessionSubject))).thenReturn(mockRootDocument);
         when(mockRootDocument.isNodeType(eq(TranslationWorkflowImpl.VS_TRANSLATABLE))).thenReturn(false);
-        translationWorkflow.setTranslationRequiredFlag();
+        assertNull(translationWorkflow.setTranslationRequiredFlag());
     }
 
     @Test
@@ -72,7 +75,10 @@ public class TranslationWorkflowImplSetTranslationRequiredFlagTest {
         when(mockJcrDocumentFactory.createFromNode(same(mockRootSessionSubject))).thenReturn(mockRootDocument);
         when(mockRootDocument.isNodeType(eq(TranslationWorkflowImpl.VS_TRANSLATABLE))).thenReturn(true);
         when(mockRootDocument.getTranslations()).thenReturn(Collections.emptySet());
-        translationWorkflow.setTranslationRequiredFlag();
+        SetTranslationRequiredResult result = translationWorkflow.setTranslationRequiredFlag();
+        assertNotNull(result);
+        assertTrue(result.getFlaggedNodes().isEmpty());
+        assertTrue(result.getFailedCheckoutNodes().isEmpty());
         verify(mockRootSession, never()).save();
     }
 
@@ -102,7 +108,15 @@ public class TranslationWorkflowImplSetTranslationRequiredFlagTest {
         translations.add(initialiseTranslatedDocument(true, false, doc4Handle, doc4Editable, doc4Workflow));
 
         when(mockRootDocument.getTranslations()).thenReturn(translations);
-        translationWorkflow.setTranslationRequiredFlag();
+        SetTranslationRequiredResult result = translationWorkflow.setTranslationRequiredFlag();
+
+        assertNotNull(result);
+        assertTrue(result.getFlaggedNodes().isEmpty());
+        assertFalse(result.getFailedCheckoutNodes().isEmpty());
+
+        assertTrue(result.getFailedCheckoutNodes().contains(doc2Handle));
+        assertTrue(result.getFailedCheckoutNodes().contains(doc3Handle));
+        assertTrue(result.getFailedCheckoutNodes().contains(doc4Handle));
 
         verify(mockRootSession, never()).save();
 
@@ -147,7 +161,16 @@ public class TranslationWorkflowImplSetTranslationRequiredFlagTest {
         translations.add(initialiseTranslatedDocument(false, false, doc4Handle, doc4Editable, doc4Workflow));
 
         when(mockRootDocument.getTranslations()).thenReturn(translations);
-        translationWorkflow.setTranslationRequiredFlag();
+        SetTranslationRequiredResult result = translationWorkflow.setTranslationRequiredFlag();
+
+        assertNotNull(result);
+        assertFalse(result.getFlaggedNodes().isEmpty());
+        assertTrue(result.getFailedCheckoutNodes().isEmpty());
+
+        assertTrue(result.getFlaggedNodes().contains(doc1Handle));
+        assertTrue(result.getFlaggedNodes().contains(doc2Handle));
+        assertTrue(result.getFlaggedNodes().contains(doc3Handle));
+        assertTrue(result.getFlaggedNodes().contains(doc4Handle));
 
         verify(mockRootSession).save();
 

@@ -7,6 +7,8 @@ import org.hippoecm.repository.api.WorkflowException;
 import javax.jcr.Node;
 import javax.jcr.RepositoryException;
 import java.rmi.RemoteException;
+import java.util.ArrayList;
+import java.util.List;
 
 public interface TranslationWorkflow extends Workflow {
     Document addTranslation(String var1, String var2) throws WorkflowException, RepositoryException, RemoteException;
@@ -15,5 +17,25 @@ public interface TranslationWorkflow extends Workflow {
 
     void addTranslation(String var1, Document var2) throws WorkflowException, RepositoryException, RemoteException;
 
-    void setTranslationRequiredFlag() throws WorkflowException, RepositoryException, RemoteException;
+    SetTranslationRequiredResult setTranslationRequiredFlag() throws WorkflowException, RepositoryException, RemoteException;
+
+    class SetTranslationRequiredResult {
+        List<Node> failedCheckoutNodes = new ArrayList<>();
+        List<Node> flaggedNodes= new ArrayList<>();
+
+        public SetTranslationRequiredResult() {}
+
+        public SetTranslationRequiredResult(List<Node> failedCheckoutNodes, List<Node> flaggedNodes) {
+            this.failedCheckoutNodes.addAll(failedCheckoutNodes);
+            this.flaggedNodes.addAll(flaggedNodes);
+        }
+
+        public List<Node> getFailedCheckoutNodes() {
+            return failedCheckoutNodes;
+        }
+
+        public List<Node> getFlaggedNodes() {
+            return flaggedNodes;
+        }
+    }
 }

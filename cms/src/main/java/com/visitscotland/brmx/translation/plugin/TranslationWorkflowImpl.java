@@ -218,7 +218,7 @@ public class TranslationWorkflowImpl implements TranslationWorkflow, InternalWor
     }
 
     @Override
-    public void setTranslationRequiredFlag() throws WorkflowException, RepositoryException, RemoteException {
+    public SetTranslationRequiredResult setTranslationRequiredFlag() throws WorkflowException, RepositoryException, RemoteException {
         JcrDocument rootJcrDocument = jcrDocumentFactory.createFromNode(rootSubject);
         if (rootJcrDocument.isNodeType("visitscotland:translatable")) {
             Set<JcrDocument> jcrTranslations = rootJcrDocument.getTranslations();
@@ -250,6 +250,7 @@ public class TranslationWorkflowImpl implements TranslationWorkflow, InternalWor
                 }
             }
 
+            SetTranslationRequiredResult result = new SetTranslationRequiredResult();
             if (failedCheckoutNodes.isEmpty()) {
                 if (!editableNodes.isEmpty()) {
                     for (HashMap.Entry<Node, Node> editableNodeEntry : editableNodes.entrySet()) {
@@ -259,12 +260,16 @@ public class TranslationWorkflowImpl implements TranslationWorkflow, InternalWor
                     rootSession.save();
                     rootSession.refresh(false);
                 }
+                result.getFlaggedNodes().addAll(editableNodes.keySet());
             } else {
                 for (Node handle : editableNodes.keySet()) {
                     discardEditableNode(handle);
                 }
+                result.getFailedCheckoutNodes().addAll(failedCheckoutNodes);
             }
+            return result;
         }
+        return new SetTranslationRequiredResult();
     }
 
     protected Node getEditableNode(Node handle) throws RemoteException, WorkflowException, RepositoryException {
@@ -387,4 +392,5 @@ public class TranslationWorkflowImpl implements TranslationWorkflow, InternalWor
             return new Document(node);
         }
     }
+
 }
