@@ -1,21 +1,15 @@
 package com.visitscotland.brmx.translation.plugin;
 
 import com.visitscotland.brmx.translation.plugin.TranslationWorkflow.SetTranslationRequiredResult;
-import org.hamcrest.Matcher;
 import org.hippoecm.repository.api.Document;
-import org.hippoecm.repository.api.Workflow;
 import org.hippoecm.repository.api.WorkflowContext;
 import org.hippoecm.repository.api.WorkflowException;
 import org.hippoecm.repository.standardworkflow.EditableWorkflow;
 import org.hippoecm.repository.translation.HippoTranslationNodeType;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.ArgumentMatcher;
-import org.mockito.ArgumentMatchers;
 import org.mockito.Mock;
-import org.mockito.internal.matchers.VarargMatcher;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import javax.jcr.Node;
@@ -65,7 +59,10 @@ public class TranslationWorkflowImplSetTranslationRequiredFlagTest {
         JcrDocument mockRootDocument = mock(JcrDocument.class);
         when(mockJcrDocumentFactory.createFromNode(same(mockRootSessionSubject))).thenReturn(mockRootDocument);
         when(mockRootDocument.isNodeType(eq(TranslationWorkflowImpl.VS_TRANSLATABLE))).thenReturn(false);
-        assertNull(translationWorkflow.setTranslationRequiredFlag());
+        SetTranslationRequiredResult result = translationWorkflow.setTranslationRequiredFlag();
+        assertNotNull(result);
+        assertTrue(result.getFlaggedNodes().isEmpty());
+        assertTrue(result.getNodesBlockingTranslation().isEmpty());
     }
 
     @Test
@@ -78,7 +75,7 @@ public class TranslationWorkflowImplSetTranslationRequiredFlagTest {
         SetTranslationRequiredResult result = translationWorkflow.setTranslationRequiredFlag();
         assertNotNull(result);
         assertTrue(result.getFlaggedNodes().isEmpty());
-        assertTrue(result.getFailedCheckoutNodes().isEmpty());
+        assertTrue(result.getNodesBlockingTranslation().isEmpty());
         verify(mockRootSession, never()).save();
     }
 
@@ -87,6 +84,9 @@ public class TranslationWorkflowImplSetTranslationRequiredFlagTest {
         // When a document has a translation that is already being edited it should not save the session and should
         // dispose of any documents made editable
         JcrDocument mockRootDocument = mock(JcrDocument.class);
+        Node rootHandle = mock(Node.class);
+        when(mockRootDocument.getHandle()).thenReturn(rootHandle);
+        when(mockRootDocument.isDraftBeingEdited()).thenReturn(true);
         when(mockJcrDocumentFactory.createFromNode(same(mockRootSessionSubject))).thenReturn(mockRootDocument);
         when(mockRootDocument.isNodeType(eq(TranslationWorkflowImpl.VS_TRANSLATABLE))).thenReturn(true);
         Set<JcrDocument> translations = new HashSet<>();
@@ -112,11 +112,12 @@ public class TranslationWorkflowImplSetTranslationRequiredFlagTest {
 
         assertNotNull(result);
         assertTrue(result.getFlaggedNodes().isEmpty());
-        assertFalse(result.getFailedCheckoutNodes().isEmpty());
+        assertFalse(result.getNodesBlockingTranslation().isEmpty());
 
-        assertTrue(result.getFailedCheckoutNodes().contains(doc2Handle));
-        assertTrue(result.getFailedCheckoutNodes().contains(doc3Handle));
-        assertTrue(result.getFailedCheckoutNodes().contains(doc4Handle));
+        assertTrue(result.getNodesBlockingTranslation().contains(rootHandle));
+        assertTrue(result.getNodesBlockingTranslation().contains(doc2Handle));
+        assertTrue(result.getNodesBlockingTranslation().contains(doc3Handle));
+        assertTrue(result.getNodesBlockingTranslation().contains(doc4Handle));
 
         verify(mockRootSession, never()).save();
 
@@ -165,7 +166,7 @@ public class TranslationWorkflowImplSetTranslationRequiredFlagTest {
 
         assertNotNull(result);
         assertFalse(result.getFlaggedNodes().isEmpty());
-        assertTrue(result.getFailedCheckoutNodes().isEmpty());
+        assertTrue(result.getNodesBlockingTranslation().isEmpty());
 
         assertTrue(result.getFlaggedNodes().contains(doc1Handle));
         assertTrue(result.getFlaggedNodes().contains(doc2Handle));

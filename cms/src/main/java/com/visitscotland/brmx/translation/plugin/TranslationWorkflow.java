@@ -20,18 +20,18 @@ public interface TranslationWorkflow extends Workflow {
     SetTranslationRequiredResult setTranslationRequiredFlag() throws WorkflowException, RepositoryException, RemoteException;
 
     class SetTranslationRequiredResult {
-        List<Node> failedCheckoutNodes = new ArrayList<>();
-        List<Node> flaggedNodes= new ArrayList<>();
+        List<Node> nodesBlockingTranslation = new ArrayList<>();
+        List<Node> flaggedNodes = new ArrayList<>();
 
         public SetTranslationRequiredResult() {}
 
         public SetTranslationRequiredResult(List<Node> failedCheckoutNodes, List<Node> flaggedNodes) {
-            this.failedCheckoutNodes.addAll(failedCheckoutNodes);
+            this.nodesBlockingTranslation.addAll(failedCheckoutNodes);
             this.flaggedNodes.addAll(flaggedNodes);
         }
 
-        public List<Node> getFailedCheckoutNodes() {
-            return failedCheckoutNodes;
+        public List<Node> getNodesBlockingTranslation() {
+            return nodesBlockingTranslation;
         }
 
         public List<Node> getFlaggedNodes() {

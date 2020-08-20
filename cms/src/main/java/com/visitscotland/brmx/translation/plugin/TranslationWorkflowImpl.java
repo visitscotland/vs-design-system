@@ -229,12 +229,18 @@ public class TranslationWorkflowImpl implements TranslationWorkflow, InternalWor
 
             // HashMap<Handle, Editable>
             HashMap<Node, Node> editableNodes = new HashMap<>();
-            List<Node> failedCheckoutNodes = new ArrayList<>();
+            List<Node> nodesBeingEdited = new ArrayList<>();
+
+            // Need to check if the root (English) document is being edited by another user. Don't want to send for
+            // translation unless it is
+            if (rootJcrDocument.isDraftBeingEdited()) {
+                nodesBeingEdited.add(rootJcrDocument.getHandle());
+            }
 
             for (JcrDocument translatedDocument : jcrTranslations) {
                 Node handle = translatedDocument.getHandle();
                 if (translatedDocument.isDraftBeingEdited()) {
-                    failedCheckoutNodes.add(handle);
+                    nodesBeingEdited.add(handle);
                     log.debug("Document already checked out for edit, unable to send for translation");
                     continue;
                 }
@@ -246,12 +252,12 @@ public class TranslationWorkflowImpl implements TranslationWorkflow, InternalWor
                     // If we get a workflow exception we have not been able to check the document out
                     // add the Node to a list of failed documents
                     log.debug("Document already checked out for edit, unable to send for translation", ex);
-                    failedCheckoutNodes.add(handle);
+                    nodesBeingEdited.add(handle);
                 }
             }
 
             SetTranslationRequiredResult result = new SetTranslationRequiredResult();
-            if (failedCheckoutNodes.isEmpty()) {
+            if (nodesBeingEdited.isEmpty()) {
                 if (!editableNodes.isEmpty()) {
                     for (HashMap.Entry<Node, Node> editableNodeEntry : editableNodes.entrySet()) {
                         editableNodeEntry.getValue().setProperty("visitscotland:translationFlag", true);
@@ -265,7 +271,7 @@ public class TranslationWorkflowImpl implements TranslationWorkflow, InternalWor
                 for (Node handle : editableNodes.keySet()) {
                     discardEditableNode(handle);
                 }
-                result.getFailedCheckoutNodes().addAll(failedCheckoutNodes);
+                result.getNodesBlockingTranslation().addAll(nodesBeingEdited);
             }
             return result;
         }
