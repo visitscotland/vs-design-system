@@ -6,18 +6,18 @@
             v-slot:button-content
         >
             <VsIcon
-                class="d-none d-lg-block"
+                class="d-none d-lg-inline"
                 name="information"
                 variant="light"
                 size="xxs"
             />
-            <div class="d-lg-none">
+            <span class="d-lg-none">
                 {{ selectedLanguage }}
-            </div>
+            </span>
             <!-- Tablet/Desktop -->
-            <div class="d-none d-lg-block">
+            <span class="d-none d-lg-inline">
                 Language: {{ selectedLanguage }}
-            </div>
+            </span>
         </template>
         <VsDropdownItem
             v-for="lang in websiteLanguages"
@@ -82,25 +82,19 @@ export default {
 </script>
 
 <style lang="scss">
-.vs-global-menu__languages,
 .vs-global-menu__languages .btn {
     padding: 0;
     background: $color-purple;
     border: none;
     max-width: 130px;
+
+    &:hover {
+        background: $color-purple-shade-2;
+    }
 }
 
 .vs-global-menu__languages {
     position: initial;
-
-    a {
-        color: white;
-        text-decoration: none;
-
-        &:hover {
-            background: $color-purple-shade-2;
-        }
-    }
 
     & .btn {
         padding: 0.5rem;
