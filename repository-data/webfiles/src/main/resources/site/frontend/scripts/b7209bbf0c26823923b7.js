@@ -1,1 +1,0 @@
-!function(e,o){"object"==typeof exports&&"object"==typeof module?module.exports=o():"function"==typeof define&&define.amd?define([],o):"object"==typeof exports?exports.VsMobileNavListItem=o():e.VsMobileNavListItem=o()}(window,function(){return(window.webpackJsonp_name_=window.webpackJsonp_name_||[]).push([[173],[],[["JzMm",0,1,2,4,3,5,6,14,16,22,23,20,24,25,65]]])});

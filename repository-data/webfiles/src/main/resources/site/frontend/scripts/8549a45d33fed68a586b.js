@@ -1,1 +1,0 @@
-!function(e,o){"object"==typeof exports&&"object"==typeof module?module.exports=o():"function"==typeof define&&define.amd?define([],o):"object"==typeof exports?exports.VsItineraryMapMarker=o():e.VsItineraryMapMarker=o()}(window,function(){return(window.webpackJsonp_name_=window.webpackJsonp_name_||[]).push([[162],[],[["H0eK",0,1,2,4,3,5,6,7,8,14,16,22,23,40,20,24,25,64,87]]])});
