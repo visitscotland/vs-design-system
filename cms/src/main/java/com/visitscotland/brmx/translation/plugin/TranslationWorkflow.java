@@ -14,7 +14,5 @@ public interface TranslationWorkflow extends Workflow {
 
     Document addTranslation(String language, String newDocumentName, Node sourceNode) throws WorkflowException, RepositoryException, RemoteException, ObjectBeanManagerException;
 
-    void addTranslation(String var1, Document var2) throws WorkflowException, RepositoryException, RemoteException;
-
     void saveSession() throws RepositoryException;
 }

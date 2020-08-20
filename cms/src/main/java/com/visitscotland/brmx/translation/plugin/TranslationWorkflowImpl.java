@@ -48,6 +48,7 @@ public class TranslationWorkflowImpl implements TranslationWorkflow, InternalWor
         return addTranslation(language, newDocumentName, userSubject);
     }
 
+    @Override
     public Document addTranslation(final String language, final String newDocumentName, final Node sourceNode) throws WorkflowException,
             RepositoryException, RemoteException, ObjectBeanManagerException {
         Node userSourceSubject = userSession.getNodeByIdentifier(sourceNode.getIdentifier());
