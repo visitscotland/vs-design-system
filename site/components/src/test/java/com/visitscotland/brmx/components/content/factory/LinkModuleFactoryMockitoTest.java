@@ -8,6 +8,7 @@ import com.visitscotland.brmx.beans.mapping.FlatLink;
 import com.visitscotland.brmx.beans.mapping.megalinks.EnhancedLink;
 import com.visitscotland.brmx.dms.DMSDataService;
 import com.visitscotland.brmx.dms.ProductSearchBuilder;
+import com.visitscotland.brmx.services.ResourceBundleService;
 import com.visitscotland.brmx.utils.HippoUtilsService;
 import org.hippoecm.hst.content.beans.standard.HippoBean;
 import org.junit.jupiter.api.BeforeEach;
@@ -47,6 +48,9 @@ public class LinkModuleFactoryMockitoTest {
 
     @Mock
     private DMSDataService dmsData;
+
+    @Mock
+    private ResourceBundleService resourceBundleService;
 
     private LinkModulesFactory factory;
 
@@ -110,7 +114,7 @@ public class LinkModuleFactoryMockitoTest {
 
     @BeforeEach
     public void beforeEach() {
-        factory = new LinkModulesFactory(utils, builder, dmsData);
+        factory = new LinkModulesFactory(utils, builder, dmsData,resourceBundleService);
     }
 
 
@@ -271,7 +275,7 @@ public class LinkModuleFactoryMockitoTest {
         //Test Behaviour when the data from DMS is corrupted
         DMSDataService dmsDataService = mock(DMSDataService.class);
         when(dmsDataService.productCard(anyString(), any(Locale.class))).thenThrow(new IOException());
-        LinkModulesFactory factory = new LinkModulesFactory(utils, builder, dmsDataService);
+        LinkModulesFactory factory = new LinkModulesFactory(utils, builder, dmsDataService, resourceBundleService);
         MegalinkItem item = mockItem(false,LinkType.DMS);
 
         FlatLink flatLink = factory.convertToFlatLinks(Collections.singletonList(item), Locale.UK).get(0);

@@ -1,4 +1,3 @@
-/*
 package com.visitscotland.brmx.components.content.factory;
 
 import com.visitscotland.brmx.beans.*;
@@ -39,12 +38,12 @@ class LinkModulesFactoryTest extends EasyMockSupport {
     private ProductSearchBuilder psb;
     private DMSDataService dms;
 
-    */
+
 /**
      * {@code factory} needs an static method (createUrl) to be mocked since it relies on a static BloomReach dependency
      *
      * {@code page} represent a dummy link.
-     *//*
+     */
 
     @BeforeAll
     static void init() {
@@ -229,10 +228,5 @@ class LinkModulesFactoryTest extends EasyMockSupport {
         verify(mi);
     }
 
-
-
-
-
-
 }
-*/
+

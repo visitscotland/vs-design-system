@@ -8,6 +8,8 @@ import com.visitscotland.brmx.beans.mapping.Coordinates;
 import com.visitscotland.brmx.beans.mapping.FlatImage;
 import com.visitscotland.brmx.beans.mapping.FlatLink;
 import com.visitscotland.brmx.beans.mapping.FlatStop;
+import com.visitscotland.brmx.components.content.factory.LinkModulesFactory;
+import com.visitscotland.brmx.services.ResourceBundleService;
 import com.visitscotland.brmx.utils.CommonUtils;
 import com.visitscotland.brmx.dms.LocationLoader;
 import com.visitscotland.utils.CoordinateUtils;
@@ -31,6 +33,11 @@ public class ItineraryContentComponent extends PageContentComponent<Itinerary> {
     public final String DISTANCE = "distance";
     public final String FIRST_STOP_LOCATION = "firstStopLocation";
     public final String LAST_STOP_LOCATION = "lastStopLocation";
+    private final ResourceBundleService resourceBundleService;
+
+    public ItineraryContentComponent(){
+        resourceBundleService = new ResourceBundleService();
+    }
 
     @Override
     public void doBeforeRender(HstRequest request, HstResponse response) {
@@ -112,7 +119,7 @@ public class ItineraryContentComponent extends PageContentComponent<Itinerary> {
                                 logger.warn(CommonUtils.contentIssue("The product id does not exist in the DMS for %s, Stop %s", itinerary.getName(), model.getIndex()));
                             } else {
 
-                                FlatLink ctaLink = new FlatLink(CommonUtils.getCtaLabel(dmsLink.getLabel(),request.getLocale()),product.get(URL).asText());
+                                FlatLink ctaLink = new FlatLink(resourceBundleService.getCtaLabel(dmsLink.getLabel(),request.getLocale()),product.get(URL).asText());
                                 model.setCtaLink(ctaLink);
                                 if (product.has(ADDRESS)){
                                     JsonNode address = product.get(ADDRESS);
@@ -168,7 +175,7 @@ public class ItineraryContentComponent extends PageContentComponent<Itinerary> {
                     visitDuration = externalLink.getTimeToExplore();
 
                     if (externalLink.getExternalLink() != null) {
-                        FlatLink ctaLink = new FlatLink(CommonUtils.getCtaLabel(externalLink.getExternalLink().getLabel(), request.getLocale()), externalLink.getExternalLink().getLink());
+                        FlatLink ctaLink = new FlatLink(resourceBundleService.getCtaLabel(externalLink.getExternalLink().getLabel(), request.getLocale()), externalLink.getExternalLink().getLink());
                         model.setCtaLink(ctaLink);
                     }
 

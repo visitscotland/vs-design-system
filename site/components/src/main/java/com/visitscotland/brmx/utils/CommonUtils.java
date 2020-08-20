@@ -4,8 +4,6 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.visitscotland.brmx.beans.InstagramImage;
 import com.visitscotland.brmx.services.ResourceBundleService;
-import com.visitscotland.brmx.dms.DMSDataService;
-import com.visitscotland.utils.Contract;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -19,8 +17,6 @@ import java.util.Locale;
 
 public class CommonUtils {
 
-    private static DMSDataService dmsData = new DMSDataService();
-    private static ResourceBundleService resourceBundle = new ResourceBundleService();
 
     //TODO add message format for other languages
     public static final String contentIssue (String message, Object... parameters){
@@ -87,20 +83,5 @@ public class CommonUtils {
         }
     }
 
-    /**
-     * Returns the default CTA label when the manual CTA  is not defined.     *
-     *
-     * @param manualCta Manual CTA defined in the CMS
-     * @param locale Locale
-     *
-     * @return the manual CTA if provided otherwise the default CTA
-     */
-    //TODO: Refactor static method. Move to another place?
-    public static String getCtaLabel(String manualCta, Locale locale) {
-        if (!Contract.isEmpty(manualCta)) {
-            return manualCta;
-        } else {
-            return resourceBundle.getResourceBundle("essentials.global","button.find-out-more",  locale);
-        }
-    }
+
 }

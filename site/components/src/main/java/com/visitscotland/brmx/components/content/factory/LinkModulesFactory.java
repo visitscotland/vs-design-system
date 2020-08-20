@@ -11,6 +11,7 @@ import com.visitscotland.brmx.beans.mapping.megalinks.*;
 import com.visitscotland.brmx.dms.DMSDataService;
 import com.visitscotland.brmx.dms.LocationLoader;
 import com.visitscotland.brmx.dms.ProductSearchBuilder;
+import com.visitscotland.brmx.services.ResourceBundleService;
 import com.visitscotland.brmx.utils.CommonUtils;
 import com.visitscotland.brmx.utils.HippoUtilsService;
 import com.visitscotland.brmx.utils.Properties;
@@ -37,28 +38,30 @@ public class LinkModulesFactory {
     private final HippoUtilsService utils;
     private final DMSDataService dmsData;
     private final ProductSearchBuilder psBuilder;
+    private final ResourceBundleService resourceBundle;
 
     public LinkModulesFactory() {
-        this(new HippoUtilsService(), new ProductSearchBuilder(), new DMSDataService());
+        this(new HippoUtilsService(), new ProductSearchBuilder(), new DMSDataService(), new ResourceBundleService());
     }
 
-    public LinkModulesFactory(HippoUtilsService utils, ProductSearchBuilder psb, DMSDataService dmsData) {
+    public LinkModulesFactory(HippoUtilsService utils, ProductSearchBuilder psb, DMSDataService dmsData, ResourceBundleService resourceBundle) {
         this.utils = utils;
         this.psBuilder = psb;
         this.dmsData = dmsData;
+        this.resourceBundle = resourceBundle;
     }
 
-    public LinksModule getMegalinkModule(Megalinks doc, Locale locale, Page document) {
+    public LinksModule getMegalinkModule(Megalinks doc, Locale locale) {
         if (Boolean.TRUE.equals(doc.getListLayout()) || doc.getMegalinkItems().size() > MAX_ITEMS) {
-            return list(doc, locale, document);
+            return list(doc, locale) ;
         } else if (doc.getSingleImageModule() != null) {
-            return singleImageLayout(doc, locale,document);
+            return singleImageLayout(doc, locale);
         } else {
-            return multiImageLayout(doc, locale,document);
+            return multiImageLayout(doc, locale);
         }
     }
 
-    public SingleImageLinksModule singleImageLayout(Megalinks doc, Locale locale,Page document) {
+    public SingleImageLinksModule singleImageLayout(Megalinks doc, Locale locale) {
         SingleImageLinksModule sil = new SingleImageLinksModule();
         sil.setTitle(doc.getTitle());
         sil.setIntroduction(doc.getIntroduction());
@@ -70,7 +73,7 @@ public class LinkModulesFactory {
         sil.setMegalinkItem(doc);
 
         if (doc.getProductItem()!= null) {
-            sil.setCta(createLink(locale, doc.getProductItem(), document));
+            sil.setCta(createLink(locale, doc.getProductItem(), doc));
         }
         return sil;
     }
@@ -93,7 +96,7 @@ public class LinkModulesFactory {
      * @param locale Locale of the request
      * @return MultiImageLinksModule containing the relevant information from the Megalinks document
      */
-    public MultiImageLinksModule multiImageLayout(Megalinks doc, Locale locale,Page document) {
+    public MultiImageLinksModule multiImageLayout(Megalinks doc, Locale locale) {
         MultiImageLinksModule fl = new MultiImageLinksModule();
         fl.setTitle(doc.getTitle());
         fl.setIntroduction(doc.getIntroduction());
@@ -102,7 +105,7 @@ public class LinkModulesFactory {
 
 
         if (doc.getProductItem()!= null) {
-            fl.setCta(createLink(locale, doc.getProductItem(), document));
+            fl.setCta(createLink(locale, doc.getProductItem(), doc));
         }
         fl.setLinksSize(doc.getMegalinkItems().size());
         fl.setLinks(convertToEnhancedLinks(doc.getMegalinkItems(), locale));
@@ -129,7 +132,7 @@ public class LinkModulesFactory {
         return fl;
     }
 
-    public ListLinksModule list(Megalinks doc, Locale locale,Page document) {
+    public ListLinksModule list(Megalinks doc, Locale locale) {
         ListLinksModule ll = new ListLinksModule();
         ll.setTitle(doc.getTitle());
         ll.setIntroduction(doc.getIntroduction());
@@ -138,7 +141,7 @@ public class LinkModulesFactory {
         ll.setMegalinkItem(doc);
 
         if (doc.getProductItem()!= null) {
-            ll.setCta(createLink(locale, doc.getProductItem(), document));
+            ll.setCta(createLink(locale, doc.getProductItem(), doc));
         }
         return ll;
     }
@@ -190,7 +193,7 @@ public class LinkModulesFactory {
                     continue;
                 }
 
-
+                //TODO
                 if (item.getLink() instanceof Itinerary) {
                     link.setTransport(((Itinerary) item.getLink()).getTransports()[0]);
                     link.setDays(((Itinerary) item.getLink()).getDays().size());
@@ -255,7 +258,7 @@ public class LinkModulesFactory {
     }
 
 
-    public FlatLink createLink(Locale locale, HippoCompound item, Page document) {
+    public FlatLink createLink(Locale locale, HippoCompound item, BaseDocument document) {
         final String URL = "url";
 
         if (item instanceof DMSLink) {
@@ -267,7 +270,7 @@ public class LinkModulesFactory {
                             dmsLink.getProduct(),document.getPath()));
                 } else {
                     //TODO build the link for the DMS product properly
-                    return new FlatLink(CommonUtils.getCtaLabel(dmsLink.getLabel(), locale), Properties.VS_DMS_SERVICE + product.get(URL).asText());
+                    return new FlatLink(resourceBundle.getCtaLabel(dmsLink.getLabel(), locale), Properties.VS_DMS_SERVICE + product.get(URL).asText());
                 }
             } catch (IOException e) {
                 logger.error(String.format("Error while querying the DMS for '%s', (%s)",
@@ -278,15 +281,15 @@ public class LinkModulesFactory {
             ProductSearchBuilder psb = new ProductSearchBuilder()
                     .fromHippoBean(productSearchLink.getSearch()).locale(locale);
 
-            return new FlatLink(CommonUtils.getCtaLabel(productSearchLink.getLabel(), locale), psb.build());
+            return new FlatLink(resourceBundle.getCtaLabel(productSearchLink.getLabel(), locale), psb.build());
 
         } else if (item instanceof ExternalLink) {
             ExternalLink externalLink = (ExternalLink) item;
-            return new FlatLink(CommonUtils.getCtaLabel(externalLink.getLabel(), locale), externalLink.getLabel());
+            return new FlatLink(resourceBundle.getCtaLabel(externalLink.getLabel(), locale), externalLink.getLabel());
 
         } else if (item instanceof CMSLink) {
             CMSLink cmsLink = (CMSLink) item;
-            return new FlatLink(CommonUtils.getCtaLabel(cmsLink.getLabel(), locale), utils.createUrl(cmsLink.getLink()));
+            return new FlatLink(resourceBundle.getCtaLabel(cmsLink.getLabel(), locale), utils.createUrl(cmsLink.getLink()));
         }
 
 

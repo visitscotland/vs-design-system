@@ -43,7 +43,7 @@ public class DestinationContentComponent extends PageContentComponent<Destinatio
 
         for (Megalinks mega: getDocument(request).getItems()){
             //TODO: do we need the document for the log? In that case.. update tests
-            LinksModule al = linksFactory.getMegalinkModule(mega, request.getLocale(), getDocument(request));
+            LinksModule al = linksFactory.getMegalinkModule(mega, request.getLocale());
 
             if (al.getType().equalsIgnoreCase(SingleImageLinksModule.class.getSimpleName())){
                 al.setAlignment(alignment[singleImageindex++ % alignment.length]);
