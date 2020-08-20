@@ -11,26 +11,17 @@
                 variant="light"
                 size="xxs"
             />
-            <span class="d-lg-none">
-                {{ selectedLanguage }}
-            </span>
             <!-- Tablet/Desktop -->
             <span class="d-none d-lg-inline">
-                Language: {{ selectedLanguage }}
+                Language:
             </span>
+            {{ selectedLanguage }}
         </template>
         <VsDropdownItem
             v-for="lang in websiteLanguages"
             :key="lang.languageTag"
         >
-            <!-- Mobile Text -->
-            <div class="d-lg-none">
-                {{ lang.languageTag }}
-            </div>
-            <!-- Tablet/Desktop -->
-            <div class="d-none d-lg-block">
-                {{ lang.languageName }}
-            </div>
+            {{ lang.languageName }}
         </VsDropdownItem>
     </VsDropdown>
 </template>
@@ -49,7 +40,7 @@ export default {
     },
     data() {
         return {
-            selectedLanguage: 'EN',
+            selectedLanguage: ' EN',
             websiteLanguages: [
                 {
                     languageTag: 'EN',
@@ -148,13 +139,14 @@ export default {
                     color: white;
                     text-decoration: none;
 
-                    &:hover, &:focus {
+                    &:hover {
                         background: $color-purple-shade-2;
                     }
 
                     &:focus {
                         outline: 3px solid $color-purple-tint-5;
                         outline-offset: -3px;
+                        background: $color-purple;
                     }
                 }
             }
