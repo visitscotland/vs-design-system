@@ -1,1 +1,0 @@
-!function(e,o){"object"==typeof exports&&"object"==typeof module?module.exports=o():"function"==typeof define&&define.amd?define([],o):"object"==typeof exports?exports.VsStoreFavouritesStore=o():e.VsStoreFavouritesStore=o()}(window,function(){return(window.webpackJsonp_name_=window.webpackJsonp_name_||[]).push([[195],[],[["6v0H",0,2,4,3,5,6,7,8,14,16,40,56,52]]])});
