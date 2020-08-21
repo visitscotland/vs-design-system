@@ -2,7 +2,8 @@ package com.visitscotland.brmx.components.content;
 
 import com.visitscotland.brmx.beans.Destination;
 import com.visitscotland.brmx.beans.Megalinks;
-import com.visitscotland.brmx.beans.mapping.megalinks.AbstractLayout;
+import com.visitscotland.brmx.beans.mapping.megalinks.LinksModule;
+import com.visitscotland.brmx.beans.mapping.megalinks.SingleImageLinksModule;
 import com.visitscotland.brmx.components.content.factory.LinkModulesFactory;
 import com.visitscotland.utils.Contract;
 import org.hippoecm.hst.core.component.HstRequest;
@@ -21,6 +22,7 @@ public class DestinationContentComponent extends PageContentComponent<Destinatio
 
     static final String PAGE_ITEMS = "pageItems";
     static final String[] styles = {"style1","style2","style3"};
+    static final String[] alignment = {"left","right"};
 
     public DestinationContentComponent(){
         linksFactory = new LinkModulesFactory();
@@ -35,12 +37,17 @@ public class DestinationContentComponent extends PageContentComponent<Destinatio
     }
 
     void addModules(HstRequest request){
-        List<AbstractLayout> links = new ArrayList<>();
+        List<LinksModule> links = new ArrayList<>();
         int styleIndex = 0;
+        int singleImageindex = 0;
 
         for (Megalinks mega: getDocument(request).getItems()){
-            AbstractLayout al = linksFactory.getMegalinkModule(mega, request.getLocale());
+            //TODO: do we need the document for the log? In that case.. update tests
+            LinksModule al = linksFactory.getMegalinkModule(mega, request.getLocale());
 
+            if (al.getType().equalsIgnoreCase(SingleImageLinksModule.class.getSimpleName())){
+                al.setAlignment(alignment[singleImageindex++ % alignment.length]);
+            }
             if (Contract.isEmpty(al.getTitle()) && styleIndex > 0){
                 styleIndex--;
             }

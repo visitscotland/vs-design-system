@@ -2,9 +2,9 @@ package com.visitscotland.brmx.components.content.factory;
 
 import com.visitscotland.brmx.beans.*;
 import com.visitscotland.brmx.beans.dms.LocationObject;
-import com.visitscotland.brmx.beans.mapping.megalinks.AbstractLayout;
-import com.visitscotland.brmx.beans.mapping.megalinks.FeaturedLayout;
-import com.visitscotland.brmx.beans.mapping.megalinks.SingleImageLayout;
+import com.visitscotland.brmx.beans.mapping.megalinks.LinksModule;
+import com.visitscotland.brmx.beans.mapping.megalinks.MultiImageLinksModule;
+import com.visitscotland.brmx.beans.mapping.megalinks.SingleImageLinksModule;
 import com.visitscotland.brmx.dms.DMSDataService;
 import com.visitscotland.brmx.dms.ProductSearchBuilder;
 import com.visitscotland.brmx.utils.HippoUtilsService;
@@ -26,9 +26,9 @@ class LinkModulesFactoryTest extends EasyMockSupport {
     private final String TITLE = "Megalink title";
     
     //This constants must not generate the name from the class since Freemarker is not aware of them so any change would break the template 
-    private final String LIST = "ListLayout";
-    private final String FEATURED = "FeaturedLayout";
-    private final String SINGLE_IMAGE = "SingleImageLayout";
+    private final String LIST = "ListLinksModule";
+    private final String FEATURED = "MultiImageLinksModule";
+    private final String SINGLE_IMAGE = "SingleImageLinksModule";
 
     private static MegalinksMockService megalinkService;
     private static MegalinkItemMockService megalinkItemService;
@@ -38,11 +38,13 @@ class LinkModulesFactoryTest extends EasyMockSupport {
     private ProductSearchBuilder psb;
     private DMSDataService dms;
 
-    /**
+
+/**
      * {@code factory} needs an static method (createUrl) to be mocked since it relies on a static BloomReach dependency
      *
      * {@code page} represent a dummy link.
      */
+
     @BeforeAll
     static void init() {
         megalinkService = new MegalinksMockService();
@@ -69,7 +71,7 @@ class LinkModulesFactoryTest extends EasyMockSupport {
     @Test
     void getListLayout(){
         Megalinks mega = megalinkService.createMock(TITLE, false, true, true, 0);
-        AbstractLayout layout = factory.getMegalinkModule(mega, Locale.UK);
+        LinksModule layout = factory.getMegalinkModule(mega, Locale.UK);
         replayAll();
 
         verifyAll();
@@ -82,7 +84,7 @@ class LinkModulesFactoryTest extends EasyMockSupport {
 
         //6 elements => Featured Layout
         Megalinks mega = megalinkService.createMock(TITLE, false, false, true, LinkModulesFactory.MAX_ITEMS);
-        AbstractLayout layout = factory.getMegalinkModule(mega, Locale.UK);
+        LinksModule layout = factory.getMegalinkModule(mega, Locale.UK);
 
         verifyAll();
         Assertions.assertNotEquals(layout.getType(), LIST);
@@ -100,7 +102,7 @@ class LinkModulesFactoryTest extends EasyMockSupport {
         replayAll();
 
         Megalinks mega = megalinkService.createMock(TITLE, false, false, true, 0, "Single image title");
-        AbstractLayout layout = factory.getMegalinkModule(mega, Locale.UK);
+        LinksModule layout = factory.getMegalinkModule(mega, Locale.UK);
 
         verifyAll();
         Assertions.assertEquals(layout.getType(), SINGLE_IMAGE);
@@ -115,11 +117,11 @@ class LinkModulesFactoryTest extends EasyMockSupport {
         replayAll();
 
         Megalinks mega = megalinkService.createMock(TITLE, false, false, true, 0, "Single image title");
-        AbstractLayout layout = factory.getMegalinkModule(mega, Locale.UK);
+        LinksModule layout = factory.getMegalinkModule(mega, Locale.UK);
 
         verifyAll();
         Assertions.assertEquals(layout.getType(), SINGLE_IMAGE);
-        Assertions.assertNotNull(((SingleImageLayout)layout).getImage().getCoordinates());
+        Assertions.assertNotNull(((SingleImageLinksModule)layout).getImage().getCoordinates());
     }
 
     @Test
@@ -127,7 +129,7 @@ class LinkModulesFactoryTest extends EasyMockSupport {
         replayAll();
 
         Megalinks mega = megalinkService.createMock(TITLE, false, false, true, LinkModulesFactory.MAX_ITEMS + 1, "List Layout Title");
-        AbstractLayout layout = factory.getMegalinkModule(mega, Locale.UK);
+        LinksModule layout = factory.getMegalinkModule(mega, Locale.UK);
 
         verifyAll();
         Assertions.assertEquals(LIST, layout.getType());
@@ -139,7 +141,7 @@ class LinkModulesFactoryTest extends EasyMockSupport {
 
         for (int i= 0; i <= LinkModulesFactory.MAX_ITEMS; i++) {
             Megalinks mega = megalinkService.createMock(TITLE, false, false, true, i);
-            AbstractLayout layout = factory.getMegalinkModule(mega, Locale.UK);
+            LinksModule layout = factory.getMegalinkModule(mega, Locale.UK);
             Assertions.assertEquals(FEATURED, layout.getType());
         }
 
@@ -159,7 +161,7 @@ class LinkModulesFactoryTest extends EasyMockSupport {
 
         //Check that from 7 items is not Featured any longer.
         Megalinks mega = megalinkService.createMock(TITLE, false, false, true, 7);
-        AbstractLayout layout = factory.getMegalinkModule(mega, Locale.UK);
+        LinksModule layout = factory.getMegalinkModule(mega, Locale.UK);
 
         verifyAll();
         Assertions.assertNotEquals(layout.getType(), FEATURED);
@@ -175,8 +177,8 @@ class LinkModulesFactoryTest extends EasyMockSupport {
         }
 
         verifyAll();
-        Assertions.assertEquals(((FeaturedLayout) factory.getMegalinkModule(min, Locale.UK)).getFeaturedLinks().size(), minItems);
-        Assertions.assertEquals(((FeaturedLayout) factory.getMegalinkModule(max, Locale.UK)).getFeaturedLinks().size(), maxItems);
+        Assertions.assertEquals(((MultiImageLinksModule) factory.getMegalinkModule(min, Locale.UK)).getFeaturedLinks().size(), minItems);
+        Assertions.assertEquals(((MultiImageLinksModule) factory.getMegalinkModule(max, Locale.UK)).getFeaturedLinks().size(), maxItems);
     }
 
     @Test
@@ -226,9 +228,5 @@ class LinkModulesFactoryTest extends EasyMockSupport {
         verify(mi);
     }
 
-
-
-
-
-
 }
+

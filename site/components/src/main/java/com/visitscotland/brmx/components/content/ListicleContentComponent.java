@@ -1,7 +1,6 @@
 package com.visitscotland.brmx.components.content;
 
 import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.visitscotland.brmx.beans.*;
 
 import com.visitscotland.brmx.beans.dms.LocationObject;
@@ -96,7 +95,7 @@ public class ListicleContentComponent extends PageContentComponent<Listicle> {
                     DMSLink dmsLink = (DMSLink) listicleItem.getListicleItem();
                     JsonNode product;
                     try {
-                        product = CommonUtils.getProduct(dmsLink.getProduct(), request.getLocale());
+                        product = dmsData.productCard(dmsLink.getProduct(), request.getLocale());
                         if (product == null) {
                             errors.add("The product id does not exists in the DMS");
                             logger.warn(CommonUtils.contentIssue("The product's id  wasn't provided for %s, Listicle = %s - %s",

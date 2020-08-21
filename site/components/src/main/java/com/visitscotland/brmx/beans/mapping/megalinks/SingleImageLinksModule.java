@@ -3,12 +3,11 @@ package com.visitscotland.brmx.beans.mapping.megalinks;
 import com.visitscotland.brmx.beans.mapping.FlatImage;
 import org.hippoecm.hst.content.beans.standard.HippoHtml;
 
-public class SingleImageLayout extends AbstractLayout {
+public class SingleImageLinksModule extends LinksModule {
 
     private String innerTitle;
     private HippoHtml innerIntroduction;
     private FlatImage image;
-    private boolean fullWidth;
 
     public String getInnerTitle() {
         return innerTitle;

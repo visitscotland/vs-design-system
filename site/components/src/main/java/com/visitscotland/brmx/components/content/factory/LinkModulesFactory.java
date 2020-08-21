@@ -11,9 +11,11 @@ import com.visitscotland.brmx.beans.mapping.megalinks.*;
 import com.visitscotland.brmx.dms.DMSDataService;
 import com.visitscotland.brmx.dms.LocationLoader;
 import com.visitscotland.brmx.dms.ProductSearchBuilder;
+import com.visitscotland.brmx.services.ResourceBundleService;
 import com.visitscotland.brmx.utils.CommonUtils;
 import com.visitscotland.brmx.utils.HippoUtilsService;
 import com.visitscotland.brmx.utils.Properties;
+import org.hippoecm.hst.content.beans.standard.HippoCompound;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -36,29 +38,31 @@ public class LinkModulesFactory {
     private final HippoUtilsService utils;
     private final DMSDataService dmsData;
     private final ProductSearchBuilder psBuilder;
+    private final ResourceBundleService resourceBundle;
 
     public LinkModulesFactory() {
-        this(new HippoUtilsService(), new ProductSearchBuilder(), new DMSDataService());
+        this(new HippoUtilsService(), new ProductSearchBuilder(), new DMSDataService(), new ResourceBundleService());
     }
 
-    public LinkModulesFactory(HippoUtilsService utils, ProductSearchBuilder psb, DMSDataService dmsData) {
+    public LinkModulesFactory(HippoUtilsService utils, ProductSearchBuilder psb, DMSDataService dmsData, ResourceBundleService resourceBundle) {
         this.utils = utils;
         this.psBuilder = psb;
         this.dmsData = dmsData;
+        this.resourceBundle = resourceBundle;
     }
 
-    public AbstractLayout getMegalinkModule(Megalinks doc, Locale locale) {
+    public LinksModule getMegalinkModule(Megalinks doc, Locale locale) {
         if (Boolean.TRUE.equals(doc.getListLayout()) || doc.getMegalinkItems().size() > MAX_ITEMS) {
-            return list(doc, locale);
+            return list(doc, locale) ;
         } else if (doc.getSingleImageModule() != null) {
             return singleImageLayout(doc, locale);
         } else {
-            return featuredLayout(doc, locale);
+            return multiImageLayout(doc, locale);
         }
     }
 
-    public SingleImageLayout singleImageLayout(Megalinks doc, Locale locale) {
-        SingleImageLayout sil = new SingleImageLayout();
+    public SingleImageLinksModule singleImageLayout(Megalinks doc, Locale locale) {
+        SingleImageLinksModule sil = new SingleImageLinksModule();
         sil.setTitle(doc.getTitle());
         sil.setIntroduction(doc.getIntroduction());
 
@@ -68,14 +72,14 @@ public class LinkModulesFactory {
         sil.setLinks(convertToFlatLinks(doc.getMegalinkItems(), locale));
         sil.setMegalinkItem(doc);
 
-        //Note: The requirements for the CTA haven't been defined yet
-        //sil.setCta(doc.getCta());
-
+        if (doc.getProductItem()!= null) {
+            sil.setCta(createLink(locale, doc.getProductItem(), doc));
+        }
         return sil;
     }
 
     /**
-     * Converts a Megalinks document into a FeaturedLayout Object for easier the consumption of the data on the front
+     * Converts a Megalinks document into a MultiImageLinksModule Object for easier the consumption of the data on the front
      * end.
      * <p>
      * The number of featured items marked on the document might change depending on the following rules:
@@ -90,18 +94,20 @@ public class LinkModulesFactory {
      *
      * @param doc    Megalink document to be converted.
      * @param locale Locale of the request
-     * @return FeaturedLayout containing the relevant information from the Megalinks document
+     * @return MultiImageLinksModule containing the relevant information from the Megalinks document
      */
-    public FeaturedLayout featuredLayout(Megalinks doc, Locale locale) {
-        FeaturedLayout fl = new FeaturedLayout();
+    public MultiImageLinksModule multiImageLayout(Megalinks doc, Locale locale) {
+        MultiImageLinksModule fl = new MultiImageLinksModule();
         fl.setTitle(doc.getTitle());
         fl.setIntroduction(doc.getIntroduction());
         fl.setTeaserVisible(doc.getTeaserVisible());
         fl.setMegalinkItem(doc);
 
-        // Note: The requirements for the CTA haven't been defined yet
-        //fl.setCta();
 
+        if (doc.getProductItem()!= null) {
+            fl.setCta(createLink(locale, doc.getProductItem(), doc));
+        }
+        fl.setLinksSize(doc.getMegalinkItems().size());
         fl.setLinks(convertToEnhancedLinks(doc.getMegalinkItems(), locale));
 
         //There is no featured items when the amount of items is inferior to 3
@@ -126,17 +132,17 @@ public class LinkModulesFactory {
         return fl;
     }
 
-    public ListLayout list(Megalinks doc, Locale locale) {
-        ListLayout ll = new ListLayout();
+    public ListLinksModule list(Megalinks doc, Locale locale) {
+        ListLinksModule ll = new ListLinksModule();
         ll.setTitle(doc.getTitle());
         ll.setIntroduction(doc.getIntroduction());
         ll.setTeaserVisible(doc.getTeaserVisible());
         ll.setLinks(convertToEnhancedLinks(doc.getMegalinkItems(), locale));
         ll.setMegalinkItem(doc);
 
-        // Note: The requirements for the CTA haven't been defined yet
-        //ll.setCta();
-
+        if (doc.getProductItem()!= null) {
+            ll.setCta(createLink(locale, doc.getProductItem(), doc));
+        }
         return ll;
     }
     //TODO comment this method
@@ -169,6 +175,7 @@ public class LinkModulesFactory {
                 link.setTeaser(((Linkable) item.getLink()).getTeaser());
                 link.setLabel(((Linkable) item.getLink()).getTitle());
                 link.setFeatured(item.getFeature());
+
                 if (((Linkable) item.getLink()).getImage() != null) {
                     link.setImage(createFlatImage(((Linkable) item.getLink()).getImage(), locale));
                 }
@@ -185,6 +192,13 @@ public class LinkModulesFactory {
                     logger.warn(String.format("The type %s was not expected and will be skipped", item.getLink().getClass().getSimpleName()));
                     continue;
                 }
+
+                //TODO add itineraries days and transport
+            /*    if (item.getLink() instanceof Itinerary) {
+                    link.setTransport(((Itinerary) item.getLink()).getTransports()[0]);
+                    link.setDays(((Itinerary) item.getLink()).getDays().size());
+                }*/
+
 
                 if (link.getImage() == null) {
                     CommonUtils.contentIssue("The link to %s does not have an image but it is expecting one", item.getLink());
@@ -242,6 +256,46 @@ public class LinkModulesFactory {
     LocationObject getLocation(String location, Locale locale) {
         return LocationLoader.getLocation(location, locale);
     }
+
+
+    public FlatLink createLink(Locale locale, HippoCompound item, BaseDocument document) {
+        final String URL = "url";
+
+        if (item instanceof DMSLink) {
+            DMSLink dmsLink = (DMSLink) item;
+            try {
+                JsonNode product = dmsData.productCard(dmsLink.getProduct(),locale);
+                if (product == null) {
+                    logger.warn(CommonUtils.contentIssue("There is no product with the id '%s', (%s) ",
+                            dmsLink.getProduct(),document.getPath()));
+                } else {
+                    //TODO build the link for the DMS product properly
+                    return new FlatLink(resourceBundle.getCtaLabel(dmsLink.getLabel(), locale), Properties.VS_DMS_SERVICE + product.get(URL).asText());
+                }
+            } catch (IOException e) {
+                logger.error(String.format("Error while querying the DMS for '%s', (%s)",
+                        dmsLink.getProduct(),document.getPath()));
+            }
+        } else if (item instanceof ProductSearchLink) {
+            ProductSearchLink productSearchLink = (ProductSearchLink) item;
+            ProductSearchBuilder psb = new ProductSearchBuilder()
+                    .fromHippoBean(productSearchLink.getSearch()).locale(locale);
+
+            return new FlatLink(resourceBundle.getCtaLabel(productSearchLink.getLabel(), locale), psb.build());
+
+        } else if (item instanceof ExternalLink) {
+            ExternalLink externalLink = (ExternalLink) item;
+            return new FlatLink(resourceBundle.getCtaLabel(externalLink.getLabel(), locale), externalLink.getLabel());
+
+        } else if (item instanceof CMSLink) {
+            CMSLink cmsLink = (CMSLink) item;
+            return new FlatLink(resourceBundle.getCtaLabel(cmsLink.getLabel(), locale), utils.createUrl(cmsLink.getLink()));
+        }
+
+
+        return null;
+    }
+
 
 
 }
