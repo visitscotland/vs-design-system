@@ -19,7 +19,7 @@ public class LinkService {
 
     private static final Logger logger = LoggerFactory.getLogger(LinkService.class);
 
-    private final static String URL = "url";
+    final static String URL = "url";
 
     private final DMSDataService dmsData;
     private final ProductSearchBuilder psBuilder;
@@ -72,14 +72,13 @@ public class LinkService {
             }
         } else if (item instanceof ProductSearchLink) {
             ProductSearchLink productSearchLink = (ProductSearchLink) item;
-            ProductSearchBuilder psb = new ProductSearchBuilder()
-                    .fromHippoBean(productSearchLink.getSearch()).locale(locale);
+            psBuilder.fromHippoBean(productSearchLink.getSearch()).locale(locale);
 
-            return new FlatLink(resourceBundle.getCtaLabel(productSearchLink.getLabel(), locale), psb.build());
+            return new FlatLink(resourceBundle.getCtaLabel(productSearchLink.getLabel(), locale), psBuilder.build());
 
         } else if (item instanceof ExternalLink) {
             ExternalLink externalLink = (ExternalLink) item;
-            return new FlatLink(resourceBundle.getCtaLabel(externalLink.getLabel(), locale), externalLink.getLabel());
+            return new FlatLink(resourceBundle.getCtaLabel(externalLink.getLabel(), locale), externalLink.getLink());
 
         } else if (item instanceof CMSLink) {
             CMSLink cmsLink = (CMSLink) item;

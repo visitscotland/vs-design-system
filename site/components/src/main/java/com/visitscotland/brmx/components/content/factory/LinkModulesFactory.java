@@ -56,20 +56,41 @@ public class LinkModulesFactory {
         }
     }
 
+    /**
+     * Converts a Megalinks document into a {@code ListLinksModule} Object for easier the consumption of the data on the front
+     * end.
+     *
+     * @param doc    Megalink document to be converted.
+     * @param locale Locale of the request
+     * @return {@code ListLinksModule} containing the relevant information from the Megalinks document
+     */
+    public ListLinksModule listLayout(Megalinks doc, Locale locale) {
+        ListLinksModule ll = new ListLinksModule();
+        populateCommonFields(ll, doc, locale);
+
+        ll.setTeaserVisible(doc.getTeaserVisible());
+        ll.setLinks(convertToEnhancedLinks(doc.getMegalinkItems(), locale));
+
+        return ll;
+    }
+
+    /**
+     * Converts a Megalinks document into a {@code SingleImageLinksModule} Object for easier the consumption of the data on the front
+     * end.
+     *
+     * @param doc    Megalink document to be converted.
+     * @param locale Locale of the request
+     * @return {@code SingleImageLinksModule} containing the relevant information from the Megalinks document
+     */
     public SingleImageLinksModule singleImageLayout(Megalinks doc, Locale locale) {
         SingleImageLinksModule sil = new SingleImageLinksModule();
-        sil.setTitle(doc.getTitle());
-        sil.setIntroduction(doc.getIntroduction());
+        populateCommonFields(sil, doc, locale);
 
         sil.setInnerTitle(doc.getSingleImageModule().getTitle());
         sil.setInnerIntroduction(doc.getSingleImageModule().getIntroduction());
         sil.setImage(createFlatImage(doc.getSingleImageModule().getImage(), locale));
         sil.setLinks(convertToFlatLinks(doc.getMegalinkItems(), locale));
-        sil.setMegalinkItem(doc);
 
-        if (doc.getProductItem()!= null) {
-            sil.setCta(linkService.createLink(locale, doc.getProductItem()));
-        }
         return sil;
     }
 
@@ -93,15 +114,9 @@ public class LinkModulesFactory {
      */
     public MultiImageLinksModule multiImageLayout(Megalinks doc, Locale locale) {
         MultiImageLinksModule fl = new MultiImageLinksModule();
-        fl.setTitle(doc.getTitle());
-        fl.setIntroduction(doc.getIntroduction());
+        populateCommonFields(fl, doc, locale);
         fl.setTeaserVisible(doc.getTeaserVisible());
-        fl.setMegalinkItem(doc);
 
-
-        if (doc.getProductItem()!= null) {
-            fl.setCta(linkService.createLink(locale, doc.getProductItem()));
-        }
         fl.setLinksSize(doc.getMegalinkItems().size());
         fl.setLinks(convertToEnhancedLinks(doc.getMegalinkItems(), locale));
 
@@ -127,21 +142,26 @@ public class LinkModulesFactory {
         return fl;
     }
 
-    public ListLinksModule listLayout(Megalinks doc, Locale locale) {
-        ListLinksModule ll = new ListLinksModule();
-        ll.setTitle(doc.getTitle());
-        ll.setIntroduction(doc.getIntroduction());
-        ll.setTeaserVisible(doc.getTeaserVisible());
-        ll.setLinks(convertToEnhancedLinks(doc.getMegalinkItems(), locale));
-        ll.setMegalinkItem(doc);
+    /**
+     * Populate the common fields among all layouts
+     *
+     * @param target target module to be populated
+     * @param doc Megalinks document with the data source
+     * @param locale consumer language.
+     */
+    private void populateCommonFields(LinksModule target, Megalinks doc, Locale locale){
+        target.setMegalinkItem(doc);
+        target.setTitle(doc.getTitle());
+        target.setIntroduction(doc.getIntroduction());
 
         if (doc.getProductItem()!= null) {
-            ll.setCta(linkService.createLink(locale, doc.getProductItem()));
+            target.setCta(linkService.createLink(locale, doc.getProductItem()));
         }
-        return ll;
     }
 
-    //TODO comment this method
+    /**
+     * Converts the list of {@code MegalinksItem} into  a list of plain {@code FlatLink }
+     */
     List<FlatLink> convertToFlatLinks(List<MegalinkItem> items, Locale locale) {
         List<FlatLink> links = new ArrayList<>();
         for (MegalinkItem item : items) {
@@ -159,7 +179,9 @@ public class LinkModulesFactory {
         return links;
     }
 
-    //TODO comment this method
+    /**
+     * Converts the list of {@code MegalinksItem} into  a list of {@code EnhancedLink }
+     */
     List<EnhancedLink> convertToEnhancedLinks(List<MegalinkItem> items, Locale locale) {
         List<EnhancedLink> links = new ArrayList<>();
         for (MegalinkItem item : items) {
@@ -241,6 +263,7 @@ public class LinkModulesFactory {
         return flatImage;
     }
 
+    //TODO convert into a service
     LocationObject getLocation(String location, Locale locale) {
         return LocationLoader.getLocation(location, locale);
     }

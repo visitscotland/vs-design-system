@@ -173,4 +173,10 @@ public class ResourceBundleServiceTest {
         Assert.assertFalse(service.existsResourceBundleKey(BUNDLE, "key", Locale.UK));
     }
 
+    @Test
+    public void getCtaLabel(){
+        //TODO Test
+    }
+
+
 }

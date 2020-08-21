@@ -6,6 +6,7 @@ import com.visitscotland.brmx.beans.*;
 import com.visitscotland.brmx.beans.capabilities.Linkable;
 import com.visitscotland.brmx.beans.mapping.FlatLink;
 import com.visitscotland.brmx.beans.mapping.megalinks.EnhancedLink;
+import com.visitscotland.brmx.beans.mapping.megalinks.LinksModule;
 import com.visitscotland.brmx.dms.DMSDataService;
 import com.visitscotland.brmx.dms.ProductSearchBuilder;
 import com.visitscotland.brmx.services.LinkService;
@@ -56,10 +57,11 @@ public class LinkModuleFactoryMockitoTest {
     private LinkService linkService;
     private LinkModulesFactory factory;
 
-    private Megalinks mockFeatured() {
+    private Megalinks mockMultiImage() {
         Megalinks mega = mock(Megalinks.class, withSettings().lenient());
+        MegalinkItem item = mockItem();
 
-        when(mega.getMegalinkItems()).thenReturn(Collections.singletonList(mockItem()));
+        when(mega.getMegalinkItems()).thenReturn(Collections.singletonList(item));
 
         return mega;
     }
@@ -286,6 +288,40 @@ public class LinkModuleFactoryMockitoTest {
         assertNull(flatLink.getLink());
     }
 
+//    @Test
+//    void getSingleImage(){
+//        replayAll();
+//
+//        Megalinks mega = megalinkService.createMock(TITLE, false, false, true, 0, "Single image title");
+//        LinksModule layout = factory.getMegalinkModule(mega, Locale.UK);
+//
+//        verifyAll();
+//        Assertions.assertEquals(layout.getType(), SINGLE_IMAGE);
+//    }
+//
+//    @Test
+//    void singleImageLayout_optionCTA(){
+//
+//        Megalinks mega = mockMultiImage();
+//
+//        FlatLink mockLink = mock(linkService.getClass())
+//        //if getPr
+//        when(linkService.createLink(any(Locale.class), any(HippoCompound.class))).thenReturn(mockLink);
+//    }
 
+
+    @Test
+    void multiImageLayout_optionCTA(){
+        ExternalLink mockLink = mock(ExternalLink.class);
+        when(mockLink.getLink()).thenReturn("http://www.visitscotland.com");
+
+
+        Megalinks mega = mockMultiImage();
+        when(mega.getProductItem()).thenReturn(mockLink);
+
+        LinksModule layout = factory.multiImageLayout(mega, Locale.UK);
+
+        assertEquals("http://www.visitscotland.com", layout.getCta().getLink());
+    }
 
 }

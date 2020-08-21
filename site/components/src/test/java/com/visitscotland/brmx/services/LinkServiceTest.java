@@ -1,12 +1,12 @@
 package com.visitscotland.brmx.services;
 
 import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.visitscotland.brmx.beans.*;
-import com.visitscotland.brmx.components.content.factory.LinkModuleFactoryMockitoTest;
+import com.visitscotland.brmx.beans.mapping.FlatLink;
 import com.visitscotland.brmx.dms.DMSDataService;
 import com.visitscotland.brmx.dms.ProductSearchBuilder;
 import com.visitscotland.brmx.utils.HippoUtilsService;
+import org.hippoecm.hst.content.beans.standard.HippoBean;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -14,7 +14,10 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.io.IOException;
+import java.util.Locale;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.*;
 
@@ -24,7 +27,7 @@ public class LinkServiceTest {
     LinkService service;
 
     @Mock
-    DMSDataService dmsData;
+    private DMSDataService dmsData;
 
     @Mock
     private ProductSearchBuilder builder;
@@ -40,41 +43,111 @@ public class LinkServiceTest {
         service = new LinkService(dmsData,builder,resourceBundle, utils);
     }
 
+//    @Test
+//    void dmsLink() throws IOException {
+//        JsonNode node = new ObjectMapper().readTree(LinkModuleFactoryMockitoTest.MOCK_JSON);
+//
+//        String link = service.getPlainLink(mockSharedLink(LinkModuleFactoryMockitoTest.LinkType.DMS), node);
+//
+//        assertTrue(link.contains(LinkModuleFactoryMockitoTest.DMS_ID));
+//    }
+
     @Test
-    void DMS_SharedLink() throws IOException {
-        JsonNode node = new ObjectMapper().readTree(LinkModuleFactoryMockitoTest.MOCK_JSON);
+    void externalLink(){
+        ExternalLink externalLink = mock(ExternalLink.class, withSettings().lenient());
+        when(externalLink.getLink()).thenReturn("http://fake.link");
+        when(externalLink.getLabel()).thenReturn("");
 
-        String link = service.getPlainLink(mockSharedLink(LinkModuleFactoryMockitoTest.LinkType.DMS), node);
+        when(resourceBundle.getCtaLabel(eq(""), any())).thenReturn("Find out more");
 
-        assertTrue(link.contains(LinkModuleFactoryMockitoTest.DMS_ID));
+        FlatLink link = service.createLink(Locale.UK, externalLink);
+
+        assertEquals("http://fake.link", link.getLink());
+        assertEquals("Find out more", link.getLabel());
+    }
+
+    @Test
+    void cmsLink(){
+        CMSLink cmsLink = mock(CMSLink.class, withSettings().lenient());
+        when(cmsLink.getLink()).thenReturn(mock(HippoBean.class));
+
+        when(utils.createUrl(any(HippoBean.class))).thenReturn("http://cms-url");
+
+        FlatLink link = service.createLink(Locale.UK, cmsLink);
+
+        assertEquals("http://cms-url", link.getLink());
+    }
+
+//     if (item instanceof DMSLink) {
+//        DMSLink dmsLink = (DMSLink) item;
+//        try {
+//            JsonNode product = dmsData.productCard(dmsLink.getProduct(), locale);
+//            if (product == null) {
+//                logger.warn(CommonUtils.contentIssue("There is no product with the id '%s', (%s) ",
+//                        dmsLink.getProduct(), item.getPath()));
+//            } else {
+//                //TODO build the link for the DMS product properly
+//                return new FlatLink(resourceBundle.getCtaLabel(dmsLink.getLabel(), locale), Properties.VS_DMS_SERVICE + product.get(URL).asText());
+//            }
+//        } catch (IOException e) {
+//            logger.error(String.format("Error while querying the DMS for '%s', (%s)",
+//                    dmsLink.getProduct(), item.getPath()));
+//        }
+
+    @Test
+    void dmsLink_dmsDataThrowException() throws IOException {
+        DMSLink dmsLink = mock(DMSLink.class);
+        when(dmsLink.getProduct()).thenReturn("123");
+        when(dmsLink.getPath()).thenReturn("path/to/node");
+
+        when(dmsData.productCard("123", Locale.UK)).thenThrow(new IOException());
+
+        FlatLink link = service.createLink(Locale.UK, dmsLink);
+
+        assertNull(link);
+    }
+
+    @Test
+    void dmsLink_notExistingProduct() throws IOException {
+        DMSLink dmsLink = mock(DMSLink.class);
+        when(dmsLink.getProduct()).thenReturn("123");
+
+        when(dmsData.productCard("123", Locale.UK)).thenReturn(null);
+
+        FlatLink link = service.createLink(Locale.UK, dmsLink);
+
+        assertNull(link);
+    }
+
+    @Test
+    void dmsLink() throws IOException {
+        JsonNode node = mock(JsonNode.class);
+        JsonNode url = mock(JsonNode.class);
+
+        DMSLink dmsLink = mock(DMSLink.class);
+        when(dmsLink.getProduct()).thenReturn("123");
+
+        when(dmsData.productCard("123", Locale.UK)).thenReturn(node);
+        when(node.get(LinkService.URL)).thenReturn(url);
+        when(url.asText()).thenReturn("/dms-page");
+
+        FlatLink link = service.createLink(Locale.UK, dmsLink);
+
+        assertTrue(link.getLink().endsWith("/dms-page"));
     }
 
 
 
-    private SharedLink mockSharedLink(LinkModuleFactoryMockitoTest.LinkType linkType) {
-        SharedLink link = mock(SharedLink.class, withSettings().lenient());
-        when(link.getImage()).thenReturn(mock(Image.class, withSettings().lenient()));
+    @Test
+    void productSearchLink(){
+        ProductSearchLink productSearchLink = mock(ProductSearchLink.class, withSettings().lenient());
+        when(productSearchLink.getSearch()).thenReturn(mock(ProductsSearch.class));
 
-        switch (linkType) {
-            case DMS:
-                DMSLink type = mock(DMSLink.class, withSettings().lenient());
-                when(type.getProduct()).thenReturn(LinkModuleFactoryMockitoTest.DMS_ID);
-                when(link.getLinkType()).thenReturn(type);
-                break;
-            case PRODUCT_SEARCH:
-                ProductsSearch ps = mock(ProductsSearch.class, withSettings().lenient());
-                when(builder.fromHippoBean(ps)).thenReturn(builder);
-                when(builder.build()).thenReturn(LinkModuleFactoryMockitoTest.PSR_URL);
-                when(link.getLinkType()).thenReturn(ps);
-                break;
-            case EXTERNAL:
-                ExternalLink external = mock(ExternalLink.class, withSettings().lenient());
-                when(external.getLink()).thenReturn(LinkModuleFactoryMockitoTest.EXTERNAL_URL);
-                when(link.getLinkType()).thenReturn(external);
-                break;
-            default:
+        when(builder.fromHippoBean(productSearchLink.getSearch())).thenReturn(builder);
+        when(builder.build()).thenReturn("http://product-search");
 
-        }
-        return link;
+        FlatLink link = service.createLink(Locale.UK, productSearchLink);
+
+        assertEquals("http://product-search", link.getLink());
     }
 }
