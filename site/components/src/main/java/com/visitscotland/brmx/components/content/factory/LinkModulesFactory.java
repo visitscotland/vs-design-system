@@ -68,7 +68,7 @@ public class LinkModulesFactory {
         sil.setMegalinkItem(doc);
 
         if (doc.getProductItem()!= null) {
-            sil.setCta(linkService.createLink(locale, doc.getProductItem(), doc));
+            sil.setCta(linkService.createLink(locale, doc.getProductItem()));
         }
         return sil;
     }
@@ -100,7 +100,7 @@ public class LinkModulesFactory {
 
 
         if (doc.getProductItem()!= null) {
-            fl.setCta(linkService.createLink(locale, doc.getProductItem(), doc));
+            fl.setCta(linkService.createLink(locale, doc.getProductItem()));
         }
         fl.setLinksSize(doc.getMegalinkItems().size());
         fl.setLinks(convertToEnhancedLinks(doc.getMegalinkItems(), locale));
@@ -136,7 +136,7 @@ public class LinkModulesFactory {
         ll.setMegalinkItem(doc);
 
         if (doc.getProductItem()!= null) {
-            ll.setCta(linkService.createLink(locale, doc.getProductItem(), doc));
+            ll.setCta(linkService.createLink(locale, doc.getProductItem()));
         }
         return ll;
     }
