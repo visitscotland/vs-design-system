@@ -8,6 +8,7 @@ import com.visitscotland.brmx.beans.mapping.FlatLink;
 import com.visitscotland.brmx.beans.mapping.megalinks.EnhancedLink;
 import com.visitscotland.brmx.dms.DMSDataService;
 import com.visitscotland.brmx.dms.ProductSearchBuilder;
+import com.visitscotland.brmx.services.LinkService;
 import com.visitscotland.brmx.services.ResourceBundleService;
 import com.visitscotland.brmx.utils.HippoUtilsService;
 import org.hippoecm.hst.content.beans.standard.HippoBean;
@@ -28,10 +29,10 @@ import static org.mockito.Mockito.*;
 @ExtendWith(MockitoExtension.class)
 public class LinkModuleFactoryMockitoTest {
 
-    private static final String DMS_ID = "0123456798";
+    public  static final String DMS_ID = "0123456798";
     private static final String EXTERNAL_URL = "http://www.fake.site";
     private static final String PSR_URL = "http://psr.visitscotland.com/info/search?value1&value2";
-    private static final String MOCK_JSON = "{" +
+    public  static final String MOCK_JSON = "{" +
             " \"url\":\"https://mock.visitscotland.com/info/fake-product-p" + DMS_ID + "\", " +
             " \"name\":\"Fake Product\", " +
             " \"images\":[{" +
@@ -50,6 +51,9 @@ public class LinkModuleFactoryMockitoTest {
     private DMSDataService dmsData;
 
     @Mock
+    private LinkService linkService;
+
+    @Mock
     private ResourceBundleService resourceBundleService;
 
     private LinkModulesFactory factory;
@@ -62,11 +66,11 @@ public class LinkModuleFactoryMockitoTest {
         return mega;
     }
 
-    private MegalinkItem mockItem() {
+    public MegalinkItem mockItem() {
         return mockItem(false, LinkType.CMS);
     }
 
-    private MegalinkItem mockItem(boolean featured, LinkType type) {
+    public MegalinkItem mockItem(boolean featured, LinkType type) {
         MegalinkItem item = mock(MegalinkItem.class, withSettings().lenient());
 
         when(item.getFeature()).thenReturn(featured);
@@ -114,7 +118,7 @@ public class LinkModuleFactoryMockitoTest {
 
     @BeforeEach
     public void beforeEach() {
-        factory = new LinkModulesFactory(utils, builder, dmsData,resourceBundleService);
+        factory = new LinkModulesFactory(utils, dmsData,linkService);
     }
 
 
@@ -275,7 +279,7 @@ public class LinkModuleFactoryMockitoTest {
         //Test Behaviour when the data from DMS is corrupted
         DMSDataService dmsDataService = mock(DMSDataService.class);
         when(dmsDataService.productCard(anyString(), any(Locale.class))).thenThrow(new IOException());
-        LinkModulesFactory factory = new LinkModulesFactory(utils, builder, dmsDataService, resourceBundleService);
+        LinkModulesFactory factory = new LinkModulesFactory(utils, builder, dmsDataService, linkService);
         MegalinkItem item = mockItem(false,LinkType.DMS);
 
         FlatLink flatLink = factory.convertToFlatLinks(Collections.singletonList(item), Locale.UK).get(0);

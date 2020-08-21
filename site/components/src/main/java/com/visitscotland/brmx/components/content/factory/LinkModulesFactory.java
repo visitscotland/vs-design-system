@@ -10,12 +10,9 @@ import com.visitscotland.brmx.beans.mapping.FlatLink;
 import com.visitscotland.brmx.beans.mapping.megalinks.*;
 import com.visitscotland.brmx.dms.DMSDataService;
 import com.visitscotland.brmx.dms.LocationLoader;
-import com.visitscotland.brmx.dms.ProductSearchBuilder;
-import com.visitscotland.brmx.services.ResourceBundleService;
+import com.visitscotland.brmx.services.LinkService;
 import com.visitscotland.brmx.utils.CommonUtils;
 import com.visitscotland.brmx.utils.HippoUtilsService;
-import com.visitscotland.brmx.utils.Properties;
-import org.hippoecm.hst.content.beans.standard.HippoCompound;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -37,23 +34,21 @@ public class LinkModulesFactory {
 
     private final HippoUtilsService utils;
     private final DMSDataService dmsData;
-    private final ProductSearchBuilder psBuilder;
-    private final ResourceBundleService resourceBundle;
+    private final LinkService linkService;
 
     public LinkModulesFactory() {
-        this(new HippoUtilsService(), new ProductSearchBuilder(), new DMSDataService(), new ResourceBundleService());
+        this(new HippoUtilsService(), new DMSDataService(), new LinkService());
     }
 
-    public LinkModulesFactory(HippoUtilsService utils, ProductSearchBuilder psb, DMSDataService dmsData, ResourceBundleService resourceBundle) {
+    public LinkModulesFactory(HippoUtilsService utils, DMSDataService dmsData, LinkService linkService) {
         this.utils = utils;
-        this.psBuilder = psb;
         this.dmsData = dmsData;
-        this.resourceBundle = resourceBundle;
+        this.linkService   = linkService;
     }
 
     public LinksModule getMegalinkModule(Megalinks doc, Locale locale) {
         if (Boolean.TRUE.equals(doc.getListLayout()) || doc.getMegalinkItems().size() > MAX_ITEMS) {
-            return list(doc, locale) ;
+            return listLayout(doc, locale) ;
         } else if (doc.getSingleImageModule() != null) {
             return singleImageLayout(doc, locale);
         } else {
@@ -73,7 +68,7 @@ public class LinkModulesFactory {
         sil.setMegalinkItem(doc);
 
         if (doc.getProductItem()!= null) {
-            sil.setCta(createLink(locale, doc.getProductItem(), doc));
+            sil.setCta(linkService.createLink(locale, doc.getProductItem(), doc));
         }
         return sil;
     }
@@ -105,7 +100,7 @@ public class LinkModulesFactory {
 
 
         if (doc.getProductItem()!= null) {
-            fl.setCta(createLink(locale, doc.getProductItem(), doc));
+            fl.setCta(linkService.createLink(locale, doc.getProductItem(), doc));
         }
         fl.setLinksSize(doc.getMegalinkItems().size());
         fl.setLinks(convertToEnhancedLinks(doc.getMegalinkItems(), locale));
@@ -132,7 +127,7 @@ public class LinkModulesFactory {
         return fl;
     }
 
-    public ListLinksModule list(Megalinks doc, Locale locale) {
+    public ListLinksModule listLayout(Megalinks doc, Locale locale) {
         ListLinksModule ll = new ListLinksModule();
         ll.setTitle(doc.getTitle());
         ll.setIntroduction(doc.getIntroduction());
@@ -141,10 +136,11 @@ public class LinkModulesFactory {
         ll.setMegalinkItem(doc);
 
         if (doc.getProductItem()!= null) {
-            ll.setCta(createLink(locale, doc.getProductItem(), doc));
+            ll.setCta(linkService.createLink(locale, doc.getProductItem(), doc));
         }
         return ll;
     }
+
     //TODO comment this method
     List<FlatLink> convertToFlatLinks(List<MegalinkItem> items, Locale locale) {
         List<FlatLink> links = new ArrayList<>();
@@ -155,7 +151,7 @@ public class LinkModulesFactory {
                 links.add(new FlatLink(((Page) item.getLink()).getTitle(), utils.createUrl(item.getLink())));
             } else if (item.getLink() instanceof SharedLink) {
                 JsonNode node = getNodeFromSharedLink((SharedLink) item.getLink(), locale);
-                links.add(new FlatLink(((SharedLink) item.getLink()).getTitle(), getPlainLink((SharedLink)item.getLink(), node)));
+                links.add(new FlatLink(((SharedLink) item.getLink()).getTitle(), linkService.getPlainLink((SharedLink)item.getLink(), node)));
             } else {
                 CommonUtils.contentIssue("The module %s is pointing to a document of type %s which cannot be rendered as a page", item.getPath(), item.getLink().getClass().getSimpleName());
             }
@@ -187,7 +183,7 @@ public class LinkModulesFactory {
                     if (link.getImage() == null && product != null && product.has(IMAGE)) {
                         link.setImage(new FlatImage(product));
                     }
-                    link.setLink(getPlainLink((SharedLink) item.getLink(), product));
+                    link.setLink(linkService.getPlainLink((SharedLink) item.getLink(), product));
                 } else {
                     logger.warn(String.format("The type %s was not expected and will be skipped", item.getLink().getClass().getSimpleName()));
                     continue;
@@ -211,7 +207,13 @@ public class LinkModulesFactory {
         }
         return links;
     }
-    //TODO comment this method
+
+    /**
+     * Query the DMSDataService and extract the information about the product as a {@code JsonNode}
+     * @param link
+     * @param locale
+     * @return
+     */
     private JsonNode getNodeFromSharedLink(SharedLink link, Locale locale) {
         if (link.getLinkType() instanceof DMSLink) {
             try {
@@ -222,7 +224,13 @@ public class LinkModulesFactory {
         }
         return null;
     }
-    //TODO comment this method
+
+    /**
+     * Create a localized FlatImage from an Image Object
+     * @param img Image Object
+     * @param locale User language to localize Image texts such as the caption
+     * @return
+     */
     private FlatImage createFlatImage(Image img, Locale locale) {
         FlatImage flatImage = new FlatImage(img, locale);
         LocationObject locationObject = getLocation(img.getLocation(), locale);
@@ -232,70 +240,8 @@ public class LinkModulesFactory {
 
         return flatImage;
     }
-    //TODO comment this method
-    private String getPlainLink(SharedLink link, JsonNode product) {
-
-        if (link.getLinkType() instanceof DMSLink) {
-            if (product == null) {//((DMSLink) link).getDmsData(locale)
-                CommonUtils.contentIssue("The product id '%s' does not exist but is linked ",
-                        ((DMSLink) link.getLinkType()).getProduct(), link.getPath());
-            } else {
-                return Properties.VS_DMS_SERVICE + product.get(URL).asText();
-            }
-        } else if (link.getLinkType() instanceof ExternalLink) {
-            return ((ExternalLink) link.getLinkType()).getLink();
-        } else if (link.getLinkType() instanceof ProductsSearch) {
-            return psBuilder.fromHippoBean((ProductsSearch) link.getLinkType()).build();
-        } else {
-            logger.warn(String.format("This class %s is not recognized as a link type and cannot be converted", link.getLinkType() == null ? "null" : link.getClass().getSimpleName()));
-        }
-        return null;
-
-    }
 
     LocationObject getLocation(String location, Locale locale) {
         return LocationLoader.getLocation(location, locale);
     }
-
-
-    public FlatLink createLink(Locale locale, HippoCompound item, BaseDocument document) {
-        final String URL = "url";
-
-        if (item instanceof DMSLink) {
-            DMSLink dmsLink = (DMSLink) item;
-            try {
-                JsonNode product = dmsData.productCard(dmsLink.getProduct(),locale);
-                if (product == null) {
-                    logger.warn(CommonUtils.contentIssue("There is no product with the id '%s', (%s) ",
-                            dmsLink.getProduct(),document.getPath()));
-                } else {
-                    //TODO build the link for the DMS product properly
-                    return new FlatLink(resourceBundle.getCtaLabel(dmsLink.getLabel(), locale), Properties.VS_DMS_SERVICE + product.get(URL).asText());
-                }
-            } catch (IOException e) {
-                logger.error(String.format("Error while querying the DMS for '%s', (%s)",
-                        dmsLink.getProduct(),document.getPath()));
-            }
-        } else if (item instanceof ProductSearchLink) {
-            ProductSearchLink productSearchLink = (ProductSearchLink) item;
-            ProductSearchBuilder psb = new ProductSearchBuilder()
-                    .fromHippoBean(productSearchLink.getSearch()).locale(locale);
-
-            return new FlatLink(resourceBundle.getCtaLabel(productSearchLink.getLabel(), locale), psb.build());
-
-        } else if (item instanceof ExternalLink) {
-            ExternalLink externalLink = (ExternalLink) item;
-            return new FlatLink(resourceBundle.getCtaLabel(externalLink.getLabel(), locale), externalLink.getLabel());
-
-        } else if (item instanceof CMSLink) {
-            CMSLink cmsLink = (CMSLink) item;
-            return new FlatLink(resourceBundle.getCtaLabel(cmsLink.getLabel(), locale), utils.createUrl(cmsLink.getLink()));
-        }
-
-
-        return null;
-    }
-
-
-
 }

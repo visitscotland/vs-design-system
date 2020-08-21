@@ -1,17 +1,19 @@
 package com.visitscotland.brmx.components.content;
 
 import com.fasterxml.jackson.databind.JsonNode;
-import com.visitscotland.brmx.beans.*;
+import com.visitscotland.brmx.beans.BaseDocument;
+import com.visitscotland.brmx.beans.Page;
 import com.visitscotland.brmx.beans.dms.LocationObject;
 import com.visitscotland.brmx.beans.mapping.Coordinates;
 import com.visitscotland.brmx.beans.mapping.FlatImage;
 import com.visitscotland.brmx.beans.mapping.FlatLink;
-import com.visitscotland.brmx.components.content.factory.LinkModulesFactory;
 import com.visitscotland.brmx.dms.DMSDataService;
 import com.visitscotland.brmx.dms.LocationLoader;
 import com.visitscotland.brmx.dms.ProductSearchBuilder;
+import com.visitscotland.brmx.services.LinkService;
 import com.visitscotland.brmx.services.ResourceBundleService;
-import com.visitscotland.brmx.utils.*;
+import com.visitscotland.brmx.utils.CommonUtils;
+import com.visitscotland.brmx.utils.HippoUtilsService;
 import com.visitscotland.dataobjects.DataType;
 import freemarker.ext.beans.BeansWrapper;
 import freemarker.template.TemplateHashModel;
@@ -40,13 +42,13 @@ public class PageContentComponent<TYPE extends Page> extends EssentialsContentCo
     HippoUtilsService utils;
     ResourceBundleService bundle;
     DMSDataService dmsData;
-    LinkModulesFactory linksFactory;
+    LinkService linksService;
 
     public PageContentComponent(){
         utils = new HippoUtilsService();
         bundle = new ResourceBundleService();
         dmsData = new DMSDataService();
-        linksFactory = new LinkModulesFactory();
+        linksService = new LinkService();
     }
     @Override
     public void doBeforeRender(HstRequest request, HstResponse response) {
@@ -132,7 +134,7 @@ public class PageContentComponent<TYPE extends Page> extends EssentialsContentCo
      * @return FlatLink
      */
     protected FlatLink createLink(HstRequest request, HippoCompound item) {
-        return linksFactory.createLink(request.getLocale(), item, getDocument(request));
+        return linksService.createLink(request.getLocale(), item);
     }
 
     protected void initPage (HstRequest request){
