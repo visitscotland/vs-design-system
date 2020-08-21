@@ -13,6 +13,9 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import javax.jcr.Node;
+import javax.jcr.RepositoryException;
+
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
@@ -52,9 +55,12 @@ public class SendForTranslationActionTest {
         verify(mockWorkflowPlugin, never()).isChangePending();
     }
     @Test
-    public void isVisible_hasTranslationPermissions_noChangePending() {
+    public void isVisible_hasTranslationPermissions_noChangePending() throws Exception {
         // When the user has translation permissions and the document does not have a pending change
         // the menu item should not be visible
+        Node sourceNode = mock(Node.class);
+        when(sourceNode.isNodeType(eq(TranslationWorkflow.VS_TRANSLATABLE))).thenReturn(true);
+        when(mockWorkflowPlugin.getSourceDocumentNode()).thenReturn(sourceNode);
         when(mockWorkflowPlugin.currentDocumentHasTranslation()).thenReturn(true);
         when(mockWorkflowPlugin.canTranslateModel()).thenReturn(true);
         when(mockWorkflowPlugin.isChangePending()).thenReturn(false);
@@ -71,9 +77,12 @@ public class SendForTranslationActionTest {
     }
 
     @Test
-    public void isVisible_noTranslationPermissions() {
+    public void isVisible_noTranslationPermissions() throws Exception {
         // When the user does not have translation permissions
         // the menu item should not be visible
+        Node sourceNode = mock(Node.class);
+        when(sourceNode.isNodeType(eq(TranslationWorkflow.VS_TRANSLATABLE))).thenReturn(true);
+        when(mockWorkflowPlugin.getSourceDocumentNode()).thenReturn(sourceNode);
         when(mockWorkflowPlugin.currentDocumentHasTranslation()).thenReturn(true);
         when(mockWorkflowPlugin.canTranslateModel()).thenReturn(false);
         assertFalse(sendForTranslationAction.isVisible());
@@ -81,8 +90,22 @@ public class SendForTranslationActionTest {
     }
 
     @Test
-    public void isVisible_hasNoTranslations() {
+    public void isVisible_notTranslatableType() throws Exception {
+        // When the English document is not a visitscotland:translatable instance we should not see the menu item
+        Node sourceNode = mock(Node.class);
+        when(sourceNode.isNodeType(eq(TranslationWorkflow.VS_TRANSLATABLE))).thenReturn(false);
+        when(mockWorkflowPlugin.getSourceDocumentNode()).thenReturn(sourceNode);
+        assertFalse(sendForTranslationAction.isVisible());
+        verify(mockWorkflowPlugin, never()).canTranslateModel();
+        verify(mockWorkflowPlugin, never()).isChangePending();
+    }
+
+    @Test
+    public void isVisible_hasNoTranslations() throws Exception {
         // When the English document has no existing translations the menu should not be visible
+        Node sourceNode = mock(Node.class);
+        when(sourceNode.isNodeType(eq(TranslationWorkflow.VS_TRANSLATABLE))).thenReturn(true);
+        when(mockWorkflowPlugin.getSourceDocumentNode()).thenReturn(sourceNode);
         when(mockWorkflowPlugin.currentDocumentHasTranslation()).thenReturn(false);
         assertFalse(sendForTranslationAction.isVisible());
         verify(mockWorkflowPlugin, never()).canTranslateModel();
@@ -90,9 +113,12 @@ public class SendForTranslationActionTest {
     }
 
     @Test
-    public void isVisible_hasTranslationPermissions_andChangePending() {
+    public void isVisible_hasTranslationPermissions_andChangePending() throws Exception {
         // When the user has translation permissions and the document has a pending change
         // the menu item should be visible
+        Node sourceNode = mock(Node.class);
+        when(sourceNode.isNodeType(eq(TranslationWorkflow.VS_TRANSLATABLE))).thenReturn(true);
+        when(mockWorkflowPlugin.getSourceDocumentNode()).thenReturn(sourceNode);
         when(mockWorkflowPlugin.currentDocumentHasTranslation()).thenReturn(true);
         when(mockWorkflowPlugin.canTranslateModel()).thenReturn(true);
         when(mockWorkflowPlugin.isChangePending()).thenReturn(true);
@@ -119,5 +145,20 @@ public class SendForTranslationActionTest {
     @Test
     public void getName() {
         assertEquals(SendForTranslationAction.MENU_TEXT, sendForTranslationAction.getStdWorkflowName());
+    }
+
+    @Test
+    public void isSourceNodeTranslatable() throws Exception {
+        Node sourceNode = mock(Node.class);
+        when(mockWorkflowPlugin.getSourceDocumentNode()).thenReturn(sourceNode);
+
+        when(sourceNode.isNodeType(eq(TranslationWorkflow.VS_TRANSLATABLE))).thenReturn(true);
+        assertTrue(sendForTranslationAction.isSourceNodeTranslatable(mockWorkflowPlugin));
+
+        when(sourceNode.isNodeType(eq(TranslationWorkflow.VS_TRANSLATABLE))).thenReturn(false);
+        assertFalse(sendForTranslationAction.isSourceNodeTranslatable(mockWorkflowPlugin));
+
+        when(sourceNode.isNodeType(eq(TranslationWorkflow.VS_TRANSLATABLE))).thenThrow(new RepositoryException());
+        assertFalse(sendForTranslationAction.isSourceNodeTranslatable(mockWorkflowPlugin));
     }
 }

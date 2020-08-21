@@ -1,6 +1,5 @@
 package com.visitscotland.brmx.translation.plugin;
 
-import com.visitscotland.brmx.translation.plugin.TranslationWorkflow.SetTranslationRequiredResult;
 import org.hippoecm.repository.api.Document;
 import org.hippoecm.repository.api.WorkflowContext;
 import org.hippoecm.repository.api.WorkflowException;
@@ -59,10 +58,9 @@ public class TranslationWorkflowImplSetTranslationRequiredFlagTest {
         JcrDocument mockRootDocument = mock(JcrDocument.class);
         when(mockJcrDocumentFactory.createFromNode(same(mockRootSessionSubject))).thenReturn(mockRootDocument);
         when(mockRootDocument.isNodeType(eq(TranslationWorkflowImpl.VS_TRANSLATABLE))).thenReturn(false);
-        SetTranslationRequiredResult result = translationWorkflow.setTranslationRequiredFlag();
+        List<JcrDocument> result = translationWorkflow.setTranslationRequiredFlag();
         assertNotNull(result);
-        assertTrue(result.getFlaggedNodes().isEmpty());
-        assertTrue(result.getNodesBlockingTranslation().isEmpty());
+        assertTrue(result.isEmpty());
     }
 
     @Test
@@ -72,10 +70,9 @@ public class TranslationWorkflowImplSetTranslationRequiredFlagTest {
         when(mockJcrDocumentFactory.createFromNode(same(mockRootSessionSubject))).thenReturn(mockRootDocument);
         when(mockRootDocument.isNodeType(eq(TranslationWorkflowImpl.VS_TRANSLATABLE))).thenReturn(true);
         when(mockRootDocument.getTranslations()).thenReturn(Collections.emptySet());
-        SetTranslationRequiredResult result = translationWorkflow.setTranslationRequiredFlag();
+        List<JcrDocument> result = translationWorkflow.setTranslationRequiredFlag();
         assertNotNull(result);
-        assertTrue(result.getFlaggedNodes().isEmpty());
-        assertTrue(result.getNodesBlockingTranslation().isEmpty());
+        assertTrue(result.isEmpty());
         verify(mockRootSession, never()).save();
     }
 
@@ -84,8 +81,6 @@ public class TranslationWorkflowImplSetTranslationRequiredFlagTest {
         // When a document has a translation that is already being edited it should not save the session and should
         // dispose of any documents made editable
         JcrDocument mockRootDocument = mock(JcrDocument.class);
-        Node rootHandle = mock(Node.class);
-        when(mockRootDocument.getHandle()).thenReturn(rootHandle);
         when(mockRootDocument.isDraftBeingEdited()).thenReturn(true);
         when(mockJcrDocumentFactory.createFromNode(same(mockRootSessionSubject))).thenReturn(mockRootDocument);
         when(mockRootDocument.isNodeType(eq(TranslationWorkflowImpl.VS_TRANSLATABLE))).thenReturn(true);
@@ -102,22 +97,25 @@ public class TranslationWorkflowImplSetTranslationRequiredFlagTest {
         Node doc4Handle = mock(Node.class);
         Node doc4Editable = mock(Node.class);
         EditableWorkflow doc4Workflow = mock(EditableWorkflow.class);
-        translations.add(initialiseTranslatedDocument(false, false, doc1Handle, doc1Editable, doc1Workflow));
-        translations.add(initialiseTranslatedDocument(true, false, doc2Handle, doc2Editable, doc2Workflow));
-        translations.add(initialiseTranslatedDocument(false, true, doc3Handle, doc3Editable, doc3Workflow));
-        translations.add(initialiseTranslatedDocument(true, false, doc4Handle, doc4Editable, doc4Workflow));
+        JcrDocument doc1 = initialiseTranslatedDocument(false, false, doc1Handle, doc1Editable, doc1Workflow);
+        JcrDocument doc2 = initialiseTranslatedDocument(true, false, doc2Handle, doc2Editable, doc2Workflow);
+        JcrDocument doc3 = initialiseTranslatedDocument(false, true, doc3Handle, doc3Editable, doc3Workflow);
+        JcrDocument doc4 = initialiseTranslatedDocument(true, false, doc4Handle, doc4Editable, doc4Workflow);
+        translations.add(doc1);
+        translations.add(doc2);
+        translations.add(doc3);
+        translations.add(doc4);
 
         when(mockRootDocument.getTranslations()).thenReturn(translations);
-        SetTranslationRequiredResult result = translationWorkflow.setTranslationRequiredFlag();
+        List<JcrDocument> result = translationWorkflow.setTranslationRequiredFlag();
 
         assertNotNull(result);
-        assertTrue(result.getFlaggedNodes().isEmpty());
-        assertFalse(result.getNodesBlockingTranslation().isEmpty());
+        assertFalse(result.isEmpty());
 
-        assertTrue(result.getNodesBlockingTranslation().contains(rootHandle));
-        assertTrue(result.getNodesBlockingTranslation().contains(doc2Handle));
-        assertTrue(result.getNodesBlockingTranslation().contains(doc3Handle));
-        assertTrue(result.getNodesBlockingTranslation().contains(doc4Handle));
+        assertTrue(result.contains(mockRootDocument));
+        assertTrue(result.contains(doc2));
+        assertTrue(result.contains(doc3));
+        assertTrue(result.contains(doc4));
 
         verify(mockRootSession, never()).save();
 
@@ -156,22 +154,20 @@ public class TranslationWorkflowImplSetTranslationRequiredFlagTest {
         Node doc4Handle = mock(Node.class);
         Node doc4Editable = mock(Node.class);
         EditableWorkflow doc4Workflow = mock(EditableWorkflow.class);
-        translations.add(initialiseTranslatedDocument(false, false, doc1Handle, doc1Editable, doc1Workflow));
-        translations.add(initialiseTranslatedDocument(false, false, doc2Handle, doc2Editable, doc2Workflow));
-        translations.add(initialiseTranslatedDocument(false, false, doc3Handle, doc3Editable, doc3Workflow));
-        translations.add(initialiseTranslatedDocument(false, false, doc4Handle, doc4Editable, doc4Workflow));
+        JcrDocument doc1 = initialiseTranslatedDocument(false, false, doc1Handle, doc1Editable, doc1Workflow);
+        JcrDocument doc2 = initialiseTranslatedDocument(false, false, doc2Handle, doc2Editable, doc2Workflow);
+        JcrDocument doc3 = initialiseTranslatedDocument(false, false, doc3Handle, doc3Editable, doc3Workflow);
+        JcrDocument doc4 = initialiseTranslatedDocument(false, false, doc4Handle, doc4Editable, doc4Workflow);
+        translations.add(doc1);
+        translations.add(doc2);
+        translations.add(doc3);
+        translations.add(doc4);
 
         when(mockRootDocument.getTranslations()).thenReturn(translations);
-        SetTranslationRequiredResult result = translationWorkflow.setTranslationRequiredFlag();
+        List<JcrDocument> result = translationWorkflow.setTranslationRequiredFlag();
 
         assertNotNull(result);
-        assertFalse(result.getFlaggedNodes().isEmpty());
-        assertTrue(result.getNodesBlockingTranslation().isEmpty());
-
-        assertTrue(result.getFlaggedNodes().contains(doc1Handle));
-        assertTrue(result.getFlaggedNodes().contains(doc2Handle));
-        assertTrue(result.getFlaggedNodes().contains(doc3Handle));
-        assertTrue(result.getFlaggedNodes().contains(doc4Handle));
+        assertTrue(result.isEmpty());
 
         verify(mockRootSession).save();
 
@@ -180,20 +176,24 @@ public class TranslationWorkflowImplSetTranslationRequiredFlagTest {
         verify(doc3Workflow).obtainEditableInstance();
         verify(doc4Workflow).obtainEditableInstance();
 
-        verify(doc1Workflow).commitEditableInstance();
-        verify(doc2Workflow).commitEditableInstance();
-        verify(doc3Workflow).commitEditableInstance();
-        verify(doc4Workflow).commitEditableInstance();
+        verify(doc1Workflow, never()).commitEditableInstance();
+        verify(doc2Workflow, never()).commitEditableInstance();
+        verify(doc3Workflow, never()).commitEditableInstance();
+        verify(doc4Workflow, never()).commitEditableInstance();
 
-        verify(doc1Workflow, never()).disposeEditableInstance();
-        verify(doc2Workflow, never()).disposeEditableInstance();
-        verify(doc3Workflow, never()).disposeEditableInstance();
-        verify(doc4Workflow, never()).disposeEditableInstance();
+        verify(doc1Workflow).disposeEditableInstance();
+        verify(doc2Workflow).disposeEditableInstance();
+        verify(doc3Workflow).disposeEditableInstance();
+        verify(doc4Workflow).disposeEditableInstance();
 
-        verify(doc1Editable).setProperty(eq("visitscotland:translationFlag"), eq(true));
-        verify(doc2Editable).setProperty(eq("visitscotland:translationFlag"), eq(true));
-        verify(doc3Editable).setProperty(eq("visitscotland:translationFlag"), eq(true));
-        verify(doc4Editable).setProperty(eq("visitscotland:translationFlag"), eq(true));
+        Node doc1unpublished = doc1.getVariantNode(JcrDocument.VARIANT_UNPUBLISHED);
+        verify(doc1unpublished).setProperty(eq("visitscotland:translationFlag"), eq(true));
+        Node doc2unpublished = doc1.getVariantNode(JcrDocument.VARIANT_UNPUBLISHED);
+        verify(doc2unpublished).setProperty(eq("visitscotland:translationFlag"), eq(true));
+        Node doc3unpublished = doc1.getVariantNode(JcrDocument.VARIANT_UNPUBLISHED);
+        verify(doc3unpublished).setProperty(eq("visitscotland:translationFlag"), eq(true));
+        Node doc4unpublished = doc1.getVariantNode(JcrDocument.VARIANT_UNPUBLISHED);
+        verify(doc4unpublished).setProperty(eq("visitscotland:translationFlag"), eq(true));
     }
 
     private JcrDocument initialiseTranslatedDocument(boolean beingEdited, boolean throwCheckoutException, Node handle, Node editableNode, EditableWorkflow mockWorkflow) throws RemoteException, WorkflowException, RepositoryException {
@@ -209,6 +209,9 @@ public class TranslationWorkflowImplSetTranslationRequiredFlagTest {
             } else {
                 when(mockEditableDocument.getNode(same(mockRootSession))).thenReturn(editableNode);
                 when(mockWorkflow.obtainEditableInstance()).thenReturn(mockEditableDocument);
+
+                Node mockUnpublishedVariant = mock(Node.class);
+                when(foreignDocument.getVariantNode(JcrDocument.VARIANT_UNPUBLISHED)).thenReturn(mockUnpublishedVariant);
             }
         }
         return foreignDocument;

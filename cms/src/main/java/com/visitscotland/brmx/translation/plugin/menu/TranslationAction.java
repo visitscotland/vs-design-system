@@ -8,7 +8,6 @@ import org.hippoecm.addon.workflow.WorkflowDescriptorModel;
 import org.hippoecm.addon.workflow.WorkflowSNSException;
 import org.hippoecm.frontend.dialog.ExceptionDialog;
 import org.hippoecm.frontend.dialog.IDialogService;
-import org.hippoecm.frontend.session.UserSession;
 import org.hippoecm.frontend.translation.ILocaleProvider;
 import org.hippoecm.hst.content.beans.ObjectBeanManagerException;
 import org.hippoecm.repository.api.WorkflowException;
@@ -94,7 +93,7 @@ public class TranslationAction extends StdWorkflow<TranslationWorkflow> {
                         workflowPlugin.getSession().getJcrSession());
                 return new SameNameSiblingDialog(provider);
             }
-            return new TranslationConfirmationDialog(this, new DocumentChangeProvider(changeSetList));
+            return new TranslationCloneConfirmationDialog(this, new DocumentChangeProvider(changeSetList));
         } catch (ObjectBeanManagerException | WorkflowSNSException | RepositoryException ex) {
             return new ExceptionDialog(ex);
         }

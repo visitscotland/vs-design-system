@@ -56,10 +56,7 @@ import javax.jcr.Node;
 import javax.jcr.RepositoryException;
 import java.io.Serializable;
 import java.rmi.RemoteException;
-import java.util.Collections;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class TranslationWorkflowPlugin extends RenderPlugin {
@@ -219,6 +216,29 @@ public class TranslationWorkflowPlugin extends RenderPlugin {
 
     public boolean hasLocaleTranslation(String locale) {
         return translationProvider != null && translationProvider.contains(locale);
+    }
+
+    public List<JcrDocument> getCurrentDocumentTranslations() throws RepositoryException {
+        JcrDocument sourceDocument = jcrDocumentFactory.createFromNode(getDocumentNode());
+        List<JcrDocument> translations = new ArrayList<>(sourceDocument.getTranslations());
+        return translations;
+    }
+
+    public List<JcrDocument> getDocumentsBlockingTranslation() throws RepositoryException {
+        List<JcrDocument> documentsBlockingTranslation = new ArrayList<>();
+        JcrDocument sourceDocument = jcrDocumentFactory.createFromNode(getDocumentNode());
+        if (sourceDocument.isDraftBeingEdited()) {
+            documentsBlockingTranslation.add(sourceDocument);
+        }
+
+        Set<JcrDocument> translations = sourceDocument.getTranslations();
+        for (JcrDocument translation : translations) {
+            if (translation.isDraftBeingEdited()) {
+                documentsBlockingTranslation.add(translation);
+            }
+        }
+
+        return documentsBlockingTranslation;
     }
 
     public boolean currentDocumentHasTranslation() {

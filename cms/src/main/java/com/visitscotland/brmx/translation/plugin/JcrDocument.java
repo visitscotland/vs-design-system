@@ -160,6 +160,9 @@ public class JcrDocument {
 
     public boolean isDraftBeingEdited() throws RepositoryException {
         Node draftNode = getVariantNode(JcrDocument.VARIANT_DRAFT);
+        if (null == draftNode) {
+            return false;
+        }
         return draftNode.hasProperty(HippoStdNodeType.HIPPOSTD_HOLDER);
     }
 }

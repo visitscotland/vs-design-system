@@ -21,7 +21,6 @@ import java.rmi.RemoteException;
 import java.util.*;
 
 public class TranslationWorkflowImpl implements TranslationWorkflow, InternalWorkflow {
-    public static final String VS_TRANSLATABLE = "visitscotland:translatable";
     private static final Logger log = LoggerFactory.getLogger(TranslationWorkflowImpl.class);
     private final Session userSession;
     private final Session rootSession;
@@ -218,7 +217,7 @@ public class TranslationWorkflowImpl implements TranslationWorkflow, InternalWor
     }
 
     @Override
-    public SetTranslationRequiredResult setTranslationRequiredFlag() throws WorkflowException, RepositoryException, RemoteException {
+    public List<JcrDocument> setTranslationRequiredFlag() throws WorkflowException, RepositoryException, RemoteException {
         JcrDocument rootJcrDocument = jcrDocumentFactory.createFromNode(rootSubject);
         if (rootJcrDocument.isNodeType("visitscotland:translatable")) {
             Set<JcrDocument> jcrTranslations = rootJcrDocument.getTranslations();
@@ -229,53 +228,58 @@ public class TranslationWorkflowImpl implements TranslationWorkflow, InternalWor
 
             // HashMap<Handle, Editable>
             HashMap<Node, Node> editableNodes = new HashMap<>();
-            List<Node> nodesBeingEdited = new ArrayList<>();
+            List<JcrDocument> nodesBeingEdited = new ArrayList<>();
 
             // Need to check if the root (English) document is being edited by another user. Don't want to send for
             // translation unless it is
             if (rootJcrDocument.isDraftBeingEdited()) {
-                nodesBeingEdited.add(rootJcrDocument.getHandle());
+                nodesBeingEdited.add(rootJcrDocument);
             }
 
             for (JcrDocument translatedDocument : jcrTranslations) {
                 Node handle = translatedDocument.getHandle();
                 if (translatedDocument.isDraftBeingEdited()) {
-                    nodesBeingEdited.add(handle);
+                    nodesBeingEdited.add(translatedDocument);
                     log.debug("Document already checked out for edit, unable to send for translation");
                     continue;
                 }
 
                 try {
-                    Node editableNode = getEditableNode(handle);
-                    editableNodes.put(handle, editableNode);
+                    // The editable node returned is the draft variant of the document. If we apply changes to the
+                    // draft, and then commit changes to the node it also flags the document as changed.
+                    // We do not want that, we want the editor to choose if the document has changed.
+                    // Getting the editable node still ensures that nobody else is editing the document, but if the
+                    // changes are applied to the unpublished variant and the draft is discarded it should have the
+                    // desired result, changes applied without flagging the document as changed.
+                    getEditableNode(handle);
+                    Node unpublishedNode = translatedDocument.getVariantNode(JcrDocument.VARIANT_UNPUBLISHED);
+                    editableNodes.put(handle, unpublishedNode);
                 } catch (WorkflowException ex) {
                     // If we get a workflow exception we have not been able to check the document out
                     // add the Node to a list of failed documents
                     log.debug("Document already checked out for edit, unable to send for translation", ex);
-                    nodesBeingEdited.add(handle);
+                    nodesBeingEdited.add(translatedDocument);
                 }
             }
 
-            SetTranslationRequiredResult result = new SetTranslationRequiredResult();
             if (nodesBeingEdited.isEmpty()) {
                 if (!editableNodes.isEmpty()) {
                     for (HashMap.Entry<Node, Node> editableNodeEntry : editableNodes.entrySet()) {
                         editableNodeEntry.getValue().setProperty("visitscotland:translationFlag", true);
-                        commitEditableNode(editableNodeEntry.getKey());
+                        // If this was the draft node we would want to commit the changes
+                        discardEditableNode(editableNodeEntry.getKey());
                     }
                     rootSession.save();
                     rootSession.refresh(false);
                 }
-                result.getFlaggedNodes().addAll(editableNodes.keySet());
             } else {
                 for (Node handle : editableNodes.keySet()) {
                     discardEditableNode(handle);
                 }
-                result.getNodesBlockingTranslation().addAll(nodesBeingEdited);
             }
-            return result;
+            return nodesBeingEdited;
         }
-        return new SetTranslationRequiredResult();
+        return Collections.emptyList();
     }
 
     protected Node getEditableNode(Node handle) throws RemoteException, WorkflowException, RepositoryException {
@@ -289,8 +293,8 @@ public class TranslationWorkflowImpl implements TranslationWorkflow, InternalWor
         }
     }
 
-    protected void discardEditableNode(Node toDiscard) throws RemoteException, WorkflowException, RepositoryException {
-        final Workflow editing = workflowContext.getWorkflow("editing", documentFactory.createFromNode(toDiscard));
+    protected void discardEditableNode(Node toDiscardHandle) throws RemoteException, WorkflowException, RepositoryException {
+        final Workflow editing = workflowContext.getWorkflow("editing", documentFactory.createFromNode(toDiscardHandle));
         if (editing instanceof EditableWorkflow) {
             EditableWorkflow editableWorkflow = (EditableWorkflow) editing;
             editableWorkflow.disposeEditableInstance();
@@ -299,8 +303,10 @@ public class TranslationWorkflowImpl implements TranslationWorkflow, InternalWor
         }
     }
 
-    protected void commitEditableNode(Node toCommit) throws RemoteException, WorkflowException, RepositoryException {
-        final Workflow editing = workflowContext.getWorkflow("editing", documentFactory.createFromNode(toCommit));
+    // An example of how we would commit a draft version of a document to mark the document as changed
+    // We would want to do this if we were setting any data on the document
+    protected void commitEditableNode(Node toCommitHandle) throws RemoteException, WorkflowException, RepositoryException {
+        final Workflow editing = workflowContext.getWorkflow("editing", documentFactory.createFromNode(toCommitHandle));
         if (editing instanceof EditableWorkflow) {
             EditableWorkflow editableWorkflow = (EditableWorkflow) editing;
             editableWorkflow.commitEditableInstance();
