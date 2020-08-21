@@ -1,12 +1,17 @@
 package com.visitscotland.brmx.components.content.factory;
 
-import com.visitscotland.brmx.beans.*;
+import com.visitscotland.brmx.beans.MegalinkItem;
+import com.visitscotland.brmx.beans.MegalinkItemMockService;
+import com.visitscotland.brmx.beans.Megalinks;
+import com.visitscotland.brmx.beans.MegalinksMockService;
 import com.visitscotland.brmx.beans.dms.LocationObject;
 import com.visitscotland.brmx.beans.mapping.megalinks.LinksModule;
 import com.visitscotland.brmx.beans.mapping.megalinks.MultiImageLinksModule;
 import com.visitscotland.brmx.beans.mapping.megalinks.SingleImageLinksModule;
 import com.visitscotland.brmx.dms.DMSDataService;
 import com.visitscotland.brmx.dms.ProductSearchBuilder;
+import com.visitscotland.brmx.services.LinkService;
+import com.visitscotland.brmx.services.ResourceBundleService;
 import com.visitscotland.brmx.utils.HippoUtilsService;
 import org.easymock.EasyMockSupport;
 import org.hippoecm.hst.content.beans.standard.HippoBean;
@@ -35,7 +40,7 @@ class LinkModulesFactoryTest extends EasyMockSupport {
 
     private LinkModulesFactory factory;
     private HippoUtilsService utils;
-    private ProductSearchBuilder psb;
+    private LinkService linkService;
     private DMSDataService dms;
 
 
@@ -54,14 +59,18 @@ class LinkModulesFactoryTest extends EasyMockSupport {
     @BeforeEach
     void initFactory(){
         utils = createNiceMock(HippoUtilsService.class);
-        psb = new ProductSearchBuilder();
         dms = new DMSDataService();
+
+        ProductSearchBuilder ps = createNiceMock(ProductSearchBuilder.class);
+        ResourceBundleService rs = createNiceMock(ResourceBundleService.class);
+        utils = createNiceMock(HippoUtilsService.class);
+        linkService = new LinkService(dms, ps, rs,utils);
 
         expect(utils.createUrl(anyObject(HippoBean.class))).andStubReturn("/fake-url/mock");
 
         factory = partialMockBuilder(LinkModulesFactory.class)
-                .withConstructor(HippoUtilsService.class,ProductSearchBuilder.class,DMSDataService.class)
-                .withArgs(utils, psb, dms)
+                .withConstructor(HippoUtilsService.class,DMSDataService.class, LinkService.class)
+                .withArgs(utils, dms, linkService)
                 .addMockedMethod("getLocation", String.class, Locale.class)
                 .createMock();
 

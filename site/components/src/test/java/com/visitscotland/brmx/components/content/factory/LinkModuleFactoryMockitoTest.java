@@ -29,17 +29,17 @@ import static org.mockito.Mockito.*;
 @ExtendWith(MockitoExtension.class)
 public class LinkModuleFactoryMockitoTest {
 
-    public  static final String DMS_ID = "0123456798";
-    private static final String EXTERNAL_URL = "http://www.fake.site";
-    private static final String PSR_URL = "http://psr.visitscotland.com/info/search?value1&value2";
-    public  static final String MOCK_JSON = "{" +
+    public static final String DMS_ID = "0123456798";
+    public static final String EXTERNAL_URL = "http://www.fake.site";
+    public static final String PSR_URL = "http://psr.visitscotland.com/info/search?value1&value2";
+    public static final String MOCK_JSON = "{" +
             " \"url\":\"https://mock.visitscotland.com/info/fake-product-p" + DMS_ID + "\", " +
             " \"name\":\"Fake Product\", " +
             " \"images\":[{" +
             "    \"mediaUrl\":\"https://img.visitscotland.com/fake-product.jpg\"" +
             "}]}";
 
-    enum LinkType {CMS, DMS, EXTERNAL, PRODUCT_SEARCH}
+    public enum LinkType {CMS, DMS, EXTERNAL, PRODUCT_SEARCH}
 
     @Mock
     private ProductSearchBuilder builder;
@@ -51,11 +51,9 @@ public class LinkModuleFactoryMockitoTest {
     private DMSDataService dmsData;
 
     @Mock
-    private LinkService linkService;
-
-    @Mock
     private ResourceBundleService resourceBundleService;
 
+    private LinkService linkService;
     private LinkModulesFactory factory;
 
     private Megalinks mockFeatured() {
@@ -118,6 +116,7 @@ public class LinkModuleFactoryMockitoTest {
 
     @BeforeEach
     public void beforeEach() {
+        linkService = new LinkService(dmsData,builder,resourceBundleService,utils);
         factory = new LinkModulesFactory(utils, dmsData,linkService);
     }
 
@@ -279,7 +278,7 @@ public class LinkModuleFactoryMockitoTest {
         //Test Behaviour when the data from DMS is corrupted
         DMSDataService dmsDataService = mock(DMSDataService.class);
         when(dmsDataService.productCard(anyString(), any(Locale.class))).thenThrow(new IOException());
-        LinkModulesFactory factory = new LinkModulesFactory(utils, builder, dmsDataService, linkService);
+        LinkModulesFactory factory = new LinkModulesFactory(utils, dmsDataService, linkService);
         MegalinkItem item = mockItem(false,LinkType.DMS);
 
         FlatLink flatLink = factory.convertToFlatLinks(Collections.singletonList(item), Locale.UK).get(0);
