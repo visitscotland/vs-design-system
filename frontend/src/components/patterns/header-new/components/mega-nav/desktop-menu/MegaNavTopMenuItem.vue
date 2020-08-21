@@ -30,7 +30,7 @@
  */
 
 import VsButton from '@components/elements/button/Button';
-import VsMegaNavDropdown from '@components/patterns/header-new/components/mega-nav/MegaNavDropdown';
+import VsMegaNavDropdown from '@components/patterns/header-new/components/mega-nav/desktop-menu/MegaNavDropdown';
 
 export default {
     name: 'VsMegaNavTopMenuItem',
@@ -108,7 +108,7 @@ export default {
             transition: width 0.2s;
         }
 
-        &:hover{
+        &:hover {
             color: $color-pink;
 
             &::after {
@@ -117,7 +117,7 @@ export default {
         }
 
         &:focus {
-            box-shadow: 0 0 0 0.1rem $color-pink;
+            box-shadow: 0 0 0 0.1rem $color-pink inset;
         }
     }
 }
