@@ -194,7 +194,7 @@ public class LinkModulesFactory {
                 }
 
                 //TODO add itineraries days and transport
-            /*    if (item.getLink() instanceof Itinerary) {
+            /*   if (item.getLink() instanceof Itinerary) {
                     link.setTransport(((Itinerary) item.getLink()).getTransports()[0]);
                     link.setDays(((Itinerary) item.getLink()).getDays().size());
                 }*/
