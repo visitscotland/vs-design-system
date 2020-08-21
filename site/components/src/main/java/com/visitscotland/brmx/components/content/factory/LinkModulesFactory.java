@@ -193,11 +193,11 @@ public class LinkModulesFactory {
                     continue;
                 }
 
-                //TODO
-                if (item.getLink() instanceof Itinerary) {
+                //TODO add itineraries days and transport
+            /*    if (item.getLink() instanceof Itinerary) {
                     link.setTransport(((Itinerary) item.getLink()).getTransports()[0]);
                     link.setDays(((Itinerary) item.getLink()).getDays().size());
-                }
+                }*/
 
 
                 if (link.getImage() == null) {

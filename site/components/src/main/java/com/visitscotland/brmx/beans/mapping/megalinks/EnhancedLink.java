@@ -9,9 +9,6 @@ public class EnhancedLink extends FlatLink {
     private FlatImage image;
     private String teaser;
     private boolean featured;
-    //TODO: Itinerary variable?
-    private int days;
-    private String transport;
 
     public FlatImage getImage() {
         return image;
@@ -37,19 +34,4 @@ public class EnhancedLink extends FlatLink {
         this.featured = featured;
     }
 
-    public int getDays() {
-        return days;
-    }
-
-    public void setDays(int days) {
-        this.days = days;
-    }
-
-    public String getTransport() {
-        return transport;
-    }
-
-    public void setTransport(String transport) {
-        this.transport = transport;
-    }
 }
