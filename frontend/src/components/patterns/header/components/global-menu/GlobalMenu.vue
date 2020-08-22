@@ -316,8 +316,11 @@ export default {
                 flex: auto;
                 flex-basis: 100%;
 
+                border-bottom: 1px solid $color-purple-tint-3;
+
                 @include media-breakpoint-up(md) {
                     flex-basis: auto;
+                    border: none;
                 }
 
                 a {
