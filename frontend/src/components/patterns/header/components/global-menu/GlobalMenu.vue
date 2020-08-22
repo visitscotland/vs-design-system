@@ -19,6 +19,11 @@
                             v-for="site in ourWebsites"
                             :key="site.siteName"
                             :href="site.siteUrl"
+                            :target="
+                                (site.siteUrl == activeSite)
+                                    ? '_self'
+                                    : '_blank'
+                            "
                         >
                             {{ site.siteName }}
                         </VsDropdownItem>
@@ -46,7 +51,11 @@
                             ]"
                         >
                             <a
-                                target="_blank"
+                                :target="
+                                    (site.siteUrl == activeSite)
+                                        ? '_self'
+                                        : '_blank'
+                                "
                                 :href="site.siteUrl"
                             >{{ site.siteName }}</a>
                         </li>
@@ -166,10 +175,6 @@ export default {
             margin: 0;
         }
     }
-
-    .icon:not(.icon-chevron-down):not(.icon-chevron-up) {
-        margin-right: 0.5rem;
-    }
 }
 
 .vs-global-menu__websites,
@@ -207,7 +212,7 @@ export default {
         }
 
         &:focus {
-            outline: 3px solid $color-purple-tint-5;
+            outline: 3px solid $color-pink-tint-5;
             outline-offset: -3px;
             box-shadow: none;
         }
@@ -220,7 +225,7 @@ export default {
     }
 
     ul:focus {
-        outline: 3px solid $color-purple-tint-5;
+        outline: 3px solid $color-pink-tint-5;
         outline-offset: -3px;
     }
 
@@ -252,7 +257,7 @@ export default {
                     }
 
                     &:focus {
-                        outline: 3px solid $color-purple-tint-5;
+                        outline: 3px solid $color-pink-tint-5;
                         outline-offset: -3px;
                     }
                 }
@@ -266,7 +271,7 @@ export default {
             max-height: 35px;
 
             &:focus {
-                outline: 3px solid $color-purple-tint-5;
+                outline: 3px solid $color-pink-tint-5;
                 outline-offset: -3px;
             }
 
@@ -298,7 +303,7 @@ export default {
         height: auto;
         font-size: 16px;
 
-        &__wraper {
+        &__wrapper {
             display: flex;
             flex-wrap: wrap;
         }
