@@ -229,39 +229,47 @@ export default {
         outline-offset: -3px;
     }
 
+
     .dropdown-menu {
         min-width: auto;
         width: 100%;
         background: $color-purple;
+        transition: all ease-in-out 0.3s;
+        max-height: 0;
+        display: block;
+        overflow: hidden;
+        opacity: 0;
+
+        li {
+            border-bottom: 1px solid $color-purple-tint-3;
+
+            &:last-of-type {
+                border: none;
+            }
+
+            a {
+                padding: 0.7rem $spacer-5;
+                color: white;
+                text-decoration: none;
+                font-size: $font-size-sm;
+
+                &:hover, &:focus {
+                    background: $color-purple-shade-2;
+                }
+
+                &:focus {
+                    outline: 3px solid $color-pink-tint-5;
+                    outline-offset: -3px;
+                }
+            }
+        }
 
         &.show {
+            max-height: 500px;
+            opacity: 1;
             transform: translate3d(0px, 26px, 0px) !important;
             border: none;
             padding: 0;
-
-            li {
-                border-bottom: 1px solid $color-purple-tint-3;
-
-                &:last-of-type {
-                    border: none;
-                }
-
-                a {
-                    padding: 0.7rem $spacer-5;
-                    color: white;
-                    text-decoration: none;
-                    font-size: $font-size-sm;
-
-                    &:hover, &:focus {
-                        background: $color-purple-shade-2;
-                    }
-
-                    &:focus {
-                        outline: 3px solid $color-pink-tint-5;
-                        outline-offset: -3px;
-                    }
-                }
-            }
         }
     }
 
