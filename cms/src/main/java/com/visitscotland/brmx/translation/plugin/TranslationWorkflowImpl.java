@@ -22,7 +22,7 @@ import java.util.TreeMap;
 import java.util.TreeSet;
 
 public class TranslationWorkflowImpl implements TranslationWorkflow, InternalWorkflow {
-
+    public static final String CAFEBABE = "cafebabe-";
     private static final Logger log = LoggerFactory.getLogger(TranslationWorkflowImpl.class);
     private final Session userSession;
     private final Session rootSession;
@@ -136,7 +136,7 @@ public class TranslationWorkflowImpl implements TranslationWorkflow, InternalWor
                         // translation for the current language.
                         // If the linkUUID does not exist or points to the root Node then skip it.
                         String linkUUID = childNode.getProperty("hippo:docbase").getString();
-                        if (linkUUID == null || linkUUID.equals("") || linkUUID.startsWith("cafebabe-")) {
+                        if (linkUUID == null || linkUUID.equals("") || linkUUID.startsWith(CAFEBABE)) {
                             log.warn("Link contains an empty Node");
                             continue;
                         }
