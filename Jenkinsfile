@@ -21,6 +21,7 @@ if (BRANCH_NAME == "develop" && (JOB_NAME == "develop.visitscotland.com/develop"
   //cron_string = "*/2 * * * *"
 } else {
   thisAgent = "docker-02"
+  //thisAgent = "op-dev-xvcdocker-01"
 }
 
 import groovy.json.JsonSlurper
@@ -202,8 +203,29 @@ pipeline {
           sh 'sh ./infrastructure/scripts/infrastructure.sh --debug'
         }
       }
-    } //end stage
-
+    } //end 
+   // timeout(time: 60, unit: 'SECONDS') {
+        // stage('Check Availability') {
+        //   steps {            
+        //     script{
+        //         //sh 'sh ./infrastructure/scripts/availability.sh --debug'
+        //         sleep time: 120, unit: 'SECONDS'
+        //       }
+        //    }
+        //   }
+       
+  //  }
+    // stage ('Run a11y tests'){
+    //     // when {
+    //     //     branch 'PR-160'  TODO - change this to dev nightly / dev stable when ready 
+    //     // }
+    //     steps{
+    //         script{
+    //             sh 'sh ./infrastructure/scripts/lighthouse.sh'
+    //         }
+    //     }
+    // }
+    
 // -- 20200712: entire section commented out as it currently serves no purpose
 //    stage ('Availability notice'){
 //    // -- "input" section commented out for now - useful for when there is genuinely a need to pause for an answer
@@ -218,6 +240,21 @@ pipeline {
   } //end stages
 
   post{
+    always {
+      script{
+        sleep time: 120, unit: 'SECONDS'
+        sh 'sh ./infrastructure/scripts/lighthouse.sh'
+      }
+      publishHTML (target: [
+        allowMissing: false,
+        alwaysLinkToLastBuild: false,
+        keepAll: true,
+        reportDir: 'frontend/.lighthouseci',
+        reportFiles: 'lhr-**.html',
+        reportName: "LH Report"
+      ])
+    }
+
     aborted{
       script{
         try{
