@@ -73,27 +73,16 @@ export default {
 </script>
 
 <style lang="scss">
-.vs-global-menu__languages .btn {
-    padding: 0;
-    background: $color-purple;
-    border: none;
-    max-width: 130px;
-
-    &:hover {
-        background: $color-purple-shade-2;
-    }
-}
-
 .vs-global-menu__languages {
     position: initial;
 
-    & .btn {
+    &.btn {
         padding: 0.5rem;
         font-size: $font-size-sm;
-
-        @include media-breakpoint-up(lg) {
-            font-size: $small-font-size;
-        }
+        padding: 0;
+        background: $color-purple;
+        border: none;
+        max-width: 130px;
 
         &-secondary:not(:disabled):not(.disabled):active {
             background: $color-purple-shade-2;
@@ -104,6 +93,10 @@ export default {
             outline-offset: -3px;
             box-shadow: none;
         }
+
+        &:hover {
+            background: $color-purple-shade-2;
+        }
     }
 
     &.show .btn,
@@ -112,15 +105,10 @@ export default {
         background: $color-purple-shade-2;
     }
 
-    ul:focus {
-        outline: 3px solid $color-purple-tint-5;
-        outline-offset: -3px;
-    }
-
     .dropdown-menu {
-        min-width: auto;
         width: 100%;
         background: $color-purple;
+        font-size: $font-size-sm;
 
         &.show {
             transform: translate3d(0px, 32px, 0px) !important;
@@ -128,10 +116,10 @@ export default {
             padding: 0;
 
             li {
-                border-bottom: 1px solid $color-purple-tint-3;
 
-                &:last-of-type {
-                    border: none;
+                &:not(:last-of-type) {
+                    border-bottom: 1px solid $color-purple-tint-3;
+
                 }
 
                 a {
