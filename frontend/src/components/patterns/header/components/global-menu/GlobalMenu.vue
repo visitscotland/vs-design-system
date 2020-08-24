@@ -11,7 +11,6 @@
                         :text="ourWebsitesLabel"
                         class="
                             vs-global-menu__websites
-                            vs-global-menu__websites--mobile
                             d-lg-none
                         "
                     >
@@ -35,7 +34,6 @@
                         inline
                         class="
                             vs-global-menu__websites
-                            vs-global-menu__websites--desktop
                             d-none
                             d-lg-flex
                         "
@@ -152,7 +150,6 @@ export default {
     align-items: center;
 
     @include media-breakpoint-up(lg) {
-        font-size: $small-font-size;
         height: 35px;
     }
 
@@ -202,10 +199,6 @@ export default {
         font-size: $font-size-sm;
         display: flex;
         align-items: center;
-
-        @include media-breakpoint-up(lg) {
-            font-size: $small-font-size;
-        }
 
         &-secondary:not(:disabled):not(.disabled):active {
             background: $color-purple-shade-2;
@@ -275,7 +268,7 @@ export default {
 
     &__item {
         a {
-            padding: 0.55rem $spacer_5;
+            padding: 0.6rem $spacer_5;
             max-height: 35px;
 
             &:focus {
@@ -314,6 +307,14 @@ export default {
         &__wrapper {
             display: flex;
             flex-wrap: wrap;
+
+            .vs-dropdown {
+                display: none;
+            }
+
+            .vs-list {
+                display: flex !important;
+            }
         }
 
         &__websites {
@@ -338,14 +339,6 @@ export default {
                     justify-content: center;
                     padding: 1.9rem $spacer-5;
                 }
-            }
-
-            &--mobile {
-                display: none;
-            }
-
-            &--desktop {
-                display: flex !important;
             }
         }
     }
