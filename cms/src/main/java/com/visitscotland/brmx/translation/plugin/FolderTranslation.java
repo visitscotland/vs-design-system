@@ -3,6 +3,7 @@ package com.visitscotland.brmx.translation.plugin;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javax.jcr.Node;
 import java.io.Serializable;
 
 public class FolderTranslation implements Serializable {
@@ -22,6 +23,8 @@ public class FolderTranslation implements Serializable {
     private String sameNameSiblingId;
     private boolean hasSameUrlSibling = false;
     private String sameUrlSiblingId;
+    private Node sourceNode;
+    private boolean containsTranslationLinks = false;
 
     public FolderTranslation(String id) {
         this.id = id;
@@ -107,5 +110,21 @@ public class FolderTranslation implements Serializable {
 
     public void setSameUrlSiblingId(String sameUrlSiblingId) {
         this.sameUrlSiblingId = sameUrlSiblingId;
+    }
+
+    public Node getSourceNode() {
+        return sourceNode;
+    }
+
+    public void setSourceNode(Node sourceNode) {
+        this.sourceNode = sourceNode;
+    }
+
+    public boolean containsTranslationLinks() {
+        return containsTranslationLinks;
+    }
+
+    public void setContainsTranslationLinks(boolean containsTranslationLinks) {
+        this.containsTranslationLinks = containsTranslationLinks;
     }
 }
