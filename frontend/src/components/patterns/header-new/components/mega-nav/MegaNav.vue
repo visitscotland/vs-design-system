@@ -1,18 +1,40 @@
-<!-- eslint-disable -->
 <template>
-    <BNavbar class="vs-mega-nav" toggleable="lg">
+    <BNavbar
+        class="vs-mega-nav"
+        toggleable="lg"
+    >
         <VsContainer>
-             <VsSvgLink
+            <VsSvgLink
                 class="vs-mega-nav__logo mr-lg-6 mr-xl-12"
                 logo-alt-text="VisitScotland Home"
                 href="/"
                 svg-fill="700e57"
                 svg-path="visitscotland"
             />
-        
-            <BNavbarToggle target="nav-collapse"></BNavbarToggle>
 
-            <BCollapse id="nav-collapse" is-nav>
+            <BNavbarToggle
+                class="vs-mega-nav__toggle"
+                target="vs-mega-nav__collapse"
+                @click.native="toggleCollapse"
+            >
+                <VsIcon
+                    v-if="isCollapsed"
+                    name="close"
+                    variant="dark"
+                    size="sm"
+                />
+                <VsIcon
+                    v-else
+                    name="bars-mobile-menu"
+                    variant="dark"
+                    size="md"
+                />
+            </BNavbarToggle>
+
+            <BCollapse
+                id="vs-mega-nav__collapse"
+                is-nav
+            >
                 <VsMegaNavMobileList class="d-lg-none">
                     <slot name="mega-nav-mobile-items" />
                 </VsMegaNavMobileList>
@@ -45,6 +67,16 @@ export default {
         BNavbarToggle,
         BCollapse,
     },
+    data() {
+        return {
+            isCollapsed: false,
+        };
+    },
+    methods: {
+        toggleCollapse() {
+            this.isCollapsed = !this.isCollapsed;
+        },
+    },
 };
 </script>
 
@@ -62,8 +94,7 @@ export default {
     }
 
     &__logo {
-        padding-top: 0.3125rem;
-        padding-bottom: 0.3125rem;
+        padding: $spacer-1 0;
 
         svg{
             width: 184px;
@@ -72,6 +103,18 @@ export default {
 
     &__menu {
         position: static;
+    }
+
+    &__toggle {
+        border: 0;
+        font-size: 0;
+        padding: $spacer-1;
+        height: 32px;
+        width: 32px;
+
+        &:focus{
+            outline-color: $color-pink;
+        }
     }
 }
 </style>
