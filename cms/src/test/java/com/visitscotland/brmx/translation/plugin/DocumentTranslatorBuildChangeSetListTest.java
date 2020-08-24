@@ -4,6 +4,7 @@ import com.visitscotland.brmx.beans.Itinerary;
 import com.visitscotland.brmx.beans.Page;
 import com.visitscotland.brmx.beans.TranslationParent;
 import org.hippoecm.frontend.translation.ILocaleProvider;
+import org.hippoecm.hst.content.beans.standard.HippoBean;
 import org.hippoecm.repository.api.HippoNode;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -46,6 +47,15 @@ public class DocumentTranslatorBuildChangeSetListTest {
     private ChangeSet mockFrenchChangeSet;
 
     private List<ILocaleProvider.HippoLocale> targetLocaleList;
+    @Mock
+    private HippoTranslatedNodeFactory mockNodeFactory;
+    @Mock
+    private SessionFactory mockSessionFactory;
+    @Mock
+    private JcrDocumentFactory mockJcrDocumentFactory;
+    @Mock
+    private ChangeSetFactory mockChangeSetFactory;
+
     @BeforeEach
     public void beforeEach() throws Exception {
         targetLocaleList = new ArrayList<>();
@@ -53,62 +63,67 @@ public class DocumentTranslatorBuildChangeSetListTest {
         targetLocaleList.add(mockSpanishLocale);
         targetLocaleList.add(mockFrenchLocale);
 
-        documentTranslator = spy(new DocumentTranslator());
+        documentTranslator = spy(new DocumentTranslator(mockNodeFactory, mockSessionFactory, mockJcrDocumentFactory,
+                mockChangeSetFactory));
         mockItalianChangeSet = createMockChangeSet();
-        lenient().doReturn(mockItalianChangeSet).when(documentTranslator).createChangeSet(same(mockItalianLocale));
+        lenient().doReturn(mockItalianChangeSet).when(mockChangeSetFactory).createChangeSet(same(mockItalianLocale));
 
         mockSpanishChangeSet = createMockChangeSet();
-        lenient().doReturn(mockSpanishChangeSet).when(documentTranslator).createChangeSet(same(mockSpanishLocale));
+        lenient().doReturn(mockSpanishChangeSet).when(mockChangeSetFactory).createChangeSet(same(mockSpanishLocale));
 
         mockFrenchChangeSet = createMockChangeSet();
-        lenient().doReturn(mockFrenchChangeSet).when(documentTranslator).createChangeSet(same(mockFrenchLocale));
+        lenient().doReturn(mockFrenchChangeSet).when(mockChangeSetFactory).createChangeSet(same(mockFrenchLocale));
 
-        lenient().doReturn(mockSourceDocument).when(documentTranslator).createJcrDocument(same(mockSourceNode));
+        lenient().doReturn(mockSourceDocument).when(mockJcrDocumentFactory).createJcrDocument(same(mockSourceNode));
     }
 
     @Test
-    public void buildChangeSetList_emptyTargetLocaleList() throws Exception {
+    public void buildDocumentChangeSetList_emptyTargetLocaleList() throws Exception {
         // When the target locale list passed to the method is empty
         // it should return an empty ChangeSet not cause an exception
         List<ChangeSet> result = documentTranslator.buildChangeSetList(mockSourceNode, Collections.emptyList());
 
-        assertNotNull(result);
         assertTrue(result.isEmpty());
     }
 
     @Test
-    public void buildChangeSetList_sourceDocumentTranslated_notPageType() throws Exception {
+    public void buildDocumentChangeSetList_sourceDocumentTranslated_notPageType() throws Exception {
         // The source document is already translated into every target locale and is not a Page type
         // Should return an empty ChangeSet list
         when(mockSourceDocument.hasTranslation(same(mockItalianLocale))).thenReturn(true);
         when(mockSourceDocument.hasTranslation(same(mockFrenchLocale))).thenReturn(true);
         when(mockSourceDocument.hasTranslation(same(mockSpanishLocale))).thenReturn(true);
 
+        HippoBean mockHippoBean = mock(HippoBean.class);
+        when(mockSourceDocument.asHippoBean()).thenReturn(mockHippoBean);
         when(mockSourceDocument.isNodeType(eq(JCR_TYPE))).thenReturn(false);
 
         List<ChangeSet> result = documentTranslator.buildChangeSetList(mockSourceNode, targetLocaleList);
 
-        assertNotNull(result);
         assertTrue(result.isEmpty());
 
         verify(mockItalianChangeSet).populateFolders(same(mockSourceDocument));
         verify(mockFrenchChangeSet).populateFolders(same(mockSourceDocument));
         verify(mockSpanishChangeSet).populateFolders(same(mockSourceDocument));
+
+        verify(documentTranslator, times(3)).addTranslationLinkChangeSets(same(mockHippoBean), any(ILocaleProvider.HippoLocale.class), anyList());
+        verify(documentTranslator, times(3)).addTranslationLinkChangeSets(any(), any(ILocaleProvider.HippoLocale.class), anyList());
     }
 
     @Test
-    public void buildChangeSetList_sourceDocumentHasMissingLocales_notPageType() throws Exception {
+    public void buildDocumentChangeSetList_sourceDocumentHasMissingLocales_notPageType() throws Exception {
         // The source document has missing locale translations, is not a Page type,
         // Should return a ChangeSet for each missing locale
         when(mockSourceDocument.hasTranslation(same(mockItalianLocale))).thenReturn(true);
         when(mockSourceDocument.hasTranslation(same(mockFrenchLocale))).thenReturn(false);
         when(mockSourceDocument.hasTranslation(same(mockSpanishLocale))).thenReturn(false);
 
+        HippoBean mockHippoBean = mock(HippoBean.class);
+        when(mockSourceDocument.asHippoBean()).thenReturn(mockHippoBean);
         when(mockSourceDocument.isNodeType(eq(JCR_TYPE))).thenReturn(false);
 
         List<ChangeSet> result = documentTranslator.buildChangeSetList(mockSourceNode, targetLocaleList);
 
-        assertNotNull(result);
         assertEquals(2, result.size());
 
         verify(mockItalianChangeSet, never()).addDocument(any(JcrDocument.class));
@@ -120,10 +135,13 @@ public class DocumentTranslatorBuildChangeSetListTest {
         verify(mockItalianChangeSet).populateFolders(same(mockSourceDocument));
         verify(mockFrenchChangeSet).populateFolders(same(mockSourceDocument));
         verify(mockSpanishChangeSet).populateFolders(same(mockSourceDocument));
+
+        verify(documentTranslator, times(3)).addTranslationLinkChangeSets(same(mockHippoBean), any(ILocaleProvider.HippoLocale.class), anyList());
+        verify(documentTranslator, times(3)).addTranslationLinkChangeSets(any(), any(ILocaleProvider.HippoLocale.class), anyList());
     }
 
     @Test
-    public void buildChangeSetList_sourceDocumentTranslated_PageType_notTranslationParent() throws Exception {
+    public void buildDocumentChangeSetList_sourceDocumentTranslated_PageType_notTranslationParent() throws Exception {
         // The source document is already translated into every target locale and is a Page type,
         // but not a TranslationParent
         // Should return an empty ChangeSet list
@@ -137,16 +155,18 @@ public class DocumentTranslatorBuildChangeSetListTest {
 
         List<ChangeSet> result = documentTranslator.buildChangeSetList(mockSourceNode, targetLocaleList);
 
-        assertNotNull(result);
         assertTrue(result.isEmpty());
 
         verify(mockItalianChangeSet).populateFolders(same(mockSourceDocument));
         verify(mockFrenchChangeSet).populateFolders(same(mockSourceDocument));
         verify(mockSpanishChangeSet).populateFolders(same(mockSourceDocument));
+
+        verify(documentTranslator, times(3)).addTranslationLinkChangeSets(same(mockHippoBean), any(ILocaleProvider.HippoLocale.class), anyList());
+        verify(documentTranslator, times(3)).addTranslationLinkChangeSets(any(), any(ILocaleProvider.HippoLocale.class), anyList());
     }
 
     @Test
-    public void buildChangeSetList_sourceDocumentHasMissingLocales_PageType_notTranslationParent() throws Exception {
+    public void buildDocumentChangeSetList_sourceDocumentHasMissingLocales_PageType_notTranslationParent() throws Exception {
         // The source document has missing locale translations, is a Page type,
         // but not a TranslationParent
         // Should return a ChangeSet for each missing locale
@@ -160,7 +180,6 @@ public class DocumentTranslatorBuildChangeSetListTest {
 
         List<ChangeSet> result = documentTranslator.buildChangeSetList(mockSourceNode, targetLocaleList);
 
-        assertNotNull(result);
         assertEquals(2, result.size());
 
         verify(mockItalianChangeSet, never()).addDocument(any(JcrDocument.class));
@@ -172,10 +191,13 @@ public class DocumentTranslatorBuildChangeSetListTest {
         verify(mockItalianChangeSet).populateFolders(same(mockSourceDocument));
         verify(mockFrenchChangeSet).populateFolders(same(mockSourceDocument));
         verify(mockSpanishChangeSet).populateFolders(same(mockSourceDocument));
+
+        verify(documentTranslator, times(3)).addTranslationLinkChangeSets(same(mockHippoBean), any(ILocaleProvider.HippoLocale.class), anyList());
+        verify(documentTranslator, times(3)).addTranslationLinkChangeSets(any(), any(ILocaleProvider.HippoLocale.class), anyList());
     }
 
     @Test
-    public void buildChangeSetList_sourceDocumentTranslated_PageType_TranslationParent_noChildren() throws Exception {
+    public void buildDocumentChangeSetList_sourceDocumentTranslated_PageType_TranslationParent_noChildren() throws Exception {
         // The source document is already translated into every target locale, is a Page type and a TranslationParent
         // The source document has no siblings
         // Should return an empty ChangeSet list
@@ -197,16 +219,18 @@ public class DocumentTranslatorBuildChangeSetListTest {
 
         List<ChangeSet> result = documentTranslator.buildChangeSetList(mockSourceNode, targetLocaleList);
 
-        assertNotNull(result);
         assertTrue(result.isEmpty());
 
         verify(mockItalianChangeSet).populateFolders(same(mockSourceDocument));
         verify(mockFrenchChangeSet).populateFolders(same(mockSourceDocument));
         verify(mockSpanishChangeSet).populateFolders(same(mockSourceDocument));
+
+        verify(documentTranslator, times(3)).addTranslationLinkChangeSets(same(mockHippoBean), any(ILocaleProvider.HippoLocale.class), anyList());
+        verify(documentTranslator, times(3)).addTranslationLinkChangeSets(any(), any(ILocaleProvider.HippoLocale.class), anyList());
     }
 
     @Test
-    public void buildChangeSetList_sourceDocumentTranslated_PageType_TranslationParent_withNonMatchingChildren() throws Exception {
+    public void buildDocumentChangeSetList_sourceDocumentTranslated_PageType_TranslationParent_withNonMatchingChildren() throws Exception {
         // The source document is already translated into every target locale, is a Page type and a TranslationParent
         // The source document has siblings but they do not match any of the JCR types of the TranslationParent
         // The siblings also contain folders and other types that are not hippo:handle or hippo:translated
@@ -227,11 +251,11 @@ public class DocumentTranslatorBuildChangeSetListTest {
         HippoNode mockTranslatedType = createMockSibling(JcrDocument.HIPPO_TRANSLATED);
 
         JcrDocument mockHandleDocument = mock(JcrDocument.class);
-        doReturn(mockHandleDocument).when(documentTranslator).createJcrDocument(same(mockHandleType));
+        doReturn(mockHandleDocument).when(mockJcrDocumentFactory).createJcrDocument(same(mockHandleType));
         when(mockHandleDocument.isNodeType(ArgumentMatchers.<String>any())).thenReturn(false);
 
         JcrDocument mockTranslatedDocument = mock(JcrDocument.class);
-        doReturn(mockTranslatedDocument).when(documentTranslator).createJcrDocument(same(mockTranslatedType));
+        doReturn(mockTranslatedDocument).when(mockJcrDocumentFactory).createJcrDocument(same(mockTranslatedType));
         when(mockTranslatedDocument.isNodeType(ArgumentMatchers.<String>any())).thenReturn(false);
 
         HippoNode mockContainingFolder = mock(HippoNode.class);
@@ -249,21 +273,26 @@ public class DocumentTranslatorBuildChangeSetListTest {
 
         List<ChangeSet> result = documentTranslator.buildChangeSetList(mockSourceNode, targetLocaleList);
 
-        assertNotNull(result);
         assertTrue(result.isEmpty());
 
         verify(mockItalianChangeSet).populateFolders(same(mockSourceDocument));
         verify(mockFrenchChangeSet).populateFolders(same(mockSourceDocument));
         verify(mockSpanishChangeSet).populateFolders(same(mockSourceDocument));
+
+        // Called only for the main document
+        verify(documentTranslator, times(3)).addTranslationLinkChangeSets(same(mockHippoBean), any(ILocaleProvider.HippoLocale.class), anyList());
+        verify(documentTranslator, times(3)).addTranslationLinkChangeSets(any(HippoBean.class), any(ILocaleProvider.HippoLocale.class), anyList());
     }
 
     @Test
-    public void buildChangeSetList_sourceDocumentTranslated_PageType_TranslationParent_withMatchingChildren_allTranslated() throws Exception {
+    public void buildDocumentChangeSetList_sourceDocumentTranslated_PageType_TranslationParent_withMatchingChildren_allTranslated() throws Exception {
         // The source document is already translated into every target locale, is a Page type and a TranslationParent
         // The source document has siblings they match one of the JCR types of the TranslationParent
         // and are already translated.
         // The siblings also contain folders and other types that are not hippo:handle or hippo:translated
         // Should return an empty ChangeSet list
+        // Verify that the addTranslationLinkChangeSets is called for each of the siblings,
+        // even though they are already translated because their links might not be.
         when(mockSourceDocument.hasTranslation(same(mockItalianLocale))).thenReturn(true);
         when(mockSourceDocument.hasTranslation(same(mockFrenchLocale))).thenReturn(true);
         when(mockSourceDocument.hasTranslation(same(mockSpanishLocale))).thenReturn(true);
@@ -278,18 +307,20 @@ public class DocumentTranslatorBuildChangeSetListTest {
         HippoNode mockTranslationSibling = createMockSibling(JcrDocument.HIPPO_TRANSLATED);
 
         JcrDocument mockHandleDocument = mock(JcrDocument.class);
-        doReturn(mockHandleDocument).when(documentTranslator).createJcrDocument(same(mockHandleType));
+        doReturn(mockHandleDocument).when(mockJcrDocumentFactory).createJcrDocument(same(mockHandleType));
         when(mockHandleDocument.isNodeType(ArgumentMatchers.<String>any())).thenReturn(false);
 
         JcrDocument mockTranslatedDocument = mock(JcrDocument.class);
-        doReturn(mockTranslatedDocument).when(documentTranslator).createJcrDocument(same(mockTranslatedType));
+        doReturn(mockTranslatedDocument).when(mockJcrDocumentFactory).createJcrDocument(same(mockTranslatedType));
         when(mockTranslatedDocument.isNodeType(ArgumentMatchers.<String>any())).thenReturn(false);
 
         JcrDocument mockTranslationSiblingDocument = mock(JcrDocument.class);
         doReturn(mockTranslationSiblingDocument)
-                .when(documentTranslator).createJcrDocument(same(mockTranslationSibling));
+                .when(mockJcrDocumentFactory).createJcrDocument(same(mockTranslationSibling));
         when(mockTranslationSiblingDocument.isNodeType(eq("type1"), eq("type2"))).thenReturn(true);
         when(mockTranslationSiblingDocument.hasTranslation(any(ILocaleProvider.HippoLocale.class))).thenReturn(true);
+        HippoBean mockTranslationSiblingHippoBean = mock(HippoBean.class);
+        when(mockTranslationSiblingDocument.asHippoBean()).thenReturn(mockTranslationSiblingHippoBean);
 
         HippoNode mockContainingFolder = mock(HippoNode.class);
         when(mockContainingFolder.getNodes()).thenAnswer(new Answer<NodeIterator>() {
@@ -306,16 +337,21 @@ public class DocumentTranslatorBuildChangeSetListTest {
 
         List<ChangeSet> result = documentTranslator.buildChangeSetList(mockSourceNode, targetLocaleList);
 
-        assertNotNull(result);
         assertTrue(result.isEmpty());
 
         verify(mockItalianChangeSet).populateFolders(same(mockSourceDocument));
         verify(mockFrenchChangeSet).populateFolders(same(mockSourceDocument));
         verify(mockSpanishChangeSet).populateFolders(same(mockSourceDocument));
+
+        // Each locale for the main document
+        verify(documentTranslator, times(3)).addTranslationLinkChangeSets(same(mockHippoBean), any(ILocaleProvider.HippoLocale.class), anyList());
+        // and once for each targetLocale for the sibling
+        verify(documentTranslator, times(3)).addTranslationLinkChangeSets(same(mockTranslationSiblingHippoBean), any(ILocaleProvider.HippoLocale.class), anyList());
+        verify(documentTranslator, times(6)).addTranslationLinkChangeSets(any(), any(ILocaleProvider.HippoLocale.class), anyList());
     }
 
     @Test
-    public void buildChangeSetList_sourceDocumentTranslated_PageType_TranslationParent_withMatchingChildren_missingLocales() throws Exception {
+    public void buildDocumentChangeSetList_sourceDocumentTranslated_PageType_TranslationParent_withMatchingChildren_missingLocales() throws Exception {
         // The source document is already translated into every target locale, is a Page type and a TranslationParent.
         // The source document has siblings they match one of the JCR types of the TranslationParent
         // and have missing locales.
@@ -336,20 +372,22 @@ public class DocumentTranslatorBuildChangeSetListTest {
         HippoNode mockTranslationSibling = createMockSibling(JcrDocument.HIPPO_TRANSLATED);
 
         JcrDocument mockHandleDocument = mock(JcrDocument.class);
-        doReturn(mockHandleDocument).when(documentTranslator).createJcrDocument(same(mockHandleType));
+        doReturn(mockHandleDocument).when(mockJcrDocumentFactory).createJcrDocument(same(mockHandleType));
         when(mockHandleDocument.isNodeType(ArgumentMatchers.<String>any())).thenReturn(false);
 
         JcrDocument mockTranslatedDocument = mock(JcrDocument.class);
-        doReturn(mockTranslatedDocument).when(documentTranslator).createJcrDocument(same(mockTranslatedType));
+        doReturn(mockTranslatedDocument).when(mockJcrDocumentFactory).createJcrDocument(same(mockTranslatedType));
         when(mockTranslatedDocument.isNodeType(ArgumentMatchers.<String>any())).thenReturn(false);
 
         JcrDocument mockTranslationSiblingDocument = mock(JcrDocument.class);
         doReturn(mockTranslationSiblingDocument)
-                .when(documentTranslator).createJcrDocument(same(mockTranslationSibling));
+                .when(mockJcrDocumentFactory).createJcrDocument(same(mockTranslationSibling));
         when(mockTranslationSiblingDocument.isNodeType(eq("type1"), eq("type2"))).thenReturn(true);
         when(mockTranslationSiblingDocument.hasTranslation(same(mockItalianLocale))).thenReturn(false);
         when(mockTranslationSiblingDocument.hasTranslation(same(mockFrenchLocale))).thenReturn(false);
         when(mockTranslationSiblingDocument.hasTranslation(same(mockSpanishLocale))).thenReturn(true);
+        HippoBean mockTranslationSiblingHippoBean = mock(HippoBean.class);
+        when(mockTranslationSiblingDocument.asHippoBean()).thenReturn(mockTranslationSiblingHippoBean);
 
         HippoNode mockContainingFolder = mock(HippoNode.class);
         when(mockContainingFolder.getNodes()).thenAnswer(new Answer<NodeIterator>() {
@@ -366,8 +404,7 @@ public class DocumentTranslatorBuildChangeSetListTest {
 
         List<ChangeSet> result = documentTranslator.buildChangeSetList(mockSourceNode, targetLocaleList);
 
-        assertNotNull(result);
-        //assertEquals(2, result.size());
+        assertEquals(2, result.size());
 
         verify(mockSpanishChangeSet, never()).addDocument(any(JcrDocument.class));
         verify(mockFrenchChangeSet).addDocument(same(mockTranslationSiblingDocument));
@@ -378,6 +415,12 @@ public class DocumentTranslatorBuildChangeSetListTest {
         verify(mockItalianChangeSet).populateFolders(same(mockSourceDocument));
         verify(mockFrenchChangeSet).populateFolders(same(mockSourceDocument));
         verify(mockSpanishChangeSet).populateFolders(same(mockSourceDocument));
+
+        // Each locale for the main document
+        verify(documentTranslator, times(3)).addTranslationLinkChangeSets(same(mockHippoBean), any(ILocaleProvider.HippoLocale.class), anyList());
+        // and once for each targetLocale for the sibling
+        verify(documentTranslator, times(3)).addTranslationLinkChangeSets(same(mockTranslationSiblingHippoBean), any(ILocaleProvider.HippoLocale.class), anyList());
+        verify(documentTranslator, times(6)).addTranslationLinkChangeSets(any(), any(ILocaleProvider.HippoLocale.class), anyList());
     }
 
     private ChangeSet createMockChangeSet() throws Exception {
