@@ -1,12 +1,13 @@
 package com.visitscotland.brmx.translation.plugin;
 
-import com.visitscotland.brmx.beans.Page;
+import com.visitscotland.brmx.beans.TranslationLinkContainer;
 import com.visitscotland.brmx.beans.TranslationParent;
 import org.hippoecm.frontend.translation.ILocaleProvider;
 import org.hippoecm.hst.content.beans.ObjectBeanManagerException;
 import org.hippoecm.hst.content.beans.standard.HippoBean;
 import org.hippoecm.repository.api.*;
 import org.hippoecm.repository.standardworkflow.DefaultWorkflow;
+import org.hippoecm.repository.translation.HippoTranslatedNode;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -21,29 +22,54 @@ import java.util.List;
 public class DocumentTranslator {
     public static final String COULD_NOT_CREATE_FOLDERS = "could-not-create-folders";
     private static final Logger logger = LoggerFactory.getLogger(DocumentTranslator.class);
+    private HippoTranslatedNodeFactory hippoTranslatedNodeFactory;
+    private SessionFactory sessionFactory;
+    private JcrDocumentFactory jcrDocumentFactory;
+    private ChangeSetFactory changeSetFactory;
+
+    public DocumentTranslator() {
+        this(new HippoTranslatedNodeFactory(),
+                new SessionFactory(),
+                new JcrDocumentFactory(),
+                new ChangeSetFactory());
+    }
+
+    protected DocumentTranslator(HippoTranslatedNodeFactory hippoTranslatedNodeFactory,
+                                 SessionFactory sessionFactory,
+                                 JcrDocumentFactory jcrDocumentFactory,
+                                 ChangeSetFactory changeSetFactory) {
+        this.hippoTranslatedNodeFactory = hippoTranslatedNodeFactory;
+        this.sessionFactory = sessionFactory;
+        this.jcrDocumentFactory = jcrDocumentFactory;
+        this.changeSetFactory = changeSetFactory;
+    }
 
     /**
      * Build a change set for each language, listing the folders and documents that are not already translated.
-     * If the document is a TrasnlationParent then add untranslated siblings also.
+     * If the document is a TranslationParent then add untranslated siblings also.
+     * The document, and it's siblings, if they implement TranslationLinkContainer will have their translatable
+     * links checked for translations and a ChangeSet added if they are missing.
+     * <p>
+     * Will check every document that implements TranslationLinkContainer for links in the document that need to
+     * be translated.
      *
      * @param sourceDocument
      * @param targetLocaleList
      * @return
      */
-    public List<ChangeSet> buildChangeSetList(Node sourceDocument, List<ILocaleProvider.HippoLocale> targetLocaleList)
-            throws ObjectBeanManagerException, RepositoryException {
+    public List<ChangeSet> buildChangeSetList(Node sourceDocument, List<ILocaleProvider.HippoLocale> targetLocaleList) throws RepositoryException, ObjectBeanManagerException {
         List<ChangeSet> changeSetList = new ArrayList<>();
         for (ILocaleProvider.HippoLocale targetLocale : targetLocaleList) {
-            ChangeSet change = createChangeSet(targetLocale);
-            JcrDocument document = createJcrDocument(sourceDocument);
+            ChangeSet change = changeSetFactory.createChangeSet(targetLocale);
+            JcrDocument document = jcrDocumentFactory.createJcrDocument(sourceDocument);
             change.populateFolders(document);
             if (!document.hasTranslation(targetLocale)) {
                 change.addDocument(document);
             }
+            HippoBean bean = document.asHippoBean();
 
             if (document.isNodeType("visitscotland:Page")) {
                 // Convert the node to a HippoBean so we can check the type
-                HippoBean bean = document.asHippoBean();
                 if (bean instanceof TranslationParent) {
                     TranslationParent parent = (TranslationParent) bean;
                     String[] childJcrTypes = parent.getChildJcrTypes();
@@ -57,53 +83,137 @@ public class DocumentTranslator {
                         if (!siblingNode.isNodeType("hippostd:folder") &&
                                 (siblingNode.isNodeType(JcrDocument.HIPPO_HANDLE) ||
                                         siblingNode.isNodeType(JcrDocument.HIPPO_TRANSLATED))) {
-                            JcrDocument siblingDocument = createJcrDocument(siblingNode);
-                            if (siblingDocument.isNodeType(childJcrTypes) &&
-                                    !siblingDocument.hasTranslation(targetLocale)) {
-                                change.addDocument(siblingDocument);
+                            JcrDocument siblingDocument = jcrDocumentFactory.createJcrDocument(siblingNode);
+                            if (siblingDocument.isNodeType(childJcrTypes)) {
+                                if (!siblingDocument.hasTranslation(targetLocale)) {
+                                    change.addDocument(siblingDocument);
+                                }
+                                // Also need to check siblings for Translation links inside the document
+                                HippoBean siblingBean = siblingDocument.asHippoBean();
+                                addTranslationLinkChangeSets(siblingBean, targetLocale, changeSetList);
                             }
                         }
                     }
                 }
             }
 
+            // This document might be a TranslationLinkContainer,
+            // check to see if we need to handle links inside the document
+            addTranslationLinkChangeSets(bean, targetLocale, changeSetList);
+
             if (!change.getDocuments().isEmpty()) {
                 changeSetList.add(change);
             }
         }
-
         return changeSetList;
     }
 
-    protected ChangeSet createChangeSet(ILocaleProvider.HippoLocale targetLocale) {
-        return new ChangeSet(targetLocale);
-    }
-
-    protected JcrDocument createJcrDocument(Node sourceNode) throws RepositoryException {
-        return new JcrDocument(sourceNode);
-    }
-
-    public void applyChangeSet(ChangeSet change,
-                               Session session,
-                               TranslationWorkflow workflow)
-            throws TranslationException, WorkflowException, RepositoryException, RemoteException {
-        // working from index zero work our way up the folders creating them as we go
-        // there must always be a root folder and it always exists so skipping to index 1
-        change.checkForSameNameSiblings(session);
-        List<FolderTranslation> folders = change.getFolders();
-        for (int index = 1; index < folders.size(); index++) {
-            FolderTranslation translation = folders.get(index);
-            if (translation.isEditable()) {
-                if (!saveFolder(translation, session, change.getTargetLocale().getName())) {
-                    throw new TranslationException(COULD_NOT_CREATE_FOLDERS);
+    protected void addTranslationLinkChangeSets(HippoBean sourceDocument, ILocaleProvider.HippoLocale targetLocale, List<ChangeSet> changeSetList)
+            throws RepositoryException, ObjectBeanManagerException {
+        if (sourceDocument instanceof TranslationLinkContainer) {
+            // Get the translatable links from the container,
+            // and then check each one to see if it has been translated
+            List<Node> translatableChildNodes = getChildTranslatableLinkNodes(sourceDocument);
+            for (Node link : translatableChildNodes) {
+                Node linkedNode = sessionFactory.getJcrSession().getNodeByIdentifier(link.getProperty("hippo:docbase").getString());
+                JcrDocument linkDocument = jcrDocumentFactory.createJcrDocument(linkedNode);
+                if (!linkDocument.hasTranslation(targetLocale)) {
+                    // Create a ChangeSet for the linked document, and populate the folders,
+                    // this will allow the checking of the ChangeSet path to see if there is already a
+                    // ChangeSet for this path
+                    ChangeSet linkChange = changeSetFactory.createChangeSet(targetLocale);
+                    linkChange.populateFolders(linkDocument);
+                    //We might already have a ChangeSet for this folder, check it doesn't already exist
+                    ChangeSet existingChangeSet = null;
+                    String changeSetPath = linkChange.getTargetPath();
+                    for (ChangeSet toCheck : changeSetList) {
+                        if (changeSetPath.equals(toCheck.getTargetPath())) {
+                            existingChangeSet = toCheck;
+                            break;
+                        }
+                    }
+                    if (existingChangeSet != null) {
+                        if (!existingChangeSet.containsDocumentMatchingUrl(
+                                linkDocument.getVariantNode(JcrDocument.VARIANT_UNPUBLISHED).getName())) {
+                            existingChangeSet.addDocument(linkDocument);
+                        } else {
+                            logger.debug("Duplicate document, not adding to ChangeSet.");
+                        }
+                    } else {
+                        linkChange.addDocument(linkDocument);
+                        changeSetList.add(linkChange);
+                    }
                 }
             }
         }
+    }
 
+    protected List<Node> getChildTranslatableLinkNodes(HippoBean sourceDocument) throws RepositoryException {
+        TranslationLinkContainer container = (TranslationLinkContainer) sourceDocument;
+        String[] translatableLinkNames = container.getTranslatableLinkNames();
+        List<Node> translatableChildNodes = new ArrayList<>();
+        for (String translatableLink : translatableLinkNames) {
+            NodeIterator childIterator = sourceDocument.getNode().getNodes(translatableLink);
+            while (childIterator.hasNext()) {
+                Node childNode = childIterator.nextNode();
+                // Need to check the node pointed to by the child node actually exists.
+                String linkUUID = childNode.getProperty("hippo:docbase").getString();
+                if (linkUUID != null && !linkUUID.equals("") && !linkUUID.startsWith("cafebabe-")) {
+                    translatableChildNodes.add(childNode);
+                }
+            }
+        }
+        return translatableChildNodes;
+    }
+
+    public void applyChangeSet(List<ChangeSet> changeSetList,
+                               Session session,
+                               TranslationWorkflow workflow)
+            throws TranslationException, WorkflowException,
+            RepositoryException, RemoteException, ObjectBeanManagerException {
+        // We want to check them all at the same time for same name siblings,
+        // otherwise the creation of nested folders could throw a false SNS exception
+        for (ChangeSet changeSet : changeSetList) {
+            changeSet.checkForSameNameSiblings(session);
+        }
+        for (ChangeSet changeSet : changeSetList) {
+            // working from index zero work our way up the folders creating them as we go
+            // there must always be a root folder and it always exists so skipping to index 1
+            List<FolderTranslation> folders = changeSet.getFolders();
+            for (int index = 1; index < folders.size(); index++) {
+                FolderTranslation translation = folders.get(index);
+                if (translation.isEditable()) {
+                    if (!saveFolder(translation, session, changeSet.getTargetLocale().getName())) {
+                        throw new TranslationException(COULD_NOT_CREATE_FOLDERS);
+                    }
+                }
+            }
+
+            // Need to apply all non TranslationLinkContainer instances first to ensure we have a
+            // translated version of all linked documents
+            applyDocumentChanges(changeSet, false, session, workflow);
+
+            // Now we can apply all TranslationLinkContainer instance, all linked documents should exist
+            applyDocumentChanges(changeSet, true, session, workflow);
+        }
+
+        if (!changeSetList.isEmpty()) {
+            workflow.saveSession();
+        }
+    }
+
+    protected void applyDocumentChanges(ChangeSet changeSet,
+                                        boolean includeTranslationLinkContainers,
+                                        Session session,
+                                        TranslationWorkflow workflow)
+            throws RepositoryException, ObjectBeanManagerException, RemoteException, WorkflowException {
         WorkflowManager manager = ((HippoWorkspace) session.getWorkspace()).getWorkflowManager();
-        for (FolderTranslation document : change.getDocuments()) {
-            JcrDocument sourceDocument = createJcrDocument(session.getNodeByIdentifier(document.getId()));
-            Document translatedDocument = workflow.addTranslation(change.getTargetLocale().getName(), document.getUrlfr(),
+        for (FolderTranslation document : changeSet.getDocuments()) {
+            if (document.containsTranslationLinks() != includeTranslationLinkContainers) {
+                continue;
+            }
+            JcrDocument sourceDocument = jcrDocumentFactory.createJcrDocument(session.getNodeByIdentifier(document.getId()));
+            Document translatedDocument = workflow.addTranslation(changeSet.getTargetLocale().getName(), document.getUrlfr(),
                     sourceDocument.getVariantNode(JcrDocument.VARIANT_UNPUBLISHED));
 
             DefaultWorkflow defaultWorkflow = (DefaultWorkflow) manager.getWorkflow("core", translatedDocument);
@@ -111,13 +221,19 @@ public class DocumentTranslator {
         }
     }
 
-    protected boolean saveFolder(FolderTranslation ft, Session session, String targetLanguage) {
+    protected boolean saveFolder(FolderTranslation ft, Session session, String targetLanguage)
+            throws ObjectBeanManagerException {
         if (!ft.isEditable()) {
             throw new UnsupportedOperationException("Translation is immutable");
         }
         String id = ft.getId();
         try {
             Node node = session.getNodeByIdentifier(id);
+            // If the folder has already been translated just act as though we have just created it
+            HippoTranslatedNode translatedNode = hippoTranslatedNodeFactory.createFromNode(node);
+            if (translatedNode.hasTranslation(targetLanguage)) {
+                return true;
+            }
             WorkflowManager manager = ((HippoWorkspace) node.getSession().getWorkspace()).getWorkflowManager();
             TranslationWorkflow tw = (TranslationWorkflow) manager.getWorkflow("translation", node);
             String namefr = ft.getNamefr();
