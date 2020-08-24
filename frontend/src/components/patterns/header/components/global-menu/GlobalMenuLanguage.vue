@@ -12,7 +12,7 @@
                 size="xxs"
             />
             <!-- Tablet/Desktop -->
-            <span class="d-none d-lg-inline">
+            <span class="d-none d-lg-inline vs-global-menu__languages__text">
                 Language:
             </span>
             {{ selectedLanguage }}
@@ -146,6 +146,11 @@ export default {
         position: relative;
     }
 }
+
+.vs-global-menu__languages__text {
+    padding-left: 0.5rem;
+}
+
 </style>
 
 <docs>
