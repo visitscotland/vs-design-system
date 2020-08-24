@@ -41,7 +41,7 @@ public class CommonUtils {
     public static String request(String url) throws IOException {
         // TODO comment
         if (((HttpURLConnection) new URL(url).openConnection()).getResponseCode() < 400){
-            final BufferedReader br = new BufferedReader(new InputStreamReader(new URL(url).openStream()));
+            final BufferedReader br = new BufferedReader(new InputStreamReader(new URL(url).openStream(), "UTF8"));
             final StringBuilder sb = new StringBuilder();
             int cp;
 
