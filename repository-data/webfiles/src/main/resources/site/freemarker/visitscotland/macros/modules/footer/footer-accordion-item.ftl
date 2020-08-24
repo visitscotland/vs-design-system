@@ -35,7 +35,7 @@
                     <vs-icon name="chevron-right" variant="light" size="xs"></vs-icon>
                 </span>
 
-                <vs-list unstyled class="pb-2">
+                <vs-list unstyled>
                     <#list menuItem.childMenuItems as childItem>
                         <#assign href = "">
                         <#assign external = false>

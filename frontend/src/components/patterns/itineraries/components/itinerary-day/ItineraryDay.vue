@@ -1,43 +1,45 @@
 <template>
-    <li class="vs-itinerary-day__list-item">
-        <div class="vs-itinerary-day__header text-center position-relative">
+    <VsAccordionItem
+        :open-by-default="show"
+        :control-id="'itinerary-day-' + dayNumber"
+        variant="transparent"
+        item-break-point="lg"
+        class="vs-itinerary-day__list-item"
+    >
+        <template #title>
+            <!-- @slot Put the title here  -->
             <VsHeading
                 level="2"
-                class="mt-9"
+                class="vs-itinerary-day__header text-center mt-9 position-relative"
             >
                 <span class="vs-itinerary-day__title d-inline-block">
                     {{ dayLabel }} {{ dayNumber }}
                 </span>
                 <span slot="sub-heading">{{ dayTitle }}</span>
             </VsHeading>
-            <VsButton
-                :animate="false"
-                :aria-expanded="show ? 'true' : 'false'"
-                :aria-controls="'dayPanel_' + dayNumber"
-                @click.native="triggerToggle()"
-                aria-haspopup="true"
-                class="vs-itinerary-day__toggle-button position-absolute p-0"
-                v-if="!isDesktop"
-                variant="transparent"
-            >
-                <VsIcon
-                    v-if="show"
-                    name="chevron-down"
-                    variant="dark"
-                    size="xs"
-                    :padding="3"
-                />
-                <VsIcon
-                    v-else
-                    name="chevron-up"
-                    variant="dark"
-                    size="xs"
-                    :padding="3"
-                />
-            </VsButton>
-        </div>
+        </template>
+
+        <template #icon-open>
+            <!-- @slot Slot for the icon to show when accordion item is open  -->
+            <VsIcon
+                name="chevron-down"
+                variant="dark"
+                size="xs"
+                :padding="3"
+                class="vs-itinerary-day__toggle-button"
+            />
+        </template>
+        <template #icon-closed>
+            <!-- @slot Slot for the icon to show when accordion item is closed  -->
+            <VsIcon
+                name="chevron-up"
+                variant="dark"
+                size="xs"
+                :padding="3"
+                class="vs-itinerary-day__toggle-button"
+            />
+        </template>
         <div
-            v-show="show || isDesktop"
             :id="'dayPanel_' + dayNumber"
         >
             <slot name="day-transport" />
@@ -46,26 +48,26 @@
                 <slot name="stops" />
             </ul>
         </div>
-    </li>
+    </VsAccordionItem>
 </template>
 
 <script>
-import VsIcon from "@components/elements/icon/Icon"
-import VsHeading from "@components/elements/heading/Heading"
-import VsButton from "@components/elements/button/Button"
+import VsIcon from '@components/elements/icon/Icon';
+import VsHeading from '@components/elements/heading/Heading';
+import VsAccordionItem from '@components/patterns/accordion/AccordionItem';
 
 /**
  * Itinerary Day list items.
  */
 
 export default {
-    name: "VsItineraryDay",
-    status: "prototype",
-    release: "0.0.1",
+    name: 'VsItineraryDay',
+    status: 'prototype',
+    release: '0.0.1',
     components: {
         VsHeading,
-        VsButton,
         VsIcon,
+        VsAccordionItem,
     },
     props: {
         /**
@@ -101,28 +103,9 @@ export default {
     data() {
         return {
             show: this.defaultShow,
-            isDesktop: false,
-        }
+        };
     },
-    mounted() {
-        if(window) {
-            window.addEventListener("resize", this.onResize)
-        }
-    },
-    destroyed() {
-        if(window) {
-            window.removeEventListener("resize", this.onResize)
-        }
-    },
-    methods: {
-        onResize() {
-            this.isDesktop = window.innerWidth >= 1200
-        },
-        triggerToggle() {
-            this.show = !this.show
-        },
-    },
-}
+};
 </script>
 
 <style lang="scss" scoped>
@@ -148,22 +131,33 @@ export default {
 .vs-itinerary-day__toggle-button {
     border: 1px solid $color-base-text;
     border-radius: 50%;
-    top: $spacer-2;
-    right: 0;
+    height:24px;
+    width:24px;
+
+    .icon{
+        height: 100%;
+        margin: 0 auto;
+        display: block;
+    }
+
+    &.icon.icon-xs {
+           height: 32px;
+           width: 32px;
+           padding: 8px;
+        }
 }
 </style>
 
 <docs>
 ```jsx
-    <ul style="list-style-type: none; padding: 0;">
         <vs-itinerary-day
             v-for="(day, index) in itineraries.sampleItinerary.days"
             :defaultShow="(day.dayCount < 3) ? true : false"
             :key="index"
             :dayNumber="day.dayCount"
             dayLabel="Day"
+            slot="list"
             :dayTitle="day.title"
-
         >
             <vs-description-list
                 v-if="day.transport.length"
@@ -176,7 +170,7 @@ export default {
                     v-for="(transportType, transportTypeIndex) in day.transport"
                 >
                     <vs-tooltip :title="transportType.value">
-                        <vs-icon :name="transportType.key" variant="dark" size="sm" />
+                        <vs-icon :name="transportType.key" variant="dark" size="md" />
                     </vs-tooltip>
                     <span class="sr-only">{{transportType.value}}</span>
                 </dd>
@@ -184,6 +178,5 @@ export default {
 
             <div slot="day-introduction" v-html="day.introduction"></div>
         </vs-itinerary-day>
-    </ul>
 ```
 </docs>

@@ -9,33 +9,33 @@
         :variant="variant"
     >
         <!-- @slot Default slot contains text for the button -->
-        <slot />
-
-        <div class="float-right">
+        <span class="vs-accordion-toggle__text">
+            <slot />
+        </span>
+        <span class="vs-accordion-toggle__icon">
             <!-- @slot Put the icon to be used when panel is open  -->
             <slot
                 v-if="visible"
                 name="icon-open"
             />
-
             <!-- @slot Put the icon to be used when panel is closed  -->
             <slot
                 v-else
                 name="icon-closed"
             />
-        </div>
+        </span>
     </VsButton>
 </template>
 
 <script>
-import VsButton from "@components/elements/button/Button"
+import VsButton from '@components/elements/button/Button';
 
 /**
  * Accordion toggle button used with AccordionItem
  * It emits an event to the parent to toggle the Accordion panel.
  */
 export default {
-    name: "VsAccordionToggle",
+    name: 'VsAccordionToggle',
     components: {
         VsButton,
     },
@@ -45,7 +45,7 @@ export default {
          */
         variant: {
             type: String,
-            default: "primary",
+            default: 'primary',
         },
         /**
          * Choose to show accordion open or closed by default
@@ -57,20 +57,22 @@ export default {
     },
     methods: {
         triggerToggle() {
-            this.$emit("toggle-panel")
+            this.$emit('toggle-panel');
         },
     },
-}
+};
 </script>
 
 <style lang="scss">
 .btn.vs-accordion-toggle {
-    text-align: left;
+    display: flex;
 
-    .icon.icon-xs {
-        height: 16px!important;
-        width: 16px!important;
-        padding: 0!important;
+    .vs-accordion-toggle__text {
+        flex-grow: 1;
+    }
+
+    .vs-accordion-toggle__icon {
+        align-self: center;
     }
 }
 </style>

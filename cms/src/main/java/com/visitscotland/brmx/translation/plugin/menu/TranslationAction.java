@@ -5,19 +5,17 @@ import org.apache.wicket.Component;
 import org.apache.wicket.model.IModel;
 import org.hippoecm.addon.workflow.StdWorkflow;
 import org.hippoecm.addon.workflow.WorkflowDescriptorModel;
+import org.hippoecm.addon.workflow.WorkflowSNSException;
+import org.hippoecm.frontend.dialog.ExceptionDialog;
 import org.hippoecm.frontend.dialog.IDialogService;
 import org.hippoecm.frontend.session.UserSession;
 import org.hippoecm.frontend.translation.ILocaleProvider;
-import org.hippoecm.frontend.translation.components.document.FolderTranslation;
+import org.hippoecm.hst.content.beans.ObjectBeanManagerException;
 import org.hippoecm.repository.api.WorkflowException;
-import org.hippoecm.repository.translation.TranslationWorkflow;
 
-import javax.jcr.Node;
 import javax.jcr.RepositoryException;
 import javax.jcr.Session;
 import java.rmi.RemoteException;
-import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 
 public class TranslationAction extends StdWorkflow<TranslationWorkflow> {
@@ -57,36 +55,44 @@ public class TranslationAction extends StdWorkflow<TranslationWorkflow> {
     }
 
     @Override
-    protected String execute(TranslationWorkflow workflow) throws WorkflowException, RepositoryException, RemoteException {
+    protected String execute(TranslationWorkflow workflow)
+            throws WorkflowException, RepositoryException, RemoteException, ObjectBeanManagerException {
         Session session = getJcrSession();
 
-        // Only want to add languages we do not have a translation for
-        List<ILocaleProvider.HippoLocale> untranslatedLocales = new ArrayList<>();
-        for (String language : workflowPlugin.getAvailableLanguages()) {
-            if (!workflowPlugin.hasLocaleTranslation(language)) {
-                untranslatedLocales.add(workflowPlugin.getLocaleProvider().getLocale(language));
-            }
-        }
+        //Build a change set for the folders and documents that are missing
+        List<ChangeSet> changeSetList = translator.buildChangeSetList(workflowPlugin.getSourceDocumentNode(),
+                workflowPlugin.getAvailableLocales());
 
-        for (ILocaleProvider.HippoLocale targetLocale : untranslatedLocales) {
-
-            Node docNode = ((WorkflowDescriptorModel) workflowPlugin.getDefaultModel()).getNode();
-
-            List<FolderTranslation> folders = new LinkedList<>();
-            String result = translator.cloneDocumentAndFolderStructure(docNode, folders, targetLocale, session);
-            if (result != null) {
-                return result;
-            }
-
-            workflow.addTranslation(targetLocale.getName(), translator.getTranslatedDocumentName(folders));
-
+        try {
+            translator.applyChangeSet(changeSetList, session, workflow);
+        } catch (TranslationException ex) {
+            return ex.getMessage();
         }
         return null;
     }
 
     @Override
     protected IDialogService.Dialog createRequestDialog() {
-        return new TranslationConfirmationDialog(this, new UntranslatedLocaleProvider(workflowPlugin, workflowPlugin.getLocaleProvider()));
+        try {
+            List<ChangeSet> changeSetList = translator.buildChangeSetList(workflowPlugin.getSourceDocumentNode(),
+                    workflowPlugin.getAvailableLocales());
+
+            boolean haveSameNameSiblings = false;
+            for (ChangeSet changeSet : changeSetList) {
+                changeSet.markSameNameSiblings(getJcrSession());
+                if (changeSet.hasSameNameSiblingConflicts()) {
+                    haveSameNameSiblings = true;
+                }
+            }
+            if (haveSameNameSiblings) {
+                SameNameSiblingProvider provider = new SameNameSiblingProvider(changeSetList,
+                        workflowPlugin.getSession().getJcrSession());
+                return new SameNameSiblingDialog(provider);
+            }
+            return new TranslationConfirmationDialog(this, new DocumentChangeProvider(changeSetList));
+        } catch (ObjectBeanManagerException | WorkflowSNSException | RepositoryException ex) {
+            return new ExceptionDialog(ex);
+        }
     }
 
     protected Session getJcrSession() {

@@ -3,14 +3,14 @@
         <VsIcon
             name="share"
             variant="dark"
-            size="sm"
+            size="md"
         />
     </VsPrototype>
 </template>
 
 <script>
-import VsIcon from "@components/elements/icon/Icon.vue"
-import VsPrototype from "@components/elements/prototype/Prototype.vue"
+import VsIcon from '@components/elements/icon/Icon.vue';
+import VsPrototype from '@components/elements/prototype/Prototype.vue';
 
 /**
  * This is a placeholder component for now.
@@ -19,15 +19,15 @@ import VsPrototype from "@components/elements/prototype/Prototype.vue"
  * media channels. Functionalities and styles still need to be coded.
  */
 export default {
-    name: "VsSocialShare",
-    status: "prototype",
-    release: "0.0.1",
+    name: 'VsSocialShare',
+    status: 'prototype',
+    release: '0.0.1',
 
     components: {
         VsIcon,
         VsPrototype,
     },
-}
+};
 </script>
 
 <docs>

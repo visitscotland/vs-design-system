@@ -81,10 +81,11 @@ public class ProductSearchBuilder {
 
     public ProductSearchBuilder(){
         this.order = Order.NONE;
+        this.proximity = DEFAULT_PROXIMITY;
     }
 
     /**
-     * Allows new instances from FreeMarker
+     * Allow new instances from FreeMarker
      *
      * @return
      */
@@ -136,7 +137,7 @@ public class ProductSearchBuilder {
         return this;
     }
 
-    public ProductSearchBuilder productType(ProductsSearch ps){
+    public ProductSearchBuilder fromHippoBean(ProductsSearch ps){
         if (ps.getProductType() != null) {
             ProductSearchBuilder psb = new ProductSearchBuilder();
             psb.productTypes(ps.getProductType());
@@ -256,7 +257,7 @@ public class ProductSearchBuilder {
         if (location != null) {
             LocationObject loc = LocationLoader.getLocation(location, locale);
 
-            compose = addParams(compose, "POLYGON".equals(loc.getType())?LOCATION_POLYGON: LOCATION_PLACE, loc.getId());
+            compose = addParams(compose, "POLYGON".equals(loc.getType())?LOCATION_POLYGON: LOCATION_PLACE, loc.getKey());
             compose = addParams(compose, PROXIMITY_LOCATION, proximity.toString());
 
             try {

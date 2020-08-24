@@ -9,7 +9,7 @@
         <VsIcon
             :name="icon"
             variant="light"
-            size="sm"
+            size="md"
         />
     </VsLink>
 </template>
@@ -20,13 +20,13 @@
  * and href to display button with corresponding social colour.
  */
 
-import VsLink from "@components/elements/link/Link"
-import VsIcon from "@components/elements/icon/Icon"
+import VsLink from '@components/elements/link/Link';
+import VsIcon from '@components/elements/icon/Icon';
 
 export default {
-    name: "VsButtonSquareSocial",
-    status: "prototype",
-    release: "0.0.1",
+    name: 'VsButtonSquareSocial',
+    status: 'prototype',
+    release: '0.0.1',
     components: {
         VsLink,
         VsIcon,
@@ -49,7 +49,7 @@ export default {
             validator: (value) => value.match(/(facebook|instagram|twitter|youtube)/),
         },
     },
-}
+};
 </script>
 
 <style lang="scss" scoped>
@@ -105,10 +105,8 @@ export default {
 
         ::v-deep {
             .icon {
-                &.icon-sm {
+                &.icon-md {
                     height: 100%;
-                    width: 24px;
-                    padding: 0;
                     margin: 0 auto;
                     fill: $color-white;
                     display: block;

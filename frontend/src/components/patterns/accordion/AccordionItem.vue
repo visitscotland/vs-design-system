@@ -1,9 +1,12 @@
 <template>
     <BCard
         no-body
-        class="vs-accordion-item"
+        class="vs-accordion__item"
     >
-        <BCardHeader role="tab">
+        <BCardHeader
+            role="tab"
+            class="vs-accordion__item__card-header"
+        >
             <!-- @slot Slot to contain Header for accordion item.
             Defaults to Accordion Toggle button. If component is responsive
             and has a breakPoint it will show title instead of button on larger screens. -->
@@ -28,7 +31,7 @@
             </VsAccordionToggle>
 
             <h4
-                class="d-none vs-accordion-item__title"
+                class="d-none vs-accordion__item__title"
                 :class="toggleResponsiveItem"
             >
                 <!-- @slot Put the title here  -->
@@ -39,7 +42,7 @@
         <BCardBody
             v-show="show"
             :id="controlId"
-            class="vs-accordion-item__panel"
+            class="vs-accordion__item__panel"
             :class="toggleResponsiveItem"
         >
             <!-- @slot The default slot is the content for the accordion  -->
@@ -49,18 +52,18 @@
 </template>
 
 <script>
-import VsAccordionToggle from "@components/patterns/accordion/AccordionToggle"
+import VsAccordionToggle from '@components/patterns/accordion/AccordionToggle';
 
 import {
     BCard, BCardHeader, BCardBody,
-} from "bootstrap-vue"
+} from 'bootstrap-vue';
 
 /**
  * Accordion item for use within the Accordion component.
  * Contains a button to toggle the panel open or closed.
  */
 export default {
-    name: "VsAccordionItem",
+    name: 'VsAccordionItem',
     components: {
         VsAccordionToggle,
         BCard,
@@ -82,7 +85,7 @@ export default {
         itemBreakPoint: {
             type: String,
             default() {
-                return this.breakPoint
+                return this.breakPoint;
             },
             validator: (value) => value.match(/(xs|sm|md|lg|xl|xxl)/),
         },
@@ -98,69 +101,79 @@ export default {
          */
         variant: {
             type: String,
-            default: "primary",
+            default: 'primary',
         },
     },
     data() {
         return {
             show: this.openByDefault,
-        }
+        };
     },
     computed: {
         toggleAccordionBtn() {
             if (!this.itemBreakPoint) {
-                return "d-block"
+                return 'd-block';
             }
 
-            return this.itemBreakPoint === "xs" ? "d-none" : `d-${this.itemBreakPoint}-none`
+            return this.itemBreakPoint === 'xs' ? 'd-none' : `d-${this.itemBreakPoint}-none`;
         },
         toggleResponsiveItem() {
             if (!this.itemBreakPoint) {
-                return ""
+                return '';
             }
 
-            return this.itemBreakPoint === "xs" ? "d-block" : `d-${this.itemBreakPoint}-block`
+            return this.itemBreakPoint === 'xs' ? 'd-block' : `d-${this.itemBreakPoint}-block`;
         },
     },
     /**
      * Injects breakPoint prop provided by Accordion
      */
-    inject: ["breakPoint"],
-    methods: {
-        onButtonClick() {
-            this.show = !this.show
+    inject: {
+        breakPoint: {
+            default: 'lg',
         },
     },
-}
+    methods: {
+        onButtonClick() {
+            this.show = !this.show;
+        },
+    },
+};
 </script>
 
 <style lang="scss">
-.vs-accordion-item {
-    border-bottom: 1px solid $color-gray-shade-2;
+.vs-accordion__item.card {
+    border: 0;
 
-    .btn.vs-accordion-item__toggle-btn {
-        text-align: left;
-
-        .icon.icon-xs {
-            height: 16px;
-            width: 16px;
-            padding: 0;
-        }
+    .vs-accordion__item__card-header{
+        padding: 0;
+        border: 0;
+        background-color: transparent;
     }
 
-    .vs-accordion-item__title {
-        background: $color-gray-shade-7;
-        color: $color-white;
+    .btn.vs-accordion__item__toggle-btn {
+        text-align: left;
+
+    }
+
+    .vs-accordion__item__title {
         margin: $spacer-3;
         line-height: 1;
         font-weight: 500;
     }
 
-    .vs-accordion-item__panel {
-        background: $color-gray-shade-6;
-        color: $color-white;
-        border-top: 1px solid $color-gray-shade-2;
-        padding-bottom: $spacer-2;
+    .vs-accordion__item__panel.card-body {
+        padding: 0 0 $spacer-2;
+    }
+}
+
+@include no-js {
+    .vs-accordion-toggle .icon{
+        display: none;
+    }
+
+    .vs-accordion__item .vs-accordion__item__panel{
+        display: block!important;
     }
 }
 </style>

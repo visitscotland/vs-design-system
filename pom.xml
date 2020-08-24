@@ -23,15 +23,13 @@
    
     <data-service-api.version>1.2.0-SNAPSHOT</data-service-api.version>
     <commons-lan3.version>3.8.1</commons-lan3.version>
-    <easymock.version>4.2</easymock.version>
+    
     <junit.jupiter.version>5.6.2</junit.jupiter.version>
+    <easymock.version>4.2</easymock.version>
+    <mockito.version>3.3.3</mockito.version>
     
     <forge.exdocpickerbase.version>6.0.0</forge.exdocpickerbase.version>
     <forge.breadcrumb.version>3.0.0</forge.breadcrumb.version>
-
-    <junit.jupiter.version>5.6.2</junit.jupiter.version>
-
-    <mockito.version>3.3.3</mockito.version>
     <!-- TODO end define -->
   
   </properties>
@@ -435,5 +433,14 @@
     <developerConnection/>
     <url/>
   </scm>
-
+  <distributionManagement>
+        <snapshotRepository>
+            <id>nexus-snapshots</id>
+            <url>https://repo.visitscotland.com/nexus3/repository/maven-snapshots/</url>
+        </snapshotRepository>
+        <repository>
+            <id>nexus-releases</id>
+            <url>https://repo.visitscotland.com/nexus3/repository/maven-releases/</url>
+        </repository>
+    </distributionManagement>
 </project>
