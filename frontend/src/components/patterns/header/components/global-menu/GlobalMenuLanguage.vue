@@ -76,10 +76,9 @@ export default {
 .vs-global-menu__languages {
     position: initial;
 
-    &.btn {
+    .btn {
         padding: 0.5rem;
         font-size: $font-size-sm;
-        padding: 0;
         background: $color-purple;
         border: none;
         max-width: 130px;
