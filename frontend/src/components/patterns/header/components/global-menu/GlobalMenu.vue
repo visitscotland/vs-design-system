@@ -6,9 +6,9 @@
                     cols="12"
                     class="vs-global-menu__wrapper"
                 >
-                    <!-- Mobile Devices Menu -->
+                    <!-- Small Screens Menu -->
                     <VsDropdown
-                        :text="ourWebsitesLabel"
+                        :text="dropdownLabel"
                         class="
                             vs-global-menu__websites
                             d-lg-none
@@ -28,7 +28,7 @@
                         </VsDropdownItem>
                     </VsDropdown>
 
-                    <!-- Tablets and Desktops Menu -->
+                    <!-- Large Screens Menu -->
                     <VsList
                         unstyled
                         inline
@@ -59,9 +59,15 @@
                         </li>
                     </VsList>
 
-                    <slot name="login-menu" />
+                    <!-- @slot The content you want to appear as the
+                        second element on the global menu, after the websites list,
+                        goes here. -->
+                    <slot name="second-menu-item" />
 
-                    <slot name="language-menu" />
+                    <!-- @slot The content you want to appear as the
+                        third element on the global menu, after the websites list,
+                        goes here. -->
+                    <slot name="third-menu-item" />
                 </VsCol>
             </VsRow>
         </VsContainer>
@@ -104,7 +110,7 @@ export default {
         /**
          * Translation text for the "Our Websites" label
          */
-        ourWebsitesLabel: {
+        dropdownLabel: {
             type: String,
             default: 'Our Websites',
         },
@@ -161,7 +167,7 @@ export default {
         }
     }
 
-    &__wrapper{
+    &__wrapper {
         position: initial;
         display: flex;
         align-items: center;
@@ -194,7 +200,7 @@ export default {
         }
     }
 
-    & .btn {
+    .btn {
         padding: 0.3rem $spacer-5;
         font-size: $font-size-sm;
         display: flex;
@@ -225,13 +231,14 @@ export default {
 
     .dropdown-menu {
         min-width: auto;
-        width: 100%;
+        width: 100vw;
         background: $color-purple;
         transition: all ease-in-out 0.3s;
         max-height: 0;
         display: block;
         overflow: hidden;
         opacity: 0;
+        transform: translate3d(4px, 0px, 0px);
 
         li {
             border-bottom: 1px solid $color-purple-tint-3;
@@ -260,7 +267,7 @@ export default {
         &.show {
             max-height: 500px;
             opacity: 1;
-            transform: translate3d(0px, 26px, 0px) !important;
+            transform: translate3d(4px, 26px, 0px) !important;
             border: none;
             padding: 0;
         }
@@ -302,7 +309,7 @@ export default {
 @include no-js {
     .vs-global-menu {
         height: auto;
-        font-size: 16px;
+        font-size: $font-size-base;
 
         &__wrapper {
             display: flex;
@@ -352,14 +359,14 @@ export default {
         active-site="https://www.visitscotland.com/"
     >
         <span
-            slot="login-menu"
+            slot="second-menu-item"
             style="min-width: 150px;"
         >
             User... (Not you?)
         </span>
 
         <span
-            slot="language-menu"
+            slot="third-menu-item"
             style="min-width: 150px;"
         >
             EN
