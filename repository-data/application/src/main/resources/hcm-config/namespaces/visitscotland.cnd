@@ -7,7 +7,7 @@
 
 [visitscotland:translatable]
   mixin
-  - visitscotland:translationFlag (string)
+  - visitscotland:translationFlag (boolean)
   - visitscotland:diff (string)
 
 [visitscotland:CMSLink] > hippo:compound, hippostd:relaxed
