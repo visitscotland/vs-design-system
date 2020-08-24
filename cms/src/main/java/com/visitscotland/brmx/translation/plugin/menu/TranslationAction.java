@@ -65,12 +65,10 @@ public class TranslationAction extends StdWorkflow<TranslationWorkflow> {
         List<ChangeSet> changeSetList = translator.buildChangeSetList(workflowPlugin.getSourceDocumentNode(),
                 workflowPlugin.getAvailableLocales());
 
-        for (ChangeSet changeSet : changeSetList) {
-            try {
-                translator.applyChangeSet(changeSet, session, workflow);
-            } catch (TranslationException ex) {
-                return ex.getMessage();
-            }
+        try {
+            translator.applyChangeSet(changeSetList, session, workflow);
+        } catch (TranslationException ex) {
+            return ex.getMessage();
         }
         return null;
     }

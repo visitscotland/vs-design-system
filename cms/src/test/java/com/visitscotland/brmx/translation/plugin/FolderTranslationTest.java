@@ -34,4 +34,6 @@ public class FolderTranslationTest {
         FolderTranslation folderTranslation = new FolderTranslation("id");
         assertEquals("id", folderTranslation.getId());
     }
+
+
 }

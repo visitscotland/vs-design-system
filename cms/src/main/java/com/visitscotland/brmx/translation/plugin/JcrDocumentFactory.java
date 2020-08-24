@@ -4,7 +4,7 @@ import javax.jcr.Node;
 import javax.jcr.RepositoryException;
 
 public class JcrDocumentFactory {
-    public JcrDocument createFromNode(Node toCreate) throws RepositoryException {
-        return new JcrDocument(toCreate);
+    public JcrDocument createFromNode(Node sourceNode) throws RepositoryException {
+        return new JcrDocument(sourceNode);
     }
 }

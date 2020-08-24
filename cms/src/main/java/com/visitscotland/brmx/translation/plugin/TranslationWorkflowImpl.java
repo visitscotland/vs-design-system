@@ -1,5 +1,7 @@
 package com.visitscotland.brmx.translation.plugin;
 
+import com.visitscotland.brmx.beans.TranslationLinkContainer;
+import org.hippoecm.hst.content.beans.ObjectBeanManagerException;
 import org.hippoecm.repository.HippoStdNodeType;
 import org.hippoecm.repository.api.*;
 import org.hippoecm.repository.ext.InternalWorkflow;
@@ -12,15 +14,13 @@ import org.hippoecm.repository.util.JcrUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.jcr.Node;
-import javax.jcr.NodeIterator;
-import javax.jcr.RepositoryException;
-import javax.jcr.Session;
+import javax.jcr.*;
 import java.io.Serializable;
 import java.rmi.RemoteException;
 import java.util.*;
 
 public class TranslationWorkflowImpl implements TranslationWorkflow, InternalWorkflow {
+    public static final String CAFEBABE = "cafebabe-";
     private static final Logger log = LoggerFactory.getLogger(TranslationWorkflowImpl.class);
     private final Session userSession;
     private final Session rootSession;
@@ -51,15 +51,17 @@ public class TranslationWorkflowImpl implements TranslationWorkflow, InternalWor
     }
 
     @Override
-    public Document addTranslation(String language, String newDocumentName) throws WorkflowException, RepositoryException, RemoteException {
+    public Document addTranslation(String language, String newDocumentName) throws WorkflowException, RepositoryException, RemoteException, ObjectBeanManagerException {
         return addTranslation(language, newDocumentName, userSubject);
     }
 
+    @Override
     public Document addTranslation(final String language, final String newDocumentName, final Node sourceNode) throws WorkflowException,
-            RepositoryException, RemoteException {
+            RepositoryException, RemoteException, ObjectBeanManagerException {
         Node userSourceSubject = userSession.getNodeByIdentifier(sourceNode.getIdentifier());
 
-        final HippoTranslatedNode originNode = new HippoTranslatedNode(rootSubject);
+        Node rootSource = rootSession.getNodeByIdentifier(sourceNode.getIdentifier());
+        final HippoTranslatedNode originNode = new HippoTranslatedNode(rootSource);
         final Node originFolder = originNode.getContainingFolder();
         if (originFolder == null || !originFolder.isNodeType(HippoTranslationNodeType.NT_TRANSLATED)) {
             throw new WorkflowException("No translated ancestor folder found");
@@ -75,13 +77,17 @@ public class TranslationWorkflowImpl implements TranslationWorkflow, InternalWor
             copiedNode = addTranslatedFolder(language, newDocumentName, targetFolderNode);
         }
 
-        rootSession.save();
-        rootSession.refresh(false);
-        return documentFactory.createFromNode(copiedNode);
+        return new Document(copiedNode);
     }
 
-    private Node addTranslatedDocument(final String language, final String newDocumentName, final Node sourceDocumentNode, final Node targetFolderNode)
-            throws WorkflowException, RepositoryException, RemoteException {
+    @Override
+    public void saveSession() throws RepositoryException {
+        rootSession.save();
+        rootSession.refresh(false);
+    }
+
+    protected Node addTranslatedDocument(final String language, final String newDocumentName, final Node sourceDocumentNode, final Node targetFolderNode)
+            throws WorkflowException, RepositoryException, RemoteException, ObjectBeanManagerException {
 
         Node copyRootSubject = rootSession.getNodeByIdentifier(sourceDocumentNode.getIdentifier());
         getOriginsCopyWorkflow(copyRootSubject).copy(documentFactory.createFromNode(targetFolderNode), newDocumentName);
@@ -99,11 +105,59 @@ public class TranslationWorkflowImpl implements TranslationWorkflow, InternalWor
             throw new WorkflowException("Could not locate handle for document after copying");
         }
 
+        // Iterate over the child Nodes in the document looking for Translatable children
+        JcrDocument jcrDocument = new JcrDocument(newDocumentHandle);
+        String[] translatableLinkNames = new String[]{};
+        boolean containsTranslatableTypes = false;
+        if (jcrDocument.asHippoBean() instanceof TranslationLinkContainer) {
+            containsTranslatableTypes = true;
+            TranslationLinkContainer container = jcrDocument.asHippoBean(TranslationLinkContainer.class);
+            translatableLinkNames = container.getTranslatableLinkNames();
+        }
+
         final NodeIterator copiedVariants = newDocumentHandle.getNodes(newDocumentHandle.getName());
+        // Now that the Node has been copied to the language channel update all the properties that can be translated
+        // Iterate over all the variants that exist for the document, looks like it should only have an unpublished
+        // variant when first copied.
         while (copiedVariants.hasNext()) {
+            // Ensure the document is checked out so we can make changes
             final Node copiedVariant = copiedVariants.nextNode();
             JcrUtils.ensureIsCheckedOut(copiedVariant);
+            // Update the locale that this copy is for,
+            // will currently have the value of the node that was copied (English)
             copiedVariant.setProperty(HippoTranslationNodeType.LOCALE, language);
+
+            // If the document has Translatable children we need to attempt to change
+            // the links to point to the relevant translated child
+            if (containsTranslatableTypes) {
+                for (String childName : translatableLinkNames) {
+                    NodeIterator childIterator = copiedVariant.getNodes(childName);
+                    while (childIterator.hasNext()) {
+                        // This Node it a Translatable child link
+                        Node childNode = childIterator.nextNode();
+                        if (!childNode.hasProperty("hippo:docbase")) {
+                            log.warn("Unable to find linking node UUID");
+                            continue;
+                        }
+                        // Now we have the UUID of the node we are linking to, get the Node and see if there is a
+                        // translation for the current language.
+                        // If the linkUUID does not exist or points to the root Node then skip it.
+                        String linkUUID = childNode.getProperty("hippo:docbase").getString();
+                        if (linkUUID == null || linkUUID.equals("") || linkUUID.startsWith(CAFEBABE)) {
+                            log.warn("Link contains an empty Node");
+                            continue;
+                        }
+                        Node linkedNode = rootSession.getNodeByIdentifier(linkUUID);
+                        JcrDocument linkedJcrDocument = new JcrDocument(linkedNode);
+                        if (linkedJcrDocument.hasTranslation(language)) {
+                            Node targetNode = linkedJcrDocument.getTranslation(language);
+                            childNode.setProperty("hippo:docbase", targetNode.getIdentifier());
+                        } else {
+                            log.warn("Missing link translation node");
+                        }
+                    }
+                }
+            }
         }
 
         return newDocumentHandle;

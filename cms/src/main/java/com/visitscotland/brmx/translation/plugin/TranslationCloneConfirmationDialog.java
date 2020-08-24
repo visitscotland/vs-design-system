@@ -17,6 +17,7 @@ public class TranslationCloneConfirmationDialog extends WorkflowDialog<Void> {
     public static final String ID_NAME = "name";
     public static final String ID_LANGUAGES = "languages";
     public static final String ID_CHANGE = "change";
+    public static final String ID_DOC_TYPE = "docType";
 
     public TranslationCloneConfirmationDialog(IWorkflowInvoker invoker,
                                               IDataProvider<DocumentChangeProvider.Entry> changeSetProvider) {
@@ -39,6 +40,7 @@ public class TranslationCloneConfirmationDialog extends WorkflowDialog<Void> {
             protected void populateItem(Item<DocumentChangeProvider.Entry> item) {
                 DocumentChangeProvider.Entry change = item.getModelObject();
                 item.add(new Label(ID_NAME, change.getDocumentName()));
+                item.add(new Label(ID_DOC_TYPE, change.getDocumentType()));
                 IDataProvider<ILocaleProvider.HippoLocale> localeProvider = new LocaleListProvider(change.getLocaleList());
                 item.add(new DataView<ILocaleProvider.HippoLocale>(ID_LANGUAGES, localeProvider) {
                     {
