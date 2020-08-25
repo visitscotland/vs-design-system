@@ -1,27 +1,23 @@
 <!-- eslint-disable -->
 <template>
-    <VsList 
-        unstyled
-        class="vs-mega-nav-top-menu"
-    >
-        <slot />
-    </VsList>
+    <BNavbarNav>
+       <slot />
+    </BNavbarNav>
 </template>
 
 <script>
 
 /**
- *  Mega nav top level menu list
+ * The nearest ancestor with position relative
  */
-
-import VsList from '@components/elements/list/List';
+import { BNavbarNav } from 'bootstrap-vue';
 
 export default {
-    name: 'VsMegaNavTopMenu',
+    name: 'VsMegaNavMobileList',
     status: 'prototype',
     release: '0.1.0',
     components: {
-        VsList,
+        BNavbarNav,
     },
 };
 </script>
@@ -29,7 +25,7 @@ export default {
 <style lang="scss">
 @import "~bootstrap/scss/type";
 
-.vs-mega-nav-top-menu {
+.vs-mega-nav__list {
     width: 100%;
     display: flex;
 }
