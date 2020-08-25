@@ -175,7 +175,7 @@ pipeline {
             branch 'PR-145' // to do - change this to develop  when ready
         }
         steps {
-         
+
             script {
               NEW_TAG = "${env.JOB_NAME}-${env.BUILD_NUMBER}"
             }
@@ -194,7 +194,7 @@ pipeline {
             sh "mvn versions:set -DremoveSnapshot"
             sh "mvn -B clean  deploy -P dist -Drevision=$NEW_TAG -Dchangelist= -DskipTests -s $MAVEN_SETTINGS"
         }
-          
+
     }
     stage ('vs build feature env') {
       steps{
@@ -203,21 +203,21 @@ pipeline {
           sh 'sh ./infrastructure/scripts/infrastructure.sh --debug'
         }
       }
-    } //end 
+    } //end
    // timeout(time: 60, unit: 'SECONDS') {
         // stage('Check Availability') {
-        //   steps {            
+        //   steps {
         //     script{
         //         //sh 'sh ./infrastructure/scripts/availability.sh --debug'
         //         sleep time: 120, unit: 'SECONDS'
         //       }
         //    }
         //   }
-       
+
   //  }
     // stage ('Run a11y tests'){
     //     // when {
-    //     //     branch 'PR-160'  TODO - change this to dev nightly / dev stable when ready 
+    //     //     branch 'PR-160'  TODO - change this to dev nightly / dev stable when ready
     //     // }
     //     steps{
     //         script{
@@ -225,7 +225,7 @@ pipeline {
     //         }
     //     }
     // }
-    
+
 // -- 20200712: entire section commented out as it currently serves no purpose
 //    stage ('Availability notice'){
 //    // -- "input" section commented out for now - useful for when there is genuinely a need to pause for an answer
