@@ -6,13 +6,13 @@
             v-slot:button-content
         >
             <VsIcon
-                class="d-none d-lg-inline"
+                class="vs-global-menu__languages__icon"
                 name="information"
                 variant="light"
                 size="xxs"
             />
             <!-- Tablet/Desktop -->
-            <span class="d-none d-lg-inline vs-global-menu__languages__text">
+            <span class="vs-global-menu__languages__text">
                 Language:
             </span>
             {{ selectedLanguage }}
@@ -147,8 +147,21 @@ export default {
     }
 }
 
+.vs-global-menu__languages__icon {
+    display: none;
+
+    @include media-breakpoint-up(lg) {
+         display: inline;
+    }
+}
+
 .vs-global-menu__languages__text {
     padding-left: 0.5rem;
+    display: none;
+
+    @include media-breakpoint-up(lg) {
+         display: inline;
+    }
 }
 
 </style>
