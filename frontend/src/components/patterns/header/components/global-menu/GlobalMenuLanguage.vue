@@ -7,7 +7,7 @@
         >
             <VsIcon
                 class="vs-global-menu__languages__icon"
-                name="information"
+                name="globe"
                 variant="light"
                 size="xxs"
             />
