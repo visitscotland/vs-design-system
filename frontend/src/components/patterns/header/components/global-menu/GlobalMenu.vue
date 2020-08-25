@@ -159,11 +159,19 @@ export default {
         height: 35px;
     }
 
-    .container {
-        @include media-breakpoint-down(lg) {
+    @include media-breakpoint-down(md) {
+        .container {
             padding: 0;
             margin: 0;
             max-width: 100%;
+        }
+
+        .row {
+            margin: 0 !important;
+        }
+
+        .col-12 {
+            padding: 0 !important;
         }
     }
 
@@ -172,7 +180,7 @@ export default {
         display: flex;
         align-items: center;
 
-        @include media-breakpoint-down(lg) {
+        @include media-breakpoint-down(md) {
             width: 100%;
             padding: 0;
             margin: 0;
@@ -238,7 +246,7 @@ export default {
         display: block;
         overflow: hidden;
         opacity: 0;
-        transform: translate3d(4px, 0px, 0px);
+        transform: translate3d(0px, 0px, 0px);
 
         li {
             border-bottom: 1px solid $color-purple-tint-3;
@@ -267,7 +275,7 @@ export default {
         &.show {
             max-height: 500px;
             opacity: 1;
-            transform: translate3d(4px, 26px, 0px) !important;
+            transform: translate3d(0px, 26px, 0px) !important;
             border: none;
             padding: 0;
         }
@@ -360,14 +368,14 @@ export default {
     >
         <span
             slot="second-menu-item"
-            style="min-width: 150px;"
+            style="min-width: 50px;"
         >
             User... (Not you?)
         </span>
 
         <span
             slot="third-menu-item"
-            style="min-width: 150px;"
+            style="min-width: 50px;"
         >
             EN
         </span>
