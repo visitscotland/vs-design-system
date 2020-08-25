@@ -1,10 +1,13 @@
 import VsHeaderNew from './HeaderNew';
 import VsMegaNav from './components/mega-nav/MegaNav';
-import VsMegaNavList from './components/mega-nav/MegaNavList';
-import VsMegaNavListItem from './components/mega-nav/MegaNavListItem';
-import VsMegaNavTopMenu from './components/mega-nav/MegaNavTopMenu';
-import VsMegaNavTopMenuItem from './components/mega-nav/MegaNavTopMenuItem';
-import VsMegaNavDropdown from './components/mega-nav/MegaNavDropdown';
+import VsMegaNavList from './components/mega-nav/desktop-menu/MegaNavList';
+import VsMegaNavListItem from './components/mega-nav/desktop-menu/MegaNavListItem';
+import VsMegaNavTopMenu from './components/mega-nav/desktop-menu/MegaNavTopMenu';
+import VsMegaNavTopMenuItem from './components/mega-nav/desktop-menu/MegaNavTopMenuItem';
+import VsMegaNavDropdown from './components/mega-nav/desktop-menu/MegaNavDropdown';
+
+import VsMegaNavMobileList from './components/mega-nav/mobile-menu/MegaNavMobileList';
+import VsMegaNavMobileListItem from './components/mega-nav/mobile-menu/MegaNavMobileListItem';
 
 export default {
     VsHeaderNew,
@@ -14,4 +17,6 @@ export default {
     VsMegaNavListItem,
     VsMegaNavTopMenu,
     VsMegaNavTopMenuItem,
+    VsMegaNavMobileList,
+    VsMegaNavMobileListItem,
 };
