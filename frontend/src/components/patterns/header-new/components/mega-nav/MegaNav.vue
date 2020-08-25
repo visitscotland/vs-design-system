@@ -1,72 +1,79 @@
 <!-- eslint-disable -->
 <template>
-    <div class="vs-mega-nav bg-white">
+    <BNavbar class="vs-mega-nav" toggleable="lg">
         <VsContainer>
-            <VsRow>
-                <VsCol
-                    cols="8"
-                    md="4"
-                    lg="3"
+             <VsSvgLink
+                class="vs-mega-nav__logo mr-lg-6 mr-xl-12"
+                logo-alt-text="VisitScotland Home"
+                href="/"
+                svg-fill="700e57"
+                svg-path="visitscotland"
+            />
+        
+            <BNavbarToggle target="nav-collapse"></BNavbarToggle>
+
+            <BCollapse id="nav-collapse" is-nav>
+                <VsMegaNavMobileList class="d-lg-none">
+                    <slot name="mega-nav-mobile-items" />
+                </VsMegaNavMobileList>
+
+                <VsMegaNavTopMenu
+                    class="d-none d-lg-flex"
                 >
-                    <VsSvgLink
-                        logo-alt-text="VisitScotland Home"
-                        href="/"
-                        svg-fill="700e57"
-                        svg-path="visitscotland"
-                    />
-                </VsCol>
-                <VsCol
-                    cols="4"
-                    md="8"
-                    lg="9"
-                    class="vs-mega-nav__menu"
-                >
-                    <VsMegaNavTopMenu>
-                        <!-- @slot for top menu list items  -->
-                        <slot name="mega-nav-top-menu-items" />
-                    </VsMegaNavTopMenu>
-                </VsCol>
-            </VsRow>
+                    <slot name="mega-nav-top-menu-items" />
+                </VsMegaNavTopMenu>
+            </BCollapse>
         </VsContainer>
-    </div>
+    </BNavbar>
 </template>
 
 <script>
-import {
-    VsCol, VsRow, VsContainer,
-} from '@components/elements/layout';
+import { VsContainer } from '@components/elements/layout';
 import VsSvgLink from '@components/patterns/svg-link/SvgLink';
+import {
+    BNavbar, BNavbarToggle, BCollapse,
+} from 'bootstrap-vue';
 
 export default {
     name: 'VsMegaNav',
     status: 'prototype',
     release: '0.1.0',
     components: {
-        VsCol,
-        VsRow,
         VsContainer,
         VsSvgLink,
+        BNavbar,
+        BNavbarToggle,
+        BCollapse,
     },
 };
 </script>
 
 <style lang="scss">
+
+@import "~bootstrap/scss/navbar";
+
 .vs-mega-nav {
     position: relative;
-    display: flex;
-    align-items: center;
-    height: 55px;
+    background: $color-white;
     @extend %default-box-shadow;
 
-    &__logo {
-        display: inline-block;
+    @include media-breakpoint-up(lg) {
+        padding: 0;
     }
 
-    .vs-mega-nav__menu{
-        position: initial;
+    &__logo {
+        padding-top: 0.3125rem;
+        padding-bottom: 0.3125rem;
+
+        svg{
+            width: 184px;
+        }
+    }
+
+    &__menu {
+        position: static;
     }
 }
-
 </style>
 
 <docs>
