@@ -1,6 +1,7 @@
 [
     {
         "title": "Places to Go",
+        "cta": "Explore the Map of Scotland",
         "href": "https://www.visitscotland.com/destinations",
         "isExternal": false,
         "isActive": false,
@@ -305,6 +306,7 @@
     },
     {
         "title": "Things to do",
+        "cta": "All things to do",
         "href": "https://www.visitscotland.com/see-do",
         "isExternal": false,
         "isActive": false,
@@ -499,6 +501,7 @@
     },
     {
         "title": "Accommodation",
+        "cta": "All accommodation",
         "href": "https://www.visitscotland.com/accommodation",
         "isExternal": false,
         "isActive": false,
@@ -742,6 +745,7 @@
     },
     {
         "title": "Inspiration",
+        "cta": "All inspiration",
         "href": "https://www.visitscotland.com/trip-ideas",
         "isExternal": false,
         "isActive": false,
@@ -796,6 +800,7 @@
     },
     {
         "title": "Travel & Planning",
+        "cta": "All travel & planning",
         "href": "https://www.visitscotland.com/travel",
         "isExternal": false,
         "isActive": false,
