@@ -324,13 +324,13 @@ public class TranslationWorkflowImpl implements TranslationWorkflow, InternalWor
                         discardEditableNode(editableNodeEntry.getKey());
                     }
                     rootSession.save();
-                    rootSession.refresh(false);
                 }
             } else {
                 for (Node handle : editableNodes.keySet()) {
                     discardEditableNode(handle);
                 }
             }
+            rootSession.refresh(false);
             return nodesBeingEdited;
         }
         return Collections.emptyList();
