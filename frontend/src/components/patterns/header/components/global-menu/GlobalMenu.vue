@@ -275,7 +275,7 @@ export default {
 
     &__item {
         a {
-            padding: 0.6rem $spacer_5;
+            padding: 0.65rem $spacer_5;
             max-height: 35px;
 
             &:focus {
@@ -355,7 +355,7 @@ export default {
 <docs>
   ```
     <vs-global-menu
-        our-websites-label="I nostri siti"
+        dropdown-label="I nostri siti"
         active-site="https://www.visitscotland.com/"
     >
         <span
