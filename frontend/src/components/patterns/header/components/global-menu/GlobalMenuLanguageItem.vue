@@ -1,5 +1,5 @@
 <template>
-    <VsDropdownItem>
+    <VsDropdownItem class="vs-global-menu__languages__item">
         {{ languageName }}
     </VsDropdownItem>
 </template>
@@ -25,37 +25,7 @@ export default {
 
 <style lang="scss">
 .vs-global-menu__languages {
-    position: initial;
-
-    .btn {
-        padding: 0.5rem;
-        font-size: $font-size-sm;
-        background: $color-purple;
-        border: none;
-        max-width: 130px;
-
-        &-secondary:not(:disabled):not(.disabled):active {
-            background: $color-purple-shade-2;
-        }
-
-        &:focus {
-            outline: 3px solid $color-purple-tint-5;
-            outline-offset: -3px;
-            box-shadow: none;
-        }
-
-        &:hover {
-            background: $color-purple-shade-2;
-        }
-    }
-
-    &.show .btn,
-    &.show .btn:active,
-    &.show .btn:focus {
-        background: $color-purple-shade-2;
-    }
-
-    .dropdown-menu {
+     .dropdown-menu {
         width: 100%;
         background: $color-purple;
         font-size: $font-size-sm;
@@ -65,14 +35,14 @@ export default {
             border: none;
             padding: 0;
 
-            li {
+            .vs-global-menu__languages__item {
 
                 &:not(:last-of-type) {
                     border-bottom: 1px solid $color-purple-tint-3;
 
                 }
 
-                a {
+                .dropdown-item {
                     padding: 1rem;
                     color: white;
                     text-decoration: none;
@@ -91,30 +61,6 @@ export default {
         }
     }
 }
-
-.vs-global-menu__languages {
-    @include media-breakpoint-up(lg) {
-        position: relative;
-    }
-}
-
-.vs-global-menu__languages__icon {
-    display: none;
-
-    @include media-breakpoint-up(lg) {
-         display: inline;
-    }
-}
-
-.vs-global-menu__languages__text {
-    padding-left: 0.5rem;
-    display: none;
-
-    @include media-breakpoint-up(lg) {
-         display: inline;
-    }
-}
-
 </style>
 
 <docs>
