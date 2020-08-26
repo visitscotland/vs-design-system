@@ -6,9 +6,9 @@
                     cols="12"
                     class="vs-global-menu__wrapper"
                 >
-                    <!-- Mobile Devices Menu -->
+                    <!-- Small Screens Menu -->
                     <VsDropdown
-                        :text="ourWebsitesLabel"
+                        :text="dropdownLabel"
                         class="
                             vs-global-menu__websites
                             d-lg-none
@@ -28,7 +28,7 @@
                         </VsDropdownItem>
                     </VsDropdown>
 
-                    <!-- Tablets and Desktops Menu -->
+                    <!-- Large Screens Menu -->
                     <VsList
                         unstyled
                         inline
@@ -59,9 +59,15 @@
                         </li>
                     </VsList>
 
-                    <slot name="login-menu" />
+                    <!-- @slot The content you want to appear as the
+                        second element on the global menu, after the websites list,
+                        goes here. -->
+                    <slot name="second-menu-item" />
 
-                    <slot name="language-menu" />
+                    <!-- @slot The content you want to appear as the
+                        third element on the global menu, after the websites list,
+                        goes here. -->
+                    <slot name="third-menu-item" />
                 </VsCol>
             </VsRow>
         </VsContainer>
@@ -104,7 +110,7 @@ export default {
         /**
          * Translation text for the "Our Websites" label
          */
-        ourWebsitesLabel: {
+        dropdownLabel: {
             type: String,
             default: 'Our Websites',
         },
@@ -153,20 +159,28 @@ export default {
         height: 35px;
     }
 
-    .container {
-        @include media-breakpoint-down(lg) {
+    @include media-breakpoint-down(md) {
+        .container {
             padding: 0;
             margin: 0;
             max-width: 100%;
         }
+
+        .row {
+            margin: 0 !important;
+        }
+
+        .col-12 {
+            padding: 0 !important;
+        }
     }
 
-    &__wrapper{
+    &__wrapper {
         position: initial;
         display: flex;
         align-items: center;
 
-        @include media-breakpoint-down(lg) {
+        @include media-breakpoint-down(md) {
             width: 100%;
             padding: 0;
             margin: 0;
@@ -194,7 +208,7 @@ export default {
         }
     }
 
-    & .btn {
+    .btn {
         padding: 0.3rem $spacer-5;
         font-size: $font-size-sm;
         display: flex;
@@ -225,13 +239,14 @@ export default {
 
     .dropdown-menu {
         min-width: auto;
-        width: 100%;
+        width: 100vw;
         background: $color-purple;
         transition: all ease-in-out 0.3s;
         max-height: 0;
         display: block;
         overflow: hidden;
         opacity: 0;
+        transform: translate3d(0px, 0px, 0px);
 
         li {
             border-bottom: 1px solid $color-purple-tint-3;
@@ -268,7 +283,7 @@ export default {
 
     &__item {
         a {
-            padding: 0.6rem $spacer_5;
+            padding: 0.65rem $spacer_5;
             max-height: 35px;
 
             &:focus {
@@ -302,7 +317,7 @@ export default {
 @include no-js {
     .vs-global-menu {
         height: auto;
-        font-size: 16px;
+        font-size: $font-size-base;
 
         &__wrapper {
             display: flex;
@@ -348,19 +363,19 @@ export default {
 <docs>
   ```
     <vs-global-menu
-        our-websites-label="I nostri siti"
+        dropdown-label="I nostri siti"
         active-site="https://www.visitscotland.com/"
     >
         <span
-            slot="login-menu"
-            style="min-width: 150px;"
+            slot="second-menu-item"
+            style="min-width: 50px;"
         >
             User... (Not you?)
         </span>
 
         <span
-            slot="language-menu"
-            style="min-width: 150px;"
+            slot="third-menu-item"
+            style="min-width: 50px;"
         >
             EN
         </span>

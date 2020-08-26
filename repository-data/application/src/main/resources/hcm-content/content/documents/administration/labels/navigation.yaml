@@ -9,7 +9,7 @@
     jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
     jcr:uuid: 8ee40201-fbb6-42dc-81b2-bfe329ba5bf2
     hippo:name: Navigation
-    hippo:versionHistory: 079bdda5-06d1-4e5c-bc9f-485920c944fb
+    hippo:versionHistory: 4313e031-cd0f-4e47-87e0-69d225797b75
     /navigation[1]:
       jcr:primaryType: resourcebundle:resourcebundle
       jcr:mixinTypes: ['mix:referenceable']
@@ -18,7 +18,7 @@
       hippostd:state: draft
       hippostdpubwf:createdBy: admin
       hippostdpubwf:creationDate: 2019-11-07T18:38:44.678Z
-      hippostdpubwf:lastModificationDate: 2020-08-19T18:50:10.962+01:00
+      hippostdpubwf:lastModificationDate: 2020-08-25T15:11:08.883+01:00
       hippostdpubwf:lastModifiedBy: admin
       resourcebundle:descriptions: ['', '', '', '', This MUST not be used in production,
         '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '']
@@ -35,7 +35,7 @@
           Trade, Utility list, Find us on, Acceptable Use, Privacy, Cookies, Social
           Media, Environmental Policy, Terms of Use, About Us, Our Websites]
       resourcebundle:messages_de: ['', '', '', '', '', '', '', '', '', '', '', '',
-        '', '', '', '', '', '', '', '', '', '', '', Onze websites]
+        '', '', '', '', '', '', '', '', '', '', '', Webseiten]
       resourcebundle:messages_es: [Inicio, Contenido, Cosas Varias (Para hacer o ver),
         Destinos para güiris, Páginas rotas, '', '', '', '', '', '', '', '', '', '',
         '', '', '', '', '', '', '', '', Nuestras páginas web]
@@ -44,7 +44,7 @@
       resourcebundle:messages_it: ['', '', '', '', '', '', '', '', '', '', '', '',
         '', '', '', '', '', '', '', '', '', '', '', i nostri siti web]
       resourcebundle:messages_nl: ['', '', '', '', '', '', '', '', '', '', '', '',
-        '', '', '', '', '', '', '', '', '', '', '', Webseiten]
+        '', '', '', '', '', '', '', '', '', '', '', Onze websites]
     /navigation[2]:
       jcr:primaryType: resourcebundle:resourcebundle
       jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
@@ -53,7 +53,7 @@
       hippostd:state: unpublished
       hippostdpubwf:createdBy: admin
       hippostdpubwf:creationDate: 2019-11-07T18:38:44.678Z
-      hippostdpubwf:lastModificationDate: 2020-08-19T18:50:10.900+01:00
+      hippostdpubwf:lastModificationDate: 2020-08-25T15:11:08.803+01:00
       hippostdpubwf:lastModifiedBy: admin
       resourcebundle:descriptions: ['', '', '', '', This MUST not be used in production,
         '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '']
@@ -70,7 +70,7 @@
           Trade, Utility list, Find us on, Acceptable Use, Privacy, Cookies, Social
           Media, Environmental Policy, Terms of Use, About Us, Our Websites]
       resourcebundle:messages_de: ['', '', '', '', '', '', '', '', '', '', '', '',
-        '', '', '', '', '', '', '', '', '', '', '', Onze websites]
+        '', '', '', '', '', '', '', '', '', '', '', Webseiten]
       resourcebundle:messages_es: [Inicio, Contenido, Cosas Varias (Para hacer o ver),
         Destinos para güiris, Páginas rotas, '', '', '', '', '', '', '', '', '', '',
         '', '', '', '', '', '', '', '', Nuestras páginas web]
@@ -79,7 +79,7 @@
       resourcebundle:messages_it: ['', '', '', '', '', '', '', '', '', '', '', '',
         '', '', '', '', '', '', '', '', '', '', '', i nostri siti web]
       resourcebundle:messages_nl: ['', '', '', '', '', '', '', '', '', '', '', '',
-        '', '', '', '', '', '', '', '', '', '', '', Webseiten]
+        '', '', '', '', '', '', '', '', '', '', '', Onze websites]
     /navigation[3]:
       jcr:primaryType: resourcebundle:resourcebundle
       jcr:mixinTypes: ['mix:referenceable']
@@ -88,9 +88,9 @@
       hippostd:state: published
       hippostdpubwf:createdBy: admin
       hippostdpubwf:creationDate: 2019-11-07T18:38:44.678Z
-      hippostdpubwf:lastModificationDate: 2020-08-19T18:50:10.900+01:00
+      hippostdpubwf:lastModificationDate: 2020-08-25T15:11:08.803+01:00
       hippostdpubwf:lastModifiedBy: admin
-      hippostdpubwf:publicationDate: 2020-08-19T18:50:15.203+01:00
+      hippostdpubwf:publicationDate: 2020-08-25T15:11:15.083+01:00
       resourcebundle:descriptions: ['', '', '', '', This MUST not be used in production,
         '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '']
       resourcebundle:id: navigation
@@ -106,7 +106,7 @@
           Trade, Utility list, Find us on, Acceptable Use, Privacy, Cookies, Social
           Media, Environmental Policy, Terms of Use, About Us, Our Websites]
       resourcebundle:messages_de: ['', '', '', '', '', '', '', '', '', '', '', '',
-        '', '', '', '', '', '', '', '', '', '', '', Onze websites]
+        '', '', '', '', '', '', '', '', '', '', '', Webseiten]
       resourcebundle:messages_es: [Inicio, Contenido, Cosas Varias (Para hacer o ver),
         Destinos para güiris, Páginas rotas, '', '', '', '', '', '', '', '', '', '',
         '', '', '', '', '', '', '', '', Nuestras páginas web]
@@ -115,4 +115,4 @@
       resourcebundle:messages_it: ['', '', '', '', '', '', '', '', '', '', '', '',
         '', '', '', '', '', '', '', '', '', '', '', i nostri siti web]
       resourcebundle:messages_nl: ['', '', '', '', '', '', '', '', '', '', '', '',
-        '', '', '', '', '', '', '', '', '', '', '', Webseiten]
+        '', '', '', '', '', '', '', '', '', '', '', Onze websites]
