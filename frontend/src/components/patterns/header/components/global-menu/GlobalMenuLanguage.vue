@@ -17,18 +17,12 @@
             </span>
             {{ selectedLanguage }}
         </template>
-        <VsDropdownItem
-            v-for="lang in websiteLanguages"
-            :key="lang.languageTag"
-        >
-            {{ lang.languageName }}
-        </VsDropdownItem>
+        <slot />
     </VsDropdown>
 </template>
 
 <script>
 import VsDropdown from '../../../dropdown/Dropdown';
-import VsDropdownItem from '../../../dropdown/DropdownItem';
 
 export default {
     name: 'VsGlobalMenuLanguage',
@@ -36,7 +30,6 @@ export default {
     release: '0.1.0',
     components: {
         VsDropdown,
-        VsDropdownItem,
     },
     data() {
         return {
@@ -168,6 +161,19 @@ export default {
 
 <docs>
   ```
-    <vs-global-menu-language></vs-global-menu-language>
+    <vs-global-menu-language>
+        <vs-global-menu-language-item languageName="English">
+        </vs-global-menu-language-item>
+        <vs-global-menu-language-item languageName="Deutsch">
+        </vs-global-menu-language-item>
+        <vs-global-menu-language-item languageName="Español">
+        </vs-global-menu-language-item>
+        <vs-global-menu-language-item languageName="Français">
+        </vs-global-menu-language-item>
+        <vs-global-menu-language-item languageName="Italiano">
+        </vs-global-menu-language-item>
+        <vs-global-menu-language-item languageName="Nederlands">
+        </vs-global-menu-language-item>
+    </vs-global-menu-language>
   ```
 </docs>
