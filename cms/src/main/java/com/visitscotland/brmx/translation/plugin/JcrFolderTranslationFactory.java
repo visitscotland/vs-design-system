@@ -23,6 +23,7 @@ public final class JcrFolderTranslationFactory {
         if (original != null) {
             ft.setUrl(original.getName());
             ft.setName(((HippoNode) original).getDisplayName());
+            ft.setSourceNode(original);
         }
 
         if (node != null) {
