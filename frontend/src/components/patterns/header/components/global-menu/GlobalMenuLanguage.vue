@@ -69,7 +69,7 @@ export default {
 .vs-global-menu__languages {
     position: initial;
 
-    .btn {
+    .dropdown-toggle {
         padding: 0.5rem;
         font-size: $font-size-sm;
         background: $color-purple;
@@ -91,46 +91,14 @@ export default {
         }
     }
 
-    &.show .btn,
-    &.show .btn:active,
-    &.show .btn:focus {
-        background: $color-purple-shade-2;
-    }
-
-    .dropdown-menu {
-        width: 100%;
-        background: $color-purple;
-        font-size: $font-size-sm;
-
-        &.show {
-            transform: translate3d(0px, 32px, 0px) !important;
-            border: none;
-            padding: 0;
-
-            li {
-
-                &:not(:last-of-type) {
-                    border-bottom: 1px solid $color-purple-tint-3;
-
-                }
-
-                a {
-                    padding: 1rem;
-                    color: white;
-                    text-decoration: none;
-
-                    &:hover {
-                        background: $color-purple-shade-2;
-                    }
-
-                    &:focus {
-                        outline: 3px solid $color-purple-tint-5;
-                        outline-offset: -3px;
-                        background: $color-purple;
-                    }
-                }
-            }
+    &.show {
+        .dropdown-toggle,
+        .dropdown-toggle:active,
+        .dropdown-toggle:focus {
+             background: $color-purple-shade-2;
         }
+
+
     }
 }
 
