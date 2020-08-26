@@ -18,6 +18,9 @@ import java.util.Locale;
 
 public class CommonUtils {
 
+    final static String VS_DMS_ENCODING = "UTF8";
+
+
     private static DMSDataService dmsData = new DMSDataService();
 
     //TODO add message format for other languages
@@ -41,7 +44,7 @@ public class CommonUtils {
     public static String request(String url) throws IOException {
         // TODO comment
         if (((HttpURLConnection) new URL(url).openConnection()).getResponseCode() < 400){
-            final BufferedReader br = new BufferedReader(new InputStreamReader(new URL(url).openStream(), "UTF8"));
+            final BufferedReader br = new BufferedReader(new InputStreamReader(new URL(url).openStream(), VS_DMS_ENCODING));
             final StringBuilder sb = new StringBuilder();
             int cp;
 
