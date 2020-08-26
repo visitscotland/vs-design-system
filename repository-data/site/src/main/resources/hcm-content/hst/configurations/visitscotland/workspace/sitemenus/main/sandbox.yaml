@@ -1,4 +1,4 @@
-/hst:hst/hst:configurations/visitscotland/hst:workspace/hst:sitemenus/main/dev-test:
+/hst:hst/hst:configurations/visitscotland/hst:workspace/hst:sitemenus/main/sandbox:
   jcr:primaryType: hst:sitemenuitem
   hst:referencesitemapitem: dev-test
   hst:repobased: false

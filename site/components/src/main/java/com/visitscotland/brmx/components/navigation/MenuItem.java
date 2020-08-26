@@ -1,6 +1,7 @@
 package com.visitscotland.brmx.components.navigation;
 
 import com.visitscotland.brmx.beans.Widget;
+import org.hippoecm.hst.content.annotations.PageModelIgnore;
 import org.hippoecm.hst.core.linking.HstLink;
 import org.hippoecm.hst.core.request.ResolvedSiteMapItem;
 import org.hippoecm.hst.core.sitemenu.HstSiteMenu;
@@ -10,23 +11,26 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-public class VsHstSiteMenuItemImpl implements VsMenuItem {
+public class MenuItem implements HstSiteMenuItem {
 
-    private final HstSiteMenuItem menuItem;
+    private final HstSiteMenuItem hstMenuItem;
     private final List<HstSiteMenuItem> children;
-    private final VsHstSiteMenuItemImpl parent;
+
+    @PageModelIgnore
+    private MenuItem parent;
 
     private String title;
     private Widget widget;
+    private String cta;
 
 
-    public VsHstSiteMenuItemImpl(VsHstSiteMenuItemImpl parent, HstSiteMenuItem menuItem) {
+    public MenuItem(HstSiteMenuItem hstMenuItem) {
         this.children = new ArrayList<>();
-        this.menuItem = menuItem;
-        this.parent = parent;
-        if (parent != null){
-            parent.addChild(this);
-        }
+        this.hstMenuItem = hstMenuItem;
+    }
+
+    public HstSiteMenuItem getHstMenuItem() {
+        return hstMenuItem;
     }
 
     public Widget getWidget() {
@@ -46,17 +50,23 @@ public class VsHstSiteMenuItemImpl implements VsMenuItem {
     }
 
     @Override
-    public String getName() {
-        return menuItem.getName();
-    }
-
-    @Override
     public List<HstSiteMenuItem> getChildMenuItems() {
         return children;
     }
 
-    private void addChild(HstSiteMenuItem child){
-        children.add(child);
+    public void addChild(MenuItem child){
+        if (child != null && !children.contains(child)) {
+            children.add(child);
+            child.parent = this;
+        }
+    }
+
+    public boolean removeChild(MenuItem child){
+        if (children.contains(child)){
+            return children.remove(child);
+        } else {
+            return false;
+        }
     }
 
     @Override
@@ -64,70 +74,85 @@ public class VsHstSiteMenuItemImpl implements VsMenuItem {
         return parent;
     }
 
-    // Delegating methods
+    public String getCta() {
+        return cta;
+    }
+
+    public void setCta(String cta) {
+        this.cta = cta;
+    }
+
+
+
+    // Delegated methods
+
+    @Override
+    public String getName() {
+        return hstMenuItem.getName();
+    }
 
     @Override
     public HstSiteMenu getHstSiteMenu() {
-        return menuItem.getHstSiteMenu();
+        return hstMenuItem.getHstSiteMenu();
     }
 
     @Override
     public String getParameter(String s) {
-        return menuItem.getParameter(s);
+        return hstMenuItem.getParameter(s);
     }
 
     @Override
     public String getLocalParameter(String s) {
-        return menuItem.getLocalParameter(s);
+        return hstMenuItem.getLocalParameter(s);
     }
 
     @Override
     public Map<String, String> getParameters() {
-        return menuItem.getParameters();
+        return hstMenuItem.getParameters();
     }
 
     @Override
     public Map<String, String> getLocalParameters() {
-        return menuItem.getLocalParameters();
+        return hstMenuItem.getLocalParameters();
     }
 
     @Override
     public HstLink getHstLink() {
-        return menuItem.getHstLink();
+        return hstMenuItem.getHstLink();
     }
 
     @Override
     public String getExternalLink() {
-        return menuItem.getExternalLink();
+        return hstMenuItem.getExternalLink();
     }
 
     @Override
     public ResolvedSiteMapItem resolveToSiteMapItem() {
-        return menuItem.resolveToSiteMapItem();
+        return hstMenuItem.resolveToSiteMapItem();
     }
 
     @Override
     public boolean isExpanded() {
-        return menuItem.isExpanded();
+        return hstMenuItem.isExpanded();
     }
 
     @Override
     public Map<String, Object> getProperties() {
-        return menuItem.getProperties();
+        return hstMenuItem.getProperties();
     }
 
     @Override
     public boolean isRepositoryBased() {
-        return menuItem.isRepositoryBased();
+        return hstMenuItem.isRepositoryBased();
     }
 
     @Override
     public int getDepth() {
-        return menuItem.getDepth();
+        return hstMenuItem.getDepth();
     }
 
     @Override
     public boolean isSelected() {
-        return menuItem.isSelected();
+        return hstMenuItem.isSelected();
     }
 }
