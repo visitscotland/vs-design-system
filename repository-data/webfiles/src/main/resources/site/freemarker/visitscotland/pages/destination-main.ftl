@@ -13,9 +13,9 @@
 <#include "../../frontend/components/vs-heading.ftl">
 <#include "../../frontend/components/vs-social-share.ftl">
 
-<#include "../macros/modules/megalinks/multi-image.ftl">
-<#include "../macros/modules/megalinks/single-image.ftl">
-<#include "../macros/modules/megalinks/list.ftl">
+<#include "../macros/modules/megalinks/megalinks-multi-image.ftl">
+<#include "../macros/modules/megalinks/megalinks-single-image.ftl">
+<#include "../macros/modules/megalinks/megalinks-list.ftl">
 <#include "../macros/global/cms-errors.ftl">
 <#-- Implicit Request Objects -->
 <#-- @ftlvariable name="document" type="com.visitscotland.brmx.beans.Destination" -->
@@ -74,16 +74,17 @@
 		</vs-container>
 	</vs-page-intro>
 
-  <#--TODO SPlit in macros-->
+  <#--TODO Control abput colours, change style="background-color:${style}  -->
 	<#list pageItems as item>
+	<vs-container slot="upper" class="py-lg-4" >
+		<#--TODO Colour should be only added to Megalinks, add this code to macros or create a commun macro to control it-->
 		<#if item.style="style3">
-			<#assign style = "lightgray" />
+			<#assign style = "#292929" />
 		<#else>
-			<#assign style = "white" />
+			<#assign style = "#FFFFFF" />
 		</#if>
 		<div class="has-edit-button" style="background-color:${style}">
 			<@hst.manageContent hippobean=item.megalinkItem />
-			<vs-container slot="upper" class="py-lg-4" >
 				<vs-row>
 					<vs-col cols="10" lg="8" offset-lg="1">
 						<vs-heading level="1">${item.title}</vs-heading>
@@ -108,10 +109,11 @@
 					<@singleImage item=item />
 
 				<#--Macro for list-->
-				<#else>
+				<#elseif item.getType()== "ListLinksModule">
 					<@list item=item />
 				</#if>
-			</vs-container>
+
 		</div>
+	</vs-container>
 	</#list>
 </div>
