@@ -1,19 +1,38 @@
 <#include "../../include/imports.ftl">
 <#include "../../frontend/components/vs-global-menu.ftl">
+<#include "../../frontend/components/vs-global-menu-language.ftl">
+<#include "../../frontend/components/vs-global-menu-language-item.ftl">
 
 <@hst.setBundle basename="navigation"/>
+<@hst.setBundle basename="universal"/>
 
 <#-- @ftlvariable name="menu" type="org.hippoecm.hst.core.sitemenu.HstSiteMenu" -->
 <#-- @ftlvariable name="enhancedMenu" type="java.util.List" -->
 <#-- @ftlvariable name="item" type=""com.visitscotland.www.components.navigation.VsMenuItem" -->
 <#-- @ftlvariable name="editMode" type="java.lang.Boolean"-->
 
+<#assign currentLocale=hstRequest.requestContext.resolvedMount.mount.locale?replace("_","-")?lower_case>
+<#assign languages = ["en-gb","de-de","es-es","fr-fr","it-it","nl-nl"]>
+
 <#if menu??>
 <div class="has-edit-button">
     <vs-global-menu
         dropdown-label='<@fmt.message key="global-menu.our-websites" />'
         active-site="https://www.visitscotland.com/"
-    ></vs-global-menu>
+    >
+        <template slot="third-menu-item">
+            <vs-global-menu-language>
+                <#list languages as language>
+                    <vs-global-menu-language-item
+                        language-name="<@fmt.message key="${language}" />"
+                        key="${language}"
+                    >
+                    </vs-global-menu-language-item>
+                </#list>
+            </vs-global-menu-language>
+        </template>
+    </vs-global-menu>
+
     <ul class="nav nav-pills">
       <#list menu.siteMenuItems as item>
           <#if item.title?has_content>
