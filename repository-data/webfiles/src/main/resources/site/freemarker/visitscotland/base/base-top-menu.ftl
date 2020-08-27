@@ -8,7 +8,7 @@
 <#-- @ftlvariable name="item" type=""com.visitscotland.www.components.navigation.VsMenuItem" -->
 <#-- @ftlvariable name="editMode" type="java.lang.Boolean"-->
 
-<#if enhancedMenu??>
+<#if menu??>
 <div class="has-edit-button">
     <vs-global-menu
         dropdown-label='<@fmt.message key="global-menu.our-websites" />'
