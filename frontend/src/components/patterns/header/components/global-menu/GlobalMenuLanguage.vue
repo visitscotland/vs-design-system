@@ -1,10 +1,6 @@
 <template>
-    <VsDropdown
-        class="vs-global-menu__languages"
-    >
-        <template
-            v-slot:button-content
-        >
+    <VsDropdown class="vs-global-menu__languages">
+        <template v-slot:button-content>
             <VsIcon
                 class="vs-global-menu__languages__icon"
                 name="globe"
@@ -12,9 +8,7 @@
                 size="xxs"
             />
             <!-- Tablet/Desktop -->
-            <span class="vs-global-menu__languages__text">
-                Language:
-            </span>
+            <span class="vs-global-menu__languages__text">Language:</span>
             {{ selectedLanguage }}
         </template>
         <slot />
@@ -95,10 +89,8 @@ export default {
         .dropdown-toggle,
         .dropdown-toggle:active,
         .dropdown-toggle:focus {
-             background: $color-purple-shade-2;
+            background: $color-purple-shade-2;
         }
-
-
     }
 }
 
@@ -112,7 +104,7 @@ export default {
     display: none;
 
     @include media-breakpoint-up(lg) {
-         display: inline;
+        display: inline;
     }
 }
 
@@ -121,10 +113,9 @@ export default {
     display: none;
 
     @include media-breakpoint-up(lg) {
-         display: inline;
+        display: inline;
     }
 }
-
 </style>
 
 <docs>

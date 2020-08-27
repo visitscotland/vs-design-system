@@ -25,7 +25,7 @@ export default {
 
 <style lang="scss">
 .vs-global-menu__languages {
-     .dropdown-menu {
+    .dropdown-menu {
         width: 100%;
         background: $color-purple;
         font-size: $font-size-sm;
@@ -36,10 +36,8 @@ export default {
             padding: 0;
 
             .vs-global-menu__languages__item {
-
                 &:not(:last-of-type) {
                     border-bottom: 1px solid $color-purple-tint-3;
-
                 }
 
                 .dropdown-item {
