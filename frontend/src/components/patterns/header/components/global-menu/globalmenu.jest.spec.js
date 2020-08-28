@@ -42,15 +42,15 @@ describe('<VsGlobalMenu />', () => {
     });
 
     describe(':mobile', () => {
-        it('should contain `VsDropdown` with the class `.vs-global-menu__websites--mobile`', () => {
-            const dropdown = wrapper.find('.vs-global-menu__websites--mobile');
+        it('should contain a `VsDropdown` for small screens`', () => {
+            const dropdown = wrapper.find('.vs-dropdown');
 
             expect(dropdown.exists()).toBe(true);
             expect(dropdown.is(VsDropdown)).toBe(true);
         });
 
         it('should contain 5 items on the `VsDropdown`', () => {
-            const dropdown = wrapper.find('.vs-global-menu__websites--mobile');
+            const dropdown = wrapper.find('.vs-dropdown');
             const li = dropdown.findAll('li');
 
             expect(li.length).toBe(5);
@@ -58,7 +58,7 @@ describe('<VsGlobalMenu />', () => {
 
         describe(':props', () => {
             it(':ourWebsitesLabel - should render "Our Websites" as the default translation label', () => {
-                const dropdown = wrapper.find('.vs-global-menu__websites--mobile .btn');
+                const dropdown = wrapper.find('.vs-dropdown .btn');
 
                 expect(dropdown.text()).toBe('Our Websites');
             });
@@ -67,10 +67,10 @@ describe('<VsGlobalMenu />', () => {
                 const translationLabel = 'i nostri siti';
 
                 const modifiedWrapper = factoryMount({
-                    ourWebsitesLabel: translationLabel,
+                    dropdownLabel: translationLabel,
                 });
 
-                const dropdown = modifiedWrapper.find('.vs-global-menu__websites--mobile .btn');
+                const dropdown = modifiedWrapper.find('.vs-dropdown .btn');
 
                 expect(dropdown.text()).toBe(translationLabel);
             });
@@ -78,22 +78,22 @@ describe('<VsGlobalMenu />', () => {
     });
 
     describe(':desktop', () => {
-        it('should contain `VsList` with the class `.vs-global-menu__websites--desktop`', () => {
-            const list = wrapper.find('.vs-global-menu__websites--desktop');
+        it('should contain a `VsList` for larger screens`', () => {
+            const list = wrapper.find('.vs-list');
 
             expect(list.exists()).toBe(true);
             expect(list.is(VsList)).toBe(true);
         });
 
         it('should contain 5 items on the `VsList`', () => {
-            const list = wrapper.find('.vs-global-menu__websites--desktop');
+            const list = wrapper.find('.vs-list');
             const li = list.findAll('li');
             expect(li.length).toBe(5);
         });
 
         describe(':props', () => {
             it(':active-site - should render the active website link with the proper class on desktop', () => {
-                const link = wrapper.find('.vs-global-menu__websites--desktop .vs-global-menu__websites__item--active a');
+                const link = wrapper.find('.vs-list .vs-global-menu__websites__item--active a');
 
                 expect(link.exists()).toBe(true);
             });
@@ -105,7 +105,7 @@ describe('<VsGlobalMenu />', () => {
                     activeSite: coporateSite,
                 });
 
-                const link = modifiedWrapper.find('.vs-global-menu__websites--desktop .vs-global-menu__websites__item--active a');
+                const link = modifiedWrapper.find('.vs-list .vs-global-menu__websites__item--active a');
 
                 expect(link.exists()).toBe(true);
                 expect(link.attributes('href')).toBe(coporateSite);
