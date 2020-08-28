@@ -8,7 +8,7 @@
                 size="xxs"
             />
             <!-- Tablet/Desktop -->
-            <span class="vs-global-menu__languages__text">Language:</span>
+            <span class="vs-global-menu__languages__text">{{ languageLabel }}</span>
             {{ selectedLanguage }}
         </template>
         <slot />
@@ -16,6 +16,7 @@
 </template>
 
 <script>
+import VsIcon from '@components/elements/icon/Icon';
 import VsDropdown from '../../../dropdown/Dropdown';
 
 export default {
@@ -24,37 +25,17 @@ export default {
     release: '0.1.0',
     components: {
         VsDropdown,
+        VsIcon,
     },
-    data() {
-        return {
-            selectedLanguage: ' EN',
-            websiteLanguages: [
-                {
-                    languageTag: 'EN',
-                    languageName: 'English',
-                },
-                {
-                    languageTag: 'DE',
-                    languageName: 'Deutsch',
-                },
-                {
-                    languageTag: 'ES',
-                    languageName: 'Español',
-                },
-                {
-                    languageTag: 'FR',
-                    languageName: 'Français',
-                },
-                {
-                    languageTag: 'IT',
-                    languageName: 'Italiano',
-                },
-                {
-                    languageTag: 'NE',
-                    languageName: 'Nederlands',
-                },
-            ],
-        };
+    props: {
+        languageLabel: {
+            type: String,
+            default: 'Language',
+        },
+        selectedLanguage: {
+            type: String,
+            default: 'EN',
+        },
     },
 };
 </script>
