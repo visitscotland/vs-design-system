@@ -28,17 +28,17 @@
     "lint:watch": "esw \"src/**/*.{js,vue}\" --watch --ext .js,.vue --watch-delay 0",
     "lint:style": "stylelint",
     "lint:style:all": "lint:style \"src/**/*.{vue,scss}\"",
-    "e2e": "cypress open",
-    "unit": "jest --config ./test/unit/jest.conf.js --coverage",
-    "tdd": "jest --config ./test/unit/jest.conf.js --watch",
+    "test:e2e": "cypress open",
+    "test:unit": "jest --config ./test/unit/jest.conf.js --coverage",
+    "test:tdd": "jest --config ./test/unit/jest.conf.js --watch",
     "theo": "theo ./src/tokens/tokens.yml --transform web --format map.scss,scss,raw.json,json --dest ./src/assets/tokens",
     "theo:watch": "onchange \"./src/tokens/*.yml\" -- npm run _theo",
     "presystem": "yarn theo",
     "presystem:build": "yarn theo",
     "pressr:build": "yarn theo",
-    "pree2e": "yarn theo",
-    "preunit": "yarn theo",
-    "pretdd": "yarn theo"
+    "pretest:e2e": "yarn theo",
+    "pretest:unit": "yarn theo",
+    "pretest:tdd": "yarn theo"
   },
   "repository": {
     "type": "git",
