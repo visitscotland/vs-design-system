@@ -3,7 +3,7 @@
         <VsHeaderNew>
             <template slot="global-navbar">
                 <div
-                    class="navbar bg-primary-purple"
+                    class="bg-primary-purple"
                     style="height: 35px"
                 >
                     <VsContainer>
@@ -24,15 +24,16 @@
                             :href="item.href"
                             :cta-text="item.cta"
                         >
-                            {{ item.title }}
-
-                            <template slot="subnav">
+                            <template slot="toggle-btn">
+                                {{ item.title }}
+                            </template>
+                            <template slot="dropdown-nav">
                                 <ul>
                                     <li
-                                        v-for="(subnavItem, subnavIndex) in item.subnav"
-                                        :key="subnavIndex"
+                                        v-for="(navItem, navIndex) in item.dropdownNav"
+                                        :key="navIndex"
                                     >
-                                        {{ subnavItem.title }}
+                                        {{ navItem.title }}
                                     </li>
                                 </ul>
                             </template>
@@ -40,28 +41,28 @@
                     </template>
 
                     <template slot="mega-nav-mobile-items">
-                        <VsMegaNavMobileListItem
+                        <VsMegaNavMobileToggle
                             v-for="(item, index) in header.mainNav"
                             :key="index"
                             :href="item.href"
                             :cta-text="item.cta"
                         >
                             {{ item.title }}
-                        </VsMegaNavMobileListItem>
+                        </VsMegaNavMobileToggle>
                     </template>
                 </VsMegaNav>
             </template>
         </VsHeaderNew>
 
-        <template class="container">
-            <div class="row">
-                <div
-                    id="content-container"
-                    class="col p-3"
+        <VsContainer>
+            <VsRow>
+                <VsCol
+                    cols="12"
+                    class="pt-6"
                 >
                     Dummy page contents
-                </div>
-            </div>
-        </template>
+                </VsCol>
+            </VsRow>
+        </VsContainer>
     </div>
 </template>
