@@ -88,7 +88,8 @@ module.exports = {
 			"ignoreWhenNoAttributes": true,
 			"ignoreWhenEmpty": true,
 		}],
-		"vue/no-v-html": 2,
+        "vue/no-v-html": 2,
+        "no-debugger": "warn"
 	},
 	settings: {
 		"import/resolver": {
