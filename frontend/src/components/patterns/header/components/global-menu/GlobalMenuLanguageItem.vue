@@ -1,5 +1,8 @@
 <template>
-    <VsDropdownItem class="vs-global-menu__languages__item">
+    <VsDropdownItem
+        class="vs-global-menu__languages__item"
+        :href="languageLink"
+    >
         {{ languageName }}
     </VsDropdownItem>
 </template>
@@ -16,6 +19,10 @@ export default {
     },
     props: {
         languageName: {
+            type: String,
+            default: null,
+        },
+        languageLink: {
             type: String,
             default: null,
         },
@@ -63,7 +70,7 @@ export default {
 
 <docs>
   ```
-    <vs-global-menu-language-item languageName="English">
+    <vs-global-menu-language-item languageName="English" languageLink="site/">
     </vs-global-menu-language-item>
   ```
 </docs>
