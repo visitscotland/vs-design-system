@@ -11,7 +11,7 @@
 <#-- @ftlvariable name="item" type=""com.visitscotland.www.components.navigation.VsMenuItem" -->
 <#-- @ftlvariable name="editMode" type="java.lang.Boolean"-->
 
-<#assign currentLocale=hstRequest.requestContext.resolvedMount.mount.locale?replace("_","-")?lower_case>
+<#assign currentLocale=hstRequest.requestContext.resolvedMount.mount.locale?upper_case?keep_before('_')>
 <#assign languages = ["en-gb","de-de","es-es","fr-fr","it-it","nl-nl"]>
 
 <#if menu??>
@@ -21,11 +21,12 @@
         active-site="https://www.visitscotland.com/"
     >
         <template slot="third-menu-item">
-            <vs-global-menu-language>
+            <vs-global-menu-language selectedLanguage="${currentLocale}" languageLabel="${label('navigation.static', 'universal.language')}">
                 <#list languages as language>
                     <vs-global-menu-language-item
-                        language-name="<@fmt.message key="${language}" />"
                         key="${language}"
+                        language-link="/site/${language}"
+                        language-name="<@fmt.message key="${language}" />"
                     >
                     </vs-global-menu-language-item>
                 </#list>
