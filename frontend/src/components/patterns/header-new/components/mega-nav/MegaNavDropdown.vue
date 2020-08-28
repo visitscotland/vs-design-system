@@ -39,15 +39,15 @@ export default {
 @import "~bootstrap/scss/type";
 
 .vs-mega-nav__dropdown {
+    z-index: 1;
+    background: #f5f6fa;
+    width: 100%;
+    padding: 24px 0;
     position: absolute;
     top: 55px;
     left: 0;
     min-height: 200px;
-    background: #f5f6fa;
-    width: 100%;
-    padding: 24px 0;
     box-shadow: 0 3px 7px rgba(0,0,0,.16);
-
     &--open{
         display: block;
     }
