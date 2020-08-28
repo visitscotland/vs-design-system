@@ -11,7 +11,7 @@ definitions:
         /hipposysedit:nodetype:
           jcr:primaryType: hipposysedit:nodetype
           jcr:mixinTypes: ['mix:referenceable', 'hipposysedit:remodel']
-          jcr:uuid: cb22ba9c-b2a1-49ab-be06-c122fab68da8
+          jcr:uuid: f96752ca-3d87-460b-9a8f-8d2c43fbf9a1
           hipposysedit:node: true
           hipposysedit:supertype: ['visitscotland:basedocument', 'hippostd:relaxed',
             'hippotranslation:translated']
@@ -61,7 +61,7 @@ definitions:
           jcr:mixinTypes: ['mix:referenceable']
           visitscotland:title: ''
           visitscotland:teaser: ''
-          jcr:uuid: 1d56be63-56ed-46a4-8b72-a549509c0e7b
+          jcr:uuid: 22220e1a-6bb4-4fa2-9209-652693439eaa
           hippostdpubwf:lastModificationDate: 2020-07-09T14:56:23.791+01:00
           hippostdpubwf:creationDate: 2020-07-09T14:56:23.791+01:00
           /visitscotland:image:
@@ -95,8 +95,10 @@ definitions:
             field: title
             plugin.class: org.hippoecm.frontend.editor.plugins.field.PropertyFieldPlugin
             wicket.id: ${cluster.id}.field
+            hint: ''
             /cluster.options:
               jcr:primaryType: frontend:pluginconfig
+              maxlength: '55'
           /teaser:
             jcr:primaryType: frontend:plugin
             caption: Teaser
@@ -106,6 +108,7 @@ definitions:
             wicket.id: ${cluster.id}.field
             /cluster.options:
               jcr:primaryType: frontend:pluginconfig
+              maxlength: '135'
           /linkTypes:
             jcr:primaryType: frontend:plugin
             caption: Link Type

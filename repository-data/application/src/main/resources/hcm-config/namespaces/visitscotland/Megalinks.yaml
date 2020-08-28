@@ -11,7 +11,7 @@ definitions:
         /hipposysedit:nodetype:
           jcr:primaryType: hipposysedit:nodetype
           jcr:mixinTypes: ['mix:referenceable', 'hipposysedit:remodel']
-          jcr:uuid: 39ab364a-0965-48ba-b5b2-fb3ee41695e4
+          jcr:uuid: 568fc0d7-c19d-42b5-992a-947dc9e9a4e3
           hipposysedit:node: true
           hipposysedit:supertype: ['visitscotland:basedocument', 'hippostd:relaxed',
             'hippotranslation:translated']
@@ -81,7 +81,7 @@ definitions:
           hippotranslation:locale: document-type-locale
           jcr:mixinTypes: ['mix:referenceable']
           visitscotland:title: ''
-          jcr:uuid: e0c3319a-b7df-45eb-b0b7-3bda1bc1fdc9
+          jcr:uuid: d0a99098-495e-4418-b6d8-4be30f413f5b
           hippostdpubwf:lastModificationDate: 2020-05-14T14:29:51.020+01:00
           hippostdpubwf:creationDate: 2020-05-14T14:29:51.020+01:00
           visitscotland:teaserVisible: true
@@ -121,6 +121,7 @@ definitions:
             wicket.id: ${cluster.id}.left.item
             /cluster.options:
               jcr:primaryType: frontend:pluginconfig
+              maxlength: '55'
           /listLayout:
             jcr:primaryType: frontend:plugin
             caption: List View
