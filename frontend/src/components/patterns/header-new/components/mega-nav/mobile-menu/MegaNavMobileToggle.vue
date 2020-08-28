@@ -1,22 +1,26 @@
 <template>
     <li
-        class="vs-mega-nav__item"
-        ref="menuToggle"
+        class="vs-mega-nav__mobile-toggle"
+        ref="mobileMenuToggle"
     >
-        <VsMegaNavDropdownToggle>
-            <template #toggle-btn>
-                <slot name="toggle-btn" />
-            </template>
+        <VsButton
+            class="vs-mega-nav__mobile-toggle__button"
+            variant="transparent"
+            aria-haspopup="true"
+            :animate="false"
+            :uppercase="false"
+            :aria-expanded="isOpen ? 'true' : 'false'"
+            @click.native="openMenu"
+        >
+            <slot />
+        </VsButton>
 
-            <template #cta-link>
-                <a :href="href">{{ ctaText }}</a>
-                <hr>
-            </template>
+        <VsMegaNavDropdown v-show="isOpen">
+            <a :href="href">{{ ctaText }}</a>
+            <hr>
 
-            <template #dropdown-nav>
-                <slot name="dropdown-nav" />
-            </template>
-        </VsMegaNavDropdownToggle>
+            <slot name="dropdown-nav" />
+        </VsMegaNavDropdown>
     </li>
 </template>
 
@@ -25,14 +29,16 @@
  *  Mega nav top level menu button
  */
 
-import VsMegaNavDropdownToggle from '@components/patterns/header-new/components/mega-nav/MegaNavDropdownToggle';
+import VsButton from '@components/elements/button/Button';
+import VsMegaNavDropdown from '@components/patterns/header-new/components/mega-nav/MegaNavDropdown';
 
 export default {
-    name: 'VsMegaNavTopMenuItem',
+    name: 'VsMegaNavMobileToggle',
     status: 'prototype',
     release: '0.1.0',
     components: {
-        VsMegaNavDropdownToggle,
+        VsButton,
+        VsMegaNavDropdown,
     },
     props: {
         href: {
@@ -58,7 +64,7 @@ export default {
     methods: {
         resetMenu(e) {
             // Close dropdown when user clicks elsewhere
-            if (!this.$refs.menuToggle.contains(e.target)) {
+            if (!this.$refs.mobileMenuToggle.contains(e.target)) {
                 this.isOpen = false;
             }
         },
@@ -72,7 +78,7 @@ export default {
 <style lang="scss">
 @import '~bootstrap/scss/type';
 
-.vs-mega-nav__item {
+.vs-mega-nav__mobile-toggle {
 
     @include media-breakpoint-up(xl) {
         margin-right: $spacer-6;
@@ -82,7 +88,7 @@ export default {
         }
     }
 
-    .vs-mega-nav__button.btn {
+    .vs-mega-nav__mobile-toggle__button.btn {
         letter-spacing: 0;
         font-weight: normal;
         line-height: 1.2;
