@@ -11,7 +11,7 @@ definitions:
         /hipposysedit:nodetype:
           jcr:primaryType: hipposysedit:nodetype
           jcr:mixinTypes: ['mix:referenceable', 'hipposysedit:remodel']
-          jcr:uuid: e3318d06-23ae-47e3-ab56-b0dd0b3e6f98
+          jcr:uuid: c260871a-cac7-452c-9e95-573ace6205ae
           hipposysedit:node: true
           hipposysedit:supertype: ['hippo:compound', 'hippostd:relaxed']
           hipposysedit:uri: http://www.visitscotland.com/visitscotland/nt/1.0
@@ -57,6 +57,13 @@ definitions:
             hipposysedit:path: visitscotland:role
             hipposysedit:primary: false
             hipposysedit:type: String
+          /products:
+            jcr:primaryType: hipposysedit:field
+            hipposysedit:multiple: true
+            hipposysedit:ordered: true
+            hipposysedit:path: visitscotland:products
+            hipposysedit:type: hippo:compound
+            hipposysedit:validators: [contentblocks-validator]
       /hipposysedit:prototypes:
         jcr:primaryType: hipposysedit:prototypeset
         /hipposysedit:prototype:
@@ -102,6 +109,7 @@ definitions:
             field: productId
             plugin.class: org.hippoecm.frontend.editor.plugins.field.PropertyFieldPlugin
             wicket.id: ${cluster.id}.field
+            hint: ''
             /cluster.options:
               jcr:primaryType: frontend:pluginconfig
           /image:
@@ -131,3 +139,14 @@ definitions:
             wicket.id: ${cluster.id}.field
             /cluster.options:
               jcr:primaryType: frontend:pluginconfig
+          /products:
+            jcr:primaryType: frontend:plugin
+            caption: Product
+            compoundList: visitscotland:MegalinkItem
+            contentPickerType: links
+            field: products
+            plugin.class: org.onehippo.forge.contentblocks.ContentBlocksFieldPlugin
+            wicket.id: ${cluster.id}.field
+            /cluster.options:
+              jcr:primaryType: frontend:pluginconfig
+              maxitems: 1

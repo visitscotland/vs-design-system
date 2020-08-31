@@ -66,7 +66,7 @@ public class TranslationActionTest {
         // should never happen but is a valid path through the code
         assertNull(action.execute(mockWorkflow));
 
-        verify(mockTranslator, never()).applyChangeSet(any(), any(), any());
+        verify(mockTranslator).applyChangeSet(any(), any(), any());
     }
 
     @Test
@@ -79,8 +79,7 @@ public class TranslationActionTest {
 
         action.execute(mockWorkflow);
 
-        verify(mockTranslator).applyChangeSet(same(change1), eq(mockHippoSession), eq(mockWorkflow));
-        verify(mockTranslator).applyChangeSet(same(change2), eq(mockHippoSession), eq(mockWorkflow));
+        verify(mockTranslator).applyChangeSet(same(changeSetList), eq(mockHippoSession), eq(mockWorkflow));
     }
 
     @Test
@@ -88,7 +87,7 @@ public class TranslationActionTest {
         ChangeSet change1 = mock(ChangeSet.class);
         changeSetList.add(change1);
         doThrow(new TranslationException("error message")).when(mockTranslator).applyChangeSet(
-                same(change1),
+                same(changeSetList),
                 eq(mockHippoSession),
                 eq(mockWorkflow)
         );

@@ -10,10 +10,9 @@ import com.visitscotland.brmx.beans.mapping.FlatLink;
 import com.visitscotland.brmx.beans.mapping.megalinks.*;
 import com.visitscotland.brmx.dms.DMSDataService;
 import com.visitscotland.brmx.dms.LocationLoader;
-import com.visitscotland.brmx.dms.ProductSearchBuilder;
+import com.visitscotland.brmx.services.LinkService;
 import com.visitscotland.brmx.utils.CommonUtils;
 import com.visitscotland.brmx.utils.HippoUtilsService;
-import com.visitscotland.brmx.utils.Properties;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -35,47 +34,68 @@ public class LinkModulesFactory {
 
     private final HippoUtilsService utils;
     private final DMSDataService dmsData;
-    private final ProductSearchBuilder psBuilder;
+    private final LinkService linkService;
 
     public LinkModulesFactory() {
-        this(new HippoUtilsService(), new ProductSearchBuilder(), new DMSDataService());
+        this(new HippoUtilsService(), new DMSDataService(), new LinkService());
     }
 
-    public LinkModulesFactory(HippoUtilsService utils, ProductSearchBuilder psb, DMSDataService dmsData) {
+    public LinkModulesFactory(HippoUtilsService utils, DMSDataService dmsData, LinkService linkService) {
         this.utils = utils;
-        this.psBuilder = psb;
         this.dmsData = dmsData;
+        this.linkService   = linkService;
     }
 
-    public AbstractLayout getMegalinksModule(Megalinks doc, Locale locale) {
+    public LinksModule getMegalinkModule(Megalinks doc, Locale locale) {
         if (Boolean.TRUE.equals(doc.getListLayout()) || doc.getMegalinkItems().size() > MAX_ITEMS) {
-            return list(doc, locale);
+            return listLayout(doc, locale) ;
         } else if (doc.getSingleImageModule() != null) {
             return singleImageLayout(doc, locale);
         } else {
-            return featuredLayout(doc, locale);
+            return multiImageLayout(doc, locale);
         }
     }
 
-    public SingleImageLayout singleImageLayout(Megalinks doc, Locale locale) {
-        SingleImageLayout sil = new SingleImageLayout();
-        sil.setTitle(doc.getTitle());
-        sil.setIntroduction(doc.getIntroduction());
+    /**
+     * Converts a Megalinks document into a {@code ListLinksModule} Object for easier the consumption of the data on the front
+     * end.
+     *
+     * @param doc    Megalink document to be converted.
+     * @param locale Locale of the request
+     * @return {@code ListLinksModule} containing the relevant information from the Megalinks document
+     */
+    public ListLinksModule listLayout(Megalinks doc, Locale locale) {
+        ListLinksModule ll = new ListLinksModule();
+        populateCommonFields(ll, doc, locale);
+
+        ll.setTeaserVisible(doc.getTeaserVisible());
+        ll.setLinks(convertToEnhancedLinks(doc.getMegalinkItems(), locale));
+
+        return ll;
+    }
+
+    /**
+     * Converts a Megalinks document into a {@code SingleImageLinksModule} Object for easier the consumption of the data on the front
+     * end.
+     *
+     * @param doc    Megalink document to be converted.
+     * @param locale Locale of the request
+     * @return {@code SingleImageLinksModule} containing the relevant information from the Megalinks document
+     */
+    public SingleImageLinksModule singleImageLayout(Megalinks doc, Locale locale) {
+        SingleImageLinksModule sil = new SingleImageLinksModule();
+        populateCommonFields(sil, doc, locale);
 
         sil.setInnerTitle(doc.getSingleImageModule().getTitle());
         sil.setInnerIntroduction(doc.getSingleImageModule().getIntroduction());
         sil.setImage(createFlatImage(doc.getSingleImageModule().getImage(), locale));
         sil.setLinks(convertToFlatLinks(doc.getMegalinkItems(), locale));
-        sil.setMegalinkItem(doc);
-
-        //Note: The requirements for the CTA haven't been defined yet
-        //sil.setCta(doc.getCta());
 
         return sil;
     }
 
     /**
-     * Converts a Megalinks document into a FeaturedLayout Object for easier the consumption of the data on the front
+     * Converts a Megalinks document into a MultiImageLinksModule Object for easier the consumption of the data on the front
      * end.
      * <p>
      * The number of featured items marked on the document might change depending on the following rules:
@@ -90,18 +110,14 @@ public class LinkModulesFactory {
      *
      * @param doc    Megalink document to be converted.
      * @param locale Locale of the request
-     * @return FeaturedLayout containing the relevant information from the Megalinks document
+     * @return MultiImageLinksModule containing the relevant information from the Megalinks document
      */
-    public FeaturedLayout featuredLayout(Megalinks doc, Locale locale) {
-        FeaturedLayout fl = new FeaturedLayout();
-        fl.setTitle(doc.getTitle());
-        fl.setIntroduction(doc.getIntroduction());
+    public MultiImageLinksModule multiImageLayout(Megalinks doc, Locale locale) {
+        MultiImageLinksModule fl = new MultiImageLinksModule();
+        populateCommonFields(fl, doc, locale);
         fl.setTeaserVisible(doc.getTeaserVisible());
-        fl.setMegalinkItem(doc);
 
-        // Note: The requirements for the CTA haven't been defined yet
-        //fl.setCta();
-
+        fl.setLinksSize(doc.getMegalinkItems().size());
         fl.setLinks(convertToEnhancedLinks(doc.getMegalinkItems(), locale));
 
         //There is no featured items when the amount of items is inferior to 3
@@ -126,20 +142,26 @@ public class LinkModulesFactory {
         return fl;
     }
 
-    public ListLayout list(Megalinks doc, Locale locale) {
-        ListLayout ll = new ListLayout();
-        ll.setTitle(doc.getTitle());
-        ll.setIntroduction(doc.getIntroduction());
-        ll.setTeaserVisible(doc.getTeaserVisible());
-        ll.setLinks(convertToEnhancedLinks(doc.getMegalinkItems(), locale));
-        ll.setMegalinkItem(doc);
+    /**
+     * Populate the common fields among all layouts
+     *
+     * @param target target module to be populated
+     * @param doc Megalinks document with the data source
+     * @param locale consumer language.
+     */
+    private void populateCommonFields(LinksModule target, Megalinks doc, Locale locale){
+        target.setMegalinkItem(doc);
+        target.setTitle(doc.getTitle());
+        target.setIntroduction(doc.getIntroduction());
 
-        // Note: The requirements for the CTA haven't been defined yet
-        //ll.setCta();
-
-        return ll;
+        if (doc.getProductItem()!= null) {
+            target.setCta(linkService.createLink(locale, doc.getProductItem()));
+        }
     }
-    //TODO comment this method
+
+    /**
+     * Converts the list of {@code MegalinksItem} into  a list of plain {@code FlatLink }
+     */
     List<FlatLink> convertToFlatLinks(List<MegalinkItem> items, Locale locale) {
         List<FlatLink> links = new ArrayList<>();
         for (MegalinkItem item : items) {
@@ -149,7 +171,7 @@ public class LinkModulesFactory {
                 links.add(new FlatLink(((Page) item.getLink()).getTitle(), utils.createUrl(item.getLink())));
             } else if (item.getLink() instanceof SharedLink) {
                 JsonNode node = getNodeFromSharedLink((SharedLink) item.getLink(), locale);
-                links.add(new FlatLink(((SharedLink) item.getLink()).getTitle(), getPlainLink((SharedLink)item.getLink(), node)));
+                links.add(new FlatLink(((SharedLink) item.getLink()).getTitle(), linkService.getPlainLink((SharedLink)item.getLink(), node)));
             } else {
                 CommonUtils.contentIssue("The module %s is pointing to a document of type %s which cannot be rendered as a page", item.getPath(), item.getLink().getClass().getSimpleName());
             }
@@ -157,7 +179,9 @@ public class LinkModulesFactory {
         return links;
     }
 
-    //TODO comment this method
+    /**
+     * Converts the list of {@code MegalinksItem} into  a list of {@code EnhancedLink }
+     */
     List<EnhancedLink> convertToEnhancedLinks(List<MegalinkItem> items, Locale locale) {
         List<EnhancedLink> links = new ArrayList<>();
         for (MegalinkItem item : items) {
@@ -169,6 +193,7 @@ public class LinkModulesFactory {
                 link.setTeaser(((Linkable) item.getLink()).getTeaser());
                 link.setLabel(((Linkable) item.getLink()).getTitle());
                 link.setFeatured(item.getFeature());
+
                 if (((Linkable) item.getLink()).getImage() != null) {
                     link.setImage(createFlatImage(((Linkable) item.getLink()).getImage(), locale));
                 }
@@ -180,11 +205,18 @@ public class LinkModulesFactory {
                     if (link.getImage() == null && product != null && product.has(IMAGE)) {
                         link.setImage(new FlatImage(product));
                     }
-                    link.setLink(getPlainLink((SharedLink) item.getLink(), product));
+                    link.setLink(linkService.getPlainLink((SharedLink) item.getLink(), product));
                 } else {
                     logger.warn(String.format("The type %s was not expected and will be skipped", item.getLink().getClass().getSimpleName()));
                     continue;
                 }
+
+                //TODO add itineraries days and transport
+            /*   if (item.getLink() instanceof Itinerary) {
+                    link.setTransport(((Itinerary) item.getLink()).getTransports()[0]);
+                    link.setDays(((Itinerary) item.getLink()).getDays().size());
+                }*/
+
 
                 if (link.getImage() == null) {
                     CommonUtils.contentIssue("The link to %s does not have an image but it is expecting one", item.getLink());
@@ -197,7 +229,13 @@ public class LinkModulesFactory {
         }
         return links;
     }
-    //TODO comment this method
+
+    /**
+     * Query the DMSDataService and extract the information about the product as a {@code JsonNode}
+     * @param link
+     * @param locale
+     * @return
+     */
     private JsonNode getNodeFromSharedLink(SharedLink link, Locale locale) {
         if (link.getLinkType() instanceof DMSLink) {
             try {
@@ -208,7 +246,13 @@ public class LinkModulesFactory {
         }
         return null;
     }
-    //TODO comment this method
+
+    /**
+     * Create a localized FlatImage from an Image Object
+     * @param img Image Object
+     * @param locale User language to localize Image texts such as the caption
+     * @return
+     */
     private FlatImage createFlatImage(Image img, Locale locale) {
         FlatImage flatImage = new FlatImage(img, locale);
         LocationObject locationObject = getLocation(img.getLocation(), locale);
@@ -219,29 +263,8 @@ public class LinkModulesFactory {
         return flatImage;
     }
 
-    private String getPlainLink(SharedLink link, JsonNode product) {
-
-        if (link.getLinkType() instanceof DMSLink) {
-            if (product == null) {//((DMSLink) link).getDmsData(locale)
-                CommonUtils.contentIssue("The product id '%s' does not exist but is linked ",
-                        ((DMSLink) link.getLinkType()).getProduct(), link.getPath());
-            } else {
-                return Properties.VS_DMS_SERVICE + product.get(URL).asText();
-            }
-        } else if (link.getLinkType() instanceof ExternalLink) {
-            return ((ExternalLink) link.getLinkType()).getLink();
-        } else if (link.getLinkType() instanceof ProductsSearch) {
-            return psBuilder.fromHippoBean((ProductsSearch) link.getLinkType()).build();
-        } else {
-            logger.warn(String.format("This class %s is not recognized as a link type and cannot be converted", link.getLinkType() == null ? "null" : link.getClass().getSimpleName()));
-        }
-        return null;
-
-    }
-
+    //TODO convert into a service
     LocationObject getLocation(String location, Locale locale) {
         return LocationLoader.getLocation(location, locale);
     }
-
-
 }

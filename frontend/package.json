@@ -24,8 +24,8 @@
     "ssr:build:server": "webpack --config ./build/ssr.server.webpack.conf.js",
     "lint": "eslint",
     "lint:all": "yarn lint \"src/**/*.{js,vue}\"",
-	"lint:fix": "yarn lint \"src/**/*.{js,vue}\" --fix",
-	"lint:watch": "esw \"src/**/*.{js,vue}\" --watch --ext .js,.vue --watch-delay 0",
+    "lint:fix": "yarn lint \"src/**/*.{js,vue}\" --fix",
+    "lint:watch": "esw \"src/**/*.{js,vue}\" --watch --ext .js,.vue --watch-delay 0",
     "lint:style": "stylelint",
     "lint:style:all": "lint:style \"src/**/*.{vue,scss}\"",
     "e2e": "cypress open",
@@ -68,6 +68,7 @@
     "get-port": "^5.1.1",
     "js-beautify": "^1.11.0",
     "lazysizes": "^5.2.0-beta1",
+    "lighthouse": "^6.2.0",
     "lodash": "^4.17.15",
     "mapbox-gl": "^1.6.0",
     "mini-css-extract-plugin": "^0.4.5",
@@ -202,7 +203,7 @@
   },
   "husky": {
     "hooks": {
-	  "pre-commit": "yarn lint:all"
+      "pre-commit": "yarn lint:all"
     }
   }
 }

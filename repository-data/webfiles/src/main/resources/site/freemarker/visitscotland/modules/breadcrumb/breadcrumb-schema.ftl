@@ -1,10 +1,8 @@
-<#include "../../include/imports.ftl">
-<@hst.setBundle basename="navigation"/>
-
+<#include "../../../include/imports.ftl">
 <#-- @ftlvariable name="breadcrumb" type="org.onehippo.forge.breadcrumb.om.Breadcrumb" -->
 
 <#if breadcrumb?? && breadcrumb.items??>
-    <@hst.headContribution category="htmlHead">
+    <@hst.headContribution category="seo">
         <script type="application/ld+json">
         {
             "@context": "https://schema.org",

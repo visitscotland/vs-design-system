@@ -3,17 +3,13 @@ package com.visitscotland.brmx.beans.mapping;
 import com.visitscotland.brmx.beans.TourismInformation;
 import org.hippoecm.hst.content.beans.standard.HippoHtml;
 
-public class IKnowModule {
+public class IKnowModule extends Module{
 
     private String title;
     private HippoHtml description;
     private FlatLink link;
     private TourismInformation tourismInformation;
 
-    //TODO move this method to the module class
-    public String getType(){
-        return getClass().getSimpleName();
-    }
     public String getTitle() {
         return title;
     }

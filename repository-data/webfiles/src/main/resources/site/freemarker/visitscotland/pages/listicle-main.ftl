@@ -1,4 +1,5 @@
 <#ftl output_format="XML">
+<#compress>
 <#include "../../include/imports.ftl">
 
 <#include "../../frontend/components/vs-container.ftl">
@@ -22,6 +23,7 @@
 <#-- @ftlvariable name="item" type="com.visitscotland.brmx.beans.mapping.FlatListicle" -->
 <#-- @ftlvariable name="cta" type="com.visitscotland.brmx.beans.mapping.FlatLink" -->
 
+</#compress>
 <div class="has-edit-button">
 	<@hst.manageContent hippobean=document documentTemplateQuery="new-document" rootPath="site" defaultPath="${path}" />
     <@cmsErrors errors=alerts!"" editMode=editMode />

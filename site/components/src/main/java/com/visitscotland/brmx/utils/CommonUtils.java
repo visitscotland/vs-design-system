@@ -3,7 +3,7 @@ package com.visitscotland.brmx.utils;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.visitscotland.brmx.beans.InstagramImage;
-import com.visitscotland.brmx.dms.DMSDataService;
+import com.visitscotland.brmx.services.ResourceBundleService;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -17,19 +17,13 @@ import java.util.Locale;
 
 public class CommonUtils {
 
-    private static DMSDataService dmsData = new DMSDataService();
+    final static String VS_DMS_ENCODING = "UTF8";
 
     //TODO add message format for other languages
     public static final String contentIssue (String message, Object... parameters){
         return String.format("- [CONTENT] - " + message, parameters);
     }
 
-
-    @Deprecated
-    //TODO Remove method uses
-    public static JsonNode getProduct(String productId, Locale locale) throws IOException {
-        return dmsData.productCard(productId, locale);
-    }
     /**
      * Request a page and return the body as String
      * @param url
@@ -40,7 +34,7 @@ public class CommonUtils {
     public static String request(String url) throws IOException {
         // TODO comment
         if (((HttpURLConnection) new URL(url).openConnection()).getResponseCode() < 400){
-            final BufferedReader br = new BufferedReader(new InputStreamReader(new URL(url).openStream()));
+            final BufferedReader br = new BufferedReader(new InputStreamReader(new URL(url).openStream(), VS_DMS_ENCODING));
             final StringBuilder sb = new StringBuilder();
             int cp;
 
@@ -70,23 +64,25 @@ public class CommonUtils {
     }
 
 
-    //TODO this method returns the current open state and it coud be affected by the cache, ask WEBOPS and move it to front end if needed
+    //TODO this method returns the current open state and it could be affected by the cache, ask WEBOPS and move it to front end if needed
     //TODO move to DMSDataService once this method need is confirmed
     public static  String currentOpenStatus(String starTime, String endTime, Locale locale){
-        HippoUtilsService utils = HippoUtilsService.getInstance();
+        ResourceBundleService bundle = new ResourceBundleService();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("hh:mma");
         LocalTime starts = LocalTime.parse(starTime, formatter);
         LocalTime ends = LocalTime.parse(endTime, formatter);
         LocalTime currentTime = LocalTime.now(ZoneId.of("+1"));
         if (currentTime.isAfter(starts) && currentTime.isBefore(ends)){
             if (currentTime.plusMinutes(30).isAfter(ends)){
-                return  utils.getResourceBundle("stop.close.soon", "itinerary", locale);
+                return  bundle.getResourceBundle("itinerary","stop.close.soon",  locale);
             }else{
-                return   utils.getResourceBundle("stop.open", "itinerary", locale);
+                return   bundle.getResourceBundle("itinerary","stop.open",  locale);
             }
         }else
         {
-            return   utils.getResourceBundle("stop.closed", "itinerary", locale);
+            return   bundle.getResourceBundle("itinerary","stop.closed",  locale);
         }
     }
+
+
 }

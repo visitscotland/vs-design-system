@@ -84,7 +84,7 @@ definitions:
           hippotranslation:id: document-type-locale-id
           hippotranslation:locale: document-type-locale
           jcr:mixinTypes: ['mix:referenceable']
-          jcr:uuid: ef58b958-3265-48da-9f65-062941e94673
+          jcr:uuid: b81f27f7-d4c0-4e6e-9386-1a632d5b2466
           hippostdpubwf:lastModificationDate: 2019-12-05T15:13:21.853Z
           hippostdpubwf:creationDate: 2019-12-05T15:13:21.853Z
           visitscotland:tipsTitle: ''

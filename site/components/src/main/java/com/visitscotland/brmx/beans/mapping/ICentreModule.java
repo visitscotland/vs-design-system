@@ -4,7 +4,7 @@ import org.hippoecm.hst.content.beans.standard.HippoHtml;
 
 import java.util.List;
 
-public class ICentreModule {
+public class ICentreModule extends Module{
 
     private String title;
     private FlatImage image;
@@ -14,10 +14,6 @@ public class ICentreModule {
     private FlatImage quoteImage;
     private List<FlatLink> iCentreList;
 
-    //TODO move this method to the module class
-    public String getType(){
-        return getClass().getSimpleName();
-    }
     public String getTitle() {
         return title;
     }

@@ -11,7 +11,7 @@ definitions:
         /hipposysedit:nodetype:
           jcr:primaryType: hipposysedit:nodetype
           jcr:mixinTypes: ['mix:referenceable', 'hipposysedit:remodel']
-          jcr:uuid: a336905c-e063-46f9-abf1-18be6584aca4
+          jcr:uuid: b489d67e-6926-4096-ae3d-e4466e59a2fb
           hipposysedit:node: true
           hipposysedit:supertype: ['visitscotland:Page', 'hippostd:relaxed', 'hippotranslation:translated']
           hipposysedit:uri: http://www.visitscotland.com/visitscotland/nt/1.0
@@ -102,7 +102,7 @@ definitions:
           visitscotland:start: ''
           visitscotland:distance: 0.0
           visitscotland:theme: ''
-          jcr:uuid: 92490be5-dad4-4f3f-abf0-914310c4f6b0
+          jcr:uuid: a99a050e-d16e-4e2c-b60c-38b11ebe60c9
           hippostdpubwf:creationDate: 2019-12-06T11:10:08.311Z
           hippostdpubwf:lastModificationDate: 2019-12-06T11:10:08.310Z
           visitscotland:highlights: ''
@@ -191,21 +191,23 @@ definitions:
             wicket.id: ${cluster.id}.left.item
             /cluster.options:
               jcr:primaryType: frontend:pluginconfig
+              maxlength: '55'
           /teaser:
             jcr:primaryType: frontend:plugin
             caption: Teaser
             field: teaser
             plugin.class: org.hippoecm.frontend.editor.plugins.field.PropertyFieldPlugin
             wicket.id: ${cluster.id}.left.item
+            hint: ''
             /cluster.options:
               jcr:primaryType: frontend:pluginconfig
+              maxlength: '135'
           /introduction:
             jcr:primaryType: frontend:plugin
             caption: Introduction
             field: introduction
             plugin.class: org.hippoecm.frontend.editor.plugins.field.NodeFieldPlugin
             wicket.id: ${cluster.id}.left.item
-            hint: ''
             /cluster.options:
               jcr:primaryType: frontend:pluginconfig
               ckeditor.config.overlayed.json: '{toolbarGroups: [{ name: ''links''
