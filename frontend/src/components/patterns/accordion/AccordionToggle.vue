@@ -9,21 +9,21 @@
         :variant="variant"
     >
         <!-- @slot Default slot contains text for the button -->
-        <slot />
-
-        <div class="float-right">
+        <span class="vs-accordion-toggle__text">
+            <slot />
+        </span>
+        <span class="vs-accordion-toggle__icon">
             <!-- @slot Put the icon to be used when panel is open  -->
             <slot
                 v-if="visible"
                 name="icon-open"
             />
-
             <!-- @slot Put the icon to be used when panel is closed  -->
             <slot
                 v-else
                 name="icon-closed"
             />
-        </div>
+        </span>
     </VsButton>
 </template>
 
@@ -65,12 +65,14 @@ export default {
 
 <style lang="scss">
 .btn.vs-accordion-toggle {
-    text-align: left;
+    display: flex;
 
-    .icon.icon-xs {
-        height: 16px!important;
-        width: 16px!important;
-        padding: 0!important;
+    .vs-accordion-toggle__text {
+        flex-grow: 1;
+    }
+
+    .vs-accordion-toggle__icon {
+        align-self: center;
     }
 }
 </style>
