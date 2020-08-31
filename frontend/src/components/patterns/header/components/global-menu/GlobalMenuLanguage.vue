@@ -9,8 +9,18 @@
             />
             <!-- Tablet/Desktop -->
             <span class="vs-global-menu__languages__text">{{ languageLabel }}</span>
-            {{ selectedLanguage }}
+            <span class="vs-global-menu__languages__selected">{{ selectedLanguage }}</span>
         </template>
+        <!-- No JS Version -->
+        <span class="vs-global-menu__languages__label">
+            <VsIcon
+                name="globe"
+                variant="light"
+                size="xxs"
+            />
+            <!-- Tablet/Desktop -->
+            {{ languageLabel }}
+        </span>
         <slot />
     </VsDropdown>
 </template>
@@ -42,7 +52,6 @@ export default {
 
 <style lang="scss">
 .vs-global-menu__languages {
-    position: initial;
 
     .dropdown-toggle {
         padding: 0.5rem;
@@ -95,6 +104,43 @@ export default {
 
     @include media-breakpoint-up(lg) {
         display: inline;
+    }
+}
+
+.vs-global-menu__languages__label {
+    display: none;
+}
+
+@include no-js {
+    .vs-global-menu__languages {
+        display: block;
+
+        .dropdown-menu {
+            @extend .show;
+            position: initial;
+            display: inline-flex;
+            flex-wrap: wrap;
+            width: auto;
+            border: none;
+        }
+
+        .dropdown-toggle {
+            display: none;
+        }
+
+        .dropdown-item {
+            color: white;
+
+            &:hover {
+                background: $color-purple-shade-2;
+            }
+        }
+
+        .vs-global-menu__languages__label {
+            display: inline;
+            color: white;
+            padding: 4px 0;
+        }
     }
 }
 </style>
