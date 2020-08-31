@@ -323,7 +323,7 @@ export default {
             display: flex;
             flex-wrap: wrap;
 
-            .vs-dropdown {
+            .vs-global-menu__websites {
                 display: none;
             }
 
