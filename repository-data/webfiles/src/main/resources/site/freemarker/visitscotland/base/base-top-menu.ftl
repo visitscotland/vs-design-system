@@ -21,7 +21,7 @@
         active-site="https://www.visitscotland.com/"
     >
         <template slot="third-menu-item">
-            <vs-global-menu-language selectedLanguage="${currentLocale}" languageLabel="${label('navigation.static', 'universal.language')}">
+            <vs-global-menu-language selected-language="${currentLocale}" language-label="${label('navigation.static', 'universal.language')}">
                 <#list languages as language>
                     <vs-global-menu-language-item
                         key="${language}"
