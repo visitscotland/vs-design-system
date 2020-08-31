@@ -1,13 +1,12 @@
 package com.visitscotland.brmx.beans.mapping.megalinks;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
-public class FeaturedLayout extends AbstractLayout<EnhancedLink> {
+public class MultiImageLinksModule extends LinksModule<EnhancedLink> {
 
     private boolean teaserVisible;
     private List<EnhancedLink> featuredLinks;
+    private Integer linksSize;
 
     public boolean isTeaserVisible() {
         return teaserVisible;
@@ -19,6 +18,14 @@ public class FeaturedLayout extends AbstractLayout<EnhancedLink> {
 
     public List<EnhancedLink> getFeaturedLinks() {
         return featuredLinks;
+    }
+
+    public Integer getLinksSize() {
+        return linksSize;
+    }
+
+    public void setLinksSize(Integer linksSize) {
+        this.linksSize = linksSize;
     }
 
     public void setFeaturedLinks(List<EnhancedLink> featuredLinks) {
