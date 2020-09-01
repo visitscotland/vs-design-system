@@ -23,6 +23,7 @@
                             :key="index"
                             :href="item.href"
                             :cta-text="item.cta"
+                            :control-id="'top-menu-item' + index"
                         >
                             <template slot="toggle-btn">
                                 {{ item.title }}
@@ -46,6 +47,7 @@
                             :key="index"
                             :href="item.href"
                             :cta-text="item.cta"
+                            control-id="mobile-menu-toggle"
                         >
                             {{ item.title }}
                         </VsMegaNavMobileToggle>

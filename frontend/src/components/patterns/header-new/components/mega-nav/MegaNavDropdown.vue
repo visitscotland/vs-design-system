@@ -4,7 +4,7 @@
         unstyled
         class="vs-mega-nav__dropdown"
         :class="{
-            'vs-mega-nav__dropdown--open': isOpen,
+            'vs-mega-nav__dropdown--open': showDropdown,
         }"
     >
         <slot />
@@ -27,7 +27,7 @@ export default {
         VsList,
     },
     props: {
-        isOpen: {
+        showDropdown: {
             type: Boolean,
             default: false,
         },
