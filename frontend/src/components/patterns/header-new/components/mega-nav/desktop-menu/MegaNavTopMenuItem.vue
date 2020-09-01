@@ -3,7 +3,7 @@
         class="vs-mega-nav__item"
         ref="menuToggle"
     >
-        <VsMegaNavDropdownToggle>
+        <VsMegaNavDropdownToggle :control-id="controlId">
             <template #toggle-btn>
                 <slot name="toggle-btn" />
             </template>
@@ -40,6 +40,10 @@ export default {
             default: '',
         },
         ctaText: {
+            type: String,
+            default: '',
+        },
+        controlId: {
             type: String,
             default: '',
         },
