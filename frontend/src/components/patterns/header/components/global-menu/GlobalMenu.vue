@@ -365,8 +365,7 @@ export default {
     <vs-global-menu
         dropdown-label="I nostri siti"
         active-site="https://www.visitscotland.com/"
-    >
-    <span
+    ><span
             slot="second-menu-item"
             style="min-width: 50px;"
         >
