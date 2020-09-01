@@ -115,39 +115,6 @@ export default {
 .vs-global-menu__languages__label {
     display: none;
 }
-
-@include no-js {
-    .vs-global-menu__languages {
-        display: block;
-
-        .dropdown-menu {
-            @extend .show;
-            position: initial;
-            display: inline-flex;
-            flex-wrap: wrap;
-            width: auto;
-            border: none;
-        }
-
-        .dropdown-toggle {
-            display: none;
-        }
-
-        .dropdown-item {
-            color: white;
-
-            &:hover {
-                background: $color-purple-shade-2;
-            }
-        }
-
-        .vs-global-menu__languages__label {
-            display: inline;
-            color: white;
-            padding: 4px 0;
-        }
-    }
-}
 </style>
 
 <docs>

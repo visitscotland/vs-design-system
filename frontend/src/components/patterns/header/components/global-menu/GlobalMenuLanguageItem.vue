@@ -85,6 +85,57 @@ export default {
         }
     }
 }
+@include no-js {
+    .vs-global-menu__languages {
+        display: block;
+
+        .dropdown-menu {
+            @extend .show;
+            position: initial;
+            display: block;
+            width: 100vw;
+            border: none;
+            opacity: 1;
+            max-height: 700px;
+            transform: translate3d(0px, 0px, 0px) !important;
+            text-align: center;
+
+            .vs-global-menu__languages__item {
+                display: block;
+            }
+        }
+
+        .dropdown-toggle {
+            display: none;
+        }
+
+        .dropdown-item {
+            color: white;
+
+            &:hover {
+                background: $color-purple-shade-2;
+            }
+        }
+
+        .vs-global-menu__languages__label {
+            display: inline;
+            color: white;
+            padding: 16px;
+        }
+
+        @include media-breakpoint-up(sm) {
+            .dropdown-menu {
+                display: inline-flex;
+                flex-wrap: wrap;
+                text-align: left;
+
+                .vs-global-menu__languages__item {
+                    display: inline;
+                }
+            }
+        }
+    }
+}
 </style>
 
 <docs>
