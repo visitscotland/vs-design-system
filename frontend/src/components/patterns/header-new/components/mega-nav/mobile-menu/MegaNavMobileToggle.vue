@@ -19,7 +19,7 @@
             <a :href="href">{{ ctaText }}</a>
             <hr>
 
-            <slot name="dropdown-nav" />
+            <slot name="dropdown-content" />
         </VsMegaNavDropdown>
     </li>
 </template>

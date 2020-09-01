@@ -3,11 +3,7 @@
     <div class="vs-mega-nav bg-white">
         <VsContainer>
             <VsRow class="align-items-center justify-content-sm-end">
-                <VsCol
-                    cols="8"
-                    md="4"
-                    lg="3"
-                >
+                <VsCol cols="8" md="4" lg="3">
                     <VsSvgLink
                         class="vs-mega-nav__logo"
                         logo-alt-text="VisitScotland Home"
@@ -17,10 +13,10 @@
                     />
                 </VsCol>
 
-                <VsCol
-                    cols="4"
-                    md="8"
-                    lg="9"
+                <VsCol 
+                    cols="4" 
+                    md="8" 
+                    lg="9" 
                     class="vs-mega-nav__menu d-none d-lg-block"
                 >
                     <VsMegaNavTopMenu>
@@ -35,15 +31,23 @@
                     lg="9"
                     class="d-flex d-lg-none justify-content-end position-static"
                 >
-                    <VsMegaNavDropdownToggle>
-                        <template slot="toggle-btn">
+                    <VsMegaNavDropdown @menu-toggled="menuToggle">
+                        <template slot="button-content">
                             <VsIcon
-                                name="bars-mobile-menu"
-                                variant="dark"
-                                size="md"
+                                v-if="isOpen"
+                                name="close"
+                                size="sm"
+                                variant="dark" 
+                            />
+
+                            <VsIcon 
+                                v-else 
+                                name="bars-mobile-menu" 
+                                size="md" 
+                                variant="dark" 
                             />
                         </template>
-                    </VsMegaNavDropdownToggle>
+                    </VsMegaNavDropdown>
                 </VsCol>
             </VsRow>
         </VsContainer>
@@ -55,8 +59,7 @@ import {
     VsCol, VsRow, VsContainer,
 } from '@components/elements/layout';
 import VsSvgLink from '@components/patterns/svg-link/SvgLink';
-import VsMegaNavDropdownToggle from '@components/patterns/header-new/components/mega-nav/MegaNavDropdownToggle';
-import headerStore from '@components/patterns/header-new/header.store';
+import VsMegaNavDropdown from '@components/patterns/header-new/components/mega-nav/MegaNavDropdown';
 
 export default {
     name: 'VsMegaNav',
@@ -67,17 +70,16 @@ export default {
         VsRow,
         VsContainer,
         VsSvgLink,
-        VsMegaNavDropdownToggle,
+        VsMegaNavDropdown,
     },
-    headerStore,
     data() {
         return {
-            isCollapsed: false,
+            isOpen: false,
         };
     },
     methods: {
-        toggleCollapse() {
-            this.isCollapsed = !this.isCollapsed;
+        menuToggle() {
+            this.isOpen = !this.isOpen;
         },
     },
 };
