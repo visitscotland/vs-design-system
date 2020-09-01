@@ -1,22 +1,20 @@
 <!-- eslint-disable -->
 <template>
-    <div
-        class="vs-mega-nav__dropdown-toggle"
-        ref="menuToggle"
-    >
+    <div class="vs-mega-nav__dropdown-toggle" ref="menuToggle">
         <VsButton
             class="vs-mega-nav__button"
             variant="transparent"
             aria-haspopup="true"
+            :aria-expanded="showDropdown ? 'true' : 'false'"
+            :aria-controls="controlId"
             :animate="false"
             :uppercase="false"
-            :aria-expanded="isOpen ? 'true' : 'false'"
             @click.native="openMenu"
         >
             <slot name="toggle-btn" />
         </VsButton>
 
-        <VsMegaNavDropdown v-show="isOpen">
+        <VsMegaNavDropdown v-show="showDropdown" :id="controlId">
             <slot name="cta-link" />
             <slot name="dropdown-nav" />
         </VsMegaNavDropdown>
@@ -40,6 +38,10 @@ export default {
         VsMegaNavDropdown,
     },
     props: {
+        controlId: {
+            type: String,
+            default: '',
+        },
         href: {
             type: String,
             default: '',
@@ -51,7 +53,7 @@ export default {
     },
     data() {
         return {
-            isOpen: false,
+            showDropdown: false,
         };
     },
     created() {
@@ -64,11 +66,11 @@ export default {
         resetMenu(e) {
             // Close dropdown when user clicks elsewhere
             if (!this.$refs.menuToggle.contains(e.target)) {
-                this.isOpen = false;
+                this.showDropdown = false;
             }
         },
         openMenu() {
-            this.isOpen = !this.isOpen;
+            this.showDropdown = !this.showDropdown;
         },
     },
 };

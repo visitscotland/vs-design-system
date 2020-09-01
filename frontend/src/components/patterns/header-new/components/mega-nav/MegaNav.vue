@@ -16,6 +16,7 @@
                         svg-path="visitscotland"
                     />
                 </VsCol>
+
                 <VsCol
                     cols="4"
                     md="8"
@@ -55,6 +56,7 @@ import {
 } from '@components/elements/layout';
 import VsSvgLink from '@components/patterns/svg-link/SvgLink';
 import VsMegaNavDropdownToggle from '@components/patterns/header-new/components/mega-nav/MegaNavDropdownToggle';
+import headerStore from '@components/patterns/header-new/header.store';
 
 export default {
     name: 'VsMegaNav',
@@ -67,6 +69,7 @@ export default {
         VsSvgLink,
         VsMegaNavDropdownToggle,
     },
+    headerStore,
     data() {
         return {
             isCollapsed: false,
@@ -82,41 +85,6 @@ export default {
 
 <style lang="scss">
 @import '~bootstrap/scss/navbar';
-
-// .vs-mega-nav {
-//     position: relative;
-//     background: $color-white;
-//     @extend %default-box-shadow;
-//     padding: 0.25rem 0;
-
-//     @include media-breakpoint-up(lg) {
-//         padding: 0;
-//     }
-
-//     &__logo {
-//         padding: $spacer-1 0;
-
-//         svg {
-//             width: 184px;
-//         }
-//     }
-
-//     &__menu {
-//         position: static;
-//     }
-
-//     &__toggle {
-//         border: 0;
-//         font-size: 0;
-//         padding: $spacer-1;
-//         height: 32px;
-//         width: 32px;
-
-//         &:focus {
-//             outline-color: $color-pink;
-//         }
-//     }
-// }
 
 .vs-mega-nav {
     position: relative;
