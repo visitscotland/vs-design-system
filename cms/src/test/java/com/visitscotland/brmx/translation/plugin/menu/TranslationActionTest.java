@@ -4,6 +4,7 @@ import com.visitscotland.brmx.translation.plugin.*;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.LoadableDetachableModel;
 import org.apache.wicket.util.tester.WicketTester;
+import org.hippoecm.frontend.session.UserSession;
 import org.hippoecm.frontend.translation.ILocaleProvider;
 import org.hippoecm.repository.api.HippoSession;
 import org.junit.jupiter.api.BeforeEach;
@@ -39,6 +40,10 @@ public class TranslationActionTest {
     @Mock
     private DocumentTranslator mockTranslator;
     private List<ChangeSet> changeSetList;
+    @Mock
+    private UserSessionFactory mockUserSessionFactory;
+    @Mock
+    private UserSession mockUserSession;
     private TranslationAction action;
 
     @BeforeEach
@@ -50,14 +55,16 @@ public class TranslationActionTest {
         changeSetList = new ArrayList<>();
         when(mockTranslator.buildChangeSetList(any(), any())).thenReturn(changeSetList);
         when(mockWorkflowPlugin.getAvailableLocales()).thenReturn(availableLocales);
-        action = spy(new TranslationAction(
+        action = new TranslationAction(
                 mockWorkflowPlugin,
                 "translation",
                 mockNameModel,
                 mockLocaleModel,
-                mockTranslator));
+                mockTranslator,
+                mockUserSessionFactory);
 
-        doReturn(mockHippoSession).when(action).getJcrSession();
+        when(mockUserSessionFactory.getUserSession()).thenReturn(mockUserSession);
+        when(mockUserSession.getJcrSession()).thenReturn(mockHippoSession);
     }
 
     @Test

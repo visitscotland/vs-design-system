@@ -56,10 +56,7 @@ import javax.jcr.Node;
 import javax.jcr.RepositoryException;
 import java.io.Serializable;
 import java.rmi.RemoteException;
-import java.util.Collections;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class TranslationWorkflowPlugin extends RenderPlugin {
@@ -69,18 +66,37 @@ public class TranslationWorkflowPlugin extends RenderPlugin {
     public static final String ID_LANGUAGES = "languages";
     public static final String ID_LABEL = "label";
     private static Logger log = LoggerFactory.getLogger(TranslationWorkflowPlugin.class);
-    private final IModel<Boolean> canTranslateModel;
+    private IModel<Boolean> canTranslateModel;
     private DocumentTranslationProvider translationProvider;
     private HippoTranslatedNodeFactory translatedNodeFactory;
+    private JcrDocumentFactory jcrDocumentFactory;
+    private UserSessionFactory userSessionFactory;
 
     public TranslationWorkflowPlugin(IPluginContext context, IPluginConfig config) {
-        this(context, config, new HippoTranslatedNodeFactory());
+        this(context, config, new HippoTranslatedNodeFactory(), new JcrDocumentFactory(), new UserSessionFactory());
+        initialise();
     }
 
-    protected TranslationWorkflowPlugin(IPluginContext context, IPluginConfig config, HippoTranslatedNodeFactory translatedNodeFactory) {
+    /**
+     * This constructor is intended for use in tests. It avoids calling initialisation functionality that would make
+     * testing difficult.
+     *
+     * @param context
+     * @param config
+     * @param translatedNodeFactory
+     */
+    protected TranslationWorkflowPlugin(IPluginContext context,
+                                        IPluginConfig config,
+                                        HippoTranslatedNodeFactory translatedNodeFactory,
+                                        JcrDocumentFactory jcrDocumentFactory,
+                                        UserSessionFactory userSessionFactory) {
         super(context, config);
         this.translatedNodeFactory = translatedNodeFactory;
+        this.jcrDocumentFactory = jcrDocumentFactory;
+        this.userSessionFactory = userSessionFactory;
+    }
 
+    protected void initialise() {
         final IModel<String> languageModel = new LanguageModel(this);
         final ILocaleProvider localeProvider = getLocaleProvider();
 
@@ -155,7 +171,7 @@ public class TranslationWorkflowPlugin extends RenderPlugin {
 
     public boolean isChangePending() {
         try {
-            JcrDocument jcrDocument = new JcrDocument(getDocumentNode());
+            JcrDocument jcrDocument = jcrDocumentFactory.createFromNode(getDocumentNode());
             Node unpublishedVariant = jcrDocument.getVariantNode(JcrDocument.VARIANT_UNPUBLISHED);
             if (unpublishedVariant.hasProperty(HippoStdNodeType.HIPPOSTD_STATESUMMARY) &&
                     "changed".equals(unpublishedVariant.getProperty(HippoStdNodeType.HIPPOSTD_STATESUMMARY).getString())) {
@@ -202,6 +218,29 @@ public class TranslationWorkflowPlugin extends RenderPlugin {
         return translationProvider != null && translationProvider.contains(locale);
     }
 
+    public List<JcrDocument> getCurrentDocumentTranslations() throws RepositoryException {
+        JcrDocument sourceDocument = jcrDocumentFactory.createFromNode(getDocumentNode());
+        List<JcrDocument> translations = new ArrayList<>(sourceDocument.getTranslations());
+        return translations;
+    }
+
+    public List<JcrDocument> getDocumentsBlockingTranslation() throws RepositoryException {
+        List<JcrDocument> documentsBlockingTranslation = new ArrayList<>();
+        JcrDocument sourceDocument = jcrDocumentFactory.createFromNode(getDocumentNode());
+        if (sourceDocument.isDraftBeingEdited()) {
+            documentsBlockingTranslation.add(sourceDocument);
+        }
+
+        Set<JcrDocument> translations = sourceDocument.getTranslations();
+        for (JcrDocument translation : translations) {
+            if (translation.isDraftBeingEdited()) {
+                documentsBlockingTranslation.add(translation);
+            }
+        }
+
+        return documentsBlockingTranslation;
+    }
+
     public boolean currentDocumentHasTranslation() {
         // Will return true if the currently selected document has at least one translation (excluding English)
         Set<String> availableLanguages = getAvailableLanguages();
@@ -227,7 +266,7 @@ public class TranslationWorkflowPlugin extends RenderPlugin {
         WorkflowDescriptorModel wdm = (WorkflowDescriptorModel) TranslationWorkflowPlugin.this.getDefaultModel();
         if (wdm != null) {
             WorkflowDescriptor descriptor = wdm.getObject();
-            WorkflowManager manager = UserSession.get().getWorkflowManager();
+            WorkflowManager manager = userSessionFactory.getUserSession().getWorkflowManager();
             try {
                 TranslationWorkflow translationWorkflow = (TranslationWorkflow) manager.getWorkflow(descriptor);
                 return (Set<String>) translationWorkflow.hints().get("available");

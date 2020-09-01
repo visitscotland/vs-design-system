@@ -19,10 +19,13 @@ import org.hippoecm.frontend.translation.ILocaleProvider;
 import org.hippoecm.hst.content.beans.ObjectBeanManagerException;
 import org.hippoecm.repository.api.WorkflowException;
 
+import javax.jcr.Node;
 import javax.jcr.RepositoryException;
 import javax.jcr.Session;
 import java.rmi.RemoteException;
 import java.util.List;
+
+import static com.visitscotland.brmx.translation.plugin.TranslationWorkflow.VS_TRANSLATABLE;
 
 public class SendForTranslationAction extends StdWorkflow<TranslationWorkflow> {
     public static final String MENU_TEXT = "Send for translation";
@@ -43,11 +46,20 @@ public class SendForTranslationAction extends StdWorkflow<TranslationWorkflow> {
     public boolean isVisible() {
         if (super.isVisible() && findPage() != null) {
             return "en".equals(workflowPlugin.getCurrentlySelectedDocumentLocale()) &&
+                    isSourceNodeTranslatable(workflowPlugin) &&
                     workflowPlugin.currentDocumentHasTranslation() &&
                     workflowPlugin.canTranslateModel() &&
                     workflowPlugin.isChangePending();
         }
         return false;
+    }
+
+    protected boolean isSourceNodeTranslatable(TranslationWorkflowPlugin plugin) {
+        try {
+            return plugin.getSourceDocumentNode().isNodeType(VS_TRANSLATABLE);
+        } catch (RepositoryException ex) {
+            return false;
+        }
     }
 
     @Override
@@ -61,8 +73,33 @@ public class SendForTranslationAction extends StdWorkflow<TranslationWorkflow> {
     @Override
     protected String execute(TranslationWorkflow workflow)
             throws WorkflowException, RepositoryException, RemoteException, ObjectBeanManagerException {
-        // TODO need to decide what sending for translation actually means
+        List<JcrDocument> documentsBlockingTranslation = workflow.setTranslationRequiredFlag();
+        // If there are any documents blocking we want to show that here
+        if (!documentsBlockingTranslation.isEmpty()) {
+            workflowPlugin.getPluginContext().getService(IDialogService.class.getName(), IDialogService.class).show(
+                    new SendForTranslationBlockedDialog(documentsBlockingTranslation, workflowPlugin.getLocaleProvider()));
+        }
         return null;
+    }
+
+    @Override
+    protected IDialogService.Dialog createRequestDialog() {
+        // Get a list of the documents to be sent for translation
+        // Or a list of the documents blocking translation
+        try {
+            List<JcrDocument> documentBlockingTranslation = workflowPlugin.getDocumentsBlockingTranslation();
+            if (!documentBlockingTranslation.isEmpty()) {
+                // Create transaction blocked dialog
+                return new SendForTranslationBlockedDialog(documentBlockingTranslation, workflowPlugin.getLocaleProvider());
+            }
+
+            List<JcrDocument> documentTranslations = workflowPlugin.getCurrentDocumentTranslations();
+            // Create confirmation dialog
+            return new SendForTranslationConfirmationDialog(this, documentTranslations, workflowPlugin.getLocaleProvider());
+
+        } catch(RepositoryException ex) {
+            return new ExceptionDialog(ex);
+        }
     }
 
     protected void clearSuperVisible() {
