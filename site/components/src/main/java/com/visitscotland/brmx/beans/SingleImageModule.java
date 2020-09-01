@@ -14,11 +14,6 @@ public class SingleImageModule extends HippoCompound {
         return getSingleProperty("visitscotland:title");
     }
 
-    @HippoEssentialsGenerated(internalName = "visitscotland:fullWidth")
-    public Boolean getFullWidth() {
-        return getSingleProperty("visitscotland:fullWidth");
-    }
-
     @HippoEssentialsGenerated(internalName = "visitscotland:image")
     public Image getImage() {
         return getLinkedBean("visitscotland:image", Image.class);
