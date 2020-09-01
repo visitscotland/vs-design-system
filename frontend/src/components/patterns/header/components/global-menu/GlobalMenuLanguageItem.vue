@@ -33,36 +33,55 @@ export default {
 <style lang="scss">
 .vs-global-menu__languages {
     .dropdown-menu {
-        width: 100%;
+        width: 100vw;
         background: $color-purple;
         font-size: $font-size-sm;
+        transition: all ease-in-out 0.3s;
+        margin: 0;
+        max-height: 0;
+        display: block;
+        overflow: hidden;
+        opacity: 0;
+        transform: translate3d(calc(-100% + 41px), 0px, 0px) !important;
+
+        .vs-global-menu__languages__item {
+            &:not(:last-of-type) {
+                border-bottom: 1px solid $color-purple-tint-3;
+            }
+
+            .dropdown-item {
+                padding: 1rem;
+                color: white;
+                text-decoration: none;
+
+                &:hover {
+                    background: $color-purple-shade-2;
+                }
+
+                &:focus {
+                    outline: 3px solid $color-purple-tint-5;
+                    outline-offset: -3px;
+                    background: $color-purple;
+                }
+            }
+        }
 
         &.show {
-            transform: translate3d(0px, 32px, 0px) !important;
+            max-height: 700px;
+            opacity: 1;
+            transform: translate3d(calc(-100% + 41px), 28px, 0px) !important;
             border: none;
             padding: 0;
 
-            .vs-global-menu__languages__item {
-                &:not(:last-of-type) {
-                    border-bottom: 1px solid $color-purple-tint-3;
-                }
-
-                .dropdown-item {
-                    padding: 1rem;
-                    color: white;
-                    text-decoration: none;
-
-                    &:hover {
-                        background: $color-purple-shade-2;
-                    }
-
-                    &:focus {
-                        outline: 3px solid $color-purple-tint-5;
-                        outline-offset: -3px;
-                        background: $color-purple;
-                    }
-                }
+            @include media-breakpoint-up(lg) {
+                transform: translate3d(0px, 35px, 0px) !important;
             }
+
+        }
+
+        @include media-breakpoint-up(lg) {
+            width: 100%;
+            transform: translate3d(0px, 0px, 0px) !important;
         }
     }
 }
