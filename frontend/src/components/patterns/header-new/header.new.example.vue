@@ -25,10 +25,10 @@
                             :cta-text="item.cta"
                             :control-id="'top-menu-item' + index"
                         >
-                            <template slot="toggle-btn">
+                            <template slot="button-content">
                                 {{ item.title }}
                             </template>
-                            <template slot="dropdown-nav">
+                            <template slot="dropdown-content">
                                 <ul>
                                     <li
                                         v-for="(navItem, navIndex) in item.dropdownNav"
