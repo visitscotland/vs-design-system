@@ -140,6 +140,7 @@ public class ResourceBundleService {
         }
     }
 
+
     /**
      * Verify that a value exists for a key in the specified language
      *
@@ -163,6 +164,22 @@ public class ResourceBundleService {
     void logContentIssue(String message, Object... args){
         //TODO Transform into a different Logger
         logger.warn(common.contentIssue(message, args));
+    }
+
+    /**
+     * Returns the default CTA label when the manual CTA  is not defined.     *
+     *
+     * @param manualCta Manual CTA defined in the CMS
+     * @param locale Locale
+     *
+     * @return the manual CTA if provided otherwise the default CTA
+     */
+    public  String getCtaLabel(String manualCta, Locale locale) {
+        if (!Contract.isEmpty(manualCta)) {
+            return manualCta;
+        } else {
+            return getResourceBundle("essentials.global","button.find-out-more",  locale);
+        }
     }
 
 }
