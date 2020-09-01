@@ -18,7 +18,6 @@
                 variant="light"
                 size="xxs"
             />
-            <!-- Tablet/Desktop -->
             {{ languageLabel }}
         </span>
         <slot />
@@ -54,7 +53,7 @@ export default {
 .vs-global-menu__languages {
 
     .dropdown-toggle {
-        padding: 0.5rem;
+        padding:  0.3rem $spacer-1;
         font-size: $font-size-sm;
         background: $color-purple;
         border: none;
@@ -67,7 +66,7 @@ export default {
         &:focus {
             outline: 3px solid $color-purple-tint-5;
             outline-offset: -3px;
-            box-shadow: none;
+            box-shadow: none !important;
         }
 
         &:hover {
@@ -87,6 +86,12 @@ export default {
 .vs-global-menu__languages {
     @include media-breakpoint-up(lg) {
         position: relative;
+    }
+
+    .dropdown-toggle {
+        @include media-breakpoint-up(lg) {
+            padding:  $spacer-2 $spacer-1;
+        }
     }
 }
 
