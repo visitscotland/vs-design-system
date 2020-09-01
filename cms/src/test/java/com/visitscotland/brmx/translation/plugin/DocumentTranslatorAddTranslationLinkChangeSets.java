@@ -77,7 +77,7 @@ public class DocumentTranslatorAddTranslationLinkChangeSets {
         Node node1 = mock(Node.class);
         when(mockSession.getNodeByIdentifier("node1uuid")).thenReturn(node1);
         JcrDocument node1jcr = mock(JcrDocument.class);
-        doReturn(node1jcr).when(mockJcrDocumentFactory).createJcrDocument(same(node1));
+        doReturn(node1jcr).when(mockJcrDocumentFactory).createFromNode(same(node1));
         when(node1jcr.hasTranslation(same(mockLocale))).thenReturn(true);
 
         List<Node> translatableLinkNodes = new ArrayList<>();
@@ -102,7 +102,7 @@ public class DocumentTranslatorAddTranslationLinkChangeSets {
         Node node1 = mock(Node.class);
         when(mockSession.getNodeByIdentifier("node1uuid")).thenReturn(node1);
         JcrDocument node1jcr = mock(JcrDocument.class);
-        doReturn(node1jcr).when(mockJcrDocumentFactory).createJcrDocument(same(node1));
+        doReturn(node1jcr).when(mockJcrDocumentFactory).createFromNode(same(node1));
         when(node1jcr.hasTranslation(same(mockLocale))).thenReturn(false);
 
         List<Node> translatableLinkNodes = new ArrayList<>();
@@ -134,7 +134,7 @@ public class DocumentTranslatorAddTranslationLinkChangeSets {
         Node node1 = mock(Node.class);
         when(mockSession.getNodeByIdentifier("node1uuid")).thenReturn(node1);
         JcrDocument node1jcr = mock(JcrDocument.class);
-        doReturn(node1jcr).when(mockJcrDocumentFactory).createJcrDocument(same(node1));
+        doReturn(node1jcr).when(mockJcrDocumentFactory).createFromNode(same(node1));
         when(node1jcr.hasTranslation(same(mockLocale))).thenReturn(false);
         Node node1unpublished = mock(Node.class);
         when(node1jcr.getVariantNode(eq(JcrDocument.VARIANT_UNPUBLISHED))).thenReturn(node1unpublished);
@@ -177,7 +177,7 @@ public class DocumentTranslatorAddTranslationLinkChangeSets {
         Node node1 = mock(Node.class);
         when(mockSession.getNodeByIdentifier("node1uuid")).thenReturn(node1);
         JcrDocument node1jcr = mock(JcrDocument.class);
-        doReturn(node1jcr).when(mockJcrDocumentFactory).createJcrDocument(same(node1));
+        doReturn(node1jcr).when(mockJcrDocumentFactory).createFromNode(same(node1));
         when(node1jcr.hasTranslation(same(mockLocale))).thenReturn(false);
         Node node1unpublished = mock(Node.class);
         when(node1jcr.getVariantNode(eq(JcrDocument.VARIANT_UNPUBLISHED))).thenReturn(node1unpublished);
