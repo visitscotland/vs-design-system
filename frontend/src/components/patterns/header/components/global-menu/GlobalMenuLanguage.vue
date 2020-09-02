@@ -41,10 +41,25 @@ export default {
             type: String,
             default: 'Language',
         },
-        selectedLanguage: {
+        currentLocale: {
             type: String,
-            default: 'EN',
+            default: 'en_GB',
         },
+    },
+    computed: {
+        selectedLanguage() {
+            return this.currentLocale.substr(0, 2).toUpperCase();
+        },
+        localeCookie() {
+            return this.currentLocale.replace('_', '-').toLowerCase();
+        },
+        translationCookie() {
+            return `/en/${this.currentLocale.substr(0, 2).toLowerCase()}`;
+        },
+    },
+    created() {
+        document.cookie = `vs_locale=${this.localeCookie}`;
+        document.cookie = `googtrans=${this.translationCookie}`;
     },
 };
 </script>
