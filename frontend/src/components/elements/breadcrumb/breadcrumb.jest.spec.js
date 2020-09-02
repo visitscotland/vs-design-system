@@ -1,17 +1,13 @@
-import { shallowMount } from '@vue/test-utils';
+import { mount } from '@vue/test-utils';
+import { BBreadcrumb } from 'bootstrap-vue';
+
 import VsBreadcrumb from './Breadcrumb';
 
-describe('VsBreadcrumb', () => {
-    const wrapper = shallowMount(VsBreadcrumb, {
-        slots: {
-            default: '',
-        },
-    });
+const wrapper = mount(VsBreadcrumb);
 
-    it('should render a b-breadcrumb', () => {
-        expect(wrapper.is('nav')).toBe(true);
-        expect(wrapper.html()).toContain(
-            '<nav aria-label="breadcrumbs" class="py-4"><b-breadcrumb-stub class="flex-nowrap p-0"></b-breadcrumb-stub></nav>',
-        );
+describe('VsBreadcrumb', () => {
+    it('should render a <b-breadcrumb />', () => {
+        const breadcrumb = wrapper.find(BBreadcrumb);
+        expect(breadcrumb.exists()).toBe(true);
     });
 });
