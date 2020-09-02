@@ -51,9 +51,8 @@ export default {
 
 <style lang="scss">
 .vs-global-menu__languages {
-
     .dropdown-toggle {
-        padding:  0.3rem $spacer-1;
+        padding: 0.3rem $spacer-1;
         font-size: $font-size-sm;
         background: $color-purple;
         border: none;
@@ -90,7 +89,7 @@ export default {
 
     .dropdown-toggle {
         @include media-breakpoint-up(lg) {
-            padding:  $spacer-2 $spacer-1;
+            padding: $spacer-2 $spacer-1;
         }
     }
 }
