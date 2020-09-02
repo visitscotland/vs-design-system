@@ -74,7 +74,7 @@ public class DocumentTranslatorBuildChangeSetListTest {
         mockFrenchChangeSet = createMockChangeSet();
         lenient().doReturn(mockFrenchChangeSet).when(mockChangeSetFactory).createChangeSet(same(mockFrenchLocale));
 
-        lenient().doReturn(mockSourceDocument).when(mockJcrDocumentFactory).createJcrDocument(same(mockSourceNode));
+        lenient().doReturn(mockSourceDocument).when(mockJcrDocumentFactory).createFromNode(same(mockSourceNode));
     }
 
     @Test
@@ -251,11 +251,11 @@ public class DocumentTranslatorBuildChangeSetListTest {
         HippoNode mockTranslatedType = createMockSibling(JcrDocument.HIPPO_TRANSLATED);
 
         JcrDocument mockHandleDocument = mock(JcrDocument.class);
-        doReturn(mockHandleDocument).when(mockJcrDocumentFactory).createJcrDocument(same(mockHandleType));
+        doReturn(mockHandleDocument).when(mockJcrDocumentFactory).createFromNode(same(mockHandleType));
         when(mockHandleDocument.isNodeType(ArgumentMatchers.<String>any())).thenReturn(false);
 
         JcrDocument mockTranslatedDocument = mock(JcrDocument.class);
-        doReturn(mockTranslatedDocument).when(mockJcrDocumentFactory).createJcrDocument(same(mockTranslatedType));
+        doReturn(mockTranslatedDocument).when(mockJcrDocumentFactory).createFromNode(same(mockTranslatedType));
         when(mockTranslatedDocument.isNodeType(ArgumentMatchers.<String>any())).thenReturn(false);
 
         HippoNode mockContainingFolder = mock(HippoNode.class);
@@ -307,16 +307,16 @@ public class DocumentTranslatorBuildChangeSetListTest {
         HippoNode mockTranslationSibling = createMockSibling(JcrDocument.HIPPO_TRANSLATED);
 
         JcrDocument mockHandleDocument = mock(JcrDocument.class);
-        doReturn(mockHandleDocument).when(mockJcrDocumentFactory).createJcrDocument(same(mockHandleType));
+        doReturn(mockHandleDocument).when(mockJcrDocumentFactory).createFromNode(same(mockHandleType));
         when(mockHandleDocument.isNodeType(ArgumentMatchers.<String>any())).thenReturn(false);
 
         JcrDocument mockTranslatedDocument = mock(JcrDocument.class);
-        doReturn(mockTranslatedDocument).when(mockJcrDocumentFactory).createJcrDocument(same(mockTranslatedType));
+        doReturn(mockTranslatedDocument).when(mockJcrDocumentFactory).createFromNode(same(mockTranslatedType));
         when(mockTranslatedDocument.isNodeType(ArgumentMatchers.<String>any())).thenReturn(false);
 
         JcrDocument mockTranslationSiblingDocument = mock(JcrDocument.class);
         doReturn(mockTranslationSiblingDocument)
-                .when(mockJcrDocumentFactory).createJcrDocument(same(mockTranslationSibling));
+                .when(mockJcrDocumentFactory).createFromNode(same(mockTranslationSibling));
         when(mockTranslationSiblingDocument.isNodeType(eq("type1"), eq("type2"))).thenReturn(true);
         when(mockTranslationSiblingDocument.hasTranslation(any(ILocaleProvider.HippoLocale.class))).thenReturn(true);
         HippoBean mockTranslationSiblingHippoBean = mock(HippoBean.class);
@@ -372,16 +372,16 @@ public class DocumentTranslatorBuildChangeSetListTest {
         HippoNode mockTranslationSibling = createMockSibling(JcrDocument.HIPPO_TRANSLATED);
 
         JcrDocument mockHandleDocument = mock(JcrDocument.class);
-        doReturn(mockHandleDocument).when(mockJcrDocumentFactory).createJcrDocument(same(mockHandleType));
+        doReturn(mockHandleDocument).when(mockJcrDocumentFactory).createFromNode(same(mockHandleType));
         when(mockHandleDocument.isNodeType(ArgumentMatchers.<String>any())).thenReturn(false);
 
         JcrDocument mockTranslatedDocument = mock(JcrDocument.class);
-        doReturn(mockTranslatedDocument).when(mockJcrDocumentFactory).createJcrDocument(same(mockTranslatedType));
+        doReturn(mockTranslatedDocument).when(mockJcrDocumentFactory).createFromNode(same(mockTranslatedType));
         when(mockTranslatedDocument.isNodeType(ArgumentMatchers.<String>any())).thenReturn(false);
 
         JcrDocument mockTranslationSiblingDocument = mock(JcrDocument.class);
         doReturn(mockTranslationSiblingDocument)
-                .when(mockJcrDocumentFactory).createJcrDocument(same(mockTranslationSibling));
+                .when(mockJcrDocumentFactory).createFromNode(same(mockTranslationSibling));
         when(mockTranslationSiblingDocument.isNodeType(eq("type1"), eq("type2"))).thenReturn(true);
         when(mockTranslationSiblingDocument.hasTranslation(same(mockItalianLocale))).thenReturn(false);
         when(mockTranslationSiblingDocument.hasTranslation(same(mockFrenchLocale))).thenReturn(false);
