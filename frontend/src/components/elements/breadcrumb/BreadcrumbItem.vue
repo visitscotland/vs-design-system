@@ -36,9 +36,10 @@ export default {
          */
         active: {
             type: Boolean,
+            default: false,
         },
         /**
-         * The breadcrumb aria-current attribute.
+         * The breadcrumb aria-current attribute. Only visible when the item is `active`.
          */
         ariaCurrent: {
             type: String,
@@ -50,6 +51,7 @@ export default {
         text: {
             type: String,
             default: '',
+            required: true,
         },
     },
 };
