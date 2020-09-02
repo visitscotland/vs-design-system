@@ -11,7 +11,7 @@
 <#-- @ftlvariable name="item" type=""com.visitscotland.www.components.navigation.VsMenuItem" -->
 <#-- @ftlvariable name="editMode" type="java.lang.Boolean"-->
 
-<#assign currentLocale=hstRequest.requestContext.resolvedMount.mount.locale?upper_case?keep_before('_')>
+<#assign currentLocale=hstRequest.requestContext.resolvedMount.mount.locale>
 <#assign languages = ["en-gb","de-de","es-es","fr-fr","it-it","nl-nl"]>
 
 <#if menu??>
@@ -21,7 +21,7 @@
         active-site="https://www.visitscotland.com/"
     >
         <template slot="third-menu-item">
-            <vs-global-menu-language selected-language="${currentLocale}" language-label="${label('navigation.static', 'universal.language')}">
+            <vs-global-menu-language current-locale="${currentLocale}" language-label="${label('navigation.static', 'universal.language')}">
                 <#list languages as language>
                     <vs-global-menu-language-item
                         key="${language}"
