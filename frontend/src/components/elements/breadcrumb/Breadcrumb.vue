@@ -26,14 +26,6 @@ export default {
     components: {
         BBreadcrumb,
     },
-    props: {
-        items: {
-            type: Array,
-            default() {
-                return [];
-            },
-        },
-    },
 };
 </script>
 
