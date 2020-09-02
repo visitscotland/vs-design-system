@@ -25,12 +25,12 @@
     "lint": "eslint",
     "lint:all": "yarn lint \"src/**/*.{js,vue}\"",
     "lint:fix": "yarn lint \"src/**/*.{js,vue}\" --fix",
-    "lint:watch": "esw \"src/**/*.{js,vue}\" --watch --ext .js,.vue --watch-delay 0",
+    "lint:watch": "esw \"src/**/*.{js,vue}\" --watch --ext .js,.vue --watch-delay 0 --fix",
     "lint:style": "stylelint",
     "lint:style:all": "lint:style \"src/**/*.{vue,scss}\"",
     "test:e2e": "cypress open",
     "test:unit": "jest --config ./test/unit/jest.conf.js --coverage",
-    "test:tdd": "jest --config ./test/unit/jest.conf.js --watch",
+    "test:watch": "jest --config ./test/unit/jest.conf.js --watch",
     "theo": "theo ./src/tokens/tokens.yml --transform web --format map.scss,scss,raw.json,json --dest ./src/assets/tokens",
     "theo:watch": "onchange \"./src/tokens/*.yml\" -- npm run _theo",
     "presystem": "yarn theo",
@@ -38,7 +38,7 @@
     "pressr:build": "yarn theo",
     "pretest:e2e": "yarn theo",
     "pretest:unit": "yarn theo",
-    "pretest:tdd": "yarn theo"
+    "pretest:watch": "yarn theo"
   },
   "repository": {
     "type": "git",
