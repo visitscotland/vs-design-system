@@ -1,4 +1,3 @@
-<!-- eslint-disable -->
 <template>
     <VsRow>
         <VsCol cols="12">
@@ -12,7 +11,7 @@
 <script>
 
 /**
- * The nearest ancestor with position relative
+ * WORK IN PROGRESS
  */
 import { VsRow, VsCol } from '@components/elements/layout';
 import { BNavbarNav } from 'bootstrap-vue';
