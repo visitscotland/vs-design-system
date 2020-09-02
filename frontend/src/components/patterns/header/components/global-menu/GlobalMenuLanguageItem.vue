@@ -32,7 +32,7 @@ export default {
 
 <style lang="scss">
 .vs-global-menu__languages {
-    position: initial;
+    position: static;
 
     @include media-breakpoint-up(lg) {
         position: relative;
