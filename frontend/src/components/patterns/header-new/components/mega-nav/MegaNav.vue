@@ -1,9 +1,13 @@
-<!-- eslint-disable -->
 <template>
     <div class="vs-mega-nav bg-white">
         <VsContainer>
             <VsRow class="align-items-center justify-content-sm-end">
-                <VsCol cols="8" md="4" lg="3">
+                <!-- Logo Link -->
+                <VsCol
+                    cols="8"
+                    md="4"
+                    lg="3"
+                >
                     <VsSvgLink
                         class="vs-mega-nav__logo"
                         logo-alt-text="VisitScotland Home"
@@ -13,18 +17,20 @@
                     />
                 </VsCol>
 
-                <VsCol 
-                    cols="4" 
-                    md="8" 
-                    lg="9" 
+                <!-- Desktop Top Menu Toggles -->
+                <VsCol
+                    cols="4"
+                    md="8"
+                    lg="9"
                     class="vs-mega-nav__menu d-none d-lg-block"
                 >
                     <VsMegaNavTopMenu>
-                        <!-- @slot for top menu list items  -->
+                        <!-- @slot For top menu list items in navbar  -->
                         <slot name="mega-nav-top-menu-items" />
                     </VsMegaNavTopMenu>
                 </VsCol>
 
+                <!-- Mobile Toggle and Menu -->
                 <VsCol
                     cols="4"
                     md="8"
@@ -32,20 +38,25 @@
                     class="d-flex d-lg-none justify-content-end position-static"
                 >
                     <VsMegaNavDropdown @menu-toggled="menuToggle">
-                        <template slot="button-content">
+                        <template #button-content>
                             <VsIcon
                                 v-if="isOpen"
                                 name="close"
                                 size="sm"
-                                variant="dark" 
+                                variant="dark"
                             />
 
-                            <VsIcon 
-                                v-else 
-                                name="bars-mobile-menu" 
-                                size="md" 
-                                variant="dark" 
+                            <VsIcon
+                                v-else
+                                name="bars-mobile-menu"
+                                size="md"
+                                variant="dark"
                             />
+                        </template>
+
+                        <template #dropdown-content>
+                            <!-- @slot For mobile list items  -->
+                            <slot name="mega-nav-mobile-items" />
                         </template>
                     </VsMegaNavDropdown>
                 </VsCol>
@@ -55,6 +66,11 @@
 </template>
 
 <script>
+/**
+ *  The Mega Nav bar component includes main VS logo and slots for
+ *  top menu items on desktop and dropdown toggle with menu items for mobile
+ */
+
 import {
     VsCol, VsRow, VsContainer,
 } from '@components/elements/layout';
@@ -106,6 +122,6 @@ export default {
 </style>
 
 <docs>
-  ```jsx
-  ```
+    ```[import](./meganav.example.vue)
+    ```
 </docs>

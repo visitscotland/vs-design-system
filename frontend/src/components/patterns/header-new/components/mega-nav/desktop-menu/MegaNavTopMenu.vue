@@ -1,6 +1,5 @@
-<!-- eslint-disable -->
 <template>
-    <VsList 
+    <VsList
         unstyled
         class="vs-mega-nav-top-menu"
     >
@@ -9,9 +8,8 @@
 </template>
 
 <script>
-
 /**
- *  Mega nav top level menu list
+ *  Mega nav top level menu list with a slot for top level menu items
  */
 
 import VsList from '@components/elements/list/List';
@@ -41,6 +39,36 @@ export default {
 
 <docs>
   ```jsx
+    <div class="bg-white">
+        <VsContainer>
+            <VsRow class="align-items-center">
+                <VsCol cols="12">
+                    <VsMegaNavTopMenu>
+                        <VsMegaNavTopMenuItem
+                            v-for="(item, index) in header.mainNav"
+                            :key="index"
+                            :href="item.href"
+                            :cta-text="item.cta"
+                        >
+                            <span slot="button-content">
+                                {{ item.title }}
+                            </span>
+                            <span slot="dropdown-content">
+                                <ul>
+                                    <li
+                                        v-for="(navItem, navIndex) in item.dropdownNav"
+                                        :key="navIndex"
+                                    >
+                                        {{ navItem.title }}
+                                    </li>
+                                </ul>
+                            </span>
+                        </VsMegaNavTopMenuItem>
+                    </VsMegaNavTopMenu>
+                </VsCol>
+            </VsRow>
+        </VsContainer>
+    </div>
 
   ```
 </docs>

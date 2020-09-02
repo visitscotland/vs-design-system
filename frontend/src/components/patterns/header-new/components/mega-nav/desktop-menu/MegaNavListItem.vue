@@ -4,7 +4,9 @@
 </template>
 
 <script>
-
+/**
+ * WORK IN PROGRESS
+ */
 export default {
     name: 'VsMegaNavListItem',
     status: 'prototype',
