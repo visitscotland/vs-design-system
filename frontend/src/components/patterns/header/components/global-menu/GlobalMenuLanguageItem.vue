@@ -32,6 +32,11 @@ export default {
 
 <style lang="scss">
 .vs-global-menu__languages {
+    position: initial;
+
+    @include media-breakpoint-up(lg) {
+        position: relative;
+    }
     .dropdown-menu {
         width: 100vw;
         background: $color-purple;
@@ -42,7 +47,7 @@ export default {
         display: block;
         overflow: hidden;
         opacity: 0;
-        transform: translate3d(calc(-100% + 41px), 0px, 0px) !important;
+        transform: translate3d(0px, 0px, 0px) !important;
 
         .vs-global-menu__languages__item {
             &:not(:last-of-type) {
@@ -69,14 +74,13 @@ export default {
         &.show {
             max-height: 700px;
             opacity: 1;
-            transform: translate3d(calc(-100% + 41px), 28px, 0px) !important;
+            transform: translate3d(0px, 28px, 0px) !important;
             border: none;
             padding: 0;
 
             @include media-breakpoint-up(lg) {
-                transform: translate3d(0px, 35px, 0px) !important;
+                transform: translate3d(0px, 34px, 0px) !important;
             }
-
         }
 
         @include media-breakpoint-up(lg) {
