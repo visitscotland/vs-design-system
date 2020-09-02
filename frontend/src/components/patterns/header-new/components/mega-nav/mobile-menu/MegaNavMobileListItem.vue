@@ -1,6 +1,5 @@
-<!-- eslint-disable -->
 <template>
-    <BNavItem 
+    <BNavItem
         href="#"
         class="vs-mega-nav__mobile-list__item"
     >
@@ -9,6 +8,9 @@
 </template>
 
 <script>
+/**
+ * WORK IN PROGRESS
+ */
 import { BNavItem } from 'bootstrap-vue';
 
 export default {

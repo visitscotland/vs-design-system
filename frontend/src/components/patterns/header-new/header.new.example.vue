@@ -1,7 +1,7 @@
 <template>
     <div style="min-height: 600px;">
         <VsHeaderNew>
-            <template slot="global-navbar">
+            <template #global-navbar>
                 <div
                     class="bg-primary-purple"
                     style="height: 35px"
@@ -15,20 +15,19 @@
                     </VsContainer>
                 </div>
             </template>
-            <template slot="mega-nav">
+            <template #mega-nav>
                 <VsMegaNav>
-                    <template slot="mega-nav-top-menu-items">
+                    <template #mega-nav-top-menu-items>
                         <VsMegaNavTopMenuItem
                             v-for="(item, index) in header.mainNav"
                             :key="index"
                             :href="item.href"
                             :cta-text="item.cta"
-                            :control-id="'top-menu-item' + index"
                         >
-                            <template slot="button-content">
+                            <template #button-content>
                                 {{ item.title }}
                             </template>
-                            <template slot="dropdown-content">
+                            <template #dropdown-content>
                                 <ul>
                                     <li
                                         v-for="(navItem, navIndex) in item.dropdownNav"
@@ -41,13 +40,12 @@
                         </VsMegaNavTopMenuItem>
                     </template>
 
-                    <template slot="mega-nav-mobile-items">
+                    <template #mega-nav-mobile-items>
                         <VsMegaNavMobileToggle
                             v-for="(item, index) in header.mainNav"
                             :key="index"
                             :href="item.href"
                             :cta-text="item.cta"
-                            control-id="mobile-menu-toggle"
                         >
                             {{ item.title }}
                         </VsMegaNavMobileToggle>

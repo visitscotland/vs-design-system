@@ -1,15 +1,14 @@
-<!-- eslint-disable -->
 <template>
     <div class="vs-mega-nav__dropdown">
-        <BDropdown 
-            variant="transparent"
-            ref="dropdown"
-        >
+        <BDropdown variant="transparent" ref="dropdown">
             <template #button-content>
+                <!-- @slot For dropdown toggle button content  -->
                 <slot name="button-content" />
             </template>
 
+            <!-- @slot Used to display the top menu link at the top of the dropdown menu  -->
             <slot name="cta-link" />
+            <!-- @slot The rest of the mega nav links put here in the dropdown menu  -->
             <slot name="dropdown-content" />
         </BDropdown>
     </div>
@@ -17,7 +16,8 @@
 
 <script>
 /**
- *  Mega nav top level menu button
+ *  This component includes a slot for toggle button content
+ *  and slots for the mega nav dropdown menu content
  */
 
 import { BDropdown } from 'bootstrap-vue';
@@ -28,20 +28,6 @@ export default {
     release: '0.1.0',
     components: {
         BDropdown,
-    },
-    props: {
-        controlId: {
-            type: String,
-            default: '',
-        },
-        href: {
-            type: String,
-            default: '',
-        },
-        ctaText: {
-            type: String,
-            default: '',
-        },
     },
     mounted() {
         // Listen for dropdown opening and closing and emit event
@@ -151,6 +137,6 @@ export default {
 </style>
 
 <docs>
-  ```jsx
-  ```
+   ```[import](./meganav.dropdown.example.vue)
+    ```
 </docs>
