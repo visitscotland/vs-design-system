@@ -164,7 +164,7 @@ public class DocumentTranslatorApplyChangeSetTest {
         when(document1.getVariantNode(eq(JcrDocument.VARIANT_UNPUBLISHED))).thenReturn(document1Variant);
         when(translation1.getId()).thenReturn("doc1");
         when(mockSession.getNodeByIdentifier(eq("doc1"))).thenReturn(document1Node);
-        doReturn(document1).when(mockJcrDocumentFactory).createJcrDocument(document1Node);
+        doReturn(document1).when(mockJcrDocumentFactory).createFromNode(document1Node);
         documentList.add(translation1);
 
         FolderTranslation translation2 = mock(FolderTranslation.class);
@@ -176,7 +176,7 @@ public class DocumentTranslatorApplyChangeSetTest {
         when(document2.getVariantNode(eq(JcrDocument.VARIANT_UNPUBLISHED))).thenReturn(document2Variant);
         when(translation2.getId()).thenReturn("doc2");
         when(mockSession.getNodeByIdentifier(eq("doc2"))).thenReturn(document2Node);
-        doReturn(document2).when(mockJcrDocumentFactory).createJcrDocument(document2Node);
+        doReturn(document2).when(mockJcrDocumentFactory).createFromNode(document2Node);
         documentList.add(translation2);
 
         documentTranslator.applyChangeSet(changeSetList, mockSession, mockWorkflow);
@@ -212,7 +212,7 @@ public class DocumentTranslatorApplyChangeSetTest {
         when(document1.getVariantNode(eq(JcrDocument.VARIANT_UNPUBLISHED))).thenReturn(document1Variant);
         when(translation1.getId()).thenReturn("doc1");
         when(mockSession.getNodeByIdentifier(eq("doc1"))).thenReturn(document1Node);
-        doReturn(document1).when(mockJcrDocumentFactory).createJcrDocument(document1Node);
+        doReturn(document1).when(mockJcrDocumentFactory).createFromNode(document1Node);
         documentList.add(translation1);
 
         FolderTranslation translation2 = mock(FolderTranslation.class);
@@ -224,7 +224,7 @@ public class DocumentTranslatorApplyChangeSetTest {
         when(document2.getVariantNode(eq(JcrDocument.VARIANT_UNPUBLISHED))).thenReturn(document2Variant);
         when(translation2.getId()).thenReturn("doc2");
         when(mockSession.getNodeByIdentifier(eq("doc2"))).thenReturn(document2Node);
-        doReturn(document2).when(mockJcrDocumentFactory).createJcrDocument(document2Node);
+        doReturn(document2).when(mockJcrDocumentFactory).createFromNode(document2Node);
         documentList.add(translation2);
 
         documentTranslator.applyChangeSet(changeSetList, mockSession, mockWorkflow);
@@ -260,7 +260,7 @@ public class DocumentTranslatorApplyChangeSetTest {
         when(translation1.getId()).thenReturn("doc1");
         when(translation1.containsTranslationLinks()).thenReturn(true);
         when(mockSession.getNodeByIdentifier(eq("doc1"))).thenReturn(document1Node);
-        doReturn(document1).when(mockJcrDocumentFactory).createJcrDocument(document1Node);
+        doReturn(document1).when(mockJcrDocumentFactory).createFromNode(document1Node);
         documentList.add(translation1);
 
         FolderTranslation translation2 = mock(FolderTranslation.class);
@@ -273,7 +273,7 @@ public class DocumentTranslatorApplyChangeSetTest {
         when(translation2.getId()).thenReturn("doc2");
         when(translation2.containsTranslationLinks()).thenReturn(false);
         when(mockSession.getNodeByIdentifier(eq("doc2"))).thenReturn(document2Node);
-        doReturn(document2).when(mockJcrDocumentFactory).createJcrDocument(document2Node);
+        doReturn(document2).when(mockJcrDocumentFactory).createFromNode(document2Node);
         documentList.add(translation2);
 
         FolderTranslation translation3 = mock(FolderTranslation.class);
@@ -286,7 +286,7 @@ public class DocumentTranslatorApplyChangeSetTest {
         when(translation3.getId()).thenReturn("doc3");
         when(translation3.containsTranslationLinks()).thenReturn(true);
         when(mockSession.getNodeByIdentifier(eq("doc3"))).thenReturn(document3Node);
-        doReturn(document3).when(mockJcrDocumentFactory).createJcrDocument(document3Node);
+        doReturn(document3).when(mockJcrDocumentFactory).createFromNode(document3Node);
         documentList.add(translation3);
 
         documentTranslator.applyChangeSet(changeSetList, mockSession, mockWorkflow);
@@ -316,7 +316,7 @@ public class DocumentTranslatorApplyChangeSetTest {
         when(translation1.getId()).thenReturn("doc1");
         when(translation1.containsTranslationLinks()).thenReturn(true);
         when(mockSession.getNodeByIdentifier(eq("doc1"))).thenReturn(document1Node);
-        doReturn(document1).when(mockJcrDocumentFactory).createJcrDocument(document1Node);
+        doReturn(document1).when(mockJcrDocumentFactory).createFromNode(document1Node);
         documentList.add(translation1);
 
         FolderTranslation translation2 = mock(FolderTranslation.class);
@@ -329,7 +329,7 @@ public class DocumentTranslatorApplyChangeSetTest {
         when(translation2.getId()).thenReturn("doc2");
         when(translation2.containsTranslationLinks()).thenReturn(true);
         when(mockSession.getNodeByIdentifier(eq("doc2"))).thenReturn(document2Node);
-        doReturn(document2).when(mockJcrDocumentFactory).createJcrDocument(document2Node);
+        doReturn(document2).when(mockJcrDocumentFactory).createFromNode(document2Node);
         documentList.add(translation2);
 
         documentTranslator.applyChangeSet(changeSetList, mockSession, mockWorkflow);

@@ -12,7 +12,9 @@ import javax.jcr.NodeIterator;
 import javax.jcr.Property;
 import javax.jcr.RepositoryException;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 /**
  * Provides helper methods for working with the hippo documents.
@@ -158,5 +160,26 @@ public class JcrDocument {
     public Node getTranslation(String localName) throws RepositoryException {
         HippoTranslatedNode translatedNode = new HippoTranslatedNode(getVariantNode(VARIANT_UNPUBLISHED));
         return translatedNode.getTranslation(localName);
+    }
+
+    public Set<JcrDocument> getTranslations() throws RepositoryException {
+        HippoTranslatedNode translatedNode = new HippoTranslatedNode(getVariantNode(VARIANT_UNPUBLISHED));
+        Set<String> translations = translatedNode.getTranslations();
+        Set<JcrDocument> translationDocuments = new HashSet<>();
+        for (String language : translations) {
+            if (!language.equals("en")) {
+                Node translation = translatedNode.getTranslation(language);
+                translationDocuments.add(new JcrDocument(translation));
+            }
+        }
+        return translationDocuments;
+    }
+
+    public boolean isDraftBeingEdited() throws RepositoryException {
+        Node draftNode = getVariantNode(JcrDocument.VARIANT_DRAFT);
+        if (null == draftNode) {
+            return false;
+        }
+        return draftNode.hasProperty(HippoStdNodeType.HIPPOSTD_HOLDER);
     }
 }

@@ -21,6 +21,7 @@ import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.eq;
+import static org.mockito.Mockito.lenient;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -220,6 +221,44 @@ public class JcrDocumentTest {
         assertThrows(IllegalStateException.class, () -> document.getContainingFolder());
     }
 
+    @Test
+    public void idDraftBeingEdited_null() throws Exception {
+        NodeIterator variantIterator = createNodeIterator();
+        when(mockHandle.getNodes()).thenReturn(variantIterator);
+
+        assertFalse(document.isDraftBeingEdited());
+    }
+
+    @Test
+    public void isDraftBeingEdited_isBeingEdited() throws Exception {
+        HippoNode draft = mock(HippoNode.class);
+        Property draftProp = mock(Property.class);
+        when(draftProp.getString()).thenReturn(JcrDocument.VARIANT_DRAFT);
+        when(draft.getProperty(JcrDocument.HIPPOSTD_STATE)).thenReturn(draftProp);
+        when(draft.isNodeType(JcrDocument.HIPPOSTD_PUBLISHABLE)).thenReturn(true);
+        when(draft.hasProperty(eq(HippoStdNodeType.HIPPOSTD_HOLDER))).thenReturn(true);
+
+        NodeIterator variantIterator = createNodeIterator(draft);
+        when(mockHandle.getNodes()).thenReturn(variantIterator);
+
+        assertTrue(document.isDraftBeingEdited());
+    }
+
+    @Test
+    public void isDraftBeingEdited_notBeingEdited() throws Exception {
+        HippoNode draft = mock(HippoNode.class);
+        Property draftProp = mock(Property.class);
+        when(draftProp.getString()).thenReturn(JcrDocument.VARIANT_DRAFT);
+        when(draft.getProperty(JcrDocument.HIPPOSTD_STATE)).thenReturn(draftProp);
+        when(draft.isNodeType(JcrDocument.HIPPOSTD_PUBLISHABLE)).thenReturn(true);
+        when(draft.hasProperty(eq(HippoStdNodeType.HIPPOSTD_HOLDER))).thenReturn(false);
+
+        NodeIterator variantIterator = createNodeIterator(draft);
+        when(mockHandle.getNodes()).thenReturn(variantIterator);
+
+        assertFalse(document.isDraftBeingEdited());
+    }
+
     private NodeIterator createNodeIterator(Node... nodes) {
         List<Node> nodeList = Arrays.asList(nodes);
         final Iterator<Node> nodeIterator = nodeList.iterator();
@@ -230,7 +269,7 @@ public class JcrDocumentTest {
                 return nodeIterator.hasNext();
             }
         });
-        when(mockNodeIterator.nextNode()).thenAnswer(new Answer<Node>() {
+        lenient().when(mockNodeIterator.nextNode()).thenAnswer(new Answer<Node>() {
             @Override
             public Node answer(InvocationOnMock invocation) throws Throwable {
                 return nodeIterator.next();

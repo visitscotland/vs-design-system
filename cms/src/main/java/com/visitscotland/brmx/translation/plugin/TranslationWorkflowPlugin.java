@@ -16,12 +16,14 @@
 package com.visitscotland.brmx.translation.plugin;
 
 import com.visitscotland.brmx.translation.plugin.menu.MenuLocaleProvider;
+import com.visitscotland.brmx.translation.plugin.menu.SendForTranslationAction;
 import com.visitscotland.brmx.translation.plugin.menu.TranslationLocaleMenuDataView;
 import org.apache.wicket.Component;
 import org.apache.wicket.MarkupContainer;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.panel.EmptyPanel;
 import org.apache.wicket.markup.html.panel.Fragment;
+import org.apache.wicket.markup.repeater.data.DataView;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.LoadableDetachableModel;
 import org.apache.wicket.request.resource.ResourceReference;
@@ -30,6 +32,7 @@ import org.hippoecm.addon.workflow.WorkflowDescriptorModel;
 import org.hippoecm.frontend.model.JcrNodeModel;
 import org.hippoecm.frontend.plugin.IPluginContext;
 import org.hippoecm.frontend.plugin.config.IPluginConfig;
+import org.hippoecm.frontend.plugins.reviewedactions.PublicationWorkflowPlugin;
 import org.hippoecm.frontend.plugins.standards.icon.HippoIconStack;
 import org.hippoecm.frontend.plugins.standards.image.CachingImage;
 import org.hippoecm.frontend.service.IBrowseService;
@@ -41,9 +44,11 @@ import org.hippoecm.frontend.translation.ILocaleProvider;
 import org.hippoecm.frontend.translation.ILocaleProvider.HippoLocale;
 import org.hippoecm.frontend.translation.ILocaleProvider.LocaleState;
 import org.hippoecm.frontend.translation.TranslationUtil;
+import org.hippoecm.repository.HippoStdNodeType;
 import org.hippoecm.repository.api.WorkflowDescriptor;
 import org.hippoecm.repository.api.WorkflowException;
 import org.hippoecm.repository.api.WorkflowManager;
+import org.hippoecm.repository.translation.HippoTranslatedNode;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -51,10 +56,7 @@ import javax.jcr.Node;
 import javax.jcr.RepositoryException;
 import java.io.Serializable;
 import java.rmi.RemoteException;
-import java.util.Collections;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class TranslationWorkflowPlugin extends RenderPlugin {
@@ -64,12 +66,37 @@ public class TranslationWorkflowPlugin extends RenderPlugin {
     public static final String ID_LANGUAGES = "languages";
     public static final String ID_LABEL = "label";
     private static Logger log = LoggerFactory.getLogger(TranslationWorkflowPlugin.class);
-    private final IModel<Boolean> canTranslateModel;
+    private IModel<Boolean> canTranslateModel;
     private DocumentTranslationProvider translationProvider;
+    private HippoTranslatedNodeFactory translatedNodeFactory;
+    private JcrDocumentFactory jcrDocumentFactory;
+    private UserSessionFactory userSessionFactory;
 
     public TranslationWorkflowPlugin(IPluginContext context, IPluginConfig config) {
-        super(context, config);
+        this(context, config, new HippoTranslatedNodeFactory(), new JcrDocumentFactory(), new UserSessionFactory());
+        initialise();
+    }
 
+    /**
+     * This constructor is intended for use in tests. It avoids calling initialisation functionality that would make
+     * testing difficult.
+     *
+     * @param context
+     * @param config
+     * @param translatedNodeFactory
+     */
+    protected TranslationWorkflowPlugin(IPluginContext context,
+                                        IPluginConfig config,
+                                        HippoTranslatedNodeFactory translatedNodeFactory,
+                                        JcrDocumentFactory jcrDocumentFactory,
+                                        UserSessionFactory userSessionFactory) {
+        super(context, config);
+        this.translatedNodeFactory = translatedNodeFactory;
+        this.jcrDocumentFactory = jcrDocumentFactory;
+        this.userSessionFactory = userSessionFactory;
+    }
+
+    protected void initialise() {
         final IModel<String> languageModel = new LanguageModel(this);
         final ILocaleProvider localeProvider = getLocaleProvider();
 
@@ -133,12 +160,28 @@ public class TranslationWorkflowPlugin extends RenderPlugin {
             @Override
             public MarkupContainer getContent() {
                 Fragment fragment = new Fragment(ID_CONTENT, ID_LANGUAGES, TranslationWorkflowPlugin.this);
+                fragment.add(new SendForTranslationAction(TranslationWorkflowPlugin.this, ID_LANGUAGE));
                 fragment.add(new TranslationLocaleMenuDataView(ID_LANGUAGES, TranslationWorkflowPlugin.this, languageModel, new MenuLocaleProvider(TranslationWorkflowPlugin.this)));
                 TranslationWorkflowPlugin.this.addOrReplace(fragment);
                 return fragment;
             }
         });
 
+    }
+
+    public boolean isChangePending() {
+        try {
+            JcrDocument jcrDocument = jcrDocumentFactory.createFromNode(getDocumentNode());
+            Node unpublishedVariant = jcrDocument.getVariantNode(JcrDocument.VARIANT_UNPUBLISHED);
+            if (unpublishedVariant.hasProperty(HippoStdNodeType.HIPPOSTD_STATESUMMARY) &&
+                    "changed".equals(unpublishedVariant.getProperty(HippoStdNodeType.HIPPOSTD_STATESUMMARY).getString())) {
+                return true;
+            }
+        } catch(RepositoryException ex) {
+            // Just consume the exception
+            log.warn("Failed to lookup unpublished status", ex);
+        }
+        return false;
     }
 
     // Gets the locale String of the document currently selected in the editor
@@ -175,11 +218,55 @@ public class TranslationWorkflowPlugin extends RenderPlugin {
         return translationProvider != null && translationProvider.contains(locale);
     }
 
+    public List<JcrDocument> getCurrentDocumentTranslations() throws RepositoryException {
+        JcrDocument sourceDocument = jcrDocumentFactory.createFromNode(getDocumentNode());
+        List<JcrDocument> translations = new ArrayList<>(sourceDocument.getTranslations());
+        return translations;
+    }
+
+    public List<JcrDocument> getDocumentsBlockingTranslation() throws RepositoryException {
+        List<JcrDocument> documentsBlockingTranslation = new ArrayList<>();
+        JcrDocument sourceDocument = jcrDocumentFactory.createFromNode(getDocumentNode());
+        if (sourceDocument.isDraftBeingEdited()) {
+            documentsBlockingTranslation.add(sourceDocument);
+        }
+
+        Set<JcrDocument> translations = sourceDocument.getTranslations();
+        for (JcrDocument translation : translations) {
+            if (translation.isDraftBeingEdited()) {
+                documentsBlockingTranslation.add(translation);
+            }
+        }
+
+        return documentsBlockingTranslation;
+    }
+
+    public boolean currentDocumentHasTranslation() {
+        // Will return true if the currently selected document has at least one translation (excluding English)
+        Set<String> availableLanguages = getAvailableLanguages();
+        boolean hasTranslation = false;
+        try {
+            HippoTranslatedNode translatedNode = translatedNodeFactory.createFromNode(getDocumentNode());
+            for (String language : availableLanguages) {
+                if ("en".equals(language)) {
+                    continue;
+                } else if (translatedNode.hasTranslation(language)) {
+                    hasTranslation = true;
+                    break;
+                }
+            }
+        } catch(RepositoryException ex) {
+            // If we get a repository exception creating the hippo node just return false
+            log.warn("Unable to create HippoTranslatedNode", ex);
+        }
+        return hasTranslation;
+    }
+
     public Set<String> getAvailableLanguages() {
         WorkflowDescriptorModel wdm = (WorkflowDescriptorModel) TranslationWorkflowPlugin.this.getDefaultModel();
         if (wdm != null) {
             WorkflowDescriptor descriptor = wdm.getObject();
-            WorkflowManager manager = UserSession.get().getWorkflowManager();
+            WorkflowManager manager = userSessionFactory.getUserSession().getWorkflowManager();
             try {
                 TranslationWorkflow translationWorkflow = (TranslationWorkflow) manager.getWorkflow(descriptor);
                 return (Set<String>) translationWorkflow.hints().get("available");
