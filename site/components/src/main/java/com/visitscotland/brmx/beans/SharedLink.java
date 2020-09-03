@@ -4,7 +4,6 @@ import com.visitscotland.brmx.beans.capabilities.Linkable;
 import org.hippoecm.hst.content.beans.standard.HippoBean;
 import org.onehippo.cms7.essentials.dashboard.annotations.HippoEssentialsGenerated;
 import org.hippoecm.hst.content.beans.Node;
-
 import java.util.List;
 
 @HippoEssentialsGenerated(internalName = "visitscotland:SharedLink")
@@ -32,5 +31,15 @@ public class SharedLink extends BaseDocument implements Linkable {
 
     public HippoBean getLinkType() {
         return getOnlyChild(getLinkTypes());
+    }
+
+    @HippoEssentialsGenerated(internalName = "visitscotland:diff")
+    public String getDiff() {
+        return getSingleProperty("visitscotland:diff");
+    }
+
+    @HippoEssentialsGenerated(internalName = "visitscotland:translationFlag")
+    public Boolean getTranslationFlag() {
+        return getSingleProperty("visitscotland:translationFlag");
     }
 }
