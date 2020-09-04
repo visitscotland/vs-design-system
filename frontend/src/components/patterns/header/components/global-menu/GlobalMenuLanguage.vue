@@ -96,6 +96,8 @@ export default {
         }
 
         @include media-breakpoint-up(lg) {
+            width: auto;
+            min-width: 130px;
             transform: translate3d(0px, 0px, 0px) !important;
         }
     }
