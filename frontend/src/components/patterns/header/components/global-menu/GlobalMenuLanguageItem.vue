@@ -38,7 +38,7 @@ export default {
         position: relative;
     }
     .dropdown-menu {
-        width: 100vw;
+        width: 100%;
         background: $color-purple;
         font-size: $font-size-sm;
         transition: all ease-in-out 0.3s;
@@ -84,7 +84,6 @@ export default {
         }
 
         @include media-breakpoint-up(lg) {
-            width: 100%;
             transform: translate3d(0px, 0px, 0px) !important;
         }
     }
