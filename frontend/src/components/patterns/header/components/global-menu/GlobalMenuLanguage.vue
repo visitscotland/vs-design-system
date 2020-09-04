@@ -58,8 +58,10 @@ export default {
         },
     },
     created() {
-        document.cookie = `vs_locale=${this.localeCookie}`;
-        document.cookie = `googtrans=${this.translationCookie}`;
+        const expiryDate = new Date();
+        expiryDate.setFullYear(expiryDate.getFullYear() + 1);
+        document.cookie = `vs_locale=${this.localeCookie}; expires=${expiryDate}`;
+        document.cookie = `googtrans=${this.translationCookie}; expires=${expiryDate}`;
     },
 };
 </script>
