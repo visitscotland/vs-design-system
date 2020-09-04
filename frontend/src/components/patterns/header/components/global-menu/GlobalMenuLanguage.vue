@@ -66,6 +66,38 @@ export default {
 
 <style lang="scss">
 .vs-global-menu__languages {
+    position: static;
+
+    .dropdown-menu {
+        width: 100%;
+        background: $color-purple;
+        font-size: $font-size-sm;
+        transition: all ease-in-out 0.3s;
+        margin: 0;
+        max-height: 0;
+        display: block;
+        overflow: hidden;
+        opacity: 0;
+        transform: translate3d(0px, 0px, 0px) !important;
+
+
+        &.show {
+            max-height: 700px;
+            opacity: 1;
+            transform: translate3d(0px, 28px, 0px) !important;
+            border: none;
+            padding: 0;
+
+            @include media-breakpoint-up(lg) {
+                transform: translate3d(0px, 34px, 0px) !important;
+            }
+        }
+
+        @include media-breakpoint-up(lg) {
+            transform: translate3d(0px, 0px, 0px) !important;
+        }
+    }
+
     .dropdown-toggle {
         padding: 0.3rem $spacer-2;
         font-size: $font-size-sm;
@@ -104,7 +136,7 @@ export default {
 
     .dropdown-toggle {
         @include media-breakpoint-up(lg) {
-            padding: $spacer-2;
+            padding: $spacer-2 $spacer-4;
         }
     }
 }
@@ -118,7 +150,7 @@ export default {
 }
 
 .vs-global-menu__languages__text {
-    padding-left: 0.5rem;
+    padding-left: $spacer-2;
     display: none;
 
     @include media-breakpoint-up(lg) {
@@ -128,6 +160,51 @@ export default {
 
 .vs-global-menu__languages__label {
     display: none;
+}
+
+@include no-js {
+    .vs-global-menu__languages {
+        display: block;
+
+        .dropdown-menu {
+            @extend .show;
+            position: initial;
+            display: block;
+            width: 100vw;
+            border: none;
+            opacity: 1;
+            max-height: 700px;
+            transform: translate3d(0px, 0px, 0px) !important;
+            text-align: center;
+
+        }
+
+        .dropdown-toggle {
+            display: none;
+        }
+
+        .dropdown-item {
+            color: white;
+
+            &:hover {
+                background: $color-purple-shade-2;
+            }
+        }
+
+        .vs-global-menu__languages__label {
+            display: inline;
+            color: white;
+            padding: $spacer-2;
+        }
+
+        @include media-breakpoint-up(sm) {
+            .dropdown-menu {
+                display: inline-flex;
+                flex-wrap: wrap;
+                text-align: left;
+            }
+        }
+    }
 }
 </style>
 
