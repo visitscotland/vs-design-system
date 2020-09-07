@@ -1,7 +1,7 @@
 <template>
     <div style="min-height: 600px;">
         <VsHeaderNew>
-            <template #global-navbar>
+            <template #globalNav>
                 <div
                     class="bg-primary-purple"
                     style="height: 35px"
@@ -15,9 +15,9 @@
                     </VsContainer>
                 </div>
             </template>
-            <template #mega-nav>
+            <template #megaNav>
                 <VsMegaNav>
-                    <template #mega-nav-top-menu-items>
+                    <template #megaNavTopMenuItems>
                         <VsMegaNavTopMenuItem
                             v-for="(item, index) in header.mainNav"
                             :key="index"
@@ -40,7 +40,7 @@
                         </VsMegaNavTopMenuItem>
                     </template>
 
-                    <template #mega-nav-mobile-items>
+                    <template #megaNavMobileItems>
                         <VsMegaNavMobileToggle
                             v-for="(item, index) in header.mainNav"
                             :key="index"
