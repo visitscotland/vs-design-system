@@ -1,6 +1,9 @@
 <template>
     <div class="vs-mega-nav__dropdown">
-        <BDropdown variant="transparent" ref="dropdown">
+        <BDropdown
+            variant="transparent"
+            ref="dropdown"
+        >
             <template #button-content>
                 <!-- @slot For dropdown toggle button content  -->
                 <slot name="button-content" />
@@ -32,10 +35,16 @@ export default {
     mounted() {
         // Listen for dropdown opening and closing and emit event
         this.$root.$on('bv::dropdown::show', () => {
+            /**
+             * Triggers when the dropdown is about to show
+             */
             this.$emit('menu-toggled');
         });
 
         this.$root.$on('bv::dropdown::hide', () => {
+            /**
+             * Triggers when the dropdown is about to close
+             */
             this.$emit('menu-toggled');
         });
 

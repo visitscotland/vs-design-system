@@ -1,6 +1,6 @@
 <template>
     <VsMegaNav>
-        <template #mega-nav-top-menu-items>
+        <template #megaNavTopMenuItems>
             <VsMegaNavTopMenuItem
                 v-for="(item, index) in header.mainNav"
                 :key="index"
@@ -23,7 +23,7 @@
             </VsMegaNavTopMenuItem>
         </template>
 
-        <template #mega-nav-mobile-items>
+        <template #megaNavMobileItems>
             <VsMegaNavMobileToggle
                 v-for="(item, index) in header.mainNav"
                 :key="index"
