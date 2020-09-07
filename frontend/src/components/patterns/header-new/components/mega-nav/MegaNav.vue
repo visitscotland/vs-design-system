@@ -26,7 +26,7 @@
                 >
                     <VsMegaNavTopMenu>
                         <!-- @slot For top menu list items in navbar  -->
-                        <slot name="mega-nav-top-menu-items" />
+                        <slot name="megaNavTopMenuItems" />
                     </VsMegaNavTopMenu>
                 </VsCol>
 
@@ -56,7 +56,7 @@
 
                         <template #dropdown-content>
                             <!-- @slot For mobile list items  -->
-                            <slot name="mega-nav-mobile-items" />
+                            <slot name="megaNavMobileItems" />
                         </template>
                     </VsMegaNavDropdown>
                 </VsCol>
@@ -76,6 +76,8 @@ import {
 } from '@components/elements/layout';
 import VsSvgLink from '@components/patterns/svg-link/SvgLink';
 import VsMegaNavDropdown from '@components/patterns/header-new/components/mega-nav/MegaNavDropdown';
+import VsMegaNavTopMenu from '@components/patterns/header-new/components/mega-nav/desktop-menu/MegaNavTopMenu';
+import VsIcon from '@components/elements/icon/Icon';
 
 export default {
     name: 'VsMegaNav',
@@ -87,6 +89,8 @@ export default {
         VsContainer,
         VsSvgLink,
         VsMegaNavDropdown,
+        VsMegaNavTopMenu,
+        VsIcon,
     },
     data() {
         return {
@@ -94,6 +98,10 @@ export default {
         };
     },
     methods: {
+        /**
+         * Toggles dropdown menu property
+         * @returns {Boolean} true if menu is open
+        */
         menuToggle() {
             this.isOpen = !this.isOpen;
         },

@@ -1,10 +1,10 @@
 <template>
-    <header>
+    <header class="vs-header">
         <!-- @slot Global menu bar slot  -->
-        <slot name="global-navbar" />
+        <slot name="globalNav" />
 
         <!-- @slot Main navigation bar slot  -->
-        <slot name="mega-nav" />
+        <slot name="megaNav" />
     </header>
 </template>
 
