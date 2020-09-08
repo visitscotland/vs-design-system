@@ -5,10 +5,10 @@ import org.hippoecm.repository.api.HippoWorkspace;
 import org.hippoecm.repository.api.WorkflowException;
 import org.hippoecm.repository.api.WorkflowManager;
 import org.hippoecm.repository.standardworkflow.DefaultWorkflow;
+import org.hippoecm.repository.translation.HippoTranslatedNode;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.ArgumentCaptor;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
@@ -22,16 +22,26 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.same;
 
 @ExtendWith(MockitoExtension.class)
-public class DocumentTranslatorSaveTest {
+public class DocumentTranslatorSaveFolderTest {
     @Mock
-    Session mockSession;
+    private Session mockSession;
     private DocumentTranslator translator;
+    @Mock
+    HippoTranslatedNodeFactory mockNodeFactory;
+    @Mock
+    SessionFactory mockSessionFactory;
+    @Mock
+    JcrDocumentFactory mockJcrDocumentFactory;
+    @Mock
+    ChangeSetFactory mockChangeSetFactory;
 
     @BeforeEach
     public void beforeEach() {
-        translator = new DocumentTranslator();
+        translator = new DocumentTranslator(mockNodeFactory, mockSessionFactory, mockJcrDocumentFactory,
+                mockChangeSetFactory);
     }
 
     @Test
@@ -57,6 +67,7 @@ public class DocumentTranslatorSaveTest {
         FolderTranslation folder = createFolderTranslation(true, nodeId);
         Node mockNode = mock(Node.class);
         when(mockNode.getSession()).thenThrow(new RepositoryException());
+        setTranslated(false, mockNode);
         when(mockSession.getNodeByIdentifier(eq(nodeId))).thenReturn(mockNode);
 
         assertFalse(translator.saveFolder(folder, mockSession, "de"));
@@ -69,6 +80,7 @@ public class DocumentTranslatorSaveTest {
         when(mockWorkspace.getWorkflowManager()).thenThrow(new RepositoryException());
         Session mockNodeSession = createMockNodeSession(mockWorkspace);
         Node mockNode = createMockNode(mockNodeSession);
+        setTranslated(false, mockNode);
         when(mockSession.getNodeByIdentifier(eq(nodeId))).thenReturn(mockNode);
         FolderTranslation folder = createFolderTranslation(true, nodeId);
 
@@ -83,6 +95,7 @@ public class DocumentTranslatorSaveTest {
         HippoWorkspace mockWorkspace = createMockHippoWorkspace(mockManager);
         Session mockNodeSession = createMockNodeSession(mockWorkspace);
         Node mockNode = createMockNode(mockNodeSession);
+        setTranslated(false, mockNode);
         when(mockSession.getNodeByIdentifier(eq(nodeId))).thenReturn(mockNode);
         FolderTranslation folder = createFolderTranslation(true, nodeId);
 
@@ -98,6 +111,7 @@ public class DocumentTranslatorSaveTest {
         HippoWorkspace mockWorkspace = createMockHippoWorkspace(mockManager);
         Session mockNodeSession = createMockNodeSession(mockWorkspace);
         Node mockNode = createMockNode(mockNodeSession);
+        setTranslated(false, mockNode);
         when(mockSession.getNodeByIdentifier(eq(nodeId))).thenReturn(mockNode);
         FolderTranslation folder = createFolderTranslation(true, nodeId, "translatedName", "translatedUrl");
 
@@ -113,6 +127,7 @@ public class DocumentTranslatorSaveTest {
         HippoWorkspace mockWorkspace = createMockHippoWorkspace(mockManager);
         Session mockNodeSession = createMockNodeSession(mockWorkspace);
         Node mockNode = createMockNode(mockNodeSession);
+        setTranslated(false, mockNode);
         when(mockSession.getNodeByIdentifier(eq(nodeId))).thenReturn(mockNode);
         FolderTranslation folder = createFolderTranslation(true, nodeId, "translatedName", "translatedUrl");
 
@@ -128,6 +143,7 @@ public class DocumentTranslatorSaveTest {
         HippoWorkspace mockWorkspace = createMockHippoWorkspace(mockManager);
         Session mockNodeSession = createMockNodeSession(mockWorkspace);
         Node mockNode = createMockNode(mockNodeSession);
+        setTranslated(false, mockNode);
         when(mockSession.getNodeByIdentifier(eq(nodeId))).thenReturn(mockNode);
         FolderTranslation folder = createFolderTranslation(true, nodeId, "translatedName", "translatedUrl");
 
@@ -138,8 +154,6 @@ public class DocumentTranslatorSaveTest {
     public void saveFolder_nameFr_not_equal_urlFr() throws Exception {
         String nodeId = "ft8";
 
-        ArgumentCaptor<String> nameCaptor = ArgumentCaptor.forClass(String.class);
-
         Document mockDocument = mock(Document.class);
         TranslationWorkflow mockWorkflow = mock(TranslationWorkflow.class);
         when(mockWorkflow.addTranslation(anyString(), anyString())).thenReturn(mockDocument);
@@ -147,6 +161,7 @@ public class DocumentTranslatorSaveTest {
         HippoWorkspace mockWorkspace = createMockHippoWorkspace(mockManager);
         Session mockNodeSession = createMockNodeSession(mockWorkspace);
         Node mockNode = createMockNode(mockNodeSession);
+        setTranslated(false, mockNode);
         when(mockSession.getNodeByIdentifier(eq(nodeId))).thenReturn(mockNode);
         FolderTranslation folder = createFolderTranslation(true, nodeId, "translatedName", "translatedUrl");
 
@@ -162,8 +177,6 @@ public class DocumentTranslatorSaveTest {
     public void saveFolder_nameFr_equals_urlFr() throws Exception {
         String nodeId = "ft8";
 
-        ArgumentCaptor<String> nameCaptor = ArgumentCaptor.forClass(String.class);
-
         Document mockDocument = mock(Document.class);
         TranslationWorkflow mockWorkflow = mock(TranslationWorkflow.class);
         when(mockWorkflow.addTranslation(anyString(), anyString())).thenReturn(mockDocument);
@@ -171,11 +184,33 @@ public class DocumentTranslatorSaveTest {
         HippoWorkspace mockWorkspace = createMockHippoWorkspace(mockManager);
         Session mockNodeSession = createMockNodeSession(mockWorkspace);
         Node mockNode = createMockNode(mockNodeSession);
+        setTranslated(false, mockNode);
         when(mockSession.getNodeByIdentifier(eq(nodeId))).thenReturn(mockNode);
         FolderTranslation folder = createFolderTranslation(true, nodeId, "translatedName", "translatedName");
 
         assertTrue(translator.saveFolder(folder, mockSession, "no"));
 
+    }
+
+    @Test
+    public void saveFolder_alreadyTranslated() throws Exception {
+        // When a folder already has a translation the method should
+        // just act as thought it has been created successfully and return truw
+        String nodeId = "ft9";
+
+        Node mockNode = mock(Node.class);
+        setTranslated(true, mockNode);
+        when(mockSession.getNodeByIdentifier(eq(nodeId))).thenReturn(mockNode);
+        FolderTranslation folder = createFolderTranslation(true, nodeId, "translatedName", "translatedName");
+
+        assertTrue(translator.saveFolder(folder, mockSession, "no"));
+
+    }
+
+    private void setTranslated(boolean isTranslated, Node folderNode) throws Exception {
+        HippoTranslatedNode mockTranslatedNode = mock(HippoTranslatedNode.class);
+        when(mockNodeFactory.createFromNode(same(folderNode))).thenReturn(mockTranslatedNode);
+        when(mockTranslatedNode.hasTranslation(anyString())).thenReturn(isTranslated);
     }
 
     private FolderTranslation createFolderTranslation(boolean editable) {

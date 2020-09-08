@@ -12,14 +12,15 @@ import org.hippoecm.frontend.plugins.standards.image.CachingImage;
 import org.hippoecm.frontend.service.IconSize;
 import org.hippoecm.frontend.translation.ILocaleProvider;
 
-public class TranslationConfirmationDialog extends WorkflowDialog<Void> {
+public class TranslationCloneConfirmationDialog extends WorkflowDialog<Void> {
     public static final String ID_IMG = "img";
     public static final String ID_NAME = "name";
     public static final String ID_LANGUAGES = "languages";
     public static final String ID_CHANGE = "change";
+    public static final String ID_DOC_TYPE = "docType";
 
-    public TranslationConfirmationDialog(IWorkflowInvoker invoker,
-                                         IDataProvider<DocumentChangeProvider.Entry> changeSetProvider) {
+    public TranslationCloneConfirmationDialog(IWorkflowInvoker invoker,
+                                              IDataProvider<DocumentChangeProvider.Entry> changeSetProvider) {
         super(invoker);
 
         setTitle(new AbstractReadOnlyModel<String>() {
@@ -39,6 +40,7 @@ public class TranslationConfirmationDialog extends WorkflowDialog<Void> {
             protected void populateItem(Item<DocumentChangeProvider.Entry> item) {
                 DocumentChangeProvider.Entry change = item.getModelObject();
                 item.add(new Label(ID_NAME, change.getDocumentName()));
+                item.add(new Label(ID_DOC_TYPE, change.getDocumentType()));
                 IDataProvider<ILocaleProvider.HippoLocale> localeProvider = new LocaleListProvider(change.getLocaleList());
                 item.add(new DataView<ILocaleProvider.HippoLocale>(ID_LANGUAGES, localeProvider) {
                     {

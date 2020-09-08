@@ -20,6 +20,7 @@ if (BRANCH_NAME == "develop" && (JOB_NAME == "develop.visitscotland.com/develop"
   //env.VS_CONTAINER_BASE_PORT_OVERRIDE = "8096"
   //cron_string = "*/2 * * * *"
 } else {
+  //thisAgent = "docker-02"
   thisAgent = "op-dev-xvcdocker-01"
 }
 
@@ -30,6 +31,7 @@ pipeline {
   agent {label thisAgent}
   triggers { cron( cron_string ) }
   environment {
+    MAVEN_SETTINGS = credentials('maven-settings')
     // from 20200804 VS_SSR_PROXY_ON will only affect whether the SSR app is packaged and sent to the container, using or bypassing will be set via query string
     VS_SSR_PROXY_ON = 'TRUE'
     // VS_CONTAINER_PRESERVE is set to TRUE in the ingrastructure build script, if this is set to FALSE the container will be rebuilt every time and the repository wiped
@@ -156,7 +158,44 @@ pipeline {
         }
       }
     } //end stage
+    stage ('Snapshot to Nexus'){
+        when {
+            not {
+                branch 'PR-145'//to do - change this to master and staging when ready
+            }
+        }
+        steps{
+            script{
+                sh 'mvn -f pom.xml deploy -P dist -s $MAVEN_SETTINGS'
+            }
+        }
+    }
+    stage('Release to Nexus') {
+        when {
+            branch 'PR-145' // to do - change this to develop  when ready
+        }
+        steps {
 
+            script {
+              NEW_TAG = "${env.JOB_NAME}-${env.BUILD_NUMBER}"
+            }
+
+            echo "Creating tag $NEW_TAG"
+            sh "git tag -m \"CI tagging\" $NEW_TAG"
+            echo "Uploading tag $NEW_TAG to Bitbucket"
+            withCredentials([usernamePassword(credentialsId: 'jenkins-ssh', usernameVariable: 'USER', passwordVariable: 'PASSWORD')]) {
+              sh """
+              git config --local credential.username ${USER}
+              git config --local credential.helper "!echo password=${PASSWORD}; echo"
+              git push origin $NEW_TAG --repo=${env.GIT_URL}
+              """
+            }
+            echo "Uploading version $NEW_TAG to Nexus"
+            sh "mvn versions:set -DremoveSnapshot"
+            sh "mvn -B clean  deploy -P dist -Drevision=$NEW_TAG -Dchangelist= -DskipTests -s $MAVEN_SETTINGS"
+        }
+
+    }
     stage ('vs build feature env') {
       steps{
         script{
@@ -164,7 +203,28 @@ pipeline {
           sh 'sh ./infrastructure/scripts/infrastructure.sh --debug'
         }
       }
-    } //end stage
+    } //end
+   // timeout(time: 60, unit: 'SECONDS') {
+        // stage('Check Availability') {
+        //   steps {
+        //     script{
+        //         //sh 'sh ./infrastructure/scripts/availability.sh --debug'
+        //         sleep time: 120, unit: 'SECONDS'
+        //       }
+        //    }
+        //   }
+
+  //  }
+    // stage ('Run a11y tests'){
+    //     // when {
+    //     //     branch 'PR-160'  TODO - change this to dev nightly / dev stable when ready
+    //     // }
+    //     steps{
+    //         script{
+    //             sh 'sh ./infrastructure/scripts/lighthouse.sh'
+    //         }
+    //     }
+    // }
 
 // -- 20200712: entire section commented out as it currently serves no purpose
 //    stage ('Availability notice'){
@@ -180,6 +240,21 @@ pipeline {
   } //end stages
 
   post{
+    always {
+      script{
+        sleep time: 120, unit: 'SECONDS'
+        sh 'sh ./infrastructure/scripts/lighthouse.sh'
+      }
+      publishHTML (target: [
+        allowMissing: false,
+        alwaysLinkToLastBuild: false,
+        keepAll: true,
+        reportDir: 'frontend/.lighthouseci',
+        reportFiles: 'lhr-**.html',
+        reportName: "LH Report"
+      ])
+    }
+
     aborted{
       script{
         try{
