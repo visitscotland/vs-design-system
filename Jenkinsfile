@@ -33,9 +33,9 @@ pipeline {
   environment {
     MAVEN_SETTINGS = credentials('maven-settings')
     // from 20200804 VS_SSR_PROXY_ON will only affect whether the SSR app is packaged and sent to the container, using or bypassing will be set via query string
-    VS_SSR_PROXY_ON = 'TRUE'
+    VS_SSR_PROXY_ON = 'FALSE'
     // VS_CONTAINER_PRESERVE is set to TRUE in the ingrastructure build script, if this is set to FALSE the container will be rebuilt every time and the repository wiped
-    VS_CONTAINER_PRESERVE= 'TRUE'
+    VS_CONTAINER_PRESERVE= 'FALSE'
     // VS_BRXM_PERSISTENCE_METHOD can be set to either 'h2' or 'mysql' - do not change during the lifetime of a container or it will break the repo
     VS_BRXM_PERSISTENCE_METHOD = 'h2'
     VS_SKIP_BUILD_FOR_BRANCH = 'eg:feature/VS-1865-feature-environments-enhancements'
