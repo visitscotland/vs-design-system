@@ -40,15 +40,15 @@ public class ListicleItem extends BaseDocument {
         return getOnlyChild(getProducts());
     }
 
-    @HippoEssentialsGenerated(internalName="visitscotland:images",allowModifications=false) public List<HippoBean> getImages(){
-    return getChildBeansByName("visitscotland:images",HippoBean.class).stream().map(hippoBean -> {
-      if (hippoBean instanceof HippoMirror) {
-        return ((HippoMirror)hippoBean).getReferencedBean();
-      }
-      return hippoBean;
+    @HippoEssentialsGenerated(internalName="visitscotland:images",allowModifications=false) 
+    public List<HippoBean> getImages(){
+        return getChildBeansByName("visitscotland:images",HippoBean.class).stream().map(hippoBean -> {
+            if (hippoBean instanceof HippoMirror) {
+                return ((HippoMirror)hippoBean).getReferencedBean();
+            }
+            return hippoBean;
+        }).collect(Collectors.toList());
     }
-).collect(Collectors.toList());
-  }
 
     /** 
      * The method return an bean of the allowed types or null. Allowed types are InstagramImage and Image (Image Link)
