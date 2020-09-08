@@ -7,26 +7,3 @@
   hippostd:foldertype: [new-translated-folder, new-document]
   hippotranslation:id: a3062468-d920-41bf-b7de-c5a94d629b8c
   hippotranslation:locale: en
-  /site:
-    jcr:primaryType: hippostd:folder
-    jcr:mixinTypes: ['hippotranslation:translated', 'mix:versionable']
-    jcr:uuid: e8d415ec-a08a-478c-bb98-2605a2854e47
-    hippostd:foldertype: [new-translated-folder, new-document]
-    hippotranslation:id: a65bff6c-4edf-4d28-b036-84bdee4b4bcd
-    hippotranslation:locale: en
-  /shared:
-    jcr:primaryType: hippostd:folder
-    jcr:mixinTypes: ['hippotranslation:translated', 'mix:versionable']
-    jcr:uuid: 3cc08987-f496-4981-ab2b-07c0e36ca2b7
-    hippostd:foldertype: [new-translated-folder, new-document]
-    hippotranslation:id: b091be00-dc54-41e0-9354-c4098c03db9e
-    hippotranslation:locale: en
-  /navigation:
-    jcr:primaryType: hippostd:folder
-    jcr:mixinTypes: ['hippotranslation:translated', 'mix:versionable']
-    jcr:uuid: b4c8daf1-c094-4bca-9107-313ded4f6604
-    hippostd:foldertype: [new-translated-folder, new-document]
-    hippotranslation:id: 63c04b3c-8daa-4f3c-9dd0-337a2c5205bb
-    hippotranslation:locale: en
-
-
