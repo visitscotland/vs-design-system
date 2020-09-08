@@ -198,7 +198,7 @@ export default {
         .vs-global-menu__languages__label {
             display: inline;
             color: white;
-            padding: $spacer-2;
+            padding: $spacer-4;
         }
 
         @include media-breakpoint-up(sm) {
