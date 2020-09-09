@@ -1,22 +1,28 @@
 <template>
     <li
-        class="vs-mega-nav__item"
+        class="vs-mega-nav__top-menu__item"
         ref="menuToggle"
     >
         <VsMegaNavDropdown>
-            <template #button-content>
+            <template #buttonContent>
                 <!-- @slot For top menu item button content -->
-                <slot name="button-content" />
+                <slot name="buttonContent" />
             </template>
 
-            <template #cta-link>
-                <a :href="href">{{ ctaText }}</a>
+            <template #ctaLink>
+                <a
+                    v-if="href && ctaText"
+                    :href="href"
+                    class="vs-mega-nav__cta-link"
+                >
+                    {{ ctaText }}
+                </a>
                 <hr>
             </template>
 
-            <template #dropdown-content>
+            <template #dropdownContent>
                 <!-- @slot Slot for dropdown menu list content -->
-                <slot name="dropdown-content" />
+                <slot name="dropdownContent" />
             </template>
         </VsMegaNavDropdown>
     </li>
@@ -57,7 +63,7 @@ export default {
 <style lang="scss">
 @import '~bootstrap/scss/type';
 
-.vs-mega-nav__item {
+.vs-mega-nav__top-menu__item{
     @include media-breakpoint-up(xl) {
         margin-right: $spacer-6;
 
@@ -79,10 +85,10 @@ export default {
                             href="/"
                             cta-text="A Map of Scotland"
                         >
-                            <span slot="button-content">
+                            <span slot="buttonContent">
                                 Places to Go
                             </span>
-                            <span slot="dropdown-content">
+                            <span slot="dropdownContent">
                                 <ul>
                                     <li>
                                         Submenu Item

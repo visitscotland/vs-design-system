@@ -7,10 +7,10 @@
                 :href="item.href"
                 :cta-text="item.cta"
             >
-                <template #button-content>
+                <template #buttonContent>
                     {{ item.title }}
                 </template>
-                <template #dropdown-content>
+                <template #dropdownContent>
                     <ul>
                         <li
                             v-for="(navItem, navIndex) in item.dropdownNav"

@@ -1,8 +1,9 @@
 <template>
     <VsList
         unstyled
-        class="vs-mega-nav-top-menu"
+        class="vs-mega-nav__top-menu"
     >
+        <!-- @slot Default slot for top menu items -->
         <slot />
     </VsList>
 </template>
@@ -27,7 +28,7 @@ export default {
 <style lang="scss">
 @import "~bootstrap/scss/type";
 
-.vs-mega-nav-top-menu {
+.vs-mega-nav__top-menu {
     &.vs-list.unstyled{
         width: 100%;
         display: flex;
@@ -50,10 +51,10 @@ export default {
                             :href="item.href"
                             :cta-text="item.cta"
                         >
-                            <span slot="button-content">
+                            <span slot="buttonContent">
                                 {{ item.title }}
                             </span>
-                            <span slot="dropdown-content">
+                            <span slot="dropdownContent">
                                 <ul>
                                     <li
                                         v-for="(navItem, navIndex) in item.dropdownNav"
