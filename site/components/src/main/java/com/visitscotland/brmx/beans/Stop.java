@@ -55,4 +55,14 @@ public class Stop extends BaseDocument {
     public String getSubtitle() {
         return getSingleProperty("visitscotland:subtitle");
     }
+
+    @HippoEssentialsGenerated(internalName = "visitscotland:diff")
+    public String getDiff() {
+        return getSingleProperty("visitscotland:diff");
+    }
+
+    @HippoEssentialsGenerated(internalName = "visitscotland:translationFlag")
+    public Boolean getTranslationFlag() {
+        return getSingleProperty("visitscotland:translationFlag");
+    }
 }
