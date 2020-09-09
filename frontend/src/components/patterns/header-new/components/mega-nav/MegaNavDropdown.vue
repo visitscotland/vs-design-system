@@ -6,13 +6,13 @@
         >
             <template #button-content>
                 <!-- @slot For dropdown toggle button content  -->
-                <slot name="button-content" />
+                <slot name="buttonContent" />
             </template>
 
             <!-- @slot Used to display the top menu link at the top of the dropdown menu  -->
-            <slot name="cta-link" />
+            <slot name="ctaLink" />
             <!-- @slot The rest of the mega nav links put here in the dropdown menu  -->
-            <slot name="dropdown-content" />
+            <slot name="dropdownContent" />
         </BDropdown>
     </div>
 </template>
@@ -38,14 +38,14 @@ export default {
             /**
              * Triggers when the dropdown is about to show
              */
-            this.$emit('menu-toggled');
+            this.$emit('menuToggled');
         });
 
         this.$root.$on('bv::dropdown::hide', () => {
             /**
              * Triggers when the dropdown is about to close
              */
-            this.$emit('menu-toggled');
+            this.$emit('menuToggled');
         });
 
         // Close menu on resize screen to fix toggle btn issues

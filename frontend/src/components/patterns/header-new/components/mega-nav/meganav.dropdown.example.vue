@@ -32,11 +32,11 @@
                             :cta-text="item.cta"
                         >
                             <VsMegaNavDropdown>
-                                <template #button-content>
+                                <template #buttonContent>
                                     {{ item.title }}
                                 </template>
 
-                                <template #dropdown-content>
+                                <template #dropdownContent>
                                     <ul>
                                         <li
                                             v-for="(navItem, navIndex) in item.dropdownNav"
@@ -59,7 +59,7 @@
                     class="d-flex d-lg-none justify-content-end position-static"
                 >
                     <VsMegaNavDropdown>
-                        <template #button-content>
+                        <template #buttonContent>
                             <VsIcon
                                 name="bars-mobile-menu"
                                 size="md"
@@ -67,7 +67,7 @@
                             />
                         </template>
 
-                        <template #dropdown-content>
+                        <template #dropdownContent>
                             <VsMegaNavMobileToggle
                                 v-for="(item, index) in header.mainNav"
                                 :key="index"
