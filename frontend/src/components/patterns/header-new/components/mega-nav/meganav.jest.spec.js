@@ -23,10 +23,10 @@ describe('VsMegaNav', () => {
     });
 
     describe(':events', () => {
-        it('displays a button with an `icon-close` icon when menu-toggled event is emitted', () => {
+        it('displays a button with an `icon-close` icon when menuToggled event is emitted', () => {
             const wrapper = mount(VsMegaNav);
             const dropdownToggle = wrapper.find('.dropdown-toggle');
-            wrapper.find(VsMegaNavDropdown).vm.$emit('menu-toggled');
+            wrapper.find(VsMegaNavDropdown).vm.$emit('menuToggled');
 
             expect(dropdownToggle.html()).toContain('icon-close');
         });
