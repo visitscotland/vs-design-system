@@ -1,5 +1,7 @@
 package com.visitscotland.brmx.translation.plugin.menu;
 
+import com.visitscotland.brmx.translation.SpringContext;
+import com.visitscotland.brmx.translation.difference.DifferenceGenerator;
 import com.visitscotland.brmx.translation.plugin.*;
 import org.apache.wicket.Component;
 import org.apache.wicket.model.IModel;
@@ -18,6 +20,9 @@ import org.hippoecm.frontend.session.UserSession;
 import org.hippoecm.frontend.translation.ILocaleProvider;
 import org.hippoecm.hst.content.beans.ObjectBeanManagerException;
 import org.hippoecm.repository.api.WorkflowException;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.ApplicationContextAware;
 
 import javax.jcr.Node;
 import javax.jcr.RepositoryException;

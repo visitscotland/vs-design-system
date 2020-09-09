@@ -1,6 +1,10 @@
 package com.visitscotland.brmx.translation.plugin;
 
 import com.visitscotland.brmx.beans.TranslationLinkContainer;
+import com.visitscotland.brmx.translation.SpringContext;
+import com.visitscotland.brmx.translation.SpringContextFactory;
+import com.visitscotland.brmx.translation.difference.DifferenceGenerator;
+import org.hippoecm.frontend.model.ocm.StoreException;
 import org.hippoecm.hst.content.beans.ObjectBeanManagerException;
 import org.hippoecm.repository.HippoStdNodeType;
 import org.hippoecm.repository.api.*;
@@ -15,6 +19,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.jcr.*;
+import java.io.IOException;
 import java.io.Serializable;
 import java.rmi.RemoteException;
 import java.util.*;
@@ -29,14 +34,28 @@ public class TranslationWorkflowImpl implements TranslationWorkflow, InternalWor
     private final Node userSubject;
     private JcrDocumentFactory jcrDocumentFactory;
     private DocumentFactory documentFactory;
+    private SpringContextFactory springContextFactory;
 
-    public TranslationWorkflowImpl(final WorkflowContext context, final Session userSession, final Session rootSession,
-                                   final Node subject) throws RepositoryException {
-        this(context, userSession, rootSession, subject, new JcrDocumentFactory(), new DocumentFactory());
+    public TranslationWorkflowImpl(WorkflowContext context,
+                                   Session userSession,
+                                   Session rootSession,
+                                   Node subject) throws RepositoryException {
+        this(context,
+                userSession,
+                rootSession,
+                subject,
+                new JcrDocumentFactory(),
+                new DocumentFactory(),
+                new SpringContextFactory());
     }
 
-    protected TranslationWorkflowImpl(final WorkflowContext context, final Session userSession, final Session rootSession,
-                                   final Node subject, JcrDocumentFactory jcrDocumentFactory, DocumentFactory documentFactory) throws RepositoryException {
+    protected TranslationWorkflowImpl(WorkflowContext context,
+                                      Session userSession,
+                                      Session rootSession,
+                                      Node subject,
+                                      JcrDocumentFactory jcrDocumentFactory,
+                                      DocumentFactory documentFactory,
+                                      SpringContextFactory springContextFactory) throws RepositoryException {
         this.workflowContext = context;
         this.rootSession = rootSession;
         this.userSession = userSession;
@@ -44,6 +63,7 @@ public class TranslationWorkflowImpl implements TranslationWorkflow, InternalWor
         this.rootSubject = rootSession.getNodeByIdentifier(subject.getIdentifier());
         this.jcrDocumentFactory = jcrDocumentFactory;
         this.documentFactory = documentFactory;
+        this.springContextFactory = springContextFactory;
 
         if (!userSubject.isNodeType(HippoTranslationNodeType.NT_TRANSLATED)) {
             throw new RepositoryException("Node is not of type " + HippoTranslationNodeType.NT_TRANSLATED);
@@ -76,6 +96,7 @@ public class TranslationWorkflowImpl implements TranslationWorkflow, InternalWor
         } else {
             copiedNode = addTranslatedFolder(language, newDocumentName, targetFolderNode);
         }
+
 
         return new Document(copiedNode);
     }
@@ -319,7 +340,15 @@ public class TranslationWorkflowImpl implements TranslationWorkflow, InternalWor
             if (nodesBeingEdited.isEmpty()) {
                 if (!editableNodes.isEmpty()) {
                     for (HashMap.Entry<Node, Node> editableNodeEntry : editableNodes.entrySet()) {
-                        editableNodeEntry.getValue().setProperty("visitscotland:translationFlag", true);
+                        Node editableUnpublishedVariant = editableNodeEntry.getValue();
+                        editableUnpublishedVariant.setProperty("visitscotland:translationFlag", true);
+                        DifferenceGenerator generator = springContextFactory.getBean(DifferenceGenerator.class);
+                        try {
+                            String json = generator.getTranslationDifferenceJson(rootJcrDocument.getHandle().getIdentifier());
+                            editableUnpublishedVariant.setProperty("visitscotland:diff", json);
+                        } catch(StoreException | IOException ex) {
+                            log.error("Error getting difference", ex);
+                        }
                         // If this was the draft node we would want to commit the changes
                         discardEditableNode(editableNodeEntry.getKey());
                     }

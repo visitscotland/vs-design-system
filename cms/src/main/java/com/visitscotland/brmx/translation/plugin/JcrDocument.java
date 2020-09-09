@@ -30,6 +30,10 @@ public class JcrDocument {
     public static final String VARIANT_PUBLISHED = HippoStdNodeType.PUBLISHED;
     public static final String VARIANT_UNPUBLISHED = HippoStdNodeType.UNPUBLISHED;
     public static final String VARIANT_DRAFT = HippoStdNodeType.DRAFT;
+
+    public static final String VS_TRANSLATION_DIFF = "visitscotland:diff";
+    public static final String VS_TRANSLATION_FLAG = "visitscotland:translationFlag";
+
     private Node handle;
     // Do not access directly, will be lazy loaded, use getter
     protected Map<String, Node> variantMap;

@@ -1,5 +1,7 @@
 package com.visitscotland.brmx.translation.plugin;
 
+import com.visitscotland.brmx.translation.SpringContextFactory;
+import com.visitscotland.brmx.translation.difference.DifferenceGenerator;
 import org.hippoecm.repository.api.Document;
 import org.hippoecm.repository.api.WorkflowContext;
 import org.hippoecm.repository.api.WorkflowException;
@@ -41,6 +43,10 @@ public class TranslationWorkflowImplSetTranslationRequiredFlagTest {
     private JcrDocumentFactory mockJcrDocumentFactory;
     @Mock
     private TranslationWorkflowImpl.DocumentFactory mockDocumentFactory;
+    @Mock
+    private SpringContextFactory mockContextFactory;
+    @Mock
+    private DifferenceGenerator mockDifferenceGenerator;
 
     @BeforeEach
     public void beforeEach() throws Exception {
@@ -48,8 +54,9 @@ public class TranslationWorkflowImplSetTranslationRequiredFlagTest {
         when(mockUserSessionSubject.isNodeType(eq(HippoTranslationNodeType.NT_TRANSLATED))).thenReturn(true);
         when(mockUserSession.getNodeByIdentifier(eq("subject-id"))).thenReturn(mockUserSessionSubject);
         when(mockRootSession.getNodeByIdentifier(eq("subject-id"))).thenReturn(mockRootSessionSubject);
+        lenient().when(mockContextFactory.getBean(eq(DifferenceGenerator.class))).thenReturn(mockDifferenceGenerator);
         translationWorkflow = new TranslationWorkflowImpl(mockContext, mockUserSession, mockRootSession, mockSubject,
-                mockJcrDocumentFactory, mockDocumentFactory);
+                mockJcrDocumentFactory, mockDocumentFactory, mockContextFactory);
     }
 
     @Test
@@ -164,6 +171,11 @@ public class TranslationWorkflowImplSetTranslationRequiredFlagTest {
         translations.add(doc4);
 
         when(mockRootDocument.getTranslations()).thenReturn(translations);
+        Node mockRootHandle = mock(Node.class);
+        when(mockRootDocument.getHandle()).thenReturn(mockRootHandle);
+        when(mockRootHandle.getIdentifier()).thenReturn("mockRootHandle");
+        when(mockDifferenceGenerator.getTranslationDifferenceJson(eq("mockRootHandle"))).thenReturn("diffJson");
+
         List<JcrDocument> result = translationWorkflow.setTranslationRequiredFlag();
 
         assertNotNull(result);
@@ -188,12 +200,16 @@ public class TranslationWorkflowImplSetTranslationRequiredFlagTest {
 
         Node doc1unpublished = doc1.getVariantNode(JcrDocument.VARIANT_UNPUBLISHED);
         verify(doc1unpublished).setProperty(eq("visitscotland:translationFlag"), eq(true));
+        verify(doc1unpublished).setProperty(eq("visitscotland:diff"), eq("diffJson"));
         Node doc2unpublished = doc1.getVariantNode(JcrDocument.VARIANT_UNPUBLISHED);
         verify(doc2unpublished).setProperty(eq("visitscotland:translationFlag"), eq(true));
+        verify(doc2unpublished).setProperty(eq("visitscotland:diff"), eq("diffJson"));
         Node doc3unpublished = doc1.getVariantNode(JcrDocument.VARIANT_UNPUBLISHED);
         verify(doc3unpublished).setProperty(eq("visitscotland:translationFlag"), eq(true));
+        verify(doc3unpublished).setProperty(eq("visitscotland:diff"), eq("diffJson"));
         Node doc4unpublished = doc1.getVariantNode(JcrDocument.VARIANT_UNPUBLISHED);
         verify(doc4unpublished).setProperty(eq("visitscotland:translationFlag"), eq(true));
+        verify(doc4unpublished).setProperty(eq("visitscotland:diff"), eq("diffJson"));
     }
 
     private JcrDocument initialiseTranslatedDocument(boolean beingEdited, boolean throwCheckoutException, Node handle, Node editableNode, EditableWorkflow mockWorkflow) throws RemoteException, WorkflowException, RepositoryException {
