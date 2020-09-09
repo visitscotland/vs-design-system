@@ -37,8 +37,8 @@
                     lg="9"
                     class="d-flex d-lg-none justify-content-end position-static"
                 >
-                    <VsMegaNavDropdown @menu-toggled="menuToggle">
-                        <template #button-content>
+                    <VsMegaNavDropdown @menuToggled="menuToggle">
+                        <template #buttonContent>
                             <VsIcon
                                 v-if="isOpen"
                                 name="close"
@@ -54,7 +54,7 @@
                             />
                         </template>
 
-                        <template #dropdown-content>
+                        <template #dropdownContent>
                             <!-- @slot For mobile list items  -->
                             <slot name="megaNavMobileItems" />
                         </template>
