@@ -50,15 +50,15 @@
             visitscotland:finish: ''
             visitscotland:highlights: "Balmoral Castle \r\nBraemar Castle\r\nBallater"
             visitscotland:popular: false
-            visitscotland:seoDescription: The Victorian Heritage Trail pinpoints
-              many of the historic places that make the picturesque Dee and Don
-              Valleys, in the north east of Scotland, a truly majestic place.
+            visitscotland:seoDescription: The Victorian Heritage Trail pinpoints many
+              of the historic places that make the picturesque Dee and Don Valleys,
+              in the north east of Scotland, a truly majestic place.
             visitscotland:seoNoIndex: false
             visitscotland:seoTitle: Victorian Heritage Trail
             visitscotland:start: ''
-            visitscotland:teaser: The Victorian Heritage Trail pinpoints many of
-              the historic places that make the picturesque Dee and Don Valleys,
-              in the north east of Scotland, a truly majestic place.
+            visitscotland:teaser: The Victorian Heritage Trail pinpoints many of the
+              historic places that make the picturesque Dee and Don Valleys, in the
+              north east of Scotland, a truly majestic place.
             visitscotland:theme: sightseeing
             visitscotland:title: Victorian Heritage Trail
             visitscotland:transports: [car]
@@ -92,15 +92,15 @@
             visitscotland:finish: ''
             visitscotland:highlights: "Balmoral Castle \r\nBraemar Castle\r\nBallater"
             visitscotland:popular: false
-            visitscotland:seoDescription: The Victorian Heritage Trail pinpoints
-              many of the historic places that make the picturesque Dee and Don
-              Valleys, in the north east of Scotland, a truly majestic place.
+            visitscotland:seoDescription: The Victorian Heritage Trail pinpoints many
+              of the historic places that make the picturesque Dee and Don Valleys,
+              in the north east of Scotland, a truly majestic place.
             visitscotland:seoNoIndex: false
             visitscotland:seoTitle: Victorian Heritage Trail
             visitscotland:start: ''
-            visitscotland:teaser: The Victorian Heritage Trail pinpoints many of
-              the historic places that make the picturesque Dee and Don Valleys,
-              in the north east of Scotland, a truly majestic place.
+            visitscotland:teaser: The Victorian Heritage Trail pinpoints many of the
+              historic places that make the picturesque Dee and Don Valleys, in the
+              north east of Scotland, a truly majestic place.
             visitscotland:theme: sightseeing
             visitscotland:title: Victorian Heritage Trail
             visitscotland:transports: [car]
@@ -135,15 +135,15 @@
             visitscotland:finish: ''
             visitscotland:highlights: "Balmoral Castle \r\nBraemar Castle\r\nBallater"
             visitscotland:popular: false
-            visitscotland:seoDescription: The Victorian Heritage Trail pinpoints
-              many of the historic places that make the picturesque Dee and Don
-              Valleys, in the north east of Scotland, a truly majestic place.
+            visitscotland:seoDescription: The Victorian Heritage Trail pinpoints many
+              of the historic places that make the picturesque Dee and Don Valleys,
+              in the north east of Scotland, a truly majestic place.
             visitscotland:seoNoIndex: false
             visitscotland:seoTitle: Victorian Heritage Trail
             visitscotland:start: ''
-            visitscotland:teaser: The Victorian Heritage Trail pinpoints many of
-              the historic places that make the picturesque Dee and Don Valleys,
-              in the north east of Scotland, a truly majestic place.
+            visitscotland:teaser: The Victorian Heritage Trail pinpoints many of the
+              historic places that make the picturesque Dee and Don Valleys, in the
+              north east of Scotland, a truly majestic place.
             visitscotland:theme: sightseeing
             visitscotland:title: Victorian Heritage Trail
             visitscotland:transports: [car]
@@ -181,11 +181,11 @@
             visitscotland:transports: [car]
             /visitscotland:introduction:
               jcr:primaryType: hippostd:html
-              hippostd:content: <p>The first day on your itinerary is jam-packed
-                with Victorian attractions for you to explore. See Victorian architecture
+              hippostd:content: <p>The first day on your itinerary is jam-packed with
+                Victorian attractions for you to explore. See Victorian architecture
                 at Drum Castle, visit the railway station used by Queen Victoria,
-                learn about Queen Victoria’s connection with Crathes Castle and
-                see beautiful Victorian artwork at Finzean Estate.</p>
+                learn about Queen Victoria’s connection with Crathes Castle and see
+                beautiful Victorian artwork at Finzean Estate.</p>
             /visitscotland:stops[1]:
               jcr:primaryType: hippo:mirror
               hippo:docbase: b390df94-227d-4535-a7a2-6073465d6642
@@ -214,11 +214,11 @@
             visitscotland:transports: [car]
             /visitscotland:introduction:
               jcr:primaryType: hippostd:html
-              hippostd:content: <p>The first day on your itinerary is jam-packed
-                with Victorian attractions for you to explore. See Victorian architecture
+              hippostd:content: <p>The first day on your itinerary is jam-packed with
+                Victorian attractions for you to explore. See Victorian architecture
                 at Drum Castle, visit the railway station used by Queen Victoria,
-                learn about Queen Victoria’s connection with Crathes Castle and
-                see beautiful Victorian artwork at Finzean Estate.</p>
+                learn about Queen Victoria’s connection with Crathes Castle and see
+                beautiful Victorian artwork at Finzean Estate.</p>
             /visitscotland:stops[1]:
               jcr:primaryType: hippo:mirror
               hippo:docbase: b390df94-227d-4535-a7a2-6073465d6642
@@ -248,11 +248,11 @@
             visitscotland:transports: [car]
             /visitscotland:introduction:
               jcr:primaryType: hippostd:html
-              hippostd:content: <p>The first day on your itinerary is jam-packed
-                with Victorian attractions for you to explore. See Victorian architecture
+              hippostd:content: <p>The first day on your itinerary is jam-packed with
+                Victorian attractions for you to explore. See Victorian architecture
                 at Drum Castle, visit the railway station used by Queen Victoria,
-                learn about Queen Victoria’s connection with Crathes Castle and
-                see beautiful Victorian artwork at Finzean Estate.</p>
+                learn about Queen Victoria’s connection with Crathes Castle and see
+                beautiful Victorian artwork at Finzean Estate.</p>
             /visitscotland:stops[1]:
               jcr:primaryType: hippo:mirror
               hippo:docbase: b390df94-227d-4535-a7a2-6073465d6642
@@ -391,8 +391,8 @@
           visitscotland:seoTitle: 12 Iconic Scottish Views
           visitscotland:summaryTitle: A Testing Title
           visitscotland:teaser: Find some of the most beautiful places in Scotland,
-            including iconic viewpoints and lesser known gems, alongside advice
-            on how to get there.
+            including iconic viewpoints and lesser known gems, alongside advice on
+            how to get there.
           visitscotland:title: 12 Iconic Scottish Views
           /visitscotland:heroImage:
             jcr:primaryType: hippogallerypicker:imagelink
@@ -433,8 +433,8 @@
           visitscotland:seoTitle: 12 Iconic Scottish Views
           visitscotland:summaryTitle: A Testing Title
           visitscotland:teaser: Find some of the most beautiful places in Scotland,
-            including iconic viewpoints and lesser known gems, alongside advice
-            on how to get there.
+            including iconic viewpoints and lesser known gems, alongside advice on
+            how to get there.
           visitscotland:title: 12 Iconic Scottish Views
           /visitscotland:heroImage:
             jcr:primaryType: hippogallerypicker:imagelink
@@ -476,8 +476,8 @@
           visitscotland:seoTitle: 12 Iconic Scottish Views
           visitscotland:summaryTitle: A Testing Title
           visitscotland:teaser: Find some of the most beautiful places in Scotland,
-            including iconic viewpoints and lesser known gems, alongside advice
-            on how to get there.
+            including iconic viewpoints and lesser known gems, alongside advice on
+            how to get there.
           visitscotland:title: 12 Iconic Scottish Views
           /visitscotland:heroImage:
             jcr:primaryType: hippogallerypicker:imagelink
@@ -738,8 +738,8 @@
             visitscotland:product: '727241'
           /visitscotland:extraLinks:
             jcr:primaryType: visitscotland:CMSLink
-            visitscotland:label: Discover more things to do on the stunning Isle
-              of Arran
+            visitscotland:label: Discover more things to do on the stunning Isle of
+              Arran
             /visitscotland:link:
               jcr:primaryType: hippo:mirror
               hippo:docbase: 8b4a3c11-8b84-4aa0-bccf-f407d18c1c44
@@ -769,8 +769,8 @@
             visitscotland:product: '727241'
           /visitscotland:extraLinks:
             jcr:primaryType: visitscotland:CMSLink
-            visitscotland:label: Discover more things to do on the stunning Isle
-              of Arran
+            visitscotland:label: Discover more things to do on the stunning Isle of
+              Arran
             /visitscotland:link:
               jcr:primaryType: hippo:mirror
               hippo:docbase: 8b4a3c11-8b84-4aa0-bccf-f407d18c1c44
@@ -801,8 +801,8 @@
             visitscotland:product: '727241'
           /visitscotland:extraLinks:
             jcr:primaryType: visitscotland:CMSLink
-            visitscotland:label: Discover more things to do on the stunning Isle
-              of Arran
+            visitscotland:label: Discover more things to do on the stunning Isle of
+              Arran
             /visitscotland:link:
               jcr:primaryType: hippo:mirror
               hippo:docbase: 8b4a3c11-8b84-4aa0-bccf-f407d18c1c44
@@ -838,8 +838,8 @@
             visitscotland:product: '245821'
           /visitscotland:extraLinks:
             jcr:primaryType: visitscotland:CMSLink
-            visitscotland:label: Get more inspiration for a fabulous city break
-              in Edinburgh.
+            visitscotland:label: Get more inspiration for a fabulous city break in
+              Edinburgh.
             /visitscotland:link:
               jcr:primaryType: hippo:mirror
               hippo:docbase: 8b4a3c11-8b84-4aa0-bccf-f407d18c1c44
@@ -874,8 +874,8 @@
             visitscotland:product: '245821'
           /visitscotland:extraLinks:
             jcr:primaryType: visitscotland:CMSLink
-            visitscotland:label: Get more inspiration for a fabulous city break
-              in Edinburgh.
+            visitscotland:label: Get more inspiration for a fabulous city break in
+              Edinburgh.
             /visitscotland:link:
               jcr:primaryType: hippo:mirror
               hippo:docbase: 8b4a3c11-8b84-4aa0-bccf-f407d18c1c44
@@ -911,8 +911,8 @@
             visitscotland:product: '245821'
           /visitscotland:extraLinks:
             jcr:primaryType: visitscotland:CMSLink
-            visitscotland:label: Get more inspiration for a fabulous city break
-              in Edinburgh.
+            visitscotland:label: Get more inspiration for a fabulous city break in
+              Edinburgh.
             /visitscotland:link:
               jcr:primaryType: hippo:mirror
               hippo:docbase: 8b4a3c11-8b84-4aa0-bccf-f407d18c1c44
@@ -1050,8 +1050,7 @@
             jcr:primaryType: visitscotland:InstagramImage
             visitscotland:caption: Loch Katrine from Ben A'an
             visitscotland:id: B9KJD_HpRfO
-            visitscotland:location: Loch Lomond, The Trossachs, Stirling & Forth
-              Valley
+            visitscotland:location: Loch Lomond, The Trossachs, Stirling & Forth Valley
           /visitscotland:extraLinks:
             jcr:primaryType: visitscotland:CMSLink
             visitscotland:label: See more things to do around the iconic Loch Lomond
@@ -1088,8 +1087,7 @@
             jcr:primaryType: visitscotland:InstagramImage
             visitscotland:caption: Loch Katrine from Ben A'an
             visitscotland:id: B9KJD_HpRfO
-            visitscotland:location: Loch Lomond, The Trossachs, Stirling & Forth
-              Valley
+            visitscotland:location: Loch Lomond, The Trossachs, Stirling & Forth Valley
           /visitscotland:extraLinks:
             jcr:primaryType: visitscotland:CMSLink
             visitscotland:label: See more things to do around the iconic Loch Lomond
@@ -1127,8 +1125,7 @@
             jcr:primaryType: visitscotland:InstagramImage
             visitscotland:caption: Loch Katrine from Ben A'an
             visitscotland:id: B9KJD_HpRfO
-            visitscotland:location: Loch Lomond, The Trossachs, Stirling & Forth
-              Valley
+            visitscotland:location: Loch Lomond, The Trossachs, Stirling & Forth Valley
           /visitscotland:extraLinks:
             jcr:primaryType: visitscotland:CMSLink
             visitscotland:label: See more things to do around the iconic Loch Lomond
@@ -1371,9 +1368,9 @@
               can also catch the ferry from Oban and South Uist or drive from Vatersay
               - but the view from above is simply incredible. Marvel at the crystal
               clear waters and paradise island just before you touch down on Traigh
-              Mhòr beach - the world''s only beach runway for scheduled flights.
-              An unforgettable experience. How to get there: book your flight from
-              Glasgow to Barra Airport.</p>'
+              Mhòr beach - the world''s only beach runway for scheduled flights. An
+              unforgettable experience. How to get there: book your flight from Glasgow
+              to Barra Airport.</p>'
           /visitscotland:products:
             jcr:primaryType: visitscotland:DMSLink
             visitscotland:label: ''
@@ -1398,9 +1395,9 @@
               can also catch the ferry from Oban and South Uist or drive from Vatersay
               - but the view from above is simply incredible. Marvel at the crystal
               clear waters and paradise island just before you touch down on Traigh
-              Mhòr beach - the world''s only beach runway for scheduled flights.
-              An unforgettable experience. How to get there: book your flight from
-              Glasgow to Barra Airport.</p>'
+              Mhòr beach - the world''s only beach runway for scheduled flights. An
+              unforgettable experience. How to get there: book your flight from Glasgow
+              to Barra Airport.</p>'
           /visitscotland:products:
             jcr:primaryType: visitscotland:DMSLink
             visitscotland:label: ''
@@ -1426,9 +1423,9 @@
               can also catch the ferry from Oban and South Uist or drive from Vatersay
               - but the view from above is simply incredible. Marvel at the crystal
               clear waters and paradise island just before you touch down on Traigh
-              Mhòr beach - the world''s only beach runway for scheduled flights.
-              An unforgettable experience. How to get there: book your flight from
-              Glasgow to Barra Airport.</p>'
+              Mhòr beach - the world''s only beach runway for scheduled flights. An
+              unforgettable experience. How to get there: book your flight from Glasgow
+              to Barra Airport.</p>'
           /visitscotland:products:
             jcr:primaryType: visitscotland:DMSLink
             visitscotland:label: ''
@@ -1587,8 +1584,7 @@
             visitscotland:location: The Highlands
           /visitscotland:extraLinks:
             jcr:primaryType: visitscotland:CMSLink
-            visitscotland:label: Discover more things to do in the epic Scottish
-              Highlands
+            visitscotland:label: Discover more things to do in the epic Scottish Highlands
             /visitscotland:link:
               jcr:primaryType: hippo:mirror
               hippo:docbase: 8b4a3c11-8b84-4aa0-bccf-f407d18c1c44
@@ -1623,8 +1619,7 @@
             visitscotland:location: The Highlands
           /visitscotland:extraLinks:
             jcr:primaryType: visitscotland:CMSLink
-            visitscotland:label: Discover more things to do in the epic Scottish
-              Highlands
+            visitscotland:label: Discover more things to do in the epic Scottish Highlands
             /visitscotland:link:
               jcr:primaryType: hippo:mirror
               hippo:docbase: 8b4a3c11-8b84-4aa0-bccf-f407d18c1c44
@@ -1660,8 +1655,7 @@
             visitscotland:location: The Highlands
           /visitscotland:extraLinks:
             jcr:primaryType: visitscotland:CMSLink
-            visitscotland:label: Discover more things to do in the epic Scottish
-              Highlands
+            visitscotland:label: Discover more things to do in the epic Scottish Highlands
             /visitscotland:link:
               jcr:primaryType: hippo:mirror
               hippo:docbase: 8b4a3c11-8b84-4aa0-bccf-f407d18c1c44

@@ -2,7 +2,7 @@
   jcr:primaryType: hippostd:folder
   jcr:mixinTypes: ['hippo:named', 'hippotranslation:translated', 'mix:versionable']
   jcr:uuid: aadf48d2-c6fb-4ce3-a311-c47c182c8a0f
-  hippo:name: dev-test
+  hippo:name: Sandbox
   hippostd:foldertype: [new-translated-folder, new-document]
   hippotranslation:id: 0ff458fa-cab8-47ba-9862-d8a0b7a1bacf
   hippotranslation:locale: en
