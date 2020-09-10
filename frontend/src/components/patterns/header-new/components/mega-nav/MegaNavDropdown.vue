@@ -1,5 +1,8 @@
 <template>
-    <div class="vs-mega-nav__dropdown">
+    <div
+        class="vs-mega-nav__dropdown"
+        data-test="vs-mega-nav__dropdown"
+    >
         <BDropdown
             variant="transparent"
             ref="dropdown"

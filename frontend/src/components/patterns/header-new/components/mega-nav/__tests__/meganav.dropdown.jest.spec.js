@@ -1,5 +1,5 @@
 import { shallowMount, mount } from '@vue/test-utils';
-import VsMegaNavDropdown from './MegaNavDropdown';
+import VsMegaNavDropdown from '../MegaNavDropdown';
 
 const factoryShallowMount = () => shallowMount(VsMegaNavDropdown, {
     slots: {
@@ -12,7 +12,7 @@ const factoryShallowMount = () => shallowMount(VsMegaNavDropdown, {
 describe('VsMegaNavDropdown', () => {
     it('should render a component with the class `.vs-mega-nav__dropdown`', () => {
         const wrapper = factoryShallowMount();
-        expect(wrapper.classes()).toContain('vs-mega-nav__dropdown');
+        expect(wrapper.attributes('data-test')).toBe('vs-mega-nav__dropdown');
     });
 
     describe(':slots', () => {
@@ -40,17 +40,6 @@ describe('VsMegaNavDropdown', () => {
             wrapper.vm.$root.$emit('bv::dropdown::hide');
 
             expect(wrapper.emitted().menuToggled).toBeTruthy();
-        });
-
-        it('resize to have been called', () => {
-            const onResize = jest.fn();
-            window.addEventListener('resize', onResize);
-            window.dispatchEvent(new Event('resize'));
-
-            // wrapper.find('.dropdown-toggle').trigger('click');
-            // console.log(wrapper.html());
-
-            expect(onResize).toHaveBeenCalled();
         });
     });
 });
