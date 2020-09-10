@@ -1,5 +1,8 @@
 <template>
-    <div class="vs-mega-nav bg-white">
+    <div
+        class="vs-mega-nav bg-white"
+        data-test="vs-mega-nav"
+    >
         <VsContainer>
             <VsRow class="align-items-center justify-content-sm-end">
                 <!-- Logo Link -->

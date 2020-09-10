@@ -1,6 +1,6 @@
 import { shallowMount, mount } from '@vue/test-utils';
-import VsMegaNav from './MegaNav';
-import VsMegaNavDropdown from './MegaNavDropdown';
+import VsMegaNav from '../MegaNav';
+import VsMegaNavDropdown from '../MegaNavDropdown';
 
 const factoryShallowMount = () => shallowMount(VsMegaNav, {
     slots: {
@@ -11,12 +11,12 @@ const factoryShallowMount = () => shallowMount(VsMegaNav, {
 describe('VsMegaNav', () => {
     it('should render a component with the class `.vs-mega-nav`', () => {
         const wrapper = factoryShallowMount();
-        expect(wrapper.classes()).toContain('vs-mega-nav');
+        expect(wrapper.attributes('data-test')).toBe('vs-mega-nav');
     });
 
     it('should render a button with an `icon-bars-mobile-menu` icon', () => {
         const wrapper = mount(VsMegaNav);
-        const dropdownToggle = wrapper.find('.dropdown-toggle');
+        const dropdownToggle = wrapper.find('[data-test="vs-mega-nav__dropdown"]').find('.dropdown-toggle');
 
         expect(dropdownToggle.exists()).toBe(true);
         expect(dropdownToggle.html()).toContain('icon-bars-mobile-menu');
@@ -25,7 +25,7 @@ describe('VsMegaNav', () => {
     describe(':events', () => {
         it('displays a button with an `icon-close` icon when menuToggled event is emitted', () => {
             const wrapper = mount(VsMegaNav);
-            const dropdownToggle = wrapper.find('.dropdown-toggle');
+            const dropdownToggle = wrapper.find('[data-test="vs-mega-nav__dropdown"]').find('.dropdown-toggle');
             wrapper.find(VsMegaNavDropdown).vm.$emit('menuToggled');
 
             expect(dropdownToggle.html()).toContain('icon-close');
