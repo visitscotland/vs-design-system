@@ -48,7 +48,17 @@ public class Page extends BaseDocument implements Linkable {
         return getSingleProperty("visitscotland:teaser");
     }
 
-    public Image getImage(){
+    public Image getImage() {
         return getHeroImage();
+    }
+
+    @HippoEssentialsGenerated(internalName = "visitscotland:diff")
+    public String getDiff() {
+        return getSingleProperty("visitscotland:diff");
+    }
+
+    @HippoEssentialsGenerated(internalName = "visitscotland:translationFlag")
+    public Boolean getTranslationFlag() {
+        return getSingleProperty("visitscotland:translationFlag");
     }
 }
