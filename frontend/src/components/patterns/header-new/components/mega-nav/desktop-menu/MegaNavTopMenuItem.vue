@@ -1,6 +1,7 @@
 <template>
     <li
         class="vs-mega-nav__top-menu__item"
+        data-test="vs-mega-nav__top-menu__item"
         ref="menuToggle"
     >
         <VsMegaNavDropdown>
@@ -14,6 +15,7 @@
                     v-if="href && ctaText"
                     :href="href"
                     class="vs-mega-nav__cta-link"
+                    data-test="vs-mega-nav__cta-link"
                 >
                     {{ ctaText }}
                 </a>

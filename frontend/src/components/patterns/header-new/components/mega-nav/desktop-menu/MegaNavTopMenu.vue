@@ -2,6 +2,7 @@
     <VsList
         unstyled
         class="vs-mega-nav__top-menu"
+        data-test="vs-mega-nav__top-menu"
     >
         <!-- @slot Default slot for top menu items -->
         <slot />

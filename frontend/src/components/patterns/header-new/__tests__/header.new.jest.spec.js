@@ -1,5 +1,5 @@
 import { shallowMount } from '@vue/test-utils';
-import VsHeaderNew from './HeaderNew';
+import VsHeaderNew from '../HeaderNew';
 
 const factoryShallowMount = () => shallowMount(VsHeaderNew, {
     slots: {
@@ -15,7 +15,7 @@ beforeEach(() => {
 
 describe('VsHeaderNew', () => {
     it('should render a component with the class `.vs-header`', () => {
-        expect(wrapper.classes()).toContain('vs-header');
+        expect(wrapper.attributes('data-test')).toBe('vs-header');
     });
 
     describe(':slots', () => {

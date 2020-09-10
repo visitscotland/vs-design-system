@@ -1,5 +1,5 @@
 import { shallowMount } from '@vue/test-utils';
-import VsMegaNavTopMenu from './MegaNavTopMenu';
+import VsMegaNavTopMenu from '../MegaNavTopMenu';
 
 const factoryShallowMount = () => shallowMount(VsMegaNavTopMenu, {
     slots: {
@@ -10,7 +10,7 @@ const factoryShallowMount = () => shallowMount(VsMegaNavTopMenu, {
 describe('VsMegaNavTopMenu', () => {
     it('should render a component with the class `.vs-mega-nav__top-menu`', () => {
         const wrapper = factoryShallowMount();
-        expect(wrapper.classes()).toContain('vs-mega-nav__top-menu');
+        expect(wrapper.attributes('data-test')).toBe('vs-mega-nav__top-menu');
     });
 
     describe(':slots', () => {

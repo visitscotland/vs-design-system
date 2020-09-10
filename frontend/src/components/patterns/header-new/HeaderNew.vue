@@ -1,5 +1,5 @@
 <template>
-    <header class="vs-header">
+    <header data-test="vs-header">
         <!-- @slot Global menu bar slot  -->
         <slot name="globalNav" />
 
