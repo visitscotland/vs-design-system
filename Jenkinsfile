@@ -33,9 +33,9 @@ pipeline {
   environment {
     MAVEN_SETTINGS = credentials('maven-settings')
     // from 20200804 VS_SSR_PROXY_ON will only affect whether the SSR app is packaged and sent to the container, using or bypassing will be set via query string
-    VS_SSR_PROXY_ON = 'FALSE'
+    VS_SSR_PROXY_ON = 'TRUE'
     // VS_CONTAINER_PRESERVE is set to TRUE in the ingrastructure build script, if this is set to FALSE the container will be rebuilt every time and the repository wiped
-    VS_CONTAINER_PRESERVE= 'FALSE'
+    VS_CONTAINER_PRESERVE= 'TRUE'
     // VS_BRXM_PERSISTENCE_METHOD can be set to either 'h2' or 'mysql' - do not change during the lifetime of a container or it will break the repo
     VS_BRXM_PERSISTENCE_METHOD = 'h2'
     VS_SKIP_BUILD_FOR_BRANCH = 'eg:feature/VS-1865-feature-environments-enhancements'
@@ -91,7 +91,7 @@ pipeline {
       }
       post {
         success {
-          sh 'mvn -f pom.xml install -P dist'
+          sh 'mvn -f pom.xml install -Pdist-with-development-data'
           mail bcc: '', body: "<b>Notification</b><br>Project: ${env.JOB_NAME} <br>Build Number: ${env.BUILD_NUMBER} <br> build URL: ${env.BUILD_URL}", cc: '', charset: 'UTF-8', from: '', mimeType: 'text/html', replyTo: '', subject: "SUCCESS CI: Project name -> ${env.JOB_NAME}", to: "${MAIL_TO}";
         }
         failure {
@@ -144,13 +144,13 @@ pipeline {
       }
       steps {
         // -- 20200712: QUESTION FOR SE, "brC does not recognise the package, maybe it needs Enterprise Features?"
-        sh 'mvn verify && mvn -Pdist -P!fed-build -DskipTests'
+        sh 'mvn verify && mvn -Pdist-with-development-data -P!fed-build -DskipTests'
       }
       post {
         success {
           //sh 'mvn -f pom.xml install -P !default'
 	  // -- 20200712: extra install step removed
-          //sh 'mvn -f pom.xml install -P dist'
+          //sh 'mvn -f pom.xml install -Pdist-with-development-data'
           mail bcc: '', body: "<b>Notification</b><br>Project: ${env.JOB_NAME} <br>Build Number: ${env.BUILD_NUMBER} <br> build URL: ${env.BUILD_URL}", cc: '', charset: 'UTF-8', from: '', mimeType: 'text/html', replyTo: '', subject: "SUCCESS CI: Project name -> ${env.JOB_NAME}", to: "${MAIL_TO}";
         }
         failure {
@@ -166,7 +166,7 @@ pipeline {
         }
         steps{
             script{
-                sh 'mvn -f pom.xml deploy -P dist -s $MAVEN_SETTINGS'
+                sh 'mvn -f pom.xml deploy -Pdist-with-development-data -s $MAVEN_SETTINGS'
             }
         }
     }
@@ -192,7 +192,7 @@ pipeline {
             }
             echo "Uploading version $NEW_TAG to Nexus"
             sh "mvn versions:set -DremoveSnapshot"
-            sh "mvn -B clean  deploy -P dist -Drevision=$NEW_TAG -Dchangelist= -DskipTests -s $MAVEN_SETTINGS"
+            sh "mvn -B clean  deploy -Pdist-with-development-data -Drevision=$NEW_TAG -Dchangelist= -DskipTests -s $MAVEN_SETTINGS"
         }
 
     }
