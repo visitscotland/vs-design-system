@@ -534,13 +534,13 @@
                 jcr:primaryType: visitscotland:DMSLink
                 visitscotland:label: ''
                 visitscotland:product: '123456'
-        /translated-itinerary:
+        /content:
           jcr:primaryType: hippo:handle
           jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
           jcr:uuid: d4ebba2b-3549-462e-a495-465ee3a3b07c
           hippo:name: Translated Itinerary
-          hippo:versionHistory: 92695201-1092-4230-a35c-192ec2393d1f
-          /translated-itinerary[1]:
+          hippo:versionHistory: 4e5ac881-838d-4861-b280-c86f538e0afe
+          /content[1]:
             jcr:primaryType: visitscotland:Itinerary
             jcr:mixinTypes: ['mix:referenceable']
             jcr:uuid: c04d9860-5948-42e9-ac83-532266335af3
@@ -575,7 +575,7 @@
             /visitscotland:introduction:
               jcr:primaryType: hippostd:html
               hippostd:content: <p>introduction</p>
-          /translated-itinerary[2]:
+          /content[2]:
             jcr:primaryType: visitscotland:Itinerary
             jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
             jcr:uuid: 498a1f9e-9282-4ebc-8d1c-03f4953bf963
@@ -610,7 +610,7 @@
             /visitscotland:introduction:
               jcr:primaryType: hippostd:html
               hippostd:content: <p>introduction</p>
-          /translated-itinerary[3]:
+          /content[3]:
             jcr:primaryType: visitscotland:Itinerary
             jcr:mixinTypes: ['mix:referenceable']
             jcr:uuid: f233ebf8-b1d8-453f-a13d-502af2eec04d
@@ -620,7 +620,7 @@
             hippostdpubwf:creationDate: 2020-07-29T21:37:27.499+01:00
             hippostdpubwf:lastModificationDate: 2020-07-29T21:41:04.128+01:00
             hippostdpubwf:lastModifiedBy: admin
-            hippostdpubwf:publicationDate: 2020-07-29T21:47:25.809+01:00
+            hippostdpubwf:publicationDate: 2020-09-11T15:02:50.500+01:00
             hippotranslation:id: 86c356e6-e603-44b1-9fc1-5541bce5c32c
             hippotranslation:locale: en
             visitscotland:areas: [all]

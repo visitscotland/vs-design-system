@@ -2,7 +2,7 @@
   jcr:primaryType: hippostd:folder
   jcr:mixinTypes: ['hippo:named', 'hippotranslation:translated', 'mix:versionable']
   jcr:uuid: aadf48d2-c6fb-4ce3-a311-c47c182c8a0f
-  hippo:name: Sandbox
+  hippo:name: sandbox
   hippostd:foldertype: [new-translated-folder, new-document]
   hippotranslation:id: 0ff458fa-cab8-47ba-9862-d8a0b7a1bacf
   hippotranslation:locale: en
@@ -2180,7 +2180,6 @@
           jcr:mixinTypes: ['mix:referenceable']
           jcr:uuid: 116b29ac-dbf3-4c7e-b97f-b4e41dc3aefd
           hippo:availability: []
-          hippostd:holder: admin
           hippostd:state: draft
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2020-05-21T17:54:15.934+01:00
@@ -3066,91 +3065,98 @@
             /visitscotland:link:
               jcr:primaryType: hippo:mirror
               hippo:docbase: 8b4a3c11-8b84-4aa0-bccf-f407d18c1c44
-  /vuex-example:
-    jcr:primaryType: hippo:handle
-    jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
-    jcr:uuid: 0d6bb0a2-5587-4cf5-a308-b9f4ff4fd7b2
-    hippo:name: Vuex Example
-    hippo:versionHistory: fd8359dd-042c-4e19-97e5-b5e344ff87a0
-    /vuex-example[1]:
-      jcr:primaryType: visitscotland:Page
-      jcr:mixinTypes: ['mix:referenceable']
-      jcr:uuid: 142a5071-9912-44da-ae9d-b7d50da49fcc
-      hippo:availability: []
-      hippostd:state: draft
-      hippostdpubwf:createdBy: admin
-      hippostdpubwf:creationDate: 2020-06-03T17:16:44.731+01:00
-      hippostdpubwf:lastModificationDate: 2020-06-03T17:17:28.872+01:00
-      hippostdpubwf:lastModifiedBy: admin
-      hippotranslation:id: 340dc6b8-3892-42d5-8445-22d6d45a58ee
-      hippotranslation:locale: en
-      visitscotland:breadcrumb: ''
-      visitscotland:seoDescription: Example of Vuex store use
-      visitscotland:seoNoIndex: false
-      visitscotland:seoTitle: Example of Vuex store use
-      visitscotland:teaser: Example of Vuex store use
-      visitscotland:title: Vuex Example
-      /visitscotland:heroImage:
-        jcr:primaryType: hippogallerypicker:imagelink
-        hippo:docbase: aecf0250-aae9-42d9-bc08-34d80ec9b49c
-        hippo:facets: []
-        hippo:modes: []
-        hippo:values: []
-      /visitscotland:introduction:
-        jcr:primaryType: hippostd:html
-        hippostd:content: <p>Example of Vuex store use</p>
-    /vuex-example[2]:
-      jcr:primaryType: visitscotland:Page
-      jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
-      jcr:uuid: 6ac37523-5b84-4027-b0f1-fa9c0c2e0e2b
-      hippo:availability: [preview]
-      hippostd:state: unpublished
-      hippostdpubwf:createdBy: admin
-      hippostdpubwf:creationDate: 2020-06-03T17:16:44.731+01:00
-      hippostdpubwf:lastModificationDate: 2020-06-03T17:17:28.681+01:00
-      hippostdpubwf:lastModifiedBy: admin
-      hippotranslation:id: 340dc6b8-3892-42d5-8445-22d6d45a58ee
-      hippotranslation:locale: en
-      visitscotland:breadcrumb: ''
-      visitscotland:seoDescription: Example of Vuex store use
-      visitscotland:seoNoIndex: false
-      visitscotland:seoTitle: Example of Vuex store use
-      visitscotland:teaser: Example of Vuex store use
-      visitscotland:title: Vuex Example
-      /visitscotland:heroImage:
-        jcr:primaryType: hippogallerypicker:imagelink
-        hippo:docbase: aecf0250-aae9-42d9-bc08-34d80ec9b49c
-        hippo:facets: []
-        hippo:modes: []
-        hippo:values: []
-      /visitscotland:introduction:
-        jcr:primaryType: hippostd:html
-        hippostd:content: <p>Example of Vuex store use</p>
-    /vuex-example[3]:
-      jcr:primaryType: visitscotland:Page
-      jcr:mixinTypes: ['mix:referenceable']
-      jcr:uuid: 17c90868-597e-400e-bfcd-a586dbeaaf5f
-      hippo:availability: [live]
-      hippostd:state: published
-      hippostdpubwf:createdBy: admin
-      hippostdpubwf:creationDate: 2020-06-03T17:16:44.731+01:00
-      hippostdpubwf:lastModificationDate: 2020-06-03T17:17:28.681+01:00
-      hippostdpubwf:lastModifiedBy: admin
-      hippostdpubwf:publicationDate: 2020-06-03T17:17:35.141+01:00
-      hippotranslation:id: 340dc6b8-3892-42d5-8445-22d6d45a58ee
-      hippotranslation:locale: en
-      visitscotland:breadcrumb: ''
-      visitscotland:seoDescription: Example of Vuex store use
-      visitscotland:seoNoIndex: false
-      visitscotland:seoTitle: Example of Vuex store use
-      visitscotland:teaser: Example of Vuex store use
-      visitscotland:title: Vuex Example
-      /visitscotland:heroImage:
-        jcr:primaryType: hippogallerypicker:imagelink
-        hippo:docbase: aecf0250-aae9-42d9-bc08-34d80ec9b49c
-        hippo:facets: []
-        hippo:modes: []
-        hippo:values: []
-      /visitscotland:introduction:
-        jcr:primaryType: hippostd:html
-        hippostd:content: <p>Example of Vuex store use</p>
+  /vuex:
+    jcr:primaryType: hippostd:folder
+    jcr:mixinTypes: ['hippotranslation:translated', 'mix:versionable']
+    jcr:uuid: 9f085b8d-9b82-4977-9d5a-a8c427b22dc0
+    hippostd:foldertype: [new-translated-folder, new-document]
+    hippotranslation:id: 1a89cacc-e15f-455b-96a0-38b6a4339d42
+    hippotranslation:locale: en
+    /content:
+      jcr:primaryType: hippo:handle
+      jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
+      jcr:uuid: 0d6bb0a2-5587-4cf5-a308-b9f4ff4fd7b2
+      hippo:name: Vuex Example
+      hippo:versionHistory: 05918143-8c19-4cbe-921d-46297567531e
+      /content[1]:
+        jcr:primaryType: visitscotland:Page
+        jcr:mixinTypes: ['mix:referenceable']
+        jcr:uuid: 142a5071-9912-44da-ae9d-b7d50da49fcc
+        hippo:availability: []
+        hippostd:state: draft
+        hippostdpubwf:createdBy: admin
+        hippostdpubwf:creationDate: 2020-06-03T17:16:44.731+01:00
+        hippostdpubwf:lastModificationDate: 2020-06-03T17:17:28.872+01:00
+        hippostdpubwf:lastModifiedBy: admin
+        hippotranslation:id: 340dc6b8-3892-42d5-8445-22d6d45a58ee
+        hippotranslation:locale: en
+        visitscotland:breadcrumb: ''
+        visitscotland:seoDescription: Example of Vuex store use
+        visitscotland:seoNoIndex: false
+        visitscotland:seoTitle: Example of Vuex store use
+        visitscotland:teaser: Example of Vuex store use
+        visitscotland:title: Vuex Example
+        /visitscotland:heroImage:
+          jcr:primaryType: hippogallerypicker:imagelink
+          hippo:docbase: aecf0250-aae9-42d9-bc08-34d80ec9b49c
+          hippo:facets: []
+          hippo:modes: []
+          hippo:values: []
+        /visitscotland:introduction:
+          jcr:primaryType: hippostd:html
+          hippostd:content: <p>Example of Vuex store use</p>
+      /content[2]:
+        jcr:primaryType: visitscotland:Page
+        jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
+        jcr:uuid: 6ac37523-5b84-4027-b0f1-fa9c0c2e0e2b
+        hippo:availability: [preview]
+        hippostd:state: unpublished
+        hippostdpubwf:createdBy: admin
+        hippostdpubwf:creationDate: 2020-06-03T17:16:44.731+01:00
+        hippostdpubwf:lastModificationDate: 2020-06-03T17:17:28.681+01:00
+        hippostdpubwf:lastModifiedBy: admin
+        hippotranslation:id: 340dc6b8-3892-42d5-8445-22d6d45a58ee
+        hippotranslation:locale: en
+        visitscotland:breadcrumb: ''
+        visitscotland:seoDescription: Example of Vuex store use
+        visitscotland:seoNoIndex: false
+        visitscotland:seoTitle: Example of Vuex store use
+        visitscotland:teaser: Example of Vuex store use
+        visitscotland:title: Vuex Example
+        /visitscotland:heroImage:
+          jcr:primaryType: hippogallerypicker:imagelink
+          hippo:docbase: aecf0250-aae9-42d9-bc08-34d80ec9b49c
+          hippo:facets: []
+          hippo:modes: []
+          hippo:values: []
+        /visitscotland:introduction:
+          jcr:primaryType: hippostd:html
+          hippostd:content: <p>Example of Vuex store use</p>
+      /content[3]:
+        jcr:primaryType: visitscotland:Page
+        jcr:mixinTypes: ['mix:referenceable']
+        jcr:uuid: 17c90868-597e-400e-bfcd-a586dbeaaf5f
+        hippo:availability: [live]
+        hippostd:state: published
+        hippostdpubwf:createdBy: admin
+        hippostdpubwf:creationDate: 2020-06-03T17:16:44.731+01:00
+        hippostdpubwf:lastModificationDate: 2020-06-03T17:17:28.681+01:00
+        hippostdpubwf:lastModifiedBy: admin
+        hippostdpubwf:publicationDate: 2020-09-11T15:14:31.952+01:00
+        hippotranslation:id: 340dc6b8-3892-42d5-8445-22d6d45a58ee
+        hippotranslation:locale: en
+        visitscotland:breadcrumb: ''
+        visitscotland:seoDescription: Example of Vuex store use
+        visitscotland:seoNoIndex: false
+        visitscotland:seoTitle: Example of Vuex store use
+        visitscotland:teaser: Example of Vuex store use
+        visitscotland:title: Vuex Example
+        /visitscotland:heroImage:
+          jcr:primaryType: hippogallerypicker:imagelink
+          hippo:docbase: aecf0250-aae9-42d9-bc08-34d80ec9b49c
+          hippo:facets: []
+          hippo:modes: []
+          hippo:values: []
+        /visitscotland:introduction:
+          jcr:primaryType: hippostd:html
+          hippostd:content: <p>Example of Vuex store use</p>
