@@ -3,6 +3,9 @@ import VsMegaNav from '../MegaNav';
 import VsMegaNavDropdown from '../MegaNavDropdown';
 
 const factoryShallowMount = () => shallowMount(VsMegaNav, {
+    propsData: {
+        href: 'https://www.visitscotland.com',
+    },
     slots: {
         megaNavTopMenuItems: '<div class="mega-nav-top-menu-items"></div>',
     },
@@ -20,6 +23,13 @@ describe('VsMegaNav', () => {
 
         expect(dropdownToggle.exists()).toBe(true);
         expect(dropdownToggle.html()).toContain('icon-bars-mobile-menu');
+    });
+
+    describe(':props', () => {
+        it('should display the URL `https://www.visitscotland.com` on the logo link when passed as `href` prop', () => {
+            const wrapper = factoryShallowMount();
+            expect(wrapper.find('[data-test="vs-mega-nav__logo"]').attributes().href).toBe('https://www.visitscotland.com');
+        });
     });
 
     describe(':events', () => {

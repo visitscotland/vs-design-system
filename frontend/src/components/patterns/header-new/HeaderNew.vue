@@ -1,5 +1,8 @@
 <template>
-    <header data-test="vs-header">
+    <header
+        class="vs-header"
+        data-test="vs-header"
+    >
         <!-- @slot Global menu bar slot  -->
         <slot name="globalNav" />
 
@@ -16,7 +19,14 @@ export default {
 };
 </script>
 
-<style lang="scss"></style>
+<style lang="scss">
+
+.vs-header{
+    position: relative;
+    z-index: 10;
+}
+
+</style>
 
 <docs>
     ```[import](./header.new.example.vue)
