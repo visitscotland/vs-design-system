@@ -1,0 +1,75 @@
+package com.visitscotland.brmx.translation;
+
+import org.hippoecm.editor.type.JcrTypeLocator;
+import org.hippoecm.frontend.types.IFieldDescriptor;
+import org.hippoecm.frontend.types.ITypeDescriptor;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
+import static org.mockito.ArgumentMatchers.eq;
+import static org.mockito.Mockito.lenient;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
+
+public final class ITypeDescriptorBuilder {
+    Boolean isNode;
+    String type;
+    JcrTypeLocator mockTypeLocator;
+    Map<String, IFieldDescriptor> declaredFieldMap;
+    List<String> superTypeList = new ArrayList<>();
+
+    public ITypeDescriptorBuilder withDeclaredFieldMap(Map<String, IFieldDescriptor> declaredFieldMap) {
+        this.declaredFieldMap = declaredFieldMap;
+        return this;
+    }
+
+    public ITypeDescriptorBuilder addToJcrTypeLocator(JcrTypeLocator mockTypeLocator) {
+        this.mockTypeLocator = mockTypeLocator;
+        return this;
+    }
+
+    public ITypeDescriptorBuilder withType(String type) {
+        this.type = type;
+        return this;
+    }
+
+    public ITypeDescriptorBuilder isNode(boolean isNode) {
+        this.isNode = isNode;
+        return this;
+    }
+
+    public ITypeDescriptorBuilder withSuperType(String type) {
+        superTypeList.add(type);
+        return this;
+    }
+
+    public ITypeDescriptorBuilder withSuperType(ITypeDescriptor superType) {
+        superTypeList.add(superType.getType());
+        return this;
+    }
+
+    public ITypeDescriptor build() throws Exception {
+        ITypeDescriptor mockTypeDescriptor = mock(ITypeDescriptor.class);
+
+        if ( null != declaredFieldMap ) {
+            when(mockTypeDescriptor.getDeclaredFields()).thenReturn(declaredFieldMap);
+        }
+
+        if ( null != type ) {
+            lenient().when(mockTypeDescriptor.getType()).thenReturn(type);
+            if ( null != mockTypeLocator ) {
+                when(mockTypeLocator.locate(eq(type))).thenReturn(mockTypeDescriptor);
+            }
+        }
+
+        if ( null != isNode ) {
+            when(mockTypeDescriptor.isNode()).thenReturn(isNode);
+        }
+
+        lenient().when(mockTypeDescriptor.getSuperTypes()).thenReturn(superTypeList);
+
+        return mockTypeDescriptor;
+    }
+}

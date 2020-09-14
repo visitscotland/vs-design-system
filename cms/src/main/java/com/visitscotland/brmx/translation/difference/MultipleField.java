@@ -3,6 +3,7 @@ package com.visitscotland.brmx.translation.difference;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.apache.commons.lang3.builder.ToStringBuilder;
 
 import java.util.List;
 
@@ -21,7 +22,6 @@ public class MultipleField extends Field {
     @Override
     public int hashCode() {
         return new HashCodeBuilder()
-                .append(getDisplayName())
                 .append(field)
                 .toHashCode();
     }
@@ -35,8 +35,14 @@ public class MultipleField extends Field {
         }
         MultipleField rhs = (MultipleField) obj;
         return new EqualsBuilder()
-                .append(getDisplayName(), rhs.getDisplayName())
                 .append(field, rhs.field)
                 .isEquals();
+    }
+
+    @Override
+    public String toString() {
+        return new ToStringBuilder(this)
+                .append("field", field)
+                .toString();
     }
 }

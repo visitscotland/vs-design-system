@@ -15,34 +15,5 @@ import org.apache.commons.lang3.builder.HashCodeBuilder;
         @JsonSubTypes.Type(value = SingleField.class, name="single")
 })
 public abstract class Field {
-    private String displayName;
 
-    public String getDisplayName() {
-        return displayName;
-    }
-
-    public void setDisplayName(String displayName) {
-        this.displayName = displayName;
-    }
-
-    @Override
-    public int hashCode() {
-        return new HashCodeBuilder()
-                .append(displayName)
-                .toHashCode();
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (obj == null) { return false; }
-        if (obj == this) { return true; }
-        if (obj instanceof Field) {
-            Field rhs = (Field) obj;
-            return new EqualsBuilder()
-                    .append(displayName, rhs.displayName)
-                    .isEquals();
-        } else {
-            return false;
-        }
-    }
 }

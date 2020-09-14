@@ -16,9 +16,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
-import org.springframework.web.server.ResponseStatusException;
 
 import javax.jcr.*;
 import java.io.IOException;
@@ -63,39 +61,31 @@ public class DifferenceGenerator {
      */
     public DocumentDifference getTranslationDifference(String nodeId) throws RepositoryException, StoreException {
         Node node = jcrSession.getNodeByIdentifier(nodeId);
-        JcrDocument document;
-        try {
-            document = jcrDocumentFactory.createFromNode(node);
-        } catch(IllegalArgumentException ex) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Node ID supplied must be for a document handle or a variant");
-        }
-
+        JcrDocument document = jcrDocumentFactory.createFromNode(node);
         Node unpublished = document.getVariantNode(JcrDocument.VARIANT_UNPUBLISHED);
         String primaryNodeType = unpublished.getPrimaryNodeType().getName();
         ITypeDescriptor typeDescriptor = jcrTypeLocator.locate(primaryNodeType);
         List<IFieldDescriptor> fieldDescriptorList = buildIFieldDescriptorList(typeDescriptor);
-        Map<String, String> captionMap = buildFieldNameToCaptionMap(typeDescriptor, jcrTypeLocator);
+        Map<String, String> captionMap = buildFieldNameToCaptionMap(typeDescriptor);
         return buildDocumentDifferences(document, fieldDescriptorList, captionMap);
     }
 
     protected List<IFieldDescriptor> buildIFieldDescriptorList(ITypeDescriptor typeDescriptor) throws StoreException {
-        // We need to build a set of the IFieldDescriptors that are defined on the Node type
-        Map<String, IFieldDescriptor> fieldDescriptorMap = new HashMap<>();
+        List<IFieldDescriptor> fieldDescriptors = new ArrayList<>();
         // The gets a Node's fields declared in its type but not its super types
-        fieldDescriptorMap.putAll(typeDescriptor.getDeclaredFields());
+        fieldDescriptors.addAll(typeDescriptor.getDeclaredFields().values());
         List<String> superTypes = typeDescriptor.getSuperTypes();
         // Iterate over the super types adding the declared fields from our namespace
         for (String superType : superTypes) {
-            // Can this be changed to the same namespace as the type we are looking at?
             if (superType.startsWith("visitscotland:")) {
                 ITypeDescriptor superTypeDesc = jcrTypeLocator.locate(superType);
-                fieldDescriptorMap.putAll(superTypeDesc.getDeclaredFields());
+                fieldDescriptors.addAll(buildIFieldDescriptorList(superTypeDesc));
             }
         }
-        return new ArrayList<>(fieldDescriptorMap.values());
+        return fieldDescriptors;
     }
 
-    protected Map<String, String> buildFieldNameToCaptionMap(ITypeDescriptor typeDescriptor, JcrTypeLocator locator) {
+    protected Map<String, String> buildFieldNameToCaptionMap(ITypeDescriptor typeDescriptor) {
         Map<String, Object> criteria = new HashMap<>();
         criteria.put("type", typeDescriptor);
         Iterator<IClusterConfig> iClusterConfigIterator = jcrTemplateStore.find(criteria);
@@ -105,13 +95,13 @@ public class DifferenceGenerator {
         } else {
             IClusterConfig config = iClusterConfigIterator.next();
             List<IPluginConfig> pluginList = config.getPlugins();
-            pluginList.stream().forEach(plugin -> {
+            for ( IPluginConfig plugin : pluginList ) {
                 String fieldName = (String)plugin.get("field");
                 String caption = (String)plugin.get("caption");
                 if (fieldName != null && caption != null) {
                     captionMap.put(fieldName, caption);
                 }
-            });
+            }
         }
         return captionMap;
     }
@@ -141,9 +131,9 @@ public class DifferenceGenerator {
                         liveValue = buildEmptyField(field);
                     }
                 } else {
-                    latestValue = buildField(field, unpublishedNode);
+                    latestValue = buildPropertyField(field, unpublishedNode);
                     if (null != liveNode) {
-                        liveValue = buildField(field, liveNode);
+                        liveValue = buildPropertyField(field, liveNode);
                     } else {
                         liveValue = buildEmptyField(field);
                     }
@@ -240,21 +230,25 @@ public class DifferenceGenerator {
         }
     }
 
-    protected Field buildField(IFieldDescriptor field, Node node) throws RepositoryException {
-        Property nodeProperty = node.getProperty(field.getPath());
-        if (field.isMultiple()) {
-            List<FieldValue> values = new ArrayList<>();
-            Value[] valueArray = nodeProperty.getValues();
-            for (Value val : valueArray) {
-                values.add(new FieldValue(val.getString()));
+    protected Field buildPropertyField(IFieldDescriptor field, Node node) throws PathNotFoundException, ValueFormatException, RepositoryException {
+        try {
+            Property nodeProperty = node.getProperty(field.getPath());
+            if (field.isMultiple()) {
+                List<FieldValue> values = new ArrayList<>();
+                Value[] valueArray = nodeProperty.getValues();
+                for (Value val : valueArray) {
+                    values.add(new FieldValue(val.getString()));
+                }
+                MultipleField fieldValue = new MultipleField();
+                fieldValue.setField(values);
+                return fieldValue;
+            } else {
+                SingleField fieldValue = new SingleField();
+                fieldValue.setField(new FieldValue(nodeProperty.getString()));
+                return fieldValue;
             }
-            MultipleField fieldValue = new MultipleField();
-            fieldValue.setField(values);
-            return fieldValue;
-        } else {
-            SingleField fieldValue = new SingleField();
-            fieldValue.setField(new FieldValue(nodeProperty.getValue().getString()));
-            return fieldValue;
+        } catch(PathNotFoundException ex) {
+            return buildEmptyField(field);
         }
     }
 }

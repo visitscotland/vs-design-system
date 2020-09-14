@@ -1,0 +1,186 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "version": "0.0.0",
+    "title": "title",
+    "description": "description"
+  },
+  "paths": {
+    "/node/{nodeId}/tranlation/diff": {
+      "get": {
+        "parameters": [
+          {
+            "name": "nodeId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DocumentDifference"
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "No difference found for node"
+          },
+          "400": {
+            "description": "Node id is not a valid format"
+          },
+          "404": {
+            "description": "Node not found"
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      }
+    },
+    "/node/{nodeId}/tranlation/flag": {
+      "delete": {
+        "parameters": [
+          {
+            "name": "nodeId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Node id is not a valid format"
+          },
+          "404": {
+            "description": "Node not found"
+          },
+          "409": {
+            "description": "Node being edited by user"
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "DocumentDifference": {
+        "type": "object",
+        "properties": {
+          "differences": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/FieldDifference"
+            }
+          }
+        }
+      },
+      "FieldDifference": {
+        "type": "object",
+        "oneOf": [
+          {
+            "properties": {
+              "property": {
+                "type": "string"
+              },
+              "caption": {
+                "type": "string"
+              },
+              "previous": {
+                "$ref": "#/components/schemas/SingleField"
+              },
+              "latest": {
+                "$ref": "#/components/schemas/SingleField"
+              }
+            },
+            "required": [
+              "property",
+              "caption"
+            ]
+          },
+          {
+            "properties": {
+              "property": {
+                "type": "string"
+              },
+              "caption": {
+                "type": "string"
+              },
+              "previous": {
+                "$ref": "#/components/schemas/MultipleField"
+              },
+              "latest": {
+                "$ref": "#/components/schemas/MultipleField"
+              }
+            },
+            "required": [
+              "property",
+              "caption"
+            ]
+          }
+        ]
+      },
+      "SingleField": {
+        "type": "object",
+        "properties": {
+          "objectType": {
+            "type": "string"
+          },
+          "field": {
+            "$ref": "#/components/schemas/FieldValue"
+          }
+        },
+        "required": [
+          "value",
+          "objectType"
+        ]
+      },
+      "MultipleField": {
+        "type": "object",
+        "properties": {
+          "objectType": {
+            "type": "string"
+          },
+          "field": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/FieldValue"
+            }
+          }
+        },
+        "required": [
+          "value",
+          "objectType"
+        ]
+      },
+      "FieldValue": {
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "string"
+          },
+          "docBase": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "value"
+        ]
+      }
+    }
+  }
+}

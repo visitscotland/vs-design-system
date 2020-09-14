@@ -3,6 +3,7 @@ package com.visitscotland.brmx.translation.difference;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.apache.commons.lang3.builder.ToStringBuilder;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class FieldValue {
@@ -57,5 +58,13 @@ public class FieldValue {
         } else {
             return false;
         }
+    }
+
+    @Override
+    public String toString() {
+        return new ToStringBuilder(this)
+                .append("docBase", docBase)
+                .append("value", value)
+                .toString();
     }
 }

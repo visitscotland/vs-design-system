@@ -2,6 +2,7 @@ package com.visitscotland.brmx.translation.difference;
 
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.apache.commons.lang3.builder.ToStringBuilder;
 
 public class FieldDifference {
     private String property;
@@ -66,5 +67,15 @@ public class FieldDifference {
         } else {
             return false;
         }
+    }
+
+    @Override
+    public String toString() {
+        return new ToStringBuilder(this)
+                .append("property", property)
+                .append("caption", caption)
+                .append("previous", previous)
+                .append("latest", latest)
+                .toString();
     }
 }
