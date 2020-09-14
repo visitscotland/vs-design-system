@@ -16,7 +16,7 @@
                 </div>
             </template>
             <template #megaNav>
-                <VsMegaNav>
+                <VsMegaNav href="/">
                     <template #megaNavTopMenuItems>
                         <VsMegaNavTopMenuItem
                             v-for="(item, index) in header.mainNav"

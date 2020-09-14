@@ -3,3 +3,10 @@
   jcr:primaryType: hst:sitemenuitem
   hst:referencesitemapitem: see-do/attractions/historic/victorian-heritage-trail-itinerary
   hst:repobased: false
+  /cities.nav:
+    jcr:primaryType: hst:sitemenuitem
+    hst:repobased: false
+    /orkney.nav:
+      jcr:primaryType: hst:sitemenuitem
+      hst:referencesitemapitem: destinations-maps/orkney/short-break-itinerary
+      hst:repobased: false

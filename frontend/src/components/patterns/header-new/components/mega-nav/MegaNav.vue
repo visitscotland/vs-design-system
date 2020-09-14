@@ -13,8 +13,9 @@
                 >
                     <VsSvgLink
                         class="vs-mega-nav__logo"
+                        data-test="vs-mega-nav__logo"
                         logo-alt-text="VisitScotland Home"
-                        href="/"
+                        :href="href"
                         svg-fill="700e57"
                         svg-path="visitscotland"
                     />
@@ -94,6 +95,15 @@ export default {
         VsMegaNavDropdown,
         VsMegaNavTopMenu,
         VsIcon,
+    },
+    props: {
+        /**
+         * The URL for the VS logo link
+         */
+        href: {
+            type: String,
+            required: true,
+        },
     },
     data() {
         return {
