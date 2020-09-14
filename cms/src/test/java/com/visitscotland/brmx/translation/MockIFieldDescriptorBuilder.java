@@ -6,34 +6,34 @@ import org.hippoecm.frontend.types.ITypeDescriptor;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-public final class IFieldDescriptorBuilder {
+public final class MockIFieldDescriptorBuilder {
     String name;
     String path;
     Boolean isMultiple;
     Boolean isPrimary;
     ITypeDescriptor typeDescriptor;
 
-    public IFieldDescriptorBuilder withTypeDescriptor(ITypeDescriptor typeDescriptor) {
+    public MockIFieldDescriptorBuilder withTypeDescriptor(ITypeDescriptor typeDescriptor) {
         this.typeDescriptor = typeDescriptor;
         return this;
     }
 
-    public IFieldDescriptorBuilder withName(String name) {
+    public MockIFieldDescriptorBuilder withName(String name) {
         this.name = name;
         return this;
     }
 
-    public IFieldDescriptorBuilder withPath(String path) {
+    public MockIFieldDescriptorBuilder withPath(String path) {
         this.path = path;
         return this;
     }
 
-    public IFieldDescriptorBuilder isMultiple(boolean isMultiple) {
+    public MockIFieldDescriptorBuilder isMultiple(boolean isMultiple) {
         this.isMultiple = isMultiple;
         return this;
     }
 
-    public IFieldDescriptorBuilder isPrimary(boolean isPrimary) {
+    public MockIFieldDescriptorBuilder isPrimary(boolean isPrimary) {
         this.isPrimary = isPrimary;
         return this;
     }

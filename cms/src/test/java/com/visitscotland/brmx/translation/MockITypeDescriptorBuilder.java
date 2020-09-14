@@ -13,39 +13,39 @@ import static org.mockito.Mockito.lenient;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-public final class ITypeDescriptorBuilder {
+public final class MockITypeDescriptorBuilder {
     Boolean isNode;
     String type;
     JcrTypeLocator mockTypeLocator;
     Map<String, IFieldDescriptor> declaredFieldMap;
     List<String> superTypeList = new ArrayList<>();
 
-    public ITypeDescriptorBuilder withDeclaredFieldMap(Map<String, IFieldDescriptor> declaredFieldMap) {
+    public MockITypeDescriptorBuilder withDeclaredFieldMap(Map<String, IFieldDescriptor> declaredFieldMap) {
         this.declaredFieldMap = declaredFieldMap;
         return this;
     }
 
-    public ITypeDescriptorBuilder addToJcrTypeLocator(JcrTypeLocator mockTypeLocator) {
+    public MockITypeDescriptorBuilder addToJcrTypeLocator(JcrTypeLocator mockTypeLocator) {
         this.mockTypeLocator = mockTypeLocator;
         return this;
     }
 
-    public ITypeDescriptorBuilder withType(String type) {
+    public MockITypeDescriptorBuilder withType(String type) {
         this.type = type;
         return this;
     }
 
-    public ITypeDescriptorBuilder isNode(boolean isNode) {
+    public MockITypeDescriptorBuilder isNode(boolean isNode) {
         this.isNode = isNode;
         return this;
     }
 
-    public ITypeDescriptorBuilder withSuperType(String type) {
+    public MockITypeDescriptorBuilder withSuperType(String type) {
         superTypeList.add(type);
         return this;
     }
 
-    public ITypeDescriptorBuilder withSuperType(ITypeDescriptor superType) {
+    public MockITypeDescriptorBuilder withSuperType(ITypeDescriptor superType) {
         superTypeList.add(superType.getType());
         return this;
     }

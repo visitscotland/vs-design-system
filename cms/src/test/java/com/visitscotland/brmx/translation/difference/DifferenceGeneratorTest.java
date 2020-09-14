@@ -1,20 +1,14 @@
 package com.visitscotland.brmx.translation.difference;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.visitscotland.brmx.translation.IFieldDescriptorBuilder;
-import com.visitscotland.brmx.translation.ITypeDescriptorBuilder;
-import com.visitscotland.brmx.translation.JcrDocumentBuilder;
-import com.visitscotland.brmx.translation.NodeBuilder;
+import com.visitscotland.brmx.translation.MockIFieldDescriptorBuilder;
+import com.visitscotland.brmx.translation.MockITypeDescriptorBuilder;
+import com.visitscotland.brmx.translation.MockJcrDocumentBuilder;
+import com.visitscotland.brmx.translation.MockNodeBuilder;
 import com.visitscotland.brmx.translation.plugin.JcrDocument;
 import com.visitscotland.brmx.translation.plugin.JcrDocumentFactory;
-import io.restassured.module.jsv.JsonSchemaValidator;
-import org.assertj.core.api.Condition;
-import org.hamcrest.Matcher;
-import org.hamcrest.StringDescription;
-import org.hamcrest.TypeSafeMatcher;
 import org.hippoecm.editor.template.JcrTemplateStore;
 import org.hippoecm.editor.type.JcrTypeLocator;
-import org.hippoecm.frontend.model.ocm.StoreException;
 import org.hippoecm.frontend.plugin.config.IClusterConfig;
 import org.hippoecm.frontend.plugin.config.IPluginConfig;
 import org.hippoecm.frontend.types.IFieldDescriptor;
@@ -99,11 +93,11 @@ public class DifferenceGeneratorTest {
     @DisplayName("buildIFieldDescriptorList - With declared fields only")
     public void buildIFieldDescriptor_withDeclaredFields() throws Exception {
         // When there are declared fields they should be in the list
-        ITypeDescriptor mockTypeDescriptor = new ITypeDescriptorBuilder()
+        ITypeDescriptor mockTypeDescriptor = new MockITypeDescriptorBuilder()
                 .withDeclaredFieldMap(
                         createDeclaredFieldMap(
-                                new IFieldDescriptorBuilder().withName("field1").build(),
-                                new IFieldDescriptorBuilder().withName("field2").build()
+                                new MockIFieldDescriptorBuilder().withName("field1").build(),
+                                new MockIFieldDescriptorBuilder().withName("field2").build()
                         )
                 )
                 .build();
@@ -121,47 +115,47 @@ public class DifferenceGeneratorTest {
     public void buildIFieldDescriptor_withSuperTypes() throws Exception {
         // When there are super type their declared fields should be added if they are in the visitscotland namespace
         // Should recurse down the super types to include all declared fields
-        ITypeDescriptor mockTypeDescriptor = new ITypeDescriptorBuilder()
+        ITypeDescriptor mockTypeDescriptor = new MockITypeDescriptorBuilder()
                 .withType("visitscotland:type")
                 .withDeclaredFieldMap(
                     createDeclaredFieldMap(
-                            new IFieldDescriptorBuilder().withName("field1").build(),
-                            new IFieldDescriptorBuilder().withName("field2").build()
+                            new MockIFieldDescriptorBuilder().withName("field1").build(),
+                            new MockIFieldDescriptorBuilder().withName("field2").build()
                     )
                 )
-                .withSuperType( new ITypeDescriptorBuilder()
+                .withSuperType( new MockITypeDescriptorBuilder()
                     .withType("visitscotland:super1")
                     .addToJcrTypeLocator(mockJcrTypeLocator)
                     .withDeclaredFieldMap(
                         createDeclaredFieldMap(
-                                new IFieldDescriptorBuilder().withName("super1field1").build(),
-                                new IFieldDescriptorBuilder().withName("super1field2").build()
+                                new MockIFieldDescriptorBuilder().withName("super1field1").build(),
+                                new MockIFieldDescriptorBuilder().withName("super1field2").build()
                         )
                     )
-                    .withSuperType( new ITypeDescriptorBuilder()
+                    .withSuperType( new MockITypeDescriptorBuilder()
                             .withType("hippo:nested").build()
                     ).build()
                 )
-                .withSuperType(new ITypeDescriptorBuilder()
+                .withSuperType(new MockITypeDescriptorBuilder()
                         .withType("visitscotland:super2")
                         .addToJcrTypeLocator(mockJcrTypeLocator)
                         .withDeclaredFieldMap(
                             createDeclaredFieldMap(
-                                    new IFieldDescriptorBuilder().withName("super2field1").build()
+                                    new MockIFieldDescriptorBuilder().withName("super2field1").build()
                             )
                         )
-                        .withSuperType(new ITypeDescriptorBuilder()
+                        .withSuperType(new MockITypeDescriptorBuilder()
                                 .withType("visitscotland:super3")
                                 .addToJcrTypeLocator(mockJcrTypeLocator)
                                 .withDeclaredFieldMap(
                                     createDeclaredFieldMap(
-                                            new IFieldDescriptorBuilder().withName("super3field1").build()
+                                            new MockIFieldDescriptorBuilder().withName("super3field1").build()
                                     )
                                 ).build()
                         ).build()
                 )
                 .withSuperType(
-                        new ITypeDescriptorBuilder()
+                        new MockITypeDescriptorBuilder()
                         .withType("hippo:other").build()
                 ).build();
 
@@ -210,12 +204,12 @@ public class DifferenceGeneratorTest {
     @DisplayName("buildPropertyField - Convert a multiple property to a Field instance")
     public void buildPropertyField_multipleWithValues() throws Exception {
         // Expect each of the property values to be inserted into the MultipleField instance values
-        IFieldDescriptor mockDescriptor = new IFieldDescriptorBuilder()
+        IFieldDescriptor mockDescriptor = new MockIFieldDescriptorBuilder()
                 .withPath("multiplePropertyPath")
                 .isMultiple(true)
                 .build();
 
-        Node mockNode = new NodeBuilder()
+        Node mockNode = new MockNodeBuilder()
                 .withProperty("multiplePropertyPath",
                     createValues(createValue("value1"), createValue("value2")))
                 .build();
@@ -239,10 +233,10 @@ public class DifferenceGeneratorTest {
     public void buildPropertyField_multipleNoValues() throws Exception {
         // If an empty array is returned for the property we expect the MultipleField to also have
         // an empty set of values
-        IFieldDescriptor mockDescriptor = new IFieldDescriptorBuilder()
+        IFieldDescriptor mockDescriptor = new MockIFieldDescriptorBuilder()
                 .withPath("multiplePropertyPath")
                 .isMultiple(true).build();
-        Node mockNode = new NodeBuilder().withProperty("multiplePropertyPath", new Value[] {}).build();
+        Node mockNode = new MockNodeBuilder().withProperty("multiplePropertyPath", new Value[] {}).build();
 
         Field propertyField = generator.buildPropertyField(mockDescriptor, mockNode);
 
@@ -258,7 +252,7 @@ public class DifferenceGeneratorTest {
     @DisplayName("buildPropertyField - Convert a multiple property to a Field instance, property not found")
     public void buildPropertyField_multipleNoProperty() throws Exception {
         // If the property is not found on the node we want to return an empty MultipleField, i.e there are no values
-        IFieldDescriptor mockDescriptor = new IFieldDescriptorBuilder()
+        IFieldDescriptor mockDescriptor = new MockIFieldDescriptorBuilder()
                 .withPath("multiplePropertyPath")
                 .isMultiple(true)
                 .build();
@@ -278,11 +272,11 @@ public class DifferenceGeneratorTest {
     @Test
     @DisplayName("buildPropertyField - Convert a single property to a Field instance")
     public void buildPropertyField_single() throws Exception {
-        IFieldDescriptor mockDescriptor = new IFieldDescriptorBuilder()
+        IFieldDescriptor mockDescriptor = new MockIFieldDescriptorBuilder()
                 .withPath("singlePropertyPath")
                 .isMultiple(false)
                 .build();
-        Node mockNode = new NodeBuilder().withProperty("singlePropertyPath", "value1").build();
+        Node mockNode = new MockNodeBuilder().withProperty("singlePropertyPath", "value1").build();
 
         Field propertyField = generator.buildPropertyField(mockDescriptor, mockNode);
 
@@ -295,7 +289,7 @@ public class DifferenceGeneratorTest {
     @Test
     @DisplayName("buildPropertyField - Convert a single property to a Field instance, property not found")
     public void buildPropertyField_singleNoProperty() throws Exception {
-        IFieldDescriptor mockDescriptor = new IFieldDescriptorBuilder()
+        IFieldDescriptor mockDescriptor = new MockIFieldDescriptorBuilder()
                 .withPath("singlePropertyPath")
                 .isMultiple(false)
                 .build();
@@ -315,18 +309,18 @@ public class DifferenceGeneratorTest {
     @DisplayName("getPrimaryField - Get the primary field from a type that has a primary field")
     public void getPrimaryField_withPrimaryField() throws Exception {
         // Should return the first primary field from the type
-        Node mockNode = new NodeBuilder().withPrimaryNodeType("mockNodeType").build();
+        Node mockNode = new MockNodeBuilder().withPrimaryNodeType("mockNodeType").build();
 
-        new ITypeDescriptorBuilder()
+        new MockITypeDescriptorBuilder()
                 .withType("mockNodeType")
                 .addToJcrTypeLocator(mockJcrTypeLocator)
                 .withDeclaredFieldMap(
                         createDeclaredFieldMap(
-                            new IFieldDescriptorBuilder().withName("field1").isPrimary(false).build(),
-                            new IFieldDescriptorBuilder().withName("field2").isPrimary(false).build(),
-                            new IFieldDescriptorBuilder().withName("field3").isPrimary(false).build(),
-                            new IFieldDescriptorBuilder().withName("field4").isPrimary(true).build(),
-                            new IFieldDescriptorBuilder().withName("field5").isPrimary(false).build()
+                            new MockIFieldDescriptorBuilder().withName("field1").isPrimary(false).build(),
+                            new MockIFieldDescriptorBuilder().withName("field2").isPrimary(false).build(),
+                            new MockIFieldDescriptorBuilder().withName("field3").isPrimary(false).build(),
+                            new MockIFieldDescriptorBuilder().withName("field4").isPrimary(true).build(),
+                            new MockIFieldDescriptorBuilder().withName("field5").isPrimary(false).build()
                         )
                 ).build();
 
@@ -341,18 +335,18 @@ public class DifferenceGeneratorTest {
     @DisplayName("getPrimaryField - Get the primary field from a type that has no primary field")
     public void getPrimaryField_noPrimaryField() throws Exception {
         // Should return null when the type has no primary field
-        Node mockNode = new NodeBuilder().withPrimaryNodeType("mockNodeType").build();
+        Node mockNode = new MockNodeBuilder().withPrimaryNodeType("mockNodeType").build();
 
-        new ITypeDescriptorBuilder()
+        new MockITypeDescriptorBuilder()
                 .withType("mockNodeType")
                 .addToJcrTypeLocator(mockJcrTypeLocator)
                 .withDeclaredFieldMap(
                         createDeclaredFieldMap(
-                            new IFieldDescriptorBuilder().withName("field1").isPrimary(false).build(),
-                            new IFieldDescriptorBuilder().withName("field2").isPrimary(false).build(),
-                            new IFieldDescriptorBuilder().withName("field3").isPrimary(false).build(),
-                            new IFieldDescriptorBuilder().withName("field4").isPrimary(false).build(),
-                            new IFieldDescriptorBuilder().withName("field5").isPrimary(false).build()
+                            new MockIFieldDescriptorBuilder().withName("field1").isPrimary(false).build(),
+                            new MockIFieldDescriptorBuilder().withName("field2").isPrimary(false).build(),
+                            new MockIFieldDescriptorBuilder().withName("field3").isPrimary(false).build(),
+                            new MockIFieldDescriptorBuilder().withName("field4").isPrimary(false).build(),
+                            new MockIFieldDescriptorBuilder().withName("field5").isPrimary(false).build()
                         )
                 ).build();
 
@@ -366,9 +360,9 @@ public class DifferenceGeneratorTest {
     @DisplayName("getPrimaryField - Get the primary field from a type that has no fields")
     public void getPrimaryField_noField() throws Exception {
         // Should return null when the type has no primary field
-        Node mockNode = new NodeBuilder().withPrimaryNodeType("mockNodeType").build();
+        Node mockNode = new MockNodeBuilder().withPrimaryNodeType("mockNodeType").build();
 
-        new ITypeDescriptorBuilder()
+        new MockITypeDescriptorBuilder()
                 .withType("mockNodeType")
                 .addToJcrTypeLocator(mockJcrTypeLocator)
                 .withDeclaredFieldMap(
@@ -383,14 +377,14 @@ public class DifferenceGeneratorTest {
     @Test
     @DisplayName("getNodeValue - Node has no docBase, or primary field")
     public void getNodeValue_noDocBase_andNoPrimaryField() throws Exception {
-        Node mockNode = new NodeBuilder().withPrimaryNodeType("mockNodeType").build();
+        Node mockNode = new MockNodeBuilder().withPrimaryNodeType("mockNodeType").build();
 
-        new ITypeDescriptorBuilder()
+        new MockITypeDescriptorBuilder()
                 .withType("mockNodeType")
                 .addToJcrTypeLocator(mockJcrTypeLocator)
                 .withDeclaredFieldMap(
                         createDeclaredFieldMap(
-                            new IFieldDescriptorBuilder().withName("field1").isPrimary(false).build()
+                            new MockIFieldDescriptorBuilder().withName("field1").isPrimary(false).build()
                         )
                 ).build();
 
@@ -400,7 +394,7 @@ public class DifferenceGeneratorTest {
     @Test
     @DisplayName("getNodeValue - Node has docBase, but linked node not found")
     public void getNodeValue_withDocBase_nodeNotFound() throws Exception {
-        Node mockNode = new NodeBuilder()
+        Node mockNode = new MockNodeBuilder()
                 .withProperty(HippoNodeType.HIPPO_DOCBASE, "linkNodeId")
                 .build();
 
@@ -414,7 +408,7 @@ public class DifferenceGeneratorTest {
     @Test
     @DisplayName("getNodeValue - Node has docBase")
     public void getNodeValue_withDocBase() throws Exception {
-        Node mockNode = new NodeBuilder()
+        Node mockNode = new MockNodeBuilder()
                 .withProperty(HippoNodeType.HIPPO_DOCBASE, "linkNodeId")
                 .build();
 
@@ -431,17 +425,17 @@ public class DifferenceGeneratorTest {
     @Test
     @DisplayName("getNodeValue - Node with primary field")
     public void getNodeValue_withPrimaryField() throws Exception {
-        Node mockNode = new NodeBuilder()
+        Node mockNode = new MockNodeBuilder()
                 .withPrimaryNodeType("mockNodeType")
                 .withProperty("field1path", "field1value")
                 .build();
 
-        new ITypeDescriptorBuilder()
+        new MockITypeDescriptorBuilder()
                 .withType("mockNodeType")
                 .addToJcrTypeLocator(mockJcrTypeLocator)
                 .withDeclaredFieldMap(
                         createDeclaredFieldMap(
-                            new IFieldDescriptorBuilder().withName("field1").withPath("field1path").isPrimary(true).build()
+                            new MockIFieldDescriptorBuilder().withName("field1").withPath("field1path").isPrimary(true).build()
                         )
                 ).build();
 
@@ -454,11 +448,11 @@ public class DifferenceGeneratorTest {
     @Test
     @DisplayName("buildNodeField - Multiple node field with no values")
     public void buildNodeField_multipleWithNoValues() throws Exception {
-        Node mockNode = new NodeBuilder()
+        Node mockNode = new MockNodeBuilder()
                 .withEmptyChildNode("nodePropPath")
                 .build();
 
-        IFieldDescriptor mockFieldDescriptor = new IFieldDescriptorBuilder()
+        IFieldDescriptor mockFieldDescriptor = new MockIFieldDescriptorBuilder()
                 .withPath("nodePropPath")
                 .isMultiple(true)
                 .build();
@@ -474,23 +468,23 @@ public class DifferenceGeneratorTest {
     @Test
     @DisplayName("buildNodeField - Multiple node field with values")
     public void buildNodeField_multipleWithValues() throws Exception {
-        new ITypeDescriptorBuilder()
+        new MockITypeDescriptorBuilder()
                 .withType("childNode1")
                 .addToJcrTypeLocator(mockJcrTypeLocator)
                 .withDeclaredFieldMap(
                         createDeclaredFieldMap(
-                            new IFieldDescriptorBuilder().withPath("childNode1prop").isPrimary(true).build()
+                            new MockIFieldDescriptorBuilder().withPath("childNode1prop").isPrimary(true).build()
                         )
                 ).build();
 
-        Node mockNode = new NodeBuilder()
+        Node mockNode = new MockNodeBuilder()
                 .withChildNode("nodePropPath",
-                        new NodeBuilder().withPrimaryNodeType("childNode1").withProperty("childNode1prop", "value1").build())
+                        new MockNodeBuilder().withPrimaryNodeType("childNode1").withProperty("childNode1prop", "value1").build())
                 .withChildNode("nodePropPath",
-                        new NodeBuilder().withPrimaryNodeType("childNode1").withProperty("childNode1prop", "value2").build())
+                        new MockNodeBuilder().withPrimaryNodeType("childNode1").withProperty("childNode1prop", "value2").build())
                 .build();
 
-        IFieldDescriptor mockFieldDescriptor = new IFieldDescriptorBuilder()
+        IFieldDescriptor mockFieldDescriptor = new MockIFieldDescriptorBuilder()
                 .withPath("nodePropPath")
                 .isMultiple(true)
                 .build();
@@ -510,11 +504,11 @@ public class DifferenceGeneratorTest {
     @Test
     @DisplayName("buildNodeField - Single node field with no values")
     public void buildNodeField_singleWithNoValue() throws Exception {
-        Node mockNode = new NodeBuilder()
+        Node mockNode = new MockNodeBuilder()
                 .withEmptyChildNode("nodePropPath")
                 .build();
 
-        IFieldDescriptor mockFieldDescriptor = new IFieldDescriptorBuilder()
+        IFieldDescriptor mockFieldDescriptor = new MockIFieldDescriptorBuilder()
                 .withPath("nodePropPath")
                 .isMultiple(false)
                 .build();
@@ -530,12 +524,12 @@ public class DifferenceGeneratorTest {
     @Test
     @DisplayName("buildNodeField - Single node field with values")
     public void buildNodeField_singleWithValue() throws Exception {
-        new ITypeDescriptorBuilder()
+        new MockITypeDescriptorBuilder()
                 .withType("childNode1")
                 .addToJcrTypeLocator(mockJcrTypeLocator)
                 .withDeclaredFieldMap(
                         createDeclaredFieldMap(
-                                new IFieldDescriptorBuilder()
+                                new MockIFieldDescriptorBuilder()
                                         .withPath("childNode1prop")
                                         .isPrimary(true)
                                         .build()
@@ -544,12 +538,12 @@ public class DifferenceGeneratorTest {
                 .addToJcrTypeLocator(mockJcrTypeLocator)
                 .build();
 
-        Node mockNode = new NodeBuilder()
+        Node mockNode = new MockNodeBuilder()
                 .withChildNode("nodePropPath",
-                        new NodeBuilder().withPrimaryNodeType("childNode1").withProperty("childNode1prop", "value1").build())
+                        new MockNodeBuilder().withPrimaryNodeType("childNode1").withProperty("childNode1prop", "value1").build())
                 .build();
 
-        IFieldDescriptor mockFieldDescriptor = new IFieldDescriptorBuilder()
+        IFieldDescriptor mockFieldDescriptor = new MockIFieldDescriptorBuilder()
                 .withPath("nodePropPath")
                 .isMultiple(false)
                 .build();
@@ -565,9 +559,9 @@ public class DifferenceGeneratorTest {
     @Test
     @DisplayName("buildDocumentDifferences - No fields on document type")
     public void buildDocumentDifferences_noFields() throws Exception {
-        Node mockUnpublishedNode = new NodeBuilder().build();
-        Node mockPublishedNode = new NodeBuilder().build();
-        JcrDocument mockJcrDocument = new JcrDocumentBuilder()
+        Node mockUnpublishedNode = new MockNodeBuilder().build();
+        Node mockPublishedNode = new MockNodeBuilder().build();
+        JcrDocument mockJcrDocument = new MockJcrDocumentBuilder()
                 .withVariantNode(JcrDocument.VARIANT_UNPUBLISHED, mockUnpublishedNode)
                 .withVariantNode(JcrDocument.VARIANT_PUBLISHED, mockPublishedNode)
                 .build();
@@ -586,24 +580,24 @@ public class DifferenceGeneratorTest {
         // Fields for the main node type
         Map<String, IFieldDescriptor> fieldDescriptorMap = new HashMap<>();
         fieldDescriptorMap.put("field1",
-                new IFieldDescriptorBuilder()
+                new MockIFieldDescriptorBuilder()
                     .withName("field1")
                     .withPath("field1path")
                     .isMultiple(false)
                     .withTypeDescriptor(
-                            new ITypeDescriptorBuilder()
+                            new MockITypeDescriptorBuilder()
                                     .isNode(true)
                                     .build()
                     )
                     .build()
         );
         fieldDescriptorMap.put("field2",
-                new IFieldDescriptorBuilder()
+                new MockIFieldDescriptorBuilder()
                         .withName("field2")
                         .withPath("field2path")
                         .isMultiple(false)
                         .withTypeDescriptor(
-                                new ITypeDescriptorBuilder()
+                                new MockITypeDescriptorBuilder()
                                         .isNode(false)
                                         .build()
                         )
@@ -613,23 +607,23 @@ public class DifferenceGeneratorTest {
         // Fields for the child node defined in field1 above
         Map<String, IFieldDescriptor> childNodeFieldDescriptorMap = new HashMap<>();
         childNodeFieldDescriptorMap.put("childField1",
-                new IFieldDescriptorBuilder()
+                new MockIFieldDescriptorBuilder()
                     .withPath("childField1path")
                     .isPrimary(true)
                     .build());
 
         // Register the type for the child node.
         // Cannot do this above due to cyclic dependency between an IFieldDescriptor and the ITypeDescriptor
-        new ITypeDescriptorBuilder()
+        new MockITypeDescriptorBuilder()
                 .withType("vs:child")
                 .addToJcrTypeLocator(mockJcrTypeLocator)
                 .withDeclaredFieldMap(childNodeFieldDescriptorMap)
                 .build();
 
 
-        Node mockUnpublishedNode = new NodeBuilder()
+        Node mockUnpublishedNode = new MockNodeBuilder()
                 .withChildNode("field1path",
-                        new NodeBuilder()
+                        new MockNodeBuilder()
                                 .withPrimaryNodeType("vs:child")
                                 .withProperty("childField1path", "childField1value")
                                 .build()
@@ -637,9 +631,9 @@ public class DifferenceGeneratorTest {
                 .withProperty("field2path", "field2value")
                 .build();
 
-        Node mockPublishedNode = new NodeBuilder()
+        Node mockPublishedNode = new MockNodeBuilder()
                 .withChildNode("field1path",
-                        new NodeBuilder()
+                        new MockNodeBuilder()
                                 .withPrimaryNodeType("vs:child")
                                 .withProperty("childField1path", "childField1value")
                                 .build()
@@ -647,7 +641,7 @@ public class DifferenceGeneratorTest {
                 .withProperty("field2path", "field2value")
                 .build();
 
-        JcrDocument mockJcrDocument = new JcrDocumentBuilder()
+        JcrDocument mockJcrDocument = new MockJcrDocumentBuilder()
                 .withVariantNode(JcrDocument.VARIANT_UNPUBLISHED, mockUnpublishedNode)
                 .withVariantNode(JcrDocument.VARIANT_PUBLISHED, mockPublishedNode)
                 .build();
@@ -670,24 +664,24 @@ public class DifferenceGeneratorTest {
         // Fields for the main node type
         Map<String, IFieldDescriptor> fieldDescriptorMap = new HashMap<>();
         fieldDescriptorMap.put("field1",
-                new IFieldDescriptorBuilder()
+                new MockIFieldDescriptorBuilder()
                         .withName("field1")
                         .withPath("field1path")
                         .isMultiple(false)
                         .withTypeDescriptor(
-                                new ITypeDescriptorBuilder()
+                                new MockITypeDescriptorBuilder()
                                         .isNode(true)
                                         .build()
                         )
                         .build()
         );
         fieldDescriptorMap.put("field2",
-                new IFieldDescriptorBuilder()
+                new MockIFieldDescriptorBuilder()
                         .withName("field2")
                         .withPath("field2path")
                         .isMultiple(false)
                         .withTypeDescriptor(
-                                new ITypeDescriptorBuilder()
+                                new MockITypeDescriptorBuilder()
                                         .isNode(false)
                                         .build()
                         )
@@ -697,23 +691,23 @@ public class DifferenceGeneratorTest {
         // Fields for the child node defined in field1 above
         Map<String, IFieldDescriptor> childNodeFieldDescriptorMap = new HashMap<>();
         childNodeFieldDescriptorMap.put("childField1",
-                new IFieldDescriptorBuilder()
+                new MockIFieldDescriptorBuilder()
                         .withPath("childField1path")
                         .isPrimary(true)
                         .build());
 
         // Register the type for the child node.
         // Cannot do this above due to cyclic dependency between an IFieldDescriptor and the ITypeDescriptor
-        new ITypeDescriptorBuilder()
+        new MockITypeDescriptorBuilder()
                 .withType("vs:child")
                 .addToJcrTypeLocator(mockJcrTypeLocator)
                 .withDeclaredFieldMap(childNodeFieldDescriptorMap)
                 .build();
 
 
-        Node mockUnpublishedNode = new NodeBuilder()
+        Node mockUnpublishedNode = new MockNodeBuilder()
                 .withChildNode("field1path",
-                        new NodeBuilder()
+                        new MockNodeBuilder()
                                 .withPrimaryNodeType("vs:child")
                                 .withProperty("childField1path", "childField1valueDiff")
                                 .build()
@@ -721,9 +715,9 @@ public class DifferenceGeneratorTest {
                 .withProperty("field2path", "field2valueDiff")
                 .build();
 
-        Node mockPublishedNode = new NodeBuilder()
+        Node mockPublishedNode = new MockNodeBuilder()
                 .withChildNode("field1path",
-                        new NodeBuilder()
+                        new MockNodeBuilder()
                                 .withPrimaryNodeType("vs:child")
                                 .withProperty("childField1path", "childField1value")
                                 .build()
@@ -731,7 +725,7 @@ public class DifferenceGeneratorTest {
                 .withProperty("field2path", "field2value")
                 .build();
 
-        JcrDocument mockJcrDocument = new JcrDocumentBuilder()
+        JcrDocument mockJcrDocument = new MockJcrDocumentBuilder()
                 .withVariantNode(JcrDocument.VARIANT_UNPUBLISHED, mockUnpublishedNode)
                 .withVariantNode(JcrDocument.VARIANT_PUBLISHED, mockPublishedNode)
                 .build();
@@ -787,24 +781,24 @@ public class DifferenceGeneratorTest {
         // Fields for the main node type
         Map<String, IFieldDescriptor> fieldDescriptorMap = new HashMap<>();
         fieldDescriptorMap.put("field1",
-                new IFieldDescriptorBuilder()
+                new MockIFieldDescriptorBuilder()
                         .withName("field1")
                         .withPath("field1path")
                         .isMultiple(false)
                         .withTypeDescriptor(
-                                new ITypeDescriptorBuilder()
+                                new MockITypeDescriptorBuilder()
                                         .isNode(true)
                                         .build()
                         )
                         .build()
         );
         fieldDescriptorMap.put("field2",
-                new IFieldDescriptorBuilder()
+                new MockIFieldDescriptorBuilder()
                         .withName("field2")
                         .withPath("field2path")
                         .isMultiple(false)
                         .withTypeDescriptor(
-                                new ITypeDescriptorBuilder()
+                                new MockITypeDescriptorBuilder()
                                         .isNode(false)
                                         .build()
                         )
@@ -814,23 +808,23 @@ public class DifferenceGeneratorTest {
         // Fields for the child node defined in field1 above
         Map<String, IFieldDescriptor> childNodeFieldDescriptorMap = new HashMap<>();
         childNodeFieldDescriptorMap.put("childField1",
-                new IFieldDescriptorBuilder()
+                new MockIFieldDescriptorBuilder()
                         .withPath("childField1path")
                         .isPrimary(true)
                         .build());
 
         // Register the type for the child node.
         // Cannot do this above due to cyclic dependency between an IFieldDescriptor and the ITypeDescriptor
-        new ITypeDescriptorBuilder()
+        new MockITypeDescriptorBuilder()
                 .withType("vs:child")
                 .addToJcrTypeLocator(mockJcrTypeLocator)
                 .withDeclaredFieldMap(childNodeFieldDescriptorMap)
                 .build();
 
 
-        Node mockUnpublishedNode = new NodeBuilder()
+        Node mockUnpublishedNode = new MockNodeBuilder()
                 .withChildNode("field1path",
-                        new NodeBuilder()
+                        new MockNodeBuilder()
                                 .withPrimaryNodeType("vs:child")
                                 .withProperty("childField1path", "childField1valueDiff")
                                 .build()
@@ -838,7 +832,7 @@ public class DifferenceGeneratorTest {
                 .withPropertyThowsValueFormatException("field2path")
                 .build();
 
-        JcrDocument mockJcrDocument = new JcrDocumentBuilder()
+        JcrDocument mockJcrDocument = new MockJcrDocumentBuilder()
                 .withVariantNode(JcrDocument.VARIANT_UNPUBLISHED, mockUnpublishedNode)
                 .build();
 
@@ -876,24 +870,24 @@ public class DifferenceGeneratorTest {
         // Fields for the main node type
         Map<String, IFieldDescriptor> fieldDescriptorMap = new HashMap<>();
         fieldDescriptorMap.put("field1",
-                new IFieldDescriptorBuilder()
+                new MockIFieldDescriptorBuilder()
                         .withName("field1")
                         .withPath("field1path")
                         .isMultiple(false)
                         .withTypeDescriptor(
-                                new ITypeDescriptorBuilder()
+                                new MockITypeDescriptorBuilder()
                                         .isNode(true)
                                         .build()
                         )
                         .build()
         );
         fieldDescriptorMap.put("field2",
-                new IFieldDescriptorBuilder()
+                new MockIFieldDescriptorBuilder()
                         .withName("field2")
                         .withPath("field2path")
                         .isMultiple(false)
                         .withTypeDescriptor(
-                                new ITypeDescriptorBuilder()
+                                new MockITypeDescriptorBuilder()
                                         .isNode(false)
                                         .build()
                         )
@@ -903,23 +897,23 @@ public class DifferenceGeneratorTest {
         // Fields for the child node defined in field1 above
         Map<String, IFieldDescriptor> childNodeFieldDescriptorMap = new HashMap<>();
         childNodeFieldDescriptorMap.put("childField1",
-                new IFieldDescriptorBuilder()
+                new MockIFieldDescriptorBuilder()
                         .withPath("childField1path")
                         .isPrimary(true)
                         .build());
 
         // Register the type for the child node.
         // Cannot do this above due to cyclic dependency between an IFieldDescriptor and the ITypeDescriptor
-        new ITypeDescriptorBuilder()
+        new MockITypeDescriptorBuilder()
                 .withType("vs:child")
                 .addToJcrTypeLocator(mockJcrTypeLocator)
                 .withDeclaredFieldMap(childNodeFieldDescriptorMap)
                 .build();
 
 
-        Node mockUnpublishedNode = new NodeBuilder()
+        Node mockUnpublishedNode = new MockNodeBuilder()
                 .withChildNode("field1path",
-                        new NodeBuilder()
+                        new MockNodeBuilder()
                                 .withPrimaryNodeType("vs:child")
                                 .withProperty("childField1path", "childField1valueDiff")
                                 .build()
@@ -927,7 +921,7 @@ public class DifferenceGeneratorTest {
                 .withProperty("field2path", "field2valueDiff")
                 .build();
 
-        JcrDocument mockJcrDocument = new JcrDocumentBuilder()
+        JcrDocument mockJcrDocument = new MockJcrDocumentBuilder()
                 .withVariantNode(JcrDocument.VARIANT_UNPUBLISHED, mockUnpublishedNode)
                 .build();
 
@@ -979,21 +973,21 @@ public class DifferenceGeneratorTest {
     @DisplayName("getTranslationDifference - Simple happy path")
     public void getTranslationDifference() throws Exception {
         // A happy path for coverage of code without branches
-        Node node = new NodeBuilder()
+        Node node = new MockNodeBuilder()
                 .withNodeId("node1")
                 .inJcrSession(mockJcrSession).build();
 
-        Node unpublishedNode = new NodeBuilder()
+        Node unpublishedNode = new MockNodeBuilder()
                 .withPrimaryNodeType("variant:type").build();
 
-        ITypeDescriptor unpublishedType = new ITypeDescriptorBuilder()
+        ITypeDescriptor unpublishedType = new MockITypeDescriptorBuilder()
                 .addToJcrTypeLocator(mockJcrTypeLocator)
                 .withType("variant:type")
                 .withDeclaredFieldMap(new HashMap<>()).build();
 
         addTypeToTemplateStore(unpublishedType, createIClusterConfig());
 
-        new JcrDocumentBuilder()
+        new MockJcrDocumentBuilder()
                 .withVariantNode(JcrDocument.VARIANT_UNPUBLISHED, unpublishedNode)
                 .withJcrDocumentFactory(mockJcrDocumentFactory)
                 .createdFromNode(node).build();

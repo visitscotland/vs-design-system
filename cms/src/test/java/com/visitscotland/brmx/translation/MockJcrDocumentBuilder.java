@@ -12,22 +12,22 @@ import static org.mockito.ArgumentMatchers.same;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-public final class JcrDocumentBuilder {
+public final class MockJcrDocumentBuilder {
     Map<String, Node> documentVariants = new HashMap<>();
     JcrDocumentFactory factory;
     Node rootNode;
 
-    public JcrDocumentBuilder withJcrDocumentFactory(JcrDocumentFactory factory) {
+    public MockJcrDocumentBuilder withJcrDocumentFactory(JcrDocumentFactory factory) {
         this.factory = factory;
         return this;
     }
 
-    public JcrDocumentBuilder createdFromNode(Node rootNode) {
+    public MockJcrDocumentBuilder createdFromNode(Node rootNode) {
         this.rootNode = rootNode;
         return this;
     }
 
-    public JcrDocumentBuilder withVariantNode(String state, Node variantNode) {
+    public MockJcrDocumentBuilder withVariantNode(String state, Node variantNode) {
         documentVariants.put(state, variantNode);
         return this;
     }

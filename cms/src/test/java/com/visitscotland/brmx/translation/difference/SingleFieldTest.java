@@ -19,16 +19,6 @@ public class SingleFieldTest {
         assertTrue(valid2.equals(valid1));
         assertEquals(valid1.hashCode(), valid2.hashCode());
 
-        SingleField displayNameNull = createSingleField( "docBase", "value");
-        assertFalse(valid1.equals(displayNameNull));
-        assertFalse(displayNameNull.equals(valid1));
-        assertNotEquals(valid1.hashCode(), displayNameNull.hashCode());
-
-        SingleField displayNameDiff = createSingleField( "docBase", "value");
-        assertFalse(valid1.equals(displayNameDiff));
-        assertFalse(displayNameDiff.equals(valid1));
-        assertNotEquals(valid1.hashCode(), displayNameDiff.hashCode());
-
         SingleField fieldNull = new SingleField();
         assertFalse(valid1.equals(fieldNull));
         assertFalse(fieldNull.equals(valid1));

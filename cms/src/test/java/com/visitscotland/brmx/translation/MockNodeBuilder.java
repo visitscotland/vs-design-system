@@ -13,50 +13,50 @@ import static org.mockito.Mockito.lenient;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-public final class NodeBuilder {
+public final class MockNodeBuilder {
     Map<String, Property> properties = new HashMap<>();
     String primaryNodeType;
     Map<String, List<Node>> childNodes = new HashMap<>();
     String nodeId;
     Session jcrSession;
 
-    public NodeBuilder inJcrSession(Session jcrSession) {
+    public MockNodeBuilder inJcrSession(Session jcrSession) {
         this.jcrSession = jcrSession;
         return this;
     }
 
-    public NodeBuilder withNodeId(String nodeId) {
+    public MockNodeBuilder withNodeId(String nodeId) {
         this.nodeId = nodeId;
         return this;
     }
 
-    public NodeBuilder withPrimaryNodeType(String primaryNodeType) {
+    public MockNodeBuilder withPrimaryNodeType(String primaryNodeType) {
         this.primaryNodeType = primaryNodeType;
         return this;
     }
 
-    public NodeBuilder withProperty(String propertyPath, Value[] valueArray) throws Exception {
+    public MockNodeBuilder withProperty(String propertyPath, Value[] valueArray) throws Exception {
         Property mockProperty = mock(Property.class);
         lenient().when(mockProperty.getValues()).thenReturn(valueArray);
         properties.put(propertyPath, mockProperty);
         return this;
     }
 
-    public NodeBuilder withProperty(String propertyPath, String propertyValue) throws Exception {
+    public MockNodeBuilder withProperty(String propertyPath, String propertyValue) throws Exception {
         Property mockProperty = mock(Property.class);
         lenient().when(mockProperty.getString()).thenReturn(propertyValue);
         properties.put(propertyPath, mockProperty);
         return this;
     }
 
-    public NodeBuilder withPropertyThowsValueFormatException(String propertyPath) throws Exception {
+    public MockNodeBuilder withPropertyThowsValueFormatException(String propertyPath) throws Exception {
         Property mockProperty = mock(Property.class);
         lenient().when(mockProperty.getString()).thenThrow(new ValueFormatException());
         properties.put(propertyPath, mockProperty);
         return this;
     }
 
-    public NodeBuilder withChildNode(String propertyPath, Node childNode) {
+    public MockNodeBuilder withChildNode(String propertyPath, Node childNode) {
         List<Node> nodes = childNodes.get(propertyPath);
         if (null == nodes) {
             nodes = new ArrayList<>();
@@ -66,7 +66,7 @@ public final class NodeBuilder {
         return this;
     }
 
-    public NodeBuilder withEmptyChildNode(String propertyPath) {
+    public MockNodeBuilder withEmptyChildNode(String propertyPath) {
         List<Node> nodes = childNodes.get(propertyPath);
         if (null == nodes) {
             nodes = new ArrayList<>();
