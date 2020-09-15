@@ -1,13 +1,12 @@
 /content/documents/administration/labels/facilities:
   jcr:primaryType: hippo:handle
-  jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
-  jcr:uuid: 3f818f8b-6d82-4b54-bd70-fc01c306160e
+  jcr:mixinTypes: ['hippo:named', 'mix:referenceable']
+  jcr:uuid: 8c13b36d-910d-4303-92dc-ca5678d58550
   hippo:name: Key Facilities
-  hippo:versionHistory: 4f7dc749-a105-42c5-9222-f1491f649449
   /facilities[1]:
     jcr:primaryType: resourcebundle:resourcebundle
     jcr:mixinTypes: ['mix:referenceable']
-    jcr:uuid: f8aa7f4b-46c3-422b-b8de-cd49f1891cc3
+    jcr:uuid: 52ff9dbd-f9a6-409a-b32b-b98dcd3ed004
     hippo:availability: []
     hippostd:state: draft
     hippostdpubwf:createdBy: admin
@@ -24,8 +23,8 @@
         magnetico, Aparcamiento accesible o punto de entrega, '']
   /facilities[2]:
     jcr:primaryType: resourcebundle:resourcebundle
-    jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
-    jcr:uuid: ef902ce5-8441-4611-8c8e-8bc7bf6c2d50
+    jcr:mixinTypes: ['mix:versionable']
+    jcr:uuid: f1ea8c2f-5a4e-4051-839f-4c64951f1ded
     hippo:availability: [preview]
     hippostd:state: unpublished
     hippostdpubwf:createdBy: admin
@@ -43,7 +42,7 @@
   /facilities[3]:
     jcr:primaryType: resourcebundle:resourcebundle
     jcr:mixinTypes: ['mix:referenceable']
-    jcr:uuid: 1497ca65-1c63-4f20-9d0f-6a9f0d00448d
+    jcr:uuid: 2a0378e8-834b-4ce9-a56d-2d6a21518fcd
     hippo:availability: [live]
     hippostd:state: published
     hippostdpubwf:createdBy: admin
