@@ -150,7 +150,7 @@ pipeline {
         success {
           //sh 'mvn -f pom.xml install -P !default'
 	  // -- 20200712: extra install step removed
-          //sh 'mvn -f pom.xml install -Pdist-with-development-data'
+          //sh 'mvn -f pom.xml install -Pdist'
           mail bcc: '', body: "<b>Notification</b><br>Project: ${env.JOB_NAME} <br>Build Number: ${env.BUILD_NUMBER} <br> build URL: ${env.BUILD_URL}", cc: '', charset: 'UTF-8', from: '', mimeType: 'text/html', replyTo: '', subject: "SUCCESS CI: Project name -> ${env.JOB_NAME}", to: "${MAIL_TO}";
         }
         failure {
@@ -166,7 +166,7 @@ pipeline {
         }
         steps{
             script{
-                sh 'mvn -f pom.xml deploy -Pdist-with-development-data -s $MAVEN_SETTINGS'
+                sh 'mvn -f pom.xml deploy -Pdist -s $MAVEN_SETTINGS'
             }
         }
     }
@@ -192,7 +192,7 @@ pipeline {
             }
             echo "Uploading version $NEW_TAG to Nexus"
             sh "mvn versions:set -DremoveSnapshot"
-            sh "mvn -B clean  deploy -Pdist-with-development-data -Drevision=$NEW_TAG -Dchangelist= -DskipTests -s $MAVEN_SETTINGS"
+            sh "mvn -B clean  deploy -Pdist -Drevision=$NEW_TAG -Dchangelist= -DskipTests -s $MAVEN_SETTINGS"
         }
 
     }
