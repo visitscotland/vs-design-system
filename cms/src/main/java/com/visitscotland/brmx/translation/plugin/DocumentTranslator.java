@@ -61,7 +61,7 @@ public class DocumentTranslator {
         List<ChangeSet> changeSetList = new ArrayList<>();
         for (ILocaleProvider.HippoLocale targetLocale : targetLocaleList) {
             ChangeSet change = changeSetFactory.createChangeSet(targetLocale);
-            JcrDocument document = jcrDocumentFactory.createJcrDocument(sourceDocument);
+            JcrDocument document = jcrDocumentFactory.createFromNode(sourceDocument);
             change.populateFolders(document);
             if (!document.hasTranslation(targetLocale)) {
                 change.addDocument(document);
@@ -83,7 +83,7 @@ public class DocumentTranslator {
                         if (!siblingNode.isNodeType("hippostd:folder") &&
                                 (siblingNode.isNodeType(JcrDocument.HIPPO_HANDLE) ||
                                         siblingNode.isNodeType(JcrDocument.HIPPO_TRANSLATED))) {
-                            JcrDocument siblingDocument = jcrDocumentFactory.createJcrDocument(siblingNode);
+                            JcrDocument siblingDocument = jcrDocumentFactory.createFromNode(siblingNode);
                             if (siblingDocument.isNodeType(childJcrTypes)) {
                                 if (!siblingDocument.hasTranslation(targetLocale)) {
                                     change.addDocument(siblingDocument);
@@ -116,7 +116,7 @@ public class DocumentTranslator {
             List<Node> translatableChildNodes = getChildTranslatableLinkNodes(sourceDocument);
             for (Node link : translatableChildNodes) {
                 Node linkedNode = sessionFactory.getJcrSession().getNodeByIdentifier(link.getProperty("hippo:docbase").getString());
-                JcrDocument linkDocument = jcrDocumentFactory.createJcrDocument(linkedNode);
+                JcrDocument linkDocument = jcrDocumentFactory.createFromNode(linkedNode);
                 if (!linkDocument.hasTranslation(targetLocale)) {
                     // Create a ChangeSet for the linked document, and populate the folders,
                     // this will allow the checking of the ChangeSet path to see if there is already a
@@ -212,7 +212,7 @@ public class DocumentTranslator {
             if (document.containsTranslationLinks() != includeTranslationLinkContainers) {
                 continue;
             }
-            JcrDocument sourceDocument = jcrDocumentFactory.createJcrDocument(session.getNodeByIdentifier(document.getId()));
+            JcrDocument sourceDocument = jcrDocumentFactory.createFromNode(session.getNodeByIdentifier(document.getId()));
             Document translatedDocument = workflow.addTranslation(changeSet.getTargetLocale().getName(), document.getUrlfr(),
                     sourceDocument.getVariantNode(JcrDocument.VARIANT_UNPUBLISHED));
 

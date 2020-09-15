@@ -19,7 +19,7 @@ public class JcrDocumentFactoryTest {
     public void constructor() throws Exception {
         Node sourceNode = mock(Node.class);
         when(sourceNode.isNodeType(JcrDocument.HIPPO_HANDLE)).thenReturn(true);
-        JcrDocument document = new JcrDocumentFactory().createJcrDocument(sourceNode);
+        JcrDocument document = new JcrDocumentFactory().createFromNode(sourceNode);
         assertNotNull(document);
         assertSame(sourceNode, document.getHandle());
     }

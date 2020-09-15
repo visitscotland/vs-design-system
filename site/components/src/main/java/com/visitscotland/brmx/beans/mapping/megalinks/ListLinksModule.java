@@ -1,8 +1,6 @@
 package com.visitscotland.brmx.beans.mapping.megalinks;
 
-import java.util.List;
-
-public class ListLayout extends AbstractLayout<EnhancedLink> {
+public class ListLinksModule extends LinksModule<EnhancedLink> {
 
     private boolean teaserVisible;
 
