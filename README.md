@@ -13,6 +13,11 @@ are expected.
     mvn clean verify -P !fed-build -DskipTests
     mvn -P cargo.run
     
+Front end developers can also benefit of a quick run by running the following command which only
+build the front end packages and the UI integration.
+
+    mvn verify -P fed-build -D skipTests && mvn -P cargo.run    
+    
 ## Troubleshooting
 **I get the following error when I try to clone the message: _fatal: cannot create directory at '{some big path}': Filename too long_**
 
