@@ -1,7 +1,7 @@
 <template>
     <div style="min-height: 600px;">
         <VsHeaderNew>
-            <template #globalNav>
+            <template #globalMenu>
                 <div
                     class="bg-primary-purple"
                     style="height: 35px"
@@ -9,7 +9,7 @@
                     <VsContainer>
                         <VsRow>
                             <VsCol cols="12">
-                                <span style="color: white">Global Nav</span>
+                                <span style="color: white">Global Menu</span>
                             </VsCol>
                         </VsRow>
                     </VsContainer>

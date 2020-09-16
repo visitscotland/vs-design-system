@@ -4,7 +4,7 @@
         data-test="vs-header"
     >
         <!-- @slot Global menu bar slot  -->
-        <slot name="globalNav" />
+        <slot name="globalMenu" />
 
         <!-- @slot Main navigation bar slot  -->
         <slot name="megaNav" />
