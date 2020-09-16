@@ -49,6 +49,7 @@ public class DifferenceGenerator {
     }
 
     public String getTranslationDifferenceJson(String nodeId) throws IOException, RepositoryException, StoreException {
+        logger.error("test log message");
         return objectMapper.writer().writeValueAsString(getTranslationDifference(nodeId));
     }
 
