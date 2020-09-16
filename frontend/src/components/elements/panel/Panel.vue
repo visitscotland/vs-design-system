@@ -8,7 +8,13 @@
             class="vs-panel-title mb-8"
         >
             <!-- @slot Contains an optional title for the panel  -->
-            <slot name="vs-panel-title" />
+            <VsHeading
+                thin
+                level="4"
+                slot="vs-panel-title"
+            >
+                <slot name="vs-panel-title" />
+            </VsHeading>
         </BCardTitle>
 
         <BCardText class="vs-panel-text">
