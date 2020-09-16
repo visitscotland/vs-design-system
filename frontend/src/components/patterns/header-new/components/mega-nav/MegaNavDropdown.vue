@@ -12,10 +12,17 @@
                 <slot name="buttonContent" />
             </template>
 
-            <!-- @slot Used to display the top menu link at the top of the dropdown menu  -->
-            <slot name="ctaLink" />
-            <!-- @slot The rest of the mega nav links put here in the dropdown menu  -->
-            <slot name="dropdownContent" />
+            <VsContainer>
+                <VsRow>
+                    <VsCol cols="12">
+                        <!-- @slot Used to display the top menu link
+                        at the top of the dropdown menu  -->
+                        <slot name="ctaLink" />
+                        <!-- @slot The rest of the mega nav links put here in the dropdown menu  -->
+                        <slot name="dropdownContent" />
+                    </VsCol>
+                </VsRow>
+            </VsContainer>
         </BDropdown>
     </div>
 </template>
@@ -25,7 +32,9 @@
  *  This component includes a slot for toggle button content
  *  and slots for the mega nav dropdown menu content
  */
-
+import {
+    VsCol, VsRow, VsContainer,
+} from '@components/elements/layout';
 import { BDropdown } from 'bootstrap-vue';
 
 export default {
@@ -34,6 +43,9 @@ export default {
     release: '0.1.0',
     components: {
         BDropdown,
+        VsCol,
+        VsRow,
+        VsContainer,
     },
     mounted() {
         // Listen for dropdown opening and closing and emit event
