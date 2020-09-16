@@ -1,14 +1,12 @@
 /content/documents/administration/labels/global:
-  .meta:order-before: facilities
   jcr:primaryType: hippo:handle
-  jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
-  jcr:uuid: 5efb212a-55c3-4670-922b-69dea2fec67b
+  jcr:mixinTypes: ['hippo:named', 'mix:referenceable']
+  jcr:uuid: 766a22ea-0b28-44cf-9937-953443a6fb02
   hippo:name: Global
-  hippo:versionHistory: bdd6524e-27e3-40c5-bada-34cf644e9b57
   /global[1]:
     jcr:primaryType: resourcebundle:resourcebundle
     jcr:mixinTypes: ['mix:referenceable']
-    jcr:uuid: 3d72b51b-02e2-41e0-98f8-fe564afa818f
+    jcr:uuid: a8cf5ddd-a19d-4641-91c4-6ec509c3a7a5
     hippo:availability: [live]
     hippostd:state: published
     hippostdpubwf:createdBy: admin
@@ -22,8 +20,8 @@
     resourcebundle:messages: [Find out more, No image title]
   /global[2]:
     jcr:primaryType: resourcebundle:resourcebundle
-    jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
-    jcr:uuid: d68d8c05-f29b-4cf8-9f5a-6b5410f30af1
+    jcr:mixinTypes: ['mix:versionable']
+    jcr:uuid: 7664e8f1-7d3c-48e5-b9b9-d86b38be4c07
     hippo:availability: [preview]
     hippostd:state: unpublished
     hippostdpubwf:createdBy: admin
@@ -37,7 +35,7 @@
   /global[3]:
     jcr:primaryType: resourcebundle:resourcebundle
     jcr:mixinTypes: ['mix:referenceable']
-    jcr:uuid: 19eb7b34-a824-463c-a06f-b2f9455231f8
+    jcr:uuid: 98d561a7-16ef-410d-b382-f1b76e196920
     hippo:availability: []
     hippostd:state: draft
     hippostdpubwf:createdBy: admin
