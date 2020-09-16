@@ -3,7 +3,7 @@ import VsHeaderNew from '../HeaderNew';
 
 const factoryShallowMount = () => shallowMount(VsHeaderNew, {
     slots: {
-        globalNav: '<div class="global-nav"></div>',
+        globalMenu: '<div class="global-menu"></div>',
         megaNav: '<div class="mega-nav"></div>',
     },
 });
@@ -19,8 +19,8 @@ describe('VsHeaderNew', () => {
     });
 
     describe(':slots', () => {
-        it('renders content inserted in a globalNav slot', () => {
-            expect(wrapper.findAll('.global-nav').length).toBe(1);
+        it('renders content inserted in a globalMenu slot', () => {
+            expect(wrapper.findAll('.global-menu').length).toBe(1);
         });
 
         it('renders content inserted in a megaNav slot', () => {
