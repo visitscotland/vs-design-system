@@ -2,31 +2,45 @@ package com.visitscotland.brmx.translation.plugin;
 
 import org.apache.wicket.model.IModel;
 import org.hippoecm.frontend.translation.ILocaleProvider;
+import org.hippoecm.repository.api.HippoNodeType;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import javax.jcr.Node;
 import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.eq;
+import static org.mockito.ArgumentMatchers.same;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
 public class DocumentChangeProviderTest {
+    @Mock
+    private TypeNameFactory mockTypeNameFactory;
 
     @Test
     public void buildDocumentChangeMap_emptyChangeSet() {
         // Given an empty ChangeSet, and empty list should be returned
-        DocumentChangeProvider provider = new DocumentChangeProvider(new ArrayList<>());
+        DocumentChangeProvider provider = new DocumentChangeProvider(new ArrayList<>(), mockTypeNameFactory);
         List<DocumentChangeProvider.Entry> entryList = provider.documentChangeList;
         assertNotNull(entryList);
         assertTrue(entryList.isEmpty());
     }
 
+    private Node createSourceNode(String name) throws Exception {
+        Node sourceNode = mock(Node.class);
+        when(mockTypeNameFactory.lookupTypeName(same(sourceNode))).thenReturn(name);
+        return sourceNode;
+    }
+
     @Test
-    public void buildDocumentChangeMap_validChangeSet() {
+    public void buildDocumentChangeMap_validChangeSet() throws Exception {
         // Given a valid ChangeSet List there should be an entry for every document with all the locales of the
         // ChangeSets the document is in
 
@@ -51,10 +65,13 @@ public class DocumentChangeProviderTest {
 
         FolderTranslation document1 = new FolderTranslation("doc1id");
         document1.setName("doc1name");
+        document1.setSourceNode(createSourceNode("doc1type"));
         FolderTranslation document2 = new FolderTranslation("doc2id");
         document2.setName("doc2name");
+        document2.setSourceNode(createSourceNode("doc2type"));
         FolderTranslation document3 = new FolderTranslation("doc3id");
         document3.setName("doc3name");
+        document3.setSourceNode(createSourceNode("doc3type"));
 
         change1Documents.add(document1);
 
@@ -70,7 +87,7 @@ public class DocumentChangeProviderTest {
         changeSetList.add(change2);
         changeSetList.add(change3);
 
-        DocumentChangeProvider provider = new DocumentChangeProvider(changeSetList);
+        DocumentChangeProvider provider = new DocumentChangeProvider(changeSetList, mockTypeNameFactory);
         List<DocumentChangeProvider.Entry> entryList = provider.documentChangeList;
 
         assertNotNull(entryList);
@@ -79,22 +96,25 @@ public class DocumentChangeProviderTest {
         for (DocumentChangeProvider.Entry entry : entryList) {
             switch (entry.getDocumentName()) {
                 case "doc1name":
+                    assertEquals("doc1type", entry.getDocumentType());
                     assertEquals(3, entry.getLocaleList().size());
                     assertTrue(entry.getLocaleList().contains(german));
                     assertTrue(entry.getLocaleList().contains(french));
                     assertTrue(entry.getLocaleList().contains(spanish));
                     break;
                 case "doc2name":
+                    assertEquals("doc2type", entry.getDocumentType());
                     assertEquals(2, entry.getLocaleList().size());
                     assertTrue(entry.getLocaleList().contains(french));
                     assertTrue(entry.getLocaleList().contains(spanish));
                     break;
                 case "doc3name":
+                    assertEquals("doc3type", entry.getDocumentType());
                     assertEquals(1, entry.getLocaleList().size());
                     assertTrue(entry.getLocaleList().contains(spanish));
                     break;
                 default:
-                    fail("unextencted document name");
+                    fail("unexpected document name");
             }
         }
     }

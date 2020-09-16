@@ -6,8 +6,11 @@ import com.visitscotland.brmx.beans.*;
 import com.visitscotland.brmx.beans.capabilities.Linkable;
 import com.visitscotland.brmx.beans.mapping.FlatLink;
 import com.visitscotland.brmx.beans.mapping.megalinks.EnhancedLink;
+import com.visitscotland.brmx.beans.mapping.megalinks.LinksModule;
 import com.visitscotland.brmx.dms.DMSDataService;
 import com.visitscotland.brmx.dms.ProductSearchBuilder;
+import com.visitscotland.brmx.services.LinkService;
+import com.visitscotland.brmx.services.ResourceBundleService;
 import com.visitscotland.brmx.utils.HippoUtilsService;
 import org.hippoecm.hst.content.beans.standard.HippoBean;
 import org.junit.jupiter.api.BeforeEach;
@@ -27,17 +30,17 @@ import static org.mockito.Mockito.*;
 @ExtendWith(MockitoExtension.class)
 public class LinkModuleFactoryMockitoTest {
 
-    private static final String DMS_ID = "0123456798";
-    private static final String EXTERNAL_URL = "http://www.fake.site";
-    private static final String PSR_URL = "http://psr.visitscotland.com/info/search?value1&value2";
-    private static final String MOCK_JSON = "{" +
+    public static final String DMS_ID = "0123456798";
+    public static final String EXTERNAL_URL = "http://www.fake.site";
+    public static final String PSR_URL = "http://psr.visitscotland.com/info/search?value1&value2";
+    public static final String MOCK_JSON = "{" +
             " \"url\":\"https://mock.visitscotland.com/info/fake-product-p" + DMS_ID + "\", " +
             " \"name\":\"Fake Product\", " +
             " \"images\":[{" +
             "    \"mediaUrl\":\"https://img.visitscotland.com/fake-product.jpg\"" +
             "}]}";
 
-    enum LinkType {CMS, DMS, EXTERNAL, PRODUCT_SEARCH}
+    public enum LinkType {CMS, DMS, EXTERNAL, PRODUCT_SEARCH}
 
     @Mock
     private ProductSearchBuilder builder;
@@ -48,21 +51,26 @@ public class LinkModuleFactoryMockitoTest {
     @Mock
     private DMSDataService dmsData;
 
+    @Mock
+    private ResourceBundleService resourceBundleService;
+
+    private LinkService linkService;
     private LinkModulesFactory factory;
 
-    private Megalinks mockFeatured() {
+    private Megalinks mockMultiImage() {
         Megalinks mega = mock(Megalinks.class, withSettings().lenient());
+        MegalinkItem item = mockItem();
 
-        when(mega.getMegalinkItems()).thenReturn(Collections.singletonList(mockItem()));
+        when(mega.getMegalinkItems()).thenReturn(Collections.singletonList(item));
 
         return mega;
     }
 
-    private MegalinkItem mockItem() {
+    public MegalinkItem mockItem() {
         return mockItem(false, LinkType.CMS);
     }
 
-    private MegalinkItem mockItem(boolean featured, LinkType type) {
+    public MegalinkItem mockItem(boolean featured, LinkType type) {
         MegalinkItem item = mock(MegalinkItem.class, withSettings().lenient());
 
         when(item.getFeature()).thenReturn(featured);
@@ -110,7 +118,8 @@ public class LinkModuleFactoryMockitoTest {
 
     @BeforeEach
     public void beforeEach() {
-        factory = new LinkModulesFactory(utils, builder, dmsData);
+        linkService = new LinkService(dmsData,builder,resourceBundleService,utils);
+        factory = new LinkModulesFactory(utils, dmsData,linkService);
     }
 
 
@@ -271,7 +280,7 @@ public class LinkModuleFactoryMockitoTest {
         //Test Behaviour when the data from DMS is corrupted
         DMSDataService dmsDataService = mock(DMSDataService.class);
         when(dmsDataService.productCard(anyString(), any(Locale.class))).thenThrow(new IOException());
-        LinkModulesFactory factory = new LinkModulesFactory(utils, builder, dmsDataService);
+        LinkModulesFactory factory = new LinkModulesFactory(utils, dmsDataService, linkService);
         MegalinkItem item = mockItem(false,LinkType.DMS);
 
         FlatLink flatLink = factory.convertToFlatLinks(Collections.singletonList(item), Locale.UK).get(0);
@@ -279,6 +288,40 @@ public class LinkModuleFactoryMockitoTest {
         assertNull(flatLink.getLink());
     }
 
+//    @Test
+//    void getSingleImage(){
+//        replayAll();
+//
+//        Megalinks mega = megalinkService.createMock(TITLE, false, false, true, 0, "Single image title");
+//        LinksModule layout = factory.getMegalinkModule(mega, Locale.UK);
+//
+//        verifyAll();
+//        Assertions.assertEquals(layout.getType(), SINGLE_IMAGE);
+//    }
+//
+//    @Test
+//    void singleImageLayout_optionCTA(){
+//
+//        Megalinks mega = mockMultiImage();
+//
+//        FlatLink mockLink = mock(linkService.getClass())
+//        //if getPr
+//        when(linkService.createLink(any(Locale.class), any(HippoCompound.class))).thenReturn(mockLink);
+//    }
 
+
+    @Test
+    void multiImageLayout_optionCTA(){
+        ExternalLink mockLink = mock(ExternalLink.class);
+        when(mockLink.getLink()).thenReturn("http://www.visitscotland.com");
+
+
+        Megalinks mega = mockMultiImage();
+        when(mega.getProductItem()).thenReturn(mockLink);
+
+        LinksModule layout = factory.multiImageLayout(mega, Locale.UK);
+
+        assertEquals("http://www.visitscotland.com", layout.getCta().getLink());
+    }
 
 }

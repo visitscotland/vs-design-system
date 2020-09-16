@@ -10,6 +10,14 @@
             <link rel="stylesheet" href="<@hst.webfile  path="/css/cms-request.css"/>" type="text/css"/>
         </#if>
 
+        <!-- BEGIN HEAD CONTRIBUTIONS: seo -->
+        <@hst.headContributions categoryIncludes="seo" xhtml=true/>
+        <!-- END HEAD CONTRIBUTIONS: seo -->
+
+        <!-- BEGIN HEAD CONTRIBUTIONS: opengraph -->
+        <@hst.headContributions categoryIncludes="opengraph" xhtml=true/>
+        <!-- END HEAD CONTRIBUTIONS: opengraph -->
+
         <!-- BEGIN HEAD CONTRIBUTIONS: htmlHeadPreload -->
         <@hst.headContributions categoryIncludes="htmlHeadPreload" xhtml=true/>
         <!-- END HEAD CONTRIBUTIONS: htmlHeadPreload -->
@@ -19,20 +27,20 @@
         <!-- END HEAD CONTRIBUTIONS: htmlHeadStyles -->
 
         <!-- BEGIN HEAD CONTRIBUTIONS: general -->
-        <@hst.headContributions categoryExcludes="htmlHeadPreload,htmlHeadStyles,htmlBodyEndScriptsFirst,htmlBodyEndScripts,htmlBodyEndAppInit" xhtml=true/>
+        <@hst.headContributions categoryExcludes="htmlHeadPreload,htmlHeadStyles,htmlBodyEndScriptsFirst,htmlBodyEndScripts,htmlBodyEndAppInit,seo,opengraph" xhtml=true/>
         <!-- END HEAD CONTRIBUTIONS: general -->
 
     </head>
     <body>
         <div class="no-js" data-vue-app-init>
             <@hst.include ref="top"/>
-    
+
             <@hst.include ref="menu"/>
-                
+
             <main id="main">
                 <@hst.include ref="main"/>
             </main>
-            
+
             <@hst.include ref="footer"/>
         </div>
 

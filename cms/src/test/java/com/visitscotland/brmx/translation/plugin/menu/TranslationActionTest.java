@@ -4,6 +4,7 @@ import com.visitscotland.brmx.translation.plugin.*;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.LoadableDetachableModel;
 import org.apache.wicket.util.tester.WicketTester;
+import org.hippoecm.frontend.session.UserSession;
 import org.hippoecm.frontend.translation.ILocaleProvider;
 import org.hippoecm.repository.api.HippoSession;
 import org.junit.jupiter.api.BeforeEach;
@@ -39,6 +40,10 @@ public class TranslationActionTest {
     @Mock
     private DocumentTranslator mockTranslator;
     private List<ChangeSet> changeSetList;
+    @Mock
+    private UserSessionFactory mockUserSessionFactory;
+    @Mock
+    private UserSession mockUserSession;
     private TranslationAction action;
 
     @BeforeEach
@@ -50,14 +55,16 @@ public class TranslationActionTest {
         changeSetList = new ArrayList<>();
         when(mockTranslator.buildChangeSetList(any(), any())).thenReturn(changeSetList);
         when(mockWorkflowPlugin.getAvailableLocales()).thenReturn(availableLocales);
-        action = spy(new TranslationAction(
+        action = new TranslationAction(
                 mockWorkflowPlugin,
                 "translation",
                 mockNameModel,
                 mockLocaleModel,
-                mockTranslator));
+                mockTranslator,
+                mockUserSessionFactory);
 
-        doReturn(mockHippoSession).when(action).getJcrSession();
+        when(mockUserSessionFactory.getUserSession()).thenReturn(mockUserSession);
+        when(mockUserSession.getJcrSession()).thenReturn(mockHippoSession);
     }
 
     @Test
@@ -66,7 +73,7 @@ public class TranslationActionTest {
         // should never happen but is a valid path through the code
         assertNull(action.execute(mockWorkflow));
 
-        verify(mockTranslator, never()).applyChangeSet(any(), any(), any());
+        verify(mockTranslator).applyChangeSet(any(), any(), any());
     }
 
     @Test
@@ -79,8 +86,7 @@ public class TranslationActionTest {
 
         action.execute(mockWorkflow);
 
-        verify(mockTranslator).applyChangeSet(same(change1), eq(mockHippoSession), eq(mockWorkflow));
-        verify(mockTranslator).applyChangeSet(same(change2), eq(mockHippoSession), eq(mockWorkflow));
+        verify(mockTranslator).applyChangeSet(same(changeSetList), eq(mockHippoSession), eq(mockWorkflow));
     }
 
     @Test
@@ -88,7 +94,7 @@ public class TranslationActionTest {
         ChangeSet change1 = mock(ChangeSet.class);
         changeSetList.add(change1);
         doThrow(new TranslationException("error message")).when(mockTranslator).applyChangeSet(
-                same(change1),
+                same(changeSetList),
                 eq(mockHippoSession),
                 eq(mockWorkflow)
         );
