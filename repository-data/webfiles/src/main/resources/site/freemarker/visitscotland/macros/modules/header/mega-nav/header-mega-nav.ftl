@@ -4,6 +4,8 @@
 <#include "../../../../../frontend/components/vs-mega-nav-top-menu-item.ftl">
 <#include "../../../../../frontend/components/vs-mega-nav-mobile-toggle.ftl">
 
+
+
 <#macro headerMegaNav menu=menu>
     <vs-mega-nav href="<@hst.link siteMapItemRefId='root'/>">
         <template slot="megaNavTopMenuItems">
