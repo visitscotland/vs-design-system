@@ -124,7 +124,6 @@ export default {
         min-width: auto;
         width: 100vw;
         background: $color-purple;
-        transition: all ease-in-out 0.3s;
         max-height: 0;
         overflow: hidden;
         opacity: 0;
