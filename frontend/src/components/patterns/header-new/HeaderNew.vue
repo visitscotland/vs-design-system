@@ -1,10 +1,13 @@
 <template>
-    <header>
+    <header
+        class="vs-header"
+        data-test="vs-header"
+    >
         <!-- @slot Global menu bar slot  -->
-        <slot name="global-navbar" />
+        <slot name="globalMenu" />
 
         <!-- @slot Main navigation bar slot  -->
-        <slot name="mega-nav" />
+        <slot name="megaNav" />
     </header>
 </template>
 
@@ -16,7 +19,14 @@ export default {
 };
 </script>
 
-<style lang="scss"></style>
+<style lang="scss">
+
+.vs-header{
+    position: relative;
+    z-index: 10;
+}
+
+</style>
 
 <docs>
     ```[import](./header.new.example.vue)

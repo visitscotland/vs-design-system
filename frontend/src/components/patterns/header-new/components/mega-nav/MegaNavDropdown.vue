@@ -1,0 +1,166 @@
+<template>
+    <div
+        class="vs-mega-nav__dropdown"
+        data-test="vs-mega-nav__dropdown"
+    >
+        <BDropdown
+            variant="transparent"
+            ref="dropdown"
+        >
+            <template #button-content>
+                <!-- @slot For dropdown toggle button content  -->
+                <slot name="buttonContent" />
+            </template>
+
+            <VsContainer>
+                <VsRow>
+                    <VsCol cols="12">
+                        <!-- @slot Used to display the top menu link
+                        at the top of the dropdown menu  -->
+                        <slot name="ctaLink" />
+                        <!-- @slot The rest of the mega nav links put here in the dropdown menu  -->
+                        <slot name="dropdownContent" />
+                    </VsCol>
+                </VsRow>
+            </VsContainer>
+        </BDropdown>
+    </div>
+</template>
+
+<script>
+/**
+ *  This component includes a slot for toggle button content
+ *  and slots for the mega nav dropdown menu content
+ */
+import {
+    VsCol, VsRow, VsContainer,
+} from '@components/elements/layout';
+import { BDropdown } from 'bootstrap-vue';
+
+export default {
+    name: 'VsMegaNavDropdown',
+    status: 'prototype',
+    release: '0.1.0',
+    components: {
+        BDropdown,
+        VsCol,
+        VsRow,
+        VsContainer,
+    },
+    mounted() {
+        // Listen for dropdown opening and closing and emit event
+        this.$root.$on('bv::dropdown::show', () => {
+            /**
+             * Triggers when the dropdown is about to show
+             */
+            this.$emit('menuToggled');
+        });
+
+        this.$root.$on('bv::dropdown::hide', () => {
+            /**
+             * Triggers when the dropdown is about to close
+             */
+            this.$emit('menuToggled');
+        });
+
+        // Close menu on resize screen to fix toggle btn issues
+        window.addEventListener('resize', this.closeMenu);
+    },
+    beforeDestroy() {
+        window.removeEventListener('resize', this.closeMenu);
+    },
+    methods: {
+        closeMenu() {
+            this.$refs.dropdown.hide(true);
+        },
+    },
+};
+</script>
+
+<style lang="scss">
+@import '~bootstrap/scss/type';
+
+.vs-mega-nav__dropdown {
+    padding: 0;
+
+    .dropdown {
+        position: static;
+
+        &.show {
+            .btn.dropdown-toggle {
+                color: $color-pink;
+
+                &::after {
+                    width: 100%;
+                }
+            }
+        }
+    }
+
+    .btn.dropdown-toggle {
+        position: relative;
+        letter-spacing: 0;
+        font-weight: normal;
+        line-height: 1.2;
+        border-radius: 0;
+        border: 0;
+        height: 32px;
+        width: 32px;
+        font-size: 0;
+        padding: $spacer-1;
+
+        &:focus {
+            box-shadow: 0 0 0 0.1rem $color-pink inset;
+        }
+
+        &::after {
+            display: none;
+        }
+
+        @include media-breakpoint-up(lg) {
+            padding: $spacer-3 $spacer-2;
+            height: auto;
+            width: auto;
+            font-size: 1rem;
+
+            &::after {
+                content: '';
+                position: absolute;
+                display: block;
+                bottom: 0;
+                left: 0;
+                width: 0;
+                height: 4px;
+                background: $color-pink !important;
+                transition: width 0.2s;
+                border: 0;
+                margin: 0;
+            }
+
+            &:hover {
+                color: $color-pink;
+
+                &::after {
+                    width: 100%;
+                }
+            }
+        }
+    }
+
+    .dropdown-menu {
+        background: $color-gray-tint-8;
+        width: 100%;
+        padding: 24px 0;
+        margin: 0;
+        min-height: 200px;
+        border: 0;
+        box-shadow: 0 3px 7px rgba(0, 0, 0, 0.16);
+        transform: translate3d(0px, 55px, 0px) !important;
+    }
+}
+</style>
+
+<docs>
+   ```[import](./meganav.dropdown.example.vue)
+    ```
+</docs>
