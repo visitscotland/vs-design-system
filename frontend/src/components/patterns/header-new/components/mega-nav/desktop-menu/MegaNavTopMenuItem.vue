@@ -1,75 +1,62 @@
 <template>
     <li
-        class="vs-mega-nav__item"
+        class="vs-mega-nav__top-menu__item"
+        data-test="vs-mega-nav__top-menu__item"
         ref="menuToggle"
     >
-        <VsButton
-            class="vs-mega-nav__button"
-            variant="transparent"
-            aria-haspopup="true"
-            :animate="false"
-            :uppercase="false"
-            :aria-expanded="isOpen ? 'true' : 'false'"
-            @click.native="openMenu"
-        >
-            <slot />
-        </VsButton>
+        <VsMegaNavDropdown>
+            <template #buttonContent>
+                <!-- @slot For top menu item button content -->
+                <slot name="buttonContent" />
+            </template>
 
-        <VsMegaNavDropdown v-show="isOpen">
-            <a :href="href">{{ ctaText }}</a>
-            <hr>
+            <template #ctaLink>
+                <a
+                    v-if="href && ctaText"
+                    :href="href"
+                    class="vs-mega-nav__cta-link"
+                    data-test="vs-mega-nav__cta-link"
+                >
+                    {{ ctaText }}
+                </a>
+                <hr>
+            </template>
 
-            <slot name="subnav" />
+            <template #dropdownContent>
+                <!-- @slot Slot for dropdown menu list content -->
+                <slot name="dropdownContent" />
+            </template>
         </VsMegaNavDropdown>
     </li>
 </template>
 
 <script>
 /**
- *  Mega nav top level menu button
+ *  Mega nav top level menu items with a slots for toggle button and dropdown content
  */
-
-import VsButton from '@components/elements/button/Button';
-import VsMegaNavDropdown from '@components/patterns/header-new/components/mega-nav/desktop-menu/MegaNavDropdown';
+import VsMegaNavDropdown from '@components/patterns/header-new/components/mega-nav/MegaNavDropdown';
 
 export default {
     name: 'VsMegaNavTopMenuItem',
     status: 'prototype',
     release: '0.1.0',
     components: {
-        VsButton,
         VsMegaNavDropdown,
     },
     props: {
+        /**
+         * The URL for the top level CTA link
+         */
         href: {
             type: String,
             default: '',
         },
+        /**
+         * The text to display for the CTA link
+         */
         ctaText: {
             type: String,
             default: '',
-        },
-    },
-    data() {
-        return {
-            isOpen: false,
-        };
-    },
-    created() {
-        window.addEventListener('click', this.resetMenu);
-    },
-    beforeDestroy() {
-        window.removeEventListener('click', this.resetMenu);
-    },
-    methods: {
-        resetMenu(e) {
-            // Close dropdown when user clicks elsewhere
-            if (!this.$refs.menuToggle.contains(e.target)) {
-                this.isOpen = false;
-            }
-        },
-        openMenu() {
-            this.isOpen = !this.isOpen;
         },
     },
 };
@@ -78,46 +65,12 @@ export default {
 <style lang="scss">
 @import '~bootstrap/scss/type';
 
-.vs-mega-nav__item {
-
+.vs-mega-nav__top-menu__item{
     @include media-breakpoint-up(xl) {
         margin-right: $spacer-6;
 
-        &:last-of-type{
+        &:last-of-type {
             margin-right: 0;
-        }
-    }
-
-    .vs-mega-nav__button.btn {
-        letter-spacing: 0;
-        font-weight: normal;
-        line-height: 1.2;
-        padding: $spacer-3 $spacer-2;
-        border-radius: 0;
-        border: 0;
-
-        &::after {
-            content: '';
-            position: absolute;
-            display: block;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 4px;
-            background: $color-pink !important;
-            transition: width 0.2s;
-        }
-
-        &:hover {
-            color: $color-pink;
-
-            &::after {
-                width: 100%;
-            }
-        }
-
-        &:focus {
-            box-shadow: 0 0 0 0.1rem $color-pink inset;
         }
     }
 }
@@ -125,5 +78,30 @@ export default {
 
 <docs>
   ```jsx
+    <div class="bg-white">
+        <VsContainer>
+            <VsRow class="align-items-center">
+                <VsCol cols="12">
+                    <VsMegaNavTopMenu>
+                        <VsMegaNavTopMenuItem
+                            href="/"
+                            cta-text="A Map of Scotland"
+                        >
+                            <span slot="buttonContent">
+                                Places to Go
+                            </span>
+                            <span slot="dropdownContent">
+                                <ul>
+                                    <li>
+                                        Submenu Item
+                                    </li>
+                                </ul>
+                            </span>
+                        </VsMegaNavTopMenuItem>
+                    </VsMegaNavTopMenu>
+                </VsCol>
+            </VsRow>
+        </VsContainer>
+    </div>
   ```
 </docs>

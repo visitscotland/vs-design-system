@@ -1,82 +1,148 @@
-<!-- eslint-disable -->
 <template>
-    <BNavbar class="vs-mega-nav" toggleable="lg">
+    <div
+        class="vs-mega-nav bg-white"
+        data-test="vs-mega-nav"
+    >
         <VsContainer>
-             <VsSvgLink
-                class="vs-mega-nav__logo mr-lg-6 mr-xl-12"
-                logo-alt-text="VisitScotland Home"
-                href="/"
-                svg-fill="700e57"
-                svg-path="visitscotland"
-            />
-        
-            <BNavbarToggle target="nav-collapse"></BNavbarToggle>
-
-            <BCollapse id="nav-collapse" is-nav>
-                <VsMegaNavMobileList class="d-lg-none">
-                    <slot name="mega-nav-mobile-items" />
-                </VsMegaNavMobileList>
-
-                <VsMegaNavTopMenu
-                    class="d-none d-lg-flex"
+            <VsRow class="align-items-center justify-content-sm-end">
+                <!-- Logo Link -->
+                <VsCol
+                    cols="8"
+                    md="4"
+                    lg="3"
                 >
-                    <slot name="mega-nav-top-menu-items" />
-                </VsMegaNavTopMenu>
-            </BCollapse>
+                    <VsSvgLink
+                        class="vs-mega-nav__logo"
+                        data-test="vs-mega-nav__logo"
+                        logo-alt-text="VisitScotland Home"
+                        :href="href"
+                        svg-fill="700e57"
+                        svg-path="visitscotland"
+                    />
+                </VsCol>
+
+                <!-- Desktop Top Menu Toggles -->
+                <VsCol
+                    cols="4"
+                    md="8"
+                    lg="9"
+                    class="vs-mega-nav__menu d-none d-lg-block"
+                >
+                    <VsMegaNavTopMenu>
+                        <!-- @slot For top menu list items in navbar  -->
+                        <slot name="megaNavTopMenuItems" />
+                    </VsMegaNavTopMenu>
+                </VsCol>
+
+                <!-- Mobile Toggle and Menu -->
+                <VsCol
+                    cols="4"
+                    md="8"
+                    lg="9"
+                    class="d-flex d-lg-none justify-content-end position-static"
+                >
+                    <VsMegaNavDropdown @menuToggled="menuToggle">
+                        <template #buttonContent>
+                            <VsIcon
+                                v-if="isOpen"
+                                name="close"
+                                size="sm"
+                                variant="dark"
+                            />
+
+                            <VsIcon
+                                v-else
+                                name="bars-mobile-menu"
+                                size="md"
+                                variant="dark"
+                            />
+                        </template>
+
+                        <template #dropdownContent>
+                            <!-- @slot For mobile list items  -->
+                            <slot name="megaNavMobileItems" />
+                        </template>
+                    </VsMegaNavDropdown>
+                </VsCol>
+            </VsRow>
         </VsContainer>
-    </BNavbar>
+    </div>
 </template>
 
 <script>
-import { VsContainer } from '@components/elements/layout';
-import VsSvgLink from '@components/patterns/svg-link/SvgLink';
+/**
+ *  The Mega Nav bar component includes main VS logo and slots for
+ *  top menu items on desktop and dropdown toggle with menu items for mobile
+ */
+
 import {
-    BNavbar, BNavbarToggle, BCollapse,
-} from 'bootstrap-vue';
+    VsCol, VsRow, VsContainer,
+} from '@components/elements/layout';
+import VsSvgLink from '@components/patterns/svg-link/SvgLink';
+import VsMegaNavDropdown from '@components/patterns/header-new/components/mega-nav/MegaNavDropdown';
+import VsMegaNavTopMenu from '@components/patterns/header-new/components/mega-nav/desktop-menu/MegaNavTopMenu';
+import VsIcon from '@components/elements/icon/Icon';
 
 export default {
     name: 'VsMegaNav',
     status: 'prototype',
     release: '0.1.0',
     components: {
+        VsCol,
+        VsRow,
         VsContainer,
         VsSvgLink,
-        BNavbar,
-        BNavbarToggle,
-        BCollapse,
+        VsMegaNavDropdown,
+        VsMegaNavTopMenu,
+        VsIcon,
+    },
+    props: {
+        /**
+         * The URL for the VS logo link
+         */
+        href: {
+            type: String,
+            required: true,
+        },
+    },
+    data() {
+        return {
+            isOpen: false,
+        };
+    },
+    methods: {
+        /**
+         * Toggles dropdown menu property
+         * @returns {Boolean} true if menu is open
+        */
+        menuToggle() {
+            this.isOpen = !this.isOpen;
+        },
     },
 };
 </script>
 
 <style lang="scss">
-
-@import "~bootstrap/scss/navbar";
+@import '~bootstrap/scss/navbar';
 
 .vs-mega-nav {
     position: relative;
-    background: $color-white;
+    display: flex;
+    align-items: center;
+    height: 55px;
     @extend %default-box-shadow;
 
-    @include media-breakpoint-up(lg) {
-        padding: 0;
+    &__logo svg {
+        max-width: 184px;
     }
 
-    &__logo {
-        padding-top: 0.3125rem;
-        padding-bottom: 0.3125rem;
-
-        svg{
-            width: 184px;
-        }
-    }
-
-    &__menu {
+    .vs-mega-nav__menu {
         position: static;
     }
 }
 </style>
 
 <docs>
-  ```jsx
-  ```
+    ```[import](./meganav.example.vue)
+    ```
 </docs>
