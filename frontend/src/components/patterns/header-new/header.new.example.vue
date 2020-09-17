@@ -1,67 +1,68 @@
 <template>
     <div style="min-height: 600px;">
         <VsHeaderNew>
-            <template slot="global-navbar">
+            <template #globalMenu>
                 <div
-                    class="navbar bg-primary-purple"
+                    class="bg-primary-purple"
                     style="height: 35px"
                 >
                     <VsContainer>
                         <VsRow>
                             <VsCol cols="12">
-                                <span style="color: white">Global Nav</span>
+                                <span style="color: white">Global Menu</span>
                             </VsCol>
                         </VsRow>
                     </VsContainer>
                 </div>
             </template>
-            <template slot="mega-nav">
-                <VsMegaNav>
-                    <template slot="mega-nav-top-menu-items">
+            <template #megaNav>
+                <VsMegaNav href="/">
+                    <template #megaNavTopMenuItems>
                         <VsMegaNavTopMenuItem
                             v-for="(item, index) in header.mainNav"
                             :key="index"
                             :href="item.href"
                             :cta-text="item.cta"
                         >
-                            {{ item.title }}
-
-                            <template slot="subnav">
+                            <template #buttonContent>
+                                {{ item.title }}
+                            </template>
+                            <template #dropdownContent>
                                 <ul>
                                     <li
-                                        v-for="(subnavItem, subnavIndex) in item.subnav"
-                                        :key="subnavIndex"
+                                        v-for="(navItem, navIndex) in item.dropdownNav"
+                                        :key="navIndex"
                                     >
-                                        {{ subnavItem.title }}
+                                        {{ navItem.title }}
                                     </li>
                                 </ul>
                             </template>
                         </VsMegaNavTopMenuItem>
                     </template>
 
-                    <template slot="mega-nav-mobile-items">
-                        <VsMegaNavMobileListItem
+                    <template #megaNavMobileItems>
+                        <VsMegaNavMobileToggle
                             v-for="(item, index) in header.mainNav"
                             :key="index"
                             :href="item.href"
                             :cta-text="item.cta"
                         >
                             {{ item.title }}
-                        </VsMegaNavMobileListItem>
+                        </VsMegaNavMobileToggle>
                     </template>
                 </VsMegaNav>
             </template>
         </VsHeaderNew>
 
-        <template class="container">
-            <div class="row">
-                <div
-                    id="content-container"
-                    class="col p-3"
+        <VsContainer>
+            <VsRow>
+                <VsCol
+                    cols="12"
+                    class="pt-6"
                 >
                     Dummy page contents
-                </div>
-            </div>
-        </template>
+                </VsCol>
+            </VsRow>
+        </VsContainer>
     </div>
 </template>

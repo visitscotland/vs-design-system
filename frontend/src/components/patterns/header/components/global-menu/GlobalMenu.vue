@@ -7,57 +7,19 @@
                     class="vs-global-menu__wrapper"
                 >
                     <!-- Small Screens Menu -->
-                    <VsDropdown
-                        :text="dropdownLabel"
-                        class="
-                            vs-global-menu__websites
-                            d-lg-none
-                        "
-                    >
-                        <VsDropdownItem
-                            v-for="site in ourWebsites"
-                            :key="site.siteName"
-                            :href="site.siteUrl"
-                            :target="
-                                (site.siteUrl == activeSite)
-                                    ? '_self'
-                                    : '_blank'
-                            "
-                        >
-                            {{ site.siteName }}
-                        </VsDropdownItem>
-                    </VsDropdown>
+                    <VsGlobalMenuDropdown
+                        class="d-lg-none"
+                        :active-site="activeSite"
+                        :dropdown-label="dropdownLabel"
+                        :websites="websites"
+                    />
 
                     <!-- Large Screens Menu -->
-                    <VsList
-                        unstyled
-                        inline
-                        class="
-                            vs-global-menu__websites
-                            d-none
-                            d-lg-flex
-                        "
-                    >
-                        <li
-                            v-for="site in ourWebsites"
-                            :key="site.siteName"
-                            class="vs-global-menu__websites__item"
-                            :class="[
-                                (site.siteUrl == activeSite)
-                                    ? 'vs-global-menu__websites__item--active'
-                                    : ''
-                            ]"
-                        >
-                            <a
-                                :target="
-                                    (site.siteUrl == activeSite)
-                                        ? '_self'
-                                        : '_blank'
-                                "
-                                :href="site.siteUrl"
-                            >{{ site.siteName }}</a>
-                        </li>
-                    </VsList>
+                    <VsGlobalMenuList
+                        class="d-none d-lg-flex"
+                        :active-site="activeSite"
+                        :websites="websites"
+                    />
 
                     <!-- @slot The content you want to appear as the
                         second element on the global menu, after the websites list,
@@ -78,9 +40,8 @@
 import {
     VsContainer, VsRow, VsCol,
 } from '@components/elements/layout';
-import VsList from '@components/elements/list';
-import VsDropdown from '../../../dropdown/Dropdown';
-import VsDropdownItem from '../../../dropdown/DropdownItem';
+import VsGlobalMenuDropdown from './GlobalMenuDropdown';
+import VsGlobalMenuList from './GlobalMenuList';
 
 /**
  * This component is the main Global Nav Wrapper for the top of the page.
@@ -95,9 +56,8 @@ export default {
         VsContainer,
         VsRow,
         VsCol,
-        VsDropdown,
-        VsDropdownItem,
-        VsList,
+        VsGlobalMenuDropdown,
+        VsGlobalMenuList,
     },
     props: {
         /**
@@ -117,7 +77,7 @@ export default {
     },
     data() {
         return {
-            ourWebsites: [
+            websites: [
                 {
                     siteName: 'VisitScotland',
                     siteUrl: 'https://www.visitscotland.com/',
@@ -188,132 +148,6 @@ export default {
     }
 }
 
-.vs-global-menu__websites,
-.vs-global-menu__websites .btn {
-    padding: 0;
-    background: transparent;
-    border: none;
-}
-
-.vs-global-menu__websites {
-    position: initial;
-    flex: auto;
-
-    a {
-        color: white;
-        text-decoration: none;
-
-        &:hover {
-            background: $color-purple-shade-2;
-        }
-    }
-
-    .btn {
-        padding: 0.3rem $spacer-5;
-        font-size: $font-size-sm;
-        display: flex;
-        align-items: center;
-
-        &-secondary:not(:disabled):not(.disabled):active {
-            background: $color-purple-shade-2;
-        }
-
-        &:focus {
-            outline: 3px solid $color-pink-tint-5;
-            outline-offset: -3px;
-            box-shadow: none;
-        }
-    }
-
-    &.show .btn,
-    &.show .btn:active,
-    &.show .btn:focus {
-        background: $color-purple-shade-2;
-    }
-
-    ul:focus {
-        outline: 3px solid $color-pink-tint-5;
-        outline-offset: -3px;
-    }
-
-
-    .dropdown-menu {
-        min-width: auto;
-        width: 100vw;
-        background: $color-purple;
-        transition: all ease-in-out 0.3s;
-        max-height: 0;
-        display: block;
-        overflow: hidden;
-        opacity: 0;
-        transform: translate3d(0px, 0px, 0px);
-
-        li {
-            border-bottom: 1px solid $color-purple-tint-3;
-
-            &:last-of-type {
-                border: none;
-            }
-
-            a {
-                padding: 0.7rem $spacer-5;
-                color: white;
-                text-decoration: none;
-                font-size: $font-size-sm;
-
-                &:hover, &:focus {
-                    background: $color-purple-shade-2;
-                }
-
-                &:focus {
-                    outline: 3px solid $color-pink-tint-5;
-                    outline-offset: -3px;
-                }
-            }
-        }
-
-        &.show {
-            max-height: 500px;
-            opacity: 1;
-            transform: translate3d(0px, 26px, 0px) !important;
-            border: none;
-            padding: 0;
-        }
-    }
-
-    &__item {
-        a {
-            padding: 0.65rem $spacer_5;
-            max-height: 35px;
-
-            &:focus {
-                outline: 3px solid $color-pink-tint-5;
-                outline-offset: -3px;
-            }
-
-            &:active {
-                background: white;
-                color: $color-purple-shade-2;
-                outline: none;
-            }
-        }
-
-        &--active {
-            a {
-            background: $color-white;
-            color: $color-purple-shade-2;
-
-                &:hover {
-                    color: white;
-                }
-                &:active {
-                    background: $color-purple-shade-2;
-                }
-            }
-        }
-    }
-}
-
 @include no-js {
     .vs-global-menu {
         height: auto;
@@ -329,31 +163,6 @@ export default {
 
             .vs-list {
                 display: flex !important;
-            }
-        }
-
-        &__websites {
-            flex-wrap: wrap;
-
-            &__item {
-                display: flex;
-                flex: auto;
-                flex-basis: 100%;
-
-                border-bottom: 1px solid $color-purple-tint-3;
-
-                @include media-breakpoint-up(md) {
-                    flex-basis: auto;
-                    border: none;
-                }
-
-                a {
-                    display: flex;
-                    align-items: center;
-                    flex: auto;
-                    justify-content: center;
-                    padding: 1.9rem $spacer-5;
-                }
             }
         }
     }

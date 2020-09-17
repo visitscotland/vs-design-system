@@ -1,15 +1,19 @@
-<!-- eslint-disable -->
 <template>
-    <BNavbarNav>
-       <slot />
-    </BNavbarNav>
+    <VsRow>
+        <VsCol cols="12">
+            <BNavbarNav class="vs-mega-nav__mobile-list">
+                <slot />
+            </BNavbarNav>
+        </VsCol>
+    </VsRow>
 </template>
 
 <script>
 
 /**
- * The nearest ancestor with position relative
+ * WORK IN PROGRESS
  */
+import { VsRow, VsCol } from '@components/elements/layout';
 import { BNavbarNav } from 'bootstrap-vue';
 
 export default {
@@ -18,6 +22,8 @@ export default {
     release: '0.1.0',
     components: {
         BNavbarNav,
+        VsRow,
+        VsCol,
     },
 };
 </script>
@@ -25,9 +31,9 @@ export default {
 <style lang="scss">
 @import "~bootstrap/scss/type";
 
-.vs-mega-nav__list {
-    width: 100%;
-    display: flex;
+.vs-mega-nav__mobile-list {
+    margin-top: $spacer-2;
+    padding: 0 0;
 }
 
 </style>
