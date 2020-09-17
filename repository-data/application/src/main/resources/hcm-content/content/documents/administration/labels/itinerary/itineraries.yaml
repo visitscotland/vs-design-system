@@ -1,13 +1,12 @@
 /content/documents/administration/labels/itinerary/itineraries:
   jcr:primaryType: hippo:handle
-  jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
-  jcr:uuid: a0e18f5d-09d2-47b9-83d6-c41eed3d6539
+  jcr:mixinTypes: ['hippo:named', 'mix:referenceable']
+  jcr:uuid: 97e64157-de1c-4f91-93db-5062825421b4
   hippo:name: Page - Itinerary
-  hippo:versionHistory: 4b2f32c0-1528-4f88-a22e-41e5aff09fd8
   /itineraries[1]:
     jcr:primaryType: resourcebundle:resourcebundle
     jcr:mixinTypes: ['mix:referenceable']
-    jcr:uuid: ea358846-0878-416a-9704-4e901c7f1f3b
+    jcr:uuid: 667af60a-2bda-42de-9370-62d8a1cca651
     hippo:availability: []
     hippostd:state: draft
     hippostdpubwf:createdBy: admin
@@ -45,8 +44,8 @@
       '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '']
   /itineraries[2]:
     jcr:primaryType: resourcebundle:resourcebundle
-    jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
-    jcr:uuid: b3144d11-efb4-4d90-a314-d2e71536b0a4
+    jcr:mixinTypes: ['mix:versionable']
+    jcr:uuid: 746ac7fb-2150-4d67-ab63-c25795c4b510
     hippo:availability: [preview]
     hippostd:state: unpublished
     hippostdpubwf:createdBy: admin
@@ -85,7 +84,7 @@
   /itineraries[3]:
     jcr:primaryType: resourcebundle:resourcebundle
     jcr:mixinTypes: ['mix:referenceable']
-    jcr:uuid: 48c9e37e-b6ed-4274-9a5b-4c4a7c9c5206
+    jcr:uuid: 2b3e7afc-9074-4751-97ca-905180d7f2d0
     hippo:availability: [live]
     hippostd:state: published
     hippostdpubwf:createdBy: admin
