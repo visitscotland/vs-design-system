@@ -132,7 +132,7 @@ export default {
                 width: 0;
                 height: 4px;
                 background: $color-pink !important;
-                transition: width 0.2s;
+                transition: width 0.2s linear;
                 border: 0;
                 margin: 0;
             }
