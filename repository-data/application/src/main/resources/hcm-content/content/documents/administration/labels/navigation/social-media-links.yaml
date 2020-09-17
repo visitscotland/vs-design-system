@@ -1,13 +1,14 @@
 /content/documents/administration/labels/navigation/social-media-links:
   .meta:order-before: footer-utility-links
   jcr:primaryType: hippo:handle
-  jcr:mixinTypes: ['hippo:named', 'mix:referenceable']
-  jcr:uuid: 667bd964-edda-4d49-a96f-5882b8c5998a
+  jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
+  jcr:uuid: 93697ed5-5c68-4ab7-8787-e70e27707801
   hippo:name: Social media links
+  hippo:versionHistory: eed2ea26-6009-4db5-9358-9cfd8c9a0f5e
   /social-media-links[1]:
     jcr:primaryType: resourcebundle:resourcebundle
     jcr:mixinTypes: ['mix:referenceable']
-    jcr:uuid: a202d499-f297-4f04-aeaf-3a99fd61db24
+    jcr:uuid: 70b1c391-f992-4771-9a4c-8aab5da43e15
     hippo:availability: []
     hippostd:state: draft
     hippostdpubwf:createdBy: admin
@@ -18,11 +19,11 @@
     resourcebundle:id: navigation.social-media
     resourcebundle:keys: [facebook, twitter, youtube, instagram]
     resourcebundle:messages: ['https://www.facebook.com/visitscotland/', 'https://twitter.com/VisitScotland',
-      'https://www.youtube.com/channel/UC1FdvQG5MFwzv0PY6dMsaFg', 'https://www.instagram.com/visitscotland/']
+                              'https://www.youtube.com/channel/UC1FdvQG5MFwzv0PY6dMsaFg', 'https://www.instagram.com/visitscotland/']
   /social-media-links[2]:
     jcr:primaryType: resourcebundle:resourcebundle
     jcr:mixinTypes: ['mix:versionable']
-    jcr:uuid: eacaa8fc-8bd5-4319-b70d-b4e216fa5556
+    jcr:uuid: 27dcb9e6-957b-4b28-ab86-694b09db853b
     hippo:availability: [preview]
     hippostd:state: unpublished
     hippostdpubwf:createdBy: admin
@@ -33,11 +34,11 @@
     resourcebundle:id: navigation.social-media
     resourcebundle:keys: [facebook, twitter, youtube, instagram]
     resourcebundle:messages: ['https://www.facebook.com/visitscotland/', 'https://twitter.com/VisitScotland',
-      'https://www.youtube.com/channel/UC1FdvQG5MFwzv0PY6dMsaFg', 'https://www.instagram.com/visitscotland/']
+                              'https://www.youtube.com/channel/UC1FdvQG5MFwzv0PY6dMsaFg', 'https://www.instagram.com/visitscotland/']
   /social-media-links[3]:
     jcr:primaryType: resourcebundle:resourcebundle
     jcr:mixinTypes: ['mix:referenceable']
-    jcr:uuid: 8ad8f258-0e56-4a2b-a5e6-1a3ee892b805
+    jcr:uuid: f9423467-034b-4308-af74-4ae19bffb5ae
     hippo:availability: [live]
     hippostd:state: published
     hippostdpubwf:createdBy: admin
@@ -49,4 +50,4 @@
     resourcebundle:id: navigation.social-media
     resourcebundle:keys: [facebook, twitter, youtube, instagram]
     resourcebundle:messages: ['https://www.facebook.com/visitscotland/', 'https://twitter.com/VisitScotland',
-      'https://www.youtube.com/channel/UC1FdvQG5MFwzv0PY6dMsaFg', 'https://www.instagram.com/visitscotland/']
+                              'https://www.youtube.com/channel/UC1FdvQG5MFwzv0PY6dMsaFg', 'https://www.instagram.com/visitscotland/']

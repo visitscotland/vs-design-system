@@ -4,7 +4,7 @@
 <#include "../../frontend/components/vs-global-menu-language-item.ftl">
 
 <#-- @ftlvariable name="menu" type="org.hippoecm.hst.core.sitemenu.HstSiteMenu" -->
-<#-- @ftlvariable name="enhancedMenu" type="java.util.List" -->
+<#-- @ftlvariable name="menu" type="java.util.List" -->
 <#-- @ftlvariable name="item" type=""com.visitscotland.www.components.navigation.VsMenuItem" -->
 <#-- @ftlvariable name="editMode" type="java.lang.Boolean"-->
 <#-- @ftlvariable name="language" type="com.visitscotland.brmx.beans.mapping.LocalizedURL"-->
