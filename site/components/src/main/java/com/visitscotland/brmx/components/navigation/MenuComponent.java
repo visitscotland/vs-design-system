@@ -3,10 +3,12 @@ package com.visitscotland.brmx.components.navigation;
 
 import com.visitscotland.brmx.beans.Page;
 import com.visitscotland.brmx.beans.Widget;
+import com.visitscotland.brmx.beans.mapping.LocalizedURL;
 import com.visitscotland.brmx.components.navigation.info.MenuComponentInfo;
 import com.visitscotland.brmx.services.ResourceBundleService;
 import com.visitscotland.brmx.utils.CommonUtils;
 import com.visitscotland.brmx.utils.HippoUtilsService;
+import com.visitscotland.brmx.utils.Properties;
 import com.visitscotland.utils.Contract;
 import org.hippoecm.hst.content.beans.standard.HippoBean;
 import org.hippoecm.hst.content.beans.standard.HippoFolder;
@@ -23,6 +25,7 @@ import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import java.util.MissingFormatArgumentException;
 
 @ParametersInfo(
@@ -55,6 +58,58 @@ public class MenuComponent extends EssentialsMenuComponent {
     public void doBeforeRender(HstRequest request, HstResponse response) {
         super.doBeforeRender(request, response);
         enhanceRequest(request);
+        addLocalizedURLs(request);
+
+    }
+
+    public void addLocalizedURLs(HstRequest request) {
+        List<LocalizedURL> translatedURL = new ArrayList<>(Properties.locales.size());
+
+
+        HippoBean document = request.getRequestContext().getContentBean();
+
+        HippoBean englishSite = null;
+        if (document != null){
+            for (Locale locale: Properties.locales){
+                LocalizedURL lan = new LocalizedURL();
+                lan.setLocale(locale);
+                lan.setLanguage(locale==null?"en":locale.getLanguage());
+                lan.setDisplayName(bundle.getResourceBundle("universal", lan.getLanguage(), request.getLocale()));
+
+                HippoBean translation = document.getAvailableTranslations().getTranslation(lan.getLanguage());
+                HstLink link;
+
+                if (locale == null) {
+                    if (translation == null){
+                        logger.error("The requested page does not exist in English: " + document.getPath());
+                    } else {
+                        englishSite = translation;
+                        link = request.getRequestContext().getHstLinkCreator().create(document, request.getRequestContext());
+                    }
+                }
+
+                if (translation != null){
+                    lan.setUrl(utils.createUrl(translation));
+                    lan.setExists(true);
+                } else {
+                    String languagePath = "";
+
+                    if(locale != null){
+                        languagePath += "/" + lan.getLanguage();
+                    }
+
+                    lan.setUrl(request.getRequestContext().getBaseURL().getHostName()+
+                            request.getRequestContext().getBaseURL().getContextPath() +
+                            languagePath +
+                            request.getRequestContext().getBaseURL().getPathInfo());
+                    lan.setExists(false);
+                }
+                translatedURL.add(lan);
+            }
+        } else {
+            logger.error("Menu functionality is not supported for Channel Manager Pages at the moment");
+        }
+        request.setModel("localizedURLs", translatedURL);
     }
 
     protected void enhanceRequest(HstRequest request){

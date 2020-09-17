@@ -3,30 +3,29 @@
 <#include "../../frontend/components/vs-global-menu-language.ftl">
 <#include "../../frontend/components/vs-global-menu-language-item.ftl">
 
-<@hst.setBundle basename="navigation"/>
-<@hst.setBundle basename="universal"/>
-
 <#-- @ftlvariable name="menu" type="org.hippoecm.hst.core.sitemenu.HstSiteMenu" -->
 <#-- @ftlvariable name="enhancedMenu" type="java.util.List" -->
 <#-- @ftlvariable name="item" type=""com.visitscotland.www.components.navigation.VsMenuItem" -->
 <#-- @ftlvariable name="editMode" type="java.lang.Boolean"-->
+<#-- @ftlvariable name="language" type="com.visitscotland.brmx.beans.mapping.LocalizedURL"-->
 
 <#assign currentLocale=hstRequest.requestContext.resolvedMount.mount.locale>
 <#assign languages = ["en-gb","de-de","es-es","fr-fr","it-it","nl-nl"]>
 
 <#if menu??>
 <div class="has-edit-button">
+
     <vs-global-menu
-        dropdown-label='<@fmt.message key="global-menu.our-websites" />'
+        dropdown-label="${label('navigation.static', 'uninav.our-sites')}"
         active-site="https://www.visitscotland.com/"
     >
         <template slot="third-menu-item">
             <vs-global-menu-language current-locale="${currentLocale}" language-label="${label('navigation.static', 'universal.language')}">
-                <#list languages as language>
+                <#list localizedURLs as language>
                     <vs-global-menu-language-item
-                        key="${language}"
-                        language-link="/site/${language}"
-                        language-name="<@fmt.message key="${language}" />"
+                        key="${language.language}"
+                        language-link="${language.url}"
+                        language-name="${language.displayName}<#-- (${language.isExists()?c}) -->"
                     >
                     </vs-global-menu-language-item>
                 </#list>
