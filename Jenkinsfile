@@ -20,8 +20,8 @@ if (BRANCH_NAME == "develop" && (JOB_NAME == "develop.visitscotland.com/develop"
   //env.VS_CONTAINER_BASE_PORT_OVERRIDE = "8096"
   //cron_string = "*/2 * * * *"
 } else {
-  thisAgent = "docker-02"
-  //thisAgent = "op-dev-xvcdocker-01"
+  //thisAgent = "docker-02"
+  thisAgent = "op-dev-xvcdocker-01"
 }
 
 import groovy.json.JsonSlurper
@@ -91,7 +91,7 @@ pipeline {
       }
       post {
         success {
-          sh 'mvn -f pom.xml install -P dist'
+          sh 'mvn -f pom.xml install -Pdist-with-development-data'
           mail bcc: '', body: "<b>Notification</b><br>Project: ${env.JOB_NAME} <br>Build Number: ${env.BUILD_NUMBER} <br> build URL: ${env.BUILD_URL}", cc: '', charset: 'UTF-8', from: '', mimeType: 'text/html', replyTo: '', subject: "SUCCESS CI: Project name -> ${env.JOB_NAME}", to: "${MAIL_TO}";
         }
         failure {
@@ -144,13 +144,13 @@ pipeline {
       }
       steps {
         // -- 20200712: QUESTION FOR SE, "brC does not recognise the package, maybe it needs Enterprise Features?"
-        sh 'mvn verify && mvn -Pdist -P!fed-build -DskipTests'
+        sh 'mvn verify && mvn -Pdist-with-development-data -P!fed-build -DskipTests'
       }
       post {
         success {
           //sh 'mvn -f pom.xml install -P !default'
 	  // -- 20200712: extra install step removed
-          //sh 'mvn -f pom.xml install -P dist'
+          //sh 'mvn -f pom.xml install -Pdist-with-development-data'
           mail bcc: '', body: "<b>Notification</b><br>Project: ${env.JOB_NAME} <br>Build Number: ${env.BUILD_NUMBER} <br> build URL: ${env.BUILD_URL}", cc: '', charset: 'UTF-8', from: '', mimeType: 'text/html', replyTo: '', subject: "SUCCESS CI: Project name -> ${env.JOB_NAME}", to: "${MAIL_TO}";
         }
         failure {
@@ -166,7 +166,7 @@ pipeline {
         }
         steps{
             script{
-                sh 'mvn -f pom.xml deploy -P dist -s $MAVEN_SETTINGS'
+                sh 'mvn -f pom.xml deploy -Pdist-with-development-data -s $MAVEN_SETTINGS'
             }
         }
     }
@@ -192,7 +192,7 @@ pipeline {
             }
             echo "Uploading version $NEW_TAG to Nexus"
             sh "mvn versions:set -DremoveSnapshot"
-            sh "mvn -B clean  deploy -P dist -Drevision=$NEW_TAG -Dchangelist= -DskipTests -s $MAVEN_SETTINGS"
+            sh "mvn -B clean  deploy -Pdist -Drevision=$NEW_TAG -Dchangelist= -DskipTests -s $MAVEN_SETTINGS"
         }
 
     }
