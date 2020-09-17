@@ -27,6 +27,7 @@
 <script>
 import { BDropdown } from 'bootstrap-vue';
 import { reject } from 'lodash';
+import VsIcon from '@components/elements/icon';
 
 /**
  * Dropdown component for lists of links for example.
@@ -35,6 +36,7 @@ export default {
     name: 'VsDropdown',
     components: {
         BDropdown,
+        VsIcon,
     },
     props: {
         text: {
@@ -59,13 +61,13 @@ export default {
 
 .vs-dropdown {
   .dropdown-toggle {
-    .vs-icon {
+    .icon-chevron-down {
       transition: all 150ms ease-in-out;
     }
   }
   &.show {
     .dropdown-toggle {
-      .vs-icon {
+      .icon-chevron-down {
         transform: rotate(-180deg);
       }
     }
