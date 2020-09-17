@@ -9,6 +9,7 @@
     jcr:mixinTypes: ['hippo:named', 'mix:referenceable']
     jcr:uuid: 82bfe714-9641-4e52-8709-f847cb94f924
     hippo:name: Navigation
+    hippo:versionHistory: 4313e031-cd0f-4e47-87e0-69d225797b75
     /navigation[1]:
       jcr:primaryType: resourcebundle:resourcebundle
       jcr:mixinTypes: ['mix:referenceable']
