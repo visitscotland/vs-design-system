@@ -2,6 +2,7 @@ package com.visitscotland.brmx.components.breadcrumb;
 
 
 import com.visitscotland.brmx.beans.Page;
+import com.visitscotland.brmx.services.ResourceBundleService;
 import org.hippoecm.hst.content.beans.standard.HippoBean;
 import org.hippoecm.hst.core.component.HstComponentException;
 import org.hippoecm.hst.core.component.HstRequest;
@@ -23,6 +24,7 @@ public class VsBreadcrumbComponent extends CommonComponent {
     final String DOCUMENT = "document";
 
     private VsBreadCrumbProvider breadcrumbProvider;
+    private ResourceBundleService bundle;
 
     public void doBeforeRender(HstRequest request, HstResponse response) throws HstComponentException {
         super.doBeforeRender(request, response);
@@ -33,6 +35,8 @@ public class VsBreadcrumbComponent extends CommonComponent {
         request.setAttribute(IS_HOME, "root".equals(request.getRequestContext().getResolvedSiteMapItem().getHstSiteMapItem().getId()));
         //Breadcrumb Items list
         request.setAttribute(BREADCRUMB, this.breadcrumbProvider.getBreadcrumb(request));
+        //Register the resource Bundle
+        bundle.registerIn(request);
         //Main document for the page
         setDocument(request);
     }
@@ -48,6 +52,7 @@ public class VsBreadcrumbComponent extends CommonComponent {
 
     public void init(ServletContext servletContext, ComponentConfiguration componentConfig) throws HstComponentException {
         super.init(servletContext, componentConfig);
+        this.bundle = new ResourceBundleService();
         this.breadcrumbProvider = new VsBreadCrumbProvider(this);
     }
 

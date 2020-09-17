@@ -10,7 +10,6 @@
 <#-- @ftlvariable name="language" type="com.visitscotland.brmx.beans.mapping.LocalizedURL"-->
 
 <#assign currentLocale=hstRequest.requestContext.resolvedMount.mount.locale>
-<#assign languages = ["en-gb","de-de","es-es","fr-fr","it-it","nl-nl"]>
 
 <#if menu??>
 <div class="has-edit-button">

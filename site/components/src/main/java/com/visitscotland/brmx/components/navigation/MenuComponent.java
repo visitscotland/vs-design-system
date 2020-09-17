@@ -59,7 +59,6 @@ public class MenuComponent extends EssentialsMenuComponent {
         super.doBeforeRender(request, response);
         enhanceRequest(request);
         addLocalizedURLs(request);
-
     }
 
     public void addLocalizedURLs(HstRequest request) {
