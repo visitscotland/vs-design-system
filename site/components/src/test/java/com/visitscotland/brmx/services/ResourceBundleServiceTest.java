@@ -1,7 +1,9 @@
 package com.visitscotland.brmx.services;
 
+import com.visitscotland.brmx.beans.DMSLink;
 import com.visitscotland.brmx.utils.CommonUtils;
 import org.hippoecm.hst.core.component.HstRequest;
+import com.visitscotland.utils.Contract;
 import org.hippoecm.hst.resourcebundle.ResourceBundleRegistry;
 import org.junit.Assert;
 import org.junit.jupiter.api.Assertions;
@@ -160,7 +162,6 @@ public class ResourceBundleServiceTest {
     @Test
     public void existsKey(){
         when(bundle.containsKey("key")).thenReturn(true);
-        when(bundle.containsKey("key")).thenReturn(true);
         when(bundle.getString("key")).thenReturn("value");
 
         Assert.assertTrue(service.existsResourceBundleKey(BUNDLE, "key", Locale.UK));
@@ -196,6 +197,22 @@ public class ResourceBundleServiceTest {
 
         verify(request).getAttribute("ResourceBundle");
         verify(request, never()).setAttribute("ResourceBundle", service);
+    }
+
+    @Test
+    public void getCtaLabel_manual(){
+        Assert.assertEquals("Discover more", service.getCtaLabel("Discover more", null));
+    }
+
+    @Test
+    public void getCtaLabel_auto(){
+        lenient().when(registry.getBundle("essentials.global", Locale.UK)).thenReturn(bundle);
+
+        when(bundle.containsKey("button.find-out-more")).thenReturn(true);
+        when(bundle.getString("button.find-out-more")).thenReturn("Find out more");
+
+        Assert.assertEquals("Find out more", service.getCtaLabel("",Locale.UK));
+        Assert.assertEquals("Find out more", service.getCtaLabel(null,Locale.UK));
     }
 
 }

@@ -1,4 +1,3 @@
-<!-- eslint-disable -->
 <template>
     <ul
         class="vs-mega-nav__list list-unstyled"
@@ -10,7 +9,7 @@
 <script>
 
 /**
- * The nearest ancestor with position relative
+ * WORK IN PROGRESS
  */
 export default {
     name: 'VsMegaNavList',

@@ -1,9 +1,0 @@
-/hst:hst/hst:configurations/visitscotland/hst:workspace/hst:sitemenus/main/see-do:
-  .meta:order-before: inspiration
-  jcr:primaryType: hst:sitemenuitem
-  hst:referencesitemapitem: see-do/landscapes-nature/iconic-scottish-views
-  hst:repobased: false
-  /test-widget:
-    jcr:primaryType: hst:sitemenuitem
-    hst:referencesitemapitem: widget/test---widget
-    hst:repobased: false

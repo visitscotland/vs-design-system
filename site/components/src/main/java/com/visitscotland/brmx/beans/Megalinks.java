@@ -47,4 +47,24 @@ public class Megalinks extends BaseDocument {
     public Boolean getTeaserVisible() {
         return getSingleProperty("visitscotland:teaserVisible");
     }
+
+    @HippoEssentialsGenerated(internalName = "visitscotland:products", allowModifications = false)
+    public List<HippoCompound> getProducts() {
+        return getChildBeansByName("visitscotland:products",
+                HippoCompound.class);
+    }
+
+    public HippoCompound getProductItem() {
+        return getOnlyChild(getProducts());
+    }
+
+    @HippoEssentialsGenerated(internalName = "visitscotland:diff")
+    public String getDiff() {
+        return getSingleProperty("visitscotland:diff");
+    }
+
+    @HippoEssentialsGenerated(internalName = "visitscotland:translationFlag")
+    public Boolean getTranslationFlag() {
+        return getSingleProperty("visitscotland:translationFlag");
+    }
 }

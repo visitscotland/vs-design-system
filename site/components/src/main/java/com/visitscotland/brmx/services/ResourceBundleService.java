@@ -177,4 +177,20 @@ public class ResourceBundleService {
         }
     }
 
+    /**
+     * Returns the default CTA label when the manual CTA  is not defined.     *
+     *
+     * @param manualCta Manual CTA defined in the CMS
+     * @param locale Locale
+     *
+     * @return the manual CTA if provided otherwise the default CTA
+     */
+    public  String getCtaLabel(String manualCta, Locale locale) {
+        if (!Contract.isEmpty(manualCta)) {
+            return manualCta;
+        } else {
+            return getResourceBundle("essentials.global","button.find-out-more",  locale);
+        }
+    }
+
 }
