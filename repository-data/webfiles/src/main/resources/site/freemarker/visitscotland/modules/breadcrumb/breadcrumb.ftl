@@ -1,13 +1,13 @@
 <#compress>
-<#include "../../../include/imports.ftl">
-<#include "../../../frontend/components/vs-breadcrumb.ftl">
-<#include "../../../frontend/components/vs-breadcrumb-item.ftl">
+    <#include "../../../include/imports.ftl">
+    <#include "../../../frontend/components/vs-breadcrumb.ftl">
+    <#include "../../../frontend/components/vs-breadcrumb-item.ftl">
 
 
-<#include "content-driven-seo.ftl">
-<#include "breadcrumb-schema.ftl">
+    <#include "content-driven-seo.ftl">
+    <#include "breadcrumb-schema.ftl">
 
-<@hst.setBundle basename="navigation"/>
+    <@hst.setBundle basename="navigation"/>
 
 <#-- @ftlvariable name="breadcrumb" type="org.onehippo.forge.breadcrumb.om.Breadcrumb" -->
 <#-- @ftlvariable name="requestedURI" type="java.lang.String" -->
