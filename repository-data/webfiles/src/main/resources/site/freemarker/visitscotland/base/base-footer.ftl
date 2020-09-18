@@ -14,9 +14,9 @@
 <#-- @ftlvariable name="item" type=""com.visitscotland.www.components.navigation.VsHstSiteMenuItemImpl" -->
 
 <vs-footer class="has-edit-button">
-    <#if menu??>
+    <#if enhancedMenu??>
         <template slot="accordion-items">
-            <@footerAccordionItem footerMenuItems=menu.siteMenuItems />
+            <@footerAccordionItem footerMenuItems=enhancedMenu />
         </template>
 
         <template slot="social-menu">      

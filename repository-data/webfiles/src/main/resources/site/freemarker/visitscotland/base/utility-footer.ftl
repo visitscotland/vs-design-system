@@ -6,9 +6,9 @@
 <#-- @ftlvariable name="enhancedMenu" type="java.util.List" -->
 <#-- @ftlvariable name="item" type=""com.visitscotland.www.components.navigation.VsHstSiteMenuItemImpl" -->
 
-<#if menu??>
+<#if enhancedMenu??>
     <div class="has-edit-button">
-        <#list menu.siteMenuItems as item>
+        <#list enhancedMenu as item>
             <vs-footer-utility-list>
                 <#list item.childMenuItems as childItem>
                     <#if childItem.title?has_content>

@@ -8,20 +8,21 @@
 <#-- @ftlvariable name="item" type=""com.visitscotland.www.components.navigation.VsMenuItem" -->
 <#-- @ftlvariable name="editMode" type="java.lang.Boolean"-->
 
-<#if menu??>
+<#if enhancedMenu??>
 <div class="has-edit-button">
     <vs-global-menu
         dropdown-label='<@fmt.message key="global-menu.our-websites" />'
         active-site="https://www.visitscotland.com/"
     ></vs-global-menu>
+
     <ul class="nav nav-pills">
-      <#list menu.siteMenuItems as item>
+      <#list enhancedMenu as item>
           <#if item.title?has_content>
             <#if !item.hstLink?? && !item.externalLink??>
                 <#if item.selected || item.expanded>
-                <li class="active"><div style="padding: 10px 15px;">${item.title?html}</div></li>
+                    <li class="active"><div style="padding: 10px 15px;">${item.title?html}</div></li>
                 <#else>
-                <li><div style="padding: 10px 15px;">${item.title?html}</div></li>
+                    <li><div style="padding: 10px 15px;">${item.title?html}</div></li>
                 </#if>
             <#else>
                 <#if item.hstLink??>
