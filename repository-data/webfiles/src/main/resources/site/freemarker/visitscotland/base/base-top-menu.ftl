@@ -11,32 +11,32 @@
 <#if enhancedMenu??>
 <div class="has-edit-button">
     <vs-global-menu
-            dropdown-label='<@fmt.message key="global-menu.our-websites" />'
-            active-site="https://www.visitscotland.com/"
+        dropdown-label='<@fmt.message key="global-menu.our-websites" />'
+        active-site="https://www.visitscotland.com/"
     ></vs-global-menu>
     <ul class="nav nav-pills">
       <#list enhancedMenu as item>
           <#if item.title?has_content>
-              <#if !item.hstLink?? && !item.externalLink??>
-                  <#if item.selected || item.expanded>
+            <#if !item.hstLink?? && !item.externalLink??>
+                <#if item.selected || item.expanded>
                 <li class="active"><div style="padding: 10px 15px;">${item.title?html}</div></li>
-                  <#else>
+                <#else>
                 <li><div style="padding: 10px 15px;">${item.title?html}</div></li>
-                  </#if>
-              <#else>
-                  <#if item.hstLink??>
-                      <#assign href><@hst.link link=item.hstLink/></#assign>
-                  <#elseif item.externalLink??>
-                      <#assign href>${item.externalLink?replace("\"", "")}</#assign>
-                  </#if>
-                  <#if item.widget??>
+                </#if>
+            <#else>
+                <#if item.hstLink??>
+                    <#assign href><@hst.link link=item.hstLink/></#assign>
+                <#elseif item.externalLink??>
+                    <#assign href>${item.externalLink?replace("\"", "")}</#assign>
+                </#if>
+                <#if item.widget??>
                     <li><a style="background: lightcyan;">Widget (${item.widget.component})</a></li>
-                  <#elseif  item.selected || item.expanded>
+                <#elseif  item.selected || item.expanded>
                 <li class="active"><a href="${href}">${item.title?html}</a></li>
-                  <#else>
+                <#else>
                 <li><a href="${href}">${item.title?html}</a></li>
-                  </#if>
-              </#if>
+                </#if>
+            </#if>
           </#if>
       </#list>
     </ul>
