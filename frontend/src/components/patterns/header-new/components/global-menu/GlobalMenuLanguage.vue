@@ -214,19 +214,13 @@ export default {
 
 <docs>
   ```
-    <vs-global-menu-language>
-        <vs-global-menu-language-item languageName="English">
-        </vs-global-menu-language-item>
-        <vs-global-menu-language-item languageName="Deutsch">
-        </vs-global-menu-language-item>
-        <vs-global-menu-language-item languageName="Español">
-        </vs-global-menu-language-item>
-        <vs-global-menu-language-item languageName="Français">
-        </vs-global-menu-language-item>
-        <vs-global-menu-language-item languageName="Italiano">
-        </vs-global-menu-language-item>
-        <vs-global-menu-language-item languageName="Nederlands">
-        </vs-global-menu-language-item>
-    </vs-global-menu-language>
+    <VsGlobalMenuLanguage>
+        <VsGlobalMenuLanguageItem language-name="English" />
+        <VsGlobalMenuLanguageItem language-name="Deutsch" />
+        <VsGlobalMenuLanguageItem language-name="Español" />
+        <VsGlobalMenuLanguageItem language-name="Français" />
+        <VsGlobalMenuLanguageItem language-name="Italiano" />
+        <VsGlobalMenuLanguageItem language-name="Nederlands" />
+    </VsGlobalMenuLanguage>
   ```
 </docs>

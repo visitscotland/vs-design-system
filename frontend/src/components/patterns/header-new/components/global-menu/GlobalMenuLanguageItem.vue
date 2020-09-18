@@ -66,7 +66,6 @@ export default {
 
 <docs>
   ```
-    <vs-global-menu-language-item languageName="English" languageLink="site/">
-    </vs-global-menu-language-item>
+    <VsGlobalMenuLanguageItem language-name="English" languageLink="site/"/>
   ```
 </docs>
