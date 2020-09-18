@@ -4,7 +4,7 @@
         data-test="vs-mega-nav"
     >
         <VsContainer>
-            <VsRow class="align-items-center justify-content-sm-end">
+            <VsRow class="align-items-center">
                 <!-- Logo Link -->
                 <VsCol
                     cols="8"
@@ -39,7 +39,8 @@
                     cols="4"
                     md="8"
                     lg="9"
-                    class="d-flex d-lg-none justify-content-end position-static"
+                    class="vs-mega-nav__menu__mobile
+                    d-flex d-lg-none justify-content-end position-static"
                 >
                     <VsMegaNavDropdown @menuToggled="menuToggle">
                         <template #buttonContent>
@@ -138,6 +139,17 @@ export default {
 
     .vs-mega-nav__menu {
         position: static;
+    }
+}
+
+@include no-js {
+    .vs-mega-nav {
+        box-shadow: none;
+    }
+
+    .vs-mega-nav__menu,
+    .vs-mega-nav__menu__mobile {
+        display: none!important;
     }
 }
 </style>
