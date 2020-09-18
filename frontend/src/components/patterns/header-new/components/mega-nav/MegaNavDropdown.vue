@@ -78,7 +78,6 @@ export default {
 </script>
 
 <style lang="scss">
-@import '~bootstrap/scss/type';
 
 .vs-mega-nav__dropdown {
     padding: 0;
