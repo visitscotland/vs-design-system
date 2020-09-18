@@ -4,7 +4,7 @@
   jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
   jcr:uuid: 51836878-2e2f-4ea5-8ca4-8e68147b1210
   hippo:name: Meganav Links
-  hippo:versionHistory: efe7e2db-0d13-49b3-8a8a-46e12f371331
+  hippo:versionHistory: b7f3b0bb-f3b2-4ca9-8078-2a8301b31ca1
   /meganav[1]:
     jcr:primaryType: resourcebundle:resourcebundle
     jcr:mixinTypes: ['mix:referenceable']

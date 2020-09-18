@@ -3,7 +3,7 @@
   jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
   jcr:uuid: 8ee40201-fbb6-42dc-81b2-bfe329ba5bf2
   hippo:name: Footer
-  hippo:versionHistory: d90a9df9-e552-4e71-b86a-3ef77bbfd2b2
+  hippo:versionHistory: a82aadf0-5e44-4113-9a6a-d1549a81e226
   /footer[1]:
     jcr:primaryType: resourcebundle:resourcebundle
     jcr:mixinTypes: ['mix:referenceable']
