@@ -28,6 +28,7 @@ public class MegalinksMockService {
 
         EasyMock.expect(single.getTitle()).andReturn(intro);
         EasyMock.expect(single.getImage()).andReturn(img);
+        EasyMock.expect(single.getFullWidth()).andReturn(false);
         EasyMock.expect(single.getIntroduction()).andReturn(EasyMock.createNiceMock(HippoHtml.class));
 
         if (introduction){

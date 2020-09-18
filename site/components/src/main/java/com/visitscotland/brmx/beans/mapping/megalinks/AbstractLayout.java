@@ -2,12 +2,11 @@ package com.visitscotland.brmx.beans.mapping.megalinks;
 
 import com.visitscotland.brmx.beans.Megalinks;
 import com.visitscotland.brmx.beans.mapping.FlatLink;
-import com.visitscotland.brmx.beans.mapping.Module;
 import org.hippoecm.hst.content.beans.standard.HippoHtml;
 
 import java.util.List;
 
-public class LinksModule<L extends FlatLink> extends Module {
+public abstract class AbstractLayout<L extends FlatLink> {
 
     private String title;
     private HippoHtml introduction;
@@ -15,7 +14,10 @@ public class LinksModule<L extends FlatLink> extends Module {
     private FlatLink cta;
     private Megalinks megalinkItem;
     private String style;
-    private String alignment;
+
+    public String getType(){
+        return getClass().getSimpleName();
+    }
 
     public String getTitle() {
         return title;
@@ -63,13 +65,5 @@ public class LinksModule<L extends FlatLink> extends Module {
 
     public void setStyle(String style) {
         this.style = style;
-    }
-
-    public String getAlignment() {
-        return alignment;
-    }
-
-    public void setAlignment(String alignment) {
-        this.alignment = alignment;
     }
 }

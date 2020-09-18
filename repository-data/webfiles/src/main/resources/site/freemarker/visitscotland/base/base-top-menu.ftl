@@ -1,12 +1,15 @@
 <#include "../../include/imports.ftl">
-<#-- @ftlvariable name="menu" type="com.visitscotland.brmx.components.navigation.RootMenuItem" -->
-<#-- @ftlvariable name="item" type="com.visitscotland.brmx.components.navigation.MenuItem" -->
-<#-- @ftlvariable name="editMode" type="java.lang.Boolean"-->
 
 <#include "../../frontend/components/vs-header-new.ftl">
 
 <#include "../macros/modules/header/mega-nav/header-mega-nav.ftl">
 <#include "../macros/modules/header/header-global-menu.ftl">
+
+<#-- @ftlvariable name="menu" type="org.hippoecm.hst.core.sitemenu.HstSiteMenu" -->
+<#-- @ftlvariable name="item" type=""com.visitscotland.www.components.navigation.VsMenuItem" -->
+<#-- @ftlvariable name="editMode" type="java.lang.Boolean"-->
+
+
 
 <#if menu??>
 <div class="has-edit-button">

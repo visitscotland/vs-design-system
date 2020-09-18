@@ -1,15 +1,13 @@
 package com.visitscotland.brmx.dms;
 
+import static com.visitscotland.brmx.dms.ProductSearchBuilder.*;
+
 import com.visitscotland.brmx.utils.Properties;
 import org.junit.Assert;
 import org.junit.Test;
 
 import java.util.Locale;
 
-import static com.visitscotland.brmx.dms.ProductSearchBuilder.*;
-
-//TODO Convert to JUnit 5
-// TODO this test relies on lan conection: FIX
 public class ProductSearchTest {
 
     private final static String DEFAULT_TYPE = "cate";

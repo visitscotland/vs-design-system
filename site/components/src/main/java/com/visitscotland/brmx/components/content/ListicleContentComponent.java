@@ -1,34 +1,26 @@
 package com.visitscotland.brmx.components.content;
 
 import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.visitscotland.brmx.beans.*;
+
 import com.visitscotland.brmx.beans.dms.LocationObject;
+import com.visitscotland.brmx.beans.mapping.*;
 import com.visitscotland.brmx.beans.mapping.Coordinates;
-import com.visitscotland.brmx.beans.mapping.FlatImage;
-import com.visitscotland.brmx.beans.mapping.FlatLink;
-import com.visitscotland.brmx.beans.mapping.FlatListicle;
-import com.visitscotland.brmx.dms.LocationLoader;
-import com.visitscotland.brmx.services.LinkService;
 import com.visitscotland.brmx.utils.CommonUtils;
+import com.visitscotland.brmx.dms.LocationLoader;
 import org.hippoecm.hst.content.beans.standard.HippoCompound;
 import org.hippoecm.hst.core.component.HstRequest;
 import org.hippoecm.hst.core.component.HstResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
+import java.io.*;
+import java.util.*;
 
 public class ListicleContentComponent extends PageContentComponent<Listicle> {
 
     private static final Logger logger = LoggerFactory.getLogger(ListicleContentComponent.class);
-
-    LinkService linksService;
-
-    public ListicleContentComponent(){
-        linksService = new LinkService();
-    }
 
     @Override
     public void doBeforeRender(HstRequest request, HstResponse response) {
@@ -104,7 +96,7 @@ public class ListicleContentComponent extends PageContentComponent<Listicle> {
                     DMSLink dmsLink = (DMSLink) listicleItem.getListicleItem();
                     JsonNode product;
                     try {
-                        product = dmsData.productCard(dmsLink.getProduct(), request.getLocale());
+                        product = CommonUtils.getProduct(dmsLink.getProduct(), request.getLocale());
                         if (product == null) {
                             errors.add("The product id does not exists in the DMS");
                             logger.warn(CommonUtils.contentIssue("The product's id  wasn't provided for %s, Listicle = %s - %s",
@@ -136,13 +128,13 @@ public class ListicleContentComponent extends PageContentComponent<Listicle> {
                     }
                 }
 
-                links.add(linksService.createLink(request.getLocale(), listicleItem.getListicleItem()));
+                links.add(createLink(request, listicleItem.getListicleItem()));
 
             }
 
             //Set Extra Links
             for (HippoCompound compound : listicleItem.getExtraLinks()) {
-                links.add(linksService.createLink(request.getLocale(), compound));
+                links.add(createLink(request, compound));
             }
             if (listicleItem.getSubtitle() == null || listicleItem.getSubtitle().isEmpty()) {
                 model.setSubTitle(location);

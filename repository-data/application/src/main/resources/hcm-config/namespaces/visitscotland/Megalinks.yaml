@@ -11,7 +11,7 @@ definitions:
         /hipposysedit:nodetype:
           jcr:primaryType: hipposysedit:nodetype
           jcr:mixinTypes: ['mix:referenceable', 'hipposysedit:remodel']
-          jcr:uuid: 568fc0d7-c19d-42b5-992a-947dc9e9a4e3
+          jcr:uuid: 92b8e223-0081-4034-8877-46297f0f4e19
           hipposysedit:node: true
           hipposysedit:supertype: ['visitscotland:basedocument', 'hippostd:relaxed',
             'hippotranslation:translated']
@@ -62,13 +62,6 @@ definitions:
             hipposysedit:path: visitscotland:megalinkItems
             hipposysedit:type: hippo:compound
             hipposysedit:validators: [contentblocks-validator, required]
-          /products:
-            jcr:primaryType: hipposysedit:field
-            hipposysedit:multiple: true
-            hipposysedit:ordered: true
-            hipposysedit:path: visitscotland:products
-            hipposysedit:type: hippo:compound
-            hipposysedit:validators: [contentblocks-validator]
       /hipposysedit:prototypes:
         jcr:primaryType: hipposysedit:prototypeset
         /hipposysedit:prototype:
@@ -81,7 +74,7 @@ definitions:
           hippotranslation:locale: document-type-locale
           jcr:mixinTypes: ['mix:referenceable']
           visitscotland:title: ''
-          jcr:uuid: d0a99098-495e-4418-b6d8-4be30f413f5b
+          jcr:uuid: 46da91ae-37ca-4401-8ac4-8e427809dfe9
           hippostdpubwf:lastModificationDate: 2020-05-14T14:29:51.020+01:00
           hippostdpubwf:creationDate: 2020-05-14T14:29:51.020+01:00
           visitscotland:teaserVisible: true
@@ -121,7 +114,6 @@ definitions:
             wicket.id: ${cluster.id}.left.item
             /cluster.options:
               jcr:primaryType: frontend:pluginconfig
-              maxlength: '55'
           /listLayout:
             jcr:primaryType: frontend:plugin
             caption: List View
@@ -174,14 +166,3 @@ definitions:
             /cluster.options:
               jcr:primaryType: frontend:pluginconfig
               maxitems: 10
-          /products:
-            jcr:primaryType: frontend:plugin
-            caption: Link Button
-            compoundList: visitscotland:CMSLink,visitscotland:DMSLink,visitscotland:ExternalLink,visitscotland:ProductSearchLink
-            contentPickerType: links
-            field: products
-            plugin.class: org.onehippo.forge.contentblocks.ContentBlocksFieldPlugin
-            wicket.id: ${cluster.id}.left.item
-            /cluster.options:
-              jcr:primaryType: frontend:pluginconfig
-              maxitems: 1

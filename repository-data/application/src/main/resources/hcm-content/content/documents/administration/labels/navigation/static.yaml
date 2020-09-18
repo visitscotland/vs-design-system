@@ -9,6 +9,7 @@
     jcr:mixinTypes: ['mix:referenceable']
     jcr:uuid: b185af5a-69b4-4f36-ab3e-a46e5b4e0a94
     hippo:availability: []
+    hippostd:holder: admin
     hippostd:state: draft
     hippostdpubwf:createdBy: admin
     hippostdpubwf:creationDate: 2020-07-22T16:18:57.603+01:00
@@ -17,9 +18,9 @@
     resourcebundle:descriptions: ['', '', '', '', '', '']
     resourcebundle:id: navigation.static
     resourcebundle:keys: [see-all-cta, footer.find-us-on, uninav.our-sites, footer.logo-alt-text,
-                          footer.text, universal.language]
+      footer.text, universal.language]
     resourcebundle:messages: [See all %s, Find us on, Our websites, VisitScotland
-                                                                      Home, VisitScotland. All rights reserved., Language]
+        Home, VisitScotland. All rights reserved., Language]
   /static[2]:
     jcr:primaryType: resourcebundle:resourcebundle
     jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
@@ -33,9 +34,9 @@
     resourcebundle:descriptions: ['', '', '', '', '', '']
     resourcebundle:id: navigation.static
     resourcebundle:keys: [see-all-cta, footer.find-us-on, uninav.our-sites, footer.logo-alt-text,
-                          footer.text, universal.language]
+      footer.text, universal.language]
     resourcebundle:messages: [See all %s, Find us on, Our websites, VisitScotland
-                                                                      Home, VisitScotland. All rights reserved., Language]
+        Home, VisitScotland. All rights reserved., Language]
   /static[3]:
     jcr:primaryType: resourcebundle:resourcebundle
     jcr:mixinTypes: ['mix:referenceable']
@@ -50,6 +51,6 @@
     resourcebundle:descriptions: ['', '', '', '', '', '']
     resourcebundle:id: navigation.static
     resourcebundle:keys: [see-all-cta, footer.find-us-on, uninav.our-sites, footer.logo-alt-text,
-                          footer.text, universal.language]
+      footer.text, universal.language]
     resourcebundle:messages: [See all %s, Find us on, Our websites, VisitScotland
-                                                                      Home, VisitScotland. All rights reserved., Language]
+        Home, VisitScotland. All rights reserved., Language]

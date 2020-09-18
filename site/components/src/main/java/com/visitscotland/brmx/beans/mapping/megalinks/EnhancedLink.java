@@ -33,5 +33,4 @@ public class EnhancedLink extends FlatLink {
     public void setFeatured(boolean featured) {
         this.featured = featured;
     }
-
 }

@@ -1,20 +1,17 @@
 package com.visitscotland.brmx.components.content;
 
 import com.fasterxml.jackson.databind.JsonNode;
-import com.visitscotland.brmx.beans.BaseDocument;
-import com.visitscotland.brmx.beans.Page;
+import com.visitscotland.brmx.beans.*;
 import com.visitscotland.brmx.beans.dms.LocationObject;
 import com.visitscotland.brmx.beans.mapping.Coordinates;
 import com.visitscotland.brmx.beans.mapping.FlatImage;
 import com.visitscotland.brmx.beans.mapping.FlatLink;
-import com.visitscotland.brmx.dms.DMSDataService;
 import com.visitscotland.brmx.dms.LocationLoader;
 import com.visitscotland.brmx.dms.ProductSearchBuilder;
-import com.visitscotland.brmx.services.LinkService;
 import com.visitscotland.brmx.services.ResourceBundleService;
-import com.visitscotland.brmx.utils.CommonUtils;
-import com.visitscotland.brmx.utils.HippoUtilsService;
+import com.visitscotland.brmx.utils.*;
 import com.visitscotland.dataobjects.DataType;
+import com.visitscotland.utils.Contract;
 import freemarker.ext.beans.BeansWrapper;
 import freemarker.template.TemplateHashModel;
 import freemarker.template.TemplateModelException;
@@ -25,6 +22,7 @@ import org.onehippo.cms7.essentials.components.EssentialsContentComponent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -41,15 +39,12 @@ public class PageContentComponent<TYPE extends Page> extends EssentialsContentCo
 
     HippoUtilsService utils;
     ResourceBundleService bundle;
-    DMSDataService dmsData;
-    LinkService linksService;
 
     public PageContentComponent(){
         utils = new HippoUtilsService();
         bundle = new ResourceBundleService();
-        dmsData = new DMSDataService();
-        linksService = new LinkService();
     }
+
     @Override
     public void doBeforeRender(HstRequest request, HstResponse response) {
         super.doBeforeRender(request, response);
@@ -62,9 +57,8 @@ public class PageContentComponent<TYPE extends Page> extends EssentialsContentCo
     }
 
     /**
-     * Set the coordinates for Hero images
-     *
-     * @param request HstRequest
+     * TODO Comment
+     * @param request
      */
     protected void addHeroCoordinates(HstRequest request) {
         LocationObject location = LocationLoader.getLocation(getDocument(request).getHeroImage().getLocation(), request.getLocale());
@@ -130,8 +124,65 @@ public class PageContentComponent<TYPE extends Page> extends EssentialsContentCo
      * @return FlatLink
      */
     protected FlatLink createLink(HstRequest request, HippoCompound item) {
-        return linksService.createLink(request.getLocale(), item);
+        return createLink(request, item, getDocument(request));
     }
+
+
+    protected static FlatLink createLink(HstRequest request, HippoCompound item, Page document) {
+        final String URL = "url";
+
+        if (item instanceof DMSLink) {
+            DMSLink dmsLink = (DMSLink) item;
+            try {
+                JsonNode product = CommonUtils.getProduct(dmsLink.getProduct(), request.getLocale());
+                if (product == null) {
+                    logger.warn(CommonUtils.contentIssue("There is no product with the id '%s', (%s) ",
+                            dmsLink.getProduct(),document.getPath()));
+                } else {
+                    //TODO build the link for the DMS product properly
+                    return new FlatLink(getCtaLabel(dmsLink.getLabel(), request.getLocale()), Properties.VS_DMS_SERVICE + product.get(URL).asText());
+                }
+            } catch (IOException e) {
+                logger.error(String.format("Error while querying the DMS for '%s', (%s)",
+                        dmsLink.getProduct(),document.getPath()));
+            }
+        } else if (item instanceof ProductSearchLink) {
+            ProductSearchLink productSearchLink = (ProductSearchLink) item;
+            ProductSearchBuilder psb = new ProductSearchBuilder()
+                    .fromHippoBean(productSearchLink.getSearch()).locale(request.getLocale());
+
+            return new FlatLink(getCtaLabel(productSearchLink.getLabel(), request.getLocale()), psb.build());
+
+        } else if (item instanceof ExternalLink) {
+            ExternalLink externalLink = (ExternalLink) item;
+            return new FlatLink(getCtaLabel(externalLink.getLabel(), request.getLocale()), externalLink.getLabel());
+
+        } else if (item instanceof CMSLink) {
+            //TODO: check this. It is probably wrong!
+            CMSLink cmsLink = (CMSLink) item;
+            return new FlatLink(getCtaLabel(cmsLink.getLabel(), request.getLocale()), cmsLink.getLabel());
+        }
+
+        return null;
+    }
+
+    /**
+     * Returns the default CTA label when the manual CTA  is not defined.     *
+     *
+     * @param manualCta Manual CTA defined in the CMS
+     * @param locale Locale
+     *
+     * @return the manual CTA if provided otherwise the default CTA
+     */
+    //TODO: Refactor static method.
+    protected static String getCtaLabel(String manualCta, Locale locale) {
+        if (!Contract.isEmpty(manualCta)) {
+            return manualCta;
+        } else {
+            return HippoUtilsService.getInstance().getResourceBundle("essentials.global","button.find-out-more",  locale);
+        }
+    }
+
 
     protected void initPage (HstRequest request){
         final String HERO_IMAGE = "heroImage";

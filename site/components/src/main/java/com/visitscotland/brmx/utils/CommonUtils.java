@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.visitscotland.brmx.beans.InstagramImage;
 import com.visitscotland.brmx.services.ResourceBundleService;
+import com.visitscotland.brmx.dms.DMSDataService;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -19,11 +20,20 @@ public class CommonUtils {
 
     final static String VS_DMS_ENCODING = "UTF8";
 
+
+    private static DMSDataService dmsData = new DMSDataService();
+
     //TODO add message format for other languages
     public static final String contentIssue (String message, Object... parameters){
         return String.format("- [CONTENT] - " + message, parameters);
     }
 
+
+    @Deprecated
+    //TODO Remove method uses
+    public static JsonNode getProduct(String productId, Locale locale) throws IOException {
+        return dmsData.productCard(productId, locale);
+    }
     /**
      * Request a page and return the body as String
      * @param url
@@ -83,6 +93,4 @@ public class CommonUtils {
             return   bundle.getResourceBundle("itinerary","stop.closed",  locale);
         }
     }
-
-
 }
