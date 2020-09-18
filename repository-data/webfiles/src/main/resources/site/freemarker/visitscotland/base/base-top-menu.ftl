@@ -1,6 +1,6 @@
 <#include "../../include/imports.ftl">
 
-<#include "../../frontend/components/vs-header-new.ftl">
+<#include "../../frontend/components/vs-header.ftl">
 
 <#include "../macros/modules/header/mega-nav/header-mega-nav.ftl">
 <#include "../macros/modules/header/header-global-menu.ftl">
@@ -13,14 +13,14 @@
 
 <#if menu??>
 <div class="has-edit-button">
-    <vs-header-new>
+    <vs-header>
         <template slot="globalMenu">
             <@headerGlobalMenu />
         </template>
         <template slot="megaNav">
             <@headerMegaNav menu=menu/>
         </template>
-    </vs-header-new>
+    </vs-header>
 
     <@hst.cmseditmenu menu=menu />
 </div>

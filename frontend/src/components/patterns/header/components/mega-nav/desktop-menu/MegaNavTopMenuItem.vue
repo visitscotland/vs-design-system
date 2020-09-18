@@ -34,7 +34,7 @@
 /**
  *  Mega nav top level menu items with a slots for toggle button and dropdown content
  */
-import VsMegaNavDropdown from '@components/patterns/header-new/components/mega-nav/MegaNavDropdown';
+import VsMegaNavDropdown from '@components/patterns/header/components/mega-nav/MegaNavDropdown';
 
 export default {
     name: 'VsMegaNavTopMenuItem',
