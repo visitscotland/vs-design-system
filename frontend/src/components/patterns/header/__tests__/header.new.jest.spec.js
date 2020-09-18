@@ -1,7 +1,7 @@
 import { shallowMount } from '@vue/test-utils';
-import VsHeaderNew from '../HeaderNew';
+import VsHeader from '../Header';
 
-const factoryShallowMount = () => shallowMount(VsHeaderNew, {
+const factoryShallowMount = () => shallowMount(VsHeader, {
     slots: {
         globalMenu: '<div class="global-menu"></div>',
         megaNav: '<div class="mega-nav"></div>',
@@ -13,7 +13,7 @@ beforeEach(() => {
     wrapper = factoryShallowMount();
 });
 
-describe('VsHeaderNew', () => {
+describe('VsHeader', () => {
     it('should render a component with the class `.vs-header`', () => {
         expect(wrapper.attributes('data-test')).toBe('vs-header');
     });
