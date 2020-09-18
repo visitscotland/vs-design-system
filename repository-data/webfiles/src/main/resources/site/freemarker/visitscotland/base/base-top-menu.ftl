@@ -4,7 +4,7 @@
 <@hst.setBundle basename="navigation"/>
 
 <#-- @ftlvariable name="menu" type="org.hippoecm.hst.core.sitemenu.HstSiteMenu" -->
-<#-- @ftlvariable name="menu" type="java.util.List" -->
+<#-- @ftlvariable name="enhancedMenu" type="java.util.List" -->
 <#-- @ftlvariable name="item" type=""com.visitscotland.www.components.navigation.VsMenuItem" -->
 <#-- @ftlvariable name="editMode" type="java.lang.Boolean"-->
 
@@ -14,15 +14,14 @@
             dropdown-label='<@fmt.message key="global-menu.our-websites" />'
             active-site="https://www.visitscotland.com/"
     ></vs-global-menu>
-
     <ul class="nav nav-pills">
       <#list enhancedMenu as item>
           <#if item.title?has_content>
               <#if !item.hstLink?? && !item.externalLink??>
                   <#if item.selected || item.expanded>
-                    <li class="active"><div style="padding: 10px 15px;">${item.title?html}</div></li>
+                <li class="active"><div style="padding: 10px 15px;">${item.title?html}</div></li>
                   <#else>
-                    <li><div style="padding: 10px 15px;">${item.title?html}</div></li>
+                <li><div style="padding: 10px 15px;">${item.title?html}</div></li>
                   </#if>
               <#else>
                   <#if item.hstLink??>
