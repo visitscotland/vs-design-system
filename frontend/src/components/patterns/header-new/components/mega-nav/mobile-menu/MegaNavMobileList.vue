@@ -29,8 +29,6 @@ export default {
 </script>
 
 <style lang="scss">
-@import "~bootstrap/scss/type";
-
 .vs-mega-nav__mobile-list {
     margin-top: $spacer-2;
     padding: 0 0;
