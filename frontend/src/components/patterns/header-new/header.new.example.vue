@@ -2,18 +2,23 @@
     <div style="min-height: 600px;">
         <VsHeaderNew>
             <template #globalMenu>
-                <div
-                    class="bg-primary-purple"
-                    style="height: 35px"
+                <VsGlobalMenu
+                    dropdown-label="I nostri siti"
+                    active-site="https://www.visitscotland.com/"
                 >
-                    <VsContainer>
-                        <VsRow>
-                            <VsCol cols="12">
-                                <span style="color: white">Global Menu</span>
-                            </VsCol>
-                        </VsRow>
-                    </VsContainer>
-                </div>
+                    <span
+                        slot="third-menu-item"
+                    >
+                        <VsGlobalMenuLanguage>
+                            <VsGlobalMenuLanguageItem language-name="English" />
+                            <VsGlobalMenuLanguageItem language-name="Deutsch" />
+                            <VsGlobalMenuLanguageItem language-name="Español" />
+                            <VsGlobalMenuLanguageItem language-name="Français" />
+                            <VsGlobalMenuLanguageItem language-name="Italiano" />
+                            <VsGlobalMenuLanguageItem language-name="Nederlands" />
+                        </VsGlobalMenuLanguage>
+                    </span>
+                </VsGlobalMenu>
             </template>
             <template #megaNav>
                 <VsMegaNav href="/">
