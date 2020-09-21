@@ -140,7 +140,7 @@ pipeline {
           SQ_BRANCH = env.BRANCH_NAME != 'master' ? "-Dsonar.branch.name=${env.BRANCH_NAME}" : ''
         }
         withSonarQubeEnv(installationName: 'SonarQube', credentialsId: 'sonarqube') {
-          sh "mvn sonar:sonar -Dsonar.host.url=http://172.28.87.209:9000 $SQ_BRANCH -Dsonar.projectVersion=$NEW_TAG -s $MAVEN_SETTINGS"
+          sh "mvn sonar:sonar -Dsonar.host.url=http://172.28.87.209:9000 $SQ_BRANCH -s $MAVEN_SETTINGS"
         }
       }
     }
