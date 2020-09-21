@@ -70,7 +70,7 @@
                 <vs-col cols="12">
                     <vs-panel>
                         <#if document.summaryTitle?has_content>
-                            <template slot="vs-panel-title">
+							<template slot="vs-panel-title">
 								<vs-heading thin level="4">${document.summaryTitle}</vs-heading>
 							</template>
                         </#if>
