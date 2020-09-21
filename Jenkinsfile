@@ -135,10 +135,10 @@ pipeline {
     } //end stage
 
     stage('SonarQube scan') {
+      when {
+            branch 'master' 
+      }
       steps {
-        script {
-          SQ_BRANCH = env.BRANCH_NAME != 'master' ? "-Dsonar.branch.name=${env.BRANCH_NAME}" : ''
-        }
         withSonarQubeEnv(installationName: 'SonarQube', credentialsId: 'sonarqube') {
           sh "mvn sonar:sonar -Dsonar.host.url=http://172.28.87.209:9000 -s $MAVEN_SETTINGS"
         }
