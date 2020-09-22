@@ -174,7 +174,8 @@ public class TranslationWorkflowPlugin extends RenderPlugin {
             JcrDocument jcrDocument = jcrDocumentFactory.createFromNode(getDocumentNode());
             Node unpublishedVariant = jcrDocument.getVariantNode(JcrDocument.VARIANT_UNPUBLISHED);
             if (unpublishedVariant.hasProperty(HippoStdNodeType.HIPPOSTD_STATESUMMARY) &&
-                    "changed".equals(unpublishedVariant.getProperty(HippoStdNodeType.HIPPOSTD_STATESUMMARY).getString())) {
+                    ("changed".equals(unpublishedVariant.getProperty(HippoStdNodeType.HIPPOSTD_STATESUMMARY).getString()) ||
+                            "new".equals(unpublishedVariant.getProperty(HippoStdNodeType.HIPPOSTD_STATESUMMARY).getString()))) {
                 return true;
             }
         } catch(RepositoryException ex) {

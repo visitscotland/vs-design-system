@@ -14,12 +14,18 @@ import org.hippoecm.addon.workflow.WorkflowDescriptorModel;
 import org.hippoecm.addon.workflow.WorkflowSNSException;
 import org.hippoecm.frontend.dialog.ExceptionDialog;
 import org.hippoecm.frontend.dialog.IDialogService;
+import org.hippoecm.frontend.model.JcrNodeModel;
 import org.hippoecm.frontend.plugins.standards.icon.HippoIconStack;
+import org.hippoecm.frontend.service.IBrowseService;
 import org.hippoecm.frontend.service.IconSize;
 import org.hippoecm.frontend.session.UserSession;
 import org.hippoecm.frontend.translation.ILocaleProvider;
 import org.hippoecm.hst.content.beans.ObjectBeanManagerException;
+import org.hippoecm.hst.diagnosis.HDC;
 import org.hippoecm.repository.api.WorkflowException;
+import org.hippoecm.repository.translation.HippoTranslatedNode;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
@@ -33,6 +39,7 @@ import java.util.List;
 import static com.visitscotland.brmx.translation.plugin.TranslationWorkflow.VS_TRANSLATABLE;
 
 public class SendForTranslationAction extends StdWorkflow<TranslationWorkflow> {
+    private static final Logger logger = LoggerFactory.getLogger(SendForTranslationAction.class);
     public static final String MENU_TEXT = "Send for translation";
     private TranslationWorkflowPlugin workflowPlugin;
 
@@ -101,7 +108,6 @@ public class SendForTranslationAction extends StdWorkflow<TranslationWorkflow> {
             List<JcrDocument> documentTranslations = workflowPlugin.getCurrentDocumentTranslations();
             // Create confirmation dialog
             return new SendForTranslationConfirmationDialog(this, documentTranslations, workflowPlugin.getLocaleProvider());
-
         } catch(RepositoryException ex) {
             return new ExceptionDialog(ex);
         }

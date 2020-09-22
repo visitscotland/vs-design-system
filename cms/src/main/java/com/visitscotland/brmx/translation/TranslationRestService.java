@@ -5,6 +5,7 @@ import com.visitscotland.brmx.translation.plugin.JcrDocumentFactory;
 import org.hippoecm.repository.api.Workflow;
 import org.hippoecm.repository.api.WorkflowException;
 import org.hippoecm.repository.standardworkflow.EditableWorkflow;
+import org.hippoecm.repository.translation.HippoTranslatedNode;
 import org.hippoecm.repository.translation.HippoTranslationNodeType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.context.annotation.RequestScope;
 import org.springframework.web.server.ResponseStatusException;
 
 import javax.jcr.*;
@@ -21,6 +23,7 @@ import java.rmi.RemoteException;
 import java.util.Locale;
 
 @RestController
+@RequestScope
 public class TranslationRestService {
     private static final Logger log = LoggerFactory.getLogger(TranslationRestService.class);
     private SessionFactory sessionFactory;

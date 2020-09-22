@@ -166,6 +166,11 @@ public class JcrDocument {
         return translatedNode.getTranslation(localName);
     }
 
+    public String getLocaleName() throws RepositoryException {
+        HippoTranslatedNode translatedNode = new HippoTranslatedNode(getVariantNode(VARIANT_UNPUBLISHED));
+        return translatedNode.getLocale();
+    }
+
     public Set<JcrDocument> getTranslations() throws RepositoryException {
         HippoTranslatedNode translatedNode = new HippoTranslatedNode(getVariantNode(VARIANT_UNPUBLISHED));
         Set<String> translations = translatedNode.getTranslations();

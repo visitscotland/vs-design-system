@@ -1,0 +1,12 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+
+</head>
+<body>
+    <div th:switch="${hasTranslationPending}">
+        <p th:case="true">Foreign language translations pending.</p>
+        <p th:case="false">No translations pending.</p>
+    </div>
+</body>
+</html>
