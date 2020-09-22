@@ -24,6 +24,7 @@ definitions:
       new-value-list: new value list
       new-translated-folder-shared: new translated folder
       new-shared-document: new shared document
+      new-stop: new stop
     /hippo:configuration/hippo:translations/hippo:templates/fr:
       new-resource-bundle: nouveau resource bundle
       new-untranslated-folder: nouveau dossier non traduit
