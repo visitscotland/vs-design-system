@@ -2,14 +2,14 @@
   jcr:primaryType: hippostd:folder
   jcr:mixinTypes: ['hippotranslation:translated', 'mix:versionable']
   jcr:uuid: e3bbb7c8-d800-4de3-92bc-d9c63973dccb
-  hippostd:foldertype: [new-translated-folder, new-document]
+  hippostd:foldertype: [new-translated-folder, new-page, new-module]
   hippotranslation:id: 34e6e617-eb85-4cad-b6f2-3dee16e1412f
   hippotranslation:locale: en
   /orkney:
     jcr:primaryType: hippostd:folder
     jcr:mixinTypes: ['hippotranslation:translated', 'mix:versionable']
     jcr:uuid: dca6304b-040c-4f59-85ae-5e0521a08f34
-    hippostd:foldertype: [new-translated-folder, new-document]
+    hippostd:foldertype: [new-translated-folder, new-page, new-module]
     hippotranslation:id: 64929184-6bd8-44fa-8e9e-d8a459fe1c3b
     hippotranslation:locale: en
     /short-break-itinerary:
@@ -17,7 +17,7 @@
       jcr:mixinTypes: ['hippo:named', 'hippotranslation:translated', 'mix:versionable']
       jcr:uuid: 493a5d82-ed98-49ab-9f2a-bedad3bee33a
       hippo:name: short break itinerary
-      hippostd:foldertype: [new-translated-folder, new-document]
+      hippostd:foldertype: [new-translated-folder, new-page, new-module]
       hippotranslation:id: c2843c5a-891a-430a-82cd-5dc702d97131
       hippotranslation:locale: en
       /content:

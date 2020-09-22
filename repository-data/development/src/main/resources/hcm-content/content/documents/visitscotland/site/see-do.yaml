@@ -2,28 +2,28 @@
   jcr:primaryType: hippostd:folder
   jcr:mixinTypes: ['hippotranslation:translated', 'mix:versionable']
   jcr:uuid: b600d137-1a3d-4737-9310-9098df612fbc
-  hippostd:foldertype: [new-translated-folder, new-document]
+  hippostd:foldertype: [new-translated-folder, new-page, new-module]
   hippotranslation:id: 657f878c-ae60-469b-a144-ef6472e320ff
   hippotranslation:locale: en
   /attractions:
     jcr:primaryType: hippostd:folder
     jcr:mixinTypes: ['hippotranslation:translated', 'mix:versionable']
     jcr:uuid: c08ea581-ad7e-4ffb-853c-20ca6e04dbc6
-    hippostd:foldertype: [new-translated-folder, new-document]
+    hippostd:foldertype: [new-translated-folder, new-page, new-module]
     hippotranslation:id: dc98ad1b-c896-4520-a816-c1c9dfcdcb7b
     hippotranslation:locale: en
     /historic:
       jcr:primaryType: hippostd:folder
       jcr:mixinTypes: ['hippotranslation:translated', 'mix:versionable']
       jcr:uuid: 7ce967ea-0304-4d95-ab27-d833b2f5f520
-      hippostd:foldertype: [new-translated-folder, new-document]
+      hippostd:foldertype: [new-translated-folder, new-page, new-module]
       hippotranslation:id: d6ecaf5f-1f97-4b6c-8014-72d5f8a4f7e1
       hippotranslation:locale: en
       /victorian-heritage-trail-itinerary:
         jcr:primaryType: hippostd:folder
         jcr:mixinTypes: ['hippotranslation:translated', 'mix:versionable']
         jcr:uuid: 7cffc04e-3879-4cf7-9550-21594100f1c9
-        hippostd:foldertype: [new-translated-folder, new-document]
+        hippostd:foldertype: [new-translated-folder, new-page, new-module]
         hippotranslation:id: 0150301d-dede-4a3b-a559-e292e0916cd9
         hippotranslation:locale: en
         /content:
@@ -354,14 +354,14 @@
     jcr:primaryType: hippostd:folder
     jcr:mixinTypes: ['hippotranslation:translated', 'mix:versionable']
     jcr:uuid: 2f8ad8ba-0062-4d5b-8f91-8bed0feab57f
-    hippostd:foldertype: [new-translated-folder, new-document]
+    hippostd:foldertype: [new-translated-folder, new-page, new-module]
     hippotranslation:id: 22805ca4-b124-4aab-9512-19f258c59529
     hippotranslation:locale: en
     /iconic-scottish-views:
       jcr:primaryType: hippostd:folder
       jcr:mixinTypes: ['hippotranslation:translated', 'mix:versionable']
       jcr:uuid: 89d96def-58c0-4997-902f-0ae2a272b2a6
-      hippostd:foldertype: [new-translated-folder, new-document]
+      hippostd:foldertype: [new-translated-folder, new-page, new-module]
       hippotranslation:id: 4929eeea-cba1-4a93-ab99-6279097530d8
       hippotranslation:locale: en
       /content:

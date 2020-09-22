@@ -18,6 +18,12 @@ definitions:
       new-visitscotland-default-folder: new folder
       new-visitscotland-Image-folder: new folder
       new-visitscotland-Image-image: New Image
+      new-page: new page
+      new-module: new module
+      new-widget: new widget
+      new-value-list: new value list
+      new-translated-folder-shared: new translated folder
+      new-shared-document: new shared document
     /hippo:configuration/hippo:translations/hippo:templates/fr:
       new-resource-bundle: nouveau resource bundle
       new-untranslated-folder: nouveau dossier non traduit
