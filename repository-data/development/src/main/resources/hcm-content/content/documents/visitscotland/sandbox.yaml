@@ -497,7 +497,7 @@
       jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
       jcr:uuid: 806448db-18e1-4a25-81c3-777a76f530d2
       hippo:name: Edinburgh
-      hippo:versionHistory: 8cb78d5f-c647-4c62-ba6b-a801d7c5f8c9
+      hippo:versionHistory: cf4fe475-babf-47c5-828e-8721383f7f41
       /edinburgh[1]:
         jcr:primaryType: visitscotland:Day
         jcr:mixinTypes: ['mix:versionable']
@@ -506,7 +506,7 @@
         hippostd:state: unpublished
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2019-12-10T13:28:39.550Z
-        hippostdpubwf:lastModificationDate: 2020-07-10T15:31:24.439+01:00
+        hippostdpubwf:lastModificationDate: 2020-09-23T13:08:29.057+01:00
         hippostdpubwf:lastModifiedBy: admin
         hippotranslation:id: 533c98b2-c2cd-491f-929a-ea2c4a491bb2
         hippotranslation:locale: en
@@ -525,13 +525,16 @@
             end new town. You could also try the Wizarding World of Edinburgh tour.</p>
         /visitscotland:stops[1]:
           jcr:primaryType: hippo:mirror
-          hippo:docbase: 8b215960-87aa-47ae-9c11-8a750be25ad8
+          hippo:docbase: 94bde36e-54e1-4aee-8d25-28def2719c55
         /visitscotland:stops[2]:
           jcr:primaryType: hippo:mirror
-          hippo:docbase: fb585bd7-188e-4430-a332-bf0fbc337d23
+          hippo:docbase: c70896ac-cf88-429e-9399-c08ccd7a9ffe
         /visitscotland:stops[3]:
           jcr:primaryType: hippo:mirror
-          hippo:docbase: ca56dfe6-f8c8-410f-aa63-ed513fc71385
+          hippo:docbase: 98ec3739-fc67-45b3-bbdb-e21478facbb7
+        /visitscotland:stops[4]:
+          jcr:primaryType: hippo:mirror
+          hippo:docbase: e67cca0b-469d-4281-8815-0612f856f316
       /edinburgh[2]:
         jcr:primaryType: visitscotland:Day
         jcr:mixinTypes: ['mix:referenceable']
@@ -540,9 +543,9 @@
         hippostd:state: published
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2019-12-10T13:28:39.550Z
-        hippostdpubwf:lastModificationDate: 2020-04-08T09:23:48.905+01:00
+        hippostdpubwf:lastModificationDate: 2020-09-23T13:08:29.057+01:00
         hippostdpubwf:lastModifiedBy: admin
-        hippostdpubwf:publicationDate: 2020-04-08T14:16:18.054+01:00
+        hippostdpubwf:publicationDate: 2020-09-23T13:08:31.770+01:00
         hippotranslation:id: 533c98b2-c2cd-491f-929a-ea2c4a491bb2
         hippotranslation:locale: en
         visitscotland:title: DMS Stops Day
@@ -560,16 +563,16 @@
             end new town. You could also try the Wizarding World of Edinburgh tour.</p>
         /visitscotland:stops[1]:
           jcr:primaryType: hippo:mirror
-          hippo:docbase: 8b215960-87aa-47ae-9c11-8a750be25ad8
+          hippo:docbase: 94bde36e-54e1-4aee-8d25-28def2719c55
         /visitscotland:stops[2]:
           jcr:primaryType: hippo:mirror
-          hippo:docbase: fb585bd7-188e-4430-a332-bf0fbc337d23
+          hippo:docbase: c70896ac-cf88-429e-9399-c08ccd7a9ffe
         /visitscotland:stops[3]:
           jcr:primaryType: hippo:mirror
-          hippo:docbase: ca56dfe6-f8c8-410f-aa63-ed513fc71385
+          hippo:docbase: 98ec3739-fc67-45b3-bbdb-e21478facbb7
         /visitscotland:stops[4]:
           jcr:primaryType: hippo:mirror
-          hippo:docbase: 28abd074-5fc4-4ebc-a424-1d4f9e5cb0e6
+          hippo:docbase: e67cca0b-469d-4281-8815-0612f856f316
       /edinburgh[3]:
         jcr:primaryType: visitscotland:Day
         jcr:mixinTypes: ['mix:referenceable']
@@ -578,7 +581,7 @@
         hippostd:state: draft
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2019-12-10T13:28:39.550Z
-        hippostdpubwf:lastModificationDate: 2020-07-10T15:31:09.672+01:00
+        hippostdpubwf:lastModificationDate: 2020-09-23T13:06:45.920+01:00
         hippostdpubwf:lastModifiedBy: admin
         hippotranslation:id: 533c98b2-c2cd-491f-929a-ea2c4a491bb2
         hippotranslation:locale: en
@@ -597,19 +600,22 @@
             end new town. You could also try the Wizarding World of Edinburgh tour.</p>
         /visitscotland:stops[1]:
           jcr:primaryType: hippo:mirror
-          hippo:docbase: 8b215960-87aa-47ae-9c11-8a750be25ad8
+          hippo:docbase: 94bde36e-54e1-4aee-8d25-28def2719c55
         /visitscotland:stops[2]:
           jcr:primaryType: hippo:mirror
-          hippo:docbase: fb585bd7-188e-4430-a332-bf0fbc337d23
+          hippo:docbase: c70896ac-cf88-429e-9399-c08ccd7a9ffe
         /visitscotland:stops[3]:
           jcr:primaryType: hippo:mirror
-          hippo:docbase: ca56dfe6-f8c8-410f-aa63-ed513fc71385
+          hippo:docbase: 98ec3739-fc67-45b3-bbdb-e21478facbb7
+        /visitscotland:stops[4]:
+          jcr:primaryType: hippo:mirror
+          hippo:docbase: e67cca0b-469d-4281-8815-0612f856f316
     /edinburgh-city-centre:
       jcr:primaryType: hippo:handle
       jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
       jcr:uuid: 201dfb45-0524-4275-8b78-be61d0628c8a
       hippo:name: Edinburgh city centre
-      hippo:versionHistory: 68370919-8260-440e-8e5e-d6ac3d6669c2
+      hippo:versionHistory: bb9d9f6d-0e18-4e31-b0d5-e961db8fdc68
       /edinburgh-city-centre[1]:
         jcr:primaryType: visitscotland:Day
         jcr:mixinTypes: ['mix:versionable']
@@ -618,7 +624,7 @@
         hippostd:state: unpublished
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2019-12-12T12:06:04.129Z
-        hippostdpubwf:lastModificationDate: 2020-04-08T09:23:17.185+01:00
+        hippostdpubwf:lastModificationDate: 2020-09-23T13:09:15.484+01:00
         hippostdpubwf:lastModifiedBy: admin
         hippotranslation:id: 15cbbb74-c06a-427e-88f8-a4fff306f9ba
         hippotranslation:locale: en
@@ -638,10 +644,10 @@
             </ul>
         /visitscotland:stops[1]:
           jcr:primaryType: hippo:mirror
-          hippo:docbase: 8030a311-a942-40e6-bb89-41dd6fea60df
+          hippo:docbase: 4cb12262-5857-45a5-8be4-78fecac30dbd
         /visitscotland:stops[2]:
           jcr:primaryType: hippo:mirror
-          hippo:docbase: 1ead4399-7e30-47dc-9b75-2ea488fb5742
+          hippo:docbase: 9830f174-d0eb-47bf-9b1a-02f86f43e17f
       /edinburgh-city-centre[2]:
         jcr:primaryType: visitscotland:Day
         jcr:mixinTypes: ['mix:referenceable']
@@ -650,9 +656,9 @@
         hippostd:state: published
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2019-12-12T12:06:04.129Z
-        hippostdpubwf:lastModificationDate: 2020-04-08T09:23:17.185+01:00
+        hippostdpubwf:lastModificationDate: 2020-09-23T13:09:15.484+01:00
         hippostdpubwf:lastModifiedBy: admin
-        hippostdpubwf:publicationDate: 2020-06-12T08:43:45.139+01:00
+        hippostdpubwf:publicationDate: 2020-09-23T13:09:17.418+01:00
         hippotranslation:id: 15cbbb74-c06a-427e-88f8-a4fff306f9ba
         hippotranslation:locale: en
         visitscotland:title: Dummy Stops
@@ -671,10 +677,10 @@
             </ul>
         /visitscotland:stops[1]:
           jcr:primaryType: hippo:mirror
-          hippo:docbase: 8030a311-a942-40e6-bb89-41dd6fea60df
+          hippo:docbase: 4cb12262-5857-45a5-8be4-78fecac30dbd
         /visitscotland:stops[2]:
           jcr:primaryType: hippo:mirror
-          hippo:docbase: 1ead4399-7e30-47dc-9b75-2ea488fb5742
+          hippo:docbase: 9830f174-d0eb-47bf-9b1a-02f86f43e17f
       /edinburgh-city-centre[3]:
         jcr:primaryType: visitscotland:Day
         jcr:mixinTypes: ['mix:referenceable']
@@ -683,7 +689,7 @@
         hippostd:state: draft
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2019-12-12T12:06:04.129Z
-        hippostdpubwf:lastModificationDate: 2020-04-08T09:23:12.560+01:00
+        hippostdpubwf:lastModificationDate: 2020-09-23T13:05:41.229+01:00
         hippostdpubwf:lastModifiedBy: admin
         hippotranslation:id: 15cbbb74-c06a-427e-88f8-a4fff306f9ba
         hippotranslation:locale: en
@@ -703,10 +709,10 @@
             </ul>
         /visitscotland:stops[1]:
           jcr:primaryType: hippo:mirror
-          hippo:docbase: 8030a311-a942-40e6-bb89-41dd6fea60df
+          hippo:docbase: 4cb12262-5857-45a5-8be4-78fecac30dbd
         /visitscotland:stops[2]:
           jcr:primaryType: hippo:mirror
-          hippo:docbase: 1ead4399-7e30-47dc-9b75-2ea488fb5742
+          hippo:docbase: 9830f174-d0eb-47bf-9b1a-02f86f43e17f
   /listicle:
     jcr:primaryType: hippostd:folder
     jcr:mixinTypes: ['hippo:named', 'hippotranslation:translated', 'mix:versionable']
@@ -1808,11 +1814,10 @@
           jcr:mixinTypes: ['mix:referenceable']
           jcr:uuid: efc0bccb-dd92-49e0-b1e4-6b17bfd1cf78
           hippo:availability: []
-          hippostd:holder: admin
           hippostd:state: draft
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2020-05-21T17:54:15.934+01:00
-          hippostdpubwf:lastModificationDate: 2020-08-17T17:25:53.411+01:00
+          hippostdpubwf:lastModificationDate: 2020-09-23T13:10:21.926+01:00
           hippostdpubwf:lastModifiedBy: admin
           hippotranslation:id: 9390056b-b448-4e0a-8c69-f373eb031d00
           hippotranslation:locale: en
@@ -2484,7 +2489,7 @@
         jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
         jcr:uuid: 693a6f1f-4da2-42e6-9777-4cd9d9d65671
         hippo:name: Places to Visit in the Outer Hebrides
-        hippo:versionHistory: 551f87e5-39e5-4c2e-a64f-b4cd43695ee6
+        hippo:versionHistory: 139d0115-d8ca-4db7-b310-72b0b5eac4d5
         /places-to-visit-in-the-outer-hebrides[1]:
           jcr:primaryType: visitscotland:Megalinks
           jcr:mixinTypes: ['mix:referenceable']
@@ -2493,7 +2498,7 @@
           hippostd:state: draft
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2020-07-10T14:41:12.033+01:00
-          hippostdpubwf:lastModificationDate: 2020-07-13T10:39:28.613+01:00
+          hippostdpubwf:lastModificationDate: 2020-09-23T13:13:39.311+01:00
           hippostdpubwf:lastModifiedBy: admin
           hippotranslation:id: b0c0573f-f7c1-45fa-9cee-5c53296e65a3
           hippotranslation:locale: en
@@ -2508,44 +2513,31 @@
             visitscotland:feature: true
             /visitscotland:link:
               jcr:primaryType: hippo:mirror
-              hippo:docbase: cc3e403e-9290-4413-afee-4de22bc55e46
+              hippo:docbase: 0161886a-cf57-47f6-a1f8-820b894f5648
           /visitscotland:megalinkItems[2]:
             jcr:primaryType: visitscotland:MegalinkItem
             visitscotland:feature: false
             /visitscotland:link:
               jcr:primaryType: hippo:mirror
-              hippo:docbase: 59159630-e0ea-4336-a1c9-9aa5e573ae02
+              hippo:docbase: 12769b1b-a558-47da-93e3-77e399eee614
           /visitscotland:megalinkItems[3]:
             jcr:primaryType: visitscotland:MegalinkItem
             visitscotland:feature: false
             /visitscotland:link:
               jcr:primaryType: hippo:mirror
-              hippo:docbase: 20ae87f1-c449-459f-8ddb-cc01ebe5de93
+              hippo:docbase: d9369667-48f7-441f-b759-8d9843695c67
           /visitscotland:megalinkItems[4]:
             jcr:primaryType: visitscotland:MegalinkItem
-            visitscotland:feature: false
+            visitscotland:feature: true
             /visitscotland:link:
               jcr:primaryType: hippo:mirror
-              hippo:docbase: b36de857-5116-4a1c-90f7-431c8bf40b18
+              hippo:docbase: 693a6f1f-4da2-42e6-9777-4cd9d9d65671
           /visitscotland:megalinkItems[5]:
             jcr:primaryType: visitscotland:MegalinkItem
             visitscotland:feature: false
             /visitscotland:link:
               jcr:primaryType: hippo:mirror
-              hippo:docbase: 45e947f3-0e67-4f6c-8262-39f046443cac
-          /visitscotland:singleImageLinks:
-            jcr:primaryType: visitscotland:SingleImageModule
-            visitscotland:fullWidth: false
-            visitscotland:title: ''
-            /visitscotland:image:
-              jcr:primaryType: hippogallerypicker:imagelink
-              hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
-              hippo:facets: []
-              hippo:modes: []
-              hippo:values: []
-            /visitscotland:introduction:
-              jcr:primaryType: hippostd:html
-              hippostd:content: ''
+              hippo:docbase: 57d41abe-7b7e-4283-9b65-8c1cb4a62c87
         /places-to-visit-in-the-outer-hebrides[2]:
           jcr:primaryType: visitscotland:Megalinks
           jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
@@ -2554,7 +2546,7 @@
           hippostd:state: unpublished
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2020-07-10T14:41:12.033+01:00
-          hippostdpubwf:lastModificationDate: 2020-07-10T14:49:42.426+01:00
+          hippostdpubwf:lastModificationDate: 2020-09-23T13:13:39.270+01:00
           hippostdpubwf:lastModifiedBy: admin
           hippotranslation:id: b0c0573f-f7c1-45fa-9cee-5c53296e65a3
           hippotranslation:locale: en
@@ -2569,31 +2561,31 @@
             visitscotland:feature: true
             /visitscotland:link:
               jcr:primaryType: hippo:mirror
-              hippo:docbase: cc3e403e-9290-4413-afee-4de22bc55e46
+              hippo:docbase: 0161886a-cf57-47f6-a1f8-820b894f5648
           /visitscotland:megalinkItems[2]:
             jcr:primaryType: visitscotland:MegalinkItem
             visitscotland:feature: false
             /visitscotland:link:
               jcr:primaryType: hippo:mirror
-              hippo:docbase: 59159630-e0ea-4336-a1c9-9aa5e573ae02
+              hippo:docbase: 12769b1b-a558-47da-93e3-77e399eee614
           /visitscotland:megalinkItems[3]:
             jcr:primaryType: visitscotland:MegalinkItem
             visitscotland:feature: false
             /visitscotland:link:
               jcr:primaryType: hippo:mirror
-              hippo:docbase: 20ae87f1-c449-459f-8ddb-cc01ebe5de93
+              hippo:docbase: d9369667-48f7-441f-b759-8d9843695c67
           /visitscotland:megalinkItems[4]:
             jcr:primaryType: visitscotland:MegalinkItem
-            visitscotland:feature: false
+            visitscotland:feature: true
             /visitscotland:link:
               jcr:primaryType: hippo:mirror
-              hippo:docbase: b36de857-5116-4a1c-90f7-431c8bf40b18
+              hippo:docbase: 693a6f1f-4da2-42e6-9777-4cd9d9d65671
           /visitscotland:megalinkItems[5]:
             jcr:primaryType: visitscotland:MegalinkItem
             visitscotland:feature: false
             /visitscotland:link:
               jcr:primaryType: hippo:mirror
-              hippo:docbase: 45e947f3-0e67-4f6c-8262-39f046443cac
+              hippo:docbase: 57d41abe-7b7e-4283-9b65-8c1cb4a62c87
         /places-to-visit-in-the-outer-hebrides[3]:
           jcr:primaryType: visitscotland:Megalinks
           jcr:mixinTypes: ['mix:referenceable']
@@ -2602,9 +2594,9 @@
           hippostd:state: published
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2020-07-10T14:41:12.033+01:00
-          hippostdpubwf:lastModificationDate: 2020-07-10T14:49:42.426+01:00
+          hippostdpubwf:lastModificationDate: 2020-09-23T13:13:39.270+01:00
           hippostdpubwf:lastModifiedBy: admin
-          hippostdpubwf:publicationDate: 2020-07-10T18:25:39.746+01:00
+          hippostdpubwf:publicationDate: 2020-09-23T13:13:44.201+01:00
           hippotranslation:id: b0c0573f-f7c1-45fa-9cee-5c53296e65a3
           hippotranslation:locale: en
           visitscotland:listLayout: false
@@ -2618,37 +2610,37 @@
             visitscotland:feature: true
             /visitscotland:link:
               jcr:primaryType: hippo:mirror
-              hippo:docbase: cc3e403e-9290-4413-afee-4de22bc55e46
+              hippo:docbase: 0161886a-cf57-47f6-a1f8-820b894f5648
           /visitscotland:megalinkItems[2]:
             jcr:primaryType: visitscotland:MegalinkItem
             visitscotland:feature: false
             /visitscotland:link:
               jcr:primaryType: hippo:mirror
-              hippo:docbase: 59159630-e0ea-4336-a1c9-9aa5e573ae02
+              hippo:docbase: 12769b1b-a558-47da-93e3-77e399eee614
           /visitscotland:megalinkItems[3]:
             jcr:primaryType: visitscotland:MegalinkItem
             visitscotland:feature: false
             /visitscotland:link:
               jcr:primaryType: hippo:mirror
-              hippo:docbase: 20ae87f1-c449-459f-8ddb-cc01ebe5de93
+              hippo:docbase: d9369667-48f7-441f-b759-8d9843695c67
           /visitscotland:megalinkItems[4]:
             jcr:primaryType: visitscotland:MegalinkItem
-            visitscotland:feature: false
+            visitscotland:feature: true
             /visitscotland:link:
               jcr:primaryType: hippo:mirror
-              hippo:docbase: b36de857-5116-4a1c-90f7-431c8bf40b18
+              hippo:docbase: 693a6f1f-4da2-42e6-9777-4cd9d9d65671
           /visitscotland:megalinkItems[5]:
             jcr:primaryType: visitscotland:MegalinkItem
             visitscotland:feature: false
             /visitscotland:link:
               jcr:primaryType: hippo:mirror
-              hippo:docbase: 45e947f3-0e67-4f6c-8262-39f046443cac
+              hippo:docbase: 57d41abe-7b7e-4283-9b65-8c1cb4a62c87
       /things-to-do-in-outer-hebrides:
         jcr:primaryType: hippo:handle
         jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
         jcr:uuid: 57d41abe-7b7e-4283-9b65-8c1cb4a62c87
         hippo:name: Things to do in Outer Hebrides
-        hippo:versionHistory: 97967a95-6c51-409a-885d-4420b08311aa
+        hippo:versionHistory: 39e6f98c-517f-4861-84b2-69940c0823ae
         /things-to-do-in-outer-hebrides[1]:
           jcr:primaryType: visitscotland:Megalinks
           jcr:mixinTypes: ['mix:referenceable']
@@ -2657,7 +2649,7 @@
           hippostd:state: draft
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2020-07-10T14:51:20.499+01:00
-          hippostdpubwf:lastModificationDate: 2020-07-10T18:37:45.339+01:00
+          hippostdpubwf:lastModificationDate: 2020-09-23T13:19:16.443+01:00
           hippostdpubwf:lastModifiedBy: admin
           hippotranslation:id: c8ac2066-d84e-4524-85bc-1556caeb776f
           hippotranslation:locale: en
@@ -2686,55 +2678,37 @@
             visitscotland:feature: false
             /visitscotland:link:
               jcr:primaryType: hippo:mirror
-              hippo:docbase: 51be92c9-183a-4ab6-90a6-a144283c506a
+              hippo:docbase: 444422fa-4146-4bb4-a05b-8da787f93ab5
           /visitscotland:megalinkItems[2]:
             jcr:primaryType: visitscotland:MegalinkItem
             visitscotland:feature: false
             /visitscotland:link:
               jcr:primaryType: hippo:mirror
-              hippo:docbase: c9bac8af-566d-4e03-8590-a086b0ffdfe3
+              hippo:docbase: a1e16b7c-7390-43b8-b2a6-4a8d88834402
           /visitscotland:megalinkItems[3]:
             jcr:primaryType: visitscotland:MegalinkItem
             visitscotland:feature: true
             /visitscotland:link:
               jcr:primaryType: hippo:mirror
-              hippo:docbase: ccd79992-0d3d-4356-a858-9df5d0fbfcee
+              hippo:docbase: 12769b1b-a558-47da-93e3-77e399eee614
           /visitscotland:megalinkItems[4]:
             jcr:primaryType: visitscotland:MegalinkItem
             visitscotland:feature: false
             /visitscotland:link:
               jcr:primaryType: hippo:mirror
-              hippo:docbase: e3aa5282-f2da-44d1-bcd1-44da5348e7d4
+              hippo:docbase: d9369667-48f7-441f-b759-8d9843695c67
           /visitscotland:megalinkItems[5]:
             jcr:primaryType: visitscotland:MegalinkItem
             visitscotland:feature: false
             /visitscotland:link:
               jcr:primaryType: hippo:mirror
-              hippo:docbase: 87415f91-228d-4e1b-9c8c-604d2e534afe
+              hippo:docbase: 8f9220a7-df66-4104-aafa-cdacb3b76a88
           /visitscotland:megalinkItems[6]:
             jcr:primaryType: visitscotland:MegalinkItem
             visitscotland:feature: false
             /visitscotland:link:
               jcr:primaryType: hippo:mirror
-              hippo:docbase: 42cf5b1a-e6a7-438c-ba4e-a9f88599fa4e
-          /visitscotland:megalinkItems[7]:
-            jcr:primaryType: visitscotland:MegalinkItem
-            visitscotland:feature: false
-            /visitscotland:link:
-              jcr:primaryType: hippo:mirror
-              hippo:docbase: 031cf3c6-4f51-485f-bced-d918cec0696a
-          /visitscotland:megalinkItems[8]:
-            jcr:primaryType: visitscotland:MegalinkItem
-            visitscotland:feature: false
-            /visitscotland:link:
-              jcr:primaryType: hippo:mirror
-              hippo:docbase: 748e1c72-9adf-492e-a616-9af130599bd8
-          /visitscotland:megalinkItems[9]:
-            jcr:primaryType: visitscotland:MegalinkItem
-            visitscotland:feature: false
-            /visitscotland:link:
-              jcr:primaryType: hippo:mirror
-              hippo:docbase: fa8d04f2-2818-4c06-903a-db1d8622cf1a
+              hippo:docbase: 191da414-2b36-40eb-85bc-0a1730f5a5da
         /things-to-do-in-outer-hebrides[2]:
           jcr:primaryType: visitscotland:Megalinks
           jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
@@ -2743,7 +2717,7 @@
           hippostd:state: unpublished
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2020-07-10T14:51:20.499+01:00
-          hippostdpubwf:lastModificationDate: 2020-07-10T18:37:45.193+01:00
+          hippostdpubwf:lastModificationDate: 2020-09-23T13:19:16.389+01:00
           hippostdpubwf:lastModifiedBy: admin
           hippotranslation:id: c8ac2066-d84e-4524-85bc-1556caeb776f
           hippotranslation:locale: en
@@ -2772,55 +2746,37 @@
             visitscotland:feature: false
             /visitscotland:link:
               jcr:primaryType: hippo:mirror
-              hippo:docbase: 51be92c9-183a-4ab6-90a6-a144283c506a
+              hippo:docbase: 444422fa-4146-4bb4-a05b-8da787f93ab5
           /visitscotland:megalinkItems[2]:
             jcr:primaryType: visitscotland:MegalinkItem
             visitscotland:feature: false
             /visitscotland:link:
               jcr:primaryType: hippo:mirror
-              hippo:docbase: c9bac8af-566d-4e03-8590-a086b0ffdfe3
+              hippo:docbase: a1e16b7c-7390-43b8-b2a6-4a8d88834402
           /visitscotland:megalinkItems[3]:
             jcr:primaryType: visitscotland:MegalinkItem
             visitscotland:feature: true
             /visitscotland:link:
               jcr:primaryType: hippo:mirror
-              hippo:docbase: ccd79992-0d3d-4356-a858-9df5d0fbfcee
+              hippo:docbase: 12769b1b-a558-47da-93e3-77e399eee614
           /visitscotland:megalinkItems[4]:
             jcr:primaryType: visitscotland:MegalinkItem
             visitscotland:feature: false
             /visitscotland:link:
               jcr:primaryType: hippo:mirror
-              hippo:docbase: e3aa5282-f2da-44d1-bcd1-44da5348e7d4
+              hippo:docbase: d9369667-48f7-441f-b759-8d9843695c67
           /visitscotland:megalinkItems[5]:
             jcr:primaryType: visitscotland:MegalinkItem
             visitscotland:feature: false
             /visitscotland:link:
               jcr:primaryType: hippo:mirror
-              hippo:docbase: 87415f91-228d-4e1b-9c8c-604d2e534afe
+              hippo:docbase: 8f9220a7-df66-4104-aafa-cdacb3b76a88
           /visitscotland:megalinkItems[6]:
             jcr:primaryType: visitscotland:MegalinkItem
             visitscotland:feature: false
             /visitscotland:link:
               jcr:primaryType: hippo:mirror
-              hippo:docbase: 42cf5b1a-e6a7-438c-ba4e-a9f88599fa4e
-          /visitscotland:megalinkItems[7]:
-            jcr:primaryType: visitscotland:MegalinkItem
-            visitscotland:feature: false
-            /visitscotland:link:
-              jcr:primaryType: hippo:mirror
-              hippo:docbase: 031cf3c6-4f51-485f-bced-d918cec0696a
-          /visitscotland:megalinkItems[8]:
-            jcr:primaryType: visitscotland:MegalinkItem
-            visitscotland:feature: false
-            /visitscotland:link:
-              jcr:primaryType: hippo:mirror
-              hippo:docbase: 748e1c72-9adf-492e-a616-9af130599bd8
-          /visitscotland:megalinkItems[9]:
-            jcr:primaryType: visitscotland:MegalinkItem
-            visitscotland:feature: false
-            /visitscotland:link:
-              jcr:primaryType: hippo:mirror
-              hippo:docbase: fa8d04f2-2818-4c06-903a-db1d8622cf1a
+              hippo:docbase: 191da414-2b36-40eb-85bc-0a1730f5a5da
         /things-to-do-in-outer-hebrides[3]:
           jcr:primaryType: visitscotland:Megalinks
           jcr:mixinTypes: ['mix:referenceable']
@@ -2829,9 +2785,9 @@
           hippostd:state: published
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2020-07-10T14:51:20.499+01:00
-          hippostdpubwf:lastModificationDate: 2020-07-10T18:37:45.193+01:00
+          hippostdpubwf:lastModificationDate: 2020-09-23T13:19:16.389+01:00
           hippostdpubwf:lastModifiedBy: admin
-          hippostdpubwf:publicationDate: 2020-07-13T10:35:12.684+01:00
+          hippostdpubwf:publicationDate: 2020-09-23T13:19:23.128+01:00
           hippotranslation:id: c8ac2066-d84e-4524-85bc-1556caeb776f
           hippotranslation:locale: en
           visitscotland:listLayout: false
@@ -2859,55 +2815,37 @@
             visitscotland:feature: false
             /visitscotland:link:
               jcr:primaryType: hippo:mirror
-              hippo:docbase: 51be92c9-183a-4ab6-90a6-a144283c506a
+              hippo:docbase: 444422fa-4146-4bb4-a05b-8da787f93ab5
           /visitscotland:megalinkItems[2]:
             jcr:primaryType: visitscotland:MegalinkItem
             visitscotland:feature: false
             /visitscotland:link:
               jcr:primaryType: hippo:mirror
-              hippo:docbase: c9bac8af-566d-4e03-8590-a086b0ffdfe3
+              hippo:docbase: a1e16b7c-7390-43b8-b2a6-4a8d88834402
           /visitscotland:megalinkItems[3]:
             jcr:primaryType: visitscotland:MegalinkItem
             visitscotland:feature: true
             /visitscotland:link:
               jcr:primaryType: hippo:mirror
-              hippo:docbase: ccd79992-0d3d-4356-a858-9df5d0fbfcee
+              hippo:docbase: 12769b1b-a558-47da-93e3-77e399eee614
           /visitscotland:megalinkItems[4]:
             jcr:primaryType: visitscotland:MegalinkItem
             visitscotland:feature: false
             /visitscotland:link:
               jcr:primaryType: hippo:mirror
-              hippo:docbase: e3aa5282-f2da-44d1-bcd1-44da5348e7d4
+              hippo:docbase: d9369667-48f7-441f-b759-8d9843695c67
           /visitscotland:megalinkItems[5]:
             jcr:primaryType: visitscotland:MegalinkItem
             visitscotland:feature: false
             /visitscotland:link:
               jcr:primaryType: hippo:mirror
-              hippo:docbase: 87415f91-228d-4e1b-9c8c-604d2e534afe
+              hippo:docbase: 8f9220a7-df66-4104-aafa-cdacb3b76a88
           /visitscotland:megalinkItems[6]:
             jcr:primaryType: visitscotland:MegalinkItem
             visitscotland:feature: false
             /visitscotland:link:
               jcr:primaryType: hippo:mirror
-              hippo:docbase: 42cf5b1a-e6a7-438c-ba4e-a9f88599fa4e
-          /visitscotland:megalinkItems[7]:
-            jcr:primaryType: visitscotland:MegalinkItem
-            visitscotland:feature: false
-            /visitscotland:link:
-              jcr:primaryType: hippo:mirror
-              hippo:docbase: 031cf3c6-4f51-485f-bced-d918cec0696a
-          /visitscotland:megalinkItems[8]:
-            jcr:primaryType: visitscotland:MegalinkItem
-            visitscotland:feature: false
-            /visitscotland:link:
-              jcr:primaryType: hippo:mirror
-              hippo:docbase: 748e1c72-9adf-492e-a616-9af130599bd8
-          /visitscotland:megalinkItems[9]:
-            jcr:primaryType: visitscotland:MegalinkItem
-            visitscotland:feature: false
-            /visitscotland:link:
-              jcr:primaryType: hippo:mirror
-              hippo:docbase: fa8d04f2-2818-4c06-903a-db1d8622cf1a
+              hippo:docbase: 191da414-2b36-40eb-85bc-0a1730f5a5da
       /demo---do-not-publish:
         jcr:primaryType: hippo:handle
         jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
@@ -6210,6 +6148,174 @@
           hippostd:foldertype: [new-translated-folder-shared, new-shared-document]
           hippotranslation:id: 96a3d7ba-a339-4573-a83b-d0b4c49b8545
           hippotranslation:locale: en
+          /www.visitouterhebrides.co.uk---photography-trail:
+            jcr:primaryType: hippo:handle
+            jcr:mixinTypes: ['hippo:named', 'mix:referenceable']
+            jcr:uuid: 8f9220a7-df66-4104-aafa-cdacb3b76a88
+            hippo:name: www.visitouterhebrides.co.uk - Photography trail
+            /www.visitouterhebrides.co.uk---photography-trail[1]:
+              jcr:primaryType: visitscotland:SharedLink
+              jcr:mixinTypes: ['mix:versionable']
+              jcr:uuid: e3f5e71e-da33-48f1-90b3-93f704433bbf
+              hippo:availability: [preview]
+              hippostd:state: unpublished
+              hippostdpubwf:createdBy: admin
+              hippostdpubwf:creationDate: 2020-07-10T13:34:45.173+01:00
+              hippostdpubwf:lastModificationDate: 2020-07-10T13:52:01.083+01:00
+              hippostdpubwf:lastModifiedBy: admin
+              hippotranslation:id: 51dfff09-00d0-4923-b704-26bb28e5b28b
+              hippotranslation:locale: en
+              visitscotland:teaser: Visit Outer Hebrides from behind of a camera.
+              visitscotland:title: Photography Trail
+              /visitscotland:image:
+                jcr:primaryType: hippogallerypicker:imagelink
+                hippo:docbase: c3eafb5b-6c18-4caa-9c9a-63279b816630
+                hippo:facets: []
+                hippo:modes: []
+                hippo:values: []
+              /visitscotland:linkTypes:
+                jcr:primaryType: visitscotland:ExternalLink
+                visitscotland:label: ''
+                visitscotland:link: https://www.visitouterhebrides.co.uk/see-and-do/nature/photography-trail
+            /www.visitouterhebrides.co.uk---photography-trail[2]:
+              jcr:primaryType: visitscotland:SharedLink
+              jcr:mixinTypes: ['mix:referenceable']
+              jcr:uuid: 94cb6182-9bb8-42e5-a4c9-08aaf6e17cfe
+              hippo:availability: []
+              hippostd:state: draft
+              hippostdpubwf:createdBy: admin
+              hippostdpubwf:creationDate: 2020-07-10T13:34:45.173+01:00
+              hippostdpubwf:lastModificationDate: 2020-07-10T13:52:01.179+01:00
+              hippostdpubwf:lastModifiedBy: admin
+              hippotranslation:id: 51dfff09-00d0-4923-b704-26bb28e5b28b
+              hippotranslation:locale: en
+              visitscotland:teaser: Visit Outer Hebrides from behind of a camera.
+              visitscotland:title: Photography Trail
+              /visitscotland:image:
+                jcr:primaryType: hippogallerypicker:imagelink
+                hippo:docbase: c3eafb5b-6c18-4caa-9c9a-63279b816630
+                hippo:facets: []
+                hippo:modes: []
+                hippo:values: []
+              /visitscotland:linkTypes:
+                jcr:primaryType: visitscotland:ExternalLink
+                visitscotland:label: ''
+                visitscotland:link: https://www.visitouterhebrides.co.uk/see-and-do/nature/photography-trail
+            /www.visitouterhebrides.co.uk---photography-trail[3]:
+              jcr:primaryType: visitscotland:SharedLink
+              jcr:mixinTypes: ['mix:referenceable']
+              jcr:uuid: e10876d2-9928-449b-ab24-8be27fe1d04e
+              hippo:availability: [live]
+              hippostd:state: published
+              hippostdpubwf:createdBy: admin
+              hippostdpubwf:creationDate: 2020-07-10T13:34:45.173+01:00
+              hippostdpubwf:lastModificationDate: 2020-07-10T13:52:01.083+01:00
+              hippostdpubwf:lastModifiedBy: admin
+              hippostdpubwf:publicationDate: 2020-07-10T14:25:10.348+01:00
+              hippotranslation:id: 51dfff09-00d0-4923-b704-26bb28e5b28b
+              hippotranslation:locale: en
+              visitscotland:teaser: Visit Outer Hebrides from behind of a camera.
+              visitscotland:title: Photography Trail
+              /visitscotland:image:
+                jcr:primaryType: hippogallerypicker:imagelink
+                hippo:docbase: c3eafb5b-6c18-4caa-9c9a-63279b816630
+                hippo:facets: []
+                hippo:modes: []
+                hippo:values: []
+              /visitscotland:linkTypes:
+                jcr:primaryType: visitscotland:ExternalLink
+                visitscotland:label: ''
+                visitscotland:link: https://www.visitouterhebrides.co.uk/see-and-do/nature/photography-trail
+          /www.visitscotland.com---lewis-and-harris:
+            jcr:primaryType: hippo:handle
+            jcr:mixinTypes: ['hippo:named', 'mix:referenceable']
+            jcr:uuid: 191da414-2b36-40eb-85bc-0a1730f5a5da
+            hippo:name: www.visitscotland.com - Lewis and Harris
+            /www.visitscotland.com---lewis-and-harris[1]:
+              jcr:primaryType: visitscotland:SharedLink
+              jcr:mixinTypes: ['mix:versionable']
+              jcr:uuid: ba4fbed7-9b1e-4bad-a0a7-9e69bc942f40
+              hippo:availability: [preview]
+              hippostd:state: unpublished
+              hippostdpubwf:createdBy: admin
+              hippostdpubwf:creationDate: 2020-07-10T13:34:45.173+01:00
+              hippostdpubwf:lastModificationDate: 2020-07-17T12:06:13.711+01:00
+              hippostdpubwf:lastModifiedBy: admin
+              hippotranslation:id: 4ca683a5-e68a-47f6-b65a-481061871a0d
+              hippotranslation:locale: en
+              visitscotland:teaser: Off the west coast of Scotland, the Isle of Lewis
+                and Isle of Harris form the main island in the Outer Hebrides. They
+                may sound like two separate islands, but Lewis and Harris are actually
+                two parts of the one island, with the largest town Stornoway on the
+                east coast.
+              visitscotland:title: Lewis and Harris
+              /visitscotland:image:
+                jcr:primaryType: hippogallerypicker:imagelink
+                hippo:docbase: dbcdddc3-5586-4188-85a7-fcd5e7e3c29a
+                hippo:facets: []
+                hippo:modes: []
+                hippo:values: []
+              /visitscotland:linkTypes:
+                jcr:primaryType: visitscotland:ExternalLink
+                visitscotland:label: ''
+                visitscotland:link: https://www.visitscotland.com/destinations-maps/lewis-harris-stornoway/
+            /www.visitscotland.com---lewis-and-harris[2]:
+              jcr:primaryType: visitscotland:SharedLink
+              jcr:mixinTypes: ['mix:referenceable']
+              jcr:uuid: 70a63860-2b7f-4b7d-9da3-c484d637ed70
+              hippo:availability: []
+              hippostd:state: draft
+              hippostdpubwf:createdBy: admin
+              hippostdpubwf:creationDate: 2020-07-10T13:34:45.173+01:00
+              hippostdpubwf:lastModificationDate: 2020-07-17T12:06:00.796+01:00
+              hippostdpubwf:lastModifiedBy: admin
+              hippotranslation:id: 4ca683a5-e68a-47f6-b65a-481061871a0d
+              hippotranslation:locale: en
+              visitscotland:teaser: Off the west coast of Scotland, the Isle of Lewis
+                and Isle of Harris form the main island in the Outer Hebrides. They
+                may sound like two separate islands, but Lewis and Harris are actually
+                two parts of the one island, with the largest town Stornoway on the
+                east coast.
+              visitscotland:title: Lewis and Harris
+              /visitscotland:image:
+                jcr:primaryType: hippogallerypicker:imagelink
+                hippo:docbase: dbcdddc3-5586-4188-85a7-fcd5e7e3c29a
+                hippo:facets: []
+                hippo:modes: []
+                hippo:values: []
+              /visitscotland:linkTypes:
+                jcr:primaryType: visitscotland:ExternalLink
+                visitscotland:label: ''
+                visitscotland:link: https://www.visitscotland.com/destinations-maps/lewis-harris-stornoway/
+            /www.visitscotland.com---lewis-and-harris[3]:
+              jcr:primaryType: visitscotland:SharedLink
+              jcr:mixinTypes: ['mix:referenceable']
+              jcr:uuid: dd929a67-e6ee-4f46-b5a7-280b91b0de97
+              hippo:availability: [live]
+              hippostd:state: published
+              hippostdpubwf:createdBy: admin
+              hippostdpubwf:creationDate: 2020-07-10T13:34:45.173+01:00
+              hippostdpubwf:lastModificationDate: 2020-07-17T12:06:13.711+01:00
+              hippostdpubwf:lastModifiedBy: admin
+              hippostdpubwf:publicationDate: 2020-07-17T12:06:17.494+01:00
+              hippotranslation:id: 4ca683a5-e68a-47f6-b65a-481061871a0d
+              hippotranslation:locale: en
+              visitscotland:teaser: Off the west coast of Scotland, the Isle of Lewis
+                and Isle of Harris form the main island in the Outer Hebrides. They
+                may sound like two separate islands, but Lewis and Harris are actually
+                two parts of the one island, with the largest town Stornoway on the
+                east coast.
+              visitscotland:title: Lewis and Harris
+              /visitscotland:image:
+                jcr:primaryType: hippogallerypicker:imagelink
+                hippo:docbase: dbcdddc3-5586-4188-85a7-fcd5e7e3c29a
+                hippo:facets: []
+                hippo:modes: []
+                hippo:values: []
+              /visitscotland:linkTypes:
+                jcr:primaryType: visitscotland:ExternalLink
+                visitscotland:label: ''
+                visitscotland:link: https://www.visitscotland.com/destinations-maps/lewis-harris-stornoway/
         /w:
           jcr:primaryType: hippostd:folder
           jcr:mixinTypes: ['hippo:named', 'hippotranslation:translated', 'mix:versionable']
@@ -7915,174 +8021,6 @@
           hippostd:foldertype: [new-translated-folder-shared, new-shared-document]
           hippotranslation:id: 9909191d-86ad-4630-9d85-8a17da2e8473
           hippotranslation:locale: en
-          /www.visitouterhebrides.co.uk---photography-trail:
-            jcr:primaryType: hippo:handle
-            jcr:mixinTypes: ['hippo:named', 'mix:referenceable']
-            jcr:uuid: 8f9220a7-df66-4104-aafa-cdacb3b76a88
-            hippo:name: www.visitouterhebrides.co.uk - Photography trail
-            /www.visitouterhebrides.co.uk---photography-trail[1]:
-              jcr:primaryType: visitscotland:SharedLink
-              jcr:mixinTypes: ['mix:versionable']
-              jcr:uuid: e3f5e71e-da33-48f1-90b3-93f704433bbf
-              hippo:availability: [preview]
-              hippostd:state: unpublished
-              hippostdpubwf:createdBy: admin
-              hippostdpubwf:creationDate: 2020-07-10T13:34:45.173+01:00
-              hippostdpubwf:lastModificationDate: 2020-07-10T13:52:01.083+01:00
-              hippostdpubwf:lastModifiedBy: admin
-              hippotranslation:id: 51dfff09-00d0-4923-b704-26bb28e5b28b
-              hippotranslation:locale: en
-              visitscotland:teaser: Visit Outer Hebrides from behind of a camera.
-              visitscotland:title: Photography Trail
-              /visitscotland:image:
-                jcr:primaryType: hippogallerypicker:imagelink
-                hippo:docbase: c3eafb5b-6c18-4caa-9c9a-63279b816630
-                hippo:facets: []
-                hippo:modes: []
-                hippo:values: []
-              /visitscotland:linkTypes:
-                jcr:primaryType: visitscotland:ExternalLink
-                visitscotland:label: ''
-                visitscotland:link: https://www.visitouterhebrides.co.uk/see-and-do/nature/photography-trail
-            /www.visitouterhebrides.co.uk---photography-trail[2]:
-              jcr:primaryType: visitscotland:SharedLink
-              jcr:mixinTypes: ['mix:referenceable']
-              jcr:uuid: 94cb6182-9bb8-42e5-a4c9-08aaf6e17cfe
-              hippo:availability: []
-              hippostd:state: draft
-              hippostdpubwf:createdBy: admin
-              hippostdpubwf:creationDate: 2020-07-10T13:34:45.173+01:00
-              hippostdpubwf:lastModificationDate: 2020-07-10T13:52:01.179+01:00
-              hippostdpubwf:lastModifiedBy: admin
-              hippotranslation:id: 51dfff09-00d0-4923-b704-26bb28e5b28b
-              hippotranslation:locale: en
-              visitscotland:teaser: Visit Outer Hebrides from behind of a camera.
-              visitscotland:title: Photography Trail
-              /visitscotland:image:
-                jcr:primaryType: hippogallerypicker:imagelink
-                hippo:docbase: c3eafb5b-6c18-4caa-9c9a-63279b816630
-                hippo:facets: []
-                hippo:modes: []
-                hippo:values: []
-              /visitscotland:linkTypes:
-                jcr:primaryType: visitscotland:ExternalLink
-                visitscotland:label: ''
-                visitscotland:link: https://www.visitouterhebrides.co.uk/see-and-do/nature/photography-trail
-            /www.visitouterhebrides.co.uk---photography-trail[3]:
-              jcr:primaryType: visitscotland:SharedLink
-              jcr:mixinTypes: ['mix:referenceable']
-              jcr:uuid: e10876d2-9928-449b-ab24-8be27fe1d04e
-              hippo:availability: [live]
-              hippostd:state: published
-              hippostdpubwf:createdBy: admin
-              hippostdpubwf:creationDate: 2020-07-10T13:34:45.173+01:00
-              hippostdpubwf:lastModificationDate: 2020-07-10T13:52:01.083+01:00
-              hippostdpubwf:lastModifiedBy: admin
-              hippostdpubwf:publicationDate: 2020-07-10T14:25:10.348+01:00
-              hippotranslation:id: 51dfff09-00d0-4923-b704-26bb28e5b28b
-              hippotranslation:locale: en
-              visitscotland:teaser: Visit Outer Hebrides from behind of a camera.
-              visitscotland:title: Photography Trail
-              /visitscotland:image:
-                jcr:primaryType: hippogallerypicker:imagelink
-                hippo:docbase: c3eafb5b-6c18-4caa-9c9a-63279b816630
-                hippo:facets: []
-                hippo:modes: []
-                hippo:values: []
-              /visitscotland:linkTypes:
-                jcr:primaryType: visitscotland:ExternalLink
-                visitscotland:label: ''
-                visitscotland:link: https://www.visitouterhebrides.co.uk/see-and-do/nature/photography-trail
-          /www.visitscotland.com---lewis-and-harris:
-            jcr:primaryType: hippo:handle
-            jcr:mixinTypes: ['hippo:named', 'mix:referenceable']
-            jcr:uuid: 191da414-2b36-40eb-85bc-0a1730f5a5da
-            hippo:name: www.visitscotland.com - Lewis and Harris
-            /www.visitscotland.com---lewis-and-harris[1]:
-              jcr:primaryType: visitscotland:SharedLink
-              jcr:mixinTypes: ['mix:versionable']
-              jcr:uuid: ba4fbed7-9b1e-4bad-a0a7-9e69bc942f40
-              hippo:availability: [preview]
-              hippostd:state: unpublished
-              hippostdpubwf:createdBy: admin
-              hippostdpubwf:creationDate: 2020-07-10T13:34:45.173+01:00
-              hippostdpubwf:lastModificationDate: 2020-07-17T12:06:13.711+01:00
-              hippostdpubwf:lastModifiedBy: admin
-              hippotranslation:id: 4ca683a5-e68a-47f6-b65a-481061871a0d
-              hippotranslation:locale: en
-              visitscotland:teaser: Off the west coast of Scotland, the Isle of Lewis
-                and Isle of Harris form the main island in the Outer Hebrides. They
-                may sound like two separate islands, but Lewis and Harris are actually
-                two parts of the one island, with the largest town Stornoway on the
-                east coast.
-              visitscotland:title: Lewis and Harris
-              /visitscotland:image:
-                jcr:primaryType: hippogallerypicker:imagelink
-                hippo:docbase: dbcdddc3-5586-4188-85a7-fcd5e7e3c29a
-                hippo:facets: []
-                hippo:modes: []
-                hippo:values: []
-              /visitscotland:linkTypes:
-                jcr:primaryType: visitscotland:ExternalLink
-                visitscotland:label: ''
-                visitscotland:link: https://www.visitscotland.com/destinations-maps/lewis-harris-stornoway/
-            /www.visitscotland.com---lewis-and-harris[2]:
-              jcr:primaryType: visitscotland:SharedLink
-              jcr:mixinTypes: ['mix:referenceable']
-              jcr:uuid: 70a63860-2b7f-4b7d-9da3-c484d637ed70
-              hippo:availability: []
-              hippostd:state: draft
-              hippostdpubwf:createdBy: admin
-              hippostdpubwf:creationDate: 2020-07-10T13:34:45.173+01:00
-              hippostdpubwf:lastModificationDate: 2020-07-17T12:06:00.796+01:00
-              hippostdpubwf:lastModifiedBy: admin
-              hippotranslation:id: 4ca683a5-e68a-47f6-b65a-481061871a0d
-              hippotranslation:locale: en
-              visitscotland:teaser: Off the west coast of Scotland, the Isle of Lewis
-                and Isle of Harris form the main island in the Outer Hebrides. They
-                may sound like two separate islands, but Lewis and Harris are actually
-                two parts of the one island, with the largest town Stornoway on the
-                east coast.
-              visitscotland:title: Lewis and Harris
-              /visitscotland:image:
-                jcr:primaryType: hippogallerypicker:imagelink
-                hippo:docbase: dbcdddc3-5586-4188-85a7-fcd5e7e3c29a
-                hippo:facets: []
-                hippo:modes: []
-                hippo:values: []
-              /visitscotland:linkTypes:
-                jcr:primaryType: visitscotland:ExternalLink
-                visitscotland:label: ''
-                visitscotland:link: https://www.visitscotland.com/destinations-maps/lewis-harris-stornoway/
-            /www.visitscotland.com---lewis-and-harris[3]:
-              jcr:primaryType: visitscotland:SharedLink
-              jcr:mixinTypes: ['mix:referenceable']
-              jcr:uuid: dd929a67-e6ee-4f46-b5a7-280b91b0de97
-              hippo:availability: [live]
-              hippostd:state: published
-              hippostdpubwf:createdBy: admin
-              hippostdpubwf:creationDate: 2020-07-10T13:34:45.173+01:00
-              hippostdpubwf:lastModificationDate: 2020-07-17T12:06:13.711+01:00
-              hippostdpubwf:lastModifiedBy: admin
-              hippostdpubwf:publicationDate: 2020-07-17T12:06:17.494+01:00
-              hippotranslation:id: 4ca683a5-e68a-47f6-b65a-481061871a0d
-              hippotranslation:locale: en
-              visitscotland:teaser: Off the west coast of Scotland, the Isle of Lewis
-                and Isle of Harris form the main island in the Outer Hebrides. They
-                may sound like two separate islands, but Lewis and Harris are actually
-                two parts of the one island, with the largest town Stornoway on the
-                east coast.
-              visitscotland:title: Lewis and Harris
-              /visitscotland:image:
-                jcr:primaryType: hippogallerypicker:imagelink
-                hippo:docbase: dbcdddc3-5586-4188-85a7-fcd5e7e3c29a
-                hippo:facets: []
-                hippo:modes: []
-                hippo:values: []
-              /visitscotland:linkTypes:
-                jcr:primaryType: visitscotland:ExternalLink
-                visitscotland:label: ''
-                visitscotland:link: https://www.visitscotland.com/destinations-maps/lewis-harris-stornoway/
         /w:
           jcr:primaryType: hippostd:folder
           jcr:mixinTypes: ['hippo:named', 'hippotranslation:translated', 'mix:versionable']
