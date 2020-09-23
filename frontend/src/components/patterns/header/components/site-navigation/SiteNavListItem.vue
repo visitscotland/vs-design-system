@@ -25,7 +25,8 @@
             >
                 <VsIcon
                     data-test="mobile-nav-chevron-svg"
-                    name="chevron-down"
+                    name="chevron"
+                    orientation="down"
                     size="xs"
                     variant="dark"
                     class="d-lg-none"
