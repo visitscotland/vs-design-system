@@ -54,7 +54,7 @@
 </#if>
 </#compress>
 <div class="has-edit-button">
-    <@hst.manageContent hippobean=document documentTemplateQuery="new-module" rootPath="site" defaultPath="${path}" />
+    <@hst.manageContent hippobean=document documentTemplateQuery="new-day" rootPath="site" defaultPath="${path}" />
     <@cmsErrors errors=alerts!"" editMode=editMode />
 
     <vs-page-intro>
