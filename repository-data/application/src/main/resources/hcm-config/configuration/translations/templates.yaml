@@ -25,6 +25,7 @@ definitions:
       new-translated-folder-shared: new translated folder
       new-shared-document: new shared document
       new-stop: new stop
+      new-translated-folder-stops: new translated folder
     /hippo:configuration/hippo:translations/hippo:templates/fr:
       new-resource-bundle: nouveau resource bundle
       new-untranslated-folder: nouveau dossier non traduit
