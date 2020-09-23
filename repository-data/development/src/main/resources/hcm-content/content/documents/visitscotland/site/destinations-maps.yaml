@@ -179,7 +179,7 @@
         jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
         jcr:uuid: b1e7a0fc-15ba-4d75-8b56-eadd710da675
         hippo:name: Mainland Orkney
-        hippo:versionHistory: 1b5211e8-fb3e-4eac-803e-1ae53a4328f3
+        hippo:versionHistory: 090c3a58-b403-4196-922a-ca0d087fd58f
         /mainland-orkney[1]:
           jcr:primaryType: visitscotland:Day
           jcr:mixinTypes: ['mix:referenceable']
@@ -188,7 +188,7 @@
           hippostd:state: draft
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2020-02-07T09:53:28.791Z
-          hippostdpubwf:lastModificationDate: 2020-02-07T10:41:46.416Z
+          hippostdpubwf:lastModificationDate: 2020-09-23T13:03:20.806+01:00
           hippostdpubwf:lastModifiedBy: admin
           hippotranslation:id: e918acd6-1648-4553-8289-cdda8e3e2938
           hippotranslation:locale: en
@@ -216,13 +216,13 @@
               <p>Find out more about <a rel="noreferrer noopener" href="http://www.orkney.com/move/transport" target="_blank">getting around on Orkney</a>.&nbsp;</p>
           /visitscotland:stops[1]:
             jcr:primaryType: hippo:mirror
-            hippo:docbase: 013a6677-1e64-4bb4-82d4-1e3af6a80ca2
+            hippo:docbase: e8942047-604c-4524-ad7f-540d74f1cc49
           /visitscotland:stops[2]:
             jcr:primaryType: hippo:mirror
-            hippo:docbase: 207ac2b4-49dd-46ef-ae72-c901d228fae7
+            hippo:docbase: e8e6faf8-9bfc-4a97-bfca-71b31fc2b2a8
           /visitscotland:stops[3]:
             jcr:primaryType: hippo:mirror
-            hippo:docbase: dd98ed46-1531-4bbf-b47f-394ebca903f5
+            hippo:docbase: f7501bf0-04e4-40bc-8f39-8234d43ea690
         /mainland-orkney[2]:
           jcr:primaryType: visitscotland:Day
           jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
@@ -231,7 +231,7 @@
           hippostd:state: unpublished
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2020-02-07T09:53:28.791Z
-          hippostdpubwf:lastModificationDate: 2020-02-07T10:06:49.352Z
+          hippostdpubwf:lastModificationDate: 2020-09-23T13:03:20.775+01:00
           hippostdpubwf:lastModifiedBy: admin
           hippotranslation:id: e918acd6-1648-4553-8289-cdda8e3e2938
           hippotranslation:locale: en
@@ -259,13 +259,13 @@
               <p>Find out more about <a rel="noreferrer noopener" href="http://www.orkney.com/move/transport" target="_blank">getting around on Orkney</a>.&nbsp;</p>
           /visitscotland:stops[1]:
             jcr:primaryType: hippo:mirror
-            hippo:docbase: 013a6677-1e64-4bb4-82d4-1e3af6a80ca2
+            hippo:docbase: e8942047-604c-4524-ad7f-540d74f1cc49
           /visitscotland:stops[2]:
             jcr:primaryType: hippo:mirror
-            hippo:docbase: 207ac2b4-49dd-46ef-ae72-c901d228fae7
+            hippo:docbase: e8e6faf8-9bfc-4a97-bfca-71b31fc2b2a8
           /visitscotland:stops[3]:
             jcr:primaryType: hippo:mirror
-            hippo:docbase: dd98ed46-1531-4bbf-b47f-394ebca903f5
+            hippo:docbase: f7501bf0-04e4-40bc-8f39-8234d43ea690
         /mainland-orkney[3]:
           jcr:primaryType: visitscotland:Day
           jcr:mixinTypes: ['mix:referenceable']
@@ -274,9 +274,9 @@
           hippostd:state: published
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2020-02-07T09:53:28.791Z
-          hippostdpubwf:lastModificationDate: 2020-02-07T10:06:49.352Z
+          hippostdpubwf:lastModificationDate: 2020-09-23T13:03:20.775+01:00
           hippostdpubwf:lastModifiedBy: admin
-          hippostdpubwf:publicationDate: 2020-06-12T08:53:24.820+01:00
+          hippostdpubwf:publicationDate: 2020-09-23T13:03:23.639+01:00
           hippotranslation:id: e918acd6-1648-4553-8289-cdda8e3e2938
           hippotranslation:locale: en
           visitscotland:title: Mainland Orkney
@@ -303,10 +303,10 @@
               <p>Find out more about <a rel="noreferrer noopener" href="http://www.orkney.com/move/transport" target="_blank">getting around on Orkney</a>.&nbsp;</p>
           /visitscotland:stops[1]:
             jcr:primaryType: hippo:mirror
-            hippo:docbase: 013a6677-1e64-4bb4-82d4-1e3af6a80ca2
+            hippo:docbase: e8942047-604c-4524-ad7f-540d74f1cc49
           /visitscotland:stops[2]:
             jcr:primaryType: hippo:mirror
-            hippo:docbase: 207ac2b4-49dd-46ef-ae72-c901d228fae7
+            hippo:docbase: e8e6faf8-9bfc-4a97-bfca-71b31fc2b2a8
           /visitscotland:stops[3]:
             jcr:primaryType: hippo:mirror
-            hippo:docbase: dd98ed46-1531-4bbf-b47f-394ebca903f5
+            hippo:docbase: f7501bf0-04e4-40bc-8f39-8234d43ea690
