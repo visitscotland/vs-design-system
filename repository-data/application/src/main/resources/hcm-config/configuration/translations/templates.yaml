@@ -29,6 +29,8 @@ definitions:
       new-listicle-item: new listicle item
       new-day: new day
       new-untranslated-folder-navigation: new untraslated folder
+      new-untranslated-folder-resource-bundle: new untraslated resource bundle folder
+      new-untranslated-folder-value-list: new untraslated value list folder
     /hippo:configuration/hippo:translations/hippo:templates/fr:
       new-resource-bundle: nouveau resource bundle
       new-untranslated-folder: nouveau dossier non traduit
