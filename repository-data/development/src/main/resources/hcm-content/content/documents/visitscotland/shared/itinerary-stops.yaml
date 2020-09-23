@@ -1,6 +1,7 @@
 /content/documents/visitscotland/shared/itinerary-stops:
   jcr:primaryType: hippostd:folder
-  jcr:mixinTypes: ['hippo:named', 'hippotranslation:translated', 'mix:versionable']
+  jcr:mixinTypes: ['frontend:orderChildFolders', 'hippo:named', 'hippotranslation:translated',
+    'mix:versionable']
   jcr:uuid: e028b867-eed7-4193-a333-1af2cd9c8f7c
   hippo:name: Itinerary Stops (Content)
   hippostd:foldertype: [new-translated-folder-stops]
