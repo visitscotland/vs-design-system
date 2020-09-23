@@ -18,7 +18,7 @@
 
                     <span slot="icon-open">
                         <VsIcon
-                            name="chevron-up"
+                            name="chevron"
                             variant="light"
                             size="xs"
                         />
@@ -26,7 +26,8 @@
 
                     <span slot="icon-closed">
                         <VsIcon
-                            name="chevron-right"
+                            name="chevron"
+                            orientation="right"
                             variant="light"
                             size="xs"
                         />
@@ -69,7 +70,7 @@
 
                     <span slot="icon-open">
                         <VsIcon
-                            name="chevron-up"
+                            name="chevron"
                             variant="light"
                             size="xs"
                         />
@@ -77,7 +78,8 @@
 
                     <span slot="icon-closed">
                         <VsIcon
-                            name="chevron-right"
+                            name="chevron"
+                            orientation="right"
                             variant="light"
                             size="xs"
                         />
@@ -121,7 +123,7 @@
 
                     <span slot="icon-open">
                         <VsIcon
-                            name="chevron-up"
+                            name="chevron"
                             variant="light"
                             size="xs"
                         />
@@ -129,7 +131,8 @@
 
                     <span slot="icon-closed">
                         <VsIcon
-                            name="chevron-right"
+                            name="chevron"
+                            orientation="right"
                             variant="light"
                             size="xs"
                         />
