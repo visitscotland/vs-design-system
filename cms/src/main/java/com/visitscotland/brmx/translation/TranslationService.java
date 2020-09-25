@@ -42,4 +42,12 @@ public class TranslationService {
         }
         return false;
     }
+
+    public boolean getTranslationFlag(JcrDocument document) throws RepositoryException {
+        Node unpublishedNode = document.getVariantNode(JcrDocument.VARIANT_UNPUBLISHED);
+        if ( unpublishedNode.hasProperty(JcrDocument.VS_TRANSLATION_FLAG) ) {
+            return unpublishedNode.getProperty(JcrDocument.VS_TRANSLATION_FLAG).getBoolean();
+        }
+        return false;
+    }
 }

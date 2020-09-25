@@ -1,0 +1,33 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <style>
+        .DELETE {
+            background-color: orangered;
+        }
+
+        .INSERT {
+            background-color: greenyellow;
+        }
+    </style>
+    <link rel="stylesheet" type="text/css" th:href="@{/skin/hippo-cms/css/hippo-cms-theme.min.css}">
+</head>
+<body>
+    <div th:each="field: ${fieldList}">
+        <label th:text="${field.fieldName}"></label>
+
+        <div th:switch="${field.multiple}">
+            <div th:case="true">
+                <div th:each="difference: ${field.diffList}" th:classappend="${difference.operation.name()}">
+                    <span th:text="${difference.text}"></span>
+                </div>
+            </div>
+
+            <div th:case="false" >
+                    <span th:each="difference: ${field.diffList}" th:text="${difference.text}"
+                          th:classappend="${difference.operation.name()}"></span>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

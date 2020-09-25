@@ -1,12 +1,18 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-
+    <link rel="stylesheet" type="text/css" th:href="@{/skin/hippo-cms/css/hippo-cms-theme.min.css}">
 </head>
 <body>
-    <h1>testing</h1>
-    <p th:text="${nodeId}"/>
-// If this is an English document state if there are pending translations
-// If this is not an english document and has a pending translation then show a button to view the translation diff
+    <div th:switch="${translationFlag}">
+        <div th:case="true">
+            <p>Translations pending.</p>
+            <a class="btn btn-br-secondary"
+               th:href="@{/vs-openui/diff/{nodeId}/view(nodeId=${nodeId})}"
+               target="_blank">Open English difference</a>
+        </div>
+
+        <p th:case="false">No translations pending.</p>
+    </div>
 </body>
 </html>

@@ -10,7 +10,7 @@
                 const value = await ui.document.field.getValue();
                 const bodyUri = `./diff/${nodeId}`;
 
-                const iFrame = document.querySelector('iframe.vs-content');
+                const iFrame = document.querySelector('iframe');
                 iFrame.setAttribute('src', bodyUri);
             } catch (error) {
                 console.error('Failed to register extension:', error.message);
@@ -18,8 +18,22 @@
             }
         });
     </script>
+    <style>
+        html {
+            height: 100%;
+        }
+
+        body {
+            margin: 0px;
+        }
+
+        iframe {
+            border: none;
+            height:100%;
+        }
+    </style>
 </head>
 <body>
-    <iframe class="vs-content"></iframe>
+    <iframe></iframe>
 </body>
 </html>

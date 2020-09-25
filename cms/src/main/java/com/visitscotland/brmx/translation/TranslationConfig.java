@@ -4,6 +4,8 @@ import com.visitscotland.brmx.translation.plugin.JcrDocumentFactory;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.hippoecm.editor.template.JcrTemplateStore;
 import org.hippoecm.editor.type.JcrTypeLocator;
+import org.hippoecm.frontend.plugins.standards.diff.DefaultHtmlDiffService;
+import org.hippoecm.frontend.plugins.standards.diff.DiffService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Scope;
@@ -42,5 +44,8 @@ public class TranslationConfig {
     public JcrTemplateStore jcrTemplateStore(JcrTypeLocator locator) {
         return new JcrTemplateStore(locator);
     }
+
+    @Bean
+    public DiffService diffService() { return new DefaultHtmlDiffService(); }
 
 }

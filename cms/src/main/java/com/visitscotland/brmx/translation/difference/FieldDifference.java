@@ -42,11 +42,16 @@ public class FieldDifference {
         this.latest = latest;
     }
 
+    public boolean isMultiple() {
+        return latest != null && latest instanceof MultipleField;
+    }
+
     @Override
     public int hashCode() {
         return new HashCodeBuilder()
                 .append(property)
                 .append(caption)
+                .append(isMultiple())
                 .append(previous)
                 .append(latest)
                 .toHashCode();
@@ -61,6 +66,7 @@ public class FieldDifference {
             return new EqualsBuilder()
                     .append(property, rhs.property)
                     .append(caption, rhs.caption)
+                    .append(isMultiple(), rhs.isMultiple())
                     .append(previous, rhs.previous)
                     .append(latest, rhs.latest)
                     .isEquals();
@@ -74,6 +80,7 @@ public class FieldDifference {
         return new ToStringBuilder(this)
                 .append("property", property)
                 .append("caption", caption)
+                .append("isMultiple", isMultiple())
                 .append("previous", previous)
                 .append("latest", latest)
                 .toString();
