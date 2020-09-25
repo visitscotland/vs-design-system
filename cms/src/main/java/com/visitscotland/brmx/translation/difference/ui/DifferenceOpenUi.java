@@ -22,6 +22,17 @@ import java.util.List;
 @Controller
 @RequestScope
 public class DifferenceOpenUi {
+    public static final String ATTR_NODE_ID = "nodeId";
+    public static final String ATTR_HAS_TRANSLATION_PENDING = "hasTranslationPending";
+    public static final String ATTR_TRANSLATION_FLAG = "translationFlag";
+    public static final String ATTR_ERROR_MESSAGE = "errorMessage";
+    public static final String ATTR_STACK_TRACE = "stackTrace";
+    public static final String ATTR_FIELD_LIST = "fieldList";
+    public static final String ENGLISH_TEMPLATE = "diffButtonContentEnglish";
+    public static final String FOREIGN_TEMPLATE = "diffButtonContent";
+    public static final String ERROR_TEMPLATE = "diffViewError";
+    public static final String DIFF_VIEW_TEMPLATE = "diffView";
+
     private TranslationService translationService;
 
     @Autowired
@@ -35,21 +46,19 @@ public class DifferenceOpenUi {
     }
 
     @GetMapping("/vs-openui/diff/{nodeId}")
-    public String openUiFragment(@PathVariable String nodeId, Model model) {
+    public String openUiButton(@PathVariable String nodeId, Model model) {
         try {
+            model.addAttribute(ATTR_NODE_ID, nodeId);
             JcrDocument document = translationService.getDocument(nodeId);
-            model.addAttribute("nodeId", nodeId);
             if ( "en".equals(document.getLocaleName()) ) {
-                model.addAttribute("hasTranslationPending", translationService.hasPendingTranslations(document));
-                return "diffButtonContentEnglish";
+                model.addAttribute(ATTR_HAS_TRANSLATION_PENDING, translationService.hasPendingTranslations(document));
+                return ENGLISH_TEMPLATE;
             } else {
-                model.addAttribute("translationFlag", translationService.getTranslationFlag(document));
-                return "diffButtonContent";
+                model.addAttribute(ATTR_TRANSLATION_FLAG, translationService.getTranslationFlag(document));
+                return FOREIGN_TEMPLATE;
             }
 
         } catch(RepositoryException ex) {
-            model.addAttribute("error", ex.getMessage());
-            model.addAttribute("stackTrace", ExceptionUtils.getStackTrace(ex));
             return gotoErrorPage(ex, model);
         }
     }
@@ -57,7 +66,7 @@ public class DifferenceOpenUi {
     @GetMapping("/vs-openui/diff/{nodeId}/view")
     public String diffView(@PathVariable String nodeId, Model model) {
         try {
-            model.addAttribute("nodeId", nodeId);
+            model.addAttribute(ATTR_NODE_ID, nodeId);
             DocumentDifference diff = translationService.getDocumentDifference(nodeId);
             if ( null != diff ) {
                 List<FieldDifferenceModel> fieldList = new ArrayList<>();
@@ -77,19 +86,19 @@ public class DifferenceOpenUi {
                         fieldList.add(fieldDiff);
                     }
                 }
-                model.addAttribute("fieldList", fieldList);
+                model.addAttribute(ATTR_FIELD_LIST, fieldList);
             } else {
                 return gotoErrorPage(new IllegalStateException("No difference found for document."), model);
             }
-            return "diffView";
+            return DIFF_VIEW_TEMPLATE;
         } catch(RepositoryException | IOException ex) {
             return gotoErrorPage(ex, model);
         }
     }
 
     public String gotoErrorPage(Exception cause, Model model) {
-        model.addAttribute("errorMessage", cause.getMessage());
-        model.addAttribute("stackTrace", ExceptionUtils.getStackTrace(cause));
-        return "diffViewError";
+        model.addAttribute(ATTR_ERROR_MESSAGE, cause.getMessage());
+        model.addAttribute(ATTR_STACK_TRACE, ExceptionUtils.getStackTrace(cause));
+        return ERROR_TEMPLATE;
     }
 }
