@@ -178,7 +178,7 @@ pipeline {
               }
               steps{
                   script{
-                      sh 'mvn --no-transfer-progress -f pom.xml deploy -Pdist-with-development-data -s $MAVEN_SETTINGS'
+                      sh 'mvn -B -f pom.xml deploy -Pdist-with-development-data -s $MAVEN_SETTINGS'
                   }
               }
           }
