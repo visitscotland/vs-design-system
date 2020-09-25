@@ -28,12 +28,15 @@ public class TranslationRestService {
     private static final Logger log = LoggerFactory.getLogger(TranslationRestService.class);
     private SessionFactory sessionFactory;
     private JcrDocumentFactory jcrDocumentFactory;
+    private TranslationService translationService;
 
     @Autowired
     public TranslationRestService(SessionFactory sessionFactory,
-                                  JcrDocumentFactory jcrDocumentFactory) {
+                                  JcrDocumentFactory jcrDocumentFactory,
+                                  TranslationService translationService) {
         this.sessionFactory = sessionFactory;
         this.jcrDocumentFactory = jcrDocumentFactory;
+        this.translationService = translationService;
     }
 
     @GetMapping(value = "/vs-service/node/{handleId}/translation/diff", produces = "application/json")
@@ -48,12 +51,11 @@ public class TranslationRestService {
                 throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Unable to get difference for English document");
             }
 
-            if (unpublishedNode.hasProperty(JcrDocument.VS_TRANSLATION_DIFF)) {
-                Property diffJson = unpublishedNode.getProperty(JcrDocument.VS_TRANSLATION_DIFF);
-                return diffJson.getString();
-            } else {
+            String diffJson = translationService.getDocumentDifferenceJson(jcrDocument);
+            if ( null == diffJson ) {
                 throw new ResponseStatusException(HttpStatus.NO_CONTENT, "No difference json found for document");
             }
+            return diffJson;
         } catch(ItemNotFoundException ex) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "No node found with given node identifier");
         } catch(Exception ex) {
@@ -68,48 +70,13 @@ public class TranslationRestService {
     @DeleteMapping(value = "/vs-service/node/{handleId}/translation/flag", produces = "application/json")
     public void deleteTranslationFlag(@PathVariable String handleId) {
         try {
-            Session jcrSession = sessionFactory.getJcrSession();
-            Node handleNode = jcrSession.getNodeByIdentifier(handleId);
+            Node handleNode = sessionFactory.getJcrSession().getNodeByIdentifier(handleId);
             JcrDocument jcrDocument = jcrDocumentFactory.createFromNode(handleNode);
 
-            if (jcrDocument.isDraftBeingEdited()) {
-                throw new ResponseStatusException(HttpStatus.CONFLICT, "Document being edited");
-            }
+            translationService.clearTranslationFlag(jcrDocument);
 
-            Workflow editing = sessionFactory.getUserSession().getWorkflowManager().getWorkflow("editing", jcrDocument.getHandle());
-            if (editing instanceof EditableWorkflow) {
-                EditableWorkflow editableWorkflow = null;
-                try {
-                    editableWorkflow = (EditableWorkflow) editing;
-                    editableWorkflow.obtainEditableInstance();
-
-                    Node unpublishedNode = jcrDocument.getVariantNode(JcrDocument.VARIANT_UNPUBLISHED);
-                    Property localeProperty = unpublishedNode.getProperty(HippoTranslationNodeType.LOCALE);
-                    if (Locale.ENGLISH.getLanguage().equals(localeProperty.getString())) {
-                        throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Unable to clear translation flag for English document");
-                    }
-
-                    unpublishedNode.setProperty(JcrDocument.VS_TRANSLATION_FLAG, false);
-                    if(unpublishedNode.hasProperty(JcrDocument.VS_TRANSLATION_DIFF)) {
-                        Property diffProperty = unpublishedNode.getProperty(JcrDocument.VS_TRANSLATION_DIFF);
-                        diffProperty.remove();
-                    }
-                } catch(WorkflowException ex) {
-                    throw new ResponseStatusException(HttpStatus.CONFLICT, "Unable to lock document for edit");
-                } finally {
-                    try {
-                        if (null != editableWorkflow) {
-                            editableWorkflow.disposeEditableInstance();
-                        }
-                    }catch (WorkflowException ex) {
-                        log.error("Unable to dispose of locked document", ex);
-                    }
-                }
-                jcrSession.save();
-                jcrSession.refresh(true);
-            } else {
-                throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Unable to get EditableWorkflow");
-            }
+        } catch(WorkflowException ex) {
+            throw new ResponseStatusException(HttpStatus.CONFLICT, "Unable to lock document for edit");
         } catch(ItemNotFoundException ex) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "No node found with given node identifier");
         } catch(RepositoryException | RemoteException ex) {

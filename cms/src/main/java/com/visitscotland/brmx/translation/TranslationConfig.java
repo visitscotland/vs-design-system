@@ -45,7 +45,4 @@ public class TranslationConfig {
         return new JcrTemplateStore(locator);
     }
 
-    @Bean
-    public DiffService diffService() { return new DefaultHtmlDiffService(); }
-
 }
