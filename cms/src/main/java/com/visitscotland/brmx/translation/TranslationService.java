@@ -1,5 +1,7 @@
 package com.visitscotland.brmx.translation;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.visitscotland.brmx.translation.difference.DocumentDifference;
 import com.visitscotland.brmx.translation.plugin.JcrDocument;
 import com.visitscotland.brmx.translation.plugin.JcrDocumentFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +12,7 @@ import javax.jcr.Node;
 import javax.jcr.RepositoryException;
 import javax.jcr.Session;
 
+import java.io.IOException;
 import java.util.Set;
 
 import static org.springframework.beans.factory.config.ConfigurableBeanFactory.SCOPE_PROTOTYPE;
@@ -19,11 +22,13 @@ import static org.springframework.beans.factory.config.ConfigurableBeanFactory.S
 public class TranslationService {
     private Session jcrSession;
     private JcrDocumentFactory jcrDocumentFactory;
+    private ObjectMapper objectMapper;
 
     @Autowired
-    public TranslationService(Session jcrSession, JcrDocumentFactory jcrDocumentFactory) {
+    public TranslationService(Session jcrSession, JcrDocumentFactory jcrDocumentFactory, ObjectMapper objectMapper) {
         this.jcrSession = jcrSession;
         this.jcrDocumentFactory = jcrDocumentFactory;
+        this.objectMapper = objectMapper;
     }
 
     public JcrDocument getDocument(String nodeId) throws RepositoryException {
@@ -49,5 +54,17 @@ public class TranslationService {
             return unpublishedNode.getProperty(JcrDocument.VS_TRANSLATION_FLAG).getBoolean();
         }
         return false;
+    }
+
+    public DocumentDifference getDocumentDifference(String nodeId) throws RepositoryException, IOException {
+        JcrDocument document = getDocument(nodeId);
+        Node unpublishedNode = document.getVariantNode(JcrDocument.VARIANT_UNPUBLISHED);
+        if ( unpublishedNode.hasProperty(JcrDocument.VS_TRANSLATION_DIFF) ) {
+            DocumentDifference diff = objectMapper.reader().readValue(
+                    unpublishedNode.getProperty(JcrDocument.VS_TRANSLATION_DIFF).getString(),
+                    DocumentDifference.class);
+            return diff;
+        }
+        return null;
     }
 }
