@@ -3,7 +3,7 @@
   jcr:mixinTypes: ['hippo:named', 'hippotranslation:translated', 'mix:versionable']
   jcr:uuid: aadf48d2-c6fb-4ce3-a311-c47c182c8a0f
   hippo:name: sandbox
-  hippostd:foldertype: [new-translated-folder, new-document]
+  hippostd:foldertype: [new-translated-folder-test, new-document]
   hippotranslation:id: 0ff458fa-cab8-47ba-9862-d8a0b7a1bacf
   hippotranslation:locale: en
   /content:
@@ -3007,7 +3007,7 @@
     jcr:primaryType: hippostd:folder
     jcr:mixinTypes: ['hippotranslation:translated', 'mix:versionable']
     jcr:uuid: 9f085b8d-9b82-4977-9d5a-a8c427b22dc0
-    hippostd:foldertype: [new-translated-folder, new-document]
+    hippostd:foldertype: []
     hippotranslation:id: 1a89cacc-e15f-455b-96a0-38b6a4339d42
     hippotranslation:locale: en
     /content:

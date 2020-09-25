@@ -3,7 +3,7 @@
   jcr:mixinTypes: ['frontend:orderChildFolders', 'hippo:named', 'hippotranslation:translated',
     'mix:versionable']
   jcr:uuid: e028b867-eed7-4193-a333-1af2cd9c8f7c
-  hippo:name: Itinerary Stops (Content)
+  hippo:name: Itinerary Stops
   hippostd:foldertype: [new-translated-folder-stops]
   hippotranslation:id: f2a062c1-35c1-4eb5-be2a-d0d2abad988f
   hippotranslation:locale: en
