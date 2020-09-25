@@ -13,6 +13,7 @@ import java.net.URL;
 import java.util.*;
 
 //TODO Test?
+//TOTO convert to Service
 public abstract class LocationLoader {
 
     private static final Logger logger = LoggerFactory.getLogger(LocationLoader.class.getName());
