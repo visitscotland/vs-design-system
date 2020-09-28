@@ -164,9 +164,16 @@ pipeline {
           when {
                 branch 'master' 
           }
+          environment {
+            scannerHome = tool 'SonarQube_4.0'
+          }
           steps {
             withSonarQubeEnv(installationName: 'SonarQube', credentialsId: 'sonarqube') {
               sh "mvn sonar:sonar -Dsonar.host.url=http://172.28.87.209:9000 -s $MAVEN_SETTINGS"
+              sh '''
+                ${scannerHome}/bin/sonar-scanner \
+                -D sonar.sources=./frontend 
+              '''
             }
           }
         }
