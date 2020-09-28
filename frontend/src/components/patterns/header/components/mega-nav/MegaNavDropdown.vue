@@ -157,6 +157,50 @@ export default {
         transform: translate3d(0px, 55px, 0px) !important;
     }
 }
+
+@include no-js {
+    .vs-mega-nav__dropdown{
+        .btn.dropdown-toggle {
+            padding: $spacer-2 $spacer-2;
+            font-size: 1rem;
+
+            &.disabled {
+                opacity: 1;
+            }
+
+            &:focus {
+                box-shadow: 0 0 0 0.1rem $color-pink inset;
+            }
+
+            &:hover {
+                color: $color-base-text;
+            }
+
+            &::after {
+                content: '';
+                position: absolute;
+                display: block;
+                bottom: 0;
+                left: 0;
+                width: 100%;
+                height: 4px;
+                background: $color-base-text;
+                transition: width 0.2s linear;
+                border: 0;
+                margin: 0;
+            }
+        }
+
+
+        .dropdown-menu{
+            display: block;
+            position: relative;
+            border: 0;
+            box-shadow: none;
+            transform: none!important;
+        }
+    }
+}
 </style>
 
 <docs>
