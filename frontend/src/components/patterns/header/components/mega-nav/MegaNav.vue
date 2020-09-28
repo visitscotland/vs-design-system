@@ -145,11 +145,18 @@ export default {
 @include no-js {
     .vs-mega-nav {
         box-shadow: none;
+        height: auto;
     }
 
-    .vs-mega-nav__menu,
     .vs-mega-nav__menu__mobile {
         display: none!important;
+    }
+
+    .vs-mega-nav__menu{
+        width: 100%;
+        max-width: 100%;
+        flex: 0 0 100%;
+        position: relative;
     }
 }
 </style>
