@@ -9,6 +9,7 @@
 import itinerariesStore from '@components/patterns/itineraries/itineraries.store';
 import VsItineraryMapMarker from '@components/patterns/itineraries/components/itinerary-map/ItineraryMapMarker';
 import Vue from 'vue';
+// import stickybits from 'stickybits';
 
 let mapboxgl = null;
 let geojsonExtent = null;
@@ -206,6 +207,9 @@ export default {
             });
         },
         initialiseMapComponent() {
+            // this is probably going to change but it's not working
+            // on IE11 due to elements not loading in time. This might
+            // need to be addressed when the map solution is finalised.
             this.addMap();
             this.addMapControls();
 
