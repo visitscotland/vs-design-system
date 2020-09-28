@@ -36,6 +36,14 @@ export default {
     }
 }
 
+ @include no-js {
+    .vs-mega-nav__top-menu {
+        &.vs-list.unstyled{
+            display: block;
+        }
+    }
+}
+
 </style>
 
 <docs>
