@@ -39,6 +39,7 @@ import {
 } from '@components/elements/layout';
 import VsItineraryMobileMapToggle from '@components/patterns/itineraries/components/itinerary-mobile-map-toggle/ItineraryMobileMapToggle';
 import VsAccordion from '@components/patterns/accordion/Accordion';
+
 /**
  * A wrapper component that wraps the itinerary map and list.
  * It controls display of the mobile map toggle on smaller screens.
@@ -127,6 +128,10 @@ export default {
             position: -webkit-sticky;
             position: sticky;
             width: 45vw;
+        }
+
+         @media screen and (-ms-high-contrast: active), screen and (-ms-high-contrast: none) {
+            position: relative;
         }
     }
 }
