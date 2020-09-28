@@ -77,6 +77,22 @@ pipeline {
       }
     }
 
+        stage('SonarQube FE scan') {
+ 
+          environment {
+            scannerHome = tool 'SonarQube_4.0'
+          }
+          steps {
+            withSonarQubeEnv(installationName: 'SonarQube', credentialsId: 'sonarqube') {
+            
+              sh '''
+                ${scannerHome}/bin/sonar-scanner \
+                -D sonar.sources=./frontend 
+              '''
+            }
+          }
+        }
+
     stage ('vs compile & package') {
       when {
         allOf {
