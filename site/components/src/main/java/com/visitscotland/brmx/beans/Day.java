@@ -1,8 +1,12 @@
 package com.visitscotland.brmx.beans;
 
+import org.hippoecm.hst.content.beans.standard.HippoBean;
 import org.onehippo.cms7.essentials.dashboard.annotations.HippoEssentialsGenerated;
 import org.hippoecm.hst.content.beans.Node;
 import org.hippoecm.hst.content.beans.standard.HippoHtml;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 /** 
@@ -10,7 +14,7 @@ import java.util.List;
  */
 @HippoEssentialsGenerated(internalName = "visitscotland:Day")
 @Node(jcrType = "visitscotland:Day")
-public class Day extends BaseDocument {
+public class Day extends BaseDocument implements TranslationLinkContainer {
     @HippoEssentialsGenerated(internalName = "visitscotland:title")
     public String getTitle() {
         return getSingleProperty("visitscotland:title");
@@ -29,5 +33,20 @@ public class Day extends BaseDocument {
     @HippoEssentialsGenerated(internalName = "visitscotland:transports")
     public String[] getTransports() {
         return getMultipleProperty("visitscotland:transports");
+    }
+
+    @Override
+    public String[] getTranslatableLinkNames() {
+        return new String[] { "visitscotland:stops" };
+    }
+
+    @HippoEssentialsGenerated(internalName = "visitscotland:diff")
+    public String getDiff() {
+        return getSingleProperty("visitscotland:diff");
+    }
+
+    @HippoEssentialsGenerated(internalName = "visitscotland:translationFlag")
+    public Boolean getTranslationFlag() {
+        return getSingleProperty("visitscotland:translationFlag");
     }
 }

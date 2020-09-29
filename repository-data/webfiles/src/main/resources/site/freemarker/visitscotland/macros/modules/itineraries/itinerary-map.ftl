@@ -13,7 +13,7 @@
         overview-map-longitude="57.81"
         overview-map-latitude="-4.13"
         overview-map-zoom="5"
-        :stops='[
+        :stops="[
             <#list days as day>
             <#list day.stops as stop>
                 <#assign prod = stops[stop.identifier]>
@@ -28,26 +28,26 @@
                     </#if>
                     <#if prod.coordinates?? && prod.coordinates.latitude?? && prod.coordinates.latitude?has_content && prod.coordinates.longitude?? && prod.coordinates.longitude?has_content>
                     {
-                        title: "${prod.title}",
-                        latitude: "${prod.coordinates.latitude}",
-                        longitude: "${prod.coordinates.longitude}",
-                        stopCount: "${prod.index}",
-                        imageSrc: "${image}",
-                        altText: "${prod.title}"
+                        title: '${prod.title}',
+                        latitude: '${prod.coordinates.latitude}',
+                        longitude: '${prod.coordinates.longitude}',
+                        stopCount: '${prod.index}',
+                        imageSrc: '${image}',
+                        altText: '${prod.title}'
                     },
                     </#if>
                 </#if>
                 </#list>
             </#list>
-        ]'
-        :labels='{
-            stopLabel: "${label("itinerary", "stop.title")}",
-            mapControlsFullscreenOpen:"${label("map", "map.fullscreen")}",
-            mapControlsFullscreenClose: "${label("map", "map.exitfullscreen")}",
-            mapControlsCompass: "${label("map", "map.reset")}",
-            mapControlsZoomIn: "${label("map", "map.zoomin")}",
-            mapControlsZoomOut: "${label("map", "map.zoomout")}"
-        }'
+        ]"
+        :labels="{
+            stopLabel: '${label('itinerary', 'stop.title')}',
+            mapControlsFullscreenOpen:'${label('map', 'map.fullscreen')}',
+            mapControlsFullscreenClose: '${label('map', 'map.exitfullscreen')}',
+            mapControlsCompass: '${label('map', 'map.reset')}',
+            mapControlsZoomIn: '${label('map', 'map.zoomin')}',
+            mapControlsZoomOut: '${label('map', 'map.zoomout')}'
+        }"
     >
     </vs-itinerary-map>
 
