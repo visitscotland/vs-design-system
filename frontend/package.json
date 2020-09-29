@@ -11,8 +11,8 @@
   "private": true,
   "license": "MIT",
   "scripts": {
-    "system": "node ./build/system server --remote-profile hippo",
-    "system:build": "node ./build/system build",
+    "system": "cross-env NODE_ENV=development node ./build/system server --remote-profile hippo",
+    "system:build": "cross-env NODE_ENV=production node ./build/system build",
     "library": "cross-env NODE_ENV=production webpack --config ./build/library.webpack.conf.js",
     "library:dev": "cross-env NODE_ENV=development webpack --config ./build/library.webpack.conf.js",
     "ssr": "npm-run-all ssr:build ssr:serve",
