@@ -12,9 +12,7 @@
 </template>
 
 <script>
-import BCard from 'bootstrap-vue/es/components/card/card';
-import BCardText from 'bootstrap-vue/es/components/card/card-text';
-
+import { BCard, BCardText } from 'bootstrap-vue';
 import VsButton from '../../elements/button';
 import store from './example.store';
 
@@ -95,7 +93,6 @@ export default {
     }
   }
   </script>
-
 
   ```
 </docs>
