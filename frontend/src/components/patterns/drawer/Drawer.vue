@@ -14,13 +14,11 @@
 
 <script>
 import smoothscroll from 'smoothscroll-polyfill';
-
 import { BCollapse } from 'bootstrap-vue';
 import VsContainer from '@components/elements/layout/Container';
 import { getters } from './drawer.store';
 import { REGISTER_DRAWER } from './drawer.store.action-types';
 import { GET_ACTIVE_CONTENT } from './drawer.store.getter-types';
-
 
 /**
  * VsDrawer provides a collapsible container that can contain

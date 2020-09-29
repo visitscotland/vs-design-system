@@ -21,9 +21,8 @@
 import {
     VsCol, VsRow, VsContainer,
 } from '@components/elements/layout';
-import VsSiteNavList from './SiteNavList';
-
 import HandDownFocus from '@/directives/hand-down-focus';
+import VsSiteNavList from './SiteNavList';
 
 export default {
     name: 'VsSiteNav',

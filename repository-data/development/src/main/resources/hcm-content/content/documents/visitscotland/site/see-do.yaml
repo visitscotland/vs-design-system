@@ -2,28 +2,28 @@
   jcr:primaryType: hippostd:folder
   jcr:mixinTypes: ['hippotranslation:translated', 'mix:versionable']
   jcr:uuid: b600d137-1a3d-4737-9310-9098df612fbc
-  hippostd:foldertype: [new-translated-folder, new-document]
+  hippostd:foldertype: [new-translated-folder, new-page, new-module]
   hippotranslation:id: 657f878c-ae60-469b-a144-ef6472e320ff
   hippotranslation:locale: en
   /attractions:
     jcr:primaryType: hippostd:folder
     jcr:mixinTypes: ['hippotranslation:translated', 'mix:versionable']
     jcr:uuid: c08ea581-ad7e-4ffb-853c-20ca6e04dbc6
-    hippostd:foldertype: [new-translated-folder, new-document]
+    hippostd:foldertype: [new-translated-folder, new-page, new-module]
     hippotranslation:id: dc98ad1b-c896-4520-a816-c1c9dfcdcb7b
     hippotranslation:locale: en
     /historic:
       jcr:primaryType: hippostd:folder
       jcr:mixinTypes: ['hippotranslation:translated', 'mix:versionable']
       jcr:uuid: 7ce967ea-0304-4d95-ab27-d833b2f5f520
-      hippostd:foldertype: [new-translated-folder, new-document]
+      hippostd:foldertype: [new-translated-folder, new-page, new-module]
       hippotranslation:id: d6ecaf5f-1f97-4b6c-8014-72d5f8a4f7e1
       hippotranslation:locale: en
       /victorian-heritage-trail-itinerary:
         jcr:primaryType: hippostd:folder
         jcr:mixinTypes: ['hippotranslation:translated', 'mix:versionable']
         jcr:uuid: 7cffc04e-3879-4cf7-9550-21594100f1c9
-        hippostd:foldertype: [new-translated-folder, new-document]
+        hippostd:foldertype: [new-translated-folder, new-page, new-module]
         hippotranslation:id: 0150301d-dede-4a3b-a559-e292e0916cd9
         hippotranslation:locale: en
         /content:
@@ -164,7 +164,7 @@
           jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
           jcr:uuid: 5b67dc0d-73ec-4b6f-acd8-84e78e4bde14
           hippo:name: Drumoak
-          hippo:versionHistory: 503de9a0-e268-4646-a313-23ec008868a8
+          hippo:versionHistory: e2d6b44a-f4ba-44af-a149-9e6992374c7c
           /drumoak[1]:
             jcr:primaryType: visitscotland:Day
             jcr:mixinTypes: ['mix:referenceable']
@@ -173,7 +173,7 @@
             hippostd:state: draft
             hippostdpubwf:createdBy: admin
             hippostdpubwf:creationDate: 2020-02-07T12:53:32.885Z
-            hippostdpubwf:lastModificationDate: 2020-04-30T18:35:01.493+01:00
+            hippostdpubwf:lastModificationDate: 2020-09-23T13:01:56.470+01:00
             hippostdpubwf:lastModifiedBy: admin
             hippotranslation:id: 539af613-c55b-4ff5-a393-7159c2b57b96
             hippotranslation:locale: en
@@ -188,16 +188,16 @@
                 beautiful Victorian artwork at Finzean Estate.</p>
             /visitscotland:stops[1]:
               jcr:primaryType: hippo:mirror
-              hippo:docbase: b390df94-227d-4535-a7a2-6073465d6642
+              hippo:docbase: 7bd9fe86-c251-4846-ab1c-d617a1de80ca
             /visitscotland:stops[2]:
               jcr:primaryType: hippo:mirror
-              hippo:docbase: b2140603-eb92-40f5-967f-d10060722cea
+              hippo:docbase: e8202d3f-3d3e-43e2-8075-3cf9b212df05
             /visitscotland:stops[3]:
               jcr:primaryType: hippo:mirror
-              hippo:docbase: 93608785-d0d6-4af0-9fed-9deef0caddc6
+              hippo:docbase: ecb5c98d-b0e0-4a19-bde7-14e9937f418f
             /visitscotland:stops[4]:
               jcr:primaryType: hippo:mirror
-              hippo:docbase: 5a0149d0-590f-4c74-b095-92e430e70bd2
+              hippo:docbase: f08b42d8-a08c-4ee1-af96-6d56777936c4
           /drumoak[2]:
             jcr:primaryType: visitscotland:Day
             jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
@@ -206,7 +206,7 @@
             hippostd:state: unpublished
             hippostdpubwf:createdBy: admin
             hippostdpubwf:creationDate: 2020-02-07T12:53:32.885Z
-            hippostdpubwf:lastModificationDate: 2020-04-30T18:35:08.608+01:00
+            hippostdpubwf:lastModificationDate: 2020-09-23T13:01:56.439+01:00
             hippostdpubwf:lastModifiedBy: admin
             hippotranslation:id: 539af613-c55b-4ff5-a393-7159c2b57b96
             hippotranslation:locale: en
@@ -221,16 +221,16 @@
                 beautiful Victorian artwork at Finzean Estate.</p>
             /visitscotland:stops[1]:
               jcr:primaryType: hippo:mirror
-              hippo:docbase: b390df94-227d-4535-a7a2-6073465d6642
+              hippo:docbase: 7bd9fe86-c251-4846-ab1c-d617a1de80ca
             /visitscotland:stops[2]:
               jcr:primaryType: hippo:mirror
-              hippo:docbase: b2140603-eb92-40f5-967f-d10060722cea
+              hippo:docbase: e8202d3f-3d3e-43e2-8075-3cf9b212df05
             /visitscotland:stops[3]:
               jcr:primaryType: hippo:mirror
-              hippo:docbase: 93608785-d0d6-4af0-9fed-9deef0caddc6
+              hippo:docbase: ecb5c98d-b0e0-4a19-bde7-14e9937f418f
             /visitscotland:stops[4]:
               jcr:primaryType: hippo:mirror
-              hippo:docbase: 5a0149d0-590f-4c74-b095-92e430e70bd2
+              hippo:docbase: f08b42d8-a08c-4ee1-af96-6d56777936c4
           /drumoak[3]:
             jcr:primaryType: visitscotland:Day
             jcr:mixinTypes: ['mix:referenceable']
@@ -239,9 +239,9 @@
             hippostd:state: published
             hippostdpubwf:createdBy: admin
             hippostdpubwf:creationDate: 2020-02-07T12:53:32.885Z
-            hippostdpubwf:lastModificationDate: 2020-04-30T18:35:08.608+01:00
+            hippostdpubwf:lastModificationDate: 2020-09-23T13:01:56.439+01:00
             hippostdpubwf:lastModifiedBy: admin
-            hippostdpubwf:publicationDate: 2020-06-12T09:00:13.886+01:00
+            hippostdpubwf:publicationDate: 2020-09-23T13:01:59.071+01:00
             hippotranslation:id: 539af613-c55b-4ff5-a393-7159c2b57b96
             hippotranslation:locale: en
             visitscotland:title: Drumoak
@@ -255,22 +255,22 @@
                 beautiful Victorian artwork at Finzean Estate.</p>
             /visitscotland:stops[1]:
               jcr:primaryType: hippo:mirror
-              hippo:docbase: b390df94-227d-4535-a7a2-6073465d6642
+              hippo:docbase: 7bd9fe86-c251-4846-ab1c-d617a1de80ca
             /visitscotland:stops[2]:
               jcr:primaryType: hippo:mirror
-              hippo:docbase: b2140603-eb92-40f5-967f-d10060722cea
+              hippo:docbase: e8202d3f-3d3e-43e2-8075-3cf9b212df05
             /visitscotland:stops[3]:
               jcr:primaryType: hippo:mirror
-              hippo:docbase: 93608785-d0d6-4af0-9fed-9deef0caddc6
+              hippo:docbase: ecb5c98d-b0e0-4a19-bde7-14e9937f418f
             /visitscotland:stops[4]:
               jcr:primaryType: hippo:mirror
-              hippo:docbase: 5a0149d0-590f-4c74-b095-92e430e70bd2
+              hippo:docbase: f08b42d8-a08c-4ee1-af96-6d56777936c4
         /glen-tanar-cambus-o-may--ballater:
           jcr:primaryType: hippo:handle
           jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
           jcr:uuid: bb6720bb-5736-49fc-86dc-6d44c7488b65
           hippo:name: Glen Tanar, Cambus o’ May & Ballater
-          hippo:versionHistory: 1f09fa98-02a2-42bf-9fad-fdead6359354
+          hippo:versionHistory: 80f69960-af42-479a-9a60-5ac3eda15bd3
           /glen-tanar-cambus-o-may--ballater[1]:
             jcr:primaryType: visitscotland:Day
             jcr:mixinTypes: ['mix:referenceable']
@@ -279,7 +279,7 @@
             hippostd:state: draft
             hippostdpubwf:createdBy: admin
             hippostdpubwf:creationDate: 2020-02-07T12:57:23.675Z
-            hippostdpubwf:lastModificationDate: 2020-02-07T12:57:23.675Z
+            hippostdpubwf:lastModificationDate: 2020-09-23T13:00:07.772+01:00
             hippostdpubwf:lastModifiedBy: admin
             hippotranslation:id: 15806f51-f9fd-4cdc-aaa2-d584813e8a26
             hippotranslation:locale: en
@@ -293,10 +293,10 @@
                 Scots pine trees&nbsp;at Cambus o’May and the lovely burgh of Ballater.</p>
             /visitscotland:stops[1]:
               jcr:primaryType: hippo:mirror
-              hippo:docbase: 61b91b38-da53-4d2d-a375-d8a71cd4688b
+              hippo:docbase: 691e3d2a-2f99-4f74-a739-2e32ea52ab5c
             /visitscotland:stops[2]:
               jcr:primaryType: hippo:mirror
-              hippo:docbase: c50e13f9-71e2-4317-934c-50fccb95dd70
+              hippo:docbase: eb8d61ed-ef93-49c4-acf2-f743962bb3f1
           /glen-tanar-cambus-o-may--ballater[2]:
             jcr:primaryType: visitscotland:Day
             jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
@@ -305,7 +305,7 @@
             hippostd:state: unpublished
             hippostdpubwf:createdBy: admin
             hippostdpubwf:creationDate: 2020-02-07T12:57:23.675Z
-            hippostdpubwf:lastModificationDate: 2020-02-07T12:58:02.438Z
+            hippostdpubwf:lastModificationDate: 2020-09-23T13:00:07.729+01:00
             hippostdpubwf:lastModifiedBy: admin
             hippotranslation:id: 15806f51-f9fd-4cdc-aaa2-d584813e8a26
             hippotranslation:locale: en
@@ -319,10 +319,10 @@
                 Scots pine trees&nbsp;at Cambus o’May and the lovely burgh of Ballater.</p>
             /visitscotland:stops[1]:
               jcr:primaryType: hippo:mirror
-              hippo:docbase: 61b91b38-da53-4d2d-a375-d8a71cd4688b
+              hippo:docbase: 691e3d2a-2f99-4f74-a739-2e32ea52ab5c
             /visitscotland:stops[2]:
               jcr:primaryType: hippo:mirror
-              hippo:docbase: c50e13f9-71e2-4317-934c-50fccb95dd70
+              hippo:docbase: eb8d61ed-ef93-49c4-acf2-f743962bb3f1
           /glen-tanar-cambus-o-may--ballater[3]:
             jcr:primaryType: visitscotland:Day
             jcr:mixinTypes: ['mix:referenceable']
@@ -331,9 +331,9 @@
             hippostd:state: published
             hippostdpubwf:createdBy: admin
             hippostdpubwf:creationDate: 2020-02-07T12:57:23.675Z
-            hippostdpubwf:lastModificationDate: 2020-02-07T12:58:02.438Z
+            hippostdpubwf:lastModificationDate: 2020-09-23T13:00:07.729+01:00
             hippostdpubwf:lastModifiedBy: admin
-            hippostdpubwf:publicationDate: 2020-06-12T09:00:15.772+01:00
+            hippostdpubwf:publicationDate: 2020-09-23T13:00:10.990+01:00
             hippotranslation:id: 15806f51-f9fd-4cdc-aaa2-d584813e8a26
             hippotranslation:locale: en
             visitscotland:title: Glen Tanar, Cambus o’ May & Ballater
@@ -346,22 +346,22 @@
                 Scots pine trees&nbsp;at Cambus o’May and the lovely burgh of Ballater.</p>
             /visitscotland:stops[1]:
               jcr:primaryType: hippo:mirror
-              hippo:docbase: 61b91b38-da53-4d2d-a375-d8a71cd4688b
+              hippo:docbase: 691e3d2a-2f99-4f74-a739-2e32ea52ab5c
             /visitscotland:stops[2]:
               jcr:primaryType: hippo:mirror
-              hippo:docbase: c50e13f9-71e2-4317-934c-50fccb95dd70
+              hippo:docbase: eb8d61ed-ef93-49c4-acf2-f743962bb3f1
   /landscapes-nature:
     jcr:primaryType: hippostd:folder
     jcr:mixinTypes: ['hippotranslation:translated', 'mix:versionable']
     jcr:uuid: 2f8ad8ba-0062-4d5b-8f91-8bed0feab57f
-    hippostd:foldertype: [new-translated-folder, new-document]
+    hippostd:foldertype: [new-translated-folder, new-page, new-module]
     hippotranslation:id: 22805ca4-b124-4aab-9512-19f258c59529
     hippotranslation:locale: en
     /iconic-scottish-views:
       jcr:primaryType: hippostd:folder
       jcr:mixinTypes: ['hippotranslation:translated', 'mix:versionable']
       jcr:uuid: 89d96def-58c0-4997-902f-0ae2a272b2a6
-      hippostd:foldertype: [new-translated-folder, new-document]
+      hippostd:foldertype: [new-translated-folder, new-page, new-module]
       hippotranslation:id: 4929eeea-cba1-4a93-ab99-6279097530d8
       hippotranslation:locale: en
       /content:
