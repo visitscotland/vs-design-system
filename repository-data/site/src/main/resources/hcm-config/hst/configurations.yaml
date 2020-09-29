@@ -75,9 +75,9 @@ definitions:
               jcr:primaryType: hst:sitemapitem
               hst:componentconfigurationid: hst:pages/pagenotfound
               hst:componentconfigurationmappingnames: ['visitscotland:Itinerary',
-                'visitscotland:Listicle']
+                'visitscotland:Listicle', 'visitscotland:General']
               hst:componentconfigurationmappingvalues: ['hst:pages/itinerary-page',
-                'hst:pages/listicle-page']
+                'hst:pages/listicle-page', 'hst:pages/general-page']
               hst:relativecontentpath: ${parent}/content
             /_default_:
               jcr:primaryType: hst:sitemapitem
@@ -333,6 +333,9 @@ definitions:
           /vuex-example:
             jcr:primaryType: hst:template
             hst:renderpath: webfile:/freemarker/visitscotland/dev-pages/vuex-example.ftl
+          /general-main:
+            jcr:primaryType: hst:template
+            hst:renderpath: webfile:/freemarker/visitscotland/pages/general-main.ftl
         /hst:catalog:
           jcr:primaryType: hst:catalog
           /visitscotland-catalog:

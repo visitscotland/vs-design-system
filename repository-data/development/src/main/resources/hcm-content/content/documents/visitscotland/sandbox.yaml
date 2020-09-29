@@ -4916,10 +4916,11 @@
             jcr:mixinTypes: ['mix:referenceable']
             jcr:uuid: 9cb6125a-cc28-42b9-81b6-97a9220094e7
             hippo:availability: []
+            hippostd:holder: admin
             hippostd:state: draft
             hippostdpubwf:createdBy: admin
             hippostdpubwf:creationDate: 2020-02-07T09:55:38.073Z
-            hippostdpubwf:lastModificationDate: 2020-02-26T11:51:08.863Z
+            hippostdpubwf:lastModificationDate: 2020-09-28T12:01:16.040+01:00
             hippostdpubwf:lastModifiedBy: admin
             hippotranslation:id: 2870af43-789d-4fc4-bc5f-4d5bc42c92cd
             hippotranslation:locale: en
@@ -4938,7 +4939,6 @@
                 at sunrise or sunset.&nbsp;</p>
             /visitscotland:product:
               jcr:primaryType: visitscotland:DMSLink
-              visitscotland:label: ''
               visitscotland:product: '669061'
               /visitscotland:image:
                 jcr:primaryType: hippogallerypicker:imagelink
@@ -4946,12 +4946,6 @@
                 hippo:facets: []
                 hippo:modes: []
                 hippo:values: []
-            /visitscotland:image:
-              jcr:primaryType: hippogallerypicker:imagelink
-              hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
-              hippo:facets: []
-              hippo:modes: []
-              hippo:values: []
           /ring-of-brodgar[2]:
             jcr:primaryType: visitscotland:Stop
             jcr:mixinTypes: ['mix:versionable']

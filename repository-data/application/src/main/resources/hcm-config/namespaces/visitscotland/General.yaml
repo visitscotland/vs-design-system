@@ -1,0 +1,164 @@
+definitions:
+  config:
+    /hippo:namespaces/visitscotland/General:
+      jcr:primaryType: hipposysedit:templatetype
+      jcr:mixinTypes: ['editor:editable', 'mix:referenceable']
+      jcr:uuid: d505d61f-6c1a-4a3b-aa0e-8776b6533d45
+      /hipposysedit:nodetype:
+        jcr:primaryType: hippo:handle
+        jcr:mixinTypes: ['mix:referenceable']
+        jcr:uuid: 556a748c-e798-486d-b5a1-1cd2dc5e9531
+        /hipposysedit:nodetype:
+          jcr:primaryType: hipposysedit:nodetype
+          jcr:mixinTypes: ['mix:referenceable', 'hipposysedit:remodel']
+          jcr:uuid: b0c6b6b7-dd0c-4af0-86ad-ff1a610cd9c9
+          hipposysedit:node: true
+          hipposysedit:supertype: ['visitscotland:Page', 'hippostd:relaxed', 'hippotranslation:translated']
+          hipposysedit:uri: http://www.visitscotland.com/visitscotland/nt/1.0
+          /theme:
+            jcr:primaryType: hipposysedit:field
+            hipposysedit:mandatory: false
+            hipposysedit:multiple: false
+            hipposysedit:ordered: false
+            hipposysedit:path: visitscotland:theme
+            hipposysedit:primary: false
+            hipposysedit:type: StaticDropdown
+            hipposysedit:validators: [required]
+      /hipposysedit:prototypes:
+        jcr:primaryType: hipposysedit:prototypeset
+        /hipposysedit:prototype:
+          jcr:primaryType: visitscotland:General
+          hippostd:holder: holder
+          hippostd:state: draft
+          hippostdpubwf:createdBy: ''
+          hippostdpubwf:lastModifiedBy: ''
+          hippotranslation:id: document-type-locale-id
+          hippotranslation:locale: document-type-locale
+          visitscotland:seoNoIndex: false
+          visitscotland:breadcrumb: ''
+          visitscotland:seoDescription: ''
+          visitscotland:teaser: ''
+          visitscotland:title: ''
+          visitscotland:seoTitle: ''
+          jcr:mixinTypes: ['mix:referenceable']
+          jcr:uuid: 52d0e241-de96-4bd1-b425-e99d7f4b62b2
+          hippostdpubwf:lastModificationDate: 2020-09-25T13:13:22.744+01:00
+          hippostdpubwf:creationDate: 2020-09-25T13:13:22.744+01:00
+          visitscotland:theme: Standard
+          /visitscotland:heroImage:
+            jcr:primaryType: hippogallerypicker:imagelink
+            hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
+            hippo:facets: []
+            hippo:modes: []
+            hippo:values: []
+          /visitscotland:introduction:
+            jcr:primaryType: hippostd:html
+            hippostd:content: ''
+      /editor:templates:
+        jcr:primaryType: editor:templateset
+        /_default_:
+          jcr:primaryType: frontend:plugincluster
+          frontend:properties: [mode]
+          frontend:references: [wicket.model, model.compareTo, engine, validator.id]
+          frontend:services: [wicket.id, validator.id]
+          /root:
+            jcr:primaryType: frontend:plugin
+            extension.left: ${cluster.id}.left
+            extension.right: ${cluster.id}.right
+            plugin.class: org.hippoecm.frontend.editor.layout.TwoColumn
+            wicket.extensions: [extension.left, extension.right]
+          /left:
+            jcr:primaryType: frontend:plugin
+            item: ${cluster.id}.left.item
+            plugin.class: org.hippoecm.frontend.service.render.ListViewPlugin
+            wicket.id: ${cluster.id}.left
+          /right:
+            jcr:primaryType: frontend:plugin
+            item: ${cluster.id}.right.item
+            plugin.class: org.hippoecm.frontend.service.render.ListViewPlugin
+            wicket.id: ${cluster.id}.right
+          /heroImage:
+            jcr:primaryType: frontend:plugin
+            caption: Hero Image
+            field: heroImage
+            plugin.class: org.hippoecm.frontend.editor.plugins.field.NodeFieldPlugin
+            wicket.id: ${cluster.id}.left.item
+            /cluster.options:
+              jcr:primaryType: frontend:pluginconfig
+          /seoTitle:
+            jcr:primaryType: frontend:plugin
+            caption: Meta Title (SEO)
+            field: seoTitle
+            hint: Provided by SEO
+            plugin.class: org.hippoecm.frontend.editor.plugins.field.PropertyFieldPlugin
+            wicket.id: ${cluster.id}.left.item
+            /cluster.options:
+              jcr:primaryType: frontend:pluginconfig
+          /seoDescription:
+            jcr:primaryType: frontend:plugin
+            caption: Meta Description (SEO)
+            field: seoDescription
+            hint: Provided by SEO
+            plugin.class: org.hippoecm.frontend.editor.plugins.field.PropertyFieldPlugin
+            wicket.id: ${cluster.id}.left.item
+            /cluster.options:
+              jcr:primaryType: frontend:pluginconfig
+          /theme:
+            jcr:primaryType: frontend:plugin
+            caption: Theme
+            field: theme
+            plugin.class: org.hippoecm.frontend.editor.plugins.field.PropertyFieldPlugin
+            wicket.id: ${cluster.id}.right.item
+            /cluster.options:
+              jcr:primaryType: frontend:pluginconfig
+              selectable.options: Standard,Simple
+          /breadcrumb:
+            jcr:primaryType: frontend:plugin
+            caption: Navigation Text (Breadcrumbs)
+            field: breadcrumb
+            hint: Override just when the title is too long  for SEO
+            plugin.class: org.hippoecm.frontend.editor.plugins.field.PropertyFieldPlugin
+            wicket.id: ${cluster.id}.right.item
+            /cluster.options:
+              jcr:primaryType: frontend:pluginconfig
+          /title:
+            jcr:primaryType: frontend:plugin
+            caption: Heading
+            field: title
+            hint: ''
+            plugin.class: org.hippoecm.frontend.editor.plugins.field.PropertyFieldPlugin
+            wicket.id: ${cluster.id}.left.item
+            /cluster.options:
+              jcr:primaryType: frontend:pluginconfig
+              maxlength: '55'
+          /teaser:
+            jcr:primaryType: frontend:plugin
+            caption: Teaser
+            field: teaser
+            hint: ''
+            plugin.class: org.hippoecm.frontend.editor.plugins.field.PropertyFieldPlugin
+            wicket.id: ${cluster.id}.left.item
+            /cluster.options:
+              jcr:primaryType: frontend:pluginconfig
+              maxlength: '135'
+          /introduction:
+            jcr:primaryType: frontend:plugin
+            caption: Introduction
+            field: introduction
+            plugin.class: org.hippoecm.frontend.editor.plugins.field.NodeFieldPlugin
+            wicket.id: ${cluster.id}.left.item
+            /cluster.options:
+              jcr:primaryType: frontend:pluginconfig
+              ckeditor.config.overlayed.json: '{toolbarGroups: [{ name: ''links''
+                },{name:''insert''},{name:''clipboard''},{name:''tools''},{name:''undo''}]
+                , removeButtons: ''PickImage,Youtube,Table''}'
+          /seoNoIndex:
+            jcr:primaryType: frontend:plugin
+            caption: Do not index (SEO)
+            field: seoNoIndex
+            hint: Prevents the page to be indexed by Search Engines. Do not alter
+              unless it is advised by SEO
+            plugin.class: org.hippoecm.frontend.editor.plugins.field.PropertyFieldPlugin
+            wicket.id: ${cluster.id}.right.item
+            /cluster.options:
+              jcr:primaryType: frontend:pluginconfig
