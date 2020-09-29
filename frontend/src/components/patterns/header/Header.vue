@@ -109,14 +109,13 @@ import VsContainer from '@components/elements/layout/Container';
 import VsIcon from '@components/elements/icon/Icon';
 import VsRow from '@components/elements/layout/Row';
 import VsCol from '@components/elements/layout/Col';
+import HandDownFocus from '@/directives/hand-down-focus';
 import {
     BListGroup, BCollapse, VBToggle,
 } from 'bootstrap-vue';
 import VsDrawer from '../drawer/Drawer';
 import VsDrawerContent from '../drawer/DrawerContent';
 import { VsSiteNavMobileToggleButton, VsSiteNav } from './components/site-navigation';
-
-import HandDownFocus from '@/directives/hand-down-focus';
 
 export default {
     name: 'VsHeader',
