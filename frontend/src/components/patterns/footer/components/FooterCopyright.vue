@@ -32,7 +32,6 @@ import {
     VsRow, VsContainer, VsCol,
 } from '@components/elements/layout';
 
-
 /**
  * The VsFooterCopyright holds an image and copyright notices for the footer.
  */
