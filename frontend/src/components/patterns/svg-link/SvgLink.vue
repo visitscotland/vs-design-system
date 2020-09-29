@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import VsSvg from '@components/elements/svg/Svg.vue';
+import VsSvg from '@components/elements/svg/Svg';
 
 /**
  * A component for an SVG wrapped in a link with accessible sr-only text
