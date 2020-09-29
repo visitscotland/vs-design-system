@@ -11,7 +11,6 @@
 
 import VsButtonSquareSocial from '@components/patterns/button-square-social/ButtonSquareSocial';
 
-
 /**
  * The FooterSocialItem is used inside the FooterSocialMenu to
  * show a button for a social media link.

@@ -1,7 +1,7 @@
 <#compress>
 <#include "../../../include/imports.ftl">
-<#include "../../../vs-dotcom-ds/components/breadcrumb.ftl">
-<#include "../../../vs-dotcom-ds/components/breadcrumb-item.ftl">
+<#include "../../../frontend/components/vs-breadcrumb.ftl">
+<#include "../../../frontend/components/vs-breadcrumb-item.ftl">
 
 
 <#include "content-driven-seo.ftl">

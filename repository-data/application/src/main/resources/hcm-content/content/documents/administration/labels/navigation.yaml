@@ -3,7 +3,7 @@
   jcr:mixinTypes: ['hippo:named', 'mix:versionable']
   jcr:uuid: bc850e44-c237-44e2-9970-23493b30c395
   hippo:name: Navigation
-  hippostd:foldertype: [new-resource-bundle, new-untranslated-folder]
+  hippostd:foldertype: [new-untranslated-folder-resource-bundle, new-resource-bundle]
   /navigation:
     jcr:primaryType: hippo:handle
     jcr:mixinTypes: ['hippo:named', 'mix:referenceable']
@@ -17,25 +17,33 @@
       hippostd:state: draft
       hippostdpubwf:createdBy: admin
       hippostdpubwf:creationDate: 2019-11-07T18:38:44.678Z
-      hippostdpubwf:lastModificationDate: 2020-06-01T18:18:33.853+01:00
+      hippostdpubwf:lastModificationDate: 2020-08-25T15:11:08.883+01:00
       hippostdpubwf:lastModifiedBy: admin
       resourcebundle:descriptions: ['', '', '', '', This MUST not be used in production,
-        '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '']
+        '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '']
       resourcebundle:id: navigation
       resourcebundle:keys: [home, content, see-do, destination-map, dev-test, footer.accessibility,
         footer.visitor-information, footer.get-touch, footer.media-centre, footer.business-events,
         footer.corporate, footer.other-sites, footer.scotland-is-now, footer.travel-trade,
         footer.utility-list, footer.find-us-on, footer.acceptable-use, footer.privacy,
         footer.cookies, footer.social-media, footer.environmental-policy, footer.terms-of-use,
-        footer.about-us]
+        footer.about-us, global-menu.our-websites]
       resourcebundle:messages: [Home, Content, Things to see and do, Map of destinations,
         Development pages, Accessibility, Visitor information, Get in touch, Media
           Centre, Business Events, Corporate, Our other sites, Scotland is Now, Travel
           Trade, Utility list, Find us on, Acceptable Use, Privacy, Cookies, Social
-          Media, Environmental Policy, Terms of Use, About Us]
+          Media, Environmental Policy, Terms of Use, About Us, Our Websites]
+      resourcebundle:messages_de: ['', '', '', '', '', '', '', '', '', '', '', '',
+        '', '', '', '', '', '', '', '', '', '', '', Webseiten]
       resourcebundle:messages_es: [Inicio, Contenido, Cosas Varias (Para hacer o ver),
         Destinos para güiris, Páginas rotas, '', '', '', '', '', '', '', '', '', '',
-        '', '', '', '', '', '', '', '']
+        '', '', '', '', '', '', '', '', Nuestras páginas web]
+      resourcebundle:messages_fr: ['', '', '', '', '', '', '', '', '', '', '', '',
+        '', '', '', '', '', '', '', '', '', '', '', Nos sites web]
+      resourcebundle:messages_it: ['', '', '', '', '', '', '', '', '', '', '', '',
+        '', '', '', '', '', '', '', '', '', '', '', i nostri siti web]
+      resourcebundle:messages_nl: ['', '', '', '', '', '', '', '', '', '', '', '',
+        '', '', '', '', '', '', '', '', '', '', '', Onze websites]
     /navigation[2]:
       jcr:primaryType: resourcebundle:resourcebundle
       jcr:mixinTypes: ['mix:versionable']
@@ -44,25 +52,33 @@
       hippostd:state: unpublished
       hippostdpubwf:createdBy: admin
       hippostdpubwf:creationDate: 2019-11-07T18:38:44.678Z
-      hippostdpubwf:lastModificationDate: 2020-06-01T18:20:55.716+01:00
+      hippostdpubwf:lastModificationDate: 2020-08-25T15:11:08.803+01:00
       hippostdpubwf:lastModifiedBy: admin
       resourcebundle:descriptions: ['', '', '', '', This MUST not be used in production,
-        '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '']
+        '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '']
       resourcebundle:id: navigation
       resourcebundle:keys: [home, content, see-do, destination-map, dev-test, footer.accessibility,
         footer.visitor-information, footer.get-touch, footer.media-centre, footer.business-events,
         footer.corporate, footer.other-sites, footer.scotland-is-now, footer.travel-trade,
         footer.utility-list, footer.find-us-on, footer.acceptable-use, footer.privacy,
         footer.cookies, footer.social-media, footer.environmental-policy, footer.terms-of-use,
-        footer.about-us]
+        footer.about-us, global-menu.our-websites]
       resourcebundle:messages: [Home, Content, Things to see and do, Map of destinations,
         Development pages, Accessibility, Visitor information, Get in touch, Media
           Centre, Business Events, Corporate, Our other sites, Scotland is Now, Travel
           Trade, Utility list, Find us on, Acceptable Use, Privacy, Cookies, Social
-          Media, Environmental Policy, Terms of Use, About Us]
+          Media, Environmental Policy, Terms of Use, About Us, Our Websites]
+      resourcebundle:messages_de: ['', '', '', '', '', '', '', '', '', '', '', '',
+        '', '', '', '', '', '', '', '', '', '', '', Webseiten]
       resourcebundle:messages_es: [Inicio, Contenido, Cosas Varias (Para hacer o ver),
         Destinos para güiris, Páginas rotas, '', '', '', '', '', '', '', '', '', '',
-        '', '', '', '', '', '', '', '']
+        '', '', '', '', '', '', '', '', Nuestras páginas web]
+      resourcebundle:messages_fr: ['', '', '', '', '', '', '', '', '', '', '', '',
+        '', '', '', '', '', '', '', '', '', '', '', Nos sites web]
+      resourcebundle:messages_it: ['', '', '', '', '', '', '', '', '', '', '', '',
+        '', '', '', '', '', '', '', '', '', '', '', i nostri siti web]
+      resourcebundle:messages_nl: ['', '', '', '', '', '', '', '', '', '', '', '',
+        '', '', '', '', '', '', '', '', '', '', '', Onze websites]
     /navigation[3]:
       jcr:primaryType: resourcebundle:resourcebundle
       jcr:mixinTypes: ['mix:referenceable']
@@ -71,23 +87,31 @@
       hippostd:state: published
       hippostdpubwf:createdBy: admin
       hippostdpubwf:creationDate: 2019-11-07T18:38:44.678Z
-      hippostdpubwf:lastModificationDate: 2020-06-01T18:20:55.716+01:00
+      hippostdpubwf:lastModificationDate: 2020-08-25T15:11:08.803+01:00
       hippostdpubwf:lastModifiedBy: admin
-      hippostdpubwf:publicationDate: 2020-06-01T18:20:57.847+01:00
+      hippostdpubwf:publicationDate: 2020-08-25T15:11:15.083+01:00
       resourcebundle:descriptions: ['', '', '', '', This MUST not be used in production,
-        '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '']
+        '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '']
       resourcebundle:id: navigation
       resourcebundle:keys: [home, content, see-do, destination-map, dev-test, footer.accessibility,
         footer.visitor-information, footer.get-touch, footer.media-centre, footer.business-events,
         footer.corporate, footer.other-sites, footer.scotland-is-now, footer.travel-trade,
         footer.utility-list, footer.find-us-on, footer.acceptable-use, footer.privacy,
         footer.cookies, footer.social-media, footer.environmental-policy, footer.terms-of-use,
-        footer.about-us]
+        footer.about-us, global-menu.our-websites]
       resourcebundle:messages: [Home, Content, Things to see and do, Map of destinations,
         Development pages, Accessibility, Visitor information, Get in touch, Media
           Centre, Business Events, Corporate, Our other sites, Scotland is Now, Travel
           Trade, Utility list, Find us on, Acceptable Use, Privacy, Cookies, Social
-          Media, Environmental Policy, Terms of Use, About Us]
+          Media, Environmental Policy, Terms of Use, About Us, Our Websites]
+      resourcebundle:messages_de: ['', '', '', '', '', '', '', '', '', '', '', '',
+        '', '', '', '', '', '', '', '', '', '', '', Webseiten]
       resourcebundle:messages_es: [Inicio, Contenido, Cosas Varias (Para hacer o ver),
         Destinos para güiris, Páginas rotas, '', '', '', '', '', '', '', '', '', '',
-        '', '', '', '', '', '', '', '']
+        '', '', '', '', '', '', '', '', Nuestras páginas web]
+      resourcebundle:messages_fr: ['', '', '', '', '', '', '', '', '', '', '', '',
+        '', '', '', '', '', '', '', '', '', '', '', Nos sites web]
+      resourcebundle:messages_it: ['', '', '', '', '', '', '', '', '', '', '', '',
+        '', '', '', '', '', '', '', '', '', '', '', i nostri siti web]
+      resourcebundle:messages_nl: ['', '', '', '', '', '', '', '', '', '', '', '',
+        '', '', '', '', '', '', '', '', '', '', '', Onze websites]
