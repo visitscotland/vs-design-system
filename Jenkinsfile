@@ -1,6 +1,5 @@
 def DS_BRANCH = "feature/VS-955-ui-itineraries-itinerary-stops-changes-built-products"
-//def MAIL_TO = "jose.calcines@visitscotland.com, juanluis.hurtado@visitscotland.com, webops@visitscotland.net"
-def MAIL_TO = "gavin@visitscotland.net"
+def MAIL_TO = "webops@visitscotland.net"
 
 def thisAgent
 def VS_CONTAINER_BASE_PORT_OVERRIDE
@@ -8,12 +7,16 @@ cron_string = ""
 if (BRANCH_NAME == "develop" && (JOB_NAME == "develop.visitscotland.com/develop" || JOB_NAME == "develop.visitscotland.com-mb/develop")) {
   thisAgent = "op-dev-xvcdocker-01"
   env.VS_CONTAINER_BASE_PORT_OVERRIDE = "8099"
+  env.VS_RELEASE_SNAPSHOT = "TRUE"
 } else if (BRANCH_NAME == "develop" && (JOB_NAME == "develop-nightly.visitscotland.com/develop" || JOB_NAME == "develop-nightly.visitscotland.com-mb/develop")) {
   thisAgent = "op-dev-xvcdocker-01"
   env.VS_CONTAINER_BASE_PORT_OVERRIDE = "8098"
   cron_string = "@midnight"
 } else if (BRANCH_NAME == "develop" && (JOB_NAME == "develop-stable.visitscotland.com/develop" || JOB_NAME == "develop-stable.visitscotland.com-mb/develop")) {
   thisAgent = "op-dev-xvcdocker-01"
+  env.VS_CONTAINER_BASE_PORT_OVERRIDE = "8100"
+} else if (BRANCH_NAME == "develop" && (JOB_NAME == "feature.visitscotland.com/develop" || JOB_NAME == "feature.visitscotland.com-mb/develop")) {
+  thisAgent = "docker-02"
   env.VS_CONTAINER_BASE_PORT_OVERRIDE = "8097"
 } else if (BRANCH_NAME == "feature/VS-1865-feature-environments-enhancements" && (JOB_NAME == "feature.visitscotland.com-mb/feature%2FVS-1865-feature-environments-enhancements")) {
   thisAgent = "op-dev-xvcdocker-01"
@@ -21,6 +24,8 @@ if (BRANCH_NAME == "develop" && (JOB_NAME == "develop.visitscotland.com/develop"
   //cron_string = "*/2 * * * *"
 } else {
   //thisAgent = "docker-02"
+  env.VS_CONTAINER_BASE_PORT_OVERRIDE = "FALSE"
+  env.VS_RELEASE_SNAPSHOT = "FALSE"
   thisAgent = "op-dev-xvcdocker-01"
 }
 
@@ -35,10 +40,11 @@ pipeline {
     // from 20200804 VS_SSR_PROXY_ON will only affect whether the SSR app is packaged and sent to the container, using or bypassing will be set via query string
     VS_SSR_PROXY_ON = 'TRUE'
     // VS_CONTAINER_PRESERVE is set to TRUE in the ingrastructure build script, if this is set to FALSE the container will be rebuilt every time and the repository wiped
-    VS_CONTAINER_PRESERVE= 'TRUE'
+    VS_CONTAINER_PRESERVE = 'TRUE'
     // VS_BRXM_PERSISTENCE_METHOD can be set to either 'h2' or 'mysql' - do not change during the lifetime of a container or it will break the repo
     VS_BRXM_PERSISTENCE_METHOD = 'h2'
     VS_SKIP_BUILD_FOR_BRANCH = 'eg:feature/VS-1865-feature-environments-enhancements'
+    VS_RUN_LIGHTHOUSE_TESTS = 'TRUE'
     VS_RUN_BRC_STAGES = 'FALSE'
     // -- 20200712: TEST and PACKAGE stages might need VS_SKIP set to TRUE as they just run the ~4 minute front-end build every time
     VS_SKIP_BRC_BLD = 'FALSE'
@@ -81,7 +87,7 @@ pipeline {
       when {
         allOf {
           expression {return env.VS_RUN_BRC_STAGES != 'TRUE'}
-	  expression {return env.VS_SKIP_VS_BLD != 'TRUE'}
+	      expression {return env.VS_SKIP_VS_BLD != 'TRUE'}
           expression {return env.BRANCH_NAME != env.VS_SKIP_BUILD_FOR_BRANCH}
         }
       }
@@ -160,9 +166,9 @@ pipeline {
     } //end stage
     stage ('Snapshot to Nexus'){
         when {
-            not {
-                branch 'PR-145'//to do - change this to master and staging when ready
-            }
+          allOf {
+            expression {return env.VS_RELEASE_SNAPSHOT == 'TRUE'}
+          }
         }
         steps{
             script{
@@ -203,28 +209,35 @@ pipeline {
           sh 'sh ./infrastructure/scripts/infrastructure.sh --debug'
         }
       }
-    } //end
-   // timeout(time: 60, unit: 'SECONDS') {
-        // stage('Check Availability') {
-        //   steps {
-        //     script{
-        //         //sh 'sh ./infrastructure/scripts/availability.sh --debug'
-        //         sleep time: 120, unit: 'SECONDS'
-        //       }
-        //    }
-        //   }
-
-  //  }
-    // stage ('Run a11y tests'){
-    //     // when {
-    //     //     branch 'PR-160'  TODO - change this to dev nightly / dev stable when ready
-    //     // }
-    //     steps{
-    //         script{
-    //             sh 'sh ./infrastructure/scripts/lighthouse.sh'
-    //         }
-    //     }
-    // }
+    } 
+    stage('Lighthouse Testing'){
+      when {
+        allOf {
+          expression {return env.VS_RUN_LIGHTHOUSE_TESTS == 'TRUE'}
+        }
+      }
+      steps{
+        script{
+          sleep time: 120, unit: 'SECONDS'
+          sh 'sh ./testing/lighthouse.sh'
+        }
+      }
+      post {
+        success {
+          publishHTML (target: [
+            allowMissing: false,
+            alwaysLinkToLastBuild: false,
+            keepAll: false,
+            reportDir: 'frontend/.lighthouseci',
+            reportFiles: 'lhr-**.html',
+            reportName: "LH Report"
+          ])
+        }
+        failure {
+          mail bcc: '', body: "<b>Notification</b><br>Project: ${env.JOB_NAME} <br>Build Number: ${env.BUILD_NUMBER} <br> build URL: ${env.BUILD_URL}", cc: '', charset: 'UTF-8', from: '', mimeType: 'text/html', replyTo: '', subject: "Lighthouse failure: ${env.JOB_NAME}", to: "${env.CHANGE_AUTHOR_EMAIL}";
+        }
+      }
+    }
 
 // -- 20200712: entire section commented out as it currently serves no purpose
 //    stage ('Availability notice'){
@@ -240,21 +253,6 @@ pipeline {
   } //end stages
 
   post{
-    always {
-      script{
-        sleep time: 120, unit: 'SECONDS'
-        sh 'sh ./infrastructure/scripts/lighthouse.sh'
-      }
-      publishHTML (target: [
-        allowMissing: false,
-        alwaysLinkToLastBuild: false,
-        keepAll: true,
-        reportDir: 'frontend/.lighthouseci',
-        reportFiles: 'lhr-**.html',
-        reportName: "LH Report"
-      ])
-    }
-
     aborted{
       script{
         try{
