@@ -81,26 +81,6 @@ pipeline {
         sh 'printenv'
       }
     }
-
-        stage('SonarQube FE scan') {
- 
-          environment {
-            scannerHome = tool 'SonarQube_4.0'
-          }
-          steps {
-            withSonarQubeEnv(installationName: 'SonarQube', credentialsId: 'sonarqube') {
-            
-              sh '''
-                ${scannerHome}/bin/sonar-scanner \
-                -Dsonar.sources=./frontend \
-                -Dsonar.projectKey=VS2019-FE \
-                -Dsonar.host.url=http://172.28.87.209:9000 \
-                -Dsonar.login=9fa63cfd51d94fb8e437b536523c15a9b45ee2c1
-              '''
-            }
-          }
-        }
-
     stage ('vs compile & package') {
       when {
         allOf {
@@ -184,7 +164,7 @@ pipeline {
     } //end stage
     stage ('Build Actions'){
       parallel {
-        stage('SonarQube scan') {
+        stage('SonarQube BE Scan') {
           when {
                 branch 'master' 
           }
@@ -197,6 +177,24 @@ pipeline {
               sh '''
                 ${scannerHome}/bin/sonar-scanner \
                 -D sonar.sources=./frontend 
+              '''
+            }
+          }
+        }
+        stage('SonarQube FE scan') {
+ 
+          environment {
+            scannerHome = tool 'SonarQube_4.0'
+          }
+          steps {
+            withSonarQubeEnv(installationName: 'SonarQube', credentialsId: 'sonarqube') {
+            
+              sh '''
+                ${scannerHome}/bin/sonar-scanner \
+                -Dsonar.sources=./frontend \
+                -Dsonar.projectKey=VS2019-FE \
+                -Dsonar.host.url=http://172.28.87.209:9000 \
+                -Dsonar.login=9fa63cfd51d94fb8e437b536523c15a9b45ee2c1
               '''
             }
           }
