@@ -39,9 +39,7 @@
                 class="vs-itinerary-day__toggle-button"
             />
         </template>
-        <div
-            :id="'dayPanel_' + dayNumber"
-        >
+        <div :id="'dayPanel_' + dayNumber">
             <slot name="day-transport" />
             <slot name="day-introduction" />
             <ul class="list-unstyled">
@@ -122,7 +120,7 @@ export default {
     }
 }
 
-.vs-itinerary-day__title  {
+.vs-itinerary-day__title {
     border-bottom: 1px solid $color-base-text;
     color: $color-theme-secondary-teal;
     padding: 0 $spacer-6 $spacer-3;
@@ -131,20 +129,30 @@ export default {
 .vs-itinerary-day__toggle-button {
     border: 1px solid $color-base-text;
     border-radius: 50%;
-    height:24px;
-    width:24px;
+    height: 24px;
+    width: 24px;
 
-    .icon{
+    .icon {
         height: 100%;
         margin: 0 auto;
         display: block;
     }
 
     &.icon.icon-xs {
-           height: 32px;
-           width: 32px;
-           padding: 8px;
+        height: 32px;
+        width: 32px;
+        padding: 8px;
+    }
+}
+
+@include no-js {
+    @include media-breakpoint-down(lg) {
+        .vs-itinerary-day__list-item {
+            .vs-itinerary-day__header:first-child {
+                display: none !important;
+            }
         }
+    }
 }
 </style>
 
