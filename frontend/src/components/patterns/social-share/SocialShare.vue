@@ -9,8 +9,8 @@
 </template>
 
 <script>
-import VsIcon from '@components/elements/icon/Icon.vue';
-import VsPrototype from '@components/elements/prototype/Prototype.vue';
+import VsIcon from '@components/elements/icon/Icon';
+import VsPrototype from '@components/elements/prototype/Prototype';
 
 /**
  * This is a placeholder component for now.
