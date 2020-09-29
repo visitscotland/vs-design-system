@@ -7,5 +7,6 @@ import java.util.List;
 public interface FieldDifferenceModel {
     String getFieldName();
     boolean isMultiple();
+    boolean isFile();
     List<DiffMatchPatch.Diff> getDiffList();
 }

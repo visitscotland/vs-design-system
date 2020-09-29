@@ -13,19 +13,49 @@
     <link rel="stylesheet" type="text/css" th:href="@{/skin/hippo-cms/css/hippo-cms-theme.min.css}">
 </head>
 <body>
-    <div th:each="field: ${fieldList}">
-        <label th:text="${field.fieldName}"></label>
+    <div class="hippo-editor">
+        <div class="hippo-editor-body">
+            <div class="hippo-preview-document-wrapper">
+                <div class="hippo-preview-document">
+                    <div class="column-wrapper">
+                        <div class="col70">
+                            <div th:each="field,iterStat: ${fieldList}" th:class="${iterStat.odd}? 'odd' : 'even'">
+                                <div class="hippo-editor-field">
+                                    <h3 class="hippo-editor-field-title" th:text="${field.fieldName}"></h3>
 
-        <div th:switch="${field.multiple}">
-            <div th:case="true">
-                <div th:each="difference: ${field.diffList}" th:classappend="${difference.operation.name()}">
-                    <span th:text="${difference.text}"></span>
+                                    <div th:switch="${field.multiple}" class="hippo-editor-field-subfield">
+                                        <div class="hippo-editor-field-value">
+                                            <ul th:case="true" class="multiselect-viewlist">
+                                                <li th:each="difference: ${field.diffList}"
+                                                    th:classappend="${(difference.operation.name() eq 'DELETE' ? 'hippo-diff-removed' : '') +
+                                                                      (difference.operation.name() eq 'INSERT' ? 'hippo-diff-added' : '')}">
+                                                    <span th:text="${difference.text}"></span>
+                                                </li>
+                                            </ul>
+
+                                            <div th:case="false" class="hippo-editor-field-value-container">
+                                                <div th:if="${not field.file}">
+                                                    <span th:each="difference: ${field.diffList}" th:text="${difference.text}"
+                                                          th:classappend="${(difference.operation.name() eq 'INSERT' ? 'hippo-diff-added'   : '') +
+                                                                            (difference.operation.name() eq 'DELETE' ? 'hippo-diff-removed' : '')}"></span>
+                                                </div>
+                                                <div th:if="${field.file}">
+                                                    <ul class="multiselect-viewlist">
+                                                        <li th:each="difference: ${field.diffList}"
+                                                            th:classappend="${(difference.operation.name() eq 'DELETE' ? 'hippo-diff-removed' : '') +
+                                                                      (difference.operation.name() eq 'INSERT' ? 'hippo-diff-added' : '')}">
+                                                            <span th:text="${difference.text}"></span>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
-
-            <div th:case="false" >
-                    <span th:each="difference: ${field.diffList}" th:text="${difference.text}"
-                          th:classappend="${difference.operation.name()}"></span>
             </div>
         </div>
     </div>

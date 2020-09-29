@@ -26,6 +26,11 @@ public class MultipleFieldDifferenceModel implements FieldDifferenceModel {
     }
 
     @Override
+    public boolean isFile() {
+        return false;
+    }
+
+    @Override
     public List<DiffMatchPatch.Diff> getDiffList() {
         return diffList;
     }

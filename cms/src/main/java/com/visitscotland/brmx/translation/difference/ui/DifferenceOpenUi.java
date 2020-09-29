@@ -81,8 +81,8 @@ public class DifferenceOpenUi {
                         SingleField latestValue = (SingleField) field.getLatest();
                         SingleFieldDifferenceModel fieldDiff = new SingleFieldDifferenceModel(
                                 field.getCaption(),
-                                previousValue.getField().getValue(),
-                                latestValue.getField().getValue());
+                                previousValue.getField(),
+                                latestValue.getField());
                         fieldList.add(fieldDiff);
                     }
                 }
