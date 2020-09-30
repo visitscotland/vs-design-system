@@ -4,10 +4,16 @@ definitions:
       /hippo:moduleconfig:
         autoexport:modules:
           type: string
-          value: ['repository-data/application:/content/documents/administration',
-                  'repository-data/development:/content',
+          value: ['repository-data/development:/content/documents/visitscotland',
+                  'repository-data/development:/content/documents/www.visitscotland.com-de',
+                  'repository-data/development:/content/documents/www.visitscotland.com-es',
+                  'repository-data/development:/content/documents/www.visitscotland.com-fr',
+                  'repository-data/development:/content/documents/www.visitscotland.com-it',
+                  'repository-data/development:/content/documents/www.visitscotland.com-nl',
+                  'repository-data/development:/content/gallery',
+                  'repository-data/development:/content/assets',
+                  'repository-data/development:/content/attic',
                   'repository-data/application:/',
-                  'repository-data/site-development:visitscotland:/hst:visitscotland/hst:configurations/visitscotland/hst:workspace/hst:sitemenus',
                   'repository-data/site:visitscotland:/hst:visitscotland',
                   'repository-data/site-development:visitscotland']
         autoexport:injectresidualchildnodecategory: ['/hst:platform/**: config', '/hst:*/**/hst:workspace/**[hst:containercomponent]:
