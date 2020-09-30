@@ -82,7 +82,6 @@ export default {
         opacity: 0;
         transform: translate3d(0px, 0px, 0px) !important;
 
-
         &.show {
             max-height: 700px;
             opacity: 1;
