@@ -328,7 +328,6 @@ img {
     }
 }
 
-
 @include no-js {
     .vs-image-with-caption__image-wrapper {
         .vs-image-with-caption__toggle-caption-btn {
