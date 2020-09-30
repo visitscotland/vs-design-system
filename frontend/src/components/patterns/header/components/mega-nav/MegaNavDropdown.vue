@@ -191,7 +191,6 @@ export default {
             }
         }
 
-
         .dropdown-menu{
             display: block;
             position: relative;
