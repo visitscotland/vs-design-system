@@ -1659,11 +1659,10 @@
             jcr:mixinTypes: ['mix:referenceable']
             jcr:uuid: 76bab125-f189-4ab2-ae52-8d216ed96af5
             hippo:availability: []
-            hippostd:holder: admin
             hippostd:state: draft
             hippostdpubwf:createdBy: admin
             hippostdpubwf:creationDate: 2020-05-15T11:13:39.117+01:00
-            hippostdpubwf:lastModificationDate: 2020-08-31T11:07:29.616+01:00
+            hippostdpubwf:lastModificationDate: 2020-09-30T08:32:47.590+01:00
             hippostdpubwf:lastModifiedBy: admin
             hippotranslation:id: 1fbcced7-88f7-4124-8470-b9ed88b5ead0
             hippotranslation:locale: en
@@ -2365,7 +2364,7 @@
           jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
           jcr:uuid: 9dd4a74e-d63b-47a5-980a-973d7b10a64c
           hippo:name: iCentre
-          hippo:versionHistory: bc6c797a-5c91-4056-ab63-561111ec6227
+          hippo:versionHistory: 6e2ae79d-1c61-429c-8af5-66165ef296c1
           /icentre[1]:
             jcr:primaryType: visitscotland:TourismInformation
             jcr:mixinTypes: ['mix:referenceable']
@@ -2374,7 +2373,7 @@
             hippostd:state: draft
             hippostdpubwf:createdBy: admin
             hippostdpubwf:creationDate: 2020-08-28T19:50:12.459+01:00
-            hippostdpubwf:lastModificationDate: 2020-08-31T11:07:43.031+01:00
+            hippostdpubwf:lastModificationDate: 2020-09-30T11:04:29.085+01:00
             hippostdpubwf:lastModifiedBy: admin
             hippotranslation:id: 054a8482-46b4-4b43-8f8c-f087dfc2d3a7
             hippotranslation:locale: en
@@ -2388,6 +2387,26 @@
                 hippo:facets: []
                 hippo:modes: []
                 hippo:values: []
+              /visitscotland:quotes:
+                jcr:primaryType: visitscotland:ICentreQuote
+                visitscotland:author: Jose
+                visitscotland:productId: '2408231'
+                visitscotland:role: Senior Software Engineer at VisitScotland,
+                /visitscotland:image:
+                  jcr:primaryType: hippogallerypicker:imagelink
+                  hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
+                  hippo:facets: []
+                  hippo:modes: []
+                  hippo:values: []
+                /visitscotland:quote:
+                  jcr:primaryType: hippostd:html
+                  hippostd:content: <p>prueba frase</p>
+                /visitscotland:products:
+                  jcr:primaryType: visitscotland:MegalinkItem
+                  visitscotland:feature: false
+                  /visitscotland:link:
+                    jcr:primaryType: hippo:mirror
+                    hippo:docbase: 51be92c9-183a-4ab6-90a6-a144283c506a
             /visitscotland:IKnow:
               jcr:primaryType: visitscotland:IKnow
               visitscotland:title: ''
@@ -2402,7 +2421,7 @@
             hippostd:state: unpublished
             hippostdpubwf:createdBy: admin
             hippostdpubwf:creationDate: 2020-08-28T19:50:12.459+01:00
-            hippostdpubwf:lastModificationDate: 2020-08-31T11:07:42.958+01:00
+            hippostdpubwf:lastModificationDate: 2020-09-30T08:32:53.738+01:00
             hippostdpubwf:lastModifiedBy: admin
             hippotranslation:id: 054a8482-46b4-4b43-8f8c-f087dfc2d3a7
             hippotranslation:locale: en
@@ -2416,6 +2435,26 @@
                 hippo:facets: []
                 hippo:modes: []
                 hippo:values: []
+              /visitscotland:quotes:
+                jcr:primaryType: visitscotland:ICentreQuote
+                visitscotland:author: Jose
+                visitscotland:productId: '2408231'
+                visitscotland:role: Senior Software Engineer at VisitScotland,
+                /visitscotland:image:
+                  jcr:primaryType: hippogallerypicker:imagelink
+                  hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
+                  hippo:facets: []
+                  hippo:modes: []
+                  hippo:values: []
+                /visitscotland:quote:
+                  jcr:primaryType: hippostd:html
+                  hippostd:content: <p>prueba frase</p>
+                /visitscotland:products:
+                  jcr:primaryType: visitscotland:MegalinkItem
+                  visitscotland:feature: false
+                  /visitscotland:link:
+                    jcr:primaryType: hippo:mirror
+                    hippo:docbase: 51be92c9-183a-4ab6-90a6-a144283c506a
             /visitscotland:IKnow:
               jcr:primaryType: visitscotland:IKnow
               visitscotland:title: ''
@@ -2430,9 +2469,9 @@
             hippostd:state: published
             hippostdpubwf:createdBy: admin
             hippostdpubwf:creationDate: 2020-08-28T19:50:12.459+01:00
-            hippostdpubwf:lastModificationDate: 2020-08-31T11:07:42.958+01:00
+            hippostdpubwf:lastModificationDate: 2020-09-30T08:32:53.738+01:00
             hippostdpubwf:lastModifiedBy: admin
-            hippostdpubwf:publicationDate: 2020-08-31T11:07:47.804+01:00
+            hippostdpubwf:publicationDate: 2020-09-30T11:09:46.547+01:00
             hippotranslation:id: 054a8482-46b4-4b43-8f8c-f087dfc2d3a7
             hippotranslation:locale: en
             /visitscotland:ICentre:
@@ -2445,6 +2484,26 @@
                 hippo:facets: []
                 hippo:modes: []
                 hippo:values: []
+              /visitscotland:quotes:
+                jcr:primaryType: visitscotland:ICentreQuote
+                visitscotland:author: Jose
+                visitscotland:productId: '2408231'
+                visitscotland:role: Senior Software Engineer at VisitScotland,
+                /visitscotland:image:
+                  jcr:primaryType: hippogallerypicker:imagelink
+                  hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
+                  hippo:facets: []
+                  hippo:modes: []
+                  hippo:values: []
+                /visitscotland:quote:
+                  jcr:primaryType: hippostd:html
+                  hippostd:content: <p>prueba frase</p>
+                /visitscotland:products:
+                  jcr:primaryType: visitscotland:MegalinkItem
+                  visitscotland:feature: false
+                  /visitscotland:link:
+                    jcr:primaryType: hippo:mirror
+                    hippo:docbase: 51be92c9-183a-4ab6-90a6-a144283c506a
             /visitscotland:IKnow:
               jcr:primaryType: visitscotland:IKnow
               visitscotland:title: ''
