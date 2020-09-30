@@ -185,7 +185,7 @@ pipeline {
               sh '''
                 ${scannerHome}/bin/sonar-scanner \
                 -Dsonar.sources=./frontend \
-                -Dsonar.projectKey=VS2019-FE \
+                -Dsonar.projectKey=VS2019-FE-2 \
                 -Dsonar.host.url=http://172.28.87.209:9000 \
                 -Dsonar.login=9fa63cfd51d94fb8e437b536523c15a9b45ee2c1
               '''
