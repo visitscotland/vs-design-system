@@ -9,6 +9,7 @@
 <#include "../../frontend/components/vs-rich-text-wrapper.ftl">
 <#include "../../frontend/components/vs-img.ftl">
 <#include "../../frontend/components/vs-button.ftl">
+<#include "../../frontend/components/vs-link.ftl">
 
 <#include "../../frontend/components/vs-heading.ftl">
 <#include "../../frontend/components/vs-social-share.ftl">
@@ -78,6 +79,7 @@
 	<#list pageItems as item>
 	<vs-container slot="upper" class="py-lg-4" >
 		<#--TODO Colour should be only added to Megalinks, add this code to macros or create a commun macro to control it-->
+		<#assign style = ""/>
 		<#if item.style="style3">
 			<#assign style = "#292929" />
 		<#else>
@@ -111,7 +113,59 @@
 				<#--Macro for list-->
 				<#elseif item.getType()== "ListLinksModule">
 					<@list item=item />
+
+				<#elseif item.getType()== "ICentreModule">
+					<#if item.image.cmsImage??>
+						<#assign image>
+							<@hst.link hippobean=item.image.cmsImage.original/>
+						</#assign>
+					<#else>
+						<#assign image = item.image.externalImage!'' />
+					</#if>
+
+					<#if item.quoteImage??>
+						<#assign imageQuote>
+							<@hst.link hippobean=item.quoteImage.cmsImage.original/>
+						</#assign>
+					</#if>
+					<vs-col >
+						<#--TODO for links the image does not have caption-->
+						<@imageWithCaption imageSrc=image imageDetails=item.image variant="fullwidth"/>
+
+					</vs-col>
+
+					<vs-row>
+						<vs-col cols="12" md="10" lg="10" xl="10" offset-lg="1">
+							<@imageWithCaption imageSrc=imageQuote imageDetails=item.quoteImage variant="fullwidth"/>
+							"<@hst.html hippohtml=item.quote/>"
+							<vs-heading level="6">${item.quoteAuthorName}</vs-heading>
+							${item.quoteAuthorTitle}
+						</vs-col>
+
+
+						<vs-col cols="12" md="10" lg="10" xl="10" offset-lg="1">
+							<@hst.html hippohtml=item.description/>
+						</vs-col>
+						<vs-col cols="4" lg="4" offset-lg="1">
+							<#list item.iCentreList as iCentre>
+								<vs-link href="${iCentre.link}">${iCentre.label}</vs-link> </br>
+							</#list>
+						</vs-col>
+					</vs-row>
+
+				<#elseif item.getType()== "IKnowModule">
+					<@hst.manageContent hippobean=item.tourismInformation />
+					<vs-row>
+						<vs-col cols="12" md="10" lg="10" xl="10" offset-lg="1">
+							<@hst.html hippohtml=item.description/>
+						</vs-col>
+						<vs-col cols="4" lg="4" offset-lg="1">
+							<vs-link href="${item.link.link}">iKnow partners in this area</vs-link> </br>
+						</vs-col>
+					</vs-row>
+
 				</#if>
+
 
 		</div>
 	</vs-container>
