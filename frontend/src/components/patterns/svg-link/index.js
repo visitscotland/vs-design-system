@@ -1,4 +1,4 @@
-import VsSvgLink from './SvgLink.vue';
+import VsSvgLink from './SvgLink';
 
 export default {
     VsSvgLink,
