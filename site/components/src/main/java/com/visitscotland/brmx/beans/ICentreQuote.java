@@ -3,8 +3,9 @@ package com.visitscotland.brmx.beans;
 import org.onehippo.cms7.essentials.dashboard.annotations.HippoEssentialsGenerated;
 import org.hippoecm.hst.content.beans.Node;
 import org.hippoecm.hst.content.beans.standard.HippoCompound;
-import org.hippoecm.hst.content.beans.standard.HippoGalleryImageSet;
 import org.hippoecm.hst.content.beans.standard.HippoHtml;
+
+import java.util.List;
 
 /** 
  * TODO: Beanwriter: Failed to create getter for node type: hippo:compound
@@ -35,5 +36,10 @@ public class ICentreQuote extends HippoCompound {
     @HippoEssentialsGenerated(internalName = "visitscotland:role")
     public String getRole() {
         return getSingleProperty("visitscotland:role");
+    }
+
+    @HippoEssentialsGenerated(internalName = "visitscotland:products", allowModifications = false)
+    public List<HippoCompound> getProducts() {
+        return getChildBeansByName("visitscotland:products", HippoCompound.class);
     }
 }

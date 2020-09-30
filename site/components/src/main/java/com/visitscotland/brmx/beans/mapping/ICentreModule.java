@@ -12,6 +12,7 @@ public class ICentreModule extends Module{
     private String quoteAuthorTitle;
     private HippoHtml quote;
     private FlatImage quoteImage;
+    private FlatLink quoteLink;
     private List<FlatLink> iCentreList;
 
     public String getTitle() {
@@ -60,6 +61,14 @@ public class ICentreModule extends Module{
 
     public void setQuoteImage(FlatImage quoteImage) {
         this.quoteImage = quoteImage;
+    }
+
+    public FlatLink getQuoteLink() {
+        return quoteLink;
+    }
+
+    public void setQuoteLink(FlatLink quoteLink) {
+        this.quoteLink = quoteLink;
     }
 
     public List<FlatLink> getiCentreList() {
