@@ -167,7 +167,7 @@ pipeline {
       parallel {
         stage('SonarQube BE Scan') {
           when {
-                branch 'master' 
+            branch 'PR-180' 
           }
           steps {
             withSonarQubeEnv(installationName: 'SonarQube', credentialsId: 'sonarqube') {
@@ -177,6 +177,9 @@ pipeline {
         }
 
         stage('SonarQube FE scan') {
+          when {
+            branch 'PR-180' 
+          }
           environment {
             scannerHome = tool 'SonarQube_4.0'
           }
@@ -185,7 +188,7 @@ pipeline {
               sh '''
                 ${scannerHome}/bin/sonar-scanner \
                 -Dsonar.sources=./frontend \
-                -Dsonar.projectKey=VS2019-FE-2 \
+                -Dsonar.projectKey=VS2019-FE \
                 -Dsonar.host.url=http://172.28.87.209:9000 \
                 -Dsonar.login=9fa63cfd51d94fb8e437b536523c15a9b45ee2c1
               '''
