@@ -9,6 +9,7 @@
 <#include "../../frontend/components/vs-rich-text-wrapper.ftl">
 <#include "../../frontend/components/vs-img.ftl">
 <#include "../../frontend/components/vs-button.ftl">
+<#include "../../frontend/components/vs-link.ftl">
 
 <#include "../../frontend/components/vs-heading.ftl">
 <#include "../../frontend/components/vs-social-share.ftl">

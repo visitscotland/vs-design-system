@@ -2,7 +2,6 @@ package com.visitscotland.brmx.components.content.factory;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.visitscotland.brmx.beans.ICentre;
-import com.visitscotland.brmx.beans.Image;
 import com.visitscotland.brmx.beans.mapping.FlatImage;
 import com.visitscotland.brmx.beans.mapping.FlatLink;
 import com.visitscotland.brmx.beans.mapping.ICentreModule;
@@ -81,7 +80,7 @@ public class ICentreFactory {
                 if (doc.getQuote().getImage() != null) {
                     module.setQuoteImage(new FlatImage(doc.getQuote().getImage() , locale));
                 }
-
+                //TODO the quote could link to any shared document
                 if (doc.getQuote().getProductId() != null){
                     try {
                         JsonNode product = dmsData.productCard(doc.getQuote().getProductId(), locale);

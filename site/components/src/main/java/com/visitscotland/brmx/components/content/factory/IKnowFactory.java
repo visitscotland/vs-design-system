@@ -1,6 +1,5 @@
 package com.visitscotland.brmx.components.content.factory;
 
-import com.visitscotland.brmx.beans.ICentre;
 import com.visitscotland.brmx.beans.IKnow;
 import com.visitscotland.brmx.beans.mapping.FlatLink;
 import com.visitscotland.brmx.beans.mapping.IKnowModule;
