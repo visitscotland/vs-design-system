@@ -163,44 +163,78 @@ pipeline {
         }
       }
     } //end stage
-    stage ('Snapshot to Nexus'){
-        when {
-          allOf {
-            expression {return env.VS_RELEASE_SNAPSHOT == 'TRUE'}
+    stage ('Build Actions'){
+      parallel {
+        stage('SonarQube BE Scan') {
+          when {
+            branch 'develop' 
+          }
+          steps {
+            withSonarQubeEnv(installationName: 'SonarQube', credentialsId: 'sonarqube') {
+              sh "mvn sonar:sonar -Dsonar.host.url=http://172.28.87.209:9000 -s $MAVEN_SETTINGS"
+            }
           }
         }
-        steps{
-            script{
-                sh 'mvn -f pom.xml deploy -Pdist-with-development-data -s $MAVEN_SETTINGS'
+
+        stage('SonarQube FE scan') {
+          when {
+            branch 'develop' 
+          }
+          environment {
+            scannerHome = tool 'SonarQube_4.0'
+          }
+          steps {
+            withSonarQubeEnv(installationName: 'SonarQube', credentialsId: 'sonarqube') {
+              sh '''
+                ${scannerHome}/bin/sonar-scanner \
+                -Dsonar.sources=./frontend \
+                -Dsonar.projectKey=VS2019-FE \
+                -Dsonar.host.url=http://172.28.87.209:9000 \
+                -Dsonar.login=9fa63cfd51d94fb8e437b536523c15a9b45ee2c1
+              '''
             }
+          }
         }
+
+        stage ('Snapshot to Nexus'){
+              when {
+                allOf {
+                  expression {return env.VS_RELEASE_SNAPSHOT == 'TRUE'}
+                }
+              }
+              steps{
+                  script{
+                      sh 'mvn -B -f pom.xml deploy -Pdist-with-development-data -s $MAVEN_SETTINGS'
+                  }
+              }
+          }
+
+        stage('Release to Nexus') {
+          when {
+                branch 'PR-145' // to do - change this to develop  when ready
+          }
+          steps {
+              script {
+                NEW_TAG = "${env.JOB_NAME}-${env.BUILD_NUMBER}"
+              }
+              echo "Creating tag $NEW_TAG"
+              sh "git tag -m \"CI tagging\" $NEW_TAG"
+              echo "Uploading tag $NEW_TAG to Bitbucket"
+              withCredentials([usernamePassword(credentialsId: 'jenkins-ssh', usernameVariable: 'USER', passwordVariable: 'PASSWORD')]) {
+                sh """
+                git config --local credential.username ${USER}
+                git config --local credential.helper "!echo password=${PASSWORD}; echo"
+                git push origin $NEW_TAG --repo=${env.GIT_URL}
+                """
+              }
+              echo "Uploading version $NEW_TAG to Nexus"
+              sh "mvn versions:set -DremoveSnapshot"
+              sh "mvn -B clean  deploy -Pdist -Drevision=$NEW_TAG -Dchangelist= -DskipTests -s $MAVEN_SETTINGS"
+          }
+        }
+      }
     }
-    stage('Release to Nexus') {
-        when {
-            branch 'PR-145' // to do - change this to develop  when ready
-        }
-        steps {
-
-            script {
-              NEW_TAG = "${env.JOB_NAME}-${env.BUILD_NUMBER}"
-            }
-
-            echo "Creating tag $NEW_TAG"
-            sh "git tag -m \"CI tagging\" $NEW_TAG"
-            echo "Uploading tag $NEW_TAG to Bitbucket"
-            withCredentials([usernamePassword(credentialsId: 'jenkins-ssh', usernameVariable: 'USER', passwordVariable: 'PASSWORD')]) {
-              sh """
-              git config --local credential.username ${USER}
-              git config --local credential.helper "!echo password=${PASSWORD}; echo"
-              git push origin $NEW_TAG --repo=${env.GIT_URL}
-              """
-            }
-            echo "Uploading version $NEW_TAG to Nexus"
-            sh "mvn versions:set -DremoveSnapshot"
-            sh "mvn -B clean  deploy -Pdist -Drevision=$NEW_TAG -Dchangelist= -DskipTests -s $MAVEN_SETTINGS"
-        }
-
-    }
+ 
     stage ('vs build feature env') {
       steps{
         script{
