@@ -310,37 +310,3 @@
           /visitscotland:stops[3]:
             jcr:primaryType: hippo:mirror
             hippo:docbase: f7501bf0-04e4-40bc-8f39-8234d43ea690
-  /content:
-    jcr:primaryType: hippo:handle
-    jcr:mixinTypes: ['hippo:named', 'mix:referenceable']
-    jcr:uuid: a676179f-946f-4b08-9050-5256583ecbdb
-    hippo:name: General example
-    /content:
-      jcr:primaryType: visitscotland:General
-      jcr:mixinTypes: ['mix:referenceable']
-      jcr:uuid: 0821f3e2-f7bd-4fb7-aa2d-2e27d1b74922
-      hippo:availability: []
-      hippostd:holder: admin
-      hippostd:state: draft
-      hippostdpubwf:createdBy: admin
-      hippostdpubwf:creationDate: 2020-09-25T13:39:40.421+01:00
-      hippostdpubwf:lastModificationDate: 2020-09-25T13:39:40.421+01:00
-      hippostdpubwf:lastModifiedBy: admin
-      hippotranslation:id: d8a795cd-88f5-4555-8f65-040bfc777546
-      hippotranslation:locale: en
-      visitscotland:breadcrumb: ''
-      visitscotland:seoDescription: ''
-      visitscotland:seoNoIndex: false
-      visitscotland:seoTitle: ''
-      visitscotland:teaser: ''
-      visitscotland:theme: Standard
-      visitscotland:title: ''
-      /visitscotland:heroImage:
-        jcr:primaryType: hippogallerypicker:imagelink
-        hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
-        hippo:facets: []
-        hippo:modes: []
-        hippo:values: []
-      /visitscotland:introduction:
-        jcr:primaryType: hippostd:html
-        hippostd:content: ''

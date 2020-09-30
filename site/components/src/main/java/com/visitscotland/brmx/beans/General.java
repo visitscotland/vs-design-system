@@ -10,4 +10,9 @@ public class General extends Page {
     public String getTheme() {
         return getSingleProperty("visitscotland:theme");
     }
+
+    @Override
+    public String[] getChildJcrTypes() {
+        return new String[]{"visitscotland:Megalinks", "visitscotland:TourismInformation"};
+    }
 }

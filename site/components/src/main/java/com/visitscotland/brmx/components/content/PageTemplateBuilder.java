@@ -3,6 +3,7 @@ package com.visitscotland.brmx.components.content;
 import com.visitscotland.brmx.beans.*;
 import com.visitscotland.brmx.beans.mapping.ICentreModule;
 import com.visitscotland.brmx.beans.mapping.IKnowModule;
+import com.visitscotland.brmx.beans.mapping.Module;
 import com.visitscotland.brmx.beans.mapping.megalinks.LinksModule;
 import com.visitscotland.brmx.beans.mapping.megalinks.SingleImageLinksModule;
 import com.visitscotland.brmx.components.content.factory.ICentreFactory;
@@ -36,16 +37,16 @@ public class PageTemplateBuilder<T extends Page> {
     }
 
 
-    private Destination getDocument(HstRequest request){
-        return (Destination) request.getAttribute("document");
+    private Page getDocument(HstRequest request){
+        return (Page) request.getAttribute("document");
     }
 
     public void addModules(HstRequest request){
-        List<Object> links = new ArrayList<>();
+        List<Module> links = new ArrayList<>();
         int styleIndex = 0;
         int singleImageindex = 0;
 
-        for (BaseDocument item: getDocument(request).getItems()){
+        for (BaseDocument item: getDocument(request).getModules()){
             if (item instanceof Megalinks) {
                 //TODO: do we need the document for the log? In that case.. update tests
                 LinksModule al = linksFactory.getMegalinkModule((Megalinks) item, request.getLocale());
@@ -63,7 +64,9 @@ public class PageTemplateBuilder<T extends Page> {
 
             } else if (item instanceof TourismInformation){
                 TourismInformation touristInfo = (TourismInformation) item;
-                String location = getDocument(request).getLocation();
+                //TODO send as parameter
+//                String location = getDocument(request).getLocation();
+                String location = null;
 
                 //TODO IcentreModule
                 ICentreModule iCentreModule = iCentreFactory.getModule(touristInfo.getICentre(),request.getLocale(), location);

@@ -5,9 +5,11 @@ import org.onehippo.cms7.essentials.dashboard.annotations.HippoEssentialsGenerat
 import org.hippoecm.hst.content.beans.Node;
 import org.hippoecm.hst.content.beans.standard.HippoHtml;
 
+import java.util.List;
+
 @HippoEssentialsGenerated(internalName = "visitscotland:Page")
 @Node(jcrType = "visitscotland:Page")
-public class Page extends BaseDocument implements Linkable {
+public class Page extends BaseDocument implements TranslationParent, Linkable {
     @HippoEssentialsGenerated(internalName = "visitscotland:seoTitle")
     public String getSeoTitle() {
         return getSingleProperty("visitscotland:seoTitle");
@@ -60,5 +62,11 @@ public class Page extends BaseDocument implements Linkable {
     @HippoEssentialsGenerated(internalName = "visitscotland:translationFlag")
     public Boolean getTranslationFlag() {
         return getSingleProperty("visitscotland:translationFlag");
+    }
+
+    @Override
+    public List<BaseDocument> getModules() {
+        //TODO Check allowed modules in getChildJcrTypes()
+        return getExternalBeansByType(BaseDocument.class);
     }
 }

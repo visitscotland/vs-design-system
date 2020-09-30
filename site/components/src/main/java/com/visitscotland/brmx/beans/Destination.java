@@ -7,7 +7,7 @@ import java.util.List;
 
 @HippoEssentialsGenerated(internalName = "visitscotland:Destination")
 @Node(jcrType = "visitscotland:Destination")
-public class Destination extends Page implements TranslationParent{
+public class Destination extends Page  {
     @HippoEssentialsGenerated(internalName = "visitscotland:location")
     public String getLocation() {
         return getSingleProperty("visitscotland:location");
