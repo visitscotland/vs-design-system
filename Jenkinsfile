@@ -167,7 +167,7 @@ pipeline {
       parallel {
         stage('SonarQube BE Scan') {
           when {
-            branch 'PR-180' 
+            branch 'develop' 
           }
           steps {
             withSonarQubeEnv(installationName: 'SonarQube', credentialsId: 'sonarqube') {
@@ -178,7 +178,7 @@ pipeline {
 
         stage('SonarQube FE scan') {
           when {
-            branch 'PR-180' 
+            branch 'develop' 
           }
           environment {
             scannerHome = tool 'SonarQube_4.0'
