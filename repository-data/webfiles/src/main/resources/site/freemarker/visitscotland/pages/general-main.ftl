@@ -36,9 +36,10 @@
 	<@hst.manageContent hippobean=document documentTemplateQuery="new-module" rootPath="site" defaultPath="${path}" />
     <@cmsErrors errors=alerts!"" editMode=editMode />
 
+    <#if standardTemplate>
 	<vs-page-intro>
 			<@hst.link var="hero" hippobean=document.heroImage.original/>
-			<#if standardTemplate>
+
 				<vs-hero
 						slot="hero"
 						alt-text="${heroImage.altText!''}"
@@ -53,7 +54,7 @@
 							alt="${heroImage.altText!''}"
 					> </vs-img>
 				</vs-hero>
-			</#if>
+	</#if>
 		<vs-container slot="upper" class="py-lg-4">
 			<vs-row class="justify-content-md-between">
 				<vs-col cols="12" lg="8" offset-lg="1">
@@ -79,7 +80,9 @@
 				</vs-col>
 			</vs-row>
 		</vs-container>
+	<#if standardTemplate>
 	</vs-page-intro>
+	</#if>
 
   <#--TODO Control abput colours, change style="background-color:${style}  -->
 	<#list pageItems as module>
@@ -91,7 +94,6 @@
 			<#assign style = "#FFFFFF" />
 		</#if>
 
-			<p>hola</p>
 		<@moduleBuilder module=module style=style />
 	</vs-container>
 	</#list>

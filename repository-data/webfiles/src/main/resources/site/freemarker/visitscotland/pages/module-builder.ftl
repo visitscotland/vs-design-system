@@ -53,66 +53,66 @@
         </div>
 
 <#-- Macro for Multim Image -->
-    <#if item.getType()== "MultiImageLinksModule" >
-        <@multiImage item=item />
+    <#if module.getType()== "MultiImageLinksModule" >
+        <@multiImage item=module />
 
 
     <#--Macro for single image-->
-    <#elseif item.getType()== "SingleImageLinksModule">
-        <@singleImage item=item />
+    <#elseif module.getType()== "SingleImageLinksModule">
+        <@singleImage item=module />
 
     <#--Macro for list-->
-    <#elseif item.getType()== "ListLinksModule">
-        <@list item=item />
+    <#elseif module.getType()== "ListLinksModule">
+        <@list item=module />
 
-    <#elseif item.getType()== "ICentreModule">
-        <#if item.image.cmsImage??>
+    <#elseif module.getType()== "ICentreModule">
+        <#if module.image.cmsImage??>
             <#assign image>
-                <@hst.link hippobean=item.image.cmsImage.original/>
+                <@hst.link hippobean=module.image.cmsImage.original/>
             </#assign>
         <#else>
-            <#assign image = item.image.externalImage!'' />
+            <#assign image = module.image.externalImage!'' />
         </#if>
 
-        <#if item.quoteImage??>
+        <#if module.quoteImage??>
             <#assign imageQuote>
-                <@hst.link hippobean=item.quoteImage.cmsImage.original/>
+                <@hst.link hippobean=module.quoteImage.cmsImage.original/>
             </#assign>
         </#if>
 					<vs-col>
                     <#--TODO for links the image does not have caption-->
-						<@imageWithCaption imageSrc=image imageDetails=item.image variant="fullwidth"/>
+						<@imageWithCaption imageSrc=image imageDetails=module.image variant="fullwidth"/>
 
                     </vs-col>
 
 					<vs-row>
                         <vs-col cols="12" md="10" lg="10" xl="10" offset-lg="1">
-							<@imageWithCaption imageSrc=imageQuote imageDetails=item.quoteImage variant="fullwidth"/>
-                            "<@hst.html hippohtml=item.quote/>"
-                            <vs-heading level="6">${item.quoteAuthorName}</vs-heading>
-                            ${item.quoteAuthorTitle}
+							<@imageWithCaption imageSrc=imageQuote imageDetails=module.quoteImage variant="fullwidth"/>
+                            "<@hst.html hippohtml=module.quote/>"
+                            <vs-heading level="6">${module.quoteAuthorName}</vs-heading>
+                            ${module.quoteAuthorTitle}
                         </vs-col>
 
 
                         <vs-col cols="12" md="10" lg="10" xl="10" offset-lg="1">
-							<@hst.html hippohtml=item.description/>
+							<@hst.html hippohtml=module.description/>
                         </vs-col>
                         <vs-col cols="4" lg="4" offset-lg="1">
-							<#list item.iCentreList as iCentre>
+							<#list module.iCentreList as iCentre>
                                 <vs-link href="${iCentre.link}">${iCentre.label}</vs-link>
                                 </br>
                             </#list>
                         </vs-col>
                     </vs-row>
 
-    <#elseif item.getType()== "IKnowModule">
-        <@hst.manageContent hippobean=item.tourismInformation />
+    <#elseif module.getType()== "IKnowModule">
+        <@hst.manageContent hippobean=module.tourismInformation />
 					<vs-row>
                         <vs-col cols="12" md="10" lg="10" xl="10" offset-lg="1">
-							<@hst.html hippohtml=item.description/>
+							<@hst.html hippohtml=module.description/>
                         </vs-col>
                         <vs-col cols="4" lg="4" offset-lg="1">
-                            <vs-link href="${item.link.link}">iKnow partners in this area</vs-link>
+                            <vs-link href="${module.link.link}">iKnow partners in this area</vs-link>
                             </br>
                         </vs-col>
                     </vs-row>
