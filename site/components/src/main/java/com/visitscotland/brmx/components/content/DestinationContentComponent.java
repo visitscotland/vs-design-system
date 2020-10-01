@@ -20,8 +20,10 @@ public class DestinationContentComponent extends PageContentComponent<Destinatio
     public void doBeforeRender(HstRequest request, HstResponse response) {
         super.doBeforeRender(request, response);
 
+        Destination document = (Destination) request.getAttribute("document");
+
         addHeroCoordinates(request);
-        builder.addModules(request);
+        builder.addModules(request, document.getLocation());
     }
 
 }

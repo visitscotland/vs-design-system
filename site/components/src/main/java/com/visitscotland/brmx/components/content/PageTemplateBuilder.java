@@ -41,7 +41,12 @@ public class PageTemplateBuilder<T extends Page> {
         return (Page) request.getAttribute("document");
     }
 
+
     public void addModules(HstRequest request){
+        addModules(request, null);
+    }
+
+    public void addModules(HstRequest request, String location){
         List<Module> links = new ArrayList<>();
         int styleIndex = 0;
         int singleImageindex = 0;
@@ -59,23 +64,26 @@ public class PageTemplateBuilder<T extends Page> {
                 }
 
                 al.setStyle(styles[styleIndex++ % styles.length]);
+                al.setHippoBean(item);
                 links.add(al);
 
 
             } else if (item instanceof TourismInformation){
                 TourismInformation touristInfo = (TourismInformation) item;
-                //TODO send as parameter
-//                String location = getDocument(request).getLocation();
-                String location = null;
 
                 //TODO IcentreModule
                 ICentreModule iCentreModule = iCentreFactory.getModule(touristInfo.getICentre(),request.getLocale(), location);
-                if (iCentreModule != null) {
-                    links.add(iCentreModule);
-                }
 
                 IKnowModule iKnowModule = iKnowFactory.getModule(touristInfo.getIKnow(),location);
                 iKnowModule.setTourismInformation(touristInfo);
+
+                if (iCentreModule != null) {
+                    iCentreModule.setHippoBean(item);
+                    links.add(iCentreModule);
+                } else {
+                    iKnowModule.setHippoBean(item);
+                }
+
                 links.add(iKnowModule);
 
                 System.out.println("A TourismInformation was found");

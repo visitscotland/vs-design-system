@@ -31,7 +31,7 @@
 <#macro moduleBuilder module style>
 		<div class="has-edit-button" style="background-color:${style}">
         <#--TODO hippoBean-->
-        <#--<@hst.manageContent hippobean=module.hippoBean />-->
+        <@hst.manageContent hippobean=module.hippoBean />
             <vs-row>
                 <vs-col cols="10" lg="8" offset-lg="1">
                     <vs-heading level="1">${module.title}</vs-heading>
@@ -73,31 +73,31 @@
                 <@hst.link hippobean=module.quoteImage.cmsImage.original/>
             </#assign>
         </#if>
-					<vs-col>
-                    <#--TODO for links the image does not have caption-->
-						<@imageWithCaption imageSrc=image imageDetails=module.image variant="fullwidth"/>
 
-                    </vs-col>
+        <vs-col>
+        <#--TODO for links the image does not have caption-->
+            <@imageWithCaption imageSrc=image imageDetails=module.image variant="fullwidth"/>
+        </vs-col>
 
-					<vs-row>
-                        <vs-col cols="12" md="10" lg="10" xl="10" offset-lg="1">
-							<@imageWithCaption imageSrc=imageQuote imageDetails=module.quoteImage variant="fullwidth"/>
-                            "<@hst.html hippohtml=module.quote/>"
-                            <vs-heading level="6">${module.quoteAuthorName}</vs-heading>
-                            ${module.quoteAuthorTitle}
-                        </vs-col>
+        <vs-row>
+            <vs-col cols="12" md="10" lg="10" xl="10" offset-lg="1">
+                <@imageWithCaption imageSrc=imageQuote imageDetails=module.quoteImage variant="fullwidth"/>
+                "<@hst.html hippohtml=module.quote/>"
+                <vs-heading level="6">${module.quoteAuthorName}</vs-heading>
+                ${module.quoteAuthorTitle}
+            </vs-col>
 
 
-                        <vs-col cols="12" md="10" lg="10" xl="10" offset-lg="1">
-							<@hst.html hippohtml=module.description/>
-                        </vs-col>
-                        <vs-col cols="4" lg="4" offset-lg="1">
-							<#list module.iCentreList as iCentre>
-                                <vs-link href="${iCentre.link}">${iCentre.label}</vs-link>
-                                </br>
-                            </#list>
-                        </vs-col>
-                    </vs-row>
+            <vs-col cols="12" md="10" lg="10" xl="10" offset-lg="1">
+                <@hst.html hippohtml=module.description/>
+            </vs-col>
+            <vs-col cols="4" lg="4" offset-lg="1">
+                <#list module.iCentreList as iCentre>
+                    <vs-link href="${iCentre.link}">${iCentre.label}</vs-link>
+                    </br>
+                </#list>
+            </vs-col>
+        </vs-row>
 
     <#elseif module.getType()== "IKnowModule">
         <@hst.manageContent hippobean=module.tourismInformation />
