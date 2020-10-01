@@ -29,12 +29,6 @@
 
 <#--TODO Control abput colours, change style="background-color:${style}  -->
 <#macro moduleBuilder module style>
-    <#if module.introduction??>
-<p>hola interno ${style} ${module.title} NO</p>
-    <#else >
-<p> no module</p>
-    </#if>
-
 		<div class="has-edit-button" style="background-color:${style}">
         <#--TODO hippoBean-->
         <#--<@hst.manageContent hippobean=module.hippoBean />-->
@@ -54,16 +48,16 @@
 
 <#-- Macro for Multim Image -->
     <#if module.getType()== "MultiImageLinksModule" >
-        <@multiImage item=module />
+        <@multiImage module />
 
 
     <#--Macro for single image-->
     <#elseif module.getType()== "SingleImageLinksModule">
-        <@singleImage item=module />
+        <@singleImage module />
 
     <#--Macro for list-->
     <#elseif module.getType()== "ListLinksModule">
-        <@list item=module />
+        <@list module />
 
     <#elseif module.getType()== "ICentreModule">
         <#if module.image.cmsImage??>

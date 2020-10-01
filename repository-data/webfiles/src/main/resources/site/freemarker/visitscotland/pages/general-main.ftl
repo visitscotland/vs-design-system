@@ -38,22 +38,22 @@
 
     <#if standardTemplate>
 	<vs-page-intro>
-			<@hst.link var="hero" hippobean=document.heroImage.original/>
+		<@hst.link var="hero" hippobean=document.heroImage.original/>
 
-				<vs-hero
-						slot="hero"
-						alt-text="${heroImage.altText!''}"
-						credit="${heroImage.credit!''}"
-						caption="${heroImage.description!''}"
-						image-src="${hero}"
-						latitude="${(heroCoordinates.latitude)!''}"
-						longitude="${(heroCoordinates.longitude)!''}"
-				>
-					<vs-img
-							src="${hero}"
-							alt="${heroImage.altText!''}"
-					> </vs-img>
-				</vs-hero>
+			<vs-hero
+					slot="hero"
+					alt-text="${heroImage.altText!''}"
+					credit="${heroImage.credit!''}"
+					caption="${heroImage.description!''}"
+					image-src="${hero}"
+					latitude="${(heroCoordinates.latitude)!''}"
+					longitude="${(heroCoordinates.longitude)!''}"
+			>
+				<vs-img
+						src="${hero}"
+						alt="${heroImage.altText!''}"
+				> </vs-img>
+			</vs-hero>
 	</#if>
 		<vs-container slot="upper" class="py-lg-4">
 			<vs-row class="justify-content-md-between">
@@ -87,14 +87,14 @@
   <#--TODO Control abput colours, change style="background-color:${style}  -->
 	<#list pageItems as module>
 	<vs-container slot="upper" class="py-lg-4" >
-		<#--TODO Colour should be only added to Megalinks, add this code to macros or create a commun macro to control it-->
+		<#--TODO Colour should be only added to Megalinks, add this code to macros or create a common macro to control it-->
 		<#if module.style == "style3" && standardTemplate >
 			<#assign style = "#292929" />
 		<#else>
 			<#assign style = "#FFFFFF" />
 		</#if>
 
-		<@moduleBuilder module=module style=style />
+		<@moduleBuilder module style />
 	</vs-container>
 	</#list>
 </div>

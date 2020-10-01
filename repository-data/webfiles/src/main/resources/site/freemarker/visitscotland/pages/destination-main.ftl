@@ -81,7 +81,6 @@
 	<#list pageItems as item>
 	<vs-container slot="upper" class="py-lg-4" >
 		<#--TODO Colour should be only added to Megalinks, add this code to macros or create a commun macro to control it-->
-		<#assign style = ""/>
 		<#if item.style="style3">
 			<#assign style = "#292929" />
 		<#else>

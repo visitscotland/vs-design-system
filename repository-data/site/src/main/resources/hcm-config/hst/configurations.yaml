@@ -54,7 +54,7 @@ definitions:
           /plan-your-trip:
             jcr:primaryType: hst:sitemapitem
             hst:componentconfigurationid: hst:pages/pagenotfound
-            hst:relativecontentpath: site/see-do
+            hst:relativecontentpath: site/plan-your-trip
             /_index_:
               jcr:primaryType: hst:sitemapitem
               hst:componentconfigurationid: hst:pages/pagenotfound
