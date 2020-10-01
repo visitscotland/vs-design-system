@@ -1,7 +1,7 @@
 <template>
     <BCard
         class="vs-panel"
-        :class="[this.$slots['vs-panel-title'] ? '' : 'pt-10']"
+        :class="[this.$slots['vs-panel__title'] ? '' : 'pt-10']"
     >
         <template v-slot:header>
             <!-- @slot Contains an optional title for the panel  -->
