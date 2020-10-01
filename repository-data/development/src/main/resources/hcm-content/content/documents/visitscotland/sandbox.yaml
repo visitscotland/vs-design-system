@@ -8515,6 +8515,175 @@
             jcr:primaryType: visitscotland:DMSLink
             visitscotland:label: Button labels
             visitscotland:product: '238761'
+      /icentre:
+        jcr:primaryType: hippo:handle
+        jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
+        jcr:uuid: ab91b384-828a-4b96-8047-02edfb160cc3
+        hippo:name: iCentre
+        hippo:versionHistory: c32dc55f-dc62-4d6c-a508-09002f533a3f
+        /icentre[1]:
+          jcr:primaryType: visitscotland:TourismInformation
+          jcr:mixinTypes: ['mix:versionable']
+          jcr:uuid: 08a65c15-04d7-41da-8c03-18b5a81dcb52
+          hippo:availability: [preview]
+          hippostd:state: unpublished
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2020-09-30T12:03:00.630+01:00
+          hippostdpubwf:lastModificationDate: 2020-10-01T17:15:28.833+01:00
+          hippostdpubwf:lastModifiedBy: admin
+          hippotranslation:id: 14086fc7-ab73-4a1d-a6e9-200a1e5dcbcd
+          hippotranslation:locale: en
+          /visitscotland:ICentre:
+            jcr:primaryType: visitscotland:ICentre
+            visitscotland:description: ''
+            visitscotland:title: ''
+            /visitscotland:image:
+              jcr:primaryType: hippogallerypicker:imagelink
+              hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
+              hippo:facets: []
+              hippo:modes: []
+              hippo:values: []
+            /visitscotland:quotes:
+              jcr:primaryType: visitscotland:ICentreQuote
+              visitscotland:author: Jose
+              visitscotland:productId: '1674401'
+              visitscotland:role: Senior Software Engineer
+              /visitscotland:image:
+                jcr:primaryType: hippogallerypicker:imagelink
+                hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
+                hippo:facets: []
+                hippo:modes: []
+                hippo:values: []
+              /visitscotland:quote:
+                jcr:primaryType: hippostd:html
+                hippostd:content: |-
+                  <p>Reusable module for long text-only content. &nbsp;This will house very long content such as policies and Ts&amp;Cs, removing the need to use multiple long content modules to a single page, which would be difficult for the Content team to maintain.</p>
+
+                  <p>TBC This item could be used only on simple (policy) pages, as a single instance.</p>
+              /visitscotland:products:
+                jcr:primaryType: visitscotland:MegalinkItem
+                visitscotland:feature: false
+                /visitscotland:link:
+                  jcr:primaryType: hippo:mirror
+                  hippo:docbase: 0161886a-cf57-47f6-a1f8-820b894f5648
+          /visitscotland:IKnow:
+            jcr:primaryType: visitscotland:IKnow
+            visitscotland:title: ''
+            /visitscotland:description:
+              jcr:primaryType: hippostd:html
+              hippostd:content: <p>This is the place to get the inside track on Scotland.
+                A place for friendly and spirited people to share experiences, pick
+                up tips, ask questions and get insider advice on all the best places
+                to visit in Scotland.</p>
+        /icentre[2]:
+          jcr:primaryType: visitscotland:TourismInformation
+          jcr:mixinTypes: ['mix:referenceable']
+          jcr:uuid: 68ddbab0-9ce8-4f9f-8970-43732757c250
+          hippo:availability: [live]
+          hippostd:state: published
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2020-09-30T12:03:00.630+01:00
+          hippostdpubwf:lastModificationDate: 2020-09-30T12:06:02.657+01:00
+          hippostdpubwf:lastModifiedBy: admin
+          hippostdpubwf:publicationDate: 2020-10-01T16:58:26.945+01:00
+          hippotranslation:id: 14086fc7-ab73-4a1d-a6e9-200a1e5dcbcd
+          hippotranslation:locale: en
+          /visitscotland:ICentre:
+            jcr:primaryType: visitscotland:ICentre
+            visitscotland:description: ''
+            visitscotland:title: ''
+            /visitscotland:image:
+              jcr:primaryType: hippogallerypicker:imagelink
+              hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
+              hippo:facets: []
+              hippo:modes: []
+              hippo:values: []
+            /visitscotland:quotes:
+              jcr:primaryType: visitscotland:ICentreQuote
+              visitscotland:author: Jose
+              visitscotland:productId: '1674401'
+              visitscotland:role: Senior Software Engineer
+              /visitscotland:image:
+                jcr:primaryType: hippogallerypicker:imagelink
+                hippo:docbase: 1e4be246-297b-4404-8102-80fe1bc0ddf7
+                hippo:facets: []
+                hippo:modes: []
+                hippo:values: []
+              /visitscotland:quote:
+                jcr:primaryType: hippostd:html
+                hippostd:content: |-
+                  <p>Reusable module for long text-only content. &nbsp;This will house very long content such as policies and Ts&amp;Cs, removing the need to use multiple long content modules to a single page, which would be difficult for the Content team to maintain.</p>
+
+                  <p>TBC This item could be used only on simple (policy) pages, as a single instance.</p>
+              /visitscotland:products:
+                jcr:primaryType: visitscotland:MegalinkItem
+                visitscotland:feature: false
+                /visitscotland:link:
+                  jcr:primaryType: hippo:mirror
+                  hippo:docbase: 0161886a-cf57-47f6-a1f8-820b894f5648
+          /visitscotland:IKnow:
+            jcr:primaryType: visitscotland:IKnow
+            visitscotland:title: ''
+            /visitscotland:description:
+              jcr:primaryType: hippostd:html
+              hippostd:content: <p>This is the place to get the inside track on Scotland.
+                A place for friendly and spirited people to share experiences, pick
+                up tips, ask questions and get insider advice on all the best places
+                to visit in Scotland.</p>
+        /icentre[3]:
+          jcr:primaryType: visitscotland:TourismInformation
+          jcr:mixinTypes: ['mix:referenceable']
+          jcr:uuid: 4e77a27b-256e-4deb-97e9-7be655fa5e10
+          hippo:availability: []
+          hippostd:state: draft
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2020-09-30T12:03:00.630+01:00
+          hippostdpubwf:lastModificationDate: 2020-10-01T17:15:28.981+01:00
+          hippostdpubwf:lastModifiedBy: admin
+          hippotranslation:id: 14086fc7-ab73-4a1d-a6e9-200a1e5dcbcd
+          hippotranslation:locale: en
+          /visitscotland:ICentre:
+            jcr:primaryType: visitscotland:ICentre
+            visitscotland:description: ''
+            visitscotland:title: ''
+            /visitscotland:image:
+              jcr:primaryType: hippogallerypicker:imagelink
+              hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
+              hippo:facets: []
+              hippo:modes: []
+              hippo:values: []
+            /visitscotland:quotes:
+              jcr:primaryType: visitscotland:ICentreQuote
+              visitscotland:author: Jose
+              visitscotland:productId: '1674401'
+              visitscotland:role: Senior Software Engineer
+              /visitscotland:image:
+                jcr:primaryType: hippogallerypicker:imagelink
+                hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
+                hippo:facets: []
+                hippo:modes: []
+                hippo:values: []
+              /visitscotland:quote:
+                jcr:primaryType: hippostd:html
+                hippostd:content: |-
+                  <p>Reusable module for long text-only content. &nbsp;This will house very long content such as policies and Ts&amp;Cs, removing the need to use multiple long content modules to a single page, which would be difficult for the Content team to maintain.</p>
+
+                  <p>TBC This item could be used only on simple (policy) pages, as a single instance.</p>
+              /visitscotland:products:
+                jcr:primaryType: visitscotland:MegalinkItem
+                visitscotland:feature: false
+                /visitscotland:link:
+                  jcr:primaryType: hippo:mirror
+                  hippo:docbase: 0161886a-cf57-47f6-a1f8-820b894f5648
+          /visitscotland:IKnow:
+            jcr:primaryType: visitscotland:IKnow
+            visitscotland:title: ''
+            /visitscotland:description:
+              jcr:primaryType: hippostd:html
+              hippostd:content: <p>This is the place to get the inside track on Scotland.
+                A place for friendly and spirited people to share experiences, pick
+                up tips, ask questions and get insider advice on all the best places
+                to visit in Scotland.</p>
       /list-layout-copy-2:
         jcr:primaryType: hippo:handle
         jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
@@ -8708,7 +8877,7 @@
           hippostd:state: draft
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2020-09-30T14:13:40.167+01:00
-          hippostdpubwf:lastModificationDate: 2020-10-01T12:51:40.046+01:00
+          hippostdpubwf:lastModificationDate: 2020-10-01T16:57:17.939+01:00
           hippostdpubwf:lastModifiedBy: admin
           hippotranslation:id: c3c00121-a15b-4105-8387-d9fe4a5df51f
           hippotranslation:locale: en
