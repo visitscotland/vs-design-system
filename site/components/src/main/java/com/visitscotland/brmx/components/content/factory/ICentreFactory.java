@@ -93,7 +93,7 @@ public class ICentreFactory {
                     }
                 } else {
                     //TODO: Decide on one of the options
-//                    List<HippoBean> links = (List<HippoBean>) doc.getICentreQuote().getChildBeans("hippo:facetselect");
+//                    List<HippoBean> links = (List<HippoBean>) doc.getQuote().getChildBeans("hippo:facetselect");
                     //TODO: Option 2 = ;
                 }
             }

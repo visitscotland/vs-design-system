@@ -2354,7 +2354,7 @@
         jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
         jcr:uuid: 6033a92f-4d87-419b-a18f-0c85eb0a41e4
         hippo:name: iCentre
-        hippo:versionHistory: 07aec759-013f-4769-8b3d-f64ef8f306cc
+        hippo:versionHistory: b277edf4-1e29-4144-91e4-03dbcb5b3f4a
         /icentre[1]:
           jcr:primaryType: visitscotland:TourismInformation
           jcr:mixinTypes: ['mix:referenceable']
@@ -2363,7 +2363,7 @@
           hippostd:state: draft
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2020-09-30T12:03:00.630+01:00
-          hippostdpubwf:lastModificationDate: 2020-09-30T12:06:03.311+01:00
+          hippostdpubwf:lastModificationDate: 2020-10-01T17:30:57.293+01:00
           hippostdpubwf:lastModifiedBy: admin
           hippotranslation:id: 2b3e0a8d-aca4-472b-9536-7fa106b8bff9
           hippotranslation:locale: en
@@ -2378,7 +2378,7 @@
               hippo:modes: []
               hippo:values: []
             /visitscotland:quotes:
-              jcr:primaryType: visitscotland:ICentreQuote
+              jcr:primaryType: visitscotland:Quote
               visitscotland:author: Jose
               visitscotland:productId: '1674401'
               visitscotland:role: Senior Software Engineer
@@ -2393,7 +2393,11 @@
                 hippostd:content: |-
                   <p>Reusable module for long text-only content. &nbsp;This will house very long content such as policies and Ts&amp;Cs, removing the need to use multiple long content modules to a single page, which would be difficult for the Content team to maintain.</p>
 
+                  <p>&nbsp;</p>
+
                   <p>TBC This item could be used only on simple (policy) pages, as a single instance.</p>
+
+                  <p>&nbsp;</p>
               /visitscotland:products:
                 jcr:primaryType: visitscotland:MegalinkItem
                 visitscotland:feature: false
@@ -2417,7 +2421,7 @@
           hippostd:state: unpublished
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2020-09-30T12:03:00.630+01:00
-          hippostdpubwf:lastModificationDate: 2020-09-30T12:06:02.657+01:00
+          hippostdpubwf:lastModificationDate: 2020-10-01T17:30:57.249+01:00
           hippostdpubwf:lastModifiedBy: admin
           hippotranslation:id: 2b3e0a8d-aca4-472b-9536-7fa106b8bff9
           hippotranslation:locale: en
@@ -2432,7 +2436,7 @@
               hippo:modes: []
               hippo:values: []
             /visitscotland:quotes:
-              jcr:primaryType: visitscotland:ICentreQuote
+              jcr:primaryType: visitscotland:Quote
               visitscotland:author: Jose
               visitscotland:productId: '1674401'
               visitscotland:role: Senior Software Engineer
@@ -2447,7 +2451,11 @@
                 hippostd:content: |-
                   <p>Reusable module for long text-only content. &nbsp;This will house very long content such as policies and Ts&amp;Cs, removing the need to use multiple long content modules to a single page, which would be difficult for the Content team to maintain.</p>
 
+                  <p>&nbsp;</p>
+
                   <p>TBC This item could be used only on simple (policy) pages, as a single instance.</p>
+
+                  <p>&nbsp;</p>
               /visitscotland:products:
                 jcr:primaryType: visitscotland:MegalinkItem
                 visitscotland:feature: false
@@ -2471,9 +2479,9 @@
           hippostd:state: published
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2020-09-30T12:03:00.630+01:00
-          hippostdpubwf:lastModificationDate: 2020-09-30T12:06:02.657+01:00
+          hippostdpubwf:lastModificationDate: 2020-10-01T17:30:57.249+01:00
           hippostdpubwf:lastModifiedBy: admin
-          hippostdpubwf:publicationDate: 2020-09-30T12:06:13.590+01:00
+          hippostdpubwf:publicationDate: 2020-10-01T17:31:02.443+01:00
           hippotranslation:id: 2b3e0a8d-aca4-472b-9536-7fa106b8bff9
           hippotranslation:locale: en
           /visitscotland:ICentre:
@@ -2487,7 +2495,7 @@
               hippo:modes: []
               hippo:values: []
             /visitscotland:quotes:
-              jcr:primaryType: visitscotland:ICentreQuote
+              jcr:primaryType: visitscotland:Quote
               visitscotland:author: Jose
               visitscotland:productId: '1674401'
               visitscotland:role: Senior Software Engineer
@@ -2502,7 +2510,11 @@
                 hippostd:content: |-
                   <p>Reusable module for long text-only content. &nbsp;This will house very long content such as policies and Ts&amp;Cs, removing the need to use multiple long content modules to a single page, which would be difficult for the Content team to maintain.</p>
 
+                  <p>&nbsp;</p>
+
                   <p>TBC This item could be used only on simple (policy) pages, as a single instance.</p>
+
+                  <p>&nbsp;</p>
               /visitscotland:products:
                 jcr:primaryType: visitscotland:MegalinkItem
                 visitscotland:feature: false

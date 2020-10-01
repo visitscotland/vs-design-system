@@ -1,6 +1,6 @@
 definitions:
   config:
-    /hippo:namespaces/visitscotland/ICentreQuote:
+    /hippo:namespaces/visitscotland/Quote:
       jcr:primaryType: hipposysedit:templatetype
       jcr:mixinTypes: ['editor:editable', 'mix:referenceable']
       jcr:uuid: 0920521f-60bf-469d-9b9d-5de30d9dd54d
@@ -11,7 +11,7 @@ definitions:
         /hipposysedit:nodetype:
           jcr:primaryType: hipposysedit:nodetype
           jcr:mixinTypes: ['mix:referenceable', 'hipposysedit:remodel']
-          jcr:uuid: 20e86772-e9f2-4e61-9b69-389c6e970342
+          jcr:uuid: 753fe01f-9358-4f5a-a8de-2c804e921eab
           hipposysedit:node: true
           hipposysedit:supertype: ['hippo:compound', 'hippostd:relaxed']
           hipposysedit:uri: http://www.visitscotland.com/visitscotland/nt/1.0
@@ -67,7 +67,7 @@ definitions:
       /hipposysedit:prototypes:
         jcr:primaryType: hipposysedit:prototypeset
         /hipposysedit:prototype:
-          jcr:primaryType: visitscotland:ICentreQuote
+          jcr:primaryType: visitscotland:Quote
           visitscotland:productId: ''
           visitscotland:author: ''
           visitscotland:role: ''

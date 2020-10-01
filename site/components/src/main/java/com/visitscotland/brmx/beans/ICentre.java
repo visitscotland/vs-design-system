@@ -5,7 +5,7 @@ import org.onehippo.cms7.essentials.dashboard.annotations.HippoEssentialsGenerat
 import org.hippoecm.hst.content.beans.Node;
 import org.hippoecm.hst.content.beans.standard.HippoCompound;
 import org.hippoecm.hst.content.beans.standard.HippoGalleryImageSet;
-import com.visitscotland.brmx.beans.ICentreQuote;
+import com.visitscotland.brmx.beans.Quote;
 import java.util.List;
 
 /** 
@@ -25,11 +25,11 @@ public class ICentre extends HippoCompound {
     }
 
     @HippoEssentialsGenerated(internalName = "visitscotland:quotes", allowModifications = false)
-    public List<ICentreQuote> getQuotes() {
-        return getChildBeansByName("visitscotland:quotes", ICentreQuote.class);
+    public List<Quote> getQuotes() {
+        return getChildBeansByName("visitscotland:quotes", Quote.class);
     }
 
-    public ICentreQuote getQuote() {
+    public Quote getQuote() {
         return getOnlyChild(getQuotes());
     }
 

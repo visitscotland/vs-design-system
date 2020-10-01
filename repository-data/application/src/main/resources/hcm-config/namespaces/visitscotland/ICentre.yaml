@@ -82,7 +82,7 @@ definitions:
           /quotes:
             jcr:primaryType: frontend:plugin
             caption: Quote
-            compoundList: visitscotland:ICentreQuote
+            compoundList: visitscotland:Quote
             contentPickerType: links
             field: quotes
             plugin.class: org.onehippo.forge.contentblocks.ContentBlocksFieldPlugin

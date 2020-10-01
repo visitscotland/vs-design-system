@@ -10,9 +10,9 @@ import java.util.List;
 /** 
  * TODO: Beanwriter: Failed to create getter for node type: hippo:compound
  */
-@HippoEssentialsGenerated(internalName = "visitscotland:ICentreQuote")
-@Node(jcrType = "visitscotland:ICentreQuote")
-public class ICentreQuote extends HippoCompound {
+@HippoEssentialsGenerated(internalName = "visitscotland:Quote")
+@Node(jcrType = "visitscotland:Quote")
+public class Quote extends HippoCompound {
     @HippoEssentialsGenerated(internalName = "visitscotland:productId")
     public String getProductId() {
         return getSingleProperty("visitscotland:productId");

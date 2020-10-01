@@ -40,7 +40,7 @@
 [visitscotland:ICentre] > hippo:compound, hippostd:relaxed
   orderable
 
-[visitscotland:ICentreQuote] > hippo:compound, hippostd:relaxed
+[visitscotland:Quote] > hippo:compound, hippostd:relaxed
   orderable
 
 [visitscotland:IKnow] > hippo:compound, hippostd:relaxed
