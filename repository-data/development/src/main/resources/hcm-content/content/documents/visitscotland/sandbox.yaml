@@ -8556,7 +8556,7 @@
               hippo:modes: []
               hippo:values: []
             /visitscotland:quotes:
-              jcr:primaryType: visitscotland:ICentreQuote
+              jcr:primaryType: visitscotland:Quote
               visitscotland:author: Jose
               visitscotland:productId: '1674401'
               visitscotland:role: Senior Software Engineer
@@ -8611,7 +8611,7 @@
               hippo:modes: []
               hippo:values: []
             /visitscotland:quotes:
-              jcr:primaryType: visitscotland:ICentreQuote
+              jcr:primaryType: visitscotland:Quote
               visitscotland:author: Jose
               visitscotland:productId: '1674401'
               visitscotland:role: Senior Software Engineer
@@ -8665,7 +8665,7 @@
               hippo:modes: []
               hippo:values: []
             /visitscotland:quotes:
-              jcr:primaryType: visitscotland:ICentreQuote
+              jcr:primaryType: visitscotland:Quote
               visitscotland:author: Jose
               visitscotland:productId: '1674401'
               visitscotland:role: Senior Software Engineer
