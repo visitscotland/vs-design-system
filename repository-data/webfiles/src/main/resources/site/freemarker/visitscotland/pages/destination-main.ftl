@@ -18,6 +18,8 @@
 <#include "../macros/modules/megalinks/megalinks-single-image.ftl">
 <#include "../macros/modules/megalinks/megalinks-list.ftl">
 <#include "../macros/global/cms-errors.ftl">
+
+<#include "./module-builder.ftl">
 <#-- Implicit Request Objects -->
 <#-- @ftlvariable name="document" type="com.visitscotland.brmx.beans.Destination" -->
 <#-- @ftlvariable name="pageItems" type="com.visitscotland.brmx.beans.Megalinks" -->
@@ -85,6 +87,10 @@
 		<#else>
 			<#assign style = "#FFFFFF" />
 		</#if>
+
+			<#--<@moduleBuilder module=item style=style />-->
+
+
 		<div class="has-edit-button" style="background-color:${style}">
 			<@hst.manageContent hippobean=item.megalinkItem />
 				<vs-row>

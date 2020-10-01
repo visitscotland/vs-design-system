@@ -17,6 +17,9 @@
 <#include "../macros/modules/megalinks/megalinks-single-image.ftl">
 <#include "../macros/modules/megalinks/megalinks-list.ftl">
 <#include "../macros/global/cms-errors.ftl">
+
+<#include "./module-builder.ftl">
+
 <#-- Implicit Request Objects -->
 <#-- @ftlvariable name="document" type="com.visitscotland.brmx.beans.General" -->
 <#-- @ftlvariable name="pageItems" type="com.visitscotland.brmx.beans.Megalinks" -->
@@ -79,16 +82,17 @@
 	</vs-page-intro>
 
   <#--TODO Control abput colours, change style="background-color:${style}  -->
-	<#list pageItems as item>
+	<#list pageItems as module>
 	<vs-container slot="upper" class="py-lg-4" >
 		<#--TODO Colour should be only added to Megalinks, add this code to macros or create a commun macro to control it-->
-		<#if item.style == "style3" && standardTemplate >
+		<#if module.style == "style3" && standardTemplate >
 			<#assign style = "#292929" />
 		<#else>
 			<#assign style = "#FFFFFF" />
 		</#if>
 
-		<@moduleBuilder item style />
+			<p>hola</p>
+		<@moduleBuilder module=module style=style />
 	</vs-container>
 	</#list>
 </div>
