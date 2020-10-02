@@ -10,13 +10,15 @@ const factoryShallowMount = (propsData) => shallowMount(VsGlobalMenuLanguage, {
     },
 });
 
-describe('VsGlobalMenuLanguage renders', () => {
+describe('VsGlobalMenuLanguage', () => {
     it('should render a dropdown', () => {
         const wrapper = factoryShallowMount();
 
         expect(wrapper.is('vsdropdown-stub')).toBe(true);
     });
+});
 
+describe(':props', () => {
     it('should render vsicon globe', () => {
         const wrapper = factoryShallowMount({
             languageLabel: 'Language',
