@@ -4,8 +4,8 @@ import org.onehippo.cms7.essentials.dashboard.annotations.HippoEssentialsGenerat
 import org.hippoecm.hst.content.beans.Node;
 import org.hippoecm.hst.content.beans.standard.HippoCompound;
 import org.hippoecm.hst.content.beans.standard.HippoHtml;
-
 import java.util.List;
+import org.hippoecm.hst.content.beans.standard.HippoBean;
 
 /** 
  * TODO: Beanwriter: Failed to create getter for node type: hippo:compound
@@ -13,11 +13,6 @@ import java.util.List;
 @HippoEssentialsGenerated(internalName = "visitscotland:Quote")
 @Node(jcrType = "visitscotland:Quote")
 public class Quote extends HippoCompound {
-    @HippoEssentialsGenerated(internalName = "visitscotland:productId")
-    public String getProductId() {
-        return getSingleProperty("visitscotland:productId");
-    }
-
     @HippoEssentialsGenerated(internalName = "visitscotland:image")
     public Image getImage() {
         return getLinkedBean("visitscotland:image", Image.class);
@@ -38,8 +33,8 @@ public class Quote extends HippoCompound {
         return getSingleProperty("visitscotland:role");
     }
 
-    @HippoEssentialsGenerated(internalName = "visitscotland:products", allowModifications = false)
-    public List<HippoCompound> getProducts() {
-        return getChildBeansByName("visitscotland:products", HippoCompound.class);
+    @HippoEssentialsGenerated(internalName = "visitscotland:product")
+    public HippoBean getProduct() {
+        return getLinkedBean("visitscotland:product", HippoBean.class);
     }
 }

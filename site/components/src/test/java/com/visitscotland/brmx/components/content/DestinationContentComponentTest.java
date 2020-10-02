@@ -5,7 +5,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 //import static org.easymock.EasyMock.*;
 
-
+//TODO what to do with this class
 @ExtendWith(MockitoExtension.class)
 public class DestinationContentComponentTest {
 //

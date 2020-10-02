@@ -11,7 +11,7 @@ definitions:
         /hipposysedit:nodetype:
           jcr:primaryType: hipposysedit:nodetype
           jcr:mixinTypes: ['mix:referenceable', 'hipposysedit:remodel']
-          jcr:uuid: 753fe01f-9358-4f5a-a8de-2c804e921eab
+          jcr:uuid: 1f137977-48c6-46f3-be4b-f8a6417ec160
           hipposysedit:node: true
           hipposysedit:supertype: ['hippo:compound', 'hippostd:relaxed']
           hipposysedit:uri: http://www.visitscotland.com/visitscotland/nt/1.0
@@ -31,15 +31,6 @@ definitions:
             hipposysedit:path: visitscotland:image
             hipposysedit:primary: false
             hipposysedit:type: hippogallerypicker:imagelink
-          /productId:
-            jcr:primaryType: hipposysedit:field
-            hipposysedit:mandatory: false
-            hipposysedit:multiple: false
-            hipposysedit:ordered: false
-            hipposysedit:path: visitscotland:productId
-            hipposysedit:primary: false
-            hipposysedit:type: String
-            hipposysedit:validators: [required]
           /quote:
             jcr:primaryType: hipposysedit:field
             hipposysedit:mandatory: false
@@ -57,18 +48,19 @@ definitions:
             hipposysedit:path: visitscotland:role
             hipposysedit:primary: false
             hipposysedit:type: String
-          /products:
+          /product:
             jcr:primaryType: hipposysedit:field
-            hipposysedit:multiple: true
-            hipposysedit:ordered: true
-            hipposysedit:path: visitscotland:products
-            hipposysedit:type: hippo:compound
-            hipposysedit:validators: [contentblocks-validator]
+            hipposysedit:mandatory: false
+            hipposysedit:multiple: false
+            hipposysedit:ordered: false
+            hipposysedit:path: visitscotland:product
+            hipposysedit:primary: false
+            hipposysedit:type: hippo:mirror
+            hipposysedit:validators: [optional]
       /hipposysedit:prototypes:
         jcr:primaryType: hipposysedit:prototypeset
         /hipposysedit:prototype:
           jcr:primaryType: visitscotland:Quote
-          visitscotland:productId: ''
           visitscotland:author: ''
           visitscotland:role: ''
           /visitscotland:image:
@@ -80,6 +72,9 @@ definitions:
           /visitscotland:quote:
             jcr:primaryType: hippostd:html
             hippostd:content: ''
+          /visitscotland:product:
+            jcr:primaryType: hippo:mirror
+            hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
       /editor:templates:
         jcr:primaryType: editor:templateset
         /_default_:
@@ -103,13 +98,13 @@ definitions:
               ckeditor.config.overlayed.json: '{toolbarGroups: [{ name: ''links''
                 },{name:''insert''},{name:''clipboard''},{name:''tools''},{name:''undo''}]
                 , removeButtons: ''PickImage,Youtube,Table''}'
-          /productId:
+          /product:
             jcr:primaryType: frontend:plugin
-            caption: DMS Product ID
-            field: productId
-            plugin.class: org.hippoecm.frontend.editor.plugins.field.PropertyFieldPlugin
-            wicket.id: ${cluster.id}.field
+            caption: Product
+            field: product
             hint: ''
+            plugin.class: org.hippoecm.frontend.editor.plugins.field.NodeFieldPlugin
+            wicket.id: ${cluster.id}.field
             /cluster.options:
               jcr:primaryType: frontend:pluginconfig
           /image:
@@ -139,14 +134,3 @@ definitions:
             wicket.id: ${cluster.id}.field
             /cluster.options:
               jcr:primaryType: frontend:pluginconfig
-          /products:
-            jcr:primaryType: frontend:plugin
-            caption: Product
-            compoundList: visitscotland:MegalinkItem
-            contentPickerType: links
-            field: products
-            plugin.class: org.onehippo.forge.contentblocks.ContentBlocksFieldPlugin
-            wicket.id: ${cluster.id}.field
-            /cluster.options:
-              jcr:primaryType: frontend:pluginconfig
-              maxitems: 1

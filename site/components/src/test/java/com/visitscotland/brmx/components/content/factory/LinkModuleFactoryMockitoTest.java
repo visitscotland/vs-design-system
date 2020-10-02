@@ -324,4 +324,12 @@ public class LinkModuleFactoryMockitoTest {
         assertEquals("http://www.visitscotland.com", layout.getCta().getLink());
     }
 
+    //TODO complete test
+    @Test
+    void createEnhancedLink(){
+       throw new RuntimeException("Complete test");
+    }
+
+
+
 }

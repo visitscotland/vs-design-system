@@ -1,9 +1,6 @@
 package com.visitscotland.brmx.components.content;
 
 import com.visitscotland.brmx.beans.Destination;
-import com.visitscotland.brmx.beans.Megalinks;
-import com.visitscotland.brmx.beans.mapping.megalinks.LinksModule;
-import com.visitscotland.brmx.beans.mapping.megalinks.MultiImageLinksModule;
 import com.visitscotland.brmx.components.content.factory.ICentreFactory;
 import com.visitscotland.brmx.components.content.factory.IKnowFactory;
 import com.visitscotland.brmx.components.content.factory.LinkModulesFactory;
@@ -11,17 +8,12 @@ import com.visitscotland.brmx.mock.MegalinksMockService;
 import com.visitscotland.brmx.utils.HippoUtilsService;
 import org.hippoecm.hst.mock.core.component.MockHstRequest;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import java.util.Arrays;
-import java.util.List;
 import java.util.Locale;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
 
 
 

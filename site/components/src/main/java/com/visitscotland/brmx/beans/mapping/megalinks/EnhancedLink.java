@@ -2,7 +2,6 @@ package com.visitscotland.brmx.beans.mapping.megalinks;
 
 import com.visitscotland.brmx.beans.mapping.FlatImage;
 import com.visitscotland.brmx.beans.mapping.FlatLink;
-import org.hippoecm.hst.content.beans.standard.HippoHtml;
 
 public class EnhancedLink extends FlatLink {
 

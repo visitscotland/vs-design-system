@@ -83,6 +83,13 @@
             <vs-col cols="12" md="10" lg="10" xl="10" offset-lg="1">
                 <@imageWithCaption imageSrc=imageQuote imageDetails=module.quoteImage variant="fullwidth"/>
                 "<@hst.html hippohtml=module.quote/>"
+                </br>
+                <#if module.quoteLink??>
+                    <vs-button animate=false background="purple" variant="primary" href="${module.quoteLink.link}" size="md">
+                        ${module.quoteLink.label}
+                    </vs-button>
+
+                </#if>
                 <vs-heading level="6">${module.quoteAuthorName}</vs-heading>
                 ${module.quoteAuthorTitle}
             </vs-col>

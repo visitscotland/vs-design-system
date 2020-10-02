@@ -1,5 +1,6 @@
 package com.visitscotland.brmx.beans.mapping;
 
+import com.visitscotland.brmx.beans.mapping.megalinks.EnhancedLink;
 import org.hippoecm.hst.content.beans.standard.HippoHtml;
 
 import java.util.List;
@@ -12,7 +13,7 @@ public class ICentreModule extends Module{
     private String quoteAuthorTitle;
     private HippoHtml quote;
     private FlatImage quoteImage;
-    private FlatLink quoteLink;
+    private EnhancedLink quoteLink;
     private List<FlatLink> iCentreList;
 
     public String getTitle() {
@@ -63,11 +64,11 @@ public class ICentreModule extends Module{
         this.quoteImage = quoteImage;
     }
 
-    public FlatLink getQuoteLink() {
+    public EnhancedLink getQuoteLink() {
         return quoteLink;
     }
 
-    public void setQuoteLink(FlatLink quoteLink) {
+    public void setQuoteLink(EnhancedLink quoteLink) {
         this.quoteLink = quoteLink;
     }
 
