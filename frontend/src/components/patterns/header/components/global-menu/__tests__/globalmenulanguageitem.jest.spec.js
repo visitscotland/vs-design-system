@@ -16,7 +16,9 @@ describe('VsGlobalMenuLanguageItem renders', () => {
 
         expect(wrapper.is('vsdropdownitem-stub')).toBe(true);
     });
+});
 
+describe(':props', () => {
     it('should render language name', () => {
         const wrapper = factoryShallowMount({
             languageName: 'Spanish',
