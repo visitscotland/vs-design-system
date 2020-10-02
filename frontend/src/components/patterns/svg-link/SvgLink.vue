@@ -1,18 +1,26 @@
 <template>
-    <a
+    <VsLink
         class="vs-svg-link"
+        data-test="vs-svg-link"
         :href="href"
     >
-        <span class="sr-only">{{ logoAltText }}</span>
+        <span
+            class="sr-only"
+            data-test="logo-alt-text"
+        >
+            {{ logoAltText }}
+        </span>
         <VsSvg
+            data-test="vs-svg-link__svg"
             :path="svgPath"
             :fill="svgFill"
         />
-    </a>
+    </VsLink>
 </template>
 
 <script>
 import VsSvg from '@components/elements/svg/Svg';
+import VsLink from '@components/elements/link/Link';
 
 /**
  * A component for an SVG wrapped in a link with accessible sr-only text
@@ -23,6 +31,7 @@ export default {
     release: '0.0.1',
     components: {
         VsSvg,
+        VsLink,
     },
     props: {
         /**
@@ -56,16 +65,6 @@ export default {
     },
 };
 </script>
-
-<style lang="scss">
-.vs-svg-link {
-    &:focus {
-        outline: none;
-        box-shadow: 0 0 0 0.1rem $color-pink;
-    }
-}
-
-</style>
 
 <docs>
 ```jsx

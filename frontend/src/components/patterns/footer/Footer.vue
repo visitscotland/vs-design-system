@@ -91,6 +91,6 @@ export default {
 </style>
 
 <docs>
-  ```[import](./footer.example.vue)
+  ```[import](./examples/footer.example.vue)
   ```
 </docs>
