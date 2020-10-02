@@ -6,13 +6,14 @@
                     cols="12"
                     class="text-center"
                 >
-                    <a
+                    <VsSvgLink
                         class="vs-footer-copyright__logo mb-4"
+                        data-test="vs-footer-copyright__logo"
+                        :logo-alt-text="logoAltText"
                         :href="href"
-                    >
-                        <span class="sr-only">{{ logoAltText }}</span>
-                        <VsSvg path="vs-logo" />
-                    </a>
+                        svg-fill="700e57"
+                        svg-path="vs-logo"
+                    />
 
                     <p class="vs-footer-copyright__text">
                         &copy; {{ getCurrentYear }}
@@ -27,7 +28,8 @@
 </template>
 
 <script>
-import VsSvg from '@components/elements/svg/Svg';
+import VsSvgLink from '@components/patterns/svg-link/SvgLink';
+
 import {
     VsRow, VsContainer, VsCol,
 } from '@components/elements/layout';
@@ -39,7 +41,7 @@ import {
 export default {
     name: 'VsFooterCopyright',
     components: {
-        VsSvg,
+        VsSvgLink,
         VsRow,
         VsContainer,
         VsCol,
@@ -79,6 +81,12 @@ export default {
 
     .vs-footer-copyright__logo {
         display: inline-block;
+
+        &.vs-link.primary{
+            &:focus {
+                outline-color: #ffffff;
+            }
+        }
     }
 
     .vs-footer-copyright__text {

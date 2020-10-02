@@ -12,7 +12,7 @@ const factoryMount = (values) => mount(VsMegaNavTopMenuItem, {
 });
 
 describe('VsMegaNavTopMenuItem', () => {
-    it('should render a component with the class `.vs-mega-nav__top-menu__item`', () => {
+    it('should render a component with the data-test attribute `.vs-mega-nav__top-menu__item`', () => {
         const wrapper = shallowMount(VsMegaNavTopMenuItem);
         expect(wrapper.attributes('data-test')).toBe('vs-mega-nav__top-menu__item');
     });
@@ -65,7 +65,7 @@ describe('VsMegaNavTopMenuItem', () => {
     describe(':slots', () => {
         it('renders content inserted in a buttonContent slot', () => {
             const wrapper = factoryMount();
-            expect(wrapper.find('[data-test="vs-mega-nav__dropdown"]').find('.dropdown-toggle').text()).toBe('Dropdown Toggle');
+            expect(wrapper.find('[data-test="vs-mega-nav__dropdown"]').text()).toBe('Dropdown Toggle');
         });
 
         it('renders content inserted in a dropdownContent slot', () => {
