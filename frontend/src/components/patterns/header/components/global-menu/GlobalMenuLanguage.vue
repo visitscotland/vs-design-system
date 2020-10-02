@@ -57,7 +57,7 @@ export default {
             return `/en/${this.currentLocale.substr(0, 2).toLowerCase()}`;
         },
     },
-    created() {
+    mounted() {
         const expiryDate = new Date();
         expiryDate.setFullYear(expiryDate.getFullYear() + 1);
         document.cookie = `vs_locale=${this.localeCookie}; expires=${expiryDate}`;
