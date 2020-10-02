@@ -11,7 +11,7 @@ definitions:
         /hipposysedit:nodetype:
           jcr:primaryType: hipposysedit:nodetype
           jcr:mixinTypes: ['mix:referenceable', 'hipposysedit:remodel']
-          jcr:uuid: 2008f1c7-5add-4d9a-89ec-bbe0b356c959
+          jcr:uuid: 52d6e35e-8006-433b-8eb7-57b3b9fbc095
           hipposysedit:node: true
           hipposysedit:supertype: ['visitscotland:Page', 'hippostd:relaxed', 'hippotranslation:translated']
           hipposysedit:uri: http://www.visitscotland.com/visitscotland/nt/1.0
@@ -42,7 +42,7 @@ definitions:
           visitscotland:seoDescription: ''
           visitscotland:teaser: ''
           visitscotland:seoTitle: ''
-          jcr:uuid: 6ab0fe92-48dd-4f4f-8203-694aeb9d9d2f
+          jcr:uuid: 044be006-c202-4621-8e87-c0f3eb53a739
           hippostdpubwf:lastModificationDate: 2020-05-15T09:26:41.741+01:00
           hippostdpubwf:creationDate: 2020-05-15T09:26:41.742+01:00
           /visitscotland:heroImage:
@@ -94,6 +94,7 @@ definitions:
             wicket.id: ${cluster.id}.left.item
             /cluster.options:
               jcr:primaryType: frontend:pluginconfig
+              maxlength: '70'
           /location:
             jcr:primaryType: frontend:plugin
             caption: Location
@@ -132,6 +133,7 @@ definitions:
             wicket.id: ${cluster.id}.left.item
             /cluster.options:
               jcr:primaryType: frontend:pluginconfig
+              maxlength: '160'
           /title:
             jcr:primaryType: frontend:plugin
             caption: Heading
