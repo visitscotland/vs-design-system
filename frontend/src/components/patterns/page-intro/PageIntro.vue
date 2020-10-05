@@ -68,7 +68,7 @@ export default {
     }
 }
 
-.vs-page-intro figcaption {
+.vs-page-intro .vs-hero figcaption {
     @include media-breakpoint-up(lg) {
         bottom: 200px;
     }
