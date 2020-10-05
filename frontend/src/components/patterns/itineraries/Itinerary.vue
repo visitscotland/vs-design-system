@@ -18,7 +18,7 @@
             <VsRow>
                 <VsCol
                     cols="12"
-                    class="p-0"
+                    class="p-0 vs-itinerary__accordion-container"
                 >
                     <VsAccordion break-point="lg">
                         <slot name="list" />
@@ -132,6 +132,19 @@ export default {
 
          @media screen and (-ms-high-contrast: active), screen and (-ms-high-contrast: none) {
             position: relative;
+        }
+    }
+
+    // layout styles for safari
+    @media screen and (min-color-index:0) and (-webkit-min-device-pixel-ratio:0) {
+        @include media-breakpoint-up(lg) {
+            .vs-itinerary__map-container {
+                height: 0;
+            }
+
+            .vs-itinerary__accordion-container {
+                max-width: 50%;
+            }
         }
     }
 }
