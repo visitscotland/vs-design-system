@@ -1,4 +1,4 @@
-import VsSocialCreditLink from './SocialCreditLink.vue';
+import VsSocialCreditLink from './SocialCreditLink';
 
 export default {
     VsSocialCreditLink,
