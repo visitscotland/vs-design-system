@@ -29,6 +29,6 @@ export default {
 </style>
 
 <docs>
-    ```[import](./examples/header.example.vue)
+    ```[import](./__examples__/header.example.vue)
     ```
 </docs>
