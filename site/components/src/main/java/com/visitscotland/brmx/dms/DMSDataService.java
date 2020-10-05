@@ -70,8 +70,13 @@ public class DMSDataService {
         return null;
     }
 
-    //TODO: Do it right!!!!
+    //TODO: Do it right!!!! Use psb instead of locale and query
     public JsonNode searchResults(ProductSearchBuilder psb, Locale locale, String query){
+
+        // TODO: This method is part of POC for iCentre and Iknow modules, The requirements hasn't been signed of and
+        // therefore, this method might not be correct. Once this method is completed, Some unit tests must be added
+        logger.error("This is an stub method that conver product search parameters into map parameters.");
+
         String dmsUrl = Properties.VS_DMS_SERVICE + "/data/product-search/map" + query.substring(query.lastIndexOf("?")) ;
         String responseString = null;
 

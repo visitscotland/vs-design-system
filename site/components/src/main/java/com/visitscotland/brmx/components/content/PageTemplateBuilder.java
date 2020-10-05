@@ -15,7 +15,7 @@ import org.hippoecm.hst.core.component.HstRequest;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PageTemplateBuilder<T extends Page> {
+public class PageTemplateBuilder {
 
     private final LinkModulesFactory linksFactory;
     private final ICentreFactory iCentreFactory;

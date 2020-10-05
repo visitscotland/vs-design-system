@@ -13,7 +13,8 @@ public class Destination extends Page  {
         return getSingleProperty("visitscotland:location");
     }
 
-    public List<BaseDocument> getItems() {
+    @Override
+    public List<BaseDocument> getModules() {
         return getExternalBeansByType(BaseDocument.class);
     }
 

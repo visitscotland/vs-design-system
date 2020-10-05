@@ -6,15 +6,21 @@ import com.visitscotland.brmx.beans.mapping.IKnowModule;
 import com.visitscotland.brmx.dms.ProductSearchBuilder;
 import com.visitscotland.brmx.utils.HippoUtilsService;
 import com.visitscotland.utils.Contract;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class IKnowFactory {
 
+    private static final Logger logger = LoggerFactory.getLogger(ICentreFactory.class);
+
     private final HippoUtilsService utils;
-    private final ProductSearchBuilder psBuilder;
 
     public IKnowFactory(){
-        utils = new HippoUtilsService();
-        psBuilder = new ProductSearchBuilder();
+        this(new HippoUtilsService());
+    }
+
+    public IKnowFactory(HippoUtilsService utils){
+        this.utils = utils;
     }
 
     //TODO Decide if we need this method
@@ -23,8 +29,14 @@ public class IKnowFactory {
     }
 
     public IKnowModule getIKnowModule(IKnow document, String location){
+        //TODO: This Content Modelling added many improvements but in order to verify the improvements some classes
+        // needed to be stubbed. In order of progressing with the work, this code was committed to develop but marked
+        // as unfinished. The main reason for not finishing the work was that the requirements were completely defined.
+        // TODO: Parting from the previous statement, we couldn't complete the Unit Testing, so they must be added once
+        // the requirements are confirmed
+        logger.error("The implementation of this module is just a POC. Please correct and complete the implementation");
+
         IKnowModule module = new IKnowModule ();
-        //TODO IknowModule
 
         if (Contract.isEmpty(document.getTitle())){
             //TODO bundle
@@ -37,9 +49,9 @@ public class IKnowFactory {
 
         FlatLink link = new FlatLink();
 
-        //TODO get prodTypes from Labels
+        //TODO get prodTypes from Labels (Configuration)
         //https://www.visitscotland.com/info/see-do/search-results?prodtypes=cate%2Cacti%2Cattr%2Creta&src_awards__0=qaiknowscotland&loc=Edinburgh&locplace=4161&locprox=0
-        link.setLink(psBuilder.productTypes("cate,acti,attr,reta").award("qaiknowscotland").location(location).build());
+        link.setLink(new ProductSearchBuilder().productTypes("cate,acti,attr,reta").award("qaiknowscotland").location(location).build());
         //TODO bundle
         link.setLabel("iKnow Partners in this area");
 
