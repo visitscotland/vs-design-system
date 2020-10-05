@@ -203,6 +203,6 @@ export default {
 </style>
 
 <docs>
-   ```[import](./examples/meganav.dropdown.example.vue)
+   ```[import](./__examples__/meganav.dropdown.example.vue)
     ```
 </docs>
