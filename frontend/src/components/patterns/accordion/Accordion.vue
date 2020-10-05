@@ -10,7 +10,6 @@
 
 <script>
 
-
 /**
  * Accordion wrapper used with AccordionItems.
  */
