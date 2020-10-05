@@ -162,6 +162,6 @@ export default {
 </style>
 
 <docs>
-    ```[import](./examples/meganav.example.vue)
+    ```[import](./__examples__/meganav.example.vue)
     ```
 </docs>
