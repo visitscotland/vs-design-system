@@ -5,6 +5,7 @@
         :class="{ 'list-inline-item': inline, 'vs-description-list__detail--styled': !inline }"
     >
         <div class="position-relative">
+            <!-- @slot The list content goes here -->
             <slot />
         </div>
     </VsCol>

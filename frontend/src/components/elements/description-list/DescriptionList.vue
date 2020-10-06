@@ -4,6 +4,7 @@
         class="vs-description-list"
         :class="{ 'list-inline': inline }"
     >
+        <!-- @slot The description content goes here -->
         <slot />
     </VsRow>
 </template>
@@ -30,6 +31,7 @@ export default {
          */
         inline: {
             type: Boolean,
+            default: false,
         },
     },
     /**
