@@ -1,12 +1,15 @@
 import { mount } from '@vue/test-utils';
 import { BBreadcrumbItem } from 'bootstrap-vue';
 
-import VsBreadcrumbItem from './BreadcrumbItem';
+import VsBreadcrumbItem from '../BreadcrumbItem';
 
 const factoryMount = (propsData) => mount(VsBreadcrumbItem, {
     propsData: {
         text: 'Some Text',
         ...propsData,
+    },
+    attrs: {
+        'test-attribute': 'test-value',
     },
 });
 
@@ -18,11 +21,18 @@ describe('<VsBreadcrumbItem />', () => {
         expect(breadcrumbItem.exists()).toBe(true);
     });
 
+    it('should bind given attributes to <b-breadcrumb-item />', () => {
+        const wrapper = factoryMount();
+
+        const breadcrumb = wrapper.find(BBreadcrumbItem);
+        expect(breadcrumb.attributes('test-attribute')).toBe('test-value');
+    });
+
     describe(':props', () => {
         it(':active - `active` prop should be `false` by default', () => {
             const wrapper = factoryMount();
 
-            expect(wrapper.classes('active')).toBe(false);
+            expect(wrapper.classes()).not.toContain('active');
         });
 
         it(':active - should accept and render an `active` property', () => {
@@ -30,7 +40,7 @@ describe('<VsBreadcrumbItem />', () => {
                 active: true,
             });
 
-            expect(wrapper.classes('active')).toBe(true);
+            expect(wrapper.classes()).toContain('active');
         });
 
         it(':text - should accept and render a `text` property', () => {
