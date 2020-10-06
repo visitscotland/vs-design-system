@@ -6,7 +6,7 @@ const slotText = 'Breadcrumb text';
 
 const factoryShallowMount = () => shallowMount(VsBreadcrumb, {
     slots: {
-        default: slotText
+        default: slotText,
     },
     attrs: {
         class: 'test-class',
@@ -28,7 +28,7 @@ describe('<VsBreadcrumb />', () => {
     it('should bind given attributes to <b-breadcrumb-stub />', () => {
         const breadcrumb = wrapper.find('bbreadcrumb-stub');
 
-        expect(breadcrumb.classes()).toContain('test-class')
+        expect(breadcrumb.classes()).toContain('test-class');
     });
 
     it(':slots - renders content inserted into default `slot`', () => {
