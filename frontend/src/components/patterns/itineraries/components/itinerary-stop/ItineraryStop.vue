@@ -201,7 +201,7 @@ export default {
                 slot="nearby-links"
                 v-if="index == itineraries.sampleItinerary.days[0].stops.length - 1"
             >
-                <vs-button-with-icon
+                <vs-button
                     class="mb-3"
                     background="white"
                     variant="outline-primary"
@@ -209,15 +209,15 @@ export default {
                     icon="food"
                 >
                     Nearby places to eat
-                </vs-button-with-icon>
-                <vs-button-with-icon
+                </vs-button>
+                <vs-button
                     background="white"
                     variant="outline-primary"
                     href="#"
                     icon="product-accommodation"
                 >
                     Nearby places to stay
-                </vs-button-with-icon>
+                </vs-button>
             </vs-itinerary-border-overlap-wrapper>
         </vs-itinerary-stop>
     </ul>
