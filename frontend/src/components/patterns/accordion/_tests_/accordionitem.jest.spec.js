@@ -1,4 +1,4 @@
-import { shallowMount } from '@vue/test-utils';
+import { shallowMount, mount } from '@vue/test-utils';
 
 import VsAccordionItem from '../AccordionItem';
 
@@ -14,15 +14,15 @@ describe('<VsAccordionItem />', () => {
             controlId: '1234',
         });
 
-        const AccordionItem = wrapper.find('bcard-stub.vs-accordion__item');
-        const AccordionItemHeader = wrapper.find('bcardheader-stub.vs-accordion__item__card-header');
-        const AccordionItemTitle = wrapper.find('h4.vs-accordion__item__title');
-        const AccordionItemBody = wrapper.find('.vs-accordion__item__panel');
+        const accordionItem = wrapper.find('bcard-stub.vs-accordion__item');
+        const accordionItemHeader = wrapper.find('bcardheader-stub.vs-accordion__item__card-header');
+        const accordionItemTitle = wrapper.find('h4.vs-accordion__item__title');
+        const accordionItemBody = wrapper.find('.vs-accordion__item__panel');
 
-        expect(AccordionItem.exists()).toBe(true);
-        expect(AccordionItemHeader.exists()).toBe(true);
-        expect(AccordionItemTitle.exists()).toBe(true);
-        expect(AccordionItemBody.exists()).toBe(true);
+        expect(accordionItem.exists()).toBe(true);
+        expect(accordionItemHeader.exists()).toBe(true);
+        expect(accordionItemTitle.exists()).toBe(true);
+        expect(accordionItemBody.exists()).toBe(true);
     });
 
     describe(':props', () => {
@@ -31,9 +31,9 @@ describe('<VsAccordionItem />', () => {
                 controlId: '1234',
             });
 
-            const AccordionItemBody = wrapper.find('.vs-accordion__item__panel');
+            const accordionItemBody = wrapper.find('.vs-accordion__item__panel');
 
-            expect(AccordionItemBody.attributes('id')).toBe('1234');
+            expect(accordionItemBody.attributes('id')).toBe('1234');
         });
 
         it(':itemBreakPoint assigns accordion class name', () => {
@@ -42,9 +42,9 @@ describe('<VsAccordionItem />', () => {
                 controlId: '1234',
             });
 
-            const AccordionToggle = wrapper.find('vsaccordiontoggle-stub');
+            const accordionToggle = wrapper.find('vsaccordiontoggle-stub');
 
-            expect(AccordionToggle.classes()).toContain('d-sm-none');
+            expect(accordionToggle.classes()).toContain('d-sm-none');
         });
 
         it(':openByDefault - to show accordion open or closed by default', () => {
@@ -53,8 +53,8 @@ describe('<VsAccordionItem />', () => {
                 controlId: '1234',
             });
 
-            const AccordionItemBody = wrapper.find('vsaccordiontoggle-stub');
-            expect(AccordionItemBody.attributes('visible')).toBe('false');
+            const accordionItemBody = wrapper.find('vsaccordiontoggle-stub');
+            expect(accordionItemBody.attributes('visible')).toBe('false');
         });
 
         it(':variant assigns variant to VsAccordionToggle', () => {
@@ -63,8 +63,9 @@ describe('<VsAccordionItem />', () => {
                 controlId: '1234',
             });
 
-            const AccordionItemBody = wrapper.find('vsaccordiontoggle-stub');
-            expect(AccordionItemBody.attributes('variant')).toBe('secondary');
+            const accordionItemBody = wrapper.find('vsaccordiontoggle-stub');
+            expect(accordionItemBody.attributes('variant')).toBe('secondary');
         });
     });
+
 });
