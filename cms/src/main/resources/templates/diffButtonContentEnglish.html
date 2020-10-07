@@ -9,4 +9,16 @@
         <p th:case="false">No translations pending.</p>
     </div>
 </body>
+<script>
+    var brDocument;
+
+    function setBrDocument(parentDocument) {
+        brDocument = parentDocument;
+    }
+
+    document.addEventListener('DOMContentLoaded', async () => {
+        window.parent.setupIFrame();
+    });
+
+</script>
 </html>

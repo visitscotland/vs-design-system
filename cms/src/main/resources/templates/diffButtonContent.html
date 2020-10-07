@@ -3,6 +3,12 @@
 <head>
     <link rel="stylesheet" type="text/css" th:href="@{/skin/hippo-cms/css/hippo-cms-theme.min.css}">
 </head>
+<style>
+    a {
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+</style>
 <body>
     <div th:switch="${translationFlag}">
         <div th:case="true">
@@ -10,9 +16,40 @@
             <a class="btn btn-br-secondary"
                th:href="@{/vs-openui/diff/{nodeId}/view(nodeId=${nodeId})}"
                target="_blank">Open English difference</a>
+            <a class="btn btn-br-secondary"
+               href="#"
+               th:data-nodeId="${nodeId}"
+               onclick="clearTranslationFlag(this.getAttribute('data-nodeId'))">Translation Complete</a>
         </div>
 
         <p th:case="false">No translations pending.</p>
     </div>
 </body>
+<script>
+    var brDocument;
+
+    function clearTranslationFlag(nodeId) {
+        var request = new XMLHttpRequest();
+        request.open("DELETE", `/cms/vs-service/node/${nodeId}/translation/flag`);
+        request.send();
+        request.onload = () => {
+            console.log(request);
+            parent.parent.location.reload();
+        }
+    }
+
+    function setBrDocument(parentDocument) {
+        brDocument = parentDocument;
+        if (brDocument.mode === 'edit') {
+            const anchors = document.querySelectorAll('a');
+            anchors.forEach(anchor => {
+                anchor.style.display = 'none';
+            })
+        }
+    }
+
+    document.addEventListener('DOMContentLoaded', async () => {
+        window.parent.setupIFrame();
+    });
+</script>
 </html>
