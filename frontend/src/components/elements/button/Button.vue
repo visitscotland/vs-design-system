@@ -5,18 +5,27 @@
         :tabindex="tabindex"
         class="text-uppercase"
         :class="{
+            'vs-button-with-icon': icon ? 'vs-button-with-icon' : '',
             [animateClass]: animateClass,
             [backgroundClass]: backgroundClass,
         }"
         :size="size"
         v-bind="$attrs"
-        @click="animateClass ? animateHandler() : null"
+        @click="animate ? animateHandler() : null"
     >
+        <VsIcon
+            v-if="icon"
+            :name="icon"
+            :size="iconSize"
+            :padding="0"
+        />
+        <!-- @slot The button content goes here -->
         <slot />
     </BButton>
 </template>
 <script>
 import { BButton } from 'bootstrap-vue';
+import VsIcon from '@components/elements/icon/Icon';
 
 /**
  * TODO: Document usage.
@@ -33,6 +42,7 @@ export default {
     release: '0.0.1',
     components: {
         BButton,
+        VsIcon,
     },
     props: {
         /**
@@ -90,6 +100,14 @@ export default {
             type: Boolean,
             default: true,
         },
+        /**
+         * If you need a button with icon
+         * just pass the icon name here.
+         */
+        icon: {
+            type: String,
+            default: '',
+        },
     },
     computed: {
         animateClass() {
@@ -97,6 +115,18 @@ export default {
         },
         backgroundClass() {
             return this.background ? [`btn-bg-${this.background}`] : null;
+        },
+        iconSize() {
+            switch (this.size) {
+            case 'sm':
+                return 'xs';
+            case 'md':
+                return 'sm';
+            case 'lg':
+                return 'md';
+            default:
+                return 'md';
+            }
         },
     },
     methods: {
@@ -112,6 +142,27 @@ export default {
 
 <style lang="scss" scoped>
 @import "~bootstrap/scss/buttons";
+
+.vs-button-with-icon {
+    padding-left: 1rem;
+    padding-right: 1rem;
+
+    @include media-breakpoint-up(sm) {
+        width: auto;
+    }
+
+    svg {
+        fill: currentColor;
+        margin-right: 0.625rem;
+        transition: fill 250ms;
+        vertical-align: sub;
+    }
+    &:hover {
+        svg {
+            fill: currentColor;
+        }
+    }
+}
 
 .btn {
     font-family: $font-family-base;
@@ -184,6 +235,39 @@ export default {
       <vs-button :animate=false class="mr-2 mb-2">Button with no animation</vs-button>
       <vs-button class="mr-2 mb-2" href="https://www.visitscotland.com">Link</vs-button>
     </bs-wrapper>
+
+    <h4>With Icons</h4>
+    <bs-wrapper class="d-flex flex-wrap mb-4">
+      <vs-button
+        class="mr-2 mb-2"
+        icon="food"
+        size="sm"
+      >
+        Nearby Places to Eat
+      </vs-button>
+    </bs-wrapper>
+
+    <bs-wrapper class="d-flex flex-wrap mb-4">
+      <vs-button
+        class="mr-2 mb-2"
+        icon="map"
+        size="md"
+      >
+        Map View
+      </vs-button>
+    </bs-wrapper>
+
+    <bs-wrapper class="d-flex flex-wrap mb-4">
+      <vs-button
+        class="mr-2 mb-2"
+        icon="external-link"
+        size="lg"
+      >
+        Open in a new tab
+      </vs-button>
+    </bs-wrapper>
+
+
     <h4>Variants</h4>
     <bs-wrapper class="d-flex flex-wrap mb-4">
       <vs-button variant="primary" class="mr-2 mb-2">Primary (default)</vs-button>

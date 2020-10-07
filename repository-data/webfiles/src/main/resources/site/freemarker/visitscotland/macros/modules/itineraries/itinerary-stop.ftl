@@ -7,7 +7,7 @@
 <#include "../../../../frontend/components/vs-description-list-detail.ftl">
 <#include "../../../../frontend/components/vs-link.ftl">
 <#include "../../../../frontend/components/vs-svg.ftl">
-<#include "../../../../frontend/components/vs-button-with-icon.ftl">
+<#include "../../../../frontend/components/vs-button.ftl">
 
 <#include "../../global/key-facilities.ftl">
 <#include "../../global/image-with-caption.ftl">
@@ -117,12 +117,12 @@
             <#assign nearbyStayUrl = productSearch(locale, "acco", prod.coordinates.latitude, prod.coordinates.longitude, 5)>
 
             <vs-itinerary-border-overlap-wrapper slot="nearby-links">
-                <vs-button-with-icon class="mb-3" background="white" variant="outline-primary" icon="food" href="${nearbyEatsUrl}" >
+                <vs-button class="mb-3" background="white" variant="outline-primary" icon="food" href="${nearbyEatsUrl}" >
                     ${label("itinerary", "stop.nearby-eat")}
-                </vs-button-with-icon>
-                <vs-button-with-icon background="white" variant="outline-primary" icon="product-accommodation" href="${nearbyStayUrl}" >
+                </vs-button>
+                <vs-button background="white" variant="outline-primary" icon="product-accommodation" href="${nearbyStayUrl}" >
                     ${label("itinerary", "stop.nearby-stay")}
-                </vs-button-with-icon>
+                </vs-button>
             </vs-itinerary-border-overlap-wrapper>
         </#if>
     </vs-itinerary-stop>
