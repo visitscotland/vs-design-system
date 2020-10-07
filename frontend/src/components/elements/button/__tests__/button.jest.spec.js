@@ -25,6 +25,8 @@ const factoryMount = (propsData) => mount(VsButton, {
     },
 });
 
+const testIcon = 'food';
+
 describe('VsButton', () => {
     it('should render a <bbutton-stub />', () => {
         const wrapper = factoryShallowMount();
@@ -81,6 +83,69 @@ describe('VsButton', () => {
 
             expect(wrapper.attributes('size')).toBe(testSize);
         });
+
+        describe(':props', () => {
+            it(':icon - should *NOT* render an icon if `icon` property is not passed', () => {
+                const wrapper = factoryShallowMount();
+                const iconStub = wrapper.find('vsicon-stub');
+
+                expect(iconStub.exists()).toBe(false);
+            });
+
+            it(':icon - should *NOT* the `vs-button-with-icon` class if icon prop is *NOT* provided', () => {
+                const wrapper = factoryMount();
+
+                expect(wrapper.classes('vs-button-with-icon')).toBe(false);
+            });
+
+            it(':icon - should render the <VsButton /> with a `vs-button-with-icon` class if icon prop is provided', () => {
+                const wrapper = factoryMount({
+                    icon: testIcon,
+                });
+
+                expect(wrapper.classes('vs-button-with-icon')).toBe(true);
+            });
+
+            it(':icon - should accept and render an `icon` property', () => {
+                const wrapper = factoryShallowMount({
+                    icon: testIcon,
+                });
+                const iconStub = wrapper.find('vsicon-stub');
+
+                expect(iconStub.attributes('name')).toBe(testIcon);
+            });
+
+            it(':icon - size should be `xs` if button size is set to `sm`', () => {
+                const wrapper = factoryShallowMount({
+                    icon: testIcon,
+                    size: 'sm',
+                });
+                const iconStub = wrapper.find('vsicon-stub');
+
+                expect(iconStub.attributes('size')).toBe('xs');
+            });
+
+            it(':icon - size should be `sm` if button size is set to `md`', () => {
+                const wrapper = factoryShallowMount({
+                    icon: testIcon,
+                    size: 'md',
+                });
+                const iconStub = wrapper.find('vsicon-stub');
+
+                expect(iconStub.attributes('size')).toBe('sm');
+            });
+
+            it(':icon - size should be `md` if button size is set to `lg`', () => {
+                const wrapper = factoryShallowMount({
+                    icon: testIcon,
+                    size: 'lg',
+                });
+                const iconStub = wrapper.find('vsicon-stub');
+
+                expect(iconStub.attributes('size')).toBe('md');
+            });
+        });
+
 
         describe(':animate', () => {
             it('should set a `btn-animate` class if `animate` is set to `false`', () => {
