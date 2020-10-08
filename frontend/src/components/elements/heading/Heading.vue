@@ -6,9 +6,14 @@
             'heading--thin': thin,
         }"
     >
+        <!-- @slot The main header content goes here -->
         <slot />
 
-        <span class="heading__sub-heading">
+        <span
+            v-if="hasSubtitle"
+            class="heading__sub-heading"
+        >
+            <!-- @slot The sub header content goes here -->
             <slot name="sub-heading" />
         </span>
     </Component>
@@ -46,6 +51,9 @@ export default {
     computed: {
         type() {
             return `h${this.level}`;
+        },
+        hasSubtitle() {
+            return !!this.$slots['sub-heading'];
         },
     },
 };
