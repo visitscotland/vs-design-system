@@ -68,4 +68,21 @@ describe('<VsAccordionItem />', () => {
         });
     });
 
+    describe(':methods', () => {
+        it(':onButtonClick should toggle accordion', async() => {
+            const wrapper = mount(VsAccordionItem, {
+                propsData: {
+                    controlId: '1234',
+                    openByDefault: true,
+                },
+            });
+
+            const accordionToggle = wrapper.find('.vs-accordion-toggle');
+            expect(accordionToggle.attributes('aria-expanded')).toBe('true');
+
+            await accordionToggle.trigger('click');
+
+            expect(accordionToggle.attributes('aria-expanded')).toBe('false');
+        });
+    });
 });
