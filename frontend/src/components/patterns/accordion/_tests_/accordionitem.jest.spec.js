@@ -47,14 +47,14 @@ describe('<VsAccordionItem />', () => {
             expect(accordionToggle.classes()).toContain('d-sm-none');
         });
 
-        it(':openByDefault - to show accordion open or closed by default', () => {
+        it(':openByDefault - to open or close accordion by default', () => {
             const wrapper = factoryShallowMount({
-                openByDefault: 'false',
+                openByDefault: false,
                 controlId: '1234',
             });
 
             const accordionItemBody = wrapper.find('vsaccordiontoggle-stub');
-            expect(accordionItemBody.attributes('visible')).toBe('false');
+            expect(accordionItemBody.classes()).toContain('d-lg-none');
         });
 
         it(':variant assigns variant to VsAccordionToggle', () => {
