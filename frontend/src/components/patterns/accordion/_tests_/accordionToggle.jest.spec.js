@@ -1,4 +1,4 @@
-import { shallowMount } from '@vue/test-utils';
+import { shallowMount, mount } from '@vue/test-utils';
 
 import VsAccordionToggle from '../AccordionToggle';
 
@@ -75,6 +75,19 @@ describe('<VsAccordionToggle />', () => {
             });
 
             expect(wrapper.text()).toContain(iconClosedSlot);
+        });
+    });
+
+    describe(':methods', () => {
+        it(':triggerToggle should toggle accordion', async() => {
+            const wrapper = mount(VsAccordionToggle);
+
+            const accordionToggle = wrapper.find('button.vs-accordion-toggle');
+
+            await accordionToggle.trigger('click');
+
+            expect(wrapper.emitted('toggle-panel')).toBeTruthy();
+
         });
     });
 });
