@@ -2,6 +2,8 @@ import { shallowMount, mount } from '@vue/test-utils';
 
 import VsAccordionItem from '../AccordionItem';
 
+const titleSlot = 'Item Title';
+
 const factoryShallowMount = (propsData) => shallowMount(VsAccordionItem, {
     propsData: {
         ...propsData,
@@ -83,6 +85,18 @@ describe('<VsAccordionItem />', () => {
             await accordionToggle.trigger('click');
 
             expect(accordionToggle.attributes('aria-expanded')).toBe('false');
+        });
+    });
+
+    describe('slots:', () => {
+        it('should render content inserted into title slot', () => {
+            const wrapper = shallowMount(VsAccordionItem, {
+                slots: {
+                    title: titleSlot,
+                },
+            });
+
+            expect(wrapper.text()).toContain(titleSlot);
         });
     });
 });
