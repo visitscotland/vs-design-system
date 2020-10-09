@@ -12,7 +12,7 @@ public class DestinationContentComponent extends PageContentComponent<Destinatio
 
     PageTemplateBuilder builder;
 
-    public DestinationContentComponent(){
+    public DestinationContentComponent() {
         builder = new PageTemplateBuilder();
     }
 
@@ -20,6 +20,10 @@ public class DestinationContentComponent extends PageContentComponent<Destinatio
     public void doBeforeRender(HstRequest request, HstResponse response) {
         super.doBeforeRender(request, response);
 
+        addAttributesToRequest(request);
+    }
+
+    void addAttributesToRequest(HstRequest request) {
         Destination document = (Destination) request.getAttribute("document");
 
         addHeroCoordinates(request);
