@@ -87,7 +87,6 @@ describe('<VsAccordionToggle />', () => {
             await accordionToggle.trigger('click');
 
             expect(wrapper.emitted('toggle-panel')).toBeTruthy();
-
         });
     });
 });
