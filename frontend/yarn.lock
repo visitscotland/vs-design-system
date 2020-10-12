@@ -16927,7 +16927,7 @@ vt-pbf@^3.1.1:
     "@mapbox/vector-tile" "^1.3.1"
     pbf "^3.0.5"
 
-vue-docgen-api@^3.23.1:
+vue-docgen-api@^3.26.0:
   version "3.26.0"
   resolved "https://registry.yarnpkg.com/vue-docgen-api/-/vue-docgen-api-3.26.0.tgz#2afc6a39e72862fbbc60ceb8510c681749f05460"
   integrity sha512-ujdg4i5ZI/wE46RZQMFzKnDGyhEuPCu+fMA86CAd9EIek/6+OqraSVBm5ZkLrbEd5f8xxdnqMU4yiSGHHeao/Q==
@@ -17070,10 +17070,10 @@ vue-style-loader@^4.1.0, vue-style-loader@^4.1.2:
     hash-sum "^1.0.2"
     loader-utils "^1.0.2"
 
-vue-styleguidist@3.23.1:
-  version "3.23.1"
-  resolved "https://registry.yarnpkg.com/vue-styleguidist/-/vue-styleguidist-3.23.1.tgz#88fff24f6552c380a2be57c8bf3f81acbf17a22f"
-  integrity sha512-+hF3qHIDdCahvNkfbIs3w7rQ3kM4EQWBHlwIsDKiHV+jscPueUXn6toDbuxW3i+BddT2pQz9W1+iCrxR3ocrnA==
+vue-styleguidist@3.26.0:
+  version "3.26.0"
+  resolved "https://registry.yarnpkg.com/vue-styleguidist/-/vue-styleguidist-3.26.0.tgz#bc0f72a6a08cc3a391f866fb381f54c37273e5c2"
+  integrity sha512-BrJmdv/0EAod7ixY/BODo5/NYSG9/AjqUp80wIZpLwjyxX9PMConTG1sG9Uqzb27zx5oQs8jN8TLxjcJHYk5pA==
   dependencies:
     "@vxna/mini-html-webpack-template" "^0.1.7"
     ast-types "^0.12.2"
@@ -17120,7 +17120,7 @@ vue-styleguidist@3.23.1:
     style-loader "^0.21.0"
     terser-webpack-plugin "^1.3.0"
     to-ast "^1.0.0"
-    vue-docgen-api "^3.23.1"
+    vue-docgen-api "^3.26.0"
     vue-inbrowser-compiler "^3.23.0"
     webpack-dev-server "^3.7.1"
     webpack-merge "^4.0.0"
