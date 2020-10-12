@@ -32,6 +32,9 @@ export default {
     name: 'VsStretchedLinkCard',
     status: 'prototype',
     release: '0.0.1',
+    components: {
+        VsHeading,
+    },
     props: {
         /**
         * The link that the component will use
@@ -41,7 +44,6 @@ export default {
             required: true,
         },
     },
-    components: {VsHeading},
 };
 </script>
 
