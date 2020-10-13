@@ -82,7 +82,7 @@ public class DocumentUtils {
 
                             //The document is added if the type matches
                             if (hippoBean != null) {
-                                if (hippoBean.getClass().isAssignableFrom(expectedClass)) {
+                                if (expectedClass.isAssignableFrom(hippoBean.getClass())) {
                                     documents.add((T) hippoBean);
                                 } else {
                                     logError("The following node might be corrupted and cannot be resolved as a BaseDocument", jcrNode, null);
