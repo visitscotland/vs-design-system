@@ -8,5 +8,5 @@ public interface TranslationParent {
 
     default String[] getChildJcrTypes() {
         return new String[] {};
-    };
+    }
 }

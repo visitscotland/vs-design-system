@@ -1,9 +1,10 @@
 package com.visitscotland.brmx.beans;
 
 import com.visitscotland.brmx.beans.capabilities.Linkable;
-import org.onehippo.cms7.essentials.dashboard.annotations.HippoEssentialsGenerated;
+import com.visitscotland.brmx.utils.DocumentUtils;
 import org.hippoecm.hst.content.beans.Node;
 import org.hippoecm.hst.content.beans.standard.HippoHtml;
+import org.onehippo.cms7.essentials.dashboard.annotations.HippoEssentialsGenerated;
 
 import java.util.List;
 
@@ -64,9 +65,13 @@ public class Page extends BaseDocument implements TranslationParent, Linkable {
         return getSingleProperty("visitscotland:translationFlag");
     }
 
+
     @Override
+    @Deprecated
+    /**
+     * This method shouldn't have new invocations. Instead of this, you shoulf invoke new DocumentUtils().getSiblingDocuments()
+     */
     public List<BaseDocument> getModules() {
-        //TODO Check allowed modules in getChildJcrTypes()
-        return getExternalBeansByType(BaseDocument.class);
+        return DocumentUtils.getInstance().getAllowedDocuments(this);
     }
 }

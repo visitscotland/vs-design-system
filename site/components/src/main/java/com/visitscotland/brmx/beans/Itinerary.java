@@ -32,8 +32,12 @@ public class Itinerary extends Page implements TranslationParent {
         return getMultipleProperty("visitscotland:areas");
     }
 
+    @Deprecated
+    /**
+     * This method shouldn't have new invocations. Instead of this, you should invoke {@code new DocumentUtils().getSiblingDocuments()}
+     */
     public List<Day> getDays() {
-        return getExternalBeansByType(Day.class);
+        return getPageChildrenByType(Day.class);
     }
 
     @HippoEssentialsGenerated(internalName = "visitscotland:transports")
