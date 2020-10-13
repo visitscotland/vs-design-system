@@ -2,19 +2,16 @@ package com.visitscotland.brmx.translation.plugin;
 
 import com.visitscotland.brmx.beans.Itinerary;
 import com.visitscotland.brmx.beans.Page;
-import com.visitscotland.brmx.beans.TranslationParent;
 import org.hippoecm.frontend.translation.ILocaleProvider;
 import org.hippoecm.hst.content.beans.standard.HippoBean;
 import org.hippoecm.repository.api.HippoNode;
-import org.junit.jupiter.api.Assertions;
+
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.ArgumentMatcher;
 import org.mockito.ArgumentMatchers;
 import org.mockito.Mock;
-import org.mockito.Mockito;
-import org.mockito.internal.matchers.VarargMatcher;
 import org.mockito.invocation.InvocationOnMock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.mockito.stubbing.Answer;
@@ -140,6 +137,7 @@ public class DocumentTranslatorBuildChangeSetListTest {
         verify(documentTranslator, times(3)).addTranslationLinkChangeSets(any(), any(ILocaleProvider.HippoLocale.class), anyList());
     }
 
+    @Disabled("This test is not applicable any longer since, Page implements TranslationParent")
     @Test
     public void buildDocumentChangeSetList_sourceDocumentTranslated_PageType_notTranslationParent() throws Exception {
         // The source document is already translated into every target locale and is a Page type,
@@ -150,6 +148,12 @@ public class DocumentTranslatorBuildChangeSetListTest {
         when(mockSourceDocument.hasTranslation(same(mockSpanishLocale))).thenReturn(true);
 
         Page mockHippoBean = mock(Page.class);
+        doCallRealMethod().when(mockHippoBean).getChildJcrTypes();
+        Node mockContainingFolder = mock(Node.class);
+        NodeIterator mockNodeIterator = mock(NodeIterator.class);
+        when(mockContainingFolder.getNodes()).thenReturn(mockNodeIterator);
+        when(mockNodeIterator.hasNext()).thenReturn(false);
+
         when(mockSourceDocument.asHippoBean()).thenReturn(mockHippoBean);
         when(mockSourceDocument.isNodeType(eq(JCR_TYPE))).thenReturn(true);
 
@@ -165,16 +169,17 @@ public class DocumentTranslatorBuildChangeSetListTest {
         verify(documentTranslator, times(3)).addTranslationLinkChangeSets(any(), any(ILocaleProvider.HippoLocale.class), anyList());
     }
 
+    @Disabled("This test is not applicable any longer since, Page implements TranslationParent")
     @Test
     public void buildDocumentChangeSetList_sourceDocumentHasMissingLocales_PageType_notTranslationParent() throws Exception {
-        // The source document has missing locale translations, is a Page type,
-        // but not a TranslationParent
+        // The source document has missing locale translations, is a Page type, but not a TranslationParent
         // Should return a ChangeSet for each missing locale
         when(mockSourceDocument.hasTranslation(same(mockItalianLocale))).thenReturn(true);
         when(mockSourceDocument.hasTranslation(same(mockFrenchLocale))).thenReturn(false);
         when(mockSourceDocument.hasTranslation(same(mockSpanishLocale))).thenReturn(false);
 
         Page mockHippoBean = mock(Page.class);
+        doCallRealMethod().when(mockHippoBean).getChildJcrTypes();
         when(mockSourceDocument.asHippoBean()).thenReturn(mockHippoBean);
         when(mockSourceDocument.isNodeType(eq(JCR_TYPE))).thenReturn(true);
 
