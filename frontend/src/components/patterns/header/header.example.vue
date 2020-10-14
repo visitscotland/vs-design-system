@@ -89,7 +89,7 @@
                             v-for="(site, i) in header.ourSites"
                             :key="i"
                             :href="site.href"
-                            :external="site.isExternal"
+                            :type="site.isExternal ? 'external' : null"
                             :active="site.isActive"
                             :tracking-id="site.trackingId"
                             full-width

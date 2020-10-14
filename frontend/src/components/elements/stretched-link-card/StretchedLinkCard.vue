@@ -8,13 +8,14 @@
                 level="4"
                 class="card-title"
             >
-                <a
+                <VsLink
                     :href="link"
+                    :type="linkType"
                     class="stretched-link"
                 >
                     <!-- @slot Contains header content for the card  -->
                     <slot name="stretched-card-header" />
-                </a>
+                </VsLink>
             </VsHeading>
             <!-- @slot Contains body content for the card  -->
             <slot name="stretched-card-content" />
@@ -43,7 +44,21 @@ export default {
             type: String,
             required: true,
         },
+        /**
+        * The type of link. This will set the icon.
+        * `external, internal, download`
+        */
+        type: {
+            type: String,
+            required: true,
+            validator: (value) => value.match(/(external|internal|download)/),
+        },
     },
+    // methods: {
+    //     setLinkType() {
+    //         return this.linkType;
+    //     }
+    // },
 };
 </script>
 

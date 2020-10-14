@@ -2,7 +2,7 @@
     <li class="vs-footer-nav-list-item">
         <VsLink
             :href="href"
-            :external="external"
+            :type="type"
             variant="dark"
         >
             {{ linkText }}
@@ -32,11 +32,13 @@ export default {
             default: null,
         },
         /**
-         * Option to create external link which will open URL in blank target and add icon
-         */
-        external: {
-            type: Boolean,
-            default: false,
+        * Option to create link type which defines icon and whether it opens in a new tab
+        * `external, internal, download`
+        */
+        type: {
+            type: String,
+            default: null,
+            validator: (value) => value.match(/(external|internal|download)/),
         },
         /**
          * Text to show for the link
@@ -117,7 +119,7 @@ export default {
                         ></vs-footer-nav-list-item>
                         <vs-footer-nav-list-item
                             href="#"
-                            external
+                            type="external"
                             link-text="VisitScotland Awards"
                         ></vs-footer-nav-list-item>
                     </vs-list>
