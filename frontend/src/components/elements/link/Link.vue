@@ -1,13 +1,13 @@
 <template>
     <BLink
         class="vs-link"
-        :class="[variant, { 'vs-link--external': external }]"
+        :class="[variant, [ type ? `vs-link--${type}` : '' ]]"
         :href="href"
-        :target="external ? '_blank' : '_self'"
+        :target="type === 'external' ? '_blank' : '_self'"
     >
         <slot />
         <VsIcon
-            v-if="external"
+            v-if="type !== null"
             name="external-link"
             variant="primary"
             size="xs"
@@ -44,11 +44,13 @@ export default {
             default: null,
         },
         /**
-         * Option to create external link which will open URL in blank target and add icon
+         * Option to create link type which defines icon and whether it opens in a new tab
+         * `external, internal, download`
          */
-        external: {
-            type: Boolean,
-            default: false,
+        type: {
+            type: String,
+            default: null,
+            validator: (value) => value.match(/(external|internal|download)/),
         },
         /**
          * Option to choose a pre-defined style variant

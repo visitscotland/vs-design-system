@@ -7,23 +7,17 @@
                     md="8"
                     offset-md="2"
                 >
-                    <div
-                        class="vs-megalinks__intro"
-                        v-if="title"
-                    >
+                    <div class="vs-megalinks__intro">
                         <VsHeading
                             level="2"
                             class="vs-megalinks__heading"
                         >
-                            {{ title }}
+                            <!-- @slot Slot to contain optional title -->
+                            <slot name="vs-multilinks-title" />
                         </VsHeading>
-                        <VsRichTextWrapper
-                            variant="lead"
-                            class="vs-megalinks__intro-content"
-                        >
-                            <!-- @slot Slot to contain optional intro content -->
-                            <slot name="vs-multilinks-intro" />
-                        </VsRichTextWrapper>
+
+                        <!-- @slot Slot to contain optional intro content -->
+                        <slot name="vs-multilinks-intro" />
                     </div>
                 </VsCol>
             </VsRow>
@@ -35,7 +29,6 @@
 
 <script>
 import VsHeading from '@components/elements/heading/Heading';
-import VsRichTextWrapper from '@components/elements/rich-text-wrapper/RichTextWrapper';
 import {
     VsContainer,
     VsRow,
@@ -54,18 +47,6 @@ export default {
         VsRow,
         VsCol,
         VsHeading,
-        VsRichTextWrapper,
-    },
-    props: {
-        /**
-        * The title is optional. If it isn't supplied, the
-        * intro content shouldn't render.
-        */
-        title: {
-            type: String,
-            default: null,
-            required: false,
-        },
     },
 };
 </script>
@@ -89,15 +70,21 @@ export default {
 
 <docs>
     ```js
-    <vs-megalinks
-        title="Find your experiences in the highest village of Scotland"
-    >
-        <template slot="vs-multilinks-intro">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-            Esse dolores ab veritatis quibusdam voluptas dicta,
-            ullam distinctio placeat aliquam facere libero dolore veniam!
-            Vero pariatur molestiae sunt vitae labore esse?
+    <vs-megalinks>
+        <template slot="vs-multilinks-title">
+            Find your experiences in the highest village of Scotland
         </template>
+        <VsRichTextWrapper
+            variant="lead"
+            slot="vs-multilinks-intro"
+            class="mt-6"
+        >
+
+            Lorem ipsum dolor sit amet consectetur adipisicing elit.
+            Quae, in quidem doloribus iure, fuga laboriosam libero voluptatem
+            earum, rerum eveniet cumque molestiae dolores. Fugiat eligendi
+            inventore quidem, nesciunt explicabo repudiandae.
+        </VsRichTextWrapper>
 
         THIS IS WHERE THE LINKS WOULD GO
     </vs-megalinks>
