@@ -131,7 +131,7 @@ export default {
     display: flex;
     align-items: center;
     height: 55px;
-    @extend %default-box-shadow;
+    box-shadow: 0 2px 6px 0px rgba(0, 0, 0, 0.16);
 
     &__logo svg {
         max-width: 184px;

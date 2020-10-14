@@ -112,6 +112,12 @@ export default {
             box-shadow: 0 0 0 0.1rem $color-pink inset;
         }
 
+        &:hover {
+            .icon.icon-dark[data-v-196177e7] {
+                fill: $color-pink;
+            }
+        }
+
         &::after {
             display: none;
         }
@@ -153,7 +159,7 @@ export default {
         margin: 0;
         min-height: 200px;
         border: 0;
-        box-shadow: 0 3px 7px rgba(0, 0, 0, 0.16);
+        box-shadow: 0px 9px 5px -7px rgba(0,0,0,0.1), inset 0px 10px 6px -8px rgba(0, 0, 0, 0.16);
         transform: translate3d(0px, 55px, 0px) !important;
     }
 }
