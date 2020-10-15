@@ -4,6 +4,7 @@ import VsStretchedLinkCard from '../StretchedLinkCard';
 const factoryShallowMount = () => shallowMount(VsStretchedLinkCard, {
     propsData: {
         link: 'https://www.visitscotland.com/',
+        type: 'external',
     },
 });
 

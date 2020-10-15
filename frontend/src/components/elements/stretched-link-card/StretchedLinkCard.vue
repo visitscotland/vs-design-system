@@ -10,7 +10,7 @@
             >
                 <VsLink
                     :href="link"
-                    :type="linkType"
+                    :type="type"
                     class="stretched-link"
                 >
                     <!-- @slot Contains header content for the card  -->
@@ -25,6 +25,7 @@
 
 <script>
 import VsHeading from '@components/elements/heading/Heading';
+import VsLink from '@components/elements/link/Link';
 /**
  * The Stretched Link Card is a block that stretches its nested link across its whole area
  * meaning that the whole block is clickable
@@ -35,6 +36,7 @@ export default {
     release: '0.0.1',
     components: {
         VsHeading,
+        VsLink,
     },
     props: {
         /**
@@ -54,17 +56,12 @@ export default {
             validator: (value) => value.match(/(external|internal|download)/),
         },
     },
-    // methods: {
-    //     setLinkType() {
-    //         return this.linkType;
-    //     }
-    // },
 };
 </script>
 
 <docs>
   ```
-    <vs-stretched-link-card>
+    <vs-stretched-link-card link="https://visitscotland.com" type="external">
         <vs-img
             slot="stretched-card-image"
             src="https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"
