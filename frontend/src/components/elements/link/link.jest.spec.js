@@ -82,5 +82,19 @@ describe('VsLink', () => {
             expect(wrapper.classes()).toContain('vs-link--internal');
             expect(wrapper.contains(VsIcon)).toBe(true);
         });
+
+        it(':type - should add a download atttribute if download type is used', () => {
+            const wrapper = factoryShallowMount({
+                type: 'download',
+            });
+            expect(wrapper.attributes('download')).toBe('true');
+        });
+
+        it(':type - should not add a download attribute of false if download type is not used', () => {
+            const wrapper = factoryShallowMount({
+                type: 'internal',
+            });
+            expect(wrapper.attributes()).not.toContain('download');
+        });
     });
 });
