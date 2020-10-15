@@ -52,21 +52,34 @@ describe('VsLink', () => {
             expect(wrapper.attributes('href')).toBe(href);
         });
 
-        it(':external - should not render an external link by default', () => {
+        it(':type - should not render an special link by default', () => {
             const wrapper = factoryShallowMount();
-
-            expect(wrapper.classes()).not.toContain('vs-link--external');
+            expect(wrapper.classes()).not.toEqual(
+                expect.arrayContaining([/vs-link--/])
+            );
             expect(wrapper.attributes('target')).toBe('_self');
             expect(wrapper.contains(VsIcon)).toBe(false);
         });
 
-        it(':external - should render an external link', () => {
+        it(':type - should render an appropriate link', async() => {
             const wrapper = factoryShallowMount({
-                external: true,
+                type: 'external',
             });
 
             expect(wrapper.classes()).toContain('vs-link--external');
             expect(wrapper.attributes('target')).toBe('_blank');
+            expect(wrapper.contains(VsIcon)).toBe(true);
+
+            await wrapper.setProps({
+                type: 'download',
+            });
+            expect(wrapper.classes()).toContain('vs-link--download');
+            expect(wrapper.contains(VsIcon)).toBe(true);
+
+            await wrapper.setProps({
+                type: 'internal',
+            });
+            expect(wrapper.classes()).toContain('vs-link--internal');
             expect(wrapper.contains(VsIcon)).toBe(true);
         });
     });
