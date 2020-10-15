@@ -2,24 +2,20 @@ package com.visitscotland.brmx.translation;
 
 import com.visitscotland.brmx.translation.plugin.JcrDocument;
 import com.visitscotland.brmx.translation.plugin.JcrDocumentFactory;
-import org.hippoecm.repository.api.Workflow;
 import org.hippoecm.repository.api.WorkflowException;
-import org.hippoecm.repository.standardworkflow.EditableWorkflow;
-import org.hippoecm.repository.translation.HippoTranslatedNode;
 import org.hippoecm.repository.translation.HippoTranslationNodeType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.annotation.RequestScope;
 import org.springframework.web.server.ResponseStatusException;
 
 import javax.jcr.*;
+import java.io.IOException;
 import java.rmi.RemoteException;
+import java.util.List;
 import java.util.Locale;
 
 @RestController
@@ -51,18 +47,46 @@ public class TranslationRestService {
                 throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Unable to get difference for English document");
             }
 
-            String diffJson = translationService.getDocumentDifferenceJson(jcrDocument);
-            if ( null == diffJson ) {
-                throw new ResponseStatusException(HttpStatus.NO_CONTENT, "No difference json found for document");
+            String diff = translationService.getDocumentDifference(handleId);
+            if ( null == diff ) {
+                throw new ResponseStatusException(HttpStatus.NO_CONTENT, "No difference found for document");
             }
-            return diffJson;
+            return diff;
         } catch(ItemNotFoundException ex) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "No node found with given node identifier");
-        } catch(Exception ex) {
+        } catch(IllegalArgumentException ex) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, ex.getMessage());
+        } catch(RepositoryException | IOException ex) {
             if (ex.getCause() instanceof IllegalArgumentException) {
                 throw new ResponseStatusException(HttpStatus.BAD_REQUEST, ex.getMessage());
             } else {
-                throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR);
+                throw new ResponseStatusException((HttpStatus.INTERNAL_SERVER_ERROR));
+            }
+        }
+    }
+
+    @PostMapping(value = "/vs-service/node/{handleId}/translation/flag", produces = "application/json")
+    public void setTranslationFlag(@PathVariable String handleId, @RequestBody String body) {
+        // Needs to be an english document to set the translation on
+        try {
+            Node handleNode = sessionFactory.getJcrSession().getNodeByIdentifier(handleId);
+            JcrDocument jcrDocument = jcrDocumentFactory.createFromNode(handleNode);
+
+            List<JcrDocument> documentsBlockingEdit = translationService.setTranslationContent(jcrDocument, body);
+            if (!documentsBlockingEdit.isEmpty()) {
+                throw new ResponseStatusException(HttpStatus.CONFLICT, "Unable to lock documents for edit");
+            }
+        } catch(WorkflowException ex) {
+            throw new ResponseStatusException(HttpStatus.CONFLICT, "Unable to lock documents for edit");
+        } catch(ItemNotFoundException ex) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "No node found with given node identifier");
+        } catch(IllegalArgumentException ex) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, ex.getMessage());
+        } catch(RepositoryException | RemoteException ex) {
+            if (ex.getCause() instanceof IllegalArgumentException) {
+                throw new ResponseStatusException(HttpStatus.BAD_REQUEST, ex.getMessage());
+            } else {
+                throw new ResponseStatusException((HttpStatus.INTERNAL_SERVER_ERROR));
             }
         }
     }
@@ -79,6 +103,8 @@ public class TranslationRestService {
             throw new ResponseStatusException(HttpStatus.CONFLICT, "Unable to lock document for edit");
         } catch(ItemNotFoundException ex) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "No node found with given node identifier");
+        } catch(IllegalArgumentException ex) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, ex.getMessage());
         } catch(RepositoryException | RemoteException ex) {
             if (ex.getCause() instanceof IllegalArgumentException) {
                 throw new ResponseStatusException(HttpStatus.BAD_REQUEST, ex.getMessage());

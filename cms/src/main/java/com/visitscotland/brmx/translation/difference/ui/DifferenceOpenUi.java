@@ -1,10 +1,6 @@
 package com.visitscotland.brmx.translation.difference.ui;
 
 import com.visitscotland.brmx.translation.TranslationService;
-import com.visitscotland.brmx.translation.difference.*;
-import com.visitscotland.brmx.translation.difference.ui.model.FieldDifferenceModel;
-import com.visitscotland.brmx.translation.difference.ui.model.MultipleFieldDifferenceModel;
-import com.visitscotland.brmx.translation.difference.ui.model.SingleFieldDifferenceModel;
 import com.visitscotland.brmx.translation.plugin.JcrDocument;
 import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,8 +12,6 @@ import org.springframework.web.context.annotation.RequestScope;
 
 import javax.jcr.RepositoryException;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 @Controller
 @RequestScope
@@ -27,7 +21,7 @@ public class DifferenceOpenUi {
     public static final String ATTR_TRANSLATION_FLAG = "translationFlag";
     public static final String ATTR_ERROR_MESSAGE = "errorMessage";
     public static final String ATTR_STACK_TRACE = "stackTrace";
-    public static final String ATTR_FIELD_LIST = "fieldList";
+    public static final String ATTR_DIFF_CONTENT = "diffContent";
     public static final String ENGLISH_TEMPLATE = "diffButtonContentEnglish";
     public static final String FOREIGN_TEMPLATE = "diffButtonContent";
     public static final String ERROR_TEMPLATE = "diffViewError";
@@ -67,26 +61,9 @@ public class DifferenceOpenUi {
     public String diffView(@PathVariable String nodeId, Model model) {
         try {
             model.addAttribute(ATTR_NODE_ID, nodeId);
-            DocumentDifference diff = translationService.getDocumentDifference(nodeId);
+            String diff = translationService.getDocumentDifference(nodeId);
             if ( null != diff ) {
-                List<FieldDifferenceModel> fieldList = new ArrayList<>();
-                for (FieldDifference field : diff.getDifferences()) {
-                    if (field.getLatest() instanceof MultipleField) {
-                        List<FieldValue> previousValueList = ((MultipleField) field.getPrevious()).getField();
-                        List<FieldValue> latestValueList = ((MultipleField) field.getLatest()).getField();
-                        MultipleFieldDifferenceModel fieldDiff = new MultipleFieldDifferenceModel(field.getCaption(), previousValueList, latestValueList);
-                        fieldList.add(fieldDiff);
-                    } else {
-                        SingleField previousValue = (SingleField) field.getPrevious();
-                        SingleField latestValue = (SingleField) field.getLatest();
-                        SingleFieldDifferenceModel fieldDiff = new SingleFieldDifferenceModel(
-                                field.getCaption(),
-                                previousValue.getField(),
-                                latestValue.getField());
-                        fieldList.add(fieldDiff);
-                    }
-                }
-                model.addAttribute(ATTR_FIELD_LIST, fieldList);
+                model.addAttribute(ATTR_DIFF_CONTENT, diff);
             } else {
                 return gotoErrorPage(new IllegalStateException("No difference found for document."), model);
             }

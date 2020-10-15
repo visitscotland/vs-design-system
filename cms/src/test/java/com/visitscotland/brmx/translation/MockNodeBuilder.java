@@ -49,6 +49,18 @@ public final class MockNodeBuilder {
         return this;
     }
 
+    public MockNodeBuilder withProperty(String propertyPath, boolean propertyValue) throws Exception {
+        Property mockProperty = mock(Property.class);
+        lenient().when(mockProperty.getBoolean()).thenReturn(propertyValue);
+        properties.put(propertyPath, mockProperty);
+        return this;
+    }
+
+    public MockNodeBuilder withProperty(String propertyPath, Property property) throws Exception {
+        properties.put(propertyPath, property);
+        return this;
+    }
+
     public MockNodeBuilder withPropertyThowsValueFormatException(String propertyPath) throws Exception {
         Property mockProperty = mock(Property.class);
         lenient().when(mockProperty.getString()).thenThrow(new ValueFormatException());

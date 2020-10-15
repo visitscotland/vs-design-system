@@ -1,12 +1,18 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-
+    <link rel="stylesheet" type="text/css" th:href="@{/skin/hippo-cms/css/hippo-cms-theme.min.css}">
 </head>
 <body>
     <div th:switch="${hasTranslationPending}">
         <p th:case="true">Foreign language translations pending.</p>
-        <p th:case="false">No translations pending.</p>
+        <div th:case="false">
+            <p>No translations pending.</p>
+            <a class="btn btn-br-secondary"
+               href="#"
+               th:data-nodeId="${nodeId}"
+               onclick="getCompare(this.getAttribute('data-nodeId'))">Send for translation</a>
+        </div>
     </div>
 </body>
 <script>
@@ -20,5 +26,30 @@
         window.parent.setupIFrame();
     });
 
+    function getCompare(nodeId) {
+        // We want to extract the visible difference from the current screen. This should be the English differences.
+        var pluginContent = window.parent.parent.document.querySelectorAll('.hippo-compare-plugin');
+        // There could be multiple compare plugins, for minimised pages, we want the visible one
+        // Minimised documents at the bottom actually have a full compare plugin that is display:none
+        var visibleContent = Array.from(pluginContent).find(elem => {
+            return isVisible(elem);
+        });
+
+        if (visibleContent === undefined) {
+            console.log('Unable to find the .hippo-compare-plugin, something is wrong.')
+        } else {
+            var request = new XMLHttpRequest();
+            request.open("POST", `/cms/vs-service/node/${nodeId}/translation/flag`);
+            request.send(encodeURIComponent(visibleContent.innerHTML));
+            request.onload = () => {
+                parent.parent.location.reload();
+            };
+    }
+    }
+
+    // After some Googling this was the best way to determine visibility, it is the way jQuery does it
+    function isVisible(elem) {
+        return !!( elem.offsetWidth || elem.offsetHeight || elem.getClientRects().length );
+    }
 </script>
 </html>

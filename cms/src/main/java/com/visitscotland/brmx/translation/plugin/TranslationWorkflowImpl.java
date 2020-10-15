@@ -1,10 +1,7 @@
 package com.visitscotland.brmx.translation.plugin;
 
 import com.visitscotland.brmx.beans.TranslationLinkContainer;
-import com.visitscotland.brmx.translation.SpringContext;
 import com.visitscotland.brmx.translation.SpringContextFactory;
-import com.visitscotland.brmx.translation.difference.DifferenceGenerator;
-import org.hippoecm.frontend.model.ocm.StoreException;
 import org.hippoecm.hst.content.beans.ObjectBeanManagerException;
 import org.hippoecm.repository.HippoStdNodeType;
 import org.hippoecm.repository.api.*;
@@ -18,11 +15,16 @@ import org.hippoecm.repository.util.JcrUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.jcr.*;
-import java.io.IOException;
+import javax.jcr.Node;
+import javax.jcr.NodeIterator;
+import javax.jcr.RepositoryException;
+import javax.jcr.Session;
 import java.io.Serializable;
 import java.rmi.RemoteException;
-import java.util.*;
+import java.util.Map;
+import java.util.Set;
+import java.util.TreeMap;
+import java.util.TreeSet;
 
 public class TranslationWorkflowImpl implements TranslationWorkflow, InternalWorkflow {
     public static final String CAFEBABE = "cafebabe-";
@@ -32,9 +34,7 @@ public class TranslationWorkflowImpl implements TranslationWorkflow, InternalWor
     private final WorkflowContext workflowContext;
     private final Node rootSubject;
     private final Node userSubject;
-    private JcrDocumentFactory jcrDocumentFactory;
     private DocumentFactory documentFactory;
-    private SpringContextFactory springContextFactory;
 
     public TranslationWorkflowImpl(WorkflowContext context,
                                    Session userSession,
@@ -44,26 +44,20 @@ public class TranslationWorkflowImpl implements TranslationWorkflow, InternalWor
                 userSession,
                 rootSession,
                 subject,
-                new JcrDocumentFactory(),
-                new DocumentFactory(),
-                new SpringContextFactory());
+                new DocumentFactory());
     }
 
     protected TranslationWorkflowImpl(WorkflowContext context,
                                       Session userSession,
                                       Session rootSession,
                                       Node subject,
-                                      JcrDocumentFactory jcrDocumentFactory,
-                                      DocumentFactory documentFactory,
-                                      SpringContextFactory springContextFactory) throws RepositoryException {
+                                      DocumentFactory documentFactory) throws RepositoryException {
         this.workflowContext = context;
         this.rootSession = rootSession;
         this.userSession = userSession;
         this.userSubject = userSession.getNodeByIdentifier(subject.getIdentifier());
         this.rootSubject = rootSession.getNodeByIdentifier(subject.getIdentifier());
-        this.jcrDocumentFactory = jcrDocumentFactory;
         this.documentFactory = documentFactory;
-        this.springContextFactory = springContextFactory;
 
         if (!userSubject.isNodeType(HippoTranslationNodeType.NT_TRANSLATED)) {
             throw new RepositoryException("Node is not of type " + HippoTranslationNodeType.NT_TRANSLATED);
@@ -289,113 +283,6 @@ public class TranslationWorkflowImpl implements TranslationWorkflow, InternalWor
 
         rootSession.save();
         rootSession.refresh(false);
-    }
-
-    @Override
-    public List<JcrDocument> setTranslationRequiredFlag() throws WorkflowException, RepositoryException, RemoteException {
-        JcrDocument rootJcrDocument = jcrDocumentFactory.createFromNode(rootSubject);
-        if (rootJcrDocument.isNodeType("visitscotland:translatable")) {
-            Set<JcrDocument> jcrTranslations = rootJcrDocument.getTranslations();
-
-            // The Hippo CMS uses the handle of the document variants to perform checkout, commit and discard
-            // operations. But the getEditableNode returns the unpublished Node so we need to keep hold of the
-            // handle so we can perform the commit, or discard operations.
-
-            // HashMap<Handle, Editable>
-            HashMap<Node, Node> editableNodes = new HashMap<>();
-            List<JcrDocument> nodesBeingEdited = new ArrayList<>();
-
-            // Need to check if the root (English) document is being edited by another user. Don't want to send for
-            // translation unless it is
-            if (rootJcrDocument.isDraftBeingEdited()) {
-                nodesBeingEdited.add(rootJcrDocument);
-            }
-
-            for (JcrDocument translatedDocument : jcrTranslations) {
-                Node handle = translatedDocument.getHandle();
-                if (translatedDocument.isDraftBeingEdited()) {
-                    nodesBeingEdited.add(translatedDocument);
-                    log.debug("Document already checked out for edit, unable to send for translation");
-                    continue;
-                }
-
-                try {
-                    // The editable node returned is the draft variant of the document. If we apply changes to the
-                    // draft, and then commit changes to the node it also flags the document as changed.
-                    // We do not want that, we want the editor to choose if the document has changed.
-                    // Getting the editable node still ensures that nobody else is editing the document, but if the
-                    // changes are applied to the unpublished variant and the draft is discarded it should have the
-                    // desired result, changes applied without flagging the document as changed.
-                    getEditableNode(handle);
-                    Node unpublishedNode = translatedDocument.getVariantNode(JcrDocument.VARIANT_UNPUBLISHED);
-                    editableNodes.put(handle, unpublishedNode);
-                } catch (WorkflowException ex) {
-                    // If we get a workflow exception we have not been able to check the document out
-                    // add the Node to a list of failed documents
-                    log.debug("Document already checked out for edit, unable to send for translation", ex);
-                    nodesBeingEdited.add(translatedDocument);
-                }
-            }
-
-            if (nodesBeingEdited.isEmpty()) {
-                if (!editableNodes.isEmpty()) {
-                    for (HashMap.Entry<Node, Node> editableNodeEntry : editableNodes.entrySet()) {
-                        Node editableUnpublishedVariant = editableNodeEntry.getValue();
-                        editableUnpublishedVariant.setProperty("visitscotland:translationFlag", true);
-                        DifferenceGenerator generator = springContextFactory.getBean(DifferenceGenerator.class);
-                        try {
-                            String json = generator.getTranslationDifferenceJson(rootJcrDocument.getHandle().getIdentifier());
-                            editableUnpublishedVariant.setProperty("visitscotland:diff", json);
-                        } catch(StoreException | IOException ex) {
-                            log.error("Error getting difference", ex);
-                        }
-                        // If this was the draft node we would want to commit the changes
-                        discardEditableNode(editableNodeEntry.getKey());
-                    }
-                    rootSession.save();
-                }
-            } else {
-                for (Node handle : editableNodes.keySet()) {
-                    discardEditableNode(handle);
-                }
-            }
-            rootSession.refresh(false);
-            return nodesBeingEdited;
-        }
-        return Collections.emptyList();
-    }
-
-    protected Node getEditableNode(Node handle) throws RemoteException, WorkflowException, RepositoryException {
-        final Workflow editing = workflowContext.getWorkflow("editing", documentFactory.createFromNode(handle));
-        if (editing instanceof EditableWorkflow) {
-            EditableWorkflow editableWorkflow = (EditableWorkflow) editing;
-            Document editableDocument = editableWorkflow.obtainEditableInstance();
-            return editableDocument.getNode(rootSession);
-        } else {
-            throw new WorkflowException("Unable to obtain an EditableWorkflow to perform translation");
-        }
-    }
-
-    protected void discardEditableNode(Node toDiscardHandle) throws RemoteException, WorkflowException, RepositoryException {
-        final Workflow editing = workflowContext.getWorkflow("editing", documentFactory.createFromNode(toDiscardHandle));
-        if (editing instanceof EditableWorkflow) {
-            EditableWorkflow editableWorkflow = (EditableWorkflow) editing;
-            editableWorkflow.disposeEditableInstance();
-        } else {
-            throw new WorkflowException("Unable to obtain an EditableWorkflow to discard checkout");
-        }
-    }
-
-    // An example of how we would commit a draft version of a document to mark the document as changed
-    // We would want to do this if we were setting any data on the document
-    protected void commitEditableNode(Node toCommitHandle) throws RemoteException, WorkflowException, RepositoryException {
-        final Workflow editing = workflowContext.getWorkflow("editing", documentFactory.createFromNode(toCommitHandle));
-        if (editing instanceof EditableWorkflow) {
-            EditableWorkflow editableWorkflow = (EditableWorkflow) editing;
-            editableWorkflow.commitEditableInstance();
-        } else {
-            throw new WorkflowException("Unable to obtain an EditableWorkflow to commit changes");
-        }
     }
 
     public Map<String, Serializable> hints() throws WorkflowException, RepositoryException {

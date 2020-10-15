@@ -33,6 +33,7 @@ public class JcrDocument {
 
     public static final String VS_TRANSLATION_DIFF = "visitscotland:diff";
     public static final String VS_TRANSLATION_FLAG = "visitscotland:translationFlag";
+    public static final String VS_TRANSLATABLE_TYPE = "visitscotland:translatable";
 
     private Node handle;
     // Do not access directly, will be lazy loaded, use getter
