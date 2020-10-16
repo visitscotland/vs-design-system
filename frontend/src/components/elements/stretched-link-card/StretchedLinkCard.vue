@@ -5,7 +5,7 @@
 
         <div class="card-body">
             <VsHeading
-                level="4"
+                level="3"
                 class="card-title"
             >
                 <VsLink
