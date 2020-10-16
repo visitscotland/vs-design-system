@@ -6,9 +6,9 @@
     >
         <span
             class="sr-only"
-            data-test="logo-alt-text"
+            data-test="link-alt-text"
         >
-            {{ logoAltText }}
+            {{ linkAltText }}
         </span>
         <VsSvg
             data-test="vs-svg-link__svg"
@@ -37,7 +37,7 @@ export default {
         /**
          * Accessiblity alt text for the svg link
          */
-        logoAltText: {
+        linkAltText: {
             type: String,
             required: true,
         },
@@ -69,7 +69,7 @@ export default {
 <docs>
 ```jsx
     <vs-svg-link
-        logo-alt-text="VisitScotland Home"
+        link-alt-text="VisitScotland Home"
         href="/"
         svg-fill="700e57"
         svg-path="visitscotland"

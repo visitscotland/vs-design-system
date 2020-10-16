@@ -20,6 +20,19 @@
                         <slot name="ctaLink" />
                         <!-- @slot The rest of the mega nav links put here in the dropdown menu  -->
                         <slot name="dropdownContent" />
+
+                        <VsButtonWithIcon
+                            class="vs-mega-nav__dropdown__close-btn d-lg-none position-absolute"
+                            icon="close"
+                            icon-only
+                            button-size="md"
+                            variant="transparent"
+                            @click.native="closeMenu"
+                        >
+                            <span class="sr-only">
+                                {{ menuToggleAltText }}
+                            </span>
+                        </VsButtonWithIcon>
                     </VsCol>
                 </VsRow>
             </VsContainer>
@@ -46,6 +59,15 @@ export default {
         VsCol,
         VsRow,
         VsContainer,
+    },
+    props: {
+        /**
+         * Accessiblity alt text for the menu button
+         */
+        menuToggleAltText: {
+            type: String,
+            required: true,
+        },
     },
     mounted() {
         // Listen for dropdown opening and closing and emit event
@@ -93,6 +115,16 @@ export default {
                     width: 100%;
                 }
             }
+        }
+    }
+
+    .vs-mega-nav__dropdown__close-btn{
+        @extend .dropdown-toggle;
+        right: 4px;
+        top: -67px;
+
+        @include media-breakpoint-up(sm) {
+            right: 12px;
         }
     }
 
@@ -162,6 +194,7 @@ export default {
         box-shadow: 0px 9px 5px -7px rgba(0,0,0,0.1), inset 0px 10px 6px -8px rgba(0, 0, 0, 0.16);
         transform: translate3d(0px, 55px, 0px) !important;
     }
+
 }
 
 @include no-js {

@@ -14,7 +14,7 @@
                     <VsSvgLink
                         class="vs-mega-nav__logo"
                         data-test="vs-mega-nav__logo"
-                        logo-alt-text="VisitScotland Home"
+                        link-alt-text="VisitScotland Home"
                         :href="href"
                         svg-fill="700e57"
                         svg-path="visitscotland"
@@ -42,17 +42,16 @@
                     class="vs-mega-nav__menu__mobile
                     d-flex d-lg-none justify-content-end position-static"
                 >
-                    <VsMegaNavDropdown @menuToggled="menuToggle">
+                    <VsMegaNavDropdown
+                        @menuToggled="menuToggle"
+                        menu-toggle-alt-text="menuToggleAltText"
+                    >
                         <template #buttonContent>
+                            <span class="sr-only">
+                                {{ menuToggleAltText }}
+                            </span>
                             <VsIcon
-                                v-if="isOpen"
-                                name="close"
-                                size="sm"
-                                variant="dark"
-                            />
-
-                            <VsIcon
-                                v-else
+                                v-if="!isOpen"
                                 name="bars-mobile-menu"
                                 size="md"
                                 variant="dark"
@@ -105,6 +104,13 @@ export default {
             type: String,
             required: true,
         },
+        /**
+         * Accessiblity alt text for the menu button
+         */
+        menuToggleAltText: {
+            type: String,
+            required: true,
+        },
     },
     data() {
         return {
@@ -135,6 +141,7 @@ export default {
 
     &__logo svg {
         max-width: 184px;
+        max-height: 20px;
     }
 
     .vs-mega-nav__menu {

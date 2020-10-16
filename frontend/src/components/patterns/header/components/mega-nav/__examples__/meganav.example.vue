@@ -1,5 +1,8 @@
 <template>
-    <VsMegaNav href="/">
+    <VsMegaNav
+        href="/"
+        menu-toggle-alt-text="Toggle Menu"
+    >
         <template #megaNavTopMenuItems>
             <VsMegaNavTopMenuItem
                 v-for="(item, index) in header.mainNav"
