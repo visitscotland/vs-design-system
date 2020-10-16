@@ -4,7 +4,9 @@
         data-test="vs-mega-nav__top-menu__item"
         ref="menuToggle"
     >
-        <VsMegaNavDropdown>
+        <VsMegaNavDropdown
+            menu-toggle-alt-text="Toggle Menu"
+        >
             <template #buttonContent>
                 <!-- @slot For top menu item button content -->
                 <slot name="buttonContent" />

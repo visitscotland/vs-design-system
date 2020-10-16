@@ -9,7 +9,7 @@
                 >
                     <VsSvgLink
                         class="vs-mega-nav__logo"
-                        logo-alt-text="VisitScotland Home"
+                        link-alt-text="VisitScotland Home"
                         href="/"
                         svg-fill="700e57"
                         svg-path="visitscotland"
@@ -31,7 +31,9 @@
                             :href="item.href"
                             :cta-text="item.cta"
                         >
-                            <VsMegaNavDropdown>
+                            <VsMegaNavDropdown
+                                menu-toggle-alt-text="Toggle Menu"
+                            >
                                 <template #buttonContent>
                                     {{ item.title }}
                                 </template>
@@ -58,8 +60,13 @@
                     lg="9"
                     class="d-flex d-lg-none justify-content-end position-static"
                 >
-                    <VsMegaNavDropdown>
+                    <VsMegaNavDropdown
+                        menu-toggle-alt-text="Toggle Menu"
+                    >
                         <template #buttonContent>
+                            <span class="sr-only">
+                                Toggle Menu
+                            </span>
                             <VsIcon
                                 name="bars-mobile-menu"
                                 size="md"

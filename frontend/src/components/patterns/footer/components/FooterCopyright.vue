@@ -9,7 +9,7 @@
                     <VsSvgLink
                         class="vs-footer-copyright__logo mb-4"
                         data-test="vs-footer-copyright__logo"
-                        :logo-alt-text="logoAltText"
+                        :link-alt-text="linkAltText"
                         :href="href"
                         svg-fill="700e57"
                         svg-path="vs-logo"
@@ -50,7 +50,7 @@ export default {
         /**
          * Accessiblity alt text for the logo button
          */
-        logoAltText: {
+        linkAltText: {
             type: String,
             required: true,
         },
@@ -108,7 +108,7 @@ export default {
 <docs>
   ```js
     <vs-footer>
-        <vs-footer-copyright logo-alt-text="VisitScotland Home" href="/">
+        <vs-footer-copyright link-alt-text="VisitScotland Home" href="/">
             <span slot="copyright">
                VisitScotland. All rights reserved.
             </span>
