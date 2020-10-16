@@ -1,1 +1,1 @@
-export default "./Megalinks";
+export default './Megalinks';
