@@ -3,7 +3,7 @@ import VsSvgLink from '../SvgLink';
 
 const factoryShallowMount = (values) => shallowMount(VsSvgLink, {
     propsData: {
-        logoAltText: 'VisitScotland Home',
+        linkAltText: 'VisitScotland Home',
         href: 'https://www.visitscotland.com/',
         svgFill: '700e57',
         svgPath: 'visitscotland',
@@ -18,9 +18,9 @@ describe('VsMegaNavDropdown', () => {
     });
 
     describe(':props', () => {
-        it('should render alt text `VisitScotland Home` when passed as `logoAltText` prop', () => {
+        it('should render alt text `VisitScotland Home` when passed as `linkAltText` prop', () => {
             const wrapper = factoryShallowMount();
-            expect(wrapper.find('[data-test="logo-alt-text"]').text()).toBe('VisitScotland Home');
+            expect(wrapper.find('[data-test="link-alt-text"]').text()).toBe('VisitScotland Home');
         });
 
         it('should render url `https://www.visitscotland.com/` when passed as `href` prop', () => {

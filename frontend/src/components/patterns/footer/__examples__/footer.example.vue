@@ -222,7 +222,7 @@
         </VsFooterUtilityList>
 
         <VsFooterCopyright
-            logo-alt-text="VisitScotland Home"
+            link-alt-text="VisitScotland Home"
             href="/"
         >
             <span slot="copyright">
