@@ -2,6 +2,7 @@ package com.visitscotland.brmx.services;
 
 import com.visitscotland.brmx.beans.DMSLink;
 import com.visitscotland.brmx.utils.CommonUtils;
+import org.hippoecm.hst.core.component.HstRequest;
 import com.visitscotland.utils.Contract;
 import org.hippoecm.hst.resourcebundle.ResourceBundleRegistry;
 import org.junit.Assert;
@@ -174,6 +175,29 @@ public class ResourceBundleServiceTest {
         Assert.assertFalse(service.existsResourceBundleKey(BUNDLE, "key", Locale.UK));
     }
 
+    @Test
+    public void registerInRequest(){
+        //The service is registered on the request as ResourceBundle
+        HstRequest request = mock(HstRequest.class);
+
+        service.registerIn(request);
+
+        verify(request).getAttribute("ResourceBundle");
+        verify(request).setAttribute("ResourceBundle", service);
+    }
+
+    @Test
+    public void skipRegisterInRequest_whenAlreadyRegistered(){
+        //The service is not registered if something is already registered as ResourceBundle
+        HstRequest request = mock(HstRequest.class);
+
+        when(request.getAttribute("ResourceBundle")).thenReturn(service);
+
+        service.registerIn(request);
+
+        verify(request).getAttribute("ResourceBundle");
+        verify(request, never()).setAttribute("ResourceBundle", service);
+    }
 
     @Test
     public void getCtaLabel_manual(){

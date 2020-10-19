@@ -3,7 +3,6 @@
 <#include "../../../frontend/components/vs-breadcrumb.ftl">
 <#include "../../../frontend/components/vs-breadcrumb-item.ftl">
 
-
 <#include "content-driven-seo.ftl">
 <#include "breadcrumb-schema.ftl">
 

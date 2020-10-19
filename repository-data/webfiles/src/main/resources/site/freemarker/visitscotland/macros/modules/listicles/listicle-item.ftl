@@ -29,7 +29,7 @@
             <@cmsErrors errors=item.errorMessages!"" editMode=editMode />
 		</div>
 
-		<#if image?? && image?has_content>
+		<#if item.image?? && item.image?has_content>
 			<div slot="image-slot">
                 <@imageWithCaption imageSrc=image imageDetails=item.image variant="large"/>
 			</div>

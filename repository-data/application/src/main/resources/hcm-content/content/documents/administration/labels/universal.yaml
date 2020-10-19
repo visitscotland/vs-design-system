@@ -1,8 +1,9 @@
 /content/documents/administration/labels/universal:
   jcr:primaryType: hippo:handle
-  jcr:mixinTypes: ['hippo:named', 'mix:referenceable']
+  jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
   jcr:uuid: 181a31e2-43f8-4c94-bda8-177479aac47d
   hippo:name: Language List  (Don't translate)
+  hippo:versionHistory: 2c80fab1-31ea-42ac-b187-7d9f46f8fb41
   /universal[1]:
     jcr:primaryType: resourcebundle:resourcebundle
     jcr:mixinTypes: ['mix:referenceable']
@@ -11,12 +12,12 @@
     hippostd:state: draft
     hippostdpubwf:createdBy: admin
     hippostdpubwf:creationDate: 2019-11-21T09:28:34.143Z
-    hippostdpubwf:lastModificationDate: 2019-11-21T10:19:26.644Z
+    hippostdpubwf:lastModificationDate: 2020-09-17T09:24:23.307+01:00
     hippostdpubwf:lastModifiedBy: admin
     resourcebundle:descriptions: ['', '', '', '', '', '']
     resourcebundle:id: universal
-    resourcebundle:keys: [en-gb, de-de, es-es, fr-fr, it-it, nl-nl]
-    resourcebundle:messages: [English, Deutsch, Español, Français, Italiano, Nederlands]
+    resourcebundle:keys: [es, de, en, nl, it, fr]
+    resourcebundle:messages: [Español, Deutsch, English, Nederlands, Italiano, Français]
   /universal[2]:
     jcr:primaryType: resourcebundle:resourcebundle
     jcr:mixinTypes: ['mix:versionable']
@@ -25,12 +26,12 @@
     hippostd:state: unpublished
     hippostdpubwf:createdBy: admin
     hippostdpubwf:creationDate: 2019-11-21T09:28:34.143Z
-    hippostdpubwf:lastModificationDate: 2019-11-21T10:19:24.430Z
+    hippostdpubwf:lastModificationDate: 2020-09-17T09:24:23.091+01:00
     hippostdpubwf:lastModifiedBy: admin
     resourcebundle:descriptions: ['', '', '', '', '', '']
     resourcebundle:id: universal
-    resourcebundle:keys: [en-gb, de-de, es-es, fr-fr, it-it, nl-nl]
-    resourcebundle:messages: [English, Deutsch, Español, Français, Italiano, Nederlands]
+    resourcebundle:keys: [es, de, en, nl, it, fr]
+    resourcebundle:messages: [Español, Deutsch, English, Nederlands, Italiano, Français]
   /universal[3]:
     jcr:primaryType: resourcebundle:resourcebundle
     jcr:mixinTypes: ['mix:referenceable']
@@ -39,10 +40,10 @@
     hippostd:state: published
     hippostdpubwf:createdBy: admin
     hippostdpubwf:creationDate: 2019-11-21T09:28:34.143Z
-    hippostdpubwf:lastModificationDate: 2019-11-21T10:19:24.430Z
+    hippostdpubwf:lastModificationDate: 2020-09-17T09:24:23.091+01:00
     hippostdpubwf:lastModifiedBy: admin
-    hippostdpubwf:publicationDate: 2019-11-21T10:19:30.082Z
+    hippostdpubwf:publicationDate: 2020-09-17T09:25:22.214+01:00
     resourcebundle:descriptions: ['', '', '', '', '', '']
     resourcebundle:id: universal
-    resourcebundle:keys: [en-gb, de-de, es-es, fr-fr, it-it, nl-nl]
-    resourcebundle:messages: [English, Deutsch, Español, Français, Italiano, Nederlands]
+    resourcebundle:keys: [es, de, en, nl, it, fr]
+    resourcebundle:messages: [Español, Deutsch, English, Nederlands, Italiano, Français]
