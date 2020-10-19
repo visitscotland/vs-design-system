@@ -1,12 +1,15 @@
 package com.visitscotland.brmx.utils;
 
 import com.visitscotland.brmx.services.ResourceBundleService;
+import org.hippoecm.hst.component.support.bean.BaseHstComponent;
 import org.hippoecm.hst.container.RequestContextProvider;
 import org.hippoecm.hst.content.beans.ObjectBeanManagerException;
 import org.hippoecm.hst.content.beans.query.exceptions.QueryException;
 import org.hippoecm.hst.content.beans.standard.HippoBean;
+import org.hippoecm.hst.core.component.HstRequest;
 import org.hippoecm.hst.core.linking.HstLink;
 import org.hippoecm.hst.core.request.HstRequestContext;
+import org.hippoecm.hst.core.request.ResolvedSiteMapItem;
 import org.hippoecm.hst.resourcebundle.ResourceBundleRegistry;
 import org.hippoecm.hst.site.HstServices;
 import org.slf4j.Logger;
@@ -24,14 +27,16 @@ public class HippoUtilsService {
 
     final ResourceBundleRegistry resourceBundleRegistry;
     final HstRequestContext requestContext;
+    /**
+     * Dummy HstCompoment used to access stateless methods on the ComponentClass
+     */
+    final BaseHstComponent hstComponent;
 
     //TODO: eliminate when PageContentComponent.getCtaLabel() gets refactored.
     final ResourceBundleService bundle;
 
-    public HippoUtilsService(){
-        resourceBundleRegistry = HstServices.getComponentManager().getComponent(ResourceBundleRegistry.class.getName());
-        requestContext = RequestContextProvider.get();
-        bundle = new ResourceBundleService();
+    public HippoUtilsService() {
+        this(HstServices.getComponentManager().getComponent(ResourceBundleRegistry.class.getName()), RequestContextProvider.get());
     }
 
     public HippoUtilsService(
@@ -41,6 +46,7 @@ public class HippoUtilsService {
         this.requestContext = requestContext;
 
         bundle = new ResourceBundleService();
+        hstComponent = new BaseHstComponent();
     }
 
     static HippoUtilsService INSTANCE;
@@ -91,5 +97,9 @@ public class HippoUtilsService {
 
         return bean.getObjectConverter().getObject(bean.getNode());
 
+    }
+
+    public HippoBean getBeanForResolvedSiteMapItem(HstRequest request, ResolvedSiteMapItem sitemapItem) {
+        return hstComponent.getBeanForResolvedSiteMapItem(request, sitemapItem);
     }
 }

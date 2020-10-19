@@ -96,12 +96,14 @@ public class ProductSearchBuilder {
     public ProductSearchBuilder locale(Locale locale){
         if (locale != null) {
             for (Locale loc : Properties.locales) {
-                if (locale.equals(loc)){
+                if (locale.equals(loc) || (loc != null && locale.getLanguage().equals(loc.getLanguage()))) {
                     this.locale = loc;
                     return this;
                 }
             }
         }
+
+        logger.info("locale " + (locale != null ? locale.toLanguageTag() : "null") + " not found");
         this.locale = null;
         return this;
     }

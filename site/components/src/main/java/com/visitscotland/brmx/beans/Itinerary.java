@@ -6,7 +6,7 @@ import java.util.List;
 
 @HippoEssentialsGenerated(internalName = "visitscotland:Itinerary")
 @Node(jcrType = "visitscotland:Itinerary")
-public class Itinerary extends Page implements TranslationParent {
+public class Itinerary extends Page {
     @HippoEssentialsGenerated(internalName = "visitscotland:start")
     public String getStart() {
         return getSingleProperty("visitscotland:start");

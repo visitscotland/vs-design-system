@@ -69,9 +69,14 @@ export default {
 }
 
 .vs-page-intro ::v-deep figcaption {
-    @include media-breakpoint-up(lg) {
-        bottom: 200px;
-    }
+  @include media-breakpoint-up(lg) {
+    bottom: 200px;
+  }
+
+  // IE11 - force min width of hero caption
+  @media screen and (-ms-high-contrast: active), screen and (-ms-high-contrast: none) {
+    min-width: 200px;
+  }
 }
 </style>
 

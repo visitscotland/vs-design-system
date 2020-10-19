@@ -8,7 +8,8 @@ import java.util.List;
 
 @HippoEssentialsGenerated(internalName = "visitscotland:Listicle")
 @Node(jcrType = "visitscotland:Listicle")
-public class Listicle extends Page implements TranslationParent {
+public class Listicle extends Page {
+    @Deprecated
     public List<ListicleItem> getItems() {
         return getPageChildrenByType(ListicleItem.class);
     }
