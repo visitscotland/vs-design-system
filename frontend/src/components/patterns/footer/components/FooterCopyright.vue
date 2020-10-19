@@ -6,13 +6,14 @@
                     cols="12"
                     class="text-center"
                 >
-                    <a
+                    <VsSvgLink
                         class="vs-footer-copyright__logo mb-4"
+                        data-test="vs-footer-copyright__logo"
+                        :link-alt-text="linkAltText"
                         :href="href"
-                    >
-                        <span class="sr-only">{{ logoAltText }}</span>
-                        <VsSvg path="vs-logo" />
-                    </a>
+                        svg-fill="700e57"
+                        svg-path="vs-logo"
+                    />
 
                     <p class="vs-footer-copyright__text">
                         &copy; {{ getCurrentYear }}
@@ -27,9 +28,10 @@
 </template>
 
 <script>
-import VsSvg from '@components/elements/svg/Svg';
+import VsSvgLink from '@components/patterns/svg-link/SvgLink';
+
 import {
-    VsRow, VsContainer, VsCol,
+  VsRow, VsContainer, VsCol,
 } from '@components/elements/layout';
 
 /**
@@ -39,19 +41,19 @@ import {
 export default {
     name: 'VsFooterCopyright',
     components: {
-        VsSvg,
-        VsRow,
-        VsContainer,
-        VsCol,
+      VsSvgLink,
+      VsRow,
+      VsContainer,
+      VsCol,
     },
     props: {
-        /**
-         * Accessiblity alt text for the logo button
-         */
-        logoAltText: {
-            type: String,
-            required: true,
-        },
+      /**
+       * Accessiblity alt text for the logo button
+       */
+      linkAltText: {
+        type: String,
+        required: true,
+      },
         /**
          * URL for the logo button
          */
@@ -78,7 +80,13 @@ export default {
     padding: $spacer-6 0;
 
     .vs-footer-copyright__logo {
-        display: inline-block;
+      display: inline-block;
+
+      &.vs-link.primary {
+        &:focus {
+          outline-color: #ffffff;
+        }
+      }
     }
 
     .vs-footer-copyright__text {
@@ -100,11 +108,11 @@ export default {
 <docs>
   ```js
     <vs-footer>
-        <vs-footer-copyright logo-alt-text="VisitScotland Home" href="/">
+      <vs-footer-copyright link-alt-text="VisitScotland Home" href="/">
             <span slot="copyright">
                VisitScotland. All rights reserved.
             </span>
-        </vs-footer-copyright>
+      </vs-footer-copyright>
     </vs-footer>
 
   ```
