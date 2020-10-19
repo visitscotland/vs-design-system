@@ -1,11 +1,10 @@
 <#include "../../../../../include/imports.ftl">
 <#include "../../../../../frontend/components/vs-mega-nav.ftl">
-<#include "../../../../../frontend/components/vs-mega-nav-top-menu-item.ftl">
 <#include "./header-desktop-nav.ftl">
 <#include "./header-mobile-nav.ftl">
 
 <#macro headerMegaNav menu=menu>
-    <vs-mega-nav href="<@hst.link siteMapItemRefId='root'/>">
+    <vs-mega-nav href="<@hst.link siteMapItemRefId='root'/>" menu-toggle-alt-text="${label('navigation.static', 'meganav-toggle-btn-alt-text')}">
         <template slot="megaNavTopMenuItems">
             <@headerDesktopNav menu=menu/>
         </template>
