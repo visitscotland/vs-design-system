@@ -56,9 +56,11 @@
 		</vs-row>
 
 		<ol style="list-style:none; margin:0; padding:0;">
-			<#list items as listItem>
-				<@listicleItem item=listItem />
-			</#list>
+            <#if items?? && items?has_content >
+                <#list items as listItem>
+                    <@listicleItem item=listItem />
+                </#list>
+             </#if>
 		</ol>
 
         <#assign summary>
