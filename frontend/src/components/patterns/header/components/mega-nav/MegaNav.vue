@@ -44,7 +44,7 @@
                 >
                     <VsMegaNavDropdown
                         @menuToggled="menuToggle"
-                        menu-toggle-alt-text="menuToggleAltText"
+                        :menu-toggle-alt-text="menuToggleAltText"
                     >
                         <template #buttonContent>
                             <span class="sr-only">
