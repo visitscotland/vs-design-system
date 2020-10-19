@@ -28,6 +28,8 @@
 
 <script>
 import VsStretchedLinkCard from '@components/elements/stretched-link-card/StretchedLinkCard';
+import VsRichTextWrapper from '@components/elements/rich-text-wrapper/RichTextWrapper';
+import VsImg from '@components/elements/img/Img';
 
 export default {
     name: 'VsMegalinkMultiImage',
@@ -35,6 +37,8 @@ export default {
     release: '0.0.1',
     components: {
         VsStretchedLinkCard,
+        VsRichTextWrapper,
+        VsImg,
     },
     props: {
         /**
