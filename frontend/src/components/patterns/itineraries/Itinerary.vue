@@ -429,6 +429,7 @@ export default {
                     <vs-button-with-icon
                         class="mb-3"
                         background="white"
+                        button-size="md"
                         variant="outline-primary"
                         href="#"
                         icon="food"
@@ -437,6 +438,7 @@ export default {
                     </vs-button-with-icon>
                     <vs-button-with-icon
                         background="white"
+                        button-size="md"
                         variant="outline-primary"
                         href="#"
                         icon="product-accommodation"
