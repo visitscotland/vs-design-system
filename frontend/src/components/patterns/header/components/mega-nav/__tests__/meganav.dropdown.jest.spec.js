@@ -2,10 +2,19 @@ import { shallowMount, mount } from '@vue/test-utils';
 import VsMegaNavDropdown from '../MegaNavDropdown';
 
 const factoryShallowMount = () => shallowMount(VsMegaNavDropdown, {
+    propsData: {
+        menuToggleAltText: 'Toggle menu',
+    },
     slots: {
         buttonContent: '<div class="button-content"></div>',
         ctaLink: '<div class="cta-link"></div>',
         dropdownContent: '<div class="dropdown-content"></div>',
+    },
+});
+
+const factoryMount = () => mount(VsMegaNavDropdown, {
+    propsData: {
+        menuToggleAltText: 'Toggle menu',
     },
 });
 
@@ -29,14 +38,14 @@ describe('VsMegaNavDropdown', () => {
 
     describe(':events', () => {
         it('emits `menuToggled` event when `bv::dropdown::show` is emitted from root', () => {
-            const wrapper = mount(VsMegaNavDropdown);
+            const wrapper = factoryMount();
             wrapper.vm.$root.$emit('bv::dropdown::show');
 
             expect(wrapper.emitted().menuToggled).toBeTruthy();
         });
 
         it('emits `menuToggled` event when `bv::dropdown::hide` is emitted from root', () => {
-            const wrapper = mount(VsMegaNavDropdown);
+            const wrapper = factoryMount();
             wrapper.vm.$root.$emit('bv::dropdown::hide');
 
             expect(wrapper.emitted().menuToggled).toBeTruthy();
