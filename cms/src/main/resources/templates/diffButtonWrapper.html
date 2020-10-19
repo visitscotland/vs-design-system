@@ -2,20 +2,18 @@
 <head>
     <script type="text/javascript" src="https://unpkg.com/@bloomreach/ui-extension@14.2.1/dist/ui-extension.min.js"></script>
     <script type="text/javascript">
-        var brDocument;
+        var uiExtension;
 
         document.addEventListener('DOMContentLoaded', async () => {
             try {
                 const ui = await UiExtension.register();
-                brDocument = await ui.document.get();
+                uiExtension = ui;
+                const brDocument = await ui.document.get();
                 const nodeId = brDocument.id;
-                const value = await ui.document.field.getValue();
                 const bodyUri = `./diff/${nodeId}`;
 
                 const iFrame = document.querySelector('iframe');
                 iFrame.setAttribute('src', bodyUri);
-
-                uiExtension = ui;
             } catch (error) {
                 console.error('Failed to register extension:', error.message);
                 console.error('- error code:', error.code);
@@ -24,7 +22,7 @@
 
         function setupIFrame() {
             var frame = window.frames['diff-content'];
-            frame.setBrDocument(brDocument);
+            frame.setUiExtension(uiExtension);
         }
 
     </script>

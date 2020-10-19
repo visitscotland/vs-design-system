@@ -2,6 +2,7 @@ package com.visitscotland.brmx.translation;
 
 import com.visitscotland.brmx.translation.plugin.JcrDocument;
 import com.visitscotland.brmx.translation.plugin.JcrDocumentFactory;
+import org.hippoecm.repository.HippoStdNodeType;
 import org.hippoecm.repository.api.Workflow;
 import org.hippoecm.repository.api.WorkflowException;
 import org.hippoecm.repository.standardworkflow.EditableWorkflow;
@@ -49,6 +50,21 @@ public class TranslationService {
                     unpublishedNode.getProperty(JcrDocument.VS_TRANSLATION_FLAG).getBoolean()) {
                 return true;
             }
+        }
+        return false;
+    }
+
+    public boolean hasChangePending(JcrDocument jcrDocument) throws RepositoryException {
+        try {
+            Node unpublishedVariant = jcrDocument.getVariantNode(JcrDocument.VARIANT_UNPUBLISHED);
+            if (unpublishedVariant.hasProperty(HippoStdNodeType.HIPPOSTD_STATESUMMARY) &&
+                    ("changed".equals(unpublishedVariant.getProperty(HippoStdNodeType.HIPPOSTD_STATESUMMARY).getString()) ||
+                            "new".equals(unpublishedVariant.getProperty(HippoStdNodeType.HIPPOSTD_STATESUMMARY).getString()))) {
+                return true;
+            }
+        } catch(RepositoryException ex) {
+            // Just consume the exception
+            log.warn("Failed to lookup unpublished status", ex);
         }
         return false;
     }
