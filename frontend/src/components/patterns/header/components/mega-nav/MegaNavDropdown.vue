@@ -49,6 +49,7 @@ import {
     VsCol, VsRow, VsContainer,
 } from '@components/elements/layout';
 import { BDropdown } from 'bootstrap-vue';
+import VsButtonWithIcon from '@components/elements/button/ButtonWithIcon';
 
 export default {
     name: 'VsMegaNavDropdown',
@@ -59,6 +60,7 @@ export default {
         VsCol,
         VsRow,
         VsContainer,
+        VsButtonWithIcon,
     },
     props: {
         /**
