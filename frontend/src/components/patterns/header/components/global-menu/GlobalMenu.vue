@@ -157,8 +157,8 @@ export default {
             display: flex;
             flex-wrap: wrap;
 
-            .vs-dropdown {
-                display: none;
+            .vs-global-menu__websites {
+              display: none;
             }
 
             .vs-list {
@@ -171,22 +171,33 @@ export default {
 
 <docs>
   ```
-    <vs-global-menu
-        dropdown-label="I nostri siti"
-        active-site="https://www.visitscotland.com/"
-    >
-        <span
-            slot="second-menu-item"
-            style="min-width: 50px;"
-        >
+  <vs-global-menu
+      dropdown-label="I nostri siti"
+      active-site="https://www.visitscotland.com/"
+  ><span
+      slot="second-menu-item"
+      style="min-width: 50px;"
+  >
             User... (Not you?)
         </span>
 
-        <span
-            slot="third-menu-item"
-            style="min-width: 50px;"
-        >
-            EN
+    <span
+        slot="third-menu-item"
+    >
+        <vs-global-menu-language>
+            <vs-global-menu-language-item languageName="English">
+            </vs-global-menu-language-item>
+            <vs-global-menu-language-item languageName="Deutsch">
+            </vs-global-menu-language-item>
+            <vs-global-menu-language-item languageName="Español">
+            </vs-global-menu-language-item>
+            <vs-global-menu-language-item languageName="Français">
+            </vs-global-menu-language-item>
+            <vs-global-menu-language-item languageName="Italiano">
+            </vs-global-menu-language-item>
+            <vs-global-menu-language-item languageName="Nederlands">
+            </vs-global-menu-language-item>
+        </vs-global-menu-language>
         </span>
     </vs-global-menu>
   ```

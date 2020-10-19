@@ -1,3 +1,3 @@
-import VsPanel from './Panel.vue';
+import VsPanel from './Panel';
 
 export default VsPanel;

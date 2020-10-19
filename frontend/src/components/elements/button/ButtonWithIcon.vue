@@ -5,6 +5,7 @@
         :size="buttonSize"
     >
         <VsIcon
+            :class="{ 'mr-2': !iconOnly }"
             :name="icon"
             :size="iconSize"
             :padding="0"
@@ -36,15 +37,19 @@ export default {
             type: String,
             required: true,
         },
-        /**
-         * The button size
-         * `sm, md, lg`
-         */
-        buttonSize: {
-            type: String,
-            required: true,
-            validator: (value) => value.match(/(sm|md|lg)/),
-        },
+      /**
+       * The button size
+       * `sm, md, lg`
+       */
+      buttonSize: {
+        type: String,
+        required: true,
+        validator: (value) => value.match(/(sm|md|lg)/),
+      },
+      iconOnly: {
+        type: Boolean,
+        default: false,
+      },
     },
     computed: {
         iconSize() {
@@ -74,7 +79,6 @@ export default {
 
     svg {
         fill: currentColor;
-        margin-right: 0.625rem;
         transition: fill 250ms;
         vertical-align: sub;
     }
@@ -129,14 +133,29 @@ export default {
             variant="outline-primary"
             class="mr-3"
         >
-            Nearby places to eat
+          Nearby places to eat
         </vs-button-with-icon>
-        <vs-button-with-icon
-            icon="map"
-            button-size="lg"
-        >
-            Map View
-        </vs-button-with-icon>
+      <vs-button-with-icon
+          icon="map"
+          button-size="lg"
+      >
+        Map View
+      </vs-button-with-icon>
     </bs-wrapper>
+
+<bs-wrapper class="d-flex flex-wrap mb-4">
+  <vs-button-with-icon
+      icon="food"
+      icon-only
+      button-size="lg"
+      variant="outline-primary"
+      class="mr-3"
+  />
+  <vs-button-with-icon
+      icon="map"
+      icon-only
+      button-size="lg"
+  />
+</bs-wrapper>
 ```
 </docs>
