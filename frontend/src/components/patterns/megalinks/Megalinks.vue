@@ -115,7 +115,7 @@ export default {
                         imgAlt="This is the alt text"
                         linkType="internal"
                     >
-                        <template slot="vs-multi-image-header">
+                        <template slot="vs-multi-image-heading">
                             The Edinburgh International Festival and summer festival
                         </template>
                         <template slot="vs-multi-image-content">
@@ -134,7 +134,7 @@ export default {
                         imgAlt="This is the alt text 1"
                         linkType="external"
                     >
-                        <template slot="vs-multi-image-header">
+                        <template slot="vs-multi-image-heading">
                             Count 7,000 shining stars in the iconic galloway forest
                         </template>
                         <template slot="vs-multi-image-content">
@@ -154,7 +154,7 @@ export default {
                         imgAlt="This is the alt text 2"
                         linkType="external"
                     >
-                        <template slot="vs-multi-image-header">
+                        <template slot="vs-multi-image-heading">
                             Count 7,000 shining stars in the iconic galloway forest
                         </template>
                         <template slot="vs-multi-image-content">
@@ -176,7 +176,7 @@ export default {
                         imgSrc="https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"
                         linkType="download"
                     >
-                        <template slot="vs-multi-image-header">
+                        <template slot="vs-multi-image-heading">
                             Soar through the air on a boat of Falkirk Wheel (PDF 3MB)
                         </template>
                         <template slot="vs-multi-image-content">
