@@ -43,19 +43,19 @@ public class ProductSearchBuilder {
     static final String AVAILABILITY = "avail";
     static final Double DEFAULT_PROXIMITY = 10.0;
 
-    static final String PRODUCT_TYPE = "prodtypes";
-    static final String LOCATION_NAME = "loc";
-    static final String LOCATION_PLACE = "locplace";
-    static final String LOCATION_POLYGON = "locpoly";
-    static final String CATEGORY = "cat";
-    static final String AWARD = "src_awards__0";
-    static final String FACILITY = "fac_id";
-    static final String RATING = "grade";
-    static final String LATITUDE = "lat";
-    static final String LONGITUDE = "lng";
-    static final String PROXIMITY_LOCATION = "locprox";
-    static final String PROXIMITY_PIN = "areaproxdist";
-    static final String ORDER = "order";
+    static final String PRODUCT_TYPE_PARAM = "prodtypes";
+    static final String LOCATION_NAME_PARAM = "loc";
+    static final String LOCATION_PLACE_PARAM = "locplace";
+    static final String LOCATION_POLYGON_PARAM = "locpoly";
+    static final String CATEGORY_PARAM = "cat";
+    static final String AWARD_PARAM = "src_awards__0";
+    static final String FACILITY_PARAM = "fac_id";
+    static final String RATING_PARAM = "grade";
+    static final String LATITUDE_PARAM = "lat";
+    static final String LONGITUDE_PARAM = "lng";
+    static final String PROXIMITY_LOCATION_PARAM = "locprox";
+    static final String PROXIMITY_PIN_PARAM = "areaproxdist";
+    static final String ORDER_PARAM = "order";
 
     //TODO This path should come from DMS?
     static final String PATH_SEE_DO = "see-do";
@@ -249,7 +249,7 @@ public class ProductSearchBuilder {
 
         String compose =  String.format(PRODUCT_SEARCH, host==null?"":host, path);
 
-        compose = addParams(compose, PRODUCT_TYPE, productTypes);
+        compose = addParams(compose, PRODUCT_TYPE_PARAM, productTypes);
         //Accommodations MUST deactivate availavility search
         if (path.equals(PATH_ACCOMMODATION)) {
             compose = addParams(compose, AVAILABILITY, "off");
@@ -259,28 +259,28 @@ public class ProductSearchBuilder {
         if (location != null) {
             LocationObject loc = LocationLoader.getLocation(location, locale);
 
-            compose = addParams(compose, "POLYGON".equals(loc.getType())?LOCATION_POLYGON: LOCATION_PLACE, loc.getKey());
-            compose = addParams(compose, PROXIMITY_LOCATION, proximity.toString());
+            compose = addParams(compose, "POLYGON".equals(loc.getType()) ? LOCATION_POLYGON_PARAM : LOCATION_PLACE_PARAM, loc.getKey());
+            compose = addParams(compose, PROXIMITY_LOCATION_PARAM, proximity.toString());
 
             try {
-                compose = addParams(compose, LOCATION_NAME, URLEncoder.encode(loc.getName(), "UTF-8"));
-            } catch (UnsupportedEncodingException e){
-                logger.error("Unexpected UnsupportedEncodingException for UTF-8",e);
+                compose = addParams(compose, LOCATION_NAME_PARAM, URLEncoder.encode(loc.getName(), "UTF-8"));
+            } catch (UnsupportedEncodingException e) {
+                logger.error("Unexpected UnsupportedEncodingException for UTF-8", e);
             }
-        } else if (latitude != null && longitude != null){
-            compose = addParams(compose, LATITUDE, latitude.toString());
-            compose = addParams(compose, LONGITUDE, longitude.toString());
-            compose = addParams(compose, PROXIMITY_PIN, proximity.toString());
+        } else if (latitude != null && longitude != null) {
+            compose = addParams(compose, LATITUDE_PARAM, latitude.toString());
+            compose = addParams(compose, LONGITUDE_PARAM, longitude.toString());
+            compose = addParams(compose, PROXIMITY_PIN_PARAM, proximity.toString());
         }
 
         //Add categories, awards, facilities and rating
-        compose = addParams(compose, CATEGORY, categories);
-        compose = addParams(compose, AWARD, awards);
-        compose = addParams(compose, FACILITY, facilities);
-        compose = addParams(compose, RATING, ratings);
+        compose = addParams(compose, CATEGORY_PARAM, categories);
+        compose = addParams(compose, AWARD_PARAM, awards);
+        compose = addParams(compose, FACILITY_PARAM, facilities);
+        compose = addParams(compose, RATING_PARAM, ratings);
 
         //Sort the list
-        compose = addParams(compose, ORDER, order.value);
+        compose = addParams(compose, ORDER_PARAM, order.value);
 
         return compose;
     }
