@@ -4,8 +4,8 @@
         :class="[this.$slots['vs-panel-title'] ? '' : 'pt-10']"
     >
         <template v-slot:header>
-            <!-- @slot Contains an optional title for the panel  -->
-            <slot name="vs-panel-title" />
+          <!-- @slot Contains an optional title for the panel  -->
+          <slot name="vs-panel-title"/>
         </template>
 
         <BCardText class="vs-panel-text">
@@ -16,7 +16,7 @@
 </template>
 
 <script>
-import { BCard, BCardText } from 'bootstrap-vue';
+import {BCard, BCardText} from 'bootstrap-vue';
 
 /**
  * The panel is used for simple content and contains slots for title and content.
@@ -54,18 +54,18 @@ export default {
         text-align: center;
     }
 
-    .vs-panel-text {
-        @include media-breakpoint-down(xs) {
-            .vs-rich-text-wrapper.lead {
-                font-size: $font-size-base;
-                line-height: $line-height-m;
-            }
-        }
+  .vs-panel-text {
+    @include media-breakpoint-down(xs) {
+      .vs-rich-text-wrapper.lead {
+        font-size: $font-size-base;
+        line-height: $line-height-m;
+      }
     }
+  }
 
-    .card-header {
-        text-align: center;
-    }
+  .card-header {
+    text-align: center;
+  }
 }
 </style>
 

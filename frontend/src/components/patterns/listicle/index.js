@@ -1,1 +1,1 @@
-export { default } from './ListicleItem';
+export {default} from './ListicleItem';
