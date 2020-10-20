@@ -79,36 +79,36 @@ export default {
          */
         size: {
             type: String,
-            default: 'md',
-            validator: (value) => value.match(/(sm|md|lg)/),
+          default: 'md',
+          validator: (value) => value.match(/(sm|md|lg)/),
         },
-        /**
-         * By default, buttons have an animation behaviour on click.
-         * To disable, add an animate=false property
-         */
-        animate: {
-            type: Boolean,
-            default: true,
-        },
-        /**
-         * By default, button text is uppercase
-         * To disable, add an uppercase=false property
-         */
-        uppercase: {
-            type: Boolean,
-            default: true,
-        },
+      /**
+       * By default, buttons have an animation behaviour on click.
+       * To disable, add an animate=false property
+       */
+      animate: {
+        type: Boolean,
+        default: true,
+      },
+      /**
+       * By default, button text is uppercase
+       * To disable, add an uppercase=false property
+       */
+      uppercase: {
+        type: Boolean,
+        default: true,
+      },
     },
     computed: {
-        animateClass() {
-            return this.animate ? 'btn-animate' : null;
-        },
-        backgroundClass() {
-            return this.background ? [`btn-bg-${this.background}`] : null;
-        },
-        textTransformClass() {
-            return this.uppercase ? 'text-uppercase' : null;
-        },
+      animateClass() {
+        return this.animate ? 'btn-animate' : null;
+      },
+      backgroundClass() {
+        return this.background ? [`btn-bg-${this.background}`] : null;
+      },
+      textTransformClass() {
+        return this.uppercase ? 'text-uppercase' : null;
+      },
     },
     methods: {
         animateHandler() {

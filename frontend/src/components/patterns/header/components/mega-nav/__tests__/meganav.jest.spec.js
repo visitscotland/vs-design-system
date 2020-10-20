@@ -1,4 +1,4 @@
-import { shallowMount, mount } from '@vue/test-utils';
+import {shallowMount, mount} from '@vue/test-utils';
 import VsMegaNav from '../MegaNav';
 import VsMegaNavDropdown from '../MegaNavDropdown';
 
