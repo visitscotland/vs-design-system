@@ -1,5 +1,5 @@
 import { extend, trim } from 'lodash';
-import { shallowMount } from '@vue/test-utils';
+import {shallowMount} from '@vue/test-utils';
 import svgContext from '@/utils/svg-context';
 import VsSvg from './Svg';
 import mockSvg from '../../../../test/unit/mocks/svgMock';

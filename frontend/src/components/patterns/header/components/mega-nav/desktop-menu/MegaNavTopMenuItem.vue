@@ -1,35 +1,35 @@
 <template>
-    <li
-        class="vs-mega-nav__top-menu__item"
-        data-test="vs-mega-nav__top-menu__item"
-        ref="menuToggle"
+  <li
+      class="vs-mega-nav__top-menu__item"
+      data-test="vs-mega-nav__top-menu__item"
+      ref="menuToggle"
+  >
+    <VsMegaNavDropdown
+        menu-toggle-alt-text="Toggle Menu"
     >
-        <VsMegaNavDropdown
-            menu-toggle-alt-text="Toggle Menu"
+      <template #buttonContent>
+        <!-- @slot For top menu item button content -->
+        <slot name="buttonContent"/>
+      </template>
+
+      <template #ctaLink>
+        <a
+            v-if="href && ctaText"
+            :href="href"
+            class="vs-mega-nav__cta-link"
+            data-test="vs-mega-nav__cta-link"
         >
-            <template #buttonContent>
-                <!-- @slot For top menu item button content -->
-                <slot name="buttonContent" />
-            </template>
+          {{ ctaText }}
+        </a>
+        <hr>
+      </template>
 
-            <template #ctaLink>
-                <a
-                    v-if="href && ctaText"
-                    :href="href"
-                    class="vs-mega-nav__cta-link"
-                    data-test="vs-mega-nav__cta-link"
-                >
-                    {{ ctaText }}
-                </a>
-                <hr>
-            </template>
-
-            <template #dropdownContent>
-                <!-- @slot Slot for dropdown menu list content -->
-                <slot name="dropdownContent" />
-            </template>
-        </VsMegaNavDropdown>
-    </li>
+      <template #dropdownContent>
+        <!-- @slot Slot for dropdown menu list content -->
+        <slot name="dropdownContent"/>
+      </template>
+    </VsMegaNavDropdown>
+  </li>
 </template>
 
 <script>
@@ -39,70 +39,70 @@
 import VsMegaNavDropdown from '@components/patterns/header/components/mega-nav/MegaNavDropdown';
 
 export default {
-    name: 'VsMegaNavTopMenuItem',
-    status: 'prototype',
-    release: '0.1.0',
-    components: {
-        VsMegaNavDropdown,
+  name: 'VsMegaNavTopMenuItem',
+  status: 'prototype',
+  release: '0.1.0',
+  components: {
+    VsMegaNavDropdown,
+  },
+  props: {
+    /**
+     * The URL for the top level CTA link
+     */
+    href: {
+      type: String,
+      default: '',
     },
-    props: {
-        /**
-         * The URL for the top level CTA link
-         */
-        href: {
-            type: String,
-            default: '',
-        },
-        /**
-         * The text to display for the CTA link
-         */
-        ctaText: {
-            type: String,
-            default: '',
-        },
+    /**
+     * The text to display for the CTA link
+     */
+    ctaText: {
+      type: String,
+      default: '',
     },
+  },
 };
 </script>
 
 <style lang="scss">
 
-.vs-mega-nav__top-menu__item{
-    @include media-breakpoint-up(xl) {
-        margin-right: $spacer-6;
+.vs-mega-nav__top-menu__item {
+  @include media-breakpoint-up(xl) {
+    margin-right: $spacer-6;
 
-        &:last-of-type {
-            margin-right: 0;
-        }
+    &:last-of-type {
+      margin-right: 0;
     }
+  }
 }
 </style>
 
 <docs>
-  ```jsx
-    <div class="bg-white">
-        <VsContainer>
-            <VsRow class="align-items-center">
-                <VsCol cols="12">
-                    <VsMegaNavTopMenu>
-                        <VsMegaNavTopMenuItem
-                            href="/"
-                            cta-text="A Map of Scotland"
-                        >
+```jsx
+<div class="bg-white">
+  <VsContainer>
+    <VsRow class="align-items-center">
+      <VsCol cols="12">
+        <VsMegaNavTopMenu>
+          <VsMegaNavTopMenuItem
+              href="/"
+              cta-text="A Map of Scotland"
+          >
                             <span slot="buttonContent">
                                 Places to Go
                             </span>
-                            <span slot="dropdownContent">
+            <span slot="dropdownContent">
                                 <ul>
                                     <li>
                                         Submenu Item
                                     </li>
                                 </ul>
                             </span>
-                        </VsMegaNavTopMenuItem>
-                    </VsMegaNavTopMenu>
-                </VsCol>
-            </VsRow>
-        </VsContainer>
-    </div>
-  ```
+          </VsMegaNavTopMenuItem>
+        </VsMegaNavTopMenu>
+      </VsCol>
+    </VsRow>
+  </VsContainer>
+</div>
+```
 </docs>

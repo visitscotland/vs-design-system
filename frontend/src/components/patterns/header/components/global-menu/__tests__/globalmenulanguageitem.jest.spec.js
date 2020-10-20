@@ -1,4 +1,4 @@
-import { shallowMount, mount } from '@vue/test-utils';
+import {shallowMount, mount} from '@vue/test-utils';
 import VsGlobalMenuLanguageItem from '../GlobalMenuLanguageItem';
 
 const factoryShallowMount = (propsData) => shallowMount(VsGlobalMenuLanguageItem, {
