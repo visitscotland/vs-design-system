@@ -1,4 +1,4 @@
-import {shallowMount, mount} from '@vue/test-utils';
+import { shallowMount, mount } from '@vue/test-utils';
 import VsMegaNavTopMenuItem from '../MegaNavTopMenuItem';
 
 const factoryMount = (values) => mount(VsMegaNavTopMenuItem, {
