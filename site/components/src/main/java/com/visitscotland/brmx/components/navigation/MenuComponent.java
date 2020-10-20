@@ -45,11 +45,11 @@ public class MenuComponent extends EssentialsMenuComponent {
     private ResourceBundleService bundle;
     private HippoUtilsService utils;
 
-    public MenuComponent(){
+    public MenuComponent() {
         this(new ResourceBundleService(), new HippoUtilsService());
     }
 
-    public MenuComponent(ResourceBundleService bundle, HippoUtilsService utils){
+    public MenuComponent(ResourceBundleService bundle, HippoUtilsService utils) {
         this.bundle = bundle;
         this.utils = utils;
     }
@@ -68,18 +68,18 @@ public class MenuComponent extends EssentialsMenuComponent {
         HippoBean document = request.getRequestContext().getContentBean();
 
         HippoBean englishSite = null;
-        if (document != null){
-            for (Locale locale: Properties.locales){
+        if (document != null) {
+            for (Locale locale : Properties.locales) {
                 LocalizedURL lan = new LocalizedURL();
                 lan.setLocale(locale);
-                lan.setLanguage(locale==null?"en":locale.getLanguage());
+                lan.setLanguage(locale == null ? "en" : locale.getLanguage());
                 lan.setDisplayName(bundle.getResourceBundle("universal", lan.getLanguage(), request.getLocale()));
 
                 HippoBean translation = document.getAvailableTranslations().getTranslation(lan.getLanguage());
                 HstLink link;
 
                 if (locale == null) {
-                    if (translation == null){
+                    if (translation == null) {
                         logger.error("The requested page does not exist in English: " + document.getPath());
                     } else {
                         englishSite = translation;
@@ -87,17 +87,17 @@ public class MenuComponent extends EssentialsMenuComponent {
                     }
                 }
 
-                if (translation != null){
+                if (translation != null) {
                     lan.setUrl(utils.createUrl(translation));
                     lan.setExists(true);
                 } else {
                     String languagePath = "";
 
-                    if(locale != null){
+                    if (locale != null) {
                         languagePath += "/" + lan.getLanguage();
                     }
 
-                    lan.setUrl(request.getRequestContext().getBaseURL().getHostName()+
+                    lan.setUrl(request.getRequestContext().getBaseURL().getHostName() +
                             request.getRequestContext().getBaseURL().getContextPath() +
                             languagePath +
                             request.getRequestContext().getBaseURL().getPathInfo());
@@ -111,12 +111,12 @@ public class MenuComponent extends EssentialsMenuComponent {
         request.setModel("localizedURLs", translatedURL);
     }
 
-    protected void enhanceRequest(HstRequest request){
+    protected void enhanceRequest(HstRequest request) {
         bundle.registerIn(request);
         enhanceMenu(request);
     }
 
-    protected void enhanceMenu(HstRequest request){
+    protected void enhanceMenu(HstRequest request) {
         List<HstSiteMenuItem> enhancedMenu = new ArrayList<>();
         RootMenuItem root = new RootMenuItem(request.getModel(MENU));
 
@@ -124,7 +124,7 @@ public class MenuComponent extends EssentialsMenuComponent {
         String resourceBundle = NAVIGATION_PREFIX + ((HstSiteMenu) request.getModel(MENU)).getName();
 
         if (request.getModel(MENU) != null) {
-            for (HstSiteMenuItem hstItem: (((HstSiteMenu)request.getModel(MENU)).getSiteMenuItems())) {
+            for (HstSiteMenuItem hstItem : (((HstSiteMenu) request.getModel(MENU)).getSiteMenuItems())) {
                 MenuItem menuItem = enhanceMenuItem(request, hstItem, resourceBundle);
                 if (menuItem != null) {
                     enhancedMenu.add(menuItem);
@@ -137,7 +137,7 @@ public class MenuComponent extends EssentialsMenuComponent {
         }
     }
 
-    private MenuItem enhanceMenuItem(HstRequest request, HstSiteMenuItem hstItem, String resourceBundle){
+    private MenuItem enhanceMenuItem(HstRequest request, HstSiteMenuItem hstItem, String resourceBundle) {
         MenuItem menuItem = new MenuItem(hstItem);
 
         //By default the name would be populated by the resourceBundle
@@ -149,12 +149,12 @@ public class MenuComponent extends EssentialsMenuComponent {
             if (rsi != null) {
                 HippoBean bean = utils.getBeanForResolvedSiteMapItem(request, rsi);
                 //if the document does not exist or no publish
-                if (bean != null && !(bean instanceof HippoFolder)){
+                if (bean != null && !(bean instanceof HippoFolder)) {
 
                     //Widget document
                     if (bean instanceof Widget) {
                         menuItem.setWidget((Widget) bean);
-                    } else if (bean instanceof Page){
+                    } else if (bean instanceof Page) {
                         updateMenuItemFromDocument(menuItem, (Page) bean, resourceBundle, request);
                     } else {
                         logger.warn("Skipping Unexpected document type: " + bean.getClass().getSimpleName());
@@ -181,26 +181,26 @@ public class MenuComponent extends EssentialsMenuComponent {
      * @param menuItem Menu Item to enhance
      * @param document HippoBean that contains the relevant document that is linked from the header
      * @param bundleId Resource Bundle where the labels of the menu item might come from
-     * @param request HstRequest
+     * @param request  HstRequest
      */
-    private void updateMenuItemFromDocument(MenuItem menuItem, Page document, String bundleId, HstRequest request){
+    private void updateMenuItemFromDocument(MenuItem menuItem, Page document, String bundleId, HstRequest request) {
         //If the menu hasn't been set we use the title coming from the document.
         if (Contract.isEmpty(menuItem.getTitle())) {
-            if (!Contract.isEmpty(document.getBreadcrumb())){
+            if (!Contract.isEmpty(document.getBreadcrumb())) {
                 menuItem.setTitle(document.getBreadcrumb());
             } else {
                 menuItem.setTitle(document.getTitle());
             }
         }
 
-        if (bundle.existsResourceBundleKey(bundleId,menuItem.getHstMenuItem().getName()+ CTA_SUFFIX,  request.getLocale())){
-            menuItem.setCta(bundle.getResourceBundle(bundleId,menuItem.getHstMenuItem().getName()+ CTA_SUFFIX, request.getLocale()));
-        } else if (menuItem.getTitle() != null){
-            String seeAll = bundle.getResourceBundle(STATIC,"see-all-cta", request.getLocale());
+        if (bundle.existsResourceBundleKey(bundleId, menuItem.getHstMenuItem().getName() + CTA_SUFFIX, request.getLocale())) {
+            menuItem.setCta(bundle.getResourceBundle(bundleId, menuItem.getHstMenuItem().getName() + CTA_SUFFIX, request.getLocale()));
+        } else if (menuItem.getTitle() != null) {
+            String seeAll = bundle.getResourceBundle(STATIC, "see-all-cta", request.getLocale());
             if (seeAll != null) {
                 try {
                     menuItem.setCta(String.format(seeAll, menuItem.getTitle()));
-                } catch (MissingFormatArgumentException e){
+                } catch (MissingFormatArgumentException e) {
                     String message = String.format("The label '%s' has more parameters than expected. File: %s, key: %s",
                             seeAll, STATIC, "see-all-cta");
                     logger.warn(message);

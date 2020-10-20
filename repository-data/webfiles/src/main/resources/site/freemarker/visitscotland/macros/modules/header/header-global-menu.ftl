@@ -12,8 +12,9 @@
             dropdown-label="${label('navigation.static', 'uninav.our-sites')}"
             active-site="https://www.visitscotland.com/"
     >
-    <template slot="third-menu-item">
-        <vs-global-menu-language current-locale="${currentLocale}" language-label="${label('navigation.static', 'universal.language')}">
+        <template slot="third-menu-item">
+            <vs-global-menu-language current-locale="${currentLocale}"
+                                     language-label="${label('navigation.static', 'universal.language')}">
                 <#list localizedURLs as language>
                     <vs-global-menu-language-item
                             key="${language.language}"
@@ -22,7 +23,7 @@
                     >
                     </vs-global-menu-language-item>
                 </#list>
-        </vs-global-menu-language>
-    </template>
-</vs-global-menu>
+            </vs-global-menu-language>
+        </template>
+    </vs-global-menu>
 </#macro>

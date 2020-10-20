@@ -13,10 +13,10 @@
             </#if>
 
             <vs-mega-nav-mobile-toggle
-                href="${href}"
-                cta-text="<#if item.cta??>${item.cta}<#else></#if>"
+                    href="${href}"
+                    cta-text="<#if item.cta??>${item.cta}<#else></#if>"
             >
-                ${item.title?html}                                
+                ${item.title?html}
             </vs-mega-nav-mobile-toggle>
 
             <ul>
@@ -35,20 +35,20 @@
                     </#if>
 
                     <ul class="nav nav-pills">
-                    <#list childItem.childMenuItems as thirdChildItem>
-                        <#if thirdChildItem.title??>
-                            <#if !thirdChildItem.hstLink?? && !thirdChildItem.externalLink??>
-                                <li>${thirdChildItem.title?html}</li>
-                            <#else>
-                                <#if thirdChildItem.hstLink??>
-                                    <#assign href><@hst.link link=thirdChildItem.hstLink/></#assign>
-                                <#elseif item.externalLink??>
-                                    <#assign href>${thirdChildItem.externalLink?replace("\"", "")}</#assign>
+                        <#list childItem.childMenuItems as thirdChildItem>
+                            <#if thirdChildItem.title??>
+                                <#if !thirdChildItem.hstLink?? && !thirdChildItem.externalLink??>
+                                    <li>${thirdChildItem.title?html}</li>
+                                <#else>
+                                    <#if thirdChildItem.hstLink??>
+                                        <#assign href><@hst.link link=thirdChildItem.hstLink/></#assign>
+                                    <#elseif item.externalLink??>
+                                        <#assign href>${thirdChildItem.externalLink?replace("\"", "")}</#assign>
+                                    </#if>
+                                    <li><a href="${href}">${thirdChildItem.title?html}</a></li>
                                 </#if>
-                                <li><a href="${href}">${thirdChildItem.title?html}</a></li>
                             </#if>
-                        </#if>
-                    </#list>
+                        </#list>
                     </ul>
                 </#list>
             </ul>

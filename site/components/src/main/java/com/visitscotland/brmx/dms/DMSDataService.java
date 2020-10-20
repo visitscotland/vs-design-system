@@ -69,4 +69,39 @@ public class DMSDataService {
         }
         return null;
     }
+
+    //TODO: Do it right!!!! Use psb instead of locale and query
+    public JsonNode searchResults(ProductSearchBuilder psb, Locale locale, String query){
+
+        // TODO: This method is part of POC for iCentre and Iknow modules, The requirements hasn't been signed of and
+        // therefore, this method might not be correct. Once this method is completed, Some unit tests must be added
+        logger.error("This is an stub method that conver product search parameters into map parameters.");
+
+        String dmsUrl = Properties.VS_DMS_SERVICE + "/data/product-search/map" + query.substring(query.lastIndexOf("?")) ;
+        String responseString = null;
+
+        if (locale != null) {
+            dmsUrl += "&locale=" + locale.getLanguage();
+        }
+
+        logger.info("Requesting data to the dms: " + dmsUrl);
+        try {
+            responseString = utils.requestUrl(dmsUrl);
+
+            if (responseString!=null) {
+
+                ObjectMapper mapper = new ObjectMapper();
+                JsonNode json = mapper.readTree(responseString);
+
+                if (json.has("features")) {
+                    return json.get("features");
+                }
+            }
+        } catch (JsonProcessingException e){
+            logger.error("The response could not be parsed:\n" + responseString, e);
+        } catch (IOException e){
+            logger.error("An unexpected error happened while connecting to the DMS", e);
+        }
+        return  null;
+    }
 }

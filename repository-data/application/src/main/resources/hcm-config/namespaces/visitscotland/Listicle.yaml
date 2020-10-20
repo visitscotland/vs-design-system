@@ -11,7 +11,7 @@ definitions:
         /hipposysedit:nodetype:
           jcr:primaryType: hipposysedit:nodetype
           jcr:mixinTypes: ['mix:referenceable', 'hipposysedit:remodel']
-          jcr:uuid: 7285ab6c-2cbd-4b04-a57d-3b35fdfbe07b
+          jcr:uuid: 923924e4-b1bc-4a20-97e9-733834afff17
           hipposysedit:node: true
           hipposysedit:supertype: ['visitscotland:Page', 'hippostd:relaxed', 'hippotranslation:translated']
           hipposysedit:uri: http://www.visitscotland.com/visitscotland/nt/1.0
@@ -56,7 +56,7 @@ definitions:
           visitscotland:title: ''
           visitscotland:seoTitle: ''
           jcr:mixinTypes: ['mix:referenceable']
-          jcr:uuid: 845cf369-f45a-4abd-aea6-03e9d5656006
+          jcr:uuid: 35de295c-007f-4593-a8ed-a952b66a1265
           hippostdpubwf:lastModificationDate: 2020-02-11T09:30:21.383Z
           hippostdpubwf:creationDate: 2020-02-11T09:30:21.383Z
           visitscotland:descOrder: false
@@ -114,6 +114,7 @@ definitions:
             wicket.id: ${cluster.id}.left.item
             /cluster.options:
               jcr:primaryType: frontend:pluginconfig
+              maxlength: '70'
           /seoDescription:
             jcr:primaryType: frontend:plugin
             caption: Meta Description (SEO)
@@ -123,6 +124,7 @@ definitions:
             wicket.id: ${cluster.id}.left.item
             /cluster.options:
               jcr:primaryType: frontend:pluginconfig
+              maxlength: '160'
           /title:
             jcr:primaryType: frontend:plugin
             caption: Heading

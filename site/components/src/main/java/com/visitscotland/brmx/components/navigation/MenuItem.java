@@ -54,15 +54,15 @@ public class MenuItem implements HstSiteMenuItem {
         return children;
     }
 
-    public void addChild(MenuItem child){
+    public void addChild(MenuItem child) {
         if (child != null && !children.contains(child)) {
             children.add(child);
             child.parent = this;
         }
     }
 
-    public boolean removeChild(MenuItem child){
-        if (children.contains(child)){
+    public boolean removeChild(MenuItem child) {
+        if (children.contains(child)) {
             return children.remove(child);
         } else {
             return false;
@@ -81,7 +81,6 @@ public class MenuItem implements HstSiteMenuItem {
     public void setCta(String cta) {
         this.cta = cta;
     }
-
 
 
     // Delegated methods

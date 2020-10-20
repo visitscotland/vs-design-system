@@ -18,10 +18,10 @@
             <@footerAccordionItem footerMenuItems=menu.siteMenuItems />
         </template>
 
-        <template slot="social-menu">      
-           <@footerSocialMenu />
+        <template slot="social-menu">
+            <@footerSocialMenu />
         </template>
-        
+
         <@hst.cmseditmenu menu=menu/>
 
         <@hst.include ref="utility"/>

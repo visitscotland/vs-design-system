@@ -136,18 +136,20 @@ public class LinkServiceTest {
         assertTrue(link.getLink().endsWith("/dms-page"));
     }
 
-
-
     @Test
     void productSearchLink(){
         ProductSearchLink productSearchLink = mock(ProductSearchLink.class, withSettings().lenient());
-        when(productSearchLink.getSearch()).thenReturn(mock(ProductsSearch.class));
+        ProductsSearch ps = mock(ProductsSearch.class);
+        when(ps.getProductType()).thenReturn("acco");
+        when(productSearchLink.getSearch()).thenReturn(ps);
 
-        when(builder.fromHippoBean(productSearchLink.getSearch())).thenReturn(builder);
-        when(builder.build()).thenReturn("http://product-search");
+
+
+//        when(builder.fromHippoBean(productSearchLink.getSearch())).thenReturn(builder);
+//        when(builder.build()).thenReturn("http://product-search");
 
         FlatLink link = service.createLink(Locale.UK, productSearchLink);
 
-        assertEquals("http://product-search", link.getLink());
+        assertTrue(link.getLink().contains("acco") && link.getLink().contains("search-results"));
     }
 }

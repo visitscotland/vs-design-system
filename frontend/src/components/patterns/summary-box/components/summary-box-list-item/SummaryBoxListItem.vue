@@ -21,18 +21,18 @@ export default {
 
 <style lang="scss" scoped>
 .vs-summary-box-list-item {
+  flex-grow: 1;
+  flex-basis: calc(50% - 1rem);
+  margin: 0.5rem;
+  @include media-breakpoint-up(md) {
     flex-grow: 1;
-    flex-basis: calc(50% - 1rem);
-    margin: 0.5rem;
-    @include media-breakpoint-up(md) {
-        flex-grow: 1;
-        flex-basis: calc(50% - 1.5rem);
-        margin: 0.75rem;
-    }
+    flex-basis: calc(50% - 1.5rem);
+    margin: 0.75rem;
+  }
 
-    &::after {
-        border: 1px solid $color-theme-dark;
-        content: "";
+  &::after {
+    border: 1px solid $color-theme-dark;
+    content: "";
         display: block;
         padding-bottom: 100%;
     }

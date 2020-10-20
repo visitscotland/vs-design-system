@@ -3,6 +3,8 @@ package com.visitscotland.brmx.utils;
 import com.visitscotland.brmx.services.ResourceBundleService;
 import org.hippoecm.hst.component.support.bean.BaseHstComponent;
 import org.hippoecm.hst.container.RequestContextProvider;
+import org.hippoecm.hst.content.beans.ObjectBeanManagerException;
+import org.hippoecm.hst.content.beans.query.exceptions.QueryException;
 import org.hippoecm.hst.content.beans.standard.HippoBean;
 import org.hippoecm.hst.core.component.HstRequest;
 import org.hippoecm.hst.core.linking.HstLink;
@@ -13,8 +15,12 @@ import org.hippoecm.hst.site.HstServices;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javax.jcr.Node;
 import java.util.Locale;
 
+/**
+ * Set of utilities related with Hippo that from the whole environment to be running in order to work
+ */
 public class HippoUtilsService {
 
     private static final Logger logger = LoggerFactory.getLogger(HippoUtilsService.class.getName());
@@ -29,7 +35,7 @@ public class HippoUtilsService {
     //TODO: eliminate when PageContentComponent.getCtaLabel() gets refactored.
     final ResourceBundleService bundle;
 
-    public HippoUtilsService(){
+    public HippoUtilsService() {
         this(HstServices.getComponentManager().getComponent(ResourceBundleRegistry.class.getName()), RequestContextProvider.get());
     }
 
@@ -79,7 +85,21 @@ public class HippoUtilsService {
         return link.toUrlForm(requestContext, FULLY_QUALIFIED);
     }
 
-    public HippoBean getBeanForResolvedSiteMapItem(HstRequest request, ResolvedSiteMapItem sitemapItem){
+    /**
+     * @param jcrNode
+     * @return
+     * @throws QueryException             when the node cannot be found
+     * @throws ObjectBeanManagerException when the object is corrupted and cannot be parsed
+     */
+    public Object getDocumentFromNode(Node jcrNode) throws QueryException, ObjectBeanManagerException {
+        HippoBean bean = RequestContextProvider.get().getQueryManager()
+                .createQuery(jcrNode).execute().getHippoBeans().nextHippoBean();
+
+        return bean.getObjectConverter().getObject(bean.getNode());
+
+    }
+
+    public HippoBean getBeanForResolvedSiteMapItem(HstRequest request, ResolvedSiteMapItem sitemapItem) {
         return hstComponent.getBeanForResolvedSiteMapItem(request, sitemapItem);
     }
 }

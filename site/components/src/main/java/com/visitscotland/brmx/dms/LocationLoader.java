@@ -128,14 +128,13 @@ public abstract class LocationLoader {
      */
     private static String requestPage(String url) {
         StringBuilder sb = new StringBuilder();
-        try {
-            InputStream is = new URL(url).openStream();
+        try (InputStream is = new URL(url).openStream()) {
             int c;
-            while ((c = is.read()) != -1){
+            while ((c = is.read()) != -1) {
                 sb.append((char) c);
             }
             return sb.toString();
-        } catch (Exception e){
+        } catch (Exception e) {
             logger.error("Error while loading {}: {}", url, e.getMessage(), e);
             e.printStackTrace();
             return null;

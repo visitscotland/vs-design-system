@@ -158,7 +158,7 @@ export default {
             flex-wrap: wrap;
 
             .vs-global-menu__websites {
-                display: none;
+              display: none;
             }
 
             .vs-list {
@@ -171,19 +171,19 @@ export default {
 
 <docs>
   ```
-    <vs-global-menu
-        dropdown-label="I nostri siti"
-        active-site="https://www.visitscotland.com/"
-    ><span
-            slot="second-menu-item"
-            style="min-width: 50px;"
-        >
+  <vs-global-menu
+      dropdown-label="I nostri siti"
+      active-site="https://www.visitscotland.com/"
+  ><span
+      slot="second-menu-item"
+      style="min-width: 50px;"
+  >
             User... (Not you?)
         </span>
 
-        <span
-            slot="third-menu-item"
-        >
+    <span
+        slot="third-menu-item"
+    >
         <vs-global-menu-language>
             <vs-global-menu-language-item languageName="English">
             </vs-global-menu-language-item>
