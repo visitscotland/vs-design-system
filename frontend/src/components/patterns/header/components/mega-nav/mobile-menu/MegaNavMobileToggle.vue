@@ -1,12 +1,12 @@
 <template>
-  <li
-      class="vs-mega-nav__mobile-toggle"
-      ref="mobileMenuToggle"
-  >
-    <a :href="href">
-      <slot/>
-    </a>
-  </li>
+    <li
+        class="vs-mega-nav__mobile-toggle"
+        ref="mobileMenuToggle"
+    >
+        <a :href="href">
+            <slot />
+        </a>
+    </li>
 </template>
 
 <script>
@@ -15,20 +15,21 @@
  */
 
 export default {
-  name: 'VsMegaNavMobileToggle',
-  status: 'prototype',
-  release: '0.1.0',
-  components: {},
-  props: {
-    href: {
-      type: String,
-      default: '',
+    name: 'VsMegaNavMobileToggle',
+    status: 'prototype',
+    release: '0.1.0',
+    components: {
     },
-    ctaText: {
-      type: String,
-      default: '',
+    props: {
+        href: {
+            type: String,
+            default: '',
+        },
+        ctaText: {
+            type: String,
+            default: '',
+        },
     },
-  },
 };
 </script>
 
@@ -36,6 +37,6 @@ export default {
 </style>
 
 <docs>
-```jsx
-```
+  ```jsx
+  ```
 </docs>

@@ -1,4 +1,4 @@
-import {shallowMount} from '@vue/test-utils';
+import { shallowMount } from '@vue/test-utils';
 import VsSvgLink from '../SvgLink';
 
 const factoryShallowMount = (values) => shallowMount(VsSvgLink, {
