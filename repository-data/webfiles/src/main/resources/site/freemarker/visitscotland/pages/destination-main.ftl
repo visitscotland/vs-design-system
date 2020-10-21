@@ -9,6 +9,7 @@
 <#include "../../frontend/components/vs-rich-text-wrapper.ftl">
 <#include "../../frontend/components/vs-img.ftl">
 <#include "../../frontend/components/vs-button.ftl">
+<#include "../../frontend/components/vs-link.ftl">
 
 <#include "../../frontend/components/vs-heading.ftl">
 <#include "../../frontend/components/vs-social-share.ftl">
@@ -17,7 +18,9 @@
 <#include "../macros/modules/megalinks/multi-image/megalinks-multi-image.ftl">
 <#--  <#include "../macros/modules/megalinks/megalinks-single-image.ftl">
 <#include "../macros/modules/megalinks/megalinks-list.ftl">
-<#include "../macros/global/cms-errors.ftl">  -->
+<#include "../macros/global/cms-errors.ftl">
+
+<#include "./module-builder.ftl">
 <#-- Implicit Request Objects -->
 <#-- @ftlvariable name="document" type="com.visitscotland.brmx.beans.Destination" -->
 <#-- @ftlvariable name="pageItems" type="com.visitscotland.brmx.beans.Megalinks" -->

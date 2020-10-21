@@ -117,10 +117,12 @@
             <#assign nearbyStayUrl = productSearch(locale, "acco", prod.coordinates.latitude, prod.coordinates.longitude, 5)>
 
             <vs-itinerary-border-overlap-wrapper slot="nearby-links">
-                <vs-button-with-icon class="mb-3" button-size="md" background="white" variant="outline-primary" icon="food" href="${nearbyEatsUrl}" >
+                <vs-button-with-icon class="mb-3" button-size="md" background="white" variant="outline-primary"
+                                     icon="food" href="${nearbyEatsUrl}">
                     ${label("itinerary", "stop.nearby-eat")}
                 </vs-button-with-icon>
-                <vs-button-with-icon button-size="md" background="white" variant="outline-primary" icon="product-accommodation" href="${nearbyStayUrl}" >
+                <vs-button-with-icon button-size="md" background="white" variant="outline-primary"
+                                     icon="product-accommodation" href="${nearbyStayUrl}">
                     ${label("itinerary", "stop.nearby-stay")}
                 </vs-button-with-icon>
             </vs-itinerary-border-overlap-wrapper>

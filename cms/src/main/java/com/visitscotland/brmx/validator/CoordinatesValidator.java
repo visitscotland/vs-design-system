@@ -17,10 +17,10 @@ import java.util.Optional;
  */
 public class CoordinatesValidator implements Validator<Node> {
 
-    private static final String NORTH = "extreme.north";
-    private static final String SOUTH = "extreme.south";
-    private static final String EAST = "extreme.east";
-    private static final String WEST = "extreme.west";
+    private static final String NORTH_EXTREME = "extreme.north";
+    private static final String SOUTH_EXTREME = "extreme.south";
+    private static final String EAST_EXTREME = "extreme.east";
+    private static final String WEST_EXTREME = "extreme.west";
 
     private double north;
     private double south;
@@ -29,10 +29,10 @@ public class CoordinatesValidator implements Validator<Node> {
 
     public CoordinatesValidator(final Node config) {
         try {
-            north = config.getProperty(NORTH).getDouble();
-            south = config.getProperty(SOUTH).getDouble();
-            east = config.getProperty(EAST).getDouble();
-            west = config.getProperty(WEST).getDouble();
+            north = config.getProperty(NORTH_EXTREME).getDouble();
+            south = config.getProperty(SOUTH_EXTREME).getDouble();
+            east = config.getProperty(EAST_EXTREME).getDouble();
+            west = config.getProperty(WEST_EXTREME).getDouble();
             if (north < south || east < west) {
                 throw new ValidationContextException("Coordinates configuration is wrong. Verify the node " + config.getPath());
             }

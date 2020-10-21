@@ -16,11 +16,11 @@
     hippostdpubwf:lastModifiedBy: admin
     resourcebundle:descriptions: ['', '', '', '', '', '', '', '', '']
     resourcebundle:id: navigation.utility
-    resourcebundle:keys: [footer.accessibility, footer.get-touch, footer.utility-list,
-      footer.acceptable-use, footer.privacy, footer.cookies, footer.social-media,
-      footer.environmental-policy, footer.terms-of-use]
-    resourcebundle:messages: [Accessibility, Get in touch, Utility list, Acceptable
-        Use, Privacy, Cookies, Social Media, Environmental Policy, Terms of Use]
+    resourcebundle:keys: [ footer.accessibility, footer.get-touch, footer.utility-list,
+                           footer.acceptable-use, footer.privacy, footer.cookies, footer.social-media,
+                           footer.environmental-policy, footer.terms-of-use ]
+    resourcebundle:messages: [ Accessibility, Get in touch, Utility list, Acceptable
+                                                                            Use, Privacy, Cookies, Social Media, Environmental Policy, Terms of Use ]
     resourcebundle:messages_es: ['', '', '', '', '', '', '', '', '']
   /footer-utility-links[2]:
     jcr:primaryType: resourcebundle:resourcebundle
@@ -34,11 +34,11 @@
     hippostdpubwf:lastModifiedBy: admin
     resourcebundle:descriptions: ['', '', '', '', '', '', '', '', '']
     resourcebundle:id: navigation.utility
-    resourcebundle:keys: [footer.accessibility, footer.get-touch, footer.utility-list,
-      footer.acceptable-use, footer.privacy, footer.cookies, footer.social-media,
-      footer.environmental-policy, footer.terms-of-use]
-    resourcebundle:messages: [Accessibility, Get in touch, Utility list, Acceptable
-        Use, Privacy, Cookies, Social Media, Environmental Policy, Terms of Use]
+    resourcebundle:keys: [ footer.accessibility, footer.get-touch, footer.utility-list,
+                           footer.acceptable-use, footer.privacy, footer.cookies, footer.social-media,
+                           footer.environmental-policy, footer.terms-of-use ]
+    resourcebundle:messages: [ Accessibility, Get in touch, Utility list, Acceptable
+                                                                            Use, Privacy, Cookies, Social Media, Environmental Policy, Terms of Use ]
     resourcebundle:messages_es: ['', '', '', '', '', '', '', '', '']
   /footer-utility-links[3]:
     jcr:primaryType: resourcebundle:resourcebundle
@@ -53,9 +53,9 @@
     hippostdpubwf:publicationDate: 2020-07-23T16:02:58.951+01:00
     resourcebundle:descriptions: ['', '', '', '', '', '', '', '', '']
     resourcebundle:id: navigation.utility
-    resourcebundle:keys: [footer.accessibility, footer.get-touch, footer.utility-list,
-      footer.acceptable-use, footer.privacy, footer.cookies, footer.social-media,
-      footer.environmental-policy, footer.terms-of-use]
-    resourcebundle:messages: [Accessibility, Get in touch, Utility list, Acceptable
-        Use, Privacy, Cookies, Social Media, Environmental Policy, Terms of Use]
+    resourcebundle:keys: [ footer.accessibility, footer.get-touch, footer.utility-list,
+                           footer.acceptable-use, footer.privacy, footer.cookies, footer.social-media,
+                           footer.environmental-policy, footer.terms-of-use ]
+    resourcebundle:messages: [ Accessibility, Get in touch, Utility list, Acceptable
+                                                                            Use, Privacy, Cookies, Social Media, Environmental Policy, Terms of Use ]
     resourcebundle:messages_es: ['', '', '', '', '', '', '', '', '']

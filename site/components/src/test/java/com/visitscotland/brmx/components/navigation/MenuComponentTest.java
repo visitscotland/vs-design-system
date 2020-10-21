@@ -34,7 +34,7 @@ import static org.mockito.Mockito.withSettings;
 public class MenuComponentTest {
 
     private static final String MENU_ID = "mock";
-    private static final String BUNDLE_ID = MenuComponent.NAVIGATION_PREFIX+ MENU_ID;
+    private static final String BUNDLE_ID = MenuComponent.NAVIGATION_PREFIX + MENU_ID;
 
     private static final Locale LOCALE = Locale.UK;
 
@@ -57,12 +57,12 @@ public class MenuComponentTest {
     }
 
     @Test
-    void basicHippoMockingTest(){
+    void basicHippoMockingTest() {
         MenuComponent menu = new MenuComponent(bundle, utils);
     }
 
     @Test
-    void titleFromResourceBundle_butNotCta(){
+    void titleFromResourceBundle_butNotCta() {
         //Basic element with no link. Takes the title of the menu from a ResourceBundle but doesn't add a CTA text
         HstRequest request = mockRequest();
         MenuComponent menu = new MenuComponent(bundle, utils);
@@ -78,7 +78,7 @@ public class MenuComponentTest {
     }
 
     @Test
-    void resourceBundleTakesPrecedenceFromDocumentTitle(){
+    void resourceBundleTakesPrecedenceFromDocumentTitle() {
         //Basic element with no link. Takes the title of the menu from a ResourceBundle but doesn't add a CTA text
         HstRequest request = mockRequest();
         MenuComponent menu = new MenuComponent(bundle, utils);
@@ -95,9 +95,9 @@ public class MenuComponentTest {
     }
 
     @Test
-    void notExisting_or_notPublishedDocument(){
+    void notExisting_or_notPublishedDocument() {
         //The document is not available (main reason: is that it is not published)
-        HstRequest request =  mockRequest();
+        HstRequest request = mockRequest();
         MenuComponent menu = new MenuComponent(bundle, utils);
         addHstLink(request, null);
 
@@ -107,9 +107,9 @@ public class MenuComponentTest {
     }
 
     @Test
-    void existingFolderWithNoContentDocument(){
+    void existingFolderWithNoContentDocument() {
         //The path resolves a folder but not a document (main reason: content document was renamed or deleted)
-        HstRequest request =  mockRequest();
+        HstRequest request = mockRequest();
         MenuComponent menu = new MenuComponent(bundle, utils);
         HippoFolder folder = mock(HippoFolder.class);
         addHstLink(request, folder);
@@ -120,9 +120,9 @@ public class MenuComponentTest {
     }
 
     @Test
-    void widget(){
+    void widget() {
         //The path resolves a folder but not a document (main reason: content document was renamed or deleted)
-        HstRequest request =  mockRequest();
+        HstRequest request = mockRequest();
         MenuComponent menu = new MenuComponent(bundle, utils);
         Widget widget = mock(Widget.class);
         addHstLink(request, widget);
@@ -135,17 +135,17 @@ public class MenuComponentTest {
     }
 
     @Test
-    void documentWithNoTitle_skippedFromRender(){
+    void documentWithNoTitle_skippedFromRender() {
         //When a document has a link but it has no title and no resource bundle. It gets droppped from the list
         // On the current specification the field title is mandatory. So, this is more defensive programming rather than a real case
-        HstRequest request =  mockRequest();
+        HstRequest request = mockRequest();
         MenuComponent menu = new MenuComponent(bundle, utils);
         Page page = mock(Page.class);
         addHstLink(request, page);
 
         when(hstMenuItem.getName()).thenReturn("home");
-        when(bundle.getResourceBundle(BUNDLE_ID,"home", LOCALE, true)).thenReturn(null);
-        when(bundle.existsResourceBundleKey(BUNDLE_ID,"home.cta", LOCALE)).thenReturn(false);
+        when(bundle.getResourceBundle(BUNDLE_ID, "home", LOCALE, true)).thenReturn(null);
+        when(bundle.existsResourceBundleKey(BUNDLE_ID, "home.cta", LOCALE)).thenReturn(false);
 
         menu.enhanceMenu(request);
 
@@ -153,17 +153,17 @@ public class MenuComponentTest {
     }
 
     @Test
-    void populateCtaText(){
+    void populateCtaText() {
         //The cta gets populated with the resourceBundle information
-        HstRequest request =  mockRequest();
+        HstRequest request = mockRequest();
         MenuComponent menu = new MenuComponent(bundle, utils);
         Page page = mock(Page.class);
         addHstLink(request, page);
 
         when(hstMenuItem.getName()).thenReturn("home");
-        when(bundle.getResourceBundle(BUNDLE_ID,"home", LOCALE, true)).thenReturn("Home Page");
-        when(bundle.existsResourceBundleKey(BUNDLE_ID,"home.cta", LOCALE)).thenReturn(true);
-        when(bundle.getResourceBundle(BUNDLE_ID,"home.cta", LOCALE)).thenReturn("CTA text");
+        when(bundle.getResourceBundle(BUNDLE_ID, "home", LOCALE, true)).thenReturn("Home Page");
+        when(bundle.existsResourceBundleKey(BUNDLE_ID, "home.cta", LOCALE)).thenReturn(true);
+        when(bundle.getResourceBundle(BUNDLE_ID, "home.cta", LOCALE)).thenReturn("CTA text");
 
         menu.enhanceMenu(request);
 
@@ -172,9 +172,9 @@ public class MenuComponentTest {
     }
 
     @Test
-    void populateCtaText_defaultValue(){
+    void populateCtaText_defaultValue() {
         //The cta gets the text defaulted to CMS configuration
-        HstRequest request =  mockRequest();
+        HstRequest request = mockRequest();
         MenuComponent menu = new MenuComponent(bundle, utils);
         Page page = mock(Page.class);
         addHstLink(request, page);
@@ -182,9 +182,9 @@ public class MenuComponentTest {
         when(page.getTitle()).thenReturn("Cities");
 
         when(hstMenuItem.getName()).thenReturn("home");
-        when(bundle.getResourceBundle(BUNDLE_ID,"home", LOCALE, true)).thenReturn(null);
-        when(bundle.existsResourceBundleKey(BUNDLE_ID,"home.cta", LOCALE)).thenReturn(false);
-        when(bundle.getResourceBundle(MenuComponent.STATIC,"see-all-cta", request.getLocale())).thenReturn("See all %s");
+        when(bundle.getResourceBundle(BUNDLE_ID, "home", LOCALE, true)).thenReturn(null);
+        when(bundle.existsResourceBundleKey(BUNDLE_ID, "home.cta", LOCALE)).thenReturn(false);
+        when(bundle.getResourceBundle(MenuComponent.STATIC, "see-all-cta", request.getLocale())).thenReturn("See all %s");
 
         menu.enhanceMenu(request);
 
@@ -193,18 +193,18 @@ public class MenuComponentTest {
     }
 
     @Test
-    void resourceBundle_seeAll_notProperlyDefinedOnTheCMS_noParams(){
+    void resourceBundle_seeAll_notProperlyDefinedOnTheCMS_noParams() {
         //ResourceBundle does not throw an exception when the text is not specified correctly
-        HstRequest request =  mockRequest();
+        HstRequest request = mockRequest();
         MenuComponent menu = new MenuComponent(bundle, utils);
         Page page = mock(Page.class);
         addHstLink(request, page);
         when(page.getTitle()).thenReturn("Cities");
 
         when(hstMenuItem.getName()).thenReturn("home");
-        when(bundle.getResourceBundle(BUNDLE_ID,"home", LOCALE, true)).thenReturn(null);
-        when(bundle.existsResourceBundleKey(BUNDLE_ID,"home.cta", LOCALE)).thenReturn(false);
-        when(bundle.getResourceBundle(MenuComponent.STATIC,"see-all-cta", request.getLocale())).thenReturn("See all");
+        when(bundle.getResourceBundle(BUNDLE_ID, "home", LOCALE, true)).thenReturn(null);
+        when(bundle.existsResourceBundleKey(BUNDLE_ID, "home.cta", LOCALE)).thenReturn(false);
+        when(bundle.getResourceBundle(MenuComponent.STATIC, "see-all-cta", request.getLocale())).thenReturn("See all");
 
         menu.enhanceMenu(request);
 
@@ -216,18 +216,18 @@ public class MenuComponentTest {
     }
 
     @Test
-    void resourceBundle_seeAll_notProperlyDefinedOnTheCMS_severalParams(){
+    void resourceBundle_seeAll_notProperlyDefinedOnTheCMS_severalParams() {
         //ResourceBundle does not throw an exception when the text is not specified correctly
-        HstRequest request =  mockRequest();
+        HstRequest request = mockRequest();
         MenuComponent menu = new MenuComponent(bundle, utils);
         Page page = mock(Page.class);
         addHstLink(request, page);
         when(page.getTitle()).thenReturn("Cities");
 
         when(hstMenuItem.getName()).thenReturn("home");
-        when(bundle.getResourceBundle(BUNDLE_ID,"home", LOCALE, true)).thenReturn(null);
-        when(bundle.existsResourceBundleKey(BUNDLE_ID,"home.cta", LOCALE)).thenReturn(false);
-        when(bundle.getResourceBundle(MenuComponent.STATIC,"see-all-cta", request.getLocale())).thenReturn("See all %s %s %s.");
+        when(bundle.getResourceBundle(BUNDLE_ID, "home", LOCALE, true)).thenReturn(null);
+        when(bundle.existsResourceBundleKey(BUNDLE_ID, "home.cta", LOCALE)).thenReturn(false);
+        when(bundle.getResourceBundle(MenuComponent.STATIC, "see-all-cta", request.getLocale())).thenReturn("See all %s %s %s.");
 
         menu.enhanceMenu(request);
 
@@ -236,9 +236,9 @@ public class MenuComponentTest {
     }
 
     @Test
-    void nestedConfiguration_complexCase(){
+    void nestedConfiguration_complexCase() {
         //Complex Scenario that tests the nested menu items
-        HstRequest request =  mockRequest();
+        HstRequest request = mockRequest();
         MenuComponent menu = new MenuComponent(bundle, utils);
         Page page = mock(Page.class);
         addHstLink(request, page);
@@ -286,7 +286,7 @@ public class MenuComponentTest {
         Assertions.assertEquals("Too young!", aux.getCta());
     }
 
-    private MockHstRequest mockRequest(){
+    private MockHstRequest mockRequest() {
         MockHstRequest request = new MockHstRequest();
         request.setLocale(LOCALE);
         HstSiteMenu model = mock(HstSiteMenu.class);
@@ -298,19 +298,19 @@ public class MenuComponentTest {
         return request;
     }
 
-    private List<HstSiteMenuItem> getMenu(HstRequest request){
+    private List<HstSiteMenuItem> getMenu(HstRequest request) {
         return ((RootMenuItem) request.getModel(MenuComponent.MENU)).getSiteMenuItems();
     }
-    
-    private MenuItem getFirstMenuItem(HstRequest request){
+
+    private MenuItem getFirstMenuItem(HstRequest request) {
         return (MenuItem) getMenu(request).get(0);
     }
 
-    private void addHstLink(HstRequest request, HippoBean bean){
+    private void addHstLink(HstRequest request, HippoBean bean) {
         addHstLink(request, bean, hstMenuItem);
     }
 
-    private void addHstLink(HstRequest request, HippoBean bean, HstSiteMenuItem menuItem){
+    private void addHstLink(HstRequest request, HippoBean bean, HstSiteMenuItem menuItem) {
         HstLink link = mock(HstLink.class);
         when(link.getPath()).thenReturn("/content/fake/path/to/home");
         ResolvedSiteMapItem rsi = mock(ResolvedSiteMapItem.class);

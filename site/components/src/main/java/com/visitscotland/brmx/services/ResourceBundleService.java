@@ -20,7 +20,7 @@ public class ResourceBundleService {
     final ResourceBundleRegistry resourceBundleRegistry;
     final CommonUtils common;
 
-    public ResourceBundleService (){
+    public ResourceBundleService() {
         //Default Hippo Resource bundle Service
         this(HstServices.getComponentManager().getComponent(ResourceBundleRegistry.class.getName()),
                 new CommonUtils());
@@ -164,16 +164,16 @@ public class ResourceBundleService {
      * @param message message
      * @param args arguments for the message
      */
-    void logContentIssue(String message, Object... args){
+    void logContentIssue(String message, Object... args) {
         //TODO Transform into a different Logger
         logger.warn(common.contentIssue(message, args));
     }
 
-    public void registerIn(HstRequest request){
+    public void registerIn(HstRequest request) {
         if (request.getAttribute(SERVICE_NAME) == null) {
             request.setAttribute(SERVICE_NAME, this);
             logger.debug(SERVICE_NAME + " has been registered on the request");
-        } else{
+        } else {
             logger.info(SERVICE_NAME + " has been been already registered on the request");
         }
     }
@@ -182,11 +182,10 @@ public class ResourceBundleService {
      * Returns the default CTA label when the manual CTA  is not defined.     *
      *
      * @param manualCta Manual CTA defined in the CMS
-     * @param locale Locale
-     *
+     * @param locale    Locale
      * @return the manual CTA if provided otherwise the default CTA
      */
-    public  String getCtaLabel(String manualCta, Locale locale) {
+    public String getCtaLabel(String manualCta, Locale locale) {
         if (!Contract.isEmpty(manualCta)) {
             return manualCta;
         } else {

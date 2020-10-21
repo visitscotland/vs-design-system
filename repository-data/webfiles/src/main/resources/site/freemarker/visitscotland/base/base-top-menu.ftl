@@ -12,16 +12,16 @@
 
 
 <#if menu??>
-<div class="has-edit-button">
-    <vs-header>
-        <template slot="globalMenu">
-            <@headerGlobalMenu />
-        </template>
-        <template slot="megaNav">
-            <@headerMegaNav menu=menu/>
-        </template>
-    </vs-header>
+    <div class="has-edit-button">
+        <vs-header>
+            <template slot="globalMenu">
+                <@headerGlobalMenu />
+            </template>
+            <template slot="megaNav">
+                <@headerMegaNav menu=menu/>
+            </template>
+        </vs-header>
 
-    <@hst.cmseditmenu menu=menu />
-</div>
+        <@hst.cmseditmenu menu=menu />
+    </div>
 </#if>

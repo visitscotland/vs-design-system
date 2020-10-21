@@ -168,7 +168,7 @@ public class ResourceBundleServiceTest {
     }
 
     @Test
-    public void existsKey_emptyValue(){
+    public void existsKey_emptyValue() {
         when(bundle.containsKey("key")).thenReturn(true);
         when(bundle.getString("key")).thenReturn("");
 
@@ -176,7 +176,7 @@ public class ResourceBundleServiceTest {
     }
 
     @Test
-    public void registerInRequest(){
+    public void registerInRequest() {
         //The service is registered on the request as ResourceBundle
         HstRequest request = mock(HstRequest.class);
 
@@ -187,7 +187,7 @@ public class ResourceBundleServiceTest {
     }
 
     @Test
-    public void skipRegisterInRequest_whenAlreadyRegistered(){
+    public void skipRegisterInRequest_whenAlreadyRegistered() {
         //The service is not registered if something is already registered as ResourceBundle
         HstRequest request = mock(HstRequest.class);
 
@@ -200,12 +200,12 @@ public class ResourceBundleServiceTest {
     }
 
     @Test
-    public void getCtaLabel_manual(){
+    public void getCtaLabel_manual() {
         Assert.assertEquals("Discover more", service.getCtaLabel("Discover more", null));
     }
 
     @Test
-    public void getCtaLabel_auto(){
+    public void getCtaLabel_auto() {
         lenient().when(registry.getBundle("essentials.global", Locale.UK)).thenReturn(bundle);
 
         when(bundle.containsKey("button.find-out-more")).thenReturn(true);

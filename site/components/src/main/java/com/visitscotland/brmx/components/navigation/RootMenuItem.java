@@ -13,11 +13,11 @@ public class RootMenuItem implements HstSiteMenu {
 
     private List<HstSiteMenuItem> menuItems;
 
-    public RootMenuItem(HstSiteMenu hstMenu){
+    public RootMenuItem(HstSiteMenu hstMenu) {
         this.hstMenu = hstMenu;
     }
 
-    public void setSiteMenuItems(List<HstSiteMenuItem> items){
+    public void setSiteMenuItems(List<HstSiteMenuItem> items) {
         this.menuItems = items;
     }
 
@@ -33,7 +33,6 @@ public class RootMenuItem implements HstSiteMenu {
     public HstSiteMenuItem getSelectSiteMenuItem() {
         return hstMenu.getSelectSiteMenuItem();
     }
-
 
 
     @Override

@@ -41,7 +41,7 @@
 </#function>
 
 <#function productSearch locale productType lat lon proximity>
-    <#--TODO: proximity as optional-->
+<#--TODO: proximity as optional-->
     <#return ProductSearchBuilder.newInstance().productTypes(productType).proximity(proximity).coordinates(lat, lon).build()>
 </#function>
 

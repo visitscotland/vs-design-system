@@ -12,8 +12,6 @@ import static org.mockito.Mockito.*;
 public class RootMenuItemTest {
 
 
-
-
 //    private HstSiteMenu hstMenu;
 //
 //    private List<HstSiteMenuItem> menuItems;

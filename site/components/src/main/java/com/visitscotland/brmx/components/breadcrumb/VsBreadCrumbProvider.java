@@ -52,7 +52,7 @@ public class VsBreadCrumbProvider extends BreadcrumbProvider {
             //is not backed from a document, I'd be useful to use the logic of enhancedmenu.
             logger.warn (CommonUtils.contentIssue("The menu Item %s does point to a document.", menuItem.getName()));
             //The following error message flags a possible issue and a solution. If the implementation is required please remove the log message.
-            logger.warn (CommonUtils.contentIssue("If previous message is not an unexpected issue, some extra logic might be required", menuItem.getName()));
+            logger.warn(CommonUtils.contentIssue("If previous message is not an unexpected issue, some extra logic might be required", menuItem.getName()));
             return new BreadcrumbItem(menuItem.getHstLink(), menuItem.getName());
         }
     }

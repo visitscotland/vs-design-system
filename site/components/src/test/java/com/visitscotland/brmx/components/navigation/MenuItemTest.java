@@ -15,7 +15,7 @@ import static org.mockito.Mockito.verify;
 class MenuItemTest {
 
     @Test
-    void add_remove_ChildMenuItem(){
+    void add_remove_ChildMenuItem() {
         //Addition and removal of children is correct
         MenuItem parent = new MenuItem(null);
 
@@ -40,7 +40,7 @@ class MenuItemTest {
     }
 
     @Test
-    void add_remove_duplicated_ChildMenuItem(){
+    void add_remove_duplicated_ChildMenuItem() {
         //Adding a child twice does not cause duplicates
         //Removing a non existing child does not break the parent
         MenuItem parent = new MenuItem(null);
@@ -62,7 +62,7 @@ class MenuItemTest {
     }
 
     @Test
-    void parentDefinition(){
+    void parentDefinition() {
         //Add a children to the parent updates the children parent field
         MenuItem adoptiveParent = new MenuItem(null);
         MenuItem orphan = new MenuItem(null);
@@ -74,7 +74,7 @@ class MenuItemTest {
     }
 
     @Test
-    void simpleGetterSetter(){
+    void simpleGetterSetter() {
         // Simple getter and setter. No mock required
         MenuItem item = new MenuItem(null);
 
