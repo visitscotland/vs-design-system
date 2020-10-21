@@ -119,34 +119,34 @@ export default {
 
         @include media-breakpoint-down(lg) {
             bottom: 0;
-          left: 0;
-          right: 0;
+            left: 0;
+            right: 0;
         }
-      @include media-breakpoint-up(lg) {
-        float: right;
-        margin-left: 6.25rem;
-        position: -webkit-sticky;
-        position: sticky;
-        width: 45vw;
-      }
+        @include media-breakpoint-up(lg) {
+            float: right;
+            margin-left: 6.25rem;
+            position: -webkit-sticky;
+            position: sticky;
+            width: 45vw;
+        }
 
-      @media screen and (-ms-high-contrast: active), screen and (-ms-high-contrast: none) {
-        position: relative;
-      }
+         @media screen and (-ms-high-contrast: active), screen and (-ms-high-contrast: none) {
+            position: relative;
+        }
     }
 
-  // layout styles for safari
-  @media screen and (min-color-index: 0) and (-webkit-min-device-pixel-ratio: 0) {
-    @include media-breakpoint-up(lg) {
-      .vs-itinerary__map-container {
-        height: 0;
-      }
+    // layout styles for safari
+    @media screen and (min-color-index:0) and (-webkit-min-device-pixel-ratio:0) {
+        @include media-breakpoint-up(lg) {
+            .vs-itinerary__map-container {
+                height: 0;
+            }
 
-      .vs-itinerary__accordion-container {
-        max-width: 50%;
-      }
+            .vs-itinerary__accordion-container {
+                max-width: 50%;
+            }
+        }
     }
-  }
 }
 </style>
 

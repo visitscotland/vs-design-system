@@ -31,7 +31,7 @@
 import VsSvgLink from '@components/patterns/svg-link/SvgLink';
 
 import {
-  VsRow, VsContainer, VsCol,
+    VsRow, VsContainer, VsCol,
 } from '@components/elements/layout';
 
 /**
@@ -41,19 +41,19 @@ import {
 export default {
     name: 'VsFooterCopyright',
     components: {
-      VsSvgLink,
-      VsRow,
-      VsContainer,
-      VsCol,
+        VsSvgLink,
+        VsRow,
+        VsContainer,
+        VsCol,
     },
     props: {
-      /**
-       * Accessiblity alt text for the logo button
-       */
-      linkAltText: {
-        type: String,
-        required: true,
-      },
+        /**
+         * Accessiblity alt text for the logo button
+         */
+        linkAltText: {
+            type: String,
+            required: true,
+        },
         /**
          * URL for the logo button
          */
@@ -80,13 +80,13 @@ export default {
     padding: $spacer-6 0;
 
     .vs-footer-copyright__logo {
-      display: inline-block;
+        display: inline-block;
 
-      &.vs-link.primary {
-        &:focus {
-          outline-color: #ffffff;
+        &.vs-link.primary{
+            &:focus {
+                outline-color: #ffffff;
+            }
         }
-      }
     }
 
     .vs-footer-copyright__text {
@@ -108,11 +108,11 @@ export default {
 <docs>
   ```js
     <vs-footer>
-      <vs-footer-copyright link-alt-text="VisitScotland Home" href="/">
+        <vs-footer-copyright link-alt-text="VisitScotland Home" href="/">
             <span slot="copyright">
                VisitScotland. All rights reserved.
             </span>
-      </vs-footer-copyright>
+        </vs-footer-copyright>
     </vs-footer>
 
   ```
