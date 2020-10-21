@@ -3,7 +3,10 @@
         link="https://visitscotland.com"
         :type="linkType"
         class="megalink-multi-image p-2"
-        :class="featured ? 'megalink-multi-image--featured' : ''"
+        :class="{
+            'megalink-multi-image--featured' : featured,
+            'megalink-multi-image--featured-last' : lastFeatured,
+        }"
     >
         <VsImg
             slot="stretched-card-image"
@@ -45,6 +48,14 @@ export default {
         * If the component should be the featured variant
         */
         featured: {
+            required: false,
+            type: Boolean,
+            default: false,
+        },
+        /**
+        * If the featured component is the last one
+        */
+        lastFeatured: {
             required: false,
             type: Boolean,
             default: false,
@@ -105,6 +116,10 @@ export default {
             box-shadow: 10px 10px 20px $color-gray-tint-4;
         }
 
+        .megalink-multi-image__img {
+            max-width: 100%;
+        }
+
         .megalink-multi-image__title {
             font-size: 0.875rem;
             letter-spacing: 0.0875rem;
@@ -139,10 +154,7 @@ export default {
             display: flex;
             flex-direction: row;
             justify-content: space-between;
-
-            &:first-of-type {
-                margin-top: 0;
-            }
+            margin-top: 0;
 
             .megalink-multi-image__title {
                 font-size: 1.25rem;
@@ -168,8 +180,13 @@ export default {
                 padding: $spacer-9 5% $spacer-5 0;
             }
 
-            &:nth-of-type(2) {
+            &.megalink-multi-image--featured-last {
                 flex-direction: row-reverse;
+                 margin-top: $spacer-12;
+
+                .card-body {
+                    padding: $spacer-9 0 $spacer-5 5%;
+                }
             }
         }
     }
@@ -195,8 +212,9 @@ export default {
                             The Edinburgh International Festival and summer festival
                         </template>
                         <template slot="vs-multi-image-content">
-                            <p>Right across the country, you’ll find amazing places to eat and drink
-                            from local markets to renowned restaurants.</p>
+                            <p>Right across the country, you’ll find amazing places
+                            to eat and drink from local markets to renowned
+                            restaurants.</p>
                         </template>
                     </vs-megalink-multi-image>
                 </VsCol>
@@ -234,12 +252,18 @@ export default {
                             Count 7,000 shining stars in the iconic galloway forest
                         </template>
                         <template slot="vs-multi-image-content">
-                            <p>Right across the country, you’ll find amazing places to eat and drink
-                            from local markets to renowned restaurants. Here are some recomm…</p>
-                            <p>Right across the country, you’ll find amazing places to eat and drink
-                            from local markets to renowned restaurants. Here are some recomm…</p>
-                            <p>Right across the country, you’ll find amazing places to eat and drink
-                            from local markets to renowned restaurants. Here are some recomm…</p>
+                            <p>Right across the country, you’ll find amazing places
+                            to eat and drink
+                            from local markets to renowned restaurants.
+                            Here are some recomm…</p>
+                            <p>Right across the country, you’ll find amazing places
+                            to eat and drink
+                            from local markets to renowned restaurants.
+                            Here are some recomm…</p>
+                            <p>Right across the country, you’ll find amazing places
+                            to eat and drink
+                            from local markets to renowned restaurants.
+                            Here are some recomm…</p>
                         </template>
                     </vs-megalink-multi-image>
                 </VsCol>
