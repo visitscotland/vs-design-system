@@ -536,7 +536,7 @@
           /visitscotland:images:
             jcr:primaryType: visitscotland:InstagramImage
             visitscotland:caption: Sumburgh Head
-            visitscotland:id: BIVXxuqhviqs
+            visitscotland:id: BIVXxuqhviq
             visitscotland:location: Shetland
         /sumburgh-head-shetland[2]:
           jcr:primaryType: visitscotland:ListicleItem
