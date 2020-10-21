@@ -1,6 +1,6 @@
 <!-- eslint-disable -->
 <template>
-
+    
 </template>
 
 <script>
@@ -8,9 +8,9 @@
  * WORK IN PROGRESS
  */
 export default {
-  name: 'VsMegaNavListItem',
-  status: 'prototype',
-  release: '0.1.0',
+    name: 'VsMegaNavListItem',
+    status: 'prototype',
+    release: '0.1.0',
 };
 </script>
 
@@ -19,7 +19,7 @@ export default {
 </style>
 
 <docs>
-```jsx
+  ```jsx
 
-```
+  ```
 </docs>
