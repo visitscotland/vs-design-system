@@ -5,47 +5,44 @@
   hippo:name: Global
   /global[1]:
     jcr:primaryType: resourcebundle:resourcebundle
-    jcr:mixinTypes: ['mix:referenceable']
+    jcr:mixinTypes: [ 'mix:referenceable' ]
     jcr:uuid: a8cf5ddd-a19d-4641-91c4-6ec509c3a7a5
-    hippo:availability: [live]
+    hippo:availability: [ live ]
     hippostd:state: published
     hippostdpubwf:createdBy: admin
     hippostdpubwf:creationDate: 2014-08-21T22:10:13.443+02:00
-    hippostdpubwf:lastModificationDate: 2020-06-12T16:54:28.547+01:00
+    hippostdpubwf:lastModificationDate: 2020-08-08T00:41:49.750+01:00
     hippostdpubwf:lastModifiedBy: admin
-    hippostdpubwf:publicationDate: 2020-06-12T16:54:30.581+01:00
-    resourcebundle:descriptions: [Text shown in the global page footer., '', '', '']
+    hippostdpubwf:publicationDate: 2020-08-08T00:41:52.298+01:00
+    resourcebundle:descriptions: [ '', '' ]
     resourcebundle:id: essentials.global
-    resourcebundle:keys: [footer.text, button.find-out-more, default.alt-text, footer.logo-alt-text]
-    resourcebundle:messages: [VisitScotland. All rights reserved., Find out more,
-      No image title, VisitScotland Home]
+    resourcebundle:keys: [ button.find-out-more, default.alt-text ]
+    resourcebundle:messages: [ Find out more, No image title ]
   /global[2]:
     jcr:primaryType: resourcebundle:resourcebundle
-    jcr:mixinTypes: ['mix:versionable']
+    jcr:mixinTypes: [ 'mix:versionable' ]
     jcr:uuid: 7664e8f1-7d3c-48e5-b9b9-d86b38be4c07
-    hippo:availability: [preview]
+    hippo:availability: [ preview ]
     hippostd:state: unpublished
     hippostdpubwf:createdBy: admin
     hippostdpubwf:creationDate: 2014-08-21T22:10:13.443+02:00
-    hippostdpubwf:lastModificationDate: 2020-06-12T16:54:28.547+01:00
+    hippostdpubwf:lastModificationDate: 2020-08-08T00:41:49.750+01:00
     hippostdpubwf:lastModifiedBy: admin
-    resourcebundle:descriptions: [Text shown in the global page footer., '', '', '']
+    resourcebundle:descriptions: [ '', '' ]
     resourcebundle:id: essentials.global
-    resourcebundle:keys: [footer.text, button.find-out-more, default.alt-text, footer.logo-alt-text]
-    resourcebundle:messages: [VisitScotland. All rights reserved., Find out more,
-      No image title, VisitScotland Home]
+    resourcebundle:keys: [ button.find-out-more, default.alt-text ]
+    resourcebundle:messages: [ Find out more, No image title ]
   /global[3]:
     jcr:primaryType: resourcebundle:resourcebundle
-    jcr:mixinTypes: ['mix:referenceable']
+    jcr:mixinTypes: [ 'mix:referenceable' ]
     jcr:uuid: 98d561a7-16ef-410d-b382-f1b76e196920
-    hippo:availability: []
+    hippo:availability: [ ]
     hippostd:state: draft
     hippostdpubwf:createdBy: admin
     hippostdpubwf:creationDate: 2014-08-21T22:10:13.443+02:00
-    hippostdpubwf:lastModificationDate: 2020-06-12T16:54:05.427+01:00
+    hippostdpubwf:lastModificationDate: 2020-08-08T00:39:58.665+01:00
     hippostdpubwf:lastModifiedBy: admin
-    resourcebundle:descriptions: [Text shown in the global page footer., '', '', '']
+    resourcebundle:descriptions: [ '', '' ]
     resourcebundle:id: essentials.global
-    resourcebundle:keys: [footer.text, button.find-out-more, default.alt-text, footer.logo-alt-text]
-    resourcebundle:messages: [VisitScotland. All rights reserved., Find out more,
-      No image title, VisitScotland Home]
+    resourcebundle:keys: [ button.find-out-more, default.alt-text ]
+    resourcebundle:messages: [ Find out more, No image title ]

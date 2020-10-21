@@ -56,7 +56,7 @@ public class PageContentComponent<TYPE extends Page> extends EssentialsContentCo
 
         addDocumentPath(request);
         addProductSearchBuilder(request);
-        addResourceBundleService(request);
+        bundle.registerIn(request);
 
         initPage(request);
     }
@@ -86,10 +86,6 @@ public class PageContentComponent<TYPE extends Page> extends EssentialsContentCo
         } catch (TemplateModelException e) {
             logger.error("Product Search Builder is not available for the Page", e);
         }
-    }
-
-    private void addResourceBundleService(HstRequest request){
-        request.setAttribute("ResourceBundle", bundle);
     }
 
     /**

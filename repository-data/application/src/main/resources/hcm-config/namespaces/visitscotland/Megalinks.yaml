@@ -173,7 +173,7 @@ definitions:
             hint: ''
             /cluster.options:
               jcr:primaryType: frontend:pluginconfig
-              maxitems: 10
+              maxitems: 12
           /products:
             jcr:primaryType: frontend:plugin
             caption: Link Button

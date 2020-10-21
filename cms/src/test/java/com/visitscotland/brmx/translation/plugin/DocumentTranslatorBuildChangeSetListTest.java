@@ -1,7 +1,6 @@
 package com.visitscotland.brmx.translation.plugin;
 
 import com.visitscotland.brmx.beans.Itinerary;
-import com.visitscotland.brmx.beans.Page;
 import com.visitscotland.brmx.translation.SessionFactory;
 import org.hippoecm.frontend.translation.ILocaleProvider;
 import org.hippoecm.hst.content.beans.standard.HippoBean;
@@ -19,7 +18,8 @@ import javax.jcr.Node;
 import javax.jcr.NodeIterator;
 import java.util.*;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.ArgumentMatchers.same;
 import static org.mockito.Mockito.*;
@@ -117,62 +117,6 @@ public class DocumentTranslatorBuildChangeSetListTest {
         HippoBean mockHippoBean = mock(HippoBean.class);
         when(mockSourceDocument.asHippoBean()).thenReturn(mockHippoBean);
         when(mockSourceDocument.isNodeType(eq(JCR_TYPE))).thenReturn(false);
-
-        List<ChangeSet> result = documentTranslator.buildChangeSetList(mockSourceNode, targetLocaleList);
-
-        assertEquals(2, result.size());
-
-        verify(mockItalianChangeSet, never()).addDocument(any(JcrDocument.class));
-        verify(mockFrenchChangeSet).addDocument(same(mockSourceDocument));
-        verify(mockFrenchChangeSet, atMostOnce()).addDocument(any(JcrDocument.class));
-        verify(mockSpanishChangeSet).addDocument(same(mockSourceDocument));
-        verify(mockSpanishChangeSet, atMostOnce()).addDocument(any(JcrDocument.class));
-
-        verify(mockItalianChangeSet).populateFolders(same(mockSourceDocument));
-        verify(mockFrenchChangeSet).populateFolders(same(mockSourceDocument));
-        verify(mockSpanishChangeSet).populateFolders(same(mockSourceDocument));
-
-        verify(documentTranslator, times(3)).addTranslationLinkChangeSets(same(mockHippoBean), any(ILocaleProvider.HippoLocale.class), anyList());
-        verify(documentTranslator, times(3)).addTranslationLinkChangeSets(any(), any(ILocaleProvider.HippoLocale.class), anyList());
-    }
-
-    @Test
-    public void buildDocumentChangeSetList_sourceDocumentTranslated_PageType_notTranslationParent() throws Exception {
-        // The source document is already translated into every target locale and is a Page type,
-        // but not a TranslationParent
-        // Should return an empty ChangeSet list
-        when(mockSourceDocument.hasTranslation(same(mockItalianLocale))).thenReturn(true);
-        when(mockSourceDocument.hasTranslation(same(mockFrenchLocale))).thenReturn(true);
-        when(mockSourceDocument.hasTranslation(same(mockSpanishLocale))).thenReturn(true);
-
-        Page mockHippoBean = mock(Page.class);
-        when(mockSourceDocument.asHippoBean()).thenReturn(mockHippoBean);
-        when(mockSourceDocument.isNodeType(eq(JCR_TYPE))).thenReturn(true);
-
-        List<ChangeSet> result = documentTranslator.buildChangeSetList(mockSourceNode, targetLocaleList);
-
-        assertTrue(result.isEmpty());
-
-        verify(mockItalianChangeSet).populateFolders(same(mockSourceDocument));
-        verify(mockFrenchChangeSet).populateFolders(same(mockSourceDocument));
-        verify(mockSpanishChangeSet).populateFolders(same(mockSourceDocument));
-
-        verify(documentTranslator, times(3)).addTranslationLinkChangeSets(same(mockHippoBean), any(ILocaleProvider.HippoLocale.class), anyList());
-        verify(documentTranslator, times(3)).addTranslationLinkChangeSets(any(), any(ILocaleProvider.HippoLocale.class), anyList());
-    }
-
-    @Test
-    public void buildDocumentChangeSetList_sourceDocumentHasMissingLocales_PageType_notTranslationParent() throws Exception {
-        // The source document has missing locale translations, is a Page type,
-        // but not a TranslationParent
-        // Should return a ChangeSet for each missing locale
-        when(mockSourceDocument.hasTranslation(same(mockItalianLocale))).thenReturn(true);
-        when(mockSourceDocument.hasTranslation(same(mockFrenchLocale))).thenReturn(false);
-        when(mockSourceDocument.hasTranslation(same(mockSpanishLocale))).thenReturn(false);
-
-        Page mockHippoBean = mock(Page.class);
-        when(mockSourceDocument.asHippoBean()).thenReturn(mockHippoBean);
-        when(mockSourceDocument.isNodeType(eq(JCR_TYPE))).thenReturn(true);
 
         List<ChangeSet> result = documentTranslator.buildChangeSetList(mockSourceNode, targetLocaleList);
 

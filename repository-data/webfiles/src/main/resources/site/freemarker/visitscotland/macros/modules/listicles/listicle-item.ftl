@@ -18,28 +18,28 @@
     <#elseif item.image.externalImage??>
         <#assign image = item.image.externalImage />
     </#if>
-	
-	<vs-listicle-item
-		index="${item.index}"
-		title="${item.title}"
-		sub-title="${item.subTitle}"
-	>
-		<div slot="hippo-details" class="has-edit-button">
-			<@hst.manageContent hippobean=item.listicleItem/>
+
+    <vs-listicle-item
+            index="${item.index}"
+            title="${item.title}"
+            sub-title="${item.subTitle}"
+    >
+        <div slot="hippo-details" class="has-edit-button">
+            <@hst.manageContent hippobean=item.listicleItem/>
             <@cmsErrors errors=item.errorMessages!"" editMode=editMode />
-		</div>
+        </div>
 
-		<#if image?? && image?has_content>
-			<div slot="image-slot">
+        <#if item.image?? && item.image?has_content>
+            <div slot="image-slot">
                 <@imageWithCaption imageSrc=image imageDetails=item.image variant="large"/>
-			</div>
-		</#if>
+            </div>
+        </#if>
 
-		<div slot="description-slot">
-			<@hst.html hippohtml=item.description />
+        <div slot="description-slot">
+            <@hst.html hippohtml=item.description />
 
-			<#if item.links?has_content>
-				<#list item.links as cta>
+            <#if item.links?has_content>
+                <#list item.links as cta>
 					<#if cta?has_content>
                         <div class="mb-2">
 						    <vs-link href="${cta.link}">${cta.label}</vs-link>
