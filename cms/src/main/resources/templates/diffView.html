@@ -11,6 +11,7 @@
         }
     </style>
     <link rel="stylesheet" type="text/css" th:href="@{/skin/hippo-cms/css/hippo-cms-theme.min.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/wicket/resource/org.onehippo.addon.frontend.gallerypicker.GalleryPickerPlugin/GalleryPickerPlugin.css}">
 </head>
 <body>
     <div class="hippo-editor">
@@ -29,9 +30,23 @@
 </body>
 <script>
     document.addEventListener('DOMContentLoaded', async () => {
-        var contentElement = document.querySelector('.diffContent')
-        var diffData = contentElement.getAttribute('data-diff');
-        contentElement.innerHTML = decodeURIComponent(diffData);
+        const contentElement = document.querySelector('.diffContent')
+        const diffData = JSON.parse(contentElement.getAttribute('data-diff'));
+        contentElement.innerHTML = decodeURIComponent(diffData.content);
+
+        // The images have a relative URL, need to change then to point to the correct locations
+        // This is currently very generic, may need to narrow this by a class at some point
+        const imageList = document.querySelectorAll('img');
+        imageList.forEach( imageElement => {
+            let originalSrc = imageElement.getAttribute('src');
+            imageElement.setAttribute('src', '../../../' + originalSrc);
+        });
+
+        // Now remove the translation openUI component. Again this is very generic, there is currently only one.
+        const openUiList = document.querySelectorAll('.hippo-property-field-name-openuistring');
+        openUiList.forEach(openUiElement => {
+           openUiElement.parentNode.style = 'display:none;';
+        });
     });
 </script>
 </html>

@@ -1,5 +1,6 @@
 package com.visitscotland.brmx.translation;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.visitscotland.brmx.translation.plugin.JcrDocument;
 import com.visitscotland.brmx.translation.plugin.JcrDocumentFactory;
 import org.hippoecm.frontend.session.UserSession;
@@ -40,12 +41,14 @@ public class TranslationServiceTest {
     private UserSession mockUserSession;
     @Mock
     private WorkflowManager mockWorkflowManager;
+    @Mock
+    private ObjectMapper mockObjectMapper;
 
     private TranslationService service;
 
     @BeforeEach
     public void beforeEach() {
-        service = new TranslationService(mockJcrDocumentFactory, mockSessionFactory);
+        service = new TranslationService(mockJcrDocumentFactory, mockObjectMapper, mockSessionFactory);
     }
 
     @DisplayName("getDocument - simple coverage")
@@ -273,7 +276,9 @@ public class TranslationServiceTest {
     @Test
     public void setTranslationContent_notTranslatable() throws Exception {
         // Should not cause an error, Should never happen so no point throwing an exception
-        String content = "the quick brown fox jumped over the lazy dog";
+        String contentString = "the quick brown fox jumped over the lazy dog";
+        TranslationService.TranslationContent content = new TranslationService.TranslationContent();
+        content.setContent(contentString);
         JcrDocument mockJcrDocument = new MockJcrDocumentBuilder().build();
 
         List<JcrDocument> documentsBeingEditedList = service.setTranslationContent(mockJcrDocument, content);
@@ -284,13 +289,31 @@ public class TranslationServiceTest {
     @Test
     public void setTranslationContent_englishDraftBeingEdited_noTranslations() throws Exception {
         // Should not fail, but should return the english document in the documents being edited list
-        String content = "the quick brown fox jumped over the lazy dog";
+        String contentString = "the quick brown fox jumped over the lazy dog";
+        TranslationService.TranslationContent content = new TranslationService.TranslationContent();
+        content.setContent(contentString);
+
+        Node translation1Handle = new MockNodeBuilder().build();
+        Node translation1Unpublished = new MockNodeBuilder().build();
+        EditableWorkflow translation1Workflow = mock(EditableWorkflow.class);
+        addToMockWorkflowManager("editing", translation1Handle, translation1Workflow);
+        JcrDocument translation1 = new MockJcrDocumentBuilder()
+                .withHandle(translation1Handle)
+                .withVariantNode(JcrDocument.VARIANT_UNPUBLISHED, translation1Unpublished).build();
+        Node translation2Handle = new MockNodeBuilder().build();
+        Node translation2Unpublished = new MockNodeBuilder().build();
+        EditableWorkflow translation2Workflow = mock(EditableWorkflow.class);
+        addToMockWorkflowManager("editing", translation2Handle, translation2Workflow);
+        JcrDocument translation2 = new MockJcrDocumentBuilder()
+                .withHandle(translation2Handle)
+                .withVariantNode(JcrDocument.VARIANT_UNPUBLISHED, translation2Unpublished).build();
         JcrDocument mockJcrDocument = new MockJcrDocumentBuilder()
                 .isNodeType(JcrDocument.VS_TRANSLATABLE_TYPE)
                 .withLocaleName("en")
                 .isDraftBeingEdited(true)
-                .withTranslations().build();
+                .withTranslations(translation1, translation2).build();
         when(mockSessionFactory.getJcrSession()).thenReturn(mockJcrSession);
+        when(mockSessionFactory.getUserSession()).thenReturn(mockUserSession);
 
         List<JcrDocument> documentsBeingEditedList = service.setTranslationContent(mockJcrDocument, content);
         assertThat(documentsBeingEditedList).isNotNull().containsExactly(mockJcrDocument);
@@ -299,8 +322,9 @@ public class TranslationServiceTest {
     @DisplayName("setTranslationContent - the English document has no translations")
     @Test
     public void setTranslationContent_noTranslations() throws Exception {
-        // Should not fail, but should return the english document in the documents being edited list
-        String content = "the quick brown fox jumped over the lazy dog";
+        String contentString = "the quick brown fox jumped over the lazy dog";
+        TranslationService.TranslationContent content = new TranslationService.TranslationContent();
+        content.setContent(contentString);
         JcrDocument mockJcrDocument = new MockJcrDocumentBuilder()
                 .isNodeType(JcrDocument.VS_TRANSLATABLE_TYPE)
                 .isDraftBeingEdited(false)
@@ -308,8 +332,8 @@ public class TranslationServiceTest {
                 .withTranslations().build();
         when(mockSessionFactory.getJcrSession()).thenReturn(mockJcrSession);
 
-        List<JcrDocument> documentsBeingEditedList = service.setTranslationContent(mockJcrDocument, content);
-        assertThat(documentsBeingEditedList).isNotNull().isEmpty();
+        assertThatExceptionOfType(IllegalStateException.class)
+                .isThrownBy(() -> service.setTranslationContent(mockJcrDocument, content));
         verify(mockJcrSession, never()).save();
     }
 
@@ -318,7 +342,9 @@ public class TranslationServiceTest {
     public void setTranslationContent_someBeingEdited() throws Exception {
         // If any of the translations are being edited it should not set any of the attributes
         // Any documents checked out should be disposed of
-        String content = "the quick brown fox jumped over the lazy dog";
+        String contentString = "the quick brown fox jumped over the lazy dog";
+        TranslationService.TranslationContent content = new TranslationService.TranslationContent();
+        content.setContent(contentString);
         Node translation1Handle = new MockNodeBuilder().build();
         EditableWorkflow translation1Workflow = mock(EditableWorkflow.class);
         addToMockWorkflowManager("editing", translation1Handle, translation1Workflow);
@@ -367,7 +393,10 @@ public class TranslationServiceTest {
     @Test
     public void setTranslationContent_noneBeingEdited() throws Exception {
         // If none of the documents are being edited the difference attributes should be set on all the translations
-        String content = "the quick brown fox jumped over the lazy dog";
+        String contentString = "the quick brown fox jumped over the lazy dog";
+        TranslationService.TranslationContent content = new TranslationService.TranslationContent();
+        content.setContent(contentString);
+        when(mockObjectMapper.writeValueAsString(eq(content))).thenReturn("serializedContent");
         Node translation1Handle = new MockNodeBuilder().build();
         Node translation1Unpublished = new MockNodeBuilder().build();
         EditableWorkflow translation1Workflow = mock(EditableWorkflow.class);
@@ -394,12 +423,12 @@ public class TranslationServiceTest {
         assertThat(documentsBeingEditedList).isNotNull().isEmpty();
         verify(translation1Workflow).obtainEditableInstance();
         verify(translation1Unpublished).setProperty(eq(JcrDocument.VS_TRANSLATION_FLAG), eq(true));
-        verify(translation1Unpublished).setProperty(eq(JcrDocument.VS_TRANSLATION_DIFF), eq(content));
+        verify(translation1Unpublished).setProperty(eq(JcrDocument.VS_TRANSLATION_DIFF), eq("serializedContent"));
         verify(translation1Workflow).disposeEditableInstance();
 
         verify(translation2Workflow).obtainEditableInstance();
         verify(translation2Unpublished).setProperty(eq(JcrDocument.VS_TRANSLATION_FLAG), eq(true));
-        verify(translation2Unpublished).setProperty(eq(JcrDocument.VS_TRANSLATION_DIFF), eq(content));
+        verify(translation2Unpublished).setProperty(eq(JcrDocument.VS_TRANSLATION_DIFF), eq("serializedContent"));
         verify(translation2Workflow).disposeEditableInstance();
 
         verify(mockJcrSession).save();
@@ -409,7 +438,9 @@ public class TranslationServiceTest {
     @Test
     public void setTranslationContent_notEnglishDocument() throws Exception {
         // Should fail, should only be requesting to set content for an English document
-        String content = "the quick brown fox jumped over the lazy dog";
+        String contentString = "the quick brown fox jumped over the lazy dog";
+        TranslationService.TranslationContent content = new TranslationService.TranslationContent();
+        content.setContent(contentString);
         JcrDocument mockJcrDocument = new MockJcrDocumentBuilder()
                 .isNodeType(JcrDocument.VS_TRANSLATABLE_TYPE)
                 .withLocaleName("es").build();

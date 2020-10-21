@@ -1,6 +1,7 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
+    <script th:replace="headerFragment.html :: openui"></script>
     <link rel="stylesheet" type="text/css" th:href="@{/skin/hippo-cms/css/hippo-cms-theme.min.css}">
 </head>
 <style>
@@ -43,13 +44,34 @@
         window.parent.setupIFrame();
     });
 
-    function clearTranslationFlag(nodeId) {
-        var request = new XMLHttpRequest();
-        request.open("DELETE", `/cms/vs-service/node/${nodeId}/translation/flag`);
-        request.send();
-        request.onload = () => {
-            console.log(request);
-            parent.parent.location.reload();
+    async function clearTranslationFlag(nodeId) {
+        const dialogOptions = {
+            title: 'TranslationComplete',
+            url: `/cms/vs-openui/${nodeId}/dialog/translation/complete`,
+            size: 'small'
+        };
+        const response = await uiExtension.dialog.open(dialogOptions);
+        if (response == true) {
+            var request = new XMLHttpRequest();
+            request.open("DELETE", `/cms/vs-service/node/${nodeId}/translation/flag`);
+            request.send();
+            request.onload = () => {
+                if (request.status === 409) {
+                    uiExtension.dialog.open({
+                        title: 'Translation Blocked',
+                        url: `/cms/vs-openui/${nodeId}/dialog/current/blocked`,
+                        size: 'small'
+                    });
+                } else if (request.status === 200) {
+                    parent.parent.location.reload();
+                } else {
+                    uiExtension.dialog.open({
+                        title: 'Error',
+                        url: `/cms/vs-openui/${nodeId}/dialog/error`,
+                        size: 'small'
+                    });
+                }
+            }
         }
     }
 </script>

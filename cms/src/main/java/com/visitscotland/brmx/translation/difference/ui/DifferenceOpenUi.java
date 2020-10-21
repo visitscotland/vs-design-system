@@ -5,11 +5,7 @@ import com.visitscotland.brmx.translation.TranslationService;
 import com.visitscotland.brmx.translation.plugin.JcrDocument;
 import com.visitscotland.brmx.translation.plugin.JcrDocumentFactory;
 import org.apache.commons.lang3.exception.ExceptionUtils;
-import org.apache.wicket.markup.html.basic.Label;
-import org.apache.wicket.request.resource.ResourceReference;
-import org.hippoecm.frontend.plugins.standards.image.CachingImage;
-import org.hippoecm.frontend.service.IconSize;
-import org.hippoecm.frontend.translation.ILocaleProvider;
+import org.hippoecm.repository.HippoStdNodeType;
 import org.hippoecm.repository.api.HippoNode;
 import org.hippoecm.repository.translation.HippoTranslationNodeType;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +15,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.context.annotation.RequestScope;
 
+import javax.jcr.ItemNotFoundException;
 import javax.jcr.Node;
+import javax.jcr.Property;
 import javax.jcr.RepositoryException;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -30,6 +28,7 @@ import java.util.Set;
 @RequestScope
 public class DifferenceOpenUi {
     public static final String ATTR_NODE_ID = "nodeId";
+    public static final String ATTR_EDITOR = "editor";
     public static final String ATTR_HAS_TRANSLATION_PENDING = "hasTranslationPending";
     public static final String ATTR_HAS_CHANGED = "hasDocumentChanged";
     public static final String ATTR_TRANSLATION_FLAG = "translationFlag";
@@ -41,7 +40,11 @@ public class DifferenceOpenUi {
     public static final String FOREIGN_TEMPLATE = "diffButtonContent";
     public static final String ERROR_TEMPLATE = "diffViewError";
     public static final String DIFF_VIEW_TEMPLATE = "diffView";
-    public static final String CONFIRM_VIEW_TEMPLATE = "dialogTranslationConfirm";
+    public static final String CONFIRM_DIALOG_TEMPLATE = "dialogTranslationConfirm";
+    public static final String COMPLETE_DIALOG_TEMPLATE = "dialogTranslationComplete";
+    public static final String BLOCKED_DIALOG_TEMPLATE = "dialogTranslationBlocked";
+    public static final String BLOCKED_CURRENT_DIALOG_TEMPLATE = "dialogCurrentBlocked";
+    public static final String NO_TRANSLATIONS_DIALOG_TEMPLATE = "dialogNoTranslations";
 
     private TranslationService translationService;
     private JcrDocumentFactory jcrDocumentFactory;
@@ -113,10 +116,52 @@ public class DifferenceOpenUi {
             }
             model.addAttribute(ATTR_TRANSLATION_LIST, translationList);
             model.addAttribute(ATTR_NODE_ID, nodeId);
-            return CONFIRM_VIEW_TEMPLATE;
+            return CONFIRM_DIALOG_TEMPLATE;
         } catch(RepositoryException ex) {
             return gotoErrorPage(ex, model);
         }
+    }
+
+    @GetMapping("/vs-openui/{nodeId}/dialog/translation/complete")
+    public String dialogTranslationComplete(@PathVariable String nodeId, Model model) {
+        model.addAttribute(ATTR_NODE_ID, nodeId);
+        return COMPLETE_DIALOG_TEMPLATE;
+    }
+
+    @GetMapping("/vs-openui/{nodeId}/dialog/translation/none")
+    public String dialogTranslationNone(@PathVariable String nodeId, Model model) {
+        model.addAttribute(ATTR_NODE_ID, nodeId);
+        return NO_TRANSLATIONS_DIALOG_TEMPLATE;
+    }
+
+    @GetMapping("/vs-openui/{nodeId}/dialog/translation/blocked")
+    public String dialogTranslationBlocked(@PathVariable String nodeId, Model model) {
+        model.addAttribute(ATTR_NODE_ID, nodeId);
+        // Need to lookup the foreign language versions that are being edited
+        return BLOCKED_DIALOG_TEMPLATE;
+    }
+
+    @GetMapping("/vs-openui/{nodeId}/dialog/error")
+    public String dialogError(@PathVariable String nodeId, Model model) {
+        model.addAttribute(ATTR_NODE_ID, nodeId);
+        return ERROR_TEMPLATE;
+    }
+
+    @GetMapping("/vs-openui/{nodeId}/dialog/current/blocked")
+    public String dialogCurrentBlocked(@PathVariable String nodeId, Model model) {
+        model.addAttribute(ATTR_NODE_ID, nodeId);
+        String editor;
+        try {
+            Node currentNode = sessionFactory.getJcrSession().getNodeByIdentifier(nodeId);
+            JcrDocument jcrDocument = jcrDocumentFactory.createFromNode(currentNode);
+            Node draftNode = jcrDocument.getVariantNode(JcrDocument.VARIANT_DRAFT);
+            Property holder = draftNode.getProperty(HippoStdNodeType.HIPPOSTD_HOLDER);
+            editor = holder.getString();
+        } catch(RepositoryException ex) {
+            editor = "unknown";
+        }
+        model.addAttribute(ATTR_EDITOR, editor);
+        return BLOCKED_CURRENT_DIALOG_TEMPLATE;
     }
 
     public class TranslationDocument {

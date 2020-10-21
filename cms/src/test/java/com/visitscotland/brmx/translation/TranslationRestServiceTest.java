@@ -177,15 +177,38 @@ public class TranslationRestServiceTest {
         // The service will throw an IllegalArgumentException if the document is not an English document
         String nodeId = "1234";
         String body = "the lazy dog";
+        TranslationService.TranslationContent content = new TranslationService.TranslationContent();
+        content.setContent(body);
         Node handleNode = new MockNodeBuilder()
                 .inJcrSession(mockJcrSession)
                 .withNodeId(nodeId).build();
         JcrDocument jcrDocument = new MockJcrDocumentBuilder().build();
         when(mockJcrDocumentFactory.createFromNode(same(handleNode))).thenReturn(jcrDocument);
-        when(mockTranslationService.setTranslationContent(same(jcrDocument), eq(body))).thenThrow(new IllegalArgumentException());
+        when(mockTranslationService.setTranslationContent(same(jcrDocument), eq(content))).thenThrow(new IllegalArgumentException());
 
         Condition<ResponseStatusException> badRequest =
                 new Condition<>(ex -> ex.getStatus().equals(HttpStatus.BAD_REQUEST), "400 Bad Request");
+        assertThatExceptionOfType(ResponseStatusException.class)
+                .isThrownBy(() -> service.setTranslationFlag(nodeId, body)).has(badRequest);
+    }
+
+    @DisplayName("setTranslationFlag - no foreign translations")
+    @Test
+    public void setTranslationFlag_noTranslations() throws Exception {
+        // The service will throw an IllegalArgumentException if the document is not an English document
+        String nodeId = "1234";
+        String body = "the lazy dog";
+        TranslationService.TranslationContent content = new TranslationService.TranslationContent();
+        content.setContent(body);
+        Node handleNode = new MockNodeBuilder()
+                .inJcrSession(mockJcrSession)
+                .withNodeId(nodeId).build();
+        JcrDocument jcrDocument = new MockJcrDocumentBuilder().build();
+        when(mockJcrDocumentFactory.createFromNode(same(handleNode))).thenReturn(jcrDocument);
+        when(mockTranslationService.setTranslationContent(same(jcrDocument), eq(content))).thenThrow(new IllegalStateException());
+
+        Condition<ResponseStatusException> badRequest =
+                new Condition<>(ex -> ex.getStatus().equals(HttpStatus.NO_CONTENT), "204 No Content");
         assertThatExceptionOfType(ResponseStatusException.class)
                 .isThrownBy(() -> service.setTranslationFlag(nodeId, body)).has(badRequest);
     }
@@ -195,13 +218,15 @@ public class TranslationRestServiceTest {
     public void setTranslationFlag_unableToLockDocument() throws Exception {
         String nodeId = "1234";
         String body = "the lazy dog";
+        TranslationService.TranslationContent content = new TranslationService.TranslationContent();
+        content.setContent(body);
         Node handleNode = new MockNodeBuilder()
                 .inJcrSession(mockJcrSession)
                 .withNodeId(nodeId).build();
         JcrDocument jcrDocument = new MockJcrDocumentBuilder().build();
         when(mockJcrDocumentFactory.createFromNode(same(handleNode))).thenReturn(jcrDocument);
         List<JcrDocument> blockingDocuments = Arrays.asList(new MockJcrDocumentBuilder().build());
-        when(mockTranslationService.setTranslationContent(same(jcrDocument), eq(body))).thenReturn(blockingDocuments);
+        when(mockTranslationService.setTranslationContent(same(jcrDocument), eq(content))).thenReturn(blockingDocuments);
         Condition<ResponseStatusException> conflict =
                 new Condition<>(ex -> ex.getStatus().equals(HttpStatus.CONFLICT), "409 Conflict");
         assertThatExceptionOfType(ResponseStatusException.class)
@@ -213,12 +238,14 @@ public class TranslationRestServiceTest {
     public void setTranslationFlag() throws Exception {
         String nodeId = "1234";
         String body = "the lazy dog";
+        TranslationService.TranslationContent content = new TranslationService.TranslationContent();
+        content.setContent(body);
         Node handleNode = new MockNodeBuilder()
                 .inJcrSession(mockJcrSession)
                 .withNodeId(nodeId).build();
         JcrDocument jcrDocument = new MockJcrDocumentBuilder().build();
         when(mockJcrDocumentFactory.createFromNode(same(handleNode))).thenReturn(jcrDocument);
-        when(mockTranslationService.setTranslationContent(same(jcrDocument), eq(body))).thenReturn(new ArrayList<>());
+        when(mockTranslationService.setTranslationContent(same(jcrDocument), eq(content))).thenReturn(new ArrayList<>());
 
         service.setTranslationFlag(nodeId, body);
     }

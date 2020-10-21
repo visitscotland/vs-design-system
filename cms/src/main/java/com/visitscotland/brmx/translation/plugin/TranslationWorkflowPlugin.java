@@ -164,22 +164,6 @@ public class TranslationWorkflowPlugin extends RenderPlugin {
 
     }
 
-    public boolean isChangePending() {
-        try {
-            JcrDocument jcrDocument = jcrDocumentFactory.createFromNode(getDocumentNode());
-            Node unpublishedVariant = jcrDocument.getVariantNode(JcrDocument.VARIANT_UNPUBLISHED);
-            if (unpublishedVariant.hasProperty(HippoStdNodeType.HIPPOSTD_STATESUMMARY) &&
-                    ("changed".equals(unpublishedVariant.getProperty(HippoStdNodeType.HIPPOSTD_STATESUMMARY).getString()) ||
-                            "new".equals(unpublishedVariant.getProperty(HippoStdNodeType.HIPPOSTD_STATESUMMARY).getString()))) {
-                return true;
-            }
-        } catch(RepositoryException ex) {
-            // Just consume the exception
-            log.warn("Failed to lookup unpublished status", ex);
-        }
-        return false;
-    }
-
     // Gets the locale String of the document currently selected in the editor
     public String getCurrentlySelectedDocumentLocale() {
         LanguageModel languageModel = new LanguageModel(this);
@@ -212,50 +196,6 @@ public class TranslationWorkflowPlugin extends RenderPlugin {
 
     public boolean hasLocaleTranslation(String locale) {
         return translationProvider != null && translationProvider.contains(locale);
-    }
-
-    public List<JcrDocument> getCurrentDocumentTranslations() throws RepositoryException {
-        JcrDocument sourceDocument = jcrDocumentFactory.createFromNode(getDocumentNode());
-        List<JcrDocument> translations = new ArrayList<>(sourceDocument.getTranslations());
-        return translations;
-    }
-
-    public List<JcrDocument> getDocumentsBlockingTranslation() throws RepositoryException {
-        List<JcrDocument> documentsBlockingTranslation = new ArrayList<>();
-        JcrDocument sourceDocument = jcrDocumentFactory.createFromNode(getDocumentNode());
-        if (sourceDocument.isDraftBeingEdited()) {
-            documentsBlockingTranslation.add(sourceDocument);
-        }
-
-        Set<JcrDocument> translations = sourceDocument.getTranslations();
-        for (JcrDocument translation : translations) {
-            if (translation.isDraftBeingEdited()) {
-                documentsBlockingTranslation.add(translation);
-            }
-        }
-
-        return documentsBlockingTranslation;
-    }
-
-    public boolean currentDocumentHasTranslation() {
-        // Will return true if the currently selected document has at least one translation (excluding English)
-        Set<String> availableLanguages = getAvailableLanguages();
-        boolean hasTranslation = false;
-        try {
-            HippoTranslatedNode translatedNode = translatedNodeFactory.createFromNode(getDocumentNode());
-            for (String language : availableLanguages) {
-                if ("en".equals(language)) {
-                    continue;
-                } else if (translatedNode.hasTranslation(language)) {
-                    hasTranslation = true;
-                    break;
-                }
-            }
-        } catch(RepositoryException ex) {
-            // If we get a repository exception creating the hippo node just return false
-            log.warn("Unable to create HippoTranslatedNode", ex);
-        }
-        return hasTranslation;
     }
 
     public Set<String> getAvailableLanguages() {

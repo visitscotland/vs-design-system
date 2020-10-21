@@ -72,10 +72,14 @@ public class TranslationRestService {
             Node handleNode = sessionFactory.getJcrSession().getNodeByIdentifier(handleId);
             JcrDocument jcrDocument = jcrDocumentFactory.createFromNode(handleNode);
 
-            List<JcrDocument> documentsBlockingEdit = translationService.setTranslationContent(jcrDocument, body);
+            TranslationService.TranslationContent content = new TranslationService.TranslationContent();
+            content.setContent(body);
+            List<JcrDocument> documentsBlockingEdit = translationService.setTranslationContent(jcrDocument, content);
             if (!documentsBlockingEdit.isEmpty()) {
                 throw new ResponseStatusException(HttpStatus.CONFLICT, "Unable to lock documents for edit");
             }
+        } catch(IllegalStateException ex) {
+            throw new ResponseStatusException(HttpStatus.NO_CONTENT, "No foreign language documents");
         } catch(WorkflowException ex) {
             throw new ResponseStatusException(HttpStatus.CONFLICT, "Unable to lock documents for edit");
         } catch(ItemNotFoundException ex) {

@@ -7,13 +7,7 @@
 </head>
 <body>
     <div class="dialog-body">
-        <label for="change-list" style="padding-left: 10px; padding-top: 10px;">You are about to flag the following documents for translation:</label>
-        <table id="change-list" style="padding-top:20px; padding-left: 100px; padding-bottom:20px;">
-            <tr th:each="document : ${translations}">
-                <td style="padding-right: 10px;" th:text="${document.name}"></td>
-                <td th:text="${document.image}"></td>
-            </tr>
-        </table>
+        <label style="padding-left: 10px; padding-top: 10px;">Have you applied all changes from the English document?</label>
     </div>
     <div class="dialog-bottom">
         <button id="okButton" class="btn btn-br-primary">OK</button>

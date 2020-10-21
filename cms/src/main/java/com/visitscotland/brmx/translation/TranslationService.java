@@ -1,5 +1,7 @@
 package com.visitscotland.brmx.translation;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.visitscotland.brmx.translation.plugin.JcrDocument;
 import com.visitscotland.brmx.translation.plugin.JcrDocumentFactory;
 import org.hippoecm.repository.HippoStdNodeType;
@@ -28,12 +30,15 @@ import static org.springframework.beans.factory.config.ConfigurableBeanFactory.S
 public class TranslationService {
     private static final Logger log = LoggerFactory.getLogger(TranslationService.class);
     private JcrDocumentFactory jcrDocumentFactory;
+    private ObjectMapper objectMapper;
     private SessionFactory sessionFactory;
 
     @Autowired
     public TranslationService(JcrDocumentFactory jcrDocumentFactory,
+                              ObjectMapper objectMapper,
                               SessionFactory sessionFactory) {
         this.jcrDocumentFactory = jcrDocumentFactory;
+        this.objectMapper = objectMapper;
         this.sessionFactory = sessionFactory;
     }
 
@@ -77,7 +82,7 @@ public class TranslationService {
         return false;
     }
 
-    // Returns HTML escaped with encodeURIComponent in the javascript
+    // Returns a JSON representation of TranslationContent
     public String getDocumentDifference(String nodeId) throws RepositoryException, IOException {
         JcrDocument document = getDocument(nodeId);
         Node unpublishedNode = document.getVariantNode(JcrDocument.VARIANT_UNPUBLISHED);
@@ -122,7 +127,7 @@ public class TranslationService {
         }
     }
 
-    public List<JcrDocument> setTranslationContent(JcrDocument jcrDocument, String translationContent) throws WorkflowException, RepositoryException, RemoteException {
+    public List<JcrDocument> setTranslationContent(JcrDocument jcrDocument, TranslationContent translationContent) throws WorkflowException, RepositoryException, RemoteException {
         Session jcrSession = sessionFactory.getJcrSession();
 
         if (jcrDocument.isNodeType(JcrDocument.VS_TRANSLATABLE_TYPE)) {
@@ -146,6 +151,11 @@ public class TranslationService {
             }
 
             Set<JcrDocument> jcrTranslations = jcrDocument.getTranslations();
+
+            if (jcrTranslations.size() == 0) {
+                throw new IllegalStateException("Document has no foreign translations");
+            }
+
             for (JcrDocument translatedDocument : jcrTranslations) {
                 if (translatedDocument.isDraftBeingEdited()) {
                     nodesBeingEdited.add(translatedDocument);
@@ -175,10 +185,14 @@ public class TranslationService {
             if (nodesBeingEdited.isEmpty()) {
                 if (!editableNodes.isEmpty()) {
                     for (HashMap.Entry<Node, Node> editableNodeEntry : editableNodes.entrySet()) {
-                        Node editableUnpublishedVariant = editableNodeEntry.getValue();
-                        editableUnpublishedVariant.setProperty("visitscotland:translationFlag", true);
-                        editableUnpublishedVariant.setProperty("visitscotland:diff", translationContent);
-                        // If this was the draft node we would want to commit the changes
+                        try {
+                            Node editableUnpublishedVariant = editableNodeEntry.getValue();
+                            editableUnpublishedVariant.setProperty("visitscotland:translationFlag", true);
+                            editableUnpublishedVariant.setProperty("visitscotland:diff", objectMapper.writeValueAsString(translationContent));
+                        } catch(JsonProcessingException ex) {
+                            // just log the error, should never happen.
+                            log.error("Unable to serailise the translation.", ex);
+                        }
                         discardEditableNode(editableNodeEntry.getKey());
                     }
                     jcrSession.save();
@@ -211,6 +225,31 @@ public class TranslationService {
             editableWorkflow.disposeEditableInstance();
         } else {
             throw new WorkflowException("Unable to obtain an EditableWorkflow to discard checkout");
+        }
+    }
+
+    public static final class TranslationContent {
+        private String content;
+
+        public String getContent() {
+            return content;
+        }
+
+        public void setContent(String content) {
+            this.content = content;
+        }
+
+        @Override
+        public boolean equals(Object o) {
+            if (this == o) return true;
+            if (o == null || getClass() != o.getClass()) return false;
+            TranslationContent that = (TranslationContent) o;
+            return Objects.equals(content, that.content);
+        }
+
+        @Override
+        public int hashCode() {
+            return Objects.hash(content);
         }
     }
 }

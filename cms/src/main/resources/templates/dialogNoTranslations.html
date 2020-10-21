@@ -7,17 +7,10 @@
 </head>
 <body>
     <div class="dialog-body">
-        <label for="change-list" style="padding-left: 10px; padding-top: 10px;">You are about to flag the following documents for translation:</label>
-        <table id="change-list" style="padding-top:20px; padding-left: 100px; padding-bottom:20px;">
-            <tr th:each="document : ${translations}">
-                <td style="padding-right: 10px;" th:text="${document.name}"></td>
-                <td th:text="${document.image}"></td>
-            </tr>
-        </table>
+        <label style="padding-left: 10px; padding-top: 10px;">The current document has no translations, does it need to be cloned first?</label>
     </div>
     <div class="dialog-bottom">
         <button id="okButton" class="btn btn-br-primary">OK</button>
-        <button id="cancelButton" class="btn btn-br-secondary">Cancel</button>
     </div>
 </body>
 <script>
@@ -34,11 +27,6 @@
 
     const okButton = document.querySelector('#okButton');
     okButton.addEventListener('click', async () => {
-        ui.dialog.close(true);
-    });
-
-    const cancelButton = document.querySelector('#cancelButton');
-    cancelButton.addEventListener('click', async () => {
-       ui.dialog.cancel();
+        ui.dialog.close();
     });
 </script>
