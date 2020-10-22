@@ -20,7 +20,7 @@
             </vs-row>
     </div>  -->
     <div class="has-edit-button">
-        <vs-megalinks>
+        <vs-megalinks button-link="${item.cta.link}">
             <@hst.manageContent hippobean=item.megalinkItem />
             <#-- TO DO: move the intro to a macro -->
             <template slot="vs-megalinks-heading">
@@ -36,6 +36,10 @@
             <#if type== "MultiImageLinksModule">
                 <@multiImage item=item /> 
             </#if>
+
+            <template slot="vs-megalinks-button">
+                 ${item.cta.label}
+            </template>
         </vs-megalinks>
     </div>
 </#macro>
