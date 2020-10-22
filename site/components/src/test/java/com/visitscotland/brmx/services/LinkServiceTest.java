@@ -179,6 +179,13 @@ class LinkServiceTest {
     }
 
     @Test
+    @DisplayName("Null link doesn't throw an exception and returns null")
+    void getType_null() {
+        assertNull(service.getType(null));
+        assertNull(service.getType(""));
+    }
+
+    @Test
     @DisplayName("Identifies internal URL patterns")
     void getType() {
         assertEquals(LinkType.INTERNAL, service.getType("http://www.visitscotland.com/something"));

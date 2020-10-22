@@ -9,6 +9,7 @@ import com.visitscotland.brmx.dms.ProductSearchBuilder;
 import com.visitscotland.brmx.utils.CommonUtils;
 import com.visitscotland.brmx.utils.HippoUtilsService;
 import com.visitscotland.brmx.utils.Properties;
+import com.visitscotland.utils.Contract;
 import org.hippoecm.hst.content.beans.standard.HippoCompound;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -115,7 +116,7 @@ public class LinkService {
      */
     public LinkType getType(String url) {
         //TODO the following if block requires some refinement
-        if (url == null) {
+        if (Contract.isEmpty(url)) {
             return null;
         } else if (url.startsWith("/") || url.contains("localhost") || url.contains("visitscotland.com")
                 || url.startsWith(Properties.VS_DMS_SERVICE)) {
