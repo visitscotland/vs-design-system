@@ -29,7 +29,7 @@ public class PageTemplateBuilder {
     private final IKnowFactory iKnowFactory;
 
     static final String PAGE_ITEMS = "pageItems";
-    static final String[] styles = {"style1", "style2", "style3"};
+    static final String[] themes = {"theme1", "theme2", "theme3"};
     static final String[] alignment = {"left", "right"};
 
     public PageTemplateBuilder() {
@@ -68,7 +68,7 @@ public class PageTemplateBuilder {
                     styleIndex--;
                 }
 
-                al.setTheme(styles[styleIndex++ % styles.length]);
+                al.setTheme(themes[styleIndex++ % themes.length]);
                 al.setHippoBean(item);
 
                 links.add(al);

@@ -115,7 +115,9 @@ public class LinkService {
      */
     public LinkType getType(String url) {
         //TODO the following if block requires some refinement
-        if (url.startsWith("/") || url.contains("localhost") || url.contains("visitscotland.com")
+        if (url == null) {
+            return null;
+        } else if (url.startsWith("/") || url.contains("localhost") || url.contains("visitscotland.com")
                 || url.startsWith(Properties.VS_DMS_SERVICE)) {
             return LinkType.INTERNAL;
         }
