@@ -88,6 +88,11 @@ public class PageTemplateBuilder {
                 System.out.println("A TourismInformation was found");
             }
         }
+        if(getDocument(request).getOtherThings()!=null) {
+            LinksModule al = linksFactory.horizontalListLayout(getDocument(request), request.getLocale());
+            al.setStyle(styles[0]);
+            links.add(al);
+        }
 
         //Note: In the future this listLayout will be compose by different types of module.
         request.setAttribute(PAGE_ITEMS, links);

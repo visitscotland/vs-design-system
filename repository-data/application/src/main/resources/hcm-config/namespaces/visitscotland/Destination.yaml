@@ -11,7 +11,7 @@ definitions:
         /hipposysedit:nodetype:
           jcr:primaryType: hipposysedit:nodetype
           jcr:mixinTypes: ['mix:referenceable', 'hipposysedit:remodel']
-          jcr:uuid: 52d6e35e-8006-433b-8eb7-57b3b9fbc095
+          jcr:uuid: db18c5d3-00f9-437e-b045-a469d315e275
           hipposysedit:node: true
           hipposysedit:supertype: ['visitscotland:Page', 'hippostd:relaxed', 'hippotranslation:translated']
           hipposysedit:uri: http://www.visitscotland.com/visitscotland/nt/1.0
@@ -42,7 +42,7 @@ definitions:
           visitscotland:seoDescription: ''
           visitscotland:teaser: ''
           visitscotland:seoTitle: ''
-          jcr:uuid: 044be006-c202-4621-8e87-c0f3eb53a739
+          jcr:uuid: b3ef3674-a131-49cf-bbff-c423a74c7ef1
           hippostdpubwf:lastModificationDate: 2020-05-15T09:26:41.741+01:00
           hippostdpubwf:creationDate: 2020-05-15T09:26:41.742+01:00
           /visitscotland:heroImage:
@@ -54,6 +54,12 @@ definitions:
           /visitscotland:introduction:
             jcr:primaryType: hippostd:html
             hippostd:content: ''
+          /visitscotland:otherThings:
+            jcr:primaryType: visitscotland:OTYML
+            visitscotland:title: ''
+            /visitscotland:introduction:
+              jcr:primaryType: hippostd:html
+              hippostd:content: ''
       /editor:templates:
         jcr:primaryType: editor:templateset
         /_default_:
@@ -165,3 +171,12 @@ definitions:
               ckeditor.config.overlayed.json: '{toolbarGroups: [{ name: ''links''
                 },{name:''insert''},{name:''clipboard''},{name:''tools''},{name:''undo''}]
                 , removeButtons: ''PickImage,Youtube,Table''}'
+          /otherThings:
+            jcr:primaryType: frontend:plugin
+            caption: Other things you might like
+            field: otherThings
+            hint: ''
+            plugin.class: org.hippoecm.frontend.editor.plugins.field.NodeFieldPlugin
+            wicket.id: ${cluster.id}.left.item
+            /cluster.options:
+              jcr:primaryType: frontend:pluginconfig

@@ -11,7 +11,7 @@ definitions:
         /hipposysedit:nodetype:
           jcr:primaryType: hipposysedit:nodetype
           jcr:mixinTypes: ['mix:referenceable', 'hipposysedit:remodel']
-          jcr:uuid: 56715667-c172-4470-a01b-d30f75b2a637
+          jcr:uuid: ba84789c-69a4-49c6-9d97-aa2af018bf72
           hipposysedit:node: true
           hipposysedit:supertype: ['visitscotland:basedocument', 'hippostd:relaxed',
             'hippotranslation:translated']
@@ -86,6 +86,15 @@ definitions:
             hipposysedit:primary: false
             hipposysedit:type: String
             hipposysedit:validators: [required]
+          /otherThings:
+            jcr:primaryType: hipposysedit:field
+            hipposysedit:mandatory: false
+            hipposysedit:multiple: false
+            hipposysedit:ordered: false
+            hipposysedit:path: visitscotland:otherThings
+            hipposysedit:primary: false
+            hipposysedit:type: visitscotland:OTYML
+            hipposysedit:validators: [optional]
       /hipposysedit:prototypes:
         jcr:primaryType: hipposysedit:prototypeset
         /hipposysedit:prototype:
@@ -102,7 +111,7 @@ definitions:
           visitscotland:seoNoIndex: false
           visitscotland:seoDescription: ''
           visitscotland:title: ''
-          jcr:uuid: 090eb0a5-4548-40a3-86e2-d024f6febd03
+          jcr:uuid: 4fe9095d-8c13-45e3-a6b1-04c7fba2724d
           hippostdpubwf:lastModificationDate: 2019-12-05T16:05:38.470Z
           hippostdpubwf:creationDate: 2019-12-05T16:05:38.470Z
           visitscotland:teaser: ''
@@ -115,6 +124,12 @@ definitions:
           /visitscotland:introduction:
             jcr:primaryType: hippostd:html
             hippostd:content: ''
+          /visitscotland:otherThings:
+            jcr:primaryType: visitscotland:OTYML
+            visitscotland:title: ''
+            /visitscotland:introduction:
+              jcr:primaryType: hippostd:html
+              hippostd:content: ''
       /editor:templates:
         jcr:primaryType: editor:templateset
         /_default_:
@@ -216,3 +231,12 @@ definitions:
             /cluster.options:
               jcr:primaryType: frontend:pluginconfig
               maxlength: '135'
+          /otherThings:
+            jcr:primaryType: frontend:plugin
+            caption: Other things you might like
+            field: otherThings
+            plugin.class: org.hippoecm.frontend.editor.plugins.field.NodeFieldPlugin
+            wicket.id: ${cluster.id}.left.item
+            hint: ''
+            /cluster.options:
+              jcr:primaryType: frontend:pluginconfig

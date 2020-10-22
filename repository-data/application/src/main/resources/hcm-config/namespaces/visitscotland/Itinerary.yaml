@@ -11,7 +11,7 @@ definitions:
         /hipposysedit:nodetype:
           jcr:primaryType: hipposysedit:nodetype
           jcr:mixinTypes: ['mix:referenceable', 'hipposysedit:remodel']
-          jcr:uuid: cf714a3b-5521-4cc5-bec7-2ef1454d3ede
+          jcr:uuid: 8225e9c6-7b9f-40a5-b740-1755dbdd8b88
           hipposysedit:node: true
           hipposysedit:supertype: ['visitscotland:Page', 'hippostd:relaxed', 'hippotranslation:translated']
           hipposysedit:uri: http://www.visitscotland.com/visitscotland/nt/1.0
@@ -102,7 +102,7 @@ definitions:
           visitscotland:start: ''
           visitscotland:distance: 0.0
           visitscotland:theme: ''
-          jcr:uuid: c40ae254-7cf3-4d1c-9245-b23ee22478f0
+          jcr:uuid: c3bb7a45-09cf-4a3f-b01b-ddf0df07424d
           hippostdpubwf:creationDate: 2019-12-06T11:10:08.311Z
           hippostdpubwf:lastModificationDate: 2019-12-06T11:10:08.310Z
           visitscotland:highlights: ''
@@ -302,5 +302,14 @@ definitions:
               unless it is advised by SEO
             plugin.class: org.hippoecm.frontend.editor.plugins.field.PropertyFieldPlugin
             wicket.id: ${cluster.id}.right.item
+            /cluster.options:
+              jcr:primaryType: frontend:pluginconfig
+          /otherThings:
+            jcr:primaryType: frontend:plugin
+            caption: Other things you might like
+            field: otherThings
+            hint: ''
+            plugin.class: org.hippoecm.frontend.editor.plugins.field.NodeFieldPlugin
+            wicket.id: ${cluster.id}.left.item
             /cluster.options:
               jcr:primaryType: frontend:pluginconfig

@@ -8,6 +8,7 @@ public class EnhancedLink extends FlatLink {
     private FlatImage image;
     private String teaser;
     private boolean featured;
+    private String category;
 
     public FlatImage getImage() {
         return image;
@@ -33,4 +34,11 @@ public class EnhancedLink extends FlatLink {
         this.featured = featured;
     }
 
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
 }

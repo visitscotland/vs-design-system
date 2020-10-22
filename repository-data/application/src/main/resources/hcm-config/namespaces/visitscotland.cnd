@@ -72,6 +72,9 @@
 [visitscotland:Megalinks] > hippostd:relaxed, hippotranslation:translated, visitscotland:basedocument, visitscotland:translatable
   orderable
 
+[visitscotland:OTYML] > hippo:compound, hippostd:relaxed
+  orderable
+
 [visitscotland:ProductSearchLink] > hippo:compound, hippostd:relaxed
   orderable
 

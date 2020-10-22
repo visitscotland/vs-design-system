@@ -16,6 +16,7 @@
 <#include "../macros/modules/megalinks/megalinks-multi-image.ftl">
 <#include "../macros/modules/megalinks/megalinks-single-image.ftl">
 <#include "../macros/modules/megalinks/megalinks-list.ftl">
+<#include "../macros/modules/megalinks/megalinks-horizontal-list.ftl">
 <#include "../macros/global/cms-errors.ftl">
 <#-- Implicit Request Objects -->
 <#-- @ftlvariable name="document" type="com.visitscotland.brmx.beans.Destination" -->
@@ -58,6 +59,12 @@
     <#--Macro for list-->
     <#elseif module.getType()== "ListLinksModule">
         <@list module />
+    <#--Macro for horizontal list-->
+    <#elseif module.getType()== "HorizontalListLinksModule">
+        <@horizontalList module />
+
+
+
 
     <#elseif module.getType()== "ICentreModule">
         <#if module.image.cmsImage??>
@@ -117,7 +124,6 @@
                             </br>
                         </vs-col>
                     </vs-row>
-
     </#if>
 
 </#macro>

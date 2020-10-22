@@ -11,17 +11,17 @@ import com.visitscotland.brmx.beans.mapping.megalinks.*;
 import com.visitscotland.brmx.dms.DMSDataService;
 import com.visitscotland.brmx.dms.LocationLoader;
 import com.visitscotland.brmx.services.LinkService;
+import com.visitscotland.brmx.services.ResourceBundleService;
 import com.visitscotland.brmx.utils.CommonUtils;
 import com.visitscotland.brmx.utils.HippoUtilsService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Locale;
+import java.net.MalformedURLException;
+import java.util.*;
 import java.util.stream.Collectors;
+import java.net.URL;
 
 public class LinkModulesFactory {
 
@@ -35,6 +35,7 @@ public class LinkModulesFactory {
     private final HippoUtilsService utils;
     private final DMSDataService dmsData;
     private final LinkService linkService;
+    private ResourceBundleService bundle;
 
     public LinkModulesFactory() {
         this(new HippoUtilsService(), new DMSDataService(), new LinkService());
@@ -44,12 +45,15 @@ public class LinkModulesFactory {
         this.utils = utils;
         this.dmsData = dmsData;
         this.linkService = linkService;
+        this.bundle= new ResourceBundleService();
     }
 
     public LinksModule getMegalinkModule(Megalinks doc, Locale locale) {
-        if (Boolean.TRUE.equals(doc.getListLayout()) || doc.getMegalinkItems().size() > MAX_ITEMS) {
-            return listLayout(doc, locale);
-        } else if (doc.getSingleImageModule() != null) {
+        if (doc.getLayout()!= null && doc.getLayout().equalsIgnoreCase("list") || doc.getMegalinkItems().size() > MAX_ITEMS) {
+            return listLayout(doc, locale) ;
+        } else if (doc.getLayout()!= null && doc.getLayout().contains("Horizontal")) {
+            return horizontalListLayout (doc, locale);
+        }else if (doc.getSingleImageModule() != null) {
             return singleImageLayout(doc, locale);
         } else {
             return multiImageLayout(doc, locale);
@@ -72,6 +76,27 @@ public class LinkModulesFactory {
         ll.setLinks(convertToEnhancedLinks(doc.getMegalinkItems(), locale));
 
         return ll;
+    }
+
+
+    public HorizontalListLinksModule horizontalListLayout(Megalinks doc, Locale locale) {
+        HorizontalListLinksModule ll = new HorizontalListLinksModule();
+        populateCommonFields(ll, doc, locale);
+
+        ll.setTeaserVisible(doc.getTeaserVisible());
+        ll.setLinks(convertToEnhancedLinks(doc.getMegalinkItems(), locale));
+
+        return ll;
+    }
+
+    public HorizontalListLinksModule horizontalListLayout(Page page, Locale locale) {
+        HorizontalListLinksModule target = new HorizontalListLinksModule();
+        OTYML doc = page.getOtherThings();
+        target.setTitle(doc.getTitle().isEmpty()? (bundle.getResourceBundle("otyml", "title", locale ,true)): doc.getTitle());
+        target.setIntroduction(doc.getIntroduction());
+        target.setLinks(convertToEnhancedLinks(doc.getMegalinkItems(), locale));
+
+        return target;
     }
 
     /**
@@ -192,6 +217,18 @@ public class LinkModulesFactory {
                 EnhancedLink link = createEnhancedLink((Linkable) item.getLink(), locale);
                 if (link != null) {
                     link.setFeatured(item.getFeature());
+                    if (this.getLinkCategory(item.getLink().getPath(),locale)!=null){
+                        link.setCategory(this.getLinkCategory(item.getLink().getPath(),locale));
+                    }else{
+                        try {
+                            URL url = new URL(link.getLink());
+                            link.setCategory(url.getHost().substring(4));
+                        } catch (MalformedURLException e) {
+                            e.printStackTrace();
+                        }
+
+                    }
+
                     links.add(link);
                 }
             } else {
@@ -271,6 +308,30 @@ public class LinkModulesFactory {
         }
 
         return flatImage;
+    }
+
+    private String getLinkCategory(String path, Locale locale) {
+        if (path.contains("ebook")){
+            return bundle.getResourceBundle("otyml", "category.ebooks", locale ,true);
+        }else if(path.contains("blog")){
+            return bundle.getResourceBundle("otyml", "category.blog", locale ,true);
+        }else if(path.contains("see-do")||path.contains("events")||path.contains("tours")){
+            return bundle.getResourceBundle("otyml", "category.see-do", locale ,true);
+        }else if(path.contains("accommodation")){
+            return bundle.getResourceBundle("otyml", "category.accommodation", locale ,true);
+        }else if(path.contains("destination")){
+            return bundle.getResourceBundle("otyml", "category.destination", locale ,true);
+        }else if(path.contains("travel")||path.contains("holidays")){
+            return bundle.getResourceBundle("otyml", "category.travel-plan", locale ,true);
+        }else if(path.contains("brochures")){
+            return bundle.getResourceBundle("otyml", "category.inspiration", locale ,true);
+        }else if(path.contains("about")||path.contains("contact")||path.contains("policies")) {
+            return bundle.getResourceBundle("otyml", "category.information", locale ,true);
+        }
+        else if(path.contains("sandbox") && !path.contains("shared")) {
+            return "sandbox";
+        }
+        return null;
     }
 
     //TODO convert into a service
