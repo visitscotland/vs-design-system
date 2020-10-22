@@ -1,5 +1,5 @@
 <template>
-    <section class="vs-megalinks">
+    <section class="vs-megalinks" data-test="megalinks">
         <VsContainer>
             <VsRow>
                 <VsCol
@@ -23,12 +23,23 @@
             </VsRow>
             <!-- @slot Default slot to contain link blocks -->
             <slot />
+            <VsRow v-if="buttonLink">
+                <VsCol cols="12">
+                    <div class="vs-megalinks__button">
+                        <VsButton :href="buttonLink">
+                            <!-- @slot Slot to contain button text -->
+                            <slot name="vs-megalinks-button" />
+                        </VsButton>
+                    </div>
+                </VsCol>
+            </VsRow>
         </VsContainer>
     </section>
 </template>
 
 <script>
 import VsHeading from '@components/elements/heading/Heading';
+import VsButton from '@components/elements/button/Button';
 import {
     VsContainer,
     VsRow,
@@ -47,6 +58,18 @@ export default {
         VsRow,
         VsCol,
         VsHeading,
+        VsButton,
+    },
+    props: {
+        /**
+        * Component has an optional main link at the bottom
+        * this is the href for that
+        */
+        buttonLink: {
+            type: String,
+            required: false,
+            default: null,
+        },
     },
 };
 </script>
@@ -77,10 +100,20 @@ export default {
             margin-top: $spacer-6;
         }
 
+        .vs-megalinks__button {
+            width: 100%;
+            margin-top: $spacer-8;
+            text-align: center;
+        }
+
         @include media-breakpoint-up(lg) {
             .vs-megalinks__intro {
                 text-align: center;
                 margin-bottom: $spacer-10;
+            }
+
+            .vs-megalinks__button {
+                margin-top: $spacer-10;
             }
         }
     }
@@ -88,7 +121,7 @@ export default {
 
 <docs>
     ```js
-    <VsMegalinks>
+    <VsMegalinks buttonLink="http://www.visitscotland.com">
         <template slot="vs-megalinks-heading">
             Find your experiences in the highest village of Scotland
         </template>
@@ -264,6 +297,9 @@ export default {
                 </VsCol>
             </VsRow>
         </VsContainer>
+        <template slot="vs-megalinks-button">
+            Button Text
+        </template>
     </VsMegalinks>
     ```
 </docs>
