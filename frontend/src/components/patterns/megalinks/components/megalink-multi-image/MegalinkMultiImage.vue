@@ -9,18 +9,18 @@
         }"
     >
         <VsImg
-            slot="stretched-card-image"
+            slot="stretchedCardImage"
             :src="imgSrc"
             :alt="imgAlt"
             class="megalink-multi-image__img"
         />
         <span
-            slot="stretched-card-header"
+            slot="stretchedCardHeader"
             class="megalink-multi-image__title"
         ><!-- @slot Slot to contain heading --><slot name="vsMultiImageHeading" /></span>
 
         <VsRichTextWrapper
-            slot="stretched-card-content"
+            slot="stretchedCardContent"
             class="lead megalink-multi-image__content"
         >
             <!-- @slot Slot to contain content -->

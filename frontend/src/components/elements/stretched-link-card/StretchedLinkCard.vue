@@ -1,7 +1,7 @@
 <template>
     <div class="card">
         <!-- @slot Contains the image for the card  -->
-        <slot name="stretched-card-image" />
+        <slot name="stretchedCardImage" />
 
         <div class="card-body">
             <VsHeading
@@ -14,11 +14,11 @@
                     class="stretched-link"
                 >
                     <!-- @slot Contains header content for the card  -->
-                    <slot name="stretched-card-header" />
+                    <slot name="stretchedCardHeader" />
                 </VsLink>
             </VsHeading>
             <!-- @slot Contains body content for the card  -->
-            <slot name="stretched-card-content" />
+            <slot name="stretchedCardContent" />
         </div>
     </div>
 </template>
@@ -63,17 +63,17 @@ export default {
   ```
     <vs-stretched-link-card link="https://visitscotland.com" type="external">
         <vs-img
-            slot="stretched-card-image"
+            slot="stretchedCardImage"
             src="https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"
             alt="Claire standing stones"
             fluid
         />
 
-        <template slot="stretched-card-header">
+        <template slot="stretchedCardHeader">
             A Title Would Go Here
         </template>
 
-        <vs-rich-text-wrapper slot="stretched-card-content">
+        <vs-rich-text-wrapper slot="stretchedCardContent">
             The content for the card goes here
         </vs-rich-text-wrapper>
     </vs-stretched-link-card>
