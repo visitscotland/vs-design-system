@@ -1,5 +1,8 @@
 <template>
-    <section class="vs-megalinks" data-test="megalinks">
+    <section
+        class="vs-megalinks"
+        data-test="megalinks"
+    >
         <VsContainer>
             <VsRow>
                 <VsCol
