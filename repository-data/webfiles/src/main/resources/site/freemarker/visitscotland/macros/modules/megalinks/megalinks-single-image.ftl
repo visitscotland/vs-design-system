@@ -23,7 +23,9 @@
                     <#list item.links as megalink>
                         <vs-row>
                             <vs-col cols="4" lg="4" offset-lg="1">
-                                <vs-link href="${megalink.link}"> ${megalink.label}</vs-link> </br>
+                                <vs-link href="${megalink.link}"> ${megalink.label} - ${megalink.type} <#if megalink.type == "external">(External)</#if></vs-link>
+
+                                </br>
                             </vs-col>
 
                         </vs-row>
@@ -51,7 +53,7 @@
                         <#list item.links as megalink>
                             <vs-row>
                                 <vs-col cols="4" lg="4" offset-lg="1">
-                                    <vs-link href="${megalink.link}"> ${megalink.label}</vs-link> </br>
+                                    <vs-link href="${megalink.link}"> ${megalink.label} <#if megalink.type == "external">(External)</#if></vs-link>
                                 </vs-col>
 
                             </vs-row>

@@ -29,8 +29,8 @@
 <#-- @ftlvariable name="hero" type="com.visitscotland.brmx.beans.Image" -->
 
 <#--TODO Control abput colours, change style="background-color:${style}  -->
-<#macro moduleBuilder module style>
-		<div class="has-edit-button" style="background-color:${style}">
+<#macro moduleBuilder module theme>
+		<div class="has-edit-button" style="background-color:${theme}">
         <#--TODO hippoBean-->
         <@hst.manageContent hippobean=module.hippoBean />
             <vs-row>

@@ -7,6 +7,7 @@ import com.visitscotland.brmx.beans.dms.LocationObject;
 import com.visitscotland.brmx.beans.mapping.Coordinates;
 import com.visitscotland.brmx.beans.mapping.FlatImage;
 import com.visitscotland.brmx.beans.mapping.FlatLink;
+import com.visitscotland.brmx.beans.mapping.LinkType;
 import com.visitscotland.brmx.beans.mapping.megalinks.*;
 import com.visitscotland.brmx.dms.DMSDataService;
 import com.visitscotland.brmx.dms.LocationLoader;
@@ -29,7 +30,6 @@ public class LinkModulesFactory {
 
     public final static int MAX_ITEMS = 6;
 
-    private final static String URL = "url";
     private final static String IMAGE = "images";
 
     private final HippoUtilsService utils;
@@ -145,8 +145,11 @@ public class LinkModulesFactory {
         fl.setLinksSize(doc.getMegalinkItems().size());
         fl.setLinks(convertToEnhancedLinks(doc.getMegalinkItems(), locale));
 
-        //There is no featured items when the amount of items is inferior to 3
-        if (fl.getLinks().size() > 2) {
+        if (fl.getLinks().size() == 1) {
+            //If the megalinks only have one item, that one is featured
+            fl.setFeaturedLinks(fl.getLinks());
+            fl.setLinks(Collections.EMPTY_LIST);
+        } else if (fl.getLinks().size() > 2) {
             //For 3 links the maximum of 1 featured item.  From 4 on the maximum is 2 featured items.
             fl.setFeaturedLinks(fl.getLinks().stream()
                     .filter(link -> link.isFeatured())
@@ -174,7 +177,7 @@ public class LinkModulesFactory {
      * @param doc    Megalinks document with the data source
      * @param locale consumer language.
      */
-    private void populateCommonFields(LinksModule target, Megalinks doc, Locale locale) {
+    private void populateCommonFields(LinksModule<?> target, Megalinks doc, Locale locale) {
         target.setMegalinkItem(doc);
         target.setTitle(doc.getTitle());
         target.setIntroduction(doc.getIntroduction());
@@ -193,10 +196,14 @@ public class LinkModulesFactory {
             if (item.getLink() == null) {
                 CommonUtils.contentIssue("The module %s contains a link without any reference", item.getPath());
             } else if (item.getLink() instanceof Page) {
-                links.add(new FlatLink(((Page) item.getLink()).getTitle(), utils.createUrl(item.getLink())));
+                links.add(new FlatLink(((Page) item.getLink()).getTitle(), utils.createUrl(item.getLink()), LinkType.INTERNAL));
             } else if (item.getLink() instanceof SharedLink) {
                 JsonNode node = getNodeFromSharedLink((SharedLink) item.getLink(), locale);
-                links.add(new FlatLink(((SharedLink) item.getLink()).getTitle(), linkService.getPlainLink((SharedLink) item.getLink(), node)));
+                FlatLink link = new FlatLink();
+                link.setLabel(((SharedLink) item.getLink()).getTitle());
+                link.setLink(linkService.getPlainLink((SharedLink) item.getLink(), node));
+                link.setType(linkService.getType(link.getLink()));
+                links.add(link);
             } else {
                 CommonUtils.contentIssue("The module %s is pointing to a document of type %s which cannot be rendered as a page", item.getPath(), item.getLink().getClass().getSimpleName());
             }

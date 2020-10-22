@@ -581,7 +581,7 @@
         hippostd:state: draft
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2019-12-10T13:28:39.550Z
-        hippostdpubwf:lastModificationDate: 2020-09-23T13:06:45.920+01:00
+        hippostdpubwf:lastModificationDate: 2020-10-21T15:11:03.734+01:00
         hippostdpubwf:lastModifiedBy: admin
         hippotranslation:id: 533c98b2-c2cd-491f-929a-ea2c4a491bb2
         hippotranslation:locale: en
@@ -3684,9 +3684,10 @@
                 hippo:values: []
         /casa-jose:
           jcr:primaryType: hippo:handle
-          jcr:mixinTypes: ['hippo:named', 'mix:referenceable']
+          jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
           jcr:uuid: 94bde36e-54e1-4aee-8d25-28def2719c55
           hippo:name: Casa Jose
+          hippo:versionHistory: d4db18a7-7f8d-4a2f-aa52-3019f283c320
           /casa-jose[1]:
             jcr:primaryType: visitscotland:Stop
             jcr:mixinTypes: ['mix:referenceable']
@@ -3695,9 +3696,9 @@
             hippostd:state: published
             hippostdpubwf:createdBy: admin
             hippostdpubwf:creationDate: 2019-12-16T12:20:46.037Z
-            hippostdpubwf:lastModificationDate: 2020-04-30T17:45:31.843+01:00
+            hippostdpubwf:lastModificationDate: 2020-10-21T14:38:02.529+01:00
             hippostdpubwf:lastModifiedBy: admin
-            hippostdpubwf:publicationDate: 2020-05-14T16:41:25.859+01:00
+            hippostdpubwf:publicationDate: 2020-10-21T15:11:27.592+01:00
             hippotranslation:id: 38f7c9ac-27eb-4b02-9bab-16b719f241e4
             hippotranslation:locale: en
             visitscotland:subtitle: ''
@@ -3722,7 +3723,7 @@
                 visitscotland:link: https://ebooks.visitscotland.com/ghosts-myths-legends/
             /visitscotland:image:
               jcr:primaryType: hippogallerypicker:imagelink
-              hippo:docbase: 8d4f5036-64ca-4e5d-aa89-b348ae38b081
+              hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
               hippo:facets: []
               hippo:modes: []
               hippo:values: []
@@ -3734,7 +3735,7 @@
             hippostd:state: unpublished
             hippostdpubwf:createdBy: admin
             hippostdpubwf:creationDate: 2019-12-16T12:20:46.037Z
-            hippostdpubwf:lastModificationDate: 2020-04-30T17:45:31.843+01:00
+            hippostdpubwf:lastModificationDate: 2020-10-21T14:38:02.529+01:00
             hippostdpubwf:lastModifiedBy: admin
             hippotranslation:id: 38f7c9ac-27eb-4b02-9bab-16b719f241e4
             hippotranslation:locale: en
@@ -3760,7 +3761,7 @@
                 visitscotland:link: https://ebooks.visitscotland.com/ghosts-myths-legends/
             /visitscotland:image:
               jcr:primaryType: hippogallerypicker:imagelink
-              hippo:docbase: 8d4f5036-64ca-4e5d-aa89-b348ae38b081
+              hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
               hippo:facets: []
               hippo:modes: []
               hippo:values: []
@@ -3772,7 +3773,7 @@
             hippostd:state: draft
             hippostdpubwf:createdBy: admin
             hippostdpubwf:creationDate: 2019-12-16T12:20:46.037Z
-            hippostdpubwf:lastModificationDate: 2020-04-30T17:45:32.009+01:00
+            hippostdpubwf:lastModificationDate: 2020-10-21T15:11:20.665+01:00
             hippostdpubwf:lastModifiedBy: admin
             hippotranslation:id: 38f7c9ac-27eb-4b02-9bab-16b719f241e4
             hippotranslation:locale: en
@@ -3798,7 +3799,7 @@
                 visitscotland:link: https://ebooks.visitscotland.com/ghosts-myths-legends/
             /visitscotland:image:
               jcr:primaryType: hippogallerypicker:imagelink
-              hippo:docbase: 8d4f5036-64ca-4e5d-aa89-b348ae38b081
+              hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
               hippo:facets: []
               hippo:modes: []
               hippo:values: []
