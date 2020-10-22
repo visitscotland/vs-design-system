@@ -2,7 +2,7 @@ import { shallowMount } from '@vue/test-utils';
 import VsMegalinks from '../Megalinks';
 
 const factoryShallowMount = () => shallowMount(VsMegalinks, {
-    props: {
+    propsData: {
         buttonLink: 'http://www.visitscotland.com',
     },
     slots: {
@@ -17,9 +17,6 @@ describe('VsMegalinks', () => {
         it('should only render the button if an href is supplied', async() => {
             const wrapper = factoryShallowMount();
 
-            await wrapper.setProps({
-                buttonLink: 'http://www.visitscotland.com',
-            });
             expect(wrapper.find('.vs-megalinks__button').exists()).toBe(true);
 
             await wrapper.setProps({
