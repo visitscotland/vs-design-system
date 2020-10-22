@@ -21,10 +21,12 @@ export default {
 
 <style lang="scss" scoped>
 .vs-summary-box-list-item {
-    flex: 1 0 calc(50% - 1rem);
+    flex-grow: 1;
+    flex-basis: calc(50% - 1rem);
     margin: 0.5rem;
     @include media-breakpoint-up(md) {
-        flex: 1 0 calc(50% - 1.5rem);
+        flex-grow: 1;
+        flex-basis: calc(50% - 1.5rem);
         margin: 0.75rem;
     }
 
