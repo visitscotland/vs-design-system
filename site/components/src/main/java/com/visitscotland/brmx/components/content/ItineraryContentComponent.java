@@ -195,10 +195,13 @@ public class ItineraryContentComponent extends PageContentComponent<Itinerary> {
                 if (firstStopId == null) {
                     firstStopId = lastStopId;
                 }
-                if (model.getCoordinates() != null) {
+                if (model.getCoordinates() != null && flatImage!=null) {
                     flatImage.setCoordinates(model.getCoordinates());
                 }
                 model.setImage(flatImage);
+                if (flatImage==null){
+                    errors.add("An image should be provided for external links");
+                }
                 if (visitDuration != null) {
                     visitDuration = visitDuration.equalsIgnoreCase("1") ? visitDuration + " " + bundle.getResourceBundle("itinerary", "stop.hour", request.getLocale())
                             : visitDuration + " " + bundle.getResourceBundle("itinerary", "stop.hours", request.getLocale());
