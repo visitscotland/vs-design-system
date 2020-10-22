@@ -20,10 +20,10 @@
             img-src="${image}"
             link-type="download"
         >
-            <template slot="vs-multi-image-heading">
+            <template slot="vsMultiImageHeading">
                 ${megalink.label}
             </template>
-            <template slot="vs-multi-image-content">
+            <template slot="vsMultiImageContent">
                 <p>${megalink.teaser}</p>
             </template>
         </vs-megalink-multi-image>

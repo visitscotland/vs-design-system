@@ -16,18 +16,17 @@
         md="6"
         lg="12"
     >
-        
         <vs-megalink-multi-image
             featured
             <#if lastFeatured == 'true'>last-featured</#if>
             img-src="${image}"
             link-type="internal"
         >
-            <template slot="vs-multi-image-heading">
+            <template slot="vsMultiImageHeading">
                 ${feature.label}
             </template>
             <#if feature.teaser?? && feature.label??>
-                <p slot="vs-multi-image-content">
+                <p slot="vsMultiImageContent">
                     ${feature.teaser}
                 </p>
             </#if>
