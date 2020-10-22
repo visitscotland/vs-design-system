@@ -64,31 +64,21 @@ public class TranslationWorkflowPlugin extends RenderPlugin {
     private static Logger log = LoggerFactory.getLogger(TranslationWorkflowPlugin.class);
     private IModel<Boolean> canTranslateModel;
     private DocumentTranslationProvider translationProvider;
-    private HippoTranslatedNodeFactory translatedNodeFactory;
-    private JcrDocumentFactory jcrDocumentFactory;
     private UserSessionFactory userSessionFactory;
 
     public TranslationWorkflowPlugin(IPluginContext context, IPluginConfig config) {
-        this(context, config, new HippoTranslatedNodeFactory(), new JcrDocumentFactory(), new UserSessionFactory());
+        this(context, config, new UserSessionFactory());
         initialise();
     }
 
     /**
      * This constructor is intended for use in tests. It avoids calling initialisation functionality that would make
      * testing difficult.
-     *
-     * @param context
-     * @param config
-     * @param translatedNodeFactory
      */
     protected TranslationWorkflowPlugin(IPluginContext context,
                                         IPluginConfig config,
-                                        HippoTranslatedNodeFactory translatedNodeFactory,
-                                        JcrDocumentFactory jcrDocumentFactory,
                                         UserSessionFactory userSessionFactory) {
         super(context, config);
-        this.translatedNodeFactory = translatedNodeFactory;
-        this.jcrDocumentFactory = jcrDocumentFactory;
         this.userSessionFactory = userSessionFactory;
     }
 
