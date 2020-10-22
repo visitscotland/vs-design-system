@@ -3,6 +3,7 @@ package com.visitscotland.brmx.services;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.visitscotland.brmx.beans.*;
 import com.visitscotland.brmx.beans.mapping.FlatLink;
+import com.visitscotland.brmx.beans.mapping.LinkType;
 import com.visitscotland.brmx.dms.DMSDataService;
 import com.visitscotland.brmx.dms.ProductSearchBuilder;
 import com.visitscotland.brmx.utils.CommonUtils;
@@ -17,39 +18,30 @@ import java.util.Locale;
 
 public class LinkService {
 
+
     private static final Logger logger = LoggerFactory.getLogger(LinkService.class);
 
     final static String URL = "url";
 
     private final DMSDataService dmsData;
-    private final ProductSearchBuilder psBuilder;
     private final ResourceBundleService resourceBundle;
     private final HippoUtilsService utils;
 
     public LinkService() {
-        this(new DMSDataService(), new ProductSearchBuilder(), new ResourceBundleService(), new HippoUtilsService());
+        this(new DMSDataService(), new ResourceBundleService(), new HippoUtilsService());
     }
 
-    public LinkService(DMSDataService dmsData, ProductSearchBuilder psBuilder, ResourceBundleService resourceBundle, HippoUtilsService utils) {
+    public LinkService(DMSDataService dmsData, ResourceBundleService resourceBundle, HippoUtilsService utils) {
         this.dmsData = dmsData;
-        this.psBuilder = psBuilder;
         this.resourceBundle = resourceBundle;
         this.utils = utils;
     }
-
-    // TODO is the last parameter required?
-//    public FlatLink createLink(Locale locale, HippoCompound item){
-//        return createLink(locale, item, item);
-//    }
-
-    //
 
     /**
      * TODO comment this method
      *
      * @param locale locale
-     * @param item Compound Item
-     *
+     * @param item   Compound Item
      * @return
      */
     public FlatLink createLink(Locale locale, HippoCompound item) {
@@ -64,7 +56,7 @@ public class LinkService {
                             dmsLink.getProduct(), item.getPath()));
                 } else {
                     //TODO build the link for the DMS product properly
-                    return new FlatLink(resourceBundle.getCtaLabel(dmsLink.getLabel(), locale), Properties.VS_DMS_SERVICE + product.get(URL).asText());
+                    return new FlatLink(resourceBundle.getCtaLabel(dmsLink.getLabel(), locale), Properties.VS_DMS_SERVICE + product.get(URL).asText(), LinkType.INTERNAL);
                 }
             } catch (IOException e) {
                 logger.error(String.format("Error while querying the DMS for '%s', (%s)",
@@ -74,15 +66,16 @@ public class LinkService {
             ProductSearchLink productSearchLink = (ProductSearchLink) item;
             ProductSearchBuilder psb = new ProductSearchBuilder().fromHippoBean(productSearchLink.getSearch()).locale(locale);
 
-            return new FlatLink(resourceBundle.getCtaLabel(productSearchLink.getLabel(), locale), psb.build());
+            return new FlatLink(resourceBundle.getCtaLabel(productSearchLink.getLabel(), locale), psb.build(), LinkType.INTERNAL);
 
         } else if (item instanceof ExternalLink) {
             ExternalLink externalLink = (ExternalLink) item;
-            return new FlatLink(resourceBundle.getCtaLabel(externalLink.getLabel(), locale), externalLink.getLink());
+            LinkType linkType = getType(externalLink.getLink());
+            return new FlatLink(resourceBundle.getCtaLabel(externalLink.getLabel(), locale), externalLink.getLink(), linkType);
 
         } else if (item instanceof CMSLink) {
             CMSLink cmsLink = (CMSLink) item;
-            return new FlatLink(resourceBundle.getCtaLabel(cmsLink.getLabel(), locale), utils.createUrl(cmsLink.getLink()));
+            return new FlatLink(resourceBundle.getCtaLabel(cmsLink.getLabel(), locale), utils.createUrl(cmsLink.getLink()), LinkType.INTERNAL);
         }
 
         return null;
@@ -91,9 +84,8 @@ public class LinkService {
     /**
      * Extracts the information about the link form a SharedLink and returns it in a URL.
      *
-     * @param link SharedLink Object;
+     * @param link    SharedLink Object;
      * @param product JsonNode with the data of the product. It is only used when the type of SharedLink is DMSLink.
-     *
      * @return String URL from the SharedLink
      */
     public String getPlainLink(SharedLink link, JsonNode product) {
@@ -107,11 +99,27 @@ public class LinkService {
             }
         } else if (link.getLinkType() instanceof ExternalLink) {
             return ((ExternalLink) link.getLinkType()).getLink();
-        } else if (link.getLinkType() instanceof ProductsSearch) {
-            return psBuilder.fromHippoBean((ProductsSearch) link.getLinkType()).build();
+        } else if (link.getLinkType() instanceof ProductSearchLink) {
+            return new ProductSearchBuilder().fromHippoBean(((ProductSearchLink) link.getLinkType()).getSearch()).build();
         } else {
             logger.warn(String.format("This class %s is not recognized as a link type and cannot be converted", link.getLinkType() == null ? "null" : link.getClass().getSimpleName()));
         }
         return null;
+    }
+
+    /**
+     * Analyzes the URL and identifies what type of link it is.
+     *
+     * @param url URL to analyse
+     * @return
+     */
+    public LinkType getType(String url) {
+        //TODO the following if block requires some refinement
+        if (url.startsWith("/") || url.contains("localhost") || url.contains("visitscotland.com")
+                || url.startsWith(Properties.VS_DMS_SERVICE)) {
+            return LinkType.INTERNAL;
+        }
+
+        return LinkType.EXTERNAL;
     }
 }
