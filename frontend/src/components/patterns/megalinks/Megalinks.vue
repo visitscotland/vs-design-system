@@ -13,11 +13,11 @@
                             class="vs-megalinks__heading"
                         >
                             <!-- @slot Slot to contain optional title -->
-                            <slot name="vs-megalinks-heading" />
+                            <slot name="vsMegalinksHeading" />
                         </VsHeading>
 
                         <!-- @slot Slot to contain optional intro content -->
-                        <slot name="vs-megalinks-intro" />
+                        <slot name="vsMegalinksIntro" />
                     </div>
                 </VsCol>
             </VsRow>
@@ -28,7 +28,7 @@
                     <div class="vs-megalinks__button">
                         <VsButton :href="buttonLink">
                             <!-- @slot Slot to contain button text -->
-                            <slot name="vs-megalinks-button" />
+                            <slot name="vsMegalinksButton" />
                         </VsButton>
                     </div>
                 </VsCol>
@@ -156,10 +156,10 @@ export default {
                                     imgAlt="This is the alt text"
                                     linkType="internal"
                                 >
-                                    <template slot="vs-multi-image-heading">
+                                    <template slot="vsMultiImageHeading">
                                         The Edinburgh International Festival and summer festival
                                     </template>
-                                    <template slot="vs-multi-image-content">
+                                    <template slot="vsMultiImageContent">
                                         <p>Right across the country, you’ll find amazing
                                         places to eat and drink
                                         from local markets to renowned restaurants.</p>
@@ -176,10 +176,10 @@ export default {
                                     imgAlt="This is the alt text 1"
                                     linkType="external"
                                 >
-                                    <template slot="vs-multi-image-heading">
+                                    <template slot="vsMultiImageHeading">
                                         Count 7,000 shining stars in the iconic galloway forest
                                     </template>
-                                    <template slot="vs-multi-image-content">
+                                    <template slot="vsMultiImageContent">
                                         <p>Right across the country, you’ll find amazing
                                         places to eat and drink from local markets to renowned
                                         restaurants. Here are some recomm…</p>
@@ -196,10 +196,10 @@ export default {
                                     imgAlt="This is the alt text 2"
                                     linkType="external"
                                 >
-                                    <template slot="vs-multi-image-heading">
+                                    <template slot="vsMultiImageHeading">
                                         Count 7,000 shining stars in the iconic galloway forest
                                     </template>
-                                    <template slot="vs-multi-image-content">
+                                    <template slot="vsMultiImageContent">
                                         <p>Right across the country, you’ll find amazing
                                         places to eat and drink
                                         from local markets to renowned restaurants.
@@ -224,10 +224,10 @@ export default {
                                     imgSrc="https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"
                                     linkType="download"
                                 >
-                                    <template slot="vs-multi-image-heading">
+                                    <template slot="vsMultiImageHeading">
                                         Soar through the air on a boat of Falkirk Wheel (PDF 3MB)
                                     </template>
-                                    <template slot="vs-multi-image-content">
+                                    <template slot="vsMultiImageContent">
                                         <p>Right across the country, you’ll find amazing
                                         places to eat and drink from local markets to renowned
                                         restaurants. Here are some recomm…</p>
@@ -242,10 +242,10 @@ export default {
                                     imgSrc="https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"
                                     linkType="download"
                                 >
-                                    <template slot="vs-multi-image-heading">
+                                    <template slot="vsMultiImageHeading">
                                         Soar through the air on a boat of Falkirk Wheel (PDF 3MB)
                                     </template>
-                                    <template slot="vs-multi-image-content">
+                                    <template slot="vsMultiImageContent">
                                         <p>Right across the country, you’ll find amazing
                                         places to eat and drink from local markets to renowned
                                         restaurants. Here are some recomm…</p>
@@ -260,10 +260,10 @@ export default {
                                     imgSrc="https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"
                                     linkType="download"
                                 >
-                                    <template slot="vs-multi-image-heading">
+                                    <template slot="vsMultiImageHeading">
                                         Soar through the air on a boat of Falkirk Wheel (PDF 3MB)
                                     </template>
-                                    <template slot="vs-multi-image-content">
+                                    <template slot="vsMultiImageContent">
                                         <p>Right across the country, you’ll find amazing
                                         places to eat and drink from local markets to renowned
                                         restaurants. Here are some recomm…</p>
@@ -282,10 +282,10 @@ export default {
                                     imgAlt="This is the alt text"
                                     linkType="internal"
                                 >
-                                    <template slot="vs-multi-image-heading">
+                                    <template slot="vsMultiImageHeading">
                                         The Edinburgh International Festival and summer festival
                                     </template>
-                                    <template slot="vs-multi-image-content">
+                                    <template slot="vsMultiImageContent">
                                         <p>Right across the country, you’ll find amazing
                                         places to eat and drink
                                         from local markets to renowned restaurants.</p>
@@ -297,7 +297,7 @@ export default {
                 </VsCol>
             </VsRow>
         </VsContainer>
-        <template slot="vs-megalinks-button">
+        <template slot="vsMegalinksButton">
             Button Text
         </template>
     </VsMegalinks>

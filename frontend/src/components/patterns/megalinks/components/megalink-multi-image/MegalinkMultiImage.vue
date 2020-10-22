@@ -17,14 +17,14 @@
         <span
             slot="stretched-card-header"
             class="megalink-multi-image__title"
-        ><!-- @slot Slot to contain heading --><slot name="vs-multi-image-heading" /></span>
+        ><!-- @slot Slot to contain heading --><slot name="vsMultiImageHeading" /></span>
 
         <VsRichTextWrapper
             slot="stretched-card-content"
             class="lead megalink-multi-image__content"
         >
             <!-- @slot Slot to contain content -->
-            <slot name="vs-multi-image-content" />
+            <slot name="vsMultiImageContent" />
         </VsRichTextWrapper>
     </VsStretchedLinkCard>
 </template>
@@ -213,10 +213,10 @@ export default {
                         imgAlt="This is the alt text"
                         linkType="internal"
                     >
-                        <template slot="vs-multi-image-heading">
+                        <template slot="vsMultiImageHeading">
                             The Edinburgh International Festival and summer festival
                         </template>
-                        <template slot="vs-multi-image-content">
+                        <template slot="vsMultiImageContent">
                             <p>Right across the country, you’ll find amazing places
                             to eat and drink from local markets to renowned
                             restaurants.</p>
@@ -233,10 +233,10 @@ export default {
                         imgAlt="This is the alt text 1"
                         linkType="external"
                     >
-                        <template slot="vs-multi-image-heading">
+                        <template slot="vsMultiImageHeading">
                             Count 7,000 shining stars in the iconic galloway forest
                         </template>
-                        <template slot="vs-multi-image-content">
+                        <template slot="vsMultiImageContent">
                             <p>Right across the country, you’ll find amazing
                             places to eat and drink from local markets to renowned
                             restaurants. Here are some recomm…</p>
@@ -253,10 +253,10 @@ export default {
                         imgAlt="This is the alt text 2"
                         linkType="external"
                     >
-                        <template slot="vs-multi-image-heading">
+                        <template slot="vsMultiImageHeading">
                             Count 7,000 shining stars in the iconic galloway forest
                         </template>
-                        <template slot="vs-multi-image-content">
+                        <template slot="vsMultiImageContent">
                             <p>Right across the country, you’ll find amazing places
                             to eat and drink
                             from local markets to renowned restaurants.
@@ -281,10 +281,10 @@ export default {
                         imgSrc="https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"
                         linkType="download"
                     >
-                        <template slot="vs-multi-image-heading">
+                        <template slot="vsMultiImageHeading">
                             Soar through the air on a boat of Falkirk Wheel (PDF 3MB)
                         </template>
-                        <template slot="vs-multi-image-content">
+                        <template slot="vsMultiImageContent">
                             <p>Right across the country, you’ll find amazing
                             places to eat and drink from local markets to renowned
                             restaurants. Here are some recomm…</p>
