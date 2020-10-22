@@ -9,6 +9,7 @@
 <#include "../../frontend/components/vs-rich-text-wrapper.ftl">
 <#include "../../frontend/components/vs-img.ftl">
 <#include "../../frontend/components/vs-button.ftl">
+<#include "../../frontend/components/vs-link.ftl">
 
 <#include "../../frontend/components/vs-heading.ftl">
 <#include "../../frontend/components/vs-social-share.ftl">
@@ -17,6 +18,8 @@
 <#include "../macros/modules/megalinks/megalinks-single-image.ftl">
 <#include "../macros/modules/megalinks/megalinks-list.ftl">
 <#include "../macros/global/cms-errors.ftl">
+
+<#include "./module-builder.ftl">
 <#-- Implicit Request Objects -->
 <#-- @ftlvariable name="document" type="com.visitscotland.brmx.beans.Destination" -->
 <#-- @ftlvariable name="pageItems" type="com.visitscotland.brmx.beans.Megalinks" -->
@@ -28,7 +31,7 @@
 <#-- @ftlvariable name="hero" type="com.visitscotland.brmx.beans.Image" -->
 
 <div class="has-edit-button">
-	<@hst.manageContent hippobean=document documentTemplateQuery="new-document" rootPath="site" defaultPath="${path}" />
+	<@hst.manageContent hippobean=document documentTemplateQuery="new-module" rootPath="site" defaultPath="${path}" />
     <@cmsErrors errors=alerts!"" editMode=editMode />
 
 	<vs-page-intro>
@@ -83,37 +86,8 @@
 		<#else>
 			<#assign style = "#FFFFFF" />
 		</#if>
-		<div class="has-edit-button" style="background-color:${style}">
-			<@hst.manageContent hippobean=item.megalinkItem />
-				<vs-row>
-					<vs-col cols="10" lg="8" offset-lg="1">
-						<vs-heading level="1">${item.title}</vs-heading>
-					</vs-col>
-				</vs-row>
-				<vs-row class="mb-6">
-					<vs-col cols="12" lg="8" offset-lg="1">
-						<vs-rich-text-wrapper variant="lead">
-							<@hst.html hippohtml=item.introduction/>
-						</vs-rich-text-wrapper>
-					</vs-col>
-				</vs-row>
 
-
-				<#-- Macro for Multim Image -->
-				<#if item.getType()== "MultiImageLinksModule" >
-					<@multiImage item=item />
-
-
-				<#--Macro for single image-->
-				<#elseif item.getType()== "SingleImageLinksModule">
-					<@singleImage item=item />
-
-				<#--Macro for list-->
-				<#elseif item.getType()== "ListLinksModule">
-					<@list item=item />
-				</#if>
-
-		</div>
+        <@moduleBuilder item style />
 	</vs-container>
 	</#list>
 </div>

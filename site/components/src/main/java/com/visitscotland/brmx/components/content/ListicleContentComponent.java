@@ -33,7 +33,6 @@ public class ListicleContentComponent extends PageContentComponent<Listicle> {
     @Override
     public void doBeforeRender(HstRequest request, HstResponse response) {
         super.doBeforeRender(request, response);
-
         generateItems(request, getDocument(request));
     }
 

@@ -72,9 +72,9 @@ public class LinkService {
             }
         } else if (item instanceof ProductSearchLink) {
             ProductSearchLink productSearchLink = (ProductSearchLink) item;
-            psBuilder.fromHippoBean(productSearchLink.getSearch()).locale(locale);
+            ProductSearchBuilder psb = new ProductSearchBuilder().fromHippoBean(productSearchLink.getSearch()).locale(locale);
 
-            return new FlatLink(resourceBundle.getCtaLabel(productSearchLink.getLabel(), locale), psBuilder.build());
+            return new FlatLink(resourceBundle.getCtaLabel(productSearchLink.getLabel(), locale), psb.build());
 
         } else if (item instanceof ExternalLink) {
             ExternalLink externalLink = (ExternalLink) item;

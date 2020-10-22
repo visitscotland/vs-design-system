@@ -101,6 +101,5 @@ export default {
 
   </div>
 
-
   ```
 </docs>

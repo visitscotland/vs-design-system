@@ -43,12 +43,12 @@ public class LinkModulesFactory {
     public LinkModulesFactory(HippoUtilsService utils, DMSDataService dmsData, LinkService linkService) {
         this.utils = utils;
         this.dmsData = dmsData;
-        this.linkService   = linkService;
+        this.linkService = linkService;
     }
 
     public LinksModule getMegalinkModule(Megalinks doc, Locale locale) {
         if (Boolean.TRUE.equals(doc.getListLayout()) || doc.getMegalinkItems().size() > MAX_ITEMS) {
-            return listLayout(doc, locale) ;
+            return listLayout(doc, locale);
         } else if (doc.getSingleImageModule() != null) {
             return singleImageLayout(doc, locale);
         } else {
@@ -146,15 +146,15 @@ public class LinkModulesFactory {
      * Populate the common fields among all layouts
      *
      * @param target target module to be populated
-     * @param doc Megalinks document with the data source
+     * @param doc    Megalinks document with the data source
      * @param locale consumer language.
      */
-    private void populateCommonFields(LinksModule target, Megalinks doc, Locale locale){
+    private void populateCommonFields(LinksModule target, Megalinks doc, Locale locale) {
         target.setMegalinkItem(doc);
         target.setTitle(doc.getTitle());
         target.setIntroduction(doc.getIntroduction());
 
-        if (doc.getProductItem()!= null) {
+        if (doc.getProductItem() != null) {
             target.setCta(linkService.createLink(locale, doc.getProductItem()));
         }
     }
@@ -171,7 +171,7 @@ public class LinkModulesFactory {
                 links.add(new FlatLink(((Page) item.getLink()).getTitle(), utils.createUrl(item.getLink())));
             } else if (item.getLink() instanceof SharedLink) {
                 JsonNode node = getNodeFromSharedLink((SharedLink) item.getLink(), locale);
-                links.add(new FlatLink(((SharedLink) item.getLink()).getTitle(), linkService.getPlainLink((SharedLink)item.getLink(), node)));
+                links.add(new FlatLink(((SharedLink) item.getLink()).getTitle(), linkService.getPlainLink((SharedLink) item.getLink(), node)));
             } else {
                 CommonUtils.contentIssue("The module %s is pointing to a document of type %s which cannot be rendered as a page", item.getPath(), item.getLink().getClass().getSimpleName());
             }
@@ -189,40 +189,11 @@ public class LinkModulesFactory {
             if (item.getLink() == null) {
                 CommonUtils.contentIssue("The module %s contains a link without any reference", item.getPath());
             } else if (item.getLink() instanceof Linkable) {
-                EnhancedLink link = new EnhancedLink();
-                link.setTeaser(((Linkable) item.getLink()).getTeaser());
-                link.setLabel(((Linkable) item.getLink()).getTitle());
-                link.setFeatured(item.getFeature());
-
-                if (((Linkable) item.getLink()).getImage() != null) {
-                    link.setImage(createFlatImage(((Linkable) item.getLink()).getImage(), locale));
+                EnhancedLink link = createEnhancedLink((Linkable) item.getLink(), locale);
+                if (link != null) {
+                    link.setFeatured(item.getFeature());
+                    links.add(link);
                 }
-
-                if (item.getLink() instanceof Page) {
-                    link.setLink(utils.createUrl(item.getLink()));
-                } else if (item.getLink() instanceof SharedLink) {
-                    JsonNode product = getNodeFromSharedLink((SharedLink) item.getLink(), locale);
-                    if (link.getImage() == null && product != null && product.has(IMAGE)) {
-                        link.setImage(new FlatImage(product));
-                    }
-                    link.setLink(linkService.getPlainLink((SharedLink) item.getLink(), product));
-                } else {
-                    logger.warn(String.format("The type %s was not expected and will be skipped", item.getLink().getClass().getSimpleName()));
-                    continue;
-                }
-
-                //TODO add itineraries days and transport
-            /*   if (item.getLink() instanceof Itinerary) {
-                    link.setTransport(((Itinerary) item.getLink()).getTransports()[0]);
-                    link.setDays(((Itinerary) item.getLink()).getDays().size());
-                }*/
-
-
-                if (link.getImage() == null) {
-                    CommonUtils.contentIssue("The link to %s does not have an image but it is expecting one", item.getLink());
-                }
-
-                links.add(link);
             } else {
                 CommonUtils.contentIssue("The module %s is pointing to a document of type %s which cannot be rendered as a page", item.getPath(), item.getLink().getClass().getSimpleName());
             }
@@ -230,8 +201,46 @@ public class LinkModulesFactory {
         return links;
     }
 
+    public EnhancedLink createEnhancedLink(Linkable linkable, Locale locale) {
+        EnhancedLink link = new EnhancedLink();
+        link.setTeaser(linkable.getTeaser());
+        link.setLabel(linkable.getTitle());
+
+        if (linkable.getImage() != null) {
+            link.setImage(createFlatImage(linkable.getImage(), locale));
+        }
+
+        if (linkable instanceof Page) {
+            //TODO add itineraries days and transport
+            /*
+            if (linkable instanceof Itinerary) {
+                link.setTransport(((Itinerary) linkable).getTransports()[0]);
+                link.setDays(((Itinerary) linkable).getDays().size());
+            }
+            */
+            link.setLink(utils.createUrl((Page) linkable));
+        } else if (linkable instanceof SharedLink) {
+            JsonNode product = getNodeFromSharedLink((SharedLink) linkable, locale);
+            if (link.getImage() == null && product != null && product.has(IMAGE)) {
+                link.setImage(new FlatImage(product));
+            }
+            link.setLink(linkService.getPlainLink((SharedLink) linkable, product));
+        } else {
+            logger.warn(String.format("The type %s was not expected and will be skipped", linkable.getClass().getSimpleName()));
+            return null;
+        }
+
+        if (link.getImage() == null) {
+            CommonUtils.contentIssue("The link to %s does not have an image but it is expecting one", linkable);
+        }
+
+        return link;
+    }
+
+
     /**
      * Query the DMSDataService and extract the information about the product as a {@code JsonNode}
+     *
      * @param link
      * @param locale
      * @return
@@ -249,7 +258,8 @@ public class LinkModulesFactory {
 
     /**
      * Create a localized FlatImage from an Image Object
-     * @param img Image Object
+     *
+     * @param img    Image Object
      * @param locale User language to localize Image texts such as the caption
      * @return
      */
