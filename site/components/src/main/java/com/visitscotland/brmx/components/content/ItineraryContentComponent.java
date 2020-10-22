@@ -97,7 +97,7 @@ public class ItineraryContentComponent extends PageContentComponent<Itinerary> {
                         if (!(stop.getStopItem() instanceof DMSLink)){
                             LocationObject locationObject = LocationLoader.getLocation(cmsImage.getLocation(), request.getLocale());
                             if (locationObject != null) {
-                               location = locationObject.getName();
+                                location = locationObject.getName();
                             }
                         }
                     }
@@ -109,7 +109,7 @@ public class ItineraryContentComponent extends PageContentComponent<Itinerary> {
                     try {
 
                         if (dmsLink.getProduct() == null){
-                           errors.add("The product's id  was not provided");
+                            errors.add("The product's id  was not provided");
                             logger.warn(CommonUtils.contentIssue("The product's id was not provided for %s, Stop %s", itinerary.getName(), model.getIndex()));
                         } else {
                             JsonNode product = dmsData.productCard(dmsLink.getProduct(), request.getLocale());
@@ -159,7 +159,7 @@ public class ItineraryContentComponent extends PageContentComponent<Itinerary> {
                                         }
                                         model.setOpen(openingMessge);
                                         model.setOpenLink(new FlatLink(bundle.getResourceBundle("itinerary","stop.opening",
-                                                        request.getLocale()),ctaLink.getLink()+"#opening"));
+                                                request.getLocale()),ctaLink.getLink()+"#opening"));
                                     }
                                 }
 
@@ -197,10 +197,13 @@ public class ItineraryContentComponent extends PageContentComponent<Itinerary> {
                 if (firstStopId == null){
                     firstStopId = lastStopId;
                 }
-                if (model.getCoordinates()!=null) {
+                if (model.getCoordinates()!=null && flatImage!=null) {
                     flatImage.setCoordinates(model.getCoordinates());
                 }
                 model.setImage(flatImage);
+                if (flatImage==null){
+                    errors.add("An image should be provided for external links");
+                }
                 if (visitDuration!=null) {
                     visitDuration = visitDuration.equalsIgnoreCase("1") ? visitDuration + " " + bundle.getResourceBundle("itinerary", "stop.hour", request.getLocale())
                             : visitDuration + " " + bundle.getResourceBundle("itinerary","stop.hours",  request.getLocale());
@@ -240,17 +243,17 @@ public class ItineraryContentComponent extends PageContentComponent<Itinerary> {
 
     /**
      * Method to calculate the distance between stops
-y     * @param model the stop
+     y     * @param model the stop
      * @return distance between stops
      */
-  
-    private BigDecimal getDistanceStops (FlatStop model, Coordinates prevCoordinates) {
-            BigDecimal distance = CoordinateUtils.haversineDistance(new BigDecimal(prevCoordinates.getLatitude()), new BigDecimal(prevCoordinates.getLongitude()),
-                    new BigDecimal(model.getCoordinates().getLatitude()), new BigDecimal(model.getCoordinates().getLongitude()), true, "#,###,##0.0");
 
-            if (distance != null) {
-                model.setDistance(distance);
-            }
+    private BigDecimal getDistanceStops (FlatStop model, Coordinates prevCoordinates) {
+        BigDecimal distance = CoordinateUtils.haversineDistance(new BigDecimal(prevCoordinates.getLatitude()), new BigDecimal(prevCoordinates.getLongitude()),
+                new BigDecimal(model.getCoordinates().getLatitude()), new BigDecimal(model.getCoordinates().getLongitude()), true, "#,###,##0.0");
+
+        if (distance != null) {
+            model.setDistance(distance);
+        }
 
         return distance;
     }
