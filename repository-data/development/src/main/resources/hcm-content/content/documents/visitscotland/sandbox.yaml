@@ -1648,7 +1648,7 @@
         jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
         jcr:uuid: af7bc15d-bc33-4b84-ad01-e77eb5acde61
         hippo:name: Edinburgh
-        hippo:versionHistory: 4fd2bd69-a60a-47ab-b78c-2a88dc9fe7c7
+        hippo:versionHistory: d19c0512-e75a-4d79-a43b-7c5581dfd89e
         /content[1]:
           jcr:primaryType: visitscotland:Destination
           jcr:mixinTypes: ['mix:referenceable']
@@ -1657,7 +1657,7 @@
           hippostd:state: draft
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2020-05-15T11:13:39.117+01:00
-          hippostdpubwf:lastModificationDate: 2020-10-22T12:46:47.546+01:00
+          hippostdpubwf:lastModificationDate: 2020-10-22T17:51:33.203+01:00
           hippostdpubwf:lastModifiedBy: admin
           hippotranslation:id: 1fbcced7-88f7-4124-8470-b9ed88b5ead0
           hippotranslation:locale: en
@@ -1731,7 +1731,7 @@
           hippostd:state: unpublished
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2020-05-15T11:13:39.117+01:00
-          hippostdpubwf:lastModificationDate: 2020-10-22T09:58:25.825+01:00
+          hippostdpubwf:lastModificationDate: 2020-10-22T17:51:33.023+01:00
           hippostdpubwf:lastModifiedBy: admin
           hippotranslation:id: 1fbcced7-88f7-4124-8470-b9ed88b5ead0
           hippotranslation:locale: en
@@ -1805,9 +1805,9 @@
           hippostd:state: published
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2020-05-15T11:13:39.117+01:00
-          hippostdpubwf:lastModificationDate: 2020-10-21T18:27:18.657+01:00
+          hippostdpubwf:lastModificationDate: 2020-10-22T16:20:15.395+01:00
           hippostdpubwf:lastModifiedBy: admin
-          hippostdpubwf:publicationDate: 2020-10-21T18:27:21.672+01:00
+          hippostdpubwf:publicationDate: 2020-10-22T16:20:19.314+01:00
           hippotranslation:id: 1fbcced7-88f7-4124-8470-b9ed88b5ead0
           hippotranslation:locale: en
           visitscotland:breadcrumb: ''
@@ -1859,8 +1859,14 @@
               visitscotland:feature: false
               /visitscotland:link:
                 jcr:primaryType: hippo:mirror
-                hippo:docbase: 4d302e29-93dd-4157-9df9-bbd741bb12a0
+                hippo:docbase: 8f9220a7-df66-4104-aafa-cdacb3b76a88
             /visitscotland:links[2]:
+              jcr:primaryType: visitscotland:MegalinkItem
+              visitscotland:feature: false
+              /visitscotland:link:
+                jcr:primaryType: hippo:mirror
+                hippo:docbase: 4d302e29-93dd-4157-9df9-bbd741bb12a0
+            /visitscotland:links[3]:
               jcr:primaryType: visitscotland:MegalinkItem
               visitscotland:feature: false
               /visitscotland:link:
@@ -2308,7 +2314,7 @@
         jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
         jcr:uuid: 932f15c1-74d1-47f6-9a3f-f8644e2ae491
         hippo:name: Featured Layout
-        hippo:versionHistory: 787067d4-f9b5-44dd-b38f-de34aeab8c4a
+        hippo:versionHistory: 44a0c143-104f-464b-a636-8e874a0cf3a9
         /featured-layout[1]:
           jcr:primaryType: visitscotland:Megalinks
           jcr:mixinTypes: ['mix:referenceable']
@@ -2317,11 +2323,12 @@
           hippostd:state: draft
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2020-05-21T17:54:15.934+01:00
-          hippostdpubwf:lastModificationDate: 2020-08-18T11:38:42.244+01:00
+          hippostdpubwf:lastModificationDate: 2020-10-22T17:58:59.107+01:00
           hippostdpubwf:lastModifiedBy: admin
           hippotranslation:id: 5dc9b699-4821-4c91-b426-7b75aed683e4
           hippotranslation:locale: en
           visitscotland:hideTeaser: false
+          visitscotland:layout: Default
           visitscotland:list: false
           visitscotland:listLayout: false
           visitscotland:teaserVisible: true
@@ -2373,11 +2380,12 @@
           hippostd:state: unpublished
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2020-05-21T17:54:15.934+01:00
-          hippostdpubwf:lastModificationDate: 2020-08-18T08:38:25.376+01:00
+          hippostdpubwf:lastModificationDate: 2020-10-22T17:58:58.950+01:00
           hippostdpubwf:lastModifiedBy: admin
           hippotranslation:id: 5dc9b699-4821-4c91-b426-7b75aed683e4
           hippotranslation:locale: en
           visitscotland:hideTeaser: false
+          visitscotland:layout: Default
           visitscotland:list: false
           visitscotland:listLayout: false
           visitscotland:teaserVisible: true
@@ -2429,12 +2437,13 @@
           hippostd:state: published
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2020-05-21T17:54:15.934+01:00
-          hippostdpubwf:lastModificationDate: 2020-08-18T08:38:25.376+01:00
+          hippostdpubwf:lastModificationDate: 2020-10-22T17:58:58.950+01:00
           hippostdpubwf:lastModifiedBy: admin
-          hippostdpubwf:publicationDate: 2020-08-18T08:38:27.623+01:00
+          hippostdpubwf:publicationDate: 2020-10-22T17:59:02.976+01:00
           hippotranslation:id: 5dc9b699-4821-4c91-b426-7b75aed683e4
           hippotranslation:locale: en
           visitscotland:hideTeaser: false
+          visitscotland:layout: Default
           visitscotland:list: false
           visitscotland:listLayout: false
           visitscotland:teaserVisible: true
@@ -8392,7 +8401,7 @@
         jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
         jcr:uuid: 6e88a28a-6a08-4306-95dd-2337079a2701
         hippo:name: Standard Page Demo
-        hippo:versionHistory: a8d491dd-eafc-4b5a-a351-301cdb9a66d7
+        hippo:versionHistory: 43ed21a0-494c-4b63-b1ab-477e4ec32537
         /content[1]:
           jcr:primaryType: visitscotland:General
           jcr:mixinTypes: ['mix:referenceable']
@@ -8401,7 +8410,7 @@
           hippostd:state: draft
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2020-09-30T14:13:40.167+01:00
-          hippostdpubwf:lastModificationDate: 2020-10-21T18:28:50.666+01:00
+          hippostdpubwf:lastModificationDate: 2020-10-22T16:17:20.996+01:00
           hippostdpubwf:lastModifiedBy: admin
           hippotranslation:id: 58ee69d1-6791-448e-83e5-5d42e1c1add9
           hippotranslation:locale: en
@@ -8441,7 +8450,7 @@
           hippostd:state: unpublished
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2020-09-30T14:13:40.167+01:00
-          hippostdpubwf:lastModificationDate: 2020-10-21T18:28:44.076+01:00
+          hippostdpubwf:lastModificationDate: 2020-10-22T16:17:16.240+01:00
           hippostdpubwf:lastModifiedBy: admin
           hippotranslation:id: 58ee69d1-6791-448e-83e5-5d42e1c1add9
           hippotranslation:locale: en
@@ -8481,9 +8490,9 @@
           hippostd:state: published
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2020-09-30T14:13:40.167+01:00
-          hippostdpubwf:lastModificationDate: 2020-10-21T18:28:44.076+01:00
+          hippostdpubwf:lastModificationDate: 2020-10-22T16:17:16.240+01:00
           hippostdpubwf:lastModifiedBy: admin
-          hippostdpubwf:publicationDate: 2020-10-21T18:28:50.568+01:00
+          hippostdpubwf:publicationDate: 2020-10-22T16:17:20.755+01:00
           hippotranslation:id: 58ee69d1-6791-448e-83e5-5d42e1c1add9
           hippotranslation:locale: en
           visitscotland:breadcrumb: standard
@@ -8891,10 +8900,11 @@
           jcr:mixinTypes: ['mix:referenceable']
           jcr:uuid: 992200ce-0f7b-4f84-bf92-f19498df0bab
           hippo:availability: []
+          hippostd:holder: admin
           hippostd:state: draft
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2020-09-30T14:13:40.167+01:00
-          hippostdpubwf:lastModificationDate: 2020-10-01T12:51:40.046+01:00
+          hippostdpubwf:lastModificationDate: 2020-10-22T17:53:14.691+01:00
           hippostdpubwf:lastModifiedBy: admin
           hippotranslation:id: c3c00121-a15b-4105-8387-d9fe4a5df51f
           hippotranslation:locale: en
@@ -8903,7 +8913,7 @@
           visitscotland:seoNoIndex: false
           visitscotland:seoTitle: meta
           visitscotland:teaser: This is a standard page example
-          visitscotland:theme: Simple
+          visitscotland:theme: Standard
           visitscotland:title: Standard Page
           /visitscotland:heroImage:
             jcr:primaryType: hippogallerypicker:imagelink

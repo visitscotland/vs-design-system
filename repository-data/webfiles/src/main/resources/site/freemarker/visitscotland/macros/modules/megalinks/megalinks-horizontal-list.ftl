@@ -19,6 +19,10 @@
                                 <vs-img alt="${(megalink.image.altText)!'${label("essentials.global", "default.alt-text")}'}"
                                         src="${image}">
                                 </vs-img>
+
+                                <#if megalink.itineraryTransport??>
+                                    <vs-heading level="7">${megalink.itineraryTransport} -- ${megalink.itineraryDays} days</vs-heading>
+                                </#if>
                                 <vs-heading level="3">${megalink.label}</vs-heading>
 
                             </vs-col>

@@ -249,12 +249,10 @@ public class LinkModulesFactory {
 
         if (linkable instanceof Page) {
             //TODO add itineraries days and transport
-            /*
             if (linkable instanceof Itinerary) {
-                link.setTransport(((Itinerary) linkable).getTransports()[0]);
-                link.setDays(((Itinerary) linkable).getDays().size());
+                link.setItineraryTransport(((Itinerary) linkable).getTransports()[0]);
+                link.setItineraryDays(((Itinerary) linkable).getDays().size());
             }
-            */
             link.setLink(utils.createUrl((Page) linkable));
         } else if (linkable instanceof SharedLink) {
             JsonNode product = getNodeFromSharedLink((SharedLink) linkable, locale);

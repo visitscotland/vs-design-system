@@ -9,6 +9,8 @@ public class EnhancedLink extends FlatLink {
     private String teaser;
     private boolean featured;
     private String category;
+    private String itineraryTransport;
+    private int itineraryDays;
 
     public FlatImage getImage() {
         return image;
@@ -40,5 +42,21 @@ public class EnhancedLink extends FlatLink {
 
     public void setCategory(String category) {
         this.category = category;
+    }
+
+    public String getItineraryTransport() {
+        return itineraryTransport;
+    }
+
+    public void setItineraryTransport(String itineraryTransport) {
+        this.itineraryTransport = itineraryTransport;
+    }
+
+    public int getItineraryDays() {
+        return itineraryDays;
+    }
+
+    public void setItineraryDays(int itineraryDays) {
+        this.itineraryDays = itineraryDays;
     }
 }
