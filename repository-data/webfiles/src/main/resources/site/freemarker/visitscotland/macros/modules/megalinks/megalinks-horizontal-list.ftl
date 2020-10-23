@@ -21,7 +21,8 @@
                                 </vs-img>
 
                                 <#if megalink.itineraryTransport??>
-                                    <vs-heading level="7">${megalink.itineraryTransport} -- ${megalink.itineraryDays} days</vs-heading>
+                                    <vs-heading level="7">Transport: ${megalink.itineraryTransport}  <vs-icon name="${megalink.itineraryTransport}" variant="dark" size="lg"></vs-icon>  </vs-heading>
+                                    <vs-heading level="7">Days: ${megalink.itineraryDays} days</vs-heading>
                                 </#if>
                                 <vs-heading level="3">${megalink.label}</vs-heading>
 
@@ -29,12 +30,7 @@
                             </br></br>
                         </vs-row>
                     </vs-link>
-                    <#if megalink.category??>
-                        <vs-heading level="5">${megalink.category}</vs-heading>
-                    </#if>
-                    <#if item.teaserVisible == true >
-                    ${megalink.teaser}
-                    </#if></br>
+                    <vs-heading level="5">${megalink.category}</vs-heading>
                 </vs-col>
             </#list>
             Next ----->>>

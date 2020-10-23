@@ -3,7 +3,7 @@
   jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
   jcr:uuid: 2545e077-cbf1-4b9b-8c09-25bdbbac5039
   hippo:name: OTYML
-  hippo:versionHistory: 893a9ea4-b8a7-4b97-b118-60cf2c307b42
+  hippo:versionHistory: 049483b5-5ce8-4dcd-ac69-e62ce2abeddf
   /otyml[1]:
     jcr:primaryType: resourcebundle:resourcebundle
     jcr:mixinTypes: ['mix:referenceable']
@@ -12,16 +12,12 @@
     hippostd:state: draft
     hippostdpubwf:createdBy: admin
     hippostdpubwf:creationDate: 2020-10-22T12:15:52.682+01:00
-    hippostdpubwf:lastModificationDate: 2020-10-22T12:18:46.654+01:00
+    hippostdpubwf:lastModificationDate: 2020-10-23T13:03:11.720+01:00
     hippostdpubwf:lastModifiedBy: admin
-    resourcebundle:descriptions: ['', '', '', '', '', '', '', '', '']
+    resourcebundle:descriptions: ['', '']
     resourcebundle:id: otyml
-    resourcebundle:keys: [title, category.ebooks, category.blog, category.see-do,
-      category.accommodation, category.destination, category.travel-plan, category.inspiration,
-      category.information]
-    resourcebundle:messages: [Other things you might like, eBooks, Travel Blog, Things
-        to do, Accommodation, Places to go, Travel & Planning, Inspiration, Visitor
-        Information]
+    resourcebundle:keys: [title, category.ebooks]
+    resourcebundle:messages: [Other things you might like, eBooks]
   /otyml[2]:
     jcr:primaryType: resourcebundle:resourcebundle
     jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
@@ -30,16 +26,12 @@
     hippostd:state: unpublished
     hippostdpubwf:createdBy: admin
     hippostdpubwf:creationDate: 2020-10-22T12:15:52.682+01:00
-    hippostdpubwf:lastModificationDate: 2020-10-22T12:18:46.611+01:00
+    hippostdpubwf:lastModificationDate: 2020-10-23T13:03:11.695+01:00
     hippostdpubwf:lastModifiedBy: admin
-    resourcebundle:descriptions: ['', '', '', '', '', '', '', '', '']
+    resourcebundle:descriptions: ['', '']
     resourcebundle:id: otyml
-    resourcebundle:keys: [title, category.ebooks, category.blog, category.see-do,
-      category.accommodation, category.destination, category.travel-plan, category.inspiration,
-      category.information]
-    resourcebundle:messages: [Other things you might like, eBooks, Travel Blog, Things
-        to do, Accommodation, Places to go, Travel & Planning, Inspiration, Visitor
-        Information]
+    resourcebundle:keys: [title, category.ebooks]
+    resourcebundle:messages: [Other things you might like, eBooks]
   /otyml[3]:
     jcr:primaryType: resourcebundle:resourcebundle
     jcr:mixinTypes: ['mix:referenceable']
@@ -48,14 +40,10 @@
     hippostd:state: published
     hippostdpubwf:createdBy: admin
     hippostdpubwf:creationDate: 2020-10-22T12:15:52.682+01:00
-    hippostdpubwf:lastModificationDate: 2020-10-22T12:18:46.611+01:00
+    hippostdpubwf:lastModificationDate: 2020-10-23T13:03:11.695+01:00
     hippostdpubwf:lastModifiedBy: admin
-    hippostdpubwf:publicationDate: 2020-10-22T13:51:55.734+01:00
-    resourcebundle:descriptions: ['', '', '', '', '', '', '', '', '']
+    hippostdpubwf:publicationDate: 2020-10-23T13:03:13.978+01:00
+    resourcebundle:descriptions: ['', '']
     resourcebundle:id: otyml
-    resourcebundle:keys: [title, category.ebooks, category.blog, category.see-do,
-      category.accommodation, category.destination, category.travel-plan, category.inspiration,
-      category.information]
-    resourcebundle:messages: [Other things you might like, eBooks, Travel Blog, Things
-        to do, Accommodation, Places to go, Travel & Planning, Inspiration, Visitor
-        Information]
+    resourcebundle:keys: [title, category.ebooks]
+    resourcebundle:messages: [Other things you might like, eBooks]

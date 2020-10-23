@@ -319,19 +319,19 @@ public class LinkModulesFactory {
         if (path.contains("ebook")){
             return bundle.getResourceBundle("otyml", "category.ebooks", locale ,true);
         }else if(path.contains("blog")){
-            return bundle.getResourceBundle("otyml", "category.blog", locale ,true);
+            return bundle.getResourceBundle("navigation.main", "blog", locale ,true);
         }else if(path.contains("see-do")||path.contains("events")||path.contains("tours")){
-            return bundle.getResourceBundle("otyml", "category.see-do", locale ,true);
+            return bundle.getResourceBundle("navigation.main", "see-do", locale ,true);
         }else if(path.contains("accommodation")){
-            return bundle.getResourceBundle("otyml", "category.accommodation", locale ,true);
+            return bundle.getResourceBundle("navigation.main", "accommodation", locale ,true);
         }else if(path.contains("destination")){
-            return bundle.getResourceBundle("otyml", "category.destination", locale ,true);
+            return bundle.getResourceBundle("navigation.main", "destinations-map", locale ,true);
         }else if(path.contains("travel")||path.contains("holidays")){
-            return bundle.getResourceBundle("otyml", "category.travel-plan", locale ,true);
+            return bundle.getResourceBundle("navigation.main", "travel-planning", locale ,true);
         }else if(path.contains("brochures")){
-            return bundle.getResourceBundle("otyml", "category.inspiration", locale ,true);
+            return bundle.getResourceBundle("navigation.main", "inspiration", locale ,true);
         }else if(path.contains("about")||path.contains("contact")||path.contains("policies")) {
-            return bundle.getResourceBundle("otyml", "category.information", locale ,true);
+            return bundle.getResourceBundle("navigation.footer", "footer.visitor-information", locale ,true);
         }
         else if(path.contains("sandbox") && !path.contains("shared")) {
             return "sandbox";
