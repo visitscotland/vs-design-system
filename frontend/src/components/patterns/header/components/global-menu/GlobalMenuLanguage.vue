@@ -6,17 +6,20 @@
                 name="globe"
                 variant="light"
                 size="xxs"
+                focusable="false"
             />
             <!-- Tablet/Desktop -->
             <span class="vs-global-menu__languages__text">{{ languageLabel }}</span>
             <span class="vs-global-menu__languages__selected">{{ selectedLanguage }}</span>
         </template>
+
         <!-- No JS Version -->
         <span class="vs-global-menu__languages__label">
             <VsIcon
                 name="globe"
                 variant="light"
                 size="xxs"
+                focusable="false"
             />
             {{ languageLabel }}
         </span>
@@ -58,10 +61,27 @@ export default {
         },
     },
     mounted() {
-        const expiryDate = new Date();
-        expiryDate.setFullYear(expiryDate.getFullYear() + 1);
-        document.cookie = `vs_locale=${this.localeCookie}; expires=${expiryDate}`;
-        document.cookie = `googtrans=${this.translationCookie}; expires=${expiryDate}`;
+        this.setCookie('vs_locale', this.localeCookie);
+        this.setCookie('googtrans', this.translationCookie);
+    },
+    methods: {
+        cookieExists(cookie) {
+            return (document.cookie.indexOf(`${cookie}=`) >= 0);
+        },
+        setCookie(name, value) {
+            const expiryDate = new Date();
+            expiryDate.setFullYear(expiryDate.getFullYear() + 1);
+
+            let cookieString = '';
+            cookieString = `${name}=${value};`;
+            cookieString += 'path=/;';
+
+            if (!this.cookieExists(name)) {
+                cookieString += `expires=${expiryDate};`;
+            };
+
+            document.cookie = cookieString;
+        },
     },
 };
 </script>
@@ -106,7 +126,6 @@ export default {
         font-size: $font-size-sm;
         background: $color-purple;
         border: none;
-        max-width: 130px;
 
         &-secondary:not(:disabled):not(.disabled):active {
             background: $color-purple-shade-2;
@@ -173,7 +192,6 @@ export default {
             @extend .show;
             position: initial;
             display: block;
-            width: 100vw;
             border: none;
             opacity: 1;
             max-height: 700px;
