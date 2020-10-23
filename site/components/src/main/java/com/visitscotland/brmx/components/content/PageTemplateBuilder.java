@@ -30,7 +30,7 @@ public class PageTemplateBuilder {
 
     static final String PAGE_ITEMS = "pageItems";
     static final String[] themes = {"theme1", "theme2", "theme3"};
-    static final String[] alignment = {"left", "right"};
+    static final String[] alignment = {"right", "left"};
 
     public PageTemplateBuilder() {
         this(new LinkModulesFactory(), new ICentreFactory(), new IKnowFactory());
@@ -96,7 +96,7 @@ public class PageTemplateBuilder {
         }
         if(getDocument(request).getOtherThings()!=null) {
             LinksModule al = linksFactory.horizontalListLayout(getDocument(request), request.getLocale());
-            al.setStyle(styles[0]);
+            al.setTheme(themes[0]);
             links.add(al);
         }
 
