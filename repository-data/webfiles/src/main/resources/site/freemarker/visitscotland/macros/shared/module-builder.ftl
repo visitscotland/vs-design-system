@@ -1,22 +1,7 @@
-<#include "../../include/imports.ftl">
-<#include "../macros/global/cms-errors.ftl">
-<#include "../../frontend/components/vs-page-intro.ftl">
-<#include "../../frontend/components/vs-hero.ftl">
-<#include "../../frontend/components/vs-container.ftl">
-<#include "../../frontend/components/vs-row.ftl">
-<#include "../../frontend/components/vs-col.ftl">
-<#include "../../frontend/components/vs-rich-text-wrapper.ftl">
-<#include "../../frontend/components/vs-img.ftl">
-<#include "../../frontend/components/vs-button.ftl">
-<#include "../../frontend/components/vs-link.ftl">
+<#include "../../../include/imports.ftl">
+<#include "../global/cms-errors.ftl">
+<#include "../modules/megalinks/megalinks.ftl">
 
-<#include "../../frontend/components/vs-heading.ftl">
-<#include "../../frontend/components/vs-social-share.ftl">
-
-<#include "../macros/modules/megalinks/megalinks-multi-image.ftl">
-<#include "../macros/modules/megalinks/megalinks-single-image.ftl">
-<#include "../macros/modules/megalinks/megalinks-list.ftl">
-<#include "../macros/global/cms-errors.ftl">
 <#-- Implicit Request Objects -->
 <#-- @ftlvariable name="document" type="com.visitscotland.brmx.beans.Destination" -->
 <#-- @ftlvariable name="pageItems" type="com.visitscotland.brmx.beans.Megalinks" -->
@@ -29,9 +14,10 @@
 
 <#--TODO Control abput colours, change style="background-color:${style}  -->
 <#macro moduleBuilder module theme>
-		<div class="has-edit-button" style="background-color:${theme}">
-        <#--TODO hippoBean-->
-        <@hst.manageContent hippobean=module.hippoBean />
+    <div class="has-edit-button" style="background-color:${theme}">
+    <#--TODO hippoBean-->
+    <#--  <@hst.manageContent hippobean=module.hippoBean />
+        <vs-container>
             <vs-row>
                 <vs-col cols="10" lg="8" offset-lg="1">
                     <vs-heading level="1">${module.title}</vs-heading>
@@ -40,24 +26,24 @@
             <vs-row class="mb-6">
                 <vs-col cols="12" lg="8" offset-lg="1">
                     <vs-rich-text-wrapper variant="lead">
-							<@hst.html hippohtml=module.introduction/>
+                            <@hst.html hippohtml=module.introduction/>
                     </vs-rich-text-wrapper>
                 </vs-col>
             </vs-row>
-        </div>
+        </vs-container>
+    </div>  -->
 
-<#-- Macro for Multim Image -->
-    <#if module.getType()== "MultiImageLinksModule" >
-        <@multiImage module />
-
+    
+    <#if module.getType() == "MultiImageLinksModule">
+        <@megalinks item=module type=module.getType() />
 
     <#--Macro for single image-->
-    <#elseif module.getType()== "SingleImageLinksModule">
-        <@singleImage module />
+    <#--  <#elseif module.getType()== "SingleImageLinksModule">
+        <@megalinks item=module type=module.getType() />  -->
 
     <#--Macro for list-->
-    <#elseif module.getType()== "ListLinksModule">
-        <@list module />
+    <#--  <#elseif module.getType()== "ListLinksModule">
+        <@megalinks item=module type=module.getType() />  -->
 
     <#elseif module.getType()== "ICentreModule">
         <#if module.image.cmsImage??>
