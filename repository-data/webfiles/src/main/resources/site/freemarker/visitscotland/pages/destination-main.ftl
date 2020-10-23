@@ -15,7 +15,8 @@
 <#include "../../frontend/components/vs-social-share.ftl">
 
 <#include "../macros/modules/megalinks/megalinks.ftl">
-<#include "../macros/modules/megalinks/multi-image/megalinks-multi-image.ftl">
+<#include "../macros/shared/module-builder.ftl">
+<#--  <#include "../macros/modules/megalinks/multi-image/megalinks-multi-image.ftl">  -->
 <#--  <#include "../macros/modules/megalinks/megalinks-single-image.ftl">
 <#include "../macros/modules/megalinks/megalinks-list.ftl">
 <#include "../macros/global/cms-errors.ftl">
@@ -80,48 +81,13 @@
 
   <#--TODO Control abput colours, change style="background-color:${style}  -->
 	<#list pageItems as item>
-    <#-- #list modules as module -->
+        <#--TODO Colour should be only added to Megalinks, add this code to macros or create a commun macro to control it-->
+        <#if item.theme?? && item.theme == "theme3">
+            <#assign theme = "#292929" />
+        <#else>
+            <#assign theme = "#FFFFFF" />
+        </#if>
 
-    <#--  what's the theme -->
-    <#if item.style="style3">
-        <#assign style = "#292929" />
-    <#else>
-        <#assign style = "#FFFFFF" />
-    </#if>
-
-    <#--  what's the module type?  -->
-    <#if item.getType() == "MultiImageLinksModule">
-        <@megalinks item=item type=item.getType() />
-    </#if>
-    
-
-    <#--  appropriate macro (pass theme into macro) -->
-        <#--  header macro  -->
-        <#--  component macro  -->
-
-
-<#--  
-	<vs-container slot="upper" class="py-lg-4" >
-		<div class="has-edit-button">
-			<@hst.manageContent hippobean=item.megalinkItem /> -->
-				
-
-
-				<#-- Macro for Multim Image -->
-				<#--  <#if item.getType()== "MultiImageLinksModule" >
-					<@multiImage item=item />  -->
-
-
-				<#--Macro for single image-->
-				<#--  <#elseif item.getType()== "SingleImageLinksModule">
-					<@singleImage item=item />  -->
-
-				<#--Macro for list-->
-				<#--  <#elseif item.getType()== "ListLinksModule">
-					<@list item=item />
-				</#if>  -->
-
-		<#-- </div>
-	</vs-container>  -->
+        <@moduleBuilder module=item theme="#FFFFFF" />
 	</#list>
 </div>

@@ -6,6 +6,7 @@ import com.visitscotland.brmx.beans.capabilities.Linkable;
 import com.visitscotland.brmx.beans.mapping.FlatImage;
 import com.visitscotland.brmx.beans.mapping.FlatLink;
 import com.visitscotland.brmx.beans.mapping.ICentreModule;
+import com.visitscotland.brmx.beans.mapping.LinkType;
 import com.visitscotland.brmx.beans.mapping.megalinks.EnhancedLink;
 import com.visitscotland.brmx.dms.DMSDataService;
 import com.visitscotland.brmx.dms.ProductSearchBuilder;
@@ -76,7 +77,7 @@ public class ICentreFactory {
                 //TODO: create url to the DMS product page
                 String url = child.get("properties").get("id").asText();
 
-                vicList.add(new FlatLink(label, url));
+                vicList.add(new FlatLink(label, url, LinkType.INTERNAL));
             }
 
             module.setiCentreList(vicList);
