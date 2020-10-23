@@ -14,6 +14,7 @@ import com.visitscotland.brmx.services.ResourceBundleService;
 import com.visitscotland.brmx.utils.HippoUtilsService;
 import org.hippoecm.hst.content.beans.standard.HippoBean;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
@@ -32,6 +33,7 @@ public class LinkModuleFactoryMockitoTest {
 
     public static final String DMS_ID = "0123456798";
     public static final String EXTERNAL_URL = "http://www.fake.site";
+    public static final String PLAIN_LINK = "http://www.plain-link.site";
     public static final String PSR_URL = "http://psr.visitscotland.com/info/search?value1&value2";
     public static final String MOCK_JSON = "{" +
             " \"url\":\"https://mock.visitscotland.com/info/fake-product-p" + DMS_ID + "\", " +
@@ -54,7 +56,6 @@ public class LinkModuleFactoryMockitoTest {
     @Mock
     private ResourceBundleService resourceBundleService;
 
-    private LinkService linkService;
     private LinkModulesFactory factory;
 
     private Megalinks mockMultiImage() {
@@ -97,8 +98,6 @@ public class LinkModuleFactoryMockitoTest {
                 break;
             case PRODUCT_SEARCH:
                 ProductsSearch ps = mock(ProductsSearch.class, withSettings().lenient());
-                when(builder.fromHippoBean(ps)).thenReturn(builder);
-                when(builder.build()).thenReturn(PSR_URL);
                 when(link.getLinkType()).thenReturn(ps);
                 break;
             case EXTERNAL:
@@ -116,9 +115,13 @@ public class LinkModuleFactoryMockitoTest {
         return mock(Page.class);
     }
 
+    @Mock(lenient = true)
+    LinkService linkService;
+
     @BeforeEach
     public void beforeEach() {
-        linkService = new LinkService(dmsData, builder, resourceBundleService, utils);
+        when(linkService.getPlainLink(any(SharedLink.class), any())).thenReturn(PLAIN_LINK);
+
         factory = new LinkModulesFactory(utils, dmsData, linkService);
     }
 
@@ -128,12 +131,12 @@ public class LinkModuleFactoryMockitoTest {
         //Test allowed types
         MegalinkItem page = mock(MegalinkItem.class);
         when(page.getLink()).thenReturn(mockPage());
-        assertTrue(factory.convertToFlatLinks(Collections.singletonList(page), Locale.UK).size() == 1);
+        assertEquals(1, factory.convertToFlatLinks(Collections.singletonList(page), Locale.UK).size());
 
         MegalinkItem sharedLink = mock(MegalinkItem.class);
         SharedLink sl = mockSharedLink(LinkType.DMS);
         when(sharedLink.getLink()).thenReturn(sl);
-        assertTrue(factory.convertToFlatLinks(Collections.singletonList(sharedLink), Locale.UK).size() == 1);
+        assertEquals(1, factory.convertToFlatLinks(Collections.singletonList(sharedLink), Locale.UK).size());
     }
 
     @Test
@@ -141,21 +144,24 @@ public class LinkModuleFactoryMockitoTest {
         //Test that not allowed types gets skipped without throwing exception
         MegalinkItem page = mock(MegalinkItem.class);
         when(page.getLink()).thenReturn(null);
-        assertTrue(factory.convertToFlatLinks(Collections.singletonList(page), Locale.UK).size() == 0);
+        assertEquals(0, factory.convertToFlatLinks(Collections.singletonList(page), Locale.UK).size());
 
         MegalinkItem sharedLink = mock(MegalinkItem.class);
         when(sharedLink.getLink()).thenReturn(mock(Stop.class));
-        assertTrue(factory.convertToFlatLinks(Collections.singletonList(sharedLink), Locale.UK).size() == 0);
+        assertEquals(0, factory.convertToFlatLinks(Collections.singletonList(sharedLink), Locale.UK).size());
     }
 
     @Test
+    @DisplayName("DMSLink invoke a request to DMSData")
     void DMS_SharedLink() throws IOException {
+        //Verifies that a DMSLink on calls dmsData to request the data
         JsonNode node = new ObjectMapper().readTree(MOCK_JSON);
         when(dmsData.productCard(DMS_ID, Locale.UK)).thenReturn(node);
+        when(linkService.getPlainLink(any(SharedLink.class), eq(node))).thenReturn("wwww.vs-dms.com");
 
         FlatLink link = factory.convertToFlatLinks(Collections.singletonList(mockItem(false, LinkType.DMS)), Locale.UK).get(0);
 
-        assertTrue(link.getLink().contains(DMS_ID));
+        assertEquals("wwww.vs-dms.com", link.getLink());
     }
 
     @Test
@@ -170,7 +176,7 @@ public class LinkModuleFactoryMockitoTest {
 
         EnhancedLink link = factory.convertToEnhancedLinks(Collections.singletonList(item), Locale.UK).get(0);
 
-        assertTrue(link.getLink().contains(DMS_ID));
+        assertEquals(PLAIN_LINK, link.getLink());
         assertNotNull(link.getImage());
     }
 
@@ -192,7 +198,7 @@ public class LinkModuleFactoryMockitoTest {
 
         EnhancedLink link = factory.convertToEnhancedLinks(Collections.singletonList(item), Locale.UK).get(0);
 
-        assertTrue(link.getLink().contains(DMS_ID));
+        assertEquals(PLAIN_LINK, link.getLink());
         assertNull(link.getImage());
     }
 
@@ -207,7 +213,7 @@ public class LinkModuleFactoryMockitoTest {
     void ProductSearch_enhanced_SharedLink() {
         EnhancedLink link = factory.convertToEnhancedLinks(Collections.singletonList(mockItem(false, LinkType.PRODUCT_SEARCH)), Locale.UK).get(0);
 
-        assertEquals(PSR_URL, link.getLink());
+        assertEquals(PLAIN_LINK, link.getLink());
     }
 
     @Test
@@ -215,28 +221,14 @@ public class LinkModuleFactoryMockitoTest {
         FlatLink link = factory.convertToFlatLinks(
                 Collections.singletonList(mockItem(false, LinkType.EXTERNAL)), Locale.UK).get(0);
 
-        assertNotNull(EXTERNAL_URL, link.getLink());
+        assertEquals(PLAIN_LINK, link.getLink());
     }
 
     @Test
     void External_enhanced_SharedLink() {
         EnhancedLink link = factory.convertToEnhancedLinks(Collections.singletonList(mockItem(false, LinkType.EXTERNAL)), Locale.UK).get(0);
 
-        assertEquals(EXTERNAL_URL, link.getLink());
-    }
-
-    @Test
-    void DMS_productDoesNotExist() {
-        //The DMSLink does not throw exceptions when the product stop existing
-        MegalinkItem item = mockItem(false, LinkType.DMS);
-        DMSLink dmsLink = (DMSLink) ((SharedLink) item.getLink()).getLinkType();
-        when(dmsLink.getProduct()).thenReturn("non-existing");
-
-        FlatLink flatLink = factory.convertToFlatLinks(Collections.singletonList(item), Locale.UK).get(0);
-        EnhancedLink enhancedLink = factory.convertToEnhancedLinks(Collections.singletonList(item), Locale.UK).get(0);
-
-        assertNull(flatLink.getLink());
-        assertNull(enhancedLink.getLink());
+        assertEquals(PLAIN_LINK, link.getLink());
     }
 
     @Test
@@ -253,22 +245,9 @@ public class LinkModuleFactoryMockitoTest {
     }
 
     @Test
-    void UnexpectedLinkReturnsNull() {
-        //Tests that the addition of a new type will not introduce an exception
-        SharedLink link = mock(SharedLink.class);
-        MegalinkItem item = mock(MegalinkItem.class);
-        when(item.getLink()).thenReturn(link);
-
-        FlatLink flatLink = factory.convertToFlatLinks(Collections.singletonList(item), Locale.UK).get(0);
-
-        assertNull(flatLink.getLink());
-    }
-
-    @Test
     void unexpectedTypeGetsSkipped() {
         //Tests that the addition of a new type will not introduce an exception
         HippoBean link = mock(HippoBean.class, withSettings().extraInterfaces(Linkable.class));
-//        when(link.getClass()).thenReturn()
         MegalinkItem item = mock(MegalinkItem.class);
         when(item.getLink()).thenReturn(link);
 
@@ -277,51 +256,22 @@ public class LinkModuleFactoryMockitoTest {
     }
 
     @Test
-    void productCardThrowsAnException() throws IOException {
-        //Test Behaviour when the data from DMS is corrupted
-        DMSDataService dmsDataService = mock(DMSDataService.class);
-        when(dmsDataService.productCard(anyString(), any(Locale.class))).thenThrow(new IOException());
-        LinkModulesFactory factory = new LinkModulesFactory(utils, dmsDataService, linkService);
-        MegalinkItem item = mockItem(false, LinkType.DMS);
-
-        FlatLink flatLink = factory.convertToFlatLinks(Collections.singletonList(item), Locale.UK).get(0);
-
-        assertNull(flatLink.getLink());
-    }
-
-//    @Test
-//    void getSingleImage(){
-//        replayAll();
-//
-//        Megalinks mega = megalinkService.createMock(TITLE, false, false, true, 0, "Single image title");
-//        LinksModule layout = factory.getMegalinkModule(mega, Locale.UK);
-//
-//        verifyAll();
-//        Assertions.assertEquals(layout.getType(), SINGLE_IMAGE);
-//    }
-//
-//    @Test
-//    void singleImageLayout_optionCTA(){
-//
-//        Megalinks mega = mockMultiImage();
-//
-//        FlatLink mockLink = mock(linkService.getClass())
-//        //if getPr
-//        when(linkService.createLink(any(Locale.class), any(HippoCompound.class))).thenReturn(mockLink);
-//    }
-
-
-    @Test
+    @DisplayName("CTA is populated when the ProductItem field is populated")
     void multiImageLayout_optionCTA() {
+        //Verifies that when the field ProductItem is populated
         ExternalLink mockLink = mock(ExternalLink.class);
-        when(mockLink.getLink()).thenReturn("http://www.visitscotland.com");
-
-
         Megalinks mega = mockMultiImage();
         when(mega.getProductItem()).thenReturn(mockLink);
+        when(linkService.createLink(any(Locale.class), eq(mockLink))).thenReturn(new FlatLink(null, "cta-link", null));
 
         LinksModule layout = factory.multiImageLayout(mega, Locale.UK);
 
-        assertEquals("http://www.visitscotland.com", layout.getCta().getLink());
+        assertEquals("cta-link", layout.getCta().getLink());
     }
+
+//    @Test
+//    @DisplayName("CTA is populated when the ProductItem field is populated")
+//    void multiImageLayout_optionCTA() {
+//
+//    }
 }

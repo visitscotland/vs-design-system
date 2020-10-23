@@ -1,6 +1,9 @@
 package com.visitscotland.brmx.components.content;
 
-import com.visitscotland.brmx.beans.*;
+import com.visitscotland.brmx.beans.BaseDocument;
+import com.visitscotland.brmx.beans.Megalinks;
+import com.visitscotland.brmx.beans.Page;
+import com.visitscotland.brmx.beans.TourismInformation;
 import com.visitscotland.brmx.beans.mapping.ICentreModule;
 import com.visitscotland.brmx.beans.mapping.IKnowModule;
 import com.visitscotland.brmx.beans.mapping.Module;
@@ -11,19 +14,22 @@ import com.visitscotland.brmx.components.content.factory.IKnowFactory;
 import com.visitscotland.brmx.components.content.factory.LinkModulesFactory;
 import com.visitscotland.utils.Contract;
 import org.hippoecm.hst.core.component.HstRequest;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class PageTemplateBuilder {
 
+    private static final Logger logger = LoggerFactory.getLogger(PageTemplateBuilder.class);
+
     private final LinkModulesFactory linksFactory;
     private final ICentreFactory iCentreFactory;
     private final IKnowFactory iKnowFactory;
 
-
     static final String PAGE_ITEMS = "pageItems";
-    static final String[] styles = {"style1", "style2", "style3"};
+    static final String[] themes = {"theme1", "theme2", "theme3"};
     static final String[] alignment = {"left", "right"};
 
     public PageTemplateBuilder() {
@@ -53,8 +59,7 @@ public class PageTemplateBuilder {
 
         for (BaseDocument item : getDocument(request).getModules()) {
             if (item instanceof Megalinks) {
-                //TODO: do we need the document for the log? In that case.. update tests
-                LinksModule al = linksFactory.getMegalinkModule((Megalinks) item, request.getLocale());
+                LinksModule<?> al = linksFactory.getMegalinkModule((Megalinks) item, request.getLocale());
 
                 if (al.getType().equalsIgnoreCase(SingleImageLinksModule.class.getSimpleName())) {
                     al.setAlignment(alignment[singleImageindex++ % alignment.length]);
@@ -63,11 +68,12 @@ public class PageTemplateBuilder {
                     styleIndex--;
                 }
 
-                al.setStyle(styles[styleIndex++ % styles.length]);
+                al.setTheme(themes[styleIndex++ % themes.length]);
                 al.setHippoBean(item);
+
                 links.add(al);
 
-
+                logger.info("A Megalinks module was found. Type " + al.getType());
             } else if (item instanceof TourismInformation) {
                 TourismInformation touristInfo = (TourismInformation) item;
 
@@ -85,11 +91,10 @@ public class PageTemplateBuilder {
 
                 links.add(iKnowModule);
 
-                System.out.println("A TourismInformation was found");
+                logger.info("A TourismInformation was found");
             }
         }
 
-        //Note: In the future this listLayout will be compose by different types of module.
         request.setAttribute(PAGE_ITEMS, links);
     }
 }
