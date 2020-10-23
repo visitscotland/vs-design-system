@@ -30,7 +30,7 @@ public class PageTemplateBuilder {
 
     static final String PAGE_ITEMS = "pageItems";
     static final String[] themes = {"theme1", "theme2", "theme3"};
-    static final String[] alignment = {"left", "right"};
+    static final String[] alignment = {"right", "left"};
 
     public PageTemplateBuilder() {
         this(new LinkModulesFactory(), new ICentreFactory(), new IKnowFactory());
