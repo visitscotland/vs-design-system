@@ -18,7 +18,7 @@
     >
         <vs-megalink-multi-image
             img-src="${image}"
-            link-type="download"
+            link-type="${megalink.type}"
         >
             <template slot="vsMultiImageHeading">
                 ${megalink.label}

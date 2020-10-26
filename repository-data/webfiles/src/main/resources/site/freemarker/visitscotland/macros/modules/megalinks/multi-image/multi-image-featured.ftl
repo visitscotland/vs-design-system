@@ -20,7 +20,7 @@
             featured
             <#if lastFeatured == 'true'>last-featured</#if>
             img-src="${image}"
-            link-type="internal"
+            link-type="${feature.type}"
         >
             <template slot="vsMultiImageHeading">
                 ${feature.label}

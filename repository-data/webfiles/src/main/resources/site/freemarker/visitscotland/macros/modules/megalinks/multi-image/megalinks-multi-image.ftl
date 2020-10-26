@@ -14,36 +14,36 @@
             cols="10"
             class="offset-1"
         >
-                <vs-row>
-                    <#-- if there's at least one featured link -->
-                    <#if item.featuredLinks?size gt 0>
-                        <@multiImageFeatured lastFeatured='false' feature=item.featuredLinks[0] />
-                    </#if>
+            <vs-row>
+                <#-- if there's at least one featured link -->
+                <#if item.featuredLinks?size gt 0>
+                    <@multiImageFeatured lastFeatured='false' feature=item.featuredLinks[0] />
+                </#if>
 
-                    <#list item.links as megalink>
-                        <#-- 2 and 4 links will be displayed in 2 columns -->
-                        <#if item.links?size == 2 || item.links?size == 4>
+                <#list item.links as megalink>
+                    <#-- 2 and 4 links will be displayed in 2 columns -->
+                    <#if item.links?size == 2 || item.links?size == 4>
+                        <@multiImageTwoItems megalink=megalink />
+                    </#if>
+                    <#-- 3 and 6 links will be displayed in 3 columns -->
+                    <#if item.links?size == 3 || item.links?size == 6>
+                        <@multiImageThreeItems megalink=megalink />
+                    </#if>
+                    <#-- 5 links will be displayed in a combintation of 2 and 3 columns -->
+                    <#if item.links?size == 5>
+                        <#if megalink?index lt 3>
+                            <@multiImageThreeItems megalink=megalink />
+                        <#else>
                             <@multiImageTwoItems megalink=megalink />
                         </#if>
-                        <#-- 3 and 6 links will be displayed in 3 columns -->
-                        <#if item.links?size == 3 || item.links?size == 6>
-                            <@multiImageThreeItems megalink=megalink />
-                        </#if>
-                        <#-- 5 links will be displayed in a combintation of 2 and 3 columns -->
-                        <#if item.links?size == 5>
-                            <#if megalink?index lt 3>
-                                <@multiImageThreeItems megalink=megalink />
-                            <#else>
-                                <@multiImageTwoItems megalink=megalink />
-                            </#if>
-                        </#if>
-                    </#list>
-
-                    <#-- if there's a second featured link -->
-                    <#if item.featuredLinks?size gt 1>
-                        <@multiImageFeatured  lastFeatured='true' feature=item.featuredLinks[1] />
                     </#if>
-                </vs-row>
+                </#list>
+
+                <#-- if there's a second featured link -->
+                <#if item.featuredLinks?size gt 1>
+                    <@multiImageFeatured  lastFeatured='true' feature=item.featuredLinks[1] />
+                </#if>
+            </vs-row>
         </vs-col>
     </vs-row>
 </#macro>

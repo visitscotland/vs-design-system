@@ -11,14 +11,14 @@
             ${megalink.image.externalImage}
         </#assign>
     </#if>
-
+    ${megalink.type}
     <vs-col
         cols="12"
         md="6"
     >
         <vs-megalink-multi-image
             img-src="${image}"
-            link-type="download"
+            link-type="${megalink.type}"
         >
             <template slot="vsMultiImageHeading">
                 ${megalink.label}
