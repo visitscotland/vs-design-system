@@ -113,7 +113,7 @@ definitions:
           /linkTypes:
             jcr:primaryType: frontend:plugin
             caption: Link Type
-            compoundList: visitscotland:DMSLink,visitscotland:ExternalLink,visitscotland:ProductsSearch
+            compoundList: visitscotland:DMSLink,visitscotland:ExternalDocument,visitscotland:ExternalLink,visitscotland:ProductsSearch
             contentPickerType: links
             field: linkTypes
             plugin.class: org.onehippo.forge.contentblocks.ContentBlocksFieldPlugin

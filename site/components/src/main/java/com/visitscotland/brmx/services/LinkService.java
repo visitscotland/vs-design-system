@@ -102,7 +102,10 @@ public class LinkService {
             return ((ExternalLink) link.getLinkType()).getLink();
         } else if (link.getLinkType() instanceof ProductSearchLink) {
             return new ProductSearchBuilder().fromHippoBean(((ProductSearchLink) link.getLinkType()).getSearch()).build();
-        } else {
+        } else if (link.getLinkType() instanceof ExternalDocument) {
+            return ((ExternalDocument) link.getLinkType()).getLink();
+        }
+        else {
             logger.warn(String.format("This class %s is not recognized as a link type and cannot be converted", link.getLinkType() == null ? "null" : link.getClass().getSimpleName()));
         }
         return null;

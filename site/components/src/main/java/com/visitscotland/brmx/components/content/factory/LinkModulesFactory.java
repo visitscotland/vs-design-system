@@ -217,14 +217,16 @@ public class LinkModulesFactory {
     List<EnhancedLink> convertToEnhancedLinks(List<MegalinkItem> items, Locale locale) {
         List<EnhancedLink> links = new ArrayList<>();
         for (MegalinkItem item : items) {
-
             if (item.getLink() == null) {
                 CommonUtils.contentIssue("The module %s contains a link without any reference", item.getPath());
-            } else if (item.getLink() instanceof Linkable) {
+            }else if (item.getLink() instanceof Linkable) {
                 EnhancedLink link = createEnhancedLink((Linkable) item.getLink(), locale);
                 if (link != null) {
                     link.setFeatured(item.getFeature());
-                    if (this.getLinkCategory(item.getLink().getPath(),locale)!=null){
+                    if ((item.getLink() instanceof  SharedLink) && ((SharedLink) item.getLink()).getLinkType() instanceof ExternalDocument){
+                        SharedLink sharedLink = (SharedLink) item.getLink();
+                        link.setCategory(((ExternalDocument) sharedLink.getLinkType()).getCategory());
+                     }else if (this.getLinkCategory(item.getLink().getPath(),locale)!=null){
                         link.setCategory(this.getLinkCategory(item.getLink().getPath(),locale));
                     }else{
                         try {
@@ -256,6 +258,7 @@ public class LinkModulesFactory {
 
         if (linkable instanceof Page) {
             //TODO add itineraries days and transport
+            link.setType(LinkType.INTERNAL);
             if (linkable instanceof Itinerary) {
                 link.setItineraryTransport(((Itinerary) linkable).getTransports()[0]);
                 link.setItineraryDays(((Itinerary) linkable).getDays().size());
@@ -266,8 +269,15 @@ public class LinkModulesFactory {
             if (link.getImage() == null && product != null && product.has(IMAGE)) {
                 link.setImage(new FlatImage(product));
             }
+            if (((SharedLink) linkable).getLinkType() instanceof ExternalDocument){
+                SharedLink sharedLink = (SharedLink) linkable;
+                ExternalDocument externalDocument = (ExternalDocument)sharedLink.getLinkType();
+                String extension = externalDocument.getLink().substring(externalDocument.getLink().lastIndexOf(".") + 1).toUpperCase();
+                link.setLabel(linkable.getTitle()+"("+extension+" " + externalDocument.getSize()+externalDocument.getBytes() + ")");
+                link.setType(LinkType.DOWNLOAD);
+            }
             link.setLink(linkService.getPlainLink((SharedLink) linkable, product));
-        } else {
+                 } else {
             logger.warn(String.format("The type %s was not expected and will be skipped", linkable.getClass().getSimpleName()));
             return null;
         }
