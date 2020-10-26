@@ -90,6 +90,12 @@ export default {
 .vs-global-menu__languages {
     position: static;
 
+    .btn {
+        @include media-breakpoint-up(lg) {
+            height: 35px;
+        }
+    }
+
     .dropdown-menu {
         width: 100%;
         background: $color-purple;
@@ -97,7 +103,6 @@ export default {
         transition: all ease-in-out 0.3s;
         margin: 0;
         max-height: 0;
-        display: block;
         overflow: hidden;
         opacity: 0;
         transform: translate3d(0px, 0px, 0px) !important;
@@ -115,7 +120,7 @@ export default {
         }
 
         @include media-breakpoint-up(lg) {
-            width: auto;
+            width: 100%;
             min-width: 130px;
             transform: translate3d(0px, 0px, 0px) !important;
         }
