@@ -226,12 +226,14 @@ public class LinkModulesFactory {
             }
             */
             link.setLink(utils.createUrl((Page) linkable));
+            link.setType(LinkType.INTERNAL);
         } else if (linkable instanceof SharedLink) {
             JsonNode product = getNodeFromSharedLink((SharedLink) linkable, locale);
             if (link.getImage() == null && product != null && product.has(IMAGE)) {
                 link.setImage(new FlatImage(product));
             }
             link.setLink(linkService.getPlainLink((SharedLink) linkable, product));
+            link.setType(linkService.getType(link.getLink()));
         } else {
             logger.warn(String.format("The type %s was not expected and will be skipped", linkable.getClass().getSimpleName()));
             return null;

@@ -25,7 +25,7 @@
         jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
         jcr:uuid: 4d302e29-93dd-4157-9df9-bbd741bb12a0
         hippo:name: Orkney short break itinerary
-        hippo:versionHistory: 2eb4469d-fbed-4a80-a0ad-fa16d8a1f936
+        hippo:versionHistory: 94d37b02-513d-453a-a564-d8b6e4e127fc
         /content[1]:
           jcr:primaryType: visitscotland:Itinerary
           jcr:mixinTypes: ['mix:referenceable']
@@ -34,7 +34,7 @@
           hippostd:state: draft
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2020-02-07T09:41:25.483Z
-          hippostdpubwf:lastModificationDate: 2020-05-25T14:10:20.684+01:00
+          hippostdpubwf:lastModificationDate: 2020-10-26T11:32:08.172Z
           hippostdpubwf:lastModifiedBy: admin
           hippotranslation:id: 4f317e16-7cca-44da-84bf-26c96e4a4494
           hippotranslation:locale: en
@@ -61,7 +61,7 @@
           visitscotland:transports: [cycling]
           /visitscotland:heroImage:
             jcr:primaryType: hippogallerypicker:imagelink
-            hippo:docbase: ecede5a4-326c-4ce5-b9be-bcdf32c3f2c2
+            hippo:docbase: 71701526-e11f-4819-8afb-db93a0b92041
             hippo:facets: []
             hippo:modes: []
             hippo:values: []
@@ -83,7 +83,7 @@
           hippostd:state: unpublished
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2020-02-07T09:41:25.483Z
-          hippostdpubwf:lastModificationDate: 2020-05-25T14:10:26.222+01:00
+          hippostdpubwf:lastModificationDate: 2020-10-26T11:32:08.138Z
           hippostdpubwf:lastModifiedBy: admin
           hippotranslation:id: 4f317e16-7cca-44da-84bf-26c96e4a4494
           hippotranslation:locale: en
@@ -110,7 +110,7 @@
           visitscotland:transports: [cycling]
           /visitscotland:heroImage:
             jcr:primaryType: hippogallerypicker:imagelink
-            hippo:docbase: ecede5a4-326c-4ce5-b9be-bcdf32c3f2c2
+            hippo:docbase: 71701526-e11f-4819-8afb-db93a0b92041
             hippo:facets: []
             hippo:modes: []
             hippo:values: []
@@ -132,9 +132,9 @@
           hippostd:state: published
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2020-02-07T09:41:25.483Z
-          hippostdpubwf:lastModificationDate: 2020-05-25T14:10:26.222+01:00
+          hippostdpubwf:lastModificationDate: 2020-10-26T11:32:08.138Z
           hippostdpubwf:lastModifiedBy: admin
-          hippostdpubwf:publicationDate: 2020-06-12T08:53:27.606+01:00
+          hippostdpubwf:publicationDate: 2020-10-26T11:32:11.333Z
           hippotranslation:id: 4f317e16-7cca-44da-84bf-26c96e4a4494
           hippotranslation:locale: en
           visitscotland:areas: [north]
@@ -160,7 +160,7 @@
           visitscotland:transports: [cycling]
           /visitscotland:heroImage:
             jcr:primaryType: hippogallerypicker:imagelink
-            hippo:docbase: ecede5a4-326c-4ce5-b9be-bcdf32c3f2c2
+            hippo:docbase: 71701526-e11f-4819-8afb-db93a0b92041
             hippo:facets: []
             hippo:modes: []
             hippo:values: []

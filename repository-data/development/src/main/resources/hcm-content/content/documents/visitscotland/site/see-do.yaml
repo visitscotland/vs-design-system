@@ -31,7 +31,7 @@
           jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
           jcr:uuid: e16bdb89-c271-46f1-851f-2d2b82d631d4
           hippo:name: Victorian Heritage Trail
-          hippo:versionHistory: 4bfd57df-028e-40e8-bf03-df3efb874586
+          hippo:versionHistory: 23916ef8-adce-4042-ac81-810d16e25b3d
           /content[1]:
             jcr:primaryType: visitscotland:Itinerary
             jcr:mixinTypes: ['mix:referenceable']
@@ -40,7 +40,7 @@
             hippostd:state: draft
             hippostdpubwf:createdBy: admin
             hippostdpubwf:creationDate: 2020-02-07T12:52:15.063Z
-            hippostdpubwf:lastModificationDate: 2020-06-12T10:41:32.770+01:00
+            hippostdpubwf:lastModificationDate: 2020-10-26T11:32:26.846Z
             hippostdpubwf:lastModifiedBy: admin
             hippotranslation:id: 80ddd0f7-26c8-4514-bc5b-1504204eaec4
             hippotranslation:locale: en
@@ -64,7 +64,7 @@
             visitscotland:transports: [car]
             /visitscotland:heroImage:
               jcr:primaryType: hippogallerypicker:imagelink
-              hippo:docbase: d607431a-46f7-4ed1-a288-de6458bbdc97
+              hippo:docbase: 609fd316-1a56-4ed3-8024-c2ef8202f068
               hippo:facets: []
               hippo:modes: []
               hippo:values: []
@@ -82,7 +82,7 @@
             hippostd:state: unpublished
             hippostdpubwf:createdBy: admin
             hippostdpubwf:creationDate: 2020-02-07T12:52:15.063Z
-            hippostdpubwf:lastModificationDate: 2020-05-25T14:09:52.572+01:00
+            hippostdpubwf:lastModificationDate: 2020-10-26T11:32:26.787Z
             hippostdpubwf:lastModifiedBy: admin
             hippotranslation:id: 80ddd0f7-26c8-4514-bc5b-1504204eaec4
             hippotranslation:locale: en
@@ -106,7 +106,7 @@
             visitscotland:transports: [car]
             /visitscotland:heroImage:
               jcr:primaryType: hippogallerypicker:imagelink
-              hippo:docbase: d607431a-46f7-4ed1-a288-de6458bbdc97
+              hippo:docbase: 609fd316-1a56-4ed3-8024-c2ef8202f068
               hippo:facets: []
               hippo:modes: []
               hippo:values: []
@@ -124,9 +124,9 @@
             hippostd:state: published
             hippostdpubwf:createdBy: admin
             hippostdpubwf:creationDate: 2020-02-07T12:52:15.063Z
-            hippostdpubwf:lastModificationDate: 2020-05-25T14:09:52.572+01:00
+            hippostdpubwf:lastModificationDate: 2020-10-26T11:32:26.787Z
             hippostdpubwf:lastModifiedBy: admin
-            hippostdpubwf:publicationDate: 2020-06-12T09:00:12.065+01:00
+            hippostdpubwf:publicationDate: 2020-10-26T11:32:29.670Z
             hippotranslation:id: 80ddd0f7-26c8-4514-bc5b-1504204eaec4
             hippotranslation:locale: en
             visitscotland:areas: [north]
@@ -149,7 +149,7 @@
             visitscotland:transports: [car]
             /visitscotland:heroImage:
               jcr:primaryType: hippogallerypicker:imagelink
-              hippo:docbase: d607431a-46f7-4ed1-a288-de6458bbdc97
+              hippo:docbase: 609fd316-1a56-4ed3-8024-c2ef8202f068
               hippo:facets: []
               hippo:modes: []
               hippo:values: []
@@ -369,7 +369,7 @@
         jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
         jcr:uuid: 17a3588b-6cee-439b-acd8-186ceb2067aa
         hippo:name: 12 Iconic Scottish Views
-        hippo:versionHistory: 41aded80-d1f7-47aa-a163-080af0ea5493
+        hippo:versionHistory: 7cf3ec38-37f5-4efd-8f2f-12b6e4c66980
         /content[1]:
           jcr:primaryType: visitscotland:Listicle
           jcr:mixinTypes: ['mix:referenceable']
@@ -378,7 +378,7 @@
           hippostd:state: draft
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2020-03-17T11:17:48.546Z
-          hippostdpubwf:lastModificationDate: 2020-06-12T10:14:53.984+01:00
+          hippostdpubwf:lastModificationDate: 2020-10-26T11:31:51.479Z
           hippostdpubwf:lastModifiedBy: admin
           hippotranslation:id: aced74d3-03f8-4ed2-9592-dd31975f29cf
           hippotranslation:locale: en
@@ -396,7 +396,7 @@
           visitscotland:title: 12 Iconic Scottish Views
           /visitscotland:heroImage:
             jcr:primaryType: hippogallerypicker:imagelink
-            hippo:docbase: 878bc413-07fe-4c1a-9df6-55514c250a16
+            hippo:docbase: 1b72bf72-0409-4ec7-aa0c-fc98f6045c98
             hippo:facets: []
             hippo:modes: []
             hippo:values: []
@@ -420,7 +420,7 @@
           hippostd:state: unpublished
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2020-03-17T11:17:48.546Z
-          hippostdpubwf:lastModificationDate: 2020-04-16T17:37:01.371+01:00
+          hippostdpubwf:lastModificationDate: 2020-10-26T11:31:51.446Z
           hippostdpubwf:lastModifiedBy: admin
           hippotranslation:id: aced74d3-03f8-4ed2-9592-dd31975f29cf
           hippotranslation:locale: en
@@ -438,7 +438,7 @@
           visitscotland:title: 12 Iconic Scottish Views
           /visitscotland:heroImage:
             jcr:primaryType: hippogallerypicker:imagelink
-            hippo:docbase: 878bc413-07fe-4c1a-9df6-55514c250a16
+            hippo:docbase: 1b72bf72-0409-4ec7-aa0c-fc98f6045c98
             hippo:facets: []
             hippo:modes: []
             hippo:values: []
@@ -462,9 +462,9 @@
           hippostd:state: published
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2020-03-17T11:17:48.546Z
-          hippostdpubwf:lastModificationDate: 2020-04-16T17:37:01.371+01:00
+          hippostdpubwf:lastModificationDate: 2020-10-26T11:31:51.446Z
           hippostdpubwf:lastModifiedBy: admin
-          hippostdpubwf:publicationDate: 2020-06-12T09:01:02.481+01:00
+          hippostdpubwf:publicationDate: 2020-10-26T11:31:53.704Z
           hippotranslation:id: aced74d3-03f8-4ed2-9592-dd31975f29cf
           hippotranslation:locale: en
           visitscotland:breadcrumb: ''
@@ -481,7 +481,7 @@
           visitscotland:title: 12 Iconic Scottish Views
           /visitscotland:heroImage:
             jcr:primaryType: hippogallerypicker:imagelink
-            hippo:docbase: 878bc413-07fe-4c1a-9df6-55514c250a16
+            hippo:docbase: 1b72bf72-0409-4ec7-aa0c-fc98f6045c98
             hippo:facets: []
             hippo:modes: []
             hippo:values: []
