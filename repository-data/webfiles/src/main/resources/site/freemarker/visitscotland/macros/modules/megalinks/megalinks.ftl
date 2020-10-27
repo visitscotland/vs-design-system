@@ -4,7 +4,14 @@
 <#include "./multi-image/megalinks-multi-image.ftl">
 
 <#macro megalinks item type>
-    <vs-megalinks button-link="${item.cta.link}">
+    <#if item.cta??>
+        <#assign ctaExists = "true" />
+    <#else>
+        <#assign ctaExists = "false" />
+    </#if>
+
+    
+    <vs-megalinks <#if ctaExists == "true">button-link="${item.cta.link}"</#if>>
         <@hst.manageContent hippobean=item.megalinkItem />
         <#-- TO DO: move the intro to a macro -->
         <template slot="vsMegalinksHeading">
@@ -25,8 +32,10 @@
             <@multiImage item=item /> 
         </#if>
 
-        <template slot="vsMegalinksButton">
-            ${item.cta.label}
-        </template>
+        <#if ctaExists == "true">
+            <template slot="vsMegalinksButton">
+                ${item.cta.label}
+            </template>
+        </#if>
     </vs-megalinks>
 </#macro>

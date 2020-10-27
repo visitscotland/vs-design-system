@@ -11,7 +11,6 @@
             ${megalink.image.externalImage}
         </#assign>
     </#if>
-    ${megalink.type}
     <vs-col
         cols="12"
         md="6"

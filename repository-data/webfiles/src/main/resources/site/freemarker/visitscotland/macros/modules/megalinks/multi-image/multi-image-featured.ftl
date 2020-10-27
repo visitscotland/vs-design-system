@@ -14,7 +14,7 @@
     <vs-col
         cols="12"
         md="6"
-        lg="12"
+        xl="12"
     >
         <vs-megalink-multi-image
             featured
