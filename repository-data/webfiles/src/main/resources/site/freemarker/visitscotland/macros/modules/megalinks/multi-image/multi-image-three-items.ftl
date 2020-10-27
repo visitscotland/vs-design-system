@@ -14,7 +14,7 @@
     <vs-col
         cols="12"
         md="6"
-        lg="4"
+        xl="4"
     >
         <vs-megalink-multi-image
             img-src="${image}"
