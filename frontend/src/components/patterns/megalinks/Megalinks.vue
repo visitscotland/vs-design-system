@@ -92,7 +92,10 @@ export default {
         .vs-megalinks__intro {
             width: 100%;
             text-align: center;
-            margin-bottom: $spacer-4;
+
+            P:last-of-type {
+                margin-bottom: 0;
+            }
         }
 
         .vs-megalinks__heading {
@@ -112,7 +115,7 @@ export default {
         @include media-breakpoint-up(lg) {
             .vs-megalinks__intro {
                 text-align: center;
-                margin-bottom: $spacer-10;
+                // margin-bottom: $spacer-10;
             }
 
             .vs-megalinks__button {
@@ -125,12 +128,12 @@ export default {
 <docs>
     ```js
     <VsMegalinks buttonLink="http://www.visitscotland.com">
-        <template slot="vs-megalinks-heading">
+        <template slot="vsMegalinksHeading">
             Find your experiences in the highest village of Scotland
         </template>
         <VsRichTextWrapper
             variant="lead"
-            slot="vs-megalinks-intro"
+            slot="vsMegalinksIntro"
             class="mt-6"
         >
             Lorem ipsum dolor sit amet consectetur adipisicing elit.
