@@ -3148,10 +3148,11 @@
           jcr:mixinTypes: ['mix:referenceable']
           jcr:uuid: 4120df08-d9b5-466f-9620-bdb28209b7f8
           hippo:availability: []
+          hippostd:holder: admin
           hippostd:state: draft
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2020-05-21T17:54:15.934+01:00
-          hippostdpubwf:lastModificationDate: 2020-07-23T06:46:01.046+01:00
+          hippostdpubwf:lastModificationDate: 2020-10-26T14:53:56.368Z
           hippostdpubwf:lastModifiedBy: admin
           hippotranslation:id: f93a7392-ddd7-4862-8ea4-15556062dc23
           hippotranslation:locale: en
@@ -6424,7 +6425,7 @@
             jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
             jcr:uuid: 191da414-2b36-40eb-85bc-0a1730f5a5da
             hippo:name: www.visitscotland.com - Lewis and Harris
-            hippo:versionHistory: 685786f7-e404-4e77-86f4-09ef6055bf67
+            hippo:versionHistory: e8416c2b-c365-496b-83b9-b740f6c92ec1
             /www.visitscotland.com---lewis-and-harris[1]:
               jcr:primaryType: visitscotland:SharedLink
               jcr:mixinTypes: ['mix:versionable']
@@ -6433,7 +6434,7 @@
               hippostd:state: unpublished
               hippostdpubwf:createdBy: admin
               hippostdpubwf:creationDate: 2020-07-10T13:34:45.173+01:00
-              hippostdpubwf:lastModificationDate: 2020-10-26T11:30:56.392Z
+              hippostdpubwf:lastModificationDate: 2020-10-26T14:56:54.751Z
               hippostdpubwf:lastModifiedBy: admin
               hippotranslation:id: 4ca683a5-e68a-47f6-b65a-481061871a0d
               hippotranslation:locale: en
@@ -6452,7 +6453,7 @@
               /visitscotland:linkTypes:
                 jcr:primaryType: visitscotland:ExternalLink
                 visitscotland:label: ''
-                visitscotland:link: https://www.visitscotland.com/destinations-maps/lewis-harris-stornoway/
+                visitscotland:link: https://www.visitouterhebrides.co.uk/our-islands/isle-of-lewis/stornoway
             /www.visitscotland.com---lewis-and-harris[2]:
               jcr:primaryType: visitscotland:SharedLink
               jcr:mixinTypes: ['mix:referenceable']
@@ -6461,7 +6462,7 @@
               hippostd:state: draft
               hippostdpubwf:createdBy: admin
               hippostdpubwf:creationDate: 2020-07-10T13:34:45.173+01:00
-              hippostdpubwf:lastModificationDate: 2020-10-26T11:30:56.448Z
+              hippostdpubwf:lastModificationDate: 2020-10-26T14:56:54.814Z
               hippostdpubwf:lastModifiedBy: admin
               hippotranslation:id: 4ca683a5-e68a-47f6-b65a-481061871a0d
               hippotranslation:locale: en
@@ -6480,7 +6481,7 @@
               /visitscotland:linkTypes:
                 jcr:primaryType: visitscotland:ExternalLink
                 visitscotland:label: ''
-                visitscotland:link: https://www.visitscotland.com/destinations-maps/lewis-harris-stornoway/
+                visitscotland:link: https://www.visitouterhebrides.co.uk/our-islands/isle-of-lewis/stornoway
             /www.visitscotland.com---lewis-and-harris[3]:
               jcr:primaryType: visitscotland:SharedLink
               jcr:mixinTypes: ['mix:referenceable']
@@ -6489,9 +6490,9 @@
               hippostd:state: published
               hippostdpubwf:createdBy: admin
               hippostdpubwf:creationDate: 2020-07-10T13:34:45.173+01:00
-              hippostdpubwf:lastModificationDate: 2020-10-26T11:30:56.392Z
+              hippostdpubwf:lastModificationDate: 2020-10-26T14:56:54.751Z
               hippostdpubwf:lastModifiedBy: admin
-              hippostdpubwf:publicationDate: 2020-10-26T11:31:03.245Z
+              hippostdpubwf:publicationDate: 2020-10-26T14:56:57.982Z
               hippotranslation:id: 4ca683a5-e68a-47f6-b65a-481061871a0d
               hippotranslation:locale: en
               visitscotland:teaser: Off the west coast of Scotland, the Isle of Lewis
@@ -6509,7 +6510,7 @@
               /visitscotland:linkTypes:
                 jcr:primaryType: visitscotland:ExternalLink
                 visitscotland:label: ''
-                visitscotland:link: https://www.visitscotland.com/destinations-maps/lewis-harris-stornoway/
+                visitscotland:link: https://www.visitouterhebrides.co.uk/our-islands/isle-of-lewis/stornoway
         /w:
           jcr:primaryType: hippostd:folder
           jcr:mixinTypes: ['hippo:named', 'hippotranslation:translated', 'mix:versionable']
