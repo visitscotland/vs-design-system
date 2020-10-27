@@ -97,6 +97,7 @@ export default {
     .megalink-multi-image.card {
         border: none;
         margin-top: $spacer-7;
+        position: relative;
 
         .stretched-link {
             color: $color-base-text;
@@ -147,7 +148,7 @@ export default {
             }
         }
     };
-    @include media-breakpoint-up(lg) {
+    @include media-breakpoint-up(xl) {
         .megalink-multi-image.card {
             margin-top: $spacer-12;
 
@@ -158,8 +159,7 @@ export default {
         .megalink-multi-image--featured.card {
             display: flex;
             flex-direction: row;
-            justify-content: space-between;
-            margin-top: 0;
+            justify-content: flex-start;
 
             .megalink-multi-image__title {
                 font-size: 1.25rem;
@@ -172,7 +172,7 @@ export default {
             }
 
             .megalink-multi-image__img {
-                width: 50%;
+                width: calc(50% - 20px);
             }
 
             .megalink-multi-image__content {
@@ -181,17 +181,13 @@ export default {
             }
 
             .card-body {
-                max-width: 45%;
-                padding: $spacer-9 5% $spacer-5 0;
+                max-width: 50%;
+                padding: $spacer-9 5% $spacer-5;
             }
 
             &.megalink-multi-image--featured-last {
                 flex-direction: row-reverse;
-                 margin-top: $spacer-12;
-
-                .card-body {
-                    padding: $spacer-9 0 $spacer-5 5%;
-                }
+                margin-top: $spacer-12;
             }
         }
     }
@@ -205,7 +201,7 @@ export default {
                 <VsCol
                     cols="12"
                     md="6"
-                    lg="12"
+                    xl="12"
                 >
                     <vs-megalink-multi-image
                         featured
@@ -226,7 +222,7 @@ export default {
                 <VsCol
                     cols="12"
                     md="6"
-                    lg="4"
+                    xl="4"
                 >
                     <vs-megalink-multi-image
                         imgSrc="https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"
@@ -246,7 +242,7 @@ export default {
                 <VsCol
                     cols="12"
                     md="6"
-                    lg="4"
+                    xl="4"
                 >
                     <vs-megalink-multi-image
                         imgSrc="https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"
@@ -275,7 +271,7 @@ export default {
                 <VsCol
                     cols="12"
                     md="6"
-                    lg="4"
+                    xl="4"
                 >
                     <vs-megalink-multi-image
                         imgSrc="https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"
