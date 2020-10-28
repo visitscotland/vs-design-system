@@ -13,6 +13,9 @@ import java.util.Optional;
 
  */
 public class LinkImageValidator implements Validator<Node> {
+
+    private static final String EMPTY_IMAGE = "cafebabe-cafe-babe-cafe-babecafebabe";
+
     public Optional<Violation> validate(final ValidationContext context, final Node document) {
         try {
             Node node = document.hasNode("visitscotland:linkTypes")? document.getNode("visitscotland:linkTypes"): document.hasNode("visitscotland:products")? document.getNode("visitscotland:products"):document.getNode("visitscotland:product");
@@ -20,7 +23,7 @@ public class LinkImageValidator implements Validator<Node> {
                 //Make sure that for Share links and stops, if the product is not dms, an image is provided or/and selected
                 if (!node.hasProperty("visitscotland:product")) {
                     if (document.hasNode("visitscotland:image")) {
-                        if(document.getNode("visitscotland:image").getProperty("hippo:docbase").getValue().getString().equals("cafebabe-cafe-babe-cafe-babecafebabe")) {
+                        if(document.getNode("visitscotland:image").getProperty("hippo:docbase").getValue().getString().equals(EMPTY_IMAGE)) {
                             return Optional.of(context.createViolation());
                         }
                     }else
@@ -28,7 +31,7 @@ public class LinkImageValidator implements Validator<Node> {
                         if (document.hasNode("visitscotland:images")){
                             Node images = document.getNode("visitscotland:images");
                             if (!images.hasProperty("visitscotland:caption") && ((!images.hasProperty("hippo:docbase"))
-                                    || (images.hasProperty("hippo:docbase") && images.getProperty("hippo:docbase").getValue().getString().equals("cafebabe-cafe-babe-cafe-babecafebabe")))) {
+                                    || (images.hasProperty("hippo:docbase") && images.getProperty("hippo:docbase").getValue().getString().equals(EMPTY_IMAGE)))) {
                                 return Optional.of(context.createViolation());
                             }
                             }else{
