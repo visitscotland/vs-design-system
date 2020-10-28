@@ -1302,7 +1302,7 @@
           jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
           jcr:uuid: 6a70fb18-aa9f-4515-a99a-22f338e71ea0
           hippo:name: test Subtitle
-          hippo:versionHistory: 959ff2fd-118b-4b33-a81d-dfeac2facf5b
+          hippo:versionHistory: 68cb4201-49b0-4f8c-a8e1-39f4d79d1003
           /test-subtitle[1]:
             jcr:primaryType: visitscotland:ListicleItem
             jcr:mixinTypes: ['mix:referenceable']
@@ -1311,7 +1311,7 @@
             hippostd:state: draft
             hippostdpubwf:createdBy: admin
             hippostdpubwf:creationDate: 2020-04-07T16:32:06.622+01:00
-            hippostdpubwf:lastModificationDate: 2020-10-02T10:52:04.453+01:00
+            hippostdpubwf:lastModificationDate: 2020-10-28T08:22:38.607Z
             hippostdpubwf:lastModifiedBy: admin
             hippotranslation:id: 52efbdda-6fef-4030-9a99-d99dc2cd8a4d
             hippotranslation:locale: en
@@ -1324,18 +1324,18 @@
               jcr:primaryType: visitscotland:ExternalLink
               visitscotland:label: ''
               visitscotland:link: www.visitscotland.org
-            /visitscotland:images:
-              jcr:primaryType: hippogallerypicker:imagelink
-              hippo:docbase: d607431a-46f7-4ed1-a288-de6458bbdc97
-              hippo:facets: []
-              hippo:modes: []
-              hippo:values: []
             /visitscotland:extraLinks:
               jcr:primaryType: visitscotland:CMSLink
               visitscotland:label: See more things to do in Shetland
               /visitscotland:link:
                 jcr:primaryType: hippo:mirror
                 hippo:docbase: cbc8477d-1deb-4153-b663-12212905b472
+            /visitscotland:images:
+              jcr:primaryType: hippogallerypicker:imagelink
+              hippo:docbase: aecf0250-aae9-42d9-bc08-34d80ec9b49c
+              hippo:facets: []
+              hippo:modes: []
+              hippo:values: []
           /test-subtitle[2]:
             jcr:primaryType: visitscotland:ListicleItem
             jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
@@ -1344,7 +1344,7 @@
             hippostd:state: unpublished
             hippostdpubwf:createdBy: admin
             hippostdpubwf:creationDate: 2020-04-07T16:32:06.622+01:00
-            hippostdpubwf:lastModificationDate: 2020-08-17T12:40:19.628+01:00
+            hippostdpubwf:lastModificationDate: 2020-10-28T08:22:38.546Z
             hippostdpubwf:lastModifiedBy: admin
             hippotranslation:id: 52efbdda-6fef-4030-9a99-d99dc2cd8a4d
             hippotranslation:locale: en
@@ -1357,18 +1357,18 @@
               jcr:primaryType: visitscotland:ExternalLink
               visitscotland:label: ''
               visitscotland:link: www.visitscotland.org
-            /visitscotland:images:
-              jcr:primaryType: hippogallerypicker:imagelink
-              hippo:docbase: d607431a-46f7-4ed1-a288-de6458bbdc97
-              hippo:facets: []
-              hippo:modes: []
-              hippo:values: []
             /visitscotland:extraLinks:
               jcr:primaryType: visitscotland:CMSLink
               visitscotland:label: See more things to do in Shetland
               /visitscotland:link:
                 jcr:primaryType: hippo:mirror
                 hippo:docbase: cbc8477d-1deb-4153-b663-12212905b472
+            /visitscotland:images:
+              jcr:primaryType: hippogallerypicker:imagelink
+              hippo:docbase: aecf0250-aae9-42d9-bc08-34d80ec9b49c
+              hippo:facets: []
+              hippo:modes: []
+              hippo:values: []
           /test-subtitle[3]:
             jcr:primaryType: visitscotland:ListicleItem
             jcr:mixinTypes: ['mix:referenceable']
@@ -1377,9 +1377,9 @@
             hippostd:state: published
             hippostdpubwf:createdBy: admin
             hippostdpubwf:creationDate: 2020-04-07T16:32:06.622+01:00
-            hippostdpubwf:lastModificationDate: 2020-08-17T12:40:19.628+01:00
+            hippostdpubwf:lastModificationDate: 2020-10-28T08:22:38.546Z
             hippostdpubwf:lastModifiedBy: admin
-            hippostdpubwf:publicationDate: 2020-08-17T12:40:23.505+01:00
+            hippostdpubwf:publicationDate: 2020-10-28T08:22:42.636Z
             hippotranslation:id: 52efbdda-6fef-4030-9a99-d99dc2cd8a4d
             hippotranslation:locale: en
             visitscotland:subtitle: ''
@@ -1391,18 +1391,18 @@
               jcr:primaryType: visitscotland:ExternalLink
               visitscotland:label: ''
               visitscotland:link: www.visitscotland.org
-            /visitscotland:images:
-              jcr:primaryType: hippogallerypicker:imagelink
-              hippo:docbase: d607431a-46f7-4ed1-a288-de6458bbdc97
-              hippo:facets: []
-              hippo:modes: []
-              hippo:values: []
             /visitscotland:extraLinks:
               jcr:primaryType: visitscotland:CMSLink
               visitscotland:label: See more things to do in Shetland
               /visitscotland:link:
                 jcr:primaryType: hippo:mirror
                 hippo:docbase: cbc8477d-1deb-4153-b663-12212905b472
+            /visitscotland:images:
+              jcr:primaryType: hippogallerypicker:imagelink
+              hippo:docbase: aecf0250-aae9-42d9-bc08-34d80ec9b49c
+              hippo:facets: []
+              hippo:modes: []
+              hippo:values: []
         /harbour-side-fishermens-cottages:
           jcr:primaryType: hippo:handle
           jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
@@ -1814,7 +1814,6 @@
           jcr:mixinTypes: ['mix:referenceable']
           jcr:uuid: efc0bccb-dd92-49e0-b1e4-6b17bfd1cf78
           hippo:availability: []
-          hippostd:holder: admin
           hippostd:state: draft
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2020-05-21T17:54:15.934+01:00
@@ -2361,7 +2360,6 @@
           jcr:mixinTypes: ['mix:referenceable']
           jcr:uuid: d6d547f6-3654-4f51-8ac8-b10f428ea62e
           hippo:availability: []
-          hippostd:holder: admin
           hippostd:state: draft
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2020-09-30T12:03:00.630+01:00
@@ -3551,7 +3549,7 @@
           jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
           jcr:uuid: 94bde36e-54e1-4aee-8d25-28def2719c55
           hippo:name: Casa Jose
-          hippo:versionHistory: d4db18a7-7f8d-4a2f-aa52-3019f283c320
+          hippo:versionHistory: ffa953f4-dcb4-45d6-a5e0-381f9803703b
           /casa-jose[1]:
             jcr:primaryType: visitscotland:Stop
             jcr:mixinTypes: ['mix:referenceable']
@@ -3560,9 +3558,9 @@
             hippostd:state: published
             hippostdpubwf:createdBy: admin
             hippostdpubwf:creationDate: 2019-12-16T12:20:46.037Z
-            hippostdpubwf:lastModificationDate: 2020-10-21T14:38:02.529+01:00
+            hippostdpubwf:lastModificationDate: 2020-10-28T08:21:26.497Z
             hippostdpubwf:lastModifiedBy: admin
-            hippostdpubwf:publicationDate: 2020-10-21T15:11:27.592+01:00
+            hippostdpubwf:publicationDate: 2020-10-28T08:22:52.396Z
             hippotranslation:id: 38f7c9ac-27eb-4b02-9bab-16b719f241e4
             hippotranslation:locale: en
             visitscotland:subtitle: ''
@@ -3587,7 +3585,7 @@
                 visitscotland:link: https://ebooks.visitscotland.com/ghosts-myths-legends/
             /visitscotland:image:
               jcr:primaryType: hippogallerypicker:imagelink
-              hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
+              hippo:docbase: 9fb38865-ca10-4ef4-bcab-a1097cc44487
               hippo:facets: []
               hippo:modes: []
               hippo:values: []
@@ -3599,7 +3597,7 @@
             hippostd:state: unpublished
             hippostdpubwf:createdBy: admin
             hippostdpubwf:creationDate: 2019-12-16T12:20:46.037Z
-            hippostdpubwf:lastModificationDate: 2020-10-21T14:38:02.529+01:00
+            hippostdpubwf:lastModificationDate: 2020-10-28T08:21:26.497Z
             hippostdpubwf:lastModifiedBy: admin
             hippotranslation:id: 38f7c9ac-27eb-4b02-9bab-16b719f241e4
             hippotranslation:locale: en
@@ -3625,7 +3623,7 @@
                 visitscotland:link: https://ebooks.visitscotland.com/ghosts-myths-legends/
             /visitscotland:image:
               jcr:primaryType: hippogallerypicker:imagelink
-              hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
+              hippo:docbase: 9fb38865-ca10-4ef4-bcab-a1097cc44487
               hippo:facets: []
               hippo:modes: []
               hippo:values: []
@@ -3637,7 +3635,7 @@
             hippostd:state: draft
             hippostdpubwf:createdBy: admin
             hippostdpubwf:creationDate: 2019-12-16T12:20:46.037Z
-            hippostdpubwf:lastModificationDate: 2020-10-21T15:11:20.665+01:00
+            hippostdpubwf:lastModificationDate: 2020-10-28T08:21:37.545Z
             hippostdpubwf:lastModifiedBy: admin
             hippotranslation:id: 38f7c9ac-27eb-4b02-9bab-16b719f241e4
             hippotranslation:locale: en
@@ -3663,7 +3661,7 @@
                 visitscotland:link: https://ebooks.visitscotland.com/ghosts-myths-legends/
             /visitscotland:image:
               jcr:primaryType: hippogallerypicker:imagelink
-              hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
+              hippo:docbase: 9fb38865-ca10-4ef4-bcab-a1097cc44487
               hippo:facets: []
               hippo:modes: []
               hippo:values: []
@@ -6344,9 +6342,10 @@
           hippotranslation:locale: en
           /www.visitouterhebrides.co.uk---photography-trail:
             jcr:primaryType: hippo:handle
-            jcr:mixinTypes: ['hippo:named', 'mix:referenceable']
+            jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
             jcr:uuid: 8f9220a7-df66-4104-aafa-cdacb3b76a88
             hippo:name: www.visitouterhebrides.co.uk - Photography trail
+            hippo:versionHistory: 0bb0b99d-65c4-407a-a150-a92a96cecb09
             /www.visitouterhebrides.co.uk---photography-trail[1]:
               jcr:primaryType: visitscotland:SharedLink
               jcr:mixinTypes: ['mix:versionable']
@@ -6355,7 +6354,7 @@
               hippostd:state: unpublished
               hippostdpubwf:createdBy: admin
               hippostdpubwf:creationDate: 2020-07-10T13:34:45.173+01:00
-              hippostdpubwf:lastModificationDate: 2020-07-10T13:52:01.083+01:00
+              hippostdpubwf:lastModificationDate: 2020-10-28T08:12:28.867Z
               hippostdpubwf:lastModifiedBy: admin
               hippotranslation:id: 51dfff09-00d0-4923-b704-26bb28e5b28b
               hippotranslation:locale: en
@@ -6363,7 +6362,7 @@
               visitscotland:title: Photography Trail
               /visitscotland:image:
                 jcr:primaryType: hippogallerypicker:imagelink
-                hippo:docbase: c3eafb5b-6c18-4caa-9c9a-63279b816630
+                hippo:docbase: dbcdddc3-5586-4188-85a7-fcd5e7e3c29a
                 hippo:facets: []
                 hippo:modes: []
                 hippo:values: []
@@ -6379,7 +6378,7 @@
               hippostd:state: draft
               hippostdpubwf:createdBy: admin
               hippostdpubwf:creationDate: 2020-07-10T13:34:45.173+01:00
-              hippostdpubwf:lastModificationDate: 2020-07-10T13:52:01.179+01:00
+              hippostdpubwf:lastModificationDate: 2020-10-28T08:22:06.755Z
               hippostdpubwf:lastModifiedBy: admin
               hippotranslation:id: 51dfff09-00d0-4923-b704-26bb28e5b28b
               hippotranslation:locale: en
@@ -6387,7 +6386,7 @@
               visitscotland:title: Photography Trail
               /visitscotland:image:
                 jcr:primaryType: hippogallerypicker:imagelink
-                hippo:docbase: c3eafb5b-6c18-4caa-9c9a-63279b816630
+                hippo:docbase: dbcdddc3-5586-4188-85a7-fcd5e7e3c29a
                 hippo:facets: []
                 hippo:modes: []
                 hippo:values: []
@@ -6403,16 +6402,16 @@
               hippostd:state: published
               hippostdpubwf:createdBy: admin
               hippostdpubwf:creationDate: 2020-07-10T13:34:45.173+01:00
-              hippostdpubwf:lastModificationDate: 2020-07-10T13:52:01.083+01:00
+              hippostdpubwf:lastModificationDate: 2020-10-28T08:12:28.867Z
               hippostdpubwf:lastModifiedBy: admin
-              hippostdpubwf:publicationDate: 2020-07-10T14:25:10.348+01:00
+              hippostdpubwf:publicationDate: 2020-10-28T08:22:09.863Z
               hippotranslation:id: 51dfff09-00d0-4923-b704-26bb28e5b28b
               hippotranslation:locale: en
               visitscotland:teaser: Visit Outer Hebrides from behind of a camera.
               visitscotland:title: Photography Trail
               /visitscotland:image:
                 jcr:primaryType: hippogallerypicker:imagelink
-                hippo:docbase: c3eafb5b-6c18-4caa-9c9a-63279b816630
+                hippo:docbase: dbcdddc3-5586-4188-85a7-fcd5e7e3c29a
                 hippo:facets: []
                 hippo:modes: []
                 hippo:values: []

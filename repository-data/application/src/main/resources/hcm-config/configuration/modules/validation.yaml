@@ -7,6 +7,9 @@ definitions:
       extreme.south: '54.6'
       extreme.west: '-13.7'
       hipposys:className: com.visitscotland.brmx.validator.CoordinatesValidator
+    /hippo:configuration/hippo:modules/validation/hippo:moduleconfig/visitscotland:scotland-image-validator:
+      jcr:primaryType: hipposys:moduleconfig
+      hipposys:className: com.visitscotland.brmx.validator.LinkImageValidator
     /hippo:configuration/hippo:modules/validation/hippo:moduleconfig/visitscotland:url-validator:
       jcr:primaryType: hipposys:moduleconfig
       hipposys:className: org.onehippo.cms.services.validation.validator.RegExpValidator

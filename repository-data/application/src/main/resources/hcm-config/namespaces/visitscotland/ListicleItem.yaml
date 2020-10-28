@@ -11,11 +11,12 @@ definitions:
         /hipposysedit:nodetype:
           jcr:primaryType: hipposysedit:nodetype
           jcr:mixinTypes: ['mix:referenceable', 'hipposysedit:remodel']
-          jcr:uuid: e8f92374-adf8-40b0-8cbb-f8150f1c7469
+          jcr:uuid: dce685e9-18a1-41d7-9e82-dbdb73c1bd12
           hipposysedit:node: true
           hipposysedit:supertype: ['visitscotland:basedocument', 'hippostd:relaxed',
             'hippotranslation:translated']
           hipposysedit:uri: http://www.visitscotland.com/visitscotland/nt/1.0
+          hipposysedit:validators: ['visitscotland:scotland-image-validator']
           /title:
             jcr:primaryType: hipposysedit:field
             hipposysedit:mandatory: false
@@ -76,7 +77,7 @@ definitions:
           jcr:mixinTypes: ['mix:referenceable']
           visitscotland:title: ''
           visitscotland:subtitle: ''
-          jcr:uuid: 09b75d0c-e089-4dc9-8fec-410d406c2c6a
+          jcr:uuid: 43e7f078-5525-4358-b616-df77cf9356a1
           hippostdpubwf:lastModificationDate: 2020-02-11T16:18:17.876Z
           hippostdpubwf:creationDate: 2020-02-11T16:18:17.876Z
           /visitscotland:description:
@@ -129,7 +130,7 @@ definitions:
             field: images
             plugin.class: org.onehippo.forge.contentblocks.ContentBlocksFieldPlugin
             wicket.id: ${cluster.id}.field
-            hint: ''
+            hint: This Image is required if the Main Product is not a DMS product
             /cluster.options:
               jcr:primaryType: frontend:pluginconfig
               maxitems: 1

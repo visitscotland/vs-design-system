@@ -11,11 +11,12 @@ definitions:
         /hipposysedit:nodetype:
           jcr:primaryType: hipposysedit:nodetype
           jcr:mixinTypes: ['mix:referenceable', 'hipposysedit:remodel']
-          jcr:uuid: daf9ecfc-0cd6-429e-a75b-575abe2a3d64
+          jcr:uuid: 51e3e31c-ef9c-43bb-8ea1-6e13d98fa2f6
           hipposysedit:node: true
           hipposysedit:supertype: ['visitscotland:basedocument', 'hippostd:relaxed',
             'hippotranslation:translated']
           hipposysedit:uri: http://www.visitscotland.com/visitscotland/nt/1.0
+          hipposysedit:validators: ['visitscotland:scotland-image-validator']
           /tipsTitle:
             jcr:primaryType: hipposysedit:field
             hipposysedit:mandatory: false
@@ -84,7 +85,7 @@ definitions:
           hippotranslation:id: document-type-locale-id
           hippotranslation:locale: document-type-locale
           jcr:mixinTypes: ['mix:referenceable']
-          jcr:uuid: b81f27f7-d4c0-4e6e-9386-1a632d5b2466
+          jcr:uuid: 28701c3a-77d5-4fe7-b65b-4077cb6e16d2
           hippostdpubwf:lastModificationDate: 2019-12-05T15:13:21.853Z
           hippostdpubwf:creationDate: 2019-12-05T15:13:21.853Z
           visitscotland:tipsTitle: ''
@@ -148,6 +149,7 @@ definitions:
             field: image
             plugin.class: org.hippoecm.frontend.editor.plugins.field.NodeFieldPlugin
             wicket.id: ${cluster.id}.field
+            hint: This Image is required if the Product is not a DMS product
             /cluster.options:
               jcr:primaryType: frontend:pluginconfig
           /product:
