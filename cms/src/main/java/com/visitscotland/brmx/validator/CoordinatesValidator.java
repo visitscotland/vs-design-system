@@ -15,6 +15,7 @@ import java.util.Optional;
  *
  * @author jose.calcines
  */
+//TODO investigate if we can create unit test for this validator
 public class CoordinatesValidator implements Validator<Node> {
 
     private static final String NORTH_EXTREME = "extreme.north";

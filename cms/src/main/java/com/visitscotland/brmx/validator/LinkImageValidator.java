@@ -12,6 +12,8 @@ import java.util.Optional;
  * jcr:Name = visitscotland:scotland-image-validator
 
  */
+
+//TODO investigate if we can create unit test for this validator
 public class LinkImageValidator implements Validator<Node> {
 
     private static final String EMPTY_IMAGE = "cafebabe-cafe-babe-cafe-babecafebabe";
