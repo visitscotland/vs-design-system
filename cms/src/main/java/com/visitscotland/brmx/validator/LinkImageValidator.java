@@ -9,7 +9,7 @@ import javax.jcr.RepositoryException;
 import java.util.Optional;
 
 /**
- * jcr:Name = visitscotland:scotland-image-validator
+ * jcr:Name = visitscotland:scotland-link-image-validator
 
  */
 
