@@ -16,6 +16,8 @@
 <#include "../macros/modules/megalinks/megalinks-multi-image.ftl">
 <#include "../macros/modules/megalinks/megalinks-single-image.ftl">
 <#include "../macros/modules/megalinks/megalinks-list.ftl">
+<#include "../macros/modules/tourism-information/tourisminformation-icentre.ftl">
+<#include "../macros/modules/tourism-information/tourisminformation-iknow.ftl">
 <#include "../macros/global/cms-errors.ftl">
 <#-- Implicit Request Objects -->
 <#-- @ftlvariable name="document" type="com.visitscotland.brmx.beans.Destination" -->
@@ -60,63 +62,10 @@
         <@list module />
 
     <#elseif module.getType()== "ICentreModule">
-        <#if module.image.cmsImage??>
-            <#assign image>
-                <@hst.link hippobean=module.image.cmsImage.original/>
-            </#assign>
-        <#else>
-            <#assign image = module.image.externalImage!'' />
-        </#if>
-
-        <#if module.quoteImage??>
-            <#assign imageQuote>
-                <@hst.link hippobean=module.quoteImage.cmsImage.original/>
-            </#assign>
-        </#if>
-
-        <vs-col>
-        <#--TODO for links the image does not have caption-->
-            <@imageWithCaption imageSrc=image imageDetails=module.image variant="fullwidth"/>
-        </vs-col>
-
-        <vs-row>
-            <vs-col cols="12" md="10" lg="10" xl="10" offset-lg="1">
-                <@imageWithCaption imageSrc=imageQuote imageDetails=module.quoteImage variant="fullwidth"/>
-                "<@hst.html hippohtml=module.quote/>"
-                </br>
-                <#if module.quoteLink??>
-                    <vs-button animate=false background="purple" variant="primary" href="${module.quoteLink.link}" size="md">
-                        ${module.quoteLink.label}
-                    </vs-button>
-
-                </#if>
-                <vs-heading level="6">${module.quoteAuthorName}</vs-heading>
-                ${module.quoteAuthorTitle}
-            </vs-col>
-
-
-            <vs-col cols="12" md="10" lg="10" xl="10" offset-lg="1">
-                <@hst.html hippohtml=module.description/>
-            </vs-col>
-            <vs-col cols="4" lg="4" offset-lg="1">
-                <#list module.iCentreList as iCentre>
-                    <vs-link href="${iCentre.link}">${iCentre.label}</vs-link>
-                    </br>
-                </#list>
-            </vs-col>
-        </vs-row>
+      <@icentre module/>
 
     <#elseif module.getType()== "IKnowModule">
-        <@hst.manageContent hippobean=module.tourismInformation />
-					<vs-row>
-                        <vs-col cols="12" md="10" lg="10" xl="10" offset-lg="1">
-							<@hst.html hippohtml=module.description/>
-                        </vs-col>
-                        <vs-col cols="4" lg="4" offset-lg="1">
-                            <vs-link href="${module.link.link}">iKnow partners in this area</vs-link>
-                            </br>
-                        </vs-col>
-                    </vs-row>
+    <@iknow module/>
 
     </#if>
 
