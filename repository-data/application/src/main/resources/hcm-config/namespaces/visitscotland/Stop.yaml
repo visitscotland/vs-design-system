@@ -16,6 +16,7 @@ definitions:
           hipposysedit:supertype: ['visitscotland:basedocument', 'hippostd:relaxed',
             'hippotranslation:translated']
           hipposysedit:uri: http://www.visitscotland.com/visitscotland/nt/1.0
+          hipposysedit:validators: ['visitscotland:link-image-validator']
           /tipsTitle:
             jcr:primaryType: hipposysedit:field
             hipposysedit:mandatory: false
@@ -65,7 +66,6 @@ definitions:
             hipposysedit:path: visitscotland:image
             hipposysedit:primary: false
             hipposysedit:type: hippogallerypicker:imagelink
-            hipposysedit:validators: [visitscotland:link-image-validator]
           /subtitle:
             jcr:primaryType: hipposysedit:field
             hipposysedit:mandatory: false

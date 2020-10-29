@@ -20,7 +20,19 @@ public class LinkImageValidator implements Validator<Node> {
 
     public Optional<Violation> validate(final ValidationContext context, final Node document) {
         try {
-            Node node = document.hasNode("visitscotland:linkTypes")? document.getNode("visitscotland:linkTypes"): document.hasNode("visitscotland:products")? document.getNode("visitscotland:products"):document.getNode("visitscotland:product");
+            Node node = null;
+            //if megalinks (share documents)
+            if (document.hasNode("visitscotland:linkTypes")){
+                node = document.getNode("visitscotland:linkTypes");
+            }else
+                //if stops
+                if (document.hasNode("visitscotland:products")){
+                node = document.getNode("visitscotland:products");
+            }else
+                //if listicles
+                if (document.hasNode("visitscotland:product")){
+                node = document.getNode("visitscotland:product");
+            }
             if (node != null) {
                 //Make sure that for Share links and stops, if the product is not dms, an image is provided or/and selected
                 if (!node.hasProperty("visitscotland:product")) {
