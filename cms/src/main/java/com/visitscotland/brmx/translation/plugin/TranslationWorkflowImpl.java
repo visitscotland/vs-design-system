@@ -122,13 +122,6 @@ public class TranslationWorkflowImpl implements TranslationWorkflow, InternalWor
 
         // Iterate over the child Nodes in the document looking for Translatable children
         JcrDocument jcrDocument = new JcrDocument(newDocumentHandle);
-        String[] translatableLinkNames = new String[]{};
-        boolean containsTranslatableTypes = false;
-        if (jcrDocument.asHippoBean() instanceof TranslationLinkContainer) {
-            containsTranslatableTypes = true;
-            TranslationLinkContainer container = jcrDocument.asHippoBean(TranslationLinkContainer.class);
-            translatableLinkNames = container.getTranslatableLinkNames();
-        }
 
         final NodeIterator copiedVariants = newDocumentHandle.getNodes(newDocumentHandle.getName());
         // Now that the Node has been copied to the language channel update all the properties that can be translated
@@ -142,40 +135,43 @@ public class TranslationWorkflowImpl implements TranslationWorkflow, InternalWor
             // will currently have the value of the node that was copied (English)
             copiedVariant.setProperty(HippoTranslationNodeType.LOCALE, language);
 
-            // If the document has Translatable children we need to attempt to change
+            // If the document has Translatable children (hippo:mirror) we need to attempt to change
             // the links to point to the relevant translated child
-            if (containsTranslatableTypes) {
-                for (String childName : translatableLinkNames) {
-                    NodeIterator childIterator = copiedVariant.getNodes(childName);
-                    while (childIterator.hasNext()) {
-                        // This Node it a Translatable child link
-                        Node childNode = childIterator.nextNode();
-                        if (!childNode.hasProperty("hippo:docbase")) {
-                            log.warn("Unable to find linking node UUID");
-                            continue;
-                        }
-                        // Now we have the UUID of the node we are linking to, get the Node and see if there is a
-                        // translation for the current language.
-                        // If the linkUUID does not exist or points to the root Node then skip it.
-                        String linkUUID = childNode.getProperty("hippo:docbase").getString();
-                        if (linkUUID == null || linkUUID.equals("") || linkUUID.startsWith(CAFEBABE)) {
-                            log.warn("Link contains an empty Node");
-                            continue;
-                        }
-                        Node linkedNode = rootSession.getNodeByIdentifier(linkUUID);
-                        JcrDocument linkedJcrDocument = new JcrDocument(linkedNode);
-                        if (linkedJcrDocument.hasTranslation(language)) {
-                            Node targetNode = linkedJcrDocument.getTranslation(language);
-                            childNode.setProperty("hippo:docbase", targetNode.getIdentifier());
-                        } else {
-                            log.warn("Missing link translation node");
-                        }
-                    }
-                }
-            }
+            translateHippoMirrors(copiedVariant, language);
         }
 
         return newDocumentHandle;
+    }
+
+    protected void translateHippoMirrors(Node parentNode, String language) throws RepositoryException {
+        NodeIterator childIterator = parentNode.getNodes();
+        while (childIterator.hasNext()) {
+            Node childNode = childIterator.nextNode();
+            if (childNode.isNodeType("hippo:mirror")) {
+                if (!childNode.hasProperty("hippo:docbase")) {
+                    log.warn("Unable to find linking node UUID");
+                    continue;
+                }
+                // Now we have the UUID of the node we are linking to, get the Node and see if there is a
+                // translation for the current language.
+                // If the linkUUID does not exist or points to the root Node then skip it.
+                String linkUUID = childNode.getProperty("hippo:docbase").getString();
+                if (linkUUID == null || linkUUID.equals("") || linkUUID.startsWith(CAFEBABE)) {
+                    log.warn("Link contains an empty Node");
+                    continue;
+                }
+                Node linkedNode = rootSession.getNodeByIdentifier(linkUUID);
+                JcrDocument linkedJcrDocument = new JcrDocument(linkedNode);
+                if (linkedJcrDocument.hasTranslation(language)) {
+                    Node targetNode = linkedJcrDocument.getTranslation(language);
+                    childNode.setProperty("hippo:docbase", targetNode.getIdentifier());
+                } else {
+                    log.warn("Missing link translation node");
+                }
+            } else {
+                translateHippoMirrors(childNode, language);
+            }
+        }
     }
 
     private CopyWorkflow getOriginsCopyWorkflow(Node copyRootSubject) throws RepositoryException, WorkflowException {

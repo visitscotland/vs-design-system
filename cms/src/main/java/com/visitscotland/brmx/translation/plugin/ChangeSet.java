@@ -58,13 +58,11 @@ public class ChangeSet {
      * @param document The JcrDocument to be added to the document list
      * @throws RepositoryException
      */
-    public void addDocument(JcrDocument document) throws RepositoryException, ObjectBeanManagerException {
+    public void addDocument(JcrDocument document, boolean isLinkedDocument) throws RepositoryException, ObjectBeanManagerException {
         FolderTranslation documentTranslation = jcrFolderTranslationFactory.createFolderTranslation(document.getHandle(), null);
         documentTranslation.setNamefr(documentTranslation.getName() + " (" + targetLocale.getName().toUpperCase() + ")");
         documentTranslation.setUrlfr(documentTranslation.getUrl());
-        if (document.asHippoBean() instanceof TranslationLinkContainer) {
-            documentTranslation.setContainsTranslationLinks(true);
-        }
+        documentTranslation.setContainsTranslationLinks(isLinkedDocument);
         documents.add(documentTranslation);
     }
 

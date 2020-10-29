@@ -66,7 +66,7 @@ public class DocumentTranslator {
             JcrDocument document = jcrDocumentFactory.createFromNode(sourceDocument);
             change.populateFolders(document);
             if (!document.hasTranslation(targetLocale)) {
-                change.addDocument(document);
+                change.addDocument(document, false);
             }
             HippoBean bean = document.asHippoBean();
 
@@ -88,7 +88,7 @@ public class DocumentTranslator {
                             JcrDocument siblingDocument = jcrDocumentFactory.createFromNode(siblingNode);
                             if (siblingDocument.isNodeType(childJcrTypes)) {
                                 if (!siblingDocument.hasTranslation(targetLocale)) {
-                                    change.addDocument(siblingDocument);
+                                    change.addDocument(siblingDocument, false);
                                 }
                                 // Also need to check siblings for Translation links inside the document
                                 HippoBean siblingBean = siblingDocument.asHippoBean();
@@ -136,12 +136,12 @@ public class DocumentTranslator {
                 if (existingChangeSet != null) {
                     if (!existingChangeSet.containsDocumentMatchingUrl(
                             linkDocument.getVariantNode(JcrDocument.VARIANT_UNPUBLISHED).getName())) {
-                        existingChangeSet.addDocument(linkDocument);
+                        existingChangeSet.addDocument(linkDocument, true);
                     } else {
                         logger.debug("Duplicate document, not adding to ChangeSet.");
                     }
                 } else {
-                    linkChange.addDocument(linkDocument);
+                    linkChange.addDocument(linkDocument, true);
                     changeSetList.add(linkChange);
                 }
             }
@@ -190,10 +190,10 @@ public class DocumentTranslator {
 
             // Need to apply all non TranslationLinkContainer instances first to ensure we have a
             // translated version of all linked documents
-            applyDocumentChanges(changeSet, false, session, workflow);
+            applyDocumentChanges(changeSet, true, session, workflow);
 
             // Now we can apply all TranslationLinkContainer instance, all linked documents should exist
-            applyDocumentChanges(changeSet, true, session, workflow);
+            applyDocumentChanges(changeSet, false, session, workflow);
         }
 
         if (!changeSetList.isEmpty()) {
@@ -202,21 +202,20 @@ public class DocumentTranslator {
     }
 
     protected void applyDocumentChanges(ChangeSet changeSet,
-                                        boolean includeTranslationLinkContainers,
+                                        boolean includeLinks,
                                         Session session,
                                         TranslationWorkflow workflow)
             throws RepositoryException, ObjectBeanManagerException, RemoteException, WorkflowException {
         WorkflowManager manager = ((HippoWorkspace) session.getWorkspace()).getWorkflowManager();
         for (FolderTranslation document : changeSet.getDocuments()) {
-            if (document.containsTranslationLinks() != includeTranslationLinkContainers) {
-                continue;
-            }
-            JcrDocument sourceDocument = jcrDocumentFactory.createFromNode(session.getNodeByIdentifier(document.getId()));
-            Document translatedDocument = workflow.addTranslation(changeSet.getTargetLocale().getName(), document.getUrlfr(),
-                    sourceDocument.getVariantNode(JcrDocument.VARIANT_UNPUBLISHED));
+            if (includeLinks == document.isLinkedDocument()) {
+                JcrDocument sourceDocument = jcrDocumentFactory.createFromNode(session.getNodeByIdentifier(document.getId()));
+                Document translatedDocument = workflow.addTranslation(changeSet.getTargetLocale().getName(), document.getUrlfr(),
+                        sourceDocument.getVariantNode(JcrDocument.VARIANT_UNPUBLISHED));
 
-            DefaultWorkflow defaultWorkflow = (DefaultWorkflow) manager.getWorkflow("core", translatedDocument);
-            defaultWorkflow.setDisplayName(document.getNamefr());
+                DefaultWorkflow defaultWorkflow = (DefaultWorkflow) manager.getWorkflow("core", translatedDocument);
+                defaultWorkflow.setDisplayName(document.getNamefr());
+            }
         }
     }
 
