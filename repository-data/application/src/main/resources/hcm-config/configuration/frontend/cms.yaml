@@ -42,3 +42,8 @@ definitions:
       location.levels: []
       plugin.class: com.visitscotland.brmx.components.DmsLocationListProvider
       valuelist.provider: service.locationlist.psr
+    /hippo:configuration/hippo:frontend/cms/ui-extensions/translationDiff:
+      jcr:primaryType: frontend:uiExtension
+      frontend:displayName: Translation Difference
+      frontend:extensionPoint: document.field
+      frontend:url: /cms/vs-openui/diff

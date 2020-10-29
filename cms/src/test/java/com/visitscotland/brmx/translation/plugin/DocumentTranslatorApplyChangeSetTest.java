@@ -1,5 +1,6 @@
 package com.visitscotland.brmx.translation.plugin;
 
+import com.visitscotland.brmx.translation.SessionFactory;
 import org.hippoecm.addon.workflow.WorkflowSNSException;
 import org.hippoecm.frontend.translation.ILocaleProvider;
 import org.hippoecm.repository.api.Document;
@@ -15,7 +16,6 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import javax.jcr.Session;
-import javax.jcr.Workspace;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;

@@ -24,7 +24,7 @@ public class FolderTranslation implements Serializable {
     private boolean hasSameUrlSibling = false;
     private String sameUrlSiblingId;
     private Node sourceNode;
-    private boolean containsTranslationLinks = false;
+    private boolean isLinkedDocument = false;
 
     public FolderTranslation(String id) {
         this.id = id;
@@ -120,11 +120,11 @@ public class FolderTranslation implements Serializable {
         this.sourceNode = sourceNode;
     }
 
-    public boolean containsTranslationLinks() {
-        return containsTranslationLinks;
+    public boolean isLinkedDocument() {
+        return isLinkedDocument;
     }
 
-    public void setContainsTranslationLinks(boolean containsTranslationLinks) {
-        this.containsTranslationLinks = containsTranslationLinks;
+    public void setIsLinkedDocument(boolean isLinkedDocument) {
+        this.isLinkedDocument = isLinkedDocument;
     }
 }
