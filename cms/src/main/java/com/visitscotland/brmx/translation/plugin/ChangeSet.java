@@ -1,6 +1,5 @@
 package com.visitscotland.brmx.translation.plugin;
 
-import com.visitscotland.brmx.beans.TranslationLinkContainer;
 import org.apache.commons.lang3.StringUtils;
 import org.hippoecm.addon.workflow.WorkflowSNSException;
 import org.hippoecm.frontend.translation.ILocaleProvider;
@@ -62,7 +61,7 @@ public class ChangeSet {
         FolderTranslation documentTranslation = jcrFolderTranslationFactory.createFolderTranslation(document.getHandle(), null);
         documentTranslation.setNamefr(documentTranslation.getName() + " (" + targetLocale.getName().toUpperCase() + ")");
         documentTranslation.setUrlfr(documentTranslation.getUrl());
-        documentTranslation.setContainsTranslationLinks(isLinkedDocument);
+        documentTranslation.setIsLinkedDocument(isLinkedDocument);
         documents.add(documentTranslation);
     }
 
