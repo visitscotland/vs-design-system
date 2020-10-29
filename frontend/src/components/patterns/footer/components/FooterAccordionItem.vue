@@ -87,6 +87,7 @@ export default {
         margin: $spacer-3 0;
         background-color: $color-gray-shade-7;
         color: $color-white;
+        font-family: $font-family-sans-serif;
     }
 
      .vs-accordion__item__panel.card-body {
