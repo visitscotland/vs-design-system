@@ -1814,7 +1814,6 @@
           jcr:mixinTypes: ['mix:referenceable']
           jcr:uuid: efc0bccb-dd92-49e0-b1e4-6b17bfd1cf78
           hippo:availability: []
-          hippostd:holder: admin
           hippostd:state: draft
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2020-05-21T17:54:15.934+01:00
@@ -2361,7 +2360,6 @@
           jcr:mixinTypes: ['mix:referenceable']
           jcr:uuid: d6d547f6-3654-4f51-8ac8-b10f428ea62e
           hippo:availability: []
-          hippostd:holder: admin
           hippostd:state: draft
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2020-09-30T12:03:00.630+01:00
@@ -2690,7 +2688,7 @@
           hippostd:state: draft
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2020-07-10T14:41:12.033+01:00
-          hippostdpubwf:lastModificationDate: 2020-09-23T13:13:39.311+01:00
+          hippostdpubwf:lastModificationDate: 2020-10-28T16:52:50.021Z
           hippostdpubwf:lastModifiedBy: admin
           hippotranslation:id: b0c0573f-f7c1-45fa-9cee-5c53296e65a3
           hippotranslation:locale: en
@@ -2719,12 +2717,6 @@
               jcr:primaryType: hippo:mirror
               hippo:docbase: d9369667-48f7-441f-b759-8d9843695c67
           /visitscotland:megalinkItems[4]:
-            jcr:primaryType: visitscotland:MegalinkItem
-            visitscotland:feature: true
-            /visitscotland:link:
-              jcr:primaryType: hippo:mirror
-              hippo:docbase: 693a6f1f-4da2-42e6-9777-4cd9d9d65671
-          /visitscotland:megalinkItems[5]:
             jcr:primaryType: visitscotland:MegalinkItem
             visitscotland:feature: false
             /visitscotland:link:
@@ -2738,7 +2730,7 @@
           hippostd:state: unpublished
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2020-07-10T14:41:12.033+01:00
-          hippostdpubwf:lastModificationDate: 2020-09-23T13:13:39.270+01:00
+          hippostdpubwf:lastModificationDate: 2020-10-28T16:53:05.165Z
           hippostdpubwf:lastModifiedBy: admin
           hippotranslation:id: b0c0573f-f7c1-45fa-9cee-5c53296e65a3
           hippotranslation:locale: en
@@ -2767,12 +2759,6 @@
               jcr:primaryType: hippo:mirror
               hippo:docbase: d9369667-48f7-441f-b759-8d9843695c67
           /visitscotland:megalinkItems[4]:
-            jcr:primaryType: visitscotland:MegalinkItem
-            visitscotland:feature: true
-            /visitscotland:link:
-              jcr:primaryType: hippo:mirror
-              hippo:docbase: 693a6f1f-4da2-42e6-9777-4cd9d9d65671
-          /visitscotland:megalinkItems[5]:
             jcr:primaryType: visitscotland:MegalinkItem
             visitscotland:feature: false
             /visitscotland:link:
