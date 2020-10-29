@@ -1,13 +1,10 @@
 package com.visitscotland.brmx.translation.plugin;
 
-import com.visitscotland.brmx.beans.TranslationLinkContainer;
-import com.visitscotland.brmx.translation.SpringContextFactory;
 import org.hippoecm.hst.content.beans.ObjectBeanManagerException;
 import org.hippoecm.repository.HippoStdNodeType;
 import org.hippoecm.repository.api.*;
 import org.hippoecm.repository.ext.InternalWorkflow;
 import org.hippoecm.repository.standardworkflow.CopyWorkflow;
-import org.hippoecm.repository.standardworkflow.EditableWorkflow;
 import org.hippoecm.repository.standardworkflow.FolderWorkflow;
 import org.hippoecm.repository.translation.HippoTranslatedNode;
 import org.hippoecm.repository.translation.HippoTranslationNodeType;

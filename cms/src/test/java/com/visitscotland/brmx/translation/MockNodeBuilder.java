@@ -16,6 +16,7 @@ import static org.mockito.Mockito.when;
 public final class MockNodeBuilder {
     Map<String, Property> properties = new HashMap<>();
     String primaryNodeType;
+    List<String> nodeTypes = new ArrayList<>();
     Map<String, List<Node>> childNodes = new HashMap<>();
     String nodeId;
     Session jcrSession;
@@ -32,6 +33,11 @@ public final class MockNodeBuilder {
 
     public MockNodeBuilder withPrimaryNodeType(String primaryNodeType) {
         this.primaryNodeType = primaryNodeType;
+        return this;
+    }
+
+    public MockNodeBuilder withNodeType(String nodeType) {
+        nodeTypes.add(nodeType);
         return this;
     }
 
@@ -91,6 +97,7 @@ public final class MockNodeBuilder {
     public Node build() throws Exception {
         Node mockNode = mock(Node.class);
         lenient().when(mockNode.hasProperty(any())).thenReturn(false);
+        lenient().when(mockNode.isNodeType(any())).thenReturn(false);
 
         if ( null != jcrSession && null != nodeId) {
             when(jcrSession.getNodeByIdentifier(eq(nodeId))).thenReturn(mockNode);
@@ -100,6 +107,11 @@ public final class MockNodeBuilder {
             NodeType mockNodeType = mock(NodeType.class);
             when(mockNode.getPrimaryNodeType()).thenReturn(mockNodeType);
             when(mockNodeType.getName()).thenReturn(primaryNodeType);
+            lenient().when(mockNode.isNodeType(eq(primaryNodeType))).thenReturn(true);
+        }
+
+        for (String type : nodeTypes) {
+            when(mockNode.isNodeType(type)).thenReturn(true);
         }
 
         for (Map.Entry<String, Property> propertyEntry : properties.entrySet()) {
@@ -108,25 +120,35 @@ public final class MockNodeBuilder {
         }
 
         for (Map.Entry<String, List<Node>> childNodeEntry : childNodes.entrySet()) {
-            Iterator<Node> nodeIterator = childNodeEntry.getValue().iterator();
-
-            final NodeIterator mockNodeIterator = mock(NodeIterator.class);
-            when(mockNodeIterator.hasNext()).thenAnswer(new Answer<Boolean>() {
-                @Override
-                public Boolean answer(InvocationOnMock invocation) throws Throwable {
-                    return nodeIterator.hasNext();
-                }
-            });
-            lenient().when(mockNodeIterator.nextNode()).thenAnswer(new Answer<Node>() {
-                @Override
-                public Node answer(InvocationOnMock invocation) throws Throwable {
-                    return nodeIterator.next();
-                }
-            });
-
-            when(mockNode.getNodes(eq(childNodeEntry.getKey()))).thenReturn(mockNodeIterator);
+            final NodeIterator mockNodeIterator = createNodeIterator(childNodeEntry.getValue());
+            lenient().when(mockNode.getNodes(eq(childNodeEntry.getKey()))).thenReturn(mockNodeIterator);
         }
 
+        List<Node> allChildNodes = new ArrayList<>();
+        for (Map.Entry<String, List<Node>> childNodeEntry : childNodes.entrySet()) {
+            allChildNodes.addAll(childNodeEntry.getValue());
+        }
+        final NodeIterator mockAllNodeIterator = createNodeIterator(allChildNodes);
+        lenient().when(mockNode.getNodes()).thenReturn(mockAllNodeIterator);
+
         return mockNode;
+    }
+
+    private NodeIterator createNodeIterator(List<Node> nodeList) {
+        final Iterator<Node> nodeIterator = nodeList.iterator();
+        NodeIterator mockNodeIterator = mock(NodeIterator.class);
+        lenient().when(mockNodeIterator.hasNext()).thenAnswer(new Answer<Boolean>() {
+            @Override
+            public Boolean answer(InvocationOnMock invocation) throws Throwable {
+                return nodeIterator.hasNext();
+            }
+        });
+        lenient().when(mockNodeIterator.nextNode()).thenAnswer(new Answer<Node>() {
+            @Override
+            public Node answer(InvocationOnMock invocation) throws Throwable {
+                return nodeIterator.next();
+            }
+        });
+        return mockNodeIterator;
     }
 }
