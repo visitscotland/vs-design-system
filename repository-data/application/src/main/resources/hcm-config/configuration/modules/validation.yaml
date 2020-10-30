@@ -13,6 +13,9 @@ definitions:
     /hippo:configuration/hippo:modules/validation/hippo:moduleconfig/visitscotland:image-validator:
       jcr:primaryType: hipposys:moduleconfig
       hipposys:className: com.visitscotland.brmx.validator.ImageValidator
+    /hippo:configuration/hippo:modules/validation/hippo:moduleconfig/visitscotland:link-validator:
+      jcr:primaryType: hipposys:moduleconfig
+      hipposys:className: com.visitscotland.brmx.validator.LinkValidator
     /hippo:configuration/hippo:modules/validation/hippo:moduleconfig/visitscotland:url-validator:
       jcr:primaryType: hipposys:moduleconfig
       hipposys:className: org.onehippo.cms.services.validation.validator.RegExpValidator

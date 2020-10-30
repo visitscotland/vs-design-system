@@ -9,6 +9,8 @@ import java.util.List;
 @HippoEssentialsGenerated(internalName = "visitscotland:SharedLink")
 @Node(jcrType = "visitscotland:SharedLink")
 public class SharedLink extends BaseDocument implements Linkable {
+    public static final String LINK_TYPES = "visitscotland:linkTypes";
+
     @HippoEssentialsGenerated(internalName = "visitscotland:title")
     public String getTitle() {
         return getSingleProperty("visitscotland:title");
