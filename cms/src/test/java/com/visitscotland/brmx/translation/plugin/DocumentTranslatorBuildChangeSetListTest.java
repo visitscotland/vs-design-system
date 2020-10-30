@@ -1,6 +1,7 @@
 package com.visitscotland.brmx.translation.plugin;
 
 import com.visitscotland.brmx.beans.Itinerary;
+import com.visitscotland.brmx.translation.SessionFactory;
 import org.hippoecm.frontend.translation.ILocaleProvider;
 import org.hippoecm.hst.content.beans.standard.HippoBean;
 import org.hippoecm.repository.api.HippoNode;
@@ -17,14 +18,15 @@ import javax.jcr.Node;
 import javax.jcr.NodeIterator;
 import java.util.*;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.ArgumentMatchers.same;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 public class DocumentTranslatorBuildChangeSetListTest {
-    public static final String JCR_TYPE = "visitscotland:Page";
+    public static final String PAGE_TYPE = "visitscotland:Page";
     private DocumentTranslator documentTranslator;
     @Mock
     private HippoNode mockSourceNode;
@@ -69,6 +71,7 @@ public class DocumentTranslatorBuildChangeSetListTest {
         lenient().doReturn(mockFrenchChangeSet).when(mockChangeSetFactory).createChangeSet(same(mockFrenchLocale));
 
         lenient().doReturn(mockSourceDocument).when(mockJcrDocumentFactory).createFromNode(same(mockSourceNode));
+
     }
 
     @Test
@@ -83,6 +86,7 @@ public class DocumentTranslatorBuildChangeSetListTest {
     @Test
     public void buildDocumentChangeSetList_sourceDocumentTranslated_notPageType() throws Exception {
         // The source document is already translated into every target locale and is not a Page type
+        // and contains no hippo:mirror children
         // Should return an empty ChangeSet list
         when(mockSourceDocument.hasTranslation(same(mockItalianLocale))).thenReturn(true);
         when(mockSourceDocument.hasTranslation(same(mockFrenchLocale))).thenReturn(true);
@@ -90,7 +94,11 @@ public class DocumentTranslatorBuildChangeSetListTest {
 
         HippoBean mockHippoBean = mock(HippoBean.class);
         when(mockSourceDocument.asHippoBean()).thenReturn(mockHippoBean);
-        when(mockSourceDocument.isNodeType(eq(JCR_TYPE))).thenReturn(false);
+        when(mockSourceDocument.isNodeType(eq(PAGE_TYPE))).thenReturn(false);
+        when(mockHippoBean.getNode()).thenReturn(mockSourceNode);
+
+        NodeIterator emptyIterator = createNodeIterator();
+        when(mockSourceNode.getNodes()).thenReturn(emptyIterator);
 
         List<ChangeSet> result = documentTranslator.buildChangeSetList(mockSourceNode, targetLocaleList);
 
@@ -107,6 +115,7 @@ public class DocumentTranslatorBuildChangeSetListTest {
     @Test
     public void buildDocumentChangeSetList_sourceDocumentHasMissingLocales_notPageType() throws Exception {
         // The source document has missing locale translations, is not a Page type,
+        // With no nested hippo:mirror nodes.
         // Should return a ChangeSet for each missing locale
         when(mockSourceDocument.hasTranslation(same(mockItalianLocale))).thenReturn(true);
         when(mockSourceDocument.hasTranslation(same(mockFrenchLocale))).thenReturn(false);
@@ -114,17 +123,21 @@ public class DocumentTranslatorBuildChangeSetListTest {
 
         HippoBean mockHippoBean = mock(HippoBean.class);
         when(mockSourceDocument.asHippoBean()).thenReturn(mockHippoBean);
-        when(mockSourceDocument.isNodeType(eq(JCR_TYPE))).thenReturn(false);
+        when(mockSourceDocument.isNodeType(eq(PAGE_TYPE))).thenReturn(false);
+        when(mockHippoBean.getNode()).thenReturn(mockSourceNode);
+
+        NodeIterator emptyIterator = createNodeIterator();
+        when(mockSourceNode.getNodes()).thenReturn(emptyIterator);
 
         List<ChangeSet> result = documentTranslator.buildChangeSetList(mockSourceNode, targetLocaleList);
 
         assertEquals(2, result.size());
 
-        verify(mockItalianChangeSet, never()).addDocument(any(JcrDocument.class));
-        verify(mockFrenchChangeSet).addDocument(same(mockSourceDocument));
-        verify(mockFrenchChangeSet, atMostOnce()).addDocument(any(JcrDocument.class));
-        verify(mockSpanishChangeSet).addDocument(same(mockSourceDocument));
-        verify(mockSpanishChangeSet, atMostOnce()).addDocument(any(JcrDocument.class));
+        verify(mockItalianChangeSet, never()).addDocument(any(JcrDocument.class), anyBoolean());
+        verify(mockFrenchChangeSet).addDocument(same(mockSourceDocument), anyBoolean());
+        verify(mockFrenchChangeSet, atMostOnce()).addDocument(any(JcrDocument.class), anyBoolean());
+        verify(mockSpanishChangeSet).addDocument(same(mockSourceDocument), anyBoolean());
+        verify(mockSpanishChangeSet, atMostOnce()).addDocument(any(JcrDocument.class), anyBoolean());
 
         verify(mockItalianChangeSet).populateFolders(same(mockSourceDocument));
         verify(mockFrenchChangeSet).populateFolders(same(mockSourceDocument));
@@ -145,6 +158,10 @@ public class DocumentTranslatorBuildChangeSetListTest {
 
         Itinerary mockHippoBean = mock(Itinerary.class);
         when(mockHippoBean.getChildJcrTypes()).thenReturn(new String[] {"type1", "type2"});
+        when(mockHippoBean.getNode()).thenReturn(mockSourceNode);
+
+        NodeIterator emptyIterator = createNodeIterator();
+        when(mockSourceNode.getNodes()).thenReturn(emptyIterator);
 
         Node mockContainingFolder = mock(Node.class);
         NodeIterator mockNodeIterator = mock(NodeIterator.class);
@@ -153,7 +170,7 @@ public class DocumentTranslatorBuildChangeSetListTest {
 
         when(mockSourceDocument.getContainingFolder()).thenReturn(mockContainingFolder);
         when(mockSourceDocument.asHippoBean()).thenReturn(mockHippoBean);
-        when(mockSourceDocument.isNodeType(eq(JCR_TYPE))).thenReturn(true);
+        when(mockSourceDocument.isNodeType(eq(PAGE_TYPE))).thenReturn(true);
 
         List<ChangeSet> result = documentTranslator.buildChangeSetList(mockSourceNode, targetLocaleList);
 
@@ -181,7 +198,10 @@ public class DocumentTranslatorBuildChangeSetListTest {
         when(mockSourceDocument.hasTranslation(same(mockSpanishLocale))).thenReturn(true);
 
         Itinerary mockHippoBean = mock(Itinerary.class);
-        when(mockHippoBean.getChildJcrTypes()).thenReturn(new String[] {"type1", "type2"});
+        when(mockHippoBean.getNode()).thenReturn(mockSourceNode);
+
+        NodeIterator emptyIterator = createNodeIterator();
+        when(mockSourceNode.getNodes()).thenReturn(emptyIterator);
 
         HippoNode mockFolderType = createMockSibling("hippostd:folder");
         HippoNode mockOtherType = createMockSibling("some:other");
@@ -207,7 +227,7 @@ public class DocumentTranslatorBuildChangeSetListTest {
 
         when(mockSourceDocument.getContainingFolder()).thenReturn(mockContainingFolder);
         when(mockSourceDocument.asHippoBean()).thenReturn(mockHippoBean);
-        when(mockSourceDocument.isNodeType(eq(JCR_TYPE))).thenReturn(true);
+        when(mockSourceDocument.isNodeType(eq(PAGE_TYPE))).thenReturn(true);
 
         List<ChangeSet> result = documentTranslator.buildChangeSetList(mockSourceNode, targetLocaleList);
 
@@ -237,6 +257,10 @@ public class DocumentTranslatorBuildChangeSetListTest {
 
         Itinerary mockHippoBean = mock(Itinerary.class);
         when(mockHippoBean.getChildJcrTypes()).thenReturn(new String[] {"type1", "type2"});
+        when(mockHippoBean.getNode()).thenReturn(mockSourceNode);
+
+        NodeIterator emptyIterator = createNodeIterator();
+        when(mockSourceNode.getNodes()).thenReturn(emptyIterator);
 
         HippoNode mockFolderType = createMockSibling("hippostd:folder");
         HippoNode mockOtherType = createMockSibling("some:other");
@@ -253,12 +277,17 @@ public class DocumentTranslatorBuildChangeSetListTest {
         when(mockTranslatedDocument.isNodeType(ArgumentMatchers.<String>any())).thenReturn(false);
 
         JcrDocument mockTranslationSiblingDocument = mock(JcrDocument.class);
+        Node mockTranslationSiblingNode = mock(Node.class);
         doReturn(mockTranslationSiblingDocument)
                 .when(mockJcrDocumentFactory).createFromNode(same(mockTranslationSibling));
         when(mockTranslationSiblingDocument.isNodeType(eq("type1"), eq("type2"))).thenReturn(true);
         when(mockTranslationSiblingDocument.hasTranslation(any(ILocaleProvider.HippoLocale.class))).thenReturn(true);
         HippoBean mockTranslationSiblingHippoBean = mock(HippoBean.class);
         when(mockTranslationSiblingDocument.asHippoBean()).thenReturn(mockTranslationSiblingHippoBean);
+        when(mockTranslationSiblingHippoBean.getNode()).thenReturn(mockTranslationSiblingNode);
+
+        NodeIterator emptySiblingIterator = createNodeIterator();
+        when(mockTranslationSiblingNode.getNodes()).thenReturn(emptySiblingIterator);
 
         HippoNode mockContainingFolder = mock(HippoNode.class);
         when(mockContainingFolder.getNodes()).thenAnswer(new Answer<NodeIterator>() {
@@ -271,7 +300,7 @@ public class DocumentTranslatorBuildChangeSetListTest {
 
         when(mockSourceDocument.getContainingFolder()).thenReturn(mockContainingFolder);
         when(mockSourceDocument.asHippoBean()).thenReturn(mockHippoBean);
-        when(mockSourceDocument.isNodeType(eq(JCR_TYPE))).thenReturn(true);
+        when(mockSourceDocument.isNodeType(eq(PAGE_TYPE))).thenReturn(true);
 
         List<ChangeSet> result = documentTranslator.buildChangeSetList(mockSourceNode, targetLocaleList);
 
@@ -302,6 +331,10 @@ public class DocumentTranslatorBuildChangeSetListTest {
 
         Itinerary mockHippoBean = mock(Itinerary.class);
         when(mockHippoBean.getChildJcrTypes()).thenReturn(new String[] {"type1", "type2"});
+        when(mockHippoBean.getNode()).thenReturn(mockSourceNode);
+
+        NodeIterator emptyIterator = createNodeIterator();
+        when(mockSourceNode.getNodes()).thenReturn(emptyIterator);
 
         HippoNode mockFolderType = createMockSibling("hippostd:folder");
         HippoNode mockOtherType = createMockSibling("some:other");
@@ -318,6 +351,7 @@ public class DocumentTranslatorBuildChangeSetListTest {
         when(mockTranslatedDocument.isNodeType(ArgumentMatchers.<String>any())).thenReturn(false);
 
         JcrDocument mockTranslationSiblingDocument = mock(JcrDocument.class);
+        Node mockTranslationSiblingNode = mock(Node.class);
         doReturn(mockTranslationSiblingDocument)
                 .when(mockJcrDocumentFactory).createFromNode(same(mockTranslationSibling));
         when(mockTranslationSiblingDocument.isNodeType(eq("type1"), eq("type2"))).thenReturn(true);
@@ -326,6 +360,10 @@ public class DocumentTranslatorBuildChangeSetListTest {
         when(mockTranslationSiblingDocument.hasTranslation(same(mockSpanishLocale))).thenReturn(true);
         HippoBean mockTranslationSiblingHippoBean = mock(HippoBean.class);
         when(mockTranslationSiblingDocument.asHippoBean()).thenReturn(mockTranslationSiblingHippoBean);
+        when(mockTranslationSiblingHippoBean.getNode()).thenReturn(mockTranslationSiblingNode);
+
+        NodeIterator emptySiblingIterator = createNodeIterator();
+        when(mockTranslationSiblingNode.getNodes()).thenReturn(emptySiblingIterator);
 
         HippoNode mockContainingFolder = mock(HippoNode.class);
         when(mockContainingFolder.getNodes()).thenAnswer(new Answer<NodeIterator>() {
@@ -338,17 +376,17 @@ public class DocumentTranslatorBuildChangeSetListTest {
 
         when(mockSourceDocument.getContainingFolder()).thenReturn(mockContainingFolder);
         when(mockSourceDocument.asHippoBean()).thenReturn(mockHippoBean);
-        when(mockSourceDocument.isNodeType(eq(JCR_TYPE))).thenReturn(true);
+        when(mockSourceDocument.isNodeType(eq(PAGE_TYPE))).thenReturn(true);
 
         List<ChangeSet> result = documentTranslator.buildChangeSetList(mockSourceNode, targetLocaleList);
 
         assertEquals(2, result.size());
 
-        verify(mockSpanishChangeSet, never()).addDocument(any(JcrDocument.class));
-        verify(mockFrenchChangeSet).addDocument(same(mockTranslationSiblingDocument));
-        verify(mockFrenchChangeSet, atMostOnce()).addDocument(any(JcrDocument.class));
-        verify(mockItalianChangeSet).addDocument(same(mockTranslationSiblingDocument));
-        verify(mockItalianChangeSet, atMostOnce()).addDocument(any(JcrDocument.class));
+        verify(mockSpanishChangeSet, never()).addDocument(any(JcrDocument.class), anyBoolean());
+        verify(mockFrenchChangeSet).addDocument(same(mockTranslationSiblingDocument), anyBoolean());
+        verify(mockFrenchChangeSet, atMostOnce()).addDocument(any(JcrDocument.class), anyBoolean());
+        verify(mockItalianChangeSet).addDocument(same(mockTranslationSiblingDocument), anyBoolean());
+        verify(mockItalianChangeSet, atMostOnce()).addDocument(any(JcrDocument.class), anyBoolean());
 
         verify(mockItalianChangeSet).populateFolders(same(mockSourceDocument));
         verify(mockFrenchChangeSet).populateFolders(same(mockSourceDocument));
@@ -376,7 +414,7 @@ public class DocumentTranslatorBuildChangeSetListTest {
                 documentList.add(invocation.getArgument(0));
                 return null;
             }
-        }).when(mockChangeSet).addDocument(any(JcrDocument.class));
+        }).when(mockChangeSet).addDocument(any(JcrDocument.class), anyBoolean());
         return mockChangeSet;
     }
 
@@ -384,13 +422,13 @@ public class DocumentTranslatorBuildChangeSetListTest {
         List<Node> nodeList = Arrays.asList(nodes);
         final Iterator<Node> nodeIterator = nodeList.iterator();
         NodeIterator mockNodeIterator = mock(NodeIterator.class);
-        when(mockNodeIterator.hasNext()).thenAnswer(new Answer<Boolean>() {
+        lenient().when(mockNodeIterator.hasNext()).thenAnswer(new Answer<Boolean>() {
             @Override
             public Boolean answer(InvocationOnMock invocation) throws Throwable {
                 return nodeIterator.hasNext();
             }
         });
-        when(mockNodeIterator.nextNode()).thenAnswer(new Answer<Node>() {
+        lenient().when(mockNodeIterator.nextNode()).thenAnswer(new Answer<Node>() {
             @Override
             public Node answer(InvocationOnMock invocation) throws Throwable {
                 return nodeIterator.next();

@@ -1,6 +1,5 @@
 package com.visitscotland.brmx.translation.plugin;
 
-import com.visitscotland.brmx.beans.TranslationLinkContainer;
 import org.apache.commons.lang3.StringUtils;
 import org.hippoecm.addon.workflow.WorkflowSNSException;
 import org.hippoecm.frontend.translation.ILocaleProvider;
@@ -58,13 +57,11 @@ public class ChangeSet {
      * @param document The JcrDocument to be added to the document list
      * @throws RepositoryException
      */
-    public void addDocument(JcrDocument document) throws RepositoryException, ObjectBeanManagerException {
+    public void addDocument(JcrDocument document, boolean isLinkedDocument) throws RepositoryException, ObjectBeanManagerException {
         FolderTranslation documentTranslation = jcrFolderTranslationFactory.createFolderTranslation(document.getHandle(), null);
         documentTranslation.setNamefr(documentTranslation.getName() + " (" + targetLocale.getName().toUpperCase() + ")");
         documentTranslation.setUrlfr(documentTranslation.getUrl());
-        if (document.asHippoBean() instanceof TranslationLinkContainer) {
-            documentTranslation.setContainsTranslationLinks(true);
-        }
+        documentTranslation.setIsLinkedDocument(isLinkedDocument);
         documents.add(documentTranslation);
     }
 
