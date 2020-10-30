@@ -68,7 +68,7 @@ export default {
             border: 2px solid $color-theme-primary;
         }
 
-        .mktoForm .mktoAsterix {
+        .mktoAsterix {
             display: none;
         }
     }
