@@ -16,5 +16,6 @@ definitions:
         must be a negative value.'
       visitscotland:link-image-validator: 'An image is required for non-DMS products.'
       visitscotland:image-validator: 'The image selected does not have any of the required fields (Alt text or caption).Please fill the missing fields or select another image.'
-      visitscotland:link-validator: 'One of the document linked is not allowed, please choose a Page document or Shared link for links or a Stop document for an Itinerary'
+      visitscotland:link-validator: 'The document linked is not allowed, please choose a Page document or Shared link'
+      visitscotland:link-validator#stop: 'The document linked is not allowed, please choose a Stop document for Days'
       visitscotland:url-validator: Enter a valid website URL
