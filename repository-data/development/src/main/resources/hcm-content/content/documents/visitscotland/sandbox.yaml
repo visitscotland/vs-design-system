@@ -3462,6 +3462,115 @@
             /visitscotland:link:
               jcr:primaryType: hippo:mirror
               hippo:docbase: 17a3588b-6cee-439b-acd8-186ceb2067aa
+      /test-link-list:
+        jcr:primaryType: hippo:handle
+        jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
+        jcr:uuid: cf458c60-27d4-4cfe-b5bb-570b1c90c3f9
+        hippo:name: Test link list
+        hippo:versionHistory: 7aa95eea-266c-4785-854e-f0e686ac73f5
+        /test-link-list[1]:
+          jcr:primaryType: visitscotland:Megalinks
+          jcr:mixinTypes: ['mix:referenceable']
+          jcr:uuid: 08a55230-a2b1-4b46-8800-7077fea5b81e
+          hippo:availability: []
+          hippostd:state: draft
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2020-10-30T14:19:10.975Z
+          hippostdpubwf:lastModificationDate: 2020-10-30T14:19:10.975Z
+          hippostdpubwf:lastModifiedBy: admin
+          hippotranslation:id: c308a3b1-d883-46e1-8f66-79762babc0f8
+          hippotranslation:locale: en
+          visitscotland:listLayout: true
+          visitscotland:teaserVisible: true
+          visitscotland:title: This is a list variant
+          /visitscotland:introduction:
+            jcr:primaryType: hippostd:html
+            hippostd:content: <p>Quisque suscipit ac ante commodo tincidunt. Suspendisse
+              potenti. Quisque eget felis in sapien feugiat eleifend eget in dui.
+              Proin at accumsan lectus. Curabitur pellentesque ut nisl nec vestibulum.
+              Ut mattis tortor vel pulvinar mattis. Ut eu elit ac tellus dictum pretium.
+              Curabitur nec massa tincidunt, dapibus lorem vitae, consectetur eros.</p>
+          /visitscotland:megalinkItems[1]:
+            jcr:primaryType: visitscotland:MegalinkItem
+            visitscotland:feature: false
+            /visitscotland:link:
+              jcr:primaryType: hippo:mirror
+              hippo:docbase: 8b4a3c11-8b84-4aa0-bccf-f407d18c1c44
+          /visitscotland:megalinkItems[2]:
+            jcr:primaryType: visitscotland:MegalinkItem
+            visitscotland:feature: false
+            /visitscotland:link:
+              jcr:primaryType: hippo:mirror
+              hippo:docbase: ab8d2643-1517-4a6a-aa86-f5a9c8b5e2c3
+        /test-link-list[2]:
+          jcr:primaryType: visitscotland:Megalinks
+          jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
+          jcr:uuid: 5916fffa-7103-4e80-8bc6-d64f3f21ec19
+          hippo:availability: [preview]
+          hippostd:state: unpublished
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2020-10-30T14:19:10.975Z
+          hippostdpubwf:lastModificationDate: 2020-10-30T14:20:19.100Z
+          hippostdpubwf:lastModifiedBy: admin
+          hippotranslation:id: c308a3b1-d883-46e1-8f66-79762babc0f8
+          hippotranslation:locale: en
+          visitscotland:listLayout: true
+          visitscotland:teaserVisible: true
+          visitscotland:title: This is a list variant
+          /visitscotland:introduction:
+            jcr:primaryType: hippostd:html
+            hippostd:content: <p>Quisque suscipit ac ante commodo tincidunt. Suspendisse
+              potenti. Quisque eget felis in sapien feugiat eleifend eget in dui.
+              Proin at accumsan lectus. Curabitur pellentesque ut nisl nec vestibulum.
+              Ut mattis tortor vel pulvinar mattis. Ut eu elit ac tellus dictum pretium.
+              Curabitur nec massa tincidunt, dapibus lorem vitae, consectetur eros.</p>
+          /visitscotland:megalinkItems[1]:
+            jcr:primaryType: visitscotland:MegalinkItem
+            visitscotland:feature: false
+            /visitscotland:link:
+              jcr:primaryType: hippo:mirror
+              hippo:docbase: 8b4a3c11-8b84-4aa0-bccf-f407d18c1c44
+          /visitscotland:megalinkItems[2]:
+            jcr:primaryType: visitscotland:MegalinkItem
+            visitscotland:feature: false
+            /visitscotland:link:
+              jcr:primaryType: hippo:mirror
+              hippo:docbase: ab8d2643-1517-4a6a-aa86-f5a9c8b5e2c3
+        /test-link-list[3]:
+          jcr:primaryType: visitscotland:Megalinks
+          jcr:mixinTypes: ['mix:referenceable']
+          jcr:uuid: de029a17-caba-4a09-9a28-6eeea1619c0d
+          hippo:availability: [live]
+          hippostd:state: published
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2020-10-30T14:19:10.975Z
+          hippostdpubwf:lastModificationDate: 2020-10-30T14:20:19.100Z
+          hippostdpubwf:lastModifiedBy: admin
+          hippostdpubwf:publicationDate: 2020-10-30T14:20:24.612Z
+          hippotranslation:id: c308a3b1-d883-46e1-8f66-79762babc0f8
+          hippotranslation:locale: en
+          visitscotland:listLayout: true
+          visitscotland:teaserVisible: true
+          visitscotland:title: This is a list variant
+          /visitscotland:introduction:
+            jcr:primaryType: hippostd:html
+            hippostd:content: <p>Quisque suscipit ac ante commodo tincidunt. Suspendisse
+              potenti. Quisque eget felis in sapien feugiat eleifend eget in dui.
+              Proin at accumsan lectus. Curabitur pellentesque ut nisl nec vestibulum.
+              Ut mattis tortor vel pulvinar mattis. Ut eu elit ac tellus dictum pretium.
+              Curabitur nec massa tincidunt, dapibus lorem vitae, consectetur eros.</p>
+          /visitscotland:megalinkItems[1]:
+            jcr:primaryType: visitscotland:MegalinkItem
+            visitscotland:feature: false
+            /visitscotland:link:
+              jcr:primaryType: hippo:mirror
+              hippo:docbase: 8b4a3c11-8b84-4aa0-bccf-f407d18c1c44
+          /visitscotland:megalinkItems[2]:
+            jcr:primaryType: visitscotland:MegalinkItem
+            visitscotland:feature: false
+            /visitscotland:link:
+              jcr:primaryType: hippo:mirror
+              hippo:docbase: ab8d2643-1517-4a6a-aa86-f5a9c8b5e2c3
   /vuex:
     jcr:primaryType: hippostd:folder
     jcr:mixinTypes: ['hippotranslation:translated', 'mix:versionable']
