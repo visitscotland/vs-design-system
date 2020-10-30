@@ -2,29 +2,29 @@
     <VsStretchedLinkCard
         link="https://visitscotland.com"
         :type="linkType"
-        class="megalink-multi-image p-2"
+        class="megalink-link-list p-2"
         :class="{
-            'megalink-multi-image--featured' : featured,
-            'megalink-multi-image--featured-last' : lastFeatured,
+            'megalink-link-list--featured' : featured,
+            'megalink-link-list--featured-last' : lastFeatured,
         }"
     >
         <VsImg
             slot="stretchedCardImage"
             :src="imgSrc"
             :alt="imgAlt"
-            class="megalink-multi-image__img"
+            class="megalink-link-list__img"
         />
         <span
             slot="stretchedCardHeader"
-            class="megalink-multi-image__title"
-        ><!-- @slot Slot to contain heading --><slot name="vsMultiImageHeading" /></span>
+            class="megalink-link-list__title"
+        ><!-- @slot Slot to contain heading --><slot name="vsLinkListHeading" /></span>
 
         <VsRichTextWrapper
             slot="stretchedCardContent"
-            class="lead megalink-multi-image__content"
+            class="lead megalink-link-list__content"
         >
             <!-- @slot Slot to contain content -->
-            <slot name="vsMultiImageContent" />
+            <slot name="vsLinkListContent" />
         </VsRichTextWrapper>
     </VsStretchedLinkCard>
 </template>
@@ -35,12 +35,12 @@ import VsRichTextWrapper from '@components/elements/rich-text-wrapper/RichTextWr
 import VsImg from '@components/elements/img/Img';
 
 /**
-* Megalink multi-image cards to be used in the megalinks component
+* Megalink link list cards to be used in the megalinks component
 * There is a standard and featured variant.
 */
 
 export default {
-    name: 'VsMegalinkMultiImage',
+    name: 'VsMegalinkLinkList',
     status: 'prototype',
     release: '0.0.1',
     components: {
@@ -49,25 +49,6 @@ export default {
         VsImg,
     },
     props: {
-        /**
-        * If the component should be the featured variant
-        */
-        featured: {
-            required: false,
-            type: Boolean,
-            default: false,
-        },
-        /**
-        * If the featured component is the last one
-        */
-        lastFeatured: {
-            required: false,
-            type: Boolean,
-            default: false,
-        },
-        /**
-        * The image to use in the component
-        */
         imgSrc: {
             required: true,
             type: String,
@@ -94,103 +75,7 @@ export default {
 </script>
 
 <style lang="scss">
-    .megalink-multi-image.card {
-        border: none;
-        margin-top: $spacer-7;
-        position: relative;
 
-        .stretched-link {
-            color: $color-base-text;
-            text-decoration: none;
-
-            &:hover {
-                .megalink-multi-image__title {
-                    text-decoration: underline;
-                }
-            }
-
-            &:focus {
-                outline: 1px solid $color-theme-primary;
-            }
-        }
-
-        .card-body {
-            padding: $spacer-4 0 $spacer-2;
-        }
-
-        &:hover {
-            box-shadow: 10px 10px 20px $color-gray-tint-4;
-        }
-
-        .megalink-multi-image__img {
-            max-width: 100%;
-        }
-
-        .megalink-multi-image__title {
-            font-size: 0.875rem;
-            letter-spacing: 0.0875rem;
-        }
-
-        .card-title {
-            margin-bottom: 0;
-        }
-
-        .vs-link__icon {
-            height: 12px;
-            width: 12px;
-        }
-
-        .megalink-multi-image__content {
-            margin-top: $spacer-2;
-
-            p:last-of-type {
-                margin-bottom: 0;
-            }
-        }
-    };
-    @include media-breakpoint-up(xl) {
-        .megalink-multi-image.card {
-            margin-top: $spacer-12;
-
-            .card-body {
-                padding-bottom: $spacer-5;
-            }
-        }
-        .megalink-multi-image--featured.card {
-            display: flex;
-            flex-direction: row;
-            justify-content: flex-start;
-
-            .megalink-multi-image__title {
-                font-size: 1.25rem;
-                letter-spacing: 0.125rem;
-            }
-
-            .vs-link__icon {
-                height: 16px;
-                width: 16px;
-            }
-
-            .megalink-multi-image__img {
-                width: calc(50% - 20px);
-            }
-
-            .megalink-multi-image__content {
-                font-size: 1.125rem;
-                margin-top: $spacer-8;
-            }
-
-            .card-body {
-                max-width: 50%;
-                padding: $spacer-9 5% $spacer-5;
-            }
-
-            &.megalink-multi-image--featured-last {
-                flex-direction: row-reverse;
-                margin-top: $spacer-12;
-            }
-        }
-    }
 </style>
 
 <docs>
@@ -203,56 +88,56 @@ export default {
                     md="6"
                     xl="12"
                 >
-                    <vs-megalink-multi-image
+                    <vs-megalink-link-list
                         featured
                         imgSrc="https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"
                         imgAlt="This is the alt text"
                         linkType="internal"
                     >
-                        <template slot="vsMultiImageHeading">
+                        <template slot="vsLinkListHeading">
                             The Edinburgh International Festival and summer festival
                         </template>
-                        <template slot="vsMultiImageContent">
+                        <template slot="vsLinkListContent">
                             <p>Right across the country, you’ll find amazing places
                             to eat and drink from local markets to renowned
                             restaurants.</p>
                         </template>
-                    </vs-megalink-multi-image>
+                    </vs-megalink-link-list>
                 </VsCol>
                 <VsCol
                     cols="12"
                     md="6"
                     xl="4"
                 >
-                    <vs-megalink-multi-image
+                    <vs-megalink-link-list
                         imgSrc="https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"
                         imgAlt="This is the alt text 1"
                         linkType="external"
                     >
-                        <template slot="vsMultiImageHeading">
+                        <template slot="vsLinkListHeading">
                             Count 7,000 shining stars in the iconic galloway forest
                         </template>
-                        <template slot="vsMultiImageContent">
+                        <template slot="vsLinkListContent">
                             <p>Right across the country, you’ll find amazing
                             places to eat and drink from local markets to renowned
                             restaurants. Here are some recomm…</p>
                         </template>
-                    </vs-megalink-multi-image>
+                    </vs-megalink-link-list>
                 </VsCol>
                 <VsCol
                     cols="12"
                     md="6"
                     xl="4"
                 >
-                    <vs-megalink-multi-image
+                    <vs-megalink-link-list
                         imgSrc="https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"
                         imgAlt="This is the alt text 2"
                         linkType="external"
                     >
-                        <template slot="vsMultiImageHeading">
+                        <template slot="vsLinkListHeading">
                             Count 7,000 shining stars in the iconic galloway forest
                         </template>
-                        <template slot="vsMultiImageContent">
+                        <template slot="vsLinkListContent">
                             <p>Right across the country, you’ll find amazing places
                             to eat and drink
                             from local markets to renowned restaurants.
@@ -266,26 +151,26 @@ export default {
                             from local markets to renowned restaurants.
                             Here are some recomm…</p>
                         </template>
-                    </vs-megalink-multi-image>
+                    </vs-megalink-link-list>
                 </VsCol>
                 <VsCol
                     cols="12"
                     md="6"
                     xl="4"
                 >
-                    <vs-megalink-multi-image
+                    <vs-megalink-link-list
                         imgSrc="https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"
                         linkType="download"
                     >
-                        <template slot="vsMultiImageHeading">
+                        <template slot="vsLinkListHeading">
                             Soar through the air on a boat of Falkirk Wheel (PDF 3MB)
                         </template>
-                        <template slot="vsMultiImageContent">
+                        <template slot="vsLinkListContent">
                             <p>Right across the country, you’ll find amazing
                             places to eat and drink from local markets to renowned
                             restaurants. Here are some recomm…</p>
                         </template>
-                    </vs-megalink-multi-image>
+                    </vs-megalink-link-list>
                 </VsCol>
             </VsRow>
         </VsContainer>
