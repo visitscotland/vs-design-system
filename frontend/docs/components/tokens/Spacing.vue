@@ -3,11 +3,14 @@
         <div
             v-for="(prop, index) in spacingTokens"
             :key="index"
-            class="space"
-            :style="{ lineHeight: prop.value, height: prop.value }"
         >
-            ${{ prop.name.replace(/_/g, "-") }} <span>({{ prop.value }})</span>
+            <div class="spacing-label">${{ prop.name.replace(/_/g, "-") }} <span>({{ prop.value }}) ({{ prop.pixelHeight }}px*)</span></div>
+            <div
+                class="space"
+                :style="{height: prop.calcHeight }">
+            </div>
         </div>
+        <p>*Pixel values calculated at 1rem = 16px</p>
     </div>
 </template>
 
@@ -31,17 +34,22 @@ export default {
     },
     computed: {
         spacingTokens() {
-            let filteredTokens = filter(this.tokens, ["category", "space"]);
+            let filteredTokens = filter(this.tokens, ["category", "space"])
 
             filteredTokens.forEach(element => {
                 try {
-                    element.arrayIndex = parseInt(element.name.split("_")[1]);
+                    element.arrayIndex = parseInt(element.name.split("_")[1])
+                    element.calcHeight = "calc(" + element.value + ")"
+                    element.pixelHeight = this.calculatePixelHeight(element.value)
                 } catch (error) {
                     // Spacer element named incorrectly
-                }
-            });
+                    element.calcHeight = "-"
+                    element.pixelHeight = "-"
 
-            return this.orderData(filteredTokens);
+                }
+            })
+
+            return this.orderData(filteredTokens)
         },
     },
     methods: {
@@ -49,6 +57,10 @@ export default {
             const order = orderBy(data, "arrayIndex", "asc")
             return order
         },
+        calculatePixelHeight(remInput) {
+            let input = remInput.replace(/rem/g, " * 16")
+            return eval(input)
+        }
     },
 }
 </script>
@@ -66,6 +78,12 @@ export default {
   max-width: 1176px;
   width: 100%;
 }
+.spacing-label {
+    span {
+        margin-left: .5rem;
+        font-size: .8rem;
+    }
+}
 .space {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -80,12 +98,6 @@ export default {
   position: relative;
   float: left;
   width: 100%;
-  span {
-    margin-left: 5px;
-    color: $docs-color-silver;
-    user-select: none;
-    font-style: normal;
-  }
 }
 </style>
 
