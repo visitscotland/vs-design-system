@@ -1,6 +1,6 @@
 <!doctype html>
 <#include "../../include/imports.ftl">
-<#include "../macros/modules/marketo/embedded-form.ftl">
+<#include "../macros/modules/embedded-form/embedded-form.ftl">
 
 <html lang="en">
     <head>
