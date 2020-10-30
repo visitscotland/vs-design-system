@@ -26,17 +26,27 @@ export default {
     name: "Spacing",
     data() {
         return {
-            tokens: this.orderData(designTokens.props),
+            tokens: designTokens.props,
         }
     },
     computed: {
         spacingTokens() {
-            return filter(this.tokens, ["category", "space"])
+            let filteredTokens = filter(this.tokens, ["category", "space"]);
+
+            filteredTokens.forEach(element => {
+                try {
+                    element.arrayIndex = parseInt(element.name.split("_")[1]);
+                } catch (error) {
+                    // Spacer element named incorrectly
+                }
+            });
+
+            return this.orderData(filteredTokens);
         },
     },
     methods: {
         orderData(data) {
-            const order = orderBy(data, "category", "asc")
+            const order = orderBy(data, "arrayIndex", "asc")
             return order
         },
     },
