@@ -115,7 +115,6 @@ export default {
         @include media-breakpoint-up(lg) {
             .vs-megalinks__intro {
                 text-align: center;
-                // margin-bottom: $spacer-10;
             }
 
             .vs-megalinks__button {
