@@ -23,11 +23,14 @@
             />
             {{ languageLabel }}
         </span>
+
+        <!-- @slot Default slot to render dropdown items  -->
         <slot />
     </VsDropdown>
 </template>
 
 <script>
+import cookieMixin from '@mixins/cookieMixin';
 import VsIcon from '@components/elements/icon/Icon';
 import VsDropdown from '../../../dropdown/Dropdown';
 
@@ -39,49 +42,35 @@ export default {
         VsDropdown,
         VsIcon,
     },
+    mixins: [
+        cookieMixin,
+    ],
     props: {
+        /**
+         * 'Language' label to be shown or translated before language name.
+         * Example: "Language": English.
+         */
         languageLabel: {
             type: String,
             default: 'Language',
         },
-        currentLocale: {
+        /**
+         * Language locale string.
+         * Example: "en_GB"
+         */
+        language: {
             type: String,
             default: 'en_GB',
         },
     },
-    computed: {
-        selectedLanguage() {
-            return this.currentLocale.substr(0, 2).toUpperCase();
-        },
-        localeCookie() {
-            return this.currentLocale.replace('_', '-').toLowerCase();
-        },
-        translationCookie() {
-            return `/en/${this.currentLocale.substr(0, 2).toLowerCase()}`;
-        },
-    },
     mounted() {
-        this.setCookie('vs_locale', this.localeCookie);
-        this.setCookie('googtrans', this.translationCookie);
-    },
-    methods: {
-        cookieExists(cookie) {
-            return (document.cookie.indexOf(`${cookie}=`) >= 0);
-        },
-        setCookie(name, value) {
-            const expiryDate = new Date();
-            expiryDate.setFullYear(expiryDate.getFullYear() + 1);
+        if (!this.cookieExists('vs_locale')) {
+            this.setCookie('vs_locale', this.localeCookie, true);
+        };
 
-            let cookieString = '';
-            cookieString = `${name}=${value};`;
-            cookieString += 'path=/;';
-
-            if (!this.cookieExists(name)) {
-                cookieString += `expires=${expiryDate};`;
-            };
-
-            document.cookie = cookieString;
-        },
+        if (!this.cookieExists('googtrans')) {
+            this.setCookie('googtrans', this.translationCookie, true);
+        };
     },
 };
 </script>
@@ -237,12 +226,12 @@ export default {
 <docs>
   ```
     <VsGlobalMenuLanguage>
-        <VsGlobalMenuLanguageItem language-name="English" />
-        <VsGlobalMenuLanguageItem language-name="Deutsch" />
-        <VsGlobalMenuLanguageItem language-name="Español" />
-        <VsGlobalMenuLanguageItem language-name="Français" />
-        <VsGlobalMenuLanguageItem language-name="Italiano" />
-        <VsGlobalMenuLanguageItem language-name="Nederlands" />
+        <VsGlobalMenuLanguageItem language-name="English" language="en_EN" />
+        <VsGlobalMenuLanguageItem language-name="Deutsch" language="de_DE" />
+        <VsGlobalMenuLanguageItem language-name="Español" language="es_ES" />
+        <VsGlobalMenuLanguageItem language-name="Français" language="fr_FR" />
+        <VsGlobalMenuLanguageItem language-name="Italiano" language="it_IT" />
+        <VsGlobalMenuLanguageItem language-name="Nederlands" language="nl_NL" />
     </VsGlobalMenuLanguage>
   ```
 </docs>
