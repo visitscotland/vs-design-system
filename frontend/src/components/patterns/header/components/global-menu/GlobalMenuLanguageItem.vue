@@ -2,12 +2,14 @@
     <VsDropdownItem
         class="vs-global-menu__languages__item"
         :href="languageLink"
+        @click.native="setLanguage()"
     >
         {{ languageName }}
     </VsDropdownItem>
 </template>
 
 <script>
+import cookieMixin from '@mixins/cookieMixin';
 import VsDropdownItem from '../../../dropdown/DropdownItem';
 
 export default {
@@ -17,14 +19,38 @@ export default {
     components: {
         VsDropdownItem,
     },
+    mixins: [
+        cookieMixin,
+    ],
     props: {
+        /**
+         * Language name to be shown.
+         * Example: "English"
+         */
         languageName: {
             type: String,
             default: null,
         },
+        /**
+         * Link for the translated page version
+         */
         languageLink: {
             type: String,
             default: null,
+        },
+        /**
+         * Language locale string.
+         * Example: "en_GB"
+         */
+        language: {
+            type: String,
+            default: null,
+        },
+    },
+    methods: {
+        setLanguage() {
+            this.setCookie('vs_locale', this.localeCookie, true);
+            this.setCookie('googtrans', this.translationCookie, true);
         },
     },
 };
