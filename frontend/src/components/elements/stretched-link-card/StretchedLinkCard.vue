@@ -12,6 +12,7 @@
                     :href="link"
                     :type="type"
                     class="stretched-link"
+                    :icon-size="iconSize"
                 >
                     <!-- @slot Contains header content for the card  -->
                     <slot name="stretchedCardHeader" />
@@ -54,6 +55,15 @@ export default {
             type: String,
             required: true,
             validator: (value) => value.match(/(external|internal|download)/),
+        },
+        /**
+        * Size of the link icon - defaults to 'xs'
+        * `xxs, xs, sm, md, lg, xl`)
+        */
+        iconSize: {
+            type: String,
+            default: 'xs',
+            validator: (value) => value.match(/(xxs|xs|sm|md|lg|xl)/),
         },
     },
 };
