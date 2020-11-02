@@ -30,6 +30,11 @@ public class JcrDocument {
     public static final String VARIANT_PUBLISHED = HippoStdNodeType.PUBLISHED;
     public static final String VARIANT_UNPUBLISHED = HippoStdNodeType.UNPUBLISHED;
     public static final String VARIANT_DRAFT = HippoStdNodeType.DRAFT;
+
+    public static final String VS_TRANSLATION_DIFF = "visitscotland:diff";
+    public static final String VS_TRANSLATION_FLAG = "visitscotland:translationFlag";
+    public static final String VS_TRANSLATABLE_TYPE = "visitscotland:translatable";
+
     private Node handle;
     // Do not access directly, will be lazy loaded, use getter
     protected Map<String, Node> variantMap;
@@ -160,6 +165,11 @@ public class JcrDocument {
     public Node getTranslation(String localName) throws RepositoryException {
         HippoTranslatedNode translatedNode = new HippoTranslatedNode(getVariantNode(VARIANT_UNPUBLISHED));
         return translatedNode.getTranslation(localName);
+    }
+
+    public String getLocaleName() throws RepositoryException {
+        HippoTranslatedNode translatedNode = new HippoTranslatedNode(getVariantNode(VARIANT_UNPUBLISHED));
+        return translatedNode.getLocale();
     }
 
     public Set<JcrDocument> getTranslations() throws RepositoryException {

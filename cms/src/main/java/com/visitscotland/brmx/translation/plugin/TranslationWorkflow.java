@@ -20,6 +20,4 @@ public interface TranslationWorkflow extends Workflow {
 
     void saveSession() throws RepositoryException;
 
-    List<JcrDocument> setTranslationRequiredFlag() throws WorkflowException, RepositoryException, RemoteException;
-
 }
