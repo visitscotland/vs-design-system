@@ -1,32 +1,31 @@
 <template>
-    <VsStretchedLinkCard
-        link="https://visitscotland.com"
-        :type="linkType"
-        class="megalink-link-list p-2"
-        :class="{
-            'megalink-link-list--featured' : featured,
-            'megalink-link-list--featured-last' : lastFeatured,
-        }"
-    >
-        <VsImg
-            slot="stretchedCardImage"
-            :src="imgSrc"
-            :alt="imgAlt"
-            class="megalink-link-list__img"
-        />
-        <span
-            slot="stretchedCardHeader"
-            class="megalink-link-list__title"
-        ><!-- @slot Slot to contain heading --><slot name="vsLinkListHeading" /></span>
-
-        <VsRichTextWrapper
-            slot="stretchedCardContent"
-            class="lead megalink-link-list__content"
+    <div class="megalink-link-list">
+        <VsStretchedLinkCard
+            link="https://visitscotland.com"
+            :type="linkType"
+            class="megalink-link-list__wrapper"
+            icon-size="xxs"
         >
-            <!-- @slot Slot to contain content -->
-            <slot name="vsLinkListContent" />
-        </VsRichTextWrapper>
-    </VsStretchedLinkCard>
+            <VsImg
+                slot="stretchedCardImage"
+                :src="imgSrc"
+                :alt="imgAlt"
+                class="megalink-link-list__img"
+            />
+            <span
+                slot="stretchedCardHeader"
+                class="megalink-link-list__title"
+            ><!-- @slot Slot to contain heading --><slot name="vsLinkListHeading" /></span>
+
+            <VsRichTextWrapper
+                slot="stretchedCardContent"
+                class="lead megalink-link-list__content"
+            >
+                <!-- @slot Slot to contain content -->
+                <slot name="vsLinkListContent" />
+            </VsRichTextWrapper>
+        </VsStretchedLinkCard>
+    </div>
 </template>
 
 <script>
@@ -70,110 +69,178 @@ export default {
             required: true,
             validator: (value) => value.match(/(external|internal|download)/),
         },
+        /**
+        * Size of the link icon - defaults to 'xs'
+        * `xxs, xs, sm, md, lg, xl`)
+        */
+        iconSize: {
+            type: String,
+            default: 'xs',
+            validator: (value) => value.match(/(xxs|xs|sm|md|lg|xl)/),
+        },
     },
 };
 </script>
 
 <style lang="scss">
+    .megalink-link-list {
+        border: none;
+        padding: $spacer-2 0 $spacer-3;
+        position: relative;
 
+        &:after {
+            content: '';
+            border-bottom: 1px solid $color-gray-tint-5;
+            position: absolute;
+            width: calc(100% - 16px);
+            left: 8px;
+            bottom: 0;
+        }
+
+        .megalink-link-list__wrapper.card {
+            display: flex;
+            flex-direction: row;
+            padding: $spacer-2;
+            border: none;
+            height: 100%;
+
+            &:hover {
+                box-shadow: 10px 10px 20px $color-gray-tint-4;
+            }
+
+            .stretched-link {
+                text-decoration: none;
+            }
+
+            .card-body {
+                background: none;
+                padding: 0;
+                align-self: flex-start;
+            }
+
+            .megalink-link-list__img {
+                width: 33%;
+                align-self: flex-start;
+                margin-right: $spacer-4;
+            }
+
+            .megalink-link-list__title {
+                font-size: .75rem;
+                letter-spacing: .05rem;
+                line-height: 1.6;
+                color: $color-base-text;
+                text-decoration: none;
+            }
+
+            .card-title {
+                display: flex;
+                margin-bottom: 0;
+
+                & > a {
+                    line-height: 0;
+                }
+            }
+
+            .megalink-link-list__content {
+                display: none;
+            }
+
+             @include media-breakpoint-up(lg) {
+                .megalink-link-list__title {
+                    font-size: .875rem;
+                }
+
+                .megalink-link-list__content {
+                    display: block;
+                    margin: $spacer-2 0 0;
+                    line-height: 1.25;
+                }
+            }
+        }
+    }
 </style>
 
 <docs>
     ```js
     <VsMegalinks>
-        <VsContainer>
-            <VsRow>
-                <VsCol
-                    cols="12"
-                    md="6"
-                    xl="12"
+        <VsRow>
+            <VsCol
+                cols="12"
+                md="6"
+            >
+                <vs-megalink-link-list
+                    imgSrc="https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"
+                    imgAlt="This is the alt text"
+                    linkType="internal"
                 >
-                    <vs-megalink-link-list
-                        featured
-                        imgSrc="https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"
-                        imgAlt="This is the alt text"
-                        linkType="internal"
-                    >
-                        <template slot="vsLinkListHeading">
-                            The Edinburgh International Festival and summer festival
-                        </template>
-                        <template slot="vsLinkListContent">
-                            <p>Right across the country, you’ll find amazing places
-                            to eat and drink from local markets to renowned
-                            restaurants.</p>
-                        </template>
-                    </vs-megalink-link-list>
-                </VsCol>
-                <VsCol
-                    cols="12"
-                    md="6"
-                    xl="4"
+                    <template slot="vsLinkListHeading">
+                        The Edinburgh International Festival and summer festival
+                    </template>
+                    <template slot="vsLinkListContent">
+                        <p>Right across the country, you’ll find amazing places
+                        to eat and drink from local markets to renowned
+                        restaurants.</p>
+                    </template>
+                </vs-megalink-link-list>
+            </VsCol>
+            <VsCol
+                cols="12"
+                md="6"
+            >
+                <vs-megalink-link-list
+                    imgSrc="https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"
+                    imgAlt="This is the alt text 1"
+                    linkType="external"
                 >
-                    <vs-megalink-link-list
-                        imgSrc="https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"
-                        imgAlt="This is the alt text 1"
-                        linkType="external"
-                    >
-                        <template slot="vsLinkListHeading">
-                            Count 7,000 shining stars in the iconic galloway forest
-                        </template>
-                        <template slot="vsLinkListContent">
-                            <p>Right across the country, you’ll find amazing
-                            places to eat and drink from local markets to renowned
-                            restaurants. Here are some recomm…</p>
-                        </template>
-                    </vs-megalink-link-list>
-                </VsCol>
-                <VsCol
-                    cols="12"
-                    md="6"
-                    xl="4"
+                    <template slot="vsLinkListHeading">
+                        Count 7,000 shining stars in the iconic galloway forest
+                    </template>
+                    <template slot="vsLinkListContent">
+                        <p>Right across the country, you’ll find amazing
+                        places to eat and drink from local markets to renowned
+                        restaurants. Here are some recomm…</p>
+                    </template>
+                </vs-megalink-link-list>
+            </VsCol>
+            <VsCol
+                cols="12"
+                md="6"
+            >
+                <vs-megalink-link-list
+                    imgSrc="https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"
+                    imgAlt="This is the alt text 2"
+                    linkType="external"
                 >
-                    <vs-megalink-link-list
-                        imgSrc="https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"
-                        imgAlt="This is the alt text 2"
-                        linkType="external"
-                    >
-                        <template slot="vsLinkListHeading">
-                            Count 7,000 shining stars in the iconic galloway forest
-                        </template>
-                        <template slot="vsLinkListContent">
-                            <p>Right across the country, you’ll find amazing places
-                            to eat and drink
-                            from local markets to renowned restaurants.
-                            Here are some recomm…</p>
-                            <p>Right across the country, you’ll find amazing places
-                            to eat and drink
-                            from local markets to renowned restaurants.
-                            Here are some recomm…</p>
-                            <p>Right across the country, you’ll find amazing places
-                            to eat and drink
-                            from local markets to renowned restaurants.
-                            Here are some recomm…</p>
-                        </template>
-                    </vs-megalink-link-list>
-                </VsCol>
-                <VsCol
-                    cols="12"
-                    md="6"
-                    xl="4"
+                    <template slot="vsLinkListHeading">
+                        Count 7,000 shining stars in the iconic galloway forest
+                    </template>
+                    <template slot="vsLinkListContent">
+                        <p>Right across the country, you’ll find amazing places
+                        to eat and drink
+                        from local markets to renowned restaurants.
+                        Here are some recomm…</p>
+                    </template>
+                </vs-megalink-link-list>
+            </VsCol>
+            <VsCol
+                cols="12"
+                md="6"
+            >
+                <vs-megalink-link-list
+                    imgSrc="https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"
+                    linkType="download"
                 >
-                    <vs-megalink-link-list
-                        imgSrc="https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"
-                        linkType="download"
-                    >
-                        <template slot="vsLinkListHeading">
-                            Soar through the air on a boat of Falkirk Wheel (PDF 3MB)
-                        </template>
-                        <template slot="vsLinkListContent">
-                            <p>Right across the country, you’ll find amazing
-                            places to eat and drink from local markets to renowned
-                            restaurants. Here are some recomm…</p>
-                        </template>
-                    </vs-megalink-link-list>
-                </VsCol>
-            </VsRow>
-        </VsContainer>
+                    <template slot="vsLinkListHeading">
+                        Soar through the air on a boat of Falkirk Wheel (PDF 3MB)
+                    </template>
+                    <template slot="vsLinkListContent">
+                        <p>Right across the country, you’ll find amazing
+                        places to eat and drink from local markets to renowned
+                        restaurants. Here are some recomm…</p>
+                    </template>
+                </vs-megalink-link-list>
+            </VsCol>
+        </VsRow>
     </VsMegalinks>
     ```
 </docs>
