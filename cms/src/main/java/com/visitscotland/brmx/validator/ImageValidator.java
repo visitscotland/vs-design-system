@@ -1,7 +1,7 @@
 package com.visitscotland.brmx.validator;
 
 import com.visitscotland.brmx.beans.Image;
-import com.visitscotland.brmx.translation.plugin.SessionFactory;
+import com.visitscotland.brmx.translation.SessionFactory;
 import org.onehippo.cms.services.validation.api.ValidationContext;
 import org.onehippo.cms.services.validation.api.Validator;
 import org.onehippo.cms.services.validation.api.Violation;

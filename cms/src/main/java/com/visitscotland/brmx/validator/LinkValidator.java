@@ -1,14 +1,12 @@
 package com.visitscotland.brmx.validator;
 
-import com.visitscotland.brmx.translation.plugin.SessionFactory;
-import org.apache.commons.lang.StringUtils;
+import com.visitscotland.brmx.translation.SessionFactory;
 import org.onehippo.cms.services.validation.api.ValidationContext;
 import org.onehippo.cms.services.validation.api.Validator;
 import org.onehippo.cms.services.validation.api.Violation;
 
 import javax.jcr.Node;
 import javax.jcr.RepositoryException;
-import java.util.Collections;
 import java.util.Optional;
 
 import static org.hippoecm.repository.api.HippoNodeType.HIPPO_DOCBASE;
