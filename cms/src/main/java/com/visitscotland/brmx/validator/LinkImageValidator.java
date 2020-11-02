@@ -4,6 +4,7 @@ import com.visitscotland.brmx.beans.InstagramImage;
 import com.visitscotland.brmx.beans.ListicleItem;
 import com.visitscotland.brmx.beans.SharedLink;
 import com.visitscotland.brmx.beans.Stop;
+import com.visitscotland.brmx.translation.SessionFactory;
 import org.onehippo.cms.services.validation.api.ValidationContext;
 import org.onehippo.cms.services.validation.api.Validator;
 import org.onehippo.cms.services.validation.api.Violation;
@@ -21,6 +22,11 @@ import static org.hippoecm.repository.api.HippoNodeType.HIPPO_DOCBASE;
 public class LinkImageValidator implements Validator<Node> {
 
     private static final String EMPTY_IMAGE = "cafebabe-cafe-babe-cafe-babecafebabe";
+    private SessionFactory sessionFactory;
+
+    public LinkImageValidator() {
+        this.sessionFactory = new SessionFactory();
+    }
 
     public Optional<Violation> validate(final ValidationContext context, final Node document) {
         try {
