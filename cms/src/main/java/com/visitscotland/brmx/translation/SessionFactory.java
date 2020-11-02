@@ -1,4 +1,4 @@
-package com.visitscotland.brmx.translation.plugin;
+package com.visitscotland.brmx.translation;
 
 import org.hippoecm.frontend.session.UserSession;
 
@@ -8,5 +8,5 @@ public class SessionFactory {
     public Session getJcrSession() {
         return UserSession.get().getJcrSession();
     }
-
+    public UserSession getUserSession() { return UserSession.get(); }
 }

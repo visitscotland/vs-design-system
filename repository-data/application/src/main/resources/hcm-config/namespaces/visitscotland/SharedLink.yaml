@@ -11,7 +11,7 @@ definitions:
         /hipposysedit:nodetype:
           jcr:primaryType: hipposysedit:nodetype
           jcr:mixinTypes: ['mix:referenceable', 'hipposysedit:remodel']
-          jcr:uuid: 7885b57f-9491-40ff-9327-5f05609a7f30
+          jcr:uuid: bce98ca0-e739-446d-85c3-7bb3d928437b
           hipposysedit:node: true
           hipposysedit:supertype: ['visitscotland:basedocument', 'hippostd:relaxed',
             'hippotranslation:translated']
@@ -91,6 +91,14 @@ definitions:
             hipposysedit:path: visitscotland:linkTypes
             hipposysedit:type: hippo:compound
             hipposysedit:validators: [contentblocks-validator]
+          /translation:
+            jcr:primaryType: hipposysedit:field
+            hipposysedit:mandatory: false
+            hipposysedit:multiple: false
+            hipposysedit:ordered: false
+            hipposysedit:path: visitscotland:translation
+            hipposysedit:primary: false
+            hipposysedit:type: OpenUiString
       /hipposysedit:prototypes:
         jcr:primaryType: hipposysedit:prototypeset
         /hipposysedit:prototype:
@@ -104,7 +112,7 @@ definitions:
           jcr:mixinTypes: ['mix:referenceable']
           visitscotland:title: ''
           visitscotland:teaser: ''
-          jcr:uuid: b1654f98-386b-4e9c-b3bf-97abb7664152
+          jcr:uuid: e8ba223e-bc2a-454a-bcb5-51ef941cd07d
           hippostdpubwf:lastModificationDate: 2020-07-09T14:56:23.791+01:00
           hippostdpubwf:creationDate: 2020-07-09T14:56:23.791+01:00
           /visitscotland:image:
@@ -185,3 +193,13 @@ definitions:
             /cluster.options:
               jcr:primaryType: frontend:pluginconfig
               maxitems: 1
+          /translation:
+            jcr:primaryType: frontend:plugin
+            caption: Translation
+            field: translation
+            hint: ''
+            plugin.class: org.hippoecm.frontend.editor.plugins.field.PropertyFieldPlugin
+            wicket.id: ${cluster.id}.field
+            /cluster.options:
+              jcr:primaryType: frontend:pluginconfig
+              ui.extension: translationDiff

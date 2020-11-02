@@ -14,7 +14,7 @@ import java.util.List;
  */
 @HippoEssentialsGenerated(internalName = "visitscotland:Day")
 @Node(jcrType = "visitscotland:Day")
-public class Day extends BaseDocument implements TranslationLinkContainer {
+public class Day extends BaseDocument {
     @HippoEssentialsGenerated(internalName = "visitscotland:title")
     public String getTitle() {
         return getSingleProperty("visitscotland:title");
@@ -33,11 +33,6 @@ public class Day extends BaseDocument implements TranslationLinkContainer {
     @HippoEssentialsGenerated(internalName = "visitscotland:transports")
     public String[] getTransports() {
         return getMultipleProperty("visitscotland:transports");
-    }
-
-    @Override
-    public String[] getTranslatableLinkNames() {
-        return new String[] { "visitscotland:stops" };
     }
 
     @HippoEssentialsGenerated(internalName = "visitscotland:diff")
