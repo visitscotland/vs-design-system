@@ -71,7 +71,12 @@ public class MenuComponent extends EssentialsMenuComponent {
         if (document != null) {
             for (Locale locale : Properties.locales) {
                 LocalizedURL lan = new LocalizedURL();
-                lan.setLocale(locale);
+                if (locale == null){
+                    lan.setLocale(Locale.UK);
+                } else {
+                    lan.setLocale(locale);
+                }
+
                 lan.setLanguage(locale == null ? "en" : locale.getLanguage());
                 lan.setDisplayName(bundle.getResourceBundle("universal", lan.getLanguage(), request.getLocale()));
 
@@ -102,6 +107,7 @@ public class MenuComponent extends EssentialsMenuComponent {
                             languagePath +
                             request.getRequestContext().getBaseURL().getPathInfo());
                     lan.setExists(false);
+
                 }
                 translatedURL.add(lan);
             }

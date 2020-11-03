@@ -16,10 +16,12 @@
             <vs-global-menu-language current-locale="${currentLocale}"
                                      language-label="${label('navigation.static', 'universal.language')}">
                 <#list localizedURLs as language>
+                    <!-- Language ${language.displayName} -->
                     <vs-global-menu-language-item
                             key="${language.language}"
                             language-link="${language.url}"
                             language-name="${language.displayName}<#-- (${language.isExists()?c}) -->"
+                            language="${language.locale.language}"
                     >
                     </vs-global-menu-language-item>
                 </#list>
