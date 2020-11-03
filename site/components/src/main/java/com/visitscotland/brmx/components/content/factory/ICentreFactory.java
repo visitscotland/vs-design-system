@@ -8,6 +8,7 @@ import com.visitscotland.brmx.beans.mapping.FlatLink;
 import com.visitscotland.brmx.beans.mapping.ICentreModule;
 import com.visitscotland.brmx.beans.mapping.LinkType;
 import com.visitscotland.brmx.beans.mapping.megalinks.EnhancedLink;
+import com.visitscotland.brmx.dms.DMSConstants;
 import com.visitscotland.brmx.dms.DMSDataService;
 import com.visitscotland.brmx.dms.ProductSearchBuilder;
 import com.visitscotland.brmx.utils.HippoUtilsService;
@@ -19,7 +20,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
-//TODO ICentreFactory
 public class ICentreFactory {
 
     private static final Logger logger = LoggerFactory.getLogger(ICentreFactory.class);
@@ -59,16 +59,13 @@ public class ICentreFactory {
         logger.error("The implementation of this module is just a POC. Please correct and complete the implementation");
 
         ICentreModule module = new ICentreModule();
-        ProductSearchBuilder psBuilder = new ProductSearchBuilder();
 
         List<FlatLink> vicList = new ArrayList<>();
         if (!Contract.isEmpty(location)) {
-            psBuilder.location(location);
-
-            psBuilder.productTypes("serv");
-            psBuilder.category("vics");
-            psBuilder.sortBy("alpha");
-            String dmsQuery = psBuilder.build();
+            String dmsQuery = new ProductSearchBuilder().location(location)
+                    .productTypes(DMSConstants.TYPE_SERVICES).category(DMSConstants.CAT_ICENTRE)
+                    .sortBy(DMSConstants.SORT_ALPHA)
+                    .build();
 
             JsonNode node = dmsData.searchResults(null, null, dmsQuery);
 

@@ -77,7 +77,9 @@ public class DMSDataService {
         // therefore, this method might not be correct. Once this method is completed, Some unit tests must be added
         logger.error("This is an stub method that conver product search parameters into map parameters.");
 
-        String dmsUrl = Properties.VS_DMS_SERVICE + "/data/product-search/map" + query.substring(query.lastIndexOf("?")) ;
+        String dmsUrl = psb.buildDataMap();
+
+//        String dmsUrl = String.format(DMSConstants.PRODUCT_SEARCH_DATA_MAP, Properties.VS_DMS_SERVICE, query.substring(query.lastIndexOf("?")+1)) ;
         String responseString = null;
 
         if (locale != null) {

@@ -207,8 +207,8 @@ public class ProductSearchBuilder {
     }
 
     public ProductSearchBuilder proximity(Double proximity){
-        if (validNumber(proximity) && proximity.intValue() > 0){
-            this.proximity = proximity.doubleValue();
+        if (validNumber(proximity) && proximity > 0){
+            this.proximity = proximity;
         }
         return this;
     }
@@ -244,12 +244,26 @@ public class ProductSearchBuilder {
      */
     public String build(){
         if (productTypes == null){
-            throw new RuntimeException(String.format("No types have been defined for this search"));
+            throw new RuntimeException("No types have been defined for this search");
         }
+        return composeUrl(String.format(DMSConstants.PRODUCT_SEARCH, host==null?"":host, path));
+    }
 
-        String compose =  String.format(PRODUCT_SEARCH, host==null?"":host, path);
+    public String buildDataMap(){
+        if (productTypes == null){
+            throw new RuntimeException("No types have been defined for this search");
+        }
+        return composeUrl(String.format(DMSConstants.PRODUCT_SEARCH_DATA_MAP, host==null?"":host));
+    }
 
-        compose = addParams(compose, PRODUCT_TYPE_PARAM, productTypes);
+    /**
+     * Compose the query parameters for the URL
+     *
+     * @param urlPath
+     * @return
+     */
+    private String composeUrl (String urlPath){
+        String compose = addParams(urlPath, PRODUCT_TYPE_PARAM, productTypes);
         //Accommodations MUST deactivate availavility search
         if (path.equals(PATH_ACCOMMODATION)) {
             compose = addParams(compose, AVAILABILITY, "off");
@@ -314,7 +328,7 @@ public class ProductSearchBuilder {
      * @return composed URL with the parameter
      */
     private String addParams(String url, String param, Collection<String> values){
-        if (values == null || values.size() == 0) {
+        if (values == null || values.isEmpty()) {
             return url;
         } else {
             String aux = url;
