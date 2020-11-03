@@ -2,26 +2,18 @@
 <#include "../../../../frontend/components/vs-form.ftl">
 
 <#-- Reference: https://developers.marketo.com/javascript-api/forms/ -->
+<@hst.headContribution category="htmlBodyEndScripts">
+    <script src="//e.visitscotland.com/js/forms2/js/forms2.min.js"></script>
+</@hst.headContribution>
 
 <#macro embeddedForm marketoId>
     <section class="vs-embedded-form">
         <vs-container>
             <vs-row>
                 <vs-col cols="12">
-                    <p>Newsletter form:</p>
+                    <p>Form ID ${marketoId}</p>
 
-                    <vs-form form-id="${marketoId}" />
-
-                    <@hst.headContribution category="htmlBodyEndScripts">
-                        <script src="//e.visitscotland.com/js/forms2/js/forms2.min.js"></script>
-                    </@hst.headContribution>
-
-                    <@hst.headContribution category="htmlBodyEndScripts">
-                        <script type="text/javascript">
-                            <#-- TODO ${label("configuration", "marketo.munchkinId")} -->
-                            <#-- TODO Do we need to proxy app-sjqe.marketo.com? -->
-                        </script>
-                    </@hst.headContribution>
+                    <vs-form form-id="${marketoId}" munchkinId="${label("channel", "marketo.munchkinId")}"/>
                 </vs-col>
             </vs-row>
         </vs-container>
