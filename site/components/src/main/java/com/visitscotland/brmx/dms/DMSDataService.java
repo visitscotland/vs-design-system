@@ -47,7 +47,7 @@ public class DMSDataService {
                 dmsUrl += "&locale=" + locale.getLanguage();
             }
 
-            logger.info("Requesting data to the dms: " + dmsUrl);
+            logger.info("Requesting data to the dms: %s", dmsUrl);
             try {
                 responseString = utils.requestUrl(dmsUrl);
 
@@ -61,7 +61,7 @@ public class DMSDataService {
                     }
                 }
             } catch (JsonProcessingException e){
-                logger.error("The response could not be parsed:\n" + responseString, e);
+                logger.error("The response could not be parsed:\n %s", responseString, e);
             } catch (IOException e){
                 logger.error("An unexpected error happened while connecting to the DMS", e);
             }
@@ -83,7 +83,7 @@ public class DMSDataService {
         String responseString = null;
         String dmsUrl = psb.buildDataMap();
 
-        logger.info("Requesting data to the dms: " + dmsUrl);
+        logger.info("Requesting data to the dms: %s", dmsUrl);
         try {
             responseString = utils.requestUrl(dmsUrl);
 
@@ -97,7 +97,7 @@ public class DMSDataService {
                 }
             }
         } catch (JsonProcessingException e){
-            logger.error("The response could not be parsed:\n" + responseString, e);
+            logger.error("The response could not be parsed:\n %s", responseString, e);
         } catch (IOException e){
             logger.error("An unexpected error happened while connecting to the DMS", e);
         }

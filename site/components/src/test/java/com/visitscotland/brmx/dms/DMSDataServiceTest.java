@@ -17,7 +17,7 @@ import java.util.Locale;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
-public class DMSDataServiceTest {
+class DMSDataServiceTest {
 
     DMSDataService service;
 

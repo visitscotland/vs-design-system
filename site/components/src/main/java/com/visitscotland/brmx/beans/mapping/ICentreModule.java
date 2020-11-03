@@ -14,6 +14,7 @@ public class ICentreModule extends Module{
     private HippoHtml quote;
     private FlatImage quoteImage;
     private EnhancedLink quoteLink;
+    private String description;
     private List<FlatLink> iCentreList;
 
     public String getTitle() {
