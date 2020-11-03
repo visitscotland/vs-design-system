@@ -49,8 +49,11 @@ export default {
     },
     methods: {
         setLanguage() {
-            this.setCookie('vs_locale', this.localeCookie);
-            this.setCookie('googtrans', this.translationCookie);
+            const localeExists = this.cookieExists('vs_locale');
+            const googleExists = this.cookieExists('googtrans');
+
+            this.setCookie('vs_locale', this.localeCookie, !localeExists);
+            this.setCookie('googtrans', this.translationCookie, !googleExists);
         },
     },
 };
