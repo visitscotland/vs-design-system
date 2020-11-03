@@ -66,12 +66,10 @@ export default {
     mounted() {
         if (!this.cookieExists('vs_locale')) {
             this.setCookie('vs_locale', this.localeCookie, true);
-            console.log('selector');
         };
 
         if (!this.cookieExists('googtrans')) {
             this.setCookie('googtrans', this.translationCookie, true);
-            console.log('selector 2');
         };
     },
 };
