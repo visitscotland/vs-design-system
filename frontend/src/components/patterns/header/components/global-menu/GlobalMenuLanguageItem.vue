@@ -49,14 +49,11 @@ export default {
     },
     methods: {
         setLanguage() {
-            console.log('setLanguage called on item');
             const localeExists = this.cookieExists('vs_locale');
             const googleExists = this.cookieExists('googtrans');
 
             this.setCookie('vs_locale', this.localeCookie, !localeExists);
             this.setCookie('googtrans', this.translationCookie, !googleExists);
-            console.log(`vs_locale, ${this.localeCookie}, ${!localeExists}`);
-            console.log(`googtrans, ${this.translationCookie}, ${!googleExists}`);
         },
     },
 };
