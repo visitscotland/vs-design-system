@@ -49,8 +49,8 @@ export default {
     },
     methods: {
         setLanguage() {
-            this.setCookie('vs_locale', this.localeCookie, true);
-            this.setCookie('googtrans', this.translationCookie, true);
+            this.setCookie('vs_locale', this.localeCookie);
+            this.setCookie('googtrans', this.translationCookie);
         },
     },
 };
