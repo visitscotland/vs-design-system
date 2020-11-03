@@ -62,16 +62,16 @@ public class ICentreFactory {
 
         List<FlatLink> vicList = new ArrayList<>();
         if (!Contract.isEmpty(location)) {
-            String dmsQuery = new ProductSearchBuilder().location(location)
+            ProductSearchBuilder dmsQuery = new ProductSearchBuilder().location(location)
                     .productTypes(DMSConstants.TYPE_SERVICES).category(DMSConstants.CAT_ICENTRE)
-                    .sortBy(DMSConstants.SORT_ALPHA)
-                    .build();
+                    .sortBy(DMSConstants.SORT_ALPHA);
 
-            JsonNode node = dmsData.searchResults(null, null, dmsQuery);
+            JsonNode node = dmsData.legacyMapSearch(dmsQuery);
 
             for (JsonNode child : node) {
                 String label = child.get("properties").get("name").asText();
                 //TODO: create url to the DMS product page
+
                 String url = child.get("properties").get("id").asText();
 
                 vicList.add(new FlatLink(label, url, LinkType.INTERNAL));

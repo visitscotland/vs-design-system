@@ -25,9 +25,11 @@ public class ListicleContentComponent extends PageContentComponent<Listicle> {
     private static final Logger logger = LoggerFactory.getLogger(ListicleContentComponent.class);
 
     LinkService linksService;
+    LocationLoader locationLoader;
 
     public ListicleContentComponent(){
         linksService = new LinkService();
+        locationLoader = LocationLoader.getInstance();
     }
 
     @Override
@@ -85,7 +87,7 @@ public class ListicleContentComponent extends PageContentComponent<Listicle> {
                         if (cmsImage != null) {
                             flatImage = new FlatImage(cmsImage,request.getLocale());
                             checkImageErrors(flatImage,request.getLocale(),errors);
-                            LocationObject locationObject = LocationLoader.getLocation(cmsImage.getLocation(), request.getLocale());
+                            LocationObject locationObject = locationLoader.getLocation(cmsImage.getLocation(), request.getLocale());
                             if (locationObject!=null) {
                                 flatImage.setCoordinates(new Coordinates(locationObject.getLatitude(), locationObject.getLongitude()));
                                 if (listicleItem.getListicleItem() != null && !(listicleItem.getListicleItem() instanceof DMSLink)){

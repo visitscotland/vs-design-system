@@ -41,7 +41,8 @@ public class DMSDataService {
         String responseString = null;
 
         if (!Contract.isEmpty(productId)) {
-            String dmsUrl = Properties.VS_DMS_SERVICE + "/data/products/card?id=" + productId;
+            String dmsUrl = String.format(DMSConstants.VS_DMS_PRODUCT_CARD,Properties.VS_DMS_SERVICE);
+            dmsUrl += "id=" + productId;
             if (locale != null) {
                 dmsUrl += "&locale=" + locale.getLanguage();
             }
@@ -70,21 +71,17 @@ public class DMSDataService {
         return null;
     }
 
-    //TODO: Do it right!!!! Use psb instead of locale and query
-    public JsonNode searchResults(ProductSearchBuilder psb, Locale locale, String query){
+    /**
+     * This method invokes the legacy data Map endpoint from a ProductSearchBuilder
+     *
+     * @param psb ProductSearchBuilder
+     *
+     * @return
+     */
+    public JsonNode legacyMapSearch(ProductSearchBuilder psb){
 
-        // TODO: This method is part of POC for iCentre and Iknow modules, The requirements hasn't been signed of and
-        // therefore, this method might not be correct. Once this method is completed, Some unit tests must be added
-        logger.error("This is an stub method that conver product search parameters into map parameters.");
-
-        String dmsUrl = psb.buildDataMap();
-
-//        String dmsUrl = String.format(DMSConstants.PRODUCT_SEARCH_DATA_MAP, Properties.VS_DMS_SERVICE, query.substring(query.lastIndexOf("?")+1)) ;
         String responseString = null;
-
-        if (locale != null) {
-            dmsUrl += "&locale=" + locale.getLanguage();
-        }
+        String dmsUrl = psb.buildDataMap();
 
         logger.info("Requesting data to the dms: " + dmsUrl);
         try {

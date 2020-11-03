@@ -7,9 +7,13 @@ public class DMSConstants {
 
     public static final String SORT_ALPHA = "alpha";
 
-    static final String PRODUCT_SEARCH = "%s/info/%s/search-results?";
+    //Endpoints
+    public static final String PRODUCT_SEARCH = "%s/info/%s/search-results?";
+    public static final String PRODUCT_SEARCH_DATA_MAP = "%s/data/product-search/map?";
+    public static final String VS_DMS_PRODUCT_CARD = "%s/data/products/card?";
 
-    static final String PRODUCT_SEARCH_DATA_MAP = "%s/data/product-search/map?";
+    //Parameters
+    public static final String ID = "id";
 
 
 }

@@ -6,6 +6,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.visitscotland.brmx.beans.ICentre;
 import com.visitscotland.brmx.beans.mapping.ICentreModule;
 import com.visitscotland.brmx.dms.DMSDataService;
+import com.visitscotland.brmx.dms.ProductSearchBuilder;
 import com.visitscotland.brmx.utils.HippoUtilsService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -62,12 +63,12 @@ public class ICentreFactoryTest {
         String location = "Edinburgh";
         JsonNode node = new ObjectMapper().readTree(MOCK_JSON);
 
-        ArgumentCaptor<String> captor = ArgumentCaptor.forClass(String.class);
-        doReturn(node).when(dmsData).searchResults(eq(null), eq(null), captor.capture());
+        ArgumentCaptor<ProductSearchBuilder> captor = ArgumentCaptor.forClass(ProductSearchBuilder.class);
+        doReturn(node).when(dmsData).legacyMapSearch(captor.capture());
 
         ICentreModule module = factory.getModule(iCentreMock(), Locale.UK, location);
 
-        assertTrue(captor.getValue().contains(location), "The queryString " +captor.getValue()+ "does not contain "+ location);
+        assertTrue(captor.getValue().build().contains(location), "The queryString " +captor.getValue()+ "does not contain "+ location);
         assertNotNull(module);
     }
 

@@ -79,9 +79,12 @@ public class ProductSearchBuilder {
     private Set<String> facilities = new TreeSet<>();
     private Set<String> ratings = new TreeSet<>();
 
+    private LocationLoader locationLoader;
+
     public ProductSearchBuilder(){
         this.order = Order.NONE;
         this.proximity = DEFAULT_PROXIMITY;
+        this.locationLoader = LocationLoader.getInstance();
     }
 
     /**
@@ -200,7 +203,7 @@ public class ProductSearchBuilder {
     }
 
     public ProductSearchBuilder location(String location){
-        if (valid(location) && LocationLoader.getLocation(location, null) != null){
+        if (valid(location) && locationLoader.getLocation(location, null) != null){
             this.location = location;
         }
         return this;
@@ -249,6 +252,7 @@ public class ProductSearchBuilder {
         return composeUrl(String.format(DMSConstants.PRODUCT_SEARCH, host==null?"":host, path));
     }
 
+    //TODO Test
     public String buildDataMap(){
         if (productTypes == null){
             throw new RuntimeException("No types have been defined for this search");
@@ -271,7 +275,7 @@ public class ProductSearchBuilder {
 
         //The list of parameters is different if a location is provided from latitude and longitude
         if (location != null) {
-            LocationObject loc = LocationLoader.getLocation(location, locale);
+            LocationObject loc = locationLoader.getLocation(location, locale);
 
             compose = addParams(compose, "POLYGON".equals(loc.getType()) ? LOCATION_POLYGON_PARAM : LOCATION_PLACE_PARAM, loc.getKey());
             compose = addParams(compose, PROXIMITY_LOCATION_PARAM, proximity.toString());
