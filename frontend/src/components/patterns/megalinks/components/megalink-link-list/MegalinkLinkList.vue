@@ -144,8 +144,10 @@ export default {
             .megalink-link-list__content {
                 display: none;
             }
+        }
 
-             @include media-breakpoint-up(lg) {
+        @include media-breakpoint-up(lg) {
+            .megalink-link-list__wrapper.card {
                 .megalink-link-list__title {
                     font-size: .875rem;
                 }
