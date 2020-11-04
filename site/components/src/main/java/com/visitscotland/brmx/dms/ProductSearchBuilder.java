@@ -96,6 +96,7 @@ public class ProductSearchBuilder {
         return new ProductSearchBuilder();
     }
 
+    //TODO Convert to Languages
     public ProductSearchBuilder locale(Locale locale){
         if (locale != null) {
             for (Locale loc : Properties.locales) {

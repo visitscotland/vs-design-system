@@ -15,7 +15,7 @@ public class ICentreModule extends Module{
     private FlatImage quoteImage;
     private EnhancedLink quoteLink;
     private String description;
-    private List<FlatLink> iCentreList;
+    private List<FlatLink> links;
 
     public String getTitle() {
         return title;
@@ -73,11 +73,19 @@ public class ICentreModule extends Module{
         this.quoteLink = quoteLink;
     }
 
-    public List<FlatLink> getiCentreList() {
-        return iCentreList;
+    public List<FlatLink> getLinks() {
+        return links;
     }
 
-    public void setiCentreList(List<FlatLink> iCentreList) {
-        this.iCentreList = iCentreList;
+    public void setLinks(List<FlatLink> links) {
+        this.links = links;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }

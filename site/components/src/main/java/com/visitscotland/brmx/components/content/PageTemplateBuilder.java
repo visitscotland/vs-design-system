@@ -73,14 +73,12 @@ public class PageTemplateBuilder {
 
                 links.add(al);
 
-                logger.info("A Megalinks module was found. Type " + al.getType());
+                logger.info("A Megalinks module was found. Type {}", al.getType());
             } else if (item instanceof TourismInformation) {
                 TourismInformation touristInfo = (TourismInformation) item;
 
-                //TODO IcentreModule
                 ICentreModule iCentreModule = iCentreFactory.getModule(touristInfo.getICentre(), request.getLocale(), location);
-
-                IKnowModule iKnowModule = iKnowFactory.getModule(touristInfo.getIKnow(), location);
+                IKnowModule iKnowModule = iKnowFactory.getIKnowModule(touristInfo.getIKnow(), location, request.getLocale());
 
                 if (iCentreModule != null) {
                     iCentreModule.setHippoBean(item);

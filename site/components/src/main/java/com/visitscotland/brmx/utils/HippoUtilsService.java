@@ -96,7 +96,6 @@ public class HippoUtilsService {
                 .createQuery(jcrNode).execute().getHippoBeans().nextHippoBean();
 
         return bean.getObjectConverter().getObject(bean.getNode());
-
     }
 
     public HippoBean getBeanForResolvedSiteMapItem(HstRequest request, ResolvedSiteMapItem sitemapItem) {
