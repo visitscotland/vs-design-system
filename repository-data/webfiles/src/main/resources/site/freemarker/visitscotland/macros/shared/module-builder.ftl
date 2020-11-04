@@ -27,11 +27,11 @@
         <#elseif module.getType()== "ListLinksModule">
             <@megalinks item=module type=module.getType() />
 
-        <#elseif module.getType()== "ICentreModule">
+        <#--  <#elseif module.getType()== "ICentreModule">
             <@icentre module/>
 
         <#elseif module.getType()== "IKnowModule">
-            <@iknow module/>
+            <@iknow module/>  -->
 
         </#if>
     </div>
