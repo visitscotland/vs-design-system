@@ -3,10 +3,11 @@ import VsMegalinks from '../Megalinks';
 
 const factoryShallowMount = () => shallowMount(VsMegalinks, {
     propsData: {
+        title: 'A megalinks title',
         buttonLink: 'http://www.visitscotland.com',
+        variant: 'multi-image',
     },
     slots: {
-        vsMegalinksHeading: 'Megalinks heading text',
         vsMegalinksIntro: '<p>Megalinks intro text</p>',
         vsMegalinksButton: 'Megalinks button text',
     },
@@ -24,14 +25,27 @@ describe('VsMegalinks', () => {
             });
             expect(wrapper.find('.vs-megalinks__button').exists()).toBe(false);
         });
+
+        it('should render a variant class', () => {
+            const wrapper = factoryShallowMount();
+
+            expect(wrapper.find('.vs-megalinks--multi-image').exists()).toBe(true);
+        });
+
+        it('should only show the intro if there is a heading', async() => {
+            const wrapper = factoryShallowMount();
+
+            expect(wrapper.find('.vs-megalinks__intro').exists()).toBe(true);
+
+            await wrapper.setProps({
+                title: '',
+            });
+            expect(wrapper.find('.vs-megalinks__intro').exists()).toBe(false);
+        });
     });
 
     describe(':slots', () => {
         const wrapper = factoryShallowMount();
-
-        it('renders content inserted in a vsMegalinksHeading slot', () => {
-            expect(wrapper.find('.vs-megalinks__heading').text()).toBe('Megalinks heading text');
-        });
 
         it('renders content inserted in a vsMegalinksIntro slot', () => {
             expect(wrapper.find('.vs-megalinks__intro').html()).toContain('<p>Megalinks intro text</p>');
