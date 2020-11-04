@@ -40,7 +40,7 @@
                 </#list>
 
                 <#-- if there's a second featured link -->
-                <#if item.featuredLinks?size gt 1>
+                <#if item.featuredLinks?? && item.featuredLinks?size gt 1>
                     <@multiImageFeatured  lastFeatured='true' feature=item.featuredLinks[1] />
                 </#if>
             </vs-row>

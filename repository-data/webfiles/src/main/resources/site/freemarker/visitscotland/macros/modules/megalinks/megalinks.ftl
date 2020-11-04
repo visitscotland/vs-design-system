@@ -2,6 +2,7 @@
 <#include "../../../../frontend/components/vs-megalinks.ftl">
 <#include "../module-intro/module-intro.ftl">
 <#include "./multi-image/megalinks-multi-image.ftl">
+<#include "./link-list/megalinks-link-list.ftl">
 
 <#macro megalinks item type>
     <#if item.cta??>
@@ -10,13 +11,17 @@
         <#assign ctaExists = "false" />
     </#if>
 
+    <#if type=="MultiImageLinksModule">
+        <#assign variant = "multi-image">
+    <#elseif type=="ListLinksModule">
+        <#assign variant = "link-list">
+    <#elseif type=="SingleImageLinksModule">
+        <#assign variant = "single-image">
+    </#if>
     
-    <vs-megalinks <#if ctaExists == "true">button-link="${item.cta.link}"</#if>>
+    <vs-megalinks variant="${variant}" title="${item.title}" <#if ctaExists == "true">button-link="${item.cta.link}"</#if>>
         <@hst.manageContent hippobean=item.megalinkItem />
         <#-- TO DO: move the intro to a macro -->
-        <template slot="vsMegalinksHeading">
-            ${item.title}
-        </template>
         <vs-rich-text-wrapper
             variant="lead"
             slot="vsMegalinksIntro"
@@ -24,18 +29,22 @@
         >
             <@hst.html hippohtml=item.introduction/>
         </vs-rich-text-wrapper>
+
         <#if type == "MultiImageLinksModule">
             <@multiImage item=item /> 
-        </#if>
 
-        <#if type == "SingleImageLinksModule">
+        <#elseif type == "ListLinksModule">
+            <@linkList item=item /> 
+
+        <#elseif type == "SingleImageLinksModule">
             <@multiImage item=item /> 
         </#if>
 
-        <#if ctaExists == "true">
+       <#if ctaExists == "true">                
             <template slot="vsMegalinksButton">
                 ${item.cta.label}
             </template>
         </#if>
+         
     </vs-megalinks>
 </#macro>
