@@ -10,13 +10,12 @@
                     md="8"
                     offset-md="2"
                 >
-                    <div class="vs-megalinks__intro">
+                    <div class="vs-megalinks__intro" v-if="title">
                         <VsHeading
                             level="2"
                             class="vs-megalinks__heading"
                         >
-                            <!-- @slot Slot to contain optional title -->
-                            <slot name="vsMegalinksHeading" />
+                            {{title}}
                         </VsHeading>
 
                         <!-- @slot Slot to contain optional intro content -->
@@ -65,6 +64,14 @@ export default {
     },
     props: {
         /**
+        * Title for the megalinks component
+        */
+        title: {
+            type: String,
+            required: false,
+            default: null,
+        },
+        /**
         * Component has an optional main link at the bottom
         * this is the href for that
         */
@@ -92,14 +99,23 @@ export default {
         .vs-megalinks__intro {
             width: 100%;
             text-align: center;
+            margin-bottom: $spacer-7;
 
-            P:last-of-type {
+            p:first-of-type {
+                margin-top: $spacer-6;
+            }
+
+            p:last-of-type {
                 margin-bottom: 0;
             }
         }
 
         .vs-megalinks__heading {
             margin-bottom: 0 !important;
+
+            .heading__sub-heading {
+                display: none;
+            }
         }
 
         .vs-megalinks__intro-content {
@@ -108,17 +124,26 @@ export default {
 
         .vs-megalinks__button {
             width: 100%;
-            margin-top: $spacer-8;
             text-align: center;
+            margin-top: $spacer-9;
+        }
+
+        &--link-list {
+            .vs-megalinks__button {
+                margin-top: $spacer-9;
+            }
         }
 
         @include media-breakpoint-up(lg) {
             .vs-megalinks__intro {
                 text-align: center;
+                margin-bottom: $spacer-12;
             }
 
-            .vs-megalinks__button {
-                margin-top: $spacer-10;
+            &--multi-image {
+                .vs-megalinks__button {
+                    margin-top: $spacer-11;
+                }
             }
         }
     }
