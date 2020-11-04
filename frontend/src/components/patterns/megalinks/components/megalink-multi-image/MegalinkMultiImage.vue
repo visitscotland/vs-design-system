@@ -97,6 +97,7 @@ export default {
     .megalink-multi-image.card {
         border: none;
         position: relative;
+        margin-bottom: $spacer-8;
 
         .stretched-link {
             color: $color-base-text;
@@ -149,8 +150,7 @@ export default {
     };
     @include media-breakpoint-up(xl) {
         .megalink-multi-image.card {
-            // margin-top: $spacer-12;
-            margin-top: $spacer-12;
+            margin-bottom: $spacer-11;
 
             .card-body {
                 padding-bottom: $spacer-5;
@@ -189,7 +189,6 @@ export default {
 
             &.megalink-multi-image--featured-last {
                 flex-direction: row-reverse;
-                margin-top: $spacer-12;
             }
         }
     }
