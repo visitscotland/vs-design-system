@@ -96,7 +96,6 @@ export default {
 <style lang="scss">
     .megalink-multi-image.card {
         border: none;
-        margin-top: $spacer-7;
         position: relative;
 
         .stretched-link {
@@ -150,16 +149,19 @@ export default {
     };
     @include media-breakpoint-up(xl) {
         .megalink-multi-image.card {
+            // margin-top: $spacer-12;
             margin-top: $spacer-12;
 
             .card-body {
                 padding-bottom: $spacer-5;
             }
         }
+
         .megalink-multi-image--featured.card {
             display: flex;
             flex-direction: row;
             justify-content: flex-start;
+            margin-top: 0;
 
             .megalink-multi-image__title {
                 font-size: 1.25rem;
