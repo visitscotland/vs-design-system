@@ -19,6 +19,7 @@ import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.MissingResourceException;
 
 public class PageTemplateBuilder {
 
@@ -58,41 +59,47 @@ public class PageTemplateBuilder {
         int singleImageindex = 0;
 
         for (BaseDocument item : getDocument(request).getModules()) {
-            if (item instanceof Megalinks) {
-                LinksModule<?> al = linksFactory.getMegalinkModule((Megalinks) item, request.getLocale());
+            try {
+                logger.info("A {} module was found. Type {}", item.getClass(), item.getPath());
+                if (item instanceof Megalinks) {
+                    LinksModule<?> al = linksFactory.getMegalinkModule((Megalinks) item, request.getLocale());
 
-                if (al.getType().equalsIgnoreCase(SingleImageLinksModule.class.getSimpleName())) {
-                    al.setAlignment(alignment[singleImageindex++ % alignment.length]);
+                    if (al.getType().equalsIgnoreCase(SingleImageLinksModule.class.getSimpleName())) {
+                        al.setAlignment(alignment[singleImageindex++ % alignment.length]);
+                    }
+                    if (Contract.isEmpty(al.getTitle()) && styleIndex > 0) {
+                        styleIndex--;
+                    }
+
+                    al.setTheme(themes[styleIndex++ % themes.length]);
+                    al.setHippoBean(item);
+
+                    links.add(al);
+                } else if (item instanceof TourismInformation) {
+                    TourismInformation touristInfo = (TourismInformation) item;
+
+                    ICentreModule iCentreModule = iCentreFactory.getModule(touristInfo.getICentre(), request.getLocale(), location);
+
+                    IKnowModule iKnowModule = iKnowFactory.getIKnowModule(touristInfo.getIKnow(), location, request.getLocale());
+
+                    if (iCentreModule != null) {
+                        iCentreModule.setHippoBean(item);
+                        links.add(iCentreModule);
+                    } else {
+                        iKnowModule.setHippoBean(item);
+                    }
+
+                    links.add(iKnowModule);
                 }
-                if (Contract.isEmpty(al.getTitle()) && styleIndex > 0) {
-                    styleIndex--;
-                }
-
-                al.setTheme(themes[styleIndex++ % themes.length]);
-                al.setHippoBean(item);
-
-                links.add(al);
-
-                logger.info("A Megalinks module was found. Type {}", al.getType());
-            } else if (item instanceof TourismInformation) {
-                TourismInformation touristInfo = (TourismInformation) item;
-
-                ICentreModule iCentreModule = iCentreFactory.getModule(touristInfo.getICentre(), request.getLocale(), location);
-                IKnowModule iKnowModule = iKnowFactory.getIKnowModule(touristInfo.getIKnow(), location, request.getLocale());
-
-                if (iCentreModule != null) {
-                    iCentreModule.setHippoBean(item);
-                    links.add(iCentreModule);
-                } else {
-                    iKnowModule.setHippoBean(item);
-                }
-
-                links.add(iKnowModule);
-
-                logger.info("A TourismInformation was found");
+            } catch (MissingResourceException e){
+                logger.error("The module for {} couldn't be built because some labels do not exist", item.getPath(), e);
+            } catch (RuntimeException e){
+                logger.error("An unexpected exception happened while building the module for {}", item.getPath(), e);
             }
         }
 
         request.setAttribute(PAGE_ITEMS, links);
     }
+
+
 }

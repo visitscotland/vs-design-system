@@ -37,8 +37,7 @@ public class IKnowFactory {
         IKnowModule module = new IKnowModule ();
 
         if (Contract.isEmpty(document.getTitle())){
-            //TODO: Create labels
-            module.setTitle(bundle.getResourceBundle("iknow.title.default", BUNDLE_ID, locale));
+            module.setTitle(bundle.getResourceBundle(BUNDLE_ID,"iknow.title.default", locale));
         } else {
             module.setTitle(document.getTitle());
         }
@@ -49,9 +48,9 @@ public class IKnowFactory {
 
         //TODO get prodTypes from Labels (Configuration)
         //TODO Chekc with http://localhost:8080/cms/content/path/content/documents/administration/options/product-search
+
         link.setLink(new ProductSearchBuilder().locale(locale).productTypes(DMSConstants.TYPE_SEE_DO).award(DMSConstants.AWARD_IKNOW).location(location).build());
-        //TODO: Create labels
-        link.setLabel(bundle.getResourceBundle("iknow.link.label", BUNDLE_ID, locale));
+        link.setLabel(bundle.getResourceBundle(BUNDLE_ID,"iknow.link.label", locale));
 
         module.setLink(link);
 

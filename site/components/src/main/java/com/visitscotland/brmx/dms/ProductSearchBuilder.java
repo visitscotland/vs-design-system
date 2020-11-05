@@ -107,7 +107,7 @@ public class ProductSearchBuilder {
             }
         }
 
-        logger.info("locale " + (locale != null ? locale.toLanguageTag() : "null") + " not found");
+        logger.info("locale {} not found",  (locale != null ? locale.toLanguageTag() : "null"));
         this.locale = null;
         return this;
     }
@@ -204,7 +204,7 @@ public class ProductSearchBuilder {
     }
 
     public ProductSearchBuilder location(String location){
-        if (valid(location) && locationLoader.getLocation(location, null) != null){
+        if (locationLoader.getLocation(location, null) != null){
             this.location = location;
         }
         return this;

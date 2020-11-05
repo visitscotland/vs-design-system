@@ -74,7 +74,6 @@ public class TouristInformationMockBuilder {
         }
 
         when(quote.getImage()).thenReturn(mock(Image.class));
-
         return this;
     }
 

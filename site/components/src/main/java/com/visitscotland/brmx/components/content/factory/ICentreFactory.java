@@ -64,18 +64,16 @@ public class ICentreFactory {
 
         //Populate Title
         if (Contract.isEmpty(doc.getTitle())) {
-            //TODO: Create labels
-            module.setTitle(bundle.getResourceBundle("icentre.title.default", BUNDLE_ID, locale));
+            module.setTitle(bundle.getResourceBundle(BUNDLE_ID,"icentre.title.default", locale));
         } else {
             module.setTitle(doc.getTitle());
         }
 
         //Populate Description
         if (module.getLinks().size() == 1) {
-            //TODO: Create labels
-            module.setDescription(bundle.getResourceBundle("icentre.description.singleVic", BUNDLE_ID, locale));
+            module.setDescription(bundle.getResourceBundle(BUNDLE_ID,"icentre.description.singleVic", locale));
         } else {
-            module.setDescription(bundle.getResourceBundle("icentre.description.multipleVic", BUNDLE_ID, locale));
+            module.setDescription(bundle.getResourceBundle(BUNDLE_ID,"icentre.description.multipleVic", locale));
         }
 
         //Populate Image
@@ -99,6 +97,9 @@ public class ICentreFactory {
                 if (module.getImage() == null) {
                     module.setImage(link.getImage());
                 }
+            } else if (doc.getQuote().getProduct() != null){
+                //TODO: Content issue
+                logger.warn("The Product for this iCentre ({})is not a valid link.", doc.getPath());
             }
         }
 
@@ -107,7 +108,13 @@ public class ICentreFactory {
             FlatImage image = new FlatImage();
 
             //TODO: Create labels
-            image.setExternalImage(bundle.getResourceBundle("icentre.image.default", BUNDLE_ID, locale));
+            //TODO: Get CMS Image
+
+            try {
+                image.setCmsImage(utils.getDocumentFromNode(bundle.getResourceBundle(BUNDLE_ID,"icentre.image.default", locale)));
+            } catch (Exception e ) {
+                e.printStackTrace();
+            }
             module.setImage(image);
         }
 
@@ -123,8 +130,8 @@ public class ICentreFactory {
             return getVicList(location, locale);
         } else {
             //TODO: Create labels
-            String url = bundle.getResourceBundle("icentre.description.link", BUNDLE_ID, locale);
-            String text = bundle.getResourceBundle("icentre.description.link.text", BUNDLE_ID, locale);
+            String url = bundle.getResourceBundle(BUNDLE_ID,"icentre.description.link",  locale);
+            String text = bundle.getResourceBundle(BUNDLE_ID,"icentre.description.link.text",  locale);
 
             return Collections.singletonList(new FlatLink(text, url, LinkType.INTERNAL));
         }
