@@ -1,28 +1,21 @@
 <template>
     <div class="vs-iknow-partner-item">
-        <VsHeading level="2">
-            Help and advice
-        </VsHeading>
+        <slot name="iknow-heading" />
         <VsSvg
             class="vs-iknow-partner-item__logo"
             path="iKnowScotland"
         />
-        <p class="vs-iknow-partner-item__text">
-            You can also get advice from our accredited
-            <a href="#">iKnow partners in Edinburgh</a>,
-            with excellent local expertise,
-            travel advice and insider tips about must-see
-            attractions and great accommodation in the local area.
+        <div class="vs-iknow-partner-item__text">
+            <slot name="iknow-text" />
             <VsSvg
                 class="vs-iknow-partner-item__coo"
                 path="highland-cow"
             />
-        </p>
+        </div>
     </div>
 </template>
 
 <script>
-import VsHeading from '@components/elements/heading/Heading';
 import VsSvg from '@components/elements/svg/Svg';
 
 export default {
@@ -30,7 +23,6 @@ export default {
     status: 'prototype',
     release: '0.0.1',
     components: {
-        VsHeading,
         VsSvg,
     },
 };
@@ -92,6 +84,15 @@ export default {
 
 <docs>
 ```jsx
-    <vs-iknow-partner-item />
+    <vs-iknow-partner-item>
+        <VsHeading level="2" slot="iknow-heading">Help and help</VsHeading>
+        <p slot="iknow-text">
+            You can also get advice from our accredited
+            <a href="#">iKnow partners in Edinburgh</a>,
+            with excellent local expertise,
+            travel advice and insider tips about must-see
+            attractions and great accommodation in the local area.
+        </p>
+    </vs-iknow-partner-item>
 ```
 </docs>
