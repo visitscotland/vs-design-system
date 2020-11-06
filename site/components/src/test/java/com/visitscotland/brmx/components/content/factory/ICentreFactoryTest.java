@@ -4,6 +4,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.visitscotland.brmx.beans.ICentre;
+import com.visitscotland.brmx.beans.Image;
 import com.visitscotland.brmx.beans.mapping.FlatImage;
 import com.visitscotland.brmx.beans.mapping.ICentreModule;
 import com.visitscotland.brmx.beans.mapping.megalinks.EnhancedLink;
@@ -12,6 +13,8 @@ import com.visitscotland.brmx.dms.ProductSearchBuilder;
 import com.visitscotland.brmx.mock.TouristInformationMockBuilder;
 import com.visitscotland.brmx.services.ResourceBundleService;
 import com.visitscotland.brmx.utils.HippoUtilsService;
+import org.hippoecm.hst.content.beans.ObjectBeanManagerException;
+import org.hippoecm.hst.content.beans.query.exceptions.QueryException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -20,6 +23,7 @@ import org.mockito.ArgumentCaptor;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import javax.jcr.RepositoryException;
 import java.util.Locale;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -74,9 +78,9 @@ class ICentreFactoryTest {
         //Verifies that a link to the iCentres page is defined
         //Verifies that no request to the dms is performed
 
-        when(bundle.getResourceBundle("icentre.description.link", ICentreFactory.BUNDLE_ID, Locale.UK))
+        when(bundle.getResourceBundle(ICentreFactory.BUNDLE_ID, "icentre.description.link", Locale.UK))
                 .thenReturn("url");
-        when(bundle.getResourceBundle("icentre.description.link.text", ICentreFactory.BUNDLE_ID, Locale.UK))
+        when(bundle.getResourceBundle(ICentreFactory.BUNDLE_ID, "icentre.description.link.text", Locale.UK))
                 .thenReturn("link text");
 
         ICentreModule module = factory.getModule(mockBuilder.build().getICentre(), Locale.UK, "");
@@ -135,10 +139,10 @@ class ICentreFactoryTest {
     void getModule_defaultTitle() {
         // Verifies that the default title is used when a title is not defined the document
         ICentreModule module;
-        when(bundle.getResourceBundle(any(), eq(ICentreFactory.BUNDLE_ID), eq(Locale.UK))).thenReturn(null);
+        when(bundle.getResourceBundle(eq(ICentreFactory.BUNDLE_ID), any(), eq(Locale.UK))).thenReturn(null);
 
         //Default title
-        when(bundle.getResourceBundle("icentre.title.default", ICentreFactory.BUNDLE_ID, Locale.UK))
+        when(bundle.getResourceBundle(ICentreFactory.BUNDLE_ID, "icentre.title.default", Locale.UK))
                 .thenReturn("title");
         module = factory.getModule(mockBuilder.build().getICentre(), Locale.UK, null);
         assertEquals("title", module.getTitle());
@@ -150,18 +154,19 @@ class ICentreFactoryTest {
 
     @Test
     @DisplayName("VS-1507 - Image logic")
-    void getModule_getImageFromTheProduct() throws JsonProcessingException {
+    void getModule_getImageFromTheProduct() throws JsonProcessingException, RepositoryException, QueryException, ObjectBeanManagerException {
         // Verifies the following requirement:
         // - Default to generic image of from any iCentre
         // - Option to pull an image from DMS (to match a location mentioned within quote, using CTA link to DMS listing page)
         ICentreModule module;
-        when(bundle.getResourceBundle(any(), eq(ICentreFactory.BUNDLE_ID), eq(Locale.UK))).thenReturn(null);
+        Image defaultImage = mock(Image.class);
+        when(bundle.getResourceBundle(eq(ICentreFactory.BUNDLE_ID), any(), eq(Locale.UK))).thenReturn(null);
 
         //No image Defined
-        when(bundle.getResourceBundle(eq("icentre.image.default"), eq(ICentreFactory.BUNDLE_ID), eq(Locale.UK)))
-                .thenReturn("default-image.jpg");
+        when(utils.getDocumentFromNode((String) null)).thenReturn(defaultImage);
         module = factory.getModule(mockBuilder.build().getICentre(), Locale.UK, null);
-        assertEquals("default-image.jpg", module.getImage().getExternalImage());
+        assertNull(module.getImage().getExternalImage());
+        assertEquals(defaultImage, module.getImage().getCmsImage());
 
         //TODO Verify CMS from this case
         //No image Defined but DMS ID provided
@@ -173,10 +178,11 @@ class ICentreFactoryTest {
         when(linkFactory.createEnhancedLink(any(), any())).thenReturn(link);
         module = factory.getModule(mockBuilder.addQuoteProduct().build().getICentre(), Locale.CANADA_FRENCH, "St. Kilda");
         assertEquals("dms-image.jpg", module.getImage().getExternalImage());
+        assertNull(module.getImage().getCmsImage());
 
         //Image defined in the document
         module = factory.getModule(mockBuilder.addICentreImage().build().getICentre(), Locale.CANADA_FRENCH, "St. Kilda");
-        assertNotNull(module.getImage().getCmsImage());
+        assertNotEquals(defaultImage, module.getImage().getCmsImage());
         assertNull(module.getImage().getExternalImage());
     }
 
@@ -194,18 +200,18 @@ class ICentreFactoryTest {
     @DisplayName("VS-1507 - Different labels for the description depending on the number of iCentres found")
     void getModule_description() throws JsonProcessingException {
         ICentreModule module;
-        when(bundle.getResourceBundle(any(), eq(ICentreFactory.BUNDLE_ID), eq(Locale.UK))).thenReturn(null);
+        when(bundle.getResourceBundle(eq(ICentreFactory.BUNDLE_ID), any(), eq(Locale.UK))).thenReturn(null);
 
         //Single VIC
         when(dmsData.legacyMapSearch(any())).thenReturn(new ObjectMapper().readTree(MOCK_JSON));
-        when(bundle.getResourceBundle(eq("icentre.description.singleVic"), eq(ICentreFactory.BUNDLE_ID), eq(Locale.UK)))
+        when(bundle.getResourceBundle(eq(ICentreFactory.BUNDLE_ID), eq("icentre.description.singleVic"), eq(Locale.UK)))
                 .thenReturn("Single VIC");
         module = factory.getModule(mockBuilder.build().getICentre(), Locale.UK, "Skye");
         assertEquals("Single VIC", module.getDescription());
 
         //Multiple VIC
         when(dmsData.legacyMapSearch(any())).thenReturn(new ObjectMapper().readTree(MOCK_JSON_MULTIPLE));
-        when(bundle.getResourceBundle(eq("icentre.description.multipleVic"), eq(ICentreFactory.BUNDLE_ID), eq(Locale.UK)))
+        when(bundle.getResourceBundle(eq(ICentreFactory.BUNDLE_ID), eq("icentre.description.multipleVic"), eq(Locale.UK)))
                 .thenReturn("Multiple VICs");
         module = factory.getModule(mockBuilder.build().getICentre(), Locale.UK, "Highlands");
         assertEquals("Multiple VICs", module.getDescription());

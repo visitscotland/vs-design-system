@@ -3,7 +3,7 @@
   jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
   jcr:uuid: 2eecf197-1aba-42ae-8eb0-7e2b04bc2beb
   hippo:name: Modules
-  hippo:versionHistory: 0da9f71c-5eef-4208-8147-fef7bae79ede
+  hippo:versionHistory: f6380200-8cd1-4941-8c7e-c602825d07d3
   /modules[1]:
     jcr:primaryType: resourcebundle:resourcebundle
     jcr:mixinTypes: ['mix:referenceable']
@@ -12,7 +12,7 @@
     hippostd:state: draft
     hippostdpubwf:createdBy: admin
     hippostdpubwf:creationDate: 2020-11-04T15:30:47.380Z
-    hippostdpubwf:lastModificationDate: 2020-11-05T17:53:38.105Z
+    hippostdpubwf:lastModificationDate: 2020-11-06T12:32:24.465Z
     hippostdpubwf:lastModifiedBy: admin
     resourcebundle:descriptions: ['', '', '', '', '', "IDEAL = content/gallery/visitscotland/static/modules/visitscotland-visitor-information-centre.jpg\r\
         \n\r\nRELATIVE = /site/binaries/content/gallery/visitscotland/static/modules/visitscotland-visitor-information-centre.jpg\r\
@@ -25,7 +25,7 @@
     resourcebundle:messages: [A tip from your local expert, 'For more friendly advice,
         visit the', 'For more friendly advice, visit one of our tourist information
         iCentres in the area:', 'https://www.visitscotland.com/about/practical-information/vic/',
-      iCentres in Scotland, /content/gallery/visitscotland/static/modules/visitscotland-visitor-information-centre.jpg,
+      VisitScotland iCentres page, /content/gallery/visitscotland/static/modules/visitscotland-visitor-information-centre.jpg,
       Help and Advice, iKnow Partners in this area]
   /modules[2]:
     jcr:primaryType: resourcebundle:resourcebundle
@@ -35,7 +35,7 @@
     hippostd:state: unpublished
     hippostdpubwf:createdBy: admin
     hippostdpubwf:creationDate: 2020-11-04T15:30:47.380Z
-    hippostdpubwf:lastModificationDate: 2020-11-05T17:53:37.875Z
+    hippostdpubwf:lastModificationDate: 2020-11-06T12:33:12.663Z
     hippostdpubwf:lastModifiedBy: admin
     resourcebundle:descriptions: ['', '', '', '', '', "IDEAL = content/gallery/visitscotland/static/modules/visitscotland-visitor-information-centre.jpg\r\
         \n\r\nRELATIVE = /site/binaries/content/gallery/visitscotland/static/modules/visitscotland-visitor-information-centre.jpg\r\
@@ -48,7 +48,7 @@
     resourcebundle:messages: [A tip from your local expert, 'For more friendly advice,
         visit the', 'For more friendly advice, visit one of our tourist information
         iCentres in the area:', 'https://www.visitscotland.com/about/practical-information/vic/',
-      iCentres in Scotland, /content/gallery/visitscotland/static/modules/visitscotland-visitor-information-centre.jpg,
+      VisitScotland iCentres page, /content/gallery/visitscotland/static/modules/visitscotland-visitor-information-centre.jpg,
       Help and Advice, iKnow Partners in this area]
   /modules[3]:
     jcr:primaryType: resourcebundle:resourcebundle
@@ -58,9 +58,9 @@
     hippostd:state: published
     hippostdpubwf:createdBy: admin
     hippostdpubwf:creationDate: 2020-11-04T15:30:47.380Z
-    hippostdpubwf:lastModificationDate: 2020-11-05T17:53:37.875Z
+    hippostdpubwf:lastModificationDate: 2020-11-06T12:33:12.663Z
     hippostdpubwf:lastModifiedBy: admin
-    hippostdpubwf:publicationDate: 2020-11-05T17:54:07.262Z
+    hippostdpubwf:publicationDate: 2020-11-06T12:33:20.935Z
     resourcebundle:descriptions: ['', '', '', '', '', "IDEAL = content/gallery/visitscotland/static/modules/visitscotland-visitor-information-centre.jpg\r\
         \n\r\nRELATIVE = /site/binaries/content/gallery/visitscotland/static/modules/visitscotland-visitor-information-centre.jpg\r\
         \n\r\nLIVE = https://cimg.visitscotland.com/cms-images/about/458950/fort-william-visitscotland-icentre-sign",
@@ -72,5 +72,5 @@
     resourcebundle:messages: [A tip from your local expert, 'For more friendly advice,
         visit the', 'For more friendly advice, visit one of our tourist information
         iCentres in the area:', 'https://www.visitscotland.com/about/practical-information/vic/',
-      iCentres in Scotland, /content/gallery/visitscotland/static/modules/visitscotland-visitor-information-centre.jpg,
+      VisitScotland iCentres page, /content/gallery/visitscotland/static/modules/visitscotland-visitor-information-centre.jpg,
       Help and Advice, iKnow Partners in this area]

@@ -45,9 +45,9 @@ class IKnowFactoryTest {
         //Gets a null when there is no location defined
         //Verifies default values
         String location = "Edinburgh";
-        when(bundle.getResourceBundle("iknow.title.default", ICentreFactory.BUNDLE_ID, Locale.UK))
+        when(bundle.getResourceBundle(ICentreFactory.BUNDLE_ID,"iknow.title.default", Locale.UK))
                 .thenReturn("default title");
-        when(bundle.getResourceBundle("iknow.link.label", ICentreFactory.BUNDLE_ID, Locale.UK))
+        when(bundle.getResourceBundle(ICentreFactory.BUNDLE_ID,"iknow.link.label", Locale.UK))
                 .thenReturn("link text");
 
         IKnowModule module = factory.getIKnowModule(mockBuilder.build().getIKnow(), location, Locale.UK);
