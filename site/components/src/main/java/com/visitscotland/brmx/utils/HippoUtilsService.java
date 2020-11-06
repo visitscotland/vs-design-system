@@ -51,6 +51,7 @@ public class HippoUtilsService {
      * @deprecated Use ResourceBundleUtils instead
      */
     @Deprecated
+    @NonTestable
     public String getResourceBundle(String bundleName, String key,  Locale locale){
         return bundle.getResourceBundle(bundleName, key,  locale, false);
     }
@@ -64,6 +65,7 @@ public class HippoUtilsService {
      *
      * @return URL for the page that renders the document or null when it cannot be rendered as a page.
      */
+    @NonTestable
     public String createUrl(HippoBean document){
         final boolean FULLY_QUALIFIED = true;
         HstRequestContext requestContext = RequestContextProvider.get();
