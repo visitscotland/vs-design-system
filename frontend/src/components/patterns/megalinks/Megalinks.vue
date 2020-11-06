@@ -27,10 +27,10 @@
                     </div>
                 </VsCol>
             </VsRow>
-            <VsRow class="vs-megalinks__links-wrapper">
+            <div class="row vs-megalinks__links-wrapper">
                 <!-- @slot Default slot to contain link blocks -->
                 <slot />
-            </VsRow>
+            </div>
             <VsRow v-if="buttonLink">
                 <VsCol cols="12">
                     <div class="vs-megalinks__button">
