@@ -2167,7 +2167,7 @@
         jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
         jcr:uuid: 6033a92f-4d87-419b-a18f-0c85eb0a41e4
         hippo:name: iCentre
-        hippo:versionHistory: e044e857-88bd-41d6-8e81-a9d0fa1e1edf
+        hippo:versionHistory: e68c4dbb-bc1b-4a6c-9c3c-a76e2c57872a
         /icentre[1]:
           jcr:primaryType: visitscotland:TourismInformation
           jcr:mixinTypes: ['mix:referenceable']
@@ -2176,7 +2176,7 @@
           hippostd:state: draft
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2020-09-30T12:03:00.630+01:00
-          hippostdpubwf:lastModificationDate: 2020-11-04T14:25:38.444Z
+          hippostdpubwf:lastModificationDate: 2020-11-06T08:43:17.360Z
           hippostdpubwf:lastModifiedBy: admin
           hippotranslation:id: 2b3e0a8d-aca4-472b-9536-7fa106b8bff9
           hippotranslation:locale: en
@@ -2191,10 +2191,9 @@
               hippo:facets: []
               hippo:modes: []
               hippo:values: []
-            /visitscotland:quotes:
+            /visitscotland:quote:
               jcr:primaryType: visitscotland:Quote
               visitscotland:author: Peter
-              visitscotland:productId: '1674401'
               visitscotland:role: Senior Software Engineer
               /visitscotland:image:
                 jcr:primaryType: hippogallerypicker:imagelink
@@ -2208,15 +2207,9 @@
                   will house very long content such as policies and Ts&amp;Cs, removing
                   the need to use multiple long content modules to a single page,
                   which would be difficult for the Content team to maintain.</p>
-              /visitscotland:products:
-                jcr:primaryType: visitscotland:MegalinkItem
-                visitscotland:feature: false
-                /visitscotland:link:
-                  jcr:primaryType: hippo:mirror
-                  hippo:docbase: 0161886a-cf57-47f6-a1f8-820b894f5648
               /visitscotland:product:
                 jcr:primaryType: hippo:mirror
-                hippo:docbase: 4d302e29-93dd-4157-9df9-bbd741bb12a0
+                hippo:docbase: 444422fa-4146-4bb4-a05b-8da787f93ab5
           /visitscotland:IKnow:
             jcr:primaryType: visitscotland:IKnow
             visitscotland:title: ''
@@ -2234,10 +2227,11 @@
           hippostd:state: unpublished
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2020-09-30T12:03:00.630+01:00
-          hippostdpubwf:lastModificationDate: 2020-10-23T10:09:20.389+01:00
+          hippostdpubwf:lastModificationDate: 2020-11-06T08:45:25.376Z
           hippostdpubwf:lastModifiedBy: admin
           hippotranslation:id: 2b3e0a8d-aca4-472b-9536-7fa106b8bff9
           hippotranslation:locale: en
+          visitscotland:translation: ''
           /visitscotland:ICentre:
             jcr:primaryType: visitscotland:ICentre
             visitscotland:description: ''
@@ -2248,10 +2242,9 @@
               hippo:facets: []
               hippo:modes: []
               hippo:values: []
-            /visitscotland:quotes:
+            /visitscotland:quote:
               jcr:primaryType: visitscotland:Quote
               visitscotland:author: Peter
-              visitscotland:productId: '1674401'
               visitscotland:role: Senior Software Engineer
               /visitscotland:image:
                 jcr:primaryType: hippogallerypicker:imagelink
@@ -2265,15 +2258,9 @@
                   will house very long content such as policies and Ts&amp;Cs, removing
                   the need to use multiple long content modules to a single page,
                   which would be difficult for the Content team to maintain.</p>
-              /visitscotland:products:
-                jcr:primaryType: visitscotland:MegalinkItem
-                visitscotland:feature: false
-                /visitscotland:link:
-                  jcr:primaryType: hippo:mirror
-                  hippo:docbase: 0161886a-cf57-47f6-a1f8-820b894f5648
               /visitscotland:product:
                 jcr:primaryType: hippo:mirror
-                hippo:docbase: 4d302e29-93dd-4157-9df9-bbd741bb12a0
+                hippo:docbase: 444422fa-4146-4bb4-a05b-8da787f93ab5
           /visitscotland:IKnow:
             jcr:primaryType: visitscotland:IKnow
             visitscotland:title: ''
@@ -2291,11 +2278,12 @@
           hippostd:state: published
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2020-09-30T12:03:00.630+01:00
-          hippostdpubwf:lastModificationDate: 2020-10-23T10:09:20.389+01:00
+          hippostdpubwf:lastModificationDate: 2020-11-06T08:45:25.376Z
           hippostdpubwf:lastModifiedBy: admin
-          hippostdpubwf:publicationDate: 2020-10-23T10:09:29.484+01:00
+          hippostdpubwf:publicationDate: 2020-11-06T09:45:39.231Z
           hippotranslation:id: 2b3e0a8d-aca4-472b-9536-7fa106b8bff9
           hippotranslation:locale: en
+          visitscotland:translation: ''
           /visitscotland:ICentre:
             jcr:primaryType: visitscotland:ICentre
             visitscotland:description: ''
@@ -2306,10 +2294,9 @@
               hippo:facets: []
               hippo:modes: []
               hippo:values: []
-            /visitscotland:quotes:
+            /visitscotland:quote:
               jcr:primaryType: visitscotland:Quote
               visitscotland:author: Peter
-              visitscotland:productId: '1674401'
               visitscotland:role: Senior Software Engineer
               /visitscotland:image:
                 jcr:primaryType: hippogallerypicker:imagelink
@@ -2323,15 +2310,9 @@
                   will house very long content such as policies and Ts&amp;Cs, removing
                   the need to use multiple long content modules to a single page,
                   which would be difficult for the Content team to maintain.</p>
-              /visitscotland:products:
-                jcr:primaryType: visitscotland:MegalinkItem
-                visitscotland:feature: false
-                /visitscotland:link:
-                  jcr:primaryType: hippo:mirror
-                  hippo:docbase: 0161886a-cf57-47f6-a1f8-820b894f5648
               /visitscotland:product:
                 jcr:primaryType: hippo:mirror
-                hippo:docbase: 4d302e29-93dd-4157-9df9-bbd741bb12a0
+                hippo:docbase: 444422fa-4146-4bb4-a05b-8da787f93ab5
           /visitscotland:IKnow:
             jcr:primaryType: visitscotland:IKnow
             visitscotland:title: ''
@@ -2413,10 +2394,11 @@
           jcr:mixinTypes: ['mix:referenceable']
           jcr:uuid: efc0bccb-dd92-49e0-b1e4-6b17bfd1cf78
           hippo:availability: []
+          hippostd:holder: admin
           hippostd:state: draft
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2020-05-21T17:54:15.934+01:00
-          hippostdpubwf:lastModificationDate: 2020-10-02T09:33:27.976+01:00
+          hippostdpubwf:lastModificationDate: 2020-11-06T09:33:24.981Z
           hippostdpubwf:lastModifiedBy: admin
           hippotranslation:id: 9390056b-b448-4e0a-8c69-f373eb031d00
           hippotranslation:locale: en
@@ -2670,7 +2652,7 @@
         jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
         jcr:uuid: 693a6f1f-4da2-42e6-9777-4cd9d9d65671
         hippo:name: Places to Visit in the Outer Hebrides
-        hippo:versionHistory: 139d0115-d8ca-4db7-b310-72b0b5eac4d5
+        hippo:versionHistory: d61ebc33-cf5b-46f4-aefe-038e11ea3685
         /places-to-visit-in-the-outer-hebrides[1]:
           jcr:primaryType: visitscotland:Megalinks
           jcr:mixinTypes: ['mix:referenceable']
@@ -2763,9 +2745,9 @@
           hippostd:state: published
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2020-07-10T14:41:12.033+01:00
-          hippostdpubwf:lastModificationDate: 2020-09-23T13:13:39.270+01:00
+          hippostdpubwf:lastModificationDate: 2020-10-28T16:53:05.165Z
           hippostdpubwf:lastModifiedBy: admin
-          hippostdpubwf:publicationDate: 2020-09-23T13:13:44.201+01:00
+          hippostdpubwf:publicationDate: 2020-11-06T09:45:38.821Z
           hippotranslation:id: b0c0573f-f7c1-45fa-9cee-5c53296e65a3
           hippotranslation:locale: en
           visitscotland:listLayout: false
@@ -2793,12 +2775,6 @@
               jcr:primaryType: hippo:mirror
               hippo:docbase: d9369667-48f7-441f-b759-8d9843695c67
           /visitscotland:megalinkItems[4]:
-            jcr:primaryType: visitscotland:MegalinkItem
-            visitscotland:feature: true
-            /visitscotland:link:
-              jcr:primaryType: hippo:mirror
-              hippo:docbase: 693a6f1f-4da2-42e6-9777-4cd9d9d65671
-          /visitscotland:megalinkItems[5]:
             jcr:primaryType: visitscotland:MegalinkItem
             visitscotland:feature: false
             /visitscotland:link:
@@ -3020,7 +2996,7 @@
         jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
         jcr:uuid: 36c15476-2a19-43fd-bc0c-c1b10274de5e
         hippo:name: demo - do not publish
-        hippo:versionHistory: 51791685-dc20-4095-bc0a-7bdb40a5307e
+        hippo:versionHistory: 43815a9d-8e17-4bdc-823e-a647484cdcfe
         /demo---do-not-publish[1]:
           jcr:primaryType: visitscotland:Megalinks
           jcr:mixinTypes: ['mix:versionable']
@@ -3075,13 +3051,13 @@
           jcr:primaryType: visitscotland:Megalinks
           jcr:mixinTypes: ['mix:referenceable']
           jcr:uuid: 0596e31d-5037-4ec3-9ebf-002318792696
-          hippo:availability: []
+          hippo:availability: [live]
           hippostd:state: published
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2020-05-21T17:54:15.934+01:00
           hippostdpubwf:lastModificationDate: 2020-07-23T06:46:12.280+01:00
           hippostdpubwf:lastModifiedBy: admin
-          hippostdpubwf:publicationDate: 2020-07-23T06:46:19.520+01:00
+          hippostdpubwf:publicationDate: 2020-11-06T09:45:39.408Z
           hippotranslation:id: f93a7392-ddd7-4862-8ea4-15556062dc23
           hippotranslation:locale: en
           visitscotland:hideTeaser: false
@@ -3409,7 +3385,7 @@
           hippostd:state: unpublished
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2020-09-30T12:03:00.630+01:00
-          hippostdpubwf:lastModificationDate: 2020-11-04T16:38:25.146Z
+          hippostdpubwf:lastModificationDate: 2020-11-06T08:48:52.656Z
           hippostdpubwf:lastModifiedBy: admin
           hippotranslation:id: 37b320ee-64a1-4446-80e6-379f3e737ad7
           hippotranslation:locale: en
@@ -3450,6 +3426,25 @@
               /visitscotland:product:
                 jcr:primaryType: hippo:mirror
                 hippo:docbase: 4d302e29-93dd-4157-9df9-bbd741bb12a0
+            /visitscotland:quote:
+              jcr:primaryType: visitscotland:Quote
+              visitscotland:author: Mr. McHippo
+              visitscotland:role: Senior Software Engineer
+              /visitscotland:image:
+                jcr:primaryType: hippogallerypicker:imagelink
+                hippo:docbase: c3eafb5b-6c18-4caa-9c9a-63279b816630
+                hippo:facets: []
+                hippo:modes: []
+                hippo:values: []
+              /visitscotland:quote:
+                jcr:primaryType: hippostd:html
+                hippostd:content: '<p>Quote: Reusable module for long text-only content.
+                  &nbsp;This will house very long content such as policies and Ts&amp;Cs,
+                  removing the need to use multiple long content modules to a single
+                  page, which would be difficult for the Content team to maintain.</p>'
+              /visitscotland:product:
+                jcr:primaryType: hippo:mirror
+                hippo:docbase: 4d302e29-93dd-4157-9df9-bbd741bb12a0
           /visitscotland:IKnow:
             jcr:primaryType: visitscotland:IKnow
             visitscotland:title: I Know Scotland fairly well
@@ -3464,10 +3459,11 @@
           jcr:mixinTypes: ['mix:referenceable']
           jcr:uuid: 4d47217e-5a78-45e9-852a-1374e8af3009
           hippo:availability: []
+          hippostd:holder: admin
           hippostd:state: draft
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2020-09-30T12:03:00.630+01:00
-          hippostdpubwf:lastModificationDate: 2020-11-04T16:38:25.212Z
+          hippostdpubwf:lastModificationDate: 2020-11-06T08:48:57.273Z
           hippostdpubwf:lastModifiedBy: admin
           hippotranslation:id: 37b320ee-64a1-4446-80e6-379f3e737ad7
           hippotranslation:locale: en
@@ -3482,14 +3478,13 @@
               hippo:facets: []
               hippo:modes: []
               hippo:values: []
-            /visitscotland:quotes:
+            /visitscotland:quote:
               jcr:primaryType: visitscotland:Quote
               visitscotland:author: Mr. McHippo
-              visitscotland:productId: '1674401'
               visitscotland:role: Senior Software Engineer
               /visitscotland:image:
                 jcr:primaryType: hippogallerypicker:imagelink
-                hippo:docbase: 1e4be246-297b-4404-8102-80fe1bc0ddf7
+                hippo:docbase: c3eafb5b-6c18-4caa-9c9a-63279b816630
                 hippo:facets: []
                 hippo:modes: []
                 hippo:values: []
@@ -3499,12 +3494,6 @@
                   &nbsp;This will house very long content such as policies and Ts&amp;Cs,
                   removing the need to use multiple long content modules to a single
                   page, which would be difficult for the Content team to maintain.</p>'
-              /visitscotland:products:
-                jcr:primaryType: visitscotland:MegalinkItem
-                visitscotland:feature: false
-                /visitscotland:link:
-                  jcr:primaryType: hippo:mirror
-                  hippo:docbase: 0161886a-cf57-47f6-a1f8-820b894f5648
               /visitscotland:product:
                 jcr:primaryType: hippo:mirror
                 hippo:docbase: 4d302e29-93dd-4157-9df9-bbd741bb12a0
