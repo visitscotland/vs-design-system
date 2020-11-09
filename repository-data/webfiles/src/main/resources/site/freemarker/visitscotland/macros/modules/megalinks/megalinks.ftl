@@ -3,14 +3,9 @@
 <#include "../module-intro/module-intro.ftl">
 <#include "./multi-image/megalinks-multi-image.ftl">
 <#include "./link-list/megalinks-link-list.ftl">
+<#include "./single-image/megalinks-single-image.ftl">
 
 <#macro megalinks item type>
-    <#if item.cta??>
-        <#assign ctaExists = "true" />
-    <#else>
-        <#assign ctaExists = "false" />
-    </#if>
-
     <#if type=="MultiImageLinksModule">
         <#assign variant = "multi-image">
     <#elseif type=="ListLinksModule">
@@ -19,7 +14,7 @@
         <#assign variant = "single-image">
     </#if>
     
-    <vs-megalinks variant="${variant}" title="${item.title}" <#if ctaExists == "true">button-link="${item.cta.link}"</#if>>
+    <vs-megalinks variant="${variant}" title="${item.title}" <#if item.cta?? && type != "SingleImageLinksModule">button-link="${item.cta.link}"</#if>>
         <@hst.manageContent hippobean=item.megalinkItem />
         <#-- TO DO: move the intro to a macro -->
         <vs-rich-text-wrapper
@@ -37,10 +32,10 @@
             <@linkList item=item /> 
 
         <#elseif type == "SingleImageLinksModule">
-            <@multiImage item=item /> 
+            <@singleImage item=item /> 
         </#if>
 
-       <#if ctaExists == "true">                
+       <#if item.cta?? >     
             <template slot="vsMegalinksButton">
                 ${item.cta.label}
             </template>

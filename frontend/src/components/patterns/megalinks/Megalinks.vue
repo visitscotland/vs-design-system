@@ -4,7 +4,7 @@
         :class="`vs-megalinks--${variant}`"
         data-test="megalinks"
     >
-        <VsContainer>
+        <VsContainer class="container-lg">
             <VsRow>
                 <VsCol
                     cols="12"
@@ -155,6 +155,10 @@ export default {
             .vs-megalinks__button {
                 margin-top: $spacer-9;
             }
+        }
+
+        &--single-image {
+            padding-bottom: 0;
         }
 
         @include media-breakpoint-up(lg) {
