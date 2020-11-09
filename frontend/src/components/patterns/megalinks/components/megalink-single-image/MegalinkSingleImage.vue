@@ -19,33 +19,44 @@
                 <slot name="vsSingleImageCredit" />
             </template>
         </VsImageWithCaption>
-        <div class="megalink-single-image__content">
-            <VsHeading
-                level="2"
-                v-if="title"
+        <VsRow>
+            <VsCol
+                cols="12"
+                sm="10"
+                lg="6"
+                class="offset-sm-1"
+                :class="alternate ? 'offset-lg-6' : 'offset-lg-0'"
             >
-                {{ title }}
-            </VsHeading>
-            <VsRichTextWrapper variant="lead">
-                <!-- @slot Slot for content -->
-                <slot name="vsSingleImageContent" />
-            </VsRichTextWrapper>
 
-            <ul class="megalink-single-image__link-list">
-                <!-- @slot Slot for links list -->
-                <slot name="vsSingleImageLinks" />
-            </ul>
+                <div class="megalink-single-image__content">
+                    <VsHeading
+                        level="3"
+                        v-if="title"
+                    >
+                        {{ title }}
+                    </VsHeading>
+                    <VsRichTextWrapper variant="lead">
+                        <!-- @slot Slot for content -->
+                        <slot name="vsSingleImageContent" />
+                    </VsRichTextWrapper>
 
-            <div class="megalink-single-image__button">
-                <VsButton
-                    :href="buttonLink"
-                    v-if="buttonLink"
-                >
-                    <!-- @slot Slot for button text -->
-                    <slot name="vsSingleImageButtonText" />
-                </VsButton>
-            </div>
-        </div>
+                    <ul class="megalink-single-image__link-list">
+                        <!-- @slot Slot for links list -->
+                        <slot name="vsSingleImageLinks" />
+                    </ul>
+
+                    <div class="megalink-single-image__button">
+                        <VsButton
+                            :href="buttonLink"
+                            v-if="buttonLink"
+                        >
+                            <!-- @slot Slot for button text -->
+                            <slot name="vsSingleImageButtonText" />
+                        </VsButton>
+                    </div>
+                </div>
+            </VsCol>
+        </VsRow>
     </section>
 </template>
 
@@ -93,7 +104,6 @@ export default {
 
 <style lang="scss">
     .megalink-single-image {
-        margin: 0 -16px;
         min-width: 100%;
 
         .megalink-single-image__title {
@@ -133,11 +143,23 @@ export default {
         }
 
         .megalink-single-image__image {
-            margin-bottom: (-$spacer-8);
+            margin: 0px -12px (-$spacer-8);
         }
 
         .megalink-single-image__button {
             margin-top: $spacer-7;
+        }
+
+        @include media-breakpoint-up(sm) {
+            margin: 0;
+
+            .megalink-single-image__image {
+                margin-bottom: 0;
+            }
+
+            .megalink-single-image__content {
+                background: transparent;
+            }
         }
 
         @include media-breakpoint-up(lg) {
@@ -147,9 +169,9 @@ export default {
             flex-direction: column;
 
             .megalink-single-image__content {
-                width: 50%;
-                padding: $spacer-9 $spacer-12 $spacer-9 $spacer-9;
+                padding: $spacer-9 $spacer-9 $spacer-9 $spacer-9;
                 margin: 0;
+                background: $color-white;
             }
 
             .megalink-single-image__image {
@@ -168,6 +190,12 @@ export default {
                 }
             }
         }
+
+        @include media-breakpoint-up(xl) {
+            .megalink-single-image__content {
+                padding: $spacer-9 $spacer-12 $spacer-9 $spacer-9;
+            }
+        }
     }
 </style>
 
@@ -175,7 +203,10 @@ export default {
     ```js
     <VsMegalinks>
         <vs-col cols="12">
-            <vs-megalink-single-image buttonLink="www.visitscotland.com">
+            <vs-megalink-single-image
+                title="The Component heading"
+                buttonLink="www.visitscotland.com"
+            >
                 <template slot="vsSingleImageCaption">An image of Scotland</template>
                 <template slot="vsSingleImageCredit">@2020 Credit here</template>
                 <template slot="vsSingleImageContent">
