@@ -1,22 +1,40 @@
 <template>
     <div class="vs-iknow-partner-item">
+        <!-- @slot Holds the component heading -->
         <slot name="iknow-heading" />
+
         <VsSvg
             class="vs-iknow-partner-item__logo"
             path="iKnowScotland"
         />
+
         <div class="vs-iknow-partner-item__text">
+            <!-- @slot Holds the component text -->
             <slot name="iknow-text" />
+
             <VsSvg
                 class="vs-iknow-partner-item__coo"
                 path="highland-cow"
             />
+
+            <div
+                v-if="!!this.$slots['iknow-cta']"
+                class="vs-iknow-partner-item__cta"
+            >
+                <!-- @slot Optional slot for link/button CTA -->
+                <slot name="iknow-cta" />
+            </div>
         </div>
     </div>
 </template>
 
 <script>
 import VsSvg from '@components/elements/svg/Svg';
+
+/**
+ * Reusable component to promote iKnow partners to visitors as
+ * a way for them to access information from local experts.
+ */
 
 export default {
     name: 'VsIknowPartnerItem',
@@ -79,20 +97,58 @@ export default {
             left: -14rem;
         }
     }
+
+    &__cta {
+        margin-top: $spacer-8;
+    }
 }
 </style>
 
 <docs>
 ```jsx
     <vs-iknow-partner-item>
-        <VsHeading level="2" slot="iknow-heading">Help and help</VsHeading>
-        <p slot="iknow-text">
+        <VsHeading level="2" slot="iknow-heading">Help and device</VsHeading>
+        <div slot="iknow-text">
             You can also get advice from our accredited
             <a href="#">iKnow partners in Edinburgh</a>,
             with excellent local expertise,
             travel advice and insider tips about must-see
             attractions and great accommodation in the local area.
-        </p>
+        </div>
+    </vs-iknow-partner-item>
+
+    <vs-iknow-partner-item>
+        <VsHeading level="2" slot="iknow-heading">Help and device</VsHeading>
+        <div slot="iknow-text">
+            iKnow Scotland is a network of accredited
+            VisitScotland partners, with excellent local
+            expertise.
+
+            Wherever you see the iKnow logo you can
+            trust that you'll receive excellent advice on
+            how to get the most from your visit, with
+            travel advice and insider tips about the
+            must-see attractions in the local area.
+        </div>
+
+        <a href="#" slot="iknow-cta">Find our iKnow partners</a>
+    </vs-iknow-partner-item>
+
+    <vs-iknow-partner-item>
+        <VsHeading level="2" slot="iknow-heading">Help and device</VsHeading>
+        <div slot="iknow-text">
+            iKnow Scotland is a network of accredited
+            VisitScotland partners, with excellent local
+            expertise.
+
+            Wherever you see the iKnow logo you can
+            trust that you'll receive excellent advice on
+            how to get the most from your visit, with
+            travel advice and insider tips about the
+            must-see attractions in the local area.
+        </div>
+
+        <vs-button slot="iknow-cta">Find our iKnow partners</vs-button>
     </vs-iknow-partner-item>
 ```
 </docs>
