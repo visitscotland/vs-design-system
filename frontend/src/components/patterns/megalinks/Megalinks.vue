@@ -84,9 +84,10 @@ export default {
         .row {
             display: flex;
         }
-
-        .row > [class*='col-'] {
-            display: flex;
+        @supports not (-ms-high-contrast: none) {
+            .row > [class*='col-'] {
+                display: flex;
+            }
         }
 
         .vs-megalinks__intro {
