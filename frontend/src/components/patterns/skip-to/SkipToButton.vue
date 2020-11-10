@@ -8,7 +8,8 @@
     >
         <slot />
         <VsIcon
-            name="chevron-down"
+            name="chevron"
+            orientation="down"
             size="xs"
             variant="reverse-white"
         />

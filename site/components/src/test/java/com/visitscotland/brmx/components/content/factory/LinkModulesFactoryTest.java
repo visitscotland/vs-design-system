@@ -9,7 +9,7 @@ import com.visitscotland.brmx.beans.mapping.megalinks.LinksModule;
 import com.visitscotland.brmx.beans.mapping.megalinks.MultiImageLinksModule;
 import com.visitscotland.brmx.beans.mapping.megalinks.SingleImageLinksModule;
 import com.visitscotland.brmx.dms.DMSDataService;
-import com.visitscotland.brmx.dms.ProductSearchBuilder;
+import com.visitscotland.brmx.dms.LocationLoader;
 import com.visitscotland.brmx.services.LinkService;
 import com.visitscotland.brmx.services.ResourceBundleService;
 import com.visitscotland.brmx.utils.HippoUtilsService;
@@ -61,16 +61,15 @@ class LinkModulesFactoryTest extends EasyMockSupport {
         utils = createNiceMock(HippoUtilsService.class);
         dms = new DMSDataService();
 
-        ProductSearchBuilder ps = createNiceMock(ProductSearchBuilder.class);
         ResourceBundleService rs = createNiceMock(ResourceBundleService.class);
         utils = createNiceMock(HippoUtilsService.class);
-        linkService = new LinkService(dms, ps, rs,utils);
+        linkService = new LinkService(dms, rs,utils);
 
         expect(utils.createUrl(anyObject(HippoBean.class))).andStubReturn("/fake-url/mock");
 
         factory = partialMockBuilder(LinkModulesFactory.class)
-                .withConstructor(HippoUtilsService.class,DMSDataService.class, LinkService.class)
-                .withArgs(utils, dms, linkService)
+                .withConstructor(HippoUtilsService.class,DMSDataService.class, LinkService.class, LocationLoader.class)
+                .withArgs(utils, dms, linkService, LocationLoader.getInstance())
                 .addMockedMethod("getLocation", String.class, Locale.class)
                 .createMock();
 
@@ -159,9 +158,10 @@ class LinkModulesFactoryTest extends EasyMockSupport {
 
     @Test
     void countFeaturedItems(){
+        //Test the maximum and minimum number of featured items per amount of module
         replayAll();
 
-        createFeaturedLayoutAndCheckItems(1,0,0);
+        createFeaturedLayoutAndCheckItems(1,1,1);
         createFeaturedLayoutAndCheckItems(2,0,0);
         createFeaturedLayoutAndCheckItems(3,0,1);
         createFeaturedLayoutAndCheckItems(4,1,2);
@@ -197,8 +197,8 @@ class LinkModulesFactoryTest extends EasyMockSupport {
         MegalinkItem mi = megalinkItemService.createMock(false);
 
         verifyAll();
-        Assertions.assertEquals(factory.convertToFlatLinks(Collections.singletonList(mi), null).size(), 1);
-        Assertions.assertEquals(factory.convertToEnhancedLinks(Collections.singletonList(mi), Locale.UK).size(), 1);
+        Assertions.assertEquals(1, factory.convertToFlatLinks(Collections.singletonList(mi), null).size());
+        Assertions.assertEquals(1, factory.convertToEnhancedLinks(Collections.singletonList(mi), Locale.UK).size());
     }
 
     @Test
@@ -212,8 +212,8 @@ class LinkModulesFactoryTest extends EasyMockSupport {
         replayAll();
 
 
-        Assertions.assertEquals(factory.convertToFlatLinks(Collections.singletonList(mi), null).size(), 0);
-        Assertions.assertEquals(factory.convertToEnhancedLinks(Collections.singletonList(mi), Locale.UK).size(), 0);
+        Assertions.assertEquals(0, factory.convertToFlatLinks(Collections.singletonList(mi), null).size());
+        Assertions.assertEquals(0, factory.convertToEnhancedLinks(Collections.singletonList(mi), Locale.UK).size());
 
         //This verifies that messages were generated and include the problematic node
         verify(mi);
@@ -230,8 +230,8 @@ class LinkModulesFactoryTest extends EasyMockSupport {
 
         replay(mi);
 
-        Assertions.assertEquals(factory.convertToFlatLinks(Collections.singletonList(mi), null).size(), 0);
-        Assertions.assertEquals(factory.convertToEnhancedLinks(Collections.singletonList(mi), Locale.UK).size(), 0);
+        Assertions.assertEquals(0, factory.convertToFlatLinks(Collections.singletonList(mi), null).size());
+        Assertions.assertEquals(0, factory.convertToEnhancedLinks(Collections.singletonList(mi), Locale.UK).size());
 
         //This verifies that messages were generated and include the problematic node
         verify(mi);
