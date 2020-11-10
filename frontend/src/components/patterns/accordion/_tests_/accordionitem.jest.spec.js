@@ -7,14 +7,13 @@ const titleSlot = 'Item Title';
 const factoryShallowMount = (propsData) => shallowMount(VsAccordionItem, {
     propsData: {
         ...propsData,
+        controlId: '1234',
     },
 });
 
 describe('VsAccordionItem', () => {
     it('should render accordionItem', () => {
-        const wrapper = factoryShallowMount({
-            controlId: '1234',
-        });
+        const wrapper = factoryShallowMount();
 
         const accordionItem = wrapper.find('bcard-stub.vs-accordion__item');
         const accordionItemHeader = wrapper.find('bcardheader-stub.vs-accordion__item__card-header');
@@ -29,9 +28,7 @@ describe('VsAccordionItem', () => {
 
     describe(':props', () => {
         it(':controlId should be assigned to panel id', () => {
-            const wrapper = factoryShallowMount({
-                controlId: '1234',
-            });
+            const wrapper = factoryShallowMount();
 
             const accordionItemBody = wrapper.find('.vs-accordion__item__panel');
 
@@ -41,7 +38,6 @@ describe('VsAccordionItem', () => {
         it(':itemBreakPoint assigns accordion class name', () => {
             const wrapper = factoryShallowMount({
                 itemBreakPoint: 'sm',
-                controlId: '1234',
             });
 
             const accordionToggle = wrapper.find('vsaccordiontoggle-stub');
@@ -52,7 +48,6 @@ describe('VsAccordionItem', () => {
         it(':openByDefault - to open or close accordion by default', () => {
             const wrapper = factoryShallowMount({
                 openByDefault: false,
-                controlId: '1234',
             });
 
             const accordionItemBody = wrapper.find('vsaccordiontoggle-stub');
@@ -62,7 +57,6 @@ describe('VsAccordionItem', () => {
         it(':variant assigns variant to VsAccordionToggle', () => {
             const wrapper = factoryShallowMount({
                 variant: 'secondary',
-                controlId: '1234',
             });
 
             const accordionItemBody = wrapper.find('vsaccordiontoggle-stub');
@@ -74,7 +68,6 @@ describe('VsAccordionItem', () => {
         it(':onButtonClick should toggle accordion', async() => {
             const wrapper = mount(VsAccordionItem, {
                 propsData: {
-                    controlId: '1234',
                     openByDefault: true,
                 },
             });
