@@ -21,7 +21,6 @@ export default {
 
 <style lang="scss">
 @import "~bootstrap/scss/type";
-@import "styles/placeholders";
 
 .vs-header {
     position: relative;
