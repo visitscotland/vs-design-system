@@ -6,7 +6,7 @@ import java.util.List;
 
 @HippoEssentialsGenerated(internalName = "visitscotland:Itinerary")
 @Node(jcrType = "visitscotland:Itinerary")
-public class Itinerary extends Page implements TranslationParent {
+public class Itinerary extends Page {
     @HippoEssentialsGenerated(internalName = "visitscotland:start")
     public String getStart() {
         return getSingleProperty("visitscotland:start");
@@ -32,8 +32,12 @@ public class Itinerary extends Page implements TranslationParent {
         return getMultipleProperty("visitscotland:areas");
     }
 
+    @Deprecated
+    /**
+     * This method shouldn't have new invocations. Instead of this, you should invoke {@code new DocumentUtils().getSiblingDocuments()}
+     */
     public List<Day> getDays() {
-        return getExternalBeansByType(Day.class);
+        return getPageChildrenByType(Day.class);
     }
 
     @HippoEssentialsGenerated(internalName = "visitscotland:transports")

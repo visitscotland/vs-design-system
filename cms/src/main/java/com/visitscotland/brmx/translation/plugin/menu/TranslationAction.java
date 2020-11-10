@@ -15,7 +15,9 @@ import org.hippoecm.repository.api.WorkflowException;
 import javax.jcr.RepositoryException;
 import javax.jcr.Session;
 import java.rmi.RemoteException;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class TranslationAction extends StdWorkflow<TranslationWorkflow> {
     private final IModel<ILocaleProvider.HippoLocale> localeModel;
@@ -91,7 +93,12 @@ public class TranslationAction extends StdWorkflow<TranslationWorkflow> {
                         workflowPlugin.getSession().getJcrSession());
                 return new SameNameSiblingDialog(provider);
             }
-            return new TranslationCloneConfirmationDialog(this, new DocumentChangeProvider(changeSetList));
+            List<ChangeSet> linksChangeSetList = changeSetList.stream()
+                    .filter(changeSet -> changeSet.getDocuments().stream().anyMatch(FolderTranslation::isLinkedDocument))
+                    .collect(Collectors.toCollection(ArrayList::new));
+
+            changeSetList.removeAll(linksChangeSetList);
+            return new TranslationCloneConfirmationDialog(this, new DocumentChangeProvider(changeSetList), new DocumentChangeProvider(linksChangeSetList));
         } catch (ObjectBeanManagerException | WorkflowSNSException | RepositoryException ex) {
             return new ExceptionDialog(ex);
         }

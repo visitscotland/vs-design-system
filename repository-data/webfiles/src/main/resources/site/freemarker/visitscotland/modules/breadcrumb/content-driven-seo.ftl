@@ -44,7 +44,7 @@
 
     <#-- META DESCRIPTION TAG -->
     <@hst.headContribution category="opengraph">
-        <meta name="description" content="${document.seoDescription}" />
+        <meta name="description" content="${document.seoDescription?html}" />
     </@hst.headContribution>
 
 
@@ -54,7 +54,7 @@
         <meta property="og:title" content="${document.seoTitle}" />
     </@hst.headContribution>
     <@hst.headContribution category="opengraph">
-        <meta property="og:description" content="${document.seoDescription}" />
+        <meta property="og:description" content="${document.seoDescription?html}" />
     </@hst.headContribution>
     <@hst.headContribution category="opengraph">
         <meta property="og:type" content="article" />
@@ -81,7 +81,7 @@
         <meta name="twitter:title" content="${document.seoTitle}" />
     </@hst.headContribution>
     <@hst.headContribution category="opengraph">
-        <meta name="twitter:description" content="${document.seoDescription}" />
+        <meta name="twitter:description" content="${document.seoDescription?html}" />
     </@hst.headContribution>
     <@hst.headContribution category="opengraph">
         <meta property="twitter:image" content="${ogImage}" />

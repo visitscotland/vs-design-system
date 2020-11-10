@@ -22,7 +22,8 @@
         <template #icon-open>
             <!-- @slot Slot for the icon to show when accordion item is open  -->
             <VsIcon
-                name="chevron-down"
+                name="chevron"
+                orientation="down"
                 variant="dark"
                 size="xs"
                 :padding="3"
@@ -32,7 +33,7 @@
         <template #icon-closed>
             <!-- @slot Slot for the icon to show when accordion item is closed  -->
             <VsIcon
-                name="chevron-up"
+                name="chevron"
                 variant="dark"
                 size="xs"
                 :padding="3"

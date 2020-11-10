@@ -1,5 +1,6 @@
 package com.visitscotland.brmx.translation.plugin;
 
+import com.visitscotland.brmx.translation.SessionFactory;
 import org.hippoecm.addon.workflow.WorkflowSNSException;
 import org.hippoecm.frontend.translation.ILocaleProvider;
 import org.hippoecm.repository.api.Document;
@@ -15,7 +16,6 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import javax.jcr.Session;
-import javax.jcr.Workspace;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -248,8 +248,8 @@ public class DocumentTranslatorApplyChangeSetTest {
 
     @Test
     public void applyChangeSet_mixedTranslationLinkContainers() throws Exception {
-        // When there is a mixture of TranslationLinkContainer documents and non containers
-        // verify that TranslationLinkContainer documents are cloned last.
+        // When there is a mixture of linked documents and non links
+        // verify that linked documents are cloned first.
         FolderTranslation translation1 = mock(FolderTranslation.class);
         HippoNode document1Node = mock(HippoNode.class);
         JcrDocument document1 = mock(JcrDocument.class);
@@ -258,7 +258,7 @@ public class DocumentTranslatorApplyChangeSetTest {
         when(translation1.getUrlfr()).thenReturn("document1url");
         when(document1.getVariantNode(eq(JcrDocument.VARIANT_UNPUBLISHED))).thenReturn(document1Variant);
         when(translation1.getId()).thenReturn("doc1");
-        when(translation1.containsTranslationLinks()).thenReturn(true);
+        when(translation1.isLinkedDocument()).thenReturn(false);
         when(mockSession.getNodeByIdentifier(eq("doc1"))).thenReturn(document1Node);
         doReturn(document1).when(mockJcrDocumentFactory).createFromNode(document1Node);
         documentList.add(translation1);
@@ -271,7 +271,7 @@ public class DocumentTranslatorApplyChangeSetTest {
         when(translation2.getUrlfr()).thenReturn("document2url");
         when(document2.getVariantNode(eq(JcrDocument.VARIANT_UNPUBLISHED))).thenReturn(document2Variant);
         when(translation2.getId()).thenReturn("doc2");
-        when(translation2.containsTranslationLinks()).thenReturn(false);
+        when(translation2.isLinkedDocument()).thenReturn(true);
         when(mockSession.getNodeByIdentifier(eq("doc2"))).thenReturn(document2Node);
         doReturn(document2).when(mockJcrDocumentFactory).createFromNode(document2Node);
         documentList.add(translation2);
@@ -284,7 +284,7 @@ public class DocumentTranslatorApplyChangeSetTest {
         when(translation3.getUrlfr()).thenReturn("document3url");
         when(document3.getVariantNode(eq(JcrDocument.VARIANT_UNPUBLISHED))).thenReturn(document3Variant);
         when(translation3.getId()).thenReturn("doc3");
-        when(translation3.containsTranslationLinks()).thenReturn(true);
+        when(translation3.isLinkedDocument()).thenReturn(false);
         when(mockSession.getNodeByIdentifier(eq("doc3"))).thenReturn(document3Node);
         doReturn(document3).when(mockJcrDocumentFactory).createFromNode(document3Node);
         documentList.add(translation3);
@@ -314,7 +314,7 @@ public class DocumentTranslatorApplyChangeSetTest {
         when(translation1.getUrlfr()).thenReturn("document1url");
         when(document1.getVariantNode(eq(JcrDocument.VARIANT_UNPUBLISHED))).thenReturn(document1Variant);
         when(translation1.getId()).thenReturn("doc1");
-        when(translation1.containsTranslationLinks()).thenReturn(true);
+        when(translation1.isLinkedDocument()).thenReturn(true);
         when(mockSession.getNodeByIdentifier(eq("doc1"))).thenReturn(document1Node);
         doReturn(document1).when(mockJcrDocumentFactory).createFromNode(document1Node);
         documentList.add(translation1);
@@ -327,7 +327,7 @@ public class DocumentTranslatorApplyChangeSetTest {
         when(translation2.getUrlfr()).thenReturn("document2url");
         when(document2.getVariantNode(eq(JcrDocument.VARIANT_UNPUBLISHED))).thenReturn(document2Variant);
         when(translation2.getId()).thenReturn("doc2");
-        when(translation2.containsTranslationLinks()).thenReturn(true);
+        when(translation2.isLinkedDocument()).thenReturn(true);
         when(mockSession.getNodeByIdentifier(eq("doc2"))).thenReturn(document2Node);
         doReturn(document2).when(mockJcrDocumentFactory).createFromNode(document2Node);
         documentList.add(translation2);
