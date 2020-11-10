@@ -1,7 +1,7 @@
 <#include "../../../../../include/imports.ftl">
 <#include "../../../../../frontend/components/vs-megalink-multi-image.ftl">
 
-<#macro multiImageTwoItems megalink>
+<#macro multiImageTwoItems megalink showTeaser>
     <#if megalink.image.cmsImage??>
         <#assign image>
             <@hst.link hippobean=megalink.image.cmsImage.original/>
@@ -22,9 +22,11 @@
             <template slot="vsMultiImageHeading">
                 ${megalink.label}
             </template>
-            <template slot="vsMultiImageContent">
-                <p>${megalink.teaser}</p>
-            </template>
+            <#if showTeaser == 'true'>
+                <template slot="vsMultiImageContent">
+                    <p>${megalink.teaser}</p>
+                </template>
+            </#if>
         </vs-megalink-multi-image>
     </vs-col>
 </#macro>
