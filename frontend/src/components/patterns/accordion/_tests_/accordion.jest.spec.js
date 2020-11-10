@@ -14,7 +14,7 @@ describe('VsAccordion', () => {
     it('should render accordion', () => {
         const wrapper = factoryShallowMount();
 
-        const Accordion = wrapper.find('div.vs-accordion');
+        const Accordion = wrapper.find('div[data-test=vs-accordion]');
 
         expect(Accordion.exists()).toBe(true);
     });
