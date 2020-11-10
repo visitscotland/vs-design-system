@@ -203,6 +203,7 @@ export default {
             >
                 <vs-button
                     class="mb-3"
+                    button-size="md"
                     background="white"
                     variant="outline-primary"
                     href="#"

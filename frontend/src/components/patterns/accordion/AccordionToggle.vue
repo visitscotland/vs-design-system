@@ -5,7 +5,6 @@
         aria-haspopup="true"
         @click.native="triggerToggle"
         class="vs-accordion-toggle clearfix"
-        block
         :variant="variant"
     >
         <!-- @slot Default slot contains text for the button -->
@@ -66,6 +65,7 @@ export default {
 <style lang="scss">
 .btn.vs-accordion-toggle {
     display: flex;
+    width: 100%;
 
     .vs-accordion-toggle__text {
         flex-grow: 1;

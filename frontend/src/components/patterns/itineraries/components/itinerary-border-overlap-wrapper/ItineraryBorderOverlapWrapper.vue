@@ -53,6 +53,7 @@ export default {
         <vs-button
             class="mb-3"
             background="white"
+            button-size="md"
             variant="outline-primary"
             href="#"
             icon="food"

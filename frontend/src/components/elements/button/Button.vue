@@ -3,17 +3,18 @@
         :variant="variant"
         :href="href"
         :tabindex="tabindex"
-        class="text-uppercase"
         :class="{
             'vs-button-with-icon': icon ? 'vs-button-with-icon' : '',
             [animateClass]: animateClass,
             [backgroundClass]: backgroundClass,
+            [textTransformClass]: textTransformClass,
         }"
         :size="size"
         v-bind="$attrs"
         @click="animate ? animateHandler() : null"
     >
         <VsIcon
+            :class="{ 'mr-2': !iconOnly }"
             v-if="icon"
             :name="icon"
             :size="iconSize"
@@ -108,6 +109,26 @@ export default {
             type: String,
             default: '',
         },
+        /** By default, button text is uppercase
+        * To disable, add an uppercase=false property
+        */
+        uppercase: {
+            type: Boolean,
+            default: true,
+        },
+        /**
+        * The icon orientation
+        * `up, down, left, right`
+        */
+        iconOrientation: {
+            type: String,
+            default: null,
+            validator: (value) => value.match(/(up|down|left|right)/),
+        },
+        iconOnly: {
+            type: Boolean,
+            default: false,
+        },
     },
     computed: {
         animateClass() {
@@ -127,6 +148,9 @@ export default {
             default:
                 return 'md';
             }
+        },
+        textTransformClass() {
+            return this.uppercase ? 'text-uppercase' : null;
         },
     },
     methods: {
