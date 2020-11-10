@@ -1,17 +1,15 @@
 package com.visitscotland.brmx.beans;
 
-import org.hippoecm.hst.container.RequestContextProvider;
-import org.hippoecm.hst.content.beans.query.exceptions.QueryException;
-import org.hippoecm.hst.content.beans.standard.*;
-import org.onehippo.cms7.essentials.dashboard.annotations.HippoEssentialsGenerated;
 import org.hippoecm.hst.content.beans.Node;
-import javax.jcr.RepositoryException;
+import org.hippoecm.hst.content.beans.standard.HippoBean;
+import org.hippoecm.hst.content.beans.standard.HippoCompound;
+import org.hippoecm.hst.content.beans.standard.HippoHtml;
+import org.hippoecm.hst.content.beans.standard.HippoMirror;
+import org.onehippo.cms7.essentials.dashboard.annotations.HippoEssentialsGenerated;
+
 import java.util.List;
 import java.util.stream.Collectors;
 
-/** 
- * TODO: Beanwriter: Failed to create getter for node type: hippo:compound
- */
 @HippoEssentialsGenerated(internalName = "visitscotland:ListicleItem")
 @Node(jcrType = "visitscotland:ListicleItem")
 public class ListicleItem extends BaseDocument {
@@ -43,17 +41,18 @@ public class ListicleItem extends BaseDocument {
         return getOnlyChild(getProducts());
     }
 
-    @HippoEssentialsGenerated(internalName="visitscotland:images",allowModifications=false) 
-    public List<HippoBean> getImages(){
-        return getChildBeansByName("visitscotland:images",HippoBean.class).stream().map(hippoBean -> {
-            if (hippoBean instanceof HippoMirror) {
-                return ((HippoMirror)hippoBean).getReferencedBean();
-            }
-            return hippoBean;
-        }).collect(Collectors.toList());
+    @HippoEssentialsGenerated(internalName = "visitscotland:images", allowModifications = false)
+    public List<HippoBean> getImages() {
+        return getChildBeansByName("visitscotland:images", HippoBean.class).stream().map(hippoBean -> {
+                    if (hippoBean instanceof HippoMirror) {
+                        return ((HippoMirror) hippoBean).getReferencedBean();
+                    }
+                    return hippoBean;
+                }
+        ).collect(Collectors.toList());
     }
 
-    /** 
+    /**
      * The method return an bean of the allowed types or null. Allowed types are InstagramImage and Image (Image Link)
      */
     public HippoBean getListicleItemImage() {
@@ -74,5 +73,10 @@ public class ListicleItem extends BaseDocument {
     @HippoEssentialsGenerated(internalName = "visitscotland:translationFlag")
     public Boolean getTranslationFlag() {
         return getSingleProperty("visitscotland:translationFlag");
+    }
+
+    @HippoEssentialsGenerated(internalName = "visitscotland:translation")
+    public String getTranslation() {
+        return getSingleProperty("visitscotland:translation");
     }
 }

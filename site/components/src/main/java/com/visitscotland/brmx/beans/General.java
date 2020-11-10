@@ -13,6 +13,12 @@ public class General extends Page {
 
     @Override
     public String[] getChildJcrTypes() {
-        return new String[]{"visitscotland:Megalinks", "visitscotland:TourismInformation"};
+        return new String[] { "visitscotland:Megalinks",
+                "visitscotland:TourismInformation" };
+    }
+
+    @HippoEssentialsGenerated(internalName = "visitscotland:translation")
+    public String getTranslation() {
+        return getSingleProperty("visitscotland:translation");
     }
 }

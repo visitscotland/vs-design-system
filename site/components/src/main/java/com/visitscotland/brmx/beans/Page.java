@@ -5,7 +5,6 @@ import com.visitscotland.brmx.utils.DocumentUtils;
 import org.hippoecm.hst.content.beans.Node;
 import org.hippoecm.hst.content.beans.standard.HippoHtml;
 import org.onehippo.cms7.essentials.dashboard.annotations.HippoEssentialsGenerated;
-
 import java.util.List;
 
 @HippoEssentialsGenerated(internalName = "visitscotland:Page")
@@ -65,13 +64,17 @@ public class Page extends BaseDocument implements TranslationParent, Linkable {
         return getSingleProperty("visitscotland:translationFlag");
     }
 
-
+    /**
+     * @deprecated Use DocumentUtils.getInstance().getAllowedDocuments(document) instead
+     */
     @Override
     @Deprecated
-    /**
-     * This method shouldn't have new invocations. Instead of this, you shoulf invoke new DocumentUtils().getSiblingDocuments()
-     */
     public List<BaseDocument> getModules() {
         return DocumentUtils.getInstance().getAllowedDocuments(this);
+    }
+
+    @HippoEssentialsGenerated(internalName = "visitscotland:translation")
+    public String getTranslation() {
+        return getSingleProperty("visitscotland:translation");
     }
 }
