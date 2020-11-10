@@ -20,8 +20,8 @@ beforeEach(() => {
     wrapper = factoryShallowMount();
 });
 
-describe('<VsDescriptionList />', () => {
-    it('should render a <vsrow-stub /> with a `description-list` class', () => {
+describe('VsDescriptionList', () => {
+    it('should render a vsrow-stub with a `description-list` class', () => {
         expect(wrapper.is('vsrow-stub')).toBe(true);
         expect(wrapper.classes('vs-description-list')).toBe(true);
     });

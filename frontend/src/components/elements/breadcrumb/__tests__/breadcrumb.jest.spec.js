@@ -18,14 +18,14 @@ beforeEach(() => {
     wrapper = factoryShallowMount();
 });
 
-describe('<VsBreadcrumb />', () => {
-    it('should render a nav with a <b-breadcrumb-stub />', () => {
+describe('VsBreadcrumb', () => {
+    it('should render a nav with a b-breadcrumb-stub', () => {
         const breadcrumb = wrapper.find('bbreadcrumb-stub');
 
         expect(breadcrumb.exists()).toBe(true);
     });
 
-    it('should bind given attributes to <b-breadcrumb-stub />', () => {
+    it('should bind given attributes to b-breadcrumb-stub', () => {
         const breadcrumb = wrapper.find('bbreadcrumb-stub');
 
         expect(breadcrumb.classes()).toContain('test-class');

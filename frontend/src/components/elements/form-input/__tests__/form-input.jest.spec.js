@@ -11,9 +11,6 @@ const factoryMount = (propsData) => mount(VsFormInput, {
     propsData: {
         ...propsData,
     },
-    attrs: {
-        'test-attribute': 'test-value',
-    },
 });
 
 let wrapper;
@@ -21,16 +18,9 @@ beforeEach(() => {
     wrapper = factoryShallowMount();
 });
 
-describe('<VsFormInput />', () => {
-    it('should render a <bform-input-stub />', () => {
+describe('VsFormInput', () => {
+    it('should render a bform-input-stub', () => {
         expect(wrapper.is('bforminput-stub')).toBe(true);
-    });
-
-    it('should bind given attributes to <bform-input-stub />', () => {
-        const modifiedWrapper = factoryMount();
-        const formInput = modifiedWrapper.find('input');
-
-        expect(formInput.attributes('test-attribute')).toBe('test-value');
     });
 
     describe(':props', () => {
