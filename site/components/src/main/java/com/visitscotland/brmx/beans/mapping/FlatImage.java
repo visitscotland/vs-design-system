@@ -178,9 +178,10 @@ public class FlatImage extends IssueList {
         this.postUrl = postUrl;
     }
 
+    //TODO: Fix too much Logic for a model
     public Coordinates setInstagramCoordinates(InstagramImage instagramLink, Locale locale){
         if (instagramLink.getLocation()!= null && !instagramLink.getLocation().isEmpty()){
-            LocationObject locationObject = LocationLoader.getLocation(instagramLink.getLocation(), locale);
+            LocationObject locationObject = LocationLoader.getInstance().getLocation(instagramLink.getLocation(), locale);
             if (locationObject != null){
                return (new Coordinates(locationObject.getLatitude(),locationObject.getLongitude()));
             }

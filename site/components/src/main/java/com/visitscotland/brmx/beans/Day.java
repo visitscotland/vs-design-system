@@ -1,17 +1,11 @@
 package com.visitscotland.brmx.beans;
 
-import org.hippoecm.hst.content.beans.standard.HippoBean;
-import org.onehippo.cms7.essentials.dashboard.annotations.HippoEssentialsGenerated;
 import org.hippoecm.hst.content.beans.Node;
 import org.hippoecm.hst.content.beans.standard.HippoHtml;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
+import org.onehippo.cms7.essentials.dashboard.annotations.HippoEssentialsGenerated;
+
 import java.util.List;
 
-/** 
- * TODO: Beanwriter: Failed to create getter for node type: hippo:compound
- */
 @HippoEssentialsGenerated(internalName = "visitscotland:Day")
 @Node(jcrType = "visitscotland:Day")
 public class Day extends BaseDocument {
@@ -43,5 +37,10 @@ public class Day extends BaseDocument {
     @HippoEssentialsGenerated(internalName = "visitscotland:translationFlag")
     public Boolean getTranslationFlag() {
         return getSingleProperty("visitscotland:translationFlag");
+    }
+
+    @HippoEssentialsGenerated(internalName = "visitscotland:translation")
+    public String getTranslation() {
+        return getSingleProperty("visitscotland:translation");
     }
 }

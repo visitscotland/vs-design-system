@@ -43,12 +43,14 @@ public class PageContentComponent<TYPE extends Page> extends EssentialsContentCo
     ResourceBundleService bundle;
     DMSDataService dmsData;
     LinkService linksService;
+    LocationLoader locationLoader;
 
     public PageContentComponent(){
         utils = new HippoUtilsService();
         bundle = new ResourceBundleService();
         dmsData = new DMSDataService();
         linksService = new LinkService();
+        locationLoader = LocationLoader.getInstance();
     }
     @Override
     public void doBeforeRender(HstRequest request, HstResponse response) {
@@ -67,7 +69,7 @@ public class PageContentComponent<TYPE extends Page> extends EssentialsContentCo
      * @param request HstRequest
      */
     protected void addHeroCoordinates(HstRequest request) {
-        LocationObject location = LocationLoader.getLocation(getDocument(request).getHeroImage().getLocation(), request.getLocale());
+        LocationObject location = locationLoader.getLocation(getDocument(request).getHeroImage().getLocation(), request.getLocale());
 
         if (location != null){
             Coordinates coordinates = new Coordinates();
