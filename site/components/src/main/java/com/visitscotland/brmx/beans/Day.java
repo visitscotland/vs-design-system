@@ -1,20 +1,14 @@
 package com.visitscotland.brmx.beans;
 
-import org.hippoecm.hst.content.beans.standard.HippoBean;
-import org.onehippo.cms7.essentials.dashboard.annotations.HippoEssentialsGenerated;
 import org.hippoecm.hst.content.beans.Node;
 import org.hippoecm.hst.content.beans.standard.HippoHtml;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
+import org.onehippo.cms7.essentials.dashboard.annotations.HippoEssentialsGenerated;
+
 import java.util.List;
 
-/** 
- * TODO: Beanwriter: Failed to create getter for node type: hippo:compound
- */
 @HippoEssentialsGenerated(internalName = "visitscotland:Day")
 @Node(jcrType = "visitscotland:Day")
-public class Day extends BaseDocument implements TranslationLinkContainer {
+public class Day extends BaseDocument {
     @HippoEssentialsGenerated(internalName = "visitscotland:title")
     public String getTitle() {
         return getSingleProperty("visitscotland:title");
@@ -35,11 +29,6 @@ public class Day extends BaseDocument implements TranslationLinkContainer {
         return getMultipleProperty("visitscotland:transports");
     }
 
-    @Override
-    public String[] getTranslatableLinkNames() {
-        return new String[] { "visitscotland:stops" };
-    }
-
     @HippoEssentialsGenerated(internalName = "visitscotland:diff")
     public String getDiff() {
         return getSingleProperty("visitscotland:diff");
@@ -48,5 +37,10 @@ public class Day extends BaseDocument implements TranslationLinkContainer {
     @HippoEssentialsGenerated(internalName = "visitscotland:translationFlag")
     public Boolean getTranslationFlag() {
         return getSingleProperty("visitscotland:translationFlag");
+    }
+
+    @HippoEssentialsGenerated(internalName = "visitscotland:translation")
+    public String getTranslation() {
+        return getSingleProperty("visitscotland:translation");
     }
 }

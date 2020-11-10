@@ -1,5 +1,6 @@
 package com.visitscotland.brmx.translation.plugin;
 
+import com.visitscotland.brmx.translation.SessionFactory;
 import org.hippoecm.repository.api.Document;
 import org.hippoecm.repository.api.HippoWorkspace;
 import org.hippoecm.repository.api.WorkflowException;
