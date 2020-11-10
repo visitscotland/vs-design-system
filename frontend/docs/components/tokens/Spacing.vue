@@ -73,10 +73,10 @@ export default {
 --------------------------------------------- */
 
 .spacing {
-  margin-top: $space-l;
-  overflow: hidden;
-  max-width: 1176px;
-  width: 100%;
+    margin-top: $space-l;
+    overflow: hidden;
+    max-width: 1176px;
+    width: 100%;
 }
 .spacing-label {
     span {
@@ -85,19 +85,19 @@ export default {
     }
 }
 .space {
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  border-radius: $radius-default;
-  box-shadow: $shadow-s-inset;
-  margin-bottom: $space-xs;
-  font-size: $size-s;
-  font-family: $font-text;
-  color: $docs-color-rich-black;
-  background: tint(#c4cdd5, 85%);
-  text-align: center;
-  position: relative;
-  float: left;
-  width: 100%;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    border-radius: $radius-default;
+    box-shadow: $shadow-s-inset;
+    margin-bottom: $space-xs;
+    font-size: $size-s;
+    font-family: $font-text;
+    color: $docs-color-rich-black;
+    background: tint(#c4cdd5, 85%);
+    text-align: center;
+    position: relative;
+    float: left;
+    width: 100%;
 }
 </style>
 
