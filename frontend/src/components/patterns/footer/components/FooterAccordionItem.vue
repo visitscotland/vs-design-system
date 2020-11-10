@@ -1,6 +1,6 @@
 <template>
     <VsAccordionItem
-        class="vs-footer__accordion__item mb-md-4"
+        class="vs-footer__accordion-item mb-md-4"
         :control-id="controlId"
         :item-break-point="itemBreakPoint"
         :open-by-default="openByDefault"
@@ -76,7 +76,7 @@ export default {
 </script>
 
 <style lang="scss">
-.vs-footer__accordion__item.card {
+.vs-footer__accordion-item.card {
     border-bottom: 1px solid $color-gray-shade-2;
 
       .vs-accordion__item__card-header{
