@@ -201,6 +201,7 @@ export default {
             >
                 <vs-button-with-icon
                     class="mb-3"
+                    button-size="md"
                     background="white"
                     variant="outline-primary"
                     href="#"
@@ -209,6 +210,7 @@ export default {
                     Nearby places to eat
                 </vs-button-with-icon>
                 <vs-button-with-icon
+                    button-size="md"
                     background="white"
                     variant="outline-primary"
                     href="#"

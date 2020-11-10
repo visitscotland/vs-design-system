@@ -18,7 +18,7 @@
             <VsRow>
                 <VsCol
                     cols="12"
-                    class="p-0"
+                    class="p-0 vs-itinerary__accordion-container"
                 >
                     <VsAccordion break-point="lg">
                         <slot name="list" />
@@ -39,6 +39,7 @@ import {
 } from '@components/elements/layout';
 import VsItineraryMobileMapToggle from '@components/patterns/itineraries/components/itinerary-mobile-map-toggle/ItineraryMobileMapToggle';
 import VsAccordion from '@components/patterns/accordion/Accordion';
+
 /**
  * A wrapper component that wraps the itinerary map and list.
  * It controls display of the mobile map toggle on smaller screens.
@@ -127,6 +128,23 @@ export default {
             position: -webkit-sticky;
             position: sticky;
             width: 45vw;
+        }
+
+         @media screen and (-ms-high-contrast: active), screen and (-ms-high-contrast: none) {
+            position: relative;
+        }
+    }
+
+    // layout styles for safari
+    @media screen and (min-color-index:0) and (-webkit-min-device-pixel-ratio:0) {
+        @include media-breakpoint-up(lg) {
+            .vs-itinerary__map-container {
+                height: 0;
+            }
+
+            .vs-itinerary__accordion-container {
+                max-width: 50%;
+            }
         }
     }
 }
@@ -411,6 +429,7 @@ export default {
                     <vs-button-with-icon
                         class="mb-3"
                         background="white"
+                        button-size="md"
                         variant="outline-primary"
                         href="#"
                         icon="food"
@@ -419,6 +438,7 @@ export default {
                     </vs-button-with-icon>
                     <vs-button-with-icon
                         background="white"
+                        button-size="md"
                         variant="outline-primary"
                         href="#"
                         icon="product-accommodation"
