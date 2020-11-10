@@ -30,7 +30,7 @@ export default {
 .vs-header__top {
     z-index: $zindex-sticky;
 
-    .vs-header__top__main {
+    .header__top-main {
         height: 28px;
             font-size: $font-size-base;
             font-weight: 400;

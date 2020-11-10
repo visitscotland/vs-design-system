@@ -1,5 +1,5 @@
 <template>
-    <li class="vs-footer__social__item">
+    <li class="vs-footer__social-item">
         <VsButtonSquareSocial
             :href="href"
             :icon="icon"
@@ -45,7 +45,7 @@ export default {
 </script>
 
 <style lang="scss">
-.vs-footer__social__item {
+.vs-footer__social-item {
     list-style: none;
     display: inline-block;
     text-decoration: none;

@@ -5,7 +5,7 @@
     >
         <BCardHeader
             role="tab"
-            class="vs-accordion__item__card-header"
+            class="vs-accordion__item-card-header"
         >
             <!-- @slot Slot to contain Header for accordion item.
             Defaults to Accordion Toggle button. If component is responsive
@@ -31,7 +31,7 @@
             </VsAccordionToggle>
 
             <h4
-                class="d-none vs-accordion__item__title"
+                class="d-none vs-accordion__item-title"
                 :class="toggleResponsiveItem"
             >
                 <!-- @slot Put the title here  -->
@@ -42,7 +42,7 @@
         <BCardBody
             v-show="show"
             :id="controlId"
-            class="vs-accordion__item__panel"
+            class="vs-accordion__item-panel"
             :class="toggleResponsiveItem"
         >
             <!-- @slot The default slot is the content for the accordion  -->
@@ -145,24 +145,24 @@ export default {
 .vs-accordion__item.card {
     border: 0;
 
-    .vs-accordion__item__card-header {
+    .vs-accordion__item-card-header {
         padding: 0;
         border: 0;
         background-color: transparent;
     }
 
-    .btn.vs-accordion__item__toggle-btn {
+    .btn.vs-accordion__item-toggle-btn {
         text-align: left;
 
     }
 
-    .vs-accordion__item__title {
+    .vs-accordion__item-title {
         margin: $spacer-3;
         line-height: 1;
         font-weight: 500;
     }
 
-    .vs-accordion__item__panel.card-body {
+    .vs-accordion__item-panel.card-body {
         padding: 0 0 $spacer-2;
     }
 }
@@ -172,7 +172,7 @@ export default {
         display: none;
     }
 
-    .vs-accordion__item .vs-accordion__item__panel {
+    .vs-accordion__item .vs-accordion__item-panel {
         display: block!important;
     }
 }
