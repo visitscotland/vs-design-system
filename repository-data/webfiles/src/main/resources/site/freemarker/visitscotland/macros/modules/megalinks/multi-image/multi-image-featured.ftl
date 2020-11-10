@@ -21,6 +21,7 @@
             <#if lastFeatured == 'true'>last-featured</#if>
             img-src="${image}"
             link-type="${feature.type}"
+            link-url="${feature.link}"
         >
             <template slot="vsMultiImageHeading">
                 ${feature.label}
