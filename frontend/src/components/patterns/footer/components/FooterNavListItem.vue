@@ -1,5 +1,5 @@
 <template>
-    <li class="vs-footer__nav-list__item">
+    <li class="vs-footer__nav-list-item">
         <VsLink
             :href="href"
             :external="external"
@@ -50,7 +50,7 @@ export default {
 </script>
 
 <style lang="scss">
-.vs-footer__nav-list__item {
+.vs-footer__nav-list-item {
     list-style: none;
     font-size: $small-font-size;
     line-height: $line-height-s;
@@ -97,11 +97,11 @@ export default {
                     </span>
 
                     <span slot="icon-open">
-                        <vs-icon name="chevron-up" variant="light" size="xs" />
+                        <vs-icon name="chevron" variant="light" size="xs" />
                     </span>
 
                     <span slot="icon-closed">
-                        <vs-icon name="chevron-right" variant="light" size="xs" />
+                        <vs-icon name="chevron" orientation="right" variant="light" size="xs" />
                     </span>
 
                     <vs-list unstyled>

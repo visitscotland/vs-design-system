@@ -4,15 +4,15 @@
         :control-id="'itinerary-day-' + dayNumber"
         variant="transparent"
         item-break-point="lg"
-        class="vs-itinerary__day__list-item"
+        class="vs-itinerary-day__list-item"
     >
         <template #title>
             <!-- @slot Put the title here  -->
             <VsHeading
                 level="2"
-                class="vs-itinerary__day__header text-center mt-9 position-relative"
+                class="vs-itinerary-day__header text-center mt-9 position-relative"
             >
-                <span class="vs-itinerary__day__title d-inline-block">
+                <span class="vs-itinerary-day__title d-inline-block">
                     {{ dayLabel }} {{ dayNumber }}
                 </span>
                 <span slot="sub-heading">{{ dayTitle }}</span>
@@ -22,21 +22,22 @@
         <template #icon-open>
             <!-- @slot Slot for the icon to show when accordion item is open  -->
             <VsIcon
-                name="chevron-down"
+                name="chevron"
+                orientation="down"
                 variant="dark"
                 size="xs"
                 :padding="3"
-                class="vs-itinerary__day__toggle-button"
+                class="vs-itinerary-day__toggle-button"
             />
         </template>
         <template #icon-closed>
             <!-- @slot Slot for the icon to show when accordion item is closed  -->
             <VsIcon
-                name="chevron-up"
+                name="chevron"
                 variant="dark"
                 size="xs"
                 :padding="3"
-                class="vs-itinerary__day__toggle-button"
+                class="vs-itinerary-day__toggle-button"
             />
         </template>
         <div :id="'dayPanel_' + dayNumber">
@@ -109,7 +110,7 @@ export default {
 <style lang="scss">
 @import "~bootstrap/scss/type";
 
-.vs-itinerary__day__list-item.card {
+.vs-itinerary-day__list-item.card {
     border-top: 5px solid $color-base-text;
     padding: $spacer-4 $spacer-4 0;
 
@@ -120,25 +121,25 @@ export default {
     }
 }
 
-.vs-itinerary__day__title  {
+.vs-itinerary-day__title  {
     border-bottom: 1px solid $color-base-text;
     color: $color-theme-secondary-teal;
     padding: 0 $spacer-6 $spacer-3;
 }
 
-.vs-itinerary__day__toggle-button {
+.vs-itinerary-day__toggle-button {
     border: 1px solid $color-base-text;
     border-radius: 50%;
     height: 24px;
     width: 24px;
 
-    .icon {
+    .vs-icon {
         height: 100%;
         margin: 0 auto;
         display: block;
     }
 
-    &.icon.icon-xs {
+    &.vs-icon.vs-icon--size-xs {
         height: 32px;
         width: 32px;
         padding: 8px;
