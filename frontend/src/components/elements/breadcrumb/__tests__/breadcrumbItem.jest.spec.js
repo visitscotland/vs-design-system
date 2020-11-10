@@ -8,24 +8,14 @@ const factoryMount = (propsData) => mount(VsBreadcrumbItem, {
         text: 'Some Text',
         ...propsData,
     },
-    attrs: {
-        'test-attribute': 'test-value',
-    },
 });
 
-describe('<VsBreadcrumbItem />', () => {
-    it('should render a <b-breadcrumb-item />', () => {
+describe('VsBreadcrumbItem', () => {
+    it('should render a b-breadcrumb-item', () => {
         const wrapper = factoryMount();
 
         const breadcrumbItem = wrapper.find(BBreadcrumbItem);
         expect(breadcrumbItem.exists()).toBe(true);
-    });
-
-    it('should bind given attributes to <b-breadcrumb-item />', () => {
-        const wrapper = factoryMount();
-
-        const breadcrumb = wrapper.find(BBreadcrumbItem);
-        expect(breadcrumb.attributes('test-attribute')).toBe('test-value');
     });
 
     describe(':props', () => {

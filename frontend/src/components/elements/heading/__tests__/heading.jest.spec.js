@@ -11,14 +11,14 @@ beforeEach(() => {
     });
 });
 
-describe('<VsHeading />', () => {
-    it('should render a <h1 /> by default', () => {
+describe('VsHeading', () => {
+    it('should render a h1 by default', () => {
         expect(wrapper.is('h1')).toBe(true);
         expect(wrapper.classes('heading')).toBe(true);
     });
 
     describe(':props', () => {
-        it(':level - should accept and render a `level` props', () => {
+        it(':level - should accept and render a `level` prop', () => {
             wrapper.setProps({
                 level: 2,
             });
@@ -26,7 +26,7 @@ describe('<VsHeading />', () => {
             expect(wrapper.is('h2')).toBe(true);
         });
 
-        it(':thin - should accept and render a `thin` props', () => {
+        it(':thin - should accept and render a `thin` prop', () => {
             wrapper.setProps({
                 thin: true,
             });

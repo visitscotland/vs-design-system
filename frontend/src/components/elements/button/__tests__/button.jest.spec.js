@@ -20,24 +20,15 @@ const factoryMount = (propsData) => mount(VsButton, {
     propsData: {
         ...propsData,
     },
-    attrs: {
-        'test-attribute': 'test-value',
-    },
 });
 
 const testIcon = 'food';
 
 describe('VsButton', () => {
-    it('should render a <bbutton-stub />', () => {
+    it('should render a bbutton-stub', () => {
         const wrapper = factoryShallowMount();
 
         expect(wrapper.is('bbutton-stub')).toBe(true);
-    });
-
-    it('should bind given attributes to <bbutton-stub />', () => {
-        const wrapper = factoryShallowMount();
-
-        expect(wrapper.attributes('test-attribute')).toBe('test-value');
     });
 
     describe(':props', () => {
@@ -59,11 +50,11 @@ describe('VsButton', () => {
 
         it(':variant - should accept and render variants as props', () => {
             const testVariant = 'success';
-            const wrapper = factoryShallowMount({
+            const wrapper = factoryMount({
                 variant: testVariant,
             });
 
-            expect(wrapper.attributes('variant')).toBe(testVariant);
+            expect(wrapper.classes(`btn-${testVariant}`)).toBe(true);
         });
 
         it(':background - should accept and render a `background` property', () => {
@@ -98,7 +89,7 @@ describe('VsButton', () => {
                 expect(wrapper.classes('vs-button-with-icon')).toBe(false);
             });
 
-            it(':icon - should render the <VsButton /> with a `vs-button-with-icon` class if icon prop is provided', () => {
+            it(':icon - should render the VsButton with a `vs-button-with-icon` class if icon prop is provided', () => {
                 const wrapper = factoryMount({
                     icon: testIcon,
                 });
