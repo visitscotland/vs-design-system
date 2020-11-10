@@ -12,19 +12,19 @@
     </#if>
     <vs-col cols="12">
         <vs-megalink-single-image 
-            title="${item.innerTitle}" 
+            title="${item.innerTitle}"
+            img-src="${image}"
             <#if item.cta.link??>button-link="${item.cta.link}"</#if>
             <#if item.alignment == 'left'>alternate</#if>
         >
-            <template slot="vsSingleImageCaption">An image of Scotland</template>
-            <template slot="vsSingleImageCredit">@2020 Credit here</template>
+            <template slot="vsSingleImageCaption">${item.image.description}</template>
+            <template slot="vsSingleImageCredit">${item.image.credit}</template>
             <template slot="vsSingleImageContent">
                 <@hst.html hippohtml=item.innerIntroduction/>
             </template>
             <template slot="vsSingleImageLinks">
                 <#list item.links as listItem>
                     <li class="megalink-single-image__link-list-item">
-                        
                         <vs-link
                             href="${listItem.link}"
                         >

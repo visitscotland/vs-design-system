@@ -7,7 +7,7 @@
             mobile-overlap
             alt-text=""
             :text-align="alternate ? 'left' : 'right'"
-            image-src="https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"
+            :image-src="imgSrc"
             class="megalink-single-image__image"
         >
             <template slot="caption">
@@ -65,6 +65,7 @@ import VsImageWithCaption from '@components/patterns/image-with-caption/ImageWit
 import VsHeading from '@components/elements/heading/Heading';
 import VsRichTextWrapper from '@components/elements/rich-text-wrapper/RichTextWrapper';
 import VsButton from '@components/elements/button/Button';
+import { VsRow, VsCol } from '@components/elements/layout';
 
 export default {
     name: 'VsMegalinkSingleImage',
@@ -75,6 +76,8 @@ export default {
         VsHeading,
         VsRichTextWrapper,
         VsButton,
+        VsRow,
+        VsCol,
     },
     props: {
         /**
@@ -95,6 +98,13 @@ export default {
         * Button url
         */
         buttonLink: {
+            type: String,
+            default: '',
+        },
+        /**
+        * Image src attribute
+        */
+        imgSrc: {
             type: String,
             default: '',
         },
@@ -143,7 +153,7 @@ export default {
         }
 
         .megalink-single-image__image {
-            margin: 0px -12px (-$spacer-8);
+            margin: 0 -12px (-$spacer-8);
         }
 
         .megalink-single-image__button {
@@ -177,7 +187,7 @@ export default {
             .megalink-single-image__image {
                 width: 66%;
                 align-self: flex-end;
-                margin-bottom: -200px;
+                margin-bottom: 0 0 -200px;
             }
 
             &--alternate {
@@ -206,6 +216,7 @@ export default {
             <vs-megalink-single-image
                 title="The Component heading"
                 buttonLink="www.visitscotland.com"
+                imgSrc="https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"
             >
                 <template slot="vsSingleImageCaption">An image of Scotland</template>
                 <template slot="vsSingleImageCredit">@2020 Credit here</template>
@@ -254,6 +265,7 @@ export default {
             <vs-megalink-single-image
                 title="This is the second component heading"
                 buttonLink="www.visitscotland.com"
+                imgSrc="https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"
                 alternate
             >
                 <template slot="vsSingleImageCaption">An image of Scotland</template>
