@@ -8,7 +8,7 @@ const factoryShallowMount = (propsData) => shallowMount(VsButtonSquareSocial, {
     },
 });
 
-describe('<VsButtonSquareSocial />', () => {
+describe('VsButtonSquareSocial', () => {
     it('should render ButtonSquareSocial', () => {
         const wrapper = factoryShallowMount({
             icon: 'facebook',
