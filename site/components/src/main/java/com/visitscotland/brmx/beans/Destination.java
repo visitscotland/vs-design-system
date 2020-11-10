@@ -1,19 +1,18 @@
 package com.visitscotland.brmx.beans;
 
-import org.onehippo.cms7.essentials.dashboard.annotations.HippoEssentialsGenerated;
 import org.hippoecm.hst.content.beans.Node;
-
-import java.util.List;
+import org.onehippo.cms7.essentials.dashboard.annotations.HippoEssentialsGenerated;
 
 @HippoEssentialsGenerated(internalName = "visitscotland:Destination")
 @Node(jcrType = "visitscotland:Destination")
-public class Destination extends Page {
+public class Destination extends Page  {
     @HippoEssentialsGenerated(internalName = "visitscotland:location")
     public String getLocation() {
         return getSingleProperty("visitscotland:location");
     }
 
-    public List<Megalinks> getItems() {
-        return getExternalBeansByType(Megalinks.class);
+    @Override
+    public String[] getChildJcrTypes() {
+        return new String[]{"visitscotland:Megalinks", "visitscotland:TourismInformation"};
     }
 }

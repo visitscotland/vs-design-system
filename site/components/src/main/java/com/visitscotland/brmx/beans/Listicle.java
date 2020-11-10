@@ -1,15 +1,17 @@
 package com.visitscotland.brmx.beans;
 
-import org.onehippo.cms7.essentials.dashboard.annotations.HippoEssentialsGenerated;
 import org.hippoecm.hst.content.beans.Node;
-import java.util.List;
 import org.hippoecm.hst.content.beans.standard.HippoHtml;
+import org.onehippo.cms7.essentials.dashboard.annotations.HippoEssentialsGenerated;
+
+import java.util.List;
 
 @HippoEssentialsGenerated(internalName = "visitscotland:Listicle")
 @Node(jcrType = "visitscotland:Listicle")
-public class Listicle extends Page implements TranslationParent {
+public class Listicle extends Page {
+    @Deprecated
     public List<ListicleItem> getItems() {
-        return getExternalBeansByType(ListicleItem.class);
+        return getPageChildrenByType(ListicleItem.class);
     }
 
     @HippoEssentialsGenerated(internalName = "visitscotland:descOrder")

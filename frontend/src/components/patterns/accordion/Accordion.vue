@@ -10,7 +10,6 @@
 
 <script>
 
-
 /**
  * Accordion wrapper used with AccordionItems.
  */
@@ -52,11 +51,11 @@ export default {
             </span>
 
             <span slot="icon-open">
-                <vs-icon name="chevron-down" variant="light" size="xs" />
+                <vs-icon name="chevron" orientation="down" variant="light" size="xs" />
             </span>
 
             <span slot="icon-closed">
-                <vs-icon name="chevron-up" variant="light" size="xs" />
+                <vs-icon name="chevron" variant="light" size="xs" />
             </span>
 
             <div class="p-3">
@@ -73,11 +72,11 @@ export default {
             </span>
 
             <span slot="icon-open">
-                <vs-icon name="chevron-down" variant="light" size="xs" />
+                <vs-icon name="chevron" orientation="down" variant="light" size="xs" />
             </span>
 
             <span slot="icon-closed">
-                <vs-icon name="chevron-up" variant="light" size="xs" />
+                <vs-icon name="chevron" variant="light" size="xs" />
             </span>
 
             <div class="p-3">
@@ -93,11 +92,11 @@ export default {
             </span>
 
             <span slot="icon-open">
-                <vs-icon name="chevron-down" variant="light" size="xs" />
+                <vs-icon name="chevron" orientation="down" variant="light" size="xs" />
             </span>
 
             <span slot="icon-closed">
-                <vs-icon name="chevron-up" variant="light" size="xs" />
+                <vs-icon name="chevron" variant="light" size="xs" />
             </span>
 
             <div class="p-3">
@@ -117,11 +116,11 @@ export default {
             </span>
 
             <span slot="icon-open">
-                <vs-icon name="chevron-down" variant="light" size="xs" />
+                <vs-icon name="chevron" orientation="down" variant="light" size="xs" />
             </span>
 
             <span slot="icon-closed">
-                <vs-icon name="chevron-up" variant="light" size="xs" />
+                <vs-icon name="chevron" variant="light" size="xs" />
             </span>
 
             <div class="p-3">
@@ -138,11 +137,11 @@ export default {
             </span>
 
             <span slot="icon-open">
-                <vs-icon name="chevron-down" variant="light" size="xs" />
+                <vs-icon name="chevron" orientation="down" variant="light" size="xs" />
             </span>
 
             <span slot="icon-closed">
-                <vs-icon name="chevron-up" variant="light" size="xs" />
+                <vs-icon name="chevron" variant="light" size="xs" />
             </span>
 
             <div class="p-3">
@@ -158,11 +157,11 @@ export default {
             </span>
 
             <span slot="icon-open">
-                <vs-icon name="chevron-down" variant="light" size="xs" />
+                <vs-icon name="chevron" orientation="down" variant="light" size="xs" />
             </span>
 
             <span slot="icon-closed">
-                <vs-icon name="chevron-up" variant="light" size="xs" />
+                <vs-icon name="chevron" variant="light" size="xs" />
             </span>
 
             <div class="p-3">

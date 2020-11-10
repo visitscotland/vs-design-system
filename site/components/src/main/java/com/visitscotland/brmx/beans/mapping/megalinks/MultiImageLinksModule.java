@@ -8,6 +8,14 @@ public class MultiImageLinksModule extends LinksModule<EnhancedLink> {
     private List<EnhancedLink> featuredLinks;
     private Integer linksSize;
 
+    public MultiImageLinksModule() {
+
+    }
+
+    public MultiImageLinksModule(String title) {
+        setTitle(title);
+    }
+
     public boolean isTeaserVisible() {
         return teaserVisible;
     }

@@ -12,6 +12,9 @@ public class MegalinksMockService {
 
     ProductSearchBuilder builder;
 
+    Megalinks mega;
+
+    @Deprecated
     public MegalinksMockService(ProductSearchBuilder builder){
         this.builder = builder;
     }
@@ -26,6 +29,14 @@ public class MegalinksMockService {
 
         when(mega.getTitle()).thenReturn(title);
         when(mega.getMegalinkItems()).thenReturn(Collections.singletonList(item));
+
+        return mega;
+    }
+
+    public Megalinks mockSingleImage() {
+        Megalinks mega = mock(Megalinks.class, withSettings().lenient());
+        SingleImageModule sim = mock(SingleImageModule.class);
+        when(mega.getSingleImageModule()).thenReturn(sim);
 
         return mega;
     }
@@ -47,7 +58,6 @@ public class MegalinksMockService {
 
         return item;
     }
-
 
     private SharedLink mockSharedLink(LinkModuleFactoryMockitoTest.LinkType linkType) {
         SharedLink link = mock(SharedLink.class, withSettings().lenient());
