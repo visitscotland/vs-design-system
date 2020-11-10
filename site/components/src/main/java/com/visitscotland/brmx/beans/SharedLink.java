@@ -42,4 +42,9 @@ public class SharedLink extends BaseDocument implements Linkable {
     public Boolean getTranslationFlag() {
         return getSingleProperty("visitscotland:translationFlag");
     }
+
+    @HippoEssentialsGenerated(internalName = "visitscotland:translation")
+    public String getTranslation() {
+        return getSingleProperty("visitscotland:translation");
+    }
 }

@@ -2,7 +2,11 @@ package com.visitscotland.brmx.dms;
 
 import com.visitscotland.brmx.utils.Properties;
 import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.Locale;
 
@@ -10,16 +14,18 @@ import static com.visitscotland.brmx.dms.ProductSearchBuilder.*;
 
 //TODO Convert to JUnit 5
 // TODO this test relies on lan conection: FIX
+@ExtendWith(MockitoExtension.class)
 public class ProductSearchTest {
 
     private final static String DEFAULT_TYPE = "cate";
 
     //TODO when LocationLoader is not available
 
-    @Test(expected = Exception.class)
+    @Test()
+    @DisplayName("A test with no Product Type should throw an exception")
     public void noProductType() {
-        new ProductSearchBuilder().build();
-        Assert.fail("An exception is expected when no query is defined");
+
+        Assertions.assertThrows(RuntimeException.class, () -> new ProductSearchBuilder().build());
     }
 
     @Test
@@ -65,7 +71,7 @@ public class ProductSearchTest {
     private void checkLocationAvailability() {
         final String LOCATION = "Edinburgh";
 
-        if (LocationLoader.getLocation(LOCATION, null) == null) {
+        if (LocationLoader.getInstance().getLocation(LOCATION, null) == null) {
             Assert.fail("LocationLoader might not be working or the location " + LOCATION + " no longer exists");
         }
     }

@@ -1,6 +1,6 @@
 <template>
     <VsStretchedLinkCard
-        link="https://visitscotland.com"
+        :link="linkUrl"
         :type="linkType"
         class="megalink-multi-image p-2"
         :class="{
@@ -88,6 +88,13 @@ export default {
             type: String,
             required: true,
             validator: (value) => value.match(/(external|internal|download)/),
+        },
+        /**
+        * The link destination
+        */
+        linkUrl: {
+            type: String,
+            required: true,
         },
     },
 };
@@ -208,6 +215,7 @@ export default {
                         imgSrc="https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"
                         imgAlt="This is the alt text"
                         linkType="internal"
+                        linkUrl="www.visitscotland.com"
                     >
                         <template slot="vsMultiImageHeading">
                             The Edinburgh International Festival and summer festival
@@ -228,6 +236,7 @@ export default {
                         imgSrc="https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"
                         imgAlt="This is the alt text 1"
                         linkType="external"
+                        linkUrl="www.visitscotland.com"
                     >
                         <template slot="vsMultiImageHeading">
                             Count 7,000 shining stars in the iconic galloway forest
@@ -248,6 +257,7 @@ export default {
                         imgSrc="https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"
                         imgAlt="This is the alt text 2"
                         linkType="external"
+                        linkUrl="www.visitscotland.com"
                     >
                         <template slot="vsMultiImageHeading">
                             Count 7,000 shining stars in the iconic galloway forest
@@ -276,6 +286,7 @@ export default {
                     <vs-megalink-multi-image
                         imgSrc="https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"
                         linkType="download"
+                        linkUrl="www.visitscotland.com"
                     >
                         <template slot="vsMultiImageHeading">
                             Soar through the air on a boat of Falkirk Wheel (PDF 3MB)
