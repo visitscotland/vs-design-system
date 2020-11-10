@@ -15,10 +15,10 @@ describe('VsAccordionItem', () => {
     it('should render accordionItem', () => {
         const wrapper = factoryShallowMount();
 
-        const accordionItem = wrapper.find('bcard-stub.vs-accordion__item');
-        const accordionItemHeader = wrapper.find('bcardheader-stub.vs-accordion__item__card-header');
-        const accordionItemTitle = wrapper.find('h4.vs-accordion__item__title');
-        const accordionItemBody = wrapper.find('.vs-accordion__item__panel');
+        const accordionItem = wrapper.find('[data-test=vs-accordion__item]');
+        const accordionItemHeader = wrapper.find('[data-test=vs-accordion__item-header]');
+        const accordionItemTitle = wrapper.find('[data-test=vs-accordion__item-title]');
+        const accordionItemBody = wrapper.find('[data-test=vs-accordion__item-body]');
 
         expect(accordionItem.exists()).toBe(true);
         expect(accordionItemHeader.exists()).toBe(true);
