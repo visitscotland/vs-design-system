@@ -1,5 +1,8 @@
 <template>
-    <div class="vs-iknow-partner-item">
+    <div
+        class="vs-iknow-partner-item"
+        data-test="vs-iknow-partner-item"
+    >
         <!-- @slot Holds the component heading -->
         <slot name="iknow-heading" />
 
