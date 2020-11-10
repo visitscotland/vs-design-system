@@ -30,7 +30,7 @@ describe('VsAccordionItem', () => {
         it(':controlId should be assigned to panel id', () => {
             const wrapper = factoryShallowMount();
 
-            const accordionItemBody = wrapper.find('.vs-accordion__item__panel');
+            const accordionItemBody = wrapper.find('[data-test=vs-accordion__item-body]');
 
             expect(accordionItemBody.attributes('id')).toBe('1234');
         });
