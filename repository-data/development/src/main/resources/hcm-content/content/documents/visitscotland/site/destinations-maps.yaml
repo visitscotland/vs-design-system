@@ -25,7 +25,7 @@
         jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
         jcr:uuid: 4d302e29-93dd-4157-9df9-bbd741bb12a0
         hippo:name: Orkney short break itinerary
-        hippo:versionHistory: 94d37b02-513d-453a-a564-d8b6e4e127fc
+        hippo:versionHistory: 07269544-0fab-4bf7-9f81-c36761435bf3
         /content[1]:
           jcr:primaryType: visitscotland:Itinerary
           jcr:mixinTypes: ['mix:referenceable']
@@ -34,7 +34,7 @@
           hippostd:state: draft
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2020-02-07T09:41:25.483Z
-          hippostdpubwf:lastModificationDate: 2020-10-26T11:32:08.172Z
+          hippostdpubwf:lastModificationDate: 2020-11-10T11:55:35.842Z
           hippostdpubwf:lastModifiedBy: admin
           hippotranslation:id: 4f317e16-7cca-44da-84bf-26c96e4a4494
           hippotranslation:locale: en
@@ -53,9 +53,7 @@
           visitscotland:seoTitle: Short Break in Orkney – 4 Day Itinerary
           visitscotland:start: ''
           visitscotland:teaser: Taste the smoky influences in Orkney whisky, see rare
-            birds soaring in the skies overhead, walk amongst historic sites that
-            have stood for thousands of years and gaze out at swirling seas on a coastal
-            walk.
+            birds soaring in the skies overhead.
           visitscotland:theme: islands
           visitscotland:title: Short Break in Orkney – 4 Day Itinerary
           visitscotland:transports: [cycling]
@@ -83,7 +81,7 @@
           hippostd:state: unpublished
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2020-02-07T09:41:25.483Z
-          hippostdpubwf:lastModificationDate: 2020-10-26T11:32:08.138Z
+          hippostdpubwf:lastModificationDate: 2020-11-10T11:55:35.739Z
           hippostdpubwf:lastModifiedBy: admin
           hippotranslation:id: 4f317e16-7cca-44da-84bf-26c96e4a4494
           hippotranslation:locale: en
@@ -102,9 +100,7 @@
           visitscotland:seoTitle: Short Break in Orkney – 4 Day Itinerary
           visitscotland:start: ''
           visitscotland:teaser: Taste the smoky influences in Orkney whisky, see rare
-            birds soaring in the skies overhead, walk amongst historic sites that
-            have stood for thousands of years and gaze out at swirling seas on a coastal
-            walk.
+            birds soaring in the skies overhead.
           visitscotland:theme: islands
           visitscotland:title: Short Break in Orkney – 4 Day Itinerary
           visitscotland:transports: [cycling]
@@ -132,9 +128,9 @@
           hippostd:state: published
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2020-02-07T09:41:25.483Z
-          hippostdpubwf:lastModificationDate: 2020-10-26T11:32:08.138Z
+          hippostdpubwf:lastModificationDate: 2020-11-10T11:55:35.739Z
           hippostdpubwf:lastModifiedBy: admin
-          hippostdpubwf:publicationDate: 2020-10-26T11:32:11.333Z
+          hippostdpubwf:publicationDate: 2020-11-10T11:55:39.818Z
           hippotranslation:id: 4f317e16-7cca-44da-84bf-26c96e4a4494
           hippotranslation:locale: en
           visitscotland:areas: [north]
@@ -152,9 +148,7 @@
           visitscotland:seoTitle: Short Break in Orkney – 4 Day Itinerary
           visitscotland:start: ''
           visitscotland:teaser: Taste the smoky influences in Orkney whisky, see rare
-            birds soaring in the skies overhead, walk amongst historic sites that
-            have stood for thousands of years and gaze out at swirling seas on a coastal
-            walk.
+            birds soaring in the skies overhead.
           visitscotland:theme: islands
           visitscotland:title: Short Break in Orkney – 4 Day Itinerary
           visitscotland:transports: [cycling]
