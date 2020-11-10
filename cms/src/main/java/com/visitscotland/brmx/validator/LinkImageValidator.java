@@ -32,26 +32,25 @@ public class LinkImageValidator implements Validator<Node> {
         try {
             Node node = null;
             if (document.hasNode(SharedLink.LINK_TYPES)){
-                node = document.getNode(SharedLink.LINK_TYPES);
+                node = sessionFactory.getJcrSession().getNode(SharedLink.LINK_TYPES);
             }else if (document.hasNode(Stop.PRODUCTS)){
-                node = document.getNode(Stop.PRODUCTS);
+                node = sessionFactory.getJcrSession().getNode(Stop.PRODUCTS);
                 }else if (document.hasNode(ListicleItem.PRODUCT)){
-                    node = document.getNode(ListicleItem.PRODUCT);
+                    node = sessionFactory.getJcrSession().getNode(ListicleItem.PRODUCT);
                 }
             if (node != null) {
                 //Make sure that for Share links and stops, if the product is not dms, an image is provided or/and selected
                 if (!node.hasProperty("visitscotland:product")) {
                     if (document.hasNode("visitscotland:image")) {
-                        if(document.getNode("visitscotland:image").getProperty(HIPPO_DOCBASE).getValue().getString().equals(EMPTY_IMAGE)) {
+                        if(sessionFactory.getJcrSession().getNode("visitscotland:image").getProperty(HIPPO_DOCBASE).getValue().getString().equals(EMPTY_IMAGE)) {
                             return Optional.of(context.createViolation());
                         }
                     }else
                         //Images for Listicle that allows CMS images but also Instagram images
                         if (document.hasNode(ListicleItem.IMAGES)){
-                            Node images = document.getNode(ListicleItem.IMAGES);
+                            Node images = sessionFactory.getJcrSession().getNode(ListicleItem.IMAGES);
                             if (!images.hasProperty(InstagramImage.CAPTION) && ((!images.hasProperty(HIPPO_DOCBASE))
                                     || (images.hasProperty(HIPPO_DOCBASE) && images.getProperty(HIPPO_DOCBASE).getValue().getString().equals(EMPTY_IMAGE)))) {
-                                Violation violation = context.createViolation();
                                 return Optional.of(context.createViolation());
                             }
                             }else{
