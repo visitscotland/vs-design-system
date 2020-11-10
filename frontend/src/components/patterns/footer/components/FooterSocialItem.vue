@@ -11,7 +11,6 @@
 
 import VsButtonSquareSocial from '@components/patterns/button-square-social/ButtonSquareSocial';
 
-
 /**
  * The FooterSocialItem is used inside the FooterSocialMenu to
  * show a button for a social media link.
@@ -72,11 +71,11 @@ export default {
                     </span>
 
                     <span slot="icon-open">
-                        <vs-icon name="chevron-up" variant="light" size="xs" />
+                        <vs-icon name="chevron" variant="light" size="xs" />
                     </span>
 
                     <span slot="icon-closed">
-                        <vs-icon name="chevron-right" variant="light" size="xs" />
+                        <vs-icon name="chevron" orientation="right" variant="light" size="xs" />
                     </span>
 
                     <vs-list unstyled>
