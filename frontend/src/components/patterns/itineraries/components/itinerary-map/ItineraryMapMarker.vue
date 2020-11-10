@@ -1,6 +1,6 @@
 <template>
     <button
-        class="vs-itinerary__map__marker"
+        class="itinerary__map-marker"
         :class="isHighlighted ? 'active' : ''"
         variant="transparent"
         @mouseenter="handleMouseEnter()"
@@ -18,7 +18,7 @@
                 :size="isHighlighted ? 'lg' : 'md'"
             />
             <span
-                class="vs-itinerary__map__marker__count"
+                class="itinerary__map-marker-count"
                 :class="isHighlighted ? 'active' : ''"
             >
                 <span class="sr-only">Stop</span>{{ feature.properties.stopCount }}
@@ -85,7 +85,7 @@ export default {
 </script>
 
 <style lang="scss">
-.vs-itinerary__map__marker {
+.itinerary__map-marker {
     background: transparent;
     border: none;
     display: block;
@@ -109,7 +109,7 @@ export default {
     }
 }
 
-.vs-itinerary__map__marker__count {
+.itinerary__map-marker-count {
     color: $color-white;
     display: block;
     font-size: 1rem;
