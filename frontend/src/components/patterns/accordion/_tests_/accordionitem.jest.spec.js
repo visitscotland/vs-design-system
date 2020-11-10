@@ -10,7 +10,7 @@ const factoryShallowMount = (propsData) => shallowMount(VsAccordionItem, {
     },
 });
 
-describe('<VsAccordionItem />', () => {
+describe('VsAccordionItem', () => {
     it('should render accordionItem', () => {
         const wrapper = factoryShallowMount({
             controlId: '1234',
