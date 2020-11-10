@@ -15,7 +15,7 @@
             </VsCol>
         </VsFooterNavList>
 
-        <div class="vs-footer__social-menu__wrapper border-top border-secondary-light">
+        <div class="vs-footer__social-menu-wrapper border-top border-secondary-light">
             <VsContainer>
                 <VsRow>
                     <VsCol
@@ -60,7 +60,7 @@ export default {
 .vs-footer {
     background: $color-theme-dark;
 
-    .vs-footer__social-menu__wrapper {
+    .vs-footer__social-menu-wrapper {
         @include media-breakpoint-down(sm) {
             .container {
                 max-width: 100%;

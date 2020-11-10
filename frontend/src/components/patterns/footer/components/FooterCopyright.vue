@@ -7,15 +7,15 @@
                     class="text-center"
                 >
                     <VsSvgLink
-                        class="vs-footer-copyright__logo mb-4"
-                        data-test="vs-footer-copyright__logo"
+                        class="vs-footer__copyright-logo mb-4"
+                        data-test="vs-footer__copyright-logo"
                         :link-alt-text="linkAltText"
                         :href="href"
                         svg-fill="700e57"
                         svg-path="vs-logo"
                     />
 
-                    <p class="vs-footer__copyright__text">
+                    <p class="vs-footer__copyright-text">
                         &copy; {{ getCurrentYear }}
 
                         <!-- @slot contains translated copyright text -->
@@ -89,7 +89,7 @@ export default {
         }
     }
 
-    .vs-footer__copyright__text {
+    .vs-footer__copyright-text {
         color: $color-white;
         margin: 0;
         font-size: $font-size-sm;
