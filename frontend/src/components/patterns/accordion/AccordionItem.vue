@@ -112,7 +112,7 @@ export default {
     computed: {
         toggleAccordionBtn() {
             if (!this.itemBreakPoint) {
-                return 'd-block';
+                return 'd-flex';
             }
 
             return this.itemBreakPoint === 'xs' ? 'd-none' : `d-${this.itemBreakPoint}-none`;
@@ -186,13 +186,20 @@ export default {
                 This is a title
             </span>
 
-            <span slot="icon-open">
-                <vs-icon name="chevron-down" variant="light" size="xs" />
-            </span>
+            <vs-icon
+                name="chevron"
+                orientation="down"
+                variant="light"
+                size="xs"
+                slot="icon-open"
+            />
 
-            <span slot="icon-closed">
-                <vs-icon name="chevron-up" variant="light" size="xs" />
-            </span>
+            <vs-icon
+                name="chevron"
+                variant="light"
+                size="xs"
+                slot="icon-closed"
+            />
 
             <div class="p-3">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. In luctus quam non
@@ -207,13 +214,20 @@ export default {
                 This is a title
             </span>
 
-            <span slot="icon-open">
-                <vs-icon name="chevron-down" variant="light" size="xs" />
-            </span>
+            <vs-icon
+                name="chevron"
+                orientation="down"
+                variant="light"
+                size="xs"
+                slot="icon-open"
+            />
 
-            <span slot="icon-closed">
-                <vs-icon name="chevron-up" variant="light" size="xs" />
-            </span>
+            <vs-icon
+                name="chevron"
+                variant="light"
+                size="xs"
+                slot="icon-closed"
+            />
 
             <div class="p-3">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. In luctus quam non
@@ -227,13 +241,20 @@ export default {
                 This is a title
             </span>
 
-            <span slot="icon-open">
-                <vs-icon name="chevron-down" variant="light" size="xs" />
-            </span>
+            <vs-icon
+                name="chevron"
+                orientation="down"
+                variant="light"
+                size="xs"
+                slot="icon-open"
+            />
 
-            <span slot="icon-closed">
-                <vs-icon name="chevron-up" variant="light" size="xs" />
-            </span>
+            <vs-icon
+                name="chevron"
+                variant="light"
+                size="xs"
+                slot="icon-closed"
+            />
 
             <div class="p-3">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. In luctus quam non
