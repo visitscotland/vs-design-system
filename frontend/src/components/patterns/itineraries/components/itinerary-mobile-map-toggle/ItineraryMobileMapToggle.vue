@@ -1,7 +1,7 @@
 <template>
     <Component
         :is="type"
-        class="vs-itinerary__mobile-map__toggle"
+        class="vs-itinerary__mobile-map-toggle"
         variant="primary"
         @click.native="toggleMap()"
     >
@@ -51,7 +51,7 @@ export default {
 </script>
 
 <style lang="scss">
-.vs-itinerary__mobile-map__toggle {
+.vs-itinerary__mobile-map-toggle {
     padding-left: 1rem;
     padding-right: 1rem;
 
