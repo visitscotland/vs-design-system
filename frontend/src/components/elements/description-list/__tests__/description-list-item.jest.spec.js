@@ -87,7 +87,9 @@ describe('VsDescriptionListItem', () => {
         });
     });
 
-    it(':slots - renders content inserted into default `slot`', () => {
-        expect(wrapper.text()).toContain('Test Component');
+    describe(':slots', () => {
+        it(':renders content inserted into default `slot`', () => {
+            expect(wrapper.text()).toContain('Test Component');
+        });
     });
 });
