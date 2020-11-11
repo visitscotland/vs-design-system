@@ -1,6 +1,6 @@
 <template>
     <VsButton
-        class="vs-favourites-toggle__button"
+        class="vs-vs-favourites-toggle-button"
         @click.native="toggleFavourite"
         variant="transparent"
         :animate="false"
@@ -82,7 +82,7 @@ export default {
 </script>
 
 <style lang="scss">
-.vs-favourites-toggle__button {
+.vs-vs-favourites-toggle-button {
     display: block;
     position: relative;
     height: 40px;

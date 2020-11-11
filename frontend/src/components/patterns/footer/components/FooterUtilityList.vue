@@ -1,5 +1,5 @@
 <template>
-    <div class="border-top border-secondary-light vs-footer__utility-list">
+    <div class="border-top border-secondary-light vs-footer-utility-list">
         <VsContainer>
             <VsRow>
                 <VsCol
@@ -40,7 +40,7 @@ export default {
 </script>
 
 <style lang="scss">
-.vs-footer__utility-list {
+.vs-footer-utility-list {
     @include media-breakpoint-down(sm) {
         .container {
             max-width: 100%;
