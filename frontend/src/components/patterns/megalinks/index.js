@@ -1,1 +1,5 @@
-export default './Megalinks';
+import VsMegalinks from './Megalinks';
+
+export default {
+    VsMegalinks,
+};
