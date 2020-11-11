@@ -221,8 +221,7 @@ export default {
                         linkUrl="www.visitscotland.com"
                     >
                         <template slot="vsMultiImageHeading">
-                            The Edinburgh International Festival and summer festival
-                        </template>
+                            The Edinburgh International Festival and summer festival</template>
                         <template slot="vsMultiImageContent">
                             <p>Right across the country, you’ll find amazing places
                             to eat and drink from local markets to renowned
@@ -242,8 +241,8 @@ export default {
                         linkUrl="www.visitscotland.com"
                     >
                         <template slot="vsMultiImageHeading">
-                            Count 7,000 shining stars in the iconic galloway forest
-                        </template>
+                            Count 7,000 shining stars in the iconic
+                            galloway forest</template>
                         <template slot="vsMultiImageContent">
                             <p>Right across the country, you’ll find amazing
                             places to eat and drink from local markets to renowned
@@ -263,8 +262,7 @@ export default {
                         linkUrl="www.visitscotland.com"
                     >
                         <template slot="vsMultiImageHeading">
-                            Count 7,000 shining stars in the iconic galloway forest
-                        </template>
+                            Count 7,000 shining stars in the iconic galloway forest</template>
                         <template slot="vsMultiImageContent">
                             <p>Right across the country, you’ll find amazing places
                             to eat and drink
@@ -292,8 +290,7 @@ export default {
                         linkUrl="www.visitscotland.com"
                     >
                         <template slot="vsMultiImageHeading">
-                            Soar through the air on a boat of Falkirk Wheel (PDF 3MB)
-                        </template>
+                            Soar through the air on a boat of Falkirk Wheel (PDF 3MB)</template>
                         <template slot="vsMultiImageContent">
                             <p>Right across the country, you’ll find amazing
                             places to eat and drink from local markets to renowned
