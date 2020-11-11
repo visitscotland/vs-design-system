@@ -1,1 +1,5 @@
-export default from './MegalinkMultiImage';
+import VsMegalinkMultiImage from './MegalinkMultiImage';
+
+export default {
+    VsMegalinkMultiImage,
+};
