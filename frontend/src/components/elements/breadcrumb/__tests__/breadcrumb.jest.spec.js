@@ -31,7 +31,9 @@ describe('VsBreadcrumb', () => {
         expect(breadcrumb.classes()).toContain('test-class');
     });
 
-    it(':slots - renders content inserted into default `slot`', () => {
-        expect(wrapper.text()).toContain(slotText);
+    describe(':slots', () => {
+        it('renders content inserted into default `slot`', () => {
+            expect(wrapper.text()).toContain(slotText);
+        });
     });
 });
