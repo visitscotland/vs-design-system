@@ -42,8 +42,13 @@ describe('VsIcon', () => {
             expect(wrapper.classes(`icon--${testOrientation}`)).toBe(true);
         });
 
-        it(':size - should accept and render a `size` property', () => {
-            expect(true).toBe(false);
+        it(':size - should accept and render sizes as props', () => {
+            const testSize = 'lg';
+            const wrapper = factoryShallowMount({
+                size: testSize,
+            });
+
+            expect(wrapper.classes(`icon-${testSize}`)).toBe(true);
         });
     });
 });
