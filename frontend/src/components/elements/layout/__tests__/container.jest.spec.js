@@ -1,15 +1,15 @@
 import { shallowMount } from '@vue/test-utils';
 
-import VsCol from '../Col';
+import VsContainer from '../Container';
 
-const slotText = 'Col text';
+const slotText = 'Container text';
 
-const factoryShallowMount = (propsData) => shallowMount(VsCol, {
+const factoryShallowMount = (propsData) => shallowMount(VsContainer, {
     slots: {
         default: slotText,
     },
     attrs: {
-        class: "cols-6 sm-12"
+        style: "background: #ccc"
     }
 });
 
@@ -18,19 +18,14 @@ beforeEach(() => {
     wrapper = factoryShallowMount();
 });
 
-describe('VsCol', () => {
-    it('should render a bcol-stub', () => {
-        expect(wrapper.is('bcol-stub')).toBe(true);
+describe('VsContainer', () => {
+    it('should render a bcontainer-stub', () => {
+        expect(wrapper.is('bcontainer-stub')).toBe(true);
     });
 
     describe(':attrs', () => {
         it('should accept and render attributes', () => {
-            expect([
-                wrapper.classes('cols-6'),
-                wrapper.classes('sm-12')
-            ]).toEqual([
-                true, true
-            ]);
+            expect(wrapper.attributes('style')).toBe('background: #ccc');
         });
     });
 
