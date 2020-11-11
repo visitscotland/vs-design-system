@@ -9,14 +9,10 @@ const factoryShallowMount = (propsData) => shallowMount(VsIcon, {
     }
 });
 
-let wrapper;
-beforeEach(() => {
-    wrapper = factoryShallowMount();
-});
-
 describe('VsIcon', () => {
     it('should render a vs-svg stub', () => {
-        expect(true).toBe(false);
+        const wrapper = factoryShallowMount();
+        expect(wrapper.is('vssvg-stub')).toBe(true);
     });
 
     describe(':props', () => {
