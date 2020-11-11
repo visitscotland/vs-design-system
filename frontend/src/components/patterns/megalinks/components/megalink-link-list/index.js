@@ -1,1 +1,5 @@
-export default from './MegalinkLinkList';
+import VsMegalinkLinkList from './MegalinkLinkList';
+
+export default {
+    VsMegalinkLinkList,
+};
