@@ -218,9 +218,11 @@ describe('VsButton', () => {
         });
     });
 
-    it(':slots - renders content inserted into default `slot`', () => {
-        const wrapper = factoryShallowMount();
+    describe(':slots', () => {
+        it('renders content inserted into default `slot`', () => {
+            const wrapper = factoryShallowMount();
 
-        expect(wrapper.text()).toContain(slotText);
+            expect(wrapper.text()).toContain(slotText);
+        });
     });
 });

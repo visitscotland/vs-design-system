@@ -49,9 +49,11 @@ describe('VsDescriptionList', () => {
         });
     });
 
-    it(':slots - renders content inserted into default `slot`', () => {
-        const modifiedWrapper = factoryShallowMount();
+    describe(':slots', () => {
+        it('renders content inserted into default `slot`', () => {
+            const modifiedWrapper = factoryShallowMount();
 
-        expect(modifiedWrapper.text()).toContain('Test Component');
+            expect(modifiedWrapper.text()).toContain('Test Component');
+        });
     });
 });
