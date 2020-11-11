@@ -24,8 +24,13 @@ describe('VsIcon', () => {
             expect(true).toBe(false);
         });
 
-        it(':variant - should accept and render a `variant` property', () => {
-            expect(true).toBe(false);
+        it(':variant - should accept and render variants as props', () => {
+            const testVariant = 'success';
+            const wrapper = factoryShallowMount({
+                variant: testVariant,
+            });
+
+            expect(wrapper.classes(`icon-${testVariant}`)).toBe(true);
         });
 
         it(':orientation - should accept and render a `orientation` property', () => {
