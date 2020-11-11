@@ -137,7 +137,7 @@ export default {
         }
 
         .megalink-multi-image__title {
-            font-size: 0.875rem;
+            font-size: $small-font-size;
             letter-spacing: 0.0875rem;
         }
 
@@ -172,7 +172,7 @@ export default {
             justify-content: flex-start;
 
             .megalink-multi-image__title {
-                font-size: 1.25rem;
+                font-size: $h3-font-size;
                 letter-spacing: 0.125rem;
             }
 
@@ -186,7 +186,7 @@ export default {
             }
 
             .megalink-multi-image__content {
-                font-size: 1.125rem;
+                font-size: $lead-font-size;
                 margin-top: $spacer-8;
             }
 
