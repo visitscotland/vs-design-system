@@ -13,7 +13,7 @@
     
     <vs-megalinks <#if ctaExists == "true">button-link="${item.cta.link}"</#if>>
         <@hst.manageContent hippobean=item.megalinkItem />
-        <#-- TO DO: move the intro to a macro -->
+
         <template slot="vsMegalinksHeading">
             ${item.title}
         </template>
