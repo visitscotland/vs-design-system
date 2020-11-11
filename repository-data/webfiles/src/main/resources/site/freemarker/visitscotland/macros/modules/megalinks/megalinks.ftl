@@ -1,6 +1,5 @@
 <#include "../../../../include/imports.ftl">
 <#include "../../../../frontend/components/vs-megalinks.ftl">
-<#include "../module-intro/module-intro.ftl">
 <#include "./multi-image/megalinks-multi-image.ftl">
 <#include "./link-list/megalinks-link-list.ftl">
 
@@ -21,7 +20,10 @@
     
     <vs-megalinks variant="${variant}" title="${item.title}" <#if ctaExists == "true">button-link="${item.cta.link}"</#if>>
         <@hst.manageContent hippobean=item.megalinkItem />
-        <#-- TO DO: move the intro to a macro -->
+
+        <template slot="vsMegalinksHeading">
+            ${item.title}
+        </template>
         <vs-rich-text-wrapper
             variant="lead"
             slot="vsMegalinksIntro"
