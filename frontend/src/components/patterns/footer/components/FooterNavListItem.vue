@@ -1,5 +1,5 @@
 <template>
-    <li class="vs-footer__nav-list-item">
+    <li class="vs-footer-nav-list-item">
         <VsLink
             :href="href"
             :external="external"
@@ -50,7 +50,7 @@ export default {
 </script>
 
 <style lang="scss">
-.vs-footer__nav-list-item {
+.vs-footer-nav-list-item {
     list-style: none;
     font-size: $small-font-size;
     line-height: $line-height-s;

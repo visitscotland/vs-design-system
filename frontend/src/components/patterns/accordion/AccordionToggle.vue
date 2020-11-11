@@ -4,14 +4,14 @@
         :aria-expanded="visible ? 'true' : 'false'"
         aria-haspopup="true"
         @click.native="triggerToggle"
-        class="vs-accordion__toggle clearfix"
+        class="vs-accordion-toggle clearfix"
         :variant="variant"
     >
         <!-- @slot Default slot contains text for the button -->
-        <span class="vs-accordion__toggle-text">
+        <span class="vs-accordion-toggle-text">
             <slot />
         </span>
-        <span class="vs-accordion__toggle-icon">
+        <span class="vs-accordion-toggle-icon">
             <!-- @slot Put the icon to be used when panel is open  -->
             <slot
                 v-if="visible"
@@ -63,15 +63,15 @@ export default {
 </script>
 
 <style lang="scss">
-.btn.vs-accordion__toggle {
+.btn.vs-accordion-toggle {
     display: flex;
     width: 100%;
 
-    .vs-accordion__toggle-text {
+    .vs-accordion-toggle-text {
         flex-grow: 1;
     }
 
-    .vs-accordion__toggle-icon {
+    .vs-accordion-toggle-icon {
         align-self: center;
     }
 }

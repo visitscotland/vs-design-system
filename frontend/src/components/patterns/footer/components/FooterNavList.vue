@@ -1,6 +1,6 @@
 <template>
-    <VsContainer class="vs-footer__nav-list">
-        <div class="vs-footer__nav-list">
+    <VsContainer class="vs-footer-nav-list">
+        <div class="vs-footer-nav-list">
             <VsAccordion :break-point="breakPoint">
                 <VsRow>
                     <!-- @slot Default slot to contain Accordion Items in the footer -->
@@ -42,7 +42,7 @@ export default {
 </script>
 
 <style lang="scss">
-.vs-footer__nav-list {
+.vs-footer-nav-list {
     @include media-breakpoint-down(sm) {
         &.container {
             max-width: 100%;

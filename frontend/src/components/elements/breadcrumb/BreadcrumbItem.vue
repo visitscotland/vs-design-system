@@ -1,6 +1,6 @@
 <template>
     <BBreadcrumbItem
-        class="vs-breadcrumb__item"
+        class="vs-breadcrumb-item"
         :active="active"
         :aria-current="ariaCurrent"
         :href="href"
@@ -58,7 +58,7 @@ export default {
 <style lang="scss">
 @import "~bootstrap/scss/breadcrumb";
 
-.vs-breadcrumb__item {
+.vs-breadcrumb-item {
     color: $color-base-text;
     font-size: $font-size-base;
     font-weight: $font-weight-normal;
