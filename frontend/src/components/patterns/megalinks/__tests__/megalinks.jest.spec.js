@@ -48,7 +48,7 @@ describe('VsMegalinks', () => {
         const wrapper = factoryShallowMount();
 
         it('renders content inserted in a vsMegalinksHeading slot', () => {
-            expect(wrapper.find('[data-test="vs-megalinks__heading"]').text()).toBe('Megalinks heading text');
+            expect(wrapper.find('[data-test="vs-megalinks__heading"]').text()).toBe('A megalinks title');
         });
 
         it('renders content inserted in a vsMegalinksIntro slot', () => {
