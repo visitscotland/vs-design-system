@@ -47,14 +47,25 @@ describe('VsFormInput', () => {
         });
     });
 
-    it(':events - it should emit an `input` event when `value` changes', () => {
-        const testValue = 'Test Value';
-        const modifiedWrapper = factoryMount();
-        modifiedWrapper.setProps({
-            value: testValue,
+    describe(':events', () => {
+        it(':it should emit an `input` event when `value` changes', () => {
+            const testValue = 'Test Value';
+            const modifiedWrapper = factoryMount();
+            modifiedWrapper.setProps({
+                value: testValue,
+            });
+
+            expect(modifiedWrapper.emitted('input')).toBeTruthy();
         });
 
-        expect(modifiedWrapper.emitted('input')).toBeTruthy();
-        expect(modifiedWrapper.emitted('input')[0]).toEqual([testValue]);
+        it(':it should emit an `input` event with the new value when `value` changes', () => {
+            const testValue = 'Test Value';
+            const modifiedWrapper = factoryMount();
+            modifiedWrapper.setProps({
+                value: testValue,
+            });
+
+            expect(modifiedWrapper.emitted('input')[0]).toEqual([testValue]);
+        });
     });
 });
