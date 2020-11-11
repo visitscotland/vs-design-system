@@ -24,11 +24,7 @@
         >
             <@hst.html hippohtml=item.introduction/>
         </vs-rich-text-wrapper>
-        <#if type == "MultiImageLinksModule">
-            <@multiImage item=item /> 
-        </#if>
-
-        <#if type == "SingleImageLinksModule">
+        <#if type == "MultiImageLinksModule" || type == "SingleImageLinksModule">
             <@multiImage item=item /> 
         </#if>
 
