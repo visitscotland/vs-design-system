@@ -110,22 +110,26 @@ export default {
             type: String,
             default: '',
         },
-        /** By default, button text is uppercase
-        * To disable, add an uppercase=false property
-        */
+        /**
+         * By default, button text is uppercase
+         * To disable, add an uppercase=false property
+         */
         uppercase: {
             type: Boolean,
             default: true,
         },
         /**
-        * The icon orientation
-        * `up, down, left, right`
-        */
+         * The icon orientation
+         * `up, down, left, right`
+         */
         iconOrientation: {
             type: String,
             default: null,
             validator: (value) => value.match(/(up|down|left|right)/),
         },
+        /**
+         * If the button contains an icon and no text
+         */
         iconOnly: {
             type: Boolean,
             default: false,
