@@ -1,5 +1,5 @@
 <template>
-    <div class="vs-footer__copyright border-top border-secondary-light">
+    <div class="vs-footer-copyright border-top border-secondary-light">
         <VsContainer>
             <VsRow>
                 <VsCol
@@ -7,15 +7,15 @@
                     class="text-center"
                 >
                     <VsSvgLink
-                        class="vs-footer__copyright-logo mb-4"
-                        data-test="vs-footer__copyright-logo"
+                        class="vs-footer-copyright__logo mb-4"
+                        data-test="vs-footer-copyright-logo"
                         :link-alt-text="linkAltText"
                         :href="href"
                         svg-fill="700e57"
                         svg-path="vs-logo"
                     />
 
-                    <p class="vs-footer__copyright-text">
+                    <p class="vs-footer-copyright__text">
                         &copy; {{ getCurrentYear }}
 
                         <!-- @slot contains translated copyright text -->
@@ -76,10 +76,10 @@ export default {
 </script>
 
 <style lang="scss">
-.vs-footer__copyright {
+.vs-footer-copyright {
     padding: $spacer-6 0;
 
-    .vs-footer__copyright__logo {
+    .vs-footer-copyright__logo {
         display: inline-block;
 
         &.vs-link.primary{
@@ -89,7 +89,7 @@ export default {
         }
     }
 
-    .vs-footer__copyright-text {
+    .vs-footer-copyright__text {
         color: $color-white;
         margin: 0;
         font-size: $font-size-sm;
