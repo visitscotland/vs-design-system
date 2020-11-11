@@ -7,8 +7,7 @@ const subHeadingSlot = 'Sub Heading Slot';
 
 let wrapper;
 beforeEach(() => {
-    wrapper = shallowMount(VsHeading, {
-    });
+    wrapper = shallowMount(VsHeading);
 });
 
 describe('VsHeading', () => {
