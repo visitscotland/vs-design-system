@@ -135,9 +135,9 @@ export default {
             }
 
             .megalink-link-list__title {
-                font-size: .75rem;
+                font-size: $font-size-sm;
                 letter-spacing: .05rem;
-                line-height: 1.6;
+                line-height: $line-height-m;
                 color: $color-base-text;
                 text-decoration: none;
             }
@@ -159,13 +159,13 @@ export default {
         @include media-breakpoint-up(lg) {
             .megalink-link-list__wrapper.card {
                 .megalink-link-list__title {
-                    font-size: .875rem;
+                    font-size: $small-font-size;
                 }
 
                 .megalink-link-list__content {
                     display: block;
                     margin: $spacer-2 0 0;
-                    line-height: 1.25;
+                    line-height: $line-height-s;
                 }
             }
         }
