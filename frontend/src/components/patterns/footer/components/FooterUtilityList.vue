@@ -72,7 +72,13 @@ export default {
         }
 
         @include media-breakpoint-up(xxl) {
-            justify-content: space-evenly;
+            justify-content: space-between;
+            @supports not (-ms-ime-align: auto) {
+                // See issue 2240 - on Edge space-evenly is supported in grid but not in flexbox.
+                // This means that if we only target space-evenly here without this supports
+                // it falls back to center rather than to space-between and looks very incorrect.
+                justify-content: space-evenly;
+            }
             padding: $spacer-9 0;
         }
 
