@@ -7,6 +7,7 @@
             'megalink-multi-image--featured' : featured,
             'megalink-multi-image--featured-last' : lastFeatured,
         }"
+        data-test="megalink-multi-image-featured"
     >
         <VsImg
             slot="stretchedCardImage"
@@ -17,11 +18,13 @@
         <span
             slot="stretchedCardHeader"
             class="megalink-multi-image__title"
+            data-test="megalink-multi-image__title"
         ><!-- @slot Slot to contain heading --><slot name="vsMultiImageHeading" /></span>
 
         <VsRichTextWrapper
             slot="stretchedCardContent"
             class="lead megalink-multi-image__content"
+            data-test="megalink-multi-image__content"
         >
             <!-- @slot Slot to contain content -->
             <slot name="vsMultiImageContent" />

@@ -10,10 +10,14 @@
                     md="8"
                     offset-md="2"
                 >
-                    <div class="vs-megalinks__intro">
+                    <div
+                        class="vs-megalinks__intro"
+                        data-test="vs-megalinks__intro"
+                    >
                         <VsHeading
                             level="2"
                             class="vs-megalinks__heading"
+                            data-test="vs-megalinks__heading"
                         >
                             <!-- @slot Slot to contain optional title -->
                             <slot name="vsMegalinksHeading" />
@@ -28,7 +32,10 @@
             <slot />
             <VsRow v-if="buttonLink">
                 <VsCol cols="12">
-                    <div class="vs-megalinks__button">
+                    <div
+                        class="vs-megalinks__button"
+                        data-test="vs-megalinks__button"
+                    >
                         <VsButton :href="buttonLink">
                             <!-- @slot Slot to contain button text -->
                             <slot name="vsMegalinksButton" />
