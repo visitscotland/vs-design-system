@@ -1,7 +1,7 @@
 <template>
     <BFormInput
         v-model="inputVal"
-        class="vs-form__input"
+        class="vs-form-input"
         :size="size"
         v-bind="$attrs"
     />
@@ -55,7 +55,7 @@ export default {
 <style lang="scss">
 @import "~bootstrap/scss/forms";
 
-.vs-form__input {
+.vs-form-input {
   &.form-control {
     border-color: $color-gray-tint-1;
     transition: box-shadow 250ms ease;

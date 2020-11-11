@@ -1,10 +1,10 @@
 <template>
     <VsCol
         tag="dd"
-        class="vs-description-list__detail"
+        class="vsvs-description-list-detail"
         :class="{
             'list-inline-item': inline,
-            'vs-description-list__detail--styled': !inline
+            'vsvs-description-list-detail--styled': !inline
         }"
     >
         <div class="position-relative">
@@ -36,11 +36,11 @@ export default {
 <style lang="scss">
 @import "~bootstrap/scss/type";
 
-.vs-description-list__detail {
+.vsvs-description-list-detail {
     margin-bottom: 0;
 
     // Responsive columns to achieve default 2 column list layout
-    &.vs-description-list__detail--styled {
+    &.vsvs-description-list-detail--styled {
         @include make-col(8);
         @include make-col-offset(4);
 

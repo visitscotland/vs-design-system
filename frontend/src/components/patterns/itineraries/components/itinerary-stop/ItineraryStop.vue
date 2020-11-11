@@ -1,5 +1,5 @@
 <template>
-    <li class="vs-itinerary__stop">
+    <li class="vs-itinerary-stop">
         <div class="border">
             <div class="d-flex justify-content-start align-items-top">
                 <div class="position-relative">
@@ -16,7 +16,7 @@
 
                 <VsHeading
                     level="3"
-                    class="vs-itinerary__stop__title ml-4"
+                    class="vs-itinerary-stop__title ml-4"
                 >
                     {{ stopLabel }} {{ stopNumber }}
 
@@ -80,7 +80,7 @@ export default {
 </script>
 
 <style lang="scss">
-.vs-itinerary__stop {
+.vs-itinerary-stop {
     margin-bottom: 3.125rem;
 
     &:last-of-type {
