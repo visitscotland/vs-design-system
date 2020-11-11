@@ -51,6 +51,9 @@ export default {
         VsImg,
     },
     props: {
+        /**
+        * The source of the image used in the component
+        */
         imgSrc: {
             required: true,
             type: String,
