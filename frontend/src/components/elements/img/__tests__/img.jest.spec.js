@@ -26,7 +26,7 @@ const factoryMount = (propsData) => mount(VsImg, {
     }
 });
 
-describe('VsButton', () => {
+describe('VsImg', () => {
     it('should render a bimg-stub', () => {
         const wrapper = factoryShallowMount();
 
