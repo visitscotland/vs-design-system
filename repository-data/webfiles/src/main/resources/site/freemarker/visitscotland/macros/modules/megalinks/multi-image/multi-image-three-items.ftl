@@ -21,8 +21,7 @@
             link-type="${megalink.type}"
         >
             <template slot="vsMultiImageHeading">
-                ${megalink.label}
-            </template>
+                ${megalink.label}</template>
             <#if showTeaser == 'true'>
                 <template slot="vsMultiImageContent">
                     <p>${megalink.teaser}</p>

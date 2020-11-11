@@ -24,8 +24,7 @@
             link-url="${feature.link}"
         >
             <template slot="vsMultiImageHeading">
-                ${feature.label}
-            </template>
+                ${feature.label}</template>
             <#if feature.teaser?? && feature.label??>
                 <p slot="vsMultiImageContent">
                     ${feature.teaser}
