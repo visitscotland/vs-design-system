@@ -291,6 +291,15 @@ export default {
       </vs-button>
     </bs-wrapper>
 
+    <h4>Icon Only</h4>
+    <bs-wrapper class="d-flex flex-wrap mb-4">
+      <vs-button
+        class="mr-2 mb-2"
+        icon="external-link"
+        size="sm"
+        icon-only
+      />
+    </bs-wrapper>
 
     <h4>Variants</h4>
     <bs-wrapper class="d-flex flex-wrap mb-4">
