@@ -16,12 +16,9 @@ describe('VsIcon', () => {
     });
 
     describe(':props', () => {
-        it(':name - should render the VsIcon with the class `facility-accessparkdrop`', () => {
-            expect(true).toBe(false);
-        });
-
-        it(':name - should render the VsIcon with the path `icons/facility-accessparkdrop`', () => {
-            expect(true).toBe(false);
+        it(':name - should render the VsIcon with the correct path for its name', () => {
+            const wrapper = factoryShallowMount();
+            expect(wrapper.attributes('path')).toBe('icons/facility-accessparkdrop');
         });
 
         it(':variant - should accept and render variants as props', () => {
