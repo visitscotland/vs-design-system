@@ -29,8 +29,7 @@
                             link-type="${listItem.type}"
                         >
                             <template slot="vsLinkListHeading">
-                                ${listItem.label}
-                            </template>
+                                ${listItem.label}</template>
                             <template slot="vsLinkListContent">
                                 <p>${listItem.teaser}</p>
                             </template>
