@@ -19,6 +19,7 @@
             :name="icon"
             :size="iconSize"
             :padding="0"
+            :orientation="iconOrientation"
         />
         <!-- @slot The button content goes here -->
         <slot />
