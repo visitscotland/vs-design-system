@@ -1,6 +1,5 @@
 <#include "../../../../include/imports.ftl">
 <#include "../../../../frontend/components/vs-megalinks.ftl">
-<#include "../module-intro/module-intro.ftl">
 <#include "./multi-image/megalinks-multi-image.ftl">
 
 <#macro megalinks item type>
@@ -24,7 +23,11 @@
         >
             <@hst.html hippohtml=item.introduction/>
         </vs-rich-text-wrapper>
-        <#if type == "MultiImageLinksModule" || type == "SingleImageLinksModule">
+        <#if type == "MultiImageLinksModule">
+            <@multiImage item=item /> 
+        </#if>
+
+        <#if type == "SingleImageLinksModule">
             <@multiImage item=item /> 
         </#if>
 

@@ -20,7 +20,6 @@
                 </#if>
 
                 <#list item.links as megalink>
-
                     <#-- 2 and 4 links will be displayed in 2 columns -->
                     <#if item.links?size == 2 || item.links?size == 4>
                         <@multiImageTwoItems megalink=megalink showTeaser=showTeaser/>

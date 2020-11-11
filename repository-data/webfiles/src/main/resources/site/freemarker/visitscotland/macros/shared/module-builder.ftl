@@ -15,16 +15,8 @@
 <#--TODO Control abput colours, change style="background-color:${style}  -->
 <#macro moduleBuilder module theme>
     <div class="has-edit-button" style="background-color:${theme}">
-   
-        <#if module.getType() == "MultiImageLinksModule">
-            <@megalinks item=module type=module.getType() />
-
-        <#--Macro for single image-->
-        <#elseif module.getType()== "SingleImageLinksModule">
-            <@megalinks item=module type=module.getType() />
-
-        <#--Macro for list-->
-        <#elseif module.getType()== "ListLinksModule">
+        <#-- all Megalinks modules -->
+        <#if module.getType() == "MultiImageLinksModule" ||  module.getType() == "SingleImageLinksModule" || module.getType()== "ListLinksModule">
             <@megalinks item=module type=module.getType() />
 
         <#elseif module.getType()== "ICentreModule">
