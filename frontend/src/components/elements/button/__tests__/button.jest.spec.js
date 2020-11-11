@@ -83,7 +83,7 @@ describe('VsButton', () => {
                 expect(iconStub.exists()).toBe(false);
             });
 
-            it(':should *NOT* the `vs-button-with-icon` class if icon prop is *NOT* provided', () => {
+            it(':should *NOT* render the VsButton with a `vs-button-with-icon` class if icon prop is *NOT* provided', () => {
                 const wrapper = factoryMount();
 
                 expect(wrapper.classes('vs-button-with-icon')).toBe(false);
