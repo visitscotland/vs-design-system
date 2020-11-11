@@ -15,7 +15,10 @@
             <span
                 slot="stretchedCardHeader"
                 class="megalink-link-list__title"
-            ><!-- @slot Slot to contain heading --><slot name="vsLinkListHeading" /></span>
+            >
+                <!-- @slot Slot to contain heading -->
+                <slot name="vsLinkListHeading" />
+            </span>
 
             <VsRichTextWrapper
                 slot="stretchedCardContent"
@@ -106,6 +109,10 @@ export default {
 
             &:hover {
                 box-shadow: 10px 10px 20px $color-gray-tint-4;
+
+                .megalink-link-list__title {
+                    text-decoration: underline;
+                }
             }
 
             .stretched-link {
@@ -176,8 +183,7 @@ export default {
                     linkType="internal"
                 >
                     <template slot="vsLinkListHeading">
-                        The Edinburgh International Festival and summer festival
-                    </template>
+                        The Edinburgh International Festival and summer festival</template>
                     <template slot="vsLinkListContent">
                         <p>Right across the country, you’ll find amazing places
                         to eat and drink from local markets to renowned
@@ -195,8 +201,7 @@ export default {
                     linkType="external"
                 >
                     <template slot="vsLinkListHeading">
-                        Count 7,000 shining stars in the iconic galloway forest
-                    </template>
+                        Count 7,000 shining stars in the iconic galloway forest</template>
                     <template slot="vsLinkListContent">
                         <p>Right across the country, you’ll find amazing
                         places to eat and drink from local markets to renowned
@@ -214,8 +219,7 @@ export default {
                     linkType="external"
                 >
                     <template slot="vsLinkListHeading">
-                        Count 7,000 shining stars in the iconic galloway forest
-                    </template>
+                        Count 7,000 shining stars in the iconic galloway forest</template>
                     <template slot="vsLinkListContent">
                         <p>Right across the country, you’ll find amazing places
                         to eat and drink
@@ -233,8 +237,7 @@ export default {
                     linkType="download"
                 >
                     <template slot="vsLinkListHeading">
-                        Soar through the air on a boat of Falkirk Wheel (PDF 3MB)
-                    </template>
+                        Soar through the air on a boat of Falkirk Wheel (PDF 3MB)</template>
                     <template slot="vsLinkListContent">
                         <p>Right across the country, you’ll find amazing
                         places to eat and drink from local markets to renowned
