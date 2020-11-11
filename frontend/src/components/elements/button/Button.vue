@@ -177,7 +177,6 @@ export default {
 
     svg {
         fill: currentColor;
-        margin-right: 0.625rem;
         transition: fill 250ms;
         vertical-align: sub;
     }
