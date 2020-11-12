@@ -112,6 +112,7 @@ export default {
         .stretched-link {
             color: $color-base-text;
             text-decoration: none;
+            letter-spacing: 0;
 
             &:hover {
                 .megalink-multi-image__title {
