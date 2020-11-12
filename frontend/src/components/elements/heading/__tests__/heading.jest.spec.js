@@ -5,20 +5,23 @@ import VsHeading from '../Heading';
 const defaultSlot = 'Default Slot';
 const subHeadingSlot = 'Sub Heading Slot';
 
-let wrapper;
-beforeEach(() => {
-    wrapper = shallowMount(VsHeading);
+const factoryShallowMount = (propsData) => shallowMount(VsHeading, {
+    propsData: {
+        ...propsData,
+    },
 });
 
 describe('VsHeading', () => {
     it('should render a h1 by default', () => {
+        const wrapper = factoryShallowMount();
+
         expect(wrapper.is('h1')).toBe(true);
         expect(wrapper.classes('heading')).toBe(true);
     });
 
     describe(':props', () => {
         it(':level - should accept and render a `level` prop', () => {
-            wrapper.setProps({
+            const wrapper = factoryShallowMount({
                 level: 2,
             });
 
@@ -26,7 +29,7 @@ describe('VsHeading', () => {
         });
 
         it(':thin - should accept and render a `thin` prop', () => {
-            wrapper.setProps({
+            const wrapper = factoryShallowMount({
                 thin: true,
             });
 
@@ -34,7 +37,7 @@ describe('VsHeading', () => {
         });
 
         it(':thin - should *NOT* render a `heading--thin` class if `thin` is set to false', () => {
-            wrapper.setProps({
+            const wrapper = factoryShallowMount({
                 thin: false,
             });
 
@@ -64,6 +67,9 @@ describe('VsHeading', () => {
         });
 
         it('should *NOT* render a div with the class `heading__sub-heading` if sub-heading slot is not provided', () => {
+            const wrapper = factoryShallowMount({
+                level: 2,
+            });
             const subHeading = wrapper.find('.heading__sub-heading');
 
             expect(subHeading.exists()).toBe(false);
