@@ -95,7 +95,7 @@ public class PageTemplateBuilder {
             }
         }
         if(getDocument(request).getOtherThings()!=null) {
-            LinksModule al = linksFactory.horizontalListLayout(getDocument(request), request.getLocale());
+            LinksModule al = linksFactory.horizontalListLayout(getDocument(request).getOtherThings(), request.getLocale());
             al.setTheme(themes[0]);
             links.add(al);
         }
