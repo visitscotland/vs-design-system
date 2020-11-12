@@ -15,6 +15,7 @@
             <span
                 slot="stretchedCardHeader"
                 class="megalink-link-list__title"
+                data-test="megalink-link-list__title"
             >
                 <!-- @slot Slot to contain heading -->
                 <slot name="vsLinkListHeading" />
@@ -23,6 +24,7 @@
             <VsRichTextWrapper
                 slot="stretchedCardContent"
                 class="lead megalink-link-list__content"
+                data-test="megalink-link-list__content"
             >
                 <!-- @slot Slot to contain content -->
                 <slot name="vsLinkListContent" />
