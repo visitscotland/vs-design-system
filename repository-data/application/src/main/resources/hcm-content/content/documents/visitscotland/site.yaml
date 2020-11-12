@@ -6,3 +6,556 @@
   hippostd:foldertype: [new-translated-folder, new-page, new-module]
   hippotranslation:id: a65bff6c-4edf-4d28-b036-84bdee4b4bcd
   hippotranslation:locale: en
+  /destinations:
+    jcr:primaryType: hippostd:folder
+    jcr:mixinTypes: ['hippotranslation:translated', 'mix:versionable']
+    jcr:uuid: 2db0b397-62d8-4ce7-8b95-782ee6224ddb
+    hippostd:foldertype: [new-translated-folder, new-page, new-module]
+    hippotranslation:id: e8810ce9-3799-4898-89bf-89ae0f95ed75
+    hippotranslation:locale: en
+    /megalinks-multi-image-example:
+      jcr:primaryType: hippostd:folder
+      jcr:mixinTypes: ['hippotranslation:translated', 'mix:versionable']
+      jcr:uuid: da7c8549-1592-4c1c-a693-7496748bd9c3
+      hippostd:foldertype: [new-translated-folder, new-page, new-module]
+      hippotranslation:id: 377fbadf-d3c9-4438-b644-2ced01dbafe0
+      hippotranslation:locale: en
+      /content:
+        jcr:primaryType: hippo:handle
+        jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
+        jcr:uuid: 8fac413e-f1e1-4b9b-9d57-9470bee430e7
+        hippo:name: Destination page
+        hippo:versionHistory: fe240eca-f04b-4084-8070-3455c4addaae
+        /content[1]:
+          jcr:primaryType: visitscotland:Destination
+          jcr:mixinTypes: ['mix:referenceable']
+          jcr:uuid: 210b26e7-a0b3-4bd5-b10b-27b175999b03
+          hippo:availability: []
+          hippostd:state: draft
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2020-11-11T12:10:58.066Z
+          hippostdpubwf:lastModificationDate: 2020-11-11T12:10:58.066Z
+          hippostdpubwf:lastModifiedBy: admin
+          hippotranslation:id: 9b44b175-1168-4293-9fe6-b1cf0248a3c2
+          hippotranslation:locale: en
+          visitscotland:breadcrumb: Destination page
+          visitscotland:location: Edinburgh
+          visitscotland:seoDescription: Destination meta description
+          visitscotland:seoNoIndex: false
+          visitscotland:seoTitle: Destination meta title
+          visitscotland:teaser: This is an example destination page teaser.
+          visitscotland:title: Destination page
+          visitscotland:translation: ''
+          /visitscotland:heroImage:
+            jcr:primaryType: hippogallerypicker:imagelink
+            hippo:docbase: ece9b7e3-75e0-4817-8b83-6fd2f06ccd7e
+            hippo:facets: []
+            hippo:modes: []
+            hippo:values: []
+          /visitscotland:introduction:
+            jcr:primaryType: hippostd:html
+            hippostd:content: |-
+              <p>Sed placerat odio velit. Cras pharetra, ipsum nec cursus varius, enim massa suscipit diam, sed consequat sapien erat quis nisl. In bibendum feugiat mauris.</p>
+
+              <p>Aliquam luctus nibh ante, in finibus erat varius et. Mauris scelerisque, ante et ornare consequat, nisi ipsum ultrices ante, nec gravida est urna gravida lorem.</p>
+        /content[2]:
+          jcr:primaryType: visitscotland:Destination
+          jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
+          jcr:uuid: 86344947-e21f-4dcb-bc64-3e068398129d
+          hippo:availability: [preview]
+          hippostd:state: unpublished
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2020-11-11T12:10:58.066Z
+          hippostdpubwf:lastModificationDate: 2020-11-11T12:11:54.895Z
+          hippostdpubwf:lastModifiedBy: admin
+          hippotranslation:id: 9b44b175-1168-4293-9fe6-b1cf0248a3c2
+          hippotranslation:locale: en
+          visitscotland:breadcrumb: Destination page
+          visitscotland:location: Edinburgh
+          visitscotland:seoDescription: Destination meta description
+          visitscotland:seoNoIndex: false
+          visitscotland:seoTitle: Destination meta title
+          visitscotland:teaser: This is an example destination page teaser.
+          visitscotland:title: Destination page
+          visitscotland:translation: ''
+          /visitscotland:heroImage:
+            jcr:primaryType: hippogallerypicker:imagelink
+            hippo:docbase: ece9b7e3-75e0-4817-8b83-6fd2f06ccd7e
+            hippo:facets: []
+            hippo:modes: []
+            hippo:values: []
+          /visitscotland:introduction:
+            jcr:primaryType: hippostd:html
+            hippostd:content: |-
+              <p>Sed placerat odio velit. Cras pharetra, ipsum nec cursus varius, enim massa suscipit diam, sed consequat sapien erat quis nisl. In bibendum feugiat mauris.</p>
+
+              <p>Aliquam luctus nibh ante, in finibus erat varius et. Mauris scelerisque, ante et ornare consequat, nisi ipsum ultrices ante, nec gravida est urna gravida lorem.</p>
+        /content[3]:
+          jcr:primaryType: visitscotland:Destination
+          jcr:mixinTypes: ['mix:referenceable']
+          jcr:uuid: 26370e42-2151-4b5c-b69d-a403cd2d3ba0
+          hippo:availability: [live]
+          hippostd:state: published
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2020-11-11T12:10:58.066Z
+          hippostdpubwf:lastModificationDate: 2020-11-11T12:11:54.895Z
+          hippostdpubwf:lastModifiedBy: admin
+          hippostdpubwf:publicationDate: 2020-11-11T12:11:56.826Z
+          hippotranslation:id: 9b44b175-1168-4293-9fe6-b1cf0248a3c2
+          hippotranslation:locale: en
+          visitscotland:breadcrumb: Destination page
+          visitscotland:location: Edinburgh
+          visitscotland:seoDescription: Destination meta description
+          visitscotland:seoNoIndex: false
+          visitscotland:seoTitle: Destination meta title
+          visitscotland:teaser: This is an example destination page teaser.
+          visitscotland:title: Destination page
+          visitscotland:translation: ''
+          /visitscotland:heroImage:
+            jcr:primaryType: hippogallerypicker:imagelink
+            hippo:docbase: ece9b7e3-75e0-4817-8b83-6fd2f06ccd7e
+            hippo:facets: []
+            hippo:modes: []
+            hippo:values: []
+          /visitscotland:introduction:
+            jcr:primaryType: hippostd:html
+            hippostd:content: |-
+              <p>Sed placerat odio velit. Cras pharetra, ipsum nec cursus varius, enim massa suscipit diam, sed consequat sapien erat quis nisl. In bibendum feugiat mauris.</p>
+
+              <p>Aliquam luctus nibh ante, in finibus erat varius et. Mauris scelerisque, ante et ornare consequat, nisi ipsum ultrices ante, nec gravida est urna gravida lorem.</p>
+      /megalinks-multi-image-example:
+        jcr:primaryType: hippo:handle
+        jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
+        jcr:uuid: 41ec6234-50c0-477b-b6e2-3c6fd5320ff6
+        hippo:name: Megalinks Multi Image Example
+        hippo:versionHistory: 396146d1-61a0-4da8-a3e3-ec2c1e4223d8
+        /megalinks-multi-image-example[1]:
+          jcr:primaryType: visitscotland:Megalinks
+          jcr:mixinTypes: ['mix:referenceable']
+          jcr:uuid: 90ed149d-44e3-4b23-91e0-316e12862df2
+          hippo:availability: []
+          hippostd:state: draft
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2020-11-11T12:12:54.960Z
+          hippostdpubwf:lastModificationDate: 2020-11-11T12:12:54.960Z
+          hippostdpubwf:lastModifiedBy: admin
+          hippotranslation:id: ed3de2ed-8059-4117-8ddf-d793afc4594f
+          hippotranslation:locale: en
+          visitscotland:listLayout: false
+          visitscotland:teaserVisible: true
+          visitscotland:title: Find your experience in the highest village of Scotland
+          visitscotland:translation: ''
+          /visitscotland:introduction:
+            jcr:primaryType: hippostd:html
+            hippostd:content: <p>Take your pick from the country’s variety of incredible
+              attractions and soak up a bit of culture, find things to keep the kids
+              entertained, or immerse yourself in Scotland’s past.</p>
+          /visitscotland:megalinkItems[1]:
+            jcr:primaryType: visitscotland:MegalinkItem
+            visitscotland:feature: false
+            /visitscotland:link:
+              jcr:primaryType: hippo:mirror
+              hippo:docbase: 4d302e29-93dd-4157-9df9-bbd741bb12a0
+          /visitscotland:megalinkItems[2]:
+            jcr:primaryType: visitscotland:MegalinkItem
+            visitscotland:feature: false
+            /visitscotland:link:
+              jcr:primaryType: hippo:mirror
+              hippo:docbase: e16bdb89-c271-46f1-851f-2d2b82d631d4
+          /visitscotland:megalinkItems[3]:
+            jcr:primaryType: visitscotland:MegalinkItem
+            visitscotland:feature: false
+            /visitscotland:link:
+              jcr:primaryType: hippo:mirror
+              hippo:docbase: e16bdb89-c271-46f1-851f-2d2b82d631d4
+          /visitscotland:megalinkItems[4]:
+            jcr:primaryType: visitscotland:MegalinkItem
+            visitscotland:feature: false
+            /visitscotland:link:
+              jcr:primaryType: hippo:mirror
+              hippo:docbase: 17a3588b-6cee-439b-acd8-186ceb2067aa
+          /visitscotland:products:
+            jcr:primaryType: visitscotland:CMSLink
+            visitscotland:label: A CTA link
+            /visitscotland:link:
+              jcr:primaryType: hippo:mirror
+              hippo:docbase: e16bdb89-c271-46f1-851f-2d2b82d631d4
+        /megalinks-multi-image-example[2]:
+          jcr:primaryType: visitscotland:Megalinks
+          jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
+          jcr:uuid: 52eda4e4-1477-4299-aba9-a50e26bbb186
+          hippo:availability: [preview]
+          hippostd:state: unpublished
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2020-11-11T12:12:54.960Z
+          hippostdpubwf:lastModificationDate: 2020-11-11T12:14:54.925Z
+          hippostdpubwf:lastModifiedBy: admin
+          hippotranslation:id: ed3de2ed-8059-4117-8ddf-d793afc4594f
+          hippotranslation:locale: en
+          visitscotland:listLayout: false
+          visitscotland:teaserVisible: true
+          visitscotland:title: Find your experience in the highest village of Scotland
+          visitscotland:translation: ''
+          /visitscotland:introduction:
+            jcr:primaryType: hippostd:html
+            hippostd:content: <p>Take your pick from the country’s variety of incredible
+              attractions and soak up a bit of culture, find things to keep the kids
+              entertained, or immerse yourself in Scotland’s past.</p>
+          /visitscotland:megalinkItems[1]:
+            jcr:primaryType: visitscotland:MegalinkItem
+            visitscotland:feature: false
+            /visitscotland:link:
+              jcr:primaryType: hippo:mirror
+              hippo:docbase: 4d302e29-93dd-4157-9df9-bbd741bb12a0
+          /visitscotland:megalinkItems[2]:
+            jcr:primaryType: visitscotland:MegalinkItem
+            visitscotland:feature: false
+            /visitscotland:link:
+              jcr:primaryType: hippo:mirror
+              hippo:docbase: e16bdb89-c271-46f1-851f-2d2b82d631d4
+          /visitscotland:megalinkItems[3]:
+            jcr:primaryType: visitscotland:MegalinkItem
+            visitscotland:feature: false
+            /visitscotland:link:
+              jcr:primaryType: hippo:mirror
+              hippo:docbase: e16bdb89-c271-46f1-851f-2d2b82d631d4
+          /visitscotland:megalinkItems[4]:
+            jcr:primaryType: visitscotland:MegalinkItem
+            visitscotland:feature: false
+            /visitscotland:link:
+              jcr:primaryType: hippo:mirror
+              hippo:docbase: 17a3588b-6cee-439b-acd8-186ceb2067aa
+          /visitscotland:products:
+            jcr:primaryType: visitscotland:CMSLink
+            visitscotland:label: A CTA link
+            /visitscotland:link:
+              jcr:primaryType: hippo:mirror
+              hippo:docbase: e16bdb89-c271-46f1-851f-2d2b82d631d4
+        /megalinks-multi-image-example[3]:
+          jcr:primaryType: visitscotland:Megalinks
+          jcr:mixinTypes: ['mix:referenceable']
+          jcr:uuid: 00f7956d-c7f2-45aa-89ab-188f088ee2e6
+          hippo:availability: [live]
+          hippostd:state: published
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2020-11-11T12:12:54.960Z
+          hippostdpubwf:lastModificationDate: 2020-11-11T12:14:54.925Z
+          hippostdpubwf:lastModifiedBy: admin
+          hippostdpubwf:publicationDate: 2020-11-11T12:14:57.884Z
+          hippotranslation:id: ed3de2ed-8059-4117-8ddf-d793afc4594f
+          hippotranslation:locale: en
+          visitscotland:listLayout: false
+          visitscotland:teaserVisible: true
+          visitscotland:title: Find your experience in the highest village of Scotland
+          visitscotland:translation: ''
+          /visitscotland:introduction:
+            jcr:primaryType: hippostd:html
+            hippostd:content: <p>Take your pick from the country’s variety of incredible
+              attractions and soak up a bit of culture, find things to keep the kids
+              entertained, or immerse yourself in Scotland’s past.</p>
+          /visitscotland:megalinkItems[1]:
+            jcr:primaryType: visitscotland:MegalinkItem
+            visitscotland:feature: false
+            /visitscotland:link:
+              jcr:primaryType: hippo:mirror
+              hippo:docbase: 4d302e29-93dd-4157-9df9-bbd741bb12a0
+          /visitscotland:megalinkItems[2]:
+            jcr:primaryType: visitscotland:MegalinkItem
+            visitscotland:feature: false
+            /visitscotland:link:
+              jcr:primaryType: hippo:mirror
+              hippo:docbase: e16bdb89-c271-46f1-851f-2d2b82d631d4
+          /visitscotland:megalinkItems[3]:
+            jcr:primaryType: visitscotland:MegalinkItem
+            visitscotland:feature: false
+            /visitscotland:link:
+              jcr:primaryType: hippo:mirror
+              hippo:docbase: e16bdb89-c271-46f1-851f-2d2b82d631d4
+          /visitscotland:megalinkItems[4]:
+            jcr:primaryType: visitscotland:MegalinkItem
+            visitscotland:feature: false
+            /visitscotland:link:
+              jcr:primaryType: hippo:mirror
+              hippo:docbase: 17a3588b-6cee-439b-acd8-186ceb2067aa
+          /visitscotland:products:
+            jcr:primaryType: visitscotland:CMSLink
+            visitscotland:label: A CTA link
+            /visitscotland:link:
+              jcr:primaryType: hippo:mirror
+              hippo:docbase: e16bdb89-c271-46f1-851f-2d2b82d631d4
+    /megalinks-link-list-example:
+      jcr:primaryType: hippostd:folder
+      jcr:mixinTypes: ['hippotranslation:translated', 'mix:versionable']
+      jcr:uuid: 998ccbc1-af9a-4dce-866d-7cc761a2d522
+      hippostd:foldertype: [new-translated-folder, new-page, new-module]
+      hippotranslation:id: 5d8f6327-9cda-4bde-ac19-9a9ed54680e7
+      hippotranslation:locale: en
+      /content:
+        jcr:primaryType: hippo:handle
+        jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
+        jcr:uuid: 23dcd5a7-e6ec-42a0-8dae-29fa7aeeca1a
+        hippo:name: Destination page
+        hippo:versionHistory: 649140e7-e715-4218-8fdf-dde1db034290
+        /content[1]:
+          jcr:primaryType: visitscotland:Destination
+          jcr:mixinTypes: ['mix:referenceable']
+          jcr:uuid: ca3c7e84-69cd-402a-aa2f-18b5529a9661
+          hippo:availability: []
+          hippostd:state: draft
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2020-11-12T09:28:24.637Z
+          hippostdpubwf:lastModificationDate: 2020-11-12T09:28:24.637Z
+          hippostdpubwf:lastModifiedBy: admin
+          hippotranslation:id: 0a6ad16f-b639-461b-b8da-e624abaf77ba
+          hippotranslation:locale: en
+          visitscotland:breadcrumb: Destination example
+          visitscotland:location: Edinburgh
+          visitscotland:seoDescription: Destination example meta description
+          visitscotland:seoNoIndex: false
+          visitscotland:seoTitle: Destination example meta title
+          visitscotland:teaser: Lorem ipsum dolor sit amet, consectetur adipiscing
+            elit. Pellentesque maximus neque sit amet justo porttitor, eget vulputate
+            quam luctu
+          visitscotland:title: Destination page
+          visitscotland:translation: ''
+          /visitscotland:heroImage:
+            jcr:primaryType: hippogallerypicker:imagelink
+            hippo:docbase: b9d61304-1b64-4995-bea9-af40d165e8d1
+            hippo:facets: []
+            hippo:modes: []
+            hippo:values: []
+          /visitscotland:introduction:
+            jcr:primaryType: hippostd:html
+            hippostd:content: |-
+              <p>Sed placerat odio velit. Cras pharetra, ipsum nec cursus varius, enim massa suscipit diam, sed consequat sapien erat quis nisl. In bibendum feugiat mauris.</p>
+
+              <p>Aliquam luctus nibh ante, in finibus erat varius et. Mauris scelerisque, ante et ornare consequat, nisi ipsum ultrices ante, nec gravida est urna gravida lorem.</p>
+        /content[2]:
+          jcr:primaryType: visitscotland:Destination
+          jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
+          jcr:uuid: 6972cc1d-7f74-46fe-9f6f-a634c1a3233f
+          hippo:availability: [preview]
+          hippostd:state: unpublished
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2020-11-12T09:28:24.637Z
+          hippostdpubwf:lastModificationDate: 2020-11-12T09:30:53.154Z
+          hippostdpubwf:lastModifiedBy: admin
+          hippotranslation:id: 0a6ad16f-b639-461b-b8da-e624abaf77ba
+          hippotranslation:locale: en
+          visitscotland:breadcrumb: Destination example
+          visitscotland:location: Edinburgh
+          visitscotland:seoDescription: Destination example meta description
+          visitscotland:seoNoIndex: false
+          visitscotland:seoTitle: Destination example meta title
+          visitscotland:teaser: Lorem ipsum dolor sit amet, consectetur adipiscing
+            elit. Pellentesque maximus neque sit amet justo porttitor, eget vulputate
+            quam luctu
+          visitscotland:title: Destination page
+          visitscotland:translation: ''
+          /visitscotland:heroImage:
+            jcr:primaryType: hippogallerypicker:imagelink
+            hippo:docbase: b9d61304-1b64-4995-bea9-af40d165e8d1
+            hippo:facets: []
+            hippo:modes: []
+            hippo:values: []
+          /visitscotland:introduction:
+            jcr:primaryType: hippostd:html
+            hippostd:content: |-
+              <p>Sed placerat odio velit. Cras pharetra, ipsum nec cursus varius, enim massa suscipit diam, sed consequat sapien erat quis nisl. In bibendum feugiat mauris.</p>
+
+              <p>Aliquam luctus nibh ante, in finibus erat varius et. Mauris scelerisque, ante et ornare consequat, nisi ipsum ultrices ante, nec gravida est urna gravida lorem.</p>
+        /content[3]:
+          jcr:primaryType: visitscotland:Destination
+          jcr:mixinTypes: ['mix:referenceable']
+          jcr:uuid: 6ee055fc-1bc1-4596-a166-d5ba2e9362d1
+          hippo:availability: [live]
+          hippostd:state: published
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2020-11-12T09:28:24.637Z
+          hippostdpubwf:lastModificationDate: 2020-11-12T09:30:53.154Z
+          hippostdpubwf:lastModifiedBy: admin
+          hippostdpubwf:publicationDate: 2020-11-12T09:31:24.909Z
+          hippotranslation:id: 0a6ad16f-b639-461b-b8da-e624abaf77ba
+          hippotranslation:locale: en
+          visitscotland:breadcrumb: Destination example
+          visitscotland:location: Edinburgh
+          visitscotland:seoDescription: Destination example meta description
+          visitscotland:seoNoIndex: false
+          visitscotland:seoTitle: Destination example meta title
+          visitscotland:teaser: Lorem ipsum dolor sit amet, consectetur adipiscing
+            elit. Pellentesque maximus neque sit amet justo porttitor, eget vulputate
+            quam luctu
+          visitscotland:title: Destination page
+          visitscotland:translation: ''
+          /visitscotland:heroImage:
+            jcr:primaryType: hippogallerypicker:imagelink
+            hippo:docbase: b9d61304-1b64-4995-bea9-af40d165e8d1
+            hippo:facets: []
+            hippo:modes: []
+            hippo:values: []
+          /visitscotland:introduction:
+            jcr:primaryType: hippostd:html
+            hippostd:content: |-
+              <p>Sed placerat odio velit. Cras pharetra, ipsum nec cursus varius, enim massa suscipit diam, sed consequat sapien erat quis nisl. In bibendum feugiat mauris.</p>
+
+              <p>Aliquam luctus nibh ante, in finibus erat varius et. Mauris scelerisque, ante et ornare consequat, nisi ipsum ultrices ante, nec gravida est urna gravida lorem.</p>
+      /links-list-example:
+        jcr:primaryType: hippo:handle
+        jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
+        jcr:uuid: c3b58f70-d7f7-4201-8248-1f7a7d628864
+        hippo:name: Links List Example
+        hippo:versionHistory: 10b04e76-f042-4d6c-bbb3-68b329e01cae
+        /links-list-example[1]:
+          jcr:primaryType: visitscotland:Megalinks
+          jcr:mixinTypes: ['mix:referenceable']
+          jcr:uuid: cd433590-139d-4a67-8e1a-89976484f4c5
+          hippo:availability: []
+          hippostd:state: draft
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2020-11-12T09:31:56.719Z
+          hippostdpubwf:lastModificationDate: 2020-11-12T09:31:56.719Z
+          hippostdpubwf:lastModifiedBy: admin
+          hippotranslation:id: 4f929f43-0776-43b3-9131-d0e913235ec0
+          hippotranslation:locale: en
+          visitscotland:listLayout: true
+          visitscotland:teaserVisible: true
+          visitscotland:title: Find your experience in the highest village of Scotland
+          visitscotland:translation: ''
+          /visitscotland:introduction:
+            jcr:primaryType: hippostd:html
+            hippostd:content: <p>Take your pick from the country’s variety of incredible
+              attractions and soak up a bit of culture, find things to keep the kids
+              entertained, or immerse yourself in Scotland’s past.</p>
+          /visitscotland:megalinkItems[1]:
+            jcr:primaryType: visitscotland:MegalinkItem
+            visitscotland:feature: false
+            /visitscotland:link:
+              jcr:primaryType: hippo:mirror
+              hippo:docbase: 4d302e29-93dd-4157-9df9-bbd741bb12a0
+          /visitscotland:megalinkItems[2]:
+            jcr:primaryType: visitscotland:MegalinkItem
+            visitscotland:feature: false
+            /visitscotland:link:
+              jcr:primaryType: hippo:mirror
+              hippo:docbase: e16bdb89-c271-46f1-851f-2d2b82d631d4
+          /visitscotland:megalinkItems[3]:
+            jcr:primaryType: visitscotland:MegalinkItem
+            visitscotland:feature: false
+            /visitscotland:link:
+              jcr:primaryType: hippo:mirror
+              hippo:docbase: 17a3588b-6cee-439b-acd8-186ceb2067aa
+          /visitscotland:megalinkItems[4]:
+            jcr:primaryType: visitscotland:MegalinkItem
+            visitscotland:feature: false
+            /visitscotland:link:
+              jcr:primaryType: hippo:mirror
+              hippo:docbase: 8fac413e-f1e1-4b9b-9d57-9470bee430e7
+          /visitscotland:products:
+            jcr:primaryType: visitscotland:CMSLink
+            visitscotland:label: ''
+            /visitscotland:link:
+              jcr:primaryType: hippo:mirror
+              hippo:docbase: e16bdb89-c271-46f1-851f-2d2b82d631d4
+        /links-list-example[2]:
+          jcr:primaryType: visitscotland:Megalinks
+          jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
+          jcr:uuid: 04faacea-98e4-42b0-bac2-643dc98d7980
+          hippo:availability: [preview]
+          hippostd:state: unpublished
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2020-11-12T09:31:56.719Z
+          hippostdpubwf:lastModificationDate: 2020-11-12T09:33:39.077Z
+          hippostdpubwf:lastModifiedBy: admin
+          hippotranslation:id: 4f929f43-0776-43b3-9131-d0e913235ec0
+          hippotranslation:locale: en
+          visitscotland:listLayout: true
+          visitscotland:teaserVisible: true
+          visitscotland:title: Find your experience in the highest village of Scotland
+          visitscotland:translation: ''
+          /visitscotland:introduction:
+            jcr:primaryType: hippostd:html
+            hippostd:content: <p>Take your pick from the country’s variety of incredible
+              attractions and soak up a bit of culture, find things to keep the kids
+              entertained, or immerse yourself in Scotland’s past.</p>
+          /visitscotland:megalinkItems[1]:
+            jcr:primaryType: visitscotland:MegalinkItem
+            visitscotland:feature: false
+            /visitscotland:link:
+              jcr:primaryType: hippo:mirror
+              hippo:docbase: 4d302e29-93dd-4157-9df9-bbd741bb12a0
+          /visitscotland:megalinkItems[2]:
+            jcr:primaryType: visitscotland:MegalinkItem
+            visitscotland:feature: false
+            /visitscotland:link:
+              jcr:primaryType: hippo:mirror
+              hippo:docbase: e16bdb89-c271-46f1-851f-2d2b82d631d4
+          /visitscotland:megalinkItems[3]:
+            jcr:primaryType: visitscotland:MegalinkItem
+            visitscotland:feature: false
+            /visitscotland:link:
+              jcr:primaryType: hippo:mirror
+              hippo:docbase: 17a3588b-6cee-439b-acd8-186ceb2067aa
+          /visitscotland:megalinkItems[4]:
+            jcr:primaryType: visitscotland:MegalinkItem
+            visitscotland:feature: false
+            /visitscotland:link:
+              jcr:primaryType: hippo:mirror
+              hippo:docbase: 8fac413e-f1e1-4b9b-9d57-9470bee430e7
+          /visitscotland:products:
+            jcr:primaryType: visitscotland:CMSLink
+            visitscotland:label: ''
+            /visitscotland:link:
+              jcr:primaryType: hippo:mirror
+              hippo:docbase: e16bdb89-c271-46f1-851f-2d2b82d631d4
+        /links-list-example[3]:
+          jcr:primaryType: visitscotland:Megalinks
+          jcr:mixinTypes: ['mix:referenceable']
+          jcr:uuid: 9b4bfc38-ace7-4445-8b12-ec57fabd7107
+          hippo:availability: [live]
+          hippostd:state: published
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2020-11-12T09:31:56.719Z
+          hippostdpubwf:lastModificationDate: 2020-11-12T09:33:39.077Z
+          hippostdpubwf:lastModifiedBy: admin
+          hippostdpubwf:publicationDate: 2020-11-12T09:33:53.668Z
+          hippotranslation:id: 4f929f43-0776-43b3-9131-d0e913235ec0
+          hippotranslation:locale: en
+          visitscotland:listLayout: true
+          visitscotland:teaserVisible: true
+          visitscotland:title: Find your experience in the highest village of Scotland
+          visitscotland:translation: ''
+          /visitscotland:introduction:
+            jcr:primaryType: hippostd:html
+            hippostd:content: <p>Take your pick from the country’s variety of incredible
+              attractions and soak up a bit of culture, find things to keep the kids
+              entertained, or immerse yourself in Scotland’s past.</p>
+          /visitscotland:megalinkItems[1]:
+            jcr:primaryType: visitscotland:MegalinkItem
+            visitscotland:feature: false
+            /visitscotland:link:
+              jcr:primaryType: hippo:mirror
+              hippo:docbase: 4d302e29-93dd-4157-9df9-bbd741bb12a0
+          /visitscotland:megalinkItems[2]:
+            jcr:primaryType: visitscotland:MegalinkItem
+            visitscotland:feature: false
+            /visitscotland:link:
+              jcr:primaryType: hippo:mirror
+              hippo:docbase: e16bdb89-c271-46f1-851f-2d2b82d631d4
+          /visitscotland:megalinkItems[3]:
+            jcr:primaryType: visitscotland:MegalinkItem
+            visitscotland:feature: false
+            /visitscotland:link:
+              jcr:primaryType: hippo:mirror
+              hippo:docbase: 17a3588b-6cee-439b-acd8-186ceb2067aa
+          /visitscotland:megalinkItems[4]:
+            jcr:primaryType: visitscotland:MegalinkItem
+            visitscotland:feature: false
+            /visitscotland:link:
+              jcr:primaryType: hippo:mirror
+              hippo:docbase: 8fac413e-f1e1-4b9b-9d57-9470bee430e7
+          /visitscotland:products:
+            jcr:primaryType: visitscotland:CMSLink
+            visitscotland:label: ''
+            /visitscotland:link:
+              jcr:primaryType: hippo:mirror
+              hippo:docbase: e16bdb89-c271-46f1-851f-2d2b82d631d4

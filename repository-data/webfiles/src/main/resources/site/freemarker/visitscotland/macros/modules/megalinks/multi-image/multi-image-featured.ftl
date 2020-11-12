@@ -21,10 +21,10 @@
             <#if lastFeatured == 'true'>last-featured</#if>
             img-src="${image}"
             link-type="${feature.type}"
+            link-url="${feature.link}"
         >
             <template slot="vsMultiImageHeading">
-                ${feature.label}
-            </template>
+                ${feature.label}</template>
             <#if feature.teaser?? && feature.label??>
                 <p slot="vsMultiImageContent">
                     ${feature.teaser}

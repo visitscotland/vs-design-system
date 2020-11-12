@@ -13,42 +13,43 @@ const factoryShallowMount = () => shallowMount(VsMegalinks, {
     },
 });
 
+let wrapper;
+beforeEach(() => {
+    wrapper = factoryShallowMount();
+});
+
 describe('VsMegalinks', () => {
     describe(':props', () => {
         it('should only render the button if an href is supplied', async() => {
-            const wrapper = factoryShallowMount();
-
-            expect(wrapper.find('.vs-megalinks__button').exists()).toBe(true);
+            expect(wrapper.find('[data-test="vs-megalinks__button"]').exists()).toBe(true);
 
             await wrapper.setProps({
                 buttonLink: '',
             });
-            expect(wrapper.find('.vs-megalinks__button').exists()).toBe(false);
+            expect(wrapper.find('[data-test="vs-megalinks__button"]').exists()).toBe(false);
         });
 
         it('should render a variant class', () => {
-            const wrapper = factoryShallowMount();
-
             expect(wrapper.find('.vs-megalinks--multi-image').exists()).toBe(true);
         });
 
         it('should only show the intro if there is a heading', async() => {
-            const wrapper = factoryShallowMount();
-
-            expect(wrapper.find('.vs-megalinks__intro').exists()).toBe(true);
+            expect(wrapper.find('[data-test="vs-megalinks__intro"]').exists()).toBe(true);
 
             await wrapper.setProps({
                 title: '',
             });
-            expect(wrapper.find('.vs-megalinks__intro').exists()).toBe(false);
+            expect(wrapper.find('[data-test="vs-megalinks__intro"]').exists()).toBe(false);
         });
     });
 
     describe(':slots', () => {
-        const wrapper = factoryShallowMount();
+        it('renders content inserted in a vsMegalinksHeading slot', () => {
+            expect(wrapper.find('[data-test="vs-megalinks__heading"]').text()).toBe('A megalinks title');
+        });
 
         it('renders content inserted in a vsMegalinksIntro slot', () => {
-            expect(wrapper.find('.vs-megalinks__intro').html()).toContain('<p>Megalinks intro text</p>');
+            expect(wrapper.find('[data-test="vs-megalinks__intro"]').html()).toContain('<p>Megalinks intro text</p>');
         });
 
         it('renders content inserted in a vsMegalinksButton slot', async() => {
@@ -56,7 +57,7 @@ describe('VsMegalinks', () => {
                 buttonLink: 'http://www.visitscotland.com',
             });
 
-            expect(wrapper.find('.vs-megalinks__button').html()).toContain('Megalinks button text');
+            expect(wrapper.find('[data-test="vs-megalinks__button"]').html()).toContain('Megalinks button text');
         });
     });
 });

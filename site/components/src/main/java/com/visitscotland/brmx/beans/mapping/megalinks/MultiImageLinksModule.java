@@ -36,6 +36,7 @@ public class MultiImageLinksModule extends LinksModule<EnhancedLink> {
         this.linksSize = linksSize;
     }
 
+
     public void setFeaturedLinks(List<EnhancedLink> featuredLinks) {
         this.featuredLinks = featuredLinks;
     }
