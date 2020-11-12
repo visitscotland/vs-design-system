@@ -142,6 +142,10 @@ export default {
                 text-decoration: none;
             }
 
+            .stretched-link {
+                letter-spacing: 0;
+            }
+
             .card-title {
                 display: flex;
                 margin-bottom: 0;
