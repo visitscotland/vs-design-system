@@ -13,11 +13,14 @@ const factoryShallowMount = () => shallowMount(VsMegalinks, {
     },
 });
 
+let wrapper;
+beforeEach(() => {
+    wrapper = factoryShallowMount();
+});
+
 describe('VsMegalinks', () => {
     describe(':props', () => {
         it('should only render the button if an href is supplied', async() => {
-            const wrapper = factoryShallowMount();
-
             expect(wrapper.find('[data-test="vs-megalinks__button"]').exists()).toBe(true);
 
             await wrapper.setProps({
@@ -27,14 +30,10 @@ describe('VsMegalinks', () => {
         });
 
         it('should render a variant class', () => {
-            const wrapper = factoryShallowMount();
-
             expect(wrapper.find('.vs-megalinks--multi-image').exists()).toBe(true);
         });
 
         it('should only show the intro if there is a heading', async() => {
-            const wrapper = factoryShallowMount();
-
             expect(wrapper.find('[data-test="vs-megalinks__intro"]').exists()).toBe(true);
 
             await wrapper.setProps({
@@ -45,8 +44,6 @@ describe('VsMegalinks', () => {
     });
 
     describe(':slots', () => {
-        const wrapper = factoryShallowMount();
-
         it('renders content inserted in a vsMegalinksHeading slot', () => {
             expect(wrapper.find('[data-test="vs-megalinks__heading"]').text()).toBe('A megalinks title');
         });
