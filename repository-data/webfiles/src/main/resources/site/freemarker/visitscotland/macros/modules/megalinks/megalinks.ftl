@@ -38,8 +38,8 @@
         <#elseif type == "ListLinksModule">
             <@linkList item=item /> 
 
-        <#elseif type == "SingleImageLinksModule">
-            <@multiImage item=item /> 
+        <#--  <#elseif type == "SingleImageLinksModule">
+            <@multiImage item=item />   -->
         </#if>
 
        <#if ctaExists == "true">                
