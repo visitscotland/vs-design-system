@@ -30,24 +30,37 @@ describe('VsDescriptionListItem', () => {
 
     describe(':props', () => {
         describe(':title', () => {
-            it('should render with a `vs-description-list__term` class when `title` is set to `true`', () => {
-                wrapper.setProps({
+            it('should render with a `vs-description-list__term` class when `title` is set to `true`', async () => {
+                await wrapper.setProps({
                     title: true,
                 });
+
                 expect(wrapper.classes('vs-description-list__term')).toBe(true);
             });
 
-            it('should render with a `vs-description-list__detail` class when `title` is set to `false`', () => {
+            it('should render with a `vs-description-list__detail` class when `title` is set to `false`', async () => {
+                await wrapper.setProps({
+                    title: false,
+                });
+
                 expect(wrapper.classes('vs-description-list__detail')).toBe(true);
             });
         });
 
         describe(':inline', () => {
-            it('render a `list-inline-item` class when `inline` is injected as `true`', () => {
+            it('render a `list-inline-item` class when `inline` is injected as `true`', async () => {
+                await wrapper.setProps({
+                    inline: true,
+                });
+
                 expect(wrapper.classes('list-inline-item')).toBe(true);
             });
 
-            it('it should *NOT* render a `list-inline-item` class when `inline` is injected as `false`', () => {
+            it('it should *NOT* render a `list-inline-item` class when `inline` is injected as `false`', async () => {
+                await wrapper.setProps({
+                    inline: false,
+                });
+
                 expect(wrapper.classes('list-inline-item')).toBe(false);
             });
 
