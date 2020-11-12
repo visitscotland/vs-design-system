@@ -48,22 +48,26 @@ describe('VsFormInput', () => {
     });
 
     describe(':events', () => {
-        it('it should emit an `input` event when `value` changes', () => {
+        it('it should emit an `input` event when `value` changes', async () => {
             const testValue = 'Test Value';
             const modifiedWrapper = factoryMount();
             modifiedWrapper.setProps({
                 value: testValue,
             });
+
+            await wrapper.vm.$nextTick();
 
             expect(modifiedWrapper.emitted('input')).toBeTruthy();
         });
 
-        it('it should emit an `input` event with the new value when `value` changes', () => {
+        it('it should emit an `input` event with the new value when `value` changes', async () => {
             const testValue = 'Test Value';
             const modifiedWrapper = factoryMount();
             modifiedWrapper.setProps({
                 value: testValue,
             });
+
+            await wrapper.vm.$nextTick();
 
             expect(modifiedWrapper.emitted('input')[0]).toEqual([testValue]);
         });
