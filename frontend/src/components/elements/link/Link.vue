@@ -1,7 +1,7 @@
 <template>
     <BLink
         class="vs-link"
-        :class="[variant, linkType(type)]"
+        :class="[variant, typeClass]"
         :href="href"
         :target="type === 'external' ? '_blank' : '_self'"
         :download="type === 'download'"
@@ -72,9 +72,9 @@ export default {
             validator: (value) => value.match(/(xxs|xs|sm|md|lg|xl)/),
         },
     },
-    methods: {
-        linkType(str) {
-            return str ? `vs-link--${str}` : '';
+    computed: {
+        typeClass() {
+            return this.type ? `vs-link--${this.type}` : '';
         },
     },
 };
