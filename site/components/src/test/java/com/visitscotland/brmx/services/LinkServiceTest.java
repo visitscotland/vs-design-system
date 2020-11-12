@@ -17,9 +17,11 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.util.Locale;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
@@ -74,6 +76,21 @@ class LinkServiceTest {
 
         assertEquals("http://fake.link", link);
     }
+
+    @Test
+    @DisplayName("Create a url from an SharedLink with an External document ")
+    void getPlainLink_externalDocument() {
+        ExternalDocument externalDocument = mock(ExternalDocument.class, withSettings().lenient());
+        SharedLink sharedLink = mock(SharedLink.class);
+
+        when(sharedLink.getLinkType()).thenReturn(externalDocument);
+        when(externalDocument.getLink()).thenReturn("https://www.visitscotland.com/ebrochures/en/what-to-see-and-do/perthshireanddundee.pdf");
+
+        String link = service.getPlainLink(sharedLink, null);
+
+        assertEquals("https://www.visitscotland.com/ebrochures/en/what-to-see-and-do/perthshireanddundee.pdf", link);
+    }
+
 
     @Test
     @DisplayName("Create a link from an CMSLink Compound")
@@ -232,4 +249,70 @@ class LinkServiceTest {
 
         assertNull(link);
     }
+
+    @Test
+    @DisplayName("Return the category for the link/page")
+    void getLinkCategory() {
+        when(resourceBundle.getResourceBundle("otyml", "category.ebooks", Locale.UK ,true)).thenReturn("ebook");
+        assertEquals("ebook", getCategory("https://ebooks.visitscotland.com/whisky-distilleries-guides/", "otyml", "category.ebooks", "ebook"));
+
+        String blog = "Travel Blog";
+        when(resourceBundle.getResourceBundle("navigation.main", "blog", Locale.UK ,true)).thenReturn(blog);
+        assertEquals(blog, getCategory("https://blog.visitscotland.com/discover-our-best-ebooks", "navigation.main", "blog", blog));
+        assertEquals(blog, getCategory("https://www.visitscotland.com/blog/culture/scottish-words-meanings/", "navigation.main", "blog", blog));
+
+        String seeDo= "See do";
+        when(resourceBundle.getResourceBundle("navigation.main", "see-do", Locale.UK ,true)).thenReturn(seeDo);
+        assertEquals(seeDo, getCategory("https://www.visitscotland.com/destinations-maps/edinburgh/see-do/", "navigation.main", "see-do", seeDo));
+        assertEquals(seeDo, getCategory("https://www.visitscotland.com/info/events/developing-a-garden-sketchbook-after-hours-p2216101", "navigation.main", "see-do", seeDo));
+        assertEquals(seeDo, getCategory("https://www.visitscotland.com/info/tours/shore-excursion-from-invergordon-battles-loch-ness-whisky-a56a372f", "navigation.main", "see-do", seeDo));
+        assertEquals(seeDo, getCategory("https://www.visitscotland.com/info/see-do/riverside-museum-p995001", "navigation.main", "see-do", seeDo));
+        assertEquals(seeDo, getCategory("https://www.visitscotland.com/site-search-results", "navigation.main", "see-do", seeDo));
+
+        when(resourceBundle.getResourceBundle("navigation.main", "accommodation", Locale.UK ,true)).thenReturn("Accommodation");
+        assertEquals("Accommodation", getCategory("https://www.visitscotland.com/destinations-maps/edinburgh/accommodation/self-catering/", "navigation.main", "accommodation", "Accommodation"));
+
+        String destination = "Places to go";
+        when(resourceBundle.getResourceBundle("navigation.main", "destinations-map", Locale.UK ,true)).thenReturn(destination);
+        assertEquals(destination, getCategory("https://www.visitscotland.com/destinations-maps/edinburgh/", "navigation.main", "destinations-map", destination));
+        assertEquals(destination, getCategory("https://www.visitscotland.com/destinations-maps/perthshire/short-break-itinerary", "navigation.main", "destinations-map", destination));
+        assertEquals(destination, getCategory("https://www.visitscotland.com/info/towns-villages/ayr-p242821", "navigation.main", "destinations-map", destination));
+        assertEquals(destination, getCategory("https://www.visitscotland.com/destinations-maps/island/orkney", "navigation.main", "destinations-map", destination));
+
+        String travel = "Plan your trip";
+        when(resourceBundle.getResourceBundle("navigation.main", "travel-planning", Locale.UK ,true)).thenReturn(travel);
+        assertEquals(travel, getCategory("https://www.visitscotland.com/holidays-breaks/scotland-life/sam-audrey-scottish-road-trip/", "navigation.main", "travel-planning", travel));
+        assertEquals(travel, getCategory("https://www.visitscotland.com/travel/getting-around-scotland/coach/", "navigation.main", "travel-planning", travel));
+        assertEquals(travel, getCategory("https://www.visitscotland.com/info/transport/turner-hire-drive-edinburgh-p1916901", "navigation.main", "travel-planning", travel));
+
+        when(resourceBundle.getResourceBundle("navigation.main", "inspiration", Locale.UK ,true)).thenReturn("Inspiration");
+        assertEquals("Inspiration", getCategory("https://www.visitscotland.com/brochures/", "navigation.main", "inspiration", "Inspiration"));
+
+        String information = "Visitor information";
+        when(resourceBundle.getResourceBundle("navigation.footer", "footer.visitor-information", Locale.UK ,true)).thenReturn(information);
+        assertEquals(information, getCategory("https://www.visitscotland.com/about-us/", "navigation.footer", "footer.visitor-information", information));
+        assertEquals(information, getCategory("https://www.visitscotland.com/info/services/fort-william-icentre-p333001", "navigation.footer", "footer.visitor-information", information));
+        assertEquals(information, getCategory("https://www.visitscotland.com/contact-us/", "navigation.footer", "footer.visitor-information", information));
+        assertEquals(information, getCategory("https://www.visitscotland.com/policies/acceptable-use/", "navigation.footer", "footer.visitor-information", information));
+
+        assertEquals("visitwales.com".toUpperCase(), service.getLinkCategory("https://www.visitwales.com/brochures",Locale.UK));
+
+    }
+
+    @Test
+    @DisplayName("An exception if the URL is mal formed")
+    void getLinkCategory_MalformedURLException() throws MalformedURLException {
+        //TODO do I need to test the exception?
+        //assertThrows(MalformedURLException.class, () -> service.getLinkCategory("http//example.com",Locale.UK));
+        assertNull(service.getLinkCategory("http//example.com",Locale.UK));
+
+    }
+
+    private String getCategory(String url, String bundle, String key, String value){
+        when(resourceBundle.getResourceBundle(bundle, key, Locale.UK ,true)).thenReturn(value);
+        String result = service.getLinkCategory(url,Locale.UK);
+
+        return result;
+    }
+
 }
