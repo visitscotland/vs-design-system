@@ -13,6 +13,7 @@
                     :type="type"
                     class="stretched-link"
                     :icon-size="iconSize"
+                    data-test="stretched-link"
                 >
                     <!-- @slot Contains header content for the card  -->
                     <slot name="stretchedCardHeader" />
