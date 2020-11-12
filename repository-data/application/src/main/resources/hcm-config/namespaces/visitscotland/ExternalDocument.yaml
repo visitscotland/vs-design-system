@@ -11,7 +11,7 @@ definitions:
         /hipposysedit:nodetype:
           jcr:primaryType: hipposysedit:nodetype
           jcr:mixinTypes: ['mix:referenceable', 'hipposysedit:remodel']
-          jcr:uuid: 83ac12cd-ee6d-4ece-aef3-167037dcdd55
+          jcr:uuid: d41bbef6-43e0-423a-a817-03ba2c98b2c4
           hipposysedit:node: true
           hipposysedit:supertype: ['hippo:compound', 'hippostd:relaxed']
           hipposysedit:uri: http://www.visitscotland.com/visitscotland/nt/1.0
@@ -103,9 +103,11 @@ definitions:
             field: category
             plugin.class: org.hippoecm.frontend.editor.plugins.field.PropertyFieldPlugin
             wicket.id: ${cluster.id}.right.item
+            hint: ''
             /cluster.options:
               jcr:primaryType: frontend:pluginconfig
-              selectable.options: Places to go, Inspiration, tours, Thing to do
+              selectable.options: Accommodation,eBook,Inspiration,Places to go,Things
+                to do,Travel Blog,Travel & Planning,Visitor Information
           /bytes:
             jcr:primaryType: frontend:plugin
             caption: Bytes
