@@ -6,6 +6,7 @@ const factoryShallowMount = () => shallowMount(VsMegalinkMultiImage, {
         featured: true,
         imgSrc: 'test',
         linkType: 'external',
+        linkUrl: 'www.visitscotland.com',
     },
     slots: {
         vsMultiImageHeading: 'Multi-image heading',
@@ -13,23 +14,25 @@ const factoryShallowMount = () => shallowMount(VsMegalinkMultiImage, {
     },
 });
 
+let wrapper;
+beforeEach(() => {
+    wrapper = factoryShallowMount();
+});
+
 describe('VsMegalinkMultiImage', () => {
     describe(':props', () => {
         it('if the featured prop is true, it should render an element with class "megalink-multi-image--featured"', () => {
-            const wrapper = factoryShallowMount();
-            expect(wrapper.find('.megalink-multi-image--featured').exists()).toBe(true);
+            expect(wrapper.find('[data-test="megalink-multi-image-featured"]').exists()).toBe(true);
         });
     });
 
     describe(':slots', () => {
         it('renders content inserted in a vsMultiImageHeading slot', () => {
-            const wrapper = factoryShallowMount();
-            expect(wrapper.find('.megalink-multi-image__title').text()).toBe('Multi-image heading');
+            expect(wrapper.find('[data-test="megalink-multi-image__title"]').text()).toBe('Multi-image heading');
         });
 
         it('renders content inserted in a vsMultiImageContent slot', () => {
-            const wrapper = factoryShallowMount();
-            expect(wrapper.find('.megalink-multi-image__content').html()).toContain('<p>Multi-image content</p>');
+            expect(wrapper.find('[data-test="megalink-multi-image__content"]').html()).toContain('<p>Multi-image content</p>');
         });
     });
 });
