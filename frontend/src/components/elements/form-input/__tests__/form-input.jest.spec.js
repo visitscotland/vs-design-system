@@ -37,11 +37,13 @@ describe('VsFormInput', () => {
             expect(modifiedWrapper.classes()).toContain(`form-control-${testSize}`);
         });
 
-        it('value - should accept and render a `value` property', () => {
+        it('value - should accept and render a `value` property', async () => {
             const testValue = 'Test Value';
             wrapper.setProps({
                 value: testValue,
             });
+
+            await wrapper.vm.$nextTick();
 
             expect(wrapper.vm.inputVal).toBe(testValue);
         });
