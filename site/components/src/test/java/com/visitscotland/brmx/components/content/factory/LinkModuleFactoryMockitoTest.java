@@ -122,7 +122,7 @@ public class LinkModuleFactoryMockitoTest {
     public void beforeEach() {
         when(linkService.getPlainLink(any(SharedLink.class), any())).thenReturn(PLAIN_LINK);
 
-        factory = new LinkModulesFactory(utils, dmsData, linkService);
+        factory = new LinkModulesFactory(utils, dmsData, linkService, resourceBundleService);
     }
 
 
@@ -174,7 +174,7 @@ public class LinkModuleFactoryMockitoTest {
         SharedLink sl = (SharedLink) item.getLink();
         when(sl.getImage()).thenReturn(null);
 
-        EnhancedLink link = factory.convertToEnhancedLinks(Collections.singletonList(item), Locale.UK).get(0);
+        EnhancedLink link = factory.convertToEnhancedLinks(Collections.singletonList(item), Locale.UK,false).get(0);
 
         assertEquals(PLAIN_LINK, link.getLink());
         assertNotNull(link.getImage());
@@ -196,7 +196,7 @@ public class LinkModuleFactoryMockitoTest {
         SharedLink sl = (SharedLink) item.getLink();
         when(sl.getImage()).thenReturn(null);
 
-        EnhancedLink link = factory.convertToEnhancedLinks(Collections.singletonList(item), Locale.UK).get(0);
+        EnhancedLink link = factory.convertToEnhancedLinks(Collections.singletonList(item), Locale.UK,false).get(0);
 
         assertEquals(PLAIN_LINK, link.getLink());
         assertNull(link.getImage());
@@ -211,7 +211,7 @@ public class LinkModuleFactoryMockitoTest {
 
     @Test
     void ProductSearch_enhanced_SharedLink() {
-        EnhancedLink link = factory.convertToEnhancedLinks(Collections.singletonList(mockItem(false, LinkType.PRODUCT_SEARCH)), Locale.UK).get(0);
+        EnhancedLink link = factory.convertToEnhancedLinks(Collections.singletonList(mockItem(false, LinkType.PRODUCT_SEARCH)), Locale.UK,false).get(0);
 
         assertEquals(PLAIN_LINK, link.getLink());
     }
@@ -226,7 +226,7 @@ public class LinkModuleFactoryMockitoTest {
 
     @Test
     void External_enhanced_SharedLink() {
-        EnhancedLink link = factory.convertToEnhancedLinks(Collections.singletonList(mockItem(false, LinkType.EXTERNAL)), Locale.UK).get(0);
+        EnhancedLink link = factory.convertToEnhancedLinks(Collections.singletonList(mockItem(false, LinkType.EXTERNAL)), Locale.UK,false).get(0);
 
         assertEquals(PLAIN_LINK, link.getLink());
     }
@@ -239,7 +239,7 @@ public class LinkModuleFactoryMockitoTest {
         when(sl.getImage()).thenReturn(null);
 
         //TODO verify that a contentIssue is triggered
-        EnhancedLink link = factory.convertToEnhancedLinks(Collections.singletonList(item), Locale.UK).get(0);
+        EnhancedLink link = factory.convertToEnhancedLinks(Collections.singletonList(item), Locale.UK,false).get(0);
 
         assertNull(link.getImage());
     }
@@ -252,7 +252,7 @@ public class LinkModuleFactoryMockitoTest {
         when(item.getLink()).thenReturn(link);
 
 
-        assertEquals(0, factory.convertToEnhancedLinks(Collections.singletonList(item), Locale.UK).size());
+        assertEquals(0, factory.convertToEnhancedLinks(Collections.singletonList(item), Locale.UK,false).size());
     }
 
     @Test
