@@ -15,11 +15,16 @@
             <span
                 slot="stretchedCardHeader"
                 class="megalink-link-list__title"
-            ><!-- @slot Slot to contain heading --><slot name="vsLinkListHeading" /></span>
+                data-test="megalink-link-list__title"
+            >
+                <!-- @slot Slot to contain heading -->
+                <slot name="vsLinkListHeading" />
+            </span>
 
             <VsRichTextWrapper
                 slot="stretchedCardContent"
                 class="lead megalink-link-list__content"
+                data-test="megalink-link-list__content"
             >
                 <!-- @slot Slot to contain content -->
                 <slot name="vsLinkListContent" />
@@ -48,6 +53,9 @@ export default {
         VsImg,
     },
     props: {
+        /**
+        * The source of the image used in the component
+        */
         imgSrc: {
             required: true,
             type: String,
@@ -106,6 +114,10 @@ export default {
 
             &:hover {
                 box-shadow: 10px 10px 20px $color-gray-tint-4;
+
+                .megalink-link-list__title {
+                    text-decoration: underline;
+                }
             }
 
             .stretched-link {
@@ -126,11 +138,15 @@ export default {
             }
 
             .megalink-link-list__title {
-                font-size: .75rem;
+                font-size: $font-size-sm;
                 letter-spacing: .05rem;
-                line-height: 1.6;
+                line-height: $line-height-m;
                 color: $color-base-text;
                 text-decoration: none;
+            }
+
+            .stretched-link {
+                letter-spacing: 0;
             }
 
             .card-title {
@@ -150,13 +166,13 @@ export default {
         @include media-breakpoint-up(lg) {
             .megalink-link-list__wrapper.card {
                 .megalink-link-list__title {
-                    font-size: .875rem;
+                    font-size: $small-font-size;
                 }
 
                 .megalink-link-list__content {
                     display: block;
                     margin: $spacer-2 0 0;
-                    line-height: 1.25;
+                    line-height: $line-height-s;
                 }
             }
         }
@@ -177,8 +193,7 @@ export default {
                     linkType="internal"
                 >
                     <template slot="vsLinkListHeading">
-                        The Edinburgh International Festival and summer festival
-                    </template>
+                        The Edinburgh International Festival and summer festival</template>
                     <template slot="vsLinkListContent">
                         <p>Right across the country, you’ll find amazing places
                         to eat and drink from local markets to renowned
@@ -196,8 +211,7 @@ export default {
                     linkType="external"
                 >
                     <template slot="vsLinkListHeading">
-                        Count 7,000 shining stars in the iconic galloway forest
-                    </template>
+                        Count 7,000 shining stars in the iconic galloway forest</template>
                     <template slot="vsLinkListContent">
                         <p>Right across the country, you’ll find amazing
                         places to eat and drink from local markets to renowned
@@ -215,8 +229,7 @@ export default {
                     linkType="external"
                 >
                     <template slot="vsLinkListHeading">
-                        Count 7,000 shining stars in the iconic galloway forest
-                    </template>
+                        Count 7,000 shining stars in the iconic galloway forest</template>
                     <template slot="vsLinkListContent">
                         <p>Right across the country, you’ll find amazing places
                         to eat and drink
@@ -234,8 +247,7 @@ export default {
                     linkType="download"
                 >
                     <template slot="vsLinkListHeading">
-                        Soar through the air on a boat of Falkirk Wheel (PDF 3MB)
-                    </template>
+                        Soar through the air on a boat of Falkirk Wheel (PDF 3MB)</template>
                     <template slot="vsLinkListContent">
                         <p>Right across the country, you’ll find amazing
                         places to eat and drink from local markets to renowned

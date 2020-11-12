@@ -1,1 +1,5 @@
-export { default } from './StretchedLinkCard';
+import VsStretchedLinkCard from './StretchedLinkCard';
+
+export default {
+    VsStretchedLinkCard,
+};

@@ -1,12 +1,13 @@
 <template>
     <VsStretchedLinkCard
-        link="https://visitscotland.com"
+        :link="linkUrl"
         :type="linkType"
         class="megalink-multi-image p-2"
         :class="{
             'megalink-multi-image--featured' : featured,
             'megalink-multi-image--featured-last' : lastFeatured,
         }"
+        data-test="megalink-multi-image-featured"
     >
         <VsImg
             slot="stretchedCardImage"
@@ -17,11 +18,13 @@
         <span
             slot="stretchedCardHeader"
             class="megalink-multi-image__title"
+            data-test="megalink-multi-image__title"
         ><!-- @slot Slot to contain heading --><slot name="vsMultiImageHeading" /></span>
 
         <VsRichTextWrapper
             slot="stretchedCardContent"
             class="lead megalink-multi-image__content"
+            data-test="megalink-multi-image__content"
         >
             <!-- @slot Slot to contain content -->
             <slot name="vsMultiImageContent" />
@@ -89,6 +92,13 @@ export default {
             required: true,
             validator: (value) => value.match(/(external|internal|download)/),
         },
+        /**
+        * The link destination
+        */
+        linkUrl: {
+            type: String,
+            required: true,
+        },
     },
 };
 </script>
@@ -102,6 +112,7 @@ export default {
         .stretched-link {
             color: $color-base-text;
             text-decoration: none;
+            letter-spacing: 0;
 
             &:hover {
                 .megalink-multi-image__title {
@@ -127,7 +138,7 @@ export default {
         }
 
         .megalink-multi-image__title {
-            font-size: 0.875rem;
+            font-size: $small-font-size;
             letter-spacing: 0.0875rem;
         }
 
@@ -164,7 +175,7 @@ export default {
             margin-top: 0;
 
             .megalink-multi-image__title {
-                font-size: 1.25rem;
+                font-size: $h3-font-size;
                 letter-spacing: 0.125rem;
             }
 
@@ -178,7 +189,7 @@ export default {
             }
 
             .megalink-multi-image__content {
-                font-size: 1.125rem;
+                font-size: $lead-font-size;
                 margin-top: $spacer-8;
             }
 
@@ -209,10 +220,10 @@ export default {
                         imgSrc="https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"
                         imgAlt="This is the alt text"
                         linkType="internal"
+                        linkUrl="www.visitscotland.com"
                     >
                         <template slot="vsMultiImageHeading">
-                            The Edinburgh International Festival and summer festival
-                        </template>
+                            The Edinburgh International Festival and summer festival</template>
                         <template slot="vsMultiImageContent">
                             <p>Right across the country, you’ll find amazing places
                             to eat and drink from local markets to renowned
@@ -229,10 +240,11 @@ export default {
                         imgSrc="https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"
                         imgAlt="This is the alt text 1"
                         linkType="external"
+                        linkUrl="www.visitscotland.com"
                     >
                         <template slot="vsMultiImageHeading">
-                            Count 7,000 shining stars in the iconic galloway forest
-                        </template>
+                            Count 7,000 shining stars in the iconic
+                            galloway forest</template>
                         <template slot="vsMultiImageContent">
                             <p>Right across the country, you’ll find amazing
                             places to eat and drink from local markets to renowned
@@ -249,10 +261,10 @@ export default {
                         imgSrc="https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"
                         imgAlt="This is the alt text 2"
                         linkType="external"
+                        linkUrl="www.visitscotland.com"
                     >
                         <template slot="vsMultiImageHeading">
-                            Count 7,000 shining stars in the iconic galloway forest
-                        </template>
+                            Count 7,000 shining stars in the iconic galloway forest</template>
                         <template slot="vsMultiImageContent">
                             <p>Right across the country, you’ll find amazing places
                             to eat and drink
@@ -277,10 +289,10 @@ export default {
                     <vs-megalink-multi-image
                         imgSrc="https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"
                         linkType="download"
+                        linkUrl="www.visitscotland.com"
                     >
                         <template slot="vsMultiImageHeading">
-                            Soar through the air on a boat of Falkirk Wheel (PDF 3MB)
-                        </template>
+                            Soar through the air on a boat of Falkirk Wheel (PDF 3MB)</template>
                         <template slot="vsMultiImageContent">
                             <p>Right across the country, you’ll find amazing
                             places to eat and drink from local markets to renowned
