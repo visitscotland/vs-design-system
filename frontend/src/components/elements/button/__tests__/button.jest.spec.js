@@ -76,20 +76,20 @@ describe('VsButton', () => {
         });
 
         describe(':icon', () => {
-            it(':should *NOT* render an icon if `icon` property is not passed', () => {
+            it('should *NOT* render an icon if `icon` property is not passed', () => {
                 const wrapper = factoryShallowMount();
                 const iconStub = wrapper.find('vsicon-stub');
 
                 expect(iconStub.exists()).toBe(false);
             });
 
-            it(':should *NOT* render the VsButton with a `vs-button-with-icon` class if icon prop is *NOT* provided', () => {
+            it('should *NOT* render the VsButton with a `vs-button-with-icon` class if icon prop is *NOT* provided', () => {
                 const wrapper = factoryMount();
 
                 expect(wrapper.classes('vs-button-with-icon')).toBe(false);
             });
 
-            it(':should render the VsButton with a `vs-button-with-icon` class if icon prop is provided', () => {
+            it('should render the VsButton with a `vs-button-with-icon` class if icon prop is provided', () => {
                 const wrapper = factoryMount({
                     icon: testIcon,
                 });
@@ -97,7 +97,7 @@ describe('VsButton', () => {
                 expect(wrapper.classes('vs-button-with-icon')).toBe(true);
             });
 
-            it(':should accept and render an `icon` property', () => {
+            it('should accept and render an `icon` property', () => {
                 const wrapper = factoryShallowMount({
                     icon: testIcon,
                 });
@@ -106,7 +106,7 @@ describe('VsButton', () => {
                 expect(iconStub.attributes('name')).toBe(testIcon);
             });
 
-            it(':size should be `xs` if button size is set to `sm`', () => {
+            it('size should be `xs` if button size is set to `sm`', () => {
                 const wrapper = factoryShallowMount({
                     icon: testIcon,
                     size: 'sm',
@@ -116,7 +116,7 @@ describe('VsButton', () => {
                 expect(iconStub.attributes('size')).toBe('xs');
             });
 
-            it(':size should be `sm` if button size is set to `md`', () => {
+            it('size should be `sm` if button size is set to `md`', () => {
                 const wrapper = factoryShallowMount({
                     icon: testIcon,
                     size: 'md',
@@ -126,7 +126,7 @@ describe('VsButton', () => {
                 expect(iconStub.attributes('size')).toBe('sm');
             });
 
-            it(':size should be `md` if button size is set to `lg`', () => {
+            it('size should be `md` if button size is set to `lg`', () => {
                 const wrapper = factoryShallowMount({
                     icon: testIcon,
                     size: 'lg',
@@ -136,7 +136,7 @@ describe('VsButton', () => {
                 expect(iconStub.attributes('size')).toBe('md');
             });
 
-            it(':orientation should be `down` if `iconOrientation` is set to `down`', () => {
+            it('orientation should be `down` if `iconOrientation` is set to `down`', () => {
                 const wrapper = factoryShallowMount({
                     icon: testIcon,
                     iconOrientation: 'down',
@@ -146,7 +146,7 @@ describe('VsButton', () => {
                 expect(iconStub.attributes('orientation')).toBe('down');
             });
 
-            it(':should set an `mr-2` class if `iconOnly` is not truthy', () => {
+            it('should set an `mr-2` class if `iconOnly` is not truthy', () => {
                 const wrapper = factoryShallowMount({
                     icon: testIcon,
                     iconOnly: false,
@@ -156,7 +156,7 @@ describe('VsButton', () => {
                 expect(iconStub.classes('mr-2')).toBe(true);
             });
 
-            it(':should *NOT* set an `mr-2` class if `iconOnly` is truthy', () => {
+            it('should *NOT* set an `mr-2` class if `iconOnly` is truthy', () => {
                 const wrapper = factoryShallowMount({
                     icon: testIcon,
                     iconOnly: true,
