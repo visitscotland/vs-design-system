@@ -15,6 +15,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.Locale;
 
 public class LinkService {
@@ -127,5 +129,47 @@ public class LinkService {
         }
 
         return LinkType.EXTERNAL;
+    }
+
+    /**
+     * Method to assign the right category based on the url/cms structure
+     *
+     * @param path String path of the document
+     * @param locale Locale
+     * @return category
+     */
+    public String getLinkCategory(String path, Locale locale) {
+        try {
+            java.net.URL url = new URL(path);
+            String host = url.getHost();
+            if (getType(path)==LinkType.EXTERNAL) {
+                String category = host.toUpperCase().startsWith("WWW.") ? host.substring(4) : host;
+                return category.toUpperCase();
+            }else {
+                if (host.equalsIgnoreCase("ebooks.visitscotland.com")) {
+                    return resourceBundle.getResourceBundle("otyml", "category.ebooks", locale, true);
+                } else if (path.contains("blog")) {
+                    return resourceBundle.getResourceBundle("navigation.main", "blog", locale, true);
+                } else if (path.contains("see-do") || path.contains("events") || path.contains("tours")) {
+                    return resourceBundle.getResourceBundle("navigation.main", "see-do", locale, true);
+                } else if (path.contains("accommodation")) {
+                    return resourceBundle.getResourceBundle("navigation.main", "accommodation", locale, true);
+                } else if (path.contains("destination") || path.contains("towns-villages")) {
+                    return resourceBundle.getResourceBundle("navigation.main", "destinations-map", locale, true);
+                } else if (path.contains("travel") || path.contains("holidays") || path.contains("transport")) {
+                    return resourceBundle.getResourceBundle("navigation.main", "travel-planning", locale, true);
+                } else if (path.contains("brochures")) {
+                    return resourceBundle.getResourceBundle("navigation.main", "inspiration", locale, true);
+                } else if (path.contains("about") || path.contains("contact") || path.contains("policies") || path.contains("services")) {
+                    return resourceBundle.getResourceBundle("navigation.footer", "footer.visitor-information", locale, true);
+                }
+            }
+            return resourceBundle.getResourceBundle("navigation.main", "see-do", locale ,true);
+
+        } catch (MalformedURLException e) {
+            logger.error("The URL "+path+" is not valid", e);
+            return null;
+        }
+
     }
 }
