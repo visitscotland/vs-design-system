@@ -21,7 +21,11 @@ public class MegalinksMockService {
         List<MegalinkItem> items = new ArrayList<>();
 
         EasyMock.expect(mega.getTitle()).andReturn(title).anyTimes();
-        EasyMock.expect(mega.getLayout()).andReturn("list").anyTimes();
+        if (listView) {
+            EasyMock.expect(mega.getLayout()).andReturn("list").anyTimes();
+        }else{
+            EasyMock.expect(mega.getLayout()).andReturn("default").anyTimes();
+        }
         EasyMock.expect(mega.getTeaserVisible()).andReturn(teaser).anyTimes();
 
         EasyMock.expect(mega.getSingleImageModule()).andReturn(single).anyTimes();
@@ -57,7 +61,11 @@ public class MegalinksMockService {
         List<MegalinkItem> items = new ArrayList<>();
 
         EasyMock.expect(mega.getTitle()).andReturn(title).anyTimes();
-        EasyMock.expect(mega.getLayout()).andReturn("list").anyTimes();
+        if (listView) {
+            EasyMock.expect(mega.getLayout()).andReturn("list").anyTimes();
+        }else{
+            EasyMock.expect(mega.getLayout()).andReturn("default").anyTimes();
+        }
         EasyMock.expect(mega.getTeaserVisible()).andReturn(teaser).anyTimes();
         EasyMock.expect(mega.getSingleImageModule()).andReturn(null).anyTimes();
 
