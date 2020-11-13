@@ -140,14 +140,14 @@ public class LinkService {
      */
     public String getLinkCategory(String path, Locale locale) {
         try {
-            java.net.URL url = new URL(path);
-            String host = url.getHost();
             if (getType(path)==LinkType.EXTERNAL) {
+                java.net.URL url = new URL(path);
+                String host = url.getHost();
                 String category = host.toUpperCase().startsWith("WWW.") ? host.substring(4) : host;
                 return category.toUpperCase();
             }else {
-                if (host.equalsIgnoreCase("ebooks.visitscotland.com")) {
-                    return resourceBundle.getResourceBundle("otyml", "category.ebooks", locale, true);
+                if (path.contains("ebooks.visitscotland.com")) {
+                    return "eBooks";
                 } else if (path.contains("blog")) {
                     return resourceBundle.getResourceBundle("navigation.main", "blog", locale, true);
                 } else if (path.contains("see-do") || path.contains("events") || path.contains("tours")) {

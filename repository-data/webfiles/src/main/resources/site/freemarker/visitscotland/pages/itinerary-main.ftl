@@ -32,6 +32,7 @@
 <#include "../macros/modules/itineraries/itinerary-stop.ftl">
 <#include "../macros/modules/itineraries/itinerary-map.ftl">
 <#include "../macros/global/cms-errors.ftl">
+<#include "../pages/module-builder.ftl">
 
 <#-- Implicit Request Objects -->
 <#-- @ftlvariable name="document" type="com.visitscotland.brmx.beans.Itinerary" -->
@@ -222,4 +223,7 @@
             </vs-itinerary-day>
         </#list>
     </vs-itinerary>
+    <#if otyml??>
+        <@moduleBuilder otyml "theme1" />
+    </#if>
 </div>

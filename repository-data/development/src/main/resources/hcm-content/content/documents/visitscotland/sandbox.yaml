@@ -2008,18 +2008,21 @@
           jcr:mixinTypes: ['mix:referenceable']
           jcr:uuid: ee591b3b-3cce-46c9-b421-be474319dcfc
           hippo:availability: []
+          hippostd:holder: admin
           hippostd:state: draft
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2020-05-21T17:54:15.934+01:00
-          hippostdpubwf:lastModificationDate: 2020-08-17T12:14:47.856+01:00
+          hippostdpubwf:lastModificationDate: 2020-11-13T12:29:28.758Z
           hippostdpubwf:lastModifiedBy: admin
           hippotranslation:id: 947115dd-693b-4a35-af7b-c527e3a432fa
           hippotranslation:locale: en
           visitscotland:hideTeaser: false
+          visitscotland:layout: ''
           visitscotland:list: false
           visitscotland:listLayout: false
           visitscotland:teaserVisible: false
           visitscotland:title: Megalinks  - Single Image Layout (6 items)
+          visitscotland:translation: ''
           /visitscotland:introduction:
             jcr:primaryType: hippostd:html
             hippostd:content: <p>This is an example of the Simgle Image Layout of
@@ -2327,7 +2330,7 @@
         jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
         jcr:uuid: 83f02b86-81e0-4e6c-8a5a-0a32b2a64290
         hippo:name: List Layout
-        hippo:versionHistory: f02d6624-63a9-4064-afc6-2cbafab3f0a7
+        hippo:versionHistory: c9769c27-67cb-4a55-aa96-c235b9d08c78
         /list-layout[1]:
           jcr:primaryType: visitscotland:Megalinks
           jcr:mixinTypes: ['mix:versionable']
@@ -2336,11 +2339,12 @@
           hippostd:state: unpublished
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2020-05-21T17:54:15.934+01:00
-          hippostdpubwf:lastModificationDate: 2020-11-04T15:25:50.554Z
+          hippostdpubwf:lastModificationDate: 2020-11-13T12:29:39.932Z
           hippostdpubwf:lastModifiedBy: admin
           hippotranslation:id: 9390056b-b448-4e0a-8c69-f373eb031d00
           hippotranslation:locale: en
           visitscotland:hideTeaser: false
+          visitscotland:layout: List
           visitscotland:list: true
           visitscotland:listLayout: true
           visitscotland:teaserVisible: true
@@ -2394,15 +2398,15 @@
           jcr:mixinTypes: ['mix:referenceable']
           jcr:uuid: efc0bccb-dd92-49e0-b1e4-6b17bfd1cf78
           hippo:availability: []
-          hippostd:holder: admin
           hippostd:state: draft
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2020-05-21T17:54:15.934+01:00
-          hippostdpubwf:lastModificationDate: 2020-11-06T09:33:24.981Z
+          hippostdpubwf:lastModificationDate: 2020-11-13T12:29:40.047Z
           hippostdpubwf:lastModifiedBy: admin
           hippotranslation:id: 9390056b-b448-4e0a-8c69-f373eb031d00
           hippotranslation:locale: en
           visitscotland:hideTeaser: false
+          visitscotland:layout: List
           visitscotland:list: true
           visitscotland:listLayout: true
           visitscotland:teaserVisible: true
@@ -2459,16 +2463,18 @@
           hippostd:state: published
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2020-05-21T17:54:15.934+01:00
-          hippostdpubwf:lastModificationDate: 2020-08-17T11:54:11.789+01:00
+          hippostdpubwf:lastModificationDate: 2020-11-13T12:29:39.932Z
           hippostdpubwf:lastModifiedBy: admin
-          hippostdpubwf:publicationDate: 2020-08-17T12:56:52.153+01:00
+          hippostdpubwf:publicationDate: 2020-11-13T12:29:45.094Z
           hippotranslation:id: 9390056b-b448-4e0a-8c69-f373eb031d00
           hippotranslation:locale: en
           visitscotland:hideTeaser: false
+          visitscotland:layout: List
           visitscotland:list: true
           visitscotland:listLayout: true
           visitscotland:teaserVisible: true
           visitscotland:title: Megalinks (6 items) - List view
+          visitscotland:translation: ''
           /visitscotland:introduction:
             jcr:primaryType: hippostd:html
             hippostd:content: <p>This is an example of List layout for Megalink module</p>

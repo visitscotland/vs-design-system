@@ -19,10 +19,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
-import java.net.MalformedURLException;
 import java.util.*;
 import java.util.stream.Collectors;
-import java.net.URL;
 
 public class LinkModulesFactory {
 
@@ -93,7 +91,7 @@ public class LinkModulesFactory {
 
     public HorizontalListLinksModule horizontalListLayout(OTYML doc, Locale locale) {
         HorizontalListLinksModule target = new HorizontalListLinksModule();
-        target.setTitle(doc.getTitle().isEmpty()? (bundle.getResourceBundle("otyml", "title", locale ,true)): doc.getTitle());
+        target.setTitle(doc.getTitle().isEmpty()? (bundle.getResourceBundle("modules", "otyml.title.default", locale ,true)): doc.getTitle());
         target.setIntroduction(doc.getIntroduction());
         target.setLinks(convertToEnhancedLinks(doc.getMegalinkItems(), locale,true));
 

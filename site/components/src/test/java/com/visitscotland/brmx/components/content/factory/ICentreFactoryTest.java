@@ -175,7 +175,7 @@ class ICentreFactoryTest {
         link.setImage(new FlatImage());
         link.getImage().setExternalImage("dms-image.jpg");
         when(dmsData.legacyMapSearch(any())).thenReturn(node);
-        when(linkFactory.createEnhancedLink(any(), any())).thenReturn(link);
+        when(linkFactory.createEnhancedLink(any(), any(),false)).thenReturn(link);
         module = factory.getModule(mockBuilder.addQuoteProduct().build().getICentre(), Locale.CANADA_FRENCH, "St. Kilda");
         assertEquals("dms-image.jpg", module.getImage().getExternalImage());
         assertNull(module.getImage().getCmsImage());
