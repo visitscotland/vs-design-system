@@ -70,7 +70,7 @@ export default {
          */
         title: {
             type: String,
-            default: null,
+            default: '',
         },
         /**
          * Variant for which button to show in headers
