@@ -201,7 +201,7 @@ class PageTemplateBuilderTest {
         TourismInformation ti = new TouristInformationMockBuilder().build();
 
         when(page.getModules()).thenReturn(Collections.singletonList(ti));
-        when(iKnowFactory.getModule(any(), eq(null))).thenReturn(new IKnowModule());
+        when(iKnowFactory.getIKnowModule(any(), eq(null), eq(request.getLocale()))).thenReturn(new IKnowModule());
 
         builder.addModules(request);
 
@@ -223,7 +223,7 @@ class PageTemplateBuilderTest {
         when(page.getModules()).thenReturn(Collections.singletonList(ti));
 
         when(iCentreFactory.getModule(any(), eq(request.getLocale()), eq(null))).thenReturn(new ICentreModule());
-        when(iKnowFactory.getModule(any(), eq(null))).thenReturn(new IKnowModule());
+        when(iKnowFactory.getIKnowModule(any(), eq(null), eq(request.getLocale()))).thenReturn(new IKnowModule());
 
         builder.addModules(request);
 

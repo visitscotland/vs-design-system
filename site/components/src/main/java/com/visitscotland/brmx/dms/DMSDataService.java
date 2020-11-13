@@ -41,12 +41,13 @@ public class DMSDataService {
         String responseString = null;
 
         if (!Contract.isEmpty(productId)) {
-            String dmsUrl = Properties.VS_DMS_SERVICE + "/data/products/card?id=" + productId;
+            String dmsUrl = String.format(DMSConstants.VS_DMS_PRODUCT_CARD,Properties.VS_DMS_SERVICE);
+            dmsUrl += "id=" + productId;
             if (locale != null) {
                 dmsUrl += "&locale=" + locale.getLanguage();
             }
 
-            logger.info("Requesting data to the dms: " + dmsUrl);
+            logger.info("Requesting data to the dms: %s", dmsUrl);
             try {
                 responseString = utils.requestUrl(dmsUrl);
 
@@ -60,7 +61,7 @@ public class DMSDataService {
                     }
                 }
             } catch (JsonProcessingException e){
-                logger.error("The response could not be parsed:\n" + responseString, e);
+                logger.error("The response could not be parsed:\n %s", responseString, e);
             } catch (IOException e){
                 logger.error("An unexpected error happened while connecting to the DMS", e);
             }
@@ -70,21 +71,19 @@ public class DMSDataService {
         return null;
     }
 
-    //TODO: Do it right!!!! Use psb instead of locale and query
-    public JsonNode searchResults(ProductSearchBuilder psb, Locale locale, String query){
+    /**
+     * This method invokes the legacy data Map endpoint from a ProductSearchBuilder
+     *
+     * @param psb ProductSearchBuilder
+     *
+     * @return
+     */
+    public JsonNode legacyMapSearch(ProductSearchBuilder psb){
 
-        // TODO: This method is part of POC for iCentre and Iknow modules, The requirements hasn't been signed of and
-        // therefore, this method might not be correct. Once this method is completed, Some unit tests must be added
-        logger.error("This is an stub method that conver product search parameters into map parameters.");
-
-        String dmsUrl = Properties.VS_DMS_SERVICE + "/data/product-search/map" + query.substring(query.lastIndexOf("?")) ;
         String responseString = null;
+        String dmsUrl = psb.buildDataMap();
 
-        if (locale != null) {
-            dmsUrl += "&locale=" + locale.getLanguage();
-        }
-
-        logger.info("Requesting data to the dms: " + dmsUrl);
+        logger.info("Requesting data to the dms: %s", dmsUrl);
         try {
             responseString = utils.requestUrl(dmsUrl);
 
@@ -98,7 +97,7 @@ public class DMSDataService {
                 }
             }
         } catch (JsonProcessingException e){
-            logger.error("The response could not be parsed:\n" + responseString, e);
+            logger.error("The response could not be parsed:\n %s", responseString, e);
         } catch (IOException e){
             logger.error("An unexpected error happened while connecting to the DMS", e);
         }

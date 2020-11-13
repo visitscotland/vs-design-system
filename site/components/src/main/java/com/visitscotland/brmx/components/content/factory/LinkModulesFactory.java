@@ -36,16 +36,18 @@ public class LinkModulesFactory {
     private final DMSDataService dmsData;
     private final LinkService linkService;
     private final ResourceBundleService bundle;
+    private final LocationLoader locationLoader;
 
     public LinkModulesFactory() {
-        this(new HippoUtilsService(), new DMSDataService(), new LinkService(), new ResourceBundleService());
+        this(new HippoUtilsService(), new DMSDataService(), new LinkService(), new ResourceBundleService(),LocationLoader.getInstance());
     }
 
-    LinkModulesFactory(HippoUtilsService utils, DMSDataService dmsData, LinkService linkService, ResourceBundleService bundle) {
+    LinkModulesFactory(HippoUtilsService utils, DMSDataService dmsData, LinkService linkService, ResourceBundleService bundle , LocationLoader locationLoader) {
         this.utils = utils;
         this.dmsData = dmsData;
         this.linkService = linkService;
         this.bundle = bundle;
+        this.locationLoader = locationLoader;
     }
 
     public LinksModule getMegalinkModule(Megalinks doc, Locale locale) {
@@ -317,7 +319,7 @@ public class LinkModulesFactory {
 
     //TODO convert into a service
     LocationObject getLocation(String location, Locale locale) {
-        return LocationLoader.getLocation(location, locale);
+        return locationLoader.getLocation(location, locale);
     }
 
 }

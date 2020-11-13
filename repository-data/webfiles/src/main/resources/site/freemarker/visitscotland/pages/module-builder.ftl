@@ -16,6 +16,8 @@
 <#include "../macros/modules/megalinks/megalinks-multi-image.ftl">
 <#include "../macros/modules/megalinks/megalinks-single-image.ftl">
 <#include "../macros/modules/megalinks/megalinks-list.ftl">
+<#include "../macros/modules/tourism-information/tourisminformation-icentre.ftl">
+<#include "../macros/modules/tourism-information/tourisminformation-iknow.ftl">
 <#include "../macros/modules/megalinks/megalinks-horizontal-list.ftl">
 <#include "../macros/global/cms-errors.ftl">
 <#-- Implicit Request Objects -->
@@ -64,66 +66,11 @@
         <@horizontalList module />
 
     <#elseif module.getType()== "ICentreModule">
-        <#if module.image.cmsImage??>
-            <#assign image>
-                <@hst.link hippobean=module.image.cmsImage.original/>
-            </#assign>
-        <#else>
-            <#assign image = module.image.externalImage!'' />
-        </#if>
-
-        <#if module.quoteImage??>
-            <#assign imageQuote>
-                <@hst.link hippobean=module.quoteImage.cmsImage.original/>
-            </#assign>
-        </#if>
-
-        <vs-row>
-            <vs-col cols="6" lg="6" >
-                    <@imageWithCaption imageSrc=image imageDetails=module.image variant="fullwidth"/>
-            </vs-col>
-
-            <vs-col cols="6" lg="5">
-                <vs-row>
-                    <vs-col cols="3" lg="3">
-                        <vs-img alt="${(module.quoteImage)!'${label("essentials.global", "default.alt-text")}'}"
-                                src="${imageQuote}">
-                        </vs-img>
-                    </vs-col>
-                    <vs-col cols="6" lg="6">
-                            "<@hst.html hippohtml=module.quote/>"
-                    </vs-col>
-                </vs-row>
-
-                <vs-heading level="6">${module.quoteAuthorName}</vs-heading>
-                ${module.quoteAuthorTitle}
-                </br> </br>
-                <#if module.quoteLink??>
-                    <vs-button animate=false background="purple" variant="primary" href="${module.quoteLink.link}" size="md">
-                        ${module.quoteLink.label}
-                    </vs-button>
-                </#if>
-            </vs-col>
-
-            </br>
-            <vs-col cols="8" lg="7" offset-lg="6">
-                For more friendly advice visit one of our tourist information iCentres in the area:
-                <#list module.iCentreList as iCentre>
-                    <vs-link href="${iCentre.link}">${iCentre.label}</vs-link>,
-                </#list>
-            </vs-col>
-        </vs-row>
+      <@icentre module/>
 
     <#elseif module.getType()== "IKnowModule">
-        <@hst.manageContent hippobean=module.tourismInformation />
-        <vs-row>
-            <vs-col cols="12" md="10" lg="10" xl="10" offset-lg="1">
-                <@hst.html hippohtml=module.description/>
-            </vs-col>
-            <vs-col cols="4" lg="4" offset-lg="1">
-                <vs-link href="${module.link.link}">iKnow partners in this area</vs-link>
-            </vs-col>
-        </vs-row>
+    <@iknow module/>
+
     </#if>
 
 </#macro>

@@ -22,4 +22,10 @@ public class General extends Page {
     public OTYML getOtherThings() {
         return getBean("visitscotland:otherThings", OTYML.class);
     }
+
+    @HippoEssentialsGenerated(internalName = "visitscotland:translation")
+    public String getTranslation() {
+        return getSingleProperty("visitscotland:translation");
+    }
+
 }

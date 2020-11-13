@@ -79,9 +79,12 @@ public class ProductSearchBuilder {
     private Set<String> facilities = new TreeSet<>();
     private Set<String> ratings = new TreeSet<>();
 
+    private LocationLoader locationLoader;
+
     public ProductSearchBuilder(){
         this.order = Order.NONE;
         this.proximity = DEFAULT_PROXIMITY;
+        this.locationLoader = LocationLoader.getInstance();
     }
 
     /**
@@ -93,6 +96,7 @@ public class ProductSearchBuilder {
         return new ProductSearchBuilder();
     }
 
+    //TODO Convert to Languages
     public ProductSearchBuilder locale(Locale locale){
         if (locale != null) {
             for (Locale loc : Properties.locales) {
@@ -103,7 +107,7 @@ public class ProductSearchBuilder {
             }
         }
 
-        logger.info("locale " + (locale != null ? locale.toLanguageTag() : "null") + " not found");
+        logger.info("locale {} not found",  (locale != null ? locale.toLanguageTag() : "null"));
         this.locale = null;
         return this;
     }
@@ -200,15 +204,15 @@ public class ProductSearchBuilder {
     }
 
     public ProductSearchBuilder location(String location){
-        if (valid(location) && LocationLoader.getLocation(location, null) != null){
+        if (locationLoader.getLocation(location, null) != null){
             this.location = location;
         }
         return this;
     }
 
     public ProductSearchBuilder proximity(Double proximity){
-        if (validNumber(proximity) && proximity.intValue() > 0){
-            this.proximity = proximity.doubleValue();
+        if (validNumber(proximity) && proximity > 0){
+            this.proximity = proximity;
         }
         return this;
     }
@@ -244,12 +248,27 @@ public class ProductSearchBuilder {
      */
     public String build(){
         if (productTypes == null){
-            throw new RuntimeException(String.format("No types have been defined for this search"));
+            throw new RuntimeException("No types have been defined for this search");
         }
+        return composeUrl(String.format(DMSConstants.PRODUCT_SEARCH, host==null?"":host, path));
+    }
 
-        String compose =  String.format(PRODUCT_SEARCH, host==null?"":host, path);
+    //TODO Test
+    public String buildDataMap(){
+        if (productTypes == null){
+            throw new RuntimeException("No types have been defined for this search");
+        }
+        return composeUrl(String.format(DMSConstants.PRODUCT_SEARCH_DATA_MAP, host==null?"":host));
+    }
 
-        compose = addParams(compose, PRODUCT_TYPE_PARAM, productTypes);
+    /**
+     * Compose the query parameters for the URL
+     *
+     * @param urlPath
+     * @return
+     */
+    private String composeUrl (String urlPath){
+        String compose = addParams(urlPath, PRODUCT_TYPE_PARAM, productTypes);
         //Accommodations MUST deactivate availavility search
         if (path.equals(PATH_ACCOMMODATION)) {
             compose = addParams(compose, AVAILABILITY, "off");
@@ -257,7 +276,7 @@ public class ProductSearchBuilder {
 
         //The list of parameters is different if a location is provided from latitude and longitude
         if (location != null) {
-            LocationObject loc = LocationLoader.getLocation(location, locale);
+            LocationObject loc = locationLoader.getLocation(location, locale);
 
             compose = addParams(compose, "POLYGON".equals(loc.getType()) ? LOCATION_POLYGON_PARAM : LOCATION_PLACE_PARAM, loc.getKey());
             compose = addParams(compose, PROXIMITY_LOCATION_PARAM, proximity.toString());
@@ -314,7 +333,7 @@ public class ProductSearchBuilder {
      * @return composed URL with the parameter
      */
     private String addParams(String url, String param, Collection<String> values){
-        if (values == null || values.size() == 0) {
+        if (values == null || values.isEmpty()) {
             return url;
         } else {
             String aux = url;

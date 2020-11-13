@@ -88,13 +88,13 @@
 	<#list pageItems as module>
 	<vs-container slot="upper" class="py-lg-4" >
 		<#--TODO Colour should be only added to Megalinks, add this code to macros or create a common macro to control it-->
-		<#if module.style == "style3" && standardTemplate >
-			<#assign style = "#292929" />
+		<#if module.theme?? && module.theme == "style3" && standardTemplate >
+			<#assign theme = "#292929" />
 		<#else>
-			<#assign style = "#FFFFFF" />
+			<#assign theme = "#FFFFFF" />
 		</#if>
 
-		<@moduleBuilder module style />
+		<@moduleBuilder module theme />
 	</vs-container>
 	</#list>
 </div>

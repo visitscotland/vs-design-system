@@ -9,6 +9,7 @@ import com.visitscotland.brmx.beans.mapping.megalinks.LinksModule;
 import com.visitscotland.brmx.beans.mapping.megalinks.MultiImageLinksModule;
 import com.visitscotland.brmx.beans.mapping.megalinks.SingleImageLinksModule;
 import com.visitscotland.brmx.dms.DMSDataService;
+import com.visitscotland.brmx.dms.LocationLoader;
 import com.visitscotland.brmx.services.LinkService;
 import com.visitscotland.brmx.services.ResourceBundleService;
 import com.visitscotland.brmx.utils.HippoUtilsService;
@@ -67,8 +68,8 @@ class LinkModulesFactoryTest extends EasyMockSupport {
         expect(utils.createUrl(anyObject(HippoBean.class))).andStubReturn("/fake-url/mock");
 
         factory = partialMockBuilder(LinkModulesFactory.class)
-                .withConstructor(HippoUtilsService.class,DMSDataService.class, LinkService.class, ResourceBundleService.class)
-                .withArgs(utils, dms, linkService, rs)
+                .withConstructor(HippoUtilsService.class,DMSDataService.class, LinkService.class, ResourceBundleService.class, LocationLoader.class)
+                .withArgs(utils, dms, linkService, rs, LocationLoader.getInstance())
                 .addMockedMethod("getLocation", String.class, Locale.class)
                 .createMock();
 

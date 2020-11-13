@@ -6,9 +6,6 @@ import org.hippoecm.hst.content.beans.Node;
 import org.hippoecm.hst.content.beans.standard.HippoHtml;
 import java.util.List;
 
-/** 
- * TODO: Beanwriter: Failed to create getter for node type: hippo:compound
- */
 @HippoEssentialsGenerated(internalName = "visitscotland:Megalinks")
 @Node(jcrType = "visitscotland:Megalinks")
 public class Megalinks extends BaseDocument {
@@ -66,5 +63,10 @@ public class Megalinks extends BaseDocument {
     @HippoEssentialsGenerated(internalName = "visitscotland:layout")
     public String getLayout() {
         return getSingleProperty("visitscotland:layout");
+    }
+
+    @HippoEssentialsGenerated(internalName = "visitscotland:translation")
+    public String getTranslation() {
+        return getSingleProperty("visitscotland:translation");
     }
 }
