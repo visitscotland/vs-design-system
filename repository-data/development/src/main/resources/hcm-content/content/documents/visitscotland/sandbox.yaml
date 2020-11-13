@@ -2008,7 +2008,6 @@
           jcr:mixinTypes: ['mix:referenceable']
           jcr:uuid: ee591b3b-3cce-46c9-b421-be474319dcfc
           hippo:availability: []
-          hippostd:holder: admin
           hippostd:state: draft
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2020-05-21T17:54:15.934+01:00
@@ -2017,7 +2016,6 @@
           hippotranslation:id: 947115dd-693b-4a35-af7b-c527e3a432fa
           hippotranslation:locale: en
           visitscotland:hideTeaser: false
-          visitscotland:layout: ''
           visitscotland:list: false
           visitscotland:listLayout: false
           visitscotland:teaserVisible: false
@@ -6643,6 +6641,99 @@
           hippostd:foldertype: [new-translated-folder-shared, new-shared-document]
           hippotranslation:id: 528af420-3ab8-4e9a-942d-7ef73247d0f5
           hippotranslation:locale: en
+          /perthshireanddundee:
+            jcr:primaryType: hippo:handle
+            jcr:mixinTypes: ['hippo:versionInfo', 'mix:referenceable']
+            jcr:uuid: fe86ef61-352d-4bee-88f2-11288c71a67c
+            hippo:versionHistory: 461913f2-d135-4e3a-8891-810b7f704f92
+            /perthshireanddundee[1]:
+              jcr:primaryType: visitscotland:SharedLink
+              jcr:mixinTypes: ['mix:referenceable']
+              jcr:uuid: 110ec84e-31e3-4f99-80e3-a8ef242d2293
+              hippo:availability: []
+              hippostd:state: draft
+              hippostdpubwf:createdBy: admin
+              hippostdpubwf:creationDate: 2020-11-13T12:44:08.232Z
+              hippostdpubwf:lastModificationDate: 2020-11-13T12:45:13.879Z
+              hippostdpubwf:lastModifiedBy: admin
+              hippotranslation:id: 12b443d3-02c5-4826-a4ea-d53b0990c0e5
+              hippotranslation:locale: en
+              visitscotland:teaser: Discover things to see and do in perth shire and
+                dundee teaser
+              visitscotland:title: Discover things to see and do in perth shire and
+                dundee
+              visitscotland:translation: ''
+              /visitscotland:image:
+                jcr:primaryType: hippogallerypicker:imagelink
+                hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
+                hippo:facets: []
+                hippo:modes: []
+                hippo:values: []
+              /visitscotland:linkTypes:
+                jcr:primaryType: visitscotland:ExternalDocument
+                visitscotland:bytes: MB
+                visitscotland:category: Things to do
+                visitscotland:link: https://www.visitscotland.com/ebrochures/en/what-to-see-and-do/perthshireanddundee.pdf
+                visitscotland:size: 12.0
+            /perthshireanddundee[2]:
+              jcr:primaryType: visitscotland:SharedLink
+              jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
+              jcr:uuid: 1c6218ef-69ad-446d-9474-1b166bca65bb
+              hippo:availability: [preview]
+              hippostd:state: unpublished
+              hippostdpubwf:createdBy: admin
+              hippostdpubwf:creationDate: 2020-11-13T12:44:08.232Z
+              hippostdpubwf:lastModificationDate: 2020-11-13T12:45:13.705Z
+              hippostdpubwf:lastModifiedBy: admin
+              hippotranslation:id: 12b443d3-02c5-4826-a4ea-d53b0990c0e5
+              hippotranslation:locale: en
+              visitscotland:teaser: Discover things to see and do in perth shire and
+                dundee teaser
+              visitscotland:title: Discover things to see and do in perth shire and
+                dundee
+              visitscotland:translation: ''
+              /visitscotland:image:
+                jcr:primaryType: hippogallerypicker:imagelink
+                hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
+                hippo:facets: []
+                hippo:modes: []
+                hippo:values: []
+              /visitscotland:linkTypes:
+                jcr:primaryType: visitscotland:ExternalDocument
+                visitscotland:bytes: MB
+                visitscotland:category: Things to do
+                visitscotland:link: https://www.visitscotland.com/ebrochures/en/what-to-see-and-do/perthshireanddundee.pdf
+                visitscotland:size: 12.0
+            /perthshireanddundee[3]:
+              jcr:primaryType: visitscotland:SharedLink
+              jcr:mixinTypes: ['mix:referenceable']
+              jcr:uuid: df625603-6ec6-4cba-a0dc-74497b811bbc
+              hippo:availability: [live]
+              hippostd:state: published
+              hippostdpubwf:createdBy: admin
+              hippostdpubwf:creationDate: 2020-11-13T12:44:08.232Z
+              hippostdpubwf:lastModificationDate: 2020-11-13T12:45:13.705Z
+              hippostdpubwf:lastModifiedBy: admin
+              hippostdpubwf:publicationDate: 2020-11-13T12:45:16.495Z
+              hippotranslation:id: 12b443d3-02c5-4826-a4ea-d53b0990c0e5
+              hippotranslation:locale: en
+              visitscotland:teaser: Discover things to see and do in perth shire and
+                dundee teaser
+              visitscotland:title: Discover things to see and do in perth shire and
+                dundee
+              visitscotland:translation: ''
+              /visitscotland:image:
+                jcr:primaryType: hippogallerypicker:imagelink
+                hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
+                hippo:facets: []
+                hippo:modes: []
+                hippo:values: []
+              /visitscotland:linkTypes:
+                jcr:primaryType: visitscotland:ExternalDocument
+                visitscotland:bytes: MB
+                visitscotland:category: Things to do
+                visitscotland:link: https://www.visitscotland.com/ebrochures/en/what-to-see-and-do/perthshireanddundee.pdf
+                visitscotland:size: 12.0
         /q:
           jcr:primaryType: hippostd:folder
           jcr:mixinTypes: ['hippo:named', 'hippotranslation:translated', 'mix:versionable']
