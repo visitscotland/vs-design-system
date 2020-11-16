@@ -4,7 +4,7 @@
         data-test="vs-iknow-partner-item"
     >
         <!-- @slot Holds the component heading -->
-        <slot name="iknow-heading" />
+        <slot name="iknowHeading" />
 
         <VsSvg
             class="vs-iknow-partner-item__logo"
@@ -13,7 +13,7 @@
 
         <div class="vs-iknow-partner-item__text">
             <!-- @slot Holds the component text -->
-            <slot name="iknow-text" />
+            <slot name="iknowText" />
 
             <VsSvg
                 class="vs-iknow-partner-item__coo"
@@ -21,11 +21,11 @@
             />
 
             <div
-                v-if="!!this.$slots['iknow-cta']"
+                v-if="!!this.$slots['iknowCta']"
                 class="vs-iknow-partner-item__cta"
             >
                 <!-- @slot Optional slot for link/button CTA -->
-                <slot name="iknow-cta" />
+                <slot name="iknowCta" />
             </div>
         </div>
     </div>
@@ -56,6 +56,7 @@ export default {
     justify-content: center;
     flex-direction: column;
     padding: $spacer-8;
+    background: $white;
 
     @include media-breakpoint-up(xl) {
         padding: $spacer-11;
@@ -76,9 +77,9 @@ export default {
     &__text {
         font-size: $display3-size;
         margin-bottom: 0;
+        text-align: center;
 
         @include media-breakpoint-up(xl) {
-            text-align: center;
             max-width: 620px;
             position: relative;
         }
