@@ -24,8 +24,10 @@
                             {{ title }}
                         </VsHeading>
 
-                        <!-- @slot Slot to contain optional intro content -->
-                        <slot name="vsMegalinksIntro" />
+                        <div class="vs-megalinks__intro-content">
+                            <!-- @slot Slot to contain optional intro content -->
+                            <slot name="vsMegalinksIntro" />
+                        </div>
                     </div>
                 </VsCol>
             </VsRow>
@@ -138,8 +140,11 @@ export default {
             }
         }
 
-        .vs-megalinks__intro-content {
+        .vs-megalinks__intro-content,
+        .vs-megalinks__intro-content .vs-rich-text-wrapper {
             margin-top: $spacer-6;
+            font-size: $lead-font-size;
+            line-height: $line-height-s;
         }
 
         .vs-megalinks__button {
@@ -169,6 +174,12 @@ export default {
                 margin-bottom: $spacer-9;
             }
 
+            .vs-megalinks__intro-content,
+            .vs-megalinks__intro-content .vs-rich-text-wrapper {
+                font-size: $font-size-lg;
+                line-height: $line-height-m;
+            }
+
             &--multi-image {
                 .vs-megalinks__links-wrapper {
                     margin-bottom: (-$spacer-12);
@@ -189,7 +200,7 @@ export default {
             <p>Sed at mauris a est dictum luctus. Nullam viverra
             pellentesque dolor, id elementum neque viverra quis.
             Morbi lacinia est id risus facilisis porttitor ut ac mi.
-            Maecenas bibendum sodales nisi eu luctus.
+            Maecenas bibendum sodales nisi eu luctus.</p>.
         </template>
         <VsCol
             cols="12"
