@@ -8,8 +8,8 @@ const ctaSlot = 'CTA Slot';
 
 const factoryShallowMount = () => shallowMount(VsIknowPartnerItem, {
     slots: {
-        'iknow-heading': headingSlot,
-        'iknow-text': textSlot,
+        iknowHeading: headingSlot,
+        iknowText: textSlot,
     },
 });
 
@@ -26,7 +26,7 @@ describe('VsIknowParterItem', () => {
     it('should render a cta wrapper if cta is inserted in the `iknow-cta` slot', () => {
         const modifiedWrapper = shallowMount(VsIknowPartnerItem, {
             slots: {
-                'iknow-cta': ctaSlot,
+                iknowCta: ctaSlot,
             },
         });
 
@@ -52,7 +52,7 @@ describe('VsIknowParterItem', () => {
         it('renders content inserted in the `iknow-cta` slot', () => {
             const modifiedWrapper = shallowMount(VsIknowPartnerItem, {
                 slots: {
-                    'iknow-cta': ctaSlot,
+                    iknowCta: ctaSlot,
                 },
             });
 
