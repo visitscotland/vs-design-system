@@ -1,5 +1,5 @@
 <template>
-    <li class="vs-summary-box__list-item position-relative">
+    <li class="vs-summary-box-list-item position-relative">
         <slot />
     </li>
 </template>
@@ -20,7 +20,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.vs-summary-box__list-item {
+.vs-summary-box-list-item {
     flex-grow: 1;
     flex-basis: calc(50% - 1rem);
     margin: 0.5rem;
