@@ -132,7 +132,7 @@ export default {
             }
 
             .megalink-link-list__img {
-                width: 33%;
+                min-width: 33%;
                 align-self: flex-start;
                 margin-right: $spacer-4;
             }
@@ -160,6 +160,14 @@ export default {
 
             .megalink-link-list__content {
                 display: none;
+                display: -webkit-box;
+                -webkit-line-clamp: 3;
+                -webkit-box-orient: vertical;
+                overflow: hidden;
+
+                p {
+                    overflow: hidden;
+                }
             }
         }
 
@@ -170,7 +178,7 @@ export default {
                 }
 
                 .megalink-link-list__content {
-                    display: block;
+                    // display: block;
                     margin: $spacer-2 0 0;
                     line-height: $line-height-s;
                 }
