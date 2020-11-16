@@ -1,6 +1,6 @@
 <template>
     <div
-        class="vs-summary-box__icon-with-label d-flex align-items-end
+        class="vs-summary-box-icon-with-label d-flex align-items-end
         position-absolute justify-content-center w-100"
     >
         <div class="icon-wrapper text-right">
@@ -43,7 +43,7 @@ export default {
 </script>
 
 <style lang="scss">
-.vs-summary-box__icon-with-label {
+.vs-summary-box-icon-with-label {
     bottom: 35%;
 
     .icon-wrapper {

@@ -1,5 +1,5 @@
 <template>
-    <div class="vs-summary-box__display position-absolute d-block text-center w-100">
+    <div class="vs-summary-box-display position-absolute d-block text-center w-100">
         <span>{{ text }}</span>
     </div>
 </template>
@@ -25,7 +25,7 @@ export default {
 
 <style lang="scss">
 @import "~bootstrap/scss/type";
-.vs-summary-box__display {
+.vs-summary-box-display {
     top: 20%;
     font-family: $headings-font-family;
     font-size: 1.625rem;

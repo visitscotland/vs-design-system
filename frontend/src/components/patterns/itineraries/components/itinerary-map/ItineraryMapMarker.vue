@@ -10,7 +10,7 @@
         @click="handleClick()"
         @keydown="handleClick()"
     >
-        <div class="map-marker__wrapper">
+        <div class="vs-map-marker__wrapper">
             <VsIcon
                 name="map-marker-filled"
                 :class="isHighlighted ? 'active' : ''"
@@ -18,7 +18,7 @@
                 :size="isHighlighted ? 'lg' : 'md'"
             />
             <span
-                class="itinerary-map-marker__count"
+                class="vs-vs-itinerary-map-marker__count"
                 :class="isHighlighted ? 'active' : ''"
             >
                 <span class="sr-only">Stop</span>{{ feature.properties.stopCount }}
@@ -109,7 +109,7 @@ export default {
     }
 }
 
-.vs-itinerary-map-marker__count {
+.vs-vs-vs-itinerary-map-marker__count {
     color: $color-white;
     display: block;
     font-size: 1rem;
