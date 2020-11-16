@@ -2,7 +2,7 @@
 <#include "../../../../../frontend/components/vs-megalink-link-list.ftl">
 <#include "../../../global/cms-errors.ftl">
 
-<#macro linkList item>
+<#macro linkList item showTeaser>
     <vs-row>
         <vs-col
             cols="12"
@@ -31,10 +31,13 @@
                             link-type="${listItem.type}"
                         >
                             <template slot="vsLinkListHeading">
-                                ${listItem.label}</template>
-                            <template slot="vsLinkListContent">
-                                <p>${listItem.teaser}</p>
+                                ${listItem.label}
                             </template>
+                            <#if showTeaser == 'true'>
+                                <template slot="vsLinkListContent">
+                                    <p>${listItem.teaser}</p>
+                                </template>
+                            </#if>
                         </vs-megalink-link-list>
                     </vs-col>
                 </#list>

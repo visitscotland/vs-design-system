@@ -17,6 +17,7 @@
     <#elseif type=="SingleImageLinksModule">
         <#assign variant = "single-image">
     </#if>
+    <#assign showTeaser = item.teaserVisible?string('true', 'false') />
     
     <vs-megalinks variant="${variant}" title="${item.title}" <#if ctaExists == "true">button-link="${item.cta.link}"</#if>>
         <@hst.manageContent hippobean=item.megalinkItem />
@@ -32,10 +33,10 @@
         </vs-rich-text-wrapper>
 
         <#if type == "MultiImageLinksModule">
-            <@multiImage item=item /> 
+            <@multiImage item=item showTeaser=showTeaser/>
 
         <#elseif type == "ListLinksModule">
-            <@linkList item=item /> 
+            <@linkList item=item showTeaser=showTeaser />
 
         <#--  <#elseif type == "SingleImageLinksModule">
             <@multiImage item=item />   -->
