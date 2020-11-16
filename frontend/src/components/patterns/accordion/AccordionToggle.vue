@@ -8,10 +8,10 @@
         :variant="variant"
     >
         <!-- @slot Default slot contains text for the button -->
-        <span class="vs-accordion-toggle-text">
+        <span class="vs-accordion-toggle__text">
             <slot />
         </span>
-        <span class="vs-accordion-toggle-icon">
+        <span class="vs-accordion-toggle__icon">
             <!-- @slot Put the icon to be used when panel is open  -->
             <slot
                 v-if="visible"
@@ -67,11 +67,11 @@ export default {
     display: flex;
     width: 100%;
 
-    .vs-accordion-toggle-text {
+    .vs-accordion-toggle__text {
         flex-grow: 1;
     }
 
-    .vs-accordion-toggle-icon {
+    .vs-accordion-toggle__icon {
         align-self: center;
     }
 }
