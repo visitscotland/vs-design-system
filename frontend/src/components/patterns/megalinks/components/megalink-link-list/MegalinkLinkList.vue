@@ -111,6 +111,7 @@ export default {
             padding: $spacer-2;
             border: none;
             height: 100%;
+            transition: box-shadow 800ms;
 
             &:hover {
                 box-shadow: 10px 10px 20px $color-gray-tint-4;
