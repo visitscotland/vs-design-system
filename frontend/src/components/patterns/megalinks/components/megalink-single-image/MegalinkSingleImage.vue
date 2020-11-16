@@ -187,7 +187,7 @@ export default {
             .megalink-single-image__image {
                 width: 66%;
                 align-self: flex-end;
-                margin-bottom: 0 0 -200px;
+                margin: 0 0 -200px;
             }
 
             &--alternate {
