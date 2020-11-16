@@ -19,7 +19,6 @@
         <vs-rich-text-wrapper
             variant="lead"
             slot="vsMegalinksIntro"
-            class="mt-6"
         >
             <@hst.html hippohtml=item.introduction/>
         </vs-rich-text-wrapper>

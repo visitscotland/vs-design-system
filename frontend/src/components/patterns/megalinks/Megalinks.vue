@@ -23,8 +23,10 @@
                             <slot name="vsMegalinksHeading" />
                         </VsHeading>
 
-                        <!-- @slot Slot to contain optional intro content -->
-                        <slot name="vsMegalinksIntro" />
+                        <div class="vs-megalinks__intro-content">
+                            <!-- @slot Slot to contain optional intro content -->
+                            <slot name="vsMegalinksIntro" />
+                        </div>
                     </div>
                 </VsCol>
             </VsRow>
@@ -110,8 +112,11 @@ export default {
             margin-bottom: 0 !important;
         }
 
-        .vs-megalinks__intro-content {
+        .vs-megalinks__intro-content,
+        .vs-megalinks__intro-content .vs-rich-text-wrapper {
             margin-top: $spacer-6;
+            font-size: $lead-font-size;
+            line-height: $line-height-s;
         }
 
         .vs-megalinks__button {
@@ -123,7 +128,12 @@ export default {
         @include media-breakpoint-up(lg) {
             .vs-megalinks__intro {
                 text-align: center;
-                // margin-bottom: $spacer-10;
+            }
+
+            .vs-megalinks__intro-content,
+            .vs-megalinks__intro-content .vs-rich-text-wrapper {
+                font-size: $font-size-lg;
+                line-height: $line-height-m;
             }
 
             .vs-megalinks__button {
@@ -140,9 +150,7 @@ export default {
             Find your experiences in the highest village of Scotland
         </template>
         <VsRichTextWrapper
-            variant="lead"
             slot="vsMegalinksIntro"
-            class="mt-6"
         >
             Lorem ipsum dolor sit amet consectetur adipisicing elit.
             Quae, in quidem doloribus iure, fuga laboriosam libero voluptatem
