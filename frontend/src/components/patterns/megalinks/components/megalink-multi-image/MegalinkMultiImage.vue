@@ -107,7 +107,7 @@ export default {
     .megalink-multi-image.card {
         border: none;
         position: relative;
-        margin-bottom: $spacer-8;
+        transition: box-shadow 800ms;
 
         .stretched-link {
             color: $color-base-text;
@@ -121,7 +121,7 @@ export default {
             }
 
             &:focus {
-                outline: 1px solid $color-theme-primary;
+                outline: 2px solid $color-theme-primary;
             }
         }
 
@@ -138,7 +138,8 @@ export default {
         }
 
         .megalink-multi-image__title {
-            font-size: $small-font-size;
+            font-size: $font-size-sm;
+            line-height: $line-height-s;
             letter-spacing: 0.0875rem;
         }
 
@@ -153,6 +154,7 @@ export default {
 
         .megalink-multi-image__content {
             margin-top: $spacer-2;
+            line-height: $line-height-s;
 
             p:last-of-type {
                 margin-bottom: 0;
@@ -162,6 +164,11 @@ export default {
     @include media-breakpoint-up(xl) {
         .megalink-multi-image.card {
             margin-bottom: $spacer-11;
+
+            .megalink-multi-image__title {
+                font-size: $h6-font-size;
+                line-height: $line-height-s;
+            }
 
             .card-body {
                 padding-bottom: $spacer-5;
@@ -191,6 +198,7 @@ export default {
             .megalink-multi-image__content {
                 font-size: $lead-font-size;
                 margin-top: $spacer-8;
+                line-height: $line-height-m;
             }
 
             .card-body {
