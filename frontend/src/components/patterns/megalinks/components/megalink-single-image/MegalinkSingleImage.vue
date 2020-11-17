@@ -2,6 +2,7 @@
     <section
         class="megalink-single-image"
         :class="alternate ? 'megalink-single-image--alternate' : ''"
+        data-test="megalink-single-image"
     >
         <VsImageWithCaption
             mobile-overlap
@@ -27,11 +28,14 @@
                 class="offset-sm-1"
                 :class="alternate ? 'offset-lg-6' : 'offset-lg-0'"
             >
-
-                <div class="megalink-single-image__content">
+                <div
+                    class="megalink-single-image__content"
+                    data-test="megalink-single-image__content"
+                >
                     <VsHeading
                         level="3"
                         v-if="title"
+                        data-test="megalink-single-image__title"
                     >
                         {{ title }}
                     </VsHeading>
