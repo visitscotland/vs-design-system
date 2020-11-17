@@ -17,7 +17,7 @@ describe('VsRichTextWrapper', () => {
     it('should render a div with the class `vs-rich-text-wrapper`', () => {
         const wrapper = factoryShallowMount();
 
-        expect(wrapper.is('div')).toBe(true);
+        expect(wrapper.element.tagName).toBe('DIV');
         expect(wrapper.classes('vs-rich-text-wrapper')).toBe(true);
     });
 
