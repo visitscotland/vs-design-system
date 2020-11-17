@@ -20,8 +20,6 @@ beforeEach(() => {
 });
 
 describe('VsMegalinkSingleImage', () => {
-    
-
     describe(':props', () => {
         it('if the alternate prop is true, it should render an element with class "offset-lg-6"', async() => {
             await wrapper.setProps({
