@@ -3,9 +3,10 @@
         :path="path"
         :class="{
             icon: true,
-            ['icon-' + size]: true,
-            ['icon-' + formattedName]: true,
-            ['icon-' + variant]: variant,
+            ['icon--' + name]: true,
+            ['icon--' + size]: true,
+            ['icon--' + formattedName]: true,
+            ['icon--' + variant]: variant,
             ['icon--' + orientation]: orientation,
         }"
         v-bind="$attrs"
@@ -219,7 +220,7 @@ $variants: (
     @each $size in map-keys($sizes) {
         $this-size: map-get($sizes, $size);
 
-        &.icon-#{$size} {
+        &.icon--#{$size} {
             height: $this-size;
             width: $this-size;
             padding: 0;
@@ -231,10 +232,10 @@ $variants: (
     }
 
     @each $variant in map-keys($variants) {
-        &.icon-#{$variant} {
+        &.icon--#{$variant} {
             fill: map-get($variants, $variant);
 
-            &.icon-reverse {
+            &.icon--reverse {
                 fill: $color-white;
                 background: map-get($variants, $variant);
             }
