@@ -69,6 +69,7 @@ describe('VsAccordionItem', () => {
             const wrapper = mount(VsAccordionItem, {
                 propsData: {
                     openByDefault: true,
+                    controlId: '1234',
                 },
             });
 
@@ -84,6 +85,9 @@ describe('VsAccordionItem', () => {
     describe('slots:', () => {
         it('should render content inserted into title slot', () => {
             const wrapper = shallowMount(VsAccordionItem, {
+                propsData: {
+                    controlId: '1234',
+                },
                 slots: {
                     title: titleSlot,
                 },
