@@ -14,7 +14,7 @@ describe('VsBreadcrumbItem', () => {
     it('should render a b-breadcrumb-item', () => {
         const wrapper = factoryMount();
 
-        const breadcrumbItem = wrapper.find(BBreadcrumbItem);
+        const breadcrumbItem = wrapper.findComponent(BBreadcrumbItem);
         expect(breadcrumbItem.exists()).toBe(true);
     });
 

@@ -22,7 +22,7 @@ beforeEach(() => {
 
 describe('VsDescriptionList', () => {
     it('should render a vsrow-stub with a `description-list` class', () => {
-        expect(wrapper.is('vsrow-stub')).toBe(true);
+        expect(wrapper.element.tagName).toBe('VSROW-STUB');
         expect(wrapper.classes('vs-description-list')).toBe(true);
     });
 

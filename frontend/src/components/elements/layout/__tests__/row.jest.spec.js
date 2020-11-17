@@ -17,7 +17,7 @@ beforeEach(() => {
 
 describe('VsButton', () => {
     it('should render a brow-stub', () => {
-        expect(wrapper.is('brow-stub')).toBe(true);
+        expect(wrapper.element.tagName).toBe('BROW-STUB');
     });
 
     describe(':slots', () => {

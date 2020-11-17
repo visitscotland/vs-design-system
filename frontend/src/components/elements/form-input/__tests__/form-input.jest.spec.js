@@ -20,7 +20,7 @@ beforeEach(() => {
 
 describe('VsFormInput', () => {
     it('should render a bform-input-stub', () => {
-        expect(wrapper.is('bforminput-stub')).toBe(true);
+        expect(wrapper.element.tagName).toBe('BFORMINPUT-STUB');
     });
 
     describe(':props', () => {
