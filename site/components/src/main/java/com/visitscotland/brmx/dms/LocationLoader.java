@@ -14,19 +14,28 @@ import java.util.*;
 
 //TODO Test?
 //TOTO convert to Service
-public abstract class LocationLoader {
+public class LocationLoader {
 
-    private static final Logger logger = LoggerFactory.getLogger(LocationLoader.class.getName());
+    private static final Logger logger = LoggerFactory.getLogger(LocationLoader.class);
 
-    private static final Map<Locale, Map<String, LocationObject>> locations = new HashMap<>();
+    private final Map<Locale, Map<String, LocationObject>> locations = new HashMap<>();
 
-    private static final Map<String, String> locationToId = new HashMap<>();
+    private final Map<String, String> locationToId = new HashMap<>();
 
-    static {
+    private static LocationLoader instance;
+
+    private LocationLoader(){
         init();
     }
 
-    public static LocationObject getLocation(String location, Locale locale){
+    public static LocationLoader getInstance(){
+        if (instance == null){
+            instance = new LocationLoader();
+        }
+        return instance;
+    }
+
+    public LocationObject getLocation(String location, Locale locale){
 
         if (Properties.locales.contains(locale)){
             return locations.get(locale).get(locationToId.get(location));
@@ -41,7 +50,7 @@ public abstract class LocationLoader {
      * @param levels
      * @return
      */
-    public static List<LocationObject> getLocationsByLevel(String... levels){
+    public List<LocationObject> getLocationsByLevel(String... levels){
         List<LocationObject> locationList = new ArrayList<>();
         for (LocationObject obj : locations.get(null).values()){
             if (levels!=null && levels.length>0){
@@ -64,14 +73,14 @@ public abstract class LocationLoader {
         return  locationList;
     }
 
-    private static void clear(){
+    private void clear(){
         locationToId.clear();
         locations.clear();
     }
     /**
      * Initialize maps
      */
-    private static void init() {
+    private void init() {
         synchronized (LocationLoader.class) {
             if (locationToId.size() == 0) {
                 for (Locale locale : com.visitscotland.brmx.utils.Properties.locales) {
@@ -110,7 +119,7 @@ public abstract class LocationLoader {
      *
      * @return HTML fragment according to the type and the locale
      */
-    private static String request(Locale locale){
+    private String request(Locale locale){
         //TODO Change the level to add polygon (for destinations pages)
         if (locale == null){
             return requestPage(String.format("%s/data/meta/location/list?full", com.visitscotland.brmx.utils.Properties.VS_DMS_SERVICE));
@@ -126,16 +135,15 @@ public abstract class LocationLoader {
      *
      * @return HTML Fragment
      */
-    private static String requestPage(String url) {
+    private String requestPage(String url) {
         StringBuilder sb = new StringBuilder();
-        try {
-            InputStream is = new URL(url).openStream();
+        try (InputStream is = new URL(url).openStream()) {
             int c;
-            while ((c = is.read()) != -1){
+            while ((c = is.read()) != -1) {
                 sb.append((char) c);
             }
             return sb.toString();
-        } catch (Exception e){
+        } catch (Exception e) {
             logger.error("Error while loading {}: {}", url, e.getMessage(), e);
             e.printStackTrace();
             return null;
@@ -148,7 +156,7 @@ public abstract class LocationLoader {
      * @return
      * @throws IOException
      */
-    private static List<LocationObject> deserialize(String data) throws IOException {
+    private List<LocationObject> deserialize(String data) throws IOException {
         ObjectMapper jsonMapper = new ObjectMapper();
         JsonNode dataObject = jsonMapper.readTree(data);
         List<LocationObject> locations = new ArrayList<>();

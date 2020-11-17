@@ -23,7 +23,7 @@ public class DocumentChangeProvider implements IDataProvider<DocumentChangeProvi
     protected List<Entry> buildDocumentChangeMap(List<ChangeSet> changeSetList) {
         // Need to convert the List<ChangeSet> into a list of unique document names and the languages they will
         // cloned into
-        Map<String, Entry> documentEntryMap = new HashMap<>();
+        Map<String, Entry> documentEntryMap = new LinkedHashMap<>();
         for (ChangeSet change : changeSetList) {
             ILocaleProvider.HippoLocale targetLocale = change.getTargetLocale();
             for (FolderTranslation document : change.getDocuments()) {

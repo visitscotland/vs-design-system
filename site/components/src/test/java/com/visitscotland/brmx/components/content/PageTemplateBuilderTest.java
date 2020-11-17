@@ -1,64 +1,71 @@
 package com.visitscotland.brmx.components.content;
 
-import com.visitscotland.brmx.beans.Destination;
+import com.visitscotland.brmx.beans.BaseDocument;
 import com.visitscotland.brmx.beans.Megalinks;
+import com.visitscotland.brmx.beans.Page;
+import com.visitscotland.brmx.beans.TourismInformation;
+import com.visitscotland.brmx.beans.mapping.ICentreModule;
+import com.visitscotland.brmx.beans.mapping.IKnowModule;
+import com.visitscotland.brmx.beans.mapping.Module;
 import com.visitscotland.brmx.beans.mapping.megalinks.LinksModule;
 import com.visitscotland.brmx.beans.mapping.megalinks.MultiImageLinksModule;
+import com.visitscotland.brmx.beans.mapping.megalinks.SingleImageLinksModule;
+import com.visitscotland.brmx.components.content.factory.ICentreFactory;
+import com.visitscotland.brmx.components.content.factory.IKnowFactory;
 import com.visitscotland.brmx.components.content.factory.LinkModulesFactory;
-import com.visitscotland.brmx.mock.MegalinksMockService;
-import com.visitscotland.brmx.utils.HippoUtilsService;
+import com.visitscotland.brmx.mock.MegalinksMockBuilder;
+import com.visitscotland.brmx.mock.TouristInformationMockBuilder;
 import org.hippoecm.hst.mock.core.component.MockHstRequest;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.Locale;
+import java.util.*;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
-
+import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.eq;
+import static org.mockito.Mockito.*;
 
 
 @ExtendWith(MockitoExtension.class)
-public class PageTemplateBuilderTest {
-
-    MegalinksMockService megalinkService;
+class PageTemplateBuilderTest {
 
     MockHstRequest request;
 
-    DestinationContentComponent component;
+    @Mock
+    Page page;
 
-    Destination document;
+    @Mock
+    ICentreFactory iCentreFactory;
 
-    PageTemplateBuilder<Destination> builder;
+    @Mock
+    IKnowFactory iKnowFactory;
+
+    @Mock
+    LinkModulesFactory linksFactory;
+
+    PageTemplateBuilder builder;
 
     @BeforeEach
-    void init(){
-
-        megalinkService = new MegalinksMockService(null);
-
+    void init() {
         request = new MockHstRequest();
         request.setLocale(Locale.UK);
 
-        document = mock(Destination.class);
-
         //Adds a mock document to the Request
-        request.setAttribute("document", document);
+        request.setAttribute("document", page);
 
-        LinkModulesFactory linksFactory = new LinkModulesFactory(mock(HippoUtilsService.class), null, null);
-
-        builder = new PageTemplateBuilder<>(linksFactory);
+        builder = new PageTemplateBuilder(linksFactory, iCentreFactory, iKnowFactory);
     }
 
+    /**
+     * Builds a Page with no documents associated
+     */
     @Test
-    void pageWithoutElements(){
-        //Page with no documents associated.
-
-        when(document.getItems()).thenReturn(Arrays.asList());
+    void pageWithoutElements() {
+        when(page.getModules()).thenReturn(new ArrayList<>());
 
         builder.addModules(request);
 
@@ -67,17 +74,19 @@ public class PageTemplateBuilderTest {
         assertEquals(0, items.size());
     }
 
+    /**
+     * Build a page with one Megalinks document associated
+     */
     @Test
-    void addMegalinksModules(){
-        //Page with one Megalinks document associated
-        Megalinks megalinks = megalinkService.mockMultiImage();
+    void addMegalinksModule_basic() {
+        Megalinks megalinks = new MegalinksMockBuilder().build();
         MultiImageLinksModule module = new MultiImageLinksModule();
 
-//        when(linksFactory.getMegalinkModule(any(Megalinks.class), any(Locale.class))).thenReturn(module);
-        when(document.getItems()).thenReturn(Arrays.asList(megalinks));
+        when(page.getModules()).thenReturn(Collections.singletonList(megalinks));
+        when(linksFactory.getMegalinkModule(megalinks, Locale.UK)).thenReturn(module);
 
         builder.addModules(request);
-        List items = (List)request.getAttribute(PageTemplateBuilder.PAGE_ITEMS);
+        List items = (List) request.getAttribute(PageTemplateBuilder.PAGE_ITEMS);
 
         assertEquals(1, items.size());
     }
@@ -86,24 +95,26 @@ public class PageTemplateBuilderTest {
      * Styles alternate and the last repeats the first colour
      */
     @Test
-    void checkMegalinksAlternateColours(){
-        List<Megalinks> list = Arrays.asList(
-                megalinkService.mockMultiImage("Section 1"),
-                megalinkService.mockMultiImage("Section 2"),
-                megalinkService.mockMultiImage("Section 3"),
-                megalinkService.mockMultiImage("Section 4"));
+    void addMegalinksModule_alternateStyles() {
+        List<BaseDocument> list = Arrays.asList(
+                new MegalinksMockBuilder().build(),
+                new MegalinksMockBuilder().build(),
+                new MegalinksMockBuilder().build(),
+                new MegalinksMockBuilder().build());
 
-        when(document.getItems()).thenReturn(list);
-
+        when(page.getModules()).thenReturn(list);
+        when(linksFactory.getMegalinkModule((Megalinks) list.get(0), Locale.UK)).thenReturn(new MultiImageLinksModule("h2"));
+        when(linksFactory.getMegalinkModule((Megalinks) list.get(1), Locale.UK)).thenReturn(new MultiImageLinksModule("h2"));
+        when(linksFactory.getMegalinkModule((Megalinks) list.get(2), Locale.UK)).thenReturn(new MultiImageLinksModule("h2"));
+        when(linksFactory.getMegalinkModule((Megalinks) list.get(3), Locale.UK)).thenReturn(new MultiImageLinksModule("h2"));
 
         builder.addModules(request);
-        List<LinksModule> items = (List)request.getAttribute(PageTemplateBuilder.PAGE_ITEMS);
+        List<LinksModule> items = (List<LinksModule>) request.getAttribute(PageTemplateBuilder.PAGE_ITEMS);
 
         assertEquals(4, items.size());
 
-        //
         for (int i = 0; i < 4; i++) {
-            assertEquals(PageTemplateBuilder.styles[i%3], items.get(i).getStyle());
+            assertEquals(PageTemplateBuilder.themes[i % 3], items.get(i).getTheme());
         }
     }
 
@@ -111,30 +122,26 @@ public class PageTemplateBuilderTest {
      * 3 first items share colour because their title is null, 4th is different
      */
     @Test
-    void checkMegalinksSkipAlternateColours(){
-        MultiImageLinksModule module = new MultiImageLinksModule();
-        MultiImageLinksModule moduleWithTitle = new MultiImageLinksModule();
-        moduleWithTitle.setTitle("Section Title");
+    void addMegalinksModule_skipAlternateStyles_whenNoH2() {
+        List<BaseDocument> list = Arrays.asList(
+                new MegalinksMockBuilder().build(),
+                new MegalinksMockBuilder().build(),
+                new MegalinksMockBuilder().build(),
+                new MegalinksMockBuilder().build());
 
-        List<Megalinks> list = Arrays.asList(
-                megalinkService.mockMultiImage("Section 1"),
-                megalinkService.mockMultiImage(),
-                megalinkService.mockMultiImage(),
-                megalinkService.mockMultiImage("Section 1"));
-
-        when(document.getItems()).thenReturn(list);
-//        when(linksFactory.getMegalinkModule(list.get(0), Locale.UK)).thenReturn(moduleWithTitle);
-//        when(linksFactory.getMegalinkModule(list.get(1), Locale.UK)).thenReturn(module);
-//        when(linksFactory.getMegalinkModule(list.get(2), Locale.UK)).thenReturn(module);
-//        when(linksFactory.getMegalinkModule(list.get(3), Locale.UK)).thenReturn(moduleWithTitle);
+        when(page.getModules()).thenReturn(list);
+        when(linksFactory.getMegalinkModule((Megalinks) list.get(0), Locale.UK)).thenReturn(new MultiImageLinksModule("h2"));
+        when(linksFactory.getMegalinkModule((Megalinks) list.get(1), Locale.UK)).thenReturn(new MultiImageLinksModule());
+        when(linksFactory.getMegalinkModule((Megalinks) list.get(2), Locale.UK)).thenReturn(new MultiImageLinksModule());
+        when(linksFactory.getMegalinkModule((Megalinks) list.get(3), Locale.UK)).thenReturn(new MultiImageLinksModule("h2"));
 
         builder.addModules(request);
-        List<LinksModule> items = (List)request.getAttribute(PageTemplateBuilder.PAGE_ITEMS);
+        List<LinksModule> items = (List<LinksModule>) request.getAttribute(PageTemplateBuilder.PAGE_ITEMS);
 
         assertEquals(4, items.size());
 
         for (int i = 0; i < 4; i++) {
-            assertEquals(PageTemplateBuilder.styles[i!=3?0:1], items.get(i).getStyle());
+            assertEquals(PageTemplateBuilder.themes[i != 3 ? 0 : 1], items.get(i).getTheme());
         }
     }
 
@@ -142,23 +149,89 @@ public class PageTemplateBuilderTest {
      * First item always have the same style independently of if the section title is defined
      */
     @Test
-    void checkMegalinksFirstItemColour(){
+    void addMegalinksModule_firstItemColourIsStyle3_whenNoH2() {
+        Megalinks mega = new MegalinksMockBuilder().build();
+        when(page.getModules()).thenReturn(Collections.singletonList(mega));
 
         // Build the first case where the first element has no title
-        Megalinks case1 = megalinkService.mockMultiImage(null);
-        when(document.getItems()).thenReturn(Arrays.asList(case1));
+        when(linksFactory.getMegalinkModule(mega, Locale.UK)).thenReturn(new MultiImageLinksModule());
         builder.addModules(request);
-        LinksModule firstModuleWithoutTitle= ((List<LinksModule>) request.getAttribute(PageTemplateBuilder.PAGE_ITEMS)).get(0);
+        LinksModule firstModuleWithoutTitle = ((List<LinksModule>) request.getAttribute(PageTemplateBuilder.PAGE_ITEMS)).get(0);
 
         // Build the second case where the first element has a title
-        Megalinks case2 = megalinkService.mockMultiImage("Section Title");
-        Destination document2 = mock(Destination.class);
-        request.setAttribute("document", document2);
-        when(document2.getItems()).thenReturn(Arrays.asList(case2));
+        when(linksFactory.getMegalinkModule(mega, Locale.UK)).thenReturn(new MultiImageLinksModule("h2"));
         builder.addModules(request);
-        LinksModule firstModuleWithTitle= ((List<LinksModule>) request.getAttribute(PageTemplateBuilder.PAGE_ITEMS)).get(0);
+        LinksModule firstModuleWithTitle = ((List<LinksModule>) request.getAttribute(PageTemplateBuilder.PAGE_ITEMS)).get(0);
 
         //Compare that the result is identical
-        assertEquals(firstModuleWithoutTitle.getStyle(), firstModuleWithTitle.getStyle());
+        assertEquals(firstModuleWithoutTitle.getTheme(), firstModuleWithTitle.getTheme());
+    }
+
+    /**
+     * Verifies that the alignment for Single Image modules alternates
+     */
+    @Test
+    void addMegalinksModule_alternateAlignment() {
+        List<BaseDocument> list = Arrays.asList(
+                new MegalinksMockBuilder().build(),
+                new MegalinksMockBuilder().build(),
+                new MegalinksMockBuilder().build(),
+                new MegalinksMockBuilder().build());
+
+        when(page.getModules()).thenReturn(list);
+        when(linksFactory.getMegalinkModule((Megalinks) list.get(0), Locale.UK)).thenReturn(new SingleImageLinksModule());
+        when(linksFactory.getMegalinkModule((Megalinks) list.get(1), Locale.UK)).thenReturn(new SingleImageLinksModule());
+        when(linksFactory.getMegalinkModule((Megalinks) list.get(2), Locale.UK)).thenReturn(new SingleImageLinksModule());
+        when(linksFactory.getMegalinkModule((Megalinks) list.get(3), Locale.UK)).thenReturn(new SingleImageLinksModule());
+
+        builder.addModules(request);
+        List<LinksModule> items = (List<LinksModule>) request.getAttribute(PageTemplateBuilder.PAGE_ITEMS);
+
+        assertEquals(4, items.size());
+
+        for (int i = 0; i < 4; i++) {
+            assertEquals(PageTemplateBuilder.alignment[i % 2], items.get(i).getAlignment());
+        }
+    }
+
+    /**
+     * Verifies that is able to add an iKnowModule when the minimum amount of information has been provided
+     * Verifies that is able to set the Hippo bean for only Iknow configuration
+     */
+    @Test
+    void addTouristInformation_iKnowModule() {
+        TourismInformation ti = new TouristInformationMockBuilder().build();
+
+        when(page.getModules()).thenReturn(Collections.singletonList(ti));
+        when(iKnowFactory.getIKnowModule(any(), eq(null), eq(request.getLocale()))).thenReturn(new IKnowModule());
+
+        builder.addModules(request);
+
+        List<Module> items = (List<Module>) request.getAttribute(PageTemplateBuilder.PAGE_ITEMS);
+        assertEquals(1, items.size());
+        assertEquals(ti, items.get(0).getHippoBean());
+    }
+
+    /**
+     * Verifies that is able to add an iKnowModule when the minimum amount of information has been provided
+     * Verifies that is able set the Hippo Bean when 2 items are returned.
+     * Verifies that only one Hippo Bean is set edit module is enabled.
+     */
+    @Test
+    void addTouristInformation_iCentreModule() {
+
+        TourismInformation ti = new TouristInformationMockBuilder().build();
+
+        when(page.getModules()).thenReturn(Collections.singletonList(ti));
+
+        when(iCentreFactory.getModule(any(), eq(request.getLocale()), eq(null))).thenReturn(new ICentreModule());
+        when(iKnowFactory.getIKnowModule(any(), eq(null), eq(request.getLocale()))).thenReturn(new IKnowModule());
+
+        builder.addModules(request);
+
+        List<Module> items = (List<Module>) request.getAttribute(PageTemplateBuilder.PAGE_ITEMS);
+        assertEquals(2, items.size());
+        assertEquals(ti, items.get(0).getHippoBean());
+        assertNull(items.get(1).getHippoBean());
     }
 }

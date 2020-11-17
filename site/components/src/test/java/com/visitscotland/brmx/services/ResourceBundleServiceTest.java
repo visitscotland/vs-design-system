@@ -2,6 +2,7 @@ package com.visitscotland.brmx.services;
 
 import com.visitscotland.brmx.beans.DMSLink;
 import com.visitscotland.brmx.utils.CommonUtils;
+import org.hippoecm.hst.core.component.HstRequest;
 import com.visitscotland.utils.Contract;
 import org.hippoecm.hst.resourcebundle.ResourceBundleRegistry;
 import org.junit.Assert;
@@ -167,21 +168,44 @@ public class ResourceBundleServiceTest {
     }
 
     @Test
-    public void existsKey_emptyValue(){
+    public void existsKey_emptyValue() {
         when(bundle.containsKey("key")).thenReturn(true);
         when(bundle.getString("key")).thenReturn("");
 
         Assert.assertFalse(service.existsResourceBundleKey(BUNDLE, "key", Locale.UK));
     }
 
+    @Test
+    public void registerInRequest() {
+        //The service is registered on the request as ResourceBundle
+        HstRequest request = mock(HstRequest.class);
+
+        service.registerIn(request);
+
+        verify(request).getAttribute("ResourceBundle");
+        verify(request).setAttribute("ResourceBundle", service);
+    }
 
     @Test
-    public void getCtaLabel_manual(){
+    public void skipRegisterInRequest_whenAlreadyRegistered() {
+        //The service is not registered if something is already registered as ResourceBundle
+        HstRequest request = mock(HstRequest.class);
+
+        when(request.getAttribute("ResourceBundle")).thenReturn(service);
+
+        service.registerIn(request);
+
+        verify(request).getAttribute("ResourceBundle");
+        verify(request, never()).setAttribute("ResourceBundle", service);
+    }
+
+    @Test
+    public void getCtaLabel_manual() {
         Assert.assertEquals("Discover more", service.getCtaLabel("Discover more", null));
     }
 
     @Test
-    public void getCtaLabel_auto(){
+    public void getCtaLabel_auto() {
         lenient().when(registry.getBundle("essentials.global", Locale.UK)).thenReturn(bundle);
 
         when(bundle.containsKey("button.find-out-more")).thenReturn(true);
