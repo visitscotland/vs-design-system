@@ -49,19 +49,23 @@ describe('VsDescriptionListItem', () => {
 
         describe(':inline', () => {
             it('render a `list-inline-item` class when `inline` is injected as `true`', async () => {
-                await wrapper.setProps({
-                    inline: true,
+                const modifiedWrapper = shallowMount(VsDescriptionListItem, {
+                    provide: {
+                        inline: true,
+                    },
                 });
 
-                expect(wrapper.classes('list-inline-item')).toBe(true);
+                expect(modifiedWrapper.classes('list-inline-item')).toBe(true);
             });
 
             it('it should *NOT* render a `list-inline-item` class when `inline` is injected as `false`', async () => {
-                await wrapper.setProps({
-                    inline: false,
+                const modifiedWrapper = shallowMount(VsDescriptionListItem, {
+                    provide: {
+                        inline: false,
+                    },
                 });
 
-                expect(wrapper.classes('list-inline-item')).toBe(false);
+                expect(modifiedWrapper.classes('list-inline-item')).toBe(false);
             });
 
             it('should accept an `inline` property injected by the parent component', () => {
