@@ -17,7 +17,7 @@ describe('VsPrototype', () => {
     it('should render a span with the class `vs-tooltip`', () => {
         const wrapper = factoryShallowMount();
 
-        expect(wrapper.is('span')).toBe(true);
+        expect(wrapper.element.tagName).toBe('SPAN');
         expect(wrapper.classes('vs-tooltip')).toBe(true);
     });
 

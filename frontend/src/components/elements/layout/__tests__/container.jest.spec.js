@@ -20,7 +20,7 @@ beforeEach(() => {
 
 describe('VsContainer', () => {
     it('should render a bcontainer-stub', () => {
-        expect(wrapper.is('bcontainer-stub')).toBe(true);
+        expect(wrapper.element.tagName).toBe('BCONTAINER-STUB');
     });
 
     describe(':attrs', () => {
