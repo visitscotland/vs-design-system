@@ -132,7 +132,7 @@ export default {
             }
 
             .megalink-link-list__img {
-                min-width: 33%;
+                max-width: 33%;
                 align-self: flex-start;
                 margin-right: $spacer-4;
             }
