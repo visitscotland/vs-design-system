@@ -28,7 +28,7 @@ describe('VsButton', () => {
     it('should render a bbutton-stub', () => {
         const wrapper = factoryShallowMount();
 
-        expect(wrapper.is('bbutton-stub')).toBe(true);
+        expect(wrapper.element.tagName).toBe('BBUTTON-STUB');
     });
 
     describe(':props', () => {

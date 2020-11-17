@@ -30,7 +30,7 @@ describe('VsImg', () => {
     it('should render a bimg-stub', () => {
         const wrapper = factoryShallowMount();
 
-        expect(wrapper.is('bimg-stub')).toBe(true);
+        expect(wrapper.element.tagName).toBe('BIMG-STUB');
     });
 
     describe(':props', () => {

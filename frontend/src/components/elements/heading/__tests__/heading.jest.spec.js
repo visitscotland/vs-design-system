@@ -15,7 +15,7 @@ describe('VsHeading', () => {
     it('should render a h1 by default', () => {
         const wrapper = factoryShallowMount();
 
-        expect(wrapper.is('h1')).toBe(true);
+        expect(wrapper.element.tagName).toBe('H1');
         expect(wrapper.classes('heading')).toBe(true);
     });
 
@@ -25,7 +25,7 @@ describe('VsHeading', () => {
                 level: 2,
             });
 
-            expect(wrapper.is('h2')).toBe(true);
+            expect(wrapper.element.tagName).toBe('H2');
         });
 
         it(':thin - should accept and render a `thin` prop', () => {

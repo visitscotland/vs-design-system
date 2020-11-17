@@ -29,7 +29,7 @@ describe('VsPanel', () => {
     it('should render a bcard-stub', () => {
         const wrapper = factoryShallowMount();
 
-        expect(wrapper.is('bcard-stub')).toBe(true);
+        expect(wrapper.element.tagName).toBe('BCARD-STUB');
     });
 
     it('should render a bcardtext-stub', () => {

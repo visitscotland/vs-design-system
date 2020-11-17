@@ -16,7 +16,7 @@ describe('VsLink', () => {
         const wrapper = factoryShallowMount();
 
         expect(wrapper.classes()).toContain('vs-link');
-        expect(wrapper.is('blink-stub')).toBe(true);
+        expect(wrapper.element.tagName).toBe('BLINK-STUB');
     });
 
     describe(':slots', () => {
@@ -57,7 +57,7 @@ describe('VsLink', () => {
 
             expect(wrapper.classes()).not.toContain('vs-link--external');
             expect(wrapper.attributes('target')).toBe('_self');
-            expect(wrapper.contains(VsIcon)).toBe(false);
+            expect(wrapper.findComponent(VsIcon).exists()).toBe(false);
         });
 
         it(':external - should render an external link', () => {
@@ -67,7 +67,7 @@ describe('VsLink', () => {
 
             expect(wrapper.classes()).toContain('vs-link--external');
             expect(wrapper.attributes('target')).toBe('_blank');
-            expect(wrapper.contains(VsIcon)).toBe(true);
+            expect(wrapper.findComponent(VsIcon).exists()).toBe(true);
         });
     });
 });

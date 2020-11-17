@@ -20,7 +20,7 @@ describe('VsList', () => {
             ordered: true
         });
 
-        expect(wrapper.is('ol')).toBe(true);
+        expect(wrapper.element.tagName).toBe('OL');
         expect(wrapper.classes('vs-list')).toBe(true);
     });
 
@@ -29,7 +29,7 @@ describe('VsList', () => {
             ordered: false
         });
 
-        expect(wrapper.is('ul')).toBe(true);
+        expect(wrapper.element.tagName).toBe('UL');
         expect(wrapper.classes('vs-list')).toBe(true);
     });
 

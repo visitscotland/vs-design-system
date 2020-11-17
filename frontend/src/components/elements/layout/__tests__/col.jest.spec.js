@@ -20,7 +20,7 @@ beforeEach(() => {
 
 describe('VsCol', () => {
     it('should render a bcol-stub', () => {
-        expect(wrapper.is('bcol-stub')).toBe(true);
+        expect(wrapper.element.tagName).toBe('BCOL-STUB');
     });
 
     describe(':attrs', () => {

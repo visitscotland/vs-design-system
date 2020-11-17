@@ -25,7 +25,7 @@ beforeEach(() => {
 
 describe('VsDescriptionListItem', () => {
     it('should render a vscol-stub', () => {
-        expect(wrapper.is('vscol-stub')).toBe(true);
+        expect(wrapper.element.tagName).toBe('VSCOL-STUB');
     });
 
     describe(':props', () => {

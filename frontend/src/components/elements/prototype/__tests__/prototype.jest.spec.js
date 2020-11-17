@@ -19,7 +19,7 @@ describe('VsPrototype', () => {
     it('should render a div with the class `vs-prototype`', () => {
         wrapper = factoryShallowMount();
 
-        expect(wrapper.is('div')).toBe(true);
+        expect(wrapper.element.tagName).toBe('DIV');
         expect(wrapper.classes('vs-prototype')).toBe(true);
     });
 
