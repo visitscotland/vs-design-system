@@ -244,15 +244,17 @@ export default {
                     <li class="megalink-single-image__link-list-item">
                         <VsLink
                             href="www.visitscotland.com"
+                            type="external"
                         >
-                            This is a link here
+                            This is an external link here
                         </VsLink>
                     </li>
                     <li class="megalink-single-image__link-list-item">
                         <VsLink
                             href="www.visitscotland.com"
+                            type="download"
                         >
-                            This is a link here
+                            This is a download link here
                         </VsLink>
                     </li>
                 </template>

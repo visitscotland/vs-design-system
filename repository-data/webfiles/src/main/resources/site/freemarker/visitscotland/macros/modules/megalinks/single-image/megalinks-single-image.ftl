@@ -27,6 +27,7 @@
                     <li class="megalink-single-image__link-list-item">
                         <vs-link
                             href="${listItem.link}"
+                            <#if listItem.type != "internal">type="${listItem.type}"</#if>
                         >
                             ${listItem.label}
                         </vs-link>
