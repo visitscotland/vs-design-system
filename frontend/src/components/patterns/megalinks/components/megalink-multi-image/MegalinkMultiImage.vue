@@ -107,6 +107,7 @@ export default {
     .megalink-multi-image.card {
         border: none;
         position: relative;
+        margin-bottom: $spacer-8;
         transition: box-shadow 800ms;
 
         .stretched-link {

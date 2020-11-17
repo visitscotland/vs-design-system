@@ -204,7 +204,7 @@ export default {
             <p>Sed at mauris a est dictum luctus. Nullam viverra
             pellentesque dolor, id elementum neque viverra quis.
             Morbi lacinia est id risus facilisis porttitor ut ac mi.
-            Maecenas bibendum sodales nisi eu luctus.
+            Maecenas bibendum sodales nisi eu luctus.</p>.
         </template>
         <VsCol
             cols="12"

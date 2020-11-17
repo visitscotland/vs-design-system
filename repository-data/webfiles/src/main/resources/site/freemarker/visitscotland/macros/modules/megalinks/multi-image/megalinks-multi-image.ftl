@@ -5,8 +5,7 @@
 <#include "./multi-image-three-items.ftl">
 <#include "../../../global/cms-errors.ftl">
 
-<#macro multiImage item>
-    <#assign showTeaser = item.teaserVisible?string('true', 'false') />
+<#macro multiImage item showTeaser>
     <vs-row>
         <vs-col
             cols="10"
