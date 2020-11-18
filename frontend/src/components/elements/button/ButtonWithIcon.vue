@@ -78,7 +78,7 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .vs-button-with-icon {
     padding-left: 1rem;
     padding-right: 1rem;
