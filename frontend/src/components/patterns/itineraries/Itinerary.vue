@@ -106,10 +106,10 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 @import "~bootstrap/scss/type";
 
-.vs-itinerary ::v-deep {
+.vs-itinerary {
     .vs-itinerary__map-container {
         height: 100vh;
         position: fixed;
