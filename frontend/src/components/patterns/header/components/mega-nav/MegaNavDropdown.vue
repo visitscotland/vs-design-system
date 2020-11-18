@@ -192,6 +192,8 @@ export default {
         padding: 24px 0;
         margin: 0;
         min-height: 200px;
+        max-height: 595px;
+        overflow: hidden;
         border: 0;
         box-shadow: 0px 9px 5px -7px rgba(0,0,0,0.1), inset 0px 10px 6px -8px rgba(0, 0, 0, 0.16);
         transform: translate3d(0px, 55px, 0px) !important;
