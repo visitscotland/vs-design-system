@@ -1,7 +1,7 @@
 <template>
     <li
-        class="vs-mega-nav__top-menu__item"
-        data-test="vs-mega-nav__top-menu__item"
+        class="vs-mega-nav-top-menu-item"
+        data-test="vs-mega-nav-top-menu-item"
         ref="menuToggle"
     >
         <VsMegaNavDropdown
@@ -13,20 +13,22 @@
             </template>
 
             <template #ctaLink>
-                <a
+                <VsLink
                     v-if="href && ctaText"
                     :href="href"
-                    class="vs-mega-nav__cta-link"
-                    data-test="vs-mega-nav__cta-link"
+                    class="vs-mega-nav-top-menu-item__cta-link"
+                    data-test="vs-mega-nav-top-menu-item__cta-link"
                 >
                     {{ ctaText }}
-                </a>
+                </VsLink>
                 <hr>
             </template>
 
             <template #dropdownContent>
                 <!-- @slot Slot for dropdown menu list content -->
-                <slot name="dropdownContent" />
+                <div class="vs-mega-nav-top-menu-item__columns">
+                    <slot name="dropdownContent" />
+                </div>
             </template>
         </VsMegaNavDropdown>
     </li>
@@ -37,6 +39,7 @@
  *  Mega nav top level menu items with a slots for toggle button and dropdown content
  */
 import VsMegaNavDropdown from '@components/patterns/header/components/mega-nav/MegaNavDropdown';
+import VsLink from '@components/elements/link/Link';
 
 export default {
     name: 'VsMegaNavTopMenuItem',
@@ -44,6 +47,7 @@ export default {
     release: '0.1.0',
     components: {
         VsMegaNavDropdown,
+        VsLink,
     },
     props: {
         /**
@@ -66,7 +70,7 @@ export default {
 
 <style lang="scss">
 
-.vs-mega-nav__top-menu__item{
+.vs-mega-nav-top-menu-item{
     @include media-breakpoint-up(xl) {
         margin-right: $spacer-6;
 
@@ -74,7 +78,16 @@ export default {
             margin-right: 0;
         }
     }
+
+    &__columns{
+        display: flex;
+        width: 100%;
+        flex-flow: column wrap;
+        margin-left: -8px;
+        max-height: 500px;
+    }
 }
+
 </style>
 
 <docs>
