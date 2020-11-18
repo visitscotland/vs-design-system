@@ -1,16 +1,18 @@
 <template>
     <ul
-        class="vs-mega-nav__list list-unstyled"
+        unstyled
+        class="mega-nav-list"
+        data-test="mega-nav-list"
     >
-        <slot />
+        <!-- @slot Slot for nav list heading  -->
+        <slot name="navListHeading" />
+
+        <!-- @slot Slot for nav list items  -->
+        <slot name="navListItems" />
     </ul>
 </template>
 
 <script>
-
-/**
- * WORK IN PROGRESS
- */
 export default {
     name: 'VsMegaNavList',
     status: 'prototype',
@@ -19,12 +21,15 @@ export default {
 </script>
 
 <style lang="scss">
-
-.vs-mega-nav__list {
-    width: 100%;
-    display: flex;
-}
-
+    .mega-nav-list{
+        // background: grey;
+        padding: 0;
+        overflow: hidden;
+        border-radius: 5px;
+        margin: 0 0 8px 8px;
+        color: white;
+        position: relative;
+    }
 </style>
 
 <docs>
