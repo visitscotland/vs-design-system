@@ -2,7 +2,7 @@
     <VsList
         unstyled
         class="vs-mega-nav-top-menu"
-        data-test="vs-mega-nav__top-menu"
+        data-test="vs-mega-nav-top-menu"
     >
         <!-- @slot Default slot for top menu items -->
         <slot />
@@ -37,7 +37,7 @@ export default {
 }
 
  @include no-js {
-    .vs-mega-nav__top-menu {
+    .vs-mega-nav-top-menu {
         &.vs-list.unstyled{
             display: block;
         }

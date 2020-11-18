@@ -1,7 +1,7 @@
 <template>
     <div
-        class="vs-mega-nav__dropdown"
-        data-test="vs-mega-nav__dropdown"
+        class="vs-mega-nav-dropdown"
+        data-test="vs-mega-nav-dropdown"
     >
         <BDropdown
             variant="transparent"
@@ -22,7 +22,7 @@
                         <slot name="dropdownContent" />
 
                         <VsButtonWithIcon
-                            class="vs-mega-nav__dropdown__close-btn d-lg-none position-absolute"
+                            class="vs-mega-nav-dropdown__close-btn d-lg-none position-absolute"
                             icon="close"
                             icon-only
                             button-size="md"
@@ -103,7 +103,7 @@ export default {
 
 <style lang="scss">
 
-.vs-mega-nav__dropdown {
+.vs-mega-nav-dropdown {
     padding: 0;
 
     .dropdown {
@@ -120,7 +120,7 @@ export default {
         }
     }
 
-    .vs-mega-nav__dropdown__close-btn{
+    .vs-mega-nav-dropdown__close-btn{
         @extend .dropdown-toggle;
         right: 4px;
         top: -67px;
@@ -202,7 +202,7 @@ export default {
 }
 
 @include no-js {
-    .vs-mega-nav__dropdown{
+    .vs-mega-nav-dropdown{
         .btn.dropdown-toggle {
             padding: $spacer-2 $spacer-2;
             font-size: 1rem;
