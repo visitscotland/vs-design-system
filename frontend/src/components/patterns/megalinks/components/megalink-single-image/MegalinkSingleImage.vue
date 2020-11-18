@@ -149,7 +149,7 @@ export default {
 
         .megalink-single-image__link-list-item {
             margin-top: $spacer-4;
-            font-size: 1.125rem;
+            font-size: $lead-font-size;
 
             &:first-of-type {
                 margin-bottom: $spacer-0;
