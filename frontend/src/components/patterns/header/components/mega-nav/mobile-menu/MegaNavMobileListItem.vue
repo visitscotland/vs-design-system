@@ -1,7 +1,7 @@
 <template>
     <BNavItem
         href="#"
-        class="vs-mega-nav__mobile-list__item"
+        class="vs-mega-nav-mobile-list-item"
     >
         <slot />
     </BNavItem>
@@ -24,7 +24,7 @@ export default {
 </script>
 
 <style lang="scss">
-.vs-mega-nav__mobile-list__item{
+.vs-mega-nav-mobile-list-item{
 
     .nav-link{
         display: block;
