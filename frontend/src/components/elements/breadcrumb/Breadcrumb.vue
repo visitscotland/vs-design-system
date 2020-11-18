@@ -1,7 +1,7 @@
 <template>
     <nav
         aria-label="breadcrumbs"
-        class="py-4"
+        class="vs-breadcrumb py-4"
     >
         <BBreadcrumb
             class="flex-nowrap p-0"
@@ -37,7 +37,7 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 @import "~bootstrap/scss/breadcrumb";
 </style>
 
