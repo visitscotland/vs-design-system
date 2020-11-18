@@ -1,1 +1,5 @@
-export default from './MegalinkSingleImage';
+import VSMegalinkSingleImage from './MegalinkSingleImage';
+
+export default {
+    VSMegalinkSingleImage,
+};
