@@ -109,7 +109,7 @@ export default {
     }
 }
 
-.-vs-itinerary-map-marker__count {
+.vs-itinerary-map-marker__count {
     color: $color-white;
     display: block;
     font-size: 1rem;
