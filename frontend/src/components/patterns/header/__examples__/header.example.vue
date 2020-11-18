@@ -36,18 +36,27 @@
                                 {{ item.title }}
                             </template>
                             <template #dropdownContent>
-                                <ul>
-                                    <li
-                                        v-for="(navItem, navIndex) in item.dropdownNav"
-                                        :key="navIndex"
+                                <VsMegaNavList
+                                    v-for="(subHeading, subHeadingIndex) in item.dropdownNav"
+                                    :key="subHeadingIndex"
+                                >
+                                    <VsMegaNavListItem slot="navListHeading">
+                                        {{ subHeading.title }}
+                                    </VsMegaNavListItem>
+
+                                    <VsMegaNavListItem
+                                        slot="navListItems"
+                                        v-for="(navLink, navLinkIndex)
+                                            in subHeading.dropdownNav"
+                                        :key="navLinkIndex"
+                                        :href="navLink.href"
                                     >
-                                        {{ navItem.title }}
-                                    </li>
-                                </ul>
+                                        {{ navLink.title }}
+                                    </VsMegaNavListItem>
+                                </VsMegaNavList>
                             </template>
                         </VsMegaNavTopMenuItem>
                     </template>
-
                     <template #megaNavMobileItems>
                         <VsMegaNavMobileToggle
                             v-for="(item, index) in header.mainNav"
