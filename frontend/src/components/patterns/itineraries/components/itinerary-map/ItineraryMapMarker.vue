@@ -18,7 +18,7 @@
                 :size="isHighlighted ? 'lg' : 'md'"
             />
             <span
-                class="vs-vs-itinerary-map-marker__count"
+                class="vs-itinerary-map-marker__count"
                 :class="isHighlighted ? 'active' : ''"
             >
                 <span class="sr-only">Stop</span>{{ feature.properties.stopCount }}
@@ -109,7 +109,7 @@ export default {
     }
 }
 
-.vs-vs-vs-itinerary-map-marker__count {
+.-vs-itinerary-map-marker__count {
     color: $color-white;
     display: block;
     font-size: 1rem;
