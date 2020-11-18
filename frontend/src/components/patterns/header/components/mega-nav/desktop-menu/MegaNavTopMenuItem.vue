@@ -1,6 +1,6 @@
 <template>
     <li
-        class="vs-mega-nav__top-menu__item"
+        class="vs-mega-nav-top-menu-item"
         data-test="vs-mega-nav__top-menu__item"
         ref="menuToggle"
     >
@@ -66,7 +66,7 @@ export default {
 
 <style lang="scss">
 
-.vs-mega-nav__top-menu__item{
+.vs-mega-nav-top-menu-item {
     @include media-breakpoint-up(xl) {
         margin-right: $spacer-6;
 
