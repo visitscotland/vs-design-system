@@ -56,15 +56,17 @@ export default {
     line-height: $line-height-s;
     padding: $spacer-3 $spacer-8;
 
-    .vs-link.dark {
-        color: $color-white;
-        text-decoration: none;
+    .vs-link {
+        &--variant-dark {
+            color: $color-white;
+            text-decoration: none;
+        }
 
         &:hover {
             text-decoration: underline;
         }
 
-        .icon {
+        .vs-icon {
             fill: $color-white;
         }
     }
