@@ -111,8 +111,8 @@ export default {
 <docs>
 ```jsx
     <vs-iknow-partner-item>
-        <VsHeading level="2" slot="iknow-heading">Help and device</VsHeading>
-        <div slot="iknow-text">
+        <VsHeading level="2" slot="iknowHeading">Help and device</VsHeading>
+        <div slot="iknowText">
             You can also get advice from our accredited
             <a href="#">iKnow partners in Edinburgh</a>,
             with excellent local expertise,
@@ -122,8 +122,8 @@ export default {
     </vs-iknow-partner-item>
 
     <vs-iknow-partner-item>
-        <VsHeading level="2" slot="iknow-heading">Help and device</VsHeading>
-        <div slot="iknow-text">
+        <VsHeading level="2" slot="iknowHeading">Help and device</VsHeading>
+        <div slot="iknowText">
             iKnow Scotland is a network of accredited
             VisitScotland partners, with excellent local
             expertise.
@@ -135,12 +135,12 @@ export default {
             must-see attractions in the local area.
         </div>
 
-        <a href="#" slot="iknow-cta">Find our iKnow partners</a>
+        <a href="#" slot="iknowCta">Find our iKnow partners</a>
     </vs-iknow-partner-item>
 
     <vs-iknow-partner-item>
-        <VsHeading level="2" slot="iknow-heading">Help and device</VsHeading>
-        <div slot="iknow-text">
+        <VsHeading level="2" slot="iknowHeading">Help and device</VsHeading>
+        <div slot="iknowText">
             iKnow Scotland is a network of accredited
             VisitScotland partners, with excellent local
             expertise.
@@ -152,7 +152,7 @@ export default {
             must-see attractions in the local area.
         </div>
 
-        <vs-button slot="iknow-cta">Find our iKnow partners</vs-button>
+        <vs-button slot="iknowCta">Find our iKnow partners</vs-button>
     </vs-iknow-partner-item>
 ```
 </docs>
