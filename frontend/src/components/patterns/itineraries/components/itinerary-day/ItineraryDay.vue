@@ -107,10 +107,10 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 @import "~bootstrap/scss/type";
 
-.vs-itinerary-day__list-item {
+.vs-itinerary-day__list-item.card {
     border-top: 5px solid $color-base-text;
     padding: $spacer-4 $spacer-4 0;
 
@@ -121,7 +121,7 @@ export default {
     }
 }
 
-.vs-itinerary-day__title {
+.vs-itinerary-day__title  {
     border-bottom: 1px solid $color-base-text;
     color: $color-theme-secondary-teal;
     padding: 0 $spacer-6 $spacer-3;
@@ -133,13 +133,13 @@ export default {
     height: 24px;
     width: 24px;
 
-    .icon {
+    .vs-icon {
         height: 100%;
         margin: 0 auto;
         display: block;
     }
 
-    &.icon.icon-xs {
+    &.vs-icon.vs-icon--size-xs {
         height: 32px;
         width: 32px;
         padding: 8px;
