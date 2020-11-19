@@ -47,7 +47,7 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .vs-skip-to {
     box-shadow: 0 8px 6px -6px rgba(0, 0, 0, 0.3);
     letter-spacing: 2px;
