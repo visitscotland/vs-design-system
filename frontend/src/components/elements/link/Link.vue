@@ -76,11 +76,6 @@ export default {
         },
     },
     computed: {
-        typeClass() {
-            return this.type ? `vs-link--${this.type}` : '';
-        },
-    },
-    computed: {
         variantClass() {
             return `vs-link--variant-${this.variant}`;
         },
