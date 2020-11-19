@@ -11,7 +11,7 @@ definitions:
         /hipposysedit:nodetype:
           jcr:primaryType: hipposysedit:nodetype
           jcr:mixinTypes: ['mix:referenceable', 'hipposysedit:remodel']
-          jcr:uuid: 65e20115-e4f0-4c04-80d4-cf02173a7eb9
+          jcr:uuid: 37994ad6-a402-48ee-810b-4de1f909cb39
           hipposysedit:node: true
           hipposysedit:supertype: ['hippo:compound', 'hippostd:relaxed']
           hipposysedit:uri: http://www.visitscotland.com/visitscotland/nt/1.0
@@ -23,22 +23,20 @@ definitions:
             hipposysedit:path: visitscotland:title
             hipposysedit:primary: false
             hipposysedit:type: String
-          /description:
+          /string:
             jcr:primaryType: hipposysedit:field
             hipposysedit:mandatory: false
             hipposysedit:multiple: false
             hipposysedit:ordered: false
             hipposysedit:path: visitscotland:description
             hipposysedit:primary: false
-            hipposysedit:type: hippostd:html
+            hipposysedit:type: String
       /hipposysedit:prototypes:
         jcr:primaryType: hipposysedit:prototypeset
         /hipposysedit:prototype:
           jcr:primaryType: visitscotland:IKnow
           visitscotland:title: ''
-          /visitscotland:description:
-            jcr:primaryType: hippostd:html
-            hippostd:content: ''
+          visitscotland:description: ''
       /editor:templates:
         jcr:primaryType: editor:templateset
         /_default_:
@@ -63,11 +61,9 @@ definitions:
             jcr:primaryType: frontend:plugin
             caption: Description
             field: description
-            plugin.class: org.hippoecm.frontend.editor.plugins.field.NodeFieldPlugin
+            hint: "This field is a plain text field so we can deafult the value.\r\
+              \n\r\nIf that"
+            plugin.class: org.hippoecm.frontend.editor.plugins.field.PropertyFieldPlugin
             wicket.id: ${cluster.id}.field
-            hint: ''
             /cluster.options:
               jcr:primaryType: frontend:pluginconfig
-              ckeditor.config.overlayed.json: '{toolbarGroups: [{ name: ''links''
-                },{name:''insert''},{name:''clipboard''},{name:''tools''},{name:''undo''}]
-                , removeButtons: ''PickImage,Youtube,Table''}'
