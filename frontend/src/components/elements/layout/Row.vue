@@ -23,8 +23,7 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
-@import "~bootstrap/scss/type";
+<style lang="scss">
 @import "~bootstrap/scss/grid";
 </style>
 

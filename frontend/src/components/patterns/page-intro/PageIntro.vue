@@ -26,7 +26,7 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 @import "~bootstrap/scss/type";
 
 .vs-page-intro__wrapper--outer {
@@ -56,7 +56,7 @@ export default {
     background-color: $color-theme-light;
 }
 
-.vs-page-intro ::v-deep .vs-page-intro__wrapper--inner {
+.vs-page-intro .vs-page-intro__wrapper--inner {
     @include media-breakpoint-up(lg) {
         background: $color-white;
         margin: -250px 0 0;
@@ -68,7 +68,7 @@ export default {
     }
 }
 
-.vs-page-intro ::v-deep figcaption {
+.vs-page-intro .vs-hero figcaption {
     @include media-breakpoint-up(lg) {
         bottom: 200px;
     }
