@@ -168,10 +168,6 @@ export default {
             }
         }
 
-        &--single-image {
-            padding-bottom: 0;
-        }
-
         @include media-breakpoint-up(lg) {
             .vs-megalinks__intro {
                 text-align: center;
