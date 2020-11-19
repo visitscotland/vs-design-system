@@ -412,7 +412,7 @@ VS_SSR_PROXY_TARGET_HOST = http://localhost:8080
 
 ## Styling
 
-The package's core styles and Sass members are located in the `src/styles/` directory. All global Sass members are imported into `src/styles/styles.scss` and are available for use in any Vue component without explicit import - these are resolved during the builds using [Sass resources loader](https://github.com/shakacode/sass-resources-loader).
+The package's core styles and Sass members are located in the `src/styles/` directory. All global Sass members are imported into `src/styles/resources.scss` and are available for use in any Vue component without explicit import - these are resolved during the builds using [Sass resources loader](https://github.com/shakacode/sass-resources-loader).
 
 Any styles intended to be applied gloabally should be imported into `src/styles/core.styles.scss` - this Sass file is included in the core App module and will manifest as global styles in the library and design system builds.
 

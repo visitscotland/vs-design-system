@@ -66,7 +66,7 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 @import "~bootstrap/scss/type";
 
 .vs-favourites-list__link {
