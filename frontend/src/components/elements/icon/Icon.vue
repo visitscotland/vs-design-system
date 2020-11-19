@@ -2,10 +2,10 @@
     <VsSvg
         :path="path"
         :class="{
-            icon: true,
-            ['icon-' + size]: true,
-            ['icon-' + formattedName]: true,
-            ['icon-' + variant]: variant,
+            'vs-icon': true,
+            [`vs-icon--size-${size}`]: true,
+            [`vs-icon--${formattedName}`]: true,
+            [`vs-icon--variant-${variant}`]: variant,
             ['icon--' + orientation]: orientation,
         }"
         v-bind="$attrs"
@@ -36,7 +36,7 @@ export default {
     },
     props: {
         /**
-         * The name of the icon to display.
+         * The name of the icon to display, which will be the name of the icon file
          */
         name: {
             type: String,
@@ -183,11 +183,7 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
-// @include reset;
-
-@mixin icon-dimensions($size, $dimension) {
-}
+<style lang="scss">
 
 $sizes: (
     xxs: $icon-size-xxs,
@@ -212,32 +208,23 @@ $variants: (
     secondary-teal: $color-theme-secondary-teal,
 );
 
-.icon {
+.vs-icon {
     fill: $color-black;
     overflow: visible;
 
     @each $size in map-keys($sizes) {
         $this-size: map-get($sizes, $size);
 
-        &.icon-#{$size} {
+        &.vs-icon--size-#{$size} {
             height: $this-size;
             width: $this-size;
             padding: 0;
-
-            &.icon-reverse {
-                border-radius: $this-size / 2;
-            }
         }
     }
 
     @each $variant in map-keys($variants) {
-        &.icon-#{$variant} {
+        &.vs-icon--variant-#{$variant} {
             fill: map-get($variants, $variant);
-
-            &.icon-reverse {
-                fill: $color-white;
-                background: map-get($variants, $variant);
-            }
         }
     }
 
@@ -258,89 +245,73 @@ $variants: (
 <docs>
 ```jsx
   <div>
-    <bs-wrapper class="row mb-5">
-      <bs-wrapper class="col">
-        <h3>Default</h3>
-        <vs-icon name="search" />
-      </bs-wrapper>
-    </bs-wrapper>
 
-    <bs-wrapper class="row mb-5">
-      <bs-wrapper class="col">
-        <h3>Variant</h3>
-        <vs-icon name="user" variant="primary" />
-        <vs-icon name="user" variant="secondary" />
-        <vs-icon name="user" variant="success" />
-        <vs-icon name="user" variant="warning" />
-        <vs-icon name="user" variant="info" />
-        <vs-icon name="user" variant="danger" />
-        <vs-icon name="user" variant="dark" />
-        <vs-icon name="user" variant="light" />
-      </bs-wrapper>
-    </bs-wrapper>
+    <h3>Default</h3>
+    <vs-icon name="search" />
 
-    <bs-wrapper class="row mb-5">
-      <bs-wrapper class="col">
-        <h3>Size</h3>
+    <h3 class="mt-8">Variant</h3>
+    <vs-icon name="user" variant="primary" />
+    <vs-icon name="user" variant="secondary" />
+    <vs-icon name="user" variant="success" />
+    <vs-icon name="user" variant="warning" />
+    <vs-icon name="user" variant="info" />
+    <vs-icon name="user" variant="danger" />
+    <vs-icon name="user" variant="dark" />
+    <vs-icon name="user" variant="light" />
 
-        <bs-wrapper class="d-flex">
-          <bs-wrapper class="d-flex flex-column mr-3 align-items-center">
+    <h3 class="mt-8">Size</h3>
+
+    <div class="d-flex">
+        <div class="d-flex flex-column mr-3 align-items-center">
             <h4>xxs</h4>
             <vs-icon name="favourite" size="xxs" />
-          </bs-wrapper>
+            </div>
 
-          <bs-wrapper class="d-flex flex-column mr-3 align-items-center">
+            <div class="d-flex flex-column mr-3 align-items-center">
             <h4>xs</h4>
             <vs-icon name="favourite" size="xs" />
-          </bs-wrapper>
+            </div>
 
-          <bs-wrapper class="d-flex flex-column mr-3 align-items-center">
+            <div class="d-flex flex-column mr-3 align-items-center">
             <h4>sm</h4>
             <vs-icon name="favourite" size="sm" />
-          </bs-wrapper>
+            </div>
 
-          <bs-wrapper class="d-flex flex-column mr-3 align-items-center">
+            <div class="d-flex flex-column mr-3 align-items-center">
             <h4>md</h4>
             <vs-icon name="favourite" size="md" />
-          </bs-wrapper>
+            </div>
 
-          <bs-wrapper class="d-flex flex-column mr-3 align-items-center">
+            <div class="d-flex flex-column mr-3 align-items-center">
             <h4>lg</h4>
             <vs-icon name="favourite" size="lg" />
-          </bs-wrapper>
+            </div>
 
-          <bs-wrapper class="d-flex flex-column mr-3 align-items-center">
+            <div class="d-flex flex-column mr-3 align-items-center">
             <h4>xl</h4>
             <vs-icon name="favourite" size="xl" />
-          </bs-wrapper>
-        </bs-wrapper>
-      </bs-wrapper>
-    </bs-wrapper>
+            </div>
+        </div>
 
-    <bs-wrapper class="row mb-5">
-        <bs-wrapper class="col">
-            <h3>Orientation</h3>
-
-            <bs-wrapper class="d-flex">
-                <bs-wrapper class="d-flex flex-column mr-3 align-items-center">
-                    <h4>Up</h4>
-                    <vs-icon name="chevron" orientation="up" />
-                </bs-wrapper>
-                <bs-wrapper class="d-flex flex-column mr-3 align-items-center">
-                    <h4>Down</h4>
-                    <vs-icon name="chevron" orientation="down" />
-                </bs-wrapper>
-                <bs-wrapper class="d-flex flex-column mr-3 align-items-center">
-                    <h4>Left</h4>
-                    <vs-icon name="chevron" orientation="left" />
-                </bs-wrapper>
-                <bs-wrapper class="d-flex flex-column mr-3 align-items-center">
-                    <h4>Right</h4>
-                    <vs-icon name="chevron" orientation="right" />
-                </bs-wrapper>
-            </bs-wrapper>
-        </bs-wrapper>
-    </bs-wrapper>
+        <h3 class="mt-8">Orientation</h3>
+        <div class="d-flex">
+            <div class="d-flex flex-column mr-3 align-items-center">
+                <h4>Up</h4>
+                <vs-icon name="chevron" orientation="up" />
+            </div>
+            <div class="d-flex flex-column mr-3 align-items-center">
+                <h4>Down</h4>
+                <vs-icon name="chevron" orientation="down" />
+            </div>
+            <div class="d-flex flex-column mr-3 align-items-center">
+                <h4>Left</h4>
+                <vs-icon name="chevron" orientation="left" />
+            </div>
+            <div class="d-flex flex-column mr-3 align-items-center">
+                <h4>Right</h4>
+                <vs-icon name="chevron" orientation="right" />
+            </div>
+        </div>
     </div>
 ```
 </docs>

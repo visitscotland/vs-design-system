@@ -11,7 +11,7 @@
                 >
                     <VsSvgLink
                         class="vs-footer-copyright__logo mb-4"
-                        data-test="vs-footer-copyright__logo"
+                        data-test="vs-footer-copyright-logo"
                         :link-alt-text="linkAltText"
                         :href="href"
                         svg-fill="700e57"
