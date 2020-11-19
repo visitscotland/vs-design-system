@@ -1,14 +1,14 @@
 <template>
     <BCard
         class="vs-panel"
-        :class="[this.$slots['vs-panel-title'] ? '' : 'pt-10']"
+        :class="[this.$slots['vs-panel__title'] ? '' : 'pt-10']"
     >
         <template v-slot:header>
             <!-- @slot Contains an optional title for the panel  -->
             <slot name="vs-panel-title" />
         </template>
 
-        <BCardText class="vs-panel-text">
+        <BCardText class="vs-panel__text">
             <!-- @slot default slot containing main body text -->
             <slot />
         </BCardText>
@@ -32,8 +32,8 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
-.vs-panel {
+<style lang="scss">
+.vs-panel.card {
     background-color: $color-theme-light;
     padding: $spacer-9 $spacer-4 $spacer-9;
 
@@ -49,12 +49,12 @@ export default {
         padding: $spacer-9 $spacer-12 $spacer-10;
     }
 
-    .vs-panel-title {
+    .vs-panel__title {
         display: block;
         text-align: center;
     }
 
-    .vs-panel-text {
+    .vs-panel__text {
         @include media-breakpoint-down(xs) {
             .vs-rich-text-wrapper.lead {
                 font-size: $font-size-base;

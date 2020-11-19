@@ -19,7 +19,7 @@
             </VsCol>
         </VsFooterNavList>
 
-        <div class="vs-footer-social-menu__wrapper border-top border-secondary-light">
+        <div class="vs-footer__social-menu-wrapper border-top border-secondary-light">
             <VsContainer>
                 <VsRow>
                     <VsCol
@@ -61,26 +61,24 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .vs-footer {
     background: $color-theme-dark;
 
-    .vs-footer-social-menu__wrapper {
+    .vs-footer__social-menu-wrapper {
         @include media-breakpoint-down(sm) {
             .container {
                 max-width: 100%;
                 padding: 0;
 
-                & ::v-deep {
-                    .row {
-                        margin-right: 0;
-                        margin-left: 0;
+                .row {
+                    margin-right: 0;
+                    margin-left: 0;
 
-                        > .col,
-                        > [class*="col-"] {
-                            padding-right: 0;
-                            padding-left: 0;
-                        }
+                    > .col,
+                    > [class*="col-"] {
+                        padding-right: 0;
+                        padding-left: 0;
                     }
                 }
             }
