@@ -1,6 +1,6 @@
 <template>
-    <div class="position-wrapper">
-        <ul class="vs-summary-box-list list-unstyled d-flex flex-wrap p-2 p-sm-3">
+    <div class="vs-summary-box__wrapper">
+        <ul class="vs-summary-box__list list-unstyled d-flex flex-wrap p-2 p-sm-3">
             <slot />
         </ul>
     </div>
@@ -21,16 +21,16 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 @import "~bootstrap/scss/type";
-.vs-summary-box-list {
+.vs-summary-box__list {
     background-color: $color-yellow;
     width: 350px;
     @include media-breakpoint-up(lg) {
         width: 400px;
     }
 }
-.position-wrapper {
+.vs-summary-box__wrapper {
     display: flex;
     justify-content: center;
     @include media-breakpoint-up(lg) {

@@ -50,8 +50,8 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
-.vs-itinerary-mobile-map-toggle ::v-deep {
+<style lang="scss">
+.vs-itinerary-mobile-map-toggle {
     padding-left: 1rem;
     padding-right: 1rem;
 
