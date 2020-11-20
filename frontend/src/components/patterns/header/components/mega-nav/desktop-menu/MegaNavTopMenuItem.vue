@@ -17,16 +17,15 @@
                     v-if="href && ctaText"
                     :href="href"
                     class="vs-mega-nav-top-menu-item__cta-link"
-                    data-test="vs-mega-nav-top-menu-item__cta-link"
                 >
                     {{ ctaText }}
                 </VsLink>
-                <hr>
+                <hr class="vs-mega-nav-top-menu-item__divider">
             </template>
 
             <template #dropdownContent>
                 <!-- @slot Slot for dropdown menu list content -->
-                <div class="vs-mega-nav-top-menu-item__columns">
+                <div class="vs-mega-nav-top-menu-item__columns-wrapper">
                     <slot name="dropdownContent" />
                 </div>
             </template>
@@ -79,12 +78,27 @@ export default {
         }
     }
 
-    &__columns{
+    &__cta-link{
+        text-decoration: none;
+        padding: 0.12rem $spacer-5;
+        transition: 0.2s color;
+
+        &:hover{
+            color: $color-secondary-gray-shade-3;
+        }
+    }
+
+    &__divider{
+        margin: $spacer-3 0 $spacer-8;
+    }
+
+    &__columns-wrapper{
         display: flex;
         width: 100%;
         flex-flow: column wrap;
-        margin-left: -8px;
-        max-height: 500px;
+        height: 470px;
+        overflow: hidden;
+        align-content: start;
     }
 }
 

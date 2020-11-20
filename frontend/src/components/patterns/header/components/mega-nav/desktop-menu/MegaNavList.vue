@@ -22,13 +22,21 @@ export default {
 
 <style lang="scss">
     .mega-nav-list{
-        // background: grey;
-        padding: 0;
-        overflow: hidden;
-        border-radius: 5px;
-        margin: 0 0 8px 8px;
-        color: white;
         position: relative;
+        padding: 0;
+        margin: 0 $spacer-6 $spacer-5 0;
+        width: 23.1%;
+        color: $color-white;
+
+        @include media-breakpoint-up(xl) {
+            margin-right: $spacer-9;
+            width: 21.8%;
+        }
+
+        @include media-breakpoint-up(xxl) {
+            margin-right: $spacer-10;
+            width: 21.4%;
+        }
     }
 </style>
 

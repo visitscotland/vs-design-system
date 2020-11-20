@@ -32,7 +32,7 @@ export default {
     &.vs-list--unstyled{
         width: 100%;
         display: flex;
-        margin-top: 0.75rem;
+        margin-top: $spacer-3;
     }
 }
 
