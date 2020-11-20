@@ -30,7 +30,7 @@ import static org.mockito.Mockito.*;
 
 
 @ExtendWith(MockitoExtension.class)
-public class LinkModuleFactoryMockitoTest {
+public class LinkModuleFactoryTest {
 
     public static final String DMS_ID = "0123456798";
     public static final String EXTERNAL_URL = "http://www.fake.site";
@@ -262,6 +262,19 @@ public class LinkModuleFactoryMockitoTest {
     @Test
     @DisplayName("CTA is populated when the ProductItem field is populated")
     void multiImageLayout_optionCTA() {
+        //Verifies that when the field ProductItem is populated
+        ExternalLink mockLink = mock(ExternalLink.class);
+        Megalinks mega = mockMultiImage();
+        when(mega.getProductItem()).thenReturn(mockLink);
+        when(linkService.createLink(any(Locale.class), eq(mockLink))).thenReturn(new FlatLink(null, "cta-link", null));
+
+        LinksModule layout = factory.multiImageLayout(mega, Locale.UK);
+
+        assertEquals("cta-link", layout.getCta().getLink());
+    }
+    @Test
+    @DisplayName("Get a horizontal")
+    void getMegalinkModule_horizontalListLayout() {
         //Verifies that when the field ProductItem is populated
         ExternalLink mockLink = mock(ExternalLink.class);
         Megalinks mega = mockMultiImage();
