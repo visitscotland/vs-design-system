@@ -241,7 +241,6 @@ public class LinkModulesFactory {
         }
 
         if (linkable instanceof Page) {
-            //TODO add itineraries days and transport
             link.setType(LinkType.INTERNAL);
             if (linkable instanceof Itinerary) {
                 link.setItineraryTransport(((Itinerary) linkable).getTransports()[0]);
