@@ -51,7 +51,7 @@
                             <vs-footer-nav-list-item
                                 href="${href}"
                                 link-text="${childItem.title}"
-                                :external="<#if external>true<#else>false</#if>"
+                                <#if external>type="external"</#if>
                             ></vs-footer-nav-list-item>
                         </#if>
                     </#list>

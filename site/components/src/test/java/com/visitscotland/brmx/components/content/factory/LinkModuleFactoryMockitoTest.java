@@ -8,6 +8,7 @@ import com.visitscotland.brmx.beans.mapping.FlatLink;
 import com.visitscotland.brmx.beans.mapping.megalinks.EnhancedLink;
 import com.visitscotland.brmx.beans.mapping.megalinks.LinksModule;
 import com.visitscotland.brmx.dms.DMSDataService;
+import com.visitscotland.brmx.dms.LocationLoader;
 import com.visitscotland.brmx.dms.ProductSearchBuilder;
 import com.visitscotland.brmx.services.LinkService;
 import com.visitscotland.brmx.services.ResourceBundleService;
@@ -118,11 +119,14 @@ public class LinkModuleFactoryMockitoTest {
     @Mock(lenient = true)
     LinkService linkService;
 
+    @Mock
+    LocationLoader locationLoader;
+
     @BeforeEach
     public void beforeEach() {
         when(linkService.getPlainLink(any(SharedLink.class), any())).thenReturn(PLAIN_LINK);
 
-        factory = new LinkModulesFactory(utils, dmsData, linkService);
+        factory = new LinkModulesFactory(utils, dmsData, linkService, locationLoader);
     }
 
 

@@ -5,11 +5,11 @@
         :target="external ? '_blank' : null"
         :data-vs-track="trackingId"
         tabindex="0"
-        class="vs-drawer__list-item
+        class="vs-drawer-list-item
         text-white text-nowrap
         text-justify align-items-center
         d-flex px-lg-2"
-        :class="{ 'vs-drawer__list-item--full-width': fullWidth }"
+        :class="{ 'vs-drawer-list-item--full-width': fullWidth }"
     >
         <slot />
         <VsIcon
@@ -56,10 +56,10 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 @import "~bootstrap/scss/list-group";
 
-.vs-drawer__list-item.list-group-item {
+.vs-drawer-list-item.list-group-item {
   background-color: transparent;
   margin-bottom: 0;
 
@@ -75,7 +75,7 @@ export default {
     box-shadow: inset 0 -3px 0 0 $white, inset 0 3px 0 0 white;
   }
 
-  &.vs-drawer__list-item--full-width {
+  &.vs-drawer-list-item--full-width {
     padding-left: $grid-gutter-width / 2;
     padding-right: $grid-gutter-width / 2;
 

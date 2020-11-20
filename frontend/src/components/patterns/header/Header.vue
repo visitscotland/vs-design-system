@@ -20,10 +20,29 @@ export default {
 </script>
 
 <style lang="scss">
+@import "~bootstrap/scss/type";
 
-.vs-header{
+.vs-header {
     position: relative;
     z-index: 10;
+}
+
+.vs-header__top {
+    z-index: $zindex-sticky;
+
+    .header__top-main {
+        height: 28px;
+            font-size: $font-size-base;
+            font-weight: 400;
+
+        @include media-breakpoint-up(md) {
+            height: 35px;
+        }
+
+        @include media-breakpoint-up(lg) {
+            font-size: $font-size-sm;
+        }
+    }
 }
 
 </style>
