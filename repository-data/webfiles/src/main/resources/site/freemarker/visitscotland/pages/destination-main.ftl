@@ -14,8 +14,10 @@
 <#include "../../frontend/components/vs-heading.ftl">
 <#include "../../frontend/components/vs-social-share.ftl">
 
-<#include "../macros/modules/megalinks/megalinks-multi-image.ftl">
-<#include "../macros/modules/megalinks/megalinks-single-image.ftl">
+<#include "../macros/modules/megalinks/megalinks.ftl">
+<#include "../macros/shared/module-builder.ftl">
+<#--  <#include "../macros/modules/megalinks/multi-image/megalinks-multi-image.ftl">  -->
+<#--  <#include "../macros/modules/megalinks/megalinks-single-image.ftl">
 <#include "../macros/modules/megalinks/megalinks-list.ftl">
 <#include "../macros/global/cms-errors.ftl">
 
@@ -87,7 +89,6 @@
 			<#assign theme = "#FFFFFF" />
 		</#if>
 
-        <@moduleBuilder item theme />
-	</vs-container>
+        <@moduleBuilder module=item theme=theme />
 	</#list>
 </div>
