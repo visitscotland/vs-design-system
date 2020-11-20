@@ -11,7 +11,7 @@ definitions:
         /hipposysedit:nodetype:
           jcr:primaryType: hipposysedit:nodetype
           jcr:mixinTypes: ['mix:referenceable', 'hipposysedit:remodel']
-          jcr:uuid: e5fbdd43-ad4c-4303-8735-1468ff98e50a
+          jcr:uuid: 59b3cb87-89d7-476f-839b-8774c681ec95
           hipposysedit:node: true
           hipposysedit:supertype: ['visitscotland:basedocument', 'hippostd:relaxed',
             'hippotranslation:translated']
@@ -89,7 +89,7 @@ definitions:
           hippotranslation:locale: document-type-locale
           jcr:mixinTypes: ['mix:referenceable']
           visitscotland:title: ''
-          jcr:uuid: cae990a1-80f5-43b6-927b-8814d4d7e5bb
+          jcr:uuid: 874cee0b-dadb-43c3-bf81-6e1aec560f52
           hippostdpubwf:lastModificationDate: 2020-05-14T14:29:51.020+01:00
           hippostdpubwf:creationDate: 2020-05-14T14:29:51.020+01:00
           visitscotland:teaserVisible: true
@@ -137,11 +137,14 @@ definitions:
             field: introduction
             plugin.class: org.hippoecm.frontend.editor.plugins.field.NodeFieldPlugin
             wicket.id: ${cluster.id}.left.item
+            hint: ''
             /cluster.options:
               jcr:primaryType: frontend:pluginconfig
               ckeditor.config.overlayed.json: '{toolbarGroups: [{ name: ''links''
                 },{name:''insert''},{name:''clipboard''},{name:''tools''},{name:''undo''}]
                 , removeButtons: ''PickImage,Youtube,Table''}'
+              ckeditor.config.appended.json: "{   extraPlugins: 'wordcount',   wordcount:\
+                \ { \tcountSpacesAsChars: true,     showCharCount: true   }  }"
           /singleImageLinks:
             jcr:primaryType: frontend:plugin
             caption: Single Image view

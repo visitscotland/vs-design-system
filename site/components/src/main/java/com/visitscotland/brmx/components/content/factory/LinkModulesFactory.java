@@ -115,6 +115,7 @@ public class LinkModulesFactory {
      * @return MultiImageLinksModule containing the relevant information from the Megalinks document
      */
     public MultiImageLinksModule multiImageLayout(Megalinks doc, Locale locale) {
+        List<String> warnings =  new ArrayList<>();
         MultiImageLinksModule fl = new MultiImageLinksModule();
         populateCommonFields(fl, doc, locale);
         fl.setTeaserVisible(doc.getTeaserVisible());
@@ -136,10 +137,13 @@ public class LinkModulesFactory {
             //When there is more than 3 items and no featured item the first item is promoted as featured.
             if (fl.getFeaturedLinks().size() == 0 && fl.getLinks().size() > 3) {
                 fl.getFeaturedLinks().add(fl.getLinks().get(0));
+                warnings.add("No featured item provided, first link will be selected as featured");
+
             }
 
             //Links added to the Featured list MUST be removed from the original list
             fl.getLinks().removeAll(fl.getFeaturedLinks());
+            fl.setErrorMessages(warnings);
         } else {
             fl.setFeaturedLinks(Collections.EMPTY_LIST);
         }
@@ -228,12 +232,14 @@ public class LinkModulesFactory {
             }
             */
             link.setLink(utils.createUrl((Page) linkable));
+            link.setType(LinkType.INTERNAL);
         } else if (linkable instanceof SharedLink) {
             JsonNode product = getNodeFromSharedLink((SharedLink) linkable, locale);
             if (link.getImage() == null && product != null && product.has(IMAGE)) {
                 link.setImage(new FlatImage(product));
             }
             link.setLink(linkService.getPlainLink((SharedLink) linkable, product));
+            link.setType(linkService.getType(link.getLink()));
         } else {
             logger.warn(String.format("The type %s was not expected and will be skipped", linkable.getClass().getSimpleName()));
             return null;
