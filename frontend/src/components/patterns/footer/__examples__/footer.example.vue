@@ -142,22 +142,22 @@
                         <VsFooterNavListItem
                             href="#"
                             link-text="Brochures"
-                            external
+                            type="external"
                         />
                         <VsFooterNavListItem
                             href="#"
                             link-text="VisitScotland iCentres"
-                            external
+                            type="external"
                         />
                         <VsFooterNavListItem
                             href="#"
                             link-text="iKnow Scotland Community"
-                            external
+                            type="external"
                         />
                         <VsFooterNavListItem
                             href="#"
                             link-text="VisitScotland Awards"
-                            external
+                            type="external"
                         />
                     </VsList>
                 </VsFooterAccordionItem>
