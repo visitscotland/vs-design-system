@@ -253,8 +253,8 @@ class LinkServiceTest {
     @Test
     @DisplayName("Return the category for the link/page")
     void getLinkCategory() {
-        when(resourceBundle.getResourceBundle("otyml", "category.ebooks", Locale.UK ,true)).thenReturn("ebook");
-        assertEquals("ebook", getCategory("https://ebooks.visitscotland.com/whisky-distilleries-guides/", "otyml", "category.ebooks", "ebook"));
+
+        assertEquals("eBooks", service.getLinkCategory("https://ebooks.visitscotland.com/whisky-distilleries-guides/",Locale.UK));
 
         String blog = "Travel Blog";
         when(resourceBundle.getResourceBundle("navigation.main", "blog", Locale.UK ,true)).thenReturn(blog);
