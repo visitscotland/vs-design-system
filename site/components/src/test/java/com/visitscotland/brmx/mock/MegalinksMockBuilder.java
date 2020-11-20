@@ -1,12 +1,10 @@
 package com.visitscotland.brmx.mock;
 
 import com.visitscotland.brmx.beans.*;
+import com.visitscotland.brmx.beans.capabilities.Linkable;
 import com.visitscotland.brmx.components.content.factory.LinkModuleFactoryTest;
 import com.visitscotland.brmx.components.content.factory.LinkModulesFactory;
-import org.junit.jupiter.api.Assertions;
 import org.mockito.Mockito;
-
-import java.util.Collections;
 
 import static org.mockito.Mockito.*;
 
@@ -26,6 +24,7 @@ public class MegalinksMockBuilder {
     public enum LinkType {CMS, DMS, EXTERNAL, PRODUCT_SEARCH}
 
     private Megalinks megalinks;
+    private Linkable linkable;
 
     public MegalinksMockBuilder() {
         megalinks = Mockito.mock(Megalinks.class);
@@ -40,6 +39,33 @@ public class MegalinksMockBuilder {
         when (megalinks.getLayout()).thenReturn(LinkModulesFactory.HORIZONTAL_LAYOUT);
 
         return this;
+    }
+
+    public Linkable getItinerary(String mainTransport, int days){
+        Itinerary itinerary = mock(Itinerary.class, RETURNS_DEEP_STUBS);
+
+        when (itinerary.getTransports()).thenReturn(new String[]{mainTransport});
+        when (itinerary.getDays().size()).thenReturn(days);
+
+        return itinerary;
+    }
+    public Linkable getPage(){
+       return mock(Page.class);
+    }
+
+    public Linkable getExternalDocument(String title, String url, String magnitude, Double size, String category){
+        SharedLink sharedLink = mock(SharedLink.class, RETURNS_DEEP_STUBS);
+        ExternalDocument externalDocument = mock(ExternalDocument.class, RETURNS_DEEP_STUBS);
+
+        when (sharedLink.getLinkType()).thenReturn(externalDocument);
+        when (sharedLink.getTitle()).thenReturn(title);
+        when (externalDocument.getLink()).thenReturn(url);
+        when (externalDocument.getSize()).thenReturn(size);
+        when (externalDocument.getBytes()).thenReturn(magnitude);
+        if (category!=null) {
+            when(externalDocument.getCategory()).thenReturn(category);
+        }
+        return sharedLink;
     }
 
     public MegalinkItem mockItem() {

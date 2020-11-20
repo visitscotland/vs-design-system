@@ -15,6 +15,7 @@ import com.visitscotland.brmx.services.LinkService;
 import com.visitscotland.brmx.services.ResourceBundleService;
 import com.visitscotland.brmx.utils.CommonUtils;
 import com.visitscotland.brmx.utils.HippoUtilsService;
+import com.visitscotland.utils.Contract;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -92,7 +93,7 @@ public class LinkModulesFactory {
 
     public HorizontalListLinksModule horizontalListLayout(OTYML doc, Locale locale) {
         HorizontalListLinksModule target = new HorizontalListLinksModule();
-        target.setTitle(doc.getTitle().isEmpty()? (bundle.getResourceBundle("modules", "otyml.title.default", locale ,true)): doc.getTitle());
+        target.setTitle(Contract.isEmpty(doc.getTitle())? (bundle.getResourceBundle("modules", "otyml.title.default", locale ,true)): doc.getTitle());
         target.setIntroduction(doc.getIntroduction());
         target.setLinks(convertToEnhancedLinks(doc.getMegalinkItems(), locale,true));
 
