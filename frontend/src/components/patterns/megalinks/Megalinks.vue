@@ -1,7 +1,7 @@
 <template>
     <section
         class="vs-megalinks"
-        :class="`vs-megalinks--${variant}`"
+        :class="[variant ? `vs-megalinks--${variant}` : '', `vs-megalinks--${theme}`]"
         data-test="megalinks"
     >
         <VsContainer class="container-lg">
@@ -35,7 +35,7 @@
                 <!-- @slot Default slot to contain link blocks -->
                 <slot />
             </div>
-            <VsRow v-if="buttonLink">
+            <VsRow v-if="buttonLink && variant !== 'single-image'">
                 <VsCol cols="12">
                     <div
                         class="vs-megalinks__button"
@@ -101,13 +101,22 @@ export default {
             required: false,
             default: null,
         },
+        /**
+        * The component color theme
+        */
+        theme: {
+            type: String,
+            default: 'light',
+            validator: (value) => value.match(/(light|dark)/),
+        },
     },
 };
 </script>
 
 <style lang="scss">
     .vs-megalinks {
-        padding: 0 0 $spacer-12;
+        padding: $spacer-9 0 $spacer-9;
+
         // make panels in a row equal height
         .row {
             display: flex;
@@ -121,7 +130,11 @@ export default {
         .vs-megalinks__intro {
             width: 100%;
             text-align: center;
-            margin-bottom: $spacer-9;
+            margin-bottom: $spacer-8;
+
+            .vs-heading__sub-heading {
+                margin: 0;
+            }
 
             p:first-of-type {
                 margin-top: $spacer-6;
@@ -173,6 +186,8 @@ export default {
         }
 
         @include media-breakpoint-up(lg) {
+            padding: $spacer-12 0 $spacer-12;
+
             .vs-megalinks__intro {
                 text-align: center;
                 margin-bottom: $spacer-9;
@@ -193,18 +208,60 @@ export default {
                     margin-top: $spacer-12;
                 }
             }
+
+             &--single-image {
+                padding-bottom: 0;
+            }
+        }
+
+        &--light {
+            & + .vs-megalinks--light {
+                padding-top: 0;
+            }
+        }
+
+        &--dark {
+            background: $color-secondary-gray-shade-4;
+
+            & + .vs-megalinks--dark {
+                padding-top: 0;
+            }
+
+            .vs-megalinks__heading {
+                color: $color-yellow;
+            }
+
+            .card .stretched-link,
+            p {
+                color: $color-white;
+            }
+
+            .card,
+            .megalink-link-list__wrapper.card {
+                &:hover {
+                    box-shadow: 10px 10px 15px #000000;
+                }
+
+                .stretched-link:focus {
+                    outline: 2px $color-yellow solid;
+                }
+            }
         }
     }
 </style>
 
 <docs>
     ```js
-    <VsMegalinks title="A megalinks multi image component" class="vs-megalinks--multi-image" buttonLink="http://www.visitscotland.com">
+    <VsMegalinks
+        title="A megalinks multi image component"
+        class="vs-megalinks--multi-image"
+        buttonLink="http://www.visitscotland.com"
+    >
         <template slot="vsMegalinksIntro">
             <p>Sed at mauris a est dictum luctus. Nullam viverra
             pellentesque dolor, id elementum neque viverra quis.
             Morbi lacinia est id risus facilisis porttitor ut ac mi.
-            Maecenas bibendum sodales nisi eu luctus.</p>.
+            Maecenas bibendum sodales nisi eu luctus.</p>
         </template>
         <VsCol
             cols="12"
@@ -369,7 +426,125 @@ export default {
         </template>
     </VsMegalinks>
 
-    <VsMegalinks title="A megalinks link list component" class="vs-megalinks--multi-image" buttonLink="http://www.visitscotland.com">
+    <VsMegalinks
+        title="A megalinks multi image component"
+        class="vs-megalinks--multi-image"
+        buttonLink="http://www.visitscotland.com"
+        theme="dark"
+    >
+        <template slot="vsMegalinksIntro">
+            <p>Sed at mauris a est dictum luctus. Nullam viverra
+            pellentesque dolor, id elementum neque viverra quis.
+            Morbi lacinia est id risus facilisis porttitor ut ac mi.
+            Maecenas bibendum sodales nisi eu luctus.</p>
+        </template>
+        <VsCol
+            cols="12"
+            md="12"
+            lg="10"
+            class="offset-lg-1"
+        >
+            <VsContainer>
+                <VsRow>
+                    <VsCol
+                        cols="12"
+                        md="6"
+                        lg="12"
+                    >
+                        <vs-megalink-multi-image
+                            featured
+                            imgSrc="https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"
+                            imgAlt="This is the alt text"
+                            linkType="internal"
+                            theme="dark"
+                        >
+                            <template slot="vsMultiImageHeading">
+                                The Edinburgh International Festival and summer festival
+                            </template>
+                            <template slot="vsMultiImageContent">
+                                <p>Right across the country, you’ll find amazing
+                                places to eat and drink
+                                from local markets to renowned restaurants.</p>
+                            </template>
+                        </vs-megalink-multi-image>
+                    </VsCol>
+                    <VsCol
+                        cols="12"
+                        md="6"
+                        lg="4"
+                    >
+                        <vs-megalink-multi-image
+                            imgSrc="https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"
+                            imgAlt="This is the alt text 1"
+                            linkType="external"
+                            theme="dark"
+                        >
+                            <template slot="vsMultiImageHeading">
+                                Count 7,000 shining stars in the iconic galloway forest
+                            </template>
+                            <template slot="vsMultiImageContent">
+                                <p>Right across the country, you’ll find amazing
+                                places to eat and drink from local markets to renowned
+                                restaurants. Here are some recomm…</p>
+                            </template>
+                        </vs-megalink-multi-image>
+                    </VsCol>
+                    <VsCol
+                        cols="12"
+                        md="6"
+                        lg="4"
+                    >
+                        <vs-megalink-multi-image
+                            imgSrc="https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"
+                            imgAlt="This is the alt text 1"
+                            linkType="external"
+                            theme="dark"
+                        >
+                            <template slot="vsMultiImageHeading">
+                                Count 7,000 shining stars in the iconic galloway forest
+                            </template>
+                            <template slot="vsMultiImageContent">
+                                <p>Right across the country, you’ll find amazing
+                                places to eat and drink from local markets to renowned
+                                restaurants. Here are some recomm…</p>
+                            </template>
+                        </vs-megalink-multi-image>
+                    </VsCol>
+                    <VsCol
+                        cols="12"
+                        md="6"
+                        lg="4"
+                    >
+                        <vs-megalink-multi-image
+                            imgSrc="https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"
+                            imgAlt="This is the alt text 1"
+                            linkType="external"
+                            theme="dark"
+                        >
+                            <template slot="vsMultiImageHeading">
+                                Count 7,000 shining stars in the iconic galloway forest
+                            </template>
+                            <template slot="vsMultiImageContent">
+                                <p>Right across the country, you’ll find amazing
+                                places to eat and drink from local markets to renowned
+                                restaurants. Here are some recomm…</p>
+                            </template>
+                        </vs-megalink-multi-image>
+                    </VsCol>
+                </VsRow>
+            </VsContainer>
+        </VsCol>
+        <template slot="vsMegalinksButton">
+            Button Text
+        </template>
+    </VsMegalinks>
+
+    <VsMegalinks
+        title="A megalinks link list component"
+        class="vs-megalinks--link-list"
+        buttonLink="http://www.visitscotland.com"
+        variant="link-list"
+    >
         <VsCol
             cols="12"
             md="6"
@@ -449,6 +624,225 @@ export default {
         <template slot="vsMegalinksButton">
             Button Text
         </template>
+    </VsMegalinks>
+
+    <VsMegalinks
+        theme="dark"
+        title="A megalinks link list component"
+        class="vs-megalinks--link-list"
+        buttonLink="http://www.visitscotland.com"
+        variant="link-list"
+    >
+        <VsCol
+            cols="12"
+            md="6"
+        >
+            <vs-megalink-link-list
+                imgSrc="https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"
+                imgAlt="This is the alt text"
+                linkType="internal"
+                theme="dark"
+            >
+                <template slot="vsLinkListHeading">
+                    The Edinburgh International Festival and summer festival
+                </template>
+                <template slot="vsLinkListContent">
+                    <p>Right across the country, you’ll find amazing places
+                    to eat and drink from local markets to renowned
+                    restaurants.</p>
+                </template>
+            </vs-megalink-link-list>
+        </VsCol>
+        <VsCol
+            cols="12"
+            md="6"
+        >
+            <vs-megalink-link-list
+                imgSrc="https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"
+                imgAlt="This is the alt text 1"
+                linkType="external"
+                theme="dark"
+            >
+                <template slot="vsLinkListHeading">
+                    Count 7,000 shining stars in the iconic galloway forest
+                </template>
+                <template slot="vsLinkListContent">
+                    <p>Right across the country, you’ll find amazing
+                    places to eat and drink from local markets to renowned
+                    restaurants. Here are some recomm…</p>
+                </template>
+            </vs-megalink-link-list>
+        </VsCol>
+        <VsCol
+            cols="12"
+            md="6"
+        >
+            <vs-megalink-link-list
+                imgSrc="https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"
+                imgAlt="This is the alt text 2"
+                linkType="external"
+                theme="dark"
+            >
+                <template slot="vsLinkListHeading">
+                    Count 7,000 shining stars in the iconic galloway forest
+                </template>
+                <template slot="vsLinkListContent">
+                    <p>Right across the country, you’ll find amazing places
+                    to eat and drink
+                    from local markets to renowned restaurants.
+                    Here are some recomm…</p>
+                </template>
+            </vs-megalink-link-list>
+        </VsCol>
+        <VsCol
+            cols="12"
+            md="6"
+        >
+            <vs-megalink-link-list
+                imgSrc="https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"
+                linkType="download"
+                theme="dark"
+            >
+                <template slot="vsLinkListHeading">
+                    Soar through the air on a boat of Falkirk Wheel (PDF 3MB)
+                </template>
+                <template slot="vsLinkListContent">
+                    <p>Right across the country, you’ll find amazing
+                    places to eat and drink from local markets to renowned
+                    restaurants. Here are some recomm…</p>
+                </template>
+            </vs-megalink-link-list>
+        </VsCol>
+        <template slot="vsMegalinksButton">
+            Button Text
+        </template>
+    </VsMegalinks>
+
+    <VsMegalinks
+        title="A megalinks single image component"
+        class="vs-megalinks--single-image"
+        buttonLink="http://www.visitscotland.com"
+        variant="single-image"
+    >
+        <vs-col cols="12">
+            <vs-megalink-single-image
+                title="The Component heading"
+                buttonLink="www.visitscotland.com"
+                imgSrc="https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"
+            >
+                <template slot="vsSingleImageCaption">An image of Scotland</template>
+                <template slot="vsSingleImageCredit">@2020 Credit here</template>
+                <template slot="vsSingleImageContent">
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        Integer et eros at est dignissim interdum. Fusce nisl metus,
+                        pharetra eu feugiat vitae, porttitor eget est. Vivamus
+                        condimentum urna vel ante tempor, a eleifend neque ultricies.
+                        Morbi convallis, felis id semper vulputate, nisl est porta quam,
+                        luctus vehicula sapien orci quis urna. Suspendisse accumsan leo
+                        diam, nec faucibus neque pulvinar vitae. Duis non rutrum felis,
+                        ut pretium purus. Nullam hendrerit quam vitae ipsum aliquam
+                        fermentum. Fusce gravida eu est in convallis.
+                    </p>
+                </template>
+                <template slot="vsSingleImageLinks">
+                    <li class="megalink-single-image__link-list-item">
+                        <VsLink
+                            href="www.visitscotland.com"
+                        >
+                            This is a link here
+                        </VsLink>
+                    </li>
+                    <li class="megalink-single-image__link-list-item">
+                        <VsLink
+                            href="www.visitscotland.com"
+                            type="external"
+                        >
+                            This is an external link here
+                        </VsLink>
+                    </li>
+                    <li class="megalink-single-image__link-list-item">
+                        <VsLink
+                            href="www.visitscotland.com"
+                            type="download"
+                        >
+                            This is a download link here
+                        </VsLink>
+                    </li>
+                </template>
+                <template slot="vsSingleImageButtonText">
+                    This is the button
+                </template>
+            </vs-megalink-single-image>
+        </vs-col>
+    </VsMegalinks>
+    <VsMegalinks
+        title="A second, dark version"
+        class="vs-megalinks--single-image"
+        buttonLink="http://www.visitscotland.com"
+        variant="single-image"
+        theme="dark"
+    >
+        <template slot="vsMegalinksIntro">
+            <p>Sed at mauris a est dictum luctus. Nullam viverra
+            pellentesque dolor, id elementum neque viverra quis.
+            Morbi lacinia est id risus facilisis porttitor ut ac mi.
+            Maecenas bibendum sodales nisi eu luctus.</p>
+        </template>
+        <vs-col cols="12">
+            <vs-megalink-single-image
+                title="This is the second component heading"
+                theme="dark"
+                buttonLink="www.visitscotland.com"
+                imgSrc="https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"
+                alternate
+            >
+                <template slot="vsSingleImageCaption">An image of Scotland</template>
+                <template slot="vsSingleImageCredit">@2020 Credit here</template>
+                <template slot="vsSingleImageContent">
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        Integer et eros at est dignissim interdum. Fusce nisl metus,
+                        pharetra eu feugiat vitae, porttitor eget est. Vivamus
+                        condimentum urna vel ante tempor, a eleifend neque ultricies.
+                        Morbi convallis, felis id semper vulputate, nisl est porta quam,
+                        luctus vehicula sapien orci quis urna. Suspendisse accumsan leo
+                        diam, nec faucibus neque pulvinar vitae. Duis non rutrum felis,
+                        ut pretium purus. Nullam hendrerit quam vitae ipsum aliquam
+                        fermentum. Fusce gravida eu est in convallis.
+                    </p>
+                </template>
+                <template slot="vsSingleImageLinks">
+                    <li class="megalink-single-image__link-list-item">
+                        <VsLink
+                            variant="dark"
+                            href="www.visitscotland.com"
+                        >
+                            This is a link here
+                        </VsLink>
+                    </li>
+                    <li class="megalink-single-image__link-list-item">
+                        <VsLink
+                            href="www.visitscotland.com"
+                            variant="dark"
+                        >
+                            This is a link here
+                        </VsLink>
+                    </li>
+                    <li class="megalink-single-image__link-list-item">
+                        <VsLink
+                            href="www.visitscotland.com"
+                            variant="dark"
+                        >
+                            This is a link here
+                        </VsLink>
+                    </li>
+                </template>
+                <template slot="vsSingleImageButtonText">
+                    This is the button
+                </template>
+            </vs-megalink-single-image>
+        </vs-col>
     </VsMegalinks>
     ```
 </docs>
