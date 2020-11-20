@@ -6,10 +6,12 @@ import com.visitscotland.brmx.beans.*;
 import com.visitscotland.brmx.beans.capabilities.Linkable;
 import com.visitscotland.brmx.beans.mapping.FlatLink;
 import com.visitscotland.brmx.beans.mapping.megalinks.EnhancedLink;
+import com.visitscotland.brmx.beans.mapping.megalinks.HorizontalListLinksModule;
 import com.visitscotland.brmx.beans.mapping.megalinks.LinksModule;
 import com.visitscotland.brmx.dms.DMSDataService;
 import com.visitscotland.brmx.dms.LocationLoader;
 import com.visitscotland.brmx.dms.ProductSearchBuilder;
+import com.visitscotland.brmx.mock.MegalinksMockBuilder;
 import com.visitscotland.brmx.services.LinkService;
 import com.visitscotland.brmx.services.ResourceBundleService;
 import com.visitscotland.brmx.utils.HippoUtilsService;
@@ -273,17 +275,12 @@ public class LinkModuleFactoryTest {
         assertEquals("cta-link", layout.getCta().getLink());
     }
     @Test
-    @DisplayName("Get a horizontal")
+    @DisplayName("Get a horizontal layout")
     void getMegalinkModule_horizontalListLayout() {
-        //Verifies that when the field ProductItem is populated
-        ExternalLink mockLink = mock(ExternalLink.class);
-        Megalinks mega = mockMultiImage();
-        when(mega.getProductItem()).thenReturn(mockLink);
-        when(linkService.createLink(any(Locale.class), eq(mockLink))).thenReturn(new FlatLink(null, "cta-link", null));
+        Megalinks mega = new MegalinksMockBuilder().horizontalLayout().build();
 
-        LinksModule layout = factory.multiImageLayout(mega, Locale.UK);
-
-        assertEquals("cta-link", layout.getCta().getLink());
+        LinksModule linkModule = factory.getMegalinkModule(mega,Locale.UK);
+        assertEquals("HorizontalListLinksModule", linkModule.getType());
     }
 
 //    @Test
