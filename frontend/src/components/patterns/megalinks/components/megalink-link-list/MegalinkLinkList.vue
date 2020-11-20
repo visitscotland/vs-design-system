@@ -1,10 +1,14 @@
 <template>
-    <div class="megalink-link-list">
+    <div
+        class="megalink-link-list"
+        :class="theme === 'dark' ? 'megalink-link-list--dark' : ''"
+    >
         <VsStretchedLinkCard
             link="https://visitscotland.com"
             :type="linkType"
             class="megalink-link-list__wrapper"
             icon-size="xxs"
+            :theme="theme === 'dark' ? 'dark' : 'light'"
         >
             <VsImg
                 slot="stretchedCardImage"
@@ -86,6 +90,14 @@ export default {
             default: 'xs',
             validator: (value) => value.match(/(xxs|xs|sm|md|lg|xl)/),
         },
+        /**
+        * The component color theme
+        */
+        theme: {
+            type: String,
+            default: 'light',
+            validator: (value) => value.match(/(light|dark)/),
+        },
     },
 };
 </script>
@@ -111,6 +123,7 @@ export default {
             padding: $spacer-2;
             border: none;
             height: 100%;
+            background: transparent;
             transition: box-shadow 800ms;
 
             &:hover {
@@ -126,7 +139,7 @@ export default {
             }
 
             .card-body {
-                background: none;
+                background: transparent;
                 padding: 0;
                 align-self: flex-start;
                 width: 66%;
@@ -164,6 +177,14 @@ export default {
             }
         }
 
+        &--dark {
+            .megalink-link-list__wrapper.card {
+                .megalink-link-list__title {
+                    color: $color-white;
+                }
+            }
+        }
+
         @include media-breakpoint-up(lg) {
             .megalink-link-list__wrapper.card {
                 .megalink-link-list__title {
@@ -176,7 +197,7 @@ export default {
                     display: block;
 
                     p {
-                         display: -webkit-box;
+                        display: -webkit-box;
                         -webkit-line-clamp: 3;
                         -webkit-box-orient: vertical;
                         overflow: hidden;

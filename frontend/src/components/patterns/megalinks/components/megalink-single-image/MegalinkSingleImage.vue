@@ -1,7 +1,10 @@
 <template>
     <section
         class="megalink-single-image"
-        :class="alternate ? 'megalink-single-image--alternate' : ''"
+        :class="[
+            alternate ? 'megalink-single-image--alternate' : '',
+            theme === 'dark' ? 'megalink-single-image--dark' : '',
+        ]"
         data-test="megalink-single-image"
     >
         <VsImageWithCaption
@@ -35,6 +38,7 @@
                     <VsHeading
                         level="3"
                         v-if="title"
+                        class="megalink-single-image__title"
                         data-test="megalink-single-image__title"
                     >
                         {{ title }}
@@ -112,6 +116,14 @@ export default {
             type: String,
             default: '',
         },
+        /**
+        * The component theme
+        */
+        theme: {
+            type: String,
+            default: 'light',
+            validator: (value) => value.match(/(light|dark)/),
+        },
     },
 };
 </script>
@@ -164,6 +176,16 @@ export default {
             margin-top: $spacer-7;
         }
 
+        &--dark {
+            .megalink-single-image__content {
+                background: $color-gray-shade-7;
+            }
+
+            .megalink-single-image__title {
+                color: $color-white;
+            }
+        }
+
         @include media-breakpoint-up(sm) {
             margin: 0;
 
@@ -173,6 +195,12 @@ export default {
 
             .megalink-single-image__content {
                 background: transparent;
+            }
+
+            &--dark {
+                .megalink-single-image__content {
+                    background: $color-secondary-gray-shade-4;
+                }
             }
         }
 
@@ -201,6 +229,16 @@ export default {
 
                 .megalink-single-image__content {
                     align-self: flex-end;
+                }
+            }
+
+            &--dark {
+                .megalink-single-image__title {
+                    color: $color-white;
+                }
+
+                .megalink-single-image__content {
+                    background: $color-gray-shade-7;
                 }
             }
         }
