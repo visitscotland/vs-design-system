@@ -8,7 +8,7 @@
     >
         <span class="sr-only">View favourites</span>
         <span
-            class="vs-favourites-view__button__count"
+            class="vs-favourites-view-button-count"
             v-if="favouritesCount > 0"
         >
             <span class="sr-only">Current favourites count:</span> {{ favouritesCount }}
@@ -53,8 +53,8 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
-.vs-favourites-view__button__count {
+<style lang="scss">
+.vs-favourites-view-button-count {
     color: $color-white;
     display: block;
     font-size: 0.75rem;

@@ -26,7 +26,7 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .vs-itinerary-border-overlap__wrapper {
     min-height: 200px;
     margin-left: 2.5rem;
