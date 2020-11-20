@@ -1,7 +1,7 @@
 <template>
     <VsList
         unstyled
-        class="vs-mega-nav__top-menu"
+        class="vs-mega-nav-top-menu"
         data-test="vs-mega-nav__top-menu"
     >
         <!-- @slot Default slot for top menu items -->
@@ -28,8 +28,8 @@ export default {
 
 <style lang="scss">
 
-.vs-mega-nav__top-menu {
-    &.vs-list.unstyled{
+.vs-mega-nav-top-menu {
+    &.vs-list--unstyled{
         width: 100%;
         display: flex;
         margin-top: 0.75rem;
