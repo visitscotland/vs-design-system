@@ -3,36 +3,68 @@
         class="vs-iknow-partner-item"
         data-test="vs-iknow-partner-item"
     >
-        <!-- @slot Holds the component heading -->
-        <slot name="iknowHeading" />
+        <VsContainer>
+            <VsRow>
+                <VsCol
+                    cols="10"
+                    md="6"
+                    offset="1"
+                    offset-md="0"
+                    order="1"
+                    order-md="2"
+                    class="vs-iknow-partner-item__main-content"
+                >
+                    <!-- @slot Holds the component heading -->
+                    <slot name="iknowHeading" />
 
-        <VsSvg
-            class="vs-iknow-partner-item__logo"
-            path="iKnowScotland"
-        />
+                    <VsSvg
+                        class="vs-iknow-partner-item__logo"
+                        path="iKnowScotland"
+                    />
 
-        <div class="vs-iknow-partner-item__text">
-            <!-- @slot Holds the component text -->
-            <slot name="iknowText" />
+                    <div class="vs-iknow-partner-item__text">
+                        <!-- @slot Holds the component text -->
+                        <slot name="iknowText" />
 
-            <VsSvg
-                class="vs-iknow-partner-item__coo"
-                path="highland-cow"
-            />
-
-            <div
-                v-if="!!this.$slots['iknowCta']"
-                class="vs-iknow-partner-item__cta"
-            >
-                <!-- @slot Optional slot for link/button CTA -->
-                <slot name="iknowCta" />
-            </div>
-        </div>
+                        <div
+                            v-if="!!this.$slots['iknowCta']"
+                            class="vs-iknow-partner-item__cta"
+                        >
+                            <!-- @slot Optional slot for link/button CTA -->
+                            <slot name="iknowCta" />
+                        </div>
+                    </div>
+                </VsCol>
+                <VsCol
+                    cols="0"
+                    md="3"
+                    order="2"
+                    order-md="3"
+                />
+                <VsCol
+                    cols="4"
+                    md="2"
+                    offset="4"
+                    offset-md="1"
+                    order="3"
+                    order-md="1"
+                    class="vs-iknow-partner-item__coo-container"
+                >
+                    <VsSvg
+                        class="vs-iknow-partner-item__coo"
+                        path="highland-cow"
+                    />
+                </VsCol>
+            </VsRow>
+        </VsContainer>
     </div>
 </template>
 
 <script>
 import VsSvg from '@components/elements/svg/Svg';
+import VsContainer from '@components/elements/layout/Container';
+import VsRow from '@components/elements/layout/Row';
+import VsCol from '@components/elements/layout/Col';
 
 /**
  * Reusable component to promote iKnow partners to visitors as
@@ -45,6 +77,9 @@ export default {
     release: '0.0.1',
     components: {
         VsSvg,
+        VsContainer,
+        VsRow,
+        VsCol,
     },
 };
 </script>
@@ -58,8 +93,24 @@ export default {
     padding: $spacer-8;
     background: $white;
 
-    @include media-breakpoint-up(xl) {
-        padding: $spacer-11;
+    @include media-breakpoint-up(md) {
+        padding: $spacer-8 $spacer-8 $spacer-0;
+    }
+
+    @include media-breakpoint-up(lg) {
+        padding: $spacer-11 $spacer-11 $spacer-0;
+    }
+
+    &__main-content {
+        text-align: center;
+
+        @include media-breakpoint-up(md) {
+            padding-bottom: $spacer-8;
+        }
+
+        @include media-breakpoint-up(lg) {
+            padding-bottom: $spacer-11;
+        }
     }
 
     &__logo {
@@ -78,11 +129,11 @@ export default {
         font-size: $display3-size;
         margin-bottom: 0;
         text-align: center;
+    }
 
-        @include media-breakpoint-up(xl) {
-            max-width: 620px;
-            position: relative;
-        }
+    &__coo-container {
+        display: flex;
+        align-items: flex-end;
     }
 
     &__coo {
@@ -93,12 +144,9 @@ export default {
         max-height: 100px;
         margin: $spacer-8 auto 0;
 
-        @include media-breakpoint-up(xl) {
+        @include media-breakpoint-up(lg) {
             max-height: 210px;
             max-width: 185px;
-            position: absolute;
-            bottom: -5.5rem;
-            left: -14rem;
         }
     }
 
@@ -119,6 +167,8 @@ export default {
             travel advice and insider tips about must-see
             attractions and great accommodation in the local area.
         </div>
+
+        <a href="#" slot="iknowCta">Find our iKnow partners</a>
     </vs-iknow-partner-item>
 
     <vs-iknow-partner-item>
