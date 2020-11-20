@@ -168,22 +168,22 @@ export default {
                         <vs-footer-nav-list-item
                             href="#"
                             link-text="Brochures"
-                            external
+                            type="external"
                         ></vs-footer-nav-list-item>
                         <vs-footer-nav-list-item
                             href="#"
                             link-text="VisitScotland iCentres"
-                            external
+                            type="external"
                         ></vs-footer-nav-list-item>
                         <vs-footer-nav-list-item
                             href="#"
                             link-text="iKnow Scotland Community"
-                            external
+                            type="external"
                         ></vs-footer-nav-list-item>
                         <vs-footer-nav-list-item
                             href="#"
                             link-text="VisitScotland Awards"
-                            external
+                            type="external"
                         ></vs-footer-nav-list-item>
                     </vs-list>
                 </vs-footer-accordion-item>
