@@ -159,7 +159,7 @@ export default {
 <docs>
 ```jsx
     <vs-iknow-partner-item>
-        <VsHeading level="2" slot="iknowHeading">Help and device</VsHeading>
+        <VsHeading level="2" slot="iknowHeading">Help and advice</VsHeading>
         <div slot="iknowText">
             You can also get advice from our accredited
             <a href="#">iKnow partners in Edinburgh</a>,
@@ -172,7 +172,7 @@ export default {
     </vs-iknow-partner-item>
 
     <vs-iknow-partner-item>
-        <VsHeading level="2" slot="iknowHeading">Help and device</VsHeading>
+        <VsHeading level="2" slot="iknowHeading">Help and advice</VsHeading>
         <div slot="iknowText">
             iKnow Scotland is a network of accredited
             VisitScotland partners, with excellent local
@@ -189,7 +189,7 @@ export default {
     </vs-iknow-partner-item>
 
     <vs-iknow-partner-item>
-        <VsHeading level="2" slot="iknowHeading">Help and device</VsHeading>
+        <VsHeading level="2" slot="iknowHeading">Help and advice</VsHeading>
         <div slot="iknowText">
             iKnow Scotland is a network of accredited
             VisitScotland partners, with excellent local
