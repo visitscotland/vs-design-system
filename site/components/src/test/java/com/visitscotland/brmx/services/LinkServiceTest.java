@@ -301,9 +301,7 @@ class LinkServiceTest {
 
     @Test
     @DisplayName("An exception if the URL is mal formed")
-    void getLinkCategory_MalformedURLException() throws MalformedURLException {
-        //TODO do I need to test the exception?
-        //assertThrows(MalformedURLException.class, () -> service.getLinkCategory("http//example.com",Locale.UK));
+    void getLinkCategory_MalformedURLException(){
         assertNull(service.getLinkCategory("http//example.com",Locale.UK));
 
     }
