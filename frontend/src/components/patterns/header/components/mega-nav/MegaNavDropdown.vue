@@ -12,30 +12,34 @@
                 <slot name="buttonContent" />
             </template>
 
-            <VsContainer>
-                <VsRow>
-                    <VsCol cols="12">
-                        <!-- @slot Used to display the top menu link
-                        at the top of the dropdown menu  -->
-                        <slot name="ctaLink" />
-                        <!-- @slot The rest of the mega nav links put here in the dropdown menu  -->
-                        <slot name="dropdownContent" />
+            <li>
+                <VsContainer>
+                    <VsRow>
+                        <VsCol cols="12">
+                            <!-- @slot Used to display the top menu link
+                            at the top of the dropdown menu  -->
+                            <slot name="ctaLink" />
 
-                        <VsButtonWithIcon
-                            class="vs-mega-nav-dropdown__close-btn d-lg-none position-absolute"
-                            icon="close"
-                            icon-only
-                            button-size="md"
-                            variant="transparent"
-                            @click.native="closeMenu"
-                        >
-                            <span class="sr-only">
-                                {{ menuToggleAltText }}
-                            </span>
-                        </VsButtonWithIcon>
-                    </VsCol>
-                </VsRow>
-            </VsContainer>
+                            <!-- @slot The rest of the mega nav links put
+                            here in the dropdown menu  -->
+                            <slot name="dropdownContent" />
+
+                            <VsButtonWithIcon
+                                class="vs-mega-nav-dropdown__close-btn d-lg-none position-absolute"
+                                icon="close"
+                                icon-only
+                                button-size="md"
+                                variant="transparent"
+                                @click.native="closeMenu"
+                            >
+                                <span class="sr-only">
+                                    {{ menuToggleAltText }}
+                                </span>
+                            </VsButtonWithIcon>
+                        </VsCol>
+                    </VsRow>
+                </VsContainer>
+            </li>
         </BDropdown>
     </div>
 </template>
@@ -189,9 +193,8 @@ export default {
     .dropdown-menu {
         background: $color-gray-tint-8;
         width: 100%;
-        padding: 24px 0;
+        padding: $spacer-6 0 $spacer-8;
         margin: 0;
-        min-height: 200px;
         max-height: 595px;
         overflow: hidden;
         border: 0;

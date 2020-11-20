@@ -6,7 +6,7 @@
         <VsLink
             :href="href"
             :role="href === '#' ? 'heading' : ''"
-            :class="{ 'mega-nav-list-item__heading': href === '#' }"
+            :class="navItemClass"
         >
             <slot />
         </VsLink>
@@ -27,18 +27,66 @@ export default {
             default: '#',
         },
     },
+    computed: {
+        navItemClass() {
+            return {
+                'mega-nav-list-item__heading': this.href === '#',
+                'mega-nav-list-item__link': this.href !== '#',
+            };
+        },
+    },
 };
 </script>
 
 <style lang="scss">
 .mega-nav-list-item{
+    position: relative;
     list-style-type: none;
+    font-size: $h4-font-size;
+
+    &:first-of-type{
+        border-bottom: 1px solid #d9d9d9;
+        margin-bottom: $spacer-2;
+    }
+
+    .vs-link--variant-primary{
+        text-decoration: none;
+        display: block;
+        padding: $spacer-1 $spacer-5;
+        line-height: $line-height-s;
+    }
+
+    &__link{
+        &.vs-link--variant-primary{
+            color: $color-secondary-gray;
+            transition: 0.2s color;
+
+            &:hover{
+                color: $color-pink;
+
+                &:after{
+                   height: 100%;
+                }
+            }
+
+            &:after{
+                content: "";
+                position: absolute;
+                display: block;
+                top: 0;
+                left: 0;
+                width: 6px;
+                height: 0;
+                background: $color-pink;
+                transition: height 0.15s linear;
+            }
+        }
+    }
 
     &__heading{
-        &.vs-link.primary{
-            text-decoration: none;
-            color: #3A3638;
-            border-bottom: 1px solid #d9d9d9;
+        &.vs-link--variant-primary{
+            color: $color-secondary-gray-shade-3;
+            font-size: $h3-font-size;
             cursor: text;
         }
     }
