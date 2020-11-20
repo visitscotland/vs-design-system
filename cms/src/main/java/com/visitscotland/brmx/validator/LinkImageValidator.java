@@ -17,8 +17,6 @@ import static org.hippoecm.repository.api.HippoNodeType.HIPPO_DOCBASE;
  * jcr:Name = visitscotland:link-image-validator
 
  */
-
-//TODO investigate if we can create unit test for this validator
 public class LinkImageValidator implements Validator<Node> {
 
     private static final String EMPTY_IMAGE = "cafebabe-cafe-babe-cafe-babecafebabe";
@@ -26,6 +24,10 @@ public class LinkImageValidator implements Validator<Node> {
 
     public LinkImageValidator() {
         this.sessionFactory = new SessionFactory();
+    }
+
+    LinkImageValidator(SessionFactory sessionFactory){
+        this.sessionFactory = sessionFactory;
     }
 
     public Optional<Violation> validate(final ValidationContext context, final Node document) {
