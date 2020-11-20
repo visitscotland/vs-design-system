@@ -8,6 +8,7 @@
             'megalink-multi-image--featured-last' : lastFeatured,
         }"
         data-test="megalink-multi-image-featured"
+        :theme="theme"
     >
         <VsImg
             slot="stretchedCardImage"
@@ -99,6 +100,14 @@ export default {
             type: String,
             required: true,
         },
+        /**
+        * The component color theme
+        */
+        theme: {
+            type: String,
+            default: 'light',
+            validator: (value) => value.match(/(light|dark)/),
+        },
     },
 };
 </script>
@@ -106,6 +115,7 @@ export default {
 <style lang="scss">
     .megalink-multi-image.card {
         border: none;
+        background: transparent;
         position: relative;
         margin-bottom: $spacer-8;
         transition: box-shadow 800ms;
