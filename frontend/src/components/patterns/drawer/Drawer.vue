@@ -80,7 +80,7 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .vs-header__drawer-wrapper {
   @extend %default-inset-box-shadow;
   background-color: $color-gray-tint-7;
