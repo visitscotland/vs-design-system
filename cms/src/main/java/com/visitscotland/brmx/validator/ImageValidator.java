@@ -23,14 +23,20 @@ public class ImageValidator implements Validator<Node> {
     private SessionFactory sessionFactory;
 
     public ImageValidator() {
-        this.sessionFactory = new SessionFactory();
+        this(new SessionFactory());
+    }
+
+    ImageValidator(SessionFactory sessionFactory){
+        this.sessionFactory = sessionFactory;
     }
 
     public Optional<Violation> validate(final ValidationContext context, final Node document) {
         try {
-             if(!document.getProperty(HIPPO_DOCBASE).getValue().getString().equals(EMPTY_IMAGE)) {
-                 Node galleryNode = sessionFactory.getJcrSession().getNodeByIdentifier(document.getProperty(HIPPO_DOCBASE).getString());
-                 Node childNode = galleryNode.getNode(galleryNode.getName());
+            String nodeId = document.getProperty(HIPPO_DOCBASE).getValue().getString();
+             if(!nodeId.equals(EMPTY_IMAGE)) {
+//                 Node galleryNode = sessionFactory.getJcrSession().getNodeByIdentifier(nodeId);
+//                 Node childNode = galleryNode.getNode(galleryNode.getName());
+                 Node childNode = sessionFactory.getHippoNodeByIdentifier(nodeId);
                  if (!childNode.hasProperty(Image.CREDIT) || !childNode.hasProperty(Image.ALT_TEXT)){
                      return Optional.of(context.createViolation());
                  }

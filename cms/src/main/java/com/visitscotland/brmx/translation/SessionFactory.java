@@ -1,7 +1,10 @@
 package com.visitscotland.brmx.translation;
 
+import com.visitscotland.utils.Contract;
 import org.hippoecm.frontend.session.UserSession;
 
+import javax.jcr.Node;
+import javax.jcr.RepositoryException;
 import javax.jcr.Session;
 
 public class SessionFactory {
@@ -9,4 +12,12 @@ public class SessionFactory {
         return UserSession.get().getJcrSession();
     }
     public UserSession getUserSession() { return UserSession.get(); }
+
+    public Node getHippoNodeByIdentifier(String id) throws RepositoryException {
+        Node galleryNode = getJcrSession().getNodeByIdentifier(id);
+        if (galleryNode != null){
+            return galleryNode.getNode(galleryNode.getName());
+        }
+        return null;
+    }
 }

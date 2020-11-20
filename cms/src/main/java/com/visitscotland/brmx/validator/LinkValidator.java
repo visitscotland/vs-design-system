@@ -27,9 +27,11 @@ public class LinkValidator implements Validator<Node> {
 
     public Optional<Violation> validate(final ValidationContext context, final Node document) {
         try {
-             if(!document.getProperty(HIPPO_DOCBASE).getValue().getString().equals(EMPTY_DOCUMENT)) {
-                 Node linkNode = sessionFactory.getJcrSession().getNodeByIdentifier(document.getProperty(HIPPO_DOCBASE).getString());
-                 Node childNode = linkNode.getNode(linkNode.getName());
+            String nodeId = document.getProperty(HIPPO_DOCBASE).getValue().getString();
+             if(!nodeId.equals(EMPTY_DOCUMENT)) {
+//                 Node linkNode = sessionFactory.getJcrSession().getNodeByIdentifier(document.getProperty(HIPPO_DOCBASE).getString());
+//                 Node childNode = linkNode.getNode(linkNode.getName());
+                 Node childNode = sessionFactory.getHippoNodeByIdentifier(nodeId);
                  if (document.getParent().isNodeType("visitscotland:Day")) {
                      if (!childNode.isNodeType("visitscotland:Stop")) {
                          return Optional.of(context.createViolation("stop"));
