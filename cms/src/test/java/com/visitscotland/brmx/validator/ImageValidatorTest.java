@@ -1,6 +1,5 @@
 package com.visitscotland.brmx.validator;
 
-import com.visitscotland.brmx.beans.Coordinates;
 import com.visitscotland.brmx.beans.Image;
 import com.visitscotland.brmx.translation.SessionFactory;
 import org.junit.jupiter.api.DisplayName;
@@ -11,15 +10,10 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.onehippo.cms.services.validation.api.ValidationContext;
-import org.onehippo.cms.services.validation.api.ValidationContextException;
 import org.onehippo.cms.services.validation.api.Violation;
 
 import javax.jcr.Node;
 import javax.jcr.RepositoryException;
-import javax.jcr.Session;
-
-import java.util.Locale;
-import java.util.Optional;
 
 import static org.hippoecm.repository.api.HippoNodeType.HIPPO_DOCBASE;
 import static org.junit.jupiter.api.Assertions.*;
@@ -36,39 +30,65 @@ class ImageValidatorTest {
 
     @Test
     @DisplayName("Validates that the image has credit and alt-text added")
-    void correctValues() {
+    void correctValues() throws RepositoryException {
         //Validates that correct values are accepted
         ImageValidator validator = new ImageValidator(mockSessionFactory);
 
         Node node = Mockito.mock(Node.class, RETURNS_DEEP_STUBS);
 //        Node galleryNode = Mockito.mock(Node.class, RETURNS_DEEP_STUBS);
-        Node galleryNode = Mockito.mock(Node.class, RETURNS_DEEP_STUBS);
-        Node childNode = Mockito.mock(Node.class, RETURNS_DEEP_STUBS);
+//        Node galleryNode = Mockito.mock(Node.class, RETURNS_DEEP_STUBS);
+        Node childNode = mockImage("credit", "alt-text");
 
-        try {
-            when(node.getProperty(HIPPO_DOCBASE).getValue().getString()).thenReturn("imageName");
+
+        when(node.getProperty(HIPPO_DOCBASE).getValue().getString()).thenReturn("imageName");
 //            when(mockSessionFactory.getJcrSession().getNodeByIdentifier("imageName")).thenReturn(galleryNode);
 //            when(galleryNode.getNode(galleryNode.getName())).thenReturn(childNode);
 
 //            when(mockSessionFactory.getJcrSession().getNodeByIdentifier("imageName").getNode("imageName")).thenReturn(childNode);
 
-            when(mockSessionFactory.getHippoNodeByIdentifier("imageName")).thenReturn(childNode);
-            when(childNode.hasProperty(Image.CREDIT)).thenReturn(true);
-            when(childNode.hasProperty(Image.ALT_TEXT)).thenReturn(true);
-            assertFalse(validator.validate(context,node).isPresent());
-        } catch (RepositoryException e) {
-            e.printStackTrace();
-        }
+        when(mockSessionFactory.getHippoNodeByIdentifier("imageName")).thenReturn(childNode);
+
+        assertFalse(validator.validate(context, node).isPresent());
+    }
+
+    @Test
+    @DisplayName("Validates that the image throws an Error when there is no credit")
+    void noCredit() throws RepositoryException {
+        //Validates that the credit is set
+        ImageValidator validator = new ImageValidator(mockSessionFactory);
+
+        Node node = Mockito.mock(Node.class, RETURNS_DEEP_STUBS);
+        Node noCredit = mockImage(null, "alt-text");
+
+        when(node.getProperty(HIPPO_DOCBASE).getValue().getString()).thenReturn("imageName");
+
+        when(mockSessionFactory.getHippoNodeByIdentifier("imageName")).thenReturn(noCredit);
+        when(context.createViolation()).thenReturn(mock(Violation.class));
+        assertTrue(validator.validate(context, node).isPresent());
+    }
+
+
+    @Test
+    @DisplayName("Validates that the image throws an Error when there is no alternative text")
+    void noAltText() throws RepositoryException {
+        //Validates that the alternative text is set
+        ImageValidator validator = new ImageValidator(mockSessionFactory);
+
+        Node node = Mockito.mock(Node.class, RETURNS_DEEP_STUBS);
+        Node noCredit = mockImage("credit", null);
+
+        when(node.getProperty(HIPPO_DOCBASE).getValue().getString()).thenReturn("imageName");
+
+        when(mockSessionFactory.getHippoNodeByIdentifier("imageName")).thenReturn(noCredit);
+        when(context.createViolation()).thenReturn(mock(Violation.class));
+        assertTrue(validator.validate(context, node).isPresent());
     }
 
     private Node mockImage(String credit, String altText) {
-        Node node = Mockito.mock(Node.class, RETURNS_DEEP_STUBS);
+        Node node = Mockito.mock(Node.class, withSettings().lenient());
         try {
-
-            when(node.hasProperty(Image.CREDIT)).thenReturn(true);
-            when(node.hasProperty(Image.ALT_TEXT)).thenReturn(true);
-            when(node.getProperty(Image.CREDIT).getString()).thenReturn(credit);
-            when(node.getProperty(Image.ALT_TEXT).getString()).thenReturn(altText);
+            when(node.hasProperty(Image.CREDIT)).thenReturn(credit != null);
+            when(node.hasProperty(Image.ALT_TEXT)).thenReturn(altText != null);
         } catch (RepositoryException e) {
             //This cannot happen
             e.printStackTrace();
