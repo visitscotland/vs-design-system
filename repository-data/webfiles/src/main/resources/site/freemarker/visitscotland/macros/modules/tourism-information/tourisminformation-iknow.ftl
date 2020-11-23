@@ -17,6 +17,6 @@
         <span slot="iknowCta">
             <vs-link href="${module.link.link}">${module.link.label}</vs-link>
         </span>
-    </vs-footer-copyright>
+    </vs-iknow-partner-item>
 
 </#macro>
