@@ -11,7 +11,7 @@ definitions:
         /hipposysedit:nodetype:
           jcr:primaryType: hipposysedit:nodetype
           jcr:mixinTypes: ['mix:referenceable', 'hipposysedit:remodel']
-          jcr:uuid: 6ec6d964-7077-4abd-9a6e-14526738705c
+          jcr:uuid: 6c21d3c9-9626-466d-9d8c-32cee179f9fa
           hipposysedit:node: true
           hipposysedit:supertype: ['visitscotland:Page', 'hippostd:relaxed', 'hippotranslation:translated']
           hipposysedit:uri: http://www.visitscotland.com/visitscotland/nt/1.0
@@ -41,7 +41,7 @@ definitions:
           visitscotland:title: ''
           visitscotland:seoTitle: ''
           jcr:mixinTypes: ['mix:referenceable']
-          jcr:uuid: cc60bd03-a106-4e95-b7f5-d1330a24199c
+          jcr:uuid: 46d3c13e-ca56-46e6-aa99-764e97dc3ff6
           hippostdpubwf:lastModificationDate: 2020-09-25T13:13:22.744+01:00
           hippostdpubwf:creationDate: 2020-09-25T13:13:22.744+01:00
           visitscotland:theme: Standard
@@ -150,11 +150,14 @@ definitions:
             field: introduction
             plugin.class: org.hippoecm.frontend.editor.plugins.field.NodeFieldPlugin
             wicket.id: ${cluster.id}.left.item
+            hint: ''
             /cluster.options:
               jcr:primaryType: frontend:pluginconfig
               ckeditor.config.overlayed.json: '{toolbarGroups: [{ name: ''links''
                 },{name:''insert''},{name:''clipboard''},{name:''tools''},{name:''undo''}]
                 , removeButtons: ''PickImage,Youtube,Table''}'
+              ckeditor.config.appended.json: "{   extraPlugins: 'wordcount',   wordcount:\
+                \ { \tcountSpacesAsChars: true,     showCharCount: true   }  }"
           /seoNoIndex:
             jcr:primaryType: frontend:plugin
             caption: Do not index (SEO)

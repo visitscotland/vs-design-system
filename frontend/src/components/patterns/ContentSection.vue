@@ -57,7 +57,7 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 @import "~bootstrap/scss/type";
 @import "~bootstrap/scss/utilities";
 
