@@ -1,6 +1,5 @@
 package com.visitscotland.brmx.validator;
 
-import com.visitscotland.brmx.beans.Image;
 import com.visitscotland.brmx.translation.SessionFactory;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -14,8 +13,6 @@ import org.onehippo.cms.services.validation.api.Violation;
 
 import javax.jcr.Node;
 import javax.jcr.RepositoryException;
-
-import java.util.Optional;
 
 import static org.hippoecm.repository.api.HippoNodeType.HIPPO_DOCBASE;
 import static org.junit.jupiter.api.Assertions.assertFalse;

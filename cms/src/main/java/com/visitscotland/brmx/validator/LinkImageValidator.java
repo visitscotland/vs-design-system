@@ -19,7 +19,7 @@ import static org.hippoecm.repository.api.HippoNodeType.HIPPO_DOCBASE;
  */
 public class LinkImageValidator implements Validator<Node> {
 
-    private static final String EMPTY_IMAGE = "cafebabe-cafe-babe-cafe-babecafebabe";
+    public static final String EMPTY_IMAGE = "cafebabe-cafe-babe-cafe-babecafebabe";
     private SessionFactory sessionFactory;
 
     public LinkImageValidator() {
@@ -55,9 +55,9 @@ public class LinkImageValidator implements Validator<Node> {
                                     || (images.hasProperty(HIPPO_DOCBASE) && images.getProperty(HIPPO_DOCBASE).getValue().getString().equals(EMPTY_IMAGE)))) {
                                 return Optional.of(context.createViolation());
                             }
-                            }else{
-                                return Optional.of(context.createViolation());
-                            }
+                        }else{
+                            return Optional.of(context.createViolation());
+                        }
                 }
             }
         } catch (RepositoryException e) {
