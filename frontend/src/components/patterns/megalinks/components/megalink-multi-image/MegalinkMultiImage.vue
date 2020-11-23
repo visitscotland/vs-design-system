@@ -3,10 +3,13 @@
         :link="linkUrl"
         :type="linkType"
         class="megalink-multi-image p-2"
-        :class="{
-            'megalink-multi-image--featured' : featured,
-            'megalink-multi-image--featured-last' : lastFeatured,
-        }"
+        :class="[
+            theme === 'dark' ? 'megalink-multi-image--dark' : '',
+            {
+                'megalink-multi-image--featured' : featured,
+                'megalink-multi-image--featured-last' : lastFeatured,
+            }
+        ]"
         data-test="megalink-multi-image-featured"
         :theme="theme"
     >
@@ -172,6 +175,13 @@ export default {
             }
         }
     };
+
+    .megalink-multi-image--dark.card {
+        .stretched-link {
+            color: $color-white;
+        }
+    }
+
     @include media-breakpoint-up(xl) {
         .megalink-multi-image.card {
             margin-bottom: $spacer-11;
