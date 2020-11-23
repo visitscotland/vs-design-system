@@ -1,6 +1,6 @@
 <template>
     <VsButton
-        class="vs-header__site-search__toggle-button p-0 p-sm-1 pr-xl-3"
+        class="vs-site-search-toggle-button p-0 p-sm-1 pr-xl-3"
         :variant="isOn ? 'light' : 'primary'"
         :animate="false"
     >
@@ -25,8 +25,8 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
-.vs-header__site-search__toggle-button {
+<style lang="scss">
+.vs-site-search-toggle-button {
   font-size: 1.125rem;
   font-weight: $font-weight-normal;
   letter-spacing: 0px;

@@ -1,7 +1,7 @@
 <template>
     <VsRow>
         <VsCol cols="12">
-            <BNavbarNav class="vs-mega-nav__mobile-list">
+            <BNavbarNav class="vs-mega-nav-mobile-list">
                 <slot />
             </BNavbarNav>
         </VsCol>
@@ -29,7 +29,7 @@ export default {
 </script>
 
 <style lang="scss">
-.vs-mega-nav__mobile-list {
+.vs-mega-nav-mobile-list {
     margin-top: $spacer-2;
     padding: 0 0;
 }

@@ -1,7 +1,12 @@
 <template>
     <div
         class="vs-rich-text-wrapper"
-        :class="[variant]"
+        :class="[
+            `vs-rich-text-wrapper--variant-${variant}`,
+            {
+                lead: variant === 'lead',
+            },
+        ]"
     >
         <slot />
     </div>
@@ -30,17 +35,21 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 @import "~bootstrap/scss/type";
 
-.normal ::v-deep {
-    font-family: $font-family-base;
-    font-size: $font-size-base;
+.vs-rich-text-wrapper {
+
+    &.vs-rich-text-wrapper--variant-normal * {
+        font-family: $font-family-base;
+        font-size: $font-size-base;
+    }
+
+    &.vs-rich-text-wrapper--variant-lead.lead * {
+        line-height: $line-height-lead;
+    }
 }
 
-.lead ::v-deep {
-    line-height: $line-height-lead;
-}
 </style>
 
 <docs>

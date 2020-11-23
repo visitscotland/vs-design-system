@@ -641,3 +641,315 @@
         jcr:primaryType: visitscotland:ImageData
         visitscotland:altText: ''
         visitscotland:caption: ''
+  /showcase_covesea_lighthouse.jpg:
+    jcr:primaryType: hippo:handle
+    jcr:mixinTypes: ['hippo:named', 'mix:referenceable']
+    jcr:uuid: ece9b7e3-75e0-4817-8b83-6fd2f06ccd7e
+    hippo:name: Showcase_Covesea_Lighthouse.jpg
+    /showcase_covesea_lighthouse.jpg:
+      jcr:primaryType: visitscotland:Image
+      hippo:availability: [live, preview]
+      hippogallery:description: Covesea Lighthouse
+      hippogallery:filename: Showcase_Covesea_Lighthouse.jpg
+      visitscotland:altText: Nice view of Covesea Lighthouse
+      visitscotland:credit: VisitScotland
+      visitscotland:location: Lossiemouth
+      /hippogallery:thumbnail:
+        jcr:primaryType: hippogallery:image
+        hippo:filename: Showcase_Covesea_Lighthouse.jpg
+        hippogallery:height: 39
+        hippogallery:width: 60
+        jcr:data:
+          type: binary
+          resource: /content/gallery/visitscotland/default/showcase_covesea_lighthouse.jpg/showcase_covesea_lighthouse.jpg/thumbnail/thumbnail.jpg
+        jcr:lastModified: 2020-10-26T11:22:07.405Z
+        jcr:mimeType: image/jpeg
+      /hippogallery:original:
+        jcr:primaryType: hippogallery:image
+        hippogallery:height: 1365
+        hippogallery:width: 2048
+        jcr:data:
+          type: binary
+          resource: /content/gallery/visitscotland/default/showcase_covesea_lighthouse.jpg/showcase_covesea_lighthouse.jpg/original/original.jpg
+        jcr:lastModified: 2020-10-26T11:22:07.405Z
+        jcr:mimeType: image/jpeg
+      /visitscotland:nl:
+        jcr:primaryType: visitscotland:ImageData
+        visitscotland:altText: ''
+        visitscotland:caption: ''
+      /visitscotland:fr:
+        jcr:primaryType: visitscotland:ImageData
+        visitscotland:altText: ''
+        visitscotland:caption: ''
+      /visitscotland:de:
+        jcr:primaryType: visitscotland:ImageData
+        visitscotland:altText: ''
+        visitscotland:caption: ''
+      /visitscotland:es:
+        jcr:primaryType: visitscotland:ImageData
+        visitscotland:altText: ''
+        visitscotland:caption: ''
+      /visitscotland:it:
+        jcr:primaryType: visitscotland:ImageData
+        visitscotland:altText: ''
+        visitscotland:caption: ''
+  /showcase_duncansby_stacks.jpg:
+    jcr:primaryType: hippo:handle
+    jcr:mixinTypes: ['hippo:named', 'mix:referenceable']
+    jcr:uuid: 1b72bf72-0409-4ec7-aa0c-fc98f6045c98
+    hippo:name: Showcase_Duncansby_Stacks.jpg
+    /showcase_duncansby_stacks.jpg:
+      jcr:primaryType: visitscotland:Image
+      hippo:availability: [live, preview]
+      hippogallery:description: Duncansby stacks
+      hippogallery:filename: Showcase_Duncansby_Stacks.jpg
+      visitscotland:altText: nice view Duncansby stacks
+      visitscotland:credit: visitscotland
+      visitscotland:location: Thurso
+      /hippogallery:thumbnail:
+        jcr:primaryType: hippogallery:image
+        hippo:filename: Showcase_Duncansby_Stacks.jpg
+        hippogallery:height: 39
+        hippogallery:width: 60
+        jcr:data:
+          type: binary
+          resource: /content/gallery/visitscotland/default/showcase_duncansby_stacks.jpg/showcase_duncansby_stacks.jpg/thumbnail/thumbnail.jpg
+        jcr:lastModified: 2020-10-26T11:22:08.208Z
+        jcr:mimeType: image/jpeg
+      /hippogallery:original:
+        jcr:primaryType: hippogallery:image
+        hippogallery:height: 1365
+        hippogallery:width: 2048
+        jcr:data:
+          type: binary
+          resource: /content/gallery/visitscotland/default/showcase_duncansby_stacks.jpg/showcase_duncansby_stacks.jpg/original/original.jpg
+        jcr:lastModified: 2020-10-26T11:22:08.208Z
+        jcr:mimeType: image/jpeg
+      /visitscotland:nl:
+        jcr:primaryType: visitscotland:ImageData
+        visitscotland:altText: ''
+        visitscotland:caption: ''
+      /visitscotland:fr:
+        jcr:primaryType: visitscotland:ImageData
+        visitscotland:altText: ''
+        visitscotland:caption: ''
+      /visitscotland:de:
+        jcr:primaryType: visitscotland:ImageData
+        visitscotland:altText: ''
+        visitscotland:caption: ''
+      /visitscotland:es:
+        jcr:primaryType: visitscotland:ImageData
+        visitscotland:altText: ''
+        visitscotland:caption: ''
+      /visitscotland:it:
+        jcr:primaryType: visitscotland:ImageData
+        visitscotland:altText: ''
+        visitscotland:caption: ''
+  /showcase_dunure_castle.jpg:
+    jcr:primaryType: hippo:handle
+    jcr:mixinTypes: ['hippo:named', 'mix:referenceable']
+    jcr:uuid: 609fd316-1a56-4ed3-8024-c2ef8202f068
+    hippo:name: Showcase_Dunure_Castle.jpg
+    /showcase_dunure_castle.jpg:
+      jcr:primaryType: visitscotland:Image
+      hippo:availability: [live, preview]
+      hippogallery:description: Dunure Castle
+      hippogallery:filename: Showcase_Dunure_Castle.jpg
+      visitscotland:altText: nice view Dunure Castle
+      visitscotland:credit: Visitscotland
+      visitscotland:location: Dunure
+      /hippogallery:thumbnail:
+        jcr:primaryType: hippogallery:image
+        hippo:filename: Showcase_Dunure_Castle.jpg
+        hippogallery:height: 39
+        hippogallery:width: 60
+        jcr:data:
+          type: binary
+          resource: /content/gallery/visitscotland/default/showcase_dunure_castle.jpg/showcase_dunure_castle.jpg/thumbnail/thumbnail.jpg
+        jcr:lastModified: 2020-10-26T11:22:08.549Z
+        jcr:mimeType: image/jpeg
+      /hippogallery:original:
+        jcr:primaryType: hippogallery:image
+        hippogallery:height: 1365
+        hippogallery:width: 2048
+        jcr:data:
+          type: binary
+          resource: /content/gallery/visitscotland/default/showcase_dunure_castle.jpg/showcase_dunure_castle.jpg/original/original.jpg
+        jcr:lastModified: 2020-10-26T11:22:08.549Z
+        jcr:mimeType: image/jpeg
+      /visitscotland:nl:
+        jcr:primaryType: visitscotland:ImageData
+        visitscotland:altText: ''
+        visitscotland:caption: ''
+      /visitscotland:fr:
+        jcr:primaryType: visitscotland:ImageData
+        visitscotland:altText: ''
+        visitscotland:caption: ''
+      /visitscotland:de:
+        jcr:primaryType: visitscotland:ImageData
+        visitscotland:altText: ''
+        visitscotland:caption: ''
+      /visitscotland:es:
+        jcr:primaryType: visitscotland:ImageData
+        visitscotland:altText: ''
+        visitscotland:caption: ''
+      /visitscotland:it:
+        jcr:primaryType: visitscotland:ImageData
+        visitscotland:altText: ''
+        visitscotland:caption: ''
+  /showcase_lerwick.jpg:
+    jcr:primaryType: hippo:handle
+    jcr:mixinTypes: ['hippo:named', 'mix:referenceable']
+    jcr:uuid: 71701526-e11f-4819-8afb-db93a0b92041
+    hippo:name: Showcase_Lerwick.jpg
+    /showcase_lerwick.jpg:
+      jcr:primaryType: visitscotland:Image
+      hippo:availability: [live, preview]
+      hippogallery:description: Lerwick
+      hippogallery:filename: Showcase_Lerwick.jpg
+      visitscotland:altText: Nice view Lerwick
+      visitscotland:credit: Visitscotland
+      visitscotland:location: Lerwick
+      /hippogallery:thumbnail:
+        jcr:primaryType: hippogallery:image
+        hippo:filename: Showcase_Lerwick.jpg
+        hippogallery:height: 39
+        hippogallery:width: 60
+        jcr:data:
+          type: binary
+          resource: /content/gallery/visitscotland/default/showcase_lerwick.jpg/showcase_lerwick.jpg/thumbnail/thumbnail.jpg
+        jcr:lastModified: 2020-10-26T11:22:09.069Z
+        jcr:mimeType: image/jpeg
+      /hippogallery:original:
+        jcr:primaryType: hippogallery:image
+        hippogallery:height: 1365
+        hippogallery:width: 2048
+        jcr:data:
+          type: binary
+          resource: /content/gallery/visitscotland/default/showcase_lerwick.jpg/showcase_lerwick.jpg/original/original.jpg
+        jcr:lastModified: 2020-10-26T11:22:09.069Z
+        jcr:mimeType: image/jpeg
+      /visitscotland:nl:
+        jcr:primaryType: visitscotland:ImageData
+        visitscotland:altText: ''
+        visitscotland:caption: ''
+      /visitscotland:fr:
+        jcr:primaryType: visitscotland:ImageData
+        visitscotland:altText: ''
+        visitscotland:caption: ''
+      /visitscotland:de:
+        jcr:primaryType: visitscotland:ImageData
+        visitscotland:altText: ''
+        visitscotland:caption: ''
+      /visitscotland:es:
+        jcr:primaryType: visitscotland:ImageData
+        visitscotland:altText: ''
+        visitscotland:caption: ''
+      /visitscotland:it:
+        jcr:primaryType: visitscotland:ImageData
+        visitscotland:altText: ''
+        visitscotland:caption: ''
+  /showcase_north_berwick.jpg:
+    jcr:primaryType: hippo:handle
+    jcr:mixinTypes: ['hippo:named', 'mix:referenceable']
+    jcr:uuid: 38e2d695-f644-4c92-a62a-a8a7247ba63b
+    hippo:name: Showcase_North_Berwick.jpg
+    /showcase_north_berwick.jpg:
+      jcr:primaryType: visitscotland:Image
+      hippo:availability: [live, preview]
+      hippogallery:description: North Berwick
+      hippogallery:filename: Showcase_North_Berwick.jpg
+      visitscotland:altText: nice view North Berwick
+      visitscotland:credit: Visitiscotland
+      visitscotland:location: North Berwick
+      /hippogallery:thumbnail:
+        jcr:primaryType: hippogallery:image
+        hippo:filename: Showcase_North_Berwick.jpg
+        hippogallery:height: 39
+        hippogallery:width: 60
+        jcr:data:
+          type: binary
+          resource: /content/gallery/visitscotland/default/showcase_north_berwick.jpg/showcase_north_berwick.jpg/thumbnail/thumbnail.jpg
+        jcr:lastModified: 2020-10-26T11:22:09.489Z
+        jcr:mimeType: image/jpeg
+      /hippogallery:original:
+        jcr:primaryType: hippogallery:image
+        hippogallery:height: 1365
+        hippogallery:width: 2048
+        jcr:data:
+          type: binary
+          resource: /content/gallery/visitscotland/default/showcase_north_berwick.jpg/showcase_north_berwick.jpg/original/original.jpg
+        jcr:lastModified: 2020-10-26T11:22:09.489Z
+        jcr:mimeType: image/jpeg
+      /visitscotland:nl:
+        jcr:primaryType: visitscotland:ImageData
+        visitscotland:altText: ''
+        visitscotland:caption: ''
+      /visitscotland:fr:
+        jcr:primaryType: visitscotland:ImageData
+        visitscotland:altText: ''
+        visitscotland:caption: ''
+      /visitscotland:de:
+        jcr:primaryType: visitscotland:ImageData
+        visitscotland:altText: ''
+        visitscotland:caption: ''
+      /visitscotland:es:
+        jcr:primaryType: visitscotland:ImageData
+        visitscotland:altText: ''
+        visitscotland:caption: ''
+      /visitscotland:it:
+        jcr:primaryType: visitscotland:ImageData
+        visitscotland:altText: ''
+        visitscotland:caption: ''
+  /showcase_st_monans_harbour.jpg:
+    jcr:primaryType: hippo:handle
+    jcr:mixinTypes: ['hippo:named', 'mix:referenceable']
+    jcr:uuid: 2557bffd-5da9-4d7f-8b3f-fe898318e332
+    hippo:name: Showcase_St_Monans_Harbour.jpg
+    /showcase_st_monans_harbour.jpg:
+      jcr:primaryType: visitscotland:Image
+      hippo:availability: [live, preview]
+      hippogallery:description: St Monans Harbour
+      hippogallery:filename: Showcase_St_Monans_Harbour.jpg
+      visitscotland:altText: Nice view St Monans Harbour
+      visitscotland:credit: VisitScotland
+      visitscotland:location: St Monans
+      /hippogallery:thumbnail:
+        jcr:primaryType: hippogallery:image
+        hippo:filename: Showcase_St_Monans_Harbour.jpg
+        hippogallery:height: 39
+        hippogallery:width: 60
+        jcr:data:
+          type: binary
+          resource: /content/gallery/visitscotland/default/showcase_st_monans_harbour.jpg/showcase_st_monans_harbour.jpg/thumbnail/thumbnail.jpg
+        jcr:lastModified: 2020-10-26T11:22:09.995Z
+        jcr:mimeType: image/jpeg
+      /hippogallery:original:
+        jcr:primaryType: hippogallery:image
+        hippogallery:height: 1365
+        hippogallery:width: 2048
+        jcr:data:
+          type: binary
+          resource: /content/gallery/visitscotland/default/showcase_st_monans_harbour.jpg/showcase_st_monans_harbour.jpg/original/original.jpg
+        jcr:lastModified: 2020-10-26T11:22:09.995Z
+        jcr:mimeType: image/jpeg
+      /visitscotland:nl:
+        jcr:primaryType: visitscotland:ImageData
+        visitscotland:altText: ''
+        visitscotland:caption: ''
+      /visitscotland:fr:
+        jcr:primaryType: visitscotland:ImageData
+        visitscotland:altText: ''
+        visitscotland:caption: ''
+      /visitscotland:de:
+        jcr:primaryType: visitscotland:ImageData
+        visitscotland:altText: ''
+        visitscotland:caption: ''
+      /visitscotland:es:
+        jcr:primaryType: visitscotland:ImageData
+        visitscotland:altText: ''
+        visitscotland:caption: ''
+      /visitscotland:it:
+        jcr:primaryType: visitscotland:ImageData
+        visitscotland:altText: ''
+        visitscotland:caption: ''
