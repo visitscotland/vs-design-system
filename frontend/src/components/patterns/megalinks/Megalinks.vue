@@ -181,10 +181,6 @@ export default {
             }
         }
 
-        &--single-image {
-            padding-bottom: 0;
-        }
-
         @include media-breakpoint-up(lg) {
             padding: $spacer-12 0 $spacer-12;
 

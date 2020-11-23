@@ -13,9 +13,9 @@
         <#assign variant = "single-image">
     </#if>
 
-    <#assign showTeaser = item.teaserVisible?string('true', 'false') />
-
-    
+    <#if item.teaserVisible??>
+        <#assign showTeaser = item.teaserVisible?string('true', 'false') />
+    </#if>
 
     <vs-megalinks 
         variant="${variant}"
