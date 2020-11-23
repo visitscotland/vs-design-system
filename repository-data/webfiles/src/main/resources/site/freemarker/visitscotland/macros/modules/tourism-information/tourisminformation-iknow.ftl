@@ -2,6 +2,7 @@
 
 <#macro iknow module>
     <@hst.manageContent hippobean=module.tourismInformation />
+        ${module.title}
     <vs-row>
         <vs-col cols="12" md="10" lg="10" xl="10" offset-lg="1">
             <@hst.html hippohtml=module.description/>

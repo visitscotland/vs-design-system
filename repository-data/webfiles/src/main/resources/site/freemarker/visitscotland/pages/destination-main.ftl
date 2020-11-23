@@ -88,7 +88,7 @@
 		<#else>
 			<#assign theme = "#FFFFFF" />
 		</#if>
-
         <@moduleBuilder module=item theme=theme />
+	</vs-container>
 	</#list>
 </div>

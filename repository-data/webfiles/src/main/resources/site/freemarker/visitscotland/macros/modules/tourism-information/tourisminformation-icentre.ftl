@@ -14,7 +14,7 @@
             <@hst.link hippobean=module.quoteImage.cmsImage.original/>
         </#assign>
     </#if>
-
+    ${module.title}
     <#if !module.quote??>
         <vs-row class="mb-6">
             <vs-col cols="12" lg="8" offset-lg="1">
