@@ -2155,7 +2155,7 @@
         jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
         jcr:uuid: 6033a92f-4d87-419b-a18f-0c85eb0a41e4
         hippo:name: iCentre
-        hippo:versionHistory: e044e857-88bd-41d6-8e81-a9d0fa1e1edf
+        hippo:versionHistory: b082b13a-b320-4a8d-98d4-987090d4a067
         /icentre[1]:
           jcr:primaryType: visitscotland:TourismInformation
           jcr:mixinTypes: ['mix:referenceable']
@@ -2164,10 +2164,11 @@
           hippostd:state: draft
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2020-09-30T12:03:00.630+01:00
-          hippostdpubwf:lastModificationDate: 2020-10-23T10:09:20.659+01:00
+          hippostdpubwf:lastModificationDate: 2020-11-23T12:46:52.996Z
           hippostdpubwf:lastModifiedBy: admin
           hippotranslation:id: 2b3e0a8d-aca4-472b-9536-7fa106b8bff9
           hippotranslation:locale: en
+          visitscotland:translation: ''
           /visitscotland:ICentre:
             jcr:primaryType: visitscotland:ICentre
             visitscotland:description: ''
@@ -2204,6 +2205,22 @@
               /visitscotland:product:
                 jcr:primaryType: hippo:mirror
                 hippo:docbase: 4d302e29-93dd-4157-9df9-bbd741bb12a0
+            /visitscotland:quote:
+              jcr:primaryType: visitscotland:Quote
+              visitscotland:author: Mark
+              visitscotland:role: iCentre manager
+              /visitscotland:image:
+                jcr:primaryType: hippogallerypicker:imagelink
+                hippo:docbase: ecede5a4-326c-4ce5-b9be-bcdf32c3f2c2
+                hippo:facets: []
+                hippo:modes: []
+                hippo:values: []
+              /visitscotland:quote:
+                jcr:primaryType: hippostd:html
+                hippostd:content: <p>Testing quotes</p>
+              /visitscotland:product:
+                jcr:primaryType: hippo:mirror
+                hippo:docbase: 444422fa-4146-4bb4-a05b-8da787f93ab5
           /visitscotland:IKnow:
             jcr:primaryType: visitscotland:IKnow
             visitscotland:title: ''
@@ -2221,10 +2238,11 @@
           hippostd:state: unpublished
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2020-09-30T12:03:00.630+01:00
-          hippostdpubwf:lastModificationDate: 2020-10-23T10:09:20.389+01:00
+          hippostdpubwf:lastModificationDate: 2020-11-23T12:46:52.955Z
           hippostdpubwf:lastModifiedBy: admin
           hippotranslation:id: 2b3e0a8d-aca4-472b-9536-7fa106b8bff9
           hippotranslation:locale: en
+          visitscotland:translation: ''
           /visitscotland:ICentre:
             jcr:primaryType: visitscotland:ICentre
             visitscotland:description: ''
@@ -2261,6 +2279,22 @@
               /visitscotland:product:
                 jcr:primaryType: hippo:mirror
                 hippo:docbase: 4d302e29-93dd-4157-9df9-bbd741bb12a0
+            /visitscotland:quote:
+              jcr:primaryType: visitscotland:Quote
+              visitscotland:author: Mark
+              visitscotland:role: iCentre manager
+              /visitscotland:image:
+                jcr:primaryType: hippogallerypicker:imagelink
+                hippo:docbase: ecede5a4-326c-4ce5-b9be-bcdf32c3f2c2
+                hippo:facets: []
+                hippo:modes: []
+                hippo:values: []
+              /visitscotland:quote:
+                jcr:primaryType: hippostd:html
+                hippostd:content: <p>Testing quotes</p>
+              /visitscotland:product:
+                jcr:primaryType: hippo:mirror
+                hippo:docbase: 444422fa-4146-4bb4-a05b-8da787f93ab5
           /visitscotland:IKnow:
             jcr:primaryType: visitscotland:IKnow
             visitscotland:title: ''
@@ -2278,11 +2312,12 @@
           hippostd:state: published
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2020-09-30T12:03:00.630+01:00
-          hippostdpubwf:lastModificationDate: 2020-10-23T10:09:20.389+01:00
+          hippostdpubwf:lastModificationDate: 2020-11-23T12:46:52.955Z
           hippostdpubwf:lastModifiedBy: admin
-          hippostdpubwf:publicationDate: 2020-10-23T10:09:29.484+01:00
+          hippostdpubwf:publicationDate: 2020-11-23T12:46:56.754Z
           hippotranslation:id: 2b3e0a8d-aca4-472b-9536-7fa106b8bff9
           hippotranslation:locale: en
+          visitscotland:translation: ''
           /visitscotland:ICentre:
             jcr:primaryType: visitscotland:ICentre
             visitscotland:description: ''
@@ -2319,6 +2354,22 @@
               /visitscotland:product:
                 jcr:primaryType: hippo:mirror
                 hippo:docbase: 4d302e29-93dd-4157-9df9-bbd741bb12a0
+            /visitscotland:quote:
+              jcr:primaryType: visitscotland:Quote
+              visitscotland:author: Mark
+              visitscotland:role: iCentre manager
+              /visitscotland:image:
+                jcr:primaryType: hippogallerypicker:imagelink
+                hippo:docbase: ecede5a4-326c-4ce5-b9be-bcdf32c3f2c2
+                hippo:facets: []
+                hippo:modes: []
+                hippo:values: []
+              /visitscotland:quote:
+                jcr:primaryType: hippostd:html
+                hippostd:content: <p>Testing quotes</p>
+              /visitscotland:product:
+                jcr:primaryType: hippo:mirror
+                hippo:docbase: 444422fa-4146-4bb4-a05b-8da787f93ab5
           /visitscotland:IKnow:
             jcr:primaryType: visitscotland:IKnow
             visitscotland:title: ''

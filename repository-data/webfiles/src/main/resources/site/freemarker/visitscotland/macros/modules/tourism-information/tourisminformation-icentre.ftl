@@ -1,6 +1,9 @@
 <#include "../../../../include/imports.ftl">
+<#include "../../../../frontend/components/vs-image-with-caption.ftl">
+<#include "../../global/image-with-caption.ftl">
 
 <#macro icentre module>
+    <@hst.manageContent hippobean=module.tourismInformation />
     <#if module.image.cmsImage??>
         <#assign image>
             <@hst.link hippobean=module.image.cmsImage.original/>
