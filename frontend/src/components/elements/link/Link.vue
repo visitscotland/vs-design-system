@@ -3,7 +3,6 @@
         class="vs-link"
         :class="[
             `vs-link--variant-${variant}`,
-            { 'vs-link--external': external }
         ]"
         :href="href"
         :target="type === 'external' ? '_blank' : '_self'"
