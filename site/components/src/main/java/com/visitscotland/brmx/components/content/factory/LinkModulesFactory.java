@@ -270,7 +270,9 @@ public class LinkModulesFactory {
                 }
             }
             link.setLink(linkService.getPlainLink((SharedLink) linkable, product));
-         link.setType(linkService.getType(link.getLink()));
+            if (link.getType() == null) {
+                link.setType(linkService.getType(link.getLink()));
+            }
         } else {
             logger.warn(String.format("The type %s was not expected and will be skipped", linkable.getClass().getSimpleName()));
             return null;
