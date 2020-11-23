@@ -231,13 +231,11 @@ export default {
                 color: $color-yellow;
             }
 
-            .card .stretched-link,
             p {
                 color: $color-white;
             }
 
-            .card,
-            .megalink-link-list__wrapper.card {
+            .megalink-multi-image.card {
                 &:hover {
                     box-shadow: 10px 10px 15px #000000;
                 }
@@ -247,6 +245,15 @@ export default {
                 }
             }
         }
+    }
+
+     // styles needed to control spacing with CMS containers
+    .has-edit-button.theme-light + .has-edit-button.theme-light .vs-megalinks {
+        padding-top: 0;
+    }
+
+    .has-edit-button.theme-dark + .has-edit-button.theme-dark .vs-megalinks {
+        padding-top: 0;
     }
 </style>
 

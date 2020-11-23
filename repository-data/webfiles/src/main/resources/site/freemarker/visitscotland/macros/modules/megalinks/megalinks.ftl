@@ -4,7 +4,7 @@
 <#include "./link-list/megalinks-link-list.ftl">
 <#include "./single-image/megalinks-single-image.ftl">
 
-<#macro megalinks item type>
+<#macro megalinks item type theme>
     <#if type=="MultiImageLinksModule">
         <#assign variant = "multi-image">
     <#elseif type=="ListLinksModule">
@@ -12,9 +12,17 @@
     <#elseif type=="SingleImageLinksModule">
         <#assign variant = "single-image">
     </#if>
+
     <#assign showTeaser = item.teaserVisible?string('true', 'false') />
+
     
-    <vs-megalinks variant="${variant}" title="${item.title}" <#if item.cta?? && type != "SingleImageLinksModule">button-link="${item.cta.link}"</#if>>
+
+    <vs-megalinks 
+        variant="${variant}"
+        title="${item.title}"
+        theme="${theme}"
+        <#if item.cta?? && type != "SingleImageLinksModule">button-link="${item.cta.link}"</#if>
+    >
         <@hst.manageContent hippobean=item.megalinkItem />
 
         <template slot="vsMegalinksHeading">
@@ -28,16 +36,16 @@
         </vs-rich-text-wrapper>
 
         <#if type == "MultiImageLinksModule">
-            <@multiImage item=item showTeaser=showTeaser/>
+            <@multiImage item=item showTeaser=showTeaser theme=theme />
 
         <#elseif type == "ListLinksModule">
-            <@linkList item=item showTeaser=showTeaser />
+            <@linkList item=item showTeaser=showTeaser theme=theme />
 
         <#elseif type == "SingleImageLinksModule">
-            <@singleImage item=item /> 
+            <@singleImage item=item theme=theme /> 
         </#if>
 
-       <#if item.cta?? >     
+        <#if item.cta?? >     
             <template slot="vsMegalinksButton">
                 ${item.cta.label}
             </template>

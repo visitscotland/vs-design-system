@@ -88,6 +88,6 @@
             <#assign theme = "#FFFFFF" />
         </#if>
 
-        <@moduleBuilder module=item theme="#FFF" />
+        <@moduleBuilder module=item theme=item.theme />
 	</#list>
 </div>

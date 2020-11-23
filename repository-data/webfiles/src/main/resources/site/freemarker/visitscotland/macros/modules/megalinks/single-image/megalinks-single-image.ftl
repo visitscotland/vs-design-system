@@ -2,7 +2,7 @@
 <#include "../../../../../frontend/components/vs-megalink-single-image.ftl">
 <#include "../../../../../frontend/components/vs-link.ftl">
 
-<#macro singleImage item>
+<#macro singleImage item theme>
     <#if item.image.cmsImage??>
         <#assign image>
             <@hst.link hippobean=item.image.cmsImage.original/>
@@ -11,11 +11,13 @@
         <#assign image = item.image.externalImage!'' />
     </#if>
     <vs-col cols="12">
+        ${theme}
         <vs-megalink-single-image 
             title="${item.innerTitle}"
             img-src="${image}"
             <#if item.cta.link??>button-link="${item.cta.link}"</#if>
             <#if item.alignment == 'left'>alternate</#if>
+            theme="${theme}"
         >
             <template slot="vsSingleImageCaption">${item.image.description}</template>
             <template slot="vsSingleImageCredit">${item.image.credit}</template>
@@ -27,6 +29,7 @@
                     <li class="megalink-single-image__link-list-item">
                         <vs-link
                             href="${listItem.link}"
+                            variant="${theme}"
                             <#if listItem.type != "internal">type="${listItem.type}"</#if>
                         >
                             ${listItem.label}
