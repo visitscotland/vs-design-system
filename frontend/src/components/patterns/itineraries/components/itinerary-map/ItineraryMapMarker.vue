@@ -10,7 +10,7 @@
         @click="handleClick()"
         @keydown="handleClick()"
     >
-        <div class="map-marker__wrapper">
+        <div class="vs-map-marker__wrapper">
             <VsIcon
                 name="map-marker-filled"
                 :class="isHighlighted ? 'active' : ''"
@@ -84,7 +84,7 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .vs-itinerary-map-marker {
     background: transparent;
     border: none;
@@ -98,15 +98,15 @@ export default {
     &.active {
         z-index: 1 !important;
     }
-}
 
-svg {
-    transition: all 250ms ease;
-}
+    svg {
+        transition: all 250ms ease;
+    }
 
-svg.active {
-    transform: scale(1.2, 1.2) translateY(-10px);
-    fill: $color-secondary-teal-shade-3 !important;
+    svg.active {
+        transform: scale(1.2, 1.2) translateY(-10px);
+        fill: $color-secondary-teal-shade-3 !important;
+    }
 }
 
 .vs-itinerary-map-marker__count {
