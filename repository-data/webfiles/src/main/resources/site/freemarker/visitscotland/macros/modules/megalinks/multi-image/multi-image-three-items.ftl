@@ -20,6 +20,7 @@
             img-src="${image}"
             link-type="${megalink.type}"
             theme="${theme}"
+            link-url="${megalink.link}"
         >
             <template slot="vsMultiImageHeading">
                 ${megalink.label}</template>
