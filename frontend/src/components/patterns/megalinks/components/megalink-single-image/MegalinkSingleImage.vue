@@ -131,6 +131,7 @@ export default {
             margin: $spacer-0 $spacer-3;
             padding: $spacer-8 $spacer-6;
             clear: both;
+            width: 100%;
 
             p {
                 margin-bottom: 1rem;
