@@ -36,17 +36,11 @@
                     </div>
                 </VsCol>
                 <VsCol
-                    cols="0"
-                    md="3"
-                    order="2"
-                    order-md="3"
-                />
-                <VsCol
                     cols="4"
                     md="2"
                     offset="4"
                     offset-md="1"
-                    order="3"
+                    order="2"
                     order-md="1"
                     class="vs-iknow-partner-item__coo-container"
                 >
