@@ -35,17 +35,10 @@ class ImageValidatorTest {
         ImageValidator validator = new ImageValidator(mockSessionFactory);
 
         Node node = Mockito.mock(Node.class, RETURNS_DEEP_STUBS);
-//        Node galleryNode = Mockito.mock(Node.class, RETURNS_DEEP_STUBS);
-//        Node galleryNode = Mockito.mock(Node.class, RETURNS_DEEP_STUBS);
         Node childNode = mockImage("credit", "alt-text");
 
 
         when(node.getProperty(HIPPO_DOCBASE).getValue().getString()).thenReturn("imageName");
-//            when(mockSessionFactory.getJcrSession().getNodeByIdentifier("imageName")).thenReturn(galleryNode);
-//            when(galleryNode.getNode(galleryNode.getName())).thenReturn(childNode);
-
-//            when(mockSessionFactory.getJcrSession().getNodeByIdentifier("imageName").getNode("imageName")).thenReturn(childNode);
-
         when(mockSessionFactory.getHippoNodeByIdentifier("imageName")).thenReturn(childNode);
 
         assertFalse(validator.validate(context, node).isPresent());
@@ -54,7 +47,7 @@ class ImageValidatorTest {
     @Test
     @DisplayName("Validates that the image throws an Error when there is no credit")
     void noCredit() throws RepositoryException {
-        //Validates that the credit is set
+        //Validates that the credit is not present
         ImageValidator validator = new ImageValidator(mockSessionFactory);
 
         Node node = Mockito.mock(Node.class, RETURNS_DEEP_STUBS);
@@ -71,7 +64,7 @@ class ImageValidatorTest {
     @Test
     @DisplayName("Validates that the image throws an Error when there is no alternative text")
     void noAltText() throws RepositoryException {
-        //Validates that the alternative text is set
+        //Validates that the alternative text is not present
         ImageValidator validator = new ImageValidator(mockSessionFactory);
 
         Node node = Mockito.mock(Node.class, RETURNS_DEEP_STUBS);
