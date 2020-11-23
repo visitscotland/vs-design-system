@@ -11,7 +11,6 @@
         <#assign image = item.image.externalImage!'' />
     </#if>
     <vs-col cols="12">
-        ${theme}
         <vs-megalink-single-image 
             title="${item.innerTitle}"
             img-src="${image}"
