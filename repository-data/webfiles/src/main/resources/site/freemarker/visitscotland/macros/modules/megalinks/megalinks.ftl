@@ -12,7 +12,10 @@
     <#elseif type=="SingleImageLinksModule">
         <#assign variant = "single-image">
     </#if>
-    <#assign showTeaser = item.teaserVisible?string('true', 'false') />
+
+    <#if item.teaserVisible??>
+        <#assign showTeaser = item.teaserVisible?string('true', 'false') />
+    </#if>
     
     <vs-megalinks variant="${variant}" title="${item.title}" <#if item.cta?? && type != "SingleImageLinksModule">button-link="${item.cta.link}"</#if>>
         <@hst.manageContent hippobean=item.megalinkItem />
