@@ -45,15 +45,14 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 @import "~bootstrap/scss/type";
 
 .vs-description-list {
-    & ::v-deep {
-        // turns offset column off for first item after a term to avoid layout errors
-        .vs-description-list__term + .vs-description-list__detail {
-            @include make-col-offset(0);
-        }
+
+    // turns offset column off for first item after a term to avoid layout errors
+    .vs-description-list__term+.vs-description-list__detail {
+        @include make-col-offset(0);
     }
 }
 </style>

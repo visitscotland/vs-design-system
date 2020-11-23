@@ -79,7 +79,7 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .vs-itinerary-stop {
     margin-bottom: 3.125rem;
 
@@ -116,14 +116,12 @@ export default {
         width: 100%;
     }
 
-    & ::v-deep {
-        .vs-icon-list {
-            border-top: 1px solid $color-gray-tint-5;
-            margin-top: $spacer-4;
+    .vs-icon-list {
+        border-top: 1px solid $color-gray-tint-5;
+        margin-top: $spacer-4;
 
-            .vs-icon-list__title {
-                margin-top: $spacer-4;
-            }
+        .vs-icon-list__title {
+            margin-top: $spacer-4;
         }
     }
 }

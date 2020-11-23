@@ -3,15 +3,16 @@
         :variant="variant"
         :href="href"
         :tabindex="tabindex"
+        class="vs-button"
         :class="{
-            'vs-button-with-icon': icon ? 'vs-button-with-icon' : '',
-            [animateClass]: animateClass,
+            'vs-button--animated': animate,
+            'vs-button--is-animating': isAnimating,
             [backgroundClass]: backgroundClass,
             [textTransformClass]: textTransformClass,
         }"
         :size="size"
         v-bind="$attrs"
-        @click="animate ? animateHandler() : null"
+        @click="animateHandler"
     >
         <VsIcon
             :class="{ 'mr-2': !iconOnly }"
@@ -135,10 +136,12 @@ export default {
             default: false,
         },
     },
+    data() {
+        return {
+            isAnimating: false,
+        };
+    },
     computed: {
-        animateClass() {
-            return this.animate ? 'btn-animate' : null;
-        },
         backgroundClass() {
             return this.background ? [`btn-bg-${this.background}`] : null;
         },
@@ -160,39 +163,19 @@ export default {
     },
     methods: {
         animateHandler() {
-            this.$el.classList.add('bubble');
+            this.isAnimating = true;
             setTimeout(() => {
-                this.$el.classList.remove('bubble');
+                this.isAnimating = false;
             }, 1000);
         },
     },
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 @import "~bootstrap/scss/buttons";
 
-.vs-button-with-icon {
-    padding-left: 1rem;
-    padding-right: 1rem;
-
-    @include media-breakpoint-up(sm) {
-        width: auto;
-    }
-
-    svg {
-        fill: currentColor;
-        transition: fill 250ms;
-        vertical-align: sub;
-    }
-    &:hover {
-        svg {
-            fill: currentColor;
-        }
-    }
-}
-
-.btn {
+.vs-button.btn {
     font-family: $font-family-base;
     font-weight: $font-weight-light;
     transition: $transition-base;
@@ -221,36 +204,36 @@ export default {
             background: rgba(0, 0, 0, 0.2);
         }
     }
-}
 
-.btn-animate {
-    @keyframes bubble {
-        0% {
-            transform: scale(0, 0);
-            opacity: 1;
+    &.vs-button--animated {
+        @keyframes bubble {
+            0% {
+                transform: scale(0, 0);
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+                transform: scale(100, 100);
+            }
         }
-        100% {
+
+        &::after {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            bottom: 0;
+            content: "";
+            height: 5px;
             opacity: 0;
-            transform: scale(100, 100);
+            position: absolute;
+            right: 0;
+            transform-origin: 50% 50%;
+            transform: scale(1, 1) translate(-50%);
+            width: 5px;
         }
-    }
 
-    &::after {
-        background: rgba(255, 255, 255, 0.1);
-        border-radius: 50%;
-        bottom: 0;
-        content: "";
-        height: 5px;
-        opacity: 0;
-        position: absolute;
-        right: 0;
-        transform-origin: 50% 50%;
-        transform: scale(1, 1) translate(-50%);
-        width: 5px;
-    }
-
-    &.bubble::after {
-        animation: bubble 500ms ease-in-out;
+        &.vs-button--is-animating::after {
+            animation: bubble 500ms ease-in-out;
+        }
     }
 }
 </style>
