@@ -8,8 +8,9 @@
         "trackingId": "nav.link.test-tracking-id",
         "dropdownNav": [
             {
-                "title": "Main cities",
-                "href": null,
+                "title": "Cities",
+                "cta": "All Cities",
+                "href": "https://www.visitscotland.com/destinations-maps/",
                 "isExternal": false,
                 "isActive": false,
                 "trackingId": "nav.link.test-tracking-id",
@@ -66,8 +67,9 @@
                 ]
             },
             {
-                "title": "Scotland's islands",
-                "href": null,
+                "title": "Scotland's Islands",
+                "cta": "All Scotland's Islands",
+                "href": "https://www.visitscotland.com/destinations-maps/",
                 "isExternal": false,
                 "isActive": false,
                 "trackingId": "nav.link.test-tracking-id",
@@ -138,8 +140,9 @@
                 ]
             },
             {
-                "title": "Scotland's regions",
-                "href": null,
+                "title": "Scotland's Regions",
+                "cta": "All Scotland's Regions",
+                "href": "https://www.visitscotland.com/destinations-maps/",
                 "isExternal": false,
                 "isActive": false,
                 "trackingId": "nav.link.test-tracking-id",
@@ -231,8 +234,9 @@
                 ]
             },
             {
-                "title": "Featured attractions",
-                "href": null,
+                "title": "Featured Attractions",
+                "cta": "All Featured Attractions",
+                "href": "https://www.visitscotland.com/destinations-maps/",
                 "isExternal": false,
                 "isActive": false,
                 "trackingId": "nav.link.test-tracking-id",
@@ -300,7 +304,8 @@
         "dropdownNav": [
             {
                 "title": "Attractions",
-                "href": null,
+                "cta": "All Attractions",
+                "href": "https://www.visitscotland.com/destinations-maps/",
                 "isExternal": false,
                 "isActive": false,
                 "trackingId": null,
@@ -372,6 +377,7 @@
             },
             {
                 "title": "Deals & Offers",
+                "cta": null,
                 "href": null,
                 "isExternal": false,
                 "isActive": false,
@@ -394,8 +400,9 @@
                 ]
             },
             {
-                "title": "Outdoor activities",
-                "href": null,
+                "title": "Outdoor Activities",
+                "cta": "All Outdoor Activities",
+                "href": "https://www.visitscotland.com/destinations-maps/",
                 "isExternal": false,
                 "isActive": false,
                 "trackingId": null,
@@ -467,7 +474,8 @@
             },
             {
                 "title": "Food & Drink",
-                "href": null,
+                "cta": "All Food & Drink",
+                "href": "https://www.visitscotland.com/destinations-maps/",
                 "isExternal": false,
                 "isActive": false,
                 "trackingId": null,
@@ -497,7 +505,8 @@
             },
             {
                 "title": "Landscape & Nature",
-                "href": null,
+                "cta": "All Landscape & Nature",
+                "href": "https://www.visitscotland.com/destinations-maps/",
                 "isExternal": false,
                 "isActive": false,
                 "trackingId": null,
@@ -541,6 +550,7 @@
             },
             {
                 "title": "Tours, Routes & Trails",
+                "cta": null,
                 "href": null,
                 "isExternal": false,
                 "isActive": false,
@@ -592,7 +602,8 @@
             },
             {
                 "title": "Events",
-                "href": null,
+                "cta": "All Events",
+                "href": "https://www.visitscotland.com/destinations-maps/",
                 "isExternal": false,
                 "isActive": false,
                 "trackingId": null,
@@ -632,7 +643,7 @@
         "dropdownNav": [
             {
                 "title": "Accommodation Types",
-                "href": null,
+                "href": "https://www.visitscotland.com/destinations-maps/",
                 "trackingId": "nav.link.test-tracking-id",
                 "dropdownNav": [
                     {
@@ -706,7 +717,7 @@
             },
             {
                 "title": "Hotels",
-                "href": null,
+                "href": "https://www.visitscotland.com/destinations-maps/",
                 "isExternal": false,
                 "isActive": false,
                 "trackingId": "nav.link.test-tracking-id",
@@ -729,7 +740,7 @@
             },
             {
                 "title": "Unique places to stay",
-                "href": null,
+                "href": "https://www.visitscotland.com/destinations-maps/",
                 "isExternal": false,
                 "isActive": false,
                 "trackingId": "nav.link.test-tracking-id",
@@ -787,7 +798,7 @@
             },
             {
                 "title": "Top Accommodation Searches",
-                "href": null,
+                "href": "https://www.visitscotland.com/destinations-maps/",
                 "isExternal": false,
                 "isActive": false,
                 "trackingId": "nav.link.test-tracking-id",
@@ -942,7 +953,7 @@
         "dropdownNav": [
             {
                 "title": "Help and support",
-                "href": null,
+                "href": "https://www.visitscotland.com/destinations-maps/",
                 "isExternal": false,
                 "isActive": false,
                 "trackingId": "nav.link.test-tracking-id",
@@ -986,7 +997,7 @@
             },
             {
                 "title": "Tourist information",
-                "href": null,
+                "href": "https://www.visitscotland.com/destinations-maps/",
                 "isExternal": false,
                 "isActive": false,
                 "trackingId": "nav.link.test-tracking-id",
@@ -1016,7 +1027,7 @@
             },
             {
                 "title": "Getting to Scotland",
-                "href": null,
+                "href": "https://www.visitscotland.com/destinations-maps/",
                 "isExternal": false,
                 "isActive": false,
                 "trackingId": "nav.link.test-tracking-id",
@@ -1046,7 +1057,7 @@
             },
             {
                 "title": "Getting around Scotland",
-                "href": null,
+                "href": "https://www.visitscotland.com/destinations-maps/",
                 "isExternal": false,
                 "isActive": false,
                 "trackingId": "nav.link.test-tracking-id",
