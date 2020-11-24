@@ -6,6 +6,7 @@
             'vs-heading--thin': thin,
         }"
     >
+        <!-- @slot The main header content goes here -->
         <slot />
 
         <span class="vs-heading__sub-heading">
@@ -46,6 +47,9 @@ export default {
     computed: {
         type() {
             return `h${this.level}`;
+        },
+        hasSubtitle() {
+            return !!this.$slots['sub-heading'];
         },
     },
 };
