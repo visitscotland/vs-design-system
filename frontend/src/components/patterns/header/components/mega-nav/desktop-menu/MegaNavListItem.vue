@@ -50,18 +50,19 @@ export default {
 .mega-nav-list-item{
     position: relative;
     list-style-type: none;
+    line-height: $line-height-s;
     font-size: $h4-font-size;
 
     &:first-of-type{
         border-bottom: 1px solid #d9d9d9;
-        margin-bottom: $spacer-2;
+        margin-bottom: $spacer-1;
+        line-height: $standard-line-height;
     }
 
     .vs-link--variant-primary{
         text-decoration: none;
         display: block;
         padding: 0.125rem $spacer-5;
-        line-height: $line-height-s;
         border: 2px solid $color-white;
 
         &:focus{
