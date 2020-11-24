@@ -2,11 +2,11 @@
     <li
         class="mega-nav-list-item"
         data-test="mega-nav-list-item"
+        :class="navItemClass"
     >
         <VsLink
             :href="href"
             :role="href === '#' ? 'heading' : ''"
-            :class="navItemClass"
         >
             <slot />
         </VsLink>
@@ -53,12 +53,6 @@ export default {
     line-height: $line-height-s;
     font-size: $h4-font-size;
 
-    &:first-of-type{
-        border-bottom: 1px solid #d9d9d9;
-        margin-bottom: $spacer-1;
-        line-height: $standard-line-height;
-    }
-
     .vs-link--variant-primary{
         text-decoration: none;
         display: block;
@@ -71,8 +65,20 @@ export default {
         }
     }
 
+    &__heading{
+        border-bottom: 1px solid #d9d9d9;
+        margin-bottom: $spacer-1;
+        line-height: $standard-line-height;
+
+        .vs-link--variant-primary{
+            color: $color-secondary-gray-shade-3;
+            font-size: $h3-font-size;
+            cursor: text;
+        }
+    }
+
     &__link{
-        &.vs-link--variant-primary{
+        .vs-link--variant-primary{
             color: $color-secondary-gray;
             transition: 0.2s color;
 
@@ -95,18 +101,12 @@ export default {
                 background: $color-pink;
                 transition: height 0.15s linear;
             }
-
-            &.mega-nav-list-item__subheading-link{
-                color: $color-pink;
-            }
         }
     }
 
-    &__heading{
-        &.vs-link--variant-primary{
-            color: $color-secondary-gray-shade-3;
-            font-size: $h3-font-size;
-            cursor: text;
+    &__subheading-link{
+        .vs-link--variant-primary{
+            color: $color-pink;
         }
     }
 }
