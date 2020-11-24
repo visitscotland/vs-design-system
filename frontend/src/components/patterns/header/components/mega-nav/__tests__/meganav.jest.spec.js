@@ -19,7 +19,7 @@ describe('VsMegaNav', () => {
 
     it('should render a button with an `icon-bars-mobile-menu` icon', () => {
         const wrapper = mount(VsMegaNav);
-        const dropdownToggle = wrapper.find('[data-test="vs-mega-nav__dropdown"]').find('.dropdown-toggle');
+        const dropdownToggle = wrapper.find('[data-test="vs-mega-nav-dropdown"]').find('.dropdown-toggle');
 
         expect(dropdownToggle.exists()).toBe(true);
         expect(dropdownToggle.html()).toContain('icon-bars-mobile-menu');
@@ -35,7 +35,7 @@ describe('VsMegaNav', () => {
     describe(':events', () => {
         it('displays a button with an `icon-close` icon when menuToggled event is emitted', () => {
             const wrapper = mount(VsMegaNav);
-            const dropdownToggle = wrapper.find('[data-test="vs-mega-nav__dropdown"]').find('.dropdown-toggle');
+            const dropdownToggle = wrapper.find('[data-test="vs-mega-nav-dropdown"]').find('.dropdown-toggle');
             wrapper.find(VsMegaNavDropdown).vm.$emit('menuToggled');
 
             expect(dropdownToggle.html()).toContain('icon-close');

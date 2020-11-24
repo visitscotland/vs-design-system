@@ -19,9 +19,9 @@ const factoryMount = () => mount(VsMegaNavDropdown, {
 });
 
 describe('VsMegaNavDropdown', () => {
-    it('should render a component with the data-test attribute `.vs-mega-nav__dropdown`', () => {
+    it('should render a component with the data-test attribute `.vs-mega-nav-dropdown`', () => {
         const wrapper = factoryShallowMount();
-        expect(wrapper.attributes('data-test')).toBe('vs-mega-nav__dropdown');
+        expect(wrapper.attributes('data-test')).toBe('vs-mega-nav-dropdown');
     });
 
     describe(':slots', () => {

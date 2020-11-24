@@ -65,7 +65,7 @@ describe('VsMegaNavTopMenuItem', () => {
     describe(':slots', () => {
         it('renders content inserted in a buttonContent slot', () => {
             const wrapper = factoryMount();
-            expect(wrapper.find('[data-test="vs-mega-nav__dropdown"]').find('.dropdown-toggle').text()).toBe('Dropdown Toggle');
+            expect(wrapper.find('[data-test="vs-mega-nav-dropdown"]').find('.dropdown-toggle').text()).toBe('Dropdown Toggle');
         });
 
         it('renders content inserted in a dropdownContent slot', () => {
