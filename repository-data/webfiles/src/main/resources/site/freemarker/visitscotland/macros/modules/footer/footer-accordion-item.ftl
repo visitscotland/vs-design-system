@@ -10,12 +10,6 @@
             <#if menuItem.title?has_content>
                 <#if !menuItem.hstLink?? && !menuItem.externalLink??>
                     <#assign title>${menuItem.title?html}</#assign>
-                <#else>
-                    <#if menuItem.hstLink??>
-                        <#assign href><@hst.link link=menuItem.hstLink/></#assign>
-                    <#elseif menuItem.externalLink??>
-                        <#assign href>${menuItem.externalLink?replace("\"", "")}</#assign>
-                    </#if>
                 </#if>
             </#if>
             <vs-footer-accordion-item
