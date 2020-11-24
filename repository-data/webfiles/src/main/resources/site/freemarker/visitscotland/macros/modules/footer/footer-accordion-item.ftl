@@ -8,9 +8,7 @@
     <#list footerMenuItems as menuItem>
         <vs-col cols="12" md="4" lg="3">
             <#if menuItem.title?has_content>
-                <#if !menuItem.hstLink?? && !menuItem.externalLink??>
-                    <#assign title>${menuItem.title?html}</#assign>
-                </#if>
+                <#assign title>${menuItem.title?html}</#assign>
             </#if>
             <vs-footer-accordion-item
                 :open-by-default="false" 
