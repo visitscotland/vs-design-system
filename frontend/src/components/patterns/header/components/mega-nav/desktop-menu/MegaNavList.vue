@@ -9,6 +9,9 @@
 
         <!-- @slot Slot for nav list items  -->
         <slot name="navListItems" />
+
+        <!-- @slot Slot for nav list heading cta link at bottom of the menu group  -->
+        <slot name="navHeadingCtaLink" />
     </ul>
 </template>
 
