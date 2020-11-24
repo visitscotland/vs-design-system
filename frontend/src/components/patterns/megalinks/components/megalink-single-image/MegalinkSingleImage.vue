@@ -146,14 +146,14 @@ export default {
             list-style: none;
             padding: 0;
             margin: 0;
-        }
 
-        .megalink-single-image__link-list-item {
-            margin-top: $spacer-4;
-            font-size: $lead-font-size;
+            li {
+                margin-top: $spacer-4;
+                font-size: $lead-font-size;
 
-            &:first-of-type {
-                margin-bottom: $spacer-0;
+                &:first-of-type {
+                    margin-bottom: $spacer-0;
+                }
             }
         }
 
@@ -239,14 +239,14 @@ export default {
                     </p>
                 </template>
                 <template slot="vsSingleImageLinks">
-                    <li class="megalink-single-image__link-list-item">
+                    <li>
                         <VsLink
                             href="www.visitscotland.com"
                         >
                             This is a link here
                         </VsLink>
                     </li>
-                    <li class="megalink-single-image__link-list-item">
+                    <li>
                         <VsLink
                             href="www.visitscotland.com"
                             type="external"
@@ -254,7 +254,7 @@ export default {
                             This is an external link here
                         </VsLink>
                     </li>
-                    <li class="megalink-single-image__link-list-item">
+                    <li>
                         <VsLink
                             href="www.visitscotland.com"
                             type="download"
@@ -291,21 +291,21 @@ export default {
                     </p>
                 </template>
                 <template slot="vsSingleImageLinks">
-                    <li class="megalink-single-image__link-list-item">
+                    <li>
                         <VsLink
                             href="www.visitscotland.com"
                         >
                             This is a link here
                         </VsLink>
                     </li>
-                    <li class="megalink-single-image__link-list-item">
+                    <li>
                         <VsLink
                             href="www.visitscotland.com"
                         >
                             This is a link here
                         </VsLink>
                     </li>
-                    <li class="megalink-single-image__link-list-item">
+                    <li>
                         <VsLink
                             href="www.visitscotland.com"
                         >
