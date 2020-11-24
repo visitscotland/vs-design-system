@@ -21,18 +21,17 @@
                         <!-- @slot The rest of the mega nav links put here in the dropdown menu  -->
                         <slot name="dropdownContent" />
 
-                        <VsButtonWithIcon
+                        <VsButton
                             class="vs-mega-nav__dropdown__close-btn d-lg-none position-absolute"
                             icon="close"
                             icon-only
-                            button-size="md"
                             variant="transparent"
                             @click.native="closeMenu"
                         >
                             <span class="sr-only">
                                 {{ menuToggleAltText }}
                             </span>
-                        </VsButtonWithIcon>
+                        </VsButton>
                     </VsCol>
                 </VsRow>
             </VsContainer>
@@ -49,7 +48,7 @@ import {
     VsCol, VsRow, VsContainer,
 } from '@components/elements/layout';
 import { BDropdown } from 'bootstrap-vue';
-import VsButtonWithIcon from '@components/elements/button/ButtonWithIcon';
+import VsButton from '@components/elements/button/Button';
 
 export default {
     name: 'VsMegaNavDropdown',
@@ -60,7 +59,7 @@ export default {
         VsCol,
         VsRow,
         VsContainer,
-        VsButtonWithIcon,
+        VsButton,
     },
     props: {
         /**
