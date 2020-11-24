@@ -14,11 +14,21 @@
         v-bind="$attrs"
         @click="animateHandler"
     >
+        <VsIcon
+            :class="{ 'mr-2': !iconOnly }"
+            v-if="icon"
+            :name="icon"
+            :size="iconSize"
+            :padding="0"
+            :orientation="iconOrientation"
+        />
+        <!-- @slot The button content goes here -->
         <slot />
     </BButton>
 </template>
 <script>
 import { BButton } from 'bootstrap-vue';
+import VsIcon from '@components/elements/icon/Icon';
 
 /**
  * TODO: Document usage.
@@ -35,6 +45,7 @@ export default {
     release: '0.0.1',
     components: {
         BButton,
+        VsIcon,
     },
     props: {
         /**
@@ -93,12 +104,36 @@ export default {
             default: true,
         },
         /**
+         * If you need a button with icon
+         * just pass the icon name here.
+         */
+        icon: {
+            type: String,
+            default: '',
+        },
+        /**
          * By default, button text is uppercase
          * To disable, add an uppercase=false property
          */
         uppercase: {
             type: Boolean,
             default: true,
+        },
+        /**
+         * The icon orientation
+         * `up, down, left, right`
+         */
+        iconOrientation: {
+            type: String,
+            default: null,
+            validator: (value) => value.match(/(up|down|left|right)/),
+        },
+        /**
+         * If the button contains an icon and no text
+         */
+        iconOnly: {
+            type: Boolean,
+            default: false,
         },
     },
     data() {
@@ -109,6 +144,18 @@ export default {
     computed: {
         backgroundClass() {
             return this.background ? [`btn-bg-${this.background}`] : null;
+        },
+        iconSize() {
+            switch (this.size) {
+            case 'sm':
+                return 'xs';
+            case 'md':
+                return 'sm';
+            case 'lg':
+                return 'md';
+            default:
+                return 'md';
+            }
         },
         textTransformClass() {
             return this.uppercase ? 'text-uppercase' : null;
@@ -199,6 +246,48 @@ export default {
       <vs-button :animate=false class="mr-2 mb-2">Button with no animation</vs-button>
       <vs-button class="mr-2 mb-2" href="https://www.visitscotland.com">Link</vs-button>
     </bs-wrapper>
+
+    <h4>With Icons</h4>
+    <bs-wrapper class="d-flex flex-wrap mb-4">
+      <vs-button
+        class="mr-2 mb-2"
+        icon="food"
+        size="sm"
+      >
+        Nearby Places to Eat
+      </vs-button>
+    </bs-wrapper>
+
+    <bs-wrapper class="d-flex flex-wrap mb-4">
+      <vs-button
+        class="mr-2 mb-2"
+        icon="map"
+        size="md"
+      >
+        Map View
+      </vs-button>
+    </bs-wrapper>
+
+    <bs-wrapper class="d-flex flex-wrap mb-4">
+      <vs-button
+        class="mr-2 mb-2"
+        icon="external-link"
+        size="lg"
+      >
+        Open in a new tab
+      </vs-button>
+    </bs-wrapper>
+
+    <h4>Icon Only</h4>
+    <bs-wrapper class="d-flex flex-wrap mb-4">
+      <vs-button
+        class="mr-2 mb-2"
+        icon="external-link"
+        size="sm"
+        icon-only
+      />
+    </bs-wrapper>
+
     <h4>Variants</h4>
     <bs-wrapper class="d-flex flex-wrap mb-4">
       <vs-button variant="primary" class="mr-2 mb-2">Primary (default)</vs-button>
