@@ -25,9 +25,10 @@
                             <slot name="dropdownContent" />
 
                             <VsButton
-                                class="vs-mega-nav__dropdown__close-btn d-lg-none position-absolute"
+                                class="vs-mega-nav-dropdown__close-btn position-absolute"
                                 icon="close"
                                 icon-only
+                                size="sm"
                                 variant="transparent"
                                 @click.native="closeMenu"
                             >
@@ -127,13 +128,32 @@ export default {
         }
     }
 
-    .vs-mega-nav-dropdown__close-btn{
-        @extend .dropdown-toggle;
+    .btn.vs-mega-nav-dropdown__close-btn{
+        border: 0;
+        height: 26px;
+        width: 26px;
+        font-size: 0;
+        padding: $spacer-1;
         right: 4px;
         top: -67px;
 
+        &:focus {
+            box-shadow: 0 0 0 0.1rem $color-pink inset;
+        }
+
+        &:hover {
+            .icon.icon-dark[data-v-196177e7] {
+                fill: $color-pink;
+            }
+        }
+
         @include media-breakpoint-up(sm) {
             right: 12px;
+        }
+
+        @include media-breakpoint-up(lg) {
+            top: -10px;
+            right: $spacer-8;
         }
     }
 
@@ -199,7 +219,6 @@ export default {
         padding: $spacer-5 0 $spacer-8;
         margin: 0;
         max-height: 595px;
-        overflow: hidden;
         border: 0;
         box-shadow: 0px 9px 5px -7px rgba(0,0,0,0.1), inset 0px 10px 6px -8px rgba(0, 0, 0, 0.16);
         transform: translate3d(0px, 55px, 0px) !important;
