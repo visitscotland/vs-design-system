@@ -141,7 +141,7 @@ export default {
         position: relative;
         letter-spacing: 0;
         font-weight: normal;
-        line-height: 1.2;
+        line-height: $standard-line-height;
         border-radius: 0;
         border: 0;
         height: 32px;
@@ -196,7 +196,7 @@ export default {
     .dropdown-menu {
         background: $color-gray-tint-8;
         width: 100%;
-        padding: $spacer-6 0 $spacer-8;
+        padding: $spacer-5 0 $spacer-8;
         margin: 0;
         max-height: 595px;
         overflow: hidden;

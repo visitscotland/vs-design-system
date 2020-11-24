@@ -89,14 +89,14 @@ export default {
     }
 
     &__divider{
-        margin: $spacer-3 0 $spacer-8;
+        margin: $spacer-3 0 $spacer-7;
     }
 
     &__columns-wrapper{
         display: flex;
         width: 100%;
         flex-flow: column wrap;
-        height: 470px;
+        height: 515px;
         overflow: hidden;
         align-content: start;
     }
