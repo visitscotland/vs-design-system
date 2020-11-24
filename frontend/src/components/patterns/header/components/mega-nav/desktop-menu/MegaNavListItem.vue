@@ -26,12 +26,20 @@ export default {
             type: String,
             default: '#',
         },
+        /**
+         * Check if link is for subheading
+         */
+        subheadingLink: {
+            type: Boolean,
+            default: false,
+        },
     },
     computed: {
         navItemClass() {
             return {
                 'mega-nav-list-item__heading': this.href === '#',
                 'mega-nav-list-item__link': this.href !== '#',
+                'mega-nav-list-item__subheading-link': this.subheadingLink,
             };
         },
     },
@@ -52,8 +60,14 @@ export default {
     .vs-link--variant-primary{
         text-decoration: none;
         display: block;
-        padding: $spacer-1 $spacer-5;
+        padding: 0.125rem $spacer-5;
         line-height: $line-height-s;
+        border: 2px solid $color-white;
+
+        &:focus{
+            outline: 0;
+            border: 2px solid $color-pink;
+        }
     }
 
     &__link{
@@ -79,6 +93,10 @@ export default {
                 height: 0;
                 background: $color-pink;
                 transition: height 0.15s linear;
+            }
+
+            &.mega-nav-list-item__subheading-link{
+                color: $color-pink;
             }
         }
     }
