@@ -65,6 +65,9 @@ public class Page extends BaseDocument implements TranslationParent, Linkable {
         return getSingleProperty("visitscotland:translationFlag");
     }
 
+    /**
+     * @deprecated Use DocumentUtils.getInstance().getAllowedDocuments(document) instead
+     */
     @Override
     @Deprecated
     public List<BaseDocument> getModules() {
@@ -74,5 +77,10 @@ public class Page extends BaseDocument implements TranslationParent, Linkable {
     @HippoEssentialsGenerated(internalName = "visitscotland:otherThings")
     public OTYML getOtherThings() {
         return getBean("visitscotland:otherThings", OTYML.class);
+    }
+
+    @HippoEssentialsGenerated(internalName = "visitscotland:translation")
+    public String getTranslation() {
+        return getSingleProperty("visitscotland:translation");
     }
 }

@@ -7,6 +7,7 @@ import com.visitscotland.brmx.beans.mapping.Coordinates;
 import com.visitscotland.brmx.beans.mapping.FlatImage;
 import com.visitscotland.brmx.beans.mapping.FlatLink;
 import com.visitscotland.brmx.beans.mapping.FlatListicle;
+import com.visitscotland.brmx.beans.mapping.megalinks.LinksModule;
 import com.visitscotland.brmx.dms.LocationLoader;
 import com.visitscotland.brmx.services.LinkService;
 import com.visitscotland.brmx.utils.CommonUtils;
@@ -25,9 +26,11 @@ public class ListicleContentComponent extends PageContentComponent<Listicle> {
     private static final Logger logger = LoggerFactory.getLogger(ListicleContentComponent.class);
 
     LinkService linksService;
+    LocationLoader locationLoader;
 
     public ListicleContentComponent(){
         linksService = new LinkService();
+        locationLoader = LocationLoader.getInstance();
     }
 
     @Override
@@ -42,6 +45,7 @@ public class ListicleContentComponent extends PageContentComponent<Listicle> {
      */
     private void generateItems(HstRequest request, Listicle listicle) {
         final String LISTICLE_ITEMS = "items";
+        final String OTYML = "otyml";
         final String ADDRESS = "address";
         final String LOCATION = "city";
         final String LATITUDE = "latitude";
@@ -85,7 +89,7 @@ public class ListicleContentComponent extends PageContentComponent<Listicle> {
                         if (cmsImage != null) {
                             flatImage = new FlatImage(cmsImage,request.getLocale());
                             checkImageErrors(flatImage,request.getLocale(),errors);
-                            LocationObject locationObject = LocationLoader.getLocation(cmsImage.getLocation(), request.getLocale());
+                            LocationObject locationObject = locationLoader.getLocation(cmsImage.getLocation(), request.getLocale());
                             if (locationObject!=null) {
                                 flatImage.setCoordinates(new Coordinates(locationObject.getLatitude(), locationObject.getLongitude()));
                                 if (listicleItem.getListicleItem() != null && !(listicleItem.getListicleItem() instanceof DMSLink)){
@@ -155,5 +159,6 @@ public class ListicleContentComponent extends PageContentComponent<Listicle> {
         }
 
         request.setAttribute(LISTICLE_ITEMS, items);
+        request.setAttribute(OTYML, addOTYML(listicle, request.getLocale()));
     }
 }

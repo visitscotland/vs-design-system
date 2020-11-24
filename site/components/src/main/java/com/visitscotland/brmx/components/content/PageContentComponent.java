@@ -7,6 +7,8 @@ import com.visitscotland.brmx.beans.dms.LocationObject;
 import com.visitscotland.brmx.beans.mapping.Coordinates;
 import com.visitscotland.brmx.beans.mapping.FlatImage;
 import com.visitscotland.brmx.beans.mapping.FlatLink;
+import com.visitscotland.brmx.beans.mapping.megalinks.LinksModule;
+import com.visitscotland.brmx.components.content.factory.LinkModulesFactory;
 import com.visitscotland.brmx.dms.DMSDataService;
 import com.visitscotland.brmx.dms.LocationLoader;
 import com.visitscotland.brmx.dms.ProductSearchBuilder;
@@ -43,12 +45,16 @@ public class PageContentComponent<TYPE extends Page> extends EssentialsContentCo
     ResourceBundleService bundle;
     DMSDataService dmsData;
     LinkService linksService;
+    LocationLoader locationLoader;
+    LinkModulesFactory linksFactory;
 
     public PageContentComponent(){
         utils = new HippoUtilsService();
         bundle = new ResourceBundleService();
         dmsData = new DMSDataService();
         linksService = new LinkService();
+        locationLoader = LocationLoader.getInstance();
+        linksFactory = new LinkModulesFactory();
     }
     @Override
     public void doBeforeRender(HstRequest request, HstResponse response) {
@@ -67,7 +73,7 @@ public class PageContentComponent<TYPE extends Page> extends EssentialsContentCo
      * @param request HstRequest
      */
     protected void addHeroCoordinates(HstRequest request) {
-        LocationObject location = LocationLoader.getLocation(getDocument(request).getHeroImage().getLocation(), request.getLocale());
+        LocationObject location = locationLoader.getLocation(getDocument(request).getHeroImage().getLocation(), request.getLocale());
 
         if (location != null){
             Coordinates coordinates = new Coordinates();
@@ -86,6 +92,21 @@ public class PageContentComponent<TYPE extends Page> extends EssentialsContentCo
         } catch (TemplateModelException e) {
             logger.error("Product Search Builder is not available for the Page", e);
         }
+    }
+
+    /**
+     * Set the OTYML module if present
+     *
+     * @param page Page
+     * @param locale Locale
+     */
+    protected LinksModule addOTYML(Page page, Locale locale) {
+        LinksModule otymlLink = null;
+        if(page.getOtherThings()!=null) {
+            otymlLink = linksFactory.horizontalListLayout(page.getOtherThings(), locale);
+            otymlLink.setTheme(PageTemplateBuilder.themes[0]);
+        }
+        return otymlLink;
     }
 
     /**

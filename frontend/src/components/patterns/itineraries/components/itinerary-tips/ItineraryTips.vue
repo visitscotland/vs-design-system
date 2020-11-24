@@ -1,9 +1,9 @@
 <template>
-    <div class="itinerary-tips position-relative my-7">
-        <div class="itinerary-tips__text">
+    <div class="vs-itinerary-tips position-relative my-7">
+        <div class="vs-itinerary-tips__text">
             <slot name="text" />
         </div>
-        <div class="itinerary-tips__svg position-absolute">
+        <div class="vs-itinerary-tips__svg position-absolute">
             <slot name="svg" />
         </div>
     </div>
@@ -25,17 +25,17 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
-.itinerary-tips {
+<style lang="scss">
+.vs-itinerary-tips {
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
     padding: $spacer-4 $spacer-4 $spacer-4 $spacer-9;
 }
-.itinerary-tips__text ::v-deep {
+.vs-itinerary-tips__text {
     p:last-of-type {
         margin-bottom: 0;
     }
 }
-.itinerary-tips__svg {
+.vs-itinerary-tips__svg {
     left: -10px;
     bottom: -5px;
 }

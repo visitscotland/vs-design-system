@@ -1,5 +1,5 @@
 <template>
-    <figure class="d-flex flex-column">
+    <figure class="vs-hero d-flex flex-column">
         <div
             class="vs-hero__image-wrapper"
             role="document"
@@ -179,97 +179,98 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
-.map__wrapper {
-    max-width: 80px;
-    width: 80px;
-}
+<style lang="scss">
+.vs-hero {
+    position: relative;
+    background-color: $color-theme-dark;
 
-.vs-hero__caption-wrapper {
-    @include media-breakpoint-down(lg) {
+    .map__wrapper {
+        max-width: 80px;
+        width: 80px;
+    }
+
+    .vs-hero__caption-wrapper {
+        @include media-breakpoint-down(lg) {
+            padding: 0;
+        }
+    }
+
+    .vs-hero__toggle-caption {
+        bottom: 0.5rem;
         padding: 0;
-    }
-}
-
-.vs-hero__toggle-caption {
-    bottom: 0.5rem;
-    padding: 0;
-    right: 0.5rem;
-    border-radius: 50%;
-}
-
-figure {
-    position: relative;
-    background-color: $color-theme-dark;
-}
-
-img {
-    width: 100%;
-    height: auto;
-}
-
-.vs-hero__image-wrapper {
-    position: relative;
-    max-height: 100vh;
-    overflow: hidden;
-
-    @include media-breakpoint-up(xl) {
-        display: flex;
-        flex-direction: column;
-        justify-content: top; /* Centering y-axis */
-        align-items: center; /* Centering x-axis */
-    }
-}
-
-.vs-hero__overlay-text {
-    font-family: $headings-font-family;
-    font-size: $display1-size;
-    left: 50%;
-    max-width: 100%;
-    position: absolute;
-    text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-    top: 50%;
-    transform: translate(-50%, -50%);
-
-    @include media-breakpoint-up(sm) {
-        font-size: $display1-size * 1.5;
+        right: 0.5rem;
+        border-radius: 50%;
     }
 
-    @include media-breakpoint-up(md) {
-        font-size: $display1-size * 1.75;
+    img {
+        width: 100%;
+        height: auto;
     }
 
-    @include media-breakpoint-up(lg) {
-        font-size: $display1-size * 2;
+    .vs-hero__image-wrapper {
+        position: relative;
+        max-height: 100vh;
+        overflow: hidden;
+
+        @include media-breakpoint-up(xl) {
+            display: flex;
+            flex-direction: column;
+            justify-content: top; /* Centering y-axis */
+            align-items: center; /* Centering x-axis */
+        }
     }
-}
 
-figcaption {
-    background-color: $color-theme-dark;
-    color: $color-white;
-    width: 100%;
-
-    @include media-breakpoint-up(lg) {
-        bottom: 0;
-        max-width: 400px;
+    .vs-hero__overlay-text {
+        font-family: $headings-font-family;
+        font-size: $display1-size;
+        left: 50%;
+        max-width: 100%;
         position: absolute;
-        right: 1rem;
-        width: auto;
-        z-index: 2;
+        text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        top: 50%;
+        transform: translate(-50%, -50%);
+
+        @include media-breakpoint-up(sm) {
+            font-size: $display1-size * 1.5;
+        }
+
+        @include media-breakpoint-up(md) {
+            font-size: $display1-size * 1.75;
+        }
+
+        @include media-breakpoint-up(lg) {
+            font-size: $display1-size * 2;
+        }
+    }
+
+    figcaption {
+        background-color: $color-theme-dark;
+        color: $color-white;
+        width: 100%;
+
+        @include media-breakpoint-up(lg) {
+            bottom: 0;
+            max-width: 400px;
+            position: absolute;
+            right: 1rem;
+            width: auto;
+            z-index: 2;
+        }
+    }
+
+    .vs-hero__image-caption {
+        font-size: 0.875rem;
+        font-weight: 500;
+        line-height: 1rem;
+    }
+
+    .vs-hero__image-credit {
+        font-size: 0.875rem;
+        font-weight: $font-weight-light;
+        line-height: 1rem;
     }
 }
 
-.vs-hero__image-caption {
-    font-size: 0.875rem;
-    font-weight: 500;
-    line-height: 1rem;
-}
-
-.vs-hero__image-credit {
-    font-size: 0.875rem;
-    font-weight: $font-weight-light;
-    line-height: 1rem;
-}
 </style>
 
 <docs>
