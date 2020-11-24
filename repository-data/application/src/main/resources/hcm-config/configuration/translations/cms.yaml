@@ -14,4 +14,8 @@ definitions:
       visitscotland:scotland-coordinates-validator: 'Coordinates must be within Scotland:
         Latitude from 54.6 to 60.9 and longitude from -13.7 to -0.7. Note that longitude
         must be a negative value.'
+      visitscotland:link-image-validator: 'An image is required for non-DMS products.'
+      visitscotland:image-validator: 'The image selected does not have any of the required fields (Alt text or caption).Please fill the missing fields or select another image.'
+      visitscotland:link-validator: 'The document linked is not allowed, please choose a Page document or Shared link'
+      visitscotland:link-validator#stop: 'The document linked is not allowed, please choose a Stop document for Days'
       visitscotland:url-validator: Enter a valid website URL

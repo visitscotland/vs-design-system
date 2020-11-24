@@ -16,6 +16,7 @@ definitions:
           hipposysedit:supertype: ['visitscotland:basedocument', 'hippostd:relaxed',
             'hippotranslation:translated']
           hipposysedit:uri: http://www.visitscotland.com/visitscotland/nt/1.0
+          hipposysedit:validators: ['visitscotland:link-image-validator']
           /tipsTitle:
             jcr:primaryType: hipposysedit:field
             hipposysedit:mandatory: false
@@ -159,6 +160,7 @@ definitions:
             field: image
             plugin.class: org.hippoecm.frontend.editor.plugins.field.NodeFieldPlugin
             wicket.id: ${cluster.id}.field
+            hint: This Image is required if the Product is not a DMS product
             /cluster.options:
               jcr:primaryType: frontend:pluginconfig
           /product:
