@@ -5,8 +5,6 @@
 
 <#macro iknow module>
     <@hst.manageContent hippobean=module.tourismInformation />
-        ${module.title}
-
 
 	<vs-container slot="upper" class="py-lg-4" >
         <vs-iknow-partner-item>
