@@ -27,7 +27,7 @@ export default {
     .mega-nav-list{
         position: relative;
         padding: 0;
-        margin: 0 $spacer-6 $spacer-5 0;
+        margin: 0 $spacer-6 $spacer-4 0;
         width: 23.1%;
         color: $color-white;
 
