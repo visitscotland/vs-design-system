@@ -27,8 +27,8 @@
                 >
                     <template #megaNavTopMenuItems>
                         <VsMegaNavTopMenuItem
-                            v-for="(item, index) in header.mainNav"
-                            :key="index"
+                            v-for="(item, itemIndex) in header.mainNav"
+                            :key="itemIndex"
                             :href="item.href"
                             :cta-text="item.cta"
                         >
@@ -53,14 +53,23 @@
                                     >
                                         {{ navLink.title }}
                                     </VsMegaNavListItem>
+
+                                    <VsMegaNavListItem
+                                        v-if="subHeading.href"
+                                        :href="subHeading.href"
+                                        subheading-link
+                                        slot="navHeadingCtaLink"
+                                    >
+                                        {{ subHeading.cta }}
+                                    </VsMegaNavListItem>
                                 </VsMegaNavList>
                             </template>
                         </VsMegaNavTopMenuItem>
                     </template>
                     <template #megaNavMobileItems>
                         <VsMegaNavMobileToggle
-                            v-for="(item, index) in header.mainNav"
-                            :key="index"
+                            v-for="(item, mobileItemIndex) in header.mainNav"
+                            :key="mobileItemIndex"
                             :href="item.href"
                             :cta-text="item.cta"
                         >
