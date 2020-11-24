@@ -6,6 +6,7 @@ import org.hippoecm.hst.content.beans.Node;
 import org.hippoecm.hst.content.beans.standard.HippoHtml;
 import org.onehippo.cms7.essentials.dashboard.annotations.HippoEssentialsGenerated;
 import java.util.List;
+import com.visitscotland.brmx.beans.OTYML;
 
 @HippoEssentialsGenerated(internalName = "visitscotland:Page")
 @Node(jcrType = "visitscotland:Page")
@@ -71,6 +72,11 @@ public class Page extends BaseDocument implements TranslationParent, Linkable {
     @Deprecated
     public List<BaseDocument> getModules() {
         return DocumentUtils.getInstance().getAllowedDocuments(this);
+    }
+
+    @HippoEssentialsGenerated(internalName = "visitscotland:otherThings")
+    public OTYML getOtherThings() {
+        return getBean("visitscotland:otherThings", OTYML.class);
     }
 
     @HippoEssentialsGenerated(internalName = "visitscotland:translation")

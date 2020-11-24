@@ -1,6 +1,9 @@
 <#include "../../../include/imports.ftl">
 <#include "../global/cms-errors.ftl">
 <#include "../modules/megalinks/megalinks.ftl">
+<#include "../modules/tourism-information/tourisminformation-iknow.ftl">
+<#include "../modules/tourism-information/tourisminformation-icentre.ftl">
+<#include "../modules/megalinks/megalinks-horizontal-list.ftl">
 
 <#-- Implicit Request Objects -->
 <#-- @ftlvariable name="document" type="com.visitscotland.brmx.beans.Destination" -->
@@ -18,6 +21,9 @@
         <#-- all Megalinks modules -->
         <#if module.getType() == "MultiImageLinksModule" ||  module.getType() == "SingleImageLinksModule" || module.getType()== "ListLinksModule">
             <@megalinks item=module type=module.getType() />
+
+        <#elseif module.getType()== "HorizontalListLinksModule">
+            <@horizontalList module/>
 
         <#elseif module.getType()== "ICentreModule">
             <@icentre module/>

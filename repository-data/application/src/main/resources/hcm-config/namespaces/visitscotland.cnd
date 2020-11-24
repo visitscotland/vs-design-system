@@ -31,6 +31,9 @@
 [visitscotland:Destination] > hippostd:relaxed, hippotranslation:translated, visitscotland:Page, visitscotland:translatable
   orderable
 
+[visitscotland:ExternalDocument] > hippo:compound, hippostd:relaxed
+  orderable
+
 [visitscotland:ExternalLink] > hippo:compound, hippostd:relaxed
   orderable
 
@@ -38,9 +41,6 @@
   orderable
 
 [visitscotland:ICentre] > hippo:compound, hippostd:relaxed
-  orderable
-
-[visitscotland:Quote] > hippo:compound, hippostd:relaxed
   orderable
 
 [visitscotland:IKnow] > hippo:compound, hippostd:relaxed
@@ -72,10 +72,16 @@
 [visitscotland:Megalinks] > hippostd:relaxed, hippotranslation:translated, visitscotland:basedocument, visitscotland:translatable
   orderable
 
+[visitscotland:OTYML] > hippo:compound, hippostd:relaxed
+  orderable
+
 [visitscotland:ProductSearchLink] > hippo:compound, hippostd:relaxed
   orderable
 
 [visitscotland:ProductsSearch] > hippo:compound, hippostd:relaxed
+  orderable
+
+[visitscotland:Quote] > hippo:compound, hippostd:relaxed
   orderable
 
 [visitscotland:SharedLink] > hippostd:relaxed, hippotranslation:translated, visitscotland:basedocument, visitscotland:translatable
