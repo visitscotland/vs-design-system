@@ -28,7 +28,7 @@ export default {
         position: relative;
         padding: 0;
         margin: 0 $spacer-6 $spacer-4 0;
-        width: 23.1%;
+        width: 23%;
         color: $color-white;
 
         @include media-breakpoint-up(xl) {
