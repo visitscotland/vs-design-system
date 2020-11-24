@@ -7,6 +7,8 @@ import org.hippoecm.hst.content.beans.standard.HippoCompound;
 @HippoEssentialsGenerated(internalName = "visitscotland:InstagramImage")
 @Node(jcrType = "visitscotland:InstagramImage")
 public class InstagramImage extends HippoCompound {
+    public static final String CAPTION = "visitscotland:caption";
+
     @HippoEssentialsGenerated(internalName = "visitscotland:caption")
     public String getCaption() {
         return getSingleProperty("visitscotland:caption");
