@@ -2,8 +2,8 @@ import { shallowMount, mount } from '@vue/test-utils';
 
 import VsPanel from '../Panel';
 
-const defaultSlotText = 'Panel text',
-    titleSlotText = 'Panel title';
+const defaultSlotText = 'Panel text';
+const titleSlotText = 'Panel title';
 
 const factoryShallowMount = (propsData) => shallowMount(VsPanel, {
     slots: {
