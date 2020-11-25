@@ -1,6 +1,7 @@
 <#include "../../../../../include/imports.ftl">
 <#include "../../../../../frontend/components/vs-megalink-single-image.ftl">
 <#include "../../../../../frontend/components/vs-link.ftl">
+<#include "../../../../../frontend/components/vs-link-list-item.ftl">
 
 <#macro singleImage item>
     <#if item.image.cmsImage??>
@@ -24,14 +25,12 @@
             </template>
             <template slot="vsSingleImageLinks">
                 <#list item.links as listItem>
-                    <li>
-                        <vs-link
-                            href="${listItem.link}"
-                            <#if listItem.type != "internal">type="${listItem.type}"</#if>
-                        >
-                            ${listItem.label}
-                        </vs-link>
-                    </li>
+                    <vs-link-list-item
+                        href="${listItem.link}"
+                        <#if listItem.type != "internal">type="${listItem.type}"</#if>
+                    >
+                        ${listItem.label}
+                    </vs-link-list-item>
                 </#list>
             </template>
             
