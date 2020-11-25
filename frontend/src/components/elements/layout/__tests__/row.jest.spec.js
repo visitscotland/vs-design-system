@@ -4,10 +4,10 @@ import VsRow from '../Row';
 
 const slotText = 'Row text';
 
-const factoryShallowMount = (propsData) => shallowMount(VsRow, {
+const factoryShallowMount = () => shallowMount(VsRow, {
     slots: {
         default: slotText,
-    }
+    },
 });
 
 let wrapper;
