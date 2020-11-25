@@ -16,6 +16,7 @@ definitions:
           hipposysedit:supertype: ['visitscotland:basedocument', 'hippostd:relaxed',
             'hippotranslation:translated']
           hipposysedit:uri: http://www.visitscotland.com/visitscotland/nt/1.0
+          hipposysedit:validators: ['visitscotland:link-image-validator']
           /title:
             jcr:primaryType: hipposysedit:field
             hipposysedit:mandatory: false
@@ -140,7 +141,7 @@ definitions:
             field: images
             plugin.class: org.onehippo.forge.contentblocks.ContentBlocksFieldPlugin
             wicket.id: ${cluster.id}.field
-            hint: ''
+            hint: This Image is required if the Main Product is not a DMS product
             /cluster.options:
               jcr:primaryType: frontend:pluginconfig
               maxitems: 1
