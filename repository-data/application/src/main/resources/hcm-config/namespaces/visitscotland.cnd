@@ -46,6 +46,9 @@
 [visitscotland:IKnow] > hippo:compound, hippostd:relaxed
   orderable
 
+[visitscotland:IknowCommunity] > hippostd:relaxed, hippotranslation:translated, visitscotland:basedocument
+  orderable
+
 [visitscotland:Image] > hippogallery:imageset, hippogallery:relaxed
 
 [visitscotland:ImageData] > hippo:compound, hippostd:relaxed
