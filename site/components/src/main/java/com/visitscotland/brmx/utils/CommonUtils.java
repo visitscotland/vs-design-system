@@ -10,6 +10,8 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.time.LocalTime;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
@@ -17,7 +19,8 @@ import java.util.Locale;
 
 public class CommonUtils {
 
-    final static String VS_DMS_ENCODING = "UTF8";
+    //TODO property?
+    final static Charset VS_DMS_ENCODING = StandardCharsets.UTF_8;
 
     //TODO add message format for other languages
     public static final String contentIssue (String message, Object... parameters){
@@ -29,6 +32,8 @@ public class CommonUtils {
      * @param url
      * @return null if status code not 200 or 300
      * @throws IOException
+     *
+     * @deprecated Use the non-static version of this method.
      */
     @Deprecated
     public static String request(String url) throws IOException {
