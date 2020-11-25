@@ -167,7 +167,6 @@ describe('VsButton', () => {
             });
         });
 
-
         describe(':animate', () => {
             it('should set a `btn-animate` class if `animate` is set to `false`', () => {
                 const wrapper = factoryMount({
