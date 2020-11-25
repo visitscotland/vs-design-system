@@ -10,6 +10,7 @@ import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.onehippo.cms.services.validation.api.ValidationContext;
 import org.onehippo.cms.services.validation.api.Violation;
+import sun.awt.image.ImageWatched;
 
 import javax.jcr.Node;
 import javax.jcr.RepositoryException;
@@ -106,6 +107,21 @@ class LinkValidatorTest {
         when(node.getParent().isNodeType("visitscotland:Day")).thenReturn(false);
         when(mockSessionFactory.getHippoNodeByIdentifier("linkName")).thenReturn(childNode);
         when(context.createViolation()).thenReturn(mock(Violation.class));
+
+        assertTrue(validator.validate(context, node).isPresent());
+    }
+
+    @Test
+    @DisplayName("Validates that links have been selected")
+    void LinksEmptyValues() throws RepositoryException {
+        LinkValidator validator = new LinkValidator(mockSessionFactory);
+
+        Node node = Mockito.mock(Node.class, RETURNS_DEEP_STUBS);
+        Node childNode = mockLink(false, false, false);
+
+
+        when(node.getProperty(HIPPO_DOCBASE).getValue().getString()).thenReturn(LinkValidator.EMPTY_DOCUMENT);
+        when(context.createViolation("EmptyLink")).thenReturn(mock(Violation.class));
 
         assertTrue(validator.validate(context, node).isPresent());
     }
