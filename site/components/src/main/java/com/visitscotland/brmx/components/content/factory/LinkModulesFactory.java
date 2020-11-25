@@ -71,16 +71,17 @@ public class LinkModulesFactory {
      * @return {@code ListLinksModule} containing the relevant information from the Megalinks document
      */
     public ListLinksModule listLayout(Megalinks doc, Locale locale) {
-        List<String> warnings =  new ArrayList<>();
         ListLinksModule ll = new ListLinksModule();
         populateCommonFields(ll, doc, locale);
 
         ll.setTeaserVisible(doc.getTeaserVisible());
-        ll.setLinks(convertToEnhancedLinks(doc.getMegalinkItems(), locale,false));
-
-        return ll;
-    }
-
+        ll.setLinks(convertToEnhancedLinks(doc.getMegalinkItems(), locale));
+        //TODO: Add or remove depending on decision 24/11/2020. This warning should be a content guideline? If warning, add  tests.
+        //List<String> warnings =  new ArrayList<>();
+        /*if(ll.getLinks().size()==1){
+            warnings.add("For list layout is recommended to have t least 2 links");
+        }
+        ll.setErrorMessages(warnings);*/
 
     public HorizontalListLinksModule horizontalListLayout(Megalinks doc, Locale locale) {
         HorizontalListLinksModule ll = new HorizontalListLinksModule();
@@ -140,7 +141,8 @@ public class LinkModulesFactory {
      * @return MultiImageLinksModule containing the relevant information from the Megalinks document
      */
     public MultiImageLinksModule multiImageLayout(Megalinks doc, Locale locale) {
-        List<String> warnings =  new ArrayList<>();
+        //TODO: Add or remove depending on decision 24/11/2020. This warning should be a content guideline? If warning, add  tests.
+        //List<String> warnings =  new ArrayList<>();
         MultiImageLinksModule fl = new MultiImageLinksModule();
         populateCommonFields(fl, doc, locale);
         fl.setTeaserVisible(doc.getTeaserVisible());
@@ -162,12 +164,14 @@ public class LinkModulesFactory {
             //When there is more than 3 items and no featured item the first item is promoted as featured.
             if (fl.getFeaturedLinks().size() == 0 && fl.getLinks().size() > 3) {
                 fl.getFeaturedLinks().add(fl.getLinks().get(0));
-                warnings.add("No featured item provided, first link will be selected as featured");
+                //TODO: Add or remove depending on decision 24/11/2020. This warning should be a content guideline? If warning, add  tests.
+                //warnings.add("No featured item provided, first link will be selected as featured");
             }
 
             //Links added to the Featured list MUST be removed from the original list
             fl.getLinks().removeAll(fl.getFeaturedLinks());
-            fl.setErrorMessages(warnings);
+            //TODO: Add or remove depending on decision 24/11/2020. This warning should be a content guideline? If warning, add  tests.
+            //fl.setErrorMessages(warnings);
         } else {
             fl.setFeaturedLinks(Collections.EMPTY_LIST);
         }
