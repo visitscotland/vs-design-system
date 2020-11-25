@@ -80,13 +80,15 @@ public class PageTemplateBuilder {
                     IKnowModule iKnowModule = iKnowFactory.getIKnowModule(touristInfo.getIKnow(), location, request.getLocale());
 
                     if (iCentreModule != null) {
+                        iCentreModule.setTourismInformation(touristInfo);
                         iCentreModule.setHippoBean(item);
                         links.add(iCentreModule);
-                    } else {
-                        iKnowModule.setHippoBean(item);
                     }
-
-                    links.add(iKnowModule);
+                    if (iKnowModule != null) {
+                        iKnowModule.setTourismInformation(touristInfo);
+                        iKnowModule.setHippoBean(item);
+                        links.add(iKnowModule);
+                    }
                 }
             } catch (MissingResourceException e){
                 logger.error("The module for {} couldn't be built because some labels do not exist", item.getPath(), e);
