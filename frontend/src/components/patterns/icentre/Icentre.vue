@@ -3,54 +3,73 @@
         class="vs-icentre"
         data-test="vs-icentre"
     >
-        <div class="vs-icentre__intro-content">
-            <div class="vs-icentre__heading">
-                <slot name="icentreHeading" />
-            </div>
+        <VsContainer>
+            <VsRow>
+                <VsCol
+                    cols="10"
+                    offset="1"
+                    md="8"
+                    offset-md="2"
+                    lg="6"
+                    offset-lg="3"
+                    class="vs-icentre__intro-content"
+                >
+                    <div class="vs-icentre__heading">
+                        <slot name="icentreHeading" />
+                    </div>
 
-            <VsSvg
-                class="vs-icentre__logo"
-                path="iCentre"
-            />
+                    <VsSvg
+                        class="vs-icentre__logo"
+                        path="iCentre"
+                    />
 
-            <div
-                class="vs-icentre__links"
-                v-if="!!this.$slots['icentreLinks'] && !this.$slots['icentreQuote']"
-            >
-                <slot name="icentreLinks" />
-            </div>
-        </div>
+                    <div
+                        class="vs-icentre__links"
+                        v-if="!!this.$slots['icentreLinks'] && !this.$slots['icentreQuote']"
+                    >
+                        <slot name="icentreLinks" />
+                    </div>
+                </VsCol>
 
+                <VsCol
+                    cols="12"
+                    md="10"
+                    offset-md="1"
+                    class="vs-icentre__main-content"
+                >
+                    <VsImageWithCaption
+                        :alt-text="imgAlt"
+                        :image-src="imgSrc"
+                        variant="fullwidth"
+                    >
+                        <span slot="caption">
+                            <slot name="icentreImageCaption" />
+                        </span>
 
-        <div class="vs-icentre__main-content">
-            <VsImageWithCaption
-                :alt-text="imgAlt"
-                :image-src="imgSrc"
-                variant="fullwidth"
-            >
-                <span slot="caption">
-                    <slot name="icentreImageCaption" />
-                </span>
+                        <span slot="credit">
+                            <slot name="icentreImageCredit" />
+                        </span>
+                    </VsImageWithCaption>
 
-                <span slot="credit">
-                    <slot name="icentreImageCredit" />
-                </span>
-            </VsImageWithCaption>
-
-            <div
-                class="vs-icentre__quote-block"
-                v-if="!!this.$slots['icentreQuote']"
-            >
-                <slot name="icentreLinks" />
-                <slot name="icentreQuote" />
-            </div>
-        </div>
+                    <div
+                        class="vs-icentre__quote-block"
+                        v-if="!!this.$slots['icentreQuote']"
+                    >
+                        <slot name="icentreLinks" />
+                        <slot name="icentreQuote" />
+                    </div>
+                </VsCol>
+            </VsRow>
+        </VsContainer>
     </div>
 </template>
 
 <script>
 import VsSvg from '@components/elements/svg/Svg';
 import VsImageWithCaption from '@components/patterns/image-with-caption/ImageWithCaption';
+import VsContainer from '@components/elements/layout/Container';
+import VsRow from '@components/elements/layout/Row';
+import VsCol from '@components/elements/layout/Col';
 
 export default {
     name: 'VsIcentre',
@@ -59,6 +78,9 @@ export default {
     components: {
         VsSvg,
         VsImageWithCaption,
+        VsContainer,
+        VsRow,
+        VsCol,
     },
     props: {
         /**
