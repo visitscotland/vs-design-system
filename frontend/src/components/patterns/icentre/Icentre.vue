@@ -104,8 +104,12 @@ export default {
 
 <style lang="scss">
 .vs-icentre {
-    padding: $spacer-8;
+    padding: $spacer-8 $spacer-0;
     background: $white;
+
+    @include media-breakpoint-up(md) {
+        padding: $spacer-8;
+    }
 
     @include media-breakpoint-up(lg) {
         padding: $spacer-11;
