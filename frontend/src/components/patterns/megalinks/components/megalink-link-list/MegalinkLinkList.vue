@@ -93,7 +93,7 @@ export default {
 <style lang="scss">
     .megalink-link-list {
         border: none;
-        padding: $spacer-2 0 $spacer-3;
+        padding: $spacer-2 0 $spacer-2;
         position: relative;
 
         &:after {
@@ -164,7 +164,7 @@ export default {
             }
         }
 
-        @include media-breakpoint-up(lg) {
+        @include media-breakpoint-up(md) {
             .megalink-link-list__wrapper.card {
                 .megalink-link-list__title {
                     font-size: $small-font-size;
@@ -180,6 +180,16 @@ export default {
                         -webkit-line-clamp: 3;
                         -webkit-box-orient: vertical;
                         overflow: hidden;
+                        font-size: $lead-font-size;
+                        margin-bottom: 0;
+                    }
+                }
+            }
+
+            @include media-breakpoint-up(lg) {
+                .megalink-link-list__wrapper.card {
+                    .megalink-link-list__content p {
+                         font-size: $font-size-base;
                     }
                 }
             }
