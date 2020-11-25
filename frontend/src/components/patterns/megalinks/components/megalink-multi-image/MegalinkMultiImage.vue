@@ -7,7 +7,7 @@
             'megalink-multi-image--featured' : featured,
             'megalink-multi-image--featured-last' : lastFeatured,
         }"
-        data-test="megalink-multi-image-featured"
+        :data-test="featured ? 'megalink-multi-image-featured' : 'megalink-multi-image-card'"
     >
         <VsImg
             slot="stretchedCardImage"
@@ -128,6 +128,7 @@ export default {
 
         .card-body {
             padding: $spacer-4 0 $spacer-2;
+            width: 100%;
         }
 
         &:hover {
@@ -136,6 +137,9 @@ export default {
 
         .megalink-multi-image__img {
             max-width: 100%;
+            flex-shrink: 0;
+            height: auto;
+            align-self: flex-start;
         }
 
         .megalink-multi-image__title {
@@ -162,7 +166,7 @@ export default {
             }
         }
     };
-    @include media-breakpoint-up(xl) {
+    @include media-breakpoint-up(lg) {
         .megalink-multi-image.card {
             margin-bottom: $spacer-11;
 
@@ -197,18 +201,32 @@ export default {
             }
 
             .megalink-multi-image__content {
-                font-size: $lead-font-size;
-                margin-top: $spacer-8;
-                line-height: $line-height-m;
+                margin-top: $spacer-4;
+
+                p {
+                    line-height: $line-height-m;
+                    font-size: $lead-font-size;
+                }
             }
 
             .card-body {
-                max-width: 50%;
-                padding: $spacer-9 5% $spacer-5;
+                max-width: calc(50% + 20px);
+                padding: $spacer-6 5% $spacer-5;
             }
 
             &.megalink-multi-image--featured-last {
                 flex-direction: row-reverse;
+            }
+        }
+
+        @include media-breakpoint-up(xl) {
+            .megalink-multi-image--featured.card {
+                .card-body {
+                    padding: $spacer-9 5% $spacer-5;
+                }
+                .megalink-multi-image__content {
+                    margin-top: $spacer-8;
+                }
             }
         }
     }
@@ -221,7 +239,7 @@ export default {
             <VsRow>
                 <VsCol
                     cols="12"
-                    md="6"
+                    lg="6"
                     xl="12"
                 >
                     <vs-megalink-multi-image
