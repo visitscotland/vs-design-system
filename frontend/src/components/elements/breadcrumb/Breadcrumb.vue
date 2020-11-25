@@ -7,6 +7,7 @@
             class="flex-nowrap p-0"
             v-bind="$attrs"
         >
+            <!-- @slot The breadcrumb content goes here -->
             <slot />
         </BBreadcrumb>
     </nav>
@@ -25,14 +26,6 @@ export default {
     release: '0.0.1',
     components: {
         BBreadcrumb,
-    },
-    props: {
-        items: {
-            type: Array,
-            default() {
-                return [];
-            },
-        },
     },
 };
 </script>
