@@ -1,8 +1,6 @@
 package com.visitscotland.brmx.validator;
 
-import com.visitscotland.brmx.beans.InstagramImage;
 import com.visitscotland.brmx.beans.ListicleItem;
-import com.visitscotland.brmx.beans.SharedLink;
 import com.visitscotland.brmx.beans.Stop;
 import com.visitscotland.brmx.translation.SessionFactory;
 import com.visitscotland.utils.Contract;
@@ -13,8 +11,6 @@ import org.onehippo.cms.services.validation.api.Violation;
 import javax.jcr.Node;
 import javax.jcr.RepositoryException;
 import java.util.Optional;
-
-import static org.hippoecm.repository.api.HippoNodeType.HIPPO_DOCBASE;
 
 /**
  * jcr:Name = visitscotland:location-validator
