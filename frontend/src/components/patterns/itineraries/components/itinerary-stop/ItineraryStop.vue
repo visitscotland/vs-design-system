@@ -171,12 +171,12 @@ export default {
                     Find out more
                 </vs-link>
                 <vs-description-list class="my-4 mb-0 justify-content-start" inline>
-                    <vs-description-list-term class="mb-0 mr-0 col-auto">
+                    <vs-description-list-item title class="mb-0 mr-0 col-auto">
                         Time to explore
-                    </vs-description-list-term>
-                    <vs-description-list-detail class="mb-0 col-auto px-0">
+                    </vs-description-list-item>
+                    <vs-description-list-item class="mb-0 col-auto px-0">
                         {{stop.timeToExplore}}
-                    </vs-description-list-detail>
+                    </vs-description-list-item>
                 </vs-description-list>
                 <vs-itinerary-tips v-if="stop.tips.tipsBody.length || stop.tips.tipsTitle.length">
                     <div slot="text">
@@ -199,7 +199,7 @@ export default {
                 slot="nearby-links"
                 v-if="index == itineraries.sampleItinerary.days[0].stops.length - 1"
             >
-                <vs-button-with-icon
+                <vs-button
                     class="mb-3"
                     button-size="md"
                     background="white"
@@ -208,16 +208,15 @@ export default {
                     icon="food"
                 >
                     Nearby places to eat
-                </vs-button-with-icon>
-                <vs-button-with-icon
-                    button-size="md"
+                </vs-button>
+                <vs-button
                     background="white"
                     variant="outline-primary"
                     href="#"
                     icon="product-accommodation"
                 >
                     Nearby places to stay
-                </vs-button-with-icon>
+                </vs-button>
             </vs-itinerary-border-overlap-wrapper>
         </vs-itinerary-stop>
     </ul>
