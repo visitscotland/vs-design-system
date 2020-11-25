@@ -13,11 +13,10 @@ const factoryShallowMount = (propsData) => shallowMount(VsList, {
     },
 });
 
-
 describe('VsList', () => {
     it('should render an ol with the class `vs-list` if the prop `ordered` is truthy', () => {
         const wrapper = factoryShallowMount({
-            ordered: true
+            ordered: true,
         });
 
         expect(wrapper.element.tagName).toBe('OL');
@@ -26,7 +25,7 @@ describe('VsList', () => {
 
     it('should render a ul with the class `vs-list` if the prop `ordered` is not truthy', () => {
         const wrapper = factoryShallowMount({
-            ordered: false
+            ordered: false,
         });
 
         expect(wrapper.element.tagName).toBe('UL');
@@ -36,7 +35,7 @@ describe('VsList', () => {
     describe(':props', () => {
         it(':unstyled - should accept and render an `unstyled` property', () => {
             const wrapper = factoryShallowMount({
-                unstyled: true
+                unstyled: true,
             });
 
             expect(wrapper.classes('unstyled')).toBe(true);
@@ -44,7 +43,7 @@ describe('VsList', () => {
 
         it(':inline - should accept and render an `inline` property', () => {
             const wrapper = factoryShallowMount({
-                inline: true
+                inline: true,
             });
 
             expect(wrapper.classes('inline')).toBe(true);
