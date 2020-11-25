@@ -4,34 +4,34 @@
         data-test="vs-icentre"
     >
         <div class="vs-icentre__intro-content">
-            <VsHeading
-                class="vs-icentre__heading"
-                level="2"
-            >
-                A tip from your local experts
-            </VsHeading>
+            <div class="vs-icentre__heading">
+                <slot name="icentreHeading" />
+            </div>
 
             <VsSvg
                 class="vs-icentre__logo"
                 path="iCentre"
             />
 
-            <p class="vs-icentre__links">
-                Test content <a href="#">link</a>
-            </p>
+            <div
+                class="vs-icentre__links"
+                v-if="!!this.$slots['icentreLinks'] && !this.$slots['icentreQuote']"
+            >
+                <slot name="icentreLinks" />
+            </div>
         </div>
 
         <VsImageWithCaption
-            :alt-text="`Test Alt Text 1`"
-            :image-src="`https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=md`"
+            :alt-text="imgAlt"
+            :image-src="imgSrc"
             variant="fullwidth"
         >
             <span slot="caption">
-                Some Caption
+                <slot name="icentreImageCaption" />
             </span>
 
             <span slot="credit">
-                Some Credit
+                <slot name="icentreImageCredit" />
             </span>
         </VsImageWithCaption>
     </div>
@@ -39,7 +39,6 @@
 
 <script>
 import VsSvg from '@components/elements/svg/Svg';
-import VsHeading from '@components/elements/heading/Heading';
 import VsImageWithCaption from '@components/patterns/image-with-caption/ImageWithCaption';
 
 export default {
@@ -48,8 +47,24 @@ export default {
     release: '0.0.1',
     components: {
         VsSvg,
-        VsHeading,
         VsImageWithCaption,
+    },
+    props: {
+        /**
+        * The image to use in the component
+        */
+        imgSrc: {
+            required: true,
+            type: String,
+        },
+        /**
+        * The image alt text to use in the component
+        */
+        imgAlt: {
+            required: false,
+            type: String,
+            default: '',
+        },
     },
 };
 </script>
@@ -84,8 +99,21 @@ export default {
 
 <docs>
 ```jsx
-    <vs-icentre>
+    <vs-icentre
+        imgSrc="https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"
+        imgAlt="This is the alt text 1"
+    >
+        <VsHeading level="2" slot="icentreHeading">A tip from your local experts</VsHeading>
 
+        <p slot="icentreLinks">Test content <a href="#">link</a></p>
+
+        <span slot="icentreImageCaption">
+            A test caption
+        </span>
+
+        <span slot="icentreImageCredit">
+            &copy; Some test credits
+        </span>
     </vs-icentre>
 ```
 </docs>
