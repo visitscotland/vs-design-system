@@ -21,19 +21,30 @@
             </div>
         </div>
 
-        <VsImageWithCaption
-            :alt-text="imgAlt"
-            :image-src="imgSrc"
-            variant="fullwidth"
-        >
-            <span slot="caption">
-                <slot name="icentreImageCaption" />
-            </span>
 
-            <span slot="credit">
-                <slot name="icentreImageCredit" />
-            </span>
-        </VsImageWithCaption>
+        <div class="vs-icentre__main-content">
+            <VsImageWithCaption
+                :alt-text="imgAlt"
+                :image-src="imgSrc"
+                variant="fullwidth"
+            >
+                <span slot="caption">
+                    <slot name="icentreImageCaption" />
+                </span>
+
+                <span slot="credit">
+                    <slot name="icentreImageCredit" />
+                </span>
+            </VsImageWithCaption>
+
+            <div
+                class="vs-icentre__quote-block"
+                v-if="!!this.$slots['icentreQuote']"
+            >
+                <slot name="icentreLinks" />
+                <slot name="icentreQuote" />
+            </div>
+        </div>
     </div>
 </template>
 
@@ -99,6 +110,27 @@ export default {
 
 <docs>
 ```jsx
+    <vs-icentre
+        imgSrc="https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"
+        imgAlt="This is the alt text 1"
+    >
+        <VsHeading level="2" slot="icentreHeading">A tip from your local experts</VsHeading>
+
+        <span slot="icentreImageCaption">
+            A test caption
+        </span>
+
+        <span slot="icentreImageCredit">
+            &copy; Some test credits
+        </span>
+
+        <span slot="icentreQuote">
+            <p>This is some nice content down here</p>
+        </span>
+
+        <p slot="icentreLinks">Test content <a href="#">link</a></p>
+    </vs-icentre>
+
     <vs-icentre
         imgSrc="https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"
         imgAlt="This is the alt text 1"
