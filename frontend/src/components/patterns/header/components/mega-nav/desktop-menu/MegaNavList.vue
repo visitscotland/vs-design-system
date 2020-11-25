@@ -1,7 +1,6 @@
 <template>
     <ul
-        unstyled class="mega-nav-list"
-        data-test="mega-nav-list"
+        unstyled class="mega-nav-list" data-test="mega-nav-list"
     >
         <!-- @slot Slot for nav list heading  -->
         <slot name="navListHeading" />
