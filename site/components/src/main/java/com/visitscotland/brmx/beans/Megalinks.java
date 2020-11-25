@@ -35,11 +35,6 @@ public class Megalinks extends BaseDocument {
                 MegalinkItem.class);
     }
 
-    @HippoEssentialsGenerated(internalName = "visitscotland:listLayout")
-    public Boolean getListLayout() {
-        return getSingleProperty("visitscotland:listLayout");
-    }
-
     @HippoEssentialsGenerated(internalName = "visitscotland:teaserVisible")
     public Boolean getTeaserVisible() {
         return getSingleProperty("visitscotland:teaserVisible");
@@ -63,6 +58,11 @@ public class Megalinks extends BaseDocument {
     @HippoEssentialsGenerated(internalName = "visitscotland:translationFlag")
     public Boolean getTranslationFlag() {
         return getSingleProperty("visitscotland:translationFlag");
+    }
+
+    @HippoEssentialsGenerated(internalName = "visitscotland:layout")
+    public String getLayout() {
+        return getSingleProperty("visitscotland:layout");
     }
 
     @HippoEssentialsGenerated(internalName = "visitscotland:translation")

@@ -5,20 +5,25 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.visitscotland.brmx.beans.*;
 import com.visitscotland.brmx.beans.capabilities.Linkable;
 import com.visitscotland.brmx.beans.mapping.FlatLink;
+import com.visitscotland.brmx.beans.mapping.LinkType;
 import com.visitscotland.brmx.beans.mapping.megalinks.EnhancedLink;
+import com.visitscotland.brmx.beans.mapping.megalinks.HorizontalListLinksModule;
 import com.visitscotland.brmx.beans.mapping.megalinks.LinksModule;
 import com.visitscotland.brmx.dms.DMSDataService;
 import com.visitscotland.brmx.dms.LocationLoader;
 import com.visitscotland.brmx.dms.ProductSearchBuilder;
+import com.visitscotland.brmx.mock.MegalinksMockBuilder;
 import com.visitscotland.brmx.services.LinkService;
 import com.visitscotland.brmx.services.ResourceBundleService;
 import com.visitscotland.brmx.utils.HippoUtilsService;
 import org.hippoecm.hst.content.beans.standard.HippoBean;
+import org.hippoecm.hst.content.beans.standard.HippoHtml;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.io.IOException;
@@ -30,7 +35,7 @@ import static org.mockito.Mockito.*;
 
 
 @ExtendWith(MockitoExtension.class)
-public class LinkModuleFactoryMockitoTest {
+public class LinkModuleFactoryTest {
 
     public static final String DMS_ID = "0123456798";
     public static final String EXTERNAL_URL = "http://www.fake.site";
@@ -56,6 +61,12 @@ public class LinkModuleFactoryMockitoTest {
 
     @Mock
     private ResourceBundleService resourceBundleService;
+
+    @Mock(lenient = true)
+    LinkService linkService;
+
+    @Mock
+    LocationLoader locationLoader;
 
     private LinkModulesFactory factory;
 
@@ -116,17 +127,12 @@ public class LinkModuleFactoryMockitoTest {
         return mock(Page.class);
     }
 
-    @Mock(lenient = true)
-    LinkService linkService;
-
-    @Mock
-    LocationLoader locationLoader;
 
     @BeforeEach
     public void beforeEach() {
         when(linkService.getPlainLink(any(SharedLink.class), any())).thenReturn(PLAIN_LINK);
 
-        factory = new LinkModulesFactory(utils, dmsData, linkService, locationLoader);
+        factory = new LinkModulesFactory(utils, dmsData, linkService, resourceBundleService,locationLoader);
     }
 
 
@@ -178,7 +184,7 @@ public class LinkModuleFactoryMockitoTest {
         SharedLink sl = (SharedLink) item.getLink();
         when(sl.getImage()).thenReturn(null);
 
-        EnhancedLink link = factory.convertToEnhancedLinks(Collections.singletonList(item), Locale.UK).get(0);
+        EnhancedLink link = factory.convertToEnhancedLinks(Collections.singletonList(item), Locale.UK,false).get(0);
 
         assertEquals(PLAIN_LINK, link.getLink());
         assertNotNull(link.getImage());
@@ -200,7 +206,7 @@ public class LinkModuleFactoryMockitoTest {
         SharedLink sl = (SharedLink) item.getLink();
         when(sl.getImage()).thenReturn(null);
 
-        EnhancedLink link = factory.convertToEnhancedLinks(Collections.singletonList(item), Locale.UK).get(0);
+        EnhancedLink link = factory.convertToEnhancedLinks(Collections.singletonList(item), Locale.UK,false).get(0);
 
         assertEquals(PLAIN_LINK, link.getLink());
         assertNull(link.getImage());
@@ -215,7 +221,7 @@ public class LinkModuleFactoryMockitoTest {
 
     @Test
     void ProductSearch_enhanced_SharedLink() {
-        EnhancedLink link = factory.convertToEnhancedLinks(Collections.singletonList(mockItem(false, LinkType.PRODUCT_SEARCH)), Locale.UK).get(0);
+        EnhancedLink link = factory.convertToEnhancedLinks(Collections.singletonList(mockItem(false, LinkType.PRODUCT_SEARCH)), Locale.UK,false).get(0);
 
         assertEquals(PLAIN_LINK, link.getLink());
     }
@@ -230,7 +236,7 @@ public class LinkModuleFactoryMockitoTest {
 
     @Test
     void External_enhanced_SharedLink() {
-        EnhancedLink link = factory.convertToEnhancedLinks(Collections.singletonList(mockItem(false, LinkType.EXTERNAL)), Locale.UK).get(0);
+        EnhancedLink link = factory.convertToEnhancedLinks(Collections.singletonList(mockItem(false, LinkType.EXTERNAL)), Locale.UK,false).get(0);
 
         assertEquals(PLAIN_LINK, link.getLink());
     }
@@ -243,7 +249,7 @@ public class LinkModuleFactoryMockitoTest {
         when(sl.getImage()).thenReturn(null);
 
         //TODO verify that a contentIssue is triggered
-        EnhancedLink link = factory.convertToEnhancedLinks(Collections.singletonList(item), Locale.UK).get(0);
+        EnhancedLink link = factory.convertToEnhancedLinks(Collections.singletonList(item), Locale.UK,false).get(0);
 
         assertNull(link.getImage());
     }
@@ -256,7 +262,7 @@ public class LinkModuleFactoryMockitoTest {
         when(item.getLink()).thenReturn(link);
 
 
-        assertEquals(0, factory.convertToEnhancedLinks(Collections.singletonList(item), Locale.UK).size());
+        assertEquals(0, factory.convertToEnhancedLinks(Collections.singletonList(item), Locale.UK,false).size());
     }
 
     @Test
@@ -271,6 +277,91 @@ public class LinkModuleFactoryMockitoTest {
         LinksModule layout = factory.multiImageLayout(mega, Locale.UK);
 
         assertEquals("cta-link", layout.getCta().getLink());
+    }
+    @Test
+    @DisplayName("Get a horizontal layout")
+    void getMegalinkModule_horizontalListLayout() {
+        Megalinks mega = new MegalinksMockBuilder().horizontalLayout().build();
+
+        LinksModule linkModule = factory.getMegalinkModule(mega,Locale.UK);
+        assertEquals("HorizontalListLinksModule", linkModule.getType());
+    }
+
+    @Test
+    @DisplayName("Itineraries have days and main transport added")
+    void createEnhancedLink_itinerary() {
+        Linkable itinerary = new MegalinksMockBuilder().getItinerary("bus", 2);
+
+        EnhancedLink enhancedLink = factory.createEnhancedLink(itinerary,Locale.UK, false);
+
+        assertEquals(2, enhancedLink.getItineraryDays());
+        assertEquals("bus",enhancedLink.getItineraryTransport());
+
+    }
+
+    @Test
+    @DisplayName("OTYML category included for any page")
+    void createEnhancedLink_withCategory() {
+        Page page = (Page) new MegalinksMockBuilder().getPage();
+
+        when(utils.createUrl(page)).thenReturn("www.vs.com");
+        when(linkService.getLinkCategory("www.vs.com",Locale.UK)).thenReturn("see-do");
+        EnhancedLink enhancedLink = factory.createEnhancedLink(page,Locale.UK, true);
+
+        assertEquals("see-do", enhancedLink.getCategory());
+
+    }
+
+    @Test
+    @DisplayName("VS-2308 External document definition without category")
+    void createEnhancedLink_externalDocument() {
+        final String url= "https://www.visitscotland.com/ebrochures/en/what-to-see-and-do/perthshireanddundee.pdf";
+        SharedLink externalDocument = (SharedLink)new MegalinksMockBuilder().getExternalDocument("title",url, "MB", 15.5, null);
+
+        EnhancedLink enhancedLink = factory.createEnhancedLink(externalDocument,Locale.UK, false);
+
+        assertEquals("title(PDF 15.5MB)", enhancedLink.getLabel());
+        assertEquals(com.visitscotland.brmx.beans.mapping.LinkType.DOWNLOAD, enhancedLink.getType());
+        Mockito.verify((ExternalDocument)externalDocument.getLinkType(),Mockito.never()).getCategory();
+    }
+
+    @Test
+    @DisplayName("VS-2308 External document definition with category")
+    void createEnhancedLink_externalDocument_category() {
+        final String url= "https://www.visitscotland.com/ebrochures/en/what-to-see-and-do/perthshireanddundee.pdf";
+        final String category= "see-do";
+        SharedLink externalDocument = (SharedLink)new MegalinksMockBuilder().getExternalDocument("title",url, "MB", 15.5,category);
+
+        EnhancedLink enhancedLink = factory.createEnhancedLink(externalDocument,Locale.UK, true);
+
+        assertEquals("title(PDF 15.5MB)", enhancedLink.getLabel());
+        assertEquals(com.visitscotland.brmx.beans.mapping.LinkType.DOWNLOAD, enhancedLink.getType());
+        assertEquals(category, enhancedLink.getCategory());
+    }
+
+
+    @Test
+    @DisplayName("VS-1696 get OTYML module overriding the default title")
+    void horizontalListLayout_OTYML() {
+        OTYML otyml = mock (OTYML.class);
+
+        when(otyml.getTitle()).thenReturn("Other things");
+        when(otyml.getIntroduction()).thenReturn(mock(HippoHtml.class));
+
+        HorizontalListLinksModule module= factory.horizontalListLayout(otyml,Locale.UK);
+        assertEquals("Other things", module.getTitle());
+        assertNotNull(module.getIntroduction());
+    }
+
+    @Test
+    @DisplayName("VS-1696 get OTYML module, default title")
+    void horizontalListLayout_OTYML_defaultLabel() {
+        OTYML otyml = mock (OTYML.class);
+
+        when (resourceBundleService.getResourceBundle("modules", "otyml.title.default", Locale.UK ,true)).thenReturn("otyml");
+
+        HorizontalListLinksModule module= factory.horizontalListLayout(otyml,Locale.UK);
+        assertEquals("otyml", module.getTitle());
     }
 
 //    @Test
