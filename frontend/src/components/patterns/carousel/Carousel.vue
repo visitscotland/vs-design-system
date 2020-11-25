@@ -145,7 +145,7 @@ export default {
             splideOptions: {
                 perPage: 4,
                 gap: '24px',
-                arrowPath: 'M20.527,73.811,22.3,72.043a1.072,1.072,0,0,0,0-1.515L8.444,56.677H38.929A1.071,1.071,0,0,0,40,55.606v-2.5a1.071,1.071,0,0,0-1.071-1.071H8.444L22.3,38.183a1.072,1.072,0,0,0,0-1.515L20.527,34.9a1.072,1.072,0,0,0-1.515,0L.314,53.6a1.072,1.072,0,0,0,0,1.515l18.7,18.7A1.071,1.071,0,0,0,20.527,73.811Z',
+                arrowPath: 'M19.47.55,17.7,2.31a1.07,1.07,0,0,0,0,1.52L31.56,17.68H1.07A1.07,1.07,0,0,0,0,18.75v2.5a1.07,1.07,0,0,0,1.07,1.07H31.56L17.7,36.17a1.07,1.07,0,0,0,0,1.52l1.77,1.77a1.09,1.09,0,0,0,1.52,0l18.7-18.7a1.09,1.09,0,0,0,0-1.52L21,.54A1.08,1.08,0,0,0,19.47.55Z',
                 breakpoints: {
                     992: {
                         perPage: 3,
@@ -195,9 +195,9 @@ export default {
             top: 40%;
 
             svg {
-                transform: translateY(-28%);
+                // transform: translateY(-28%);
                 fill: $color-white;
-                height: 56px;
+                // height: 56px;
             }
         }
 
@@ -209,10 +209,6 @@ export default {
         .splide__arrow--next {
             right: 0;
             transform: translateX(50%);
-
-            svg {
-                transform: translateY(-28%) scaleX(-1);
-            }
         }
 
         .splide__pagination__page {
