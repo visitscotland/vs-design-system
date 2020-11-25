@@ -142,7 +142,7 @@ export default {
         }
 
         &:hover {
-            .icon.icon-dark[data-v-196177e7] {
+            .vs-icon{
                 fill: $color-pink;
             }
         }

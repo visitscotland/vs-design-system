@@ -1,5 +1,5 @@
 <template>
-    <div
+    <nav
         class="vs-mega-nav bg-white"
         data-test="vs-mega-nav"
     >
@@ -66,7 +66,7 @@
                 </VsCol>
             </VsRow>
         </VsContainer>
-    </div>
+    </nav>
 </template>
 
 <script>
