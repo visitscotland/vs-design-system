@@ -6,7 +6,7 @@ const factoryShallowMount = (propsData) => shallowMount(VsIcon, {
     propsData: {
         ...propsData,
         name: 'accessparkdrop',
-    }
+    },
 });
 
 describe('VsIcon', () => {
