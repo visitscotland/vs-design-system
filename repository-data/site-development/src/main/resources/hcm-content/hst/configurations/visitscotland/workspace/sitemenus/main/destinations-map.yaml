@@ -1,10 +1,11 @@
 /hst:hst/hst:configurations/visitscotland/hst:workspace/hst:sitemenus/main/destinations-map:
-  .meta:order-before: see-do
+  .meta:order-before: accommodation
   jcr:primaryType: hst:sitemenuitem
   hst:referencesitemapitem: destinations-maps/orkney/short-break-itinerary
   hst:repobased: false
   /cities.nav:
     jcr:primaryType: hst:sitemenuitem
+    hst:referencesitemapitem: destinations/megalinks-multi-image-example
     hst:repobased: false
     /Itinerary:
       jcr:primaryType: hst:sitemenuitem
