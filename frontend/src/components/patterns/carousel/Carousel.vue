@@ -1,10 +1,10 @@
 <template>
-    <VsContainer>
-        <VsRow>
-            <VsCol
-                cols="12"
-            >
-                <section class="carousel">
+    <section class="carousel">
+        <VsContainer>
+            <VsRow>
+                <VsCol
+                    cols="12"
+                >
                     <Splide
                         :options="splideOptions"
                     >
@@ -116,10 +116,10 @@
                             </template>
                         </VsCarouselSlide>
                     </Splide>
-                </section>
-            </VsCol>
-        </VsRow>
-    </VsContainer>
+                </VsCol>
+            </VsRow>
+        </VsContainer>
+    </section>
 </template>
 
 <script>
@@ -168,6 +168,8 @@ export default {
     @import '@splidejs/splide/dist/css/themes/splide-default.min.css';
 
     .carousel {
+        overflow: hidden;
+
         .splide {
             margin: 0 auto;
         }
@@ -209,6 +211,10 @@ export default {
         .splide__arrow--next {
             right: 0;
             transform: translateX(50%);
+        }
+
+        .splide__pagination {
+            margin-top: $spacer-9;
         }
 
         .splide__pagination__page {
