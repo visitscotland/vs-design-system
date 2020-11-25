@@ -35,12 +35,12 @@
                     cols="12"
                     md="10"
                     offset-md="1"
-                    class="vs-icentre__main-content"
                 >
                     <VsImageWithCaption
                         :alt-text="imgAlt"
                         :image-src="imgSrc"
                         variant="fullwidth"
+                        class="vs-icentre__main-image"
                     >
                         <span slot="caption">
                             <slot name="icentreImageCaption" />
@@ -50,13 +50,25 @@
                             <slot name="icentreImageCredit" />
                         </span>
                     </VsImageWithCaption>
+                </VsCol>
 
-                    <div
-                        class="vs-icentre__quote-block"
-                        v-if="!!this.$slots['icentreQuote']"
-                    >
-                        <slot name="icentreLinks" />
+                <VsCol
+                    cols="12"
+                    md="10"
+                    offset-md="1"
+                    lg="7"
+                    offset-lg="5"
+                    class="vs-icentre__quote-block-container"
+                    v-if="!!this.$slots['icentreQuote']"
+                >
+                    <div class="vs-icentre__quote-block">
                         <slot name="icentreQuote" />
+
+                        <div
+                            class="vs-icentre__links-contained"
+                        >
+                            <slot name="icentreLinks" />
+                        </div>
                     </div>
                 </VsCol>
             </VsRow>
@@ -105,7 +117,6 @@ export default {
 <style lang="scss">
 .vs-icentre {
     padding: $spacer-8 $spacer-0;
-    background: $white;
 
     @include media-breakpoint-up(md) {
         padding: $spacer-8;
@@ -125,11 +136,36 @@ export default {
     }
 
     &__links {
-        margin-bottom: 3rem;
+        margin-bottom: $spacer-9;
     }
 
     &__intro-content {
         text-align: center;
+    }
+
+    &__main-image {
+        margin-bottom: 0;
+    }
+
+    &__quote-block-container {
+        z-index: 2;
+
+        @include media-breakpoint-up(lg) {
+            transform: translateY(-50%);
+        }
+    }
+
+    &__quote-block {
+        background: $white;
+        padding: $spacer-8 $spacer-8;
+
+        @include media-breakpoint-up(md) {
+            padding: $spacer-9 $spacer-10;
+        }
+    }
+
+    &__links-contained {
+        margin-bottom: $spacer-0;
     }
 }
 </style>
@@ -151,7 +187,8 @@ export default {
         </span>
 
         <span slot="icentreQuote">
-            <p>This is some nice content down here</p>
+            <p>This is an example quote, it doesn't look like a quote but it fills the space.</p>
+            <p>When the quote component is done this will be one of those instead</p>
         </span>
 
         <p slot="icentreLinks">Test content <a href="#">link</a></p>
