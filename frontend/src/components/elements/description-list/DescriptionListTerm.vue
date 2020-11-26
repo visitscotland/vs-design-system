@@ -1,8 +1,11 @@
 <template>
     <VsCol
         tag="dt"
-        class="vs-description-list__term"
-        :class="{ 'list-inline-item': inline, 'vs-description-list__term--styled': !inline }"
+        class="vs-description-list-term"
+        :class="{
+            'list-inline-item': inline,
+            'vs-description-list-term--styled': !inline
+        }"
     >
         <slot />
     </VsCol>
@@ -28,12 +31,12 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 @import "~bootstrap/scss/type";
 
-.vs-description-list__term {
+.vs-description-list-term {
     // Responsive columns to achieve default 2 column list layout
-    &.vs-description-list__term--styled {
+    &.vs-description-list-term--styled {
         font-family: $headings-font-family;
         @include make-col(4);
 
