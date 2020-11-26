@@ -3,7 +3,7 @@
 <#include "../../global/image-with-caption.ftl">
 
 <#macro icentre module>
-    <@hst.manageContent hippobean=module.tourismInformation />
+    <@hst.manageContent hippobean=module.hippoBean />
     <#if module.image.cmsImage??>
         <#assign image>
             <@hst.link hippobean=module.image.cmsImage.original/>

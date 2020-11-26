@@ -8,7 +8,6 @@ public class IKnowModule extends Module{
     private String title;
     private HippoHtml description;
     private FlatLink link;
-    private TourismInformation tourismInformation;
 
     public String getTitle() {
         return title;
@@ -32,13 +31,5 @@ public class IKnowModule extends Module{
 
     public void setLink(FlatLink link) {
         this.link = link;
-    }
-
-    public TourismInformation getTourismInformation() {
-        return tourismInformation;
-    }
-
-    public void setTourismInformation(TourismInformation tourismInformation) {
-        this.tourismInformation = tourismInformation;
     }
 }
