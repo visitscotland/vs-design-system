@@ -83,4 +83,8 @@ export default {
             opacity: 1;
         }
     }
+
+    .carousel-slide {
+        height: 100%;
+    }
 </style>
