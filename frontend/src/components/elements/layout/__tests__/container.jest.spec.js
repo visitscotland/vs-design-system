@@ -4,13 +4,13 @@ import VsContainer from '../Container';
 
 const slotText = 'Container text';
 
-const factoryShallowMount = (propsData) => shallowMount(VsContainer, {
+const factoryShallowMount = () => shallowMount(VsContainer, {
     slots: {
         default: slotText,
     },
     attrs: {
-        style: "background: #ccc"
-    }
+        style: 'background: #ccc',
+    },
 });
 
 let wrapper;

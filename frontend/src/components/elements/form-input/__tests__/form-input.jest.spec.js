@@ -37,7 +37,7 @@ describe('VsFormInput', () => {
             expect(modifiedWrapper.classes()).toContain(`form-control-${testSize}`);
         });
 
-        it('value - should accept and render a `value` property', async () => {
+        it('value - should accept and render a `value` property', async() => {
             const testValue = 'Test Value';
             wrapper.setProps({
                 value: testValue,
@@ -50,7 +50,7 @@ describe('VsFormInput', () => {
     });
 
     describe(':events', () => {
-        it('it should emit an `input` event when `value` changes', async () => {
+        it('it should emit an `input` event when `value` changes', async() => {
             const testValue = 'Test Value';
             const modifiedWrapper = factoryMount();
             modifiedWrapper.setProps({
@@ -62,7 +62,7 @@ describe('VsFormInput', () => {
             expect(modifiedWrapper.emitted('input')).toBeTruthy();
         });
 
-        it('it should emit an `input` event with the new value when `value` changes', async () => {
+        it('it should emit an `input` event with the new value when `value` changes', async() => {
             const testValue = 'Test Value';
             const modifiedWrapper = factoryMount();
             modifiedWrapper.setProps({

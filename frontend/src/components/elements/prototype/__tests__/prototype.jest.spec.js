@@ -7,7 +7,7 @@ const slotText = 'Prototype content';
 const factoryShallowMount = () => shallowMount(VsPrototype, {
     slots: {
         default: slotText,
-    }
+    },
 });
 
 let wrapper;
