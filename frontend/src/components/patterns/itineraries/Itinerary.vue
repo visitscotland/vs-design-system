@@ -18,7 +18,7 @@
             <VsRow>
                 <VsCol
                     cols="12"
-                    class="p-0"
+                    class="p-0 vs-itinerary__accordion-container"
                 >
                     <VsAccordion break-point="lg">
                         <slot name="list" />
@@ -39,6 +39,7 @@ import {
 } from '@components/elements/layout';
 import VsItineraryMobileMapToggle from '@components/patterns/itineraries/components/itinerary-mobile-map-toggle/ItineraryMobileMapToggle';
 import VsAccordion from '@components/patterns/accordion/Accordion';
+
 /**
  * A wrapper component that wraps the itinerary map and list.
  * It controls display of the mobile map toggle on smaller screens.
@@ -105,10 +106,10 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 @import "~bootstrap/scss/type";
 
-.vs-itinerary ::v-deep {
+.vs-itinerary {
     .vs-itinerary__map-container {
         height: 100vh;
         position: fixed;
@@ -127,6 +128,23 @@ export default {
             position: -webkit-sticky;
             position: sticky;
             width: 45vw;
+        }
+
+         @media screen and (-ms-high-contrast: active), screen and (-ms-high-contrast: none) {
+            position: relative;
+        }
+    }
+
+    // layout styles for safari
+    @media screen and (min-color-index:0) and (-webkit-min-device-pixel-ratio:0) {
+        @include media-breakpoint-up(lg) {
+            .vs-itinerary__map-container {
+                height: 0;
+            }
+
+            .vs-itinerary__accordion-container {
+                max-width: 50%;
+            }
         }
     }
 }
@@ -253,21 +271,21 @@ export default {
          <vs-row>
           <vs-col cols="12" lg="11" offset-lg="1">
             <vs-description-list class="mb-6">
-                <vs-description-list-term>Highlights</vs-description-list-term>
-                <vs-description-list-detail
+                <vs-description-list-item title>Highlights</vs-description-list-item>
+                <vs-description-list-item
                     v-for="(highlight, index) in itineraries.sampleItinerary.highlights"
                 >
                     {{highlight}}
-                </vs-description-list-detail>
+                </vs-description-list-item>
             </vs-description-list>
             <vs-description-list class="mb-8">
-                <vs-description-list-term>Areas Covered</vs-description-list-term>
-                    <vs-description-list-detail
+                <vs-description-list-item title>Areas Covered</vs-description-list-item>
+                    <vs-description-list-item
                         v-for="(areaCovered, index) in itineraries.sampleItinerary.areasCovered"
                         key="index"
                     >
                     {{areaCovered}}
-                </vs-description-list-detail>
+                </vs-description-list-item>
             </vs-description-list>
           </vs-col>
         </vs-row>
@@ -306,12 +324,12 @@ export default {
             slot="day-distance"
             class="list-inline text-center"
         >
-            <vs-description-list-term class="list-inline-item">
+            <vs-description-list-item title inline>
                 <abbr title="miles">mi</abbr>/<abbr title="kilometres">km</abbr>
-            </vs-description-list-term>
-            <vs-description-list-detail class="list-inline-item">
+            </vs-description-list-item>
+            <vs-description-list-item inline>
                 {{day.dayMiles}}/{{day.dayKM}}
-            </vs-description-list-detail>
+            </vs-description-list-item>
         </vs-description-list>
 
         <vs-description-list
@@ -320,8 +338,13 @@ export default {
             slot="day-transport"
             inline
         >
-            <vs-description-list-term class="col-auto px-0">Transport</vs-description-list-term>
-            <vs-description-list-detail
+            <vs-description-list-item
+                title
+                class="col-auto px-0"
+            >
+                Transport
+            </vs-description-list-item>
+            <vs-description-list-item
                 class="col-auto m-0 px-0"
                 v-for="(transportType, transportTypeIndex) in day.transport"
                 :key="transportTypeIndex"
@@ -330,7 +353,7 @@ export default {
                     <vs-icon :name="transportType.key" variant="dark" size="md" />
                 </vs-tooltip>
                 <span class="sr-only">{{transportType.value}}</span>
-            </vs-description-list-detail>
+            </vs-description-list-item>
         </vs-description-list>
 
           <div class="mb-5" slot="day-introduction" v-html="day.introduction"></div>
@@ -379,12 +402,12 @@ export default {
                     Find out more
                 </vs-link>
                 <vs-description-list class="my-4 mb-0 justify-content-start" inline>
-                    <vs-description-list-term class="mb-0 mr-0 col-auto">
+                    <vs-description-list-item title class="mb-0 mr-0 col-auto">
                         Time to explore
-                    </vs-description-list-term>
-                    <vs-description-list-detail class="mb-0 col-auto px-0">
+                    </vs-description-list-item>
+                    <vs-description-list-item class="mb-0 col-auto px-0">
                         {{stop.timeToExplore}}
-                    </vs-description-list-detail>
+                    </vs-description-list-item>
                 </vs-description-list>
                 <vs-itinerary-tips v-if="stop.tips.tipsBody.length || stop.tips.tipsTitle.length">
                     <div slot="text">
@@ -408,23 +431,25 @@ export default {
                     slot="nearby-links"
                     v-if="stopIndex == day.stops.length - 1"
                 >
-                    <vs-button-with-icon
+                    <vs-button
                         class="mb-3"
                         background="white"
+                        button-size="md"
                         variant="outline-primary"
                         href="#"
                         icon="food"
                     >
                         Nearby places to eat
-                    </vs-button-with-icon>
-                    <vs-button-with-icon
+                    </vs-button>
+                    <vs-button
                         background="white"
+                        button-size="md"
                         variant="outline-primary"
                         href="#"
                         icon="product-accommodation"
                     >
                         Nearby places to stay
-                    </vs-button-with-icon>
+                    </vs-button>
                 </vs-itinerary-border-overlap-wrapper>
         </vs-itinerary-stop>
     </vs-itinerary-day>
