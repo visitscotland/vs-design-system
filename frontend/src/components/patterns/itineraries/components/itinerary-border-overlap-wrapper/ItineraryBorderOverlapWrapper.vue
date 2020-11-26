@@ -26,7 +26,7 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .vs-itinerary-border-overlap__wrapper {
     min-height: 200px;
     margin-left: 2.5rem;
@@ -50,23 +50,24 @@ export default {
 
   ```jsx
     <vs-itinerary-border-overlap-wrapper>
-        <vs-button-with-icon
+        <vs-button
             class="mb-3"
             background="white"
+            button-size="md"
             variant="outline-primary"
             href="#"
             icon="food"
         >
             Nearby places to eat
-        </vs-button-with-icon>
-        <vs-button-with-icon
+        </vs-button>
+        <vs-button
             background="white"
             variant="outline-primary"
             href="#"
             icon="product-accommodation"
         >
             Nearby places to stay
-        </vs-button-with-icon>
+        </vs-button>
     </vs-itinerary-border-overlap-wrapper>
   ```
 </docs>

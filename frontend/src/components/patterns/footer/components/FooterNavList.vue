@@ -70,20 +70,17 @@ export default {
             <vs-col cols="12" md="4" lg="3">
                 <vs-footer-accordion-item
                     :open-by-default="false"
+                    title="Visitor information"
                     variant="dark"
                     control-id="footer_accordion_item_1"
                     class="border-left-0"
                 >
-                    <span slot="title">
-                        Visitor information
-                    </span>
-
                     <span slot="icon-open">
-                        <vs-icon name="chevron-up" variant="light" size="xs" />
+                        <vs-icon name="chevron" variant="light" size="xs" />
                     </span>
 
                     <span slot="icon-closed">
-                        <vs-icon name="chevron-right" variant="light" size="xs" />
+                        <vs-icon name="chevron" orientation="right" variant="light" size="xs" />
                     </span>
 
                     <vs-list unstyled>
@@ -110,19 +107,16 @@ export default {
             <vs-col cols="12" md="4" lg="3">
                 <vs-footer-accordion-item
                     :open-by-default="false"
+                    title="Get in touch"
                     variant="dark"
                     control-id="footer_accordion_item_2"
                 >
-                    <span slot="title">
-                        Get in touch
-                    </span>
-
                     <span slot="icon-open">
-                        <vs-icon name="chevron-up" variant="light" size="xs" />
+                        <vs-icon name="chevron" variant="light" size="xs" />
                     </span>
 
                     <span slot="icon-closed">
-                        <vs-icon name="chevron-right" variant="light" size="xs" />
+                        <vs-icon name="chevron" orientation="right" variant="light" size="xs" />
                     </span>
 
                     <vs-list unstyled>
@@ -149,41 +143,38 @@ export default {
             <vs-col cols="12" md="4" lg="3">
                 <vs-footer-accordion-item
                     :open-by-default="false"
+                    title="Our other sites"
                     variant="dark"
                     control-id="footer_accordion_item_3"
                 >
-                    <span slot="title">
-                        Our other sites
-                    </span>
-
                     <span slot="icon-open">
-                        <vs-icon name="chevron-up" variant="light" size="xs" />
+                        <vs-icon name="chevron" variant="light" size="xs" />
                     </span>
 
                     <span slot="icon-closed">
-                        <vs-icon name="chevron-right" variant="light" size="xs" />
+                        <vs-icon name="chevron" orientation="right" variant="light" size="xs" />
                     </span>
 
                     <vs-list unstyled>
                         <vs-footer-nav-list-item
                             href="#"
                             link-text="Brochures"
-                            external
+                            type="external"
                         ></vs-footer-nav-list-item>
                         <vs-footer-nav-list-item
                             href="#"
                             link-text="VisitScotland iCentres"
-                            external
+                            type="external"
                         ></vs-footer-nav-list-item>
                         <vs-footer-nav-list-item
                             href="#"
                             link-text="iKnow Scotland Community"
-                            external
+                            type="external"
                         ></vs-footer-nav-list-item>
                         <vs-footer-nav-list-item
                             href="#"
                             link-text="VisitScotland Awards"
-                            external
+                            type="external"
                         ></vs-footer-nav-list-item>
                     </vs-list>
                 </vs-footer-accordion-item>
@@ -191,19 +182,16 @@ export default {
             <vs-col cols="12" lg="3" xl="2">
                 <vs-footer-accordion-item
                     :open-by-default="true"
+                    title="Find us on"
                     variant="dark"
                     control-id="footer_accordion_item_4"
                 >
-                    <span slot="title">
-                        Find us on
-                    </span>
-
                     <span slot="icon-open">
-                        <vs-icon name="chevron-up" variant="light" size="xs" />
+                        <vs-icon name="chevron" variant="light" size="xs" />
                     </span>
 
                     <span slot="icon-closed">
-                        <vs-icon name="chevron-right" variant="light" size="xs" />
+                        <vs-icon name="chevron" orientation="right" variant="light" size="xs" />
                     </span>
 
                     <vs-list unstyled class="mt-5 pr-lg-8 pr-xl-4">

@@ -14,7 +14,8 @@
                 {{ text }}
             </slot>
             <VsIcon
-                name="chevron-down"
+                name="chevron"
+                orientation="down"
                 variant="reverse-white"
                 size="xxs"
                 class="ml-1"
@@ -61,14 +62,14 @@ export default {
 
 .vs-dropdown {
   .dropdown-toggle {
-    .icon-chevron-down {
+    .icon-chevron {
       transition: all 150ms ease-in-out;
     }
   }
   &.show {
     .dropdown-toggle {
-      .icon-chevron-down {
-        transform: rotate(-180deg);
+      .icon-chevron {
+        transform: none;
       }
     }
   }
