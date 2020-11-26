@@ -32,13 +32,6 @@ describe('VsIknowParterItem', () => {
         expect(wrapper.attributes('data-test')).toContain('vs-icentre');
     });
 
-    it('should render a `VsImageWithCaption` component', () => {
-        const wrapper = factoryShallowMount();
-        const img = wrapper.find('vsimagewithcaption-stub');
-
-        expect(img.exists()).toBe(true);
-    });
-
     describe(':slots', () => {
         it('renders content inserted in the `icentreHeading` slot', () => {
             const headingContent = 'Icentre test heading';
@@ -47,6 +40,14 @@ describe('VsIknowParterItem', () => {
             });
 
             expect(wrapper.text()).toContain(headingContent);
+        });
+        it('renders content inserted in the `icentreImageWithCaption` slot', () => {
+            const imageContent = 'This slot normally takes an imageWithCaption component';
+            const wrapper = factoryShallowMount({
+                icentreImageWithCaption: imageContent,
+            });
+
+            expect(wrapper.text()).toContain(imageContent);
         });
 
         it('renders content inserted in the `icentreLinks` slot', () => {
@@ -95,24 +96,6 @@ describe('VsIknowParterItem', () => {
             expect(standalone.exists()).toBe(false);
             expect(embedded.exists()).toBe(true);
             expect(embedded.text()).toContain(linksContent);
-        });
-
-        it('renders content inserted in the `icentreImageCaption` slot', () => {
-            const captionContent = 'Icentre test caption';
-            const wrapper = factoryMount({
-                icentreImageCaption: captionContent,
-            });
-
-            expect(wrapper.text()).toContain(captionContent);
-        });
-
-        it('renders content inserted in the `icentreImageCredit` slot', () => {
-            const creditContent = 'Icentre test credit';
-            const wrapper = factoryMount({
-                icentreImageCredit: creditContent,
-            });
-
-            expect(wrapper.text()).toContain(creditContent);
         });
     });
 });
