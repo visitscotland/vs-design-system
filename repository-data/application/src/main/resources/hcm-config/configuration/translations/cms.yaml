@@ -18,4 +18,10 @@ definitions:
       visitscotland:image-validator: 'The image selected does not have any of the required fields (Alt text or caption).Please fill the missing fields or select another image.'
       visitscotland:link-validator: 'The document linked is not allowed, please choose a Page document or Shared link'
       visitscotland:link-validator#stop: 'The document linked is not allowed, please choose a Stop document for Days'
+      visitscotland:short-string-validator: 'Max length is 55'
+      visitscotland:medium-string-validator: 'Max length is 90'
+      visitscotland:long-string-validator: 'Max length is 135'
+      visitscotland:extralong-string-validator: 'Max length is 250'
+      visitscotland:seotitle-string-validator: 'Max length is 70'
+      visitscotland:seodescription-string-validator: 'Max length is 160'
       visitscotland:url-validator: Enter a valid website URL
