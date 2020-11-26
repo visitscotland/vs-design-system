@@ -10,7 +10,7 @@ const factoryShallowMount = (propsData) => shallowMount(VsRichTextWrapper, {
     },
     propsData: {
         ...propsData,
-    }
+    },
 });
 
 describe('VsRichTextWrapper', () => {

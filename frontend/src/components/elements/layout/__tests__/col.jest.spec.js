@@ -4,13 +4,13 @@ import VsCol from '../Col';
 
 const slotText = 'Col text';
 
-const factoryShallowMount = (propsData) => shallowMount(VsCol, {
+const factoryShallowMount = () => shallowMount(VsCol, {
     slots: {
         default: slotText,
     },
     attrs: {
-        class: "cols-6 sm-12"
-    }
+        class: 'cols-6 sm-12',
+    },
 });
 
 let wrapper;
@@ -27,9 +27,9 @@ describe('VsCol', () => {
         it('should accept and render attributes', () => {
             expect([
                 wrapper.classes('cols-6'),
-                wrapper.classes('sm-12')
+                wrapper.classes('sm-12'),
             ]).toEqual([
-                true, true
+                true, true,
             ]);
         });
     });
