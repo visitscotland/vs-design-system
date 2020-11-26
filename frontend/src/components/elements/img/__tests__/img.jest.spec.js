@@ -12,7 +12,7 @@ const factoryShallowMount = (propsData) => shallowMount(VsImg, {
         ...propsData,
         src: 'https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm',
         alt: 'Claire standing stones',
-    }
+    },
 });
 
 const factoryMount = (propsData) => mount(VsImg, {
@@ -23,7 +23,7 @@ const factoryMount = (propsData) => mount(VsImg, {
         ...propsData,
         src: 'https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm',
         alt: 'Claire standing stones',
-    }
+    },
 });
 
 describe('VsImg', () => {
@@ -48,7 +48,7 @@ describe('VsImg', () => {
 
         it('should set an `img-fluid` class if the `fluid` property is truthy', () => {
             const wrapper = factoryMount({
-                fluid: true
+                fluid: true,
             });
 
             expect(wrapper.classes('img-fluid')).toBe(true);
@@ -56,14 +56,14 @@ describe('VsImg', () => {
 
         it('should set an `img-fluid` class and a `w-100` class if the `fluid-grow` property is truthy', () => {
             const wrapper = factoryMount({
-                fluidGrow: true
+                fluidGrow: true,
             });
 
             expect([
                 wrapper.classes('img-fluid'),
-                wrapper.classes('w-100')
+                wrapper.classes('w-100'),
             ]).toEqual([
-                true, true
+                true, true,
             ]);
         });
     });
