@@ -1,6 +1,6 @@
 package com.visitscotland.brmx.translation.plugin;
 
-import com.visitscotland.brmx.beans.TranslationLinkContainer;
+import com.visitscotland.brmx.translation.SessionFactory;
 import org.hippoecm.frontend.translation.ILocaleProvider;
 import org.hippoecm.hst.content.beans.standard.HippoBean;
 import org.junit.jupiter.api.BeforeEach;
@@ -25,7 +25,10 @@ public class DocumentTranslatorAddTranslationLinkChangeSets {
     private DocumentTranslator documentTranslator;
     @Mock
     private Session mockSession;
+    @Mock
     HippoBean sourceDocument;
+    @Mock
+    Node mockSourceNode;
     @Mock
     ILocaleProvider.HippoLocale mockLocale;
     @Mock
@@ -39,26 +42,15 @@ public class DocumentTranslatorAddTranslationLinkChangeSets {
 
     @BeforeEach
     public void beforeEach() {
-        sourceDocument = mock(HippoBean.class, withSettings().extraInterfaces(TranslationLinkContainer.class));
+        when(sourceDocument.getNode()).thenReturn(mockSourceNode);
         documentTranslator = spy(new DocumentTranslator(mockNodeFactory, mockSessionFactory, mockJcrDocumentFactory, mockChangeSetFactory));
         lenient().doReturn(mockSession).when(mockSessionFactory).getJcrSession();
     }
 
     @Test
-    public void notTranslationLinkContainer() throws Exception {
-        // When the sourceDocument is not an instance of a TranslationLinkContainer,
-        // should not cause an error and should not add anything to the changelist
-        HippoBean sourceDocumentNotContainer = mock(HippoBean.class);
-        List<ChangeSet> changeSetList = new ArrayList<>();
-        documentTranslator.addTranslationLinkChangeSets(sourceDocumentNotContainer, mockLocale, changeSetList);
-
-        assertTrue(changeSetList.isEmpty());
-    }
-
-    @Test
     public void noTranslatableChildren() throws Exception {
         // When the sourceDocument has no translation children, nothing is added to the List.
-        doReturn(Collections.emptyList()).when(documentTranslator).getChildTranslatableLinkNodes(same(sourceDocument));
+        doReturn(Collections.emptyList()).when(documentTranslator).getChildTranslatableLinkNodes(same(mockSourceNode));
 
         List<ChangeSet> changeSetList = new ArrayList<>();
         documentTranslator.addTranslationLinkChangeSets(sourceDocument, mockLocale, changeSetList);
@@ -82,7 +74,7 @@ public class DocumentTranslatorAddTranslationLinkChangeSets {
 
         List<Node> translatableLinkNodes = new ArrayList<>();
         translatableLinkNodes.add(translatableChild);
-        doReturn(translatableLinkNodes).when(documentTranslator).getChildTranslatableLinkNodes(same(sourceDocument));
+        doReturn(translatableLinkNodes).when(documentTranslator).getChildTranslatableLinkNodes(same(mockSourceNode));
 
         List<ChangeSet> changeSetList = new ArrayList<>();
         documentTranslator.addTranslationLinkChangeSets(sourceDocument, mockLocale, changeSetList);
@@ -107,7 +99,7 @@ public class DocumentTranslatorAddTranslationLinkChangeSets {
 
         List<Node> translatableLinkNodes = new ArrayList<>();
         translatableLinkNodes.add(translatableChild);
-        doReturn(translatableLinkNodes).when(documentTranslator).getChildTranslatableLinkNodes(same(sourceDocument));
+        doReturn(translatableLinkNodes).when(documentTranslator).getChildTranslatableLinkNodes(same(mockSourceNode));
 
         ChangeSet mockChangeSet = mock(ChangeSet.class);
         doReturn(mockChangeSet).when(mockChangeSetFactory).createChangeSet(same(mockLocale));
@@ -116,7 +108,7 @@ public class DocumentTranslatorAddTranslationLinkChangeSets {
         documentTranslator.addTranslationLinkChangeSets(sourceDocument, mockLocale, changeSetList);
 
         assertFalse(changeSetList.isEmpty());
-        verify(mockChangeSet).addDocument(same(node1jcr));
+        verify(mockChangeSet).addDocument(same(node1jcr), eq(true));
         assertSame(mockChangeSet, changeSetList.get(0));
     }
 
@@ -141,7 +133,7 @@ public class DocumentTranslatorAddTranslationLinkChangeSets {
 
         List<Node> translatableLinkNodes = new ArrayList<>();
         translatableLinkNodes.add(translatableChild);
-        doReturn(translatableLinkNodes).when(documentTranslator).getChildTranslatableLinkNodes(same(sourceDocument));
+        doReturn(translatableLinkNodes).when(documentTranslator).getChildTranslatableLinkNodes(same(mockSourceNode));
 
         ChangeSet mockChangeSet = mock(ChangeSet.class);
         when(mockChangeSet.getTargetPath()).thenReturn("/matching");
@@ -158,7 +150,7 @@ public class DocumentTranslatorAddTranslationLinkChangeSets {
         changeSetList.add(existingChangeSet);
         documentTranslator.addTranslationLinkChangeSets(sourceDocument, mockLocale, changeSetList);
 
-        verify(existingChangeSet).addDocument(same(node1jcr));
+        verify(existingChangeSet).addDocument(same(node1jcr), eq(true));
         assertEquals(2, changeSetList.size());
         assertSame(existingChangeSet, changeSetList.get(1));
     }
@@ -184,7 +176,7 @@ public class DocumentTranslatorAddTranslationLinkChangeSets {
 
         List<Node> translatableLinkNodes = new ArrayList<>();
         translatableLinkNodes.add(translatableChild);
-        doReturn(translatableLinkNodes).when(documentTranslator).getChildTranslatableLinkNodes(same(sourceDocument));
+        doReturn(translatableLinkNodes).when(documentTranslator).getChildTranslatableLinkNodes(same(mockSourceNode));
 
         ChangeSet mockChangeSet = mock(ChangeSet.class);
         when(mockChangeSet.getTargetPath()).thenReturn("/matching");
@@ -201,7 +193,7 @@ public class DocumentTranslatorAddTranslationLinkChangeSets {
         changeSetList.add(existingChangeSet);
         documentTranslator.addTranslationLinkChangeSets(sourceDocument, mockLocale, changeSetList);
 
-        verify(existingChangeSet, never()).addDocument(same(node1jcr));
+        verify(existingChangeSet, never()).addDocument(same(node1jcr), eq(true));
         assertEquals(2, changeSetList.size());
         assertSame(existingChangeSet, changeSetList.get(1));
     }

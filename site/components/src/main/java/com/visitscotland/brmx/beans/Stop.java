@@ -1,18 +1,17 @@
 package com.visitscotland.brmx.beans;
 
-import org.hippoecm.hst.content.beans.standard.HippoBean;
-import org.hippoecm.hst.content.beans.standard.HippoMirror;
-import org.onehippo.cms7.essentials.dashboard.annotations.HippoEssentialsGenerated;
 import org.hippoecm.hst.content.beans.Node;
+import org.hippoecm.hst.content.beans.standard.HippoBean;
 import org.hippoecm.hst.content.beans.standard.HippoHtml;
+import org.onehippo.cms7.essentials.dashboard.annotations.HippoEssentialsGenerated;
+
 import java.util.List;
 
-/** 
- * TODO: Beanwriter: Failed to create getter for node type: hippo:compound
- */
 @HippoEssentialsGenerated(internalName = "visitscotland:Stop")
 @Node(jcrType = "visitscotland:Stop")
 public class Stop extends BaseDocument {
+    public static final String PRODUCTS = "visitscotland:products";
+
     @HippoEssentialsGenerated(internalName = "visitscotland:tipsTitle")
     public String getTipsTitle() {
         return getSingleProperty("visitscotland:tipsTitle");
@@ -64,5 +63,10 @@ public class Stop extends BaseDocument {
     @HippoEssentialsGenerated(internalName = "visitscotland:translationFlag")
     public Boolean getTranslationFlag() {
         return getSingleProperty("visitscotland:translationFlag");
+    }
+
+    @HippoEssentialsGenerated(internalName = "visitscotland:translation")
+    public String getTranslation() {
+        return getSingleProperty("visitscotland:translation");
     }
 }

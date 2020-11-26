@@ -2,7 +2,11 @@ package com.visitscotland.brmx.dms;
 
 import com.visitscotland.brmx.utils.Properties;
 import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.Locale;
 
@@ -10,16 +14,18 @@ import static com.visitscotland.brmx.dms.ProductSearchBuilder.*;
 
 //TODO Convert to JUnit 5
 // TODO this test relies on lan conection: FIX
+@ExtendWith(MockitoExtension.class)
 public class ProductSearchTest {
 
     private final static String DEFAULT_TYPE = "cate";
 
     //TODO when LocationLoader is not available
 
-    @Test(expected = Exception.class)
+    @Test()
+    @DisplayName("A test with no Product Type should throw an exception")
     public void noProductType() {
-        new ProductSearchBuilder().build();
-        Assert.fail("An exception is expected when no query is defined");
+
+        Assertions.assertThrows(RuntimeException.class, () -> new ProductSearchBuilder().build());
     }
 
     @Test
@@ -65,7 +71,7 @@ public class ProductSearchTest {
     private void checkLocationAvailability() {
         final String LOCATION = "Edinburgh";
 
-        if (LocationLoader.getLocation(LOCATION, null) == null) {
+        if (LocationLoader.getInstance().getLocation(LOCATION, null) == null) {
             Assert.fail("LocationLoader might not be working or the location " + LOCATION + " no longer exists");
         }
     }
@@ -80,8 +86,8 @@ public class ProductSearchTest {
                 .location(LOCATION)
                 .build();
         Assert.assertTrue(
-                String.format("The Generated URL is expected to contain %s=%s and %s={some id} (%s) ", LOCATION_NAME, LOCATION, LOCATION_PLACE, url),
-                url.contains(LOCATION_NAME + "=" + LOCATION) && url.contains(LOCATION_PLACE + "="));
+                String.format("The Generated URL is expected to contain %s=%s and %s={some id} (%s) ", LOCATION_NAME_PARAM, LOCATION, LOCATION_PLACE_PARAM, url),
+                url.contains(LOCATION_NAME_PARAM + "=" + LOCATION) && url.contains(LOCATION_PLACE_PARAM + "="));
         validate(url);
     }
 
@@ -95,8 +101,8 @@ public class ProductSearchTest {
                 .location(LOCATION)
                 .build();
         Assert.assertTrue(
-                String.format("The Generated URL is expected to contain the parameters '%s' and '%s' (%s) ", LOCATION_NAME, LOCATION_POLYGON, url),
-                url.contains(LOCATION_NAME + "=") && url.contains(LOCATION_POLYGON + "="));
+                String.format("The Generated URL is expected to contain the parameters '%s' and '%s' (%s) ", LOCATION_NAME_PARAM, LOCATION_POLYGON_PARAM, url),
+                url.contains(LOCATION_NAME_PARAM + "=") && url.contains(LOCATION_POLYGON_PARAM + "="));
         validate(url);
     }
 
@@ -112,8 +118,8 @@ public class ProductSearchTest {
                 .locale(Locale.forLanguageTag("es-es"))
                 .build();
         Assert.assertTrue(
-                String.format("The Generated URL is expected to contain %s=Edimburgo (%s) ", LOCATION_NAME, url),
-                url.contains(LOCATION_NAME + "=Edimburgo"));
+                String.format("The Generated URL is expected to contain %s=Edimburgo (%s) ", LOCATION_NAME_PARAM, url),
+                url.contains(LOCATION_NAME_PARAM + "=Edimburgo"));
         validate(url);
     }
 
@@ -125,8 +131,8 @@ public class ProductSearchTest {
                 .category("cat1")
                 .build();
         Assert.assertTrue(
-                String.format("The Generated URL is expected to contain %s=cat1 (%s) ", CATEGORY, url),
-                url.contains(CATEGORY + "=cat1"));
+                String.format("The Generated URL is expected to contain %s=cat1 (%s) ", CATEGORY_PARAM, url),
+                url.contains(CATEGORY_PARAM + "=cat1"));
         validate(url);
 
         url = new ProductSearchBuilder().productTypes(DEFAULT_TYPE)
@@ -135,7 +141,7 @@ public class ProductSearchTest {
                 .build();
         Assert.assertTrue(
                 String.format("The Generated URL is expected to contain two categories (%s) ", url),
-                url.contains(CATEGORY + "=cat1") && url.contains(CATEGORY + "=cat2"));
+                url.contains(CATEGORY_PARAM + "=cat1") && url.contains(CATEGORY_PARAM + "=cat2"));
         validate(url);
 
         url = new ProductSearchBuilder().productTypes(DEFAULT_TYPE)
@@ -146,7 +152,7 @@ public class ProductSearchTest {
                 .build();
         Assert.assertTrue(
                 String.format("The Generated URL is expected to contain no categories (%s) ", url),
-                !url.contains(CATEGORY + "="));
+                !url.contains(CATEGORY_PARAM + "="));
         validate(url);
     }
 
@@ -158,8 +164,8 @@ public class ProductSearchTest {
                 .award("1")
                 .build();
         Assert.assertTrue(
-                String.format("The Generated URL is expected to contain %s=1 (%s) ", AWARD, url),
-                url.contains(AWARD + "=1"));
+                String.format("The Generated URL is expected to contain %s=1 (%s) ", AWARD_PARAM, url),
+                url.contains(AWARD_PARAM + "=1"));
         validate(url);
 
         url = new ProductSearchBuilder().productTypes(DEFAULT_TYPE)
@@ -168,7 +174,7 @@ public class ProductSearchTest {
                 .build();
         Assert.assertTrue(
                 String.format("The Generated URL is expected to contain two awards (%s) ", url),
-                url.contains(AWARD + "=1") && url.contains(AWARD + "=2"));
+                url.contains(AWARD_PARAM + "=1") && url.contains(AWARD_PARAM + "=2"));
         validate(url);
 
         url = new ProductSearchBuilder().productTypes(DEFAULT_TYPE)
@@ -179,7 +185,7 @@ public class ProductSearchTest {
                 .build();
         Assert.assertTrue(
                 String.format("The Generated URL is expected to contain no awards (%s) ", url),
-                !url.contains(AWARD + "="));
+                !url.contains(AWARD_PARAM + "="));
         validate(url);
 
     }
@@ -192,8 +198,8 @@ public class ProductSearchTest {
                 .facility("1")
                 .build();
         Assert.assertTrue(
-                String.format("The Generated URL is expected to contain %s=1 (%s) ", FACILITY, url),
-                url.contains(FACILITY + "=1"));
+                String.format("The Generated URL is expected to contain %s=1 (%s) ", FACILITY_PARAM, url),
+                url.contains(FACILITY_PARAM + "=1"));
         validate(url);
 
         url = new ProductSearchBuilder().productTypes(DEFAULT_TYPE)
@@ -202,7 +208,7 @@ public class ProductSearchTest {
                 .build();
         Assert.assertTrue(
                 String.format("The Generated URL is expected to contain two facilities(%s) ", url),
-                url.contains(FACILITY + "=1") && url.contains(FACILITY + "=2"));
+                url.contains(FACILITY_PARAM + "=1") && url.contains(FACILITY_PARAM + "=2"));
         validate(url);
 
         url = new ProductSearchBuilder().productTypes(DEFAULT_TYPE)
@@ -213,7 +219,7 @@ public class ProductSearchTest {
                 .build();
         Assert.assertTrue(
                 String.format("The Generated URL is expected to contain no facilities (%s) ", url),
-                !url.contains(FACILITY + "="));
+                !url.contains(FACILITY_PARAM + "="));
         validate(url);
     }
 
@@ -225,8 +231,8 @@ public class ProductSearchTest {
                 .rating("1")
                 .build();
         Assert.assertTrue(
-                String.format("The Generated URL is expected to contain %s=1 (%s) ", RATING, url),
-                url.contains(RATING + "=1"));
+                String.format("The Generated URL is expected to contain %s=1 (%s) ", RATING_PARAM, url),
+                url.contains(RATING_PARAM + "=1"));
         validate(url);
 
         url = new ProductSearchBuilder().productTypes(DEFAULT_TYPE)
@@ -235,7 +241,7 @@ public class ProductSearchTest {
                 .build();
         Assert.assertTrue(
                 String.format("The Generated URL is expected to contain two facilities(%s) ", url),
-                url.contains(RATING + "=1") && url.contains(RATING + "=2"));
+                url.contains(RATING_PARAM + "=1") && url.contains(RATING_PARAM + "=2"));
         validate(url);
 
         url = new ProductSearchBuilder().productTypes(DEFAULT_TYPE)
@@ -246,7 +252,7 @@ public class ProductSearchTest {
                 .build();
         Assert.assertTrue(
                 String.format("The Generated URL is expected to contain no facilities (%s) ", url),
-                !url.contains(RATING + "="));
+                !url.contains(RATING_PARAM + "="));
         validate(url);
 
     }
@@ -260,7 +266,7 @@ public class ProductSearchTest {
                 .build();
         Assert.assertTrue(
                 String.format("The Generated URL is expected to have an order (%s) ", url),
-                url.contains(ORDER + "="));
+                url.contains(ORDER_PARAM + "="));
         validate(url);
 
         url = new ProductSearchBuilder().productTypes(DEFAULT_TYPE)
@@ -268,7 +274,7 @@ public class ProductSearchTest {
                 .build();
         Assert.assertFalse(
                 String.format("The Generated URL is expected to have no order (%s) ", url),
-                url.contains(ORDER + "="));
+                url.contains(ORDER_PARAM + "="));
         validate(url);
 
         url = new ProductSearchBuilder().productTypes(DEFAULT_TYPE)
@@ -276,7 +282,7 @@ public class ProductSearchTest {
                 .build();
         Assert.assertFalse(
                 String.format("The Generated URL is expected to have no order (%s) ", url),
-                url.contains(ORDER + "="));
+                url.contains(ORDER_PARAM + "="));
         validate(url);
 
         url = new ProductSearchBuilder().productTypes(DEFAULT_TYPE)
@@ -284,7 +290,7 @@ public class ProductSearchTest {
                 .build();
         Assert.assertFalse(
                 String.format("The Generated URL is expected to have no order (%s) ", url),
-                url.contains(ORDER + "="));
+                url.contains(ORDER_PARAM + "="));
         validate(url);
 
 
@@ -304,7 +310,7 @@ public class ProductSearchTest {
                 .build();
         Assert.assertTrue(
                 String.format("The Generated URL is expected to have no order (%s) ", url),
-                url.contains(PROXIMITY_LOCATION + "=" + PROXIMITY));
+                url.contains(PROXIMITY_LOCATION_PARAM + "=" + PROXIMITY));
 
         url = new ProductSearchBuilder().productTypes(DEFAULT_TYPE)
                 .location(LOCATION)
@@ -313,7 +319,7 @@ public class ProductSearchTest {
                 .build();
         Assert.assertTrue(
                 String.format("The Generated URL is expected to have no order (%s) ", url),
-                url.contains(PROXIMITY_LOCATION + "=" + DEFAULT_PROXIMITY));
+                url.contains(PROXIMITY_LOCATION_PARAM + "=" + DEFAULT_PROXIMITY));
 
         url = new ProductSearchBuilder().productTypes(DEFAULT_TYPE)
                 .location(LOCATION)
@@ -322,7 +328,7 @@ public class ProductSearchTest {
                 .build();
         Assert.assertTrue(
                 String.format("The Generated URL is expected to have no order (%s) ", url),
-                url.contains(PROXIMITY_LOCATION + "=" + DEFAULT_PROXIMITY));
+                url.contains(PROXIMITY_LOCATION_PARAM + "=" + DEFAULT_PROXIMITY));
 
         validate(url);
     }
@@ -334,7 +340,7 @@ public class ProductSearchTest {
                 .build();
         Assert.assertFalse(
                 String.format("The Generated URL is expected to have no order (%s) ", url),
-                url.contains(ORDER + "="));
+                url.contains(ORDER_PARAM + "="));
         validate(url);
     }
 

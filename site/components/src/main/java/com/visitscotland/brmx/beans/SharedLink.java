@@ -9,6 +9,8 @@ import java.util.List;
 @HippoEssentialsGenerated(internalName = "visitscotland:SharedLink")
 @Node(jcrType = "visitscotland:SharedLink")
 public class SharedLink extends BaseDocument implements Linkable {
+    public static final String LINK_TYPES = "visitscotland:linkTypes";
+
     @HippoEssentialsGenerated(internalName = "visitscotland:title")
     public String getTitle() {
         return getSingleProperty("visitscotland:title");
@@ -41,5 +43,10 @@ public class SharedLink extends BaseDocument implements Linkable {
     @HippoEssentialsGenerated(internalName = "visitscotland:translationFlag")
     public Boolean getTranslationFlag() {
         return getSingleProperty("visitscotland:translationFlag");
+    }
+
+    @HippoEssentialsGenerated(internalName = "visitscotland:translation")
+    public String getTranslation() {
+        return getSingleProperty("visitscotland:translation");
     }
 }

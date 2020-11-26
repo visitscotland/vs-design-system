@@ -1,18 +1,22 @@
 <template>
-    <div class="vs-footer-copyright border-top border-secondary-light">
+    <div
+        class="vs-footer-copyright border-top border-secondary-light"
+        data-unique-id="vs-footer-sub_footer"
+    >
         <VsContainer>
             <VsRow>
                 <VsCol
                     cols="12"
                     class="text-center"
                 >
-                    <a
+                    <VsSvgLink
                         class="vs-footer-copyright__logo mb-4"
+                        data-test="vs-footer-copyright-logo"
+                        :link-alt-text="linkAltText"
                         :href="href"
-                    >
-                        <span class="sr-only">{{ logoAltText }}</span>
-                        <VsSvg path="vs-logo" />
-                    </a>
+                        svg-fill="700e57"
+                        svg-path="vs-logo"
+                    />
 
                     <p class="vs-footer-copyright__text">
                         &copy; {{ getCurrentYear }}
@@ -27,7 +31,8 @@
 </template>
 
 <script>
-import VsSvg from '@components/elements/svg/Svg';
+import VsSvgLink from '@components/patterns/svg-link/SvgLink';
+
 import {
     VsRow, VsContainer, VsCol,
 } from '@components/elements/layout';
@@ -39,7 +44,7 @@ import {
 export default {
     name: 'VsFooterCopyright',
     components: {
-        VsSvg,
+        VsSvgLink,
         VsRow,
         VsContainer,
         VsCol,
@@ -48,7 +53,7 @@ export default {
         /**
          * Accessiblity alt text for the logo button
          */
-        logoAltText: {
+        linkAltText: {
             type: String,
             required: true,
         },
@@ -79,6 +84,12 @@ export default {
 
     .vs-footer-copyright__logo {
         display: inline-block;
+
+        &.vs-link.primary{
+            &:focus {
+                outline-color: #ffffff;
+            }
+        }
     }
 
     .vs-footer-copyright__text {
@@ -100,7 +111,7 @@ export default {
 <docs>
   ```js
     <vs-footer>
-        <vs-footer-copyright logo-alt-text="VisitScotland Home" href="/">
+        <vs-footer-copyright link-alt-text="VisitScotland Home" href="/">
             <span slot="copyright">
                VisitScotland. All rights reserved.
             </span>

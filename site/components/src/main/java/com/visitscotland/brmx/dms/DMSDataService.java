@@ -41,12 +41,13 @@ public class DMSDataService {
         String responseString = null;
 
         if (!Contract.isEmpty(productId)) {
-            String dmsUrl = Properties.VS_DMS_SERVICE + "/data/products/card?id=" + productId;
+            String dmsUrl = String.format(DMSConstants.VS_DMS_PRODUCT_CARD,Properties.VS_DMS_SERVICE);
+            dmsUrl += "id=" + productId;
             if (locale != null) {
                 dmsUrl += "&locale=" + locale.getLanguage();
             }
 
-            logger.info("Requesting data to the dms: " + dmsUrl);
+            logger.info("Requesting data to the dms: %s", dmsUrl);
             try {
                 responseString = utils.requestUrl(dmsUrl);
 
@@ -60,7 +61,7 @@ public class DMSDataService {
                     }
                 }
             } catch (JsonProcessingException e){
-                logger.error("The response could not be parsed:\n" + responseString, e);
+                logger.error("The response could not be parsed:\n %s", responseString, e);
             } catch (IOException e){
                 logger.error("An unexpected error happened while connecting to the DMS", e);
             }
@@ -68,5 +69,38 @@ public class DMSDataService {
             logger.info("productCard data requested but the product id was not provided");
         }
         return null;
+    }
+
+    /**
+     * This method invokes the legacy data Map endpoint from a ProductSearchBuilder
+     *
+     * @param psb ProductSearchBuilder
+     *
+     * @return
+     */
+    public JsonNode legacyMapSearch(ProductSearchBuilder psb){
+
+        String responseString = null;
+        String dmsUrl = psb.buildDataMap();
+
+        logger.info("Requesting data to the dms: %s", dmsUrl);
+        try {
+            responseString = utils.requestUrl(dmsUrl);
+
+            if (responseString!=null) {
+
+                ObjectMapper mapper = new ObjectMapper();
+                JsonNode json = mapper.readTree(responseString);
+
+                if (json.has("features")) {
+                    return json.get("features");
+                }
+            }
+        } catch (JsonProcessingException e){
+            logger.error("The response could not be parsed:\n %s", responseString, e);
+        } catch (IOException e){
+            logger.error("An unexpected error happened while connecting to the DMS", e);
+        }
+        return  null;
     }
 }

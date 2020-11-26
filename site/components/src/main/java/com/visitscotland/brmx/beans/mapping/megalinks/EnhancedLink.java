@@ -2,13 +2,15 @@ package com.visitscotland.brmx.beans.mapping.megalinks;
 
 import com.visitscotland.brmx.beans.mapping.FlatImage;
 import com.visitscotland.brmx.beans.mapping.FlatLink;
-import org.hippoecm.hst.content.beans.standard.HippoHtml;
 
 public class EnhancedLink extends FlatLink {
 
     private FlatImage image;
     private String teaser;
     private boolean featured;
+    private String category;
+    private String itineraryTransport;
+    private int itineraryDays;
 
     public FlatImage getImage() {
         return image;
@@ -34,4 +36,27 @@ public class EnhancedLink extends FlatLink {
         this.featured = featured;
     }
 
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
+    public String getItineraryTransport() {
+        return itineraryTransport;
+    }
+
+    public void setItineraryTransport(String itineraryTransport) {
+        this.itineraryTransport = itineraryTransport;
+    }
+
+    public int getItineraryDays() {
+        return itineraryDays;
+    }
+
+    public void setItineraryDays(int itineraryDays) {
+        this.itineraryDays = itineraryDays;
+    }
 }

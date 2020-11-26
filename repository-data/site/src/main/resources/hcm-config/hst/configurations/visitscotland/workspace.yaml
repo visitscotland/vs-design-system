@@ -7,7 +7,7 @@ definitions:
         /main:
           .meta:residual-child-node-category: content
           jcr:primaryType: hst:sitemenu
-          hst:lastmodified: 2020-06-12T09:31:37.462+01:00
+          hst:lastmodified: 2020-09-16T14:20:16.492+01:00
         /footer:
           .meta:residual-child-node-category: content
           jcr:primaryType: hst:sitemenu

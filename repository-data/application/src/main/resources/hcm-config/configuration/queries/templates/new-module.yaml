@@ -2,10 +2,10 @@ definitions:
   config:
     /hippo:configuration/hippo:queries/hippo:templates/new-module:
       jcr:primaryType: hippostd:templatequery
-      hippostd:excludePrimaryTypes: ['visitscotland:Page', 'selection:valuelist',
-        'resourcebundle:resourcebundle', 'visitscotland:default', 'visitscotland:Widget',
-        'hipposys:resourcebundle', 'visitscotland:SharedLink', 'visitscotland:Listicle',
-        'visitscotland:Itinerary', 'visitscotland:Destination', 'visitscotland:Stop']
+      hippostd:excludePrimaryTypes: ['visitscotland:Page', 'visitscotland:Widget',
+        'visitscotland:SharedLink', 'visitscotland:Listicle', 'visitscotland:Itinerary',
+        'visitscotland:Destination', 'visitscotland:Stop', 'visitscotland:contentdocument',
+        'visitscotland:General']
       hippostd:icon: adddocument_ico
       hippostd:modify: [./_name, $name, './hippotranslation:locale', $inherited, './hippotranslation:id',
         $uuid, './hippostdpubwf:createdBy', $holder, './hippostdpubwf:creationDate',

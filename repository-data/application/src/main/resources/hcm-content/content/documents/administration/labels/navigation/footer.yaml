@@ -12,17 +12,18 @@
     hippostd:state: draft
     hippostdpubwf:createdBy: admin
     hippostdpubwf:creationDate: 2019-11-07T18:38:44.678Z
-    hippostdpubwf:lastModificationDate: 2020-07-23T15:57:13.268+01:00
+    hippostdpubwf:lastModificationDate: 2020-09-17T17:30:27.807+01:00
     hippostdpubwf:lastModifiedBy: admin
-    resourcebundle:descriptions: ['', '', '', '', '', '', '', '', '', '']
+    resourcebundle:descriptions: [ '', '', '', '', '', '', '', '', '', '', '', '' ]
     resourcebundle:id: navigation.footer
-    resourcebundle:keys: [footer.visitor-information, footer.get-touch, footer.media-centre,
-                          footer.business-events, footer.corporate, footer.other-sites, footer.scotland-is-now,
-                          footer.travel-trade, footer.utility-list, footer.find-us-on]
-    resourcebundle:messages: [Visitor information, Get in touch, Media Centre, Business
-                                                                                 Events, Corporate, Our other sites, Scotland is Now, Travel Trade, Utility
-                                                                                                                                                      list, Find us on]
-    resourcebundle:messages_es: ['', '', '', '', '', '', '', '', '', '']
+    resourcebundle:keys: [ footer.visitor-information, footer.get-touch, footer.media-centre,
+                           footer.business-events, footer.corporate, footer.other-sites, footer.scotland-is-now,
+                           footer.travel-trade, footer.utility-list, footer.find-us-on, footer.logo-alt-text,
+                           footer.copyright-text ]
+    resourcebundle:messages: [ Visitor information, Get in touch, Media Centre, Business
+                                                                                  Events, Corporate, Our other sites, Scotland is Now, Travel Trade, Utility
+                                                                                                                                                       list, Find us on, VisitScotland Logo, VisitScotland. All rights reserved. ]
+    resourcebundle:messages_es: [ '', '', '', '', '', '', '', '', '', '', '', '' ]
   /footer[2]:
     jcr:primaryType: resourcebundle:resourcebundle
     jcr:mixinTypes: ['mix:versionable']
@@ -31,34 +32,36 @@
     hippostd:state: unpublished
     hippostdpubwf:createdBy: admin
     hippostdpubwf:creationDate: 2019-11-07T18:38:44.678Z
-    hippostdpubwf:lastModificationDate: 2020-07-23T15:59:36.720+01:00
+    hippostdpubwf:lastModificationDate: 2020-09-17T17:32:14.459+01:00
     hippostdpubwf:lastModifiedBy: admin
-    resourcebundle:descriptions: ['', '', '', '', '', '', '', '', '', '']
+    resourcebundle:descriptions: [ '', '', '', '', '', '', '', '', '', '', '', '' ]
     resourcebundle:id: navigation.footer
-    resourcebundle:keys: [footer.visitor-information, footer.get-touch, footer.media-centre,
-                          footer.business-events, footer.corporate, footer.other-sites, footer.scotland-is-now,
-                          footer.travel-trade, footer.utility-list, footer.find-us-on]
-    resourcebundle:messages: [Visitor information, Get in touch, Media Centre, Business
-                                                                                 Events, Corporate, Our other sites, Scotland is Now, Travel Trade, Utility
-                                                                                                                                                      list, Find us on]
-    resourcebundle:messages_es: ['', '', '', '', '', '', '', '', '', '']
+    resourcebundle:keys: [ footer.visitor-information, footer.get-touch, footer.media-centre,
+                           footer.business-events, footer.corporate, footer.other-sites, footer.scotland-is-now,
+                           footer.travel-trade, footer.utility-list, footer.find-us-on, footer.logo-alt-text,
+                           footer.copyright-text ]
+    resourcebundle:messages: [ Visitor information, Get in touch, Media Centre, Business
+                                                                                  Events, Corporate, Our other sites, Scotland is Now, Travel Trade, Utility
+                                                                                                                                                       list, Find us on, VisitScotland Logo, VisitScotland. All rights reserved. ]
+    resourcebundle:messages_es: [ '', '', '', '', '', '', '', '', '', '', '', '' ]
   /footer[3]:
     jcr:primaryType: resourcebundle:resourcebundle
-    jcr:mixinTypes: ['mix:referenceable']
+    jcr:mixinTypes: [ 'mix:referenceable' ]
     jcr:uuid: 5acaa8ff-daa6-4441-af09-8c9895a9362c
-    hippo:availability: [live]
+    hippo:availability: [ live ]
     hippostd:state: published
     hippostdpubwf:createdBy: admin
     hippostdpubwf:creationDate: 2019-11-07T18:38:44.678Z
-    hippostdpubwf:lastModificationDate: 2020-07-23T15:59:36.720+01:00
+    hippostdpubwf:lastModificationDate: 2020-09-17T17:32:14.459+01:00
     hippostdpubwf:lastModifiedBy: admin
-    hippostdpubwf:publicationDate: 2020-07-23T16:02:58.705+01:00
-    resourcebundle:descriptions: ['', '', '', '', '', '', '', '', '', '']
+    hippostdpubwf:publicationDate: 2020-09-17T17:33:26.084+01:00
+    resourcebundle:descriptions: [ '', '', '', '', '', '', '', '', '', '', '', '' ]
     resourcebundle:id: navigation.footer
-    resourcebundle:keys: [footer.visitor-information, footer.get-touch, footer.media-centre,
-                          footer.business-events, footer.corporate, footer.other-sites, footer.scotland-is-now,
-                          footer.travel-trade, footer.utility-list, footer.find-us-on]
-    resourcebundle:messages: [Visitor information, Get in touch, Media Centre, Business
-                                                                                 Events, Corporate, Our other sites, Scotland is Now, Travel Trade, Utility
-                                                                                                                                                      list, Find us on]
-    resourcebundle:messages_es: ['', '', '', '', '', '', '', '', '', '']
+    resourcebundle:keys: [ footer.visitor-information, footer.get-touch, footer.media-centre,
+                           footer.business-events, footer.corporate, footer.other-sites, footer.scotland-is-now,
+                           footer.travel-trade, footer.utility-list, footer.find-us-on, footer.logo-alt-text,
+                           footer.copyright-text ]
+    resourcebundle:messages: [ Visitor information, Get in touch, Media Centre, Business
+                                                                                  Events, Corporate, Our other sites, Scotland is Now, Travel Trade, Utility
+                                                                                                                                                       list, Find us on, VisitScotland Logo, VisitScotland. All rights reserved. ]
+    resourcebundle:messages_es: [ '', '', '', '', '', '', '', '', '', '', '', '' ]

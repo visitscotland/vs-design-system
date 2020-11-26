@@ -3,10 +3,11 @@ package com.visitscotland.brmx.beans;
 import org.onehippo.cms7.essentials.dashboard.annotations.HippoEssentialsGenerated;
 import org.hippoecm.hst.content.beans.Node;
 import java.util.List;
+import com.visitscotland.brmx.beans.OTYML;
 
 @HippoEssentialsGenerated(internalName = "visitscotland:Itinerary")
 @Node(jcrType = "visitscotland:Itinerary")
-public class Itinerary extends Page implements TranslationParent {
+public class Itinerary extends Page {
     @HippoEssentialsGenerated(internalName = "visitscotland:start")
     public String getStart() {
         return getSingleProperty("visitscotland:start");
@@ -32,8 +33,12 @@ public class Itinerary extends Page implements TranslationParent {
         return getMultipleProperty("visitscotland:areas");
     }
 
+    @Deprecated
+    /**
+     * This method shouldn't have new invocations. Instead of this, you should invoke {@code new DocumentUtils().getSiblingDocuments()}
+     */
     public List<Day> getDays() {
-        return getExternalBeansByType(Day.class);
+        return getPageChildrenByType(Day.class);
     }
 
     @HippoEssentialsGenerated(internalName = "visitscotland:transports")
@@ -54,5 +59,10 @@ public class Itinerary extends Page implements TranslationParent {
     @Override
     public String[] getChildJcrTypes() {
         return new String[] { "visitscotland:Day" };
+    }
+
+    @HippoEssentialsGenerated(internalName = "visitscotland:otherThings")
+    public OTYML getOtherThings() {
+        return getBean("visitscotland:otherThings", OTYML.class);
     }
 }
