@@ -2,10 +2,6 @@ import { shallowMount, mount } from '@vue/test-utils';
 
 import VsIcentre from '../Icentre';
 
-// const headingSlot = 'Heading Slot';
-// const textSlot = 'Text Slot';
-// const ctaSlot = 'CTA Slot';
-
 const inputSrc = 'https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm';
 const inputAlt = 'This is the alt text';
 
