@@ -25,6 +25,7 @@
 
                     <div
                         class="vs-icentre__links"
+                        data-test="vs-icentre__standalone-links"
                         v-if="!!this.$slots['icentreLinks'] && !this.$slots['icentreQuote']"
                     >
                         <slot name="icentreLinks" />
@@ -66,6 +67,7 @@
 
                         <div
                             class="vs-icentre__links-contained"
+                            data-test="vs-icentre__embedded-links"
                         >
                             <slot name="icentreLinks" />
                         </div>
@@ -174,7 +176,7 @@ export default {
 ```jsx
     <vs-icentre
         imgSrc="https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"
-        imgAlt="This is the alt text 1"
+        imgAlt="This is the alt text"
     >
         <VsHeading level="2" slot="icentreHeading">A tip from your local experts</VsHeading>
 
@@ -196,7 +198,7 @@ export default {
 
     <vs-icentre
         imgSrc="https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"
-        imgAlt="This is the alt text 1"
+        imgAlt="This is the alt text"
     >
         <VsHeading level="2" slot="icentreHeading">A tip from your local experts</VsHeading>
 
