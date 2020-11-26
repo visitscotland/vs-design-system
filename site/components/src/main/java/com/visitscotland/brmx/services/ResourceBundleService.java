@@ -2,6 +2,7 @@ package com.visitscotland.brmx.services;
 
 import com.visitscotland.brmx.utils.CommonUtils;
 import com.visitscotland.utils.Contract;
+import org.hippoecm.hst.core.component.HstRequest;
 import org.hippoecm.hst.resourcebundle.ResourceBundleRegistry;
 import org.hippoecm.hst.site.HstServices;
 import org.slf4j.Logger;
@@ -14,10 +15,12 @@ public class ResourceBundleService {
 
     private static final Logger logger = LoggerFactory.getLogger(ResourceBundleService.class.getName());
 
+    private static final String SERVICE_NAME = "ResourceBundle";
+
     final ResourceBundleRegistry resourceBundleRegistry;
     final CommonUtils common;
 
-    public ResourceBundleService (){
+    public ResourceBundleService() {
         //Default Hippo Resource bundle Service
         this(HstServices.getComponentManager().getComponent(ResourceBundleRegistry.class.getName()),
                 new CommonUtils());
@@ -161,20 +164,28 @@ public class ResourceBundleService {
      * @param message message
      * @param args arguments for the message
      */
-    void logContentIssue(String message, Object... args){
+    void logContentIssue(String message, Object... args) {
         //TODO Transform into a different Logger
         logger.warn(common.contentIssue(message, args));
+    }
+
+    public void registerIn(HstRequest request) {
+        if (request.getAttribute(SERVICE_NAME) == null) {
+            request.setAttribute(SERVICE_NAME, this);
+            logger.debug(SERVICE_NAME + " has been registered on the request");
+        } else {
+            logger.info(SERVICE_NAME + " has been been already registered on the request");
+        }
     }
 
     /**
      * Returns the default CTA label when the manual CTA  is not defined.     *
      *
      * @param manualCta Manual CTA defined in the CMS
-     * @param locale Locale
-     *
+     * @param locale    Locale
      * @return the manual CTA if provided otherwise the default CTA
      */
-    public  String getCtaLabel(String manualCta, Locale locale) {
+    public String getCtaLabel(String manualCta, Locale locale) {
         if (!Contract.isEmpty(manualCta)) {
             return manualCta;
         } else {

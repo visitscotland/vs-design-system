@@ -22,7 +22,8 @@
         <template #icon-open>
             <!-- @slot Slot for the icon to show when accordion item is open  -->
             <VsIcon
-                name="chevron-down"
+                name="chevron"
+                orientation="down"
                 variant="dark"
                 size="xs"
                 :padding="3"
@@ -32,7 +33,7 @@
         <template #icon-closed>
             <!-- @slot Slot for the icon to show when accordion item is closed  -->
             <VsIcon
-                name="chevron-up"
+                name="chevron"
                 variant="dark"
                 size="xs"
                 :padding="3"
@@ -106,10 +107,10 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 @import "~bootstrap/scss/type";
 
-.vs-itinerary-day__list-item {
+.vs-itinerary-day__list-item.card {
     border-top: 5px solid $color-base-text;
     padding: $spacer-4 $spacer-4 0;
 
@@ -120,7 +121,7 @@ export default {
     }
 }
 
-.vs-itinerary-day__title {
+.vs-itinerary-day__title  {
     border-bottom: 1px solid $color-base-text;
     color: $color-theme-secondary-teal;
     padding: 0 $spacer-6 $spacer-3;
@@ -132,13 +133,13 @@ export default {
     height: 24px;
     width: 24px;
 
-    .icon {
+    .vs-icon {
         height: 100%;
         margin: 0 auto;
         display: block;
     }
 
-    &.icon.icon-xs {
+    &.vs-icon.vs-icon--size-xs {
         height: 32px;
         width: 32px;
         padding: 8px;

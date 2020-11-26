@@ -4,6 +4,7 @@
         :width="mapWidth"
         :height="mapHeight"
         viewBox="0 0 76 105.9"
+        class="vs-image-location-map"
     >
         <path
             d="M65.9965,9.0973l-.167.736.668.184Z"
@@ -494,8 +495,8 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
-svg {
+<style lang="scss">
+.vs-image-location-map {
     width: 100%;
     height: 100%;
 }
