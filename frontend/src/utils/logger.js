@@ -1,7 +1,9 @@
 import VueLogger from 'vuejs-logger';
 import Vue from 'vue';
 
-const isProduction = process.env.NODE_ENV === 'production';
+import buildMode from '../../build/base.build-mode';
+
+const isProduction = buildMode === 'production';
 
 const options = {
     isEnabled: true,
