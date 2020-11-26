@@ -1,5 +1,8 @@
 <template>
-    <section class="carousel">
+    <section
+        class="carousel"
+        data-test="carousel"
+    >
         <VsContainer>
             <VsRow>
                 <VsCol
@@ -7,6 +10,9 @@
                 >
                     <Splide
                         :options="splideOptions"
+                        @splide:moved="carouselMoved"
+                        @splide:mounted="initialiseMobilePagination"
+                        @splide:updated="resetTabbing"
                     >
                         <VsCarouselSlide
                             link-url="www.visitscotland.com"
@@ -116,6 +122,11 @@
                             </template>
                         </VsCarouselSlide>
                     </Splide>
+                    <div class="carousel__mobile-pagination-wrapper">
+                        <p class="carousel__mobile-pagination">
+                            {{ currentSlide }} of {{ totalSlides }}
+                        </p>
+                    </div>
                 </VsCol>
             </VsRow>
         </VsContainer>
@@ -125,7 +136,6 @@
 <script>
 import { Splide } from '@splidejs/vue-splide';
 import VsCarouselSlide from '@components/patterns/carousel/components/CarouselSlide';
-// import leftArrow from '../../../assets/svg/icons/family.svg';
 
 /**
 * Multi purpose carousel component to use
@@ -143,6 +153,7 @@ export default {
     data() {
         return {
             splideOptions: {
+                slideFocus: false,
                 perPage: 4,
                 gap: '24px',
                 arrowPath: 'M19.47.55,17.7,2.31a1.07,1.07,0,0,0,0,1.52L31.56,17.68H1.07A1.07,1.07,0,0,0,0,18.75v2.5a1.07,1.07,0,0,0,1.07,1.07H31.56L17.7,36.17a1.07,1.07,0,0,0,0,1.52l1.77,1.77a1.09,1.09,0,0,0,1.52,0l18.7-18.7a1.09,1.09,0,0,0,0-1.52L21,.54A1.08,1.08,0,0,0,19.47.55Z',
@@ -159,7 +170,37 @@ export default {
                     },
                 },
             },
+            totalSlides: null,
+            currentSlide: 1,
         };
+    },
+    mounted() {
+        window.addEventListener('resize', this.resetTabbing());
+    },
+    methods: {
+        initialiseMobilePagination(splide) {
+            this.totalSlides = splide.length;
+            this.resetTabbing();
+        },
+        carouselMoved(splide) {
+            this.currentSlide = splide.index + 1;
+            this.resetTabbing();
+        },
+        resetTabbing() {
+            console.log('resetTabbing');
+            const carousel = document.getElementsByClassName('carousel')[0];
+            const carouselLinks = carousel.getElementsByTagName('a');
+            setTimeout(() => {
+                carouselLinks.forEach((element) => {
+                    const link = element;
+                    if (element.closest('.is-visible') === null) {
+                        link.tabIndex = -1;
+                    } else {
+                        link.tabIndex = 0;
+                    }
+                });
+            }, 1000);
+        },
     },
 };
 </script>
@@ -188,6 +229,7 @@ export default {
             width: 100%;
             left: auto;
             bottom: auto;
+            display: none;
         }
 
         .splide__arrow {
@@ -201,6 +243,14 @@ export default {
                 fill: $color-white;
                 // height: 56px;
             }
+
+            &:hover {
+                background: $color-pink-shade-2;
+            }
+
+            &:focus {
+                border: 4px solid $color-pink-tint-5;
+            }
         }
 
         .splide__arrow--prev {
@@ -213,14 +263,15 @@ export default {
             transform: translateX(50%);
         }
 
-        .splide__pagination {
+        .splide__pagination,
+        .carousel__mobile-pagination-wrapper {
             margin-top: $spacer-9;
         }
 
         .splide__pagination__page {
             width: 10px;
             height: 10px;
-            color: $color-gray-tint-4;
+            background: $color-gray-tint-4;
 
             &.is-active {
                 transform: none;
@@ -228,6 +279,39 @@ export default {
                 opacity: 1;
                 width: 14px;
                 height: 14px;
+            }
+
+            &:hover {
+                background: $color-pink-tint-5
+            }
+
+            &:focus {
+                outline: 1px solid $color-pink;
+            }
+        }
+
+        .carousel__mobile-pagination-wrapper {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+        }
+
+        .carousel__mobile-pagination {
+            display: inline-block;
+            background: $color-gray-tint-7;
+            line-height: $line-height-xs;
+            padding: $spacer-2;
+            font-size: $small-font-size;
+            font-weight: $semibold-font-weight;
+        }
+
+        @include media-breakpoint-up(sm) {
+            .splide__pagination {
+                display: inline-flex;
+            }
+
+            .carousel__mobile-pagination-wrapper {
+                display: none;
             }
         }
     }
