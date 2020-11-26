@@ -5,9 +5,11 @@
         :size="buttonSize"
     >
         <VsIcon
+            :class="{ 'mr-2': !iconOnly }"
             :name="icon"
             :size="iconSize"
             :padding="0"
+            :orientation="iconOrientation"
         />
         <slot />
     </VsButton>
@@ -45,6 +47,19 @@ export default {
             required: true,
             validator: (value) => value.match(/(sm|md|lg)/),
         },
+        /**
+        * The icon orientation
+        * `up, down, left, right`
+        */
+        iconOrientation: {
+            type: String,
+            default: null,
+            validator: (value) => value.match(/(up|down|left|right)/),
+        },
+        iconOnly: {
+            type: Boolean,
+            default: false,
+        },
     },
     computed: {
         iconSize() {
@@ -63,7 +78,7 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .vs-button-with-icon {
     padding-left: 1rem;
     padding-right: 1rem;
@@ -74,7 +89,6 @@ export default {
 
     svg {
         fill: currentColor;
-        margin-right: 0.625rem;
         transition: fill 250ms;
         vertical-align: sub;
     }
@@ -137,6 +151,38 @@ export default {
         >
             Map View
         </vs-button-with-icon>
+    </bs-wrapper>
+
+    <bs-wrapper class="d-flex flex-wrap mb-4">
+        <vs-button-with-icon
+            icon="chevron"
+            button-size="md"
+            variant="outline-primary"
+            class="mr-3"
+            iconOrientation="up"
+        >
+            Nearby places to eat
+        </vs-button-with-icon>
+        <vs-button-with-icon
+            icon="chevron"
+            button-size="lg"
+            class="mr-3"
+            iconOrientation="right"
+        >
+            Map View
+        </vs-button-with-icon>
+        <vs-button-with-icon
+            icon="food"
+            icon-only
+            button-size="lg"
+            variant="outline-primary"
+            class="mr-3"
+        />
+        <vs-button-with-icon
+            icon="map"
+            icon-only
+            button-size="lg"
+        />
     </bs-wrapper>
 ```
 </docs>

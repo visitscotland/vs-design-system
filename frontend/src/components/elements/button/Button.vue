@@ -3,20 +3,32 @@
         :variant="variant"
         :href="href"
         :tabindex="tabindex"
-        class="text-uppercase"
+        class="vs-button"
         :class="{
-            [animateClass]: animateClass,
+            'vs-button--animated': animate,
+            'vs-button--is-animating': isAnimating,
             [backgroundClass]: backgroundClass,
+            [textTransformClass]: textTransformClass,
         }"
         :size="size"
         v-bind="$attrs"
-        @click="animateClass ? animateHandler() : null"
+        @click="animateHandler"
     >
+        <VsIcon
+            :class="{ 'mr-2': !iconOnly }"
+            v-if="icon"
+            :name="icon"
+            :size="iconSize"
+            :padding="0"
+            :orientation="iconOrientation"
+        />
+        <!-- @slot The button content goes here -->
         <slot />
     </BButton>
 </template>
 <script>
 import { BButton } from 'bootstrap-vue';
+import VsIcon from '@components/elements/icon/Icon';
 
 /**
  * TODO: Document usage.
@@ -33,6 +45,7 @@ export default {
     release: '0.0.1',
     components: {
         BButton,
+        VsIcon,
     },
     props: {
         /**
@@ -90,30 +103,79 @@ export default {
             type: Boolean,
             default: true,
         },
+        /**
+         * If you need a button with icon
+         * just pass the icon name here.
+         */
+        icon: {
+            type: String,
+            default: '',
+        },
+        /**
+         * By default, button text is uppercase
+         * To disable, add an uppercase=false property
+         */
+        uppercase: {
+            type: Boolean,
+            default: true,
+        },
+        /**
+         * The icon orientation
+         * `up, down, left, right`
+         */
+        iconOrientation: {
+            type: String,
+            default: null,
+            validator: (value) => value.match(/(up|down|left|right)/),
+        },
+        /**
+         * If the button contains an icon and no text
+         */
+        iconOnly: {
+            type: Boolean,
+            default: false,
+        },
+    },
+    data() {
+        return {
+            isAnimating: false,
+        };
     },
     computed: {
-        animateClass() {
-            return this.animate ? 'btn-animate' : null;
-        },
         backgroundClass() {
             return this.background ? [`btn-bg-${this.background}`] : null;
+        },
+        iconSize() {
+            switch (this.size) {
+            case 'sm':
+                return 'xs';
+            case 'md':
+                return 'sm';
+            case 'lg':
+                return 'md';
+            default:
+                return 'md';
+            }
+        },
+        textTransformClass() {
+            return this.uppercase ? 'text-uppercase' : null;
         },
     },
     methods: {
         animateHandler() {
-            this.$el.classList.add('bubble');
+            this.isAnimating = true;
             setTimeout(() => {
-                this.$el.classList.remove('bubble');
+                this.isAnimating = false;
             }, 1000);
         },
     },
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 @import "~bootstrap/scss/buttons";
 
-.btn {
+.vs-button.btn {
     font-family: $font-family-base;
     font-weight: $font-weight-light;
     transition: $transition-base;
@@ -142,36 +204,36 @@ export default {
             background: rgba(0, 0, 0, 0.2);
         }
     }
-}
 
-.btn-animate {
-    @keyframes bubble {
-        0% {
-            transform: scale(0, 0);
-            opacity: 1;
+    &.vs-button--animated {
+        @keyframes bubble {
+            0% {
+                transform: scale(0, 0);
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+                transform: scale(100, 100);
+            }
         }
-        100% {
+
+        &::after {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            bottom: 0;
+            content: "";
+            height: 5px;
             opacity: 0;
-            transform: scale(100, 100);
+            position: absolute;
+            right: 0;
+            transform-origin: 50% 50%;
+            transform: scale(1, 1) translate(-50%);
+            width: 5px;
         }
-    }
 
-    &::after {
-        background: rgba(255, 255, 255, 0.1);
-        border-radius: 50%;
-        bottom: 0;
-        content: "";
-        height: 5px;
-        opacity: 0;
-        position: absolute;
-        right: 0;
-        transform-origin: 50% 50%;
-        transform: scale(1, 1) translate(-50%);
-        width: 5px;
-    }
-
-    &.bubble::after {
-        animation: bubble 500ms ease-in-out;
+        &.vs-button--is-animating::after {
+            animation: bubble 500ms ease-in-out;
+        }
     }
 }
 </style>
@@ -184,6 +246,48 @@ export default {
       <vs-button :animate=false class="mr-2 mb-2">Button with no animation</vs-button>
       <vs-button class="mr-2 mb-2" href="https://www.visitscotland.com">Link</vs-button>
     </bs-wrapper>
+
+    <h4>With Icons</h4>
+    <bs-wrapper class="d-flex flex-wrap mb-4">
+      <vs-button
+        class="mr-2 mb-2"
+        icon="food"
+        size="sm"
+      >
+        Nearby Places to Eat
+      </vs-button>
+    </bs-wrapper>
+
+    <bs-wrapper class="d-flex flex-wrap mb-4">
+      <vs-button
+        class="mr-2 mb-2"
+        icon="map"
+        size="md"
+      >
+        Map View
+      </vs-button>
+    </bs-wrapper>
+
+    <bs-wrapper class="d-flex flex-wrap mb-4">
+      <vs-button
+        class="mr-2 mb-2"
+        icon="external-link"
+        size="lg"
+      >
+        Open in a new tab
+      </vs-button>
+    </bs-wrapper>
+
+    <h4>Icon Only</h4>
+    <bs-wrapper class="d-flex flex-wrap mb-4">
+      <vs-button
+        class="mr-2 mb-2"
+        icon="external-link"
+        size="sm"
+        icon-only
+      />
+    </bs-wrapper>
+
     <h4>Variants</h4>
     <bs-wrapper class="d-flex flex-wrap mb-4">
       <vs-button variant="primary" class="mr-2 mb-2">Primary (default)</vs-button>
