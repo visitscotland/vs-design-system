@@ -1,6 +1,6 @@
 <template>
     <div
-        class="vs-itinerary__map"
+        class="vs-itinerary-map"
         ref="mapbox"
     />
 </template>
@@ -190,10 +190,10 @@ export default {
                     .setLngLat(this.highlightedStopCoordinates)
                     .setHTML(
                         `
-                            <img class="vs-itinerary__map-popup-image" src="${this.highlightedStop.properties.imageSrc}" alt="${this.highlightedStop.properties.altText}" />
+                            <img class="vs-itinerary-map__popup-image" src="${this.highlightedStop.properties.imageSrc}" alt="${this.highlightedStop.properties.altText}" />
                             <div>
-                            <h4 class="vs-itinerary__map-popup-stop-number mb-0">${this.labels.stopLabel} ${this.highlightedStop.properties.stopCount}</h4>
-                            <p class="vs-itinerary__map-popup-stop-name">${this.highlightedStop.properties.title}</p>
+                            <h4 class="vs-itinerary-map__popup-stop-number mb-0">${this.labels.stopLabel} ${this.highlightedStop.properties.stopCount}</h4>
+                            <p class="vs-itinerary-map__popup-stop-name">${this.highlightedStop.properties.title}</p>
                             </div>
                         `,
                     )
@@ -206,6 +206,9 @@ export default {
             });
         },
         initialiseMapComponent() {
+            // this is probably going to change but it's not working
+            // on IE11 due to elements not loading in time. This might
+            // need to be addressed when the map solution is finalised.
             this.addMap();
             this.addMapControls();
 
@@ -261,36 +264,34 @@ export default {
 <style lang="scss">
 @import "mapbox-gl/dist/mapbox-gl.css";
 
-.vs-itinerary__map {
+.vs-itinerary-map {
     height: 100vh;
     position: relative;
 
-    & ::v-deep {
-        .mapboxgl-popup {
-            z-index: 999;
-        }
+    .mapboxgl-popup {
+        z-index: 999;
+    }
 
-        .mapboxgl-popup-content {
-            display: flex;
-            padding: 0.5rem;
-        }
+    .mapboxgl-popup-content {
+        display: flex;
+        padding: 0.5rem;
+    }
 
-        .vs-itinerary__map-popup-stop-number {
-            font-family: $font-family-base;
-            font-size: $font-size-base;
-            font-weight: $font-weight-bold;
-        }
+    .vs-itinerary-map__popup-stop-number {
+        font-family: $font-family-base;
+        font-size: $font-size-base;
+        font-weight: $font-weight-bold;
+    }
 
-        .vs-itinerary__map-popup-stop-name {
-            font-family: $font-family-base;
-            font-size: $font-size-base;
-            font-weight: $font-weight-normal;
-        }
+    .vs-itinerary-map__popup-stop-name {
+        font-family: $font-family-base;
+        font-size: $font-size-base;
+        font-weight: $font-weight-normal;
+    }
 
-        .vs-itinerary__map-popup-image {
-            width: 105px;
-            margin-right: 1rem;
-        }
+    .vs-itinerary-map__popup-image {
+        width: 105px;
+        margin-right: 1rem;
     }
 }
 </style>

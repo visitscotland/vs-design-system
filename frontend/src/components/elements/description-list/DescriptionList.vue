@@ -4,6 +4,7 @@
         class="vs-description-list"
         :class="{ 'list-inline': inline }"
     >
+        <!-- @slot The description content goes here -->
         <slot />
     </VsRow>
 </template>
@@ -30,6 +31,7 @@ export default {
          */
         inline: {
             type: Boolean,
+            default: false,
         },
     },
     /**
@@ -43,15 +45,14 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 @import "~bootstrap/scss/type";
 
 .vs-description-list {
-    & ::v-deep {
-        // turns offset column off for first item after a term to avoid layout errors
-        .vs-description-list__term + .vs-description-list__detail {
-            @include make-col-offset(0);
-        }
+
+    // turns offset column off for first item after a term to avoid layout errors
+    .vs-description-list__term+.vs-description-list__detail {
+        @include make-col-offset(0);
     }
 }
 </style>
@@ -59,29 +60,29 @@ export default {
 <docs>
   ```jsx
     <vs-description-list class="mb-6">
-        <vs-description-list-term>Highlights</vs-description-list-term>
-        <vs-description-list-detail
+        <vs-description-list-item title>Highlights</vs-description-list-item>
+        <vs-description-list-item
             v-for="(highlight, index) in itineraries.sampleItinerary.highlights"
         >
             {{highlight}}
-        </vs-description-list-detail>
+        </vs-description-list-item>
     </vs-description-list>
 
     <vs-description-list class="mb-8">
-        <vs-description-list-term>Areas Covered</vs-description-list-term>
-        <vs-description-list-detail
+        <vs-description-list-item title>Areas Covered</vs-description-list-item>
+        <vs-description-list-item
             v-for="(areaCovered, index) in itineraries.sampleItinerary.areasCovered"
             key="index"
         >
             {{areaCovered}}
-        </vs-description-list-detail>
+        </vs-description-list-item>
     </vs-description-list>
 
     <vs-description-list inline>
-        <vs-description-list-term>Transport</vs-description-list-term>
-        <vs-description-list-detail>
+        <vs-description-list-item title>Transport</vs-description-list-item>
+        <vs-description-list-item>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit mollis neque quis sem facilisis.
-        </vs-description-list-detail>
+        </vs-description-list-item>
     </vs-description-list>
   ```
 </docs>

@@ -1,1 +1,1 @@
-export { default } from './ListicleItem.vue';
+export { default } from './ListicleItem';
