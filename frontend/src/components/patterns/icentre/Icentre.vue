@@ -36,20 +36,7 @@
                     md="10"
                     offset-md="1"
                 >
-                    <VsImageWithCaption
-                        :alt-text="imgAlt"
-                        :image-src="imgSrc"
-                        variant="fullwidth"
-                        class="vs-icentre__main-image"
-                    >
-                        <span slot="caption">
-                            <slot name="icentreImageCaption" />
-                        </span>
-
-                        <span slot="credit">
-                            <slot name="icentreImageCredit" />
-                        </span>
-                    </VsImageWithCaption>
+                    <slot name="icentreImageWithCaption" />
                 </VsCol>
 
                 <VsCol
@@ -78,7 +65,6 @@
 
 <script>
 import VsSvg from '@components/elements/svg/Svg';
-import VsImageWithCaption from '@components/patterns/image-with-caption/ImageWithCaption';
 import VsContainer from '@components/elements/layout/Container';
 import VsRow from '@components/elements/layout/Row';
 import VsCol from '@components/elements/layout/Col';
@@ -89,27 +75,9 @@ export default {
     release: '0.0.1',
     components: {
         VsSvg,
-        VsImageWithCaption,
         VsContainer,
         VsRow,
         VsCol,
-    },
-    props: {
-        /**
-        * The image to use in the component
-        */
-        imgSrc: {
-            required: true,
-            type: String,
-        },
-        /**
-        * The image alt text to use in the component
-        */
-        imgAlt: {
-            required: false,
-            type: String,
-            default: '',
-        },
     },
 };
 </script>
@@ -172,19 +140,22 @@ export default {
 
 <docs>
 ```jsx
-    <vs-icentre
-        imgSrc="https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"
-        imgAlt="This is the alt text 1"
-    >
+    <vs-icentre>
         <VsHeading level="2" slot="icentreHeading">A tip from your local experts</VsHeading>
 
-        <span slot="icentreImageCaption">
-            A test caption
-        </span>
+        <VsImageWithCaption
+            imageSrc="https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"
+            altText="This is the alt text"
+            slot="icentreImageWithCaption">
 
-        <span slot="icentreImageCredit">
-            &copy; Some test credits
-        </span>
+            <span slot="caption">
+                A test caption
+            </span>
+
+            <span slot="credit">
+                &copy; Some test credits
+            </span>
+        </VsImageWithCaption>
 
         <span slot="icentreQuote">
             <p>This is an example quote, it doesn't look like a quote but it fills the space.</p>
@@ -194,21 +165,24 @@ export default {
         <p slot="icentreLinks">Test content <a href="#">link</a></p>
     </vs-icentre>
 
-    <vs-icentre
-        imgSrc="https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"
-        imgAlt="This is the alt text 1"
-    >
+    <vs-icentre>
         <VsHeading level="2" slot="icentreHeading">A tip from your local experts</VsHeading>
 
+        <VsImageWithCaption
+            imageSrc="https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"
+            altText="This is the alt text"
+            slot="icentreImageWithCaption">
+
+            <span slot="caption">
+                A test caption
+            </span>
+
+            <span slot="credit">
+                &copy; Some test credits
+            </span>
+        </VsImageWithCaption>
+
         <p slot="icentreLinks">Test content <a href="#">link</a></p>
-
-        <span slot="icentreImageCaption">
-            A test caption
-        </span>
-
-        <span slot="icentreImageCredit">
-            &copy; Some test credits
-        </span>
     </vs-icentre>
 ```
 </docs>
