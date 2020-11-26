@@ -30,7 +30,7 @@ describe('VsDescriptionListItem', () => {
 
     describe(':props', () => {
         describe(':title', () => {
-            it('should render with a `vs-description-list__term` class when `title` is set to `true`', async () => {
+            it('should render with a `vs-description-list__term` class when `title` is set to `true`', async() => {
                 await wrapper.setProps({
                     title: true,
                 });
@@ -38,7 +38,7 @@ describe('VsDescriptionListItem', () => {
                 expect(wrapper.classes('vs-description-list__term')).toBe(true);
             });
 
-            it('should render with a `vs-description-list__detail` class when `title` is set to `false`', async () => {
+            it('should render with a `vs-description-list__detail` class when `title` is set to `false`', async() => {
                 await wrapper.setProps({
                     title: false,
                 });
@@ -48,7 +48,7 @@ describe('VsDescriptionListItem', () => {
         });
 
         describe(':inline', () => {
-            it('render a `list-inline-item` class when `inline` is injected as `true`', async () => {
+            it('render a `list-inline-item` class when `inline` is injected as `true`', async() => {
                 const modifiedWrapper = shallowMount(VsDescriptionListItem, {
                     provide: {
                         inline: true,
@@ -58,7 +58,7 @@ describe('VsDescriptionListItem', () => {
                 expect(modifiedWrapper.classes('list-inline-item')).toBe(true);
             });
 
-            it('it should *NOT* render a `list-inline-item` class when `inline` is injected as `false`', async () => {
+            it('it should *NOT* render a `list-inline-item` class when `inline` is injected as `false`', async() => {
                 const modifiedWrapper = shallowMount(VsDescriptionListItem, {
                     provide: {
                         inline: false,

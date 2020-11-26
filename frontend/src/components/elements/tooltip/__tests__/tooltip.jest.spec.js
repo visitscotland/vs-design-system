@@ -25,7 +25,7 @@ describe('VsPrototype', () => {
         it(':title - should accept and render an `title` property', () => {
             const testTitle = 'A Test Title';
             const wrapper = factoryShallowMount({
-                title: testTitle
+                title: testTitle,
             });
 
             expect(wrapper.attributes('title')).toBe(testTitle);
