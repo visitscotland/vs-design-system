@@ -10,7 +10,6 @@ import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.onehippo.cms.services.validation.api.ValidationContext;
 import org.onehippo.cms.services.validation.api.Violation;
-import sun.awt.image.ImageWatched;
 
 import javax.jcr.Node;
 import javax.jcr.RepositoryException;
