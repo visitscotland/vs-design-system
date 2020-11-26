@@ -20,6 +20,10 @@ definitions:
       jcr:primaryType: hipposys:moduleconfig
       hipposys:className: org.onehippo.cms.services.validation.validator.RegExpValidator
       regexp.pattern: \b(https?|/):/(/[-a-zA-Z0-9:.]*)*([\?]([-a-zA-Z0-9+@#/%=~_|])*)?
+    /hippo:configuration/hippo:modules/validation/hippo:moduleconfig/visitscotland:extrashort-string-validator:
+      jcr:primaryType: hipposys:moduleconfig
+      hipposys:className: com.visitscotland.brmx.validator.StringLengthValidator
+      maxLength: '30'
     /hippo:configuration/hippo:modules/validation/hippo:moduleconfig/visitscotland:short-string-validator:
       jcr:primaryType: hipposys:moduleconfig
       hipposys:className: com.visitscotland.brmx.validator.StringLengthValidator
