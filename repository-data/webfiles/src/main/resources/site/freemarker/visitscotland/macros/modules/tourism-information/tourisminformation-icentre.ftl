@@ -99,8 +99,8 @@
                 ${module.description}
                 <#list module.links as iCentre>
                 
-                    <#if iCentre?has_next> // Fix
-                        <vs-link href="${iCentre.link}">${iCentre.label}</vs-link>,
+                    <#if iCentre?has_next>
+                        <vs-link href="${iCentre.link}">${iCentre.label}</vs-link>,&nbsp
                     <#else>
                         <vs-link href="${iCentre.link}">${iCentre.label}</vs-link>.
                     </#if>
