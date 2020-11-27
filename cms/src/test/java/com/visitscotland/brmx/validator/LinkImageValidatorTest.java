@@ -30,7 +30,7 @@ class LinkImageValidatorTest {
     SessionFactory mockSessionFactory;
 
     @Test
-    @DisplayName("Shared links if the product is not a DMS and no image is provided, error")
+    @DisplayName("Shared links, if the product is not a DMS and no image is provided, error")
     void sharedLinkNoDms_noImageProvided() throws RepositoryException {
         LinkImageValidator validator = new LinkImageValidator(mockSessionFactory);
 
@@ -47,7 +47,7 @@ class LinkImageValidatorTest {
     }
 
     @Test
-    @DisplayName("Shared links valid image")
+    @DisplayName("Shared links, valid image")
     void sharedLinkNoDms_validImage() throws RepositoryException {
         LinkImageValidator validator = new LinkImageValidator(mockSessionFactory);
 
@@ -62,7 +62,7 @@ class LinkImageValidatorTest {
     }
 
     @Test
-    @DisplayName("Stop if the product is not a DMS and no image is provided, error")
+    @DisplayName("Stop, if the product is not a DMS and no image is provided, error")
     void stopNoDms_noImageProvided() throws RepositoryException {
         LinkImageValidator validator = new LinkImageValidator(mockSessionFactory);
 
@@ -79,7 +79,7 @@ class LinkImageValidatorTest {
     }
 
     @Test
-    @DisplayName("Stops valid image")
+    @DisplayName("Stops, valid image")
     void stopNoDms_validImage() throws RepositoryException {
         LinkImageValidator validator = new LinkImageValidator(mockSessionFactory);
 
@@ -94,7 +94,7 @@ class LinkImageValidatorTest {
     }
 
     @Test
-    @DisplayName("Listicle if the product is not a DMS and no image is provided, error")
+    @DisplayName("Listicle, if the product is not a DMS and no image is provided, error")
     void ListicleNoDms_noImageProvided() throws RepositoryException {
         LinkImageValidator validator = new LinkImageValidator(mockSessionFactory);
 
@@ -111,7 +111,7 @@ class LinkImageValidatorTest {
     }
 
     @Test
-    @DisplayName("Listicle if the product is not a DMS and no image conten block is added, error")
+    @DisplayName("Listicle, if the product is not a DMS and no image conten block is added, error")
     void ListicleNoDms_noContentblockImagesProvided() throws RepositoryException {
         LinkImageValidator validator = new LinkImageValidator(mockSessionFactory);
 

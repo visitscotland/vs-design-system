@@ -17,7 +17,7 @@ import static org.hippoecm.repository.api.HippoNodeType.HIPPO_DOCBASE;
  */
 public class LinkValidator implements Validator<Node> {
 
-    private static final String EMPTY_DOCUMENT = "cafebabe-cafe-babe-cafe-babecafebabe";
+    public static final String EMPTY_DOCUMENT = "cafebabe-cafe-babe-cafe-babecafebabe";
     private SessionFactory sessionFactory;
 
     public LinkValidator() {
@@ -42,7 +42,9 @@ public class LinkValidator implements Validator<Node> {
                          return Optional.of(context.createViolation());
                      }
                  }
-               }
+               }else{
+                 return Optional.of(context.createViolation("EmptyLink"));
+             }
         } catch (RepositoryException e) {
             return Optional.of(context.createViolation());
         }

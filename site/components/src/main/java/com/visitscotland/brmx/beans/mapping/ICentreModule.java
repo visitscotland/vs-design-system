@@ -17,7 +17,6 @@ public class ICentreModule extends Module{
     private EnhancedLink quoteLink;
     private String description;
     private List<FlatLink> links;
-    private TourismInformation tourismInformation;
 
     public String getTitle() {
         return title;
@@ -91,11 +90,4 @@ public class ICentreModule extends Module{
         this.description = description;
     }
 
-    public TourismInformation getTourismInformation() {
-        return tourismInformation;
-    }
-
-    public void setTourismInformation(TourismInformation tourismInformation) {
-        this.tourismInformation = tourismInformation;
-    }
 }
