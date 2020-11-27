@@ -82,7 +82,6 @@ export default {
              * Triggers when the dropdown is about to show
              */
             this.$emit('menuToggled');
-            this.focusLink();
         });
 
         this.$root.$on('bv::dropdown::hide', () => {
@@ -99,9 +98,6 @@ export default {
         window.removeEventListener('resize', this.closeMenu);
     },
     methods: {
-        focusLink() {
-            console.log('event emitted menuToggled');
-        },
         closeMenu() {
             this.$refs.dropdown.hide(true);
         },
@@ -259,8 +255,13 @@ export default {
             }
         }
 
+        .btn.vs-mega-nav-dropdown__close-btn{
+            display: none;
+        }
+
         .dropdown-menu{
             display: block;
+            max-height: none;
             position: relative;
             border: 0;
             box-shadow: none;
