@@ -66,6 +66,12 @@
 [visitscotland:ListicleItem] > hippostd:relaxed, hippotranslation:translated, visitscotland:basedocument, visitscotland:translatable
   orderable
 
+[visitscotland:LongContent] > hippostd:relaxed, hippotranslation:translated, visitscotland:basedocument
+  orderable
+
+[visitscotland:LongContentSection] > hippo:compound, hippostd:relaxed
+  orderable
+
 [visitscotland:MegalinkItem] > hippo:compound, hippostd:relaxed
   orderable
 
