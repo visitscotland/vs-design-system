@@ -1,5 +1,8 @@
 <template>
-    <div class="border-top border-secondary-light vs-footer-utility-list">
+    <div
+        class="border-top border-secondary-light vs-footer-utility-list"
+        data-unique-id="vs-footer-utility_links"
+    >
         <VsContainer>
             <VsRow>
                 <VsCol
