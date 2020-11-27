@@ -7,6 +7,9 @@ import org.hippoecm.hst.content.beans.standard.HippoGalleryImageSet;
 @HippoEssentialsGenerated(internalName = "visitscotland:Image")
 @Node(jcrType = "visitscotland:Image")
 public class Image extends HippoGalleryImageSet {
+    public static final String ALT_TEXT = "visitscotland:altText";
+    public static final String CREDIT = "visitscotland:credit";
+
     @HippoEssentialsGenerated(internalName = "visitscotland:altText")
     public String getAltText() {
         return getSingleProperty("visitscotland:altText");

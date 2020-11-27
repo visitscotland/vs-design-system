@@ -68,8 +68,8 @@ class LinkModulesFactoryTest extends EasyMockSupport {
         expect(utils.createUrl(anyObject(HippoBean.class))).andStubReturn("/fake-url/mock");
 
         factory = partialMockBuilder(LinkModulesFactory.class)
-                .withConstructor(HippoUtilsService.class,DMSDataService.class, LinkService.class, LocationLoader.class)
-                .withArgs(utils, dms, linkService, LocationLoader.getInstance())
+                .withConstructor(HippoUtilsService.class,DMSDataService.class, LinkService.class, ResourceBundleService.class, LocationLoader.class)
+                .withArgs(utils, dms, linkService, rs, LocationLoader.getInstance())
                 .addMockedMethod("getLocation", String.class, Locale.class)
                 .createMock();
 
@@ -198,7 +198,7 @@ class LinkModulesFactoryTest extends EasyMockSupport {
 
         verifyAll();
         Assertions.assertEquals(1, factory.convertToFlatLinks(Collections.singletonList(mi), null).size());
-        Assertions.assertEquals(1, factory.convertToEnhancedLinks(Collections.singletonList(mi), Locale.UK).size());
+        Assertions.assertEquals(1, factory.convertToEnhancedLinks(Collections.singletonList(mi), Locale.UK,false).size());
     }
 
     @Test
@@ -213,7 +213,7 @@ class LinkModulesFactoryTest extends EasyMockSupport {
 
 
         Assertions.assertEquals(0, factory.convertToFlatLinks(Collections.singletonList(mi), null).size());
-        Assertions.assertEquals(0, factory.convertToEnhancedLinks(Collections.singletonList(mi), Locale.UK).size());
+        Assertions.assertEquals(0, factory.convertToEnhancedLinks(Collections.singletonList(mi), Locale.UK,false).size());
 
         //This verifies that messages were generated and include the problematic node
         verify(mi);
@@ -231,7 +231,7 @@ class LinkModulesFactoryTest extends EasyMockSupport {
         replay(mi);
 
         Assertions.assertEquals(0, factory.convertToFlatLinks(Collections.singletonList(mi), null).size());
-        Assertions.assertEquals(0, factory.convertToEnhancedLinks(Collections.singletonList(mi), Locale.UK).size());
+        Assertions.assertEquals(0, factory.convertToEnhancedLinks(Collections.singletonList(mi), Locale.UK,false).size());
 
         //This verifies that messages were generated and include the problematic node
         verify(mi);

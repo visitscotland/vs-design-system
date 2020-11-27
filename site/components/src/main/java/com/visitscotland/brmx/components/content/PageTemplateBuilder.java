@@ -1,9 +1,6 @@
 package com.visitscotland.brmx.components.content;
 
-import com.visitscotland.brmx.beans.BaseDocument;
-import com.visitscotland.brmx.beans.Megalinks;
-import com.visitscotland.brmx.beans.Page;
-import com.visitscotland.brmx.beans.TourismInformation;
+import com.visitscotland.brmx.beans.*;
 import com.visitscotland.brmx.beans.mapping.ICentreModule;
 import com.visitscotland.brmx.beans.mapping.IKnowModule;
 import com.visitscotland.brmx.beans.mapping.Module;
@@ -83,21 +80,23 @@ public class PageTemplateBuilder {
                     IKnowModule iKnowModule = iKnowFactory.getIKnowModule(touristInfo.getIKnow(), location, request.getLocale());
 
                     if (iCentreModule != null) {
-                        iCentreModule.setTourismInformation(touristInfo);
                         iCentreModule.setHippoBean(item);
                         links.add(iCentreModule);
                     }
-                    if (iKnowModule != null) {
-                        iKnowModule.setTourismInformation(touristInfo);
-                        iKnowModule.setHippoBean(item);
-                        links.add(iKnowModule);
-                    }
+                    iKnowModule.setHippoBean(item);
+                    links.add(iKnowModule);
                 }
             } catch (MissingResourceException e){
                 logger.error("The module for {} couldn't be built because some labels do not exist", item.getPath(), e);
             } catch (RuntimeException e){
                 logger.error("An unexpected exception happened while building the module for {}", item.getPath(), e);
             }
+        }
+        OTYML otyml = getDocument(request).getOtherThings();
+        if(otyml!=null) {
+            LinksModule al = linksFactory.horizontalListLayout(otyml, request.getLocale());
+            al.setTheme(themes[0]);
+            links.add(al);
         }
 
         request.setAttribute(PAGE_ITEMS, links);
