@@ -16,6 +16,7 @@
                 <VsLink
                     v-if="href && ctaText"
                     :href="href"
+                    data-test="vs-mega-nav-top-menu-item__cta-link"
                     class="vs-mega-nav-top-menu-item__cta-link"
                 >
                     {{ ctaText }}
