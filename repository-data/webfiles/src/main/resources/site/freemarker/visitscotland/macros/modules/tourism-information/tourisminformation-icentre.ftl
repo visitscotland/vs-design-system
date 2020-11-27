@@ -1,10 +1,10 @@
 <#include "../../../../include/imports.ftl">
-<#include "../../../../frontend/components/vs-image-with-caption.ftl">
+<#include "../../../../frontend/components/vs-icentre.ftl">
 <#include "../../global/image-with-caption.ftl">
 
 <#macro icentre module>
     <@hst.manageContent hippobean=module.tourismInformation />
-    <#if module.image.cmsImage??>
+    <#--  <#if module.image.cmsImage??>
         <#assign image>
             <@hst.link hippobean=module.image.cmsImage.original/>
         </#assign>
@@ -69,8 +69,51 @@
                 </#list>
             </vs-col>
         </vs-row>
+    </#if>  -->
+
+    <#if module.image.cmsImage??>
+        <#assign image>
+            <@hst.link hippobean=module.image.cmsImage.original/>
+        </#assign>
+    <#else>
+        <#assign image = module.image.externalImage!'' />
     </#if>
 
+    <#if module.quoteImage??>
+        <#assign imageQuote>
+            <@hst.link hippobean=module.quoteImage.cmsImage.original/>
+        </#assign>
+    </#if>
 
+    <vs-container slot="upper" class="py-lg-4" >
+        <vs-icentre>
+            <span slot="icentreHeading">
+                <vs-heading level="2">${module.title}</vs-heading>
+            </span>
+
+            <span slot="icentreImageWithCaption">
+                <@imageWithCaption imageSrc=image imageDetails=module.image variant="fullwidth"/>
+            </span>
+
+            <span slot="icentreLinks">
+                ${module.description}
+                <#list module.links as iCentre>
+                
+                    <#if iCentre?has_next> // Fix
+                        <vs-link href="${iCentre.link}">${iCentre.label}</vs-link>,
+                    <#else>
+                        <vs-link href="${iCentre.link}">${iCentre.label}</vs-link>.
+                    </#if>
+                    
+                </#list>
+            </span>
+
+            <#if module.quote??>
+                <span slot="icentreQuote">
+                    <p>Test quote</p>
+                </span>
+            </#if>
+        </vs-icentre>
+    </vs-container>
 
 </#macro>
