@@ -1,7 +1,7 @@
 <template>
     <li
-        class="mega-nav-list-item"
-        data-test="mega-nav-list-item"
+        class="vs-mega-nav-list-item"
+        data-test="vs-mega-nav-list-item"
         :class="navItemClass"
     >
         <VsLink
@@ -14,10 +14,16 @@
 </template>
 
 <script>
+
+import VsLink from '@components/elements/link/Link';
+
 export default {
     name: 'VsMegaNavListItem',
     status: 'prototype',
     release: '0.1.0',
+    components: {
+        VsLink,
+    },
     props: {
         /**
          * The URL for the nav list link
@@ -37,9 +43,9 @@ export default {
     computed: {
         navItemClass() {
             return {
-                'mega-nav-list-item__heading': this.href === '#',
-                'mega-nav-list-item__link': this.href !== '#',
-                'mega-nav-list-item__subheading-link': this.subheadingLink,
+                'vs-mega-nav-list-item__heading': this.href === '#',
+                'vs-mega-nav-list-item__link': this.href !== '#',
+                'vs-mega-nav-list-item__subheading-link': this.subheadingLink,
             };
         },
     },
@@ -47,7 +53,7 @@ export default {
 </script>
 
 <style lang="scss">
-.mega-nav-list-item{
+.vs-mega-nav-list-item{
     position: relative;
     list-style-type: none;
     line-height: $line-height-s;
@@ -112,7 +118,7 @@ export default {
 }
 
 @include no-js {
-    .mega-nav-list-item{
+    .vs-mega-nav-list-item{
         &__heading{
             .vs-link--variant-primary{
                 font-size: $h2-font-size;

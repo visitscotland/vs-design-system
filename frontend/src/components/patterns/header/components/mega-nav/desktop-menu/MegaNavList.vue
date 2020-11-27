@@ -1,8 +1,8 @@
 <template>
     <ul
         unstyled
-        class="mega-nav-list"
-        data-test="mega-nav-list"
+        class="vs-mega-nav-list"
+        data-test="vs-mega-nav-list"
     >
         <!-- @slot Slot for nav list heading  -->
         <slot name="navListHeading" />
@@ -24,7 +24,7 @@ export default {
 </script>
 
 <style lang="scss">
-.mega-nav-list {
+.vs-mega-nav-list {
     position: relative;
     padding: 0;
     margin: 0 $spacer-6 $spacer-4 0;
@@ -43,7 +43,7 @@ export default {
 }
 
 @include no-js {
-    .mega-nav-list {
+    .vs-mega-nav-list {
         width: 32%;
     }
 }
