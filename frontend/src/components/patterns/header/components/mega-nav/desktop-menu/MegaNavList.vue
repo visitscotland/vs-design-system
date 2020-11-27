@@ -16,6 +16,9 @@
 </template>
 
 <script>
+/**
+ *  Meganav list wrapper with a slots list items
+ */
 export default {
     name: 'VsMegaNavList',
     status: 'prototype',
@@ -51,6 +54,38 @@ export default {
 
 <docs>
   ```jsx
+    <VsMegaNavList style="background-color: white;">
+        <VsMegaNavListItem slot="navListHeading">
+            Attractions
+        </VsMegaNavListItem>
 
+        <VsMegaNavListItem slot="navListItems" href="http://visitscotland.com">
+            20 Top Attractions
+        </VsMegaNavListItem>
+
+        <VsMegaNavListItem slot="navListItems" href="http://visitscotland.com">
+            Arts & Culture
+        </VsMegaNavListItem>
+
+        <VsMegaNavListItem slot="navListItems" href="http://visitscotland.com">
+            Castles
+        </VsMegaNavListItem>
+
+        <VsMegaNavListItem slot="navListItems" href="http://visitscotland.com">
+            Gardens & Parks
+        </VsMegaNavListItem>
+
+        <VsMegaNavListItem slot="navListItems" href="http://visitscotland.com">
+            Museums
+        </VsMegaNavListItem>
+
+        <VsMegaNavListItem
+            href="http://visitscotland.com"
+            subheading-link
+            slot="navHeadingCtaLink"
+        >
+            All Attractions
+        </VsMegaNavListItem>
+    </VsMegaNavList>
   ```
 </docs>
