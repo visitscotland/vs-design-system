@@ -4,7 +4,8 @@
 
 <#macro icentre module>
     <@hst.manageContent hippobean=module.hippoBean />
-    <#if module.image.cmsImage??>
+    
+    <!-- <#if module.image.cmsImage??>
         <#assign image>
             <@hst.link hippobean=module.image.cmsImage.original/>
         </#assign>
@@ -98,12 +99,8 @@
             <span slot="icentreLinks">
                 ${module.description}
                 <#list module.links as iCentre>
-                
-                    <#if iCentre?has_next>
-                        <vs-link href="${iCentre.link}">${iCentre.label}</vs-link>,&nbsp
-                    <#else>
-                        <vs-link href="${iCentre.link}">${iCentre.label}</vs-link>.
-                    </#if>
+
+                    <vs-link href="${iCentre.link}">${iCentre.label}</vs-link><#if iCentre?has_next>,&nbsp<#else>.</#if>
                     
                 </#list>
             </span>
