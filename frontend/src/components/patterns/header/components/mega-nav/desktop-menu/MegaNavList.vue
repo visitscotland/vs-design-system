@@ -24,23 +24,29 @@ export default {
 </script>
 
 <style lang="scss">
-    .mega-nav-list{
-        position: relative;
-        padding: 0;
-        margin: 0 $spacer-6 $spacer-4 0;
-        width: 23%;
-        color: $color-white;
+.mega-nav-list {
+    position: relative;
+    padding: 0;
+    margin: 0 $spacer-6 $spacer-4 0;
+    width: 23%;
+    color: $color-white;
 
-        @include media-breakpoint-up(xl) {
-            margin-right: $spacer-9;
-            width: 21.8%;
-        }
-
-        @include media-breakpoint-up(xxl) {
-            margin-right: $spacer-10;
-            width: 21.4%;
-        }
+    @include media-breakpoint-up(xl) {
+        margin-right: $spacer-9;
+        width: 21.8%;
     }
+
+    @include media-breakpoint-up(xxl) {
+        margin-right: $spacer-10;
+        width: 21.4%;
+    }
+}
+
+@include no-js {
+    .mega-nav-list {
+        width: 32%;
+    }
+}
 </style>
 
 <docs>

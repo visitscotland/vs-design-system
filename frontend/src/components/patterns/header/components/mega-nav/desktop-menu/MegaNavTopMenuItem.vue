@@ -102,6 +102,15 @@ export default {
     }
 }
 
+@include no-js {
+    .vs-mega-nav-top-menu-item{
+        &__columns-wrapper{
+            display: block;
+            height: auto;
+            padding-left: $spacer-10;
+        }
+    }
+}
 </style>
 
 <docs>
