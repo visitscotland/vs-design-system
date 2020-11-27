@@ -30,7 +30,8 @@
 
         <#elseif module.getType()== "IKnowModule">
             <@iknow module/>
-
+        <#elseif module.getType()== "LongContentModule">
+            <@iknow module/>
         </#if>
     </div>
 </#macro>

@@ -1,9 +1,7 @@
 package com.visitscotland.brmx.components.content;
 
 import com.visitscotland.brmx.beans.*;
-import com.visitscotland.brmx.beans.mapping.ICentreModule;
-import com.visitscotland.brmx.beans.mapping.IKnowModule;
-import com.visitscotland.brmx.beans.mapping.Module;
+import com.visitscotland.brmx.beans.mapping.*;
 import com.visitscotland.brmx.beans.mapping.megalinks.LinksModule;
 import com.visitscotland.brmx.beans.mapping.megalinks.SingleImageLinksModule;
 import com.visitscotland.brmx.components.content.factory.ICentreFactory;
@@ -85,6 +83,8 @@ public class PageTemplateBuilder {
                     }
                     iKnowModule.setHippoBean(item);
                     links.add(iKnowModule);
+                } else if (item instanceof LongContent){
+                    links.add(createLongContent(request, (LongContent) item));
                 }
             } catch (MissingResourceException e){
                 logger.error("The module for {} couldn't be built because some labels do not exist", item.getPath(), e);
@@ -100,6 +100,38 @@ public class PageTemplateBuilder {
         }
 
         request.setAttribute(PAGE_ITEMS, links);
+    }
+
+    //TODO convert into factory
+    private Module createLongContent(HstRequest request, LongContent doc){
+        LongContentModule module = new LongContentModule();
+        List<FlatLongContentSection> sections = new ArrayList<>();
+        //TODO add media
+//        module.setImage(new FlatImage(doc.getImage()));
+        module.setTitle(doc.getTitle());
+        module.setIntroduction(doc.getIntroduction());
+        module.setHippoBean(doc);
+
+        for (LongContentSection section: doc.getParragraphs()){
+            FlatLongContentSection flcs = new FlatLongContentSection();
+            flcs.setCopy(section.getCopy());
+            //TODO Convert MediaItem into image
+//            flcs.setImage(new FlatImage(section.getMediaItem(), request.getLocale()));
+
+            // TODO Are we going to include Quotes?
+            if (section.getQuote()!= null){
+                flcs.setQuote(section.getQuote().getQuote());
+                flcs.setQuoteAuthorName(section.getQuote().getAuthor());
+                flcs.setQuoteAuthorTitle(section.getQuote().getRole());
+                flcs.setQuoteImage(new FlatImage(section.getQuote().getImage(),request.getLocale()));
+                //TODO ADD Rethink about CTA
+//                flcs.setQuoteLink(section.getQuote().getProduct());
+            }
+            sections.add(flcs);
+        }
+        module.setSections(sections);
+
+        return module;
     }
 
 
