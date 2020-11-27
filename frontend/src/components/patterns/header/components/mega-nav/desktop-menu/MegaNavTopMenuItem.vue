@@ -114,31 +114,6 @@ export default {
 </style>
 
 <docs>
-  ```jsx
-    <div class="bg-white">
-        <VsContainer>
-            <VsRow class="align-items-center">
-                <VsCol cols="12">
-                    <VsMegaNavTopMenu>
-                        <VsMegaNavTopMenuItem
-                            href="/"
-                            cta-text="A Map of Scotland"
-                        >
-                            <span slot="buttonContent">
-                                Places to Go
-                            </span>
-                            <span slot="dropdownContent">
-                                <ul>
-                                    <li>
-                                        Submenu Item
-                                    </li>
-                                </ul>
-                            </span>
-                        </VsMegaNavTopMenuItem>
-                    </VsMegaNavTopMenu>
-                </VsCol>
-            </VsRow>
-        </VsContainer>
-    </div>
-  ```
+    ```[import](../__examples__/meganav.example.vue)
+    ```
 </docs>

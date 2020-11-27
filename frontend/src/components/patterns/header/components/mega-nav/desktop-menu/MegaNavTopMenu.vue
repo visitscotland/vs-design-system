@@ -47,37 +47,6 @@ export default {
 </style>
 
 <docs>
-  ```jsx
-    <div class="bg-white">
-        <VsContainer>
-            <VsRow class="align-items-center">
-                <VsCol cols="12">
-                    <VsMegaNavTopMenu>
-                        <VsMegaNavTopMenuItem
-                            v-for="(item, index) in header.mainNav"
-                            :key="index"
-                            :href="item.href"
-                            :cta-text="item.cta"
-                        >
-                            <span slot="buttonContent">
-                                {{ item.title }}
-                            </span>
-                            <span slot="dropdownContent">
-                                <ul>
-                                    <li
-                                        v-for="(navItem, navIndex) in item.dropdownNav"
-                                        :key="navIndex"
-                                    >
-                                        {{ navItem.title }}
-                                    </li>
-                                </ul>
-                            </span>
-                        </VsMegaNavTopMenuItem>
-                    </VsMegaNavTopMenu>
-                </VsCol>
-            </VsRow>
-        </VsContainer>
-    </div>
-
-  ```
+    ```[import](../__examples__/meganav.example.vue)
+    ```
 </docs>
