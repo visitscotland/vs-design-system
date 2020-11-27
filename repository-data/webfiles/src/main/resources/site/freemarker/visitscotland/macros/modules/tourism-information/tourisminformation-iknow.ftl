@@ -4,7 +4,7 @@
 <#include "../../../../frontend/components/vs-iknow-partner-item.ftl">
 
 <#macro iknow module>
-    <@hst.manageContent hippobean=module.tourismInformation />
+    <@hst.manageContent hippobean=module.hippoBean />
 
 	<vs-container slot="upper" class="py-lg-4" >
         <vs-iknow-partner-item>

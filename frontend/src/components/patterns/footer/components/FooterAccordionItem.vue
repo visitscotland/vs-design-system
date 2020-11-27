@@ -1,6 +1,7 @@
 <template>
     <VsAccordionItem
         class="vs-footer-accordion-item mb-md-4"
+        :data-unique-id="getUniqueId"
         :control-id="controlId"
         :item-break-point="itemBreakPoint"
         :open-by-default="openByDefault"
@@ -8,7 +9,7 @@
     >
         <template #title>
             <!-- @slot Put the title here  -->
-            <slot name="title" />
+            {{ title }}
         </template>
 
         <template #icon-open>
@@ -65,11 +66,26 @@ export default {
             default: true,
         },
         /**
+         * The title for the submenu and alias for the testing data-unique-id
+         */
+        title: {
+            type: String,
+            default: '',
+        },
+        /**
          * Variant for which button to show in headers
          */
         variant: {
             type: String,
             default: 'primary',
+        },
+    },
+    computed: {
+        getUniqueId() {
+            let transformedTitle = this.title.toLowerCase();
+            transformedTitle = transformedTitle.replace(/\s+/g, '-');
+
+            return `vs-footer-${transformedTitle}`;
         },
     },
 };
@@ -152,14 +168,11 @@ export default {
             <vs-col cols="12" md="6">
                 <vs-footer-accordion-item
                     :open-by-default="false"
+                    title="Visitor information"
                     variant="dark"
                     control-id="footer_accordion_item_1"
                     class="border-left-0"
                 >
-                    <span slot="title">
-                        Visitor information
-                    </span>
-
                     <span slot="icon-open">
                         <vs-icon name="chevron" variant="light" size="xs" />
                     </span>

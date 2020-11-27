@@ -90,14 +90,11 @@ export default {
             <vs-col cols="12" md="6">
                 <vs-footer-accordion-item
                     :open-by-default="false"
+                    title="Visitor information"
                     variant="dark"
                     control-id="footer_accordion_item_1"
                     class="border-left-0"
                 >
-                    <span slot="title">
-                        Visitor information
-                    </span>
-
                     <span slot="icon-open">
                         <vs-icon name="chevron" variant="light" size="xs" />
                     </span>
