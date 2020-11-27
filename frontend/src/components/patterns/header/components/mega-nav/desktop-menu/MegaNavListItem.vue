@@ -110,6 +110,16 @@ export default {
         }
     }
 }
+
+@include no-js {
+    .mega-nav-list-item{
+        &__heading{
+            .vs-link--variant-primary{
+                font-size: $h2-font-size;
+            }
+        }
+    }
+}
 </style>
 
 <docs>
