@@ -213,6 +213,7 @@ export default {
                     imgSrc="https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"
                     imgAlt="This is the alt text"
                     linkType="internal"
+                    linkUrl="www.visitscotland.com"
                 >
                     <template slot="vsLinkListHeading">
                         The Edinburgh International Festival and summer festival</template>
@@ -231,6 +232,7 @@ export default {
                     imgSrc="https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"
                     imgAlt="This is the alt text 1"
                     linkType="external"
+                    linkUrl="www.visitscotland.com"
                 >
                     <template slot="vsLinkListHeading">
                         Count 7,000 shining stars in the iconic galloway forest</template>
@@ -249,6 +251,7 @@ export default {
                     imgSrc="https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"
                     imgAlt="This is the alt text 2"
                     linkType="external"
+                    linkUrl="www.visitscotland.com"
                 >
                     <template slot="vsLinkListHeading">
                         Count 7,000 shining stars in the iconic galloway forest</template>
@@ -267,6 +270,7 @@ export default {
                 <vs-megalink-link-list
                     imgSrc="https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"
                     linkType="download"
+                    linkUrl="www.visitscotland.com"
                 >
                     <template slot="vsLinkListHeading">
                         Soar through the air on a boat of Falkirk Wheel (PDF 3MB)</template>
