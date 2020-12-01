@@ -1,7 +1,7 @@
 <template>
     <div class="megalink-link-list">
         <VsStretchedLinkCard
-            link="https://visitscotland.com"
+            :link="linkUrl"
             :type="linkType"
             class="megalink-link-list__wrapper"
             icon-size="xxs"
@@ -86,6 +86,13 @@ export default {
             default: 'xs',
             validator: (value) => value.match(/(xxs|xs|sm|md|lg|xl)/),
         },
+        /**
+        * The link destination
+        */
+        linkUrl: {
+            type: String,
+            required: true,
+        },
     },
 };
 </script>
@@ -161,6 +168,21 @@ export default {
 
             .megalink-link-list__content {
                 display: none;
+
+                p {
+                    display: -webkit-box;
+                    -webkit-line-clamp: 3;
+                    -webkit-box-orient: vertical;
+                    overflow: hidden;
+                }
+            }
+        }
+
+        @include media-breakpoint-up(sm) {
+            .megalink-link-list__wrapper.card {
+                .megalink-link-list__content {
+                    display: block;
+                }
             }
         }
 
@@ -173,14 +195,6 @@ export default {
                 .megalink-link-list__content {
                     margin: $spacer-2 0 0;
                     line-height: $line-height-s;
-                    display: block;
-
-                    p {
-                         display: -webkit-box;
-                        -webkit-line-clamp: 3;
-                        -webkit-box-orient: vertical;
-                        overflow: hidden;
-                    }
                 }
             }
         }
