@@ -75,7 +75,7 @@ public class LinkModulesFactory {
         populateCommonFields(ll, doc, locale);
 
         ll.setTeaserVisible(doc.getTeaserVisible());
-        ll.setLinks(convertToEnhancedLinks(doc.getMegalinkItems(), locale));
+        ll.setLinks(convertToEnhancedLinks(doc.getMegalinkItems(), locale, false));
         //TODO: Add or remove depending on decision 24/11/2020. This warning should be a content guideline? If warning, add  tests.
         //List<String> warnings =  new ArrayList<>();
         /*if(ll.getLinks().size()==1){
