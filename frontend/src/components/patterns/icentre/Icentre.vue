@@ -26,6 +26,7 @@
 
                     <div
                         class="vs-icentre__links"
+                        data-test="vs-icentre__standalone-links"
                         v-if="!!this.$slots['icentreLinks'] && !this.$slots['icentreQuote']"
                     >
                         <!-- @slot Holds the links (html expected) -->
@@ -58,6 +59,7 @@
 
                         <div
                             class="vs-icentre__links-contained"
+                            data-test="vs-icentre__embedded-links"
                         >
                             <!-- @slot Holds the links (html expected) -->
                             <slot name="icentreLinks" />
