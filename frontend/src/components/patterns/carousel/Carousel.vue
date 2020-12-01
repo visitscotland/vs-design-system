@@ -2,6 +2,7 @@
     <section
         class="carousel"
         data-test="carousel"
+        ref="carousel"
     >
         <VsContainer>
             <VsRow>
@@ -14,113 +15,7 @@
                         @splide:mounted="initialiseMobilePagination"
                         @splide:updated="resetTabbing"
                     >
-                        <VsCarouselSlide
-                            link-url="www.visitscotland.com"
-                            link-type="external"
-                            img-src="https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"
-                        >
-                            <template slot="vsCarouselSlideHeading">
-                                Count 7,000 shining stars in the iconic
-                                galloway forest
-                            </template>
-                            <template slot="vsCarouselSlideContent">
-                                <p>
-                                    Right across the country, you’ll find amazing
-                                    places to eat and drink from local markets to renowned
-                                    restaurants. Here are some recomm…
-                                </p>
-                            </template>
-                        </VsCarouselSlide>
-
-                        <VsCarouselSlide
-                            link-url="www.visitscotland.com"
-                            link-type="external"
-                            img-src="https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"
-                        >
-                            <template slot="vsCarouselSlideHeading">
-                                Count 7,000 shining stars in the iconic
-                                galloway forest
-                            </template>
-                            <template slot="vsCarouselSlideContent">
-                                <p>
-                                    Right across the country, you’ll find amazing
-                                    places to eat and drink from local markets to renowned
-                                    restaurants. Here are some recomm…
-                                </p>
-                            </template>
-                        </VsCarouselSlide>
-
-                        <VsCarouselSlide
-                            link-url="www.visitscotland.com"
-                            link-type="external"
-                            img-src="https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"
-                        >
-                            <template slot="vsCarouselSlideHeading">
-                                Count 7,000 shining stars in the iconic
-                                galloway forest
-                            </template>
-                            <template slot="vsCarouselSlideContent">
-                                <p>
-                                    Right across the country, you’ll find amazing
-                                    places to eat and drink from local markets to renowned
-                                    restaurants. Here are some recomm…
-                                </p>
-                            </template>
-                        </VsCarouselSlide>
-
-                        <VsCarouselSlide
-                            link-url="www.visitscotland.com"
-                            link-type="external"
-                            img-src="https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"
-                        >
-                            <template slot="vsCarouselSlideHeading">
-                                Count 7,000 shining stars in the iconic
-                                galloway forest
-                            </template>
-                            <template slot="vsCarouselSlideContent">
-                                <p>
-                                    Right across the country, you’ll find amazing
-                                    places to eat and drink from local markets to renowned
-                                    restaurants. Here are some recomm…
-                                </p>
-                            </template>
-                        </VsCarouselSlide>
-
-                        <VsCarouselSlide
-                            link-url="www.visitscotland.com"
-                            link-type="external"
-                            img-src="https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"
-                        >
-                            <template slot="vsCarouselSlideHeading">
-                                Count 7,000 shining stars in the iconic
-                                galloway forest
-                            </template>
-                            <template slot="vsCarouselSlideContent">
-                                <p>
-                                    Right across the country, you’ll find amazing
-                                    places to eat and drink from local markets to renowned
-                                    restaurants. Here are some recomm…
-                                </p>
-                            </template>
-                        </VsCarouselSlide>
-
-                        <VsCarouselSlide
-                            link-url="www.visitscotland.com"
-                            link-type="external"
-                            img-src="https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"
-                        >
-                            <template slot="vsCarouselSlideHeading">
-                                Count 7,000 shining stars in the iconic
-                                galloway forest
-                            </template>
-                            <template slot="vsCarouselSlideContent">
-                                <p>
-                                    Right across the country, you’ll find amazing
-                                    places to eat and drink from local markets to renowned
-                                    restaurants. Here are some recomm…
-                                </p>
-                            </template>
-                        </VsCarouselSlide>
+                        <slot />
                     </Splide>
                     <div class="carousel__mobile-pagination-wrapper">
                         <p class="carousel__mobile-pagination">
@@ -135,7 +30,11 @@
 
 <script>
 import { Splide } from '@splidejs/vue-splide';
-import VsCarouselSlide from '@components/patterns/carousel/components/CarouselSlide';
+import {
+    VsContainer,
+    VsRow,
+    VsCol,
+} from '@components/elements/layout';
 
 /**
 * Multi purpose carousel component to use
@@ -148,7 +47,9 @@ export default {
     release: '0.0.1',
     components: {
         Splide,
-        VsCarouselSlide,
+        VsContainer,
+        VsRow,
+        VsCol,
     },
     data() {
         return {
@@ -187,9 +88,8 @@ export default {
             this.resetTabbing();
         },
         resetTabbing() {
-            console.log('resetTabbing');
-            const carousel = document.getElementsByClassName('carousel')[0];
-            const carouselLinks = carousel.getElementsByTagName('a');
+            const carouselEl = this.$refs.carousel;
+            const carouselLinks = carouselEl.getElementsByTagName('a');
             setTimeout(() => {
                 carouselLinks.forEach((element) => {
                     const link = element;
@@ -320,6 +220,113 @@ export default {
 <docs>
      ```js
     <VsCarousel>
+        <VsCarouselSlide
+            link-url="www.visitscotland.com"
+            link-type="external"
+            img-src="https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"
+        >
+            <template slot="vsCarouselSlideHeading">
+                Count 7,000 shining stars in the iconic
+                galloway forest
+            </template>
+            <template slot="vsCarouselSlideContent">
+                <p>
+                    Right across the country, you’ll find amazing
+                    places to eat and drink from local markets to renowned
+                    restaurants. Here are some recomm…
+                </p>
+            </template>
+        </VsCarouselSlide>
+
+        <VsCarouselSlide
+            link-url="www.visitscotland.com"
+            link-type="external"
+            img-src="https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"
+        >
+            <template slot="vsCarouselSlideHeading">
+                Count 7,000 shining stars in the iconic
+                galloway forest
+            </template>
+            <template slot="vsCarouselSlideContent">
+                <p>
+                    Right across the country, you’ll find amazing
+                    places to eat and drink from local markets to renowned
+                    restaurants. Here are some recomm…
+                </p>
+            </template>
+        </VsCarouselSlide>
+
+        <VsCarouselSlide
+            link-url="www.visitscotland.com"
+            link-type="external"
+            img-src="https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"
+        >
+            <template slot="vsCarouselSlideHeading">
+                Count 7,000 shining stars in the iconic
+                galloway forest
+            </template>
+            <template slot="vsCarouselSlideContent">
+                <p>
+                    Right across the country, you’ll find amazing
+                    places to eat and drink from local markets to renowned
+                    restaurants. Here are some recomm…
+                </p>
+            </template>
+        </VsCarouselSlide>
+
+        <VsCarouselSlide
+            link-url="www.visitscotland.com"
+            link-type="external"
+            img-src="https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"
+        >
+            <template slot="vsCarouselSlideHeading">
+                Count 7,000 shining stars in the iconic
+                galloway forest
+            </template>
+            <template slot="vsCarouselSlideContent">
+                <p>
+                    Right across the country, you’ll find amazing
+                    places to eat and drink from local markets to renowned
+                    restaurants. Here are some recomm…
+                </p>
+            </template>
+        </VsCarouselSlide>
+
+        <VsCarouselSlide
+            link-url="www.visitscotland.com"
+            link-type="external"
+            img-src="https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"
+        >
+            <template slot="vsCarouselSlideHeading">
+                Count 7,000 shining stars in the iconic
+                galloway forest
+            </template>
+            <template slot="vsCarouselSlideContent">
+                <p>
+                    Right across the country, you’ll find amazing
+                    places to eat and drink from local markets to renowned
+                    restaurants. Here are some recomm…
+                </p>
+            </template>
+        </VsCarouselSlide>
+
+        <VsCarouselSlide
+            link-url="www.visitscotland.com"
+            link-type="external"
+            img-src="https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"
+        >
+            <template slot="vsCarouselSlideHeading">
+                Count 7,000 shining stars in the iconic
+                galloway forest
+            </template>
+            <template slot="vsCarouselSlideContent">
+                <p>
+                    Right across the country, you’ll find amazing
+                    places to eat and drink from local markets to renowned
+                    restaurants. Here are some recomm…
+                </p>
+            </template>
+        </VsCarouselSlide>
     </VsCarousel>
     ```
 </docs>
