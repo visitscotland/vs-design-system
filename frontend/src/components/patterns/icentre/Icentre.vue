@@ -15,6 +15,7 @@
                     class="vs-icentre__intro-content"
                 >
                     <div class="vs-icentre__heading">
+                        <!-- @slot Holds the heading (vs-heading expected) -->
                         <slot name="icentreHeading" />
                     </div>
 
@@ -25,8 +26,10 @@
 
                     <div
                         class="vs-icentre__links"
+                        data-test="vs-icentre__standalone-links"
                         v-if="!!this.$slots['icentreLinks'] && !this.$slots['icentreQuote']"
                     >
+                        <!-- @slot Holds the links (html expected) -->
                         <slot name="icentreLinks" />
                     </div>
                 </VsCol>
@@ -36,6 +39,7 @@
                     md="10"
                     offset-md="1"
                 >
+                    <!-- @slot Holds the main icentre image (vs-image-with-caption expected) -->
                     <slot name="icentreImageWithCaption" />
                 </VsCol>
 
@@ -43,17 +47,21 @@
                     cols="12"
                     md="10"
                     offset-md="1"
-                    lg="7"
+                    lg="9"
+                    xl="7"
                     offset-lg="5"
                     class="vs-icentre__quote-block-container"
                     v-if="!!this.$slots['icentreQuote']"
                 >
                     <div class="vs-icentre__quote-block">
+                        <!-- @slot Optional slot, holds the links (vs-quote expected) -->
                         <slot name="icentreQuote" />
 
                         <div
                             class="vs-icentre__links-contained"
+                            data-test="vs-icentre__embedded-links"
                         >
+                            <!-- @slot Holds the links (html expected) -->
                             <slot name="icentreLinks" />
                         </div>
                     </div>
@@ -69,6 +77,10 @@ import VsContainer from '@components/elements/layout/Container';
 import VsRow from '@components/elements/layout/Row';
 import VsCol from '@components/elements/layout/Col';
 
+/**
+ * A summary block for an icentre with a name, cover image and an optional slot for an
+ * embedded quote (either just text or a vs-quote element)
+ */
 export default {
     name: 'VsIcentre',
     status: 'prototype',
@@ -134,6 +146,7 @@ export default {
 
     &__links-contained {
         margin-bottom: $spacer-0;
+        margin-top: $spacer-4;
     }
 }
 </style>
