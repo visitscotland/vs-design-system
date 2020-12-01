@@ -74,6 +74,10 @@ import VsContainer from '@components/elements/layout/Container';
 import VsRow from '@components/elements/layout/Row';
 import VsCol from '@components/elements/layout/Col';
 
+/**
+ * A summary block for an icentre with a name, cover image and an optional slot for an
+ * embedded quote (either just text or a vs-quote element)
+ */
 export default {
     name: 'VsIcentre',
     status: 'prototype',
