@@ -29,6 +29,7 @@
                         <vs-megalink-link-list
                             img-src="${image}"
                             link-type="${listItem.type}"
+                            link-url="${megalink.link}"
                         >
                             <template slot="vsLinkListHeading">
                                 ${listItem.label}
