@@ -1169,7 +1169,7 @@
           jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
           jcr:uuid: bc5bec32-9cbc-45a7-855b-342008ad8ef9
           hippo:name: Short Calming Escapes By The Water
-          hippo:versionHistory: 79e1999d-99e9-4706-81c9-9cc5d40cab64
+          hippo:versionHistory: 2c5f7728-3786-4f4d-a075-1ca14ee5004a
           /content[1]:
             jcr:primaryType: visitscotland:Listicle
             jcr:mixinTypes: ['mix:referenceable']
@@ -1178,21 +1178,43 @@
             hippostd:state: draft
             hippostdpubwf:createdBy: admin
             hippostdpubwf:creationDate: 2020-03-09T13:18:03.936Z
-            hippostdpubwf:lastModificationDate: 2020-11-10T16:18:36.811Z
+            hippostdpubwf:lastModificationDate: 2020-11-26T13:35:56.247Z
             hippostdpubwf:lastModifiedBy: admin
             hippotranslation:id: 97546e89-0d3f-4b72-816b-fd23247d9c2c
             hippotranslation:locale: en
             visitscotland:breadcrumb: ''
             visitscotland:descOrder: false
-            visitscotland:seoDescription: Discover relaxing breaks in Scotland, including
-              accommodation beside lochs and canals, lighthouses, boating holidays
-              and harbour-side cottages.
+            visitscotland:seoDescription: When it comes to places to stay, Scotland
+              has some fantastic options; but there really is something extra special
+              about a waterside location. If it's a coastal break you fancy, you'll
+              find wonderful holiday cottages on seafronts, near beaches and shorelines.
+              Or you can stay at the edge of an inland loch or sea loch, by a canal,
+              and should you actually fancy staying on the water, there are great
+              choices when it comes to boating and sailing holidays.  Here are just
+              a few ideas for some lovely waterside locations and accommodation suggestions
+              for holidays on or by the water, perfect for a relaxing break.
             visitscotland:seoNoIndex: false
-            visitscotland:seoTitle: Short Calming Escapes By The Water
+            visitscotland:seoTitle: When it comes to places to stay,
             visitscotland:summaryTitle: ''
-            visitscotland:teaser: Discover relaxing breaks in Scotland, including
-              accommodation beside lochs and canals, lighthouses and boating holidays.
-            visitscotland:title: Short Calming Escapes By The Water
+            visitscotland:teaser: When it comes to places to stay, Scotland has some
+              fantastic options; but there really is something extra special about
+              a waterside location. If it's a coastal break you fancy, you'll find
+              wonderful holiday cottages on seafronts, near beaches and shorelines.
+              Or you can stay at the edge of an inland loch or sea loch, by a canal,
+              and should you actually fancy staying on the water, there are great
+              choices when it comes to boating and sailing holidays.  Here are just
+              a few ideas for some lovely waterside locations and accommodation suggestions
+              for holidays on or by the water, perfect for a relaxing break.
+            visitscotland:title: When it comes to places to stay, Scotland has some
+              fantastic options; but there really is something extra special about
+              a waterside location. If it's a coastal break you fancy, you'll find
+              wonderful holiday cottages on seafronts, near beaches and shorelines.
+              Or you can stay at the edge of an inland loch or sea loch, by a canal,
+              and should you actually fancy staying on the water, there are great
+              choices when it comes to boating and sailing holidays.  Here are just
+              a few ideas for some lovely waterside locations and accommodation suggestions
+              for holidays on or by the water, perfect for a relaxing break.
+            visitscotland:translation: ''
             /visitscotland:heroImage:
               jcr:primaryType: hippogallerypicker:imagelink
               hippo:docbase: ece9b7e3-75e0-4817-8b83-6fd2f06ccd7e
@@ -1216,7 +1238,7 @@
             hippostd:state: unpublished
             hippostdpubwf:createdBy: admin
             hippostdpubwf:creationDate: 2020-03-09T13:18:03.936Z
-            hippostdpubwf:lastModificationDate: 2020-11-10T16:18:36.783Z
+            hippostdpubwf:lastModificationDate: 2020-11-26T13:35:55.868Z
             hippostdpubwf:lastModifiedBy: admin
             hippotranslation:id: 97546e89-0d3f-4b72-816b-fd23247d9c2c
             hippotranslation:locale: en
@@ -1231,6 +1253,7 @@
             visitscotland:teaser: Discover relaxing breaks in Scotland, including
               accommodation beside lochs and canals, lighthouses and boating holidays.
             visitscotland:title: Short Calming Escapes By The Water
+            visitscotland:translation: ''
             /visitscotland:heroImage:
               jcr:primaryType: hippogallerypicker:imagelink
               hippo:docbase: ece9b7e3-75e0-4817-8b83-6fd2f06ccd7e
@@ -1254,9 +1277,9 @@
             hippostd:state: published
             hippostdpubwf:createdBy: admin
             hippostdpubwf:creationDate: 2020-03-09T13:18:03.936Z
-            hippostdpubwf:lastModificationDate: 2020-11-10T16:18:36.783Z
+            hippostdpubwf:lastModificationDate: 2020-11-26T13:35:55.868Z
             hippostdpubwf:lastModifiedBy: admin
-            hippostdpubwf:publicationDate: 2020-11-10T16:18:39.580Z
+            hippostdpubwf:publicationDate: 2020-11-26T13:38:06.420Z
             hippotranslation:id: 97546e89-0d3f-4b72-816b-fd23247d9c2c
             hippotranslation:locale: en
             visitscotland:breadcrumb: ''
@@ -1270,6 +1293,7 @@
             visitscotland:teaser: Discover relaxing breaks in Scotland, including
               accommodation beside lochs and canals, lighthouses and boating holidays.
             visitscotland:title: Short Calming Escapes By The Water
+            visitscotland:translation: ''
             /visitscotland:heroImage:
               jcr:primaryType: hippogallerypicker:imagelink
               hippo:docbase: ece9b7e3-75e0-4817-8b83-6fd2f06ccd7e
@@ -1290,7 +1314,7 @@
           jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
           jcr:uuid: 6a70fb18-aa9f-4515-a99a-22f338e71ea0
           hippo:name: test Subtitle
-          hippo:versionHistory: 959ff2fd-118b-4b33-a81d-dfeac2facf5b
+          hippo:versionHistory: 016476f4-e293-471b-85e6-583493ba3e14
           /test-subtitle[1]:
             jcr:primaryType: visitscotland:ListicleItem
             jcr:mixinTypes: ['mix:referenceable']
@@ -1299,12 +1323,13 @@
             hippostd:state: draft
             hippostdpubwf:createdBy: admin
             hippostdpubwf:creationDate: 2020-04-07T16:32:06.622+01:00
-            hippostdpubwf:lastModificationDate: 2020-10-02T10:52:04.453+01:00
+            hippostdpubwf:lastModificationDate: 2020-11-26T13:38:16.339Z
             hippostdpubwf:lastModifiedBy: admin
             hippotranslation:id: 52efbdda-6fef-4030-9a99-d99dc2cd8a4d
             hippotranslation:locale: en
             visitscotland:subtitle: ''
             visitscotland:title: Test subtitle
+            visitscotland:translation: ''
             /visitscotland:description:
               jcr:primaryType: hippostd:html
               hippostd:content: <p>testing description&nbsp;</p>
@@ -1332,12 +1357,13 @@
             hippostd:state: unpublished
             hippostdpubwf:createdBy: admin
             hippostdpubwf:creationDate: 2020-04-07T16:32:06.622+01:00
-            hippostdpubwf:lastModificationDate: 2020-08-17T12:40:19.628+01:00
+            hippostdpubwf:lastModificationDate: 2020-11-26T13:38:16.309Z
             hippostdpubwf:lastModifiedBy: admin
             hippotranslation:id: 52efbdda-6fef-4030-9a99-d99dc2cd8a4d
             hippotranslation:locale: en
             visitscotland:subtitle: ''
             visitscotland:title: Test subtitle
+            visitscotland:translation: ''
             /visitscotland:description:
               jcr:primaryType: hippostd:html
               hippostd:content: <p>testing description&nbsp;</p>
@@ -1365,13 +1391,14 @@
             hippostd:state: published
             hippostdpubwf:createdBy: admin
             hippostdpubwf:creationDate: 2020-04-07T16:32:06.622+01:00
-            hippostdpubwf:lastModificationDate: 2020-08-17T12:40:19.628+01:00
+            hippostdpubwf:lastModificationDate: 2020-11-26T13:38:16.309Z
             hippostdpubwf:lastModifiedBy: admin
-            hippostdpubwf:publicationDate: 2020-08-17T12:40:23.505+01:00
+            hippostdpubwf:publicationDate: 2020-11-26T13:38:22.870Z
             hippotranslation:id: 52efbdda-6fef-4030-9a99-d99dc2cd8a4d
             hippotranslation:locale: en
             visitscotland:subtitle: ''
             visitscotland:title: Test subtitle
+            visitscotland:translation: ''
             /visitscotland:description:
               jcr:primaryType: hippostd:html
               hippostd:content: <p>testing description&nbsp;</p>
@@ -1642,10 +1669,11 @@
           jcr:mixinTypes: ['mix:referenceable']
           jcr:uuid: 76bab125-f189-4ab2-ae52-8d216ed96af5
           hippo:availability: []
+          hippostd:holder: admin
           hippostd:state: draft
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2020-05-15T11:13:39.117+01:00
-          hippostdpubwf:lastModificationDate: 2020-11-10T14:50:36.778Z
+          hippostdpubwf:lastModificationDate: 2020-11-26T13:13:24.462Z
           hippostdpubwf:lastModifiedBy: admin
           hippotranslation:id: 1fbcced7-88f7-4124-8470-b9ed88b5ead0
           hippotranslation:locale: en
@@ -1655,7 +1683,16 @@
           visitscotland:seoNoIndex: false
           visitscotland:seoTitle: Edinburgh seo title
           visitscotland:teaser: Edinburgh city teaser
-          visitscotland:title: Edinburgh
+          visitscotland:title: Edinburgh With an abundance of history, top quality
+            attractions and beautiful architecture, Edinburgh is a city that you won’t
+            forget in a hurry. Explore the Medieval Old Town and the elegant Georgian
+            New Town, which sit side by side, and visit unique attractions throughout
+            the city on a holiday in Edinburgh.  Whether you’re short of time and
+            can only manage a weekend break, planning a full-blown city break or are
+            visiting Edinburgh as part of a wider holiday in Scotland, there’s lots
+            to fill your time, from unforgettable historic sites and world-class festivals
+            to fantastic shopping and mouth-watering dining.
+          visitscotland:translation: ''
           /visitscotland:heroImage:
             jcr:primaryType: hippogallerypicker:imagelink
             hippo:docbase: ecede5a4-326c-4ce5-b9be-bcdf32c3f2c2
@@ -1676,7 +1713,7 @@
           hippostd:state: unpublished
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2020-05-15T11:13:39.117+01:00
-          hippostdpubwf:lastModificationDate: 2020-05-25T18:02:22.368+01:00
+          hippostdpubwf:lastModificationDate: 2020-11-26T13:05:31.241Z
           hippostdpubwf:lastModifiedBy: admin
           hippotranslation:id: 1fbcced7-88f7-4124-8470-b9ed88b5ead0
           hippotranslation:locale: en
@@ -1686,7 +1723,16 @@
           visitscotland:seoNoIndex: false
           visitscotland:seoTitle: Edinburgh seo title
           visitscotland:teaser: Edinburgh city teaser
-          visitscotland:title: Edinburgh
+          visitscotland:title: Edinburgh With an abundance of history, top quality
+            attractions and beautiful architecture, Edinburgh is a city that you won’t
+            forget in a hurry. Explore the Medieval Old Town and the elegant Georgian
+            New Town, which sit side by side, and visit unique attractions throughout
+            the city on a holiday in Edinburgh.  Whether you’re short of time and
+            can only manage a weekend break, planning a full-blown city break or are
+            visiting Edinburgh as part of a wider holiday in Scotland, there’s lots
+            to fill your time, from unforgettable historic sites and world-class festivals
+            to fantastic shopping and mouth-watering dining.
+          visitscotland:translation: ''
           /visitscotland:heroImage:
             jcr:primaryType: hippogallerypicker:imagelink
             hippo:docbase: ecede5a4-326c-4ce5-b9be-bcdf32c3f2c2
@@ -1742,18 +1788,21 @@
           jcr:mixinTypes: ['mix:referenceable']
           jcr:uuid: 116b29ac-dbf3-4c7e-b97f-b4e41dc3aefd
           hippo:availability: []
+          hippostd:holder: admin
           hippostd:state: draft
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2020-05-21T17:54:15.934+01:00
-          hippostdpubwf:lastModificationDate: 2020-11-10T16:14:03.191Z
+          hippostdpubwf:lastModificationDate: 2020-11-25T09:36:59.108Z
           hippostdpubwf:lastModifiedBy: admin
           hippotranslation:id: 5dc9b699-4821-4c91-b426-7b75aed683e4
           hippotranslation:locale: en
           visitscotland:hideTeaser: false
+          visitscotland:layout: ''
           visitscotland:list: false
           visitscotland:listLayout: false
           visitscotland:teaserVisible: true
           visitscotland:title: Megalinks - Multi image Links (6 items)
+          visitscotland:translation: ''
           /visitscotland:introduction:
             jcr:primaryType: hippostd:html
             hippostd:content: <p>This is an example of Featured Links</p>
@@ -1762,7 +1811,7 @@
             visitscotland:feature: false
             /visitscotland:link:
               jcr:primaryType: hippo:mirror
-              hippo:docbase: bc5bec32-9cbc-45a7-855b-342008ad8ef9
+              hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
           /visitscotland:megalinkItems[2]:
             jcr:primaryType: visitscotland:MegalinkItem
             visitscotland:feature: true
@@ -3814,13 +3863,14 @@
             hippostd:state: unpublished
             hippostdpubwf:createdBy: admin
             hippostdpubwf:creationDate: 2019-12-16T12:20:46.037Z
-            hippostdpubwf:lastModificationDate: 2020-10-21T14:38:02.529+01:00
+            hippostdpubwf:lastModificationDate: 2020-11-25T15:39:49.581Z
             hippostdpubwf:lastModifiedBy: admin
             hippotranslation:id: 38f7c9ac-27eb-4b02-9bab-16b719f241e4
             hippotranslation:locale: en
-            visitscotland:subtitle: ''
+            visitscotland:subtitle: adad
             visitscotland:tipsTitle: ''
             visitscotland:title: Casa Jose
+            visitscotland:translation: ''
             /visitscotland:description:
               jcr:primaryType: hippostd:html
               hippostd:content: <p>Short description.</p>
@@ -3840,7 +3890,7 @@
                 visitscotland:link: https://ebooks.visitscotland.com/ghosts-myths-legends/
             /visitscotland:image:
               jcr:primaryType: hippogallerypicker:imagelink
-              hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
+              hippo:docbase: c3eafb5b-6c18-4caa-9c9a-63279b816630
               hippo:facets: []
               hippo:modes: []
               hippo:values: []
@@ -3849,16 +3899,18 @@
             jcr:mixinTypes: ['mix:referenceable']
             jcr:uuid: 27ea31d2-a3a6-4ea1-972a-5d92fda60d95
             hippo:availability: []
+            hippostd:holder: admin
             hippostd:state: draft
             hippostdpubwf:createdBy: admin
             hippostdpubwf:creationDate: 2019-12-16T12:20:46.037Z
-            hippostdpubwf:lastModificationDate: 2020-10-21T15:11:20.665+01:00
+            hippostdpubwf:lastModificationDate: 2020-11-25T15:39:49.669Z
             hippostdpubwf:lastModifiedBy: admin
             hippotranslation:id: 38f7c9ac-27eb-4b02-9bab-16b719f241e4
             hippotranslation:locale: en
-            visitscotland:subtitle: ''
+            visitscotland:subtitle: adad
             visitscotland:tipsTitle: ''
             visitscotland:title: Casa Jose
+            visitscotland:translation: ''
             /visitscotland:description:
               jcr:primaryType: hippostd:html
               hippostd:content: <p>Short description.</p>
@@ -3878,7 +3930,7 @@
                 visitscotland:link: https://ebooks.visitscotland.com/ghosts-myths-legends/
             /visitscotland:image:
               jcr:primaryType: hippogallerypicker:imagelink
-              hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
+              hippo:docbase: c3eafb5b-6c18-4caa-9c9a-63279b816630
               hippo:facets: []
               hippo:modes: []
               hippo:values: []
@@ -6595,15 +6647,34 @@
               hippostd:state: draft
               hippostdpubwf:createdBy: admin
               hippostdpubwf:creationDate: 2020-07-10T13:34:45.173+01:00
-              hippostdpubwf:lastModificationDate: 2020-10-26T11:30:41.453Z
+              hippostdpubwf:lastModificationDate: 2020-11-26T13:36:46.993Z
               hippostdpubwf:lastModifiedBy: admin
               hippotranslation:id: 51dfff09-00d0-4923-b704-26bb28e5b28b
               hippotranslation:locale: en
-              visitscotland:teaser: Visit Outer Hebrides from behind of a camera.
-              visitscotland:title: Photography Trail
+              visitscotland:teaser: When it comes to places to stay, Scotland has
+                some fantastic options; but there really is something extra special
+                about a waterside location. If it's a coastal break you fancy, you'll
+                find wonderful holiday cottages on seafronts, near beaches and shorelines.
+                Or you can stay at the edge of an inland loch or sea loch, by a canal,
+                and should you actually fancy staying on the water, there are great
+                choices when it comes to boating and sailing holidays.  Here are just
+                a few ideas for some lovely waterside locations and accommodation
+                suggestions for holidays on or by the water, perfect for a relaxing
+                break.
+              visitscotland:title: When it comes to places to stay, Scotland has some
+                fantastic options; but there really is something extra special about
+                a waterside location. If it's a coastal break you fancy, you'll find
+                wonderful holiday cottages on seafronts, near beaches and shorelines.
+                Or you can stay at the edge of an inland loch or sea loch, by a canal,
+                and should you actually fancy staying on the water, there are great
+                choices when it comes to boating and sailing holidays.  Here are just
+                a few ideas for some lovely waterside locations and accommodation
+                suggestions for holidays on or by the water, perfect for a relaxing
+                break.
+              visitscotland:translation: ''
               /visitscotland:image:
                 jcr:primaryType: hippogallerypicker:imagelink
-                hippo:docbase: 38e2d695-f644-4c92-a62a-a8a7247ba63b
+                hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
                 hippo:facets: []
                 hippo:modes: []
                 hippo:values: []
