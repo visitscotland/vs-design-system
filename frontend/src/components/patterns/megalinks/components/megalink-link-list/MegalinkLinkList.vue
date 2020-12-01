@@ -102,6 +102,7 @@ export default {
         border: none;
         padding: $spacer-2 0 $spacer-3;
         position: relative;
+        height: 100%;
 
         &:after {
             content: '';
