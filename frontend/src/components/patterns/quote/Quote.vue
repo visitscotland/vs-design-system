@@ -49,7 +49,7 @@ export default {
 
     &__author-name {
         font-weight: bold;
-        margin-bottom: .5rem;
+        margin-bottom: $spacer-2;
     }
 
     &__speech-mark {
