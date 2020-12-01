@@ -4,15 +4,11 @@
         data-test="vs-quote"
     >
         <div class="vs-quote__speech-container">
-            <div class="vs-quote__speech-mark-outer">
-                <span class="vs-quote__speech-mark">“</span>
-            </div>
+            <span class="vs-quote__speech-mark">“</span>
         </div>
         <div class="vs-quote__author-container">
-            <div class="vs-quote__author-image">
-                <!-- @slot Holds the author image (vs-image expected) -->
-                <slot name="quoteImage" />
-            </div>
+            <!-- @slot Holds the author image (vs-image expected) -->
+            <slot name="quoteImage" />
         </div>
         <div class="vs-quote__content-container">
             <div class="vs-quote__content">
@@ -43,26 +39,12 @@ export default {
 
 <style lang="scss">
 .vs-quote {
-    &__author-image {
-        width: 100%;
-
-        img {
-            width: 100%;
-        }
-    }
-
     &__content {
         font-size: $font-size-lg;
     }
 
     &__author-name {
         font-weight: bold;
-    }
-
-    &__speech-mark-outer {
-        width: 3.5rem;
-        height: 2.5rem;
-        position: relative;
     }
 
     &__speech-mark {
@@ -81,6 +63,9 @@ export default {
         display: block;
         margin-bottom: $spacer-5;
         margin-right: $spacer-5;
+        width: 3.5rem;
+        height: 2.5rem;
+        position: relative;
 
         @include media-breakpoint-up(sm) {
             display: inline-block;
@@ -92,6 +77,10 @@ export default {
         display: block;
         width: 50%;
         margin-bottom: $spacer-5;
+
+        img {
+            width: 100%;
+        }
 
         @include media-breakpoint-up(sm) {
             display: inline-block;
