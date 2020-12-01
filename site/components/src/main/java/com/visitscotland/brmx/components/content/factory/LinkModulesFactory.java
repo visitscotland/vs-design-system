@@ -82,6 +82,8 @@ public class LinkModulesFactory {
             warnings.add("For list layout is recommended to have t least 2 links");
         }
         ll.setErrorMessages(warnings);*/
+        return ll;
+    }
 
     public HorizontalListLinksModule horizontalListLayout(Megalinks doc, Locale locale) {
         HorizontalListLinksModule ll = new HorizontalListLinksModule();
