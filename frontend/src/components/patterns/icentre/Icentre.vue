@@ -15,6 +15,7 @@
                     class="vs-icentre__intro-content"
                 >
                     <div class="vs-icentre__heading">
+                        <!-- @slot Holds the heading (vs-heading expected) -->
                         <slot name="icentreHeading" />
                     </div>
 
@@ -27,6 +28,7 @@
                         class="vs-icentre__links"
                         v-if="!!this.$slots['icentreLinks'] && !this.$slots['icentreQuote']"
                     >
+                        <!-- @slot Holds the links (html expected) -->
                         <slot name="icentreLinks" />
                     </div>
                 </VsCol>
@@ -36,6 +38,7 @@
                     md="10"
                     offset-md="1"
                 >
+                    <!-- @slot Holds the main icentre image (vs-image-with-caption expected) -->
                     <slot name="icentreImageWithCaption" />
                 </VsCol>
 
@@ -49,11 +52,13 @@
                     v-if="!!this.$slots['icentreQuote']"
                 >
                     <div class="vs-icentre__quote-block">
+                        <!-- @slot Optional slot, holds the links (vs-quote expected) -->
                         <slot name="icentreQuote" />
 
                         <div
                             class="vs-icentre__links-contained"
                         >
+                            <!-- @slot Holds the links (html expected) -->
                             <slot name="icentreLinks" />
                         </div>
                     </div>
