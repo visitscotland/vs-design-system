@@ -46,7 +46,8 @@
                     cols="12"
                     md="10"
                     offset-md="1"
-                    lg="7"
+                    lg="9"
+                    xl="7"
                     offset-lg="5"
                     class="vs-icentre__quote-block-container"
                     v-if="!!this.$slots['icentreQuote']"
@@ -168,6 +169,10 @@ export default {
         </VsImageWithCaption>
 
         <span slot="icentreQuote">
+            <p>This is an example quote, it doesn't look like a quote but it fills the space.</p>
+            <p>When the quote component is done this will be one of those instead</p>
+            <p>This is an example quote, it doesn't look like a quote but it fills the space.</p>
+            <p>When the quote component is done this will be one of those instead</p>
             <p>This is an example quote, it doesn't look like a quote but it fills the space.</p>
             <p>When the quote component is done this will be one of those instead</p>
         </span>
