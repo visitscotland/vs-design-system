@@ -81,6 +81,7 @@ export default {
     &__author-container {
         display: block;
         width: 50%;
+        max-width: 8rem;
         margin-bottom: $spacer-5;
 
         img {
