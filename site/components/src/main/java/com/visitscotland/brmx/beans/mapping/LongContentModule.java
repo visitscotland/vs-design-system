@@ -6,16 +6,16 @@ import org.hippoecm.hst.content.beans.standard.HippoHtml;
 import java.util.List;
 
 public class LongContentModule extends Module {
-    private Image image;
+    private FlatImage image;
     private String title;
     private HippoHtml introduction;
     private List<FlatLongContentSection> sections;
 
-    public Image getImage() {
+    public FlatImage getImage() {
         return image;
     }
 
-    public void setImage(Image image) {
+    public void setImage(FlatImage image) {
         this.image = image;
     }
 

@@ -6,9 +6,7 @@
 <#-- @ftlvariable name="section" type="com.visitscotland.brmx.beans.mapping.FlatLongContentSection" -->
 
 <#macro longContent module>
-
     <@hst.manageContent hippobean=module.hippoBean />
-
     <#if module.image.cmsImage??>
         <#assign image>
             <@hst.link hippobean=module.image.cmsImage.original/>
@@ -16,59 +14,53 @@
     <#else>
         <#assign image = module.image.externalImage!'' />
     </#if>
+    <vs-col cols="12" lg="8" offset-lg="2" style="border: 1px solid grey;">
+        <#if image?? && image?has_content>
+                <@imageWithCaption imageSrc=image imageDetails=module.image variant="fullwidth"/>
+        </#if>
+        <vs-col offset-lg="4">
+                <vs-heading level="2">${module.title}</vs-heading>
+        </vs-col>
+        <@hst.html hippohtml=module.introduction/>
 
-    <#if module.quoteImage??>
-        <#assign imageQuote>
-            <@hst.link hippobean=module.quoteImage.cmsImage.original/>
-        </#assign>
-    </#if>
 
-    <#list module.sections as section>
-
-        Long Content Module
-        <@hst.html hippohtml=section.copy/>
-
-        <#if section.quote??>
+        </br> </br>
+        <#list module.sections as section>
             <vs-row>
-                <vs-col cols="6" lg="6" >
-                    <@imageWithCaption imageSrc=image imageDetails=section.image variant="fullwidth"/>
-                </vs-col>
-
-                <vs-col cols="6" lg="5">
+                <#if section.quote??>
+                    <#if section.quoteImage.cmsImage??>
+                        <#assign imageQuote>
+                            <@hst.link hippobean=section.quoteImage.cmsImage.thumbnail/>
+                        </#assign>
+                    <#else>
+                        <#assign imageQuote = section.quoteImage.externalImage!'' />
+                    </#if>
                     <vs-row>
-                        <vs-col cols="3" lg="3">
-                            <vs-img alt="${(section.quoteImage)!'${label("essentials.global", "default.alt-text")}'}"
-                                    src="${imageQuote}">
-                            </vs-img>
-                        </vs-col>
-                        <vs-col cols="6" lg="6">
+                        <vs-col cols="4">
                             "<@hst.html hippohtml=section.quote/>"
+                            <#if imageQuote?? && imageQuote?has_content>
+                                <vs-col cols="3" offset-lg="1">
+                                    <vs-img alt="${(section.quoteImage)!'${label("essentials.global", "default.alt-text")}'}"
+                                            src="${imageQuote}">
+                                    </vs-img>
+                                   <#-- <@imageWithCaption imageSrc=imageQuote imageDetails=section.quoteImage variant="fullwidth"/>-->
+                                </vs-col>
+                            </#if>
+                            <vs-heading level="6">${section.quoteAuthorName}</vs-heading>
+                            ${section.quoteAuthorTitle}
+                        </vs-col>
+
+                        <vs-col cols="8" >
+                            <@hst.html hippohtml=section.copy/>
                         </vs-col>
                     </vs-row>
-
-                    <vs-heading level="6">${section.quoteAuthorName}</vs-heading>
-                    ${section.quoteAuthorTitle}
+                <#else>
                     </br> </br>
-                    <#if section.quoteLink??>
-                        <vs-button animate=false background="purple" variant="primary" href="${section.quoteLink.link}" size="md">
-                            ${section.quoteLink.label}
-                        </vs-button>
-                    </#if>
-                </vs-col>
-
-                </br>
-                <vs-col cols="8" lg="7" offset-lg="6">
-                    ${module.description}
-                    <#list module.links as iCentre>
-                        <vs-link href="${iCentre.link}">${iCentre.label}</vs-link>,
-                    </#list>
-                </vs-col>
+                        <@hst.html hippohtml=section.copy/>
+                </#if>
             </vs-row>
-        </#if>
-    </#list>
 
-
-
-
-
+            </#list>
+    </vs-col>
+    </br> </br>
 </#macro>

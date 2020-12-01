@@ -14,6 +14,7 @@ import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import java.util.MissingResourceException;
 
 public class PageTemplateBuilder {
@@ -107,7 +108,7 @@ public class PageTemplateBuilder {
         LongContentModule module = new LongContentModule();
         List<FlatLongContentSection> sections = new ArrayList<>();
         //TODO add media
-//        module.setImage(new FlatImage(doc.getImage()));
+        module.setImage(new FlatImage(doc.getImage(), Locale.UK));
         module.setTitle(doc.getTitle());
         module.setIntroduction(doc.getIntroduction());
         module.setHippoBean(doc);
@@ -116,7 +117,7 @@ public class PageTemplateBuilder {
             FlatLongContentSection flcs = new FlatLongContentSection();
             flcs.setCopy(section.getCopy());
             //TODO Convert MediaItem into image
-//            flcs.setImage(new FlatImage(section.getMediaItem(), request.getLocale()));
+           //flcs.setImage(new FlatImage(section.getMediaItem(), request.getLocale()));
 
             // TODO Are we going to include Quotes?
             if (section.getQuote()!= null){
