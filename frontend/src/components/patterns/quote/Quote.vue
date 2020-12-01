@@ -10,19 +10,24 @@
         </div>
         <div class="vs-quote__author-container">
             <div class="vs-quote__author-image">
+                <!-- @slot Holds the author image (vs-image expected) -->
                 <slot name="quoteImage" />
             </div>
         </div>
         <div class="vs-quote__content-container">
             <div class="vs-quote__content">
+                <!-- @slot Holds the main body of the quote (html expected) -->
                 <slot name="quoteContent" />
             </div>
             <p class="vs-quote__author-name">
+                <!-- @slot Holds the name of the author (text expected) -->
                 <slot name="quoteAuthorName" />
             </p>
             <p class="vs-quote__author-title">
+                <!-- @slot Holds the job title of the author (text expected) -->
                 <slot name="quoteAuthorTitle" />
             </p>
+            <!-- @slot Optional slot that holds a cta for the block (vs-button expected) -->
             <slot name="quoteLink" />
         </div>
     </div>
