@@ -30,6 +30,9 @@
 </template>
 
 <script>
+/**
+ * An embeddable quote with an author, links to icentre information and an optional CTA
+ */
 export default {
     name: 'VsQuote',
     status: 'prototype',
