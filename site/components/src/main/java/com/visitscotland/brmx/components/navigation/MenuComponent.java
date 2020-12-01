@@ -10,6 +10,7 @@ import com.visitscotland.brmx.utils.CommonUtils;
 import com.visitscotland.brmx.utils.HippoUtilsService;
 import com.visitscotland.brmx.utils.Properties;
 import com.visitscotland.utils.Contract;
+import org.hippoecm.hst.container.RequestContextProvider;
 import org.hippoecm.hst.content.beans.standard.HippoBean;
 import org.hippoecm.hst.content.beans.standard.HippoFolder;
 import org.hippoecm.hst.core.component.HstRequest;
@@ -91,16 +92,7 @@ public class MenuComponent extends EssentialsMenuComponent {
                     lan.setUrl(utils.createUrl(translation));
                     lan.setExists(true);
                 } else {
-                    String languagePath = "";
-
-                    if (locale != null) {
-                        languagePath += "/" + lan.getLanguage();
-                    }
-
-                    lan.setUrl(request.getRequestContext().getBaseURL().getHostName() +
-                            request.getRequestContext().getBaseURL().getContextPath() +
-                            languagePath +
-                            request.getRequestContext().getBaseURL().getPathInfo());
+                    lan.setUrl(composeNonExistingURL(locale, request));
                     lan.setExists(false);
                 }
                 translatedURL.add(lan);
@@ -109,6 +101,21 @@ public class MenuComponent extends EssentialsMenuComponent {
             logger.error("Menu functionality is not supported for Channel Manager Pages at the moment");
         }
         request.setModel("localizedURLs", translatedURL);
+    }
+
+    /**
+     * Composes a the URL from the current request for a non existing URL.
+     */
+    private String composeNonExistingURL(Locale locale, HstRequest request){
+        String languagePath = "";
+
+        if (locale != null) {
+            languagePath += "/" + locale.getLanguage();
+        }
+
+        return request.getRequestContext().getBaseURL().getHostName() +
+                request.getRequestContext().getBaseURL().getContextPath() +
+                languagePath + request.getRequestContext().getBaseURL().getPathInfo();
     }
 
     protected void enhanceRequest(HstRequest request) {
