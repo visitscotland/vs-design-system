@@ -1,6 +1,7 @@
 <template>
     <VsCol
         class="sidebar"
+        data-test="vs-sidebar"
         :tag="tag"
         v-bind="$attrs"
     >
