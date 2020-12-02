@@ -15,6 +15,8 @@ import com.visitscotland.brmx.mock.MegalinksMockBuilder;
 import com.visitscotland.brmx.mock.TouristInformationMockBuilder;
 import org.hippoecm.hst.mock.core.component.MockHstRequest;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
@@ -216,6 +218,8 @@ class PageTemplateBuilderTest {
      * Verifies that only one Hippo Bean is set edit module is enabled.
      */
     @Test
+    @Disabled("This requirement is being reviewed")
+    @DisplayName("Verifies that only one edit button appears in the preview mode")
     void addTouristInformation_iCentreModule() {
 
         TourismInformation ti = new TouristInformationMockBuilder().build();
