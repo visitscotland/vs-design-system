@@ -82,10 +82,8 @@ public class PageTemplateBuilder {
                     if (iCentreModule != null) {
                         iCentreModule.setHippoBean(item);
                         links.add(iCentreModule);
-                    } else {
-                        iKnowModule.setHippoBean(item);
                     }
-
+                    iKnowModule.setHippoBean(item);
                     links.add(iKnowModule);
                 }
             } catch (MissingResourceException e){

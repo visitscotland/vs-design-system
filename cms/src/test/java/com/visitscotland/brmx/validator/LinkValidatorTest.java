@@ -110,6 +110,21 @@ class LinkValidatorTest {
         assertTrue(validator.validate(context, node).isPresent());
     }
 
+    @Test
+    @DisplayName("Validates that links have been selected")
+    void LinksEmptyValues() throws RepositoryException {
+        LinkValidator validator = new LinkValidator(mockSessionFactory);
+
+        Node node = Mockito.mock(Node.class, RETURNS_DEEP_STUBS);
+        Node childNode = mockLink(false, false, false);
+
+
+        when(node.getProperty(HIPPO_DOCBASE).getValue().getString()).thenReturn(LinkValidator.EMPTY_DOCUMENT);
+        when(context.createViolation("EmptyLink")).thenReturn(mock(Violation.class));
+
+        assertTrue(validator.validate(context, node).isPresent());
+    }
+
     private Node mockLink(boolean stop, boolean page, boolean shared) {
         Node node = Mockito.mock(Node.class, withSettings().lenient());
         try {
