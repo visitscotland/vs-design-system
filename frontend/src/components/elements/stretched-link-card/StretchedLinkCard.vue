@@ -9,8 +9,6 @@
             />
         </template>
 
-        <slot name="stretchedCardImage" />
-
         <div class="card-body">
             <VsHeading
                 level="3"
@@ -27,7 +25,10 @@
                     <slot name="stretchedCardHeader" />
                 </VsLink>
             </VsHeading>
-            <div class="stretched-link-card__content">
+            <div
+                class="stretched-link-card__content"
+                data-test="stretched-link-card__content"
+            >
                 <!-- @slot Contains body content for the card  -->
                 <slot name="stretchedCardContent" />
             </div>
