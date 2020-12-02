@@ -10,7 +10,7 @@ const factoryShallowMount = (propsData) => shallowMount(VsDropdown, {
     },
     slots: {
         default: slotContent,
-    }
+    },
 });
 
 let wrapper;

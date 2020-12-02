@@ -4,8 +4,8 @@ import VsDropdownItem from '../DropdownItem';
 
 const slotContent = 'Slot Content';
 
-let loadedAttrs = {
-    href: 'https://google.com'
+const loadedAttrs = {
+    href: 'https://google.com',
 };
 
 const factoryShallowMount = (propsData) => shallowMount(VsDropdownItem, {
