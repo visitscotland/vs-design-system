@@ -67,14 +67,35 @@
                         </VsMegaNavTopMenuItem>
                     </template>
                     <template #megaNavMobileItems>
-                        <VsMegaNavMobileToggle
-                            v-for="(item, mobileItemIndex) in header.mainNav"
-                            :key="mobileItemIndex"
-                            :href="item.href"
-                            :cta-text="item.cta"
-                        >
-                            {{ item.title }}
-                        </VsMegaNavMobileToggle>
+                        <VsAccordion>
+                            <VsMegaNavAccordionItem
+                                :title="item.title"
+                                level="1"
+                                :control-id="'menu_accordion_item_' + mobileItemIndex"
+                                v-for="(item, mobileItemIndex) in header.mainNav"
+                                :key="mobileItemIndex"
+                            >
+                                <VsMegaNavAccordionItem
+                                    :title="subHeading.title"
+                                    level="2"
+                                    :control-id="'menu_accordion_item_' + subHeadingIndex"
+                                    v-for="(subHeading, subHeadingIndex) in item.dropdownNav"
+                                    :key="subHeadingIndex"
+                                >
+                                    <VsMegaNavList>
+                                        <VsMegaNavListItem
+                                            slot="navListItems"
+                                            v-for="(navLink, navLinkIndex)
+                                                in subHeading.dropdownNav"
+                                            :key="navLinkIndex"
+                                            :href="navLink.href"
+                                        >
+                                            {{ navLink.title }}
+                                        </VsMegaNavListItem>
+                                    </VsMegaNavList>
+                                </VsMegaNavAccordionItem>
+                            </VsMegaNavAccordionItem>
+                        </VsAccordion>
                     </template>
                 </VsMegaNav>
             </template>
