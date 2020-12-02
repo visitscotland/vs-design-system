@@ -1,6 +1,7 @@
 <template>
     <section
         class="content-section"
+        data-test="vs-content-section"
         :class="{ lead: lead, ['content-section-' + tag]: true }"
     >
         <VsHeading
