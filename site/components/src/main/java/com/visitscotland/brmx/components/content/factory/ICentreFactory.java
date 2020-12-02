@@ -92,7 +92,7 @@ public class ICentreFactory {
             }
 
             if (doc.getQuote().getProduct() instanceof Linkable) {
-                EnhancedLink link = linkFactory.createEnhancedLink((Linkable) doc.getQuote().getProduct(), locale);
+                EnhancedLink link = linkFactory.createEnhancedLink((Linkable) doc.getQuote().getProduct(), locale, false);
                 module.setQuoteLink(link);
                 if (module.getImage() == null) {
                     module.setImage(link.getImage());

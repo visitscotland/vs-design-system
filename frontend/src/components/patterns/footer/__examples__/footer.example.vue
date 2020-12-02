@@ -8,14 +8,11 @@
             >
                 <VsFooterAccordionItem
                     :open-by-default="false"
+                    title="Visitor information"
                     variant="dark"
                     control-id="footer_accordion_item_1"
                     class="border-left-0 pl-md-0"
                 >
-                    <span slot="title">
-                        Visitor information
-                    </span>
-
                     <span slot="icon-open">
                         <VsIcon
                             name="chevron"
@@ -61,13 +58,10 @@
             >
                 <VsFooterAccordionItem
                     :open-by-default="false"
+                    title="Get in touch"
                     variant="dark"
                     control-id="footer_accordion_item_2"
                 >
-                    <span slot="title">
-                        Get in touch
-                    </span>
-
                     <span slot="icon-open">
                         <VsIcon
                             name="chevron"
@@ -113,14 +107,11 @@
             >
                 <VsFooterAccordionItem
                     :open-by-default="false"
+                    title="Our other sites"
                     variant="dark"
                     control-id="footer_accordion_item_3"
                     class="border-bottom-0"
                 >
-                    <span slot="title">
-                        Our other sites
-                    </span>
-
                     <span slot="icon-open">
                         <VsIcon
                             name="chevron"

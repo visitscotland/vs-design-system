@@ -3,6 +3,7 @@ package com.visitscotland.brmx.beans;
 import org.onehippo.cms7.essentials.dashboard.annotations.HippoEssentialsGenerated;
 import org.hippoecm.hst.content.beans.Node;
 import java.util.List;
+import com.visitscotland.brmx.beans.OTYML;
 
 @HippoEssentialsGenerated(internalName = "visitscotland:Itinerary")
 @Node(jcrType = "visitscotland:Itinerary")
@@ -58,5 +59,10 @@ public class Itinerary extends Page {
     @Override
     public String[] getChildJcrTypes() {
         return new String[] { "visitscotland:Day" };
+    }
+
+    @HippoEssentialsGenerated(internalName = "visitscotland:otherThings")
+    public OTYML getOtherThings() {
+        return getBean("visitscotland:otherThings", OTYML.class);
     }
 }

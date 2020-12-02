@@ -52,6 +52,7 @@ public class ItineraryContentComponent extends PageContentComponent<Itinerary> {
     private void generateStops(HstRequest request) {
 
         final Itinerary itinerary = getDocument(request);
+        final String OTYML = "otyml";
         final String ITINERARY_ALERTS = "alerts";
         final String ADDRESS = "address";
         final String LOCATION = "city";
@@ -232,6 +233,7 @@ public class ItineraryContentComponent extends PageContentComponent<Itinerary> {
 
         request.setAttribute(DISTANCE, totalDistance.compareTo(BigDecimal.ZERO) == 0 ? itinerary.getDistance() : totalDistance);
         request.setAttribute(STOPS_MAP, products);
+        request.setAttribute(OTYML, addOTYML(itinerary, request.getLocale()));
 
         if (products.size() > 0) {
             request.setAttribute(FIRST_STOP_LOCATION, itinerary.getStart().isEmpty() ? products.get(firstStopId).getSubTitle() : itinerary.getStart());

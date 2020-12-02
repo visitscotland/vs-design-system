@@ -11,7 +11,7 @@ definitions:
         /hipposysedit:nodetype:
           jcr:primaryType: hipposysedit:nodetype
           jcr:mixinTypes: ['mix:referenceable', 'hipposysedit:remodel']
-          jcr:uuid: 1027e439-c454-47da-8e23-992abdb2af45
+          jcr:uuid: dc8bb95c-db77-40e3-87c3-4c8ba027d57e
           hipposysedit:node: true
           hipposysedit:supertype: ['visitscotland:basedocument', 'hippostd:relaxed',
             'hippotranslation:translated']
@@ -33,7 +33,7 @@ definitions:
             hipposysedit:path: visitscotland:seoTitle
             hipposysedit:primary: false
             hipposysedit:type: String
-            hipposysedit:validators: [required]
+            hipposysedit:validators: [required, 'visitscotland:seotitle-string-validator']
           /breadcrumb:
             jcr:primaryType: hipposysedit:field
             hipposysedit:mandatory: false
@@ -58,7 +58,7 @@ definitions:
             hipposysedit:path: visitscotland:seoDescription
             hipposysedit:primary: false
             hipposysedit:type: String
-            hipposysedit:validators: [required]
+            hipposysedit:validators: [required, 'visitscotland:seodescription-string-validator']
           /title:
             jcr:primaryType: hipposysedit:field
             hipposysedit:mandatory: false
@@ -67,7 +67,7 @@ definitions:
             hipposysedit:path: visitscotland:title
             hipposysedit:primary: false
             hipposysedit:type: String
-            hipposysedit:validators: [required]
+            hipposysedit:validators: [required, 'visitscotland:short-string-validator']
           /introduction:
             jcr:primaryType: hipposysedit:field
             hipposysedit:mandatory: false
@@ -85,7 +85,16 @@ definitions:
             hipposysedit:path: visitscotland:teaser
             hipposysedit:primary: false
             hipposysedit:type: String
-            hipposysedit:validators: [required]
+            hipposysedit:validators: [required, 'visitscotland:long-string-validator']
+          /otherThings:
+            jcr:primaryType: hipposysedit:field
+            hipposysedit:mandatory: false
+            hipposysedit:multiple: false
+            hipposysedit:ordered: false
+            hipposysedit:path: visitscotland:otherThings
+            hipposysedit:primary: false
+            hipposysedit:type: visitscotland:OTYML
+            hipposysedit:validators: [optional]
           /openuistring:
             jcr:primaryType: hipposysedit:field
             hipposysedit:mandatory: false
@@ -110,7 +119,7 @@ definitions:
           visitscotland:seoNoIndex: false
           visitscotland:seoDescription: ''
           visitscotland:title: ''
-          jcr:uuid: 25a65339-65a8-4a7a-8ead-27edb132c799
+          jcr:uuid: e19bc6b5-51a2-45ee-9b66-ae1104e30e88
           hippostdpubwf:lastModificationDate: 2019-12-05T16:05:38.470Z
           hippostdpubwf:creationDate: 2019-12-05T16:05:38.470Z
           visitscotland:teaser: ''
@@ -124,6 +133,12 @@ definitions:
           /visitscotland:introduction:
             jcr:primaryType: hippostd:html
             hippostd:content: ''
+          /visitscotland:otherThings:
+            jcr:primaryType: visitscotland:OTYML
+            visitscotland:title: ''
+            /visitscotland:introduction:
+              jcr:primaryType: hippostd:html
+              hippostd:content: ''
       /editor:templates:
         jcr:primaryType: editor:templateset
         /_default_:
@@ -173,7 +188,7 @@ definitions:
             hint: Provided by SEO
             /cluster.options:
               jcr:primaryType: frontend:pluginconfig
-              maxlength: '70'
+              maxlength: ''
           /seoDescription:
             jcr:primaryType: frontend:plugin
             caption: Meta Description (SEO)
@@ -183,7 +198,7 @@ definitions:
             wicket.id: ${cluster.id}.right.item
             /cluster.options:
               jcr:primaryType: frontend:pluginconfig
-              maxlength: '160'
+              maxlength: ''
           /seoNoIndex:
             jcr:primaryType: frontend:plugin
             caption: Do not index (SEO)
@@ -203,7 +218,7 @@ definitions:
             hint: ''
             /cluster.options:
               jcr:primaryType: frontend:pluginconfig
-              maxlength: '55'
+              maxlength: ''
           /introduction:
             jcr:primaryType: frontend:plugin
             caption: Introduction
@@ -227,7 +242,16 @@ definitions:
             hint: ''
             /cluster.options:
               jcr:primaryType: frontend:pluginconfig
-              maxlength: '135'
+              maxlength: ''
+          /otherThings:
+            jcr:primaryType: frontend:plugin
+            caption: Other things you might like
+            field: otherThings
+            plugin.class: org.hippoecm.frontend.editor.plugins.field.NodeFieldPlugin
+            wicket.id: ${cluster.id}.left.item
+            hint: ''
+            /cluster.options:
+              jcr:primaryType: frontend:pluginconfig
           /translation:
             jcr:primaryType: frontend:plugin
             caption: Translation
