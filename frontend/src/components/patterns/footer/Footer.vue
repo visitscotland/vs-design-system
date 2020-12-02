@@ -1,5 +1,8 @@
 <template>
-    <div class="vs-footer pt-6 pt-md-9">
+    <div
+        class="vs-footer pt-6 pt-md-9"
+        data-unique-id="vs-footer"
+    >
         <VsFooterNavList break-point="md">
             <!-- @slot Contains accordion item for each menu list  -->
             <slot name="accordion-items" />
@@ -9,6 +12,7 @@
                 lg="3"
                 xl="2"
                 class="d-none d-lg-block"
+                data-unique-id="vs-footer-social_links"
             >
                 <!-- @slot Contains social menu for large screens  -->
                 <slot name="social-menu" />
@@ -21,6 +25,7 @@
                     <VsCol
                         cols="12"
                         class="d-block d-lg-none"
+                        data-unique-id="vs-footer-mobile_social_links"
                     >
                         <!-- @slot Contains social menu for screens medium and below -->
                         <slot name="social-menu" />

@@ -228,12 +228,12 @@ export default {
 </script>
 
 <style lang="scss">
-img {
-    width: 100%;
-    height: auto;
-}
 
 .vs-image-with-caption__image-wrapper {
+    img {
+        width: 100%;
+        height: auto;
+    }
 
     .vs-image-with-caption__toggle-caption-btn {
         bottom: $spacer-2;
