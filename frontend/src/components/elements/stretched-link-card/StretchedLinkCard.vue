@@ -60,6 +60,7 @@ export default {
         link: {
             type: String,
             required: true,
+            default: '#',
         },
         /**
         * The type of link. This will set the icon.
@@ -90,7 +91,6 @@ export default {
         * The image alt text to use in the component
         */
         imgAlt: {
-            required: false,
             type: String,
             default: '',
         },
