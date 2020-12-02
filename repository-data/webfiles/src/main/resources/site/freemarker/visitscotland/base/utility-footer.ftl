@@ -1,3 +1,4 @@
+<#compress>
 <#include "../../include/imports.ftl">
 <#include "../../frontend/components/vs-footer-utility-list.ftl">
 <#include "../../frontend/components/vs-footer-nav-list-item.ftl">
@@ -5,6 +6,7 @@
 <#-- @ftlvariable name="menu" type="com.visitscotland.brmx.components.navigation.RootMenuItem" -->
 <#-- @ftlvariable name="item" type="com.visitscotland.brmx.components.navigation.MenuItem" -->
 
+</#compress>
 <#if menu??>
     <div class="has-edit-button">
         <#list menu.siteMenuItems as item>

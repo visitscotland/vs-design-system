@@ -8,7 +8,6 @@
             <meta charset="utf-8"/>
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-            Hola (fullyQualified=${fullyQualified})
             <@hst.headContributions categoryIncludes="seo" xhtml=true/>
             <@hst.headContributions categoryIncludes="opengraph" xhtml=true/>
             <@hst.headContributions categoryIncludes="htmlHeadPreload" xhtml=true/>
@@ -21,9 +20,8 @@
 <body>
 <#compress>
     <internal-header>
-
         <div class="no-js" data-vue-app-init>
-            <@hst.include ref="top" />
+            <@hst.include ref="top"/>
 
             <@hst.include ref="menu"/>
 
