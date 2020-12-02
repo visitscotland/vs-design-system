@@ -3,15 +3,11 @@
         <VsStretchedLinkCard
             :link="linkUrl"
             :type="linkType"
+            :img-src="imgSrc"
+            :img-alt="imgAlt"
             class="megalink-link-list__wrapper"
             icon-size="xxs"
         >
-            <VsImg
-                slot="stretchedCardImage"
-                :src="imgSrc"
-                :alt="imgAlt"
-                class="megalink-link-list__img"
-            />
             <span
                 slot="stretchedCardHeader"
                 class="megalink-link-list__title"
@@ -36,7 +32,6 @@
 <script>
 import VsStretchedLinkCard from '@components/elements/stretched-link-card/StretchedLinkCard';
 import VsRichTextWrapper from '@components/elements/rich-text-wrapper/RichTextWrapper';
-import VsImg from '@components/elements/img/Img';
 
 /**
 * Megalink link list cards to be used in the megalinks component
@@ -50,7 +45,6 @@ export default {
     components: {
         VsStretchedLinkCard,
         VsRichTextWrapper,
-        VsImg,
     },
     props: {
         /**
@@ -99,7 +93,6 @@ export default {
 
 <style lang="scss">
     .megalink-link-list {
-        border: none;
         padding: $spacer-2 0 $spacer-3;
         position: relative;
         height: 100%;
@@ -119,19 +112,6 @@ export default {
             padding: $spacer-2;
             border: none;
             height: 100%;
-            transition: box-shadow 800ms;
-
-            &:hover {
-                box-shadow: 10px 10px 20px $color-gray-tint-4;
-
-                .megalink-link-list__title {
-                    text-decoration: underline;
-                }
-            }
-
-            .stretched-link {
-                text-decoration: none;
-            }
 
             .card-body {
                 background: none;
@@ -140,22 +120,15 @@ export default {
                 width: 66%;
             }
 
-            .megalink-link-list__img {
+            .stretched-link-card__img {
                 width: 33%;
                 align-self: flex-start;
                 margin-right: $spacer-4;
             }
 
             .megalink-link-list__title {
-                font-size: $font-size-sm;
                 letter-spacing: .05rem;
                 line-height: $line-height-m;
-                color: $color-base-text;
-                text-decoration: none;
-            }
-
-            .stretched-link {
-                letter-spacing: 0;
             }
 
             .card-title {
