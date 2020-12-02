@@ -18,7 +18,8 @@ const styleRules = utils.styleLoaders({
 
 const config = {
     output: {
-        path: path.resolve(__dirname, "../dist")
+        // note that this folder is overriden by the `styleguideDir` vue-styleguidist option
+        path: path.resolve(__dirname, "../dist/system")
     },
     resolve: {
         alias: {

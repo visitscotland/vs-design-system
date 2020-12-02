@@ -31,7 +31,7 @@
           jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
           jcr:uuid: e16bdb89-c271-46f1-851f-2d2b82d631d4
           hippo:name: Victorian Heritage Trail
-          hippo:versionHistory: 4bfd57df-028e-40e8-bf03-df3efb874586
+          hippo:versionHistory: 60e6ef58-cf24-4d5c-8e15-a1ad871b9d03
           /content[1]:
             jcr:primaryType: visitscotland:Itinerary
             jcr:mixinTypes: ['mix:referenceable']
@@ -40,7 +40,7 @@
             hippostd:state: draft
             hippostdpubwf:createdBy: admin
             hippostdpubwf:creationDate: 2020-02-07T12:52:15.063Z
-            hippostdpubwf:lastModificationDate: 2020-06-12T10:41:32.770+01:00
+            hippostdpubwf:lastModificationDate: 2020-11-10T13:06:02.359Z
             hippostdpubwf:lastModifiedBy: admin
             hippotranslation:id: 80ddd0f7-26c8-4514-bc5b-1504204eaec4
             hippotranslation:locale: en
@@ -57,14 +57,13 @@
             visitscotland:seoTitle: Victorian Heritage Trail
             visitscotland:start: ''
             visitscotland:teaser: The Victorian Heritage Trail pinpoints many of the
-              historic places that make the picturesque Dee and Don Valleys, in the
-              north east of Scotland, a truly majestic place.
+              historic places that make the picturesque Dee and Don Valleys.
             visitscotland:theme: sightseeing
             visitscotland:title: Victorian Heritage Trail
             visitscotland:transports: [car]
             /visitscotland:heroImage:
               jcr:primaryType: hippogallerypicker:imagelink
-              hippo:docbase: d607431a-46f7-4ed1-a288-de6458bbdc97
+              hippo:docbase: 609fd316-1a56-4ed3-8024-c2ef8202f068
               hippo:facets: []
               hippo:modes: []
               hippo:values: []
@@ -82,7 +81,7 @@
             hippostd:state: unpublished
             hippostdpubwf:createdBy: admin
             hippostdpubwf:creationDate: 2020-02-07T12:52:15.063Z
-            hippostdpubwf:lastModificationDate: 2020-05-25T14:09:52.572+01:00
+            hippostdpubwf:lastModificationDate: 2020-11-10T13:06:02.330Z
             hippostdpubwf:lastModifiedBy: admin
             hippotranslation:id: 80ddd0f7-26c8-4514-bc5b-1504204eaec4
             hippotranslation:locale: en
@@ -99,14 +98,13 @@
             visitscotland:seoTitle: Victorian Heritage Trail
             visitscotland:start: ''
             visitscotland:teaser: The Victorian Heritage Trail pinpoints many of the
-              historic places that make the picturesque Dee and Don Valleys, in the
-              north east of Scotland, a truly majestic place.
+              historic places that make the picturesque Dee and Don Valleys.
             visitscotland:theme: sightseeing
             visitscotland:title: Victorian Heritage Trail
             visitscotland:transports: [car]
             /visitscotland:heroImage:
               jcr:primaryType: hippogallerypicker:imagelink
-              hippo:docbase: d607431a-46f7-4ed1-a288-de6458bbdc97
+              hippo:docbase: 609fd316-1a56-4ed3-8024-c2ef8202f068
               hippo:facets: []
               hippo:modes: []
               hippo:values: []
@@ -124,9 +122,9 @@
             hippostd:state: published
             hippostdpubwf:createdBy: admin
             hippostdpubwf:creationDate: 2020-02-07T12:52:15.063Z
-            hippostdpubwf:lastModificationDate: 2020-05-25T14:09:52.572+01:00
+            hippostdpubwf:lastModificationDate: 2020-11-10T13:06:02.330Z
             hippostdpubwf:lastModifiedBy: admin
-            hippostdpubwf:publicationDate: 2020-06-12T09:00:12.065+01:00
+            hippostdpubwf:publicationDate: 2020-11-10T13:06:05.004Z
             hippotranslation:id: 80ddd0f7-26c8-4514-bc5b-1504204eaec4
             hippotranslation:locale: en
             visitscotland:areas: [north]
@@ -142,14 +140,13 @@
             visitscotland:seoTitle: Victorian Heritage Trail
             visitscotland:start: ''
             visitscotland:teaser: The Victorian Heritage Trail pinpoints many of the
-              historic places that make the picturesque Dee and Don Valleys, in the
-              north east of Scotland, a truly majestic place.
+              historic places that make the picturesque Dee and Don Valleys.
             visitscotland:theme: sightseeing
             visitscotland:title: Victorian Heritage Trail
             visitscotland:transports: [car]
             /visitscotland:heroImage:
               jcr:primaryType: hippogallerypicker:imagelink
-              hippo:docbase: d607431a-46f7-4ed1-a288-de6458bbdc97
+              hippo:docbase: 609fd316-1a56-4ed3-8024-c2ef8202f068
               hippo:facets: []
               hippo:modes: []
               hippo:values: []
@@ -369,7 +366,7 @@
         jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
         jcr:uuid: 17a3588b-6cee-439b-acd8-186ceb2067aa
         hippo:name: 12 Iconic Scottish Views
-        hippo:versionHistory: 41aded80-d1f7-47aa-a163-080af0ea5493
+        hippo:versionHistory: 8e00fc55-99f0-4d32-a680-845be8176522
         /content[1]:
           jcr:primaryType: visitscotland:Listicle
           jcr:mixinTypes: ['mix:referenceable']
@@ -378,7 +375,7 @@
           hippostd:state: draft
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2020-03-17T11:17:48.546Z
-          hippostdpubwf:lastModificationDate: 2020-06-12T10:14:53.984+01:00
+          hippostdpubwf:lastModificationDate: 2020-11-10T13:05:41.102Z
           hippostdpubwf:lastModifiedBy: admin
           hippotranslation:id: aced74d3-03f8-4ed2-9592-dd31975f29cf
           hippotranslation:locale: en
@@ -391,12 +388,11 @@
           visitscotland:seoTitle: 12 Iconic Scottish Views
           visitscotland:summaryTitle: A Testing Title
           visitscotland:teaser: Find some of the most beautiful places in Scotland,
-            including iconic viewpoints and lesser known gems, alongside advice on
-            how to get there.
+            including iconic viewpoints and lesser known gems.
           visitscotland:title: 12 Iconic Scottish Views
           /visitscotland:heroImage:
             jcr:primaryType: hippogallerypicker:imagelink
-            hippo:docbase: 878bc413-07fe-4c1a-9df6-55514c250a16
+            hippo:docbase: 1b72bf72-0409-4ec7-aa0c-fc98f6045c98
             hippo:facets: []
             hippo:modes: []
             hippo:values: []
@@ -420,7 +416,7 @@
           hippostd:state: unpublished
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2020-03-17T11:17:48.546Z
-          hippostdpubwf:lastModificationDate: 2020-04-16T17:37:01.371+01:00
+          hippostdpubwf:lastModificationDate: 2020-11-10T13:05:41.051Z
           hippostdpubwf:lastModifiedBy: admin
           hippotranslation:id: aced74d3-03f8-4ed2-9592-dd31975f29cf
           hippotranslation:locale: en
@@ -433,12 +429,11 @@
           visitscotland:seoTitle: 12 Iconic Scottish Views
           visitscotland:summaryTitle: A Testing Title
           visitscotland:teaser: Find some of the most beautiful places in Scotland,
-            including iconic viewpoints and lesser known gems, alongside advice on
-            how to get there.
+            including iconic viewpoints and lesser known gems.
           visitscotland:title: 12 Iconic Scottish Views
           /visitscotland:heroImage:
             jcr:primaryType: hippogallerypicker:imagelink
-            hippo:docbase: 878bc413-07fe-4c1a-9df6-55514c250a16
+            hippo:docbase: 1b72bf72-0409-4ec7-aa0c-fc98f6045c98
             hippo:facets: []
             hippo:modes: []
             hippo:values: []
@@ -462,9 +457,9 @@
           hippostd:state: published
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2020-03-17T11:17:48.546Z
-          hippostdpubwf:lastModificationDate: 2020-04-16T17:37:01.371+01:00
+          hippostdpubwf:lastModificationDate: 2020-11-10T13:05:41.051Z
           hippostdpubwf:lastModifiedBy: admin
-          hippostdpubwf:publicationDate: 2020-06-12T09:01:02.481+01:00
+          hippostdpubwf:publicationDate: 2020-11-10T13:05:44.260Z
           hippotranslation:id: aced74d3-03f8-4ed2-9592-dd31975f29cf
           hippotranslation:locale: en
           visitscotland:breadcrumb: ''
@@ -476,12 +471,11 @@
           visitscotland:seoTitle: 12 Iconic Scottish Views
           visitscotland:summaryTitle: A Testing Title
           visitscotland:teaser: Find some of the most beautiful places in Scotland,
-            including iconic viewpoints and lesser known gems, alongside advice on
-            how to get there.
+            including iconic viewpoints and lesser known gems.
           visitscotland:title: 12 Iconic Scottish Views
           /visitscotland:heroImage:
             jcr:primaryType: hippogallerypicker:imagelink
-            hippo:docbase: 878bc413-07fe-4c1a-9df6-55514c250a16
+            hippo:docbase: 1b72bf72-0409-4ec7-aa0c-fc98f6045c98
             hippo:facets: []
             hippo:modes: []
             hippo:values: []
@@ -1775,3 +1769,1258 @@
             jcr:primaryType: visitscotland:ExternalLink
             visitscotland:label: ''
             visitscotland:link: https://www.visitscotland.com/see-do/landscapes-nature/iconic-scottish-views/
+    /beaches:
+      jcr:primaryType: hippostd:folder
+      jcr:mixinTypes: ['hippotranslation:translated', 'mix:versionable']
+      jcr:uuid: 83843d16-30a9-4258-86f0-d9cb88d0ccd7
+      hippostd:foldertype: [new-translated-folder, new-page, new-module]
+      hippotranslation:id: 392e6eb8-80c9-40a9-9c5f-fbfaa7e9256f
+      hippotranslation:locale: en
+      /content:
+        jcr:primaryType: hippo:handle
+        jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
+        jcr:uuid: 6fc80c0f-f4a6-4ef5-86a7-24345eb08ae8
+        hippo:name: Best Beaches
+        hippo:versionHistory: c193a64c-efc8-4367-9922-b551ae06ae96
+        /content[1]:
+          jcr:primaryType: visitscotland:Listicle
+          jcr:mixinTypes: ['mix:referenceable']
+          jcr:uuid: 0e7f3667-43bb-4c3f-a2ac-794c332ebf58
+          hippo:availability: []
+          hippostd:state: draft
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2020-09-30T14:45:11.696Z
+          hippostdpubwf:lastModificationDate: 2020-10-22T15:46:39.074Z
+          hippostdpubwf:lastModifiedBy: admin
+          hippotranslation:id: 608fa6dc-6b8b-481a-a8d0-9f7153909c3e
+          hippotranslation:locale: en
+          visitscotland:breadcrumb: ''
+          visitscotland:descOrder: false
+          visitscotland:seoDescription: Discover the best beaches in Scotland, from
+            Luskentyre Sands to West Sands Beach in St Andrews and Calgary Bay on
+            Mull.    
+          visitscotland:seoNoIndex: false
+          visitscotland:seoTitle: 12 of the Best Beaches in Scotland
+          visitscotland:summaryTitle: Hello I'm a summary
+          visitscotland:teaser: Discover Scotland's most beautiful beaches.
+          visitscotland:title: 12 of the best beaches in scotland
+          /visitscotland:heroImage:
+            jcr:primaryType: hippogallerypicker:imagelink
+            hippo:docbase: b9d61304-1b64-4995-bea9-af40d165e8d1
+            hippo:facets: []
+            hippo:modes: []
+            hippo:values: []
+          /visitscotland:introduction:
+            jcr:primaryType: hippostd:html
+            hippostd:content: |-
+              <p>Taste the salt in the wind, hear the seabirds call to each other over the crashing sounds of the waves, and see the pure sands stretching for miles before your bare feet. When your senses are this alive, there is nowhere quite as wonderful as the beach. And there are few beaches as special as those in Scotland. Scotland's beaches come in many shapes and sizes - why not visit one now or next year when we celebrate the &nbsp;<a rel="noreferrer noopener" href="https://www.visitscotland.com/about/themed-years/coasts-waters/" target="_blank">Year of Coasts and Waters 2020</a>? Let's discover some of the best beaches in Scotland. &nbsp;</p>
+
+              <p>&nbsp;</p>
+          /visitscotland:summary:
+            jcr:primaryType: hippostd:html
+            hippostd:content: <p>I'm a summary too</p>
+        /content[2]:
+          jcr:primaryType: visitscotland:Listicle
+          jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
+          jcr:uuid: c2c956a5-131a-4863-ac00-115e6b7c09d0
+          hippo:availability: [preview]
+          hippostd:state: unpublished
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2020-09-30T14:45:11.696Z
+          hippostdpubwf:lastModificationDate: 2020-10-02T14:09:29.448Z
+          hippostdpubwf:lastModifiedBy: admin
+          hippotranslation:id: 608fa6dc-6b8b-481a-a8d0-9f7153909c3e
+          hippotranslation:locale: en
+          visitscotland:breadcrumb: ''
+          visitscotland:descOrder: false
+          visitscotland:seoDescription: Discover the best beaches in Scotland, from
+            Luskentyre Sands to West Sands Beach in St Andrews and Calgary Bay on
+            Mull.    
+          visitscotland:seoNoIndex: false
+          visitscotland:seoTitle: 12 of the Best Beaches in Scotland
+          visitscotland:summaryTitle: Hello I'm a summary
+          visitscotland:teaser: Discover Scotland's most beautiful beaches.
+          visitscotland:title: 12 of the best beaches in scotland
+          /visitscotland:heroImage:
+            jcr:primaryType: hippogallerypicker:imagelink
+            hippo:docbase: b9d61304-1b64-4995-bea9-af40d165e8d1
+            hippo:facets: []
+            hippo:modes: []
+            hippo:values: []
+          /visitscotland:introduction:
+            jcr:primaryType: hippostd:html
+            hippostd:content: |-
+              <p>Taste the salt in the wind, hear the seabirds call to each other over the crashing sounds of the waves, and see the pure sands stretching for miles before your bare feet. When your senses are this alive, there is nowhere quite as wonderful as the beach. And there are few beaches as special as those in Scotland. Scotland's beaches come in many shapes and sizes - why not visit one now or next year when we celebrate the &nbsp;<a rel="noreferrer noopener" href="https://www.visitscotland.com/about/themed-years/coasts-waters/" target="_blank">Year of Coasts and Waters 2020</a>? Let's discover some of the best beaches in Scotland. &nbsp;</p>
+
+              <p>&nbsp;</p>
+          /visitscotland:summary:
+            jcr:primaryType: hippostd:html
+            hippostd:content: <p>I'm a summary too</p>
+        /content[3]:
+          jcr:primaryType: visitscotland:Listicle
+          jcr:mixinTypes: ['mix:referenceable']
+          jcr:uuid: bd95d7e8-8e38-4aba-9e36-3e8e9f165c96
+          hippo:availability: [live]
+          hippostd:state: published
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2020-09-30T14:45:11.696Z
+          hippostdpubwf:lastModificationDate: 2020-10-02T14:09:29.448Z
+          hippostdpubwf:lastModifiedBy: admin
+          hippostdpubwf:publicationDate: 2020-11-24T13:25:18.409Z
+          hippotranslation:id: 608fa6dc-6b8b-481a-a8d0-9f7153909c3e
+          hippotranslation:locale: en
+          visitscotland:breadcrumb: ''
+          visitscotland:descOrder: false
+          visitscotland:seoDescription: Discover the best beaches in Scotland, from
+            Luskentyre Sands to West Sands Beach in St Andrews and Calgary Bay on
+            Mull.    
+          visitscotland:seoNoIndex: false
+          visitscotland:seoTitle: 12 of the Best Beaches in Scotland
+          visitscotland:summaryTitle: Hello I'm a summary
+          visitscotland:teaser: Discover Scotland's most beautiful beaches.
+          visitscotland:title: 12 of the best beaches in scotland
+          /visitscotland:heroImage:
+            jcr:primaryType: hippogallerypicker:imagelink
+            hippo:docbase: b9d61304-1b64-4995-bea9-af40d165e8d1
+            hippo:facets: []
+            hippo:modes: []
+            hippo:values: []
+          /visitscotland:introduction:
+            jcr:primaryType: hippostd:html
+            hippostd:content: |-
+              <p>Taste the salt in the wind, hear the seabirds call to each other over the crashing sounds of the waves, and see the pure sands stretching for miles before your bare feet. When your senses are this alive, there is nowhere quite as wonderful as the beach. And there are few beaches as special as those in Scotland. Scotland's beaches come in many shapes and sizes - why not visit one now or next year when we celebrate the &nbsp;<a rel="noreferrer noopener" href="https://www.visitscotland.com/about/themed-years/coasts-waters/" target="_blank">Year of Coasts and Waters 2020</a>? Let's discover some of the best beaches in Scotland. &nbsp;</p>
+
+              <p>&nbsp;</p>
+          /visitscotland:summary:
+            jcr:primaryType: hippostd:html
+            hippostd:content: <p>I'm a summary too</p>
+      /tolsta-beach:
+        jcr:primaryType: hippo:handle
+        jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
+        jcr:uuid: 77223f50-c427-46aa-bc88-14c7ea3f44e8
+        hippo:name: Tolsta Beach
+        hippo:versionHistory: 9c0d274c-8b5c-40bb-9c91-0b60ce12e6b6
+        /tolsta-beach[1]:
+          jcr:primaryType: visitscotland:ListicleItem
+          jcr:mixinTypes: ['mix:referenceable']
+          jcr:uuid: 7a765cc2-04ae-4bed-a663-7d1e8256d2e7
+          hippo:availability: []
+          hippostd:state: draft
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2020-09-30T14:59:30.414Z
+          hippostdpubwf:lastModificationDate: 2020-09-30T15:02:53.447Z
+          hippostdpubwf:lastModifiedBy: admin
+          hippotranslation:id: a6f6cdf0-a3b0-4b83-9ece-e0e24263fb83
+          hippotranslation:locale: en
+          visitscotland:subtitle: ''
+          visitscotland:title: Tolsta Beach
+          /visitscotland:description:
+            jcr:primaryType: hippostd:html
+            hippostd:content: |-
+              <p>There is something supremely refreshing about the breeze of the <a rel="noreferrer noopener" href="https://www.visitscotland.com/cms-images/landscape-and-nature/668959/visitscotland_38101595392.jpg" target="_blank">Outer Hebrides</a>, and the next two beaches on this list come close to seaside perfection.&nbsp;Tolsta, a crofting village, is not far from Lewis' main town of Stornoway and this peaceful cove is hidden away from the road, ideal for a picnic stop. &nbsp;</p>
+
+              <p>Beach fact: The long sandy beach is popular with surfers with big swells forming in this exposed stretch of coastline. &nbsp;</p>
+          /visitscotland:images:
+            jcr:primaryType: hippogallerypicker:imagelink
+            hippo:docbase: c3eafb5b-6c18-4caa-9c9a-63279b816630
+            hippo:facets: []
+            hippo:modes: []
+            hippo:values: []
+          /visitscotland:products:
+            jcr:primaryType: visitscotland:DMSLink
+            visitscotland:label: ''
+            visitscotland:product: '724941'
+        /tolsta-beach[2]:
+          jcr:primaryType: visitscotland:ListicleItem
+          jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
+          jcr:uuid: b8066d1f-3f46-4a51-b8c7-1cf7b67eea2d
+          hippo:availability: [preview]
+          hippostd:state: unpublished
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2020-09-30T14:59:30.414Z
+          hippostdpubwf:lastModificationDate: 2020-09-30T15:02:53.202Z
+          hippostdpubwf:lastModifiedBy: admin
+          hippotranslation:id: a6f6cdf0-a3b0-4b83-9ece-e0e24263fb83
+          hippotranslation:locale: en
+          visitscotland:subtitle: ''
+          visitscotland:title: Tolsta Beach
+          /visitscotland:description:
+            jcr:primaryType: hippostd:html
+            hippostd:content: |-
+              <p>There is something supremely refreshing about the breeze of the <a rel="noreferrer noopener" href="https://www.visitscotland.com/cms-images/landscape-and-nature/668959/visitscotland_38101595392.jpg" target="_blank">Outer Hebrides</a>, and the next two beaches on this list come close to seaside perfection.&nbsp;Tolsta, a crofting village, is not far from Lewis' main town of Stornoway and this peaceful cove is hidden away from the road, ideal for a picnic stop. &nbsp;</p>
+
+              <p>Beach fact: The long sandy beach is popular with surfers with big swells forming in this exposed stretch of coastline. &nbsp;</p>
+          /visitscotland:images:
+            jcr:primaryType: hippogallerypicker:imagelink
+            hippo:docbase: c3eafb5b-6c18-4caa-9c9a-63279b816630
+            hippo:facets: []
+            hippo:modes: []
+            hippo:values: []
+          /visitscotland:products:
+            jcr:primaryType: visitscotland:DMSLink
+            visitscotland:label: ''
+            visitscotland:product: '724941'
+        /tolsta-beach[3]:
+          jcr:primaryType: visitscotland:ListicleItem
+          jcr:mixinTypes: ['mix:referenceable']
+          jcr:uuid: f52c7d33-eae9-45a5-a380-d82236f47183
+          hippo:availability: [live]
+          hippostd:state: published
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2020-09-30T14:59:30.414Z
+          hippostdpubwf:lastModificationDate: 2020-09-30T15:02:53.202Z
+          hippostdpubwf:lastModifiedBy: admin
+          hippostdpubwf:publicationDate: 2020-11-24T13:25:20.897Z
+          hippotranslation:id: a6f6cdf0-a3b0-4b83-9ece-e0e24263fb83
+          hippotranslation:locale: en
+          visitscotland:subtitle: ''
+          visitscotland:title: Tolsta Beach
+          /visitscotland:description:
+            jcr:primaryType: hippostd:html
+            hippostd:content: |-
+              <p>There is something supremely refreshing about the breeze of the <a rel="noreferrer noopener" href="https://www.visitscotland.com/cms-images/landscape-and-nature/668959/visitscotland_38101595392.jpg" target="_blank">Outer Hebrides</a>, and the next two beaches on this list come close to seaside perfection.&nbsp;Tolsta, a crofting village, is not far from Lewis' main town of Stornoway and this peaceful cove is hidden away from the road, ideal for a picnic stop. &nbsp;</p>
+
+              <p>Beach fact: The long sandy beach is popular with surfers with big swells forming in this exposed stretch of coastline. &nbsp;</p>
+          /visitscotland:images:
+            jcr:primaryType: hippogallerypicker:imagelink
+            hippo:docbase: c3eafb5b-6c18-4caa-9c9a-63279b816630
+            hippo:facets: []
+            hippo:modes: []
+            hippo:values: []
+          /visitscotland:products:
+            jcr:primaryType: visitscotland:DMSLink
+            visitscotland:label: ''
+            visitscotland:product: '724941'
+      /st-ninians-isle:
+        jcr:primaryType: hippo:handle
+        jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
+        jcr:uuid: d7567ba4-8a0a-4651-8fbf-589ba7ac16ef
+        hippo:name: St Ninian's Isle
+        hippo:versionHistory: 9d88c53d-79ed-44bf-82a8-196be89ea247
+        /st-ninians-isle[1]:
+          jcr:primaryType: visitscotland:ListicleItem
+          jcr:mixinTypes: ['mix:referenceable']
+          jcr:uuid: 03e9acb3-919b-4a38-9eff-399e24107979
+          hippo:availability: []
+          hippostd:state: draft
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2020-09-30T14:53:23.236Z
+          hippostdpubwf:lastModificationDate: 2020-10-22T15:45:43.128Z
+          hippostdpubwf:lastModifiedBy: admin
+          hippotranslation:id: 66050275-1392-47b5-8501-ad2bcbca9089
+          hippotranslation:locale: en
+          visitscotland:subtitle: ''
+          visitscotland:title: St Ninian's Isle, Shetland 
+          /visitscotland:description:
+            jcr:primaryType: hippostd:html
+            hippostd:content: |-
+              <p>&nbsp;</p>
+
+              <p>You are never more than 5 km from the sea on the northerly Shetland archipelago, so a beach adventure is always on the cards! One of the most incredible coastal sights is <a rel="noreferrer noopener" href="https://www.visitscotland.com/info/towns-villages/st-ninians-isle-p315891" target="_blank">St&nbsp;Ninian's&nbsp;Isle</a>. A circular 6 km walk will see you set foot across one of the finest&nbsp;sand&nbsp;tombolos&nbsp;in Europe, walking straight through the middle of the ocean over a natural sand causeway towards a blissful isle.</p>
+
+              <p>Beach fact: A&nbsp;Pictish&nbsp;treasure hoard was found on the island, beside the ancient chapel site.   &nbsp;</p>
+          /visitscotland:images:
+            jcr:primaryType: visitscotland:InstagramImage
+            visitscotland:caption: St Ninian's Isle
+            visitscotland:id: BeDSJ9xg6L3
+            visitscotland:location: Shetland
+          /visitscotland:products:
+            jcr:primaryType: visitscotland:DMSLink
+            visitscotland:label: ''
+            visitscotland:product: '315891'
+        /st-ninians-isle[2]:
+          jcr:primaryType: visitscotland:ListicleItem
+          jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
+          jcr:uuid: fe17a7db-81f6-4232-a4e1-f541809257aa
+          hippo:availability: [preview]
+          hippostd:state: unpublished
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2020-09-30T14:53:23.236Z
+          hippostdpubwf:lastModificationDate: 2020-10-01T15:31:31.976Z
+          hippostdpubwf:lastModifiedBy: admin
+          hippotranslation:id: 66050275-1392-47b5-8501-ad2bcbca9089
+          hippotranslation:locale: en
+          visitscotland:subtitle: ''
+          visitscotland:title: St Ninian's Isle, Shetland 
+          /visitscotland:description:
+            jcr:primaryType: hippostd:html
+            hippostd:content: |-
+              <p>&nbsp;</p>
+
+              <p>You are never more than 5 km from the sea on the northerly Shetland archipelago, so a beach adventure is always on the cards! One of the most incredible coastal sights is <a rel="noreferrer noopener" href="https://www.visitscotland.com/info/towns-villages/st-ninians-isle-p315891" target="_blank">St&nbsp;Ninian's&nbsp;Isle</a>. A circular 6 km walk will see you set foot across one of the finest&nbsp;sand&nbsp;tombolos&nbsp;in Europe, walking straight through the middle of the ocean over a natural sand causeway towards a blissful isle.</p>
+
+              <p>Beach fact: A&nbsp;Pictish&nbsp;treasure hoard was found on the island, beside the ancient chapel site.   &nbsp;</p>
+          /visitscotland:images:
+            jcr:primaryType: visitscotland:InstagramImage
+            visitscotland:caption: St Ninian's Isle
+            visitscotland:id: BeDSJ9xg6L3
+            visitscotland:location: Shetland
+          /visitscotland:products:
+            jcr:primaryType: visitscotland:DMSLink
+            visitscotland:label: ''
+            visitscotland:product: '315891'
+        /st-ninians-isle[3]:
+          jcr:primaryType: visitscotland:ListicleItem
+          jcr:mixinTypes: ['mix:referenceable']
+          jcr:uuid: acb6cc21-f76b-44fe-8da4-62b17288ab27
+          hippo:availability: [live]
+          hippostd:state: published
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2020-09-30T14:53:23.236Z
+          hippostdpubwf:lastModificationDate: 2020-10-01T15:31:31.976Z
+          hippostdpubwf:lastModifiedBy: admin
+          hippostdpubwf:publicationDate: 2020-11-24T13:25:25.040Z
+          hippotranslation:id: 66050275-1392-47b5-8501-ad2bcbca9089
+          hippotranslation:locale: en
+          visitscotland:subtitle: ''
+          visitscotland:title: St Ninian's Isle, Shetland 
+          /visitscotland:description:
+            jcr:primaryType: hippostd:html
+            hippostd:content: |-
+              <p>&nbsp;</p>
+
+              <p>You are never more than 5 km from the sea on the northerly Shetland archipelago, so a beach adventure is always on the cards! One of the most incredible coastal sights is <a rel="noreferrer noopener" href="https://www.visitscotland.com/info/towns-villages/st-ninians-isle-p315891" target="_blank">St&nbsp;Ninian's&nbsp;Isle</a>. A circular 6 km walk will see you set foot across one of the finest&nbsp;sand&nbsp;tombolos&nbsp;in Europe, walking straight through the middle of the ocean over a natural sand causeway towards a blissful isle.</p>
+
+              <p>Beach fact: A&nbsp;Pictish&nbsp;treasure hoard was found on the island, beside the ancient chapel site.   &nbsp;</p>
+          /visitscotland:images:
+            jcr:primaryType: visitscotland:InstagramImage
+            visitscotland:caption: St Ninian's Isle
+            visitscotland:id: BeDSJ9xg6L3
+            visitscotland:location: Shetland
+          /visitscotland:products:
+            jcr:primaryType: visitscotland:DMSLink
+            visitscotland:label: ''
+            visitscotland:product: '315891'
+      /east-beach-at-lossiemouth:
+        jcr:primaryType: hippo:handle
+        jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
+        jcr:uuid: 6e57bd90-3fae-4aa1-b959-20974ed2b68c
+        hippo:name: East Beach at Lossiemouth
+        hippo:versionHistory: 7513cef4-ff56-4846-8132-9a41152cc153
+        /east-beach-at-lossiemouth[1]:
+          jcr:primaryType: visitscotland:ListicleItem
+          jcr:mixinTypes: ['mix:referenceable']
+          jcr:uuid: 2a419ac0-da7a-4cfa-90a3-2f77a47d41f7
+          hippo:availability: []
+          hippostd:state: draft
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2020-09-30T15:05:23.307Z
+          hippostdpubwf:lastModificationDate: 2020-10-02T14:44:08.612Z
+          hippostdpubwf:lastModifiedBy: admin
+          hippotranslation:id: 88e9f741-57bb-41cf-aec9-fd53e31aae76
+          hippotranslation:locale: en
+          visitscotland:subtitle: ''
+          visitscotland:title: East Beach at Lossiemouth, Moray
+          /visitscotland:description:
+            jcr:primaryType: hippostd:html
+            hippostd:content: |-
+              <p>Over in the north east Mainland, the harbour at 'Lossie' is flanked by two stunning beaches to the <a rel="noreferrer noopener" href="https://www.visitscotland.com/info/towns-villages/east-beach-p314111" target="_blank">east</a> and west. The east's pretty sand dunes and long stretches of white sand make it a lovely place to walk the dog, or just yourself, with views across to the harbour town. Or, why not explore the&nbsp;Covesea&nbsp;Lighthouse on the west side? &nbsp;</p>
+
+              <p>Beach fact: The gelato is amazing! Stop for a scoop at <a rel="noreferrer noopener" href="https://www.facebook.com/GelateriaMiele/" target="_blank">Miele's</a>. &nbsp;</p>
+
+              <p> &nbsp;</p>
+          /visitscotland:products:
+            jcr:primaryType: visitscotland:DMSLink
+            visitscotland:label: ''
+            visitscotland:product: '314111'
+        /east-beach-at-lossiemouth[2]:
+          jcr:primaryType: visitscotland:ListicleItem
+          jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
+          jcr:uuid: 3079c397-ba16-444d-af94-2a72f3794820
+          hippo:availability: [preview]
+          hippostd:state: unpublished
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2020-09-30T15:05:23.307Z
+          hippostdpubwf:lastModificationDate: 2020-10-02T14:44:08.457Z
+          hippostdpubwf:lastModifiedBy: admin
+          hippotranslation:id: 88e9f741-57bb-41cf-aec9-fd53e31aae76
+          hippotranslation:locale: en
+          visitscotland:subtitle: ''
+          visitscotland:title: East Beach at Lossiemouth, Moray
+          /visitscotland:description:
+            jcr:primaryType: hippostd:html
+            hippostd:content: |-
+              <p>Over in the north east Mainland, the harbour at 'Lossie' is flanked by two stunning beaches to the <a rel="noreferrer noopener" href="https://www.visitscotland.com/info/towns-villages/east-beach-p314111" target="_blank">east</a> and west. The east's pretty sand dunes and long stretches of white sand make it a lovely place to walk the dog, or just yourself, with views across to the harbour town. Or, why not explore the&nbsp;Covesea&nbsp;Lighthouse on the west side? &nbsp;</p>
+
+              <p>Beach fact: The gelato is amazing! Stop for a scoop at <a rel="noreferrer noopener" href="https://www.facebook.com/GelateriaMiele/" target="_blank">Miele's</a>. &nbsp;</p>
+
+              <p> &nbsp;</p>
+          /visitscotland:products:
+            jcr:primaryType: visitscotland:DMSLink
+            visitscotland:label: ''
+            visitscotland:product: '314111'
+        /east-beach-at-lossiemouth[3]:
+          jcr:primaryType: visitscotland:ListicleItem
+          jcr:mixinTypes: ['mix:referenceable']
+          jcr:uuid: 87a0b745-3e1d-4cb6-b041-3025ed6fa2de
+          hippo:availability: [live]
+          hippostd:state: published
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2020-09-30T15:05:23.307Z
+          hippostdpubwf:lastModificationDate: 2020-10-02T14:44:08.457Z
+          hippostdpubwf:lastModifiedBy: admin
+          hippostdpubwf:publicationDate: 2020-11-24T13:25:27Z
+          hippotranslation:id: 88e9f741-57bb-41cf-aec9-fd53e31aae76
+          hippotranslation:locale: en
+          visitscotland:subtitle: ''
+          visitscotland:title: East Beach at Lossiemouth, Moray
+          /visitscotland:description:
+            jcr:primaryType: hippostd:html
+            hippostd:content: |-
+              <p>Over in the north east Mainland, the harbour at 'Lossie' is flanked by two stunning beaches to the <a rel="noreferrer noopener" href="https://www.visitscotland.com/info/towns-villages/east-beach-p314111" target="_blank">east</a> and west. The east's pretty sand dunes and long stretches of white sand make it a lovely place to walk the dog, or just yourself, with views across to the harbour town. Or, why not explore the&nbsp;Covesea&nbsp;Lighthouse on the west side? &nbsp;</p>
+
+              <p>Beach fact: The gelato is amazing! Stop for a scoop at <a rel="noreferrer noopener" href="https://www.facebook.com/GelateriaMiele/" target="_blank">Miele's</a>. &nbsp;</p>
+
+              <p> &nbsp;</p>
+          /visitscotland:products:
+            jcr:primaryType: visitscotland:DMSLink
+            visitscotland:label: ''
+            visitscotland:product: '314111'
+      /aberdeen-beach:
+        jcr:primaryType: hippo:handle
+        jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
+        jcr:uuid: b1df8aa7-9efa-4347-9400-07e9dcff5585
+        hippo:name: Aberdeen Beach
+        hippo:versionHistory: 227e399d-0296-4609-b124-9d9a50c027ea
+        /aberdeen-beach[1]:
+          jcr:primaryType: visitscotland:ListicleItem
+          jcr:mixinTypes: ['mix:referenceable']
+          jcr:uuid: f37c9863-55e9-4ad4-a40b-6404695d2512
+          hippo:availability: []
+          hippostd:state: draft
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2020-10-02T13:19:51.977Z
+          hippostdpubwf:lastModificationDate: 2020-10-02T13:33:31.680Z
+          hippostdpubwf:lastModifiedBy: admin
+          hippotranslation:id: bd46c784-0e7d-4dd8-857a-b3ce500a0a78
+          hippotranslation:locale: en
+          visitscotland:subtitle: ''
+          visitscotland:title: Aberdeen Beach
+          /visitscotland:description:
+            jcr:primaryType: hippostd:html
+            hippostd:content: |-
+              <p>Here is a city beach with bucket and spade-loads of charm! With an art-deco inspired esplanade, the golden coastline stretches 3 km and is one of the best places in Scotland to see bottlenose dolphins in the summer. Keep going along the esplanade towards&nbsp;Footdee, an area known locally as 'Fittie', and discover a former fishing village with oodles of 19th century appeal, lined with clusters of quirky cottages originally built for fishermen working along the harbour. &nbsp;</p>
+
+              <p>&nbsp;</p>
+
+              <p>Beach fact: Fresh seafood is still a local favourite here - try some of the catch served up in <a rel="noreferrer noopener" href="http://www.moonfishcafe.co.uk/" target="_blank">Moon Fish Café</a> or <a rel="noreferrer noopener" href="https://www.visitscotland.com/info/food-drink/silver-darling-restaurant-p311801" target="_blank">Silver Darling</a> in Aberdeen's city centre. &nbsp;</p>
+          /visitscotland:products:
+            jcr:primaryType: visitscotland:CMSLink
+            visitscotland:label: Learn more about Orkney
+            /visitscotland:link:
+              jcr:primaryType: hippo:mirror
+              hippo:docbase: 4d302e29-93dd-4157-9df9-bbd741bb12a0
+          /visitscotland:extraLinks:
+            jcr:primaryType: visitscotland:ExternalLink
+            visitscotland:label: Dine at the Moon Fish Café
+            visitscotland:link: http://www.moonfishcafe.co.uk/
+          /visitscotland:images:
+            jcr:primaryType: visitscotland:InstagramImage
+            visitscotland:caption: Aberdeen Beach -  the city's harbour beach is known
+              for dolphin spotting
+            visitscotland:id: ''
+            visitscotland:location: Aberdeen
+        /aberdeen-beach[2]:
+          jcr:primaryType: visitscotland:ListicleItem
+          jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
+          jcr:uuid: 49b6562c-42a0-4505-93a5-1142bbab4580
+          hippo:availability: [preview]
+          hippostd:state: unpublished
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2020-10-02T13:19:51.977Z
+          hippostdpubwf:lastModificationDate: 2020-10-02T13:26:18.416Z
+          hippostdpubwf:lastModifiedBy: admin
+          hippotranslation:id: bd46c784-0e7d-4dd8-857a-b3ce500a0a78
+          hippotranslation:locale: en
+          visitscotland:subtitle: ''
+          visitscotland:title: Aberdeen Beach
+          /visitscotland:description:
+            jcr:primaryType: hippostd:html
+            hippostd:content: |-
+              <p>Here is a city beach with bucket and spade-loads of charm! With an art-deco inspired esplanade, the golden coastline stretches 3 km and is one of the best places in Scotland to see bottlenose dolphins in the summer. Keep going along the esplanade towards&nbsp;Footdee, an area known locally as 'Fittie', and discover a former fishing village with oodles of 19th century appeal, lined with clusters of quirky cottages originally built for fishermen working along the harbour. &nbsp;</p>
+
+              <p>&nbsp;</p>
+
+              <p>Beach fact: Fresh seafood is still a local favourite here - try some of the catch served up in <a rel="noreferrer noopener" href="http://www.moonfishcafe.co.uk/" target="_blank">Moon Fish Café</a> or <a rel="noreferrer noopener" href="https://www.visitscotland.com/info/food-drink/silver-darling-restaurant-p311801" target="_blank">Silver Darling</a> in Aberdeen's city centre. &nbsp;</p>
+          /visitscotland:products:
+            jcr:primaryType: visitscotland:CMSLink
+            visitscotland:label: Learn more about Orkney
+            /visitscotland:link:
+              jcr:primaryType: hippo:mirror
+              hippo:docbase: 4d302e29-93dd-4157-9df9-bbd741bb12a0
+          /visitscotland:extraLinks:
+            jcr:primaryType: visitscotland:ExternalLink
+            visitscotland:label: Dine at the Moon Fish Café
+            visitscotland:link: http://www.moonfishcafe.co.uk/
+          /visitscotland:images:
+            jcr:primaryType: visitscotland:InstagramImage
+            visitscotland:caption: Moon Fish Café - one of Aberdeen's finest seafood
+              restaurants
+            visitscotland:id: CFFXRICHh8y
+            visitscotland:location: Aberdeen
+        /aberdeen-beach[3]:
+          jcr:primaryType: visitscotland:ListicleItem
+          jcr:mixinTypes: ['mix:referenceable']
+          jcr:uuid: 322d5e04-095f-47af-841e-d8392a1d6c00
+          hippo:availability: [live]
+          hippostd:state: published
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2020-10-02T13:19:51.977Z
+          hippostdpubwf:lastModificationDate: 2020-10-02T13:26:18.416Z
+          hippostdpubwf:lastModifiedBy: admin
+          hippostdpubwf:publicationDate: 2020-11-24T13:25:28.888Z
+          hippotranslation:id: bd46c784-0e7d-4dd8-857a-b3ce500a0a78
+          hippotranslation:locale: en
+          visitscotland:subtitle: ''
+          visitscotland:title: Aberdeen Beach
+          /visitscotland:description:
+            jcr:primaryType: hippostd:html
+            hippostd:content: |-
+              <p>Here is a city beach with bucket and spade-loads of charm! With an art-deco inspired esplanade, the golden coastline stretches 3 km and is one of the best places in Scotland to see bottlenose dolphins in the summer. Keep going along the esplanade towards&nbsp;Footdee, an area known locally as 'Fittie', and discover a former fishing village with oodles of 19th century appeal, lined with clusters of quirky cottages originally built for fishermen working along the harbour. &nbsp;</p>
+
+              <p>&nbsp;</p>
+
+              <p>Beach fact: Fresh seafood is still a local favourite here - try some of the catch served up in <a rel="noreferrer noopener" href="http://www.moonfishcafe.co.uk/" target="_blank">Moon Fish Café</a> or <a rel="noreferrer noopener" href="https://www.visitscotland.com/info/food-drink/silver-darling-restaurant-p311801" target="_blank">Silver Darling</a> in Aberdeen's city centre. &nbsp;</p>
+          /visitscotland:products:
+            jcr:primaryType: visitscotland:CMSLink
+            visitscotland:label: Learn more about Orkney
+            /visitscotland:link:
+              jcr:primaryType: hippo:mirror
+              hippo:docbase: 4d302e29-93dd-4157-9df9-bbd741bb12a0
+          /visitscotland:extraLinks:
+            jcr:primaryType: visitscotland:ExternalLink
+            visitscotland:label: Dine at the Moon Fish Café
+            visitscotland:link: http://www.moonfishcafe.co.uk/
+          /visitscotland:images:
+            jcr:primaryType: visitscotland:InstagramImage
+            visitscotland:caption: Moon Fish Café - one of Aberdeen's finest seafood
+              restaurants
+            visitscotland:id: CFFXRICHh8y
+            visitscotland:location: Aberdeen
+      /rockcliffe-beach-near-dalbeattie:
+        jcr:primaryType: hippo:handle
+        jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
+        jcr:uuid: d4ed720d-725c-4096-b7df-dc0dc5de593b
+        hippo:name: Rockcliffe Beach, near Dalbeattie
+        hippo:versionHistory: b226891f-92c3-4654-bc6d-62118c6c908a
+        /rockcliffe-beach-near-dalbeattie[1]:
+          jcr:primaryType: visitscotland:ListicleItem
+          jcr:mixinTypes: ['mix:referenceable']
+          jcr:uuid: cda1f79c-8fc6-4205-a620-f8b975937778
+          hippo:availability: []
+          hippostd:state: draft
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2020-10-02T13:27:28.672Z
+          hippostdpubwf:lastModificationDate: 2020-10-21T13:44:30.018Z
+          hippostdpubwf:lastModifiedBy: admin
+          hippotranslation:id: 66e83729-7bf2-4b1a-aa18-443ef435b06e
+          hippotranslation:locale: en
+          visitscotland:subtitle: ''
+          visitscotland:title: Rockcliffe Beach, near Dalbeattie
+          /visitscotland:description:
+            jcr:primaryType: hippostd:html
+            hippostd:content: |-
+              <p>Rockcliffe is a wonderful wee beach. You can go for a morning or afternoon saunter along the wooded coastal walkway for about 5 km between the villages of Kippford and <a rel="noreferrer noopener" href="https://www.visitscotland.com/info/towns-villages/rockcliffe-beach-p314891" target="_blank">Rockcliffe</a>, with cute houses, colourful plants and scampering squirrels to spot along the way. At&nbsp;Rockcliffe, a bird sanctuary called Rough Island can be reached on foot at low tide all year round, except for May and June (when the birds take charge of the isle!). &nbsp;</p>
+
+              <p>&nbsp;</p>
+
+              <p>Beach fact: There is a lost, ancient citadel at the hilltop, Mote of Mark, which is believed to date back to the 5th or 6th century.    &nbsp;</p>
+          /visitscotland:extraLinks:
+            jcr:primaryType: visitscotland:DMSLink
+            visitscotland:label: Discover Rockcliffe
+            visitscotland:product: '314891'
+          /visitscotland:products:
+            jcr:primaryType: visitscotland:CMSLink
+            visitscotland:label: ''
+            /visitscotland:link:
+              jcr:primaryType: hippo:mirror
+              hippo:docbase: 17a3588b-6cee-439b-acd8-186ceb2067aa
+        /rockcliffe-beach-near-dalbeattie[2]:
+          jcr:primaryType: visitscotland:ListicleItem
+          jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
+          jcr:uuid: 2acb5b4c-135b-451c-91c1-0f1a18476453
+          hippo:availability: [preview]
+          hippostd:state: unpublished
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2020-10-02T13:27:28.672Z
+          hippostdpubwf:lastModificationDate: 2020-10-21T13:45:34.520Z
+          hippostdpubwf:lastModifiedBy: admin
+          hippotranslation:id: 66e83729-7bf2-4b1a-aa18-443ef435b06e
+          hippotranslation:locale: en
+          visitscotland:subtitle: ''
+          visitscotland:title: Rockcliffe Beach, near Dalbeattie
+          /visitscotland:description:
+            jcr:primaryType: hippostd:html
+            hippostd:content: |-
+              <p>Rockcliffe is a wonderful wee beach. You can go for a morning or afternoon saunter along the wooded coastal walkway for about 5 km between the villages of Kippford and <a rel="noreferrer noopener" href="https://www.visitscotland.com/info/towns-villages/rockcliffe-beach-p314891" target="_blank">Rockcliffe</a>, with cute houses, colourful plants and scampering squirrels to spot along the way. At&nbsp;Rockcliffe, a bird sanctuary called Rough Island can be reached on foot at low tide all year round, except for May and June (when the birds take charge of the isle!). &nbsp;</p>
+
+              <p>&nbsp;</p>
+
+              <p>Beach fact: There is a lost, ancient citadel at the hilltop, Mote of Mark, which is believed to date back to the 5th or 6th century.    &nbsp;</p>
+          /visitscotland:extraLinks:
+            jcr:primaryType: visitscotland:DMSLink
+            visitscotland:label: Discover Rockcliffe
+            visitscotland:product: '314891'
+          /visitscotland:products:
+            jcr:primaryType: visitscotland:CMSLink
+            visitscotland:label: ''
+            /visitscotland:link:
+              jcr:primaryType: hippo:mirror
+              hippo:docbase: 17a3588b-6cee-439b-acd8-186ceb2067aa
+        /rockcliffe-beach-near-dalbeattie[3]:
+          jcr:primaryType: visitscotland:ListicleItem
+          jcr:mixinTypes: ['mix:referenceable']
+          jcr:uuid: 0ed79872-1125-4ae7-96c4-522bf531ffa3
+          hippo:availability: [live]
+          hippostd:state: published
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2020-10-02T13:27:28.672Z
+          hippostdpubwf:lastModificationDate: 2020-10-21T13:45:34.520Z
+          hippostdpubwf:lastModifiedBy: admin
+          hippostdpubwf:publicationDate: 2020-11-24T13:25:31.088Z
+          hippotranslation:id: 66e83729-7bf2-4b1a-aa18-443ef435b06e
+          hippotranslation:locale: en
+          visitscotland:subtitle: ''
+          visitscotland:title: Rockcliffe Beach, near Dalbeattie
+          /visitscotland:description:
+            jcr:primaryType: hippostd:html
+            hippostd:content: |-
+              <p>Rockcliffe is a wonderful wee beach. You can go for a morning or afternoon saunter along the wooded coastal walkway for about 5 km between the villages of Kippford and <a rel="noreferrer noopener" href="https://www.visitscotland.com/info/towns-villages/rockcliffe-beach-p314891" target="_blank">Rockcliffe</a>, with cute houses, colourful plants and scampering squirrels to spot along the way. At&nbsp;Rockcliffe, a bird sanctuary called Rough Island can be reached on foot at low tide all year round, except for May and June (when the birds take charge of the isle!). &nbsp;</p>
+
+              <p>&nbsp;</p>
+
+              <p>Beach fact: There is a lost, ancient citadel at the hilltop, Mote of Mark, which is believed to date back to the 5th or 6th century.    &nbsp;</p>
+          /visitscotland:extraLinks:
+            jcr:primaryType: visitscotland:DMSLink
+            visitscotland:label: Discover Rockcliffe
+            visitscotland:product: '314891'
+          /visitscotland:products:
+            jcr:primaryType: visitscotland:CMSLink
+            visitscotland:label: ''
+            /visitscotland:link:
+              jcr:primaryType: hippo:mirror
+              hippo:docbase: 17a3588b-6cee-439b-acd8-186ceb2067aa
+      /coldingham-bay-eyemouth:
+        jcr:primaryType: hippo:handle
+        jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
+        jcr:uuid: ed0ea483-d1c9-4867-9a91-4a55c72b43d7
+        hippo:name: Coldingham Bay, Eyemouth
+        hippo:versionHistory: 99f0ba5c-a83a-47bf-9e66-4bd786c26c08
+        /coldingham-bay-eyemouth[1]:
+          jcr:primaryType: visitscotland:ListicleItem
+          jcr:mixinTypes: ['mix:referenceable']
+          jcr:uuid: 4739ad5f-3d22-4bf6-823d-64a6c1bbb7b1
+          hippo:availability: []
+          hippostd:state: draft
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2020-10-02T13:35:51.804Z
+          hippostdpubwf:lastModificationDate: 2020-11-24T13:19:07.984Z
+          hippostdpubwf:lastModifiedBy: admin
+          hippotranslation:id: f3b1dac2-470f-4f5d-b590-bbb0eca96899
+          hippotranslation:locale: en
+          visitscotland:subtitle: Coldingham is a surfer's paradise, known for big
+            swells from the North Sea
+          visitscotland:title: Coldingham Bay, Eyemouth
+          /visitscotland:description:
+            jcr:primaryType: hippostd:html
+            hippostd:content: |-
+              <p>Just over an hour's drive from the capital,<a rel="noreferrer noopener" href="https://www.visitscotland.com/info/towns-villages/coldingham-bay-p315511" target="_blank"> Coldingham Bay</a> is one of several pristine beaches near Edinburgh, quietly situated along the Berwickshire coast. Popular with surfers and dog walkers alike, these sands are great for strolls, hitting the surf or befriending hermit crabs in rock pools. Walk from Coldingham to <a rel="noreferrer noopener" href="https://www.visitscotland.com/info/towns-villages/st-abbs-p242431" target="_blank">St&nbsp;Abbs</a> along the Creel Path for more&nbsp;breathtaking&nbsp;wildlife and crystal-clear seas. &nbsp;</p>
+
+              <p>&nbsp;</p>
+
+              <p>Beach fact: Coldingham is home to the Coldingham Priory, the former house of Benedictine monks with records dating back as far as 640 AD.</p>
+          /visitscotland:images:
+            jcr:primaryType: hippogallerypicker:imagelink
+            hippo:docbase: b9d61304-1b64-4995-bea9-af40d165e8d1
+            hippo:facets: []
+            hippo:modes: []
+            hippo:values: []
+          /visitscotland:products:
+            jcr:primaryType: visitscotland:ProductSearchLink
+            visitscotland:label: Find tours in Aboyne
+            /visitscotland:search:
+              jcr:primaryType: visitscotland:ProductsSearch
+              visitscotland:distance: 10.0
+              visitscotland:dmsAwards: []
+              visitscotland:dmsCategories: [tour]
+              visitscotland:dmsFacilities: []
+              visitscotland:location: Aboyne
+              visitscotland:officialrating: []
+              visitscotland:productType: acti,attr,reta
+              visitscotland:producttype: ''
+          /visitscotland:extraLinks:
+            jcr:primaryType: visitscotland:DMSLink
+            visitscotland:label: Learn about Coldingham Bay
+            visitscotland:product: '315511'
+        /coldingham-bay-eyemouth[2]:
+          jcr:primaryType: visitscotland:ListicleItem
+          jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
+          jcr:uuid: 88e8e429-7f21-4fdc-8d2b-f36302b71ae6
+          hippo:availability: [preview]
+          hippostd:state: unpublished
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2020-10-02T13:35:51.804Z
+          hippostdpubwf:lastModificationDate: 2020-11-24T13:19:32.047Z
+          hippostdpubwf:lastModifiedBy: admin
+          hippotranslation:id: f3b1dac2-470f-4f5d-b590-bbb0eca96899
+          hippotranslation:locale: en
+          visitscotland:subtitle: Coldingham is a surfer's paradise, known for big
+            swells from the North Sea
+          visitscotland:title: Coldingham Bay, Eyemouth
+          /visitscotland:description:
+            jcr:primaryType: hippostd:html
+            hippostd:content: |-
+              <p>Just over an hour's drive from the capital,<a rel="noreferrer noopener" href="https://www.visitscotland.com/info/towns-villages/coldingham-bay-p315511" target="_blank"> Coldingham Bay</a> is one of several pristine beaches near Edinburgh, quietly situated along the Berwickshire coast. Popular with surfers and dog walkers alike, these sands are great for strolls, hitting the surf or befriending hermit crabs in rock pools. Walk from Coldingham to <a rel="noreferrer noopener" href="https://www.visitscotland.com/info/towns-villages/st-abbs-p242431" target="_blank">St&nbsp;Abbs</a> along the Creel Path for more&nbsp;breathtaking&nbsp;wildlife and crystal-clear seas. &nbsp;</p>
+
+              <p>&nbsp;</p>
+
+              <p>Beach fact: Coldingham is home to the Coldingham Priory, the former house of Benedictine monks with records dating back as far as 640 AD.</p>
+          /visitscotland:images:
+            jcr:primaryType: hippogallerypicker:imagelink
+            hippo:docbase: b9d61304-1b64-4995-bea9-af40d165e8d1
+            hippo:facets: []
+            hippo:modes: []
+            hippo:values: []
+          /visitscotland:products:
+            jcr:primaryType: visitscotland:ProductSearchLink
+            visitscotland:label: Find tours in Aboyne
+            /visitscotland:search:
+              jcr:primaryType: visitscotland:ProductsSearch
+              visitscotland:distance: 10.0
+              visitscotland:dmsAwards: []
+              visitscotland:dmsCategories: [tour]
+              visitscotland:dmsFacilities: []
+              visitscotland:location: Aboyne
+              visitscotland:officialrating: []
+              visitscotland:productType: acti,attr,reta
+              visitscotland:producttype: ''
+          /visitscotland:extraLinks:
+            jcr:primaryType: visitscotland:DMSLink
+            visitscotland:label: Learn about Coldingham Bay
+            visitscotland:product: '315511'
+        /coldingham-bay-eyemouth[3]:
+          jcr:primaryType: visitscotland:ListicleItem
+          jcr:mixinTypes: ['mix:referenceable']
+          jcr:uuid: dcd7adb6-3c3b-49f0-a511-2742bb693f3b
+          hippo:availability: [live]
+          hippostd:state: published
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2020-10-02T13:35:51.804Z
+          hippostdpubwf:lastModificationDate: 2020-11-24T13:19:32.047Z
+          hippostdpubwf:lastModifiedBy: admin
+          hippostdpubwf:publicationDate: 2020-11-24T13:25:35.038Z
+          hippotranslation:id: f3b1dac2-470f-4f5d-b590-bbb0eca96899
+          hippotranslation:locale: en
+          visitscotland:subtitle: Coldingham is a surfer's paradise, known for big
+            swells from the North Sea
+          visitscotland:title: Coldingham Bay, Eyemouth
+          /visitscotland:description:
+            jcr:primaryType: hippostd:html
+            hippostd:content: |-
+              <p>Just over an hour's drive from the capital,<a rel="noreferrer noopener" href="https://www.visitscotland.com/info/towns-villages/coldingham-bay-p315511" target="_blank"> Coldingham Bay</a> is one of several pristine beaches near Edinburgh, quietly situated along the Berwickshire coast. Popular with surfers and dog walkers alike, these sands are great for strolls, hitting the surf or befriending hermit crabs in rock pools. Walk from Coldingham to <a rel="noreferrer noopener" href="https://www.visitscotland.com/info/towns-villages/st-abbs-p242431" target="_blank">St&nbsp;Abbs</a> along the Creel Path for more&nbsp;breathtaking&nbsp;wildlife and crystal-clear seas. &nbsp;</p>
+
+              <p>&nbsp;</p>
+
+              <p>Beach fact: Coldingham is home to the Coldingham Priory, the former house of Benedictine monks with records dating back as far as 640 AD.</p>
+          /visitscotland:images:
+            jcr:primaryType: hippogallerypicker:imagelink
+            hippo:docbase: b9d61304-1b64-4995-bea9-af40d165e8d1
+            hippo:facets: []
+            hippo:modes: []
+            hippo:values: []
+          /visitscotland:products:
+            jcr:primaryType: visitscotland:ProductSearchLink
+            visitscotland:label: Find tours in Aboyne
+            /visitscotland:search:
+              jcr:primaryType: visitscotland:ProductsSearch
+              visitscotland:distance: 10.0
+              visitscotland:dmsAwards: []
+              visitscotland:dmsCategories: [tour]
+              visitscotland:dmsFacilities: []
+              visitscotland:location: Aboyne
+              visitscotland:officialrating: []
+              visitscotland:productType: acti,attr,reta
+              visitscotland:producttype: ''
+          /visitscotland:extraLinks:
+            jcr:primaryType: visitscotland:DMSLink
+            visitscotland:label: Learn about Coldingham Bay
+            visitscotland:product: '315511'
+      /west-sands-beach-st-andrews:
+        jcr:primaryType: hippo:handle
+        jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
+        jcr:uuid: 95293e4b-cc9c-482d-8be3-8680f66b72b1
+        hippo:name: West Sands Beach, St Andrews
+        hippo:versionHistory: 45f3cc25-8df3-4dc6-98c9-84d897a0bd50
+        /west-sands-beach-st-andrews[1]:
+          jcr:primaryType: visitscotland:ListicleItem
+          jcr:mixinTypes: ['mix:referenceable']
+          jcr:uuid: e52688ef-3c53-4e6e-9a5a-8dea4be65759
+          hippo:availability: []
+          hippostd:state: draft
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2020-10-02T13:42:35.871Z
+          hippostdpubwf:lastModificationDate: 2020-10-02T13:45:50.674Z
+          hippostdpubwf:lastModifiedBy: admin
+          hippotranslation:id: e9917a5f-7e7a-43ae-abce-a92ada3e0c1f
+          hippotranslation:locale: en
+          visitscotland:subtitle: St Andrews is home to the oldest university in Scotland
+          visitscotland:title: West Sands Beach, St Andrews
+          /visitscotland:description:
+            jcr:primaryType: hippostd:html
+            hippostd:content: |-
+              <p>You might recognise it from the opening scenes of Chariots of Fire, but West Sands Beach in St Andrews is equally well known for simply being a long, lovely beach - with the Old Course to one side and atmospheric swirling seas to the other. &nbsp;</p>
+
+              <p>Beach fact: The coastal town of <a rel="noreferrer noopener" href="https://www.visitscotland.com/destinations-maps/st-andrews/" target="_blank">St Andrews</a> is home to the third oldest university in the English-speaking world. It was founded between 1410 - 1413. &nbsp;</p>
+          /visitscotland:products:
+            jcr:primaryType: visitscotland:DMSLink
+            visitscotland:label: Visit West Sands Beach
+            visitscotland:product: '315881'
+          /visitscotland:extraLinks:
+            jcr:primaryType: visitscotland:CMSLink
+            visitscotland:label: Learn more about St Andrews
+            /visitscotland:link:
+              jcr:primaryType: hippo:mirror
+              hippo:docbase: b1e7a0fc-15ba-4d75-8b56-eadd710da675
+          /visitscotland:images:
+            jcr:primaryType: visitscotland:InstagramImage
+            visitscotland:caption: West Sands Beach - a joy for humans and pups alike!
+            visitscotland:id: CF181FvB5mM
+            visitscotland:location: St Andrews
+        /west-sands-beach-st-andrews[2]:
+          jcr:primaryType: visitscotland:ListicleItem
+          jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
+          jcr:uuid: 50d669a7-5790-439d-b101-732d7950ae5f
+          hippo:availability: [preview]
+          hippostd:state: unpublished
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2020-10-02T13:42:35.871Z
+          hippostdpubwf:lastModificationDate: 2020-10-02T13:45:50.515Z
+          hippostdpubwf:lastModifiedBy: admin
+          hippotranslation:id: e9917a5f-7e7a-43ae-abce-a92ada3e0c1f
+          hippotranslation:locale: en
+          visitscotland:subtitle: St Andrews is home to the oldest university in Scotland
+          visitscotland:title: West Sands Beach, St Andrews
+          /visitscotland:description:
+            jcr:primaryType: hippostd:html
+            hippostd:content: |-
+              <p>You might recognise it from the opening scenes of Chariots of Fire, but West Sands Beach in St Andrews is equally well known for simply being a long, lovely beach - with the Old Course to one side and atmospheric swirling seas to the other. &nbsp;</p>
+
+              <p>Beach fact: The coastal town of <a rel="noreferrer noopener" href="https://www.visitscotland.com/destinations-maps/st-andrews/" target="_blank">St Andrews</a> is home to the third oldest university in the English-speaking world. It was founded between 1410 - 1413. &nbsp;</p>
+          /visitscotland:products:
+            jcr:primaryType: visitscotland:DMSLink
+            visitscotland:label: Visit West Sands Beach
+            visitscotland:product: '315881'
+          /visitscotland:extraLinks:
+            jcr:primaryType: visitscotland:CMSLink
+            visitscotland:label: Learn more about St Andrews
+            /visitscotland:link:
+              jcr:primaryType: hippo:mirror
+              hippo:docbase: b1e7a0fc-15ba-4d75-8b56-eadd710da675
+          /visitscotland:images:
+            jcr:primaryType: visitscotland:InstagramImage
+            visitscotland:caption: West Sands Beach - a joy for humans and pups alike!
+            visitscotland:id: CF181FvB5mM
+            visitscotland:location: St Andrews
+        /west-sands-beach-st-andrews[3]:
+          jcr:primaryType: visitscotland:ListicleItem
+          jcr:mixinTypes: ['mix:referenceable']
+          jcr:uuid: ed3d5ed4-fab7-4775-be21-4d6e86e46178
+          hippo:availability: [live]
+          hippostd:state: published
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2020-10-02T13:42:35.871Z
+          hippostdpubwf:lastModificationDate: 2020-10-02T13:45:50.515Z
+          hippostdpubwf:lastModifiedBy: admin
+          hippostdpubwf:publicationDate: 2020-11-24T13:25:37.566Z
+          hippotranslation:id: e9917a5f-7e7a-43ae-abce-a92ada3e0c1f
+          hippotranslation:locale: en
+          visitscotland:subtitle: St Andrews is home to the oldest university in Scotland
+          visitscotland:title: West Sands Beach, St Andrews
+          /visitscotland:description:
+            jcr:primaryType: hippostd:html
+            hippostd:content: |-
+              <p>You might recognise it from the opening scenes of Chariots of Fire, but West Sands Beach in St Andrews is equally well known for simply being a long, lovely beach - with the Old Course to one side and atmospheric swirling seas to the other. &nbsp;</p>
+
+              <p>Beach fact: The coastal town of <a rel="noreferrer noopener" href="https://www.visitscotland.com/destinations-maps/st-andrews/" target="_blank">St Andrews</a> is home to the third oldest university in the English-speaking world. It was founded between 1410 - 1413. &nbsp;</p>
+          /visitscotland:products:
+            jcr:primaryType: visitscotland:DMSLink
+            visitscotland:label: Visit West Sands Beach
+            visitscotland:product: '315881'
+          /visitscotland:extraLinks:
+            jcr:primaryType: visitscotland:CMSLink
+            visitscotland:label: Learn more about St Andrews
+            /visitscotland:link:
+              jcr:primaryType: hippo:mirror
+              hippo:docbase: b1e7a0fc-15ba-4d75-8b56-eadd710da675
+          /visitscotland:images:
+            jcr:primaryType: visitscotland:InstagramImage
+            visitscotland:caption: West Sands Beach - a joy for humans and pups alike!
+            visitscotland:id: CF181FvB5mM
+            visitscotland:location: St Andrews
+      /balnakeil-beach-near-durness-highlands:
+        jcr:primaryType: hippo:handle
+        jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
+        jcr:uuid: 6a1eebcd-299c-4ce1-8621-a3d4df096b6b
+        hippo:name: Balnakeil Beach, near Durness, Highlands
+        hippo:versionHistory: 095c42f3-96f1-4dec-b3f4-d557852331ed
+        /balnakeil-beach-near-durness-highlands[1]:
+          jcr:primaryType: visitscotland:ListicleItem
+          jcr:mixinTypes: ['mix:referenceable']
+          jcr:uuid: 208ee2af-f511-4c69-adf0-354029428ea0
+          hippo:availability: []
+          hippostd:state: draft
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2020-10-02T13:46:21.662Z
+          hippostdpubwf:lastModificationDate: 2020-10-02T13:50:33.968Z
+          hippostdpubwf:lastModifiedBy: admin
+          hippotranslation:id: 341be5f3-66ec-46dc-97c6-f1380350a0ef
+          hippotranslation:locale: en
+          visitscotland:subtitle: ''
+          visitscotland:title: Balnakeil Beach, near Durness, Highlands
+          /visitscotland:description:
+            jcr:primaryType: hippostd:html
+            hippostd:content: |-
+              <p>The north coast of Scotland is home to some of our most dramatic coastlines.<a rel="noreferrer noopener" href="https://www.visitscotland.com/info/towns-villages/balnakeil-beach-near-durness-p313631" target="_blank"> Balnakeil&nbsp;Beach</a> is a real treat, north of Durness, on the North Coast 500 driving route. The mountain,&nbsp;Suilven, looms in the distance and keen campers will love waking up to the glinting waters and endless expanse of sand. &nbsp;</p>
+
+              <p>Beach fact: The beach is home to the remains of&nbsp;Balnakeil&nbsp;Church, built in 1614.  </p>
+          /visitscotland:extraLinks:
+            jcr:primaryType: visitscotland:ExternalLink
+            visitscotland:label: Drive the North Coast 500
+            visitscotland:link: https://www.northcoast500.com/
+          /visitscotland:products:
+            jcr:primaryType: visitscotland:DMSLink
+            visitscotland:label: Visit Balnakeil Beach
+            visitscotland:product: '313631'
+          /visitscotland:images:
+            jcr:primaryType: visitscotland:InstagramImage
+            visitscotland:caption: Balnakeil Beach - you'll find it along the NC500
+            visitscotland:id: CDx_I86C-q7
+            visitscotland:location: Durness
+        /balnakeil-beach-near-durness-highlands[2]:
+          jcr:primaryType: visitscotland:ListicleItem
+          jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
+          jcr:uuid: 657aec65-6ef3-49bf-8e77-c03a0e5388c0
+          hippo:availability: [preview]
+          hippostd:state: unpublished
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2020-10-02T13:46:21.662Z
+          hippostdpubwf:lastModificationDate: 2020-10-02T13:50:33.890Z
+          hippostdpubwf:lastModifiedBy: admin
+          hippotranslation:id: 341be5f3-66ec-46dc-97c6-f1380350a0ef
+          hippotranslation:locale: en
+          visitscotland:subtitle: ''
+          visitscotland:title: Balnakeil Beach, near Durness, Highlands
+          /visitscotland:description:
+            jcr:primaryType: hippostd:html
+            hippostd:content: |-
+              <p>The north coast of Scotland is home to some of our most dramatic coastlines.<a rel="noreferrer noopener" href="https://www.visitscotland.com/info/towns-villages/balnakeil-beach-near-durness-p313631" target="_blank"> Balnakeil&nbsp;Beach</a> is a real treat, north of Durness, on the North Coast 500 driving route. The mountain,&nbsp;Suilven, looms in the distance and keen campers will love waking up to the glinting waters and endless expanse of sand. &nbsp;</p>
+
+              <p>Beach fact: The beach is home to the remains of&nbsp;Balnakeil&nbsp;Church, built in 1614.  </p>
+          /visitscotland:extraLinks:
+            jcr:primaryType: visitscotland:ExternalLink
+            visitscotland:label: Drive the North Coast 500
+            visitscotland:link: https://www.northcoast500.com/
+          /visitscotland:products:
+            jcr:primaryType: visitscotland:DMSLink
+            visitscotland:label: Visit Balnakeil Beach
+            visitscotland:product: '313631'
+          /visitscotland:images:
+            jcr:primaryType: visitscotland:InstagramImage
+            visitscotland:caption: Balnakeil Beach - you'll find it along the NC500
+            visitscotland:id: CDx_I86C-q7
+            visitscotland:location: Durness
+        /balnakeil-beach-near-durness-highlands[3]:
+          jcr:primaryType: visitscotland:ListicleItem
+          jcr:mixinTypes: ['mix:referenceable']
+          jcr:uuid: 851e4f91-5516-4d1c-a3f9-6a7870e53276
+          hippo:availability: [live]
+          hippostd:state: published
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2020-10-02T13:46:21.662Z
+          hippostdpubwf:lastModificationDate: 2020-10-02T13:50:33.890Z
+          hippostdpubwf:lastModifiedBy: admin
+          hippostdpubwf:publicationDate: 2020-11-24T13:25:39.853Z
+          hippotranslation:id: 341be5f3-66ec-46dc-97c6-f1380350a0ef
+          hippotranslation:locale: en
+          visitscotland:subtitle: ''
+          visitscotland:title: Balnakeil Beach, near Durness, Highlands
+          /visitscotland:description:
+            jcr:primaryType: hippostd:html
+            hippostd:content: |-
+              <p>The north coast of Scotland is home to some of our most dramatic coastlines.<a rel="noreferrer noopener" href="https://www.visitscotland.com/info/towns-villages/balnakeil-beach-near-durness-p313631" target="_blank"> Balnakeil&nbsp;Beach</a> is a real treat, north of Durness, on the North Coast 500 driving route. The mountain,&nbsp;Suilven, looms in the distance and keen campers will love waking up to the glinting waters and endless expanse of sand. &nbsp;</p>
+
+              <p>Beach fact: The beach is home to the remains of&nbsp;Balnakeil&nbsp;Church, built in 1614.  </p>
+          /visitscotland:extraLinks:
+            jcr:primaryType: visitscotland:ExternalLink
+            visitscotland:label: Drive the North Coast 500
+            visitscotland:link: https://www.northcoast500.com/
+          /visitscotland:products:
+            jcr:primaryType: visitscotland:DMSLink
+            visitscotland:label: Visit Balnakeil Beach
+            visitscotland:product: '313631'
+          /visitscotland:images:
+            jcr:primaryType: visitscotland:InstagramImage
+            visitscotland:caption: Balnakeil Beach - you'll find it along the NC500
+            visitscotland:id: CDx_I86C-q7
+            visitscotland:location: Durness
+      /calgary-bay-isle-of-mull:
+        jcr:primaryType: hippo:handle
+        jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
+        jcr:uuid: c8746966-fe7d-4581-a1e4-c5f40c67ae39
+        hippo:name: Calgary Bay, Isle of Mull
+        hippo:versionHistory: 616c3527-37dd-4042-bda9-32861708d564
+        /calgary-bay-isle-of-mull[1]:
+          jcr:primaryType: visitscotland:ListicleItem
+          jcr:mixinTypes: ['mix:referenceable']
+          jcr:uuid: 342ee4b0-3105-48cc-a326-60923fcb1e28
+          hippo:availability: []
+          hippostd:state: draft
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2020-10-02T13:51:18.989Z
+          hippostdpubwf:lastModificationDate: 2020-10-02T13:58:06.524Z
+          hippostdpubwf:lastModifiedBy: admin
+          hippotranslation:id: b6bb9ae8-91f7-4d3f-91f5-54a455bcfc6d
+          hippotranslation:locale: en
+          visitscotland:subtitle: ''
+          visitscotland:title: Calgary Bay, Isle of Mull
+          /visitscotland:description:
+            jcr:primaryType: hippostd:html
+            hippostd:content: |-
+              <p>The Isle of Mull is a place famous for its geology and there are lots of amazing rocky beaches on the isle,&nbsp;but Calgary Bay stands out with its superbly sandy shores. Facing out to the isles of&nbsp;Tiree&nbsp;and Coll, it's easy to while away the hours here on a bright, sunny day with a little café selling hot drinks and ice cream. &nbsp;</p>
+
+              <p>Beach fact: Keep an eye out for white-tailed sea eagles. A family of these fantastic birds have been successfully breeding on the Isle of Mull since 1985. &nbsp;</p>
+          /visitscotland:products:
+            jcr:primaryType: visitscotland:DMSLink
+            visitscotland:label: Calgary Bay - Visit Now
+            visitscotland:product: '240371'
+          /visitscotland:extraLinks:
+            jcr:primaryType: visitscotland:CMSLink
+            visitscotland:label: Follow the itinerary
+            /visitscotland:link:
+              jcr:primaryType: hippo:mirror
+              hippo:docbase: e16bdb89-c271-46f1-851f-2d2b82d631d4
+        /calgary-bay-isle-of-mull[2]:
+          jcr:primaryType: visitscotland:ListicleItem
+          jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
+          jcr:uuid: 7412cdaa-ff8e-49e9-b068-d195438f8ac1
+          hippo:availability: [preview]
+          hippostd:state: unpublished
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2020-10-02T13:51:18.989Z
+          hippostdpubwf:lastModificationDate: 2020-10-02T13:54:02.155Z
+          hippostdpubwf:lastModifiedBy: admin
+          hippotranslation:id: b6bb9ae8-91f7-4d3f-91f5-54a455bcfc6d
+          hippotranslation:locale: en
+          visitscotland:subtitle: ''
+          visitscotland:title: Calgary Bay, Isle of Mull
+          /visitscotland:description:
+            jcr:primaryType: hippostd:html
+            hippostd:content: |-
+              <p>The Isle of Mull is a place famous for its geology and there are lots of amazing rocky beaches on the isle,&nbsp;but Calgary Bay stands out with its superbly sandy shores. Facing out to the isles of&nbsp;Tiree&nbsp;and Coll, it's easy to while away the hours here on a bright, sunny day with a little café selling hot drinks and ice cream. &nbsp;</p>
+
+              <p>Beach fact: Keep an eye out for white-tailed sea eagles. A family of these fantastic birds have been successfully breeding on the Isle of Mull since 1985. &nbsp;</p>
+          /visitscotland:products:
+            jcr:primaryType: visitscotland:DMSLink
+            visitscotland:label: Calgary Bay - Visit Now
+            visitscotland:product: '240371'
+          /visitscotland:extraLinks:
+            jcr:primaryType: visitscotland:CMSLink
+            visitscotland:label: Follow the itinerary
+            /visitscotland:link:
+              jcr:primaryType: hippo:mirror
+              hippo:docbase: e16bdb89-c271-46f1-851f-2d2b82d631d4
+        /calgary-bay-isle-of-mull[3]:
+          jcr:primaryType: visitscotland:ListicleItem
+          jcr:mixinTypes: ['mix:referenceable']
+          jcr:uuid: 5238e78a-eeb2-478e-989e-2b54e5c8c47b
+          hippo:availability: [live]
+          hippostd:state: published
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2020-10-02T13:51:18.989Z
+          hippostdpubwf:lastModificationDate: 2020-10-02T13:54:02.155Z
+          hippostdpubwf:lastModifiedBy: admin
+          hippostdpubwf:publicationDate: 2020-11-24T13:25:42.502Z
+          hippotranslation:id: b6bb9ae8-91f7-4d3f-91f5-54a455bcfc6d
+          hippotranslation:locale: en
+          visitscotland:subtitle: ''
+          visitscotland:title: Calgary Bay, Isle of Mull
+          /visitscotland:description:
+            jcr:primaryType: hippostd:html
+            hippostd:content: |-
+              <p>The Isle of Mull is a place famous for its geology and there are lots of amazing rocky beaches on the isle,&nbsp;but Calgary Bay stands out with its superbly sandy shores. Facing out to the isles of&nbsp;Tiree&nbsp;and Coll, it's easy to while away the hours here on a bright, sunny day with a little café selling hot drinks and ice cream. &nbsp;</p>
+
+              <p>Beach fact: Keep an eye out for white-tailed sea eagles. A family of these fantastic birds have been successfully breeding on the Isle of Mull since 1985. &nbsp;</p>
+          /visitscotland:products:
+            jcr:primaryType: visitscotland:DMSLink
+            visitscotland:label: Calgary Bay - Visit Now
+            visitscotland:product: '240371'
+          /visitscotland:extraLinks:
+            jcr:primaryType: visitscotland:CMSLink
+            visitscotland:label: Follow the itinerary
+            /visitscotland:link:
+              jcr:primaryType: hippo:mirror
+              hippo:docbase: e16bdb89-c271-46f1-851f-2d2b82d631d4
+      /ayr-beach:
+        jcr:primaryType: hippo:handle
+        jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
+        jcr:uuid: a696d888-57a5-4042-a5ef-080c74502a78
+        hippo:name: Ayr Beach
+        hippo:versionHistory: 85bad6ef-1f28-4cad-8c2e-02cbf106ca3f
+        /ayr-beach[1]:
+          jcr:primaryType: visitscotland:ListicleItem
+          jcr:mixinTypes: ['mix:referenceable']
+          jcr:uuid: e1194dc0-2f25-4738-bcfc-40f2ec5d6a9c
+          hippo:availability: []
+          hippostd:state: draft
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2020-10-02T13:58:36.856Z
+          hippostdpubwf:lastModificationDate: 2020-11-24T13:25:10.685Z
+          hippostdpubwf:lastModifiedBy: admin
+          hippotranslation:id: e68298e9-6426-4579-a187-ea9649ed3a05
+          hippotranslation:locale: en
+          visitscotland:subtitle: ''
+          visitscotland:title: Ayr Beach
+          visitscotland:translation: ''
+          /visitscotland:description:
+            jcr:primaryType: hippostd:html
+            hippostd:content: |-
+              <p>If you like your beaches sandy, blissful and full of family friendly activities, look no further than the town of Ayr's coastline. Adjacent to the beach, there is a putting green, play area and crazy golf. Look across to the sea and enjoy the views across to Ailsa Craig and the Isle of Arran. If you're looking for a beach near Glasgow, Ayr Beach is under an hour's drive away or you can just hop on the train to Ayr for a day out. &nbsp;</p>
+
+              <p>Beach fact: The ruins of&nbsp;Greenan&nbsp;Castle are found further along this beach, dating back to the 16th century.   &nbsp;</p>
+          /visitscotland:products:
+            jcr:primaryType: visitscotland:DMSLink
+            visitscotland:label: Go to Ayr Beach
+            visitscotland:product: '727241'
+        /ayr-beach[2]:
+          jcr:primaryType: visitscotland:ListicleItem
+          jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
+          jcr:uuid: f5cefe45-fa2e-4030-af1b-8d5a2f66f6a9
+          hippo:availability: [preview]
+          hippostd:state: unpublished
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2020-10-02T13:58:36.856Z
+          hippostdpubwf:lastModificationDate: 2020-11-24T13:25:06.491Z
+          hippostdpubwf:lastModifiedBy: admin
+          hippotranslation:id: e68298e9-6426-4579-a187-ea9649ed3a05
+          hippotranslation:locale: en
+          visitscotland:subtitle: ''
+          visitscotland:title: Ayr Beach
+          visitscotland:translation: ''
+          /visitscotland:description:
+            jcr:primaryType: hippostd:html
+            hippostd:content: |-
+              <p>If you like your beaches sandy, blissful and full of family friendly activities, look no further than the town of Ayr's coastline. Adjacent to the beach, there is a putting green, play area and crazy golf. Look across to the sea and enjoy the views across to Ailsa Craig and the Isle of Arran. If you're looking for a beach near Glasgow, Ayr Beach is under an hour's drive away or you can just hop on the train to Ayr for a day out. &nbsp;</p>
+
+              <p>Beach fact: The ruins of&nbsp;Greenan&nbsp;Castle are found further along this beach, dating back to the 16th century.   &nbsp;</p>
+          /visitscotland:products:
+            jcr:primaryType: visitscotland:DMSLink
+            visitscotland:label: Go to Ayr Beach
+            visitscotland:product: '727241'
+        /ayr-beach[3]:
+          jcr:primaryType: visitscotland:ListicleItem
+          jcr:mixinTypes: ['mix:referenceable']
+          jcr:uuid: 310724aa-746b-46f6-bedc-7e6b83b450ed
+          hippo:availability: [live]
+          hippostd:state: published
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2020-10-02T13:58:36.856Z
+          hippostdpubwf:lastModificationDate: 2020-11-24T13:25:06.491Z
+          hippostdpubwf:lastModifiedBy: admin
+          hippostdpubwf:publicationDate: 2020-11-24T13:25:10.452Z
+          hippotranslation:id: e68298e9-6426-4579-a187-ea9649ed3a05
+          hippotranslation:locale: en
+          visitscotland:subtitle: ''
+          visitscotland:title: Ayr Beach
+          visitscotland:translation: ''
+          /visitscotland:description:
+            jcr:primaryType: hippostd:html
+            hippostd:content: |-
+              <p>If you like your beaches sandy, blissful and full of family friendly activities, look no further than the town of Ayr's coastline. Adjacent to the beach, there is a putting green, play area and crazy golf. Look across to the sea and enjoy the views across to Ailsa Craig and the Isle of Arran. If you're looking for a beach near Glasgow, Ayr Beach is under an hour's drive away or you can just hop on the train to Ayr for a day out. &nbsp;</p>
+
+              <p>Beach fact: The ruins of&nbsp;Greenan&nbsp;Castle are found further along this beach, dating back to the 16th century.   &nbsp;</p>
+          /visitscotland:products:
+            jcr:primaryType: visitscotland:DMSLink
+            visitscotland:label: Go to Ayr Beach
+            visitscotland:product: '727241'
+      /camusdarach-beach-morar :
+        jcr:primaryType: hippo:handle
+        jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
+        jcr:uuid: e2429e4c-220a-492f-ad93-bfb0854424df
+        hippo:name: Camusdarach Beach, Morar 
+        hippo:versionHistory: 2e0433c7-d525-42b5-a66c-a4f357e4043f
+        /camusdarach-beach-morar [1]:
+          jcr:primaryType: visitscotland:ListicleItem
+          jcr:mixinTypes: ['mix:referenceable']
+          jcr:uuid: c5f1207f-674b-458d-9c47-471c09e4a707
+          hippo:availability: []
+          hippostd:state: draft
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2020-10-02T14:04:48.922Z
+          hippostdpubwf:lastModificationDate: 2020-10-02T14:07:14.557Z
+          hippostdpubwf:lastModifiedBy: admin
+          hippotranslation:id: 299a45d0-f7cd-4e67-b7ab-756828027446
+          hippotranslation:locale: en
+          visitscotland:subtitle: Beach fact: This beach was featured in the classic
+            Scottish film Local Hero (1983).  
+          visitscotland:title: Camusdarach Beach, Morar 
+          /visitscotland:description:
+            jcr:primaryType: hippostd:html
+            hippostd:content: |-
+              <p>Camusdarach&nbsp;Beach is a vision of glistening sands and sparkling clear water, just south of the estuary of River&nbsp;Morar, near&nbsp;Mallaig.&nbsp;It forms part of a string of beautiful beaches called the Silver Sands of&nbsp;Morar. From here, you can see the jaggy outline of the&nbsp;Cuillin&nbsp;mountain range on the Isle of Skye, the rugged blue peaks of Rum and the steep sea cliff of Eigg. Sit and wait for a fiery, orange sunset to sweep over the skies. &nbsp;</p>
+
+              <p>  &nbsp;</p>
+          /visitscotland:products:
+            jcr:primaryType: visitscotland:DMSLink
+            visitscotland:label: Visit the beach
+            visitscotland:product: '313831'
+        /camusdarach-beach-morar [2]:
+          jcr:primaryType: visitscotland:ListicleItem
+          jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
+          jcr:uuid: c922fcb6-d64f-4ae4-b429-12f6d3aa0b67
+          hippo:availability: [preview]
+          hippostd:state: unpublished
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2020-10-02T14:04:48.922Z
+          hippostdpubwf:lastModificationDate: 2020-10-02T14:07:14.397Z
+          hippostdpubwf:lastModifiedBy: admin
+          hippotranslation:id: 299a45d0-f7cd-4e67-b7ab-756828027446
+          hippotranslation:locale: en
+          visitscotland:subtitle: Beach fact: This beach was featured in the classic
+            Scottish film Local Hero (1983).  
+          visitscotland:title: Camusdarach Beach, Morar 
+          /visitscotland:description:
+            jcr:primaryType: hippostd:html
+            hippostd:content: |-
+              <p>Camusdarach&nbsp;Beach is a vision of glistening sands and sparkling clear water, just south of the estuary of River&nbsp;Morar, near&nbsp;Mallaig.&nbsp;It forms part of a string of beautiful beaches called the Silver Sands of&nbsp;Morar. From here, you can see the jaggy outline of the&nbsp;Cuillin&nbsp;mountain range on the Isle of Skye, the rugged blue peaks of Rum and the steep sea cliff of Eigg. Sit and wait for a fiery, orange sunset to sweep over the skies. &nbsp;</p>
+
+              <p>  &nbsp;</p>
+          /visitscotland:products:
+            jcr:primaryType: visitscotland:DMSLink
+            visitscotland:label: Visit the beach
+            visitscotland:product: '313831'
+        /camusdarach-beach-morar [3]:
+          jcr:primaryType: visitscotland:ListicleItem
+          jcr:mixinTypes: ['mix:referenceable']
+          jcr:uuid: 89ce71a6-490d-449d-b567-68aa868ebe21
+          hippo:availability: [live]
+          hippostd:state: published
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2020-10-02T14:04:48.922Z
+          hippostdpubwf:lastModificationDate: 2020-10-02T14:07:14.397Z
+          hippostdpubwf:lastModifiedBy: admin
+          hippostdpubwf:publicationDate: 2020-11-24T13:25:45.083Z
+          hippotranslation:id: 299a45d0-f7cd-4e67-b7ab-756828027446
+          hippotranslation:locale: en
+          visitscotland:subtitle: Beach fact: This beach was featured in the classic
+            Scottish film Local Hero (1983).  
+          visitscotland:title: Camusdarach Beach, Morar 
+          /visitscotland:description:
+            jcr:primaryType: hippostd:html
+            hippostd:content: |-
+              <p>Camusdarach&nbsp;Beach is a vision of glistening sands and sparkling clear water, just south of the estuary of River&nbsp;Morar, near&nbsp;Mallaig.&nbsp;It forms part of a string of beautiful beaches called the Silver Sands of&nbsp;Morar. From here, you can see the jaggy outline of the&nbsp;Cuillin&nbsp;mountain range on the Isle of Skye, the rugged blue peaks of Rum and the steep sea cliff of Eigg. Sit and wait for a fiery, orange sunset to sweep over the skies. &nbsp;</p>
+
+              <p>  &nbsp;</p>
+          /visitscotland:products:
+            jcr:primaryType: visitscotland:DMSLink
+            visitscotland:label: Visit the beach
+            visitscotland:product: '313831'

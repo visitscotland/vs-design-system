@@ -58,7 +58,7 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .social-credit {
     line-height: $line_height_xs;
 
@@ -79,10 +79,8 @@ export default {
             outline: 0 !important;
         }
 
-        & ::v-deep {
-            svg.icon {
-                fill: $color-white !important;
-            }
+        svg.vs-icon {
+            fill: $color-white !important;
         }
     }
 }

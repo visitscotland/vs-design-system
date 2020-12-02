@@ -1,6 +1,6 @@
 <template>
     <ul
-        class="vs-mega-nav__list list-unstyled"
+        class="vs-mega-nav-list list-unstyled"
     >
         <slot />
     </ul>
@@ -20,7 +20,7 @@ export default {
 
 <style lang="scss">
 
-.vs-mega-nav__list {
+.vs-mega-nav-list {
     width: 100%;
     display: flex;
 }

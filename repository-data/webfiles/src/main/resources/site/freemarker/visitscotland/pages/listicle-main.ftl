@@ -16,6 +16,7 @@
 
 <#include "../macros/modules/listicles/listicle-item.ftl">
 <#include "../macros/global/cms-errors.ftl">
+<#include "../pages/module-builder.ftl">
 
 <#-- Implicit Request Objects -->
 <#-- @ftlvariable name="document" type="com.visitscotland.brmx.beans.Listicle" -->
@@ -83,6 +84,10 @@
                     </vs-panel>
                 </vs-col>
             </vs-row>
+        </#if>
+
+        <#if otyml??>
+            <@moduleBuilder otyml "theme1" />
         </#if>
 	</vs-container>
 </div>

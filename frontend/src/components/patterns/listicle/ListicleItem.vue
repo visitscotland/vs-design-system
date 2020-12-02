@@ -91,7 +91,7 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .vs-listicle-item {
     margin-bottom: $spacer-9;
 
@@ -146,7 +146,7 @@ export default {
         }
     }
 
-    h3.heading {
+    h3.vs-heading {
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -172,36 +172,34 @@ export default {
                 border-left: 1px solid $color-gray-tint-5;
             }
 
-            & ::v-deep {
-                .vs-icon-list {
+            .vs-icon-list {
+                .vs-icon-list__item {
+                    width: 80px;
+                }
+
+                @include media-breakpoint-up(sm) {
+                    border-top: 1px solid $color-gray-tint-5;
+                    padding-top: $spacer-4;
+
+                    .vs-icon-list__item {
+                        width: 90px;
+                    }
+                }
+
+                @include media-breakpoint-up(lg) {
+                    border-top: 0;
+                    padding: 0 $spacer-2;
+
                     .vs-icon-list__item {
                         width: 80px;
                     }
+                }
+                @include media-breakpoint-up(xl) {
+                    padding: 0 $spacer-4;
+                }
 
-                    @include media-breakpoint-up(sm) {
-                        border-top: 1px solid $color-gray-tint-5;
-                        padding-top: $spacer-4;
-
-                        .vs-icon-list__item {
-                            width: 90px;
-                        }
-                    }
-
-                    @include media-breakpoint-up(lg) {
-                        border-top: 0;
-                        padding: 0 $spacer-2;
-
-                        .vs-icon-list__item {
-                            width: 80px;
-                        }
-                    }
-                    @include media-breakpoint-up(xl) {
-                        padding: 0 $spacer-4;
-                    }
-
-                    @include media-breakpoint-up(xxl) {
-                        padding: 0 $spacer-9;
-                    }
+                @include media-breakpoint-up(xxl) {
+                    padding: 0 $spacer-9;
                 }
             }
         }

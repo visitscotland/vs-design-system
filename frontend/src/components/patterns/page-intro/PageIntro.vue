@@ -26,7 +26,7 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 @import "~bootstrap/scss/type";
 
 .vs-page-intro__wrapper--outer {
@@ -56,7 +56,7 @@ export default {
     background-color: $color-theme-light;
 }
 
-.vs-page-intro ::v-deep .vs-page-intro__wrapper--inner {
+.vs-page-intro .vs-page-intro__wrapper--inner {
     @include media-breakpoint-up(lg) {
         background: $color-white;
         margin: -250px 0 0;
@@ -68,7 +68,7 @@ export default {
     }
 }
 
-.vs-page-intro ::v-deep figcaption {
+.vs-page-intro .vs-hero figcaption {
     @include media-breakpoint-up(lg) {
         bottom: 200px;
     }
@@ -188,21 +188,21 @@ export default {
          <vs-row>
           <vs-col cols="12" lg="11" offset-lg="1">
             <vs-description-list class="mb-6">
-                <vs-description-list-term>Highlights</vs-description-list-term>
-                <vs-description-list-detail
+                <vs-description-list-item title>Highlights</vs-description-list-item>
+                <vs-description-list-item
                     v-for="(highlight, index) in itineraries.sampleItinerary.highlights"
                 >
                     {{highlight}}
-                </vs-description-list-detail>
+                </vs-description-list-item>
             </vs-description-list>
             <vs-description-list class="mb-8">
-                <vs-description-list-term>Areas Covered</vs-description-list-term>
-                    <vs-description-list-detail
+                <vs-description-list-item title>Areas Covered</vs-description-list-item>
+                    <vs-description-list-item
                         v-for="(areaCovered, index) in itineraries.sampleItinerary.areasCovered"
                         key="index"
                     >
                     {{areaCovered}}
-                </vs-description-list-detail>
+                </vs-description-list-item>
             </vs-description-list>
           </vs-col>
         </vs-row>

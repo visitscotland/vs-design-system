@@ -12,16 +12,15 @@ import com.visitscotland.brmx.beans.mapping.megalinks.*;
 import com.visitscotland.brmx.dms.DMSDataService;
 import com.visitscotland.brmx.dms.LocationLoader;
 import com.visitscotland.brmx.services.LinkService;
+import com.visitscotland.brmx.services.ResourceBundleService;
 import com.visitscotland.brmx.utils.CommonUtils;
 import com.visitscotland.brmx.utils.HippoUtilsService;
+import com.visitscotland.utils.Contract;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Locale;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class LinkModulesFactory {
@@ -29,29 +28,34 @@ public class LinkModulesFactory {
     private static final Logger logger = LoggerFactory.getLogger(LinkModulesFactory.class);
 
     public final static int MAX_ITEMS = 6;
+    public final static String HORIZONTAL_LAYOUT = "Horizontal";
 
     private final static String IMAGE = "images";
 
     private final HippoUtilsService utils;
     private final DMSDataService dmsData;
     private final LinkService linkService;
+    private final ResourceBundleService bundle;
     private final LocationLoader locationLoader;
 
     public LinkModulesFactory() {
-        this(new HippoUtilsService(), new DMSDataService(), new LinkService(), LocationLoader.getInstance());
+        this(new HippoUtilsService(), new DMSDataService(), new LinkService(), new ResourceBundleService(),LocationLoader.getInstance());
     }
 
-    public LinkModulesFactory(HippoUtilsService utils, DMSDataService dmsData, LinkService linkService, LocationLoader locationLoader) {
+    LinkModulesFactory(HippoUtilsService utils, DMSDataService dmsData, LinkService linkService, ResourceBundleService bundle , LocationLoader locationLoader) {
         this.utils = utils;
         this.dmsData = dmsData;
         this.linkService = linkService;
+        this.bundle = bundle;
         this.locationLoader = locationLoader;
     }
 
     public LinksModule getMegalinkModule(Megalinks doc, Locale locale) {
-        if (Boolean.TRUE.equals(doc.getListLayout()) || doc.getMegalinkItems().size() > MAX_ITEMS) {
-            return listLayout(doc, locale);
-        } else if (doc.getSingleImageModule() != null) {
+        if (doc.getLayout()!= null && doc.getLayout().equalsIgnoreCase("list") || doc.getMegalinkItems().size() > MAX_ITEMS) {
+            return listLayout(doc, locale) ;
+        } else if (doc.getLayout()!= null && doc.getLayout().contains(HORIZONTAL_LAYOUT)) {
+            return horizontalListLayout (doc, locale);
+        }else if (doc.getSingleImageModule() != null) {
             return singleImageLayout(doc, locale);
         } else {
             return multiImageLayout(doc, locale);
@@ -71,9 +75,29 @@ public class LinkModulesFactory {
         populateCommonFields(ll, doc, locale);
 
         ll.setTeaserVisible(doc.getTeaserVisible());
-        ll.setLinks(convertToEnhancedLinks(doc.getMegalinkItems(), locale));
+        ll.setLinks(convertToEnhancedLinks(doc.getMegalinkItems(), locale,false));
 
         return ll;
+    }
+
+
+    public HorizontalListLinksModule horizontalListLayout(Megalinks doc, Locale locale) {
+        HorizontalListLinksModule ll = new HorizontalListLinksModule();
+        populateCommonFields(ll, doc, locale);
+
+        ll.setTeaserVisible(doc.getTeaserVisible());
+        ll.setLinks(convertToEnhancedLinks(doc.getMegalinkItems(), locale, false));
+
+        return ll;
+    }
+
+    public HorizontalListLinksModule horizontalListLayout(OTYML doc, Locale locale) {
+        HorizontalListLinksModule target = new HorizontalListLinksModule();
+        target.setTitle(Contract.isEmpty(doc.getTitle())? (bundle.getResourceBundle("modules", "otyml.title.default", locale ,true)): doc.getTitle());
+        target.setIntroduction(doc.getIntroduction());
+        target.setLinks(convertToEnhancedLinks(doc.getMegalinkItems(), locale,true));
+
+        return target;
     }
 
     /**
@@ -115,12 +139,13 @@ public class LinkModulesFactory {
      * @return MultiImageLinksModule containing the relevant information from the Megalinks document
      */
     public MultiImageLinksModule multiImageLayout(Megalinks doc, Locale locale) {
+        List<String> warnings =  new ArrayList<>();
         MultiImageLinksModule fl = new MultiImageLinksModule();
         populateCommonFields(fl, doc, locale);
         fl.setTeaserVisible(doc.getTeaserVisible());
 
         fl.setLinksSize(doc.getMegalinkItems().size());
-        fl.setLinks(convertToEnhancedLinks(doc.getMegalinkItems(), locale));
+        fl.setLinks(convertToEnhancedLinks(doc.getMegalinkItems(), locale,false));
 
         if (fl.getLinks().size() == 1) {
             //If the megalinks only have one item, that one is featured
@@ -136,10 +161,13 @@ public class LinkModulesFactory {
             //When there is more than 3 items and no featured item the first item is promoted as featured.
             if (fl.getFeaturedLinks().size() == 0 && fl.getLinks().size() > 3) {
                 fl.getFeaturedLinks().add(fl.getLinks().get(0));
+                warnings.add("No featured item provided, first link will be selected as featured");
+
             }
 
             //Links added to the Featured list MUST be removed from the original list
             fl.getLinks().removeAll(fl.getFeaturedLinks());
+            fl.setErrorMessages(warnings);
         } else {
             fl.setFeaturedLinks(Collections.EMPTY_LIST);
         }
@@ -191,14 +219,13 @@ public class LinkModulesFactory {
     /**
      * Converts the list of {@code MegalinksItem} into  a list of {@code EnhancedLink }
      */
-    List<EnhancedLink> convertToEnhancedLinks(List<MegalinkItem> items, Locale locale) {
+    List<EnhancedLink> convertToEnhancedLinks(List<MegalinkItem> items, Locale locale, boolean addCategory) {
         List<EnhancedLink> links = new ArrayList<>();
         for (MegalinkItem item : items) {
-
             if (item.getLink() == null) {
                 CommonUtils.contentIssue("The module %s contains a link without any reference", item.getPath());
-            } else if (item.getLink() instanceof Linkable) {
-                EnhancedLink link = createEnhancedLink((Linkable) item.getLink(), locale);
+            }else if (item.getLink() instanceof Linkable) {
+                EnhancedLink link = createEnhancedLink((Linkable) item.getLink(), locale, addCategory);
                 if (link != null) {
                     link.setFeatured(item.getFeature());
                     links.add(link);
@@ -210,7 +237,7 @@ public class LinkModulesFactory {
         return links;
     }
 
-    public EnhancedLink createEnhancedLink(Linkable linkable, Locale locale) {
+    public EnhancedLink createEnhancedLink(Linkable linkable, Locale locale, boolean addCategory) {
         EnhancedLink link = new EnhancedLink();
         link.setTeaser(linkable.getTeaser());
         link.setLabel(linkable.getTitle());
@@ -220,25 +247,40 @@ public class LinkModulesFactory {
         }
 
         if (linkable instanceof Page) {
-            //TODO add itineraries days and transport
-            /*
+            link.setType(LinkType.INTERNAL);
             if (linkable instanceof Itinerary) {
-                link.setTransport(((Itinerary) linkable).getTransports()[0]);
-                link.setDays(((Itinerary) linkable).getDays().size());
+                link.setItineraryTransport(((Itinerary) linkable).getTransports()[0]);
+                link.setItineraryDays(((Itinerary) linkable).getDays().size());
             }
-            */
             link.setLink(utils.createUrl((Page) linkable));
+            link.setType(LinkType.INTERNAL);
         } else if (linkable instanceof SharedLink) {
             JsonNode product = getNodeFromSharedLink((SharedLink) linkable, locale);
+            SharedLink sharedLink = (SharedLink) linkable;
             if (link.getImage() == null && product != null && product.has(IMAGE)) {
                 link.setImage(new FlatImage(product));
             }
+            if (((SharedLink) linkable).getLinkType() instanceof ExternalDocument){
+                ExternalDocument externalDocument = (ExternalDocument)sharedLink.getLinkType();
+                String extension = externalDocument.getLink().substring(externalDocument.getLink().lastIndexOf(".") + 1).toUpperCase();
+                link.setLabel(linkable.getTitle()+"("+extension+" " + externalDocument.getSize()+externalDocument.getBytes() + ")");
+                link.setType(LinkType.DOWNLOAD);
+                if (addCategory) {
+                    link.setCategory(externalDocument.getCategory());
+                }
+            }
             link.setLink(linkService.getPlainLink((SharedLink) linkable, product));
+            if (link.getType() == null) {
+                link.setType(linkService.getType(link.getLink()));
+            }
         } else {
             logger.warn(String.format("The type %s was not expected and will be skipped", linkable.getClass().getSimpleName()));
             return null;
         }
 
+        if (addCategory && link.getLink()!= null && link.getCategory()==null){
+            link.setCategory(linkService.getLinkCategory (link.getLink(),locale));
+        }
         if (link.getImage() == null) {
             CommonUtils.contentIssue("The link to %s does not have an image but it is expecting one", linkable);
         }
@@ -286,4 +328,5 @@ public class LinkModulesFactory {
     LocationObject getLocation(String location, Locale locale) {
         return locationLoader.getLocation(location, locale);
     }
+
 }

@@ -3,8 +3,8 @@ package com.visitscotland.brmx.beans;
 import org.hippoecm.hst.content.beans.Node;
 import org.hippoecm.hst.content.beans.standard.HippoHtml;
 import org.onehippo.cms7.essentials.dashboard.annotations.HippoEssentialsGenerated;
-
 import java.util.List;
+import com.visitscotland.brmx.beans.OTYML;
 
 @HippoEssentialsGenerated(internalName = "visitscotland:Listicle")
 @Node(jcrType = "visitscotland:Listicle")

@@ -1,5 +1,6 @@
 package com.visitscotland.brmx.beans.mapping;
 
+import com.visitscotland.brmx.beans.TourismInformation;
 import org.hippoecm.hst.content.beans.standard.HippoHtml;
 
 public class IKnowModule extends Module{
