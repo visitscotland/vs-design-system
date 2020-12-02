@@ -3,6 +3,7 @@ package com.visitscotland.brmx.components.content;
 import com.visitscotland.brmx.beans.mapping.LocalizedURL;
 import com.visitscotland.brmx.services.ResourceBundleService;
 import com.visitscotland.brmx.utils.HippoUtilsService;
+import com.visitscotland.brmx.utils.Language;
 import com.visitscotland.brmx.utils.Properties;
 import org.hippoecm.hst.core.component.HstRequest;
 import org.hippoecm.hst.core.component.HstResponse;
@@ -68,7 +69,7 @@ public class InternalContentComponent extends CommonComponent {
     }
 
     public void addLocalizedURLs(HstRequest request) {
-        List<LocalizedURL> translatedURL = new ArrayList<>(Properties.Language.values().length);
+        List<LocalizedURL> translatedURL = new ArrayList<>(Language.values().length);
 
         for (Locale locale : Properties.locales) {
             LocalizedURL lan = new LocalizedURL();

@@ -1,8 +1,11 @@
 package com.visitscotland.brmx.api;
 
 import com.visitscotland.brmx.utils.CommonUtils;
+import com.visitscotland.brmx.utils.Language;
 import com.visitscotland.brmx.utils.Properties;
 import org.hippoecm.hst.jaxrs.services.AbstractResource;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.GET;
@@ -11,11 +14,7 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.Response;
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
+import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
@@ -24,9 +23,13 @@ import java.util.Map;
 @Path("/internal/")
 public class InternalResource extends AbstractResource {
 
+    private static final Logger logger = LoggerFactory.getLogger(InternalResource.class);
+
+    private static final String NO_MATCH = "<!-- No match -->";
+
     private final CommonUtils utils;
 
-    public InternalResource(){
+    public InternalResource() {
         utils = new CommonUtils();
     }
 
@@ -48,137 +51,42 @@ public class InternalResource extends AbstractResource {
         String external = request.getParameter("external");
 
         try {
-
-            HttpURLConnection con = requestPage(external, rootPath, sso, locale);
-            return prepareResponse(con, tag);
+            String url = buildUrl(external, rootPath, sso, locale);
+            return Response.ok().entity(getFragment(utils.requestUrl(url), tag)).build();
         } catch (Exception e) {
-            //TODO Log properly
-            e.printStackTrace();
-            return null;
+            logger.error("Error while ");
+            return Response.serverError().entity("Error while handling the request. Please contact Helpdesk at " + Properties.HELPDESK).build();
         }
     }
 
-    private HttpURLConnection requestPage(String external,
-                                          String rootPath,
-                                          String sso,
-                                          String locale) throws IOException {
+    private String buildUrl(String external,
+                            String rootPath,
+                            String sso,
+                            String locale) {
         Map<String, String> parameters = new HashMap<>();
-        String languagePathVariable = "";
+        String languageSubsite = "";
         parameters.put("external", external);
         parameters.put("root-path", rootPath);
         parameters.put("sso", sso);
 
-        if (locale != null){
-            languagePathVariable = "/" + Properties.Language.getLanguageForLocale(Locale.forLanguageTag(locale)).getCMSPathVariable();
+        if (locale != null) {
+            languageSubsite = "/" + Language.getLanguageForLocale(Locale.forLanguageTag(locale)).getCMSPathVariable();
         }
 
-        HttpURLConnection con = (HttpURLConnection) new URL("http://localhost:8080/site"+languagePathVariable+"/internal" + buildQueryString(parameters)).openConnection();
-        con.setDoInput(true);
-
-        con.setRequestProperty("Content-Type", "text/html");
-        con.setRequestProperty("Method", "GET");
-
-        return con;
+        return Properties.LOCALHOST + languageSubsite + "/internal" +
+                utils.buildQueryString(parameters, StandardCharsets.UTF_8.name());
     }
 
-
-    /**
-     * This method should be converted into a builder pattern and the parameter escaped.
-     * @param parameters
-     * @return
-     */
-    private String buildQueryString(Map<String, String> parameters){
-        //TODO Sonar Recomendations
-        if (parameters.size() > 0){
-            String query = "?";
-            for (String key: parameters.keySet()){
-                if (parameters.get(key) == null){
-                    continue;
-                }
-                if (query.length() > 1){
-                    query += "&";
-                }
-                //TODO escape parameters
-                query += key + "=" + parameters.get(key);
-            }
-            return query;
-        }
-        return "";
-    }
-
-
-//    /**
-//     * Calculates the domain
-//     * @param con
-//     * @param tag
-//     * @param domain
-//     * @return
-//     */
-//    private String getPath(HttpServletRequest request){
-//        String path;
-//        if (request.getParameterValues("root-path") != null){
-//            path = request.getParameter("root-path");
-//            if (!path.endsWith("/")){
-//                path += "/";
-//            }
-//        } else if (request.getParameterValues("external") != null){
-//
-//            path = request.getScheme() + "://" +
-//                   request.getServerName();
-//            if (request.getServerPort() != 80) {
-//               path += ":" + request.getServerPort();
-//            }
-//            path += "/";
-//
-//        } else {
-//            path = "/";
-//        }
-//
-//        return path;
-//    }
-
-
-    private Response prepareResponse(String url, String tag) {
-        try {
-            return Response.ok().entity(getFragment(utils.requestUrl(url), tag)).build();
-        } catch (IOException e){
-            return Response.serverError().entity("Error while handling the request. Please contact Helpdesk.").build();
-        }
-    }
-
-    private Response prepareResponse(HttpURLConnection con, String tag) {
-        try {
-            StringBuilder sb = new StringBuilder();
-            int statusCode = con.getResponseCode();
-            if (statusCode == HttpURLConnection.HTTP_OK) {
-//                utils.requestUrl()
-                BufferedReader br = new BufferedReader(new InputStreamReader(con.getInputStream(), "utf-8"));
-                String line;
-                while ((line = br.readLine()) != null) {
-                    sb.append(line + "\n");
-                }
-                br.close();
-
-                return Response.ok().entity(getFragment(sb.toString(), tag)).build();
-            } else {
-                return Response.serverError().entity(String.format("The application responded with an error code %s: %s", con.getResponseCode(), con.getResponseMessage())).build();
-            }
-        } catch (IOException e){
-            return Response.serverError().entity("Error while handling the request. Please contact Helpdesk.").build();
-        }
-    }
-
-    private String getFragment(String content, String tag){
-        final String open = "<internal-" + tag + ">";
-        final String close = "</internal-" + tag + ">";
+    private String getFragment(String content, String fragment) {
+        final String open = "<internal-" + fragment + ">";
+        final String close = "</internal-" + fragment + ">";
 
         try {
-            return content.substring(content.indexOf(open)+ open.length(),
-                content.indexOf(close));
-        } catch (Exception e){
-            //TODO WARN no match
-            return "<!-- No match -->";
+            return content.substring(content.indexOf(open) + open.length(),
+                    content.indexOf(close));
+        } catch (Exception e) {
+            logger.warn("No coincidence has been found for the fragment {}", fragment);
+            return NO_MATCH;
         }
     }
-
 }
