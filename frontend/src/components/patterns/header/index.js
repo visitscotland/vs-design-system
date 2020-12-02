@@ -7,7 +7,7 @@ import VsMegaNavListItem from './components/mega-nav/desktop-menu/MegaNavListIte
 import VsMegaNavTopMenu from './components/mega-nav/desktop-menu/MegaNavTopMenu';
 import VsMegaNavTopMenuItem from './components/mega-nav/desktop-menu/MegaNavTopMenuItem';
 
-import VsMegaNavMobileList from './components/mega-nav/mobile-menu/MegaNavMobileList';
+import VsMegaNavAccordionItem from './components/mega-nav/mobile-menu/MegaNavAccordionItem';
 import VsMegaNavMobileListItem from './components/mega-nav/mobile-menu/MegaNavMobileListItem';
 import VsMegaNavMobileToggle from './components/mega-nav/mobile-menu/MegaNavMobileToggle';
 
@@ -19,7 +19,7 @@ export default {
     VsMegaNavListItem,
     VsMegaNavTopMenu,
     VsMegaNavTopMenuItem,
-    VsMegaNavMobileList,
+    VsMegaNavAccordionItem,
     VsMegaNavMobileListItem,
     VsMegaNavMobileToggle,
 };
