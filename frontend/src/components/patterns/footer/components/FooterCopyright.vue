@@ -1,5 +1,8 @@
 <template>
-    <div class="vs-footer-copyright border-top border-secondary-light">
+    <div
+        class="vs-footer-copyright border-top border-secondary-light"
+        data-unique-id="vs-footer-sub_footer"
+    >
         <VsContainer>
             <VsRow>
                 <VsCol
