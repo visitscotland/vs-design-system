@@ -10,6 +10,10 @@ const factoryShallowMount = () => shallowMount(VsStretchedLinkCard, {
         imgSrc: imgUrl,
         imgAlt: 'Image alt',
     },
+    slots: {
+        stretchedCardHeader: 'Stretched link header',
+        stretchedCardContent: 'Stretched link content',
+    },
 });
 
 describe('VsStretchedLinkCard', () => {
@@ -34,6 +38,17 @@ describe('VsStretchedLinkCard', () => {
             });
 
             await expect(wrapper.find('[data-test="stretched-link__img"]').exists()).toBe(false);
+        });
+    });
+
+    describe(':slots', () => {
+        it('renders content inserted in a stretchedCardHeader slot', () => {
+            const wrapper = factoryShallowMount();
+            expect(wrapper.find('[data-test="stretched-link"]').text()).toBe('Stretched link header');
+        });
+        it('renders content inserted in a stretchedCardContent slot', () => {
+            const wrapper = factoryShallowMount();
+            expect(wrapper.find('[data-test="stretched-link-card__content"]').text()).toBe('Stretched link content');
         });
     });
 });
