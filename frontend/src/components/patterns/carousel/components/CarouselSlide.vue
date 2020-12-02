@@ -3,15 +3,10 @@
         <VsStretchedLinkCard
             :link="linkUrl"
             :type="linkType"
+            :imgSrc="imgSrc"
+            :imgAlt="imgAlt"
             class="carousel-slide"
-            data-test="carousel-slide-featured"
         >
-            <VsImg
-                slot="stretchedCardImage"
-                :src="imgSrc"
-                :alt="imgAlt"
-                class="carousel-slide__img"
-            />
             <span
                 slot="stretchedCardHeader"
                 class="carousel-slide__title"
@@ -25,7 +20,6 @@
 <script>
 import { SplideSlide } from '@splidejs/vue-splide';
 import VsStretchedLinkCard from '@components/elements/stretched-link-card/StretchedLinkCard';
-import VsImg from '@components/elements/img/Img';
 
 /**
 * Slide for carousel
@@ -38,7 +32,6 @@ export default {
     components: {
         SplideSlide,
         VsStretchedLinkCard,
-        VsImg,
     },
     props: {
         /**
