@@ -1,4 +1,4 @@
-package com.visitscotland.brmx.api;
+package com.visitscotland.brmx.rest;
 
 import com.visitscotland.brmx.utils.CommonUtils;
 import com.visitscotland.brmx.utils.Language;
@@ -7,13 +7,12 @@ import org.hippoecm.hst.jaxrs.services.AbstractResource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.QueryParam;
-import javax.ws.rs.core.Context;
 import javax.ws.rs.core.Response;
+import javax.xml.soap.Node;
 import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.Locale;
@@ -25,12 +24,17 @@ public class InternalResource extends AbstractResource {
 
     private static final Logger logger = LoggerFactory.getLogger(InternalResource.class);
 
-    private static final String NO_MATCH = "<!-- No match -->";
+    static final String NO_MATCH = "<!-- No match -->";
 
+    //  TODO: TEST @Autowired
     private final CommonUtils utils;
 
     public InternalResource() {
-        utils = new CommonUtils();
+        this(new CommonUtils());
+    }
+
+    InternalResource(CommonUtils utils) {
+        this.utils = utils;
     }
 
     @GET
@@ -40,21 +44,22 @@ public class InternalResource extends AbstractResource {
     }
 
     @GET
-    @Path("/{tag}")
-    public Response header(@Context HttpServletRequest request,
-                           @PathParam("tag") String tag,
+    @Path("/{fragment}")
+    public Response fragment(@PathParam("fragment") String fragment,
                            @QueryParam("root-path") String rootPath,
                            @QueryParam("sso") String sso,
+                           @QueryParam("external") String external,
                            @QueryParam("vs-locale-ctx") String locale) {
-        // It is not possible to difference between a non send parameter and a parameter without value.
-        // This is the reason why the parameter is extracted from the request instead of using injection.
-        String external = request.getParameter("external");
-
+        String url = buildUrl(external, rootPath, sso, locale);
         try {
-            String url = buildUrl(external, rootPath, sso, locale);
-            return Response.ok().entity(getFragment(utils.requestUrl(url), tag)).build();
+            String body = getFragment(utils.requestUrl(url), fragment);
+            if (NO_MATCH.equals(body)){
+                return Response.status(Response.Status.NOT_FOUND).entity(body).build();
+            } else {
+                return Response.ok().entity(body).build();
+            }
         } catch (Exception e) {
-            logger.error("Error while ");
+            logger.error("Error while requesting the data to {} ", url, e);
             return Response.serverError().entity("Error while handling the request. Please contact Helpdesk at " + Properties.HELPDESK).build();
         }
     }

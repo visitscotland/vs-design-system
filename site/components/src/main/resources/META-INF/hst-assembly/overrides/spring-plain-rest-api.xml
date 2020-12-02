@@ -13,7 +13,7 @@
       <list>
         <bean class="org.apache.cxf.jaxrs.lifecycle.SingletonResourceProvider">
           <constructor-arg>
-            <bean class="com.visitscotland.brmx.api.InternalResource"/>
+            <bean class="com.visitscotland.brmx.rest.InternalResource"/>
           </constructor-arg>
         </bean>
       </list>
