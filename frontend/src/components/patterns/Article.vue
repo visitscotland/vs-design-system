@@ -1,6 +1,7 @@
 <template>
     <VsCol
         class="article"
+        data-test="vs-article"
         :tag="tag"
         v-bind="$attrs"
     >
