@@ -25,7 +25,7 @@ if (BRANCH_NAME == "develop" && (JOB_NAME == "develop.visitscotland.com/develop"
 } else {
   //thisAgent = "docker-02"
   env.VS_RELEASE_SNAPSHOT = "FALSE"
-  thisAgent = "op-dev-xvcdocker-01"
+  thisAgent = "docker-02"
 }
 
 import groovy.json.JsonSlurper
