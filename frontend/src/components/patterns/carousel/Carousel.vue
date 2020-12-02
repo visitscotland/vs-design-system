@@ -15,6 +15,7 @@
                         @splide:mounted="initialiseMobilePagination"
                         @splide:updated="resetTabbing"
                     >
+                        <!-- @slot default slot to contain slides -->
                         <slot />
                     </Splide>
                     <div class="carousel__mobile-pagination-wrapper">
@@ -87,9 +88,12 @@ export default {
             this.currentSlide = splide.index + 1;
             this.resetTabbing();
         },
+        // ensures that the user can't tab into elements
+        // that aren't currently shown by the carousel
         resetTabbing() {
             const carouselEl = this.$refs.carousel;
             const carouselLinks = carouselEl.getElementsByTagName('a');
+            // timeout to ensure that code has updated from Splide
             setTimeout(() => {
                 carouselLinks.forEach((element) => {
                     const link = element;
@@ -99,7 +103,7 @@ export default {
                         link.tabIndex = 0;
                     }
                 });
-            }, 1000);
+            }, 500);
         },
     },
 };
