@@ -23,11 +23,15 @@
         </vs-col>
         <@hst.html hippohtml=module.introduction/>
 
-
+    <#assign i = 0/>
         </br> </br>
         <#list module.sections as section>
+            </br>
+            </br>
             <vs-row>
                 <#if section.quote?? || section.image??>
+                    <#assign i = i+1/>
+                    <#if i % 2 != 0 >
                     <vs-row>
                         <vs-col cols="4">
                             <#if section.image??>
@@ -66,6 +70,47 @@
                             <@hst.html hippohtml=section.copy/>
                         </vs-col>
                     </vs-row>
+                    <#else>
+                        <vs-row>
+
+                            <vs-col cols="8" >
+                                <@hst.html hippohtml=section.copy/>
+                            </vs-col>
+                            <vs-col cols="4">
+                                <#if section.image??>
+                                    <#if section.image.cmsImage??>
+                                        <#assign media>
+                                            <@hst.link hippobean=section.image.cmsImage.original/>
+                                        </#assign>
+                                    <#else>
+                                        <#assign media = section.image.externalImage!'' />
+                                    </#if>
+                                    <@imageWithCaption imageSrc=media imageDetails=section.image variant="fullwidth"/>
+                                </#if>
+                                <#if section.quote??>
+                                    <#if section.quoteImage.cmsImage??>
+                                        <#assign imageQuote>
+                                            <@hst.link hippobean=section.quoteImage.cmsImage.thumbnail/>
+                                        </#assign>
+                                    <#else>
+                                        <#assign imageQuote = section.quoteImage.externalImage!'' />
+                                    </#if>
+
+                                    "<@hst.html hippohtml=section.quote/>"
+                                    <#if imageQuote?? && imageQuote?has_content>
+                                        <vs-col cols="3" offset-lg="1">
+                                            <vs-img alt="${(section.quoteImage)!'${label("essentials.global", "default.alt-text")}'}"
+                                                    src="${imageQuote}">
+                                            </vs-img>
+                                        </vs-col>
+                                    </#if>
+                                    <vs-heading level="6">${section.quoteAuthorName}</vs-heading>
+                                    ${section.quoteAuthorTitle}
+                                </#if>
+                            </vs-col>
+
+                        </vs-row>
+                    </#if>
                 <#else>
                     </br> </br>
                         <@hst.html hippohtml=section.copy/>
