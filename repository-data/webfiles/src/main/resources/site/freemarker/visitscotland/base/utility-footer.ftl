@@ -17,7 +17,7 @@
                         <#assign external = false>
 
                         <#if childItem.hstLink??>
-                            <#assign href><@hst.link link=childItem.hstLink/></#assign>
+                            <#assign href><@hst.link fullyQualified=fullyQualifiedURLs link=childItem.hstLink/></#assign>
                         <#elseif childItem.externalLink??>
                             <#assign href>${childItem.externalLink}</#assign>
                             <#assign external = true>
