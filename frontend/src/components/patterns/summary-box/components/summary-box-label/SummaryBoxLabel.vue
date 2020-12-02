@@ -23,7 +23,7 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .vs-summary-box-label {
     bottom: 5px;
     left: 0;

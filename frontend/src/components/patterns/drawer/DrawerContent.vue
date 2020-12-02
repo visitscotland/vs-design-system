@@ -182,7 +182,7 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .close-button-wrapper {
     right: 0;
     top: 0;

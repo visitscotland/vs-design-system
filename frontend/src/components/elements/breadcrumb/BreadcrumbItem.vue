@@ -36,9 +36,10 @@ export default {
          */
         active: {
             type: Boolean,
+            default: false,
         },
         /**
-         * The breadcrumb aria-current attribute.
+         * The breadcrumb aria-current attribute. Only visible when the item is `active`.
          */
         ariaCurrent: {
             type: String,
@@ -50,18 +51,24 @@ export default {
         text: {
             type: String,
             default: '',
+            required: true,
         },
     },
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 @import "~bootstrap/scss/breadcrumb";
 
 .vs-breadcrumb-item {
     color: $color-base-text;
     font-size: $font-size-base;
     font-weight: $font-weight-normal;
+
+    &:last-child {
+        color: $color-base-text;
+        font-weight: $font-weight-light;
+    }
 
     @include media-breakpoint-down(md) {
         font-size: $font-size-sm;
@@ -88,16 +95,12 @@ export default {
             }
         }
     }
+
+    a {
+        color: $color-base-text;
+    }
 }
 
-.vs-breadcrumb-item a {
-    color: $color-base-text;
-}
-
-.vs-breadcrumb-item:last-child {
-    color: $color-base-text;
-    font-weight: $font-weight-light;
-}
 </style>
 
 <docs>
