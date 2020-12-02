@@ -61,7 +61,7 @@ class InternalResourceTest {
 
     @Test
     @DisplayName("fragment - The fragment paramenters are being processed (Except locale)")
-    void fragment_noBuildUrl() throws IOException {
+    void fragment_buildUrl_parameters() throws IOException {
         //Verifies that all relevant parameters are sent to the internal page
         //Note that locale is handled in a different way
         ArgumentCaptor<Map<String, String>> parametersCaptor = ArgumentCaptor.forClass(Map.class);
@@ -78,8 +78,25 @@ class InternalResourceTest {
     }
 
     @Test
+    @DisplayName("fragment - When there is no parameter the URL does not use them ")
+    void fragment_buildUrl_noParameters() throws IOException {
+        //Verifies that all relevant parameters are sent to the internal page
+        //Note that locale is handled in a different way
+        ArgumentCaptor<Map<String, String>> parametersCaptor = ArgumentCaptor.forClass(Map.class);
+        ArgumentCaptor<String> urlCaptor = ArgumentCaptor.forClass(String.class);
+        when(utils.requestUrl(urlCaptor.capture())).thenReturn(MOCK_RESPONSE);
+        when(utils.buildQueryString(parametersCaptor.capture(), any())).thenReturn("?params");
+
+        String fragment = service.fragment("f1", null, null,null, null).getEntity().toString();
+        assertEquals("Fragment1",fragment);
+        assertNull(parametersCaptor.getValue().get("external"));
+        assertNull("sso", parametersCaptor.getValue().get("sso"));
+        assertNull("root-path", parametersCaptor.getValue().get("root-path"));
+    }
+
+    @Test
     @DisplayName("fragment - The fragment locale is being processed")
-    void fragment_noBuildUrl_locale() throws IOException {
+    void fragment_buildUrl_locale() throws IOException {
         ArgumentCaptor<String> urlCaptor = ArgumentCaptor.forClass(String.class);
         when(utils.requestUrl(urlCaptor.capture())).thenReturn(MOCK_RESPONSE);
         when(utils.buildQueryString(any(), any())).thenReturn("");

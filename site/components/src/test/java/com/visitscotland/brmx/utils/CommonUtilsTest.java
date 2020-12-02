@@ -38,8 +38,8 @@ class CommonUtilsTest {
         Assertions.assertTrue(queryParameters.startsWith("?"));
         // Param1 contains a value and it must be printed as 'param1=value1'
         Assertions.assertTrue(queryParameters.contains("param1=value1"));
-        // Param2 has an empty value and it must be recognized as 'param2='
-        Assertions.assertTrue(queryParameters.contains("param2=&") || queryParameters.endsWith("param2="));
+        // Param2 has an empty value and it must be recognized as 'param2'
+        Assertions.assertTrue(queryParameters.contains("param2&") || queryParameters.endsWith("param2"));
         // Param2 has no value and it must be recognized as just 'param3'
         Assertions.assertTrue(!queryParameters.contains("param3="));
         Assertions.assertTrue(queryParameters.contains("param3"));

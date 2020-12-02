@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.visitscotland.brmx.beans.InstagramImage;
 import com.visitscotland.brmx.services.ResourceBundleService;
+import com.visitscotland.utils.Contract;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -112,7 +113,7 @@ public class CommonUtils {
                         sb.append("?");
                     }
                     sb.append(entry.getKey());
-                    if (entry.getValue() != null) {
+                    if (!Contract.isEmpty(entry.getValue())) {
                         sb.append("=").append(URLEncoder.encode(entry.getValue(), encoding));
                     }
                 }

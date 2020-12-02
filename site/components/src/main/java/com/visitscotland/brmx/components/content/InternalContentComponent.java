@@ -1,5 +1,6 @@
 package com.visitscotland.brmx.components.content;
 
+import com.visitscotland.brmx.beans.Destination;
 import com.visitscotland.brmx.beans.mapping.LocalizedURL;
 import com.visitscotland.brmx.services.ResourceBundleService;
 import com.visitscotland.brmx.utils.HippoUtilsService;
@@ -40,11 +41,15 @@ public class InternalContentComponent extends CommonComponent {
         super.doBeforeRender(request, response);
 
         addLocalizedURLs(request);
+        addAttributesToRequest(request);
+    }
 
+    void addAttributesToRequest(HstRequest request) {
+        addLocalizedURLs(request);
         processParameters(request);
     }
 
-    private void processParameters(HstRequest request) {
+    void processParameters(HstRequest request) {
         final StringBuilder returnUrl = new StringBuilder();
         String external = utils.getParameterFromUrl(request, PARAM_EXTERNAL);
         String rootPath = utils.getParameterFromUrl(request, PARAM_ROOT_PATH);
@@ -54,7 +59,6 @@ public class InternalContentComponent extends CommonComponent {
             returnUrl.append(rootPath).append("/").append(PATH_PLACEHOLDER);
             request.getRequestContext().setModel(FULLY_QUALIFIED_URLS, "true");
         } else if (external != null) {
-            //sb.append(re);
             returnUrl.append(composeNonExistingURL(request.getLocale(), request));
             request.getRequestContext().setModel(FULLY_QUALIFIED_URLS, "true");
         } else {
@@ -68,7 +72,7 @@ public class InternalContentComponent extends CommonComponent {
         request.setModel(SSO_URL, returnUrl.toString());
     }
 
-    public void addLocalizedURLs(HstRequest request) {
+    void addLocalizedURLs(HstRequest request) {
         List<LocalizedURL> translatedURL = new ArrayList<>(Language.values().length);
 
         for (Locale locale : Properties.locales) {
@@ -87,7 +91,7 @@ public class InternalContentComponent extends CommonComponent {
     /**
      * Composes a non existing URL with the Placeholder.
      */
-    private String composeNonExistingURL(Locale locale, HstRequest request) {
+    String composeNonExistingURL(Locale locale, HstRequest request) {
         String languagePath = "";
 
         if (locale != null) {

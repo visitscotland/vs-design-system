@@ -26,6 +26,9 @@ public class InternalResource extends AbstractResource {
 
     static final String NO_MATCH = "<!-- No match -->";
 
+    //TODO Create constanst for the allowed parameters
+    //TODO Use them in Unit test
+
     //  TODO: TEST @Autowired
     private final CommonUtils utils;
 
@@ -70,9 +73,15 @@ public class InternalResource extends AbstractResource {
                             String locale) {
         Map<String, String> parameters = new HashMap<>();
         String languageSubsite = "";
-        parameters.put("external", external);
-        parameters.put("root-path", rootPath);
-        parameters.put("sso", sso);
+        if (external != null) {
+            parameters.put("external", external);
+        }
+        if (rootPath != null) {
+            parameters.put("root-path", rootPath);
+        }
+        if (sso != null) {
+            parameters.put("sso", sso);
+        }
 
         if (locale != null) {
             languageSubsite = "/" + Language.getLanguageForLocale(Locale.forLanguageTag(locale)).getCMSPathVariable();
