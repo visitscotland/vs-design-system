@@ -1,11 +1,14 @@
 package com.visitscotland.brmx.beans;
 
 import org.hippoecm.hst.content.beans.Node;
+import org.hippoecm.hst.content.beans.standard.HippoBean;
 import org.hippoecm.hst.content.beans.standard.HippoCompound;
 import org.hippoecm.hst.content.beans.standard.HippoHtml;
+import org.hippoecm.hst.content.beans.standard.HippoMirror;
 import org.onehippo.cms7.essentials.dashboard.annotations.HippoEssentialsGenerated;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 /** 
  * TODO: Beanwriter: Failed to create getter for node type: hippo:compound
@@ -24,11 +27,17 @@ public class LongContentSection extends HippoCompound {
     }
 
     @HippoEssentialsGenerated(internalName = "visitscotland:media", allowModifications = false)
-    public List<HippoCompound> getMedia() {
-        return getLinkedBeans("visitscotland:media", HippoCompound.class);
+    public List<HippoBean> getMedia() {
+        return getChildBeansByName("visitscotland:media", HippoBean.class).stream().map(hippoBean -> {
+                    if (hippoBean instanceof HippoMirror) {
+                        return ((HippoMirror) hippoBean).getReferencedBean();
+                    }
+                    return hippoBean;
+                }
+        ).collect(Collectors.toList());
     }
 
-    public HippoCompound getMediaItem(){
+      public HippoBean getMediaItem(){
         return getOnlyChild(getMedia());
     }
 

@@ -1,13 +1,16 @@
 package com.visitscotland.brmx.components.content;
 
 import com.visitscotland.brmx.beans.*;
+import com.visitscotland.brmx.beans.dms.LocationObject;
 import com.visitscotland.brmx.beans.mapping.*;
+import com.visitscotland.brmx.beans.mapping.Coordinates;
 import com.visitscotland.brmx.beans.mapping.megalinks.LinksModule;
 import com.visitscotland.brmx.beans.mapping.megalinks.SingleImageLinksModule;
 import com.visitscotland.brmx.components.content.factory.ICentreFactory;
 import com.visitscotland.brmx.components.content.factory.IKnowFactory;
 import com.visitscotland.brmx.components.content.factory.LinkModulesFactory;
 import com.visitscotland.utils.Contract;
+import org.hippoecm.hst.content.beans.standard.HippoCompound;
 import org.hippoecm.hst.core.component.HstRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -118,6 +121,14 @@ public class PageTemplateBuilder {
             flcs.setCopy(section.getCopy());
             //TODO Convert MediaItem into image
            //flcs.setImage(new FlatImage(section.getMediaItem(), request.getLocale()));
+
+            if (section.getMediaItem() instanceof Image) {
+                Image cmsImage = (Image) section.getMediaItem();
+                if (cmsImage != null) {
+                    FlatImage flatImage = new FlatImage(cmsImage,request.getLocale());
+                   flcs.setImage(flatImage);
+                }
+            }
 
             // TODO Are we going to include Quotes?
             if (section.getQuote()!= null){

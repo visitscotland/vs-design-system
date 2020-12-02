@@ -431,39 +431,40 @@
         jcr:mixinTypes: ['mix:referenceable']
         jcr:uuid: 00b5edad-35c2-4bb0-b9e1-1364f0bd9f85
         hippo:availability: []
+        hippostd:holder: admin
         hippostd:state: draft
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2019-12-06T12:48:04.149Z
-        hippostdpubwf:lastModificationDate: 2020-11-10T16:17:43.488Z
+        hippostdpubwf:lastModificationDate: 2020-12-01T17:49:41.912Z
         hippostdpubwf:lastModifiedBy: admin
         hippotranslation:id: 56cf92c8-5887-4146-ad53-eaa062f4e07a
         hippotranslation:locale: en
-        visitscotland:areas: [east, north]
+        visitscotland:areas: []
         visitscotland:breadcrumb: Hola
         visitscotland:distance: 10.4
         visitscotland:finish: Ocean point
-        visitscotland:highlights: "Glenfinnan Viaduct \r\nJacobite Steam Train\r\n\
-          Glen Etive\r\nThe Elephant House"
+        visitscotland:highlights: ''
         visitscotland:popular: false
         visitscotland:seoDescription: It was in Scotland's capital city that JK Rowling
           started to plot the adventures of Harry and his friends. With cobbled streets,
           winding alleys and medieval architecture, the city certainly have a few
           things in common with the settings from the books and films.
         visitscotland:seoNoIndex: false
-        visitscotland:seoTitle: Iconic Harry Potter Film Locations - An Itinerary
+        visitscotland:seoTitle: ''
         visitscotland:start: Tenerife
         visitscotland:summary: ''
         visitscotland:teaser: It was in Scotland's capital city that JK Rowling started
           to plot the adventures of Harry and his friends
         visitscotland:text: "Glenfinnan Viaduct\r\n\r\nJacobite Steam Train\r\n\r\n\
           Glen Etive\r\n\r\nThe Elephant House"
-        visitscotland:theme: whisky
+        visitscotland:theme: ''
         visitscotland:title: HARRY POTTER FILM AND BOOK LOCATIONS ITINERARY
+        visitscotland:translation: ''
         visitscotland:transport: [boat]
-        visitscotland:transports: [car, train]
+        visitscotland:transports: []
         /visitscotland:heroImage:
           jcr:primaryType: hippogallerypicker:imagelink
-          hippo:docbase: 8d4f5036-64ca-4e5d-aa89-b348ae38b081
+          hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
           hippo:facets: []
           hippo:modes: []
           hippo:values: []
@@ -486,6 +487,12 @@
           visitscotland:dmscategories: ''
           visitscotland:location: ''
           visitscotland:producttype: ''
+        /visitscotland:otherThings:
+          jcr:primaryType: visitscotland:OTYML
+          visitscotland:title: ''
+          /visitscotland:introduction:
+            jcr:primaryType: hippostd:html
+            hippostd:content: ''
     /edinburgh:
       jcr:primaryType: hippo:handle
       jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
@@ -572,14 +579,16 @@
         jcr:mixinTypes: ['mix:referenceable']
         jcr:uuid: 1d990574-0974-47c6-8a69-8122541783ac
         hippo:availability: []
+        hippostd:holder: admin
         hippostd:state: draft
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2019-12-10T13:28:39.550Z
-        hippostdpubwf:lastModificationDate: 2020-10-21T15:11:03.734+01:00
+        hippostdpubwf:lastModificationDate: 2020-12-02T12:27:51.036Z
         hippostdpubwf:lastModifiedBy: admin
         hippotranslation:id: 533c98b2-c2cd-491f-929a-ea2c4a491bb2
         hippotranslation:locale: en
         visitscotland:title: DMS Stops Day
+        visitscotland:translation: ''
         visitscotland:transports: [car, train, walking]
         /visitscotland:introduction:
           jcr:primaryType: hippostd:html
@@ -726,10 +735,11 @@
         jcr:mixinTypes: ['mix:referenceable']
         jcr:uuid: 65d4e5a1-4bea-4602-a033-55e652eb8a7f
         hippo:availability: []
+        hippostd:holder: admin
         hippostd:state: draft
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2020-02-27T13:17:22.069Z
-        hippostdpubwf:lastModificationDate: 2020-11-10T16:18:02.574Z
+        hippostdpubwf:lastModificationDate: 2020-12-01T17:54:01.193Z
         hippostdpubwf:lastModifiedBy: admin
         hippotranslation:id: 7d4f9ca4-76eb-40a1-a793-29efa7f1ae68
         hippotranslation:locale: en
@@ -742,6 +752,7 @@
         visitscotland:teaser: If you're looking for the best things to do in Scotland,
           then look no further. We've got iconic castles, incredible museums.
         visitscotland:title: Listicle Header
+        visitscotland:translation: ''
         /visitscotland:heroImage:
           jcr:primaryType: hippogallerypicker:imagelink
           hippo:docbase: 71701526-e11f-4819-8afb-db93a0b92041
@@ -767,7 +778,7 @@
         hippostd:state: unpublished
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2020-02-27T13:17:22.069Z
-        hippostdpubwf:lastModificationDate: 2020-11-10T16:18:02.536Z
+        hippostdpubwf:lastModificationDate: 2020-12-01T17:54:01.154Z
         hippostdpubwf:lastModifiedBy: admin
         hippotranslation:id: 7d4f9ca4-76eb-40a1-a793-29efa7f1ae68
         hippotranslation:locale: en
@@ -780,6 +791,7 @@
         visitscotland:teaser: If you're looking for the best things to do in Scotland,
           then look no further. We've got iconic castles, incredible museums.
         visitscotland:title: Listicle Header
+        visitscotland:translation: ''
         /visitscotland:heroImage:
           jcr:primaryType: hippogallerypicker:imagelink
           hippo:docbase: 71701526-e11f-4819-8afb-db93a0b92041
@@ -847,15 +859,17 @@
         jcr:mixinTypes: ['mix:referenceable']
         jcr:uuid: 928abd4d-f3d8-47b5-b382-97e44e51b347
         hippo:availability: []
+        hippostd:holder: admin
         hippostd:state: draft
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2020-03-30T14:46:39.631+01:00
-        hippostdpubwf:lastModificationDate: 2020-06-16T16:31:56.618+01:00
+        hippostdpubwf:lastModificationDate: 2020-12-02T09:51:15.202Z
         hippostdpubwf:lastModifiedBy: admin
         hippotranslation:id: ec9e89f9-6bbe-4b0b-9402-c70a1e5ca466
         hippotranslation:locale: en
         visitscotland:subtitle: ''
         visitscotland:title: NATIONAL MUSEUM OF SCOTLAND
+        visitscotland:translation: ''
         /visitscotland:description:
           jcr:primaryType: hippostd:html
           hippostd:content: |-
@@ -872,7 +886,7 @@
           visitscotland:product: '246591'
         /visitscotland:extraLinks:
           jcr:primaryType: visitscotland:ProductSearchLink
-          visitscotland:label: Find out more museums in edinburgh
+          visitscotland:label: Find out more museums
           /visitscotland:search:
             jcr:primaryType: visitscotland:ProductsSearch
             visitscotland:distance: 11.3
@@ -891,12 +905,13 @@
         hippostd:state: unpublished
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2020-03-30T14:46:39.631+01:00
-        hippostdpubwf:lastModificationDate: 2020-06-16T16:31:56.581+01:00
+        hippostdpubwf:lastModificationDate: 2020-12-02T09:51:14.923Z
         hippostdpubwf:lastModifiedBy: admin
         hippotranslation:id: ec9e89f9-6bbe-4b0b-9402-c70a1e5ca466
         hippotranslation:locale: en
         visitscotland:subtitle: ''
         visitscotland:title: NATIONAL MUSEUM OF SCOTLAND
+        visitscotland:translation: ''
         /visitscotland:description:
           jcr:primaryType: hippostd:html
           hippostd:content: |-
@@ -913,7 +928,7 @@
           visitscotland:product: '246591'
         /visitscotland:extraLinks:
           jcr:primaryType: visitscotland:ProductSearchLink
-          visitscotland:label: Find out more museums in edinburgh
+          visitscotland:label: Find out more museums
           /visitscotland:search:
             jcr:primaryType: visitscotland:ProductsSearch
             visitscotland:distance: 11.3
@@ -1175,45 +1190,25 @@
             jcr:mixinTypes: ['mix:referenceable']
             jcr:uuid: 9493e202-3008-42a4-8b8d-3731fa11d143
             hippo:availability: []
+            hippostd:holder: admin
             hippostd:state: draft
             hippostdpubwf:createdBy: admin
             hippostdpubwf:creationDate: 2020-03-09T13:18:03.936Z
-            hippostdpubwf:lastModificationDate: 2020-11-26T13:35:56.247Z
+            hippostdpubwf:lastModificationDate: 2020-12-02T10:45:06.766Z
             hippostdpubwf:lastModifiedBy: admin
             hippotranslation:id: 97546e89-0d3f-4b72-816b-fd23247d9c2c
             hippotranslation:locale: en
             visitscotland:breadcrumb: ''
             visitscotland:descOrder: false
-            visitscotland:seoDescription: When it comes to places to stay, Scotland
-              has some fantastic options; but there really is something extra special
-              about a waterside location. If it's a coastal break you fancy, you'll
-              find wonderful holiday cottages on seafronts, near beaches and shorelines.
-              Or you can stay at the edge of an inland loch or sea loch, by a canal,
-              and should you actually fancy staying on the water, there are great
-              choices when it comes to boating and sailing holidays.  Here are just
-              a few ideas for some lovely waterside locations and accommodation suggestions
-              for holidays on or by the water, perfect for a relaxing break.
+            visitscotland:seoDescription: Discover relaxing breaks in Scotland, including
+              accommodation beside lochs and canals, lighthouses, boating holidays
+              and harbour-side cottages.
             visitscotland:seoNoIndex: false
-            visitscotland:seoTitle: When it comes to places to stay,
+            visitscotland:seoTitle: Short Calming Escapes By The Water
             visitscotland:summaryTitle: ''
-            visitscotland:teaser: When it comes to places to stay, Scotland has some
-              fantastic options; but there really is something extra special about
-              a waterside location. If it's a coastal break you fancy, you'll find
-              wonderful holiday cottages on seafronts, near beaches and shorelines.
-              Or you can stay at the edge of an inland loch or sea loch, by a canal,
-              and should you actually fancy staying on the water, there are great
-              choices when it comes to boating and sailing holidays.  Here are just
-              a few ideas for some lovely waterside locations and accommodation suggestions
-              for holidays on or by the water, perfect for a relaxing break.
-            visitscotland:title: When it comes to places to stay, Scotland has some
-              fantastic options; but there really is something extra special about
-              a waterside location. If it's a coastal break you fancy, you'll find
-              wonderful holiday cottages on seafronts, near beaches and shorelines.
-              Or you can stay at the edge of an inland loch or sea loch, by a canal,
-              and should you actually fancy staying on the water, there are great
-              choices when it comes to boating and sailing holidays.  Here are just
-              a few ideas for some lovely waterside locations and accommodation suggestions
-              for holidays on or by the water, perfect for a relaxing break.
+            visitscotland:teaser: Discover relaxing breaks in Scotland, including
+              accommodation beside lochs and canals, lighthouses and boating holidays.
+            visitscotland:title: Short Calming Escapes By The Water
             visitscotland:translation: ''
             /visitscotland:heroImage:
               jcr:primaryType: hippogallerypicker:imagelink
@@ -1792,7 +1787,7 @@
           hippostd:state: draft
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2020-05-21T17:54:15.934+01:00
-          hippostdpubwf:lastModificationDate: 2020-11-25T09:36:59.108Z
+          hippostdpubwf:lastModificationDate: 2020-12-02T10:10:52.772Z
           hippostdpubwf:lastModifiedBy: admin
           hippotranslation:id: 5dc9b699-4821-4c91-b426-7b75aed683e4
           hippotranslation:locale: en
@@ -1811,7 +1806,7 @@
             visitscotland:feature: false
             /visitscotland:link:
               jcr:primaryType: hippo:mirror
-              hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
+              hippo:docbase: 8fac413e-f1e1-4b9b-9d57-9470bee430e7
           /visitscotland:megalinkItems[2]:
             jcr:primaryType: visitscotland:MegalinkItem
             visitscotland:feature: true
@@ -1842,6 +1837,19 @@
             /visitscotland:link:
               jcr:primaryType: hippo:mirror
               hippo:docbase: 8b4a3c11-8b84-4aa0-bccf-f407d18c1c44
+          /visitscotland:singleImageLinks:
+            jcr:primaryType: visitscotland:SingleImageModule
+            visitscotland:title: Megalink in Spanish would be Megaenlace qweq eq q
+              q q qw qe q
+            /visitscotland:image:
+              jcr:primaryType: hippogallerypicker:imagelink
+              hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
+              hippo:facets: []
+              hippo:modes: []
+              hippo:values: []
+            /visitscotland:introduction:
+              jcr:primaryType: hippostd:html
+              hippostd:content: ''
         /featured-layout[2]:
           jcr:primaryType: visitscotland:Megalinks
           jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
@@ -1850,7 +1858,7 @@
           hippostd:state: unpublished
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2020-05-21T17:54:15.934+01:00
-          hippostdpubwf:lastModificationDate: 2020-11-10T16:13:56.125Z
+          hippostdpubwf:lastModificationDate: 2020-12-02T10:10:52.682Z
           hippostdpubwf:lastModifiedBy: admin
           hippotranslation:id: 5dc9b699-4821-4c91-b426-7b75aed683e4
           hippotranslation:locale: en
@@ -1859,6 +1867,7 @@
           visitscotland:listLayout: false
           visitscotland:teaserVisible: true
           visitscotland:title: Megalinks - Multi image Links (6 items)
+          visitscotland:translation: ''
           /visitscotland:introduction:
             jcr:primaryType: hippostd:html
             hippostd:content: <p>This is an example of Featured Links</p>
@@ -1867,7 +1876,7 @@
             visitscotland:feature: false
             /visitscotland:link:
               jcr:primaryType: hippo:mirror
-              hippo:docbase: bc5bec32-9cbc-45a7-855b-342008ad8ef9
+              hippo:docbase: 8fac413e-f1e1-4b9b-9d57-9470bee430e7
           /visitscotland:megalinkItems[2]:
             jcr:primaryType: visitscotland:MegalinkItem
             visitscotland:feature: true
@@ -3898,11 +3907,10 @@
             jcr:mixinTypes: ['mix:referenceable']
             jcr:uuid: 27ea31d2-a3a6-4ea1-972a-5d92fda60d95
             hippo:availability: []
-            hippostd:holder: admin
             hippostd:state: draft
             hippostdpubwf:createdBy: admin
             hippostdpubwf:creationDate: 2019-12-16T12:20:46.037Z
-            hippostdpubwf:lastModificationDate: 2020-11-25T15:39:49.669Z
+            hippostdpubwf:lastModificationDate: 2020-12-02T09:53:34.460Z
             hippostdpubwf:lastModifiedBy: admin
             hippotranslation:id: 38f7c9ac-27eb-4b02-9bab-16b719f241e4
             hippotranslation:locale: en
@@ -6889,16 +6897,18 @@
               jcr:mixinTypes: ['mix:referenceable']
               jcr:uuid: 000a4588-b48b-4235-a0ae-994737e49eb4
               hippo:availability: []
+              hippostd:holder: admin
               hippostd:state: draft
               hippostdpubwf:createdBy: admin
               hippostdpubwf:creationDate: 2020-07-10T13:34:45.173+01:00
-              hippostdpubwf:lastModificationDate: 2020-07-13T10:28:21.938+01:00
+              hippostdpubwf:lastModificationDate: 2020-12-02T09:10:46.624Z
               hippostdpubwf:lastModifiedBy: admin
               hippotranslation:id: 191c3a0d-a25f-4f2c-a9f0-061bf5720bf8
               hippotranslation:locale: en
               visitscotland:teaser: The small island of Benbecula lies between North
                 and South Uist in the Outer Hebrides.
               visitscotland:title: Benbecula
+              visitscotland:translation: ''
               /visitscotland:image:
                 jcr:primaryType: hippogallerypicker:imagelink
                 hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
@@ -9430,7 +9440,7 @@
       jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
       jcr:uuid: d3391b3d-f34e-472e-8ecc-8ef6dafa15de
       hippo:name: Long Content Demo
-      hippo:versionHistory: 03fc841a-b66c-4704-a2c3-f6b4857b85cc
+      hippo:versionHistory: e29938d9-0505-4d25-b214-dc465decbcd8
       /long-content-demo[1]:
         jcr:primaryType: visitscotland:LongContent
         jcr:mixinTypes: ['mix:referenceable']
@@ -9439,7 +9449,7 @@
         hippostd:state: draft
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2020-11-27T12:37:53.028Z
-        hippostdpubwf:lastModificationDate: 2020-12-01T17:25:29.142Z
+        hippostdpubwf:lastModificationDate: 2020-12-02T13:24:13.854Z
         hippostdpubwf:lastModifiedBy: admin
         hippotranslation:id: 58e795ae-faa5-4520-af71-825919937a0e
         hippotranslation:locale: en
@@ -9490,6 +9500,12 @@
               hippostd:content: <p>Scotland's largest mountain was once a massive
                 active volcano which exploded and collapsed inwards on itself millions
                 of years ago.</p>
+          /visitscotland:media:
+            jcr:primaryType: hippogallerypicker:imagelink
+            hippo:docbase: ece9b7e3-75e0-4817-8b83-6fd2f06ccd7e
+            hippo:facets: []
+            hippo:modes: []
+            hippo:values: []
       /long-content-demo[2]:
         jcr:primaryType: visitscotland:LongContent
         jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
@@ -9498,7 +9514,7 @@
         hippostd:state: unpublished
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2020-11-27T12:37:53.028Z
-        hippostdpubwf:lastModificationDate: 2020-12-01T17:25:25.049Z
+        hippostdpubwf:lastModificationDate: 2020-12-02T13:24:08.728Z
         hippostdpubwf:lastModifiedBy: admin
         hippotranslation:id: 58e795ae-faa5-4520-af71-825919937a0e
         hippotranslation:locale: en
@@ -9549,6 +9565,12 @@
               hippostd:content: <p>Scotland's largest mountain was once a massive
                 active volcano which exploded and collapsed inwards on itself millions
                 of years ago.</p>
+          /visitscotland:media:
+            jcr:primaryType: hippogallerypicker:imagelink
+            hippo:docbase: ece9b7e3-75e0-4817-8b83-6fd2f06ccd7e
+            hippo:facets: []
+            hippo:modes: []
+            hippo:values: []
       /long-content-demo[3]:
         jcr:primaryType: visitscotland:LongContent
         jcr:mixinTypes: ['mix:referenceable']
@@ -9557,9 +9579,9 @@
         hippostd:state: published
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2020-11-27T12:37:53.028Z
-        hippostdpubwf:lastModificationDate: 2020-12-01T17:25:25.049Z
+        hippostdpubwf:lastModificationDate: 2020-12-02T13:24:08.728Z
         hippostdpubwf:lastModifiedBy: admin
-        hippostdpubwf:publicationDate: 2020-12-01T17:25:28.754Z
+        hippostdpubwf:publicationDate: 2020-12-02T13:24:13.150Z
         hippotranslation:id: 58e795ae-faa5-4520-af71-825919937a0e
         hippotranslation:locale: en
         visitscotland:title: Experiencing Ben Nevis
@@ -9609,6 +9631,12 @@
               hippostd:content: <p>Scotland's largest mountain was once a massive
                 active volcano which exploded and collapsed inwards on itself millions
                 of years ago.</p>
+          /visitscotland:media:
+            jcr:primaryType: hippogallerypicker:imagelink
+            hippo:docbase: ece9b7e3-75e0-4817-8b83-6fd2f06ccd7e
+            hippo:facets: []
+            hippo:modes: []
+            hippo:values: []
     /section-2:
       jcr:primaryType: hippo:handle
       jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
@@ -9623,7 +9651,7 @@
         hippostd:state: draft
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2020-12-01T16:56:46.384Z
-        hippostdpubwf:lastModificationDate: 2020-12-01T17:13:38.194Z
+        hippostdpubwf:lastModificationDate: 2020-12-02T13:24:16.104Z
         hippostdpubwf:lastModifiedBy: admin
         hippotranslation:id: 06a87d36-ee5e-4247-bdae-d673eeb890df
         hippotranslation:locale: en
