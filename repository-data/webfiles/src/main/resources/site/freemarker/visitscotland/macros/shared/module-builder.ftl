@@ -29,8 +29,7 @@
             <@icentre module/>
 
         <#elseif module.getType()== "IKnowModule">
-            <@iknow module/>  -->
-
+            <@iknow module/>
         </#if>
     </div>
 </#macro>
