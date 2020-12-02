@@ -25,6 +25,7 @@
 <script>
 import { SplideSlide } from '@splidejs/vue-splide';
 import VsStretchedLinkCard from '@components/elements/stretched-link-card/StretchedLinkCard';
+import VsImg from '@components/elements/img/Img';
 
 /**
 * Slide for carousel
@@ -37,6 +38,7 @@ export default {
     components: {
         SplideSlide,
         VsStretchedLinkCard,
+        VsImg,
     },
     props: {
         /**
