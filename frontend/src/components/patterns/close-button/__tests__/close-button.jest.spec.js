@@ -24,7 +24,7 @@ describe('VSCloseButton', () => {
     });
 
     it('should contain a vsicon-stub', () => {
-        let icon = wrapper.find('vsicon-stub');
+        const icon = wrapper.find('vsicon-stub');
 
         expect(icon.exists()).toBe(true);
     });
