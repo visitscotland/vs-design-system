@@ -12,7 +12,7 @@ const factoryMount = (values) => mount(VsMegaNavTopMenuItem, {
 });
 
 describe('VsMegaNavTopMenuItem', () => {
-    it('should render a component with the data-test attribute `.vs-mega-nav-top-menu-item`', () => {
+    it('should render a component with the data-test attribute `vs-mega-nav-top-menu-item`', () => {
         const wrapper = shallowMount(VsMegaNavTopMenuItem);
         expect(wrapper.attributes('data-test')).toBe('vs-mega-nav-top-menu-item');
     });
