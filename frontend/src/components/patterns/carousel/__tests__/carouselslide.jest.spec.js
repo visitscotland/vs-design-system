@@ -1,11 +1,11 @@
 import { shallowMount } from '@vue/test-utils';
 import VsCarouselSlide from '../components/CarouselSlide';
 
-const imgSrc = "https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"
+const imgSrc = 'https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm';
 
-const factoryShallowMount = (slotsData) => shallowMount(VsCarouselSlide, {
+const factoryShallowMount = () => shallowMount(VsCarouselSlide, {
     propsData: {
-        imgSrc: imgSrc,
+        imgSrc,
         imgAlt: 'Img alt',
         linkType: 'internal',
         linkUrl: 'http://www.visitscotland.com',
