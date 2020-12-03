@@ -1,5 +1,8 @@
 <template>
-    <div class="text-center vs-summary-box-label d-block position-absolute w-100">
+    <div
+        class="text-center vs-summary-box-label d-block position-absolute w-100"
+        data-test="vs-summary-box-label"
+    >
         <strong>{{ label }}</strong>
     </div>
 </template>
