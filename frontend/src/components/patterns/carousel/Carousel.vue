@@ -19,7 +19,10 @@
                         <slot />
                     </Splide>
                     <div class="carousel__mobile-pagination-wrapper">
-                        <p class="carousel__mobile-pagination">
+                        <p
+                            class="carousel__mobile-pagination"
+                            data-test="carousel__mobile-pagination"
+                        >
                             {{ currentSlide }} of {{ totalSlides }}
                         </p>
                     </div>
