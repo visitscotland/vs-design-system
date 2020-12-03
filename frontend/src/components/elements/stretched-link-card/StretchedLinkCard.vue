@@ -9,6 +9,11 @@
             />
         </template>
 
+        <div class="stretched-link-card__panels">
+            <!-- @slot Contains optional content for overlaid panels  -->
+            <slot name="stretchedCardPanels" />
+        </div>
+
         <div class="card-body">
             <VsHeading
                 level="3"
@@ -40,6 +45,7 @@
 import VsHeading from '@components/elements/heading/Heading';
 import VsLink from '@components/elements/link/Link';
 import VsImg from '@components/elements/img/Img';
+
 /**
  * The Stretched Link Card is a block that stretches its nested link across its whole area
  * meaning that the whole block is clickable
@@ -152,6 +158,54 @@ export default {
             }
         }
 
+        .stretched-link-card__panels {
+            position: absolute;
+            top: $spacer-1;
+            right: $spacer-1;
+            display: flex;
+            flex-direction: row;
+        }
+
+        .stretched-link-card__panel {
+            width: 55px;
+            height: 55px;
+            background: $color-black;
+            font-size: $xs-font-size;
+            margin-left: $spacer-1;
+            color: $color-white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+
+            &--days {
+                background: $color-secondary-teal-shade-2;
+            }
+
+            .stretched-link-card__days {
+                font-size: $font-size-lg;
+                font-weight: bold;
+                display: block;
+            }
+
+            p {
+                margin-bottom: 0;
+                text-align: center;
+                line-height: $line_height_xs;
+            }
+        }
+
+        @include media-breakpoint-up(sm) {
+            .stretched-link-card__panels {
+                top: $spacer-2;
+                right: $spacer-2;
+            }
+
+            .stretched-link-card__panel {
+                margin-left: $spacer-2;
+            }
+        }
+
         @include media-breakpoint-up(xl) {
             .stretched-link-card__title {
                 font-size: $h6-font-size;
@@ -176,6 +230,12 @@ export default {
                     imgSrc="https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"
                     imgAlt="This is the alt text"
                 >
+
+                    <template slot="stretchedCardPanels">
+                        <vs-stretched-link-panel days="14" />
+                        <vs-stretched-link-panel text="öffentlicher Verkehr" />
+                    </template>
+
                     <template slot="stretchedCardHeader">
                         A Title Would Go Here
                     </template>
