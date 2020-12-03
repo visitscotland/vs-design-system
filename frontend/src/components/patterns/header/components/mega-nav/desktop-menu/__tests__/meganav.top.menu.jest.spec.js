@@ -8,7 +8,7 @@ const factoryShallowMount = () => shallowMount(VsMegaNavTopMenu, {
 });
 
 describe('VsMegaNavTopMenu', () => {
-    it('should render a component with the data-test attribute `.vs-mega-nav-top-menu`', () => {
+    it('should render a component with the data-test attribute `vs-mega-nav-top-menu`', () => {
         const wrapper = factoryShallowMount();
         expect(wrapper.attributes('data-test')).toBe('vs-mega-nav-top-menu');
     });
