@@ -87,7 +87,7 @@ public class InternalContentComponent extends CommonComponent {
     private String composeNonExistingURL(Locale locale, HstRequest request) {
         String languagePath = "";
 
-        if (locale != null) {
+        if (locale != null && Language.getLanguageForLocale(locale).getCMSPathVariable().length() != 0) {
             languagePath = "/" + Language.getLanguageForLocale(locale).getCMSPathVariable();
         }
 
