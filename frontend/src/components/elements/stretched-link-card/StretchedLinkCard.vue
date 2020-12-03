@@ -16,6 +16,15 @@
 
         <div class="card-body">
             <VsHeading
+                level="4"
+                class="stretched-link-card__category"
+                v-if="!!this.$slots['stretchedCardCategory']"
+                data-test="stretched-link-card__category"
+            >
+                <!-- @slot Contains a category header for the card  -->
+                <slot name="stretchedCardCategory" />
+            </VsHeading>
+            <VsHeading
                 level="3"
                 class="card-title stretched-link-card__title"
             >
@@ -149,6 +158,15 @@ export default {
             color: $color-base-text;
         }
 
+        .stretched-link-card__category {
+            font-family: $font-family-base;
+            font-size: $small-font-size;
+            line-height: $line-height-xs;
+            color: $color-secondary-teal-shade-2;
+            letter-spacing: normal;
+            margin-bottom: $spacer-4;
+        }
+
         .stretched-link-card__content {
             margin-top: $spacer-2;
             line-height: $line-height-s;
@@ -197,7 +215,9 @@ export default {
                     imgSrc="https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"
                     imgAlt="This is the alt text"
                 >
-
+                    <template slot="stretchedCardCategory">
+                        A category header
+                    </template>
                     <template slot="stretchedCardPanels">
                         <vs-stretched-link-panel days="14" />
                         <vs-stretched-link-panel text="öffentlicher Verkehr" />
@@ -218,7 +238,7 @@ export default {
             <vs-col cols="12" md="6">
                 <vs-stretched-link-card
                     link="https://visitscotland.com"
-                    type="external"
+                    type="internal"
                     imgSrc=""
                     imgAlt="This is the alt text"
                 >
