@@ -27,6 +27,10 @@ public enum Language {
         return ENGLISH;
     }
 
+    public Locale getLocale(){
+        return locale;
+    }
+
     public String getCMSPathVariable() {
         if (this == ENGLISH) {
             return "";

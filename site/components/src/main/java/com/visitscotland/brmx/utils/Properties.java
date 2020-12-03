@@ -1,10 +1,16 @@
 package com.visitscotland.brmx.utils;
 
 
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.util.*;
 
 //TODO Externalize properties
 public class Properties {
+
+    private Properties(){
+
+    }
 
 
     //TODO: Load the list from the list of locations defined in the CMS. Bear in mind that a default location (null) is required
@@ -29,6 +35,8 @@ public class Properties {
     public static final String INSTAGRAM_API = "https://www.instagram.com/p/";
 
     public static final String HELPDESK = "helpdesk@visitscotland.com";
+
+    final static Charset VS_DMS_ENCODING = StandardCharsets.UTF_8;
 
 
 }

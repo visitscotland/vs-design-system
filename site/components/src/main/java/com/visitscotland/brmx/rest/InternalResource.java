@@ -12,7 +12,6 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Response;
-import javax.xml.soap.Node;
 import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.Locale;
@@ -25,9 +24,6 @@ public class InternalResource extends AbstractResource {
     private static final Logger logger = LoggerFactory.getLogger(InternalResource.class);
 
     static final String NO_MATCH = "<!-- No match -->";
-
-    //TODO Create constanst for the allowed parameters
-    //TODO Use them in Unit test
 
     //  TODO: TEST @Autowired
     private final CommonUtils utils;
@@ -49,14 +45,14 @@ public class InternalResource extends AbstractResource {
     @GET
     @Path("/{fragment}")
     public Response fragment(@PathParam("fragment") String fragment,
-                           @QueryParam("root-path") String rootPath,
-                           @QueryParam("sso") String sso,
-                           @QueryParam("external") String external,
-                           @QueryParam("vs-locale-ctx") String locale) {
+                             @QueryParam("root-path") String rootPath,
+                             @QueryParam("sso") String sso,
+                             @QueryParam("external") String external,
+                             @QueryParam("vs-locale-ctx") String locale) {
         String url = buildUrl(external, rootPath, sso, locale);
         try {
             String body = getFragment(utils.requestUrl(url), fragment);
-            if (NO_MATCH.equals(body)){
+            if (NO_MATCH.equals(body)) {
                 return Response.status(Response.Status.NOT_FOUND).entity(body).build();
             } else {
                 return Response.ok().entity(body).build();

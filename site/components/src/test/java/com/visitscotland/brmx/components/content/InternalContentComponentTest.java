@@ -49,22 +49,6 @@ class InternalContentComponentTest {
         component.bundle = this.bundle;
     }
 
-
-    /**
-     * Verifies that some methods that add information on the request are called
-     */
-    @Test
-    void addAttributesToRequest() {
-        //TODO
-//        //PageContentComponent should verify the functionality of this method
-//        when(document.getLocation()).thenReturn("edinburgh");
-//        doNothing().when(component).addHeroCoordinates(request);
-//        doNothing().when(templateBuilder).addModules(request, "edinburgh");
-//
-//        component.addAttributesToRequest(request);
-    }
-
-
     @Test
     @DisplayName("VS-443 - processParameters - No query parameters defined")
     void processParameters(){

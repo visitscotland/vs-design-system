@@ -8,6 +8,7 @@ import com.visitscotland.brmx.components.navigation.info.MenuComponentInfo;
 import com.visitscotland.brmx.services.ResourceBundleService;
 import com.visitscotland.brmx.utils.CommonUtils;
 import com.visitscotland.brmx.utils.HippoUtilsService;
+import com.visitscotland.brmx.utils.Language;
 import com.visitscotland.brmx.utils.Properties;
 import com.visitscotland.utils.Contract;
 import org.hippoecm.hst.container.RequestContextProvider;
@@ -63,28 +64,26 @@ public class MenuComponent extends EssentialsMenuComponent {
     }
 
     public void addLocalizedURLs(HstRequest request) {
-        List<LocalizedURL> translatedURL = new ArrayList<>(Properties.locales.size());
+        List<LocalizedURL> translatedURL = new ArrayList<>(Language.values().length);
 
 
         HippoBean document = request.getRequestContext().getContentBean();
 
         HippoBean englishSite = null;
         if (document != null) {
-            for (Locale locale : Properties.locales) {
+            for (Language language : Language.values()) {
                 LocalizedURL lan = new LocalizedURL();
-                lan.setLocale(locale);
-                lan.setLanguage(locale == null ? "en" : locale.getLanguage());
+                lan.setLocale(language.getLocale());
+                lan.setLanguage(language.getLocale().getLanguage());
                 lan.setDisplayName(bundle.getResourceBundle("universal", lan.getLanguage(), request.getLocale()));
 
                 HippoBean translation = document.getAvailableTranslations().getTranslation(lan.getLanguage());
-                HstLink link;
 
-                if (locale == null) {
+                if (Locale.UK.equals(language.getLocale())) {
                     if (translation == null) {
-                        logger.error("The requested page does not exist in English: " + document.getPath());
+                        logger.error("The requested page does not exist in English: {}", document.getPath());
                     } else {
                         englishSite = translation;
-                        link = request.getRequestContext().getHstLinkCreator().create(document, request.getRequestContext());
                     }
                 }
 
@@ -92,7 +91,9 @@ public class MenuComponent extends EssentialsMenuComponent {
                     lan.setUrl(utils.createUrl(translation));
                     lan.setExists(true);
                 } else {
-                    lan.setUrl(composeNonExistingURL(locale, request));
+                    //TODO: Define if the URL is made up or we use the englishSite link instead
+                    //lan.setUrl(utils.createUrl(englishSite));
+                    lan.setUrl(composeNonExistingURL(language.getLocale(), request));
                     lan.setExists(false);
                 }
                 translatedURL.add(lan);
@@ -164,7 +165,7 @@ public class MenuComponent extends EssentialsMenuComponent {
                     } else if (bean instanceof Page) {
                         updateMenuItemFromDocument(menuItem, (Page) bean, resourceBundle, request);
                     } else {
-                        logger.warn("Skipping Unexpected document type: " + bean.getClass().getSimpleName());
+                        logger.warn("Skipping Unexpected document type: {}", bean.getClass().getSimpleName());
                     }
                 }
             }
@@ -219,7 +220,7 @@ public class MenuComponent extends EssentialsMenuComponent {
             }
         } else {
             //Title is a mandatory field for all page documents. The following line being executed might mean that the node is corrupted
-            logger.error(String.format("The node %s does not have a title", document.getPath()));
+            logger.error("The node {} does not have a title", document.getPath());
         }
     }
 

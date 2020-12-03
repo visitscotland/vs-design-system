@@ -69,14 +69,13 @@ public class InternalContentComponent extends CommonComponent {
     void addLocalizedURLs(HstRequest request) {
         List<LocalizedURL> translatedURLs = new ArrayList<>(Language.values().length);
 
-        for (Locale locale : Properties.locales) {
+        for (Language language : Language.values()) {
             LocalizedURL lan = new LocalizedURL();
-            lan.setLocale(locale);
-            lan.setLanguage(locale == null ? "en" : locale.getLanguage());
+            lan.setLocale(language.getLocale());
+            lan.setLanguage(language.getLocale().getLanguage());
             lan.setDisplayName(bundle.getResourceBundle("universal", lan.getLanguage(), request.getLocale()));
+            lan.setUrl(composeNonExistingURL(language.getLocale(), request));
 
-            lan.setUrl(composeNonExistingURL(locale, request));
-            lan.setExists(false);
             translatedURLs.add(lan);
         }
         request.getRequestContext().setModel(GLOBAL_MENU_URLS, translatedURLs);

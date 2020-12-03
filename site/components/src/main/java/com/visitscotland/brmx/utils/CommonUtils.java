@@ -27,9 +27,6 @@ public class CommonUtils {
 
     private final Logger logger = LoggerFactory.getLogger(CommonUtils.class);
 
-    //TODO property?
-    final static Charset VS_DMS_ENCODING = StandardCharsets.UTF_8;
-
     //TODO add message format for other languages
     //TODO the variable parameters is not in use!
     public static final String contentIssue(String message, Object... parameters) {
@@ -48,7 +45,7 @@ public class CommonUtils {
     public static String request(String url) throws IOException {
 
         if (((HttpURLConnection) new URL(url).openConnection()).getResponseCode() < 400) {
-            try (final BufferedReader br = new BufferedReader(new InputStreamReader(new URL(url).openStream(), VS_DMS_ENCODING))) {
+            try (final BufferedReader br = new BufferedReader(new InputStreamReader(new URL(url).openStream(), Properties.VS_DMS_ENCODING))) {
                 final StringBuilder sb = new StringBuilder();
                 int cp;
 
