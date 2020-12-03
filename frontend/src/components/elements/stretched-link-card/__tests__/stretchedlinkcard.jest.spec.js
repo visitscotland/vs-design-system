@@ -11,6 +11,7 @@ const factoryShallowMount = () => shallowMount(VsStretchedLinkCard, {
         imgAlt: 'Image alt',
     },
     slots: {
+        stretchedCardCategory: 'Stretched link category',
         stretchedCardHeader: 'Stretched link header',
         stretchedCardContent: 'Stretched link content',
     },
@@ -42,6 +43,10 @@ describe('VsStretchedLinkCard', () => {
     });
 
     describe(':slots', () => {
+        it('renders content inserted in a stretchedCardCategory slot', () => {
+            const wrapper = factoryShallowMount();
+            expect(wrapper.find('[data-test="stretched-link-card__category"]').text()).toBe('Stretched link category');
+        });
         it('renders content inserted in a stretchedCardHeader slot', () => {
             const wrapper = factoryShallowMount();
             expect(wrapper.find('[data-test="stretched-link"]').text()).toBe('Stretched link header');

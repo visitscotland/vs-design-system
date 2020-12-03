@@ -22,6 +22,7 @@
 </template>
 
 <script>
+import VsIcon from '@components/elements/icon/Icon';
 /**
  * Panels to show information in the stretched link component
  */
@@ -29,13 +30,16 @@ export default {
     name: 'VsStretchedLinkPanel',
     status: 'prototype',
     release: '0.0.1',
+    components: {
+        VsIcon,
+    },
     props: {
         /**
         * Optional prop for number of days
         */
         days: {
-            type: Number,
-            default: null,
+            type: String,
+            default: '',
         },
         /**
         * Optional prop for text (will show a transport icon if used)
