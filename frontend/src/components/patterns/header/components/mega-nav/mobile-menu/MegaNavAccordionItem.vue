@@ -81,6 +81,32 @@ export default {
 
 <style lang="scss">
 .vs-mega-nav-accordion-item {
+
+    .vs-accordion-toggle.btn-primary{
+        text-transform: none;
+    }
+
+    &--level-1{
+        > .vs-accordion-item__card-header{
+            .vs-accordion-toggle.btn-primary{
+                background-color: $color-white;
+                border-color: $color-white;
+                color: $color-base-text;
+                font-size: $h2-font-size;
+            }
+        }
+    }
+
+    &--level-2{
+        > .vs-accordion-item__card-header{
+            .vs-accordion-toggle.btn-primary{
+                background-color: #F8F8F8;
+                border-color:  #F8F8F8;
+                color: $color-secondary-gray-shade-3;
+                font-size: $h4-font-size;
+            }
+        }
+    }
 }
 
 </style>
