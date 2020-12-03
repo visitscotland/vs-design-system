@@ -38,9 +38,12 @@
                     cols="12"
                     md="10"
                     offset-md="1"
+                    :class="{'vs-icentre__image-offset': !!this.$slots['icentreQuote']}"
                 >
                     <!-- @slot Holds the main icentre image (vs-image-with-caption expected) -->
-                    <slot name="icentreImageWithCaption" />
+                    <slot
+                        name="icentreImageWithCaption"
+                    />
                 </VsCol>
 
                 <VsCol
@@ -123,16 +126,14 @@ export default {
         text-align: center;
     }
 
-    &__main-image {
-        margin-bottom: 0;
+    &__image-offset {
+        @include media-breakpoint-up(lg) {
+            margin-bottom: -22rem;
+        }
     }
 
     &__quote-block-container {
         z-index: 2;
-
-        @include media-breakpoint-up(lg) {
-            transform: translateY(-50%);
-        }
     }
 
     &__quote-block {
