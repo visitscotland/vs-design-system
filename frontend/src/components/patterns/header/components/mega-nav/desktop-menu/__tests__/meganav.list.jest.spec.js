@@ -10,7 +10,7 @@ const factoryShallowMount = () => shallowMount(VsMegaNavList, {
 });
 
 describe('VsMegaNavList', () => {
-    it('should render a component with the data-test attribute `.vs-mega-nav-list`', () => {
+    it('should render a component with the data-test attribute `vs-mega-nav-list`', () => {
         const wrapper = factoryShallowMount();
         expect(wrapper.attributes('data-test')).toBe('vs-mega-nav-list');
     });
