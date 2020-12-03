@@ -25,9 +25,9 @@ public class LongContent extends BaseDocument {
         return getHippoHtml("visitscotland:introduction");
     }
 
-    @HippoEssentialsGenerated(internalName = "visitscotland:parragraphs")
-    public List<LongContentSection> getParragraphs() {
-        return getChildBeansByName("visitscotland:parragraphs",
+    @HippoEssentialsGenerated(internalName = "visitscotland:paragraphs")
+    public List<LongContentSection> getparagraphs() {
+        return getChildBeansByName("visitscotland:paragraphs",
                 LongContentSection.class);
     }
 }

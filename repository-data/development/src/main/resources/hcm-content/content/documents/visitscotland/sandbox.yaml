@@ -735,7 +735,6 @@
         jcr:mixinTypes: ['mix:referenceable']
         jcr:uuid: 65d4e5a1-4bea-4602-a033-55e652eb8a7f
         hippo:availability: []
-        hippostd:holder: admin
         hippostd:state: draft
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2020-02-27T13:17:22.069Z
@@ -9463,7 +9462,7 @@
         /visitscotland:introduction:
           jcr:primaryType: hippostd:html
           hippostd:content: ''
-        /visitscotland:parragraphs:
+        /visitscotland:paragraphs:
           jcr:primaryType: visitscotland:LongContentSection
           /visitscotland:copy:
             jcr:primaryType: hippostd:html
@@ -9528,7 +9527,7 @@
         /visitscotland:introduction:
           jcr:primaryType: hippostd:html
           hippostd:content: ''
-        /visitscotland:parragraphs:
+        /visitscotland:paragraphs:
           jcr:primaryType: visitscotland:LongContentSection
           /visitscotland:copy:
             jcr:primaryType: hippostd:html
@@ -9594,7 +9593,7 @@
         /visitscotland:introduction:
           jcr:primaryType: hippostd:html
           hippostd:content: ''
-        /visitscotland:parragraphs:
+        /visitscotland:paragraphs:
           jcr:primaryType: visitscotland:LongContentSection
           /visitscotland:copy:
             jcr:primaryType: hippostd:html
@@ -9668,7 +9667,7 @@
             Mountain Track (sometimes called the Tourist Track or the Pony Track)
             is used by most walkers, whilst the Carn Mor Dearg Arête route presents
             a more challenging climb for more experienced hikers.</p>
-        /visitscotland:parragraphs[1]:
+        /visitscotland:paragraphs[1]:
           jcr:primaryType: visitscotland:LongContentSection
           /visitscotland:copy:
             jcr:primaryType: hippostd:html
@@ -9688,7 +9687,7 @@
             hippo:facets: []
             hippo:modes: []
             hippo:values: []
-        /visitscotland:parragraphs[2]:
+        /visitscotland:paragraphs[2]:
           jcr:primaryType: visitscotland:LongContentSection
           /visitscotland:copy:
             jcr:primaryType: hippostd:html
@@ -9727,7 +9726,7 @@
             Mountain Track (sometimes called the Tourist Track or the Pony Track)
             is used by most walkers, whilst the Carn Mor Dearg Arête route presents
             a more challenging climb for more experienced hikers.</p>
-        /visitscotland:parragraphs[1]:
+        /visitscotland:paragraphs[1]:
           jcr:primaryType: visitscotland:LongContentSection
           /visitscotland:copy:
             jcr:primaryType: hippostd:html
@@ -9747,7 +9746,7 @@
             hippo:facets: []
             hippo:modes: []
             hippo:values: []
-        /visitscotland:parragraphs[2]:
+        /visitscotland:paragraphs[2]:
           jcr:primaryType: visitscotland:LongContentSection
           /visitscotland:copy:
             jcr:primaryType: hippostd:html
@@ -9787,7 +9786,7 @@
             Mountain Track (sometimes called the Tourist Track or the Pony Track)
             is used by most walkers, whilst the Carn Mor Dearg Arête route presents
             a more challenging climb for more experienced hikers.</p>
-        /visitscotland:parragraphs[1]:
+        /visitscotland:paragraphs[1]:
           jcr:primaryType: visitscotland:LongContentSection
           /visitscotland:copy:
             jcr:primaryType: hippostd:html
@@ -9807,7 +9806,7 @@
             hippo:facets: []
             hippo:modes: []
             hippo:values: []
-        /visitscotland:parragraphs[2]:
+        /visitscotland:paragraphs[2]:
           jcr:primaryType: visitscotland:LongContentSection
           /visitscotland:copy:
             jcr:primaryType: hippostd:html
@@ -9848,7 +9847,7 @@
         /visitscotland:introduction:
           jcr:primaryType: hippostd:html
           hippostd:content: ''
-        /visitscotland:parragraphs[1]:
+        /visitscotland:paragraphs[1]:
           jcr:primaryType: visitscotland:LongContentSection
           /visitscotland:copy:
             jcr:primaryType: hippostd:html
@@ -9871,7 +9870,7 @@
               hippostd:content: <p>This spectacular route can take between 10 – 11
                 hours with scrambles across boulders. It requires a good head for
                 heights and careful navigation across the trickier exposed sections.</p>
-        /visitscotland:parragraphs[2]:
+        /visitscotland:paragraphs[2]:
           jcr:primaryType: visitscotland:LongContentSection
           /visitscotland:copy:
             jcr:primaryType: hippostd:html
@@ -9921,7 +9920,7 @@
         /visitscotland:introduction:
           jcr:primaryType: hippostd:html
           hippostd:content: ''
-        /visitscotland:parragraphs[1]:
+        /visitscotland:paragraphs[1]:
           jcr:primaryType: visitscotland:LongContentSection
           /visitscotland:copy:
             jcr:primaryType: hippostd:html
@@ -9944,7 +9943,7 @@
               hippostd:content: <p>This spectacular route can take between 10 – 11
                 hours with scrambles across boulders. It requires a good head for
                 heights and careful navigation across the trickier exposed sections.</p>
-        /visitscotland:parragraphs[2]:
+        /visitscotland:paragraphs[2]:
           jcr:primaryType: visitscotland:LongContentSection
           /visitscotland:copy:
             jcr:primaryType: hippostd:html
@@ -9995,7 +9994,7 @@
         /visitscotland:introduction:
           jcr:primaryType: hippostd:html
           hippostd:content: ''
-        /visitscotland:parragraphs[1]:
+        /visitscotland:paragraphs[1]:
           jcr:primaryType: visitscotland:LongContentSection
           /visitscotland:copy:
             jcr:primaryType: hippostd:html
@@ -10018,7 +10017,7 @@
               hippostd:content: <p>This spectacular route can take between 10 – 11
                 hours with scrambles across boulders. It requires a good head for
                 heights and careful navigation across the trickier exposed sections.</p>
-        /visitscotland:parragraphs[2]:
+        /visitscotland:paragraphs[2]:
           jcr:primaryType: visitscotland:LongContentSection
           /visitscotland:copy:
             jcr:primaryType: hippostd:html

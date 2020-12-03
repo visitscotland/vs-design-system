@@ -41,12 +41,12 @@ definitions:
             hipposysedit:path: visitscotland:introduction
             hipposysedit:primary: false
             hipposysedit:type: hippostd:html
-          /parragraphs:
+          /paragraphs:
             jcr:primaryType: hipposysedit:field
             hipposysedit:mandatory: false
             hipposysedit:multiple: true
             hipposysedit:ordered: false
-            hipposysedit:path: visitscotland:parragraphs
+            hipposysedit:path: visitscotland:paragraphs
             hipposysedit:primary: false
             hipposysedit:type: visitscotland:LongContentSection
             hipposysedit:validators: [required]
@@ -82,12 +82,12 @@ definitions:
             hipposysedit:path: visitscotland:introduction
             hipposysedit:primary: false
             hipposysedit:type: hippostd:html
-          /parragraphs:
+          /paragraphs:
             jcr:primaryType: hipposysedit:field
             hipposysedit:mandatory: false
             hipposysedit:multiple: true
             hipposysedit:ordered: false
-            hipposysedit:path: visitscotland:parragraphs
+            hipposysedit:path: visitscotland:paragraphs
             hipposysedit:primary: false
             hipposysedit:type: visitscotland:LongContentSection
             hipposysedit:validators: [required]
@@ -115,7 +115,7 @@ definitions:
           /visitscotland:introduction:
             jcr:primaryType: hippostd:html
             hippostd:content: ''
-          /visitscotland:parragraphs:
+          /visitscotland:paragraphs:
             jcr:primaryType: visitscotland:LongContentSection
             /visitscotland:copy:
               jcr:primaryType: hippostd:html
@@ -143,7 +143,7 @@ definitions:
           /visitscotland:introduction:
             jcr:primaryType: hippostd:html
             hippostd:content: ''
-          /visitscotland:parragraphs:
+          /visitscotland:paragraphs:
             jcr:primaryType: visitscotland:LongContentSection
             /visitscotland:copy:
               jcr:primaryType: hippostd:html
@@ -189,10 +189,10 @@ definitions:
             wicket.id: ${cluster.id}.field
             /cluster.options:
               jcr:primaryType: frontend:pluginconfig
-          /parragraphs:
+          /paragraphs:
             jcr:primaryType: frontend:plugin
-            caption: Parragraphs
-            field: parragraphs
+            caption: paragraphs
+            field: paragraphs
             hint: ''
             plugin.class: org.hippoecm.frontend.editor.plugins.field.NodeFieldPlugin
             wicket.id: ${cluster.id}.field

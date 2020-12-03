@@ -116,7 +116,7 @@ public class PageTemplateBuilder {
         module.setIntroduction(doc.getIntroduction());
         module.setHippoBean(doc);
 
-        for (LongContentSection section: doc.getParragraphs()){
+        for (LongContentSection section: doc.getparagraphs()){
             FlatLongContentSection flcs = new FlatLongContentSection();
             flcs.setCopy(section.getCopy());
             //TODO Convert MediaItem into image
