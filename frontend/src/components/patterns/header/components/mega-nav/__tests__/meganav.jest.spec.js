@@ -22,7 +22,7 @@ const factoryMount = () => mount(VsMegaNav, {
 });
 
 describe('VsMegaNav', () => {
-    it('should render a component with the data-test attribute `.vs-mega-nav`', () => {
+    it('should render a component with the data-test attribute `vs-mega-nav`', () => {
         const wrapper = factoryShallowMount();
         expect(wrapper.attributes('data-test')).toBe('vs-mega-nav');
     });
