@@ -3,8 +3,8 @@
         <VsStretchedLinkCard
             :link="linkUrl"
             :type="linkType"
-            :imgSrc="imgSrc"
-            :imgAlt="imgAlt"
+            :img-src="imgSrc"
+            :img-alt="imgAlt"
             class="carousel-slide"
         >
             <span

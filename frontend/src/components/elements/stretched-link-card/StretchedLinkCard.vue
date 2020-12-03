@@ -12,6 +12,8 @@
         <slot name="stretchedCardImage" />
 
         <div class="card-body">
+            <slot name="stretchedCardCategory" />
+
             <VsHeading
                 level="3"
                 class="card-title stretched-link-card__title"
