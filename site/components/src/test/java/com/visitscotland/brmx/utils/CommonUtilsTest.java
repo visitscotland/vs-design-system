@@ -1,6 +1,7 @@
 package com.visitscotland.brmx.utils;
 
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -11,8 +12,10 @@ import java.util.Map;
 class CommonUtilsTest {
 
     final String UTF8 = StandardCharsets.UTF_8.name();
+
     CommonUtils utils;
 
+    @BeforeEach
     void init() {
         utils = new CommonUtils();
     }
@@ -33,7 +36,7 @@ class CommonUtilsTest {
         params.put("param2", "");
         params.put("param3", null);
 
-        String queryParameters = utils.buildQueryString(new HashMap<String, String>(), UTF8);
+        String queryParameters = utils.buildQueryString(params, UTF8);
 
         Assertions.assertTrue(queryParameters.startsWith("?"));
         // Param1 contains a value and it must be printed as 'param1=value1'

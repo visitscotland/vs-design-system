@@ -90,8 +90,8 @@ class InternalResourceTest {
         String fragment = service.fragment("f1", null, null,null, null).getEntity().toString();
         assertEquals("Fragment1",fragment);
         assertNull(parametersCaptor.getValue().get("external"));
-        assertNull("sso", parametersCaptor.getValue().get("sso"));
-        assertNull("root-path", parametersCaptor.getValue().get("root-path"));
+        assertNull(parametersCaptor.getValue().get("sso"));
+        assertNull(parametersCaptor.getValue().get("root-path"));
     }
 
     @Test
