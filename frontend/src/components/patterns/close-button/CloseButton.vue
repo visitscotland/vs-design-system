@@ -14,8 +14,15 @@
 </template>
 
 <script>
+import VsButton from '@components/elements/button/Button';
+import VsIcon from '@components/elements/icon/Icon';
+
 export default {
     name: 'VsCloseButton',
+    components: {
+        VsButton,
+        VsIcon,
+    },
 };
 </script>
 
