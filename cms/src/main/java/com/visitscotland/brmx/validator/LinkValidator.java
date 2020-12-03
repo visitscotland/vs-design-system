@@ -6,6 +6,7 @@ import org.onehippo.cms.services.validation.api.Validator;
 import org.onehippo.cms.services.validation.api.Violation;
 
 import javax.jcr.Node;
+import javax.jcr.PathNotFoundException;
 import javax.jcr.RepositoryException;
 import java.util.Optional;
 
@@ -45,6 +46,8 @@ public class LinkValidator implements Validator<Node> {
                }else{
                  return Optional.of(context.createViolation("EmptyLink"));
              }
+        } catch (PathNotFoundException e) {
+            return Optional.of(context.createViolation("translation"));
         } catch (RepositoryException e) {
             return Optional.of(context.createViolation());
         }
