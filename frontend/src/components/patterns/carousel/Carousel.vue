@@ -143,7 +143,7 @@ export default {
             border-radius: 0;
             background: $color-pink;
             opacity: 1;
-            top: 40%;
+            top: 25%;
 
             svg {
                 // transform: translateY(-28%);
