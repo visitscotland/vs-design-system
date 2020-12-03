@@ -22,15 +22,24 @@
 </template>
 
 <script>
+/**
+ * Panels to show information in the stretched link component
+ */
 export default {
     name: 'VsStretchedLinkPanel',
     status: 'prototype',
     release: '0.0.1',
     props: {
+        /**
+        * Optional prop for number of days
+        */
         days: {
-            type: String,
-            default: '',
+            type: Number,
+            default: null,
         },
+        /**
+        * Optional prop for text (will show a transport icon if used)
+        */
         text: {
             type: String,
             default: '',
@@ -38,3 +47,45 @@ export default {
     },
 };
 </script>
+
+<style lang="scss">
+    .stretched-link-panel {
+            width: 55px;
+            height: 55px;
+            background: $color-black;
+            font-size: $xs-font-size;
+            margin-left: $spacer-1;
+            color: $color-white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+
+            &--days {
+                background: $color-secondary-teal-shade-2;
+            }
+
+            .stretched-link-panel__days {
+                font-size: $font-size-lg;
+                font-weight: bold;
+                display: block;
+            }
+
+            p {
+                margin-bottom: 0;
+                text-align: center;
+                line-height: $line_height_xs;
+            }
+
+        @include media-breakpoint-up(sm) {
+            margin-left: $spacer-2;
+        }
+    }
+</style>
+
+<docs>
+    ```
+        <vs-stretched-link-panel days="14" />
+        <vs-stretched-link-panel text="Panel text" />
+    ```
+</docs>
