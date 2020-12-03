@@ -2,6 +2,7 @@
     <div
         class="vs-accordion"
         role="tablist"
+        data-test="vs-accordion"
     >
         <!-- @slot Default slot to contain Accordion Items -->
         <slot />
