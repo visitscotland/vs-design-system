@@ -166,43 +166,10 @@ export default {
             flex-direction: row;
         }
 
-        .stretched-link-card__panel {
-            width: 55px;
-            height: 55px;
-            background: $color-black;
-            font-size: $xs-font-size;
-            margin-left: $spacer-1;
-            color: $color-white;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-
-            &--days {
-                background: $color-secondary-teal-shade-2;
-            }
-
-            .stretched-link-card__days {
-                font-size: $font-size-lg;
-                font-weight: bold;
-                display: block;
-            }
-
-            p {
-                margin-bottom: 0;
-                text-align: center;
-                line-height: $line_height_xs;
-            }
-        }
-
         @include media-breakpoint-up(sm) {
             .stretched-link-card__panels {
                 top: $spacer-2;
                 right: $spacer-2;
-            }
-
-            .stretched-link-card__panel {
-                margin-left: $spacer-2;
             }
         }
 
