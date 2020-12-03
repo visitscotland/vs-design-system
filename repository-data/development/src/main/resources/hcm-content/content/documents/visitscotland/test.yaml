@@ -1938,3 +1938,131 @@
             /visitscotland:stops[2]:
               jcr:primaryType: hippo:mirror
               hippo:docbase: 6f33fa43-9b2b-4c17-b355-df6a60896ccd
+  /pages:
+    jcr:primaryType: hippostd:folder
+    jcr:mixinTypes: ['hippotranslation:translated', 'mix:versionable']
+    jcr:uuid: 17204a76-21e9-497b-997c-0dc9dfc2aa72
+    hippostd:foldertype: [new-translated-folder-test, new-document]
+    hippotranslation:id: 7e17f5b9-c00a-4640-b8f5-554b5b28e9d1
+    hippotranslation:locale: en
+  /modules:
+    jcr:primaryType: hippostd:folder
+    jcr:mixinTypes: ['hippotranslation:translated', 'mix:versionable']
+    jcr:uuid: 7cf6e6d9-378f-461a-b9bc-e326a842ddb5
+    hippostd:foldertype: [new-translated-folder-test, new-document]
+    hippotranslation:id: af86ee7c-9b88-4322-a876-72ece7ea4cb7
+    hippotranslation:locale: en
+    /example-module:
+      jcr:primaryType: hippostd:folder
+      jcr:mixinTypes: ['hippo:named', 'hippotranslation:translated', 'mix:versionable']
+      jcr:uuid: 1dc8b819-6774-416d-bdd8-97e5bc13265a
+      hippo:name: Example module
+      hippostd:foldertype: [new-translated-folder-test, new-document]
+      hippotranslation:id: 445450de-9ac3-4a77-b657-fc0da8b62e67
+      hippotranslation:locale: en
+      /content:
+        jcr:primaryType: hippo:handle
+        jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
+        jcr:uuid: e6e9dbb7-5bca-41e2-a2e2-53a20707ee7b
+        hippo:name: Example module page
+        hippo:versionHistory: 7b1c6765-1fc8-4828-a4aa-bc3f4e7d072f
+        /content[1]:
+          jcr:primaryType: visitscotland:Destination
+          jcr:mixinTypes: ['mix:referenceable']
+          jcr:uuid: 9ca53c63-d71e-4bf0-9e28-9f155efeabd9
+          hippo:availability: []
+          hippostd:state: draft
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2020-11-23T11:14:26.559Z
+          hippostdpubwf:lastModificationDate: 2020-11-23T11:16:50.571Z
+          hippostdpubwf:lastModifiedBy: admin
+          hippotranslation:id: 7ba6c66c-e528-444f-bbfa-9cae75e9ac8c
+          hippotranslation:locale: en
+          visitscotland:breadcrumb: ''
+          visitscotland:location: Aberdeen
+          visitscotland:seoDescription: Find some of the most beautiful places in
+            Scotland, including iconic viewpoints and lesser known gems, alongside
+            advice on how to get there.
+          visitscotland:seoNoIndex: false
+          visitscotland:seoTitle: 12 Iconic Scottish Views
+          visitscotland:teaser: This is just an example, please don't test.
+          visitscotland:title: Example module page
+          visitscotland:translation: ''
+          /visitscotland:heroImage:
+            jcr:primaryType: hippogallerypicker:imagelink
+            hippo:docbase: 901a0eff-02b0-4cf8-bd34-92bf8c606c85
+            hippo:facets: []
+            hippo:modes: []
+            hippo:values: []
+          /visitscotland:introduction:
+            jcr:primaryType: hippostd:html
+            hippostd:content: <p>This is just an example, please don't test. Usually
+              there would be an example of the module to be tested below this text,
+              but this is just an example to show the process needed.</p>
+        /content[2]:
+          jcr:primaryType: visitscotland:Destination
+          jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
+          jcr:uuid: d76616be-de49-452c-9d42-390fe5741352
+          hippo:availability: [preview]
+          hippostd:state: unpublished
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2020-11-23T11:14:26.559Z
+          hippostdpubwf:lastModificationDate: 2020-11-23T11:17:18.205Z
+          hippostdpubwf:lastModifiedBy: admin
+          hippotranslation:id: 7ba6c66c-e528-444f-bbfa-9cae75e9ac8c
+          hippotranslation:locale: en
+          visitscotland:breadcrumb: ''
+          visitscotland:location: Aberdeen
+          visitscotland:seoDescription: Find some of the most beautiful places in
+            Scotland, including iconic viewpoints and lesser known gems, alongside
+            advice on how to get there.
+          visitscotland:seoNoIndex: false
+          visitscotland:seoTitle: 12 Iconic Scottish Views
+          visitscotland:teaser: This is just an example, please don't test.
+          visitscotland:title: Example module page
+          visitscotland:translation: ''
+          /visitscotland:heroImage:
+            jcr:primaryType: hippogallerypicker:imagelink
+            hippo:docbase: 901a0eff-02b0-4cf8-bd34-92bf8c606c85
+            hippo:facets: []
+            hippo:modes: []
+            hippo:values: []
+          /visitscotland:introduction:
+            jcr:primaryType: hippostd:html
+            hippostd:content: <p>This is just an example, please don't test. Usually
+              there would be an example of the module to be tested below this text,
+              but this is just an example to show the process needed.</p>
+        /content[3]:
+          jcr:primaryType: visitscotland:Destination
+          jcr:mixinTypes: ['mix:referenceable']
+          jcr:uuid: e251cf61-2477-43a8-9051-4535b7292c48
+          hippo:availability: [live]
+          hippostd:state: published
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2020-11-23T11:14:26.559Z
+          hippostdpubwf:lastModificationDate: 2020-11-23T11:17:18.205Z
+          hippostdpubwf:lastModifiedBy: admin
+          hippostdpubwf:publicationDate: 2020-11-23T11:17:21.031Z
+          hippotranslation:id: 7ba6c66c-e528-444f-bbfa-9cae75e9ac8c
+          hippotranslation:locale: en
+          visitscotland:breadcrumb: ''
+          visitscotland:location: Aberdeen
+          visitscotland:seoDescription: Find some of the most beautiful places in
+            Scotland, including iconic viewpoints and lesser known gems, alongside
+            advice on how to get there.
+          visitscotland:seoNoIndex: false
+          visitscotland:seoTitle: 12 Iconic Scottish Views
+          visitscotland:teaser: This is just an example, please don't test.
+          visitscotland:title: Example module page
+          visitscotland:translation: ''
+          /visitscotland:heroImage:
+            jcr:primaryType: hippogallerypicker:imagelink
+            hippo:docbase: 901a0eff-02b0-4cf8-bd34-92bf8c606c85
+            hippo:facets: []
+            hippo:modes: []
+            hippo:values: []
+          /visitscotland:introduction:
+            jcr:primaryType: hippostd:html
+            hippostd:content: <p>This is just an example, please don't test. Usually
+              there would be an example of the module to be tested below this text,
+              but this is just an example to show the process needed.</p>
