@@ -304,7 +304,7 @@
       jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
       jcr:uuid: 8b4a3c11-8b84-4aa0-bccf-f407d18c1c44
       hippo:name: Itinerary
-      hippo:versionHistory: 9a963489-a43d-44b9-ab7f-11ac5659671d
+      hippo:versionHistory: ea2513db-c53e-41da-982f-e4df94efaf65
       /content[1]:
         jcr:primaryType: visitscotland:Itinerary
         jcr:mixinTypes: ['mix:versionable']
@@ -313,7 +313,7 @@
         hippostd:state: unpublished
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2019-12-06T12:48:04.149Z
-        hippostdpubwf:lastModificationDate: 2020-11-10T16:17:43.445Z
+        hippostdpubwf:lastModificationDate: 2020-12-04T14:21:07.422Z
         hippostdpubwf:lastModifiedBy: admin
         hippotranslation:id: 56cf92c8-5887-4146-ad53-eaa062f4e07a
         hippotranslation:locale: en
@@ -325,9 +325,7 @@
           Glen Etive\r\nThe Elephant House"
         visitscotland:popular: false
         visitscotland:seoDescription: It was in Scotland's capital city that JK Rowling
-          started to plot the adventures of Harry and his friends. With cobbled streets,
-          winding alleys and medieval architecture, the city certainly have a few
-          things in common with the settings from the books and films.
+          started to plot the adventures of Harry and his friends
         visitscotland:seoNoIndex: false
         visitscotland:seoTitle: Iconic Harry Potter Film Locations - An Itinerary
         visitscotland:start: Tenerife
@@ -338,8 +336,9 @@
           Glen Etive\r\n\r\nThe Elephant House"
         visitscotland:theme: whisky
         visitscotland:title: HARRY POTTER FILM AND BOOK LOCATIONS ITINERARY
+        visitscotland:translation: ''
         visitscotland:transport: [boat]
-        visitscotland:transports: [car, train]
+        visitscotland:transports: [public]
         /visitscotland:heroImage:
           jcr:primaryType: hippogallerypicker:imagelink
           hippo:docbase: 8d4f5036-64ca-4e5d-aa89-b348ae38b081
@@ -373,9 +372,9 @@
         hippostd:state: published
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2019-12-06T12:48:04.149Z
-        hippostdpubwf:lastModificationDate: 2020-11-10T16:17:43.445Z
+        hippostdpubwf:lastModificationDate: 2020-12-04T14:21:07.422Z
         hippostdpubwf:lastModifiedBy: admin
-        hippostdpubwf:publicationDate: 2020-11-10T16:17:46.096Z
+        hippostdpubwf:publicationDate: 2020-12-04T14:21:12.807Z
         hippotranslation:id: 56cf92c8-5887-4146-ad53-eaa062f4e07a
         hippotranslation:locale: en
         visitscotland:areas: [east, north]
@@ -386,9 +385,7 @@
           Glen Etive\r\nThe Elephant House"
         visitscotland:popular: false
         visitscotland:seoDescription: It was in Scotland's capital city that JK Rowling
-          started to plot the adventures of Harry and his friends. With cobbled streets,
-          winding alleys and medieval architecture, the city certainly have a few
-          things in common with the settings from the books and films.
+          started to plot the adventures of Harry and his friends
         visitscotland:seoNoIndex: false
         visitscotland:seoTitle: Iconic Harry Potter Film Locations - An Itinerary
         visitscotland:start: Tenerife
@@ -399,8 +396,9 @@
           Glen Etive\r\n\r\nThe Elephant House"
         visitscotland:theme: whisky
         visitscotland:title: HARRY POTTER FILM AND BOOK LOCATIONS ITINERARY
+        visitscotland:translation: ''
         visitscotland:transport: [boat]
-        visitscotland:transports: [car, train]
+        visitscotland:transports: [public]
         /visitscotland:heroImage:
           jcr:primaryType: hippogallerypicker:imagelink
           hippo:docbase: 8d4f5036-64ca-4e5d-aa89-b348ae38b081
@@ -434,7 +432,7 @@
         hippostd:state: draft
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2019-12-06T12:48:04.149Z
-        hippostdpubwf:lastModificationDate: 2020-11-10T16:17:43.488Z
+        hippostdpubwf:lastModificationDate: 2020-12-04T14:21:07.490Z
         hippostdpubwf:lastModifiedBy: admin
         hippotranslation:id: 56cf92c8-5887-4146-ad53-eaa062f4e07a
         hippotranslation:locale: en
@@ -446,9 +444,7 @@
           Glen Etive\r\nThe Elephant House"
         visitscotland:popular: false
         visitscotland:seoDescription: It was in Scotland's capital city that JK Rowling
-          started to plot the adventures of Harry and his friends. With cobbled streets,
-          winding alleys and medieval architecture, the city certainly have a few
-          things in common with the settings from the books and films.
+          started to plot the adventures of Harry and his friends
         visitscotland:seoNoIndex: false
         visitscotland:seoTitle: Iconic Harry Potter Film Locations - An Itinerary
         visitscotland:start: Tenerife
@@ -459,8 +455,9 @@
           Glen Etive\r\n\r\nThe Elephant House"
         visitscotland:theme: whisky
         visitscotland:title: HARRY POTTER FILM AND BOOK LOCATIONS ITINERARY
+        visitscotland:translation: ''
         visitscotland:transport: [boat]
-        visitscotland:transports: [car, train]
+        visitscotland:transports: [public]
         /visitscotland:heroImage:
           jcr:primaryType: hippogallerypicker:imagelink
           hippo:docbase: 8d4f5036-64ca-4e5d-aa89-b348ae38b081
@@ -3285,6 +3282,7 @@
           visitscotland:listLayout: true
           visitscotland:teaserVisible: true
           visitscotland:title: Featured Links (6 items) - List view
+          visitscotland:translation: ''
           /visitscotland:introduction:
             jcr:primaryType: hippostd:html
             hippostd:content: <p>This is an example of Featured Links</p>
@@ -4105,6 +4103,257 @@
             /visitscotland:link:
               jcr:primaryType: hippo:mirror
               hippo:docbase: bc5bec32-9cbc-45a7-855b-342008ad8ef9
+    /carousel-test:
+      jcr:primaryType: hippostd:folder
+      jcr:mixinTypes: ['hippotranslation:translated', 'mix:versionable']
+      jcr:uuid: c1d35239-dcb7-41ff-83a4-f161f14c29ff
+      hippostd:foldertype: [new-translated-folder, new-page, new-module]
+      hippotranslation:id: c29f41b7-668a-4b27-901b-b2277408848e
+      hippotranslation:locale: en
+      /content:
+        jcr:primaryType: hippo:handle
+        jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
+        jcr:uuid: 38126891-2065-46f3-a52c-167d6f99a6e9
+        hippo:name: Carousel test
+        hippo:versionHistory: ea37a9cd-661b-4015-bd0f-e49c9c445d36
+        /content[1]:
+          jcr:primaryType: visitscotland:Destination
+          jcr:mixinTypes: ['mix:referenceable']
+          jcr:uuid: 06ce9014-f893-4526-9d80-f25b4176f5f9
+          hippo:availability: []
+          hippostd:state: draft
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2020-12-04T14:14:59.331Z
+          hippostdpubwf:lastModificationDate: 2020-12-04T14:18:59.780Z
+          hippostdpubwf:lastModifiedBy: admin
+          hippotranslation:id: fa1a6adb-9f61-4932-99f1-cecfb1dabbca
+          hippotranslation:locale: en
+          visitscotland:breadcrumb: ''
+          visitscotland:location: Aberdeen
+          visitscotland:seoDescription: Find some of the most beautiful places in
+            Scotland, including iconic viewpoints and lesser known gems, alongside
+            advice on how to get there.
+          visitscotland:seoNoIndex: false
+          visitscotland:seoTitle: 12 Iconic Scottish Views
+          visitscotland:teaser: This is a carousel test
+          visitscotland:title: This is a carousel test
+          visitscotland:translation: ''
+          /visitscotland:heroImage:
+            jcr:primaryType: hippogallerypicker:imagelink
+            hippo:docbase: 6fe01b32-04e9-4d0f-86c9-b6b8bd246a67
+            hippo:facets: []
+            hippo:modes: []
+            hippo:values: []
+          /visitscotland:introduction:
+            jcr:primaryType: hippostd:html
+            hippostd:content: <p>This is a carousel test.&nbsp;</p>
+          /visitscotland:otherThings:
+            jcr:primaryType: visitscotland:OTYML
+            visitscotland:title: ''
+            /visitscotland:introduction:
+              jcr:primaryType: hippostd:html
+              hippostd:content: ''
+            /visitscotland:links[1]:
+              jcr:primaryType: visitscotland:MegalinkItem
+              visitscotland:feature: false
+              /visitscotland:link:
+                jcr:primaryType: hippo:mirror
+                hippo:docbase: 8b4a3c11-8b84-4aa0-bccf-f407d18c1c44
+            /visitscotland:links[2]:
+              jcr:primaryType: visitscotland:MegalinkItem
+              visitscotland:feature: false
+              /visitscotland:link:
+                jcr:primaryType: hippo:mirror
+                hippo:docbase: e16bdb89-c271-46f1-851f-2d2b82d631d4
+            /visitscotland:links[3]:
+              jcr:primaryType: visitscotland:MegalinkItem
+              visitscotland:feature: false
+              /visitscotland:link:
+                jcr:primaryType: hippo:mirror
+                hippo:docbase: bc5bec32-9cbc-45a7-855b-342008ad8ef9
+            /visitscotland:links[4]:
+              jcr:primaryType: visitscotland:MegalinkItem
+              visitscotland:feature: false
+              /visitscotland:link:
+                jcr:primaryType: hippo:mirror
+                hippo:docbase: bc5bec32-9cbc-45a7-855b-342008ad8ef9
+            /visitscotland:links[5]:
+              jcr:primaryType: visitscotland:MegalinkItem
+              visitscotland:feature: false
+              /visitscotland:link:
+                jcr:primaryType: hippo:mirror
+                hippo:docbase: bc5bec32-9cbc-45a7-855b-342008ad8ef9
+            /visitscotland:links[6]:
+              jcr:primaryType: visitscotland:MegalinkItem
+              visitscotland:feature: false
+              /visitscotland:link:
+                jcr:primaryType: hippo:mirror
+                hippo:docbase: bc5bec32-9cbc-45a7-855b-342008ad8ef9
+            /visitscotland:links[7]:
+              jcr:primaryType: visitscotland:MegalinkItem
+              visitscotland:feature: false
+              /visitscotland:link:
+                jcr:primaryType: hippo:mirror
+                hippo:docbase: bc5bec32-9cbc-45a7-855b-342008ad8ef9
+        /content[2]:
+          jcr:primaryType: visitscotland:Destination
+          jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
+          jcr:uuid: 2210d5cf-c1de-46d4-85f1-647b57b91fcf
+          hippo:availability: [preview]
+          hippostd:state: unpublished
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2020-12-04T14:14:59.331Z
+          hippostdpubwf:lastModificationDate: 2020-12-04T14:19:55.797Z
+          hippostdpubwf:lastModifiedBy: admin
+          hippotranslation:id: fa1a6adb-9f61-4932-99f1-cecfb1dabbca
+          hippotranslation:locale: en
+          visitscotland:breadcrumb: ''
+          visitscotland:location: Aberdeen
+          visitscotland:seoDescription: Find some of the most beautiful places in
+            Scotland, including iconic viewpoints and lesser known gems, alongside
+            advice on how to get there.
+          visitscotland:seoNoIndex: false
+          visitscotland:seoTitle: 12 Iconic Scottish Views
+          visitscotland:teaser: This is a carousel test
+          visitscotland:title: This is a carousel test
+          visitscotland:translation: ''
+          /visitscotland:heroImage:
+            jcr:primaryType: hippogallerypicker:imagelink
+            hippo:docbase: 6fe01b32-04e9-4d0f-86c9-b6b8bd246a67
+            hippo:facets: []
+            hippo:modes: []
+            hippo:values: []
+          /visitscotland:introduction:
+            jcr:primaryType: hippostd:html
+            hippostd:content: <p>This is a carousel test.&nbsp;</p>
+          /visitscotland:otherThings:
+            jcr:primaryType: visitscotland:OTYML
+            visitscotland:title: ''
+            /visitscotland:introduction:
+              jcr:primaryType: hippostd:html
+              hippostd:content: ''
+            /visitscotland:links[1]:
+              jcr:primaryType: visitscotland:MegalinkItem
+              visitscotland:feature: false
+              /visitscotland:link:
+                jcr:primaryType: hippo:mirror
+                hippo:docbase: 8b4a3c11-8b84-4aa0-bccf-f407d18c1c44
+            /visitscotland:links[2]:
+              jcr:primaryType: visitscotland:MegalinkItem
+              visitscotland:feature: false
+              /visitscotland:link:
+                jcr:primaryType: hippo:mirror
+                hippo:docbase: e16bdb89-c271-46f1-851f-2d2b82d631d4
+            /visitscotland:links[3]:
+              jcr:primaryType: visitscotland:MegalinkItem
+              visitscotland:feature: false
+              /visitscotland:link:
+                jcr:primaryType: hippo:mirror
+                hippo:docbase: bc5bec32-9cbc-45a7-855b-342008ad8ef9
+            /visitscotland:links[4]:
+              jcr:primaryType: visitscotland:MegalinkItem
+              visitscotland:feature: false
+              /visitscotland:link:
+                jcr:primaryType: hippo:mirror
+                hippo:docbase: bc5bec32-9cbc-45a7-855b-342008ad8ef9
+            /visitscotland:links[5]:
+              jcr:primaryType: visitscotland:MegalinkItem
+              visitscotland:feature: false
+              /visitscotland:link:
+                jcr:primaryType: hippo:mirror
+                hippo:docbase: bc5bec32-9cbc-45a7-855b-342008ad8ef9
+            /visitscotland:links[6]:
+              jcr:primaryType: visitscotland:MegalinkItem
+              visitscotland:feature: false
+              /visitscotland:link:
+                jcr:primaryType: hippo:mirror
+                hippo:docbase: bc5bec32-9cbc-45a7-855b-342008ad8ef9
+            /visitscotland:links[7]:
+              jcr:primaryType: visitscotland:MegalinkItem
+              visitscotland:feature: false
+              /visitscotland:link:
+                jcr:primaryType: hippo:mirror
+                hippo:docbase: bc5bec32-9cbc-45a7-855b-342008ad8ef9
+        /content[3]:
+          jcr:primaryType: visitscotland:Destination
+          jcr:mixinTypes: ['mix:referenceable']
+          jcr:uuid: 1fda5b86-c1b8-46b1-9f29-4b9924ada8a1
+          hippo:availability: [live]
+          hippostd:state: published
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2020-12-04T14:14:59.331Z
+          hippostdpubwf:lastModificationDate: 2020-12-04T14:19:55.797Z
+          hippostdpubwf:lastModifiedBy: admin
+          hippostdpubwf:publicationDate: 2020-12-04T14:19:57.997Z
+          hippotranslation:id: fa1a6adb-9f61-4932-99f1-cecfb1dabbca
+          hippotranslation:locale: en
+          visitscotland:breadcrumb: ''
+          visitscotland:location: Aberdeen
+          visitscotland:seoDescription: Find some of the most beautiful places in
+            Scotland, including iconic viewpoints and lesser known gems, alongside
+            advice on how to get there.
+          visitscotland:seoNoIndex: false
+          visitscotland:seoTitle: 12 Iconic Scottish Views
+          visitscotland:teaser: This is a carousel test
+          visitscotland:title: This is a carousel test
+          visitscotland:translation: ''
+          /visitscotland:heroImage:
+            jcr:primaryType: hippogallerypicker:imagelink
+            hippo:docbase: 6fe01b32-04e9-4d0f-86c9-b6b8bd246a67
+            hippo:facets: []
+            hippo:modes: []
+            hippo:values: []
+          /visitscotland:introduction:
+            jcr:primaryType: hippostd:html
+            hippostd:content: <p>This is a carousel test.&nbsp;</p>
+          /visitscotland:otherThings:
+            jcr:primaryType: visitscotland:OTYML
+            visitscotland:title: ''
+            /visitscotland:introduction:
+              jcr:primaryType: hippostd:html
+              hippostd:content: ''
+            /visitscotland:links[1]:
+              jcr:primaryType: visitscotland:MegalinkItem
+              visitscotland:feature: false
+              /visitscotland:link:
+                jcr:primaryType: hippo:mirror
+                hippo:docbase: 8b4a3c11-8b84-4aa0-bccf-f407d18c1c44
+            /visitscotland:links[2]:
+              jcr:primaryType: visitscotland:MegalinkItem
+              visitscotland:feature: false
+              /visitscotland:link:
+                jcr:primaryType: hippo:mirror
+                hippo:docbase: e16bdb89-c271-46f1-851f-2d2b82d631d4
+            /visitscotland:links[3]:
+              jcr:primaryType: visitscotland:MegalinkItem
+              visitscotland:feature: false
+              /visitscotland:link:
+                jcr:primaryType: hippo:mirror
+                hippo:docbase: bc5bec32-9cbc-45a7-855b-342008ad8ef9
+            /visitscotland:links[4]:
+              jcr:primaryType: visitscotland:MegalinkItem
+              visitscotland:feature: false
+              /visitscotland:link:
+                jcr:primaryType: hippo:mirror
+                hippo:docbase: bc5bec32-9cbc-45a7-855b-342008ad8ef9
+            /visitscotland:links[5]:
+              jcr:primaryType: visitscotland:MegalinkItem
+              visitscotland:feature: false
+              /visitscotland:link:
+                jcr:primaryType: hippo:mirror
+                hippo:docbase: bc5bec32-9cbc-45a7-855b-342008ad8ef9
+            /visitscotland:links[6]:
+              jcr:primaryType: visitscotland:MegalinkItem
+              visitscotland:feature: false
+              /visitscotland:link:
+                jcr:primaryType: hippo:mirror
+                hippo:docbase: bc5bec32-9cbc-45a7-855b-342008ad8ef9
+            /visitscotland:links[7]:
+              jcr:primaryType: visitscotland:MegalinkItem
+              visitscotland:feature: false
+              /visitscotland:link:
+                jcr:primaryType: hippo:mirror
+                hippo:docbase: bc5bec32-9cbc-45a7-855b-342008ad8ef9
   /vuex:
     jcr:primaryType: hippostd:folder
     jcr:mixinTypes: ['hippotranslation:translated', 'mix:versionable']

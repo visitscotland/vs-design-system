@@ -1,25 +1,25 @@
 <template>
-    <div class="stretched-link-card__panels">
+    <div class="stretched-link-panels">
         <div
-            class="stretched-link-panel stretched-link-panel--days"
+            class="stretched-link-panels__panel stretched-link-panels__panel--days"
             data-test="stretched-link-panel--days"
         >
             <p>
-                <span class="stretched-link-panel__days">{{ days }}</span> days
+                <span class="stretched-link-panels__days">{{ days }}</span> days
             </p>
         </div>
 
         <div
-            class="stretched-link-panel"
+            class="stretched-link-panels__panel"
             data-test="stretched-link-panel"
         >
             <VsIcon
                 :name="transport"
                 variant="reverse-white"
-                class="stretched-link-panel__icon"
+                class="stretched-link-panels__icon"
             />
             <p data-test="stretched-link-panel__icon">
-                {{ transport }}
+                {{ transportName }}
             </p>
         </div>
     </div>
@@ -31,7 +31,7 @@ import VsIcon from '@components/elements/icon/Icon';
  * Panels to show information in the stretched link component
  */
 export default {
-    name: 'VsStretchedLinkPanel',
+    name: 'VsStretchedLinkPanels',
     status: 'prototype',
     release: '0.0.1',
     components: {
@@ -53,11 +53,27 @@ export default {
             default: '',
         },
     },
+    computed: {
+        transportName() {
+            if (this.transport === 'public') {
+                return 'public transport';
+            }
+
+            return this.transport;
+        },
+    },
 };
 </script>
 
 <style lang="scss">
-    .stretched-link-panel {
+    .stretched-link-panels {
+        position: absolute;
+        right: $spacer-2;
+        top: $spacer-2;
+        display: flex;
+        flex-direction: row;
+
+        &__panel {
             width: 55px;
             height: 55px;
             background: $color-black;
@@ -73,26 +89,33 @@ export default {
                 background: $color-secondary-teal-shade-2;
             }
 
-            .stretched-link-panel__days {
-                font-size: $font-size-lg;
-                font-weight: bold;
-                display: block;
-            }
-
             p {
                 margin-bottom: 0;
                 text-align: center;
                 line-height: $line_height_xs;
             }
+        }
 
-            .vs-icon svg {
-                height: 20px;
-                width: auto;
-                margin-bottom: $spacer-1;
-            }
+        &__days {
+            font-size: $font-size-lg;
+            font-weight: bold;
+            display: block;
+            margin-bottom: $spacer-1;
+        }
+
+        &__icon {
+            height: 20px;
+            width: auto;
+            margin-bottom: $spacer-1;
+        }
 
         @include media-breakpoint-up(sm) {
-            margin-left: $spacer-2;
+            right: $spacer-4;
+            top: $spacer-4;
+
+            &__panel {
+                margin-left: $spacer-2;
+            }
         }
     }
 </style>
