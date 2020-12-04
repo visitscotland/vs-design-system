@@ -1,9 +1,13 @@
 <template>
-    <li class="vs-footer-nav-list-item">
+    <li
+        class="vs-footer-nav-list-item"
+        data-test="vs-footer-nav-list-item"
+    >
         <VsLink
             :href="href"
             :type="type"
             variant="dark"
+            data-test="vs-footer-nav-list-item__link"
         >
             {{ linkText }}
         </VsLink>
