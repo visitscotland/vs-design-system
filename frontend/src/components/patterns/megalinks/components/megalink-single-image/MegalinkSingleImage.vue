@@ -2,8 +2,8 @@
     <section
         class="megalink-single-image"
         :class="[
-            alternate ? 'megalink-single-image--alternate' : '',
-            theme === 'dark' ? 'megalink-single-image--dark' : '',
+            alternateClass,
+            themeClass,
         ]"
         data-test="megalink-single-image"
     >
@@ -123,6 +123,14 @@ export default {
             type: String,
             default: 'light',
             validator: (value) => value.match(/(light|dark)/),
+        },
+    },
+    computed: {
+        themeClass() {
+            return `megalink-single-image--${this.theme}`;
+        },
+        alternateClass() {
+            return this.alternate ? 'megalink-single-image--alternate' : '';
         },
     },
 };
