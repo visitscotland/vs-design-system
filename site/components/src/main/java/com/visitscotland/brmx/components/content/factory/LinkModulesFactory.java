@@ -269,7 +269,8 @@ public class LinkModulesFactory {
             if (((SharedLink) linkable).getLinkType() instanceof ExternalDocument){
                 ExternalDocument externalDocument = (ExternalDocument)sharedLink.getLinkType();
                 String extension = externalDocument.getLink().substring(externalDocument.getLink().lastIndexOf(".") + 1).toUpperCase();
-                link.setLabel(linkable.getTitle()+"("+extension+" " + externalDocument.getSize()+externalDocument.getBytes() + ")");
+                String downloadLabel = bundle.getResourceBundle("essentials.global", "label.download", locale ,true);
+                link.setLabel(linkable.getTitle()+"("+downloadLabel+" "+extension+" " + externalDocument.getSize()+externalDocument.getBytes() + ")");
                 link.setType(LinkType.DOWNLOAD);
                 if (addCategory) {
                     link.setCategory(externalDocument.getCategory());
