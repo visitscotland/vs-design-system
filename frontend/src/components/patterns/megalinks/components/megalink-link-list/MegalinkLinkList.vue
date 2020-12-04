@@ -1,7 +1,7 @@
 <template>
     <div
         class="megalink-link-list"
-        :class="theme === 'dark' ? 'megalink-link-list--dark' : ''"
+        :class="themeClass"
     >
         <VsStretchedLinkCard
             link="https://visitscotland.com"
@@ -97,6 +97,11 @@ export default {
             type: String,
             default: 'light',
             validator: (value) => value.match(/(light|dark)/),
+        },
+    },
+    computed: {
+        themeClass() {
+            return `megalink-link-list--${this.theme}`;
         },
     },
 };
