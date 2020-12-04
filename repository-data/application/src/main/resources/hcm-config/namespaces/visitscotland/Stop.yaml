@@ -11,12 +11,12 @@ definitions:
         /hipposysedit:nodetype:
           jcr:primaryType: hipposysedit:nodetype
           jcr:mixinTypes: ['mix:referenceable', 'hipposysedit:remodel']
-          jcr:uuid: 9dddef4e-866f-4e15-ad20-bb5c0663c8d4
+          jcr:uuid: 1ee05a21-67c7-47c8-85e8-c2d5b4258a38
           hipposysedit:node: true
           hipposysedit:supertype: ['visitscotland:basedocument', 'hippostd:relaxed',
             'hippotranslation:translated']
           hipposysedit:uri: http://www.visitscotland.com/visitscotland/nt/1.0
-          hipposysedit:validators: ['visitscotland:link-image-validator']
+          hipposysedit:validators: ['visitscotland:link-image-validator', 'visitscotland:location-validator']
           /tipsTitle:
             jcr:primaryType: hipposysedit:field
             hipposysedit:mandatory: false
@@ -93,7 +93,7 @@ definitions:
           hippotranslation:id: document-type-locale-id
           hippotranslation:locale: document-type-locale
           jcr:mixinTypes: ['mix:referenceable']
-          jcr:uuid: c9bfc839-7031-486f-82cf-e4c28b30c509
+          jcr:uuid: d3e371f0-d4e5-46d4-a731-d374f58c105e
           hippostdpubwf:lastModificationDate: 2019-12-05T15:13:21.853Z
           hippostdpubwf:creationDate: 2019-12-05T15:13:21.853Z
           visitscotland:tipsTitle: ''
