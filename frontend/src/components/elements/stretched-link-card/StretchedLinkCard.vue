@@ -13,8 +13,11 @@
             <!-- @slot Contains optional content for overlaid panels  -->
             <slot name="stretchedCardPanels" />
         </div>
+        <slot name="stretchedCardImage" />
 
         <div class="card-body">
+            <slot name="stretchedCardCategory" />
+
             <VsHeading
                 level="4"
                 class="stretched-link-card__category"
