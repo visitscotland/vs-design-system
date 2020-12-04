@@ -23,8 +23,7 @@
 <#include "../../frontend/components/vs-summary-box-distance-label.ftl">
 <#include "../../frontend/components/vs-summary-box-icon-with-label.ftl">
 <#include "../../frontend/components/vs-description-list.ftl">
-<#include "../../frontend/components/vs-description-list-term.ftl">
-<#include "../../frontend/components/vs-description-list-detail.ftl">
+<#include "../../frontend/components/vs-description-list-item.ftl">
 <#include "../../frontend/components/vs-itinerary-day.ftl">
 <#include "../../frontend/components/vs-itinerary.ftl">
 <#include "../../frontend/components/vs-svg.ftl">
@@ -155,22 +154,22 @@
             <vs-row>
                 <vs-col cols="12" lg="11" offset-lg="1">
                     <vs-description-list class="mb-6">
-                        <vs-description-list-term>
+                        <vs-description-list-item title>
                             ${label("itinerary", "highlights")}
-                        </vs-description-list-term>
+                        </vs-description-list-item>
                         <#-- TODO: each ${document.highlight} should render a new dd element -->
-                        <vs-description-list-detail>
+                        <vs-description-list-item>
                             <div style="white-space: pre-wrap">${document.highlights}</div>
-                        </vs-description-list-detail>
+                        </vs-description-list-item>
                     </vs-description-list>
                     <vs-description-list class="mb-8">
-                        <vs-description-list-term>
+                        <vs-description-list-item title>
                             ${label("itinerary", "areas-covered")}
-                        </vs-description-list-term>
+                        </vs-description-list-item>
                         <#list document.areas as area>
-                            <vs-description-list-detail>
+                            <vs-description-list-item>
                                 ${label("areas", "${area}")}${"\n"}
-                            </vs-description-list-detail>
+                            </vs-description-list-item>
                         </#list>
                     </vs-description-list>
                 </vs-col>
@@ -194,7 +193,7 @@
                     <vs-description-list class="text-center justify-content-center align-items-center has-edit-button" slot="day-transport">
                          <@hst.manageContent hippobean=day />
                         <#-- 
-                            Note - can't use vs-description-list-term and vs-description-list-detail 
+                            Note - can't use vs-description-list-item
                             here yet as font style and layout are different 
                         -->
                         <dt class="list-inline-item">${label("itinerary", "transport")}:</dt>

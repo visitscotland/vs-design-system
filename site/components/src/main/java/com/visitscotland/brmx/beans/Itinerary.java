@@ -34,6 +34,9 @@ public class Itinerary extends Page {
     }
 
     @Deprecated
+    /**
+     * This method shouldn't have new invocations. Instead of this, you should invoke {@code new DocumentUtils().getSiblingDocuments()}
+     */
     public List<Day> getDays() {
         return getPageChildrenByType(Day.class);
     }

@@ -1,5 +1,6 @@
 package com.visitscotland.brmx.beans.mapping;
 
+import com.visitscotland.brmx.beans.TourismInformation;
 import com.visitscotland.brmx.beans.mapping.megalinks.EnhancedLink;
 import org.hippoecm.hst.content.beans.standard.HippoHtml;
 
@@ -88,4 +89,5 @@ public class ICentreModule extends Module{
     public void setDescription(String description) {
         this.description = description;
     }
+
 }

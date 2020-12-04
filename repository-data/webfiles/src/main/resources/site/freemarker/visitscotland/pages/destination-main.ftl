@@ -81,15 +81,12 @@
 
   <#--TODO Control abput colours, change style="background-color:${style}  -->
 	<#list pageItems as item>
-	<vs-container slot="upper" class="py-lg-4" >
 		<#--TODO Colour should be only added to Megalinks, add this code to macros or create a commun macro to control it-->
 		<#if item.theme?? && item.theme = "theme3">
 			<#assign theme = "#292929" />
 		<#else>
 			<#assign theme = "#FFFFFF" />
 		</#if>
-
         <@moduleBuilder module=item theme=theme />
-	</vs-container>
 	</#list>
 </div>
