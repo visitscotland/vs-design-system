@@ -1132,9 +1132,9 @@
     "@vimeo/player" "^2.10.0"
 
 "@splidejs/splide@^2.4.13":
-  version "2.4.21"
-  resolved "https://registry.yarnpkg.com/@splidejs/splide/-/splide-2.4.21.tgz#ad1954d8d8822c9bfea0d3dc6a119358b88581ad"
-  integrity sha512-LdIwSnmNsGybCCnA3QG2dOeRv/rQl46jf7FflXxMGX0ADYWyL6UJHWJbMZvHBi5I67uRJY1ga/W+CvJ39nH26A==
+  version "2.4.20"
+  resolved "https://registry.yarnpkg.com/@splidejs/splide/-/splide-2.4.20.tgz#6370cf25055a93809a40dcbe16b087199f820eef"
+  integrity sha512-/38a5sxujf2ZOunk6pXNkw/BiYDGiHBeEsrfXLSgMQ05VF175gRJGEe7IcLV3qvaRxtM9U6Jr1HOtWUzvTQ9tg==
 
 "@splidejs/vue-splide@^0.3.5":
   version "0.3.5"
