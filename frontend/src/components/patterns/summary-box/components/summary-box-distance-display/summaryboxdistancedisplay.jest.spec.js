@@ -16,7 +16,7 @@ const factoryShallowMount = (computed) => shallowMount(VsSummaryBoxDistanceDispl
 
 describe('VsSummaryBoxDistanceDisplay', () => {
     it('should render a component with the data-test attribute `vs-summary-box-distance-display`', () => {
-        const wrapper = shallowMount(VsSummaryBoxDistanceDisplay);
+        const wrapper = factoryShallowMount();
         expect(wrapper.attributes('data-test')).toBe('vs-summary-box-distance-display');
     });
 
