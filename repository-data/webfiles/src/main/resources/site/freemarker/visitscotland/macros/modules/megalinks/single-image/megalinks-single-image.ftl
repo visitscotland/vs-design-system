@@ -11,6 +11,7 @@
     <#else>
         <#assign image = item.image.externalImage!'' />
     </#if>
+
     <vs-col cols="12">
         <vs-megalink-single-image 
             title="${item.innerTitle}"
@@ -18,11 +19,18 @@
             <#if item.cta.link??>button-link="${item.cta.link}"</#if>
             <#if item.alignment == 'left'>alternate</#if>
         >
-            <template slot="vsSingleImageCaption">${item.image.description}</template>
-            <template slot="vsSingleImageCredit">${item.image.credit}</template>
+            <template slot="vsSingleImageCaption">
+                ${item.image.description}
+            </template>
+
+            <template slot="vsSingleImageCredit">
+                ${item.image.credit}
+            </template>
+
             <template slot="vsSingleImageContent">
                 <@hst.html hippohtml=item.innerIntroduction/>
             </template>
+
             <template slot="vsSingleImageLinks">
                 <#list item.links as listItem>
                     <vs-link-list-item
