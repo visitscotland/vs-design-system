@@ -1,7 +1,7 @@
 <template>
     <section
         class="vs-megalinks"
-        :class="[variant ? `vs-megalinks--${variant}` : '', `vs-megalinks--${theme}`]"
+        :class="[variantClass, `vs-megalinks--${theme}`]"
         data-test="megalinks"
     >
         <VsContainer class="container-lg">
@@ -108,6 +108,11 @@ export default {
             type: String,
             default: 'light',
             validator: (value) => value.match(/(light|dark)/),
+        },
+    },
+    computed: {
+        variantClass() {
+            return this.variant ? `vs-megalinks--${this.variant}` : '';
         },
     },
 };
@@ -231,7 +236,8 @@ export default {
                 color: $color-white;
             }
 
-            .megalink-multi-image.card {
+            .megalink-multi-image.card,
+            .megalink-link-list .megalink-link-list__wrapper.card {
                 &:hover {
                     box-shadow: 10px 10px 15px #000000;
                 }

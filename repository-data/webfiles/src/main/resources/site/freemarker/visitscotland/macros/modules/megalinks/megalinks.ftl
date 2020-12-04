@@ -5,6 +5,8 @@
 <#include "./single-image/megalinks-single-image.ftl">
 
 <#macro megalinks item type theme>
+    <@hst.manageContent hippobean=item.megalinkItem />
+
     <#if type=="MultiImageLinksModule">
         <#assign variant = "multi-image">
     <#elseif type=="ListLinksModule">
@@ -23,8 +25,6 @@
         theme="${theme}"
         <#if item.cta?? && type != "SingleImageLinksModule">button-link="${item.cta.link}"</#if>
     >
-        <@hst.manageContent hippobean=item.megalinkItem />
-
         <template slot="vsMegalinksHeading">
             ${item.title}
         </template>

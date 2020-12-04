@@ -79,9 +79,7 @@
 		</vs-container>
 	</vs-page-intro>
 
-  <#--TODO Control abput colours, change style="background-color:${style}  -->
 	<#list pageItems as item>
-        <#--TODO Colour should be only added to Megalinks, add this code to macros or create a commun macro to control it-->
         <#if item.theme?? && item.theme = "theme3">
             <#assign theme = "#292929" />
         <#else>

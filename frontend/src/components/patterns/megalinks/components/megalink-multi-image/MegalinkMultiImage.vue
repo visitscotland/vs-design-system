@@ -4,13 +4,13 @@
         :type="linkType"
         class="megalink-multi-image p-2"
         :class="[
-            theme === 'dark' ? 'megalink-multi-image--dark' : '',
+            themeClass,
             {
                 'megalink-multi-image--featured' : featured,
                 'megalink-multi-image--featured-last' : lastFeatured,
             }
         ]"
-        data-test="megalink-multi-image-featured"
+        data-test="megalink-multi-image"
         :theme="theme"
     >
         <VsImg
@@ -110,6 +110,11 @@ export default {
             type: String,
             default: 'light',
             validator: (value) => value.match(/(light|dark)/),
+        },
+    },
+    computed: {
+        themeClass() {
+            return `megalink-multi-image--${this.theme}`;
         },
     },
 };

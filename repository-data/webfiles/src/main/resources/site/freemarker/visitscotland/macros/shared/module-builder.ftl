@@ -15,7 +15,6 @@
 
 <#-- @ftlvariable name="hero" type="com.visitscotland.brmx.beans.Image" -->
 
-<#--TODO Control abput colours, change style="background-color:${style}  -->
 <#macro moduleBuilder module theme>
     <#if theme="theme1">
         <#assign themeName = "dark">
