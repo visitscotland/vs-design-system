@@ -5,7 +5,7 @@
             :type="linkType"
             :img-src="imgSrc"
             :img-alt="imgAlt"
-            class="carousel-slide"
+            class="vs-carousel-slide"
         >
             <VsStretchedLinkPanels
                 v-if="days && transport"
@@ -20,7 +20,7 @@
 
             <span
                 slot="stretchedCardHeader"
-                class="carousel-slide__title"
+                class="vs-carousel-slide__title"
                 data-test="carousel-slide__title"
             >
                 <!-- @slot Slot to contain heading -->
@@ -114,7 +114,7 @@ export default {
         }
     }
 
-    .carousel-slide {
+    .vs-carousel-slide {
         height: 100%;
         padding: $spacer-2;
 
