@@ -1,6 +1,6 @@
 <template>
     <section
-        class="carousel"
+        class="vs-carousel"
         data-test="carousel"
         ref="carousel"
     >
@@ -18,9 +18,9 @@
                         <!-- @slot default slot to contain slides -->
                         <slot />
                     </Splide>
-                    <div class="carousel__mobile-pagination-wrapper">
+                    <div class="vs-carousel__mobile-pagination-wrapper">
                         <p
-                            class="carousel__mobile-pagination"
+                            class="vs-carousel__mobile-pagination"
                             data-test="carousel__mobile-pagination"
                         >
                             {{ currentSlide }} of {{ totalSlides }}
@@ -115,7 +115,7 @@ export default {
 <style lang="scss">
     @import '@splidejs/splide/dist/css/themes/splide-default.min.css';
 
-    .carousel {
+    .vs-carousel {
         overflow: hidden;
 
         .splide {
@@ -146,9 +146,7 @@ export default {
             top: 25%;
 
             svg {
-                // transform: translateY(-28%);
                 fill: $color-white;
-                // height: 56px;
             }
 
             &:hover {
@@ -171,7 +169,7 @@ export default {
         }
 
         .splide__pagination,
-        .carousel__mobile-pagination-wrapper {
+        &__mobile-pagination-wrapper {
             margin-top: $spacer-9;
         }
 
@@ -197,13 +195,13 @@ export default {
             }
         }
 
-        .carousel__mobile-pagination-wrapper {
+        &__mobile-pagination-wrapper {
             width: 100%;
             display: flex;
             justify-content: center;
         }
 
-        .carousel__mobile-pagination {
+        &__mobile-pagination {
             display: inline-block;
             background: $color-gray-tint-7;
             line-height: $line-height-xs;
@@ -217,7 +215,7 @@ export default {
                 display: inline-flex;
             }
 
-            .carousel__mobile-pagination-wrapper {
+            &__mobile-pagination-wrapper {
                 display: none;
             }
         }
