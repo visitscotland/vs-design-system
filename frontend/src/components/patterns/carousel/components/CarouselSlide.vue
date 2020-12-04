@@ -7,7 +7,7 @@
             :img-alt="imgAlt"
             class="carousel-slide"
         >
-            <VsStretchedLinkPanel
+            <VsStretchedLinkPanels
                 v-if="days && transport"
                 :days="days"
                 :transport="transport"
@@ -33,7 +33,7 @@
 <script>
 import { SplideSlide } from '@splidejs/vue-splide';
 import VsStretchedLinkCard from '@components/elements/stretched-link-card/StretchedLinkCard';
-import VsStretchedLinkPanel from '@components/elements/stretched-link-card/components/StretchedLinkPanel';
+import VsStretchedLinkPanels from '@components/elements/stretched-link-card/components/StretchedLinkPanels';
 
 /**
 * Slide for carousel
@@ -46,7 +46,7 @@ export default {
     components: {
         SplideSlide,
         VsStretchedLinkCard,
-        VsStretchedLinkPanel,
+        VsStretchedLinkPanels,
     },
     props: {
         /**
@@ -116,6 +116,11 @@ export default {
 
     .carousel-slide {
         height: 100%;
+        padding: $spacer-2;
+
+        .card-title {
+            margin-bottom: $spacer-0;
+        }
 
         .card-body {
             padding: $spacer-3 0;
