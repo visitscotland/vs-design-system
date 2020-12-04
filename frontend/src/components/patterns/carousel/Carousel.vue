@@ -147,6 +147,8 @@ export default {
 
             svg {
                 fill: $color-white;
+                height: 1rem;
+                width: 1rem;
             }
 
             &:hover {
@@ -230,6 +232,9 @@ export default {
             link-type="external"
             img-src="https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"
             img-alt=""
+            category="Category"
+            days="15"
+            transport="bus"
         >
             <template slot="vsCarouselSlideHeading">
                 Count 7,000 shining stars in the iconic
@@ -248,6 +253,7 @@ export default {
             link-url="www.visitscotland.com"
             link-type="external"
             img-src="https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"
+            category="Category"
         >
             <template slot="vsCarouselSlideHeading">
                 Count 7,000 shining stars in the iconic
@@ -266,6 +272,7 @@ export default {
             link-url="www.visitscotland.com"
             link-type="external"
             img-src="https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"
+            category="Category"
         >
             <template slot="vsCarouselSlideHeading">
                 Count 7,000 shining stars in the iconic
@@ -284,6 +291,7 @@ export default {
             link-url="www.visitscotland.com"
             link-type="external"
             img-src="https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"
+            category="Category"
         >
             <template slot="vsCarouselSlideHeading">
                 Count 7,000 shining stars in the iconic
@@ -302,6 +310,7 @@ export default {
             link-url="www.visitscotland.com"
             link-type="external"
             img-src="https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"
+            category="Category"
         >
             <template slot="vsCarouselSlideHeading">
                 Count 7,000 shining stars in the iconic
@@ -320,6 +329,7 @@ export default {
             link-url="www.visitscotland.com"
             link-type="external"
             img-src="https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"
+            category="Category"
         >
             <template slot="vsCarouselSlideHeading">
                 Count 7,000 shining stars in the iconic
