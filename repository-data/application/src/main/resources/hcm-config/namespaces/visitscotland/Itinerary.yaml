@@ -11,7 +11,7 @@ definitions:
         /hipposysedit:nodetype:
           jcr:primaryType: hipposysedit:nodetype
           jcr:mixinTypes: ['mix:referenceable', 'hipposysedit:remodel']
-          jcr:uuid: ce88af83-28ab-48ee-9c2a-f60db9cf7075
+          jcr:uuid: d5cc85db-c1b8-4bd5-a68f-e0cb6514c23c
           hipposysedit:node: true
           hipposysedit:supertype: ['visitscotland:Page', 'hippostd:relaxed', 'hippotranslation:translated']
           hipposysedit:uri: http://www.visitscotland.com/visitscotland/nt/1.0
@@ -102,7 +102,7 @@ definitions:
           visitscotland:start: ''
           visitscotland:distance: 0.0
           visitscotland:theme: ''
-          jcr:uuid: 1a649260-0a13-4a20-8621-4af77341dd71
+          jcr:uuid: ddca1230-4771-428c-bbb6-4dfb02113810
           hippostdpubwf:creationDate: 2019-12-06T11:10:08.311Z
           hippostdpubwf:lastModificationDate: 2019-12-06T11:10:08.310Z
           visitscotland:highlights: ''
@@ -219,18 +219,19 @@ definitions:
                 , removeButtons: ''PickImage,Youtube,Table''}'
               ckeditor.config.appended.json: "{   extraPlugins: 'wordcount',   wordcount:\
                 \ { \tcountSpacesAsChars: true,     showCharCount: true   }  }"
-          /start:
+          /highlights:
             jcr:primaryType: frontend:plugin
-            caption: Override Start Point
-            field: start
+            caption: Highlights
+            field: text
+            hint: Put each highlight on a new line.
             plugin.class: org.hippoecm.frontend.editor.plugins.field.PropertyFieldPlugin
             wicket.id: ${cluster.id}.left.item
             /cluster.options:
               jcr:primaryType: frontend:pluginconfig
-          /finish:
+          /start:
             jcr:primaryType: frontend:plugin
-            caption: Override Finish Point
-            field: finish
+            caption: Override Start Point
+            field: start
             plugin.class: org.hippoecm.frontend.editor.plugins.field.PropertyFieldPlugin
             wicket.id: ${cluster.id}.left.item
             /cluster.options:
@@ -263,20 +264,19 @@ definitions:
             /cluster.options:
               jcr:primaryType: frontend:pluginconfig
               source: /content/documents/administration/options/areas
+          /finish:
+            jcr:primaryType: frontend:plugin
+            caption: Override Finish Point
+            field: finish
+            plugin.class: org.hippoecm.frontend.editor.plugins.field.PropertyFieldPlugin
+            wicket.id: ${cluster.id}.left.item
+            /cluster.options:
+              jcr:primaryType: frontend:pluginconfig
           /distance:
             jcr:primaryType: frontend:plugin
             caption: Override Miles
             field: distance
             hint: ''
-            plugin.class: org.hippoecm.frontend.editor.plugins.field.PropertyFieldPlugin
-            wicket.id: ${cluster.id}.left.item
-            /cluster.options:
-              jcr:primaryType: frontend:pluginconfig
-          /highlights:
-            jcr:primaryType: frontend:plugin
-            caption: Highlights
-            field: text
-            hint: Put each highlight on a new line.
             plugin.class: org.hippoecm.frontend.editor.plugins.field.PropertyFieldPlugin
             wicket.id: ${cluster.id}.left.item
             /cluster.options:
