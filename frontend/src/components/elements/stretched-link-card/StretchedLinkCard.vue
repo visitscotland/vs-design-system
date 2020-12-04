@@ -1,6 +1,8 @@
 <template>
     <div class="card stretched-link-card">
-        <template v-if="imgSrc">
+        <template
+            v-if="imgSrc"
+        >
             <VsImg
                 :src="imgSrc"
                 :alt="imgAlt"
@@ -9,11 +11,16 @@
             />
         </template>
 
-        <slot name="stretchedCardImage" />
+        <template
+            v-if="!!this.$slots['stretchedCardPanels']"
+        >
+            <!-- @slot Contains optional content for overlaid panels  -->
+            <slot name="stretchedCardPanels" />
+        </template>
+
+        <!-- <slot name="stretchedCardImage" /> -->
 
         <div class="card-body">
-            <slot name="stretchedCardCategory" />
-
             <VsHeading
                 level="3"
                 class="card-title stretched-link-card__title"
