@@ -11,7 +11,7 @@ definitions:
         /hipposysedit:nodetype:
           jcr:primaryType: hipposysedit:nodetype
           jcr:mixinTypes: ['mix:referenceable', 'hipposysedit:remodel']
-          jcr:uuid: d5feb8ae-62b7-4517-8830-95ff97e50e3b
+          jcr:uuid: 1a6ad92e-f402-43df-b238-8a39ea7c6c89
           hipposysedit:node: true
           hipposysedit:supertype: ['visitscotland:Page', 'hippostd:relaxed', 'hippotranslation:translated']
           hipposysedit:uri: http://www.visitscotland.com/visitscotland/nt/1.0
@@ -56,7 +56,7 @@ definitions:
           visitscotland:title: ''
           visitscotland:seoTitle: ''
           jcr:mixinTypes: ['mix:referenceable']
-          jcr:uuid: dcf6feea-66d2-47d7-a752-8685457bb998
+          jcr:uuid: 612fa799-7c00-43a0-b625-43d4a09845c0
           hippostdpubwf:lastModificationDate: 2020-02-11T09:30:21.383Z
           hippostdpubwf:creationDate: 2020-02-11T09:30:21.383Z
           visitscotland:descOrder: false
@@ -115,7 +115,7 @@ definitions:
             wicket.id: ${cluster.id}.left.item
             /cluster.options:
               jcr:primaryType: frontend:pluginconfig
-              maxlength: '70'
+              maxlength: ''
           /seoDescription:
             jcr:primaryType: frontend:plugin
             caption: Meta Description (SEO)
@@ -125,7 +125,7 @@ definitions:
             wicket.id: ${cluster.id}.left.item
             /cluster.options:
               jcr:primaryType: frontend:pluginconfig
-              maxlength: '160'
+              maxlength: ''
           /title:
             jcr:primaryType: frontend:plugin
             caption: Heading
@@ -135,7 +135,7 @@ definitions:
             wicket.id: ${cluster.id}.left.item
             /cluster.options:
               jcr:primaryType: frontend:pluginconfig
-              maxlength: '55'
+              maxlength: ''
           /teaser:
             jcr:primaryType: frontend:plugin
             caption: Teaser
@@ -145,7 +145,7 @@ definitions:
             hint: ''
             /cluster.options:
               jcr:primaryType: frontend:pluginconfig
-              maxlength: '135'
+              maxlength: ''
           /introduction:
             jcr:primaryType: frontend:plugin
             caption: Introduction

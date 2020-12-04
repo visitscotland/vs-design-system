@@ -1,9 +1,6 @@
 package com.visitscotland.brmx.components.content;
 
-import com.visitscotland.brmx.beans.BaseDocument;
-import com.visitscotland.brmx.beans.Megalinks;
-import com.visitscotland.brmx.beans.Page;
-import com.visitscotland.brmx.beans.TourismInformation;
+import com.visitscotland.brmx.beans.*;
 import com.visitscotland.brmx.beans.mapping.ICentreModule;
 import com.visitscotland.brmx.beans.mapping.IKnowModule;
 import com.visitscotland.brmx.beans.mapping.Module;
@@ -85,10 +82,8 @@ public class PageTemplateBuilder {
                     if (iCentreModule != null) {
                         iCentreModule.setHippoBean(item);
                         links.add(iCentreModule);
-                    } else {
-                        iKnowModule.setHippoBean(item);
                     }
-
+                    iKnowModule.setHippoBean(item);
                     links.add(iKnowModule);
                 }
             } catch (MissingResourceException e){
@@ -97,8 +92,9 @@ public class PageTemplateBuilder {
                 logger.error("An unexpected exception happened while building the module for {}", item.getPath(), e);
             }
         }
-        if(getDocument(request).getOtherThings()!=null) {
-            LinksModule al = linksFactory.horizontalListLayout(getDocument(request).getOtherThings(), request.getLocale());
+        OTYML otyml = getDocument(request).getOtherThings();
+        if(otyml!=null) {
+            LinksModule al = linksFactory.horizontalListLayout(otyml, request.getLocale());
             al.setTheme(themes[0]);
             links.add(al);
         }

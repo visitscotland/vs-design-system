@@ -12,7 +12,7 @@
  */
 
 export default {
-    name: 'VsIconList',
+    name: 'VsForm',
     status: 'prototype',
     release: '0.0.1',
     props: {
