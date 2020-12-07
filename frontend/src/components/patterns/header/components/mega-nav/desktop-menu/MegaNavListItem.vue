@@ -43,6 +43,13 @@ export default {
             type: Boolean,
             default: false,
         },
+        /**
+         * Check if link is a CTA link
+         */
+        ctaLink: {
+            type: Boolean,
+            default: false,
+        },
     },
     computed: {
         navItemClass() {
@@ -50,6 +57,7 @@ export default {
                 'vs-mega-nav-list-item__heading': this.href === '#',
                 'vs-mega-nav-list-item__link': this.href !== '#',
                 'vs-mega-nav-list-item__subheading-link': this.subheadingLink,
+                'vs-mega-nav-list-item__cta-link': this.ctaLink,
             };
         },
     },
@@ -151,6 +159,31 @@ export default {
     &__subheading-link{
         .vs-link--variant-primary{
             color: $color-pink;
+        }
+    }
+
+    &__cta-link{
+        .vs-link--variant-primary{
+            background-color: #F8F8F8;
+            color: $color-secondary-gray-shade-3;
+            font-size: $h3-font-size;
+            line-height: $line-height-s;
+            padding-left: $spacer-8;
+            padding-right: $spacer-5;
+            border: 0;
+
+            &::after{
+                display: none;
+            }
+
+            &:hover {
+                border: 0;
+            }
+
+            &:focus, &:active, &:active:focus {
+                border: 0;
+                box-shadow: 0 0 0 0.1rem $color-pink inset;
+            }
         }
     }
 }
