@@ -15,6 +15,7 @@
 <#include "../../frontend/components/vs-social-share.ftl">
 
 <#include "../macros/modules/megalinks/megalinks.ftl">
+<#include "../macros/modules/page-intro/page-intro.ftl">
 <#include "../macros/shared/module-builder.ftl">
 <#--  <#include "../macros/modules/megalinks/multi-image/megalinks-multi-image.ftl">  -->
 <#--  <#include "../macros/modules/megalinks/megalinks-single-image.ftl">
@@ -35,49 +36,10 @@
 <div class="has-edit-button">
 	<@hst.manageContent hippobean=document documentTemplateQuery="new-module" rootPath="site" defaultPath="${path}" />
     <@cmsErrors errors=alerts!"" editMode=editMode />
+	
+    <@hst.link var="hero" hippobean=document.heroImage.original/>
 
-	<vs-page-intro>
-			<@hst.link var="hero" hippobean=document.heroImage.original/>
-			<vs-hero
-					slot="hero"
-					alt-text="${heroImage.altText!''}"
-					credit="${heroImage.credit!''}"
-					caption="${heroImage.description!''}"
-					image-src="${hero}"
-					latitude="${(heroCoordinates.latitude)!''}"
-					longitude="${(heroCoordinates.longitude)!''}"
-			>
-				<vs-img
-						src="${hero}"
-						alt="${heroImage.altText!''}"
-				> </vs-img>
-			</vs-hero>
-		<vs-container slot="upper" class="py-lg-4">
-			<vs-row class="justify-content-md-between">
-				<vs-col cols="12" lg="8" offset-lg="1">
-					<@hst.include ref="breadcrumb"/>
-				</vs-col>
-			</vs-row>
-
-			<vs-row>
-				<vs-col cols="10" lg="8" offset-lg="1">
-					<vs-heading level="1">${document.title}</vs-heading>
-				</vs-col>
-				<vs-col cols="2">
-					<div class="d-flex justify-content-center justify-content-sm-end">
-						<vs-social-share></vs-social-share>
-					</div>
-				</vs-col>
-			</vs-row>
-			<vs-row>
-				<vs-col cols="12" md="10" lg="10" xl="10" offset-lg="1">
-					<vs-rich-text-wrapper variant="lead">
-						<@hst.html hippohtml=document.introduction/>
-					</vs-rich-text-wrapper>
-				</vs-col>
-			</vs-row>
-		</vs-container>
-	</vs-page-intro>
+    <@heroModule content=document heroImage=heroImage heroCoordinates=heroCoordinates hero=heroImage hero=hero />	
 
 	<#list pageItems as item>
         <#if item.theme?? && item.theme = "theme3">
