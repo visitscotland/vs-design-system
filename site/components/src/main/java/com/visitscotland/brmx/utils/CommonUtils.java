@@ -63,14 +63,17 @@ public class CommonUtils {
         return CommonUtils.request(url);
     }
 
-    public static String getInstagramCaption(InstagramImage instagramLink) throws IOException {
-        String response = null;
-        URL instagramInformation = new URL("https://api.instagram.com/oembed/?url=http://instagr.am/p/" + instagramLink.getId());
+    public static JsonNode getInstagramInformation(InstagramImage instagramLink) throws IOException {
+        JsonNode response = null;
+        ResourceBundleService bundle = new ResourceBundleService();
+        //TODO add the access token value for VS facebook account
+        String accessToken = bundle.getResourceBundle("keys","tagram.accesstoken",  Locale.UK);
+        URL instagramInformation = new URL("https://graph.facebook.com/v9.0/instagram_oembed?url=http://instagr.am/p/" + instagramLink.getId()+"&access_token="+accessToken);
         String responseInstagram = request(instagramInformation.toString());
         if (responseInstagram != null) {
             ObjectMapper mapper = new ObjectMapper();
-            JsonNode json = mapper.readTree(request(instagramInformation.toString()));
-            response = json.has("author_name") ? json.get("author_name").asText() : "";
+            response = mapper.readTree(request(instagramInformation.toString()));
+
         }
         return response;
     }
