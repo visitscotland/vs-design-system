@@ -30,9 +30,14 @@ export default {
 .vs-mega-nav-list {
     position: relative;
     padding: 0;
-    margin: 0 $spacer-6 $spacer-4 0;
-    width: 23%;
-    color: $color-white;
+    margin: 0;
+    width: 100%;
+
+    @include media-breakpoint-up(lg) {
+        color: $color-white;
+        margin: 0 $spacer-6 $spacer-4 0;
+        width: 23%;
+    }
 
     @include media-breakpoint-up(xl) {
         margin-right: $spacer-9;
