@@ -75,6 +75,16 @@
                                 v-for="(item, mobileItemIndex) in header.mainNav"
                                 :key="mobileItemIndex"
                             >
+                                <VsMegaNavList v-if="item.href && item.cta">
+                                    <VsMegaNavListItem
+                                        slot="navListHeading"
+                                        :href="item.href"
+                                        cta-link
+                                    >
+                                        {{ item.cta }}
+                                    </VsMegaNavListItem>
+                                </VsMegaNavList>
+
                                 <VsMegaNavAccordionItem
                                     :title="subHeading.title"
                                     level="2"
