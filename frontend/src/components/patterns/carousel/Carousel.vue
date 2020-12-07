@@ -162,12 +162,12 @@ export default {
 
         .splide__arrow--prev {
             left: 0;
-            transform: translateX(-50%);
+            transform: translateX(calc(-50% + #{$spacer-2}));
         }
 
         .splide__arrow--next {
             right: 0;
-            transform: translateX(50%);
+            transform: translateX(calc(50% - #{$spacer-2}));
         }
 
         .splide__pagination,
