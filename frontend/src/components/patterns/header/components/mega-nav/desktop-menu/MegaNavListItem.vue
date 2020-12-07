@@ -60,14 +60,31 @@ export default {
 .vs-mega-nav-list-item{
     position: relative;
     list-style-type: none;
-    line-height: $line-height-s;
-    font-size: $h4-font-size;
+    background-color: #EFEFEF;
+    border-top: 1px solid $border-color;
+
+    @include media-breakpoint-up(lg) {
+        border-top: 0;
+        background-color: $color-white;
+    }
 
     .vs-link--variant-primary{
         text-decoration: none;
         display: block;
-        padding: 0.125rem $spacer-5;
-        border: 2px solid $color-white;
+        padding: $spacer-3 $spacer-9;
+        border: 2px solid #EFEFEF;
+        line-height: 1.4;
+        font-size: $h4-font-size;
+
+        @include media-breakpoint-up(lg) {
+            border: 2px solid $color-white;
+            line-height: $line-height-s;
+            padding: 0.125rem $spacer-5;
+        }
+
+        &:hover{
+            border: 2px solid $color-white;
+        }
 
         &:focus{
             outline: 0;
@@ -89,27 +106,44 @@ export default {
 
     &__link{
         .vs-link--variant-primary{
-            color: $color-secondary-gray;
+            color: $color-secondary-gray-shade-3;
             transition: 0.2s color;
 
+            @include media-breakpoint-up(lg) {
+                color: $color-secondary-gray;
+            }
+
             &:hover{
+                background-color: $color-white;
                 color: $color-pink;
 
-                &:after{
-                   height: 100%;
+                @include media-breakpoint-up(lg) {
+                    background-color: transparent;
+
+                    &:after{
+                        height: 100%;
+                    }
                 }
             }
 
-            &:after{
+            &::after{
                 content: "";
                 position: absolute;
                 display: block;
                 top: 0;
                 left: 0;
-                width: 6px;
-                height: 0;
-                background: $color-pink;
-                transition: height 0.15s linear;
+                width: 12px;
+                height: 100%;
+                background: #AAA9A7;
+            }
+
+            @include media-breakpoint-up(lg) {
+                &:after{
+                    width: 6px;
+                    height: 0;
+                    background: $color-pink;
+                    transition: height 0.15s linear;
+                }
             }
         }
     }

@@ -169,7 +169,7 @@ export default {
         font-size: 0;
         padding: $spacer-1;
 
-        &:focus {
+        &:focus, &:active, &:active:focus {
             box-shadow: 0 0 0 0.1rem $color-pink inset;
         }
 
@@ -226,6 +226,16 @@ export default {
         @include media-breakpoint-up(lg) {
             padding: $spacer-5 0 $spacer-8;
             max-height: 595px;
+        }
+
+        .vs-accordion{
+            > .vs-mega-nav-accordion-item:first-child{
+                > .vs-accordion-item__card-header{
+                    > .vs-accordion-toggle{
+                        box-shadow: inset 0px 10px 6px -8px rgba(0, 0, 0, 0.16);
+                    }
+                }
+            }
         }
     }
 

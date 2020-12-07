@@ -92,6 +92,15 @@
                                         >
                                             {{ navLink.title }}
                                         </VsMegaNavListItem>
+
+                                        <VsMegaNavListItem
+                                            v-if="subHeading.href"
+                                            :href="subHeading.href"
+                                            subheading-link
+                                            slot="navHeadingCtaLink"
+                                        >
+                                            {{ subHeading.cta }}
+                                        </VsMegaNavListItem>
                                     </VsMegaNavList>
                                 </VsMegaNavAccordionItem>
                             </VsMegaNavAccordionItem>
