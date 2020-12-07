@@ -35,7 +35,7 @@ class InternalParameterProcessor {
     public static final String PATH_PLACEHOLDER = "[PATH-PLACEHOLDER]";
 
     public static final String FULLY_QUALIFIED_URLS = "fullyQualified";
-    public static final String SSO_URL = "returnUrl";
+    public static final String LOGINREDIRECT_PARAMETERS = "loginredirectParameters";
     public static final String GLOBAL_MENU_URLS = "placeholerLocalizedURLs";
 
     void processParameters(HstRequest request) {
@@ -55,10 +55,10 @@ class InternalParameterProcessor {
         }
 
         if (sso != null) {
-            returnUrl.append("?id=").append(sso);
+            returnUrl.append("&id=").append(sso);
         }
 
-        request.setModel(SSO_URL, returnUrl.toString());
+        request.setModel(LOGINREDIRECT_PARAMETERS, returnUrl.toString());
     }
 
     /**
@@ -136,8 +136,7 @@ class InternalParameterProcessor {
             languageSubsite = "/" + Language.getLanguageForLocale(locale).getCMSPathVariable();
         }
 
-        return request.getRequestContext().getBaseURL().getHostName() +
-                request.getRequestContext().getBaseURL().getContextPath() +
+        return request.getRequestContext().getBaseURL().getContextPath() +
                 languageSubsite + "/" + PATH_PLACEHOLDER;
     }
 }

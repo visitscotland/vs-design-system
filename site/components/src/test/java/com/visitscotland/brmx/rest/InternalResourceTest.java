@@ -7,11 +7,14 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.Answers;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.mockito.stubbing.Answer;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.core.Response;
 import java.io.IOException;
 import java.util.Map;
@@ -30,6 +33,10 @@ class InternalResourceTest {
     @Mock
     CommonUtils utils;
 
+
+    @Mock(answer = Answers.RETURNS_DEEP_STUBS)
+    HttpServletRequest request;
+
     @BeforeEach
     void init(){
         service = new InternalResource(utils);
@@ -45,7 +52,7 @@ class InternalResourceTest {
     @DisplayName("fragment - Return a fragment from the page")
     void fragment() throws IOException {
         when(utils.requestUrl(Mockito.anyString())).thenReturn(MOCK_RESPONSE);
-        Response res = service.fragment("f1", null, null,null, null);
+        Response res = service.fragment(request,"f1",  null,null, null);
         assertEquals("Fragment1",res.getEntity().toString());
         assertEquals(200,res.getStatus());
     }
@@ -54,7 +61,7 @@ class InternalResourceTest {
     @DisplayName("fragment - Return a No match when the fragment is not found")
     void fragment_noMatch() throws IOException {
         when(utils.requestUrl(Mockito.anyString())).thenReturn(MOCK_RESPONSE);
-        Response res = service.fragment("f3", null, null,null, null);
+        Response res = service.fragment(request,"f3", null, null,null);
         assertEquals(InternalResource.NO_MATCH,res.getEntity().toString());
         assertEquals(404,res.getStatus());
     }
@@ -68,10 +75,11 @@ class InternalResourceTest {
         ArgumentCaptor<String> urlCaptor = ArgumentCaptor.forClass(String.class);
         when(utils.requestUrl(urlCaptor.capture())).thenReturn(MOCK_RESPONSE);
         when(utils.buildQueryString(parametersCaptor.capture(), any())).thenReturn("?params");
+        when(request.getParameterMap().containsKey("external")).thenReturn(true);
 
-        String fragment = service.fragment("f1", "root-path", "sso","external", null).getEntity().toString();
+        String fragment = service.fragment(request,"f1", "root-path", "sso", null).getEntity().toString();
         assertEquals("Fragment1",fragment);
-        assertEquals("external", parametersCaptor.getValue().get("external"));
+        assertEquals("true", parametersCaptor.getValue().get("external"));
         assertEquals("sso", parametersCaptor.getValue().get("sso"));
         assertEquals("root-path", parametersCaptor.getValue().get("root-path"));
         assertTrue(urlCaptor.getValue().endsWith("?params"));
@@ -87,7 +95,7 @@ class InternalResourceTest {
         when(utils.requestUrl(urlCaptor.capture())).thenReturn(MOCK_RESPONSE);
         when(utils.buildQueryString(parametersCaptor.capture(), any())).thenReturn("?params");
 
-        String fragment = service.fragment("f1", null, null,null, null).getEntity().toString();
+        String fragment = service.fragment(request,"f1", null, null, null).getEntity().toString();
         assertEquals("Fragment1",fragment);
         assertNull(parametersCaptor.getValue().get("external"));
         assertNull(parametersCaptor.getValue().get("sso"));
@@ -101,7 +109,7 @@ class InternalResourceTest {
         when(utils.requestUrl(urlCaptor.capture())).thenReturn(MOCK_RESPONSE);
         when(utils.buildQueryString(any(), any())).thenReturn("");
 
-        service.fragment("f1", null,null, null, "es").getEntity().toString();
+        service.fragment(request,"f1", null,null,  "es").getEntity().toString();
         assertEquals(Properties.LOCALHOST + "/es/internal", urlCaptor.getValue());
     }
 
@@ -110,7 +118,7 @@ class InternalResourceTest {
     void fragment_error() throws IOException {
         when(utils.requestUrl(any())).thenThrow(new RuntimeException());
 
-        Response res = service.fragment("f1", null,null, null, null);
+        Response res = service.fragment(request,"f1", null,null, null);
         assertEquals(500, res.getStatus());
     }
 

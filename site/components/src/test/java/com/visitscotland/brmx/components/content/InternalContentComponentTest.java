@@ -49,7 +49,7 @@ class InternalParameterProcessorTest {
     void processParameters() {
         ArgumentCaptor<String> ssoUrl = ArgumentCaptor.forClass(String.class);
 
-        when(request.setModel(eq(InternalParameterProcessor.SSO_URL), ssoUrl.capture())).thenReturn(null);
+        when(request.setModel(eq(InternalParameterProcessor.LOGINREDIRECT_PARAMETERS), ssoUrl.capture())).thenReturn(null);
 
         component.processParameters(request);
 
@@ -69,7 +69,7 @@ class InternalParameterProcessorTest {
         when(request.getRequestContext().getBaseURL().getHostName()).thenReturn("http://visitscotland.com");
         when(request.getRequestContext().getBaseURL().getContextPath()).thenReturn("/site");
         when(request.getLocale()).thenReturn(Locale.UK);
-        when(request.setModel(eq(InternalParameterProcessor.SSO_URL), ssoUrl.capture())).thenReturn(null);
+        when(request.setModel(eq(InternalParameterProcessor.LOGINREDIRECT_PARAMETERS), ssoUrl.capture())).thenReturn(null);
 
 
         component.processParameters(request);
@@ -90,7 +90,7 @@ class InternalParameterProcessorTest {
         when(utils.getParameterFromUrl(eq(request), any())).thenReturn(null);
         when(utils.getParameterFromUrl(request, InternalParameterProcessor.PARAM_ROOT_PATH)).thenReturn("http://visitscotlan.com/");
         when(request.getRequestContext().setModel(eq(InternalParameterProcessor.FULLY_QUALIFIED_URLS), fullyQualified.capture())).thenReturn(null);
-        when(request.setModel(eq(InternalParameterProcessor.SSO_URL), ssoUrl.capture())).thenReturn(null);
+        when(request.setModel(eq(InternalParameterProcessor.LOGINREDIRECT_PARAMETERS), ssoUrl.capture())).thenReturn(null);
 
         component.processParameters(request);
 
@@ -108,7 +108,7 @@ class InternalParameterProcessorTest {
         when(utils.getParameterFromUrl(eq(request), any())).thenReturn(null);
         when(utils.getParameterFromUrl(request, InternalParameterProcessor.PARAM_SSO)).thenReturn("jcalcines");
 
-        when(request.setModel(eq(InternalParameterProcessor.SSO_URL), ssoUrl.capture())).thenReturn(null);
+        when(request.setModel(eq(InternalParameterProcessor.LOGINREDIRECT_PARAMETERS), ssoUrl.capture())).thenReturn(null);
 
         component.processParameters(request);
 
@@ -133,7 +133,6 @@ class InternalParameterProcessorTest {
     @Test
     @DisplayName("VS-2357 - processParameters - root-path behaves as the legacy project does")
     void getDomain_rootPath_mimicLegacyProject() {
-
         Assertions.assertEquals("http://demo.visitscotland.com/[PATH-PLACEHOLDER]",
                 testRootPath("http://demo.visitscotland.com"));
         Assertions.assertEquals("http://demo.visitscotland.com/[PATH-PLACEHOLDER]",
@@ -142,22 +141,11 @@ class InternalParameterProcessorTest {
                 testRootPath("http://demo.visitscotland.com/tours"));
         Assertions.assertEquals("/[PATH-PLACEHOLDER]", testRootPath("demo.visitscotland.com"));
         Assertions.assertEquals("/[PATH-PLACEHOLDER]", testRootPath("visitscotland"));
-
-        // root-path=http://demo.visitscotland.com/ -- http://demo.visitscotland.com
-        // root-path=http://demo.visitscotland.com -- http://demo.visitscotland.com
-        // root-path=http://demo.visitscotland.com/tours -- http://demo.visitscotland.com
-        // root-path=demo.visitscotland.com -- no root-path -->  nothing (Log)
-        // root-path=hola -- no root-path -->  nothing (Log)
-
     }
-
-    //
-
 
     @Test
     @DisplayName("VS-2357 - processParameters - root-path fixes issues from the legacy project")
     void getDomain_rootPath_fixIssuesInLegacyProject() {
-
         Assertions.assertEquals("http://demo.visitscotland.com:8080/[PATH-PLACEHOLDER]",
                 testRootPath("http://demo.visitscotland.com:8080"));
         Assertions.assertEquals("http://user@demo.visitscotland.com:8080/[PATH-PLACEHOLDER]",
@@ -166,15 +154,6 @@ class InternalParameterProcessorTest {
                 testRootPath("//demo.visitscotland.com"));
         Assertions.assertEquals("scheme://demo.visitscotland.com/[PATH-PLACEHOLDER]",
                 testRootPath("scheme://demo.visitscotland.com"));
-
-
-        // root-path=http://demo.visitscotland.com:8080 -- http://demo.visitscotland.com:8080
-        // root-path=http://test@demo.visitscotland.com:8080 -- http://test@demo.visitscotland.com:8080
-        // root-path=//demo.visitscotland.com/tours -- //demo.visitscotland.com
-        // root-path=ftp://test@demo.visitscotland.com:8080 -- ftp://test@demo.visitscotland.com:8080
-
-        // root-path=demo.visitscotland.com -- no root-path --> Bad Request?
-        // root-path=hola -- no root-path --> Bad Request?
     }
 
     /**
@@ -188,7 +167,7 @@ class InternalParameterProcessorTest {
 
         when(utils.getParameterFromUrl(eq(request), any())).thenReturn(null);
         when(utils.getParameterFromUrl(request, InternalParameterProcessor.PARAM_ROOT_PATH)).thenReturn(rootPath);
-        when(request.setModel(eq(InternalParameterProcessor.SSO_URL), ssoUrl.capture())).thenReturn(null);
+        when(request.setModel(eq(InternalParameterProcessor.LOGINREDIRECT_PARAMETERS), ssoUrl.capture())).thenReturn(null);
 
         component.processParameters(request);
 

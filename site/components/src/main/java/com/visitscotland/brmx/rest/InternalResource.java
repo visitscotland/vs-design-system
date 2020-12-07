@@ -7,10 +7,9 @@ import org.hippoecm.hst.jaxrs.services.AbstractResource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.QueryParam;
+import javax.servlet.http.HttpServletRequest;
+import javax.ws.rs.*;
+import javax.ws.rs.core.Context;
 import javax.ws.rs.core.Response;
 import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
@@ -44,11 +43,15 @@ public class InternalResource extends AbstractResource {
 
     @GET
     @Path("/{fragment}")
-    public Response fragment(@PathParam("fragment") String fragment,
+    public Response fragment(@Context HttpServletRequest request,
+                             @PathParam("fragment") String fragment,
                              @QueryParam("root-path") String rootPath,
                              @QueryParam("sso") String sso,
-                             @QueryParam("external") String external,
                              @QueryParam("vs-locale-ctx") String locale) {
+        // It is not possible to difference between a non send parameter and a parameter without value.
+        // This is the reason why the parameter is extracted from the request instead of using injection.
+        boolean external = request.getParameterMap().containsKey("external");
+
         String url = buildUrl(external, rootPath, sso, locale);
         try {
             String body = getFragment(utils.requestUrl(url), fragment);
@@ -63,14 +66,14 @@ public class InternalResource extends AbstractResource {
         }
     }
 
-    private String buildUrl(String external,
+    private String buildUrl(boolean external,
                             String rootPath,
                             String sso,
                             String locale) {
         Map<String, String> parameters = new HashMap<>();
         String languageSubsite = "";
-        if (external != null) {
-            parameters.put("external", external);
+        if (external) {
+            parameters.put("external", "true");
         }
         if (rootPath != null) {
             parameters.put("root-path", rootPath);
