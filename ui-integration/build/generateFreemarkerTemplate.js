@@ -205,7 +205,7 @@ function generateTemplateContentHeadContribution(content, category) {
 }
 
 function generateTemplateContentWebfileTag(assetPath, webfilesPath) {
-  return `<@hst.webfile  path='${webfilesPath}/${assetPath}' />`
+  return `<@hst.webfile fullyQualified=fullyQualifiedURLs path='${webfilesPath}/${assetPath}' />`
 }
 
 function outputTemplate(mod, moduleName, configPaths) {
