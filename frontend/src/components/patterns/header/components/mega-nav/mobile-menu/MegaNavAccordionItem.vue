@@ -1,6 +1,6 @@
 <template>
     <VsAccordionItem
-        class="vs-mega-nav-accordion-item mb-md-4"
+        class="vs-mega-nav-accordion-item"
         :class="navLevel"
         :data-unique-id="getUniqueId"
         :control-id="controlId"
@@ -13,7 +13,7 @@
         <template #icon-open>
             <VsIcon
                 name="minus"
-                variant="light"
+                variant="secondary"
                 size="xs"
             />
         </template>
@@ -21,7 +21,7 @@
             <VsIcon
                 name="plus"
                 orientation="right"
-                variant="light"
+                variant="secondary"
                 size="xs"
             />
         </template>
@@ -82,17 +82,54 @@ export default {
 <style lang="scss">
 .vs-mega-nav-accordion-item {
 
-    .vs-accordion-toggle.btn-primary{
-        text-transform: none;
+    &.vs-accordion-item.card .vs-accordion-item__panel.card-body{
+        padding: 0;
+    }
+
+    &--level-1, &--level-2{
+        > .vs-accordion-item__card-header{
+            .vs-accordion-toggle{
+                &[aria-expanded="true"]{
+                    &::after{
+                        content: "";
+                        position: absolute;
+                        display: block;
+                        top: 0;
+                        left: 0;
+                        width: 12px;
+                        height: 100%;
+                        background: $color-pink;
+                    }
+                }
+
+                &.btn-primary{
+                    letter-spacing: normal;
+                    text-align: left;
+                    font-weight: $font-weight-normal;
+                    transition: none;
+                    border: 0;
+                    border-top: 1px solid $border-color;
+
+                    &:focus, &:active, &:active:focus {
+                        box-shadow: 0 0 0 0.1rem $color-pink inset;
+                    }
+                }
+            }
+        }
     }
 
     &--level-1{
         > .vs-accordion-item__card-header{
             .vs-accordion-toggle.btn-primary{
                 background-color: $color-white;
-                border-color: $color-white;
                 color: $color-base-text;
                 font-size: $h2-font-size;
+                padding-left: $spacer-5;
+                padding-right: $spacer-5;
+
+                &:hover {
+                    background-color: $color-secondary-gray-tint-6;
+                }
             }
         }
     }
@@ -101,9 +138,16 @@ export default {
         > .vs-accordion-item__card-header{
             .vs-accordion-toggle.btn-primary{
                 background-color: #F8F8F8;
-                border-color:  #F8F8F8;
                 color: $color-secondary-gray-shade-3;
-                font-size: $h4-font-size;
+                font-size: $h3-font-size;
+                line-height: $line-height-s;
+                padding-left: $spacer-8;
+                padding-right: $spacer-5;
+
+                &:hover {
+                    background-color: $color-white;
+                    color: $color-pink;
+                }
             }
         }
     }
