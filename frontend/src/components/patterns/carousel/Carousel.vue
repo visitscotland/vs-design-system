@@ -1,38 +1,36 @@
 <template>
-    <div>
-        <section
-            class="carousel"
-            data-test="carousel"
-            ref="carousel"
-        >
-            <VsContainer>
-                <VsRow>
-                    <VsCol
-                        cols="12"
+    <section
+        class="carousel"
+        data-test="carousel"
+        ref="carousel"
+    >
+        <VsContainer>
+            <VsRow>
+                <VsCol
+                    cols="12"
+                >
+                    <Splide
+                        :options="splideOptions"
+                        @focus="focus"
+                        @splide:moved="carouselMoved"
+                        @splide:mounted="initialiseMobilePagination"
+                        @splide:updated="resetTabbing"
                     >
-                        <Splide
-                            :options="splideOptions"
-                            @focus="focus"
-                            @splide:moved="carouselMoved"
-                            @splide:mounted="initialiseMobilePagination"
-                            @splide:updated="resetTabbing"
+                        <!-- @slot default slot to contain slides -->
+                        <slot />
+                    </Splide>
+                    <div class="carousel__mobile-pagination-wrapper">
+                        <p
+                            class="carousel__mobile-pagination"
+                            data-test="carousel__mobile-pagination"
                         >
-                            <!-- @slot default slot to contain slides -->
-                            <slot />
-                        </Splide>
-                        <div class="carousel__mobile-pagination-wrapper">
-                            <p
-                                class="carousel__mobile-pagination"
-                                data-test="carousel__mobile-pagination"
-                            >
-                                {{ currentSlide }} of {{ totalSlides }}
-                            </p>
-                        </div>
-                    </VsCol>
-                </VsRow>
-            </VsContainer>
-        </section>
-    </div>
+                            {{ currentSlide }} of {{ totalSlides }}
+                        </p>
+                    </div>
+                </VsCol>
+            </VsRow>
+        </VsContainer>
+    </section>
 </template>
 
 <script>
