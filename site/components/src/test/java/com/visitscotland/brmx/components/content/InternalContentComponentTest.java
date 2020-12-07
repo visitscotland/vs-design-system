@@ -53,7 +53,7 @@ class InternalParameterProcessorTest {
 
         component.processParameters(request);
 
-        Assertions.assertEquals("/" + InternalParameterProcessor.PATH_PLACEHOLDER, ssoUrl.getValue());
+        Assertions.assertEquals("returnurl=/" + InternalParameterProcessor.PATH_PLACEHOLDER, ssoUrl.getValue());
     }
 
     @Test
@@ -66,16 +66,17 @@ class InternalParameterProcessorTest {
 
         when(utils.getParameterFromUrl(request, InternalParameterProcessor.PARAM_EXTERNAL)).thenReturn("true");
         when(request.getRequestContext().setModel(eq(InternalParameterProcessor.FULLY_QUALIFIED_URLS), fullyQualified.capture())).thenReturn(null);
-        when(request.getRequestContext().getBaseURL().getHostName()).thenReturn("http://visitscotland.com");
-        when(request.getRequestContext().getBaseURL().getContextPath()).thenReturn("/site");
         when(request.getLocale()).thenReturn(Locale.UK);
         when(request.setModel(eq(InternalParameterProcessor.LOGINREDIRECT_PARAMETERS), ssoUrl.capture())).thenReturn(null);
-
+        when(request.getScheme()).thenReturn("https");
+        when(request.getServerName()).thenReturn("www.visitscotland.com");
+        when(request.getServerPort()).thenReturn(-1);
+        when(request.getRequestContext().getBaseURL().getContextPath()).thenReturn("/site");
 
         component.processParameters(request);
 
         Assertions.assertEquals("true", fullyQualified.getValue());
-        Assertions.assertEquals("http://visitscotland.com/site/[PATH-PLACEHOLDER]", ssoUrl.getValue());
+        Assertions.assertEquals("returnurl=https://www.visitscotland.com/site/[PATH-PLACEHOLDER]", ssoUrl.getValue());
     }
 
 
@@ -95,7 +96,7 @@ class InternalParameterProcessorTest {
         component.processParameters(request);
 
         Assertions.assertEquals("true", fullyQualified.getValue());
-        Assertions.assertEquals("http://visitscotlan.com/[PATH-PLACEHOLDER]", ssoUrl.getValue());
+        Assertions.assertEquals("returnurl=http://visitscotlan.com/[PATH-PLACEHOLDER]", ssoUrl.getValue());
     }
 
     @Test
@@ -113,7 +114,7 @@ class InternalParameterProcessorTest {
         component.processParameters(request);
 
         verify(request.getRequestContext(), never()).setModel(eq(InternalParameterProcessor.FULLY_QUALIFIED_URLS), any());
-        Assertions.assertEquals("/[PATH-PLACEHOLDER]?id=jcalcines", ssoUrl.getValue());
+        Assertions.assertEquals("returnurl=/[PATH-PLACEHOLDER]&id=jcalcines", ssoUrl.getValue());
     }
 
     @Test
@@ -130,29 +131,32 @@ class InternalParameterProcessorTest {
 
     }
 
+
+
     @Test
     @DisplayName("VS-2357 - processParameters - root-path behaves as the legacy project does")
     void getDomain_rootPath_mimicLegacyProject() {
-        Assertions.assertEquals("http://demo.visitscotland.com/[PATH-PLACEHOLDER]",
+        Assertions.assertEquals("returnurl=http://demo.visitscotland.com/[PATH-PLACEHOLDER]",
                 testRootPath("http://demo.visitscotland.com"));
-        Assertions.assertEquals("http://demo.visitscotland.com/[PATH-PLACEHOLDER]",
+        Assertions.assertEquals("returnurl=http://demo.visitscotland.com/[PATH-PLACEHOLDER]",
                 testRootPath("http://demo.visitscotland.com/"));
-        Assertions.assertEquals("http://demo.visitscotland.com/[PATH-PLACEHOLDER]",
+        Assertions.assertEquals("returnurl=http://demo.visitscotland.com/[PATH-PLACEHOLDER]",
                 testRootPath("http://demo.visitscotland.com/tours"));
-        Assertions.assertEquals("/[PATH-PLACEHOLDER]", testRootPath("demo.visitscotland.com"));
-        Assertions.assertEquals("/[PATH-PLACEHOLDER]", testRootPath("visitscotland"));
+
+        Assertions.assertEquals("returnurl=/[PATH-PLACEHOLDER]", testRootPath("demo.visitscotland.com"));
+        Assertions.assertEquals("returnurl=/[PATH-PLACEHOLDER]", testRootPath("visitscotland"));
     }
 
     @Test
     @DisplayName("VS-2357 - processParameters - root-path fixes issues from the legacy project")
     void getDomain_rootPath_fixIssuesInLegacyProject() {
-        Assertions.assertEquals("http://demo.visitscotland.com:8080/[PATH-PLACEHOLDER]",
+        Assertions.assertEquals("returnurl=http://demo.visitscotland.com:8080/[PATH-PLACEHOLDER]",
                 testRootPath("http://demo.visitscotland.com:8080"));
-        Assertions.assertEquals("http://user@demo.visitscotland.com:8080/[PATH-PLACEHOLDER]",
+        Assertions.assertEquals("returnurl=http://user@demo.visitscotland.com:8080/[PATH-PLACEHOLDER]",
                 testRootPath("http://user@demo.visitscotland.com:8080"));
-        Assertions.assertEquals("//demo.visitscotland.com/[PATH-PLACEHOLDER]",
+        Assertions.assertEquals("returnurl=//demo.visitscotland.com/[PATH-PLACEHOLDER]",
                 testRootPath("//demo.visitscotland.com"));
-        Assertions.assertEquals("scheme://demo.visitscotland.com/[PATH-PLACEHOLDER]",
+        Assertions.assertEquals("returnurl=scheme://demo.visitscotland.com/[PATH-PLACEHOLDER]",
                 testRootPath("scheme://demo.visitscotland.com"));
     }
 

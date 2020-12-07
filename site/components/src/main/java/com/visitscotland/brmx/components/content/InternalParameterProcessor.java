@@ -5,9 +5,11 @@ import com.visitscotland.brmx.services.ResourceBundleService;
 import com.visitscotland.brmx.utils.HippoUtilsService;
 import com.visitscotland.brmx.utils.Language;
 import com.visitscotland.utils.Contract;
+import org.apache.cxf.jaxrs.impl.UriBuilderImpl;
 import org.hippoecm.hst.core.component.HstRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.web.util.UriBuilder;
 
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -39,16 +41,16 @@ class InternalParameterProcessor {
     public static final String GLOBAL_MENU_URLS = "placeholerLocalizedURLs";
 
     void processParameters(HstRequest request) {
-        final StringBuilder returnUrl = new StringBuilder();
+        final StringBuilder returnUrl = new StringBuilder("returnurl=");
         String external = utils.getParameterFromUrl(request, PARAM_EXTERNAL);
-        String domain = getDomain(request);
+        String authority = getAuthority(request);
         String sso = utils.getParameterFromUrl(request, PARAM_SSO);
 
-        if (domain != null) {
-            returnUrl.append(domain).append("/").append(PATH_PLACEHOLDER);
+        if (authority != null) {
+            returnUrl.append(authority).append("/").append(PATH_PLACEHOLDER);
             request.getRequestContext().setModel(FULLY_QUALIFIED_URLS, "true");
         } else if (external != null) {
-            returnUrl.append(composeNonExistingURL(request.getLocale(), request));
+            returnUrl.append(composeNonExistingURL(request.getLocale(), null, request));
             request.getRequestContext().setModel(FULLY_QUALIFIED_URLS, "true");
         } else {
             returnUrl.append("/").append(PATH_PLACEHOLDER);
@@ -74,7 +76,7 @@ class InternalParameterProcessor {
      * is malformed
      * @see <a href="https://en.wikipedia.org/wiki/URL>URL - Wikipedia</a>
      */
-    String getDomain(HstRequest request) {
+    String getAuthority(HstRequest request) {
         StringBuilder sb = new StringBuilder();
         String rootPath = utils.getParameterFromUrl(request, PARAM_ROOT_PATH);
 
@@ -113,13 +115,14 @@ class InternalParameterProcessor {
      */
     void addLocalizedURLs(HstRequest request) {
         List<LocalizedURL> translatedURLs = new ArrayList<>(Language.values().length);
+        String authority = getAuthority(request);
 
         for (Language language : Language.values()) {
             LocalizedURL lan = new LocalizedURL();
             lan.setLocale(language.getLocale());
             lan.setLanguage(language.getLocale().getLanguage());
             lan.setDisplayName(bundle.getResourceBundle("universal", lan.getLanguage(), request.getLocale()));
-            lan.setUrl(composeNonExistingURL(language.getLocale(), request));
+            lan.setUrl(composeNonExistingURL(language.getLocale(), authority, request));
 
             translatedURLs.add(lan);
         }
@@ -129,14 +132,26 @@ class InternalParameterProcessor {
     /**
      * Composes a non existing URL with the Placeholder.
      */
-    private String composeNonExistingURL(Locale locale, HstRequest request) {
-        String languageSubsite = "";
+    private String composeNonExistingURL(Locale locale, String authority, HstRequest request) {
+        StringBuilder uri = new StringBuilder();
 
-        if (locale != null && Language.getLanguageForLocale(locale).getCMSPathVariable().length() != 0) {
-            languageSubsite = "/" + Language.getLanguageForLocale(locale).getCMSPathVariable();
+        if (authority != null){
+            uri.append(authority);
+        } else if (utils.getParameterFromUrl(request, PARAM_EXTERNAL) != null) {
+            uri.append(new UriBuilderImpl()
+                    .scheme(request.getScheme())
+                    .host(request.getServerName())
+                    .port(request.getServerPort())
+                    .path(request.getRequestContext().getBaseURL().getContextPath())
+                    .build().normalize());
         }
 
-        return request.getRequestContext().getBaseURL().getContextPath() +
-                languageSubsite + "/" + PATH_PLACEHOLDER;
+        if (locale != null && Language.getLanguageForLocale(locale).getCMSPathVariable().length() != 0) {
+            uri.append("/").append(Language.getLanguageForLocale(locale).getCMSPathVariable());
+        }
+
+        uri.append("/").append(PATH_PLACEHOLDER);
+
+        return uri.toString();
     }
 }
