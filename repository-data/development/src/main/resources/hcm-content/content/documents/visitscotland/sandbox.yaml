@@ -1772,7 +1772,6 @@
           jcr:mixinTypes: ['mix:referenceable']
           jcr:uuid: 116b29ac-dbf3-4c7e-b97f-b4e41dc3aefd
           hippo:availability: []
-          hippostd:holder: admin
           hippostd:state: draft
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2020-05-21T17:54:15.934+01:00
@@ -3882,7 +3881,6 @@
             jcr:mixinTypes: ['mix:referenceable']
             jcr:uuid: 27ea31d2-a3a6-4ea1-972a-5d92fda60d95
             hippo:availability: []
-            hippostd:holder: admin
             hippostd:state: draft
             hippostdpubwf:createdBy: admin
             hippostdpubwf:creationDate: 2019-12-16T12:20:46.037Z
