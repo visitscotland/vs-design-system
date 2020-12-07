@@ -11,7 +11,6 @@
                 >
                     <Splide
                         :options="splideOptions"
-                        @focus="focus"
                         @splide:moved="carouselMoved"
                         @splide:mounted="initialiseMobilePagination"
                         @splide:updated="resetTabbing"
@@ -82,7 +81,6 @@ export default {
     },
     mounted() {
         window.addEventListener('resize', () => {
-            console.log('resize');
             this.resetTabbing();
         });
         window.addEventListener('keydown', (e) => {
@@ -94,7 +92,6 @@ export default {
     methods: {
         initialiseMobilePagination(splide) {
             this.totalSlides = splide.length;
-            // this.resetTabbing();
         },
         carouselMoved(splide) {
             this.currentSlide = splide.index + 1;
@@ -103,7 +100,6 @@ export default {
         // ensures that the user can't tab into elements
         // that aren't currently shown by the carousel
         resetTabbing() {
-            console.log('reset');
             const carouselEl = this.$refs.carousel;
             const carouselLinks = carouselEl.getElementsByTagName('a');
             // timeout to ensure that code has updated from Splide
