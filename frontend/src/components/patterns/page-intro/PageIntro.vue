@@ -2,6 +2,7 @@
     <div
         class="vs-page-intro position-relative"
         :class="backgroundClass"
+        data-test="vs-page-intro"
     >
         <slot name="hero" />
         <div class="vs-page-intro__wrapper--outer">
