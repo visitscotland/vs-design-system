@@ -13,12 +13,9 @@
 <#include "../../frontend/components/vs-heading.ftl">
 <#include "../../frontend/components/vs-social-share.ftl">
 
-<#include "../macros/modules/megalinks/megalinks-multi-image.ftl">
-<#include "../macros/modules/megalinks/megalinks-single-image.ftl">
-<#include "../macros/modules/megalinks/megalinks-list.ftl">
 <#include "../macros/global/cms-errors.ftl">
 
-<#include "./module-builder.ftl">
+<#include "../macros/shared/module-builder.ftl">
 
 <#-- Implicit Request Objects -->
 <#-- @ftlvariable name="document" type="com.visitscotland.brmx.beans.General" -->
@@ -94,7 +91,7 @@
 			<#assign theme = "#FFFFFF" />
 		</#if>
 
-		<@moduleBuilder module theme />
+		<@moduleBuilder module=module theme=theme />
 	</vs-container>
 	</#list>
 </div>

@@ -1,12 +1,10 @@
 package com.visitscotland.brmx.components.content;
 
-import com.visitscotland.brmx.beans.BaseDocument;
-import com.visitscotland.brmx.beans.Megalinks;
-import com.visitscotland.brmx.beans.Page;
-import com.visitscotland.brmx.beans.TourismInformation;
+import com.visitscotland.brmx.beans.*;
 import com.visitscotland.brmx.beans.mapping.ICentreModule;
 import com.visitscotland.brmx.beans.mapping.IKnowModule;
 import com.visitscotland.brmx.beans.mapping.Module;
+import com.visitscotland.brmx.beans.mapping.megalinks.HorizontalListLinksModule;
 import com.visitscotland.brmx.beans.mapping.megalinks.LinksModule;
 import com.visitscotland.brmx.beans.mapping.megalinks.MultiImageLinksModule;
 import com.visitscotland.brmx.beans.mapping.megalinks.SingleImageLinksModule;
@@ -17,6 +15,8 @@ import com.visitscotland.brmx.mock.MegalinksMockBuilder;
 import com.visitscotland.brmx.mock.TouristInformationMockBuilder;
 import org.hippoecm.hst.mock.core.component.MockHstRequest;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
@@ -218,6 +218,8 @@ class PageTemplateBuilderTest {
      * Verifies that only one Hippo Bean is set edit module is enabled.
      */
     @Test
+    @Disabled("This requirement is being reviewed")
+    @DisplayName("Verifies that only one edit button appears in the preview mode")
     void addTouristInformation_iCentreModule() {
 
         TourismInformation ti = new TouristInformationMockBuilder().build();
@@ -233,5 +235,23 @@ class PageTemplateBuilderTest {
         assertEquals(2, items.size());
         assertEquals(ti, items.get(0).getHippoBean());
         assertNull(items.get(1).getHippoBean());
+    }
+
+    /**
+     * Build a page with one OTYML section associated.
+     */
+    @Test
+    void addOTYMLModule() {
+        HorizontalListLinksModule module = new HorizontalListLinksModule();
+
+        when(page.getOtherThings()).thenReturn(new OTYML());
+        when(linksFactory.horizontalListLayout(page.getOtherThings(), Locale.UK)).thenReturn(module);
+
+        builder.addModules(request);
+        List<LinksModule> items = (List<LinksModule>) request.getAttribute(PageTemplateBuilder.PAGE_ITEMS);
+
+        assertEquals(1, items.size());
+        assertEquals(module.getType(), items.get(0).getType());
+        assertEquals(PageTemplateBuilder.themes[0], items.get(0).getTheme());
     }
 }
