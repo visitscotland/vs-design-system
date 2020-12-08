@@ -1,6 +1,6 @@
 import { shallowMount } from '@vue/test-utils';
 
-import VsSummaryBoxListItem from './SummaryBoxListItem';
+import VsSummaryBoxListItem from '../components/SummaryBoxListItem';
 
 const slotContent = 'Slot Content';
 
