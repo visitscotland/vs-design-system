@@ -104,7 +104,7 @@ definitions:
         /hipposysedit:prototype:
           jcr:primaryType: visitscotland:Image
           jcr:mixinTypes: ['mix:referenceable']
-          jcr:uuid: 9020564b-8cef-406c-ade7-a50e2117bdb7
+          jcr:uuid: 73f02a72-2e88-4656-a46f-a84a513a58a7
           hippogallery:description: ''
           visitscotland:altText: ''
           visitscotland:credit: ''
@@ -174,6 +174,7 @@ definitions:
             field: description
             plugin.class: org.hippoecm.frontend.editor.plugins.field.PropertyFieldPlugin
             wicket.id: ${cluster.id}.field
+            hint: This appears on screen.
             /cluster.options:
               jcr:primaryType: frontend:pluginconfig
           /altText:
@@ -182,7 +183,7 @@ definitions:
             field: altText
             plugin.class: org.hippoecm.frontend.editor.plugins.field.PropertyFieldPlugin
             wicket.id: ${cluster.id}.field
-            hint: ''
+            hint: This is for accessibility.
             /cluster.options:
               jcr:primaryType: frontend:pluginconfig
           /location:

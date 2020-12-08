@@ -3,7 +3,7 @@ definitions:
     /hippo:configuration/hippo:translations/hippo:cms/advanced-search-filters:
       jcr:primaryType: hipposys:resourcebundles
       /en:
-        jcr:primaryType: hipposys:resourcebundle`
+        jcr:primaryType: hipposys:resourcebundle
         titlePropertyFilter.propertyName: Title
         titlePropertyFilter.title: Document title
     /hippo:configuration/hippo:translations/hippo:cms/validators/es:
