@@ -26,6 +26,7 @@ public class PageTemplateBuilder {
     private final ICentreFactory iCentreFactory;
     private final IKnowFactory iKnowFactory;
 
+    static final String INTRO_THEME = "introTheme";
     static final String PAGE_ITEMS = "pageItems";
     static final String[] themes = {"theme1", "theme2", "theme3"};
     static final String[] alignment = {"right", "left"};
@@ -97,6 +98,12 @@ public class PageTemplateBuilder {
             LinksModule al = linksFactory.horizontalListLayout(otyml, request.getLocale());
             al.setTheme(themes[0]);
             links.add(al);
+        }
+
+        if(links.size()>0 && links.get(0).getHippoBean() instanceof Megalinks){
+            request.setAttribute(INTRO_THEME, ((LinksModule) links.get(0)).getTheme());
+        }else{
+            request.setAttribute(INTRO_THEME, themes[1]);
         }
 
         request.setAttribute(PAGE_ITEMS, links);
