@@ -77,7 +77,6 @@ export default {
             width: 55px;
             height: 55px;
             background: $color-black;
-            font-size: $xs-font-size;
             margin-left: $spacer-1;
             color: $color-white;
             display: flex;
@@ -93,6 +92,7 @@ export default {
                 margin-bottom: 0;
                 text-align: center;
                 line-height: $line_height_xs;
+                font-size: $xs-font-size;
             }
         }
 
