@@ -22,7 +22,8 @@
         <#assign themeName = "light">
     </#if>
 
-    <div class="has-edit-button theme-${themeName}">
+    <div 
+        class="has-edit-button <#if module.getType() == 'MultiImageLinksModule' ||  module.getType() == 'SingleImageLinksModule' || module.getType()== 'ListLinksModule'>theme-${themeName}</#if>">
        
         <#-- all Megalinks modules -->
         <#if module.getType() == "MultiImageLinksModule" ||  module.getType() == "SingleImageLinksModule" || module.getType()== "ListLinksModule">
