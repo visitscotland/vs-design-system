@@ -1,6 +1,6 @@
 import { shallowMount } from '@vue/test-utils';
 
-import VsSummaryBoxDistanceDisplay from './SummaryBoxDistanceDisplay';
+import VsSummaryBoxDistanceDisplay from '../components/SummaryBoxDistanceDisplay';
 
 const factoryShallowMount = (computed) => shallowMount(VsSummaryBoxDistanceDisplay, {
     propsData: {
