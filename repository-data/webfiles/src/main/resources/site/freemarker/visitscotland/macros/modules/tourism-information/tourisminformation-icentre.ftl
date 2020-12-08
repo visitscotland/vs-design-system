@@ -1,6 +1,9 @@
 <#include "../../../../include/imports.ftl">
+<#include "../../../../frontend/components/vs-image-with-caption.ftl">
+<#include "../../global/image-with-caption.ftl">
 
 <#macro icentre module>
+    <@hst.manageContent hippobean=module.hippoBean />
     <#if module.image.cmsImage??>
         <#assign image>
             <@hst.link hippobean=module.image.cmsImage.original/>
@@ -14,7 +17,6 @@
             <@hst.link hippobean=module.quoteImage.cmsImage.original/>
         </#assign>
     </#if>
-
     <#if !module.quote??>
         <vs-row class="mb-6">
             <vs-col cols="12" lg="8" offset-lg="1">

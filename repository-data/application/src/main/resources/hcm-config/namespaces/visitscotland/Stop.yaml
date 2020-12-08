@@ -11,11 +11,12 @@ definitions:
         /hipposysedit:nodetype:
           jcr:primaryType: hipposysedit:nodetype
           jcr:mixinTypes: ['mix:referenceable', 'hipposysedit:remodel']
-          jcr:uuid: 5b489ad5-ce0a-4677-8881-ebe7d5bcc554
+          jcr:uuid: 1ee05a21-67c7-47c8-85e8-c2d5b4258a38
           hipposysedit:node: true
           hipposysedit:supertype: ['visitscotland:basedocument', 'hippostd:relaxed',
             'hippotranslation:translated']
           hipposysedit:uri: http://www.visitscotland.com/visitscotland/nt/1.0
+          hipposysedit:validators: ['visitscotland:link-image-validator', 'visitscotland:location-validator']
           /tipsTitle:
             jcr:primaryType: hipposysedit:field
             hipposysedit:mandatory: false
@@ -92,7 +93,7 @@ definitions:
           hippotranslation:id: document-type-locale-id
           hippotranslation:locale: document-type-locale
           jcr:mixinTypes: ['mix:referenceable']
-          jcr:uuid: ec22426a-9801-4d64-b76a-173ddd4a89d4
+          jcr:uuid: d3e371f0-d4e5-46d4-a731-d374f58c105e
           hippostdpubwf:lastModificationDate: 2019-12-05T15:13:21.853Z
           hippostdpubwf:creationDate: 2019-12-05T15:13:21.853Z
           visitscotland:tipsTitle: ''
@@ -151,12 +152,15 @@ definitions:
               ckeditor.config.overlayed.json: '{toolbarGroups: [{ name: ''links''
                 },{name:''insert''},{name:''clipboard''},{name:''tools''},{name:''undo''}]
                 , removeButtons: ''PickImage,Youtube,Table''}'
+              ckeditor.config.appended.json: "{   extraPlugins: 'wordcount',   wordcount:\
+                \ { \tcountSpacesAsChars: true,     showCharCount: true   }  }"
           /image:
             jcr:primaryType: frontend:plugin
             caption: Image
             field: image
             plugin.class: org.hippoecm.frontend.editor.plugins.field.NodeFieldPlugin
             wicket.id: ${cluster.id}.field
+            hint: This Image is required if the Product is not a DMS product
             /cluster.options:
               jcr:primaryType: frontend:pluginconfig
           /product:
@@ -192,6 +196,8 @@ definitions:
               ckeditor.config.overlayed.json: '{toolbarGroups: [{ name: ''links''
                 },{name:''insert''},{name:''clipboard''},{name:''tools''},{name:''undo''}]
                 , removeButtons: ''PickImage,Youtube,Table''}'
+              ckeditor.config.appended.json: "{   extraPlugins: 'wordcount',   wordcount:\
+                \ { \tcountSpacesAsChars: true,     showCharCount: true   }  }"
           /translation:
             jcr:primaryType: frontend:plugin
             caption: Translation

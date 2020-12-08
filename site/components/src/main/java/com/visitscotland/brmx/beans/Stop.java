@@ -10,6 +10,8 @@ import java.util.List;
 @HippoEssentialsGenerated(internalName = "visitscotland:Stop")
 @Node(jcrType = "visitscotland:Stop")
 public class Stop extends BaseDocument {
+    public static final String PRODUCTS = "visitscotland:products";
+
     @HippoEssentialsGenerated(internalName = "visitscotland:tipsTitle")
     public String getTipsTitle() {
         return getSingleProperty("visitscotland:tipsTitle");

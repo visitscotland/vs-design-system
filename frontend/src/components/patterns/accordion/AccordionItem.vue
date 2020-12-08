@@ -1,11 +1,13 @@
 <template>
     <BCard
         no-body
-        class="vs-accordion__item"
+        class="vs-accordion-item"
+        data-test="vs-accordion__item"
     >
         <BCardHeader
             role="tab"
-            class="vs-accordion__item__card-header"
+            class="vs-accordion-item__card-header"
+            data-test="vs-accordion__item-header"
         >
             <!-- @slot Slot to contain Header for accordion item.
             Defaults to Accordion Toggle button. If component is responsive
@@ -31,8 +33,9 @@
             </VsAccordionToggle>
 
             <h4
-                class="d-none vs-accordion__item__title"
+                class="d-none vs-accordion-item__title"
                 :class="toggleResponsiveItem"
+                data-test="vs-accordion__item-title"
             >
                 <!-- @slot Put the title here  -->
                 <slot name="title" />
@@ -42,8 +45,9 @@
         <BCardBody
             v-show="show"
             :id="controlId"
-            class="vs-accordion__item__panel"
+            class="vs-accordion-item__panel"
             :class="toggleResponsiveItem"
+            data-test="vs-accordion__item-body"
         >
             <!-- @slot The default slot is the content for the accordion  -->
             <slot />
@@ -142,37 +146,37 @@ export default {
 </script>
 
 <style lang="scss">
-.vs-accordion__item.card {
+.vs-accordion-item.card {
     border: 0;
 
-    .vs-accordion__item__card-header{
+    .vs-accordion-item__card-header {
         padding: 0;
         border: 0;
         background-color: transparent;
     }
 
-    .btn.vs-accordion__item__toggle-btn {
+    .btn.vs-accordion-item__toggle-btn {
         text-align: left;
 
     }
 
-    .vs-accordion__item__title {
+    .vs-accordion-item__title {
         margin: $spacer-3;
         line-height: 1;
         font-weight: 500;
     }
 
-    .vs-accordion__item__panel.card-body {
+    .vs-accordion-item__panel.card-body {
         padding: 0 0 $spacer-2;
     }
 }
 
 @include no-js {
-    .vs-accordion-toggle .icon{
+    .vs-accordion-toggle .vs-icon {
         display: none;
     }
 
-    .vs-accordion__item .vs-accordion__item__panel{
+    .vs-accordion-item .vs-accordion-item__panel {
         display: block!important;
     }
 }

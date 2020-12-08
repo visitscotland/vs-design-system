@@ -1,12 +1,13 @@
 <template>
     <nav
         aria-label="breadcrumbs"
-        class="py-4"
+        class="vs-breadcrumb py-4"
     >
         <BBreadcrumb
             class="flex-nowrap p-0"
             v-bind="$attrs"
         >
+            <!-- @slot The breadcrumb content goes here -->
             <slot />
         </BBreadcrumb>
     </nav>
@@ -26,18 +27,10 @@ export default {
     components: {
         BBreadcrumb,
     },
-    props: {
-        items: {
-            type: Array,
-            default() {
-                return [];
-            },
-        },
-    },
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 @import "~bootstrap/scss/breadcrumb";
 </style>
 

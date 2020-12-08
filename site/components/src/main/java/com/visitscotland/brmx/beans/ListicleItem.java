@@ -13,6 +13,9 @@ import java.util.stream.Collectors;
 @HippoEssentialsGenerated(internalName = "visitscotland:ListicleItem")
 @Node(jcrType = "visitscotland:ListicleItem")
 public class ListicleItem extends BaseDocument {
+    public static final String IMAGES = "visitscotland:images";
+    public static final String PRODUCT = "visitscotland:product";
+
     @HippoEssentialsGenerated(internalName = "visitscotland:title")
     public String getTitle() {
         return getSingleProperty("visitscotland:title");

@@ -1,6 +1,6 @@
 <template>
     <li
-        class="vs-mega-nav__mobile-toggle"
+        class="vs-mega-nav-mobile-toggle"
         ref="mobileMenuToggle"
     >
         <a :href="href">

@@ -83,15 +83,16 @@ public class FlatImage extends IssueList {
         }
     }
 
-    public FlatImage(InstagramImage instagramLink, String caption, Locale locale) {
-        this.externalImage =  Properties.INSTAGRAM_API + instagramLink.getId() + "/media";
-        this.credit = caption;
+    public FlatImage(InstagramImage instagramLink, JsonNode instagram, Locale locale) {
+        this.externalImage =  instagram.get("thumbnail_url").asText();
+        this.credit = instagram.get("author_name").asText();
         this.altText = instagramLink.getCaption();
         this.description = instagramLink.getCaption();
         this.source = Source.INSTAGRAM;
         this.postUrl = Properties.INSTAGRAM_API  + instagramLink.getId();
         this.coordinates = setInstagramCoordinates(instagramLink,locale);
     }
+
 
     public FlatImage(JsonNode product) {
         if (product.has(IMAGE)){

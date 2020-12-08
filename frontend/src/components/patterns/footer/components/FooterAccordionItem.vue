@@ -1,6 +1,7 @@
 <template>
     <VsAccordionItem
-        class="vs-footer-accordion__item mb-md-4"
+        class="vs-footer-accordion-item mb-md-4"
+        :data-unique-id="getUniqueId"
         :control-id="controlId"
         :item-break-point="itemBreakPoint"
         :open-by-default="openByDefault"
@@ -8,7 +9,7 @@
     >
         <template #title>
             <!-- @slot Put the title here  -->
-            <slot name="title" />
+            {{ title }}
         </template>
 
         <template #icon-open>
@@ -65,6 +66,13 @@ export default {
             default: true,
         },
         /**
+         * The title for the submenu and alias for the testing data-unique-id
+         */
+        title: {
+            type: String,
+            default: '',
+        },
+        /**
          * Variant for which button to show in headers
          */
         variant: {
@@ -72,30 +80,40 @@ export default {
             default: 'primary',
         },
     },
+    computed: {
+        getUniqueId() {
+            let transformedTitle = this.title.toLowerCase();
+            transformedTitle = transformedTitle.replace(/\s+/g, '-');
+
+            return `vs-footer-${transformedTitle}`;
+        },
+    },
 };
 </script>
 
 <style lang="scss">
-.vs-footer-accordion__item.card {
+.vs-footer-accordion-item.card {
     border-bottom: 1px solid $color-gray-shade-2;
 
-      .vs-accordion__item__card-header{
+      .vs-accordion-item__card-header{
         background-color: $color-gray-shade-7;
     }
 
-    .vs-accordion__item__title {
+    .vs-accordion-item__title {
         margin: $spacer-3 0;
         background-color: $color-gray-shade-7;
         color: $color-white;
+        font-family: $font-family-sans-serif;
+        font-weight: 600;
     }
 
-     .vs-accordion__item__panel.card-body {
+     .vs-accordion-item__panel.card-body {
         background-color: $color-gray-shade-6;
         color: $color-white;
         border-top: 1px solid $color-gray-shade-2;
     }
 
-    .btn.vs-accordion-toggle {
+    .btn.vs-accordion__toggle {
         text-transform: none !important;
         letter-spacing: initial;
         padding: $spacer-3;
@@ -119,7 +137,7 @@ export default {
     }
 
     @include media-breakpoint-up(sm) {
-        .btn.vs-accordion-toggle {
+        .btn.vs-accordion__toggle {
             padding: $spacer-3 $spacer-6;
         }
     }
@@ -130,11 +148,11 @@ export default {
         padding: 0 $spacer-3;
         background-color: $color-theme-dark;
 
-        .vs-accordion__item__title {
+        .vs-accordion-item__title {
             margin-top: $spacer-1;
         }
 
-        .vs-accordion__item__panel.card-body {
+        .vs-accordion-item__panel.card-body {
             padding: 0;
             background-color: $color-theme-dark;
             border-top: 0;
@@ -150,14 +168,11 @@ export default {
             <vs-col cols="12" md="6">
                 <vs-footer-accordion-item
                     :open-by-default="false"
+                    title="Visitor information"
                     variant="dark"
                     control-id="footer_accordion_item_1"
                     class="border-left-0"
                 >
-                    <span slot="title">
-                        Visitor information
-                    </span>
-
                     <span slot="icon-open">
                         <vs-icon name="chevron" variant="light" size="xs" />
                     </span>
