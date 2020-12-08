@@ -1,6 +1,6 @@
 import { shallowMount } from '@vue/test-utils';
 
-import VsSummaryBoxLabel from './SummaryBoxLabel';
+import VsSummaryBoxLabel from '../components/SummaryBoxLabel';
 
 const factoryShallowMount = (propsData) => shallowMount(VsSummaryBoxLabel, {
     propsData: {
