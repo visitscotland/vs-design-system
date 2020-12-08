@@ -7,12 +7,16 @@
         <slot name="hero" />
         <div class="vs-page-intro__wrapper--outer">
             <div class="vs-page-intro__wrapper--inner">
-                <div class="vs-page-intro__wrapper--inner-top">
+                <div
+                    class="vs-page-intro__wrapper--inner-top"
+                    data-test="vs-page-intro__upper"
+                >
                     <slot name="upper" />
                 </div>
                 <div
                     class="vs-page-intro__wrapper--inner-bottom py-9"
                     v-if="!!this.$slots['lower']"
+                    data-test="vs-page-intro__lower"
                 >
                     <slot name="lower" />
                 </div>
