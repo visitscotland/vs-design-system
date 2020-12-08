@@ -19,11 +19,10 @@
 <div class="has-edit-button">
 	<@hst.manageContent hippobean=document documentTemplateQuery="new-module" rootPath="site" defaultPath="${path}" />
     <@cmsErrors errors=alerts!"" editMode=editMode />
-    
-    THeme - ${introTheme}
+
     <@hst.link var="hero" hippobean=document.heroImage.original/>
 
-    <@pageIntro content=document heroImage=heroImage heroCoordinates=heroCoordinates hero=heroImage hero=hero theme="dark" areas="" days="" firstStop="" lastStop="" />	
+    <@pageIntro content=document heroImage=heroImage heroCoordinates=heroCoordinates hero=heroImage hero=hero theme=introTheme areas="" days="" firstStop="" lastStop="" />	
 
 	<#list pageItems as item>
         <#if item.theme??>

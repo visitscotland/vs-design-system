@@ -17,7 +17,14 @@
 
 
 <#macro pageIntro content heroImage heroCoordinates hero theme areas days firstStop lastStop>
-<vs-page-intro background="${theme}">
+
+<#if theme="theme1">
+    <#assign themeName = "dark">
+<#else>
+    <#assign themeName = "light">
+</#if>
+
+<vs-page-intro background="${themeName}">
 <vs-hero
         slot="hero"
         alt-text="${heroImage.altText!''}"
@@ -58,10 +65,13 @@
                     <vs-rich-text-wrapper variant="lead">
                         <@hst.html hippohtml=document.introduction/>
                     </vs-rich-text-wrapper>
+
+                    <#if firstStop?has_content && lastStop?has_content>
                     <dl class="list-inline">
                         <dt class="list-inline-item">${label("itinerary", "start-finish")}</dt>
                         <dd class="list-inline-item">${firstStop} / ${lastStop}</dd>
                     </dl>
+                    </#if>
                 </vs-col>
                 <#if days?has_content>
                     <vs-col cols="12" md="6" lg="5" xl="4">
