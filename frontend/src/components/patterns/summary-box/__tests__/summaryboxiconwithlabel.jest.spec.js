@@ -1,6 +1,6 @@
 import { shallowMount } from '@vue/test-utils';
 
-import VsSummaryBoxIconWithLabel from './SummaryBoxIconWithLabel';
+import VsSummaryBoxIconWithLabel from '../components/SummaryBoxIconWithLabel';
 
 const factoryShallowMount = (propsData) => shallowMount(VsSummaryBoxIconWithLabel, {
     propsData: {
