@@ -23,7 +23,7 @@
     THeme - ${introTheme}
     <@hst.link var="hero" hippobean=document.heroImage.original/>
 
-    <@pageIntro content=document heroImage=heroImage heroCoordinates=heroCoordinates hero=heroImage hero=hero theme="dark" />	
+    <@pageIntro content=document heroImage=heroImage heroCoordinates=heroCoordinates hero=heroImage hero=hero theme="dark" areas="" days="" firstStop="" lastStop="" />	
 
 	<#list pageItems as item>
         <#if item.theme??>

@@ -30,8 +30,9 @@
 
 <#include "../macros/modules/itineraries/itinerary-stop.ftl">
 <#include "../macros/modules/itineraries/itinerary-map.ftl">
+<#include "../macros/modules/page-intro/page-intro.ftl">
 <#include "../macros/global/cms-errors.ftl">
-<#include "../pages/module-builder.ftl">
+<#include "../macros/shared/module-builder.ftl">
 
 <#-- Implicit Request Objects -->
 <#-- @ftlvariable name="document" type="com.visitscotland.brmx.beans.Itinerary" -->
@@ -56,10 +57,11 @@
 <div class="has-edit-button">
     <@hst.manageContent hippobean=document documentTemplateQuery="new-day" rootPath="site" defaultPath="${path}" />
     <@cmsErrors errors=alerts!"" editMode=editMode />
+     <@hst.link var="hero" hippobean=document.heroImage.original/>
 
+    <@pageIntro content=document heroImage=heroImage heroCoordinates=heroCoordinates hero=heroImage hero=hero theme="light" areas=document.areas days="document.days" firstStop="firstStopLocation" lastStop="lastStopLocation" />	
     <vs-page-intro>
         <#if heroImage??>
-            <@hst.link var="hero" hippobean=document.heroImage.original/>
             <vs-hero
                 slot="hero"
                 alt-text="${heroImage.altText}"
