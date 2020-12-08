@@ -1,12 +1,18 @@
 <template>
-    <div class="vs-page-intro position-relative">
+    <div
+        class="vs-page-intro position-relative"
+        :class="backgroundClass"
+    >
         <slot name="hero" />
         <div class="vs-page-intro__wrapper--outer">
             <div class="vs-page-intro__wrapper--inner">
                 <div class="vs-page-intro__wrapper--inner-top">
                     <slot name="upper" />
                 </div>
-                <div class="vs-page-intro__wrapper--inner-bottom py-9">
+                <div
+                    class="vs-page-intro__wrapper--inner-bottom py-9"
+                    v-if="!!this.$slots['lower']"
+                >
                     <slot name="lower" />
                 </div>
             </div>
@@ -23,6 +29,18 @@ export default {
     name: 'VsPageIntro',
     status: 'prototype',
     release: '0.0.1',
+    props: {
+        background: {
+            type: String,
+            default: 'light',
+            validator: (value) => value.match(/(light|dark)/),
+        },
+    },
+    computed: {
+        backgroundClass() {
+            return `vs-page-intro--${this.background}`;
+        },
+    },
 };
 </script>
 
@@ -78,13 +96,17 @@ export default {
         min-width: 200px;
     }
 }
+
+.vs-page-intro--dark {
+    background: $color-secondary-gray-shade-4;
+}
 </style>
 
 <docs>
 
   ```jsx
     const sampleItinerary = require("../../../assets/fixtures/itineraries/sample-itinerary.json")
-    <vs-page-intro>
+    <vs-page-intro background="dark">
       <vs-hero
         slot="hero"
         :altText="itineraries.sampleItinerary.image.altText"
@@ -207,6 +229,95 @@ export default {
           </vs-col>
         </vs-row>
       </vs-container>
+
+      <vs-container slot="lower">
+       <vs-row>
+        <vs-col cols="12" lg="11" offset-lg="1">
+          <vs-description-list class="mb-6">
+              <vs-description-list-item title>Highlights</vs-description-list-item>
+              <vs-description-list-item
+                  v-for="(highlight, index) in itineraries.sampleItinerary.highlights"
+              >
+                  {{highlight}}
+              </vs-description-list-item>
+          </vs-description-list>
+          <vs-description-list class="mb-8">
+              <vs-description-list-item title>Areas Covered</vs-description-list-item>
+                  <vs-description-list-item
+                      v-for="(areaCovered, index) in itineraries.sampleItinerary.areasCovered"
+                      key="index"
+                  >
+                  {{areaCovered}}
+              </vs-description-list-item>
+          </vs-description-list>
+        </vs-col>
+      </vs-row>
+    </vs-container>
+  </vs-page-intro>
+
+  <vs-page-intro class="mt-12">
+    <vs-hero
+      slot="hero"
+      :altText="itineraries.sampleItinerary.image.altText"
+      :credit="itineraries.sampleItinerary.image.credit"
+      :caption="itineraries.sampleItinerary.image.caption"
+      :image-src="itineraries.sampleItinerary.image.imageSrc"
+      :latitude="itineraries.sampleItinerary.image.latitude"
+      :longitude="itineraries.sampleItinerary.image.longitude"
+    >
+    <img
+      class="lazyload"
+      :src="itineraries.sampleItinerary.image.imageSrc"
+      srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+      :data-srcset="itineraries.sampleItinerary.image.imageSrc"
+      :alt="itineraries.sampleItinerary.image.altText"
+      data-sizes="auto"
+      />
+    </vs-hero>
+    <vs-container slot="upper" class="py-lg-4">
+      <vs-row class="justify-content-md-between">
+        <vs-col cols="12" lg="8" offset-lg="1">
+          <vs-breadcrumb>
+            <vs-breadcrumb-item
+              v-for="(item, index) in breadcrumb.breadcrumb"
+              :key="index"
+              :href="item.href"
+              :active="item.active"
+              :text="item.name"
+              >
+            </vs-breadcrumb-item>
+          </vs-breadcrumb>
+        </vs-col>
+      </vs-row>
+      <vs-row>
+        <vs-col cols="10" lg="8" offset-lg="1">
+          <vs-heading level="1">
+            {{itineraries.sampleItinerary.h1Heading}}
+          </vs-heading>
+        </vs-col>
+        <vs-col cols="2">
+          <div class="d-flex justify-content-center justify-content-sm-end">
+            <!-- TODO - Below icon is FPO. Replace with icon
+            with text component and a share component -->
+            <vs-icon name="share" variant="dark" size="md" />
+          </div>
+        </vs-col>
+      </vs-row>
+      <vs-row>
+        <vs-col cols="12" md="6" lg="5" xl="6" offset-lg="1">
+          <vs-rich-text-wrapper
+              variant="lead"
+              v-html="itineraries.sampleItinerary.introduction">
+          </vs-rich-text-wrapper>
+          <dl class="list-inline">
+              <dt class="list-inline-item">Start / Finish</dt>
+              <dd class="list-inline-item">
+                  {{itineraries.sampleItinerary.start}}/{{itineraries.sampleItinerary.finish}}
+              </dd>
+          </dl>
+        </vs-col>
+      </vs-row>
+    </vs-container>
     </vs-page-intro>
   ```
 </docs>
