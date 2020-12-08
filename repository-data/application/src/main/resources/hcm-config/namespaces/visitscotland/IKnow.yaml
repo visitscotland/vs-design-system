@@ -50,7 +50,7 @@ definitions:
             plugin.class: org.hippoecm.frontend.service.render.ListViewPlugin
           /title:
             jcr:primaryType: frontend:plugin
-            caption: Title (Override)
+            caption: Override Title
             field: title
             plugin.class: org.hippoecm.frontend.editor.plugins.field.PropertyFieldPlugin
             wicket.id: ${cluster.id}.field
@@ -59,7 +59,7 @@ definitions:
               jcr:primaryType: frontend:pluginconfig
           /description:
             jcr:primaryType: frontend:plugin
-            caption: Description
+            caption: Override Copy
             field: description
             hint: "This field is a plain text field so we can deafult the value.\r\
               \n\r\nIf that"
