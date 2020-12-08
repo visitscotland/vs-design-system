@@ -1,10 +1,10 @@
 import { shallowMount } from '@vue/test-utils';
-import VsStretchedLinkPanel from '../components/StretchedLinkPanel';
+import VsStretchedLinkPanels from '../components/StretchedLinkPanels';
 
 describe('VsStretchedLinkCard', () => {
     describe(':props', () => {
         it('should render a `.stretched-link-panel--days` class if the days prop is defined', () => {
-            const wrapper = shallowMount(VsStretchedLinkPanel, {
+            const wrapper = shallowMount(VsStretchedLinkPanels, {
                 propsData: {
                     days: '10',
                 },
@@ -13,7 +13,7 @@ describe('VsStretchedLinkCard', () => {
         });
 
         it('should render an element with the text prop content if it is defined', () => {
-            const wrapper = shallowMount(VsStretchedLinkPanel, {
+            const wrapper = shallowMount(VsStretchedLinkPanels, {
                 propsData: {
                     text: 'Panel text',
                 },
