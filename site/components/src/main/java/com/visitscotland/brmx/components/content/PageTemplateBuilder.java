@@ -10,6 +10,7 @@ import com.visitscotland.brmx.beans.mapping.megalinks.SingleImageLinksModule;
 import com.visitscotland.brmx.components.content.factory.ICentreFactory;
 import com.visitscotland.brmx.components.content.factory.IKnowFactory;
 import com.visitscotland.brmx.components.content.factory.LinkModulesFactory;
+import com.visitscotland.brmx.utils.DocumentUtils;
 import com.visitscotland.utils.Contract;
 import org.hippoecm.hst.core.component.HstRequest;
 import org.slf4j.Logger;
@@ -26,6 +27,7 @@ public class PageTemplateBuilder {
     private final LinkModulesFactory linksFactory;
     private final ICentreFactory iCentreFactory;
     private final IKnowFactory iKnowFactory;
+    private final DocumentUtils documentUtils;
 
     static final String INTRO_THEME = "introTheme";
     static final String PAGE_ITEMS = "pageItems";
@@ -35,13 +37,14 @@ public class PageTemplateBuilder {
 
 
     public PageTemplateBuilder() {
-        this(new LinkModulesFactory(), new ICentreFactory(), new IKnowFactory());
+        this(new LinkModulesFactory(), new ICentreFactory(), new IKnowFactory(), new DocumentUtils());
     }
 
-    public PageTemplateBuilder(LinkModulesFactory linksFactory, ICentreFactory iCentre, IKnowFactory iKnow) {
+    public PageTemplateBuilder(LinkModulesFactory linksFactory, ICentreFactory iCentre, IKnowFactory iKnow, DocumentUtils documentUtils) {
         this.linksFactory = linksFactory;
         this.iCentreFactory = iCentre;
         this.iKnowFactory = iKnow;
+        this.documentUtils = documentUtils;
     }
 
 
@@ -56,13 +59,13 @@ public class PageTemplateBuilder {
     public void addModules(HstRequest request, String location) {
         PageConfiguration page = new PageConfiguration();
 
-        for (BaseDocument item : getDocument(request).getModules()) {
+        for (BaseDocument item : documentUtils.getAllowedDocuments(getDocument(request))) {
             try {
                 logger.info("A {} module was found. Type {}", item.getClass(), item.getPath());
                 if (item instanceof Megalinks) {
                     processMegalinks(request, page, (Megalinks) item);
                 } else if (item instanceof TourismInformation) {
-                    processTouristInformation(request, page, (TourismInformation) item, location);;
+                    processTouristInformation(request, page, (TourismInformation) item, location);
                 }
             } catch (MissingResourceException e){
                 logger.error("The module for {} couldn't be built because some labels do not exist", item.getPath(), e);
