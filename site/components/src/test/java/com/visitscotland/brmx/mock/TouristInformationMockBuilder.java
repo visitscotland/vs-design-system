@@ -122,11 +122,11 @@ public class TouristInformationMockBuilder {
         return this;
     }
 
-    public TouristInformationMockBuilder addIKnowDescription() {
+    public TouristInformationMockBuilder addIKnowDescription(String description) {
         if (iKnow == null){
             addIKnow();
         }
-        when(iKnow.getDescription()).thenReturn(mock(HippoHtml.class));
+        when(iKnow.getDescription()).thenReturn(description);
         return this;
     }
 
