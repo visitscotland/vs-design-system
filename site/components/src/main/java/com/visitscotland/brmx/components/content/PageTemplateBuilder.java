@@ -30,6 +30,8 @@ public class PageTemplateBuilder {
     static final String PAGE_ITEMS = "pageItems";
     static final String[] themes = {"theme1", "theme2", "theme3"};
     static final String[] alignment = {"right", "left"};
+    static final String NEUTRAL_THEME = themes[1];
+
 
     public PageTemplateBuilder() {
         this(new LinkModulesFactory(), new ICentreFactory(), new IKnowFactory());
@@ -96,14 +98,14 @@ public class PageTemplateBuilder {
         OTYML otyml = getDocument(request).getOtherThings();
         if(otyml!=null) {
             LinksModule al = linksFactory.horizontalListLayout(otyml, request.getLocale());
-            al.setTheme(themes[0]);
+            al.setTheme(NEUTRAL_THEME);
             links.add(al);
         }
 
         if(links.size()>0 && links.get(0).getHippoBean() instanceof Megalinks){
             request.setAttribute(INTRO_THEME, ((LinksModule) links.get(0)).getTheme());
         }else{
-            request.setAttribute(INTRO_THEME, themes[1]);
+            request.setAttribute(INTRO_THEME, NEUTRAL_THEME);
         }
 
         request.setAttribute(PAGE_ITEMS, links);
