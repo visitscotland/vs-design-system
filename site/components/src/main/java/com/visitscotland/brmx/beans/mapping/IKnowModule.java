@@ -1,12 +1,9 @@
 package com.visitscotland.brmx.beans.mapping;
 
-import com.visitscotland.brmx.beans.TourismInformation;
-import org.hippoecm.hst.content.beans.standard.HippoHtml;
-
 public class IKnowModule extends Module{
 
     private String title;
-    private HippoHtml description;
+    private String description;
     private FlatLink link;
 
     public String getTitle() {
@@ -17,11 +14,11 @@ public class IKnowModule extends Module{
         this.title = title;
     }
 
-    public HippoHtml getDescription() {
+    public String getDescription() {
         return description;
     }
 
-    public void setDescription(HippoHtml description) {
+    public void setDescription(String description) {
         this.description = description;
     }
 
