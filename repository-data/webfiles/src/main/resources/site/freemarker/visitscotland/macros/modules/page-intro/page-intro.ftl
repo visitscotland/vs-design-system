@@ -14,6 +14,17 @@
 <#include "../../../../frontend/components/vs-link.ftl">
 <#include "../../../../frontend/components/vs-heading.ftl">
 <#include "../../../../frontend/components/vs-social-share.ftl">
+<#include "../../../../frontend/components/vs-summary-box-list.ftl">
+<#include "../../../../frontend/components/vs-summary-box-list-item.ftl">
+<#include "../../../../frontend/components/vs-summary-box-display.ftl">
+<#include "../../../../frontend/components/vs-summary-box-label.ftl">
+<#include "../../../../frontend/components/vs-summary-box-distance-display.ftl">
+<#include "../../../../frontend/components/vs-summary-box-distance-label.ftl">
+<#include "../../../../frontend/components/vs-summary-box-icon-with-label.ftl">
+<#include "../../../../frontend/components/vs-description-list.ftl">
+<#include "../../../../frontend/components/vs-description-list-item.ftl">
+<#include "../../../../frontend/components/vs-image-with-caption.ftl">
+<#include "../../../../frontend/components/vs-image-location-map.ftl">
 
 
 <#macro pageIntro content heroImage heroCoordinates hero theme areas days firstStop lastStop>
@@ -23,7 +34,7 @@
 <#else>
     <#assign themeName = "light">
 </#if>
-
+<div class="has-edit-button">
 <vs-page-intro background="${themeName}">
 <vs-hero
         slot="hero"
@@ -153,4 +164,5 @@
             </vs-container>
         </#if>
 </vs-page-intro>
+</div>
 </#macro>

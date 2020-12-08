@@ -3,30 +3,12 @@
 
 <#--  <#include "../../frontend/stores/vs-store-itineraries-store.ftl">  -->
 <#include "../../frontend/components/vs-page-intro.ftl">
-<#include "../../frontend/components/vs-hero.ftl">
-<#include "../../frontend/components/vs-container.ftl">
-<#include "../../frontend/components/vs-row.ftl">
-<#include "../../frontend/components/vs-col.ftl">
 <#include "../../frontend/components/vs-icon.ftl">
-<#include "../../frontend/components/vs-rich-text-wrapper.ftl">
-<#include "../../frontend/components/vs-image-with-caption.ftl">
-<#include "../../frontend/components/vs-image-location-map.ftl">
-<#include "../../frontend/components/vs-button.ftl">
-<#include "../../frontend/components/vs-heading.ftl">
-<#include "../../frontend/components/vs-img.ftl">
+
 <#include "../../frontend/components/vs-tooltip.ftl">
-<#include "../../frontend/components/vs-summary-box-list.ftl">
-<#include "../../frontend/components/vs-summary-box-list-item.ftl">
-<#include "../../frontend/components/vs-summary-box-display.ftl">
-<#include "../../frontend/components/vs-summary-box-label.ftl">
-<#include "../../frontend/components/vs-summary-box-distance-display.ftl">
-<#include "../../frontend/components/vs-summary-box-distance-label.ftl">
-<#include "../../frontend/components/vs-summary-box-icon-with-label.ftl">
-<#include "../../frontend/components/vs-description-list.ftl">
-<#include "../../frontend/components/vs-description-list-item.ftl">
+
 <#include "../../frontend/components/vs-itinerary-day.ftl">
 <#include "../../frontend/components/vs-itinerary.ftl">
-<#include "../../frontend/components/vs-svg.ftl">
 
 <#include "../macros/modules/itineraries/itinerary-stop.ftl">
 <#include "../macros/modules/itineraries/itinerary-map.ftl">
