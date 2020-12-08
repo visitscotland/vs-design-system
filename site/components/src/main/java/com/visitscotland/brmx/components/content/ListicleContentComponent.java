@@ -75,8 +75,8 @@ public class ListicleContentComponent extends PageContentComponent<Listicle> {
                         if (instagramInfo != null) {
                             flatImage = new FlatImage(instagramLink,instagramInfo,request.getLocale());
                         } else {
-                            errors.add("The Instagram id is not valid");
-                            logger.warn(CommonUtils.contentIssue("The Instagram id %s is not valid, Listicle = %s - %s",
+                            errors.add("The Instagram id is no longer valid");
+                            logger.warn(CommonUtils.contentIssue("The Instagram id %s is no longer, Listicle = %s - %s",
                                     instagramLink.getId(), listicle.getPath(), listicleItem.getTitle()));
                         }
                     } catch (IOException e) {
