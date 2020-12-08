@@ -2,7 +2,7 @@
     <li class="vs-footer-nav-list-item">
         <VsLink
             :href="href"
-            :external="external"
+            :type="type"
             variant="dark"
         >
             {{ linkText }}
@@ -32,11 +32,13 @@ export default {
             default: null,
         },
         /**
-         * Option to create external link which will open URL in blank target and add icon
-         */
-        external: {
-            type: Boolean,
-            default: false,
+        * Option to create link type which defines icon and whether it opens in a new tab
+        * `external, internal, download`
+        */
+        type: {
+            type: String,
+            default: null,
+            validator: (value) => value.match(/(external|internal|download)/),
         },
         /**
          * Text to show for the link
@@ -56,15 +58,17 @@ export default {
     line-height: $line-height-s;
     padding: $spacer-3 $spacer-8;
 
-    .vs-link.dark {
-        color: $color-white;
-        text-decoration: none;
+    .vs-link {
+        &--variant-dark {
+            color: $color-white;
+            text-decoration: none;
+        }
 
         &:hover {
             text-decoration: underline;
         }
 
-        .icon {
+        .vs-icon {
             fill: $color-white;
         }
     }
@@ -86,14 +90,11 @@ export default {
             <vs-col cols="12" md="6">
                 <vs-footer-accordion-item
                     :open-by-default="false"
+                    title="Visitor information"
                     variant="dark"
                     control-id="footer_accordion_item_1"
                     class="border-left-0"
                 >
-                    <span slot="title">
-                        Visitor information
-                    </span>
-
                     <span slot="icon-open">
                         <vs-icon name="chevron" variant="light" size="xs" />
                     </span>
@@ -117,7 +118,7 @@ export default {
                         ></vs-footer-nav-list-item>
                         <vs-footer-nav-list-item
                             href="#"
-                            external
+                            type="external"
                             link-text="VisitScotland Awards"
                         ></vs-footer-nav-list-item>
                     </vs-list>

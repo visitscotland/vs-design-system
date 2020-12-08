@@ -7,6 +7,7 @@ import com.visitscotland.brmx.beans.mapping.Coordinates;
 import com.visitscotland.brmx.beans.mapping.FlatImage;
 import com.visitscotland.brmx.beans.mapping.FlatLink;
 import com.visitscotland.brmx.beans.mapping.FlatListicle;
+import com.visitscotland.brmx.beans.mapping.megalinks.LinksModule;
 import com.visitscotland.brmx.dms.LocationLoader;
 import com.visitscotland.brmx.services.LinkService;
 import com.visitscotland.brmx.utils.CommonUtils;
@@ -44,6 +45,7 @@ public class ListicleContentComponent extends PageContentComponent<Listicle> {
      */
     private void generateItems(HstRequest request, Listicle listicle) {
         final String LISTICLE_ITEMS = "items";
+        final String OTYML = "otyml";
         final String ADDRESS = "address";
         final String LOCATION = "city";
         final String LATITUDE = "latitude";
@@ -69,9 +71,9 @@ public class ListicleContentComponent extends PageContentComponent<Listicle> {
                     InstagramImage instagramLink = (InstagramImage) listicleItem.getListicleItemImage();
                     location = instagramLink.getLocation();
                     try {
-                        String caption = CommonUtils.getInstagramCaption(instagramLink);
-                        if (caption != null) {
-                            flatImage = new FlatImage(instagramLink,caption,request.getLocale());
+                        JsonNode instagramInfo = CommonUtils.getInstagramInformation(instagramLink);
+                        if (instagramInfo != null) {
+                            flatImage = new FlatImage(instagramLink,instagramInfo,request.getLocale());
                         } else {
                             errors.add("The Instagram id is not valid");
                             logger.warn(CommonUtils.contentIssue("The Instagram id %s is not valid, Listicle = %s - %s",
@@ -157,5 +159,6 @@ public class ListicleContentComponent extends PageContentComponent<Listicle> {
         }
 
         request.setAttribute(LISTICLE_ITEMS, items);
+        request.setAttribute(OTYML, addOTYML(listicle, request.getLocale()));
     }
 }

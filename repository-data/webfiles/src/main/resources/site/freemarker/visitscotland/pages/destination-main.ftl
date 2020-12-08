@@ -14,8 +14,10 @@
 <#include "../../frontend/components/vs-heading.ftl">
 <#include "../../frontend/components/vs-social-share.ftl">
 
-<#include "../macros/modules/megalinks/megalinks-multi-image.ftl">
-<#include "../macros/modules/megalinks/megalinks-single-image.ftl">
+<#include "../macros/modules/megalinks/megalinks.ftl">
+<#include "../macros/shared/module-builder.ftl">
+<#--  <#include "../macros/modules/megalinks/multi-image/megalinks-multi-image.ftl">  -->
+<#--  <#include "../macros/modules/megalinks/megalinks-single-image.ftl">
 <#include "../macros/modules/megalinks/megalinks-list.ftl">
 <#include "../macros/global/cms-errors.ftl">
 
@@ -79,15 +81,13 @@
 
   <#--TODO Control abput colours, change style="background-color:${style}  -->
 	<#list pageItems as item>
-	<vs-container slot="upper" class="py-lg-4" >
 		<#--TODO Colour should be only added to Megalinks, add this code to macros or create a commun macro to control it-->
 		<#if item.theme?? && item.theme = "theme3">
 			<#assign theme = "#292929" />
 		<#else>
 			<#assign theme = "#FFFFFF" />
 		</#if>
-
-        <@moduleBuilder item theme />
+        <@moduleBuilder module=item theme=theme />
 	</vs-container>
 	</#list>
 </div>
