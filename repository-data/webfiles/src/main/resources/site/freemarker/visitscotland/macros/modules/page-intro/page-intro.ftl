@@ -1,12 +1,23 @@
 
 
-<#include "../../include/imports.ftl">
-<#include "../macros/global/cms-errors.ftl">
-<#include "../../frontend/components/vs-hero.ftl">
+<#include "../../../../include/imports.ftl">
+<#include "../../../macros/global/cms-errors.ftl">
+<#include "../../../../frontend/components/vs-hero.ftl">
+<#include "../../../../frontend/components/vs-page-intro.ftl">
+<#include "../../../../frontend/components/vs-hero.ftl">
+<#include "../../../../frontend/components/vs-container.ftl">
+<#include "../../../../frontend/components/vs-row.ftl">
+<#include "../../../../frontend/components/vs-col.ftl">
+<#include "../../../../frontend/components/vs-rich-text-wrapper.ftl">
+<#include "../../../../frontend/components/vs-img.ftl">
+<#include "../../../../frontend/components/vs-button.ftl">
+<#include "../../../../frontend/components/vs-link.ftl">
+<#include "../../../../frontend/components/vs-heading.ftl">
+<#include "../../../../frontend/components/vs-social-share.ftl">
 
 
-<#macro heroModule content heroImage heroCoordinates hero>
-<vs-page-intro>
+<#macro pageIntro content heroImage heroCoordinates hero theme>
+<vs-page-intro background="${theme}">
 <vs-hero
         slot="hero"
         alt-text="${heroImage.altText!''}"
