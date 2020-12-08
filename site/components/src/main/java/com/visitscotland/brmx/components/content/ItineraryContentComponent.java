@@ -192,8 +192,8 @@ public class ItineraryContentComponent extends PageContentComponent<Itinerary> {
                 }
 
                 if ((stop.getTips() != null && !stop.getTips().getContent().isEmpty()) && (stop.getTipsTitle() == null || stop.getTipsTitle().isEmpty())) {
-                    errors.add("Tips title is required to show tips");
-                    logger.warn(CommonUtils.contentIssue("Tip title was not provided when tried to add a tip for %s, Stop %s", itinerary.getName(), model.getIndex()));
+                    errors.add("Your tip isn’t showing because you must enter a title.");
+                    logger.warn(CommonUtils.contentIssue("Your tip isn’t showing because you must enter a title for %s, Stop %s", itinerary.getName(), model.getIndex()));
                 }
                 lastStopId = model.getIdentifier();
                 if (firstStopId == null) {

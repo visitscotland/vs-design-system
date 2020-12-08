@@ -11,7 +11,7 @@ definitions:
         /hipposysedit:nodetype:
           jcr:primaryType: hipposysedit:nodetype
           jcr:mixinTypes: ['mix:referenceable', 'hipposysedit:remodel']
-          jcr:uuid: a01283e1-8176-40e4-bf1e-b2c990c7a4bb
+          jcr:uuid: 6ebba1e4-8b59-461a-ba35-9b7ab32e202e
           hipposysedit:node: true
           hipposysedit:supertype: ['visitscotland:Page', 'hippostd:relaxed', 'hippotranslation:translated']
           hipposysedit:uri: http://www.visitscotland.com/visitscotland/nt/1.0
@@ -41,7 +41,7 @@ definitions:
           visitscotland:title: ''
           visitscotland:seoTitle: ''
           jcr:mixinTypes: ['mix:referenceable']
-          jcr:uuid: 390b2ff1-055e-4851-bc2d-4c73eadba92c
+          jcr:uuid: 6607116b-6239-4730-9b6a-7b3f0b3f24e3
           hippostdpubwf:lastModificationDate: 2020-09-25T13:13:22.744+01:00
           hippostdpubwf:creationDate: 2020-09-25T13:13:22.744+01:00
           visitscotland:theme: Standard
@@ -112,6 +112,8 @@ definitions:
             field: theme
             plugin.class: org.hippoecm.frontend.editor.plugins.field.PropertyFieldPlugin
             wicket.id: ${cluster.id}.right.item
+            hint: Check the CMS guidelines for full information on what page layout
+              to use.
             /cluster.options:
               jcr:primaryType: frontend:pluginconfig
               selectable.options: Standard,Simple

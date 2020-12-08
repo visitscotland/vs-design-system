@@ -109,7 +109,7 @@ public class ListicleContentComponent extends PageContentComponent<Listicle> {
                     try {
                         product = dmsData.productCard(dmsLink.getProduct(), request.getLocale());
                         if (product == null) {
-                            errors.add("The product id does not exists in the DMS");
+                            errors.add("The product id does not match in the DMS");
                             logger.warn(CommonUtils.contentIssue("The product's id  wasn't provided for %s, Listicle = %s - %s",
                                     dmsLink.getProduct(), listicle.getPath(), listicleItem.getTitle()));
                         } else {

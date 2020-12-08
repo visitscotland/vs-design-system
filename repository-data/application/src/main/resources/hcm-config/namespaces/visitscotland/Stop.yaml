@@ -11,7 +11,7 @@ definitions:
         /hipposysedit:nodetype:
           jcr:primaryType: hipposysedit:nodetype
           jcr:mixinTypes: ['mix:referenceable', 'hipposysedit:remodel']
-          jcr:uuid: 1ee05a21-67c7-47c8-85e8-c2d5b4258a38
+          jcr:uuid: 41ec6e5b-30b4-45b1-be92-854b05b4e459
           hipposysedit:node: true
           hipposysedit:supertype: ['visitscotland:basedocument', 'hippostd:relaxed',
             'hippotranslation:translated']
@@ -93,7 +93,7 @@ definitions:
           hippotranslation:id: document-type-locale-id
           hippotranslation:locale: document-type-locale
           jcr:mixinTypes: ['mix:referenceable']
-          jcr:uuid: d3e371f0-d4e5-46d4-a731-d374f58c105e
+          jcr:uuid: 8edf4d03-5304-42dd-a45e-eba799083ccf
           hippostdpubwf:lastModificationDate: 2019-12-05T15:13:21.853Z
           hippostdpubwf:creationDate: 2019-12-05T15:13:21.853Z
           visitscotland:tipsTitle: ''
@@ -125,15 +125,16 @@ definitions:
             plugin.class: org.hippoecm.frontend.service.render.ListViewPlugin
           /title:
             jcr:primaryType: frontend:plugin
-            caption: Title
+            caption: Stop Name
             field: title
             plugin.class: org.hippoecm.frontend.editor.plugins.field.PropertyFieldPlugin
             wicket.id: ${cluster.id}.field
+            hint: ''
             /cluster.options:
               jcr:primaryType: frontend:pluginconfig
           /subtitle:
             jcr:primaryType: frontend:plugin
-            caption: Location (Subtitle)
+            caption: External Location/Override DMS
             field: subtitle
             hint: ''
             plugin.class: org.hippoecm.frontend.editor.plugins.field.PropertyFieldPlugin
@@ -142,7 +143,7 @@ definitions:
               jcr:primaryType: frontend:pluginconfig
           /description:
             jcr:primaryType: frontend:plugin
-            caption: Description
+            caption: Copy
             field: description
             plugin.class: org.hippoecm.frontend.editor.plugins.field.NodeFieldPlugin
             wicket.id: ${cluster.id}.field
@@ -160,7 +161,7 @@ definitions:
             field: image
             plugin.class: org.hippoecm.frontend.editor.plugins.field.NodeFieldPlugin
             wicket.id: ${cluster.id}.field
-            hint: This Image is required if the Product is not a DMS product
+            hint: ''
             /cluster.options:
               jcr:primaryType: frontend:pluginconfig
           /product:
@@ -177,16 +178,16 @@ definitions:
               maxitems: 1
           /tipsTitle:
             jcr:primaryType: frontend:plugin
-            caption: Pull Out Title
+            caption: Tip Title
             field: tipsTitle
-            hint: Title is required if pull out is added
+            hint: If you’re adding a tip, it must have a title to show.
             plugin.class: org.hippoecm.frontend.editor.plugins.field.PropertyFieldPlugin
             wicket.id: ${cluster.id}.field
             /cluster.options:
               jcr:primaryType: frontend:pluginconfig
           /tips:
             jcr:primaryType: frontend:plugin
-            caption: Pull out Information
+            caption: Tip Copy
             field: tips
             hint: ''
             plugin.class: org.hippoecm.frontend.editor.plugins.field.NodeFieldPlugin
