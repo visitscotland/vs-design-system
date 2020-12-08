@@ -5,13 +5,15 @@
             :type="linkType"
             :img-src="imgSrc"
             :img-alt="imgAlt"
-            class="carousel-slide"
+            class="vs-carousel-slide"
         >
             <span
                 slot="stretchedCardHeader"
-                class="carousel-slide__title"
+                class="vs-carousel-slide__title"
                 data-test="carousel-slide__title"
-            ><!-- @slot Slot to contain heading --><slot name="vsCarouselSlideHeading" />
+            >
+                <!-- @slot Slot to contain heading -->
+                <slot name="vsCarouselSlideHeading" />
             </span>
         </VsStretchedLinkCard>
     </SplideSlide>
@@ -45,7 +47,6 @@ export default {
         * The image alt text to use in the component
         */
         imgAlt: {
-            required: false,
             type: String,
             default: '',
         },
@@ -79,7 +80,7 @@ export default {
         }
     }
 
-    .carousel-slide {
+    .vs-carousel-slide {
         height: 100%;
     }
 </style>

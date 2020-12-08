@@ -5,8 +5,7 @@
 <#include "./multi-image-three-items.ftl">
 <#include "../../../global/cms-errors.ftl">
 
-<#macro multiImage item>
-    <#assign showTeaser = item.teaserVisible?string('true', 'false') />
+<#macro multiImage item showTeaser>
     <vs-row>
         <vs-col
             cols="10"
@@ -39,7 +38,7 @@
                 </#list>
 
                 <#-- if there's a second featured link -->
-                <#if item.featuredLinks?size gt 1>
+                <#if item.featuredLinks?? && item.featuredLinks?size gt 1>
                     <@multiImageFeatured  lastFeatured='true' feature=item.featuredLinks[1] />
                 </#if>
             </vs-row>
