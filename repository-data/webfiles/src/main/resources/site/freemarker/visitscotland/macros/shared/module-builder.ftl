@@ -22,20 +22,24 @@
         <#assign themeName = "light">
     </#if>
 
-    <div 
-        class="has-edit-button <#if module.getType() == 'MultiImageLinksModule' ||  module.getType() == 'SingleImageLinksModule' || module.getType()== 'ListLinksModule'>theme-${themeName}</#if>">
-       
-        <#-- all Megalinks modules -->
-        <#if module.getType() == "MultiImageLinksModule" ||  module.getType() == "SingleImageLinksModule" || module.getType()== "ListLinksModule">
+    <#if module.getType() == "MultiImageLinksModule" ||  module.getType() == "SingleImageLinksModule" || module.getType()== "ListLinksModule">
+        <#assign moduleType = "megalinks">
+    <#else>
+        <#assign moduleType = module.getType()>
+    </#if>
+
+    <div class="has-edit-button">       
+        <#if moduleType == "megalinks">
+            <#-- all Megalinks modules -->
             <@megalinks item=module type=module.getType() theme=themeName />
 
-        <#elseif module.getType()== "HorizontalListLinksModule">
+        <#elseif moduleType == "HorizontalListLinksModule">
             <@horizontalList module/>
 
-        <#elseif module.getType()== "ICentreModule">
+        <#elseif moduleType == "ICentreModule">
             <@icentre module/>
 
-        <#elseif module.getType()== "IKnowModule">
+        <#elseif moduleType == "IKnowModule">
             <@iknow module/>
 
         </#if>
