@@ -2,7 +2,7 @@
     <div class="no-js">
         <section
             class="vs-carousel"
-            data-test="carousel"
+            data-test="vs-carousel"
             ref="carousel"
         >
             <VsContainer>
@@ -22,7 +22,7 @@
                         <div class="vs-carousel__mobile-pagination-wrapper">
                             <p
                                 class="vs-carousel__mobile-pagination"
-                                data-test="carousel__mobile-pagination"
+                                data-test="vs-carousel__mobile-pagination"
                             >
                                 {{ currentSlide }} of {{ totalSlides }}
                             </p>
