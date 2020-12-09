@@ -1,7 +1,7 @@
 <template>
     <section
         class="vs-megalinks"
-        :class="[variantClass, `vs-megalinks--${theme}`]"
+        :class="megalinksClasses"
         data-test="megalinks"
     >
         <VsContainer class="container-lg">
@@ -111,8 +111,11 @@ export default {
         },
     },
     computed: {
-        variantClass() {
-            return this.variant ? `vs-megalinks--${this.variant}` : '';
+        megalinksClasses() {
+            return [
+                this.variant ? `vs-megalinks--${this.variant}` : '',
+                `vs-megalinks--${this.theme}`,
+            ];
         },
     },
 };
@@ -755,14 +758,14 @@ export default {
                     </p>
                 </template>
                 <template slot="vsSingleImageLinks">
-                    <li class="megalink-single-image__link-list-item">
+                    <li class="vs-megalink-single-image__link-list-item">
                         <VsLink
                             href="www.visitscotland.com"
                         >
                             This is a link here
                         </VsLink>
                     </li>
-                    <li class="megalink-single-image__link-list-item">
+                    <li class="vs-megalink-single-image__link-list-item">
                         <VsLink
                             href="www.visitscotland.com"
                             type="external"
@@ -770,7 +773,7 @@ export default {
                             This is an external link here
                         </VsLink>
                     </li>
-                    <li class="megalink-single-image__link-list-item">
+                    <li class="vs-megalink-single-image__link-list-item">
                         <VsLink
                             href="www.visitscotland.com"
                             type="download"
@@ -822,7 +825,7 @@ export default {
                     </p>
                 </template>
                 <template slot="vsSingleImageLinks">
-                    <li class="megalink-single-image__link-list-item">
+                    <li class="vs-megalink-single-image__link-list-item">
                         <VsLink
                             variant="dark"
                             href="www.visitscotland.com"
@@ -830,7 +833,7 @@ export default {
                             This is a link here
                         </VsLink>
                     </li>
-                    <li class="megalink-single-image__link-list-item">
+                    <li class="vs-megalink-single-image__link-list-item">
                         <VsLink
                             href="www.visitscotland.com"
                             variant="dark"
@@ -838,7 +841,7 @@ export default {
                             This is a link here
                         </VsLink>
                     </li>
-                    <li class="megalink-single-image__link-list-item">
+                    <li class="vs-megalink-single-image__link-list-item">
                         <VsLink
                             href="www.visitscotland.com"
                             variant="dark"
