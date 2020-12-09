@@ -11,7 +11,7 @@ definitions:
         /hipposysedit:nodetype:
           jcr:primaryType: hipposysedit:nodetype
           jcr:mixinTypes: ['mix:referenceable', 'hipposysedit:remodel']
-          jcr:uuid: 291010aa-d756-4247-a56f-15bc6ea463ba
+          jcr:uuid: 515a5b5a-85d0-41c0-a3de-b68919e0cf86
           hipposysedit:node: true
           hipposysedit:supertype: ['visitscotland:basedocument', 'hippostd:relaxed',
             'hippotranslation:translated']
@@ -75,11 +75,11 @@ definitions:
         /hipposysedit:nodetype[2]:
           jcr:primaryType: hipposysedit:nodetype
           jcr:mixinTypes: ['mix:referenceable']
-          jcr:uuid: 515a5b5a-85d0-41c0-a3de-b68919e0cf86
+          jcr:uuid: c9816849-1bac-4453-a9d5-6fea92eba16b
           hipposysedit:node: true
           hipposysedit:supertype: ['visitscotland:basedocument', 'hippostd:relaxed',
             'hippotranslation:translated']
-          hipposysedit:validators: ['visitscotland:link-image-validator']
+          hipposysedit:validators: ['visitscotland:link-image-validator', 'visitscotland:location-validator']
           /title:
             jcr:primaryType: hipposysedit:field
             hipposysedit:mandatory: false
@@ -148,7 +148,7 @@ definitions:
           jcr:mixinTypes: ['mix:referenceable']
           visitscotland:title: ''
           visitscotland:subtitle: ''
-          jcr:uuid: 648ae10a-06d5-4d4d-bc6d-eb97ffe864dc
+          jcr:uuid: c0f360b6-bb37-40d6-9f51-1de11839af41
           hippostdpubwf:lastModificationDate: 2020-02-11T16:18:17.876Z
           hippostdpubwf:creationDate: 2020-02-11T16:18:17.876Z
           visitscotland:translation: ''
@@ -159,7 +159,7 @@ definitions:
           jcr:primaryType: nt:unstructured
           jcr:mixinTypes: ['hippostd:publishableSummary', 'hippostd:relaxed', 'hippostdpubwf:document',
             'hippotranslation:translated', 'mix:referenceable', 'visitscotland:translatable']
-          jcr:uuid: e78b2fa9-9b8c-452f-a008-714fd2cf4d55
+          jcr:uuid: f24c7487-c6b9-4dc9-a856-0b942ce42ff8
           hippostd:holder: holder
           hippostd:state: draft
           hippostdpubwf:createdBy: ''

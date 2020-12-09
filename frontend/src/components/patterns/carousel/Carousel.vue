@@ -1,35 +1,37 @@
 <template>
-    <section
-        class="vs-carousel"
-        data-test="carousel"
-        ref="carousel"
-    >
-        <VsContainer>
-            <VsRow>
-                <VsCol
-                    cols="12"
-                >
-                    <Splide
-                        :options="splideOptions"
-                        @splide:moved="carouselMoved"
-                        @splide:mounted="initialiseMobilePagination"
-                        @splide:updated="resetTabbing"
+    <div class="no-js">
+        <section
+            class="vs-carousel"
+            data-test="carousel"
+            ref="carousel"
+        >
+            <VsContainer>
+                <VsRow>
+                    <VsCol
+                        cols="12"
                     >
-                        <!-- @slot default slot to contain slides -->
-                        <slot />
-                    </Splide>
-                    <div class="vs-carousel__mobile-pagination-wrapper">
-                        <p
-                            class="vs-carousel__mobile-pagination"
-                            data-test="carousel__mobile-pagination"
+                        <Splide
+                            :options="splideOptions"
+                            @splide:moved="carouselMoved"
+                            @splide:mounted="initialiseMobilePagination"
+                            @splide:updated="resetTabbing"
                         >
-                            {{ currentSlide }} of {{ totalSlides }}
-                        </p>
-                    </div>
-                </VsCol>
-            </VsRow>
-        </VsContainer>
-    </section>
+                            <!-- @slot default slot to contain slides -->
+                            <slot />
+                        </Splide>
+                        <div class="vs-carousel__mobile-pagination-wrapper">
+                            <p
+                                class="vs-carousel__mobile-pagination"
+                                data-test="carousel__mobile-pagination"
+                            >
+                                {{ currentSlide }} of {{ totalSlides }}
+                            </p>
+                        </div>
+                    </VsCol>
+                </VsRow>
+            </VsContainer>
+        </section>
+    </div>
 </template>
 
 <script>
@@ -80,12 +82,18 @@ export default {
         };
     },
     mounted() {
-        window.addEventListener('resize', this.resetTabbing());
+        window.addEventListener('resize', () => {
+            this.resetTabbing();
+        });
+        window.addEventListener('keydown', (e) => {
+            if (e.which === 9) {
+                this.resetTabbing();
+            }
+        });
     },
     methods: {
         initialiseMobilePagination(splide) {
             this.totalSlides = splide.length;
-            this.resetTabbing();
         },
         carouselMoved(splide) {
             this.currentSlide = splide.index + 1;
@@ -120,79 +128,102 @@ export default {
 
         .splide {
             margin: 0 auto;
-        }
 
-        .splide__arrow[disabled] {
-            display: none;
-        }
-
-        .splide__track {
-            overflow: visible;
-        }
-
-        .splide__pagination {
-            position: relative;
-            transform: none;
-            width: 100%;
-            left: auto;
-            bottom: auto;
-            display: none;
-        }
-
-        .splide__arrow {
-            border-radius: 0;
-            background: $color-pink;
-            opacity: 1;
-            top: 25%;
-
-            svg {
-                fill: $color-white;
+            &__arrow[disabled] {
+                display: none;
             }
 
-            &:hover {
-                background: $color-pink-shade-2;
+            &__pagination {
+                position: relative;
+                transform: none;
+                width: 100%;
+                left: auto;
+                bottom: auto;
+                display: none;
             }
 
-            &:focus {
-                border: 4px solid $color-pink-tint-5;
+            &__arrow {
+                border-radius: 0;
+                background: $color-pink;
+                opacity: 1;
+                top: 25%;
             }
-        }
 
-        .splide__arrow--prev {
-            left: 0;
-            transform: translateX(-50%);
-        }
+            &__track {
+                overflow: visible;
+            }
 
-        .splide__arrow--next {
-            right: 0;
-            transform: translateX(50%);
+            &__pagination {
+                position: relative;
+                transform: none;
+                width: 100%;
+                left: auto;
+                bottom: auto;
+                display: none;
+            }
+
+            &__arrow {
+                border-radius: 0;
+                background: $color-pink;
+                opacity: 1;
+                top: 25%;
+
+                svg {
+                    fill: $color-white;
+                    width: 1rem;
+                    height: 1rem;
+                }
+
+                &:hover {
+                    background: $color-pink-shade-2;
+                }
+
+                &:focus {
+                    border: 4px solid $color-pink-tint-5;
+                }
+            }
+
+            .splide__pagination,
+            &__mobile-pagination-wrapper {
+                margin-top: $spacer-9;
+            }
+
+            &__arrow--prev {
+                left: 0;
+                transform: translateX(-50%);
+            }
+
+            &__arrow--next {
+                right: 0;
+                transform: translateX(50%);
+            }
+
+            &__pagination__page {
+                width: 10px;
+                height: 10px;
+                background: $color-gray-tint-4;
+
+                &.is-active {
+                    transform: none;
+                    background: $color-black;
+                    opacity: 1;
+                    width: 14px;
+                    height: 14px;
+                }
+
+                &:hover {
+                    background: $color-pink-tint-5
+                }
+
+                &:focus {
+                    outline: 1px solid $color-pink;
+                }
+            }
         }
 
         .splide__pagination,
-        &__mobile-pagination-wrapper {
+        .carousel__mobile-pagination-wrapper {
             margin-top: $spacer-9;
-        }
-
-        .splide__pagination__page {
-            width: 10px;
-            height: 10px;
-            background: $color-gray-tint-4;
-
-            &.is-active {
-                transform: none;
-                background: $color-black;
-                opacity: 1;
-                width: 14px;
-                height: 14px;
-            }
-
-            &:hover {
-                background: $color-pink-tint-5
-            }
-
-            &:focus {
-                outline: 1px solid $color-pink;
-            }
         }
 
         &__mobile-pagination-wrapper {
@@ -217,6 +248,128 @@ export default {
 
             &__mobile-pagination-wrapper {
                 display: none;
+            }
+        }
+    }
+
+    .no-js .vs-carousel {
+        .splide__arrows {
+            display: none;
+        }
+
+        .splide__list {
+            width: 100% !important;
+            transform: none !important;
+            flex-wrap: wrap;
+        }
+
+        .splide__slide {
+            width: 100% !important;
+            margin-bottom: $spacer-3;
+            padding-bottom: $spacer-3;
+
+            &::after {
+                content: '';
+                border-bottom: 1px solid $color-gray-tint-5;
+                position: absolute;
+                width: calc(100% - 16px);
+                left: 8px;
+                bottom: 0;
+            }
+        }
+
+        .splide__pagination {
+            display: none;
+        }
+
+        .splide__slide .card {
+            display: flex;
+            flex-direction: row;
+            padding: $spacer-2;
+            border: none;
+            height: 100%;
+            transition: box-shadow 800ms;
+
+            &:hover {
+                box-shadow: 10px 10px 20px $color-gray-tint-4;
+
+                .stretched-link-card__title {
+                    text-decoration: underline;
+                }
+            }
+
+            .stretched-link {
+                text-decoration: none;
+            }
+
+            .card-body {
+                background: none;
+                padding: 0;
+                align-self: flex-start;
+                width: 66%;
+            }
+
+            .stretched-link-card__img {
+                width: 33%;
+                align-self: flex-start;
+                margin-right: $spacer-4;
+            }
+
+            .stretched-link-card__title {
+                font-size: $small-font-size;
+                letter-spacing: .05rem;
+                line-height: $line-height-m;
+                color: $color-base-text;
+                text-decoration: none;
+            }
+
+            .stretched-link {
+                letter-spacing: 0;
+            }
+
+            .card-title {
+                display: flex;
+                margin-bottom: 0;
+            }
+
+            .stretched-link-card__content {
+                display: none;
+
+                p {
+                    display: -webkit-box;
+                    -webkit-line-clamp: 3;
+                    -webkit-box-orient: vertical;
+                    overflow: hidden;
+                }
+            }
+
+            .carousel__mobile-pagination-wrapper {
+                display: none;
+            }
+        }
+
+        @include media-breakpoint-up(sm) {
+            .stretched-link-card {
+                .stretched-link-card__content {
+                    display: block;
+                }
+            }
+        }
+
+        @include media-breakpoint-up(lg) {
+            .stretched-link-card {
+                .stretched-link-card__title {
+                    font-size: $small-font-size;
+                }
+
+                .stretched-link-card__content {
+                    margin: $spacer-2 0 0;
+                    line-height: $line-height-s;
+                }
+            }
+
+            .splide__slide {
+                width: calc(50% - 24px) !important;
             }
         }
     }

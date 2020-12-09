@@ -1663,17 +1663,16 @@
         jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
         jcr:uuid: af7bc15d-bc33-4b84-ad01-e77eb5acde61
         hippo:name: Edinburgh
-        hippo:versionHistory: 62980d2e-1781-45ad-bbc1-4e2a70b4bb48
+        hippo:versionHistory: 4e49fa40-c4ab-48f3-9a52-9e82dd6e2285
         /content[1]:
           jcr:primaryType: visitscotland:Destination
           jcr:mixinTypes: ['mix:referenceable']
           jcr:uuid: 76bab125-f189-4ab2-ae52-8d216ed96af5
           hippo:availability: []
-          hippostd:holder: admin
           hippostd:state: draft
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2020-05-15T11:13:39.117+01:00
-          hippostdpubwf:lastModificationDate: 2020-11-26T13:13:24.462Z
+          hippostdpubwf:lastModificationDate: 2020-12-04T09:26:17.870Z
           hippostdpubwf:lastModifiedBy: admin
           hippotranslation:id: 1fbcced7-88f7-4124-8470-b9ed88b5ead0
           hippotranslation:locale: en
@@ -1683,15 +1682,7 @@
           visitscotland:seoNoIndex: false
           visitscotland:seoTitle: Edinburgh seo title
           visitscotland:teaser: Edinburgh city teaser
-          visitscotland:title: Edinburgh With an abundance of history, top quality
-            attractions and beautiful architecture, Edinburgh is a city that you won’t
-            forget in a hurry. Explore the Medieval Old Town and the elegant Georgian
-            New Town, which sit side by side, and visit unique attractions throughout
-            the city on a holiday in Edinburgh.  Whether you’re short of time and
-            can only manage a weekend break, planning a full-blown city break or are
-            visiting Edinburgh as part of a wider holiday in Scotland, there’s lots
-            to fill your time, from unforgettable historic sites and world-class festivals
-            to fantastic shopping and mouth-watering dining.
+          visitscotland:title: Edinburgh
           visitscotland:translation: ''
           /visitscotland:heroImage:
             jcr:primaryType: hippogallerypicker:imagelink
@@ -1713,7 +1704,7 @@
           hippostd:state: unpublished
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2020-05-15T11:13:39.117+01:00
-          hippostdpubwf:lastModificationDate: 2020-11-26T13:05:31.241Z
+          hippostdpubwf:lastModificationDate: 2020-12-04T09:26:17.713Z
           hippostdpubwf:lastModifiedBy: admin
           hippotranslation:id: 1fbcced7-88f7-4124-8470-b9ed88b5ead0
           hippotranslation:locale: en
@@ -1723,15 +1714,7 @@
           visitscotland:seoNoIndex: false
           visitscotland:seoTitle: Edinburgh seo title
           visitscotland:teaser: Edinburgh city teaser
-          visitscotland:title: Edinburgh With an abundance of history, top quality
-            attractions and beautiful architecture, Edinburgh is a city that you won’t
-            forget in a hurry. Explore the Medieval Old Town and the elegant Georgian
-            New Town, which sit side by side, and visit unique attractions throughout
-            the city on a holiday in Edinburgh.  Whether you’re short of time and
-            can only manage a weekend break, planning a full-blown city break or are
-            visiting Edinburgh as part of a wider holiday in Scotland, there’s lots
-            to fill your time, from unforgettable historic sites and world-class festivals
-            to fantastic shopping and mouth-watering dining.
+          visitscotland:title: Edinburgh
           visitscotland:translation: ''
           /visitscotland:heroImage:
             jcr:primaryType: hippogallerypicker:imagelink
@@ -1753,9 +1736,9 @@
           hippostd:state: published
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2020-05-15T11:13:39.117+01:00
-          hippostdpubwf:lastModificationDate: 2020-05-25T18:02:22.368+01:00
+          hippostdpubwf:lastModificationDate: 2020-12-04T09:26:17.713Z
           hippostdpubwf:lastModifiedBy: admin
-          hippostdpubwf:publicationDate: 2020-07-13T10:35:12.588+01:00
+          hippostdpubwf:publicationDate: 2020-12-04T09:26:22.146Z
           hippotranslation:id: 1fbcced7-88f7-4124-8470-b9ed88b5ead0
           hippotranslation:locale: en
           visitscotland:breadcrumb: ''
@@ -1765,6 +1748,7 @@
           visitscotland:seoTitle: Edinburgh seo title
           visitscotland:teaser: Edinburgh city teaser
           visitscotland:title: Edinburgh
+          visitscotland:translation: ''
           /visitscotland:heroImage:
             jcr:primaryType: hippogallerypicker:imagelink
             hippo:docbase: ecede5a4-326c-4ce5-b9be-bcdf32c3f2c2
@@ -1788,7 +1772,6 @@
           jcr:mixinTypes: ['mix:referenceable']
           jcr:uuid: 116b29ac-dbf3-4c7e-b97f-b4e41dc3aefd
           hippo:availability: []
-          hippostd:holder: admin
           hippostd:state: draft
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2020-05-21T17:54:15.934+01:00
@@ -3899,7 +3882,6 @@
             jcr:mixinTypes: ['mix:referenceable']
             jcr:uuid: 27ea31d2-a3a6-4ea1-972a-5d92fda60d95
             hippo:availability: []
-            hippostd:holder: admin
             hippostd:state: draft
             hippostdpubwf:createdBy: admin
             hippostdpubwf:creationDate: 2019-12-16T12:20:46.037Z

@@ -71,9 +71,9 @@ public class ListicleContentComponent extends PageContentComponent<Listicle> {
                     InstagramImage instagramLink = (InstagramImage) listicleItem.getListicleItemImage();
                     location = instagramLink.getLocation();
                     try {
-                        String caption = CommonUtils.getInstagramCaption(instagramLink);
-                        if (caption != null) {
-                            flatImage = new FlatImage(instagramLink,caption,request.getLocale());
+                        JsonNode instagramInfo = CommonUtils.getInstagramInformation(instagramLink);
+                        if (instagramInfo != null) {
+                            flatImage = new FlatImage(instagramLink,instagramInfo,request.getLocale());
                         } else {
                             errors.add("The Instagram id is not valid");
                             logger.warn(CommonUtils.contentIssue("The Instagram id %s is not valid, Listicle = %s - %s",
