@@ -2,14 +2,8 @@
     <VsStretchedLinkCard
         :link="linkUrl"
         :type="linkType"
-        class="megalink-multi-image p-2"
-        :class="[
-            themeClass,
-            {
-                'megalink-multi-image--featured' : featured,
-                'megalink-multi-image--featured-last' : lastFeatured,
-            }
-        ]"
+        class="vs-megalink-multi-image p-2"
+        :class="multiImageClasses"
         data-test="megalink-multi-image"
         :theme="theme"
     >
@@ -17,17 +11,17 @@
             slot="stretchedCardImage"
             :src="imgSrc"
             :alt="imgAlt"
-            class="megalink-multi-image__img"
+            class="vs-megalink-multi-image__img"
         />
         <span
             slot="stretchedCardHeader"
-            class="megalink-multi-image__title"
+            class="vs-megalink-multi-image__title"
             data-test="megalink-multi-image__title"
         ><!-- @slot Slot to contain heading --><slot name="vsMultiImageHeading" /></span>
 
         <VsRichTextWrapper
             slot="stretchedCardContent"
-            class="lead megalink-multi-image__content"
+            class="lead vs-megalink-multi-image__content"
             data-test="megalink-multi-image__content"
         >
             <!-- @slot Slot to contain content -->
@@ -113,15 +107,21 @@ export default {
         },
     },
     computed: {
-        themeClass() {
-            return `megalink-multi-image--${this.theme}`;
+        multiImageClasses() {
+            return [
+                `vs-megalink-multi-image--${this.theme}`,
+                {
+                    'vs-megalink-multi-image--featured': this.featured,
+                    'vs-megalink-multi-image--featured-last': this.lastFeatured,
+                },
+            ];
         },
     },
 };
 </script>
 
 <style lang="scss">
-    .megalink-multi-image.card {
+    .vs-megalink-multi-image.card {
         border: none;
         background: transparent;
         position: relative;
@@ -134,7 +134,7 @@ export default {
             letter-spacing: 0;
 
             &:hover {
-                .megalink-multi-image__title {
+                .vs-megalink-multi-image__title {
                     text-decoration: underline;
                 }
             }
@@ -148,15 +148,11 @@ export default {
             padding: $spacer-4 0 $spacer-2;
         }
 
-        &:hover {
-            box-shadow: 10px 10px 20px $color-gray-tint-4;
-        }
-
-        .megalink-multi-image__img {
+        .vs-megalink-multi-image__img {
             max-width: 100%;
         }
 
-        .megalink-multi-image__title {
+        .vs-megalink-multi-image__title {
             font-size: $font-size-sm;
             line-height: $line-height-s;
             letter-spacing: 0.0875rem;
@@ -171,7 +167,7 @@ export default {
             width: 12px;
         }
 
-        .megalink-multi-image__content {
+        .vs-megalink-multi-image__content {
             margin-top: $spacer-2;
             line-height: $line-height-s;
 
@@ -181,17 +177,21 @@ export default {
         }
     };
 
-    .megalink-multi-image--dark.card {
+    .vs-megalink-multi-image--dark.card {
         .stretched-link {
             color: $color-white;
+        }
+
+        &:hover {
+            box-shadow: 10px 10px 20px $color-theme-dark;
         }
     }
 
     @include media-breakpoint-up(xl) {
-        .megalink-multi-image.card {
+        .vs-megalink-multi-image.card {
             margin-bottom: $spacer-11;
 
-            .megalink-multi-image__title {
+            .vs-megalink-multi-image__title {
                 font-size: $h6-font-size;
                 line-height: $line-height-s;
             }
@@ -201,13 +201,13 @@ export default {
             }
         }
 
-        .megalink-multi-image--featured.card {
+        .vs-megalink-multi-image--featured.card {
             display: flex;
             flex-direction: row;
             justify-content: flex-start;
             margin-top: 0;
 
-            .megalink-multi-image__title {
+            .vs-megalink-multi-image__title {
                 font-size: $h3-font-size;
                 letter-spacing: 0.125rem;
             }
@@ -217,11 +217,11 @@ export default {
                 width: 16px;
             }
 
-            .megalink-multi-image__img {
+            .vs-megalink-multi-image__img {
                 width: calc(50% - 20px);
             }
 
-            .megalink-multi-image__content {
+            .vs-megalink-multi-image__content {
                 font-size: $lead-font-size;
                 margin-top: $spacer-8;
                 line-height: $line-height-m;
@@ -232,7 +232,7 @@ export default {
                 padding: $spacer-9 5% $spacer-5;
             }
 
-            &.megalink-multi-image--featured-last {
+            &.vs-megalink-multi-image--featured-last {
                 flex-direction: row-reverse;
             }
         }
