@@ -20,7 +20,7 @@ describe('VsCarouselSlide', () => {
     describe(':slots', () => {
         it('renders default vsCarouselSlideHeading slot content', () => {
             const wrapper = factoryShallowMount();
-            expect(wrapper.find('[data-test="carousel-slide__title"]').text()).toContain('Slide heading');
+            expect(wrapper.find('[data-test="vs-carousel-slide__title"]').text()).toContain('Slide heading');
         });
     });
 });
