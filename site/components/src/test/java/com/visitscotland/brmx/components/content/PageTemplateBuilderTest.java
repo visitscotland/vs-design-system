@@ -252,6 +252,31 @@ class PageTemplateBuilderTest {
 
         assertEquals(1, items.size());
         assertEquals(module.getType(), items.get(0).getType());
-        assertEquals(PageTemplateBuilder.themes[0], items.get(0).getTheme());
+        assertEquals(PageTemplateBuilder.NEUTRAL_THEME, items.get(0).getTheme());
     }
+
+    @Test
+    @DisplayName("VS-2015 - Match the initial background colour with the megalinks")
+    void setIntroTheme(){
+        Megalinks mega = new MegalinksMockBuilder().build();
+        when(page.getModules()).thenReturn(Collections.singletonList(mega));
+
+        when(linksFactory.getMegalinkModule(mega, Locale.UK)).thenReturn(new MultiImageLinksModule());
+        builder.addModules(request);
+        LinksModule module = (LinksModule) ((List<Module>) request.getAttribute(PageTemplateBuilder.PAGE_ITEMS)).get(0);
+
+        assertNotNull(request.getAttribute(PageTemplateBuilder.INTRO_THEME));
+        assertEquals(request.getAttribute(PageTemplateBuilder.INTRO_THEME), module.getTheme());
+    }
+
+    @Test
+    @DisplayName("VS-2015 - introTheme is populated with a neutral theme when the theme cannot be inferred")
+    void setIntroTheme_forNonMegalinks(){
+        when(page.getModules()).thenReturn(Collections.emptyList());
+        builder.addModules(request);
+
+        assertEquals(PageTemplateBuilder.NEUTRAL_THEME,
+                request.getAttribute(PageTemplateBuilder.INTRO_THEME));
+    }
+
 }
