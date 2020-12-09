@@ -25,7 +25,7 @@
             </template>
             <template slot="vsSingleImageLinks">
                 <#list item.links as listItem>
-                    <li class="megalink-single-image__link-list-item">
+                    <li class="vs-megalink-single-image__link-list-item">
                         <vs-link
                             href="${listItem.link}"
                             variant="${theme}"
