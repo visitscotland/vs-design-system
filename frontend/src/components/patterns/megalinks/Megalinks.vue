@@ -239,8 +239,8 @@ export default {
                 color: $color-white;
             }
 
-            .megalink-multi-image.card,
-            .megalink-link-list .megalink-link-list__wrapper.card {
+            .vs-megalink-multi-image.card,
+            .vs-megalink-link-list .vs-megalink-link-list__wrapper.card {
                 &:hover {
                     box-shadow: 10px 10px 15px #000000;
                 }

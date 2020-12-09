@@ -138,7 +138,7 @@ export default {
         min-width: 100%;
 
         .vs-megalink-single-image__title {
-            margin-bottom: 0;
+            margin-bottom: $spacer-8;
         }
 
         .vs-megalink-single-image__content {
@@ -151,11 +151,7 @@ export default {
             width: 100%;
 
             p {
-                margin-bottom: 1rem;
-
-                &:first-of-type {
-                    margin-top: 1rem;
-                }
+                margin-bottom: $spacer-4;
             }
         }
 
