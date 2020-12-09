@@ -116,14 +116,19 @@ export default {
 
     .vs-carousel-slide {
         height: 100%;
-        padding: $spacer-2;
+        padding: $spacer-2 $spacer-2 $spacer-6;
 
         .card-title {
             margin-bottom: $spacer-0;
         }
 
         .card-body {
-            padding: $spacer-3 0;
+            padding: $spacer-3 0 0;
+            text-align: left;;
+
+            .vs-heading__sub-heading {
+                display: none;
+            }
         }
     }
 </style>
