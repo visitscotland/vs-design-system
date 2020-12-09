@@ -36,6 +36,6 @@ describe('VsCarousel', () => {
             totalSlides: 10,
         });
 
-        expect(wrapper.find('[data-test="carousel__mobile-pagination"]').text()).toBe('4 of 10');
+        expect(wrapper.find('[data-test="vs-carousel__mobile-pagination"]').text()).toBe('4 of 10');
     });
 });

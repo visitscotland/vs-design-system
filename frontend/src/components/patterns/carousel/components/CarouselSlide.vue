@@ -21,7 +21,7 @@
             <span
                 slot="stretchedCardHeader"
                 class="vs-carousel-slide__title"
-                data-test="carousel-slide__title"
+                data-test="vs-carousel-slide__title"
             >
                 <!-- @slot Slot to contain heading -->
                 <slot name="vsCarouselSlideHeading" />
