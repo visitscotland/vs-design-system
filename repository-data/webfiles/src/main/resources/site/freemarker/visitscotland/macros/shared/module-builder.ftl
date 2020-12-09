@@ -4,7 +4,7 @@
 <#include "../modules/megalinks/megalinks-horizontal-list.ftl">
 <#include "../modules/tourism-information/tourisminformation-iknow.ftl">
 <#include "../modules/tourism-information/tourisminformation-icentre.ftl">
-<#include "../modules/carousel/carousel.ftl">
+<#include "../modules/otyml/otyml.ftl">
 
 <#-- Implicit Request Objects -->
 <#-- @ftlvariable name="document" type="com.visitscotland.brmx.beans.Destination" -->
@@ -24,7 +24,7 @@
             <@megalinks item=module type=module.getType() />
 
         <#elseif module.getType()== "HorizontalListLinksModule">
-            <@carousel module/>
+            <@otyml module/>
 
         <#elseif module.getType()== "ICentreModule">
             <@icentre module/>

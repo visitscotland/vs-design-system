@@ -4,42 +4,42 @@
 
 <#macro carousel item>
     <vs-carousel>
-        <#list item.links as megalink>
-            <#if megalink.image.cmsImage??>
+        <#list item.links as carouselItem>
+            <#if carouselItem.image.cmsImage??>
                 <#assign image>
-                    <@hst.link hippobean=megalink.image.cmsImage.original/>
+                    <@hst.link hippobean=carouselItem.image.cmsImage.original/>
                 </#assign>
             <#else>
-                <#assign image = megalink.image.externalImage!'' />
+                <#assign image = carouselItem.image.externalImage!'' />
             </#if>
             <vs-carousel-slide
-                link-url="${megalink.link}"
-                link-type="${megalink.type}"
+                link-url="${carouselItem.link}"
+                link-type="${carouselItem.type}"
                 img-src="${image}"
-                img-alt="${(megalink.image.altText)!'${label("essentials.global", "default.alt-text")}'}"
-                <#if megalink.category??>
-                    category="${megalink.category}"
+                img-alt="${(carouselItem.image.altText)!'${label("essentials.global", "default.alt-text")}'}"
+                <#if carouselItem.category??>
+                    category="${carouselItem.category}"
                 </#if>
-                <#if megalink.itineraryTransport??>
-                    transport="${megalink.itineraryTransport}"
-                    days="${megalink.itineraryDays}"
+                <#if carouselItem.itineraryTransport??>
+                    transport="${carouselItem.itineraryTransport}"
+                    days="${carouselItem.itineraryDays}"
                 </#if>
             >
                 <template slot="vsCarouselSlideHeading">
-                    ${megalink.label}
+                    ${carouselItem.label}
                 </template>
 
                 <#--  <vs-col cols="12" lg="3">
-                    <vs-link href="${megalink.link}">
+                    <vs-link href="${carouselItem.link}">
                         <vs-row>
                             <vs-col >
                                 <vs-img alt=""
                                         src="">
                                 </vs-img>
 
-                                <#if megalink.itineraryTransport??>
-                                    <vs-heading level="7">Transport: ${megalink.itineraryTransport}  <vs-icon name="${megalink.itineraryTransport}" variant="dark" size="lg"></vs-icon>  </vs-heading>
-                                    <vs-heading level="7">Days: ${megalink.itineraryDays} days</vs-heading>
+                                <#if carouselItem.itineraryTransport??>
+                                    <vs-heading level="7">Transport: ${carouselItem.itineraryTransport}  <vs-icon name="${carouselItem.itineraryTransport}" variant="dark" size="lg"></vs-icon>  </vs-heading>
+                                    <vs-heading level="7">Days: ${carouselItem.itineraryDays} days</vs-heading>
                                 </#if>
                                 <vs-heading level="3"></vs-heading>
 
