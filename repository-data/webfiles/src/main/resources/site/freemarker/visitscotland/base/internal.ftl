@@ -1,18 +1,13 @@
 <!doctype html>
 <#include "../../include/imports.ftl">
+<#include "headerContributions.ftl">
+<#include "footerContributions.ftl">
 
 <html lang="en">
 <head>
     <#compress>
         <internal-css-header>
-            <meta charset="utf-8"/>
-            <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <@hst.headContributions categoryIncludes="seo" xhtml=true/>
-            <@hst.headContributions categoryIncludes="opengraph" xhtml=true/>
-            <@hst.headContributions categoryIncludes="htmlHeadPreload" xhtml=true/>
-            <@hst.headContributions categoryIncludes="htmlHeadStyles" xhtml=true/>
-            <@hst.headContributions categoryExcludes="htmlHeadPreload,htmlHeadStyles,htmlBodyEndScriptsFirst,htmlBodyEndScripts,htmlBodyEndAppInit,seo,opengraph" xhtml=true/>
-
+            <@headContributions />
             <!-- end include -->
         </internal-css-header>
     </#compress>
@@ -41,9 +36,7 @@
 </#compress>
 <#compress>
     <internal-scripts-footer>
-        <@hst.headContributions categoryIncludes="htmlBodyEndScriptsFirst" xhtml=true/>
-        <@hst.headContributions categoryIncludes="htmlBodyEndScripts" xhtml=true/>
-        <@hst.headContributions categoryIncludes="htmlBodyEndAppInit" xhtml=true/>
+        <@footerContributions />
         <!-- end include -->
     </internal-scripts-footer>
 </#compress>
