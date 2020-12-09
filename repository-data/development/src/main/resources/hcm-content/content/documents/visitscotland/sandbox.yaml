@@ -8437,6 +8437,88 @@
           hippostd:foldertype: [new-translated-folder-shared, new-shared-document]
           hippotranslation:id: b90253b3-62d2-4d61-821f-3b3a5814e031
           hippotranslation:locale: en
+          /pertshire-dundee-and-angus:
+            jcr:primaryType: hippo:handle
+            jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
+            jcr:uuid: d1bba72c-5315-40df-9372-d03fcf6a0f37
+            hippo:name: Pertshire dundee and angus
+            hippo:versionHistory: a745ef26-5e79-44d1-93f9-ccc29a5b7fa3
+            /pertshire-dundee-and-angus[1]:
+              jcr:primaryType: visitscotland:SharedLink
+              jcr:mixinTypes: ['mix:referenceable']
+              jcr:uuid: 971e8847-7b6b-4856-a959-88977bcac200
+              hippo:availability: []
+              hippostd:state: draft
+              hippostdpubwf:createdBy: admin
+              hippostdpubwf:creationDate: 2020-12-09T16:35:16.892Z
+              hippostdpubwf:lastModificationDate: 2020-12-09T16:36:59.038Z
+              hippostdpubwf:lastModifiedBy: admin
+              hippotranslation:id: 5453dcae-33f0-4fcd-9dd6-55232e14d1af
+              hippotranslation:locale: en
+              visitscotland:teaser: Things to see in Perthshire Dundee & Angus
+              visitscotland:title: Perthshire Dundee & Angus
+              visitscotland:translation: ''
+              /visitscotland:image:
+                jcr:primaryType: hippogallerypicker:imagelink
+                hippo:docbase: f846ac14-4bbe-43af-8bdd-1f60979abc11
+                hippo:facets: []
+                hippo:modes: []
+                hippo:values: []
+              /visitscotland:linkTypes:
+                jcr:primaryType: visitscotland:ExternalDocument
+                visitscotland:category: Things to do
+                visitscotland:link: https://www.visitscotland.com/ebrochures/en/what-to-see-and-do/perthshireanddundee.pdf
+            /pertshire-dundee-and-angus[2]:
+              jcr:primaryType: visitscotland:SharedLink
+              jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
+              jcr:uuid: 179bd81f-8c84-4952-8835-c26a09724106
+              hippo:availability: [preview]
+              hippostd:state: unpublished
+              hippostdpubwf:createdBy: admin
+              hippostdpubwf:creationDate: 2020-12-09T16:35:16.892Z
+              hippostdpubwf:lastModificationDate: 2020-12-09T16:36:58.984Z
+              hippostdpubwf:lastModifiedBy: admin
+              hippotranslation:id: 5453dcae-33f0-4fcd-9dd6-55232e14d1af
+              hippotranslation:locale: en
+              visitscotland:teaser: Things to see in Perthshire Dundee & Angus
+              visitscotland:title: Perthshire Dundee & Angus
+              visitscotland:translation: ''
+              /visitscotland:image:
+                jcr:primaryType: hippogallerypicker:imagelink
+                hippo:docbase: f846ac14-4bbe-43af-8bdd-1f60979abc11
+                hippo:facets: []
+                hippo:modes: []
+                hippo:values: []
+              /visitscotland:linkTypes:
+                jcr:primaryType: visitscotland:ExternalDocument
+                visitscotland:category: Things to do
+                visitscotland:link: https://www.visitscotland.com/ebrochures/en/what-to-see-and-do/perthshireanddundee.pdf
+            /pertshire-dundee-and-angus[3]:
+              jcr:primaryType: visitscotland:SharedLink
+              jcr:mixinTypes: ['mix:referenceable']
+              jcr:uuid: 2cedde29-acf9-4804-87d7-20db600eb7f8
+              hippo:availability: [live]
+              hippostd:state: published
+              hippostdpubwf:createdBy: admin
+              hippostdpubwf:creationDate: 2020-12-09T16:35:16.892Z
+              hippostdpubwf:lastModificationDate: 2020-12-09T16:36:58.984Z
+              hippostdpubwf:lastModifiedBy: admin
+              hippostdpubwf:publicationDate: 2020-12-09T16:37:37.970Z
+              hippotranslation:id: 5453dcae-33f0-4fcd-9dd6-55232e14d1af
+              hippotranslation:locale: en
+              visitscotland:teaser: Things to see in Perthshire Dundee & Angus
+              visitscotland:title: Perthshire Dundee & Angus
+              visitscotland:translation: ''
+              /visitscotland:image:
+                jcr:primaryType: hippogallerypicker:imagelink
+                hippo:docbase: f846ac14-4bbe-43af-8bdd-1f60979abc11
+                hippo:facets: []
+                hippo:modes: []
+                hippo:values: []
+              /visitscotland:linkTypes:
+                jcr:primaryType: visitscotland:ExternalDocument
+                visitscotland:category: Things to do
+                visitscotland:link: https://www.visitscotland.com/ebrochures/en/what-to-see-and-do/perthshireanddundee.pdf
         /q:
           jcr:primaryType: hippostd:folder
           jcr:mixinTypes: ['hippo:named', 'hippotranslation:translated', 'mix:versionable']

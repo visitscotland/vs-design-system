@@ -9,7 +9,10 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
 import java.net.URL;
+import java.net.URLConnection;
+import java.text.DecimalFormat;
 import java.time.LocalTime;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
@@ -63,6 +66,27 @@ public class CommonUtils {
             response = mapper.readTree(request(instagramInformation.toString()));
         }
         return response;
+    }
+
+    public static String getExtenalDocumentSize(String link){
+        String size = null;
+        URL url;
+        DecimalFormat decimalFormat = new DecimalFormat("#.#");
+        try {
+            url = new URL(link);
+            URLConnection con = url.openConnection();
+
+            String ext = con.getContentType();
+            if (ext.contains("pdf")){
+                double bytes = con.getContentLength();
+                size = "PDF " + decimalFormat.format((bytes / 1024) / 1024) + "MB";
+            }
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return size;
     }
 
 
