@@ -1,37 +1,35 @@
 <template>
-    <div class="no-js">
-        <section
-            class="vs-carousel"
-            data-test="vs-carousel"
-            ref="carousel"
-        >
-            <VsContainer>
-                <VsRow>
-                    <VsCol
-                        cols="12"
+    <section
+        class="vs-carousel"
+        data-test="vs-carousel"
+        ref="carousel"
+    >
+        <VsContainer>
+            <VsRow>
+                <VsCol
+                    cols="12"
+                >
+                    <Splide
+                        :options="splideOptions"
+                        @splide:moved="carouselMoved"
+                        @splide:mounted="initialiseMobilePagination"
+                        @splide:updated="resetTabbing"
                     >
-                        <Splide
-                            :options="splideOptions"
-                            @splide:moved="carouselMoved"
-                            @splide:mounted="initialiseMobilePagination"
-                            @splide:updated="resetTabbing"
+                        <!-- @slot default slot to contain slides -->
+                        <slot />
+                    </Splide>
+                    <div class="vs-carousel__mobile-pagination-wrapper">
+                        <p
+                            class="vs-carousel__mobile-pagination"
+                            data-test="vs-carousel__mobile-pagination"
                         >
-                            <!-- @slot default slot to contain slides -->
-                            <slot />
-                        </Splide>
-                        <div class="vs-carousel__mobile-pagination-wrapper">
-                            <p
-                                class="vs-carousel__mobile-pagination"
-                                data-test="vs-carousel__mobile-pagination"
-                            >
-                                {{ currentSlide }} of {{ totalSlides }}
-                            </p>
-                        </div>
-                    </VsCol>
-                </VsRow>
-            </VsContainer>
-        </section>
-    </div>
+                            {{ currentSlide }} of {{ totalSlides }}
+                        </p>
+                    </div>
+                </VsCol>
+            </VsRow>
+        </VsContainer>
+    </section>
 </template>
 
 <script>
@@ -138,21 +136,6 @@ export default {
                 display: none;
             }
 
-            &__pagination {
-                position: relative;
-                transform: none;
-                width: 100%;
-                left: auto;
-                bottom: auto;
-                display: none;
-            }
-
-            svg {
-                fill: $color-white;
-                height: 1rem;
-                width: 1rem;
-            }
-
             &__track {
                 overflow: visible;
             }
@@ -222,7 +205,7 @@ export default {
 
         .splide__pagination,
         .carousel__mobile-pagination-wrapper {
-            margin-top: $spacer-9;
+            margin-top: $spacer-10;
         }
 
         &__mobile-pagination-wrapper {
@@ -277,7 +260,8 @@ export default {
             }
         }
 
-        .splide__pagination {
+        .splide__pagination,
+        .stretched-link-panels {
             display: none;
         }
 
@@ -306,6 +290,7 @@ export default {
                 padding: 0;
                 align-self: flex-start;
                 width: 66%;
+                text-align: left;
             }
 
             .stretched-link-card__img {
