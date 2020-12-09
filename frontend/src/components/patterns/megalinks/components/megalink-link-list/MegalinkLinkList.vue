@@ -1,24 +1,24 @@
 <template>
     <div
-        class="megalink-link-list"
-        :class="themeClass"
+        class="vs-megalink-link-list"
+        :class="`vs-megalink-link-list--${theme}`"
     >
         <VsStretchedLinkCard
             link="https://visitscotland.com"
             :type="linkType"
-            class="megalink-link-list__wrapper"
+            class="vs-megalink-link-list__wrapper"
             icon-size="xxs"
-            :theme="theme === 'dark' ? 'dark' : 'light'"
+            :theme="theme"
         >
             <VsImg
                 slot="stretchedCardImage"
                 :src="imgSrc"
                 :alt="imgAlt"
-                class="megalink-link-list__img"
+                class="vs-megalink-link-list__img"
             />
             <span
                 slot="stretchedCardHeader"
-                class="megalink-link-list__title"
+                class="vs-megalink-link-list__title"
                 data-test="megalink-link-list__title"
             >
                 <!-- @slot Slot to contain heading -->
@@ -27,7 +27,7 @@
 
             <VsRichTextWrapper
                 slot="stretchedCardContent"
-                class="lead megalink-link-list__content"
+                class="lead vs-megalink-link-list__content"
                 data-test="megalink-link-list__content"
             >
                 <!-- @slot Slot to contain content -->
@@ -99,16 +99,11 @@ export default {
             validator: (value) => value.match(/(light|dark)/),
         },
     },
-    computed: {
-        themeClass() {
-            return `megalink-link-list--${this.theme}`;
-        },
-    },
 };
 </script>
 
 <style lang="scss">
-    .megalink-link-list {
+    .vs-megalink-link-list {
         border: none;
         padding: $spacer-2 0 $spacer-3;
         position: relative;
@@ -122,7 +117,7 @@ export default {
             bottom: 0;
         }
 
-        .megalink-link-list__wrapper.card {
+        .vs-megalink-link-list__wrapper.card {
             display: flex;
             flex-direction: row;
             padding: $spacer-2;
@@ -134,7 +129,7 @@ export default {
             &:hover {
                 box-shadow: 10px 10px 20px $color-gray-tint-4;
 
-                .megalink-link-list__title {
+                .vs-megalink-link-list__title {
                     text-decoration: underline;
                 }
             }
@@ -150,13 +145,13 @@ export default {
                 width: 66%;
             }
 
-            .megalink-link-list__img {
+            .vs-megalink-link-list__img {
                 max-width: 33%;
                 align-self: flex-start;
                 margin-right: $spacer-4;
             }
 
-            .megalink-link-list__title {
+            .vs-megalink-link-list__title {
                 font-size: $font-size-sm;
                 letter-spacing: .05rem;
                 line-height: $line-height-m;
@@ -177,26 +172,26 @@ export default {
                 }
             }
 
-            .megalink-link-list__content {
+            .vs-megalink-link-list__content {
                 display: none;
             }
         }
 
         &--dark {
-            .megalink-link-list__wrapper.card {
-                .megalink-link-list__title {
+            .vs-megalink-link-list__wrapper.card {
+                .vs-megalink-link-list__title {
                     color: $color-white;
                 }
             }
         }
 
         @include media-breakpoint-up(lg) {
-            .megalink-link-list__wrapper.card {
-                .megalink-link-list__title {
+            .vs-megalink-link-list__wrapper.card {
+                .vs-megalink-link-list__title {
                     font-size: $small-font-size;
                 }
 
-                .megalink-link-list__content {
+                .vs-megalink-link-list__content {
                     margin: $spacer-2 0 0;
                     line-height: $line-height-s;
                     display: block;
