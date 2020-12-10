@@ -27,7 +27,7 @@ describe('VsIcon', () => {
                 variant: testVariant,
             });
 
-            expect(wrapper.classes(`icon-${testVariant}`)).toBe(true);
+            expect(wrapper.classes(`vs-icon--variant-${testVariant}`)).toBe(true);
         });
 
         it(':orientation - should accept and render orientations as props', () => {
@@ -45,7 +45,7 @@ describe('VsIcon', () => {
                 size: testSize,
             });
 
-            expect(wrapper.classes(`icon-${testSize}`)).toBe(true);
+            expect(wrapper.classes(`vs-icon--size-${testSize}`)).toBe(true);
         });
     });
 });
