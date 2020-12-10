@@ -321,7 +321,7 @@ public class LinkModuleFactoryTest {
         when (resourceBundleService.getResourceBundle("essentials.global", "label.download", Locale.UK ,true)).thenReturn("DOWNLOAD");
         EnhancedLink enhancedLink = factory.createEnhancedLink(externalDocument,Locale.UK, false);
 
-        assertEquals("title(DOWNLOAD PDF 15.5MB)", enhancedLink.getLabel());
+        assertEquals("title(mvn mvn DOWNLOAD PDF 15.5MB)", enhancedLink.getLabel());
         assertEquals(com.visitscotland.brmx.beans.mapping.LinkType.DOWNLOAD, enhancedLink.getType());
         Mockito.verify((ExternalDocument)externalDocument.getLinkType(),Mockito.never()).getCategory();
     }
