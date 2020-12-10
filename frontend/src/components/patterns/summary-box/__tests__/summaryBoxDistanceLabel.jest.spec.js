@@ -1,6 +1,6 @@
 import { shallowMount, mount } from '@vue/test-utils';
 
-import VsSummaryBoxDistanceLabel from './SummaryBoxDistanceLabel';
+import VsSummaryBoxDistanceLabel from '../components/SummaryBoxDistanceLabel';
 
 const handleClick = jest.fn();
 

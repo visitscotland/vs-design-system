@@ -67,12 +67,7 @@ describe('VsLink', () => {
             });
 
             expect(wrapper.attributes('target')).toBe('_blank');
-            expect(wrapper.contains(VsIcon)).toBe(true);
-
-            await wrapper.setProps({
-                type: 'xyz',
-            });
-            expect(wrapper.classes()).not.toContain('vs-link--xyz');
+            expect(wrapper.find(VsIcon).exists()).toBe(true);
         });
 
         it(':type - should add a download attribute if download type is used', () => {

@@ -1,5 +1,8 @@
 <template>
-    <VsContainer class="vs-footer-nav-list">
+    <VsContainer
+        class="vs-footer-nav-list"
+        data-test="vs-footer-nav-list"
+    >
         <div class="vs-footer-nav-list">
             <VsAccordion :break-point="breakPoint">
                 <VsRow>
