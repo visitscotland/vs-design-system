@@ -1,7 +1,7 @@
 <template>
     <VsLink
         :href="href"
-        :type="external"
+        type="external"
         :class="icon"
         class="button-square-social"
         :aria-label="icon"
