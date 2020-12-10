@@ -1,5 +1,6 @@
 import CodeMirror from "codemirror"
 import CodeTabs from "../utils/tabs"
+import Vue from "vue"
 
 function format(node, level) {
     const indentBefore = new Array(level + 1).join("  ")
@@ -25,6 +26,20 @@ function format(node, level) {
 export default (previewComponent) => ({
     render(createElement) {
         return createElement(previewComponent)
+    },
+    created() {
+        Object.entries(Vue.options.components).forEach(c => {
+            const displayName = c[0];
+            const component = c[1];
+            const { name } = component.extendOptions;
+
+            // If display name is different than name, create an alias for the component
+            // Ex: VsAlert component display name is Alert
+            //     We then create VsAlert, an alias of Alert, to be used in preview
+            if (displayName !== name) {
+                Vue.component(name, component);
+            }
+        });
     },
     mounted() {
         CodeTabs.clean()
