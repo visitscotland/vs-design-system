@@ -1,6 +1,10 @@
 <template>
-    <li class="vs-footer-social-item">
+    <li
+        class="vs-footer-social-item"
+        data-test="vs-footer-social-item"
+    >
         <VsButtonSquareSocial
+            data-test="vs-footer-social-item__button"
             :href="href"
             :icon="icon"
         />

@@ -1,5 +1,7 @@
 <template>
-    <VsPrototype>
+    <VsPrototype
+        data-test="vs-social-share"
+    >
         <VsIcon
             name="share"
             variant="dark"
