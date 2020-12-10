@@ -12,6 +12,8 @@
 <script>
 /**
  * Itinerary tips that optionally display within an itinerary stop
+ *
+ * @displayName Itinerary Tips
  */
 
 export default {

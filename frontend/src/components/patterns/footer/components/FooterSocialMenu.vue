@@ -24,6 +24,8 @@ import VsList from '@components/elements/list/List';
 /**
  * The FooterSocialMenu is used inside the FooterNavList.
  * It's a wrapper for social media links in the footer.
+ *
+ * @displayName Footer Social Menu
  */
 
 export default {

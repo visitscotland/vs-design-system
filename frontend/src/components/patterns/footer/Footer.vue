@@ -46,8 +46,9 @@ import {
 
 /**
  * This component is the main Footer wrapper for the bottom of the page.
+ *
+ * @displayName Footer
  */
-
 export default {
     name: 'VsFooter',
     status: 'prototype',
