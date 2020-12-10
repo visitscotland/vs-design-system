@@ -21,7 +21,7 @@ class ExternalDocumentValidatorTest {
 
     @Test
     @DisplayName("The URL is not valid if it does not contain pdf extension")
-    void externalDocumentIncorrect() throws RepositoryException {
+    void externalDocumentIncorrect() {
         ExternalDocumentValidator validator = new ExternalDocumentValidator();
 
         when(context.createViolation()).thenReturn(mock(Violation.class));
