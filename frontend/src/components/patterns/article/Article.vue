@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import { VsCol } from '../elements/layout';
+import { VsCol } from '@components/elements/layout';
 
 /**
  * The Article component is a wrapper for article content, generally wrapped in content sections

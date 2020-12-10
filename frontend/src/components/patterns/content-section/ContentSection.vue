@@ -16,7 +16,7 @@
 </template>
 
 <script>
-import VsHeading from '../elements/heading';
+import VsHeading from '@components/elements/heading';
 
 /**
  * Section component
