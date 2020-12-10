@@ -47,12 +47,15 @@ class IKnowFactoryTest {
         String location = "Edinburgh";
         when(bundle.getResourceBundle(ICentreFactory.BUNDLE_ID,"iknow.title.default", Locale.UK))
                 .thenReturn("default title");
+        when(bundle.getResourceBundle(ICentreFactory.BUNDLE_ID,"iknow.description.default", Locale.UK))
+                .thenReturn("default description");
         when(bundle.getResourceBundle(ICentreFactory.BUNDLE_ID,"iknow.link.label", Locale.UK))
                 .thenReturn("link text");
 
         IKnowModule module = factory.getIKnowModule(mockBuilder.build().getIKnow(), location, Locale.UK);
 
         assertEquals("default title", module.getTitle());
+        assertEquals("default description", module.getDescription());
         assertEquals("link text", module.getLink().getLabel());
         assertTrue(module.getLink().getLink().contains(location));
         assertTrue(module.getLink().getLink().contains(DMSConstants.AWARD_IKNOW));
@@ -64,10 +67,11 @@ class IKnowFactoryTest {
     @DisplayName("VS-1661 - iKnow Module General Definition")
     void getModule_checkMapping() {
         // Verifies that the default title is used when a title is not defined the document
-        IKnow iknow = mockBuilder.addIKnowTitle("idunno").addIKnowDescription().build().getIKnow();
+        IKnow iknow = mockBuilder.addIKnowTitle("idunno").addIKnowDescription("description").build().getIKnow();
         IKnowModule module = factory.getIKnowModule(iknow, "Edinburgh", Locale.UK);
 
         assertEquals("idunno", module.getTitle());
+        assertEquals("description", module.getDescription());
         assertEquals(iknow.getDescription(), module.getDescription());
     }
 

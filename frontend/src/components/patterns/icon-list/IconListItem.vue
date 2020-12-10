@@ -1,5 +1,8 @@
 <template>
-    <li class="vs-icon-list__item">
+    <li
+        class="vs-icon-list__item"
+        data-test="vs-icon-list__item"
+    >
         <VsIcon
             :name="icon"
             variant="dark"
