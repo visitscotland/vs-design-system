@@ -1,6 +1,7 @@
 <template>
     <div
         class="border-top border-secondary-light vs-footer-utility-list"
+        data-test="vs-footer-utility-list"
         data-unique-id="vs-footer-utility_links"
     >
         <VsContainer>
