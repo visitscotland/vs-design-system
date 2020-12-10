@@ -181,7 +181,7 @@ definitions:
             jcr:primaryType: frontend:plugin
             caption: No index
             field: seoNoIndex
-            hint: Page will not be indexed by Search Engines. Only check if SEO have
+            hint: Page will not be indexed by Search Engines. Only tick if SEO have
               advised.
             plugin.class: org.hippoecm.frontend.editor.plugins.field.PropertyFieldPlugin
             wicket.id: ${cluster.id}.right.item
@@ -191,7 +191,7 @@ definitions:
             jcr:primaryType: frontend:plugin
             caption: Closing Title
             field: summaryTitle
-            hint: ''
+            hint: 'This allows you to add a final paragraph of copy underneath your listicle.'
             plugin.class: org.hippoecm.frontend.editor.plugins.field.PropertyFieldPlugin
             wicket.id: ${cluster.id}.left.item
             /cluster.options:

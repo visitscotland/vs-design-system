@@ -74,7 +74,7 @@ definitions:
               jcr:primaryType: frontend:pluginconfig
           /title:
             jcr:primaryType: frontend:plugin
-            caption: Title (Override)
+            caption: Override Title
             field: title
             plugin.class: org.hippoecm.frontend.editor.plugins.field.PropertyFieldPlugin
             wicket.id: ${cluster.id}.field
