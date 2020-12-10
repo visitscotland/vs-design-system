@@ -28,27 +28,6 @@
                 <template slot="vsCarouselSlideHeading">
                     ${carouselItem.label}
                 </template>
-
-                <#--  <vs-col cols="12" lg="3">
-                    <vs-link href="${carouselItem.link}">
-                        <vs-row>
-                            <vs-col >
-                                <vs-img alt=""
-                                        src="">
-                                </vs-img>
-
-                                <#if carouselItem.itineraryTransport??>
-                                    <vs-heading level="7">Transport: ${carouselItem.itineraryTransport}  <vs-icon name="${carouselItem.itineraryTransport}" variant="dark" size="lg"></vs-icon>  </vs-heading>
-                                    <vs-heading level="7">Days: ${carouselItem.itineraryDays} days</vs-heading>
-                                </#if>
-                                <vs-heading level="3"></vs-heading>
-
-                            </vs-col>
-                            </br></br>
-                        </vs-row>
-                    </vs-link>
-                    <vs-heading level="5"></vs-heading>
-                </vs-col>  -->
             </vs-carousel-slide>
         </#list>
     </vs-carousel>
