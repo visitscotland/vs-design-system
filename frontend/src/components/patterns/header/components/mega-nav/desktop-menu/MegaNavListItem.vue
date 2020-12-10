@@ -6,6 +6,8 @@
 <script>
 /**
  * WORK IN PROGRESS
+ *
+ * @displayName MegaNav List Item
  */
 export default {
     name: 'VsMegaNavListItem',
