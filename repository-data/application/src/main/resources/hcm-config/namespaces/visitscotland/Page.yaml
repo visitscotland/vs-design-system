@@ -205,7 +205,7 @@ definitions:
             field: seoNoIndex
             plugin.class: org.hippoecm.frontend.editor.plugins.field.PropertyFieldPlugin
             wicket.id: ${cluster.id}.right.item
-            hint: Page will not be indexed by Search Engines. Only check if SEO have
+            hint: Page will not be indexed by Search Engines. Only tick if SEO have
               advised.
             /cluster.options:
               jcr:primaryType: frontend:pluginconfig

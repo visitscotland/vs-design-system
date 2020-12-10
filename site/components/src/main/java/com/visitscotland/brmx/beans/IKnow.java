@@ -14,7 +14,7 @@ public class IKnow extends HippoCompound {
     }
 
     @HippoEssentialsGenerated(internalName = "visitscotland:description")
-    public HippoHtml getDescription() {
-        return getHippoHtml("visitscotland:description");
+    public String getDescription() {
+        return getSingleProperty("visitscotland:description");
     }
 }

@@ -1,6 +1,7 @@
 <template>
     <VsCol
         class="sidebar"
+        data-test="vs-sidebar"
         :tag="tag"
         v-bind="$attrs"
     >
@@ -9,7 +10,7 @@
 </template>
 
 <script>
-import { VsCol } from '../elements/layout';
+import { VsCol } from '@components/elements/layout';
 
 /**
  * Sidebar component: a wrapper component for sidebar content, generally
