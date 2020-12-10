@@ -2,6 +2,7 @@
     <div
         class="vs-footer-copyright border-top border-secondary-light"
         data-unique-id="vs-footer-sub_footer"
+        data-test="vs-footer-copyright"
     >
         <VsContainer>
             <VsRow>

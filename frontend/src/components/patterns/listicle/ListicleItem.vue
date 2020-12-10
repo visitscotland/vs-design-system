@@ -1,5 +1,8 @@
 <template>
-    <li class="vs-listicle-item border">
+    <li
+        class="vs-listicle-item border"
+        data-test="vs-listicle-item"
+    >
         <slot name="hippo-details" />
 
         <!-- HEADER -->
