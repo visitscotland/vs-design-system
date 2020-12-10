@@ -1,24 +1,24 @@
 <template>
-    <div class="stretched-link-panels">
+    <div class="vs-stretched-link-panels">
         <div
-            class="stretched-link-panels__panel stretched-link-panels__panel--days"
-            data-test="stretched-link-panel--days"
+            class="vs-stretched-link-panels__panel vs-stretched-link-panels__panel--days"
+            data-test="vs-stretched-link-panel--days"
         >
             <p>
-                <span class="stretched-link-panels__days">{{ days }}</span> days
+                <span class="vs-stretched-link-panel__days">{{ days }}</span> days
             </p>
         </div>
 
         <div
-            class="stretched-link-panels__panel"
-            data-test="stretched-link-panel"
+            class="vs-stretched-link-panels__panel"
+            data-test="vs-stretched-link-panel"
         >
             <VsIcon
                 :name="transport"
                 variant="reverse-white"
-                class="stretched-link-panels__icon"
+                class="vs-stretched-link-panels__icon"
             />
-            <p data-test="stretched-link-panel__icon">
+            <p data-test="vs-stretched-link-panel__icon">
                 {{ transportName }}
             </p>
         </div>
@@ -66,7 +66,7 @@ export default {
 </script>
 
 <style lang="scss">
-    .stretched-link-panels {
+    .vs-stretched-link-panels {
         position: absolute;
         right: $spacer-2;
         top: $spacer-2;
