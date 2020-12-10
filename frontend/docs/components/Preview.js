@@ -28,6 +28,10 @@ export default (previewComponent) => ({
         return createElement(previewComponent)
     },
     created() {
+        // Credit for fix - https://github.com/vue-styleguidist/vue-styleguidist/issues/770#issuecomment-633692858
+        // Without this, the displayName is used as the component name and it breaks all existing instances where
+        // the component is loaded (i.e. it makes <vs-header> no longer work, expecting <header> instead).
+
         Object.entries(Vue.options.components).forEach(c => {
             const displayName = c[0];
             const component = c[1];
