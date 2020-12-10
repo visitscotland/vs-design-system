@@ -20,13 +20,13 @@ const factoryShallowMount = () => shallowMount(VsStretchedLinkCard, {
 describe('VsStretchedLinkCard', () => {
     it('should render an element with class stretched-link', () => {
         const wrapper = factoryShallowMount();
-        expect(wrapper.find('[data-test="stretched-link"]').exists()).toBe(true);
+        expect(wrapper.find('[data-test="vs-stretched-link"]').exists()).toBe(true);
     });
 
     describe(':props', () => {
         it('should render the component with the link prop passed as the stretched link href', () => {
             const wrapper = factoryShallowMount();
-            expect(wrapper.find('[data-test="stretched-link"]').attributes().href).toBe('https://www.visitscotland.com/');
+            expect(wrapper.find('[data-test="vs-stretched-link"]').attributes().href).toBe('https://www.visitscotland.com/');
         });
         it('should not render an image if not src attribute is set', async() => {
             const wrapper = shallowMount(VsStretchedLinkCard, {
@@ -38,22 +38,22 @@ describe('VsStretchedLinkCard', () => {
                 },
             });
 
-            await expect(wrapper.find('[data-test="stretched-link__img"]').exists()).toBe(false);
+            await expect(wrapper.find('[data-test="vs-stretched-link__img"]').exists()).toBe(false);
         });
     });
 
     describe(':slots', () => {
         it('renders content inserted in a stretchedCardCategory slot', () => {
             const wrapper = factoryShallowMount();
-            expect(wrapper.find('[data-test="stretched-link-card__category"]').text()).toBe('Stretched link category');
+            expect(wrapper.find('[data-test="vs-stretched-link-card__category"]').text()).toBe('Stretched link category');
         });
         it('renders content inserted in a stretchedCardHeader slot', () => {
             const wrapper = factoryShallowMount();
-            expect(wrapper.find('[data-test="stretched-link"]').text()).toBe('Stretched link header');
+            expect(wrapper.find('[data-test="vs-stretched-link"]').text()).toBe('Stretched link header');
         });
         it('renders content inserted in a stretchedCardContent slot', () => {
             const wrapper = factoryShallowMount();
-            expect(wrapper.find('[data-test="stretched-link-card__content"]').text()).toBe('Stretched link content');
+            expect(wrapper.find('[data-test="vs-stretched-link-card__content"]').text()).toBe('Stretched link content');
         });
     });
 });
