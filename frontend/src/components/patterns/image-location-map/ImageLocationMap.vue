@@ -5,8 +5,10 @@
         :height="mapHeight"
         viewBox="0 0 76 105.9"
         class="vs-image-location-map"
+        data-test="vs-image-location-map"
     >
         <path
+            data-test="vs-image-location-map__first-path"
             d="M65.9965,9.0973l-.167.736.668.184Z"
             transform="translate(-0.2662 -0.2662)"
             fill="none"
@@ -409,6 +411,7 @@
         />
         <circle
             r="4"
+            data-test="vs-image-location-map__marker"
             :fill="mapMarkerColor"
             :cx="positionX"
             :cy="positionY"
