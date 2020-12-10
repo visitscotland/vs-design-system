@@ -17,6 +17,8 @@ import VsSkipToButton from './SkipToButton';
  * The SkipTo component provides users of assistive
  * technologies with a focusable control that moves the
  * focus to a provided target element when activated.
+ *
+ * @displayName Skip To
  */
 export default {
     name: 'VsSkipTo',
