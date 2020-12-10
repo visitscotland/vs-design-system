@@ -1,5 +1,8 @@
 <template>
-    <div class="vs-icon-list">
+    <div
+        class="vs-icon-list"
+        data-test="vs-icon-list"
+    >
         <div
             class="vs-icon-list__title"
             v-if="title"
