@@ -1,5 +1,6 @@
 <template>
     <BListGroup
+        data-test="vs-list-group"
         v-bind="$attrs"
         v-hand-down-focus
     >
