@@ -22,6 +22,8 @@
 import VsIcon from '@components/elements/icon/Icon';
 /**
  * Summary Box Icon With Label
+ *
+ * @displayName Summary Box Icon With Label
  */
 export default {
     name: 'VsSummaryBoxIconWithLabel',
