@@ -271,7 +271,7 @@ public class LinkModulesFactory {
                 String size = CommonUtils.getExtenalDocumentSize(externalDocument.getLink());
                 if (size!=null) {
                     String downloadLabel = bundle.getResourceBundle("essentials.global", "label.download", locale, true);
-                    link.setLabel(linkable.getTitle() + "(" + downloadLabel + " " + size + ")");
+                    link.setLabel(linkable.getTitle() + " (" + downloadLabel + " " + size + ")");
                     link.setType(LinkType.DOWNLOAD);
                     if (addCategory) {
                         link.setCategory(externalDocument.getCategory());
