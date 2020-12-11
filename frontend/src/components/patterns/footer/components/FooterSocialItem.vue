@@ -1,6 +1,10 @@
 <template>
-    <li class="vs-footer-social-item">
+    <li
+        class="vs-footer-social-item"
+        data-test="vs-footer-social-item"
+    >
         <VsButtonSquareSocial
+            data-test="vs-footer-social-item__button"
             :href="href"
             :icon="icon"
         />
@@ -14,6 +18,8 @@ import VsButtonSquareSocial from '@components/patterns/button-square-social/Butt
 /**
  * The FooterSocialItem is used inside the FooterSocialMenu to
  * show a button for a social media link.
+ *
+ * @displayName Footer Social Item
  */
 
 export default {

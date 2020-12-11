@@ -1,5 +1,8 @@
 <template>
-    <VsContainer class="vs-footer-nav-list">
+    <VsContainer
+        class="vs-footer-nav-list"
+        data-test="vs-footer-nav-list"
+    >
         <div class="vs-footer-nav-list">
             <VsAccordion :break-point="breakPoint">
                 <VsRow>
@@ -18,6 +21,8 @@ import { VsRow, VsContainer } from '@components/elements/layout';
 /**
  * The FooterNavList is a set of menu items used for
  * separate list of links in the footer.
+ *
+ * @displayName Footer Nav List
  */
 
 export default {
