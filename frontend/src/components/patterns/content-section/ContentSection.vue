@@ -1,6 +1,7 @@
 <template>
     <section
         class="content-section"
+        data-test="vs-content-section"
         :class="{ lead: lead, ['content-section-' + tag]: true }"
     >
         <VsHeading
@@ -15,10 +16,12 @@
 </template>
 
 <script>
-import VsHeading from '../elements/heading';
+import VsHeading from '@components/elements/heading';
 
 /**
  * Section component
+ *
+ * @displayName Content Section
  */
 export default {
     name: 'VsContentSection',

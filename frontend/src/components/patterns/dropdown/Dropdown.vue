@@ -32,6 +32,8 @@ import VsIcon from '@components/elements/icon';
 
 /**
  * Dropdown component for lists of links for example.
+ *
+ * @displayName Dropdown
  */
 export default {
     name: 'VsDropdown',

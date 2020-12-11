@@ -83,20 +83,6 @@ describe('VsButton', () => {
                 expect(iconStub.exists()).toBe(false);
             });
 
-            it('should *NOT* render the VsButton with a `vs-button-with-icon` class if icon prop is *NOT* provided', () => {
-                const wrapper = factoryMount();
-
-                expect(wrapper.classes('vs-button-with-icon')).toBe(false);
-            });
-
-            it('should render the VsButton with a `vs-button-with-icon` class if icon prop is provided', () => {
-                const wrapper = factoryMount({
-                    icon: testIcon,
-                });
-
-                expect(wrapper.classes('vs-button-with-icon')).toBe(true);
-            });
-
             it('should accept and render an `icon` property', () => {
                 const wrapper = factoryShallowMount({
                     icon: testIcon,
@@ -168,12 +154,12 @@ describe('VsButton', () => {
         });
 
         describe(':animate', () => {
-            it('should set a `btn-animate` class if `animate` is set to `false`', () => {
+            it('should set a `btn-animate` class if `animate` is set to `true`', () => {
                 const wrapper = factoryMount({
                     animate: true,
                 });
 
-                expect(wrapper.classes('btn-animate')).toBe(true);
+                expect(wrapper.classes('vs-button--animated')).toBe(true);
             });
 
             it('should *NOT* set a `btn-animate` class if `animate` is set to `false`', () => {
@@ -181,38 +167,39 @@ describe('VsButton', () => {
                     animate: false,
                 });
 
-                expect(wrapper.classes('btn-animate')).toBe(false);
+                expect(wrapper.classes('vs-button--animated')).toBe(false);
             });
 
-            it('should set a `bubble` class on `click` if `animate` is set to `true`', () => {
+            it('should set a `bubble` class on `click` if `animate` is set to `true`', async() => {
                 const wrapper = factoryMount({
                     animate: true,
                 });
 
-                wrapper.trigger('click');
-                expect(wrapper.classes('bubble')).toBe(true);
+                await wrapper.trigger('click');
+
+                expect(wrapper.classes('vs-button--is-animating')).toBe(true);
             });
 
-            it('should remove the `bubble` class 1 second after the click', () => {
+            it('should remove the `vs-button--is-animating` class 1 second after the click', async() => {
                 const wrapper = factoryMount({
                     animate: true,
                 });
 
-                wrapper.trigger('click');
+                await wrapper.trigger('click');
 
-                expect(wrapper.classes('bubble')).toBe(true);
+                expect(wrapper.classes('vs-button--is-animating')).toBe(true);
                 setTimeout(() => {
-                    expect(wrapper.classes('bubble')).toBe(false);
+                    expect(wrapper.classes('vs-button--is-animating')).toBe(false);
                 }, 1000);
             });
 
-            it('should *NOT* set a `bubble` class on `click` if `animate` is set to `false`', () => {
+            it('should *NOT* set a `vs-button--is-animating` class on `click` if `animate` is set to `false`', () => {
                 const wrapper = factoryMount({
                     animate: false,
                 });
 
                 wrapper.trigger('click');
-                expect(wrapper.classes('bubble')).toBe(false);
+                expect(wrapper.classes('vs-button--is-animating')).toBe(false);
             });
         });
     });
