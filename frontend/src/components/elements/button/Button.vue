@@ -37,6 +37,8 @@ import VsIcon from '@components/elements/icon/Icon';
  * in order to listen for the underlying `button`s native event. e.g.
  *
  * <vs-button @click.native="handler">Click me</vs-button>
+ *
+ * @displayName Button
  */
 
 export default {

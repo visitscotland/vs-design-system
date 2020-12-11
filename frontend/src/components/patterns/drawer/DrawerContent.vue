@@ -48,6 +48,11 @@ import { getters } from './drawer.store';
 import { IS_ACTIVE_CONTENT } from './drawer.store.getter-types';
 import { CLOSE_DRAWER } from './drawer.store.action-types';
 
+/**
+ * TODO: Document usage
+ *
+ * @displayName Drawer Content
+ */
 export default {
     name: 'VsDrawerContent',
     components: {

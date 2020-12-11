@@ -40,6 +40,8 @@ import {
 
 /**
  * The VsFooterCopyright holds an image and copyright notices for the footer.
+ *
+ * @displayName Footer Copyright
  */
 
 export default {

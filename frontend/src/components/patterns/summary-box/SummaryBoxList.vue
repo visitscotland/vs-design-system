@@ -9,6 +9,8 @@
 <script>
 /**
  * Summary Box List - Wraps a number of VsSummaryBoxListItem components
+ *
+ * @displayName Summary Box List
  */
 export default {
     name: 'VsSummaryBoxList',

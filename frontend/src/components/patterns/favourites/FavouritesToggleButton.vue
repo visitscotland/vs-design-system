@@ -33,6 +33,11 @@
 import VsIcon from '@components/elements/icon/Icon';
 import store from './favourites.store';
 
+/**
+ * TODO: Document usage
+ *
+ * @displayName Favourites Toggle Button
+ */
 export default {
     name: 'VsFavouritesToggleButton',
     status: 'prototype',

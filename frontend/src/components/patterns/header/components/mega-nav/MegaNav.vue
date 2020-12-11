@@ -70,11 +70,6 @@
 </template>
 
 <script>
-/**
- *  The Mega Nav bar component includes main VS logo and slots for
- *  top menu items on desktop and dropdown toggle with menu items for mobile
- */
-
 import {
     VsCol, VsRow, VsContainer,
 } from '@components/elements/layout';
@@ -83,6 +78,12 @@ import VsMegaNavDropdown from '@components/patterns/header/components/mega-nav/M
 import VsMegaNavTopMenu from '@components/patterns/header/components/mega-nav/desktop-menu/MegaNavTopMenu';
 import VsIcon from '@components/elements/icon/Icon';
 
+/**
+ *  The Mega Nav bar component includes main VS logo and slots for
+ *  top menu items on desktop and dropdown toggle with menu items for mobile
+ *
+ * @displayName MegaNav
+ */
 export default {
     name: 'VsMegaNav',
     status: 'prototype',

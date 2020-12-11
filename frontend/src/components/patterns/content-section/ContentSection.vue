@@ -20,6 +20,8 @@ import VsHeading from '@components/elements/heading';
 
 /**
  * Section component
+ *
+ * @displayName Content Section
  */
 export default {
     name: 'VsContentSection',

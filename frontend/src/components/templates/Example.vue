@@ -117,7 +117,9 @@ import VsSidebar from '../patterns/sidebar/Sidebar';
 import VsContentSection from '../patterns/content-section/ContentSection';
 
 /**
- *An example page template.
+ * An example page template.
+ *
+ * @displayName Example
  */
 export default {
     name: 'VsExampleTemplate',
