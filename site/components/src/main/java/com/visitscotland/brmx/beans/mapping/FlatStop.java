@@ -40,8 +40,8 @@ public class FlatStop {
 
         this.title = stop.getTitle();
         this.description = stop.getDescription();
-        this.tipsTitle = stop.getTipsTitle();
-        this.tipsBody = stop.getTips();
+        this.tipsTitle = stop.getStopTip()!=null? stop.getStopTip().getTitle():null;
+        this.tipsBody = stop.getStopTip()!=null? stop.getStopTip().getCopy():null;
     }
 
     public String getIdentifier() {

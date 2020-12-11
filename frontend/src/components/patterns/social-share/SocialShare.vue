@@ -1,5 +1,7 @@
 <template>
-    <VsPrototype>
+    <VsPrototype
+        data-test="vs-social-share"
+    >
         <VsIcon
             name="share"
             variant="dark"
@@ -17,6 +19,8 @@ import VsPrototype from '@components/elements/prototype/Prototype';
  *
  * This component will allow users to share content to social
  * media channels. Functionalities and styles still need to be coded.
+ *
+ * @displayName Social Share
  */
 export default {
     name: 'VsSocialShare',

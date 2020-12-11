@@ -16,6 +16,8 @@ let geojsonExtent = null;
 /**
  * Renders a MapBox map (for the itinerary)
  * TODO: refactor this into a general purpose map
+ *
+ * @displayName Itinerary Map
  */
 
 export default {

@@ -14,6 +14,8 @@ import { BBreadcrumbItem } from 'bootstrap-vue';
 
 /**
  * https://bootstrap-vue.js.org/docs/components/breadcrumb#comp-ref-b-breadcrumb-item
+ *
+ * @displayName Breadcrumb Item
  */
 
 export default {
