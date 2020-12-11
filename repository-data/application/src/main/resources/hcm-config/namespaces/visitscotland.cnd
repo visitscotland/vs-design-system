@@ -63,6 +63,9 @@
 [visitscotland:Listicle] > hippostd:relaxed, hippotranslation:translated, visitscotland:Page, visitscotland:translatable
   orderable
 
+[visitscotland:ListicleClosing] > hippo:compound, hippostd:relaxed
+  orderable
+
 [visitscotland:ListicleItem] > hippostd:relaxed, hippotranslation:translated, visitscotland:basedocument, visitscotland:translatable
   orderable
 
@@ -91,6 +94,9 @@
   orderable
 
 [visitscotland:Stop] > hippostd:relaxed, hippotranslation:translated, visitscotland:basedocument, visitscotland:translatable
+  orderable
+
+[visitscotland:StopTip] > hippo:compound, hippostd:relaxed
   orderable
 
 [visitscotland:TourismInformation] > hippostd:relaxed, hippotranslation:translated, visitscotland:basedocument, visitscotland:translatable

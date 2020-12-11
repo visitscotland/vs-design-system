@@ -4,18 +4,13 @@ import org.hippoecm.hst.content.beans.Node;
 import org.hippoecm.hst.content.beans.standard.HippoBean;
 import org.hippoecm.hst.content.beans.standard.HippoHtml;
 import org.onehippo.cms7.essentials.dashboard.annotations.HippoEssentialsGenerated;
-
 import java.util.List;
+import com.visitscotland.brmx.beans.StopTip;
 
 @HippoEssentialsGenerated(internalName = "visitscotland:Stop")
 @Node(jcrType = "visitscotland:Stop")
 public class Stop extends BaseDocument {
     public static final String PRODUCTS = "visitscotland:products";
-
-    @HippoEssentialsGenerated(internalName = "visitscotland:tipsTitle")
-    public String getTipsTitle() {
-        return getSingleProperty("visitscotland:tipsTitle");
-    }
 
     @HippoEssentialsGenerated(internalName = "visitscotland:title")
     public String getTitle() {
@@ -25,11 +20,6 @@ public class Stop extends BaseDocument {
     @HippoEssentialsGenerated(internalName = "visitscotland:description")
     public HippoHtml getDescription() {
         return getHippoHtml("visitscotland:description");
-    }
-
-    @HippoEssentialsGenerated(internalName = "visitscotland:tips")
-    public HippoHtml getTips() {
-        return getHippoHtml("visitscotland:tips");
     }
 
     public List<?> getProducts() {
@@ -68,5 +58,10 @@ public class Stop extends BaseDocument {
     @HippoEssentialsGenerated(internalName = "visitscotland:translation")
     public String getTranslation() {
         return getSingleProperty("visitscotland:translation");
+    }
+
+    @HippoEssentialsGenerated(internalName = "visitscotland:StopTip")
+    public StopTip getStopTip() {
+        return getBean("visitscotland:StopTip", StopTip.class);
     }
 }
