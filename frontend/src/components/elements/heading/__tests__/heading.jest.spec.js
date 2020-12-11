@@ -16,7 +16,7 @@ describe('VsHeading', () => {
         const wrapper = factoryShallowMount();
 
         expect(wrapper.element.tagName).toBe('H1');
-        expect(wrapper.classes('heading')).toBe(true);
+        expect(wrapper.classes('vs-heading')).toBe(true);
     });
 
     describe(':props', () => {
@@ -33,15 +33,15 @@ describe('VsHeading', () => {
                 thin: true,
             });
 
-            expect(wrapper.classes('heading--thin')).toBe(true);
+            expect(wrapper.classes('vs-heading--thin')).toBe(true);
         });
 
-        it(':thin - should *NOT* render a `heading--thin` class if `thin` is set to false', () => {
+        it(':thin - should *NOT* render a `vs-heading--thin` class if `thin` is set to false', () => {
             const wrapper = factoryShallowMount({
                 thin: false,
             });
 
-            expect(wrapper.classes('heading--thin')).toBe(false);
+            expect(wrapper.classes('vs-heading--thin')).toBe(false);
         });
     });
 

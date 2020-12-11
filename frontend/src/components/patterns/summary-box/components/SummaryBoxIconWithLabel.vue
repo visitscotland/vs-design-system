@@ -2,6 +2,7 @@
     <div
         class="vs-summary-box-icon-with-label d-flex align-items-end
         position-absolute justify-content-center w-100"
+        data-test="vs-summary-box-icon-with-label"
     >
         <div class="icon-wrapper text-right">
             <VsIcon
@@ -21,6 +22,8 @@
 import VsIcon from '@components/elements/icon/Icon';
 /**
  * Summary Box Icon With Label
+ *
+ * @displayName Summary Box Icon With Label
  */
 export default {
     name: 'VsSummaryBoxIconWithLabel',
