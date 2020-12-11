@@ -1,5 +1,8 @@
 <template>
-    <div class="vs-icon-list">
+    <div
+        class="vs-icon-list"
+        data-test="vs-icon-list"
+    >
         <div
             class="vs-icon-list__title"
             v-if="title"
@@ -16,6 +19,8 @@
 /**
  * An icon list can be used where there is a list icons with a caption with optional heading.
  * An example use is to create a list of key facilities for a product.
+ *
+ * @displayName Icon List
  */
 
 export default {

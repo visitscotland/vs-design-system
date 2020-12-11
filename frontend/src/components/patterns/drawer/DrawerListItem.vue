@@ -25,6 +25,11 @@
 <script>
 import { BListGroupItem } from 'bootstrap-vue';
 
+/**
+ * TODO: Document usage
+ *
+ * @displayName Drawer List Item
+ */
 export default {
     name: 'VsDrawerListItem',
     status: 'prototype',

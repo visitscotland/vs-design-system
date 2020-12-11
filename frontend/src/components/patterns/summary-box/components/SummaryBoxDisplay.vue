@@ -1,5 +1,8 @@
 <template>
-    <div class="vs-summary-box-display position-absolute d-block text-center w-100">
+    <div
+        class="vs-summary-box-display position-absolute d-block text-center w-100"
+        data-test="vs-summary-box-display"
+    >
         <span>{{ text }}</span>
     </div>
 </template>
@@ -7,6 +10,8 @@
 <script>
 /**
  * Summary Box Display
+ *
+ * @displayName Summary Box Display
  */
 export default {
     name: 'VsSummaryBoxDisplay',

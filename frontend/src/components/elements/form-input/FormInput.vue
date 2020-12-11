@@ -13,6 +13,8 @@ import { BFormInput } from 'bootstrap-vue';
 /**
  * https://bootstrap-vue.js.org/docs/components/form-input
  * https://getbootstrap.com/docs/4.3/components/forms/
+ *
+ * @displayName Form Input
  */
 
 export default {
