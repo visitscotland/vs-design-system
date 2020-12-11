@@ -17,6 +17,11 @@
 import VsButton from '@components/elements/button/Button';
 import VsIcon from '@components/elements/icon/Icon';
 
+/**
+ * TODO: Document usage
+ *
+ * @displayName Close Button
+ */
 export default {
     name: 'VsCloseButton',
     components: {

@@ -1,5 +1,8 @@
 <template>
-    <div class="vs-footer-social-menu px-0 py-6 py-md-8 py-lg-0 px-lg-3">
+    <div
+        class="vs-footer-social-menu px-0 py-6 py-md-8 py-lg-0 px-lg-3"
+        data-test="vs-footer-social-menu"
+    >
         <h4 class="vs-footer-social-menu__title mx-3 mx-sm-6 m-md-0 mb-lg-6">
             <!-- @slot Put the menu title here  -->
             <slot name="title" />
@@ -21,6 +24,8 @@ import VsList from '@components/elements/list/List';
 /**
  * The FooterSocialMenu is used inside the FooterNavList.
  * It's a wrapper for social media links in the footer.
+ *
+ * @displayName Footer Social Menu
  */
 
 export default {

@@ -1,5 +1,8 @@
 <template>
-    <li class="vs-listicle-item border">
+    <li
+        class="vs-listicle-item border"
+        data-test="vs-listicle-item"
+    >
         <slot name="hippo-details" />
 
         <!-- HEADER -->
@@ -51,6 +54,11 @@
 import VsHeading from '@components/elements/heading/Heading';
 import { VsRow, VsCol } from '@components/elements/layout';
 
+/**
+ * TODO: Document usage
+ *
+ * @displayName Listicle Item
+ */
 export default {
     name: 'VsListicleItem',
     status: 'prototype',
