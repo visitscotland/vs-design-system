@@ -1,57 +1,89 @@
 definitions:
   config:
-    /hippo:namespaces/visitscotland/ItineraryExternalLink:
+    /hippo:namespaces/visitscotland/LongContentSection:
       jcr:primaryType: hipposysedit:templatetype
       jcr:mixinTypes: ['editor:editable', 'mix:referenceable']
-      jcr:uuid: 29127ad8-7666-49c3-a6d7-f3a4655f0b9a
+      jcr:uuid: 052c2d59-0c72-4f1b-92e5-b0e144d45344
       /hipposysedit:nodetype:
         jcr:primaryType: hippo:handle
         jcr:mixinTypes: ['mix:referenceable']
-        jcr:uuid: f16b0641-c0e0-4ee4-9e5b-98d1114cce23
+        jcr:uuid: cb4759f1-8bf6-4954-bfe2-b811cdf9ddcb
         /hipposysedit:nodetype:
           jcr:primaryType: hipposysedit:nodetype
           jcr:mixinTypes: ['mix:referenceable', 'hipposysedit:remodel']
-          jcr:uuid: 83b30a27-b166-46ec-9b11-9ad53312ab91
+          jcr:uuid: c04f7d40-d050-49c8-b1ba-ce745fc4367d
           hipposysedit:node: true
           hipposysedit:supertype: ['hippo:compound', 'hippostd:relaxed']
           hipposysedit:uri: http://www.visitscotland.com/visitscotland/nt/1.0
-          /staticdropdown:
+          /copy:
             jcr:primaryType: hipposysedit:field
             hipposysedit:mandatory: false
             hipposysedit:multiple: false
             hipposysedit:ordered: false
-            hipposysedit:path: visitscotland:timeToExplore
+            hipposysedit:path: visitscotland:copy
             hipposysedit:primary: false
-            hipposysedit:type: StaticDropdown
-          /Coordinates:
-            jcr:primaryType: hipposysedit:field
-            hipposysedit:mandatory: false
-            hipposysedit:multiple: false
-            hipposysedit:ordered: false
-            hipposysedit:path: visitscotland:Coordinates
-            hipposysedit:primary: false
-            hipposysedit:type: visitscotland:Coordinates
+            hipposysedit:type: hippostd:html
             hipposysedit:validators: [required]
-          /ExternalLink:
+          /media:
+            jcr:primaryType: hipposysedit:field
+            hipposysedit:multiple: true
+            hipposysedit:ordered: true
+            hipposysedit:path: visitscotland:media
+            hipposysedit:type: hippo:compound
+            hipposysedit:validators: [contentblocks-validator]
+          /Quote:
             jcr:primaryType: hipposysedit:field
             hipposysedit:mandatory: false
             hipposysedit:multiple: false
             hipposysedit:ordered: false
-            hipposysedit:path: visitscotland:ExternalLink
+            hipposysedit:path: visitscotland:Quote
             hipposysedit:primary: false
-            hipposysedit:type: visitscotland:ExternalLink
+            hipposysedit:type: visitscotland:Quote
+            hipposysedit:validators: [optional]
+        /hipposysedit:nodetype[2]:
+          jcr:primaryType: hipposysedit:nodetype
+          jcr:mixinTypes: ['mix:referenceable']
+          jcr:uuid: 9e39f8b6-ee5e-44d6-a0a6-b7f339e51d66
+          hipposysedit:node: true
+          hipposysedit:supertype: ['hippo:compound', 'hippostd:relaxed']
+          /copy:
+            jcr:primaryType: hipposysedit:field
+            hipposysedit:mandatory: false
+            hipposysedit:multiple: false
+            hipposysedit:ordered: false
+            hipposysedit:path: visitscotland:copy
+            hipposysedit:primary: false
+            hipposysedit:type: hippostd:html
+            hipposysedit:validators: [required]
+          /media:
+            jcr:primaryType: hipposysedit:field
+            hipposysedit:multiple: true
+            hipposysedit:ordered: true
+            hipposysedit:path: visitscotland:media
+            hipposysedit:type: hippo:compound
+            hipposysedit:validators: [contentblocks-validator]
+          /Quote:
+            jcr:primaryType: hipposysedit:field
+            hipposysedit:mandatory: false
+            hipposysedit:multiple: false
+            hipposysedit:ordered: false
+            hipposysedit:path: visitscotland:Quote
+            hipposysedit:primary: false
+            hipposysedit:type: visitscotland:Quote
+            hipposysedit:validators: [optional]
       /hipposysedit:prototypes:
         jcr:primaryType: hipposysedit:prototypeset
         /hipposysedit:prototype:
-          jcr:primaryType: visitscotland:ItineraryExternalLink
-          /visitscotland:Coordinates:
-            jcr:primaryType: visitscotland:Coordinates
-            visitscotland:latitude: 0.0
-            visitscotland:longitude: 0.0
-          /visitscotland:ExternalLink:
-            jcr:primaryType: visitscotland:ExternalLink
-            visitscotland:label: ''
-            visitscotland:link: ''
+          jcr:primaryType: visitscotland:LongContentSection
+          /visitscotland:copy:
+            jcr:primaryType: hippostd:html
+            hippostd:content: ''
+        /hipposysedit:prototype[2]:
+          jcr:primaryType: nt:unstructured
+          jcr:mixinTypes: ['hippostd:relaxed']
+          /visitscotland:copy:
+            jcr:primaryType: hippostd:html
+            hippostd:content: ''
       /editor:templates:
         jcr:primaryType: editor:templateset
         /_default_:
@@ -75,31 +107,31 @@ definitions:
             item: ${cluster.id}.right.item
             plugin.class: org.hippoecm.frontend.service.render.ListViewPlugin
             wicket.id: ${cluster.id}.right
-          /ExternalLink:
+          /copy:
             jcr:primaryType: frontend:plugin
-            caption: ExternalLink
-            field: ExternalLink
+            caption: Copy
+            field: copy
             plugin.class: org.hippoecm.frontend.editor.plugins.field.NodeFieldPlugin
             wicket.id: ${cluster.id}.left.item
             hint: ''
             /cluster.options:
               jcr:primaryType: frontend:pluginconfig
-          /Coordinates:
+          /media:
             jcr:primaryType: frontend:plugin
-            caption: Coordinates
-            field: Coordinates
-            plugin.class: org.hippoecm.frontend.editor.plugins.field.NodeFieldPlugin
-            wicket.id: ${cluster.id}.left.item
-            hint: ''
-            /cluster.options:
-              jcr:primaryType: frontend:pluginconfig
-          /timeToExplore:
-            jcr:primaryType: frontend:plugin
-            caption: Time to Explore (Hours)
-            field: staticdropdown
-            hint: ''
-            plugin.class: org.hippoecm.frontend.editor.plugins.field.PropertyFieldPlugin
+            caption: Media
+            compoundList: visitscotland:ExternalLink,hippogallerypicker:imagelink,visitscotland:InstagramImage
+            contentPickerType: links
+            field: media
+            plugin.class: org.onehippo.forge.contentblocks.ContentBlocksFieldPlugin
             wicket.id: ${cluster.id}.right.item
             /cluster.options:
               jcr:primaryType: frontend:pluginconfig
-              selectable.options: 1, 2, 3, 12, 24, 48
+              maxitems: 1
+          /Quote:
+            jcr:primaryType: frontend:plugin
+            caption: Quote
+            field: Quote
+            plugin.class: org.hippoecm.frontend.editor.plugins.field.NodeFieldPlugin
+            wicket.id: ${cluster.id}.right.item
+            /cluster.options:
+              jcr:primaryType: frontend:pluginconfig
