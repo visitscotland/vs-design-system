@@ -41,7 +41,7 @@
  * @displayName MegaNav Top Menu Item
  */
 
-import VsMegaNavDropdown from '@components/patterns/header/components/mega-nav/MegaNavDropdown';
+import VsMegaNavDropdown from '@components/patterns/header/components/mega-nav/components/MegaNavDropdown';
 import VsLink from '@components/elements/link/Link';
 
 export default {
