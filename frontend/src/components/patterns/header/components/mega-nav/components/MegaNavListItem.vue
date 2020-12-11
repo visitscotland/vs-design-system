@@ -22,7 +22,6 @@ import VsLink from '@components/elements/link/Link';
  *
  * @displayName MegaNav List Item
  */
-
 export default {
     name: 'VsMegaNavListItem',
     status: 'prototype',
