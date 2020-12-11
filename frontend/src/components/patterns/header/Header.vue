@@ -12,6 +12,12 @@
 </template>
 
 <script>
+/**
+ * TODO: Document usage
+ *
+ * @displayName Header
+ */
+
 export default {
     name: 'VsHeader',
     status: 'prototype',

@@ -27,6 +27,10 @@ import svgContext from '@/utils/svg-context';
 
 /**
  * SVGs are used to display vector images
+ *
+ * The display name being set to just "SVG" throws a console error
+ *
+ * @displayName SVG Wrapper
  */
 export default {
     name: 'VsSvg',
