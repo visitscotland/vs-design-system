@@ -32,9 +32,13 @@
 </template>
 
 <script>
-
 import VsAccordionItem from '@components/patterns/accordion/AccordionItem';
 
+/**
+ *  This component is used in the mobile menu for groups of links
+ *
+ * @displayName MegaNav Accordion Item
+ */
 export default {
     name: 'VsMegaNavAccordionItem',
     status: 'prototype',
@@ -157,6 +161,43 @@ export default {
 
 <docs>
   ```jsx
+    <VsAccordion>
+        <VsMegaNavAccordionItem
+            :title="item.title"
+            level="1"
+            :control-id="'menu_accordion_item_' + mobileItemIndex"
+            v-for="(item, mobileItemIndex) in header.mainNav"
+            :key="mobileItemIndex"
+        >
+            <VsMegaNavAccordionItem
+                :title="subHeading.title"
+                level="2"
+                :control-id="'menu_accordion_item_' + subHeadingIndex"
+                v-for="(subHeading, subHeadingIndex) in item.dropdownNav"
+                :key="subHeadingIndex"
+            >
+                <VsMegaNavList>
+                    <VsMegaNavListItem
+                        slot="navListItems"
+                        v-for="(navLink, navLinkIndex)
+                            in subHeading.dropdownNav"
+                        :key="navLinkIndex"
+                        :href="navLink.href"
+                    >
+                        {{ navLink.title }}
+                    </VsMegaNavListItem>
 
+                    <VsMegaNavListItem
+                        v-if="subHeading.href"
+                        :href="subHeading.href"
+                        subheading-link
+                        slot="navHeadingCtaLink"
+                    >
+                        {{ subHeading.cta }}
+                    </VsMegaNavListItem>
+                </VsMegaNavList>
+            </VsMegaNavAccordionItem>
+        </VsMegaNavAccordionItem>
+    </VsAccordion>
   ```
 </docs>

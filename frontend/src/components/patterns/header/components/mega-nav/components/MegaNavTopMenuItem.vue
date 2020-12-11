@@ -35,15 +35,14 @@
 </template>
 
 <script>
+import VsMegaNavDropdown from '@components/patterns/header/components/mega-nav/components/MegaNavDropdown';
+import VsLink from '@components/elements/link/Link';
+
 /**
  *  Mega nav top level menu items with a slots for toggle button and dropdown content
  *
  * @displayName MegaNav Top Menu Item
  */
-
-import VsMegaNavDropdown from '@components/patterns/header/components/mega-nav/components/MegaNavDropdown';
-import VsLink from '@components/elements/link/Link';
-
 export default {
     name: 'VsMegaNavTopMenuItem',
     status: 'prototype',
