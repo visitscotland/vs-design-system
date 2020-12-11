@@ -3,7 +3,7 @@
         class="vs-mega-nav bg-white"
         data-test="vs-mega-nav"
     >
-        <VsContainer>
+        <VsContainer fluid="lg">
             <VsRow class="align-items-center">
                 <!-- Logo Link -->
                 <VsCol
