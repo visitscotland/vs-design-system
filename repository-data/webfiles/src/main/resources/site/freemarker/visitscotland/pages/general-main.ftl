@@ -73,6 +73,13 @@
 				<vs-col cols="12" md="10" lg="10" xl="10" offset-lg="1">
 					<vs-rich-text-wrapper variant="lead">
 						<@hst.html hippohtml=document.introduction/>
+						<ul>
+						<#list pageItems as module>
+							<#if module.anchor?? >
+								<li>Anchor link #${module.anchor}</li>
+							</#if>
+						</#list>
+						</ul>
 					</vs-rich-text-wrapper>
 				</vs-col>
 			</vs-row>

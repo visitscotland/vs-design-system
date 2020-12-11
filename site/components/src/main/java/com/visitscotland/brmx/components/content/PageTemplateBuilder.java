@@ -89,6 +89,8 @@ public class PageTemplateBuilder {
                     links.add(iKnowModule);
                 } else if (item instanceof LongContent){
                     links.add(createLongContent(request, (LongContent) item));
+                } else if (item instanceof Article){
+                    links.add(createLongContent(request, (Article) item));
                 }
             } catch (MissingResourceException e){
                 logger.error("The module for {} couldn't be built because some labels do not exist", item.getPath(), e);
@@ -107,16 +109,17 @@ public class PageTemplateBuilder {
     }
 
     //TODO convert into factory
-    private Module createLongContent(HstRequest request, LongContent doc){
+    private Module createLongContent(HstRequest request, Article doc){
         LongContentModule module = new LongContentModule();
         List<FlatLongContentSection> sections = new ArrayList<>();
         //TODO add media
         module.setImage(new FlatImage(doc.getImage(), Locale.UK));
         module.setTitle(doc.getTitle());
-        module.setIntroduction(doc.getIntroduction());
+        module.setIntroduction(doc.getCopy());
         module.setHippoBean(doc);
+        module.setAnchor(doc.getAnchor());
 
-        for (LongContentSection section: doc.getparagraphs()){
+        for (ArticleSection section: doc.getParagraph()){
             FlatLongContentSection flcs = new FlatLongContentSection();
             flcs.setCopy(section.getCopy());
             //TODO Convert MediaItem into image
@@ -146,5 +149,43 @@ public class PageTemplateBuilder {
         return module;
     }
 
+    //TODO convert into factory
+    private Module createLongContent(HstRequest request, LongContent doc){
+        LongContentModule module = new LongContentModule();
+        List<FlatLongContentSection> sections = new ArrayList<>();
+        //TODO add media
+        module.setImage(new FlatImage(doc.getImage(), Locale.UK));
+        module.setTitle(doc.getTitle());
+        module.setIntroduction(doc.getIntroduction());
+        module.setHippoBean(doc);
 
+        for (LongContentSection section: doc.getparagraphs()){
+            FlatLongContentSection flcs = new FlatLongContentSection();
+            flcs.setCopy(section.getCopy());
+            //TODO Convert MediaItem into image
+            //flcs.setImage(new FlatImage(section.getMediaItem(), request.getLocale()));
+
+            if (section.getMediaItem() instanceof Image) {
+                Image cmsImage = (Image) section.getMediaItem();
+                if (cmsImage != null) {
+                    FlatImage flatImage = new FlatImage(cmsImage,request.getLocale());
+                    flcs.setImage(flatImage);
+                }
+            }
+
+            // TODO Are we going to include Quotes?
+            if (section.getQuote()!= null){
+                flcs.setQuote(section.getQuote().getQuote());
+                flcs.setQuoteAuthorName(section.getQuote().getAuthor());
+                flcs.setQuoteAuthorTitle(section.getQuote().getRole());
+                flcs.setQuoteImage(new FlatImage(section.getQuote().getImage(),request.getLocale()));
+                //TODO ADD Rethink about CTA
+//                flcs.setQuoteLink(section.getQuote().getProduct());
+            }
+            sections.add(flcs);
+        }
+        module.setSections(sections);
+
+        return module;
+    }
 }
