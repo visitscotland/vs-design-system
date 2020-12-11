@@ -11,6 +11,8 @@
  *
  * This is a development only tool to help visualise
  * components/functionalities to be finished.
+ *
+ * @displayName Prototype
  */
 
 export default {

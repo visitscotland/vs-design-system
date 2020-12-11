@@ -46,6 +46,8 @@ import VsGlobalMenuList from './GlobalMenuList';
 /**
  * This component is the main Global Nav Wrapper for the top of the page.
  * It holds the Our Websites and slots for Login and Language Change functionalities.
+ *
+ * @displayName Global Menu
  */
 
 export default {

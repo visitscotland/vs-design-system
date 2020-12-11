@@ -13,6 +13,8 @@
 
 /**
  * Accordion wrapper used with AccordionItems.
+ *
+ * @displayName Accordion
  */
 export default {
     name: 'VsAccordion',
