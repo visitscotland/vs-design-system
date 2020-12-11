@@ -113,7 +113,9 @@ public class PageTemplateBuilder {
         LongContentModule module = new LongContentModule();
         List<FlatLongContentSection> sections = new ArrayList<>();
         //TODO add media
-        module.setImage(new FlatImage(doc.getImage(), Locale.UK));
+        if (doc.getImage() != null) {
+            module.setImage(new FlatImage(doc.getImage(), Locale.UK));
+        }
         module.setTitle(doc.getTitle());
         module.setIntroduction(doc.getCopy());
         module.setHippoBean(doc);
@@ -138,7 +140,9 @@ public class PageTemplateBuilder {
                 flcs.setQuote(section.getQuote().getQuote());
                 flcs.setQuoteAuthorName(section.getQuote().getAuthor());
                 flcs.setQuoteAuthorTitle(section.getQuote().getRole());
-                flcs.setQuoteImage(new FlatImage(section.getQuote().getImage(),request.getLocale()));
+                if (section.getQuote().getImage() != null) {
+                    flcs.setQuoteImage(new FlatImage(section.getQuote().getImage(), request.getLocale()));
+                }
                 //TODO ADD Rethink about CTA
 //                flcs.setQuoteLink(section.getQuote().getProduct());
             }
@@ -154,7 +158,9 @@ public class PageTemplateBuilder {
         LongContentModule module = new LongContentModule();
         List<FlatLongContentSection> sections = new ArrayList<>();
         //TODO add media
-        module.setImage(new FlatImage(doc.getImage(), Locale.UK));
+        if (doc.getImage() != null) {
+            module.setImage(new FlatImage(doc.getImage(), Locale.UK));
+        }
         module.setTitle(doc.getTitle());
         module.setIntroduction(doc.getIntroduction());
         module.setHippoBean(doc);
@@ -178,7 +184,9 @@ public class PageTemplateBuilder {
                 flcs.setQuote(section.getQuote().getQuote());
                 flcs.setQuoteAuthorName(section.getQuote().getAuthor());
                 flcs.setQuoteAuthorTitle(section.getQuote().getRole());
-                flcs.setQuoteImage(new FlatImage(section.getQuote().getImage(),request.getLocale()));
+                if (section.getQuote().getImage() != null) {
+                    flcs.setQuoteImage(new FlatImage(section.getQuote().getImage(), request.getLocale()));
+                }
                 //TODO ADD Rethink about CTA
 //                flcs.setQuoteLink(section.getQuote().getProduct());
             }

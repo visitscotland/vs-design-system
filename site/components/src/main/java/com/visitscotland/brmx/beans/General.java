@@ -15,6 +15,7 @@ public class General extends Page {
     public String[] getChildJcrTypes() {
         return new String[] { "visitscotland:Megalinks",
                 "visitscotland:TourismInformation",
+                "visitscotland:LongContent",
                 "visitscotland:Article"};
     }
 

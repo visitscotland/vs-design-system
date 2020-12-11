@@ -75,8 +75,8 @@
 						<@hst.html hippohtml=document.introduction/>
 						<ul>
 						<#list pageItems as module>
-							<#if module.anchor?? >
-								<li>Anchor link #${module.anchor}</li>
+							<#if module.anchor?has_content >
+								<li><a href="#${module.anchor}">${module.title}</a></li>
 							</#if>
 						</#list>
 						</ul>

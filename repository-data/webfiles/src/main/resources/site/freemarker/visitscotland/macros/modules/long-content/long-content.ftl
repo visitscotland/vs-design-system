@@ -7,19 +7,29 @@
 
 <#macro longContent module>
     <@hst.manageContent hippobean=module.hippoBean />
-    <#if module.image.cmsImage??>
-        <#assign image>
-            <@hst.link hippobean=module.image.cmsImage.original/>
-        </#assign>
+    <#if module.image??>
+        <#if module.image.cmsImage??>
+            <#assign image>
+                <@hst.link hippobean=module.image.cmsImage.original/>
+            </#assign>
+        <#else>
+            <#assign image = module.image.externalImage!'' />
+        </#if>
     <#else>
-        <#assign image = module.image.externalImage!'' />
+        <#assign image = "" />
     </#if>
     <vs-col cols="12" lg="8" offset-lg="2" style="border: 1px solid grey;">
         <#if image?? && image?has_content>
                 <@imageWithCaption imageSrc=image imageDetails=module.image variant="fullwidth"/>
         </#if>
         <vs-col offset-lg="4">
-                <vs-heading level="2">${module.title}</vs-heading>
+            <vs-heading level="2">
+                <#if module.anchor?has_content>
+                    <span id="${module.anchor}">${module.title}</span>
+                <#else>
+                    ${module.title}
+                </#if>
+            </vs-heading>
         </vs-col>
         <@hst.html hippohtml=module.introduction/>
 
