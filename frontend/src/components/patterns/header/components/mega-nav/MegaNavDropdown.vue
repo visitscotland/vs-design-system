@@ -28,7 +28,8 @@
                             <slot name="dropdownContent" />
 
                             <VsButton
-                                class="vs-mega-nav-dropdown__close-btn position-absolute"
+                                class="vs-mega-nav-dropdown__close-btn
+                                d-none d-lg-block position-absolute"
                                 icon="close"
                                 icon-only
                                 size="sm"
@@ -98,6 +99,8 @@ export default {
 
         // Close menu on resize screen to fix toggle btn issues
         window.addEventListener('resize', this.closeMenu);
+
+        this.getLastMenuItem();
     },
     beforeDestroy() {
         window.removeEventListener('resize', this.closeMenu);
@@ -105,6 +108,22 @@ export default {
     methods: {
         closeMenu() {
             this.$refs.dropdown.hide(true);
+        },
+        getLastMenuItem() {
+            const menuItem = this.$el.querySelectorAll('.vs-mega-nav-accordion-item--level-1');
+
+            if (menuItem.length > 0) {
+                const lastlevel1Item = Array.from(menuItem).pop();
+                const lastLevel2Item = Array.from(lastlevel1Item.children[1].children).pop();
+                const lastLevel3Item = Array.from(lastLevel2Item.children[1].children).pop();
+                const lastMenuItem = Array.from(lastLevel3Item.children).pop();
+
+                lastMenuItem.children[0].addEventListener('focusout', this.focusCloseBtn);
+            }
+        },
+        focusCloseBtn() {
+            const closeBtn = this.$el.querySelector('.dropdown-toggle');
+            closeBtn.focus();
         },
     },
 };
@@ -228,15 +247,14 @@ export default {
             max-height: 595px;
         }
 
-        .vs-accordion{
-            > .vs-mega-nav-accordion-item:first-child{
-                > .vs-accordion-item__card-header{
-                    > .vs-accordion-toggle{
-                        box-shadow: inset 0px 10px 6px -8px rgba(0, 0, 0, 0.16);
-                    }
+        .vs-mega-nav-accordion-item--level-1:first-child{
+            > .vs-accordion-item__card-header{
+                > .vs-accordion-toggle.btn-primary{
+                    box-shadow: inset 0px 10px 6px -8px rgba(0, 0, 0, 0.16);
                 }
             }
         }
+
     }
 
 }
