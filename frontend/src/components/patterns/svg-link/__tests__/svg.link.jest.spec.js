@@ -11,7 +11,7 @@ const factoryShallowMount = (values) => shallowMount(VsSvgLink, {
     },
 });
 
-describe('VsMegaNavDropdown', () => {
+describe('VsSvgLink', () => {
     it('should render a component with the data-test attribute `.vs-svg-link`', () => {
         const wrapper = factoryShallowMount();
         expect(wrapper.attributes('data-test')).toBe('vs-svg-link');

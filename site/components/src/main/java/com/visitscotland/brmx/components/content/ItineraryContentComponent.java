@@ -115,8 +115,8 @@ public class ItineraryContentComponent extends PageContentComponent<Itinerary> {
                         } else {
                             JsonNode product = dmsData.productCard(dmsLink.getProduct(), request.getLocale());
                             if (product == null) {
-                                errors.add("The product id does not exist in the DMS");
-                                logger.warn(CommonUtils.contentIssue("The product id does not exist in the DMS for %s, Stop %s", itinerary.getName(), model.getIndex()));
+                                errors.add("The product id does not match in the DMS");
+                                logger.warn(CommonUtils.contentIssue("The product id does not match in the DMS for %s, Stop %s", itinerary.getName(), model.getIndex()));
                             } else {
 
                                 FlatLink ctaLink = new FlatLink(resourceBundleService.getCtaLabel(dmsLink.getLabel(), request.getLocale()), product.get(URL).asText(), LinkType.INTERNAL);
@@ -191,10 +191,7 @@ public class ItineraryContentComponent extends PageContentComponent<Itinerary> {
                     logger.warn(CommonUtils.contentIssue("The product's id  was not provided for %s, Stop %s", itinerary.getName(), model.getIndex()));
                 }
 
-                if ((stop.getTips() != null && !stop.getTips().getContent().isEmpty()) && (stop.getTipsTitle() == null || stop.getTipsTitle().isEmpty())) {
-                    errors.add("Tips title is required to show tips");
-                    logger.warn(CommonUtils.contentIssue("Tip title was not provided when tried to add a tip for %s, Stop %s", itinerary.getName(), model.getIndex()));
-                }
+
                 lastStopId = model.getIdentifier();
                 if (firstStopId == null) {
                     firstStopId = lastStopId;

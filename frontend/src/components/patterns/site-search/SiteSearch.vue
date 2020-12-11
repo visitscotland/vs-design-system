@@ -80,6 +80,11 @@ import VsFormInput from '@components/elements/form-input/FormInput';
 import { BForm, BFormInvalidFeedback } from 'bootstrap-vue';
 import { getters } from '../drawer/drawer.store';
 
+/**
+ * TODO: Document Usage
+ *
+ * @displayName Site Search
+ */
 export default {
     name: 'VsSiteSearch',
     status: 'prototype',

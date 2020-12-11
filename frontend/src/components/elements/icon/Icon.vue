@@ -26,6 +26,8 @@ const iconPath = 'icons/';
  *
  * Our icons come in specific sizes - xxs, xs, sm, md, lg and xl - and can be any colour,
  * including any of the theme colours.
+ *
+ * @displayName Icon
  */
 export default {
     name: 'VsIcon',
