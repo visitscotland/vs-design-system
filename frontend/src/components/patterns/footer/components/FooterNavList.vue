@@ -21,6 +21,8 @@ import { VsRow, VsContainer } from '@components/elements/layout';
 /**
  * The FooterNavList is a set of menu items used for
  * separate list of links in the footer.
+ *
+ * @displayName Footer Nav List
  */
 
 export default {
