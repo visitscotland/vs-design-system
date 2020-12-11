@@ -12,6 +12,8 @@
 import { VBTooltip } from 'bootstrap-vue';
 /**
  * TODO: Document usage
+ *
+ * @displayName Tooltip
  */
 
 export default {

@@ -14,6 +14,12 @@
 </template>
 
 <script>
+/**
+ * TODO: Document Usage
+ *
+ * @displayName Site Search Toggle Button
+ */
+
 export default {
     name: 'VsSiteSearchToggleButton',
     props: {

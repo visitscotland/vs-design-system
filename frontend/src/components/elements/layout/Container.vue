@@ -14,6 +14,8 @@ import { BContainer } from 'bootstrap-vue';
  * organise page content. Our containers utilise
  * <a href="https://bootstrap-vue.js.org/docs/components/layout">Bootstrap Vue's b-container component</a>,
  * and can be fixed (default) or fluid.
+ *
+ * @displayName Container
  */
 
 export default {

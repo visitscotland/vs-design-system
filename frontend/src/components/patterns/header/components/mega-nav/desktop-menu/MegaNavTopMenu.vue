@@ -10,12 +10,13 @@
 </template>
 
 <script>
-/**
- *  Mega nav top level menu list with a slot for top level menu items
- */
-
 import VsList from '@components/elements/list/List';
 
+/**
+ *  Mega nav top level menu list with a slot for top level menu items
+ *
+ * @displayName MegaNav Top Menu
+ */
 export default {
     name: 'VsMegaNavTopMenu',
     status: 'prototype',
