@@ -64,27 +64,24 @@
             </#if>
         </ol>
 
-        <#assign summary>
-            <@hst.html hippohtml=document.summary/>
-        </#assign>
 
-        <#if summary?has_content>
+       <#if document.listicleClosing??>
             <vs-row class="mb-6">
                 <vs-col cols="12">
                     <vs-panel>
-                        <#if document.summaryTitle?has_content>
+                        <#if document.listicleClosing.title?has_content>
                             <template slot="vs-panel-title">
-                                <vs-heading thin level="4">${document.summaryTitle}</vs-heading>
+                                <vs-heading thin level="4">${document.listicleClosing.title}</vs-heading>
                             </template>
                         </#if>
 
                         <vs-rich-text-wrapper variant="lead">
-                            ${summary}
+                            <@hst.html hippohtml=document.listicleClosing.copy/>
                         </vs-rich-text-wrapper>
                     </vs-panel>
                 </vs-col>
             </vs-row>
-        </#if>
+      </#if>
 
         <#if otyml??>
             <@moduleBuilder otyml "theme1" />

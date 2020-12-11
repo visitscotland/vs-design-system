@@ -1,28 +1,20 @@
 definitions:
   config:
-    /hippo:namespaces/visitscotland/ICentre:
+    /hippo:namespaces/visitscotland/StopTip:
       jcr:primaryType: hipposysedit:templatetype
       jcr:mixinTypes: ['editor:editable', 'mix:referenceable']
-      jcr:uuid: fb797bd2-ed65-4a59-bfdd-f2d8c09b91fc
+      jcr:uuid: 158507af-bd20-42f3-bea7-0d6d31b1253c
       /hipposysedit:nodetype:
         jcr:primaryType: hippo:handle
         jcr:mixinTypes: ['mix:referenceable']
-        jcr:uuid: ca251e4d-30c9-4f0e-9ddb-adb185379c15
+        jcr:uuid: 6a7cfc9a-23c7-4dcc-82b7-86236d04c5be
         /hipposysedit:nodetype:
           jcr:primaryType: hipposysedit:nodetype
           jcr:mixinTypes: ['mix:referenceable', 'hipposysedit:remodel']
-          jcr:uuid: 630e04d7-3c4a-4d2d-bc50-eb14fe538824
+          jcr:uuid: a17b26b8-80ea-42ce-9864-ba73ac4fa516
           hipposysedit:node: true
           hipposysedit:supertype: ['hippo:compound', 'hippostd:relaxed']
           hipposysedit:uri: http://www.visitscotland.com/visitscotland/nt/1.0
-          /image:
-            jcr:primaryType: hipposysedit:field
-            hipposysedit:mandatory: false
-            hipposysedit:multiple: false
-            hipposysedit:ordered: false
-            hipposysedit:path: visitscotland:image
-            hipposysedit:primary: false
-            hipposysedit:type: hippogallerypicker:imagelink
           /title:
             jcr:primaryType: hipposysedit:field
             hipposysedit:mandatory: false
@@ -31,26 +23,24 @@ definitions:
             hipposysedit:path: visitscotland:title
             hipposysedit:primary: false
             hipposysedit:type: String
-          /quote:
+            hipposysedit:validators: [required]
+          /copy:
             jcr:primaryType: hipposysedit:field
             hipposysedit:mandatory: false
             hipposysedit:multiple: false
             hipposysedit:ordered: false
-            hipposysedit:path: visitscotland:quote
+            hipposysedit:path: visitscotland:copy
             hipposysedit:primary: false
-            hipposysedit:type: visitscotland:Quote
-            hipposysedit:validators: [optional]
+            hipposysedit:type: hippostd:html
+            hipposysedit:validators: [required]
       /hipposysedit:prototypes:
         jcr:primaryType: hipposysedit:prototypeset
         /hipposysedit:prototype:
-          jcr:primaryType: visitscotland:ICentre
+          jcr:primaryType: visitscotland:StopTip
           visitscotland:title: ''
-          /visitscotland:image:
-            jcr:primaryType: hippogallerypicker:imagelink
-            hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
-            hippo:facets: []
-            hippo:modes: []
-            hippo:values: []
+          /visitscotland:copy:
+            jcr:primaryType: hippostd:html
+            hippostd:content: ''
       /editor:templates:
         jcr:primaryType: editor:templateset
         /_default_:
@@ -62,29 +52,19 @@ definitions:
             jcr:primaryType: frontend:plugin
             item: ${cluster.id}.field
             plugin.class: org.hippoecm.frontend.service.render.ListViewPlugin
-          /image:
-            jcr:primaryType: frontend:plugin
-            caption: Image
-            field: image
-            plugin.class: org.hippoecm.frontend.editor.plugins.field.NodeFieldPlugin
-            wicket.id: ${cluster.id}.field
-            hint: When this image is not added, It will default to iCentre DMS listing
-              image.
-            /cluster.options:
-              jcr:primaryType: frontend:pluginconfig
           /title:
             jcr:primaryType: frontend:plugin
-            caption: Override Title
+            caption: Title
             field: title
+            hint: ''
             plugin.class: org.hippoecm.frontend.editor.plugins.field.PropertyFieldPlugin
             wicket.id: ${cluster.id}.field
-            hint: ''
             /cluster.options:
               jcr:primaryType: frontend:pluginconfig
-          /quote:
+          /copy:
             jcr:primaryType: frontend:plugin
-            caption: Quote
-            field: quote
+            caption: Copy
+            field: copy
             hint: ''
             plugin.class: org.hippoecm.frontend.editor.plugins.field.NodeFieldPlugin
             wicket.id: ${cluster.id}.field

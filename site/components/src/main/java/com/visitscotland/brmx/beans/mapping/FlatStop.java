@@ -37,11 +37,13 @@ public class FlatStop {
 
     public FlatStop(Stop stop) {
         this.identifier = stop.getIdentifier();
-
         this.title = stop.getTitle();
         this.description = stop.getDescription();
-        this.tipsTitle = stop.getTipsTitle();
-        this.tipsBody = stop.getTips();
+
+        if (stop.getStopTip()!=null){
+            this.tipsTitle = stop.getStopTip().getTitle();
+            this.tipsBody = stop.getStopTip().getCopy();
+        }
     }
 
     public String getIdentifier() {
