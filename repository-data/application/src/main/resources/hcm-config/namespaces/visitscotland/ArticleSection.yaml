@@ -11,7 +11,7 @@ definitions:
         /hipposysedit:nodetype:
           jcr:primaryType: hipposysedit:nodetype
           jcr:mixinTypes: ['mix:referenceable', 'hipposysedit:remodel']
-          jcr:uuid: 6a91d069-1687-4b29-a8ce-60dbe4bdf137
+          jcr:uuid: 22fbc5d8-1ba6-4402-bc00-02f78765dd48
           hipposysedit:node: true
           hipposysedit:supertype: ['hippo:compound', 'hippostd:relaxed']
           hipposysedit:uri: http://www.visitscotland.com/visitscotland/nt/1.0
@@ -58,6 +58,7 @@ definitions:
             jcr:primaryType: frontend:plugin
             item: ${cluster.id}.field
             plugin.class: org.hippoecm.frontend.service.render.ListViewPlugin
+            wicket.skin: css/document-styles.css
           /copy:
             jcr:primaryType: frontend:plugin
             caption: Copy
@@ -65,6 +66,7 @@ definitions:
             plugin.class: org.hippoecm.frontend.editor.plugins.field.NodeFieldPlugin
             wicket.id: ${cluster.id}.field
             hint: ''
+            wicket.css: []
             /cluster.options:
               jcr:primaryType: frontend:pluginconfig
               ckeditor.config.appended.json: "{   extraPlugins: 'wordcount',   wordcount:\
@@ -86,5 +88,7 @@ definitions:
             field: Quote
             plugin.class: org.hippoecm.frontend.editor.plugins.field.NodeFieldPlugin
             wicket.id: ${cluster.id}.field
+            hint: ''
+            wicket.css: [article-separator]
             /cluster.options:
               jcr:primaryType: frontend:pluginconfig

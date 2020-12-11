@@ -11,7 +11,7 @@ definitions:
         /hipposysedit:nodetype:
           jcr:primaryType: hipposysedit:nodetype
           jcr:mixinTypes: ['mix:referenceable', 'hipposysedit:remodel']
-          jcr:uuid: 91b1cc11-4f94-4305-960b-6a8c8492cc25
+          jcr:uuid: 4e6dedcb-35aa-4a33-934a-3c8003ab2130
           hipposysedit:node: true
           hipposysedit:supertype: ['visitscotland:basedocument', 'hippostd:relaxed',
             'hippotranslation:translated']
@@ -70,7 +70,7 @@ definitions:
           jcr:mixinTypes: ['mix:referenceable']
           visitscotland:title: ''
           visitscotland:anchor: ''
-          jcr:uuid: 6b34f963-4483-41e1-b65b-e1ac3601d663
+          jcr:uuid: b6d3068d-a626-4c7a-a915-893c60f2ed11
           hippostdpubwf:lastModificationDate: 2020-12-11T10:07:47.311Z
           hippostdpubwf:creationDate: 2020-12-11T10:07:47.312Z
           /visitscotland:image:
@@ -98,6 +98,7 @@ definitions:
             jcr:primaryType: frontend:plugin
             item: ${cluster.id}.field
             plugin.class: org.hippoecm.frontend.service.render.ListViewPlugin
+            wicket.skin: css/translation-dialog.css
           /image:
             jcr:primaryType: frontend:plugin
             caption: Image
@@ -136,10 +137,11 @@ definitions:
                 \ { \tcountSpacesAsChars: true,     showCharCount: true   }  }"
           /paragraph:
             jcr:primaryType: frontend:plugin
-            caption: PARRAGRAPH
+            caption: PARAGRAPH
             field: paragraph
             hint: ''
             plugin.class: org.hippoecm.frontend.editor.plugins.field.NodeFieldPlugin
             wicket.id: ${cluster.id}.field
+            wicket.css: []
             /cluster.options:
               jcr:primaryType: frontend:pluginconfig
