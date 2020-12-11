@@ -51,7 +51,14 @@
                                 {{ menuToggleAltText }}
                             </span>
                             <VsIcon
-                                v-if="!isOpen"
+                                v-if="isOpen"
+                                name="close"
+                                size="xs"
+                                variant="dark"
+                            />
+
+                            <VsIcon
+                                v-else
                                 name="bars-mobile-menu"
                                 size="md"
                                 variant="dark"
