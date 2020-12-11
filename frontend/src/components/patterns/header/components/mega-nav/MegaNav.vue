@@ -81,8 +81,8 @@ import {
     VsCol, VsRow, VsContainer,
 } from '@components/elements/layout';
 import VsSvgLink from '@components/patterns/svg-link/SvgLink';
-import VsMegaNavDropdown from '@components/patterns/header/components/mega-nav/MegaNavDropdown';
-import VsMegaNavTopMenu from '@components/patterns/header/components/mega-nav/desktop-menu/MegaNavTopMenu';
+import VsMegaNavDropdown from '@components/patterns/header/components/mega-nav/components/MegaNavDropdown';
+import VsMegaNavTopMenu from '@components/patterns/header/components/mega-nav/components/MegaNavTopMenu';
 import VsIcon from '@components/elements/icon/Icon';
 
 /**
