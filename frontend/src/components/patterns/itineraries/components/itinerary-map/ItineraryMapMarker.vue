@@ -33,6 +33,8 @@ import VsIcon from '@components/elements/icon/Icon';
 
 /**
  * TODO: Document usage
+ *
+ * @displayName Itinerary Map Marker
  */
 
 export default {

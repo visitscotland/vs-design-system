@@ -20,6 +20,8 @@ import VsIcon from '@components/elements/icon/Icon';
  * An icon list item is a child component used within icon list components.
  * The component takes in an icon name and label that should be displayed under the icon as props.
  * They're displayed with an inline-table layout setting.
+ *
+ * @displayName Icon List Item
  */
 
 export default {
