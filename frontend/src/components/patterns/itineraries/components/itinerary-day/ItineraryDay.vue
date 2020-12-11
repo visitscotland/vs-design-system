@@ -57,6 +57,8 @@ import VsAccordionItem from '@components/patterns/accordion/AccordionItem';
 
 /**
  * Itinerary Day list items.
+ *
+ * @displayName Itinerary Day
  */
 
 export default {

@@ -1,5 +1,8 @@
 <template>
-    <div class="vs-summary-box-distance-display position-absolute d-block text-center w-100">
+    <div
+        class="vs-summary-box-distance-display position-absolute d-block text-center w-100"
+        data-test="vs-summary-box-distance-display"
+    >
         <span
             v-if="isShowingMiles"
             id="display_miles"
@@ -15,6 +18,8 @@
 import summaryBoxStore from '@components/patterns/summary-box/summaryBox.store';
 /**
  * Summary Box Distance Display
+ *
+ * @displayName Summary Box Distance Display
  */
 export default {
     name: 'VsSummaryBoxDistanceDisplay',

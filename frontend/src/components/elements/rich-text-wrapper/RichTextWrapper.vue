@@ -16,6 +16,8 @@
 /**
   * Text Wrapper is used to wrap and render HTML or text strings from
   * WYSIWYG editors or others and apply styles when needed.
+ *
+ * @displayName Rich Text Wrapper
  */
 export default {
     name: 'VsRichTextWrapper',
