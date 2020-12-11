@@ -318,9 +318,10 @@ public class LinkModuleFactoryTest {
         final String url= "https://www.visitscotland.com/ebrochures/en/what-to-see-and-do/perthshireanddundee.pdf";
         SharedLink externalDocument = (SharedLink)new MegalinksMockBuilder().getExternalDocument("title",url, "MB", 15.5, null);
 
+        when (resourceBundleService.getResourceBundle("essentials.global", "label.download", Locale.UK ,true)).thenReturn("DOWNLOAD");
         EnhancedLink enhancedLink = factory.createEnhancedLink(externalDocument,Locale.UK, false);
 
-        assertEquals("title(PDF 15.5MB)", enhancedLink.getLabel());
+        assertEquals("title(DOWNLOAD PDF 15.5MB)", enhancedLink.getLabel());
         assertEquals(com.visitscotland.brmx.beans.mapping.LinkType.DOWNLOAD, enhancedLink.getType());
         Mockito.verify((ExternalDocument)externalDocument.getLinkType(),Mockito.never()).getCategory();
     }
@@ -332,9 +333,10 @@ public class LinkModuleFactoryTest {
         final String category= "see-do";
         SharedLink externalDocument = (SharedLink)new MegalinksMockBuilder().getExternalDocument("title",url, "MB", 15.5,category);
 
+        when (resourceBundleService.getResourceBundle("essentials.global", "label.download", Locale.UK ,true)).thenReturn("DOWNLOAD");
         EnhancedLink enhancedLink = factory.createEnhancedLink(externalDocument,Locale.UK, true);
 
-        assertEquals("title(PDF 15.5MB)", enhancedLink.getLabel());
+        assertEquals("title(DOWNLOAD PDF 15.5MB)", enhancedLink.getLabel());
         assertEquals(com.visitscotland.brmx.beans.mapping.LinkType.DOWNLOAD, enhancedLink.getType());
         assertEquals(category, enhancedLink.getCategory());
     }
