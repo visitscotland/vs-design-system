@@ -24,6 +24,8 @@ import VsLink from '@components/elements/link/Link';
 
 /**
  * A component for an SVG wrapped in a link with accessible sr-only text
+ *
+ * @displayName Svg Link
  */
 export default {
     name: 'VsSvgLink',

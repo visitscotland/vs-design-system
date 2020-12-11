@@ -20,6 +20,8 @@ import VsLink from '@components/elements/link/Link';
 /**
  * The FooterNavListItems is used inside the FooterNavList to
  * show an indivudal footer link.
+ *
+ * @displayName Footer Nav List Item
  */
 
 export default {

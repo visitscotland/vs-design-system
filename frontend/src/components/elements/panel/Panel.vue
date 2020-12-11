@@ -20,6 +20,8 @@ import { BCard, BCardText } from 'bootstrap-vue';
 
 /**
  * The panel is used for simple content and contains slots for title and content.
+ *
+ * @displayName Panel
  */
 export default {
     name: 'VsPanel',

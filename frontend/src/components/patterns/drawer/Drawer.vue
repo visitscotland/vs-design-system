@@ -25,6 +25,8 @@ import { GET_ACTIVE_CONTENT } from './drawer.store.getter-types';
  * multiple sets of content wrapped in VsDrawerContent. Matched
  * VsToggle components provide the ability to switch between
  * the sets of content and open/close the drawer.
+ *
+ * @displayName Drawer
  */
 export default {
     name: 'VsDrawer',
