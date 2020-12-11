@@ -68,8 +68,7 @@ definitions:
             field: image
             plugin.class: org.hippoecm.frontend.editor.plugins.field.NodeFieldPlugin
             wicket.id: ${cluster.id}.field
-            hint: When this image is not added, It will default to iCentre DMS listing
-              image.
+            hint: iCentre DMS listing image is shown by default.
             /cluster.options:
               jcr:primaryType: frontend:pluginconfig
           /title:
