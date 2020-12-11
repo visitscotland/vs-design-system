@@ -49,10 +49,6 @@
 </template>
 
 <script>
-/**
- *  This component includes a slot for toggle button content
- *  and slots for the mega nav dropdown menu content
- */
 import {
     VsCol,
     VsRow,
@@ -61,6 +57,12 @@ import {
 import { BDropdown } from 'bootstrap-vue';
 import VsButton from '@components/elements/button/Button';
 
+/**
+ *  This component includes a slot for toggle button content
+ *  and slots for the mega nav dropdown menu content
+ *
+ * @displayName MegaNav Dropdown
+ */
 export default {
     name: 'VsMegaNavDropdown',
     status: 'prototype',

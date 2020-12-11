@@ -18,6 +18,8 @@
 <script>
 /**
  *  Meganav list wrapper with a slots list items
+ *
+ * @displayName MegaNav List
  */
 export default {
     name: 'VsMegaNavList',
