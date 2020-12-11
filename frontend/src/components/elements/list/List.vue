@@ -15,6 +15,7 @@
 /**
  * Generic List Component that can be used for any kind of list needed given the right properties.
  *
+ * @displayName List
  */
 export default {
     name: 'VsList',

@@ -19,6 +19,8 @@ import VsLink from '@components/elements/link/Link';
 
 /**
  *  Meganav list items with link and slot for link content
+ *
+ * @displayName MegaNav List Item
  */
 
 export default {

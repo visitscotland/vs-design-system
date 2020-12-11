@@ -18,6 +18,11 @@ import { getters } from './drawer.store';
 import { IS_ACTIVE_CONTENT } from './drawer.store.getter-types';
 import { CLOSE_DRAWER, SHOW_DRAWER_CONTENT } from './drawer.store.action-types';
 
+/**
+ * TODO: Document usage
+ *
+ * @displayName Drawer Toggle
+ */
 export default {
     name: 'VsDrawerToggle',
     components: {
