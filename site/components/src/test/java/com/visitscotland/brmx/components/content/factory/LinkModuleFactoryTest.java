@@ -316,12 +316,12 @@ public class LinkModuleFactoryTest {
     @DisplayName("VS-2308 External document definition without category")
     void createEnhancedLink_externalDocument() {
         final String url= "https://www.visitscotland.com/ebrochures/en/what-to-see-and-do/perthshireanddundee.pdf";
-        SharedLink externalDocument = (SharedLink)new MegalinksMockBuilder().getExternalDocument("title",url, "MB", 15.5, null);
+        SharedLink externalDocument = (SharedLink)new MegalinksMockBuilder().getExternalDocument("title",url,  null);
 
         when (resourceBundleService.getResourceBundle("essentials.global", "label.download", Locale.UK ,true)).thenReturn("DOWNLOAD");
         EnhancedLink enhancedLink = factory.createEnhancedLink(externalDocument,Locale.UK, false);
 
-        assertEquals("title(DOWNLOAD PDF 15.5MB)", enhancedLink.getLabel());
+        assertEquals("title (DOWNLOAD PDF 15.5MB)", enhancedLink.getLabel());
         assertEquals(com.visitscotland.brmx.beans.mapping.LinkType.DOWNLOAD, enhancedLink.getType());
         Mockito.verify((ExternalDocument)externalDocument.getLinkType(),Mockito.never()).getCategory();
     }
@@ -331,12 +331,12 @@ public class LinkModuleFactoryTest {
     void createEnhancedLink_externalDocument_category() {
         final String url= "https://www.visitscotland.com/ebrochures/en/what-to-see-and-do/perthshireanddundee.pdf";
         final String category= "see-do";
-        SharedLink externalDocument = (SharedLink)new MegalinksMockBuilder().getExternalDocument("title",url, "MB", 15.5,category);
+        SharedLink externalDocument = (SharedLink)new MegalinksMockBuilder().getExternalDocument("title",url,category);
 
         when (resourceBundleService.getResourceBundle("essentials.global", "label.download", Locale.UK ,true)).thenReturn("DOWNLOAD");
         EnhancedLink enhancedLink = factory.createEnhancedLink(externalDocument,Locale.UK, true);
 
-        assertEquals("title(DOWNLOAD PDF 15.5MB)", enhancedLink.getLabel());
+        assertEquals("title (DOWNLOAD PDF 15.5MB)", enhancedLink.getLabel());
         assertEquals(com.visitscotland.brmx.beans.mapping.LinkType.DOWNLOAD, enhancedLink.getType());
         assertEquals(category, enhancedLink.getCategory());
     }

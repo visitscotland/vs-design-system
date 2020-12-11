@@ -30,6 +30,8 @@ import VsDropdownItem from '../../../dropdown/DropdownItem';
 /**
  * This component is the dropdown used inside the Global Menu component.
  * It holds the list of websites to be shown on smaller devices.
+ *
+ * @displayName Global Menu Dropdown
  */
 
 export default {

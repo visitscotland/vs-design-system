@@ -1,6 +1,6 @@
-/content/documents/administration/labels/itinerary:
+/content/documents/administration/labels/pages:
   jcr:primaryType: hippostd:folder
   jcr:mixinTypes: ['hippo:named', 'mix:versionable']
-  jcr:uuid: e77ddf0a-f8a0-497e-8787-472fbe124674
-  hippo:name: Itinerary
+  jcr:uuid: c37559b5-4c34-410a-8c3f-65ef2ffbf4bd
+  hippo:name: Pages
   hippostd:foldertype: [new-untranslated-folder-resource-bundle, new-resource-bundle]

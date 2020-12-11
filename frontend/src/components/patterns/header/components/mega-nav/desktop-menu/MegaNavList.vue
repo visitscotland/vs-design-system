@@ -10,6 +10,8 @@
 
 /**
  * WORK IN PROGRESS
+ *
+ * @displayName MegaNav List
  */
 export default {
     name: 'VsMegaNavList',
