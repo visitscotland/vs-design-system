@@ -1,5 +1,5 @@
 <template>
-    <div class="card stretched-link-card">
+    <div class="card vs-stretched-link-card">
         <template
             v-if="imgSrc"
         >
@@ -32,7 +32,7 @@
             </VsHeading>
             <VsHeading
                 level="3"
-                class="card-title stretched-link-card__title"
+                class="card-title vs-stretched-link-card__title"
             >
                 <VsLink
                     :href="link"
