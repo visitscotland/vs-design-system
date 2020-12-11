@@ -21,6 +21,8 @@ import VsButton from '@components/elements/button/Button';
 
 /**
  * TODO: Document usage
+ *
+ * @displayName Itinerary Mobile Map Toggle
  */
 
 export default {

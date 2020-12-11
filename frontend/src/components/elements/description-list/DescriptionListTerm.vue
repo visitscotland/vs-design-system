@@ -15,6 +15,8 @@
 import { VsCol } from '@components/elements/layout';
 /**
  * TODO: Document usage
+ *
+ * @displayName Description List Term
  */
 
 export default {
