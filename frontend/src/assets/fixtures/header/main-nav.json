@@ -643,6 +643,7 @@
         "dropdownNav": [
             {
                 "title": "Accommodation Types",
+                "cta": "All Accommodation Types",
                 "href": "https://www.visitscotland.com/destinations-maps/",
                 "trackingId": "nav.link.test-tracking-id",
                 "dropdownNav": [
@@ -1057,7 +1058,6 @@
             },
             {
                 "title": "Getting around Scotland",
-                "href": "https://www.visitscotland.com/destinations-maps/",
                 "isExternal": false,
                 "isActive": false,
                 "trackingId": "nav.link.test-tracking-id",

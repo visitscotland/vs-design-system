@@ -111,7 +111,7 @@ export default {
                     border-top: 1px solid $border-color;
 
                     &:focus, &:active, &:active:focus {
-                        box-shadow: 0 0 0 0.1rem $color-pink inset;
+                        box-shadow: 0 0 0 0.1rem $color-pink inset!important;
                     }
                 }
             }
