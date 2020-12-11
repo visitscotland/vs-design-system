@@ -4,6 +4,8 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.visitscotland.brmx.beans.InstagramImage;
 import com.visitscotland.brmx.services.ResourceBundleService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -21,6 +23,7 @@ import java.util.Locale;
 public class CommonUtils {
 
     final static String VS_DMS_ENCODING = "UTF8";
+    private static final Logger logger = LoggerFactory.getLogger(CommonUtils.class.getName());
 
     //TODO add message format for other languages
     public static final String contentIssue (String message, Object... parameters){
@@ -68,7 +71,7 @@ public class CommonUtils {
         return response;
     }
 
-    public static String getExtenalDocumentSize(String link){
+    public static String getExtenalDocumentSize(String link) {
         String size = null;
         URL url;
         DecimalFormat decimalFormat = new DecimalFormat("#.#");
@@ -81,10 +84,8 @@ public class CommonUtils {
                 double bytes = con.getContentLength();
                 size = "PDF " + decimalFormat.format((bytes / 1024) / 1024) + "MB";
             }
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
         } catch (IOException e) {
-            e.printStackTrace();
+            logger.error("The URL {} is not valid", link, e);
         }
         return size;
     }
