@@ -83,7 +83,10 @@ import VsImageLocationMap from '@components/patterns/image-location-map/ImageLoc
 
 /**
  * Hero image element
+ *
+ * @displayName Hero
  */
+
 export default {
     name: 'VsHero',
     status: 'prototype',

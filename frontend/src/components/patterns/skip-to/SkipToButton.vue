@@ -24,6 +24,8 @@ import VsButton from '@components/elements/button';
  * The SkipToButton component is a button with specific style and
  * is not visible until focused on, for use as an accessibility
  * control.
+ *
+ * @displayName Skip To Button
  */
 export default {
     name: 'VsSkipToButton',
