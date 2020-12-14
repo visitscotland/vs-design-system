@@ -10,6 +10,11 @@
 <script>
 import VsDropdownItem from '../../../dropdown/DropdownItem';
 
+/**
+ * TODO: Document usage
+ *
+ * @displayName Global Menu Language Item
+ */
 export default {
     name: 'VsGlobalMenuLanguageItem',
     status: 'prototype',
