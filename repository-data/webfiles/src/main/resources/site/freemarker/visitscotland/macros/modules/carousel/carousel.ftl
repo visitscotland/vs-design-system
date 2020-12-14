@@ -3,7 +3,10 @@
 <#include "../../../../frontend/components/vs-carousel-slide.ftl">
 
 <#macro carousel item>
-    <vs-carousel>
+    <vs-carousel
+        next-text="${label("essentials.pagination", "page.next")}"
+        prev-text="${label("essentials.pagination", "page.previous")}"    
+    >
         <#list item.links as carouselItem>
             <#if carouselItem.image.cmsImage??>
                 <#assign image>
@@ -31,5 +34,9 @@
                 </template>
             </vs-carousel-slide>
         </#list>
+
+        <template slot="vsCarouselOf">
+            ${label("essentials.pagination", "page.of")}
+        </template>
     </vs-carousel>
 </#macro>

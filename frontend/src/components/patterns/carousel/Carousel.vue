@@ -12,7 +12,7 @@
                     <Splide
                         :options="splideOptions"
                         @splide:moved="carouselMoved"
-                        @splide:mounted="initialiseMobilePagination"
+                        @splide:mounted="initialiseCustomOptions"
                         @splide:updated="resetTabbing"
                     >
                         <!-- @slot default slot to contain slides -->
@@ -23,7 +23,7 @@
                             class="vs-carousel__mobile-pagination"
                             data-test="vs-carousel__mobile-pagination"
                         >
-                            {{ currentSlide }} of {{ totalSlides }}
+                            {{ currentSlide }} <slot name="vsCarouselOf" /> {{ totalSlides }}
                         </p>
                     </div>
                 </VsCol>
@@ -55,6 +55,16 @@ export default {
         VsRow,
         VsCol,
     },
+    props: {
+        prevText: {
+            type: String,
+            default: 'Previous slide',
+        },
+        nextText: {
+            type: String,
+            default: 'Next slide',
+        },
+    },
     data() {
         return {
             splideOptions: {
@@ -74,6 +84,10 @@ export default {
                         width: '80%',
                     },
                 },
+                i18n: {
+                    prev: this.prevText,
+                    next: this.nextText,
+                },
             },
             totalSlides: null,
             currentSlide: 1,
@@ -90,7 +104,7 @@ export default {
         });
     },
     methods: {
-        initialiseMobilePagination(splide) {
+        initialiseCustomOptions(splide) {
             this.totalSlides = splide.length;
         },
         carouselMoved(splide) {
@@ -368,7 +382,10 @@ export default {
 
 <docs>
      ```js
-    <VsCarousel>
+    <VsCarousel
+        nextText="hello"
+        prevText="goodbye"
+    >
         <VsCarouselSlide
             link-url="www.visitscotland.com"
             link-type="external"
@@ -485,6 +502,10 @@ export default {
                 </p>
             </template>
         </VsCarouselSlide>
+
+        <template slot="vsCarouselOf">
+            of
+        </template>
     </VsCarousel>
     ```
 </docs>
