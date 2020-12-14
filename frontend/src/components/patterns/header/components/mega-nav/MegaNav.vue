@@ -3,7 +3,7 @@
         class="vs-mega-nav bg-white"
         data-test="vs-mega-nav"
     >
-        <VsContainer>
+        <VsContainer fluid="lg">
             <VsRow class="align-items-center">
                 <!-- Logo Link -->
                 <VsCol
@@ -51,7 +51,14 @@
                                 {{ menuToggleAltText }}
                             </span>
                             <VsIcon
-                                v-if="!isOpen"
+                                v-if="isOpen"
+                                name="close"
+                                size="xs"
+                                variant="dark"
+                            />
+
+                            <VsIcon
+                                v-else
                                 name="bars-mobile-menu"
                                 size="md"
                                 variant="dark"
@@ -74,8 +81,8 @@ import {
     VsCol, VsRow, VsContainer,
 } from '@components/elements/layout';
 import VsSvgLink from '@components/patterns/svg-link/SvgLink';
-import VsMegaNavDropdown from '@components/patterns/header/components/mega-nav/MegaNavDropdown';
-import VsMegaNavTopMenu from '@components/patterns/header/components/mega-nav/desktop-menu/MegaNavTopMenu';
+import VsMegaNavDropdown from '@components/patterns/header/components/mega-nav/components/MegaNavDropdown';
+import VsMegaNavTopMenu from '@components/patterns/header/components/mega-nav/components/MegaNavTopMenu';
 import VsIcon from '@components/elements/icon/Icon';
 
 /**
