@@ -63,6 +63,8 @@ import VsCol from '@components/elements/layout/Col';
 /**
  * Reusable component to promote iKnow partners to visitors as
  * a way for them to access information from local experts.
+ *
+ * @displayName Iknow Partner Item
  */
 
 export default {

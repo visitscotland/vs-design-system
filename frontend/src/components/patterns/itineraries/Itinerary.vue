@@ -43,6 +43,8 @@ import VsAccordion from '@components/patterns/accordion/Accordion';
 /**
  * A wrapper component that wraps the itinerary map and list.
  * It controls display of the mobile map toggle on smaller screens.
+ *
+ * @displayName Itinerary
  */
 
 export default {

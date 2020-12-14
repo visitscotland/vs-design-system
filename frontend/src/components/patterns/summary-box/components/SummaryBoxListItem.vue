@@ -1,5 +1,8 @@
 <template>
-    <li class="vs-summary-box-list-item position-relative">
+    <li
+        class="vs-summary-box-list-item position-relative"
+        data-test="vs-summary-box-list-item"
+    >
         <slot />
     </li>
 </template>
@@ -7,6 +10,8 @@
 <script>
 /**
  * Summary Box List Item
+ *
+ * @displayName Summary Box List Item
  */
 export default {
     name: 'VsSummaryBoxListItem',

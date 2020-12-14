@@ -31,6 +31,8 @@ import VsButton from '@components/elements/button/Button';
 /**
  * Summary Box Distance Label component includes toggles to change
  * the distance type displayed within the VsSummaryBoxDistance component
+ *
+ * @displayName Summary Box Distance Label
  */
 export default {
     name: 'VsSummaryBoxDistanceLabel',
