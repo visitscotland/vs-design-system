@@ -42,7 +42,11 @@ public class IKnowFactory {
             module.setTitle(document.getTitle());
         }
 
-        module.setDescription(document.getDescription());
+        if (Contract.isEmpty(document.getDescription())){
+            module.setDescription(bundle.getResourceBundle(BUNDLE_ID,"iknow.description.default", locale));
+        } else {
+            module.setDescription(document.getDescription());
+        }
 
         FlatLink link = new FlatLink();
 

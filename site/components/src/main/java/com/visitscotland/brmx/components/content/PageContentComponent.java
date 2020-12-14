@@ -190,13 +190,13 @@ public class PageContentComponent<TYPE extends Page> extends EssentialsContentCo
         if (image.getAltText() == null || image.getAltText().isEmpty()){
             image.setAltText(image.getCmsImage().getAltText());
             errors.add("Alt text field not provided for " + locale.getDisplayLanguage());
-            logger.warn(CommonUtils.contentIssue("Alt text field not provided for %s for the image : %s - %s",
+            logger.warn(CommonUtils.contentIssue("Please add alt text in %s for the image : %s - %s",
                     locale.getDisplayLanguage() , image.getCmsImage().getName(), image.getCmsImage().getPath()));
         }
         if (image.getDescription() == null || image.getDescription().isEmpty()){
             image.setDescription(image.getCmsImage().getDescription());
             errors.add("Caption field not provided for " + locale.getDisplayLanguage());
-            logger.warn(CommonUtils.contentIssue("Caption field not provided for %s for the image : %s - %s",
+            logger.warn(CommonUtils.contentIssue("Please add a caption in %s for the image : %s - %s",
                     locale.getDisplayLanguage() , image.getCmsImage().getName(), image.getCmsImage().getPath()));
         }
     }

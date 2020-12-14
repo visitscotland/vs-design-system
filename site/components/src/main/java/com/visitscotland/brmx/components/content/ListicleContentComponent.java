@@ -71,12 +71,12 @@ public class ListicleContentComponent extends PageContentComponent<Listicle> {
                     InstagramImage instagramLink = (InstagramImage) listicleItem.getListicleItemImage();
                     location = instagramLink.getLocation();
                     try {
-                        String caption = CommonUtils.getInstagramCaption(instagramLink);
-                        if (caption != null) {
-                            flatImage = new FlatImage(instagramLink,caption,request.getLocale());
+                        JsonNode instagramInfo = CommonUtils.getInstagramInformation(instagramLink);
+                        if (instagramInfo != null) {
+                            flatImage = new FlatImage(instagramLink,instagramInfo,request.getLocale());
                         } else {
-                            errors.add("The Instagram id is not valid");
-                            logger.warn(CommonUtils.contentIssue("The Instagram id %s is not valid, Listicle = %s - %s",
+                            errors.add("The Instagram id is no longer valid");
+                            logger.warn(CommonUtils.contentIssue("The Instagram id %s is no longer, Listicle = %s - %s",
                                     instagramLink.getId(), listicle.getPath(), listicleItem.getTitle()));
                         }
                     } catch (IOException e) {
@@ -109,7 +109,7 @@ public class ListicleContentComponent extends PageContentComponent<Listicle> {
                     try {
                         product = dmsData.productCard(dmsLink.getProduct(), request.getLocale());
                         if (product == null) {
-                            errors.add("The product id does not exists in the DMS");
+                            errors.add("The product id does not match in the DMS");
                             logger.warn(CommonUtils.contentIssue("The product's id  wasn't provided for %s, Listicle = %s - %s",
                                     dmsLink.getProduct(), listicle.getPath(), listicleItem.getTitle()));
                         } else {

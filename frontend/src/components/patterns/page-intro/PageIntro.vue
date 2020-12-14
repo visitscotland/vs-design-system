@@ -29,6 +29,8 @@
 /**
  * Component is just a wrapper for the page hero and introduction.
  * Note that everything within is just a slot.
+ *
+ * @displayName Page Intro
  */
 export default {
     name: 'VsPageIntro',
