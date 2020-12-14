@@ -9,7 +9,7 @@ describe('VsStretchedLinkCard', () => {
                     days: '10',
                 },
             });
-            expect(wrapper.find('[data-test="vs-stretched-link-panel--days"]').exists()).toBe(true);
+            expect(wrapper.find('[data-test="vs-stretched-link-panel--days"]').text()).toContain('10');
         });
 
         it('should render an element with the text prop content if it is defined', () => {
@@ -19,6 +19,18 @@ describe('VsStretchedLinkCard', () => {
                 },
             });
             expect(wrapper.find('[data-test="vs-stretched-link-panel__icon"]').text()).toBe('Panel text');
+        });
+    });
+
+    describe(':slots', () => {
+        it('should render the contnet of the `stretchedLinkPanelDays` slot', () => {
+            const wrapper = shallowMount(VsStretchedLinkPanels, {
+                slots: {
+                    stretchedLinkPanelDays: 'days',
+                },
+            });
+
+            expect(wrapper.find('[data-test="vs-stretched-link-panel--days"]').text()).toContain('days');
         });
     });
 });
