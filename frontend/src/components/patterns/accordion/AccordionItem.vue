@@ -65,6 +65,8 @@ import {
 /**
  * Accordion item for use within the Accordion component.
  * Contains a button to toggle the panel open or closed.
+ *
+ * @displayName Accordion Item
  */
 export default {
     name: 'VsAccordionItem',

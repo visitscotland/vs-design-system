@@ -14,6 +14,8 @@
 <script>
 /**
  * Wraps the nearby links at the bottom of each day and applies border styling
+ *
+ * @displayName Itinerary Border Overlap Wrapper
  */
 export default {
     name: 'VsItineraryBorderOverlapWrapper',
