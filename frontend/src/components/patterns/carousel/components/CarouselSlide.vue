@@ -12,6 +12,7 @@
                 :days="days"
                 :transport="transport"
                 slot="stretchedCardPanels"
+                :days-label="daysLabel"
             />
 
             <template slot="stretchedCardCategory">
@@ -92,6 +93,13 @@ export default {
         days: {
             type: String,
             default: '',
+        },
+        /**
+        * Label for days - too allow translation in CMS
+        */
+        daysLabel: {
+            type: String,
+            default: 'days',
         },
         /**
         * Optional prop for transport type (will show a the transport icon if used)

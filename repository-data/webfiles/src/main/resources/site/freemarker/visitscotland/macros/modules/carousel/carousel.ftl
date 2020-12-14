@@ -13,6 +13,7 @@
                 <#assign image = carouselItem.image.externalImage!'' />
             </#if>
             <vs-carousel-slide
+                days-label="${label('itinerary', 'days')}"
                 link-url="${carouselItem.link}"
                 link-type="${carouselItem.type}"
                 img-src="${image}"

@@ -5,10 +5,7 @@
             data-test="vs-stretched-link-panel--days"
         >
             <p data-test>
-                <span class="vs-stretched-link-panels__days">{{ days }} </span>
-                <!-- @slot Slot for 'days' text - allowing use of labels
-                    in the CMS for translation  -->
-                <slot name="stretchedLinkPanelDays" />
+                <span class="vs-stretched-link-panels__days">{{ days }} </span>{{ daysLabel }}
             </p>
         </div>
 
@@ -54,6 +51,13 @@ export default {
         transport: {
             type: String,
             default: '',
+        },
+        /**
+        * Text to use for 'days' label - to allow for CMS translation
+        */
+        daysLabel: {
+            type: String,
+            default: 'days',
         },
     },
     computed: {
@@ -128,7 +132,11 @@ export default {
         <vs-container>
             <vs-row>
                 <vs-col md="6">
-                    <vs-stretched-link-panels days="14" transport="car">
+                    <vs-stretched-link-panels
+                        days="14"
+                        transport="car"
+                        daysLabel="days"
+                    >
                         <template slot="stretchedLinkPanelDays">days</template>
                     </vs-stretched-link-panels>
                 </vs-col>
