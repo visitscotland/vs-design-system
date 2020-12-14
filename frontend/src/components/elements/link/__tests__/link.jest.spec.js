@@ -31,7 +31,7 @@ describe('VsLink', () => {
         it(':variant - should render the primary variant by default', () => {
             const wrapper = factoryShallowMount();
 
-            expect(wrapper.classes()).toContain('primary');
+            expect(wrapper.classes()).toContain('vs-link--variant-primary');
         });
 
         it(':variant - should render the dark variant', () => {
@@ -39,8 +39,8 @@ describe('VsLink', () => {
                 variant: 'dark',
             });
 
-            expect(wrapper.classes()).toContain('dark');
-            expect(wrapper.classes()).not.toContain('primary');
+            expect(wrapper.classes()).toContain('vs-link--variant-dark');
+            expect(wrapper.classes()).not.toContain('vs-link--variant-primary');
         });
 
         it(':href - should apply the supplied href', () => {
@@ -66,20 +66,19 @@ describe('VsLink', () => {
                 type: 'external',
             });
 
-            expect(wrapper.classes()).toContain('vs-link--external');
             expect(wrapper.attributes('target')).toBe('_blank');
             expect(wrapper.contains(VsIcon)).toBe(true);
 
             await wrapper.setProps({
                 type: 'download',
             });
-            expect(wrapper.classes()).toContain('vs-link--download');
+            expect(wrapper.attributes('download')).toBe('true');
             expect(wrapper.contains(VsIcon)).toBe(true);
 
             await wrapper.setProps({
                 type: 'internal',
             });
-            expect(wrapper.classes()).toContain('vs-link--internal');
+            expect(wrapper.attributes('target')).toBe('_self');
             expect(wrapper.contains(VsIcon)).toBe(true);
         });
 
