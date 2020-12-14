@@ -13,8 +13,11 @@
             </template>
 
             <li>
-                <VsContainer>
-                    <VsRow>
+                <VsContainer
+                    fluid="lg"
+                    class="px-0 px-lg-3"
+                >
+                    <VsRow class="no-gutters">
                         <VsCol cols="12">
                             <!-- @slot Used to display the top menu link
                             at the top of the dropdown menu  -->
@@ -25,7 +28,8 @@
                             <slot name="dropdownContent" />
 
                             <VsButton
-                                class="vs-mega-nav-dropdown__close-btn position-absolute"
+                                class="vs-mega-nav-dropdown__close-btn
+                                d-none d-lg-block position-absolute"
                                 icon="close"
                                 icon-only
                                 size="sm"
@@ -46,7 +50,9 @@
 
 <script>
 import {
-    VsCol, VsRow, VsContainer,
+    VsCol,
+    VsRow,
+    VsContainer,
 } from '@components/elements/layout';
 import { BDropdown } from 'bootstrap-vue';
 import VsButton from '@components/elements/button/Button';
@@ -64,8 +70,8 @@ export default {
     components: {
         BDropdown,
         VsCol,
-        VsRow,
         VsContainer,
+        VsRow,
         VsButton,
     },
     props: {
@@ -95,6 +101,8 @@ export default {
 
         // Close menu on resize screen to fix toggle btn issues
         window.addEventListener('resize', this.closeMenu);
+
+        this.getLastMenuItem();
     },
     beforeDestroy() {
         window.removeEventListener('resize', this.closeMenu);
@@ -102,6 +110,22 @@ export default {
     methods: {
         closeMenu() {
             this.$refs.dropdown.hide(true);
+        },
+        getLastMenuItem() {
+            const menuItem = this.$el.querySelectorAll('.vs-mega-nav-accordion-item--level-1');
+
+            if (menuItem.length > 0) {
+                const lastlevel1Item = Array.from(menuItem).pop();
+                const lastLevel2Item = Array.from(lastlevel1Item.children[1].children).pop();
+                const lastLevel3Item = Array.from(lastLevel2Item.children[1].children).pop();
+                const lastMenuItem = Array.from(lastLevel3Item.children).pop();
+
+                lastMenuItem.children[0].addEventListener('focusout', this.focusCloseBtn);
+            }
+        },
+        focusCloseBtn() {
+            const closeBtn = this.$el.querySelector('.dropdown-toggle');
+            closeBtn.focus();
         },
     },
 };
@@ -132,8 +156,8 @@ export default {
         width: 26px;
         font-size: 0;
         padding: $spacer-1;
-        right: 4px;
-        top: -67px;
+        right: 20px;
+        top: -40px;
 
         &:focus {
             box-shadow: 0 0 0 0.1rem $color-pink inset;
@@ -146,12 +170,11 @@ export default {
         }
 
         @include media-breakpoint-up(sm) {
-            right: 12px;
+            right: 36px;
         }
-
         @include media-breakpoint-up(lg) {
+            right: 4px;
             top: -10px;
-            right: $spacer-8;
         }
     }
 
@@ -167,7 +190,7 @@ export default {
         font-size: 0;
         padding: $spacer-1;
 
-        &:focus {
+        &:focus, &:active, &:active:focus {
             box-shadow: 0 0 0 0.1rem $color-pink inset;
         }
 
@@ -214,12 +237,26 @@ export default {
     .dropdown-menu {
         background: $color-gray-tint-8;
         width: 100%;
-        padding: $spacer-5 0 $spacer-8;
+        padding: 0;
         margin: 0;
-        max-height: 595px;
         border: 0;
-        box-shadow: 0px 9px 5px -7px rgba(0,0,0,0.1), inset 0px 10px 6px -8px rgba(0, 0, 0, 0.16);
+        box-shadow: 0px 9px 5px -7px rgba(0,0,0,0.1),
+        inset 0px 10px 6px -8px rgba(0, 0, 0, 0.16);
         transform: translate3d(0px, 55px, 0px) !important;
+
+        @include media-breakpoint-up(lg) {
+            padding: $spacer-5 0 $spacer-8;
+            max-height: 595px;
+        }
+
+        .vs-mega-nav-accordion-item--level-1:first-child{
+            > .vs-accordion-item__card-header{
+                > .vs-accordion-toggle.btn-primary{
+                    box-shadow: inset 0px 10px 6px -8px rgba(0, 0, 0, 0.16);
+                }
+            }
+        }
+
     }
 
 }
@@ -274,6 +311,6 @@ export default {
 </style>
 
 <docs>
-   ```[import](./__examples__/meganav.example.vue)
+   ```[import](../__examples__/meganav.example.vue)
     ```
 </docs>
