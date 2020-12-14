@@ -22,14 +22,18 @@ describe('VsCarousel', () => {
         expect(wrapper.vm.currentSlide).toBe(splide.index + 1);
     });
 
-    it('should change the totalSlides prop when the initialiseMobilePagination is called', () => {
+    it('should change the totalSlides prop when the initialiseCustomOptions is called', () => {
         const wrapper = factoryShallowMount();
-        wrapper.vm.initialiseMobilePagination(splide);
+        wrapper.vm.initialiseCustomOptions(splide);
         expect(wrapper.vm.totalSlides).toBe(splide.length);
     });
 
     it('renders the mobile pagination correctly', async() => {
-        const wrapper = factoryShallowMount();
+        const wrapper = factoryShallowMount({
+            slots: {
+                vsCarouselOf: 'of',
+            },
+        });
 
         await wrapper.setData({
             currentSlide: 4,
