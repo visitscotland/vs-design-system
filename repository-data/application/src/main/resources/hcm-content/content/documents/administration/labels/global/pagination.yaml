@@ -1,4 +1,5 @@
-/content/documents/administration/labels/pagination:
+/content/documents/administration/labels/global/pagination:
+  .meta:order-before: facilities
   jcr:primaryType: hippo:handle
   jcr:mixinTypes: ['hippo:named', 'mix:referenceable']
   jcr:uuid: e1aa6f52-3b01-441c-8e13-64e522cb21af

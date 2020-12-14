@@ -32,6 +32,11 @@
 import VsIcon from '@components/elements/icon/Icon';
 import store from './favourites.store';
 
+/**
+ * TODO: Document usage
+ *
+ * @displayName Favourites View Button
+ */
 export default {
     name: 'VsFavouritesViewButton',
     status: 'prototype',
