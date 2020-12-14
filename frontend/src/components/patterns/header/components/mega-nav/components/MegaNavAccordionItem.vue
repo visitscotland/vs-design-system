@@ -63,10 +63,12 @@ export default {
         },
         /**
          * Level of items in the nav
+         * `1, 2`
          */
         level: {
             type: String,
             required: true,
+            validator: (value) => value.match(/(1|2)/),
         },
     },
     computed: {
