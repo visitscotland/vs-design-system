@@ -149,6 +149,13 @@ export default {
                 display: none;
             }
 
+            &__slide {
+                img {
+                        align-self: flex-start;
+                        max-width: 100%;
+                }
+            }
+
             &__arrow {
                 border-radius: 0;
                 background: $color-pink;
