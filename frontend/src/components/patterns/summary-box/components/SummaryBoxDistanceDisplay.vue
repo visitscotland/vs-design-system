@@ -18,6 +18,8 @@
 import summaryBoxStore from '@components/patterns/summary-box/summaryBox.store';
 /**
  * Summary Box Distance Display
+ *
+ * @displayName Summary Box Distance Display
  */
 export default {
     name: 'VsSummaryBoxDistanceDisplay',

@@ -19,6 +19,8 @@
 /**
  * An icon list can be used where there is a list icons with a caption with optional heading.
  * An example use is to create a list of key facilities for a product.
+ *
+ * @displayName Icon List
  */
 
 export default {
