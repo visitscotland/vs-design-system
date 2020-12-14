@@ -32,6 +32,8 @@ import VsButton from '@components/elements/button/Button';
 /**
  * Accordion toggle button used with AccordionItem
  * It emits an event to the parent to toggle the Accordion panel.
+ *
+ * @displayName Accordion Toggle
  */
 export default {
     name: 'VsAccordionToggle',

@@ -10,6 +10,8 @@
 <script>
 /**
  * Summary Box Label
+ *
+ * @displayName Summary Box Label
  */
 export default {
     name: 'VsSummaryBoxLabel',
