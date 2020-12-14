@@ -225,8 +225,11 @@ export default {
                         A category header
                     </template>
                     <template slot="stretchedCardPanels">
-                        <vs-stretched-link-panel days="14" />
-                        <vs-stretched-link-panel text="öffentlicher Verkehr" />
+                        <vs-stretched-link-panel
+                            days="14"
+                            transport="öffentlicher Verkehr"
+                            daysLabel="days"
+                        />
                     </template>
 
                     <template slot="stretchedCardHeader">
