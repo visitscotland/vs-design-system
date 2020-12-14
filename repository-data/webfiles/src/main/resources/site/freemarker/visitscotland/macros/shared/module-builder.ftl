@@ -1,7 +1,6 @@
 <#include "../../../include/imports.ftl">
 <#include "../global/cms-errors.ftl">
 <#include "../modules/megalinks/megalinks.ftl">
-<#include "../modules/megalinks/megalinks-horizontal-list.ftl">
 <#include "../modules/tourism-information/tourisminformation-iknow.ftl">
 <#include "../modules/tourism-information/tourisminformation-icentre.ftl">
 <#include "../modules/otyml/otyml.ftl">
