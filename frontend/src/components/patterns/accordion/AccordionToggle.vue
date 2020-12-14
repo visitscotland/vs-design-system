@@ -6,6 +6,7 @@
         @click.native="triggerToggle"
         class="vs-accordion-toggle clearfix"
         :variant="variant"
+        :uppercase="false"
     >
         <!-- @slot Default slot contains text for the button -->
         <span class="vs-accordion-toggle__text">

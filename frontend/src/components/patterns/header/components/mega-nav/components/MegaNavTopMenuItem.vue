@@ -35,7 +35,7 @@
 </template>
 
 <script>
-import VsMegaNavDropdown from '@components/patterns/header/components/mega-nav/MegaNavDropdown';
+import VsMegaNavDropdown from '@components/patterns/header/components/mega-nav/components/MegaNavDropdown';
 import VsLink from '@components/elements/link/Link';
 
 /**
@@ -43,7 +43,6 @@ import VsLink from '@components/elements/link/Link';
  *
  * @displayName MegaNav Top Menu Item
  */
-
 export default {
     name: 'VsMegaNavTopMenuItem',
     status: 'prototype',
