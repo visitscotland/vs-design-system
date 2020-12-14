@@ -35,6 +35,8 @@ import VsRichTextWrapper from '@components/elements/rich-text-wrapper/RichTextWr
 /**
 * Megalink cards to be used in the megalinks component
 * There is a standard and featured variant.
+ *
+ * @displayName Megalinks Multi-Image
 */
 
 export default {

@@ -8,11 +8,13 @@
 </template>
 
 <script>
-/**
- * WORK IN PROGRESS
- */
 import { BNavItem } from 'bootstrap-vue';
 
+/**
+ * WORK IN PROGRESS
+ *
+ * @displayName MegaNav Mobile List Item
+ */
 export default {
     name: 'VsMegaNavMobileListItem',
     status: 'prototype',

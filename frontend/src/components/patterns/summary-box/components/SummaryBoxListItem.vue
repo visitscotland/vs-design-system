@@ -10,6 +10,8 @@
 <script>
 /**
  * Summary Box List Item
+ *
+ * @displayName Summary Box List Item
  */
 export default {
     name: 'VsSummaryBoxListItem',
