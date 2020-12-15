@@ -7,13 +7,13 @@ import org.hippoecm.hst.core.component.HstResponse;
 import org.onehippo.cms7.essentials.components.CommonComponent;
 
 
-public class InternalContentComponent extends CommonComponent {
+public class InternalComponent extends CommonComponent {
 
     ResourceBundleService bundle;
     HippoUtilsService utils;
     InternalParameterProcessor processor;
 
-    public InternalContentComponent() {
+    public InternalComponent() {
         bundle = new ResourceBundleService();
         utils = new HippoUtilsService();
         processor = new InternalParameterProcessor(bundle, utils);

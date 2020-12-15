@@ -12,7 +12,7 @@
             <link rel="stylesheet" href="<@hst.webfile  path="/css/cms-request.css"/>" type="text/css"/>
         </#if>
 
-        <@headContributions>
+        <@headContributions />
 
     </head>
     <body>
@@ -28,23 +28,6 @@
             <@hst.include ref="footer"/>
         </div>
 
-        <#--
-         IMPORTANT!
-
-         Please consider to update internal.ftl when making changes in the head contributions, so third Parties can
-         benefit from the same configuration.
-        -->
-
-        <!-- BEGIN HEAD CONTRIBUTIONS: htmlBodyEndScriptsFirst -->
-        <@hst.headContributions categoryIncludes="htmlBodyEndScriptsFirst" xhtml=true/>
-        <!-- END HEAD CONTRIBUTIONS: htmlBodyEndScriptsFirst -->
-
-        <!-- BEGIN HEAD CONTRIBUTIONS: htmlBodyEndScripts -->
-        <@hst.headContributions categoryIncludes="htmlBodyEndScripts" xhtml=true/>
-        <!-- END HEAD CONTRIBUTIONS: htmlBodyEndScripts -->
-
-        <!-- BEGIN HEAD CONTRIBUTIONS: htmlBodyEndAppInit -->
-        <@hst.headContributions categoryIncludes="htmlBodyEndAppInit" xhtml=true/>
-        <!-- END HEAD CONTRIBUTIONS: htmlBodyEndAppInit -->
+        <@footerContributions />
     </body>
 </html>
