@@ -168,6 +168,7 @@ export default {
     }
 
     .vs-mega-nav__menu{
+        display: block!important;
         width: 100%;
         max-width: 100%;
         flex: 0 0 100%;
