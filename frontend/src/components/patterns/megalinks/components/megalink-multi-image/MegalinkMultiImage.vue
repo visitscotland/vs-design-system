@@ -148,7 +148,7 @@ export default {
                 width: 16px;
             }
 
-            .megalink-multi-image__img {
+            .stretched-link-card__img {
                 width: calc(50% - 20px);
             }
 
