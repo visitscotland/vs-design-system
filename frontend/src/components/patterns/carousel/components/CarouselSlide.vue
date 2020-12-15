@@ -25,6 +25,8 @@ import VsStretchedLinkCard from '@components/elements/stretched-link-card/Stretc
 
 /**
 * Slide for carousel
+*
+* @displayName Carousel Slide
 */
 
 export default {
