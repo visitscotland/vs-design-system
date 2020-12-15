@@ -1,4 +1,4 @@
-/content/documents/administration/labels/keys:
+/content/documents/administration/configuration/keys:
   jcr:primaryType: hippo:handle
   jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
   jcr:uuid: 66d7dad9-555b-4284-a7ab-38398edf1713

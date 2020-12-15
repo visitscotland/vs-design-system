@@ -30,6 +30,8 @@ import {
 /**
  * The FooterUtilityList is a list of FooterNavListItems
  * that hold general utility links for the footer.
+ *
+ * @displayName Footer Utility List
  */
 
 export default {
