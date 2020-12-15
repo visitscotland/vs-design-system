@@ -3134,6 +3134,7 @@
           visitscotland:listLayout: true
           visitscotland:teaserVisible: true
           visitscotland:title: Featured Links (6 items) - List view
+          visitscotland:translation: ''
           /visitscotland:introduction:
             jcr:primaryType: hippostd:html
             hippostd:content: <p>This is an example of Featured Links</p>
