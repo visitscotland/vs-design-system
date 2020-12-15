@@ -191,6 +191,36 @@ export default {
 
 @include no-js {
     .vs-mega-nav-list-item{
+        background-color: transparent;
+        border: 0;
+
+        .vs-link--variant-primary{
+            border: 2px solid $color-white;
+            line-height: $line-height-s;
+            padding: $spacer-1 $spacer-5;
+        }
+
+        &__link{
+            .vs-link--variant-primary{
+                color: $color-secondary-gray;
+
+                &:hover{
+                    background-color: transparent;
+
+                    &:after{
+                        height: 100%;
+                    }
+                }
+
+                &::after{
+                    width: 6px;
+                    height: 0;
+                    background: $color-pink;
+                    transition: height 0.15s linear;
+                }
+            }
+        }
+
         &__heading{
             .vs-link--variant-primary{
                 font-size: $h2-font-size;

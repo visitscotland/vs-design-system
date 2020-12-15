@@ -107,10 +107,17 @@ export default {
 
 @include no-js {
     .vs-mega-nav-top-menu-item{
+        &__divider {
+            margin-bottom: $spacer-4;
+        }
         &__columns-wrapper{
             display: block;
             height: auto;
-            padding-left: $spacer-10;
+            padding-left: $spacer-8;
+
+            @include media-breakpoint-up(lg) {
+                padding-left: $spacer-10;
+            }
         }
     }
 }
