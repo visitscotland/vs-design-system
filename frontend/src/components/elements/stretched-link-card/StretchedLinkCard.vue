@@ -18,8 +18,6 @@
             <slot name="stretchedCardPanels" />
         </template>
 
-        <!-- <slot name="stretchedCardImage" /> -->
-
         <div class="card-body">
             <VsHeading
                 level="4"
