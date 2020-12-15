@@ -45,6 +45,8 @@ import {
 /**
 * Multi purpose carousel component to use
 * for carousel and slider content
+*
+* @displayName Carousel
 */
 
 export default {

@@ -25,6 +25,8 @@
 import VsIcon from '@components/elements/icon/Icon';
 /**
  * Panels to show information in the stretched link component
+ *
+ * @displayName Stretched Link Panel
  */
 export default {
     name: 'VsStretchedLinkPanel',
