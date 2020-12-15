@@ -1,37 +1,35 @@
 <template>
-    <div class="no-js">
-        <section
-            class="vs-carousel"
-            data-test="vs-carousel"
-            ref="carousel"
-        >
-            <VsContainer>
-                <VsRow>
-                    <VsCol
-                        cols="12"
+    <section
+        class="vs-carousel"
+        data-test="vs-carousel"
+        ref="carousel"
+    >
+        <VsContainer>
+            <VsRow>
+                <VsCol
+                    cols="12"
+                >
+                    <Splide
+                        :options="splideOptions"
+                        @splide:moved="carouselMoved"
+                        @splide:mounted="initialiseCustomOptions"
+                        @splide:updated="resetTabbing"
                     >
-                        <Splide
-                            :options="splideOptions"
-                            @splide:moved="carouselMoved"
-                            @splide:mounted="initialiseMobilePagination"
-                            @splide:updated="resetTabbing"
+                        <!-- @slot default slot to contain slides -->
+                        <slot />
+                    </Splide>
+                    <div class="vs-carousel__mobile-pagination-wrapper">
+                        <p
+                            class="vs-carousel__mobile-pagination"
+                            data-test="vs-carousel__mobile-pagination"
                         >
-                            <!-- @slot default slot to contain slides -->
-                            <slot />
-                        </Splide>
-                        <div class="vs-carousel__mobile-pagination-wrapper">
-                            <p
-                                class="vs-carousel__mobile-pagination"
-                                data-test="vs-carousel__mobile-pagination"
-                            >
-                                {{ currentSlide }} of {{ totalSlides }}
-                            </p>
-                        </div>
-                    </VsCol>
-                </VsRow>
-            </VsContainer>
-        </section>
-    </div>
+                            {{ currentSlide }} <slot name="vsCarouselOf" /> {{ totalSlides }}
+                        </p>
+                    </div>
+                </VsCol>
+            </VsRow>
+        </VsContainer>
+    </section>
 </template>
 
 <script>
@@ -59,6 +57,16 @@ export default {
         VsRow,
         VsCol,
     },
+    props: {
+        prevText: {
+            type: String,
+            default: 'Previous slide',
+        },
+        nextText: {
+            type: String,
+            default: 'Next slide',
+        },
+    },
     data() {
         return {
             splideOptions: {
@@ -78,6 +86,10 @@ export default {
                         width: '80%',
                     },
                 },
+                i18n: {
+                    prev: this.prevText,
+                    next: this.nextText,
+                },
             },
             totalSlides: null,
             currentSlide: 1,
@@ -94,7 +106,7 @@ export default {
         });
     },
     methods: {
-        initialiseMobilePagination(splide) {
+        initialiseCustomOptions(splide) {
             this.totalSlides = splide.length;
         },
         carouselMoved(splide) {
@@ -128,27 +140,16 @@ export default {
     .vs-carousel {
         overflow: hidden;
 
+        .splide__pagination,
+        &__mobile-pagination-wrapper {
+            margin-top: $spacer-9;
+        }
+
         .splide {
             margin: 0 auto;
 
             &__arrow[disabled] {
                 display: none;
-            }
-
-            &__pagination {
-                position: relative;
-                transform: none;
-                width: 100%;
-                left: auto;
-                bottom: auto;
-                display: none;
-            }
-
-            &__arrow {
-                border-radius: 0;
-                background: $color-pink;
-                opacity: 1;
-                top: 25%;
             }
 
             &__track {
@@ -162,6 +163,13 @@ export default {
                 left: auto;
                 bottom: auto;
                 display: none;
+            }
+
+            &__slide {
+                img {
+                        align-self: flex-start;
+                        max-width: 100%;
+                }
             }
 
             &__arrow {
@@ -183,21 +191,16 @@ export default {
                 &:focus {
                     border: 4px solid $color-pink-tint-5;
                 }
-            }
 
-            .splide__pagination,
-            &__mobile-pagination-wrapper {
-                margin-top: $spacer-9;
-            }
+                &--prev {
+                    left: 0;
+                    transform: translateX(-50%);
+                }
 
-            &__arrow--prev {
-                left: 0;
-                transform: translateX(-50%);
-            }
-
-            &__arrow--next {
-                right: 0;
-                transform: translateX(50%);
+                &--next {
+                    right: 0;
+                    transform: translateX(50%);
+                }
             }
 
             &__pagination__page {
@@ -225,7 +228,7 @@ export default {
 
         .splide__pagination,
         .carousel__mobile-pagination-wrapper {
-            margin-top: $spacer-9;
+            margin-top: $spacer-10;
         }
 
         &__mobile-pagination-wrapper {
@@ -280,7 +283,8 @@ export default {
             }
         }
 
-        .splide__pagination {
+        .splide__pagination,
+        .stretched-link-panels {
             display: none;
         }
 
@@ -309,6 +313,7 @@ export default {
                 padding: 0;
                 align-self: flex-start;
                 width: 66%;
+                text-align: left;
             }
 
             .stretched-link-card__img {
@@ -379,12 +384,18 @@ export default {
 
 <docs>
      ```js
-    <VsCarousel>
+    <VsCarousel
+        nextText="hello"
+        prevText="goodbye"
+    >
         <VsCarouselSlide
             link-url="www.visitscotland.com"
             link-type="external"
             img-src="https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"
             img-alt=""
+            category="Category"
+            days="15"
+            transport="bus"
         >
             <template slot="vsCarouselSlideHeading">
                 Count 7,000 shining stars in the iconic
@@ -403,6 +414,7 @@ export default {
             link-url="www.visitscotland.com"
             link-type="external"
             img-src="https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"
+            category="Category"
         >
             <template slot="vsCarouselSlideHeading">
                 Count 7,000 shining stars in the iconic
@@ -421,6 +433,7 @@ export default {
             link-url="www.visitscotland.com"
             link-type="external"
             img-src="https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"
+            category="Category"
         >
             <template slot="vsCarouselSlideHeading">
                 Count 7,000 shining stars in the iconic
@@ -439,6 +452,7 @@ export default {
             link-url="www.visitscotland.com"
             link-type="external"
             img-src="https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"
+            category="Category"
         >
             <template slot="vsCarouselSlideHeading">
                 Count 7,000 shining stars in the iconic
@@ -457,6 +471,7 @@ export default {
             link-url="www.visitscotland.com"
             link-type="external"
             img-src="https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"
+            category="Category"
         >
             <template slot="vsCarouselSlideHeading">
                 Count 7,000 shining stars in the iconic
@@ -475,6 +490,7 @@ export default {
             link-url="www.visitscotland.com"
             link-type="external"
             img-src="https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"
+            category="Category"
         >
             <template slot="vsCarouselSlideHeading">
                 Count 7,000 shining stars in the iconic
@@ -488,6 +504,10 @@ export default {
                 </p>
             </template>
         </VsCarouselSlide>
+
+        <template slot="vsCarouselOf">
+            of
+        </template>
     </VsCarousel>
     ```
 </docs>

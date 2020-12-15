@@ -12,6 +12,8 @@
 <script>
 /**
  * WORK IN PROGRESS
+ *
+ * @displayName MegaNav Mobile Togge
  */
 
 export default {

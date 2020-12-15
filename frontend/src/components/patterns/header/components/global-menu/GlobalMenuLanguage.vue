@@ -28,6 +28,11 @@
 import VsIcon from '@components/elements/icon/Icon';
 import VsDropdown from '../../../dropdown/Dropdown';
 
+/**
+ * TODO: Document usage
+ *
+ * @displayName Global Menu Language
+ */
 export default {
     name: 'VsGlobalMenuLanguage',
     status: 'prototype',

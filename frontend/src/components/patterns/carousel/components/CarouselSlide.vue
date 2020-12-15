@@ -7,6 +7,18 @@
             :img-alt="imgAlt"
             class="vs-carousel-slide"
         >
+            <VsStretchedLinkPanels
+                v-if="days && transport"
+                :days="days"
+                :transport="transport"
+                slot="stretchedCardPanels"
+                :days-label="daysLabel"
+            />
+
+            <template slot="stretchedCardCategory">
+                {{ category }}
+            </template>
+
             <span
                 slot="stretchedCardHeader"
                 class="vs-carousel-slide__title"
@@ -22,6 +34,7 @@
 <script>
 import { SplideSlide } from '@splidejs/vue-splide';
 import VsStretchedLinkCard from '@components/elements/stretched-link-card/StretchedLinkCard';
+import VsStretchedLinkPanels from '@components/elements/stretched-link-card/components/StretchedLinkPanels';
 
 /**
 * Slide for carousel
@@ -36,6 +49,7 @@ export default {
     components: {
         SplideSlide,
         VsStretchedLinkCard,
+        VsStretchedLinkPanels,
     },
     props: {
         /**
@@ -68,6 +82,34 @@ export default {
             type: String,
             required: true,
         },
+        /**
+        * The category of the content
+        */
+        category: {
+            type: String,
+            default: null,
+        },
+        /**
+        * Optional prop for number of days
+        */
+        days: {
+            type: String,
+            default: '',
+        },
+        /**
+        * Label for days - too allow translation in CMS
+        */
+        daysLabel: {
+            type: String,
+            default: 'days',
+        },
+        /**
+        * Optional prop for transport type (will show a the transport icon if used)
+        */
+        transport: {
+            type: String,
+            default: '',
+        },
     },
 };
 </script>
@@ -84,5 +126,19 @@ export default {
 
     .vs-carousel-slide {
         height: 100%;
+        padding: $spacer-2 $spacer-2 $spacer-6;
+
+        .card-title {
+            margin-bottom: $spacer-0;
+        }
+
+        .card-body {
+            padding: $spacer-3 0 0;
+            text-align: left;;
+
+            .vs-heading__sub-heading {
+                display: none;
+            }
+        }
     }
 </style>

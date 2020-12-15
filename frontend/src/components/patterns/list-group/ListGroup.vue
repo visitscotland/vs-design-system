@@ -14,6 +14,8 @@ import HandDownFocus from '@/directives/hand-down-focus';
 
 /**
  * Wrapper for the BListGroup component.
+ *
+ * @displayName List Group
  */
 export default {
     name: 'VsListGroup',
