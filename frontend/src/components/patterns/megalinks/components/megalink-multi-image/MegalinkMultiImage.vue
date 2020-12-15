@@ -2,6 +2,8 @@
     <VsStretchedLinkCard
         :link="linkUrl"
         :type="linkType"
+        :img-src="imgSrc"
+        :img-alt="imgAlt"
         class="megalink-multi-image p-2"
         :class="{
             'megalink-multi-image--featured' : featured,
@@ -9,12 +11,6 @@
         }"
         data-test="megalink-multi-image-featured"
     >
-        <VsImg
-            slot="stretchedCardImage"
-            :src="imgSrc"
-            :alt="imgAlt"
-            class="megalink-multi-image__img"
-        />
         <span
             slot="stretchedCardHeader"
             class="megalink-multi-image__title"
@@ -35,7 +31,6 @@
 <script>
 import VsStretchedLinkCard from '@components/elements/stretched-link-card/StretchedLinkCard';
 import VsRichTextWrapper from '@components/elements/rich-text-wrapper/RichTextWrapper';
-import VsImg from '@components/elements/img/Img';
 
 /**
 * Megalink cards to be used in the megalinks component
@@ -51,7 +46,6 @@ export default {
     components: {
         VsStretchedLinkCard,
         VsRichTextWrapper,
-        VsImg,
     },
     props: {
         /**
@@ -107,25 +101,7 @@ export default {
 
 <style lang="scss">
     .megalink-multi-image.card {
-        border: none;
         margin-top: $spacer-7;
-        position: relative;
-        transition: box-shadow 800ms;
-
-        .stretched-link {
-            color: $color-base-text;
-            text-decoration: none;
-
-            &:hover {
-                .megalink-multi-image__title {
-                    text-decoration: underline;
-                }
-            }
-
-            &:focus {
-                outline: 2px solid $color-theme-primary;
-            }
-        }
 
         .card-body {
             padding: $spacer-4 0 $spacer-2;
@@ -133,10 +109,6 @@ export default {
 
         &:hover {
             box-shadow: 10px 10px 20px $color-gray-tint-4;
-        }
-
-        .megalink-multi-image__img {
-            max-width: 100%;
         }
 
         .megalink-multi-image__title {
@@ -148,21 +120,8 @@ export default {
         .card-title {
             margin-bottom: 0;
         }
-
-        .vs-link__icon {
-            height: 12px;
-            width: 12px;
-        }
-
-        .megalink-multi-image__content {
-            margin-top: $spacer-2;
-            line-height: $line-height-s;
-
-            p:last-of-type {
-                margin-bottom: 0;
-            }
-        }
     };
+
     @include media-breakpoint-up(xl) {
         .megalink-multi-image.card {
             margin-top: $spacer-12;
@@ -191,7 +150,7 @@ export default {
                 width: 16px;
             }
 
-            .megalink-multi-image__img {
+            .stretched-link-card__img {
                 width: calc(50% - 20px);
             }
 
