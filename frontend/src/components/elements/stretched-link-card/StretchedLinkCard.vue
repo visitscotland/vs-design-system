@@ -35,7 +35,7 @@
                 <VsLink
                     :href="link"
                     :type="type"
-                    class="vs-stretched-link"
+                    class="stretched-link"
                     :icon-size="iconSize"
                     data-test="vs-stretched-link"
                 >
@@ -133,7 +133,7 @@ export default {
             }
         }
 
-        .vs-stretched-link {
+        .stretched-link {
             color: $color-base-text;
             text-decoration: none;
             letter-spacing: 0;
