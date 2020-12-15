@@ -264,8 +264,15 @@ export default {
 @include no-js {
     .vs-mega-nav-dropdown{
         .btn.dropdown-toggle {
-            padding: $spacer-2 $spacer-2;
-            font-size: 1rem;
+            padding: $spacer-3 $spacer-2;
+            height: auto;
+            width: auto;
+            font-size: $h4-font-size;
+            margin-bottom: $spacer-2;
+
+            @include media-breakpoint-up(lg) {
+                margin-bottom: 0;
+            }
 
             &.disabled {
                 opacity: 1;
@@ -273,10 +280,6 @@ export default {
 
             &:focus {
                 box-shadow: 0 0 0 0.1rem $color-pink inset;
-            }
-
-            &:hover {
-                color: $color-base-text;
             }
 
             &::after {
@@ -292,10 +295,19 @@ export default {
                 border: 0;
                 margin: 0;
             }
+
+            &:hover {
+                color: $color-pink;
+
+                &::after {
+                    width: 100%;
+                    background: $color-pink;
+                }
+            }
         }
 
-        .btn.vs-mega-nav-dropdown__close-btn{
-            display: none;
+        &__close-btn{
+            display: none!important;
         }
 
         .dropdown-menu{
