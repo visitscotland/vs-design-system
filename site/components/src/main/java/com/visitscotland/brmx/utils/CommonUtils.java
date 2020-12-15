@@ -4,12 +4,17 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.visitscotland.brmx.beans.InstagramImage;
 import com.visitscotland.brmx.services.ResourceBundleService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
 import java.net.URL;
+import java.net.URLConnection;
+import java.text.DecimalFormat;
 import java.time.LocalTime;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
@@ -18,6 +23,7 @@ import java.util.Locale;
 public class CommonUtils {
 
     final static String VS_DMS_ENCODING = "UTF8";
+    private static final Logger logger = LoggerFactory.getLogger(CommonUtils.class.getName());
 
     //TODO add message format for other languages
     public static final String contentIssue (String message, Object... parameters){
@@ -63,6 +69,25 @@ public class CommonUtils {
             response = mapper.readTree(request(instagramInformation.toString()));
         }
         return response;
+    }
+
+    public static String getExtenalDocumentSize(String link) {
+        String size = null;
+        URL url;
+        DecimalFormat decimalFormat = new DecimalFormat("#.#");
+        try {
+            url = new URL(link);
+            URLConnection con = url.openConnection();
+
+            String ext = con.getContentType();
+            if (ext.contains("pdf")){
+                double bytes = con.getContentLength();
+                size = "PDF " + decimalFormat.format((bytes / 1024) / 1024) + "MB";
+            }
+        } catch (IOException e) {
+            logger.error("The URL {} is not valid", link, e);
+        }
+        return size;
     }
 
 

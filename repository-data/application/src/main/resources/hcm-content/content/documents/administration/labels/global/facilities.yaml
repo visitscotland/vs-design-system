@@ -1,4 +1,4 @@
-/content/documents/administration/labels/facilities:
+/content/documents/administration/labels/global/facilities:
   jcr:primaryType: hippo:handle
   jcr:mixinTypes: ['hippo:named', 'mix:referenceable']
   jcr:uuid: 8c13b36d-910d-4303-92dc-ca5678d58550

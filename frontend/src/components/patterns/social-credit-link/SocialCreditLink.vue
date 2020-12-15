@@ -25,6 +25,11 @@
 import VsLink from '@components/elements/link/Link';
 import VsIcon from '@components/elements/icon/Icon';
 
+/**
+ * TODO: Document Usage
+ *
+ * @displayName Social Credit Link
+ */
 export default {
     name: 'VsSocialCreditLink',
     status: 'prototype',
