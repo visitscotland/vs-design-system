@@ -1,7 +1,8 @@
 <template>
     <VsAccordionItem
         class="vs-mega-nav-accordion-item"
-        :class="navLevel"
+        data-test="vs-mega-nav-accordion-item"
+        :class="`vs-mega-nav-accordion-item--level-${level}`"
         :data-unique-id="getUniqueId"
         :control-id="controlId"
         :open-by-default="false"
@@ -77,9 +78,6 @@ export default {
             transformedTitle = transformedTitle.replace(/\s+/g, '-');
 
             return `vs-mega-nav-${transformedTitle}`;
-        },
-        navLevel() {
-            return this.level === '1' ? 'vs-mega-nav-accordion-item--level-1' : 'vs-mega-nav-accordion-item--level-2';
         },
     },
 };
