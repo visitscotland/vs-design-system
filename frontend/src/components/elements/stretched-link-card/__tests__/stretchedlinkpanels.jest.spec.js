@@ -20,8 +20,10 @@ describe('VsStretchedLinkCard', () => {
             const wrapper = factoryShallowMount();
             expect(wrapper.find('[data-test="vs-stretched-link-panel__icon"]').text()).toBe('Transport text');
         });
+    });
 
-        it('should render the contnet of the `stretchedLinkPanelDays` slot', () => {
+    describe(':slots', () => {
+        it('should render the content of the `stretchedLinkPanelDays` slot', () => {
             const wrapper = factoryShallowMount();
             expect(wrapper.find('[data-test="vs-stretched-link-panel--days"]').text()).toContain('days');
         });
