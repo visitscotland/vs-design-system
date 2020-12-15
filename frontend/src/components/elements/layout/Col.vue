@@ -13,6 +13,8 @@ import { BCol } from 'bootstrap-vue';
  * utilises <a href="https://bootstrap-vue.js.org/docs/components/layout">the Bootstrap Vue BCol component</a>.
  *
  * NOTE: this component is a wrapper for the BCol component so any BCol prop can be applied to it.
+ *
+ * @displayName Col
  */
 
 export default {

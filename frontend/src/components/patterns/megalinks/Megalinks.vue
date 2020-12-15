@@ -63,6 +63,8 @@ import {
 
 /**
  * Megalinks wrapper used with Megalinks components.
+ *
+ * @displayName Megalinks
  */
 export default {
     name: 'VsMegalinks',

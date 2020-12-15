@@ -33,6 +33,8 @@ import VsAccordionItem from '@components/patterns/accordion/AccordionItem';
 /**
  * The FooterAccordionItem is an accordion item used inside the FooterNavList.
  * It's a wrapper for FooterNavListItems in the footer.
+ *
+ * @displayName Footer Accordion Item
  */
 
 export default {

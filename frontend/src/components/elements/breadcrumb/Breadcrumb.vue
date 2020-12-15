@@ -18,6 +18,8 @@ import { BBreadcrumb } from 'bootstrap-vue';
 
 /**
  * Breadcrumbs are used to indicate the current page position within the navigational hierarchy.
+ *
+ * @displayName Breadcumb
  */
 
 export default {
