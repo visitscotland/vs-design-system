@@ -14,6 +14,7 @@ const webpackBabelRuleIncludes = [
     resolve("node_modules/bootstrap-vue"),
     resolve("node_modules/vuex"),
     resolve("node_modules/vue"),
+    resolve("node_modules/@splidejs"),
     resolve("src"),
     resolve("ssr"),
 ]

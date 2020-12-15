@@ -9,13 +9,14 @@
 </template>
 
 <script>
-
-/**
- * WORK IN PROGRESS
- */
 import { VsRow, VsCol } from '@components/elements/layout';
 import { BNavbarNav } from 'bootstrap-vue';
 
+/**
+ * WORK IN PROGRESS
+ *
+ * @displayName MegaNav Mobile List
+ */
 export default {
     name: 'VsMegaNavMobileList',
     status: 'prototype',
