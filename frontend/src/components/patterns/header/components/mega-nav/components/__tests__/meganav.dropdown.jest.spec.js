@@ -40,14 +40,12 @@ describe('VsMegaNavDropdown', () => {
         it('emits `menuToggled` event when `bv::dropdown::show` is emitted from root', () => {
             const wrapper = factoryMount();
             wrapper.vm.$root.$emit('bv::dropdown::show');
-
             expect(wrapper.emitted().menuToggled).toBeTruthy();
         });
 
         it('emits `menuToggled` event when `bv::dropdown::hide` is emitted from root', () => {
             const wrapper = factoryMount();
             wrapper.vm.$root.$emit('bv::dropdown::hide');
-
             expect(wrapper.emitted().menuToggled).toBeTruthy();
         });
     });
