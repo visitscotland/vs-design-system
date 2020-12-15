@@ -16,6 +16,8 @@ import { VsRow } from '@components/elements/layout';
  *
  * The default list has 2 columns that collapse to stacked lists on smaller
  * screens. There is also an Inline option that can be passed in for a different style.
+ *
+ * @displayName Description List
  */
 
 export default {

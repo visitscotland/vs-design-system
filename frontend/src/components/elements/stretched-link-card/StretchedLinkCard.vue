@@ -31,6 +31,8 @@ import VsLink from '@components/elements/link/Link';
 /**
  * The Stretched Link Card is a block that stretches its nested link across its whole area
  * meaning that the whole block is clickable
+ *
+ * @displayName Stretched Link Card
  */
 export default {
     name: 'VsStretchedLinkCard',

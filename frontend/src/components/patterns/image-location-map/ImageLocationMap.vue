@@ -422,7 +422,10 @@
 <script>
 /**
  * Image map element
+ *
+ * @displayName Image Location Map
  */
+
 export default {
     name: 'VsImageLocationMap',
     status: 'prototype',

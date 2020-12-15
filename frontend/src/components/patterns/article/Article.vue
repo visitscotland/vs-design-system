@@ -14,6 +14,8 @@ import { VsCol } from '@components/elements/layout';
 
 /**
  * The Article component is a wrapper for article content, generally wrapped in content sections
+ *
+ * @displayName Article
  */
 export default {
     name: 'VsArticle',
