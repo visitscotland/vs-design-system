@@ -101,7 +101,7 @@ export default {
         flex-flow: column wrap;
         height: 515px;
         overflow: hidden;
-        align-content: start;
+        align-content: flex-start;
     }
 }
 
