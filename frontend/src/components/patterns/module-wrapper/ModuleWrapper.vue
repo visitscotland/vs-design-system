@@ -9,11 +9,12 @@
                     offset-sm="2"
                 >
                     <VsHeading
-                        level="3"
+                        level="2"
                         class="vs-module-wrapper__heading"
                         v-if="!!this.$slots['moduleWrapperHeading']"
                         data-test="vs-module-wrapper__heading"
                     >
+                        <!-- @slot Slot to contain heading -->
                         <slot name="moduleWrapperHeading" />
                     </VsHeading>
                 </VsCol>
@@ -29,11 +30,15 @@
                         v-if="!!this.$slots['moduleWrapperIntro']"
                         data-test="vs-module-wrapper__intro"
                     >
+                        <!-- @slot Slot to contain intro text -->
                         <slot name="moduleWrapperIntro" />
                     </VsRichTextWrapper>
                 </VsCol>
             </VsRow>
         </VsContainer>
+
+        <!-- @slot Default slot for module content -->
+        <slot />
     </section>
 </template>
 
@@ -72,6 +77,8 @@ export default {
         }
 
         &__intro {
+            margin-bottom: $spacer-9;
+
             p:last-of-type {
                 margin-bottom: 0;
             }
@@ -94,6 +101,8 @@ export default {
                 Nullam dui risus, pulvinar sit amet nibh a, ultrices tempor purus.</p>
                 <p>Facilisi. In porttitor congue massa, id porttitor sem mattis sit amet.</p>
             </template>
+
+            <h1>Main content would start here</h1>
         </VsModuleWrapper>
     ```
 </docs>
