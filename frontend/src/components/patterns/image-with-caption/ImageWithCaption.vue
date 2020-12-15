@@ -102,6 +102,7 @@
 </template>
 
 <script>
+
 // eslint-disable-next-line no-unused-vars
 import { lazysizes } from 'lazysizes';
 import VsSvg from '@components/elements/svg/Svg';
@@ -114,6 +115,8 @@ import designTokens from '@/assets/tokens/tokens.json';
 
 /**
  * Image with toggle to open a caption and image location map
+ *
+ * @displayName Image With Caption
  */
 export default {
     name: 'VsImageWithCaption',
