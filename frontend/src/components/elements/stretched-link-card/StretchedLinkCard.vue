@@ -1,50 +1,51 @@
 <template>
-    <div class="card stretched-link-card">
-        <template v-if="imgSrc">
+    <div class="card vs-stretched-link-card">
+        <template
+            v-if="imgSrc"
+        >
             <VsImg
                 :src="imgSrc"
                 :alt="imgAlt"
-                class="stretched-link-card__img"
-                data-test="stretched-link-card__img"
+                class="vs-stretched-link-card__img"
+                data-test="vs-stretched-link-card__img"
             />
         </template>
 
-        <div class="stretched-link-card__panels">
+        <template
+            v-if="!!this.$slots['stretchedCardPanels']"
+        >
             <!-- @slot Contains optional content for overlaid panels  -->
             <slot name="stretchedCardPanels" />
-        </div>
-        <slot name="stretchedCardImage" />
+        </template>
 
         <div class="card-body">
-            <slot name="stretchedCardCategory" />
-
             <VsHeading
                 level="4"
-                class="stretched-link-card__category"
+                class="vs-stretched-link-card__category"
                 v-if="!!this.$slots['stretchedCardCategory']"
-                data-test="stretched-link-card__category"
+                data-test="vs-stretched-link-card__category"
             >
                 <!-- @slot Contains a category header for the card  -->
                 <slot name="stretchedCardCategory" />
             </VsHeading>
             <VsHeading
                 level="3"
-                class="card-title stretched-link-card__title"
+                class="card-title vs-stretched-link-card__title"
             >
                 <VsLink
                     :href="link"
                     :type="type"
-                    class="stretched-link"
+                    class="vs-stretched-link"
                     :icon-size="iconSize"
-                    data-test="stretched-link"
+                    data-test="vs-stretched-link"
                 >
                     <!-- @slot Contains header content for the card  -->
                     <slot name="stretchedCardHeader" />
                 </VsLink>
             </VsHeading>
             <div
-                class="stretched-link-card__content"
-                data-test="stretched-link-card__content"
+                class="vs-stretched-link-card__content"
+                data-test="vs-stretched-link-card__content"
             >
                 <!-- @slot Contains body content for the card  -->
                 <slot name="stretchedCardContent" />
@@ -119,7 +120,7 @@ export default {
 </script>
 
 <style lang="scss">
-    .stretched-link-card.card {
+    .vs-stretched-link-card.card {
         transition: box-shadow 800ms;
         border: none;
         position: relative;
@@ -132,7 +133,7 @@ export default {
             }
         }
 
-        .stretched-link {
+        .vs-stretched-link {
             color: $color-base-text;
             text-decoration: none;
             letter-spacing: 0;
@@ -151,19 +152,19 @@ export default {
             width: 12px;
         }
 
-        .stretched-link-card__img {
+        .vs-stretched-link-card__img {
             width: 100%;
             max-width: 100%;
         }
 
-        .stretched-link-card__title {
+        .vs-stretched-link-card__title {
             font-size: $font-size-sm;
             line-height: $line-height-s;
             letter-spacing: 0.0875rem;
             color: $color-base-text;
         }
 
-        .stretched-link-card__category {
+        .vs-stretched-link-card__category {
             font-family: $font-family-base;
             font-size: $small-font-size;
             line-height: $line-height-xs;
@@ -172,7 +173,7 @@ export default {
             margin-bottom: $spacer-4;
         }
 
-        .stretched-link-card__content {
+        .vs-stretched-link-card__content {
             margin-top: $spacer-2;
             line-height: $line-height-s;
 
@@ -181,7 +182,7 @@ export default {
             }
         }
 
-        .stretched-link-card__panels {
+        .vs-stretched-link-card__panels {
             position: absolute;
             top: $spacer-1;
             right: $spacer-1;
@@ -190,14 +191,14 @@ export default {
         }
 
         @include media-breakpoint-up(sm) {
-            .stretched-link-card__panels {
+            .vs-stretched-link-card__panels {
                 top: $spacer-2;
                 right: $spacer-2;
             }
         }
 
         @include media-breakpoint-up(xl) {
-            .stretched-link-card__title {
+            .vs-stretched-link-card__title {
                 font-size: $h6-font-size;
                 line-height: $line-height-s;
 
@@ -224,8 +225,11 @@ export default {
                         A category header
                     </template>
                     <template slot="stretchedCardPanels">
-                        <vs-stretched-link-panel days="14" />
-                        <vs-stretched-link-panel text="öffentlicher Verkehr" />
+                        <vs-stretched-link-panel
+                            days="14"
+                            transport="öffentlicher Verkehr"
+                            daysLabel="days"
+                        />
                     </template>
 
                     <template slot="stretchedCardHeader">
