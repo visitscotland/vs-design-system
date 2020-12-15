@@ -11,7 +11,7 @@ definitions:
         /hipposysedit:nodetype:
           jcr:primaryType: hipposysedit:nodetype
           jcr:mixinTypes: ['mix:referenceable', 'hipposysedit:remodel']
-          jcr:uuid: b380549b-f62b-4bda-b365-5267e67c6324
+          jcr:uuid: 23934947-d7d3-4099-af47-d0cdf3c3e5ff
           hipposysedit:node: true
           hipposysedit:supertype: ['visitscotland:Page', 'hippostd:relaxed', 'hippotranslation:translated']
           hipposysedit:uri: http://www.visitscotland.com/visitscotland/nt/1.0
@@ -23,22 +23,15 @@ definitions:
             hipposysedit:path: visitscotland:descOrder
             hipposysedit:primary: false
             hipposysedit:type: Boolean
-          /summaryTitle:
+          /ListicleClosing:
             jcr:primaryType: hipposysedit:field
             hipposysedit:mandatory: false
             hipposysedit:multiple: false
             hipposysedit:ordered: false
-            hipposysedit:path: visitscotland:summaryTitle
+            hipposysedit:path: visitscotland:ListicleClosing
             hipposysedit:primary: false
-            hipposysedit:type: String
-          /summary:
-            jcr:primaryType: hipposysedit:field
-            hipposysedit:mandatory: false
-            hipposysedit:multiple: false
-            hipposysedit:ordered: false
-            hipposysedit:path: visitscotland:summary
-            hipposysedit:primary: false
-            hipposysedit:type: hippostd:html
+            hipposysedit:type: visitscotland:ListicleClosing
+            hipposysedit:validators: [optional]
       /hipposysedit:prototypes:
         jcr:primaryType: hipposysedit:prototypeset
         /hipposysedit:prototype:
@@ -56,11 +49,10 @@ definitions:
           visitscotland:title: ''
           visitscotland:seoTitle: ''
           jcr:mixinTypes: ['mix:referenceable']
-          jcr:uuid: 27ce2fe0-2630-4dc8-a4e4-fb820562e510
+          jcr:uuid: 3e02c7c4-305b-4cf5-b9ec-9f7064d8a4ee
           hippostdpubwf:lastModificationDate: 2020-02-11T09:30:21.383Z
           hippostdpubwf:creationDate: 2020-02-11T09:30:21.383Z
           visitscotland:descOrder: false
-          visitscotland:summaryTitle: ''
           visitscotland:translation: ''
           /visitscotland:heroImage:
             jcr:primaryType: hippogallerypicker:imagelink
@@ -69,9 +61,6 @@ definitions:
             hippo:modes: []
             hippo:values: []
           /visitscotland:introduction:
-            jcr:primaryType: hippostd:html
-            hippostd:content: ''
-          /visitscotland:summary:
             jcr:primaryType: hippostd:html
             hippostd:content: ''
       /editor:templates:
@@ -187,29 +176,15 @@ definitions:
             wicket.id: ${cluster.id}.right.item
             /cluster.options:
               jcr:primaryType: frontend:pluginconfig
-          /summaryTitle:
+          /ListicleClosing:
             jcr:primaryType: frontend:plugin
-            caption: Closing Title
-            field: summaryTitle
-            hint: 'This allows you to add a final paragraph of copy underneath your listicle.'
-            plugin.class: org.hippoecm.frontend.editor.plugins.field.PropertyFieldPlugin
-            wicket.id: ${cluster.id}.left.item
-            /cluster.options:
-              jcr:primaryType: frontend:pluginconfig
-          /summary:
-            jcr:primaryType: frontend:plugin
-            caption: Closing Copy
-            field: summary
+            caption: Closing
+            field: ListicleClosing
             plugin.class: org.hippoecm.frontend.editor.plugins.field.NodeFieldPlugin
             wicket.id: ${cluster.id}.left.item
             hint: ''
             /cluster.options:
               jcr:primaryType: frontend:pluginconfig
-              ckeditor.config.overlayed.json: '{toolbarGroups: [{ name: ''links''
-                },{name:''insert''},{name:''clipboard''},{name:''tools''},{name:''undo''}]
-                , removeButtons: ''PickImage,Youtube,Table''}'
-              ckeditor.config.appended.json: "{   extraPlugins: 'wordcount',   wordcount:\
-                \ { \tcountSpacesAsChars: true,     showCharCount: true   }  }"
           /otherThings:
             jcr:primaryType: frontend:plugin
             caption: Other things you might like

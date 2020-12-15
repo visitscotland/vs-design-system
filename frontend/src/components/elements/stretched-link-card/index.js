@@ -1,7 +1,7 @@
 import VsStretchedLinkCard from './StretchedLinkCard';
-import { VsStretchedLinkPanel } from './components/StretchedLinkPanel';
+import { VsStretchedLinkPanels } from './components/StretchedLinkPanels';
 
 export default {
     VsStretchedLinkCard,
-    VsStretchedLinkPanel,
+    VsStretchedLinkPanels,
 };

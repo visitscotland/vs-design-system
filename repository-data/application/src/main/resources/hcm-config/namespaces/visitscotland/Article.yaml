@@ -1,28 +1,21 @@
 definitions:
   config:
-    /hippo:namespaces/visitscotland/Quote:
+    /hippo:namespaces/visitscotland/Article:
       jcr:primaryType: hipposysedit:templatetype
       jcr:mixinTypes: ['editor:editable', 'mix:referenceable']
-      jcr:uuid: 0920521f-60bf-469d-9b9d-5de30d9dd54d
+      jcr:uuid: 363e3c83-9508-4eec-ba31-2f42abc5f6b1
       /hipposysedit:nodetype:
         jcr:primaryType: hippo:handle
         jcr:mixinTypes: ['mix:referenceable']
-        jcr:uuid: e446f24d-ef63-4119-85ce-fcc59d921fe3
+        jcr:uuid: 917e43c6-2b29-4894-bb42-4641755198ae
         /hipposysedit:nodetype:
           jcr:primaryType: hipposysedit:nodetype
           jcr:mixinTypes: ['mix:referenceable', 'hipposysedit:remodel']
-          jcr:uuid: b4e103a1-1585-4d7d-a349-b686856a668f
+          jcr:uuid: 91b1cc11-4f94-4305-960b-6a8c8492cc25
           hipposysedit:node: true
-          hipposysedit:supertype: ['hippo:compound', 'hippostd:relaxed']
+          hipposysedit:supertype: ['visitscotland:basedocument', 'hippostd:relaxed',
+            'hippotranslation:translated']
           hipposysedit:uri: http://www.visitscotland.com/visitscotland/nt/1.0
-          /author:
-            jcr:primaryType: hipposysedit:field
-            hipposysedit:mandatory: false
-            hipposysedit:multiple: false
-            hipposysedit:ordered: false
-            hipposysedit:path: visitscotland:author
-            hipposysedit:primary: false
-            hipposysedit:type: String
           /image:
             jcr:primaryType: hipposysedit:field
             hipposysedit:mandatory: false
@@ -31,47 +24,69 @@ definitions:
             hipposysedit:path: visitscotland:image
             hipposysedit:primary: false
             hipposysedit:type: hippogallerypicker:imagelink
-          /quote:
+          /title:
             jcr:primaryType: hipposysedit:field
             hipposysedit:mandatory: false
             hipposysedit:multiple: false
             hipposysedit:ordered: false
-            hipposysedit:path: visitscotland:quote
-            hipposysedit:primary: false
-            hipposysedit:type: hippostd:html
-            hipposysedit:validators: [required]
-          /role:
-            jcr:primaryType: hipposysedit:field
-            hipposysedit:mandatory: false
-            hipposysedit:multiple: false
-            hipposysedit:ordered: false
-            hipposysedit:path: visitscotland:role
+            hipposysedit:path: visitscotland:title
             hipposysedit:primary: false
             hipposysedit:type: String
-          /product:
+            hipposysedit:validators: [required]
+          /copy:
             jcr:primaryType: hipposysedit:field
             hipposysedit:mandatory: false
             hipposysedit:multiple: false
             hipposysedit:ordered: false
-            hipposysedit:path: visitscotland:product
+            hipposysedit:path: visitscotland:copy
             hipposysedit:primary: false
-            hipposysedit:type: hippo:mirror
-            hipposysedit:validators: [optional]
+            hipposysedit:type: hippostd:html
+          /anchor:
+            jcr:primaryType: hipposysedit:field
+            hipposysedit:mandatory: false
+            hipposysedit:multiple: false
+            hipposysedit:ordered: false
+            hipposysedit:path: visitscotland:anchor
+            hipposysedit:primary: false
+            hipposysedit:type: String
+          /paragraph:
+            jcr:primaryType: hipposysedit:field
+            hipposysedit:mandatory: false
+            hipposysedit:multiple: true
+            hipposysedit:ordered: false
+            hipposysedit:path: visitscotland:paragraph
+            hipposysedit:primary: false
+            hipposysedit:type: visitscotland:ArticleSection
       /hipposysedit:prototypes:
         jcr:primaryType: hipposysedit:prototypeset
         /hipposysedit:prototype:
-          jcr:primaryType: visitscotland:Quote
-          visitscotland:author: ''
-          visitscotland:role: ''
+          jcr:primaryType: visitscotland:Article
+          hippostd:holder: holder
+          hippostd:state: draft
+          hippostdpubwf:createdBy: ''
+          hippostdpubwf:lastModifiedBy: ''
+          hippotranslation:id: document-type-locale-id
+          hippotranslation:locale: document-type-locale
+          jcr:mixinTypes: ['mix:referenceable']
+          visitscotland:title: ''
+          visitscotland:anchor: ''
+          jcr:uuid: 6b34f963-4483-41e1-b65b-e1ac3601d663
+          hippostdpubwf:lastModificationDate: 2020-12-11T10:07:47.311Z
+          hippostdpubwf:creationDate: 2020-12-11T10:07:47.312Z
           /visitscotland:image:
             jcr:primaryType: hippogallerypicker:imagelink
             hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
             hippo:facets: []
             hippo:modes: []
             hippo:values: []
-          /visitscotland:quote:
+          /visitscotland:copy:
             jcr:primaryType: hippostd:html
             hippostd:content: ''
+          /visitscotland:paragraph:
+            jcr:primaryType: visitscotland:ArticleSection
+            /visitscotland:copy:
+              jcr:primaryType: hippostd:html
+              hippostd:content: ''
       /editor:templates:
         jcr:primaryType: editor:templateset
         /_default_:
@@ -83,53 +98,48 @@ definitions:
             jcr:primaryType: frontend:plugin
             item: ${cluster.id}.field
             plugin.class: org.hippoecm.frontend.service.render.ListViewPlugin
-          /quote:
-            jcr:primaryType: frontend:plugin
-            caption: Quote
-            field: quote
-            hint: ''
-            plugin.class: org.hippoecm.frontend.editor.plugins.field.NodeFieldPlugin
-            wicket.id: ${cluster.id}.field
-            /cluster.options:
-              jcr:primaryType: frontend:pluginconfig
-              ckeditor.config.overlayed.json: '{toolbarGroups: [{ name: ''links''
-                },{name:''insert''},{name:''clipboard''},{name:''tools''},{name:''undo''}]
-                , removeButtons: ''PickImage,Youtube,Table''}'
-              ckeditor.config.appended.json: "{   extraPlugins: 'wordcount',   wordcount:\
-                \ { \tcountSpacesAsChars: true,     showCharCount: true   }  }"
-          /product:
-            jcr:primaryType: frontend:plugin
-            caption: Product
-            field: product
-            hint: ''
-            plugin.class: org.hippoecm.frontend.editor.plugins.field.NodeFieldPlugin
-            wicket.id: ${cluster.id}.field
-            /cluster.options:
-              jcr:primaryType: frontend:pluginconfig
           /image:
             jcr:primaryType: frontend:plugin
-            caption: Profile Image
+            caption: Image
             field: image
             plugin.class: org.hippoecm.frontend.editor.plugins.field.NodeFieldPlugin
             wicket.id: ${cluster.id}.field
-            hint: ''
             /cluster.options:
               jcr:primaryType: frontend:pluginconfig
-          /author:
+          /title:
             jcr:primaryType: frontend:plugin
-            caption: First Name
-            field: author
+            caption: Title
+            field: title
+            plugin.class: org.hippoecm.frontend.editor.plugins.field.PropertyFieldPlugin
+            wicket.id: ${cluster.id}.field
+            /cluster.options:
+              jcr:primaryType: frontend:pluginconfig
+          /anchor:
+            jcr:primaryType: frontend:plugin
+            caption: Anchor Text
+            field: anchor
             hint: ''
             plugin.class: org.hippoecm.frontend.editor.plugins.field.PropertyFieldPlugin
             wicket.id: ${cluster.id}.field
             /cluster.options:
               jcr:primaryType: frontend:pluginconfig
-          /role:
+          /copy:
             jcr:primaryType: frontend:plugin
-            caption: Job Title
-            field: role
+            caption: Copy
+            field: copy
             hint: ''
-            plugin.class: org.hippoecm.frontend.editor.plugins.field.PropertyFieldPlugin
+            plugin.class: org.hippoecm.frontend.editor.plugins.field.NodeFieldPlugin
+            wicket.id: ${cluster.id}.field
+            /cluster.options:
+              jcr:primaryType: frontend:pluginconfig
+              ckeditor.config.appended.json: "{   extraPlugins: 'wordcount',   wordcount:\
+                \ { \tcountSpacesAsChars: true,     showCharCount: true   }  }"
+          /paragraph:
+            jcr:primaryType: frontend:plugin
+            caption: PARRAGRAPH
+            field: paragraph
+            hint: ''
+            plugin.class: org.hippoecm.frontend.editor.plugins.field.NodeFieldPlugin
             wicket.id: ${cluster.id}.field
             /cluster.options:
               jcr:primaryType: frontend:pluginconfig
