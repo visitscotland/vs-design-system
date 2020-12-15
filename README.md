@@ -29,7 +29,7 @@ Git has a limit of 260 characters for a filename in Windows when Git is compiled
 
 To be documented
 
-_QuickFix: Intall NPM and Yarn manually with the versions specified in ui-integration/pom.xml_
+_QuickFix: Install NPM and Yarn manually with the versions specified in ui-integration/pom.xml_
 
 BloomReach Instruction (Legacy) 
 ===============================
