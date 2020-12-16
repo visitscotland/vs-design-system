@@ -25,7 +25,10 @@
                     <vs-icon name="chevron" orientation="right" variant="light" size="xs"></vs-icon>
                 </span>
 
-                <vs-list unstyled>
+                <vs-list
+                    role="menu"
+                    unstyled
+                >
                     <#list menuItem.childMenuItems as childItem>
                         <#assign href = "">
                         <#assign external = false>
