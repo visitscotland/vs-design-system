@@ -7,7 +7,7 @@
 
             <#assign href="#">
             <#if item.hstLink??>
-                <#assign href><@hst.link link=item.hstLink/></#assign>
+                <#assign href><@hst.link fullyQualified=fullyQualifiedURLs link=item.hstLink/></#assign>
             <#elseif item.externalLink??>
                 <#assign href>${item.externalLink?replace("\"", "")}</#assign>
             </#if>
@@ -27,7 +27,7 @@
                                     <li>${childItem.title?html}</li>
                                 <#else>
                                     <#if childItem.hstLink??>
-                                        <#assign href><@hst.link link=childItem.hstLink/></#assign>
+                                        <#assign href><@hst.link fullyQualified=fullyQualifiedURLs link=childItem.hstLink/></#assign>
                                     <#elseif item.externalLink??>
                                         <#assign href>${childItem.externalLink?replace("\"", "")}</#assign>
                                     </#if>
@@ -42,7 +42,7 @@
                                             <li>${thirdChildItem.title?html}</li>
                                         <#else>
                                             <#if thirdChildItem.hstLink??>
-                                                <#assign href><@hst.link link=thirdChildItem.hstLink/></#assign>
+                                                <#assign href><@hst.link fullyQualified=fullyQualifiedURLs link=thirdChildItem.hstLink/></#assign>
                                             <#elseif item.externalLink??>
                                                 <#assign href>${thirdChildItem.externalLink?replace("\"", "")}</#assign>
                                             </#if>

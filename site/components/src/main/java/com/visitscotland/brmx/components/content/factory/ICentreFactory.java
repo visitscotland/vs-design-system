@@ -13,6 +13,7 @@ import com.visitscotland.brmx.dms.DMSDataService;
 import com.visitscotland.brmx.dms.ProductSearchBuilder;
 import com.visitscotland.brmx.services.ResourceBundleService;
 import com.visitscotland.brmx.utils.HippoUtilsService;
+import com.visitscotland.brmx.utils.Language;
 import com.visitscotland.brmx.utils.Properties;
 import com.visitscotland.utils.Contract;
 import com.visitscotland.utils.DataServiceUtils;
@@ -162,7 +163,7 @@ public class ICentreFactory {
                     child.get(DMSConstants.MapSearch.PROPERTIES).has(DMSConstants.MapSearch.ID)){
                 String label = child.get(DMSConstants.MapSearch.PROPERTIES).get(DMSConstants.MapSearch.NAME).asText();
                 String id = child.get(DMSConstants.MapSearch.PROPERTIES).get(DMSConstants.MapSearch.ID).asText();
-                String languagePath = Properties.Language.getLanguageForLocale(locale).getDMSPathVariable();
+                String languagePath = Language.getLanguageForLocale(locale).getDMSPathVariable();
                 String url = Properties.VS_DMS_SERVICE + DataServiceUtils.getProductURL(label, id, DMSConstants.TYPE_SERVICES, languagePath);
                 vicList.add(new FlatLink(label, url, LinkType.INTERNAL));
             }
