@@ -10,13 +10,39 @@ Alternatively, developers might prefer to run a quicker version were UI packages
 Please, note that the full run is advised every time the branch is changed or when front end changes 
 are expected.
 
+Windows Based Console
+
     mvn clean verify -P !fed-build -DskipTests
+    mvn -P cargo.run
+    
+Unix Based Console
+
+    mvn clean verify -P \!fed-build -DskipTests 
     mvn -P cargo.run
     
 Front end developers can also benefit of a quick run by running the following command which only
 build the front end packages and the UI integration.
 
     mvn verify -P fed-build -D skipTests && mvn -P cargo.run    
+    
+## Navigating through the CMS
+
+#### Useful URLs
+This is a bunch useful URLs for local development 
+
+- http://localhost:8080/site: Display the site that would be presented to the final Internet User. Unpublished documents
+will not be available.
+- http://localhost:8080/cms: CMS (Content Management System) tool for managing the content
+- http://localhost:8080/cms/console: JCR Console that contains the configuration and the data of the CMS
+- http://localhost:8080/cms/repository: Query tool for the JCR Console. It can be queried through xPath or JCR
+- http://localhost:8080/essentials: Out-of-the-box set of tools that add some extra capabilities to the CMS
+ 
+
+
+### Development credentials
+Username: admin
+Password: admin (Do not share it. It is a secret)
+
     
 ## Troubleshooting
 **I get the following error when I try to clone the message: _fatal: cannot create directory at '{some big path}': Filename too long_**
