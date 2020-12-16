@@ -41,6 +41,8 @@ import VsImg from '@components/elements/img/Img';
 /**
 * Megalink link list cards to be used in the megalinks component
 * There is a standard and featured variant.
+*
+* @displayName Megalinks Link List
 */
 
 export default {
