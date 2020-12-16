@@ -30,6 +30,11 @@
         <@hst.headContributions categoryExcludes="htmlHeadPreload,htmlHeadStyles,htmlBodyEndScriptsFirst,htmlBodyEndScripts,htmlBodyEndAppInit,seo,opengraph" xhtml=true/>
         <!-- END HEAD CONTRIBUTIONS: general -->
 
+        <style>
+            body {
+                visibility: hidden;
+            }
+        </style>
     </head>
     <body>
         <div class="no-js" data-vue-app-init>
@@ -55,5 +60,11 @@
         <!-- BEGIN HEAD CONTRIBUTIONS: htmlBodyEndAppInit -->
         <@hst.headContributions categoryIncludes="htmlBodyEndAppInit" xhtml=true/>
         <!-- END HEAD CONTRIBUTIONS: htmlBodyEndAppInit -->
+
+        <style>
+            body {
+                visibility: visible;
+            }
+        </style>
     </body>
 </html>
