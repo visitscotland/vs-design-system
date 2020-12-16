@@ -13,7 +13,7 @@
             v-if="type !== null"
             :name="`${type}-link`"
             variant="primary"
-            size="xs"
+            :size="iconSize"
             class="ml-1 vs-link__icon"
         />
     </BLink>
@@ -28,6 +28,8 @@ import VsIcon from '@components/elements/icon/Icon';
  * same page, documents, emails, or any kind of URL.
  *
  * External links will show an external icon.
+ *
+ * @displayName Link
  */
 
 export default {
@@ -63,6 +65,15 @@ export default {
             type: String,
             default: 'primary',
             validator: (value) => value.match(/(primary|dark)/),
+        },
+        /**
+        * Size of icon - defaults to 'xs'
+        * `xxs, xs, sm, md, lg, xl`)
+        */
+        iconSize: {
+            type: String,
+            default: 'xs',
+            validator: (value) => value.match(/(xxs|xs|sm|md|lg|xl)/),
         },
     },
     computed: {

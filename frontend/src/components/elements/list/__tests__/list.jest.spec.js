@@ -38,7 +38,7 @@ describe('VsList', () => {
                 unstyled: true,
             });
 
-            expect(wrapper.classes('unstyled')).toBe(true);
+            expect(wrapper.classes('vs-list--unstyled')).toBe(true);
         });
 
         it(':inline - should accept and render an `inline` property', () => {
@@ -46,7 +46,7 @@ describe('VsList', () => {
                 inline: true,
             });
 
-            expect(wrapper.classes('inline')).toBe(true);
+            expect(wrapper.classes('vs-list--inline')).toBe(true);
         });
     });
 

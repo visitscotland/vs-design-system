@@ -37,6 +37,8 @@ import VsHeading from '@components/elements/heading/Heading';
 
 /**
  * Itinerary Day list items.
+ *
+ * @displayName Itinerary Stop
  */
 
 export default {
