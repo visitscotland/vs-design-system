@@ -1,6 +1,4 @@
 <#include "../../../../../include/imports.ftl">
-<#include "../../../../../frontend/components/vs-mega-nav-mobile-toggle.ftl">
-
 <#macro headerMobileNav menu=menu>
     <#list menu.siteMenuItems as item>
         <#if item.title?has_content>
@@ -11,14 +9,6 @@
             <#elseif item.externalLink??>
                 <#assign href>${item.externalLink?replace("\"", "")}</#assign>
             </#if>
-
-            <vs-mega-nav-mobile-toggle
-                    href="${href}"
-                    cta-text="<#if item.cta??>${item.cta}<#else></#if>"
-            >
-                ${item.title?html}
-            </vs-mega-nav-mobile-toggle>
-
             <ul>
                 <#list item.childMenuItems as childItem>
                     <#if childItem.title??>
