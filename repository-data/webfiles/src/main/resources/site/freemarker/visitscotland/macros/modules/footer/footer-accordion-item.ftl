@@ -26,8 +26,8 @@
                 </span>
 
                 <vs-list
-                    role="menu"
                     unstyled
+                    role="menu"
                 >
                     <#list menuItem.childMenuItems as childItem>
                         <#assign href = "">
@@ -35,7 +35,7 @@
 
                         <#if childItem.title?has_content>
                             <#if childItem.hstLink??>
-                                <#assign href><@hst.link link=childItem.hstLink/></#assign>
+                                <#assign href><@hst.link fullyQualified=fullyQualifiedURLs link=childItem.hstLink/></#assign>
                             <#elseif childItem.externalLink??>
                                 <#assign href>${childItem.externalLink}</#assign>
                                 <#assign external = true>

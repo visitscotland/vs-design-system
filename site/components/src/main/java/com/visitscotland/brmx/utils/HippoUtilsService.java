@@ -96,4 +96,17 @@ public class HippoUtilsService {
     public HippoBean getBeanForResolvedSiteMapItem(HstRequest request, ResolvedSiteMapItem sitemapItem) {
         return hstComponent.getBeanForResolvedSiteMapItem(request, sitemapItem);
     }
+
+    /**
+     * Extract a parameter from the URL (without namespace)
+     *
+     * @param request HstRequest
+     * @param parameter Name of the parameter
+     *
+     * @return value of the query parameter or null if such parameter hasn't been defined
+     */
+    @NonTestable
+    public String getParameterFromUrl(HstRequest request, String parameter){
+        return request.getRequestContext().getServletRequest().getParameter(parameter);
+    }
 }

@@ -3,20 +3,24 @@ import VsMegalinks from '../Megalinks';
 
 const factoryShallowMount = () => shallowMount(VsMegalinks, {
     propsData: {
+        title: 'A megalinks title',
         buttonLink: 'http://www.visitscotland.com',
+        variant: 'multi-image',
     },
     slots: {
-        vsMegalinksHeading: 'Megalinks heading text',
         vsMegalinksIntro: '<p>Megalinks intro text</p>',
         vsMegalinksButton: 'Megalinks button text',
     },
 });
 
+let wrapper;
+beforeEach(() => {
+    wrapper = factoryShallowMount();
+});
+
 describe('VsMegalinks', () => {
     describe(':props', () => {
         it('should only render the button if an href is supplied', async() => {
-            const wrapper = factoryShallowMount();
-
             expect(wrapper.find('[data-test="vs-megalinks__button"]').exists()).toBe(true);
 
             await wrapper.setProps({
@@ -24,13 +28,24 @@ describe('VsMegalinks', () => {
             });
             expect(wrapper.find('[data-test="vs-megalinks__button"]').exists()).toBe(false);
         });
+
+        it('should render a variant class', () => {
+            expect(wrapper.find('.vs-megalinks--multi-image').exists()).toBe(true);
+        });
+
+        it('should only show the intro if there is a heading', async() => {
+            expect(wrapper.find('[data-test="vs-megalinks__intro"]').exists()).toBe(true);
+
+            await wrapper.setProps({
+                title: '',
+            });
+            expect(wrapper.find('[data-test="vs-megalinks__intro"]').exists()).toBe(false);
+        });
     });
 
     describe(':slots', () => {
-        const wrapper = factoryShallowMount();
-
         it('renders content inserted in a vsMegalinksHeading slot', () => {
-            expect(wrapper.find('[data-test="vs-megalinks__heading"]').text()).toBe('Megalinks heading text');
+            expect(wrapper.find('[data-test="vs-megalinks__heading"]').text()).toBe('A megalinks title');
         });
 
         it('renders content inserted in a vsMegalinksIntro slot', () => {
