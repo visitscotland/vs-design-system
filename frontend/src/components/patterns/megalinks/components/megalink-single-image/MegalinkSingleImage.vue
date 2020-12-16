@@ -75,6 +75,8 @@ import { VsRow, VsCol } from '@components/elements/layout';
 /**
  * This component is a variant of the megalinks component with a large image
  * and an overlaid panel containing content.
+ *
+ * @displayName Megalinks Single Image
  */
 
 export default {
