@@ -4,8 +4,8 @@
 <#include "./header-mobile-nav.ftl">
 
 <#macro headerMegaNav menu=menu>
-    <vs-mega-nav
-        href="<@hst.link siteMapItemRefId='root'/>"
+    <vs-mega-nav 
+        href="<@hst.link fullyQualified=fullyQualifiedURLs siteMapItemRefId='root'/>"
         menu-toggle-alt-text="${label('navigation.static', 'meganav-toggle-btn-alt-text')}"
     >
         <template slot="megaNavTopMenuItems">
