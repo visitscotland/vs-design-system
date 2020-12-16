@@ -367,7 +367,7 @@ export default {
         </template>
     </VsMegalinks>
 
-    <VsMegalinks title="A megalinks link list component" class="vs-megalinks--multi-image" buttonLink="http://www.visitscotland.com">
+    <VsMegalinks title="A megalinks link list component" variant="link-list" buttonLink="http://www.visitscotland.com">
         <VsCol
             cols="12"
             md="6"
@@ -448,6 +448,10 @@ export default {
                 </template>
             </vs-megalink-link-list>
         </VsCol>
+
+        <template slot="vsMegalinksButton">
+            Button Text
+        </template>
     </VsMegalinks>
 
     <VsMegalinks>
