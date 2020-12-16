@@ -431,39 +431,40 @@
         jcr:mixinTypes: ['mix:referenceable']
         jcr:uuid: 00b5edad-35c2-4bb0-b9e1-1364f0bd9f85
         hippo:availability: []
+        hippostd:holder: admin
         hippostd:state: draft
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2019-12-06T12:48:04.149Z
-        hippostdpubwf:lastModificationDate: 2020-11-10T16:17:43.488Z
+        hippostdpubwf:lastModificationDate: 2020-12-01T17:49:41.912Z
         hippostdpubwf:lastModifiedBy: admin
         hippotranslation:id: 56cf92c8-5887-4146-ad53-eaa062f4e07a
         hippotranslation:locale: en
-        visitscotland:areas: [east, north]
+        visitscotland:areas: []
         visitscotland:breadcrumb: Hola
         visitscotland:distance: 10.4
         visitscotland:finish: Ocean point
-        visitscotland:highlights: "Glenfinnan Viaduct \r\nJacobite Steam Train\r\n\
-          Glen Etive\r\nThe Elephant House"
+        visitscotland:highlights: ''
         visitscotland:popular: false
         visitscotland:seoDescription: It was in Scotland's capital city that JK Rowling
           started to plot the adventures of Harry and his friends. With cobbled streets,
           winding alleys and medieval architecture, the city certainly have a few
           things in common with the settings from the books and films.
         visitscotland:seoNoIndex: false
-        visitscotland:seoTitle: Iconic Harry Potter Film Locations - An Itinerary
+        visitscotland:seoTitle: ''
         visitscotland:start: Tenerife
         visitscotland:summary: ''
         visitscotland:teaser: It was in Scotland's capital city that JK Rowling started
           to plot the adventures of Harry and his friends
         visitscotland:text: "Glenfinnan Viaduct\r\n\r\nJacobite Steam Train\r\n\r\n\
           Glen Etive\r\n\r\nThe Elephant House"
-        visitscotland:theme: whisky
+        visitscotland:theme: ''
         visitscotland:title: HARRY POTTER FILM AND BOOK LOCATIONS ITINERARY
+        visitscotland:translation: ''
         visitscotland:transport: [boat]
-        visitscotland:transports: [car, train]
+        visitscotland:transports: []
         /visitscotland:heroImage:
           jcr:primaryType: hippogallerypicker:imagelink
-          hippo:docbase: 8d4f5036-64ca-4e5d-aa89-b348ae38b081
+          hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
           hippo:facets: []
           hippo:modes: []
           hippo:values: []
@@ -486,6 +487,12 @@
           visitscotland:dmscategories: ''
           visitscotland:location: ''
           visitscotland:producttype: ''
+        /visitscotland:otherThings:
+          jcr:primaryType: visitscotland:OTYML
+          visitscotland:title: ''
+          /visitscotland:introduction:
+            jcr:primaryType: hippostd:html
+            hippostd:content: ''
     /edinburgh:
       jcr:primaryType: hippo:handle
       jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
@@ -572,14 +579,16 @@
         jcr:mixinTypes: ['mix:referenceable']
         jcr:uuid: 1d990574-0974-47c6-8a69-8122541783ac
         hippo:availability: []
+        hippostd:holder: admin
         hippostd:state: draft
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2019-12-10T13:28:39.550Z
-        hippostdpubwf:lastModificationDate: 2020-10-21T15:11:03.734+01:00
+        hippostdpubwf:lastModificationDate: 2020-12-02T12:27:51.036Z
         hippostdpubwf:lastModifiedBy: admin
         hippotranslation:id: 533c98b2-c2cd-491f-929a-ea2c4a491bb2
         hippotranslation:locale: en
         visitscotland:title: DMS Stops Day
+        visitscotland:translation: ''
         visitscotland:transports: [car, train, walking]
         /visitscotland:introduction:
           jcr:primaryType: hippostd:html
@@ -729,7 +738,7 @@
         hippostd:state: draft
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2020-02-27T13:17:22.069Z
-        hippostdpubwf:lastModificationDate: 2020-11-10T16:18:02.574Z
+        hippostdpubwf:lastModificationDate: 2020-12-01T17:54:01.193Z
         hippostdpubwf:lastModifiedBy: admin
         hippotranslation:id: 7d4f9ca4-76eb-40a1-a793-29efa7f1ae68
         hippotranslation:locale: en
@@ -742,6 +751,7 @@
         visitscotland:teaser: If you're looking for the best things to do in Scotland,
           then look no further. We've got iconic castles, incredible museums.
         visitscotland:title: Listicle Header
+        visitscotland:translation: ''
         /visitscotland:heroImage:
           jcr:primaryType: hippogallerypicker:imagelink
           hippo:docbase: 71701526-e11f-4819-8afb-db93a0b92041
@@ -767,7 +777,7 @@
         hippostd:state: unpublished
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2020-02-27T13:17:22.069Z
-        hippostdpubwf:lastModificationDate: 2020-11-10T16:18:02.536Z
+        hippostdpubwf:lastModificationDate: 2020-12-01T17:54:01.154Z
         hippostdpubwf:lastModifiedBy: admin
         hippotranslation:id: 7d4f9ca4-76eb-40a1-a793-29efa7f1ae68
         hippotranslation:locale: en
@@ -780,6 +790,7 @@
         visitscotland:teaser: If you're looking for the best things to do in Scotland,
           then look no further. We've got iconic castles, incredible museums.
         visitscotland:title: Listicle Header
+        visitscotland:translation: ''
         /visitscotland:heroImage:
           jcr:primaryType: hippogallerypicker:imagelink
           hippo:docbase: 71701526-e11f-4819-8afb-db93a0b92041
@@ -847,15 +858,17 @@
         jcr:mixinTypes: ['mix:referenceable']
         jcr:uuid: 928abd4d-f3d8-47b5-b382-97e44e51b347
         hippo:availability: []
+        hippostd:holder: admin
         hippostd:state: draft
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2020-03-30T14:46:39.631+01:00
-        hippostdpubwf:lastModificationDate: 2020-06-16T16:31:56.618+01:00
+        hippostdpubwf:lastModificationDate: 2020-12-02T09:51:15.202Z
         hippostdpubwf:lastModifiedBy: admin
         hippotranslation:id: ec9e89f9-6bbe-4b0b-9402-c70a1e5ca466
         hippotranslation:locale: en
         visitscotland:subtitle: ''
         visitscotland:title: NATIONAL MUSEUM OF SCOTLAND
+        visitscotland:translation: ''
         /visitscotland:description:
           jcr:primaryType: hippostd:html
           hippostd:content: |-
@@ -872,7 +885,7 @@
           visitscotland:product: '246591'
         /visitscotland:extraLinks:
           jcr:primaryType: visitscotland:ProductSearchLink
-          visitscotland:label: Find out more museums in edinburgh
+          visitscotland:label: Find out more museums
           /visitscotland:search:
             jcr:primaryType: visitscotland:ProductsSearch
             visitscotland:distance: 11.3
@@ -891,12 +904,13 @@
         hippostd:state: unpublished
         hippostdpubwf:createdBy: admin
         hippostdpubwf:creationDate: 2020-03-30T14:46:39.631+01:00
-        hippostdpubwf:lastModificationDate: 2020-06-16T16:31:56.581+01:00
+        hippostdpubwf:lastModificationDate: 2020-12-02T09:51:14.923Z
         hippostdpubwf:lastModifiedBy: admin
         hippotranslation:id: ec9e89f9-6bbe-4b0b-9402-c70a1e5ca466
         hippotranslation:locale: en
         visitscotland:subtitle: ''
         visitscotland:title: NATIONAL MUSEUM OF SCOTLAND
+        visitscotland:translation: ''
         /visitscotland:description:
           jcr:primaryType: hippostd:html
           hippostd:content: |-
@@ -913,7 +927,7 @@
           visitscotland:product: '246591'
         /visitscotland:extraLinks:
           jcr:primaryType: visitscotland:ProductSearchLink
-          visitscotland:label: Find out more museums in edinburgh
+          visitscotland:label: Find out more museums
           /visitscotland:search:
             jcr:primaryType: visitscotland:ProductsSearch
             visitscotland:distance: 11.3
@@ -1175,45 +1189,25 @@
             jcr:mixinTypes: ['mix:referenceable']
             jcr:uuid: 9493e202-3008-42a4-8b8d-3731fa11d143
             hippo:availability: []
+            hippostd:holder: admin
             hippostd:state: draft
             hippostdpubwf:createdBy: admin
             hippostdpubwf:creationDate: 2020-03-09T13:18:03.936Z
-            hippostdpubwf:lastModificationDate: 2020-11-26T13:35:56.247Z
+            hippostdpubwf:lastModificationDate: 2020-12-02T10:45:06.766Z
             hippostdpubwf:lastModifiedBy: admin
             hippotranslation:id: 97546e89-0d3f-4b72-816b-fd23247d9c2c
             hippotranslation:locale: en
             visitscotland:breadcrumb: ''
             visitscotland:descOrder: false
-            visitscotland:seoDescription: When it comes to places to stay, Scotland
-              has some fantastic options; but there really is something extra special
-              about a waterside location. If it's a coastal break you fancy, you'll
-              find wonderful holiday cottages on seafronts, near beaches and shorelines.
-              Or you can stay at the edge of an inland loch or sea loch, by a canal,
-              and should you actually fancy staying on the water, there are great
-              choices when it comes to boating and sailing holidays.  Here are just
-              a few ideas for some lovely waterside locations and accommodation suggestions
-              for holidays on or by the water, perfect for a relaxing break.
+            visitscotland:seoDescription: Discover relaxing breaks in Scotland, including
+              accommodation beside lochs and canals, lighthouses, boating holidays
+              and harbour-side cottages.
             visitscotland:seoNoIndex: false
-            visitscotland:seoTitle: When it comes to places to stay,
+            visitscotland:seoTitle: Short Calming Escapes By The Water
             visitscotland:summaryTitle: ''
-            visitscotland:teaser: When it comes to places to stay, Scotland has some
-              fantastic options; but there really is something extra special about
-              a waterside location. If it's a coastal break you fancy, you'll find
-              wonderful holiday cottages on seafronts, near beaches and shorelines.
-              Or you can stay at the edge of an inland loch or sea loch, by a canal,
-              and should you actually fancy staying on the water, there are great
-              choices when it comes to boating and sailing holidays.  Here are just
-              a few ideas for some lovely waterside locations and accommodation suggestions
-              for holidays on or by the water, perfect for a relaxing break.
-            visitscotland:title: When it comes to places to stay, Scotland has some
-              fantastic options; but there really is something extra special about
-              a waterside location. If it's a coastal break you fancy, you'll find
-              wonderful holiday cottages on seafronts, near beaches and shorelines.
-              Or you can stay at the edge of an inland loch or sea loch, by a canal,
-              and should you actually fancy staying on the water, there are great
-              choices when it comes to boating and sailing holidays.  Here are just
-              a few ideas for some lovely waterside locations and accommodation suggestions
-              for holidays on or by the water, perfect for a relaxing break.
+            visitscotland:teaser: Discover relaxing breaks in Scotland, including
+              accommodation beside lochs and canals, lighthouses and boating holidays.
+            visitscotland:title: Short Calming Escapes By The Water
             visitscotland:translation: ''
             /visitscotland:heroImage:
               jcr:primaryType: hippogallerypicker:imagelink
@@ -1775,7 +1769,7 @@
           hippostd:state: draft
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2020-05-21T17:54:15.934+01:00
-          hippostdpubwf:lastModificationDate: 2020-11-25T09:36:59.108Z
+          hippostdpubwf:lastModificationDate: 2020-12-02T10:10:52.772Z
           hippostdpubwf:lastModifiedBy: admin
           hippotranslation:id: 5dc9b699-4821-4c91-b426-7b75aed683e4
           hippotranslation:locale: en
@@ -1794,7 +1788,7 @@
             visitscotland:feature: false
             /visitscotland:link:
               jcr:primaryType: hippo:mirror
-              hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
+              hippo:docbase: 8fac413e-f1e1-4b9b-9d57-9470bee430e7
           /visitscotland:megalinkItems[2]:
             jcr:primaryType: visitscotland:MegalinkItem
             visitscotland:feature: true
@@ -1825,6 +1819,19 @@
             /visitscotland:link:
               jcr:primaryType: hippo:mirror
               hippo:docbase: 8b4a3c11-8b84-4aa0-bccf-f407d18c1c44
+          /visitscotland:singleImageLinks:
+            jcr:primaryType: visitscotland:SingleImageModule
+            visitscotland:title: Megalink in Spanish would be Megaenlace qweq eq q
+              q q qw qe q
+            /visitscotland:image:
+              jcr:primaryType: hippogallerypicker:imagelink
+              hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
+              hippo:facets: []
+              hippo:modes: []
+              hippo:values: []
+            /visitscotland:introduction:
+              jcr:primaryType: hippostd:html
+              hippostd:content: ''
         /featured-layout[2]:
           jcr:primaryType: visitscotland:Megalinks
           jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
@@ -1833,7 +1840,7 @@
           hippostd:state: unpublished
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2020-05-21T17:54:15.934+01:00
-          hippostdpubwf:lastModificationDate: 2020-11-10T16:13:56.125Z
+          hippostdpubwf:lastModificationDate: 2020-12-02T10:10:52.682Z
           hippostdpubwf:lastModifiedBy: admin
           hippotranslation:id: 5dc9b699-4821-4c91-b426-7b75aed683e4
           hippotranslation:locale: en
@@ -1842,6 +1849,7 @@
           visitscotland:listLayout: false
           visitscotland:teaserVisible: true
           visitscotland:title: Megalinks - Multi image Links (6 items)
+          visitscotland:translation: ''
           /visitscotland:introduction:
             jcr:primaryType: hippostd:html
             hippostd:content: <p>This is an example of Featured Links</p>
@@ -1850,7 +1858,7 @@
             visitscotland:feature: false
             /visitscotland:link:
               jcr:primaryType: hippo:mirror
-              hippo:docbase: bc5bec32-9cbc-45a7-855b-342008ad8ef9
+              hippo:docbase: 8fac413e-f1e1-4b9b-9d57-9470bee430e7
           /visitscotland:megalinkItems[2]:
             jcr:primaryType: visitscotland:MegalinkItem
             visitscotland:feature: true
@@ -3126,6 +3134,7 @@
           visitscotland:listLayout: true
           visitscotland:teaserVisible: true
           visitscotland:title: Featured Links (6 items) - List view
+          visitscotland:translation: ''
           /visitscotland:introduction:
             jcr:primaryType: hippostd:html
             hippostd:content: <p>This is an example of Featured Links</p>
@@ -3884,7 +3893,7 @@
             hippostd:state: draft
             hippostdpubwf:createdBy: admin
             hippostdpubwf:creationDate: 2019-12-16T12:20:46.037Z
-            hippostdpubwf:lastModificationDate: 2020-11-25T15:39:49.669Z
+            hippostdpubwf:lastModificationDate: 2020-12-02T09:53:34.460Z
             hippostdpubwf:lastModifiedBy: admin
             hippotranslation:id: 38f7c9ac-27eb-4b02-9bab-16b719f241e4
             hippotranslation:locale: en
@@ -6871,16 +6880,18 @@
               jcr:mixinTypes: ['mix:referenceable']
               jcr:uuid: 000a4588-b48b-4235-a0ae-994737e49eb4
               hippo:availability: []
+              hippostd:holder: admin
               hippostd:state: draft
               hippostdpubwf:createdBy: admin
               hippostdpubwf:creationDate: 2020-07-10T13:34:45.173+01:00
-              hippostdpubwf:lastModificationDate: 2020-07-13T10:28:21.938+01:00
+              hippostdpubwf:lastModificationDate: 2020-12-02T09:10:46.624Z
               hippostdpubwf:lastModifiedBy: admin
               hippotranslation:id: 191c3a0d-a25f-4f2c-a9f0-061bf5720bf8
               hippotranslation:locale: en
               visitscotland:teaser: The small island of Benbecula lies between North
                 and South Uist in the Outer Hebrides.
               visitscotland:title: Benbecula
+              visitscotland:translation: ''
               /visitscotland:image:
                 jcr:primaryType: hippogallerypicker:imagelink
                 hippo:docbase: cafebabe-cafe-babe-cafe-babecafebabe
@@ -9295,3 +9306,726 @@
             /visitscotland:link:
               jcr:primaryType: hippo:mirror
               hippo:docbase: e16bdb89-c271-46f1-851f-2d2b82d631d4
+  /long-content:
+    jcr:primaryType: hippostd:folder
+    jcr:mixinTypes: ['hippotranslation:translated', 'mix:versionable']
+    jcr:uuid: dfbee9b0-fe7f-48bd-98e7-0d900bfd0a2e
+    hippostd:foldertype: [new-translated-folder-test, new-document]
+    hippotranslation:id: 3bd1b55e-a7e9-4cb5-a7bf-72fd185aadd0
+    hippotranslation:locale: en
+    /content:
+      jcr:primaryType: hippo:handle
+      jcr:mixinTypes: ['hippo:versionInfo', 'mix:referenceable']
+      jcr:uuid: 7d2653e5-8068-49d1-9c1e-8aad6d951985
+      hippo:versionHistory: 1677103e-08c4-4137-b29c-b23a6c65a6fa
+      /content[1]:
+        jcr:primaryType: visitscotland:General
+        jcr:mixinTypes: ['mix:referenceable']
+        jcr:uuid: e6b5186c-da70-4456-b680-947e7ad1646b
+        hippo:availability: []
+        hippostd:state: draft
+        hippostdpubwf:createdBy: admin
+        hippostdpubwf:creationDate: 2020-11-27T12:36:37.172Z
+        hippostdpubwf:lastModificationDate: 2020-12-01T17:26:42.201Z
+        hippostdpubwf:lastModifiedBy: admin
+        hippotranslation:id: 2652febc-9606-4736-ab2c-03d6aa3852a3
+        hippotranslation:locale: en
+        visitscotland:breadcrumb: ''
+        visitscotland:seoDescription: description
+        visitscotland:seoNoIndex: false
+        visitscotland:seoTitle: title
+        visitscotland:teaser: teaser
+        visitscotland:theme: Standard
+        visitscotland:title: The mountain with its head in the clouds
+        visitscotland:translation: ''
+        /visitscotland:heroImage:
+          jcr:primaryType: hippogallerypicker:imagelink
+          hippo:docbase: 9fb38865-ca10-4ef4-bcab-a1097cc44487
+          hippo:facets: []
+          hippo:modes: []
+          hippo:values: []
+        /visitscotland:introduction:
+          jcr:primaryType: hippostd:html
+          hippostd:content: <p>In light of COVID-19, everyone's health and safety
+            is the most important thing. Please follow the advice of the&nbsp;<a href="https://www.visitscotland.com/about/practical-information/covid-19-recovery-phases/"
+            title="Covid 19 Recovery Phases">current phase from the Scottish Government</a>,
+            and always stay 2 metres away from those outwith your own household both
+            indoors and outdoors.*</p>
+      /content[2]:
+        jcr:primaryType: visitscotland:General
+        jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
+        jcr:uuid: fc0820cf-1e7b-4a1b-961a-abccabe3efcd
+        hippo:availability: [preview]
+        hippostd:state: unpublished
+        hippostdpubwf:createdBy: admin
+        hippostdpubwf:creationDate: 2020-11-27T12:36:37.172Z
+        hippostdpubwf:lastModificationDate: 2020-12-01T17:26:38.814Z
+        hippostdpubwf:lastModifiedBy: admin
+        hippotranslation:id: 2652febc-9606-4736-ab2c-03d6aa3852a3
+        hippotranslation:locale: en
+        visitscotland:breadcrumb: ''
+        visitscotland:seoDescription: description
+        visitscotland:seoNoIndex: false
+        visitscotland:seoTitle: title
+        visitscotland:teaser: teaser
+        visitscotland:theme: Standard
+        visitscotland:title: The mountain with its head in the clouds
+        visitscotland:translation: ''
+        /visitscotland:heroImage:
+          jcr:primaryType: hippogallerypicker:imagelink
+          hippo:docbase: 9fb38865-ca10-4ef4-bcab-a1097cc44487
+          hippo:facets: []
+          hippo:modes: []
+          hippo:values: []
+        /visitscotland:introduction:
+          jcr:primaryType: hippostd:html
+          hippostd:content: <p>In light of COVID-19, everyone's health and safety
+            is the most important thing. Please follow the advice of the&nbsp;<a href="https://www.visitscotland.com/about/practical-information/covid-19-recovery-phases/"
+            title="Covid 19 Recovery Phases">current phase from the Scottish Government</a>,
+            and always stay 2 metres away from those outwith your own household both
+            indoors and outdoors.*</p>
+      /content[3]:
+        jcr:primaryType: visitscotland:General
+        jcr:mixinTypes: ['mix:referenceable']
+        jcr:uuid: 680a900c-bae5-42f8-a775-839b5c70f809
+        hippo:availability: [live]
+        hippostd:state: published
+        hippostdpubwf:createdBy: admin
+        hippostdpubwf:creationDate: 2020-11-27T12:36:37.172Z
+        hippostdpubwf:lastModificationDate: 2020-12-01T17:26:38.814Z
+        hippostdpubwf:lastModifiedBy: admin
+        hippostdpubwf:publicationDate: 2020-12-01T17:26:41.948Z
+        hippotranslation:id: 2652febc-9606-4736-ab2c-03d6aa3852a3
+        hippotranslation:locale: en
+        visitscotland:breadcrumb: ''
+        visitscotland:seoDescription: description
+        visitscotland:seoNoIndex: false
+        visitscotland:seoTitle: title
+        visitscotland:teaser: teaser
+        visitscotland:theme: Standard
+        visitscotland:title: The mountain with its head in the clouds
+        visitscotland:translation: ''
+        /visitscotland:heroImage:
+          jcr:primaryType: hippogallerypicker:imagelink
+          hippo:docbase: 9fb38865-ca10-4ef4-bcab-a1097cc44487
+          hippo:facets: []
+          hippo:modes: []
+          hippo:values: []
+        /visitscotland:introduction:
+          jcr:primaryType: hippostd:html
+          hippostd:content: <p>In light of COVID-19, everyone's health and safety
+            is the most important thing. Please follow the advice of the&nbsp;<a href="https://www.visitscotland.com/about/practical-information/covid-19-recovery-phases/"
+            title="Covid 19 Recovery Phases">current phase from the Scottish Government</a>,
+            and always stay 2 metres away from those outwith your own household both
+            indoors and outdoors.*</p>
+    /long-content-demo:
+      jcr:primaryType: hippo:handle
+      jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
+      jcr:uuid: d3391b3d-f34e-472e-8ecc-8ef6dafa15de
+      hippo:name: Long Content Demo
+      hippo:versionHistory: e29938d9-0505-4d25-b214-dc465decbcd8
+      /long-content-demo[1]:
+        jcr:primaryType: visitscotland:LongContent
+        jcr:mixinTypes: ['mix:referenceable']
+        jcr:uuid: 1887f1c5-2513-4265-9b97-48642f31c4da
+        hippo:availability: []
+        hippostd:state: draft
+        hippostdpubwf:createdBy: admin
+        hippostdpubwf:creationDate: 2020-11-27T12:37:53.028Z
+        hippostdpubwf:lastModificationDate: 2020-12-02T13:24:13.854Z
+        hippostdpubwf:lastModifiedBy: admin
+        hippotranslation:id: 58e795ae-faa5-4520-af71-825919937a0e
+        hippotranslation:locale: en
+        visitscotland:title: Experiencing Ben Nevis
+        /visitscotland:image:
+          jcr:primaryType: hippogallerypicker:imagelink
+          hippo:docbase: 1b72bf72-0409-4ec7-aa0c-fc98f6045c98
+          hippo:facets: []
+          hippo:modes: []
+          hippo:values: []
+        /visitscotland:introduction:
+          jcr:primaryType: hippostd:html
+          hippostd:content: ''
+        /visitscotland:paragraphs:
+          jcr:primaryType: visitscotland:LongContentSection
+          /visitscotland:copy:
+            jcr:primaryType: hippostd:html
+            hippostd:content: |-
+              <h3>Scotland's landscape is scattered with Munros and mist-shrouded hills...</h3>
+
+              <p><strong>Cont. We want to be able to share our beautiful country with everyone near and far but only when it’s safe to do so. We’d ask everyone who is considering future day trips and overnight stays to please plan ahead carefully and check opening arrangements with the businesses directly. We’ll be updating our site regularly with the latest information so keep checking back for more information and of course, the best ideas on where to go, what to see and what to do.</strong></p>
+
+              <p><strong>Please stay safe everyone and we hope to see you again soon.</strong></p>
+
+              <p>But&nbsp;<a href="https://www.visitscotland.com/info/towns-villages/ben-nevis-p1420201" title="">Ben Nevis</a>&nbsp;is the king of them all. In the north west&nbsp;<a href="https://www.visitscotland.com/destinations-maps/highlands/" title="">Highlands</a>, near the town of&nbsp;<a href="https://www.visitscotland.com/destinations-maps/fort-william/">Fort William</a>&nbsp;and part of the Grampian Mountain range, the famous peak attracts 125k walkers a year. Whether you're an avid ambler or you just love beautiful landscapes, bagging 'the Ben' is likely to feature near the top of your Scottish bucket list.</p>
+
+              <p>An ancient giant of the land, Ben Nevis was once a massive active volcano which exploded and collapsed inwards on itself millions of years ago. At the summit, there is evidence of an explosion in the form of light-coloured granite. The name itself has two translations from the ancient Gaelic language, meaning 'mountain with its head in the clouds', thanks to its iconic mist-shrouded peak, or it can also mean 'venomous mountain' – you can decide which translation you prefer after the climb!</p>
+
+              <p>Read on for an overview of walking routes up the mountain, or visit&nbsp;<a href="https://www.walkhighlands.co.uk/munros/ben-nevis" title="" target="_blank">Walk Highlands</a>&nbsp;for detailed maps, difficulty levels and walking advice.</p>
+
+              <p>Remember it's never 'easy' to bag a Scottish Munro or Corbett. You'll need a good amount of hillwalking experience, fitness, hill craft and navigation skills using a map and compass,&nbsp;before attempting any Scottish mountains, even more so in winter. Check the&nbsp;<a href="https://www.visitscotland.com/see-do/iconic-scotland/ben-nevis/#article-page-3" title="Ben Nevis Longform FAQs">FAQs section</a>&nbsp;below for safety advice.</p>
+
+              <p>&nbsp;</p>
+
+              <p>&nbsp;</p>
+          /visitscotland:Quote:
+            jcr:primaryType: visitscotland:Quote
+            visitscotland:author: Jose
+            visitscotland:role: Hippo Builder
+            /visitscotland:image:
+              jcr:primaryType: hippogallerypicker:imagelink
+              hippo:docbase: 6fe01b32-04e9-4d0f-86c9-b6b8bd246a67
+              hippo:facets: []
+              hippo:modes: []
+              hippo:values: []
+            /visitscotland:quote:
+              jcr:primaryType: hippostd:html
+              hippostd:content: <p>Scotland's largest mountain was once a massive
+                active volcano which exploded and collapsed inwards on itself millions
+                of years ago.</p>
+          /visitscotland:media:
+            jcr:primaryType: hippogallerypicker:imagelink
+            hippo:docbase: ece9b7e3-75e0-4817-8b83-6fd2f06ccd7e
+            hippo:facets: []
+            hippo:modes: []
+            hippo:values: []
+      /long-content-demo[2]:
+        jcr:primaryType: visitscotland:LongContent
+        jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
+        jcr:uuid: bb77ff41-0f5b-41e4-a340-c8fcec89036a
+        hippo:availability: [preview]
+        hippostd:state: unpublished
+        hippostdpubwf:createdBy: admin
+        hippostdpubwf:creationDate: 2020-11-27T12:37:53.028Z
+        hippostdpubwf:lastModificationDate: 2020-12-02T13:24:08.728Z
+        hippostdpubwf:lastModifiedBy: admin
+        hippotranslation:id: 58e795ae-faa5-4520-af71-825919937a0e
+        hippotranslation:locale: en
+        visitscotland:title: Experiencing Ben Nevis
+        /visitscotland:image:
+          jcr:primaryType: hippogallerypicker:imagelink
+          hippo:docbase: 1b72bf72-0409-4ec7-aa0c-fc98f6045c98
+          hippo:facets: []
+          hippo:modes: []
+          hippo:values: []
+        /visitscotland:introduction:
+          jcr:primaryType: hippostd:html
+          hippostd:content: ''
+        /visitscotland:paragraphs:
+          jcr:primaryType: visitscotland:LongContentSection
+          /visitscotland:copy:
+            jcr:primaryType: hippostd:html
+            hippostd:content: |-
+              <h3>Scotland's landscape is scattered with Munros and mist-shrouded hills...</h3>
+
+              <p><strong>Cont. We want to be able to share our beautiful country with everyone near and far but only when it’s safe to do so. We’d ask everyone who is considering future day trips and overnight stays to please plan ahead carefully and check opening arrangements with the businesses directly. We’ll be updating our site regularly with the latest information so keep checking back for more information and of course, the best ideas on where to go, what to see and what to do.</strong></p>
+
+              <p><strong>Please stay safe everyone and we hope to see you again soon.</strong></p>
+
+              <p>But&nbsp;<a href="https://www.visitscotland.com/info/towns-villages/ben-nevis-p1420201" title="">Ben Nevis</a>&nbsp;is the king of them all. In the north west&nbsp;<a href="https://www.visitscotland.com/destinations-maps/highlands/" title="">Highlands</a>, near the town of&nbsp;<a href="https://www.visitscotland.com/destinations-maps/fort-william/">Fort William</a>&nbsp;and part of the Grampian Mountain range, the famous peak attracts 125k walkers a year. Whether you're an avid ambler or you just love beautiful landscapes, bagging 'the Ben' is likely to feature near the top of your Scottish bucket list.</p>
+
+              <p>An ancient giant of the land, Ben Nevis was once a massive active volcano which exploded and collapsed inwards on itself millions of years ago. At the summit, there is evidence of an explosion in the form of light-coloured granite. The name itself has two translations from the ancient Gaelic language, meaning 'mountain with its head in the clouds', thanks to its iconic mist-shrouded peak, or it can also mean 'venomous mountain' – you can decide which translation you prefer after the climb!</p>
+
+              <p>Read on for an overview of walking routes up the mountain, or visit&nbsp;<a href="https://www.walkhighlands.co.uk/munros/ben-nevis" title="" target="_blank">Walk Highlands</a>&nbsp;for detailed maps, difficulty levels and walking advice.</p>
+
+              <p>Remember it's never 'easy' to bag a Scottish Munro or Corbett. You'll need a good amount of hillwalking experience, fitness, hill craft and navigation skills using a map and compass,&nbsp;before attempting any Scottish mountains, even more so in winter. Check the&nbsp;<a href="https://www.visitscotland.com/see-do/iconic-scotland/ben-nevis/#article-page-3" title="Ben Nevis Longform FAQs">FAQs section</a>&nbsp;below for safety advice.</p>
+
+              <p>&nbsp;</p>
+
+              <p>&nbsp;</p>
+          /visitscotland:Quote:
+            jcr:primaryType: visitscotland:Quote
+            visitscotland:author: Jose
+            visitscotland:role: Hippo Builder
+            /visitscotland:image:
+              jcr:primaryType: hippogallerypicker:imagelink
+              hippo:docbase: 6fe01b32-04e9-4d0f-86c9-b6b8bd246a67
+              hippo:facets: []
+              hippo:modes: []
+              hippo:values: []
+            /visitscotland:quote:
+              jcr:primaryType: hippostd:html
+              hippostd:content: <p>Scotland's largest mountain was once a massive
+                active volcano which exploded and collapsed inwards on itself millions
+                of years ago.</p>
+          /visitscotland:media:
+            jcr:primaryType: hippogallerypicker:imagelink
+            hippo:docbase: ece9b7e3-75e0-4817-8b83-6fd2f06ccd7e
+            hippo:facets: []
+            hippo:modes: []
+            hippo:values: []
+      /long-content-demo[3]:
+        jcr:primaryType: visitscotland:LongContent
+        jcr:mixinTypes: ['mix:referenceable']
+        jcr:uuid: fb4a4ae3-860d-42cd-b8c6-5a9922bf22e8
+        hippo:availability: [live]
+        hippostd:state: published
+        hippostdpubwf:createdBy: admin
+        hippostdpubwf:creationDate: 2020-11-27T12:37:53.028Z
+        hippostdpubwf:lastModificationDate: 2020-12-02T13:24:08.728Z
+        hippostdpubwf:lastModifiedBy: admin
+        hippostdpubwf:publicationDate: 2020-12-02T13:24:13.150Z
+        hippotranslation:id: 58e795ae-faa5-4520-af71-825919937a0e
+        hippotranslation:locale: en
+        visitscotland:title: Experiencing Ben Nevis
+        /visitscotland:image:
+          jcr:primaryType: hippogallerypicker:imagelink
+          hippo:docbase: 1b72bf72-0409-4ec7-aa0c-fc98f6045c98
+          hippo:facets: []
+          hippo:modes: []
+          hippo:values: []
+        /visitscotland:introduction:
+          jcr:primaryType: hippostd:html
+          hippostd:content: ''
+        /visitscotland:paragraphs:
+          jcr:primaryType: visitscotland:LongContentSection
+          /visitscotland:copy:
+            jcr:primaryType: hippostd:html
+            hippostd:content: |-
+              <h3>Scotland's landscape is scattered with Munros and mist-shrouded hills...</h3>
+
+              <p><strong>Cont. We want to be able to share our beautiful country with everyone near and far but only when it’s safe to do so. We’d ask everyone who is considering future day trips and overnight stays to please plan ahead carefully and check opening arrangements with the businesses directly. We’ll be updating our site regularly with the latest information so keep checking back for more information and of course, the best ideas on where to go, what to see and what to do.</strong></p>
+
+              <p><strong>Please stay safe everyone and we hope to see you again soon.</strong></p>
+
+              <p>But&nbsp;<a href="https://www.visitscotland.com/info/towns-villages/ben-nevis-p1420201" title="">Ben Nevis</a>&nbsp;is the king of them all. In the north west&nbsp;<a href="https://www.visitscotland.com/destinations-maps/highlands/" title="">Highlands</a>, near the town of&nbsp;<a href="https://www.visitscotland.com/destinations-maps/fort-william/">Fort William</a>&nbsp;and part of the Grampian Mountain range, the famous peak attracts 125k walkers a year. Whether you're an avid ambler or you just love beautiful landscapes, bagging 'the Ben' is likely to feature near the top of your Scottish bucket list.</p>
+
+              <p>An ancient giant of the land, Ben Nevis was once a massive active volcano which exploded and collapsed inwards on itself millions of years ago. At the summit, there is evidence of an explosion in the form of light-coloured granite. The name itself has two translations from the ancient Gaelic language, meaning 'mountain with its head in the clouds', thanks to its iconic mist-shrouded peak, or it can also mean 'venomous mountain' – you can decide which translation you prefer after the climb!</p>
+
+              <p>Read on for an overview of walking routes up the mountain, or visit&nbsp;<a href="https://www.walkhighlands.co.uk/munros/ben-nevis" title="" target="_blank">Walk Highlands</a>&nbsp;for detailed maps, difficulty levels and walking advice.</p>
+
+              <p>Remember it's never 'easy' to bag a Scottish Munro or Corbett. You'll need a good amount of hillwalking experience, fitness, hill craft and navigation skills using a map and compass,&nbsp;before attempting any Scottish mountains, even more so in winter. Check the&nbsp;<a href="https://www.visitscotland.com/see-do/iconic-scotland/ben-nevis/#article-page-3" title="Ben Nevis Longform FAQs">FAQs section</a>&nbsp;below for safety advice.</p>
+
+              <p>&nbsp;</p>
+
+              <p>&nbsp;</p>
+          /visitscotland:Quote:
+            jcr:primaryType: visitscotland:Quote
+            visitscotland:author: Jose
+            visitscotland:role: Hippo Builder
+            /visitscotland:image:
+              jcr:primaryType: hippogallerypicker:imagelink
+              hippo:docbase: 6fe01b32-04e9-4d0f-86c9-b6b8bd246a67
+              hippo:facets: []
+              hippo:modes: []
+              hippo:values: []
+            /visitscotland:quote:
+              jcr:primaryType: hippostd:html
+              hippostd:content: <p>Scotland's largest mountain was once a massive
+                active volcano which exploded and collapsed inwards on itself millions
+                of years ago.</p>
+          /visitscotland:media:
+            jcr:primaryType: hippogallerypicker:imagelink
+            hippo:docbase: ece9b7e3-75e0-4817-8b83-6fd2f06ccd7e
+            hippo:facets: []
+            hippo:modes: []
+            hippo:values: []
+    /section-2:
+      jcr:primaryType: hippo:handle
+      jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
+      jcr:uuid: f8da4c71-e1c5-431b-a672-d7345a2c1f93
+      hippo:name: section 2
+      hippo:versionHistory: 150a542b-90e9-4949-a324-54abe32f1b32
+      /section-2[1]:
+        jcr:primaryType: visitscotland:LongContent
+        jcr:mixinTypes: ['mix:referenceable']
+        jcr:uuid: d02b886e-fffd-4b71-aa9e-22f73d609eb7
+        hippo:availability: []
+        hippostd:state: draft
+        hippostdpubwf:createdBy: admin
+        hippostdpubwf:creationDate: 2020-12-01T16:56:46.384Z
+        hippostdpubwf:lastModificationDate: 2020-12-02T13:24:16.104Z
+        hippostdpubwf:lastModifiedBy: admin
+        hippotranslation:id: 06a87d36-ee5e-4247-bdae-d673eeb890df
+        hippotranslation:locale: en
+        visitscotland:title: Routes to the summit
+        /visitscotland:image:
+          jcr:primaryType: hippogallerypicker:imagelink
+          hippo:docbase: aecf0250-aae9-42d9-bc08-34d80ec9b49c
+          hippo:facets: []
+          hippo:modes: []
+          hippo:values: []
+        /visitscotland:introduction:
+          jcr:primaryType: hippostd:html
+          hippostd:content: <p>There are two main walking routes up Ben Nevis. The
+            Mountain Track (sometimes called the Tourist Track or the Pony Track)
+            is used by most walkers, whilst the Carn Mor Dearg Arête route presents
+            a more challenging climb for more experienced hikers.</p>
+        /visitscotland:paragraphs[1]:
+          jcr:primaryType: visitscotland:LongContentSection
+          /visitscotland:copy:
+            jcr:primaryType: hippostd:html
+            hippostd:content: |-
+              <h3>The Mountain Track</h3>
+
+              <h4>Best route for: Beginners</h4>
+
+              <p>The&nbsp;<a href="https://www.walkhighlands.co.uk/fortwilliam/bennevis.shtml" title="" target="_blank">easiest route</a>&nbsp;up the mountain, the track begins at the&nbsp;<a href="https://www.visitfortwilliam.co.uk/about-ben-nevis-in-fort-william-and-ben-nevis-webcam/the-glen-nevis-visitor-centre-in-fort-william" title="" target="_blank">Glen Nevis Visitor Centre</a>&nbsp;car park, at Achintee on the east side of Glen Nevis about 2 km from the town centre of Fort William, and approximately 20 m above sea level. The track starts with a steep climb to the halfway lochan', or Lochan Meall an t-Suidhe, and then the ascent features snaking zig-zag paths up to the summit.</p>
+
+              <p>At the summit, there's a cairn that marks the highest point and your reward on a clear day will be the incredible&nbsp;<a href="http://360outdoors.visitscotland.com/#ben-nevis" title="" target="_blank">360°</a>&nbsp;panoramic vistas which can stretch as far as Northern Ireland. From the top, see if you can point out other peaks including the Torridon hills, Ben Lomond and Morven at Caithness.</p>
+
+              <p>A unique feature of the summit is the Old Observatory, which was opened in 1883. It provided hourly meteorological data for almost 20 years, recording some of the UK's most useful information about mountain weather to date. It closed in 1904 and it now lies in ruin, but can be used for shelter in emergencies.</p>
+          /visitscotland:media:
+            jcr:primaryType: hippogallerypicker:imagelink
+            hippo:docbase: 2557bffd-5da9-4d7f-8b3f-fe898318e332
+            hippo:facets: []
+            hippo:modes: []
+            hippo:values: []
+        /visitscotland:paragraphs[2]:
+          jcr:primaryType: visitscotland:LongContentSection
+          /visitscotland:copy:
+            jcr:primaryType: hippostd:html
+            hippostd:content: |-
+              <h3>Climb Ben Nevis | 360</h3>
+
+              <p>Join a group of mountaineers as they head up the UK’s highest mountain, Ben Nevis, near Fort William in the western Highlands of Scotland. Standing at 1, 345 m (4412 ft) its majestic summit offers an enticing challenge. Watch the mountaineers as they set off from Glen Nevis, pass the cascading Red Burn and approach the rocky Munro summit, all the while admiring 360 degree views throughout the route – simply click and drag the video to look around.</p>
+          /visitscotland:media:
+            jcr:primaryType: hippogallerypicker:imagelink
+            hippo:docbase: 901a0eff-02b0-4cf8-bd34-92bf8c606c85
+            hippo:facets: []
+            hippo:modes: []
+            hippo:values: []
+      /section-2[2]:
+        jcr:primaryType: visitscotland:LongContent
+        jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
+        jcr:uuid: 5a6ebe53-55ba-467f-949f-c8cd9abd9477
+        hippo:availability: [preview]
+        hippostd:state: unpublished
+        hippostdpubwf:createdBy: admin
+        hippostdpubwf:creationDate: 2020-12-01T16:56:46.384Z
+        hippostdpubwf:lastModificationDate: 2020-12-01T16:59:39.097Z
+        hippostdpubwf:lastModifiedBy: admin
+        hippotranslation:id: 06a87d36-ee5e-4247-bdae-d673eeb890df
+        hippotranslation:locale: en
+        visitscotland:title: Routes to the summit
+        /visitscotland:image:
+          jcr:primaryType: hippogallerypicker:imagelink
+          hippo:docbase: aecf0250-aae9-42d9-bc08-34d80ec9b49c
+          hippo:facets: []
+          hippo:modes: []
+          hippo:values: []
+        /visitscotland:introduction:
+          jcr:primaryType: hippostd:html
+          hippostd:content: <p>There are two main walking routes up Ben Nevis. The
+            Mountain Track (sometimes called the Tourist Track or the Pony Track)
+            is used by most walkers, whilst the Carn Mor Dearg Arête route presents
+            a more challenging climb for more experienced hikers.</p>
+        /visitscotland:paragraphs[1]:
+          jcr:primaryType: visitscotland:LongContentSection
+          /visitscotland:copy:
+            jcr:primaryType: hippostd:html
+            hippostd:content: |-
+              <h3>The Mountain Track</h3>
+
+              <h4>Best route for: Beginners</h4>
+
+              <p>The&nbsp;<a href="https://www.walkhighlands.co.uk/fortwilliam/bennevis.shtml" title="" target="_blank">easiest route</a>&nbsp;up the mountain, the track begins at the&nbsp;<a href="https://www.visitfortwilliam.co.uk/about-ben-nevis-in-fort-william-and-ben-nevis-webcam/the-glen-nevis-visitor-centre-in-fort-william" title="" target="_blank">Glen Nevis Visitor Centre</a>&nbsp;car park, at Achintee on the east side of Glen Nevis about 2 km from the town centre of Fort William, and approximately 20 m above sea level. The track starts with a steep climb to the halfway lochan', or Lochan Meall an t-Suidhe, and then the ascent features snaking zig-zag paths up to the summit.</p>
+
+              <p>At the summit, there's a cairn that marks the highest point and your reward on a clear day will be the incredible&nbsp;<a href="http://360outdoors.visitscotland.com/#ben-nevis" title="" target="_blank">360°</a>&nbsp;panoramic vistas which can stretch as far as Northern Ireland. From the top, see if you can point out other peaks including the Torridon hills, Ben Lomond and Morven at Caithness.</p>
+
+              <p>A unique feature of the summit is the Old Observatory, which was opened in 1883. It provided hourly meteorological data for almost 20 years, recording some of the UK's most useful information about mountain weather to date. It closed in 1904 and it now lies in ruin, but can be used for shelter in emergencies.</p>
+          /visitscotland:media:
+            jcr:primaryType: hippogallerypicker:imagelink
+            hippo:docbase: 2557bffd-5da9-4d7f-8b3f-fe898318e332
+            hippo:facets: []
+            hippo:modes: []
+            hippo:values: []
+        /visitscotland:paragraphs[2]:
+          jcr:primaryType: visitscotland:LongContentSection
+          /visitscotland:copy:
+            jcr:primaryType: hippostd:html
+            hippostd:content: |-
+              <h3>Climb Ben Nevis | 360</h3>
+
+              <p>Join a group of mountaineers as they head up the UK’s highest mountain, Ben Nevis, near Fort William in the western Highlands of Scotland. Standing at 1, 345 m (4412 ft) its majestic summit offers an enticing challenge. Watch the mountaineers as they set off from Glen Nevis, pass the cascading Red Burn and approach the rocky Munro summit, all the while admiring 360 degree views throughout the route – simply click and drag the video to look around.</p>
+          /visitscotland:media:
+            jcr:primaryType: hippogallerypicker:imagelink
+            hippo:docbase: 901a0eff-02b0-4cf8-bd34-92bf8c606c85
+            hippo:facets: []
+            hippo:modes: []
+            hippo:values: []
+      /section-2[3]:
+        jcr:primaryType: visitscotland:LongContent
+        jcr:mixinTypes: ['mix:referenceable']
+        jcr:uuid: 38e831d8-cc76-47bf-ac8a-9dc828f6238d
+        hippo:availability: [live]
+        hippostd:state: published
+        hippostdpubwf:createdBy: admin
+        hippostdpubwf:creationDate: 2020-12-01T16:56:46.384Z
+        hippostdpubwf:lastModificationDate: 2020-12-01T16:59:39.097Z
+        hippostdpubwf:lastModifiedBy: admin
+        hippostdpubwf:publicationDate: 2020-12-01T17:02:44.428Z
+        hippotranslation:id: 06a87d36-ee5e-4247-bdae-d673eeb890df
+        hippotranslation:locale: en
+        visitscotland:title: Routes to the summit
+        /visitscotland:image:
+          jcr:primaryType: hippogallerypicker:imagelink
+          hippo:docbase: aecf0250-aae9-42d9-bc08-34d80ec9b49c
+          hippo:facets: []
+          hippo:modes: []
+          hippo:values: []
+        /visitscotland:introduction:
+          jcr:primaryType: hippostd:html
+          hippostd:content: <p>There are two main walking routes up Ben Nevis. The
+            Mountain Track (sometimes called the Tourist Track or the Pony Track)
+            is used by most walkers, whilst the Carn Mor Dearg Arête route presents
+            a more challenging climb for more experienced hikers.</p>
+        /visitscotland:paragraphs[1]:
+          jcr:primaryType: visitscotland:LongContentSection
+          /visitscotland:copy:
+            jcr:primaryType: hippostd:html
+            hippostd:content: |-
+              <h3>The Mountain Track</h3>
+
+              <h4>Best route for: Beginners</h4>
+
+              <p>The&nbsp;<a href="https://www.walkhighlands.co.uk/fortwilliam/bennevis.shtml" title="" target="_blank">easiest route</a>&nbsp;up the mountain, the track begins at the&nbsp;<a href="https://www.visitfortwilliam.co.uk/about-ben-nevis-in-fort-william-and-ben-nevis-webcam/the-glen-nevis-visitor-centre-in-fort-william" title="" target="_blank">Glen Nevis Visitor Centre</a>&nbsp;car park, at Achintee on the east side of Glen Nevis about 2 km from the town centre of Fort William, and approximately 20 m above sea level. The track starts with a steep climb to the halfway lochan', or Lochan Meall an t-Suidhe, and then the ascent features snaking zig-zag paths up to the summit.</p>
+
+              <p>At the summit, there's a cairn that marks the highest point and your reward on a clear day will be the incredible&nbsp;<a href="http://360outdoors.visitscotland.com/#ben-nevis" title="" target="_blank">360°</a>&nbsp;panoramic vistas which can stretch as far as Northern Ireland. From the top, see if you can point out other peaks including the Torridon hills, Ben Lomond and Morven at Caithness.</p>
+
+              <p>A unique feature of the summit is the Old Observatory, which was opened in 1883. It provided hourly meteorological data for almost 20 years, recording some of the UK's most useful information about mountain weather to date. It closed in 1904 and it now lies in ruin, but can be used for shelter in emergencies.</p>
+          /visitscotland:media:
+            jcr:primaryType: hippogallerypicker:imagelink
+            hippo:docbase: 2557bffd-5da9-4d7f-8b3f-fe898318e332
+            hippo:facets: []
+            hippo:modes: []
+            hippo:values: []
+        /visitscotland:paragraphs[2]:
+          jcr:primaryType: visitscotland:LongContentSection
+          /visitscotland:copy:
+            jcr:primaryType: hippostd:html
+            hippostd:content: |-
+              <h3>Climb Ben Nevis | 360</h3>
+
+              <p>Join a group of mountaineers as they head up the UK’s highest mountain, Ben Nevis, near Fort William in the western Highlands of Scotland. Standing at 1, 345 m (4412 ft) its majestic summit offers an enticing challenge. Watch the mountaineers as they set off from Glen Nevis, pass the cascading Red Burn and approach the rocky Munro summit, all the while admiring 360 degree views throughout the route – simply click and drag the video to look around.</p>
+          /visitscotland:media:
+            jcr:primaryType: hippogallerypicker:imagelink
+            hippo:docbase: 901a0eff-02b0-4cf8-bd34-92bf8c606c85
+            hippo:facets: []
+            hippo:modes: []
+            hippo:values: []
+    /section3:
+      jcr:primaryType: hippo:handle
+      jcr:mixinTypes: ['hippo:versionInfo', 'mix:referenceable']
+      jcr:uuid: d9d65f0a-e5fb-4a23-a367-74277fd306a4
+      hippo:versionHistory: 9b7045f4-3ffd-4b04-ac6e-ee761a7fd3a7
+      /section3[1]:
+        jcr:primaryType: visitscotland:LongContent
+        jcr:mixinTypes: ['mix:referenceable']
+        jcr:uuid: 1ece18c2-dc38-40c0-88e6-3b813de1f5ef
+        hippo:availability: []
+        hippostd:state: draft
+        hippostdpubwf:createdBy: admin
+        hippostdpubwf:creationDate: 2020-12-01T17:06:43.905Z
+        hippostdpubwf:lastModificationDate: 2020-12-01T17:25:03.520Z
+        hippostdpubwf:lastModifiedBy: admin
+        hippotranslation:id: d4c38093-4cb9-46a5-b22b-e682aaafbadb
+        hippotranslation:locale: en
+        visitscotland:title: Carn Mor Dearg Arête
+        /visitscotland:image:
+          jcr:primaryType: hippogallerypicker:imagelink
+          hippo:docbase: ecede5a4-326c-4ce5-b9be-bcdf32c3f2c2
+          hippo:facets: []
+          hippo:modes: []
+          hippo:values: []
+        /visitscotland:introduction:
+          jcr:primaryType: hippostd:html
+          hippostd:content: ''
+        /visitscotland:paragraphs[1]:
+          jcr:primaryType: visitscotland:LongContentSection
+          /visitscotland:copy:
+            jcr:primaryType: hippostd:html
+            hippostd:content: |-
+              <h4>Best route for:&nbsp;Experienced hillwalkers</h4>
+
+              <p>Carn Mor Dearg Arête is the mountain's other&nbsp;<a href="https://www.walkhighlands.co.uk/fortwilliam/carnmordeargarete.shtml" title="" target="_blank">walking route</a>, a challenging ridge climb which should only be attempted by experienced scramblers and physically-fit hill walkers. Though demanding, the route rewards walkers with the finest possible views of the mountain's North face. Starting from the North Face car park at Torlundy, the trail traverses not one but two Munros, the Carn Mor Dearg and Ben Nevis. It can also be reached by following the Mountain Track to the 'halfway lochan', then taking the left fork whilst the right fork continues along the Mountain Track. You'll pass the CIC Hut, a private shelter for mountaineers. A longer and more strenuous walk than the Mountain Track, this spectacular route can take between 10-11 hours with scrambles across boulders. It requires a good head for heights and careful navigation across the trickier exposed sections.</p>
+          /visitscotland:Quote:
+            jcr:primaryType: visitscotland:Quote
+            visitscotland:author: ''
+            visitscotland:role: ''
+            /visitscotland:image:
+              jcr:primaryType: hippogallerypicker:imagelink
+              hippo:docbase: 6fe01b32-04e9-4d0f-86c9-b6b8bd246a67
+              hippo:facets: []
+              hippo:modes: []
+              hippo:values: []
+            /visitscotland:quote:
+              jcr:primaryType: hippostd:html
+              hippostd:content: <p>This spectacular route can take between 10 – 11
+                hours with scrambles across boulders. It requires a good head for
+                heights and careful navigation across the trickier exposed sections.</p>
+        /visitscotland:paragraphs[2]:
+          jcr:primaryType: visitscotland:LongContentSection
+          /visitscotland:copy:
+            jcr:primaryType: hippostd:html
+            hippostd:content: |-
+              <h3>Beyond hiking</h3>
+
+              <p>&nbsp;</p>
+
+              <h4>There are many other incredible ways to experience Ben Nevis</h4>
+
+              <h5>Rock Climbing</h5>
+
+              <p>A rock climber's paradise, the North Face of Ben Nevis has steep jagged cliff edges which are 600m high in places and perfect for rock climbing. There is a variety of routes to choose from, including the Ledge Route and Tower Ridge. Find a knowledgeable rock climbing or&nbsp;<a href="https://www.visitfortwilliam.co.uk/outdoor-activities-in-fort-william-lochaber/ben-nevis-mamores-glencoe-mountain-guides" title="" target="_blank">mountain guide</a>&nbsp;to show you the best spots on the mountain, and read more about&nbsp;<a href="https://www.ukclimbing.com/articles/page.php?id=2219" title="" target="_blank">rock climbing experiences</a>&nbsp;you can have on Ben Nevis.</p>
+
+              <h5>Mountain Gondola</h5>
+
+              <p>You can also take in the sights aboard a Nevis Range mountain gondola ride. Drift effortlessly along the north face of the Aonach Mor, and enjoy awe-inspiring&nbsp;<a href="http://nevisrange.co.uk/activities_mountain_viewpoints.asp" title="" target="_blank">views</a>&nbsp;of the Great Glen and Ben Nevis, and sometimes even the Inner Hebrides on clear days. The journey takes approximately 12 -15 minutes, and each gondola car can take up to six people.</p>
+
+              <p>The gondola cars are wheelchair accessible, and you can also bring your dog and take them for a walk along one of the mountain viewpoint trails.</p>
+
+              <p>For more information about prices and times, please visit the&nbsp;<a href="http://nevisrange.co.uk/gondola-info.asp" title="" target="_blank">Nevis Range website</a>.</p>
+          /visitscotland:media:
+            jcr:primaryType: hippogallerypicker:imagelink
+            hippo:docbase: 71701526-e11f-4819-8afb-db93a0b92041
+            hippo:facets: []
+            hippo:modes: []
+            hippo:values: []
+      /section3[2]:
+        jcr:primaryType: visitscotland:LongContent
+        jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
+        jcr:uuid: e9239b65-c641-4a02-b6b5-a6e9ddbf1323
+        hippo:availability: [preview]
+        hippostd:state: unpublished
+        hippostdpubwf:createdBy: admin
+        hippostdpubwf:creationDate: 2020-12-01T17:06:43.905Z
+        hippostdpubwf:lastModificationDate: 2020-12-01T17:25:02.044Z
+        hippostdpubwf:lastModifiedBy: admin
+        hippotranslation:id: d4c38093-4cb9-46a5-b22b-e682aaafbadb
+        hippotranslation:locale: en
+        visitscotland:title: Carn Mor Dearg Arête
+        /visitscotland:image:
+          jcr:primaryType: hippogallerypicker:imagelink
+          hippo:docbase: ecede5a4-326c-4ce5-b9be-bcdf32c3f2c2
+          hippo:facets: []
+          hippo:modes: []
+          hippo:values: []
+        /visitscotland:introduction:
+          jcr:primaryType: hippostd:html
+          hippostd:content: ''
+        /visitscotland:paragraphs[1]:
+          jcr:primaryType: visitscotland:LongContentSection
+          /visitscotland:copy:
+            jcr:primaryType: hippostd:html
+            hippostd:content: |-
+              <h4>Best route for:&nbsp;Experienced hillwalkers</h4>
+
+              <p>Carn Mor Dearg Arête is the mountain's other&nbsp;<a href="https://www.walkhighlands.co.uk/fortwilliam/carnmordeargarete.shtml" title="" target="_blank">walking route</a>, a challenging ridge climb which should only be attempted by experienced scramblers and physically-fit hill walkers. Though demanding, the route rewards walkers with the finest possible views of the mountain's North face. Starting from the North Face car park at Torlundy, the trail traverses not one but two Munros, the Carn Mor Dearg and Ben Nevis. It can also be reached by following the Mountain Track to the 'halfway lochan', then taking the left fork whilst the right fork continues along the Mountain Track. You'll pass the CIC Hut, a private shelter for mountaineers. A longer and more strenuous walk than the Mountain Track, this spectacular route can take between 10-11 hours with scrambles across boulders. It requires a good head for heights and careful navigation across the trickier exposed sections.</p>
+          /visitscotland:Quote:
+            jcr:primaryType: visitscotland:Quote
+            visitscotland:author: ''
+            visitscotland:role: ''
+            /visitscotland:image:
+              jcr:primaryType: hippogallerypicker:imagelink
+              hippo:docbase: 6fe01b32-04e9-4d0f-86c9-b6b8bd246a67
+              hippo:facets: []
+              hippo:modes: []
+              hippo:values: []
+            /visitscotland:quote:
+              jcr:primaryType: hippostd:html
+              hippostd:content: <p>This spectacular route can take between 10 – 11
+                hours with scrambles across boulders. It requires a good head for
+                heights and careful navigation across the trickier exposed sections.</p>
+        /visitscotland:paragraphs[2]:
+          jcr:primaryType: visitscotland:LongContentSection
+          /visitscotland:copy:
+            jcr:primaryType: hippostd:html
+            hippostd:content: |-
+              <h3>Beyond hiking</h3>
+
+              <p>&nbsp;</p>
+
+              <h4>There are many other incredible ways to experience Ben Nevis</h4>
+
+              <h5>Rock Climbing</h5>
+
+              <p>A rock climber's paradise, the North Face of Ben Nevis has steep jagged cliff edges which are 600m high in places and perfect for rock climbing. There is a variety of routes to choose from, including the Ledge Route and Tower Ridge. Find a knowledgeable rock climbing or&nbsp;<a href="https://www.visitfortwilliam.co.uk/outdoor-activities-in-fort-william-lochaber/ben-nevis-mamores-glencoe-mountain-guides" title="" target="_blank">mountain guide</a>&nbsp;to show you the best spots on the mountain, and read more about&nbsp;<a href="https://www.ukclimbing.com/articles/page.php?id=2219" title="" target="_blank">rock climbing experiences</a>&nbsp;you can have on Ben Nevis.</p>
+
+              <h5>Mountain Gondola</h5>
+
+              <p>You can also take in the sights aboard a Nevis Range mountain gondola ride. Drift effortlessly along the north face of the Aonach Mor, and enjoy awe-inspiring&nbsp;<a href="http://nevisrange.co.uk/activities_mountain_viewpoints.asp" title="" target="_blank">views</a>&nbsp;of the Great Glen and Ben Nevis, and sometimes even the Inner Hebrides on clear days. The journey takes approximately 12 -15 minutes, and each gondola car can take up to six people.</p>
+
+              <p>The gondola cars are wheelchair accessible, and you can also bring your dog and take them for a walk along one of the mountain viewpoint trails.</p>
+
+              <p>For more information about prices and times, please visit the&nbsp;<a href="http://nevisrange.co.uk/gondola-info.asp" title="" target="_blank">Nevis Range website</a>.</p>
+          /visitscotland:media:
+            jcr:primaryType: hippogallerypicker:imagelink
+            hippo:docbase: 71701526-e11f-4819-8afb-db93a0b92041
+            hippo:facets: []
+            hippo:modes: []
+            hippo:values: []
+      /section3[3]:
+        jcr:primaryType: visitscotland:LongContent
+        jcr:mixinTypes: ['mix:referenceable']
+        jcr:uuid: e1112fed-21d7-4db8-9e54-c5c2d2726275
+        hippo:availability: [live]
+        hippostd:state: published
+        hippostdpubwf:createdBy: admin
+        hippostdpubwf:creationDate: 2020-12-01T17:06:43.905Z
+        hippostdpubwf:lastModificationDate: 2020-12-01T17:25:02.044Z
+        hippostdpubwf:lastModifiedBy: admin
+        hippostdpubwf:publicationDate: 2020-12-01T17:25:03.215Z
+        hippotranslation:id: d4c38093-4cb9-46a5-b22b-e682aaafbadb
+        hippotranslation:locale: en
+        visitscotland:title: Carn Mor Dearg Arête
+        /visitscotland:image:
+          jcr:primaryType: hippogallerypicker:imagelink
+          hippo:docbase: ecede5a4-326c-4ce5-b9be-bcdf32c3f2c2
+          hippo:facets: []
+          hippo:modes: []
+          hippo:values: []
+        /visitscotland:introduction:
+          jcr:primaryType: hippostd:html
+          hippostd:content: ''
+        /visitscotland:paragraphs[1]:
+          jcr:primaryType: visitscotland:LongContentSection
+          /visitscotland:copy:
+            jcr:primaryType: hippostd:html
+            hippostd:content: |-
+              <h4>Best route for:&nbsp;Experienced hillwalkers</h4>
+
+              <p>Carn Mor Dearg Arête is the mountain's other&nbsp;<a href="https://www.walkhighlands.co.uk/fortwilliam/carnmordeargarete.shtml" title="" target="_blank">walking route</a>, a challenging ridge climb which should only be attempted by experienced scramblers and physically-fit hill walkers. Though demanding, the route rewards walkers with the finest possible views of the mountain's North face. Starting from the North Face car park at Torlundy, the trail traverses not one but two Munros, the Carn Mor Dearg and Ben Nevis. It can also be reached by following the Mountain Track to the 'halfway lochan', then taking the left fork whilst the right fork continues along the Mountain Track. You'll pass the CIC Hut, a private shelter for mountaineers. A longer and more strenuous walk than the Mountain Track, this spectacular route can take between 10-11 hours with scrambles across boulders. It requires a good head for heights and careful navigation across the trickier exposed sections.</p>
+          /visitscotland:Quote:
+            jcr:primaryType: visitscotland:Quote
+            visitscotland:author: ''
+            visitscotland:role: ''
+            /visitscotland:image:
+              jcr:primaryType: hippogallerypicker:imagelink
+              hippo:docbase: 6fe01b32-04e9-4d0f-86c9-b6b8bd246a67
+              hippo:facets: []
+              hippo:modes: []
+              hippo:values: []
+            /visitscotland:quote:
+              jcr:primaryType: hippostd:html
+              hippostd:content: <p>This spectacular route can take between 10 – 11
+                hours with scrambles across boulders. It requires a good head for
+                heights and careful navigation across the trickier exposed sections.</p>
+        /visitscotland:paragraphs[2]:
+          jcr:primaryType: visitscotland:LongContentSection
+          /visitscotland:copy:
+            jcr:primaryType: hippostd:html
+            hippostd:content: |-
+              <h3>Beyond hiking</h3>
+
+              <p>&nbsp;</p>
+
+              <h4>There are many other incredible ways to experience Ben Nevis</h4>
+
+              <h5>Rock Climbing</h5>
+
+              <p>A rock climber's paradise, the North Face of Ben Nevis has steep jagged cliff edges which are 600m high in places and perfect for rock climbing. There is a variety of routes to choose from, including the Ledge Route and Tower Ridge. Find a knowledgeable rock climbing or&nbsp;<a href="https://www.visitfortwilliam.co.uk/outdoor-activities-in-fort-william-lochaber/ben-nevis-mamores-glencoe-mountain-guides" title="" target="_blank">mountain guide</a>&nbsp;to show you the best spots on the mountain, and read more about&nbsp;<a href="https://www.ukclimbing.com/articles/page.php?id=2219" title="" target="_blank">rock climbing experiences</a>&nbsp;you can have on Ben Nevis.</p>
+
+              <h5>Mountain Gondola</h5>
+
+              <p>You can also take in the sights aboard a Nevis Range mountain gondola ride. Drift effortlessly along the north face of the Aonach Mor, and enjoy awe-inspiring&nbsp;<a href="http://nevisrange.co.uk/activities_mountain_viewpoints.asp" title="" target="_blank">views</a>&nbsp;of the Great Glen and Ben Nevis, and sometimes even the Inner Hebrides on clear days. The journey takes approximately 12 -15 minutes, and each gondola car can take up to six people.</p>
+
+              <p>The gondola cars are wheelchair accessible, and you can also bring your dog and take them for a walk along one of the mountain viewpoint trails.</p>
+
+              <p>For more information about prices and times, please visit the&nbsp;<a href="http://nevisrange.co.uk/gondola-info.asp" title="" target="_blank">Nevis Range website</a>.</p>
+          /visitscotland:media:
+            jcr:primaryType: hippogallerypicker:imagelink
+            hippo:docbase: 71701526-e11f-4819-8afb-db93a0b92041
+            hippo:facets: []
+            hippo:modes: []
+            hippo:values: []

@@ -33,11 +33,13 @@
 </template>
 
 <script>
-/**
- *  Mega nav top level menu items with a slots for toggle button and dropdown content
- */
 import VsMegaNavDropdown from '@components/patterns/header/components/mega-nav/MegaNavDropdown';
 
+/**
+ *  Mega nav top level menu items with a slots for toggle button and dropdown content
+ *
+ * @displayName MegaNav Top Menu Item
+ */
 export default {
     name: 'VsMegaNavTopMenuItem',
     status: 'prototype',

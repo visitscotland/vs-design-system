@@ -10,4 +10,10 @@
     <!-- BEGIN HEAD CONTRIBUTIONS: htmlBodyEndAppInit -->
     <@hst.headContributions categoryIncludes="htmlBodyEndAppInit" xhtml=true/>
     <!-- END HEAD CONTRIBUTIONS: htmlBodyEndAppInit -->
+
+    <style>
+        body {
+            visibility: visible;
+        }
+    </style>
 </#macro>

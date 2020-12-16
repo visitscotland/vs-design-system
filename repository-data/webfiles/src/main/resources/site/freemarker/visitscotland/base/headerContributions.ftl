@@ -21,4 +21,10 @@
     <!-- BEGIN HEAD CONTRIBUTIONS: general -->
     <@hst.headContributions categoryExcludes="htmlHeadPreload,htmlHeadStyles,htmlBodyEndScriptsFirst,htmlBodyEndScripts,htmlBodyEndAppInit,seo,opengraph" xhtml=true/>
     <!-- END HEAD CONTRIBUTIONS: general -->
+
+    <style>
+        body {
+            visibility: hidden;
+        }
+    </style>
 </#macro>
