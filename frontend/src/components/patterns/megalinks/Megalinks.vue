@@ -113,6 +113,7 @@ export default {
         // make panels in a row equal height
         .row {
             display: flex;
+            width: 100%;
         }
         @supports not (-ms-high-contrast: none) {
             .row > [class*='col-'] {
