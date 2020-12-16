@@ -156,10 +156,6 @@ export default {
         }
 
         &--multi-image {
-            .vs-megalinks__links-wrapper {
-                margin-bottom: (-$spacer-8);
-            }
-
             .vs-megalinks__button {
                 margin-top: $spacer-8;
             }
@@ -167,7 +163,7 @@ export default {
 
         &--link-list {
             .vs-megalinks__button {
-                margin-top: $spacer-9;
+                margin-top: $spacer-8;
             }
         }
 
@@ -184,12 +180,8 @@ export default {
             }
 
             &--multi-image {
-                .vs-megalinks__links-wrapper {
-                    margin-bottom: (-$spacer-12);
-                }
-
                 .vs-megalinks__button {
-                    margin-top: $spacer-12;
+                    margin-top:$spacer-10;
                 }
             }
         }
