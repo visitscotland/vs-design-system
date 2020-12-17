@@ -45,10 +45,10 @@
                         <slot name="vsSingleImageContent" />
                     </VsRichTextWrapper>
 
-                    <ul class="vs-megalink-single-image__link-list">
+                    <VsLinkList class="lead">
                         <!-- @slot Slot for links list -->
                         <slot name="vsSingleImageLinks" />
-                    </ul>
+                    </VsLinkList>
 
                     <div class="vs-megalink-single-image__button">
                         <VsButton
@@ -70,7 +70,15 @@ import VsImageWithCaption from '@components/patterns/image-with-caption/ImageWit
 import VsHeading from '@components/elements/heading/Heading';
 import VsRichTextWrapper from '@components/elements/rich-text-wrapper/RichTextWrapper';
 import VsButton from '@components/elements/button/Button';
+import VsLinkList from '@components/patterns/link-list/LinkList';
 import { VsRow, VsCol } from '@components/elements/layout';
+
+/**
+ * This component is a variant of the megalinks component with a large image
+ * and an overlaid panel containing content.
+ *
+ * @displayName Megalinks Single Image
+ */
 
 export default {
     name: 'VsMegalinkSingleImage',
@@ -83,6 +91,7 @@ export default {
         VsButton,
         VsRow,
         VsCol,
+        VsLinkList,
     },
     props: {
         /**
@@ -171,6 +180,7 @@ export default {
         }
 
         .vs-megalink-single-image__image {
+            overflow: hidden;
             margin: 0 -12px (-$spacer-8);
         }
 
@@ -279,29 +289,23 @@ export default {
                     </p>
                 </template>
                 <template slot="vsSingleImageLinks">
-                    <li class="vs-megalink-single-image__link-list-item">
-                        <VsLink
-                            href="www.visitscotland.com"
-                        >
-                            This is a link here
-                        </VsLink>
-                    </li>
-                    <li class="vs-megalink-single-image__link-list-item">
-                        <VsLink
-                            href="www.visitscotland.com"
-                            type="external"
-                        >
-                            This is an external link here
-                        </VsLink>
-                    </li>
-                    <li class="vs-megalink-single-image__link-list-item">
-                        <VsLink
-                            href="www.visitscotland.com"
-                            type="download"
-                        >
-                            This is a download link here
-                        </VsLink>
-                    </li>
+                    <VsLinkListItem
+                        href="www.visitscotland.com"
+                    >
+                        This is a link here
+                    </VsLinkListItem>
+                    <VsLinkListItem
+                        href="www.visitscotland.com"
+                        type="external"
+                    >
+                        This is an external link here
+                    </VsLinkListItem>
+                    <VsLinkListItem
+                        href="www.visitscotland.com"
+                        type="download"
+                    >
+                        This is a download link here
+                    </VsLinkListItem>
                 </template>
                 <template slot="vsSingleImageButtonText">
                     This is the button
@@ -331,27 +335,21 @@ export default {
                     </p>
                 </template>
                 <template slot="vsSingleImageLinks">
-                    <li class="vs-megalink-single-image__link-list-item">
-                        <VsLink
-                            href="www.visitscotland.com"
-                        >
-                            This is a link here
-                        </VsLink>
-                    </li>
-                    <li class="vs-megalink-single-image__link-list-item">
-                        <VsLink
-                            href="www.visitscotland.com"
-                        >
-                            This is a link here
-                        </VsLink>
-                    </li>
-                    <li class="vs-megalink-single-image__link-list-item">
-                        <VsLink
-                            href="www.visitscotland.com"
-                        >
-                            This is a link here
-                        </VsLink>
-                    </li>
+                    <VsLinkListItem
+                        href="www.visitscotland.com"
+                    >
+                        This is a link here
+                    </VsLinkListItem>
+                    <VsLinkListItem
+                        href="www.visitscotland.com"
+                    >
+                        This is a link here
+                    </VsLinkListItem>
+                    <VsLinkListItem
+                        href="www.visitscotland.com"
+                    >
+                        This is a link here
+                    </VsLinkListItem>
                 </template>
                 <template slot="vsSingleImageButtonText">
                     This is the button

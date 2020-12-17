@@ -4,18 +4,14 @@
         :class="`vs-megalink-link-list--${theme}`"
     >
         <VsStretchedLinkCard
-            link="https://visitscotland.com"
+            :link="linkUrl"
             :type="linkType"
             class="vs-megalink-link-list__wrapper"
+            :img-src="imgSrc"
+            :img-alt="imgAlt"
             icon-size="xxs"
             :theme="theme"
         >
-            <VsImg
-                slot="stretchedCardImage"
-                :src="imgSrc"
-                :alt="imgAlt"
-                class="vs-megalink-link-list__img"
-            />
             <span
                 slot="stretchedCardHeader"
                 class="vs-megalink-link-list__title"
@@ -40,11 +36,12 @@
 <script>
 import VsStretchedLinkCard from '@components/elements/stretched-link-card/StretchedLinkCard';
 import VsRichTextWrapper from '@components/elements/rich-text-wrapper/RichTextWrapper';
-import VsImg from '@components/elements/img/Img';
 
 /**
 * Megalink link list cards to be used in the megalinks component
 * There is a standard and featured variant.
+*
+* @displayName Megalinks Link List
 */
 
 export default {
@@ -54,7 +51,6 @@ export default {
     components: {
         VsStretchedLinkCard,
         VsRichTextWrapper,
-        VsImg,
     },
     props: {
         /**
@@ -98,6 +94,13 @@ export default {
             default: 'light',
             validator: (value) => value.match(/(light|dark)/),
         },
+        /**
+        * The link destination
+        */
+        linkUrl: {
+            type: String,
+            required: true,
+        },
     },
 };
 </script>
@@ -107,6 +110,7 @@ export default {
         border: none;
         padding: $spacer-2 0 $spacer-3;
         position: relative;
+        height: 100%;
 
         &:after {
             content: '';
@@ -146,6 +150,7 @@ export default {
             }
 
             .vs-megalink-link-list__img {
+                width: 33%;
                 max-width: 33%;
                 align-self: flex-start;
                 margin-right: $spacer-4;
@@ -155,12 +160,6 @@ export default {
                 font-size: $font-size-sm;
                 letter-spacing: .05rem;
                 line-height: $line-height-m;
-                color: $color-base-text;
-                text-decoration: none;
-            }
-
-            .stretched-link {
-                letter-spacing: 0;
             }
 
             .card-title {
@@ -174,6 +173,13 @@ export default {
 
             .vs-megalink-link-list__content {
                 display: none;
+
+                p {
+                    display: -webkit-box;
+                    -webkit-line-clamp: 3;
+                    -webkit-box-orient: vertical;
+                    overflow: hidden;
+                }
             }
         }
 
@@ -185,9 +191,17 @@ export default {
             }
         }
 
-        @include media-breakpoint-up(lg) {
-            .vs-megalink-link-list__wrapper.card {
-                .vs-megalink-link-list__title {
+        @include media-breakpoint-up(sm) {
+            .megalink-link-list__wrapper.card {
+                .megalink-link-list__content {
+                    display: block;
+                }
+            }
+        }
+
+        @include media-breakpoint-up(md) {
+            .megalink-link-list__wrapper.card {
+                .megalink-link-list__title {
                     font-size: $small-font-size;
                 }
 
@@ -201,6 +215,16 @@ export default {
                         -webkit-line-clamp: 3;
                         -webkit-box-orient: vertical;
                         overflow: hidden;
+                        font-size: $lead-font-size;
+                        margin-bottom: 0;
+                    }
+                }
+            }
+
+            @include media-breakpoint-up(lg) {
+                .megalink-link-list__wrapper.card {
+                    .megalink-link-list__content p {
+                         font-size: $font-size-base;
                     }
                 }
             }
@@ -220,6 +244,7 @@ export default {
                     imgSrc="https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"
                     imgAlt="This is the alt text"
                     linkType="internal"
+                    linkUrl="www.visitscotland.com"
                 >
                     <template slot="vsLinkListHeading">
                         The Edinburgh International Festival and summer festival</template>
@@ -238,6 +263,7 @@ export default {
                     imgSrc="https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"
                     imgAlt="This is the alt text 1"
                     linkType="external"
+                    linkUrl="www.visitscotland.com"
                 >
                     <template slot="vsLinkListHeading">
                         Count 7,000 shining stars in the iconic galloway forest</template>
@@ -256,6 +282,7 @@ export default {
                     imgSrc="https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"
                     imgAlt="This is the alt text 2"
                     linkType="external"
+                    linkUrl="www.visitscotland.com"
                 >
                     <template slot="vsLinkListHeading">
                         Count 7,000 shining stars in the iconic galloway forest</template>
@@ -274,6 +301,7 @@ export default {
                 <vs-megalink-link-list
                     imgSrc="https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"
                     linkType="download"
+                    linkUrl="www.visitscotland.com"
                 >
                     <template slot="vsLinkListHeading">
                         Soar through the air on a boat of Falkirk Wheel (PDF 3MB)</template>
