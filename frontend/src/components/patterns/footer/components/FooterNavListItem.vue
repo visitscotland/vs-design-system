@@ -75,6 +75,7 @@ export default {
         }
 
         .vs-icon {
+            vertical-align: sub;
             fill: $color-white;
         }
     }
