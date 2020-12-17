@@ -42,11 +42,11 @@ import VsCloseButton from '@components/patterns/close-button/CloseButton';
 import VsRow from '@components/elements/layout/Row';
 import VsCol from '@components/elements/layout/Col';
 import logger from '@/utils/logger';
-import VsDrawer from './Drawer';
+import VsDrawer from '../Drawer';
 
-import { getters } from './drawer.store';
-import { IS_ACTIVE_CONTENT } from './drawer.store.getter-types';
-import { CLOSE_DRAWER } from './drawer.store.action-types';
+import { getters } from '../drawer.store';
+import { IS_ACTIVE_CONTENT } from '../drawer.store.getter-types';
+import { CLOSE_DRAWER } from '../drawer.store.action-types';
 
 /**
  * TODO: Document usage

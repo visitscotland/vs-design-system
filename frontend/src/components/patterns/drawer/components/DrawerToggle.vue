@@ -14,9 +14,9 @@
 
 <script>
 import VsButton from '@components/elements/button';
-import { getters } from './drawer.store';
-import { IS_ACTIVE_CONTENT } from './drawer.store.getter-types';
-import { CLOSE_DRAWER, SHOW_DRAWER_CONTENT } from './drawer.store.action-types';
+import { getters } from '../drawer.store';
+import { IS_ACTIVE_CONTENT } from '../drawer.store.getter-types';
+import { CLOSE_DRAWER, SHOW_DRAWER_CONTENT } from '../drawer.store.action-types';
 
 /**
  * TODO: Document usage
