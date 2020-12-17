@@ -1,5 +1,5 @@
 const { vueHelper } = require('@cypress/helpers/index.js').default;
-const VsSvg = require('./Svg.vue').default;
+const VsSvg = require('../Svg.vue').default;
 
 describe('Svg component', () => {
     const props = {
