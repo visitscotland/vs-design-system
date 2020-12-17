@@ -56,7 +56,7 @@
 </template>
 
 <script>
-import VsAccordionToggle from '@components/patterns/accordion/AccordionToggle';
+import VsAccordionToggle from '@components/patterns/accordion/components/AccordionToggle';
 
 import {
     BCard, BCardHeader, BCardBody,
