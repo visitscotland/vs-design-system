@@ -1,6 +1,6 @@
 import { shallowMount } from '@vue/test-utils';
 
-import VsFooterSocialMenu from '../components/FooterSocialMenu';
+import VsFooterSocialMenu from '../FooterSocialMenu';
 
 const slotContent = 'Some slot content';
 const titleSlotContent = 'A title';
