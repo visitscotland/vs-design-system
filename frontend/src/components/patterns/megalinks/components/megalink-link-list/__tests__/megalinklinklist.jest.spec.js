@@ -7,6 +7,7 @@ const factoryShallowMount = () => shallowMount(VsMegalinkLinkList, {
         imgSrc: 'test',
         linkType: 'external',
         theme: 'dark',
+        linkUrl: 'www.visitscotland.com',
     },
     slots: {
         vsLinkListHeading: 'Multi-image heading',
