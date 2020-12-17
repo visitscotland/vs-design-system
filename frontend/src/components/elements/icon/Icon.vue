@@ -161,6 +161,10 @@ export default {
                     key: 'walking',
                     value: 'walk',
                 },
+                {
+                    key: 'transport',
+                    value: 'transport',
+                },
             ],
         };
     },

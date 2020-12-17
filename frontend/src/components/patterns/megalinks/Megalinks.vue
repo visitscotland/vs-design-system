@@ -4,7 +4,7 @@
         :class="megalinksClasses"
         data-test="megalinks"
     >
-        <VsContainer class="container-lg">
+        <VsContainer fluid="lg">
             <VsRow>
                 <VsCol
                     cols="12"
@@ -24,7 +24,7 @@
                             {{ title }}
                         </VsHeading>
 
-                        <div class="vs-megalinks__intro-content">
+                        <div class="vs-megalinks__intro-content lead">
                             <!-- @slot Slot to contain optional intro content -->
                             <slot name="vsMegalinksIntro" />
                         </div>
@@ -130,6 +130,7 @@ export default {
         // make panels in a row equal height
         .row {
             display: flex;
+            width: 100%;
         }
         @supports not (-ms-high-contrast: none) {
             .row > [class*='col-'] {
@@ -176,10 +177,6 @@ export default {
         }
 
         &--multi-image {
-            .vs-megalinks__links-wrapper {
-                margin-bottom: (-$spacer-8);
-            }
-
             .vs-megalinks__button {
                 margin-top: $spacer-8;
             }
@@ -187,7 +184,7 @@ export default {
 
         &--link-list {
             .vs-megalinks__button {
-                margin-top: $spacer-9;
+                margin-top: $spacer-8;
             }
         }
 
@@ -206,12 +203,8 @@ export default {
             }
 
             &--multi-image {
-                .vs-megalinks__links-wrapper {
-                    margin-bottom: (-$spacer-12);
-                }
-
                 .vs-megalinks__button {
-                    margin-top: $spacer-12;
+                    margin-top:$spacer-10;
                 }
             }
 
@@ -295,9 +288,10 @@ export default {
                             imgSrc="https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"
                             imgAlt="This is the alt text"
                             linkType="internal"
+                            linkUrl="https://www.visitscotland.com"
                         >
                             <template slot="vsMultiImageHeading">
-                                The Edinburgh International Festival and summer festival
+                                The Edinburgh International Festival
                             </template>
                             <template slot="vsMultiImageContent">
                                 <p>Right across the country, you’ll find amazing
@@ -315,6 +309,7 @@ export default {
                             imgSrc="https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"
                             imgAlt="This is the alt text 1"
                             linkType="external"
+                            linkUrl="https://www.visitscotland.com"
                         >
                             <template slot="vsMultiImageHeading">
                                 Count 7,000 shining stars in the iconic galloway forest
@@ -335,6 +330,7 @@ export default {
                             imgSrc="https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"
                             imgAlt="This is the alt text 2"
                             linkType="external"
+                            linkUrl="https://www.visitscotland.com"
                         >
                             <template slot="vsMultiImageHeading">
                                 Count 7,000 shining stars in the iconic galloway forest
@@ -363,6 +359,7 @@ export default {
                         <vs-megalink-multi-image
                             imgSrc="https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"
                             linkType="download"
+                            linkUrl="https://www.visitscotland.com"
                         >
                             <template slot="vsMultiImageHeading">
                                 Soar through the air on a boat of Falkirk Wheel (PDF 3MB)
@@ -381,6 +378,7 @@ export default {
                         <vs-megalink-multi-image
                             imgSrc="https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"
                             linkType="download"
+                            linkUrl="https://www.visitscotland.com"
                         >
                             <template slot="vsMultiImageHeading">
                                 Soar through the air on a boat of Falkirk Wheel (PDF 3MB)
@@ -399,6 +397,7 @@ export default {
                         <vs-megalink-multi-image
                             imgSrc="https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"
                             linkType="download"
+                            linkUrl="https://www.visitscotland.com"
                         >
                             <template slot="vsMultiImageHeading">
                                 Soar through the air on a boat of Falkirk Wheel (PDF 3MB)
@@ -421,9 +420,10 @@ export default {
                             imgSrc="https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"
                             imgAlt="This is the alt text"
                             linkType="internal"
+                            linkUrl="https://www.visitscotland.com"
                         >
                             <template slot="vsMultiImageHeading">
-                                The Edinburgh International Festival and summer festival
+                                The Edinburgh International Festival
                             </template>
                             <template slot="vsMultiImageContent">
                                 <p>Right across the country, you’ll find amazing
@@ -656,6 +656,7 @@ export default {
                 imgAlt="This is the alt text"
                 linkType="internal"
                 theme="dark"
+                linkUrl="https://www.visitscotland.com"
             >
                 <template slot="vsLinkListHeading">
                     The Edinburgh International Festival and summer festival
@@ -676,6 +677,7 @@ export default {
                 imgAlt="This is the alt text 1"
                 linkType="external"
                 theme="dark"
+                linkUrl="https://www.visitscotland.com"
             >
                 <template slot="vsLinkListHeading">
                     Count 7,000 shining stars in the iconic galloway forest
@@ -696,6 +698,7 @@ export default {
                 imgAlt="This is the alt text 2"
                 linkType="external"
                 theme="dark"
+                linkUrl="https://www.visitscotland.com"
             >
                 <template slot="vsLinkListHeading">
                     Count 7,000 shining stars in the iconic galloway forest
@@ -716,6 +719,7 @@ export default {
                 imgSrc="https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"
                 linkType="download"
                 theme="dark"
+                linkUrl="https://www.visitscotland.com"
             >
                 <template slot="vsLinkListHeading">
                     Soar through the air on a boat of Falkirk Wheel (PDF 3MB)
@@ -727,6 +731,7 @@ export default {
                 </template>
             </vs-megalink-link-list>
         </VsCol>
+
         <template slot="vsMegalinksButton">
             Button Text
         </template>
@@ -827,30 +832,23 @@ export default {
                     </p>
                 </template>
                 <template slot="vsSingleImageLinks">
-                    <li class="vs-megalink-single-image__link-list-item">
-                        <VsLink
-                            variant="dark"
-                            href="www.visitscotland.com"
-                        >
-                            This is a link here
-                        </VsLink>
-                    </li>
-                    <li class="vs-megalink-single-image__link-list-item">
-                        <VsLink
-                            href="www.visitscotland.com"
-                            variant="dark"
-                        >
-                            This is a link here
-                        </VsLink>
-                    </li>
-                    <li class="vs-megalink-single-image__link-list-item">
-                        <VsLink
-                            href="www.visitscotland.com"
-                            variant="dark"
-                        >
-                            This is a link here
-                        </VsLink>
-                    </li>
+                    <VsLinkListItem
+                        href="www.visitscotland.com"
+                    >
+                        This is a link here
+                    </VsLinkListItem>
+                    <VsLinkListItem
+                        href="www.visitscotland.com"
+                        type="external"
+                    >
+                        This is an external link here
+                    </VsLinkListItem>
+                    <VsLinkListItem
+                        href="www.visitscotland.com"
+                        type="download"
+                    >
+                        This is a download link here
+                    </VsLinkListItem>
                 </template>
                 <template slot="vsSingleImageButtonText">
                     This is the button
