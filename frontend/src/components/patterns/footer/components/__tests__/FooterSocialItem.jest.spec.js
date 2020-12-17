@@ -1,6 +1,6 @@
 import { shallowMount, mount } from '@vue/test-utils';
 
-import VsFooterSocialItem from '../components/FooterSocialItem';
+import VsFooterSocialItem from '../FooterSocialItem';
 
 const factoryShallowMount = (propsData) => shallowMount(VsFooterSocialItem, {
     propsData: {
