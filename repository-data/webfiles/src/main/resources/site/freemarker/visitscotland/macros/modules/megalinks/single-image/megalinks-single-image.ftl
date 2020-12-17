@@ -37,6 +37,7 @@
                     <vs-link-list-item
                         href="${listItem.link}"
                         <#if listItem.type != "internal">type="${listItem.type}"</#if>
+                        variant="${theme}"
                     >
                         ${listItem.label}
                     </vs-link-list-item>
