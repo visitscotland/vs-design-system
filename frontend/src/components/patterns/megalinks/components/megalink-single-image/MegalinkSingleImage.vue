@@ -152,6 +152,8 @@ export default {
         }
 
         .megalink-single-image__image {
+            // needed to avoid layout issues in IE11
+            overflow: hidden;
             margin: 0 -12px (-$spacer-8);
         }
 
