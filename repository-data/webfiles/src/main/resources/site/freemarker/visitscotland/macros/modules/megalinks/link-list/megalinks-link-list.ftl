@@ -30,6 +30,7 @@
                             img-src="${image}"
                             link-type="${listItem.type}"
                             theme="${theme}"
+                            link-url="${listItem.link}"
                         >
                             <template slot="vsLinkListHeading">
                                 ${listItem.label}

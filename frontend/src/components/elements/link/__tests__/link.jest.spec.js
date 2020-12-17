@@ -67,22 +67,10 @@ describe('VsLink', () => {
             });
 
             expect(wrapper.attributes('target')).toBe('_blank');
-            expect(wrapper.contains(VsIcon)).toBe(true);
-
-            await wrapper.setProps({
-                type: 'download',
-            });
-            expect(wrapper.attributes('download')).toBe('true');
-            expect(wrapper.contains(VsIcon)).toBe(true);
-
-            await wrapper.setProps({
-                type: 'internal',
-            });
-            expect(wrapper.attributes('target')).toBe('_self');
-            expect(wrapper.contains(VsIcon)).toBe(true);
+            expect(wrapper.find(VsIcon).exists()).toBe(true);
         });
 
-        it(':type - should add a download atttribute if download type is used', () => {
+        it(':type - should add a download attribute if download type is used', () => {
             const wrapper = factoryShallowMount({
                 type: 'download',
             });
