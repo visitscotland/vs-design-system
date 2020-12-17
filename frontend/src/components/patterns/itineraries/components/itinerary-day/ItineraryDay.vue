@@ -53,7 +53,7 @@
 <script>
 import VsIcon from '@components/elements/icon/Icon';
 import VsHeading from '@components/elements/heading/Heading';
-import VsAccordionItem from '@components/patterns/accordion/AccordionItem';
+import VsAccordionItem from '@components/patterns/accordion/components/AccordionItem';
 
 /**
  * Itinerary Day list items.
