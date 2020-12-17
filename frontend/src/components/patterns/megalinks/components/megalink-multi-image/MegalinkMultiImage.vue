@@ -234,7 +234,7 @@ export default {
 
             &.vs-megalink-multi-image--featured-last {
                 flex-direction: row-reverse;
-                margin-top: $spacer-12;
+                // margin-top: $spacer-12;
             }
         }
 
@@ -253,7 +253,7 @@ export default {
 
 <docs>
     ```js
-    <VsMegalinks>
+    <VsMegalinks variant="multi-image">
         <VsContainer>
             <VsRow>
                 <VsCol
@@ -343,6 +343,28 @@ export default {
                             <p>Right across the country, you’ll find amazing
                             places to eat and drink from local markets to renowned
                             restaurants. Here are some recomm…</p>
+                        </template>
+                    </vs-megalink-multi-image>
+                </VsCol>
+                <VsCol
+                    cols="12"
+                    lg="6"
+                    xl="12"
+                >
+                    <vs-megalink-multi-image
+                        featured
+                        lastFeatured
+                        imgSrc="https://cimg.visitscotland.com/cms-images/attractions/outlander/claire-standing-stones-craigh-na-dun-outlander?size=sm"
+                        imgAlt="This is the alt text"
+                        linkType="internal"
+                        linkUrl="www.visitscotland.com"
+                    >
+                        <template slot="vsMultiImageHeading">
+                            The Edinburgh International Festival and summer festival</template>
+                        <template slot="vsMultiImageContent">
+                            <p>Right across the country, you’ll find amazing places
+                            to eat and drink from local markets to renowned
+                            restaurants.</p>
                         </template>
                     </vs-megalink-multi-image>
                 </VsCol>
