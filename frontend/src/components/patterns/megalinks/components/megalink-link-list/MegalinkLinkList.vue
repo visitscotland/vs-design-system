@@ -149,7 +149,7 @@ export default {
                 width: 66%;
             }
 
-            .vs-megalink-link-list__img {
+            .stretched-link-card__img {
                 width: 33%;
                 max-width: 33%;
                 align-self: flex-start;
@@ -200,8 +200,8 @@ export default {
         }
 
         @include media-breakpoint-up(md) {
-            .megalink-link-list__wrapper.card {
-                .megalink-link-list__title {
+            .vs-megalink-link-list__wrapper.card {
+                .vs-megalink-link-list__title {
                     font-size: $small-font-size;
                 }
 
@@ -222,8 +222,8 @@ export default {
             }
 
             @include media-breakpoint-up(lg) {
-                .megalink-link-list__wrapper.card {
-                    .megalink-link-list__content p {
+                .vs-megalink-link-list__wrapper.card {
+                    .vs-megalink-link-list__content p {
                          font-size: $font-size-base;
                     }
                 }
