@@ -4,6 +4,7 @@ import com.visitscotland.brmx.beans.*;
 import com.visitscotland.brmx.beans.dms.LocationObject;
 import com.visitscotland.brmx.beans.mapping.*;
 import com.visitscotland.brmx.beans.mapping.Coordinates;
+import com.visitscotland.brmx.beans.mapping.megalinks.HorizontalListLinksModule;
 import com.visitscotland.brmx.beans.mapping.megalinks.LinksModule;
 import com.visitscotland.brmx.beans.mapping.megalinks.SingleImageLinksModule;
 import com.visitscotland.brmx.components.content.factory.ICentreFactory;
@@ -74,14 +75,14 @@ public class PageTemplateBuilder {
 
                     if (iCentreModule != null) {
                         iCentreModule.setHippoBean(item);
-                        links.add(iCentreModule);
+                        page.modules.add(iCentreModule);
                     }
                     iKnowModule.setHippoBean(item);
-                    links.add(iKnowModule);
+                    page.modules.add(iKnowModule);
                 } else if (item instanceof LongContent){
-                    links.add(createLongContent(request, (LongContent) item));
+                    page.modules.add(createLongContent(request, (LongContent) item));
                 } else if (item instanceof Article){
-                    links.add(createLongContent(request, (Article) item));
+                    page.modules.add(createLongContent(request, (Article) item));
                 }
             } catch (MissingResourceException e){
                 logger.error("The module for {} couldn't be built because some labels do not exist", item.getPath(), e);
@@ -246,5 +247,18 @@ public class PageTemplateBuilder {
         module.setSections(sections);
 
         return module;
+    }
+
+
+    /**
+     * Controls the configuration of the page.
+     *
+     * It handles the list of modules as well as the memory for style and the alignment
+     */
+    class PageConfiguration {
+        List<Module> modules = new ArrayList<>();
+
+        int style = 0;
+        int alignment = 0;
     }
 }
