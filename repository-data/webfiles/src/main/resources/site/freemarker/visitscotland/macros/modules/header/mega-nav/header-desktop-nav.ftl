@@ -6,31 +6,17 @@
 <#macro headerDesktopNav menu=menu>
     <#list menu.siteMenuItems as item>
         <#if item.title?has_content>
-
-            <#assign href="#">
-            <#if item.hstLink??>
-                <#assign href><@hst.link fullyQualified=fullyQualifiedURLs link=item.hstLink/></#assign>
-            <#elseif item.externalLink??>
-                <#assign href>${item.externalLink?replace("\"", "")}</#assign>
-            </#if>
-
             <vs-mega-nav-top-menu-item
-                    href="${href}"
+                    href="${getUrl(item)}"
                     cta-text="<#if item.cta??>${item.cta}<#else></#if>"
             >
                 <template slot="buttonContent">
-                    ${item.title?html}
+                    ${item.title}
                 </template>
+
                 <template slot="dropdownContent">
                     <#list item.childMenuItems as childItem>
                         <#if childItem.title??>
-                            <#assign subheadingUrl = "#">
-                            <#if childItem.hstLink??>
-                                <#assign subheadingUrl><@hst.link fullyQualified=fullyQualifiedURLs link=childItem.hstLink/></#assign>
-                            <#elseif item.externalLink??>
-                                <#assign subheadingUrl>${childItem.externalLink?replace("\"", "")}</#assign>
-                            </#if>
-
                             <vs-mega-nav-list>
                                 <vs-mega-nav-list-item slot="navListHeading">
                                     ${childItem.title}
@@ -38,28 +24,23 @@
 
                                 <#list childItem.childMenuItems as thirdChildItem>
                                     <#if thirdChildItem.title??>
-                                        <#assign navItemUrl = "#">
-                                        <#if thirdChildItem.hstLink??>
-                                            <#assign navItemUrl><@hst.link fullyQualified=fullyQualifiedURLs link=thirdChildItem.hstLink/></#assign>
-                                        <#elseif item.externalLink??>
-                                            <#assign navItemUrl>${thirdChildItem.externalLink?replace("\"", "")}</#assign>
-                                        </#if>
                                         <vs-mega-nav-list-item
                                             slot="navListItems"
-                                            href="${navItemUrl}"
+                                            href="${getUrl(thirdChildItem)}"
                                         >
                                             ${thirdChildItem.title}
                                         </vs-mega-nav-list-item>
                                     </#if>
                                 </#list>
-
-                                <vs-mega-nav-list-item
-                                    href="${subheadingUrl}"
-                                    subheading-link
-                                    slot="navHeadingCtaLink"
-                                >
-                                    ${childItem.cta}
-                                </vs-mega-nav-list-item>
+                                <#if childItem.cta?? && childItem.hstLink??>
+                                    <vs-mega-nav-list-item
+                                        href="${getUrl(childItem)}"
+                                        subheading-link
+                                        slot="navHeadingCtaLink"
+                                    >
+                                        ${childItem.cta}
+                                    </vs-mega-nav-list-item>
+                                </#if>
                             </vs-mega-nav-list>
                         </#if>
                     </#list>
