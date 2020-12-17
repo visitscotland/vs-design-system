@@ -30,7 +30,7 @@
 
 <script>
 import VsIcon from '@components/elements/icon/Icon';
-import store from './favourites.store';
+import store from '../favourites.store';
 
 /**
  * TODO: Document usage
@@ -38,7 +38,7 @@ import store from './favourites.store';
  * @displayName Favourites View Button
  */
 export default {
-    name: 'VsFavouritesViewButton',
+    name: 'VsListFavouritesViewButton',
     status: 'prototype',
     release: '0.0.1',
     components: {
