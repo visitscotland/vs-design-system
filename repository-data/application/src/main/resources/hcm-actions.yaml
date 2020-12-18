@@ -1,0 +1,4 @@
+action-lists:
+  - 1.0.1:
+    /content/gallery/visitscotland/static: reload
+    /content/documents/administration: reload
