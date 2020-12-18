@@ -26,6 +26,12 @@
                 :aria-expanded="showCaption ? 'true' : 'false'"
                 @click.native="toggleCaption"
             >
+                <span
+                    class="sr-only"
+                >
+                    {{ captionButtonText }}
+                </span>
+
                 <VsIcon
                     v-if="showCaption"
                     name="close-circle"
@@ -207,6 +213,9 @@ export default {
             type: Boolean,
             default: false,
         },
+        /**
+        * Text for mobile caption toggle button
+        */
     },
     data() {
         return {
@@ -220,6 +229,9 @@ export default {
         },
         isLargeCaption() {
             return this.variant === 'large';
+        },
+        captionButtonText() {
+            return this.showCaption ? 'Close image caption' : 'Open image caption';
         },
     },
     methods: {
