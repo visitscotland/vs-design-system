@@ -1,5 +1,5 @@
 import { shallowMount, mount } from '@vue/test-utils';
-import VsHero from './Hero';
+import VsHero from '../Hero';
 
 const factoryShallowMount = (propsData) => shallowMount(VsHero, {
     propsData: {
