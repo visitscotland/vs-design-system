@@ -133,7 +133,7 @@ export default {
 <docs>
   ```jsx
     const sampleGeojsonData = require(
-        "../../../../../assets/fixtures/itineraries/sample-itinerary-geojson.json"
+        "../../../../../../assets/fixtures/itineraries/sample-itinerary-geojson.json"
     )
 
     <vs-row class="py-5">
