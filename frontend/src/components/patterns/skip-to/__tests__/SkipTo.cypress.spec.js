@@ -1,5 +1,5 @@
 const { vueHelper } = require('@cypress/helpers/index.js').default;
-const VsSkipTo = require('./SkipTo.vue').default;
+const VsSkipTo = require('../SkipTo.vue').default;
 
 const skipToLabel = 'Skip to thing';
 
