@@ -34,6 +34,7 @@
 
 <script>
 import VsAccordionItem from '@components/patterns/accordion/AccordionItem';
+import VsIcon from '@components/elements/icon/Icon';
 
 /**
  *  This component is used in the mobile menu for groups of links
@@ -46,6 +47,7 @@ export default {
     release: '0.1.0',
     components: {
         VsAccordionItem,
+        VsIcon,
     },
     props: {
         /**
@@ -131,8 +133,9 @@ export default {
                 padding-left: $spacer-5;
                 padding-right: $spacer-5;
 
-                &:hover {
+                &:hover, &:focus, &:active, &:active:focus {
                     background-color: $color-secondary-gray-tint-6;
+                    color: $color-base-text;
                 }
             }
         }
@@ -148,7 +151,7 @@ export default {
                 padding-left: $spacer-8;
                 padding-right: $spacer-5;
 
-                &:hover {
+                &:hover, &:focus, &:active, &:active:focus {
                     background-color: $color-white;
                     color: $color-pink;
                 }
