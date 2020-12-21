@@ -1,5 +1,8 @@
 <template>
-    <div class="vs-summary-box__wrapper">
+    <div
+        class="vs-summary-box__wrapper"
+        data-test="vs-summary-box-list"
+    >
         <ul class="vs-summary-box__list list-unstyled d-flex flex-wrap p-2 p-sm-3">
             <slot />
         </ul>
