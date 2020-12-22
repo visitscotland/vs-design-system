@@ -3,7 +3,10 @@
         class="vs-image-with-caption position-relative"
         :class="{ 'vs-image-with-caption--closed-default': closedDefaultCaption }"
     >
-        <div class="vs-image-with-caption__image-wrapper">
+        <div
+            class="vs-image-with-caption__image-wrapper"
+            :class="mobileOverlap ? 'vs-image-with-caption__image-wrapper--overlapped' : ''"
+        >
             <slot>
                 <VsImg
                     v-if="imageSrc"
@@ -23,6 +26,12 @@
                 :aria-expanded="showCaption ? 'true' : 'false'"
                 @click.native="toggleCaption"
             >
+                <span
+                    class="sr-only"
+                >
+                    {{ captionButtonText }}
+                </span>
+
                 <VsIcon
                     v-if="showCaption"
                     name="close-circle"
@@ -43,9 +52,10 @@
         </div>
 
         <div
-            :class="{
-                'd-block': showCaption,
-            }"
+            :class="[
+                { 'd-block': showCaption },
+                `vs-image-with-caption__caption-wrapper--${textAlign}`
+            ]"
             class="vs-image-with-caption__caption-wrapper"
             :id="'image_' + imageSrc"
         >
@@ -185,6 +195,27 @@ export default {
             default: 'fullwidth',
             validator: (value) => value.match(/(fullwidth|large)/),
         },
+
+        /**
+         * Option to choose text alignment
+         * `left, right`
+         */
+        textAlign: {
+            type: String,
+            default: 'left',
+            validator: (value) => value.match(/(left|right)/),
+        },
+
+        /**
+         * Option if the mobile view is overlapped at the bottom
+        */
+        mobileOverlap: {
+            type: Boolean,
+            default: false,
+        },
+        /**
+        * Text for mobile caption toggle button
+        */
     },
     data() {
         return {
@@ -198,6 +229,9 @@ export default {
         },
         isLargeCaption() {
             return this.variant === 'large';
+        },
+        captionButtonText() {
+            return this.showCaption ? 'Close image caption' : 'Open image caption';
         },
     },
     methods: {
@@ -230,6 +264,13 @@ export default {
             .vs-image-with-caption--closed-default & {
                 display: block;
             }
+        }
+    }
+
+    &--overlapped {
+        .vs-image-with-caption__toggle-caption-btn {
+            bottom: $spacer-9;
+            right: $spacer-4;
         }
     }
 }
@@ -326,6 +367,15 @@ export default {
                 > .row {
                     margin: 0 -16px;
                 }
+            }
+        }
+    }
+
+    @include media-breakpoint-up(md) {
+        &--right {
+            figcaption.vs-image-with-caption__fullwidth-caption p,
+            figcaption.vs-image-with-caption__large-caption p {
+                text-align: right;
             }
         }
     }
