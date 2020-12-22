@@ -12,6 +12,7 @@
                     title="${item.title}"
                     level="1"
                     control-id="${item?index}"
+                    :is-last="<#if item?is_last>true<#else>false</#if>"
                 >
                     <#if item.cta?? && item.hstLink??>
                         <vs-mega-nav-list>
@@ -31,6 +32,7 @@
                                 title="${childItem.title}"
                                 level="2"
                                 control-id="${childItem?index}"
+                                :is-last="<#if childItem?is_last>true<#else>false</#if>"
                             >
                                 <vs-mega-nav-list>
                                     <#list childItem.childMenuItems as thirdChildItem>
@@ -38,7 +40,8 @@
                                             <vs-mega-nav-list-item
                                                 slot="navListItems"
                                                 href="${getUrl(thirdChildItem)}"
-                                            >
+                                                :is-last="<#if thirdChildItem?is_last && !childItem.cta?? && !childItem.hstLink??>true<#else>false</#if>"
+                                            >   
                                                 ${thirdChildItem.title}
                                             </vs-mega-nav-list-item>
                                         </#if>
@@ -48,6 +51,7 @@
                                         <vs-mega-nav-list-item
                                             href="${getUrl(childItem)}"
                                             subheading-link
+                                            :is-last="true"
                                             slot="navHeadingCtaLink"
                                         >
                                             ${childItem.cta}

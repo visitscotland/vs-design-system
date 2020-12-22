@@ -112,15 +112,12 @@ export default {
             this.$refs.dropdown.hide(true);
         },
         getLastMenuItem() {
-            const menuItem = this.$el.querySelectorAll('.vs-mega-nav-accordion-item--level-1');
+            const lastMenuItem = this.$el.querySelectorAll(
+                '.vs-mega-nav-accordion-item--level-1.is-last-item .vs-mega-nav-accordion-item--level-2.is-last-item .vs-mega-nav-list-item.is-last-item'
+            );
 
-            if (menuItem.length > 0) {
-                const lastlevel1Item = Array.from(menuItem).pop();
-                const lastLevel2Item = Array.from(lastlevel1Item.children[1].children).pop();
-                const lastLevel3Item = Array.from(lastLevel2Item.children[1].children).pop();
-                const lastMenuItem = Array.from(lastLevel3Item.children).pop();
-
-                lastMenuItem.children[0].addEventListener('focusout', this.focusCloseBtn);
+            if (lastMenuItem.length > 0) {
+                lastMenuItem[0].children[0].addEventListener('focusout', this.focusCloseBtn);
             }
         },
         focusCloseBtn() {

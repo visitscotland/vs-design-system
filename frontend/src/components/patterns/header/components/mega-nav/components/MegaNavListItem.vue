@@ -2,7 +2,7 @@
     <li
         class="vs-mega-nav-list-item"
         data-test="vs-mega-nav-list-item"
-        :class="navItemClass"
+        :class="[{ 'is-last-item': isLast }, navItemClass]"
     >
         <VsLink
             :href="href"
@@ -48,6 +48,13 @@ export default {
          * Check if link is a CTA link
          */
         ctaLink: {
+            type: Boolean,
+            default: false,
+        },
+        /**
+         * Flag to check if item is last in array
+         */
+        isLast: {
             type: Boolean,
             default: false,
         },
