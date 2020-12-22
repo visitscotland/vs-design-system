@@ -2,9 +2,9 @@
     <VsAccordionItem
         class="vs-mega-nav-accordion-item"
         data-test="vs-mega-nav-accordion-item"
-        :class="`vs-mega-nav-accordion-item--level-${level}`"
+        :class="[{ 'is-last-item': isLast }, `vs-mega-nav-accordion-item--level-${level}`]"
         :data-unique-id="getUniqueId"
-        :control-id="controlId"
+        :control-id="`vs-mega-nav-accordion-item-${controlId}`"
         :open-by-default="false"
     >
         <template #title>
@@ -72,6 +72,13 @@ export default {
             type: String,
             required: true,
             validator: (value) => value.match(/(1|2)/),
+        },
+        /**
+         * Flag to check if item is last in array
+         */
+        isLast: {
+            type: Boolean,
+            default: false,
         },
     },
     computed: {
@@ -168,14 +175,14 @@ export default {
         <VsMegaNavAccordionItem
             :title="item.title"
             level="1"
-            :control-id="'menu_accordion_item_' + mobileItemIndex"
+            :control-id="mobileItemIndex"
             v-for="(item, mobileItemIndex) in header.mainNav"
             :key="mobileItemIndex"
         >
             <VsMegaNavAccordionItem
                 :title="subHeading.title"
                 level="2"
-                :control-id="'menu_accordion_item_' + subHeadingIndex"
+                :control-id="subHeadingIndex"
                 v-for="(subHeading, subHeadingIndex) in item.dropdownNav"
                 :key="subHeadingIndex"
             >
