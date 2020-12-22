@@ -231,6 +231,11 @@ $variants: (
     @each $variant in map-keys($variants) {
         &.vs-icon--variant-#{$variant} {
             fill: map-get($variants, $variant);
+
+             &.icon--reverse {
+                fill: $color-white;
+                background: map-get($variants, $variant);
+            }
         }
     }
 

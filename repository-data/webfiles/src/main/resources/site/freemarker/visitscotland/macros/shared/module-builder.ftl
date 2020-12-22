@@ -32,8 +32,8 @@
 
         <#elseif module.getType()== "IKnowModule">
             <@iknow module/>
-        <#elseif module.getType()== "LongContentModule">
 
+        <#elseif module.getType()== "LongContentModule">
             <@longContent module/>
         </#if>
     </div>
