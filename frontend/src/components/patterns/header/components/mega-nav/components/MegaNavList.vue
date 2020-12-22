@@ -54,7 +54,12 @@ export default {
 
 @include no-js {
     .vs-mega-nav-list {
-        width: 32%;
+        width: 100%;
+        margin: 0 $spacer-6 $spacer-4 0;
+
+        @include media-breakpoint-up(md) {
+            width: 32%;
+        }
     }
 }
 </style>
