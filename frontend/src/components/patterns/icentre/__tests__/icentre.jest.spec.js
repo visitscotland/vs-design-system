@@ -1,4 +1,4 @@
-import { shallowMount, mount } from '@vue/test-utils';
+import { shallowMount } from '@vue/test-utils';
 
 import VsIcentre from '../Icentre';
 
@@ -6,16 +6,6 @@ const inputSrc = 'https://cimg.visitscotland.com/cms-images/attractions/outlande
 const inputAlt = 'This is the alt text';
 
 const factoryShallowMount = (slotsData) => shallowMount(VsIcentre, {
-    propsData: {
-        imgSrc: inputSrc,
-        imgAlt: inputAlt,
-    },
-    slots: {
-        ...slotsData,
-    },
-});
-
-const factoryMount = (slotsData) => mount(VsIcentre, {
     propsData: {
         imgSrc: inputSrc,
         imgAlt: inputAlt,
