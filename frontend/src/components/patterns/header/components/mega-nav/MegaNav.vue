@@ -16,7 +16,7 @@
                         data-test="vs-mega-nav__logo"
                         link-alt-text="VisitScotland Home"
                         :href="href"
-                        svg-fill="700e57"
+                        svg-fill="#700e57"
                         svg-path="visitscotland"
                     />
                 </VsCol>
@@ -148,8 +148,8 @@ export default {
     box-shadow: 0 2px 6px 0px rgba(0, 0, 0, 0.16);
 
     &__logo svg {
-        max-width: 184px;
-        max-height: 20px;
+        width: 184px;
+        height: 20px;
     }
 
     .vs-mega-nav__menu {
