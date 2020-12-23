@@ -20,7 +20,7 @@
                 key="home"
                 href="<@hst.link siteMapItemRefId="root"/>"
                 <#if isHome>active</#if>
-                text="<@fmt.message key="home" />"
+                text="${label('essentials.global', 'home')}"
         >
 
         </vs-breadcrumb-item>
