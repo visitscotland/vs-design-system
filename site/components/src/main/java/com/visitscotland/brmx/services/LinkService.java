@@ -52,18 +52,14 @@ public class LinkService {
 
         if (item instanceof DMSLink) {
             DMSLink dmsLink = (DMSLink) item;
-            try {
-                JsonNode product = dmsData.productCard(dmsLink.getProduct(), locale);
-                if (product == null) {
-                    logger.warn(CommonUtils.contentIssue("There is no product with the id '%s', (%s) ",
-                            dmsLink.getProduct(), item.getPath()));
-                } else {
-                    //TODO build the link for the DMS product properly
-                    return new FlatLink(resourceBundle.getCtaLabel(dmsLink.getLabel(), locale), Properties.VS_DMS_SERVICE + product.get(URL).asText(), LinkType.INTERNAL);
-                }
-            } catch (IOException e) {
-                logger.error(String.format("Error while querying the DMS for '%s', (%s)",
+            JsonNode product = dmsData.productCard(dmsLink.getProduct(), locale);
+
+            if (dmsLink.getProduct() == null) {
+                logger.warn(CommonUtils.contentIssue("There is no product with the id '%s', (%s) ",
                         dmsLink.getProduct(), item.getPath()));
+            } else if (product != null) {
+                //TODO build the link for the DMS product properly
+                return new FlatLink(resourceBundle.getCtaLabel(dmsLink.getLabel(), locale), Properties.VS_DMS_SERVICE + product.get(URL).asText(), LinkType.INTERNAL);
             }
         } else if (item instanceof ProductSearchLink) {
             ProductSearchLink productSearchLink = (ProductSearchLink) item;

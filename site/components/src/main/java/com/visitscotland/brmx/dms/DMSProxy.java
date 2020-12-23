@@ -7,6 +7,7 @@ import org.slf4j.LoggerFactory;
 import java.io.*;
 import java.net.*;
 import java.util.Date;
+import java.util.Locale;
 
 /**
  * Proxies connections to the DMS and halts connections for DMS when there is low availability
@@ -34,14 +35,27 @@ public class DMSProxy {
      *
      * @throws IOException
      */
-    public synchronized String request(String path) {
+    public String request(String path) {
+        return request(path, null);
+    }
+
+    public synchronized String request(String path, Locale locale) {
+        String languageParam = "";
         // Checks if there is a lock and if has to be released
         if (lastRegisteredFailure != null && lastRegisteredFailure + Properties.DMS_WAIT_TIME < new Date().getTime()){
             lastRegisteredFailure = null;
         }
 
         if (lastRegisteredFailure == null && path.startsWith("/")) {
-            return request(path, Properties.DMS_TRIES);
+            Properties.Language lang = Properties.Language.getLanguageForLocale(locale);
+            if (lang != Properties.Language.ENGLISH){
+                if (path.contains("?")){
+                    languageParam = "&locale=" + lang.getLocale().getLanguage();
+                } else {
+                    languageParam = "?locale=" + lang.getLocale().getLanguage();
+                }
+            }
+            return request(path + languageParam, Properties.DMS_TRIES);
         } else {
             return null;
         }

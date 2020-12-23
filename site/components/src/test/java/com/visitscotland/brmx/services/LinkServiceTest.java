@@ -10,6 +10,7 @@ import com.visitscotland.brmx.utils.HippoUtilsService;
 import com.visitscotland.brmx.utils.Properties;
 import org.hippoecm.hst.content.beans.standard.HippoBean;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -108,6 +109,7 @@ class LinkServiceTest {
 
     @Test
     @DisplayName("An exception in the DMS Data Service doesn't get propagated")
+    @Disabled("dmsProductCard does not throw an exception any longer")
     void dmsLink_dmsDataThrowException() throws IOException {
         //Verifies that handles the exception from DMSDataService and returns null
         DMSLink dmsLink = mock(DMSLink.class);

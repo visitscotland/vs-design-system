@@ -43,10 +43,14 @@ public class Properties {
 
         public String getDMSPathVariable(){
             if (this == ENGLISH){
-                return null;
+                return "";
             } else {
                 return "/" + locale.toLanguageTag();
             }
+        }
+
+        public Locale getLocale(){
+            return locale;
         }
     }
 

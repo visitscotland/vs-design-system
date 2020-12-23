@@ -30,9 +30,12 @@ public class DMSConstants {
     }
 
     //Endpoints
+    //TODO Remove %s at the beginning of the constants
     public static final String PRODUCT_SEARCH = "%s/info/%s/search-results?";
     public static final String PRODUCT_SEARCH_DATA_MAP = "%s/data/product-search/map?";
     public static final String VS_DMS_PRODUCT_CARD = "%s/data/products/card?";
+    public static final String META_PRODUCT_LIST = "/data/meta/%s/list?%s";
+    public static final String META_LOCATIONS = "/data/meta/location/list?full";
 
     //Parameters
 

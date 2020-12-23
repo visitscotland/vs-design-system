@@ -22,11 +22,11 @@ class DMSDataServiceTest {
     DMSDataService service;
 
     @Mock
-    CommonUtils utils;
-
+    DMSProxy proxy;    
+    
     @BeforeEach
     void init (){
-        service = new DMSDataService(utils);
+        service = new DMSDataService(proxy);
     }
 
     @Test
@@ -34,11 +34,11 @@ class DMSDataServiceTest {
     void productCard_productCard() throws IOException {
         //Regular scenario: ID and locale are defined and a request is passed to vs-dms-products with both values
         ArgumentCaptor<String> url = ArgumentCaptor.forClass(String.class);
-        when(utils.requestUrl(anyString())).thenReturn("{ \"data\":[]}");
+        when(proxy.request(anyString())).thenReturn("{ \"data\":[]}");
 
         JsonNode node = service.productCard("0123456789", Locale.UK);
 
-        verify(utils).requestUrl(url.capture());
+        verify(proxy).request(url.capture());
 
         Assertions.assertTrue(url.getValue().contains("id=0123456789"));
         Assertions.assertTrue(url.getValue().contains("locale="+Locale.UK.getLanguage()));
@@ -51,11 +51,11 @@ class DMSDataServiceTest {
         //When locale is not defined the parameter is not set
         //Regular scenario: ID and locale are defined and a request is passed to vs-dms-products with both values
         ArgumentCaptor<String> url = ArgumentCaptor.forClass(String.class);
-        when(utils.requestUrl(anyString())).thenReturn("{ \"data\":[]}");
+        when(proxy.request(anyString())).thenReturn("{ \"data\":[]}");
 
         JsonNode node = service.productCard("0123456789", null);
 
-        verify(utils).requestUrl(url.capture());
+        verify(proxy).request(url.capture());
 
         Assertions.assertTrue(url.getValue().contains("id=0123456789"));
         Assertions.assertFalse(url.getValue().contains("locale="));
@@ -68,29 +68,10 @@ class DMSDataServiceTest {
         //When a productId is not defined a null object is returned
         JsonNode node = service.productCard(null, Locale.UK);
 
-        verify(utils, never()).requestUrl(anyString());
+        verify(proxy, never()).request(anyString());
 
         Assertions.assertNull(node);
     }
-
-    @Test
-    @DisplayName("legacyMapSeach - Errors are handled properly")
-    void productCard_ErrorHandling() throws IOException{
-        //Tries different errors and verifies that the answer doesn't break the method
-        when(utils.requestUrl(anyString())).thenReturn("{}");
-        JsonNode node = service.productCard("0123456789", Locale.UK);
-        Assertions.assertNull(node);
-
-        when(utils.requestUrl(anyString())).thenReturn("{ \"dat");
-        JsonNode corruptedNode = service.productCard("0123456789", Locale.UK);
-        Assertions.assertNull(corruptedNode);
-
-        when(utils.requestUrl(anyString())).thenThrow(new IOException());
-        JsonNode unstable = service.productCard("0123456789", Locale.UK);
-        Assertions.assertNull(unstable);
-    }
-
-
 
     @Test
     @DisplayName("legacyMapSeach - Returns the list of featured nodes")
@@ -106,7 +87,7 @@ class DMSDataServiceTest {
 
         ProductSearchBuilder psb = mock(ProductSearchBuilder.class);
         when(psb.buildDataMap()).thenReturn(SAMPLE_URL);
-        when(utils.requestUrl(SAMPLE_URL)).thenReturn(SAMPLE_RESPONSE);
+        when(proxy.request(SAMPLE_URL)).thenReturn(SAMPLE_RESPONSE);
 
         JsonNode output = service.legacyMapSearch(psb);
 
@@ -122,19 +103,13 @@ class DMSDataServiceTest {
         when(psb.buildDataMap()).thenReturn("URL");
 
         //No features nodes in the response
-        when(utils.requestUrl("URL")).thenReturn("{\"type\": \"FeatureCollection\"}");
+        when(proxy.request("URL")).thenReturn("{\"type\": \"FeatureCollection\"}");
         JsonNode node = service.legacyMapSearch(psb);
         Assertions.assertNull(node);
 
         //Corrupted Response
-        when(utils.requestUrl("URL")).thenReturn("{ \"ty");
+        when(proxy.request("URL")).thenReturn("{ \"ty");
         JsonNode corruptedNode = service.legacyMapSearch(psb);
         Assertions.assertNull(corruptedNode);
-
-        //Exception when accessing the URL
-        when(utils.requestUrl("URL")).thenThrow(new IOException());
-        JsonNode unstable = service.legacyMapSearch(psb);
-        Assertions.assertNull(unstable);
     }
-
 }
