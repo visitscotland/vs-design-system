@@ -36,6 +36,11 @@ public class DMSProxy {
      * @throws IOException
      */
     public String request(String path) {
+        if (path.startsWith(Properties.VS_DMS_SERVICE)){
+            //TODO Fix ProductSearchBuilder to make it build relative URLs
+            return request(path.substring(Properties.VS_DMS_SERVICE.length()), null);
+        }
+
         return request(path, null);
     }
 
