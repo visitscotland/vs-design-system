@@ -15,6 +15,7 @@ import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.SocketTimeoutException;
 import java.util.Date;
+import java.util.Locale;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
@@ -47,7 +48,7 @@ class DMSProxyTest {
     }
 
     @Test
-    @DisplayName("Serves the content of an endpoint that returns a 200 status code")
+    @DisplayName("VS-2386 - Serves the content of an endpoint that returns a 200 status code")
     void requestContent() throws IOException {
         final String CONTENT = "This is it";
         when(huc.getResponseCode()).thenReturn(200);
@@ -59,8 +60,24 @@ class DMSProxyTest {
     }
 
     @Test
-    @DisplayName("There were several attempts of retrieving the data")
+    @DisplayName("VS-2386 - Serves the content redirected from a 300 status code")
+    void requestWithRedirects() throws IOException {
+        final String CONTENT = "This is it";
+        when(huc.getResponseCode()).thenReturn(300);
+        when(huc.getInputStream()).thenReturn(new ByteArrayInputStream(CONTENT.getBytes()));
+
+        HttpURLConnection.setFollowRedirects(false);
+
+        Assertions.assertEquals(CONTENT, proxy.request("/300-the-film"));
+        Assertions.assertEquals(true, HttpURLConnection.getFollowRedirects());
+
+        verify(huc).setRequestProperty(eq(DMSProxy.HEADER_TOKEN), any());
+    }
+
+    @Test
+    @DisplayName("VS-2386 - There were several attempts of retrieving the data")
     void exceptionPropagation() throws IOException {
+        Properties.DMS_TRIES = 5;
         // Verifies that the exception is propagated and a number of tries is attempted
         when(huc.getResponseCode()).thenThrow(new SocketTimeoutException());
 
@@ -69,9 +86,8 @@ class DMSProxyTest {
         verify(huc, times(Properties.DMS_TRIES)).getResponseCode();
     }
 
-
     @Test
-    @DisplayName("Simultaneous connections are only executed once")
+    @DisplayName("VS-2386 - Simultaneous connections are only executed once")
     void simultaneousConnection() throws IOException, InterruptedException {
         //Creates a Pool of 10 simultaneous connections
         ExecutorService service = Executors.newFixedThreadPool(20);
@@ -100,7 +116,7 @@ class DMSProxyTest {
     }
 
     @Test
-    @DisplayName("Test that the lock is release after a while")
+    @DisplayName("VS-2386 - Test that the lock is release after a while")
     void lockRelease() throws IOException {
         when(huc.getResponseCode()).thenThrow(new SocketTimeoutException());
 
@@ -117,5 +133,25 @@ class DMSProxyTest {
 
         verify(huc, times(2)).getResponseCode();
     }
+
+    @Test
+    @DisplayName("The locale parameter is added to the requests, when the language is not english")
+    void language() throws IOException {
+        when(huc.getResponseCode()).thenThrow(new SocketTimeoutException());
+
+        //Note: That some assertions are defined here in order to simplify the code
+        DMSProxy methodProxy = new DMSProxy() {
+            @Override
+            protected HttpURLConnection openConnection(String url) {
+                Assertions.assertTrue(url.contains("?locale=fr") || url.contains("&locale=fr"));
+                return huc;
+            }
+        };
+
+
+        Assertions.assertNull(methodProxy.request("/french-locale", Locale.FRANCE));
+        Assertions.assertNull(methodProxy.request("/french-locale?page=1", Locale.FRANCE));
+    }
+
 
 }
