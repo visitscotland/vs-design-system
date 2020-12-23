@@ -4,7 +4,7 @@
   jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
   jcr:uuid: 51836878-2e2f-4ea5-8ca4-8e68147b1210
   hippo:name: Meganav Links
-  hippo:versionHistory: 94cd0b02-7f59-41ae-949a-61ad4b12ff93
+  hippo:versionHistory: c55ada8f-618d-4f15-b0c5-d03b0e3dbc0d
   /meganav[1]:
     jcr:primaryType: resourcebundle:resourcebundle
     jcr:mixinTypes: ['mix:referenceable']
@@ -13,20 +13,20 @@
     hippostd:state: draft
     hippostdpubwf:createdBy: admin
     hippostdpubwf:creationDate: 2020-07-22T15:19:03.855+01:00
-    hippostdpubwf:lastModificationDate: 2020-11-24T10:29:29.999Z
+    hippostdpubwf:lastModificationDate: 2020-12-23T10:47:21.298Z
     hippostdpubwf:lastModifiedBy: admin
     resourcebundle:descriptions: ['', '', '', '', '', '', The purpose of this text
         is to verify that the cta will not be shown when a Top level Menu Item does
-        not have a link, '', '', '', '']
+        not have a link, '', '', '']
     resourcebundle:id: navigation.main
     resourcebundle:keys: [destinations-map, see-do, accommodation, inspiration, travel-planning,
-      destinations-map.cta, accommodation.cta, home, cities.nav, orkney.nav, attractions]
+      destinations-map.cta, accommodation.cta, cities.nav, orkney.nav, attractions]
     resourcebundle:messages: [Places to go, Things to do, Accommodation, Inspiration,
       Travel & Planning, Explore the Map of Scotland, This Text should not be visible,
-      Home, Cities, Orkney, Attractions]
+      Cities, Orkney, Attractions]
     resourcebundle:messages_es: ['', Ver y Hacer, Alojamiento, Inspiración, Planifica
-        tu viaje, Vea el mapa de Escocia, Este texto no deberia ser visible, Inicio,
-      '', '', '']
+        tu viaje, Vea el mapa de Escocia, Este texto no deberia ser visible, '', '',
+      '']
   /meganav[2]:
     jcr:primaryType: resourcebundle:resourcebundle
     jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
@@ -35,20 +35,20 @@
     hippostd:state: unpublished
     hippostdpubwf:createdBy: admin
     hippostdpubwf:creationDate: 2020-07-22T15:19:03.855+01:00
-    hippostdpubwf:lastModificationDate: 2020-11-24T10:29:35.681Z
+    hippostdpubwf:lastModificationDate: 2020-12-23T10:47:25.945Z
     hippostdpubwf:lastModifiedBy: admin
     resourcebundle:descriptions: ['', '', '', '', '', '', The purpose of this text
         is to verify that the cta will not be shown when a Top level Menu Item does
-        not have a link, '', '', '', '']
+        not have a link, '', '', '']
     resourcebundle:id: navigation.main
     resourcebundle:keys: [destinations-map, see-do, accommodation, inspiration, travel-planning,
-      destinations-map.cta, accommodation.cta, home, cities.nav, orkney.nav, attractions]
+      destinations-map.cta, accommodation.cta, cities.nav, orkney.nav, attractions]
     resourcebundle:messages: [Places to go, Things to do, Accommodation, Inspiration,
       Travel & Planning, Explore the Map of Scotland, This Text should not be visible,
-      Home, Cities, Orkney, Attractions]
+      Cities, Orkney, Attractions]
     resourcebundle:messages_es: ['', Ver y Hacer, Alojamiento, Inspiración, Planifica
-        tu viaje, Vea el mapa de Escocia, Este texto no deberia ser visible, Inicio,
-      '', '', '']
+        tu viaje, Vea el mapa de Escocia, Este texto no deberia ser visible, '', '',
+      '']
   /meganav[3]:
     jcr:primaryType: resourcebundle:resourcebundle
     jcr:mixinTypes: ['mix:referenceable']
@@ -57,18 +57,18 @@
     hippostd:state: published
     hippostdpubwf:createdBy: admin
     hippostdpubwf:creationDate: 2020-07-22T15:19:03.855+01:00
-    hippostdpubwf:lastModificationDate: 2020-11-24T10:29:35.681Z
+    hippostdpubwf:lastModificationDate: 2020-12-23T10:47:25.945Z
     hippostdpubwf:lastModifiedBy: admin
-    hippostdpubwf:publicationDate: 2020-11-24T10:29:37.981Z
+    hippostdpubwf:publicationDate: 2020-12-23T10:47:27.407Z
     resourcebundle:descriptions: ['', '', '', '', '', '', The purpose of this text
         is to verify that the cta will not be shown when a Top level Menu Item does
-        not have a link, '', '', '', '']
+        not have a link, '', '', '']
     resourcebundle:id: navigation.main
     resourcebundle:keys: [destinations-map, see-do, accommodation, inspiration, travel-planning,
-      destinations-map.cta, accommodation.cta, home, cities.nav, orkney.nav, attractions]
+      destinations-map.cta, accommodation.cta, cities.nav, orkney.nav, attractions]
     resourcebundle:messages: [Places to go, Things to do, Accommodation, Inspiration,
       Travel & Planning, Explore the Map of Scotland, This Text should not be visible,
-      Home, Cities, Orkney, Attractions]
+      Cities, Orkney, Attractions]
     resourcebundle:messages_es: ['', Ver y Hacer, Alojamiento, Inspiración, Planifica
-        tu viaje, Vea el mapa de Escocia, Este texto no deberia ser visible, Inicio,
-      '', '', '']
+        tu viaje, Vea el mapa de Escocia, Este texto no deberia ser visible, '', '',
+      '']
