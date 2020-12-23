@@ -1,6 +1,7 @@
 package com.visitscotland.brmx.utils;
 
 
+import java.nio.charset.StandardCharsets;
 import java.util.*;
 
 //TODO Externalize properties
@@ -61,6 +62,13 @@ public class Properties {
     public static final String VS_DMS_SERVICE = "http://172.28.81.65:8089";
 
     public static final String INSTAGRAM_API = "https://www.instagram.com/p/";
+
+    public static Integer DMS_TIMEOUT = 2000;
+    public static Integer DMS_TRIES = 3;
+    public static Integer DMS_WAIT_TIME = 60_000;
+    public static String DMS_ENCODING = "UTF8";
+    public static String DMS_TOKEN = "tokenID";
+
 
 
 }
