@@ -16,6 +16,7 @@ public class LinksModule<L extends FlatLink> extends Module {
     private Megalinks megalinkItem;
     private String theme;
     private String alignment;
+    private List<String> errorMessages;
 
     public String getTitle() {
         return title;
@@ -71,5 +72,12 @@ public class LinksModule<L extends FlatLink> extends Module {
 
     public void setAlignment(String alignment) {
         this.alignment = alignment;
+    }
+    public List<String> getErrorMessages() {
+        return errorMessages;
+    }
+
+    public void setErrorMessages(List<String> errorMessages) {
+        this.errorMessages = errorMessages;
     }
 }

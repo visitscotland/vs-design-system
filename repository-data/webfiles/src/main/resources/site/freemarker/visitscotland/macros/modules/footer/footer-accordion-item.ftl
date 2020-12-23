@@ -25,14 +25,17 @@
                     <vs-icon name="chevron" orientation="right" variant="light" size="xs"></vs-icon>
                 </span>
 
-                <vs-list unstyled>
+                <vs-list
+                    unstyled
+                    role="menu"
+                >
                     <#list menuItem.childMenuItems as childItem>
                         <#assign href = "">
                         <#assign external = false>
 
                         <#if childItem.title?has_content>
                             <#if childItem.hstLink??>
-                                <#assign href><@hst.link link=childItem.hstLink/></#assign>
+                                <#assign href><@hst.link fullyQualified=fullyQualifiedURLs link=childItem.hstLink/></#assign>
                             <#elseif childItem.externalLink??>
                                 <#assign href>${childItem.externalLink}</#assign>
                                 <#assign external = true>
