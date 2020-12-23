@@ -1,11 +1,13 @@
 package com.visitscotland.brmx.dms;
 
+import com.visitscotland.brmx.utils.Language;
 import com.visitscotland.brmx.utils.Properties;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.*;
 import java.net.*;
+import java.nio.charset.Charset;
 import java.util.Date;
 import java.util.Locale;
 
@@ -52,8 +54,8 @@ public class DMSProxy {
         }
 
         if (lastRegisteredFailure == null && path.startsWith("/")) {
-            Properties.Language lang = Properties.Language.getLanguageForLocale(locale);
-            if (lang != Properties.Language.ENGLISH){
+            Language lang = Language.getLanguageForLocale(locale);
+            if (lang != Language.ENGLISH){
                 if (path.contains("?")){
                     languageParam = "&locale=" + lang.getLocale().getLanguage();
                 } else {
@@ -114,7 +116,7 @@ public class DMSProxy {
      * @return Content of the resource
      * @throws IOException propagates any exception
      */
-    public String requestContent(URLConnection connection, String encoding) throws IOException {
+    public String requestContent(URLConnection connection, Charset encoding) throws IOException {
         try (InputStream input = connection.getInputStream()) {
             final BufferedReader br = new BufferedReader(new InputStreamReader(input, encoding));
             final StringBuilder sb = new StringBuilder();
