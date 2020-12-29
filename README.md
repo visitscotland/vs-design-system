@@ -187,3 +187,14 @@ To run the image with an external postgresql database, add the same db propertie
     mvn -Pdocker.run,postgres
 
 After running the docker image, application logs will be shown on the terminal window.
+
+
+=============
+
+## Add custom Git hooks
+
+We use custom Git hooks to test the format of our commit messages to ensure that they meet the required standard. These custom hooks are stored in the folder `.custom-hooks` so that they can be maintained on BitBucket.
+
+Use `git config core.hooksPath .custom-hooks` to configure Git to use the custom hooks directory instead of the default hooks.
+
+Note: if you're using a GUI Git client, such as GitKraken, you'll need to manually copy the `.custom-hooks` files to `.git/hooks/` as these clients might not support `core.hooksPath`.
