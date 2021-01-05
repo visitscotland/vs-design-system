@@ -54,7 +54,7 @@ export default {
 
     &__speech-mark {
         font-weight: bold;
-        color: $color-gray-tint-4;
+        color: $color-gray;
         font-size: 7rem;
         height: 5rem;
         line-height: 1;
