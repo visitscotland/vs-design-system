@@ -1,20 +1,15 @@
 <#ftl output_format="XML">
 <#include "../../include/imports.ftl">
 <#include "../macros/global/cms-errors.ftl">
-<#include "../../frontend/components/vs-page-intro.ftl">
-<#include "../../frontend/components/vs-hero.ftl">
 <#include "../../frontend/components/vs-container.ftl">
 <#include "../../frontend/components/vs-row.ftl">
 <#include "../../frontend/components/vs-col.ftl">
 <#include "../../frontend/components/vs-rich-text-wrapper.ftl">
-<#include "../../frontend/components/vs-img.ftl">
-<#include "../../frontend/components/vs-button.ftl">
-
 <#include "../../frontend/components/vs-heading.ftl">
 <#include "../../frontend/components/vs-social-share.ftl">
 
+<#include "../macros/modules/page-intro/page-intro.ftl">
 <#include "../macros/global/cms-errors.ftl">
-
 <#include "../macros/shared/module-builder.ftl">
 
 <#-- Implicit Request Objects -->
@@ -31,28 +26,15 @@
 
 <div class="has-edit-button">
 	<@hst.manageContent hippobean=document documentTemplateQuery="new-module" rootPath="site" defaultPath="${path}" />
+    <@hst.link var="hero" hippobean=document.heroImage.original/>
     <@cmsErrors errors=alerts!"" editMode=editMode />
+    
 
     <#if standardTemplate>
-	<vs-page-intro>
-		<@hst.link var="hero" hippobean=document.heroImage.original/>
+        <@pageIntro content=document heroImage=heroImage heroCoordinates=heroCoordinates hero=heroImage hero=hero theme=introTheme areas="" days="" firstStop="" lastStop="" />
 
-			<vs-hero
-					slot="hero"
-					alt-text="${heroImage.altText!''}"
-					credit="${heroImage.credit!''}"
-					caption="${heroImage.description!''}"
-					image-src="${hero}"
-					latitude="${(heroCoordinates.latitude)!''}"
-					longitude="${(heroCoordinates.longitude)!''}"
-			>
-				<vs-img
-						src="${hero}"
-						alt="${heroImage.altText!''}"
-				> </vs-img>
-			</vs-hero>
-	</#if>
-		<vs-container slot="upper" class="py-lg-4">
+    <#else>
+        <vs-container slot="upper" class="py-lg-4">
 			<vs-row class="justify-content-md-between">
 				<vs-col cols="12" lg="8" offset-lg="1">
 					<@hst.include ref="breadcrumb"/>
@@ -84,19 +66,15 @@
 				</vs-col>
 			</vs-row>
 		</vs-container>
-	<#if standardTemplate>
-	</vs-page-intro>
-	</#if>
-
-  <#--TODO Control abput colours, change style="background-color:${style}  -->
+    </#if>
+	
 	<#list pageItems as module>
 
-		<#--TODO Colour should be only added to Megalinks, add this code to macros or create a common macro to control it-->
-		<#if module.theme?? && module.theme == "style3" && standardTemplate >
-			<#assign theme = "#292929" />
-		<#else>
-			<#assign theme = "#FFFFFF" />
-		</#if>
+		<#if item.theme??>
+            <#assign theme = item.theme />
+        <#else>
+            <#assign theme = "theme2" />
+        </#if>
 
 		<@moduleBuilder module=module theme=theme />
 
