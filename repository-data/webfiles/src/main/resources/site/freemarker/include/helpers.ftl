@@ -2,7 +2,7 @@
     Functions
 -->
 
-<#-- @ftlvariable name="ResourceBundle" type="com.visitscotland.brmx.services.ResourceBundleService" -->
+<#-- @ftlvariable name="ResourceBundle" type="com.visitscotland.brxm.services.ResourceBundleService" -->
 
 <#--  More reliable method for including labels from resource bundles  -->
 <#--  e.g. ${label("essentials.global", "footer.signup")} -->

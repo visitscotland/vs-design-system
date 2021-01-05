@@ -7,7 +7,7 @@
 -->
 <#include "../../../include/imports.ftl">
 
-<#-- @ftlvariable name="document" type="com.visitscotland.brmx.beans.Page" -->
+<#-- @ftlvariable name="document" type="com.visitscotland.brxm.beans.Page" -->
 
 <#if document??>
     <#-- NO INDEX -->
