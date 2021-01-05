@@ -1,15 +1,9 @@
 <#compress>
 <#include "../../include/imports.ftl">
-
-<#--  <#include "../../frontend/stores/vs-store-itineraries-store.ftl">  -->
-<#include "../../frontend/components/vs-page-intro.ftl">
 <#include "../../frontend/components/vs-icon.ftl">
-
 <#include "../../frontend/components/vs-tooltip.ftl">
-
 <#include "../../frontend/components/vs-itinerary-day.ftl">
 <#include "../../frontend/components/vs-itinerary.ftl">
-
 <#include "../macros/modules/itineraries/itinerary-stop.ftl">
 <#include "../macros/modules/itineraries/itinerary-map.ftl">
 <#include "../macros/modules/page-intro/page-intro.ftl">

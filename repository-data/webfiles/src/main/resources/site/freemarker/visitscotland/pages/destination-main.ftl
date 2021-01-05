@@ -1,8 +1,6 @@
 <#ftl output_format="XML">
 <#include "../../include/imports.ftl">
 <#include "../macros/global/cms-errors.ftl">
-
-<#include "../macros/modules/megalinks/megalinks.ftl">
 <#include "../macros/modules/page-intro/page-intro.ftl">
 <#include "../macros/shared/module-builder.ftl">
 

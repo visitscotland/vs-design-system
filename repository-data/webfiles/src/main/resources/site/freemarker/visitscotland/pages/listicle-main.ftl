@@ -5,18 +5,15 @@
 <#include "../../frontend/components/vs-container.ftl">
 <#include "../../frontend/components/vs-row.ftl">
 <#include "../../frontend/components/vs-col.ftl">
-<#include "../../frontend/components/vs-icon.ftl">
 <#include "../../frontend/components/vs-social-share.ftl">
 <#include "../../frontend/components/vs-heading.ftl">
-<#include "../../frontend/components/vs-img.ftl">
-<#include "../../frontend/components/vs-link.ftl">
 <#include "../../frontend/components/vs-rich-text-wrapper.ftl">
 <#include "../../frontend/components/vs-listicle-item.ftl">
 <#include "../../frontend/components/vs-panel.ftl">
 
 <#include "../macros/modules/listicles/listicle-item.ftl">
 <#include "../macros/global/cms-errors.ftl">
-<#include "../pages/module-builder.ftl">
+<#include "../macros/shared/module-builder.ftl">
 
 <#-- Implicit Request Objects -->
 <#-- @ftlvariable name="document" type="com.visitscotland.brmx.beans.Listicle" -->
