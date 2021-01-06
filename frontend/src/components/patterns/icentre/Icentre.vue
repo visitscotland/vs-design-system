@@ -127,6 +127,15 @@ export default {
     }
 
     &__image-offset {
+        @include media-breakpoint-down(sm) {
+            padding: 0;
+
+            figure {
+                width: calc(100% + 1.5em);
+                margin-left: -1em;
+            }
+        }
+
         @include media-breakpoint-up(lg) {
             margin-bottom: -22rem;
         }
