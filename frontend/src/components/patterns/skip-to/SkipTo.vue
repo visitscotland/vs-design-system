@@ -11,7 +11,7 @@
 import {
     isFunction, get, isNumber,
 } from 'lodash';
-import VsSkipToButton from './SkipToButton';
+import VsSkipToButton from './components/SkipToButton';
 
 /**
  * The SkipTo component provides users of assistive
