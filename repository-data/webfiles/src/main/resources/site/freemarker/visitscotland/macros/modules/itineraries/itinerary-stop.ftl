@@ -13,8 +13,8 @@
 <#include "../../global/cms-errors.ftl">
 
 <#macro itineraryStop stop lastStop>
-<#-- @ftlvariable name="stop" type="com.visitscotland.brmx.beans.Stop" -->
-<#-- @ftlvariable name="prod" type="com.visitscotland.brmx.beans.mapping.FlatStop" -->
+<#-- @ftlvariable name="stop" type="com.visitscotland.brxm.beans.Stop" -->
+<#-- @ftlvariable name="prod" type="com.visitscotland.brxm.beans.mapping.FlatStop" -->
 
     <#assign prod = stops[stop.identifier]>
     <#assign image = "" />
