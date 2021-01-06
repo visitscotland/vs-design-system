@@ -45,6 +45,7 @@ export default {
     &__content {
         font-size: $font-size-lg;
         font-weight: 300;
+        line-height: 1.4;
     }
 
     &__author-name {
