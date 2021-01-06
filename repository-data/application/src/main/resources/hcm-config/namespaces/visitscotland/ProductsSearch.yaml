@@ -109,7 +109,7 @@ definitions:
             engine: ${engine}
             dms.productype: visitscotland:productType
             example.external.docs.field.name: visitscotland:dmsCategories
-            external.document.service.facade: com.visitscotland.brmx.components.DMSCategoryPicker
+            external.document.service.facade: com.visitscotland.brxm.components.DMSCategoryPicker
             initial.search.enabled: true
             mode: ${mode}
             plugin.class: org.onehippo.forge.exdocpicker.impl.field.ExternalDocumentFieldSelectorPlugin
@@ -126,7 +126,7 @@ definitions:
             engine: ${engine}
             dms.productype: visitscotland:productType
             example.external.docs.field.name: visitscotland:dmsFacilities
-            external.document.service.facade: com.visitscotland.brmx.components.DMSFacilityPicker
+            external.document.service.facade: com.visitscotland.brxm.components.DMSFacilityPicker
             initial.search.enabled: true
             mode: ${mode}
             plugin.class: org.onehippo.forge.exdocpicker.impl.field.ExternalDocumentFieldSelectorPlugin
@@ -143,7 +143,7 @@ definitions:
             engine: ${engine}
             dms.productype: visitscotland:productType
             example.external.docs.field.name: visitscotland:dmsAwards
-            external.document.service.facade: com.visitscotland.brmx.components.DMSAwardPicker
+            external.document.service.facade: com.visitscotland.brxm.components.DMSAwardPicker
             initial.search.enabled: true
             mode: ${mode}
             plugin.class: org.onehippo.forge.exdocpicker.impl.field.ExternalDocumentFieldSelectorPlugin

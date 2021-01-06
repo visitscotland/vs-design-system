@@ -13,7 +13,7 @@ Configuration:
 
   Loggers:
     logger:
-    - name: com.visitscotland.brmx
+    - name: com.visitscotland.brxm
       level: debug
 
     - name: org.hippoecm
