@@ -2,6 +2,7 @@
     <div
         class="vs-footer pt-6 pt-md-9"
         data-unique-id="vs-footer"
+        role="navigation"
     >
         <VsFooterNavList break-point="md">
             <!-- @slot Contains accordion item for each menu list  -->
@@ -46,8 +47,9 @@ import {
 
 /**
  * This component is the main Footer wrapper for the bottom of the page.
+ *
+ * @displayName Footer
  */
-
 export default {
     name: 'VsFooter',
     status: 'prototype',

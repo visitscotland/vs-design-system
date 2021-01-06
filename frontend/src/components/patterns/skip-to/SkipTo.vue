@@ -11,12 +11,14 @@
 import {
     isFunction, get, isNumber,
 } from 'lodash';
-import VsSkipToButton from './SkipToButton';
+import VsSkipToButton from './components/SkipToButton';
 
 /**
  * The SkipTo component provides users of assistive
  * technologies with a focusable control that moves the
  * focus to a provided target element when activated.
+ *
+ * @displayName Skip To
  */
 export default {
     name: 'VsSkipTo',

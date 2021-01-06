@@ -26,6 +26,8 @@ const iconPath = 'icons/';
  *
  * Our icons come in specific sizes - xxs, xs, sm, md, lg and xl - and can be any colour,
  * including any of the theme colours.
+ *
+ * @displayName Icon
  */
 export default {
     name: 'VsIcon',
@@ -67,9 +69,9 @@ export default {
             ),
         },
         /**
-         * The size of the icon. Defaults to medium.
-         * `small, medium, large`
-         */
+        * Size of icon, defaults to medium
+        * `xxs, xs, sm, md, lg, xl`)
+        */
         size: {
             type: String,
             default: 'md',
@@ -159,6 +161,10 @@ export default {
                     key: 'walking',
                     value: 'walk',
                 },
+                {
+                    key: 'transport',
+                    value: 'transport',
+                },
             ],
         };
     },
@@ -225,6 +231,11 @@ $variants: (
     @each $variant in map-keys($variants) {
         &.vs-icon--variant-#{$variant} {
             fill: map-get($variants, $variant);
+
+             &.icon--reverse {
+                fill: $color-white;
+                background: map-get($variants, $variant);
+            }
         }
     }
 

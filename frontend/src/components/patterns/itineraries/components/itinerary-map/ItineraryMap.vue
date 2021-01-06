@@ -7,7 +7,7 @@
 
 <script>
 import itinerariesStore from '@components/patterns/itineraries/itineraries.store';
-import VsItineraryMapMarker from '@components/patterns/itineraries/components/itinerary-map/ItineraryMapMarker';
+import VsItineraryMapMarker from '@components/patterns/itineraries/components/itinerary-map/components/ItineraryMapMarker';
 import Vue from 'vue';
 
 let mapboxgl = null;
@@ -16,6 +16,8 @@ let geojsonExtent = null;
 /**
  * Renders a MapBox map (for the itinerary)
  * TODO: refactor this into a general purpose map
+ *
+ * @displayName Itinerary Map
  */
 
 export default {

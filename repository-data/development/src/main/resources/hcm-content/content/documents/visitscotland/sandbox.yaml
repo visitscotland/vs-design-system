@@ -2555,6 +2555,148 @@
             jcr:primaryType: visitscotland:DMSLink
             visitscotland:label: Hola q ase?
             visitscotland:product: '238761'
+      /single-image-2:
+        jcr:primaryType: hippo:handle
+        jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
+        jcr:uuid: af6fc0d9-216a-45f8-ac71-70e8355fa23f
+        hippo:name: Single image 2
+        hippo:versionHistory: 7193ca8c-068d-4a92-b3a5-040904f90c8a
+        /single-image-2[1]:
+          jcr:primaryType: visitscotland:Megalinks
+          jcr:mixinTypes: ['mix:referenceable']
+          jcr:uuid: 73c061dc-0d28-4b8b-b519-788bc3d5c4bd
+          hippo:availability: []
+          hippostd:state: draft
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2020-11-16T11:48:36.675Z
+          hippostdpubwf:lastModificationDate: 2020-11-16T11:49:53.002Z
+          hippostdpubwf:lastModifiedBy: admin
+          hippotranslation:id: 84b9854d-d136-4649-993a-875f7dd45a47
+          hippotranslation:locale: en
+          visitscotland:listLayout: false
+          visitscotland:teaserVisible: true
+          visitscotland:title: ''
+          visitscotland:translation: ''
+          /visitscotland:introduction:
+            jcr:primaryType: hippostd:html
+            hippostd:content: ''
+          /visitscotland:singleImageLinks:
+            jcr:primaryType: visitscotland:SingleImageModule
+            visitscotland:title: SIngle image 2
+            /visitscotland:image:
+              jcr:primaryType: hippogallerypicker:imagelink
+              hippo:docbase: 6fe01b32-04e9-4d0f-86c9-b6b8bd246a67
+              hippo:facets: []
+              hippo:modes: []
+              hippo:values: []
+            /visitscotland:introduction:
+              jcr:primaryType: hippostd:html
+              hippostd:content: <p>Sed ligula leo, consequat id leo vel, iaculis imperdiet
+                ex. Fusce lobortis rutrum pellentesque. Fusce rutrum massa ut magna
+                euismod imperdiet. Praesent vel metus eros.&nbsp;</p>
+          /visitscotland:megalinkItems:
+            jcr:primaryType: visitscotland:MegalinkItem
+            visitscotland:feature: false
+            /visitscotland:link:
+              jcr:primaryType: hippo:mirror
+              hippo:docbase: af7bc15d-bc33-4b84-ad01-e77eb5acde61
+          /visitscotland:products:
+            jcr:primaryType: visitscotland:CMSLink
+            visitscotland:label: A test link
+            /visitscotland:link:
+              jcr:primaryType: hippo:mirror
+              hippo:docbase: af7bc15d-bc33-4b84-ad01-e77eb5acde61
+        /single-image-2[2]:
+          jcr:primaryType: visitscotland:Megalinks
+          jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
+          jcr:uuid: e6e40f6c-3592-4a94-a835-3b92c1187858
+          hippo:availability: [preview]
+          hippostd:state: unpublished
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2020-11-16T11:48:36.675Z
+          hippostdpubwf:lastModificationDate: 2020-11-16T11:50:12.584Z
+          hippostdpubwf:lastModifiedBy: admin
+          hippotranslation:id: 84b9854d-d136-4649-993a-875f7dd45a47
+          hippotranslation:locale: en
+          visitscotland:listLayout: false
+          visitscotland:teaserVisible: true
+          visitscotland:title: ''
+          visitscotland:translation: ''
+          /visitscotland:introduction:
+            jcr:primaryType: hippostd:html
+            hippostd:content: ''
+          /visitscotland:singleImageLinks:
+            jcr:primaryType: visitscotland:SingleImageModule
+            visitscotland:title: SIngle image 2
+            /visitscotland:image:
+              jcr:primaryType: hippogallerypicker:imagelink
+              hippo:docbase: 6fe01b32-04e9-4d0f-86c9-b6b8bd246a67
+              hippo:facets: []
+              hippo:modes: []
+              hippo:values: []
+            /visitscotland:introduction:
+              jcr:primaryType: hippostd:html
+              hippostd:content: <p>Sed ligula leo, consequat id leo vel, iaculis imperdiet
+                ex. Fusce lobortis rutrum pellentesque. Fusce rutrum massa ut magna
+                euismod imperdiet. Praesent vel metus eros.&nbsp;</p>
+          /visitscotland:megalinkItems:
+            jcr:primaryType: visitscotland:MegalinkItem
+            visitscotland:feature: false
+            /visitscotland:link:
+              jcr:primaryType: hippo:mirror
+              hippo:docbase: af7bc15d-bc33-4b84-ad01-e77eb5acde61
+          /visitscotland:products:
+            jcr:primaryType: visitscotland:CMSLink
+            visitscotland:label: A test link
+            /visitscotland:link:
+              jcr:primaryType: hippo:mirror
+              hippo:docbase: af7bc15d-bc33-4b84-ad01-e77eb5acde61
+        /single-image-2[3]:
+          jcr:primaryType: visitscotland:Megalinks
+          jcr:mixinTypes: ['mix:referenceable']
+          jcr:uuid: be15bc89-b045-4ba6-8fc9-03a7be237225
+          hippo:availability: [live]
+          hippostd:state: published
+          hippostdpubwf:createdBy: admin
+          hippostdpubwf:creationDate: 2020-11-16T11:48:36.675Z
+          hippostdpubwf:lastModificationDate: 2020-11-16T11:50:12.584Z
+          hippostdpubwf:lastModifiedBy: admin
+          hippostdpubwf:publicationDate: 2020-11-16T11:50:30.046Z
+          hippotranslation:id: 84b9854d-d136-4649-993a-875f7dd45a47
+          hippotranslation:locale: en
+          visitscotland:listLayout: false
+          visitscotland:teaserVisible: true
+          visitscotland:title: ''
+          visitscotland:translation: ''
+          /visitscotland:introduction:
+            jcr:primaryType: hippostd:html
+            hippostd:content: ''
+          /visitscotland:singleImageLinks:
+            jcr:primaryType: visitscotland:SingleImageModule
+            visitscotland:title: SIngle image 2
+            /visitscotland:image:
+              jcr:primaryType: hippogallerypicker:imagelink
+              hippo:docbase: 6fe01b32-04e9-4d0f-86c9-b6b8bd246a67
+              hippo:facets: []
+              hippo:modes: []
+              hippo:values: []
+            /visitscotland:introduction:
+              jcr:primaryType: hippostd:html
+              hippostd:content: <p>Sed ligula leo, consequat id leo vel, iaculis imperdiet
+                ex. Fusce lobortis rutrum pellentesque. Fusce rutrum massa ut magna
+                euismod imperdiet. Praesent vel metus eros.&nbsp;</p>
+          /visitscotland:megalinkItems:
+            jcr:primaryType: visitscotland:MegalinkItem
+            visitscotland:feature: false
+            /visitscotland:link:
+              jcr:primaryType: hippo:mirror
+              hippo:docbase: af7bc15d-bc33-4b84-ad01-e77eb5acde61
+          /visitscotland:products:
+            jcr:primaryType: visitscotland:CMSLink
+            visitscotland:label: A test link
+            /visitscotland:link:
+              jcr:primaryType: hippo:mirror
+              hippo:docbase: af7bc15d-bc33-4b84-ad01-e77eb5acde61
     /the-outer-hebrides:
       jcr:primaryType: hippostd:folder
       jcr:mixinTypes: ['hippo:named', 'hippotranslation:translated', 'mix:versionable']
@@ -3134,6 +3276,7 @@
           visitscotland:listLayout: true
           visitscotland:teaserVisible: true
           visitscotland:title: Featured Links (6 items) - List view
+          visitscotland:translation: ''
           /visitscotland:introduction:
             jcr:primaryType: hippostd:html
             hippostd:content: <p>This is an example of Featured Links</p>

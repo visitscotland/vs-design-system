@@ -37,12 +37,14 @@ import {
     VsRow,
     VsCol,
 } from '@components/elements/layout';
-import VsItineraryMobileMapToggle from '@components/patterns/itineraries/components/itinerary-mobile-map-toggle/ItineraryMobileMapToggle';
+import VsItineraryMobileMapToggle from '@components/patterns/itineraries/components/ItineraryMobileMapToggle';
 import VsAccordion from '@components/patterns/accordion/Accordion';
 
 /**
  * A wrapper component that wraps the itinerary map and list.
  * It controls display of the mobile map toggle on smaller screens.
+ *
+ * @displayName Itinerary
  */
 
 export default {

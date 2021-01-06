@@ -6,6 +6,7 @@
             'vs-list--unstyled': unstyled,
             'vs-list--inline': inline,
         }"
+        v-bind="$attrs"
     >
         <slot />
     </Component>
@@ -15,6 +16,7 @@
 /**
  * Generic List Component that can be used for any kind of list needed given the right properties.
  *
+ * @displayName List
  */
 export default {
     name: 'VsList',

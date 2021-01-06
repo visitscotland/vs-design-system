@@ -5,7 +5,7 @@ definitions:
       hst:referencecomponent: hst:abstractpages/base
       /main:
         jcr:primaryType: hst:component
-        hst:componentclassname: com.visitscotland.brmx.components.content.GeneralContentComponent
+        hst:componentclassname: com.visitscotland.brxm.components.content.GeneralContentComponent
         hst:template: general-main
         /breadcrumb:
           jcr:primaryType: hst:component

@@ -1,9 +1,14 @@
 <template>
-    <li class="vs-footer-nav-list-item">
+    <li
+        class="vs-footer-nav-list-item"
+        data-test="vs-footer-nav-list-item"
+        role="menuitem"
+    >
         <VsLink
             :href="href"
             :type="type"
             variant="dark"
+            data-test="vs-footer-nav-list-item__link"
         >
             {{ linkText }}
         </VsLink>
@@ -16,6 +21,8 @@ import VsLink from '@components/elements/link/Link';
 /**
  * The FooterNavListItems is used inside the FooterNavList to
  * show an indivudal footer link.
+ *
+ * @displayName Footer Nav List Item
  */
 
 export default {

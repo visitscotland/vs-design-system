@@ -1,6 +1,7 @@
 <template>
     <VsAccordionItem
         class="vs-footer-accordion-item mb-md-4"
+        data-test="vs-footer-accordion-item"
         :data-unique-id="getUniqueId"
         :control-id="controlId"
         :item-break-point="itemBreakPoint"
@@ -27,11 +28,13 @@
 </template>
 
 <script>
-import VsAccordionItem from '@components/patterns/accordion/AccordionItem';
+import VsAccordionItem from '@components/patterns/accordion/components/AccordionItem';
 
 /**
  * The FooterAccordionItem is an accordion item used inside the FooterNavList.
  * It's a wrapper for FooterNavListItems in the footer.
+ *
+ * @displayName Footer Accordion Item
  */
 
 export default {

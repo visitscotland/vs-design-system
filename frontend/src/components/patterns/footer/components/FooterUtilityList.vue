@@ -1,6 +1,7 @@
 <template>
     <div
         class="border-top border-secondary-light vs-footer-utility-list"
+        data-test="vs-footer-utility-list"
         data-unique-id="vs-footer-utility_links"
     >
         <VsContainer>
@@ -10,7 +11,10 @@
                     sm="6"
                     md="12"
                 >
-                    <VsList unstyled>
+                    <VsList
+                        unstyled
+                        role="menu"
+                    >
                         <!-- @slot The default slot is the content for the menu social items -->
                         <slot />
                     </VsList>
@@ -29,6 +33,8 @@ import {
 /**
  * The FooterUtilityList is a list of FooterNavListItems
  * that hold general utility links for the footer.
+ *
+ * @displayName Footer Utility List
  */
 
 export default {

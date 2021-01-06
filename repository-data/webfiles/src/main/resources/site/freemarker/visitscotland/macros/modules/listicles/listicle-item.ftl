@@ -7,9 +7,9 @@
 <#include "../../global/cms-errors.ftl">
 
 <#macro listicleItem item>
-<#-- @ftlvariable name="listItem" type="com.visitscotland.brmx.beans.ListicleItem" -->
-<#-- @ftlvariable name="item" type="com.visitscotland.brmx.beans.mapping.FlatListicle" -->
-<#-- @ftlvariable name="cta" type="com.visitscotland.brmx.beans.mapping.FlatLink" -->
+<#-- @ftlvariable name="listItem" type="com.visitscotland.brxm.beans.ListicleItem" -->
+<#-- @ftlvariable name="item" type="com.visitscotland.brxm.beans.mapping.FlatListicle" -->
+<#-- @ftlvariable name="cta" type="com.visitscotland.brxm.beans.mapping.FlatLink" -->
 	<#assign image = "" />
     <#if item.image.cmsImage??>
         <#assign image>
