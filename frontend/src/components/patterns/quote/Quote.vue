@@ -44,7 +44,7 @@ export default {
 .vs-quote {
     &__content {
         font-size: $font-size-lg;
-        font-weight: lighter;
+        font-weight: 300;
     }
 
     &__author-name {
