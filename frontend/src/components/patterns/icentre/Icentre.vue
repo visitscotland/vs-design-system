@@ -147,7 +147,7 @@ export default {
 
     &__links-contained {
         margin-bottom: $spacer-0;
-        margin-top: $spacer-4;
+        margin-top: $spacer-8;
     }
 }
 </style>
