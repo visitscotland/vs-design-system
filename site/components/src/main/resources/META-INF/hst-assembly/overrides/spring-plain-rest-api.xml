@@ -13,7 +13,7 @@
       <list>
         <bean class="org.apache.cxf.jaxrs.lifecycle.SingletonResourceProvider">
           <constructor-arg>
-            <bean class="com.visitscotland.brmx.rest.InternalResource"/>
+            <bean class="com.visitscotland.brxm.rest.InternalResource"/>
           </constructor-arg>
         </bean>
       </list>
@@ -24,7 +24,7 @@
     JAXB CONTEXT MAPPINGS
   -->
   <bean id="jaxrsHippoContextProvider" class="org.onehippo.cms7.essentials.components.rest.JaxbContextProvider">
-    <property name="beansPackage" value="com.visitscotland.brmx.beans"/>
+    <property name="beansPackage" value="com.visitscotland.brxm.beans"/>
     <!--
       you can add extra classes if needed as followed:
     -->
