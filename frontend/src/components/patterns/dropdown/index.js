@@ -1,4 +1,4 @@
 import VsDropdown from './Dropdown';
-import VsDropdownItem from './DropdownItem';
+import VsDropdownItem from './components/DropdownItem';
 
 export { VsDropdown, VsDropdownItem };
