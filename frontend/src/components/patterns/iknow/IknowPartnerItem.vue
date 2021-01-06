@@ -97,6 +97,12 @@ export default {
         padding: $spacer-11 $spacer-11 $spacer-0;
     }
 
+    >.container {
+        @include media-breakpoint-down(md) {
+            padding: 0;
+        }
+    }
+
     &__main-content {
         text-align: center;
 
@@ -111,9 +117,14 @@ export default {
 
     &__logo {
         display: inline-block;
-        max-height: 30px;
-        max-width: 105px;
         margin-bottom: $spacer-8;
+        max-height: 45px;
+        max-width: 160px;
+
+        @include media-breakpoint-up (md) {
+            max-height: 30px;
+            max-width: 105px;
+        }
 
         @include media-breakpoint-up(xl) {
             max-height: 40px;
