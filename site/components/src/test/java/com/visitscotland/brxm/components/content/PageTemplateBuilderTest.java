@@ -13,6 +13,7 @@ import com.visitscotland.brxm.components.content.factory.IKnowFactory;
 import com.visitscotland.brxm.components.content.factory.LinkModulesFactory;
 import com.visitscotland.brxm.mock.MegalinksMockBuilder;
 import com.visitscotland.brxm.mock.TouristInformationMockBuilder;
+import com.visitscotland.brxm.utils.DocumentUtils;
 import org.hippoecm.hst.mock.core.component.MockHstRequest;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Disabled;
