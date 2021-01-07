@@ -55,6 +55,11 @@ export default {
         margin-bottom: $spacer-2;
     }
 
+    &__author-title {
+        font-size: 1.125rem;
+        line-height: 1.75;
+    }
+
     &__speech-mark {
         font-weight: bold;
         color: $color-gray;
