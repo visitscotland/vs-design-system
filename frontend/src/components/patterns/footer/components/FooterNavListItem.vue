@@ -2,6 +2,7 @@
     <li
         class="vs-footer-nav-list-item"
         data-test="vs-footer-nav-list-item"
+        role="menuitem"
     >
         <VsLink
             :href="href"
