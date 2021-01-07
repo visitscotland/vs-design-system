@@ -104,11 +104,11 @@ export default {
     padding: $spacer-8 $spacer-0;
 
     @include media-breakpoint-up(md) {
-        padding: $spacer-8;
+        padding: $spacer-8 $spacer-0;
     }
 
     @include media-breakpoint-up(lg) {
-        padding: $spacer-11;
+        padding: $spacer-11 $spacer-0;
     }
 
     &__heading {
