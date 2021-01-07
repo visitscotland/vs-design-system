@@ -160,6 +160,7 @@ export default {
         margin-bottom: $spacer-0;
         margin-top: $spacer-8;
         font-size: 1.125rem;
+        line-height: 1.75;
     }
 }
 </style>
