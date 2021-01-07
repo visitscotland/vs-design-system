@@ -16,7 +16,7 @@ import { VsCol } from '@components/elements/layout';
  * Sidebar component: a wrapper component for sidebar content, generally
  * wrapped in content sections
  *
- * @displaynName Sidebar
+ * @displayName Sidebar
  */
 export default {
     name: 'VsSidebar',

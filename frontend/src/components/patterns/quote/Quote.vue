@@ -32,6 +32,8 @@
 <script>
 /**
  * An embeddable quote with an author, links to icentre information and an optional CTA
+ *
+ * @displayName Quote
  */
 export default {
     name: 'VsQuote',
