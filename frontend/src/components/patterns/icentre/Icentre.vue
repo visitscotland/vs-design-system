@@ -112,7 +112,11 @@ export default {
     }
 
     &__heading {
-        margin-bottom: $spacer-8;
+        margin-bottom: $spacer-9;
+
+        @include media-breakpoint-up(lg) {
+            margin-bottom: $spacer-8;
+        }
     }
 
     &__logo {
@@ -159,8 +163,12 @@ export default {
     &__links-contained {
         margin-bottom: $spacer-0;
         margin-top: $spacer-9;
-        font-size: 1.125rem;
-        line-height: 1.75;
+        line-height: 1.25;
+
+        @include media-breakpoint-up(lg) {
+            line-height: 1.75;
+            font-size: 1.125rem;
+        }
     }
 }
 </style>
