@@ -11,7 +11,10 @@
                     sm="6"
                     md="12"
                 >
-                    <VsList unstyled>
+                    <VsList
+                        unstyled
+                        role="menu"
+                    >
                         <!-- @slot The default slot is the content for the menu social items -->
                         <slot />
                     </VsList>

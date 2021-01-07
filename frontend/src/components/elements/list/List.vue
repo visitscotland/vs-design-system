@@ -6,6 +6,7 @@
             'vs-list--unstyled': unstyled,
             'vs-list--inline': inline,
         }"
+        v-bind="$attrs"
     >
         <slot />
     </Component>
