@@ -58,6 +58,10 @@ export default {
     &__author-title {
         font-size: 1.125rem;
         line-height: 1.75;
+
+        @include media-breakpoint-up(lg) {
+            margin-bottom: $spacer-7;
+        }
     }
 
     &__speech-mark {
