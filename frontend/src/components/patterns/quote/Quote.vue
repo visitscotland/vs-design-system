@@ -97,7 +97,6 @@ export default {
         }
 
         @include media-breakpoint-up(lg) {
-            width: 6rem;
             margin-right: $spacer-5;
         }
     }
@@ -111,7 +110,7 @@ export default {
         }
 
         @include media-breakpoint-up(lg) {
-            width: calc(100% - 13rem);
+            width: calc(100% - 15rem);
         }
     }
 }
