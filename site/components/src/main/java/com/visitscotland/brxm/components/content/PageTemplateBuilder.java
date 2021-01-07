@@ -84,8 +84,6 @@ public class PageTemplateBuilder {
                     }
                     iKnowModule.setHippoBean(item);
                     links.add(iKnowModule);
-                } else if (item instanceof LongContent){
-                    links.add(createLongContent(request, (LongContent) item));
                 } else if (item instanceof Article){
                     links.add(createLongContent(request, (Article) item));
                 }
@@ -129,50 +127,6 @@ public class PageTemplateBuilder {
                 if (cmsImage != null) {
                     FlatImage flatImage = new FlatImage(cmsImage,request.getLocale());
                    flcs.setImage(flatImage);
-                }
-            }
-
-            // TODO Are we going to include Quotes?
-            if (section.getQuote()!= null){
-                flcs.setQuote(section.getQuote().getQuote());
-                flcs.setQuoteAuthorName(section.getQuote().getAuthor());
-                flcs.setQuoteAuthorTitle(section.getQuote().getRole());
-                if (section.getQuote().getImage() != null) {
-                    flcs.setQuoteImage(new FlatImage(section.getQuote().getImage(), request.getLocale()));
-                }
-                //TODO ADD Rethink about CTA
-//                flcs.setQuoteLink(section.getQuote().getProduct());
-            }
-            sections.add(flcs);
-        }
-        module.setSections(sections);
-
-        return module;
-    }
-
-    //TODO convert into factory
-    private Module createLongContent(HstRequest request, LongContent doc){
-        LongContentModule module = new LongContentModule();
-        List<FlatLongContentSection> sections = new ArrayList<>();
-        //TODO add media
-        if (doc.getImage() != null) {
-            module.setImage(new FlatImage(doc.getImage(), Locale.UK));
-        }
-        module.setTitle(doc.getTitle());
-        module.setIntroduction(doc.getIntroduction());
-        module.setHippoBean(doc);
-
-        for (LongContentSection section: doc.getparagraphs()){
-            FlatLongContentSection flcs = new FlatLongContentSection();
-            flcs.setCopy(section.getCopy());
-            //TODO Convert MediaItem into image
-            //flcs.setImage(new FlatImage(section.getMediaItem(), request.getLocale()));
-
-            if (section.getMediaItem() instanceof Image) {
-                Image cmsImage = (Image) section.getMediaItem();
-                if (cmsImage != null) {
-                    FlatImage flatImage = new FlatImage(cmsImage,request.getLocale());
-                    flcs.setImage(flatImage);
                 }
             }
 
