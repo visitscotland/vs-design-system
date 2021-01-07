@@ -2,7 +2,7 @@
     <li
         class="vs-mega-nav-list-item"
         data-test="vs-mega-nav-list-item"
-        :class="[{ 'is-last-item': isLast }, navItemClass]"
+        :class="navItemClasses"
     >
         <VsLink
             :href="href"
@@ -60,12 +60,13 @@ export default {
         },
     },
     computed: {
-        navItemClass() {
+        navItemClasses() {
             return {
                 'vs-mega-nav-list-item__heading': this.href === '#',
                 'vs-mega-nav-list-item__link': this.href !== '#',
                 'vs-mega-nav-list-item__subheading-link': this.subheadingLink,
                 'vs-mega-nav-list-item__cta-link': this.ctaLink,
+                'is-last-item': this.isLast,
             };
         },
     },
