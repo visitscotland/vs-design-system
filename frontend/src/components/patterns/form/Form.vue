@@ -7,8 +7,7 @@
 
 <script>
 /**
- * An icon list can be used where there is a list icons with a caption with optional heading.
- * An example use is to create a list of key facilities for a product.
+ * A form embedded from Marketo
  */
 
 export default {
@@ -22,7 +21,7 @@ export default {
         },
     },
     mounted() {
-        window.MktoForms2.loadForm('//e.visitscotland.com', '638-HHZ-510', 35);
+        window.MktoForms2.loadForm('//e.visitscotland.com', '638-HHZ-510', this.formId);
         window.MktoForms2.whenRendered((form) => {
             this.destyleMktoForm(form);
         });
