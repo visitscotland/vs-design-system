@@ -158,7 +158,7 @@ export default {
 
     &__links-contained {
         margin-bottom: $spacer-0;
-        margin-top: $spacer-8;
+        margin-top: $spacer-9;
         font-size: 1.125rem;
         line-height: 1.75;
     }
