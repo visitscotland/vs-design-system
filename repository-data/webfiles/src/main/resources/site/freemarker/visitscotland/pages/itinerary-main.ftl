@@ -34,15 +34,15 @@
 <#include "../pages/module-builder.ftl">
 
 <#-- Implicit Request Objects -->
-<#-- @ftlvariable name="document" type="com.visitscotland.brmx.beans.Itinerary" -->
+<#-- @ftlvariable name="document" type="com.visitscotland.brxm.beans.Itinerary" -->
 <#-- @ftlvariable name="firstStopLocation" type="java.lang.String" -->
 <#-- @ftlvariable name="lastStopLocation" type="java.lang.String" -->
-<#-- @ftlvariable name="heroImage" type="com.visitscotland.brmx.beans.mapping.FlatImage" -->
-<#-- @ftlvariable name="heroCoordinates" type="com.visitscotland.brmx.beans.mapping.Coordinates" -->
+<#-- @ftlvariable name="heroImage" type="com.visitscotland.brxm.beans.mapping.FlatImage" -->
+<#-- @ftlvariable name="heroCoordinates" type="com.visitscotland.brxm.beans.mapping.Coordinates" -->
 
 <#-- Template defined objects -->
-<#-- @ftlvariable name="day" type="com.visitscotland.brmx.beans.Day" -->
-<#-- @ftlvariable name="hero" type="com.visitscotland.brmx.beans.Image" -->
+<#-- @ftlvariable name="day" type="com.visitscotland.brxm.beans.Day" -->
+<#-- @ftlvariable name="hero" type="com.visitscotland.brxm.beans.Image" -->
 
 <#assign mainTransport = "">
 <#assign dayNumber = 0>

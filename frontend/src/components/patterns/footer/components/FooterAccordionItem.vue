@@ -28,7 +28,7 @@
 </template>
 
 <script>
-import VsAccordionItem from '@components/patterns/accordion/AccordionItem';
+import VsAccordionItem from '@components/patterns/accordion/components/AccordionItem';
 
 /**
  * The FooterAccordionItem is an accordion item used inside the FooterNavList.
