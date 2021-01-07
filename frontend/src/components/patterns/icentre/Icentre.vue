@@ -83,6 +83,8 @@ import VsCol from '@components/elements/layout/Col';
 /**
  * A summary block for an icentre with a name, cover image and an optional slot for an
  * embedded quote (either just text or a vs-quote element)
+ *
+ * @displayName iCentre
  */
 export default {
     name: 'VsIcentre',
