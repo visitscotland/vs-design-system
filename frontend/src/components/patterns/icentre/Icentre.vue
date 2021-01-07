@@ -175,7 +175,7 @@ export default {
 
 <docs>
 ```jsx
-    <vs-icentre>
+    <VsIcentre>
         <VsHeading level="2" slot="icentreHeading">A tip from your local experts</VsHeading>
 
         <VsImageWithCaption
@@ -230,9 +230,9 @@ export default {
         </span>
 
         <p slot="icentreLinks">Test content <a href="#">link</a></p>
-    </vs-icentre>
+    </VsIcentre>
 
-    <vs-icentre>
+    <VsIcentre>
         <VsHeading level="2" slot="icentreHeading">A tip from your local experts</VsHeading>
 
         <VsImageWithCaption
@@ -250,6 +250,6 @@ export default {
         </VsImageWithCaption>
 
         <p slot="icentreLinks">Test content <a href="#">link</a></p>
-    </vs-icentre>
+    </VsIcentre>
 ```
 </docs>
