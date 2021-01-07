@@ -53,19 +53,13 @@
                             slot="quoteImage">
                         </vs-img>
                     </#if>
-                    <div
-                        slot="quoteContent"
-                    >
+                    <div slot="quoteContent">
                         <@hst.html hippohtml=module.quote/>
                     </div>
-                    <span
-                        slot="quoteAuthorName"
-                    >
+                    <span slot="quoteAuthorName">
                         ${module.quoteAuthorName}
                     </span>
-                    <span
-                        slot="quoteAuthorTitle"
-                    >
+                    <span slot="quoteAuthorTitle">
                         ${module.quoteAuthorTitle}
                     </span>
                     <#if module.quoteLink??>
